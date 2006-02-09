@@ -1,0 +1,84 @@
+{if $miscArr.success}
+<div class="success">{$lang_register_php.acct_created}</div>
+{else}
+<!--display disclaimer text -->
+{if $miscArr.disclamer eq 1}
+<table align="center" width="500px" cellspacing="1" cellpadding="0" class="maintable">
+<form method="post" action="{$smarty.server.PHP_SELF}">
+  <tr>
+    <TD class="tableh1" colspan="2">{$lang_register_php.term_cond}</TD>
+  </tr>
+  <tr>
+    <TD class="tableb" colspan="2">{$lang_register_disclamer}</TD>
+  </tr>
+  <tr>
+    <TD class="tableh2" colspan="2" align="center"><input type="submit" name="agree" value="{$lang_register_php.i_agree}" class="button" /></TD>
+  </tr>
+  </form>
+</table>
+{else}
+<!--registration form building start -->
+<table align="center" width="500px" cellspacing="1" cellpadding="0" class="maintable">
+<form method="post" action="{$smarty.server.PHP_SELF}">
+  <tr>
+    <TD class="tableh1" colspan="2">{$lang_register_php.page_title}</TD>
+  </tr>
+  <tr>
+    <TD class="tableh2" colspan="2">{$lang_register_php.required_info}</TD>
+  </tr>
+  <tr>
+    <td width="40%" class="tableb">{$lang_register_php.username}</td>
+    <td width="60%" class="tableb" valign="top">
+      <input type="text" style="width: 100%" name="user_name" maxlength="25" value="" class="textinput" />
+    </td>
+  </tr>
+  <tr>
+    <td width="40%" class="tableb">{$lang_register_php.password}</td>
+    <td width="60%" class="tableb" valign="top">
+      <input type="password" style="width: 100%" name="user_password" maxlength="25" value="" class="textinput" />
+    </td>
+  </tr>
+  <tr>
+    <td width="40%" class="tableb">{$lang_register_php.password_again}</td>
+    <td width="60%" class="tableb" valign="top">
+      <input type="password" style="width: 100%" name="user_password_again" maxlength="25" value="" class="textinput" />
+    </td>
+  </tr>
+  <tr>
+    <td width="40%" class="tableb">{$lang_register_php.email}</td>
+    <td width="60%" class="tableb" valign="top">
+      <input type="text" style="width: 100%" name="user_email" maxlength="255" value="" class="textinput" />
+    </td>
+  </tr>
+  <!--display additional input fields-->
+  <tr>
+    <TD class="tableh2" colspan="2">{$lang_register_php.optional_info}</TD>
+  </tr>
+  {foreach item=item key=key from=$userFields}
+  <tr>
+    <td width="40%" class="tableb">{$item}</td>
+    <td width="60%" class="tableb" valign="top">
+      <input type="text" style="width: 100%" name="{$key}" maxlength="255" value="" class="textinput" />
+    </td>
+  </tr>
+  {/foreach}
+  <!--textarea field start-->
+  {if $miscArr.user_profile6_name ne ""}
+  <tr>
+    <td width="40%" class="tableb">{$miscArr.user_profile6_name}</td>
+    <td width="60%" class="tableb" valign="top">
+      <textarea rows="7" style="width: 100%" class="textinput"></textarea>
+    </td>
+  </tr>
+  {/if}
+  <!--textarea field end-->
+  <tr>
+    <td colspan="2" align="center" class="tablef">
+      <input type="submit" name="register" value="{$lang_register_php.submit}" class="button">
+      <img src="images/spacer.gif" width="20" height="1" border="0" alt="" />
+    </td>
+  </tr>
+  </form>
+</table>
+{/if}
+{/if}

@@ -1,0 +1,262 @@
+<script language="JavaScript">
+<!--
+{literal}
+function showHideBox(boxId) {
+  if (document.getElementById(boxId)) {
+    if (document.getElementById(boxId).style.display == "none") {
+      document.getElementById(boxId).style.display = "block";
+    } else {
+      document.getElementById(boxId).style.display = "none";
+    }
+  }
+}
+
+function emoticon(text, f) {
+  text = ' '+text+' ';
+
+  if (f.message.createTextRange && f.message.caretPos) {
+    var caretPos = f.message.caretPos;
+    caretPos.text = caretPos.text.charAt(caretPos.text.length - 1) == ' ' ? text+' ' : text;
+    f.message.focus();
+  } else {
+    f.message.value += text;
+    f.message.focus();
+  }
+}
+
+function storeCaret(textEl) {
+  if (textEl.createTextRange) textEl.caretPos = document.selection.createRange().duplicate();
+}
+{/literal}
+//-->
+</script>
+{if $comments ne 0}
+<center>
+  {assign var="previousPosition" value=0}
+  <div style="border: 1px solid #000000; width: 650px;"><!-- Main DIV starts //-->
+   {foreach from=$commentTree key=commentId item=commentPosition name=comment}
+   {if $commentPosition lt $previousPosition}
+   {section name=tmpSection loop=$previousPosition-$commentPosition}
+    </ul><!-- Comment box UL ends //-->
+   {/section}
+   {/if}
+   {if $commentPosition gt $previousPosition}
+    <ul><!-- Comment box UL for {$commentId} starts //-->
+   {/if}
+      <div class="maintable" style="border: 0px;"><!-- Comment box DIV for {$commentId} starts //-->
+       {if $comments.$commentId.deleted eq 1}
+        <div class="tableh2_compact" style="white-space: nowrap;">
+          <span style="float: left;"><b>({$lang_display_comments.deleted_comment})</b></span>
+          <a href="javascript:;" onclick="showHideBox('reply_{$commentId}');" title="{$lang_display_comments.reply_title}">{$lang_display_comments.reply_title}</a>
+       {else}
+        <div align="right" class="tableh2_compact" style="white-space: nowrap;">
+          <span style="float: left;"><b>{$comments.$commentId.msg_author}</b></span>
+         {if $comments.$commentId.ipinfo eq "show"}
+          ({$comments.$commentId.hdr_ip} [{$comments.$commentId.raw_ip}])
+         {/if}
+         {if $miscArr.showCommentInput}
+          <script language="JavaScript">
+          <!--
+          document.write('<a href="javascript:;" onclick="showHideBox(\'reply_{$commentId}\');" title="{$lang_display_comments.reply_title}">{$lang_display_comments.reply_title}</a>');
+          //-->
+          </script>
+          <noscript>
+          <a href="{$DOMAIN_URL}displayimage.php?{$picData.editCommentLink}&amp;event=replyComment&amp;msg_id={$commentId}" title="{$lang_display_comments.reply_title}">{$lang_display_comments.reply_title}</a>
+          </noscript>
+         {/if}
+         {if $comments.$commentId.edit eq "enabled"}
+          <script language="JavaScript">
+          <!--
+          document.write('<a href="javascript:;" onclick="MM_openBrWindow(\'{$DOMAIN_URL}editComment.php?msg_id={$commentId}\', \'editcomment\', \'scrollbars=yes, toolbar=no, status=no, resizable=yes, width=700, height=200\');" title="{$lang_display_comments.edit_title}"><img src="{$DOMAIN_URL}images/edit.gif" align="middle" border="0" /></a>');
+          //-->
+          </script>
+          <noscript>
+          <a href="{$DOMAIN_URL}displayimage.php?{$picData.editCommentLink}&amp;event=editComment&amp;msg_id={$commentId}" title="{$lang_display_comments.edit_title}"><img src="{$DOMAIN_URL}images/edit.gif" align="middle" border="0" /></a>
+          </noscript>
+          <a href="{$DOMAIN_URL}displayimage.php?referer={$referer}&amp;event=deleteComment&amp;msg_id={$commentId}" onclick="return confirm('{$lang_display_comments.confirm_delete}');"><img src="{$DOMAIN_URL}images/delete.gif" align="middle" border="0"></a>
+         {/if}
+          <span class="comment_date">[{$comments.$commentId.msg_date}]</span>
+        </div>
+        <div align="left" class="tableb_compact" style="border-right: 0px;">
+         {if $comments.$commentId.editBox == "Y"}
+          <form action="{$DOMAIN_URL}displayimage.php?{$picData.editCommentLink}" method="post" name="edit_{$commentId}">
+          <input type="hidden" name="msg_id" value="{$commentId}" />
+          <input type="hidden" name="event" value="updateComment" />
+          {$lang_display_comments.name} :
+          <input type="text" class="textinput" name="msg_author" size="20" maxlength="20" value="{$comments.$commentId.msg_author}" />
+          <span style="float: right;">{$miscArr.bbcodeHelp}</span>
+          <center>
+           {if $miscArr.enableSmilies}
+            <textarea class="textinput" id="message" name="msg_body" rows="5" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);" maxlength="{$miscArr.maxComSize}" style="width: 95%;">{$comments.$commentId.msg_body_raw}</textarea>
+           {else}
+            <textarea class="textinput" id="message" name="msg_body" rows="5" maxlength="{$miscArr.maxComSize}" style="width: 95%;">{$comments.$commentId.msg_body_raw}</textarea>
+           {/if}
+            <br>
+            <input type="submit" class="comment_button" name="submit" value="{$lang_display_comments.OK}" />
+           {if $miscArr.enableSmilies}
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr align="center" valign="middle">
+                <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_lol.gif" alt=" :lol:" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :lol:" onclick="javascript:emoticon(':lol:', document.edit_{$commentId})" /></td>
+                <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_razz.gif" alt=" :-P" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :-P" onclick="javascript:emoticon(':-P', document.edit_{$commentId})" /></td>
+                <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_biggrin.gif" alt=" :-D" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :-D" onclick="javascript:emoticon(':-D', document.edit_{$commentId})" /></td>
+                <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_smile.gif" alt=" :-)" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :-)" onclick="javascript:emoticon(':-)', document.edit_{$commentId})" /></td>
+                <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_neutral.gif" alt=" :-|" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :-|" onclick="javascript:emoticon(':-|', document.edit_{$commentId})" /></td>
+                <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_sad.gif" alt=" :-(" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :-(" onclick="javascript:emoticon(':-(', document.edit_{$commentId})" /></td>
+                <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_cry.gif" alt=" :cry:" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :cry:" onclick="javascript:emoticon(':cry:', document.edit_{$commentId})" /></td>
+                <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_cool.gif" alt=" 8-)" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" 8-)" onclick="javascript:emoticon('8-)', document.edit_{$commentId})" /></td>
+                <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_surprised.gif" alt=" :-o" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :-o" onclick="javascript:emoticon(':-o', document.edit_{$commentId})" /></td>
+                <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_confused.gif" alt=" :-?" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :-?" onclick="javascript:emoticon(':-?', document.edit_{$commentId})" /></td>
+                <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_redface.gif" alt=" :oops:" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :oops:" onclick="javascript:emoticon(':oops:', document.edit_{$commentId})" /></td>
+                <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_eek.gif" alt=" :shock:" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :shock:" onclick="javascript:emoticon(':shock:', document.edit_{$commentId})" /></td>
+                <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_mad.gif" alt=" :-x" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :-x" onclick="javascript:emoticon(':-x', document.edit_{$commentId})" /></td>
+                <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_rolleyes.gif" alt=" :roll:" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :roll:" onclick="javascript:emoticon(':roll:', document.edit_{$commentId})" /></td>
+                <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_wink.gif" alt=" ;-)" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" ;-)" onclick="javascript:emoticon(';-)', document.edit_{$commentId})" /></td>
+                <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_idea.gif" alt=" :idea:" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :idea:" onclick="javascript:emoticon(':idea:', document.edit_{$commentId})" /></td>
+                <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_exclaim.gif" alt=" :!:" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :!:" onclick="javascript:emoticon(':!:', document.edit_{$commentId})" /></td>
+                <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_question.gif" alt=" :?:" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :?:" onclick="javascript:emoticon(':?:', document.edit_{$commentId})" /></td>
+              </tr>
+            </table>
+           {/if}
+          </center>
+          </form>
+         {else}
+          {$comments.$commentId.msg_body}
+         {/if}
+       {/if}
+        </div>
+      </div><!-- Comment box DIV for {$commentId} ends //-->
+     {if $miscArr.showCommentInput}
+      <div align="left" class="tableb_compact" id="reply_{$commentId}" style="display: {if $comments.$commentId.replyBox == "Y"}block{else}none{/if};">
+        <form action="{$DOMAIN_URL}displayimage.php?{$picData.editCommentLink}" method="post" name="reply_{$commentId}">
+        <input type="hidden" name="parent" value="{$commentId}" />
+        <input type="hidden" name="event" value="comment" />
+        <input type="hidden" name="pid" value="{$picData.pid}" />
+       {if $miscArr.userStatus eq "anon"}
+        {$lang_display_comments.name} :
+        <input type="text" class="textinput" name="msg_author" size="20" maxlength="20" value="{$miscArr.userName}" onclick="javascript:this.value='';" />
+       {else}
+        <input type="hidden" name="msg_author" value="{$miscArr.userName}" />
+       {/if}
+        <span style="float: right;">{$miscArr.bbcodeHelp}</span>
+        <center>
+         {if $miscArr.enableSmilies}
+          <textarea class="textinput" id="message" name="msg_body" rows="5" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);" maxlength="{$miscArr.maxComSize}" style="width: 95%;"></textarea>
+         {else}
+          <textarea class="textinput" id="message" name="msg_body" rows="5" maxlength="{$miscArr.maxComSize}" style="width: 95%;"></textarea>
+         {/if}
+          <br>
+          <input type="submit" class="comment_button" name="submit" value="{$lang_display_comments.OK}" />
+         {if $miscArr.enableSmilies}
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr align="center" valign="middle">
+              <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_lol.gif" alt=" :lol:" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :lol:" onclick="javascript:emoticon(':lol:', document.reply_{$commentId})" /></td>
+              <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_razz.gif" alt=" :-P" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :-P" onclick="javascript:emoticon(':-P', document.reply_{$commentId})" /></td>
+              <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_biggrin.gif" alt=" :-D" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :-D" onclick="javascript:emoticon(':-D', document.reply_{$commentId})" /></td>
+              <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_smile.gif" alt=" :-)" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :-)" onclick="javascript:emoticon(':-)', document.reply_{$commentId})" /></td>
+              <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_neutral.gif" alt=" :-|" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :-|" onclick="javascript:emoticon(':-|', document.reply_{$commentId})" /></td>
+              <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_sad.gif" alt=" :-(" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :-(" onclick="javascript:emoticon(':-(', document.reply_{$commentId})" /></td>
+              <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_cry.gif" alt=" :cry:" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :cry:" onclick="javascript:emoticon(':cry:', document.reply_{$commentId})" /></td>
+              <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_cool.gif" alt=" 8-)" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" 8-)" onclick="javascript:emoticon('8-)', document.reply_{$commentId})" /></td>
+              <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_surprised.gif" alt=" :-o" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :-o" onclick="javascript:emoticon(':-o', document.reply_{$commentId})" /></td>
+              <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_confused.gif" alt=" :-?" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :-?" onclick="javascript:emoticon(':-?', document.reply_{$commentId})" /></td>
+              <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_redface.gif" alt=" :oops:" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :oops:" onclick="javascript:emoticon(':oops:', document.reply_{$commentId})" /></td>
+              <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_eek.gif" alt=" :shock:" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :shock:" onclick="javascript:emoticon(':shock:', document.reply_{$commentId})" /></td>
+              <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_mad.gif" alt=" :-x" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :-x" onclick="javascript:emoticon(':-x', document.reply_{$commentId})" /></td>
+              <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_rolleyes.gif" alt=" :roll:" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :roll:" onclick="javascript:emoticon(':roll:', document.reply_{$commentId})" /></td>
+              <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_wink.gif" alt=" ;-)" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" ;-)" onclick="javascript:emoticon(';-)', document.reply_{$commentId})" /></td>
+              <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_idea.gif" alt=" :idea:" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :idea:" onclick="javascript:emoticon(':idea:', document.reply_{$commentId})" /></td>
+              <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_exclaim.gif" alt=" :!:" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :!:" onclick="javascript:emoticon(':!:', document.reply_{$commentId})" /></td>
+              <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_question.gif" alt=" :?:" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :?:" onclick="javascript:emoticon(':?:', document.reply_{$commentId})" /></td>
+            </tr>
+          </table>
+         {/if}
+        </center>
+        </form>
+      </div>
+     {/if}
+      {assign var="previousPosition" value=$commentPosition}
+   {/foreach}
+   {if $previousPosition gt 0}
+   {section name=tmpSection loop=$previousPosition}
+    </ul><!-- Comment box extra UL ends //-->
+   {/section}
+   {/if}
+  </div><!-- Main DIV ends //-->
+</center>
+<br>
+{/if}
+{if $miscArr.showCommentInput}
+<form method="post" name="add">
+<input type="hidden" name="event" value="comment" />
+<input type="hidden" name="pid" value="{$picData.pid}" />
+<table align="center" width="650" cellspacing="0" cellpadding="0" class="maintable">
+  <tr><td class="tableh2_compact"><b>{$lang_display_comments.add_your_comment}</b></td></tr>
+  <tr>
+    <td>
+      <table width="100%" cellpadding="0" cellspacing="0">
+       {if $miscArr.userStatus eq "anon"}
+        <tr>
+          <!-- BEGIN user_name_input -->
+          <td class="tableb_compact" width="100">{$lang_display_comments.name}</td>
+          <td class="tableb_compact"><input type="text" class="textinput" name="msg_author" size="20" maxlength="20" value="{$miscArr.userName}" onclick="javascript:this.value='';" /></td>
+          <!-- END user_name_input -->
+        </tr>
+       {else}
+        <input type="hidden" name="msg_author" value="{$miscArr.userName}" />
+       {/if}
+        <tr>
+          <td class="tableb_compact" valign="top" width="100">{$lang_display_comments.comment}&nbsp;{$miscArr.bbcodeHelp}</td>
+         {if $miscArr.enableSmilies}
+          <!-- BEGIN input_box_smilies -->
+          <td class="tableb_compact">
+            <textarea class="textinput" id="message" name="msg_body" rows="5" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);" maxlength="{$miscArr.maxComSize}" style="width: 100%;"></textarea>
+          <!-- END input_box_smilies -->
+         {else}
+          <td class="tableb_compact">
+          <!-- BEGIN input_box_no_smilies -->
+            <textarea class="textinput" id="message" name="msg_body" rows="5" maxlength="{$miscArr.maxComSize}" style="width: 100%;"></textarea>
+          <!-- END input_box_no_smilies -->
+         {/if}
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="tableb_compact" align="center">
+            <input type="submit" class="comment_button" name="submit" value="{$lang_display_comments.OK}" />
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+ {if $miscArr.enableSmilies}
+  <!-- BEGIN smilies -->
+  <tr>
+    <td width="100%" class="tableb_compact">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr align="center" valign="middle">
+          <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_lol.gif" alt=" :lol:" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :lol:" onclick="javascript:emoticon(':lol:', document.add)" /></td>
+          <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_razz.gif" alt=" :-P" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :-P" onclick="javascript:emoticon(':-P', document.add)" /></td>
+          <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_biggrin.gif" alt=" :-D" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :-D" onclick="javascript:emoticon(':-D', document.add)" /></td>
+          <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_smile.gif" alt=" :-)" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :-)" onclick="javascript:emoticon(':-)', document.add)" /></td>
+          <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_neutral.gif" alt=" :-|" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :-|" onclick="javascript:emoticon(':-|', document.add)" /></td>
+          <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_sad.gif" alt=" :-(" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :-(" onclick="javascript:emoticon(':-(', document.add)" /></td>
+          <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_cry.gif" alt=" :cry:" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :cry:" onclick="javascript:emoticon(':cry:', document.add)" /></td>
+          <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_cool.gif" alt=" 8-)" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" 8-)" onclick="javascript:emoticon('8-)', document.add)" /></td>
+          <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_surprised.gif" alt=" :-o" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :-o" onclick="javascript:emoticon(':-o', document.add)" /></td>
+          <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_confused.gif" alt=" :-?" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :-?" onclick="javascript:emoticon(':-?', document.add)" /></td>
+          <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_redface.gif" alt=" :oops:" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :oops:" onclick="javascript:emoticon(':oops:', document.add)" /></td>
+          <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_eek.gif" alt=" :shock:" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :shock:" onclick="javascript:emoticon(':shock:', document.add)" /></td>
+          <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_mad.gif" alt=" :-x" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :-x" onclick="javascript:emoticon(':-x', document.add)" /></td>
+          <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_rolleyes.gif" alt=" :roll:" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :roll:" onclick="javascript:emoticon(':roll:', document.add)" /></td>
+          <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_wink.gif" alt=" ;-)" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" ;-)" onclick="javascript:emoticon(';-)', document.add)" /></td>
+          <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_idea.gif" alt=" :idea:" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :idea:" onclick="javascript:emoticon(':idea:', document.add)" /></td>
+          <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_exclaim.gif" alt=" :!:" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :!:" onclick="javascript:emoticon(':!:', document.add)" /></td>
+          <td width="5%"><img src="{$DOMAIN_URL}images/smiles/icon_question.gif" alt=" :?:" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :?:" onclick="javascript:emoticon(':?:', document.add)" /></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <!-- END smilies -->
+ {/if}
+</table>
+</form>
+{/if}

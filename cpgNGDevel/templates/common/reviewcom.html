@@ -1,0 +1,115 @@
+{if $miscArr.success.deleted ne ""}
+  <div class="success">{$miscArr.success.deleted}</div>
+{/if}
+<table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+  <form action="{$smarty.server.PHP_SELF}?start={$miscArr.start}&amp;count={$miscArr.count}" method="post" name="editForm">
+  <tr>
+    <td class="tableh1" colspan="5">
+      <table border="0" cellspacing="0" cellpadding="0" width="100%">
+        <tr>
+          <td class="tableh1">
+            {$lang_reviewcom_php.title}
+          </td>
+          <td class="tableh1" align="center">
+            {if $miscArr.start gt 0}
+              <a href="{$miscArr.prevTarget}" class="admin_menu">&laquo;{$lang_reviewcom_php.see_prev}</a>&nbsp;&nbsp;-&nbsp;&nbsp;
+            {/if}
+            {if $miscArr.start+$miscArr.count lt $commentCount}
+              <a href="{$miscArr.nextTarget}" class="admin_menu">{$lang_reviewcom_php.see_next}&raquo;</a>&nbsp;&nbsp;-&nbsp;&nbsp;
+            {/if}
+          </td>
+          <td class="tableh1" align="right">
+            {$lang_reviewcom_php.n_comm_disp}
+            <select onChange="if(this.options[this.selectedIndex].value) window.location.href='{$smarty.server.PHP_SELF}?start={$miscArr.start}&amp;count='+this.options[this.selectedIndex].value;"  name="count" class="listbox">
+              <option value="25">25</option>
+              <option value="50" {if $miscArr.count eq "50"}SELECTED{/if}>50</option>
+              <option value="75" {if $miscArr.count eq "75"}SELECTED{/if}>75</option>
+              <option value="100" {if $miscArr.count eq "100"}SELECTED{/if}>100</option>
+            </select>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td class="tableh2" valign="middle" align="center">
+      <input type="checkbox" name="checkAll" onClick="selectAll(this,'cid_array');" class="checkbox" title="$lang_check_uncheck_all" />
+    </td>
+    <td class="tableh2" valign="top">{$lang_reviewcom_php.user_name}
+      <a href="{$smarty.server.PHP_SELF}?start={$miscArr.start}&amp;count={$miscArr.count}&amp;sort=name_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php.name_a}" /></a>
+      <a href="{$smarty.server.PHP_SELF}?start={$miscArr.start}&amp;count={$miscArr.count}&amp;sort=name_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php.name_d}" /></a>
+    </td>
+    <td class="tableh2" valign="top">{$lang_reviewcom_php.date}
+      <a href="{$smarty.server.PHP_SELF}?start={$miscArr.start}&amp;count={$miscArr.count}&amp;sort=date_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php.date_a}" /></a>
+      <a href="{$smarty.server.PHP_SELF}?start={$miscArr.start}&amp;count={$miscArr.count}&amp;sort=date_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php.date_d}" /></a>
+    </td>
+    <td class="tableh2" valign="top">{$lang_reviewcom_php.comment}
+      <a href="{$smarty.server.PHP_SELF}?start={$miscArr.start}&amp;count={$miscArr.count}&amp;sort=comment_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php.comment_a}" /></a>
+      <a href="{$smarty.server.PHP_SELF}?start={$miscArr.start}&amp;count={$miscArr.count}&amp;sort=comment_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php.comment_d}" /></a>
+    </td>
+    <td class="tableh2" valign="top">{$lang_reviewcom_php.file}
+      <a href="{$smarty.server.PHP_SELF}?start={$miscArr.start}&amp;count={$miscArr.count}&amp;sort=file_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php.file_a}" /></a>
+      <a href="{$smarty.server.PHP_SELF}?start={$miscArr.start}&amp;count={$miscArr.count}&amp;sort=file_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php.file_d}" /></a>
+    </td>
+  </tr>
+  {foreach item=item key=key from=$commentArr}
+  <tr class="tableb">
+    <td valign="top" align="center">
+      <input name="cid_array[]" id="check{$item.msg_id}" type="checkbox" value="{$item.msg_id}" />
+    </td>
+    <td valign="top">
+    {if $item.author_id ne "0"}
+      <a href="profile.php?uid={$item.author_id}">{$item.msg_author}</a>
+    {else}
+      {$item.msg_author}
+    {/if}
+    </td>
+    <td valign="top">{$item.msg_date}</td>
+    <td valign="top">
+      {$item.msg_body}
+    </td>
+    <td align="center">
+      <a href="{$DOMAIN_URL}displayimage.php?pid={$item.pid}"><img src="{$item.thumb_url}" width="50" height="38" class="image" border="0" alt="" /></a>
+    </td>
+  </tr>
+  {/foreach}
+  <tr>
+    <td class="tablef" valign="middle" align="center">
+      <input type="checkbox" name="checkAll2" onClick="selectAll(this,'cid_array');" class="checkbox" title="$lang_check_uncheck_all" />
+    </td>
+    <td colspan="4" align="center" class="tablef">
+      <input type="submit" value="{$lang_reviewcom_php.del_comm}" class="button" />
+    </td>
+  </form>
+  </tr>
+</table>
+
+<script type="text/javascript" language="javascript">
+<!--
+{literal}
+function textCounter(field, maxlimit) {
+        if (field.value.length > maxlimit) // if too long...trim it!
+        field.value = field.value.substring(0, maxlimit);
+}
+
+function selectAll(d,box) {
+  var f = document.editForm;
+  for (i = 0; i < f.length; i++) {
+    //alert (f[i].name.indexOf(box));
+    if (f[i].type == "checkbox" && f[i].name.indexOf(box) >= 0) {
+      if (d.checked) {
+        f[i].checked = true;
+      } else {
+        f[i].checked = false;
+      }
+    }
+  }
+  if (d.name == "checkAll") {
+      document.getElementsByName('checkAll2')[0].checked = document.getElementsByName('checkAll')[0].checked;
+  } else {
+      document.getElementsByName('checkAll')[0].checked = document.getElementsByName('checkAll2')[0].checked;
+  }
+}
+{/literal}
+-->
+</script>

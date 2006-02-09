@@ -1,0 +1,84 @@
+<!-- Start standard table -->
+<table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+  <tr>
+    <td class="tableh1" colspan="6">{$lang_delete_php.alb_mgr}</td>
+  </tr>
+  {if $albumObj->deleteAlbum|@count}
+  <tr>
+    <td class="tableh2"><b>{$lang_delete_php.npic}</b></td>
+    <td class="tableh2" align="center"><b>{$lang_delete_php.fs_pic}</b></td>
+    <td class="tableh2" align="center"><b>{$lang_delete_php.ns_pic}</b></td>
+    <td class="tableh2" align="center"><b>{$lang_delete_php.thumb_pic}</b></td>
+    <td class="tableh2" align="center"><b>{$lang_delete_php.comment}</b></td>
+    <td class="tableh2" align="center"><b>{$lang_delete_php.im_in_alb}</b></td>
+  </tr>
+  {foreach from=$albumObj->deleteAlbum item=album}
+  {foreach from=$album.pictures item=pic}
+  <tr>
+    <td class="tableb">{$pic.fileName}</td>
+    <td class="tableb" align="center">{if $pic.imageBulb}<img src="images/{$pic.imageBulb}" border="0" width="12" height="12"><br>{else}&nbsp;{/if}</td>
+    <td class="tableb" align="center">{if $pic.normalBulb}<img src="images/{$pic.normalBulb}" border="0" width="12" height="12"><br>{else}&nbsp;{/if}</td>
+    <td class="tableb" align="center">{if $pic.thumbBulb}<img src="images/{$pic.thumbBulb}" border="0" width="12" height="12"><br>{else}&nbsp;{/if}</td>
+    <td class="tableb" align="center">{if $pic.commentBulb}<img src="images/{$pic.commentBulb}" border="0" width="12" height="12"><br>{else}&nbsp;{/if}</td>
+    <td class="tableb" align="center">{if $pic.fileBulb}<img src="images/{$pic.fileBulb}" border="0" width="12" height="12"><br>{else}&nbsp;{/if}</td>
+  </tr>
+  {/foreach}
+  <tr>
+    <td colspan="6" class="tableb">{$album.albumDeleted}</td>
+  </tr>
+  {/foreach}
+  {/if}
+  {if $albumObj->newAlbum|@count}
+  {foreach from=$albumObj->newAlbum item=album}
+  <tr>
+    <td colspan="6" class="tableb">{$album}</td>
+  </tr>
+  {/foreach}
+  {/if}
+  {if $albumObj->updateAlbum|@count}
+  {foreach from=$albumObj->updateAlbum item=album}
+  <tr>
+    <td colspan="6" class="tableb">{$album}</td>
+  </tr>
+  {/foreach}
+  {/if}
+  {if $albumObj->deleteAlbum|@count eq 0 && $albumObj->newAlbum|@count eq 0 && $albumObj->updateAlbum|@count eq 0}
+  <tr>
+    <td colspan="6" class="tableb">&nbsp;</td>
+  </tr>  
+  {/if}
+  {if $albumObj->deleteAlbum|@count ne 0}
+  <tr>
+    <td colspan="6" class="tableb">&nbsp;</td>
+  </tr>  
+  <tr>
+    <td colspan="6" class="tableh2"><b>{$lang_delete_php.caption}</b></td>
+  </tr>
+  <tr>
+    <td colspan="6" class="tableb">
+      <table cellpadding="1" cellspacing="0">
+        <tr>
+          <td><b>F</b></td><td>:</td><td>{$lang_delete_php.fs_pic}</td><td width="20">&nbsp;</td><td><img src="images/green.gif" border="0" width="12" height="12" align="absmiddle"></td><td>:</td><td>{$lang_delete_php.del_success}</td>
+        </tr>
+        <tr>
+          <td><b>N</b></td><td>:</td><td>{$lang_delete_php.ns_pic}</td><td width="20">&nbsp</td><td><img src="images/red.gif" border="0" width="12" height="12" align="absmiddle"></td><td>:</td><td>{$lang_delete_php.err_del}</td>
+        </tr>
+        <tr>
+          <td><b>T</b></td><td>:</td><td>{$lang_delete_php.thumb_pic}</td>
+        </tr>
+        <tr>
+          <td><b>C</b></td><td>:</td><td>{$lang_delete_php.comment}</td>
+        </tr>
+        <tr>
+          <td><b>D</b></td><td>:</td><td>{$lang_delete_php.im_in_alb}</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  {/if}  
+  <tr>
+    <td colspan="6" class="tablef" align="center">  
+      <div class="admin_menu_thumb"><a href="albmgr.php"  class="adm_menu">{$lang_continue}</a></div>
+    </td>
+  </tr>
+</table>

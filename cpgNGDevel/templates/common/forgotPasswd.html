@@ -1,0 +1,20 @@
+<table align="center" width="500px" cellspacing="1" cellpadding="0" class="maintable">
+  <form action="forgotPasswd.php" method="post" name="passwordreminder">
+    <tr>
+      <TD class="tableh1" colspan="2">{$lang_forgot_passwd_php.forgot_passwd}</TD>
+    </tr>
+    <tr>
+      <td class="tableb" width="40%">{$lang_forgot_passwd_php.user_name}</td>
+      <td class="tableb" width="60%"><input type="text" class="textinput" name="username" style="width: 100%" /></td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center">
+      <script language="javascript" type="text/javascript">
+      <!--
+      document.passwordreminder.username.focus();
+      -->
+      </script>
+      <input name="submited" type="submit" class="button" value="{$lang_forgot_passwd_php.submit}" /></td>
+    </tr>
+  </form>
+</table>

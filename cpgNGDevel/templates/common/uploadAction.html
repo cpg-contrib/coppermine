@@ -1,0 +1,28 @@
+<p align="left"><b>{$lang_upload_php.upload_progress}</b></p>
+<table align="center" width="90%" cellspacing="0" cellpadding="0" class="maintable">
+  <tr>
+    <td class="tableh2">
+      {$lang_upload_php.picture}
+    </td>
+    <td colspan="2" class="tableh2">
+      {$lang_upload_php.album}
+    </td>    
+  </tr>
+  {foreach from=$files item=file key=key}
+  <tr>
+    <td class="tableb" width="38%">
+      {$file.actualName}
+    </td>
+    <td class="tableb" width="38%">
+      {$file.albumName}
+    </td>    
+    <td class="tableb" width="25%" align="center">
+      {if $file.error}
+        {$file.error}
+      {else}
+        <img src="{$DOMAIN_URL}placeFile.php?index={$key}">
+      {/if}
+    </td>
+  </tr>  
+  {/foreach}
+</table>

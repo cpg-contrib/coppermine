@@ -1,0 +1,386 @@
+/* Original design made by Radek HULAN (c) 2004                                */
+/* http://hulan.info/blog/                                                     */
+/* Converted to Wordpress by Riosoft                                           */
+/* http://eriosoft.com                                                         */
+/* Un saludo a los grandes olvidados de Internet: los hispanoparlantes.  :-)   */
+/* Converted for Coppermine NG by Aditya                                       */
+/* http://coppermine.sf.net                                                    */
+
+html {
+  padding:0 0 0 0;
+  margin:0 0 0 0;
+  background-color: #F5DEB3;
+}
+
+h1#header {
+  color: #FFF9D4;
+  font-size: 20px;
+  font-weight: bold;
+  background: #B99E70;
+  padding: 15px 20px 5px 0;
+  margin: 0 0 0 0;
+  text-align: right;
+  border-right: 1px solid #000;
+}
+
+h1#subheader {
+  color: #FFF9D4;
+  font-size: 10px;
+  font-weight: bold;
+  background: #B99E70;
+  padding: 0px 20px 5px 0;
+  margin: 0 0 0 0;
+  text-align: right;
+  border-right: 1px solid #000;
+}
+
+td.main {
+  background-image: url('images/header.png');
+  background-repeat: repeat-x;
+  margin: 0 1 0 0;
+}
+td.menu {
+  background-image: url('images/header.png');
+  background-repeat: repeat-x;
+  margin: 0 1 0 0;
+  vertical-align: top;
+  border-right: 1px solid #000;
+}
+
+body {
+  width: 85%;
+  border: 1px solid #000;
+  margin: 20px auto 20px auto;
+  padding: 0 0 0 0;
+  background-color: #DCD0B8;
+  font-size: 12px;
+  line-height: 17px;
+  font-family: Tahoma, lucida, sans-serif;
+}
+
+div#content{
+  background-color: #F5F0EA;
+  border: 1px solid #4B718A;
+  color: #000000;
+  height: auto;
+  margin: 0px 0em 10px 8px;
+  padding: 20px 20px 20px 20px;
+}
+
+div#content a{
+  color: #AA0000;
+  text-decoration: none;
+}
+
+div#content a:hover{
+  color: #B99E70;
+  background: transparent;
+}
+
+/* menu */
+div#menu {
+  float: right;
+  text-align: left;
+  height: auto;
+  padding: 15px 10px 10px 10px;
+  margin: 0 0 0 0;
+  width: 150px;
+}
+
+div#menu a {
+  color: black;
+  text-decoration: none;
+  font-weight: normal;
+}
+
+div#menu a:hover {
+  color: white;
+  background: #881817;
+}
+
+ul li{
+margin:20px 0px 0px 0px;
+padding:1px;
+}
+
+div#menu ul {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
+
+div#menu ul li ul {
+  margin: 0px;
+}
+
+div#menu ul li ul a{
+  display: block;
+  padding: 1px 0px 1px 15px;
+  margin: 0px;
+  background-color: #E2DAC7;
+  border-right: 1px solid #666666;
+  border-bottom: 1px solid #666666;
+}
+
+div#menu ul li ul a:hover{
+  display: block;
+  background-color: #881817;
+  color: #FFFFFF;
+  border-bottom: 1px #E2DAC7 solid;
+  border-right: 8px #FFD700 solid;
+}
+
+div#menu ul li {
+  margin: 10px 0;
+  padding-left: 0px;
+}
+
+div#menu ul li ul li {
+  margin: auto auto auto auto;
+}
+
+div#menu table td {
+  text-align: center;
+}
+
+li#admin {
+  color: #645131;
+  padding: 2px 0;
+  font-weight: bold;
+}
+
+li#general {
+  color: #645131;
+  padding: 2px 0;
+  font-weight: bold;
+}
+
+li#user_mode {
+  color: #645131;
+  padding: 2px 0;
+  font-weight: bold;
+}
+
+li#links {
+  color: #645131;
+  padding: 2px 0;
+  font-weight: bold;
+}
+
+li#style {
+  color: #645131;
+  padding: 2px 0;
+  font-weight: bold;
+}
+
+form {
+  margin: 0;
+  padding: 0;
+}
+
+textarea {
+  width: 450px;
+}
+
+input, textarea {
+  background-color: #F8F6F1;
+  border: 1px solid #aaa;
+  font-size:100%;
+}
+
+input:hover, textarea:hover {
+  background: #F0ECE1;
+}
+
+.tableh1 {
+  background: #FFD700;
+  border-bottom: 1px solid #000;
+  padding-left: 3px;
+}
+
+.tableb {
+  background: #DCD0B8;
+  padding-top: 3px;
+  padding-right: 10px;
+  padding-bottom: 3px;
+  padding-left: 10px;
+  border: 1px solid #A49B89;
+}
+
+.tableb_album {
+  background: #F5F0EA;
+}
+
+.maintable {
+  border: 1px solid #000;
+  margin-bottom: 5px;
+}
+
+.tableh2 {
+  background: #FFD700;
+  border-bottom: 1px solid #000;
+  padding-left: 3px;
+}
+
+a.alblink:link {
+  color: #000D86;
+}
+
+a.alblink:visited {
+  color: #000D86;
+}
+
+a.alblink:hover {
+  color: #000D86;
+}
+
+.catlink {
+  display: block;
+  color: #000D86;
+}
+
+#admin_menu {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  font-size: 100%;
+  text-align: left;
+  color: #CC9933;
+}
+
+.adm_menu {
+  background: #F5F5F5;
+  padding-right: 5px;
+  padding-left: 5px;
+  margin-left: 3px;
+  margin-right: 3px;
+  border: 1px solid #000000;
+}
+
+.thumbnails {
+  background: #F5F0EA;
+  padding: 15px 5px 10px 10px;
+  border-left: 1px solid #A49B89;
+  border-top: 1px solid #A49B89;
+}
+
+.filmstrip {
+  padding-top: 5px;
+}
+
+td.filmImg {
+  background-image: url('images/tile.gif');
+  background-repeat: repeat-x;
+  padding-bottom: 3px;
+}
+
+.album_stat {
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+  background: #F5F0EA;
+}
+
+.album_desc {
+  width: 100%;
+  background: #F5F0EA;
+  margin: 10 0 0 0;
+  padding: 0 0 0 0;
+  text-align: justify;
+}
+
+.tableb_compact {
+  background: #F5F0EA;
+  padding-top: 2px;
+  padding-right: 5px;
+  padding-bottom: 2px;
+  padding-left: 5px;
+  border-right: 1px solid #A49B89;
+  border-top: 1px solid #A49B89;
+}
+
+.statlink {
+}
+
+.breadcrumbs {
+  background : #DCD0B8;
+  padding-top: 3px;
+  padding-right: 10px;
+  padding-bottom: 3px;
+  padding-left: 10px;
+}
+
+.tableh1_compact {
+  background : #DCD0B8;
+  padding-top: 2px;
+  padding-right: 5px;
+  padding-bottom: 2px;
+  padding-left: 5px;
+}
+
+.tableh2_compact {
+  background: #608BB4;
+  color : #FFF;
+  padding-top: 2px;
+  padding-right: 5px;
+  padding-bottom: 2px;
+  padding-left: 5px;
+}
+/*
+.navmenu {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 100%;
+  font-weight: bold;
+  background : #C1D4E2;
+  border-style: none;
+}
+
+.navmenu a:hover {
+  background : #FFFFFF;
+}
+*/
+.sortorder_options {
+  display: inline;
+  list-style: none;
+  background : #FFD700;
+  padding-right: 5px;
+  margin: 0px;
+  font-weight: normal;
+  font-size: 80%;
+  white-space: nowrap;
+}
+
+a.sortorder_options {
+  padding: 0px;
+}
+
+.navmenu {
+  font-size: 100%;
+  font-weight: bold;
+  background : #FFD700;
+}
+
+.navmenu a {
+  position: relative;
+  display: block;
+  padding-top: 2px;
+  padding-right: 5px;
+  padding-bottom: 2px;
+  padding-left: 5px;
+  text-decoration: none;
+}
+
+.pagination {
+  background : #FFD700;
+  font-weight: bold;
+  border: 1px solid #C1D4E2;
+}
+
+.pagination a {
+  position: relative;
+  display: block;
+  padding-top: 2px;
+  padding-right: 5px;
+  padding-bottom: 2px;
+  padding-left: 5px;
+  text-decoration: none;
+}

@@ -1,0 +1,85 @@
+<form method="post" action="thumbnails.php?meta=search" name="searchcpg">
+<!-- Start standard table -->
+<table align="center" width="60%" cellspacing="1" cellpadding="0" class="maintable">
+  <tr><td class="tableh1">{$lang_search_php.title}</td></tr>
+  <tr>
+    <td class="tableb" align="center" >
+      <input type="text" style="width: 80%" name="search" maxlength="255" value="" class="textinput" />
+      <input type="submit" value="{$lang_search_php.submit_search}" class="button" />
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <table align="center" width="60%">
+        <tr>
+          <td>{$lang_search_php.fields}:</td>
+          <td align="center">{$lang_search_php.age}:</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" name="title" id="title" class="checkbox" checked="checked" /><label for="title" class="clickable_option">{$lang_adv_opts.title}</label></td>
+          <td align="right">{$lang_search_php.newer_than} <input type="text" name="newer_than" size="3" maxlength="4" class="textinput" /> {$lang_search_php.days}</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" name="caption" id="caption" class="checkbox" checked="checked" /><label for="caption" class="clickable_option">{$lang_adv_opts.caption}</label></td>
+          <td align="right">{$lang_search_php.older_than} <input type="text" name="older_than" size="3" maxlength="4" class="textinput" /> {$lang_search_php.days}</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" name="keywords" id="keywords" class="checkbox" checked="checked" /><label for="keywords" class="clickable_option">{$lang_adv_opts.keywords}</label></td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" name="owner_name" id="owner_name" class="checkbox" /><label for="owner_name" class="clickable_option">{$lang_adv_opts.owner_name}</label></td>
+          <td align="right">
+            <select name="type" class="listbox">
+              <option value="AND" selected="selected">{$lang_search_php.all_words}</option>
+              <option value="OR">{$lang_search_php.any_words}</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" name="filename" id="filename" class="checkbox" /><label for="filename" class="clickable_option">{$lang_adv_opts.filename}</label></td>
+          <td>&nbsp;</td>
+        </tr>
+       {foreach from=$searchObj->customFields key=key item=item}
+        <tr>
+          <td><input type="checkbox" name="{$key}" id="{$key}" class="checkbox" /><label for="{$key}" class="clickable_option">{$item}</label></td>
+          <td>&nbsp;</td>
+        </tr>
+       {/foreach}
+       {if $showIpField eq 1}
+        <tr>
+          <td><input type="checkbox" name="pic_raw_ip" class="checkbox" id="pic_raw_ip" /><label for="pic_raw_ip" class="clickable_option">{$lang_search_php.ip_address}</label></td>
+          <td>&nbsp;</td>
+        </tr>
+       {/if}
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- End standard table -->
+</form>
+{if $showKeywordBox eq 1}
+<br />
+<!-- Start standard table -->
+<table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+  <tr><td class="tableh1">{$lang_search_php.keyword_list_title}</td></tr>
+  <tr>
+    <td class="tableb">
+     {foreach from=$searchObj->keywords item=item name=keyword}
+      <a href="thumbnails.php?meta=search&search={$item}">{$item}</a>{if !$smarty.foreach.keyword.last} |{/if}
+     {/foreach}
+    </td>
+  </tr>
+  <tr>
+    <td class="tableb" align="center">
+     {if $showKeywordManagerLink eq 1}<a href="keywordmgr.php" class="admin_menu">{$lang_search_php.edit_keywords}</a>{else}{$lang_search_php.keyword_msg}{/if}
+    </td>
+  </tr>
+</table>
+<!-- End standard table -->
+{/if}
+<script language="javascript" type="text/javascript">
+<!--
+document.searchcpg.search.focus();
+-->
+</script>

@@ -1,0 +1,270 @@
+{if $miscArr.albumUpdated}
+<p class="success">{$miscArr.albumUpdated}</p>
+{/if}
+<!-- Start standard table -->
+<table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+  <tr>
+    <td class="tableh1" colspan="2">{$lang_modifyalb_php.update}&nbsp;{$miscArr.updateHelp}</td>
+  </tr>
+  <tr>
+    <td class="tableh2" align="center">
+      <a href="editpics.php?album={$albumObj->albumData.aid}" class="admin_menu">{$lang_modifyalb_php.edit_files}</a>
+      &nbsp;&nbsp;-&nbsp;&nbsp;
+      <a href="index.php?cat={$albumObj->albumData.category}" class="admin_menu">{$lang_modifyalb_php.parent_category}</a>
+      &nbsp;&nbsp;-&nbsp;&nbsp;
+      <a href="thumbnails.php?album={$albumObj->albumData.aid}" class="admin_menu">{$lang_modifyalb_php.thumbnail_view}</a>
+    </td>
+    <td class="tableh2" align="right">
+    {if $albumObj->albListArr|@count}
+    <select name="album_listbox" class="listbox" onChange="if(this.options[this.selectedIndex].value) window.location.href='modifyalb.php?album='+this.options[this.selectedIndex].value;">
+    {foreach from=$albumObj->albListArr item=row}
+      <option value="{$row.aid}" {if $row.aid eq $albumObj->albumData.aid}selected{/if}>{$row.title}</option>
+    {/foreach}
+    {/if}
+    </td>
+  </tr>
+  <form method="post" name="modifyalbum">
+  <input type="hidden" name="event" value="album_update">
+  <input type="hidden" name="aid" value="{$albumObj->albumData.aid}">  
+  <tr>
+    <td class="tableh2" colspan="2">
+      <b>{$lang_modifyalb_php.general_settings}</b>
+    </td>
+  </tr>
+  <tr>
+    <td width="40%" class="tableb">
+      {$lang_modifyalb_php.alb_title}
+    </td>
+    <td width="60%" class="tableb" valign="top">
+      <input type="text" style="width: 100%" name="title" value="{$albumObj->albumData.title}" class="textinput">
+    </td>
+  </tr>
+  <tr>
+    <td class="tableb">
+      {$lang_modifyalb_php.alb_cat}
+    </td>
+    <td class="tableb" valign="top">
+    {if $albumObj->catList|@count}
+      <select name="category" class="listbox">
+      {foreach from=$albumObj->catList item=category} 
+        <option value="{$category[0]}" {if $albumObj->albumData.category eq $category[0]}selected{/if}>{$category[1]}</option>
+      {/foreach}
+      </select>
+      {else}
+        <i>{$lang_modifyalb_php.user_gal}</i>
+        <input type="hidden" name="category" value="{$albumObj->albumData.category}">        
+      {/if}
+    </td>
+  </tr>  
+  <tr>
+    <td class="tableb" valign="top">
+      {$lang_modifyalb_php.alb_desc}&nbsp;{$miscArr.bbcodeHelp}
+    </td>
+    <td class="tableb" valign="top">
+      <textarea name="description" rows="5" cols="40" wrap="virtual" class="textinput" style="width: 100%;">{$albumObj->albumData.description}</textarea>
+    </td>
+  </tr>
+  <tr>
+    <td width="40%" class="tableb">
+      {$lang_modifyalb_php.alb_keyword}
+    </td>
+    <td width="60%" class="tableb" valign="top">
+      <input type="text" style="width: 100%" name="keyword" value="{$albumObj->albumData.keyword}" class="textinput">
+    </td>
+  </tr>
+  {if $albumObj->imgList|@count eq 0}
+  <tr>
+    <td class="tableb" valign="top">
+      {$lang_modifyalb_php.alb_thumb}
+    </td>
+    <td class="tableb" valign="top">
+      <i>{$lang_modifyalb_php.alb_empty}</i>
+      <input type="hidden" name="thumb" value="0">
+    </td>
+  </tr>    
+  {else}
+  <script language="JavaScript" type="text/JavaScript">
+  <!--
+  {literal}
+  var Pic = new Array()
+  {/literal}
+  {foreach from=$albumObj->imgList key=pid item=item}
+  Pic[{$pid}] = '{$albumObj->miscArr.thumbUrl.$pid}'
+  {/foreach}
+  {literal}
+  function ChangeThumb(index)
+  {
+          document.images.Thumb.src = Pic[index]
+  }
+  
+  var checkobj
+  
+  function agreesubmit(el){
+      checkobj=el
+      if (document.all||document.getElementById){
+          for (i=0;i<checkobj.form.length;i++){  //hunt down submit button
+              var tempobj=checkobj.form.elements[i]
+              if(tempobj.type.toLowerCase()=="submit")
+                  tempobj.disabled=!checkobj.checked
+          }
+      }
+  }
+  
+  function defaultagree(el){
+      if (!document.all&&!document.getElementById){
+          if (window.checkobj&&checkobj.checked)
+              return true
+          else{
+              alert("{/literal}{$lang_modifyalb_php.reset_views_confirm}{literal}")
+              return false
+          }
+      }
+  }
+  {/literal}
+  -->
+  </script>
+  <tr>
+    <td class="tableb" valign="top">
+      {$lang_modifyalb_php.alb_thumb}
+    </td>
+    <td class="tableb" align="center">
+      <table cellspacing="0" cellpadding="5" border="0">
+        <tr>
+          <td width="{$albumObj->miscArr.thumbCellHeight}" height="{$albumObj->miscArr.thumbCellHeight}" align="center"><img src="{$albumObj->miscArr.initialThumbUrl}" name='Thumb' class='image' /><br /></td>
+        </tr>
+      </table>
+      <select name="thumb" class="listbox" onChange="if(this.options[this.selectedIndex].value) ChangeThumb(this.options[this.selectedIndex].value);" onKeyUp="if(this.options[this.selectedIndex].value) ChangeThumb(this.options[this.selectedIndex].value);">
+      {foreach from=$albumObj->imgList key=pid item=picName}
+        <option value="{$pid}" {if $pid eq $albumObj->albumData.thumb}selected{/if}>{$picName}</option>
+      {/foreach}
+      </select>
+    </td>
+  </tr>
+  {/if}
+  <tr>
+    <td class="tableh2" colspan="2">
+      <b>{$lang_modifyalb_php.alb_perm}</b>
+    </td>
+  </tr>
+  <tr>
+  {if $albumObj->permOptions|@count}
+  <tr>
+    <td class="tableb">
+      {$lang_modifyalb_php.can_view}
+    </td>
+    <td class="tableb" valign="top">
+      <select name="visibility" class="listbox">
+      {foreach from=$albumObj->permOptions key=value item=caption}
+        <option value ="{$value}" {if $albumObj->albumData.visibility eq $value}selected{/if}>{$caption}</option>
+      {/foreach}
+      </select>
+    </td>
+  </tr>      
+  {else}
+  <input type="hidden" name="visibility" value="0">
+  {/if}
+  <tr>
+    <td width="40%" class="tableb">
+      {$lang_modifyalb_php.alb_password}
+    </td>
+    <td width="60%" class="tableb" valign="top">
+      <input type="password" name="alb_password" value="{$albumObj->albumData.alb_password}" class="textinput" maxlength="32" size="34">
+    </td>
+  </tr>  
+  <tr>
+    <td width="40%" class="tableb">
+      {$lang_modifyalb_php.alb_password_hint}
+    </td>
+    <td width="60%" class="tableb" valign="top">
+      <input type="text" name="alb_password_hint" value="{$albumObj->albumData.alb_password_hint}" class="textinput" maxlength="32" size="34">
+    </td>
+  </tr>
+  {if $miscArr.visitorsCanUpload}
+    <input type="hidden" name="uploads" value="{$albumObj->albumData.uploads}">
+  {else}
+  <tr>
+    <td class="tableb">
+      {$lang_modifyalb_php.can_upload} *&nbsp;{$miscArr.visitorUpHelp}
+    </td>
+    <td class="tableb" valign="top">
+      <input type="radio" id="uploads1" name="uploads" value="YES" {if $albumObj->albumData.uploads eq "YES"}checked="checked"{/if} /><label for="uploads1" class="clickable_option">{$lang_yes}</label>
+      &nbsp;&nbsp;
+      <input type="radio" id="uploads0" name="uploads" value="NO" {if $albumObj->albumData.uploads eq "NO"}checked="checked"{/if} /><label for="uploads0" class="clickable_option">{$lang_no}</label>
+    </td>
+  </tr>  
+  {/if}
+  <tr>
+    <td class="tableb">
+      {$lang_modifyalb_php.can_post_comments} *
+    </td>
+    <td class="tableb" valign="top">
+      <input type="radio" id="comments1" name="comments" value="YES" {if $albumObj->albumData.comments eq "YES"}checked="checked"{/if} /><label for="comments1" class="clickable_option">{$lang_yes}</label>
+      &nbsp;&nbsp;
+      <input type="radio" id="comments0" name="comments" value="NO" {if $albumObj->albumData.comments eq "NO"}checked="checked"{/if} /><label for="comments0" class="clickable_option">{$lang_no}</label>
+    </td>
+  </tr>  
+  <tr>
+    <td class="tableb">
+      {$lang_modifyalb_php.can_rate} *
+    </td>
+    <td class="tableb" valign="top">
+      <input type="radio" id="votes1" name="votes" value="YES" {if $albumObj->albumData.votes eq "YES"}checked="checked"{/if} /><label for="votes1" class="clickable_option">{$lang_yes}</label>
+      &nbsp;&nbsp;
+      <input type="radio" id="votes0" name="votes" value="NO" {if $albumObj->albumData.votes eq "NO"}checked="checked"{/if} /><label for="votes0" class="clickable_option">{$lang_no}</label>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="left" class="tablef">  
+      {$miscArr.groupNotice1}
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center" class="tablef">
+    <input type="submit" class="button" value="{$lang_modifyalb_php.update}" />
+    </td>
+    </form>
+  </tr>
+</table>
+{if $miscArr.showReset}
+<br />
+<form method="post" name="reset_views_form" onSubmit="return defaultagree(this)">
+<input type="hidden" name="event" value="album_reset">
+<input type="hidden" name="aid" value="{$albumObj->albumData.aid}">
+<!-- Start standard table -->
+<table class="maintable" align="center" cellpadding="0" cellspacing="1" width="100%">
+  <tr>
+    <td class="tableh1" colspan="2">{$lang_modifyalb_php.reset_album}</td>
+  </tr>
+  <tr>
+    <td align="left" class="tableb">
+      <b>{$albumObj->miscArr.hits}</b> {$lang_modifyalb_php.views}
+    </td>
+    <td align="left" class="tableb">
+      <input type="Checkbox" name="reset_views" id="reset_views" value="1" class="checkbox" /><label for="reset_views" class="clickable_option">{$miscArr.translationResetViews}</label>
+    </td>
+  </tr>
+  <tr>
+    <td align="left" class="tableb">
+      <b>{$albumObj->miscArr.votes}</b> {$lang_modifyalb_php.votes}
+    </td>
+    <td align="left" class="tableb">
+      <input type="Checkbox" name="reset_rating" id="reset_rating" value="1" class="checkbox" /><label for="reset_rating" class="clickable_option">{$miscArr.translationResetRating}</label>
+    </td>
+  </tr>
+  <tr>
+    <td align="left" class="tableb">
+      <b>{$albumObj->miscArr.files}</b> {$lang_modifyalb_php.files}
+    </td>
+    <td align="left" class="tableb">
+      <input type="Checkbox" name="delete_files" id="delete_files" value="1" class="checkbox" /><label for="delete_files" class="clickable_option">{$miscArr.translationDeleteFiles}</label>
+    </td>
+  </tr>
+  <tr>
+    <td class="tablef" colspan="2" align="center" valign="bottom">
+      <input type="submit" class="button" value="{$lang_modifyalb_php.submit_reset}" disabled="disabled" />
+      <input name="agreecheck" type="checkbox" onClick="agreesubmit(this)">{$lang_modifyalb_php.reset_views_confirm}
+    </td>
+  </tr>  
+</table>
+</form>
+{/if}

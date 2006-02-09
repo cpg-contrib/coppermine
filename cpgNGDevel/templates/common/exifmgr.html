@@ -1,0 +1,54 @@
+<script type="text/javascript" language="javascript">
+<!--
+{literal}
+function selectAll(d, box) {
+  var f = document.editForm;
+
+  for (i = 0; i < f.length; i++) {
+    if (f[i].type == "checkbox" && f[i].name.indexOf(box) >= 0) {
+      if (d.checked) {
+        f[i].checked = true;
+      } else {
+        f[i].checked = false;
+      }
+    }
+  }
+
+  if (d.name == "checkAll") {
+    document.getElementsByName('checkAll2')[0].checked = document.getElementsByName('checkAll')[0].checked;
+  } else {
+    document.getElementsByName('checkAll')[0].checked = document.getElementsByName('checkAll2')[0].checked;
+  }
+}
+{/literal}
+//-->
+</script>
+<form method="POST" name="editForm">
+<input type="hidden" name="save" value="save" />
+<!-- Start standard table -->
+<table align="center" width="-2" cellspacing="1" cellpadding="0" class="maintable">
+  <tr><td class="tableh1" colspan="2">{$lang_picinfo.ManageExifDisplay}</td></tr>
+  <tr>
+    <td class="tableh2">&nbsp;</td>
+    <td class="tableh2" align="center">
+      <input type="checkbox" name="checkAll" onClick="selectAll(this, 'exif_tags');" class="checkbox" title="{$lang_check_uncheck_all}" />
+    </td>
+  </tr>
+ {foreach from=$exifMgrObj->exifData item=item}
+  <tr>
+    <td class="tableb">{$item.exifParameterTitle}</td>
+    <td class="tableb" align="center">
+      <input type="checkbox" name="exif_tags[]" value="{$item.exifParameter}" class="checkbox" {if $item.exifParameterValue eq 1}CHECKED {/if}/>
+    </td>
+  </tr>
+ {/foreach}
+  <tr>
+    <td class="tablef" align="center">
+      <input type="submit" class="button" name="submit" value="{$lang_picinfo.submit}" />
+    </td>
+    <td class="tablef" align="center">
+      <input type="checkbox" name="checkAll2" onClick="selectAll(this, 'exif_tags');" class="checkbox" title="{$lang_check_uncheck_all}" />
+    </td>
+  </tr>
+</table>
+<!-- End standard table -->

@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="ltr">
+<head>
+<title>{$PAGE_TITLE}{$SUB_TITLE}</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+{$META}
+<link rel="start" href="index.php" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" href="search.php" />
+<link href="{$DOMAIN_URL}templates/{$theme}/style.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="{$DOMAIN_URL}scripts.js"></script>
+</head>
+<body>
+<table cellpadding="0" cellspacing="0" border="0">
+<tr>
+<td colspan="2">
+<h1 id="header">{$GALLERY_NAME}</h1>
+<h1 id="subheader">{$GALLERY_DESCRIPTION}</h1>
+</td>
+</tr>
+<tr>
+<td class="main" valign="top">
+<div id="content">
+  <div class="innerdiv">
+{if $breadcrumbHTML ne ""}
+<!-- Breadcrum for category Starts-->
+{$breadcrumbHTML}
+<!-- Breadcrum for category Ends-->
+{/if}
+<!-- CONTENT -->
+{$CONTENT}
+<img src="images/spacer.gif" width="1" height="17" alt="" /><br />
+</td>
+<td width="15%" class="menu">
+<div id="menu">
+<ul>
+<li id="general">General:
+<ul>
+<!-- BEGIN album_list -->
+    <li><a href="{$DOMAIN_URL}{if $short_url eq 1}cat/{$smarty.get.cat}{else}index.php?cat={$smarty.get.cat}{/if}" title="{$lang_main_menu.alb_list_title}">{$lang_main_menu.alb_list_lnk}</a></li>
+<!-- END album_list -->
+    {if $loggedin ne 0}
+<!-- BEGIN my_gallery -->
+    <li><a href="{$DOMAIN_URL}{if $short_url eq 1}cat/{$my_cat_id}{else}index.php?cat={$my_cat_id}{/if}" title="{$lang_main_menu.my_gal_title}">{$lang_main_menu.my_gal_lnk}</a></li>
+<!-- END my_gallery -->
+    {/if}
+
+{if $GALLERY_ADMIN_MODE}
+    <li><a href="mode.php?admin_mode=0&amp;referer={$REFERER}" title="{$lang_main_menu.usr_mode_title}">{$lang_main_menu.usr_mode_lnk}</a></li>
+{elseif $USER_IS_ADMIN and !$USER_ADMIN_MODE}
+<!-- BEGIN leave_admin_mode -->
+    <li><a href="mode.php?admin_mode=1&amp;referer={$REFERER}" title="{$lang_main_menu.adm_mode_title}">{$lang_main_menu.adm_mode_lnk}</a></li>
+<!-- END leave_admin_mode -->
+{/if}
+</ul>
+
+<ul>
+  <li><a href="thumbnails.php?meta=lastup&amp;cat={$smarty.get.cat}&amp;album={$smarty.get.album}" title="{$lang_main_menu.lastup_title}">{$lang_main_menu.lastup_lnk}</a></li>
+  <li><a href="thumbnails.php?meta=lastcom&amp;cat={$smarty.get.cat}&amp;album={$smarty.get.album}" title="{$lang_main_menu.lastcom_title}">{$lang_main_menu.lastcom_lnk}</a></li>
+  <li><a href="thumbnails.php?meta=topn&amp;cat={$smarty.get.cat}&amp;album={$smarty.get.album}" title="{$lang_main_menu.topn_title}">{$lang_main_menu.topn_lnk}</a></li>
+  <li><a href="thumbnails.php?meta=toprated&amp;cat={$smarty.get.cat}&amp;album={$smarty.get.album}" title="{$lang_main_menu.toprated_title}">{$lang_main_menu.toprated_lnk}</a></li>
+  <li><a href="thumbnails.php?meta=favpics" title="{$lang_main_menu.fav_title}">{$lang_main_menu.fav_lnk}</a></li>
+  <li><a href="search.php" title="{$lang_main_menu.search_title}">{$lang_main_menu.search_lnk}</a></li>
+      {if $login eq 0 and USER_CAN_UPLOAD_PICTURES eq 1}
+<!-- BEGIN upload_pic -->
+    <li><a href="upload.php" title="{$lang_main_menu.upload_pic_title}">{$lang_main_menu.upload_pic_lnk}</a></li>
+<!-- END upload_pic -->
+    {/if}
+    {if $login eq 1 && $allowRegistration}
+      <li><a href="register.php" title="{$lang_main_menu.register_title}">{$lang_main_menu.register_lnk}</a></li>
+    {/if}
+<!-- BEGIN logout -->
+    {if $login eq 1}
+      <li><a href="login.php?referer={$REFERER}" title="{$lang_main_menu.login_title}">{$lang_main_menu.login_lnk}</a></li>
+    {else}
+      <li><a href="logout.php?referer={$REFERER}" title="{$lang_main_menu.logout_title}">{$lang_main_menu.logout_lnk} [{$USER_NAME}]</a></li>
+    {/if}
+<!-- END logout -->
+</ul>
+</li>
+
+{if $GALLERY_ADMIN_MODE || $USER_ADMIN_MODE}
+    {if $GALLERY_ADMIN_MODE}
+    <li id="admin">Admin:
+      <ul>
+      <li><a href="editpics.php?mode=upload_approval" title="{$lang_gallery_admin_menu.upl_app_title}">{$lang_gallery_admin_menu.upl_app_lnk}</a></li>
+      <li><a href="admin.php" title="{$lang_gallery_admin_menu.admin_title}">{$lang_gallery_admin_menu.admin_lnk}</a></li>
+      <li><a href="albmgr.php?cat={$cat}" title="{$lang_gallery_admin_menu.albums_title}">{$lang_gallery_admin_menu.albums_lnk}</a></li>
+      <li><a href="catmgr.php" title="{$lang_gallery_admin_menu.categories_title}">{$lang_gallery_admin_menu.categories_lnk}</a></li>
+      <li><a href="usermgr.php" title="{$lang_gallery_admin_menu.users_title}">{$lang_gallery_admin_menu.users_lnk}</a></li>
+      <li><a href="groupmgr.php" title="{$lang_gallery_admin_menu.groups_title}">{$lang_gallery_admin_menu.groups_lnk}</a></li>
+      <li><a href="banning.php" title="{$lang_gallery_admin_menu.ban_title}">{$lang_gallery_admin_menu.ban_lnk}</a></li>
+      <li><a href="db_ecard.php" title="{$lang_gallery_admin_menu.db_ecard_title}">{$lang_gallery_admin_menu.db_ecard_lnk}</a></li>
+      <li><a href="reviewcom.php" title="{$lang_gallery_admin_menu.comments_title}">{$lang_gallery_admin_menu.comments_lnk}</a></li>
+      <li><a href="batchadd.php" title="{$lang_gallery_admin_menu.searchnew_title}">{$lang_gallery_admin_menu.searchnew_lnk}</a></li>
+      <li><a href="util.php" title="{$lang_gallery_admin_menu.util_title}">{$lang_gallery_admin_menu.util_lnk}</a></li>
+      <li><a href="profile.php?op=edit_profile" title="{$lang_user_admin_menu.my_prof_title}">{$lang_user_admin_menu.my_prof_lnk}</a></li>
+      <li><a href="picmgr.php" title="{$lang_gallery_admin_menu.pictures_title}">{$lang_gallery_admin_menu.pictures_lnk}</a></li>
+      </ul>
+    </li>
+    {/if}
+    {if $USER_ADMIN_MODE}
+    <li id="user_mode">User Mode:
+      <ul>
+      {if USER_CAN_CREATE_ALBUMS eq 1}
+        <li><a href="albmgr.php" title="{$lang_user_admin_menu.albmgr_title}">{$lang_user_admin_menu.albmgr_lnk}</a></li>
+      {/if}
+      <li><a href="modifyalb.php" title="{$lang_user_admin_menu.modifyalb_title}">{$lang_user_admin_menu.modifyalb_lnk}</a></li>
+      <li><a href="profile.php?op=edit_profile" title="{$lang_user_admin_menu.my_prof_title}">{$lang_user_admin_menu.my_prof_lnk}</a></li>
+      <li><a href="picmgr.php" title="{$lang_gallery_admin_menu.pictures_title}">{$lang_gallery_admin_menu.pictures_lnk}</a></li>
+      </ul>
+    </li>
+    {/if}
+{/if}
+{if $RSS eq 1}
+    {if $smarty.get.meta eq '' && $smarty.get.album eq '' && $smarty.get.cat eq ''}
+        {assign var="meta" value='lastup'}
+    {else}
+        {assign var="meta" value=$smarty.get.meta}
+    {/if}
+<li><ul>
+<li><a href="rss.php?{if $meta ne ''}meta={$meta}{/if}{if $smarty.get.album ne ''}&amp;album={$smarty.get.album}{/if}{if $smarty.get.cat ne ''}&amp;cat={$smarty.get.cat}{/if}{if $smarty.get.uid ne ''}&amp;uid={$smarty.get.uid}{/if}"><img src="{$DOMAIN_URL}images/rss.gif" border="0" align="middle" alt="RSS" title="RSS"></a></li>
+</ul></li>
+{/if}
+</ul></div>
+</td>
+</tr>
+</table>
+{if $showDebug eq 1}
+<form name="debug" action="/cpg/index.php">
+<!-- Start standard table -->
+<table align="center" width="100%" cellspacing="0" cellpadding="0" class="maintable">
+  <tr>
+    <td class="tableh1" colspan="2">{$lang_cpg_debug_output.debug_info}</td>
+  </tr>
+  <tr>
+    <td align="center" valign="middle" class="tableh2" width="100">
+      <script language="javascript" type="text/javascript">
+      {literal}
+      <!--
+        function HighlightAll(theField) {
+        var tempval=eval("document."+theField)
+        tempval.focus()
+        tempval.select()
+        }
+      //-->
+      {/literal}
+      </script>
+      <a href="javascript:HighlightAll('debug.debugtext')" class="admin_menu">{$lang_cpg_debug_output.select_all}</a>
+    </td><td align="left" valign="middle" class="tableh2">
+      {if $GALLERY_ADMIN_MODE}
+      <span class="album_stat">
+        {$lang_cpg_debug_output.copy_and_paste_instructions}
+      </span>
+      {/if}
+    </td>
+  </tr>
+  <tr>
+    <td class="tableb" colspan="2">
+      <textarea  rows="10" cols="60" class="debug_text" name="debugtext">
+      USER:
+      {foreach item=item key=key from=$USER}
+        [{$key}] => {$item}
+      {/foreach}
+      USER DATA:
+      {foreach item=item key=key from=$USER_DATA}
+        [{$key}] => {$item}
+      {/foreach}
+      GET:
+      {foreach item=item key=key from=$smarty.get}
+        [{$key}] => {$item}
+      {/foreach}
+      Queries:
+      {foreach item=item key=key from=$queries}
+        [{$key}] => {$item}
+      {/foreach}
+      WARINGS &amp; NOTICES:
+      {foreach item=item key=key from=$report}
+        [{$key}] =>
+        {foreach item=i key=k from=$item}
+          [{$k}] => {$i}
+        {/foreach}
+      {/foreach}
+      </textarea>
+    </td>
+  </tr>
+</table>
+</form>
+{/if}
+<div class="footer" align="center" style="padding-top: 10px;">
+Powered by <a href="http://coppermine.sourceforge.net/" title="Coppermine Photo Gallery" rel="external">Coppermine Photo Gallery</a>
+</div>
+<!-- Coppermine Photo Gallery Next Generation (alpha) //-->
+</body>
+</html>

@@ -1,0 +1,249 @@
+{if $commentResult}
+<div class="success">{$commentResult}</div>
+{/if}
+<!-- Start displayimage.html -->
+<table align="center" width="600" cellspacing="0" cellpadding="0" class="maintable">
+
+        <tr>
+                <td align="center" valign="middle" class="navmenu" width="48">
+                  <a href="{$picData.thumbPageTarget}" class="navmenu_pic" title="{$lang_img_nav_bar.thumb_title}"><img src="{$DOMAIN_URL}images/folder.gif" width="16" height="16" align="middle" border="0" alt="{$lang_img_nav_bar.thumb_title}" /></a>
+                </td>
+                <td align="center" valign="middle" class="navmenu" width="48">
+                  <a href="#" onclick="blocking('picinfo','yes', 'block'); return false;" title="{$lang_img_nav_bar.pic_info_title}"><img src="{$DOMAIN_URL}images/info.gif" width="16" height="16" border="0" align="middle" alt="{$lang_img_nav_bar.pic_info_title}" /></a>
+                </td>
+                <td align="center" valign="middle" class="navmenu" width="48">
+                  <a href="{$picData.slideShowTarget}" title="{$lang_img_nav_bar.slideshow_title}"><img src="{$DOMAIN_URL}images/slideshow.gif" width="16" height="16" border="0" align="middle" alt="{$lang_img_nav_bar.slideshow_title}" /></a>
+                </td>
+                <td align="center" valign="middle" class="navmenu" width="100%">
+                  FILE {$pos+1}/{$picCount}
+                </td>
+                <td align="center" valign="middle" class="navmenu" width="48">
+                  <a href="{$DOMAIN_URL}{$picData.ecardTgt}" title="{$picData.ecardTitle}"><img src="{$DOMAIN_URL}images/ecard.gif" width="16" height="16" border="0" align="middle" alt="{$picData.ecardTitle}" /></a>
+                </td>
+
+                <td align="center" valign="middle" class="navmenu" width="48">
+                 {if $pos gt 0}
+                 <a href="{$picData.prevTarget}" class="navmenu_pic" title="{$lang_img_nav_bar.prev_title}"><img src="{$DOMAIN_URL}images/prev.gif" width="16" height="16" border="0" align="middle" alt="{$lang_img_nav_bar.prev_title}" /></a>
+                 {/if}
+                </td>
+                <td align="center" valign="middle" class="navmenu" width="48">
+                {if $pos lt $picCount-1}
+                 <a href="{$picData.nextTarget}" class="navmenu_pic" title="{$lang_img_nav_bar.next_title}"><img src="{$DOMAIN_URL}images/next.gif" width="16" height="16" border="0" align="middle" alt="{$lang_img_nav_bar.next_title}" /></a>
+                 {/if}
+                </td>
+        </tr>
+</table>
+
+
+<table align="center" width="600" cellspacing="0" cellpadding="0" class="maintable">
+  <tr>
+    <td align="center" class="tableb" height="100" style="white-space: nowrap; padding: 0px;">
+      <table cellspacing="2" cellpadding="0" class="imageborder">
+        <tr>
+          <td align="center">
+            {if $picData.mime_content.content eq "image"}
+              {if $picData.image_size.reduced}
+                <a href="javascript:;" onclick="MM_openBrWindow('{$DOMAIN_URL}displayFullSizeImage.php?pid={$picData.pid}&amp;fullsize=1','','scrollbars=yes,toolbar=yes,status=yes,resizable=yes,width={$picData.winsizeX},height={$picData.winsizeY}')"><img src="{$DOMAIN_URL}{$picData.picUrl}" class="image" border="0" alt="{$lang_display_image_php.view_fs}" id="p" /><br /></a>
+              {else}
+                <img src="{$DOMAIN_URL}{$picData.picUrl}" {$image_size.geom} class="image" border="0" alt="" /><br />
+              {/if}
+            {elseif $picData.mime_content.content eq "document"}
+              <a href="{$picData.picUrl}" target="_blank" class="document_link"><img src="{$DOMAIN_URL}{$picData.pic_thumb_url}" border="0" class="image" alt="" /></a>
+              <br />
+            {else}
+              <object {$picData.image_size.whole}><param name="autostart" value="{$picData.autostart}"><param name="src" value="{$DOMAIN_URL}{$picData.picUrl}"><embed {$picData.image_size.whole} src="{$DOMAIN_URL}{$picData.picUrl}" autostart="{$picData.autostart}"></embed></object><br />
+            {/if}
+            {if $picData.menu}
+            <a href="#" onclick="return MM_openBrWindow('{$DOMAIN_URL}picEditor.php?id={$picData.pid}','Crop_Picture','scrollbars=yes,toolbar=no,status=yes,resizable=yes')" class="adm_menu">{$lang_display_image_php.crop_pic}</a> <a href="{$DOMAIN_URL}editOnePic.php?pid={$picData.pid}" class="adm_menu">{$lang_display_image_php.edit_pic}</a> <a href="{$DOMAIN_URL}deleteOnePic.php?pid={$picData.pid}" class="adm_menu" onclick="return confirm('{$lang_display_image_php.confirm_del}');">{$lang_display_image_php.del_pic}</a>
+            {/if}
+          </td>
+        </tr>
+      </table>
+      {if $picData.title || $picData.caption}
+<!-- BEGIN img_desc -->
+      <table cellpadding="0" cellspacing="0" class="img_caption_table">
+      {if $picData.title}
+<!-- BEGIN title -->
+        <tr>
+          <th>
+            {$picData.title}
+          </th>
+        </tr>
+<!-- END title -->
+        {/if}
+<!-- BEGIN caption -->
+        {if $picData.caption}
+        <tr>
+          <td>
+            {$picData.caption}
+          </td>
+        </tr>
+<!-- END caption -->
+        {/if}
+      </table>
+<!-- END img_desc -->
+      {/if}
+    </td>
+  </tr>
+</table>
+
+
+<table align="center" width="" cellspacing="1" cellpadding="0" class="maintable">
+  <tr>
+    <td valign="top" class="filmImg" align="center">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="bottom" class="filmstrip" align="center">
+    {foreach from=$filmStrip item=thumb}
+      {if $short_url eq 1}
+        <a href="{$DOMAIN_URL}image/{$thumb.pid}">
+      {else}
+      <a href="{$thumb.target}">
+      {/if}
+      <img src="{$DOMAIN_URL}{$thumb.picUrl}" class="image" {$thumb.geom} border="0" alt="{$thumb.filename}" title="{$thumb.picTitle}" /></a>&nbsp;
+    {/foreach}
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="filmImg" align="center">&nbsp;</td>
+  </tr>
+</table>
+
+
+{if $votes}
+
+<table align="center" width="650" cellspacing="0" cellpadding="0" class="maintable">
+
+        <tr>
+                <td colspan="6" class="tableh2_compact"><b>{$lang_rate_pic.rate_this_pic}</b> {$votes} </td>
+        </tr>
+        <tr>
+                <td class="tableb_compact" width="17%" align="center"><a href="{$DOMAIN_URL}ratepic.php?pic={$picData.pid}&amp;rate=0" title="{$lang_rate_pic.rubbish}"><img src="{$DOMAIN_URL}images/rating0.gif" alt="{$lang_rate_pic.rubbish}" border="0" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{$DOMAIN_URL}ratepic.php?pic={$picData.pid}&amp;rate=1" title="{$lang_rate_pic.poor}"><img src="{$DOMAIN_URL}images/rating1.gif" alt="{$lang_rate_pic.poor}" border="0" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{$DOMAIN_URL}ratepic.php?pic={$picData.pid}&amp;rate=2" title="{$lang_rate_pic.fair}"><img src="{$DOMAIN_URL}images/rating2.gif" alt="{$lang_rate_pic.fair}" border="0" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{$DOMAIN_URL}ratepic.php?pic={$picData.pid}&amp;rate=3" title="{$lang_rate_pic.good}"><img src="{$DOMAIN_URL}images/rating3.gif" alt="{$lang_rate_pic.good}" border="0" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{$DOMAIN_URL}ratepic.php?pic={$picData.pid}&amp;rate=4" title="{$lang_rate_pic.excellent}"><img src="{$DOMAIN_URL}images/rating4.gif" alt="{$lang_rate_pic.excellent}" border="0" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{$DOMAIN_URL}ratepic.php?pic={$picData.pid}&amp;rate=5" title="{$lang_rate_pic.great}"><img src="{$DOMAIN_URL}images/rating5.gif" alt="{$lang_rate_pic.great}" border="0" /><br /></a></td>
+        </tr>
+</table>
+
+{/if}
+
+<div id="picinfo" style="display: {$picData.displayPicInfo};">
+
+
+<table align="center" width="650" cellspacing="0" cellpadding="0" class="maintable">
+        <tr>
+          <td colspan="2" class="tableh2_compact"><b>{$lang_picinfo.title}:</b></td>
+        </tr>
+        <tr>
+          <td class="tableb_compact" valign="top" >{$lang_picinfo.Filename}:</td>
+          <td class="tableb_compact">{$picInfo.fileName}</td>
+        </tr>
+        <tr>
+          <td class="tableb_compact" valign="top" >{$lang_picinfo.AlbumName}:</td>
+          <td class="tableb_compact">
+            <span class="alblink"><a href ="{$DOMAIN_URL}profile.php?uid={$picInfo.ownerUid}">{$picInfo.ownerName}</a> {$picInfo.ipinfo} <a href="{$DOMAIN_URL}thumbnails.php?album={$picInfo.aid}">{$picInfo.albumName}</a></span>
+          </td>
+        </tr>
+        {if $picInfo.rating}
+        <tr>
+          <td class="tableb_compact" valign="top" >{$picInfo.rating}:</td>
+          <td class="tableb_compact">
+            <img src="{$picInfo.ratingImgPath}" align="middle" alt="" />
+            {if $picInfo.voteDetailsLink}
+            (<a href="#" onclick="MM_openBrWindow('{$DOMAIN_URL}statDetails.php?pid={$picInfo.pid}&amp;type=vote&amp;sort=sdate&amp;dir=&amp;sdate=1&amp;ip=1&amp;rating=1&amp;referer=1&amp;browser=1&amp;os=1','','resizable=no,width={$picInfo.width},height={$picInfo.height},top=50,left=50,scrollbars=yes'); return false;">{$lang_picinfo.details}</a>)
+            {/if}
+          </td>
+        </tr>
+        {/if}
+        {if $picInfo.keywords}
+        <tr>
+          <td class="tableb_compact" valign="top" >{$lang_picinfo.Keywords}:</td>
+          <td class="tableb_compact">
+            <span class="alblink">{$picInfo.keywordLink}</a>
+          </td>
+        </tr>
+        {/if}
+        {if $picInfo.userFields|@count gt 0}
+        {foreach from=$picInfo.userFields item=value key=key}
+        <tr>
+          <td class="tableb_compact" valign="top" >{$key}:</td>
+          <td class="tableb_compact">{$value}</td>
+        </tr>
+        {/foreach}
+        {/if}
+        <tr>
+          <td class="tableb_compact" valign="top" >{$lang_picinfo.FileSize}:</td>
+          <td class="tableb_compact"><span dir="ltr">{$picInfo.fileSize}</span></td>
+        </tr>
+        <tr>
+          <td class="tableb_compact" valign="top" >{$lang_picinfo.DateAdded}:</td>
+          <td class="tableb_compact">{$picInfo.dateAdded}</td>
+        </tr>
+        <tr>
+          <td class="tableb_compact" valign="top" >{$lang_picinfo.Dimensions}:</td>
+          <td class="tableb_compact">{$picInfo.dimensions}</td>
+        </tr>
+        <tr>
+          <td class="tableb_compact" valign="top" >{$lang_picinfo.Displayed}:</td>
+          <td class="tableb_compact">{$picInfo.displayed}
+          {if $picInfo.hitsDetailsLink}
+          (<a href="#" onclick="MM_openBrWindow('{$DOMAIN_URL}statDetails.php?pid={$picInfo.pid}&amp;type=hits&amp;sort=sdate&amp;dir=&amp;sdate=1&amp;ip=1&amp;rating=1&amp;referer=1&amp;browser=1&amp;os=1','','resizable=no,width=978,height=504,top=50,left=50,scrollbars=yes'); return false;">{$lang_picinfo.details}</a>)
+          {/if}
+          </td>
+        </tr>
+        {if $picInfo.exifInfo}
+        {foreach from=$picInfo.exifInfo item=exif key=key}
+        <tr>
+          <td class="tableb_compact" valign="top" >{$key}:</td>
+          <td class="tableb_compact">{$exif}</td>
+        </tr>
+        {/foreach}
+        {/if}
+        {if $picInfo.iptcTitle}
+        <tr>
+          <td class="tableb_compact" valign="top" >{$lang_picinfo.iptcTitle}:</td>
+          <td class="tableb_compact">{$picInfo.iptcTitle}</td>
+        </tr>
+        {/if}
+        {if $picInfo.iptcCopyright}
+        <tr>
+          <td class="tableb_compact" valign="top" >{$lang_picinfo.iptcCopyright}:</td>
+          <td class="tableb_compact">{$picInfo.iptcCopyright}</td>
+        </tr>
+        {/if}
+        {if $picInfo.iptcKeywords}
+        <tr>
+          <td class="tableb_compact" valign="top" >{$lang_picinfo.iptcKeywords}:</td>
+          <td class="tableb_compact">{$picInfo.iptcKeywords}</td>
+        </tr>
+        {/if}
+        {if $picInfo.iptcCategory}
+        <tr>
+          <td class="tableb_compact" valign="top" >{$lang_picinfo.iptcCategory}:</td>
+          <td class="tableb_compact">{$picInfo.iptcCategory}</td>
+        </tr>
+        {/if}
+        {if $picInfo.iptcSubCategories}
+        <tr>
+          <td class="tableb_compact" valign="top" >{$lang_picinfo.iptcSubCategories}:</td>
+          <td class="tableb_compact">{$picInfo.iptcSubCategories}</td>
+        </tr>
+        {/if}
+        <tr>
+          <td class="tableb_compact" valign="top" >{$lang_picinfo.URL}:</td>
+          <td class="tableb_compact"><a href="{$picInfo.URL}" >{$picInfo.URL}</a></td>
+        </tr>
+        <tr>
+          <td class="tableb_compact" valign="top" >{$lang_picinfo.addFavPhrase}:</td>
+          <td class="tableb_compact"><a href="{$DOMAIN_URL}addfav.php?pid={$picInfo.pid}" >{$picInfo.favPhrase}</a></td>
+        </tr>
+</table>
+
+</div>
+
+<a name="comments"></a>
+{$commentsHTML}
+
+<!-- END displayimage.html -->

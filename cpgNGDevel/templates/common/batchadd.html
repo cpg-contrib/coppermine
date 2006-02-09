@@ -1,0 +1,167 @@
+{if $smarty.get.insert eq 1}
+{if $smarty.session.fileUpload|@count eq 0}
+<div class="error">No files to upload</div>
+{else}
+<table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+  <tr>
+    <td colspan="4" class="tableh1"><h2>{$lang_search_new_phpinsert}{$miscArr.help}</h2></td>
+  </tr>
+  <tr>
+    <td class="tableh2" valign="middle" align="center"><b>{$lang_search_new_php.folder}</b></td>
+    <td class="tableh2" valign="middle" align="center"><b>{$lang_search_new_php.image}</b></td>
+    <td class="tableh2" valign="middle" align="center"><b>{$lang_search_new_php.album}</b></td>
+    <td class="tableh2" valign="middle" align="center"><b>{$lang_search_new_php.result}</b></td>
+  </tr>
+  {foreach item=item key=key from=$files}
+  <tr>
+    <td class="tableb" valign="middle" align="left">{$item.dirName}</td>
+    <td class="tableb" valign="middle" align="left">{$item.fileNameName}</td>
+    <td class="tableb" valign="middle" align="left">{$item.albumName}</td>
+    <td class="tableb" valign="middle" align="center"><img src="{$DOMAIN_URL}placeFile.php?index={$key}" /></td>
+  </tr>
+  {/foreach}
+  <tr>
+    <td class="tableh2" colspan="4"><b>{$lang_search_new_php.be_patient}</b></td>
+  </tr>
+  <tr>
+    <td class="tableb" colspan="4">{$lang_search_new_php.notes}</td>
+  </tr>
+  <tr>
+    <td class="tableb" colspan="4">
+      <p align="center">
+      {foreach item=item key=key from=$editAlbumArr}
+        {$lang_search_new_php.album} &laquo; {$albumArr.$item} &raquo;
+        <a href="editpics.php?album={$item}" class="admin_menu">{$lang_search_new_php.edit_pics}</a>
+        <a href="modifyalb.php?album={$item}" class="admin_menu">{$lang_search_new_php.edit_properties}</a>
+        <a href="thumbnails.php?album={$item}" class="admin_menu">{$lang_search_new_php.view_thumbs}</a>
+        <br />
+      {/foreach}
+      </p>
+    </td>
+  </tr>
+</table>
+{/if}
+{elseif $smarty.get.startdir ne ""}
+<script language="javascript" type="text/javascript">
+{literal}
+<!--
+function selectAll(d,box) {
+  var f = document.selectPics;
+  for (i = 0; i < f.length; i++) {
+    //alert (f[i].name.indexOf(box));
+    if (f[i].type == "checkbox" && f[i].name.indexOf(box) >= 0) {
+      if (d.checked) {
+        f[i].checked = true;
+      } else {
+        f[i].checked = false;
+      }
+    }
+  }
+  if (d.name == "checkAll") {
+    document.getElementsByName('checkAll2')[0].checked = document.getElementsByName('checkAll')[0].checked;
+  } else {
+    document.getElementsByName('checkAll')[0].checked = document.getElementsByName('checkAll2')[0].checked;
+  }
+}
+-->
+{/literal}
+</script>
+
+<table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+<form method="post" action="{$smarty.server.PHP_SELF}?insert=1" name="selectPics">
+  <tr>
+    <td colspan="3" class="tableh1"><h2>{$lang_search_new_php.list_new_pic}{$miscArr.help}</h2></td>
+  </tr>
+  {if $batch->finalPicArr|@count gt 0}
+  {foreach item=item key=key from=$batch->finalPicArr}
+    <tr>
+      <td class="tableh2">
+        <input type="checkbox" name="checkAll2" onClick="selectAll(this,'pics');" class="checkbox" title="{$lang_check_uncheck_all}" />
+      </td>
+      <td class="tableh2" valign="middle" align="right" colspan="2">
+      {assign var="alb_cat" value=""}
+      <select name="{$key}" class="listbox">
+      {foreach item=alb from=$albumList}
+        {if $alb.cat ne $alb_cat}
+          {if $alb_cat}</optgroup>{/if}
+          <optgroup label="{$alb.cat}">
+            {$alb.cat}
+            {assign var="alb_cat" value=$alb.cat}
+        {/if}
+        <option value="{$alb.aid}" {if $alb.aid eq $sel_album}selected{/if}>{$alb.title}</option>
+      {/foreach}
+      </select>
+      </td>
+    </tr>
+    {foreach item=pic key=k from=$item}
+      {if $pic.fileAvailable eq 1}
+      <tr>
+        <td class="tableb" valign="middle">
+          <input name="pics[]" id="picselector" type="checkbox" value="{$pic.picid}" {$pic.checked} />
+          <input name="album_lb_id_{$pic.picid}" type="hidden" value="{$pic.albid}" />
+          <input name="picfile_{$pic.picid}" type="hidden" value="{$pic.encodedFile}" />
+        </td>
+        <td class="tableb" valign="middle" width="100%">
+          <a href="javascript:;" onclick= "MM_openBrWindow('displayFullSizeImage.php?fullsize=1&amp;picfile={$pic.picUrl}', 'ImageViewer', 'toolbar=yes, status=yes, resizable=yes, width={$pic.winSizeX}, height={$pic.winSizeY}')">{$pic.picFile}</a>
+        </td>
+        <td class="tableb" valign="middle" align="center">
+          <a href="javascript:;" onclick= "MM_openBrWindow('displayFullSizeImage.php?fullsize=1&amp;picfile={$pic.picUrl}', 'ImageViewer', 'toolbar=yes, status=yes, resizable=yes, width={$pic.winSizeX}, height={$pic.winSizeY}')">
+          <img src="images/spacer.gif" width="1" height="48" border="0" alt="" /><img src="{$pic.img}" class="thumbnail" width="48" border="0" alt="" /><br /></a>
+        </td>
+      </tr>
+      {else}
+      <tr>
+        <td class="tableb" valign="middle">&nbsp;</td>
+        <td class="tableb" valign="middle" width="100%"><i>{$pic.picFile}</i></td>
+        <td class="tableb" valign="middle" align="center">
+          <a href="javascript:;" onclick= "MM_openBrWindow('displayFullSizeImage.php?fullsize=1&amp;picfile={$pic.picUrl}', 'ImageViewer', 'toolbar=yes, status=yes, resizable=yes, width={$pic.winSizeX}, height={$pic.winSizeY}')"><img src="showthumb.php?picfile={$pic.picUrl}&amp;size=48" class="thumbnail" border="0" alt="" /><br /></a>
+        </td>
+      </tr>
+      {/if}
+    {/foreach}
+  {/foreach}
+  <tr>
+    <td class="tablef">
+      <input type="checkbox" name="checkAll" onClick="selectAll(this,'pics');" class="checkbox" title="{$lang_check_uncheck_all}" />
+    </td>
+    <td colspan="2" align="center" class="tablef">
+      <input type="submit" class="button" name="insert" value="{$lang_search_new_php.insert_selected}">
+    </td>
+  </tr>
+  {else}
+  <tr>
+    <td colspan="3" align="center" class="tableb">
+      <br /><br />
+      <b>{$lang_search_new_php.no_pic_found}</b>
+      <br /><br /><br />
+    </td>
+  </tr>
+  {/if}
+</table>
+</form>
+{else}
+<table align="center" width="600" cellspacing="1" cellpadding="0" class="maintable">
+  <tr>
+    <td class="tableh1" colspan="1">{$lang_search_new_php.select_dir}{$miscArr.help}</td>
+  </tr>
+  {if $batch->dirTree|@count gt 0}
+  {foreach item=item key=key from=$batch->dirTree}
+  <tr>
+    <TD>
+    {if $item.ident gt 0}
+      {section name=ident loop=$item.ident}
+        &nbsp;&nbsp;&nbsp;&nbsp;
+      {/section}
+    {/if}
+      &nbsp;&nbsp;<img src="images/folder.gif" border="0" alt="" />&nbsp;
+      <a href="batchadd.php?startdir={$item.startTarget}">{$item.file}</a>&nbsp;<b>{$item.warnings}</b>
+    </TD>
+  </tr>
+  {/foreach}
+  {else}
+  <tr>
+    <td class="error">{$lang_search_new_php.no_folders}</td>
+  </tr>
+  {/if}
+</table>
+{/if}

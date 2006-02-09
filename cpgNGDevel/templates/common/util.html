@@ -1,0 +1,339 @@
+{if $smarty.session.action eq "update_thumbs" or $smarty.session.action eq "filename_to_title" or $smarty.session.action eq "del_orig" or $smarty.session.action eq "del_norm" or $smarty.session.action eq "refresh_db"}
+  <table align="center" width="90%" cellspacing="0" cellpadding="0" class="maintable">
+    <tr><td class="tableh1" colspan="2">{$smarty.session.pageHeading}</td></tr>
+   {if $smarty.session.message ne ""}
+    <tr><td class="tableb"><div class="success">{$smarty.session.message}</div></td></tr>
+   {/if}
+   {if $smarty.session.data|@count gt 0}
+    <tr>
+      <td class="tableh2">{$lang_util_php.file}</td>
+      <td class="tableh2">{$lang_util_php.status}</td>
+    </tr>
+   {foreach from=$smarty.session.data item=file key=key}
+    <tr>
+      <td class="tableb" width="75%">{$file.image}</td>
+      <td class="tableb" width="25%" align="center">
+        <a href="{$DOMAIN_URL}utilAction.php?index={$key}&header=no"><img border="0" src="{$DOMAIN_URL}utilAction.php?index={$key}"></a>
+      </td>
+    </tr>
+   {/foreach}
+   {else}
+    <tr><td class="tableb" colspan="2">{$lang_util_php.no_images}</td></tr>
+   {/if}
+  </table>
+ {if $smarty.session.processMore|@count gt 0}
+  <form action="util.php" method="post">
+   {foreach from=$smarty.session.processMore item=value key=name}
+    <input type="hidden" name="{$name}" value="{$value}" />
+   {/foreach}
+    <center><input type="submit" value="{$lang_util_php.continue}" class="button" /></center>
+  </form>
+ {/if}
+{elseif $smarty.session.action eq "del_titles" or $smarty.session.action eq "reset_views"}
+  <table align="center" width="90%" cellspacing="0" cellpadding="0" class="maintable">
+    <tr><td class="tableh1">{$smarty.session.pageHeading}</td></tr>
+    <tr><td class="tableb"><div class="success">{$smarty.session.message}</div></td></tr>
+  </table>
+{elseif $smarty.session.action eq "del_orphans"}
+ {if $smarty.session.data|@count gt 0}
+  <script language="JavaScript">
+  <!--
+  {literal}
+  function checkAll(f) {
+    var len = f.length;
+
+    for (var i = 0; i < len; i++) {
+      if (f.elements[i].type == "checkbox") {
+        f.elements[i].checked = true;
+      }
+    }
+
+    return false;
+  }
+
+  function uncheckAll(f) {
+    var len = f.length;
+
+    for (var i = 0; i < len; i++) {
+      if (f.elements[i].type == "checkbox") {
+        f.elements[i].checked = false;
+      }
+    }
+
+    return false;
+  }
+  {/literal}
+  //-->
+  </script>
+  <span>
+    <a href="#" onClick="return checkAll(document.docf);">Check All</a> /
+    <a href="#" onClick="return uncheckAll(document.docf);">Uncheck All</a>
+  </span>
+  <form action="util.php" method="post" name="docf">
+  <input type="hidden" name="action" value="del_orphans" />
+  <table align="center" width="90%" cellspacing="0" cellpadding="0" class="maintable">
+    <tr><td class="tableh1" colspan="2">{$smarty.session.pageHeading}</td></tr>
+    <tr>
+      <td class="tableh2">{$lang_util_php.comment_body}</td>
+      <td class="tableh2">{$lang_util_php.comment_delete}</td>
+    </tr>
+   {foreach from=$smarty.session.data item=comment key=key}
+    <tr>
+      <td class="tableb" width="75%">{$comment.msgBody}</td>
+      <td class="tableb" width="25%" align="center">
+        <input type="checkbox" name="msgId[]" value="{$comment.msgId}" CHECKED>
+      </td>
+    </tr>
+   {/foreach}
+  </table>
+  <span style="float: right;">
+    <a href="#" onClick="return checkAll(document.docf);">Check All</a> /
+    <a href="#" onClick="return uncheckAll(document.docf);">Uncheck All</a>
+  </span>
+  <center><input type="submit" value="{$lang_util_php.delete_all}" class="button" /></center>
+  </form>
+ {else}
+  <table align="center" width="90%" cellspacing="0" cellpadding="0" class="maintable">
+    <tr><td class="tableh1">{$smarty.session.pageHeading}</td></tr>
+    <tr><td class="tablehb">{$lang_util_php.no_images}</td></tr>
+  </table>
+ {/if}
+{else}
+<!-- Start standard table -->
+<table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+  <tr>
+    <td class="tableh1" colspan="2">{$lang_util_php.title}{$miscArr.help}</td>
+  </tr>
+  <tr>
+    <td class="tablef"><b>{$lang_util_php.what_it_does}</b>:
+      <ul style="margin-top:0px;margin-bottom:0px;list-style-type:square">
+      {foreach from=$lang_util_desc_php item=item}
+        <li>{$item}</li>
+      {/foreach}
+      </ul>
+    </td>
+    <td class="tableb">
+      <b>{$lang_util_php.instruction}</b>:<br />
+      (1) {$lang_util_php.instruction_action}<br />
+      (2) {$lang_util_php.instruction_parameter}<br />
+      (3) {$lang_util_php.instruction_album}<br />
+      (4) {$miscArr.langPressInstruction}
+    </td>
+  </tr>
+</table>
+<!-- End standard table -->
+<br />
+<form action="util.php" method="post">
+<!-- Start standard table -->
+<table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+  <tr>
+    <td class="tableh1" colspan="1">
+      <input type="radio" name="action" value="update_thumbs" id="update_thumbs" checked="checked" class="nobg" /><label for="update_thumbs" class="clickable_option" >{$lang_util_php.update}</label> (1)
+    </td>
+  </tr>
+  <tr>
+    <td class="tablef">
+      <b>{$lang_util_php.update_what} (2):</b><br />
+      <input type="radio" name="updatetype" id="updatetype1" value="0" class="nobg" /><label for="updatetype1" class="clickable_option">{$lang_util_php.update_thumb}</label><br />
+      <input type="radio" name="updatetype" id="updatetype2" value="1" class="nobg" /><label for="updatetype2" class="clickable_option">{$lang_util_php.update_pic}</label><br />
+      <input type="radio" name="updatetype" id="updatetype3" value="2" checked="checked" class="nobg" /><label for="updatetype3" class="clickable_option">{$lang_util_php.update_both}</label><br />{$lang_util_php.update_number}
+      <input type="text" name="numpics" value="{$miscArr.defpicnum}" size="5" class="textinput" /><br />{$lang_util_php.update_option}<br /><br />
+    </td>
+  </tr>
+</table>
+<!-- End standard table -->
+<!-- Start standard table -->
+<table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+  <tr>
+    <td class="tableh1" colspan="1">
+      <input type="radio" name="action" value="filename_to_title" id="filename_to_title" checked="checked" class="nobg" /><label for="update_thumbs" class="clickable_option" >{$lang_util_php.filename_title}</label> (1)
+    </td>
+  </tr>
+  <tr>
+    <td class="tablef">
+      <b>{$lang_util_php.filename_how} (2):</b><br />
+      <input type="radio" name="parsemode" id="parsemode1" value="0" checked="checked" class="nobg" /><label for="parsemode1" class="clickable_option">{$lang_util_php.filename_remove}</label><br />
+      <input type="radio" name="parsemode" id="parsemode2" value="1" class="nobg" /><label for="parsemode2" class="clickable_option">{$lang_util_php.filename_euro}</label><br />
+      <input type="radio" name="parsemode" id="parsemode3" value="2" class="nobg" /><label for="parsemode3" class="clickable_option">{$lang_util_php.filename_us}</label><br />
+      <input type="radio" name="parsemode" id="parsemode4" value="3" class="nobg" /><label for="parsemode4" class="clickable_option">{$lang_util_php.filename_time}</label><br /><br />
+    </td>
+  </tr>
+</table>
+<!-- End standard table -->
+<!-- Start standard table -->
+<table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+  <tr>
+    <td class="tableh1" colspan="1">
+      <input type="radio" name="action" value="del_titles" id="del_titles" checked="checked" class="nobg" /><label for="update_thumbs" class="clickable_option" >{$lang_util_php.delete_title}</label> (1)
+    </td>
+  </tr>
+  <tr>
+    <td class="tablef">
+      {$lang_util_php.delete_title_explanation}
+    </td>
+  </tr>
+</table>
+<!-- End standard table -->
+<!-- Start standard table -->
+<table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+  <tr>
+    <td class="tableh1" colspan="1">
+      <input type="radio" name="action" value="del_orig" id="del_orig" checked="checked" class="nobg" /><label for="update_thumbs" class="clickable_option" >{$lang_util_php.delete_original}</label> (1)
+    </td>
+  </tr>
+  <tr>
+    <td class="tablef">
+      {$lang_util_php.delete_original_explanation}
+    </td>
+  </tr>
+</table>
+<!-- End standard table -->
+<!-- Start standard table -->
+<table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+  <tr>
+    <td class="tableh1" colspan="1">
+      <input type="radio" name="action" value="del_norm" id="del_norm" checked="checked" class="nobg" /><label for="update_thumbs" class="clickable_option" >{$lang_util_php.delete_intermediate}</label> (1)
+    </td>
+  </tr>
+  <tr>
+    <td class="tablef">
+      {$lang_util_php.delete_intermediate_explanation}
+    </td>
+  </tr>
+</table>
+<!-- End standard table -->
+<!-- Start standard table -->
+<table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+  <tr>
+    <td class="tableh1" colspan="1">
+      <input type="radio" name="action" value="del_orphans" id="del_orphans" checked="checked" class="nobg" /><label for="update_thumbs" class="clickable_option" >{$lang_util_php.delete_orphans}</label> (1)
+    </td>
+  </tr>
+  <tr>
+    <td class="tablef">
+      {$lang_util_php.delete_orphans_explanation}
+    </td>
+  </tr>
+</table>
+<!-- End standard table -->
+<!-- Start standard table -->
+<table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+  <tr>
+    <td class="tableh1" colspan="1">
+      <input type="radio" name="action" value="refresh_db" id="refresh_db" checked="checked" class="nobg" /><label for="update_thumbs" class="clickable_option" >{$lang_util_php.refresh_db}</label> (1)
+    </td>
+  </tr>
+  <tr>
+    <td class="tablef">
+      {$lang_util_php.refresh_db}<br />
+      {$lang_util_php.update_number}<input type="text" name="refresh_numpics" value="{$miscArr.defpicnum}" size="5" class="textinput" /><br />{$lang_util_php.update_option}
+    </td>
+  </tr>
+</table>
+<!-- End standard table -->
+<!-- Start standard table -->
+<table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+  <tr>
+    <td class="tableh1" colspan="1">
+      <input type="radio" name="action" value="reset_views" id="reset_views" checked="checked" class="nobg" /><label for="update_thumbs" class="clickable_option" >{$lang_util_php.reset_views}</label> (1)
+    </td>
+  </tr>
+  <tr>
+    <td class="tablef">
+      {$lang_util_php.reset_views_explanation}
+    </td>
+  </tr>
+</table>
+<!-- End standard table -->
+<!-- Start standard table -->
+<table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+  <tr>
+    <td class="tableh1" colspan="1">
+      <a href="phpinfo.php" class="statlink">{$lang_util_php.phpinfo}</a>
+    </td>
+  </tr>
+  <tr>
+    <td class="tablef">
+      {$lang_util_php.phpinfo_explanation}
+    </td>
+  </tr>
+</table>
+<!-- End standard table -->
+<!-- Start standard table -->
+<table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+  <tr>
+    <td class="tableh1" colspan="1">
+      <a href="update.php" class="statlink">{$lang_util_php.update_db}</a>
+    </td>
+  </tr>
+  <tr>
+    <td class="tablef">
+      {$lang_util_php.update_db_explanation}
+    </td>
+  </tr>
+</table>
+<!-- End standard table -->
+<!-- Start standard table -->
+<table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+  <tr>
+    <td class="tableh1" colspan="1">
+      <a href="viewlog.php" class="statlink">{$lang_util_php.view_log}</a>
+    </td>
+  </tr>
+  <tr>
+    <td class="tablef">
+      {$lang_util_php.view_log_explanation}
+    </td>
+  </tr>
+</table>
+<!-- End standard table -->
+<!-- Start standard table -->
+<table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+  <tr>
+    <td class="tableh1" colspan="1">
+      <a href="versioncheck.php" class="statlink">{$lang_util_php.versioncheck}</a>
+    </td>
+  </tr>
+  <tr>
+    <td class="tablef">
+      {$lang_util_php.versioncheck_explanation}
+    </td>
+  </tr>
+</table>
+<!-- End standard table -->
+<!-- Start standard table -->
+<table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+  <tr>
+    <td class="tableh1" colspan="1">
+      <a href="bridgemgr.php" class="statlink">{$lang_util_php.bridgemanager}</a>
+    </td>
+  </tr>
+  <tr>
+    <td class="tablef">
+      {$lang_util_php.bridgemanager_explanation}
+    </td>
+  </tr>
+</table>
+<!-- End standard table -->
+<!-- Start standard table -->
+<table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+  <tr>
+    <td class="tableh1">
+      {$lang_util_php.select_album}
+    </td>
+  </tr>
+  <tr>
+    <td class="tablef">
+      <br />
+      &nbsp;&nbsp;&nbsp;&nbsp;<select size="1" name="albumid" class="listbox">
+        {foreach from=$albumOptions item=option}
+          <option value="{$option.value}">{$option.label}</option>
+        {/foreach}
+      </select> (3)
+      &nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="{$lang_util_php.submit_form}" class="submit" /> (4)
+    </form>
+    </td>
+  </tr>
+</table>
+<!-- End standard table -->
+{/if}

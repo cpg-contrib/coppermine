@@ -1,0 +1,253 @@
+<script language="javascript" type="text/javascript" src="javascripts/actb.js"></script>
+<script language="javascript" type="text/javascript" src="javascripts/common.js"></script>
+<script language="JavaScript">
+<!--
+{literal}
+var processRunning = false;
+var x = createRequestObject();
+
+function createRequestObject() {
+  var x = false;
+
+  try {
+    x = new ActiveXObject("Msxml2.XMLHTTP");
+  } catch (e) {
+    try {
+      x = new ActiveXObject("Microsoft.XMLHTTP");
+    } catch (E) {
+      x = false;
+    }
+  }
+
+  if (!x && typeof XMLHttpRequest != "undefined") {
+    x = new XMLHttpRequest();
+  }
+
+  return x;
+}
+
+function getKeywords(kw, obj) {
+  if (kw == "") {
+    obj.actb_keywords = new Array();
+  } else if (x && !processRunning) {
+    processRunning = true;
+
+    ///x.open("get", "getKeywords.php?kw="+kw);
+    x.open("get", "getKeywords.php?kw="+kw, false);
+/*
+    x.onreadystatechange = function() {
+      if (x.readyState == 4) {
+        if (x.responseText == "NoResult") {
+          obj.actb_keywords = new Array();
+        } else {
+          obj.actb_keywords = eval(x.responseText);
+        }
+
+        processRunning = false;
+      }
+    }
+*/
+    x.send(null);
+  
+    if (x.responseText == "NoResult") {
+      obj.actb_keywords = new Array();
+    } else {
+      obj.actb_keywords = eval(x.responseText);
+    }
+
+    processRunning = false;
+  }
+}
+{/literal}
+//-->
+</script>
+<!-- Start standard table -->
+<table align="center" width="100%" cellspacing="0" cellpadding="0" class="maintable">
+  <tr>
+    <td class="tableh1" colspan="2">&nbsp;</td>
+  </tr>
+  <script language="javascript" type="text/javascript">
+  {literal}
+  function textCounter(field, maxlimit) {
+    if (field.value.length > maxlimit) // if too long...trim it!
+    field.value = field.value.substring(0, maxlimit);
+  }
+
+  var counter = 0;
+
+  function moreFields() {
+    if (counter >= {/literal}{$maxNum}{literal}) {
+      alert("{/literal}{$lang_upload_php.max_reached}{literal}");
+      return false;
+    }
+
+    counter++;
+
+    var newFields = document.getElementById("readroot").cloneNode(true);
+
+    newFields.id = "";
+    newFields.style.display = "block";
+
+    var insertHere = document.getElementById("writeroot");
+
+    insertHere.parentNode.insertBefore(newFields, insertHere);
+
+    for (i = 0; i < document.uploadForm.length; i++) {
+      if (document.uploadForm.elements[i].id == "keywords") {
+        document.uploadForm.elements[i].value = "";
+
+        for (tmpCount = 0; tmpCount < {/literal}{$maxNum}{literal}; tmpCount++)
+          if (!document.getElementById("keywords_"+tmpCount)) break;
+
+        document.uploadForm.elements[i].id = "keywords_"+tmpCount;
+
+        var objName = "acobj_"+tmpCount;
+
+        objName = actb(document.getElementById("keywords_"+tmpCount), new Array());
+
+        objName.actb_lim = -1;
+        objName.actb_firstText = true;
+        objName.actb_delimiter = new Array(" ");
+      }
+    }
+  }
+
+  function removeFields(field) {
+    field.parentNode.parentNode.parentNode.parentNode.removeChild(field.parentNode.parentNode.parentNode);
+    counter--;
+    return false;
+  }
+
+  window.onload = moreFields;
+  {/literal}
+  </script>
+
+  <tr>
+    <td colspan="2">{$lang_upload_php.reg_instr_2}<br /><br />{$lang_upload_php.reg_instr_5}
+    </td>
+  </tr>
+  <tr>
+    <td class="tableh2" colspan="2">
+      <b>{$lang_upload_php.reg_instr_7}</b>
+    </td>
+  </tr>
+  <tr>
+    <TD>
+    <div id="readroot" style="display: none">
+      <table align="center" width="100%" cellspacing="0" cellpadding="0" class="maintable">
+      <tr>
+        <TD colspan="2" class="tableb">
+          <input type="button" value="{$lang_upload_php.remove}" style="font-size: 10px" onClick="removeFields(this);">
+        </TD>
+      </tr>
+
+      <tr>
+        <td class="tableb">{$lang_upload_php.album}: </td>
+        <TD class="tableb" valign="top">
+          {assign var="alb_cat" value=""}
+          <select name="album[]" class="listbox">
+            <option value="">{$lang_upload_php.select_album}</option>
+            {foreach from=$listArray item=item key=key}
+              {if $item.cat ne $alb_cat}
+                {if $alb_cat}</optgroup>{/if}
+                <optgroup label="{$item.cat}">
+                  {$item.cat}
+                  {assign var="alb_cat" value=$item.cat}
+              {/if}
+                <option value="{$item.aid}" {if $item.aid eq $sel_album}selected{/if}>{$item.title}</option>
+            {/foreach}
+            {if $alb_cat}</optgroup>{/if}
+          </select>
+        </TD>
+      </tr>
+      <TR>
+        <TD class="tableb">{$lang_upload_php.picture}: </td><td class="tableb" valign="top"><input type="file" name="userpicture[]" size="40" class="listbox"></td>
+      </TR>
+      <tr>
+        <td width="40%" class="tableb">{$lang_upload_php.pic_title}: </td>
+        <td width="60%" class="tableb" valign="top">
+          <input type="text" style="width: 100%" name="title[]" id="title" maxlength="255" value="" class="textinput">
+        </td>
+      </tr>
+      <tr>
+        <td class="tableb" valign="top">
+          {$lang_upload_php.description}&nbsp;<a href="javascript:;" onclick="MM_openBrWindow('docs/showdoc.php?css=2bornot2b&f=index.html&base=64&h=czoxMToiYmJjb2RlIGhlbHAiOw%3D%3D&t=czo1NTc6IllvdSBjYW4gYWRkIGNsaWNrYWJsZSBsaW5rcyBhbmQgc29tZSBmb3JtYXRpbmcgdG8gdGhpcyBmaWVsZCBieSB1c2luZyBiYmNvZGUgdGFnczogPGxpPltiXUJvbGRbL2JdID0mZ3Q7IDxiPkJvbGQ8L2I%2BPC9saT48bGk%2BW2ldSXRhbGljWy9pXSA9Jmd0OyA8aT5JdGFsaWM8L2k%2BPC9saT48bGk%2BW3VybD1odHRwOi8veW91cnNpdGUuY29tL11VcmwgVGV4dFsvdXJsXSA9Jmd0OyA8YSBocmVmPSJodHRwOi8veW91cnNpdGUuY29tIj5VcmwgVGV4dDwvYT48L2xpPjxsaT5bZW1haWxddXNlckBkb21haW4uY29tWy9lbWFpbF0gPSZndDsgPGEgaHJlZj0ibWFpbHRvOnVzZXJAZG9tYWluLmNvbSI%2BdXNlckBkb21haW4uY29tPC9hPjwvbGk%2BPGxpPltjb2xvcj1yZWRdc29tZSB0ZXh0Wy9jb2xvcl0gPSZndDsgPHNwYW4gc3R5bGU9ImNvbG9yOnJlZCI%2Bc29tZSB0ZXh0PC9zcGFuPjwvbGk%2BPGxpPltpbWddaHR0cDovL2NvcHBlcm1pbmUuc2YubmV0L2RlbW8vaW1hZ2VzL3JlZC5naWZbL2ltZ10gPT4gPGltZyBzcmM9ImltYWdlcy9yZWQuZ2lmIiBib3JkZXI9IjAiIGFsdD0iIiAvPjwvbGk%2BIjs%3D','94197181641c9217f17812','scrollbars=yes,toolbar=no,status=no,resizable=yes,width=450,height=250')" style="cursor:help"><img src="images/help.gif" width="13" height="11" border="0" alt="" title="" /></a>
+        </td>
+        <td class="tableb" valign="top">
+          <textarea name="caption[]" rows="5" cols="40" wrap="virtual"  class="textinput" style="width: 100%;" onKeyDown="textCounter(this, 512);" onKeyUp="textCounter(this, 512);"></textarea>
+        </td>
+      </tr>
+      <tr>
+        <td width="40%" class="tableb">
+          {$lang_upload_php.keywords}
+        </td>
+        <td width="60%" class="tableb" valign="top">
+          <input type="text" style="width: 100%;" name="keywords[]" id="keywords" maxlength="255" value="" class="textinput" autocomplete="off" />
+        </td>
+    </tr>
+    {if $userFields|@count gt 0}
+    {foreach key=key item=item from=$userFields}
+    <tr>
+      <td width="40%" class="tableb">{$item}: </td>
+      <td width="60%" class="tableb" valign="top">
+        <input type="text" style="width: 100%" name="user{$key}[]" maxlength="255" value="" class="textinput">
+      </td>
+    </tr>
+    {/foreach}
+    {/if}
+  </table>
+  </div>
+  </TD>
+  </tr>
+  <tr>
+    <td>
+      <form name="uploadForm" method="post" action="uploadAction.php" ENCTYPE="multipart/form-data" onsubmit="return formValidator(this);">
+      <span id="writeroot"></span>
+      <input type="hidden" name="event" value="picture">
+        <tr>
+          <td colspan="2" align="center" class="tablef">
+            <input type="button" value="{$lang_upload_php.add_more}" onClick="moreFields()">
+            <input type="submit" name="continue" value="{$lang_continue}">
+          </td>
+        </tr>
+      </form>
+    </td>
+  </tr>
+</table>
+<!-- End standard table -->
+<script language="JavaScript">
+{literal}
+function formValidator(f)
+{
+  var i, total, alb, found, pic;
+  found = false;
+  alb = f.elements["album[]"];
+  pic = f.elements["userpicture[]"];
+
+  if (counter > 1) {
+    for (i=0;i<counter;i++) {
+      if (pic[i].value != "") {
+        if (alb[i].selectedIndex == 0) {
+          alert('{/literal}{$lang_upload_php.no_album}{literal}');
+          found = true;
+          break;
+        }
+      }
+    }
+  } else {
+    if (f.elements["userpicture[]"].value != "") {
+      if (f.elements["album[]"].selectedIndex == 0) {
+        alert('{/literal}{$lang_upload_php.no_album}{literal}');
+        found = true;
+      }
+    }
+  }
+
+  if (found) {
+    return false;
+  } else {
+    return true;
+  }
+}
+{/literal}
+</script>

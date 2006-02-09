@@ -1,0 +1,111 @@
+<script language="javascript" type="text/javascript">
+<!--
+{literal}
+var calendarWindow = null;
+var calendarFormat = 'y-m-d';
+
+function getCalendar(in_dateField) {
+  if (calendarWindow && !calendarWindow.closed) {
+    alert('Calendar window already open.  Attempting focus...');
+
+    try {
+      calendarWindow.focus();
+    } catch(e) {
+    }
+
+    return false;
+  }
+
+  var cal_width = 300;
+  var cal_height = 260;
+
+  // IE needs less space to make this thing
+  if ((document.all) && (navigator.userAgent.indexOf("Konqueror") == -1)) {
+    cal_width = 290;
+  }
+
+  calendarTarget = in_dateField;
+  calendarWindow = window.open('{/literal}{$calendar_link_new}{literal}', 'dateSelectorPopup','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=1, dependent=no, width='+cal_width+', height='+cal_height);
+
+  return false;
+}
+
+function killCalendar() {
+  if (calendarWindow && !calendarWindow.closed) {
+    calendarWindow.close();
+  }
+}
+{/literal}
+//-->
+</script>
+{if $banContent->message ne ''}
+<div class="success">{$banContent->message}</b></font></div>
+{/if}
+{if $banContent->bans|@count gt 0}
+<table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+  <tr><td class="tableh1" colspan="4">{$lang_banning_php.title}&nbsp;</td></tr>
+  <tr>
+    <th class="tableh2">{$lang_banning_php.user_name}</th>
+    <th class="tableh2">{$lang_banning_php.ip_address}</th>
+    <th class="tableh2">{$lang_banning_php.expiry}</th>
+    <th class="tableh2"></th>
+  </tr>
+ {foreach from=$banContent->bans key=key item=item}
+  <form action="banning.php" method="post" name="banlist{$key}">
+  <input type="hidden" name="ban_id" value="{$item.banId}" />
+  <tr>
+    <td width="20%" class="tableb" valign="middle">
+      <input type="text" class="textinput" style="width: 100%" name="edit_ban_user_name" value="{$item.username}" />
+    </td>
+    <td class="tableb" valign="middle">
+      <input type="text" class="textinput" size="15" name="edit_ban_ip_addr" value="{$item.ip}" />
+    </td>
+    <td class="tableb" valign="middle">
+      <input type="text" class="listbox_lang" size="20" name="edit_ban_expires" value="{$item.expiry}" title="{$lang_banning_php.select_date}" READONLY />
+      <a href="javascript:;"  onclick="return getCalendar(document.banlist{$key}.edit_ban_expires);" title="{$lang_banning_php.select_date}"><img src="images/calendar.gif" width="16" height="16" border="0" alt="" /></a>
+    </td>
+    <td class="tableb" valign="middle">
+      <input type="submit" class="button" name="edit_ban" value="{$lang_banning_php.edit_ban}" />&nbsp;&nbsp;
+      <input type="submit" class="button" name="delete_ban" value="{$lang_banning_php.delete_ban}" />
+    </td>
+  </tr>
+  </form>
+ {/foreach}
+</table>
+<br />
+{/if}
+<form action="banning.php" method="post" name="list">
+<table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+  <tr><td class="tableh1" colspan="4">{$lang_banning_php.add_new}&nbsp;</td></tr>
+  <tr>
+    <th class="tableh2">{$lang_banning_php.user_name}</th>
+    <th class="tableh2">{$lang_banning_php.ip_address}</th>
+    <th class="tableh2">{$lang_banning_php.expiry}</th>
+    <th class="tableh2"></th>
+  </tr>
+  <tr>
+    <td class="tableb" valign="middle">
+      <input type="text" class="textinput" style="width: 100%" name="add_ban_user_name" value="" />
+    </td>
+    <td class="tableb" valign="middle">
+      <input type="text" class="textinput" name="add_ban_ip_addr" value="" size="15" maxlength="15" />
+    </td>
+    <td class="tableb" valign="middle">
+      <input type="text" class="listbox_lang" name="add_ban_expires" value="" title="{$lang_banning_php.select_date}" READONLY />
+      <a href="javascript:;" onclick="return getCalendar(document.list.add_ban_expires);" title="{$lang_banning_php.select_date}"><img src="images/calendar.gif" width="16" height="16" border="0" alt="" /></a>
+    </td>
+    <td class="tableb" valign="top">
+      <input type="submit" class="button" name="add_ban" value="{$lang_banning_php.add_ban}" />
+    </td>
+  </tr>
+</table>
+</form>
+<form action="http://ws.arin.net/cgi-bin/whois.pl" method="post" name="lookup" target="_blank">
+<table align="center" cellspacing="1" cellpadding="0" class="maintable">
+  <tr>
+    <td class="tablef"><b>{$lang_banning_php.lookup_ip}</b></td>
+    <td class="tableb"><input type="text" class="textinput" size="20" name="queryinput" value="" maxlength="15" /></td>
+    <td class="tableb"><input type="submit" class="button" name="submit" value="{$lang_banning_php.submit}" /></td>
+  </tr>
+</table>
+</form>

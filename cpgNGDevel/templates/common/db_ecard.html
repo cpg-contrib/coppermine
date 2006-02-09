@@ -1,0 +1,131 @@
+<script language="javascript" type="text/javascript">
+<!--
+{literal}
+function checkAll(field) {
+  for (i = 0; i < field.length; i++)
+    field[i].checked = true ;
+}
+
+function uncheckAll(field) {
+  for (i = 0; i < field.length; i++)
+    field[i].checked = false ;
+}
+
+var checkobj;
+
+function agreesubmit(el){
+  checkobj = el;
+
+  if (document.all || document.getElementById) {
+    for (i = 0; i < checkobj.form.length; i++) {  //hunt down submit button
+      var tempobj = checkobj.form.elements[i];
+
+      if (tempobj.type.toLowerCase() == "submit")
+        tempobj.disabled = !checkobj.checked;
+    }
+  }
+}
+
+function defaultagree(el) {
+  if (!document.all && !document.getElementById) {
+    if (window.checkobj && checkobj.checked)
+      return true;
+    else {
+      alert("{/literal}{$lang_db_ecard_php.ecards_delete_confirm}{literal}");
+      return false;
+    }
+  }
+}
+{/literal}
+//-->
+</script>
+
+<form method="post" name="ecardselect" action="{$ecard->formTarget}" onSubmit="return defaultagree(this)">
+<!-- Start standard table -->
+<table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+  <tr>
+    <td class="tableh1" colspan="3">
+      {$lang_db_ecard_php.title} ({$lang_db_ecard_php.ecard_sorted} {$ecard->sortText}, {$ecard->sortDirectionText}) {$help}
+    </td>
+  </tr>
+  <tr>
+    <td class="tableb_compact">{$ecard->displayRecordText}</td>
+    <td class="tableb_compact">{if $ecard->maxPage gt 1}{$lang_db_ecard_php.ecard_goto_page} {$ecard->tabOutput}{/if}</td>
+    <td align="right" class="tableb_compact">
+      {$lang_db_ecard_php.ecard_records_per_page}
+      <select onChange="if (this.options[this.selectedIndex].value) window.location.href = '{$ecard->formTarget}count='+this.options[this.selectedIndex].value;" name="count" class="listbox">
+        {html_options options=$selectOptions selected=$ecard->countTo}
+      </select>
+    </td>
+  </tr>
+</table>
+<!-- End standard table -->
+<br />
+<!-- Start standard table -->
+<table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+  <tr>
+    <th class="tableh1_compact" align="left" valign="bottom" rowspan="2"></th>
+    <th class="tableh1_compact" colspan="3" align="left" valign="bottom">{$lang_db_ecard_php.ecard_sender}</th>
+    <th class="tableh1_compact" colspan="2" align="left" valign="bottom">{$lang_db_ecard_php.ecard_recipient}</th>
+    <th class="tableh1_compact" rowspan="2" align="left" valign="bottom">
+      {$lang_db_ecard_php.ecard_date}
+      <a href="{$ecard->urlWithoutSort}sort=da"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_db_ecard_php.ecard_ascending}" /></a>
+      <a href="{$ecard->urlWithoutSort}sort=dd"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_db_ecard_php.ecard_descending}" /></a>
+    </th>
+    <th class="tableh1_compact" rowspan="2" align="left" valign="bottom"></th>
+  </tr>
+  <tr>
+    <th class="tableh1_compact" align="left" valign="bottom">
+      {$lang_db_ecard_php.ecard_name}
+      <a href="{$ecard->urlWithoutSort}sort=sna"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_db_ecard_php.ecard_ascending}" /></a>
+      <a href="{$ecard->urlWithoutSort}sort=snd"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_db_ecard_php.ecard_descending}" /></a>
+    </th>
+    <th class="tableh1_compact" align="left" valign="bottom">
+      {$lang_db_ecard_php.ecard_email}
+      <a href="{$ecard->urlWithoutSort}sort=sea"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_db_ecard_php.ecard_ascending}" /></a>
+      <a href="{$ecard->urlWithoutSort}sort=sed"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_db_ecard_php.ecard_descending}" /></a>
+    </th>
+    <th class="tableh1_compact" align="left" valign="bottom">
+      {$lang_db_ecard_php.ecard_ip}
+      <a href="{$ecard->urlWithoutSort}sort=ia"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_db_ecard_php.ecard_ascending}" /></a>
+      <a href="{$ecard->urlWithoutSort}sort=id"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_db_ecard_php.ecard_descending}" /></a>
+    </th>
+    <th class="tableh1_compact" align="left" valign="bottom">
+      {$lang_db_ecard_php.ecard_name}
+      <a href="{$ecard->urlWithoutSort}sort=rna"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_db_ecard_php.ecard_ascending}" /></a>
+      <a href="{$ecard->urlWithoutSort}sort=rnd"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_db_ecard_php.ecard_descending}" /></a>
+    </th>
+    <th class="tableh1_compact" align="left" valign="bottom">
+      {$lang_db_ecard_php.ecard_email}
+      <a href="{$ecard->urlWithoutSort}sort=rea"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_db_ecard_php.ecard_ascending}" /></a>
+      <a href="{$ecard->urlWithoutSort}sort=red"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_db_ecard_php.ecard_descending}" /></a>
+    </th>
+  </tr>
+  {foreach from=$ecard->ecards item=item}
+  <tr>
+    <td class="{$item.tempClass}" align="center"><input type="checkbox" name="eid[]" value="{$item.eid}" id="eidselector" class="checkbox" /></td>
+    <td class="{$item.tempClass}"><b class="thumb_caption">{$item.senderName}</b></td>
+    <td class="{$item.tempClass}"><span class="thumb_caption"><a href="mailto:{$item.senderEmail}">{$item.senderEmail}</a></span></td>
+    <td class="{$item.tempClass}"><span class="thumb_caption"><a href="http://ws.arin.net/cgi-bin/whois.pl?queryinput={$item.senderIp}">{$item.senderIp}</a></span></td>
+    <td class="{$item.tempClass}"><b class="thumb_caption">{$item.recipientName}</b></td>
+    <td class="{$item.tempClass}"><span class="thumb_caption"><a href="mailto:{$item.recipientEmail}">{$item.recipientEmail}</a></span></td>
+    <td class="{$item.tempClass}"><span class="thumb_caption">{$item.date}</span></td>
+    <td align="center" class="{$item.tempClass}"><span class="thumb_caption"><a href="displayecard.php?data={$item.link}"><img src="images/ecard.gif" width="16" height="16" border="0" alt="" title="{$lang_db_ecard_php.ecard_display}" /></a></span></td>
+	</tr>
+  {/foreach}
+  <tr>
+    <td class="tableh1_compact" align="center">
+      <img src="images/arrow_upleft.gif" width="31" height="22" border="0" alt="" />
+    </td>
+    <td colspan="3" class="tableh1_compact">
+      <input type="button" name="CheckAll" class="button" value="{$lang_db_ecard_php.check_all}" onClick="checkAll(document.ecardselect.eidselector)" />
+      <input type="button" name="UnCheckAll" class="button" value="{$lang_db_ecard_php.uncheck_all}" onClick="uncheckAll(document.ecardselect.eidselector)" />
+    </td>
+    <td colspan="4" class="tableh1_compact">
+      <input type="submit" class="button" name="delete" value="{$lang_db_ecard_php.ecards_delete_selected}" disabled="disabled" />
+      <input name="agreecheck" type="checkbox" onClick="agreesubmit(this)" /> {$lang_db_ecard_php.ecards_delete_sure}
+    </td>
+  </tr>
+ </table>
+<!-- End standard table -->
+</form>

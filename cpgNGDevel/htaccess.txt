@@ -1,0 +1,26 @@
+#Note:
+#1. Rename this file to .htaccess if you plan to use short URL feature of NG and enable short url from Config
+#2. Change "cpgNG" from lines below to match your CPG installation directory.
+#3. If you are installing directly in webroot then replace all instances of /cpgNG/ with /
+
+Options -Indexes +FollowSymLinks
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /cpgNG/
+
+#Rule for displayimage
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^image/([0-9]+)$  /cpgNG/displayimage.php?pid=$1
+
+#Rule for category
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^cat/([a-zA-Z0-9\ ]+)$  /cpgNG/index.php?cat=$1
+
+#Rule for thumbnails if category is set
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([a-zA-Z0-9\ ]+)/([a-zA-z0-9\ ]+)$ /cpgNG/thumbnails.php?category=$1&album=$2
+
+#Rule for thumbnails if no category
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([a-zA-z0-9\ ]+)$  /cpgNG/thumbnails.php?album=$1
+</IfModule>

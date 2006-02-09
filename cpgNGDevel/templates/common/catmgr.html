@@ -1,0 +1,173 @@
+<table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+  <tr>
+    <td class="tableh1"><b><span class="statlink">{$lang_catmgr_php.category}</span></b>{$miscArr.categoryHelp}</td>
+    <td colspan="4" class="tableh1" align="center"><b><span class="statlink">{$lang_catmgr_php.operations}</span></b></td>
+    <td class="tableh1" align="center"><b><span class="statlink">{$lang_catmgr_php.move_into}</span></b></td>
+  </tr>
+  <form method="GET">
+  {foreach item=category key=key from=$categoryObj->catList}
+  <tr>
+    <td class="tableb" width="80%"><b>{$category.name}</b></td>
+    {if $category.pos gt 0 and $categories_alpha_sort ne 1}
+    <td class="tableb" width="4%">
+      <a href="catmgr.php?op=move&amp;cid1={$category.cid}&amp;pos1={$category.pos-1}&amp;cid2={$category.prev}&amp;pos2={$category.pos}"><img src="images/up.gif"  border="0" alt="" /></a>
+    </td>
+    {else}
+    <td class="tableb" width="4%">&nbsp;</td>
+    {/if}
+
+    {if $category.pos lt $category.cat_count-1  and $categories_alpha_sort ne 1}
+    <td class="tableb" width="4%">
+      <a href="catmgr.php?op=move&amp;cid1={$category.cid}&amp;pos1={$category.pos+1}&amp;cid2={$category.next}&amp;pos2={$category.pos}"><img src="images/down.gif"  border="0" alt="" />
+      </a>
+    </td>
+    {else}
+    <td class="tableb" width="4%">&nbsp;</td>
+    {/if}
+
+    {if $category.cid ne 1}
+    <td class="tableb" width="4%">
+      <a href="catmgr.php?op=deletecat&amp;cid={$category.cid}" onClick="return confirmDel('{$category.name})'"><img src="images/delete.gif"  border="0" alt="" /></a></td>
+    {else}
+    <td class="tableb" width="4%"></td>
+    {/if}
+    <td class="tableb" width="4%"><a href="catmgr.php?op=editcat&amp;cid={$category.cid}"><img src="images/edit.gif" border="0" alt="" /></a></td>
+    <td class="tableb" width="4%">
+      <select onChange="if(this.options[this.selectedIndex].value) window.location.href='catmgr.php?op=setparent&amp;cid={$category.cid}&amp;parent='+this.options[this.selectedIndex].value;"  name="parent" class="listbox">
+        <option value="0" selected="true">{$lang_albmgr_php.no_category}</option>
+      {foreach item=item key=key from=$categoryObj->catList}
+        <option value="{$item.cid}" {if $item.cid eq $category.parent}selected{/if}>{$item.name}</option>
+      {/foreach}
+      </select>
+    </td>
+  </tr>
+  {/foreach}
+  </form>
+  <form name="catsortconfig" action="" method="post">
+  <tr>
+    <td class="tablef" colspan="6">
+      {$lang_catmgr_php.categories_alpha_sort}
+      &nbsp;&nbsp;
+      <input type="radio" id="categories_alpha_sort1" name="categories_alpha_sort" value="1"  onclick="checkFormSubmit()" {$categoryObj->miscArr.yesSelected} /><label for="categories_alpha_sort1" class="clickable_option">{$lang_yes}</label>
+      &nbsp;&nbsp;
+      <input type="radio" id="categories_alpha_sort0" name="categories_alpha_sort" value="0"  onclick="checkFormSubmit()" {$categoryObj->miscArr.noSelected} /><label for="categories_alpha_sort0" class="clickable_option">{$lang_no}</label>
+      &nbsp;&nbsp;
+      <input type="hidden" name="update_config" value="{$lang_catmgr_php.save_cfg}" class="button" />
+    </td>
+  </tr>
+  </form>
+</table>
+
+<script language="javascript" type="text/javascript">
+<!--
+{literal}
+  function checkFormSubmit()
+  {
+    document.catsortconfig.submit()
+  }
+{/literal}
+-->
+</script>
+<br />
+<table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+  <tr>
+    <TD colspan="2" class="tableh1">{$lang_catmgr_php.update_create}</TD>
+  </tr>
+  <form method="post" action="catmgr.php?op={$categoryObj->op}">
+  <input type="hidden" name="cid" value ="{$categoryObj->currentCategory.cid}">
+  <tr>
+    <td width="40%" class="tableb">
+      {$lang_catmgr_php.parent_cat}
+    </td>
+    <td width="60%" class="tableb" valign="top">
+      <select name="parent" class="listbox">
+        <option value="0" selected="true">{$lang_albmgr_php.no_category}</option>
+      {foreach item=item key=key from=$categoryObj->catList}
+        <option value="{$item.cid}" {if $item.cid eq $categoryObj->currentCategory.cid}selected{/if}>{$item.name}</option>
+      {/foreach}
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td width="40%" class="tableb">
+      {$lang_catmgr_php.album_permission}
+    </td>
+    <td width="60%" class="tableb" valign="top">
+      <select name="user_groups[]" class="listbox" multiple>
+      {foreach item=group from=$groupList}
+        <option value="{$group.group_id}" {foreach from=$categoryObj->groups item=permGroup} {if $permGroup eq $group.group_id}selected{/if} {/foreach}>{$group.group_name}</option>
+      {/foreach}
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td width="40%" class="tableb">
+      {$lang_catmgr_php.cat_title}
+    </td>
+    <td width="60%" class="tableb" valign="top">
+      <input type="text" style="width: 100%" name="name" value="{$categoryObj->currentCategory.name}" class="textinput">
+    </td>
+  </tr>
+  <tr>
+    <td class="tableb" valign="top">
+      {$lang_catmgr_php.cat_desc}{$miscArr.bbcodeHelp}
+    </td>
+    <td class="tableb" valign="top">
+      <textarea name="description" ROWS="5" COLS="40" SIZE="9"  WRAP="virtual" STYLE="WIDTH: 100%;" class="textinput">{$categoryObj->currentCategory.description}</textarea>
+    </td>
+  </tr>
+
+  {* Block to category thumbnail selection *}
+  {if $categoryObj->imgList|@count eq 0}
+  <tr>
+    <td class="tableb" valign="top">
+      {$lang_modifyalb_php.alb_thumb}
+    </td>
+    <td class="tableb" valign="top">
+      <i>{$lang_modifyalb_php.alb_empty}</i>
+      <input type="hidden" name="thumb" value="0">
+    </td>
+  </tr>
+  {else}
+  <script language="JavaScript" type="text/JavaScript">
+  <!--
+  {literal}
+  var Pic = new Array()
+  {/literal}
+  {foreach from=$categoryObj->picArr key=pid item=item}
+  Pic[{$pid}] = '{$item}'
+  {/foreach}
+  {literal}
+  function ChangeThumb(index)
+  {
+    document.images.Thumb.src = Pic[index]
+  }
+  {/literal}
+  -->
+  </script>
+  <tr>
+    <td class="tableb" valign="top">
+      {$lang_catmgr_php.cat_thumb}
+    </td>
+    <td class="tableb" align="center">
+      <table cellspacing="0" cellpadding="5" border="0">
+        <tr>
+          <td width="{$miscArr.thumbCellHeight}" height="{$categoryObj->miscArr.thumbCellHeight}" align="center"><img src="{$categoryObj->miscArr.initialThumbUrl}" name='Thumb' class='image' /><br /></td>
+        </tr>
+      </table>
+      <select name="thumb" class="listbox" onChange="if(this.options[this.selectedIndex].value) ChangeThumb(this.options[this.selectedIndex].value);" onKeyUp="if(this.options[this.selectedIndex].value) ChangeThumb(this.options[this.selectedIndex].value);">
+      {foreach from=$categoryObj->imgList key=pid item=picName}
+        <option value="{$pid}" {if $pid eq $categoryObj->currentCategory.thumb}selected{/if}>{$picName}</option>
+      {/foreach}
+      </select>
+    </td>
+  </tr>
+  {/if}
+  {* Category thumbnail block ends *}
+  <tr>
+    <td colspan="2" align="center" class="tablef">
+      <input type="submit" value="{$lang_catmgr_php.update_create}" class="button">
+    </td>
+  </form>
+  </tr>
+</table>

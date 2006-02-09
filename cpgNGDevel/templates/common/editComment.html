@@ -1,0 +1,107 @@
+<br />
+{if $commentUpdated}
+<p align="center">{$successMessage}</p>
+<script language="JavaScript" type="text/javascript">
+<!--
+{literal}
+window.opener.location = window.opener.location;
+window.setTimeout("window.close()", 3000);
+{/literal}
+//-->
+</script>
+{else}
+<table class="maintable" align="center" cellpadding="0" cellspacing="0" width="650">
+  <tbody><tr>
+    <td>
+      <table cellpadding="0" cellspacing="0" width="100%">
+        <tbody><tr>
+          <td class="tableh2_compact" style="white-space: nowrap;">
+            <b>Admin</b>
+          </td>
+        </tr>
+      </tbody></table>
+    </td>
+  </tr>
+  <tr>
+    <td class="tableb_compact">
+      <form name="post" method="post">
+      <input name="event" value="comment_update" type="hidden">
+      <input value="{$comment.msg_id}" name="msg_id" type="hidden">
+      <table cellpadding="0" cellspacing="0" width="100%">
+        <tbody><tr>
+          <td>
+            <input name="msg_author" value="{$comment.msg_author}" class="textinput" size="10" type="text">
+          </td>
+        </tr>
+        <tr>
+          {if $comment.smilies eq "enabled"}
+          <td width="80%">
+            <textarea cols="40" rows="2" class="textinput" name="msg_body" onselect="storeCaret_post(this);" onclick="storeCaret_post(this);" onkeyup="storeCaret_post(this);" style="width: 100%;">{$comment.msg_body}</textarea>
+          </td>
+          {else}
+          <td width="100%">
+            <textarea cols="40" rows="2" class="textinput" name="msg_body" style="width: 100%;">{$comment.msg_body}</textarea>
+          </td>
+          {/if}
+          <td class="tableb_compact">
+          </td>
+          <td>
+            <input class="comment_button" name="submit" value="{$lang_display_comments.OK}" type="submit">
+          </td>
+          </form>
+        </tr>
+        <tr>
+          <td colspan="3"><img src="images/spacer.gif" alt="" height="2" width="1"><br></td>
+        </tr>
+      </tbody></table>
+      {if $comment.smilies eq "enabled"}
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr align="center" valign="middle">
+                      <td width="5%"><img src="images/smiles/icon_lol.gif" alt=" :lol:" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :lol:" onclick="javascript:emoticon_post(':lol:')"></td>
+                      <td width="5%"><img src="images/smiles/icon_razz.gif" alt=" :-P" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :-P" onclick="javascript:emoticon_post(':-P')"></td>
+      
+                      <td width="5%"><img src="images/smiles/icon_biggrin.gif" alt=" :-D" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :-D" onclick="javascript:emoticon_post(':-D')"></td>
+                      <td width="5%"><img src="images/smiles/icon_smile.gif" alt=" :-)" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :-)" onclick="javascript:emoticon_post(':-)')"></td>
+                      <td width="5%"><img src="images/smiles/icon_neutral.gif" alt=" :-|" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :-|" onclick="javascript:emoticon_post(':-|')"></td>
+                      <td width="5%"><img src="images/smiles/icon_sad.gif" alt=" :-(" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :-(" onclick="javascript:emoticon_post(':-(')"></td>
+                      <td width="5%"><img src="images/smiles/icon_cry.gif" alt=" :cry:" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :cry:" onclick="javascript:emoticon_post(':cry:')"></td>
+                      <td width="5%"><img src="images/smiles/icon_cool.gif" alt=" 8-)" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" 8-)" onclick="javascript:emoticon_post('8-)')"></td>
+                      <td width="5%"><img src="images/smiles/icon_surprised.gif" alt=" :-o" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :-o" onclick="javascript:emoticon_post(':-o')"></td>
+                      <td width="5%"><img src="images/smiles/icon_confused.gif" alt=" :-?" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :-?" onclick="javascript:emoticon_post(':-?')"></td>
+                      <td width="5%"><img src="images/smiles/icon_redface.gif" alt=" :oops:" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :oops:" onclick="javascript:emoticon_post(':oops:')"></td>
+      
+                      <td width="5%"><img src="images/smiles/icon_eek.gif" alt=" :shock:" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :shock:" onclick="javascript:emoticon_post(':shock:')"></td>
+                      <td width="5%"><img src="images/smiles/icon_mad.gif" alt=" :-x" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :-x" onclick="javascript:emoticon_post(':-x')"></td>
+                      <td width="5%"><img src="images/smiles/icon_rolleyes.gif" alt=" :roll:" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :roll:" onclick="javascript:emoticon_post(':roll:')"></td>
+                      <td width="5%"><img src="images/smiles/icon_wink.gif" alt=" ;-)" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" ;-)" onclick="javascript:emoticon_post(';-)')"></td>
+                      <td width="5%"><img src="images/smiles/icon_idea.gif" alt=" :idea:" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :idea:" onclick="javascript:emoticon_post(':idea:')"></td>
+                      <td width="5%"><img src="images/smiles/icon_exclaim.gif" alt=" :!:" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :!:" onclick="javascript:emoticon_post(':!:')"></td>
+                      <td width="5%"><img src="images/smiles/icon_question.gif" alt=" :?:" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :?:" onclick="javascript:emoticon_post(':?:')"></td>
+              </tr>
+      </table>
+      <script language="JavaScript" type="text/javascript">
+      <!--
+      {literal}
+      function emoticon_post(text) {
+              text = ' ' + text + ' ';
+              if (document.post.msg_body.createTextRange && document.post.msg_body.caretPos) {
+                      var caretPos = document.post.msg_body.caretPos;
+                      caretPos.text = caretPos.text.charAt(caretPos.text.length - 1) == ' ' ? text + ' ' : text;
+                      document.post.msg_body.focus();
+              } else {
+                      document.post.msg_body.value  += text;
+                      document.post.msg_body.focus();
+              }
+      }
+      
+      function storeCaret_post(textEl) {
+              if (textEl.createTextRange) textEl.caretPos = document.selection.createRange().duplicate();
+      }
+      {/literal}
+      //-->
+      </script>      
+      {/if}      
+    </td>
+  </tr>
+</tbody></table>
+{/if}

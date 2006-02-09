@@ -1,0 +1,15 @@
+<!-- Start Breadcrumb tpl -->
+<table align="center" width="100%" cellspacing="0" cellpadding="0" class="maintable">
+  <tr>
+    <td colspan="3" class="breadcrumbs">
+      <span class="statlink">
+        <b><a href="{$DOMAIN_URL}{if $short_url ne 1}index.php{/if}">{$lang_list_categories.home}</a>
+        {foreach item=item from=$breadcrumb}
+          > <a href="{$item.link}">{$item.title}</a>
+        {/foreach}
+        </b>
+      </span>
+    </td>
+  </tr>
+</table>
+<!-- End Breadcrumb tpl -->

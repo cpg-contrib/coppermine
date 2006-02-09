@@ -1,0 +1,42 @@
+<!-- Start standard table -->
+<table align="center" width="600" cellspacing="1" cellpadding="0" class="maintable">
+        <tr>
+                <td class="tableh1" colspan="2">{$lang_login_php.enter_login_pswd}</td>
+        </tr>
+        {if $loginFailed}
+        <tr>
+              <td colspan="2" align="center" class="tableh2">
+                <font size="1" color="red"><b>{$lang_login_php.err_login}<b></font>
+              </td>
+        </tr>
+        {/if}
+        {if $cookieWarning}
+        <tr>
+              <td colspan="2" align="center" class="tableh2">
+                <font size="1" color="red"><b>{$lang_login_php.cookie_warning}<b></font>
+              </td>
+        </tr>
+        {/if}
+        <tr>
+          <form action="login.php?referer={$referer}" method="post" name="loginbox">
+              <td class="tableb" width="40%">{$lang_login_php.username}</td>
+              <td class="tableb" width="60%"><input type="text" class="textinput" name="username" style="width: 100%" tabindex="1" /></td>
+              <script language="javascript" type="text/javascript">
+              <!--
+              document.loginbox.username.focus();
+              -->
+              </script>
+        </tr>
+        <tr>
+              <td class="tableb">{$lang_login_php.password}</td>
+              <td class="tableb"><input type="password" class="textinput" name="password" style="width: 100%" tabindex="2" /></td>
+        </tr>
+        <tr>
+          <td colspan="2" align="center" class="tableb">{$lang_login_php.remember_me} <input name="remember_me" type="checkbox" class="checkbox" value="1" tabindex="3" /></td>
+        </tr>
+        <tr>
+          <td align="center" class="tablef"><a href="forgotPasswd.php" class="topmenu">{$lang_login_php.forgot_password_link}</a></td>
+          <td align="left" class="tablef"><input name="submitted" type="submit" class="button" value="{$lang_login_php.login}" tabindex="4" /></td>
+          </form>
+        </tr>
+</table>

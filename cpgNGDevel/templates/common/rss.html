@@ -1,0 +1,16 @@
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
+<channel>
+<title>{$misArr.galleryName}</title>
+<link>{$misArr.picPath}</link>
+<description>{$misArr.galleryDescription}</description>
+<dc:creator>Tarique Sani</dc:creator>
+<dc:language>en-us</dc:language>
+{foreach name=album from=$data item=picture}
+<item>
+        <title>{if $picture.imgTitle ne ''}{$picture.imgTitle}{else}{$picture.fileName}{/if}</title>
+        <link>{$link_url}{$picture.pid}</link>
+        <description>{$picture.description}</description>
+</item>
+{/foreach}
+</channel>
+</rss>

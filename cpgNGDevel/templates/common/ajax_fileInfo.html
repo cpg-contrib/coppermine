@@ -1,0 +1,98 @@
+{if $showFileInfo eq 1}
+  <tr>
+    <td class="tableb_compact" valign="top">{$lang_picinfo.Filename}:</td>
+    <td class="tableb_compact">{$picInfo.fileName}</td>
+  </tr>
+  <tr>
+    <td class="tableb_compact" valign="top">{$lang_picinfo.AlbumName}:</td>
+    <td class="tableb_compact">
+      <span class="alblink"><a href="profile.php?uid={$picInfo.ownerUid}">{$picInfo.ownerName}</a> {$picInfo.ipinfo} <a href="thumbnails.php?album={$picInfo.aid}">{$picInfo.albumName}</a></span>
+    </td>
+  </tr>
+  {if $picInfo.rating ne ''}
+  <tr>
+    <td class="tableb_compact" valign="top">{$picInfo.rating}:</td>
+    <td class="tableb_compact">
+      <img src="{$picInfo.ratingImgPath}" align="middle" alt="" />
+      {if $showVoteDetailsLink eq 1}
+      (<a href="#" onclick="MM_openBrWindow('statDetails.php?pid={$picInfo.pid}&amp;type=vote&amp;sort=sdate&amp;dir=&amp;sdate=1&amp;ip=1&amp;rating=1&amp;referer=1&amp;browser=1&amp;os=1', '', 'resizable=no, width={$picInfo.width}, height={$picInfo.height}, top=50, left=50, scrollbars=yes'); return false;">{$lang_picinfo.details}</a>)
+      {/if}
+    </td>
+  </tr>
+  {/if}
+  {if $picInfo.keywords ne ''}
+  <tr>
+    <td class="tableb_compact" valign="top">{$lang_picinfo.Keywords}:</td>
+    <td class="tableb_compact"><span class="alblink">{$picInfo.keywords}</span></td>
+  </tr>
+  {/if}
+  {foreach from=$picInfo.userFields key=key item=item}
+  <tr>
+    <td class="tableb_compact" valign="top">{$key}:</td>
+    <td class="tableb_compact">{$item}</td>
+  </tr>
+  {/foreach}
+  <tr>
+    <td class="tableb_compact" valign="top">{$lang_picinfo.FileSize}:</td>
+    <td class="tableb_compact"><span dir="ltr">{$picInfo.fileSize}</span></td>
+  </tr>
+  <tr>
+    <td class="tableb_compact" valign="top">{$lang_picinfo.DateAdded}:</td>
+    <td class="tableb_compact">{$picInfo.dateAdded}</td>
+  </tr>
+  <tr>
+    <td class="tableb_compact" valign="top">{$lang_picinfo.Dimensions}:</td>
+    <td class="tableb_compact">{$picInfo.dimensions}</td>
+  </tr>
+  <tr>
+    <td class="tableb_compact" valign="top">{$lang_picinfo.Displayed}:</td>
+    <td class="tableb_compact">
+      {$picInfo.displayed}
+      {if $showHitDetailsLink == 1}
+      (<a href="#" onclick="MM_openBrWindow('statDetails.php?pid={$picInfo.pid}&amp;type=hits&amp;sort=sdate&amp;dir=&amp;sdate=1&amp;ip=1&amp;rating=1&amp;referer=1&amp;browser=1&amp;os=1', '', 'resizable=no, width=978, height=504, top=50, left=50, scrollbars=yes'); return false;">{$lang_picinfo.details}</a>)
+      {/if}
+    </td>
+  </tr>
+  {foreach from=$picInfo.exifInfo key=key item=item}
+  <tr>
+    <td class="tableb_compact" valign="top">{$key}:</td>
+    <td class="tableb_compact">{$item}</td>
+  </tr>
+  {/foreach}
+  {if $picInfo.iptcTitle ne ''}
+  <tr>
+    <td class="tableb_compact" valign="top">{$lang_picinfo.iptcTitle}:</td>
+    <td class="tableb_compact">{$picInfo.iptcTitle}</td>
+  </tr>
+  {/if}
+  {if $picInfo.iptcCopyright ne ''}
+  <tr>
+    <td class="tableb_compact" valign="top">{$lang_picinfo.iptcCopyright}:</td>
+    <td class="tableb_compact">{$picInfo.iptcCopyright}</td>
+  </tr>
+  {/if}
+  {if $picInfo.iptcKeywords ne ''}
+  <tr>
+    <td class="tableb_compact" valign="top">{$lang_picinfo.iptcKeywords}:</td>
+    <td class="tableb_compact">{$picInfo.iptcKeywords}</td>
+  </tr>
+  {/if}
+  {if $picInfo.iptcCategory ne ''}
+  <tr>
+    <td class="tableb_compact" valign="top">{$lang_picinfo.iptcCategory}:</td>
+    <td class="tableb_compact">{$picInfo.iptcCategory}</td>
+  </tr>
+  {/if}
+  {if $picInfo.iptcSubCategories ne ''}
+  <tr>
+    <td class="tableb_compact" valign="top">{$lang_picinfo.iptcSubCategories}:</td>
+    <td class="tableb_compact">{$picInfo.iptcSubCategories}</td>
+  </tr>
+  {/if}
+  <tr>
+    <td class="tableb_compact" valign="top">{$lang_picinfo.URL}:</td>
+    <td class="tableb_compact"><a href="{$picInfo.URL}">{$picInfo.URL}</a></td>
+  </tr>
+{else}
+  <tr><td class="tableb_compact" colspan="2">{$lang_errors.param_missing}</td></tr>
+{/if}

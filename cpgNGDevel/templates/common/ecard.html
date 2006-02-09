@@ -1,0 +1,122 @@
+{if $ecard->continueBox ne ''}{$ecard->continueBox}{/if}
+{if $showEcard eq 1}
+<!-- Start standard table -->
+<table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+  <tr><td class="tableh1">{$lang_ecard_php.preview}</td></tr>
+  <tr><td>{$ecardOutput}</td></tr>
+</table>
+<!-- End standard table -->
+<br />
+{/if}
+{if $showEcardForm eq 1}
+<script language="JavaScript" type="text/javascript">
+<!--
+{literal}
+function emoticon_post(text) {
+  text = ' '+text+' ';
+
+  if (document.post.message.createTextRange && document.post.message.caretPos) {
+    var caretPos = document.post.message.caretPos;
+    caretPos.text = caretPos.text.charAt(caretPos.text.length - 1) == ' ' ? text+' ' : text;
+    document.post.message.focus();
+  } else {
+    document.post.message.value += text;
+    document.post.message.focus();
+  }
+}
+
+function storeCaret_post(textEl) {
+  if (textEl.createTextRange) textEl.caretPos = document.selection.createRange().duplicate();
+}
+{/literal}
+//-->
+</script>
+<form method="post" name="post">
+<!-- Start standard table -->
+<table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+  <tr><td class="tableh1" colspan="3">{$lang_ecard_php.title}</td></tr>
+  <tr>
+    <td class="tableh2" colspan="2"><b>{$lang_ecard_php.from}</b></td>
+    <td rowspan="6" align="center" valign="top" class="tableb">
+      <a href="displayimage.php?pid={$pid}"><img src="{$ecard->thumbPicUrl}" alt="" vspace="8" border="0" class="image" /></a><br />
+    </td>
+  </tr>
+  <tr>
+    <td class="tableb" valign="top" width="40%">{$lang_ecard_php.your_name}<br /></td>
+    <td valign="top" class="tableb" width="60%">
+      <input type="text" class="textinput" name="sender_name" value="{$ecard->senderName}" style="width: 100%;" /><br />
+    </td>
+  </tr>
+  <tr>
+    <td class="tableb" valign="top" width="40%">{$lang_ecard_php.your_email}<br /></td>
+    <td valign="top" class="tableb" width="60%">
+     {if $ecard->senderEmailBox == 'Y'}
+      <input type="text" class="textinput" value="{$ecard->senderEmail}" name="sender_email" style="width: 100%;" />
+     {else}
+      {$ecard->senderEmail}
+     {/if}
+      {$ecard->senderEmailWarning}
+    </td>
+  </tr>
+  <tr><td class="tableh2" colspan="2"><b>{$lang_ecard_php.to}</b></td></tr>
+  <tr>
+    <td class="tableb" valign="top" width="40%">{$lang_ecard_php.rcpt_name}<br /></td>
+    <td valign="top" class="tableb" width="60%">
+      <input type="text" class="textinput" name="recipient_name" value="{$ecard->recipientName}" style="width: 100%;" /><br />
+    </td>
+  </tr>
+  <tr>
+    <td class="tableb" valign="top" width="40%">{$lang_ecard_php.rcpt_email}<br /></td>
+    <td valign="top" class="tableb" width="60%">
+      <input type="text" class="textinput" name="recipient_email" value="{$ecard->recipientEmail}" style="width: 100%;" /><br />
+      {$ecard->recipientEmailWarning}
+    </td>
+  </tr>
+  <tr><td class="tableh2" colspan="3"><b>{$lang_ecard_php.greetings}</b></td></tr>
+  <tr>
+    <td class="tableb" colspan="3">
+      <input type="text" class="textinput" name="greetings" value="{$ecard->greetings}" style="width: 100%;" /><br />
+    </td>
+  </tr>
+  <tr><td class="tableh2" colspan="3"><b>{$lang_ecard_php.message}{$ecard->captionLabel}</b></td></tr>
+  <tr>
+    <td class="tableb" colspan="3" valign="top"><br />
+      <textarea name="message" class="textinput" rows="8" cols="40" onselect="storeCaret_post(this);" onclick="storeCaret_post(this);" onkeyup="storeCaret_post(this);" style="width: 100%;">{$ecard->message}</textarea><br /><br />
+    </td>
+  </tr>
+  <tr>
+    <td class="tableb" colspan="3" valign="top">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr align="center" valign="middle">
+          <td width="5%"><img src="images/smiles/icon_lol.gif" alt=" :lol:" width="15" height="15" border="0" style="cursor:pointer;" title=" :lol:" onclick="javascript:emoticon_post(':lol:')" /></td>
+          <td width="5%"><img src="images/smiles/icon_razz.gif" alt=" :-P" width="15" height="15" border="0" style="cursor:pointer;" title=" :-P" onclick="javascript:emoticon_post(':-P')" /></td>
+          <td width="5%"><img src="images/smiles/icon_biggrin.gif" alt=" :-D" width="15" height="15" border="0" style="cursor:pointer;" title=" :-D" onclick="javascript:emoticon_post(':-D')" /></td>
+          <td width="5%"><img src="images/smiles/icon_smile.gif" alt=" :-)" width="15" height="15" border="0" style="cursor:pointer;" title=" :-)" onclick="javascript:emoticon_post(':-)')" /></td>
+          <td width="5%"><img src="images/smiles/icon_neutral.gif" alt=" :-|" width="15" height="15" border="0" style="cursor:pointer;" title=" :-|" onclick="javascript:emoticon_post(':-|')" /></td>
+          <td width="5%"><img src="images/smiles/icon_sad.gif" alt=" :-(" width="15" height="15" border="0" style="cursor:pointer;" title=" :-(" onclick="javascript:emoticon_post(':-(')" /></td>
+          <td width="5%"><img src="images/smiles/icon_cry.gif" alt=" :cry:" width="15" height="15" border="0" style="cursor:pointer;" title=" :cry:" onclick="javascript:emoticon_post(':cry:')" /></td>
+          <td width="5%"><img src="images/smiles/icon_cool.gif" alt=" 8-)" width="15" height="15" border="0" style="cursor:pointer;" title=" 8-)" onclick="javascript:emoticon_post('8-)')" /></td>
+          <td width="5%"><img src="images/smiles/icon_surprised.gif" alt=" :-o" width="15" height="15" border="0" style="cursor:pointer;" title=" :-o" onclick="javascript:emoticon_post(':-o')" /></td>
+          <td width="5%"><img src="images/smiles/icon_confused.gif" alt=" :-?" width="15" height="15" border="0" style="cursor:pointer;" title=" :-?" onclick="javascript:emoticon_post(':-?')" /></td>
+          <td width="5%"><img src="images/smiles/icon_redface.gif" alt=" :oops:" width="15" height="15" border="0" style="cursor:pointer;" title=" :oops:" onclick="javascript:emoticon_post(':oops:')" /></td>
+          <td width="5%"><img src="images/smiles/icon_eek.gif" alt=" :shock:" width="15" height="15" border="0" style="cursor:pointer;" title=" :shock:" onclick="javascript:emoticon_post(':shock:')" /></td>
+          <td width="5%"><img src="images/smiles/icon_mad.gif" alt=" :-x" width="15" height="15" border="0" style="cursor:pointer;" title=" :-x" onclick="javascript:emoticon_post(':-x')" /></td>
+          <td width="5%"><img src="images/smiles/icon_rolleyes.gif" alt=" :roll:" width="15" height="15" border="0" style="cursor:pointer;" title=" :roll:" onclick="javascript:emoticon_post(':roll:')" /></td>
+          <td width="5%"><img src="images/smiles/icon_wink.gif" alt=" ;-)" width="15" height="15" border="0" style="cursor:pointer;" title=" ;-)" onclick="javascript:emoticon_post(';-)')" /></td>
+          <td width="5%"><img src="images/smiles/icon_idea.gif" alt=" :idea:" width="15" height="15" border="0" style="cursor:pointer;" title=" :idea:" onclick="javascript:emoticon_post(':idea:')" /></td>
+          <td width="5%"><img src="images/smiles/icon_exclaim.gif" alt=" :!:" width="15" height="15" border="0" style="cursor:pointer;" title=" :!:" onclick="javascript:emoticon_post(':!:')" /></td>
+          <td width="5%"><img src="images/smiles/icon_question.gif" alt=" :?:" width="15" height="15" border="0" style="cursor:pointer;" title=" :?:" onclick="javascript:emoticon_post(':?:')" /></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3" align="center" class="tablef">
+      <input type="submit" class="button" name="preview" title="preview" value="{$lang_ecard_php.preview_button}" />&nbsp;&nbsp;
+      <input type="submit" class="button" name="submit" title="submit" value="{$lang_ecard_php.submit_button}" />
+    </td>
+  </tr>
+</table>
+<!-- End standard table -->
+</form>
+{/if}

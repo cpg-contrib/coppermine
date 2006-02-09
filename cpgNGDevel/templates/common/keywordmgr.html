@@ -1,0 +1,51 @@
+<form name="keywordForm" action="keywordmgr.php?page=changeword" method="post">
+<!-- Start standard table -->
+<table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+  <tr><td class="tableh1" colspan="3">{$lang_keywordmgr_php.title}</td></tr>
+  <tr>
+    <td class="tablef"><b>{$lang_keywordmgr_php.edit}</b></td>
+    <td class="tablef"><b>{$lang_keywordmgr_php.delete}</b></td>
+    <td class="tablef"><b>{$lang_keywordmgr_php.search}</b></td>
+  </tr>
+ {foreach from=$kwObj->keywords item=item}
+  <tr>
+    <td class="tableb">
+      <input type="radio" class="radio" name="keywordEdit" value="{$item}" onClick="document.keywordForm.newword.value='{$item}'" id="{$item}" />
+      <label for="{$item}" class="clickable_option">
+        <img src="images/edit.gif" width="16" height="16" border="0" alt="" title="edit &quot;{$item}&quot;" /> &quot;<i>{$item}</i>&quot;
+      </label>
+    </td>
+    <td class="tableb">
+      <a href="keywordmgr.php?page=delete&amp;remov={$item}" onclick="return confirm('Are you sure you want to delete the keyword &quot;{$item}&quot; from the whole gallery?')">
+        <img src="images/delete.gif" width="16" height="16" border="0" alt="" title="delete the keyword &quot;{$item}&quot;" /> {$item}
+      </a>
+    </td>
+    <td class="tableb">
+      <a href="thumbnails.php?meta=search&amp;search={$item}" target="_blank">search for &quot;<i>{$item}</i>&quot; in new window</a>
+    </td>
+  </tr>
+ {/foreach}
+  <tr>
+    <td colspan="3" class="tablef" align="center">
+      <input type="text" name="newword" />
+      <input type="submit" value="change keyword" />
+    </td>
+  </tr>
+</table>
+<!-- End standard table -->
+</form>
+{if $showKeywordBox eq 1}
+<br />
+<!-- Start standard table -->
+<table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+  <tr><td class="tableh1">{$lang_search_php.keyword_list_title}</td></tr>
+  <tr>
+    <td class="tableb">
+     {foreach from=$kwObj->keywords item=item name=keyword}
+      <a href="thumbnails.php?meta=search&search={$item}">{$item}</a>{if !$smarty.foreach.keyword.last} |{/if}
+     {/foreach}
+    </td>
+  </tr>
+</table>
+<!-- End standard table -->
+{/if}

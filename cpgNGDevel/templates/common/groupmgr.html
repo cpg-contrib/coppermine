@@ -1,0 +1,185 @@
+<script language="javascript" type="text/javascript">
+<!--
+{literal}
+function confirmDel()
+{
+    return confirm("{/literal}{$lang_groupmgr_php.confirm_del}{literal}");
+}
+
+function selectAll(d,box) {
+  var f = document.groupmanager;
+  for (i = 0; i < f.length; i++) {
+    if (f[i].type == "checkbox" && f[i].name.indexOf(box) >= 0) {
+      if (d.checked) {
+        f[i].checked = true;
+      } else {
+        f[i].checked = false;
+      }
+    }
+  }
+  if (d.name == "checkAll") {
+    document.getElementsByName('checkAll2')[0].checked = document.getElementsByName('checkAll')[0].checked;
+  } else {
+    document.getElementsByName('checkAll')[0].checked = document.getElementsByName('checkAll2')[0].checked;
+  }
+}
+{/literal}
+-->
+</script>
+
+<table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+  <form method="post" action="groupmgr.php" name="groupmanager">
+  <tr>
+    <td class="tableh1"><input type="checkbox" name="checkAll" onClick="selectAll(this,'delete_group');" class="checkbox" title="{$lang_check_uncheck_all}" /></td>
+    <td class="tableh1"><b><span class="statlink">{$lang_groupmgr_php.group_name}</span></b>{$miscArr.helpGroup}</td>
+    <td class="tableh1"><b><span class="statlink">{$lang_groupmgr_php.permissions}</span></b>{$miscArr.helpPermissions}</td>
+    <td class="tableh1"><b><span class="statlink">{$lang_groupmgr_php.public_albums}</span></b></td>
+    <td class="tableh1"><b><span class="statlink">{$lang_groupmgr_php.personal_gallery}</span></b>{$miscArr.helpPersonal}</td>
+    <td class="tableh1"><b><span class="statlink">{$lang_groupmgr_php.upload_method}</span></b>{$miscArr.helpUploadMethod}</td>
+  </tr>
+
+  <script language="javascript" type="text/javascript">
+  <!--
+  {literal}
+    function selectall()
+    {
+      for(var i = 0; i < document.groupmanager.elements.length; i++)
+      {
+        var e = document.groupmanager.elements[i];
+        if((e.name != 'allbox') && (e.type == 'checkbox'))
+        {
+          e.checked = document.groupmanager.allbox.checked;
+          if( document.groupmanager.allbox.checked ) {
+            select(e);
+          } else {
+            unselect(e);
+          }
+        }
+      }
+    }
+  {/literal}
+  -->
+  </script>
+  {foreach item=group from=$groupObj->groupArr}
+  <tr class="{cycle values="tableb,tableh2"}" align="center" valign="top" style="padding-left: 1px; padding-right: 1px">
+    {if $group.group_id gt 4 and $UDB_INTEGRATION eq "coppermine"}
+      <td><input type="checkbox" name="delete_group[]" value="{$group.group_id}" class="checkbox"></td>
+    {else}
+    <td>&nbsp;</td>
+    {/if}
+    <td class="$table_background" align="left" valign="top">
+      <input type="hidden" name="group_id[]" value="{$group.group_id}" />
+      <input type="text" name="group_name_{$group.group_id}" value="{$group.group_name}" class="textinput" size="12" />
+      {$group.grayoutHelp}
+      {if $group.showReset.title ne ""}
+        <img src="images/flags/reset.gif" width="16" height="11" border="0" alt="" style="cursor:pointer" title="{$group.showReset.title}" onclick="{$group.showReset.onclick}" />
+      {/if}
+      <br />
+      {$lang_groupmgr_php.disk_quota}: <input type="text" name="group_quota_{$group.group_id}" value="{$group.group_quota}" size="5" class="textinput" {$group.disabled} /> {$lang_byte_units[1]}
+      <br />
+      <a href="{$DOMAIN_URL}usermgr.php?op=group_alb_access&amp;gid={$group.group_id}">{$lang_groupmgr_php.group_assigned_album}</a>
+    </td>
+    <td>
+    {foreach item=fieldName from=$fieldList}
+      {if $fieldName eq "can_rate_pictures"}
+      <table border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <TD>{$lang_groupmgr_php.rating}</TD>
+      {elseif $fieldName eq "can_send_ecards"}
+        <tr><TD>{$lang_groupmgr_php.ecards}</TD>
+      {elseif $fieldName eq "can_post_comments"}
+        <tr><TD>{$lang_groupmgr_php.comments}</TD>
+      {elseif $fieldName eq "can_upload_pictures"}
+      <table border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <TD>{$lang_groupmgr_php.allowed}
+      {elseif $fieldName eq "pub_upl_need_approval"}
+        <tr><TD>{$lang_groupmgr_php.approval}</TD>
+      {elseif $fieldName eq "can_create_albums"}
+      <table border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <TD>{$lang_groupmgr_php.allowed}</TD>
+      {elseif $fieldName eq "priv_upl_need_approval"}
+        <tr><TD>{$lang_groupmgr_php.approval}</TD>
+      {/if}
+          <td>
+            <input type="checkbox" id="{$fieldName}_{$group.group_id}1" name="{$fieldName}_{$group.group_id}" value="1" {if $group[$fieldName] eq  1}checked{/if} {$group.disabled} />
+          </td>
+        </tr>
+      {if $fieldName eq "can_post_comments" or $fieldName eq "pub_upl_need_approval"}
+      </table>
+    </td><td>
+      {else}
+        <!--<br />-->
+      {/if}
+    {/foreach}
+      </table>
+    </td>
+    <td>
+      <table border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>{$lang_groupmgr_php.boxes_number}</td>
+          <td>
+            <input type="radio" id="custom_user_upload_{$group.group_id}1" name="custom_user_upload_{$group.group_id}" value="1" {if $group.custom_user_upload eq 1}checked{/if} {$group.disabled} /><label for="custom_user_upload_{$group.group_id}1" class="clickable_option">{$lang_groupmgr_php.variable}</label>
+          </td>
+          <td>
+            <input type="radio" id="custom_user_upload_{$group.group_id}0" name="custom_user_upload_{$group.group_id}" value="0" {if $group.custom_user_upload eq 0}checked{/if} {$group.disabled} /><label for="custom_user_upload_{$group.group_id}0" class="clickable_option">{$lang_groupmgr_php.fixed}</label>
+          </td>
+        </tr>
+        <tr>
+          <TD>{$lang_groupmgr_php.num_file_upload}: </TD>
+          <td>
+            <select name="num_file_upload_{$group.group_id}" class="listbox_lang" {$group.disabled}>
+            {section name=i loop=10}
+            <option value="{$smarty.section.i.iteration}" {if $group.num_file_upload eq $smarty.section.i.iteration}selected{/if}>{$smarty.section.i.iteration}</option>
+            {/section}
+            </select>
+          </td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <TD>{$lang_groupmgr_php.num_URI_upload}: </TD>
+          <td>
+            <select name="num_URI_upload_{$group.group_id}" class="listbox_lang" {$group.disabled}>
+            {section name=i loop=10}
+            <option value="{$smarty.section.i.iteration}" {if $group.num_URI_upload eq $smarty.section.i.iteration}selected{/if}>{$smarty.section.i.iteration}</option>
+            {/section}
+            </select>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  {/foreach}
+  <tr>
+    <td class="tablef"><input type="checkbox" name="checkAll2" onClick="selectAll(this,'delete_group');" class="checkbox" title="$lang_check_uncheck_all" /></td>
+    <td colspan="13" align="center" class="tablef">
+      <input type="submit" name="apply_modifs" value="{$lang_groupmgr_php.apply}" class="button">&nbsp;&nbsp;&nbsp;
+      <input type="hidden" name="new_group_name" value="" id="new_group_name" />
+      <input type="submit" name="new_group" value="{$lang_groupmgr_php.create_new_group}" class="button" onclick="return promptGroupName();">&nbsp;&nbsp;&nbsp;
+      {if $groupObj->displayDeleteGroup eq 1}
+        <input type="submit" name="del_sel" value="{$lang_groupmgr_php.del_groups}" onClick="return confirmDel()" class="button">
+      {/if}
+    </td>
+  </form>
+  </tr>
+</table>
+<script language="JavaScript">
+<!--
+{literal}
+  function promptGroupName()
+  {
+    var groupName = prompt('{/literal}{$lang_groupmgr_php.enter_grp_name}{literal}');
+    if (groupName == null) {
+      return false;
+    } else if (groupName == '') {
+      alert ('{/literal}{$lang_groupmgr_php.grp_name_error}{literal}');
+      return false;
+    } else {
+      document.getElementById('new_group_name').value = groupName;
+      return true;
+    }
+  }
+{/literal}
+-->
+</script>

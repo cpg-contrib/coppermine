@@ -1,0 +1,114 @@
+<script type="JavaScript">
+<!--
+{literal}
+function textCounter(field, maxlimit) {
+        if (field.value.length > maxlimit) // if too long...trim it!
+        field.value = field.value.substring(0, maxlimit);
+}
+{/literal}
+//-->
+</script>
+{if $picUpdated}
+<div class="success">{$picUpdated}</div>
+{/if}
+<form name="editonepicform" method="post" action="editOnePic.php">
+<input type="hidden" name="pid" value="{$currentPic.pid}" />
+<!-- Start standard table -->
+<table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+  <tr>
+    <td class="tableh1" colspan="3">{$lang_editpics_php.desc}</td>
+  </tr>
+  <tr>
+    <td class="tableh2" colspan="3">
+      <b>{$currentPic.displayFilename}</b>
+      &nbsp;&nbsp;-&nbsp;&nbsp;<a href="modifyalb.php?album={$currentPic.aid}" class="admin_menu">{$lang_editpics_php.album_properties}</a>&nbsp;&nbsp;-&nbsp;&nbsp;
+      <a href="thumbnails.php?album={$currentPic.aid}" class="admin_menu">{$lang_editpics_php.thumbnail_view}</a>
+    </td>
+  </tr>
+  <tr>
+    <td class="tableb" style="white-space: nowrap;">
+      {$lang_editpics_php.pic_info}
+    </td>
+    <td class="tableb">
+      {$currentPic.picInfo}
+    </td>
+    <td class="tableb" align="center" rowspan="{$currentPic.thumbRowSpan}">
+      <a href="{$currentPic.thumbLink}"><img src="{$currentPic.thumbUrl}" class="image" border="0" alt="{$currentPic.title}"/></a><br />
+    </td>
+  </tr>
+  <tr>
+    <td class="tableb" style="white-space: nowrap;">
+      {$lang_editpics_php.album}
+    </td>
+    <td class="tableb" valign="top">
+      {assign var="alb_cat" value=""}
+      <select name="aid{$currentPic.pid}" class="listbox">
+        {foreach from=$albListArray item=item key=key}
+          {if $item.cat ne $alb_cat}
+            {if $alb_cat}</optgroup>{/if}
+            <optgroup label="{$item.cat}">
+              {$item.cat}
+              {assign var="alb_cat" value=$item.cat}
+          {/if}
+            <option value="{$item.aid}" {if $item.aid eq $currentPic.aid}selected{/if}>{$item.title}</option>
+        {/foreach}
+        {if $alb_cat}</optgroup>{/if}
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td class="tableb" style="white-space: nowrap;">
+      {$lang_editpics_php.title}
+    </td>
+    <td width="100%" class="tableb" valign="top">
+      <input type="text" style="width: 100%" name="title{$currentPic.pid}" maxlength="255" value="{$currentPic.title}" class="textinput" />
+    </td>
+  </tr>
+  <tr>
+    <td class="tableb" style="white-space: nowrap;">
+      {$lang_editpics_php.filename}
+    </td>
+    <td width="100%" class="tableb" valign="top">
+      <input type="text" style="width: 100%" name="filename{$currentPic.pid}" maxlength="255" value="{$currentPic.filename}" class="textinput" />
+    </td>
+  </tr>
+  <tr>
+    <td class="tableb" valign="top" style="white-space: nowrap;">
+      {$lang_editpics_php.desc}{$currentPic.captionLabel}
+    </td>
+    <td class="tableb" valign="top">
+      <textarea name="caption{$currentPic.pid}" rows="5" cols="40" class="textinput" style="width: 100%;" onkeydown="textCounter(this, {$currentPic.maxDescLength});" onkeyup="textCounter(this, {$currentPic.maxDescLength});">{$currentPic.caption}</textarea>
+    </td>
+  </tr>
+  <tr>
+    <td class="tableb" style="white-space: nowrap;">
+      {$lang_editpics_php.keywords}
+    </td>
+    <td width="100%" class="tableb" valign="top">
+      <input type="text" style="width: 100%" name="keywords{$currentPic.pid}" maxlength="255" value="{$currentPic.keywords}" class="textinput" />
+    </td>
+  </tr>
+  {if $userFields|@count gt 0}
+  {foreach key=key item=item from=$userFields}
+  <tr>
+    <td class="tableb" style="white-space: nowrap;">{$item.name}: </td>
+    <td width="100%" class="tableb" valign="top">
+      <input type="text" style="width: 100%" name="user{$key}{$currentPic.pid}" maxlength="255" value="{$item.value}" class="textinput">
+    </td>
+  </tr>
+  {/foreach}
+  {/if}
+  <tr>
+    <td class="tableb" colspan="3" align="center">
+      <b><input type="checkbox" name="read_exif{$currentPic.pid}" value="1" class="checkbox" />{$lang_editpics_php.read_exif}</b>&nbsp;
+      <b><input type="checkbox" name="reset_vcount{$currentPic.pid}" value="1" class="checkbox" />{$lang_editpics_php.reset_view_count}</b>&nbsp;
+      <b><input type="checkbox" name="reset_votes{$currentPic.pid}" value="1" class="checkbox" />{$lang_editpics_php.reset_votes}</b>&nbsp;
+      <b><input type="checkbox" name="del_comments{$currentPic.pid}" value="1" class="checkbox" />{$lang_editpics_php.del_comm}</b>&nbsp;
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3" align="center" class="tablef">
+      <input type="submit" value="{$lang_editpics_php.apply}" name="submitDescription" class="button" />
+    </td>
+  </tr>
+</table>

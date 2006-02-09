@@ -1,0 +1,59 @@
+<script type="text/javascript">
+<!--
+  onload = hideall;
+//-->
+</script>
+<form action="admin.php" method="post">
+<table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+  <tr>
+    <td class="tableh1">{$lang_admin_php.title}&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="tableh2" colspan="3">
+      <a href="javascript:expand();" class="admin_menu">{$lang_admin_php.expand_all}&nbsp;&nbsp;<img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php.expand_all}" /></a>
+    </td>
+  </tr>
+ {foreach from=$configContent->content key=groupLabel item=item name=configGroup}
+ {assign var="sn1" value=0} {assign var="sn2" value=0} {assign var="sn3" value=0}
+  <tr>
+    <td class="tableh2" onclick="show_section('section{$smarty.foreach.configGroup.iteration}');">
+      <span style="cursor: pointer;"><img src="images/descending.gif" border="0" width="9" height="9" alt="" title="{$lang_admin_php.click_expand}" /> <b>{$groupLabel}</b></span>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable" id="section{$smarty.foreach.configGroup.iteration}" border="0">
+       {foreach from=$item item=configDetails}
+       {if $configDetails.sn1 gt 0} {assign var="sn1" value=1} {/if}
+       {if $configDetails.sn2 gt 0} {assign var="sn2" value=1} {/if}
+       {if $configDetails.sn3 gt 0} {assign var="sn3" value=1} {/if}
+        <tr>
+          <td class="tableb" width="60%">{$configDetails.text}</td>
+          <td class="tableb" valign="top" width="50%">{$configDetails.widget}</td>
+          <td class="tableb" width="10%">{$configDetails.help}</td>
+        </tr>
+       {/foreach}
+       {if $sn1 gt 0}<tr><td colspan="3" class="tableb_compact"><a name="notice1"></a>{$lang_admin_php.notice1}</td></tr>{/if}
+       {if $sn2 gt 0}<tr><td colspan="3" class="tableb_compact"><a name="notice2"></a>{$lang_admin_php.notice2}</td></tr>{/if}
+       {if $sn3 gt 0}<tr><td colspan="3" class="tableb_compact"><a name="notice3"></a>{$lang_admin_php.notice3}</td></tr>{/if}
+      </table>
+    </td>
+  </tr>
+ {/foreach}
+  <tr>
+    <td align="left" class="tablef">
+      <table border="0" cellspacing="0" cellpadding="0" width="100%">
+        <tr>
+          <td width="33%">
+            &nbsp;<a href="javascript:expand();" class="admin_menu">{$lang_admin_php.expand_all}&nbsp;&nbsp;<img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php.expand_all}" /></a>
+          </td>
+          <td width="67%" align="center">
+            <input type="submit" class="button" name="update_config" value="{$lang_admin_php.save_cfg}" />&nbsp;&nbsp;
+            <input type="submit" class="button" name="restore_config" value="{$lang_admin_php.restore_cfg}" />
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+</form>

@@ -1,0 +1,131 @@
+{if $miscArr.success.profileChanged eq 1}
+  <div class="success">{$lang_register_php.update_success}</div>
+{elseif $miscArr.success.passwordChanged eq 1}
+  <div class="success">{$lang_register_php.pass_chg_success}</div>
+{/if}
+{if $op eq "edit_profile"}
+<table align="center" width="500px" cellspacing="1" cellpadding="0" class="maintable">
+  <form method="post" action="{$smarty.server.PHP_SELF}">
+  <TR>
+    <TD class="tableh1" colspan="2">{$SUB_TITLE}</TD>
+  </TR>
+  {foreach item=item key=key from=$formData}
+  {if $item ne ""}
+  <tr>
+    <td width="40%" class="tableb" height="25">
+      {$key}
+    </td>
+    <td width="60%" class="tableb">
+      {$item}
+    </td>
+  </tr>
+  {/if}
+  {/foreach}
+  {foreach item=item key=key from=$userFields}
+  <tr>
+    <td width="40%" class="tableb">{$item}</td>
+    <td width="60%" class="tableb" valign="top">
+      <input type="text" style="width: 100%" name="{$key}" maxlength="255" value="{$userData[$key]}" class="textinput" />
+    </td>
+  </tr>
+  {/foreach}
+  {if $miscArr.user_profile6_name ne ""}
+  <tr>
+    <td width="40%" class="tableb">{$miscArr.user_profile6_name}</td>
+    <td width="60%" class="tableb" valign="top">
+      <textarea rows="7" style="width: 100%" class="textinput">{$userData.user_profile6}</textarea>
+    </td>
+  </tr>
+  {/if}
+  <tr>
+    <td colspan="2" align="center" class="tablef">
+      <input type="submit" name="change_profile" value="{$lang_register_php.apply_modif}" class="button">
+      <img src="images/spacer.gif" width="20" height="1" border="0" alt="" />
+      <input type="submit" name="change_pass" value="{$lang_register_php.change_pass}" class="button">
+    </td>
+  </tr>
+  </form>
+</table>
+{elseif $op eq "change_pass"}
+{if $miscArr.error ne ""}
+  <div class="error">{$miscArr.error}</div>
+{/if}
+<table align="center" width="500px" cellspacing="1" cellpadding="0" class="maintable">
+  <form method="post" action="{$smarty.server.PHP_SELF}">
+  <TR>
+    <TD class="tableh1" colspan="2">{$SUB_TITLE}</TD>
+  </TR>
+  <tr>
+    <td width="40%" class="tableb">
+      {$lang_register_php.current_pass}
+    </td>
+    <td width="60%" class="tableb" valign="top">
+      <input type="password" style="width: 100%" name="current_pass" maxlength="25" value="" class="textinput">
+    </td>
+  </tr>
+  <tr>
+    <td width="40%" class="tableb">
+      {$lang_register_php.new_pass}
+    </td>
+    <td width="60%" class="tableb" valign="top">
+      <input type="password" style="width: 100%" name="new_pass" maxlength="25" value="" class="textinput">
+    </td>
+  </tr>
+  <tr>
+    <td width="40%" class="tableb">
+      {$lang_register_php.new_pass_again}
+    </td>
+    <td width="60%" class="tableb" valign="top">
+      <input type="password" style="width: 100%" name="new_pass_again" maxlength="25" value="" class="textinput">
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center" class="tablef">
+      <input type="submit" name="change_password" value="{$SUB_TITLE}" class="button">
+    </td>
+  </tr>
+  </form>
+</table>
+{else}
+<table align="center" width="500px" cellspacing="1" cellpadding="0" class="maintable">
+  <TR>
+    <TD class="tableh1" colspan="2">{$SUB_TITLE}</TD>
+  </TR>
+  {foreach item=item key=key from=$formData}
+  {if $item ne ""}
+  <tr>
+    <td width="40%" class="tableb" height="25">{$lang_register_php.$key}</td>
+    <td width="60%" class="tableb">{$item}</td>
+  </tr>
+  {/if}
+  {/foreach}
+  {if $miscArr.lastupPic ne "" or $miscArr.lastCommentPic ne ""}
+  <tr>
+    <TD colspan="2" align="center">
+      <table width="100%" border="0" cellspacing="5">
+        <tr>
+          {if $miscArr.lastupPic ne ""}
+          <td width="50%" valign="top" align="center">
+            <a href="thumbnails.php?meta=lastupby&amp;uid={$smarty.get.uid}">
+            <span class="thumb_title">{$lang_register_php.last_uploads} {$formData.user_name}<br /></span>
+            <img src="{$miscArr.lastupPic}" class="image" border="0" alt="">
+            </a>
+          </td>
+          {/if}
+          {if $miscArr.lastCommentPic ne ""}
+          <td width="50%" valign="top" align="center">
+            <a href="thumbnails.php?meta=lastcomby&amp;uid={$smarty.get.uid}">
+            <span class="thumb_title">{$lang_register_php.last_comments} {$formData.user_name}<br /></span>
+            <img src="{$miscArr.lastCommentPic}" class="image" border="0" alt="">
+            </a><br />
+            <span class="thumb_caption">{$miscArr.lastCommentDate}</span><br />
+            <span class="thumb_caption">{$miscArr.lastCommentMesg}</span>
+          </td>
+          {/if}
+        </tr>
+      </table>
+    </TD>
+  </tr>
+  {/if}
+</table>
+{/if}
