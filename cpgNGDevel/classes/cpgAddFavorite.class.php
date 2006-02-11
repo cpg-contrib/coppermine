@@ -43,7 +43,7 @@ class cpgAddFavorite {
         }
 
         $data = base64_encode(serialize($FAVPICS));
-        setcookie($this->config->conf['cookie_name'] . '_fav', $data, time() + 86400 * 30, $this->config->conf['cookie_path']);
+        setcookie($this->config->conf['cookie_name'] . '_fav', $data, time() + 86400 * 15, $this->config->conf['cookie_path']);
 
         $userId = $this->auth->isDefined('USER_ID');
         if ($userId > 0) {

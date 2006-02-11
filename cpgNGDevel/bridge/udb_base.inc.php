@@ -55,7 +55,7 @@ class core_udb {
         function userSaveProfile()
         {
                 $data = base64_encode(serialize($this->user));
-                setcookie($this->config->conf['cookie_name'].'_data', $data, time()+86400*30, $this->config->conf['cookie_path']);
+                setcookie($this->config->conf['cookie_name'].'_data', $data, time()+86400*15, $this->config->conf['cookie_path']);
         }
 
         function getUserFavPics()

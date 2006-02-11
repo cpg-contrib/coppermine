@@ -685,7 +685,9 @@ class cpgProcessUsers {
       return $lang_register_php['pass_chg_error'];
     }
 
-    setcookie($this->config->conf['cookie_name'] . '_pass', md5($_POST['new_pass']), time() + 86400, $this->config->conf['cookie_path']);
+    // Set userid/password cookies to delete at the browser close event
+    setcookie($this->config->conf['cookie_name'] . '_uid', $this->auth->isDefined('USER_ID'), 0, $this->config->conf['cookie_path']);
+    setcookie($this->config->conf['cookie_name'] . '_pass', md5($_POST['new_pass']), 0, $this->config->conf['cookie_path']);
 
     return 1;
   }
