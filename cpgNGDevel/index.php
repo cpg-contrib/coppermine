@@ -184,7 +184,5 @@ if (count($breadcrumb)) {
 include ('include/cleanUp.inc.php');
 
 $t->display ('main.html');
-$cpg_time_end = cpgGetMicroTime();
-$totalTime = $cpg_time_end - $cpg_time_start;
 
 ?>
