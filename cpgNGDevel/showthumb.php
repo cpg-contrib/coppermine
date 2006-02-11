@@ -78,7 +78,7 @@ function makethumbnail($src_file, $newSize, $method)
                 $src_file = escapeshellarg($src_file);
             }
             header("Content-type: image/" . ($content_type[$imginfo[2]]));
-            passthru("{$config->conf['impath']}convert -quality $config->conf[jpeg_qual] -antialias -geometry {$destWidth}x{$destHeight} $src_file -");
+            passthru("{$config->conf['impath']}convert -quality {$config->conf[jpeg_qual]} -antialias -geometry {$destWidth}x{$destHeight} $src_file -");
             break;
 
         case "gd2" :
