@@ -214,7 +214,7 @@ class cpgDisplayImageData extends cpgAlbumData {
         }
 
         if ($this->picData['keywords'] != '') {
-            $picInfo['keywordLink'] = preg_replace("/(\S+)/", "<a href=\"thumbnails.php?album=search&amp;search=\\1\">\\1</a>" , $this->picData['keywords']);
+            $picInfo['keywordLink'] = preg_replace("/(\S+)/", "<a href=\"thumbnails.php?meta=search&amp;search=\\1\">\\1</a>" , $this->picData['keywords']);
             $picInfo['keywords'] = $this->picData['keywords'];
         }
 
