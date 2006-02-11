@@ -42,7 +42,7 @@ class cpg_udb extends core_udb {
 			$this->boardurl = $this->config->conf['site_url'];
 			$this->use_post_based_groups = @$BRIDGE['use_post_based_groups'];
 		}
-		
+
 		$this->multigroups = 0;
 
 		$this->group_overrride = !$this->use_post_based_groups;
@@ -109,24 +109,24 @@ class cpg_udb extends core_udb {
 		  $this->config->conf['TABLE_USERS'] = $this->config->table_prefix."users";
 
           $query = "SELECT user_id, user_name, user_password FROM
-{$this->config->conf['TABLE_USERS']} WHERE user_name = '" . 
+{$this->config->conf['TABLE_USERS']} WHERE user_name = '" .
 addslashes($_POST['username']) . "' AND BINARY user_password = '" . $password .
 "' AND user_active = 'YES'";          $this->cpgDb->query($query);
           $sql = "UPDATE {$this->config->conf['TABLE_USERS']} SET user_lastvisit
-= NOW() WHERE user_name = '" . addslashes($_POST['username']) . "' AND BINARY 
+= NOW() WHERE user_name = '" . addslashes($_POST['username']) . "' AND BINARY
 user_password = '" . $password . "' AND user_active = 'YES'";
 
           if ($this->cpgDb->nf()) {
               $this->userData = $this->cpgDb->fetchRow();
               $this->cpgDb->query($sql);
               if (isset($_POST['remember_me'])) {
-                  $cookie_life_time = 86400 * 30;
+                  $cookie_life_time = time() + (86400 * 15); // 15 days from current time
               } else {
-                  $cookie_life_time = 86400;
+                  $cookie_life_time = 0; // At the end of session/browser close
               }
 
-              setcookie($this->config->conf['cookie_name'] . '_uid', $this->userData['user_id'], time() + $cookie_life_time, $this->config->conf['cookie_path']);
-              setcookie($this->config->conf['cookie_name'] . '_pass', md5($_POST['password']), time() + $cookie_life_time, $this->config->conf['cookie_path']);
+              setcookie($this->config->conf['cookie_name'] . '_uid', $this->userData['user_id'], $cookie_life_time, $this->config->conf['cookie_path']);
+              setcookie($this->config->conf['cookie_name'] . '_pass', md5($_POST['password']), $cookie_life_time, $this->config->conf['cookie_path']);
 
               return(true);
 
