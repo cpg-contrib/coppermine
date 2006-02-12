@@ -435,116 +435,116 @@ if (defined('BANNING_PHP')) $lang_banning_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('BRIDGEMGR_PHP')) $lang_bridgemgr_php = array(
-  'title' => 'Bridge průvodce',
-  'warning' => 'Varování: když používáte průvodce, musíte chápat, že citlivá data budou zasílána přes html formuláře. Pouze spuštění na vašem PC(ne jako veřejný klient třeba v internetové kavárně) a musíte vymazat cache browswru a dočasné soubory, aby nedošlo k jejich prozrazení!',
+  'title' => 'Průvodce propojením',
+  'warning' => 'Varování: když používáte průvodce, musíte pochopit, že citlivá data budou zasílána přes html formuláře. Pouze spuštění na vašem PC(ne jako veřejný klient třeba v internetové kavárně) a musíte vymazat cache browswru a dočasné soubory, aby nedošlo k jejich prozrazení!',
   'back' => 'zpět',
   'next' => 'další',
-  'start_wizard' => 'Start bridging průvodce',
+  'start_wizard' => 'Start propojovacího průvodce',
   'finish' => 'Konec',
   'hide_unused_fields' => 'zkryj nepoužívané položky (doporučeno)',
   'clear_unused_db_fields' => 'vymaž vadný databázový vstup (doporučeno)',
   'custom_bridge_file' => 'jméno tvého uživatelského překlenovacího souboru (if the bridge file\'s name is <i>myfile.inc.php</i>, enter <i>myfile</i> into this field)',
   'no_action_needed' => 'V tomto kroku není potřeba nic dělat. klikni na  \'next\' pro pokračování.',
   'reset_to_default' => 'Nastav defaultní hodnoty',
-  'choose_bbs_app' => 'choose application to bridge coppermine with',
-  'support_url' => 'Go here for support on this application',
-  'settings_path' => 'path(s) used by your BBS app',
+  'choose_bbs_app' => 'vyberte plikaci propojení s coppermine',
+  'support_url' => 'Jdi sem pro podporu této aplikace',
+  'settings_path' => 'cesta (y) použité v BBS aplikaci',
   'database_connection' => 'databázové spojení',
   'database_tables' => 'databázové tabulky',
   'bbs_groups' => 'BBS skupina',
   'license_number' => 'Licenční číslo',
   'license_number_explanation' => 'vlož své lizenční číslo (jestli je aplikováno)',
   'db_database_name' => 'Jméno databáze',
-  'db_database_name_explanation' => 'Enter the name of the database your BBS app uses',
-  'db_hostname' => 'Database host',
-  'db_hostname_explanation' => 'Hostname where your mySQL database resides, usually &quot;localhost&quot;',
+  'db_database_name_explanation' => 'Vložte jméno vaší databáze BBS',
+  'db_hostname' => 'Host databáze',
+  'db_hostname_explanation' => 'Jméno místa kde sídlí vaše mySQL databaáze, obvykle &quot;localhost&quot;',
   'db_username' => 'Database user account',
-  'db_username_explanation' => 'mySQL user account to use for connection with BBS',
-  'db_password' => 'Database pašword',
-  'db_password_explanation' => 'Pašword for this mySQL user account',
+  'db_username_explanation' => 'mySQL uživatelské heslo pro uživatelské heslo pro připojení s BBS',
+  'db_password' => 'Heslo databáze',
+  'db_password_explanation' => 'Heslo pro mySQL uživatelského přístupu',
   'full_forum_url' => 'Forum URL',
-  'full_forum_url_explanation' => 'Full URL of your BBS app (including the leading http:// bit, e.g. http://www.yourdomain.tld/forum)',
-  'relative_path_of_forum_from_webroot' => 'Relative forum path',
-  'relative_path_of_forum_from_webroot_explanation' => 'Relative path to your BBS app from the webroot (Example: if your BBS is at http://www.yourdomain.tld/forum/, enter &quot;/forum/&quot; into this field)',
-  'relative_path_to_config_file' => 'Relative path to your BBS\'s config file',
-  'relative_path_to_config_file_explanation' => 'Relative path to your BBS, seen from your Coppermine folder (e.g. &quot;../forum/&quot; if your BBS is at http://www.yourdomain.tld/forum/ and Coppermine at http://www.yourdomain.tld/gallery/)',
+  'full_forum_url_explanation' => 'Plné URL vší BBS plikace (obsahující http:// např. http://www.yourdomain.tld/forum)',
+  'relative_path_of_forum_from_webroot' => 'Relativní cesta fóra',
+  'relative_path_of_forum_from_webroot_explanation' => 'Relativní cesta k vaší BBS aplikaci (například: jestli je BBS na http://www.yourdomain.tld/forum/, vložte &quot;/forum/&quot; do tohoto pole)',
+  'relative_path_to_config_file' => 'Relativní cesta na vaši BBS konfigurační soubor',
+  'relative_path_to_config_file_explanation' => 'Relativní cestapro vaši BBS, pro Coppermine složku (např. &quot;../forum/&quot; jestliže vaše BBS je http://www.yourdomain.tld/forum/ a Coppermine na http://www.yourdomain.tld/gallery/)',
   'cookie_prefix' => 'Cookie prefix',
-  'cookie_prefix_explanation' => 'this has to be your BBS\'s cookie name',
-  'table_prefix' => 'Table prefix',
-  'table_prefix_explanation' => 'Must match the prefix you chose for your BBS when setting it up.',
-  'user_table' => 'User table',
-  'user_table_explanation' => '(usually default value should be OK, unless your BBS install isn\'t standard)',
-  'session_table' => 'Session table',
-  'session_table_explanation' => '(usually default value should be OK, unless your BBS install isn\'t standard)',
-  'group_table' => 'Group table',
-  'group_table_explanation' => '(usually default value should be OK, unless your BBS install isn\'t standard)',
-  'group_relation_table' => 'Group relation table',
-  'group_relation_table_explanation' => '(usually default value should be OK, unless your BBS install isn\'t standard)',
-  'group_mapping_table' => 'Group mapping table',
-  'group_mapping_table_explanation' => '(usually default value should be OK, unless your BBS install isn\'t standard)',
-  'use_standard_groups' => 'Use standard BBS usergroups',
-  'use_standard_groups_explanation' => 'Use standard (built-in) usergroups (recommended). This will make all custom usergroups settings made on this page become void. Only disable this option if you REALLY know what you\'re doing!',
-  'validating_group' => 'Validating group',
-  'validating_group_explanation' => 'The group ID of your BBS where users accounts that need validation are in (usually default value should be OK, unless your BBS install isn\'t standard)',
-  'guest_group' => 'Guest group',
-  'guest_group_explanation' => 'Group ID of your BBS where guests (anonymous users) are in (default value should be OK, only edit if you know what you\'re doing)',
-  'member_group' => 'Member group',
-  'member_group_explanation' => 'Group ID of your BBS where &quot;regular&quot; users accounts are in (default value should be OK, only edit if you know what you\'re doing)',
-  'admin_group' => 'Admin group',
-  'admin_group_explanation' => 'Group ID of your BBS where admins are in (default value should be OK, only edit if you know what you\'re doing)',
-  'banned_group' => 'Banned group',
-  'banned_group_explanation' => 'Group ID of your BBS where banned users are in (default value should be OK, only edit if you know what you\'re doing)',
-  'global_moderators_group' => 'Global moderators group',
-  'global_moderators_group_explanation' => 'Group ID of your BBS where global moderators of your BBS are in (default value should be OK, only edit if you know what you\'re doing)',
-  'special_settings' => 'BBS-specific settings',
-  'logout_flag' => 'phpBB version (logout flag)',
-  'logout_flag_explanation' => 'What\'s your BBS version (this setting specifies how logouts are being handled)',
-  'use_post_based_groups' => 'Use post-based groups?',
-  'logout_flag_yes' => '2.0.5 or higher',
-  'logout_flag_no' => '2.0.4 or lower',
-  'use_post_based_groups_explanation' => 'Should the groups from the BBS that are defined by the number of posts be taken into account (allows a granular permissions management) or just the default groups (makes administration easier, recommended). You can change this setting later as well.',
-  'use_post_based_groups_yes' => 'yes',
-  'use_post_based_groups_no' => 'no',
-  'error_title' => 'You need to correct these errors before you can continue. Go to the previous screen.',
-  'error_specify_bbs' => 'You have to specify what application you want to bridge your Coppermine install with.',
-  'error_no_blank_name' => 'You can\'t leave the name of your custom bridge file blank.',
-  'error_no_special_chars' => 'The bridge file name mustn\'t contain any special chars except underscore (_) and dash (-)!',
-  'error_bridge_file_not_exist' => 'The bridge file %s doesn\'t exist on the server. Check if you have actually uploaded it.',
-  'finalize' => 'enable/disable BBS integration',
-  'finalize_explanation' => 'So far, the settings you specified have been written into the database, but BBS integration hasn\'t been enabled. You can switch integration on/off later at any time. Make sure to remember the admin username and password from standalone Coppermine, you might need it later to be able to make any changes. If anything goes wrong, go to %s and disable BBS integration there, using your standalone (unbridged) admin account (usually the one you set up during Coppermine install).',
-  'your_bridge_settings' => 'Your bridge settings',
-  'title_enable' => 'Enable integration/bridging with %s',
-  'bridge_enable_yes' => 'enable',
-  'bridge_enable_no' => 'disable',
-  'error_must_not_be_empty' => 'must not be empty',
-  'error_either_be' => 'must either be %s or %s',
-  'error_folder_not_exist' => '%s doesn\'t exist. Correct the value you entered for %s',
-  'error_cookie_not_readible' => 'Coppermine can\'t read a cookie named %s. Correct the value you entered for %s, or go to your BBS administration panel and make sure that the cookie path is readible for coppermine.',
-  'error_mandatory_field_empty' => 'You can not leave the field %s blank - fill in the proper value.',
-  'error_no_trailing_slash' => 'There mustn\'t be a trailing slash in the field %s.',
-  'error_trailing_slash' => 'There must be a trailing slash in the field %s.',
-  'error_db_connect' => 'Could not connect to the mySQL database with the data you specified. Here\'s what mySQL said:',
-  'error_db_name' => 'Although Coppermine could establish a connection, it wasn\'t able to find the database %s. Make sure you have specified %s properly. Here\'s what mySQL said:',
-  'error_prefix_and_table' => '%s and ',
-  'error_db_table' => 'Could not find the table %s. Make sure you have specified %s correctly.',
-  'recovery_title' => 'Bridge Manager: emergency recovery',
+  'cookie_prefix_explanation' => 'toto je vaše BBS cookie jméno',
+  'table_prefix' => 'Prefix tabulky',
+  'table_prefix_explanation' => 'Musí být rovný prefixu ktrý byl vybrán v BBS když byla nastavována.',
+  'user_table' => 'Uživatelská tabulka',
+  'user_table_explanation' => '(obvykle defaultní nastavení je OK, avšak BBS instalace nemusí být standardní)',
+  'session_table' => 'Tabulka připojení',
+  'session_table_explanation' => '(obvykle defaultní nastavení je OK, avšak BBS instalace nemusí být standardní)',
+  'group_table' => 'Tabulka uživatelů',
+  'group_table_explanation' => '(obvykle defaultní nastavení je OK, avšak BBS instalace nemusí být standardní)',
+  'group_relation_table' => 'Tabulka relací skupiny',
+  'group_relation_table_explanation' => '(obvykle defaultní nastavení je OK, avšak BBS instalace nemusí být standardní)',
+  'group_mapping_table' => 'Tabulka mapování skupiny',
+  'group_mapping_table_explanation' => '(obvykle defaultní nastavení je OK, avšak BBS instalace nemusí být standardní)',
+  'use_standard_groups' => 'Použití standardních BBS uživatelskou skupiny',
+  'use_standard_groups_explanation' => 'Použití standardních (vestavěných) uživatelských uživatelských skupin (doporučeno). This will make all custom usergroups settings made on this page become void. Only disable this option if you REALLY know what you\'re doing!',
+  'validating_group' => 'Ověřená skupina',
+  'validating_group_explanation' => 'Skupina ID vaší BBS kde jsou uživatelská konta které potřebujete validovat(obvykle přednastavené hodnoty mohou být OK, avšak BBS nemusí být nastavena standardně)',
+  'guest_group' => 'Skupina hostů',
+  'guest_group_explanation' => 'Skupina ID vaší BBS kde jsou hosti (anonymní uživatelé) jsou v (obvykle přednastavené hodnoty mohou být OK, pouze změněny, jestliže víte jak se to dělá)',
+  'member_group' => 'Skupina uživatelů',
+  'member_group_explanation' => 'Skupina ID vaší BBS kde jsou &quot;regular&quot; uživatelské účty (obvykle přednastavené hodnoty mohou být OK, pouze změněny, jestliže víte jak se to dělá)',
+  'admin_group' => 'Administrátorská skupina',
+  'admin_group_explanation' => 'Skupina ID vaší BBS kde jsou administrátoři (obvykle přednastavené hodnoty mohou být OK, pouze změněny, jestliže víte jak se to dělá)',
+  'banned_group' => 'Nežádoucí skupina',
+  'banned_group_explanation' => 'Skupina ID vaší BBS kde jsou nežádoucí uživatelé (obvykle přednastavené hodnoty mohou být OK, pouze změněny, jestliže víte jak se to dělá)',
+  'global_moderators_group' => 'Globalní moderátorská skupina',
+  'global_moderators_group_explanation' => 'Skupina ID vaší BBS kde jsou globalní moderátoři vaší BBS (obvykle přednastavené hodnoty mohou být OK, pouze změněny, jestliže víte jak se to dělá)',
+  'special_settings' => 'BBS-specifické nastavení',
+  'logout_flag' => 'phpBB verze (logout flag)',
+  'logout_flag_explanation' => 'Jaká je verze vaší BBS version)',
+  'use_post_based_groups' => 'Použít post-based skupinu?',
+  'logout_flag_yes' => '2.0.5 a vyšší',
+  'logout_flag_no' => '2.0.4 nebo nižší',
+  'use_post_based_groups_explanation' => 'Mohou být skypiny z BBS které jsou definovány jako mnoho posts be taken into account (allows a granular permissions management) or just the default groups (makes administration easier, recommended). You can change this setting later as well.',
+  'use_post_based_groups_yes' => 'Ano',
+  'use_post_based_groups_no' => 'Ne',
+  'error_title' => 'Musíte opravit tyto chyby, než budete pokračovat. Vrate se na předešlou obrazovku.',
+  'error_specify_bbs' => 'Můžete specifikovat jakou aplikaci chcete propojit s Coppermine instalací.',
+  'error_no_blank_name' => 'Nemůžete nechat jméno propojovacího souboru prázné.',
+  'error_no_special_chars' => 'Propojovací soubor nesmí obsahovat speciální znaky jako (_) a (-)!',
+  'error_bridge_file_not_exist' => 'Propojovací soubor %s neexistuje na serveru. Zkontrolujte, jestli byl uploadován.',
+  'finalize' => 'zapnout/vypnout BBS integraci',
+  'finalize_explanation' => 'Příliš vzdálené, nastavení vámi specifikované v databázi, ale  BBS nemůže být zapnuto. Můžete nastavit integraci vypnuto/zapnuto později. Nezapomeňte změnit uživatelské jméno a heslo a pro samotnou Coppermine, můžete pozdějio potřebovat udělat nějaké změny. Jestliže něco bude v nepořádku, běžte na %s a vypněte BBS integraci, použijde samostatný (nepropojený) admin účet (obvykle je nastavený během instalece Coppermine).',
+  'your_bridge_settings' => 'Vaše propojovací nastavení',
+  'title_enable' => 'Zapnout integraci/propojení s %s',
+  'bridge_enable_yes' => 'zapnuto',
+  'bridge_enable_no' => 'vypnuto',
+  'error_must_not_be_empty' => 'nesmí být prázdné',
+  'error_either_be' => 'musí být %s nebo %s',
+  'error_folder_not_exist' => '%s neexistuje. Opravte hodnotu %s',
+  'error_cookie_not_readible' => 'Coppermine nemůže číst jméno cookie %s. Opravte hodnotu %s, nebo přejděte do BBS administrátorského panelu a zkontrolujte, že cookie cesta čitelná pro coppermine.',
+  'error_mandatory_field_empty' => 'Nemůžete pole nechat prázdné %s vyplňte příslušnou hodnotu.',
+  'error_no_trailing_slash' => 'Nesmí tam být koncové lomítko  v poli %s.',
+  'error_trailing_slash' => 'Musí tam být koncové lomítko v poli %s.',
+  'error_db_connect' => 'Nemohu se připojit na mySQL databázi s udanými údaji. Toto vrací mySQL:',
+  'error_db_name' => 'Také Coppermine nemůže navázat spojení, nebylo nalezeno v databázi %s. Zkontrolujte, zda je nastaveno správně %s .  mySQL hlásí:',
+  'error_prefix_and_table' => '%s a ',
+  'error_db_table' => 'Nemohu nalézt tabulku %s. Zkontrolujte , jestli je %s správně.',
+  'recovery_title' => 'Manažer propojení: záchranná oprava',
   'recovery_explanation' => 'If you came here to administer the BBS integration of your Coppermine gallery, you have to log in first as admin. If you can not log in because bridging doesn\'t work as expected, you can disable BBS integration with this page. Entering your username and password will not log you in, it will only disable BBS integration. Refer to the documentation for details.',
-  'username' => 'Username',
-  'password' => 'Password',
-  'disable_submit' => 'submit',
-  'recovery_success_title' => 'Authorization successful',
-  'recovery_success_content' => 'You have successfully disabled BBS bridging. Your Coppermine install runs now in standalone mode.',
-  'recovery_success_advice_login' => 'Log in as admin to edit your bridge settings and/or enable BBS integration again.',
-  'goto_login' => 'Go to login page',
-  'goto_bridgemgr' => 'Go to bridge manager',
-  'recovery_failure_title' => 'Authorization failed',
+  'username' => 'Jméno',
+  'password' => 'Heslo',
+  'disable_submit' => 'odešli',
+  'recovery_success_title' => 'Authorizace úspěšná',
+  'recovery_success_content' => 'Odpojili jste úspěšně BBS propojení. Vaše Coppermine instalace praceje v samostatném módu.',
+  'recovery_success_advice_login' => 'Připojte se jako admin a zeditujtenastavení propojení a/nebo zapněte integraci BBS znovu.',
+  'goto_login' => 'Přechod na přihlašovací stránku',
+  'goto_bridgemgr' => 'Přechod na Manažera propojení',
+  'recovery_failure_title' => 'Authorizace se nezdařila',
   'recovery_failure_content' => 'You supplied the wrong credentials. You will have to supply the admin account data of the standalone version (usually the account you set up during Coppermine install).',
-  'try_again' => 'try again',
-  'recovery_wait_title' => 'Wait time has not elapsed',
-  'recovery_wait_content' => 'For security reasons this script does not allow failed logons in short succession, so you will have to wait a bit untill you\'re allowed to try to authenticate.',
-  'wait' => 'wait',
-  'create_redir_file' => 'Create redirection file (recommended)',
-  'create_redir_file_explanation' => 'To redirect users back to Coppermine once they logged into your BBS, you need a redirection file to be created within your BBS folder. When this option is checked, the bridge manager will attempt to create this file for you, or give you code ready to copy-and-paste to create the file manually.',
+  'try_again' => 'zkuste to znovu',
+  'recovery_wait_title' => 'Počkejte, než uplyne daný čas',
+  'recovery_wait_content' => 'Z bezpečnostních důvodů tento skript nedovoluje špatné přihlášení, musíte chvíli počkat aby jste to mohli zkusit znovu.',
+  'wait' => 'počkej',
+  'create_redir_file' => 'Vytvořit přesměrovávací soubor (doporučeno)',
+  'create_redir_file_explanation' => 'Na přesměrování zpět do Coppermine, se bude připojovat do BBS, potřebujete přesměrovat soubor vytvořený ve vaší BBS složce. Když je tato volba vybrána, propojovací manažer vytoří tento soubor pro vás, nebo vám předá kód připravený na kopírování manuálně.',
   'browse' => 'browse',
 );
 
@@ -615,9 +615,9 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'log_all' => 'Všechno', //cpg1.4
   'view_logs' => 'Zobraz logy', //cpg1.4
   'click_expand' => 'klikni na jméno sekce pro rozbalení', //cpg1.4
-  'expand_all' => 'Vše rozbal', //cpg1.4
+  'expand_all' => 'Rozbal vše', //cpg1.4
   'notice1' => '(*) Toto nastavení nesmí být změněno jestliže máte uloženy soubory v databázi.', //cpg1.4 - (relocated)
-  'notice2' => '(**) Když se změní toto nastavení, pouze soubory, které budou přidány později budou mít viditelné změny. Avšak plikovat tuto změnu lze přes &quot;<a href="util.php">administrátorské nástroje</a>.', //cpg1.4 - (relocated)
+  'notice2' => '(**) Když se změní toto nastavení, pouze soubory, které budou přidány později budou mít viditelné změny. Avšak aplikovat tuto změnu lze přes &quot;<a href="util.php">administrátorské nástroje&quot</a>.', //cpg1.4 - (relocated)
   'notice3' => '(***) Všechny log soubory jsou v angličtině.', //cpg1.4 - (relocated)
   'bbs_disabled' => 'Funkce je vypnuta když se použije bb integrace', //cpg1.4
   'auto_resize_everyone' => 'Kdokoliv', //cpg1.4
@@ -640,7 +640,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Zapnout klíčová slova ve vyhledávání','clickable_keyword_search',14, 'f=index.htm&amp;as=admin_general_keywords_start&amp;ae=admin_general_keywords_end'), //cpg1.4
   array('Zapnout pluginy', 'enable_plugins', 12, 'f=index.htm&amp;as=admin_general_enable-plugins&amp;ae=admin_general_enable-plugins_end'),  //cpg1.4
   array('Povol odmítat neprivátní IP adresy', 'ban_private_ip', 1,  'f=index.htm&amp;as=admin_general_private-ip&amp;ae=admin_general_private-ip_end'), //cpg1.4
-  array('Prohlížečový dávkový interface', 'browse_batch_add', 1, 'f=index.htm&amp;as=admin_general_browsable_batch_add&amp;ae=admin_general_browsable_batch_add_end'), //cpg1.4
+  array('Dávkové rozhraní v browseru', 'browse_batch_add', 1, 'f=index.htm&amp;as=admin_general_browsable_batch_add&amp;ae=admin_general_browsable_batch_add_end'), //cpg1.4
 
   'Nastavení jazyka &amp; znakové sady',
   array('Jazyk', 'lang', 5, 'f=index.htm&amp;as=admin_language_language&amp;ae=admin_language_language_end'), //cpg1.4
@@ -665,19 +665,19 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
 
   'Nastavení zobrazení výpisu galerií',
   array('Velikost šířky hlavní tabukly (pixlů nebo %)', 'main_table_width', 0, 'f=index.htm&amp;as=admin_album_table-width&amp;ae=admin_album_table-width_end'), //cpg1.4
-  array('Počet zanoření kategorií bude zobrazováno', 'subcat_level', 0, 'f=index.htm&amp;as=admin_album_category-levels&amp;ae=admin_album_category-levels_end'), //cpg1.4
+  array('Počet zobrazovaných zanoření kategorií', 'subcat_level', 0, 'f=index.htm&amp;as=admin_album_category-levels&amp;ae=admin_album_category-levels_end'), //cpg1.4
   array('Počet galerií pro zobrazení', 'albums_per_page', 0, 'f=index.htm&amp;as=admin_album_number&amp;ae=admin_album_number_end'), //cpg1.4
-  array('Počet řádků v listu galerie', 'album_list_cols', 0, 'f=index.htm&amp;as=admin_album_columns&amp;ae=admin_album_columns_end'), //cpg1.4
+  array('Počet sloupců v listu galerie', 'album_list_cols', 0, 'f=index.htm&amp;as=admin_album_columns&amp;ae=admin_album_columns_end'), //cpg1.4
   array('Velikost náhledu v pixlech', 'alb_list_thumb_size', 0, 'f=index.htm&amp;as=admin_album_thumbnail-size&amp;ae=admin_album_thumbnail-size_end'), //cpg1.4
   array('Styl hlavní stránky', 'main_page_layout', 0, 'f=index.htm&amp;as=admin_album_list_content&amp;ae=admin_album_list_content_end'), //cpg1.4
   array('Ukaž první galerii v kategoriích','first_level',1, 'f=index.htm&amp;as=admin_album_first-level_thumbs&amp;ae=admin_album_first-level_thumbs_end'), //cpg1.4
-  array('Setřiď kategorie alfanumericky (Namísto uživatelského nastavení třídění)','categories_alpha_sort',1, 'f=index.htm&amp;as=admin_album_list_alphasort_start&amp;ae=admin_album_list_alphasort_end'), //cpg1.4
+  array('Setřiď kategorie alfanumericky (namísto uživatelského nastavení třídění)','categories_alpha_sort',1, 'f=index.htm&amp;as=admin_album_list_alphasort_start&amp;ae=admin_album_list_alphasort_end'), //cpg1.4
   array('Ukaž celkový počet souborů','link_pic_count',1, 'f=index.htm&amp;as=admin_album_linked_files_start&amp;ae=admin_album_linked_files_end'), //cpg1.4
 
   'Nastavení náhledů',
-  array('Počet sloupců na straně s náhledy', 'thumbcols', 0, 'f=index.htm&amp;as=admin_thumbnail_columns&amp;ae=admin_thumbnail_columns_end'), //cpg1.4
-  array('Počet řádků na straně s náhledy', 'thumbrows', 0, 'f=index.htm&amp;as=admin_thumbnail_rows&amp;ae=admin_thumbnail_rows_end'), //cpg1.4
-  array('Maximální počet štítků pro zobrazená', 'max_tabs', 10, 'f=index.htm&amp;as=admin_thumbnail_tabs&amp;ae=admin_thumbnail_tabs_end'), //cpg1.4
+  array('Počet sloupců na stránce s náhledy', 'thumbcols', 0, 'f=index.htm&amp;as=admin_thumbnail_columns&amp;ae=admin_thumbnail_columns_end'), //cpg1.4
+  array('Počet řádků na stránce s náhledy', 'thumbrows', 0, 'f=index.htm&amp;as=admin_thumbnail_rows&amp;ae=admin_thumbnail_rows_end'), //cpg1.4
+  array('Maximální počet štítků pro zobrazení stránek na liště', 'max_tabs', 10, 'f=index.htm&amp;as=admin_thumbnail_tabs&amp;ae=admin_thumbnail_tabs_end'), //cpg1.4
   array('Zobraz popis souboru (přidaný k názvu) pod náhledem', 'caption_in_thumbview', 1, 'f=index.htm&amp;as=admin_thumbnail_display_caption&amp;ae=admin_thumbnail_display_caption_end'), //cpg1.4
   array('Zobraz počet zobrazení pod náhledem', 'views_in_thumbview', 1, 'f=index.htm&amp;as=admin_thumbnail_display_views&amp;ae=admin_thumbnail_display_views_end'), //cpg1.4
   array('Zobraz počet komentářů pod náhledem', 'display_comment_count', 1, 'f=index.htm&amp;as=admin_thumbnail_display_comments&amp;ae=admin_thumbnail_display_comments_end'), //cpg1.4
@@ -706,14 +706,14 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Maximální délka komentáře', 'max_com_size', 0, 'f=index.htm&amp;as=admin_image_comment_length&amp;ae=admin_image_comment_length_end'), //cpg1.4
   array('Oznam adminovi komentáře emailem', 'email_comment_notification', 1, 'f=index.htm&amp;as=admin_image_comment_admin_notify&amp;ae=admin_image_comment_admin_notify_end'), //cpg1.4
   array('Setřiď pořadí komentářů', 'comments_sort_descending', 17, 'f=index.htm&amp;as=admin_comment_sort_start&amp;ae=admin_comment_sort_end'), //cpg1.4
-  array('Prefix pro anonymní autory comentářů', 'comments_anon_pfx', 0, 'f=index.htm&amp;as=comments_anon_pfx&amp;ae=comments_anon_pfx_end'), //cpg1.4
+  array('Prefix pro anonymní autory komentářů', 'comments_anon_pfx', 0, 'f=index.htm&amp;as=comments_anon_pfx&amp;ae=comments_anon_pfx_end'), //cpg1.4
 
   'Nastavení souborů a tvorby náhledů',
   array('Kvalita JPEG souborů', 'jpeg_qual', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_jpeg_quality&amp;ae=admin_picture_thumbnail_jpeg_quality_end'), //cpg1.4
   array('Max velikost náhledu <a href="#notice2" class="clickable_option">**</a>', 'thumb_width', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_max-dimension&amp;ae=admin_picture_thumbnail_max-dimension_end'), //cpg1.4
   array('Použij velikost ( šířka nebo výška nebo Max rozlišení pro náhled ) <a href="#notice2" class="clickable_option">**</a>', 'thumb_use', 7, 'f=index.htm&amp;as=admin_picture_thumbnail_use-dimension&amp;ae=admin_picture_thumbnail_use-dimension_end'), //cpg1.4
   array('Vytvoř střední náhledy','make_intermediate',1, 'f=index.htm&amp;as=admin_picture_thumbnail_intermediate_toggle&amp;ae=admin_picture_thumbnail_intermediate_toggle_end'), //cpg1.4
-  array('Max šířka nemo výška středních náhledů obrázků/videa <a href="#notice2" class="clickable_option">**</a>', 'picture_width', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_intermediate_dimension&amp;ae=admin_picture_thumbnail_intermediate_dimension_end'), //cpg1.4
+  array('Max šířka nebo výška středních náhledů obrázků/videa <a href="#notice2" class="clickable_option">**</a>', 'picture_width', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_intermediate_dimension&amp;ae=admin_picture_thumbnail_intermediate_dimension_end'), //cpg1.4
   array('Max velikost uploadovaných souborů (KB)', 'max_upl_size', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_max_upload_size&amp;ae=admin_picture_thumbnail_max_upload_size_end'), //cpg1.4
   array('Max šířka nebo výška uploudovaných obrázků/videí (pixely)', 'max_upl_width_height', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_max_upload_dimension&amp;ae=admin_picture_thumbnail_max_upload_dimension_end'), //cpg1.4
   array('Automaticky změň velikost obrázku, je-li větší než Max šířka nebo výška', 'auto_resize', 16, 'f=index.htm&amp;as=admin_picture_thumbnail_auto-resize&amp;ae=admin_picture_thumbnail_auto-resize_end'), //cpg1.4
@@ -729,7 +729,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Povolené audio typy', 'allowed_snd_types',0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_audio_extensions&amp;ae=admin_picture_thumb_advanced_audio_extensions_end'), //cpg1.4
   array('Povolené typy dokumentů', 'allowed_doc_types',0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_doc_extensions&amp;ae=admin_picture_thumb_advanced_doc_extensions_end'), //cpg1.4
   array('Metoda změny obrázků','thumb_method',2, 'f=index.htm&amp;as=admin_picture_thumb_advanced_resize_method&amp;ae=admin_picture_thumb_advanced_resize_method_end'), //cpg1.4
-  array('Cesta k ImageMagick \'convert\' utility (example /usr/bin/X11/)', 'impath', 0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_im_path&amp;ae=admin_picture_thumb_advanced_im_path_end'), //cpg1.4
+  array('Cesta k ImageMagick \'convert\' utility (například /usr/bin/X11/)', 'impath', 0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_im_path&amp;ae=admin_picture_thumb_advanced_im_path_end'), //cpg1.4
   //array('Allowed image types (only valid for ImageMagick)', 'allowed_img_types',0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_allowed_imagetypes&amp;ae=admin_picture_thumb_advanced_allowed_imagetypes_end'), //cpg1.4
   array('Parametry příkazové řádky pro ImageMagick', 'im_options', 0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_im_commandline&amp;ae=admin_picture_thumb_advanced_im_commandline_end'), //cpg1.4
   array('Číst EXIF data v JPEG souborech', 'read_exif_data', 13, 'f=index.htm&amp;as=admin_picture_thumb_advanced_exif&amp;ae=admin_picture_thumb_advanced_exif_end'), //cpg1.4
@@ -748,9 +748,9 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Oznam adminovi uživatelskou registraci emailem', 'reg_notify_admin_email', 1, 'f=index.htm&amp;as=admin_registration_notify&amp;ae=admin_registration_notify_end'), //cpg1.4
   array('Admin aktivuje registraci', 'admin_activation', 1, 'f=index.htm&amp;as=admin_activation&amp;ae=admin_activation_end'),  //cpg1.4
   array('Povol dvěma uživatelům stejnou emailovou adresu', 'allow_duplicate_emails_addr', 1, 'f=index.htm&amp;as=admin_allow_duplicate_emails_addr&amp;ae=admin_allow_duplicate_emails_addr_end'), //cpg1.4
-  array('Oznam adminovi uživatelský upload očekávaným schválením', 'upl_notify_admin_email', 1, 'f=index.htm&amp;as=admin_approval_notify&amp;ae=admin_approval_notify_end'), //cpg1.4
+  array('Oznam adminovi uživatelský upload pro očekávané schválení', 'upl_notify_admin_email', 1, 'f=index.htm&amp;as=admin_approval_notify&amp;ae=admin_approval_notify_end'), //cpg1.4
   array('Povol registrovaným uživatelům prohlížet seznam uživatelů', 'allow_memberlist', 1, 'f=index.htm&amp;as=admin_user_memberlist&amp;ae=admin_user_memberlist_end'), //cpg1.4
-  array('Povol uživatelům měnit svou emailovou adresu ve svém profilu', 'allow_email_change', 1, 'f=index.htm&amp;as=admin_user_allow_email_change&amp;ae=admin_user_allow_email_change_end'), //cpg1.4
+  array('Povol uživateli měnit svou emailovou adresu ve svém profilu', 'allow_email_change', 1, 'f=index.htm&amp;as=admin_user_allow_email_change&amp;ae=admin_user_allow_email_change_end'), //cpg1.4
   array('Povol uživateli kontrolu nad jeho uploadovanými obrázky v galeriích', 'users_can_edit_pics', 1, 'f=index.htm&amp;as=admin_user_editpics_public_start&amp;ae=admin_user_editpics_public_end'), //cpg1.4
   array('Počet neúspěšných přihlášení pro dočasné zablokování uživatele (ochrana proti  útoku silou)', 'login_threshold', 0, 'f=index.htm&amp;as=admin_user_login_start&amp;ae=admin_user_login_end'), //cpg1.4
   array('Doba dočasného zablokování po neúspěšných pokusech o přihlášení', 'login_expiry', 0, 'f=index.htm&amp;as=admin_user_login_start&amp;ae=admin_user_login_end'), //cpg1.4
@@ -916,7 +916,7 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
 if (defined('DISPLAYECARD_PHP')) {
 
 $lang_displayecard_php = array(
-  'invalid_data' => 'Data pro ecard, na kterou se snažíte přistoupit jsou poškozené vaší mailovým klientem. Ujistěte se, že link je komplení a nepoškozený.', //cpg1.4
+  'invalid_data' => 'Data pro ecard, na kterou se snažíte přistoupit jsou poškozené vaším mailovým klientem. Ujistěte se, že link je komplení a nepoškozený.', //cpg1.4
 );
 }
 
@@ -950,75 +950,75 @@ $lang_picinfo = array(
     'Dimensions' => 'Rozměry',
    'Displayed' => 'Zobrazeno',
   'URL' => 'URL', //cpg1.4
-  'Make' => 'Make', //cpg1.4
+  'Make' => 'Vytvořeno', //cpg1.4
   'Model' => 'Model', //cpg1.4
   'DateTime' => 'Datum a čas', //cpg1.4
   'ISOSpeedRatings'=>'ISO', //cpg1.4
   'MaxApertureValue' => 'Max Aperture', //cpg1.4
   'FocalLength' => 'Focal length', //cpg1.4
-  'Comment' => 'Comment',
+  'Comment' => 'Komentář',
   'addFav'=>'Přidat do oblíbených',
   'addFavPhrase'=>'Oblíbené',
   'remFav'=>'Vyjmout z oblíbených',
   'iptcTitle'=>'IPTC Title',
   'iptcCopyright'=>'IPTC Copyright',
-  'iptcKeywords'=>'IPTC Keywords',
-  'iptcCategory'=>'IPTC Category',
-  'iptcSubCategories'=>'IPTC Sub Categories',
+  'iptcKeywords'=>'IPTC Klíčové slova',
+  'iptcCategory'=>'IPTC Kategorie',
+  'iptcSubCategories'=>'IPTC Podkategorie',
   'ColorSpace' => 'Barevná hloubka', //cpg1.4
   'ExposureProgram' => 'Expoziční program', //cpg1.4
   'Flash' => 'Flash', //cpg1.4
   'MeteringMode' => 'Metering Mode', //cpg1.4
   'ExposureTime' => 'Expoziční čas Time', //cpg1.4
   'ExposureBiasValue' => 'Exposure Bias', //cpg1.4
-  'ImageDescription' => ' Image Description', //cpg1.4
+  'ImageDescription' => 'Popiska obrázku', //cpg1.4
   'Orientation' => 'Orientace', //cpg1.4
   'xResolution' => 'X Rozlišení', //cpg1.4
   'yResolution' => 'Y Rozlišení', //cpg1.4
-  'ResolutionUnit' => 'Resolution Unit', //cpg1.4
+  'ResolutionUnit' => 'Jednotka rozlišení', //cpg1.4
   'Software' => 'Software', //cpg1.4
   'YCbCrPositioning' => 'YCbCrPositioning', //cpg1.4
   'ExifOffset' => 'Exif Offset', //cpg1.4
   'IFD1Offset' => 'IFD1 Offset', //cpg1.4
   'FNumber' => 'FNumber', //cpg1.4
   'ExifVersion' => 'Exif Version', //cpg1.4
-  'DateTimeOriginal' => 'DateTime Original', //cpg1.4
-  'DateTimedigitized' => 'DateTime digitized', //cpg1.4
-  'ComponentsConfiguration' => 'Components Configuration', //cpg1.4
-  'CompressedBitsPerPixel' => 'Compressed Bits Per Pixel', //cpg1.4
-  'LightSource' => 'Light Source', //cpg1.4
-  'ISOSetting' => 'ISO Setting', //cpg1.4
-  'ColorMode' => 'Color Mode', //cpg1.4
-  'Quality' => 'Quality', //cpg1.4
-  'ImageSharpening' => 'Image Sharpening', //cpg1.4
-  'FocusMode' => 'Focus Mode', //cpg1.4
-  'FlashSetting' => 'Flash Setting', //cpg1.4
-  'ISOSelection' => 'ISO Selection', //cpg1.4
-  'ImageAdjustment' => 'Image Adjustment', //cpg1.4
+  'DateTimeOriginal' => 'Datum a čas Originalu', //cpg1.4
+  'DateTimedigitized' => 'Datum a čas digitalizace', //cpg1.4
+  'ComponentsConfiguration' => 'Konfigurace komponent', //cpg1.4
+  'CompressedBitsPerPixel' => 'Komprese Bity na Pixel', //cpg1.4
+  'LightSource' => 'Osvětlení', //cpg1.4
+  'ISOSetting' => 'ISO Nastavení', //cpg1.4
+  'ColorMode' => 'Berevný mód', //cpg1.4
+  'Quality' => 'Kvalita', //cpg1.4
+  'ImageSharpening' => 'Ostření', //cpg1.4
+  'FocusMode' => 'Zaostřovací mód', //cpg1.4
+  'FlashSetting' => 'Nastavení blesku', //cpg1.4
+  'ISOSelection' => 'ISO Výběr', //cpg1.4
+  'ImageAdjustment' => 'úprava obrázku', //cpg1.4
   'Adapter' => 'Adapter', //cpg1.4
-  'ManualFocusDistance' => 'Manual Focus Distance', //cpg1.4
-  'DigitalZoom' => 'Digital Zoom', //cpg1.4
+  'ManualFocusDistance' => 'Vzdálenost manuálního zaostření', //cpg1.4
+  'DigitalZoom' => 'Digitalní Zoom', //cpg1.4
   'AFFocusPosition' => 'AF Focus Position', //cpg1.4
-  'Saturation' => 'Saturation', //cpg1.4
+  'Saturation' => 'Saturace', //cpg1.4
   'NoiseReduction' => 'Noise Reduction', //cpg1.4
   'FlashPixVersion' => 'Flash Pix Version', //cpg1.4
   'ExifImageWidth' => 'Exif Image Width', //cpg1.4
   'ExifImageHeight' => 'Exif Image Height', //cpg1.4
   'ExifInteroperabilityOffset' => 'Exif Interoperability Offset', //cpg1.4
-  'FileSource' => 'File Source', //cpg1.4
-  'SceneType' => 'Scene Type', //cpg1.4
+  'FileSource' => 'Zdroj', //cpg1.4
+  'SceneType' => 'Typ scény', //cpg1.4
   'CustomerRender' => 'Customer Render', //cpg1.4
-  'ExposureMode' => 'Exposure Mode', //cpg1.4
-  'WhiteBalance' => 'White Balance', //cpg1.4
+  'ExposureMode' => 'Expoziční mód', //cpg1.4
+  'WhiteBalance' => 'Nastavení bílé', //cpg1.4
   'DigitalZoomRatio' => 'Digital Zoom Ratio', //cpg1.4
   'SceneCaptureMode' => 'Scene Capture Mode', //cpg1.4
   'GainControl' => 'Gain Control', //cpg1.4
-  'Contrast' => 'Contrast', //cpg1.4
-  'Sharpness' => 'Sharpness', //cpg1.4
-  'ManageExifDisplay' => 'Manage Exif Display', //cpg1.4
-  'submit' => 'Submit', //cpg1.4
-  'success' => 'Information updated successfully.', //cpg1.4
-  'details' => 'Details', //cpg1.4
+  'Contrast' => 'Kontrast', //cpg1.4
+  'Sharpness' => 'Ostření', //cpg1.4
+  'ManageExifDisplay' => 'Upravit Exif zobrazení', //cpg1.4
+  'submit' => 'Odeslat', //cpg1.4
+  'success' => 'Informace byly úspěšně aktualizovány.', //cpg1.4
+  'details' => 'Detaily', //cpg1.4
 );
 
 $lang_display_comments = array(
@@ -1095,11 +1095,11 @@ if (defined('REPORT_FILE_PHP') || defined('DISPLAYREPORT_PHP')) $lang_report_php
   'offensive' => 'brutální', //cpg1.4
   'misplaced' => 'staré/nepatří sem', //cpg1.4
   'missing' => 'chybí', //cpg1.4
-  'issue' => 'error/nelze prohlížet view', //cpg1.4
+  'issue' => 'error/nelze prohlížet', //cpg1.4
   'other' => 'ostatní', //cpg1.4
   'refers_to' => 'Soubor report pro', //cpg1.4
   'reasons_list_heading' => 'důvod(y) pro report:', //cpg1.4
-  'no_reason_given' => 'no reason was given', //cpg1.4
+  'no_reason_given' => 'nebyl uveden důvod', //cpg1.4
   'go_comment' => 'Jdi na komentář', //cpg1.4
   'view_comment' => 'Zobraz plný report s komentářem', //cpg1.4
   'type_file' => 'soubor', //cpg1.4
@@ -1137,7 +1137,7 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
     'see_next' => 'Zobrazit další obrázky',
     'see_prev' => 'Zobrazit předchozí obrázky',
     'n_pic' => '%s obrázků',
-    'n_of_pic_to_disp' => 'Počet obrázku k zobrazení',
+    'n_of_pic_to_disp' => 'Počet obrázků k zobrazení',
     'apply' => 'Uložit změny',
     'crop_title' => 'Coppermine Editor Obrázků', //cpg1.3.0
          'preview' => 'Náhled', //cpg1.3.0
@@ -1167,7 +1167,7 @@ if (defined('FAQ_PHP')) $lang_faq_php = array(
 );
 
 if (defined('FAQ_PHP')) $lang_faq_data = array(
-  'General FAQ',
+  'General FAQ - only english',
   array('Why do I need to register?', 'Registration may or may not be required by the administrator. Registration gives a member additional features such as uploading, having a favorite list, rating pictures and posting comments etc.', 'allow_user_registration', '1'),
   array('How do I register?', 'Go to &quot;Register&quot; and fill out the required fields (and the optional ones if you want to).<br />If the Administrator has Email Activation enabled, then after submitting your information you should recieve an email message at the address that you have submitted while registering, giving you instructions on how to activate your membership. Your membership must be activated in order for you to login.', 'allow_user_registration', '1'), //cpg1.4
   array('How Do I login?', 'Go to &quot;Login&quot;, submit your username and password and check &quot;Remember Me&quot; so you will be logged in on the site if you should leave it.<br /><b>IMPORTANT:Cookies must be enabled and the cookie from this site must not be deleted in order to use &quot;Remember Me&quot;.</b>', 'offline', 0),
@@ -1186,7 +1186,7 @@ if (defined('FAQ_PHP')) $lang_faq_data = array(
   array('What are cookies?', 'Cookies are a plain text piece of data that is sent from a website and is put on to your computer.<br />Cookies usually allow a user to leave and return to the site without having to login again and other various chores.', 'offline', 0),
   array('Where can I get this program for my site?', 'Coppermine is a free Multimedia Gallery, released under GNU GPL. It is full of features and has been ported to various platforms. Visit the <a href="http://coppermine.sf.net/">Coppermine Home Page</a> to find out more or download it.', 'offline', 0),
 
-  'Navigating the Site',
+  'Navigating the Site - Only english',
   array('What\'s &quot;Album List&quot;?', 'This will show you the entire category you are currently in, with a link to each album. If you are not in a category, it will show you the entire gallery with a link to each category. Thumbnails may be a link to the category.', 'offline', 0),
   array('What\'s &quot;My Gallery&quot;?', 'This feature lets users create their own galleries and add, delete or modify albums as well as upload to them.', 'allow_private_albums', 1), //cpg1.4
   array('What\'s the difference between &quot;Admin Mode&quot; and &quot;User Mode&quot;?', 'This feature, when in admin-mode, allows a user to modify their gallery (as well as others if allowed by the administrator).', 'allow_private_albums', 0),
@@ -1407,8 +1407,8 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
 
 if (defined('PHPINFO_PHP')) $lang_phpinfo_php = array(
   'php_info' => 'PHP info',
-  'explanation' => 'This is the output generated by the PHP-function <a href="http://www.php.net/phpinfo">phpinfo()</a>, displayed within Coppermine (trimming the output at the right side).',
-  'no_link' => 'Having others see your phpinfo can be a security risk, that\'s why this page is only visible when you\'re logged in as admin. You can not post a link to this page for others, they will be denied access.',
+  'explanation' => 'Tento výstup je generován jako PHP-funkce <a href="http://www.php.net/phpinfo">phpinfo()</a>, zobrazena pomocí Coppermine. ',
+  'no_link' => 'Umožnit ostatním prohlížet phpinfo může být bezpečnostní problém. Nezveřejňujte link na tuto stránku.',
 );
 
 // ------------------------------------------------------------------------- //
@@ -1426,8 +1426,8 @@ if (defined('PICMGR_PHP')) $lang_picmgr_php = array(
   'no_change' => 'Neudělal jsi žádné změny !', //cpg1.4
   'no_album' => '* žádná galerie *', //cpg1.4
   'explanation_header' => 'Uživatelská pravidla třídění mohou být nastavena pouze pokud jsou specifikována v účtu', //cpg1.4
-  'explanation1' => 'admin nastavil "přednastavená třídící pravidla pro soubory" v konfiguraci "Pozice sestupně" nebo "Pozice vzestupně" (globální nastavení pro všechny uživatele kteří nechtějí třídit individuálně)', //cpg1.4
-  'explanation2' => 'uživatel vybral "Pozice sestupně" nebo "Pozice vzestupně" na náhledové stránce (uživatelské nastavené)', //cpg1.4
+  'explanation1' => 'Admin nastavil "přednastavená třídící pravidla pro soubory" v konfiguraci "Pozice sestupně" nebo "Pozice vzestupně" (globální nastavení pro všechny uživatele kteří nechtějí třídit individuálně)', //cpg1.4
+  'explanation2' => 'Uživatel vybral "Pozice sestupně" nebo "Pozice vzestupně" na náhledové stránce (uživatelské nastavení)', //cpg1.4
 );
 
 
@@ -1534,11 +1534,11 @@ $lang_register_php = array(
     'pass_chg_success' => 'Vyše heslo bylo změněno',
     'pass_chg_error' => 'Vaše heslo nebylo změněno',
     'notify_admin_email_subject' => '%s - upozorneni na registraci', //cpg1.3.0
-  'last_uploads' => 'Last uploaded file.<br />Click to see all uploads by', //cpg1.4
-  'last_comments' => 'Last comment.<br />Click to see all comments made by', //cpg1.4
+  'last_uploads' => 'Poslední uploadovaný soubor.<br />Klikni pro náhled všech uploadů', //cpg1.4
+  'last_comments' => 'Poslední komentář.<br />Klikni pro náhled všech vytvořených komentářů', //cpg1.4
     'notify_admin_email_body' => 'Nový uživatel se jménem "%s" se registroval ve vaší galerii', //cpg1.3.0
-  'pic_count' => 'Files uploaded', //cpg1.4
-  'notify_admin_request_email_subject' => '%s - Registration request', //cpg1.4
+  'pic_count' => 'Soubory uploadovány', //cpg1.4
+  'notify_admin_request_email_subject' => '%s - Potřebná registrace', //cpg1.4
   'thank_you_admin_activation' => 'Děkujeme.<br /><br />Vaše žádost o aktivaci konta byla zaslána administrátorovin. Bude vám zaslán mail po jejím potvrzení.', //cpg1.4
   'acct_active_admin_activation' => 'Konto je nyní aktivní a mail byl odeslán uživateli.', //cpg1.4
   'notify_user_email_subject' => '%s - Aktivační poznámka', //cpg1.4
@@ -1622,7 +1622,7 @@ $lang_search_php = array(
   'title' => 'Hledání souboru v galerii', //cpg1.4
   'submit_search' => 'hledej', //cpg1.4
   'keyword_list_title' => 'Klíčová slovat', //cpg1.4
-  'keyword_msg' => 'The above list is not all inclusive. It does not include words from photo titles or descriptions. Try a full-text search.',  //cpg1.4
+  'keyword_msg' => 'List neobsahuje všechny slova. Neobsahuje slova z titulků, názvů a poznámek. Zkuste full-textové vyhledávání.',  //cpg1.4
   'edit_keywords' => 'Uprav klíčová slova', //cpg1.4
   'search in' => 'Hledej v:', //cpg1.4
   'ip_address' => 'IP adresa', //cpg1.4
@@ -1958,7 +1958,7 @@ $lang_util_php = array(
   'searching_orphans' => 'Hledám osiřelé komentáře, prosím počkejte...', //cpg1.4
   'select_album' => 'Vyberte galerii',
   'delete_orphans' => 'Vymaž komentáře ke chybějícím souborům', //cpg1.4
-  'delete_orphans_explanation' => 'Tato volba identifikuje a vymaže komentáře asociované k vymazaným souborům.<br />Označ vechny galerie.', //cpg1.4
+  'delete_orphans_explanation' => 'Tato volba identifikuje a vymaže komentáře asociované k vymazaným souborům.<br />Označ všechny galerie.', //cpg1.4
   'refresh_db' => 'Obnov informace o rozlišení a velikosti souborů', //cpg1.4
   'refresh_db_explanation' => 'Tato volba znovu načte a obnoví informace o velikostech a rozlišení souborů.', //cpg1.4
   'reset_views' => 'Resetuj počítadla zobrazení', //cpg1.4
@@ -1977,8 +1977,8 @@ $lang_util_php = array(
   'view_log_explanation' => 'Coppermine může sledovat různou aktivitu uživatelů. Můžete prohlížet logy jestliže to máte povoleno v <a href="admin.php">coppermine nastavení</a>.', //cpg1.4
   'versioncheck' => 'Verze', //cpg1.4
   'versioncheck_explanation' => 'Zjisti verzi souborů, jestli došlo k upgradu z nižší verze.', //cpg1.4
-  'bridgemanager' => 'Bridge Manager', //cpg1.4
-  'bridgemanager_explanation' => 'Zapni nebo vypni integraci (bridging) Coppermine s jinou aplikací (např. tvoje BBS).', //cpg1.4
+  'bridgemanager' => 'Bridge Manažer', //cpg1.4
+  'bridgemanager_explanation' => 'Zapni nebo vypni integraci (propojení) Coppermine s jinou aplikací (např. tvoje BBS).', //cpg1.4
 );
 }
 
@@ -1987,7 +1987,7 @@ $lang_util_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('VERSIONCHECK_PHP')) $lang_versioncheck_php = array(
-  'title' => 'Versioncheck', //cpg1.4
+  'title' => 'Versioncheck in english', //cpg1.4
   'what_it_does' => 'This page is meant for users who have updated their coppermine install. This script goes through the files on your webserver and tries to determine if your local file versions on the webserver are the same as the ones from the repository at http://coppermine.sourceforge.net, this way displaying the files you were meant to update as well.<br />It will show everything in red that needs to be fixed. Entries in yellow need looking into. Entries in green (or your default font color) are OK.<br />Click on the help icons to find out more.', //cpg1.4
   'online_repository_unable' => 'Unable to connect to online repository', //cpg1.4
   'online_repository_noconnect' => 'Coppermine was unable to connect to the online repository. This can have two reasons:', //cpg1.4
