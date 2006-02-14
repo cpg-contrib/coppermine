@@ -199,7 +199,7 @@ function closeFileInfoDiv() {
               <a href="#" onClick="showPicInfo({$thumbList[element].pid}); return false;"><img src="{$DOMAIN_URL}images/info.gif" width="16" height="16" border="0" align="middle" alt="{$lang_img_nav_bar.pic_info_title}" title="{$lang_img_nav_bar.pic_info_title}" /></a>&nbsp;&nbsp;
               <a href="#" onClick="addRemfav({$thumbList[element].pid}); return false;">
                {if $thumbList[element].fav eq 1}
-                <img id="favImg_{$thumbList[element].pid}" name="favImg_{$thumbList[element].pid}" src="i{$DOMAIN_URL}mages/heart_delete.png" width="16" height="16" border="0" align="middle" alt="{$lang_picinfo.remFav}" title="{$lang_picinfo.remFav}" />
+                <img id="favImg_{$thumbList[element].pid}" name="favImg_{$thumbList[element].pid}" src="{$DOMAIN_URL}images/heart_delete.png" width="16" height="16" border="0" align="middle" alt="{$lang_picinfo.remFav}" title="{$lang_picinfo.remFav}" />
                {else}
                 <img id="favImg_{$thumbList[element].pid}" name="favImg_{$thumbList[element].pid}" src="{$DOMAIN_URL}images/heart_add.png" width="16" height="16" border="0" align="middle" alt="{$lang_picinfo.addFav}" title="{$lang_picinfo.addFav}" />
                {/if}
