@@ -45,13 +45,13 @@ $ecard = new cpgProcessEcard;
 $ecard->buildSendEcardForm($pid);
 
 $t->assign('pid', $pid);
-$t->assign('ecard', $ecard);
 $t->assign('showEcardForm', 1);
 $t->assign('lang_ecard_php', $lang_ecard_php);
 
 if (isset($_POST['preview'])) {
   $ecard->buildEcardPreview($pid);
 
+  $t->assign('ecard', $ecard);
   $t->assign('showHeaderFooter', 0);
   $t->assign('templateType', 'html');
 
@@ -62,6 +62,7 @@ if (isset($_POST['preview'])) {
   if (empty($ecard->senderEmailWarning) && empty($ecard->recipientEmailWarning)) {
     $ecard->sendEcard($pid);
 
+    $t->assign('ecard', $ecard);
     $t->assign('showHeaderFooter', 0);
     $t->assign('templateType', 'html');
 
@@ -100,6 +101,8 @@ if (isset($_POST['preview'])) {
     $ecard->continueBox = $t->fetch('common/msgBox.html');
   }
 }
+
+$t->assign('ecard', $ecard);
 
 /**
  * Fetch page content
