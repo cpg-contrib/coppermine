@@ -83,7 +83,7 @@
       <select name="parent" class="listbox">
         <option value="0" selected="true">{$lang_albmgr_php.no_category}</option>
       {foreach item=item key=key from=$categoryObj->catList}
-        <option value="{$item.cid}" {if $item.cid eq $categoryObj->currentCategory.cid}selected{/if}>{$item.name}</option>
+        <option value="{$item.cid}" {if $item.cid eq $categoryObj->currentCategory.parent}selected{/if}>{$item.name}</option>
       {/foreach}
       </select>
     </td>
