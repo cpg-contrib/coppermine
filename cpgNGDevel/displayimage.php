@@ -272,7 +272,11 @@ $imgData->buildLinks(!empty($meta) ? $meta : '', !empty($album) ? $album : '', !
 /**
  * Get the film strip data in an array
  */
-$filmStrip = $albumData->getFilmStripData(!empty($meta) ? $meta : "", !empty($album) ? $album : "", $pos, $cat);
+if ($config->conf['display_film_strip']) {
+  $filmStrip = $albumData->getFilmStripData(!empty($meta) ? $meta : "", !empty($album) ? $album : "", $pos, $cat);
+} else {
+  $filmStrip = "";
+}
 
 /**
  * Get the html for the displaying whole page in a variable
