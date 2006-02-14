@@ -45,6 +45,7 @@ if ($_GET['insert'] == 1) {
   $albumArr = $batch->getAllAlbums();
   $help = '&nbsp;'.cpgUtils::cpgDisplayHelp('f=index.htm&as=ftp&ae=ftp_end&top=1#ftp_show_result', '600', '400');
   $counter = 0;
+  $_SESSION['fileUpload'] = array();
   foreach ($_POST['pics'] as $pic_id) {
     $album_lb_id = $_POST['album_lb_id_' . $pic_id];
     $album_id = $_POST[$album_lb_id];
@@ -52,7 +53,7 @@ if ($_GET['insert'] == 1) {
     $editAlbumArray[] = $album_id; //Load the album number into an array for later
 
     $pic_file = base64_decode($_POST['picfile_' . $pic_id]);
-    $dir_name = dirname($pic_file) . "/";
+    $dir_name = dirname($pic_file);
     $file_name = basename($pic_file);
     $_SESSION['fileUpload'][$counter]['fileName'] = $file_name;
     $_SESSION['fileUpload'][$counter]['album'] = $album_id;
@@ -61,6 +62,7 @@ if ($_GET['insert'] == 1) {
     $counter++;
   }
 } elseif (isset($_GET['startdir'])) {
+
   /**
    * If startdir is set, get all the pictures in that directory.
    */
@@ -153,5 +155,4 @@ include ('include/cleanUp.inc.php');
 $t->display ('main.html');
 $cpg_time_end = cpgGetMicroTime();
 $totalTime = $cpg_time_end - $cpg_time_start;
-print "TIME: ".$totalTime;
 ?>

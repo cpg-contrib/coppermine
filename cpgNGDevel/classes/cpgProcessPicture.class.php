@@ -38,6 +38,7 @@ class cpgProcessPicture {
         $keywords = addslashes($_SESSION['fileUpload'][$index]['keywords']);
         $tmpName = addslashes($_SESSION['fileUpload'][$index]['tmpName']);
         $picture_name = addslashes($_SESSION['fileUpload'][$index]['fileName']);
+        $dir_name = addslashes($_SESSION['fileUpload'][$index]['dirName']).'/';
         $user1 = addslashes($_SESSION['fileUpload'][$index]['user1']);
         $user2 = addslashes($_SESSION['fileUpload'][$index]['user2']);
         $user3 = addslashes($_SESSION['fileUpload'][$index]['user3']);
@@ -46,7 +47,7 @@ class cpgProcessPicture {
         /**
          * Check for duplicate entry
          */
-        $query = "SELECT pid FROM {$config->conf['TABLE_PICTURES']} WHERE filename = '$picture_name' AND aid = '$album'";
+        $query = "SELECT pid FROM {$config->conf['TABLE_PICTURES']} WHERE filename = '$picture_name' AND filepath = '$dir_name'";
 
         $db->query($query);
 
