@@ -54,6 +54,10 @@ class cpgProcessPicture {
         if ($db->nf()) {
             return 'dup';
         }
+
+        if ($_SESSION['fileUpload'][$index]['ok']) {
+            return 'dup';
+        }
         // Capture movie or audio width and height if sent.
         if (isset($_SESSION['fileUpload'][$index]['movie_wd'])) {
             $movie_wd = (int)$_SESSION['fileUpload'][$index]['movie_wd'];
@@ -161,7 +165,9 @@ class cpgProcessPicture {
         }
           // Create thumbnail and internediate image and add the image into the DB
           $result = cpgProcessPicture::addPicture($album, $filepath, $picture_name, 0, $title, $caption, $keywords, $user1, $user2, $user3, $user4, $category, $approved, $movie_wd, $movie_ht);
-
+          if ($result == 'ok') {
+              $_SESSION['fileUpload'][$index]['ok'] = 1;
+          }
           return $result;
     }
     // Add a picture to an album
