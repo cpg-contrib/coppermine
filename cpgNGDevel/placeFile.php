@@ -51,11 +51,12 @@ if (!count($_SESSION['fileUpload'])) {
  * Place the file in this album and insert the data in database
  */
 $result = cpgProcessPicture::insertData($index);
-header('Content-type: image/gif');
+
 /**
  * Check whether the placement was successfull
  */
 if ($result == 'ok' || $result == 'dup') {
+  header('Content-type: image/gif');
   $result == 'ok' ? $file_name = 'images/up_ok.gif' : $file_name = 'images/up_dup.gif';
   echo fread(fopen($file_name, 'rb'), filesize($file_name));
 } else {
