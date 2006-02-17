@@ -60,7 +60,12 @@ for ($i = 1; $i <= 4; $i++) {
  */
 $maxNum = $auth->isDefined('NUM_FILE_BOXES');
 
-$lang_upload_php['reg_instr_2'] = sprintf ($lang_upload_php['reg_instr_2'], $config->conf['max_upl_size']);
+/**
+ * Get the maximum post size allowed
+ */
+$postMaxSize = ini_get('post_max_size');
+
+$lang_upload_php['reg_instr_2'] = sprintf ($lang_upload_php['reg_instr_2'], $config->conf['max_upl_size'], $postMaxSize);
 
 $t->assign("maxNum", $maxNum);
 $t->assign("sel_album", $sel_album);
