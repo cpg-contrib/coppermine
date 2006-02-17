@@ -6,7 +6,7 @@
     </td>
     <td colspan="2" class="tableh2">
       {$lang_upload_php.album}
-    </td>    
+    </td>
   </tr>
   {foreach from=$files item=file key=key}
   <tr>
@@ -15,14 +15,14 @@
     </td>
     <td class="tableb" width="38%">
       {$file.albumName}
-    </td>    
+    </td>
     <td class="tableb" width="25%" align="center">
       {if $file.error}
         {$file.error}
       {else}
-        <img src="{$DOMAIN_URL}placeFile.php?index={$key}">
+        <a href="{$DOMAIN_URL}placeFile.php?index={$key}"><img src="{$DOMAIN_URL}placeFile.php?index={$key}" alt="Click here for Details" border="0"></a>
       {/if}
     </td>
-  </tr>  
+  </tr>
   {/foreach}
 </table>
