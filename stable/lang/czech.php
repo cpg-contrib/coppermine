@@ -190,7 +190,7 @@ $lang_user_admin_menu = array(
 );
 
 $lang_cat_list = array(
-  'category' => 'Categorie',
+  'category' => 'Kategorie',
   'albums' => 'Galerie',
   'pictures' => 'Obrázky',
 );
@@ -443,7 +443,7 @@ if (defined('BRIDGEMGR_PHP')) $lang_bridgemgr_php = array(
   'finish' => 'Konec',
   'hide_unused_fields' => 'zkryj nepoužívané položky (doporučeno)',
   'clear_unused_db_fields' => 'vymaž vadný databázový vstup (doporučeno)',
-  'custom_bridge_file' => 'jméno tvého uživatelského překlenovacího souboru (if the bridge file\'s name is <i>myfile.inc.php</i>, enter <i>myfile</i> into this field)',
+  'custom_bridge_file' => 'jméno tvého uživatelského překlenovacího souboru (jestlize propojovací soubor je <i>myfile.inc.php</i>, enter <i>můjsoubor</i> do tohoto pole)',
   'no_action_needed' => 'V tomto kroku není potřeba nic dělat. klikni na  \'next\' pro pokračování.',
   'reset_to_default' => 'Nastav defaultní hodnoty',
   'choose_bbs_app' => 'vyberte plikaci propojení s coppermine',
@@ -1977,7 +1977,7 @@ $lang_util_php = array(
   'view_log_explanation' => 'Coppermine může sledovat různou aktivitu uživatelů. Můžete prohlížet logy jestliže to máte povoleno v <a href="admin.php">coppermine nastavení</a>.', //cpg1.4
   'versioncheck' => 'Verze', //cpg1.4
   'versioncheck_explanation' => 'Zjisti verzi souborů, jestli došlo k upgradu z nižší verze.', //cpg1.4
-  'bridgemanager' => 'Bridge Manažer', //cpg1.4
+  'bridgemanager' => 'Propojovací Manažer', //cpg1.4
   'bridgemanager_explanation' => 'Zapni nebo vypni integraci (propojení) Coppermine s jinou aplikací (např. tvoje BBS).', //cpg1.4
 );
 }
