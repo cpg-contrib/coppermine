@@ -48,7 +48,8 @@ $forbidden_chars = array("..", "/", "%", "<", ">", "$", "'", '"');
 $file = str_replace($forbidden_chars, '', $file);
 
 ob_start();
-@include($file);
+//@include($file); nasty 
+@include('index.htm');
 $string = ob_get_contents();
 ob_end_clean();
 
