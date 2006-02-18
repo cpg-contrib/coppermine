@@ -298,7 +298,8 @@ $THEME_DIR = "themes/{$CONFIG['theme']}/";
 // autodetection if default charset is utf-8
 if (!empty($_GET['lang']))
 {
-    $USER['lang'] = $_GET['lang'];
+    //$USER['lang'] = $_GET['lang']; Nasty line permitting remote code execution
+	$USER['lang'] = ereg("^[a-z0-9_-]*$", $_GET['lang']) ? $_GET['lang'] : $CONFIG['lang'];
 }
 
 if (isset($USER['lang']) && !strstr($USER['lang'], '/') && file_exists('lang/' . $USER['lang'] . '.php'))
