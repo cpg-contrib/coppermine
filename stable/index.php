@@ -2,7 +2,7 @@
 /*************************
   Coppermine Photo Gallery
   ************************
-  Copyright (c) 2003-2005 Coppermine Dev Team
+  Copyright (c) 2003-2006 Coppermine Dev Team
   v1.1 originaly written by Gregory DEMAR
 
   This program is free software; you can redistribute it and/or modify
@@ -10,7 +10,7 @@
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
   ********************************************
-  Coppermine version: 1.4.3
+  Coppermine version: 1.4.4
   $Source$
   $Revision$
   $Author$
@@ -18,7 +18,7 @@
 **********************************************/
 
 /**
-* Coppermine Photo Gallery 1.4.2 index.php
+* Coppermine Photo Gallery 1.4.4 index.php
 *
 * This file is the main display for categories and album it also displays thumbnails,
 * also see documentation for this file's {@relativelink ../_index.php.php Free Standing Code}

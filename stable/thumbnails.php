@@ -2,7 +2,7 @@
 /*************************
   Coppermine Photo Gallery
   ************************
-  Copyright (c) 2003-2005 Coppermine Dev Team
+  Copyright (c) 2003-2006 Coppermine Dev Team
   v1.1 originaly written by Gregory DEMAR
 
   This program is free software; you can redistribute it and/or modify
@@ -10,7 +10,7 @@
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
   ********************************************
-  Coppermine version: 1.4.3
+  Coppermine version: 1.4.4
   $Source$
   $Revision$
   $Author$
@@ -18,13 +18,13 @@
 **********************************************/
 
 /**
- * Coppermine Photo Gallery 1.4.2 thumbnails.php
+ * Coppermine Photo Gallery 1.4.4 thumbnails.php
  *
  * This file generates the data of thumbnails for all the albums and metalbums,
  * the actual display is handled by the display_thumbnails and then in-turn
  * theme_display_thumbnail function
  *
- * @copyright 2002-2005 Gregory DEMAR, Coppermine Dev Team
+ * @copyright 2002-2006 Gregory DEMAR, Coppermine Dev Team
  * @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
  * @package Coppermine
  * @version $Id$
