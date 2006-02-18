@@ -774,14 +774,17 @@ class core_udb {
                         return false;
                 }
         }
+		
+	// Used for sorting (usort) the userlist by criteria that are not directly in the udb user table, callback function.
+	function adv_sort($a, $b)
+	{
+		global $cpg_udb;
 
-        function adv_sort($a, $b)
-        {
-                if ($this->sortdir == 'ASC'){
-                        return strcmp($a[$this->sortfield], $b[$this->sortfield]);
-                 } else {
-                        return strcmp($b[$this->sortfield], $a[$this->sortfield]);
-                }
-        }
+		if ($cpg_udb->sortdir == 'ASC'){
+			return strcmp($a[$cpg_udb->sortfield], $b[$cpg_udb->sortfield]);
+		 } else {
+			return strcmp($b[$cpg_udb->sortfield], $a[$cpg_udb->sortfield]);
+		}
+	}
 }
 ?>
