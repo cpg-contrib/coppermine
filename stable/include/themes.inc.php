@@ -2399,7 +2399,11 @@ function theme_html_comments($pid)
             '{WIDTH}' => $CONFIG['picture_table_width'],
             );
 
-        if ($CONFIG['enable_smilies']) $params['{SMILIES}'] = generate_smilies();
+        if ($CONFIG['enable_smilies']){
+			$params['{SMILIES}'] = generate_smilies();
+		} else {
+			template_extract_block($template_add_your_comment, 'smilies');
+		}
 
         $html .= template_eval($template_add_your_comment, $params);
     }
