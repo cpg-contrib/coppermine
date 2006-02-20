@@ -276,7 +276,5 @@ $t->assign("CONTENT", $t->fetchHTML("common/profile.html"));
 include ('include/cleanUp.inc.php');
 
 $t->display ('main.html');
-$time_end = cpgGetMicroTime();
-$time = round($time_end - $cpg_time_start, 3);
-echo "TIME: ". $time;
+
 ?>
