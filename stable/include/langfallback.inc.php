@@ -405,6 +405,7 @@ if (defined('RATEPIC_PHP')) {
 if (defined('REGISTER_PHP') || defined('PROFILE_PHP')) {
   $lang_register_php_en = cpg_get_default_lang_var('lang_register_php','english');
   $lang_register_php = array_merge($lang_register_php_en, $lang_register_php);
+  if (!isset($lang_register_disclamer)) $lang_register_disclamer = cpg_lang_var("lang_register_disclamer");
 }
 
 // ------------------------------------------------------------------------- //
