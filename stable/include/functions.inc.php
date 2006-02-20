@@ -998,8 +998,8 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 break;
 
         case 'lastcomby': // Last comments by a specific user
-                if (isset($USER['uid'])) {
-                        $uid = (int)$USER['uid'];
+                if (isset($_GET['uid'])) {
+                        $uid = (int)$_GET['uid'];
                 } else {
                         $uid = -1;
                 }
@@ -1061,8 +1061,8 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 break;
 
         case 'lastupby': // Last uploads by a specific user
-                if (isset($USER['uid'])) {
-                        $uid = (int)$USER['uid'];
+                if (isset($_GET['uid'])) {
+                        $uid = (int)$_GET['uid'];
                 } else {
                         $uid = -1;
                 }

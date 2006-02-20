@@ -78,8 +78,6 @@ function thumb_get_subcat_data($parent, &$album_set_array, $level)
 
 if (isset($_GET['sort'])) $USER['sort'] = $_GET['sort'];
 if (isset($_GET['cat'])) $cat = (int)$_GET['cat'];
-if (isset($_GET['uid'])) $USER['uid'] = (int)$_GET['uid'];
-
 if (isset($_GET['album'])) $album = $_GET['album'];
 
 if (isset($_POST['search'])) {
