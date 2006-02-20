@@ -342,3 +342,4 @@ Added ukrainian language string to language selector, fixed slovak flag - 5th Fe
 Added Ukrainian, Slovak and Turkish translations - 5th Feb 2006, GauGau
 Added partial Portuguese translation - 18th Feb 2006, GauGau
 Increased version count from 1.4.3 to 1.4.4 - 18th Feb 2006, GauGau
+Fixed some deprecated tags like <font> - 20th Feb 2006, GauGau

@@ -78,7 +78,7 @@ if (!empty($_POST['email'])) {
         $lookup_failed = <<<EOT
                   <tr>
                           <td colspan="2" align="center" class="tableh2">
-                        <font size="1" color="red"><b>{$lang_forgot_passwd_php['err_unk_user']}<b></font>
+                        <span style="color:red"><b>{$lang_forgot_passwd_php['err_unk_user']}<b></span>
                         </td>
                   </tr>
 

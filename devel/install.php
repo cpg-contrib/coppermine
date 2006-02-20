@@ -200,7 +200,7 @@ function html_logo()
     ?>
       <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
        <tr>
-        <td valign="top" bgcolor="#EFEFEF"><img src="images/logo.gif"><br />
+        <td valign="top" style="background-color:#EFEFEF"><img src="images/logo.gif" width="430" height="60" border="0" alt="" /><br />
         </td>
        </tr>
       </table>

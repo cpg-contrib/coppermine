@@ -46,7 +46,7 @@ if (isset($_POST['submitted'])) {
         $login_failed = <<<EOT
                   <tr>
                           <td colspan="2" align="center" class="tableh2">
-                        <font size="1" color="red"><b>{$lang_login_php['err_login']}<b></font>
+                        <span style="color:red"><b>{$lang_login_php['err_login']}<b></span>
                         </td>
                   </tr>
 EOT;
@@ -74,7 +74,7 @@ if (!isset($_COOKIE[$CONFIG['cookie_name'] . '_data'])) {
     $cookie_warning = <<<EOT
                   <tr>
                           <td colspan="2" align="center" class="tableh2">
-                        <font size="1" color="red"><b>{$lang_login_php['cookie_warning']}</b></font>
+                        <span style="color:red"><b>{$lang_login_php['cookie_warning']}</b></span>
                         </td>
                   </tr>
 

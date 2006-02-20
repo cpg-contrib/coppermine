@@ -113,13 +113,13 @@ switch ($method) {
                 if ($retval) {
                         $ERROR = $lang_image_processor_php['IM_Error'] . $retval;
                         if ($CONFIG['debug_mode']) {
-                                // Re-execute the command with the backtit operator in order to get all outputs
+                                // Re-execute the command with the backtick operator in order to get all outputs
                                 // will not work is safe mode is enabled
                                 $output = `$cmd 2>&1`;
-                                $ERROR .= "<br /><br /><div align=\"left\">{$lang_image_processor_php['cmd_line']}<br /><font size=\"2\">".nl2br(htmlspecialchars($cmd))."</font></div>";
-                                $ERROR .= "<br /><br /><div align=\"left\">{$lang_image_processor_php['mog_said']}<br /><font size=\"2\">";
+                                $ERROR .= "<br /><br /><div align=\"left\">{$lang_image_processor_php['cmd_line']}<br /><span style=\"font-size:120%\">".nl2br(htmlspecialchars($cmd))."</span></div>";
+                                $ERROR .= "<br /><br /><div align=\"left\">{$lang_image_processor_php['mog_said']}<br /><span style=\"font-size:120%\">";
                                 $ERROR .= nl2br(htmlspecialchars($output));
-                                $ERROR .= "</font></div>";
+                                $ERROR .= "</span></div>";
                         }
                         die($ERROR);
 
@@ -551,13 +551,13 @@ imagedestroy($destination_image_handle); */
         if ($retval) {
                 $ERROR = $lang_image_processor_php['IM_Error'] . $retval;
                 if ($CONFIG['debug_mode']) {
-                        // Re-execute the command with the backtit operator in order to get all outputs
+                        // Re-execute the command with the backtick operator in order to get all outputs
                         // will not work is safe mode is enabled
                         $output = `$cmd 2>&1`;
-                        $ERROR .= "<br /><br /><div align=\"left\">{$lang_image_processor_php['cmd_line']}<br /><font size=\"2\">".nl2br(htmlspecialchars($cmd))."</font></div>";
-                        $ERROR .= "<br /><br /><div align=\"left\">{$lang_image_processor_php['mog_said']}<br /><font size=\"2\">";
+                        $ERROR .= "<br /><br /><div align=\"left\">{$lang_image_processor_php['cmd_line']}<br /><span style=\"font-size:120%\">".nl2br(htmlspecialchars($cmd))."</span></div>";
+                        $ERROR .= "<br /><br /><div align=\"left\">{$lang_image_processor_php['mog_said']}<br /><span style=\"font-size:120%\">";
                         $ERROR .= nl2br(htmlspecialchars($output));
-                        $ERROR .= "</font></div>";
+                        $ERROR .= "</span></div>";
                 }
                 die($ERROR);
 
@@ -765,7 +765,7 @@ if (!isset($_POST['degrees'])) {
         // We must check the file name for security reasons.
         if (get_magic_quotes_gpc()) $file_name = stripslashes($file_name);
         // Replace forbidden chars with underscores
-		$picture_name = replace_forbidden($file_name);
+                $picture_name = replace_forbidden($file_name);
         // Check that the file uploaded has a valid extension
         $matches = array();
         if (!preg_match("/(.+)\.(.*?)\Z/", $picture_name, $matches)){
@@ -883,7 +883,7 @@ if (!isset($_POST['degrees'])) {
         // We must check the file name for security reasons.
         if (get_magic_quotes_gpc()) $transitory_file_name = stripslashes($transitory_file_name);
         // Replace forbidden chars with underscores
-		$picture_name = replace_forbidden($transitory_file_name);
+                $picture_name = replace_forbidden($transitory_file_name);
         // Check that the file uploaded has a valid extension
         $matches = array();
         if (!preg_match("/(.+)\.(.*?)\Z/", $picture_name, $matches)){

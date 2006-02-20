@@ -46,7 +46,7 @@ if (isset($_POST['submitted'])) {
         $login_failed = <<<EOT
                   <tr>
                           <td colspan="2" align="center" class="tableh2">
-                        <font size="1" color="red"><b>{$lang_login_php['err_login']}<b></font>
+                        <span style="color:red"><b>{$lang_login_php['err_login']}<b></span>
                         </td>
                   </tr>
 EOT;

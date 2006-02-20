@@ -834,18 +834,18 @@ EOT;
 
 if (!isset($template_add_your_comment))  //{THEMES}
 $template_add_your_comment = <<<EOT
-	<form method="post" name="post" action="db_input.php">
-		<table align="center" width="{WIDTH}" cellspacing="1" cellpadding="0" class="maintable">
-			<tr>
-					<td width="100%" class="tableh2_compact"><b>{ADD_YOUR_COMMENT}</b></td>
-			</tr>
-			<tr>
+        <form method="post" name="post" action="db_input.php">
+                <table align="center" width="{WIDTH}" cellspacing="1" cellpadding="0" class="maintable">
+                        <tr>
+                                        <td width="100%" class="tableh2_compact"><b>{ADD_YOUR_COMMENT}</b></td>
+                        </tr>
+                        <tr>
                 <td colspan="1">
                         <table width="100%" cellpadding="0" cellspacing="0">
 
 <!-- BEGIN user_name_input -->
-							<tr>
-								<td class="tableb_compact">
+                                                        <tr>
+                                                                <td class="tableb_compact">
                                         {NAME}
                                 </td>
                                 <td class="tableb_compact">
@@ -855,15 +855,15 @@ $template_add_your_comment = <<<EOT
 <!-- BEGIN input_box_smilies -->
                                 <td class="tableb_compact">
                                 {COMMENT}
-								</td>
+                                                                </td>
                                 <td width="100%" class="tableb_compact">
                                 <input type="text" class="textinput" id="message" name="msg_body" onselect="storeCaret_post(this);" onclick="storeCaret_post(this);" onkeyup="storeCaret_post(this);" maxlength="{MAX_COM_LENGTH}" style="width: 100%;" />
-								</td>
+                                                                </td>
 <!-- END input_box_smilies -->
 <!-- BEGIN input_box_no_smilies -->
                                 <td class="tableb_compact">
                                 {COMMENT}
-								</td>
+                                                                </td>
                                 <td width="100%" class="tableb_compact">
                                 <input type="text" class="textinput" id="message" name="msg_body"  maxlength="{MAX_COM_LENGTH}" style="width: 100%;" />
                                 </td>
@@ -873,7 +873,7 @@ $template_add_your_comment = <<<EOT
                                 <input type="hidden" name="pid" value="{PIC_ID}" />
                                 <input type="submit" class="comment_button" name="submit" value="{OK}" />
                                 </td>
-							</tr>
+                                                        </tr>
                         </table>
                 </td>
         </tr>
@@ -884,8 +884,8 @@ $template_add_your_comment = <<<EOT
                 </td>
         </tr>
 <!-- END smilies -->
-		</table>
-	</form>
+                </table>
+        </form>
 EOT;
 // HTML template used by the cpg_die function
 if (!isset($template_cpg_die))  //{THEMES}
@@ -1025,7 +1025,7 @@ $template_report = <<<EOT
 <table border="0" cellspacing="0" cellpadding="1" align="center">
   <tr>
     <td bgcolor="#000000">
-      <table border="0" cellspacing="0" cellpadding="10" bgcolor="#ffffff">
+      <table border="0" cellspacing="0" cellpadding="10" bgcolor="#FFFFFF">
         <tr>
           <td valign="top">
            <a href="{PIC_TGT}"><img src="{PIC_URL}" border="1" alt="" /></a><br />
@@ -1089,7 +1089,7 @@ $template_report_comment = <<<EOT
 <table border="0" cellspacing="0" cellpadding="1" align="center">
   <tr>
     <td bgcolor="#000000">
-      <table border="0" cellspacing="0" cellpadding="10" bgcolor="#ffffff">
+      <table border="0" cellspacing="0" cellpadding="10" bgcolor="#FFFFFF">
         <tr>
           <td valign="top">
            {COMMENT}
@@ -1402,7 +1402,7 @@ function theme_admin_mode_menu()
     if ($admin_menu == '') {
 
         if (GALLERY_ADMIN_MODE) {
-			
+
         if ($CONFIG['log_ecards'] == 0) {
             template_extract_block($template_gallery_admin_menu, 'log_ecards');
         }
@@ -1746,7 +1746,7 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
     }
 
     $cat_link = is_numeric($aid) ? '' : '&amp;cat=' . $cat;
-	$uid_link = is_numeric($_GET['uid']) ? '&amp;uid=' . $_GET['uid'] : '';
+        $uid_link = is_numeric($_GET['uid']) ? '&amp;uid=' . $_GET['uid'] : '';
 
     $theme_thumb_tab_tmpl = $template_tab_display;
 
@@ -1871,7 +1871,7 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
     }
 
     $cat_link = is_numeric($aid) ? '' : '&amp;cat=' . $cat;
-	$uid_link = is_numeric($_GET['uid']) ? '&amp;uid=' . $_GET['uid'] : '';
+        $uid_link = is_numeric($_GET['uid']) ? '&amp;uid=' . $_GET['uid'] : '';
 
     $thumbcols = $CONFIG['thumbcols'];
     $cell_width = ceil(100 / $CONFIG['max_film_strip_items']) . '%';
@@ -2168,7 +2168,7 @@ function theme_html_img_nav_menu()
     global $album, $cat, $pos, $pic_count, $lang_img_nav_bar, $lang_text_dir, $template_img_navbar;
 
     $cat_link = is_numeric($album) ? '' : '&amp;cat=' . $cat;
-	$uid_link = is_numeric($_GET['uid']) ? '&amp;uid=' . $_GET['uid'] : '';
+        $uid_link = is_numeric($_GET['uid']) ? '&amp;uid=' . $_GET['uid'] : '';
 
     $human_pos = $pos + 1;
     $page = ceil(($pos + 1) / ($CONFIG['thumbrows'] * $CONFIG['thumbcols']));
@@ -2400,10 +2400,10 @@ function theme_html_comments($pid)
             );
 
         if ($CONFIG['enable_smilies']){
-			$params['{SMILIES}'] = generate_smilies();
-		} else {
-			template_extract_block($template_add_your_comment, 'smilies');
-		}
+                        $params['{SMILIES}'] = generate_smilies();
+                } else {
+                        template_extract_block($template_add_your_comment, 'smilies');
+                }
 
         $html .= template_eval($template_add_your_comment, $params);
     }
@@ -2480,7 +2480,7 @@ function theme_display_fullsize_pic()
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
   <head>
-  <meta http-equiv="content-type" content="text/html; charset=<?php echo $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'] ?>" />  
+  <meta http-equiv="content-type" content="text/html; charset=<?php echo $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'] ?>" />
   <title><?php echo $CONFIG['gallery_name'] ?>: <?php echo $lang_fullsize_popup['click_to_close'];
       ?></title>
   <script type="text/javascript" src="scripts.js"></script>

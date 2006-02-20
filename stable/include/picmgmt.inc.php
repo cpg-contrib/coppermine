@@ -34,7 +34,7 @@ function add_picture($aid, $filepath, $filename, $position = 0, $title = '', $ca
     $thumb = $CONFIG['fullpath'] . $filepath . $CONFIG['thumb_pfx'] . $filename;
 
 
-	
+
     if (!is_known_filetype($image)) {
         return false;
     } elseif (is_image($filename)) {
@@ -214,13 +214,13 @@ function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use)
             if ($retval) {
                 $ERROR = "Error executing ImageMagick - Return value: $retval";
                 if ($CONFIG['debug_mode']) {
-                    // Re-execute the command with the backtit operator in order to get all outputs
+                    // Re-execute the command with the backtick operator in order to get all outputs
                     // will not work is safe mode is enabled
                     $output = `$cmd 2>&1`;
-                    $ERROR .= "<br /><br /><div align=\"left\">Cmd line : <br /><font size=\"2\">" . nl2br(htmlspecialchars($cmd)) . "</font></div>";
-                    $ERROR .= "<br /><br /><div align=\"left\">The convert program said:<br /><font size=\"2\">";
+                    $ERROR .= "<br /><br /><div align=\"left\">Cmd line : <br /><span style=\"font-size:120%\">" . nl2br(htmlspecialchars($cmd)) . "</span></div>";
+                    $ERROR .= "<br /><br /><div align=\"left\">The convert program said:<br /><span style=\"font-size:120%\">";
                     $ERROR .= nl2br(htmlspecialchars($output));
-                    $ERROR .= "</font></div>";
+                    $ERROR .= "</span></div>";
                 }
                 @unlink($dest_file);
                 return false;

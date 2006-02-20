@@ -49,13 +49,13 @@ if (!empty($_POST['email'])) {
         }
 
         $randkey = $cpg_udb->generateId();
-        
+
         // Session life = 1hour - session life (5 minutes)
         $session_life = time()-(CPG_MINUTE*55);
 
         $sql =  'insert into '.$cpg_udb->sessionstable.' (session_id, user_id, time, remember) values ';
         $sql .= '("'.md5($randkey.$USER_DATA['user_id']).'", 0, "'.$session_life.'", 0);';
-        
+
         cpg_db_query($sql);
 
 
@@ -78,7 +78,7 @@ if (!empty($_POST['email'])) {
         $lookup_failed = <<<EOT
                   <tr>
                           <td colspan="2" align="center" class="tableh2">
-                        <font size="1" color="red"><b>{$lang_forgot_passwd_php['err_unk_user']}<b></font>
+                        <span style="color:red"><b>{$lang_forgot_passwd_php['err_unk_user']}<b></span>
                         </td>
                   </tr>
 

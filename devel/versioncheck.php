@@ -594,9 +594,9 @@ function cpg_get_fileversion($folder  = '',$file = '') {
     $return['cpg_version'] = trim(substr($return['cpg_version'], 0, strpos($return['cpg_version'], '$')));
     /*
     print $file;
-    print ':<font color="red">';
+    print ':<span style="color:red">';
     print $return['cpg_version'];
-    print "</font>";
+    print "</span>";
     print $double_slash_position;
     print "<br />\n";
     */
