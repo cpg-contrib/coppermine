@@ -332,3 +332,4 @@ Added function get_batch_add_album_list to get the personal albums for admin on 
 Fixed reset password bug - 4th Feb 2006, Abbas
 Added ukrainian language string to language selector, fixed slovak flag - 5th Feb 2006, GauGau
 Fixed some deprecated tags like <font> - 20th Feb 2006, GauGau
+Fixed help pop-up in batch-add section - 20th Feb 2006, GauGau
