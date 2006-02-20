@@ -241,6 +241,7 @@ switch ($op) {
     break;
 
   case 'group_alb_access' : //show what albums specific group can see
+/*
     if (isset($_GET['gid'])) {
       $group_id = $_GET['gid'];
     }
@@ -271,6 +272,8 @@ switch ($op) {
     }
     pagefooter();
     ob_end_flush();
+*/
+    // Needs to be implemented
     break;
 
   default :
@@ -350,7 +353,5 @@ $t->assign("CONTENT", $t->fetchHTML("common/usermgr.html"));
 include ('include/cleanUp.inc.php');
 
 $t->display ('main.html');
-$time_end = cpgGetMicroTime();
-$time = round($time_end - $cpg_time_start, 3);
-echo "TIME: ". $time;
+
 ?>
