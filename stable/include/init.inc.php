@@ -274,7 +274,7 @@ define('USER_ADMIN_MODE', USER_ID && USER_CAN_CREATE_ALBUMS && $USER['am'] && !G
 // Maze's new error report system
 if (!USER_IS_ADMIN) {
     if (!$CONFIG['debug_mode']) $cpgdebugger->stop(); // useless to run debugger cos there's no output
-    error_reporting(0); // hide all errors for visitors
+    error_reporting(E_PARSE); // hide all errors for visitors
 }
 
 // Process theme selection if present in URI or in user profile
