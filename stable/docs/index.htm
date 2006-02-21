@@ -224,6 +224,10 @@
                                  <li class="level3"><a href="#bridge_manager_recover_start">5.3.2 Recover from failed bridging</a></li>
                                                                  <li class="level3"><a href="#integrating_steps_sync_start">5.3.3 Synchronising the bbs groups with Coppermine's groups</a></li>
                  </ul>
+        <ul class="level2">
+                 <li class="level2"><a href="#integrating_support_start" class="menu2">5.4 Bridging support</a></li>
+
+        </ul>
 <ul class="level1">
         <li class="level1"><a href="#translating" class="menu1">6. Translating Coppermine into other languages</a></li>
 
@@ -1265,7 +1269,7 @@ If you don't use banning at all, you can safely ignore this setting completely.<
 <a name="admin_general_private-ip_end"></a>
 
 <a name="admin_general_browsable_batch_add"></a><h4>Browsable batch-add interface</h4>
-<p>When <a href="#batch_add_pics">batch-adding</a> files (that you have uploaded using a <acronym title="File Transfer Protocol">FTP</acronym> before) to your gallery, you have the option to switch between a browsable list, where you can go scroll through the directory structure in your <tt class="code">albums</tt>-folder or to display the whole directory structure at once. Enable this option if you have a larger structure of directories and subdirectories you want to browse through (this requires your browser to be capable of displaying <a href="http://www.w3schools.com/tags/tag_iframe.asp" class="external" rel="external">iframes</a>). Set this option to &quot;No&quot; (disabled) if you want to use the &quot;classic&quot; coppermine interface that shows a complete list of the structure at once.<br />
+<p>When <a href="#batch_add_pics">batch-adding</a> files (that you have uploaded using <acronym title="File Transfer Protocol">FTP</acronym> before) to your gallery, you have the option to switch between a browsable list, where you can go scroll through the directory structure in your <tt class="code">albums</tt>-folder or to display the whole directory structure at once. Enable this option if you have a larger structure of directories and subdirectories you want to browse through (this requires your browser to be capable of displaying <a href="http://www.w3schools.com/tags/tag_iframe.asp" class="external" rel="external">iframes</a>). Set this option to &quot;No&quot; (disabled) if you want to use the &quot;classic&quot; coppermine interface that shows a complete list of the structure at once.<br />
 Should you have difficulties using one, try the other. You can toggle between these options on the <a href="#batch_add_pics">batch-add</a> page as well.</p>
 <p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_general_browsable_batch_add_end"></a>
@@ -1988,10 +1992,10 @@ Unfortunately, there is no API documentation available yet.</p>
 <p>Coppermine can be integrated with the following bulletin boards (eg. Coppermine
   and your bulletin board will share the same user database).</p>
 <ul>
-  <li>eBlah</li>
   <li>Invision Power Board</li>
   <li>Mambo</li>
   <li>MyBB</li>
+  <li>Phorum</li>
   <li>phpBB 2</li>
   <li>PunBB</li>
   <li>SMF</li>
@@ -2060,7 +2064,6 @@ Click &quot;next&quot;</p>
 <h4>5.3.1.1 choose application to bridge coppermine with</h4>
 <ul>
 <ul>
-  <li>eBlah</li>
   <li>Invision Power Board</li>
   <li>Mambo</li>
   <li>MyBB</li>
@@ -2118,14 +2121,42 @@ Should Coppermine import the special groups that exist in the forum ? If you sel
 <p class="important">It's mandatory that you (as admin) go to the groups page directly after bridging or whenever you change anything in your bridging configuration or if you change anything in your groups settings on your bbs, as you need to trigger the re-sync.</p>
 <a name="integrating_steps_sync_end"></a>
 <a name="integrating_steps_end"></a>
+<p><a class="back" href="#top">Back to top</a></p><hr />
+
+<a name="integrating_support_start"></a>
+<h2>5.4 Bridging support</h2>
+<p>With the explanations given above you should be able to bridge your (BBS) application with Coppermine. However, if things don't work as expected, you're welcome to look for help using the <a href="http://coppermine-gallery.net/forum/">coppermine support board</a>. When asking for support, please keep in mind that the supporters will need some information to enable them to help you:</p>
+<ul>
+  <li>Search the board before posting - maybe somebody had similar issues to yours that have been solved already</li>
+  <li>Post on the board that deals with your version - bridging mechanisms have changed from version to version, that's why it's important to post on the board that actually corresponds to your coppermine version</li>
+  <li>Don't hijack threads - when looking for bridging support, start your own thread</li>
+  <li>Read the sticky threads before posting</li>
+  <li>Make sure you are using the latest versions of the bridging files, they are kept up to date between formal Coppermine releases. Download the relevant files from the <a href="http://cvs.sourceforge.net/viewcvs.py/coppermine/">CVS</a>. Update udb_base.inc.php and the file that corresponds to the bridge you are using and upload them into your bridge directory, overwriting the old ones. Of course you should make sure to use the most recent stable coppermine release in the first place.</li>
+  <li>When requesting bridge support, please post a link to your site, a test user account, and what you have set in the bridge manager.<br />Make sure that the test user account doesn't have admin privileges. When posting parts of your bridge file, make sure to replace passwords with asterisks.<br />&nbsp;<br />This is how your posting should look like (with actual URLs instead of the dummy URLs given here as an example):<br />
+  <pre class="code">I have the following issue when trying to bridge coppermine and XXX:
+[error message here]
+
+Coppermine install: http://mysite.tld/my_coppermine_folder/
+Forum install: http://mysite.tld/my_forum_folder/
+Coppermine version: cpg1.4.4
+Forum version: SuperDuper BBS app v0.8.15
+Test user account: some_testuser_name / the_password_for_the_test_user_account
+
+BridgeManager settings:
+Forum URL:  http://mysite.tld/test/foo_bar
+Relative path to your BBS's config file:  ../bla/
+Use post-based groups?:  0  </pre></li>
+</ul>
+<a name="integrating_support_start"></a>
+
 <a name="integrating_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="translating"></a>
 <h1>6. Translating Coppermine into other languages</h1>
-<p>Coppermine has a separate language file that make the translation of the script much more easy. The language files are stored in the <strong>lang </strong>directory. The files with the <strong>utf-8</strong> suffix are unicode encoded files. They are automatically generated with the <a href="http://www.iconv.com/iconv.htm" class="external">iconv</a> program so there is no need for you to make an unicode version of your translation.</p>
-<p>If you select an utf-8 language file as the default one, then the script will be able to automatically select a language file based on the visitor browser configuration. For instance if the default language file is danish-utf-8 and an english visitor access your gallery, the english-utf-8 language file will be used by the script.</p>
-<p> If you have translated Coppermine into a language not already supported, please read the <a href="translation.htm">translator's guide</a> and visit the <a href="http://coppermine.sourceforge.net/board/index.php?topic=4623.0">Coppermine Web Site</a> at Sourceforge and follow the instructions for submitting your language.</p>
+<p>Coppermine has a separate language file that make the translation of the script much more easy. The language files are stored in the <strong>lang </strong>directory.</p>
+<p>If you select an utf-8 language file as the default one, then the script will be able to automatically select a language file based on the visitor browser configuration. For instance if the default language file is danish (utf-8) and an english visitor accesses your gallery, the english language file will be used by the script.</p>
+<p> If you have translated Coppermine into a language not already supported, please read the <a href="translation.htm">translator's guide</a> and visit the <a href="http://coppermine.sourceforge.net/board/index.php?topic=4623.0">Coppermine Web Site</a> and follow the instructions for submitting your language.</p>
 <p></p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
@@ -2246,9 +2277,27 @@ Should Coppermine import the special groups that exist in the forum ? If you sel
     <td>active</td>
   </tr>
   <tr>
-    <td>Dennis</td>
+    <td>Dennis Nakano</td>
     <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=19311">madeinhawaii</a></td>
     <td>Supporter</td>
+    <td>active</td>
+  </tr>
+  <tr>
+    <td>Paul Van Rompay</td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=23938">Paver</a></td>
+    <td>Supporter</td>
+    <td>active</td>
+  </tr>
+  <tr>
+    <td>Roberta</td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=24398">Blueiris</a></td>
+    <td>Supporter</td>
+    <td>active</td>
+  </tr>
+  <tr>
+    <td>Amit Badkas</td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=18262">Amit</a></td>
+    <td>Developer</td>
     <td>active</td>
   </tr>
   <tr>
@@ -2415,7 +2464,7 @@ Should Coppermine import the special groups that exist in the forum ? If you sel
 <p>This application is opensource software released under the <a href="http://www.gnu.org/copyleft/gpl.html">GPL</a>.
 </p>
 <p>Because the program is licensed free of charge, there is no warranty for the program, to the extent permitted by applicable law. Except when otherwise stated in writing the copyright holders and/or other parties provide the program &quot;as is&quot; without warranty of any kind, either expressed or implied, including, but not limited to, the implied warranties of merchantability and fitness for a particular purpose. The entire risk as to the quality and performance of the program is with you. Should the program prove defective, you assume the cost of all necessary servicing, repair or correction. </p>
-<p>Coppermine Photo Gallery is Copyright &copy; 2002 - 2005 Gr&eacute;gory  DEMAR and the Coppermine Dev Team, All Rights Reserved.<br />
+<p>Coppermine Photo Gallery is Copyright &copy; 2002 - 2006 Gr&eacute;gory  DEMAR and the Coppermine Dev Team, All Rights Reserved.<br />
 </p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
