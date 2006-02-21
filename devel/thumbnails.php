@@ -181,7 +181,7 @@ function form_albpw()
     starttable('-1', $lang_thumb_view['enter_alb_pass'], 2);
     if (isset($_POST['validate_album'])) {
         $login_failed = "<tr><td class='tableh2' colspan='2' align='center'>
-                               <span style="color:red">{$lang_thumb_view['invalid_pass']}</span></td></tr>
+                               <span style='color:red'>{$lang_thumb_view['invalid_pass']}</span></td></tr>
                                          ";
     }
     if (!empty($CURRENT_ALBUM_DATA['alb_password_hint'])) {
