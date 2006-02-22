@@ -36,7 +36,7 @@ p {
 <body>
 <h1><img src="../../images/coppermine_logo.png" width="300" height="75" /></h1>
 <h1>Coppermine Photo Gallery - Userpics Folder</h1>
-<p align="center">The contens of this folder aren't meant to be browsed. Visit the Coppermine Photo Gallery instead - you'll be redirected.
+<p align="center">The contents of this folder aren't meant to be browsed. Visit the Coppermine Photo Gallery instead - you'll be redirected.
 If you don't want to wait (or your browser doesn't support redirect), click <a href="../../index.php">here</a>.<br />If you're the gallery admin: do not ftp-upload to this folder - refer to the documentation where to upload instead.</p>
 
 </body>
