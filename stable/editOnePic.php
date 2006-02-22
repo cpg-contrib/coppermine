@@ -47,7 +47,8 @@ function process_post_data()
     $galleryicon = (int) $_POST['galleryicon'];
     $isgalleryicon = ($galleryicon===$pid);
 
-    $read_exif    = isset($_POST['read_exif']);
+    // need to implement "Read EXIF info again" checkbox; comment out for now
+    // $read_exif    = isset($_POST['read_exif']);
     $reset_vcount = isset($_POST['reset_vcount']);
     $reset_votes  = isset($_POST['reset_votes']);
     $del_comments = isset($_POST['del_comments']) || $delete;
@@ -381,7 +382,7 @@ print <<<EOT
 							<table border="0" cellspacing="0" cellpadding="0" width="100%">
 								<tr>
 									<td width="20%" align="center"><input type="checkbox" name="galleryicon" {$isgalleryicon_selected}{$isgalleryicon_disabled}value="{$CURRENT_PIC['pid']}" class="checkbox" />{$lang_editpics_php['gallery_icon']}</td>
-									<td width="20%" align="center"><input type="checkbox" name="read_exif" value="1" class="checkbox" />{$lang_editpics_php['read_exif']}</td>
+								<!--	<td width="20%" align="center"><input type="checkbox" name="read_exif" value="1" class="checkbox" />{$lang_editpics_php['read_exif']}</td> -->
 									<td width="20%" align="center"><input type="checkbox" name="reset_vcount" value="1" class="checkbox" />{$lang_editpics_php['reset_view_count']}</td>
 									<td width="20%" align="center"><input type="checkbox" name="reset_votes" value="1" class="checkbox" />{$lang_editpics_php['reset_votes']}</td>
 									<td width="20%" align="center"><input type="checkbox" name="del_comments" value="1" class="checkbox" />{$lang_editpics_php['del_comm']}</td>
