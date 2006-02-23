@@ -150,7 +150,7 @@ function register_changes()
                                        $CONFIG['TABLE_PICTURES'] =>
                                        array('pid', 'title', 'caption', 'keywords'),
                                        $CONFIG['TABLE_COMMENTS'] =>
-                                       array('msg_id', 'author', 'msg_body'),
+                                       array('msg_id', 'msg_author', 'msg_body'),
                                        $CONFIG['TABLE_CATEGORIES'] =>
                                        array('cid', 'name', 'description'),
                                        $CONFIG['TABLE_USERGROUPS'] =>
