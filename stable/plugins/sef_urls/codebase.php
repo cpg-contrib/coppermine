@@ -70,6 +70,13 @@ function sef_urls_convert(&$html) {
     // Rewrite displayimage.php?pos=-[pid] URLs to displayimage-[pid].html
     $html = preg_replace('/displayimage\.php\?pos=-([0-9]+)/i','displayimage-$1.html',$html);
 
+	 // Rewrite displayimage.php?album=[album]&pid=[pid]&slideshow=[interval] URLs to slideshow-[album]-[pid]-[interval].html
+	$html = preg_replace('/displayimage\.php\?album=([a-z0-9]+)(\&|\&amp;)pid=([0-9]+)(\&|\&amp;)slideshow=([0-9]+)/i','slideshow-$1-$3-$5.html',$html);
+	
+	 // Rewrite displayimage.php?album=[metaalbum]&cat=[category]&pid=[pid]&slideshow=[interval] URLs to slideshow-[album]-[category]-[pid]-[interval].html
+	$html = preg_replace('/displayimage\.php\?album=([a-z]+)(\&|\&amp;)cat=([\-0-9]+)(\&|\&amp;)pid=([0-9]+)(\&|\&amp;)slideshow=([0-9]+)/i','slideshow-$1-$3-$5-$7.html',$html);
+
+	
     // Return modified HTML
     return $html;
 }

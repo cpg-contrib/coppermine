@@ -55,3 +55,7 @@ RewriteRule displayimage-([a-z0-9]+)-([\-]?[0-9]+)-([\-]?[0-9]+)\.html displayim
 RewriteRule displayimage-([a-z0-9]+)-([\-]?[0-9]+)\.html displayimage.php?album=$1&pos=$2 [NC]
 
 RewriteRule displayimage-([0-9]+)\.html displayimage.php?pos=-$1 [NC]
+
+RewriteRule slideshow-([0-9]+)-([\-]?[0-9]+)-([0-9]+)\.html displayimage.php?album=$1&pid=$2&slideshow=$3 [NC]
+
+RewriteRule slideshow-([a-z]+)-([\-]?[0-9]+)-([0-9]+)-([0-9]+)\.html displayimage.php?album=$1&cat=$2&pid=$3&slideshow=$4 [NC]
