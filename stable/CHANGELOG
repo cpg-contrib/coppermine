@@ -344,3 +344,4 @@ Added partial Portuguese translation - 18th Feb 2006, GauGau
 Increased version count from 1.4.3 to 1.4.4 - 18th Feb 2006, GauGau
 Fixed some deprecated tags like <font> - 20th Feb 2006, GauGau
 Fixed help pop-up in batch-add section - 20th Feb 2006, GauGau
+Fixed bug in charsetmgr - 23rd Feb 2006, Abbas
