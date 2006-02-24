@@ -26,87 +26,87 @@ define('USE_BRIDGEMGR', 1);
 require 'udb_base.inc.php';
 
 class cpg_udb extends core_udb {
-        
-	function cpg_udb()
-	{
-		global $BRIDGE;
+
+        function cpg_udb()
+        {
+                global $BRIDGE;
                 core_udb::core_udb();
-		
-		if (!USE_BRIDGEMGR) {
 
-			$this->boardurl = 'http://localhost/coppermine';
-			include_once('../include/config.inc.php');
+                if (!USE_BRIDGEMGR) {
 
-		} else {
-			//include_once($BRIDGE['relative_path_to_config_file'] . 'config.inc.php');
-			$this->boardurl = $this->config->conf['site_url'];
-			$this->use_post_based_groups = @$BRIDGE['use_post_based_groups'];
-		}
+                        $this->boardurl = 'http://localhost/coppermine';
+                        include_once('../include/config.inc.php');
 
-		$this->multigroups = 0;
+                } else {
+                        //include_once($BRIDGE['relative_path_to_config_file'] . 'config.inc.php');
+                        $this->boardurl = $this->config->conf['site_url'];
+                        $this->use_post_based_groups = @$BRIDGE['use_post_based_groups'];
+                }
 
-		$this->group_overrride = !$this->use_post_based_groups;
-		
-		// Database connection settings
-		$this->db = array(
-			'name' => $this->config->dbname,
-			'host' => $this->config->dbserver ? $this->config->dbserver : 'localhost',
-			'user' => $this->config->dbuser,
-			'password' => $this->config->dbpass,
-			'prefix' =>$this->config->table_prefix
-		);
-		
-		// Board table names
-		$this->table = array(
-			'users' => 'users',
-			'groups' => 'usergroups',
-		);
+                $this->multigroups = 0;
 
-		// Derived full table names
-		$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
-		$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
+                $this->group_overrride = !$this->use_post_based_groups;
 
-		// Table field names
-		$this->field = array(
-			'username' => 'user_name', // name of 'username' field in users table
-			'user_id' => 'user_id', // name of 'id' field in users table
-			'password' => 'user_password', // name of 'password' field in users table
-			'email' => 'user_email', // name of 'email' field in users table
-			'regdate' => 'UNIX_TIMESTAMP(user_regdate)', // name of 'registered' field in users table
-			'lastvisit' => 'UNIX_TIMESTAMP(user_lastvisit)', // last time user logged in
-			'active' => 'user_active', // is user account active?
-			'location' => "''", // name of 'location' field in users table
-			'website' => "''", // name of 'website' field in users table
-			'usertbl_group_id' => 'user_group', // name of 'group id' field in users table
-			'grouptbl_group_id' => 'group_id', // name of 'group id' field in groups table
-			'grouptbl_group_name' => 'group_name' // name of 'group name' field in groups table
-		);
+                // Database connection settings
+                $this->db = array(
+                        'name' => $this->config->dbname,
+                        'host' => $this->config->dbserver ? $this->config->dbserver : 'localhost',
+                        'user' => $this->config->dbuser,
+                        'password' => $this->config->dbpass,
+                        'prefix' =>$this->config->table_prefix
+                );
 
-		// Pages to redirect to
-		$this->page = array(
-			'register' => 'register.php',
-			'editusers' => 'usermgr.php',
-			'edituserprofile' => 'profile.php'
-		);
+                // Board table names
+                $this->table = array(
+                        'users' => 'users',
+                        'groups' => 'usergroups',
+                );
 
-		// Group ids - admin and guest only.
-		$this->admingroups = array(1);
-		$this->guestgroup = 3;
+                // Derived full table names
+                $this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
+                $this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
 
-		// Connect to db
-		$this->connect($this->config->conf['LINK_ID']);
-	}
+                // Table field names
+                $this->field = array(
+                        'username' => 'user_name', // name of 'username' field in users table
+                        'user_id' => 'user_id', // name of 'id' field in users table
+                        'password' => 'user_password', // name of 'password' field in users table
+                        'email' => 'user_email', // name of 'email' field in users table
+                        'regdate' => 'UNIX_TIMESTAMP(user_regdate)', // name of 'registered' field in users table
+                        'lastvisit' => 'UNIX_TIMESTAMP(user_lastvisit)', // last time user logged in
+                        'active' => 'user_active', // is user account active?
+                        'location' => "''", // name of 'location' field in users table
+                        'website' => "''", // name of 'website' field in users table
+                        'usertbl_group_id' => 'user_group', // name of 'group id' field in users table
+                        'grouptbl_group_id' => 'group_id', // name of 'group id' field in groups table
+                        'grouptbl_group_name' => 'group_name' // name of 'group name' field in groups table
+                );
+
+                // Pages to redirect to
+                $this->page = array(
+                        'register' => 'register.php',
+                        'editusers' => 'usermgr.php',
+                        'edituserprofile' => 'profile.php'
+                );
+
+                // Group ids - admin and guest only.
+                $this->admingroups = array(1);
+                $this->guestgroup = 3;
+
+                // Connect to db
+                $this->connect($this->config->conf['LINK_ID']);
+        }
 
         function login($raw_ip, $hdr_ip)
         {
           global $log_date_fmt;
 
-		   // code according to password enable_encrypted_password
+                   // code according to password enable_encrypted_password
 
-		  $password = ($this->config->conf['enable_encrypted_passwords'])
+                  $password = ($this->config->conf['enable_encrypted_passwords'])
 ? md5($_POST['password']) : $_POST['password'];
 
-		  $this->config->conf['TABLE_USERS'] = $this->config->table_prefix."users";
+                  $this->config->conf['TABLE_USERS'] = $this->config->table_prefix."users";
 
           $query = "SELECT user_id, user_name, user_password FROM
 {$this->config->conf['TABLE_USERS']} WHERE user_name = '" .
@@ -139,7 +139,7 @@ user_password = '" . $password . "' AND user_active = 'YES'";
               $failed_logon_counter = $this->cpgDb->fetchRow();
 
               $expiry_date = date("Y-m-d H:i:s", mktime(date('H'), date('i')+$this->config->conf['login_expiry'], date('s'), date('m'), date('d'),date('Y')));
-              
+
               if ($failed_logon_counter['brute_force']) {
                   $failed_logon_counter['brute_force'] = $failed_logon_counter['brute_force'] - 1;
                   $query_string = "UPDATE {$this->config->conf['TABLE_BANNED']} SET brute_force='".$failed_logon_counter['brute_force']."',  expiry='".$expiry_date."' WHERE ban_id=".$failed_logon_counter['ban_id'];
@@ -147,41 +147,41 @@ user_password = '" . $password . "' AND user_active = 'YES'";
                   $failed_logon_counter['brute_force'] = $this->config->conf['login_threshold'];
                   $query_string = "INSERT INTO {$this->config->conf['TABLE_BANNED']} (ip_addr, expiry, brute_force) VALUES ('$raw_ip', '$expiry_date','".$failed_logon_counter['brute_force']."')";
               }
-              
+
               //write the logon counter to the database
               $this->cpgDb->query($query_string);
               return(false);
           }
-            
+
         }
 
-	// Get groups of which user is member
-	function get_groups($row)
-	{
-		$i = 1;
-		$data[0] = in_array($row['group_id'] - 100, $this->admingroups) ? $i : 2;
-		
-		if ($this->use_post_based_groups){
-			$sql = "SELECT ug.{$this->field['usertbl_group_id']}+100 AS group_id FROM {$this->usertable} AS u, {$this->groupstable} as g WHERE u.{$this->field['user_id']}='{$row[$this->field['user_id']]}' AND g.{$this->field['grouptbl_group_id']} = u.{$this->field['usertbl_group_id']}";
+        // Get groups of which user is member
+        function get_groups($row)
+        {
+                $i = 1;
+                $data[0] = in_array($row['group_id'] - 100, $this->admingroups) ? $i : 2;
 
-			$result = cpg_db_query($sql, $this->link_id);
-        
-			while ($row = mysql_fetch_array($result)) {
-				$data[] = $row['group_id'];
-			}
-		}
+                if ($this->use_post_based_groups){
+                        $sql = "SELECT ug.{$this->field['usertbl_group_id']}+100 AS group_id FROM {$this->usertable} AS u, {$this->groupstable} as g WHERE u.{$this->field['user_id']}='{$row[$this->field['user_id']]}' AND g.{$this->field['grouptbl_group_id']} = u.{$this->field['usertbl_group_id']}";
 
-		return $data;
-	}
+                        $result = cpg_db_query($sql, $this->link_id);
 
-	// definition of how to extract an id and password hash from a cookie
-	function cookie_extraction()
-	{
+                        while ($row = mysql_fetch_array($result)) {
+                                $data[] = $row['group_id'];
+                        }
+                }
+
+                return $data;
+        }
+
+        // definition of how to extract an id and password hash from a cookie
+        function cookie_extraction()
+        {
         global $CONFIG;
 
-		// Default anonymous values
-		$id = 0;
-		$pass = '';
+                // Default anonymous values
+                $id = 0;
+                $pass = '';
 
         // Retrieve cookie stored login information
         if (isset($_COOKIE[$this->config->conf['cookie_name'] . '_uid']) && isset($_COOKIE[$this->config->conf['cookie_name'] . '_pass'])) {
@@ -189,53 +189,53 @@ user_password = '" . $password . "' AND user_active = 'YES'";
             $pass = substr(addslashes($_COOKIE[$this->config->conf['cookie_name'] . '_pass']), 0, 32);
         }
 
-		return ($id) ? array($id, $pass) : false;
-	}
-	
-	// definition of actions required to convert a password from user database form to cookie form
-	function udb_hash_db($password)
-	{
-		return $password;
-	}
+                return ($id) ? array($id, $pass) : false;
+        }
 
-	/*
-	 * Overidden functions !!DO NOT REMOVE OR CPG WILL NOT WORK CORRECTLY!!
-	 */
-	// definition of how to extract id, name, group from a session cookie
-	function session_extraction($cookie_id)
-	{	}
+        // definition of actions required to convert a password from user database form to cookie form
+        function udb_hash_db($password)
+        {
+                return $this->config->conf['enable_encrypted_passwords'] ? $password : md5($password);
+        }
 
-	function session_update()
-    {	}
+        /*
+         * Overidden functions !!DO NOT REMOVE OR CPG WILL NOT WORK CORRECTLY!!
+         */
+        // definition of how to extract id, name, group from a session cookie
+        function session_extraction($cookie_id)
+        {       }
 
-	// Register
-	function register_page()
-	{	}
+        function session_update()
+    {   }
 
-	// Edit users
-	function edit_users()
-	{	}
+        // Register
+        function register_page()
+        {       }
 
-	// View users
-	function view_users()
-	{	}
+        // Edit users
+        function edit_users()
+        {       }
 
-	// View user profile
-	function view_profile($uid)
-	{	}
+        // View users
+        function view_users()
+        {       }
 
-	// Edit user profile
-	function edit_profile($uid)
-	{	}
+        // View user profile
+        function view_profile($uid)
+        {       }
 
-	function login_page()
-	{	}
+        // Edit user profile
+        function edit_profile($uid)
+        {       }
 
-	function logout_page()
-	{	}
-	
-	function synchronize_groups()
-	{   }
+        function login_page()
+        {       }
+
+        function logout_page()
+        {       }
+
+        function synchronize_groups()
+        {   }
 }
 
 // and go !
