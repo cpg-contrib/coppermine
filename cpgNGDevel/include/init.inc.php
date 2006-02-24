@@ -224,7 +224,7 @@ $THEME_DIR = 'templates/'.$config->conf['theme'].'/';
 // autodetection if default charset is utf-8
 if (!empty($_GET['lang']))
 {
-    $auth->user['lang'] = $_GET['lang'];
+    $auth->user['lang'] = ereg("^[a-z0-9_-]*$", $_GET['lang']) ? $_GET['lang'] : $CONFIG['lang'];
 }
 
 if (isset($auth->user['lang']) && !strstr($auth->user['lang'], '/') && file_exists('lang/' . $auth->user['lang'] . '.php')) {
