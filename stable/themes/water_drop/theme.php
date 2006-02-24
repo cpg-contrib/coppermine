@@ -3,7 +3,7 @@
   Coppermine Photo Gallery
   ************************
   Copyright (c) 2003-2006 Coppermine Dev Team
-  v1.1 originaly written by Gregory DEMAR
+  v1.1 originally written by Gregory DEMAR
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
