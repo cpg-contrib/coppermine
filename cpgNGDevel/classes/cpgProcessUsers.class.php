@@ -616,7 +616,8 @@ class cpgProcessUsers {
     $profile4 = addslashes($_POST['user_profile4']);
     $profile5 = addslashes($_POST['user_profile5']);
     $profile6 = addslashes($_POST['user_profile6']);
-    $email = addslashes($_POST['email']);
+
+    $email = $this->config->conf['allow_email_change'] ? ", user_email = '".addslashes($_POST['user_email'])."'" : '';
 
     $sql = "UPDATE
               {$this->config->conf['TABLE_USERS']}
@@ -626,8 +627,8 @@ class cpgProcessUsers {
               user_profile3 = '$profile3',
               user_profile4 = '$profile4',
               user_profile5 = '$profile5',
-              user_profile6 = '$profile6',
-              user_email = '$email'
+              user_profile6 = '$profile6'
+              $email
             WHERE
               user_id = '" . $this->auth->isDefined("USER_ID") . "'";
     $this->db->query($sql);

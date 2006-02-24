@@ -109,8 +109,8 @@ switch ($op) {
     $formData = array($lang_register_php['username'] => $userData['user_name'],
                       $lang_register_php['reg_date'] => cpgUtils::localisedDate($userData['user_regdate'], $register_date_fmt),
                       $lang_register_php['group'] => $userData['group_name'] . $group_list,
-                      $lang_register_php['email'] => $userData['user_email'],
-                      $lang_register_php['disk_usage'] => $userData['disk_usage'] .
+                      $lang_register_php['email'] => $config->conf['allow_email_change'] ? '' : $userData['user_email'],
+                      $lang_register_php['disk_usage'] => ($userData['disk_usage'] ? $userData['disk_usage'] : '0') .
                       ($userData['group_quota'] ? '/' . $userData['group_quota'] : '') . '&nbsp;' . $lang_byte_units[1],
                       );
 
@@ -118,6 +118,10 @@ switch ($op) {
       * Get the user fields that are set.
       */
     $userFields = array();
+    if ($config->conf['allow_email_change']) {
+        $userFields["user_email"] = $lang_register_php['email'];
+    }
+
     for ($i = 1; $i <= 5; $i++) {
       if (!empty($config->conf["user_profile".$i."_name"])) {
         $userFields["user_profile".$i] = $config->conf["user_profile".$i."_name"];
