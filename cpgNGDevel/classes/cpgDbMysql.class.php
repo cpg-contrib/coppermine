@@ -577,6 +577,18 @@ class cpgDB {
         } 
         return $return;
     } 
+
+    /**
+     * insertId()
+     *
+     * Used to return id of last inserted row
+     *
+     * return $id
+     */
+    function insertId()
+    {
+      return (int)mysql_insert_id($this->Link_ID);
+    }
 } 
 
 ?>
