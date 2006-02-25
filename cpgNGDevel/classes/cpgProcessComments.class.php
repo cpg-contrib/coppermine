@@ -81,7 +81,7 @@ class cpgProcessComments {
       $this->auth->user['name'] = stripslashes($msgAuthor);
 
       if ($this->config->conf['email_comment_notification']) {
-        $mailBody = '<p>'.cpgUtils::bbDecode(process_smilies($msgBody)).'</p>'."\n\r".$lang_db_input_php['email_comment_body'].' '.$this->config->conf['ecards_more_pic_target'].(substr($this->config->conf['ecards_more_pic_target'], -1) == '/' ? '' : '/').'displayimage.php?pid='.$pid;
+        $mailBody = '<p>'.cpgUtils::bbDecode(process_smilies($msgBody, $this->config->conf['ecards_more_pic_target'])).'</p>'."\n\r".$lang_db_input_php['email_comment_body'].' '.$this->config->conf['ecards_more_pic_target'].(substr($this->config->conf['ecards_more_pic_target'], -1) == '/' ? '' : '/').'displayimage.php?pid='.$pid;
         cpgUtils::cpgMail('admin', $lang_db_input_php['email_comment_subject'], cpgUtils::makeClickable($mailBody));
       }
     } else { // Registered users
@@ -90,7 +90,7 @@ class cpgProcessComments {
       $this->db->query($query);
 
       if ($this->config->conf['email_comment_notification']) {
-        $mailBody = '<p>'.cpgUtils::bbDecode(process_smilies($msgBody)).'</p>'."\n\r".$lang_db_input_php['email_comment_body'].' '.$this->config->conf['ecards_more_pic_target'].(substr($this->config->conf['ecards_more_pic_target'], -1) == '/' ? '' : '/').'displayimage.php?pid='.$pid;
+        $mailBody = '<p>'.cpgUtils::bbDecode(process_smilies($msgBody, $this->config->conf['ecards_more_pic_target'])).'</p>'."\n\r".$lang_db_input_php['email_comment_body'].' '.$this->config->conf['ecards_more_pic_target'].(substr($this->config->conf['ecards_more_pic_target'], -1) == '/' ? '' : '/').'displayimage.php?pid='.$pid;
         cpgUtils::cpgMail('admin', $lang_db_input_php['email_comment_subject'], cpgUtils::makeClickable($mailBody));
       }
 
