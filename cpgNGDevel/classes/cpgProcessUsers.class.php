@@ -860,7 +860,7 @@ class cpgProcessUsers {
           }
 
           $userNewPassword = $this->make_password();
-          $sql = "UPDATE {$this->config->conf['TABLE_USERS']} SET user_password='".md5("$userNewPassword")."'" . " WHERE reset_key='$resetKey'";
+          $sql = "UPDATE {$this->config->conf['TABLE_USERS']} SET user_password='".($this->config->conf['enable_encrypted_passwords'] ? md5($userNewPassword) : $userNewPassword)."'" . " WHERE reset_key='$resetKey'";
           $this->db->query($sql);
           if (!$this->db->affectedRows()) {
               cpgUtils::cpgDie(ERROR, $lang_forgot_passwd_php['password_reset_fail']);
