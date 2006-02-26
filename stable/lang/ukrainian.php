@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /*************************
   Coppermine Photo Gallery
   ************************
@@ -9,8 +9,14 @@
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
-
-  This translation is made for the Coppermine version 1.4.3
+  ********************************************
+  Coppermine version: 1.4.4
+  $Source$
+  $Revision$
+  $Author$
+  $Date$
+  ********************************************
+  This translation is made for the Coppermine version 1.4.x
   It is based on the old translation by Kostya Jakovchuk
 
   In the memory of Marko Kyshchun, who taught me to fight even if there is no hope. - MR
