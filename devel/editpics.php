@@ -96,7 +96,7 @@ function process_post_data()
         if (!is_array($_POST['pid'])) cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
         $pid_array = &$_POST['pid'];
 
-                $galleryicon = (int) $_POST['galleryicon'];
+        $galleryicon = isset($_POST['galleryicon']) ? (int) $_POST['galleryicon']: '';
 
         foreach($pid_array as $pid){
                 $pid = (int)$pid;
@@ -394,6 +394,7 @@ function get_user_albums($user_id = '')
 
         $USER_ALBUMS_ARRAY=array(0 => array());
 
+        $or = '';
         if ($user_id != '') {
                 $or = " OR category='" . (FIRST_USER_CAT + $user_id) . "'";
         }
