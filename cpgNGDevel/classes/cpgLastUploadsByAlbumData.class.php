@@ -97,6 +97,8 @@ class cpgLastUploadsByAlbumData extends cpgAlbumData {
                     $thumb_list[$i]['displayURL'] .= '&amp;album=' . $album;
                 }
 
+                $thumb_list[$i]['displayURL'] .= '&amp;uid='.(int)$_GET['uid'];
+
                 /**
                  * If display of mini toolbar is ON
                  */
@@ -131,6 +133,7 @@ class cpgLastUploadsByAlbumData extends cpgAlbumData {
                         }
 
                         $thumb_list[$i]['ecardURL'] .= 'pid='.$row['pid'];
+                        $thumb_list[$i]['ecardURL'] .= '&amp;uid='.(int)$_GET['uid'];
                     } else {
                         $thumb_list[$i]['ecardURL'] = '';
                     }
@@ -151,6 +154,8 @@ class cpgLastUploadsByAlbumData extends cpgAlbumData {
                     if ($album) {
                         $thumb_list['pageURL'][$i] .= '&amp;album=' . $album;
                     }
+
+                    $thumb_list['pageURL'][$i] .= '&amp;uid='.(int)$_GET['uid'];
                 }
             }
             $thumb_list['albumName']  .= $album_name;
@@ -186,6 +191,8 @@ class cpgLastUploadsByAlbumData extends cpgAlbumData {
         $row = array();
         $limit = ($limit1 != -1) ? ' LIMIT ' . $limit1 : '';
         $limit .= ($limit2 != -1) ? ' ,' . $limit2 : '';
+
+        $uid = (int)$_GET['uid'];
 
         if ($album && in_array($album, $this->auth->forbiddenSetData)) {
             $count = 0;

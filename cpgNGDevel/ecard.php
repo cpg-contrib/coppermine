@@ -87,6 +87,10 @@ if (isset($_POST['preview'])) {
 
     if (!empty($meta)) {
       $buttonLink .= 'meta='.$meta.'&amp;';
+
+      if ($meta == 'lastupby') {
+        $buttonLink .= 'uid='.(int)$_GET['uid'].'&amp;';
+      }
     }
 
     if (empty($album) && empty($cat) && empty($meta)) {

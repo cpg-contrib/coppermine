@@ -308,6 +308,11 @@ class cpgAlbumData {
             $i++;
             $breadcrumb[$i]['link'] = $this->config->conf['ecards_more_pic_target'] . "thumbnails.php?meta=$meta&cat=$tmpCat&album=$tmpAlbum";
             $breadcrumb[$i]['title'] = $lang_meta_album_names[$meta];
+
+            if ($meta == 'lastupby') {
+              $breadcrumb[$i]['link'] .= '&amp;uid='.(int)$_GET['uid'];
+              $breadcrumb[$i]['title'] .= ' `'.$this->auth->get_user_name((int)$_GET['uid']).'`';
+            }
         } 
         return $breadcrumb;
     } 
@@ -428,11 +433,15 @@ class cpgAlbumData {
 
                 if (!empty($meta)) {
                     $thumb_list[$i]['target'] .= "&amp;meta=$meta";
+
+                    if ($meta == 'lastupby') {
+                      $thumb_list[$i]['target'] .= '&amp;uid='.(int)$_GET['uid'];
+                    }
                 } 
 
                 if (!empty($album)) {
                     $thumb_list[$i]['target'] .= "&amp;album=$album";
-                } 
+                }
 
                 if (!empty($cat)) {
                     $thumb_list[$i]['target'] .= "&amp;cat=$cat";

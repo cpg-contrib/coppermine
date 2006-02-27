@@ -333,6 +333,10 @@ class cpgDisplayImageData extends cpgAlbumData {
 
             $this->picData['ecardTgt'] .= 'pid='.$this->picData['pid'];
             $this->picData['ecardTitle'] = $lang_img_nav_bar['ecard_title'];
+
+            if ($meta == 'lastupby') {
+              $this->picData['ecardTgt'] .= '&amp;uid='.(int)$_GET['uid'];
+            }
         } else {
             $this->picData['ecardTgt'] = '" onClick="'."alert('".addslashes($lang_img_nav_bar['ecard_disabled_msg'])."'); return false;";
             $this->picData['ecardTitle'] = $lang_img_nav_bar['ecard_disabled'];
@@ -346,6 +350,11 @@ class cpgDisplayImageData extends cpgAlbumData {
         if (!empty($meta)) {
             $this->picData['slideShowTarget'] = $this->config->conf['ecards_more_pic_target'] . "slideShow.php?meta=$meta&amp;pid=" . $this->picData['pid'];
             $this->picData['thumbPageTarget'] = $this->config->conf['ecards_more_pic_target'] . "thumbnails.php?meta=$meta&amp;";
+
+            if ($meta == 'lastupby') {
+              $this->picData['slideShowTarget'] .= '&amp;uid='.(int)$_GET['uid'];
+              $this->picData['thumbPageTarget'] .= 'uid='.(int)$_GET['uid'].'&amp;';
+            }
         } else {
             $this->picData['slideShowTarget'] = $this->config->conf['ecards_more_pic_target'] . "slideShow.php?pid=" . $this->picData['pid'];
             $this->picData['thumbPageTarget'] = $this->config->conf['ecards_more_pic_target'] . "thumbnails.php?";
@@ -368,6 +377,10 @@ class cpgDisplayImageData extends cpgAlbumData {
         if ($pos > 0) {
             if (!empty($meta)) {
                 $this->picData['prevTarget'] = $this->config->conf['ecards_more_pic_target'] . "displayimage.php?meta=$meta&amp;pos=" . ($pos - 1);
+
+                if ($meta == 'lastupby') {
+                  $this->picData['prevTarget'] .= '&amp;uid='.(int)$_GET['uid'];
+                }
             } else {
                 $this->picData['prevTarget'] = $this->config->conf['ecards_more_pic_target'] . "displayimage.php?pos=" . ($pos - 1);
             }
@@ -387,6 +400,10 @@ class cpgDisplayImageData extends cpgAlbumData {
         if ($pos < ($picCount - 1)) {
             if (!empty($meta)) {
                 $this->picData['nextTarget'] = $this->config->conf['ecards_more_pic_target'] . "displayimage.php?meta=$meta&amp;pos=" . ($pos + 1);
+
+                if ($meta == 'lastupby') {
+                  $this->picData['nextTarget'] .= '&amp;uid='.(int)$_GET['uid'];
+                }
             } else {
                 $this->picData['nextTarget'] = $this->config->conf['ecards_more_pic_target'] . "displayimage.php?pos=" . ($pos + 1);
             }
@@ -413,6 +430,10 @@ class cpgDisplayImageData extends cpgAlbumData {
           } else if (!empty($album)) {
             $this->picData['editCommentLink'] = 'cat='.$cat.'&amp;pos='.$pos;
           }
+        }
+
+        if ($meta == 'lastupby') {
+          $this->picData['editCommentLink'] .= 'uid='.(int)$_GET['uid'].'&amp;';
         }
 
         if (empty($this->picData['editCommentLink'])) {
