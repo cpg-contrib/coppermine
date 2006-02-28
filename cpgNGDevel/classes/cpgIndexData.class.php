@@ -366,7 +366,7 @@ class cpgIndexData extends cpgAlbumData {
         $upper_limit = min($nbAlb, $PAGE * $alb_per_page);
         $limit = "LIMIT " . $lower_limit . "," . ($upper_limit - $lower_limit);
 
-        $sql = 'SELECT a.aid, a.title, a.description, visibility, user_id filepath, ' . 'filename, url_prefix, pwidth, pheight ' . 'FROM ' . $this->config->conf['TABLE_ALBUMS'] . ' as a ' . 'LEFT JOIN ' . $this->config->conf['TABLE_PICTURES'] . ' as p ' . 'ON a.thumb=p.pid ' . 'WHERE ' . $where . $album_filter . ' ORDER BY a.pos ' . $limit;
+        $sql = 'SELECT a.aid, a.title, a.description, visibility, user_id, filepath, ' . 'filename, url_prefix, pwidth, pheight ' . 'FROM ' . $this->config->conf['TABLE_ALBUMS'] . ' as a ' . 'LEFT JOIN ' . $this->config->conf['TABLE_PICTURES'] . ' as p ' . 'ON a.thumb=p.pid ' . 'WHERE ' . $where . $album_filter . ' ORDER BY a.pos ' . $limit;
 
         $this->db->query($sql);
         $alb_thumbs = $this->db->fetchRowSet();
