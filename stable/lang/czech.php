@@ -696,7 +696,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Ukaž filmový pás náhledů', 'display_film_strip', 1, 'f=index.htm&amp;as=admin_image_comment_filmstrip_toggle&amp;ae=admin_image_comment_filmstrip_toggle_end'), //cpg1.4
   array('Zobraz jméno souboru ve filmovém pásu náhledů', 'display_film_strip_filename', 1, 'f=index.htm&amp;as=admin_image_comment_display_film_strip_filename&amp;ae=admin_image_comment_display_film_strip_filename_end'), //cpg1.4
   array('Počet položek ve filmovém pásu náhledů', 'max_film_strip_items', 0, 'f=index.htm&amp;as=admin_image_comment_filmstrip_number&amp;ae=admin_image_comment_filmstrip_number_end'), //cpg1.4
-  array('Slideshow interval v milisekundách (1 second = 1000 milliseconds)', 'slideshow_interval', 0, 'f=index.htm&amp;as=admin_image_comment_slideshow_interval&amp;ae=admin_image_comment_slideshow_interval_end'), //cpg1.4
+  array('Slideshow interval v milisekundách (1 sekunda = 1000 milisekund)', 'slideshow_interval', 0, 'f=index.htm&amp;as=admin_image_comment_slideshow_interval&amp;ae=admin_image_comment_slideshow_interval_end'), //cpg1.4
 
   'Nastavení komentářů', //cpg1.4
   array('Filtrování zakázaných slov v komentářích', 'filter_bad_words', 1, 'f=index.htm&amp;as=admin_image_comment_bad_words&amp;ae=admin_image_comment_bad_words_end'), //cpg1.4
@@ -719,7 +719,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Automaticky změň velikost obrázku, je-li větší než Max šířka nebo výška', 'auto_resize', 16, 'f=index.htm&amp;as=admin_picture_thumbnail_auto-resize&amp;ae=admin_picture_thumbnail_auto-resize_end'), //cpg1.4
 
   'Rozšířené nastavení souborů a tvorby náhledů',
-  array('Galerie může být soukromá (Poznámka: jestliže změníte \'Ano\' to \'Ne\' jakákoliv současná soukromá galerie se stane veřejnou.)', 'allow_private_albums', 1, 'f=index.htm&amp;as=admin_picture_thumb_advanced_private_toggle&amp;ae=admin_picture_thumb_advanced_private_toggle_end'), //cpg1.4
+  array('Galerie může být soukromá (Poznámka: jestliže změníte \'Ano\' na \'Ne\' jakákoliv současná soukromá galerie se stane veřejnou.)', 'allow_private_albums', 1, 'f=index.htm&amp;as=admin_picture_thumb_advanced_private_toggle&amp;ae=admin_picture_thumb_advanced_private_toggle_end'), //cpg1.4
   array('Ukaž ikomu soukromé galerie nepřihlášenému uživateli','show_private',1, 'f=index.htm&amp;as=admin_picture_thumb_advanced_private_icon_show&amp;ae=admin_picture_thumb_advanced_private_icon_show_end'), //cpg1.4
   array('Zakázaná slova v názvech', 'forbiden_fname_char',0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_filename_forbidden_chars&amp;ae=admin_picture_thumb_advanced_filename_forbidden_chars_end'), //cpg1.4
   //array('Accepted file extensions for uploaded pictures', 'allowed_file_extensions',0, 'f=index.htm&amp;as=&amp;ae=_end'), //cpg1.4
@@ -781,8 +781,8 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('SMTP Heslo', 'smtp_password', 0), //cpg1.4
 
   'Statistika a záznamy přístupů', //cpg1.4
-  array('Logging mode <a href="#notice3" class="clickable_option">***</a>', 'log_mode', 11, 'f=index.htm&amp;as=admin_logging_log_mode&amp;ae=admin_logging_log_mode_end'), //cpg1.4
-  array('Log ecards', 'log_ecards', 1, 'f=index.htm&amp;as=admin_general_log_ecards&amp;ae=admin_general_log_ecards_end'), //cpg1.4
+  array('Mód logování <a href="#notice3" class="clickable_option">***</a>', 'log_mode', 11, 'f=index.htm&amp;as=admin_logging_log_mode&amp;ae=admin_logging_log_mode_end'), //cpg1.4
+  array('Logovat ecardy', 'log_ecards', 1, 'f=index.htm&amp;as=admin_general_log_ecards&amp;ae=admin_general_log_ecards_end'), //cpg1.4
   array('Udržování detailů ve statistice voleb','vote_details',1, 'f=index.htm&amp;as=admin_logging_votedetails&amp;ae=admin_logging_votedetails_end'), //cpg1.4
   array('Udržování detailů ve statistice přístupů','hit_details',1, 'f=index.htm&amp;as=admin_logging_hitdetails&amp;ae=admin_logging_hitdetails_end'), //cpg1.4
 
@@ -1286,7 +1286,7 @@ $lang_list_categories = array(
 
 $lang_list_users = array(
     'user_list' => 'Seznam uživatelů',
-    'no_user_gal' => 'Nejsou žádné uživatelské alerie',
+    'no_user_gal' => 'Nejsou žádné uživatelské galerie',
     'n_albums' => '%s galerií',
     'n_pics' => '%s obrázků'
 );
