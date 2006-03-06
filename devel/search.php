@@ -68,7 +68,7 @@ echo <<< EOT
             </td>
         </tr>
                 <tr>
-                        <td>
+                        <td class="tableb">
                                 <table align="center" width="60%">
                                         <tr>
                                                 <td>{$lang_search_php['fields']}:</td>
