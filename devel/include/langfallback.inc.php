@@ -36,6 +36,9 @@ $lang_bbcode_help = cpg_lang_var("lang_bbcode_help");
 $lang_bbcode_help_title = cpg_lang_var("lang_bbcode_help_title");
 
 $lang_register_confirm_email = cpg_lang_var("lang_register_confirm_email");
+$lang_register_confirm_email = cpg_lang_var("lang_register_confirm_email");
+$lang_register_approve_email = cpg_lang_var("lang_register_approve_email");
+$lang_register_activated_email = cpg_lang_var("lang_register_activated_email");
 
 // info about translators and translated language
 $lang_translation_info_en = cpg_get_default_lang_var('lang_translation_info','english');
