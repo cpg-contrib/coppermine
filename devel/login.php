@@ -74,7 +74,7 @@ if (!isset($_COOKIE[$CONFIG['cookie_name'] . '_data'])) {
     $cookie_warning = <<<EOT
                   <tr>
                           <td colspan="2" align="center" class="tableh2">
-                        <font size="1" color="red"><b>{$lang_login_php['cookie_warning']}<b></font>
+                        <span style="color:red"><b>{$lang_login_php['cookie_warning']}<b></span>
                         </td>
                   </tr>
 
@@ -83,19 +83,15 @@ EOT;
 
 pageheader($lang_login_php['login']);
 $referer = urlencode($referer);
+echo '<form action="login.php?referer='.$referer.'" method="post" name="loginbox">';
+
 starttable('-1', $lang_login_php['enter_login_pswd'], 2);
 echo <<< EOT
                   $login_failed
                   $cookie_warning
                   <tr>
-                    <form action="login.php?referer=$referer" method="post" name="loginbox">
                         <td class="tableb" width="40%">{$lang_login_php['username']}</td>
                         <td class="tableb" width="60%"><input type="text" class="textinput" name="username" style="width: 100%" tabindex="1" /></td>
-                        <script language="javascript" type="text/javascript">
-                        <!--
-                        document.loginbox.username.focus();
-                        -->
-                        </script>
                   </tr>
                   <tr>
                           <td class="tableb">{$lang_login_php['password']}</td>
@@ -107,12 +103,22 @@ echo <<< EOT
                   <tr>
                     <td align="center" class="tablef"><a href="forgot_passwd.php" class="topmenu">{$lang_login_php['forgot_password_link']}</a></td>
                     <td align="left" class="tablef"><input name="submitted" type="submit" class="button" value="{$lang_login_php['login']}" tabindex="4" /></td>
-                    </form>
                   </tr>
 
 EOT;
 
 endtable();
+
+echo <<< EOT
+
+</form>
+<script language="javascript" type="text/javascript">
+<!--
+document.loginbox.username.focus();
+-->
+</script>
+EOT;
+
 pagefooter();
 ob_end_flush();
 
