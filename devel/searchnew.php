@@ -122,7 +122,7 @@ function dirheader($dir, $dirid)
 
     if (!is_writable($CONFIG['fullpath'] . $dir))
         $warning = "<tr><td class=\"tableh2\" valign=\"middle\" colspan=\"3\">\n" . "<b>{$lang_search_new_php['warning']}</b>: {$lang_search_new_php['change_perm']}</td></tr>\n";
-    return "<tr><td class=\"tableh2\"><input type=\"checkbox\" name=\"checkAll2\" onClick=\"selectAll(this,'pics');\" class=\"checkbox\" title=\"".$lang_check_uncheck_all."\" /></td><td class=\"tableh2\" valign=\"middle\" align=\"right\" colspan=\"2\">\n" .
+    return "<tr><td class=\"tableh2\" valign=\"middle\" align=\"right\" colspan=\"3\">\n" .
     sprintf($lang_search_new_php['target_album'], $dir, albumselect($dirid)) . "</td></tr>\n" . $warning;
 }
 
@@ -366,7 +366,8 @@ function getallalbumsindb(&$album_array)
  */
 function CPGscandir($dir, &$expic_array)
 {
-        $dir = str_replace(".","" ,$dir);
+    global $lang_search_new_php;
+    $dir = str_replace(".","" ,$dir);
     static $dir_id = 0;
     static $count = 0;
     static $pic_id = 0;
@@ -378,6 +379,16 @@ function CPGscandir($dir, &$expic_array)
     if (count($pic_array) > 0) {
         $dir_id_str = sprintf("d%04d", $dir_id++);
         echo dirheader($dir, $dir_id_str);
+        echo <<< EOT
+        <tr>
+                <td class="tablef">
+                    <input type="checkbox" name="checkAll2" onClick="selectAll(this,'pics');" class="checkbox" title="{$lang_check_uncheck_all}" />
+                </td>
+                <td colspan="2" align="right" class="tablef">
+                        <input type="submit" class="button" name="insert" value="{$lang_search_new_php['insert_selected']}" />
+                </td>
+        </tr>
+EOT;
         foreach ($pic_array as $picture) {
             $count++;
             $pic_id_str = sprintf("i%04d", $pic_id++);
@@ -529,7 +540,7 @@ EOT;
                 <td class="tablef">
                     <input type="checkbox" name="checkAll" onClick="selectAll(this,'pics');" class="checkbox" title="$lang_check_uncheck_all" />
                 </td>
-                <td colspan="2" align="center" class="tablef">
+                <td colspan="2" align="right" class="tablef">
                         <input type="submit" class="button" name="insert" value="{$lang_search_new_php['insert_selected']}" />
                 </td>
         </tr>
