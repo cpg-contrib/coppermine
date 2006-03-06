@@ -194,7 +194,7 @@ if (isset($_POST['change_profile']) && USER_ID && UDB_INTEGRATION == 'coppermine
         $profile6 = addslashes($_POST['user_profile6']);
         $email = addslashes($_POST['email']);
 
-    $sql = "UPDATE {$CONFIG['TABLE_USERS']} SET " . "user_profile1 = '$profile1', " . "user_profile2 = '$profile2', " . "user_profile3 = '$profile3', " . "user_profile4 = '$profile4', " . "user_profile5 = '$profile5', " . "user_profile6 = '$profile6', user_email = '$email' " . "WHERE user_id = '" . USER_ID . "'";
+    $sql = "UPDATE {$CONFIG['TABLE_USERS']} SET " . "user_profile1 = '$profile1', " . "user_profile2 = '$profile2', " . "user_profile3 = '$profile3', " . "user_profile4 = '$profile4', " . "user_profile5 = '$profile5', " . "user_profile6 = '$profile6'" . ($CONFIG['allow_email_change'] ? ", user_email = '$email'" : "") . " WHERE user_id = '" . USER_ID . "'";
 
 
 
