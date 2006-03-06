@@ -834,17 +834,18 @@ EOT;
 
 if (!isset($template_add_your_comment))  //{THEMES}
 $template_add_your_comment = <<<EOT
-<table align="center" width="{WIDTH}" cellspacing="1" cellpadding="0" class="maintable">
-        <tr>
-                <td width="100%" class="tableh2_compact"><b>{ADD_YOUR_COMMENT}</b></td>
-        </tr>
-        <tr>
-                <td colspan="3">
-                <form method="post" name="post" action="db_input.php">
+        <form method="post" name="post" action="db_input.php">
+                <table align="center" width="{WIDTH}" cellspacing="1" cellpadding="0" class="maintable">
+                        <tr>
+                                        <td width="100%" class="tableh2_compact"><b>{ADD_YOUR_COMMENT}</b></td>
+                        </tr>
+                        <tr>
+                <td colspan="1">
                         <table width="100%" cellpadding="0" cellspacing="0">
 
 <!-- BEGIN user_name_input -->
-                                <tr><td class="tableb_compact">
+                                                        <tr>
+                                                                <td class="tableb_compact">
                                         {NAME}
                                 </td>
                                 <td class="tableb_compact">
@@ -853,21 +854,27 @@ $template_add_your_comment = <<<EOT
 <!-- END user_name_input -->
 <!-- BEGIN input_box_smilies -->
                                 <td class="tableb_compact">
-                                {COMMENT} </td>
+                                {COMMENT}
+                                                                </td>
                                 <td width="100%" class="tableb_compact">
-                                <input type="text" class="textinput" id="message" name="msg_body" onselect="storeCaret_post(this);" onclick="storeCaret_post(this);" onkeyup="storeCaret_post(this);" maxlength="{MAX_COM_LENGTH}" style="width: 100%;" />                                        <!-- END input_box_smilies -->
+                                <input type="text" class="textinput" id="message" name="msg_body" onselect="storeCaret_post(this);" onclick="storeCaret_post(this);" onkeyup="storeCaret_post(this);" maxlength="{MAX_COM_LENGTH}" style="width: 100%;" />
+                                                                </td>
+<!-- END input_box_smilies -->
 <!-- BEGIN input_box_no_smilies -->
                                 <td class="tableb_compact">
+                                {COMMENT}
+                                                                </td>
+                                <td width="100%" class="tableb_compact">
                                 <input type="text" class="textinput" id="message" name="msg_body"  maxlength="{MAX_COM_LENGTH}" style="width: 100%;" />
-<!-- END input_box_no_smilies -->
                                 </td>
+<!-- END input_box_no_smilies -->
                                 <td class="tableb_compact">
                                 <input type="hidden" name="event" value="comment" />
                                 <input type="hidden" name="pid" value="{PIC_ID}" />
                                 <input type="submit" class="comment_button" name="submit" value="{OK}" />
-                                </td></tr>
+                                </td>
+                                                        </tr>
                         </table>
-                </form>
                 </td>
         </tr>
 <!-- BEGIN smilies -->
@@ -876,9 +883,9 @@ $template_add_your_comment = <<<EOT
                         {SMILIES}
                 </td>
         </tr>
-</table>
 <!-- END smilies -->
-
+                </table>
+        </form>
 EOT;
 // HTML template used by the cpg_die function
 if (!isset($template_cpg_die))  //{THEMES}
@@ -1082,7 +1089,7 @@ $template_report_comment = <<<EOT
 <table border="0" cellspacing="0" cellpadding="1" align="center">
   <tr>
     <td bgcolor="#000000">
-      <table border="0" cellspacing="0" cellpadding="10" bgcolor="#ffffff">
+      <table border="0" cellspacing="0" cellpadding="10" bgcolor="#FFFFFF">
         <tr>
           <td valign="top">
            {COMMENT}
@@ -1739,14 +1746,15 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
     }
 
     $cat_link = is_numeric($aid) ? '' : '&amp;cat=' . $cat;
+        $uid_link = is_numeric($_GET['uid']) ? '&amp;uid=' . $_GET['uid'] : '';
 
     $theme_thumb_tab_tmpl = $template_tab_display;
 
     if ($mode == 'thumb') {
         $theme_thumb_tab_tmpl['left_text'] = strtr($theme_thumb_tab_tmpl['left_text'], array('{LEFT_TEXT}' => $aid == 'lastalb' ? $lang_album_list['album_on_page'] : $lang_thumb_view['pic_on_page']));
-        $theme_thumb_tab_tmpl['inactive_tab'] = strtr($theme_thumb_tab_tmpl['inactive_tab'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . '&amp;page=%d'));
-        $theme_thumb_tab_tmpl['inactive_next_tab'] = strtr($theme_thumb_tab_tmpl['inactive_next_tab'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . '&amp;page=%d'));
-        $theme_thumb_tab_tmpl['inactive_prev_tab'] = strtr($theme_thumb_tab_tmpl['inactive_prev_tab'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . '&amp;page=%d'));
+        $theme_thumb_tab_tmpl['inactive_tab'] = strtr($theme_thumb_tab_tmpl['inactive_tab'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . $uid_link . '&amp;page=%d'));
+        $theme_thumb_tab_tmpl['inactive_next_tab'] = strtr($theme_thumb_tab_tmpl['inactive_next_tab'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . $uid_link . '&amp;page=%d'));
+        $theme_thumb_tab_tmpl['inactive_prev_tab'] = strtr($theme_thumb_tab_tmpl['inactive_prev_tab'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . $uid_link . '&amp;page=%d'));
     } else {
         $theme_thumb_tab_tmpl['left_text'] = strtr($theme_thumb_tab_tmpl['left_text'], array('{LEFT_TEXT}' => $lang_thumb_view['user_on_page']));
         $theme_thumb_tab_tmpl['inactive_tab'] = strtr($theme_thumb_tab_tmpl['inactive_tab'], array('{LINK}' => 'index.php?cat=' . $cat . '&amp;page=%d'));
@@ -1808,7 +1816,7 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
                     );
             } else {
                 $params = array('{CELL_WIDTH}' => $cell_width,
-                    '{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&amp;pos={$thumb['pos']}",
+                              '{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&amp;pos={$thumb['pos']}$uid_link",
                     '{THUMB}' => $thumb['image'],
                     '{CAPTION}' => $thumb['caption'],
                     '{ADMIN_MENU}' => $thumb['admin_menu']
@@ -1863,6 +1871,7 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
     }
 
     $cat_link = is_numeric($aid) ? '' : '&amp;cat=' . $cat;
+        $uid_link = is_numeric($_GET['uid']) ? '&amp;uid=' . $_GET['uid'] : '';
 
     $thumbcols = $CONFIG['thumbcols'];
     $cell_width = ceil(100 / $CONFIG['max_film_strip_items']) . '%';
@@ -1873,7 +1882,7 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
         $i++;
         if ($mode == 'thumb') {
             $params = array('{CELL_WIDTH}' => $cell_width,
-                '{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&amp;pos={$thumb['pos']}",
+                '{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&amp;pos={$thumb['pos']}$uid_link",
                 '{THUMB}' => $thumb['image'],
                 '{CAPTION}' => $thumb['caption'],
                 '{ADMIN_MENU}' => ''
@@ -2159,6 +2168,7 @@ function theme_html_img_nav_menu()
     global $album, $cat, $pos, $pic_count, $lang_img_nav_bar, $lang_text_dir, $template_img_navbar;
 
     $cat_link = is_numeric($album) ? '' : '&amp;cat=' . $cat;
+        $uid_link = is_numeric($_GET['uid']) ? '&amp;uid=' . $_GET['uid'] : '';
 
     $human_pos = $pos + 1;
     $page = ceil(($pos + 1) / ($CONFIG['thumbrows'] * $CONFIG['thumbcols']));
@@ -2177,7 +2187,7 @@ function theme_html_img_nav_menu()
 
     if ($pos > 0) {
         $prev = $pos - 1;
-        $prev_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$prev";
+        $prev_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$prev$uid_link";
         $prev_title = $lang_img_nav_bar['prev_title'];
                                 $meta_nav .= "<link rel=\"prev\" href=\"$prev_tgt\" title=\"$prev_title\" />
                                 ";
@@ -2188,7 +2198,7 @@ function theme_html_img_nav_menu()
 
     if ($pos < ($pic_count -1)) {
         $next = $pos + 1;
-        $next_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$next";
+        $next_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$next$uid_link";
         $next_title = $lang_img_nav_bar['next_title'];
                                 $meta_nav .= "<link rel=\"next\" href=\"$next_tgt\" title=\"$next_title\"/>
                                 ";
@@ -2214,11 +2224,11 @@ function theme_html_img_nav_menu()
 
     }
 
-                    $thumb_tgt = "thumbnails.php?album=$album$cat_link&amp;page=$page";
+                              $thumb_tgt = "thumbnails.php?album=$album$cat_link&amp;page=$page$uid_link";
         $meta_nav .= "<link rel=\"up\" href=\"$thumb_tgt\" title=\"".$lang_img_nav_bar['thumb_title']."\"/>
         ";
 
-    $slideshow_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pid=$pid&amp;slideshow=".$CONFIG['slideshow_interval'];
+    $slideshow_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link$uid_link&amp;pid=$pid&amp;slideshow=".$CONFIG['slideshow_interval'];
 
     $pic_pos = sprintf($lang_img_nav_bar['pic_pos'], $human_pos, $pic_count);
 
@@ -2389,7 +2399,11 @@ function theme_html_comments($pid)
             '{WIDTH}' => $CONFIG['picture_table_width'],
             );
 
-        if ($CONFIG['enable_smilies']) $params['{SMILIES}'] = generate_smilies();
+        if ($CONFIG['enable_smilies']){
+                        $params['{SMILIES}'] = generate_smilies();
+                } else {
+                        template_extract_block($template_add_your_comment, 'smilies');
+                }
 
         $html .= template_eval($template_add_your_comment, $params);
     }
