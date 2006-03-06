@@ -236,7 +236,7 @@ function cpg_db_error($the_error)
 {
         global $CONFIG,$lang_errors;
 
-        if (!$CONFIG['debug_mode']) {
+        if ($CONFIG['debug_mode'] === '0' || ($CONFIG['debug_mode'] === '2' && !GALLERY_ADMIN_MODE)) {
             cpg_die(CRITICAL_ERROR, $lang_errors['database_query'], __FILE__, __LINE__);
         } else {
 
