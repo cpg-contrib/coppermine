@@ -19,6 +19,7 @@
 
 define('IN_COPPERMINE', true);
 define('UTIL_PHP', true);
+define('UPLOAD_PHP', true);
 
 require('include/init.inc.php');
 require('include/picmgmt.inc.php');
