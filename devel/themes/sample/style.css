@@ -139,12 +139,12 @@ a:hover {
         text-decoration: underline;
 }
 
-bblink a {
+.bblink a {
         color: #0033CC;
         text-decoration: none;
 }
 
-bblink a:hover {
+.bblink a:hover {
         color: #0033CC;
         text-decoration: underline;
 }

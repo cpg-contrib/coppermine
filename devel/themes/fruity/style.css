@@ -145,12 +145,12 @@ a:hover {
         background-color: #6BBE10;
 }
 
-bblink a {
+.bblink a {
         color: #FFA600;
         text-decoration: none;
 }
 
-bblink a:hover {
+.bblink a:hover {
         color: #FFFFFF;
         text-decoration: none;
         background-color: #6BBE10;
