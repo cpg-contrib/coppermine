@@ -83,7 +83,7 @@ EOT;
 // Display picture information
 function html_picinfo()
 {
-    global $CONFIG, $CURRENT_PIC_DATA, $CURRENT_ALBUM_DATA, $THEME_DIR, $FAVPICS;
+    global $CONFIG, $CURRENT_PIC_DATA, $CURRENT_ALBUM_DATA, $THEME_DIR, $FAVPICS, $REFERER;
     global $album, $lang_picinfo, $lang_display_image_php, $lang_byte_units, $lastup_date_fmt;
 
     if ($CURRENT_PIC_DATA['owner_id'] && $CURRENT_PIC_DATA['owner_name']) {
@@ -170,10 +170,11 @@ function html_picinfo()
     $info[$lang_picinfo['URL']] = '<a href="' . $CONFIG["ecards_more_pic_target"] . (substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') .basename($_SERVER['PHP_SELF']) . "?pos=-$CURRENT_PIC_DATA[pid]" . '" >' . $CONFIG["ecards_more_pic_target"] . (substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') . basename($_SERVER['PHP_SELF']) . "?pos=-$CURRENT_PIC_DATA[pid]" . '</a>';
     // with subdomains the variable is $_SERVER["SERVER_NAME"] does not return the right value instead of using a new config variable I reused $CONFIG["ecards_more_pic_target"] no trailing slash in the configure
     // Create the add to fav link
+	$ref = $REFERER ? "&amp;ref=$REFERER" : '';
     if (!in_array($CURRENT_PIC_DATA['pid'], $FAVPICS)) {
-        $info[$lang_picinfo['addFavPhrase']] = "<a href=\"addfav.php?pid=" . $CURRENT_PIC_DATA['pid'] . "\" >" . $lang_picinfo['addFav'] . '</a>';
+        $info[$lang_picinfo['addFavPhrase']] = "<a href=\"addfav.php?pid=" . $CURRENT_PIC_DATA['pid'] . $ref . "\" >" . $lang_picinfo['addFav'] . '</a>';
     } else {
-        $info[$lang_picinfo['addFavPhrase']] = "<a href=\"addfav.php?pid=" . $CURRENT_PIC_DATA['pid'] . "\" >" . $lang_picinfo['remFav'] . '</a>';
+        $info[$lang_picinfo['addFavPhrase']] = "<a href=\"addfav.php?pid=" . $CURRENT_PIC_DATA['pid']  . $ref . "\" >" . $lang_picinfo['remFav'] . '</a>';
     }
 
     /**
