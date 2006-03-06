@@ -335,3 +335,5 @@ Fixed some deprecated tags like <font> - 20th Feb 2006, GauGau
 Fixed help pop-up in batch-add section - 20th Feb 2006, GauGau
 Fixed bug in charsetmgr - 23rd Feb 2006, Abbas
 Added default values for $or and $galleryicon in editpics.php to remove unnecessary notices - 27th Feb 2006, Paver
+Fixed redirecting back to original url after adding to favs - 6th March 2006, GauGau
+Fixing issue with smilie url prefix in admin comment notification - 6th March 2006, GauGau
