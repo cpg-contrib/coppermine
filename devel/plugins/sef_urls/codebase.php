@@ -46,27 +46,37 @@ function sef_urls_convert(&$html) {
     // Rewrite index.php?cat=[category] URLs to index-[category].html
     $html = preg_replace('/index\.php\?cat=([0-9]+)/i','index-$1.html',$html);
     
-    // Rewrite thumnails.php?album=[album]&cat=[category]&page=[category] URLs to thumbnails-[album]-[category]-page-[page].html
-    $html = preg_replace('/thumbnails\.php\?album=([a-z0-9]+)(\&|\&amp;)cat=([0-9]+)(\&|\&amp;)page=([0-9]+)/i','thumbnails-$1-$3-page-$5.html',$html);    
+    // Rewrite thumbnails.php?album=[album]&cat=[category]&page=[category] URLs to thumbnails-[album]-[category]-page-[page].html
+    $html = preg_replace('/thumbnails\.php\?album=([a-z0-9]+)(\&|\&amp;)cat=([\-0-9]+)(\&|\&amp;)page=([0-9]+)/i','thumbnails-$1-$3-page-$5.html',$html);
+	
+    // Rewrite thumbnails.php?album=[album]&cat=[category] URLs to thumbnails-[album]-[category].html
+    $html = preg_replace('/thumbnails\.php\?album=([a-z0-9]+)(\&|\&amp;)cat=([\-0-9]+)/i','thumbnails-$1-$3.html',$html);
 
-    // Rewrite thumnails.php?album=[album]&cat=[category] URLs to thumbnails-[album]-[category].html
-    $html = preg_replace('/thumbnails\.php\?album=([a-z0-9]+)(\&|\&amp;)cat=([0-9]+)/i','thumbnails-$1-$3.html',$html);
-
-    // Rewrite thumnails.php?album=[album]&page=[category] URLs to thumbnails-[album]-page-[page].html
+    // Rewrite thumbnails.php?album=[album]&page=[category] URLs to thumbnails-[album]-page-[page].html
     $html = preg_replace('/thumbnails\.php\?album=([a-z0-9]+)(\&|\&amp;)page=([0-9]+)/i','thumbnails-$1-page-$3.html',$html);
 
+    // Rewrite thumbnails.php?album=search&search=[searchterm] URLs to thumbnails-search-[searchterm].html
+    $html = preg_replace('/thumbnails\.php\?album=search(\&|\&amp;)search=([^"]+)/i','thumbnails-search-$2.html',$html);
+	
     // Rewrite thumbnails.php?album=[album] URLs to thumbnails-[album].html
     $html = preg_replace('/thumbnails\.php\?album=([a-z0-9]+)/i','thumbnails-$1.html',$html);
 
     // Rewrite displayimage.php?album=[album]&cat=[category]&pos=[position] URLs to displayimage-[album]-[category]-[position].html
-    $html = preg_replace('/displayimage\.php\?album=([a-z0-9]+)(\&|\&amp;)cat=([0-9]+)(\&|\&amp;)pos=([\-0-9]+)/i','displayimage-$1-$3-$5.html',$html);
+    $html = preg_replace('/displayimage\.php\?album=([a-z0-9]+)(\&|\&amp;)cat=([\-0-9]+)(\&|\&amp;)pos=([\-0-9]+)/i','displayimage-$1-$3-$5.html',$html);
 
     // Rewrite displayimage.php?album=[album]&pos=[position] URLs to displayimage-[album]-[position].html
     $html = preg_replace('/displayimage\.php\?album=([a-z0-9]+)(\&|\&amp;)pos=([\-0-9]+)/i','displayimage-$1-$3.html',$html);
 
-    // Rewrite displayimage.php?album=[album] URLs to displayimage-[album].html
-    $html = preg_replace('/displayimage\.php\?pos=([\-0-9]+)/i','displayimage-$1.html',$html);
+    // Rewrite displayimage.php?pos=-[pid] URLs to displayimage-[pid].html
+    $html = preg_replace('/displayimage\.php\?pos=-([0-9]+)/i','displayimage-$1.html',$html);
 
+	 // Rewrite displayimage.php?album=[album]&pid=[pid]&slideshow=[interval] URLs to slideshow-[album]-[pid]-[interval].html
+	$html = preg_replace('/displayimage\.php\?album=([a-z0-9]+)(\&|\&amp;)pid=([0-9]+)(\&|\&amp;)slideshow=([0-9]+)/i','slideshow-$1-$3-$5.html',$html);
+	
+	 // Rewrite displayimage.php?album=[metaalbum]&cat=[category]&pid=[pid]&slideshow=[interval] URLs to slideshow-[album]-[category]-[pid]-[interval].html
+	$html = preg_replace('/displayimage\.php\?album=([a-z]+)(\&|\&amp;)cat=([\-0-9]+)(\&|\&amp;)pid=([0-9]+)(\&|\&amp;)slideshow=([0-9]+)/i','slideshow-$1-$3-$5-$7.html',$html);
+
+	
     // Return modified HTML
     return $html;
 }
