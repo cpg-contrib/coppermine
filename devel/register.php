@@ -256,7 +256,7 @@ function check_user_info(&$error)
         mysql_free_result($result);
     }
 
-    if ($CONFIG['reg_requires_valid_email']) {
+    if ($CONFIG['reg_requires_valid_email'] || $CONFIG['admin_activation']) {
         $active = 'NO';
         list($usec, $sec) = explode(' ', microtime());
         $seed = (float) $sec + ((float) $usec * 100000);
