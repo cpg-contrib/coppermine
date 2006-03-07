@@ -10,7 +10,7 @@
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
   ********************************************
-  Coppermine version: 1.4.5
+  Coppermine version: 1.4.3
   $Source$
   $Revision$
   $Author$
@@ -28,7 +28,7 @@ $lang_translation_info = array(
   'trans_name'=> 'Pavel Kolar - PKDATA',
   'trans_email' => 'p.kolar@pkdata.cz',
   'trans_website' => 'http://www.pkdata.cz/',
-  'trans_date' => '2006-02-08',
+  'trans_date' => '2006-03-03',
 );
 
 $lang_charset = 'utf-8';
@@ -66,7 +66,7 @@ $lang_bad_words = array('píča', 'hovno', '*fuck*', 'prdel', 'čůrák', 'bitch
 $lang_meta_album_names = array(
         'random' => 'Náhodné obrázky',
         'lastup' => 'Nejnovější obrázky',
-        'lastalb'=> 'Naposledy aktualizované galerie',
+        'lastalb'=> 'Naposledy aktualizovaná alba',
         'lastcom' => 'Nejnovější komentáře',
         'topn' => 'Nejprohlíženější',
         'toprated' => 'Nejlépe hodnocené',
@@ -80,7 +80,7 @@ $lang_errors = array(
     'access_denied' => 'Nemáte oprávnění na tuto stránku.',
     'perm_denied' => 'Nemáte dostatečná práva pro potvrzení této operace.',
     'param_missing' => 'Skriptu nebyly předány potřebné parametry',
-    'non_exist_ap' => 'Vybraná galerie/obrázek neexistuje',
+    'non_exist_ap' => 'Vybraná alba/obrázek neexistuje',
     'quota_exceeded' => 'Vyčerpal(a) jste místo na disku.<br /><br />Vaše kvóta je[quota]K, Vaše obrázky zbírají [space]K, přidáním tohoto obrázku byste svoji kvótu překročil',
     'gd_file_type_err' => 'Pokud používáte GD knihovnu jsou podporovány jen obrázky JPG a PNG',
     'invalid_image' => 'Tento obrázek je poškozen/porušen GD knihovna s ním nemůže pracovat.',
@@ -113,8 +113,8 @@ $lang_bbcode_help = 'Následující značky mohou být užitečné: <li>[b]Bold[
 $lang_main_menu = array(
   'home_title' => 'Jít na domovskou stránku',
   'home_lnk' => 'Domů',
-    'alb_list_title' => 'Přejít na seznam galerií',
-    'alb_list_lnk' => 'Seznam galerií',
+    'alb_list_title' => 'Přejít na seznam alb',
+    'alb_list_lnk' => 'Seznam alb',
     'my_gal_title' => 'Přejít do mé osobní galerie',
     'my_gal_lnk' => 'Moje galerie',
   'my_prof_title' => 'Přejít do mého osobního profilu', //cpg1.4
@@ -123,7 +123,7 @@ $lang_main_menu = array(
     'adm_mode_lnk' => 'Admin mód',
     'usr_mode_title' => 'Do uživatelského módu',
     'usr_mode_lnk' => 'Uživatelský mód',
-    'upload_pic_title' => 'Nahrát obrázek do galerie',
+    'upload_pic_title' => 'Nahrát obrázek do alba',
     'upload_pic_lnk' => 'Upload obrázku',
     'register_title' => 'Vytvořit účet',
     'register_lnk' => 'Registrovat se',
@@ -139,7 +139,7 @@ $lang_main_menu = array(
     'topn_lnk' => 'Nejprohlíženější',
   'toprated_title' => 'Ukaž nejlépe hodnocené', //cpg1.4
     'toprated_lnk' => 'Nejlépe hodnocené',
-  'search_title' => 'Hledej galerii', //cpg1.4
+  'search_title' => 'Hledej', //cpg1.4
     'search_lnk' => 'Vyhledávání',
   'fav_title' => 'Jdi na oblíbené', //cpg1.4
     'fav_lnk' => 'Oblíbené',
@@ -154,8 +154,8 @@ $lang_gallery_admin_menu = array(
     'upl_app_lnk' => 'Potvrzení uploadu',
   'admin_title' => 'Konfigurovat', //cpg1.4
   'admin_lnk' => 'Konfigurace', //cpg1.4
-  'albums_title' => 'Konfigurace galerií', //cpg1.4
-    'albums_lnk' => 'Konfigurace galerií',
+  'albums_title' => 'Konfigurace alb', //cpg1.4
+    'albums_lnk' => 'Konfigurace alb',
   'categories_title' => 'Konfigurovat kategorie', //cpg1.4
     'categories_lnk' => 'Konfigurace kategorií',
   'users_title' => 'Nastavit uživatele', //cpg1.4
@@ -176,27 +176,27 @@ $lang_gallery_admin_menu = array(
   'db_ecard_lnk' => 'Zobrazit Ecards',
   'pictures_title' => 'Setřídit obrázky', //cpg1.4
   'pictures_lnk' => 'Setřídit obrázky', //cpg1.4
-  'documentation_lnk' => 'Documentatace', //cpg1.4
+  'documentation_lnk' => 'Dokumentatace', //cpg1.4
   'documentation_title' => 'Coppermine manual', //cpg1.4
 );
 
 $lang_user_admin_menu = array(
-  'albmgr_title' => 'Vytvořit / organizovat moje galerie', //cpg1.4
-    'albmgr_lnk' => 'Vytvořit / organizovat moje galerie',
-  'modifyalb_title' => 'Změnit moje galerie',  //cpg1.4
-    'modifyalb_lnk' => 'Změnit moje galerie',
+  'albmgr_title' => 'Vytvořit / organizovat moje alba', //cpg1.4
+    'albmgr_lnk' => 'Vytvořit / organizovat moje alba',
+  'modifyalb_title' => 'Změnit moje alba',  //cpg1.4
+    'modifyalb_lnk' => 'Změnit moje alba',
   'my_prof_title' => 'Můj profil', //cpg1.4
     'my_prof_lnk' => 'Můj profil',
 );
 
 $lang_cat_list = array(
   'category' => 'Kategorie',
-  'albums' => 'Galerie',
+  'albums' => 'Alba',
   'pictures' => 'Obrázky',
 );
 
 $lang_album_list = array(
-  'album_on_page' => '%d galerie na %d stránce(kách)',
+  'album_on_page' => '%d album na %d stránce(kách)',
 );
 
 $lang_thumb_view = array(
@@ -216,7 +216,7 @@ $lang_thumb_view = array(
     'download_zip' => 'Download jako Zip soubor', //cpg1.3.0
     'pic_on_page' => '%d obrázků na %d stránkách',
     'user_on_page' => '%d uživatelů na %d stránkách',
-  'enter_alb_pass' => 'Vlož heslo pro galerii', //cpg1.4
+  'enter_alb_pass' => 'Vlož heslo pro album', //cpg1.4
   'invalid_pass' => 'Vadné heslo', //cpg1.4
   'pass' => 'Heslo', //cpg1.4
   'submit' => 'Odeslat', //cpg1.4
@@ -390,14 +390,14 @@ if (defined('MODE_PHP')) $lang_mode_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
-    'alb_need_name' => 'Galerie musí mít jméno',
+    'alb_need_name' => 'Album musí mít jméno',
     'confirm_modifs' => 'Jste si jist(a) těmito změnami ?',
     'no_change' => 'Neudělal(a) jste žádné změny !',
-    'new_album' => 'Nová galerie',
-    'confirm_delete1' => 'Jste si jist(a), že chcete smazat tuto galerii ?',
+    'new_album' => 'Nové album',
+    'confirm_delete1' => 'Jste si jist(a), že chcete smazat toto album?',
     'confirm_delete2' => '\nVšechny obrázky a komentáře budou smazány !',
-    'select_first' => 'Nejprve vyberte galerii',
-    'alb_mrg' => 'Správce galerií',
+    'select_first' => 'Nejprve vyberte album',
+    'alb_mrg' => 'Správce alb',
     'my_gallery' => '* Moje galerie *',
     'no_category' => '* Není kategorie *',
     'delete' => 'Smazat',
@@ -565,7 +565,7 @@ if (defined('CALENDAR_PHP')) $lang_calendar_php = array(
 if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
     'miss_param' => 'Parametry potřebné pro \'%s\'operaci not supplied !',
     'unknown_cat' => 'Vybraná kategorie v databázi neexistuje',
-    'usergal_cat_ro' => 'Nelze smazat uživatelské galerie !',
+    'usergal_cat_ro' => 'Nelze smazat uživatelská alba  !',
     'manage_cat' => 'Spravovat kategorie',
     'confirm_delete' => 'Opravdu chcete SMAZAT tuto kategorii',
     'category' => 'Kategorie',
@@ -663,14 +663,14 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Cesta pro volitelné vložené záhlaví', 'custom_header_path', 0, 'f=index.htm&amp;as=admin_theme_include_path_start&amp;ae=admin_theme_include_path_end'), //cpg1.4
   array('Cesta pro volitelné vložené zápatí', 'custom_footer_path', 0, 'f=index.htm&amp;as=admin_theme_include_path_start&amp;ae=admin_theme_include_path_end'), //cpg1.4
 
-  'Nastavení zobrazení výpisu galerií',
+  'Nastavení zobrazení výpisu alb',
   array('Velikost šířky hlavní tabukly (pixlů nebo %)', 'main_table_width', 0, 'f=index.htm&amp;as=admin_album_table-width&amp;ae=admin_album_table-width_end'), //cpg1.4
   array('Počet zobrazovaných zanoření kategorií', 'subcat_level', 0, 'f=index.htm&amp;as=admin_album_category-levels&amp;ae=admin_album_category-levels_end'), //cpg1.4
-  array('Počet galerií pro zobrazení', 'albums_per_page', 0, 'f=index.htm&amp;as=admin_album_number&amp;ae=admin_album_number_end'), //cpg1.4
-  array('Počet sloupců v listu galerie', 'album_list_cols', 0, 'f=index.htm&amp;as=admin_album_columns&amp;ae=admin_album_columns_end'), //cpg1.4
+  array('Počet alb pro zobrazení', 'albums_per_page', 0, 'f=index.htm&amp;as=admin_album_number&amp;ae=admin_album_number_end'), //cpg1.4
+  array('Počet sloupců v listu alba', 'album_list_cols', 0, 'f=index.htm&amp;as=admin_album_columns&amp;ae=admin_album_columns_end'), //cpg1.4
   array('Velikost náhledu v pixlech', 'alb_list_thumb_size', 0, 'f=index.htm&amp;as=admin_album_thumbnail-size&amp;ae=admin_album_thumbnail-size_end'), //cpg1.4
   array('Styl hlavní stránky', 'main_page_layout', 0, 'f=index.htm&amp;as=admin_album_list_content&amp;ae=admin_album_list_content_end'), //cpg1.4
-  array('Ukaž první galerii v kategoriích','first_level',1, 'f=index.htm&amp;as=admin_album_first-level_thumbs&amp;ae=admin_album_first-level_thumbs_end'), //cpg1.4
+  array('Ukaž první album v kategoriích','first_level',1, 'f=index.htm&amp;as=admin_album_first-level_thumbs&amp;ae=admin_album_first-level_thumbs_end'), //cpg1.4
   array('Setřiď kategorie alfanumericky (namísto uživatelského nastavení třídění)','categories_alpha_sort',1, 'f=index.htm&amp;as=admin_album_list_alphasort_start&amp;ae=admin_album_list_alphasort_end'), //cpg1.4
   array('Ukaž celkový počet souborů','link_pic_count',1, 'f=index.htm&amp;as=admin_album_linked_files_start&amp;ae=admin_album_linked_files_end'), //cpg1.4
 
@@ -684,7 +684,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Zobraz jméno uploadu pod náhledem', 'display_uploader', 1, 'f=index.htm&amp;as=admin_thumbnail_display_uploader&amp;ae=admin_thumbnail_display_uploader_end'), //cpg1.4
   //array('Display name of admin uploaders below the thumbnail', 'display_admin_uploader', 1, 'f=index.htm&amp;as=admin_thumbnail_display_admin_uploader&amp;ae=admin_thumbnail_display_admin_uploader_end'), //cpg1.4
   array('Zobraz jméno souboru pod náhledem', 'display_filename', 1, 'f=index.htm&amp;as=admin_thumbnail_display_filename&amp;ae=admin_thumbnail_display_filename_end'), //cpg1.4
-  array('Zobraz popis galerie', 'alb_desc_thumb', 1, 'f=index.htm&amp;as=admin_thumbnail_display_description&amp;ae=admin_thumbnail_display_description_end'), //cpg1.4
+  array('Zobraz popis alba', 'alb_desc_thumb', 1, 'f=index.htm&amp;as=admin_thumbnail_display_description&amp;ae=admin_thumbnail_display_description_end'), //cpg1.4
   array('Přednastavené třídění souborů', 'default_sort_order', 3, 'f=index.htm&amp;as=admin_thumbnail_default_sortorder&amp;ae=admin_thumbnail_default_sortorder_end'), //cpg1.4
   array('Minimální počet hlasujících, aby byl soubor umístěn mezi \'top-rated\' list', 'min_votes_for_rating', 0, 'f=index.htm&amp;as=admin_thumbnail_minimum_votes&amp;ae=admin_thumbnail_minimum_votes_end'), //cpg1.4
 
@@ -751,7 +751,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Oznam adminovi uživatelský upload pro očekávané schválení', 'upl_notify_admin_email', 1, 'f=index.htm&amp;as=admin_approval_notify&amp;ae=admin_approval_notify_end'), //cpg1.4
   array('Povol registrovaným uživatelům prohlížet seznam uživatelů', 'allow_memberlist', 1, 'f=index.htm&amp;as=admin_user_memberlist&amp;ae=admin_user_memberlist_end'), //cpg1.4
   array('Povol uživateli měnit svou emailovou adresu ve svém profilu', 'allow_email_change', 1, 'f=index.htm&amp;as=admin_user_allow_email_change&amp;ae=admin_user_allow_email_change_end'), //cpg1.4
-  array('Povol uživateli kontrolu nad jeho uploadovanými obrázky v galeriích', 'users_can_edit_pics', 1, 'f=index.htm&amp;as=admin_user_editpics_public_start&amp;ae=admin_user_editpics_public_end'), //cpg1.4
+  array('Povol uživateli kontrolu nad jeho uploadovanými obrázky v albech', 'users_can_edit_pics', 1, 'f=index.htm&amp;as=admin_user_editpics_public_start&amp;ae=admin_user_editpics_public_end'), //cpg1.4
   array('Počet neúspěšných přihlášení pro dočasné zablokování uživatele (ochrana proti  útoku silou)', 'login_threshold', 0, 'f=index.htm&amp;as=admin_user_login_start&amp;ae=admin_user_login_end'), //cpg1.4
   array('Doba dočasného zablokování po neúspěšných pokusech o přihlášení', 'login_expiry', 0, 'f=index.htm&amp;as=admin_user_login_start&amp;ae=admin_user_login_end'), //cpg1.4
   array('Povol zprávu pro admina', 'report_post', 1, 'f=index.htm&amp;as=admin_user_enable_report&amp;ae=admin_user_enable_report_end'),  //cpg1.4
@@ -832,10 +832,10 @@ if (defined('DB_ECARD_PHP')) $lang_db_ecard_php = array(
 if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
     'empty_name_or_com' => 'Vložte jméno a Váš komentář',
     'com_added' => 'Váš komentář byl přidán',
-    'alb_need_title' => 'Prosím, dejte galerii nadpis !',
+    'alb_need_title' => 'Prosím, dejte albu nadpis !',
     'no_udp_needed' => 'Aktualizace není třeba.',
-    'alb_updated' => 'Galerie byla přidána',
-    'unknown_album' => 'Vybraná galerie neexistuje nebo nemáte práva pro upload do této galerie',
+    'alb_updated' => 'Album bylo přidáno',
+    'unknown_album' => 'Vybrané album neexistuje nebo nemáte práva pro upload do tohoto alba',
     'no_pic_uploaded' => 'Obrázek nebyl uploadován!<br /><br />zkontrolujte zda server podporuje upload souborů, či zda jste opravdu zadal(a) obrázek k uploadu...',
     'err_mkdir' => '  ERROR: Chyba při vytváření adresáře (nebyl vytvořen) %s !',
     'dest_dir_ro' => 'Do cílového adresáře %s nemůže skript zapisovat (zkontrolujte práva) !',
@@ -844,13 +844,13 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
     'err_imgsize_too_large' => 'Velikost souboru, který se snažíte uploadovat, je příliš velká (max. velikost je %s KB) !',
     'err_invalid_img' => 'Soubor který jste nahrál(a) na server není validním obrázkem !',
     'allowed_img_types' => 'Můžete uploadovat pouze obrázky %s .',
-    'err_insert_pic' => 'Obrázek \'%s\' nelze vložit do galerie ',
+    'err_insert_pic' => 'Obrázek \'%s\' nelze vložit do alba ',
     'upload_success' => 'Váš obrázek byl nahrán na server bez problémů<br /><br />Bude viditelný po schválení adminem.',
     'notify_admin_email_subject' => '%s - upozornění na Upload', //cpg1.3.0
-    'notify_admin_email_body' => '%s nahrál do galerie obrázek, který vyžaduje vaše potvrzení. Navštivte prosím %s', //cpg1.3.0
+    'notify_admin_email_body' => '%s nahrál do alba obrázek, který vyžaduje vaše potvrzení. Navštivte prosím %s', //cpg1.3.0
     'info' => 'Informace',
     'com_added' => 'Komentářu přidáno',
-    'alb_updated' => 'Galerie aktualizována',
+    'alb_updated' => 'Album aktualizováno',
     'err_comment_empty' => 'Váš komentář je prázdný !',
     'err_invalid_fext' => 'Pouze soubory s následujícími koncovkami jsou podporované : <br /><br />%s.',
     'no_flood' => 'Jste autor posledního komentáře k tomuto obrázku<br /><br />Pokud ho chcete změnit použijte volbu upravit ',
@@ -858,7 +858,7 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
     'upl_success' => 'Váš obrázek byl v pořádku přidán',
     'email_comment_subject' => 'Komentář byl přidán do Coppermine Photo Gallery', //cpg1.3.0
     'email_comment_body' => 'Někdo přidal komentář do vaší galerie. Prohlédněte si ho na', //cpg1.3.0
-  'album_not_selected' => 'Galerie není vybrána', //cpg1.4
+  'album_not_selected' => 'Album není vybráno', //cpg1.4
   'com_author_error' => 'Registrovaný uživatel již toto jméno používá. Zkuste vybrat jiné.', //cpg1.4
 );
 
@@ -874,14 +874,14 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
     'err_del' => 'nelze smazat',
     'thumb_pic' => 'náhled',
     'comment' => 'komentář',
-    'im_in_alb' => 'patří do galerie',
-    'alb_del_success' => 'Galerie \'%s\' smazána',
-    'alb_mgr' => 'Správce galerií',
+    'im_in_alb' => 'patří do alba',
+    'alb_del_success' => 'Album \'%s\' smazáno',
+    'alb_mgr' => 'Správce alb',
     'err_invalid_data' => 'Obdržena chybná data \'%s\'',
-    'create_alb' => 'Vytvářím galerii \'%s\'',
-    'update_alb' => 'Aktualizuji galerii \'%s\' s nadpisem \'%s\' a seznamem \'%s\'',
+    'create_alb' => 'Vytvářím album \'%s\'',
+    'update_alb' => 'Aktualizuji album \'%s\' s nadpisem \'%s\' a seznamem \'%s\'',
     'del_pic' => 'Smazat obrázek',
-    'del_alb' => 'Smazat galerii',
+    'del_alb' => 'Smazat album',
     'del_user' => 'Smazat uživatele',
     'err_unknown_user' => 'Vybraný uživatel neexistuje !',
     'comment_deleted' => 'Komentář bezchybně smazán ! ',
@@ -942,7 +942,7 @@ $lang_display_image_php = array(
 $lang_picinfo = array(
     'title' =>'Informace o obrázku',
     'Filename' => 'Jméno souboru',
-    'Album name' => 'Jméno galerie',
+    'Album name' => 'Jméno alba',
     'Rating' => 'Hodnocení (%s hlas(ů))',
     'Keywords' => 'Klíčová slova',
     'File Size' => 'Velikost souboru',
@@ -1061,7 +1061,7 @@ if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array
     'rcpt_email' => 'Doručit na email',
     'greetings' => 'Pozdrav/oslovení',
     'message' => 'Zpráva',
-  'ecards_footer' => 'Odesláno od %s z IP %s v %s (čas galerie)', //cpg1.4
+  'ecards_footer' => 'Odesláno od %s z IP %s v %s (čas alba)', //cpg1.4
   'preview' => 'Náhled ecard', //cpg1.4
   'preview_button' => 'Náhled', //cpg1.4
   'submit_button' => 'Poslat ecard', //cpg1.4
@@ -1075,10 +1075,10 @@ if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array
 if (defined('REPORT_FILE_PHP') || defined('DISPLAYREPORT_PHP')) $lang_report_php =array(
   'title' => 'Report administrátorovi', //cpg1.4
   'invalid_email' => '<b>Pozor</b> : vadný email !', //cpg1.4
-  'report_subject' => 'Výstraha z %s v galerii %s', //cpg1.4
+  'report_subject' => 'Výstraha z %s v albu %s', //cpg1.4
   'view_report' => 'Alternativní link jestliže není report korektně zobrazen', //cpg1.4
   'view_report_plaintext' => 'Pro zobrazení reportu zkopírujte link do prohlížeče.', //cpg1.4
-  'view_more_pics' => 'Galerie', //cpg1.4
+  'view_more_pics' => 'Album', //cpg1.4
   'send_success' => 'Váš report byl zaslán.', //cpg1.4
   'send_failed' => 'Promiňte, ale server nemůže odeslat váš report...', //cpg1.4
   'from' => 'Od', //cpg1.4
@@ -1090,7 +1090,7 @@ if (defined('REPORT_FILE_PHP') || defined('DISPLAYREPORT_PHP')) $lang_report_php
   'comment_field_name' => 'Report odeslán "%s"', //cpg1.4
   'reason' => 'Důvod', //cpg1.4
   'message' => 'Zpráva', //cpg1.4
-  'report_footer' => 'Odeslán %s z IP %s v %s (čas galerie)', //cpg1.4
+  'report_footer' => 'Odeslán %s z IP %s v %s (čas album)', //cpg1.4
   'obscene' => 'obscéní', //cpg1.4
   'offensive' => 'brutální', //cpg1.4
   'misplaced' => 'staré/nepatří sem', //cpg1.4
@@ -1112,7 +1112,7 @@ if (defined('REPORT_FILE_PHP') || defined('DISPLAYREPORT_PHP')) $lang_report_php
 
 if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
     'pic_info' => 'Info&nbsp;o obrázku',
-    'album' => 'Galerie',
+    'album' => 'Album',
     'title' => 'Nadpis',
   'filename' => 'Jméno souboru', //cpg1.4
     'desc' => 'Popis',
@@ -1144,7 +1144,7 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
     'save' => 'Ulož obrázek', //cpg1.3.0
     'save_thumb' =>'Ulož jako náhled', //cpg1.3.0
     'sel_on_img' =>'Výběr není celý v obrázeku!', //js-alert //cpg1.3.0
-  'album_properties' =>'Vlastnosti galerie', //cpg1.4
+  'album_properties' =>'Vlastnosti alba', //cpg1.4
   'parent_category' =>'Nadřízená kategorie', //cpg1.4
   'thumbnail_view' =>'Náhled', //cpg1.4
   'select_unselect' =>'označ/odoznač vše', //cpg1.4
@@ -1232,7 +1232,7 @@ Klikněte na %s pro přihlášení.', //cpg1.3.0
 if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
     'group_name' => 'Jméno skupiny',
   'permissions' => 'Oprávnění', //cpg1.4
-  'public_albums' => 'Upload veřejné galerie', //cpg1.4
+  'public_albums' => 'Upload veřejného alba', //cpg1.4
   'personal_gallery' => 'Osobní galerie', //cpg1.4
   'upload_method' => 'Upload methoda', //cpg1.4
     'disk_quota' => 'Disková kvóta',
@@ -1256,7 +1256,7 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
   'explain_greyed_out_title' => 'Proč je tato řada šedivá mimo?', //cpg1.4
   'explain_guests_greyed_out_text' => 'Nemůžete změnit vlastnosti této skupiny, protože máte nastaven  &quot; Povolení neregistrovaných uživatelů. Všichni hosté %s nemusí nic dělat, ale p5enastaven9 se ned8 aplikovat.', //cpg1.4
   'explain_banned_greyed_out_text' => 'Nemůžete měnit vlastnosti skupiny %s protožee její členové nikdy nic nemohli dělat.', //cpg1.4
-  'group_assigned_album' => 'Připojené galerie', //cpg1.4
+  'group_assigned_album' => 'Připojená alba', //cpg1.4
 );
 
 // ------------------------------------------------------------------------- //
@@ -1278,16 +1278,16 @@ $lang_album_admin_menu = array(
 
 $lang_list_categories = array(
     'home' => 'Domů',
-    'stat1' => '<b>[pictures]</b> obrázků v <b>[albums]</b> galeriích v <b>[cat]</b> kategoriích s <b>[comments]</b> komentáři zobrazeno <b>[views]</b> krát',
-    'stat2' => '<b>[pictures]</b> obrázků v <b>[albums]</b> galeriích zobrazeno <b>[views]</b> krát',
-    'xx_s_gallery' => '%s\' galerií',
-    'stat3' => '<b>[pictures]</b> obrázků v <b>[albums]</b> galeriích s <b>[comments]</b> komentáři zobrazeno <b>[views]</b> krát'
+    'stat1' => '<b>[pictures]</b> obrázků v <b>[albums]</b> albech v <b>[cat]</b> kategoriích s <b>[comments]</b> komentáři zobrazeno <b>[views]</b> krát',
+    'stat2' => '<b>[pictures]</b> obrázků v <b>[albums]</b> albech zobrazeno <b>[views]</b> krát',
+    'xx_s_gallery' => 'z %s galerie',
+    'stat3' => '<b>[pictures]</b> obrázků v <b>[albums]</b> albech s <b>[comments]</b> komentáři zobrazeno <b>[views]</b> krát'
 );
 
 $lang_list_users = array(
     'user_list' => 'Seznam uživatelů',
     'no_user_gal' => 'Nejsou žádné uživatelské galerie',
-    'n_albums' => '%s galerií',
+    'n_albums' => '%s alb',
     'n_pics' => '%s obrázků'
 );
 
@@ -1360,29 +1360,29 @@ if (defined('MINIBROWSER_PHP')) $lang_minibrowser_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
-    'upd_alb_n' => 'Aktualizovat galerie %s',
+    'upd_alb_n' => 'Aktualizovat alba %s',
     'general_settings' => 'Základní nastavení',
-    'alb_title' => 'Nadpis galerie',
-    'alb_cat' => 'Kategorie galerie',
-    'alb_desc' => 'Popis galerie',
-  'alb_keyword' => 'Klíčová slova galerie', //cpg1.4
-    'alb_thumb' => 'Náhled reprezentující albumgalerii',
-    'alb_perm' => 'Přístupová práva pro tuto galerii',
-    'can_view' => 'Galerii můžou prohlížet',
+    'alb_title' => 'Nadpis alba',
+    'alb_cat' => 'Kategorie alba',
+    'alb_desc' => 'Popis alba',
+  'alb_keyword' => 'Klíčová slova alba', //cpg1.4
+    'alb_thumb' => 'Náhled reprezentující album',
+    'alb_perm' => 'Přístupová práva pro toto album',
+    'can_view' => 'Album můžou prohlížet',
     'can_upload' => 'Návštěvníci smějí přidávat obrázky',
     'can_post_comments' => 'Povolit komentáře',
     'can_rate' => 'Návštěvníci mohou hlasovat',
     'user_gal' => 'Galerie uživatele',
     'no_cat' => '* Není kategorie *',
-    'alb_empty' => 'Galerie je prázdná',
+    'alb_empty' => 'Album je prázdné',
     'last_uploaded' => 'Nejnovější obrázek',
-    'public_alb' => 'kdokoliv (veřejná galerie)',
+    'public_alb' => 'kdokoliv (veřejné album)',
     'me_only' => 'Pouze já',
     'owner_only' => 'Pouze vlastník (%s)',
     'groupp_only' => 'Členové skupiny \'%s\'',
     'err_no_alb_to_modify' => 'Galerii nelze modifikovat v databázi.',
     'update' => 'Aktualizovat galerii',
-  'reset_album' => 'Reset galerie', //cpg1.4
+  'reset_album' => 'Reset alba', //cpg1.4
   'reset_views' => 'Reset počítadel zobrazení na &quot;0&quot; v %s', //cpg1.4
   'reset_rating' => 'Reset hodnocení pro všechny soubory v %s', //cpg1.4
   'delete_comments' => 'Vymaž všechny komentáře vytvořené %s', //cpg1.4
@@ -1394,8 +1394,8 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
   'submit_reset' => 'odešli změny', //cpg1.4
   'reset_views_confirm' => 'Jsem si jist', //cpg1.4
   'notice1' => '(*) závisející na %sskupinách%s nastavení',  //cpg1.4 //(do not translate %s!)
-  'alb_password' => 'Heslo galerie', //cpg1.4
-  'alb_password_hint' => 'Nápověda pro heslo galerie', //cpg1.4
+  'alb_password' => 'Heslo alba', //cpg1.4
+  'alb_password_hint' => 'Nápověda pro heslo alba', //cpg1.4
   'edit_files' =>'Editace souborů', //cpg1.4
   'parent_category' =>'Nadřízená kategorie', //cpg1.4
   'thumbnail_view' =>'Náhled', //cpg1.4
@@ -1416,7 +1416,7 @@ if (defined('PHPINFO_PHP')) $lang_phpinfo_php = array(
 // ------------------------------------------------------------------------- //
 if (defined('PICMGR_PHP')) $lang_picmgr_php = array(
   'pic_mgr' => 'Manažer obrázků', //cpg1.4
-  'select_album' => 'Vyber galerii', //cpg1.4
+  'select_album' => 'Vyber album', //cpg1.4
   'delete' => 'Vymaž', //cpg1.4
   'confirm_delete1' => 'Je nezbytné vymazat tento obrázek?', //cpg1.4
   'confirm_delete2' => '\nObrázek bude nenávratně smazán.', //cpg1.4
@@ -1424,7 +1424,7 @@ if (defined('PICMGR_PHP')) $lang_picmgr_php = array(
   'confirm_modifs' => 'Potvrď změny', //cpg1.4
   'pic_need_name' => 'Obrázek musí mít jméno!', //cpg1.4
   'no_change' => 'Neudělal jsi žádné změny !', //cpg1.4
-  'no_album' => '* žádná galerie *', //cpg1.4
+  'no_album' => '* žádné album *', //cpg1.4
   'explanation_header' => 'Uživatelská pravidla třídění mohou být nastavena pouze pokud jsou specifikována v účtu', //cpg1.4
   'explanation1' => 'Admin nastavil "přednastavená třídící pravidla pro soubory" v konfiguraci "Pozice sestupně" nebo "Pozice vzestupně" (globální nastavení pro všechny uživatele kteří nechtějí třídit individuálně)', //cpg1.4
   'explanation2' => 'Uživatel vybral "Pozice sestupně" nebo "Pozice vzestupně" na náhledové stránce (uživatelské nastavení)', //cpg1.4
@@ -1654,22 +1654,22 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
     'select_dir' => 'Vybrat adresář',
     'select_dir_msg' => 'Tato funkce vám umožní dávkově zpracovat obrázky nahrané přes FTP.<br /><br />Vyberte adresář kde se nacházejí obrázky k spracování',
     'no_pic_to_add' => 'Nejsou zde žádné obrázky k přidání',
-    'need_one_album' => 'Pořebujete mít vytvořenu alespoň jednu galerii',
+    'need_one_album' => 'Pořebujete mít vytvořenu alespoň jedno album',
     'warning' => 'Varování',
     'change_perm' => 'Skript nemůže zapisovat do tohoto adresáře, musíte ho nastavit na CHMOD 755 nebo 777 před přidáním obrázků !',
     'target_album' => '<b>Vložit obrázky z &quot;</b>%s<b>&quot; do </b>%s',
     'folder' => 'Složka',
     'image' => 'Obrázek',
-    'album' => 'Galerie',
+    'album' => 'Album',
     'result' => 'Výsledek',
     'dir_ro' => 'Nezapisovatelná. ',
     'dir_cant_read' => 'Nečitelná. ',
-    'insert' => 'Přidávám nové obrázky do galerie',
+    'insert' => 'Přidávám nové obrázky do alba',
     'list_new_pic' => 'Seznam obrázků',
     'insert_selected' => 'Vložit vybrané obrázky',
     'no_pic_found' => 'Nové obrázky nenalezeny',
     'be_patient' => 'Prosím buďte trpělivý(á), program potřebuje na zpracování obrázku nějaý ten čas.',
-  'no_album' => 'žádná galerie nebyla vybrána',
+  'no_album' => 'žádné album nebylo vybráno',
   'result_icon' => 'klikni na detail nebo reloaduj',  //cpg1.4
     'notes' =>  '<ul>'.
                 '<li><b>OK</b> : Tyto obrázky byly přidány'.
@@ -1678,15 +1678,15 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
                 '<li>Když se neukáže \'označení\' OK, DP, PB klepněte na obrázek a uvidíte chybovou hlášku generovanou PHP, která Vám pomůže zjistit příčinu problému'.
                 '<li>Pokud dojde k timeoutu F5 nebo reload stránky by měl pomoci'.
                 '</ul>',
-     'select_album' => 'Vyberte galerii', //cpg1.3.0
+     'select_album' => 'Vyberte album', //cpg1.3.0
      'check_all' => 'Vybrat vše', //cpg1.3.0
      'uncheck_all' => 'Odznačit vše', //cpg1.3.0
   'no_folders' => 'Zde není žádná složka uvnitř "albums" složky.  Je nejprve potřeba ji vytvořit pro ftp downloadování a to učinit.', //cpg1.4
-   'albums_no_category' => 'Galerie nemá kategorii', //cpg1.4 // album pulldown mod, added by frogfoot
-  'personal_albums' => '* Osobní galerie', //cpg1.4 // album pulldown mod, added by frogfoot
+   'albums_no_category' => 'Album nemá kategorii', //cpg1.4 // album pulldown mod, added by frogfoot
+  'personal_albums' => '* Osobní album', //cpg1.4 // album pulldown mod, added by frogfoot
   'browse_batch_add' => 'Browsable interface (doporučeno)', //cpg1.4
   'edit_pics' => 'Editovat soubory', //cpg1.4
-  'edit_properties' => 'Vlastnosti galerie', //cpg1.4
+  'edit_properties' => 'Vlastnosti alba', //cpg1.4
   'view_thumbs' => 'Náhled', //cpg1.4
 );
 
@@ -1751,7 +1751,7 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
     'no_post' => 'File not uploaded by POST.', //cpg1.3.0
     'forb_ext' => 'Forbidden file extension.', //cpg1.3.0
     'exc_php_ini' => 'Překročena velikost souboru povolená v php.ini.', //cpg1.3.0
-    'exc_file_size' => 'Překročena velikost souboru povolená galerií.', //cpg1.3.0
+    'exc_file_size' => 'Překročena velikost souboru povolená albu.', //cpg1.3.0
     'partial_upload' => 'Pouze částečný upload.', //cpg1.3.0
     'no_upload' => 'Neproběhl žádný upload souborů.', //cpg1.3.0
     'unknown_code' => 'Neznámá chyba PHP při uploadu.', //cpg1.3.0
@@ -1782,24 +1782,24 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
     'unknown' => 'Neznámá chyba', //cpg1.3.0
     'succ' => 'Uspěšný Upload', //cpg1.3.0
     'success' => '%s souborů bylo úspěšně nahráno.', //cpg1.3.0
-    'add' => 'Prosím stiskněte \'Pokračovat\' pro přidání souborů do galerie.', //cpg1.3.0
+    'add' => 'Prosím stiskněte \'Pokračovat\' pro přidání souborů do alba.', //cpg1.3.0
     'failure' => 'Chyba při Uploadu', //cpg1.3.0
     'f_info' => 'Informace o souboru', //cpg1.3.0
     'no_place' => 'Předchozí soubor není možné umístit.', //cpg1.3.0
     'yes_place' => 'Předchozí soubor byl úspěšně umístěn.', //cpg1.3.0
     'max_fsize' => 'Max. velikost souboru je %s KB',
-    'album' => 'Galerie',
+    'album' => 'Album',
     'picture' => 'Obrázek',
     'pic_title' => 'Nadpis obrázku',
     'description' => 'Popis obrázku',
     'keywords' => 'Klíčová slova (oddělená mezerou)',
-    'err_no_alb_uploadables' => 'Zde se nenalézá galerie, do které je povolen upload.',
-    'place_instr_1' => 'Prosím umístěte teď soubory do galerií. Můžete také zadat informace týkající se jednotlivých souborů.', //cpg1.3.0
+    'err_no_alb_uploadables' => 'Zde se nenalézá album, do které je povolen upload.',
+    'place_instr_1' => 'Prosím umístěte teď soubory do alb. Můžete také zadat informace týkající se jednotlivých souborů.', //cpg1.3.0
     'place_instr_2' => 'Další soubory je potřeba umístit. Prosím stiskěte \'Pokračovat\'.', //cpg1.3.0
     'process_complete' => 'Uspěšně jste umístil všechny soubory.', //cpg1.3.0
-   'albums_no_category' => 'Galerie bez kategorie', //cpg1.4. //album pulldown mod, added by frogfoot
-  'personal_albums' => '* Osobní galerie', //cpg1.4 //album pulldown mod, added by frogfoot
-  'select_album' => 'Vyber galerii', //cpg1.4 //album pulldown mod, added by frogfoot
+   'albums_no_category' => 'Album bez kategorie', //cpg1.4. //album pulldown mod, added by frogfoot
+  'personal_albums' => '* Osobní album', //cpg1.4 //album pulldown mod, added by frogfoot
+  'select_album' => 'Vyber album', //cpg1.4 //album pulldown mod, added by frogfoot
   'close' => 'Zavřít', //cpg1.4
   'no_keywords' => 'Promiňte, žádná slova nebyla k dispozici!', //cpg1.4
   'regenerate_dictionary' => 'Regenerování slovníku', //cpg1.4
@@ -1880,13 +1880,13 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
   'alert_no_selection' => 'Musíš vybrat nejprve alespoń jednoho uživatele!', //cpg1.4 //js-alert
   'password' => 'heslo', //cpg1.4
   'select_group' => 'Vyber skupinu', //cpg1.4
-  'groups_alb_access' => 'Povolené galerie ve skupině', //cpg1.4
-  'album' => 'Galerie', //cpg1.4
+  'groups_alb_access' => 'Povolená alba ve skupině', //cpg1.4
+  'album' => 'Album', //cpg1.4
   'category' => 'Kategorie', //cpg1.4
   'modify' => 'Změnit?', //cpg1.4
   'group_no_access' => 'Tato skupina nemá speciální přístup', //cpg1.4
   'notice' => 'Poznámka', //cpg1.4
-  'group_can_access' => 'Galerie má pouze "%s" povolený přístup', //cpg1.4
+  'group_can_access' => 'Album má pouze "%s" povolený přístup', //cpg1.4
 );
 
 // ------------------------------------------------------------------------- //
@@ -1930,7 +1930,7 @@ $lang_util_php = array(
   'instruction' => 'Rychlé instrukce',
   'instruction_action' => 'Vyber akci',
   'instruction_parameter' => 'Nastav parametry',
-  'instruction_album' => 'Vyber galerii',
+  'instruction_album' => 'Vyber album',
   'instruction_press' => 'Zmáčkni %s',
   'update' => 'Update náhledu a/nebo změna velikosti fotek',
   'update_what' => 'Co chcete updatovat',
@@ -1953,16 +1953,16 @@ $lang_util_php = array(
   'delete_intermediate' => 'Vymaž střední náhledy', //cpg1.4
   'delete_intermediate_explanation' => 'Tato volba vymaže všechny střední náhledy.<br />Použijte ji pro uvolnění místa na disku.', //cpg1.4
   'delete_replace' => 'Vymaž originální obrázky a nahraď upravenými velikostí',
-  'titles_deleted' => 'Vymaž všechny názvy ze specifikované galerie', //cpg1.4
+  'titles_deleted' => 'Vymaž všechny názvy ze specifikovaného alba', //cpg1.4
   'deleting_intermediates' => 'Maže střední náhledy, prosí počkejte...', //cpg1.4
   'searching_orphans' => 'Hledám osiřelé komentáře, prosím počkejte...', //cpg1.4
-  'select_album' => 'Vyberte galerii',
+  'select_album' => 'Vyberte album',
   'delete_orphans' => 'Vymaž komentáře ke chybějícím souborům', //cpg1.4
-  'delete_orphans_explanation' => 'Tato volba identifikuje a vymaže komentáře asociované k vymazaným souborům.<br />Označ všechny galerie.', //cpg1.4
+  'delete_orphans_explanation' => 'Tato volba identifikuje a vymaže komentáře asociované k vymazaným souborům.<br />Označ všechny alba.', //cpg1.4
   'refresh_db' => 'Obnov informace o rozlišení a velikosti souborů', //cpg1.4
   'refresh_db_explanation' => 'Tato volba znovu načte a obnoví informace o velikostech a rozlišení souborů.', //cpg1.4
   'reset_views' => 'Resetuj počítadla zobrazení', //cpg1.4
-  'reset_views_explanation' => 'Nastaví ve specifikované galerii počitadla zobrazení na nulu.', //cpg1.4
+  'reset_views_explanation' => 'Nastaví ve specifikovaném albu počitadla zobrazení na nulu.', //cpg1.4
   'orphan_comment' => 'osiřelé komentáře byly nalezeny',
   'delete' => 'Vymazat',
   'delete_all' => 'Vymazat všechny',
@@ -2099,13 +2099,13 @@ EOT;
 $lang_xp_publish_php = array(
   'title' => 'Coppermine - XP Web Publishing Wizard', //cpg1.4
   'welcome' => 'Vítáme Vás <b>%s</b>,', //cpg1.4
-  'need_login' => 'Musíte se přihlásit ke galerii použitím web browserunež použijete tohoto průvodce.<p/><p>Až se přihlásíte nezapomeňte vybrat <b>pamatuj si mě</b>.', //cpg1.4
-  'no_alb' => 'Promiňte, ale není žádná taková galerie, kam by bylo povoleno uploadovat obrázky tímto průvodcem.', //cpg1.4
-  'upload' => 'Uploadování vašich obrázků do existující galerie', //cpg1.4
-  'create_new' => 'Vytvořte novou galerii pro vaše obrázky', //cpg1.4
-  'album' => 'Galerie', //cpg1.4
+  'need_login' => 'Musíte se přihlásit k albu použitím web browserunež použijete tohoto průvodce.<p/><p>Až se přihlásíte nezapomeňte vybrat <b>pamatuj si mě</b>.', //cpg1.4
+  'no_alb' => 'Promiňte, ale není žádná takové album, kam by bylo povoleno uploadovat obrázky tímto průvodcem.', //cpg1.4
+  'upload' => 'Uploadování vašich obrázků do existujícího alba', //cpg1.4
+  'create_new' => 'Vytvořte nové album pro vaše obrázky', //cpg1.4
+  'album' => 'Album', //cpg1.4
   'category' => 'Kategorie', //cpg1.4
-  'new_alb_created' => 'Vaše nová galerie &quot;<b>%s</b>&quot; byla vytvořena.', //cpg1.4
+  'new_alb_created' => 'Vaše nové album &quot;<b>%s</b>&quot; bylo vytvořeno.', //cpg1.4
   'continue' => 'Zmáčněte &quot;Další&quot; pro začátek uploadu vašich obrázků', //cpg1.4
   'link' => 'tento link', //cpg1.4
 );
