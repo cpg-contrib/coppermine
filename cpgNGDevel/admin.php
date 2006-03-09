@@ -136,37 +136,6 @@ if (isset($_POST['update_config'])) {
 }
 
 /**
- * If admin chooses to restore factory settings
- */
-if (isset($_POST['restore_config'])) {
-/**** Commented temporarily - Start ****\
-  $defaultConfig = 'sql/basic.sql';
-
-  $sqlQuery = fread(fopen($defaultConfig, 'r'), filesize($defaultConfig));
-  $sqlQuery = preg_replace('/CPG_/', $config->conf['TABLE_PREFIX'], $sqlQuery);
-
-  $query = "TRUNCATE TABLE ".$config->conf['TABLE_CONFIG'];
-  $db->query($query);
-
-  $query = "TRUNCATE TABLE ".$config->conf['TABLE_FILETYPES'];
-  $db->query($query);
-
-  $sqlQuery = remove_remarks($sqlQuery);
-  $sqlQuery = split_sql_file($sqlQuery, ';');
-
-  $sqlCount = count($sqlQuery);
-
-  for ($i = 0; $i < $sqlCount; $i++) {
-    if (strpos($sqlQuery[$i], 'config VALUES') || strpos($sqlQuery[$i], 'filetypes VALUES')) {
-      $db->query($sqlQuery[$i]);
-    }
-  }
-\***** Commented temporarily - End *****/
-  cpgUtils::msgBox($lang_admin_php['info'], $lang_admin_php['restore_success'], $lang_continue, $_SERVER['PHP_SELF']);
-  exit;
-}
-
-/**
  * Create new template object
  */
 $t = new cpgTemplate;
