@@ -111,6 +111,23 @@
 </table>
 {elseif $smarty.get.op eq "group_alb_access"}
 <!-- Display album level access to each group -->
+<table align="center" width="500" cellspacing="1" cellpadding="0" class="maintable">
+  <tr>
+    <td class="tableh1" colspan="3">{$lang_usermgr_php.group_can_access}</td>
+  </tr>
+  <tr>
+    <td><b>{$lang_usermgr_php.category}</b></td>
+    <td><b>{$lang_usermgr_php.album}</b></td>
+    <td><b>{$lang_usermgr_php.modify}</b></td>
+  </tr>
+ {foreach from=$albums item=item}
+  <tr>
+    <td>{$item.category}</td>
+    <td>{$item.album}</td>
+    <td>&nbsp;<a href="modifyalb.php?album={$item.aid}"><img src="images/edit.gif" border="0" alt="" /></a></td>
+  </tr>
+ {/foreach}
+</table>
 {else}
 <!-- Success/error messages if any-->
 {if $miscArr.success ne ""}

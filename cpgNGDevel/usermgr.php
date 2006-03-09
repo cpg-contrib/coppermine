@@ -273,7 +273,15 @@ switch ($op) {
     pagefooter();
     ob_end_flush();
 */
-    // Needs to be implemented
+    $albums = $userObj->listGroupAlbAccess((int)$_GET['gid']);
+    //print_r($albums);
+
+    if (!is_array($albums[0])) {
+      cpgUtils::msgBox($lang_usermgr_php['notice'], $lang_usermgr_php['group_no_access'], $lang_continue, 'groupmgr.php');
+    }
+
+    $lang_usermgr_php['group_can_access'] = sprintf($lang_usermgr_php['group_can_access'], $albums[0]['group_name']);
+    $subTitle = $lang_usermgr_php['group_can_access'];
     break;
 
   default :
@@ -319,6 +327,7 @@ $t->assign('readOnly', $config->conf['bridge_enable'] ? 1 : 0);
 $t->assign('miscArr', $miscArr);
 $t->assign('selGroup', $selGroup);
 $t->assign('groups', $groups);
+$t->assign('albums', $albums);
 $t->assign('totalPages', $totalPages);
 $t->assign('page', $page);
 

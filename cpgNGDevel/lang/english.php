@@ -1377,7 +1377,8 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
   'explain_guests_greyed_out_text' => 'You can not change the properties of this group because you set the option &quot; Allow unlogged users (guest or anonymous) access&quot; to &quot;No&quot; on the config page. All guest (members of the group %s) can\'t do anything but login; therefor group settings don\'t apply for them.', // cpg1.4.0
   'explain_banned_greyed_out_text' => 'You can not change the properties of the group %s because it\'s members can\'t do anything anyway.', // cpg1.4.0
   'enter_grp_name' => 'Enter name for new group',
-  'grp_name_error' => 'You must specify group name'
+  'grp_name_error' => 'You must specify group name',
+  'group_assigned_album' => 'assigned album(s)' // cpg1.4.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -1985,7 +1986,7 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
   'modify' => 'Modify?', //cpg1.4
   'group_no_access' => 'This group has no special access', //cpg1.4
   'notice' => 'Notice', //cpg1.4
-  'group_can_access' => 'Album(s) that only "%s" can access', //cpg1.4
+  'group_can_access' => 'Album(s) that only "%s" group can access', //cpg1.4
 );
 
 // ------------------------------------------------------------------------- //
