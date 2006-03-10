@@ -342,7 +342,7 @@ if (count($_FILES) && !isset($_SESSION['fileUpload'])) {
           }
 
           foreach($_POST as $field => $values) {
-            $_SESSION['fileUpload'][$counter][$field] = $_POST[$field][$counter];
+            $_SESSION['fileUpload'][$counter][$field] = (get_magic_quotes_gpc() ? stripslashes($_POST[$field][$counter]) : $_POST[$field][$counter]);
           }
           $_SESSION['fileUpload'][$counter]['tmpName']    = $tempname;
           $_SESSION['fileUpload'][$counter]['actualName'] = $file_name;
