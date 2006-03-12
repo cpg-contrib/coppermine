@@ -344,5 +344,8 @@ Added partial Portuguese translation - 18th Feb 2006, GauGau
 Increased version count from 1.4.3 to 1.4.4 - 18th Feb 2006, GauGau
 Fixed some deprecated tags like <font> - 20th Feb 2006, GauGau
 Fixed help pop-up in batch-add section - 20th Feb 2006, GauGau
+Fixed redirecting back to original url after adding to favs - 6th March 2006, Nibbler
+Fixing issue with smilie url prefix in admin comment notification - 20th Feb 2006, Nibbler
 Fixed bug in charsetmgr - 23rd Feb 2006, Abbas
 CPG1.4.4 released - 26th Feb 2006, GauGau
+Added Georian language file - 12th March 2006, GauGau
