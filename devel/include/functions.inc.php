@@ -2429,6 +2429,7 @@ $lang_language_data['estonian'] = array('Estonian','Eesti','ee');
 $lang_language_data['finnish'] = array('Finnish','Suomea','fi');
 $lang_language_data['french'] = array('French','Fran&ccedil;ais','fr');
 $lang_language_data['galician'] = array('Galician','Galego','es_gln');
+$lang_language_data['georgian'] = array('Georgian','&#4325;&#4304;&#4320;&#4311;&#4323;&#4314;&#4312;','ge');
 $lang_language_data['german'] = array('German','Deutsch','de');
 $lang_language_data['greek'] = array('Greek','&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;','gr');
 $lang_language_data['hebrew'] = array('Hebrew','&#1506;&#1489;&#1512;&#1497;&#1514;','il');
