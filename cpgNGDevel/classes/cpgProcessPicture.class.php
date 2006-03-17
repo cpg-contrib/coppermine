@@ -350,6 +350,18 @@ class cpgProcessPicture {
         $query = "DELETE FROM {$config->conf['TABLE_EXIF']} WHERE filename='$dir$file' LIMIT 1";
         $db->query($query);
 
+        // Delete hits statistics for this picture
+        $query = "DELETE FROM {$config->conf['TABLE_HIT_STATS']} WHERE pid = '$pid'";
+        $db->query($query);
+
+        // Delete votes statistics for this picture
+        $query = "DELETE FROM {$config->conf['TABLE_VOTE_STATS']} WHERE pid = '$pid'";
+        $db->query($query);
+
+        // Delete votes details for this picture
+        $query = "DELETE FROM {$config->conf['TABLE_VOTES']} WHERE pic_id = '$pid'";
+        $db->query($query);
+
         $query = "DELETE FROM {$config->conf['TABLE_PICTURES']} WHERE pid='$pid' LIMIT 1";
         $db->query($query);
 
@@ -440,23 +452,8 @@ class cpgProcessPicture {
         }
 
         if ($delete) {
-            $dir = $config->conf['fullpath'] . $pic['filepath'];
-            $file = $pic['filename'];
-
-            if (!is_writable($dir)) {
-                cpgUtils::cpgDie(CRITICAL_ERROR, sprintf($lang_errors['directory_ro'], $dir), __FILE__, __LINE__);
-            }
-
-            $files = array($dir . $file, $dir . $config->conf['normal_pfx'] . $file, $dir . $config->conf['thumb_pfx'] . $file);
-
-            foreach ($files as $currFile) {
-                if (is_file($currFile)) {
-                    @unlink($currFile);
-                }
-            }
-
-            $query = "DELETE FROM {$config->conf['TABLE_PICTURES']} WHERE pid='$pid' LIMIT 1";
-            $db->query($query);
+            // Delete picture and it's comments, votes details, stats etc.
+            cpgProcessPicture::deletePicture($pid);
         } else {
             $query = "UPDATE {$config->conf['TABLE_PICTURES']} SET $update WHERE pid='$pid' LIMIT 1";
             $db->query($query);
