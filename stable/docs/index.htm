@@ -1632,12 +1632,14 @@ Descending: latest comment at the top, oldest comment at the bottom</p>
 <h4>Allowed audio types</h4>
 <p>&quot;<em>ALL</em>&quot; will result in all allowable audio file types to be uploaded. If you want to restrict the allowed file types to certain extensions only, enter a slash-separated list of extensions, e.g. <tt class="code">wav/mp3/wma</tt>.</p>
 <p>Note that being able to listen to an audio file requires that the cpg-user have the necessary codecs properly configured on their computers to hear these files, e.g. if you allow the file type <tt class="code">mp3</tt>, users who wish to listen to the file will need to have a media player installed on their computer that can handle mp3 files.</p>
+<p class="important">Warning: if your webserver is not hardened against an exploit of a vulnerability in the apache webserver setup, then it might be a security risk to allow the upload of <tt class="code">ram</tt>, <tt class="code">ra</tt> and <tt class="code">rm</tt>-files. If you're not sure, do not allow this file types.</p>
 <p class="small">[cpg1.3.0 or better required]</p>
 <a name="admin_picture_thumb_advanced_audio_extensions_end"></a>
 <a name="admin_picture_thumb_advanced_doc_extensions"></a>
 <h4>Allowed document types</h4>
 <p>&quot;<em>ALL</em>&quot; will result in all allowable document file types to be uploaded. If you want to restrict the allowable file types to certain extensions only, enter a slash-separated list of extensions, e.g. <tt class="code">txt/pdf</tt>.</p>
 <p>Note that being able to browse a document file requires the cpg-user to have a compatible software installed and configured properly on their computer that is capable of displaying the type of document in question, e.g. if you allow the file type <tt class="code">xls</tt>, users who wish to browse the file will need to have an application installed on their computer that can display MS-Excel sheets. Be extremely careful with  document that are known to be vulnerable to virus contamination, embedded or as macros. This is especially true if you plan to allow users the capability of uploading documents without admin approval.</p>
+<p class="important">Warning: if your webserver is not hardened against an exploit of a vulnerability in the apache webserver setup, then it might be a security risk to allow the upload of <tt class="code">rar</tt>-files. If you're not sure, do not allow this file type.</p>
 <p class="small">[cpg1.3.0 or better required]</p>
 <a name="admin_picture_thumb_advanced_doc_extensions_end"></a>
 <a name="admin_picture_thumb_advanced_resize_method"></a>
@@ -2068,7 +2070,7 @@ Click &quot;next&quot;</p>
   <li>Mambo</li>
   <li>MyBB</li>
   <li>phpBB 2</li>
-  <li>Phorum</li>  
+  <li>Phorum</li>
   <li>PunBB</li>
   <li>SMF</li>
   <li>vBulletin</li>
