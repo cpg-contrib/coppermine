@@ -20,7 +20,7 @@ class cpgProcessComments {
 
   function addComment($pid, $msgAuthor, $msgBody)
   {
-    global $lang_error, $lang_db_input_php;
+    global $lang_error, $lang_db_input_php, $raw_ip, $hdr_ip;
 
     if (!$this->auth->isDefined('USER_CAN_POST_COMMENTS')) {
       cpgUtils::cpgDie(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
