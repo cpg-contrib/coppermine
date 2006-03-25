@@ -90,32 +90,29 @@ $CURRENT_CAT_NAME = '';
 $CAT_LIST = '';
 
 // Record User's IP address
+$ipRegex = '^(?:(?:25[0-5]|2[0-4]\d|[01]\d\d|\d?\d)(?(\.?\d)\.)){4}$';
+
 /**
  * The IP address must match the following regex
  */
-if (!ereg("^(?:(?:25[0-5]|2[0-4]\d|[01]\d\d|\d?\d)(?(\.?\d)\.)){4}$", $_SERVER['REMOTE_ADDR'])) {
-  $raw_ip = "0.0.0.0";
-} else {
-  $raw_ip = stripslashes($_SERVER['REMOTE_ADDR']);
-}
+$raw_ip = stripslashes($_SERVER['REMOTE_ADDR']);
 
 if (isset($_SERVER['HTTP_CLIENT_IP'])) {
-    if (!ereg("^(?:(?:25[0-5]|2[0-4]\d|[01]\d\d|\d?\d)(?(\.?\d)\.)){4}$", $_SERVER['HTTP_CLIENT_IP'])) {
-      $hdr_ip = "0.0.0.0";
-    } else {
-      $hdr_ip = stripslashes($_SERVER['HTTP_CLIENT_IP']);
-    }
+    $hdr_ip = stripslashes($_SERVER['HTTP_CLIENT_IP']);
+} else if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+    $hdr_ip = stripslashes($_SERVER['HTTP_X_FORWARDED_FOR']);
 } else {
-    if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-      if (!ereg("^(?:(?:25[0-5]|2[0-4]\d|[01]\d\d|\d?\d)(?(\.?\d)\.)){4}$", $_SERVER['HTTP_X_FORWARDED_FOR'])) {
-        $hdr_ip = "0.0.0.0";
-      } else {
-        $hdr_ip = stripslashes($_SERVER['HTTP_X_FORWARDED_FOR']);
-      }
-    } else {
-        $hdr_ip = $raw_ip;
-    }
+    $hdr_ip = $raw_ip;
 }
+
+if (!ereg($ipRegex, $raw_ip)) {
+    $raw_ip = '0.0.0.0';
+}
+
+if (!ereg($ipRegex, $hdr_ip)) {
+    $hdr_ip = '0.0.0.0';
+}
+
 // Define some constants
 define('USER_GAL_CAT', 1);
 define('FIRST_USER_CAT', 10000);
