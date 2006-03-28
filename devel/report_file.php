@@ -189,7 +189,7 @@ echo <<<EOT
         </tr>
         <tr>
                 <td class="tableb" valign="top" width="40%">
-                        <form method="post" name="post" action="$form_action">
+                        <form method="post" name="post" id="cpgform" action="$form_action">
                         {$lang_report_php['your_name']}<br />
                 </td>
                 <td valign="top" class="tableb" width="60%">

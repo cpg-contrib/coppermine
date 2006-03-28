@@ -191,7 +191,7 @@ function register_changes()
                 echo '</table>';
             if (!$doconvert)
             {
-                echo  "<form action=\"".$_SERVER['PHP_SELF']."\" method=\"post\">";
+                echo  '<form action="'.$_SERVER['PHP_SELF'].'" method="post" name="cpgform" id="cpgform">';
                 echo '<input type="hidden" name="charset_in" value="'.$charsetin."\" />\n";
 echo '<input type="hidden" name="charset_out" value="'.$charsetout."\" />\n";
 echo <<<EOT
@@ -299,7 +299,7 @@ echo <<<EOT
 EOT;
 
 echo "<fieldset><legend>Charset Converter</legend>";
-echo "<form action=\"".$_SERVER['PHP_SELF']."\" method=\"post\">";
+echo '<form action="'.$_SERVER['PHP_SELF'].'" method="post" name="cpgform" id="cpgform">';
 echo "Convert from ";
 form_charset('charset_in', $thecharset);
 echo " to ";

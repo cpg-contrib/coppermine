@@ -106,7 +106,7 @@ if (array_key_exists($action, $tasks)){
 
         endtable();
 
-        echo '<br /><form action="util.php" method="post">';
+        echo '<br /><form name="cpgform" id="cpgform" action="util.php" method="post">';
 
         foreach ($tasks as $task){
 
@@ -276,7 +276,7 @@ function update_thumbs()
                 $startpic += $numpics;
 
         echo <<< EOT
-                <form action="util.php" method="post">
+                <form name="cpgform2" id="cpgform2" action="util.php" method="post">
                                 <input type="hidden" name="action" value="update_thumbs" />
                                 <input type="hidden" name="numpics" value="$numpics" />
                                 <input type="hidden" name="startpic" value="$startpic" />
@@ -395,7 +395,7 @@ function del_orphans()
         echo "<br /><br />$count {$lang_util_php['orphan_comment']}<br /><br />";
         if ($count > 1){
                         echo <<< EOT
-                        <form action="util.php" method="post">
+                        <form name="cpgform3" id="cpgform3" action="util.php" method="post">
                                 <input type="hidden" name="action" value="del_orphans" />
                                 <input type="hidden" name="del" value="all" />
                                 {$lang_util_php['delete_all_orphans']}
@@ -507,7 +507,7 @@ function refresh_db()
         if ($count == $numpics){
                    $startpic += $numpics;
                 echo <<< EOT
-                        <form action="util.php" method="post">
+                        <form name="cpgform4" id="cpgform4" action="util.php" method="post">
                                 <input type="hidden" name="action" value="refresh_db" />
                                 <input type="hidden" name="refresh_numpics" value="$numpics" />
                                 <input type="hidden" name="refresh_startpic" value="$startpic" />

@@ -649,7 +649,7 @@ print "</center>";
 
 print "<br />";
 print "<br />";
-print "<form action=\"$next_form_action\" method=\"post\">";
+print '<form action="'.$next_form_action.'" method="post" id="cpgform">';
 print "<input type=\"hidden\" name=\"album\" value=\"$album\" />";
 print "<input type=\"hidden\" name=\"title\" value=\"$title\" />";
 print "<input type=\"hidden\" name=\"caption\" value=\"$caption\" />";
@@ -765,7 +765,7 @@ if (!isset($_POST['degrees'])) {
         // We must check the file name for security reasons.
         if (get_magic_quotes_gpc()) $file_name = stripslashes($file_name);
         // Replace forbidden chars with underscores
-		$picture_name = replace_forbidden($file_name);
+                $picture_name = replace_forbidden($file_name);
         // Check that the file uploaded has a valid extension
         $matches = array();
         if (!preg_match("/(.+)\.(.*?)\Z/", $picture_name, $matches)){
@@ -883,7 +883,7 @@ if (!isset($_POST['degrees'])) {
         // We must check the file name for security reasons.
         if (get_magic_quotes_gpc()) $transitory_file_name = stripslashes($transitory_file_name);
         // Replace forbidden chars with underscores
-		$picture_name = replace_forbidden($transitory_file_name);
+                $picture_name = replace_forbidden($transitory_file_name);
         // Check that the file uploaded has a valid extension
         $matches = array();
         if (!preg_match("/(.+)\.(.*?)\Z/", $picture_name, $matches)){
@@ -961,7 +961,7 @@ if (!isset($_POST['degrees'])) {
 
                 print "<br /><br /><br />";
 
-                print "<form action=\"db_input.php\" method=\"post\">";
+                print '<form action="db_input.php" method="post" id="cpgform">';
                 print "<input type=\"hidden\" name=\"album\" value=\"$album\" />";
                 print "<input type=\"hidden\" name=\"title\" value=\"$title\" />";
                 print "<input type=\"hidden\" name=\"caption\" value=\"$caption\" />";

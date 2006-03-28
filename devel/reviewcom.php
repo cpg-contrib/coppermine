@@ -100,7 +100,7 @@ function selectAll(d,box) {
 -->
 </script>
 
-    <form action="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count" method="post" name="editForm">
+    <form action="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count" method="post" name="editForm" id="cpgform2">
 
 EOT;
 

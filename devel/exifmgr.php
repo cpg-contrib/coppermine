@@ -50,7 +50,7 @@ if (isset($_POST['save'])) {
   msg_box($lang_picinfo['ManageExifDisplay'], $lang_picinfo['success'], $lang_continue, "admin.php");
 } else {
   echo <<< EOT
-    <form method="POST" action="" name="editForm">
+    <form method="POST" action="" name="editForm" id="cpgform">
     <input type="hidden" name="save" value="save" />
 
     <script type="text/javascript" language="javascript">

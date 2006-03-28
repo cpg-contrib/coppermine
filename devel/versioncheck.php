@@ -248,7 +248,7 @@ EOT;
 }
 
 // step x: display the options
-$form_output = '<form name="versioncheck_options" action="'.$_SERVER['PHP_SELF'].'" method="get">';
+$form_output = '<form name="versioncheck_options" id="cpgform" action="'.$_SERVER['PHP_SELF'].'" method="get">';
 $form_output .= '<tr>';
 $form_output .= '<td colspan="'.$number_of_columns.'" class="tableh2"><h2>'.$lang_versioncheck_php['options'].'</h2></td>';
 $form_output .= '</tr>';

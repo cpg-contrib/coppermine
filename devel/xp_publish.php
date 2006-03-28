@@ -53,7 +53,7 @@ define('LOGFILE', 'xp_publish.log');
 // HTML template for the login screen
 $template_login = <<<EOT
         <p><b>{ENTER_LOGIN_PSWD}</b></p>
-        <form method="post" id="login" action="{POST_ACTION}">
+        <form method="post" name="cpgform" id="login" action="{POST_ACTION}">
             <table border="0" cellpadding="0" cellspasing="0">
                 <tr>
                         <td>{USERNAME}:&nbsp;</td>
@@ -70,7 +70,7 @@ EOT;
 // HTML template for a successful login
 $template_login_success = <<< EOT
         <p>{WELCOME}</p>
-        <form method="post" id="dummy" action="{POST_ACTION}">
+        <form method="post" name="cpgform2" id="dummy" action="{POST_ACTION}">
                 <input type="hidden" name="dummy_val" value="1" />
         </form>
 <script language="javascript" type="text/javascript">
@@ -80,7 +80,7 @@ EOT;
 // HTML template for an unsuccessful login
 $template_login_failure = <<< EOT
         <p>{ERROR}</p>
-        <form method="post" id="dummy" action="{POST_ACTION}">
+        <form method="post" name="cpgform2" id="dummy" action="{POST_ACTION}">
                 <input type="hidden" name="dummy_val" value="1" />
         </form>
 EOT;
@@ -97,7 +97,7 @@ $template_select_album = <<<EOT
         <tr>
                 <td colspan="2"><b>{UPLOAD}</b></td>
         </tr>
-        <form id="selform">
+        <form name="cpgform3" id="selform">
     <tr>
                 <td>{ALBUM}: &nbsp;</td>
                 <td><select id="album" name="album">{SELECT_ALBUM}</select></td>
@@ -108,7 +108,7 @@ $template_select_album = <<<EOT
         </tr>
 <!-- END existing_albums -->
 <!-- BEGIN create_album -->
-        <form method="post" id="createAlb" action="{POST_ACTION}">
+        <form method="post" name="createAlb" id="createAlb" action="{POST_ACTION}">
         <tr>
                 <td colspan="2"><b>{CREATE_NEW}</b></td>
         </tr>
@@ -131,7 +131,7 @@ EOT;
 $template_create_album = <<<EOT
         <p>{NEW_ALB_CREATED}</p>
         <p>{CONTINUE}</p>
-        <form id="selform">
+        <form name="selform" id="selform">
                 <input type="hidden" id="album" name="album" value ="{ALBUM_ID}" />
         </form>
 
@@ -539,7 +539,7 @@ function form_login()
     global $ONNEXT_SCRIPT, $ONBACK_SCRIPT, $WIZARD_BUTTONS;
     global $template_login;
     global $lang_login_php, $lang_xp_publish_php, $cpg_udb;
-	global $CONFIG;
+        global $CONFIG;
 
 
     if (!method_exists($cpg_udb,'login')) {

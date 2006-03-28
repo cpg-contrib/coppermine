@@ -220,7 +220,7 @@ if ($_GET['id']){
 <html>
   <head>
   <meta http-equiv="imagetoolbar" content="no" />
-  <meta http-equiv="content-type" content="text/html; charset=<?php echo $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'] ?>" />  
+  <meta http-equiv="content-type" content="text/html; charset=<?php echo $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'] ?>" />
     <title><?php echo $lang_editpics_php['crop_title'] ?></title>
     <?php if($imgObj){?>
     <script type="text/javascript">
@@ -551,7 +551,7 @@ if ($_GET['id']){
 
 <body <?php if ($imgObj) print "onload=\"libinit()\"";?>>
 
-<form name="mainform" method="post" enctype="multipart/form-data" action="picEditor.php">
+<form name="mainform" id="cpgform" method="post" enctype="multipart/form-data" action="picEditor.php">
 
 <input type="hidden" name="clipval" value="" />
 <input type="hidden" name="newimage" value="<?php print $newimage ; ?>" />

@@ -739,7 +739,7 @@ $template_image_comments = <<<EOT
                         </div>
                         <div id="cedit{MSG_ID}" style="display:none">
 <!-- BEGIN edit_box_smilies -->
-                                <form name="f{MSG_ID}" method="post" action="db_input.php">
+                                <form name="f{MSG_ID}" id="f{MSG_ID}" method="post" action="db_input.php">
                                     <table width="100%" cellpadding="0px" cellspacing="0px">
                                         <tr>
                                             <td valign="top">
@@ -765,7 +765,7 @@ $template_image_comments = <<<EOT
                                 {SMILIES}
 <!-- END edit_box_smilies -->
 <!-- BEGIN edit_box_no_smilies -->
-                                <form name="f{MSG_ID}" method="post" action="db_input.php">
+                                <form name="f{MSG_ID}" id="f{MSG_ID}" method="post" action="db_input.php">
                                     <table width="100%" cellpadding="0px" cellspacing="0px">
                                         <tr>
                                             <td valign="top">
@@ -803,7 +803,7 @@ $template_add_your_comment = <<<EOT
         </tr>
         <tr>
                 <td colspan="3">
-                <form method="post" name="post" action="db_input.php">
+                <form method="post" name="post" id="post" action="db_input.php">
                         <table width="100%" cellpadding="0px" cellspacing="0px">
 
 <!-- BEGIN user_name_input -->

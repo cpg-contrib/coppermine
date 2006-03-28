@@ -34,7 +34,7 @@ function display_disclaimer()
 
     starttable(-1, $lang_register_php['term_cond']);
     echo <<<EOT
-        <form method="post" action="{$_SERVER['PHP_SELF']}">
+        <form name="cpgform" id="cpgform" method="post" action="{$_SERVER['PHP_SELF']}">
         <tr>
                 <td class="tableb" style="padding: 10px;">
 
@@ -62,7 +62,7 @@ function input_user_info($errors = '')
 
     starttable(-1, $lang_register_php['enter_info'], 2);
     echo <<<EOT
-        <form method="post" action="{$_SERVER['PHP_SELF']}">
+        <form name="cpgform" id="cpgform" method="post" action="{$_SERVER['PHP_SELF']}">
 
 EOT;
 
@@ -304,11 +304,11 @@ function check_user_info(&$error)
 
     // email notification to admin
         if ($CONFIG['reg_notify_admin_email']) {
-			
-			// get default language in which to inform the admin
-			$lang_register_php_def = cpg_get_default_lang_var('lang_register_php');
-			$lang_register_approve_email_def = cpg_get_default_lang_var('lang_register_approve_email');
-			
+
+                        // get default language in which to inform the admin
+                        $lang_register_php_def = cpg_get_default_lang_var('lang_register_php');
+                        $lang_register_approve_email_def = cpg_get_default_lang_var('lang_register_approve_email');
+
                                         if ($CONFIG['admin_activation']==1) {
                                                         $act_link = rtrim($CONFIG['site_url'], '/') . '/register.php?activate=' . $act_key;
                                                         $template_vars = array(

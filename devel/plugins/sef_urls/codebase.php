@@ -45,10 +45,10 @@ function sef_urls_convert(&$html) {
 
     // Rewrite index.php?cat=[category] URLs to index-[category].html
     $html = preg_replace('/index\.php\?cat=([0-9]+)/i','index-$1.html',$html);
-    
+
     // Rewrite thumbnails.php?album=[album]&cat=[category]&page=[category] URLs to thumbnails-[album]-[category]-page-[page].html
     $html = preg_replace('/thumbnails\.php\?album=([a-z0-9]+)(\&|\&amp;)cat=([\-0-9]+)(\&|\&amp;)page=([0-9]+)/i','thumbnails-$1-$3-page-$5.html',$html);
-	
+
     // Rewrite thumbnails.php?album=[album]&cat=[category] URLs to thumbnails-[album]-[category].html
     $html = preg_replace('/thumbnails\.php\?album=([a-z0-9]+)(\&|\&amp;)cat=([\-0-9]+)/i','thumbnails-$1-$3.html',$html);
 
@@ -57,7 +57,7 @@ function sef_urls_convert(&$html) {
 
     // Rewrite thumbnails.php?album=search&search=[searchterm] URLs to thumbnails-search-[searchterm].html
     $html = preg_replace('/thumbnails\.php\?album=search(\&|\&amp;)search=([^"]+)/i','thumbnails-search-$2.html',$html);
-	
+
     // Rewrite thumbnails.php?album=[album] URLs to thumbnails-[album].html
     $html = preg_replace('/thumbnails\.php\?album=([a-z0-9]+)/i','thumbnails-$1.html',$html);
 
@@ -70,13 +70,13 @@ function sef_urls_convert(&$html) {
     // Rewrite displayimage.php?pos=-[pid] URLs to displayimage-[pid].html
     $html = preg_replace('/displayimage\.php\?pos=-([0-9]+)/i','displayimage-$1.html',$html);
 
-	 // Rewrite displayimage.php?album=[album]&pid=[pid]&slideshow=[interval] URLs to slideshow-[album]-[pid]-[interval].html
-	$html = preg_replace('/displayimage\.php\?album=([a-z0-9]+)(\&|\&amp;)pid=([0-9]+)(\&|\&amp;)slideshow=([0-9]+)/i','slideshow-$1-$3-$5.html',$html);
-	
-	 // Rewrite displayimage.php?album=[metaalbum]&cat=[category]&pid=[pid]&slideshow=[interval] URLs to slideshow-[album]-[category]-[pid]-[interval].html
-	$html = preg_replace('/displayimage\.php\?album=([a-z]+)(\&|\&amp;)cat=([\-0-9]+)(\&|\&amp;)pid=([0-9]+)(\&|\&amp;)slideshow=([0-9]+)/i','slideshow-$1-$3-$5-$7.html',$html);
+         // Rewrite displayimage.php?album=[album]&pid=[pid]&slideshow=[interval] URLs to slideshow-[album]-[pid]-[interval].html
+        $html = preg_replace('/displayimage\.php\?album=([a-z0-9]+)(\&|\&amp;)pid=([0-9]+)(\&|\&amp;)slideshow=([0-9]+)/i','slideshow-$1-$3-$5.html',$html);
 
-	
+         // Rewrite displayimage.php?album=[metaalbum]&cat=[category]&pid=[pid]&slideshow=[interval] URLs to slideshow-[album]-[category]-[pid]-[interval].html
+        $html = preg_replace('/displayimage\.php\?album=([a-z]+)(\&|\&amp;)cat=([\-0-9]+)(\&|\&amp;)pid=([0-9]+)(\&|\&amp;)slideshow=([0-9]+)/i','slideshow-$1-$3-$5-$7.html',$html);
+
+
     // Return modified HTML
     return $html;
 }
@@ -91,7 +91,7 @@ function sef_urls_configure($action) {
     if ($action===1) {
         $code = implode('',file($thisplugin->fullpath.'/ht.txt'));
         echo <<< EOT
-    <form action="{$_SERVER['REQUEST_URI']}" method="post">
+    <form name="cpgform" id="cpgform" action="{$_SERVER['REQUEST_URI']}" method="post">
         <p>
             You already have a .htaccess file in your root Coppermine folder.<br />
             Is it ok to overwrite it?
@@ -139,7 +139,7 @@ EOT;
 function sef_urls_cleanup($action) {
     if ($action===1) {
         echo <<< EOT
-    <form action="{$_SERVER['REQUEST_URI']}" method="post">
+    <form name="cpgform" id="cpgform" action="{$_SERVER['REQUEST_URI']}" method="post">
         <p>
             Delete the .htaccess file in your Coppermine root? (If this file was created by this plugin,
             It's ok to delete it.)

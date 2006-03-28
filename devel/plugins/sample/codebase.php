@@ -63,7 +63,7 @@ function sample_install() {
 function sample_configure() {
     echo <<< EOT
     <h3>Enter the username ('me') and password ('you') to install</h3>
-    <form action="{$_SERVER['REQUEST_URI']}" method="post">
+    <form name="cpgform" id="cpgform" action="{$_SERVER['REQUEST_URI']}" method="post">
         uid:<input type="text" name="uid" /><br />
         pwd:<input type="text" name="pwd" /><br />
         <input type="submit" value="Go!" />

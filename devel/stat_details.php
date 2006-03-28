@@ -150,7 +150,7 @@ print "<br />\n";
  */
 if (GALLERY_ADMIN_MODE) { // admin is logged in start
     print $line_break;
-    print '<form method="get" action="'.$_SERVER['PHP_SELF'].'" name="editForm">' . $line_break;
+    print '<form method="get" action="'.$_SERVER['PHP_SELF'].'" name="editForm" id="cpgform">' . $line_break;
     print '<input type="hidden" name="type" value="'.$type.'" />'                 . $line_break;
     print '<input type="hidden" name="pid" value="'.$pid.'" />'                   . $line_break;
     print '<input type="hidden" name="sort" value="'.$sort.'" />'                 . $line_break;

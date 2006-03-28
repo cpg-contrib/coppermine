@@ -24,7 +24,7 @@ function html_prereq_errors($error_msg)
     ?>
     <h2>Welcome to Coppermine installation</h2>
 
-    <form action="install.php">
+    <form name="cpgform" id="cpgform" action="install.php">
     <h2 class="error">&#149;&nbsp;&#149;&nbsp;&#149;&nbsp;ERROR&nbsp;&#149;&nbsp;&#149;&nbsp;&#149;</h2>
 
         <p class="tableb"> Before you continue with the Coppermine upgrade, there are some problems that need to be fixed.<br /><br /><b><?php echo $error_msg ?></b>Once you are done, hit the "Try again" button.<br />
@@ -68,7 +68,7 @@ function html_error($error_msg = '')
     ?>
       <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
        <tr>
-            <form action="upgrade.php" method="post">
+            <form name="cpgform" id="cpgform" action="upgrade.php" method="post">
         <td class="tableh1" colspan="2"><h2>Welcome to the Coppermine upgrade program</h2>
         </td>
        </tr>

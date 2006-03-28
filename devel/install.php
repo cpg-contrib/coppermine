@@ -212,7 +212,7 @@ function html_installer_locked()
     global $DFLT;
 
     ?>
-      <form action="index.php" style="margin:0px;padding:0px">
+      <form action="index.php" style="margin:0px;padding:0px" name="cpgform" id="cpgform">
         <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
          <tr>
           <td class="tableh1" colspan="2"><h2>The installer is locked</h2>
@@ -240,7 +240,7 @@ function html_prereq_errors($error_msg)
 {
 
     ?>
-      <form action="install.php" style="margin:0px;padding:0px">
+      <form action="install.php" name="cpgform" id="cpgform" style="margin:0px;padding:0px">
         <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
          <tr>
           <td class="tableh1" colspan="2"><h2>Welcome to Coppermine installation</h2>
@@ -269,7 +269,7 @@ function html_input_config($error_msg = '')
     global $im_installed;
 
     ?>
-      <form action="install.php" method="post" style="margin:0px;padding:0px">
+      <form action="install.php" name="cpgform" id="cpgform" method="post" style="margin:0px;padding:0px">
         <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
          <tr>
           <td class="tableh1" colspan="2"><h2>Welcome to Coppermine installation</h2>
@@ -396,7 +396,7 @@ function html_install_success($notes)
     global $DFLT;
 
     ?>
-      <form action="login.php" method="post" style="margin:0px;padding:0px">
+      <form action="login.php" name="cpgform" id="cpgform" method="post" style="margin:0px;padding:0px">
         <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
          <tr>
           <td class="tableh1" colspan="2"><h2>Installation completed</h2>

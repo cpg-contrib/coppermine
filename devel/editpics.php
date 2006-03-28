@@ -540,7 +540,7 @@ $cat_l = (isset($actual_cat))? "?cat=$actual_cat" : (isset($cat) ? "?cat=$cat" :
 echo <<<EOT
         <tr>
                 <td class="tableh2" colspan="3" align="center" valign="middle">
-                <form method="post" name="editForm" action="$form_target$mode">
+                <form method="post" name="editForm" id="cpgform" action="$form_target$mode">
                         <b>$pic_count_text</b>&nbsp;&nbsp;-&nbsp;&nbsp;
                         $prev_link
                         $next_link

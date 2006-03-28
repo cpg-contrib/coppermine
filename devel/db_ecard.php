@@ -117,7 +117,7 @@ if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['ecards_empty'], __FIL
 pageheader($lang_db_ecard_php['title']);
 
 $formTarget = cpgGetUrlVars('count');
-print '<form method="post" name="ecardselect" action="'.$formTarget.'" onSubmit="return defaultagree(this)">';
+print '<form method="post" name="ecardselect" id="cpgform" action="'.$formTarget.'" onSubmit="return defaultagree(this)">';
 ?>
 
 <script language="javascript" type="text/javascript">

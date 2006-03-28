@@ -90,9 +90,9 @@ if (isset($_POST['search'])) {
             $_POST['params'][$key] = $_POST[$key];
         }
     }
-	$USER['search'] = $_POST;
-	$USER['search']['search'] = utf_replace($USER['search']['search']);
-	$album = 'search';
+        $USER['search'] = $_POST;
+        $USER['search']['search'] = utf_replace($USER['search']['search']);
+        $album = 'search';
 }
 if (isset($_GET['search'])) {
     $USER['search']['search'] = $_GET['search'];
@@ -194,7 +194,7 @@ EOT;
     echo <<<EOT
                         $login_failed
                         <tr>
-              <form method="post" action="">
+              <form name="cpgform" id="cpgform" method="post" action="">
               <input type="hidden" name="validate_album" value="validate_album"/>
               <td class="tableb" width="40%">{$lang_thumb_view['pass']}: </td>
               <td class="tableb" width="60%"><input type="password" class="textinput" name="password" /></td>

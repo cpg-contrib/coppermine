@@ -295,7 +295,7 @@ switch ($op) {
         pageheader($title);
 
         echo <<<EOT
-    <form method="post" action="{$_SERVER['PHP_SELF']}">
+    <form name="cpgform" id="cpgform" method="post" action="{$_SERVER['PHP_SELF']}">
 
 EOT;
         starttable(-1, $title, 2);
@@ -326,7 +326,7 @@ EOT;
         $title = $lang_register_php['change_pass'];
         pageheader($title);
         echo <<<EOT
-         <form method="post" action="{$_SERVER['PHP_SELF']}">
+         <form name="cpgform" id="cpgform" method="post" action="{$_SERVER['PHP_SELF']}">
 EOT;
         starttable(-1, $title, 2);
         make_form($change_password_form_param, '');

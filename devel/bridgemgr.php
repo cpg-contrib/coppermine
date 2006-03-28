@@ -576,7 +576,7 @@ $BRIDGE = cpg_get_bridge_db_values();
 switch ($step) {
 case "choose_bbs":
 $BRIDGE = cpg_get_bridge_db_values();
-print '<form name="'.$step.'" action="'.$_SERVER['PHP_SELF'].'" method="post">';
+print '<form name="'.$step.'" id="cpgform" action="'.$_SERVER['PHP_SELF'].'" method="post">';
 //print '<input type="hidden" name="hide_unused_fields" value="1" />';
 starttable('100%', $lang_bridgemgr_php['title'].': '.$lang_bridgemgr_php['choose_bbs_app'],2);
 $checked[$BRIDGE['short_name']] = 'checked="checked"';
@@ -634,7 +634,7 @@ case "settings_path":
     $error = write_to_db($previous_step[$step]);
     if (!$error) {
         $BRIDGE = cpg_get_bridge_db_values();
-        print '<form name="'.$step.'" action="'.$_SERVER['PHP_SELF'].'" method="post">';
+        print '<form name="'.$step.'" id="cpgform" action="'.$_SERVER['PHP_SELF'].'" method="post">';
         starttable('100%',$lang_bridgemgr_php['title'].': '.$lang_bridgemgr_php['settings_path'], 3);
         $loop_array = array('full_forum_url','relative_path_of_forum_from_webroot','relative_path_to_config_file', 'cookie_prefix');
         $rows_displayed = 0;
@@ -692,7 +692,7 @@ case "db_connect":
     $error = write_to_db($previous_step[$step]);
     if (!$error) {
         $BRIDGE = cpg_get_bridge_db_values();
-        print '<form name="'.$step.'" action="'.$_SERVER['PHP_SELF'].'" method="post">';
+        print '<form name="'.$step.'" id="cpgform" action="'.$_SERVER['PHP_SELF'].'" method="post">';
         starttable('100%',$lang_bridgemgr_php['title'].': '.$lang_bridgemgr_php['database_connection'], 3);
         $loop_array = array('db_database_name','db_hostname','db_username','db_password');
         $rows_displayed = 0;
@@ -745,7 +745,7 @@ case "db_tables":
     $error = write_to_db($previous_step[$step]);
     if (!$error) {
         $BRIDGE = cpg_get_bridge_db_values();
-        print '<form name="'.$step.'" action="'.$_SERVER['PHP_SELF'].'" method="post">';
+        print '<form name="'.$step.'" id="cpgform" action="'.$_SERVER['PHP_SELF'].'" method="post">';
         starttable('100%',$lang_bridgemgr_php['title'].': '.$lang_bridgemgr_php['database_tables'], 3);
         $loop_array = array('table_prefix', 'user_table', 'session_table', 'group_table', 'group_relation_table', 'group_mapping_table');
         $rows_displayed = 0;
@@ -798,7 +798,7 @@ case "db_groups":
     $error = write_to_db($previous_step[$step]);
     if (!$error) {
         $BRIDGE = cpg_get_bridge_db_values();
-        print '<form name="'.$step.'" action="'.$_SERVER['PHP_SELF'].'" method="post">';
+        print '<form name="'.$step.'" id="cpgform" action="'.$_SERVER['PHP_SELF'].'" method="post">';
         starttable('100%',$lang_bridgemgr_php['title'].': '.$lang_bridgemgr_php['bbs_groups'], 3);
         if ($default_bridge_data[$BRIDGE['short_name']]['use_standard_groups_used'] != '')
         {
@@ -904,7 +904,7 @@ case "special_settings":
     $error = write_to_db($previous_step[$step]);
     if (!$error) {
         $BRIDGE = cpg_get_bridge_db_values();
-        print '<form name="'.$step.'" action="'.$_SERVER['PHP_SELF'].'" method="post">';
+        print '<form name="'.$step.'" id="cpgform" action="'.$_SERVER['PHP_SELF'].'" method="post">';
         starttable('100%',$lang_bridgemgr_php['title'].': '.$lang_bridgemgr_php['special_settings'], 3);
         $loop_array = array('logout_flag', 'use_post_based_groups','license_number');
         $rows_displayed = 0;
@@ -1088,7 +1088,7 @@ case "finalize":
                         cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
                         VALUES (4, 'Banned', 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 5, 3)");
                 }
-        print '<form name="'.$step.'" action="'.$_SERVER['PHP_SELF'].'" method="post">';
+        print '<form name="'.$step.'" id="cpgform" action="'.$_SERVER['PHP_SELF'].'" method="post">';
         echo <<<EOT
     <script type="text/javascript">
     <!--
@@ -1286,18 +1286,18 @@ else { // not in gallery admin mode --- start
             cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '0' WHERE name = 'bridge_enable'");
             cpg_db_query("UPDATE {$CONFIG['TABLE_BRIDGE']} SET value = '0' WHERE name = 'recovery_logon_failures'");
             cpg_db_query("UPDATE {$CONFIG['TABLE_BRIDGE']} SET value = NOW() WHERE name = 'recovery_logon_timestamp'");
-			
-			// ok, then restore group table
-			cpg_db_query("DELETE FROM {$CONFIG['TABLE_USERGROUPS']} WHERE 1");
-			cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
-			VALUES (1, 'Administrators', 0, 1, 1, 1, 1, 1, 1, 0, 0, 3, 0, 5, 3)");
-			cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
-			VALUES (2, 'Registered', 1024, 0, 1, 1, 1, 1, 1, 1, 0, 3, 0, 5, 3)");
-			cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
-			VALUES (3, 'Anonymous', 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 5, 3)");
-			cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
-			VALUES (4, 'Banned', 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 5, 3)");
-						
+
+                        // ok, then restore group table
+                        cpg_db_query("DELETE FROM {$CONFIG['TABLE_USERGROUPS']} WHERE 1");
+                        cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
+                        VALUES (1, 'Administrators', 0, 1, 1, 1, 1, 1, 1, 0, 0, 3, 0, 5, 3)");
+                        cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
+                        VALUES (2, 'Registered', 1024, 0, 1, 1, 1, 1, 1, 1, 0, 3, 0, 5, 3)");
+                        cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
+                        VALUES (3, 'Anonymous', 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 5, 3)");
+                        cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
+                        VALUES (4, 'Banned', 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 5, 3)");
+
             if (USER_ID) { //user already logged in
                 msg_box($lang_bridgemgr_php['recovery_success_title'], $lang_bridgemgr_php['recovery_success_content'], $lang_bridgemgr_php['goto_bridgemgr'], $_SERVER['PHP_SELF'], "-1");
             } else { // user not logged in yet
@@ -1333,7 +1333,7 @@ else { // not in gallery admin mode --- start
     if ($logon_allowed < 0) {$logon_allowed = 0;}
     starttable(-1,$lang_bridgemgr_php['recovery_title'],2);
         echo <<<EOT
-        <form name="disable_integration" action="{$_SERVER['PHP_SELF']}" method="post">
+        <form name="disable_integration" id="cpgform" action="{$_SERVER['PHP_SELF']}" method="post">
         <tr>
             <td class="tableb" colspan="2">
                 {$lang_bridgemgr_php['recovery_explanation']}

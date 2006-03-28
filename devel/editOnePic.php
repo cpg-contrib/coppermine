@@ -73,9 +73,9 @@ function process_post_data()
     $update .= ", user4 = '".addslashes($user4)."'";
 
     if ($isgalleryicon && $pic['category']>FIRST_USER_CAT) {
-    	$sql = 'update '.$CONFIG['TABLE_PICTURES'].' set galleryicon=0 where owner_id='.$pic['owner_id'].';';
-    	cpg_db_query($sql);
-    	$update .= ", galleryicon = ".addslashes($galleryicon);
+            $sql = 'update '.$CONFIG['TABLE_PICTURES'].' set galleryicon=0 where owner_id='.$pic['owner_id'].';';
+            cpg_db_query($sql);
+            $update .= ", galleryicon = ".addslashes($galleryicon);
     }
 
     if ($reset_vcount) $update .= ", hits = '0'";
@@ -145,14 +145,14 @@ function process_post_data()
 function get_user_albums($user_id = '')
 {
         global $CONFIG, $USER_ALBUMS_ARRAY, $user_albums_list;
-        
+
         if ($user_id != '') {
                 $or = " OR category='" . (FIRST_USER_CAT + $user_id) . "'";
-        }        
+        }
 
         if (!isset($USER_ALBUMS_ARRAY[USER_ID])) {
                 $user_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='".(FIRST_USER_CAT + USER_ID)."' $or ORDER BY title");
-                
+
                 if (mysql_num_rows($user_albums)) {
                     $user_albums_list=cpg_db_fetch_rowset($user_albums);
                 } else {
@@ -218,15 +218,15 @@ if (GALLERY_ADMIN_MODE) {
 //    $public_albums = cpg_db_query("SELECT DISTINCT aid, title, IF(category = 0, CONCAT('&gt; ', title), CONCAT(name,' &lt; ',title)) AS cat_title FROM {$CONFIG['TABLE_ALBUMS']}, {$CONFIG['TABLE_CATEGORIES']} WHERE category < '" . FIRST_USER_CAT . "' AND (category = 0 OR category = cid) ORDER BY cat_title");  // albums weren't coming up in the list when there were no cats
     $public_albums = cpg_db_query("SELECT DISTINCT aid, title, IF(category = 0, CONCAT('&gt; ', title), CONCAT(name,' &lt; ',title)) AS cat_title FROM {$CONFIG['TABLE_ALBUMS']} LEFT JOIN {$CONFIG['TABLE_CATEGORIES']} ON category = cid WHERE category < '" . FIRST_USER_CAT . "' ORDER BY cat_title");
 } else {
-	$forbidden_set_alt = $FORBIDDEN_SET ? 'AND ' . str_replace('p.', '', $FORBIDDEN_SET) : '';
+        $forbidden_set_alt = $FORBIDDEN_SET ? 'AND ' . str_replace('p.', '', $FORBIDDEN_SET) : '';
 //    $public_albums = cpg_db_query("SELECT DISTINCT aid, title, IF(category = 0, CONCAT('&gt; ', title), CONCAT(name,' &lt; ',title)) AS cat_title FROM {$CONFIG['TABLE_ALBUMS']} LEFT JOIN {$CONFIG['TABLE_CATEGORIES']} ON category = cid WHERE category < '" . FIRST_USER_CAT . "' AND uploads = 'YES' $forbidden_set_alt ORDER BY cat_title"); //when user edited own image and no album was uploadable album list was empty
-	$public_albums = cpg_db_query("SELECT DISTINCT aid, title, IF(category = 0, CONCAT('&gt; ', title), CONCAT(name,' &lt; ',title)) AS cat_title FROM {$CONFIG['TABLE_ALBUMS']} LEFT JOIN {$CONFIG['TABLE_CATEGORIES']} ON category = cid WHERE (category < '" . FIRST_USER_CAT . "' AND uploads = 'YES' $forbidden_set_alt) OR aid='{$CURRENT_PIC['aid']}' ORDER BY cat_title");
+        $public_albums = cpg_db_query("SELECT DISTINCT aid, title, IF(category = 0, CONCAT('&gt; ', title), CONCAT(name,' &lt; ',title)) AS cat_title FROM {$CONFIG['TABLE_ALBUMS']} LEFT JOIN {$CONFIG['TABLE_CATEGORIES']} ON category = cid WHERE (category < '" . FIRST_USER_CAT . "' AND uploads = 'YES' $forbidden_set_alt) OR aid='{$CURRENT_PIC['aid']}' ORDER BY cat_title");
 }
 
 if (mysql_num_rows($public_albums)) {
-	$public_albums_list=cpg_db_fetch_rowset($public_albums);
+        $public_albums_list=cpg_db_fetch_rowset($public_albums);
 } else {
-	$public_albums_list = array();
+        $public_albums_list = array();
 }
 
 if (GALLERY_ADMIN_MODE && $CURRENT_PIC['owner_id'] != USER_ID) {
@@ -242,7 +242,7 @@ function textCounter(field, maxlimit) {
         field.value = field.value.substring(0, maxlimit);
 }
 </script>
-<form name="editonepicform" method="post" action="editOnePic.php">
+<form name="editonepicform" id="cpgform" method="post" action="editOnePic.php">
 <input type="hidden" name="id" value="{$CURRENT_PIC['pid']}" />
 EOT;
 
@@ -378,15 +378,15 @@ $isgalleryicon_disabled = ($CURRENT_PIC['category'] < FIRST_USER_CAT)? 'disabled
 print <<<EOT
         <tr>
                         <td class="tableb" colspan="3" align="center">
-							<table border="0" cellspacing="0" cellpadding="0" width="100%">
-								<tr>
-									<td width="20%" align="center"><input type="checkbox" name="galleryicon" {$isgalleryicon_selected}{$isgalleryicon_disabled}value="{$CURRENT_PIC['pid']}" class="checkbox" />{$lang_editpics_php['gallery_icon']}</td>
-									<td width="20%" align="center"><input type="checkbox" name="read_exif" value="1" class="checkbox" />{$lang_editpics_php['read_exif']}</td>
-									<td width="20%" align="center"><input type="checkbox" name="reset_vcount" value="1" class="checkbox" />{$lang_editpics_php['reset_view_count']}</td>
-									<td width="20%" align="center"><input type="checkbox" name="reset_votes" value="1" class="checkbox" />{$lang_editpics_php['reset_votes']}</td>
-									<td width="20%" align="center"><input type="checkbox" name="del_comments" value="1" class="checkbox" />{$lang_editpics_php['del_comm']}</td>
-								</tr>
-							</table>
+                                                        <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                                                <tr>
+                                                                        <td width="20%" align="center"><input type="checkbox" name="galleryicon" {$isgalleryicon_selected}{$isgalleryicon_disabled}value="{$CURRENT_PIC['pid']}" class="checkbox" />{$lang_editpics_php['gallery_icon']}</td>
+                                                                        <td width="20%" align="center"><input type="checkbox" name="read_exif" value="1" class="checkbox" />{$lang_editpics_php['read_exif']}</td>
+                                                                        <td width="20%" align="center"><input type="checkbox" name="reset_vcount" value="1" class="checkbox" />{$lang_editpics_php['reset_view_count']}</td>
+                                                                        <td width="20%" align="center"><input type="checkbox" name="reset_votes" value="1" class="checkbox" />{$lang_editpics_php['reset_votes']}</td>
+                                                                        <td width="20%" align="center"><input type="checkbox" name="del_comments" value="1" class="checkbox" />{$lang_editpics_php['del_comm']}</td>
+                                                                </tr>
+                                                        </table>
                         </td>
         </tr>
         <tr>

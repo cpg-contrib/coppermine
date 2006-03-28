@@ -365,7 +365,7 @@ pageheader($lang_picmgr_php['pic_mgr']);
       $sort_order .= $picture['pid'].'@'.($i++).',';
    }
 ?>
-   <form name="picture_menu" method="post" action="delete.php?what=picmgr" onSubmit="return CheckPictureForm(this);">
+   <form name="picture_menu" id="cpgform" method="post" action="delete.php?what=picmgr" onSubmit="return CheckPictureForm(this);">
    <input type="hidden" name="delete_picture" value="" />
    <input type="hidden" name="sort_order" value="<?php echo $sort_order ?>" />
    <td class="tableb" valign="top" align="center">

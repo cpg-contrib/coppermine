@@ -86,7 +86,7 @@ if ($total > 0) {
     //-->
     </script>
 
-    <form name="form" name="keywordform">
+    <form name="form" name="keywordform" id="cpgform2">
     <table align="center">
     <tr>
         <td align="center"><select name="keyword" size="15" onChange="CM_select(this)">';

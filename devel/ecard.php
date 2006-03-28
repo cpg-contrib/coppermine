@@ -221,7 +221,7 @@ echo <<<EOT
         </tr>
         <tr>
                 <td class="tableb" valign="top" width="40%">
-                        <form method="post" name="post" action="{$_SERVER['PHP_SELF']}?album=$album&amp;pid=$pid&amp;pos=$pos">
+                        <form method="post" name="post" id="cpgform" action="{$_SERVER['PHP_SELF']}?album=$album&amp;pid=$pid&amp;pos=$pos">
                         {$lang_ecard_php['your_name']}<br />
                 </td>
                 <td valign="top" class="tableb" width="60%">

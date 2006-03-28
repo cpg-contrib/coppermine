@@ -83,7 +83,7 @@ EOT;
 
 pageheader($lang_login_php['login']);
 $referer = urlencode($referer);
-echo '<form action="login.php?referer='.$referer.'" method="post" name="loginbox">';
+echo '<form action="login.php?referer='.$referer.'" method="post" name="loginbox" id="cpgform">';
 
 starttable('-1', $lang_login_php['enter_login_pswd'], 2);
 echo <<< EOT

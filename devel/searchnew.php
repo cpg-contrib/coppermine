@@ -523,7 +523,7 @@ EOT;
         }
         -->
         </script>
-        <form method="post" action="{$_SERVER['PHP_SELF']}?insert=1" name="selectPics" style="margin:0px;padding:0px">
+        <form method="post" action="{$_SERVER['PHP_SELF']}?insert=1" name="selectPics" id="cpgform" style="margin:0px;padding:0px">
 EOT;
     starttable("100%");
     echo <<<EOT
@@ -565,7 +565,7 @@ EOT;
 } else {
     pageheader($lang_search_new_php['page_title']);
     $help = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=ftp&amp;ae=ftp_end&amp;top=1', '600', '450');
-    print '<form name="interfaceconfig" action="'.$_SERVER['PHP_SELF'].'" method="post" style="margin:0px;padding:0px">';
+    print '<form name="interfaceconfig" id="cpgform" action="'.$_SERVER['PHP_SELF'].'" method="post" style="margin:0px;padding:0px">';
     starttable(-1, $lang_search_new_php['select_dir'].$help);
 
     // write the interface change to the db

@@ -343,7 +343,7 @@ function selectall()
 //]]>-->
 </script>
 
-<form method="post" action="{$_SERVER['PHP_SELF']}" name="groupmanager">
+<form method="post" action="{$_SERVER['PHP_SELF']}" name="groupmanager" id="cpgform">
 EOT;
 
 starttable('100%');

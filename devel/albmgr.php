@@ -353,7 +353,7 @@ if (count ($rowset) > 0) foreach ($rowset as $album) {
 }
 
 ?>
-        <form name="album_menu" method="post" action="delete.php?what=albmgr" onSubmit="return CheckAlbumForm(this);">
+        <form name="album_menu" id="cpgform" method="post" action="delete.php?what=albmgr" onSubmit="return CheckAlbumForm(this);">
         <input type="hidden" name="delete_album" value="" />
         <input type="hidden" name="sort_order" value="<?php echo $sort_order ?>" />
         <td class="tableb" valign="top" align="center">

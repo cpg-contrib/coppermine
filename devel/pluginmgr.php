@@ -114,7 +114,7 @@ EOT;
     endtable();
 
     echo('<p>&nbsp;</p>');
-    echo('<form action="pluginmgr.php?op=upload" method="post" enctype="multipart/form-data">');
+    echo('<form name="cpgform" id="cpgform" action="pluginmgr.php?op=upload" method="post" enctype="multipart/form-data">');
 
     starttable('100%');
 echo <<<EOT

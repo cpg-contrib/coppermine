@@ -334,7 +334,7 @@ EOT;
   // Accept header addons
   echo CPGPluginAPI::filter('usermgr_header','');
 
-    print '<form method="get" action="delete.php" name="editForm">'."\n";
+    print '<form method="get" action="delete.php" name="editForm" id="cpgform">'."\n";
     print '<input type="hidden" name="id" value="" />';
     if (!$lim_user) {
      echo <<< EOT
@@ -523,7 +523,7 @@ EOT;
         </tr>
         <tr>
             <td colspan="$number_of_columns"  class="tablef" align="center" valign="middle">
-                <form method="post" action="{$_SERVER['PHP_SELF']}" name="searchUser">
+                <form method="post" action="{$_SERVER['PHP_SELF']}" name="searchUser" id="cpgform2">
                 <input type="text" name="username" class="textinput" $search_string_default />
                 <input type="submit" name="user_search" value="{$lang_usermgr_php['search_submit']}" class="button" />
                 $help
@@ -580,7 +580,7 @@ function edit_user($user_id)
 
     starttable(500, $lang_usermgr_php['modify_user'], 2);
     echo <<<EOT
-        <form method="post" action="{$_SERVER['PHP_SELF']}?op=update&user_id=$user_id">
+        <form name="cpgform3" id="cpgform3" method="post" action="{$_SERVER['PHP_SELF']}?op=update&user_id=$user_id">
 
 EOT;
 
@@ -754,7 +754,7 @@ function update_user($user_id)
     mysql_free_result($result);
 
     if (utf_strlen($user_name) < 2) cpg_die(ERROR, $lang_register_php['err_uname_short'], __FILE__, __LINE__);
-	if ($user_password && utf_strlen($user_password) < 2) cpg_die(ERROR, $lang_register_php['err_password_short'], __FILE__, __LINE__);
+        if ($user_password && utf_strlen($user_password) < 2) cpg_die(ERROR, $lang_register_php['err_password_short'], __FILE__, __LINE__);
 
     if (is_array($group_list)) {
         $user_group_list = '';

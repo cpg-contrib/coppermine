@@ -83,7 +83,7 @@ EOT;
    $output = implode("</tr>\n<tr>", $total_array);
 
    echo <<<EOT
-<form name="keywordForm" action="keywordmgr.php?page=changeword" method="post">
+<form name="keywordForm" id="cpgform" action="keywordmgr.php?page=changeword" method="post">
 $output
 <tr><td colspan="5" class="tablef" align="center">
    <input type="text" name="newword" />

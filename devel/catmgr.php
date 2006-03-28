@@ -382,7 +382,7 @@ echo <<<EOT
                 <td colspan="4" class="tableh1" align="center"><b><span class="statlink">{$lang_catmgr_php['operations']}</span></b></td>
                 <td class="tableh1" align="center"><b><span class="statlink">{$lang_catmgr_php['move_into']}</span></b></td>
         </tr>
-        <form method="get" action="{$_SERVER['PHP_SELF']}">
+        <form method="get" action="{$_SERVER['PHP_SELF']}" name="cpgform" id="cpgform">
 
 EOT;
 
@@ -409,7 +409,7 @@ echo <<<EOT
         -->
         </script>
 
-<form name="catsortconfig" action="{$_SERVER['PHP_SELF']}" method="post">
+<form name="catsortconfig" action="{$_SERVER['PHP_SELF']}" method="post" name="cpgform2" id="cpgform2">
         <tr>
             <td class="tablef" colspan="6">
                         {$lang_catmgr_php['categories_alpha_sort']}
@@ -432,7 +432,7 @@ $lb = cat_list_box($current_category['parent'], $current_category['cid'], false)
 $op = $current_category['cid'] ? 'updatecat' : 'createcat';
 if ($CONFIG['show_bbcode_help']) {$description_help .= '&nbsp;'. cpg_display_help('f=index.html&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
 echo <<<EOT
-        <form method="post" action="{$_SERVER['PHP_SELF']}?op=$op">
+        <form method="post" action="{$_SERVER['PHP_SELF']}?op=$op" name="cpgform3" id="cpgform3">
         <input type="hidden" name="cid" value ="{$current_category['cid']}" />
         <tr>
             <td width="40%" class="tableb">

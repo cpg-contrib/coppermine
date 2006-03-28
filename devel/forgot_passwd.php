@@ -49,13 +49,13 @@ if (!empty($_POST['email'])) {
         }
 
         $randkey = $cpg_udb->generateId();
-        
+
         // Session life = 1hour - session life (5 minutes)
         $session_life = time()-(CPG_MINUTE*55);
 
         $sql =  'insert into '.$cpg_udb->sessionstable.' (session_id, user_id, time, remember) values ';
         $sql .= '("'.md5($randkey.$USER_DATA['user_id']).'", 0, "'.$session_life.'", 0);';
-        
+
         cpg_db_query($sql);
 
 
@@ -146,7 +146,7 @@ EOT;
 
 pageheader($lang_forgot_passwd_php['forgot_passwd']);
 
-echo '<form action="forgot_passwd.php" method="post" name="passwordreminder">';
+echo '<form action="forgot_passwd.php" method="post" name="passwordreminder" id="cpgform">';
 starttable('-1', $lang_forgot_passwd_php['forgot_passwd'], 2);
 echo <<< EOT
             $lookup_failed

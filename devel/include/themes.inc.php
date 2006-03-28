@@ -775,7 +775,7 @@ $template_image_comments = <<<EOT
 <!-- BEGIN edit_box_smilies -->
                                 <table width="100%" cellpadding="0" cellspacing="0">
 
-                                                <form name="f{MSG_ID}" method="POST" action="db_input.php">
+                                                <form name="f{MSG_ID}" id="f{MSG_ID}" method="POST" action="db_input.php">
                                                 <input type="hidden" name="event" value="comment_update" />
                                                 <input type="hidden" name="msg_id" value="{MSG_ID}" />
                                                 <tr>
@@ -803,7 +803,7 @@ $template_image_comments = <<<EOT
 <!-- BEGIN edit_box_no_smilies -->
                                 <table width="100%" cellpadding="0" cellspacing="0">
                                         <tr>
-                                                <form name="f{MSG_ID}" method="POST" action="db_input.php">
+                                                <form name="f{MSG_ID}" id="f{MSG_ID}" method="POST" action="db_input.php">
                                                 <input type="hidden" name="event" value="comment_update" />
                                                 <input type="hidden" name="msg_id" value="{MSG_ID}" />
                                                 <td>
@@ -834,7 +834,7 @@ EOT;
 
 if (!isset($template_add_your_comment))  //{THEMES}
 $template_add_your_comment = <<<EOT
-        <form method="post" name="post" action="db_input.php">
+        <form method="post" name="post" id="post" action="db_input.php">
                 <table align="center" width="{WIDTH}" cellspacing="1" cellpadding="0" class="maintable">
                         <tr>
                                         <td width="100%" class="tableh2_compact"><b>{ADD_YOUR_COMMENT}</b></td>
@@ -1402,7 +1402,7 @@ function theme_admin_mode_menu()
     if ($admin_menu == '') {
 
         if (GALLERY_ADMIN_MODE) {
-			
+
         if ($CONFIG['log_ecards'] == 0) {
             template_extract_block($template_gallery_admin_menu, 'log_ecards');
         }
@@ -2480,7 +2480,7 @@ function theme_display_fullsize_pic()
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
   <head>
-  <meta http-equiv="content-type" content="text/html; charset=<?php echo $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'] ?>" />  
+  <meta http-equiv="content-type" content="text/html; charset=<?php echo $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'] ?>" />
   <title><?php echo $CONFIG['gallery_name'] ?>: <?php echo $lang_fullsize_popup['click_to_close'];
       ?></title>
   <script type="text/javascript" src="scripts.js"></script>
