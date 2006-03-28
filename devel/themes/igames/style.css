@@ -131,6 +131,11 @@ li {
         list-style-type: disc;
 }
 
+form {
+        margin-top:0px;
+        margin-bottom:0px;
+}
+
 .top_panel {
                 background-image: url(images/top_panel_r1_c4.jpg);
                 background-repeat : repeat-x;

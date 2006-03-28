@@ -94,6 +94,11 @@ li {
         list-style-type: disc;
 }
 
+form {
+        margin-top:0px;
+        margin-bottom:0px;
+}
+
 .textinput {
         font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif;
         font-size: 100%;

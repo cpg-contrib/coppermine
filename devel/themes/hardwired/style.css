@@ -114,6 +114,11 @@ li {
         list-style-type: disc;
 }
 
+form {
+        margin-top:0px;
+        margin-bottom:0px;
+}
+
 .textinput {
         font-family: Verdana, Arial, Helvetica, sans-serif;
         font-size: 100%;

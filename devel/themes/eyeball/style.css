@@ -158,7 +158,10 @@ li {
         list-style-type: disc;
 }
 
-
+form {
+        margin-top:0px;
+        margin-bottom:0px;
+}
 
 .top_panel td {
         white-space: nowrap;
