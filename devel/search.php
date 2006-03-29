@@ -31,7 +31,7 @@ if (!USER_ID && $CONFIG['allow_unlogged_access'] == 0) {
 pageheader($lang_search_php['title']);
 echo <<< EOT
 
-<form method="post" action="thumbnails.php" name="searchcpg" id="cpgform3">
+<form method="get" action="thumbnails.php" name="searchcpg" id="cpgform3">
 EOT;
 
 starttable('60%', $lang_search_php['title']);
