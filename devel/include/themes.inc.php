@@ -1185,6 +1185,7 @@ function pageheader($section, $meta = '')
         '{SUB_MENU}' => theme_main_menu('sub_menu'),
         '{ADMIN_MENU}' => theme_admin_mode_menu(),
         '{CUSTOM_HEADER}' => $custom_header,
+        '{JAVASCRIPT}' => theme_javascript_head(),
         );
 
     echo template_eval($template_header, $template_vars);
@@ -1210,6 +1211,18 @@ function pagefooter()
     );
 
     echo template_eval($template_footer, $template_vars);
+}
+}  //{THEMES}
+// Function for the JavaScript inside the <head>-section
+if (!function_exists('theme_javascript_head')) {  //{THEMES}
+function theme_javascript_head() {
+    $return = '<script type="text/javascript" src="scripts.js"></script>'; // do not remove this line unless you really know what you're doing
+    $return .= <<< EOT
+
+<script type="text/javascript">
+</script>
+EOT;
+    return $return;
 }
 }  //{THEMES}
 // Function to start a 'standard' table

@@ -1128,6 +1128,7 @@ function pageheader($section, $meta = '')
         '{SUB_MENU}' => theme_main_menu('sub_menu'),
         '{ADMIN_MENU}' => theme_admin_mode_menu(),
         '{CUSTOM_HEADER}' => $custom_header,
+        '{JAVASCRIPT}' => theme_javascript_head(),
         );
 
     echo template_eval($template_header, $template_vars);
@@ -1152,6 +1153,18 @@ function pagefooter()
 
     echo template_eval($template_footer, $template_vars);
 }
+
+// Function for the JavaScript inside the <head>-section
+function theme_javascript_head() {
+    $return = '<script type="text/javascript" src="scripts.js"></script>'; // do not remove this line unless you really know what you're doing
+    $return .= <<< EOT
+
+<script type="text/javascript">
+</script>
+EOT;
+    return $return;
+}
+
 // Function to start a 'standard' table
 function starttable($width = '-1', $title = '', $title_colspan = '1')
 {
