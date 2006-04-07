@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-04-07 [S] Changed default docfile types and soundfile types from all to a list as a counter-measure against the apache webserver flaw that allows parsing of rar files
 2006-03-28 [C] Added name and id attributes to form elements for standards compliance and possible future use of the id {GauGau}
 2006-03-06 [B] Fixed redirecting back to original url after adding to favs {GauGau}
 2006-03-06 [C] Fixing issue with smilie url prefix in admin comment notification {GauGau}
@@ -366,4 +367,3 @@ Changelog
 2003-08-22 [A] Added option to show first level albums of a category instead of just statistics of the category {Tarique}
 2003-08-22 [A] Added Absolute URL of a picture in the pic info this helps in giving out links to other people and the same picture will display regardless of the sort setting of the individual {Tarique}
 2003-08-22 [A] Added option of turning on OR off the showing of "Private" Icon to unlogged / unprivileged user {Tarique}
-

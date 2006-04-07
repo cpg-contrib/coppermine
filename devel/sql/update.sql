@@ -76,7 +76,7 @@ INSERT INTO CPG_filetypes VALUES ('mid', 'audio/midi', 'audio', 'WMP');
 INSERT INTO CPG_filetypes VALUES ('wma', 'audio/x-ms-wma', 'audio', 'WMP');
 INSERT INTO CPG_filetypes VALUES ('wav', 'audio/wav', 'audio', 'WMP');
 INSERT INTO CPG_filetypes VALUES ('ogg', 'audio/ogg', 'audio', '');
-INSERT INTO CPG_config VALUES ('allowed_snd_types', 'ALL');
+INSERT INTO CPG_config VALUES ('allowed_snd_types', 'mp3/midi/mid/wma/wav/ogg');
 
 INSERT INTO CPG_filetypes VALUES ('ram', 'audio/x-pn-realaudio', 'document', 'RMP');
 INSERT INTO CPG_filetypes VALUES ('ra', 'audio/x-realaudio', 'document', 'RMP');
@@ -94,7 +94,7 @@ INSERT INTO CPG_filetypes VALUES ('zip', 'application/zip', 'document', '');
 INSERT INTO CPG_filetypes VALUES ('rar', 'application/rar', 'document', '');
 INSERT INTO CPG_filetypes VALUES ('gz', 'application/gz', 'document', '');
 INSERT INTO CPG_filetypes VALUES ('mdb', 'application/msaccess', 'document', '');
-INSERT INTO CPG_config VALUES ('allowed_doc_types', 'ALL');
+INSERT INTO CPG_config VALUES ('allowed_doc_types', 'doc/txt/rtf/pdf/xls/pps/ppt/zip/gz/mdb');
 
 
 #
