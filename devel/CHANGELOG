@@ -25,7 +25,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
-2006-04-07 [S] Changed default docfile types and soundfile types from all to a list as a counter-measure against the apache webserver flaw that allows parsing of rar files
+2006-04-07 [S] Changed default docfile types and soundfile types from all to a list as a counter-measure against the apache webserver flaw that allows parsing of rar files {GauGau}
+2006-04-07 [A] Changed layout of changelog to improve readability {GauGau}
 2006-03-28 [C] Added name and id attributes to form elements for standards compliance and possible future use of the id {GauGau}
 2006-03-06 [B] Fixed redirecting back to original url after adding to favs {GauGau}
 2006-03-06 [C] Fixing issue with smilie url prefix in admin comment notification {GauGau}
