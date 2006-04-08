@@ -23,7 +23,7 @@ if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 $lang_translation_info = array(
   'lang_name_english' => 'Persian',
   'lang_name_native' => 'فارسي',
-  'lang_country_code' => 'IR',
+  'lang_country_code' => 'ir',
   'trans_name'=> 'B.Mossavari ',
   'trans_email' => 'bmossavari@gmail.com',
   'trans_website' => 'http://lab.kishmate.com/gallery144/',
