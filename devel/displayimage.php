@@ -258,6 +258,9 @@ if ($cat < 0) {
     }
 }
 // Retrieve data for the current picture
+######## Commented by Abbas for new URL ###########
+// Can be removed after testing
+/*
 if ($pos < 0 || $pid > 0) {
     $pid = ($pos < 0) ? -$pos : $pid;
     $result = cpg_db_query("SELECT aid from {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid' $ALBUM_SET LIMIT 1");
@@ -268,7 +271,24 @@ if ($pos < 0 || $pid > 0) {
     for($pos = 0; $pic_data[$pos]['pid'] != $pid && $pos < $pic_count; $pos++);
     $pic_data = get_pic_data($album, $pic_count, $album_name, $pos, 1, false);
     $CURRENT_PIC_DATA = $pic_data[0];
+*/
+###################################################
 
+if ($pos < 0 || $pid > 0) {
+    ########## Modified by Abbas for new URL feature #########
+    $pid = ($pos < 0) ? -$pos : $pid;
+    if (!$album) {
+      $result = cpg_db_query("SELECT aid from {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid' $ALBUM_SET LIMIT 1");
+      if (mysql_num_rows($result) == 0) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
+      $row = mysql_fetch_array($result);
+    }
+    $album = (!$album) ? $row['aid'] : $album; 
+    $pic_data = get_pic_data($album, $pic_count, $album_name, -1, -1, false);
+    for($pos = 0; $pic_data[$pos]['pid'] != $pid && $pos < $pic_count; $pos++);
+    reset($pic_data);
+    $CURRENT_PIC_DATA = $pic_data[$pos];
+    reset($pic_data);
+    ########################################################
 } elseif (isset($_GET['pos'])) {
     $pic_data = get_pic_data($album, $pic_count, $album_name, $pos, 1, false);
     if ($pic_count == 0) {
@@ -280,6 +300,11 @@ if ($pos < 0 || $pid > 0) {
     }
     $CURRENT_PIC_DATA = $pic_data[0];
 }
+
+if (!count($CURRENT_PIC_DATA)) {
+  cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
+}
+######################################
 
 // Retrieve data for the current album
 if (isset($CURRENT_PIC_DATA)) {
@@ -305,7 +330,9 @@ if (isset($_GET['fullsize'])) {
     theme_slideshow();
     ob_end_flush();
 } else {
-    if (!isset($_GET['pos'])) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
+    //if (!isset($_GET['pos'])) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__); //Commented by Abbas
+    if (!isset($_GET['pos']) && !isset($_GET['pid'])) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
+
     $picture_title = $CURRENT_PIC_DATA['title'] ? $CURRENT_PIC_DATA['title'] : strtr(preg_replace("/(.+)\..*?\Z/", "\\1", htmlspecialchars($CURRENT_PIC_DATA['filename'])), "_", " ");
 
     $nav_menu = theme_html_img_nav_menu();
