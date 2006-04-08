@@ -283,3 +283,4 @@ INSERT INTO CPG_config VALUES ('comments_sort_descending', '0');
 INSERT INTO CPG_config VALUES ('report_post', '0');
 INSERT INTO CPG_config VALUES ('comments_anon_pfx', 'Guest_');
 INSERT INTO CPG_config VALUES ('admin_activation', '0');
+INSERT INTO CPG_config VALUES ('display_thumbnail_rating', '0');

@@ -473,3 +473,6 @@ ALTER TABLE CPG_pictures DROP `randpos`;
 # MySQL 5 compat fixes
 ALTER TABLE `CPG_pictures` CHANGE `mtime` `mtime` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00';
 ALTER TABLE `CPG_albums` CHANGE `description` `description` TEXT NOT NULL default '';
+
+# Add display of rating on thumbnails page
+INSERT INTO CPG_config VALUES ('display_thumbnail_rating', '0');
