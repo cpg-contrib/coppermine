@@ -1827,6 +1827,9 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
                     '{CAPTION}' => $thumb['caption'],
                     '{ADMIN_MENU}' => $thumb['admin_menu']
                     );
+            ########## Commented by Abbas for new URL ###############
+            // Can be removed after testing
+            /*
             } else {
                 $params = array('{CELL_WIDTH}' => $cell_width,
                               '{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&amp;pos={$thumb['pos']}$uid_link",
@@ -1835,6 +1838,28 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
                     '{ADMIN_MENU}' => $thumb['admin_menu']
                     );
             }
+            */
+            ########################################################
+            
+            ######### Added by Abbas for new URL #################
+            } elseif ($aid == 'random'){
+                $params = array('{CELL_WIDTH}' => $cell_width,
+                    '{LINK_TGT}' => "displayimage.php?pid={$thumb['pid']}$uid_link",
+                    '{THUMB}' => $thumb['image'],
+                    '{CAPTION}' => $thumb['caption'],
+                    '{ADMIN_MENU}' => $thumb['admin_menu']
+                    );
+            ######################################################
+            } else {
+                $params = array('{CELL_WIDTH}' => $cell_width,
+                    //'{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&amp;pos={$thumb['pos']}",
+                    '{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&amp;pid={$thumb['pid']}$uid_link",
+                    '{THUMB}' => $thumb['image'],
+                    '{CAPTION}' => $thumb['caption'],
+                    '{ADMIN_MENU}' => $thumb['admin_menu']
+                    );
+            }
+            
         } else {
             $params = array('{CELL_WIDTH}' => $cell_width,
                 '{LINK_TGT}' => "index.php?cat={$thumb['cat']}",
@@ -1895,7 +1920,10 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
         $i++;
         if ($mode == 'thumb') {
             $params = array('{CELL_WIDTH}' => $cell_width,
-                '{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&amp;pos={$thumb['pos']}$uid_link",
+                ########### Modified by Abbas for new URL #########
+                //'{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&amp;pos={$thumb['pos']}$uid_link", // by Abbas
+                '{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&amp;pid={$thumb['pid']}$uid_link",
+                ###################################################
                 '{THUMB}' => $thumb['image'],
                 '{CAPTION}' => $thumb['caption'],
                 '{ADMIN_MENU}' => ''
@@ -2178,7 +2206,7 @@ if (!function_exists('theme_html_img_nav_menu')) {  //{THEMES}
 function theme_html_img_nav_menu()
 {
     global $CONFIG, $CURRENT_PIC_DATA, $meta_nav, $THEME_DIR ; //$PHP_SELF,
-    global $album, $cat, $pos, $pic_count, $lang_img_nav_bar, $lang_text_dir, $template_img_navbar;
+    global $album, $cat, $pos, $pic_count, $pic_data, $lang_img_nav_bar, $lang_text_dir, $template_img_navbar;
 
     $cat_link = is_numeric($album) ? '' : '&amp;cat=' . $cat;
         $uid_link = is_numeric($_GET['uid']) ? '&amp;uid=' . $_GET['uid'] : '';
@@ -2188,19 +2216,23 @@ function theme_html_img_nav_menu()
     $pid = $CURRENT_PIC_DATA['pid'];
 
     $start = 0;
-        $start_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$start";
+
+        //$start_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$start"; // Abbas - added pid in URL instead of pos
+        $start_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pid={$pic_data[$start]['pid']}";
         $start_title = $lang_img_nav_bar['go_album_start'];
         $meta_nav .= "<link rel=\"start\" href=\"$start_tgt\" title=\"$start_title\" />
         ";
         $end = $pic_count - 1;
-        $end_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$end";
+        //$end_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$end";// Abbas - added pid in URL instead of pos
+        $end_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pid={$pic_data[$end]['pid']}";
         $end_title = $lang_img_nav_bar['go_album_end'];
         $meta_nav .= "<link rel=\"last\" href=\"$end_tgt\" title=\"$end_title\" />
         ";
 
     if ($pos > 0) {
         $prev = $pos - 1;
-        $prev_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$prev$uid_link";
+        //$prev_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$prev$uid_link";// Abbas - added pid in URL instead of pos
+        $prev_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pid={$pic_data[$prev]['pid']}$uid_link";
         $prev_title = $lang_img_nav_bar['prev_title'];
                                 $meta_nav .= "<link rel=\"prev\" href=\"$prev_tgt\" title=\"$prev_title\" />
                                 ";
@@ -2211,7 +2243,8 @@ function theme_html_img_nav_menu()
 
     if ($pos < ($pic_count -1)) {
         $next = $pos + 1;
-        $next_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$next$uid_link";
+        //$next_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$next$uid_link";// Abbas - added pid in URL instead of pos
+        $next_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pid={$pic_data[$next]['pid']}$uid_link";
         $next_title = $lang_img_nav_bar['next_title'];
                                 $meta_nav .= "<link rel=\"next\" href=\"$next_tgt\" title=\"$next_title\"/>
                                 ";
