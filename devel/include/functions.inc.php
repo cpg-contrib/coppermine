@@ -643,20 +643,20 @@ function bb_decode($text)
                 $bbcode_tpl['email'] = str_replace('{EMAIL}', '\\1', $bbcode_tpl['email']);
 
                 // [iurl]xxxx://www.phpbb.com[/iurl] code..
-                $patterns[1] = "#\[iurl\]([a-z]+?://){1}([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\[/iurl\]#si";
-                $replacements[1] = $bbcode_tpl['iurl1'];
+                $patterns[7] = "#\[iurl\]([a-z]+?://){1}([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\[/iurl\]#si";
+                $replacements[7] = $bbcode_tpl['iurl1'];
 
                 // [iurl]www.phpbb.com[/iurl] code.. (no xxxx:// prefix).
-                $patterns[2] = "#\[iurl\]([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\[/iurl\]#si";
-                $replacements[2] = $bbcode_tpl['iurl2'];
+                $patterns[8] = "#\[iurl\]([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\[/iurl\]#si";
+                $replacements[8] = $bbcode_tpl['iurl2'];
 
                 // [iurl=xxxx://www.phpbb.com]phpBB[/iurl] code..
-                $patterns[3] = "#\[iurl=([a-z]+?://){1}([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\](.*?)\[/iurl\]#si";
-                $replacements[3] = $bbcode_tpl['iurl3'];
+                $patterns[9] = "#\[iurl=([a-z]+?://){1}([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\](.*?)\[/iurl\]#si";
+                $replacements[9] = $bbcode_tpl['iurl3'];
 
                 // [iurl=www.phpbb.com]phpBB[/iurl] code.. (no xxxx:// prefix).
-                $patterns[4] = "#\[iurl=([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\](.*?)\[/iurl\]#si";
-                $replacements[4] = $bbcode_tpl['iurl4'];
+                $patterns[10] = "#\[iurl=([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\](.*?)\[/iurl\]#si";
+                $replacements[10] = $bbcode_tpl['iurl4'];
 
         }
 
@@ -858,7 +858,7 @@ function build_caption(&$rowset,$must_have=array())
             $caption .= ($row['owner_id'] && $row['owner_name']) ? '<span class="thumb_title"><a href ="profile.php?uid='.$row['owner_id'].'">'.$row['owner_name'].'</a></span>' : '';
         }
         if ($CONFIG['display_thumbnail_rating']) {
-            $caption .= '<span class="thumb_title">working on this feature - gaugau</span>';
+            $caption .= '<!--<span class="thumb_title">working on this feature - gaugau</span>-->';
         }
 
         if (in_array('msg_date',$must_have)) {
