@@ -1893,6 +1893,9 @@ function display_film_strip($album, $cat, $pos)
                         $thumb_list[$i]['image'] = "<img src=\"" . $pic_url . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$row['filename']}\" title=\"$pic_title\" />";
                         $thumb_list[$i]['caption'] = $CONFIG['display_film_strip_filename'] ? '<span class="thumb_filename">'.$row['filename'].'</span>' : '';
                         $thumb_list[$i]['admin_menu'] = '';
+                        ######### Added by Abbas #############
+                        $thumb_list[$i]['pid'] = $row['pid'];
+                        ######################################
 
                 }
                 return theme_display_film_strip($thumb_list, $thumb_count, $album_name, $album, $cat, $pos, is_numeric($album));
