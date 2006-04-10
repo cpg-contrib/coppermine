@@ -857,9 +857,6 @@ function build_caption(&$rowset,$must_have=array())
         if ($CONFIG['display_uploader'] /*&& !in_array($row['owner_id'],$CONFIG['ADMIN_USERS']) *|| ($CONFIG['display_admin_uploader'] && in_array($row['owner_id'],$CONFIG['ADMIN_USERS']))*/) {
             $caption .= ($row['owner_id'] && $row['owner_name']) ? '<span class="thumb_title"><a href ="profile.php?uid='.$row['owner_id'].'">'.$row['owner_name'].'</a></span>' : '';
         }
-        if ($CONFIG['display_thumbnail_rating']) {
-            $caption .= '<!--<span class="thumb_title">working on this feature - gaugau</span>-->';
-        }
 
         if (in_array('msg_date',$must_have)) {
             $caption .= '<span class="thumb_caption">'.localised_date($row['msg_date'], $lastcom_date_fmt).'</span>';
@@ -978,7 +975,11 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 $rowset = cpg_db_fetch_rowset($result);
                 mysql_free_result($result);
                 // Set picture caption
-                if ($set_caption) build_caption($rowset);
+                if ($CONFIG['display_thumbnail_rating'] == 1) {
+                  if ($set_caption) build_caption($rowset, array('pic_rating'));
+                } else {
+                  if ($set_caption) build_caption($rowset);
+                }
 
 
         $rowset = CPGPluginAPI::filter('thumb_caption_regular',$rowset);
