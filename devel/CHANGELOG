@@ -25,6 +25,9 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-04-10 [M] Removed comments in language file that indicated changes in cpg1.4.x. {GauGau}
+2006-04-10 [B] Re-added config.php and server_relocate.php to overwrite the outdated files when users upgrade. {GauGau}
+2006-04-10 [A] Added option to display rating on thumbnail page. {GauGau}
 2006-04-08 [A] Added pid in URLs to avoid relative URLs. This will make pic URLs static and search engine friendly. {Abbas}
 2006-04-07 [S] Changed default docfile types and soundfile types from all to a list as a counter-measure against the apache webserver flaw that allows parsing of rar files {GauGau}
 2006-04-07 [A] Changed layout of changelog to improve readability {GauGau}
