@@ -348,4 +348,5 @@ Fixed redirecting back to original url after adding to favs - 6th March 2006, Ni
 Fixing issue with smilie url prefix in admin comment notification - 20th Feb 2006, Nibbler
 Fixed bug in charsetmgr - 23rd Feb 2006, Abbas
 CPG1.4.4 released - 26th Feb 2006, GauGau
-Added Georian language file - 12th March 2006, GauGau
+Added Georgian language file - 12th March 2006, GauGau
+Re-added config.php and server_relocate.php to overwrite the outdated files when users upgrade - 10th April 2006, GauGau
