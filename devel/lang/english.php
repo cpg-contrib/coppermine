@@ -613,9 +613,9 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'view_logs' => 'View logs',
   'click_expand' => 'click section name to expand',
   'expand_all' => 'Expand All',
-  'notice1' => '(*) These settings mustn\'t be changed if you already have files in your database.', - (relocated)
-  'notice2' => '(**) When changing this setting, only the files that are added from that point on are affected, so it is advisable that this setting must not be changed if there are already files in the gallery. You can, however, apply the changes to the existing files with the &quot;<a href="util.php">admin tools</a> (resize pictures)&quot; utility from the admin menu.', - (relocated)
-  'notice3' => '(***) All log files are written in english.', - (relocated)
+  'notice1' => '(*) These settings mustn\'t be changed if you already have files in your database.',
+  'notice2' => '(**) When changing this setting, only the files that are added from that point on are affected, so it is advisable that this setting must not be changed if there are already files in the gallery. You can, however, apply the changes to the existing files with the &quot;<a href="util.php">admin tools</a> (resize pictures)&quot; utility from the admin menu.',
+  'notice3' => '(***) All log files are written in english.',
   'bbs_disabled' => 'Function disabled when using bb integration',
   'auto_resize_everyone' => 'Everyone',
   'auto_resize_user' => 'User only',
@@ -1790,7 +1790,7 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'place_instr_1' => 'Please place the files in albums at this time.  You may also enter relevant information about each file now.',
   'place_instr_2' => 'More files need placement. Please click \'Continue\'.',
   'process_complete' => 'You have successfully placed all the files.',
-   'albums_no_category' => 'Albums with no category',. //album pulldown mod, added by frogfoot
+   'albums_no_category' => 'Albums with no category', //album pulldown mod, added by frogfoot
   'personal_albums' => '* Personal albums', //album pulldown mod, added by frogfoot
   'select_album' => 'Select album', //album pulldown mod, added by frogfoot
   'close' => 'Close',
