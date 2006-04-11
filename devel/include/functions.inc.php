@@ -961,7 +961,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
                 $approved = GALLERY_ADMIN_MODE ? '' : 'AND approved=\'YES\'';
 
-                $query = "SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE ((aid='$album' $forbidden_set_string ) $keyword) $approved $ALBUM_SET";
+                $query = "SELECT COUNT(pid) from {$CONFIG['TABLE_PICTURES']} WHERE ((aid='$album' $forbidden_set_string ) $keyword) $approved $ALBUM_SET";
                 $result = cpg_db_query($query);
                 $nbEnr = mysql_fetch_array($result);
                 $count = $nbEnr[0];
@@ -1004,7 +1004,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         $TMP_SET = "AND (1";
                 }
 
-                $query = "SELECT COUNT(*) from {$CONFIG['TABLE_COMMENTS']}, {$CONFIG['TABLE_PICTURES']}  WHERE approved = 'YES' AND {$CONFIG['TABLE_COMMENTS']}.pid = {$CONFIG['TABLE_PICTURES']}.pid $TMP_SET $keyword)";
+                $query = "SELECT COUNT({$CONFIG['TABLE_PICTURES']}.pid) from {$CONFIG['TABLE_COMMENTS']}, {$CONFIG['TABLE_PICTURES']}  WHERE approved = 'YES' AND {$CONFIG['TABLE_COMMENTS']}.pid = {$CONFIG['TABLE_PICTURES']}.pid $TMP_SET $keyword)";
                 $result = cpg_db_query($query);
 
                 $nbEnr = mysql_fetch_array($result);
@@ -1046,7 +1046,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         $album_name = $lang_meta_album_names['lastcom'].' - '. $user_name;
                 }
 
-                $query = "SELECT COUNT(*) from {$CONFIG['TABLE_COMMENTS']}, {$CONFIG['TABLE_PICTURES']}  WHERE approved = 'YES' AND author_id = '$uid' AND {$CONFIG['TABLE_COMMENTS']}.pid = {$CONFIG['TABLE_PICTURES']}.pid $META_ALBUM_SET";
+                $query = "SELECT COUNT({$CONFIG['TABLE_PICTURES']}.pid) from {$CONFIG['TABLE_COMMENTS']}, {$CONFIG['TABLE_PICTURES']}  WHERE approved = 'YES' AND author_id = '$uid' AND {$CONFIG['TABLE_COMMENTS']}.pid = {$CONFIG['TABLE_PICTURES']}.pid $META_ALBUM_SET";
                 $result = cpg_db_query($query);
                 $nbEnr = mysql_fetch_array($result);
                 $count = $nbEnr[0];
@@ -1073,7 +1073,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         $album_name = $lang_meta_album_names['lastup'];
                 }
 
-                $query = "SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' $META_ALBUM_SET";
+                $query = "SELECT COUNT(pid) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' $META_ALBUM_SET";
                 $result = cpg_db_query($query);
                 $nbEnr = mysql_fetch_array($result);
                 $count = $nbEnr[0];
@@ -1109,7 +1109,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         $album_name = $lang_meta_album_names['lastup'] .' - '. $user_name;
                 }
 
-                $query = "SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND owner_id = '$uid' $META_ALBUM_SET";
+                $query = "SELECT COUNT(pid) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND owner_id = '$uid' $META_ALBUM_SET";
                 $result = cpg_db_query($query);
                 $nbEnr = mysql_fetch_array($result);
                 $count = $nbEnr[0];
@@ -1138,7 +1138,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         $album_name = $lang_meta_album_names['topn'];
                 }
 
-                $query ="SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND hits > 0  $META_ALBUM_SET $keyword";
+                $query ="SELECT COUNT(pid) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND hits > 0  $META_ALBUM_SET $keyword";
 
                 $result = cpg_db_query($query);
                 $nbEnr = mysql_fetch_array($result);
@@ -1167,7 +1167,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 } else {
                         $album_name = $lang_meta_album_names['toprated'];
                 }
-                $query = "SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND votes >= '{$CONFIG['min_votes_for_rating']}' $META_ALBUM_SET";
+                $query = "SELECT COUNT(pid) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND votes >= '{$CONFIG['min_votes_for_rating']}' $META_ALBUM_SET";
                 $result = cpg_db_query($query);
                 $nbEnr = mysql_fetch_array($result);
                 $count = $nbEnr[0];
@@ -1194,7 +1194,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 } else {
                         $album_name = $lang_meta_album_names['lasthits'];
                 }
-                $query = "SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' and hits > 0 $META_ALBUM_SET";
+                $query = "SELECT COUNT(pid) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' and hits > 0 $META_ALBUM_SET";
                 $result = cpg_db_query($query);
                 $nbEnr = mysql_fetch_array($result);
                 $count = $nbEnr[0];
@@ -1222,7 +1222,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         $album_name = $lang_meta_album_names['random'];
                 }
 
-                $query = "SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' $META_ALBUM_SET";
+                $query = "SELECT COUNT(pid) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' $META_ALBUM_SET";
                 $result = cpg_db_query($query);
                 $nbEnr = mysql_fetch_array($result);
                 $pic_count = $nbEnr[0];
@@ -1317,7 +1317,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                                 $rowset = array();
                 if (count($FAVPICS)>0){
                         $favs = implode(",",$FAVPICS);
-                        $query = "SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND pid IN ($favs) $META_ALBUM_SET";
+                        $query = "SELECT COUNT(pid) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND pid IN ($favs) $META_ALBUM_SET";
                         $result = cpg_db_query($query);
                         $nbEnr = mysql_fetch_array($result);
                         $count = $nbEnr[0];
@@ -1452,7 +1452,7 @@ function cpg_get_pending_approvals()
 function count_pic_comments($pid, $skip=0)
 {
         global $CONFIG;
-        $result = cpg_db_query("SELECT count(*) from {$CONFIG['TABLE_COMMENTS']} where pid=$pid and msg_id!=$skip");
+        $result = cpg_db_query("SELECT count(msg_id) from {$CONFIG['TABLE_COMMENTS']} where pid=$pid and msg_id!=$skip");
         $nbEnr = mysql_fetch_array($result);
         $count = $nbEnr[0];
         mysql_free_result($result);
