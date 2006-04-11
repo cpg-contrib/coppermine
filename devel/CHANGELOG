@@ -23,8 +23,10 @@ Changelog
 [D] = Documentation improvements
 [M] = Maintenance works
 [S] = Security fix (issues that are related to security)
+[O] = Optimization of code
 *********************************************
 
+2006-04-10 [O] Replaced count(*) with count(id) in stats query on index page and get_pic_data function in functions.inc.php
 2006-04-10 [M] Removed comments in language file that indicated changes in cpg1.4.x. {GauGau}
 2006-04-10 [B] Re-added config.php and server_relocate.php to overwrite the outdated files when users upgrade. {GauGau}
 2006-04-10 [A] Added option to display rating on thumbnail page. {GauGau}
