@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-04-17 [A] Added terms and conditions (registration disclaimer) as admin settable option {GauGau}
 2006-04-13 [M] Committing to SVN {GauGau}
 2006-04-10 [O] Replaced count(*) with count(id) in stats query on index page and get_pic_data function in functions.inc.php {Abbas}
 2006-04-10 [M] Removed comments in language file that indicated changes in cpg1.4.x. {GauGau}
