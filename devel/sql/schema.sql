@@ -10,9 +10,9 @@
 ##  (at your option) any later version.
 ##  ********************************************
 ##  Coppermine version: 1.5.0
-##  $Source$
+##  $HeadURL$
 ##  $Revision$
-##  $Author$
+##  $LastChangedBy$
 ##  $Date$
 ##  ********************************************
 

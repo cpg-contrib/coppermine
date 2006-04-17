@@ -12,7 +12,7 @@
 ##  Coppermine version: 1.5.0
 ##  $Source: /cvsroot/coppermine/devel/sql/basic.sql,v $
 ##  $Revision$
-##  $Author$
+##  $LastChangedBy$
 ##  $Date$
 ##  ********************************************
 
