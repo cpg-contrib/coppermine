@@ -176,7 +176,7 @@ function detect_img_package()
 
     if (!$no_img_package_detected) $notes .= "<br /><br />Your server supports the following image package(s): " . ($im_installed ? ' ImageMagick (im),':'') . ($gd1_installed ? ' GD Library version 1.x (gd1),':'') . ($gd2_installed ? ' GD Library version 2.x (gd2),':'') . " the installer selected '" . $_POST['thumb_method'] . "'.";
     if ($_POST['thumb_method'] == 'gd1' || $_POST['thumb_method'] == 'gd2')
-        $notes .= "<br /><br /><b>Important :</b> the GD graphic library supports only JPEG and PNG images. The script will not be able to create thumbnails for GIF images. If you want the script to create thumbnails for GIF images, you need to use ImageMagick.";
+        $notes .= "<br /><br /><b>Important :</b> older versions of the GD graphic library support only JPEG and PNG images. If this is the case for you, then the script will not be able to create thumbnails for GIF images.";
 }
 // ------------------------- HTML OUTPUT FUNCTIONS ------------------------- //
 function html_header()
