@@ -13,7 +13,7 @@
   Coppermine version: 1.5.0
   $Source: /cvsroot/coppermine/devel/lang/english.php,v $
   $Revision$
-  $Author$
+  $LastChangedBy$
   $Date$
 **********************************************/
 
