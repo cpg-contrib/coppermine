@@ -11,7 +11,7 @@
   (at your option) any later version.
   ********************************************
   Coppermine version: 1.5.0
-  $Source$
+  $Source: /cvsroot/coppermine/devel/admin.php,v $
   $Revision$
   $Author$
   $Date$
@@ -40,6 +40,7 @@ $options_to_disable = array('reg_notify_admin_email',
     'user_profile5_name',
     'user_profile6_name',
     'enable_encrypted_passwords',
+    'user_registration_disclaimer',
 );
 
 if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
@@ -695,7 +696,35 @@ function form_report_post_yes_no($text, $name, $help = '')
 EOT;
 }
 
+function form_registration_disclaimer($text, $name, $help = '') {
+    global $CONFIG, $lang_yes, $lang_no, $lang_admin_php;
+    $help = cpg_display_help($help);
 
+
+    $value = $CONFIG[$name];
+    $no_selected = ($value == '0') ? 'checked="checked"' : '';
+    $yes_1_selected = ($value == '1') ? 'checked="checked"' : '';
+    $yes_2_selected = ($value == '2') ? 'checked="checked"' : '';
+
+    echo <<<EOT
+        <tr>
+            <td class="tableb" width="60%">
+                $text
+            </td>
+            <td class="tableb" valign="top" width="50%">
+                <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">$lang_no</label>
+                &nbsp;&nbsp;
+                <input type="radio" id="{$name}1" name="$name" value="1" $yes_1_selected /><label for="{$name}1" class="clickable_option">$lang_yes:{$lang_admin_php['separate_page']}</label>
+                &nbsp;&nbsp;
+                <input type="radio" id="{$name}2" name="$name" value="2" $yes_2_selected /><label for="{$name}2" class="clickable_option">$lang_yes:{$lang_admin_php['inline']}</label>
+            </td>
+            <td class="tableb" width="10%">
+                $help
+            </td>
+        </tr>
+
+EOT;
+}
 
 
 
@@ -763,7 +792,7 @@ function create_form(&$data)
                 case 14 :
                     form_keywords_yes_no($element[0], $element[1], $element[3]);
                     break;
-                    case 15 :
+                case 15 :
                     form_disabled($element[0], $element[1], $element[3]);
                     break;
                 case 16 :
@@ -772,6 +801,10 @@ function create_form(&$data)
                 // ascending or descending
                 case 17 :
                     form_asc_desc($element[0], $element[1], $element[3]);
+                    break;
+                // registration disclaimer
+                case 18 :
+                    form_registration_disclaimer($element[0], $element[1], $element[3]);
                     break;
                 default:
                     die('Invalid action');

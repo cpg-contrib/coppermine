@@ -11,7 +11,7 @@
   (at your option) any later version.
   ********************************************
   Coppermine version: 1.5.0
-  $Source$
+  $Source: /cvsroot/coppermine/devel/lang/english.php,v $
   $Revision$
   $Author$
   $Date$
@@ -621,6 +621,8 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'auto_resize_user' => 'User only',
   'ascending' => 'ascending',
   'descending' => 'descending',
+  'separate_page' => 'on a separate page', // cpg1.5
+  'inline' => 'inline', // cpg1.5
 );
 
 if (defined('ADMIN_PHP')) $lang_admin_data = array(
@@ -741,6 +743,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
 
   'User settings',
   array('Allow new user registrations', 'allow_user_registration', 1, 'f=index.htm&amp;as=admin_allow_registration&amp;ae=admin_allow_registration_end'),
+  array('Display disclaimer on user registration', 'user_registration_disclaimer', 18, 'f=index.htm&amp;as=admin_user_registration_disclaimer&amp;ae=admin_user_registration_disclaimer_end'), // cpg1.5
   array('Allow unlogged users (guest or anonymous) access', 'allow_unlogged_access', 1, 'f=index.htm&amp;as=admin_allow_unlogged_access&amp;ae=admin_allow_unlogged_access_end'),
   array('User registration requires email verification', 'reg_requires_valid_email', 1, 'f=index.htm&amp;as=admin_registration_verify&amp;ae=admin_registration_verify_end'),
   array('Notify admin of user registration by email', 'reg_notify_admin_email', 1, 'f=index.htm&amp;as=admin_registration_notify&amp;ae=admin_registration_notify_end'),
@@ -1487,13 +1490,14 @@ $lang_register_php = array(
   'term_cond' => 'Terms and conditions',
   'i_agree' => 'I agree',
   'submit' => 'Submit registration',
-  'err_user_exists' => 'The username you have entered already exist, please choose a different one',
+  'err_user_exists' => 'The username you have entered already exists, please choose a different one',
   'err_password_mismatch' => 'The two passwords does not match, please input them again',
   'err_uname_short' => 'Username must be 2 characters long minimum',
   'err_password_short' => 'Password must be 2 characters long minimum',
   'err_uname_pass_diff' => 'Username and password must be different',
   'err_invalid_email' => 'Email address is invalid',
   'err_duplicate_email' => 'Another user has already registered with the email address you entered',
+  'err_disclaimer' => 'You need to agree to the disclaimer', // cpg1.5
   'enter_info' => 'Input registration information',
   'required_info' => 'Required information',
   'optional_info' => 'Optional information',
@@ -1790,9 +1794,9 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'place_instr_1' => 'Please place the files in albums at this time.  You may also enter relevant information about each file now.',
   'place_instr_2' => 'More files need placement. Please click \'Continue\'.',
   'process_complete' => 'You have successfully placed all the files.',
-   'albums_no_category' => 'Albums with no category', //album pulldown mod, added by frogfoot
-  'personal_albums' => '* Personal albums', //album pulldown mod, added by frogfoot
-  'select_album' => 'Select album', //album pulldown mod, added by frogfoot
+   'albums_no_category' => 'Albums with no category',
+  'personal_albums' => '* Personal albums',
+  'select_album' => 'Select album',
   'close' => 'Close',
   'no_keywords' => 'Sorry, no keywords available!',
   'regenerate_dictionary' => 'Regenerate Dictionary',

@@ -11,7 +11,7 @@
   (at your option) any later version.
   ********************************************
   Coppermine version: 1.5.0
-  $Source$
+  $Source: /cvsroot/coppermine/devel/register.php,v $
   $Revision$
   $Author$
   $Date$
@@ -23,12 +23,29 @@ define('REGISTER_PHP', true);
 require('include/init.inc.php');
 require('include/mailer.inc.php');
 
-if (!$CONFIG['allow_user_registration']) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+if (!$CONFIG['allow_user_registration']) {
+    cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+}
 
-if (defined('UDB_INTEGRATION')) $cpg_udb->register_page();
-// Display the disclaimer
-function display_disclaimer()
-{
+if (defined('UDB_INTEGRATION')) {
+    $cpg_udb->register_page();
+}
+
+
+
+/*****************************
+* function definitions start *
+*****************************/
+
+/**
+* display_disclaimer()
+*
+* Display the disclaimer
+*
+* @param void
+* @return void
+**/
+function display_disclaimer() { // Display the disclaimer - start
     global $CONFIG; //, $PHP_SELF;
     global $lang_register_disclamer, $lang_register_php;
 
@@ -53,18 +70,28 @@ EOT;
 
 EOT;
     endtable();
-}
+} // Display the disclaimer - end
 
-function input_user_info($errors = '')
-{
+/**
+* input_user_info()
+*
+* Display the form fields
+*
+* @param string $errors
+* @return void
+**/
+function input_user_info($errors = '') { // function input_user_info - start
     global $CONFIG; //, $PHP_SELF;
-    global $lang_register_php;
+    global $lang_register_php, $lang_register_disclamer;
 
-    starttable(-1, $lang_register_php['enter_info'], 2);
     echo <<<EOT
         <form name="cpgform" id="cpgform" method="post" action="{$_SERVER['PHP_SELF']}">
 
 EOT;
+
+    starttable(-1, $lang_register_php['enter_info'], 2);
+
+    $inline_disclaimer = str_replace('{SITE_NAME}', $CONFIG['gallery_name'], $lang_register_disclamer);
 
     $form_data = array(
         array('label', $lang_register_php['required_info']),
@@ -73,20 +100,30 @@ EOT;
         array('password', 'password_verification', $lang_register_php['password_again'], 25),
         array('input', 'email', $lang_register_php['email'], 255),
         array('label', $lang_register_php['optional_info']),
-                array('input', 'user_profile1', $CONFIG['user_profile1_name'], 255),
-                array('input', 'user_profile2', $CONFIG['user_profile2_name'], 255),
-                array('input', 'user_profile3', $CONFIG['user_profile3_name'], 255),
-                array('input', 'user_profile4', $CONFIG['user_profile4_name'], 255),
-                array('input', 'user_profile5', $CONFIG['user_profile5_name'], 255),
-                array('textarea', 'user_profile6', $CONFIG['user_profile6_name'], 255)
+        array('input', 'user_profile1', $CONFIG['user_profile1_name'], 255),
+        array('input', 'user_profile2', $CONFIG['user_profile2_name'], 255),
+        array('input', 'user_profile3', $CONFIG['user_profile3_name'], 255),
+        array('input', 'user_profile4', $CONFIG['user_profile4_name'], 255),
+        array('input', 'user_profile5', $CONFIG['user_profile5_name'], 255),
+        array('textarea', 'user_profile6', $CONFIG['user_profile6_name'], 255)
         );
+    if ($CONFIG['user_registration_disclaimer'] == 2) {
+        array_push($form_data,
+            array('label', $lang_register_php['term_cond']),
+            array('checkbox', 'agree', $inline_disclaimer, $lang_register_php['i_agree'], 1)
+            );
+    } else {
+        array_push($form_data,
+            array('hidden', 'agree', 1)
+            );
+    }
 
     foreach ($form_data as $element) switch ($element[0]) {
         case 'label' :
             echo <<<EOT
         <tr>
             <td colspan="2" class="tableh2">
-                        <b>{$element[1]}<b>
+                        {$element[1]}
         </td>
         </tr>
 
@@ -135,6 +172,27 @@ EOT;
 EOT;
             break;
 
+        case 'checkbox' :
+            // added the checkbox option for possible future use. The array definition would have to look like this:
+            // array('radio', 'user_var', 'preceeding text', 'Text label', 'value'),
+            // enabling this option requires changes in profile.php and usermgr.php as well
+            if (isset($_POST[$element[1]])) {
+                $value = $_POST[$element[1]];
+            } else {
+                $value = '';
+            }
+            if ($element[3]) echo <<<EOT
+        <tr>
+            <td class="tableb" colspan="2">
+                        {$element[2]}
+                        <br />
+                        <input type="checkbox" name="{$element[1]}" id="{$element[1]}" value="{$element[4]}" class="checkbox" /><label for="{$element[1]}" class="clickable_option">{$element[3]}</label>
+            </td>
+        </tr>
+
+EOT;
+            break;
+
         case 'textarea' :
             if (isset($_POST[$element[1]])) {
                 $value = $_POST[$element[1]];
@@ -169,6 +227,13 @@ EOT;
 EOT;
             break;
 
+            case 'hidden' :
+                echo <<<EOT
+                <input type="hidden" name="{$element[1]}" value="{$element[2]}" />
+
+EOT;
+            break;
+
         default:
             cpg_die(CRITICAL_ERROR, 'Invalid action for form creation ' . $element[0], __FILE__, __LINE__);
     }
@@ -182,12 +247,13 @@ EOT;
         </tr>
         <tr>
                 <td colspan="2" class="tableb">
-                        <b><ul>$errors</ul><b>
+                        <ul>$errors</ul>
                 </td>
         </tr>
 
 EOT;
     }
+
     echo <<<EOT
         <tr>
                 <td colspan="2" align="center" class="tablef">
@@ -198,49 +264,57 @@ EOT;
 
 EOT;
     endtable();
-}
+} // function input_user_info - end
 
-function get_post_var($var)
-{
+/**
+* get_post_var()
+*
+* Check the posted data
+*
+* @param array $var
+* @return array $var
+**/
+function get_post_var($var) { // function get_post_var - start
     global $lang_errors;
-
     if (!isset($_POST[$var])) cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'] . " ($var)", __FILE__, __LINE__);
     return trim($_POST[$var]);
-}
+} // function get_post_var - end
 
-function check_user_info(&$error)
-{
+function check_user_info(&$error) { // function check_user_info - start
     global $CONFIG; //, $PHP_SELF;
     global $lang_register_php, $lang_register_confirm_email, $lang_continue, $lang_register_approve_email, $lang_register_activated_email, $lang_register_user_login;
-                //$CONFIG['admin_activation'] = FALSE;
-                //$CONFIG['admin_activation'] = TRUE;
+    //$CONFIG['admin_activation'] = FALSE;
+    //$CONFIG['admin_activation'] = TRUE;
 
     $user_name = trim(get_post_var('username'));
     $password = trim(get_post_var('password'));
     $password_again = trim(get_post_var('password_verification'));
     $email = trim(get_post_var('email'));
-        $profile1 = addslashes($_POST['user_profile1']);
-        $profile2 = addslashes($_POST['user_profile2']);
-        $profile3 = addslashes($_POST['user_profile3']);
-        $profile4 = addslashes($_POST['user_profile4']);
-        $profile5 = addslashes($_POST['user_profile5']);
-        $profile6 = addslashes($_POST['user_profile6']);
+    $profile1 = addslashes($_POST['user_profile1']);
+    $profile2 = addslashes($_POST['user_profile2']);
+    $profile3 = addslashes($_POST['user_profile3']);
+    $profile4 = addslashes($_POST['user_profile4']);
+    $profile5 = addslashes($_POST['user_profile5']);
+    $profile6 = addslashes($_POST['user_profile6']);
+    $agree_disclaimer = $_POST['agree'];
 
     $sql = "SELECT user_id " . "FROM {$CONFIG['TABLE_USERS']} " . "WHERE user_name = '" . addslashes($user_name) . "'";
     $result = cpg_db_query($sql);
 
     if (mysql_num_rows($result)) {
-        $error = '<li>' . $lang_register_php['err_user_exists'];
+        $error = '<li>' . $lang_register_php['err_user_exists'] . '</li>';
         return false;
     }
     mysql_free_result($result);
 
-    if (utf_strlen($user_name) < 2) $error .= '<li>' . $lang_register_php['err_uname_short'];
-    if (utf_strlen($password) < 2) $error .= '<li>' . $lang_register_php['err_password_short'];
-    if ($password == $user_name) $error .= '<li>' . $lang_register_php['err_uname_pass_diff'];
-    if ($password != $password_again) $error .= '<li>' . $lang_register_php['err_password_mismatch'];
-
-    if (!eregi("^[_\.0-9a-z\-]+@([0-9a-z][0-9a-z-]+\.)+[a-z]{2,6}$", $email)) $error .= '<li>' . $lang_register_php['err_invalid_email'];
+    if (utf_strlen($user_name) < 2) $error .= '<li>' . $lang_register_php['err_uname_short'] . '</li>';
+    if (utf_strlen($password) < 2) $error .= '<li>' . $lang_register_php['err_password_short'] . '</li>';
+    if ($password == $user_name) $error .= '<li>' . $lang_register_php['err_uname_pass_diff'] . '</li>';
+    if ($password != $password_again) $error .= '<li>' . $lang_register_php['err_password_mismatch'] . '</li>';
+    if (!eregi("^[_\.0-9a-z\-]+@([0-9a-z][0-9a-z-]+\.)+[a-z]{2,6}$", $email)) $error .= '<li>' . $lang_register_php['err_invalid_email'] . '</li>';
+    if ($CONFIG['user_registration_disclaimer'] == 2 && $agree_disclaimer != 1) {
+        $error .= '<li>' . $lang_register_php['err_disclaimer'] . '</li>';
+    }
 
     if ($error != '') return false;
 
@@ -249,7 +323,7 @@ function check_user_info(&$error)
         $result = cpg_db_query($sql);
 
         if (mysql_num_rows($result)) {
-            $error = '<li>' . $lang_register_php['err_duplicate_email'];
+            $error = '<li>' . $lang_register_php['err_duplicate_email'] . '</li>';
             return false;
         }
 
@@ -323,9 +397,19 @@ function check_user_info(&$error)
                                 }
 
     return true;
-}
+}  // function check_user_info - end
+/***************************
+* function definitions end *
+***************************/
 
-if (isset($_GET['activate'])) {
+
+
+
+/***************************
+* main code start          *
+***************************/
+
+if (isset($_GET['activate'])) { // registration activation - start
                 //$CONFIG['admin_activation'] = FALSE;
                 //$CONFIG['admin_activation'] = TRUE;
 
@@ -362,20 +446,22 @@ if (isset($_GET['activate'])) {
                 } else { //user self-activated, gets message box that account was activated
                         msg_box($lang_register_php['information'], $lang_register_php['acct_active'], $lang_continue, 'index.php');
                 }
-} else {
+  // registration activation - end
+} else { // actual registration form logic - start
   pageheader($lang_register_php['page_title']);
-  if (isset($_POST['agree'])) {
-    input_user_info();
-  } elseif (isset($_POST['submit'])) {
-    $errors = '';
-    if (!check_user_info($errors)) {
-      input_user_info($errors);
-    }
+  if ($CONFIG['user_registration_disclaimer'] == 1 && isset($_POST['submit']) == FALSE && isset($_POST['agree']) == FALSE) {
+      // display the disclaimer page
+      display_disclaimer();
   } else {
-    display_disclaimer();
+      if(isset($_POST['submit']) == FALSE){
+          input_user_info();
+      } else {
+          if(!check_user_info($errors)) {
+            input_user_info($errors);
+          }
+      }
   }
-}
+} // actual registration form logic - end
 pagefooter();
 ob_end_flush();
-
 ?>

@@ -10,7 +10,7 @@
 ##  (at your option) any later version.
 ##  ********************************************
 ##  Coppermine version: 1.5.0
-##  $Source$
+##  $Source: /cvsroot/coppermine/devel/sql/basic.sql,v $
 ##  $Revision$
 ##  $Author$
 ##  $Date$
@@ -37,6 +37,7 @@ INSERT INTO CPG_config VALUES ('allowed_img_types', 'ALL');
 
 INSERT INTO CPG_config VALUES ('allow_private_albums', '1');
 INSERT INTO CPG_config VALUES ('allow_user_registration', '0');
+INSERT INTO CPG_config VALUES ('user_registration_disclaimer', '1');
 INSERT INTO CPG_config VALUES ('allow_unlogged_access', '1');
 INSERT INTO CPG_config VALUES ('allow_duplicate_emails_addr', '0');
 INSERT INTO CPG_config VALUES ('caption_in_thumbview', '1');

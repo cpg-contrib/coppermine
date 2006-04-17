@@ -10,7 +10,7 @@
 ##  (at your option) any later version.
 ##  ********************************************
 ##  Coppermine version: 1.5.0
-##  $Source$
+##  $Source: /cvsroot/coppermine/devel/sql/update.sql,v $
 ##  $Revision$
 ##  $Author$
 ##  $Date$
@@ -476,3 +476,6 @@ ALTER TABLE `CPG_albums` CHANGE `description` `description` TEXT NOT NULL defaul
 
 # Add display of rating on thumbnails page
 INSERT INTO CPG_config VALUES ('display_thumbnail_rating', '0');
+
+# Display disclaimer on user registration
+INSERT INTO CPG_config VALUES ('user_registration_disclaimer', '1');
