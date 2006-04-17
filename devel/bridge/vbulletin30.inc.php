@@ -11,9 +11,9 @@
   (at your option) any later version.
   ********************************************
   Coppermine version: 1.4.3
-  $Source$
+  $HeadURL$
   $Revision$
-  $Author$
+  $LastChangedBy$
   $Date$
 **********************************************/
 
