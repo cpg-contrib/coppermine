@@ -479,3 +479,7 @@ INSERT INTO CPG_config VALUES ('display_thumbnail_rating', '0');
 
 # Display disclaimer on user registration
 INSERT INTO CPG_config VALUES ('user_registration_disclaimer', '1');
+
+INSERT INTO CPG_config VALUES ('thumbnail_to_fullsize', '0');
+INSERT INTO CPG_config VALUES ('fullsize_padding_x', '5');
+INSERT INTO CPG_config VALUES ('fullsize_padding_y', '3');

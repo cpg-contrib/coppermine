@@ -1733,6 +1733,8 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
                         $thumb_list[$i]['caption'] = bb_decode($row['caption_text']);
                         $thumb_list[$i]['admin_menu'] = '';
                         $thumb_list[$i]['aid'] = $row['aid'];
+                        $thumb_list[$i]['pwidth'] = $row['pwidth'];
+                        $thumb_list[$i]['pheight'] = $row['pheight'];
                 }
                 theme_display_thumbnails($thumb_list, $thumb_count, $album_name, $album, $cat, $page, $total_pages, is_numeric($album), $display_tabs);
         } else {

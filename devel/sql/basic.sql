@@ -24,17 +24,10 @@ INSERT INTO CPG_config VALUES ('albums_per_page', '12');
 INSERT INTO CPG_config VALUES ('album_list_cols', '2');
 INSERT INTO CPG_config VALUES ('display_pic_info', '0');
 INSERT INTO CPG_config VALUES ('alb_list_thumb_size', '50');
-
-#INSERT INTO CPG_config VALUES ('allowed_file_extensions', 'GIF/PNG/JPG/JPEG/TIF/TIFF');
-
-
-# FOR USE WITH VIDEO MOD
 INSERT INTO CPG_config VALUES ('allowed_mov_types', 'ALL');
 INSERT INTO CPG_config VALUES ('allowed_doc_types', 'doc/txt/rtf/pdf/xls/pps/ppt/zip/gz/mdb');
 INSERT INTO CPG_config VALUES ('allowed_snd_types', 'mp3/midi/mid/wma/wav/ogg');
 INSERT INTO CPG_config VALUES ('allowed_img_types', 'ALL');
-
-
 INSERT INTO CPG_config VALUES ('allow_private_albums', '1');
 INSERT INTO CPG_config VALUES ('allow_user_registration', '0');
 INSERT INTO CPG_config VALUES ('user_registration_disclaimer', '1');
@@ -94,9 +87,6 @@ INSERT INTO CPG_config VALUES ('thumb_pfx', 'thumb_');
 INSERT INTO CPG_config VALUES ('thumb_width', '100');
 INSERT INTO CPG_config VALUES ('userpics', 'userpics/');
 INSERT INTO CPG_config VALUES ('vanity_block','1');
-#
-# added custom profile
-#
 INSERT INTO CPG_config VALUES ('user_profile1_name', 'Location');
 INSERT INTO CPG_config VALUES ('user_profile2_name', 'Interests');
 INSERT INTO CPG_config VALUES ('user_profile3_name', 'Website');
@@ -115,8 +105,6 @@ INSERT INTO CPG_config VALUES ('display_film_strip_filename', '0');
 INSERT INTO CPG_config VALUES ('max_film_strip_items', '5');
 INSERT INTO CPG_config VALUES ('thumb_use', 'any');
 #INSERT INTO CPG_config VALUES ('comment_email_notification', '0');
-#INSERT INTO CPG_config VALUES ('disable_popup_rightclick', '0');
-#INSERT INTO CPG_config VALUES ('disable_gallery_rightclick', '0');
 INSERT INTO CPG_config VALUES ('read_iptc_data', '0');
 INSERT INTO CPG_config VALUES ('reg_notify_admin_email', '0');
 INSERT INTO CPG_config VALUES ('disable_comment_flood_protect', '0');
@@ -124,13 +112,11 @@ INSERT INTO CPG_config VALUES ('upl_notify_admin_email', '0');
 INSERT INTO CPG_config VALUES ('display_uploader', '0');
 # INSERT INTO CPG_config VALUES ('display_admin_uploader','0');
 INSERT INTO CPG_config VALUES ('display_filename','0');
-
 INSERT INTO CPG_config VALUES ('language_list', '0');
 INSERT INTO CPG_config VALUES ('language_flags', '0');
 INSERT INTO CPG_config VALUES ('theme_list', '0');
 INSERT INTO CPG_config VALUES ('language_reset', '1');
 INSERT INTO CPG_config VALUES ('theme_reset', '1');
-
 INSERT INTO CPG_config VALUES ('allow_memberlist', '0');
 INSERT INTO CPG_config VALUES ('display_faq', '0');
 INSERT INTO CPG_config VALUES ('show_bbcode_help', '1');
@@ -138,35 +124,34 @@ INSERT INTO CPG_config VALUES ('log_ecards', '0');
 INSERT INTO CPG_config VALUES ('email_comment_notification', '0');
 INSERT INTO CPG_config VALUES ('enable_zipdownload', '1');
 INSERT INTO CPG_config VALUES ('slideshow_interval', '5000');
-
 INSERT INTO CPG_config VALUES ('log_mode', '0');
 INSERT INTO CPG_config VALUES ('media_autostart', '1');
-
 INSERT INTO CPG_config VALUES ('enable_encrypted_passwords','1');
-
 INSERT INTO CPG_config VALUES ('time_offset', '0');
-
 INSERT INTO CPG_config VALUES ('ban_private_ip', '0');
-
 INSERT INTO CPG_config VALUES ('smtp_host', '');
 INSERT INTO CPG_config VALUES ('smtp_username', '');
 INSERT INTO CPG_config VALUES ('smtp_password', '');
-
 INSERT INTO CPG_config VALUES ('enable_plugins', '1');
-
 INSERT INTO CPG_config VALUES ('enable_help', '2');
-
 INSERT INTO CPG_config VALUES ('categories_alpha_sort', '0');
-
 INSERT INTO CPG_config VALUES ('login_threshold', '5');
 INSERT INTO CPG_config VALUES ('login_expiry', '10');
-
-
 INSERT INTO CPG_config VALUES ('allow_email_change', '0');
-
 INSERT INTO CPG_config VALUES ('clickable_keyword_search', '1');
 INSERT INTO CPG_config VALUES ('users_can_edit_pics', '0');
-
+INSERT INTO CPG_config VALUES ('language_fallback', '1');
+INSERT INTO CPG_config VALUES ('vote_details', '0');
+INSERT INTO CPG_config VALUES ('hit_details', '0');
+INSERT INTO CPG_config VALUES ('browse_batch_add', '1');
+INSERT INTO CPG_config VALUES ('custom_header_path', '');
+INSERT INTO CPG_config VALUES ('custom_footer_path', '');
+INSERT INTO CPG_config VALUES ('comments_sort_descending', '0');
+INSERT INTO CPG_config VALUES ('report_post', '0');
+INSERT INTO CPG_config VALUES ('comments_anon_pfx', 'Guest_');
+INSERT INTO CPG_config VALUES ('admin_activation', '0');
+INSERT INTO CPG_config VALUES ('display_thumbnail_rating', '0');
+INSERT INTO CPG_config VALUES ('thumbnail_to_fullsize', '0');
 
 #
 # Dumping data for table `CPG_filetypes`
@@ -274,14 +259,3 @@ INSERT INTO CPG_bridge VALUES ('global_moderators_group', '');
 INSERT INTO CPG_bridge VALUES ('recovery_logon_failures', '0');
 INSERT INTO CPG_bridge VALUES ('recovery_logon_timestamp', '');
 
-INSERT INTO CPG_config VALUES ('language_fallback', '1');
-INSERT INTO CPG_config VALUES ('vote_details', '0');
-INSERT INTO CPG_config VALUES ('hit_details', '0');
-INSERT INTO CPG_config VALUES ('browse_batch_add', '1');
-INSERT INTO CPG_config VALUES ('custom_header_path', '');
-INSERT INTO CPG_config VALUES ('custom_footer_path', '');
-INSERT INTO CPG_config VALUES ('comments_sort_descending', '0');
-INSERT INTO CPG_config VALUES ('report_post', '0');
-INSERT INTO CPG_config VALUES ('comments_anon_pfx', 'Guest_');
-INSERT INTO CPG_config VALUES ('admin_activation', '0');
-INSERT INTO CPG_config VALUES ('display_thumbnail_rating', '0');

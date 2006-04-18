@@ -1748,8 +1748,14 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
                     '{ADMIN_MENU}' => $thumb['admin_menu']
                     );
             } else {
+                // determine if thumbnail link targets should open in a pop-up
+                if ($CONFIG['thumbnail_to_fullsize'] == 1) { // code for full-size pop-up
+                    $target = 'javascript:;" onClick="MM_openBrWindow(\'displayimage.php?pid=' . $thumb['pid'] . '&fullsize=1\',\'' . uniqid(rand()) . '\',\'scrollbars=yes,toolbar=no,status=no,resizable=yes,width=' . ((int)$thumb['pwidth']+(int)$CONFIG['fullsize_padding_x']) .  ',height=' .   ((int)$thumb['pheight']+(int)$CONFIG['fullsize_padding_y']). '\');';
+                } else {
+                    $target = "displayimage.php?album=$aid$cat_link&amp;pos={$thumb['pos']}";
+                }
                 $params = array('{CELL_WIDTH}' => $cell_width,
-                    '{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&amp;pos={$thumb['pos']}",
+                    '{LINK_TGT}' => $target,
                     '{THUMB}' => $thumb['image'],
                     '{CAPTION}' => $thumb['caption'],
                     '{ADMIN_MENU}' => $thumb['admin_menu']
@@ -1811,8 +1817,14 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
     foreach($thumb_list as $thumb) {
         $i++;
         if ($mode == 'thumb') {
+            // determine if thumbnail link targets should open in a pop-up
+            if ($CONFIG['thumbnail_to_fullsize'] == 1) { // code for full-size pop-up
+                $target = 'javascript:;" onClick="MM_openBrWindow(\'displayimage.php?pid=' . $thumb['pid'] . '&fullsize=1\',\'' . uniqid(rand()) . '\',\'scrollbars=yes,toolbar=no,status=no,resizable=yes,width=' . ((int)$thumb['pwidth']+(int)$CONFIG['fullsize_padding_x']) .  ',height=' .   ((int)$thumb['pheight']+(int)$CONFIG['fullsize_padding_y']). '\');';
+            } else {
+                $target = "displayimage.php?album=$aid$cat_link&amp;pos={$thumb['pos']}";
+            }
             $params = array('{CELL_WIDTH}' => $cell_width,
-                '{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&amp;pos={$thumb['pos']}",
+                '{LINK_TGT}' => $target,
                 '{THUMB}' => $thumb['image'],
                 '{CAPTION}' => $thumb['caption'],
                 '{ADMIN_MENU}' => ''

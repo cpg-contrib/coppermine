@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-04-17 [A] Added option to send visitors directly from the thumbnail page to the full-size pop-up {GauGau}
 2006-04-17 [D] Removed section about GD's GIF capability restrictions, as GIF support has returned is recent GD versions {GauGau}
 2006-04-17 [M] Replaced CVS keywords with SVN keywords in file header {GauGau}
 2006-04-17 [A] Added terms and conditions (registration disclaimer) as admin settable option {GauGau}

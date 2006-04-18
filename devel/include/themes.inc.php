@@ -1840,26 +1840,38 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
             }
             */
             ########################################################
-            
+
             ######### Added by Abbas for new URL #################
             } elseif ($aid == 'random'){
+                // determine if thumbnail link targets should open in a pop-up
+                if ($CONFIG['thumbnail_to_fullsize'] == 1) { // code for full-size pop-up
+                    $target = 'javascript:;" onClick="MM_openBrWindow(\'displayimage.php?pid=' . $thumb['pid'] . '&fullsize=1\',\'' . uniqid(rand()) . '\',\'scrollbars=yes,toolbar=no,status=no,resizable=yes,width=' . ((int)$thumb['pwidth']+(int)$CONFIG['fullsize_padding_x']) .  ',height=' .   ((int)$thumb['pheight']+(int)$CONFIG['fullsize_padding_y']). '\');';
+                } else {
+                    $target = "displayimage.php?pid={$thumb['pid']}$uid_link";
+                }
                 $params = array('{CELL_WIDTH}' => $cell_width,
-                    '{LINK_TGT}' => "displayimage.php?pid={$thumb['pid']}$uid_link",
+                    '{LINK_TGT}' => $target,
                     '{THUMB}' => $thumb['image'],
                     '{CAPTION}' => $thumb['caption'],
                     '{ADMIN_MENU}' => $thumb['admin_menu']
                     );
             ######################################################
             } else {
+                // determine if thumbnail link targets should open in a pop-up
+                if ($CONFIG['thumbnail_to_fullsize'] == 1) { // code for full-size pop-up
+                    $target = 'javascript:;" onClick="MM_openBrWindow(\'displayimage.php?pid=' . $thumb['pid'] . '&fullsize=1\',\'' . uniqid(rand()) . '\',\'scrollbars=yes,toolbar=no,status=no,resizable=yes,width=' . ((int)$thumb['pwidth']+(int)$CONFIG['fullsize_padding_x']) .  ',height=' .   ((int)$thumb['pheight']+(int)$CONFIG['fullsize_padding_y']). '\');';
+                } else {
+                    $target = "displayimage.php?album=$aid$cat_link&amp;pid={$thumb['pid']}$uid_link";
+                }
                 $params = array('{CELL_WIDTH}' => $cell_width,
                     //'{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&amp;pos={$thumb['pos']}",
-                    '{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&amp;pid={$thumb['pid']}$uid_link",
+                    '{LINK_TGT}' => $target,
                     '{THUMB}' => $thumb['image'],
                     '{CAPTION}' => $thumb['caption'],
                     '{ADMIN_MENU}' => $thumb['admin_menu']
                     );
             }
-            
+
         } else {
             $params = array('{CELL_WIDTH}' => $cell_width,
                 '{LINK_TGT}' => "index.php?cat={$thumb['cat']}",
@@ -2125,8 +2137,8 @@ function theme_html_picture()
 
     if ($mime_content['content']=='image') {
         if (isset($image_size['reduced'])) {
-            $winsizeX = $CURRENT_PIC_DATA['pwidth']+5;  //the +'s are the mysterious FF and IE paddings
-            $winsizeY = $CURRENT_PIC_DATA['pheight']+3; //the +'s are the mysterious FF and IE paddings
+            $winsizeX = $CURRENT_PIC_DATA['pwidth']+$CONFIG['fullsize_padding_x'];  //the +'s are the mysterious FF and IE paddings
+            $winsizeY = $CURRENT_PIC_DATA['pheight']+$CONFIG['fullsize_padding_y']; //the +'s are the mysterious FF and IE paddings
             $pic_html = "<a href=\"javascript:;\" onclick=\"MM_openBrWindow('displayimage.php?pid=$pid&amp;fullsize=1','" . uniqid(rand()) . "','scrollbars=yes,toolbar=no,status=no,resizable=yes,width=$winsizeX,height=$winsizeY')\">";
             $pic_title = $lang_display_image_php['view_fs'] . "\n==============\n" . $pic_title;
             $pic_html .= "<img src=\"" . $picture_url . "\" class=\"image\" border=\"0\" alt=\"{$lang_display_image_php['view_fs']}\" /><br />";
