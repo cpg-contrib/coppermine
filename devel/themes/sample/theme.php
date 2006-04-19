@@ -18,8 +18,25 @@
 **********************************************/
 
 // ------------------------------------------------------------------------- //
-// This theme has all CORE items that are available                          //
+// This theme has all CORE items that are available.                         //
+// Do NOT copy the entire contents of this theme into your custom theme,     //
+// but only the sections you want to see changed - this will make ugrading   //
+// easier and results in slightly better performance as well.                //
+// The individual sections are marked accordingly with                       //
+      /***********************************
+      ** Section <<<SECTIONNAME>>> - START
+      ***********************************/
+      // actual code here
+      /***********************************
+      ** Section <<<SECTIONNAME>>> - END
+      ***********************************/
+// Copy the whole section into your custom theme, then modify it as you see  //
+// fit.                                                                      //
 // ------------------------------------------------------------------------- //
+
+/******************************************************************************
+** Section <<<>>> -
+******************************************************************************/
 
 // The following terms can be defined in theme.php
 // ('THEME_HAS_RATING_GRAPHICS', 1) : The location for the ratings graphics will
@@ -54,6 +71,9 @@
 //    if the theme has a {VANITY} token in its template.html. Don't enable this if you have modified the code! See the
 //    docs/theme.html documentation for validation methodology.
 
+/******************************************************************************
+** Section <<<assemble_template_buttons>>> - START
+******************************************************************************/
 // Creates buttons from a template using an array of tokens
 // this function is used in this file it needs to be declared before being called.
 function assemble_template_buttons($template_buttons,$buttons) {
@@ -78,20 +98,36 @@ function assemble_template_buttons($template_buttons,$buttons) {
     }
     return $output;
 }
+/******************************************************************************
+** Section <<<assemble_template_buttons>>> - END
+******************************************************************************/
 
-
+/******************************************************************************
+** Section <<<addbutton>>> - START
+******************************************************************************/
 // Creates an array of tokens to be used with function assemble_template_buttons
 // this function is used in this file it needs to be declared before being called.
 function addbutton(&$menu,$href_lnk,$href_title,$href_tgt,$block_id,$spacer) {
   $menu[]=array($href_lnk,$href_title,$href_tgt,$block_id,$spacer);
 }
+/******************************************************************************
+** Section <<<addbutton>>> - END
+******************************************************************************/
 
-
+/******************************************************************************
+** Section <<<$template_sys_menu>>> - START
+******************************************************************************/
 // HTML template for sys_menu
 $template_sys_menu = <<<EOT
           {BUTTONS}
 EOT;
+/******************************************************************************
+** Section <<<$template_sys_menu>>> - END
+******************************************************************************/
 
+/******************************************************************************
+** Section <<<$template_sub_menu>>> - START
+******************************************************************************/
 // HTML template for sub_menu
 $template_sub_menu = $template_sys_menu;
 
@@ -125,7 +161,13 @@ EOT;
   $params = array('{BUTTONS}' => assemble_template_buttons($template_sys_menu_button,$sys_menu_buttons));
   $template_sys_menu = template_eval($template_sys_menu,$params);
 }
+/******************************************************************************
+** Section <<<$template_sub_menu>>> - END
+******************************************************************************/
 
+/******************************************************************************
+** Section <<<THEME_HAS_NO_SUB_MENU_BUTTONS>>> - START
+******************************************************************************/
 if (!defined('THEME_HAS_NO_SUB_MENU_BUTTONS')) {
 
   // HTML template for template sub_menu spacer
@@ -148,7 +190,13 @@ if (!defined('THEME_HAS_NO_SUB_MENU_BUTTONS')) {
   $params = array('{BUTTONS}' => assemble_template_buttons($template_sub_menu_button,$sub_menu_buttons));
   $template_sub_menu = template_eval($template_sub_menu,$params);
 }
+/******************************************************************************
+** Section <<<THEME_HAS_NO_SUB_MENU_BUTTONS>>> - END
+******************************************************************************/
 
+/******************************************************************************
+** Section <<<$template_gallery_admin_menu>>> - START
+******************************************************************************/
 // HTML template for gallery admin menu
 $template_gallery_admin_menu = <<<EOT
 
@@ -180,6 +228,13 @@ $template_gallery_admin_menu = <<<EOT
                 </div>
 
 EOT;
+/******************************************************************************
+** Section <<<$template_gallery_admin_menu>>> - END
+******************************************************************************/
+
+/******************************************************************************
+** Section <<<$template_user_admin_menu>>> - START
+******************************************************************************/
 // HTML template for user admin menu
 $template_user_admin_menu = <<<EOT
 
@@ -195,6 +250,13 @@ $template_user_admin_menu = <<<EOT
                 </div>
 
 EOT;
+/******************************************************************************
+** Section <<<$template_user_admin_menu>>> - END
+******************************************************************************/
+
+/******************************************************************************
+** Section <<<$template_cat_list>>> - START
+******************************************************************************/
 // HTML template for the category list
 $template_cat_list = <<<EOT
 <!-- BEGIN header -->
@@ -229,6 +291,13 @@ $template_cat_list = <<<EOT
 <!-- END spacer -->
 
 EOT;
+/******************************************************************************
+** Section <<<$template_cat_list>>> - END
+******************************************************************************/
+
+/******************************************************************************
+** Section <<<$template_breadcrumb>>> - START
+******************************************************************************/
 // HTML template for the breadcrumb
 $template_breadcrumb = <<<EOT
 <!-- BEGIN breadcrumb -->
@@ -250,6 +319,13 @@ $template_breadcrumb = <<<EOT
 <!-- END breadcrumb_user_gal -->
 
 EOT;
+/******************************************************************************
+** Section <<<$template_breadcrumb>>> - END
+******************************************************************************/
+
+/******************************************************************************
+** Section <<<$template_album_list>>> - START
+******************************************************************************/
 // HTML template for the album list
 $template_album_list = <<<EOT
 
@@ -335,6 +411,13 @@ $template_album_list = <<<EOT
 <!-- END spacer -->
 
 EOT;
+/******************************************************************************
+** Section <<<$template_album_list>>> - END
+******************************************************************************/
+
+/******************************************************************************
+** Section <<<$template_film_strip>>> - START
+******************************************************************************/
 // HTML template for filmstrip display
 $template_film_strip = <<<EOT
 
@@ -367,6 +450,13 @@ $template_film_strip = <<<EOT
 <!-- END empty_cell -->
 
 EOT;
+/******************************************************************************
+** Section <<<$template_film_strip>>> - END
+******************************************************************************/
+
+/******************************************************************************
+** Section <<<$template_album_list_cat>>> - START
+******************************************************************************/
 // HTML template for the album list
 $template_album_list_cat = <<<EOT
 
@@ -452,6 +542,13 @@ $template_album_list_cat = <<<EOT
 <!-- END c_spacer -->
 
 EOT;
+/******************************************************************************
+** Section <<<$template_album_list_cat>>> - END
+******************************************************************************/
+
+/******************************************************************************
+** Section <<<$template_album_admin_menu>>> - START
+******************************************************************************/
 // HTML template for the ALBUM admin menu displayed in the album list
 $template_album_admin_menu = <<<EOT
         <table border="0" cellpadding="0" cellspacing="1">
@@ -469,6 +566,13 @@ $template_album_admin_menu = <<<EOT
         </table>
 
 EOT;
+/******************************************************************************
+** Section <<<$template_album_admin_menu>>> - END
+******************************************************************************/
+
+/******************************************************************************
+** Section <<<$template_thumb_view_title_row>>> - START
+******************************************************************************/
 // HTML template for title row of the thumbnail view (album title + sort options)
 $template_thumb_view_title_row = <<<EOT
 
@@ -504,8 +608,13 @@ $template_thumb_view_title_row = <<<EOT
                         </table>
 
 EOT;
+/******************************************************************************
+** Section <<<$template_thumb_view_title_row>>> - END
+******************************************************************************/
 
-
+/******************************************************************************
+** Section <<<$template_fav_thumb_view_title_row>>> - START
+******************************************************************************/
 // HTML template for title row of the fav thumbnail view (album title + download)
 $template_fav_thumb_view_title_row = <<<EOT
 
@@ -524,8 +633,13 @@ $template_fav_thumb_view_title_row = <<<EOT
                         </table>
 
 EOT;
+/******************************************************************************
+** Section <<<$template_fav_thumb_view_title_row>>> - END
+******************************************************************************/
 
-
+/******************************************************************************
+** Section <<<$template_thumbnail_view>>> - START
+******************************************************************************/
 // HTML template for thumbnails display
 $template_thumbnail_view = <<<EOT
 
@@ -571,6 +685,13 @@ $template_thumbnail_view = <<<EOT
 <!-- END spacer -->
 
 EOT;
+/******************************************************************************
+** Section <<<$template_thumbnail_view>>> - END
+******************************************************************************/
+
+/******************************************************************************
+** Section <<<$template_no_img_to_display>>> - START
+******************************************************************************/
 // HTML template for the thumbnail view when there is no picture to show
 $template_no_img_to_display = <<<EOT
         <tr>
@@ -583,6 +704,13 @@ $template_no_img_to_display = <<<EOT
 <!-- END spacer -->
 
 EOT;
+/******************************************************************************
+** Section <<<$template_no_img_to_display>>> - END
+******************************************************************************/
+
+/******************************************************************************
+** Section <<<$template_user_list_info_box>>> - START
+******************************************************************************/
 // HTML template for the USER info box in the user list view
 $template_user_list_info_box = <<<EOT
 
@@ -599,6 +727,13 @@ $template_user_list_info_box = <<<EOT
         </table>
 
 EOT;
+/******************************************************************************
+** Section <<<$template_user_list_info_box>>> - END
+******************************************************************************/
+
+/******************************************************************************
+** Section <<<$template_img_navbar>>> - START
+******************************************************************************/
 // HTML template for the image navigation bar
 $template_img_navbar = <<<EOT
 
@@ -634,6 +769,13 @@ $template_img_navbar = <<<EOT
         </tr>
 
 EOT;
+/******************************************************************************
+** Section <<<$template_img_navbar>>> - END
+******************************************************************************/
+
+/******************************************************************************
+** Section <<<$template_display_media>>> - START
+******************************************************************************/
 // HTML template for intermediate image display
 $template_display_media = <<<EOT
         <tr>
@@ -683,6 +825,13 @@ $template_display_media = <<<EOT
         </tr>
 
 EOT;
+/******************************************************************************
+** Section <<<$template_display_media>>> - END
+******************************************************************************/
+
+/******************************************************************************
+** Section <<<$template_image_rating>>> - START
+******************************************************************************/
 // HTML template for the image rating box
 $template_image_rating = <<<EOT
 <table align="center" width="{WIDTH}" cellspacing="1" cellpadding="0" class="maintable">
@@ -699,6 +848,13 @@ $template_image_rating = <<<EOT
         </tr>
 </table>
 EOT;
+/******************************************************************************
+** Section <<<$template_image_rating>>> - END
+******************************************************************************/
+
+/******************************************************************************
+** Section <<<$template_image_comments>>> - START
+******************************************************************************/
 // HTML template for the display of comments
 $template_image_comments = <<<EOT
 <table align="center" width="{WIDTH}" cellspacing="1" cellpadding="0" class="maintable">
@@ -794,8 +950,23 @@ $template_image_comments = <<<EOT
         </tr>
 </table>
 EOT;
+/******************************************************************************
+** Section <<<$template_image_comments>>> - END
+******************************************************************************/
 
-if ($CONFIG['show_bbcode_help']) {$captionLabel = '&nbsp;'. cpg_display_help('f=index.html&base=64&h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
+/******************************************************************************
+** Section <<<$captionLabel>>> - START
+******************************************************************************/
+if ($CONFIG['show_bbcode_help']) {
+  $captionLabel = '&nbsp;' .  cpg_display_help('f=index.html&base=64&h=' . urlencode(base64_encode(serialize($lang_bbcode_help_title))) . '&t=' . urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);
+}
+/******************************************************************************
+** Section <<<$captionLabel>>> - END
+******************************************************************************/
+
+/******************************************************************************
+** Section <<<$template_add_your_comment>>> - START
+******************************************************************************/
 $template_add_your_comment = <<<EOT
 <table align="center" width="{WIDTH}" cellspacing="1" cellpadding="0" class="maintable">
         <tr>
@@ -842,6 +1013,13 @@ $template_add_your_comment = <<<EOT
 <!-- END smilies -->
 
 EOT;
+/******************************************************************************
+** Section <<<$template_add_your_comment>>> - END
+******************************************************************************/
+
+/******************************************************************************
+** Section <<<$template_cpg_die>>> - START
+******************************************************************************/
 // HTML template used by the cpg_die function
 $template_cpg_die = <<<EOT
 
@@ -866,6 +1044,13 @@ $template_cpg_die = <<<EOT
 
 
 EOT;
+/******************************************************************************
+** Section <<<$template_cpg_die>>> - END
+******************************************************************************/
+
+/******************************************************************************
+** Section <<<$template_msg_box>>> - START
+******************************************************************************/
 // HTML template used by the msg_box function
 $template_msg_box = <<<EOT
 
@@ -889,6 +1074,13 @@ $template_msg_box = <<<EOT
 <!-- END button -->
 
 EOT;
+/******************************************************************************
+** Section <<<$template_msg_box>>> - END
+******************************************************************************/
+
+/******************************************************************************
+** Section <<<$template_ecard>>> - START
+******************************************************************************/
 // HTML template for e-cards
 $template_ecard = <<<EOT
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -940,7 +1132,13 @@ $template_ecard = <<<EOT
 </body>
 </html>
 EOT;
+/******************************************************************************
+** Section <<<$template_ecard>>> - END
+******************************************************************************/
 
+/******************************************************************************
+** Section <<<$template_ecard_plaintext>>> - START
+******************************************************************************/
 // plain-text template for e-cards (as fallback for clients that can't display html-formatted mails)
 $template_ecard_plaintext = <<<EOT
 {TITLE}
@@ -960,7 +1158,13 @@ $template_ecard_plaintext = <<<EOT
 {VIEW_MORE_LNK}:
 {VIEW_MORE_TGT}
 EOT;
+/******************************************************************************
+** Section <<<$template_ecard_plaintext>>> - END
+******************************************************************************/
 
+/******************************************************************************
+** Section <<<$template_report>>> - START
+******************************************************************************/
 // HTML template for report
 $template_report = <<<EOT
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -1000,7 +1204,13 @@ $template_report = <<<EOT
 </body>
 </html>
 EOT;
+/******************************************************************************
+** Section <<<$template_report>>> - END
+******************************************************************************/
 
+/******************************************************************************
+** Section <<<$template_report_plaintext>>> - START
+******************************************************************************/
 // plain-text template for reports (as fallback for clients that can't display html-formatted mails)
 $template_report_plaintext = <<<EOT
 {TITLE}
@@ -1022,7 +1232,13 @@ $template_report_plaintext = <<<EOT
 {VIEW_MORE_LNK}:
 {VIEW_MORE_TGT}
 EOT;
+/******************************************************************************
+** Section <<<$template_report_plaintext>>> - END
+******************************************************************************/
 
+/******************************************************************************
+** Section <<<$template_report_comment>>> - START
+******************************************************************************/
 // HTML template for displaying a reported comment
 if (!isset($template_report_comment))  //{THEMES}
 $template_report_comment = <<<EOT
@@ -1065,7 +1281,13 @@ $template_report_comment = <<<EOT
 </body>
 </html>
 EOT;
+/******************************************************************************
+** Section <<<$template_report_comment>>> - END
+******************************************************************************/
 
+/******************************************************************************
+** Section <<<$template_report_comment_email>>> - START
+******************************************************************************/
 // plain-text template for reports (as fallback for clients that can't display html-formatted mails)
 if (!isset($template_report_comment_email))  //{THEMES}
 $template_report_comment_email = <<<EOT
@@ -1089,7 +1311,13 @@ $template_report_comment_email = <<<EOT
 </body>
 </html>
 EOT;
+/******************************************************************************
+** Section <<<$template_report_comment_email>>> - END
+******************************************************************************/
 
+/******************************************************************************
+** Section <<<$template_tab_display>>> - START
+******************************************************************************/
 // Template used for tabbed display
 $template_tab_display = array('left_text' => '<td width="100%" align="left" valign="middle" class="tableh1_compact" style="white-space: nowrap"><b>{LEFT_TEXT}</b></td>' . "\n",
     'tab_header' => '',
@@ -1097,7 +1325,13 @@ $template_tab_display = array('left_text' => '<td width="100%" align="left" vali
     'active_tab' => '<td><img src="images/spacer.gif" width="1" height="1" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="tableb_compact"><b>%d</b></td>',
     'inactive_tab' => '<td><img src="images/spacer.gif" width="1" height="1" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}"><b>%d</b></a></td>' . "\n"
     );
+/******************************************************************************
+** Section <<<$template_tab_display>>> - END
+******************************************************************************/
 
+/******************************************************************************
+** Section <<<$template_vanity>>> - START
+******************************************************************************/
 // Template used for Vanity Footer
 $template_vanity = <<<EOT
 <div id="vanity">
@@ -1107,7 +1341,13 @@ $template_vanity = <<<EOT
       <a id="v_css" href="http://jigsaw.w3.org/css-validator/check/referer"  rel="external"></a>
 </div>
 EOT;
+/******************************************************************************
+** Section <<<$template_vanity>>> - END
+******************************************************************************/
 
+/******************************************************************************
+** Section <<<pageheader>>> - START
+******************************************************************************/
 function pageheader($section, $meta = '')
 {
     global $CONFIG, $THEME_DIR;
@@ -1133,6 +1373,13 @@ function pageheader($section, $meta = '')
 
     echo template_eval($template_header, $template_vars);
 }
+/******************************************************************************
+** Section <<<pageheader>>> - END
+******************************************************************************/
+
+/******************************************************************************
+** Section <<<pagefooter>>> - START
+******************************************************************************/
 // Function for writing a pagefooter
 function pagefooter()
 {
@@ -1153,7 +1400,13 @@ function pagefooter()
 
     echo template_eval($template_footer, $template_vars);
 }
+/******************************************************************************
+** Section <<<pagefooter>>> - END
+******************************************************************************/
 
+/******************************************************************************
+** Section <<<theme_javascript_head>>> - START
+******************************************************************************/
 // Function for the JavaScript inside the <head>-section
 function theme_javascript_head() {
     $return = '<script type="text/javascript" src="scripts.js"></script>'; // do not remove this line unless you really know what you're doing
@@ -1164,7 +1417,13 @@ function theme_javascript_head() {
 EOT;
     return $return;
 }
+/******************************************************************************
+** Section <<<theme_javascript_head>>> - END
+******************************************************************************/
 
+/******************************************************************************
+** Section <<<starttable>>> - START
+******************************************************************************/
 // Function to start a 'standard' table
 function starttable($width = '-1', $title = '', $title_colspan = '1')
 {
@@ -1187,7 +1446,13 @@ EOT;
 EOT;
     }
 }
+/******************************************************************************
+** Section <<<starttable>>> - END
+******************************************************************************/
 
+/******************************************************************************
+** Section <<<endtable>>> - START
+******************************************************************************/
 function endtable()
 {
     echo <<<EOT
@@ -1196,7 +1461,13 @@ function endtable()
 
 EOT;
 }
+/******************************************************************************
+** Section <<<endtable>>> - END
+******************************************************************************/
 
+/******************************************************************************
+** Section <<<theme_main_menu>>> - START
+******************************************************************************/
 function theme_main_menu($which)
 {
     global $AUTHORIZED, $CONFIG, $album, $actual_cat, $cat, $REFERER;
@@ -1332,7 +1603,13 @@ function theme_main_menu($which)
 
     return $$which;
 }
+/******************************************************************************
+** Section <<<theme_main_menu>>> - END
+******************************************************************************/
 
+/******************************************************************************
+** Section <<<theme_admin_mode_menu>>> - START
+******************************************************************************/
 function theme_admin_mode_menu()
 {
     global $cat;
@@ -1416,7 +1693,13 @@ function theme_admin_mode_menu()
 
     return $admin_menu;
 }
+/******************************************************************************
+** Section <<<theme_admin_mode_menu>>> - END
+******************************************************************************/
 
+/******************************************************************************
+** Section <<<theme_display_cat_list>>> - START
+******************************************************************************/
 function theme_display_cat_list($breadcrumb, &$cat_data, $statistics)
 {
     global $template_cat_list, $lang_cat_list;
@@ -1471,7 +1754,13 @@ function theme_display_cat_list($breadcrumb, &$cat_data, $statistics)
           endtable();
         echo template_extract_block($template_cat_list, 'spacer');
 }
+/******************************************************************************
+** Section <<<theme_display_cat_list>>> - END
+******************************************************************************/
 
+/******************************************************************************
+** Section <<<theme_display_breadcrumb>>> - START
+******************************************************************************/
 function theme_display_breadcrumb($breadcrumb, &$cat_data)
 {
     /**
@@ -1488,7 +1777,13 @@ function theme_display_breadcrumb($breadcrumb, &$cat_data)
     }
         endtable();
 }
+/******************************************************************************
+** Section <<<theme_display_breadcrumb>>> - END
+******************************************************************************/
 
+/******************************************************************************
+** Section <<<theme_display_album_list>>> - START
+******************************************************************************/
 function theme_display_album_list(&$alb_list, $nbAlb, $cat, $page, $total_pages)
 {
 
@@ -1571,6 +1866,13 @@ function theme_display_album_list(&$alb_list, $nbAlb, $cat, $page, $total_pages)
 
     echo $spacer;
 }
+/******************************************************************************
+** Section <<<theme_display_album_list>>> - END
+******************************************************************************/
+
+/******************************************************************************
+** Section <<<theme_display_album_list_cat>>> - START
+******************************************************************************/
 // Function to display first level Albums of a category
 function theme_display_album_list_cat(&$alb_list, $nbAlb, $cat, $page, $total_pages)
 {
@@ -1655,7 +1957,13 @@ function theme_display_album_list_cat(&$alb_list, $nbAlb, $cat, $page, $total_pa
 
     echo $spacer;
 }
+/******************************************************************************
+** Section <<<theme_display_album_list_cat>>> - END
+******************************************************************************/
 
+/******************************************************************************
+** Section <<<theme_display_thumbnails>>> - START
+******************************************************************************/
 function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $page, $total_pages, $sort_options, $display_tabs, $mode = 'thumb')
 {
     global $CONFIG;
@@ -1790,6 +2098,13 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
     endtable();
     echo $spacer;
 }
+/******************************************************************************
+** Section <<<theme_display_thumbnails>>> - END
+******************************************************************************/
+
+/******************************************************************************
+** Section <<<theme_display_film_strip>>> - START
+******************************************************************************/
 // Added to display flim_strip
 function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $pos, $sort_options, $mode = 'thumb')
 {
@@ -1864,7 +2179,13 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
 
     return $film_strip;
 }
+/******************************************************************************
+** Section <<<theme_display_film_strip>>> - END
+******************************************************************************/
 
+/******************************************************************************
+** Section <<<theme_no_img_to_display>>> - START
+******************************************************************************/
 function theme_no_img_to_display($album_name)
 {
     global $lang_errors, $template_no_img_to_display;
@@ -1882,7 +2203,13 @@ function theme_no_img_to_display($album_name)
     echo template_eval($template, $params);
     endtable();
 }
+/******************************************************************************
+** Section <<<theme_no_img_to_display>>> - END
+******************************************************************************/
 
+/******************************************************************************
+** Section <<<theme_display_image>>> - START
+******************************************************************************/
 function theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments, $film_strip)
 {
     global $CONFIG;
@@ -1917,7 +2244,13 @@ function theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments, 
         echo "</div>\n";
 
 }
+/******************************************************************************
+** Section <<<theme_display_image>>> - END
+******************************************************************************/
 
+/******************************************************************************
+** Section <<<theme_html_picinfo>>> - START
+******************************************************************************/
 function theme_html_picinfo(&$info)
 {
     global $lang_picinfo;
@@ -1930,7 +2263,13 @@ function theme_html_picinfo(&$info)
 
     return $html;
 }
+/******************************************************************************
+** Section <<<theme_html_picinfo>>> - END
+******************************************************************************/
 
+/******************************************************************************
+** Section <<<theme_html_picture>>> - START
+******************************************************************************/
 // Displays a picture
 function theme_html_picture()
 {
@@ -2093,7 +2432,13 @@ function theme_html_picture()
 
     return template_eval($template_display_media, $params);
 }
+/******************************************************************************
+** Section <<<theme_html_picture>>> - END
+******************************************************************************/
 
+/******************************************************************************
+** Section <<<theme_html_img_nav_menu>>> - START
+******************************************************************************/
 function theme_html_img_nav_menu()
 {
     global $CONFIG, $CURRENT_PIC_DATA, $meta_nav, $THEME_DIR ; //$PHP_SELF,
@@ -2190,7 +2535,13 @@ function theme_html_img_nav_menu()
 
     return template_eval($template_img_navbar, $params);
 }
+/******************************************************************************
+** Section <<<theme_html_img_nav_menu>>> - END
+******************************************************************************/
 
+/******************************************************************************
+** Section <<<theme_html_rating_box>>> - START
+******************************************************************************/
 function theme_html_rating_box()
 {
     global $CONFIG, $CURRENT_PIC_DATA, $CURRENT_ALBUM_DATA, $THEME_DIR;
@@ -2227,7 +2578,13 @@ function theme_html_rating_box()
 
     return template_eval($template_image_rating, $params);
 }
+/******************************************************************************
+** Section <<<theme_html_rating_box>>> - END
+******************************************************************************/
 
+/******************************************************************************
+** Section <<<theme_html_comments>>> - START
+******************************************************************************/
 // Displays comments for a specific picture
 function theme_html_comments($pid)
 {
@@ -2333,7 +2690,13 @@ function theme_html_comments($pid)
 
     return $html;
 }
+/******************************************************************************
+** Section <<<theme_html_comments>>> - END
+******************************************************************************/
 
+/******************************************************************************
+** Section <<<theme_slideshow>>> - START
+******************************************************************************/
 function theme_slideshow()
 {
     global $CONFIG, $lang_display_image_php, $template_display_media;
@@ -2365,7 +2728,13 @@ EOT;
     endtable();
     pagefooter();
 }
+/******************************************************************************
+** Section <<<theme_slideshow>>> - END
+******************************************************************************/
 
+/******************************************************************************
+** Section <<<theme_display_fullsize_pic>>> - START
+******************************************************************************/
 // Display the full size image
 function theme_display_fullsize_pic()
 {
@@ -2437,8 +2806,13 @@ function theme_display_fullsize_pic()
 </html>
 <?php
 }
+/******************************************************************************
+** Section <<<theme_display_fullsize_pic>>> - END
+******************************************************************************/
 
-
+/******************************************************************************
+** Section <<<theme_vanity>>> - START
+******************************************************************************/
 function theme_vanity()
 {
     global $CONFIG, $THEME_DIR, $template_vanity ;
@@ -2453,5 +2827,8 @@ function theme_vanity()
 
     return template_eval($template_vanity, $params);
 }
+/******************************************************************************
+** Section <<<theme_vanity>>> - END
+******************************************************************************/
 
 ?>
