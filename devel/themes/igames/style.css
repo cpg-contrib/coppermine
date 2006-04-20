@@ -136,6 +136,10 @@ form {
         margin-bottom:0px;
 }
 
+.inline {
+        display:inline;
+}
+
 .top_panel {
                 background-image: url(images/top_panel_r1_c4.jpg);
                 background-repeat : repeat-x;

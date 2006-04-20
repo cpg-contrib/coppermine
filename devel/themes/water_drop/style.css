@@ -99,6 +99,10 @@ form {
         margin-bottom:0px;
 }
 
+.inline {
+        display:inline;
+}
+
 .textinput {
         font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif;
         font-size: 100%;

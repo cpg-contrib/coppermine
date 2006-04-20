@@ -94,6 +94,10 @@ form {
         margin-bottom:0px;
 }
 
+.inline {
+        display:inline;
+}
+
 .textinput {
         font-family: Verdana, Arial, Helvetica, sans-serif;
         font-size: 100%;

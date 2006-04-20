@@ -163,6 +163,10 @@ form {
         margin-bottom:0px;
 }
 
+.inline {
+        display:inline;
+}
+
 .top_panel td {
         white-space: nowrap;
 }

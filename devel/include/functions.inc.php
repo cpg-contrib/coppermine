@@ -2536,7 +2536,7 @@ switch ($parameter) {
        $return = 'not yet implemented';
        break;
    default:
-       $return.= $lineBreak . '<form name="cpgChooseLanguage" id="cpgChooseLanguage" action="' . $_SERVER['PHP_SELF'] . '" method="get" style="margin-top:0px;margin-bottom:0px;margin-left:0px;margin-right:0px;display:inline">' . $lineBreak;
+       $return.= $lineBreak . '<form name="cpgChooseLanguage" id="cpgChooseLanguage" action="' . $_SERVER['PHP_SELF'] . '" method="get" class="inline">' . $lineBreak;
        $return.= '<select name="cpgLanguageSelect" class="listbox_lang" onchange="if (this.options[this.selectedIndex].value) window.location.href=\'' . $cpgChangeUrl . '\' + this.options[this.selectedIndex].value;">' . $lineBreak;
        $return.='<option selected="selected">' . $lang_language_selection['choose_language'] . '</option>' . $lineBreak;
        foreach ($lang_array as $language) {
@@ -2609,7 +2609,7 @@ switch ($parameter) {
        $return = 'not yet implemented';
        break;
    default:
-       $return.= $lineBreak . '<form name="cpgChooseTheme" id="cpgChooseTheme" action="' . $_SERVER['PHP_SELF'] . '" method="get" style="margin-top:0px;margin-bottom:0px;margin-left:0px;margin-right:0px;display:inline">' . $lineBreak;
+       $return.= $lineBreak . '<form name="cpgChooseTheme" id="cpgChooseTheme" action="' . $_SERVER['PHP_SELF'] . '" method="get" class="inline">' . $lineBreak;
        $return.= '<select name="cpgThemeSelect" class="listbox_lang" onchange="if (this.options[this.selectedIndex].value) window.location.href=\'' . $cpgCurrentTheme . '\' + this.options[this.selectedIndex].value;">' . $lineBreak;
        $return.='<option selected="selected">' . $lang_theme_selection['choose_theme'] . '</option>';
        foreach ($theme_array as $theme) {
