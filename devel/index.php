@@ -18,7 +18,7 @@
 **********************************************/
 
 /**
-* Coppermine Photo Gallery 1.4.2 index.php
+* Coppermine Photo Gallery 1.5.0 index.php
 *
 * This file is the main display for categories and album it also displays thumbnails,
 * also see documentation for this file's {@relativelink ../_index.php.php Free Standing Code}
@@ -36,7 +36,16 @@ define('IN_COPPERMINE', true);
 
 if (isset($_GET['file'])) {
     // Scrub: Remove '..' and leftover '//' from filename
-    $file = str_replace('//','',str_replace('..','',$_GET['file']));
+    $file = str_replace('..','',str_replace('//','',$_GET['file']));
+    $fileValidationPattern = "/^([a-zA-Z0-9_\-]+)(\/{0,1}?)([a-zA-Z0-9_\-]+)$/";
+    // There can be only alphanumerals in a plugin's folder name. There mustn't be any dots or other special chars in it.
+    // The only exception is the hypen (-) and underscore (_)
+    // Examples for folder names: "myplugin" = OK, "my_plugin" = OK, "my plugin" = BAD, "m&uuml;_plugin" = BAD
+    // Files the plugin is meant to include can only contain one single dot that separates the actual filename from the php-extension
+    // Same restrictions apply as for the folder name (only alphanumerals, hyphen and underscore)
+    if (preg_match($fileValidationPattern, $file) == FALSE) {
+            $file = ''; // something's fishy with the filename, let's drop it
+    }
     $path = './plugins/'.$file.'.php';
 
     // Don't include the codebase and credits files
