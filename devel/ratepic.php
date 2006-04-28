@@ -32,13 +32,13 @@ $rate = max($rate, 0);
 
 // If user does not accept script's cookies, we don't accept the vote
 if (!isset($_COOKIE[$CONFIG['cookie_name'] . '_data'])) {
-    header('Location: displayimage.php?pos=' . (- $pic));
+    header('Location: displayimage.php?pid=' . ($pic));
     exit;
 }
 
 // If referer is not displayimage.php we don't accept the vote
 if (!eregi("displayimage",$_SERVER["HTTP_REFERER"])){
-    header('Location: displayimage.php?pos=' . (- $pic));
+    header('Location: displayimage.php?pid=' . ($pic));
     exit;
 }
 
@@ -114,7 +114,7 @@ $query = "INSERT INTO {$CONFIG['TABLE_VOTE_STATS']}
 cpg_db_query($query);
 }
 
-$location = "displayimage.php?pos=" . (- $pic);
+$location = "displayimage.php?pid=" . ($pic);
 $header_location = (@preg_match('/Microsoft|WebSTAR|Xitami/', getenv('SERVER_SOFTWARE'))) ? 'Refresh: 0; URL=' : 'Location: ';
 header($header_location . $location);
 pageheader($lang_info, "<META http-equiv=\"refresh\" content=\"1;url=$location\">");
