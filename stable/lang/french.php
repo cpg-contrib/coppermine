@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /*************************
   Coppermine Photo Gallery
   ************************
@@ -11,7 +11,7 @@
   (at your option) any later version.
   ********************************************
   Coppermine version: 1.4.5
-  $Source$
+  $Source: /cvsroot/coppermine/stable/lang/french.php,v $
   $Revision$
   $Author$
   $Date$
@@ -1207,16 +1207,22 @@ if (defined('FAQ_PHP')) $lang_faq_data = array(
 if (defined('FORGOT_PASSWD_PHP')) $lang_forgot_passwd_php = array(
   'forgot_passwd' => 'Rappel de Mot de passe', //cpg1.3.0
   'err_already_logged_in' => 'Vous êtes déjà identifié&nbsp;!', //cpg1.3.0
-  'enter_username_email' => 'Saisissez votre pseudo ou votre adresse de messagerie', //cpg1.3.0
+  'enter_email' => 'Saisissez votre adresse de messagerie', //cpg1.3.0
   'submit' => 'Envoyer', //cpg1.3.0
+  'illegal_session' => 'Le mot de passe pour cette session est invalide ou a expiré.', //cpg1.4
   'failed_sending_email' => 'Le mot de passe n\'a pas pu être envoyé&nbsp;!', //cpg1.3.0
   'email_sent' => 'Un message a été envoyé avec votre mot de passe à l\'adresse %s', //cpg1.3.0
+  'verify_email_sent' => 'Un courriel a été envoyé à %s. Veuillez vérifier vos courriels pour terminer le processus.', //cpg1.4
   'err_unk_user' => 'L\'utilisateur indiqué n\'existe pas&nbsp;!', //cpg1.3.0
-  'passwd_reminder_subject' => '%s - Rappel de Mot de passe', //cpg1.3.0
-  'passwd_reminder_body' => 'Vous avez demandé que votre mot de passe vous soit rappelé. Voici donc vos données de connexion :
+  'account_verify_subject' => '%s - Demande de nouveau Mot de Passe', //cpg1.4
+  'account_verify_body' => 'Vous avez demandé un nouveau Mot de Passe. Si vous souhaitez recevoir par courriel un nouveau mot de passe, cliquez sur le lien ci-après:
+
+%s', //cpg1.4
+  'passwd_reset_subject' => '%s - Rappel de Mot de passe', //cpg1.3.0
+  'passwd_reset_body' => 'Vous avez demandé que votre mot de passe vous soit rappelé. Voici donc vos données de connexion :
 Utilisateur: %s
 Mot de passe : %s
-Cliquez sur %s pour vous identifier.', //cpg1.3.0
+Cliquez sur %s pour vous identifier.', //cpg1.4
 );
 
 // ------------------------------------------------------------------------- //

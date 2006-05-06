@@ -350,3 +350,5 @@ Fixed bug in charsetmgr - 23rd Feb 2006, Abbas
 CPG1.4.4 released - 26th Feb 2006, GauGau
 Added Georgian language file - 12th March 2006, GauGau
 Re-added config.php and server_relocate.php to overwrite the outdated files when users upgrade - 10th April 2006, GauGau
+Fixed remote file inclusion vulnerability - 21st April 2006, GauGau
+Released cpg1.4.5 - 21st April 2006, GauGau

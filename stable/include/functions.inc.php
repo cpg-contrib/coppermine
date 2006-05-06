@@ -2414,9 +2414,9 @@ $lang_language_data['albanian'] = array('Albanian','Albanian','al');
 $lang_language_data['arabic'] = array('Arabic','&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577;','sa');
 $lang_language_data['basque'] = array('Basque','Euskera','baq');
 $lang_language_data['bosnian'] = array('Bosnian','Bosanski','ba');
-$lang_language_data['brazilian_portuguese'] = array('Portuguese [Brazilian]','Português Brasileiro','br');
+$lang_language_data['brazilian_portuguese'] = array('Portuguese [Brazilian]','Portugu&ecirc;s Brasileiro','br');
 $lang_language_data['bulgarian'] = array('Bulgarian','&#1041;&#1098;&#1083;&#1075;&#1072;&#1088;&#1089;&#1082;&#1080;','bg');
-$lang_language_data['catalan'] = array('Catalan','Català','ct');
+$lang_language_data['catalan'] = array('Catalan','Catal&agrave;','ct');
 $lang_language_data['chinese_big5'] = array('Chinese traditional','&#20013;&#25991; - &#32321;&#39636;','tw');
 $lang_language_data['chinese_gb'] = array('Chinese simplified','&#20013;&#25991; - &#31616;&#20307;','cn');
 $lang_language_data['croatian'] = array('Croatian','Hrvatski','hr');
@@ -2444,15 +2444,15 @@ $lang_language_data['malay'] = array('Malay','Bahasa Melayu','my');
 $lang_language_data['norwegian'] = array('Norwegian','Norsk','no');
 $lang_language_data['persian'] = array('Persian','&#1578;&#1594;&#1740;&#1740;&#1585; &#1576;&#1607; &#1581;&#1575;&#1604;&#1578; &#1603;&#1575;&#1585;&#1576;&#1585;','ir');
 $lang_language_data['polish'] = array('Polish','Polski','pl');
-$lang_language_data['portuguese'] = array('Portuguese [Portugal]','Português','pt');
-$lang_language_data['romanian'] = array('Romanian','Român&atilde;','ro');
+$lang_language_data['portuguese'] = array('Portuguese [Portugal]','Portugu&ecirc;s','pt');
+$lang_language_data['romanian'] = array('Romanian','Rom&acirc;n&atilde;','ro');
 $lang_language_data['russian'] = array('Russian','&#1056;&#1091;&#1089;&#1089;&#1082;&#1080;&#1081;','ru');
 $lang_language_data['slovak'] = array('Slovak','Slovensky','sk');
 $lang_language_data['slovenian'] = array('Slovenian','Slovensko','si');
 $lang_language_data['spanish'] = array('Spanish','Espa&ntilde;ol','es');
 $lang_language_data['swedish'] = array('Swedish','Svenska','se');
 $lang_language_data['thai'] = array('Thai','&#3652;&#3607;&#3618;','th');
-$lang_language_data['turkish'] = array('Turkish','Türk&ccedil;e','tr');
+$lang_language_data['turkish'] = array('Turkish','T&uuml;rk&ccedil;e','tr');
 $lang_language_data['uighur'] = array('Uighur','Uighur','cn-xj');
 $lang_language_data['ukrainian'] = array('Ukrainian','&#1059;&#1082;&#1088;&#1072;&#1111;&#1085;&#1089;&#1100;&#1082;&#1072;','ua');
 $lang_language_data['vietnamese'] = array('Vietnamese','Tieng Viet','vn');
@@ -2607,6 +2607,7 @@ function cpg_alert_dev_version() {
             ob_end_clean();
         }
         // check if relocate_server.php exists
+        /* removed, because a harmless version of the file has been added
         if (file_exists('relocate_server.php')) {
             ob_start();
             starttable('100%', $lang_version_alert['security_alert']);
@@ -2618,6 +2619,7 @@ function cpg_alert_dev_version() {
             $return .= ob_get_contents();
             ob_end_clean();
         }
+        */
         // check if gallery is offline
         if ($CONFIG['offline'] == 1 && GALLERY_ADMIN_MODE) {
             $return .= '<span style="color:red;font-weight:bold">'.$lang_version_alert['gallery_offline'].'</span><br />&nbsp;<br />';

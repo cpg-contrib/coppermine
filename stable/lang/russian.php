@@ -2,7 +2,7 @@
 /*************************
   Coppermine Photo Gallery
   ************************
-  Copyright (c) 2003-2006 Coppermine Dev Team
+  Copyright (c) 2003-2005 Coppermine Dev Team
   v1.1 originally written by Gregory DEMAR
 
   This program is free software; you can redistribute it and/or modify
@@ -11,7 +11,7 @@
   (at your option) any later version.
   ********************************************
   Coppermine version: 1.4.5
-  $Source$
+  $Source: /cvsroot/coppermine/stable/lang/russian.php,v $
   $Revision$
   $Author$
   $Date$
@@ -30,7 +30,7 @@ $lang_translation_info = array(
   'trans_name'=> 'Makc666',
   'trans_email' => 'makc666@yahoo.com',
   'trans_website' => 'http://makc666.starnet.ru/',
-  'trans_date' => '2006-01-21',
+  'trans_date' => '2006-04-21',
 );
 
 $lang_charset = 'utf-8';
@@ -503,7 +503,7 @@ if (defined('BRIDGEMGR_PHP')) $lang_bridgemgr_php = array(
   'use_post_based_groups' => 'Использовать группы, основанные на постах пользователей?',
   'logout_flag_yes' => '2.0.5 или выше',
   'logout_flag_no' => '2.0.4 или ниже',
-  'use_post_based_groups_explanation' => 'Должны ли использоваться группы с форума, которые определяются количество постов набранных пользователями (позволяет частичное управление группами) или только группы по умолчанию (делает администрирование легче, рекомендуется). Также, Вы можете изменить данную настройку позже.',
+  'use_post_based_groups_explanation' => 'Должны ли использоваться группы с форума, которые определяются количеством постов, набранных пользователями (позволяет частичное управление группами) или только группы по умолчанию (делает администрирование легче, рекомендуется). Также, Вы можете изменить данную настройку позже.',
   'use_post_based_groups_yes' => 'да',
   'use_post_based_groups_no' => 'нет',
   'error_title' => 'Вы должны исправить данные ошибки, прежде чем продолжить. Перейдите на предыдущую страницу.',
@@ -1342,7 +1342,7 @@ if (defined('LOGIN_PHP')) $lang_login_php = array(
 
 if (defined('LOGOUT_PHP')) $lang_logout_php = array(
   'logout' => 'Выйти',
-  'bye' => 'До свидания %s',
+  'bye' => 'До свидания, %s',
   'err_not_loged_in' => 'Вы не осуществили вход в систему!',
 );
 

@@ -11,10 +11,10 @@
   (at your option) any later version.
   ********************************************
   Coppermine version: 1.5.0
-  $Source: /cvsroot/coppermine/devel/lang/danish.php,v $
-  $Revision: 1.287 $
+  $Source: /cvsroot/coppermine/stable/lang/danish.php,v $
+  $Revision: 1.15 $
   $Author: gaugau $
-  $Date: 2006/03/06 06:52:32 $
+  $Date: 2006/05/03 07:12:36 $
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
