@@ -353,3 +353,4 @@ Re-added config.php and server_relocate.php to overwrite the outdated files when
 Fixed remote file inclusion vulnerability - 21st April 2006, GauGau
 Released cpg1.4.5 - 21st April 2006, GauGau
 Fixed JavaScript error messages for crop and rotate - 08th May 2006, GauGau
+Fixed bug where input field was being saved for sender's name - 8th May 2006, TranzNDance
