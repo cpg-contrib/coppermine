@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-05-08 [B] Fixed bug where input field was saved for sender's name in report_file.php {TranzNDance}
 2006-05-08 [B] Fixed JavaScript error messages for crop and rotate {GauGau}
 2006-05-08 [A] Added better album dropdown to upload screen {GauGau}
 2006-04-21 [S] Fixed remote file inclusion vulnerability {GauGau}
