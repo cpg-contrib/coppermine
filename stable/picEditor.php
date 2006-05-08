@@ -220,11 +220,10 @@ if ($_GET['id']){
 <html>
   <head>
   <meta http-equiv="imagetoolbar" content="no" />
-  <meta http-equiv="content-type" content="text/html; charset=<?php echo $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'] ?>" />  
+  <meta http-equiv="content-type" content="text/html; charset=<?php echo $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'] ?>" />
     <title><?php echo $lang_editpics_php['crop_title'] ?></title>
     <?php if($imgObj){?>
     <script type="text/javascript">
-    <![CDATA[
     /****************************************************************************
     DHTML library from DHTMLCentral.com
     *   Copyright (C) 2001 Thomas Brattli 2001
@@ -288,7 +287,7 @@ if ($_GET['id']){
 
     //Moving object to **************
     lib_obj.prototype.moveIt = function(x,y){
-      this.x=x;this.y=y; this.css.left=x;this.css.top=y
+      this.x=x;this.y=y; this.css.left=x+"px";this.css.top=y+"px";
     }
 
     //Moving object by ***************
@@ -327,9 +326,9 @@ if ($_GET['id']){
         this.css.clip.bottom=b;this.css.clip.left=l
       }else{
         if(t<0)t=0;if(r<0)r=0;if(b<0)b=0;if(b<0)b=0
-        this.css.clip="rect("+t+","+r+","+b+","+l+")";
-        if(setwidth){this.css.pixelWidth=this.css.width=r;
-        this.css.pixelHeight=this.css.height=b}
+        this.css.clip="rect("+t+"px"+","+r+"px"+","+b+"px"+","+l+"px"+")";
+        if(setwidth){this.css.pixelWidth=this.css.width=r+"px";
+        this.css.pixelHeight=this.css.height=b+"px"}
       }
     }
 
@@ -508,7 +507,6 @@ if ($_GET['id']){
         resetClip();
        }
     }
-    ]]>
     </script>
 <?php }?>
     <style type="text/css">
@@ -551,7 +549,7 @@ if ($_GET['id']){
 
 <body <?php if ($imgObj) print "onload=\"libinit()\"";?>>
 
-<form name="mainform" method="post" enctype="multipart/form-data" action="picEditor.php">
+<form name="mainform" id="cpgform" method="post" enctype="multipart/form-data" action="picEditor.php">
 
 <input type="hidden" name="clipval" value="" />
 <input type="hidden" name="newimage" value="<?php print $newimage ; ?>" />

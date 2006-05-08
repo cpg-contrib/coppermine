@@ -352,3 +352,4 @@ Added Georgian language file - 12th March 2006, GauGau
 Re-added config.php and server_relocate.php to overwrite the outdated files when users upgrade - 10th April 2006, GauGau
 Fixed remote file inclusion vulnerability - 21st April 2006, GauGau
 Released cpg1.4.5 - 21st April 2006, GauGau
+Fixed JavaScript error messages for crop and rotate - 08th May 2006, GauGau
