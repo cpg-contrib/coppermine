@@ -2,7 +2,7 @@
 /*************************
   Coppermine Photo Gallery
   ************************
-  Copyright (c) 2003-2005 Coppermine Dev Team
+  Copyright (c) 2003-2006 Coppermine Dev Team
   v1.1 originally written by Gregory DEMAR
 
   This program is free software; you can redistribute it and/or modify
@@ -46,7 +46,8 @@ if ($USER_DATA['user_email']){
 } else {
         $sender_email = get_post_var('sender_email',$USER['email'] ? $USER['email'] : '');
         $sender_box = "<input type=\"text\" class=\"textinput\" value=\"$sender_email\" name=\"sender_email\" style=\"width: 100%;\" />";
-        $sender_name = "<input type=\"text\" class=\"textinput\" value=\"$sender_name\" name=\"sender_name\" style=\"width: 100%;\" />";
+		$sender_name = get_post_var('sender_name',$USER['name'] ? $USER['name'] : '');
+        $sender_name_box = "<input type=\"text\" class=\"textinput\" value=\"$sender_name\" name=\"sender_name\" style=\"width: 100%;\" />";
 }
 $subject = get_post_var('subject');
 $message = get_post_var('message');
@@ -193,7 +194,7 @@ echo <<<EOT
                         {$lang_report_php['your_name']}<br />
                 </td>
                 <td valign="top" class="tableb" width="60%">
-                        {$sender_name}
+                        {$sender_name_box}
                 </td>
         </tr>
         <tr>
