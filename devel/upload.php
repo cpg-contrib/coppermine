@@ -164,7 +164,6 @@ EOT;
 
 // The function to create the album list drop down.
 function form_alb_list_box($text, $name) {
-// frogfoot re-wrote this function to present the list in categorized, sorted and nicely formatted order
 
     // Pull the $CONFIG array and the GET array into the function
     global $CONFIG, $lang_upload_php;
@@ -206,15 +205,17 @@ EOT;
         $album_id = $album['aid'];
 
         // Get the category name
-        $vQuery = "SELECT cat.name FROM " . $CONFIG['TABLE_CATEGORIES'] . " cat, " . $CONFIG['TABLE_ALBUMS'] . " alb WHERE alb.aid='" . $album_id . "' AND cat.cid=alb.category";
+        $vQuery = "SELECT cat.name, cat.cid FROM " . $CONFIG['TABLE_CATEGORIES'] . " cat, " . $CONFIG['TABLE_ALBUMS'] . " alb WHERE alb.aid='" . $album_id . "' AND cat.cid=alb.category";
         $vRes = cpg_db_query($vQuery);
         $vRes = mysql_fetch_array($vRes);
 
         // Add to multi-dim array for sorting later
         if ($vRes['name']) {
             $listArray[$list_count]['cat'] = $vRes['name'];
+            $listArray[$list_count]['cid'] = $vRes['cid'];
         } else {
             $listArray[$list_count]['cat'] = $lang_upload_php['albums_no_category'];
+            $listArray[$list_count]['cid'] = 0;
         }
         $listArray[$list_count]['aid'] = $album['aid'];
         $listArray[$list_count]['title'] = $album['title'];
@@ -222,16 +223,16 @@ EOT;
     }
 
     // Sort the pulldown options by category and album name
-    $listArray = array_csort($listArray,'cat','title');
+    $listArray = array_csort($listArray,'cid','title');
 
     // Finally, print out the nicely sorted and formatted drop down list
     $alb_cat = '';
         echo '                <option value="">' . $lang_upload_php['select_album'] . "</option>\n";
     foreach ($listArray as $val) {
-        if ($val['cat'] != $alb_cat) {
+        if ($val['cid'] != $alb_cat) {
 if ($alb_cat) echo "                </optgroup>\n";
             echo '                <optgroup label="' . $val['cat'] . '">' . "\n";
-            $alb_cat = $val['cat'];
+            $alb_cat = $val['cid'];
         }
         echo '                <option value="' . $val['aid'] . '"' . ($val['aid'] == $sel_album ? ' selected' : '') . '>   ' . $val['title'] . "</option>\n";
     }
