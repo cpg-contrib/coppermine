@@ -2,7 +2,7 @@
 /*************************
   Coppermine Photo Gallery
   ************************
-  Copyright (c) 2003-2005 Coppermine Dev Team
+  Copyright (c) 2003-2006 Coppermine Dev Team
   v1.1 originally written by Gregory DEMAR
 
   This program is free software; you can redistribute it and/or modify
@@ -83,6 +83,6 @@ if (is_array($data)) {
 			echo template_eval($template_report, $params);
 	}
 } else {
-        cpg_die(CRITICAL_ERROR, $lang_displayreport_php['invalid_data'], __FILE__, __LINE__);
+        cpg_die(CRITICAL_ERROR, $lang_report_php['invalid_data'], __FILE__, __LINE__);
 }
 ?>
