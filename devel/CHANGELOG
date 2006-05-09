@@ -25,6 +25,8 @@ Changelog
 [O] = Optimization of code
 [S] = Security fix (issues that are related to security)
 *********************************************
+
+2006-05-09 [D] Updated screenshots in docs {GauGau}
 2006-05-08 [B] Replaced $lang_displayreport_php['invalid_data'] with $lang_report_php['invalid_data'] in displayreport.php {TranzNDance}
 2006-05-08 [B] Fixed bug where input field was saved for sender's name in report_file.php {TranzNDance}
 2006-05-08 [B] Fixed JavaScript error messages for crop and rotate {GauGau}
