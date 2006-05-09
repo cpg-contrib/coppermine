@@ -10,14 +10,14 @@
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
   ********************************************
-  Coppermine version: 1.4.5
+  Coppermine version: 1.4.6
   $Source$
   $Revision$
   $Author$
   $Date$
 **********************************************/
 
-define('COPPERMINE_VERSION', '1.4.5');
+define('COPPERMINE_VERSION', '1.4.6');
 define('COPPERMINE_VERSION_STATUS', 'stable');
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}

@@ -10,7 +10,7 @@
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
   ********************************************
-  Coppermine version: 1.4.5
+  Coppermine version: 1.4.6
   $Source$
   $Revision$
   $Author$
@@ -18,7 +18,7 @@
 **********************************************/
 
 /**
- * Coppermine Photo Gallery 1.4.5 thumbnails.php
+ * Coppermine Photo Gallery 1.4.6 thumbnails.php
  *
  * This file generates the data of thumbnails for all the albums and metalbums,
  * the actual display is handled by the display_thumbnails and then in-turn
