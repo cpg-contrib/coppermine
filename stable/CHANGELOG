@@ -355,3 +355,4 @@ Released cpg1.4.5 - 21st April 2006, GauGau
 Fixed JavaScript error messages for crop and rotate - 08th May 2006, GauGau
 Fixed bug where input field was being saved for sender's name - 8th May 2006, TranzNDance
 Replaced $lang_displayreport_php['invalid_data'] with $lang_report_php['invalid_data'] in displayreport.php - 8th May 2006, TranzNDance
+Updated screenshots in docs - 09th May 2006, GauGau
