@@ -83,6 +83,6 @@ if (is_array($data)) {
 			echo template_eval($template_report, $params);
 	}
 } else {
-        cpg_die(CRITICAL_ERROR, $lang_displayreport_php['invalid_data'], __FILE__, __LINE__);
+        cpg_die(CRITICAL_ERROR, $lang_report_php['invalid_data'], __FILE__, __LINE__);
 }
 ?>

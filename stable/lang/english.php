@@ -1104,6 +1104,8 @@ if (defined('REPORT_FILE_PHP') || defined('DISPLAYREPORT_PHP')) $lang_report_php
   'view_comment' => 'View full report with comment', //cpg1.4
   'type_file' => 'file', //cpg1.4
   'type_comment' => 'comment', //cpg1.4
+  'invalid_data' => 'The data for the report you are trying to access has been corrupted by your mail client. Check the link is complete.', //cpg1.4
+
 );
 
 // ------------------------------------------------------------------------- //
