@@ -84,7 +84,7 @@ class cpg_udb extends core_udb {
 	
 	
 		// Group ids - admin and guest only.
-		$this->admingroups = array($this->use_post_based_groups ? $INFO['admin_group'] : 1);
+		$this->admingroups = array($INFO['admin_group']);
 		$this->guestgroup = $this->use_post_based_groups ? $INFO['guest_group']+100 : 3;
 		
 		// Connect to db
