@@ -357,3 +357,4 @@ Fixed bug where input field was being saved for sender's name - 8th May 2006, Tr
 Replaced $lang_displayreport_php['invalid_data'] with $lang_report_php['invalid_data'] in displayreport.php - 8th May 2006, TranzNDance
 Updated screenshots in docs - 09th May 2006, GauGau
 Changed coppermine version from cpg1.4.5 to cpg1.4.6 - 09th May 2006, GauGau
+Fixed admin recognition issue in IPB bridge - 10th May 2006, Nibbler
