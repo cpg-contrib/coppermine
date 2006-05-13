@@ -223,7 +223,7 @@ function html_installer_locked()
           </td>
          </tr>
          <tr>
-          <td class="tableb" colspan="2">The installer has already been run successfuly once and is now locked.<br /><br />If you want to run the installer again, you first need to delete the '<?php echo $DFLT['lck_f'] ?>' file that was created in the directory where you put Coppermine. You can do this with any FTP program.
+          <td class="tableb" colspan="2">The installer has already been run successfuly once and is now locked.<br /><br />If you want to run the installer again, you first need to delete the '<?php echo $DFLT['cfg_f'] ?>' file that was created in the directory where you put Coppermine. You can do this with any FTP program.
           </td>
          </tr>
          <tr>
@@ -520,17 +520,6 @@ function write_config_file()
     }
 }
 
-function lock_install()
-{
-    global $notes, $DFLT;
-
-    if ($fd = @fopen($DFLT['lck_f'], 'wb')) {
-        fwrite($fd, 'locked');
-        fclose($fd);
-    } else {
-        $notes .= "<br /><br /><b>Warning :</b> the installer could not create the '{$DFLT['lck_f']}' file. In order to secure your installation, you need to delete the 'install.php' file from your server !<br /><br />";
-    }
-}
 // --------------------------------- MAIN CODE ----------------------------- //
 // Disable magic_quotes_runtime if active to allow proper reading from .sql files.
 set_magic_quotes_runtime(0);
@@ -559,12 +548,12 @@ if ($_GET['test_gd1']) { // GD1 test
     imagejpeg($im, "{$DFLT['alb_d']}/{$DFLT['upl_d']}/gd2.jpg");
     header("Content-type: image/gif");
     fpassthru(fopen('images/spacer.gif'));
-} elseif ($_GET['phpinfo'] && !file_exists($DFLT['lck_f'])) {
+} elseif ($_GET['phpinfo'] && !file_exists($DFLT['cfg_f'])) {
     phpinfo();
 } else { // The installer
     html_header();
     html_logo();
-    if (file_exists($DFLT['lck_f'])) {
+    if (file_exists($DFLT['cfg_f'])) {
         html_installer_locked();
     } elseif (count($_POST)) {
             test_fs();
@@ -575,7 +564,7 @@ if ($_GET['test_gd1']) { // GD1 test
         if ($errors != '')
             html_input_config($errors);
         else {
-            lock_install();
+            //lock_install();
             html_install_success($notes);
         }
     } else {

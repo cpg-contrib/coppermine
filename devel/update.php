@@ -166,8 +166,7 @@ function update_tables()
 // --------------------------------- MAIN CODE ----------------------------- //
 // The defaults values
 $table_prefix = $_POST['table_prefix'];
-$DFLT = array('lck_f' => 'install.lock', // Name of install lock file
-    'cfg_d' => 'include', // The config file dir
+$DFLT = array('cfg_d' => 'include', // The config file dir
     'cfg_f' => 'include/config.inc.php', // The config file name
     'alb_d' => 'albums', // The album dir
     'upl_d' => 'userpics' // The uploaded pic dir
