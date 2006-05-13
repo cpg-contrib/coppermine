@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-05-13 [C] Fixed visibility issue for clickable options in fruity theme {GauGau}
 2006-05-13 [B] Fixed missing translation in batch-add {GauGau}
 2006-05-13 [A] Added pseudo-class definitions (hover and visited) for thumbnails in all themes {GauGau}
 2006-05-10 [B] Fixed admin recognition issue in IPB bridge {Nibbler}

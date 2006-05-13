@@ -22,6 +22,7 @@
 /* #000000 = RBG   0,  0,  0 = (black)         */
 /* #FFA600 = RGB 255,166,  0 = (orange)        */
 /* #6BBE10 = RGB 107,190, 16 = (green)         */
+/* #1B2D04 = RGB  27, 45,  4 = (dark green)    */
 /* #FFFF00 = RGB 255,255,  0 = (yellow)        */
 /* #D1D7DC = RGB 209,215,220 = (light grey)    */
 /* #F7F37B = RGB 247,243,123 = (light yellow)  */
@@ -538,7 +539,7 @@ a:active .image{
         text-decoration: none;
 }
 
-.statlink a {
+.statlink a:link {
         text-decoration: none;
         color: #FFFFFF;
 }
@@ -648,7 +649,7 @@ a:active .image{
 }
 
 .clickable_option {
-        color: #6BBE10;
+        color: #1B2D04;
         font-weight: bold;
 }
 
