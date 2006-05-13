@@ -19,6 +19,7 @@
 
 define('IN_COPPERMINE', true);
 define('SEARCHNEW_PHP', true);
+define('DB_INPUT_PHP', true);
 
 require('include/init.inc.php');
 
@@ -219,7 +220,7 @@ EOT;
  */
 function getfoldercontent($folder, &$dir_array, &$pic_array, &$expic_array)
 {
-    global $CONFIG;
+    global $CONFIG, $lang_db_input_php;
     $dir = opendir($CONFIG['fullpath'] . $folder);
     while ($file = readdir($dir)) {
         if (is_dir($CONFIG['fullpath'] . $folder . $file)) {
