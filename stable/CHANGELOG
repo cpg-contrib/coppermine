@@ -359,3 +359,4 @@ Updated screenshots in docs - 09th May 2006, GauGau
 Changed coppermine version from cpg1.4.5 to cpg1.4.6 - 09th May 2006, GauGau
 Fixed admin recognition issue in IPB bridge - 10th May 2006, Nibbler
 Fixed missing translation in batch-add - 13th May 2006, GauGau
+Fixed visibility issue for clickable options in fruity theme - 13th May 2006, GauGau
