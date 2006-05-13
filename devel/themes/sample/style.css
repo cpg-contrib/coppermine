@@ -12,21 +12,22 @@
   Coppermine version: 1.5.0
   $Source$
   $Revision$
-  $Author$
+  $LastChangedBy$
   $Date$
 **********************************************/
 
 /* Colors used in this style sheet:
-   Hex 000000 = RGB   0,   0,   0 = black
-   Hex 5F5F5F = RGB  95,  95,  95 = light black
-   Hex BDBEBD = RGB 189, 190, 189 = dark grey
-   Hex D1D7DC = RGB 209, 215, 220 = medium grey
-   Hex CCCCCC = RGB 204, 204, 204 = medium grey
-   Hex EFEFEF = RGB 239, 239, 239 = dark white
-   Hex FFFFFF = RGB 255, 255, 255 = white
-   Hex 005D8C = RGB   0,  93, 140 = dark blue
-   Hex 0033CC = RGB   0,  91, 104 = medium blue
-   Hex 0E72A4 = RGB  14, 114, 164 = light blue
+   Hex 000000 = RBG   0,   0,   0 = black
+   Hex 5F5F5F = RBG  95,  95,  95 = light black
+   Hex BDBEBD = RBG 189, 190, 189 = dark grey
+   Hex D1D7DC = RBG 209, 215, 220 = medium grey
+   Hex CCCCCC = RBG 204, 204, 204 = medium grey
+   Hex EFEFEF = RBG 239, 239, 239 = dark white
+   Hex FFFFFF = RBG 255, 255, 255 = white
+   Hex 005D8C = RBG   0,  93, 140 = dark blue
+   Hex 0033CC = RBG   0,  91, 104 = medium blue
+   Hex 0E72A4 = RBG  14, 114, 164 = light blue
+   Hex 840084 = RBG 132,   0, 132 = purple
 */
 
 body {
@@ -138,7 +139,17 @@ form {
         vertical-align : middle;
 }
 
-a {
+a:link {
+        color: #0033CC;
+        text-decoration: none;
+}
+
+a:visited {
+        color: #0033CC;
+        text-decoration: none;
+}
+
+a:focus {
         color: #0033CC;
         text-decoration: none;
 }
@@ -146,6 +157,11 @@ a {
 a:hover {
         color: #0033CC;
         text-decoration: underline;
+}
+
+a:active {
+        color: #0033CC;
+        text-decoration: none;
 }
 
 .bblink a {
@@ -209,6 +225,7 @@ a:hover {
         padding-bottom: 3px;
         padding-left: 10px;
 }
+
 
 .tableb_compact {
         background: #EFEFEF ;
@@ -394,9 +411,10 @@ a:hover {
         font-family: Arial, Helvetica, sans-serif;
         font-size: 85%;
         border: 1px solid #005D8C;
-        background-color:#EFEFEF;
-        background-image : url(images/button_bg.gif);
-        background-position : bottom;
+        background-color:#FFFFFF;
+        background-image: url(images/button_bg.gif);
+        background-position: bottom;
+        background-repeat:repeat-x;
         color: #000000;
         margin-top: 0px;
         margin-bottom: 0px;
@@ -434,10 +452,46 @@ td #admin_menu_anim {
 }
 
 .image {
-        border-style: solid;
+        border-style:solid;
         border-width:1px;
-        border-color: #000000;
-        margin: 2px;
+        border-color:#000000;
+        margin:2px;
+}
+
+/* pseudo-classes for image links */
+a:link .image{
+        border-style:solid;
+        border-width:1px;
+        border-color:#000000;
+        margin:2px;
+}
+
+a:visited .image{
+        border-style:solid;
+        border-width:1px;
+        border-color:#840084;
+        margin:2px;
+}
+
+a:focus .image{
+        border-style:solid;
+        border-width:1px;
+        border-color:#000000;
+        margin:2px;
+}
+
+a:hover .image{
+        border-style:solid;
+        border-width:1px;
+        border-color:#0033CC;
+        margin:2px;
+}
+
+a:active .image{
+        border-style:solid;
+        border-width:1px;
+        border-color:#000000;
+        margin:2px;
 }
 
 .imageborder {
@@ -576,7 +630,6 @@ td #admin_menu_anim {
         vertical-align : middle;
 
 }
-
 #vanity a {
         display:block;
         width:57px;

@@ -505,6 +505,43 @@ td #admin_menu_anim {
         margin: 2px;
 }
 
+/* pseudo-classes for image links */
+a:link .image{
+        border-style: solid;
+        border-width:1px;
+        border-color: #000000;
+        margin: 2px;
+}
+
+a:visited .image{
+        border-style: solid;
+        border-width:1px;
+        border-color: #BDBEBD;
+        margin: 2px;
+}
+
+a:focus .image{
+        border-style: solid;
+        border-width:1px;
+        border-color: #000000;
+        margin: 2px;
+}
+
+a:hover .image{
+        border-style: solid;
+        border-width:1px;
+        border-color: #FF6600;
+        margin: 2px;
+}
+
+a:active .image{
+        border-style: solid;
+        border-width:1px;
+        border-color: #000000;
+        margin: 2px;
+}
+
+
 .imageborder {
         border: 1px solid #000000;
         background-color: #FFFFFF;

@@ -48,7 +48,7 @@ table { border-collapse: collapse; }
 
 .alblink a:hover, .catlink a:hover { color : #FFE8B7; }
 
-a,  .bblink a, .user_thumb_infobox a  { color: #447AC9; }
+a, .bblink a, .user_thumb_infobox a  { color: #447AC9; }
 
 a:hover, .bblink a:hover, .user_thumb_infobox a:hover { color : #0397FF; }
 
@@ -75,6 +75,38 @@ body { background-color: #000000; }
 .textinput, .listbox, .button, .comment_button, .admin_menu, .admin_menu_thumb  {        border: 1px solid #666666; }
 
 .image { border: 1px solid #FFFFFF; }
+
+/* pseudo-classes for image links */
+a:link .image{
+        border-style:solid;
+        border-width:1px;
+        border-color:#FFFFFF;
+}
+
+a:visited .image{
+        border-style:solid;
+        border-width:1px;
+        border-color:#447AC9;
+}
+
+a:focus .image{
+        border-style:solid;
+        border-width:1px;
+        border-color:#FFFFFF;
+}
+
+a:hover .image{
+        border-style:solid;
+        border-width:1px;
+        border-color:#999999;
+}
+
+a:active .image{
+        border-style:solid;
+        border-width:1px;
+        border-color:#FFFFFF;
+}
+
 
 .imageborder {
     border: 1px solid #000000;
@@ -232,7 +264,19 @@ form {
 }
 
 
-a {
+a:link {
+        text-decoration: none;
+}
+
+a:visited {
+        text-decoration: none;
+}
+
+a:focus {
+        text-decoration: none;
+}
+
+a:active {
         text-decoration: none;
 }
 

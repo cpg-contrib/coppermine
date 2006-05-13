@@ -27,6 +27,7 @@
    Hex 005D8C = RBG   0,  93, 140 = dark blue
    Hex 0033CC = RBG   0,  91, 104 = medium blue
    Hex 0E72A4 = RBG  14, 114, 164 = light blue
+   Hex 840084 = RBG 132,   0, 132 = purple
 */
 
 body {
@@ -138,7 +139,17 @@ form {
         vertical-align : middle;
 }
 
-a {
+a:link {
+        color: #0033CC;
+        text-decoration: none;
+}
+
+a:visited {
+        color: #0033CC;
+        text-decoration: none;
+}
+
+a:focus {
         color: #0033CC;
         text-decoration: none;
 }
@@ -146,6 +157,11 @@ a {
 a:hover {
         color: #0033CC;
         text-decoration: underline;
+}
+
+a:active {
+        color: #0033CC;
+        text-decoration: none;
 }
 
 .bblink a {
@@ -436,10 +452,46 @@ td #admin_menu_anim {
 }
 
 .image {
-        border-style: solid;
+        border-style:solid;
         border-width:1px;
-        border-color: #000000;
-        margin: 2px;
+        border-color:#000000;
+        margin:2px;
+}
+
+/* pseudo-classes for image links */
+a:link .image{
+        border-style:solid;
+        border-width:1px;
+        border-color:#000000;
+        margin:2px;
+}
+
+a:visited .image{
+        border-style:solid;
+        border-width:1px;
+        border-color:#840084;
+        margin:2px;
+}
+
+a:focus .image{
+        border-style:solid;
+        border-width:1px;
+        border-color:#000000;
+        margin:2px;
+}
+
+a:hover .image{
+        border-style:solid;
+        border-width:1px;
+        border-color:#0033CC;
+        margin:2px;
+}
+
+a:active .image{
+        border-style:solid;
+        border-width:1px;
+        border-color:#000000;
+        margin:2px;
 }
 
 .imageborder {

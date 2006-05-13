@@ -72,6 +72,11 @@ body { background-color: #FAFAFA; }
 .textinput, .listbox, .button, .comment_button, .admin_menu, .admin_menu_thumb  {        border: 1px solid #666666; }
 
 .image { border: 1px solid #000000; }
+a:link .image { border: 1px solid #000000; }
+a:visited .image { border: 1px solid #7F7F7F; }
+a:focus .image { border: 1px solid #000000; }
+a:hover .image { border: 1px solid #666666; }
+a:active .image { border: 1px solid #000000; }
 
 .imageborder { border: 1px solid #000000; background-color: #FFFFFF; margin-top: 30px; margin-bottom: 30px; }
 
