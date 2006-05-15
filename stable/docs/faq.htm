@@ -136,6 +136,8 @@ For credits and copyrights, see <a href="index.htm#credits">Coppermine documenta
 <li><a class="content" href="#ErrorCantMovePic">When I try to upload a picture I get the error message <tt class="code">Impossible to move somepic.jpg to albums/userpics/ | Warning: move_uploaded_file(/tmp/phpezCYKr) [function.move-uploaded-file]: failed to create stream: Operation not permitted</tt>. What&#39;s wrong?</a></li>
 <li><a class="content" href="#ErrorFailedToOpenDir">When I try to upload a picture I get the error message <tt class="code">Warning: opendir(./albums/edit): failed to open dir: No such file or directory</tt>. What&#39;s wrong?</a></li>
 <li><a class="content" href="#httpPostVars">When uploading I get the error <tt class="code">Warning: Undefined variable: HTTP_POST_VARS in include/init.inc.php on line 43</tt>. What can I do?</a></li>
+<li><a class="content" href="#createWriteMYI">I get the error message <tt class="code">Can't create/write to file '/tmp/#sql_45d5_0.MYI'</tt>. What's wrong?</a></li>
+<li><a class="content" href="#cantOpenMYI">I get the error message <tt class="code">Can't open file: 'yourPrefix_tableName.MYI'</tt> or similar. What's wrong?</a></li>
 </ul>
 
 <li><b>Setup / Configuration</b></li>
@@ -404,6 +406,26 @@ Edit the file "init.inc.php" and look for<br />
 <pre>$PHP_SELF = isset($_SERVER[&#39;REDIRECT_URL&#39;]) ? $_SERVER[&#39;REDIRECT_URL&#39;] : $_SERVER[&#39;SCRIPT_NAME&#39;];</pre>
 Replace it with<br />
 <pre>$PHP_SELF = $_SERVER[&#39;PHP_SELF&#39;];</pre><br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
+
+<a name="createWriteMYI"></a>
+<h3>I get the error message <tt class="code">Can't create/write to file '/tmp/#sql_45d5_0.MYI'</tt>. What's wrong?</h3>
+<p><b>The problem:</b><br />
+MySQL can't create a temporary file for the result set in the given temporary directory.</p>
+<p><b>The solution:</b><br />
+Alter the tmpdir variable to point to a writable directory.  It requires changing the tmpdir line in the my.cnf file, usually in the [mysqld] section (tmpdir = /writable/dir, where /writable/dir is a directory to which you can write).</p>
+<p><b>Ask your webhost to make the above changes.</b></p>
+<br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
+
+<a name="cantOpenMYI"></a>
+<h3>I get the error message <tt class="code">Can't open file: 'yourPrefix_tableName.MYI'</tt> or similar. What's wrong?</h3>
+<p><b>The problem:</b><br />
+Your table is corrupted.</p>
+<p><b>The solution:</b><br />
+This is not a coppermine issue, but a mySQL issue. It just may affect a database table used by Coppermine.<br />
+Use your website's Control Panel to repair the table, or use phpMyAdmin to execute this sql query: <tt class="code">REPAIR TABLE yourPrefix_tableName</tt><br />
+(Replace yourPrefix_tableName with your table name, e.g. cpg145_pictures)</p>
+<p><b>If you don't understand the solution, ask your webhost to make the above changes.</b></p>
+<br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
 
 <br />&nbsp;<br />
 <h2>Setup / configuration</h2><a name="LinkInAlbumDescription"></a>
