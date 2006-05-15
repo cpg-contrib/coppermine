@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-05-15 [D] Added mySQL issues to FAQ {GauGau}
 2006-05-13 [O] Removed check for install.lock in favor of config.inc.php {GauGau}
 2006-05-13 [C] Fixed visibility issue for clickable options in fruity theme {GauGau}
 2006-05-13 [B] Fixed missing translation in batch-add {GauGau}
