@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-05-16 [O] Removed file that was suppossed to enable upgrades from cpg1.1.x to cpg1.2.x {GauGau}
 2006-05-16 [O] Changed labels of admin mode/user mode to show/hide admin controls {GauGau}
 2006-05-15 [D] Added mySQL issues to FAQ {GauGau}
 2006-05-13 [O] Removed check for install.lock in favor of config.inc.php {GauGau}
