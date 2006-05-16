@@ -91,7 +91,7 @@
         <ul class="level2">
 
                 <li class="level2"><a href="#cat_alb_pic" class="menu2">4.1 Categories, albums and files</a></li>
-                <li class="level2"><a href="#admin_user_mode" class="menu2">4.2 Admin mode &amp; User mode</a></li>
+                <li class="level2"><a href="#admin_user_mode" class="menu2">4.2 Turning admin controls on &amp; off</a></li>
                 <li class="level2"><a href="#group_cp" class="menu2">4.3 The group control panel</a></li>
                 <li class="level2"><a href="#user_cp" class="menu2">4.4 The user control panel</a></li>
         </ul>
@@ -560,7 +560,7 @@ If you have shell access to your server, you can apply the native <a href="http:
 
 <a name="getting"></a>
 <h2>2.2 Getting started</h2>
-<p>Log in with the admin username and password you set up during install, click on the &quot;admin mode&quot; link if it is visible, go to the <strong>Config</strong> page and start to configure your gallery. Note that even if you are a member of the administrator group, you need to be in &quot;admin mode&quot; to configure your gallery.</p>
+<p>Log in with the admin username and password you set up during install, click on the &quot;Show admin controls&quot; link if it is visible, go to the <strong>Config</strong> page and start to configure your gallery. Note that even if you are a member of the administrator group, you need to be in &quot;admin mode&quot; to configure your gallery.</p>
 <p>There are some settings in config that can't be changed later (if there are already files in the database) - make sure to set them up correctly in the first place. Although you'll surely want to start using coppermine immediately it is advisable to configure those settings (marked with an asterisk &quot;*&quot;) properly at the very beginning.</p>
 <p>Use the &quot;<strong><a href="#albmgr">Album Manager</a></strong>&quot; (&quot;Albums&quot; link in the admin menu) in to create and order your albums. You'll need at least one album your files can go into.</p>
 <p>Use the <strong>anonymous</strong> group to define what non-registered users can and can't do (in the <a href="#group_cp">groups</a> panel).</p>
@@ -809,15 +809,15 @@ using a tool like <a href="http://www.phpmyadmin.net/" rel="external" class="ext
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
-<h2>4.2 Admin mode &amp; User mode<a name="admin_user_mode"></a></h2>
-<p>When you are logged in as an administrator, the script provides two modes of operation : Admin mode &amp; User mode. You can switch between Admin &amp; User mode by clicking on the corresponding link in the menu bar at the top of the screen.</p>
-<p>When you are in admin mode, you can administer your gallery using the menu bar that appears when in admin mode, as shown below :</p>
+<h2>4.2 Turning admin controls on &amp; off<a name="admin_user_mode"></a></h2>
+<p>When you are logged in as an administrator, the script provides two modes of operation : Admin controls visible &amp; Admin controls disabled. You can switch between those modes by clicking on the corresponding link in the menu bar at the top of the screen.</p>
+<p>When you have the controls turned on, you can administer your gallery using the menu bar that appears as shown below :</p>
 <p><a name="admin_menu"></a><img src="pics/admin_menu.gif" border="0" alt="Admin menu" /></p>
-<p>When you are in user mode you are still logged in as an admin user, but the admin controls (the admin menu bar etc.) are hidden from the screen to give you a basic preview of what the page would look like for "regular users". However (as you still are logged in as admin), certain permissions and options in user mode will still look the same as if you were in admin mode; you can <strong>not</strong> use "<em>User Mode</em>" to see what a non-admin user is actually allowed to see.  To see what a casual visitor can see and do on your site, simply log out.  To see what a registered user can see and do on your site, create a test user account (non-admin) and log in with this particular user (when doing this it is recommended that you use two different browsers, NOT  two instances of the same browswer, to view your site so you can stay logged in as admin on one and view what regular users see while making changes in admin mode. You will have to refresh the non-admin mode screen to see what changes you incorporated).</p>
+<p>When you have the admin controls turned off you are still logged in as an admin user, but the admin controls (the admin menu bar etc.) are hidden from the screen to give you a basic preview of what the page would look like for "regular users". However (as you still are logged in as admin), certain permissions and options will still look the same as if you had admin controls on; you can <strong>not</strong> use "<em>Hide admin controls</em>" to see what a non-admin user is actually allowed to see.  To see what a casual visitor can see and do on your site, simply log out.  To see what a registered user can see and do on your site, create a test user account (non-admin) and log in with this particular user (when doing this it is recommended that you use two different browsers, NOT  two instances of the same browswer, to view your site so you can stay logged in as admin on one and view what regular users see while making changes in admin mode. You will have to refresh the non-admin mode screen to see what changes you incorporated).</p>
 <p>The items in the admin menu should be pretty self-explanatory:</p>
 <ul>
   <li><strong>Upload approval</strong><br />See all pics that await approval by the admin (if you set admin approval as a required step on the settings in the &quot;<a href="#group_cp">groups</a>&quot; control panel)</li>
-  <li><strong>Config</strong><br />Configure the overall look of your gallery and the settings using the &quot;<a href="#admin">Config</a>&quot; button in the admin menu (note: you can not access the configuration by manually entering the url of the config file)</li>
+  <li><strong>Config</strong><br />Configure the overall look of your gallery and the settings using the &quot;<a href="#admin">Config</a>&quot; button in the admin menu</li>
   <li><strong>Categories</strong><br />Create/edit/delete <a href="#cat_cp">categories</a></li>
   <li><strong>Albums</strong><br />Create/edit/delete <a href="#albmgr">albums</a></li>
   <li><strong>Groups</strong><br />Create/edit/delete <a href="#group_cp">groups</a></li>

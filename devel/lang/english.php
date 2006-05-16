@@ -118,10 +118,10 @@ $lang_main_menu = array(
   'my_gal_lnk' => 'My gallery',
   'my_prof_title' => 'Go to my personal profile',
   'my_prof_lnk' => 'My profile',
-  'adm_mode_title' => 'Switch to admin mode',
-  'adm_mode_lnk' => 'Admin mode',
-  'usr_mode_title' => 'Switch to user mode',
-  'usr_mode_lnk' => 'User mode',
+  'adm_mode_title' => 'Enable display of admin controls', // cpg1.5.x
+  'adm_mode_lnk' => 'Show admin controls', // cpg1.5.x
+  'usr_mode_title' => 'Disable display of admin controls', // cpg1.5.x
+  'usr_mode_lnk' => 'Hide admin controls', // cpg1.5.x
   'upload_pic_title' => 'Upload a file into an album',
   'upload_pic_lnk' => 'Upload file',
   'register_title' => 'Create an account',
@@ -378,8 +378,8 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('MODE_PHP')) $lang_mode_php = array(
-  0 => 'Leaving admin mode...',
-  1 => 'Entering admin mode...',
+  0 => 'Turning display of admin controls off...', // cpg1.5.x
+  1 => 'Turning display of admin controls on...', // cpg1.5.x
 );
 
 // ------------------------------------------------------------------------- //
@@ -1189,7 +1189,7 @@ if (defined('FAQ_PHP')) $lang_faq_data = array(
   array('Where do I upload a picture to?', 'You will be able to upload a file to one of your albums in &quot;My Gallery&quot;. The Administrator may also allow you to upload a file to one or more of the albums in the Main Gallery.', 'allow_private_albums', 0),
   array('What type and size of a file can I upload?', 'The size and type (jpg, png, etc.) is up to the administrator.', 'offline', 0),
   array('How do I create, rename or delete an album in &quot;My Gallery&quot;?', 'You should already be in &quot;Admin-Mode&quot;<br />Go to &quot;Create/Order My Albums&quot;and click &quot;New&quot;. Change &quot;New Album&quot; to your desired name.<br />You can also rename any of the albums in your gallery.<br />Click &quot;Apply Modifications&quot;.', 'allow_private_albums', 0),
-  array('How can I modify and restrict users from viewing my albums?', 'You should already be in &quot;Admin Mode&quot;<br />Go to &quot;Modify My Albums. On the &quot;Update Album&quot; bar, select the album that you want to modify.<br />Here, you can change the name, description, thumbnail picture, restrict viewing and comment/rating permissions.<br />Click &quot;Update Album&quot;.', 'allow_private_albums', 0),
+  array('How can I modify and restrict users from viewing my albums?', 'You should already have &quot;admin controls&quot; turned on<br />Go to &quot;Modify My Albums. On the &quot;Update Album&quot; bar, select the album that you want to modify.<br />Here, you can change the name, description, thumbnail picture, restrict viewing and comment/rating permissions.<br />Click &quot;Update Album&quot;.', 'allow_private_albums', 0),
   array('How can I view other users\' galleries?', 'Go to &quot;Album List&quot; and select &quot;User Galleries&quot;.', 'allow_private_albums', 0),
   array('What are cookies?', 'Cookies are a plain text piece of data that is sent from a website and is put on to your computer.<br />Cookies usually allow a user to leave and return to the site without having to login again and other various chores.', 'offline', 0),
   array('Where can I get this program for my site?', 'Coppermine is a free Multimedia Gallery, released under GNU GPL. It is full of features and has been ported to various platforms. Visit the <a href="http://coppermine.sf.net/">Coppermine Home Page</a> to find out more or download it.', 'offline', 0),

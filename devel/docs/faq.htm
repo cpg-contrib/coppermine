@@ -253,7 +253,7 @@ For credits and copyrights, see <a href="index.htm#credits">Coppermine documenta
 <li>If you are installing on a Yahoo Webserver, <a href="http://coppermine-gallery.net/forum/index.php?topic=18943.0">read this thread first</a>.</li>
 <li>Point your browser to http://www.yoursite.com/coppermine/install.php and follow the directions of the install file (basically the mySQL-tables will be created there and the config table will be filled with default values)</li>
 <li>Upon successfull installation, delete the install.php file from your website.</li>
-<li>Point your browser to http://www.yoursite.com/coppermine/ , and login as admin using the ID and Password you provided during install. In admin mode, click on the CONFIG menu button to start customizing your coppermine photo gallery.</li>
+<li>Point your browser to http://www.yoursite.com/coppermine/ , and login as admin using the ID and Password you provided during install. With admin controls turned on, click on the CONFIG menu button to start customizing your coppermine photo gallery.</li>
 <li>Experiment with your new install, create a few categories, sub-categories, and albums. Upload a few pics (not too many, just yet), test if everything works. </li>
 <li>Point your browser to http://www.yoursite.com/coppermine/docs/ and READ the docs. The documents included with CPG1.5.x have been updated from previous versions to help answer your questions and issues so that you can get the site you want the first time out. Reading the docs takes but a few minutes. Resolving issues after the fact can take days, even weeks.</li>
 <li>If your new Coppermine install is in a sub folder on your site, publish your site by linking it to your homepage.</li>
@@ -448,7 +448,7 @@ Use your website's Control Panel to repair the table, or use phpMyAdmin to execu
 <h3>I don&#39;t want to show the <b>last uploads</b> and/or <b>random pictures</b>on the start page. How do I edit what&#39;s shown on the start page of coppermine?</h3>
 <p>  <ol>
     <li>login as admin into your CPG setup</li>
-    <li>click on "Admin Mode" if it is not already enabled</li>
+    <li>click on "Show admin controls" if it is not already enabled</li>
     <li>Click on Config in the "Admin Menu"</li>
     <li>under "Album list view" use the above provided keywords:
     <ul>
@@ -497,7 +497,7 @@ Enter your header/footer content here.  What you enter here will be displayed<br
 EOT; <br />
 ?></blockquote></pre>
 
-<p>Name them myheader.php and myfooter.php, or any other original name that doesn't already exist in the cpg folder and save them into the Coppermine root folder. Then while in Admin mode, click on the CONFIG tab, scroll to <b><i>Themes settings</i></b> and  enter the name of your header and footer files in the appropriate include fields at the bottom of this section. (NOTE: You will still need to edit the template.html file of your theme to remove any unwanted logos and entries above the menu sections.)</li> </p>
+<p>Name them myheader.php and myfooter.php, or any other original name that doesn't already exist in the cpg folder and save them into the Coppermine root folder. Then (with admin controls enabled), click on the CONFIG tab, scroll to <b><i>Themes settings</i></b> and  enter the name of your header and footer files in the appropriate include fields at the bottom of this section. (NOTE: You will still need to edit the template.html file of your theme to remove any unwanted logos and entries above the menu sections.)</li> </p>
 
 
 </ul><br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr /><a name="createPublicAlbum"></a>
@@ -505,7 +505,7 @@ EOT; <br />
 <p>(Assuming that you have already created at least one category and/or one album where the uploaded photos should go to):
 <ul>
 <li>Log in as admin</li>
-<li>Confirm that you are in admin mode</li>
+<li>Confirm that you have the display of admin controls turned on</li>
 <li>Select the Album list button</li>
 <li>If you placed the album in a category, choose the category you created the album in</li>
 <li>Next to the appropriate album, click on &quot;properties&quot;</li>
@@ -569,7 +569,7 @@ When UTF-8 is selected, Coppermine chooses your language file based on your brow
 <h3>How do I allow all guests, not just registered users, to add <b>comments</b> to pictures?</h3>
 <p><ul>
 <li>log in as admin</li>
-<li>admin mode</li>
+<li>admin controls enabled</li>
 <li>groups</li>
 <li>&quot;Anonymous&quot; - &quot;Can post comments&quot; - &quot;yes&quot;</li>
 <li>Apply modifications</li>
@@ -577,7 +577,7 @@ When UTF-8 is selected, Coppermine chooses your language file based on your brow
 To change the settings on a per album basis, first, complete the above steps, then):
 <ul>
 <li>Log in as admin</li>
-<li>Confirm that you are in admin mode</li>
+<li>Confirm that you have admin controls enabled</li>
 <li>In Category view, click on the album of choice</li>
 <li>Select &quot;Properties&quot;</li>
 <li>Set&quot;Permissions for this album&quot; - &quot;Visitors can post comments&quot; - &quot;Yes&quot;</li>
@@ -627,7 +627,6 @@ Greg</blockquote></p></td></tr></table><br /></p><br /><div class="totop">[<a hr
 <p>By default the albums appear in the order they were created. If you want to adjust the sorting order, do the following:
 <ul>
 <li>Log in as admin;</li>
-<li>&quot;enter admin mode&quot;;</li>
 <li>select &quot;Albums&quot; from the admin menu strip;</li>
 <li>choose the category whose albums you want to sort from the dropdown list;</li>
 <li>highlight an album by clicking on it once;</li>
@@ -655,7 +654,6 @@ Greg</blockquote></p></td></tr></table><br /></p><br /><div class="totop">[<a hr
 <h3>How can I <b>move albums from one category to another</b>?</h3>
 <ul>
 <li>log in as admin</li>
-<li>admin mode</li>
 <li>create categories (using category manager from admin menu)</li>
 <li>go to the index page of your gallery</li>
 <li>click "Properties" next to the album thumbnail</li>
@@ -994,7 +992,7 @@ Greg<br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of pag
 <li>read the documentation</li>
 <li>read this FAQ</li>
 <li><a href="http://coppermine.sourceforge.net/board/index.php?action=search">Search</a> the support board</li>
-<li>enable debug mode (log in as admin, admin mode, config, debug mode)</li>
+<li>enable debug mode (log in as admin, config, debug mode)</li>
 <li>choose the right support board: if you&#39;re running the phpnuke-port of coppermine, don&#39;t post in the support board for the standalone version and vice versa</li>
 </ul><br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr /><a name="nonEnglishPosting"></a>
 <h3>Hey, by looking at your profile I can see you&#39;re German/French/Whatever. Can I post a question in that <b>language</b>?</h3>
