@@ -1,7 +1,7 @@
 /*************************
   Coppermine Photo Gallery
   ************************
-  Copyright (c) 2003-2005 Coppermine Dev Team
+  Copyright (c) 2003-2006 Coppermine Dev Team
   v1.1 originaly written by Gregory DEMAR
 
   This program is free software; you can redistribute it and/or modify
@@ -23,7 +23,7 @@ Congratulations on downloading the most recent, most powerful, and feature rich 
 
 Look in the folder that you just extracted your Coppermine files into. In it, you'll find a folder called 'docs'. All the documentation for installation, faqs, administration, troubleshooting, modifying themes, and more is there. Familiarize yourself with the contents of the various docs to enhance your CPG experience and create the gallery that you've always dreamed about, in the least amount of time, and with the least amount of set-backs and frustration. Read it and in no time at all, your friends and relatives will be praising you and gawking at your incredible photo-gallery.
 
-Even if you are installing this as an upgrade from an older version of Coppermine, you'll still need to read the docs for directions and to understand some of the major changes between CPG 1.4x and all previous versions. You'll need to know what can and cannot be ported from your previous installation to this new version. It is important to note that upgrade installations are considerably different from update installations. For example, In version 1.35, an 'update' to 1.34, the Classic theme's theme.php script was a whopping 1487 lines long. In 1.4x, an upgrade, it's a mere 24. Nope, this is NOT a miss-type. So where did all that code go? Read the docs. Your custom themes from previous versions will undoubtedly need some changes made to it before you can use them in this new version. So, just how do you go about doing that? RTFM!
+Even if you are installing this as an upgrade from an older version of Coppermine, you'll still need to read the docs for directions and to understand some of the major changes between CPG 1.5x and all previous versions. You'll need to know what can and cannot be ported from your previous installation to this new version. It is important to note that upgrade installations are considerably different from update installations. For example, In version 1.3.5, an 'update' to 1.3.4, the Classic theme's theme.php script was a whopping 1487 lines long. In 1.4x, an upgrade, it's a mere 24. Nope, this is NOT a miss-type. So where did all that code go? Read the docs. Your custom themes from previous versions will undoubtedly need some changes made to it before you can use them in this new version. So, just how do you go about doing that? RTFM!
 
 This download is a stand-alone version of Coppermine Photo Gallery– if you are looking for something that integrates with a CMS (content management system), you should visit http://www.cpgnuke.com.
 
@@ -32,7 +32,7 @@ Ok, okay, so you don't want to read the documentation. At least, "not just yet,"
 Let's Start!
 
 Question: Does my webserver support Coppermine?
-Answer: You need to have a webserver or webhost (Apache 2.0.50 recommended)that provides the following: PHP 4.1.0 or newer (4.3.10 recommended, 5.xx not recommended at this time), and MySQL 3.23.23 or newer (4.0.20 recommended). You also need either GD 1.xx or 2.xx (2.xx recommended) or ImageMagick installed. GD normally comes bundled with PHP; ImageMagick must be installed by your webhost. If your webhost is using PHP 5.xx, ask them "if register_long_arrays" has been turned on before trying to install Coppermine.
+Answer: You need to have a webserver or webhost (Apache 2.0.50 recommended)that provides the following: PHP 4.1.0 or newer (4.3.10 recommended, 5.xx not recommended at this time), and MySQL 3.23.23 or newer (4.0.20 recommended). You also need either GD 1.xx or 2.xx (2.xx recommended) or ImageMagick installed. GD normally comes bundled with PHP; ImageMagick must be installed by your webhost.
 
 Question: Where can I find out that stuff?
 Answer: Ask your webhost, they should be able to tell you. You can also create a file called phpinfo.php, upload it to your website and enter www.yoursite.com/phpinfo.php in your browser, run it and see what versions of the above requirements you have. Only your host, however, can tell you the exact location of ImageMagick's convert utility, if it's available, at all.
@@ -44,9 +44,9 @@ To create your phpinfo file, copy the following into a text file and save the fi
     ?>
 
 Question: Where do I put all these files?
-Answer: You could put them in your root directory (not recommended) or upload the coppermine directory to your website. If you are uncertain about where exactly to upload it,ask your webhost into what folder you need to upload your html and other script files. We recommend uploading the directory cpg140 (and all the files contained within) directly to your webhost's recommended folder and renaming to your liking after the upload is complete. Compare your uploaded files with your coppermine package. Make sure all the files were successfully uploaded.
+Answer: You could put them in your root directory (not recommended) or upload the coppermine directory to your website. If you are uncertain about where exactly to upload it,ask your webhost into what folder you need to upload your html and other script files. We recommend uploading the directory cpg15x (and all the files contained within) directly to your webhost's recommended folder and renaming to your liking after the upload is complete. Compare your uploaded files with your coppermine package. Make sure all the files were successfully uploaded.
 
-Question: Ok, I uploaded everything to www.yoursite.com/cpg140. Now what?
+Question: Ok, I uploaded everything to www.yoursite.com/cpg15x. Now what?
 Answer: You need to change permissions on a few directories before you can do anything else. Using your FTP program or website Control Panel, change permissions on the: "include", "albums", "albums/userpics", and "albums/edit" directories to 777. You should also create a new directory in albums that you will FTP your images/files into (name it "uploads" or any thing that catches your fancy -just no spaces or funny diacritical symbols, please.) and set it's permissions to '777' also. Some server set-ups will not work with chmod '777'. In which case, you should use '755'. (Confused? Don't know what CHMODE is? You've been warned, need we say more?)
 
 Question: I changed the permissions. What's next?
@@ -56,10 +56,10 @@ Question: My files are in place, permissions are set, and I have my MySQL databa
 Answer: Read the... (Oops, sorry.)  Now you have to run the Coppermine install. Launch your web browser and enter http://www.yousite.com/coppermine/install.php and fill in the information that is requested. If you have never used ImageMagick before, leave that line blank during the install process. You can always add that information after you have Coppermine up and running.
 
 Question: Screen went blank! Suddenly there are error messages popping up all over the place! My webhost, crashed! What do I do?
-Answer: Read the documentation! If you haven't done so already, you're not going anywhere, anyway, so here's the perfect opportunity. We can wait. Chances are, you'll find the answers you need, there. All we can say at this point is that if your server crashed, it probably wasn't your install and it wasn't our fault. It was just a coincidence. Wait till it's up and running again and try the installation again. If, however, you really can't find the answers you need in the documents, go to http://coppermine.sourceforge.net and review the support boards. Spend a little time looking around and search for your problem. Thousands have gone before you, so a solution for your installation issues have probably been posted, already. (HINT: search using the exact error message you see on your screen.)
+Answer: Read the documentation! If you haven't done so already, you're not going anywhere, anyway, so here's the perfect opportunity. We can wait. Chances are, you'll find the answers you need, there. All we can say at this point is that if your server crashed, it probably wasn't your install and it wasn't our fault. It was just a coincidence. Wait till it's up and running again and try the installation again. If, however, you really can't find the answers you need in the documents, go to http://coppermine-gallery.net/forum/ and review the support boards. Spend a little time looking around and search for your problem. Thousands have gone before you, so a solution for your installation issues have probably been posted, already. (HINT: search using the exact error message you see on your screen.)
 
 Question: Ha! Ha! Got You! It's installed and working! Now what?
-Answer: 1) Wipe that smile off your face. 2) Read the docs, anyway -- twice. 3) You'll need to look at the configuration of Coppermine to make sure it's set up the way you want it. Log in as the admin, if you aren't already logged in. Enter Admin Mode - (if the 'Admin Mode' menu link isn't visible, you are already logged in). Click on the Config button. These are a few of the things you should pay close attention to:
+Answer: 1) Wipe that smile off your face. 2) Read the docs, anyway -- twice. 3) You'll need to look at the configuration of Coppermine to make sure it's set up the way you want it. Log in as the admin, if you aren't already logged in. Enable admin controls - (if the 'Hide admin controls' menu link isn't visible, you are already logged in). Click on the Config button. These are a few of the things you should pay close attention to:
 
 * General Settings: You should put in your site name and email address, and set your GMT time zone offset.
 * Language, Themes & Charset settings: Choose your default language.
@@ -86,4 +86,4 @@ Experiment with it with just a few pictures, categories, and albums at first. Se
 
 
 The Coppermine Dev Team
-http://coppermine.sourceforge.net
+http://coppermine-gallery.net
