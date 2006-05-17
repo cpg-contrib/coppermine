@@ -239,8 +239,10 @@ function html_installer_locked()
 function html_prereq_errors($error_msg)
 {
 
+	$continue = isset($_REQUEST['continue_anyway']) ? '?continue_anyway=1' : '';
+
     ?>
-      <form action="install.php" name="cpgform" id="cpgform" style="margin:0px;padding:0px">
+      <form action="install.php<?php echo $continue ?>" method="post" name="cpgform" id="cpgform" style="margin:0px;padding:0px">
         <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
          <tr>
           <td class="tableh1" colspan="2"><h2>Welcome to Coppermine installation</h2>
@@ -268,8 +270,10 @@ function html_input_config($error_msg = '')
 {
     global $im_installed;
 
+	$continue = isset($_REQUEST['continue_anyway']) ? '?continue_anyway=1' : '';
+
     ?>
-      <form action="install.php" name="cpgform" id="cpgform" method="post" style="margin:0px;padding:0px">
+      <form action="install.php<?php echo $continue ?>" name="cpgform" id="cpgform" method="post" style="margin:0px;padding:0px">
         <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
          <tr>
           <td class="tableh1" colspan="2"><h2>Welcome to Coppermine installation</h2>

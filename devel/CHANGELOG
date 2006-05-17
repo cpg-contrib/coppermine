@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-05-17 [B] Fixing nuke check 'continue anyway' feature {Nibbler}
 2006-05-17 [B] Fixing search * wildcard {Nibbler}
 2006-05-17 [C] Avoid deleting group_name unnecessarily {Nibbler}
 2006-05-17 [C] Avoiding php notice in profile.php {Nibbler}
