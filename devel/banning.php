@@ -314,7 +314,7 @@ echo <<<EOT
                                 </tr>
 EOT;
 endtable();
-print '<form action="http://ws.arin.net/cgi-bin/whois.pl" method="post" name="lookup" id="cpgform2" target="_blank">\n";
+print '<form action="http://ws.arin.net/cgi-bin/whois.pl" method="post" name="lookup" id="cpgform2" target="_blank">' . "\n";
 
 //starttable('-2', $lang_banning_php['lookup_ip'], 2);
 starttable('-2');
