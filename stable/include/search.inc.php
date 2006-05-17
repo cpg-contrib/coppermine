@@ -31,10 +31,8 @@ $sort_order = isset($sort_array[$sort_code]) ? $sort_array[$sort_code] : $sort_a
 
 $allowed = array('title', 'caption', 'keywords', 'owner_name', 'filename', 'pic_raw_ip', 'pic_hrd_ip', 'user1', 'user2', 'user3', 'user4');
 
-
 $mb_charset = stristr($multibyte_charset, $charset);
 
-$search_string = str_replace('*', '%', addslashes($search_string));
 $search_string = preg_replace('/&.*;/i', '', $search_string);
 
 if (!$mb_charset)
@@ -54,7 +52,7 @@ if (isset($_POST['params']['pic_raw_ip'])) $_POST['params']['pic_hdr_ip']  = $_P
 
 if ($search_string && isset($_POST['params'])) {
         $sql = "SELECT * FROM {$CONFIG['TABLE_PICTURES']} WHERE ";
-        $search_string = strtr($search_string, array('_' => '\_', '%' => '\%'));
+        $search_string = strtr($search_string, array('_' => '\_', '%' => '\%', '*' => '%'));
         $split_search = explode(' ', $search_string);
         $sections = array();
 
