@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-05-17 [B] Fixing edit permissions bug {Nibbler}
 2006-05-17 [S] Fix the obscure, misdocumented "feature" in Apache that causes the server to process the last "valid" extension in the filename (rar exploit): replace all dots in the filename except the last one with an underscore {GauGau}
 2006-05-16 [O] Removed file that was suppossed to enable upgrades from cpg1.1.x to cpg1.2.x {GauGau}
 2006-05-16 [O] Changed labels of admin mode/user mode to show/hide admin controls {GauGau}

@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-05-17 [B] Fixing edit permissions bug {Nibbler}
 2006-05-17 [D] Changed layout of changelog (this file) {GauGau}
 2006-05-17 [A] Added Finnish language (user contrib) {GauGau}
 2006-05-17 [S] Fixed the obscure, misdocumented "feature" in Apache that causes the server to process the last "valid" extension in the filename (rar exploit): replace all dots in the filename except the last one with an underscore {GauGau}

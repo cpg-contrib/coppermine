@@ -53,7 +53,7 @@ function process_post_data()
     $reset_votes  = isset($_POST['reset_votes']);
     $del_comments = isset($_POST['del_comments']) || $delete;
 
-    $result = cpg_db_query("SELECT p.* FROM {$CONFIG['TABLE_PICTURES']} AS p, {$CONFIG['TABLE_ALBUMS']} AS a WHERE a.aid = p.aid AND pid = '$pid'");
+    $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} AS p, {$CONFIG['TABLE_ALBUMS']} AS a WHERE a.aid = p.aid AND pid = '$pid'");
     if (!mysql_num_rows($result)) cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
     $pic = mysql_fetch_array($result);
     mysql_free_result($result);
