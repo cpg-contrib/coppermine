@@ -398,7 +398,7 @@ class core_udb {
                 if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_register_php['err_unk_user'], __FILE__, __LINE__);
 
                 $user_data = mysql_fetch_array($result);
-                $user_data['group_name'] = '';
+                if (!isset($user_data['group_name'])) $user_data['group_name'] = '';
                 mysql_free_result($result);
 
                 return $user_data;

@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-05-17 [C] Avoid deleting group_name unnecessarily {Nibbler}
 2006-05-17 [C] Avoiding php notice in profile.php {Nibbler}
 2006-05-17 [B] Fixing edit permissions bug {Nibbler}
 2006-05-17 [D] Changed layout of changelog (this file) {GauGau}
