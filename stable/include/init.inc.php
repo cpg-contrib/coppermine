@@ -148,7 +148,9 @@ define('CRITICAL_ERROR', 3);
 
 // Include config and functions files
 if(file_exists('include/config.inc.php')){
-  require_once 'include/config.inc.php';
+	ob_start();
+	require_once 'include/config.inc.php';
+	ob_clean();
 } else {
   // error handling: if the config file doesn't exist go to install
   die('<html>
