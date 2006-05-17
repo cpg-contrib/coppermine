@@ -148,7 +148,7 @@ function get_subcat_data($parent, &$cat_data, &$album_set_array, $level, $ident 
                 } // while
                 mysql_free_result($result);
 
-                $result = cpg_db_query("SELECT count(*) FROM {$CONFIG['TABLE_PICTURES']} as p, {$CONFIG['TABLE_ALBUMS']} as a WHERE p.aid = a.aid AND category >= " . FIRST_USER_CAT . $album_filter);
+                $result = cpg_db_query("SELECT count(*) FROM {$CONFIG['TABLE_PICTURES']} as p, {$CONFIG['TABLE_ALBUMS']} as a WHERE p.aid = a.aid AND approved='YES' AND category >= " . FIRST_USER_CAT . $album_filter);
                 $nbEnr = mysql_fetch_array($result);
                 $pic_count = $nbEnr[0];
 
@@ -170,7 +170,7 @@ function get_subcat_data($parent, &$cat_data, &$album_set_array, $level, $ident 
                 } // while
                 mysql_free_result($result);
 
-                $result = cpg_db_query("SELECT count(*) FROM {$CONFIG['TABLE_PICTURES']} as p, {$CONFIG['TABLE_ALBUMS']} as a WHERE p.aid = a.aid AND category = {$subcat['cid']}" . $album_filter);
+                $result = cpg_db_query("SELECT count(*) FROM {$CONFIG['TABLE_PICTURES']} as p, {$CONFIG['TABLE_ALBUMS']} as a WHERE p.aid = a.aid AND approved='YES' AND category = {$subcat['cid']}" . $album_filter);
                 $nbEnr = mysql_fetch_array($result);
                 mysql_free_result($result);
                 $pic_count = $nbEnr[0];
@@ -278,7 +278,7 @@ function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
         $album_count = $nbEnr[0];
         mysql_free_result($result);
 
-        $sql = "SELECT count(pid) FROM {$CONFIG['TABLE_PICTURES']} as p " . 'LEFT JOIN ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' . 'ON a.aid=p.aid ' . 'WHERE 1' . $pic_filter;
+        $sql = "SELECT count(pid) FROM {$CONFIG['TABLE_PICTURES']} as p " . 'LEFT JOIN ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' . 'ON a.aid=p.aid ' . 'WHERE 1' . $pic_filter . ' AND approved=\'YES\'';
         $result = cpg_db_query($sql);
         $nbEnr = mysql_fetch_array($result);
         $picture_count = $nbEnr[0];
@@ -326,7 +326,7 @@ function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
         $picture_count = $nbEnr[0];
         mysql_free_result($result);
 
-        $result = cpg_db_query("SELECT sum(hits) FROM {$CONFIG['TABLE_PICTURES']} WHERE 1 $current_album_set");
+        $result = cpg_db_query("SELECT sum(hits) FROM {$CONFIG['TABLE_PICTURES']} WHERE 1 $current_album_set AND approved='YES'");
         $nbEnr = mysql_fetch_array($result);
         $hit_count = (int)$nbEnr[0];
         mysql_free_result($result);
@@ -368,7 +368,7 @@ function list_users()
         $user_album_count = $user['alb_count'];
 
         if ($user_pic_count) {
-            $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='$user_thumb_pid'";
+            $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='$user_thumb_pid' AND approved='YES'";
             $result = cpg_db_query($sql);
             if (mysql_num_rows($result)) {
                 $picture = mysql_fetch_array($result);
