@@ -464,12 +464,19 @@ function msg_box($title, $msg_text, $button_text="", $button_link="", $width="-1
 
 function create_tabs($items, $curr_page, $total_pages, $template)
 {
-        global $CONFIG;
+        global $CONFIG, $lang_create_tabs;
 
+        // TO-DO: Need to add theme_create_tabs() to sample/theme.php
+        // Maybe this function create_tabs() should be moved to themes.inc.php and renamed theme_create_tabs()?
         if (function_exists('theme_create_tabs')) {
             theme_create_tabs($items, $curr_page, $total_pages, $template);
                 return;
         }
+
+        // Code for future: to implement 'previous' and 'next' tabs
+        // Everything is set - just need to put in correct place and use correct prev & next page numbers
+        // $tabs .= strtr( sprintf($template['inactive_prev_tab'],#PREV_PAGE_NUMBER#) , array('{PREV}' => $lang_create_tabs['previous']) );
+        // $tabs .= strtr( sprintf($template['inactive_next_tab'],#NEXT_PAGE_NUMBER#) , array('{NEXT}' => $lang_create_tabs['next']) );
 
         $maxTab = $CONFIG['max_tabs'];
 

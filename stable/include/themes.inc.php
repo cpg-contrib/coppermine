@@ -1147,7 +1147,9 @@ $template_tab_display = array('left_text' => '<td width="100%%" align="left" val
     'tab_header' => '',
     'tab_trailer' => '',
     'active_tab' => '<td><img src="images/spacer.gif" width="1" height="1" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="tableb_compact"><b>%d</b></td>',
-    'inactive_tab' => '<td><img src="images/spacer.gif" width="1" height="1" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}"><b>%d</b></a></td>' . "\n"
+    'inactive_tab' => '<td><img src="images/spacer.gif" width="1" height="1" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}"><b>%d</b></a></td>' . "\n",
+    'inactive_prev_tab' => '<td><img src="images/spacer.gif" width="1" height="1" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}"><b>{PREV}</b></a></td>' . "\n",
+    'inactive_next_tab' => '<td><img src="images/spacer.gif" width="1" height="1" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}"><b>{NEXT}</b></a></td>' . "\n",
 );
 
 // Template used for Vanity Footer
@@ -1746,7 +1748,7 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
     }
 
     $cat_link = is_numeric($aid) ? '' : '&amp;cat=' . $cat;
-        $uid_link = is_numeric($_GET['uid']) ? '&amp;uid=' . $_GET['uid'] : '';
+    $uid_link = (isset($_GET['uid']) && is_numeric($_GET['uid'])) ? '&amp;uid=' . $_GET['uid'] : '';
 
     $theme_thumb_tab_tmpl = $template_tab_display;
 
