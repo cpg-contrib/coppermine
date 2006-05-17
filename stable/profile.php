@@ -374,7 +374,7 @@ EOT;
         $lastcom_id = $nbEnr[1];
         mysql_free_result($result);
 
-        $result = cpg_db_query("SELECT pid FROM {$CONFIG['TABLE_PICTURES']} WHERE owner_name = '".addslashes($user_data[user_name])."'");
+        $result = cpg_db_query("SELECT pid FROM {$CONFIG['TABLE_PICTURES']} WHERE owner_name = '".addslashes($user_data['user_name'])."'");
         $pic_count = mysql_num_rows($result);
         mysql_free_result($result);
 
