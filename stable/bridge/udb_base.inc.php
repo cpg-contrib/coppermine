@@ -399,6 +399,12 @@ class core_udb {
 
                 $user_data = mysql_fetch_array($result);
                 if (!isset($user_data['group_name'])) $user_data['group_name'] = '';
+                if (!isset($user_data['user_profile1'])) $user_data['user_profile1'] = '';
+                if (!isset($user_data['user_profile2'])) $user_data['user_profile2'] = '';
+                if (!isset($user_data['user_profile3'])) $user_data['user_profile3'] = '';
+                if (!isset($user_data['user_profile4'])) $user_data['user_profile4'] = '';
+                if (!isset($user_data['user_profile5'])) $user_data['user_profile5'] = '';
+                if (!isset($user_data['user_profile6'])) $user_data['user_profile6'] = '';
                 mysql_free_result($result);
 
                 return $user_data;
