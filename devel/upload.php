@@ -185,6 +185,25 @@ function form_alb_list_box($text, $name) {
 
 EOT;
 
+    // Get the ancestry of the categories
+    $vQuery = "SELECT cid, parent, name FROM " . $CONFIG['TABLE_CATEGORIES'] . " WHERE 1";
+    $vResult = cpg_db_query($vQuery);
+    $vRes = cpg_db_fetch_rowset($vResult);
+    mysql_free_result($vResult);
+    foreach ($vRes as $vResI => $vResV) {
+        $vResRow = $vRes[$vResI];
+        $catParent[$vResRow['cid']] = $vResRow['parent'];
+        $catName[$vResRow['cid']] = $vResRow['name'];
+    }
+    $catAnces = array();
+    foreach ($catParent as $cid => $cid_parent) {
+        $catAnces[$cid] = '';
+        while ($cid_parent != 0) {
+            $catAnces[$cid] = $catName[$cid_parent] . ($catAnces[$cid]?' - '.$catAnces[$cid]:'');
+            $cid_parent = $catParent[$cid_parent];
+        }
+    }
+
     // Reset counter
     $list_count = 0;
 
@@ -206,12 +225,13 @@ EOT;
 
         // Get the category name
         $vQuery = "SELECT cat.name, cat.cid FROM " . $CONFIG['TABLE_CATEGORIES'] . " cat, " . $CONFIG['TABLE_ALBUMS'] . " alb WHERE alb.aid='" . $album_id . "' AND cat.cid=alb.category";
-        $vRes = cpg_db_query($vQuery);
-        $vRes = mysql_fetch_array($vRes);
+        $vResult = cpg_db_query($vQuery);
+        $vRes = cpg_db_fetch_row($vResult);
+        mysql_free_result($vResult);
 
         // Add to multi-dim array for sorting later
         if ($vRes['name']) {
-            $listArray[$list_count]['cat'] = $vRes['name'];
+            $listArray[$list_count]['cat'] = $catAnces[$vRes['cid']] . ($catAnces[$vRes['cid']]?' - ':'') . $vRes['name'];
             $listArray[$list_count]['cid'] = $vRes['cid'];
         } else {
             $listArray[$list_count]['cat'] = $lang_upload_php['albums_no_category'];
@@ -223,14 +243,17 @@ EOT;
     }
 
     // Sort the pulldown options by category and album name
-    $listArray = array_csort($listArray,'cid','title');
+    $listArray = array_csort($listArray,'cat','title');     // alphabetically by category name
+    // $listArray = array_csort($listArray,'cid','title');  // numerically by category ID
+    // print_r($listArray);exit;
 
     // Finally, print out the nicely sorted and formatted drop down list
     $alb_cat = '';
-        echo '                <option value="">' . $lang_upload_php['select_album'] . "</option>\n";
+    echo '                <option value="">' . $lang_upload_php['select_album'] . "</option>\n";
     foreach ($listArray as $val) {
+        //if ($val['cat'] != $alb_cat) {  // old method compared names which might not be unique
         if ($val['cid'] != $alb_cat) {
-if ($alb_cat) echo "                </optgroup>\n";
+            if ($alb_cat) echo "                </optgroup>\n";
             echo '                <optgroup label="' . $val['cat'] . '">' . "\n";
             $alb_cat = $val['cid'];
         }
@@ -246,7 +269,6 @@ if ($alb_cat) echo "                </optgroup>\n";
 
 EOT;
 }
-
 
 // The create form function. Takes the $data array as its object.
 //
