@@ -84,7 +84,8 @@ function get_meta_album_set_data($cid,&$meta_album_set_array) //adapted from ind
 **/
 function get_meta_album_set($cat, &$meta_album_set)
 {
-    global $USER_DATA, $FORBIDDEN_SET_DATA, $CONFIG;
+    global $USER_DATA, $FORBIDDEN_SET_DATA, $CONFIG, $cpg_show_private_album;
+
     if ($cpg_show_private_album || $USER_DATA['can_see_all_albums'] && $cat == 0) {
         $meta_album_set ='';
     } elseif ($cat < 0) {
