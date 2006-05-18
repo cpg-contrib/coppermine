@@ -98,13 +98,14 @@ $line_break = "\n";
  * Main Code
  */
 
+$charset = $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'];
 
 print  <<<EOT
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="ltr">
 <head>
     <title>Coppermine Photo Gallery - {$lang_stat_details_php['title']}</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=$charset" />
     <meta http-equiv="Pragma" content="no-cache" />
     <link rel="stylesheet" href="themes/{$CONFIG['theme']}/style.css" />
     <script type="text/javascript" src="scripts.js"></script>

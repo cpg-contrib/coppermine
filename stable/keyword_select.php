@@ -49,11 +49,13 @@ $total = mysql_num_rows($result);
 
 mysql_free_result($result);
 
+$charset = $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'];
+
 $html_header = <<<EOT
 <html dir="ltr">
 <head>
 <title>{$CONFIG['gallery_name']}</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="Content-Type" content="text/html; charset=$charset" />
 <meta http-equiv="Pragma" content="no-cache" />
 
 <link rel="stylesheet" href="themes/{$CONFIG['theme']}/style.css" />
