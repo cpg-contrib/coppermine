@@ -308,7 +308,8 @@ if (!count($CURRENT_PIC_DATA)) {
 
 // Retrieve data for the current album
 if (isset($CURRENT_PIC_DATA)) {
-    $result = cpg_db_query("SELECT title, comments, votes, category, aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='{$CURRENT_PIC_DATA['aid']}' LIMIT 1");
+    $ref_album = (is_numeric($album) ? $album : $CURRENT_PIC_DATA['aid']);
+    $result = cpg_db_query("SELECT title, comments, votes, category, aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='{$ref_album}' LIMIT 1");
     if (!mysql_num_rows($result)) cpg_die(CRITICAL_ERROR, sprintf($lang_errors['pic_in_invalid_album'], $CURRENT_PIC_DATA['aid']), __FILE__, __LINE__);
     $CURRENT_ALBUM_DATA = mysql_fetch_array($result);
 
