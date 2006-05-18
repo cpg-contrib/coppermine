@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-05-17 [B] Fixed hardcoding of 'iso-8859-1' in stat_details, keyword_select, xp_publish {Paver}
 2006-05-17 [B] Fixed errant "inactive_next_tab" notice & put in commented placeholder code {Paver}
 2006-05-17 [B] Fixed known issue from 1.4.x with "albums with same name" (topic:31146) {Paver}
 2006-05-17 [B] Fixed category statistics, making unapproved uploads not being taken into account {GauGau}
