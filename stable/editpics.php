@@ -150,8 +150,14 @@ function process_post_data()
                                         $update .= ", pheight = " . (int) $pheight;
                                 }
 
-                if ($reset_vcount) $update .= ", hits = '0'";
-                if ($reset_votes) $update .= ", pic_rating = '0', votes = '0'";
+                if ($reset_vcount) {
+                    $update .= ", hits = '0'";
+                    resetDetailHits($pid);
+                }
+                if ($reset_votes) {
+                    $update .= ", pic_rating = '0', votes = '0'";
+                    resetDetailVotes($pid);
+                }
 
                 if (UPLOAD_APPROVAL_MODE) {
                     $approved = get_post_var('approved', $pid);

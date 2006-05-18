@@ -224,6 +224,15 @@ switch ($event) {
         $delete_comments = (int)($_POST['delete_comments']);
         $delete_files = (int)$_POST['delete_files'];
 
+        if ($reset_views || $reset_rating) {
+            // Get all pids for this album and reset their details hit stats
+            $query = "SELECT pid FROM {$CONFIG['TABLE_PICTURES']} WHERE aid = '$aid'";
+            $result = cpg_db_query($query);
+            while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+              $pid[] = $row['pid'];
+            }
+        }
+
         if ($reset_views) { // if reset_views start
             $query = "UPDATE {$CONFIG['TABLE_PICTURES']} SET hits='0' WHERE aid='$aid'";
                 $update = cpg_db_query($query);
@@ -233,6 +242,7 @@ switch ($event) {
             if (mysql_affected_rows()) {
                 $counter_affected_rows++;
             }
+            resetDetailHits($pid);
         } // if reset_views end
 
         if ($reset_rating) { // if reset_rating start
@@ -244,6 +254,7 @@ switch ($event) {
             if (mysql_affected_rows()) {
                 $counter_affected_rows++;
             }
+            resetDetailVotes($pid);
         } // if reset_rating end
 
         if ($delete_files) { // if delete_files start
@@ -320,7 +331,7 @@ switch ($event) {
         if (!is_writable($dest_dir)) cpg_die(CRITICAL_ERROR, sprintf($lang_db_input_php['dest_dir_ro'], $dest_dir), __FILE__, __LINE__, true);
         if (get_magic_quotes_gpc()) $_FILES['userpicture']['name'] = stripslashes($_FILES['userpicture']['name']);
         // Replace forbidden chars with underscores
-		$picture_name = replace_forbidden($_FILES['userpicture']['name']);
+                $picture_name = replace_forbidden($_FILES['userpicture']['name']);
         // Check that the file uploaded has a valid extension
         $matches = array();
         if (!preg_match("/(.+)\.(.*?)\Z/", $picture_name, $matches)) {
