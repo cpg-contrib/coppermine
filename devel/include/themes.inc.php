@@ -1506,6 +1506,7 @@ function theme_display_cat_list($breadcrumb, &$cat_data, $statistics)
     $template_noabl = template_extract_block($template_cat_list, 'catrow_noalb');
     $template = template_extract_block($template_cat_list, 'catrow');
     foreach($cat_data as $category) {
+        if (!isset($category['cat_thumb'])) { $category['cat_thumb'] = ''; }
         if (count($category) == 3) {
             $params = array('{CAT_TITLE}' => $category[0],
                     '{CAT_THUMB}' => $category['cat_thumb'],
