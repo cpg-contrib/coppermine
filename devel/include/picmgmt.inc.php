@@ -242,6 +242,8 @@ function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use)
             $dst_img = imagecreate($destWidth, $destHeight);
             imagecopyresized($dst_img, $src_img, 0, 0, 0, 0, $destWidth, (int)$destHeight, $srcWidth, $srcHeight);
                         touch($dest_file);
+            $fh=fopen($dest_file,'w');
+            fclose($fh);
             imagejpeg($dst_img, $dest_file, $CONFIG['jpeg_qual']);
             imagedestroy($src_img);
             imagedestroy($dst_img);
@@ -270,6 +272,8 @@ function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use)
               $dst_img = imagecreatetruecolor($destWidth, $destHeight);
             imagecopyresampled($dst_img, $src_img, 0, 0, 0, 0, $destWidth, (int)$destHeight, $srcWidth, $srcHeight);
                         touch($dest_file);
+            $fh=fopen($dest_file,'w');
+            fclose($fh);
             imagejpeg($dst_img, $dest_file, $CONFIG['jpeg_qual']);
             imagedestroy($src_img);
             imagedestroy($dst_img);
