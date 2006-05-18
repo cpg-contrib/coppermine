@@ -2946,4 +2946,53 @@ function replace_forbidden($str)
   return $return;
 }
 
+/**
+ * resetDetailHits()
+ *
+ * Reset the detailed hits stored in hit_stats table for the given pid
+ *
+ * @param int or array $pid
+ **/
+function resetDetailHits($pid)
+{
+  global $CONFIG;
+
+  if (is_array($pid)) {
+    if (!count($pid)) {
+      return;
+    } else {
+      $clause = "pid IN (".implode(',', $pid).")";
+    }
+  } else {
+    $clause = "pid = '$pid'";
+  }
+
+  $query = "DELETE FROM {$CONFIG['TABLE_HIT_STATS']} WHERE $clause";
+  cpg_db_query($query);
+}
+
+/**
+ * resetDetailVotes()
+ *
+ * Reset the detailed votes stored in vote_stats table for the given pid
+ *
+ * @param int or array $pid
+ **/
+function resetDetailVotes($pid)
+{
+  global $CONFIG;
+
+  if (is_array($pid)) {
+    if (!count($pid)) {
+      return;
+    } else {
+      $clause = "pid IN (".implode(',', $pid).")";
+    }
+  } else {
+    $clause = "pid = '$pid'";
+  }
+
+  $query = "DELETE FROM {$CONFIG['TABLE_VOTE_STATS']} WHERE $clause";
+  cpg_db_query($query);
+}
 ?>
