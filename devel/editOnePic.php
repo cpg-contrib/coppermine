@@ -78,8 +78,14 @@ function process_post_data()
             $update .= ", galleryicon = ".addslashes($galleryicon);
     }
 
-    if ($reset_vcount) $update .= ", hits = '0'";
-    if ($reset_votes) $update .= ", pic_rating = '0', votes = '0'";
+    if ($reset_vcount) {
+        $update .= ", hits = '0'";
+        resetDetailHits($pid);
+    }
+    if ($reset_votes) {
+        $update .= ", pic_rating = '0', votes = '0'";
+        resetDetailVotes($pid);
+    }
 
     if ($del_comments) {
         $query = "DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid='$pid'";
