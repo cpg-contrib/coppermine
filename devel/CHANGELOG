@@ -25,7 +25,8 @@ Changelog
 [O] = Optimization of code
 [S] = Security fix (issues that are related to security)
 *********************************************
- 
+
+2006-05-19 [C] Replaced "report to moderator" button in hardwired theme to match the overall look of the theme {GauGau}
 2006-05-19 [C] Replaced "report to moderator" button in eyeball theme to match the overall look of the theme {GauGau}
 2006-05-18 [B] Added imagejpeg workaround to address bug in PHP4.4.1 {GauGau}
 2006-05-17 [B] Created default value of $category['cat_thumb'] when not defined in theme_display_cat_list {Paver}
