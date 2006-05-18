@@ -24,7 +24,7 @@ define('CATMGR_PHP', true);
 
 require('include/init.inc.php');
 
-ob_end_flush();
+//ob_end_flush(); //commented out, as it doesn't seem to do anything particularly helpful
 
 if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 // Fix categories that have an invalid parent
