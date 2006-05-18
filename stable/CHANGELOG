@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-05-18 [B] Added imagejpeg workaround to address bug in PHP4.4.1 {GauGau}
 2006-05-17 [B] Created default value of $category['cat_thumb'] when not defined in theme_display_cat_list {Paver}
 2006-05-17 [B] Fixed $cpg_show_private_album setting & use for meta-albums, topic 30894 {Paver}
 2006-05-17 [B] Fixed hardcoding of 'iso-8859-1' in stat_details, keyword_select, xp_publish {Paver}
