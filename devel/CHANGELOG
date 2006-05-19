@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-05-19 [B] Fixed clickable keywords for utf-8 encoding {GauGau}
 2006-05-18 [B] Fixed the reset of detailed hit/vote stats issue {Abbas}
 2006-05-19 [O] Removed unneeded flush of outbut buffer in category manager {GauGau}
 2006-05-19 [C] Replaced "report to moderator" button in hardwired theme to match the overall look of the theme {GauGau}
