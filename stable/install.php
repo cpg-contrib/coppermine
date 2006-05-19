@@ -239,7 +239,7 @@ function html_installer_locked()
 function html_prereq_errors($error_msg)
 {
 
-	$continue = isset($_REQUEST['continue_anyway']) ? '?continue_anyway=1' : '';
+        $continue = isset($_REQUEST['continue_anyway']) ? '?continue_anyway=1' : '';
 
     ?>
       <form action="install.php<?php echo $continue ?>" method="post" style="margin:0px;padding:0px">
@@ -269,7 +269,7 @@ function html_prereq_errors($error_msg)
 function html_input_config($error_msg = '')
 {
     global $im_installed;
-    
+
     $continue = isset($_REQUEST['continue_anyway']) ? '?continue_anyway=1' : '';
 
     ?>
@@ -364,7 +364,7 @@ function html_input_config($error_msg = '')
           <td width="40%" class="tableb"><b>MySQL table prefix</b><br />(default value is OK; do not use dots!)
           </td>
           <td width="60%" class="tableb" valign="top">
-                  <input type="text" class="textinput" name="table_prefix" value="<?php echo ($_POST['table_prefix'] ? $_POST['table_prefix'] : 'cpg145_') ?>" />
+                  <input type="text" class="textinput" name="table_prefix" value="<?php echo ($_POST['table_prefix'] ? $_POST['table_prefix'] : 'cpg146_') ?>" />
           </td>
          </tr>
          <tr>
