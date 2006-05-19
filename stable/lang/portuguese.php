@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /*************************
   Coppermine Photo Gallery
   ************************
@@ -11,10 +11,10 @@
   (at your option) any later version.
   ********************************************
   Coppermine version: 1.4.6
-  $Source: 
-  $Revision: 
+  $Source$
+  $Revision$
   $Author$
-  $Date: 
+  $Date$
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
