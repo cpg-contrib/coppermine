@@ -37,7 +37,7 @@ if (mysql_num_rows($result)) {
 
       foreach($array as $word)
       {
-       if (!in_array($word = strtolower($word),$keywords_array)) $keywords_array[] = $word;;
+       if (!in_array($word = utf_strtolower($word),$keywords_array)) $keywords_array[] = $word;
       }
   }
 
