@@ -2,7 +2,7 @@
 /*************************
   Coppermine Photo Gallery
   ************************
-  Copyright (c) 2003-2005 Coppermine Dev Team
+  Copyright (c) 2003-2006 Coppermine Dev Team
   v1.1 originally written by Gregory DEMAR
 
   This program is free software; you can redistribute it and/or modify
@@ -11,7 +11,7 @@
   (at your option) any later version.
   ********************************************
   Coppermine version: 1.4.6
-  $Source: /cvsroot/coppermine/stable/lang/russian.php,v $
+  $Source$
   $Revision$
   $Author$
   $Date$
@@ -30,7 +30,7 @@ $lang_translation_info = array(
   'trans_name'=> 'Makc666',
   'trans_email' => 'makc666@yahoo.com',
   'trans_website' => 'http://makc666.starnet.ru/',
-  'trans_date' => '2006-04-21',
+  'trans_date' => '2006-05-20',
 );
 
 $lang_charset = 'utf-8';
@@ -794,6 +794,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Галерея отключена', 'offline', 1, 'f=index.htm&amp;as=admin_general_offline&amp;ae=admin_general_offline_end'), //cpg1.4
 );
 
+
 // ------------------------------------------------------------------------- //
 // File db_ecard.php
 // ------------------------------------------------------------------------- //
@@ -825,6 +826,7 @@ if (defined('DB_ECARD_PHP')) $lang_db_ecard_php = array(
   'ecards_delete_confirm' => 'Вы уверены, что хотите удалить записи? Отметьте галкой!',
   'ecards_delete_sure' => 'Я уверен',
 );
+
 
 // ------------------------------------------------------------------------- //
 // File db_input.php
@@ -1105,6 +1107,8 @@ if (defined('REPORT_FILE_PHP') || defined('DISPLAYREPORT_PHP')) $lang_report_php
   'view_comment' => 'Просмотреть полный отчёт с комментарием', //cpg1.4
   'type_file' => 'файл', //cpg1.4
   'type_comment' => 'комментарий', //cpg1.4
+  'invalid_data' => 'Служебная информация для сообщения, которую Вы пытаетесь просмотреть, была повреждена Вашей почтовой программой. Проверьте правильность ссылки.', //cpg1.4
+
 );
 
 // ------------------------------------------------------------------------- //
