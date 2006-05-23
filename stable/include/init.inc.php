@@ -10,14 +10,14 @@
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
   ********************************************
-  Coppermine version: 1.4.6
+  Coppermine version: 1.4.7
   $Source$
   $Revision$
   $Author$
   $Date$
 **********************************************/
 
-define('COPPERMINE_VERSION', '1.4.6');
+define('COPPERMINE_VERSION', '1.4.7');
 define('COPPERMINE_VERSION_STATUS', 'stable');
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
@@ -148,9 +148,9 @@ define('CRITICAL_ERROR', 3);
 
 // Include config and functions files
 if(file_exists('include/config.inc.php')){
-	ob_start();
-	require_once 'include/config.inc.php';
-	ob_clean();
+        ob_start();
+        require_once 'include/config.inc.php';
+        ob_clean();
 } else {
   // error handling: if the config file doesn't exist go to install
   die('<html>

@@ -9,7 +9,7 @@ it under the terms of the GNU General Public License as published by
 the Free Software Foundation; either version 2 of the License, or
 (at your option) any later version.
 ********************************************
-Coppermine version: 1.4.6
+Coppermine version: 1.4.7
 $Source$
 $Revision$
 $Author$
@@ -26,7 +26,9 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-05-23 [M] Increased version number in svn from 1.4.6 to 1.4.7 {GauGau}
 2006-05-23 [D] Added missing detail in database requirements section {GauGau}
+2006-05-19 [M] Release of cpg1.4.6 {GauGau}
 2006-05-19 [M] Updated default table prefix {GauGau}
 2006-05-19 [B] Fixed clickable keywords for utf-8 encoding {GauGau}
 2006-05-18 [B] Fixed the reset of detailed hit/vote stats issue {Abbas}
