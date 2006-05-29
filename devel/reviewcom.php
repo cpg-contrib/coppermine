@@ -17,19 +17,26 @@
   $Date$
 **********************************************/
 
-// added sort option and link to user profile
-// todo: file needs modification to work with bridged installs!
 // todo: search option.
 
 define('IN_COPPERMINE', true);
 define('REVIEWCOM_PHP', true);
 
 require('include/init.inc.php');
-
-if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
-// Delete comments if form is posted
 include("include/smilies.inc.php");
 
+if (!GALLERY_ADMIN_MODE) {
+    cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+}
+
+// Change approval status if form is posted
+if (isset($_POST['approved'])) {
+    $approved_array = $_POST['approved'];
+    //foreach
+    //print_r($_POST['approved']);
+}
+
+// Delete comments if form is posted
 $nb_com_del = 0;
 if (isset($_POST['cid_array'])) {
     $cid_array = $_POST['cid_array'];
@@ -114,7 +121,7 @@ if ($nb_com_del > 0) {
     $msg_txt = sprintf($lang_reviewcom_php['n_comm_del'], $nb_com_del);
     echo <<<EOT
         <tr>
-                <td class="tableh2" colspan="5" align="center">
+                <td class="tableh2" colspan="6" align="center">
                         <br /><b>$msg_txt</b><br /><br />
                 </td>
         </tr>
@@ -124,11 +131,15 @@ EOT;
 
 echo <<<EOT
         <tr>
-                <td class="tableh1" colspan="5">
+                <td class="tableh1" colspan="6">
                     <table border="0" cellspacing="0" cellpadding="0" width="100%">
                         <tr>
                             <td class="tableh1">
                                 {$lang_reviewcom_php['title']}
+                            </td>
+                            <td class="tableh1">
+                                <input type="checkbox" name="approval_only" id="approval_only" onClick="selectAll(this,'foo');" class="checkbox" title="{$lang_reviewcom_php['only_approval']}" />
+                                <label for="approval_only" class="clickable_option">{$lang_reviewcom_php['only_approval']}</label>
                             </td>
                             <td class="tableh1" align="center">
                                 $prev_link
@@ -152,25 +163,29 @@ EOT;
 
     echo <<<EOT
         <tr>
-        <td class="tableh2" valign="middle" align="center">
+          <td class="tableh2" valign="middle" align="center">
             <input type="checkbox" name="checkAll" onClick="selectAll(this,'cid_array');" class="checkbox" title="$lang_check_uncheck_all" />
-        </td>
-        <td class="tableh2" valign="top">{$lang_reviewcom_php['user_name']}
-        <a href="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count&amp;sort=name_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['name_a']}" /></a>
-        <a href="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count&amp;sort=name_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['name_d']}" /></a>
-        </td>
-        <td class="tableh2" valign="top">{$lang_reviewcom_php['date']}
-        <a href="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count&amp;sort=date_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['date_a']}" /></a>
-        <a href="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count&amp;sort=date_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['date_d']}" /></a>
-        </td>
-        <td class="tableh2" valign="top">{$lang_reviewcom_php['comment']}
-        <a href="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count&amp;sort=comment_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['comment_a']}" /></a>
-        <a href="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count&amp;sort=comment_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['comment_d']}" /></a>
-        </td>
-        <td class="tableh2" valign="top">{$lang_reviewcom_php['file']}
-        <a href="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count&amp;sort=file_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['file_a']}" /></a>
-        <a href="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count&amp;sort=file_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['file_d']}" /></a>
-        </td>
+          </td>
+          <td class="tableh2" valign="top">{$lang_reviewcom_php['user_name']}
+            <a href="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count&amp;sort=name_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['name_a']}" /></a>
+            <a href="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count&amp;sort=name_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['name_d']}" /></a>
+          </td>
+          <td class="tableh2" valign="top">{$lang_reviewcom_php['date']}
+            <a href="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count&amp;sort=date_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['date_a']}" /></a>
+            <a href="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count&amp;sort=date_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['date_d']}" /></a>
+          </td>
+          <td class="tableh2" valign="top">{$lang_reviewcom_php['comment']}
+            <a href="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count&amp;sort=comment_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['comment_a']}" /></a>
+            <a href="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count&amp;sort=comment_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['comment_d']}" /></a>
+          </td>
+          <td class="tableh2" valign="top">{$lang_reviewcom_php['file']}
+            <a href="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count&amp;sort=file_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['file_a']}" /></a>
+            <a href="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count&amp;sort=file_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['file_d']}" /></a>
+          </td>
+          <td class="tableh2" valign="top">{$lang_reviewcom_php['approval']}
+            <a href="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count&amp;sort=approval_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['approval_a']}" /></a>
+            <a href="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count&amp;sort=approval_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['approval_d']}" /></a>
+          </td>
         </tr>
 
 EOT;
@@ -183,11 +198,25 @@ $sort_codes = array('name_a' => 'msg_author ASC',
     'comment_d' => 'msg_body DESC',
     'file_a' => 'pid ASC',
     'file_d' => 'pid DESC',
+    'approval_a' => 'approval ASC',
+    'approval_d' => 'approval DESC',
 );
+// sort by date descending if no other sorting order is given
 $sort = (!isset($_GET['sort']) || !isset($sort_codes[$_GET['sort']])) ? 'date_d' : $_GET['sort'];
+if ($_GET['approval_only'] == 1) {
+    $only_comments_needing_approval = "AND approval='NO'";
+}
 
 
-$result = cpg_db_query("SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date) AS msg_date, author_id, {$CONFIG['TABLE_COMMENTS']}.pid as pid, aid, filepath, filename, url_prefix, pwidth, pheight FROM {$CONFIG['TABLE_COMMENTS']}, {$CONFIG['TABLE_PICTURES']} WHERE {$CONFIG['TABLE_COMMENTS']}.pid = {$CONFIG['TABLE_PICTURES']}.pid ORDER BY {$sort_codes[$sort]} LIMIT $start, $count");
+$result = cpg_db_query("
+                        SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date)
+                        AS msg_date, approval, author_id, {$CONFIG['TABLE_COMMENTS']}.pid
+                        AS pid, aid, filepath, filename, url_prefix, pwidth, pheight
+                        FROM {$CONFIG['TABLE_COMMENTS']}, {$CONFIG['TABLE_PICTURES']}
+                        WHERE {$CONFIG['TABLE_COMMENTS']}.pid = {$CONFIG['TABLE_PICTURES']}.pid {$only_comments_needing_approval}
+                        ORDER BY {$sort_codes[$sort]}
+                        LIMIT $start, $count
+                        ");
 
 $rowcounter = 0;
 
@@ -202,6 +231,14 @@ while ($row = mysql_fetch_array($result)) {
     $thumb_link = 'displayimage.php?pos=' . - $row['pid'];
     $msg_date = localised_date($row['msg_date'], $comment_date_fmt);
     $msg_body = bb_decode(process_smilies($row['msg_body']));
+    //$comment_approval_status = '<input name="approved[]" id="approved'.$row['msg_id'].'" type="checkbox" value="'.$row['msg_id'].'" ';
+    if ($row['approval'] == 'YES') {
+        $comment_approval_status = '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'yes" type="radio" value="1" checked="checked" /><label for="approved'.$row['msg_id'].'yes" class="clickable_option">'.$lang_yes."</label>&nbsp;\n\r";
+        $comment_approval_status .= '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'no" type="radio" value="0" /><label for="approved'.$row['msg_id'].'no" class="clickable_option">'.$lang_no.'</label>';
+    } else {
+        $comment_approval_status = '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'yes" type="radio" value="1" /><label for="approved'.$row['msg_id'].'yes" class="clickable_option">'.$lang_yes."</label>&nbsp;\n\r                        ";
+        $comment_approval_status .= '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'no" type="radio" value="0" checked="checked" /><label for="approved'.$row['msg_id'].'no" class="clickable_option">'.$lang_no.'</label>';
+    }
     $rowcounter++;
     if ($rowcounter >=2 ) { //let the row colors alternate, for now they are the same
         $rowcounter = 0;
@@ -231,6 +268,9 @@ while ($row = mysql_fetch_array($result)) {
         <td class="$tableclass" align="center">
                         <a href="$thumb_link"><img src="$thumb_url" {$image_size['geom']} class="image" border="0" alt="" /></a>
         </td>
+        <td class="$tableclass" align="center">
+                        {$comment_approval_status}
+        </td>
         </tr>
 
 EOT;
@@ -244,7 +284,7 @@ echo <<<EOT
             <td class="tablef" valign="middle" align="center">
                 <input type="checkbox" name="checkAll2" onClick="selectAll(this,'cid_array');" class="checkbox" title="$lang_check_uncheck_all" />
             </td>
-            <td colspan="4" align="center" class="tablef">
+            <td colspan="5" align="center" class="tablef">
                         <input type="submit" value="{$lang_reviewcom_php['del_comm']}" class="button" />
                 </td>
         </form>

@@ -623,6 +623,7 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'descending' => 'descending',
   'separate_page' => 'on a separate page', // cpg1.5
   'inline' => 'inline', // cpg1.5
+  'guests_only' => 'Guests only', // cpg1.5
 );
 
 if (defined('ADMIN_PHP')) $lang_admin_data = array(
@@ -708,6 +709,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Notify admin of comments by email', 'email_comment_notification', 1, 'f=index.htm&amp;as=admin_image_comment_admin_notify&amp;ae=admin_image_comment_admin_notify_end'),
   array('Sort order of comments', 'comments_sort_descending', 17, 'f=index.htm&amp;as=admin_comment_sort_start&amp;ae=admin_comment_sort_end'),
   array('Prefix for anonymous comments authors', 'comments_anon_pfx', 0, 'f=index.htm&amp;as=comments_anon_pfx&amp;ae=comments_anon_pfx_end'),
+  array('Comments require approval', 'comment_approval', 19, 'f=index.htm&amp;as=admin_comment_approval&amp;ae=admin_comment_approval_end'), // cpg1.5.x
 
   'Files and thumbnails settings',
   array('Quality for JPEG files', 'jpeg_qual', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_jpeg_quality&amp;ae=admin_picture_thumbnail_jpeg_quality_end'),
@@ -1607,6 +1609,10 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
   'comment_d' => 'Comment message descending',
   'file_a' => 'File ascending',
   'file_d' => 'File descending',
+  'approval_a' => 'Approval ascending', // cpg1.5.x
+  'approval_d' => 'Approval descending', // cpg1.5.x
+  'only_approval' => 'only display comments needing approval', // cpg1.5.x
+  'approval' => 'Approval', // cpg1.5.x
 );
 
 

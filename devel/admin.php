@@ -531,9 +531,8 @@ EOT;
 
 function form_exif_yes_no($text, $name, $help = '')
 {
-    global $CONFIG, $lang_yes, $lang_no,$lang_admin_php;
+    global $CONFIG, $lang_yes, $lang_no, $lang_admin_php;
     $help = cpg_display_help($help);
-
 
     $value = $CONFIG[$name];
     $yes_selected = $value ? 'checked="checked"' : '';
@@ -552,6 +551,38 @@ function form_exif_yes_no($text, $name, $help = '')
                 </td>
                 <td class="tableb" width="10%">
                 $help
+                </td>
+        </tr>
+
+EOT;
+}
+
+function form_user_guest_yes_no($text, $name, $help = '')
+{
+    global $CONFIG, $lang_yes, $lang_no, $lang_admin_php;
+    $help = cpg_display_help($help);
+
+
+    $value = $CONFIG[$name];
+    $no_selected = ($value == '0') ? 'checked="checked"' : '';
+    $yes_1_selected = ($value == '1') ? 'checked="checked"' : '';
+    $yes_2_selected = ($value == '2') ? 'checked="checked"' : '';
+
+    echo <<<EOT
+        <tr>
+            <td class="tableb" width="60%">
+                                $text
+                </td>
+                <td class="tableb" valign="top" width="50%">
+                                <input type="radio" id="{$name}1" name="$name" value="1" $yes_1_selected /><label for="{$name}1" class="clickable_option">$lang_yes:{$lang_admin_php['debug_everyone']}</label>
+                                &nbsp;&nbsp;
+                                <input type="radio" id="{$name}2" name="$name" value="2" $yes_2_selected /><label for="{$name}2" class="clickable_option">$lang_yes:{$lang_admin_php['guests_only']}</label>
+                        &nbsp;&nbsp;
+                        <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">$lang_no</label>
+
+                </td>
+                <td class="tableb" width="10%">
+                        $help
                 </td>
         </tr>
 
@@ -805,6 +836,9 @@ function create_form(&$data)
                 // registration disclaimer
                 case 18 :
                     form_registration_disclaimer($element[0], $element[1], $element[3]);
+                    break;
+                case 19:
+                    form_user_guest_yes_no($element[0], $element[1], $element[3]);
                     break;
                 default:
                     die('Invalid action');

@@ -115,6 +115,7 @@ ALTER TABLE CPG_comments add msg_hdr_ip tinytext;
 ALTER TABLE CPG_pictures add pic_raw_ip tinytext;
 ALTER TABLE CPG_pictures add pic_hdr_ip tinytext;
 
+
 INSERT INTO CPG_config VALUES ('thumb_use', 'any');
 INSERT INTO CPG_config VALUES ('show_private', '0');
 INSERT INTO CPG_config VALUES ('first_level', '1');
@@ -483,3 +484,7 @@ INSERT INTO CPG_config VALUES ('user_registration_disclaimer', '1');
 INSERT INTO CPG_config VALUES ('thumbnail_to_fullsize', '0');
 INSERT INTO CPG_config VALUES ('fullsize_padding_x', '5');
 INSERT INTO CPG_config VALUES ('fullsize_padding_y', '3');
+
+# Config approval
+ALTER TABLE CPG_comments add approval enum('YES','NO') NOT NULL default 'NO';
+INSERT INTO CPG_config VALUES ('comment_approval', '0');

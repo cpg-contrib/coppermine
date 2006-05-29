@@ -259,3 +259,5 @@ INSERT INTO CPG_bridge VALUES ('global_moderators_group', '');
 INSERT INTO CPG_bridge VALUES ('recovery_logon_failures', '0');
 INSERT INTO CPG_bridge VALUES ('recovery_logon_timestamp', '');
 
+# Config approval
+INSERT INTO CPG_config VALUES ('comment_approval', '0');

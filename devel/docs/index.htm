@@ -1573,6 +1573,17 @@ Descending: latest comment at the top, oldest comment at the bottom</p>
 <h4>Prefix for anonymous comments authors</h4>
 <p>If you allowed anonymous comments (permissions set on the <a href="#group_cp">groups</a> control panel), this prefix will be used for comments left by unregistered users. This can be helpful in preventing and identifing unregistered users posing as other registered users (or even an admininstrators) when leaving comments. Leave this blank if you do not want a prefix for guest's comments.</p>
 <a name="comments_anon_pfx_end"></a>
+<a name="admin_comment_approval"></a>
+<h4>Comments require approval</h4>
+<p>By default, comments don't require approval and are visible instantly. To fight the problem of comment spamming, you can require admin approval of comments posted by users. Comments will then not be visible instantly, but only after admin approval on the review comments screen. If you don't allow comments at all, this setting won't apply, so you can leave it as-is.</p>
+<p>Options:</p>
+<ul>
+<li>Yes: Everyone (Both comments posted by guests as well as registered users require approval. Only admin comments will be visible instantly)</li>
+<li>Yes: Guests only (Comments posted by registered users will be visible instantanously; Comments posted by Guests will need admin approval)</li>
+<li>No (All comments are visible the very moment they get posted, no matter who posted them)</li>
+</ul>
+<p>Please note: comment approval does <em>not</em> determine wether a visitor can post comments or not - it only determines instant visibility or need of admin approval.</p>
+<a name="admin_comment_approval_end"></a>
 <a name="admin_comment_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
