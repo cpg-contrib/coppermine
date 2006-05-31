@@ -26,7 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
-2006-05-29 [A] Added comment approval option {GauGau} - work in progress
+2006-05-29 [A] Added comment approval option {GauGau} - work in progress (still open issues)
 2006-05-23 [D] Added missing detail in database requirements section {GauGau}
 2006-05-19 [B] Fixed clickable keywords for utf-8 encoding {GauGau}
 2006-05-18 [B] Fixed the reset of detailed hit/vote stats issue {Abbas}

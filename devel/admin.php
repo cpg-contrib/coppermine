@@ -565,8 +565,8 @@ function form_user_guest_yes_no($text, $name, $help = '')
 
     $value = $CONFIG[$name];
     $no_selected = ($value == '0') ? 'checked="checked"' : '';
-    $yes_1_selected = ($value == '1') ? 'checked="checked"' : '';
-    $yes_2_selected = ($value == '2') ? 'checked="checked"' : '';
+    $yes_1_selected = ($value == '2') ? 'checked="checked"' : '';
+    $yes_2_selected = ($value == '1') ? 'checked="checked"' : '';
 
     echo <<<EOT
         <tr>
@@ -574,9 +574,9 @@ function form_user_guest_yes_no($text, $name, $help = '')
                                 $text
                 </td>
                 <td class="tableb" valign="top" width="50%">
-                                <input type="radio" id="{$name}1" name="$name" value="1" $yes_1_selected /><label for="{$name}1" class="clickable_option">$lang_yes:{$lang_admin_php['debug_everyone']}</label>
+                                <input type="radio" id="{$name}1" name="$name" value="2" $yes_1_selected /><label for="{$name}1" class="clickable_option">$lang_yes:{$lang_admin_php['debug_everyone']}</label>
                                 &nbsp;&nbsp;
-                                <input type="radio" id="{$name}2" name="$name" value="2" $yes_2_selected /><label for="{$name}2" class="clickable_option">$lang_yes:{$lang_admin_php['guests_only']}</label>
+                                <input type="radio" id="{$name}2" name="$name" value="1" $yes_2_selected /><label for="{$name}2" class="clickable_option">$lang_yes:{$lang_admin_php['guests_only']}</label>
                         &nbsp;&nbsp;
                         <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">$lang_no</label>
 

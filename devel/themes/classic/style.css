@@ -22,6 +22,7 @@
    Hex BDBEBD = RBG 189, 190, 189 = dark grey
    Hex D1D7DC = RBG 209, 215, 220 = medium grey
    Hex CCCCCC = RBG 204, 204, 204 = medium grey
+   Hex E4E4E4 = RGB 228, 228, 228 = medium grey
    Hex EFEFEF = RBG 239, 239, 239 = dark white
    Hex FFFFFF = RBG 255, 255, 255 = white
    Hex 005D8C = RBG   0,  93, 140 = dark blue
@@ -220,6 +221,14 @@ a:active {
 
 .tableb {
         background: #EFEFEF ;
+        padding-top: 3px;
+        padding-right: 10px;
+        padding-bottom: 3px;
+        padding-left: 10px;
+}
+
+.tableb_alternate {
+        background: #E4E4E4;
         padding-top: 3px;
         padding-right: 10px;
         padding-bottom: 3px;

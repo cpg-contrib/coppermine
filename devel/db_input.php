@@ -144,7 +144,11 @@ switch ($event) {
               cpg_die($lang_error, $lang_db_input_php['com_author_error'],__FILE__,__LINE__);
           }
 
-            $insert = cpg_db_query("INSERT INTO {$CONFIG['TABLE_COMMENTS']} (pid, msg_author, msg_body, msg_date, author_md5_id, author_id, msg_raw_ip, msg_hdr_ip) VALUES ('$pid', '{$CONFIG['comments_anon_pfx']}$msg_author', '$msg_body', NOW(), '{$USER['ID']}', '0', '$raw_ip', '$hdr_ip')");
+            if ($CONFIG['comment_approval'] != 0) { // comments need approval, set approval status to "no"
+                $insert = cpg_db_query("INSERT INTO {$CONFIG['TABLE_COMMENTS']} (pid, msg_author, msg_body, msg_date, author_md5_id, author_id, msg_raw_ip, msg_hdr_ip, approval) VALUES ('$pid', '{$CONFIG['comments_anon_pfx']}$msg_author', '$msg_body', NOW(), '{$USER['ID']}', '0', '$raw_ip', '$hdr_ip', 'NO')");
+            } else { //comments do not need approval, we can set approval status to "yes"
+                $insert = cpg_db_query("INSERT INTO {$CONFIG['TABLE_COMMENTS']} (pid, msg_author, msg_body, msg_date, author_md5_id, author_id, msg_raw_ip, msg_hdr_ip, approval) VALUES ('$pid', '{$CONFIG['comments_anon_pfx']}$msg_author', '$msg_body', NOW(), '{$USER['ID']}', '0', '$raw_ip', '$hdr_ip', 'YES')");
+            }
 
             $USER['name'] = $_POST['msg_author'];
             $redirect = "displayimage.php?pos=" . (- $pid);
@@ -158,7 +162,11 @@ switch ($event) {
             ob_end_flush();
             exit;
         } else { // Registered users, we can use Location to redirect
-            $insert = cpg_db_query("INSERT INTO {$CONFIG['TABLE_COMMENTS']} (pid, msg_author, msg_body, msg_date, author_md5_id, author_id, msg_raw_ip, msg_hdr_ip) VALUES ('$pid', '" . addslashes(USER_NAME) . "', '$msg_body', NOW(), '', '" . USER_ID . "', '$raw_ip', '$hdr_ip')");
+            if ($CONFIG['comment_approval'] == 2 && !USER_IS_ADMIN) { // comments need approval, set approval status to "no"
+                $insert = cpg_db_query("INSERT INTO {$CONFIG['TABLE_COMMENTS']} (pid, msg_author, msg_body, msg_date, author_md5_id, author_id, msg_raw_ip, msg_hdr_ip, approval) VALUES ('$pid', '" . addslashes(USER_NAME) . "', '$msg_body', NOW(), '', '" . USER_ID . "', '$raw_ip', '$hdr_ip', 'NO')");
+            } else { //comments do not need approval, we can set approval status to "yes"
+                $insert = cpg_db_query("INSERT INTO {$CONFIG['TABLE_COMMENTS']} (pid, msg_author, msg_body, msg_date, author_md5_id, author_id, msg_raw_ip, msg_hdr_ip, approval) VALUES ('$pid', '" . addslashes(USER_NAME) . "', '$msg_body', NOW(), '', '" . USER_ID . "', '$raw_ip', '$hdr_ip', 'YES')");
+            }
             $redirect = "displayimage.php?pos=" . (- $pid);
             if ($CONFIG['email_comment_notification'] && !USER_IS_ADMIN ) {
                 $mail_body = "<p>" . bb_decode(process_smilies($msg_body, $CONFIG['ecards_more_pic_target'])) . "</p>\n\r ".$lang_db_input_php['email_comment_body'] . " " . $CONFIG['ecards_more_pic_target'] . (substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') . $redirect;

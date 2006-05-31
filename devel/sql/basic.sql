@@ -261,3 +261,4 @@ INSERT INTO CPG_bridge VALUES ('recovery_logon_timestamp', '');
 
 # Config approval
 INSERT INTO CPG_config VALUES ('comment_approval', '0');
+INSERT INTO CPG_config VALUES ('display_comment_approval_only', '0');

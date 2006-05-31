@@ -29,11 +29,61 @@ if (!GALLERY_ADMIN_MODE) {
     cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 }
 
-// Change approval status if form is posted
-if (isset($_POST['approved'])) {
-    $approved_array = $_POST['approved'];
-    //foreach
-    //print_r($_POST['approved']);
+// Change config options if applicable
+if (isset($_POST) == TRUE) {
+        if ($_POST['approval_only'] != '') {
+           $approval_only = 1;
+        } else {
+           $approval_only = 0;
+        }
+        if ($approval_only != $CONFIG['display_comment_approval_only']) {
+            // the user wants to see the option changed - let's write it to the database
+            cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$approval_only' WHERE name = 'display_comment_approval_only'");
+            $CONFIG['display_comment_approval_only'] = $approval_only;
+            $flag_conf_change = 1;
+        }
+}
+
+
+if ($CONFIG['display_comment_approval_only'] == 1) {
+    $comment_approval_only_checked = 'checked="checked"';
+} else {
+    $comment_approval_only_checked = '';
+}
+
+// Change approval=yes status if form is posted
+if (isset($_POST['status_approved_yes']) == TRUE) {
+    $approved_yes_array = $_POST['status_approved_yes'];
+
+    foreach($approved_yes_array as $approved_yes) {
+        if ($approved_yes != '') {
+            $approved_yes_set .= $approved_yes . ',';
+        }
+    }
+    $approved_yes_set = rtrim($approved_yes_set, ',');
+
+    $nb_com_yes = 0;
+    if ($approved_yes_set != '') {
+        cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET `approval` = 'YES' WHERE msg_id IN ($approved_yes_set)");
+        $nb_com_yes = mysql_affected_rows();
+    }
+}
+
+// Change approval=no status if form is posted
+if (isset($_POST['status_approved_no']) == TRUE) {
+    $approved_no_array = $_POST['status_approved_no'];
+    foreach($approved_no_array as $approved_no) {
+        if ($approved_no != '') {
+            $approved_no_set .= $approved_no . ',';
+        }
+    }
+    $approved_no_set = rtrim($approved_no_set, ',');
+
+    $nb_com_no = 0;
+    if ($approved_no_set != '') {
+        cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET `approval` = 'NO' WHERE msg_id IN ($approved_no_set)");
+        $nb_com_no = mysql_affected_rows();
+    }
 }
 
 // Delete comments if form is posted
@@ -41,8 +91,9 @@ $nb_com_del = 0;
 if (isset($_POST['cid_array'])) {
     $cid_array = $_POST['cid_array'];
     $cid_set = '';
-    foreach ($cid_array as $cid)
-    $cid_set .= ($cid_set == '') ? '(' . $cid : ', ' . $cid;
+    foreach ($cid_array as $cid) {
+            $cid_set .= ($cid_set == '') ? '(' . $cid : ', ' . $cid;
+    }
     $cid_set .= ')';
 
     cpg_db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id IN $cid_set");
@@ -62,6 +113,7 @@ $prev_target = $_SERVER['PHP_SELF'] . '?start=' . max(0, $start - $count) . '&am
 $s50 = $count == 50 ? 'selected' : '';
 $s75 = $count == 75 ? 'selected' : '';
 $s100 = $count == 100 ? 'selected' : '';
+$single_picture = isset($_GET['pid']) ? (int)$_GET['pid'] : '';
 
 if ($start + $count < $comment_count) {
     $next_link = "<a href=\"$next_target\" class=\"admin_menu\">{$lang_reviewcom_php['see_next']}&raquo;</a>&nbsp;&nbsp;-&nbsp;&nbsp;";
@@ -76,6 +128,8 @@ if ($start > 0) {
 }
 
 pageheader($lang_reviewcom_php['title']);
+
+
 
 echo <<<EOT
 <script type="text/javascript" language="javascript">
@@ -104,10 +158,36 @@ function selectAll(d,box) {
   }
 }
 
+function approveCommentEnable(id) {
+    if (document.getElementById('approved'+id+'yes').checked == true) {
+        document.getElementById('status_approved_yes'+id).value = id;
+        document.getElementById('status_approved_no'+id).value = '';
+    }
+    if (document.getElementById('approved'+id+'no').checked == true) {
+        document.getElementById('status_approved_yes'+id).value = '';
+        document.getElementById('status_approved_no'+id).value = id;
+    }
+}
+
+function checkBeforeSubmit() {
+    // Are there any comments scheduled for deletion?
+    var f = document.editForm;
+    var counter = 0;
+    for (i = 0; i < f.length; i++) {
+        if (f[i].type == "checkbox" && f[i].name.indexOf('cid_array') >= 0 && f[i].checked == true) {
+            counter++;
+        }
+    }
+    if (counter > 0) {
+        return confirm("{$lang_reviewcom_php['n_confirm_delete']}");
+    }
+
+}
+
 -->
 </script>
 
-    <form action="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count" method="post" name="editForm" id="cpgform2">
+    <form action="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count&amp;sort=$sort&amp;pid=$single_picture" method="post" name="editForm" id="cpgform2">
 
 EOT;
 
@@ -116,13 +196,28 @@ EOT;
 
 starttable('100%');
 
-
+$msg_txt = '';
 if ($nb_com_del > 0) {
-    $msg_txt = sprintf($lang_reviewcom_php['n_comm_del'], $nb_com_del);
+    $msg_txt .= '                          <li>'.sprintf($lang_reviewcom_php['n_comm_del'], $nb_com_del).'</li>'."\n\r";
+}
+if ($nb_com_yes > 0) {
+    $msg_txt .= '                          <li>'.sprintf($lang_reviewcom_php['n_comm_appr'], $nb_com_yes).'</li>'."\n\r";
+}
+if ($nb_com_no > 0) {
+    $msg_txt .= '                          <li>'.sprintf($lang_reviewcom_php['n_comm_disappr'], $nb_com_no).'</li>'."\n\r";
+}
+if ($flag_conf_change != '') {
+    $msg_txt .= '                          <li>'.$lang_reviewcom_php['configuration_changed'].'</li>'."\n\r";
+}
+
+
+if ($msg_txt != '') {
     echo <<<EOT
         <tr>
-                <td class="tableh2" colspan="6" align="center">
-                        <br /><b>$msg_txt</b><br /><br />
+                <td class="tableh2" colspan="6" align="left">
+                        <ul>
+$msg_txt
+                        </ul>
                 </td>
         </tr>
 
@@ -136,10 +231,6 @@ echo <<<EOT
                         <tr>
                             <td class="tableh1">
                                 {$lang_reviewcom_php['title']}
-                            </td>
-                            <td class="tableh1">
-                                <input type="checkbox" name="approval_only" id="approval_only" onClick="selectAll(this,'foo');" class="checkbox" title="{$lang_reviewcom_php['only_approval']}" />
-                                <label for="approval_only" class="clickable_option">{$lang_reviewcom_php['only_approval']}</label>
                             </td>
                             <td class="tableh1" align="center">
                                 $prev_link
@@ -166,6 +257,11 @@ EOT;
           <td class="tableh2" valign="middle" align="center">
             <input type="checkbox" name="checkAll" onClick="selectAll(this,'cid_array');" class="checkbox" title="$lang_check_uncheck_all" />
           </td>
+          <td class="tableh2" valign="top">
+            {$lang_reviewcom_php['approval']}
+            <a href="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count&amp;sort=approval_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['approval_a']}" /></a>
+            <a href="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count&amp;sort=approval_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['approval_d']}" /></a>
+          </td>
           <td class="tableh2" valign="top">{$lang_reviewcom_php['user_name']}
             <a href="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count&amp;sort=name_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['name_a']}" /></a>
             <a href="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count&amp;sort=name_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['name_d']}" /></a>
@@ -181,10 +277,6 @@ EOT;
           <td class="tableh2" valign="top">{$lang_reviewcom_php['file']}
             <a href="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count&amp;sort=file_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['file_a']}" /></a>
             <a href="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count&amp;sort=file_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['file_d']}" /></a>
-          </td>
-          <td class="tableh2" valign="top">{$lang_reviewcom_php['approval']}
-            <a href="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count&amp;sort=approval_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['approval_a']}" /></a>
-            <a href="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count&amp;sort=approval_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['approval_d']}" /></a>
           </td>
         </tr>
 
@@ -203,7 +295,7 @@ $sort_codes = array('name_a' => 'msg_author ASC',
 );
 // sort by date descending if no other sorting order is given
 $sort = (!isset($_GET['sort']) || !isset($sort_codes[$_GET['sort']])) ? 'date_d' : $_GET['sort'];
-if ($_GET['approval_only'] == 1) {
+if ($CONFIG['display_comment_approval_only'] == 1) {
     $only_comments_needing_approval = "AND approval='NO'";
 }
 
@@ -229,22 +321,23 @@ while ($row = mysql_fetch_array($result)) {
     }
     $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['alb_list_thumb_size']);
     $thumb_link = 'displayimage.php?pos=' . - $row['pid'];
-    $msg_date = localised_date($row['msg_date'], $comment_date_fmt);
+    $msg_date = localised_date($row['msg_date'], $scientific_date_fmt);
     $msg_body = bb_decode(process_smilies($row['msg_body']));
-    //$comment_approval_status = '<input name="approved[]" id="approved'.$row['msg_id'].'" type="checkbox" value="'.$row['msg_id'].'" ';
     if ($row['approval'] == 'YES') {
-        $comment_approval_status = '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'yes" type="radio" value="1" checked="checked" /><label for="approved'.$row['msg_id'].'yes" class="clickable_option">'.$lang_yes."</label>&nbsp;\n\r";
-        $comment_approval_status .= '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'no" type="radio" value="0" /><label for="approved'.$row['msg_id'].'no" class="clickable_option">'.$lang_no.'</label>';
+        $comment_approval_status = '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'yes" type="radio" value="1" checked="checked" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'yes" class="clickable_option">'.$lang_yes."</label>&nbsp;\n\r";
+        $comment_approval_status .= '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'no" type="radio" value="0" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'no" class="clickable_option">'.$lang_no.'</label>';
     } else {
-        $comment_approval_status = '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'yes" type="radio" value="1" /><label for="approved'.$row['msg_id'].'yes" class="clickable_option">'.$lang_yes."</label>&nbsp;\n\r                        ";
-        $comment_approval_status .= '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'no" type="radio" value="0" checked="checked" /><label for="approved'.$row['msg_id'].'no" class="clickable_option">'.$lang_no.'</label>';
+        $comment_approval_status = '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'yes" type="radio" value="1" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'yes" class="clickable_option">'.$lang_yes."</label>&nbsp;\n\r                        ";
+        $comment_approval_status .= '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'no" type="radio" value="0" checked="checked" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'no" class="clickable_option">'.$lang_no.'</label>';
     }
+    $comment_approval_status .= '<input type="hidden" name="status_approved_yes[]" id="status_approved_yes'.$row['msg_id'].'" value="" />';
+    $comment_approval_status .= '<input type="hidden" name="status_approved_no[]" id="status_approved_no'.$row['msg_id'].'" value="" />';
     $rowcounter++;
     if ($rowcounter >=2 ) { //let the row colors alternate, for now they are the same
         $rowcounter = 0;
         $tableclass = 'tableb'; // change to "tableh2_compact" or similar for alternation
     } else {
-        $tableclass = 'tableb';
+        $tableclass = 'tableb_alternate';
     }
     // build a link to the author's profile if applicable
     if ($row['author_id'] != 0) {
@@ -260,16 +353,16 @@ while ($row = mysql_fetch_array($result)) {
         <td class="$tableclass" valign="top" align="center">
             <input name="cid_array[]" id="check{$row['msg_id']}" type="checkbox" value="{$row['msg_id']}" />
         </td>
+        <td class="$tableclass" align="left">
+            {$comment_approval_status}
+        </td>
         <td class="$tableclass" valign="top">$profile_link_start{$row['msg_author']}$profile_link_end</td>
         <td class="$tableclass" valign="top">{$msg_date}</td>
         <td class="$tableclass" valign="top">
-                        {$msg_body}
+            {$msg_body}
         </td>
         <td class="$tableclass" align="center">
-                        <a href="$thumb_link"><img src="$thumb_url" {$image_size['geom']} class="image" border="0" alt="" /></a>
-        </td>
-        <td class="$tableclass" align="center">
-                        {$comment_approval_status}
+            <a href="$thumb_link"><img src="$thumb_url" {$image_size['geom']} class="image" border="0" alt="" /></a>
         </td>
         </tr>
 
@@ -279,13 +372,20 @@ EOT;
 
 mysql_free_result($result);
 
+
+
+// output the table footer
 echo <<<EOT
         <tr>
             <td class="tablef" valign="middle" align="center">
                 <input type="checkbox" name="checkAll2" onClick="selectAll(this,'cid_array');" class="checkbox" title="$lang_check_uncheck_all" />
             </td>
-            <td colspan="5" align="center" class="tablef">
-                        <input type="submit" value="{$lang_reviewcom_php['del_comm']}" class="button" />
+            <td colspan="2" class="tablef" valign="middle" align="left">
+                <input type="checkbox" name="approval_only" id="approval_only" class="checkbox" title="{$lang_reviewcom_php['only_approval']}" {$comment_approval_only_checked} value="1" />
+                <label for="approval_only" class="clickable_option">{$lang_reviewcom_php['only_approval']}</label>
+            </td>
+            <td colspan="3" align="center" class="tablef">
+                        <input type="submit" value="{$lang_reviewcom_php['save_changes']}" class="button" onclick="return checkBeforeSubmit();" />
                 </td>
         </form>
         </tr>

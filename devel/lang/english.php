@@ -58,6 +58,7 @@ $register_date_fmt = '%B %d, %Y';
 $lasthit_date_fmt = '%B %d, %Y at %I:%M %p';
 $comment_date_fmt =  '%B %d, %Y at %I:%M %p';
 $log_date_fmt = '%B %d, %Y at %I:%M %p';
+$scientific_date_fmt = '%Y-%m-%d %H:%M:%S'; // cpg1.5.x
 
 // For the word censor
 $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*');
@@ -1033,12 +1034,18 @@ $lang_picinfo = array(
 $lang_display_comments = array(
   'OK' => 'OK',
   'edit_title' => 'Edit this comment',
+  'delete_title' => 'Delete this comment', // cpg1.5.x
   'confirm_delete' => 'Are you sure you want to delete this comment ?', //js-alert
   'add_your_comment' => 'Add your comment',
   'name'=>'Name',
   'comment'=>'Comment',
   'your_name' => 'Anon',
   'report_comment_title' => 'Report this comment to the administrator',
+  'pending_approval' => 'Comment will be visible after admin approval', // cpg1.5.x
+  'unapproved_comment' => 'Unapproved comment', // cpg1.5.x
+  'pending_approval_message' => 'Someone has posted a comment here. It will be visible after admin approval.', // cpg1.5.x
+  'approve' => 'Approve comment', // cpg1.5.x
+  'disapprove' => 'Disapprove comment', // cpg1.5.x
 );
 
 $lang_fullsize_popup = array(
@@ -1611,8 +1618,13 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
   'file_d' => 'File descending',
   'approval_a' => 'Approval ascending', // cpg1.5.x
   'approval_d' => 'Approval descending', // cpg1.5.x
+  'n_comm_appr' => '%s comment(s) approved', // cpg1.5.x
+  'n_comm_disappr' => '%s comment(s) disapproved', // cpg1.5.x
+  'configuration_changed' => 'Approval config changed', // cpg1.5.x
   'only_approval' => 'only display comments needing approval', // cpg1.5.x
-  'approval' => 'Approval', // cpg1.5.x
+  'approval' => 'Approved', // cpg1.5.x
+  'save_changes' => 'Save changes', // cpg1.5.x
+  'n_confirm_delete' => 'Do you really want to delete the selected comment(s)?', // cpg1.5.x
 );
 
 
