@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /*************************
   Coppermine Photo Gallery
   ************************
@@ -27,7 +27,7 @@ $lang_translation_info = array(
   'trans_name'=> 'S55HH',
   'trans_email' => 's55hh@prekmurje.com',
   'trans_website' => 'http://prekmurje.com/',
-  'trans_date' => '2005-08-15',
+  'trans_date' => '2006-05-24',
 );
 
 $lang_charset = 'utf-8';
@@ -300,8 +300,10 @@ $lang_theme_selection = array(
 
 $lang_version_alert = array(
   'version_alert' => 'Nepodprta verzija!', //cpg1.4
-  'no_stable_version' => 'Trenutno uporabljate Coppermine galerijo %s (%s), ki je namenjena samo za iskušene uporabnike. Ta verzija galerije nima podpore in garancije s strani razvijalcev. Uporabljate jo na lastno odgovornost, če želite podporo, uporabite zadnjo stabilno verzijo galerije!', //cpg1.4
-  'gallery_offline' => 'Galerija je trenutno izklopljena in jo vidijo samo administratorji. Ne pozabite je ponovno vklopiti, ko končate z nastavitvami oz. spremembami.', //cpg1.4
+  'security_alert' => 'Varnostno opozorilo!', //cpg1.4.3
+  'relocate_exists' => 'Odstranite <a href="http://coppermine-gallery.net/forum/index.php?topic=24217.0" target=_blank>relocate_server.php</a> datoteko s srežnika!',
+  'no_stable_version' => 'Uporabljate Coppermine %s (%s), ki je namenjena samo za izkušene uporabnike - ta verzija je ekspeimentalne narave in ne vsebuje podpore s strani razvijalcev. Uporabljate jo na lastno odgovornost. Če želite podporo, namestite stabilno različico galerije!', //cpg1.4
+  'gallery_offline' => 'Galerija je trenutno izklopljena in je vidna samo vam, kot administratorju. Ne pozabite jo ponovno vključiti, kokončate z vzdrževanjem.', //cpg1.4
 );
 
 $lang_create_tabs = array(
@@ -399,7 +401,7 @@ if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
   'delete' => 'Brisanje',
   'new' => 'Novo',
   'apply_modifs' => 'Izvedi spremembe',
-  'select_category' => 'Izberi kategorijo',
+  'select_category' => 'Izberite kategorijo',
 );
 
 // ------------------------------------------------------------------------- //
@@ -949,23 +951,23 @@ $lang_picinfo = array(
   'Dimensions' => 'Velikost fotografije',
   'Displayed' => 'Št. ogledov',
   'URL' => 'URL', //cpg1.4
-  'Make' => 'Make', //cpg1.4
+  'Make' => 'Izvedi', //cpg1.4
   'Model' => 'Model', //cpg1.4
-  'DateTime' => 'Date Time', //cpg1.4
-  'DateTimeOriginal' => 'Date taken', //cpg1.4
+  'DateTime' => 'Datum', //cpg1.4
+  'DateTimeOriginal' => 'Datum posnetka', //cpg1.4
   'ISOSpeedRatings'=>'ISO', //cpg1.4
-  'MaxApertureValue' => 'Max Aperture', //cpg1.4
-  'FocalLength' => 'Focal length', //cpg1.4
+  'MaxApertureValue' => 'Max zaslonka', //cpg1.4
+  'FocalLength' => 'Goriščnica', //cpg1.4
   'Comment' => 'Komentar',
   'addFav'=>'Dodaj med priljubljene',
   'addFavPhrase'=>'Priljubljene',
   'remFav'=>'Odstrani iz priljubljenih',
-  'iptcTitle'=>'IPTC Title',
+  'iptcTitle'=>'IPTC naziv',
   'iptcCopyright'=>'IPTC Copyright',
-  'iptcKeywords'=>'IPTC Keywords',
-  'iptcCategory'=>'IPTC Category',
-  'iptcSubCategories'=>'IPTC Sub Categories',
-  'ColorSpace' => 'Color Space', //cpg1.4
+  'iptcKeywords'=>'IPTC ključne besede',
+  'iptcCategory'=>'IPTC kategorija',
+  'iptcSubCategories'=>'IPTC pod kategorija',
+  'ColorSpace' => 'Barvni prostor', //cpg1.4
   'ExposureProgram' => 'Exposure Program', //cpg1.4
   'Flash' => 'Flash', //cpg1.4
   'MeteringMode' => 'Metering Mode', //cpg1.4
@@ -981,16 +983,16 @@ $lang_picinfo = array(
   'ExifOffset' => 'Exif Offset', //cpg1.4
   'IFD1Offset' => 'IFD1 Offset', //cpg1.4
   'FNumber' => 'FNumber', //cpg1.4
-  'ExifVersion' => 'Exif Version', //cpg1.4
+  'ExifVersion' => 'Exif verzija', //cpg1.4
   'DateTimeOriginal' => 'DateTime Original', //cpg1.4
   'DateTimedigitized' => 'DateTime digitized', //cpg1.4
   'ComponentsConfiguration' => 'Components Configuration', //cpg1.4
   'CompressedBitsPerPixel' => 'Compressed Bits Per Pixel', //cpg1.4
-  'LightSource' => 'Light Source', //cpg1.4
-  'ISOSetting' => 'ISO Setting', //cpg1.4
-  'ColorMode' => 'Color Mode', //cpg1.4
-  'Quality' => 'Quality', //cpg1.4
-  'ImageSharpening' => 'Image Sharpening', //cpg1.4
+  'LightSource' => 'Osvetlitev', //cpg1.4
+  'ISOSetting' => 'ISO nastavitev', //cpg1.4
+  'ColorMode' => 'Barvni prostor', //cpg1.4
+  'Quality' => 'Kvaliteta', //cpg1.4
+  'ImageSharpening' => 'Ostrenje slike', //cpg1.4
   'FocusMode' => 'Focus Mode', //cpg1.4
   'FlashSetting' => 'Flash Setting', //cpg1.4
   'ISOSelection' => 'ISO Selection', //cpg1.4
@@ -1104,7 +1106,9 @@ if (defined('REPORT_FILE_PHP') || defined('DISPLAYREPORT_PHP')) $lang_report_php
   'view_comment' => 'Ogled poročila s komentarjem', //cpg1.4
   'type_file' => 'datoteka', //cpg1.4
   'type_comment' => 'komentar', //cpg1.4
-);
+  'invalid_data' => 'Podatki o poročiu so bili poškodovani s strani programa za sprejem e-mail sporočil. Preverite ali je povezava kompletna.', //cpg1.4
+
+  );
 
 // ------------------------------------------------------------------------- //
 // File editpics.php
@@ -1209,9 +1213,15 @@ if (defined('FORGOT_PASSWD_PHP')) $lang_forgot_passwd_php = array(
   'err_already_logged_in' => 'Ste že prijavljeni!',
   'enter_email' => 'Vpišite svoj e-mail naslov', //cpg1.4
   'submit' => 'Naprej',
+  'illegal_session' => 'Seja za obnovo gesla je potekla ali je pa napačna.', //cpg1.4
   'failed_sending_email' => 'Sporočila za obnovitev gesla ni bilo možno poslati!',
   'email_sent' => 'Sporočilo z uporabniškim imenom in geslom je bilo poslano %s',
+  'verify_email_sent' => 'Sporočilo je bilo poslano k %s. Prosimo preverite prejeto e-mail sporočilo za nadaljevanje obnove gesla.', //cpg1.4
   'err_unk_user' => 'Izbrani uporabnik ne obstaja!',
+  'account_verify_subject' => '%s - zahtevek za novo geslo', //cpg1.4
+  'account_verify_body' => 'Zaprosili ste za novo geslo. Če želite nadaljevati, kliknite na naslednjo povezavo:
+
+%s', //cpg1.4
   'passwd_reminder_subject' => '%s - obnovitev gesla',
   'passwd_reminder_body' => 'Prosili ste za svoje podatke potrebne za prijavo :
 Uporabniško ime: %s
@@ -1682,7 +1692,7 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('STAT_DETAILS_PHP')) $lang_stat_details_php = array(
-  'show_hide' => 'prikaži/skrij ta album', //cpg1.4
+  'show_hide' => 'prikaži/skrij to kolono', //cpg1.4
   'vote' => 'Podrobnosti glasovanja', //cpg1.4
   'hits' => 'Podrobnosti ogledov', //cpg1.4
   'stats' => 'Statistika glasovanja', //cpg1.4
