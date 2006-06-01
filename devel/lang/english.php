@@ -749,6 +749,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
 
   'User settings',
   array('Allow new user registrations', 'allow_user_registration', 1, 'f=index.htm&amp;as=admin_allow_registration&amp;ae=admin_allow_registration_end'),
+  array('Global password for registration', 'global_registration_pw', 0, 'f=index.htm&amp;as=global_registration_pw&amp;ae=global_registration_pw_end'),
   array('Display disclaimer on user registration', 'user_registration_disclaimer', 18, 'f=index.htm&amp;as=admin_user_registration_disclaimer&amp;ae=admin_user_registration_disclaimer_end'), // cpg1.5
   array('Allow unlogged users (guest or anonymous) access', 'allow_unlogged_access', 1, 'f=index.htm&amp;as=admin_allow_unlogged_access&amp;ae=admin_allow_unlogged_access_end'),
   array('User registration requires email verification', 'reg_requires_valid_email', 1, 'f=index.htm&amp;as=admin_registration_verify&amp;ae=admin_registration_verify_end'),
@@ -1504,6 +1505,8 @@ $lang_register_php = array(
   'i_agree' => 'I agree',
   'submit' => 'Submit registration',
   'err_user_exists' => 'The username you have entered already exists, please choose a different one',
+  'err_global_pw' => 'Invalid global registration password', // cpg1.5
+  'err_global_pass_same' => 'Your password should be different from the global password', // cpg1.5
   'err_password_mismatch' => 'The two passwords does not match, please input them again',
   'err_uname_short' => 'Username must be 2 characters long minimum',
   'err_password_short' => 'Password must be 2 characters long minimum',
@@ -1517,6 +1520,7 @@ $lang_register_php = array(
   'username' => 'Username',
   'password' => 'Password',
   'password_again' => 'Re-enter password',
+  'global_registration_pw' => 'Global registration password', // cpg1.5
   'email' => 'Email',
   'location' => 'Location',
   'interests' => 'Interests',

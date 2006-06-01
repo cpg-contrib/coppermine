@@ -152,6 +152,7 @@ INSERT INTO CPG_config VALUES ('comments_anon_pfx', 'Guest_');
 INSERT INTO CPG_config VALUES ('admin_activation', '0');
 INSERT INTO CPG_config VALUES ('display_thumbnail_rating', '0');
 INSERT INTO CPG_config VALUES ('thumbnail_to_fullsize', '0');
+INSERT INTO CPG_config VALUES ('global_registration_pw','');
 
 #
 # Dumping data for table `CPG_filetypes`

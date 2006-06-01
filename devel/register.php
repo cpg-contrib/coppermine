@@ -12,7 +12,7 @@
   ********************************************
   Coppermine version: 1.5.0
   $Source: /cvsroot/coppermine/devel/register.php,v $
-  $Revision$
+  $Revision: 2979 $
   $LastChangedBy$
   $Date$
 **********************************************/
@@ -96,6 +96,7 @@ EOT;
     $form_data = array(
         array('label', $lang_register_php['required_info']),
         array('input', 'username', $lang_register_php['username'], 25),
+        !empty($CONFIG['global_registration_pw']) ? array('password', 'global_registration_pw', $lang_register_php['global_registration_pw'], 25) : '',
         array('password', 'password', $lang_register_php['password'], 25),
         array('password', 'password_verification', $lang_register_php['password_again'], 25),
         array('input', 'email', $lang_register_php['email'], 255),
@@ -118,111 +119,113 @@ EOT;
             );
     }
 
-    foreach ($form_data as $element) switch ($element[0]) {
-        case 'label' :
-            echo <<<EOT
-        <tr>
-            <td colspan="2" class="tableh2">
-                        {$element[1]}
-        </td>
-        </tr>
+    foreach ($form_data as $element) {
+      if (empty($element)) continue;
+      switch ($element[0]) {
+          case 'label' :
+              echo <<<EOT
+          <tr>
+              <td colspan="2" class="tableh2">
+                          {$element[1]}
+          </td>
+          </tr>
 
 EOT;
             break;
 
-        case 'input' :
-            if (isset($_POST[$element[1]])) {
-                $value = $_POST[$element[1]];
-            } else {
-                $value = '';
-            }
+          case 'input' :
+              if (isset($_POST[$element[1]])) {
+                  $value = $_POST[$element[1]];
+              } else {
+                  $value = '';
+              }
+              if ($element[2]) echo <<<EOT
+          <tr>
+              <td width="40%" class="tableb"  height="25">
+                          {$element[2]}
+          </td>
+          <td width="60%" class="tableb" valign="top">
+                  <input type="text" style="width: 100%" name="{$element[1]}" maxlength="{$element[3]}" value="$value" class="textinput" />
+                  </td>
+          </tr>
+
+EOT;
+            break;
+
+          case 'radio' :
+              // added the radio option for possible future use. The array definition would have to look like this:
+              // array('radio', 'user_var', 'Text label', 'option 1','option 2'),
+              // enabling this option requires changes in profile.php and usermgr.php as well
+              if (isset($_POST[$element[1]])) {
+                  $value = $_POST[$element[1]];
+              } else {
+                  $value = '';
+              }
+              if ($element[2]) echo <<<EOT
+          <tr>
+              <td width="40%" class="tableb"  height="25">
+                          {$element[2]}
+          </td>
+          <td width="60%" class="tableb" valign="top">
+                  <input type="radio" name="{$element[1]}" id="{$element[1]}1" value="{$element[3]}" class="radio" /><label for="{$element[1]}1" class="clickable_option">{$element[3]}</label>
+                  <input type="radio" name="{$element[1]}" id="{$element[1]}2" value="{$element[4]}" class="radio" /><label for="{$element[1]}2" class="clickable_option">{$element[4]}</label>
+                  </td>
+          </tr>
+
+EOT;
+            break;
+
+          case 'checkbox' :
+              // added the checkbox option for possible future use. The array definition would have to look like this:
+              // array('radio', 'user_var', 'preceeding text', 'Text label', 'value'),
+              // enabling this option requires changes in profile.php and usermgr.php as well
+              if (isset($_POST[$element[1]])) {
+                  $value = $_POST[$element[1]];
+              } else {
+                  $value = '';
+              }
+              if ($element[3]) echo <<<EOT
+          <tr>
+              <td class="tableb" colspan="2">
+                          {$element[2]}
+                          <br />
+                          <input type="checkbox" name="{$element[1]}" id="{$element[1]}" value="{$element[4]}" class="checkbox" /><label for="{$element[1]}" class="clickable_option">{$element[3]}</label>
+              </td>
+          </tr>
+
+EOT;
+            break;
+
+          case 'textarea' :
+              if (isset($_POST[$element[1]])) {
+                  $value = $_POST[$element[1]];
+              } else {
+                  $value = '';
+              }
             if ($element[2]) echo <<<EOT
-        <tr>
-            <td width="40%" class="tableb"  height="25">
-                        {$element[2]}
-        </td>
-        <td width="60%" class="tableb" valign="top">
-                <input type="text" style="width: 100%" name="{$element[1]}" maxlength="{$element[3]}" value="$value" class="textinput" />
-                </td>
-        </tr>
-
-EOT;
-            break;
-
-        case 'radio' :
-            // added the radio option for possible future use. The array definition would have to look like this:
-            // array('radio', 'user_var', 'Text label', 'option 1','option 2'),
-            // enabling this option requires changes in profile.php and usermgr.php as well
-            if (isset($_POST[$element[1]])) {
-                $value = $_POST[$element[1]];
-            } else {
-                $value = '';
-            }
-            if ($element[2]) echo <<<EOT
-        <tr>
-            <td width="40%" class="tableb"  height="25">
-                        {$element[2]}
-        </td>
-        <td width="60%" class="tableb" valign="top">
-                <input type="radio" name="{$element[1]}" id="{$element[1]}1" value="{$element[3]}" class="radio" /><label for="{$element[1]}1" class="clickable_option">{$element[3]}</label>
-                <input type="radio" name="{$element[1]}" id="{$element[1]}2" value="{$element[4]}" class="radio" /><label for="{$element[1]}2" class="clickable_option">{$element[4]}</label>
-                </td>
-        </tr>
-
-EOT;
-            break;
-
-        case 'checkbox' :
-            // added the checkbox option for possible future use. The array definition would have to look like this:
-            // array('radio', 'user_var', 'preceeding text', 'Text label', 'value'),
-            // enabling this option requires changes in profile.php and usermgr.php as well
-            if (isset($_POST[$element[1]])) {
-                $value = $_POST[$element[1]];
-            } else {
-                $value = '';
-            }
-            if ($element[3]) echo <<<EOT
-        <tr>
-            <td class="tableb" colspan="2">
-                        {$element[2]}
-                        <br />
-                        <input type="checkbox" name="{$element[1]}" id="{$element[1]}" value="{$element[4]}" class="checkbox" /><label for="{$element[1]}" class="clickable_option">{$element[3]}</label>
-            </td>
-        </tr>
-
-EOT;
-            break;
-
-        case 'textarea' :
-            if (isset($_POST[$element[1]])) {
-                $value = $_POST[$element[1]];
-            } else {
-                $value = '';
-            }
-           if ($element[2]) echo <<<EOT
-        <tr>
-            <td width="40%" class="tableb"  height="25">
-                        {$element[2]}
-        </td>
-        <td width="60%" class="tableb" valign="top">
-                <textarea name="{$element[1]}" rows="7" wrap="virtual"  class="textinput" style="width:100%">$value</textarea>
-                </td>
-        </tr>
+          <tr>
+              <td width="40%" class="tableb"  height="25">
+                          {$element[2]}
+          </td>
+          <td width="60%" class="tableb" valign="top">
+                  <textarea name="{$element[1]}" rows="7" wrap="virtual"  class="textinput" style="width:100%">$value</textarea>
+                  </td>
+          </tr>
 
 
 EOT;
             break;
 
-        case 'password' :
-            echo <<<EOT
-        <tr>
-            <td width="40%" class="tableb"  height="25">
-                        {$element[2]}
-        </td>
-        <td width="60%" class="tableb" valign="top">
-                <input type="password" style="width: 100%" name="{$element[1]}" maxlength="{$element[3]}" value="" class="textinput" />
-                </td>
-        </tr>
+          case 'password' :
+              echo <<<EOT
+          <tr>
+              <td width="40%" class="tableb"  height="25">
+                          {$element[2]}
+          </td>
+          <td width="60%" class="tableb" valign="top">
+                  <input type="password" style="width: 100%" name="{$element[1]}" maxlength="{$element[3]}" value="" class="textinput" />
+                  </td>
+          </tr>
 
 EOT;
             break;
@@ -234,8 +237,9 @@ EOT;
 EOT;
             break;
 
-        default:
-            cpg_die(CRITICAL_ERROR, 'Invalid action for form creation ' . $element[0], __FILE__, __LINE__);
+          default:
+              cpg_die(CRITICAL_ERROR, 'Invalid action for form creation ' . $element[0], __FILE__, __LINE__);
+      }
     }
 
     if ($errors) {
@@ -308,6 +312,15 @@ function check_user_info(&$error) { // function check_user_info - start
     mysql_free_result($result);
 
     if (utf_strlen($user_name) < 2) $error .= '<li>' . $lang_register_php['err_uname_short'] . '</li>';
+    if (!empty($CONFIG['global_registration_pw'])) {
+      $global_registration_pw = get_post_var('global_registration_pw');
+      if ($global_registration_pw != $CONFIG['global_registration_pw']) {
+        $error .= '<li>' . $lang_register_php['err_global_pw'] . '</li>';
+      } elseif ($password == $CONFIG['global_registration_pw']) {
+        $error .= '<li>' . $lang_register_php['err_global_pass_same'] . '</li>';
+      }
+    }
+
     if (utf_strlen($password) < 2) $error .= '<li>' . $lang_register_php['err_password_short'] . '</li>';
     if ($password == $user_name) $error .= '<li>' . $lang_register_php['err_uname_pass_diff'] . '</li>';
     if ($password != $password_again) $error .= '<li>' . $lang_register_php['err_password_mismatch'] . '</li>';

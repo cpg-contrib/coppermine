@@ -126,6 +126,7 @@ INSERT INTO CPG_config VALUES ('read_iptc_data', '0');
 INSERT INTO CPG_config VALUES ('display_uploader', '0');
 # INSERT INTO CPG_config VALUES ('display_admin_uploader','0');
 INSERT INTO CPG_config VALUES ('display_filename','0');
+INSERT INTO CPG_config VALUES ('global_registration_pw','');
 
 #gtroll wil implement
 #INSERT INTO CPG_config VALUES ('picinfo_display_filename', '1');
