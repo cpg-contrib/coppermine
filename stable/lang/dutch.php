@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 	/*************************
 	  Coppermine Photo Gallery
 	  ************************
@@ -90,7 +90,7 @@
 		'non_exist_comment' => 'Het geselecteerde commentaar is niet aanwezig.',
 		'pic_in_invalid_album' => 'Bestand is in een niet bestaand album (%s)!?', 
 		'banned' => 'Je bent op dit moment uitgesloten van het gebruik van deze site.', 
-		'not_with_udb' => 'Deze functie is uitgeschakeld in Coppermine omdat het geïntegreerd is met forumsoftware. Wat je tracht te doen is, of wordt niet ondersteund in deze configuratie, of de functie zal afgehandeld moeten worden door de forumsoftware.', 
+		'not_with_udb' => 'Deze functie is uitgeschakeld in Coppermine omdat het geïntegreerd is met forumsoftware. Wat je probeeert te doen is, of wordt niet ondersteund in deze configuratie, of de functie zal afgehandeld moeten worden door de forumsoftware.', 
 		'offline_title' => 'Offline',
 		'offline_text' => 'Galerij is op dit moment offline - controleer later nog eens',
 		'ecards_empty' => 'Er zijn op dit moment geen e-cardrecords aanwezig om te laten zien. Controleer of je e-card logging hebt aangezet in de Coppermine-configuratie!',
@@ -206,8 +206,8 @@
 		'sort_dd' => 'Sorteer op datum aflopend',
 		'sort_na' => 'Sorteer op naam oplopend',
 		'sort_nd' => 'Sorteer op naam aflopend',
-		'sort_ta' => 'Sorteer op titel oploopend', 
-		'sort_td' => 'Sorteer op titel afloopend', 
+		'sort_ta' => 'Sorteer op titel oplopend', 
+		'sort_td' => 'Sorteer op titel aflopend', 
 		'position' => 'POSITIE', //cpg1.4
 		'sort_pa' => 'Sorteer op positie oplopend', //cpg1.4
 		'sort_pd' => 'Sorteer op positie aflopend', //cpg1.4
@@ -221,7 +221,7 @@
 	);
 	
 	$lang_img_nav_bar = array(
-		'thumb_title' => 'Terug naar de verkleinde afbeeldingpagina',
+		'thumb_title' => 'Terug naar de verkleinde afbeeldingspagina',
 		'pic_info_title' => 'Laat zien/verberg bestandsinformatie',
 		'slideshow_title' => 'Diashow',
 		'ecard_title' => 'Stuur dit bestand als een e-card',
@@ -417,7 +417,7 @@
 		'add_ban' => 'Toevoegen', //cpg1.4
 		'error_user' => 'Kan de gebruiker niet vinden', //cpg1.4
 		'error_specify' => 'Je moet een waarde opgeven met ofwel een gebruikersnaam ofwel een IP adres', //cpg1.4
-		'error_ban_id' => 'Ongeldige verban ID!', //cpg1.4
+		'error_ban_id' => 'Ongeldig verban ID!', //cpg1.4
 		'error_admin_ban' => 'Je kan jezelf niet verbannen!', //cpg1.4
 		'error_server_ban' => 'Weet je zeker dat je je eigen server wilt verbannan. Nou nou, dat kan dus effe niet...', //cpg1.4
 		'error_ip_forbidden' => 'Je kan dit IP adres niet verbannen - het is een LAN (niet-publiek) adres!<br/>Als je toch een niet-publiek IP adres wilt verbannen, wijzig dit dan in de <a href="admin.php">Instellingen</a> (dit heeft alleen zit als je Coppermine binnen een LAN draait).', //cpg1.4
@@ -459,11 +459,11 @@
 		'db_password' => 'Database wachtwoord', //cpg1.4
 		'db_password_explanation' => 'Wachtwoord voor deze mySQL gebruikersnaam', //cpg1.4
 		'full_forum_url' => 'Forum URL', //cpg1.4
-		'full_forum_url_explanation' => 'Volledige URL naar je BBS programma (inclusief http://, bijvoorbeeeld http://www.yourdomain.tld/forum)', //cpg1.4
+		'full_forum_url_explanation' => 'Volledige URL naar je BBS programma (inclusief http://, bijvoorbeeld http://www.yourdomain.tld/forum)', //cpg1.4
 		'relative_path_of_forum_from_webroot' => 'Relatief pad naar je BBS programma', //cpg1.4
 		'relative_path_of_forum_from_webroot_explanation' => 'Relatief pad naar de BBS programma vanaf de webroot (bv: als je BBS progamma staat in http://www.yourdomain.tld/forum/, voer dan &quot;/forum/&quot; in dit veld in)', //cpg1.4
-		'relative_path_to_config_file' => 'Relarief pad naar het BBS programma configuratie bestand', //cpg1.4
-		'relative_path_to_config_file_explanation' => 'Relatief pad naar het BBS programma configuratie bestand, gezien vanuit de Coppermine direcotry (bv &quot;../forum/&quot; als je BBS programma staat in http://www.yourdomain.tld/forum/ en Coppermine in http://www.yourdomain.tld/gallery/)', //cpg1.4
+		'relative_path_to_config_file' => 'Relatief pad naar het BBS programma configuratie bestand', //cpg1.4
+		'relative_path_to_config_file_explanation' => 'Relatief pad naar het BBS programma configuratie bestand, gezien vanuit de Coppermine directory (bv &quot;../forum/&quot; als je BBS programma staat in http://www.yourdomain.tld/forum/ en Coppermine in http://www.yourdomain.tld/gallery/)', //cpg1.4
 		'cookie_prefix' => 'Cookie prefix', //cpg1.4
 		'cookie_prefix_explanation' => 'dit is de naam van de cookie van je BBS programma', //cpg1.4
 		'table_prefix' => 'Tabel prefix', //cpg1.4
@@ -475,9 +475,9 @@
 		'group_table' => 'Groepen tabel', //cpg1.4
 		'group_table_explanation' => '(normaal gesproken moet de standaard waarde goed zijn, tenzij je installatie van je BBS programma niet standaard was)', //cpg1.4
 		'group_relation_table' => 'Groep relatie tabel', //cpg1.4
-		'group_relation_table_explanation' => '(normaal gesproken moet de standaard waarde goed zijn, tenzij je installatie van je BBS programma niet standaard was)', //cpg1.4
+		'group_relation_table_explanation' => '(normaalgesproken moet de standaard waarde goed zijn, tenzij je installatie van je BBS programma niet standaard was)', //cpg1.4
 		'group_mapping_table' => 'Groep koppellingen tabel', //cpg1.4
-		'group_mapping_table_explanation' => '(normaal gesproken moet de standaard waarde goed zijn, tenzij je installatie van je BBS programma niet standaard was)', //cpg1.4
+		'group_mapping_table_explanation' => '(normaalgesproken moet de standaard waarde goed zijn, tenzij je installatie van je BBS programma niet standaard was)', //cpg1.4
 		'use_standard_groups' => 'Gebruik standaard BBS gebruikersgroepen', //cpg1.4
 		'use_standard_groups_explanation' => 'Gebruik de standaard (ingebouwde) gebruikersgroepen (aanbevolen). Deze optie laat alle eigengemaakte aanpassingen in gebruikersgroepen vervallen. Gebruik deze optie alleen als je ZEKER bent dat je weet wat je doet!', //cpg1.4
 		'validating_group' => 'Gevalideerden groep', //cpg1.4
@@ -495,7 +495,7 @@
 		'special_settings' => 'BBS-specifieke instellingen', //cpg1.4
 		'logout_flag' => 'phpBB versie (logout waarde)', //cpg1.4
 		'logout_flag_explanation' => 'Wat is de versie van het BBS programma (deze instelling bepaalt hoe logouts worden afgehandeld)', //cpg1.4
-		'use_post_based_groups' => 'Gebuik bericht gebaseerde groepen?', //cpg1.4
+		'use_post_based_groups' => 'Gebruik bericht gebaseerde groepen?', //cpg1.4
 		'logout_flag_yes' => '2.0.5 of hoger', //cpg1.4
 		'logout_flag_no' => '2.0.4 of lager', //cpg1.4
 		'use_post_based_groups_explanation' => 'Moeten de groepen van het BBS programma die zijn bepaald aan de hand van het aantal post worden meegenomen (andersoortige toegangs rechten) of alleen de standaard groepen (eenvoidig beheer - aanbevolen). Deze instelling kan ook later worden aangepast.', //cpg1.4
@@ -503,7 +503,7 @@
 		'use_post_based_groups_no' => 'nee', //cpg1.4
 		'error_title' => 'Je moet de fouten herstellen om door te gaan. Ga naar het vorige scherm.', //cpg1.4
 		'error_specify_bbs' => 'Je moet het programma opgeven welke je met Coppermine wilt integreren.', //cpg1.4
-		'error_no_blank_name' => 'Je moet een bestandnaam invoeren van je integratie bestand.', //cpg1.4
+		'error_no_blank_name' => 'Je moet een bestandsnaam invoeren van je integratie bestand.', //cpg1.4
 		'error_no_special_chars' => 'De integratie bestandsnaam mag geen speciale tekens bevatten behalve de underscore (_) en het streepje (-)!', //cpg1.4
 		'error_bridge_file_not_exist' => 'Het integratie bestand %s bestaat niet op de server. Controleer of deze goed is geupload.', //cpg1.4
 		'finalize' => 'Zet BBS integratie aan/uit', //cpg1.4
@@ -537,7 +537,7 @@
 		'recovery_failure_content' => 'Je hebt de verkeerde inloggegevens opgegeven. Je moet een beheerdersnaam en wachtwoord opgeven van de standalone Coppermine (die is ingesteld tijdens de installatie).', //cpg1.4
 		'try_again' => 'probeer opnieuw', //cpg1.4
 		'recovery_wait_title' => 'De wachtijd is over', //cpg1.4
-		'recovery_wait_content' => 'Om veiligheidsredend het script was niet bevoegd om zovaak achter elkaar in te loggen, je moet nu eerst wachten om het later nog eens te kunnen proberen.', //cpg1.4
+		'recovery_wait_content' => 'Om veiligheidsredenen is het script niet bevoegd om zovaak achter elkaar in te loggen, je moet nu eerst wachten om het later nog eens te kunnen proberen.', //cpg1.4
 		'wait' => 'wacht', //cpg1.4
 		'create_redir_file' => 'Maak verwijsbestand aan (aanbevolen)', //cpg1.4
 		'create_redir_file_explanation' => 'Om gebruikers terug te laten keren naar Coppermine als ze zijn ingelogd op het BBS, moet er een overzet bestand worden aangemaakt in de directory van het BBS programma. Als deze optie aan stgaan, integratie beheer zal proberen dit bestand aan te maken, of je krijgt de mogelijkheid de code te kopieren, een bestand zelf aan te maken en dat de code te plakken.', //cpg1.4
@@ -613,7 +613,7 @@
 		'click_expand' => 'klik op de sectie naam deze uit te klappen', //cpg1.4
 		'expand_all' => 'Uit/inklappen', //cpg1.4
 		'notice1' => '(*) Deze instellingen mogen niet worden aangepast als je al waardes in de gegevens hebt zitten.', //cpg1.4
-		'notice2' => '(**) Als deze waarde wordt aangepast zullen alleen bestanden vanaf dit moment beinvloed worden. Het is aanbevolen deze waarden niet aan te passen als er al bestanden in de database zitten. Je kunt waardes aanpassen via het &quot;<a href="util.php">beheerders gereedschappen</a> menu (afbeeldinggrootte aanpassen)&quot;.',  //cpg1.4
+		'notice2' => '(**) Als deze waarde wordt aangepast zullen alleen bestanden vanaf dit moment beïnvloed worden. Het is aanbevolen deze waarden niet aan te passen als er al bestanden in de database zitten. Je kunt waardes aanpassen via het &quot;<a href="util.php">beheerders gereedschappen</a> menu (afbeeldinggrootte aanpassen)&quot;.',  //cpg1.4
 		'notice3' => '(***) Alle loggings zijn in het Engels.', //cpg1.4
 		'bbs_disabled' => 'Deze functie is uitgeschakeld als het bbs is geintegreerd', //cpg1.4
 		'auto_resize_everyone' => ' Iedereen', //cpg1.4
@@ -711,18 +711,18 @@
 		array('Maak middelgrote afbeeldingen aan?','make_intermediate',1, 'f=index.htm&amp;as=admin_picture_thumbnail_intermediate_toggle&amp;ae=admin_picture_thumbnail_intermediate_toggle_end'), //cpg1.4
 		array('Maximale breedte of hoogte van de middelgrote afbeeldingen <a href="#notice2" class="clickable_option">**</a>', 'picture_width', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_intermediate_dimension&amp;ae=admin_picture_thumbnail_intermediate_dimension_end'), //cpg1.4
 		array('Maximale grootte van de geuploade bestanden (KB)', 'max_upl_size', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_max_upload_size&amp;ae=admin_picture_thumbnail_max_upload_size_end'), //cpg1.4
-		array('Maximale breefte of hoogte van geuploade bestanden (pixels)', 'max_upl_width_height', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_max_upload_dimension&amp;ae=admin_picture_thumbnail_max_upload_dimension_end'), //cpg1.4
+		array('Maximale breedte of hoogte van geuploade bestanden (pixels)', 'max_upl_width_height', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_max_upload_dimension&amp;ae=admin_picture_thumbnail_max_upload_dimension_end'), //cpg1.4
 		array('Pas grootte van de afbeeldingen automatisch aan indien groter dan de maximale waarden?', 'auto_resize', 16, 'f=index.htm&amp;as=admin_picture_thumbnail_auto-resize&amp;ae=admin_picture_thumbnail_auto-resize_end'), //cpg1.4
 	
 		'Bestanden en thumbnails geavanceerde instellingen',
-		array('Albums kunnen persoonlijk zijn (Let op: als je deze waarde van \'ja\' to \'nee\' omzet, zullen alle persoonlijke albums publiek worden)', 'allow_private_albums', 1, 'f=index.htm&amp;as=admin_picture_thumb_advanced_private_toggle&amp;ae=admin_picture_thumb_advanced_private_toggle_end'), //cpg1.4
-		array('Geef persoonlijke albums ikoon weer aan een niet ingelogde gebruiker','show_private',1, 'f=index.htm&amp;as=admin_picture_thumb_advanced_private_icon_show&amp;ae=admin_picture_thumb_advanced_private_icon_show_end'), //cpg1.4
+		array('Albums kunnen persoonlijk zijn (Let op: als je deze waarde van \'ja\' naar \'nee\' omzet, zullen alle persoonlijke albums publiek worden)', 'allow_private_albums', 1, 'f=index.htm&amp;as=admin_picture_thumb_advanced_private_toggle&amp;ae=admin_picture_thumb_advanced_private_toggle_end'), //cpg1.4
+		array('Geef persoonlijke albums icoon weer aan een niet ingelogde gebruiker','show_private',1, 'f=index.htm&amp;as=admin_picture_thumb_advanced_private_icon_show&amp;ae=admin_picture_thumb_advanced_private_icon_show_end'), //cpg1.4
 		array('Verboden karakerts in de bestandsnaam', 'forbiden_fname_char',0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_filename_forbidden_chars&amp;ae=admin_picture_thumb_advanced_filename_forbidden_chars_end'), //cpg1.4
 		//array('Accepted file extensions for uploaded pictures', 'allowed_file_extensions',0, 'f=index.htm&amp;as=&amp;ae=_end'), //cpg1.4
 		array('Toegestane afbeeldings formaten', 'allowed_img_types',0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_pic_extensions&amp;ae=admin_picture_thumb_advanced_pic_extensions_end'), //cpg1.4
 		array('Toegestane filmb formaten', 'allowed_mov_types',0, 'f=index.htm&amp;as=admin_thumbs_advanced_movie&amp;ae=admin_thumbs_advanced_movie_end'), //cpg1.4
 		array('Film weergave autostart', 'media_autostart',1, 'f=index.htm&amp;as=admin_movie_autoplay&amp;ae=admin_movie_autoplay_end'), //cpg1.4
-		array('Toegestande geluids formaten', 'allowed_snd_types',0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_audio_extensions&amp;ae=admin_picture_thumb_advanced_audio_extensions_end'), //cpg1.4
+		array('Toegestane geluidsformaten', 'allowed_snd_types',0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_audio_extensions&amp;ae=admin_picture_thumb_advanced_audio_extensions_end'), //cpg1.4
 		array('Toegestanden documentformaten', 'allowed_doc_types',0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_doc_extensions&amp;ae=admin_picture_thumb_advanced_doc_extensions_end'), //cpg1.4
 		array('Wijze van aanpassen van de afbeeldingen','thumb_method',2, 'f=index.htm&amp;as=admin_picture_thumb_advanced_resize_method&amp;ae=admin_picture_thumb_advanced_resize_method_end'), //cpg1.4
 		array('Pad naar ImageMagick (bijvoorbeeld /usr/bin/X11/)', 'impath', 0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_im_path&amp;ae=admin_picture_thumb_advanced_im_path_end'), //cpg1.4
@@ -933,11 +933,11 @@
 			'view_fs' => 'Klik op de foto om originele grootte te bekijken',
 			'edit_pic' => 'Wijzig omschrijving',  //cpg1.4
 			'crop_pic' => 'Snijden en draaien', 
-			'set_player' => 'Verander default afspeel programma',
+			'set_player' => 'Verander `standaard afspeel programma',
 		);
 	
 		$lang_picinfo = array(
-			'title' =>'Bestandsinfromatie',
+			'title' =>'Bestandsinformatie',
 			'Filename' => 'Bestandsnaam',
 			'Album name' => 'Album naam',
 			'Rating' => 'Populariteit (%s stemmen)',
@@ -970,7 +970,7 @@
 			'ExposureTime' => 'Belichtindtijd', //cpg1.4
 			'ExposureBiasValue' => 'Belichtingswaarde', //cpg1.4
 			'ImageDescription' => 'Omschrijving', //cpg1.4
-			'Orientation' => 'Orientatie', //cpg1.4
+			'Orientation' => 'Oriëntatie', //cpg1.4
 			'xResolution' => 'X Resolutie', //cpg1.4
 			'yResolution' => 'Y Resolutie', //cpg1.4
 			'ResolutionUnit' => 'Resolutie eenheid', //cpg1.4
@@ -1141,7 +1141,7 @@
 		'preview' => 'Voorbeeld',
 		'save' => 'Bewaar foto',
 		'save_thumb' =>'Bewaar als verkleinde afbeelding',
-		'gallery_icon' => 'Maak deze mijn ikoon', //cpg1.4
+		'gallery_icon' => 'Maak deze mijn icoon', //cpg1.4
 		'sel_on_img' =>'De selectie moet geheel op de afbeelding liggen!', //js-alert
 		'album_properties' =>'Album instellingen', //cpg1.4
 		'parent_category' =>'Hoofd catagorie', //cpg1.4
@@ -1238,7 +1238,7 @@ Klik %s om in te loggen.',
 		'apply' => 'Bewaar wijzigingen', //cpg1.4
 		'create_new_group' => 'Maak nieuwe groep aan',
 		'del_groups' => 'Verwijder de geselecteerde groep(en)',
-		'confirm_del' => 'Warning, when you delete a group, users that belong to this group will be transferred to the \'Registered\' group !\n\nDo you want to proceed ?', //js-alert
+		'confirm_del' => 'waarschuwing: als je een groep verwijderd, zullen de gebruikers die horen bij die groep worden overgezet naar de \'Registered\' groep !\n\nWil je doorgaan ?', //js-alert
 		'title' => 'Beheer gebruikersgroepen',
 		'num_file_upload' => 'Bestand upload boxen', //cpg1.4
 		'num_URI_upload' => 'URI upload boxes', //cpg1.4
@@ -1412,7 +1412,7 @@ Klik %s om in te loggen.',
 		'confirm_delete1' => 'Weer je zeker dat je deze afbeelding wilt vewijderen?', //cpg1.4
 		'confirm_delete2' => '\nDe afbeelding zal definitief worden verwijderd.', //cpg1.4
 		'apply_modifs' => 'Doorvoeren wijzigingen', //cpg1.4
-		'confirm_modifs' => 'Bevestig wijzgigingen', //cpg1.4
+		'confirm_modifs' => 'Bevestig wijzigingen', //cpg1.4
 		'pic_need_name' => 'De afbeelding moet een naam hebben!', //cpg1.4
 		'no_change' => 'Je hebt geen enkele wijziging doorgevoerd!', //cpg1.4
 		'no_album' => '* Geen album *', //cpg1.4
@@ -1440,7 +1440,7 @@ Klik %s om in te loggen.',
 			'none_installed' => 'Geen enkele plugin geïnstalleerd', //cpg1.4
 			'operation' => 'operation', //cpg1.4
 			'not_plugin_package' => 'Het geuploade bestand is geen plugin voor Coppermine.', //cpg1.4
-			'copy_error' => 'Er is een fout opgetreden met het kopieeren van het bestand naar de plugins directory.', //cpg1.4
+			'copy_error' => 'Er is een fout opgetreden met het kopiëren van het bestand naar de plugins directory.', //cpg1.4
 			'upload' => 'Upload', //cpg1.4
 			'configure_plugin' => 'Stel plugin in', //cpg1.4
 			'cleanup_plugin' => 'Opschonen plugin', //cpg1.4
