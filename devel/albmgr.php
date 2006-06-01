@@ -123,6 +123,11 @@ pageheader($lang_albmgr_php['alb_mrg']);
     {
         selectedOptIndex = selectedIndex;
 
+        //Enable the Album name box
+        if (document.getElementById('album_nm').disabled) {
+          document.getElementById('album_nm').disabled = false;
+        }
+
         for (i=0; i<document.album_menu.to.length; i++) {
             document.album_menu.to.options[i].selected = false;
         }
@@ -164,6 +169,11 @@ pageheader($lang_albmgr_php['alb_mrg']);
         var prev_album;
         var to_pos, album_type, album_sort;
         var to = document.album_menu.to;
+
+        //Enable the Album name box
+        if (document.getElementById('album_nm').disabled) {
+          document.getElementById('album_nm').disabled = false;
+        }
 
         if (to.selectedIndex == -1)
             to_pos = to.length;
@@ -418,7 +428,7 @@ echo $lb;
                 </tr>
                 <tr>
                         <td><br />
-                                <input type="text" name="album_nm" size="27" maxlength="80" class="textinput" style="width: 300px;" onChange="Album_NameChange(this.value);" onKeyUp="Album_NameChange(this.value);" />
+                                <input type="text" name="album_nm" id="album_nm" size="27" maxlength="80" class="textinput" style="width: 300px;" onChange="Album_NameChange(this.value);" onKeyUp="Album_NameChange(this.value);" DISABLED />
                                 <br />
                                 <br />
                         </td>
