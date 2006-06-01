@@ -69,6 +69,7 @@ $data = array(
         array($lang_editpics_php['title'], 'title', 0, 255),
         array($captionLabel, 'caption', 2, $CONFIG['max_img_desc_length']),
         array($lang_editpics_php['keywords'], 'keywords', 0, 255),
+        array($lang_editpics_php['approval'], 'approved', 5),
         array($CONFIG['user_field1_name'], 'user1', 0, 255),
         array($CONFIG['user_field2_name'], 'user2', 0, 255),
         array($CONFIG['user_field3_name'], 'user3', 0, 255),
@@ -110,7 +111,7 @@ function process_post_data()
                 $user3       = get_post_var('user3', $pid);
                 $user4       = get_post_var('user4', $pid);
 
-                                $isgalleryicon = ($galleryicon===$pid);
+                $isgalleryicon = ($galleryicon===$pid);
 
                 $delete       = isset($_POST['delete'.$pid]);
                 $reset_vcount = isset($_POST['reset_vcount'.$pid]);
@@ -167,6 +168,13 @@ function process_post_data()
                                 $del_comments = 1;
                                 $delete = 1;
                         }
+                } elseif (GALLERY_ADMIN_MODE) {
+                  $approved = get_post_var('approved', $pid);
+                  if ($approved == 'YES') {
+                      $update .= ", approved = 'YES'";
+                  } else {
+                      $update .= ", approved = 'NO'";
+                  }
                 }
 
                 if ($del_comments) {
@@ -365,6 +373,31 @@ function form_textarea($text, $name, $max_length)
 EOT;
 }
 
+function form_status($text, $name)
+{
+  global $CURRENT_PIC, $lang_editpics_php;
+
+  $checkYes = ($CURRENT_PIC[$name] == 'YES') ? 'CHECKED' : '';
+  $checkNo = ($CURRENT_PIC[$name] == 'NO') ? 'CHECKED' : '';
+
+  $name .= $CURRENT_PIC['pid'];
+
+  if (!UPLOAD_APPROVAL_MODE && GALLERY_ADMIN_MODE) {
+  echo <<<EOT
+        <tr>
+            <td class="tableb" style="white-space: nowrap;">
+                        $text
+        </td>
+        <td width="100%" class="tableb" valign="top">
+                <input type="radio" name="$name" value="YES" $checkYes />{$lang_editpics_php['approved']}&nbsp;&nbsp;
+                <input type="radio" name="$name" value="NO" $checkNo />{$lang_editpics_php['disapproved']}
+                </td>
+        </tr>
+
+EOT;
+  }
+}
+
 function create_form(&$data)
 {
         foreach($data as $element){
@@ -384,6 +417,9 @@ function create_form(&$data)
                                     break;
                             case 4 :
                                     form_options();
+                                    break;
+                            case 5:
+                                    form_status($element[0], $element[1]);
                                     break;
                             default:
                                         cpg_die(CRITICAL_ERROR, 'Invalid action for form creation', __FILE__, __LINE__);

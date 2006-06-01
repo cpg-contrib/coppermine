@@ -67,6 +67,12 @@ function process_post_data()
     $update .= ", title = '".addslashes($title)."'";
     $update .= ", caption = '".addslashes($caption)."'";
     $update .= ", keywords = '".addslashes($keywords)."'";
+
+    if (GALLERY_ADMIN_MODE) {
+      $approved = $_POST['approved'];
+      $update .= ", approved = '".addslashes($approved)."'";
+    }
+    
     $update .= ", user1 = '".addslashes($user1)."'";
     $update .= ", user2 = '".addslashes($user2)."'";
     $update .= ", user3 = '".addslashes($user3)."'";
@@ -328,8 +334,25 @@ print <<<EOT
                                 <input type="text" style="width: 100%" name="keywords" maxlength="255" value="{$CURRENT_PIC['keywords']}" class="textinput" />
                         </td>
         </tr>
-
 EOT;
+
+if (GALLERY_ADMIN_MODE) {
+  $checkYes = ($CURRENT_PIC['approved'] == 'YES') ? 'CHECKED' : '';
+  $checkNo = ($CURRENT_PIC['approved'] == 'NO') ? 'CHECKED' : '';
+  
+  echo <<<EOT
+        <tr>
+            <td class="tableb" style="white-space: nowrap;">
+                        {$lang_editpics_php['approval']}
+        </td>
+        <td width="100%" class="tableb" valign="top">
+                <input type="radio" name="approved" value="YES" $checkYes />{$lang_editpics_php['approved']}&nbsp;&nbsp;
+                <input type="radio" name="approved" value="NO" $checkNo />{$lang_editpics_php['disapproved']}
+                </td>
+        </tr>
+EOT;
+
+}
 if ($CONFIG['user_field1_name'] != ''){
 echo <<<EOT
         <tr>
