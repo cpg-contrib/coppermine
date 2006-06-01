@@ -749,7 +749,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
 
   'User settings',
   array('Allow new user registrations', 'allow_user_registration', 1, 'f=index.htm&amp;as=admin_allow_registration&amp;ae=admin_allow_registration_end'),
-  array('Global password for registration', 'global_registration_pw', 0, 'f=index.htm&amp;as=global_registration_pw&amp;ae=global_registration_pw_end'),
+  array('Global password for registration', 'global_registration_pw', 0, 'f=index.htm&amp;as=admin_global_registration_pw&amp;ae=admin_global_registration_pw_end'),
   array('Display disclaimer on user registration', 'user_registration_disclaimer', 18, 'f=index.htm&amp;as=admin_user_registration_disclaimer&amp;ae=admin_user_registration_disclaimer_end'), // cpg1.5
   array('Allow unlogged users (guest or anonymous) access', 'allow_unlogged_access', 1, 'f=index.htm&amp;as=admin_allow_unlogged_access&amp;ae=admin_allow_unlogged_access_end'),
   array('User registration requires email verification', 'reg_requires_valid_email', 1, 'f=index.htm&amp;as=admin_registration_verify&amp;ae=admin_registration_verify_end'),
