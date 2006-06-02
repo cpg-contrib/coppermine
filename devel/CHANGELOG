@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-06-02 [A] Added code so that during upload the last selected album comes preselect in album list {Abbas}
 2006-06-01 [A] Added Approve/Disapprove radio buttons in editpics.php as well as editOnePic.php {Aditya}
 2006-06-01 [A] Added config settable global password for registration feature {Abbas}
 2006-05-29 [A] Added comment approval option {GauGau} - work in progress (still open issues)

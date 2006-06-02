@@ -171,8 +171,14 @@ function form_alb_list_box($text, $name) {
     // Also pull the album lists into the function
     global $user_albums_list, $public_albums_list;
 
-    // Check to see if an album has been preselected by URL addition. If so, make $sel_album the album number. Otherwise, make $sel_album 0.
-    $sel_album = isset($_GET['album']) ? $_GET['album'] : 0;
+    // Check to see if an album has been preselected by URL addition or the last selected album. If so, make $sel_album the album number. Otherwise, make $sel_album 0.
+    if (isset($_GET['album'])) {
+      $sel_album = $_GET['album'];
+    } elseif (isset($_POST['album'])) {
+      $sel_album = $_POST['album'];
+    } else {
+      $sel_album = 0;
+    }
 
     // Create the opening of the drop down box
     echo <<<EOT
