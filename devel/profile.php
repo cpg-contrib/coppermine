@@ -370,7 +370,7 @@ EOT;
         $album_count = $nbEnr[0];
         mysql_free_result($result);
 
-        $result = cpg_db_query("SELECT count(*), MAX(msg_id) FROM {$CONFIG['TABLE_COMMENTS']} as c, {$CONFIG['TABLE_PICTURES']} as p WHERE c.pid = p.pid AND author_id = '$uid' $FORBIDDEN_SET");
+        $result = cpg_db_query("SELECT count(*), MAX(msg_id) FROM {$CONFIG['TABLE_COMMENTS']} as c, {$CONFIG['TABLE_PICTURES']} as p WHERE c.pid = p.pid AND approval='YES' AND author_id = '$uid' $FORBIDDEN_SET");
         $nbEnr = mysql_fetch_array($result);
         $comment_count = $nbEnr[0];
         $lastcom_id = $nbEnr[1];
@@ -382,7 +382,7 @@ EOT;
 
         $lastcom = '';
         if ($comment_count) {
-            $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight, msg_author, UNIX_TIMESTAMP(msg_date) as msg_date, msg_body " . "FROM {$CONFIG['TABLE_COMMENTS']} AS c, {$CONFIG['TABLE_PICTURES']} AS p " . "WHERE msg_id='" . $lastcom_id . "' AND c.pid = p.pid";
+            $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight, msg_author, UNIX_TIMESTAMP(msg_date) as msg_date, msg_body, approval " . "FROM {$CONFIG['TABLE_COMMENTS']} AS c, {$CONFIG['TABLE_PICTURES']} AS p " . "WHERE msg_id='" . $lastcom_id . "' AND approval = 'YES' AND c.pid = p.pid";
             $result = cpg_db_query($sql);
             if (mysql_num_rows($result)) {
                 $row = mysql_fetch_array($result);

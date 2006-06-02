@@ -46,7 +46,7 @@ if ($USER_DATA['user_email']){
 } else {
         $sender_email = get_post_var('sender_email',$USER['email'] ? $USER['email'] : '');
         $sender_box = "<input type=\"text\" class=\"textinput\" value=\"$sender_email\" name=\"sender_email\" style=\"width: 100%;\" />";
-		$sender_name = get_post_var('sender_name',$USER['name'] ? $USER['name'] : '');
+                $sender_name = get_post_var('sender_name',$USER['name'] ? $USER['name'] : '');
         $sender_name_box = "<input type=\"text\" class=\"textinput\" value=\"$sender_name\" name=\"sender_name\" style=\"width: 100%;\" />";
 }
 $subject = get_post_var('subject');
@@ -61,7 +61,7 @@ $row = mysql_fetch_array($result);
 $thumb_pic_url = get_pic_url($row, 'thumb');
 
 if ($what == 'comment') {
-        $result = cpg_db_query("SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date) AS msg_date, author_id, author_md5_id, msg_raw_ip, msg_hdr_ip FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id='$cid' AND pid='$pid'");
+        $result = cpg_db_query("SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date) AS msg_date, author_id, author_md5_id, msg_raw_ip, msg_hdr_ip, approval FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id='$cid' AND approval = 'YES' AND pid='$pid'");
         if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['non_exist_comment'], __FILE__, __LINE__);
         $row = mysql_fetch_array($result);
         $comment = bb_decode(process_smilies($row['msg_body']));

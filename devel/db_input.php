@@ -74,12 +74,24 @@ switch ($event) {
 
         if ($msg_body == '') cpg_die(ERROR, $lang_db_input_php['err_comment_empty'], __FILE__, __LINE__);
 
+        if ($CONFIG['comment_approval'] != 0) {
+        } else {
+        }
+
         if (GALLERY_ADMIN_MODE) {
             $update = cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET msg_body='$msg_body', msg_author='$msg_author' WHERE msg_id='$msg_id'");
         } elseif (USER_ID) {
-            $update = cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET msg_body='$msg_body' WHERE msg_id='$msg_id' AND author_id ='" . USER_ID . "' LIMIT 1");
+            if ($CONFIG['comment_approval'] == 2) {
+                $update = cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET msg_body='$msg_body', approval='NO' WHERE msg_id='$msg_id' AND author_id ='" . USER_ID . "' LIMIT 1");
+            } else {
+                $update = cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET msg_body='$msg_body' WHERE msg_id='$msg_id' AND author_id ='" . USER_ID . "' LIMIT 1");
+            }
         } else {
-            $update = cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET msg_body='$msg_body' WHERE msg_id='$msg_id' AND author_md5_id ='{$USER['ID']}' AND author_id = '0' LIMIT 1");
+            if ($CONFIG['comment_approval'] != 0) {
+                $update = cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET msg_body='$msg_body', approval='NO' WHERE msg_id='$msg_id' AND author_md5_id ='{$USER['ID']}' AND author_id = '0' LIMIT 1");
+            } else {
+                $update = cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET msg_body='$msg_body' WHERE msg_id='$msg_id' AND author_md5_id ='{$USER['ID']}' AND author_id = '0' LIMIT 1");
+            }
         }
 
         $header_location = (@preg_match('/Microsoft|WebSTAR|Xitami/', getenv('SERVER_SOFTWARE'))) ? 'Refresh: 0; URL=' : 'Location: ';

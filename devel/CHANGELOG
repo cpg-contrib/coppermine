@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-06-02 [M] Fixed discrepancies between themes.inc.php and sample theme {GauGau}
 2006-06-02 [A] Added code so that during upload the last selected album comes preselect in album list {Abbas}
 2006-06-01 [A] Added Approve/Disapprove radio buttons in editpics.php as well as editOnePic.php {Aditya}
 2006-06-01 [A] Added config settable global password for registration feature {Abbas}
