@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-06-05 [B] Removed filmstrip function from classic theme {Nibbler}
 2006-06-05 [S] Fixed the usermgr security issue {Abbas}
 2006-05-23 [M] Increased version number in svn from 1.4.6 to 1.4.7 {GauGau}
 2006-05-23 [D] Added missing detail in database requirements section {GauGau}
