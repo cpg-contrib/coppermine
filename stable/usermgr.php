@@ -754,7 +754,7 @@ function update_user($user_id)
     mysql_free_result($result);
 
     if (utf_strlen($user_name) < 2) cpg_die(ERROR, $lang_register_php['err_uname_short'], __FILE__, __LINE__);
-	if ($user_password && utf_strlen($user_password) < 2) cpg_die(ERROR, $lang_register_php['err_password_short'], __FILE__, __LINE__);
+        if ($user_password && utf_strlen($user_password) < 2) cpg_die(ERROR, $lang_register_php['err_password_short'], __FILE__, __LINE__);
 
     if (is_array($group_list)) {
         $user_group_list = '';
@@ -781,6 +781,10 @@ function update_user($user_id)
     $sql_update .= " WHERE user_id = '$user_id'";
 
     cpg_db_query($sql_update);
+}
+
+if (isset($_GET['op']) && !GALLERY_ADMIN_MODE) {
+    cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 }
 
 $op = isset($_GET['op']) ? $_GET['op'] : '';
