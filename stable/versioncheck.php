@@ -3974,9 +3974,9 @@ $return = '
 1.4.7|update.php|1.4.7|3082|mandatory|r@
 1.4.7|upgrade-1.0-to-1.2.php|1.4.7|3082|mandatory|r@
 1.4.7|upload.php|1.4.7|3082|mandatory|r@
-1.4.7|usermgr.php|1.4.7|3098|mandatory|r@
+1.4.7|usermgr.php|1.4.7|3101|mandatory|r@
 1.4.7|util.php|1.4.7|3082|mandatory|r@
-1.4.7|versioncheck.php|1.4.7|3101|mandatory|r@
+1.4.7|versioncheck.php|1.4.7|3109|mandatory|r@
 1.4.7|viewlog.php|1.4.7|3082|mandatory|r@
 1.4.7|xp_publish.php|1.4.7|3082|mandatory|r@
 1.4.7|zipdownload.php|1.4.7|3082|mandatory|r@
@@ -4032,7 +4032,7 @@ $return = '
 1.4.7|include/exif.php|1.4.7|3082|mandatory|r@
 1.4.7|include/exif_php.inc.php|1.4.7|3082|mandatory|r@
 1.4.7|include/exifReader.inc.php|1.4.7|3082|mandatory|r@
-1.4.7|include/functions.inc.php|1.4.7|3096|mandatory|r@
+1.4.7|include/functions.inc.php|1.4.7|3108|mandatory|r@
 1.4.7|include/imageObjectGD.class.php|1.4.7|3082|mandatory|r@
 1.4.7|include/imageObjectIM.class.php|1.4.7|3082|mandatory|r@
 1.4.7|include/index.html|1.4.7|3082|mandatory|r@
