@@ -284,7 +284,7 @@ function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
         $picture_count = $nbEnr[0];
         mysql_free_result($result);
 
-        $sql = "SELECT count(msg_id) FROM {$CONFIG['TABLE_COMMENTS']} as c " . 'LEFT JOIN ' . $CONFIG['TABLE_PICTURES'] . ' as p ' . 'ON c.pid=p.pid ' . 'LEFT JOIN ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' . 'ON a.aid=p.aid ' . 'WHERE 1' . $pic_filter. ' AND approved=\'YES\'';
+        $sql = "SELECT count(msg_id) FROM {$CONFIG['TABLE_COMMENTS']} as c " . 'LEFT JOIN ' . $CONFIG['TABLE_PICTURES'] . ' as p ' . 'ON c.pid=p.pid ' . 'LEFT JOIN ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' . 'ON a.aid=p.aid ' . 'WHERE 1' . $pic_filter. ' AND approval=\'YES\'';
         $result = cpg_db_query($sql);
         $nbEnr = mysql_fetch_array($result);
         $comment_count = $nbEnr[0];
