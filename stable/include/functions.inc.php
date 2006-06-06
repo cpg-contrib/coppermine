@@ -1272,15 +1272,17 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 $count = mysql_num_rows($result);
                 mysql_free_result($result);
 
-                // Choose code for proper 'lastalb' display - prior to 1.4.7: incorrect display
-                if (!in_array(substr(mysql_get_server_info(),0,4),array('3.23','4.0.'))) {
-                    $META_ALBUM_SET_LASTALB = str_replace($CONFIG['TABLE_PICTURES'],'p1',$META_ALBUM_SET);
-                    $query = "SELECT *,a.title AS title,a.aid AS aid FROM {$CONFIG['TABLE_PICTURES']} AS p1,{$CONFIG['TABLE_ALBUMS']} AS a WHERE p1.ctime = (SELECT MAX(p2.ctime) FROM {$CONFIG['TABLE_PICTURES']} AS p2 WHERE p1.aid = p2.aid AND p1.aid = a.aid AND p1.approved = 'YES' $META_ALBUM_SET_LASTALB) ORDER BY ctime DESC $limit";
-                } else {
-                    // incorrect code for MySQL 3.23 and 4.0 - need to find fix
+                // Try query with sub-query (only valid for MySQL 4.1 and up)
+                $META_ALBUM_SET_LASTALB = str_replace($CONFIG['TABLE_PICTURES'],'p1',$META_ALBUM_SET);
+                $query = "SELECT *,a.title AS title,a.aid AS aid FROM {$CONFIG['TABLE_PICTURES']} AS p1,{$CONFIG['TABLE_ALBUMS']} AS a WHERE p1.ctime = (SELECT MAX(p2.ctime) FROM {$CONFIG['TABLE_PICTURES']} AS p2 WHERE p1.aid = p2.aid AND p1.aid = a.aid AND p1.approved = 'YES' $META_ALBUM_SET_LASTALB) ORDER BY ctime DESC $limit";
+                // This query will not be logged, but this is the only way to stop an output error page if sub-query is not allowed
+                $result = mysql_query($query);
+                if (!$result) {
+                    // Must be running MySQL 3.23.x or 4.0.x, so use this incorrect query
+                    // Need to fix this query to return the correct order of albums and correct thumbnails
                     $query = "SELECT *,{$CONFIG['TABLE_ALBUMS']}.title AS title,{$CONFIG['TABLE_ALBUMS']}.aid AS aid FROM {$CONFIG['TABLE_PICTURES']},{$CONFIG['TABLE_ALBUMS']} WHERE {$CONFIG['TABLE_PICTURES']}.aid = {$CONFIG['TABLE_ALBUMS']}.aid AND approved = 'YES' $META_ALBUM_SET GROUP BY {$CONFIG['TABLE_PICTURES']}.aid ORDER BY {$CONFIG['TABLE_PICTURES']}.ctime DESC $limit";
+                    $result = cpg_db_query($query);
                 }
-                $result = cpg_db_query($query);
                 $rowset = cpg_db_fetch_rowset($result);
                 mysql_free_result($result);
 
