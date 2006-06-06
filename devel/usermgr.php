@@ -783,11 +783,7 @@ function update_user($user_id)
     cpg_db_query($sql_update);
 }
 
-if (isset($_GET['op']) && !GALLERY_ADMIN_MODE) {
-    cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
-}
-
-$op = isset($_GET['op']) ? $_GET['op'] : '';
+$op = (GALLERY_ADMIN_MODE && isset($_GET['op'])) ? $_GET['op'] : '';
 
 switch ($op) {
     case 'edit' :
