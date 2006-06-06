@@ -28,6 +28,7 @@ Changelog
 
 2006-06-06 [S] Modified fix for usermgr security issue {Paver}
 2006-06-05 [S] Fixed the usermgr security issue {Abbas}
+2006-06-04 [B] Fixed private images showing up in lastup & random {Paver}
 2006-06-02 [M] Fixed discrepancies between themes.inc.php and sample theme {GauGau}
 2006-06-02 [A] Added code so that during upload the last selected album comes preselect in album list {Abbas}
 2006-06-01 [A] Added Approve/Disapprove radio buttons in editpics.php as well as editOnePic.php {Aditya}
