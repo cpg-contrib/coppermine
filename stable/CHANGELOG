@@ -9,7 +9,7 @@ it under the terms of the GNU General Public License as published by
 the Free Software Foundation; either version 2 of the License, or
 (at your option) any later version.
 ********************************************
-Coppermine version: 1.4.7
+Coppermine version: 1.4.8
 $Source$
 $Revision$
 $Author$
@@ -26,6 +26,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-06-07 [M] Release of cpg1.4.8 {GauGau}
+2006-06-07 [M] Updated version count {GauGau}
 2006-06-07 [B] Reversed 'lastalb' fix due to stability issue {Paver}
 2006-06-06 [M] Release of cpg1.4.7 {GauGau}
 2006-06-06 [M] Updated version count in versioncheck.php {GauGau}

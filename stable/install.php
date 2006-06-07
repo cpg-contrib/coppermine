@@ -10,7 +10,7 @@
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
   ********************************************
-  Coppermine version: 1.4.7
+  Coppermine version: 1.4.8
   $Source$
   $Revision$
   $Author$
@@ -364,7 +364,7 @@ function html_input_config($error_msg = '')
           <td width="40%" class="tableb"><b>MySQL table prefix</b><br />(default value is OK; do not use dots!)
           </td>
           <td width="60%" class="tableb" valign="top">
-                  <input type="text" class="textinput" name="table_prefix" value="<?php echo ($_POST['table_prefix'] ? $_POST['table_prefix'] : 'cpg147_') ?>" />
+                  <input type="text" class="textinput" name="table_prefix" value="<?php echo ($_POST['table_prefix'] ? $_POST['table_prefix'] : 'cpg148_') ?>" />
           </td>
          </tr>
          <tr>

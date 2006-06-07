@@ -10,7 +10,7 @@
 	  the Free Software Foundation; either version 2 of the License, or
 	  (at your option) any later version.
 	  ********************************************
-	  Coppermine version: 1.4.7
+	  Coppermine version: 1.4.8
 	  $Source$
 	  $Revision$
 	  $Author$
