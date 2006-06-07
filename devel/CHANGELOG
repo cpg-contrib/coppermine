@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-06-07 [B] Reversed 'lastalb' fix due to stability issue {Paver}
 2006-06-06 [B] Fixed 'lastalb' bug for MySQL 4.1+ (known issue for 3.23, 4.0) {Paver}
 2006-06-06 [S] Modified fix for usermgr security issue {Paver}
 2006-06-05 [S] Fixed the usermgr security issue {Abbas}
