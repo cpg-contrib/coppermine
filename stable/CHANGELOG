@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-06-16 [M] Counted version number up {GauGau}
 2006-06-12 [B] Added table type info for all tables {GauGau}
 2006-06-07 [M] Release of cpg1.4.8 {GauGau}
 2006-06-07 [M] Updated version count {GauGau}
