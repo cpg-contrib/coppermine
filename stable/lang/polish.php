@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /*************************
 Coppermine Photo Gallery
 ************************
@@ -43,6 +43,16 @@ $lang_translation_info = array(
   'trans_date' => '2006-01-30'
   );
 
+$lang_translation_info = array(
+  'lang_name_english' => 'Polish',
+  'lang_name_native' => 'Polski',
+  'lang_country_code' => 'pl',
+  'trans_name' => 'Jacek Domoń',
+  'trans_email' => 'plusz@plusz.net',
+  'trans_website' => 'http://www.plusz.net',
+  'trans_date' => '2006-06-16'
+  );
+
 $lang_charset = 'utf-8';
 $lang_text_dir = 'ltr'; // ('ltr' for left to right, 'rtl' for right to left)
 
@@ -51,7 +61,7 @@ $lang_byte_units = array('Bajtów', 'KB', 'MB');
 
 // Day of weeks and months
 $lang_day_of_week = array('Nd', 'Pn', 'Wt', 'Śr', 'Czw', 'Pt', 'Sob');
-$lang_month = array('Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień');
+$lang_month = array('stycznia', 'lutego', 'marca', 'kwietnia', 'maja', 'czerwca', 'lipca', 'sierpnia', 'września', 'października', 'listopada', 'grudnia');
 
 // Some common strings
 $lang_yes = 'Tak';
@@ -64,13 +74,13 @@ $lang_check_uncheck_all = 'Zaznacz/Odznacz wszystko'; //cpg1.4
 
 // The various date formats
 // See http://www.php.net/manual/en/function.strftime.php to define the variable below
-$album_date_fmt =    '%B %d, %Y';
-$lastcom_date_fmt =  '%m/%d/%y at %H:%M';
-$lastup_date_fmt = '%B %d, %Y';
-$register_date_fmt = '%B %d, %Y';
-$lasthit_date_fmt = '%B %d, %Y at %I:%M %p';
-$comment_date_fmt =  '%B %d, %Y at %I:%M %p';
-$log_date_fmt = '%B %d, %Y at %I:%M %p'; //cpg1.4
+$album_date_fmt =    '%e %B %Y';
+$lastcom_date_fmt =  '%e/%m/%y,  %H:%M';
+$lastup_date_fmt = '%e %B %Y';
+$register_date_fmt = '%e %B %Y';
+$lasthit_date_fmt = '%e %B %Y, %H:%M';
+$comment_date_fmt =  '%e %B %Y, %H:%M';
+$log_date_fmt = '%e %B %Y, %H:%M'; //cpg1.4
 
 // For the word censor
 $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 
@@ -117,12 +127,12 @@ $lang_errors = array(
   'action_failed' => 'Działanie nie powiodło się. Coppermine nie może przetworzyć Twojego żądania.', //cpg1.3.0
   'no_zip' => 'Biblioteki do obsługi archiwów ZIP nie są obecnie dostępne. Skontaktuj się z administratorem Coppermine.', //cpg1.3.0
   'zip_type' => 'Nie masz uprawnień by przesyłać archiwa ZIP.', //cpg1.3.0
-  'database_query' => 'Wystąpił błąd podczas przedtwarzania bazy danych', //cpg1.4
+  'database_query' => 'Wystąpił błąd podczas przetwarzania bazy danych', //cpg1.4
   'non_exist_comment' => 'Wybrany komentarz nie istnieje', //cpg1.4
 );
 
 $lang_bbcode_help_title = 'Pomoc - bbcode'; //cpg1.4
-$lang_bbcode_help = 'Możesz użyć następujących kodów: <li>[b]Pogrubienie[/b] =&gt; <b>Pogrubienie</b></li><li>[i]Kursywa[/i] =&gt; <i>Kursywa</i></li><li>[url=http://yoursite.com/]Adres URL[/url] =&gt; <a href="http://yoursite.com">Tekst URL</a></li><li>[email]user@domain.com[/email] =&gt; <a href="mailto:user@domain.com">user@domain.com</a></li><li>[color=red]kolorowy tekst[/color] =&gt; <span style="color:red">kolorowy tekst</span></li><li>[img]http://coppermine.sf.net/demo/images/red.gif[/img] => <img src="../images/red.gif" border="0" alt="" /></li>'; //cpg1.4
+$lang_bbcode_help = 'Możesz użyć następujących kodów: <li>[b]Pogrubienie[/b] =&gt; <b>Pogrubienie</b></li><li>[i]Kursywa[/i] =&gt; <i>Kursywa</i></li><li>[url=http://twojastrona.com/]Adres URL[/url] =&gt; <a href="http://twojastrona.com">Tekst URL</a></li><li>[email]uzytkownik@domena.com[/email] =&gt; <a href="mailto:uzytkownik@domena.com">uzytkownik@domena.com</a></li><li>[color=red]kolorowy tekst[/color] =&gt; <span style="color:red">kolorowy tekst</span></li><li>[img]http://coppermine.sf.net/demo/images/red.gif[/img] => <img src="../images/red.gif" border="0" alt="" /></li>'; //cpg1.4
 
 // ------------------------------------------------------------------------- //
 // File theme.php
@@ -137,7 +147,7 @@ $lang_main_menu = array(
   'my_gal_lnk' => 'Moje albumy',
   'my_prof_title' => 'Przeglądaj swój profil', //cpg1.4
   'my_prof_lnk' => 'Mój profil',
-  'adm_mode_title' => 'Przełącz do trypu Administratora',
+  'adm_mode_title' => 'Przełącz do trybu Administratora',
   'adm_mode_lnk' => 'Tryb Administratora',
   'usr_mode_title' => 'Przełącz na tryb użytkownika',
   'usr_mode_lnk' => 'Tryb użytkownika',
@@ -163,7 +173,7 @@ $lang_main_menu = array(
   'fav_lnk' => 'Ulubione',
   'memberlist_title' => 'Członkowie galerii',
   'memberlist_lnk' => 'Członkowie galerii',
-  'faq_title' => 'Najczęściej zadawne pytania w galerii &quot;Coppermine&quot;',
+  'faq_title' => 'Najczęściej zadawane pytania w galerii &quot;Coppermine&quot;',
   'faq_lnk' => 'FAQ',
 );
 
@@ -190,8 +200,8 @@ $lang_gallery_admin_menu = array(
   'key_lnk' => 'Słowa kluczowe', //cpg1.4
   'ban_title' => 'Blokowanie użytkowników', //cpg1.4
   'ban_lnk' => 'Blokowanie',
-  'db_ecard_title' => 'Przejżyj e-kartki', //cpg1.4
-  'db_ecard_lnk' => 'e-Kartki',
+  'db_ecard_title' => 'Przejrzyj e-kartki', //cpg1.4
+  'db_ecard_lnk' => 'e-kartki',
   'pictures_title' => 'Posortuj zdjęcia w albumach', //cpg1.4
   'pictures_lnk' => 'Sortowanie zdjęć', //cpg1.4
   'documentation_lnk' => 'Dokumentacja', //cpg1.4
@@ -214,7 +224,7 @@ $lang_cat_list = array(
 );
 
 $lang_album_list = array(
-  'album_on_page' => '%d albumów na %d stronach',
+  'album_on_page' => ' albumów: %d stron: %d',
 );
 
 $lang_thumb_view = array(
@@ -232,7 +242,7 @@ $lang_thumb_view = array(
   'sort_pa' => 'Sortuj według pozycji rosnąco', //cpg1.4
   'sort_pd' => 'Sortuj według pozycji malejąco', //cpg1.4
   'download_zip' => 'Pobierz jako plik ZIP',
-  'pic_on_page' => '%d plików na %d stronie (stronach)',
+  'pic_on_page' => 'plików: %d, stron: %d',
   'user_on_page' => '%d użytkowników na %d stronie (stronach)',
   'enter_alb_pass' => 'Wpisz hasło do albumy', //cpg1.4
   'invalid_pass' => 'Nieprawidłowe hasło', //cpg1.4
@@ -374,9 +384,9 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
   'Laughing' => 'Śmiech',
   'Mad' => 'Zły',
   'Razz' => 'Nabijam się',
-  'Embarassed' => 'Upokorzony',
-  'Crying or Very sad' => 'Płączę albo jest mi bardzo smutno',
-  'Evil or Very Mad' => 'bardzo zły',
+  'Embarassed' => 'Zawstydzony',
+  'Crying or Very sad' => 'Płaczę, jest mi bardzo smutno',
+  'Evil or Very Mad' => 'Bardzo zły',
   'Twisted Evil' => 'Zakręcony diabełek',
   'Rolling Eyes' => 'Przewracanie oczami',
   'Wink' => 'Puszczać oczko',
@@ -451,117 +461,117 @@ if (defined('BANNING_PHP')) $lang_banning_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('BRIDGEMGR_PHP')) $lang_bridgemgr_php = array(
-  'title' => 'Kreator łączenia',
+  'title' => 'Kreator integracji',
   'warning' => 'Uwaga: używając tego kreatora musisz brać pod uwagę fakt, że niektóre istotne dane są przesyłane jako treść formularzy html. Uruchom go tylko na swoim własnym komputerze (nie na publicznym, np. w kafejce) i nie zapomnij wyczyścić pamięci podręcznej przeglądarki oraz plików tymczasowych po zakończeniu pracy, w przeciwnym przypadku postronne osoby mogą uzyskać dostęp do twoich danych!',
   'back' => 'wstecz',
   'next' => 'dalej',
-  'start_wizard' => 'Start bridging wizard',
-  'finish' => 'Finish',
-  'hide_unused_fields' => 'hide unused form fields (recommended)',
-  'clear_unused_db_fields' => 'clear invalid database entries (recommended)',
-  'custom_bridge_file' => 'your custom bridge file\'s name (if the bridge file\'s name is <i>myfile.inc.php</i>, enter <i>myfile</i> into this field)',
-  'no_action_needed' => 'No action needed in this step. Just click \'next\' to continue.',
-  'reset_to_default' => 'Reset to default value',
-  'choose_bbs_app' => 'choose application to bridge coppermine with',
-  'support_url' => 'Go here for support on this application',
-  'settings_path' => 'path(s) used by your BBS app',
-  'database_connection' => 'database connection',
-  'database_tables' => 'database tables',
-  'bbs_groups' => 'BBS groups',
-  'license_number' => 'License number',
-  'license_number_explanation' => 'enter your license number (if applicable)',
-  'db_database_name' => 'Database name',
-  'db_database_name_explanation' => 'Enter the name of the database your BBS app uses',
-  'db_hostname' => 'Database host',
-  'db_hostname_explanation' => 'Hostname where your mySQL database resides, usually &quot;localhost&quot;',
-  'db_username' => 'Database user account',
-  'db_username_explanation' => 'mySQL user account to use for connection with BBS',
-  'db_password' => 'Database passsword',
-  'db_password_explanation' => 'Passsword for this mySQL user account',
-  'full_forum_url' => 'Forum URL',
-  'full_forum_url_explanation' => 'Full URL of your BBS app (including the leading http:// bit, e.g. http://www.yourdomain.tld/forum)',
-  'relative_path_of_forum_from_webroot' => 'Relative forum path',
-  'relative_path_of_forum_from_webroot_explanation' => 'Relative path to your BBS app from the webroot (Example: if your BBS is at http://www.yourdomain.tld/forum/, enter &quot;/forum/&quot; into this field)',
-  'relative_path_to_config_file' => 'Relative path to your BBS\'s config file',
-  'relative_path_to_config_file_explanation' => 'Relative path to your BBS, seen from your Coppermine folder (e.g. &quot;../forum/&quot; if your BBS is at http://www.yourdomain.tld/forum/ and Coppermine at http://www.yourdomain.tld/gallery/)',
-  'cookie_prefix' => 'Cookie prefix',
-  'cookie_prefix_explanation' => 'this has to be your BBS\'s cookie name',
-  'table_prefix' => 'Table prefix',
-  'table_prefix_explanation' => 'Must match the prefix you chose for your BBS when setting it up.',
-  'user_table' => 'User table',
-  'user_table_explanation' => '(usually default value should be OK, unless your BBS install isn\'t standard)',
-  'session_table' => 'Session table',
-  'session_table_explanation' => '(usually default value should be OK, unless your BBS install isn\'t standard)',
-  'group_table' => 'Group table',
-  'group_table_explanation' => '(usually default value should be OK, unless your BBS install isn\'t standard)',
-  'group_relation_table' => 'Group relation table',
-  'group_relation_table_explanation' => '(usually default value should be OK, unless your BBS install isn\'t standard)',
-  'group_mapping_table' => 'Group mapping table',
-  'group_mapping_table_explanation' => '(usually default value should be OK, unless your BBS install isn\'t standard)',
-  'use_standard_groups' => 'Use standard BBS usergroups',
-  'use_standard_groups_explanation' => 'Use standard (built-in) usergroups (recommended). This will make all custom usergroups settings made on this page become void. Only disable this option if you REALLY know what you\'re doing!',
-  'validating_group' => 'Validating group',
-  'validating_group_explanation' => 'The group ID of your BBS where users accounts that need validation are in (usually default value should be OK, unless your BBS install isn\'t standard)',
-  'guest_group' => 'Guest group',
-  'guest_group_explanation' => 'Group ID of your BBS where guests (anonymous users) are in (default value should be OK, only edit if you know what you\'re doing)',
-  'member_group' => 'Member group',
-  'member_group_explanation' => 'Group ID of your BBS where &quot;regular&quot; users accounts are in (default value should be OK, only edit if you know what you\'re doing)',
-  'admin_group' => 'Admin group',
-  'admin_group_explanation' => 'Group ID of your BBS where admins are in (default value should be OK, only edit if you know what you\'re doing)',
-  'banned_group' => 'Banned group',
-  'banned_group_explanation' => 'Group ID of your BBS where banned users are in (default value should be OK, only edit if you know what you\'re doing)',
-  'global_moderators_group' => 'Global moderators group',
-  'global_moderators_group_explanation' => 'Group ID of your BBS where global moderators of your BBS are in (default value should be OK, only edit if you know what you\'re doing)',
-  'special_settings' => 'BBS-specific settings',
-  'logout_flag' => 'phpBB version (logout flag)',
-  'logout_flag_explanation' => 'What\'s your BBS version (this setting specifies how logouts are being handled)',
-  'use_post_based_groups' => 'Use post-based groups?',
-  'logout_flag_yes' => '2.0.5 or higher',
-  'logout_flag_no' => '2.0.4 or lower',
-  'use_post_based_groups_explanation' => 'Should the groups from the BBS that are defined by the number of posts be taken into account (allows a granular permissions management) or just the default groups (makes administration easier, recommended). You can change this setting later as well.',
-  'use_post_based_groups_yes' => 'yes',
-  'use_post_based_groups_no' => 'no',
-  'error_title' => 'You need to correct these errors before you can continue. Go to the previous screen.',
-  'error_specify_bbs' => 'You have to specify what application you want to bridge your Coppermine install with.',
-  'error_no_blank_name' => 'You can\'t leave the name of your custom bridge file blank.',
-  'error_no_special_chars' => 'The bridge file name mustn\'t contain any special chars except underscore (_) and dash (-)!',
-  'error_bridge_file_not_exist' => 'The bridge file %s doesn\'t exist on the server. Check if you have actually uploaded it.',
-  'finalize' => 'enable/disable BBS integration',
-  'finalize_explanation' => 'So far, the settings you specified have been written into the database, but BBS integration hasn\'t been enabled. You can switch integration on/off later at any time. Make sure to remember the admin username and password from standalone Coppermine, you might need it later to be able to make any changes. If anything goes wrong, go to %s and disable BBS integration there, using your standalone (unbridged) admin account (usually the one you set up during Coppermine install).',
-  'your_bridge_settings' => 'Your bridge settings',
-  'title_enable' => 'Enable integration/bridging with %s',
-  'bridge_enable_yes' => 'enable',
-  'bridge_enable_no' => 'disable',
-  'error_must_not_be_empty' => 'must not be empty',
-  'error_either_be' => 'must either be %s or %s',
-  'error_folder_not_exist' => '%s doesn\'t exist. Correct the value you entered for %s',
-  'error_cookie_not_readible' => 'Coppermine can\'t read a cookie named %s. Correct the value you entered for %s, or go to your BBS administration panel and make sure that the cookie path is readible for coppermine.',
-  'error_mandatory_field_empty' => 'You can not leave the field %s blank - fill in the proper value.',
-  'error_no_trailing_slash' => 'There mustn\'t be a trailing slash in the field %s.',
-  'error_trailing_slash' => 'There must be a trailing slash in the field %s.',
-  'error_db_connect' => 'Could not connect to the mySQL database with the data you specified. Here\'s what mySQL said:',
-  'error_db_name' => 'Although Coppermine could establish a connection, it wasn\'t able to find the database %s. Make sure you have specified %s properly. Here\'s what mySQL said:',
-  'error_prefix_and_table' => '%s and ',
-  'error_db_table' => 'Could not find the table %s. Make sure you have specified %s correctly.',
-  'recovery_title' => 'Bridge Manager: emergency recovery',
-  'recovery_explanation' => 'If you came here to administer the BBS integration of your Coppermine gallery, you have to log in first as admin. If you can not log in because bridging doesn\'t work as expected, you can disable BBS integration with this page. Entering your username and password will not log you in, it will only disable BBS integration. Refer to the documentation for details.',
-  'username' => 'Username',
-  'password' => 'Password',
-  'disable_submit' => 'submit',
-  'recovery_success_title' => 'Authorization successfull',
-  'recovery_success_content' => 'You have successfully disabled BBS bridging. Your Coppermine install runs now in standalone mode.',
-  'recovery_success_advice_login' => 'Log in as admin to edit your bridge settings and/or enable BBS integration again.',
-  'goto_login' => 'Go to login page',
-  'goto_bridgemgr' => 'Go to bridge manager',
-  'recovery_failure_title' => 'Authorization failed',
-  'recovery_failure_content' => 'You supplied the wrong credentials. You will have to supply the admin account data of the standalone version (usually the account you set up during Coppermine install).',
-  'try_again' => 'try again',
-  'recovery_wait_title' => 'Wait time has not elapsed',
-  'recovery_wait_content' => 'For security reasons this script does not allow failed logons in short succession, so you will have to wait a bit untill you\'re allowed to try to authenticate.',
-  'wait' => 'wait',
-  'create_redir_file' => 'Create redirection file (recommended)',
-  'create_redir_file_explanation' => 'To redirect users back to Coppermine once they logged into your BBS, you need a redirection file to be created within your BBS folder. When this option is checked, the bridge manager will attempt to create this file for you, or give you code ready to copy-and-paste to create the file manually.',
-  'browse' => 'browse',
+  'start_wizard' => 'Rozpocznij kreatora integracji',
+  'finish' => 'Zakończ',
+  'hide_unused_fields' => 'ukryj nieużywane pola formularza (rekomendowane)',
+  'clear_unused_db_fields' => 'ukryj niewłaściwe wpisy w bazie danych (rekomendowane)',
+  'custom_bridge_file' => 'nazwa twojego spersonalizowanego pliku połączenia (jeśli nazwa pliku połączenia to <i>myfile.inc.php</i>, wpisz <i>myfile</i> do tego pola)',
+  'no_action_needed' => 'W tym kroku wystarczy kliknąć \'dalej\' aby kontynuować.',
+  'reset_to_default' => 'Przywróć wartość domyślną',
+  'choose_bbs_app' => 'wybierz instalację z którą chcesz zintegrować galerię coppermine',
+  'support_url' => 'Przejdź tutaj aby uzyskać wsparcie dotyczące tej aplikacji',
+  'settings_path' => 'ścieżka(ścieżki) używane przez twoją instalację BBS',
+  'database_connection' => 'połączenie do bazy danych',
+  'database_tables' => 'tabele bazy danych',
+  'bbs_groups' => 'grupy BBS',
+  'license_number' => 'Numer licencji',
+  'license_number_explanation' => 'wprowadź numer licencji (jeśli to konieczne)',
+  'db_database_name' => 'Nazwa bazy danych',
+  'db_database_name_explanation' => 'Wprowadź nazwę bazy danych, z której korzysta Twoja aplikacja BBS',
+  'db_hostname' => 'Host bazy danych',
+  'db_hostname_explanation' => 'Nazwa komputera na którym zainstalowano twoją bazę danych mySQL, zazwyczaj: &quot;localhost&quot;',
+  'db_username' => 'Użytkownik bazy danych',
+  'db_username_explanation' => 'nazwa użytkownika bazy mySQL używane do połączenia z BBS',
+  'db_password' => 'Hasło bazy danych',
+  'db_password_explanation' => 'Hasło dla wybranego użytkownika bazy danych mySQL',
+  'full_forum_url' => 'Adres URL forum',
+  'full_forum_url_explanation' => 'Pełny adres URL Twojej instalacji BBS (włączając http:// bit, np. http://www.twojadomena.com/forum)',
+  'relative_path_of_forum_from_webroot' => 'Ścieżka względna do forum',
+  'relative_path_of_forum_from_webroot_explanation' => 'Ścieżka względna do Twojej aplikacji BBS z katalogu webroot (Przykład: jeśli Twój BBS jest zlokalizowany pod adresem http://www.twojadomena.com/forum/, wpisz &quot;/forum/&quot; w to pole)',
+  'relative_path_to_config_file' => 'Ścieżka względna do pliku konfiguracyjnego Twojego BBS',
+  'relative_path_to_config_file_explanation' => 'Ścieżka względna do Twojej instalacji BBS, widziana z katalogu Twojej instalacji Coppermine (np. &quot;../forum/&quot; jeśli Twój BBS znajduje się pod adresem http://www.twojadomena.com/forum/ a galeria Coppermine pod adresem http://www.twojadomena.com/galeria/)',
+  'cookie_prefix' => 'Prefiks Cookie',
+  'cookie_prefix_explanation' => 'musi być to nazwa identyczna z nazwą Cookie generowaną przez Twoją instalację BBS',
+  'table_prefix' => 'Prefiks tabeli',
+  'table_prefix_explanation' => 'Musi być to nazwa zgodna z prefiksem jaki wybrałeś podczas konfiguracji BBS.',
+  'user_table' => 'Tabela użytkowników',
+  'user_table_explanation' => '(zazwyczaj wartość domyślna powinna być poprawna, chyba, że Twoja instalacja BBS jest niestandardowa)',
+  'session_table' => 'Tabela sesji',
+  'session_table_explanation' => '(zazwyczaj wartość domyślna powinna być poprawna, chyba, że Twoja instalacja BBS jest niestandardowa)',
+  'group_table' => 'Tabela grup',
+  'group_table_explanation' => '(zazwyczaj wartość domyślna powinna być poprawna, chyba, że Twoja instalacja BBS jest niestandardowa)',
+  'group_relation_table' => 'Tabela relacji grup',
+  'group_relation_table_explanation' => '(zazwyczaj wartość domyślna powinna być poprawna, chyba, że Twoja instalacja BBS jest niestandardowa)',
+  'group_mapping_table' => 'Tabela mapowania grup',
+  'group_mapping_table_explanation' => '(zazwyczaj wartość domyślna powinna być poprawna, chyba, że Twoja instalacja BBS jest niestandardowa)',
+  'use_standard_groups' => 'Użyj standardowych grup użytkowników BBS',
+  'use_standard_groups_explanation' => 'Użyj standardowych (wbudowanych) grup użytkowników (rekomendowane). To sprawi że wszystkie spersonalizowane grupy użytkowników na tej stronie zostaną pominięte. Wyłącz tę opcję TYLKO jeśli naprawdę wiesz co robisz!',
+  'validating_group' => 'Grupa walidacyjna',
+  'validating_group_explanation' => 'ID grupy w której znajdują się konta użytkowników wymagające walidacji (zazwyczaj wartość domyślna powinna być poprawna, chyba, że Twoja instalacja BBS jest niestandardowa)',
+  'guest_group' => 'Grupa gości',
+  'guest_group_explanation' => 'ID grupy w której znajdują się goście (użytkownicy anonimowi) (zazwyczaj wartość domyślna powinna być poprawna, chyba, że Twoja instalacja BBS jest niestandardowa)',
+  'member_group' => 'Grupa członków',
+  'member_group_explanation' => 'ID grupy w której znajdują się konta &quot;zwykłych&quot; użytkowników (zazwyczaj wartość domyślna powinna być poprawna, chyba, że Twoja instalacja BBS jest niestandardowa)',
+  'admin_group' => 'Grupa adminów',
+  'admin_group_explanation' => ' ID grupy w której znajdują się konta administratorów (zazwyczaj wartość domyślna powinna być poprawna, chyba, że Twoja instalacja BBS jest niestandardowa)',
+  'banned_group' => 'Grupa zabronionych',
+  'banned_group_explanation' => 'ID grupy w której znajdują się konta użytkowników zabronionych (zazwyczaj wartość domyślna powinna być poprawna, chyba, że Twoja instalacja BBS jest niestandardowa)',
+  'global_moderators_group' => 'Grupa globalnych moderatorów',
+  'global_moderators_group_explanation' => 'ID grupy w której znajdują się konta globalnych moderatorów BBS (zazwyczaj wartość domyślna powinna być poprawna, chyba, że Twoja instalacja BBS jest niestandardowa)',
+  'special_settings' => 'specyficzne ustawienia BBS',
+  'logout_flag' => 'wersja phpBB (logout flag)',
+  'logout_flag_explanation' => ' Twoja wersja BBS (to ustawienie specyfikuje w jaki sposób będą obsługiwane wylogowania)',
+  'use_post_based_groups' => 'Użyć grup na bazie postów?',
+  'logout_flag_yes' => '2.0.5 lub wyższa',
+  'logout_flag_no' => '2.0.4 lub niższa',
+  'use_post_based_groups_explanation' => 'Czy mają zostać wzięte pod uwagę grupy zdefiniowane przez ilość postów (pozwala na granulacyjne zarządzanie uprawnieniami), czy też może tylko grupy domyślne (czyni administrację łatwiejszą, rekomendowane). Możesz również zmienić to ustawienie później.',
+  'use_post_based_groups_yes' => 'tak',
+  'use_post_based_groups_no' => 'nie',
+  'error_title' => 'Musisz poprawić te błędy zanim będzie można kontynuować. Przejdź do poprzedniego ekranu.',
+  'error_specify_bbs' => 'Musisz ustalić z jaką aplikacją chcesz zintegrować galerię Coppermine.',
+  'error_no_blank_name' => 'Nie można pozostawić pustym nazwy pola twojego spersonalizowanego pliku integracji.',
+  'error_no_special_chars' => 'Nazwa pliku integracji nie może zawierać żadnych znaków specjalnych poza podkreśleniem (_) i myślnikiem (-)!',
+  'error_bridge_file_not_exist' => 'Plik integracji nie istnieje na serwerze. Sprawdź czy go przesłałeś.',
+  'finalize' => 'włącz/wyłącz integrację BBS',
+  'finalize_explanation' => 'Ustawienia które ustaliłeś zostały zapisane w bazie danych, ale integracja BBS nie została włączona. Możesz zmienić to ustawienie później w dowolnym czasie. Zapamiętaj nazwę użytkownika i hasło Twojej osobnej instalacji Coppermine, może Ci być potrzebne później abyś mógł dokonać zmian. Jeśli coś pójdzie źle, przejdź do %s i wyłącz integrację BBS, używając Twojego osobnego (nie połaczonego) konta administratora (zazwyczaj ustalonego podczas instalacji Coppermine).',
+  'your_bridge_settings' => 'Twoje ustawienia integracji',
+  'title_enable' => 'Włącz integrację z %s',
+  'bridge_enable_yes' => 'włącz',
+  'bridge_enable_no' => 'wyłącz',
+  'error_must_not_be_empty' => 'nie może być puste',
+  'error_either_be' => 'musi być %s lub %s',
+  'error_folder_not_exist' => '%s nie istnieje. Popraw wartość którą wprowadziłeś dla %s',
+  'error_cookie_not_readible' => 'Coppermine nie może odczytywać plików Cookiem o nazwie %s. Popraw nazwę cookie wprowadzoną dla %s, lub przejdź do panelu administracji Twojego BBS i upewnij się, że taka ścieżka jest odczytywana przez coppermine.',
+  'error_mandatory_field_empty' => 'Nie możesz zostawić pustym pola %s – wypełnij właściwą wartość.',
+  'error_no_trailing_slash' => 'Nie może być kończącego slasha w polu %s.',
+  'error_trailing_slash' => 'W polu %s musi być kończący slash.',
+  'error_db_connect' => 'Nie można połączyć się z serwerem bazy danych mySQL przy użyciu podanych przez Ciebie danych. Oto co zwrócił mySQL:',
+  'error_db_name' => 'Pomimo ustanowienia połączenia z serwerem, Coppermine nie mógł znaleźć bazy danych. Upewnij się, że podałeś poprawną nazwę. Oto co zwrócił mySQL:',
+  'error_prefix_and_table' => '%s i ',
+  'error_db_table' => 'Nie odnaleziono tabeli %s. Upewnij się, że podałeś nazwę %s poprawnie.',
+  'recovery_title' => 'Menedżer Integracji: odzyskiwanie awaryjne',
+  'recovery_explanation' => 'Jeśli chcesz administrować integracją Twojej galerii Coppermine, musisz najpierw zalogować się jako administrator. Jeśli nie możesz zalogować się, ponieważ integracja nie zadziałała tak jak tego oczekiwano, możesz ją wyłączyć. Wprowadzenie nazwy Twojego użytkownika i hasła nie spowoduje zalogowania, a jedynie wyłączy integrację. Sprawdź dokumentację aby uzyskać więcej informacji.',
+  'username' => 'Użytkownik',
+  'password' => 'Hasło',
+  'disable_submit' => 'prześlij',
+  'recovery_success_title' => 'Autoryzacja udana',
+  'recovery_success_content' => 'Integracja BBS wyłączona. Instalacja Coppermine działa od tej pory w trybie standardowym.',
+  'recovery_success_advice_login' => 'Aby zarządzać ustawieniami integracji i włączyć ją lub wyłączyć, zaloguj się jako administrator.',
+  'goto_login' => 'Przejdź do strony logowania',
+  'goto_bridgemgr' => 'Przejdź do menedżera integracji',
+  'recovery_failure_title' => 'Nieudana autoryzacja',
+  'recovery_failure_content' => 'Podałeś niewłaściwe dane logowania. Będziesz musiał podać dane konta administratora instalacji standardowej (zazwyczaj jest to konto które stworzyłeś w czasie instalacji galerii Coppermine).',
+  'try_again' => 'spróbuj ponownie',
+  'recovery_wait_title' => 'Czas oczekiwania jeszcze nie minął',
+  'recovery_wait_content' => 'Ze względów bezpieczeństwa, niniejszy skrypt nie pozwala na ponowne logowanie w krótkim okresie czasu po nieudanym logowaniu, należy poczekać na ponowną możliwość autoryzacji.',
+  'wait' => 'czekaj',
+  'create_redir_file' => 'Tworzenie pliku przekierowania (rekomendowane)',
+  'create_redir_file_explanation' => 'Aby przekierować użytkowników do galerii Coppermine po zalogowaniu do Twojego BBS, potrzebujesz pliku przekierowania w folderze BBS. Po wybraniu tej opcji, menedżer integracji spróbuje utworzyć ten plik, lub wygeneruje kod który należy skopiować i wkleić, jeśli trzeba będzie stworzyć ten plik ręcznie..',
+  'browse' => 'przeglądaj',
 );
 
 // ------------------------------------------------------------------------- //
@@ -619,18 +629,18 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'date_d' => 'Data malejąco',
   'pos_a' => 'Pozycja rosnąco', //cpg1.4
   'pos_d' => 'Pozycja malejąco', //cpg1.4
-  'th_any' => 'Max Aspect',
+  'th_any' => 'Max stosunek szerokości do wysokości',
   'th_ht' => 'Wysokość',
   'th_wd' => 'Szerokość',
   'label' => 'Etykieta',
-  'item' => 'element',
+  'item' => 'Element',
   'debug_everyone' => 'Wszyscy',
   'debug_admin' => 'Tylko Admininistrator',
   'no_logs'=> 'Wyłączone', //cpg1.4
   'log_normal'=> 'Normalne', //cpg1.4
   'log_all' => 'Wszystko', //cpg1.4
    'view_logs' => 'Pokaż logi', //cpg1.4
-  'click_expand' => 'Kliknj nazwę sekcji żeby rozwinąć', //cpg1.4
+  'click_expand' => 'Kliknj nazwę sekcji aby rozwinąć', //cpg1.4
   'expand_all' => 'Rozwiń wszystkie ', //cpg1.4
   'notice1' => '(*) Te ustawienia nie mogą być zmieniane jeżeli masz już pliki w bazie danych.', //cpg1.4 - (relocated)
   'notice2' => '(**) Gdy zmienisz te ustawienia, to tylko pliki dodane od tego momentu będą obięte zmianami. Nie zaleca się zmiany tych ustawień jeśli w bazie danych są już pliki. Jednakże  możesz dokonać zmian w już istniejących plikach poprzez &quot;<a href="util.php">Ustawienia Administratora</a> (zmiana rozmiaru plików)&quot;.', //cpg1.4 - (relocated)
@@ -793,9 +803,9 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Ścieżka do ciasteczek', 'cookie_path', 0, 'f=index.htm&amp;as=admin_cookie_path&amp;ae=admin_cookie_path_end'), //cpg1.4
 
   'Ustawienia e-mail  (zwykle nic tu nie trzeba zmieniać; gdy nie jesteś pewien, pozostaw pola puste)', //cpg1.4
-  array('SMTP Host (when left blank, sendmail will be used)', 'smtp_host', 0, 'f=index.htm&amp;as=admin_email&amp;ae=admin_email_end'), //cpg1.4
-  array('SMTP Username', 'smtp_username', 0), //cpg1.4
-  array('SMTP Password', 'smtp_password', 0), //cpg1.4
+  array('Serwer SMTP (jeśli puste, zostanie użyty sendmail)', 'smtp_host', 0, 'f=index.htm&amp;as=admin_email&amp;ae=admin_email_end'), //cpg1.4
+  array('Nazwa użytkownika SMTP', 'smtp_username', 0), //cpg1.4
+  array('Hasło SMTP', 'smtp_password', 0), //cpg1.4
 
   'Statystyki i logi', //cpg1.4
   array('Tryb zapisywania logów <a href="#notice3" class="clickable_option">***</a>', 'log_mode', 11, 'f=index.htm&amp;as=admin_logging_log_mode&amp;ae=admin_logging_log_mode_end'), //cpg1.4
@@ -908,10 +918,10 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
   'pic_mgr' => 'Menedżer obrazów', //cpg1.4
   'update_pic' => 'Aktualizuję obraz \'%s\' o nazwie \'%s\' i indeksie \'%s\'', //cpg1.4
   'username' => 'Nazwa użytkownika', //cpg1.4
-  'anonymized_comments' => '%s anonimowych komentarzy', //cpg1.4
-  'anonymized_uploads' => '%s anonimowo przesłanych plików', //cpg1.4
-  'deleted_comments' => '%s usuniętych komentarzy', //cpg1.4
-  'deleted_uploads' => '%s usuniętych przesłanych plików', //cpg1.4
+  'anonymized_comments' => 'anonimowe komentarze: %s ', //cpg1.4
+  'anonymized_uploads' => 'pliki przesłane anonimowo: %s ', //cpg1.4
+  'deleted_comments' => 'usunięte komentarze: %s ', //cpg1.4
+  'deleted_uploads' => 'usunięte przesłane pliki: %s ', //cpg1.4
   'user_deleted' => 'użytkownik %s usunięty', //cpg1.4
   'activate_user' => 'Aktywuj konto użytkownika', //cpg1.4
   'user_already_active' => 'Konto już było aktywne', //cpg1.4
@@ -949,7 +959,7 @@ $lang_display_image_php = array(
   'confirm_del' => 'Czy jesteś pewien że chcesz USUNĄĆ ten plik?\\nKomentarze również zostaną usunięte.', //js-alert
   'del_pic' => 'USUŃ TEN PLIK',
   'size' => '%s x %s pikseli',
-  'views' => '%s razy',
+  'views' => '%s',
   'slideshow' => 'Pokaz slajdów',
   'stop_slideshow' => 'ZATRZYMAJ POKAZ SLAJDÓW',
   'view_fs' => 'Kliknij aby obejrzeć w pełnym rozmiarze',
@@ -962,19 +972,19 @@ $lang_picinfo = array(
   'title' =>'Informacje o pliku',
   'Filename' => 'Nazwa pliku',
   'Album name' => 'Nazwa albumu',
-  'Rating' => 'Ocena (%s głosów)',
+  'Rating' => 'Ocena (głosów %s)',
   'Keywords' => 'Słowa kluczowe',
   'File Size' => 'Rozmiar pliku',
   'Date Added' => 'Data dodania', //cpg1.4
   'Dimensions' => 'Wymiary',
-  'Displayed' => 'Wyświetlony',
+  'Displayed' => 'Wyświetleń',
   'URL' => 'URL', //cpg1.4
-  'Make' => 'Make', //cpg1.4
+  'Make' => 'Producent', //cpg1.4
   'Model' => 'Model', //cpg1.4
   'DateTime' => 'Data i czas', //cpg1.4
-  'DateTimeOriginal' => 'Data zdjęcia', //cpg1.4
-  'ISOSpeedRatings'=>'ISO', //cpg1.4
-  'MaxApertureValue' => 'Max Aperture', //cpg1.4
+  'DateTimeOriginal' => 'Data wykonania zdjęcia', //cpg1.4
+  'ISOSpeedRatings'=>'Czułość ISO', //cpg1.4
+  'MaxApertureValue' => 'Przesłona', //cpg1.4
   'FocalLength' => 'Ogniskowa', //cpg1.4
   'Comment' => 'Komentarz',
   'addFav'=>'Dodaj do ulubionych',
@@ -988,55 +998,55 @@ $lang_picinfo = array(
   'ColorSpace' => 'Przestrzeń kolorów', //cpg1.4
   'ExposureProgram' => 'Program ekspozycji', //cpg1.4
   'Flash' => 'Lampa błyskowa', //cpg1.4
-  'MeteringMode' => 'Tryb mierzenia', //cpg1.4
+  'MeteringMode' => 'Tryb pomiaru', //cpg1.4
   'ExposureTime' => 'Czas naświetlania', //cpg1.4
-  'ExposureBiasValue' => 'Exposure Bias', //cpg1.4
+  'ExposureBiasValue' => 'Korekta ekspozycji', //cpg1.4
   'ImageDescription' => 'Opis obrazu', //cpg1.4
-  'Orientation' => 'Orientation', //cpg1.4
-  'xResolution' => 'X Resolution', //cpg1.4
-  'yResolution' => 'Y Resolution', //cpg1.4
-  'ResolutionUnit' => 'Resolution Unit', //cpg1.4
-  'Software' => 'Software', //cpg1.4
-  'YCbCrPositioning' => 'YCbCrPositioning', //cpg1.4
-  'ExifOffset' => 'Exif Offset', //cpg1.4
-  'IFD1Offset' => 'IFD1 Offset', //cpg1.4
+  'Orientation' => 'Orientacja', //cpg1.4
+  'xResolution' => 'Rozdzielczość X', //cpg1.4
+  'yResolution' => 'Rozdzielczość Y', //cpg1.4
+  'ResolutionUnit' => 'Jednostka rozdzielczości', //cpg1.4
+  'Software' => 'Oprogramowanie', //cpg1.4
+  'YCbCrPositioning' => 'Pozycjonowanie YCbCr', //cpg1.4
+  'ExifOffset' => 'Offset Exif', //cpg1.4
+  'IFD1Offset' => 'Offset IFD1', //cpg1.4
   'FNumber' => 'FNumber', //cpg1.4
-  'ExifVersion' => 'Exif Version', //cpg1.4
-  'DateTimeOriginal' => 'DateTime Original', //cpg1.4
-  'DateTimedigitized' => 'DateTime digitized', //cpg1.4
-  'ComponentsConfiguration' => 'Components Configuration', //cpg1.4
-  'CompressedBitsPerPixel' => 'Compressed Bits Per Pixel', //cpg1.4
-  'LightSource' => 'Light Source', //cpg1.4
-  'ISOSetting' => 'ISO Setting', //cpg1.4
-  'ColorMode' => 'Color Mode', //cpg1.4
-  'Quality' => 'Quality', //cpg1.4
-  'ImageSharpening' => 'Image Sharpening', //cpg1.4
-  'FocusMode' => 'Focus Mode', //cpg1.4
-  'FlashSetting' => 'Flash Setting', //cpg1.4
-  'ISOSelection' => 'ISO Selection', //cpg1.4
-  'ImageAdjustment' => 'Image Adjustment', //cpg1.4
+  'ExifVersion' => 'Wersja Exif', //cpg1.4
+  'DateTimeOriginal' => 'Oryginalna data i czas', //cpg1.4
+  'DateTimedigitized' => 'Data i czas digitalizacji', //cpg1.4
+  'ComponentsConfiguration' => 'Konfiguracja komponentów', //cpg1.4
+  'CompressedBitsPerPixel' => 'Bity na piksel', //cpg1.4
+  'LightSource' => 'Źródło światła', //cpg1.4
+  'ISOSetting' => 'Ustawienie ISO', //cpg1.4
+  'ColorMode' => 'Tryb koloru', //cpg1.4
+  'Quality' => 'Jakość', //cpg1.4
+  'ImageSharpening' => 'Wyostrzanie obrazu', //cpg1.4
+  'FocusMode' => 'Tryb ogniskowania', //cpg1.4
+  'FlashSetting' => 'Ustawienie błysku', //cpg1.4
+  'ISOSelection' => 'Wybór ISO', //cpg1.4
+  'ImageAdjustment' => 'Dostosowanie obrazu', //cpg1.4
   'Adapter' => 'Adapter', //cpg1.4
-  'ManualFocusDistance' => 'Manual Focus Distance', //cpg1.4
-  'DigitalZoom' => 'Digital Zoom', //cpg1.4
-  'AFFocusPosition' => 'AF Focus Position', //cpg1.4
-  'Saturation' => 'Saturation', //cpg1.4
-  'NoiseReduction' => 'Noise Reduction', //cpg1.4
-  'FlashPixVersion' => 'Flash Pix Version', //cpg1.4
-  'ExifImageWidth' => 'Exif Image Width', //cpg1.4
-  'ExifImageHeight' => 'Exif Image Height', //cpg1.4
-  'ExifInteroperabilityOffset' => 'Exif Interoperability Offset', //cpg1.4
+  'ManualFocusDistance' => 'Ręczna ogniskowa', //cpg1.4
+  'DigitalZoom' => 'Zoom cyfrowy', //cpg1.4
+  'AFFocusPosition' => 'Pozycja AF ogniskowej', //cpg1.4
+  'Saturation' => 'Nasycenie', //cpg1.4
+  'NoiseReduction' => 'Redukcja szumów', //cpg1.4
+  'FlashPixVersion' => 'Wersja Flash Pix', //cpg1.4
+  'ExifImageWidth' => 'Szerkość obrazu wg. Exif', //cpg1.4
+  'ExifImageHeight' => 'Wysokość obrazu wg. Exif', //cpg1.4
+  'ExifInteroperabilityOffset' => 'Przesunięcie Exif', //cpg1.4
   'FileSource' => 'Źródło pliku', //cpg1.4
-  'SceneType' => 'Scene Type', //cpg1.4
-  'CustomerRender' => 'Customer Render', //cpg1.4
+  'SceneType' => 'Typ sceny', //cpg1.4
+  'CustomerRender' => 'Zobrazowanie własne', //cpg1.4
   'ExposureMode' => 'Tryb ekspozycji', //cpg1.4
-  'WhiteBalance' => 'White Balance', //cpg1.4
-  'DigitalZoomRatio' => 'Digital Zoom Ratio', //cpg1.4
-  'SceneCaptureMode' => 'Scene Capture Mode', //cpg1.4
+  'WhiteBalance' => 'Balans bieli', //cpg1.4
+  'DigitalZoomRatio' => 'Cyfrowe powiększenie', //cpg1.4
+  'SceneCaptureMode' => 'Tryb ujęcia', //cpg1.4
   'GainControl' => 'Gain Control', //cpg1.4
   'Contrast' => 'Kontrast', //cpg1.4
   'Saturation' => 'Nasycenie', //cpg1.4
   'Sharpness' => 'Ostrość', //cpg1.4
-  'ManageExifDisplay' => 'Manage Exif Display', //cpg1.4
+  'ManageExifDisplay' => 'Zarządzanie wyświetlaniem Exif', //cpg1.4
   'submit' => 'Wyślij', //cpg1.4
   'success' => 'Informacje pomyślnie zaktualizowane.', //cpg1.4
   'details' => 'Szczegóły', //cpg1.4
@@ -1140,7 +1150,7 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
   'new_keyword' => 'Nowe słowo kluczowe', //cpg1.4
   'new_keywords' => 'Znaleziono nowe słowa kluczowe', //cpg1.4
   'existing_keyword' => 'Istniejące słowa kluczowe', //cpg1.4
-  'pic_info_str' => '%s &razy; %s - %s KB - %s wyświetleń - %s głosów',
+  'pic_info_str' => '%s x %s - %s KB - %s wyświetleń - %s głosów',
   'approve' => 'Akceptuj',
   'postpone_app' => 'Odłóż akceptację na później',
   'del_pic' => 'Usuń plik',
@@ -1189,34 +1199,34 @@ if (defined('FAQ_PHP')) $lang_faq_php = array(
 
 if (defined('FAQ_PHP')) $lang_faq_data = array(
   'Ogólne pytania',
-  array('Why do I need to register?', 'Registration may or may not be required by the administrator. Registration gives a member additional features such as uploading, having a favorite list, rating pictures and posting comments etc.', 'allow_user_registration', '1'),
-  array('How do I register?', 'Go to &quot;Register&quot; and fill out the required fields (and the optional ones if you want to).<br />If the Administrator has Email Activation enabled, then after submitting your information you should recieve an email message at the address that you have submitted while registering, giving you instructions on how to activate your membership. Your membership must be activated in order for you to login.', 'allow_user_registration', '1'), //cpg1.4
-  array('How Do I login?', 'Go to &quot;Login&quot;, submit your username and password and check &quot;Remember Me&quot; so you will be logged in on the site if you should leave it.<br /><b>IMPORTANT:Cookies must be enabled and the cookie from this site must not be deleted in order to use &quot;Remember Me&quot;.</b>', 'offline', 0),
-  array('Why can I not login?', 'Did you register and click the link that was sent to you via email?. The link will activate your account. For other login problems contact the site administrator.', 'offline', 0),
-  array('What if I forgot my password?', 'If this site has a &quot;Forgot password&quot; link then use it. Other than that contact the site administrator for a new password.', 'offline', 0),
-  //array('What if I changed my email address?', 'Just simply login and change your email address through &quot;Profile&quot;', 'offline', 0),
-  array('How do I save a picture to &quot;My Favorites&quot;?', 'Click on a picture and click on the &quot;picture info&quot; link (<img src="images/info.gif" width="16" height="16" border="0" alt="Picture information" />); scroll down to the picture information set and click &quot;Add to fav&quot;.<br />The administrator may have the &quot;picture information&quot; on by default.<br />IMPORTANT:Cookies must be enabled and the cookie from this site must not be deleted.', 'offline', 0),
-  array('How do I rate a file?', 'Click on a thumbnail and go to the bottom and choose a rating.', 'offline', 0),
-  array('How do I post a comment for a picture?', 'Click on a thumbnail and go to the bottom and post a comment.', 'offline', 0),
-  array('How do I upload a file?', 'Go to &quot;Upload&quot;and select the album that you want to upload to. Click &quot;Browse,&quot; find the file to upload, and click &quot;open.&quot; Add a title and description if you want. Click &quot;Submit&quot;.<br /><br />Alternatively, for those users using <b>Windows XP</b>, you can upload multiple files directly to your own private albums using the XP Publishing wizard.<br />For instructions on how, and to get the required registry file, click <a href="xp_publish.php">here.</a>', 'allow_private_albums', 1), //cpg1.4
-  array('Where do I upload a picture to?', 'You will be able to upload a file to one of your albums in &quot;My Gallery&quot;. The Administrator may also allow you to upload a file to one or more of the albums in the Main Gallery.', 'allow_private_albums', 0),
-  array('What type and size of a file can I upload?', 'The size and type (jpg, png, etc.) is up to the administrator.', 'offline', 0),
-  array('How do I create, rename or delete an album in &quot;My Gallery&quot;?', 'You should already be in &quot;Admin-Mode&quot;<br />Go to &quot;Create/Order My Albums&quot;and click &quot;New&quot;. Change &quot;New Album&quot; to your desired name.<br />You can also rename any of the albums in your gallery.<br />Click &quot;Apply Modifications&quot;.', 'allow_private_albums', 0),
-  array('How can I modify and restrict users from viewing my albums?', 'You should already be in &quot;Admin Mode&quot;<br />Go to &quot;Modify My Albums. On the &quot;Update Album&quot; bar, select the album that you want to modify.<br />Here, you can change the name, description, thumbnail picture, restrict viewing and comment/rating permissions.<br />Click &quot;Update Album&quot;.', 'allow_private_albums', 0),
-  array('How can I view other users\' galleries?', 'Go to &quot;Album List&quot; and select &quot;User Galleries&quot;.', 'allow_private_albums', 0),
-  array('What are cookies?', 'Cookies are a plain text piece of data that is sent from a website and is put on to your computer.<br />Cookies usually allow a user to leave and return to the site without having to login again and other various chores.', 'offline', 0),
-  array('Where can I get this program for my site?', 'Coppermine is a free Multimedia Gallery, released under GNU GPL. It is full of features and has been ported to various platforms. Visit the <a href="http://coppermine.sf.net/">Coppermine Home Page</a> to find out more or download it.', 'offline', 0),
+  array('Dlaczego muszę się zarejestrować?', ' Rejestracja może być wymagana przez administratora serwisu. Zarejestrowanie się daje użytkownikowi dodatkowe możliwości, takie jak przesyłanie własnych plików, tworzenie listy ulubionych, ocenianie zdjęć, zamieszczanie komentarzy itp.', 'allow_user_registration', '1'),
+  array('Jak się zarejestrować?', 'Przejdź do sekcji &quot;Rejestracja&quot; i wypełnij wymagane pola (ew. także pola opcjonalne).<br />Jeżeli Administrator włączył opcję aktywacji przez e-mail, po wypełnieniu formularza rejestracji, na podany tam adres pocztowy otrzymasz e-mail zawierający instrukcje w jaki sposób aktywować konto. Aktywacja jest wymagana przed pierwszym logowaniem.', 'allow_user_registration', '1'), //cpg1.4
+  array('Jak się logować?', 'Przejdź do sekcji &quot;Logowanie&quot;, Wprowadź swoją nazwę użytkownika i hasło. Możesz także wybrać opcję &quot;Pamiętaj mnie&quot; abyś nie musiał logować się przy ponownym wejściu na stronę.<br /><b>WAŻNE: aby ta funkcja serwisu działała, należy włączyć obsługę plików cookie i nie kasować plików cookie generowanych przez serwis.</b>', 'offline', 0),
+  array('Dlaczego nie mogę się zalogować?', 'Czy zarejestrowałeś się już i kliknąłeś na łącze z wysłanego do Ciebie e-mail\'a? Łącze to pozwoli na aktywowanie Twojego konta. W przypadku innych kłopotów skontaktuj się z administratorem serwisu.', 'offline', 0),
+  array('Co mam zrobić jeżeli zapomnę hasła?', 'Jeżeli serwis udostępnia link &quot;Zapomniałem hasła&quot;, użyj go. W innym wypadku skontaktuj się z administratorem i poproś go o nowe hasło.', 'offline', 0),
+  //array('Co mam zrobić, jeżeli zmienił mi się adres e-mail?', 'Zaloguj się i zmień swój e-mail w &quot;Profilu&quot;', 'offline', 0),
+  array('Jak zapisać plik do &quot;Moich ulubionych&quot;?', 'Kliknij na pliku, a następnie na łączu &quot;informacji o zdjęciu&quot; (<img src="images/info.gif" width="16" height="16" border="0" alt="Picture information" />); przejdź na dół i kliknij &quot;Dodaj do ulubionych&quot;.<br />Możliwe, że administrator włączył opcję domyślnego pokazywania informacji o pliku.<br />WAŻNE: Należy włączyć obsługę plików cookie z tego serwisu i nie kasować ich.', 'offline', 0),
+  array('Jak ocenić plik?', 'Kliknij na miniaturze, przejdź na dół strony i wybierz odpowiednią ocenę.', 'offline', 0),
+  array('Jak zamieścić komentarz do pliku?', 'Kliknij na miniaturze, przejdź na dół i w odpowiednim polu wpisz komentarz.', 'offline', 0),
+  array('Jak przesłać plik?', 'Przejdź do &quot;Przesyłania zdjęć&quot; i wybierz album do którego chcesz przesłać plik, kliknij &quot;Przeglądaj&quot; znajdź plik który chcesz przesłać, wybierz &quot;Otwórz&quot; (dodaj opis, jeżeli chcesz) i kliknij &quot;Prześlij&quot;.<br /><br />Alternatywnie, użytkownicy <b>Windows XP</b>, mogą przesyłać większą ilość plików jednorazowo, bezpośrednio do albumów prywatnych, używając systemowego Kreatora Publikacji w sieci WWW.<br />Aby uzyskać informacje jak pobrać odpowiedni wpis do rejestru, kliknij <a href="xp_publish.php">tutaj.</a>', 'allow_private_albums', 1), //cpg1.4
+  array('Gdzie mogę przesłać plik?', 'Pliki można przesyłać do jednego z albumów w Twojej Galerii. Administrator może także zezwolić Ci na przesyłanie zdjęć do albumów w Galerii Głównej.', 'allow_private_albums', 0),
+  array('Jakie pliki można przesyłać? W jakiej wielkości?', 'Typ i rodzaj przesyłanych plików (jpg, png, etc.) określa administrator serwisu', 'offline', 0),
+  array(' W jaki sposób tworzyć, kasować i zmieniać nazwy albumów w &quot;Mojej Galerii&quot;?', 'Powinieneś przejść do &quot;Trybu Administracyjnego&quot;<br />Przejdź do &quot;Tworzenie/Porządkowanie albumów&quot;i kliknij &quot;Nowy&quot;. Zmień domyślną nazwę &quot;Nowy Album&quot; na wybraną przez siebie.<br />Możesz także modyfikować dowolny album ze swojej galerii.<br />Następnie kliknij &quot;Zastosuj zmiany&quot;.', 'allow_private_albums', 0),
+  array(' W jaki sposób zezwalać i odbierać zezwolenia na oglądanie moich albumów?', 'Przejdź do &quot;Trybu Administracyjnego&quot;<br />i sekcji &quot;Modyfikuj moje albumy. Na pasku &quot;Aktualizuj Album&quot; wybierz album, który chcesz zmodyfikować. <br />Możesz zmienić jego nazwę, opis, miniaturę, ustawić zezwolenia na oglądanie i komentowanie/ocenianie jego zawartości.<br />Następnie kliknij &quot;Aktualizuj album&quot;.', 'allow_private_albums', 0),
+  array('Co zrobić by móc obejrzeć galerie innych użytkowników?', 'Przejdź do &quot;Listy Albumów&quot; i wybierz &quot;Galerie użytkowników&quot;.', 'allow_private_albums', 0),
+  array('Co to takiego pliki cookie?', 'Pliki cookie zawierają dane tekstowe zapisywane przez stronę internetową na Twoim komputerze. <br />Zazwyczaj pozwalają użytkownikowi opuścić stronę i wejść na nią ponownie bez konieczności ponownego logowania.', 'offline', 0),
+  array('Skąd mogę pobrać ten program aby umieścić go we własnym serwisie?', 'Galeria Coppermine jest darmową galerią multimediów, rozpowszechnianą na licencji GNU GPL. Zawiera rozbudowaną funkcjonalność i została przygotowana na różne platformy. Odwiedź <a href="http://coppermine.sf.net/">stronę domową Coppermine</a> by dowiedzieć się więcej i ściągnąć najnowszą wersję programu.', 'offline', 0),
 
-  'Navigating the Site',
-  array('What\'s &quot;Album List&quot;?', 'This will show you the entire category you are currently in, with a link to each album. If you are not in a category, it will show you the entire gallery with a link to each category. Thumbnails may be a link to the category.', 'offline', 0),
-  array('What\'s &quot;My Gallery&quot;?', 'This feature lets users create their own galleries and add, delete or modify albums as well as upload to them.', 'allow_private_albums', 1), //cpg1.4
-  array('What\'s the difference between &quot;Admin Mode&quot; and &quot;User Mode&quot;?', 'This feature, when in admin-mode, allows a user to modify their gallery (as well as others if allowed by the administrator).', 'allow_private_albums', 0),
-  array('What\'s &quot;Upload Picture&quot;?', 'This feature allows a user to upload a file (size and type is set by the site administrator) to a gallery selected by either you or the administrator.', 'allow_private_albums', 0),
-  array('What\'s &quot;Last Uploads&quot;?', 'This feature shows the last uploads to the site.', 'offline', 0),
-  array('What\'s &quot;Last Comments&quot;?', 'This feature shows the last comments along with the files posted by users.', 'offline', 0),
-  array('What\'s &quot;Most Viewed&quot;?', 'This feature shows the most viewed files by all users (whether logged in or not).', 'offline', 0),
-  array('What\'s &quot;Top Rated&quot;?', 'This feature shows the top rated files rated by the users, showing the average rating (e.g: five users each gave a <img src="images/rating3.gif" width="65" height="14" border="0" alt="" />: the file would have an average rating of <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> ;Five users rated the file from 1 to 5 (1,2,3,4,5) would result in an average <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> .)<br />The ratings go from <img src="images/rating5.gif" width="65" height="14" border="0" alt="best" /> (best) to <img src="images/rating0.gif" width="65" height="14" border="0" alt="worst" /> (worst).', 'offline', 0),
-  array('What\'s &quot;My Favorites&quot;?', 'This feature will let a user store a favorite file in the cookie that was sent to your computer.', 'offline', 0),
+  'Nawigowanie po stronie',
+  array('Co to jest &quot;Lista albumów&quot;?', 'Lista albumów pokazuje całą kategorię, w której obecnie się znajdujesz wraz z łączami do każdego albumu. Jeżeli nie znajdujesz się obecnie w żadnej kategorii, lista albumów wyświetli całą zawartość galerii wraz z łączami do kategorii, które zawiera. Miniatury mogą być także łączami do kategorii.', 'offline', 0),
+  array('Czym jest &quot;Moja Galeria&quot;?', 'Opcja ta umożliwia użytkownikowi serwisu tworzenie własnej galerii, dodawanie, kasowanie i modyfikowanie albumów, oraz przesyłanie do nich plików.', 1), //cpg1.4
+  array('Czym różni się &quot;Tryb Administracyjny&quot; od &quot;Trybu użytkownika&quot;?', 'Tryb administracyjny umożliwia zarządzanie albumami znajdującymi się w Twojej prywatnej galerii (a także innymi albumami - jeżeli zezwolił na to administrator).', 'allow_private_albums', 0),
+  array('Co to jest &quot;Przesłanie pliku&quot;?', 'To możliwość przesłania pliku (jego rodzaj i wielkość są określone przez administratora) do wybranych albumów.', 'allow_private_albums', 0),
+  array('Co to są &quot;Ostatnie aktualizacje&quot;?', 'Umożliwiają przejrzenie ostatnio dodanych do strony plików.', 'offline', 0),
+  array('Co to są &quot;Ostatnie komentarze&quot;?', 'Ta opcja pokazuje ostatnio dodane przez użytkowników komentarze, oraz pliki których dotyczą.', 'offline', 0),
+  array('Czym jest opcja &quot;Popularne&quot;?', 'Opcja ta pokazuje najczęściej oglądane pliki (dotyczy wszystkich użytkowników - zarówno tych zalogowanych jak i niezalogowanych).', 'offline', 0),
+  array('Co to jest &quot;Top Lista&quot;?', 'Top lista zawiera listę najwyżej ocenianych plików wraz z ich średnią oceną (np. pięciu użytkowników głosuje z oceną <img src="images/rating3.gif" width="65" height="14" border="0" alt="" />: plikowi zostanie przyznana ocena <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> ;lub wśród pięciu innych użytkowników każdy daje plikowi ocenę od 1 do 5 (1,2,3,4,5) co spowoduje przyznanie plikowi średniej oceny <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> .)<br />Klasyfikacja przedstawia się następująco: od <img src="images/rating5.gif" width="65" height="14" border="0" alt="najlepsze" /> (najlepsze) do <img src="images/rating0.gif" width="65" height="14" border="0" alt="najgorsze" /> (najgorsze).', 'offline', 0),
+  array('Czym są &quot;Ulubione&quot;?', 'Ta opcja pozwala użytkownikowi przechowywać odnośniki do ulubionych plików z galerii w pliku cookie zapisywanym przez przeglądarkę.', 'offline', 0),
 );
 
 
@@ -1716,7 +1726,7 @@ if (defined('STAT_DETAILS_PHP')) $lang_stat_details_php = array(
   'ascending' => 'rosnąco', //cpg1.4
   'descending' => 'malejąco', //cpg1.4
   'internal' => 'wewn', //cpg1.4
-  'close' => 'close', //cpg1.4
+  'close' => 'zamknij', //cpg1.4
   'hide_internal_referers' => 'ukryj własnych odsyłających', //cpg1.4
   'date_display' => 'Data wyświetlenia', //cpg1.4
   'submit' => 'wyślij / odśwież', //cpg1.4
@@ -1984,8 +1994,8 @@ $lang_util_php = array(
   'view_log_explanation' => 'Coppermine może śledzić poczynania użytkowników. Możesz przeglądać te logi jeśli włączyłeś logowanie w <a href="admin.php">konfiguracji coppermine</a>.', //cpg1.4
   'versioncheck' => 'Sprawdź wersje', //cpg1.4
   'versioncheck_explanation' => 'Sprawdza wersje plików, aby stwerdzić czy wszystkie zostały podmienione podczas aktualizacji, lub jeśli pliki źródłowe coppermine zostały aktualizowane już po wypuszczeniu bieżącej wersji.', //cpg1.4
-  'bridgemanager' => 'Menedżer Połączeń Mostkowych', //cpg1.4
-  'bridgemanager_explanation' => 'Włącza/wyłącza zintegrowanie (mostkowanie) Coppermine z inną aplikacją (np. forum).', //cpg1.4
+  'bridgemanager' => 'Menedżer Integracji', //cpg1.4
+  'bridgemanager_explanation' => 'Włącza/wyłącza integrację (mostkowanie) Coppermine z inną aplikacją (np. forum).', //cpg1.4
 );
 }
 
