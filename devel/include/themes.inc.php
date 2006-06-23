@@ -307,7 +307,7 @@ $template_cat_list = <<<EOT
 <!-- END catrow -->
 <!-- BEGIN footer -->
         <tr>
-                <td colspan="3" class="tableh1" align="center"><span class="statlink"><b>{STATISTICS}</b></span></td>
+                <td colspan="3" class="tableh1" align="center"><span class="statlink">{STATISTICS}</span></td>
         </tr>
 <!-- END footer -->
 <!-- BEGIN spacer -->
@@ -337,7 +337,7 @@ $template_breadcrumb = <<<EOT
                 <table width="100%" cellpadding="0" cellspacing="0" border="0">
                 <tr>
                         <td align="left"><span class="statlink"><b>{BREADCRUMB}</b></span></td>
-                        <td align="right"><span class="statlink"><b>{STATISTICS}</b></span></td>
+                        <td align="right"><span class="statlink">{STATISTICS}</span></td>
                 </tr>
                 </table>
                 </td>
@@ -359,7 +359,7 @@ $template_album_list = <<<EOT
 
 <!-- BEGIN stat_row -->
         <tr>
-                <td colspan="{COLUMNS}" class="tableh1" align="center"><span class="statlink"><b>{STATISTICS}</b></span></td>
+                <td colspan="{COLUMNS}" class="tableh1" align="center"><span class="statlink">{STATISTICS}</span></td>
         </tr>
 <!-- END stat_row -->
 <!-- BEGIN header -->
@@ -494,7 +494,7 @@ $template_album_list_cat = <<<EOT
 
 <!-- BEGIN c_stat_row -->
         <tr>
-                <td colspan="{COLUMNS}" class="tableh1" align="center"><span class="statlink"><b>{STATISTICS}</b></span></td>
+                <td colspan="{COLUMNS}" class="tableh1" align="center"><span class="statlink">{STATISTICS}</span></td>
         </tr>
 <!-- END c_stat_row -->
 <!-- BEGIN c_header -->
