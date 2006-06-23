@@ -26,7 +26,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
-2006-06-23 [S] Fixed the security flaw in add_hit function reported by imei addmimistrator (addmimistrator(4}gmail(O}com) {Aditya}
+2006-06-23 [S] Fixed the security flaw in parameter cleanup system reported by imei addmimistrator @ http://myimei.com/security/2006-06-20/coppermine-148parameter-cleanup-system-bypassregistering-global-varables.html  (addmimistrator(4}gmail(O}com) {Aditya}
+2006-06-23 [S] Fixed the security flaw in add_hit function reported by imei addmimistrator @ http://myimei.com/security/2006-06-11/copperminephotogallery148-addhit-function-sqlinjection-attack.html  (addmimistrator(4}gmail(O}com) {Aditya}
 2006-06-15 [B] Fixed keyword "insert from list" not working in Firefox {Paver}
 2006-06-12 [B] Fixed loss of default value for user_password in update.sql {Nibbler}
 2006-06-12 [B] Added table type info for all tables {GauGau}
