@@ -2,7 +2,7 @@
 /*************************
   Coppermine Photo Gallery
   ************************
-  Copyright (c) 2003-2006 Coppermine Dev Team
+  Copyright (c) 2003-2005 Coppermine Dev Team
   v1.1 originally written by Gregory DEMAR
 
   This program is free software; you can redistribute it and/or modify
@@ -10,15 +10,15 @@
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
   ********************************************
-  Coppermine version: 1.4.9
-  $Source$
+  Coppermine version: 1.5.0
+  $HeadURL$
   $Revision$
-  $Author$
+  $LastChangedBy$
   $Date$
 **********************************************/
 
-define('COPPERMINE_VERSION', '1.4.9');
-define('COPPERMINE_VERSION_STATUS', 'stable');
+define('COPPERMINE_VERSION', '1.5.0');
+define('COPPERMINE_VERSION_STATUS', 'alpha');
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 
@@ -38,12 +38,15 @@ function cpgGetMicroTime()
 $cpg_time_start = cpgGetMicroTime();
 // Do some cleanup in GET, POST and cookie data and un-register global vars
 $HTML_SUBST = array('&' => '&amp;', '"' => '&quot;', '<' => '&lt;', '>' => '&gt;', '%26' => '&amp;', '%22' => '&quot;', '%3C' => '&lt;', '%3E' => '&gt;','%27' => '&#39;', "'" => '&#39;');
+
+$keysToSkip = array('_POST', '_GET', '_COOKIE', '_REQUEST', '_SERVER');
+
 if (get_magic_quotes_gpc()) {
     if (is_array($_POST)) {
         foreach ($_POST as $key => $value) {
             if (!is_array($value))
                 $_POST[$key] = strtr(stripslashes($value), $HTML_SUBST);
-            if (isset($$key)) unset($$key);
+            if (!in_array($key, $keysToSkip) && isset($$key)) unset($$key);
         }
     }
 
@@ -51,7 +54,7 @@ if (get_magic_quotes_gpc()) {
         foreach ($_GET as $key => $value) {
             unset($_GET[$key]);
             $_GET[strtr(stripslashes($key), $HTML_SUBST)] = strtr(stripslashes($value), $HTML_SUBST);
-            if (isset($$key)) unset($$key);
+            if (!in_array($key, $keysToSkip) && isset($$key)) unset($$key);
         }
     }
 
@@ -59,14 +62,14 @@ if (get_magic_quotes_gpc()) {
         foreach ($_COOKIE as $key => $value) {
             if (!is_array($value))
                 $_COOKIE[$key] = stripslashes($value);
-            if (isset($$key)) unset($$key);
+            if (!in_array($key, $keysToSkip) && isset($$key)) unset($$key);
         }
     }
     if (is_array($_REQUEST)) {
         foreach ($_REQUEST as $key => $value) {
             if (!is_array($value))
                 $_REQUEST[$key] = strtr(stripslashes($value), $HTML_SUBST);
-            if (isset($$key)) unset($$key);
+            if (!in_array($key, $keysToSkip) && isset($$key)) unset($$key);
         }
     }
 } else {
@@ -74,7 +77,7 @@ if (get_magic_quotes_gpc()) {
         foreach ($_POST as $key => $value) {
             if (!is_array($value))
                 $_POST[$key] = strtr($value, $HTML_SUBST);
-            if (isset($$key)) unset($$key);
+            if (!in_array($key, $keysToSkip) && isset($$key)) unset($$key);
         }
     }
 
@@ -82,20 +85,20 @@ if (get_magic_quotes_gpc()) {
         foreach ($_GET as $key => $value) {
             unset($_GET[$key]);
             $_GET[strtr(stripslashes($key), $HTML_SUBST)] = strtr(stripslashes($value), $HTML_SUBST);
-            if (isset($$key)) unset($$key);
+            if (!in_array($key, $keysToSkip) && isset($$key)) unset($$key);
         }
     }
 
     if (is_array($_COOKIE)) {
         foreach ($_COOKIE as $key => $value) {
-            if (isset($$key)) unset($$key);
+            if (!in_array($key, $keysToSkip) && isset($$key)) unset($$key);
         }
     }
     if (is_array($_REQUEST)) {
         foreach ($_REQUEST as $key => $value) {
             if (!is_array($value))
                 $_REQUEST[$key] = strtr($value, $HTML_SUBST);
-            if (isset($$key)) unset($$key);
+            if (!in_array($key, $keysToSkip) && isset($$key)) unset($$key);
         }
     }
 }
@@ -148,9 +151,9 @@ define('CRITICAL_ERROR', 3);
 
 // Include config and functions files
 if(file_exists('include/config.inc.php')){
-        ob_start();
-        require_once 'include/config.inc.php';
-        ob_clean();
+	ob_start();
+	require_once 'include/config.inc.php';
+	ob_clean();
 } else {
   // error handling: if the config file doesn't exist go to install
   die('<html>
@@ -276,7 +279,7 @@ define('USER_ADMIN_MODE', USER_ID && USER_CAN_CREATE_ALBUMS && $USER['am'] && !G
 // Maze's new error report system
 if (!USER_IS_ADMIN) {
     if (!$CONFIG['debug_mode']) $cpgdebugger->stop(); // useless to run debugger cos there's no output
-    error_reporting(E_PARSE); // hide all errors for visitors
+    error_reporting(0); // hide all errors for visitors
 }
 
 // Process theme selection if present in URI or in user profile
@@ -300,7 +303,8 @@ $THEME_DIR = "themes/{$CONFIG['theme']}/";
 // autodetection if default charset is utf-8
 if (!empty($_GET['lang']))
 {
-    $USER['lang'] = ereg("^[a-z0-9_-]*$", $_GET['lang']) ? $_GET['lang'] : $CONFIG['lang'];
+    //$USER['lang'] = $_GET['lang']; Nasty line permitting remote code execution
+	$USER['lang'] = ereg("^[a-z0-9_-]*$", $_GET['lang']) ? $_GET['lang'] : $CONFIG['lang'];
 }
 
 if (isset($USER['lang']) && !strstr($USER['lang'], '/') && file_exists('lang/' . $USER['lang'] . '.php'))
