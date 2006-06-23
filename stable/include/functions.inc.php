@@ -2,7 +2,7 @@
 /*************************
   Coppermine Photo Gallery
   ************************
-  Copyright (c) 2003-2006 Coppermine Dev Team
+  Copyright (c) 2003-2005 Coppermine Dev Team
   v1.1 originally written by Gregory DEMAR
 
   This program is free software; you can redistribute it and/or modify
@@ -10,10 +10,10 @@
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
   ********************************************
-  Coppermine version: 1.4.9
-  $Source$
+  Coppermine version: 1.5.0
+  $HeadURL$
   $Revision$
-  $Author$
+  $LastChangedBy$
   $Date$
 **********************************************/
 
@@ -244,7 +244,7 @@ function cpg_db_error($the_error)
                 $the_error .= "\n\nmySQL error: ".mysql_error()."\n";
 
                 $out = "<br />".$lang_errors['database_query'].".<br /><br/>
-                    <form name=\"mysql\"><textarea rows=\"8\" cols=\"60\">".htmlspecialchars($the_error)."</textarea></form>";
+                    <form name=\"mysql\" id=\"mysql\"><textarea rows=\"8\" cols=\"60\">".htmlspecialchars($the_error)."</textarea></form>";
 
             cpg_die(CRITICAL_ERROR, $out, __FILE__, __LINE__);
         }
@@ -592,6 +592,7 @@ function bb_decode($text)
         if (!count($bbcode_tpl)) {
                 // We do URLs in several different ways..
                 $bbcode_tpl['url']  = '<span class="bblink"><a href="{URL}" rel="external">{DESCRIPTION}</a></span>';
+                $bbcode_tpl['iurl']  = '<span class="bblink"><a href="{URL}">{DESCRIPTION}</a></span>';
                 $bbcode_tpl['email']= '<span class="bblink"><a href="mailto:{EMAIL}">{EMAIL}</a></span>';
 
                 $bbcode_tpl['url1'] = str_replace('{URL}', '\\1\\2', $bbcode_tpl['url']);
@@ -634,6 +635,36 @@ function bb_decode($text)
 
                 $patterns[6] = "#\[img\]([a-z]+?://){1}([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\[/img\]#si";
                 $replacements[6] = $bbcode_tpl['img'];
+
+                $bbcode_tpl['iurl1'] = str_replace('{URL}', '\\1\\2', $bbcode_tpl['iurl']);
+                $bbcode_tpl['iurl1'] = str_replace('{DESCRIPTION}', '\\1\\2', $bbcode_tpl['iurl1']);
+
+                $bbcode_tpl['iurl2'] = str_replace('{URL}', 'http://\\1', $bbcode_tpl['iurl']);
+                $bbcode_tpl['iurl2'] = str_replace('{DESCRIPTION}', '\\1', $bbcode_tpl['iurl2']);
+
+                $bbcode_tpl['iurl3'] = str_replace('{URL}', '\\1\\2', $bbcode_tpl['iurl']);
+                $bbcode_tpl['iurl3'] = str_replace('{DESCRIPTION}', '\\3', $bbcode_tpl['iurl3']);
+
+                $bbcode_tpl['iurl4'] = str_replace('{URL}', 'http://\\1', $bbcode_tpl['iurl']);
+                $bbcode_tpl['iurl4'] = str_replace('{DESCRIPTION}', '\\2', $bbcode_tpl['iurl4']);
+
+                $bbcode_tpl['email'] = str_replace('{EMAIL}', '\\1', $bbcode_tpl['email']);
+
+                // [iurl]xxxx://www.phpbb.com[/iurl] code..
+                $patterns[7] = "#\[iurl\]([a-z]+?://){1}([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\[/iurl\]#si";
+                $replacements[7] = $bbcode_tpl['iurl1'];
+
+                // [iurl]www.phpbb.com[/iurl] code.. (no xxxx:// prefix).
+                $patterns[8] = "#\[iurl\]([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\[/iurl\]#si";
+                $replacements[8] = $bbcode_tpl['iurl2'];
+
+                // [iurl=xxxx://www.phpbb.com]phpBB[/iurl] code..
+                $patterns[9] = "#\[iurl=([a-z]+?://){1}([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\](.*?)\[/iurl\]#si";
+                $replacements[9] = $bbcode_tpl['iurl3'];
+
+                // [iurl=www.phpbb.com]phpBB[/iurl] code.. (no xxxx:// prefix).
+                $patterns[10] = "#\[iurl=([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\](.*?)\[/iurl\]#si";
+                $replacements[10] = $bbcode_tpl['iurl4'];
 
         }
 
@@ -938,13 +969,13 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
                 $approved = GALLERY_ADMIN_MODE ? '' : 'AND approved=\'YES\'';
 
-                $query = "SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE ((aid='$album' $forbidden_set_string ) $keyword) $approved $ALBUM_SET";
+                $query = "SELECT COUNT(pid) from {$CONFIG['TABLE_PICTURES']} WHERE ((aid='$album' $forbidden_set_string ) $keyword) $approved $ALBUM_SET";
                 $result = cpg_db_query($query);
                 $nbEnr = mysql_fetch_array($result);
                 $count = $nbEnr[0];
                 mysql_free_result($result);
 
-                if($select_columns != '*') $select_columns .= ', title, caption,hits,owner_id,owner_name';
+                if($select_columns != '*') $select_columns .= ', title, caption,hits,owner_id,owner_name,pic_rating,votes';
 
                 $query = "SELECT $select_columns from {$CONFIG['TABLE_PICTURES']} WHERE ((aid='$album' $forbidden_set_string ) $keyword) $approved $ALBUM_SET ORDER BY $sort_order $limit";
 
@@ -952,7 +983,11 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 $rowset = cpg_db_fetch_rowset($result);
                 mysql_free_result($result);
                 // Set picture caption
-                if ($set_caption) build_caption($rowset);
+                if ($CONFIG['display_thumbnail_rating'] == 1) {
+                  if ($set_caption) build_caption($rowset, array('pic_rating'));
+                } else {
+                  if ($set_caption) build_caption($rowset);
+                }
 
 
         $rowset = CPGPluginAPI::filter('thumb_caption_regular',$rowset);
@@ -977,7 +1012,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         $TMP_SET = "AND (1";
                 }
 
-                $query = "SELECT COUNT(*) from {$CONFIG['TABLE_COMMENTS']}, {$CONFIG['TABLE_PICTURES']}  WHERE approved = 'YES' AND {$CONFIG['TABLE_COMMENTS']}.pid = {$CONFIG['TABLE_PICTURES']}.pid $TMP_SET $keyword)";
+                $query = "SELECT COUNT({$CONFIG['TABLE_PICTURES']}.pid) from {$CONFIG['TABLE_COMMENTS']}, {$CONFIG['TABLE_PICTURES']}  WHERE approved = 'YES' AND {$CONFIG['TABLE_COMMENTS']}.pid = {$CONFIG['TABLE_PICTURES']}.pid $TMP_SET $keyword)";
                 $result = cpg_db_query($query);
 
                 $nbEnr = mysql_fetch_array($result);
@@ -1006,8 +1041,8 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 break;
 
         case 'lastcomby': // Last comments by a specific user
-                if (isset($_GET['uid'])) {
-                        $uid = (int)$_GET['uid'];
+                if (isset($USER['uid'])) {
+                        $uid = (int)$USER['uid'];
                 } else {
                         $uid = -1;
                 }
@@ -1019,7 +1054,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         $album_name = $lang_meta_album_names['lastcom'].' - '. $user_name;
                 }
 
-                $query = "SELECT COUNT(*) from {$CONFIG['TABLE_COMMENTS']}, {$CONFIG['TABLE_PICTURES']}  WHERE approved = 'YES' AND author_id = '$uid' AND {$CONFIG['TABLE_COMMENTS']}.pid = {$CONFIG['TABLE_PICTURES']}.pid $META_ALBUM_SET";
+                $query = "SELECT COUNT({$CONFIG['TABLE_PICTURES']}.pid) from {$CONFIG['TABLE_COMMENTS']}, {$CONFIG['TABLE_PICTURES']}  WHERE approved = 'YES' AND author_id = '$uid' AND {$CONFIG['TABLE_COMMENTS']}.pid = {$CONFIG['TABLE_PICTURES']}.pid $META_ALBUM_SET";
                 $result = cpg_db_query($query);
                 $nbEnr = mysql_fetch_array($result);
                 $count = $nbEnr[0];
@@ -1046,7 +1081,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         $album_name = $lang_meta_album_names['lastup'];
                 }
 
-                $query = "SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' $META_ALBUM_SET";
+                $query = "SELECT COUNT(pid) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' $META_ALBUM_SET";
                 $result = cpg_db_query($query);
                 $nbEnr = mysql_fetch_array($result);
                 $count = $nbEnr[0];
@@ -1069,8 +1104,8 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 break;
 
         case 'lastupby': // Last uploads by a specific user
-                if (isset($_GET['uid'])) {
-                        $uid = (int)$_GET['uid'];
+                if (isset($USER['uid'])) {
+                        $uid = (int)$USER['uid'];
                 } else {
                         $uid = -1;
                 }
@@ -1082,7 +1117,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         $album_name = $lang_meta_album_names['lastup'] .' - '. $user_name;
                 }
 
-                $query = "SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND owner_id = '$uid' $META_ALBUM_SET";
+                $query = "SELECT COUNT(pid) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND owner_id = '$uid' $META_ALBUM_SET";
                 $result = cpg_db_query($query);
                 $nbEnr = mysql_fetch_array($result);
                 $count = $nbEnr[0];
@@ -1111,7 +1146,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         $album_name = $lang_meta_album_names['topn'];
                 }
 
-                $query ="SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND hits > 0  $META_ALBUM_SET $keyword";
+                $query ="SELECT COUNT(pid) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND hits > 0  $META_ALBUM_SET $keyword";
 
                 $result = cpg_db_query($query);
                 $nbEnr = mysql_fetch_array($result);
@@ -1140,7 +1175,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 } else {
                         $album_name = $lang_meta_album_names['toprated'];
                 }
-                $query = "SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND votes >= '{$CONFIG['min_votes_for_rating']}' $META_ALBUM_SET";
+                $query = "SELECT COUNT(pid) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND votes >= '{$CONFIG['min_votes_for_rating']}' $META_ALBUM_SET";
                 $result = cpg_db_query($query);
                 $nbEnr = mysql_fetch_array($result);
                 $count = $nbEnr[0];
@@ -1167,7 +1202,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 } else {
                         $album_name = $lang_meta_album_names['lasthits'];
                 }
-                $query = "SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' and hits > 0 $META_ALBUM_SET";
+                $query = "SELECT COUNT(pid) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' and hits > 0 $META_ALBUM_SET";
                 $result = cpg_db_query($query);
                 $nbEnr = mysql_fetch_array($result);
                 $count = $nbEnr[0];
@@ -1195,7 +1230,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         $album_name = $lang_meta_album_names['random'];
                 }
 
-                $query = "SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' $META_ALBUM_SET";
+                $query = "SELECT COUNT(pid) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' $META_ALBUM_SET";
                 $result = cpg_db_query($query);
                 $nbEnr = mysql_fetch_array($result);
                 $pic_count = $nbEnr[0];
@@ -1290,7 +1325,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                                 $rowset = array();
                 if (count($FAVPICS)>0){
                         $favs = implode(",",$FAVPICS);
-                        $query = "SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND pid IN ($favs) $META_ALBUM_SET";
+                        $query = "SELECT COUNT(pid) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND pid IN ($favs) $META_ALBUM_SET";
                         $result = cpg_db_query($query);
                         $nbEnr = mysql_fetch_array($result);
                         $count = $nbEnr[0];
@@ -1425,7 +1460,7 @@ function cpg_get_pending_approvals()
 function count_pic_comments($pid, $skip=0)
 {
         global $CONFIG;
-        $result = cpg_db_query("SELECT count(*) from {$CONFIG['TABLE_COMMENTS']} where pid=$pid and msg_id!=$skip");
+        $result = cpg_db_query("SELECT count(msg_id) from {$CONFIG['TABLE_COMMENTS']} where pid=$pid and msg_id!=$skip");
         $nbEnr = mysql_fetch_array($result);
         $count = $nbEnr[0];
         mysql_free_result($result);
@@ -1443,7 +1478,7 @@ function count_pic_comments($pid, $skip=0)
  **/
 function add_hit($pid)
 {
-        global $CONFIG, $raw_ip;
+        global $CONFIG, $raw_ip, $HTML_SUBST;
         cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET hits=hits+1, lasthit_ip='$raw_ip', mtime=CURRENT_TIMESTAMP WHERE pid='$pid'");
 
         /**
@@ -1464,7 +1499,7 @@ function add_hit($pid)
             $os = "Windows";
         }
 
-        $browser = $_SERVER["HTTP_USER_AGENT"];
+        $browser = 'Unknown';
         if(eregi("MSIE",$browser)) {
             if(eregi("MSIE 5.5",$browser)) {
                 $browser = "Microsoft Internet Explorer 5.5";
@@ -1491,14 +1526,17 @@ function add_hit($pid)
 
         $time = time();
 
+        //Sanitize the referer
+        $referer = urlencode(addslashes($_SERVER['HTTP_REFERER']));
+
         // Insert the record in database
         $query = "INSERT INTO {$CONFIG['TABLE_HIT_STATS']}
                           SET
                             pid = $pid,
                             search_phrase = '$query_term',
-                            Ip   = '$_SERVER[REMOTE_ADDR]',
+                            Ip   = '$raw_ip',
                             sdate = '$time',
-                            referer='$_SERVER[HTTP_REFERER]',
+                            referer='$referer',
                             browser = '$browser',
                             os = '$os'";
         cpg_db_query($query);
@@ -1706,6 +1744,8 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
                         $thumb_list[$i]['caption'] = bb_decode($row['caption_text']);
                         $thumb_list[$i]['admin_menu'] = '';
                         $thumb_list[$i]['aid'] = $row['aid'];
+                        $thumb_list[$i]['pwidth'] = $row['pwidth'];
+                        $thumb_list[$i]['pheight'] = $row['pheight'];
                 }
                 theme_display_thumbnails($thumb_list, $thumb_count, $album_name, $album, $cat, $page, $total_pages, is_numeric($album), $display_tabs);
         } else {
@@ -1870,6 +1910,9 @@ function display_film_strip($album, $cat, $pos)
                         $thumb_list[$i]['image'] = "<img src=\"" . $pic_url . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$row['filename']}\" title=\"$pic_title\" />";
                         $thumb_list[$i]['caption'] = $CONFIG['display_film_strip_filename'] ? '<span class="thumb_filename">'.$row['filename'].'</span>' : '';
                         $thumb_list[$i]['admin_menu'] = '';
+                        ######### Added by Abbas #############
+                        $thumb_list[$i]['pid'] = $row['pid'];
+                        ######################################
 
                 }
                 return theme_display_film_strip($thumb_list, $thumb_count, $album_name, $album, $cat, $pos, is_numeric($album));
@@ -2084,7 +2127,7 @@ function cpg_debug_output()
 
         $debug_underline = '&#0010;------------------&#0010;';
         $debug_separate = '&#0010;==========================&#0010;';
-        echo '<form name="debug" action="'.$_SERVER['PHP_SELF'].'">';
+        echo '<form name="debug" action="'.$_SERVER['PHP_SELF'].'" id="debug">';
         starttable('100%', $lang_cpg_debug_output['debug_info'],2);
         echo '<tr><td align="center" valign="middle" class="tableh2" width="100">';
         echo '<script language="javascript" type="text/javascript">
@@ -2504,7 +2547,7 @@ switch ($parameter) {
        $return = 'not yet implemented';
        break;
    default:
-       $return.= $lineBreak . '<form name="cpgChooseLanguage" action="' . $_SERVER['PHP_SELF'] . '" method="get" style="margin-top:0px;margin-bottom:0px;margin-left:0px;margin-right:0px;display:inline">' . $lineBreak;
+       $return.= $lineBreak . '<form name="cpgChooseLanguage" id="cpgChooseLanguage" action="' . $_SERVER['PHP_SELF'] . '" method="get" class="inline">' . $lineBreak;
        $return.= '<select name="cpgLanguageSelect" class="listbox_lang" onchange="if (this.options[this.selectedIndex].value) window.location.href=\'' . $cpgChangeUrl . '\' + this.options[this.selectedIndex].value;">' . $lineBreak;
        $return.='<option selected="selected">' . $lang_language_selection['choose_language'] . '</option>' . $lineBreak;
        foreach ($lang_array as $language) {
@@ -2577,7 +2620,7 @@ switch ($parameter) {
        $return = 'not yet implemented';
        break;
    default:
-       $return.= $lineBreak . '<form name="cpgChooseTheme" action="' . $_SERVER['PHP_SELF'] . '" method="get" style="margin-top:0px;margin-bottom:0px;margin-left:0px;margin-right:0px;display:inline">' . $lineBreak;
+       $return.= $lineBreak . '<form name="cpgChooseTheme" id="cpgChooseTheme" action="' . $_SERVER['PHP_SELF'] . '" method="get" class="inline">' . $lineBreak;
        $return.= '<select name="cpgThemeSelect" class="listbox_lang" onchange="if (this.options[this.selectedIndex].value) window.location.href=\'' . $cpgCurrentTheme . '\' + this.options[this.selectedIndex].value;">' . $lineBreak;
        $return.='<option selected="selected">' . $lang_theme_selection['choose_theme'] . '</option>';
        foreach ($theme_array as $theme) {
@@ -2614,20 +2657,6 @@ function cpg_alert_dev_version() {
             $return = ob_get_contents();
             ob_end_clean();
         }
-        // check if relocate_server.php exists
-        /* removed, because a harmless version of the file has been added
-        if (file_exists('relocate_server.php')) {
-            ob_start();
-            starttable('100%', $lang_version_alert['security_alert']);
-            print '<tr><td class="tableb">';
-            print $lang_version_alert['relocate_exists'];
-            print '</td></tr>';
-            endtable();
-            print '<br />';
-            $return .= ob_get_contents();
-            ob_end_clean();
-        }
-        */
         // check if gallery is offline
         if ($CONFIG['offline'] == 1 && GALLERY_ADMIN_MODE) {
             $return .= '<span style="color:red;font-weight:bold">'.$lang_version_alert['gallery_offline'].'</span><br />&nbsp;<br />';
@@ -2913,6 +2942,18 @@ function utf_ucfirst($str)
   return mb_strtoupper(mb_substr($str, 0, 1)).mb_substr($str, 1);
 }
 
+/*
+  This function replaces special UTF characters to their ANSI equivelant for
+  correct processing by MySQL, keywords, search, etc. since a bug has been
+  found:  http://coppermine-gallery.net/forum/index.php?topic=17366.0
+*/
+function utf_replace($str)
+{
+        # replace unicode spaces
+        $str = preg_replace('#[\xC2\xA0]|[\xE3][\x80][\x80]#', ' ', $str);
+        return $str;
+}
+
 function replace_forbidden($str)
 {
   static $forbidden_chars;
@@ -2930,6 +2971,7 @@ function replace_forbidden($str)
    * Replace them back to normal chars so that the str_replace below can work.
    */
   $str = str_replace(array('&amp;', '&quot;', '&lt;', '&gt;'), array('&', '"', '<', '>'), $str);;
+
   $return = str_replace($forbidden_chars[0], '_', $str);
 
   /**
