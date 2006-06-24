@@ -1,0 +1,122 @@
+<script language="JavaScript" type="text/javascript">
+<!--
+{literal}
+function confirmDeactivate(text)
+{
+  return confirm("Are you sure you want to DE-ACTIVATE this plugin (" + text + ") ?");
+}
+
+function confirmUninstall(text)
+{
+  return confirm("{/literal}{$lang_pluginmgr_php.confirm_uninstall}{literal} (" + text + ") ?");
+}
+
+function confirmDel(text)
+{
+  return confirm("{/literal}{$lang_pluginmgr_php.confirm_delete}{literal} (" + text + ") ?");
+}
+{/literal}
+//-->
+</script>
+<!-- Start standard table -->
+<table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+  <tr>
+    <td class="tableh1" width="90%"><b><span class="statlink">{$lang_pluginmgr_php.i_plugins}</span></b></td>
+    <td colspan="4" class="tableh1" align="center" width="10%"><b><span class="statlink">{$lang_pluginmgr_php.operation}</span></b></td>
+  </tr>
+ {foreach from=$installedPlugins item=pluginDetails}
+  <tr>
+    <td width="88%">
+      <table border="0" width="100%" cellspacing="0" cellpadding="0">
+        <tr>
+          <td class="tableb" width="50%"><b>{$lang_pluginmgr_php.name}</b> {$pluginDetails.name} {$lang_pluginmgr_php.vers}{$pluginDetails.version}</td>
+          <td class="tableb" width="50%"><b>{$lang_pluginmgr_php.author}</b> {$pluginDetails.author}</td>
+        </tr>
+        <tr>
+          <td class="tableb" colspan="2" width="100%"><b>{$lang_pluginmgr_php.desc}</b> {$pluginDetails.description}</td>
+        </tr>
+        {$pluginDetails.extra}
+      </table>
+    </td>
+    <td class="tableb" width="3%">
+     {if $pluginDetails.active eq 'Y'}
+      [<a href="pluginmgr.php?op=deactivate&amp;p={$pluginDetails.id}" title="De-activate plugin" onClick="return confirmDeactivate('{$pluginDetails.name}');">D</a>]
+     {else}
+      [<a href="pluginmgr.php?op=activate&amp;p={$pluginDetails.id}" title="Activate plugin">A</a>]
+     {/if}
+    </td>
+    <td class="tableb" width="3%">
+     {if $pluginDetails.up eq 'Y'}
+      <a href="pluginmgr.php?op=moveu&amp;p={$pluginDetails.id}">
+        <img src="images/up.gif" border="0" alt="" />
+      </a>
+     {else}
+      <img src="images/spacer.gif" width="16" height="16" />
+     {/if}
+    </td>
+    <td class="tableb" width="3%">
+     {if $pluginDetails.down eq 'Y'}
+      <a href="pluginmgr.php?op=moved&amp;p={$pluginDetails.id}">
+        <img src="images/down.gif" border="0" alt="" />
+      </a>
+     {else}
+      <img src="images/spacer.gif" width="16" height="16" />
+     {/if}
+    </td>
+    <td class="tableb" width="3%" align="center" valign="middle">
+      <a href="pluginmgr.php?op=uninstall&amp;p={$pluginDetails.id}" onClick="return confirmUninstall('{$pluginDetails.name}');">
+        <img src="images/delete.gif" border="0" alt="" />
+      </a>
+    </td>
+  </tr>
+ {foreachelse}
+  </tr><tr><td colspan="4" class="tableb" align="center">{$lang_pluginmgr_php.none_installed}</td></tr>
+ {/foreach}
+</table>
+<!-- End standard table -->
+<!-- Start standard table -->
+<table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+  <tr>
+    <td class="tableh1" width="90%">
+      <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+          <td align="left">
+            <b><span class="statlink">{$lang_pluginmgr_php.n_plugins}</span></b>
+          </td>
+          <td align="right">
+           <form action="pluginmgr.php?op=upload" method="post" enctype="multipart/form-data">
+            <input type="file" size="40" name="plugin" />
+            <input type="submit" style="font-size: 12px;" value="{$lang_pluginmgr_php.upload}" />
+           </form>
+          </td>
+        </tr>
+      </table>
+    </td>
+    <td colspan="2" class="tableh1" align="center" width="10%"><b><span class="statlink">{$lang_pluginmgr_php.operation}</span></b></td>
+  </tr>
+ {foreach from=$uninstalledPlugins item=pluginDetails}
+  <tr>
+    <td width="90%">
+      <table border="0" width="100%" cellspacing="0" cellpadding="0">
+        <tr>
+          <td class="tableb" width="50%"><b>{$lang_pluginmgr_php.name}</b> {$pluginDetails.name} {$lang_pluginmgr_php.vers}{$pluginDetails.version}</td>
+          <td class="tableb" width="50%"><b>{$lang_pluginmgr_php.author}</b> {$pluginDetails.author}</td>
+        </tr>
+        <tr>
+          <td class="tableb" colspan="2" width="100%"><b>{$lang_pluginmgr_php.desc}</b> {$pluginDetails.description}</td>
+        </tr>
+        {$pluginDetails.extra}
+      </table>
+    </td>
+    <td class="tableb" width="5%" align="center" valign="middle">
+      <a href="pluginmgr.php?op=install&amp;p={$pluginDetails.id}"><img src="images/info.gif" border="0" alt="" /></a>
+    </td>
+    <td class="tableb" width="5%" align="center" valign="middle">
+      <a href="pluginmgr.php?op=delete&amp;p={$pluginDetails.id}" onClick="return confirmDel('{$pluginDetails.name}');">
+        <img src="images/delete.gif" border="0" alt="" />
+      </a>
+    </td>
+  </tr>
+ {/foreach}
+</table>
+<!-- End standard table -->

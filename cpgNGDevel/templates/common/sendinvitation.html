@@ -1,0 +1,31 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+
+<BODY>
+<form name="send_invitations" method="post" action="sendinvitation.php">
+<table align="center" width="500px" cellspacing="1" cellpadding="0" class="maintable">
+<TR>
+    <TD class="tableh1" colspan="2">{$lang_sendinvitation_php.page_title}</TD>
+</TR>
+{section name=email_input start=1 loop=6}
+<tr>
+	<td width="40%" class="tableb" height="25">{$lang_sendinvitation_php.email_addr} {$smarty.section.email_input.index}</td>
+	<td width="60%" class="tableb">
+		 <input type="text" style="width: 100%" name="email_addr[]" maxlength="255" class="textinput" />
+	</td>
+</tr>
+{/section}
+<tr>
+    <td width="40%" class="tableb" valign="top">{$lang_sendinvitation_php.invitation_text}</td> 
+    <td width="60%" class="tableb" valign="top">
+		<textarea rows="5" name="invitation_body" style="width: 100%" class="textinput">{$lang_sendinvitation_php.invitation_mail_body} </textarea>
+    </td>
+</tr>
+<tr>
+	 <td colspan="2" align="center" class="tablef">
+	    <input type="submit" name="send" value="{$lang_sendinvitation_php.submit_send}" class="button">
+</tr>
+</table>
+</FORM>
+</BODY>
+</HTML>
