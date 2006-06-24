@@ -198,7 +198,7 @@ class cpgMyFavoriteAlbumData extends cpgAlbumData {
      */
     function getPicData($album, &$count, &$album_name, $limit1 = -1, $limit2 = -1, $cat, $indexPage, $set_caption = true)
     {
-        global $lang_meta_album_names;
+        global $lang_meta_album_names, $lastup_date_fmt;
         $row = array();
         $limit = ($limit1 != -1) ? ' LIMIT ' . $limit1 : '';
         $limit .= ($limit2 != -1) ? ' ,' . $limit2 : '';
@@ -294,7 +294,7 @@ class cpgMyFavoriteAlbumData extends cpgAlbumData {
             }
             $query = "SELECT $select_columns FROM {$this->config->conf['TABLE_PICTURES']} WHERE approved = 'YES' $favpics $albStr ORDER BY pid DESC $limit";
             $this->db->query($query);
-            $rowset = $this->db->fetchRowSet($result);
+            $rowset = $this->db->fetchRowSet();
 
             if (!$count) {
                 $count = $this->db->nf();

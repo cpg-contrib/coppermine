@@ -42,7 +42,7 @@ class cpgLastCommentsByAlbumData extends cpgAlbumData {
      */
     function getThumbnailData($album, $cat, $page, $thumbcols, $thumbrows, $display_tabs, $indexPage = false, $uid = -1)
     {
-        global $lang_display_thumbnails, $lang_errors, $lang_byte_units, $album_name, $lang_meta_album_names, $lastcom_date_fmt, $lang_get_pic_data;
+        global $lang_display_thumbnails, $lang_errors, $lang_byte_units, $album_name, $lang_meta_album_names, $lastcom_date_fmt, $lang_get_pic_data, $album_date_fmt;
 
         $thumb_per_page = $thumbcols * $thumbrows;
         // $lower_limit = ($page-1) * $thumb_per_page;
@@ -194,7 +194,7 @@ class cpgLastCommentsByAlbumData extends cpgAlbumData {
      */
     function getPicData($album, &$count, &$album_name, $limit1 = -1, $limit2 = -1, $cat, $indexPage, $set_caption = true, $uid)
     {
-        global $lang_meta_album_names;
+        global $lang_meta_album_names, $lastup_date_fmt;
         $row = array();
         $limit = ($limit1 != -1) ? ' LIMIT ' . $limit1 : '';
         $limit .= ($limit2 != -1) ? ' ,' . $limit2 : '';

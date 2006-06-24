@@ -102,6 +102,7 @@ class cpgProcessCategory {
 
     function buildCatData()
     {
+      global $lang_modifyalb_php;
       $this->catList = array();
       $this->catList = $this->getSubcatDataWithPos(0, $this->catList);
 
@@ -402,7 +403,7 @@ class cpgProcessCategory {
                     cpgUtils::cpgDie(ERROR, $lang_catmgr_php['unknown_cat'], __FILE__, __LINE__);
                 }
 
-                $del_category = $this->db->fetchRowSet($result);
+                $del_category = $this->db->fetchRowSet();
                 $parent = $del_category['parent'];
                 $query = "UPDATE {$this->config->conf['TABLE_CATEGORIES']} SET parent='$parent' WHERE parent = '$cid'";
                 $this->db->query($query);

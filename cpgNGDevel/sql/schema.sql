@@ -241,6 +241,21 @@ CREATE TABLE IF NOT EXISTS CPG_hit_stats (
 # --------------------------------------------------------
 
 #
+# Table structure for table 'CPG_invitations'
+#
+
+CREATE TABLE IF NOT EXISTS CPG_invitations (
+  id int(11) NOT NULL auto_increment,
+  email varchar(100) NOT NULL default '',
+  invitationCode varchar(32) NOT NULL default '',
+  invitationDate datetime NOT NULL default '0000-00-00 00:00:00',
+  user_id int(11) NOT NULL default '0',
+  PRIMARY KEY (id)
+) TYPE=MyISAM;
+
+# --------------------------------------------------------
+
+#
 # Table structure for table `CPG_pictures`
 #
 
@@ -281,6 +296,25 @@ CREATE TABLE IF NOT EXISTS CPG_pictures (
   KEY pic_aid (aid),
   KEY owner_id (owner_id),
   FULLTEXT KEY search (title,caption,keywords,filename)
+) TYPE=MyISAM;
+
+# --------------------------------------------------------
+
+#
+# Table structure for table `CPG_plugins`
+#
+
+CREATE TABLE `CPG_plugins` (
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `path` varchar(255) NOT NULL default '',
+  `namespaces` text NOT NULL,
+  `installed` enum('Y','N') NOT NULL default 'N',
+  `active` enum('Y','N') NOT NULL default 'N',
+  `priority` int(11) NOT NULL default '0',
+  PRIMARY KEY  (`id`),
+  KEY `active` (`active`),
+  KEY `installed` (`installed`),
+  KEY `priority` (`priority`)
 ) TYPE=MyISAM;
 
 # --------------------------------------------------------
@@ -405,3 +439,6 @@ CREATE TABLE IF NOT EXISTS CPG_votes (
   vote_time int(11) NOT NULL default '0',
   PRIMARY KEY  (pic_id,user_md5_id)
 ) TYPE=MyISAM;
+
+# --------------------------------------------------------
+

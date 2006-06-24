@@ -11,6 +11,7 @@
   <tr>
     <td class="tableh2" colspan="3">
       <a href="javascript:expand();" class="admin_menu">{$lang_admin_php.expand_all}&nbsp;&nbsp;<img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php.expand_all}" /></a>
+      &nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:hideall();" class="admin_menu">{$lang_admin_php.collapse_all}&nbsp;&nbsp;<img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php.collapse_all}" /></a>
     </td>
   </tr>
  {foreach from=$configContent->content key=groupLabel item=item name=configGroup}
@@ -45,7 +46,8 @@
       <table border="0" cellspacing="0" cellpadding="0" width="100%">
         <tr>
           <td width="33%">
-            &nbsp;<a href="javascript:expand();" class="admin_menu">{$lang_admin_php.expand_all}&nbsp;&nbsp;<img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php.expand_all}" /></a>
+            &nbsp;<a href="javascript:expand();" class="admin_menu">{$lang_admin_php.expand_all}&nbsp;&nbsp;<img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php.expand_all}" /></a>
+            &nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:hideall();" class="admin_menu">{$lang_admin_php.collapse_all}&nbsp;&nbsp;<img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php.collapse_all}" /></a>
           </td>
           <td width="67%" align="center">
             <input type="submit" class="button" name="update_config" value="{$lang_admin_php.save_cfg}" />

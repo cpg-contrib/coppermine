@@ -39,6 +39,8 @@ class cpgUtils {
      */
     function getPicUrl(&$pic_row, $mode, $system_pic = false)
     {
+        global $THEME_DIR;
+
         static $pic_prefix = array();
         static $url_prefix = array();
 
@@ -323,15 +325,17 @@ class cpgUtils {
         global $lang_cpg_die;
 
         $auth = cpgAuth::getInstance();
-
+		$config = cpgConfig::getInstance();
         $t = new cpgTemplate;
 
         $t->assign('msgTitle', $lang_cpg_die[$msgCode]);
         $t->assign('msgText', $msgText);
-        $t->assign('fileText', $lang_cpg_die['file']);
-        $t->assign('file', $errorFile);
-        $t->assign('lineText', $lang_cpg_die['line']);
-        $t->assign('line', $errorLine);
+		if (($config->conf['debug_mode'] == 1 || ($config->conf['debug_mode'] == 2 && GALLERY_ADMIN_MODE))){
+	        $t->assign('fileText', $lang_cpg_die['file']);
+	        $t->assign('file', $errorFile);
+	        $t->assign('lineText', $lang_cpg_die['line']);
+	        $t->assign('line', $errorLine);
+		}
 
         $t->assign('CONTENT', $t->fetchHTML('common/cpgDie.html'));
 
@@ -496,7 +500,7 @@ class cpgUtils {
         if (GALLERY_ADMIN_MODE) {
             $query = "SELECT aid, title FROM {$config->conf['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " ORDER BY title";
         } else {
-            $query = "SELECT aid, title FROM {$config->conf['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " AND uploads='YES' ORDER BY title";
+            $query = "SELECT aid, title FROM {$config->conf['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " AND uploads='YES' AND user_id <> {$auth->isDefined('USER_ID')} ORDER BY title";
         }
 
         $db->query($query);
@@ -969,7 +973,7 @@ class cpgUtils {
                 $query = "SELECT user_email FROM {$config->conf['TABLE_USERS']} WHERE user_group = 1";
                 $db->query($query);
 
-                while ($row = mysql_fetch_assoc($result)) {
+                while ($row = $db->fetchRow()) {
                     if (isset($row['user_email'])) $to[] = $row['user_email'];
                 }
 
@@ -1067,6 +1071,130 @@ class cpgUtils {
 
         return $categories;
     }
+
+    /**
+     * deleteFoldersFilesRecursively()
+     *
+     * Method to delete directories and files under a particular directory recursively
+     *
+     * @param String $directory Directory to be deleted
+     * @return
+     */
+    function deleteFoldersFilesRecursively($directory)
+    {
+        // If directory
+        if (is_dir($directory)) {
+            // Open directory handle
+            if ($handle = opendir($directory)) {
+                // Read a directory
+                while (($fileOrDirectory = readdir($handle)) !== false) {
+                    // If directory is '.' (current directory) or '..' (parent directory) then skip it
+                    if ($fileOrDirectory == '.' || $fileOrDirectory == '..') {
+                        continue;
+                    }
+
+                    // If directory
+                    if (is_dir($directory.'/'.$fileOrDirectory)) {
+                        // Delete directory and files recursively
+                        cpgUtils::deleteFoldersFilesRecursively($directory.'/'.$fileOrDirectory);
+                    // If file
+                    } else if (is_file($directory.'/'.$fileOrDirectory)) {
+                        // Delete file
+                        $isDeleted = unlink($directory.'/'.$fileOrDirectory);
+/*
+                        if ($isDeleted) {
+                            print('<font color="green">File - '.$directory.'/'.$fileOrDirectory.' deleted successfully</font>.<br />'."\n");
+                        } else {
+                            print('<font color="red">Unable to delete file - '.$directory.'/'.$fileOrDirectory.'</font>.<br />'."\n");
+                        }
+*/
+                    }
+                }
+
+                // Close directory handle
+                closedir($handle);
+
+                // Delete directory
+                $isDeleted = rmdir($directory);
+/*
+                if ($isDeleted) {
+                    print('<font color="green">Directory - '.$directory.' deleted successfully</font>.<br />'."\n");
+                } else {
+                    print('<font color="red">Unable to delete directory - '.$directory.'</font>.<br />'."\n");
+                }
+*/
+            }
+        }
+    } // End of method 'deleteFoldersFilesRecursively'
+
+    /**
+     * replaceForbidden()
+     * Method to replace forbidden characters from filename/string.
+     *
+     * @param String $str
+     * @return String
+     */
+    function replaceForbidden($str)
+    {
+	    static $forbidden_chars;
+	    $config = cpgConfig::getInstance();
+	    if (!is_array($forbidden_chars)) {
+	      global $mb_utf8_regex;
+	      if (function_exists('html_entity_decode')) {
+	        $chars = html_entity_decode($config->conf['forbiden_fname_char'], ENT_QUOTES, 'UTF-8');
+  	      } else {
+	        $chars = str_replace(array('&amp;', '&quot;', '&lt;', '&gt;', '&nbsp;', '&#39;'), array('&', '"', '<', '>', ' ', "'"), $config->conf['forbiden_fname_char']);
+	      }
+	      preg_match_all("#$mb_utf8_regex".'|[\x00-\x7F]#', $chars, $forbidden_chars);
+	    }
+	    /**
+	     * $str may also come from $_POST, in this case, all &, ", etc will get replaced with entities.
+ 	     * Replace them back to normal chars so that the str_replace below can work.
+	     */
+	    $str = str_replace(array('&amp;', '&quot;', '&lt;', '&gt;'), array('&', '"', '<', '>'), $str);;
+	    $return = str_replace($forbidden_chars[0], '_', $str);
+
+	    /**
+	     * Fix the obscure, misdocumented "feature" in Apache that causes the server
+	     * to process the last "valid" extension in the filename (rar exploit): replace all
+	     * dots in the filename except the last one with an underscore.
+	     */
+	    // This could be concatenated into a more efficient string later, keeping it in three
+	    // lines for better readability for now.
+	    $extension = ltrim(substr($return,strrpos($return,'.')),'.');
+	    $filenameWithoutExtension = str_replace('.' . $extension, '', $return);
+	    $return = str_replace('.', '_', $filenameWithoutExtension) . '.' . $extension;
+
+	    return $return;
+    }
+
+    /**
+     * utf_ucfirst()
+     *
+     * Method to make first character of string uppercase if it is alphabet
+     *
+     * @param String $str String to be converted
+     * @return String
+     */
+    function utf_ucfirst($str)
+    {
+        if (!function_exists('mb_strtoupper')) { require_once 'include/mb.inc.php'; }
+        return mb_strtoupper(mb_substr($str, 0, 1)).mb_substr($str, 1);
+    } // End of method 'utf_ucfirst'
+
+    /**
+     * utf_strtolower()
+     *
+     * Method to make all alphabets in a string as lowercase
+     *
+     * @param String $str String to be converted
+     * @return String
+     */
+    function utf_strtolower($str)
+    {
+        if (!function_exists('mb_strtolower')) { require_once 'include/mb.inc.php'; }
+        return mb_strtolower($str);
+    } // End of method 'utf_strtolower'
 }
 
 ?>

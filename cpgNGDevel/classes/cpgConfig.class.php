@@ -11,7 +11,7 @@
  * (at your option) any later version.
  *
  * Coppermine version: 1.4.1
- * $Source$
+ * $Source: /home/cvs/cpgNGDevel/classes/cpgConfig.class.php,v $
  * $Revision$
  * $Author$
  * $Date$
@@ -57,7 +57,7 @@ class cpgConfig {
     {
 
         global $CONFIG;
-		
+
 		$this->dbserver = $CONFIG['dbserver'];
 
         $this->dbuser = $CONFIG['dbuser'];
@@ -97,6 +97,8 @@ class cpgConfig {
         $this->conf['TABLE_VOTE_STATS'] = $this->table_prefix . "vote_stats";
         $this->conf['TABLE_HIT_STATS'] = $this->table_prefix . "hit_stats";
         $this->conf['TABLE_CATEGORY_MAP'] = $this->table_prefix . "categorymap";
+        $this->conf['TABLE_PLUGINS'] = $this->table_prefix.'plugins';
+		$this->conf['TABLE_INVITATIONS'] = $this->table_prefix . "invitations";
         // Connect to database
         $query = "SELECT * FROM {$this->conf['TABLE_CONFIG']}";
 

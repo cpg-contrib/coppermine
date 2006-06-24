@@ -19,6 +19,8 @@ define('GROUPMGR_PHP', true);
 
 require('include/init.inc.php');
 
+$auth->synchronize_groups();
+
 /**#@+
  * Include all the classes
  */

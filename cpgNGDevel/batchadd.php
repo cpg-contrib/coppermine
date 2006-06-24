@@ -14,6 +14,7 @@
  */
 define('IN_COPPERMINE', true);
 define('SEARCHNEW_PHP', true);
+define('DB_INPUT_PHP', true);
 /**#@-*/
 
 /**

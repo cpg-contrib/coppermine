@@ -35,7 +35,7 @@ $cpg_time_start = cpgGetMicroTime();
 /**
  * Sanitizing all the GET,POST and COOKIE data to stop Cross Site Scripting by replacing data with their HTML entities.
  */
-$HTML_SUBST = array('&' => '&amp;', '"' => '&quot;', '<' => '&lt;', '>' => '&gt;');
+$HTML_SUBST = array('&' => '&amp;', '"' => '&quot;', '<' => '&lt;', '>' => '&gt;', '%26' => '&amp;', '%22' => '&quot;', '%3C' => '&lt;', '%3E' => '&gt;');
 
 if (get_magic_quotes_gpc()) {
     if (is_array($_POST)) {
@@ -48,7 +48,8 @@ if (get_magic_quotes_gpc()) {
 
     if (is_array($_GET)) {
         foreach ($_GET as $key => $value) {
-            $_GET[$key] = strtr(stripslashes($value), $HTML_SUBST);
+            unset($_GET[$key]);
+            $_GET[strtr(stripslashes($key), $HTML_SUBST)] = strtr(stripslashes($value), $HTML_SUBST);
             if (isset($$key)) unset($$key);
         }
     }
@@ -71,7 +72,8 @@ if (get_magic_quotes_gpc()) {
 
     if (is_array($_GET)) {
         foreach ($_GET as $key => $value) {
-            $_GET[$key] = strtr($value, $HTML_SUBST);
+            unset($_GET[$key]);
+            $_GET[strtr(stripslashes($key), $HTML_SUBST)] = strtr(stripslashes($value), $HTML_SUBST);
             if (isset($$key)) unset($$key);
         }
     }
@@ -172,7 +174,14 @@ if ($config->conf['enable_plugins'] == 1) {
 */
 // Set UDB_INTEGRATION if enabled in admin
 if ($config->conf['bridge_enable'] == 1) {
-    $BRIDGE = cpg_get_bridge_db_values();
+  // Query to get bridge's settings
+  $query = "SELECT * FROM ".$config->conf['TABLE_BRIDGE'];
+  $db->query($query);
+
+  while ($row = $db->fetchRow()) {
+    // Store bridge's settings in an array
+    $BRIDGE[$row['name']] = $row['value'];
+  }
 } else {
   $BRIDGE['short_name'] = 'coppermine';
   $BRIDGE['use_standard_groups'] = 1;

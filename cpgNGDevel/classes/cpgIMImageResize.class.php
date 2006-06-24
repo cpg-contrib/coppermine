@@ -1,21 +1,21 @@
 <?php
 /**
  * cpgIMImageResize.class.php
- * 
+ *
  * Resizing image class for Image Magick
- * 
+ *
  * @package cpgNG
- * @author Abbas <abbas@sanisoft.com> 
+ * @author Abbas <abbas@sanisoft.com>
  * @version $Id$
  */
 /**
  * cpgImageResize
- * 
- * @package 
- * @author tarique 
+ *
+ * @package
+ * @author tarique
  * @copyright Copyright (c) 2005
  * @version $Id$
- * @access public 
+ * @access public
  */
 class cpgImageResize {
     var $db;
@@ -25,24 +25,24 @@ class cpgImageResize {
 
     /**
      * cpgImageResize::cpgImageResize()
-     * 
-     * @return 
+     *
+     * @return
      */
     function cpgImageResize()
     {
         $this->db = cpgDB::getInstance();
         $this->config = cpgConfig::getInstance();
         $this->auth = cpgAuth::getInstance();
-    } 
+    }
 
     /**
      * cpgImageResize::resizeImage()
-     * 
-     * @param  $src_file 
-     * @param  $dest_file 
-     * @param  $new_size 
-     * @param  $thumb_use 
-     * @return 
+     *
+     * @param  $src_file
+     * @param  $dest_file
+     * @param  $new_size
+     * @param  $thumb_use
+     * @return
      */
     function resizeImage($src_file, $dest_file, $new_size, $thumb_use)
     {
@@ -52,12 +52,12 @@ class cpgImageResize {
 
         if ($imginfo == null) {
             return false;
-        } 
+        }
         // GD can only handle JPG & PNG images
-        if ($imginfo[2] != GIS_JPG && $imageinfo[2] != GIS_PNG && $this->config->conf['GIF_support'] == 0) {
+        if ($imginfo[2] != GIS_JPG && $imginfo[2] != GIS_PNG && $this->config->conf['GIF_support'] == 0) {
             $this->error = $lang_errors['gd_file_type_err'];
             return false;
-        } 
+        }
         // height/width
         $srcWidth = $imginfo[0];
         $srcHeight = $imginfo[1];
@@ -67,7 +67,7 @@ class cpgImageResize {
             $ratio = $srcWidth / $new_size;
         } else {
             $ratio = max($srcWidth, $srcHeight) / $new_size;
-        } 
+        }
 
         $ratio = max($ratio, 1.0);
         $destWidth = (int)($srcWidth / $ratio);
@@ -81,7 +81,7 @@ class cpgImageResize {
         } else {
             $src_file = escapeshellarg($src_file);
             $im_dest_file = str_replace('%', '%%', escapeshellarg($dest_file));
-        } 
+        }
 
         $output = array();
         /*
@@ -94,7 +94,7 @@ class cpgImageResize {
         } else {
             $cmd = "{$this->config->conf['impath']}convert -quality {$this->config->conf['jpeg_qual']} {$this->config->conf['im_options']} -geometry {$destWidth}x{$destHeight} $src_file $im_dest_file";
             exec ($cmd, $output, $retval);
-        } 
+        }
 
         if ($retval) {
             $this->error = "Error executing ImageMagick - Return value: $retval";
@@ -106,12 +106,12 @@ class cpgImageResize {
                 $this->error .= "<br /><br /><div align=\"left\">The convert program said:<br /><font size=\"2\">";
                 $this->error .= nl2br(htmlspecialchars($output));
                 $this->error .= "</font></div>";
-            } 
+            }
             @unlink($dest_file);
             return false;
-        } 
+        }
         // Set mode of uploaded picture
-        @chmod($dest_file, octdec($this->config->conf['default_file_mode'])); //silence the output in case chmod is disabled 
+        @chmod($dest_file, octdec($this->config->conf['default_file_mode'])); //silence the output in case chmod is disabled
         // We check that the image is valid
         $imginfo = getimagesize($dest_file);
         if ($imginfo == null) {
@@ -120,8 +120,8 @@ class cpgImageResize {
             return false;
         } else {
             return true;
-        } 
-    } 
-} 
+        }
+    }
+}
 
 ?>

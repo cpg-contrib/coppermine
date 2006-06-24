@@ -20,7 +20,7 @@ class cpgProcessComments {
 
   function addComment($pid, $msgAuthor, $msgBody)
   {
-    global $lang_error, $lang_db_input_php, $raw_ip, $hdr_ip;
+    global $lang_errors, $lang_db_input_php, $raw_ip, $hdr_ip;
 
     if (!$this->auth->isDefined('USER_CAN_POST_COMMENTS')) {
       cpgUtils::cpgDie(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
@@ -71,7 +71,7 @@ class cpgProcessComments {
       $this->db->query($query);
 
       if ($this->db->nf()) {
-        cpgUtils::cpgDie($lang_error, $lang_db_input_php['com_author_error'],__FILE__,__LINE__);
+        cpgUtils::cpgDie(ERROR, $lang_db_input_php['com_author_error'],__FILE__,__LINE__);
       }
 
       $query = "INSERT INTO {$this->config->conf['TABLE_COMMENTS']} (pid, msg_parent, msg_author, msg_body, msg_date, author_md5_id, author_id, msg_raw_ip, msg_hdr_ip) VALUES ('$pid', '$msg_parent', '{$this->config->conf['comments_anon_pfx']}$msgAuthor', '$msgBody', NOW(), '{$this->auth->user['ID']}', '0', '$raw_ip', '$hdr_ip')";

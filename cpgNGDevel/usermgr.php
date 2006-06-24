@@ -21,6 +21,8 @@ define('DELETE_PHP', true);
 
 require('include/init.inc.php');
 
+$auth->view_users();
+
 /**#@+
  * Include all the classes
  */
@@ -36,7 +38,7 @@ if (USER_ID !='') {
   $limUser = 0;
   $numColumns = 9;
  }
- elseif ($CONFIG['allow_memberlist']) {
+ elseif ($config->conf['allow_memberlist']) {
   $limUser = 1;
   $numColumns = 7;
   show_memberlist;

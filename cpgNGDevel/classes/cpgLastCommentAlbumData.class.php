@@ -41,7 +41,7 @@ class cpgLastCommentAlbumData extends cpgAlbumData {
      */
     function getThumbnailData($album, $cat, $page, $thumbcols, $thumbrows, $display_tabs, $indexPage = false)
     {
-        global $lang_display_thumbnails, $lang_errors, $lang_byte_units, $album_name, $lang_meta_album_names, $lastcom_date_fmt;
+        global $lang_display_thumbnails, $lang_errors, $lang_byte_units, $album_name, $lang_meta_album_names, $lastcom_date_fmt, $album_date_fmt;
 
         $thumb_per_page = $thumbcols * $thumbrows;
         // $lower_limit = ($page-1) * $thumb_per_page;
@@ -283,7 +283,7 @@ class cpgLastCommentAlbumData extends cpgAlbumData {
 
         $query = "SELECT $select_columns FROM {$this->config->conf['TABLE_COMMENTS']} as c, {$this->config->conf['TABLE_PICTURES']} as p WHERE approved = 'YES' AND c.pid = p.pid $albStr $keyword ORDER by msg_id DESC $limit";
         $this->db->query($query);
-        $rowset = $this->db->fetchRowSet($result);
+        $rowset = $this->db->fetchRowSet();
         if (!$count) {
             $count = $this->db->nf();
         }

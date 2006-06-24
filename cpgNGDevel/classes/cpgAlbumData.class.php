@@ -1,17 +1,17 @@
 <?php
 /**
  * Coppermine Photo Gallery Next Gen
- * 
+ *
  * Copyright (c) 2003-2005 Coppermine Dev Team
  * v1.1 originaly written by Gregory DEMAR
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
- * 
+ *
  * Coppermine version: 1.4.1
- * $Source$
+ * $Source: /home/cvs/cpgNGDevel/classes/cpgAlbumData.class.php,v $
  * $Revision$
  * $Author$
  * $Date$
@@ -20,12 +20,12 @@
 error_reporting(E_ALL);
 /**
  * cpgAlbumData
- * 
- * @package 
- * @author tarique 
+ *
+ * @package
+ * @author tarique
  * @copyright Copyright (c) 2005
  * @version $Id$
- * @access public 
+ * @access public
  */
 class cpgAlbumData {
     var $config;
@@ -33,27 +33,28 @@ class cpgAlbumData {
 
     /**
      * cpgAlbumData::cpgAlbumData()
-     * 
-     * @return 
+     *
+     * @return
      */
     function cpgAlbumData()
     {
         $this->config = cpgConfig::getInstance();
         $this->auth = cpgAuth::getInstance();
-    } 
+    }
     /**
      * protected get_pic_url()
-     * 
+     *
      * Return the url for a picture
-     * 
-     * @param array $pic_row 
-     * @param string $mode 
-     * @param boolean $system_pic 
-     * @return string 
+     *
+     * @param array $pic_row
+     * @param string $mode
+     * @param boolean $system_pic
+     * @return string
      */
 
     function __getPicUrl(&$pic_row, $mode, $system_pic = false)
     {
+        global $THEME_DIR;
         static $pic_prefix = array();
         static $url_prefix = array();
 
@@ -65,30 +66,30 @@ class cpgAlbumData {
 
             $url_prefix = array(0 => $this->config->conf['fullpath'],
                 );
-        } 
+        }
 
         $mime_content = cpg_get_type($pic_row['filename']);
 
         $pic_row = array_merge($pic_row, $mime_content);
 
-        $filepathname = null; 
+        $filepathname = null;
         // Code to handle custom thumbnails
         // If fullsize or normal mode use regular file
         if ($mime_content['content'] != 'image' && $mode == 'normal') {
             $mode = 'fullsize';
         } elseif (($mime_content['content'] != 'image' && $mode == 'thumb') || $system_pic) {
-            $thumb_extensions = Array('.gif', '.png', '.jpg'); 
+            $thumb_extensions = Array('.gif', '.png', '.jpg');
             // Check for user-level custom thumbnails
             // Create custom thumb path and erase extension using filename; Erase filename's extension
             $custom_thumb_path = $url_prefix[$pic_row['url_prefix']] . $pic_row['filepath'] . $pic_prefix[$mode];
-            $file_base_name = str_replace('.' . $mime_content['extension'], '', basename($pic_row['filename'])); 
+            $file_base_name = str_replace('.' . $mime_content['extension'], '', basename($pic_row['filename']));
             // Check for file-specific thumbs
             foreach ($thumb_extensions as $extension) {
                 if (file_exists($custom_thumb_path . $file_base_name . $extension)) {
                     $filepathname = $custom_thumb_path . $file_base_name . $extension;
                     break;
-                } 
-            } 
+                }
+            }
             if (!$system_pic) {
                 // Check for extension-specific thumbs
                 if (is_null($filepathname)) {
@@ -96,19 +97,19 @@ class cpgAlbumData {
                         if (file_exists($custom_thumb_path . $mime_content['extension'] . $extension)) {
                             $filepathname = $custom_thumb_path . $mime_content['extension'] . $extension;
                             break;
-                        } 
-                    } 
-                } 
+                        }
+                    }
+                }
                 // Check for content-specific thumbs
                 if (is_null($filepathname)) {
                     foreach ($thumb_extensions as $extension) {
                         if (file_exists($custom_thumb_path . $mime_content['content'] . $extension)) {
                             $filepathname = $custom_thumb_path . $mime_content['content'] . $extension;
                             break;
-                        } 
-                    } 
-                } 
-            } 
+                        }
+                    }
+                }
+            }
             // Use default thumbs
             if (is_null($filepathname)) {
                 // Check for default theme- and global-level thumbs
@@ -122,33 +123,33 @@ class cpgAlbumData {
                                 if (file_exists($default_thumb_path . $this->config->conf['thumb_pfx'] . $mime_content['extension'] . $extension)) {
                                     $filepathname = $default_thumb_path . $this->config->conf['thumb_pfx'] . $mime_content['extension'] . $extension;
                                     break 2;
-                                } 
-                            } 
+                                }
+                            }
                             foreach ($thumb_extensions as $extension) {
                                 // Check for media-specific thumbs (movie,document,audio)
                                 if (file_exists($default_thumb_path . $this->config->conf['thumb_pfx'] . $mime_content['content'] . $extension)) {
                                     $filepathname = $default_thumb_path . $this->config->conf['thumb_pfx'] . $mime_content['content'] . $extension;
                                     break 2;
-                                } 
-                            } 
+                                }
+                            }
                         } else {
                             // Check for file-specific thumbs for system files
                             foreach ($thumb_extensions as $extension) {
                                 if (file_exists($default_thumb_path . $this->config->conf['thumb_pfx'] . $file_base_name . $extension)) {
                                     $filepathname = $default_thumb_path . $this->config->conf['thumb_pfx'] . $file_base_name . $extension;
                                     break 2;
-                                } 
-                            } 
-                        } 
-                    } 
-                } 
-            } 
+                                }
+                            }
+                        }
+                    }
+                }
+            }
             $filepathname = cpgUtils::path2Url($filepathname);
-        } 
+        }
 
         if (is_null($filepathname)) {
             $filepathname = $url_prefix[$pic_row['url_prefix']] . cpgUtils::path2Url($pic_row['filepath'] . $pic_prefix[$mode] . $pic_row['filename']);
-        } 
+        }
         // Added hack:  "&& !isset($pic_row['mode'])" thumb_data filter isn't executed for the fullsize image
         if ($mode == 'thumb' && !isset($pic_row['mode'])) {
             $pic_row['url'] = $filepathname;
@@ -159,25 +160,25 @@ class cpgAlbumData {
             $pic_row['mode'] = $mode;
         } else {
             $pic_row['url'] = $filepathname;
-        } 
+        }
 
         return $pic_row['url'];
-    } 
+    }
 
     /**
      * getBreadCrumData
      */
     /**
      * cpgAlbumData::getBreadcrumbData()
-     * 
-     * @param  $album 
-     * @param integer $cat 
-     * @param string $meta 
-     * @return 
+     *
+     * @param  $album
+     * @param integer $cat
+     * @param string $meta
+     * @return
      */
     function getBreadcrumbData ($album, $cat = 0, $meta = '')
     {
-        global $lang_errors, $lang_meta_album_names;
+        global $lang_errors, $lang_meta_album_names, $lang_list_categories;
         $breadcrumb_array = array();
         $breadcrumb_alb_array = array();
         $breadcrumb = array();
@@ -200,7 +201,7 @@ class cpgAlbumData {
 
             if ($db->nf() == 0) {
                 cpgUtils::cpgDie(CRITICAL_ERROR, $lang_errors['non_exist_ap']);
-            } 
+            }
 
             $row = $db->fetchRow();
             $row_alb = $row;
@@ -218,7 +219,7 @@ class cpgAlbumData {
                 $db->query($query);
                 if ($db->nf() == 0) {
                     cpgUtils::cpgDie(CRITICAL_ERROR, $lang_errors['orphan_alb'], __FILE__, __LINE__);
-                } 
+                }
                 $row_alb = $db->fetchRow();
                 $breadcrumb_alb_array[] = array($row_alb['aid'], $row_alb['title']);
             } // while
@@ -242,45 +243,45 @@ class cpgAlbumData {
                     } else {
                         // Album is a first level album
                         $breadcrumb_alb[$i]['link'] = $this->config->conf['ecards_more_pic_target'] . "{$album[1]}";
-                    } 
+                    }
                 } else {
                     $breadcrumb_alb[$i]['link'] = $this->config->conf['ecards_more_pic_target'] . "thumbnails.php?album={$album[0]}";
-                } 
+                }
                 $breadcrumb_alb[$i]['title'] = $album[1];
                 $i++;
-            } 
+            }
 
             if ($row['category'] == 0) {
                 if ($meta) {
                     $i++;
                     $breadcrumb_alb[$i]['link'] = $this->config->conf['ecards_more_pic_target'] . "thumbnails.php?meta=$meta&cat=$tmpCat&album=$tmpAlbum";
                     $breadcrumb_alb[$i]['title'] = $lang_meta_album_names[$meta];
-                } 
+                }
                 return $breadcrumb_alb;
-            } 
+            }
         } elseif ($cat) {
             /**
              * Category is set, breadcrumb will be displayed on index page
              */
             $row['category'] = $cat; // this doesn't make sense to me why is it overwriting the data from the query
-        } 
+        }
         if ($row['category']) {
             if ($row['category'] >= FIRST_USER_CAT) {
                 $cat = $row['category'];
                 $userName = $this->__getUsername($row['category'] - FIRST_USER_CAT);
                 if (!$userName) {
                     $userName = "Mr. X";
-                } 
+                }
                 $breadcrumb_array[] = array($row['category'], $userName);
                 $row['parent'] = 1;
-                $CURRENT_CAT_NAME = sprintf($lang_list_categories['xx_s_gallery'], $user_name);
+                $CURRENT_CAT_NAME = sprintf($lang_list_categories['xx_s_gallery'], $userName);
             } else {
                 $cat = $row['category'];
                 $query = "SELECT cid, name, parent FROM {$this->config->conf['TABLE_CATEGORIES']} WHERE cid = '" . $row['category'] . "'";
                 $db->query($query);
                 if ($db->nf() == 0) {
                     cpgUtils::cpgDie(CRITICAL_ERROR, $lang_errors['non_exist_cat'], __FILE__, __LINE__);
-                } 
+                }
                 $row = $db->fetchRow();
 
                 $breadcrumb_array[] = array($row['cid'], $row['name']);
@@ -290,7 +291,7 @@ class cpgAlbumData {
                 $db->query($query);
                 if ($db->nf() == 0) {
                     cpgUtils::cpgDie(CRITICAL_ERROR, $lang_errors['orphan_cat'], __FILE__, __LINE__);
-                } 
+                }
                 $row = $db->fetchRow();
 
                 $breadcrumb_array[] = array($row['cid'], $row['name']);
@@ -301,8 +302,8 @@ class cpgAlbumData {
                 $breadcrumb[$i]['link'] = ($this->config->conf['short_url']) ? $this->config->conf['ecards_more_pic_target'] . "cat/{$category[0]}" : $this->config->conf['ecards_more_pic_target'] . "index.php?cat={$category[0]}";
                 $breadcrumb[$i]['title'] = $category[1];
                 $i++;
-            } 
-        } 
+            }
+        }
         $breadcrumb = array_merge($breadcrumb, $breadcrumb_alb);
         if ($meta) {
             $i++;
@@ -313,15 +314,15 @@ class cpgAlbumData {
               $breadcrumb[$i]['link'] .= '&amp;uid='.(int)$_GET['uid'];
               $breadcrumb[$i]['title'] .= ' `'.$this->auth->get_user_name((int)$_GET['uid']).'`';
             }
-        } 
+        }
         return $breadcrumb;
-    } 
+    }
 
     /**
      * cpgAlbumData::getAlbumName()
-     * 
-     * @param  $aid 
-     * @return 
+     *
+     * @param  $aid
+     * @return
      */
     function getAlbumName($aid)
     {
@@ -334,14 +335,14 @@ class cpgAlbumData {
             return $row;
         } else {
             cpgUtils::cpgDie(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
-        } 
-    } 
+        }
+    }
 
     /**
      * cpgAlbumData::__getUsername()
-     * 
-     * @param  $uid 
-     * @return 
+     *
+     * @param  $uid
+     * @return
      */
     function __getUsername($uid)
     {
@@ -357,25 +358,25 @@ class cpgAlbumData {
             $db->query($query);
             if ($db->nf() == 0) {
                 return '';
-            } 
+            }
             $row = $db->fetchRow();
             return $row['user_name'];
-        } 
-    } 
+        }
+    }
 
     /**
      * cpgAlbumData::getFilmStripData()
-     * 
-     * @param  $meta 
-     * @param  $album 
-     * @param  $pos 
-     * @param  $cat 
-     * @return 
+     *
+     * @param  $meta
+     * @param  $album
+     * @param  $pos
+     * @param  $cat
+     * @return
      */
     function getFilmStripData($meta, $album, $pos, $cat)
     {
         global $album_date_fmt, $lang_display_thumbnails, $lang_errors, $lang_byte_units;
-        $max_item = $this->config->conf['max_film_strip_items']; 
+        $max_item = $this->config->conf['max_film_strip_items'];
         // $thumb_per_page = $pos+$this->config->conf['max_film_strip_items'];
         $thumb_per_page = $max_item * 2;
         $l_limit = max(0, $pos - $this->config->conf['max_film_strip_items']);
@@ -385,7 +386,7 @@ class cpgAlbumData {
 
         if (count($pic_data) < $max_item) {
             $max_item = count($pic_data);
-        } 
+        }
         $lower_limit = 3;
 
         if (!isset($pic_data[$new_pos + 1])) {
@@ -401,8 +402,8 @@ class cpgAlbumData {
                 $lower_limit = $new_pos - $ihf;
             } elseif ($new_pos < $hf) {
                 $lower_limit = 0;
-            } 
-        } 
+            }
+        }
 
         $pic_data = array_slice($pic_data, $lower_limit, $max_item);
         $i = $l_limit;
@@ -418,7 +419,7 @@ class cpgAlbumData {
                     $image_info = getimagesize($pic_url);
                     $row['pwidth'] = $image_info[0];
                     $row['pheight'] = $image_info[1];
-                } 
+                }
 
                 $image_size = $this->computeImgSize($row['pwidth'], $row['pheight'], $this->config->conf['thumb_width']);
 
@@ -437,7 +438,7 @@ class cpgAlbumData {
                     if ($meta == 'lastupby') {
                       $thumb_list[$i]['target'] .= '&amp;uid='.(int)$_GET['uid'];
                     }
-                } 
+                }
 
                 if (!empty($album)) {
                     $thumb_list[$i]['target'] .= "&amp;album=$album";
@@ -445,21 +446,21 @@ class cpgAlbumData {
 
                 if (!empty($cat)) {
                     $thumb_list[$i]['target'] .= "&amp;cat=$cat";
-                } 
+                }
 
                 $thumb_list[$i]['pid'] = $row['pid'];
-            } 
+            }
             return ($thumb_list);
-        } 
-    } 
+        }
+    }
 
     /**
      * cpgAlbumData::computeImgSize()
-     * 
-     * @param  $width 
-     * @param  $height 
-     * @param  $max 
-     * @return 
+     *
+     * @param  $width
+     * @param  $height
+     * @param  $max
+     * @return
      */
     function computeImgSize($width, $height, $max)
     {
@@ -470,10 +471,10 @@ class cpgAlbumData {
             $ratio = $width / $max;
         } else {
             $ratio = max($width, $height) / $max;
-        } 
+        }
         if ($ratio > 1.0) {
             $image_size['reduced'] = true;
-        } 
+        }
         $ratio = max($ratio, 1.0);
         $image_size['width'] = ceil($width / $ratio);
         $image_size['height'] = ceil($height / $ratio);
@@ -484,27 +485,27 @@ class cpgAlbumData {
             $image_size['geom'] = 'width="' . $image_size['width'] . '"';
         } else {
             $image_size['geom'] = 'width="' . $image_size['width'] . '" height="' . $image_size['height'] . '"';
-        } 
+        }
         return $image_size;
-    } 
+    }
 
     /**
      * cpgAlbumData::cpgGetSystemThumb()
-     * 
-     * @param  $filename 
-     * @param integer $user 
-     * @return 
+     *
+     * @param  $filename
+     * @param integer $user
+     * @return
      */
     function cpgGetSystemThumb($filename, $user = 10001)
-    { 
+    {
         // Correct user_id
         if ($user < 10000) {
             $user += 10000;
-        } 
+        }
 
         if ($user == 10000) {
             $user = 10001;
-        } 
+        }
         // Get image data for thumb
         $picdata = array('filename' => $filename,
             'filepath' => $this->config->conf['userpics'] . $user . '/',
@@ -518,13 +519,13 @@ class cpgAlbumData {
         $picdata['whole'] = $image_size['whole'];
         $picdata['reduced'] = (isset($image_size['reduced']) && $image_size['reduced']);
         return $picdata;
-    } 
+    }
     // Add 1 everytime a picture is viewed.
     /**
      * cpgAlbumData::addHit()
-     * 
-     * @param  $pid 
-     * @return 
+     *
+     * @param  $pid
+     * @return
      */
     function addHit($pid)
     {
@@ -548,7 +549,7 @@ class cpgAlbumData {
                 $os = "Windows XP";
             } else if (eregi("Windows", $_SERVER["HTTP_USER_AGENT"])) {
                 $os = "Windows";
-            } 
+            }
 
             $browser = $_SERVER["HTTP_USER_AGENT"];
             if (eregi("MSIE", $browser)) {
@@ -556,14 +557,14 @@ class cpgAlbumData {
                     $browser = "Microsoft Internet Explorer 5.5";
                 } else if (eregi("MSIE 6.0", $browser)) {
                     $browser = "Microsoft Internet Explorer 6.0";
-                } 
+                }
             } else if (eregi("Mozilla Firebird", $browser)) {
                 $browser = "Mozilla Firebird";
             } else if (eregi("netscape", $browser)) {
                 $browser = "Netscape";
             } else if (eregi("Firefox", $browser)) {
                 $browser = "Firefox";
-            } 
+            }
             // Code to get the search string if the referrer is any of the following
             $search_engines = array('google', 'lycos', 'yahoo');
 
@@ -571,10 +572,10 @@ class cpgAlbumData {
                 if (cpgUtils::isRefererSearchEngine($engine)) {
                     $query_terms = cpgUtils::getSearchQueryTerms($engine);
                     break;
-                } 
-            } 
+                }
+            }
 
-            $time = time(); 
+            $time = time();
             // Insert the record in database
             $query = "INSERT INTO {$this->config->conf['TABLE_HIT_STATS']}
                             SET
@@ -586,8 +587,8 @@ class cpgAlbumData {
                               browser = '$browser',
                               os = '$os'";
             $this->db->query($query);
-        } 
-    } 
-} 
+        }
+    }
+}
 
 ?>

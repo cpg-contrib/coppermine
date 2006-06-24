@@ -159,6 +159,7 @@ class cpgDisplayImageData extends cpgAlbumData {
     function getPicInfo()
     {
         global $lang_picinfo, $lang_display_image_php, $lang_byte_units, $lastup_date_fmt;
+        global $THEME_DIR;
 
         /**
          * Check whether the cookie for showing pic info is set and display pic info accordingly
@@ -290,6 +291,8 @@ class cpgDisplayImageData extends cpgAlbumData {
 
     function getAlbumData()
     {
+        global $lang_errors;
+
         $query = "SELECT title, comments, votes, category, aid, user_Id FROM {$this->config->conf['TABLE_ALBUMS']} WHERE aid='" . $this->picData['aid'] . "' LIMIT 1";
 
         $this->db->query($query);

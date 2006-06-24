@@ -10,7 +10,7 @@
  */
 
 /**#@+
- * Constant to prevent direct execution of config.inc.php
+ * Constant to prevent direct execution of config.inc.php file
  */
 define('IN_COPPERMINE', true);
 define('THUMBNAILS_PHP', true);
@@ -33,6 +33,7 @@ require_once('classes/cpgAlbumFactory.class.php');
 require_once('classes/cpgAlbumData.class.php');
 require_once('classes/cpgTemplate.class.php');
 require_once('classes/cpgIndexData.class.php');
+require_once('classes/cpgPluginManager.class.php');
 /**#@-*/
 
 /**
@@ -110,6 +111,10 @@ foreach ($elements as $element) {
       case 'breadcrumb':
           if (!empty($cat)) {
             $breadcrumb = $albumData->getBreadcrumbData("", $cat);
+
+            // Include plugins for 'breadcrumb' namespace
+            cpgPluginManager::invokePlugins('index_breadcrumb');
+
             $breadcrumbHTML = $t->getBreadcrumbHTML($breadcrumb);
           }
           break;
@@ -120,44 +125,74 @@ foreach ($elements as $element) {
           $indexData->getCatList();
           $t->assign('indexData', $indexData);
 
+          // Include plugins for 'catlist' namespace
+          cpgPluginManager::invokePlugins('index_catlist');
+
           $CONTENT .= $t->fetchHTML('common/category.html');
           if (isset($cat) && $cat == $auth->isDefined("USER_GAL_CAT")) {
             $indexData->listUsers();
             $t->assign('indexData', $indexData);
+
+            // Include plugins for 'catlist' namespace
+            cpgPluginManager::invokePlugins('index_usercatlist');
+
             $CONTENT .= $t->fetchHTML('common/users.html');
           }
           break;
       case 'alblist':
           $indexData->listAlbums();
           $t->assign('indexData', $indexData);
+
+          // Include plugins for 'alblist' namespace
+          cpgPluginManager::invokePlugins('index_alblist');
+
           $CONTENT .= $t->fetchHTML('common/albums.html');
           break;
       case 'lastup':
         $albumData = cpgAlbumFactory::getAlbumObj('lastup');
         $thumbData = $albumData->getThumbnailData(0, $cat, 1, $config->conf['thumbcols'], $matches[2], true, true);
+
+        // Include plugins for 'lastup' namespace
+        cpgPluginManager::invokePlugins('index_lastup');
+
         $CONTENT .= $t->getThumbnailHTML($thumbData, true, true);
         break;
       case 'lastcom':
         $albumData = cpgAlbumFactory::getAlbumObj('lastcom');
         $thumbData = $albumData->getThumbnailData(0, $cat, 1, $config->conf['thumbcols'], $matches[2], true, true);
+
+        // Include plugins for 'lastcom' namespace
+        cpgPluginManager::invokePlugins('index_lastcom');
+
         $CONTENT .= $t->getThumbnailHTML($thumbData, true, true);
         break;
       case 'random':
         $albumData = cpgAlbumFactory::getAlbumObj('random');
         $thumbData = $albumData->getThumbnailData(0, $cat, 1, $config->conf['thumbcols'], $matches[2], true, true);
+
+        // Include plugins for 'random' namespace
+        cpgPluginManager::invokePlugins('index_random');
+
         $CONTENT .= $t->getThumbnailHTML($thumbData, true, true);
         break;
       case 'topn':
         $albumData = cpgAlbumFactory::getAlbumObj('topn');
         $thumbData = $albumData->getThumbnailData(0, $cat, 1, $config->conf['thumbcols'], $matches[2], true, true);
+
+        // Include plugins for 'topn' namespace
+        cpgPluginManager::invokePlugins('index_topn');
+
         $CONTENT .= $t->getThumbnailHTML($thumbData, true, true);
         break;
       default:
+
+        // Include plugins for rest of namespaces
+        cpgPluginManager::invokePlugins('index_'.$matches[1]);
+
         break;
     }
   }
 }
-//print_r($indexData); exit;
 
 /**
  * Assign data for main.html

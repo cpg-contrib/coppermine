@@ -93,7 +93,7 @@ class cpgProcessEcard {
       $this->senderEmail = $USER_DATA['user_email'];
       $this->senderEmailBox = 'N';
     } else {
-      $this->senderEmail = $this->getPostVar('sender_email', $USER['email'] ? $USER['email'] : '');
+      $this->senderEmail = $this->getPostVar('sender_email', $auth->user['email'] ? $auth->user['email'] : '');
       $this->senderEmailBox = 'Y';
     }
 

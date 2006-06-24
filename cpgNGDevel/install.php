@@ -11,7 +11,7 @@
   (at your option) any later version.
   ********************************************
   Coppermine version: 1.4.1
-  $Source$
+  $Source: /home/cvs/cpgNGDevel/install.php,v $
   $Revision$
   $Author$
   $Date$
@@ -52,28 +52,40 @@ function test_fs()
     }
     // userpics must be writable to upload pictures
     if (! is_dir("{$DFLT['alb_d']}/{$DFLT['upl_d']}")) {
-        $errors .= "<hr /><br />A subdirectory called '{$DFLT['upl_d']}' should normally exist in the 'albums' directory. The installer can't find this directory. Check that you have uploaded all Coppermine files to your server.<br /><br />";
+        $errors .= "<hr /><br />A subdirectory called '{$DFLT['alb_d']}/{$DFLT['upl_d']}' should normally exist in the 'albums' directory. The installer can't find this directory. Check that you have uploaded all Coppermine files to your server.<br /><br />";
     } elseif (! is_writable("{$DFLT['alb_d']}/{$DFLT['upl_d']}")) {
-        $errors .= "<hr /><br />The '{$DFLT['upl_d']}' directory (located in the 'albums' directory on your server) should be writable in order to allow pictures upload. Use your FTP program to change its mode to 777.<br /><br />";
+        $errors .= "<hr /><br />The '{$DFLT['alb_d']}/{$DFLT['upl_d']}' directory (located in the 'albums' directory on your server) should be writable in order to allow pictures upload. Use your FTP program to change its mode to 777.<br /><br />";
     }
     // edit must be writable to edit pictures
     if (! is_dir("{$DFLT['alb_d']}/{$DFLT['edit_d']}")) {
-        $errors .= "<hr /><br />A subdirectory called '{$DFLT['edit_d']}' should normally exist in the 'albums' directory. The installer can't find this directory. Check that you have uploaded all Coppermine files to your server.<br /><br />";
+        $errors .= "<hr /><br />A subdirectory called '{$DFLT['alb_d']}/{$DFLT['edit_d']}' should normally exist in the 'albums' directory. The installer can't find this directory. Check that you have uploaded all Coppermine files to your server.<br /><br />";
     } elseif (! is_writable("{$DFLT['alb_d']}/{$DFLT['edit_d']}")) {
-        $errors .= "<hr /><br />The '{$DFLT['edit_d']}' directory (located in the 'albums' directory on your server) should be writable in order to allow pictures upload. Use your FTP program to change its mode to 777.<br /><br />";
+        $errors .= "<hr /><br />The '{$DFLT['alb_d']}/{$DFLT['edit_d']}' directory (located in the 'albums' directory on your server) should be writable in order to allow pictures upload. Use your FTP program to change its mode to 777.<br /><br />";
     }
     // sql directory must exist
-    if (! is_dir("{$DFLT['sql_d']}")) {
+    if (! is_dir($DFLT['sql_d'])) {
         $errors .= "<hr /><br />A subdirectory called '{$DFLT['sql_d']}' should normally exist in the directory where you uploaded Coppermine. The installer can't find this directory. Check that you have uploaded all Coppermine files to your server.<br /><br />";
     }
 
-    //template_c must be exist and should be writable
-        if (! is_dir("{$DFLT['temp_c']}")) {
-                $errors .= "<hr /><br />A directory called '{$DFLT['temp_c']}' should
-normally exist. The installer can't find this directory.<br /><br />";
-        } elseif (! is_writable("{$DFLT['temp_c']}")) {
-        $errors .= "<hr /><br />The '{$DFLT['temp_c']}' directory (located in the directory where you uploaded Coppermine) should be writable. Use your FTP program
-to change its mode to 777.<br /><br />";
+    // template_c must be exist and should be writable
+    if (! is_dir($DFLT['temp_c'])) {
+        $errors .= "<hr /><br />A directory called '{$DFLT['temp_c']}' should normally exist. The installer can't find this directory.<br /><br />";
+    } elseif (! is_writable($DFLT['temp_c'])) {
+        $errors .= "<hr /><br />The '{$DFLT['temp_c']}' directory (located in the directory where you uploaded Coppermine) should be writable. Use your FTP program to change its mode to 777.<br /><br />";
+    }
+
+    // plugins directory must be exist and should be writable
+    if (!is_dir($DFLT['plgn_d'])) {
+        $errors .= "<hr /><br />A directory called '{$DFLT['plgn_d']}' should normally exist. The installer can't find this directory.<br /><br />";
+    } elseif (!is_writable($DFLT['plgn_d'])) {
+        $errors .= "<hr /><br />The '{$DFLT['plgn_d']}' directory (located in the directory where you uploaded Coppermine) should be writable. Use your FTP program to change its mode to 777.<br /><br />";
+    }
+
+    // plugins/receive directory must be exist and should be writable
+    if (!is_dir($DFLT['plgn_d'].'/'.$DFLT['plgn_t'])) {
+        $errors .= "<hr /><br />A directory called '{$DFLT['plgn_d']}/{$DFLT['plgn_t']}' should normally exist. The installer can't find this directory.<br /><br />";
+    } elseif (!is_writable($DFLT['plgn_d'].'/'.$DFLT['plgn_t'])) {
+        $errors .= "<hr /><br />The '{$DFLT['plgn_d']}/{$DFLT['plgn_t']}' directory (located in the directory where you uploaded Coppermine) should be writable. Use your FTP program to change its mode to 777.<br /><br />";
     }
 }
 
@@ -372,7 +384,7 @@ function html_input_config($error_msg = '')
         <td width="40%" class="tableb"><b>MySQL table prefix</b><br />(default value is OK; do not use dots!)
         </td>
         <td width="60%" class="tableb" valign="top">
-                <input type='text' class='textinput' name='table_prefix' value='<?php echo ($_POST['table_prefix'] ? $_POST['table_prefix'] : 'cpg_') ?>' />
+                <input type='text' class='textinput' name='table_prefix' value='<?php echo ($_POST['table_prefix'] ? $_POST['table_prefix'] : 'cpgNG_') ?>' />
         </td>
        </tr>
        <tr>
@@ -566,7 +578,9 @@ $DFLT = array('cfg_d' => 'include', // The config file dir
     'upl_d' => 'userpics', // The uploaded pic dir
     'edit_d' => 'edit',
     'sql_d' => 'sql',
-        'temp_c' => 'templates_c'
+    'plgn_d' => 'plugins',
+    'plgn_t' => 'receive',
+    'temp_c' => 'templates_c'
     );
 
 $errors = '';

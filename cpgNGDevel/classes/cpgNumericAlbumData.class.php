@@ -11,7 +11,7 @@
  * (at your option) any later version.
  *
  * Coppermine version: 1.4.1
- * $Source$
+ * $Source: /home/cvs/cpgNGDevel/classes/cpgNumericAlbumData.class.php,v $
  * $Revision$
  * $Author$
  * $Date$

@@ -28,6 +28,7 @@ require_once('classes/cpgTemplate.class.php');
 
 // Start the session
 session_start();
+
 if (isset($_SESSION['fileUpload'])) {
   unset($_SESSION['fileUpload']);
 }
@@ -36,6 +37,13 @@ if (isset($_SESSION['fileUpload'])) {
   * Main code
   */
 $t = new cpgTemplate;
+
+/**
+ * Check to see whether user has permission to upload the picture
+ */
+if(!USER_CAN_UPLOAD_PICTURES){
+	cpgUtils::cpgDie(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
+}
 
 $listArray = cpgUtils::getAlbumListArray();
 

@@ -25,6 +25,7 @@ require('include/init.inc.php');
 require_once('classes/cpgAlbumFactory.class.php');
 require_once('classes/cpgTemplate.class.php');
 require_once('classes/cpgIndexData.class.php');
+require_once('classes/cpgPluginManager.class.php');
 /**#@-*/
 
 if ($config->conf['enable_smilies']) {
@@ -237,6 +238,9 @@ if ($valid) {
     $t->assign('lang_img_nav_bar', $lang_img_nav_bar);
   }
 
+  // Include plugins for 'thumbnails' namespace
+  cpgPluginManager::invokePlugins('thumbnails');
+
   $CONTENT .= $t->getThumbnailHTML($thumbData, $_GET['meta'] ? true : false);
 } else {
   $query = 'SELECT alb_password_hint FROM '.$config->conf['TABLE_ALBUMS']." WHERE aid = '$album' AND alb_password != ''";
@@ -253,6 +257,9 @@ if ($valid) {
   }
 
   $t->assign('lang_thumb_view', $lang_thumb_view);
+
+  // Include plugins for 'thumbnails' namespace
+  cpgPluginManager::invokePlugins('thumbnails');
 
   $CONTENT .= $t->fetch('common/albumPassword.html');
 }

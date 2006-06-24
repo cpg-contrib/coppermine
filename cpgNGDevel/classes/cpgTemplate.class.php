@@ -164,7 +164,7 @@ class cpgTemplate extends Smarty {
         $this->assign('GALLERY_NAME', $this->config->conf['gallery_name']);
         $this->assign('GALLERY_DESCRIPTION', $this->config->conf['gallery_description']);
         $this->assign('REFERER', $REFERER);
-        $this->assign('allowRegistration', $this->config->conf['allow_user_registration']);
+        $this->assign('allowRegistration', $this->config->conf['allow_user_registration'] == 1 ? 1 : 0);
         $this->assign('theme', $this->config->conf['theme']);
         $this->assign('charset', $this->config->conf['charset']);
 
@@ -174,6 +174,16 @@ class cpgTemplate extends Smarty {
         if (!$auth->isDefined("USER_ID")) {
             $this->assign('login', 1);
         }
+		
+		/**
+         * If registration by invitation is set then show the link
+		 */
+		if ($auth->isDefined("GALLERY_ADMIN_MODE")) {
+		    if ($this->config->conf['allow_user_registration'] == 2) {
+				$this->assign('showInvitationLink', 1);
+		    }
+		}
+
 
         /**
          * *#@+
@@ -215,6 +225,7 @@ class cpgTemplate extends Smarty {
     {
         $this->assign('DOMAIN_URL', $this->config->conf['ecards_more_pic_target']);
         $this->assign('short_url', $this->config->conf['short_url']);
+        $this->assign('theme', $this->config->conf['theme']);
         if (file_exists('templates/' . $this->config->conf['theme'] . '/' . $fileName)) {
             // echo "HERE";
             return $this->fetch($this->config->conf['theme'] . '/' . $fileName);

@@ -104,7 +104,8 @@ class cpgProcessAlbum {
         global $lang_modifyalb_php;
 
         if (GALLERY_ADMIN_MODE) {
-          $this->permOptions = array (0 => $lang_modifyalb_php['public_alb'], FIRST_USER_CAT + $this->auth->isDefined('USER_ID') => $lang_modifyalb_php['me_only']);
+          //$this->permOptions = array (0 => $lang_modifyalb_php['public_alb'], FIRST_USER_CAT + $this->auth->isDefined('USER_ID') => $lang_modifyalb_php['me_only']);
+		  $this->permOptions = array (0 => $lang_modifyalb_php['public_alb'], FIRST_USER_CAT + $this->albumData['user_id'] => $lang_modifyalb_php['me_only']);
           if ($this->albumData['category'] > FIRST_USER_CAT) {
               if (defined('UDB_INTEGRATION')) {
                   $ownerName = $this->auth->get_user_name($this->albumData['category'] - FIRST_USER_CAT);
@@ -126,7 +127,7 @@ class cpgProcessAlbum {
                 $this->permOptions[$group['group_id']] = sprintf($lang_modifyalb_php['groupp_only'], $group['group_name']);
           } // while
         } else {
-          $this->permOptions = array(0 => $lang_modifyalb_php['public_alb'], FIRST_USER_CAT + $this->auth->isDefined('USER_ID') => $lang_modifyalb_php['me_only']);
+          $this->permOptions = array(0 => $lang_modifyalb_php['public_alb'], FIRST_USER_CAT + $this->albumData['user_id'] => $lang_modifyalb_php['me_only']);
 
           $query = "SELECT group_id, group_name FROM {$this->config->conf['TABLE_USERGROUPS']} WHERE group_id IN " . USER_GROUP_SET;
 

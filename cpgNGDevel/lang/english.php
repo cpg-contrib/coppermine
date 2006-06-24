@@ -11,7 +11,7 @@
   (at your option) any later version.
   ********************************************
   Coppermine version: 1.4.1
-  $Source$
+  $Source: /home/cvs/cpgNGDevel/lang/english.php,v $
   $Revision$
   $Author$
   $Date$
@@ -183,6 +183,8 @@ $lang_gallery_admin_menu = array(
   'db_ecard_lnk' => 'Display Ecards',
   'pictures_title' => 'Sort my pictures', //cpg1.4.0
   'pictures_lnk' => 'Sort my pictures', // cpg1.4.0
+  'invitation_title' => 'Send registration invitations',
+  'invitation_lnk' => 'Send Invitations',
 );
 
 $lang_user_admin_menu = array(
@@ -626,6 +628,7 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'view_logs' => 'View logs', //cpg1.4.0
   'click_expand' => 'click section name to expand', //cpg1.4.0
   'expand_all' => 'Expand All', //cpg1.4.0
+  'collapse_all' => 'Collapse All', //cpgNG
   'notice1' => '(*) These settings mustn\'t be changed if you already have files in your database.', //cpg1.4.0 - (relocated)
   'notice2' => '(**) When changing this setting, only the files that are added from that point on are affected, so it is advisable that this setting must not be changed if there are already files in the gallery. You can, however, apply the changes to the existing files with the &quot;<a href="util.php">admin tools</a> (resize pictures)&quot; utility from the admin menu.', //cpg1.4.0 - (relocated)
   'notice3' => '(***) All log files are written in english.', //cpg1.4.0 - (relocated)
@@ -634,6 +637,7 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'auto_resize_user' => 'User only', //cpg1.4.0
   'ascending' => 'ascending', //cpg1.4.0
   'descending' => 'descending', //cpg1.4.0
+  'invitation' => 'By Invitation',
 );
 
 if (defined('ADMIN_PHP')) $lang_admin_data = array(
@@ -649,7 +653,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Enable help-icons (help available in English only)','enable_help', 1, 'f=index.htm&as=admin_general_help&ae=admin_general_help_end'),
   array('Enable clickable keywords in search','clickable_keyword_search', 1),
   array('Show number of linked files','link_pic_count', 1),
-  //array('Enable Short URLs','short_url', 1),
+  array('Enable Short URLs','short_url', 1),
 
   array('Language, Themes &amp; Charset settings', '', 3),
   array('Language', 'lang', 2, 'f=index.htm&as=admin_language_language&ae=admin_language_language_end'),
@@ -748,6 +752,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Allow logged in users to view memberlist', 'allow_memberlist', 1, 'f=index.htm&as=admin_user_memberlist&ae=admin_user_memberlist_end'),
   array('Allow users to change their email address in profile', 'allow_email_change', 1, 'f=index.htm&as=admin_user_allow_email_change&ae=admin_user_allow_email_change_end'), //cpg1.4.0
   array('Allow users to retain control over their pics in public galleries', 'users_can_edit_pics', 1), //cpg1.4.0
+  array('Number of days to wait before deleting inactive users (0 means never delete)', 'max_inactive_users_days', 0),
   array('Number of failed login attempts until temporary ban (to avoid brute force attacks)', 'login_threshold', 0, 'f=index.htm&as=admin_user_login_start&ae=admin_user_login_end'), //cpg1.4.0
   array('Duration of a temporary ban after failed logins', 'login_expiry', 0, 'f=index.htm&as=admin_user_login_start&ae=admin_user_login_end'), //cpg1.4.0
 
@@ -796,6 +801,11 @@ if (defined('ADMIN_PHP')) $lang_config_options = array(
     $lang_yes.':'.$lang_admin_php['debug_everyone'] => 1,
     $lang_yes.':'.$lang_admin_php['debug_admin'] => 2,
     $lang_no => 0
+  ),
+  'allow_user_registration' => array(
+    $lang_yes => 1,
+    $lang_no => 0,
+        $lang_admin_php['invitation'] => 2
   ),
   'clickable_keyword_search' => array(
     'extra_link' => array($lang_admin_php['manage_keyword'] => 'keywordmgr.php')
@@ -1555,6 +1565,20 @@ if (defined('PICMGR_PHP')) $lang_picmgr_php = array(
   'pic_updated' => 'Pictures has been sorted out !'
 );
 
+// ------------------------------------------------------------------------- //
+// File sendinvitation.php // cpg1.4.0
+// ------------------------------------------------------------------------- //
+if (defined('SENDINVITATION_PHP')) $lang_sendinvitation_php = array(
+  'page_title' => 'Send invitation for registration',
+  'submit_send' => 'Send Invitation',
+  'email_addr' => 'Enter email address',
+  'invitation_mail_body' => "You are invited to join %s. \n\nClick the link given below \n[LINK]",
+  'invitation_text' => 'Invitation mail body<br />(Do not delete [LINK])',
+  'invalid_mail_body' => '[LINK] must be present in the mail body',
+  'mail_subject' => 'Invitation to join %s',
+  'invite_success' => 'Invitation(s) sent successfully',
+  'empty_email_err' => 'You must provide atleast one email address',
+);
 
 // ------------------------------------------------------------------------- //
 // File pluginmgr.php
@@ -1662,6 +1686,7 @@ $lang_register_php = array(
   'thank_you_admin_activation' => 'Thank you.<br /><br />Your request for account activation was sent to the admin. You will receive an email if approved.',
   'acct_active_admin_activation' => 'The account is now active and an email has been sent to the user.',
   'notify_user_email_subject' => '%s - Activation notification',
+  'invalid_invitation_code' => 'Registration denied because of invalid invitation code',
 );
 
 $lang_register_confirm_email = <<<EOT

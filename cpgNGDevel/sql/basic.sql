@@ -10,8 +10,8 @@
 ##  (at your option) any later version.
 ##  ********************************************
 ##  Coppermine version: 1.4.1
-##  $Source$
-##  $Revision$
+##  $Source: /home/cvs/cpgNGDevel/sql/basic.sql,v $
+##  $Revision: 1.3 $
 ##  $Author$
 ##  $Date$
 ##  ********************************************

@@ -276,7 +276,7 @@ class cpgMostViewedAlbumData extends cpgAlbumData {
 
         $query = "SELECT $select_columns FROM {$this->config->conf['TABLE_PICTURES']} WHERE approved = 'YES'AND hits > 0 $albStr $keyword ORDER BY hits DESC, filename  $limit";
         $this->db->query($query);
-        $rowset = $this->db->fetchRowSet($result);
+        $rowset = $this->db->fetchRowSet();
         if (!$count) {
             $count = $this->db->nf();
         }

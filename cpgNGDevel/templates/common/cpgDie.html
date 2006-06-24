@@ -8,12 +8,14 @@
         <tr>
                 <td class="tableb" height="300" align="center">
                         <font size="3"><b>{$msgText}</b></font>
+{if $fileText ne ''}											
 <!-- BEGIN file_line -->
                         <br />
 
                         <br />
                         {$fileText}{$file} - {$lineText}{$line}
 <!-- END file_line -->
+{/if}
 <!-- BEGIN output_buffer -->
                         <br />
                         <br />

@@ -12,14 +12,14 @@
     -->
 </script>
 {/literal}
-<table align="center" width="500" cellspacing="1" cellpadding="0" class="maintable">
+<form method="get" action="{$smarty.server.PHP_SELF}" name="editForm">
+<input type="hidden" name="type" value="{$misArr.type}" />
+<input type="hidden" name="pid" value="{$misArr.pid}" />
+<input type="hidden" name="sort" value="{$misArr.sort}" />
+<input type="hidden" name="dir" value="{$misArr.dir}" />
+<table align="center" cellspacing="1" cellpadding="0" class="maintable">
     <tr>
       <td class="tableh1" colspan="{$misArr.totalField}">{if $voteArr ne ''}{$lang_stat_details_php.stats }{else}{$lang_stat_details_php.hits}{/if}
-      <form method="get" action="{$smarty.server.PHP_SELF}" name="editForm">
-      <input type="hidden" name="type" value="{$misArr.type}" />
-      <input type="hidden" name="pid" value="{$misArr.pid}" />
-      <input type="hidden" name="sort" value="{$misArr.sort}" />
-      <input type="hidden" name="dir" value="{$misArr.dir}" />
       </td>
     </tr>
     {if $voteArr ne ''}
@@ -85,3 +85,4 @@
  </td>
 </tr>
 </table>
+</form>

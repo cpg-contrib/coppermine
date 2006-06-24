@@ -140,6 +140,7 @@ class cpgProcessPicture {
           if (is_dir($path_to_image)) {
               return($lang_upload_php['failure'] . " - '$path_to_image'");
           }
+
           // Move the picture into its final location
           if (rename($path_to_image, $uploaded_pic) === true) {
             // Change file permission
@@ -189,7 +190,7 @@ class cpgProcessPicture {
      * @param  $approved
      * @return
      */
-    function addPicture($aid, $filepath, $filename, $position = 0, $title = '', $caption = '', $keywords = '', $user1 = '', $user2 = '', $user3 = '', $user4 = '', $category = 0, $approved)
+    function addPicture($aid, $filepath, $filename, $position = 0, $title = '', $caption = '', $keywords = '', $user1 = '', $user2 = '', $user3 = '', $user4 = '', $category = 0, $approved, $iwidth = 0, $iheight = 0)
     {
         global $lang_errors, $lang_upload_php;
 
@@ -461,7 +462,7 @@ class cpgProcessPicture {
 
         // rename a file
         if ($_POST['filename' . $pid] != $pic['filename']) {
-            $forbidden_chars = strtr($config->conf['forbiden_fname_char'], array('&amp;' => '&', '&quot;' => '"', '&lt;' => '<', '&gt;' => '>'));
+
             if ($config->conf['thumb_use'] == 'ht' && $pic['pheight'] > $config->conf['picture_width']) {
                 $condition = true;
             } elseif ($config->conf['thumb_use'] == 'wd' && $pic['pwidth'] > $config->conf['picture_width']) {
@@ -484,7 +485,7 @@ class cpgProcessPicture {
 
             foreach ($prefices as $prefix) {
                 $oldname = cpgUtils::getPicUrl($pic, $prefix);
-                $filename = strtr($_POST['filename' . $pid], $forbidden_chars, str_repeat('_', strlen($config->conf['forbiden_fname_char'])));
+                $filename = cpgUtils::replaceForbidden($_POST['filename' . $pid]);
                 $newname = str_replace($pic['filename'], $filename, $oldname);
 
                 $old_mime = cpg_get_type($oldname);

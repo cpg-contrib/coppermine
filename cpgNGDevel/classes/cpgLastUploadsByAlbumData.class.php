@@ -187,7 +187,7 @@ class cpgLastUploadsByAlbumData extends cpgAlbumData {
      */
     function getPicData($album, &$count, &$album_name, $limit1 = -1, $limit2 = -1, $cat, $indexPage, $set_caption = true, $uid)
     {
-        global $lang_meta_album_names, $USER;
+        global $lang_meta_album_names, $lastup_date_fmt, $USER;
         $row = array();
         $limit = ($limit1 != -1) ? ' LIMIT ' . $limit1 : '';
         $limit .= ($limit2 != -1) ? ' ,' . $limit2 : '';

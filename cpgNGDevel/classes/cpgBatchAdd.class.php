@@ -11,7 +11,7 @@
  * (at your option) any later version.
  *
  * Coppermine version: 1.4.1
- * $Source$
+ * $Source: /home/cvs/cpgNGDevel/classes/cpgBatchAdd.class.php,v $
  * $Revision$
  * $Author$
  * $Date$
@@ -155,6 +155,8 @@ class cpgBatchAdd {
    */
   function __getFolderContent($folder)
   {
+    global $lang_db_input_php;
+
     $dir = opendir($this->config->conf['fullpath'] . $folder);
 
     while ($file = readdir($dir)) {
@@ -165,7 +167,29 @@ class cpgBatchAdd {
       }
       if (is_file($this->config->conf['fullpath'] . $folder . $file)) {
         if (strncmp($file, $this->config->conf['thumb_pfx'], strlen($this->config->conf['thumb_pfx'])) != 0 && strncmp($file, $this->config->conf['normal_pfx'], strlen($this->config->conf['normal_pfx'])) != 0 && $file != 'index.html') {
-          $this->picArr[] = $file;
+	        $newfile = cpgUtils::replaceForbidden($file);
+	        if ($newfile != $file) {
+	          //File name has been changed, let's get a unique filename and rename the existing file.
+	          $matches = array();
+	          if (!preg_match("/(.+)\.(.*?)\Z/", $newfile, $matches)) {
+	              $matches[1] = 'invalid_fname';
+	              $matches[2] = 'xxx';
+	          }
+
+	          if ($matches[2] == '' || !is_known_filetype($matches)) {
+	              cpgUtils::cpgDie(ERROR, sprintf($lang_db_input_php['err_invalid_fext'], $this->config->conf['allowed_file_extensions']), __FILE__, __LINE__);
+	          }
+
+	          // Create a unique name for the uploaded file
+	          $nr = 0;
+	          $picture_name = $matches[1] . '.' . $matches[2];
+	          while (file_exists($this->config->conf['fullpath'] . $folder . $picture_name)) {
+	            $picture_name = $matches[1] . '~' . $nr++ . '.' . $matches[2];
+	          }
+	          @rename($this->config->conf['fullpath'] . $folder . $file, $this->config->conf['fullpath'] . $folder . $picture_name);
+	          $file = $picture_name;
+	        }
+	        $this->picArr[] = $file;
         }
       }
     }

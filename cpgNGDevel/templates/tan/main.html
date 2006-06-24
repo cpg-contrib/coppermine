@@ -7,7 +7,7 @@
 <link rel="start" href="index.php" />
 <link rel="shortcut icon" href="favicon.ico" />
 <link rel="search" href="search.php" />
-<link href="{$DOMAIN_URL}templates/{$theme}/style.css" type="text/css" rel="stylesheet" />
+<link href="templates/{$theme}/style.css" type="text/css" rel="stylesheet" /> 
 <script type="text/javascript" src="{$DOMAIN_URL}scripts.js"></script>
 </head>
 <body>
@@ -96,6 +96,9 @@
       <li><a href="util.php" title="{$lang_gallery_admin_menu.util_title}">{$lang_gallery_admin_menu.util_lnk}</a></li>
       <li><a href="profile.php?op=edit_profile" title="{$lang_user_admin_menu.my_prof_title}">{$lang_user_admin_menu.my_prof_lnk}</a></li>
       <li><a href="picmgr.php" title="{$lang_gallery_admin_menu.pictures_title}">{$lang_gallery_admin_menu.pictures_lnk}</a></li>
+	  {if $showInvitationLink }
+	  <li><a href="sendinvitation.php" title="{$lang_gallery_admin_menu.invitation_title}">{$lang_gallery_admin_menu.invitation_lnk}</a></li>
+	  {/if}
       </ul>
     </li>
     {/if}

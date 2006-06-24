@@ -139,6 +139,52 @@ class cpgProcessUsers {
   }
 
   /**
+   * checkInvitationCode()
+   *
+   * - Function to check if the invitation code in database is matching with the user's while registration
+   * @param string $invitationCode
+   * @return invitaionCode
+   */
+  function checkInvitationCode($invitationCode)
+  {
+	  $query = "SELECT
+					invitationCode
+				FROM
+					{$this->config->conf['TABLE_INVITATIONS']}
+				WHERE
+					invitationCode = '$invitationCode'
+				AND
+					user_id = '0'
+				LIMIT 0, 1";
+
+	  $this->db->query($query);
+		
+	  if ($this->db->nf()) {
+			return true;
+	  } else {
+		  return false;
+	  }
+  }
+
+  /**
+   * updateInvitations()
+   *
+   * - Function to update the 'cpgNGdevelinvitations' table in database
+   * @param string $invitationCode
+   * @param string $userId
+   */
+  function updateInvitations($userId, $invitationCode)
+  {
+	  $query = "UPDATE
+					{$this->config->conf['TABLE_INVITATIONS']}
+				SET
+					user_id = $userId
+				WHERE
+					invitationCode = '$invitationCode'";
+	  $this->db->query($query);
+  }
+
+  /**
    * updateUser()
    *
    * - Function to update the current user information or to create a new user.
@@ -260,6 +306,7 @@ class cpgProcessUsers {
 
   function deleteUsers()
   {
+    global $lang_errors;
     $db1 = new cpgDB; //New instance of database class
 
     $user_id = str_replace('u', '', $_GET['id']);
@@ -400,7 +447,7 @@ class cpgProcessUsers {
 
   function activateUsers()
   {
-    global $lang_delete_php;
+    global $lang_delete_php, $lang_errors;
 
     $db1 = new cpgDB; //New instance of database class
 
@@ -434,7 +481,7 @@ class cpgProcessUsers {
 
   function deactivateUsers()
   {
-    global $lang_delete_php;
+    global $lang_delete_php, $lang_errors;
 
     $db1 = new cpgDB; //New instance of database class
 
@@ -470,7 +517,7 @@ class cpgProcessUsers {
 
   function resetPassword()
   {
-    global $lang_delete_php;
+    global $lang_delete_php, $lang_errors;
 
     $db1 = new cpgDB; //New instance of database class
 
@@ -503,7 +550,7 @@ class cpgProcessUsers {
 
   function changeGroup ()
   {
-    global $lang_delete_php;
+    global $lang_delete_php, $lang_errors;
 
     $db1 = new cpgDB; //New instance of database class
 
@@ -543,7 +590,7 @@ class cpgProcessUsers {
 
   function addGroup ()
   {
-    global $lang_delete_php;
+    global $lang_delete_php, $lang_errors;
 
     $db1 = new cpgDB; //New instance of database class
 
@@ -893,6 +940,22 @@ class cpgProcessUsers {
           }
        }
     }
+
+	 /**
+	  *  function to delete the inactive user, who have not accepted the registration
+	  */
+	  function deleteInactiveUsers(){
+		  $maxDays = $this->config->conf['max_inactive_users_days'];
+
+	  	  if(!$maxDays){
+		  	return;
+		  }
+
+		  $timestampDate = mktime(0, 0, 0, date("m")  , date("d")-$maxDays, date("Y"));
+		  $date = date('Y-m-d',$timestampDate);
+		  $query = "DELETE FROM {$this->config->conf['TABLE_USERS']} WHERE user_active = 'NO' AND user_regdate < '$date' ";
+		  $this->db->query($query);
+	  }
 
 }
 

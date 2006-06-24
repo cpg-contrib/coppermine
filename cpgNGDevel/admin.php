@@ -27,7 +27,9 @@ require_once('classes/cpgWidgetFactory.class.php');
 /**
  * If logged in member is not admin then stop further execution of script
  */
-if (!GALLERY_ADMIN_MODE) cpgUtils::cpgDie(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+if (!GALLERY_ADMIN_MODE) {
+	cpgUtils::cpgDie(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+}
 
 /**
  * List of options to disable in coppermine is bridged with another application

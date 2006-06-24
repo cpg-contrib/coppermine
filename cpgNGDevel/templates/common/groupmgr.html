@@ -155,11 +155,13 @@ function selectAll(d,box) {
     <td class="tablef"><input type="checkbox" name="checkAll2" onClick="selectAll(this,'delete_group');" class="checkbox" title="$lang_check_uncheck_all" /></td>
     <td colspan="13" align="center" class="tablef">
       <input type="submit" name="apply_modifs" value="{$lang_groupmgr_php.apply}" class="button">&nbsp;&nbsp;&nbsp;
+     {if $UDB_INTEGRATION eq 'coppermine'}
       <input type="hidden" name="new_group_name" value="" id="new_group_name" />
       <input type="submit" name="new_group" value="{$lang_groupmgr_php.create_new_group}" class="button" onclick="return promptGroupName();">&nbsp;&nbsp;&nbsp;
       {if $groupObj->displayDeleteGroup eq 1}
         <input type="submit" name="del_sel" value="{$lang_groupmgr_php.del_groups}" onClick="return confirmDel()" class="button">
       {/if}
+     {/if}
     </td>
   </form>
   </tr>

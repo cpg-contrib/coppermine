@@ -42,11 +42,11 @@ if (count($_FILES) && !isset($_SESSION['fileUpload'])) {
 
   if ($file_upload_count > 0) {
 
-/*      
+/*
       if (isset($_SESSION['fileUpload'])) {
         unset($_SESSION['fileUpload']);
       }
-*/  
+*/
       // Assign maximum file size for browser crontrols.
       $max_file_size = $config->conf['max_upl_size'] << 10;
 
@@ -100,12 +100,12 @@ if (count($_FILES) && !isset($_SESSION['fileUpload'])) {
               continue;
 
           }
-          
+
           // Test for a blank album id.
           if (empty($_POST['album'][$counter])) {
-          
+
               $_SESSION['fileUpload'][$counter]['error'] = $lang_upload_php['no_album'];
-              $_SESSION['fileUpload'][$counter]['actualName'] = $file_name;          
+              $_SESSION['fileUpload'][$counter]['actualName'] = $file_name;
 
               // There is no need for further tests or action as there was no uploaded file, so skip the remainder of the iteration.
               continue;
@@ -122,10 +122,10 @@ if (count($_FILES) && !isset($_SESSION['fileUpload'])) {
             $_SESSION['fileUpload'][$counter]['albumName'] = $row['title'];
           } else {
               $_SESSION['fileUpload'][$counter]['error'] = $lang_upload_php['invalid_album'];
-              $_SESSION['fileUpload'][$counter]['actualName'] = $file_name;          
+              $_SESSION['fileUpload'][$counter]['actualName'] = $file_name;
 
               // There is no need for further tests or action as there was no uploaded file, so skip the remainder of the iteration.
-              continue;          
+              continue;
           }
 
           // Check filename and extension:
@@ -135,16 +135,14 @@ if (count($_FILES) && !isset($_SESSION['fileUpload'])) {
           // Initialise the $matches array.
           $matches = array();
 
-          // Get the forbidden characters from the Admin console string, and do any necessary translation. Return the translated string.
-          $forbidden_chars = strtr($config->conf['forbiden_fname_char'], array('&amp;' => '&', '&quot;' => '"', '&lt;' => '<', '&gt;' => '>'));
-
           // If magic quotes is on, remove the slashes it added to the file name.
           if (get_magic_quotes_gpc()) {
             $_FILES['userpicture']['name'][$counter] = stripslashes($_FILES['userpicture']['name'][$counter]);
           }
 
           // Create the holder $picture_name by translating the file name. Translate any forbidden character into an underscore.
-          $picture_name = strtr($_FILES['userpicture']['name'][$counter], $forbidden_chars, str_repeat('_', strlen($config->conf['forbiden_fname_char'])));
+          //$picture_name = strtr($_FILES['userpicture']['name'][$counter], $forbidden_chars, str_repeat('_', strlen($config->conf['forbiden_fname_char'])));
+          $picture_name = cpgUtils::replaceForbidden($_FILES['userpicture']['name'][$counter]);
 
           // Analyze the file extension using regular expressions.
           if (!preg_match("/(.+)\.(.*?)\Z/", $picture_name, $matches)) {
@@ -199,7 +197,7 @@ if (count($_FILES) && !isset($_SESSION['fileUpload'])) {
               // There is no temporary file, so the file did not upload. Make a note of it in the file_failure_array and flip the failure switch to generate the ordinal.
 
               $file_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'file_name'=> $file_name, 'error_code'=>$lang_upload_php['no_temp_name']);
-              
+
               $_SESSION['fileUpload'][$counter]['error'] = $lang_upload_php['no_temp_name'];
               $_SESSION['fileUpload'][$counter]['actualName'] = $file_name;
               // There is no need for further tests or action, so skip the remainder of the iteration.
@@ -228,20 +226,20 @@ if (count($_FILES) && !isset($_SESSION['fileUpload'])) {
               continue;
 
           }
-          
+
           // Check to make sure the file was uploaded via POST.
 
           if (!is_uploaded_file($_FILES['userpicture']['tmp_name'][$counter])) {
 
               // We reject the file, and make a note of the error.
               $file_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'file_name'=> $file_name, 'error_code'=>$lang_upload_php['no_post']);
-              
+
               $_SESSION['fileUpload'][$counter]['error'] = $lang_upload_php['no_post'];
               $_SESSION['fileUpload'][$counter]['actualName'] = $file_name;
 
               // There is no need for further tests or action, so skip the remainder of the iteration.
               continue;
-          }          
+          }
 
           // Now we need to move the file into the /edit directory.
 
@@ -346,7 +344,7 @@ if (count($_FILES) && !isset($_SESSION['fileUpload'])) {
           }
           $_SESSION['fileUpload'][$counter]['tmpName']    = $tempname;
           $_SESSION['fileUpload'][$counter]['actualName'] = $file_name;
-          
+
           // Pictures will be moved in a directory named 10000 + USER_ID
           if ($auth->isDefined('USER_ID') && !defined('SILLY_SAFE_MODE')) {
               $filepath = $config->conf['userpics'] . ($auth->isDefined('USER_ID') + FIRST_USER_CAT);
@@ -366,26 +364,28 @@ if (count($_FILES) && !isset($_SESSION['fileUpload'])) {
           } else {
               $filepath = $config->conf['userpics'];
               $dest_dir = $config->conf['fullpath'] . $filepath;
-          }   
+          }
 
           // Create a unique name for the file to be uploaded
           $nr = 0;
           $uniqueName = $matches[1] . '.' . $matches[2];
           while (file_exists($dest_dir . $uniqueName)) {
               $uniqueName = $matches[1] . '~' . $nr++ . '.' . $matches[2];
-          }          
+          }
 
-          $_SESSION['fileUpload'][$counter]['fileName'] = $uniqueName;          
+          $_SESSION['fileUpload'][$counter]['fileName'] = $uniqueName;
       } // end for loop
-  } // end if statement    
+  } // end if statement
 }
-
+//For creating timestamp
+$time = time();
 //print_r($_SESSION['fileUpload']);
 
 $t->assign('files', $_SESSION['fileUpload']);
 $t->assign('lang_upload_php', $lang_upload_php);
+$t->assign('time',$time);
 $t->assign("CONTENT", $t->fetchHTML("common/uploadAction.html"));
-  
+
 $t->assign("SUB_TITLE", $lang_upload_php['title']);
 
 /**

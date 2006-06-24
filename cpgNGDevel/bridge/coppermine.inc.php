@@ -11,7 +11,7 @@
   (at your option) any later version.
   ********************************************
   Coppermine version: 1.4.1
-  $Source$
+  $Source: /home/cvs/cpgNGDevel/bridge/coppermine.inc.php,v $
   $Revision$
   $Author$
   $Date$
@@ -43,7 +43,7 @@ class cpg_udb extends core_udb {
                         $this->use_post_based_groups = @$BRIDGE['use_post_based_groups'];
                 }
 
-                $this->multigroups = 0;
+                $this->multigroups = 1;
 
                 $this->group_overrride = !$this->use_post_based_groups;
 
@@ -159,7 +159,7 @@ user_password = '" . $password . "' AND user_active = 'YES'";
         function get_groups($row)
         {
                 $i = 1;
-                $data[0] = in_array($row['group_id'] - 100, $this->admingroups) ? $i : 2;
+                $data[0] = $row['group_id'] - 100;
 
                 if ($this->use_post_based_groups){
                         $sql = "SELECT ug.{$this->field['usertbl_group_id']}+100 AS group_id FROM {$this->usertable} AS u, {$this->groupstable} as g WHERE u.{$this->field['user_id']}='{$row[$this->field['user_id']]}' AND g.{$this->field['grouptbl_group_id']} = u.{$this->field['usertbl_group_id']}";
@@ -235,7 +235,60 @@ user_password = '" . $password . "' AND user_active = 'YES'";
         {       }
 
         function synchronize_groups()
-        {   }
+        {
+            if ($this->use_post_based_groups) {
+                if ($this->group_overrride) {
+                    $udb_groups = $this->collect_groups();
+                } else {
+                    $sql = "SELECT * FROM {$this->groupstable} WHERE {$this->field['grouptbl_group_name']} <> ''";
+
+                    ////$result = cpg_db_query($sql, $this->link_id);
+                    $this->cpgDb->query($sql);
+
+                    $udb_groups = array();
+
+                    ////while ($row = mysql_fetch_assoc($result))
+                    while ($row = $this->cpgDb->fetchRow())
+                    {
+                        $udb_groups[$row[$this->field['grouptbl_group_id']]+100] = utf_ucfirst(utf_strtolower($row[$this->field['grouptbl_group_name']]));
+                    }
+                }
+            } else {
+                $udb_groups = array(1 =>'Administrators', 2=> 'Registered', 3=>'Anonymous', 4=> 'Banned');
+            }
+
+            ////$result = cpg_db_query("SELECT group_id, group_name FROM {$CONFIG['TABLE_USERGROUPS']} WHERE 1");
+            $this->cpgDb->query("SELECT group_id, group_name FROM {$this->config->conf['TABLE_USERGROUPS']} WHERE 1");
+
+            ////while ($row = mysql_fetch_array($result)) {
+            while ($row = $this->cpgDb->fetchRow()) {
+                $cpg_groups[$row['group_id']] = $row['group_name'];
+            }
+
+            ////mysql_free_result($result);
+
+            // Scan udb groups that need to be created inside Coppermine table
+            foreach($udb_groups as $i_group_id => $i_group_name) {
+                if ((!isset($cpg_groups[$i_group_id]))) {
+                    // add admin info
+                    $admin_access = in_array($i_group_id-100, $this->admingroups) ? '1' : '0';
+                    ////cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']} (group_id, group_name, has_admin_access) VALUES ('$i_group_id', '" . addslashes($i_group_name) . "', '$admin_access')");
+                    $this->cpgDb->query("INSERT INTO {$this->config->conf['TABLE_USERGROUPS']} (group_id, group_name, has_admin_access) VALUES ('$i_group_id', '" . addslashes($i_group_name) . "', '$admin_access')");
+                    $cpg_groups[$i_group_id] = $i_group_name;
+                }
+            }
+
+            // Update Group names
+            foreach($udb_groups as $i_group_id => $i_group_name) {
+                if ($cpg_groups[$i_group_id] != $i_group_name) {
+                    ////cpg_db_query("UPDATE {$CONFIG['TABLE_USERGROUPS']} SET group_name = '" . addslashes($i_group_name) . "' WHERE group_id = '$i_group_id' LIMIT 1");
+                    $this->cpgDb->query("UPDATE {$this->config->conf['TABLE_USERGROUPS']} SET group_name = '" . addslashes($i_group_name) . "' WHERE group_id = '$i_group_id' LIMIT 1");
+                }
+            }
+            // fix admin grp
+            ////if (!$this->use_post_based_groups) cpg_db_query("UPDATE {$CONFIG['TABLE_USERGROUPS']} SET has_admin_access = '1' WHERE group_id = '1' LIMIT 1");
+            if (!$this->use_post_based_groups) $this->cpgDb->query("UPDATE {$this->config->conf['TABLE_USERGROUPS']} SET has_admin_access = '1' WHERE group_id = '1' LIMIT 1");
+        }
 }
 
 // and go !

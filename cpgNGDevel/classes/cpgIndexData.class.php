@@ -200,6 +200,7 @@ class cpgIndexData extends cpgAlbumData {
 
         $cpg_show_private_album = $this->config->conf['allow_private_albums'] ? $this->config->conf['show_private'] : true;
         $album_filter = '';
+
         $pic_filter = '';
         if (!empty($this->auth->forbiddenSet) && !$cpg_show_private_album) {
             $album_filter = ' and ' . str_replace('p.', 'a.', $this->auth->forbiddenSet);

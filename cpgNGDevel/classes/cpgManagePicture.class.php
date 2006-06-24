@@ -33,6 +33,8 @@ class cpgManagePicture {
      */
     function get_album_data()
     {
+        global $lang_picmgr_php;
+
         $ALBUM_LIST = array();
         $ALBUM_LIST[] = array(0, $lang_picmgr_php['no_album']);
         $sql = "SELECT aid, title FROM {$this->config->conf['TABLE_ALBUMS']} ORDER BY title";
@@ -95,11 +97,10 @@ class cpgManagePicture {
         }
 
         $this->db->query($sql);
-        
+
         if ($this->db->nf()) {
           $rowset = $this->db->fetchRowSet();
           foreach ($rowset as $row) {
-          print "HERE";
               $listArray[$list_count]['cat'] = $lang_search_new_php['personal_albums'];
               $listArray[$list_count]['aid'] = $row['aid'];
               $listArray[$list_count]['title'] = $row['title'];

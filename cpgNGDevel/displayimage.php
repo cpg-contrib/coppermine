@@ -34,6 +34,7 @@ require_once('classes/cpgAlbumFactory.class.php');
 require_once('classes/cpgTemplate.class.php');
 require('classes/cpgDisplayImageData.class.php');
 require_once('classes/cpgProcessComments.class.php');
+require_once('classes/cpgPluginManager.class.php');
 /**#@-*/
 
 /**
@@ -277,6 +278,9 @@ if ($config->conf['display_film_strip']) {
 } else {
   $filmStrip = "";
 }
+
+// Include plugins for 'displayimage' namespace
+cpgPluginManager::invokePlugins('displayimage');
 
 /**
  * Get the html for the displaying whole page in a variable

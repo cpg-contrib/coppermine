@@ -11,6 +11,9 @@
   <tr>
     <TD class="tableb" colspan="2">{$lang_register_disclamer}</TD>
   </tr>
+  {if $miscArr.byInvitation}
+  <input type="hidden" name="invite" value="{$miscArr.byInvitation}">
+  {/if}
   <tr>
     <TD class="tableh2" colspan="2" align="center"><input type="submit" name="agree" value="{$lang_register_php.i_agree}" class="button" /></TD>
   </tr>
@@ -72,6 +75,9 @@
   </tr>
   {/if}
   <!--textarea field end-->
+  {if $miscArr.byInvitation}
+  <input type="hidden" name="invite" value="{$miscArr.byInvitation}">
+  {/if}
   <tr>
     <td colspan="2" align="center" class="tablef">
       <input type="submit" name="register" value="{$lang_register_php.submit}" class="button">

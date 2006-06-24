@@ -28,11 +28,22 @@ if (!$config->conf['allow_user_registration']) {
     cpgUtils::cpgDie(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 }
 
+if ($config->conf['allow_user_registration'] == 2 && !isset($_GET['activate'])) {
+	$invitationCode = $_GET['invite'] ? $_GET['invite'] : $_POST['invite'];
+	$length = strlen($invitationCode);
+	if ($length != 32 || !ctype_alnum($invitationCode) ) {
+		cpgUtils::cpgDie(ERROR, $lang_register_php['invalid_invitation_code'], __FILE__, __LINE__);
+	} else {
+		$miscArr['byInvitation'] = $invitationCode;
+	}
+}
+
 if (defined('UDB_INTEGRATION')) {
     $auth->register_page();
 }
 
 $userObj = new cpgProcessUsers;
+
 /**
  * Get the user fields that are set.
  */
@@ -71,13 +82,25 @@ if (isset($_POST['register']) && !empty($_POST['register'])) {
     } else {
       $act_key = '';
     }
+	if ($config->conf['allow_user_registration'] == 2) {
+		$validCode = $userObj->checkInvitationCode($invitationCode);
+		if (!$validCode){
+			cpgUtils::cpgDie(ERROR, $lang_register_php['invalid_invitation_code'], __FILE__, __LINE__);
+		}
+	}
     if ($userName = $userObj->updateUser($miscArr['user_id'], $act_key)) {
+		if ($config->conf['allow_user_registration'] == 2) {
+			$userId = $db->insertId();
+			$userObj->updateInvitations($userId, $invitationCode);
+		}
         if ($config->conf['reg_requires_valid_email']) {
             $userObj->registerNoticeMail($act_key); // function to send register mail notice to admin OR user
         } else {
             $miscArr['success'] = 1;
         }
     }
+	//Call function to delete the inactive user
+	$userObj->deleteInactiveUsers();
 }
 
 // call function to activate user

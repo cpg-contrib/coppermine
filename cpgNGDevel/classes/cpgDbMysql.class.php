@@ -106,11 +106,11 @@ class cpgDB {
     /**
      * cpgDB::connect()
      * 
-     * @param string $Database 
-     * @param string $Host 
-     * @param string $User 
-     * @param string $Password 
-     * @return 
+     * @param string $Database
+     * @param string $Host
+     * @param string $User
+     * @param string $Password
+     * @return
      */
     function connect($Database = '', $Host = '', $User = '', $Password = '')
     {
@@ -519,19 +519,19 @@ class cpgDB {
                 $res[$i]['len'] = @mysql_field_len ($id, $i);
                 $res[$i]['flags'] = @mysql_field_flags ($id, $i);
                 $res['meta'][$res[$i]['name']] = $i;
-            } 
-        } 
+            }
+        }
         // free the result only if we were called on a table
         if ($table) @mysql_free_result($id);
         return $res;
-    } 
+    }
 
     /* private: error handling */
     /**
      * cpgDB::halt()
-     * 
-     * @param  $msg 
-     * @return 
+     *
+     * @param  $msg
+     * @return
      */
     function halt($msg)
     {
@@ -544,13 +544,13 @@ class cpgDB {
 
         if ($this->Halt_On_Error != 'report')
             die('Session halted.');
-    } 
+    }
 
     /**
      * cpgDB::haltmsg()
-     * 
-     * @param  $msg 
-     * @return 
+     *
+     * @param  $msg
+     * @return
      */
     function haltmsg($msg)
     {
@@ -558,12 +558,12 @@ class cpgDB {
         printf("<b>MySQL Error</b>: %s (%s)<br>\n",
             $this->Errno,
             $this->Error);
-    } 
+    }
 
     /**
      * cpgDB::tableNames()
-     * 
-     * @return 
+     *
+     * @return
      */
     function tableNames()
     {
@@ -574,9 +574,9 @@ class cpgDB {
             $return[$i]['tablespace_name'] = $this->Database;
             $return[$i]['database'] = $this->Database;
             $i++;
-        } 
+        }
         return $return;
-    } 
+    }
 
     /**
      * insertId()
@@ -589,6 +589,6 @@ class cpgDB {
     {
       return (int)mysql_insert_id($this->Link_ID);
     }
-} 
+}
 
 ?>
