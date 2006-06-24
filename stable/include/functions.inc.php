@@ -18,11 +18,11 @@
 **********************************************/
 
 /**
-* Coppermine Photo Gallery 1.4.1 functions.inc.php
+* Coppermine Photo Gallery - functions.inc.php
 *
 * This file has almost all the functions of Coppermine
 *
-* @copyright  2002,2005 Gregory DEMAR, Coppermine Dev Team
+* @copyright  2002,2006 Gregory DEMAR, Coppermine Dev Team
 * @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
 * @package Coppermine
 * @version  $Id$
