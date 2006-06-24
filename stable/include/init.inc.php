@@ -2,7 +2,7 @@
 /*************************
   Coppermine Photo Gallery
   ************************
-  Copyright (c) 2003-2005 Coppermine Dev Team
+  Copyright (c) 2003-2006 Coppermine Dev Team
   v1.1 originally written by Gregory DEMAR
 
   This program is free software; you can redistribute it and/or modify
@@ -10,15 +10,15 @@
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
   ********************************************
-  Coppermine version: 1.5.0
-  $HeadURL$
+  Coppermine version: 1.4.9
+  $Source$
   $Revision$
-  $LastChangedBy$
+  $Author$
   $Date$
 **********************************************/
 
-define('COPPERMINE_VERSION', '1.5.0');
-define('COPPERMINE_VERSION_STATUS', 'alpha');
+define('COPPERMINE_VERSION', '1.4.9');
+define('COPPERMINE_VERSION_STATUS', 'stable');
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 
@@ -151,9 +151,9 @@ define('CRITICAL_ERROR', 3);
 
 // Include config and functions files
 if(file_exists('include/config.inc.php')){
-	ob_start();
-	require_once 'include/config.inc.php';
-	ob_clean();
+        ob_start();
+        require_once 'include/config.inc.php';
+        ob_clean();
 } else {
   // error handling: if the config file doesn't exist go to install
   die('<html>
@@ -279,7 +279,7 @@ define('USER_ADMIN_MODE', USER_ID && USER_CAN_CREATE_ALBUMS && $USER['am'] && !G
 // Maze's new error report system
 if (!USER_IS_ADMIN) {
     if (!$CONFIG['debug_mode']) $cpgdebugger->stop(); // useless to run debugger cos there's no output
-    error_reporting(0); // hide all errors for visitors
+    error_reporting(E_PARSE); // hide all errors for visitors
 }
 
 // Process theme selection if present in URI or in user profile
@@ -303,8 +303,7 @@ $THEME_DIR = "themes/{$CONFIG['theme']}/";
 // autodetection if default charset is utf-8
 if (!empty($_GET['lang']))
 {
-    //$USER['lang'] = $_GET['lang']; Nasty line permitting remote code execution
-	$USER['lang'] = ereg("^[a-z0-9_-]*$", $_GET['lang']) ? $_GET['lang'] : $CONFIG['lang'];
+    $USER['lang'] = ereg("^[a-z0-9_-]*$", $_GET['lang']) ? $_GET['lang'] : $CONFIG['lang'];
 }
 
 if (isset($USER['lang']) && !strstr($USER['lang'], '/') && file_exists('lang/' . $USER['lang'] . '.php'))
