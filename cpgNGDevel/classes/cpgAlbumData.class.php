@@ -430,7 +430,7 @@ class cpgAlbumData {
                 $thumb_list[$i]['picUrl'] = $pic_url;
                 $thumb_list[$i]['picTitle'] = $pic_title;
                 $thumb_list[$i]['filename'] = $row['filename'];
-                $thumb_list[$i]['target'] = $this->config->conf['ecards_more_pic_target'] . "displayimage.php?pos=$picPos";
+                $thumb_list[$i]['target'] = $this->config->conf['ecards_more_pic_target'] . "displayimage.php?pid=".$row['pid'];
 
                 if (!empty($meta)) {
                     $thumb_list[$i]['target'] .= "&amp;meta=$meta";

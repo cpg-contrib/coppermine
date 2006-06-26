@@ -314,7 +314,7 @@ class cpgDisplayImageData extends cpgAlbumData {
      * @param  $picCount
      * @return
      */
-    function buildLinks($meta, $album, $cat, $pos, $picCount)
+    function buildLinks($meta, $album, $cat, $pos, $picCount, $nextPicId = 0, $prevPicId = 0)
     {
         global $lang_img_nav_bar;
 
@@ -379,13 +379,13 @@ class cpgDisplayImageData extends cpgAlbumData {
          */
         if ($pos > 0) {
             if (!empty($meta)) {
-                $this->picData['prevTarget'] = $this->config->conf['ecards_more_pic_target'] . "displayimage.php?meta=$meta&amp;pos=" . ($pos - 1);
+                $this->picData['prevTarget'] = $this->config->conf['ecards_more_pic_target'] . "displayimage.php?meta=$meta&amp;pid=$prevPicId";
 
                 if ($meta == 'lastupby') {
                   $this->picData['prevTarget'] .= '&amp;uid='.(int)$_GET['uid'];
                 }
             } else {
-                $this->picData['prevTarget'] = $this->config->conf['ecards_more_pic_target'] . "displayimage.php?pos=" . ($pos - 1);
+                $this->picData['prevTarget'] = $this->config->conf['ecards_more_pic_target'] . "displayimage.php?pid=$prevPicId";
             }
 
             if (!empty($album)) {
@@ -402,13 +402,13 @@ class cpgDisplayImageData extends cpgAlbumData {
          */
         if ($pos < ($picCount - 1)) {
             if (!empty($meta)) {
-                $this->picData['nextTarget'] = $this->config->conf['ecards_more_pic_target'] . "displayimage.php?meta=$meta&amp;pos=" . ($pos + 1);
+                $this->picData['nextTarget'] = $this->config->conf['ecards_more_pic_target'] . "displayimage.php?meta=$meta&amp;pid=$nextPicId";
 
                 if ($meta == 'lastupby') {
                   $this->picData['nextTarget'] .= '&amp;uid='.(int)$_GET['uid'];
                 }
             } else {
-                $this->picData['nextTarget'] = $this->config->conf['ecards_more_pic_target'] . "displayimage.php?pos=" . ($pos + 1);
+                $this->picData['nextTarget'] = $this->config->conf['ecards_more_pic_target'] . "displayimage.php?pid=$nextPicId";
             }
 
             if (!empty($album)) {

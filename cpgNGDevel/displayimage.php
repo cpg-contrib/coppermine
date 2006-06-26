@@ -74,10 +74,6 @@ if (isset($_GET['pid'])) {
    * Variable to hold picture id
    */
   $pid = (int)$_GET['pid'];
-  /**
-   * Get the album of the selected picture.
-   */
-  $album = cpgUtils::getAid('pid', $pid);
 } else {
   $pid = 0;
 }
@@ -103,6 +99,13 @@ if (isset($_GET['cat']) && !empty($_GET['cat'])) {
 }
 
 /**
+ * If album and meta are not set then get the album from pid
+ */
+if (!$album && !$meta) {
+  $album = cpgUtils::getAid('pid', $pid);
+}
+
+/**
  * Create a new album object
  */
 $albumData = cpgAlbumFactory::getAlbumObj(!empty($meta) ? $meta : $album);
@@ -114,14 +117,6 @@ if (isset($_GET['pos'])) {
    * Variable to hold picture position
    */
   $pos = (int)$_GET['pos'];
-} elseif ($pid > 0) {
-  /**
-   * Now we need the position of this picture in the album.
-   */
-  $allPicData = $albumData->getPicData($album, $pic_count, $album_name, -1, -1, false);
-  for($pos = 0; $allPicData[$pos]['pid'] != $pid && $pos < $pic_count; $pos++);
-} else {
-  cpgUtils::cpgDie(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
 }
 
 /**
@@ -175,6 +170,15 @@ if (is_int($pos)) {
         $humanPos = $pos + 1;
     }
 
+} elseif ($pid > 0) {
+  /**
+   * Now we need the position of this picture in the album.
+   **/
+  $allPicData = $albumData->getPicData($album, $picCount, $album_name, -1, -1, false);
+  for($pos = 0; $allPicData[$pos]['pid'] != $pid && $pos < $picCount; $pos++);
+  $imgData->picData = $allPicData[$pos];
+  $prevPicId = $allPicData[$pos-1]['pid'];
+  $nextPicId = $allPicData[$pos+1]['pid'];
 }
 
 if (!$imgData->picData['pid']) {
@@ -268,10 +272,10 @@ if (!($auth->isDefined("USER_CAN_RATE_PICTURES") && $imgData->currentAlbumData['
   $votes = $imgData->picData['votes'] ? sprintf($lang_rate_pic['rating'], round($imgData->picData['pic_rating'] / 2000, 1), $imgData->picData['votes']) : $lang_rate_pic['no_votes'];
 }
 
-$imgData->buildLinks(!empty($meta) ? $meta : '', !empty($album) ? $album : '', !empty($cat) ? $cat : '', $pos, $picCount);
+$imgData->buildLinks(!empty($meta) ? $meta : '', !empty($album) ? $album : '', !empty($cat) ? $cat : '', $pos, $picCount, $nextPicId, $prevPicId);
 
 /**
- * Get the film strip data in an array
+ * Get the film strip data in an array.
  */
 if ($config->conf['display_film_strip']) {
   $filmStrip = $albumData->getFilmStripData(!empty($meta) ? $meta : "", !empty($album) ? $album : "", $pos, $cat);

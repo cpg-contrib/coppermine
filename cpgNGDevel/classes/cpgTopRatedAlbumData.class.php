@@ -100,9 +100,9 @@ class cpgTopRatedAlbumData extends cpgAlbumData {
                 $thumb_list[$i]['votes'] = sprintf($lang_get_pic_data['n_votes'], $row['votes']);
 
                 if ($page == 1) {
-                    $thumb_list[$i]['displayURL'] .= "&amp;pos=$i";
+                    $thumb_list[$i]['displayURL'] .= "&amp;pid=".$row['pid'];
                 } else {
-                    $thumb_list[$i]['displayURL'] .= '&amp;pos=' . ($i + $thumbcols * $thumbrows * ($page-1));
+                    $thumb_list[$i]['displayURL'] .= '&amp;pid='.$row['pid'];
                 }
                 if ($cat) {
                     $thumb_list[$i]['displayURL'] .= '&amp;cat=' . $cat;

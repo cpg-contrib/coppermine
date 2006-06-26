@@ -94,9 +94,9 @@ class cpgLastCommentsByAlbumData extends cpgAlbumData {
                 $thumb_list[$i]['displayURL'] = $this->config->conf['ecards_more_pic_target'] . 'displayimage.php?meta=lastcomby';
 
                 if ($page == 1) {
-                    $thumb_list[$i]['displayURL'] .= "&amp;pos=$i";
+                    $thumb_list[$i]['displayURL'] .= "&amp;pid=".$row['pid'];
                 } else {
-                    $thumb_list[$i]['displayURL'] .= '&amp;pos=' . ($i + $thumbcols * $thumbrows * ($page-1));
+                    $thumb_list[$i]['displayURL'] .= '&amp;pid='.$row['pid'];
                 }
                 if ($cat) {
                     $thumb_list[$i]['displayURL'] .= '&amp;cat=' . $cat;

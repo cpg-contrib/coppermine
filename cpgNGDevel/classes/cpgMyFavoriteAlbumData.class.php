@@ -99,9 +99,9 @@ class cpgMyFavoriteAlbumData extends cpgAlbumData {
                 $thumb_list[$i]['hits']  = sprintf($lang_get_pic_data['n_views'], $row['hits']);
 
                 if ($page == 1) {
-                    $thumb_list[$i]['displayURL'] .= "&amp;pos=$i";
+                    $thumb_list[$i]['displayURL'] .= "&amp;pid=".$row['pid'];
                 } else {
-                    $thumb_list[$i]['displayURL'] .= '&amp;pos=' . ($i + $thumbcols * $thumbrows * ($page-1));
+                    $thumb_list[$i]['displayURL'] .= '&amp;pos=pid='.$row['pid'];
                 }
                 if ($cat) {
                     $thumb_list[$i]['displayURL'] .= '&amp;cat=' . $cat;
