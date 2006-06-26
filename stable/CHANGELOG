@@ -26,6 +26,11 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-06-25 [B] Removed admin from secondary group in usermgr.php - topic 32781 {Paver}
+2006-06-25 [B] Fixed user profile fields in charsetmgr.php - topic 32491 {Paver}
+2006-06-25 [B] Fixed theme_create_tabs call in functions.inc.php - topic 33030 {Paver}
+2006-06-25 [C] Modified Persian label according to topic 33024 {Paver}
+2006-06-25 [B] Added id tag for keyword field in upload.php for Firefox "insert from keyword list" {Paver}
 2006-06-23 [C] Fixed extra bold tags for {STATISTICS} in themes.inc.php {Paver}
 2006-06-23 [S] Fixed the security flaw in parameter cleanup system reported by imei addmimistrator @ http://myimei.com/security/2006-06-20/coppermine-148parameter-cleanup-system-bypassregistering-global-varables.html  (addmimistrator(4}gmail(O}com) {Aditya}
 2006-06-23 [S] Fixed the security flaw in add_hit function reported by imei addmimistrator @ http://myimei.com/security/2006-06-11/copperminephotogallery148-addhit-function-sqlinjection-attack.html  (addmimistrator(4}gmail(O}com) {Aditya}

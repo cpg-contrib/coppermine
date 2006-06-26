@@ -214,6 +214,7 @@ $template_user_admin_menu = <<<EOT
                 </div>
 
 EOT;
+
 // HTML template for the category list
 if (!isset($template_cat_list))  //{THEMES}
 $template_cat_list = <<<EOT
@@ -249,6 +250,7 @@ $template_cat_list = <<<EOT
 <!-- END spacer -->
 
 EOT;
+
 // HTML template for the breadcrumb
 if (!isset($template_breadcrumb))  //{THEMES}
 $template_breadcrumb = <<<EOT
@@ -271,6 +273,7 @@ $template_breadcrumb = <<<EOT
 <!-- END breadcrumb_user_gal -->
 
 EOT;
+
 // HTML template for the album list
 if (!isset($template_album_list))  //{THEMES}
 $template_album_list = <<<EOT
@@ -357,6 +360,7 @@ $template_album_list = <<<EOT
 <!-- END spacer -->
 
 EOT;
+
 // HTML template for filmstrip display
 if (!isset($template_film_strip))  //{THEMES}
 $template_film_strip = <<<EOT
@@ -390,6 +394,7 @@ $template_film_strip = <<<EOT
 <!-- END empty_cell -->
 
 EOT;
+
 // HTML template for the album list
 if (!isset($template_album_list_cat))  //{THEMES}
 $template_album_list_cat = <<<EOT
@@ -476,6 +481,7 @@ $template_album_list_cat = <<<EOT
 <!-- END c_spacer -->
 
 EOT;
+
 // HTML template for the ALBUM admin menu displayed in the album list
 if (!isset($template_album_admin_menu))  //{THEMES}
 $template_album_admin_menu = <<<EOT
@@ -494,6 +500,7 @@ $template_album_admin_menu = <<<EOT
         </table>
 
 EOT;
+
 // HTML template for title row of the thumbnail view (album title + sort options)
 if (!isset($template_thumb_view_title_row))  //{THEMES}
 $template_thumb_view_title_row = <<<EOT
@@ -531,7 +538,6 @@ $template_thumb_view_title_row = <<<EOT
 
 EOT;
 
-
 // HTML template for title row of the fav thumbnail view (album title + download)
 if (!isset($template_fav_thumb_view_title_row))  //{THEMES}
 $template_fav_thumb_view_title_row = <<<EOT
@@ -551,7 +557,6 @@ $template_fav_thumb_view_title_row = <<<EOT
                         </table>
 
 EOT;
-
 
 // HTML template for thumbnails display
 if (!isset($template_thumbnail_view))  //{THEMES}
@@ -599,6 +604,7 @@ $template_thumbnail_view = <<<EOT
 <!-- END spacer -->
 
 EOT;
+
 // HTML template for the thumbnail view when there is no picture to show
 if (!isset($template_no_img_to_display))  //{THEMES}
 $template_no_img_to_display = <<<EOT
@@ -612,6 +618,7 @@ $template_no_img_to_display = <<<EOT
 <!-- END spacer -->
 
 EOT;
+
 // HTML template for the USER info box in the user list view
 if (!isset($template_user_list_info_box))  //{THEMES}
 $template_user_list_info_box = <<<EOT
@@ -629,6 +636,7 @@ $template_user_list_info_box = <<<EOT
         </table>
 
 EOT;
+
 // HTML template for the image navigation bar
 if (!isset($template_img_navbar))  //{THEMES}
 $template_img_navbar = <<<EOT
@@ -665,6 +673,7 @@ $template_img_navbar = <<<EOT
         </tr>
 
 EOT;
+
 // HTML template for intermediate image display
 if (!isset($template_display_media))  //{THEMES}
 $template_display_media = <<<EOT
@@ -715,6 +724,7 @@ $template_display_media = <<<EOT
         </tr>
 
 EOT;
+
 // HTML template for the image rating box
 if (!isset($template_image_rating))  //{THEMES}
 $template_image_rating = <<<EOT
@@ -732,6 +742,7 @@ $template_image_rating = <<<EOT
         </tr>
 </table>
 EOT;
+
 // HTML template for the display of comments
 if (!isset($template_image_comments))  //{THEMES}
 $template_image_comments = <<<EOT
@@ -832,6 +843,7 @@ $template_image_comments = <<<EOT
 </table>
 EOT;
 
+// HTML template for the form to add comments 
 if (!isset($template_add_your_comment))  //{THEMES}
 $template_add_your_comment = <<<EOT
         <form method="post" name="post" action="db_input.php">
@@ -887,6 +899,7 @@ $template_add_your_comment = <<<EOT
                 </table>
         </form>
 EOT;
+
 // HTML template used by the cpg_die function
 if (!isset($template_cpg_die))  //{THEMES}
 $template_cpg_die = <<<EOT
@@ -912,6 +925,7 @@ $template_cpg_die = <<<EOT
 
 
 EOT;
+
 // HTML template used by the msg_box function
 if (!isset($template_msg_box))  //{THEMES}
 $template_msg_box = <<<EOT
@@ -936,6 +950,7 @@ $template_msg_box = <<<EOT
 <!-- END button -->
 
 EOT;
+
 // HTML template for e-cards
 if (!isset($template_ecard))  //{THEMES}
 $template_ecard = <<<EOT
@@ -1163,6 +1178,7 @@ $template_vanity = <<<EOT
 </div>
 EOT;
 
+// Function for writing a pageheader
 if (!function_exists('pageheader')) {  //{THEMES}
 function pageheader($section, $meta = '')
 {
@@ -1192,6 +1208,7 @@ function pageheader($section, $meta = '')
     echo template_eval($template_header, $template_vars);
 }
 }  //{THEMES}
+
 // Function for writing a pagefooter
 if (!function_exists('pagefooter')) {  //{THEMES}
 function pagefooter()
@@ -1214,6 +1231,7 @@ function pagefooter()
     echo template_eval($template_footer, $template_vars);
 }
 }  //{THEMES}
+
 // Function to start a 'standard' table
 if (!function_exists('starttable')) {  //{THEMES}
 function starttable($width = '-1', $title = '', $title_colspan = '1')
@@ -1239,6 +1257,7 @@ EOT;
 }
 }  //{THEMES}
 
+// Function to end a 'standard' table
 if (!function_exists('endtable')) {  //{THEMES}
 function endtable()
 {
@@ -1250,6 +1269,7 @@ EOT;
 }
 }  //{THEMES}
 
+// Function for creating a main menu (SYS_MENU or SUB_MENU)
 if (!function_exists('theme_main_menu')) {  //{THEMES}
 function theme_main_menu($which)
 {
@@ -1637,6 +1657,7 @@ function theme_display_album_list(&$alb_list, $nbAlb, $cat, $page, $total_pages)
     echo $spacer;
 }
 }  //{THEMES}
+
 // Function to display first level Albums of a category
 if (!function_exists('theme_display_album_list_cat')) {  //{THEMES}
 function theme_display_album_list_cat(&$alb_list, $nbAlb, $cat, $page, $total_pages)
@@ -1855,7 +1876,8 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
     echo $spacer;
 }
 }  //{THEMES}
-// Added to display flim_strip
+
+// Function to display film strip
 if (!function_exists('theme_display_film_strip')) {  //{THEMES}
 function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $pos, $sort_options, $mode = 'thumb')
 {
@@ -2312,7 +2334,7 @@ function theme_html_comments($pid)
 
     $html = '';
 
-//report to moderator buttons
+    // report to moderator buttons
     if (!(($CONFIG['report_post']==1) && (USER_CAN_SEND_ECARDS))) {
         template_extract_block($template_image_comments, 'report_comment_button');
     }

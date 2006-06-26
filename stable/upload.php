@@ -109,7 +109,7 @@ function text_box_input($text, $name, $max_length, $iterations, $default='') {
                         $text  $ordinal
         </td>
         <td width="60%" class="tableb" valign="top">
-                <input type="text" style="width: 100%" name="$name" maxlength="$max_length" value="$default" class="textinput" />
+                <input type="text" style="width: 100%" name="$name" maxlength="$max_length" value="$default" class="textinput" id="$name" />
                 </td>
         </tr>
 

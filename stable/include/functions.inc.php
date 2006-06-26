@@ -470,8 +470,7 @@ function create_tabs($items, $curr_page, $total_pages, $template)
         // TO-DO: Need to add theme_create_tabs() to sample/theme.php
         // Maybe this function create_tabs() should be moved to themes.inc.php and renamed theme_create_tabs()?
         if (function_exists('theme_create_tabs')) {
-            theme_create_tabs($items, $curr_page, $total_pages, $template);
-                return;
+            return theme_create_tabs($items, $curr_page, $total_pages, $template);
         }
 
         // Code for future: to implement 'previous' and 'next' tabs
@@ -2451,7 +2450,7 @@ $lang_language_data['kurdish'] = array('Kurdish','&#1603;&#1608;&#1585;&#1583;&#
 $lang_language_data['latvian'] = array('Latvian','Latvian','lv');
 $lang_language_data['malay'] = array('Malay','Bahasa Melayu','my');
 $lang_language_data['norwegian'] = array('Norwegian','Norsk','no');
-$lang_language_data['persian'] = array('Persian','&#1578;&#1594;&#1740;&#1740;&#1585; &#1576;&#1607; &#1581;&#1575;&#1604;&#1578; &#1603;&#1575;&#1585;&#1576;&#1585;','ir');
+$lang_language_data['persian'] = array('Persian','&#1601;&#1575;&#1585;&#1587;&#1740;','ir');//modified by B.Mossavari
 $lang_language_data['polish'] = array('Polish','Polski','pl');
 $lang_language_data['portuguese'] = array('Portuguese [Portugal]','Portugu&ecirc;s','pt');
 $lang_language_data['romanian'] = array('Romanian','Rom&acirc;n&atilde;','ro');
