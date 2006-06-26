@@ -156,7 +156,7 @@ function register_changes()
                                        $CONFIG['TABLE_USERGROUPS'] =>
                                        array('group_id', 'group_name'),
                                        $CONFIG['TABLE_USERS'] =>
-                                       array('user_id', 'user_name', 'user_password', 'user_location', 'user_interests', 'user_occupations')
+                                       array('user_id', 'user_name', 'user_password', 'user_profile1', 'user_profile2', 'user_profile3', 'user_profile4', 'user_profile5', 'user_profile6')
                                        );
 
 
