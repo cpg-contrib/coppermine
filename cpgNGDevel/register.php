@@ -31,7 +31,7 @@ if (!$config->conf['allow_user_registration']) {
 if ($config->conf['allow_user_registration'] == 2 && !isset($_GET['activate'])) {
 	$invitationCode = $_GET['invite'] ? $_GET['invite'] : $_POST['invite'];
 	$length = strlen($invitationCode);
-	if ($length != 32 || !ctype_alnum($invitationCode) ) {
+	if ($length != 32 || !preg_match('/^[a-z0-9]*$/', $invitationCode) ) {
 		cpgUtils::cpgDie(ERROR, $lang_register_php['invalid_invitation_code'], __FILE__, __LINE__);
 	} else {
 		$miscArr['byInvitation'] = $invitationCode;
