@@ -25,6 +25,9 @@ include('include/smilies.inc.php');
 require_once('classes/cpgTemplate.class.php');
 require_once('classes/cpgProcessUsers.class.php');
 
+if (!GALLERY_ADMIN_MODE) {
+        cpgUtils::cpgDie(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+}
 /**
  * Perform the task after submission of
  */
