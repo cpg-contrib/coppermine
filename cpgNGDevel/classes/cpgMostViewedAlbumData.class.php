@@ -257,7 +257,7 @@ class cpgMostViewedAlbumData extends cpgAlbumData {
         if ($limit2 == 1) {
             $select_columns = '*';
         } else {
-            $select_columns = 'pid, filepath, filename, url_prefix, filesize, pwidth, pheight, ctime, aid, keywords, hits, aid, filename, title';
+            $select_columns = 'pid, filepath, filename, url_prefix, filesize, pwidth, pheight, ctime, aid, keywords, hits, aid, filename, title, votes, pic_rating';
         }
 
         $album_name = $lang_meta_album_names['topn'];

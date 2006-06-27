@@ -222,7 +222,7 @@ class cpgNumericAlbumData extends cpgAlbumData {
         $nbEnr = $this->db->fetchRow();
         $count = $nbEnr[0];
 
-        if ($select_columns != '*') $select_columns .= ', title, caption,hits,owner_id,owner_name';
+        if ($select_columns != '*') $select_columns .= ', title, caption,hits,owner_id,owner_name,votes,pic_rating';
 
         $query = "SELECT $select_columns from {$this->config->conf['TABLE_PICTURES']} WHERE (aid='$album' $albStr ) $keyword $approved ORDER BY $sort_order $limit";
 

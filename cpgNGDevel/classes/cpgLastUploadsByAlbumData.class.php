@@ -260,7 +260,7 @@ class cpgLastUploadsByAlbumData extends cpgAlbumData {
         if ($limit2 == 1) {
             $select_columns = '*';
         } else {
-            $select_columns = 'pid, filepath, filename, url_prefix, filesize, pwidth, pheight, ctime, aid, keywords, title, caption, owner_id, owner_name, hits';
+            $select_columns = 'pid, filepath, filename, url_prefix, filesize, pwidth, pheight, ctime, aid, keywords, title, caption, owner_id, owner_name, hits, votes, pic_rating';
         }
 
         $album_name = $lang_meta_album_names['lastupby'];

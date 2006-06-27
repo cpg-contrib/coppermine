@@ -261,7 +261,7 @@ class cpgLastCommentAlbumData extends cpgAlbumData {
         if ($limit2 == 1) {
             $select_columns = 'p.*';
         } else {
-            $select_columns = 'p.pid, filepath, filename, url_prefix, filesize, pwidth, pheight, ctime, aid, keywords, msg_id, title, author_id, msg_author, UNIX_TIMESTAMP(msg_date) as msg_date, msg_body, aid';
+            $select_columns = 'p.pid, filepath, filename, url_prefix, filesize, pwidth, pheight, ctime, aid, keywords, msg_id, title, author_id, msg_author, UNIX_TIMESTAMP(msg_date) as msg_date, msg_body, aid, hits, votes, pic_rating';
         }
 
         $album_name = $lang_meta_album_names['lastcom'];

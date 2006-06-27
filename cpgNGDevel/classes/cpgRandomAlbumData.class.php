@@ -179,7 +179,7 @@ class cpgRandomAlbumData extends cpgAlbumData {
         if ($limit2 == 1) {
             $select_columns = '*';
         } else {
-            $select_columns = 'aid, pid, filepath, filename, url_prefix, filesize, pwidth, pheight, ctime, aid, keywords';
+            $select_columns = 'aid, pid, filepath, filename, url_prefix, filesize, pwidth, pheight, ctime, aid, keywords, hits, votes, pic_rating';
         }
 
         $album_name = $lang_meta_album_names['random'];

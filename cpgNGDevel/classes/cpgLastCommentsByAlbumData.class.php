@@ -265,7 +265,7 @@ class cpgLastCommentsByAlbumData extends cpgAlbumData {
         if ($limit2 == 1) {
             $select_columns = 'p.*';
         } else {
-            $select_columns = 'p.pid, filepath, filename, url_prefix, filesize, pwidth, pheight, ctime, aid, hits, owner_id, owner_name, title, msg_id, author_id, msg_author, UNIX_TIMESTAMP(msg_date) as msg_date, msg_body';
+            $select_columns = 'p.pid, filepath, filename, url_prefix, filesize, pwidth, pheight, ctime, aid, hits, owner_id, owner_name, title, msg_id, author_id, msg_author, UNIX_TIMESTAMP(msg_date) as msg_date, msg_body, votes, pic_rating';
         }
 
         $album_name = $lang_meta_album_names['lastcomby'];

@@ -268,7 +268,7 @@ class cpgMyFavoriteAlbumData extends cpgAlbumData {
         if ($limit2 == 1) {
             $select_columns = '*';
         } else {
-            $select_columns = 'pid, aid, filepath, filename, filesize, url_prefix, pwidth, pheight, hits, ctime, keywords, owner_id, owner_name, votes, title, caption';
+            $select_columns = 'pid, aid, filepath, filename, filesize, url_prefix, pwidth, pheight, hits, ctime, keywords, owner_id, owner_name, votes, title, caption, pic_rating';
         }
 
         $album_name = $lang_meta_album_names['favpics'];
