@@ -1,13 +1,13 @@
 <?php
 /**
- * albmgr.php
+ * update.php
  *
  * This script is used to update your previous version of cpg to cpgNG.
  * Supported versions are cpg1.3.x and cpg1.4.x
  *
  * @package cpgNG
  * @author Abbas <abbas@sanisoft.com>
- * @version $Id: albmgr.php 1 2006-04-24 06:36:27Z amit $
+ * @version $Id:$
  */
 
 // Report all errors except E_NOTICE
@@ -17,6 +17,7 @@ error_reporting (E_ALL ^ E_NOTICE);
 require ('include/sql_parse.php');
 require ('include/config.inc.php');
 require ('include/update.inc.php');
+define ('FIRST_USER_CAT', 10000);
 
 // ---------------------------- TEST PREREQUIRED --------------------------- //
 function test_fs()
@@ -148,6 +149,8 @@ function update_tables()
     $sql_query = split_sql_file($sql_query, ';');
 
     $sql_query[] = "UPDATE {$CONFIG['TABLE_PREFIX']}config SET value = '$gallery_url_prefix' WHERE name = 'ecards_more_pic_target'";
+    $sql_query[] = "UPDATE {$CONFIG['TABLE_PREFIX']}albums SET user_id = 1 WHERE category < ". FIRST_USER_CAT;
+    $sql_query[] = "UPDATE {$CONFIG['TABLE_PREFIX']}albums SET user_id = (category-" . FIRST_USER_CAT . ") WHERE category > ". FIRST_USER_CAT;
 
     ?>
         <h2>Performing Database Updates<h2>
