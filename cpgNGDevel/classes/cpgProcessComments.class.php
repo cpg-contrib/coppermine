@@ -382,7 +382,7 @@ class cpgProcessComments {
 
     if (GALLERY_ADMIN_MODE) {
       $query = "UPDATE {$this->config->conf['TABLE_COMMENTS']} SET msg_body = '$commentBody', msg_author = '$commentAuthor' WHERE msg_id = '$commentId'";
-    } elseif ($auth->isDefined('USER_ID')) {
+    } elseif ($this->auth->isDefined('USER_ID')) {
       $query = "UPDATE {$this->config->conf['TABLE_COMMENTS']} SET msg_body = '$commentBody' WHERE msg_id = '$commentId' AND author_id = '".USER_ID."' LIMIT 1";
     } else {
       $query = "UPDATE {$this->config->conf['TABLE_COMMENTS']} SET msg_body = '$commentBody' WHERE msg_id = '$commentId' AND author_md5_id = '{$this->auth->user['ID']}' AND author_id = '0' LIMIT 1";
