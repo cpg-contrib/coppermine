@@ -42,7 +42,7 @@ if (get_magic_quotes_gpc()) {
         foreach ($_POST as $key => $value) {
             if (!is_array($value))
                 $_POST[$key] = strtr(stripslashes($value), $HTML_SUBST);
-            if (isset($$key)) unset($$key);
+            if (!in_array($key, $keysToSkip) && isset($$key)) unset($$key);
         }
     }
 
@@ -50,7 +50,7 @@ if (get_magic_quotes_gpc()) {
         foreach ($_GET as $key => $value) {
             unset($_GET[$key]);
             $_GET[strtr(stripslashes($key), $HTML_SUBST)] = strtr(stripslashes($value), $HTML_SUBST);
-            if (isset($$key)) unset($$key);
+            if (!in_array($key, $keysToSkip) && isset($$key)) unset($$key);
         }
     }
 
@@ -58,7 +58,14 @@ if (get_magic_quotes_gpc()) {
         foreach ($_COOKIE as $key => $value) {
             if (!is_array($value))
                 $_COOKIE[$key] = stripslashes($value);
-            if (isset($$key)) unset($$key);
+            if (!in_array($key, $keysToSkip) && isset($$key)) unset($$key);
+        }
+    }
+    if (is_array($_REQUEST)) {
+        foreach ($_REQUEST as $key => $value) {
+            if (!is_array($value))
+                $_REQUEST[$key] = strtr(stripslashes($value), $HTML_SUBST);
+            if (!in_array($key, $keysToSkip) && isset($$key)) unset($$key);
         }
     }
 } else {
@@ -66,7 +73,7 @@ if (get_magic_quotes_gpc()) {
         foreach ($_POST as $key => $value) {
             if (!is_array($value))
                 $_POST[$key] = strtr($value, $HTML_SUBST);
-            if (isset($$key)) unset($$key);
+            if (!in_array($key, $keysToSkip) && isset($$key)) unset($$key);
         }
     }
 
@@ -74,13 +81,20 @@ if (get_magic_quotes_gpc()) {
         foreach ($_GET as $key => $value) {
             unset($_GET[$key]);
             $_GET[strtr(stripslashes($key), $HTML_SUBST)] = strtr(stripslashes($value), $HTML_SUBST);
-            if (isset($$key)) unset($$key);
+            if (!in_array($key, $keysToSkip) && isset($$key)) unset($$key);
         }
     }
 
     if (is_array($_COOKIE)) {
         foreach ($_COOKIE as $key => $value) {
-            if (isset($$key)) unset($$key);
+            if (!in_array($key, $keysToSkip) && isset($$key)) unset($$key);
+        }
+    }
+    if (is_array($_REQUEST)) {
+        foreach ($_REQUEST as $key => $value) {
+            if (!is_array($value))
+                $_REQUEST[$key] = strtr($value, $HTML_SUBST);
+            if (!in_array($key, $keysToSkip) && isset($$key)) unset($$key);
         }
     }
 }

@@ -529,7 +529,8 @@ class cpgAlbumData {
      */
     function addHit($pid)
     {
-        $raw_ip = stripslashes($_SERVER['REMOTE_ADDR']);
+        global $raw_ip;
+        
         $query = "UPDATE {$this->config->conf['TABLE_PICTURES']} SET hits=hits+1, lasthit_ip='$raw_ip' WHERE pid='$pid'";
         $this->db->query($query);
 
@@ -551,7 +552,7 @@ class cpgAlbumData {
                 $os = "Windows";
             }
 
-            $browser = $_SERVER["HTTP_USER_AGENT"];
+            $browser = 'Unknown';
             if (eregi("MSIE", $browser)) {
                 if (eregi("MSIE 5.5", $browser)) {
                     $browser = "Microsoft Internet Explorer 5.5";
@@ -576,14 +577,17 @@ class cpgAlbumData {
             }
 
             $time = time();
+
+            $referer = urlencode(addslashes($_SERVER['HTTP_REFERER']));
+            
             // Insert the record in database
             $query = "INSERT INTO {$this->config->conf['TABLE_HIT_STATS']}
                             SET
                               pid = $pid,
                               search_phrase = '$query_term',
-                              Ip   = '$_SERVER[REMOTE_ADDR]',
+                              Ip   = '$raw_ip',
                               sdate = '$time',
-                              referer='$_SERVER[HTTP_REFERER]',
+                              referer='$referer',
                               browser = '$browser',
                               os = '$os'";
             $this->db->query($query);
