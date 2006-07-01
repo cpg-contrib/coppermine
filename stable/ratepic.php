@@ -87,7 +87,7 @@ if(eregi("Linux",$_SERVER["HTTP_USER_AGENT"])) {
     $os = "Windows 98";
 }
 
-$browser = $_SERVER["HTTP_USER_AGENT"];
+$browser = 'Unknown';
 if(eregi("MSIE",$browser)) {
     if(eregi("MSIE 5.5",$browser)) {
         $browser = "Microsoft Internet Explorer 5.5";
@@ -101,14 +101,16 @@ if(eregi("MSIE",$browser)) {
 }
 $time = time();
 
+$referer = urlencode(addslashes($_SERVER['HTTP_REFERER']));
+
 // Insert the record in database
 $query = "INSERT INTO {$CONFIG['TABLE_VOTE_STATS']}
                   SET
                     pid = $pic,
                     rating = $rate,
-                    Ip   = '$_SERVER[REMOTE_ADDR]',
+                    Ip   = '$raw_ip',
                     sdate = '$time',
-                    referer = '$_SERVER[HTTP_REFERER]',
+                    referer = '$referer',
                     browser = '$browser',
                     os = '$os'";
 cpg_db_query($query);
