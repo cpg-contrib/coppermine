@@ -58,7 +58,7 @@ class cpgRatePicture {
         $row = $this->db->fetchRow($result);
         $this->db->free($result);
         if (!$this->auth->isDefined('USER_CAN_RATE_PICTURES') || $row['votes_allowed'] == 'NO') {
-            cpgUtils::cpgDie(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
+            cpgUtils::cpgDie(ERROR, $lang_errors['perm_denied']);
         }
 
         // Clean votes older votes
@@ -73,7 +73,7 @@ class cpgRatePicture {
 
         $this->db->query($sql);
         if ($this->db->nf() >= 1) {
-            cpgUtils::cpgDie(ERROR, $lang_rate_pic_php['already_rated'], __FILE__, __LINE__);
+            cpgUtils::cpgDie(ERROR, $lang_rate_pic_php['already_rated']);
         }
 
         //display error if user try to Rating self uploaded picture
@@ -81,7 +81,7 @@ class cpgRatePicture {
         $owner = $row['owner_id'];
         $admin = $this->auth->isDefined('USER_IS_ADMIN');
         if (!empty($userId) && $userId==$owner && !$admin) {
-            cpgUtils::cpgDie(ERROR, $lang_rate_pic_php['forbidden'], __FILE__, __LINE__);
+            cpgUtils::cpgDie(ERROR, $lang_rate_pic_php['forbidden']);
         }
 
          // Update picture rating
@@ -107,7 +107,7 @@ class cpgRatePicture {
                 $os = "Windows 98";
             }
 
-            $browser = $_SERVER["HTTP_USER_AGENT"];
+            $browser = 'Unknown';
             if (eregi("MSIE",$browser)) {
                 if (eregi("MSIE 5.5",$browser)) {
                     $browser = "Microsoft Internet Explorer 5.5";
@@ -121,14 +121,16 @@ class cpgRatePicture {
             }
             $time = time();
 
+            $referer = urlencode(addslashes($_SERVER['HTTP_REFERER']));
+
             // Insert the record in database
             $query = "INSERT INTO {$this->config->conf['TABLE_VOTE_STATS']}
                       SET
                          pid     = '$this->pic',
                          rating  = '$this->rate',
-                         Ip      = '$_SERVER[REMOTE_ADDR]',
+                         Ip      = '$raw_ip',
                          sdate   = '$time',
-                         referer = '$_SERVER[HTTP_REFERER]',
+                         referer = '$referer',
                          browser = '$browser',
                          os      = '$os'";
 
