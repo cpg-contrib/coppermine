@@ -180,6 +180,7 @@ $template_gallery_admin_menu = <<<EOT
                 </div>
 
 EOT;
+
 // HTML template for user admin menu
 $template_user_admin_menu = <<<EOT
 
@@ -195,6 +196,7 @@ $template_user_admin_menu = <<<EOT
                 </div>
 
 EOT;
+
 // HTML template for the category list
 $template_cat_list = <<<EOT
 <!-- BEGIN header -->
@@ -221,7 +223,7 @@ $template_cat_list = <<<EOT
 <!-- END catrow -->
 <!-- BEGIN footer -->
         <tr>
-                <td colspan="3" class="tableh1" align="center"><span class="statlink"><b>{STATISTICS}</b></span></td>
+                <td colspan="3" class="tableh1" align="center"><span class="statlink">{STATISTICS}</span></td>
         </tr>
 <!-- END footer -->
 <!-- BEGIN spacer -->
@@ -229,6 +231,7 @@ $template_cat_list = <<<EOT
 <!-- END spacer -->
 
 EOT;
+
 // HTML template for the breadcrumb
 $template_breadcrumb = <<<EOT
 <!-- BEGIN breadcrumb -->
@@ -242,7 +245,7 @@ $template_breadcrumb = <<<EOT
                 <table width="100%" cellpadding="0" cellspacing="0" border="0">
                 <tr>
                         <td align="left"><span class="statlink"><b>{BREADCRUMB}</b></span></td>
-                        <td align="right"><span class="statlink"><b>{STATISTICS}</b></span></td>
+                        <td align="right"><span class="statlink">{STATISTICS}</span></td>
                 </tr>
                 </table>
                 </td>
@@ -250,16 +253,17 @@ $template_breadcrumb = <<<EOT
 <!-- END breadcrumb_user_gal -->
 
 EOT;
+
 // HTML template for the album list
 $template_album_list = <<<EOT
 
 <!-- BEGIN stat_row -->
         <tr>
-                <td colspan="{COLUMNS}" class="tableh1" align="center"><span class="statlink"><b>{STATISTICS}</b></span></td>
+                <td colspan="{COLUMNS}" class="tableh1" align="center"><span class="statlink">{STATISTICS}</span></td>
         </tr>
 <!-- END stat_row -->
 <!-- BEGIN header -->
-        <tr>
+        <tr class="tableb_compact">
 <!-- END header -->
 <!-- BEGIN album_cell -->
         <td width="{COL_WIDTH}%" valign="top">
@@ -314,7 +318,7 @@ $template_album_list = <<<EOT
 <!-- END empty_cell -->
 <!-- BEGIN row_separator -->
         </tr>
-        <tr>
+        <tr class="tableb_compact">
 <!-- END row_separator -->
 <!-- BEGIN footer -->
         </tr>
@@ -335,6 +339,7 @@ $template_album_list = <<<EOT
 <!-- END spacer -->
 
 EOT;
+
 // HTML template for filmstrip display
 $template_film_strip = <<<EOT
 
@@ -367,16 +372,17 @@ $template_film_strip = <<<EOT
 <!-- END empty_cell -->
 
 EOT;
+
 // HTML template for the album list
 $template_album_list_cat = <<<EOT
 
 <!-- BEGIN c_stat_row -->
         <tr>
-                <td colspan="{COLUMNS}" class="tableh1" align="center"><span class="statlink"><b>{STATISTICS}</b></span></td>
+                <td colspan="{COLUMNS}" class="tableh1" align="center"><span class="statlink">{STATISTICS}</span></td>
         </tr>
 <!-- END c_stat_row -->
 <!-- BEGIN c_header -->
-        <tr>
+        <tr class="tableb_compact">
 <!-- END c_header -->
 <!-- BEGIN c_album_cell -->
         <td width="{COL_WIDTH}%" valign="top">
@@ -431,7 +437,7 @@ $template_album_list_cat = <<<EOT
 <!-- END c_empty_cell -->
 <!-- BEGIN c_row_separator -->
         </tr>
-        <tr>
+        <tr class="tableb_compact">
 <!-- END c_row_separator -->
 <!-- BEGIN c_footer -->
         </tr>
@@ -452,6 +458,7 @@ $template_album_list_cat = <<<EOT
 <!-- END c_spacer -->
 
 EOT;
+
 // HTML template for the ALBUM admin menu displayed in the album list
 $template_album_admin_menu = <<<EOT
         <table border="0" cellpadding="0" cellspacing="1">
@@ -469,6 +476,7 @@ $template_album_admin_menu = <<<EOT
         </table>
 
 EOT;
+
 // HTML template for title row of the thumbnail view (album title + sort options)
 $template_thumb_view_title_row = <<<EOT
 
@@ -505,14 +513,13 @@ $template_thumb_view_title_row = <<<EOT
 
 EOT;
 
-
 // HTML template for title row of the fav thumbnail view (album title + download)
 $template_fav_thumb_view_title_row = <<<EOT
 
                         <table width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                                 <td width="100%" class="statlink"><h2>{ALBUM_NAME}</h2></td>
-                                <td><img src="images/spacer.gif" width="1px" alt=""></td>
+                                <td><img src="images/spacer.gif" width="1" alt=""></td>
                                 <td class="sortorder_cell">
                                         <table cellpadding="0" cellspacing="0">
                                                 <tr>
@@ -524,7 +531,6 @@ $template_fav_thumb_view_title_row = <<<EOT
                         </table>
 
 EOT;
-
 
 // HTML template for thumbnails display
 $template_thumbnail_view = <<<EOT
@@ -571,6 +577,7 @@ $template_thumbnail_view = <<<EOT
 <!-- END spacer -->
 
 EOT;
+
 // HTML template for the thumbnail view when there is no picture to show
 $template_no_img_to_display = <<<EOT
         <tr>
@@ -583,6 +590,7 @@ $template_no_img_to_display = <<<EOT
 <!-- END spacer -->
 
 EOT;
+
 // HTML template for the USER info box in the user list view
 $template_user_list_info_box = <<<EOT
 
@@ -599,46 +607,48 @@ $template_user_list_info_box = <<<EOT
         </table>
 
 EOT;
+
 // HTML template for the image navigation bar
 $template_img_navbar = <<<EOT
 
         <tr>
-                <td align="center" valign="middle" class="navmenu" width="48px"><a name="top_display_media"></a>
-                        <a href="{THUMB_TGT}" class="navmenu_pic" title="{THUMB_TITLE}"><img src="{LOCATION}images/thumbnails.gif" align="middle" border="0px" alt="{THUMB_TITLE}" /></a>
+                <td align="center" valign="middle" class="navmenu" width="48">
+                        <a href="{THUMB_TGT}" class="navmenu_pic" title="{THUMB_TITLE}"><img src="{LOCATION}images/thumbnails.gif" align="middle" border="0" alt="{THUMB_TITLE}" /></a>
                 </td>
-                <td align="center" valign="middle" class="navmenu" width="48px">
-                        <a href="javascript:;" class="navmenu_pic" onclick="blocking('picinfo','yes', 'block'); return false;" title="{PIC_INFO_TITLE}"><img src="{LOCATION}images/info.gif" border="0px" align="middle" alt="{PIC_INFO_TITLE}" /></a>
+                <td align="center" valign="middle" class="navmenu" width="48">
+                        <a href="javascript:;" class="navmenu_pic" onclick="blocking('picinfo','yes', 'block'); return false;" title="{PIC_INFO_TITLE}"><img src="{LOCATION}images/info.gif" border="0" align="middle" alt="{PIC_INFO_TITLE}" /></a>
                 </td>
-                <td align="center" valign="middle" class="navmenu" width="48px">
-                        <a href="{SLIDESHOW_TGT}" class="navmenu_pic" title="{SLIDESHOW_TITLE}"><img src="{LOCATION}images/slideshow.gif" border="0px" align="middle" alt="{SLIDESHOW_TITLE}" /></a>
+                <td align="center" valign="middle" class="navmenu" width="48">
+                        <a href="{SLIDESHOW_TGT}" class="navmenu_pic" title="{SLIDESHOW_TITLE}"><img src="{LOCATION}images/slideshow.gif" border="0" align="middle" alt="{SLIDESHOW_TITLE}" /></a>
                 </td>
                 <td align="center" valign="middle" class="navmenu" width="100%">
                         {PIC_POS}
                 </td>
 <!-- BEGIN report_file_button -->
-                <td align="center" valign="middle" class="navmenu" width="48px">
+                <td align="center" valign="middle" class="navmenu" width="48">
                         <a href="{REPORT_TGT}" class="navmenu_pic" title="{REPORT_TITLE}"><img src="{LOCATION}images/report.gif" border="0" align="middle" alt="{REPORT_TITLE}" /></a>
                 </td>
 <!-- END report_file_button -->
 <!-- BEGIN ecard_button -->
-                <td align="center" valign="middle" class="navmenu" width="48px">
-                        <a href="{ECARD_TGT}" class="navmenu_pic" title="{ECARD_TITLE}"><img src="{LOCATION}images/ecard.gif"  border="0px" align="middle" alt="{ECARD_TITLE}" /></a>
+                <td align="center" valign="middle" class="navmenu" width="48">
+                        <a href="{ECARD_TGT}" class="navmenu_pic" title="{ECARD_TITLE}"><img src="{LOCATION}images/ecard.gif"  border="0" align="middle" alt="{ECARD_TITLE}" /></a>
                 </td>
 <!-- END ecard_button -->
-                <td align="center" valign="middle" class="navmenu" width="48px">
-                        <a href="{PREV_TGT}" class="navmenu_pic" title="{PREV_TITLE}"><img src="{LOCATION}images/prev.gif"  border="0px" align="middle" alt="{PREV_TITLE}" /></a>
+                <td align="center" valign="middle" class="navmenu" width="48">
+                        <a href="{PREV_TGT}" class="navmenu_pic" title="{PREV_TITLE}"><img src="{LOCATION}images/prev.gif"  border="0" align="middle" alt="{PREV_TITLE}" /></a>
                 </td>
-                <td align="center" valign="middle" class="navmenu" width="48px">
-                        <a href="{NEXT_TGT}" class="navmenu_pic" title="{NEXT_TITLE}"><img src="{LOCATION}images/next.gif"  border="0px" align="middle" alt="{NEXT_TITLE}" /></a>
+                <td align="center" valign="middle" class="navmenu" width="48">
+                        <a href="{NEXT_TGT}" class="navmenu_pic" title="{NEXT_TITLE}"><img src="{LOCATION}images/next.gif"  border="0" align="middle" alt="{NEXT_TITLE}" /></a>
                 </td>
         </tr>
 
 EOT;
+
 // HTML template for intermediate image display
 $template_display_media = <<<EOT
         <tr>
                 <td align="center" class="display_media" nowrap="nowrap">
-                        <table cellspacing="2px" cellpadding="0px" class="imageborder">
+                        <table cellspacing="2" cellpadding="0" class="imageborder">
                                 <tr>
                                         <td align="center">
                                                 {IMAGE}
@@ -648,7 +658,7 @@ $template_display_media = <<<EOT
                         </table>
                 </td></tr>
                 <tr><td>
-                                                <table width="100%" cellspacing="2px" cellpadding="0px" class="tableb">
+                                                <table width="100%" cellspacing="2" cellpadding="0" class="tableb">
                                 <tr>
                                         <td align="center">
 
@@ -662,7 +672,7 @@ $template_display_media = <<<EOT
 
 
 <!-- BEGIN img_desc -->
-                        <table cellpadding="0px" cellspacing="0px" class="tableb" width="100%">
+                        <table cellpadding="0" cellspacing="0" class="tableb" width="100%">
 <!-- BEGIN title -->
                                 <tr>
                                         <td class="tableb"><center><b>
@@ -683,6 +693,7 @@ $template_display_media = <<<EOT
         </tr>
 
 EOT;
+
 // HTML template for the image rating box
 $template_image_rating = <<<EOT
 <table align="center" width="{WIDTH}" cellspacing="1" cellpadding="0" class="maintable">
@@ -690,22 +701,23 @@ $template_image_rating = <<<EOT
                 <td colspan="6" class="tableh2_compact"><b>{TITLE}</b> {VOTES}</td>
         </tr>
         <tr>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE0}" title="{RUBBISH}" rel="nofollow"><img src="{LOCATION}images/rating0.gif" border="0px" alt="{RUBBISH}" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE1}" title="{POOR}" rel="nofollow"><img src="{LOCATION}images/rating1.gif" border="0px" alt="{POOR}" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE2}" title="{FAIR}" rel="nofollow"><img src="{LOCATION}images/rating2.gif" border="0px" alt="{FAIR}" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE3}" title="{GOOD}" rel="nofollow"><img src="{LOCATION}images/rating3.gif" border="0px" alt="{GOOD}" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE4}" title="{EXCELLENT}" rel="nofollow"><img src="{LOCATION}images/rating4.gif" border="0px" alt="{EXCELLENT}" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE5}" title="{GREAT}" rel="nofollow"><img src="{LOCATION}images/rating5.gif" border="0px" alt="{GREAT}" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE0}" title="{RUBBISH}" rel="nofollow"><img src="{LOCATION}images/rating0.gif" border="0" alt="{RUBBISH}" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE1}" title="{POOR}" rel="nofollow"><img src="{LOCATION}images/rating1.gif" border="0" alt="{POOR}" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE2}" title="{FAIR}" rel="nofollow"><img src="{LOCATION}images/rating2.gif" border="0" alt="{FAIR}" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE3}" title="{GOOD}" rel="nofollow"><img src="{LOCATION}images/rating3.gif" border="0" alt="{GOOD}" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE4}" title="{EXCELLENT}" rel="nofollow"><img src="{LOCATION}images/rating4.gif" border="0" alt="{EXCELLENT}" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE5}" title="{GREAT}" rel="nofollow"><img src="{LOCATION}images/rating5.gif" border="0" alt="{GREAT}" /><br /></a></td>
         </tr>
 </table>
 EOT;
+
 // HTML template for the display of comments
 $template_image_comments = <<<EOT
 <table align="center" width="{WIDTH}" cellspacing="1" cellpadding="0" class="maintable">
 
         <tr>
                 <td>
-                        <table width="100%" cellpadding="0px" cellspacing="0px">
+                        <table width="100%" cellpadding="0" cellspacing="0">
                            <tr>
                                 <td class="tableh2_compact" nowrap="nowrap">
                                         <b>{MSG_AUTHOR}</b><a name="comment{MSG_ID}">&nbsp;</a>
@@ -717,13 +729,13 @@ $template_image_comments = <<<EOT
 
                                 <td class="tableh2_compact" align="right" width="100%">
 <!-- BEGIN report_comment_button -->
-     <a href="report_file.php?pid={PID}&amp;msg_id={MSG_ID}&amp;what=comment" title="{REPORT_COMMENT_TITLE}"><img src="images/report.gif" width="16px" height="16px" border="0px" align="middle" alt="{REPORT_COMMENT_TITLE}" /></a>
+     <a href="report_file.php?pid={PID}&amp;msg_id={MSG_ID}&amp;what=comment" title="{REPORT_COMMENT_TITLE}"><img src="images/report.gif" width="16" height="16" border="0" align="middle" alt="{REPORT_COMMENT_TITLE}" /></a>
 <!-- END report_comment_button -->
 
 
 <!-- BEGIN buttons -->
-                                        <a href="javascript:;" onclick="blocking('cbody{MSG_ID}','', 'block'); blocking('cedit{MSG_ID}','', 'block'); return false;" title="{EDIT_TITLE}"><img src="images/edit.gif" border="0px" align="middle" alt="" /></a>
-                                        <a href="delete.php?msg_id={MSG_ID}&amp;what=comment"  onclick="return confirm('{CONFIRM_DELETE}');"><img src="images/delete.gif" border="0px" align="middle" /></a>
+                                        <a href="javascript:;" onclick="blocking('cbody{MSG_ID}','', 'block'); blocking('cedit{MSG_ID}','', 'block'); return false;" title="{EDIT_TITLE}"><img src="images/edit.gif" border="0" align="middle" /></a>
+                                        <a href="delete.php?msg_id={MSG_ID}&what=comment"  onclick="return confirm('{CONFIRM_DELETE}');"><img src="images/delete.gif" border="0" align="middle" /></a>
 <!-- END buttons -->
                                 </td>
                                 <td class="tableh2_compact" align="right" nowrap="nowrap">
@@ -739,55 +751,58 @@ $template_image_comments = <<<EOT
                         </div>
                         <div id="cedit{MSG_ID}" style="display:none">
 <!-- BEGIN edit_box_smilies -->
-                                <form name="f{MSG_ID}" method="post" action="db_input.php">
-                                    <table width="100%" cellpadding="0px" cellspacing="0px">
-                                        <tr>
-                                            <td valign="top">
-                                                <input type="text" name="msg_author" value="{MSG_AUTHOR}" class="textinput" size="25" />
+                                <table width="100%" cellpadding="0" cellspacing="0">
+
+                                                <form name="f{MSG_ID}" method="POST" action="db_input.php">
                                                 <input type="hidden" name="event" value="comment_update" />
                                                 <input type="hidden" name="msg_id" value="{MSG_ID}" />
-                                            </td>
-                                            <td width="70%">
-                                                <textarea cols="40" rows="2" class="textinput" name="msg_body" onselect="storeCaret_f{MSG_ID}(this);" onclick="storeCaret_f{MSG_ID}(this);" onkeyup="storeCaret_f{MSG_ID}(this);" style="width:99%;">{MSG_BODY_RAW}</textarea>
-                                            </td>
-                                            <td align="right">
-                                                <input type="submit" class="comment_button" name="submit" value="{OK}" />
-                                            </td>
+                                                <tr>
+                                                <td>
+                                                   <input type="text" name="msg_author" value="{MSG_AUTHOR}" class="textinput" size="25" />
+                                                </td><td>
+                                                </tr>
+                                                <tr>
+                                                <td width="80%">
+                                                        <textarea cols="40" rows="2" class="textinput" name="msg_body" onselect="storeCaret_f{MSG_ID}(this);" onclick="storeCaret_f{MSG_ID}(this);" onkeyup="storeCaret_f{MSG_ID}(this);" style="width: 100%;">{MSG_BODY_RAW}</textarea>
+                                                </td>
+                                                <td class="tableb_compact">
+                                                </td>
+                                                <td>
+                                                        <input type="submit" class="comment_button" name="submit" value="{OK}" />
+                                                </td>
+                                                </form>
                                         </tr>
                                         <tr>
-                                            <td colspan="3">
-                                                <img src="images/spacer.gif" width="1px" height="2px" />
-                                                <br />
-                                            </td>
+                                                <td colspan="3"><img src="images/spacer.gif" width="1" height="2" /><br /></td>
                                         </tr>
-                                    </table>
-                                </form>
+                                </table>
                                 {SMILIES}
 <!-- END edit_box_smilies -->
 <!-- BEGIN edit_box_no_smilies -->
-                                <form name="f{MSG_ID}" method="post" action="db_input.php">
-                                    <table width="100%" cellpadding="0px" cellspacing="0px">
+                                <table width="100%" cellpadding="0" cellspacing="0">
                                         <tr>
-                                            <td valign="top">
+                                                <form name="f{MSG_ID}" method="POST" action="db_input.php">
                                                 <input type="hidden" name="event" value="comment_update" />
                                                 <input type="hidden" name="msg_id" value="{MSG_ID}" />
+                                                <td>
                                                 <input type="text" name="msg_author" value="{MSG_AUTHOR}" class="textinput" size="25" />
-                                            </td>
-                                            <td width="70%">
-                                                <textarea cols="40" rows="2" class="textinput" name="msg_body" style="width:99%;">{MSG_BODY_RAW}</textarea>
-                                            </td>
-                                            <td align="right">
-                                                <input type="submit" class="comment_button" name="submit" value="{OK}" />
-                                            </td>
+                                                </td>
                                         </tr>
                                         <tr>
-                                            <td colspan="3">
-                                                <img src="images/spacer.gif" width="1px" height="2px" />
-                                                <br />
-                                            </td>
+                                                <td width="100%">
+                                                        <textarea cols="40" rows="2" class="textinput" name="msg_body" style="width: 100%;">{MSG_BODY_RAW}</textarea>
+                                                </td>
+                                                <td class="tableb_compact">
+                                                </td>
+                                                <td>
+                                                        <input type="submit" class="comment_button" name="submit" value="{OK}" />
+                                                </td>
+                                                </form>
                                         </tr>
-                                    </table>
-                                </form>
+                                        <tr>
+                                                <td colspan="3"><img src="images/spacer.gif" width="1" height="2" /><br /></td>
+                                        </tr>
+                                </table>
 <!-- END edit_box_no_smilies -->
                         </div>
                 </td>
@@ -795,19 +810,20 @@ $template_image_comments = <<<EOT
 </table>
 EOT;
 
-if ($CONFIG['show_bbcode_help']) {$captionLabel = '&nbsp;'. cpg_display_help('f=index.html&base=64&h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
+// HTML template for the form to add comments
 $template_add_your_comment = <<<EOT
-<table align="center" width="{WIDTH}" cellspacing="1" cellpadding="0" class="maintable">
-        <tr>
-                <td width="100%" class="tableh2_compact"><b>{ADD_YOUR_COMMENT}</b></td>
-        </tr>
-        <tr>
-                <td colspan="3">
-                <form method="post" name="post" action="db_input.php">
-                        <table width="100%" cellpadding="0px" cellspacing="0px">
+        <form method="post" name="post" action="db_input.php">
+                <table align="center" width="{WIDTH}" cellspacing="1" cellpadding="0" class="maintable">
+                        <tr>
+                                        <td width="100%" class="tableh2_compact"><b>{ADD_YOUR_COMMENT}</b></td>
+                        </tr>
+                        <tr>
+                <td colspan="1">
+                        <table width="100%" cellpadding="0" cellspacing="0">
 
 <!-- BEGIN user_name_input -->
-                                <tr><td class="tableb_compact">
+                                                        <tr>
+                                                                <td class="tableb_compact">
                                         {NAME}
                                 </td>
                                 <td class="tableb_compact">
@@ -816,20 +832,27 @@ $template_add_your_comment = <<<EOT
 <!-- END user_name_input -->
 <!-- BEGIN input_box_smilies -->
                                 <td class="tableb_compact">
-                                {COMMENT} </td>
+                                {COMMENT}
+                                                                </td>
                                 <td width="100%" class="tableb_compact">
-                                <input type="text" class="textinput" id="message" name="msg_body" onselect="storeCaret_post(this);" onclick="storeCaret_post(this);" onkeyup="storeCaret_post(this);" maxlength="{MAX_COM_LENGTH}" style="width: 100%;" />                                        <!-- END input_box_smilies -->
+                                <input type="text" class="textinput" id="message" name="msg_body" onselect="storeCaret_post(this);" onclick="storeCaret_post(this);" onkeyup="storeCaret_post(this);" maxlength="{MAX_COM_LENGTH}" style="width: 100%;" />
+                                                                </td>
+<!-- END input_box_smilies -->
 <!-- BEGIN input_box_no_smilies -->
+                                <td class="tableb_compact">
+                                {COMMENT}
+                                                                </td>
+                                <td width="100%" class="tableb_compact">
                                 <input type="text" class="textinput" id="message" name="msg_body"  maxlength="{MAX_COM_LENGTH}" style="width: 100%;" />
-<!-- END input_box_no_smilies -->
                                 </td>
+<!-- END input_box_no_smilies -->
                                 <td class="tableb_compact">
                                 <input type="hidden" name="event" value="comment" />
                                 <input type="hidden" name="pid" value="{PIC_ID}" />
                                 <input type="submit" class="comment_button" name="submit" value="{OK}" />
-                                </td></tr>
+                                </td>
+                                                        </tr>
                         </table>
-                </form>
                 </td>
         </tr>
 <!-- BEGIN smilies -->
@@ -838,10 +861,11 @@ $template_add_your_comment = <<<EOT
                         {SMILIES}
                 </td>
         </tr>
-</table>
 <!-- END smilies -->
-
+                </table>
+        </form>
 EOT;
+
 // HTML template used by the cpg_die function
 $template_cpg_die = <<<EOT
 
@@ -866,6 +890,7 @@ $template_cpg_die = <<<EOT
 
 
 EOT;
+
 // HTML template used by the msg_box function
 $template_msg_box = <<<EOT
 
@@ -889,6 +914,7 @@ $template_msg_box = <<<EOT
 <!-- END button -->
 
 EOT;
+
 // HTML template for e-cards
 $template_ecard = <<<EOT
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -900,22 +926,22 @@ $template_ecard = <<<EOT
 <body bgcolor="#FFFFFF" text="#0F5475" link="#0F5475" vlink="#0F5475" alink="#0F5475">
 <br />
 <p align="center"><a href="{VIEW_ECARD_TGT}"><b>{VIEW_ECARD_LNK}</b></a></p>
-<table border="0px" cellspacing="0px" cellpadding="1px" align="center">
+<table border="0" cellspacing="0" cellpadding="1" align="center">
   <tr>
     <td bgcolor="#000000">
-      <table border="0px" cellspacing="0px" cellpadding="10px" bgcolor="#ffffff">
+      <table border="0" cellspacing="0" cellpadding="10" bgcolor="#ffffff">
         <tr>
           <td valign="top">
-           <a href="{VIEW_MORE_TGT}/displayimage.php?pos=-{PID}">
-                                         <img src="{PIC_URL}" border="1px" alt="" /></a>
+           <a href="{VIEW_MORE_TGT}displayimage.php?pos=-{PID}">
+                                         <img src="{PIC_URL}" border="1" alt="" /></a>
                                          <br />
                                          <div align="center">
                                                  <h2>{PIC_TITLE}</h2>
                                          </div>
 
           </td>
-          <td valign="top" width="300px">
-            <div align="right"><img src="{URL_PREFIX}images/stamp.gif" border="0px" alt="" /></div>
+          <td valign="top" width="300">
+            <div align="right"><img src="{URL_PREFIX}images/stamp.gif" border="0" alt="" /></div>
             <br />
             <b><font face="arial" color="#000000" size="4">{GREETINGS}</font></b>
             <br />
@@ -972,15 +998,15 @@ $template_report = <<<EOT
 <body bgcolor="#FFFFFF" text="#0F5475" link="#0F5475" vlink="#0F5475" alink="#0F5475">
 <br />
 <p align="center"><a href="{VIEW_REPORT_TGT}"><b>{VIEW_REPORT_LNK}</b></a></p>
-<table border="0px" cellspacing="0px" cellpadding="1px" align="center">
+<table border="0" cellspacing="0" cellpadding="1" align="center">
   <tr>
     <td bgcolor="#000000">
-      <table border="0px" cellspacing="0px" cellpadding="10px" bgcolor="#ffffff">
+      <table border="0" cellspacing="0" cellpadding="10" bgcolor="#FFFFFF">
         <tr>
           <td valign="top">
-           <a href="{PIC_TGT}"><img src="{PIC_URL}" border="1px" alt="" /></a><br />
+           <a href="{PIC_TGT}"><img src="{PIC_URL}" border="1" alt="" /></a><br />
           </td>
-          <td valign="top" width="200px">
+          <td valign="top" width="200">
             <b><font face="arial" color="#000000" size="4">{SUBJECT}</font></b>
             <br />
                                                 <br />
@@ -1024,7 +1050,6 @@ $template_report_plaintext = <<<EOT
 EOT;
 
 // HTML template for displaying a reported comment
-if (!isset($template_report_comment))  //{THEMES}
 $template_report_comment = <<<EOT
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="{LANG_DIR}">
@@ -1035,10 +1060,10 @@ $template_report_comment = <<<EOT
 <body bgcolor="#FFFFFF" text="#0F5475" link="#0F5475" vlink="#0F5475" alink="#0F5475">
 <br />
 <p align="center"><a href="{VIEW_REPORT_TGT}"><b>{VIEW_REPORT_LNK}</b></a></p>
-<table border="0px" cellspacing="0px" cellpadding="1px" align="center">
+<table border="0" cellspacing="0" cellpadding="1" align="center">
   <tr>
     <td bgcolor="#000000">
-      <table border="0px" cellspacing="0px" cellpadding="10px" bgcolor="#ffffff">
+      <table border="0" cellspacing="0" cellpadding="10" bgcolor="#FFFFFF">
         <tr>
           <td valign="top">
            {COMMENT}
@@ -1067,7 +1092,6 @@ $template_report_comment = <<<EOT
 EOT;
 
 // plain-text template for reports (as fallback for clients that can't display html-formatted mails)
-if (!isset($template_report_comment_email))  //{THEMES}
 $template_report_comment_email = <<<EOT
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="{LANG_DIR}">
@@ -1098,18 +1122,19 @@ $template_tab_display = array('left_text' => '<td width="100%" align="left" vali
     'inactive_tab' => '<td><img src="images/spacer.gif" width="1" height="1" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}"><b>%d</b></a></td>' . "\n",
     'inactive_prev_tab' => '<td><img src="images/spacer.gif" width="1" height="1" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}"><b>{PREV}</b></a></td>' . "\n",
     'inactive_next_tab' => '<td><img src="images/spacer.gif" width="1" height="1" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}"><b>{NEXT}</b></a></td>' . "\n",
-    );
+);
 
 // Template used for Vanity Footer
 $template_vanity = <<<EOT
 <div id="vanity">
-      <a id="v_php" href="http://www.php.net/"  rel="external"></a>
-      <a id="v_mysql" href="http://www.mysql.com/"  rel="external"></a>
-      <a id="v_xhtml" href="http://validator.w3.org/check/referer"  rel="external"></a>
-      <a id="v_css" href="http://jigsaw.w3.org/css-validator/check/referer"  rel="external"></a>
+      <a id="v_php" href="http://www.php.net/" target="_blank"></a>
+      <a id="v_mysql" href="http://www.mysql.com/" target="_blank"></a>
+      <a id="v_xhtml" href="http://validator.w3.org/check/referer" target="_blank"></a>
+      <a id="v_css" href="http://jigsaw.w3.org/css-validator/check/referer" target="_blank"></a>
 </div>
 EOT;
 
+// Function for writing a pageheader
 function pageheader($section, $meta = '')
 {
     global $CONFIG, $THEME_DIR;
@@ -1117,12 +1142,15 @@ function pageheader($section, $meta = '')
 
     $custom_header = cpg_get_custom_include($CONFIG['custom_header_path']);
 
+        $charset = ($CONFIG['charset'] == 'language file') ? $lang_charset : $CONFIG['charset'];
+
     header('P3P: CP="CAO DSP COR CURa ADMa DEVa OUR IND PHY ONL UNI COM NAV INT DEM PRE"');
+        header("Content-Type: text/html; charset=$charset");
     user_save_profile();
 
     $template_vars = array('{LANG_DIR}' => $lang_text_dir,
         '{TITLE}' => $CONFIG['gallery_name'] . ' - ' . strip_tags(bb_decode($section)),
-        '{CHARSET}' => $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'],
+        '{CHARSET}' => $charset,
         '{META}' => $meta,
         '{GAL_NAME}' => $CONFIG['gallery_name'],
         '{GAL_DESCRIPTION}' => $CONFIG['gallery_description'],
@@ -1134,6 +1162,7 @@ function pageheader($section, $meta = '')
 
     echo template_eval($template_header, $template_vars);
 }
+
 // Function for writing a pagefooter
 function pagefooter()
 {
@@ -1154,6 +1183,7 @@ function pagefooter()
 
     echo template_eval($template_footer, $template_vars);
 }
+
 // Function to start a 'standard' table
 function starttable($width = '-1', $title = '', $title_colspan = '1')
 {
@@ -1177,6 +1207,7 @@ EOT;
     }
 }
 
+// Function to end a 'standard' table
 function endtable()
 {
     echo <<<EOT
@@ -1186,6 +1217,7 @@ function endtable()
 EOT;
 }
 
+// Function for creating a main menu (SYS_MENU or SUB_MENU)
 function theme_main_menu($which)
 {
     global $AUTHORIZED, $CONFIG, $album, $actual_cat, $cat, $REFERER;
@@ -1277,7 +1309,7 @@ function theme_main_menu($which)
         '{LOGIN_LNK}' => $lang_main_menu['login_lnk'],
         '{LOGOUT_TGT}' => "logout.php?referer=$REFERER",
         '{LOGOUT_TITLE}' => $lang_main_menu['logout_title'],
-        '{LOGOUT_LNK}' => $lang_main_menu['logout_lnk'] . " [" . USER_NAME . "]",
+        '{LOGOUT_LNK}' => $lang_main_menu['logout_lnk'] . " [" . stripslashes(USER_NAME) . "]",
         '{FAQ_TGT}' => "faq.php",
         '{FAQ_TITLE}' => $lang_main_menu['faq_title'],
         '{FAQ_LNK}' => $lang_main_menu['faq_lnk'],
@@ -1335,6 +1367,9 @@ function theme_admin_mode_menu()
 
     // Populate the admin menu only if empty to avoid template errors
     if ($admin_menu == '') {
+
+        if (GALLERY_ADMIN_MODE) {
+
         if ($CONFIG['log_ecards'] == 0) {
             template_extract_block($template_gallery_admin_menu, 'log_ecards');
         }
@@ -1343,7 +1378,6 @@ function theme_admin_mode_menu()
              template_extract_block($template_gallery_admin_menu, 'admin_approval');
         }
 
-        if (GALLERY_ADMIN_MODE) {
             // do the docs exist on the webserver?
             if (file_exists('docs/index.htm') == true) {
                 $documentation_href = 'docs/index.htm';
@@ -1561,6 +1595,7 @@ function theme_display_album_list(&$alb_list, $nbAlb, $cat, $page, $total_pages)
 
     echo $spacer;
 }
+
 // Function to display first level Albums of a category
 function theme_display_album_list_cat(&$alb_list, $nbAlb, $cat, $page, $total_pages)
 {
@@ -1676,9 +1711,9 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
 
     if ($mode == 'thumb') {
         $theme_thumb_tab_tmpl['left_text'] = strtr($theme_thumb_tab_tmpl['left_text'], array('{LEFT_TEXT}' => $aid == 'lastalb' ? $lang_album_list['album_on_page'] : $lang_thumb_view['pic_on_page']));
-        $theme_thumb_tab_tmpl['inactive_tab'] = strtr($theme_thumb_tab_tmpl['inactive_tab'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . '&amp;page=%d'));
-        $theme_thumb_tab_tmpl['inactive_next_tab'] = strtr($theme_thumb_tab_tmpl['inactive_next_tab'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . '&amp;page=%d'));
-        $theme_thumb_tab_tmpl['inactive_prev_tab'] = strtr($theme_thumb_tab_tmpl['inactive_prev_tab'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . '&amp;page=%d'));
+        $theme_thumb_tab_tmpl['inactive_tab'] = strtr($theme_thumb_tab_tmpl['inactive_tab'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . $uid_link . '&amp;page=%d'));
+        $theme_thumb_tab_tmpl['inactive_next_tab'] = strtr($theme_thumb_tab_tmpl['inactive_next_tab'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . $uid_link . '&amp;page=%d'));
+        $theme_thumb_tab_tmpl['inactive_prev_tab'] = strtr($theme_thumb_tab_tmpl['inactive_prev_tab'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . $uid_link . '&amp;page=%d'));
     } else {
         $theme_thumb_tab_tmpl['left_text'] = strtr($theme_thumb_tab_tmpl['left_text'], array('{LEFT_TEXT}' => $lang_thumb_view['user_on_page']));
         $theme_thumb_tab_tmpl['inactive_tab'] = strtr($theme_thumb_tab_tmpl['inactive_tab'], array('{LINK}' => 'index.php?cat=' . $cat . '&amp;page=%d'));
@@ -1740,7 +1775,7 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
                     );
             } else {
                 $params = array('{CELL_WIDTH}' => $cell_width,
-                    '{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&amp;pos={$thumb['pos']}",
+                    '{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&amp;pos={$thumb['pos']}$uid_link",
                     '{THUMB}' => $thumb['image'],
                     '{CAPTION}' => $thumb['caption'],
                     '{ADMIN_MENU}' => $thumb['admin_menu']
@@ -1775,7 +1810,8 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
     endtable();
     echo $spacer;
 }
-// Added to display flim_strip
+
+// Added to display film_strip
 function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $pos, $sort_options, $mode = 'thumb')
 {
     global $CONFIG, $THEME_DIR;
@@ -1793,6 +1829,7 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
     }
 
     $cat_link = is_numeric($aid) ? '' : '&amp;cat=' . $cat;
+        $uid_link = is_numeric($_GET['uid']) ? '&amp;uid=' . $_GET['uid'] : '';
 
     $thumbcols = $CONFIG['thumbcols'];
     $cell_width = ceil(100 / $CONFIG['max_film_strip_items']) . '%';
@@ -1803,7 +1840,7 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
         $i++;
         if ($mode == 'thumb') {
             $params = array('{CELL_WIDTH}' => $cell_width,
-                '{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&amp;pos={$thumb['pos']}",
+                '{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&amp;pos={$thumb['pos']}$uid_link",
                 '{THUMB}' => $thumb['image'],
                 '{CAPTION}' => $thumb['caption'],
                 '{ADMIN_MENU}' => ''
@@ -1999,7 +2036,7 @@ function theme_html_picture()
         if (isset($image_size['reduced'])) {
             $winsizeX = $CURRENT_PIC_DATA['pwidth']+5;  //the +'s are the mysterious FF and IE paddings
             $winsizeY = $CURRENT_PIC_DATA['pheight']+3; //the +'s are the mysterious FF and IE paddings
-            $pic_html = "<a href=\"javascript:;\" onclick=\"MM_openBrWindow('displayimage.php?pid=$pid&amp;fullsize=1','" . uniqid(rand()) . "','scrollbars=yes,toolbar=yes,status=yes,resizable=yes,width=$winsizeX,height=$winsizeY')\">";
+            $pic_html = "<a href=\"javascript:;\" onclick=\"MM_openBrWindow('displayimage.php?pid=$pid&amp;fullsize=1','" . uniqid(rand()) . "','scrollbars=yes,toolbar=no,status=no,resizable=yes,width=$winsizeX,height=$winsizeY')\">";
             $pic_title = $lang_display_image_php['view_fs'] . "\n==============\n" . $pic_title;
             $pic_html .= "<img src=\"" . $picture_url . "\" class=\"image\" border=\"0\" alt=\"{$lang_display_image_php['view_fs']}\" /><br />";
             $pic_html .= "</a>\n";
@@ -2013,7 +2050,7 @@ function theme_html_picture()
         $autostart = ($CONFIG['media_autostart']) ? ('true'):('false');
 
         $players['WMP'] = array('id' => 'MediaPlayer',
-                                'clsid' => 'classid="clsid:6BF52A52-394A-11D3-B153-00C04F79FAA6" ',
+                                'clsid' => 'classid="clsid:6BF52A52-394A-11d3-B153-00C04F79FAA6" ',
                                 'codebase' => 'codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=5,1,52,701" ',
                                 'mime' => 'type="application/x-mplayer2" ',
                                );
@@ -2051,7 +2088,7 @@ function theme_html_picture()
 
         $player = $players[$user_player];
 
-        $pic_html  = '<object id="'.$player['id'].'" '.$player['classid'].$player['codebase'].$player['mime'].$image_size['whole'].'>';
+        $pic_html  = '<object id="'.$player['id'].'" '.$player['clsid'].$player['codebase'].$player['mime'].$image_size['whole'].'>';
         $pic_html .= "<param name=\"autostart\" value=\"$autostart\" /><param name=\"src\" value=\"". $picture_url . "\" />";
         $pic_html .= '<embed '.$image_size['whole'].' src="'. $picture_url . '" autostart="'.$autostart.'" '.$player['mime'].'></embed>';
         $pic_html .= "</object><br />\n";
@@ -2079,6 +2116,7 @@ function theme_html_img_nav_menu()
     global $album, $cat, $pos, $pic_count, $lang_img_nav_bar, $lang_text_dir, $template_img_navbar;
 
     $cat_link = is_numeric($album) ? '' : '&amp;cat=' . $cat;
+        $uid_link = is_numeric($_GET['uid']) ? '&amp;uid=' . $_GET['uid'] : '';
 
     $human_pos = $pos + 1;
     $page = ceil(($pos + 1) / ($CONFIG['thumbrows'] * $CONFIG['thumbcols']));
@@ -2097,7 +2135,7 @@ function theme_html_img_nav_menu()
 
     if ($pos > 0) {
         $prev = $pos - 1;
-        $prev_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$prev";
+        $prev_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$prev$uid_link";
         $prev_title = $lang_img_nav_bar['prev_title'];
                                 $meta_nav .= "<link rel=\"prev\" href=\"$prev_tgt\" title=\"$prev_title\" />
                                 ";
@@ -2108,7 +2146,7 @@ function theme_html_img_nav_menu()
 
     if ($pos < ($pic_count -1)) {
         $next = $pos + 1;
-        $next_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$next";
+        $next_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$next$uid_link";
         $next_title = $lang_img_nav_bar['next_title'];
                                 $meta_nav .= "<link rel=\"next\" href=\"$next_tgt\" title=\"$next_title\"/>
                                 ";
@@ -2134,11 +2172,11 @@ function theme_html_img_nav_menu()
 
     }
 
-                    $thumb_tgt = "thumbnails.php?album=$album$cat_link&amp;page=$page";
+                    $thumb_tgt = "thumbnails.php?album=$album$cat_link&amp;page=$page$uid_link";
         $meta_nav .= "<link rel=\"up\" href=\"$thumb_tgt\" title=\"".$lang_img_nav_bar['thumb_title']."\"/>
         ";
 
-    $slideshow_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pid=$pid&amp;slideshow=".$CONFIG['slideshow_interval'];
+    $slideshow_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link$uid_link&amp;pid=$pid&amp;slideshow=".$CONFIG['slideshow_interval'];
 
     $pic_pos = sprintf($lang_img_nav_bar['pic_pos'], $human_pos, $pic_count);
 
@@ -2215,7 +2253,7 @@ function theme_html_comments($pid)
 
     $html = '';
 
-//report to moderator buttons
+    //report to moderator buttons
     if (!(($CONFIG['report_post']==1) && (USER_CAN_SEND_ECARDS))) {
         template_extract_block($template_image_comments, 'report_comment_button');
     }
@@ -2266,7 +2304,7 @@ function theme_html_comments($pid)
 
         $template = template_eval($template_image_comments, $params);
 
-        $params = array('{MSG_AUTHOR}' => $row['msg_author'],
+        $params = array('{MSG_AUTHOR}' => stripslashes($row['msg_author']),
             '{MSG_ID}' => $row['msg_id'],
             '{PID}' => $row['pid'],
             '{EDIT_TITLE}' => &$lang_display_comments['edit_title'],
@@ -2286,7 +2324,7 @@ function theme_html_comments($pid)
 
     if (USER_CAN_POST_COMMENTS && $CURRENT_ALBUM_DATA['comments'] == 'YES') {
         if (USER_ID) {
-            $user_name_input = '<tr><td><input type="hidden" name="msg_author" value="' . USER_NAME . '" /></td>';
+            $user_name_input = '<tr><td><input type="hidden" name="msg_author" value="' . stripslashes(USER_NAME) . '" /></td>';
             template_extract_block($template_add_your_comment, 'user_name_input', $user_name_input);
             $user_name = '';
         } else {
@@ -2305,7 +2343,11 @@ function theme_html_comments($pid)
             '{WIDTH}' => $CONFIG['picture_table_width'],
             );
 
-        if ($CONFIG['enable_smilies']) $params['{SMILIES}'] = generate_smilies();
+        if ($CONFIG['enable_smilies']){
+                        $params['{SMILIES}'] = generate_smilies();
+                } else {
+                        template_extract_block($template_add_your_comment, 'smilies');
+                }
 
         $html .= template_eval($template_add_your_comment, $params);
     }
@@ -2378,9 +2420,9 @@ function theme_display_fullsize_pic()
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
   <head>
+  <meta http-equiv="content-type" content="text/html; charset=<?php echo $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'] ?>" />
   <title><?php echo $CONFIG['gallery_name'] ?>: <?php echo $lang_fullsize_popup['click_to_close'];
       ?></title>
-  <meta http-equiv="content-type" content="text/html; charset=<?php echo $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'] ?>" />
   <script type="text/javascript" src="scripts.js"></script>
   <style type="text/css">
   body { margin: 0; padding: 0; background-color: gray; }
@@ -2416,7 +2458,6 @@ function theme_display_fullsize_pic()
 </html>
 <?php
 }
-
 
 function theme_vanity()
 {
