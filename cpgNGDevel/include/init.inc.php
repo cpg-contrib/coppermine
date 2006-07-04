@@ -106,7 +106,8 @@ $CURRENT_CAT_NAME = '';
 $CAT_LIST = '';
 
 // Record User's IP address
-$ipRegex = '^(?:(?:25[0-5]|2[0-4]\d|[01]\d\d|\d?\d)(?(\.?\d)\.)){4}$';
+//$ipRegex = '^(?:(?:25[0-5]|2[0-4]\d|[01]\d\d|\d?\d)(?(\.?\d)\.)){4}$';
+$ipRegex = '^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$';
 
 /**
  * The IP address must match the following regex
@@ -283,6 +284,9 @@ $auth->getUserFavPics();
 $now = date('Y-m-d H:i:s', cpgUtils::localisedTimestamp());
 
 $config->conf['template_loaded'] = true;
+
+$query = "SELECT * FROM {$config->conf['TABLE_BANNED']}";
+$db->query($query);
 
 $query = "DELETE FROM {$config->conf['TABLE_BANNED']} WHERE expiry < '$now'";
 $db->query($query);

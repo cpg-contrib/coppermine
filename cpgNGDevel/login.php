@@ -36,8 +36,8 @@ $cookie_warning = '';
 
 if (isset($_POST['submitted'])) {
 
-//  if ($auth->login($raw_ip, $hdr_ip)) {
-    if ($auth->login( addslashes($_POST['username']), addslashes($_POST['password']), isset($_POST['remember_me']) ) ) {
+  if ($auth->login($raw_ip, $hdr_ip)) {
+    //if ($auth->login( addslashes($_POST['username']), addslashes($_POST['password']), isset($_POST['remember_me']) ) ) {
 
     cpgUtils::msgBox($lang_login_php['login'], sprintf($lang_login_php['welcome'], $auth->userData['user_name']), $lang_continue, $referer, $width = "-1", true);
     exit;

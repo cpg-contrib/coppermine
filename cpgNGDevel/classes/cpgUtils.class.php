@@ -190,7 +190,7 @@ class cpgUtils {
      */
     function localisedTimestamp()
     {
-        return strtotime(cpgUtils::localisedDate(-1, '%B %d, %Y'));
+        return strtotime(cpgUtils::localisedDate(-1, '%B %d, %Y  %H : %M : %S'));
     }
 
     /**

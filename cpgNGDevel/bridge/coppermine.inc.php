@@ -136,6 +136,7 @@ user_password = '" . $password . "' AND user_active = 'YES'";
               // get IP address of the person who tried to log in, look it up on the banning table and increase the brute force counter. If the brute force counter has reached a critical limit, set a regular banning record
               $query = "SELECT * FROM {$this->config->conf['TABLE_BANNED']} WHERE ip_addr='$raw_ip' OR ip_addr='$hdr_ip'";
 
+              $this->cpgDb->query($query);
               $failed_logon_counter = $this->cpgDb->fetchRow();
 
               $expiry_date = date("Y-m-d H:i:s", mktime(date('H'), date('i')+$this->config->conf['login_expiry'], date('s'), date('m'), date('d'),date('Y')));
