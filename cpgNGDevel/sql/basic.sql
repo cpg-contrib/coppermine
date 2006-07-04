@@ -11,7 +11,7 @@
 ##  ********************************************
 ##  Coppermine version: 1.4.1
 ##  $Source: /home/cvs/cpgNGDevel/sql/basic.sql,v $
-##  $Revision: 1.3 $
+##  $Revision:3139 $
 ##  $Author$
 ##  $Date$
 ##  ********************************************
@@ -30,8 +30,8 @@ INSERT INTO CPG_config VALUES ('alb_list_thumb_size', '50');
 
 # FOR USE WITH VIDEO MOD
 INSERT INTO CPG_config VALUES ('allowed_mov_types', 'ALL');
-INSERT INTO CPG_config VALUES ('allowed_doc_types', 'ALL');
-INSERT INTO CPG_config VALUES ('allowed_snd_types', 'ALL');
+INSERT INTO CPG_config VALUES ('allowed_doc_types', 'doc/txt/rtf/pdf/xls/pps/ppt/zip/gz/mdb');
+INSERT INTO CPG_config VALUES ('allowed_snd_types', 'mp3/midi/mid/wma/wav/ogg');
 INSERT INTO CPG_config VALUES ('allowed_img_types', 'ALL');
 
 
