@@ -55,7 +55,7 @@
               <object {$picData.image_size.whole}><param name="autostart" value="{$picData.autostart}"><param name="src" value="{$DOMAIN_URL}{$picData.picUrl}"><embed {$picData.image_size.whole} src="{$DOMAIN_URL}{$picData.picUrl}" autostart="{$picData.autostart}"></embed></object><br />
             {/if}
             {if $picData.menu}
-            <a href="#" onclick="return MM_openBrWindow('{$DOMAIN_URL}picEditor.php?id={$picData.pid}','Crop_Picture','scrollbars=yes,toolbar=no,status=yes,resizable=yes')" class="adm_menu">{$lang_display_image_php.crop_pic}</a> <a href="{$DOMAIN_URL}editOnePic.php?pid={$picData.pid}" class="adm_menu">{$lang_display_image_php.edit_pic}</a> <a href="{$DOMAIN_URL}deleteOnePic.php?pid={$picData.pid}" class="adm_menu" onclick="return confirm('{$lang_display_image_php.confirm_del}');">{$lang_display_image_php.del_pic}</a>
+            <a href="#" class="admin_menu" onclick="return MM_openBrWindow('{$DOMAIN_URL}picEditor.php?id={$picData.pid}','Crop_Picture','scrollbars=yes,toolbar=no,status=yes,resizable=yes')" class="admin_menu">{$lang_display_image_php.crop_pic}</a> <a href="{$DOMAIN_URL}editOnePic.php?pid={$picData.pid}" class="admin_menu">{$lang_display_image_php.edit_pic}</a> <a href="{$DOMAIN_URL}deleteOnePic.php?pid={$picData.pid}" class="admin_menu" onclick="return confirm('{$lang_display_image_php.confirm_del}');">{$lang_display_image_php.del_pic}</a>
             {/if}
           </td>
         </tr>
