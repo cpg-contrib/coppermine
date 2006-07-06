@@ -174,7 +174,7 @@ if (is_int($pos)) {
   /**
    * Now we need the position of this picture in the album.
    **/
-  $allPicData = $albumData->getPicData($album, $picCount, $album_name, -1, -1, false);
+  $allPicData = $albumData->getPicData($album, $picCount, $album_name, -1, -1, $cat, false);
   for($pos = 0; $allPicData[$pos]['pid'] != $pid && $pos < $picCount; $pos++);
   $imgData->picData = $allPicData[$pos];
   $prevPicId = $allPicData[$pos-1]['pid'];
