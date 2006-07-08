@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-07-09 [M] Replaced ignoring of CVS folders in favor of .svn folders {GauGau}
 2006-06-25 [B] Removed admin from secondary group in usermgr.php - topic 32781 {Paver}
 2006-06-25 [B] Fixed user profile fields in charsetmgr.php - topic 32491 {Paver}
 2006-06-25 [B] Fixed theme_create_tabs call in functions.inc.php - topic 33030 {Paver}

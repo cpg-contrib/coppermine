@@ -2513,7 +2513,7 @@ $lang_language_data['vietnamese'] = array('Vietnamese','Tieng Viet','vn');
   $lang_dir = 'lang/';
   $dir = opendir($lang_dir);
   while ($file = readdir($dir)) {
-     if ($file != '.' && $file != '..' && $file !='CVS') {
+     if ($file != '.' && $file != '..' && $file !='.svn' ) {
          $lang_array[] = strtolower(substr($file, 0 , -4));
      }
   }
@@ -2605,7 +2605,7 @@ $cpgCurrentTheme.="theme=";
 
     $dir = opendir($theme_dir);
     while ($file = readdir($dir)) {
-        if (is_dir($theme_dir . $file) && $file != "." && $file != ".." && $file != 'CVS' && $file != 'sample') {
+        if (is_dir($theme_dir . $file) && $file != "." && $file != ".." && $file != '.svn' && $file != 'sample') {
             $theme_array[] = $file;
         }
     }
