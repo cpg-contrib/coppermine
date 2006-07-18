@@ -108,7 +108,7 @@ $local_lang_versioncheck_php = array(
   'folder_file' => 'folder/file',
   'coppermine_version' => 'cpg version',
   'file_version' => 'file version',
-  'webcvs' => 'web cvs',
+  'webcvs' => 'web svn',
   'writable' => 'writable',
   'not_writable' => 'not writable',
   'help' => 'Help',
@@ -119,9 +119,9 @@ $local_lang_versioncheck_php = array(
   'help_no_local_version1' => 'No local file version',
   'help_no_local_version2' => 'The script was unable to extract a local file version - your file is either outdated or you have modified it, removing the header information on the way. Updating the file is recommended.',
   'help_local_version_outdated1' => 'Local version outdated',
-  'help_local_version_outdated2' => 'Your version of this file seems to be from an older version of Coppermine (you probably upgraded). Make sure to update this file as well. There might have been changes to this file after the release of the package - check the web cvs as well to look for an update.',
-  'help_local_version_na1' => 'Unable to extract cvs version info',
-  'help_local_version_na2' => 'The script could not determine what cvs version the file on your webserver is. You should upload the file from your package.',
+  'help_local_version_outdated2' => 'Your version of this file seems to be from an older version of Coppermine (you probably upgraded). Make sure to update this file as well. There might have been changes to this file after the release of the package - check the web svn as well to look for an update.',
+  'help_local_version_na1' => 'Unable to extract svn version info',
+  'help_local_version_na2' => 'The script could not determine what svn version the file on your webserver is. You should upload the file from your package.',
   'help_local_version_dev1' => 'Development version',
   'help_local_version_dev2' => 'The file on your webserver seems to be newer than your Coppermine version. You are either using a development file (you should only do so if you know what you are doing), or you have upgraded your Coppermine install and not uploaded include/init.inc.php',
   'help_not_writable1' => 'Folder not writable',
@@ -149,9 +149,9 @@ $local_lang_versioncheck_php = array(
   'coppermine_in_webroot' => 'coppermine is installed in the webroot',
   'connect_online_repository' => 'try connecting to the online repository',
   'show_additional_information' => 'show additional information',
-  'no_webcvs_link' => 'don\'t display web cvs link',
-  'stable_webcvs_link' => 'display web cvs link to stable branch',
-  'devel_webcvs_link' => 'display web cvs link to devel branch',
+  'no_webcvs_link' => 'don\'t display web svn link',
+  'stable_webcvs_link' => 'display web svn link to stable branch',
+  'devel_webcvs_link' => 'display web svn link to devel branch',
   'submit' => 'apply changes',
   'reset_to_defaults' => 'reset to default values',
 );
@@ -904,7 +904,7 @@ print '</td>';
 if ($webcvs != '0') {
 print '<td class="tableb">';
 // web cvs start
-$webcvslink = 'http://cvs.sourceforge.net/viewcvs.py/coppermine/';
+$webcvslink = 'http://svn.sourceforge.net/viewcvs.cgi/coppermine/trunk/';
 if ($webcvs == "devel") {$webcvslink .= 'devel/';} else {$webcvslink .= 'stable/';}
 $webcvslink .= $file_complete_path;
 print sprintf($lang_versioncheck_php['go_to_webcvs'],'<a href="'.$webcvslink.'">'.$lang_versioncheck_php['webcvs'].'</a>');
