@@ -720,7 +720,7 @@ $template_image_comments = <<<EOT
                         <table width="100%" cellpadding="0" cellspacing="0">
                            <tr>
                                 <td class="tableh2_compact" nowrap="nowrap">
-                                        <b>{MSG_AUTHOR}</b><a name="comment{MSG_ID}">&nbsp;</a>
+                                        <b>{MSG_AUTHOR}</b><a name="comment{MSG_ID}"></a>&nbsp;
 <!-- BEGIN ipinfo -->
                                                                                  ({IP})
 <!-- END ipinfo -->
