@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-07-13 [C] Fixed linked space char in comments {GauGau}
 2006-07-10 [D] Added documentation improvements {GauGau}
 2006-07-09 [M] Replaced ignoring of CVS folders in favor of .svn folders {GauGau}
 2006-06-25 [B] Removed admin from secondary group in usermgr.php - topic 32781 {Paver}
