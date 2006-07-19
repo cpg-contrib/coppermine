@@ -296,7 +296,7 @@ class cpgIndexData extends cpgAlbumData {
                         $this->catData[] = array($link, $subcat['description'], 'cat_thumb' => $user_thumb, 'ident' => $ident, 'catid' => $subcat['cid']);
                     } else {
                         // Check if you need to show subcat_level
-                        if ($level == $this->config->conf['subcat_level']) {
+                        if ($level == $this->config->conf['subcat_level'] && $this->config->conf['first_level']) {
                             $tmpArr = $this->__listCatAlbums($subcat['cid']);
                         } else {
                             $cat_albums = '';
