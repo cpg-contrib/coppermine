@@ -152,7 +152,7 @@ if (!is_uploaded_file($_FILES['file']['tmp_name'])) {
 }
 
 // Pictures are moved in a directory named 10000 + USER_ID
-if (USER_ID && !defined('SILLY_SAFE_MODE')) {
+if (USER_ID && $CONFIG['silly_safe_mode'] != 1) {
   $filepath = $CONFIG['userpics'] . (FIRST_USER_CAT + USER_ID)."/";
   $dest_dir = "../".$CONFIG['fullpath'] . $filepath;
   if (!is_dir($dest_dir)) {

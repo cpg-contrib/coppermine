@@ -330,7 +330,7 @@ switch ($event) {
         // Test if the filename of the temporary uploaded picture is empty
         if ($_FILES['userpicture']['tmp_name'] == '') cpg_die(ERROR, $lang_db_input_php['no_pic_uploaded'], __FILE__, __LINE__);
         // Pictures are moved in a directory named 10000 + USER_ID
-        if (USER_ID && !defined('SILLY_SAFE_MODE')) {
+        if (USER_ID && $CONFIG['silly_safe_mode'] != 1) {
             $filepath = $CONFIG['userpics'] . (USER_ID + FIRST_USER_CAT);
             $dest_dir = $CONFIG['fullpath'] . $filepath;
             if (!is_dir($dest_dir)) {

@@ -2249,7 +2249,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
         }
 
         // Pictures are moved in a directory named 10000 + USER_ID
-        if (USER_ID && !defined('SILLY_SAFE_MODE')) {
+        if (USER_ID && $CONFIG['silly_safe_mode'] != 1) {
             $filepath = $CONFIG['userpics'] . (USER_ID + FIRST_USER_CAT);
             $dest_dir = $CONFIG['fullpath'] . $filepath;
             if (!is_dir($dest_dir)) {

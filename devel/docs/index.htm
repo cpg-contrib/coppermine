@@ -60,8 +60,7 @@
         <ul class="level2">
                 <li class="level2"><a href="#creating" class="menu2">2.3 Creating or upgrading your own themes</a></li>
 
-                <li class="level2"><a href="#safe" class="menu2">2.3 Safe mode issues</a></li>
-                <li class="level2"><a href="#smtp" class="menu2">2.5 Using SMTP to send emails</a></li>
+                <li class="level2"><a href="#smtp" class="menu2">2.4 Using SMTP to send emails</a></li>
         </ul>
 <ul class="level1">
         <li class="level1"><a href="#upgrade" class="menu1">3. Upgrading</a></li>
@@ -295,7 +294,7 @@
 <ul>
   <li>A web server that supports PHP</li>
   <li>A MySQL database<br />
-  You will need MySQL version 3.23.23 or better (4.x recommended). The MySQL user needs permissions to perform CREATE, ALTER, SELECT, UPDATE, DELETE, INSERT data from the database. Most users have these permissions when webhosted. If you don't have them, you will not be able to use this or any other pre-made scripts at all. If you are uncertain about your permissions, please check with your webhost. Most hosting services can probably tell you whether coppermine can or cannot be run off of their servers.<br />
+  You will need MySQL version 3.23.23 or better (4.x recommended). The MySQL user needs permissions to perform CREATE, ALTER, REPLACE, SELECT, UPDATE, DELETE, INSERT data from the database. Most users have these permissions when webhosted. If you don't have them, you will not be able to use this or any other pre-made scripts at all. If you are uncertain about your permissions, please check with your webhost. Most hosting services can probably tell you whether coppermine can or cannot be run off of their servers.<br />
   A database needs to be set up that Coppermine can use - the install script will not create a database for you, but it will automatically create the tables and data structure in your database for you. In most webhosted environments, you will already have at least one database set up for you by your webhost. If not, you will need to create one. If you do need to create a database, check with your webhost on the proper procedures for doing so. Write down your database name, userID and password. You will require all three to successfully install Coppermine. </li>
   <li>PHP (version 4.1.0 or better), either compiled with the support for the GD library or permission to use the exec() function for the ImageMagick &quot;convert&quot; utility in order to make thumbnails and reduced size images. <strong>Note:</strong> If your server is using PHP 5+, "register_long_arrays" must be turned "on." Verify that this is the case with your webhost before attempting to install Coppermine.</li>
   <li>An image library: either GD version 1.x or 2.x (PHP has to be compiled to support it) or ImageMagick.<br />
@@ -516,7 +515,7 @@ If you have shell access to your server, you can apply the native <a href="http:
           <input type="text" style="width:100%" readonly="readonly" name="dbuser" value="" />
   </td>
   <td><span class="small">The mySQL user name does <strong>not</strong> have to be your coppermine admin username, nor is it the necessarily the same as your FTP username (although this <em>can</em> be the case for some users, but only by sheer coincidence or deliberate intention, to simplify site administration).<br />
-  The mySQL user needs the permissions CREATE TABLE, INSERT, ALTER, UPDATE, DELETE, SELECT.</span></td>
+  The mySQL user needs the permissions CREATE TABLE, INSERT, ALTER, REPLACE, UPDATE, DELETE, SELECT.</span></td>
  </tr>
  <tr>
   <td style="border-left:1px solid #0E72A4;"><strong>MySQL Password</strong>
@@ -606,19 +605,8 @@ If you have shell access to your server, you can apply the native <a href="http:
 </ul>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
-<a name="safe"></a>
-<h2>2.4 Safe mode issues</h2>
-<p>A significant number of webhosts on the Internet run PHP in safe mode. Coppermine runs without any problem in safe mode and with the &quot;open basedir restriction&quot; active, provided safe mode is properly configured. Unfortunately, on many hosts, safe mode is not configured properly.</p>
-<p>If your webhost is running PHP in safe mode but is misconfigured, you may need to do the following :</p>
-<ul>
-  <li>With a FTP program, change the mode of Coppermine's &quot;<strong>include</strong>&quot; directory on your server to <strong>0777</strong>.</li>
-  <li>Do the same for the &quot;<strong>albums</strong>&quot; and &quot;<strong>userpics</strong>&quot; directories.</li>
-  <li>Check that at the beginning the the &quot;<strong>include/config.inc.php</strong>&quot; file, you have a line with : &quot;<strong>define('SILLY_SAFE_MODE', 1);</strong>&quot;</li>
-</ul>
-<p><a class="back" href="#top">Back to top</a></p><hr />
-
 <a name="smtp"></a>
-<h2>2.5 Using SMTP to send emails</h2>
+<h2>2.4 Using SMTP to send emails</h2>
 <p>By default the script uses the PHP built-in <strong>mail</strong> function to send emails. In some cases, the PHP built-in function can't be used.</p>
 <p> If, in order to send emails with PHP, you are required to supply a <strong>hostname</strong>, a <strong>username</strong> and a <strong>password</strong>, you will need to edit the CONFIG menu section &quot;Email settings&quot; and insert the correct values there. If you don't need a username and password to connect to your SMTP server, just leave these lines blank. If you don't know what settings to enter, you will need to check with your webhost.</p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
@@ -640,6 +628,7 @@ If you have shell access to your server, you can apply the native <a href="http:
     <li><strong>Except for the &quot;albums&quot; directory</strong>, upload all of the new files and directories making sure not to overwrite your anycontent.php file or the albums directory.</li>
     <li>Run the file &quot;update.php&quot; in the coppermine directory once in your browser (e.g. http://yourdomain.tld/your_coppermine_folder/update.php). This will update your coppermine install by making all necessary changes in the database.</li>
     <li>If you have made a custom theme, apply the changes that were introduced in the themes structure to your custom-made theme - refer to the <a href="theme/index.html">theme-upgrade guide</a>.</li>
+    <li>If your webserver is running in safe_mode and you have enabled "SILLY_SAFE_MODE" in include/config.inc.php, you will have to go to coppermine's config after performing above mentioned steps and enable "<a href="#admin_picture_thumb_advanced_silly_safe_mode_start">silly safe mode</a>" there, as the setting in include/config.inc.php is no longer being taken into account in cpg1.5.x.</li>
 </ul>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
@@ -1634,6 +1623,14 @@ Descending: latest comment at the top, oldest comment at the bottom</p>
 <p>When the filename of a file that is uploaded contains any one or more of these characters, the characters will be replaced with an underscore.</p>
 <p>Don't change this unless you know exactly what you are doing.</p>
 <a name="admin_picture_thumb_advanced_filename_forbidden_chars_end"></a>
+<a name="admin_picture_thumb_advanced_silly_safe_mode_start"></a><a name="safe"></a>
+<h4>Enable "silly safe mode"</h4>
+<p>A significant number of webhosts on the Internet run PHP in <a href="http://www.php.net/phpinfo" rel="external" class="external">safe mode</a>. Coppermine runs without any problem in safe mode and with the "open basedir restriction" active, provided safe mode is properly configured. Unfortunately, on many hosts, safe mode is not configured properly.<br />
+If you have issues uploading pics, find out if safe_mode is enabled on your webserver by searching for it on your phpinfo page (go to admin tools -&gt; phpinfo). If safe_mode is enabled there, coppermine might be able to workaround the misconfiguration of your server if you enable coppermine's "silly safe mode" option.</p>
+<p>What "silly safe mode" does: if you enable this option, Coppermine will not try to create sub-folders for each user, but upload all files into the root of the userpics folder. There might be a slight performance impact for larger galleries, but then you probably won't be running a large gallery on a "crippled" webserver that is not configured properly.</p>
+<p>Before playing with the silly safe mode option, make sure that you have <a href="#permissions">set permissions</a> on the albums folder and everything within it as suggested <a href="#permissions">above</a>.</p>
+<p>Don't change this if uploading works just fine for you.</p>
+<a name="admin_picture_thumb_advanced_silly_safe_mode_end"></a>
 <a name="admin_picture_thumb_advanced_pic_extensions"></a>
 <h4>Allowed image types</h4>
 <p>&quot;<em>ALL</em>&quot; will result in all allowed image file types that your image library (GD or ImageMagick) is capable of handling to be allowed as uploads and content in your gallery. If you want to restrict the allowed file types to certain types only, enter a slash-separated list of extensions, e.g. <tt class="code">jpg/bmp/tif</tt></p>
@@ -1653,14 +1650,12 @@ Descending: latest comment at the top, oldest comment at the bottom</p>
 <h4>Allowed audio types</h4>
 <p>&quot;<em>ALL</em>&quot; will result in all allowable audio file types to be uploaded. If you want to restrict the allowed file types to certain extensions only, enter a slash-separated list of extensions, e.g. <tt class="code">wav/mp3/wma</tt>.</p>
 <p>Note that being able to listen to an audio file requires that the cpg-user have the necessary codecs properly configured on their computers to hear these files, e.g. if you allow the file type <tt class="code">mp3</tt>, users who wish to listen to the file will need to have a media player installed on their computer that can handle mp3 files.</p>
-<p class="important">Warning: if your webserver is not hardened against an exploit of a vulnerability in the apache webserver setup, then it might be a security risk to allow the upload of <tt class="code">ram</tt>, <tt class="code">ra</tt> and <tt class="code">rm</tt>-files. If you're not sure, do not allow this file types.</p>
 <p class="small">[cpg1.3.0 or better required]</p>
 <a name="admin_picture_thumb_advanced_audio_extensions_end"></a>
 <a name="admin_picture_thumb_advanced_doc_extensions"></a>
 <h4>Allowed document types</h4>
 <p>&quot;<em>ALL</em>&quot; will result in all allowable document file types to be uploaded. If you want to restrict the allowable file types to certain extensions only, enter a slash-separated list of extensions, e.g. <tt class="code">txt/pdf</tt>.</p>
 <p>Note that being able to browse a document file requires the cpg-user to have a compatible software installed and configured properly on their computer that is capable of displaying the type of document in question, e.g. if you allow the file type <tt class="code">xls</tt>, users who wish to browse the file will need to have an application installed on their computer that can display MS-Excel sheets. Be extremely careful with  document that are known to be vulnerable to virus contamination, embedded or as macros. This is especially true if you plan to allow users the capability of uploading documents without admin approval.</p>
-<p class="important">Warning: if your webserver is not hardened against an exploit of a vulnerability in the apache webserver setup, then it might be a security risk to allow the upload of <tt class="code">rar</tt>-files. If you're not sure, do not allow this file type.</p>
 <p class="small">[cpg1.3.0 or better required]</p>
 <a name="admin_picture_thumb_advanced_doc_extensions_end"></a>
 <a name="admin_picture_thumb_advanced_resize_method"></a>
@@ -1926,10 +1921,11 @@ All log files are written in english</p>
 
 <a name="exif_manager"></a>
 <h3>4.13.1 EXIF manager</h3>
-<p><img src="pics/exifmanager_cpg1.4.x.gif" width="600" height="439" border="0" alt="" align="right" />CPG1.4.x (or better) comes with an EXIF manager that let's the coppermine admin decide what EXIF data should be displayed within coppermine. Please note: if the exif data don't exist within a particular image, coppermine will of course not be able to display them. Coppermine is not an editor for exif data - it just displays the exif data that exists in your pics.<br />
+<p><img src="pics/exifmanager_cpg1.4.x.gif" width="600" height="439" border="0" alt="" align="right" />Coppermine comes with an EXIF manager that let's the coppermine admin decide what EXIF data should be displayed within coppermine. Please note: if the exif data don't exist within a particular image, coppermine will of course not be able to display them. Coppermine is not an editor for exif data - it just displays the exif data that exists in your pics.<br />
 To access the exif manager, go to coppermine's config and click within the section <a href="#admin_picture_thumb_advanced">Files and thumbnails advanced settings</a> at &quot;Manage exif display&quot; next to the line &quot;<a href="#admin_picture_thumb_advanced_exif">Read EXIF data in JPEG files</a>&quot;. Alternatively, you can directly enter http://yoursite.tld/your_coppermine_folder/exifmgr.php into your browser's address bar.</p>
 <p>Tick the checkboxes in the exif manager that you want to show up in coppermine's pic info section (if the image file actually holds this particular set of information).</p>
 <br clear="all" />
+<span class="small">[cpg1.4.0 or better required]</span>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="plugin_start"></a>

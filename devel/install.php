@@ -239,7 +239,7 @@ function html_installer_locked()
 function html_prereq_errors($error_msg)
 {
 
-	$continue = isset($_REQUEST['continue_anyway']) ? '?continue_anyway=1' : '';
+        $continue = isset($_REQUEST['continue_anyway']) ? '?continue_anyway=1' : '';
 
     ?>
       <form action="install.php<?php echo $continue ?>" method="post" name="cpgform" id="cpgform" style="margin:0px;padding:0px">
@@ -270,7 +270,7 @@ function html_input_config($error_msg = '')
 {
     global $im_installed;
 
-	$continue = isset($_REQUEST['continue_anyway']) ? '?continue_anyway=1' : '';
+        $continue = isset($_REQUEST['continue_anyway']) ? '?continue_anyway=1' : '';
 
     ?>
       <form action="install.php<?php echo $continue ?>" name="cpgform" id="cpgform" method="post" style="margin:0px;padding:0px">
@@ -465,6 +465,10 @@ function create_tables()
     $sql_query .= "REPLACE INTO CPG_config VALUES ('impath', '{$_POST['impath']}');\n";
     $sql_query .= "REPLACE INTO CPG_config VALUES ('ecards_more_pic_target', '$gallery_url_prefix');\n";
     $sql_query .= "REPLACE INTO CPG_config VALUES ('gallery_admin_email', '{$_POST['admin_email']}');\n";
+    // Enable silly_safe_mode if test has shown that it is not configured properly
+    if (test_silly_safe_mode() == TRUE) {
+        $sql_query .= "REPLACE INTO CPG_config VALUES ('silly_safe_mode', '1');\n";
+    }
     // Test write permissions for main dir
     if (!is_writable('.')) {
         $sql_query .= "REPLACE INTO CPG_config VALUES ('default_dir_mode', '0777');\n";
@@ -488,12 +492,9 @@ function build_cfg_file()
 {
     global $DFLT;
 
-    $silly_safe_mode = test_silly_safe_mode() ? "// Silly safe mode\ndefine('SILLY_SAFE_MODE', 1);\n\n" : '';
-
     return <<<EOT
 <?php
 // Coppermine configuration file
-$silly_safe_mode
 // MySQL configuration
 \$CONFIG['dbserver'] =                         '{$_POST['dbserver']}';        // Your database server
 \$CONFIG['dbuser'] =                         '{$_POST['dbuser']}';        // Your mysql username

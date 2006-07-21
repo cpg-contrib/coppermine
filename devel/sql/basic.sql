@@ -153,6 +153,7 @@ INSERT INTO CPG_config VALUES ('admin_activation', '0');
 INSERT INTO CPG_config VALUES ('display_thumbnail_rating', '0');
 INSERT INTO CPG_config VALUES ('thumbnail_to_fullsize', '0');
 INSERT INTO CPG_config VALUES ('global_registration_pw','');
+INSERT INTO CPG_config VALUES ('silly_safe_mode', '0');
 
 #
 # Dumping data for table `CPG_filetypes`
