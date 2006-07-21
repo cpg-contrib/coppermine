@@ -72,7 +72,7 @@ function process_post_data()
       $approved = $_POST['approved'];
       $update .= ", approved = '".addslashes($approved)."'";
     }
-    
+
     $update .= ", user1 = '".addslashes($user1)."'";
     $update .= ", user2 = '".addslashes($user2)."'";
     $update .= ", user3 = '".addslashes($user3)."'";
@@ -116,9 +116,9 @@ function process_post_data()
         }
 
         if ($CONFIG['make_intermediate'] && $condition ) {
-            $prefices = array('fullsize', 'normal', 'thumb');
+            $prefices = array('fullsize', 'normal', 'thumb', 'orig');
         } else {
-            $prefices = array('fullsize', 'thumb');
+            $prefices = array('fullsize', 'thumb', 'orig');
         }
 
         if (!is_image($pic['filename'])){
@@ -339,7 +339,7 @@ EOT;
 if (GALLERY_ADMIN_MODE) {
   $checkYes = ($CURRENT_PIC['approved'] == 'YES') ? 'CHECKED' : '';
   $checkNo = ($CURRENT_PIC['approved'] == 'NO') ? 'CHECKED' : '';
-  
+
   echo <<<EOT
         <tr>
             <td class="tableb" style="white-space: nowrap;">

@@ -41,6 +41,7 @@ echo <<<EOT
 <td class="tableh2"><b>{$lang_delete_php['npic']}</b></td>
 <td class="tableh2" align="center"><b>{$lang_delete_php['fs_pic']}</b></td>
 <td class="tableh2" align="center"><b>{$lang_delete_php['ns_pic']}</b></td>
+<td class="tableh2" align="center"><b>{$lang_delete_php['orig_pic']}</b></td>
 <td class="tableh2" align="center"><b>{$lang_delete_php['thumb_pic']}</b></td>
 <td class="tableh2" align="center"><b>{$lang_delete_php['comment']}</b></td>
 <td class="tableh2" align="center"><b>{$lang_delete_php['im_in_alb']}</b></td>
@@ -52,12 +53,13 @@ function output_caption()
 {
     global $lang_delete_php
     ?>
-<tr><td colspan="6" class="tableb">&nbsp;</td></tr>
-<tr><td colspan="6" class="tableh2"><b><?php echo $lang_delete_php['caption'] ?></b></tr>
-<tr><td colspan="6" class="tableb">
+<tr><td colspan="7" class="tableb">&nbsp;</td></tr>
+<tr><td colspan="7" class="tableh2"><b><?php echo $lang_delete_php['caption'] ?></b></tr>
+<tr><td colspan="7" class="tableb">
 <table cellpadding="1" cellspacing="0">
 <tr><td><b>F</b></td><td>:</td><td><?php echo $lang_delete_php['fs_pic'] ?></td><td width="20">&nbsp;</td><td><img src="images/green.gif" border="0" width="12" height="12" align="absmiddle"></td><td>:</td><td><?php echo $lang_delete_php['del_success'] ?></td></tr>
 <tr><td><b>N</b></td><td>:</td><td><?php echo $lang_delete_php['ns_pic'] ?></td><td width="20">&nbsp</td><td><img src="images/red.gif" border="0" width="12" height="12" align="absmiddle"></td><td>:</td><td><?php echo $lang_delete_php['err_del'] ?></td></tr>
+<tr><td><b>O</b></td><td>:</td><td><?php echo $lang_delete_php['orig_pic'] ?></td></tr>
 <tr><td><b>T</b></td><td>:</td><td><?php echo $lang_delete_php['thumb_pic'] ?></td></tr>
 <tr><td><b>C</b></td><td>:</td><td><?php echo $lang_delete_php['comment'] ?></td></tr>
 <tr><td><b>D</b></td><td>:</td><td><?php echo $lang_delete_php['im_in_alb'] ?></td></tr>
@@ -99,7 +101,7 @@ function delete_picture($pid)
 
     echo "<td class=\"tableb\">" . htmlspecialchars($file) . "</td>";
 
-    $files = array($dir . $file, $dir . $CONFIG['normal_pfx'] . $file, $dir . $CONFIG['thumb_pfx'] . $file);
+    $files = array($dir . $file, $dir . $CONFIG['normal_pfx'] . $file, $dir . $CONFIG['orig_pfx'] . $file, $dir . $CONFIG['thumb_pfx'] . $file);
     foreach ($files as $currFile) {
         echo "<td class=\"tableb\" align=\"center\">";
         if (is_file($currFile)) {
@@ -411,11 +413,11 @@ switch ($what) {
         $pid = (int)$_GET['id'];
 
         pageheader($lang_delete_php['del_pic']);
-        starttable("100%", $lang_delete_php['del_pic'], 6);
+        starttable("100%", $lang_delete_php['del_pic'], 7);
         output_table_header();
         $aid = delete_picture($pid);
         output_caption();
-        echo "<tr><td colspan=\"6\" class=\"tablef\" align=\"center\">\n";
+        echo "<tr><td colspan=\"7\" class=\"tablef\" align=\"center\">\n";
         echo "<div class=\"admin_menu_thumb\"><a href=\"thumbnails.php?album=$aid\"  class=\"adm_menu\">$lang_continue</a></div>\n";
         echo "</td></tr>\n";
         endtable();
@@ -431,12 +433,12 @@ switch ($what) {
         $aid = (int)$_GET['id'];
 
         pageheader($lang_delete_php['del_alb']);
-        starttable("100%", $lang_delete_php['del_alb'], 6);
+        starttable("100%", $lang_delete_php['del_alb'], 7);
 
         delete_album($aid);
         if ($need_caption) output_caption();
 
-        echo "<tr><td colspan=\"6\" class=\"tablef\" align=\"center\">\n";
+        echo "<tr><td colspan=\"7\" class=\"tablef\" align=\"center\">\n";
         echo "<div class=\"admin_menu_thumb\"><a href=\"index.php\"  class=\"adm_menu\">$lang_continue</a></div>\n";
         echo "</td></tr>";
         endtable();

@@ -1944,6 +1944,7 @@ function& get_pic_url(&$pic_row, $mode,$system_pic = false)
                 $pic_prefix = array(
                         'thumb' => $CONFIG['thumb_pfx'],
                         'normal' => $CONFIG['normal_pfx'],
+                        'orig' => $CONFIG['orig_pfx'],######
                         'fullsize' => ''
                 );
 

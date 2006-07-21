@@ -697,6 +697,64 @@ function form_asc_desc($text, $name, $help = '')
 EOT;
 }
 
+############## Watermark ############
+function form_watermark_place($text, $name)
+{
+   global $CONFIG, $lang_admin_php;
+
+   $value = $CONFIG[$name];
+   $southeast_selected = ($value == 'southeast') ? 'selected' : '';
+   $southwest_selected = ($value == 'southwest') ? 'selected' : '';
+   $northwest_selected = ($value == 'northwest') ? 'selected' : '';
+   $northeast_selected = ($value == 'northeast') ? 'selected' : '';
+   $center_selected = ($value == 'center') ? 'selected' : '';
+
+   echo <<<EOT
+       <tr>
+           <td class="tableb">
+                       $text
+       </td>
+       <td class="tableb" valign="top">
+                       <select name="$name" class="listbox">
+                               <option value="southeast" $southeast_selected>{$lang_admin_php['wm_bottomright']}</option>
+                               <option value="southwest" $southwest_selected>{$lang_admin_php['wm_bottomleft']}</option>
+                               <option value="northwest" $northwest_selected>{$lang_admin_php['wm_topleft']}</option>
+                               <option value="northeast" $northeast_selected>{$lang_admin_php['wm_topright']}</option>
+                               <option value="center" $center_selected>{$lang_admin_php['wm_center']}</option>
+                       </select>
+               </td>
+       </tr>
+
+EOT;
+}
+
+// Added for allowing user to select which files to watermark...
+function form_watermark_files($text, $name)
+{
+   global $CONFIG, $lang_admin_php;
+
+   $value = $CONFIG[$name];
+   $both_selected = ($value == 'both') ? 'selected' : '';
+   $original_selected = ($value == 'original') ? 'selected' : '';
+   $resized_selected = ($value == 'resized') ? 'selected' : '';
+
+   echo <<<EOT
+       <tr>
+           <td class="tableb">
+                       $text
+       </td>
+       <td class="tableb" valign="top">
+                       <select name="$name" class="listbox">
+                               <option value="both" $both_selected>{$lang_admin_php['wm_both']}</option>
+                               <option value="original" $original_selected>{$lang_admin_php['wm_original']}</option>
+                               <option value="resized" $resized_selected>{$lang_admin_php['wm_resized']}</option>
+                       </select>
+               </td>
+       </tr>
+
+EOT;
+}
+#############################
 
 function form_report_post_yes_no($text, $name, $help = '')
 {
@@ -839,6 +897,14 @@ function create_form(&$data)
                     break;
                 case 19:
                     form_user_guest_yes_no($element[0], $element[1], $element[3]);
+                    break;
+                //Watermark place
+                case 20 :
+                        form_watermark_place($element[0], $element[1]);
+                    break;
+                //Which filest to watermark
+                case 21 :
+                        form_watermark_files($element[0], $element[1]);
                     break;
                 default:
                     die('Invalid action');

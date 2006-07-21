@@ -23,6 +23,9 @@ if($CONFIG['read_iptc_data'] ){
         include("include/iptc.inc.php");
 }
 
+// Increase the memory limit (will work depending on server configuration)
+@ini_set('memory_limit', '32M');
+
 // Add a picture to an album
 function add_picture($aid, $filepath, $filename, $position = 0, $title = '', $caption = '', $keywords = '', $user1 = '', $user2 = '', $user3 = '', $user4 = '', $category = 0, $raw_ip = '', $hdr_ip = '', $iwidth = 0, $iheight = 0)
 {
@@ -32,12 +35,23 @@ function add_picture($aid, $filepath, $filename, $position = 0, $title = '', $ca
     $image = $CONFIG['fullpath'] . $filepath . $filename;
     $normal = $CONFIG['fullpath'] . $filepath . $CONFIG['normal_pfx'] . $filename;
     $thumb = $CONFIG['fullpath'] . $filepath . $CONFIG['thumb_pfx'] . $filename;
-
+    $orig = $CONFIG['fullpath'] . $filepath . $CONFIG['orig_pfx'] . $filename;#########
+    $mini = $CONFIG['fullpath'] . $filepath . $CONFIG['mini_pfx'] . $filename;#########
+    $work_image = $image;#########
 
 
     if (!is_known_filetype($image)) {
         return false;
     } elseif (is_image($filename)) {
+        if (!file_exists($orig) && $CONFIG['enable_watermark'] == '1' && ($CONFIG['which_files_to_watermark'] == 'both' || $CONFIG['which_files_to_watermark'] == 'original'))  {
+        // if copy of full_sized doesn't exist and if watermark enabled and if fullsized pic watermark=true -> then we need a backup
+            if (!copy($image, $orig)) {
+                return false;
+            } else {
+                $work_image = $orig;
+            }
+        }
+
         $imagesize = getimagesize($image);
 
         if ($CONFIG['read_iptc_data']) {
@@ -49,19 +63,47 @@ function add_picture($aid, $filepath, $filename, $position = 0, $title = '', $ca
            }
         }
 
-        if (((USER_IS_ADMIN && $CONFIG['auto_resize'] == 1) || (!USER_IS_ADMIN && $CONFIG['auto_resize'] > 0)) && max($imagesize[0], $imagesize[1]) > $CONFIG['max_upl_width_height']) //$CONFIG['auto_resize']==1
-        {
-          //resize_image($image, $image, $CONFIG['max_upl_width_height'], $CONFIG['thumb_method'], $imagesize[0] > $CONFIG['max_upl_width_height'] ? 'wd' : 'ht');
-          resize_image($image, $image, $CONFIG['max_upl_width_height'], $CONFIG['thumb_method'], $CONFIG['thumb_use']);
-          $imagesize = getimagesize($image);
-        }
         if (!file_exists($thumb)) {
-            if (!resize_image($image, $thumb, $CONFIG['thumb_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use']))
+            if (!resize_image($work_image, $thumb, $CONFIG['thumb_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use'], "false", 1))
                 return false;
         }
+
+        $resize_method = $CONFIG['thumb_use'] == "ex" ? "any" : $CONFIG['thumb_use'];
+
+        if (max($imagesize[0], $imagesize[1]) > $CONFIG['picture_width'] && $CONFIG['make_intermediate'] && !file_exists($normal)) {
+            if ($CONFIG['enable_watermark'] == '1' && $CONFIG['which_files_to_watermark'] == 'both' || $CONFIG['which_files_to_watermark'] == 'resized') {
+                if (!resize_image($work_image, $normal, $CONFIG['picture_width'], $CONFIG['thumb_method'], $resize_method, "true")) {
+                    return false;
+                }
+            } else {
+                if (!resize_image($work_image, $normal, $CONFIG['picture_width'], $CONFIG['thumb_method'], $resize_method, "false")) {
+                    return false;
+                }
+            }
+        }
+
+        if (((USER_IS_ADMIN && $CONFIG['auto_resize'] == 1) || (!USER_IS_ADMIN && $CONFIG['auto_resize'] > 0)) && max($imagesize[0], $imagesize[1]) > $CONFIG['max_upl_width_height']) { //$CONFIG['auto_resize']==1
+            $max_size_size = $CONFIG['max_upl_width_height'];
+        } else {
+            $resize_method = "orig";
+            $max_size_size = max($imagesize[0], $imagesize[1]);
+        }
+
         if (max($imagesize[0], $imagesize[1]) > $CONFIG['picture_width'] && $CONFIG['make_intermediate'] && !file_exists($normal)) {
             if (!resize_image($image, $normal, $CONFIG['picture_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use']))
                 return false;
+        }
+
+        if ($CONFIG['enable_watermark'] == '1' && $CONFIG['which_files_to_watermark'] == 'both' || $CONFIG['which_files_to_watermark'] == 'original') {
+            if (!resize_image($work_image, $image, $max_size_size, $CONFIG['thumb_method'], $resize_method, 'true')) {
+                return false;
+            }
+            $imagesize = getimagesize($image);
+        } elseif (((USER_IS_ADMIN && $CONFIG['auto_resize'] == 1) || (!USER_IS_ADMIN && $CONFIG['auto_resize'] > 0))) {
+            if (!resize_image($work_image, $image, $max_size_size, $CONFIG['thumb_method'], $resize_method, 'false')) {
+                return false;
+            }
+            $imagesize = getimagesize($image);
         }
     } else {
         $imagesize[0] = $iwidth;
@@ -157,7 +199,7 @@ if (!is_dir($CONFIG['fullpath'].'edit')) {
 * @param  $method the method used for image resizing
 * @return 'true' in case of success
 */
-function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use)
+function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use, $watermark="false", $sharpen=0,$media_type="false")
 {
     global $CONFIG, $ERROR;
     global $lang_errors;
@@ -166,7 +208,6 @@ function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use)
     if ($imginfo == null)
         return false;
         // GD can only handle JPG & PNG images
-    //if ($imginfo[2] != GIS_JPG && $imginfo[2] != GIS_PNG && ($method == 'gd1' || $method == 'gd2')) {
     if ($imginfo[2] != GIS_JPG && $imageinfo[2] != GIS_PNG && $CONFIG['GIF_support'] == 0) {
         $ERROR = $lang_errors['gd_file_type_err'];
         return false;
@@ -210,6 +251,43 @@ function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use)
                 exec ($cmd, $output, $retval);
             }
 
+            if ($media_type != "false") {
+                //if a manual thumb gets generated we watermark the thumb with the media type
+                //we now need to get the absolute path to the thumb watermark files
+                $path_parts = pathinfo($CONFIG['watermark_file']);
+                $CONFIG['watermark_file'] = $path_parts["dirname"]."/wm_".$media_type.".png";
+            }
+
+            if ($watermark == "true" || $media_type != "false") {
+
+                //do we need to resize the watermark to fit onto the intermediate?
+                $wm_normal = (int)$CONFIG['reduce_watermark'];
+                if ($wm_normal > $destWidth ) {
+                    $wm_resize = (int)(($destWidth / $wm_normal) * 100);
+                    //we have to create a temporary, downsized watermark file in the edit folder
+                    //temp path for small wm
+                    $path_to_tmp_wm = './'.$CONFIG['fullpath'].'edit/temp_wm.png';
+
+                    if (eregi("win",$_ENV['OS'])) {
+                        $cmd = "\"".str_replace("\\","/", $CONFIG['impath'])."convert\" -resize ".$wm_resize."% ".str_replace("\\","/" ,$CONFIG['watermark_file'] )." ".str_replace("\\","/" ,$path_to_tmp_wm );
+                        exec ("\"$cmd\"", $output, $retval);
+                    } else {
+                        $cmd = "{$CONFIG['impath']}convert -resize $wm_resize% {$CONFIG['watermark_file']} $path_to_tmp_wm";
+                        exec ($cmd, $output, $retval);
+                    }
+                    $wm_file = $path_to_tmp_wm; //set the path to the wm file to the temp one
+                } else {
+                    $wm_file = $CONFIG['watermark_file']; //if no downsize... we take the orig watermark
+                }
+                // now we apply the watermark
+                if (eregi("win",$_ENV['OS'])) {
+                    $cmd = "\"".str_replace("\\","/", $CONFIG['impath'])."composite\" -dissolve {$CONFIG['watermark_transparency']} -gravity {$CONFIG['where_put_watermark']} \"$wm_file\" ".str_replace("\\","/" ,$im_dest_file )." ".str_replace("\\","/" ,$im_dest_file );
+                    exec ("\"$cmd\"", $output, $retval);
+                } else {
+                    $cmd = "{$CONFIG['impath']}composite -dissolve {$CONFIG['watermark_transparency']} -gravity {$CONFIG['where_put_watermark']} $wm_file $im_dest_file $im_dest_file";
+                    exec ($cmd, $output, $retval);
+                }
+            }
 
             if ($retval) {
                 $ERROR = "Error executing ImageMagick - Return value: $retval";
@@ -274,6 +352,70 @@ function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use)
                         touch($dest_file);
             $fh=fopen($dest_file,'w');
             fclose($fh);
+            if ($media_type != "false") {
+                //if a manual thumb gets generated we watermark the thumb with the media type
+                //we now need to get the absolute path to the thumb watermark files
+                $path_parts = pathinfo($CONFIG['watermark_file']);
+                $CONFIG['watermark_file'] = $path_parts["dirname"]."/wm_".$media_type.".png";
+            }
+
+            if ($watermark == "true" || $media_type != "false") {
+                //shrink watermark on intermediate images -> If I had known that this is that §%&# with the transparency preserve... grrr
+                $wm_normal = (int)$CONFIG['reduce_watermark'];
+                if ($wm_normal > $destWidth ) {
+                    $wm_resize = $destWidth / $wm_normal;
+                    //load the original, huge sized logo (the one we want to size down)
+                    $temp_logoImage = ImageCreateFromPNG($CONFIG['watermark_file']);
+                    //get it's size
+                    $temp_logoW = ImageSX($temp_logoImage);
+                    $temp_logoH = ImageSY($temp_logoImage);
+
+                    //calculate new size
+                    $logoW = (int)($temp_logoW * $wm_resize);
+                    $logoH = (int)($temp_logoH * $wm_resize);
+                    //we create a new, resized logo
+                    $logoImage = imagecreatetruecolor($logoW, $logoH);
+
+                    //just to be sure that transparency gets preserved
+                    imagealphablending($logoImage, FALSE);
+                    imagealphablending($temp_logoImage, TRUE);
+
+                    //now copy and resize the big one into the temp resized img
+                    imagecopyresampled($logoImage, $temp_logoImage, 0, 0, 0, 0, (int)$logoW, (int)$logoH, $temp_logoW, $temp_logoH);
+
+                    //we do not need the temp (huge) watermark anymore
+                    imagedestroy($temp_logoImage);
+
+                } else { // shrink not enabled or no intermediate...
+                    $logoImage = ImageCreateFromPNG($CONFIG['watermark_file']);
+                    $logoW = ImageSX($logoImage);
+                    $logoH = ImageSY($logoImage);
+                }
+
+                //where is the watermark displayed...
+                $pos = $CONFIG['where_put_watermark'];
+                if ($pos == "northwest") {
+                    $src_x = 5;
+                    $src_y = 5;
+                } else if ($pos == "northeast") {
+                    $src_x = $destWidth - ($logoW + 5);
+                    $src_y = 5;
+                } else if ($pos == "southwest") {
+                    $src_x = 5;
+                    $src_y = $destHeight - ($logoH + 5);
+                } else if ($pos == "southeast") {
+                    $src_x = $destWidth - ($logoW + 5);
+                    $src_y = $destHeight - ($logoH + 5);
+                } else if ($pos == "center") {
+                    $src_x = ($destWidth/2) - ($logoW/2);
+                    $src_y = ($destHeight/2) - ($logoH/2);
+                }
+
+                imagealphablending($dst_img, TRUE);
+                imagecolortransparent($logoImage, imagecolorat($logoImage, $CONFIG['watermark_transparency_featherx'], $CONFIG['watermark_transparency_feathery']));
+                ImageCopy($dst_img,$logoImage,$src_x,$src_y,0,0,$logoW,$logoH);
+            }
+
             imagejpeg($dst_img, $dest_file, $CONFIG['jpeg_qual']);
             imagedestroy($src_img);
             imagedestroy($dst_img);

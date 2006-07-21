@@ -188,7 +188,7 @@ function process_post_data()
 
                         if (!is_writable($dir)) cpg_die(CRITICAL_ERROR, sprintf($lang_errors['directory_ro'], $dir), __FILE__, __LINE__);
 
-                        $files=array($dir.$file, $dir.$CONFIG['normal_pfx'].$file, $dir.$CONFIG['thumb_pfx'].$file);
+                        $files=array($dir . $file, $dir . $CONFIG['normal_pfx'] . $file, $dir . $CONFIG['orig_pfx'] . $file, $dir . $CONFIG['thumb_pfx'] . $file);
                         foreach ($files as $currFile){
                                 if (is_file($currFile)) @unlink($currFile);
                         }

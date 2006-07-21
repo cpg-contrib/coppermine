@@ -625,6 +625,16 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'separate_page' => 'on a separate page', // cpg1.5
   'inline' => 'inline', // cpg1.5
   'guests_only' => 'Guests only', // cpg1.5
+  ######## watermark #####
+  'wm_bottomright' => 'Bottom right', // cpg1.5
+  'wm_bottomleft' => 'Bottom left', // cpg1.5
+  'wm_topleft' => 'Up left', // cpg1.5
+  'wm_topright' => 'Up Right', // cpg1.5
+  'wm_center' => 'Center', // cpg1.5
+  'wm_both' => 'Both', // cpg1.5
+  'wm_original' => 'Original', // cpg1.5
+  'wm_resized' => 'Resized', // cpg1.5
+  ###################
 );
 
 if (defined('ADMIN_PHP')) $lang_admin_data = array(
@@ -747,6 +757,19 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('The prefix for thumbnails <a href="#notice1" class="clickable_option">*</a>', 'thumb_pfx', 0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_thumbs_prefix&amp;ae=admin_picture_thumb_advanced_thumbs_prefix_end'),
   array('Default mode for directories', 'default_dir_mode', 0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_chmod_folder&amp;ae=admin_picture_thumb_advanced_chmod_folder_end'),
   array('Default mode for files', 'default_file_mode', 0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_chmod_files&amp;ae=admin_picture_thumb_advanced_chmod_files_end'),
+
+  ######### Watermark ########
+  'Image watermarking',
+  array('Watermark Image', 'enable_watermark', 1),
+  array('Watermark custom thumbs (movie, audio, document)', 'enable_thumb_watermark', 1),
+  array('Where to place the watermark', 'where_put_watermark', 20),
+  array('Which files to watermark', 'which_files_to_watermark', 21),
+  array('Which file to use for watermark', 'watermark_file', 0),
+  array('Transparency 0-100 for entire image', 'watermark_transparency', 0),
+  array('Downsize watermark if width of an picture is smaller than entered value. That is the 100% reference point. Resizing of the watermark is linear (0 to disable)', 'reduce_watermark', 0),
+  array('Set color transparent x (GD2 only)', 'watermark_transparency_featherx', 0),
+  array('Set color transparent y (GD2 only)', 'watermark_transparency_feathery', 0),
+  ############################
 
   'User settings',
   array('Allow new user registrations', 'allow_user_registration', 1, 'f=index.htm&amp;as=admin_allow_registration&amp;ae=admin_allow_registration_end'),
@@ -878,6 +901,7 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('DELETE_PHP')) $lang_delete_php = array(
+  'orig_pic' => 'original image', // cpg1.5
   'caption' => 'Caption',
   'fs_pic' => 'full size image',
   'del_success' => 'successfully deleted',

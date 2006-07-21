@@ -166,6 +166,19 @@ INSERT INTO CPG_config VALUES ('media_autostart', '1');
 
 INSERT INTO CPG_config VALUES ('enable_encrypted_passwords','0');
 
+###### watermark ########
+INSERT INTO CPG_config (name, value) values ('enable_watermark', '0');
+INSERT INTO CPG_config (name, value) values ('where_put_watermark', 'southeast');
+INSERT INTO CPG_config (name, value) values ('watermark_file', 'images/watermark.png');
+INSERT INTO CPG_config (name, value) values ('which_files_to_watermark', 'both');
+INSERT INTO CPG_config (name, value) values ('orig_pfx', 'orig_');
+INSERT INTO CPG_config (name, value) values ('watermark_transparency', '40');
+INSERT INTO CPG_config (name, value) values ('reduce_watermark', '0');
+INSERT INTO CPG_config (name, value) values ('watermark_transparency_featherx', '0');
+INSERT INTO CPG_config (name, value) values ('watermark_transparency_feathery', '0');
+INSERT INTO CPG_config (name, value) values ('enable_thumb_watermark', '1');
+#########################
+
 # Modify structure for category thumb
 ALTER TABLE `CPG_categories` ADD `thumb` INT NOT NULL AFTER `parent` ;
 
