@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-07-21 [A] Added the watermark feature {Abbas}
 2006-07-21 [O] Made silly_safe_mode a config option instead of a constant {GauGau}
 2006-07-13 [C] Fixed linked space char in comments {GauGau}
 2006-07-10 [D] Added documentation improvements {GauGau}
