@@ -25,7 +25,7 @@ require('include/init.inc.php');
 require('include/picmgmt.inc.php');
 
 // Default number of pictures to process at a time when rebuilding thumbs or normals:
-$defpicnum = 45;
+$defpicnum = 25;
 
 if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
@@ -40,8 +40,14 @@ $tasks =  array(
                 <b>'.$lang_util_php['update_what'].' (2):</b><br />
                 <input type="radio" name="updatetype" id="updatetype1" value="0" class="nobg" /><label for="updatetype1" class="clickable_option">'.$lang_util_php['update_thumb'].'</label><br />
                 <input type="radio" name="updatetype" id="updatetype2" value="1" class="nobg" /><label for="updatetype2" class="clickable_option">'.$lang_util_php['update_pic'].'</label><br />
-                <input type="radio" name="updatetype" id="updatetype3" value="2" checked="checked" class="nobg" /><label for="updatetype3" class="clickable_option">'.$lang_util_php['update_both'].'</label><br />'.$lang_util_php['update_number'].'
-                <input type="text" name="numpics" value="'.$defpicnum.'" size="5" class="textinput" /><br />'.$lang_util_php['update_option'].'<br /><br />'),
+                <input type="radio" name="updatetype" id="updatetype3" value="2" class="nobg" /><label for="updatetype3" class="clickable_option">'.$lang_util_php['update_both'].'</label><br />
+                <input type="radio" name="updatetype" id="updatetype5" value="4" class="nobg" /><label for="updatetype5" class="clickable_option">'.$lang_util_php['update_full'].'</label><br />
+                <input type="radio" name="updatetype" id="updatetype4" value="3" checked="checked" class="nobg" /><label for="updatetype4" class="clickable_option">'.$lang_util_php['update_full_normal'].'</label><br />
+                <input type="radio" name="updatetype" id="updatetype6" value="5" class="nobg" /><label for="updatetype6" class="clickable_option">'.$lang_util_php['update_full_normal_thumb'].'</label><br />
+                '.$lang_util_php['update_number'].'
+                <input type="text" name="numpics" value="'.$defpicnum.'" size="5" class="textinput" /><br />'.$lang_util_php['update_option'].'<br /><br />
+                <input type="Checkbox" name="autorefresh" checked value="1" class="nobg" />'.$lang_util_php['autorefresh']
+                ),
 
         'filename_to_title' => array('filename_to_title', $lang_util_php['filename_title'],'
 
@@ -58,6 +64,8 @@ $tasks =  array(
         'del_norm' => array('del_norm', $lang_util_php['delete_intermediate'], $lang_util_php['delete_intermediate_explanation']),
 
         'del_orphans' => array('del_orphans', $lang_util_php['delete_orphans'], $lang_util_php['delete_orphans_explanation']),
+
+        'deletbackup_img' => array('deletbackup_img', $lang_util_php['delete_back'], $lang_util_php['delete_back_explanation']),
 
         'refresh_db' => array('refresh_db', $lang_util_php['refresh_db'], $lang_util_php['refresh_db'].'<br />' . $lang_util_php['update_number'].'
 
@@ -227,64 +235,160 @@ function update_thumbs()
 {
         global $CONFIG, $lang_util_php;
 
-        $albumid = (isset($_POST['albumid'])) ? $_POST['albumid'] : 0;
+        $albumid = (isset($_REQUEST['albumid'])) ? $_REQUEST['albumid'] : 0;
         $albstr = ($albumid) ? "WHERE aid = $albumid" : '';
-
-        $updatetype = $_POST['updatetype'];
-        $numpics = $_POST['numpics'];
-        $startpic = (isset($_POST['startpic'])) ? $_POST['startpic'] : 0;
+        $autorefresh = $_REQUEST['autorefresh'];
+        $updatetype = $_REQUEST['updatetype'];
+        $numpics = $_REQUEST['numpics'];
+        $startpic = (isset($_REQUEST['startpic'])) ? $_REQUEST['startpic'] : 0;
 
         echo "<h2>{$lang_util_php['thumbs_wait']}</h2>";
 
         $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} $albstr LIMIT $startpic, $numpics");
         $count = mysql_num_rows($result);
 
-        while ($row = mysql_fetch_assoc($result)){
+        while ($row = mysql_fetch_assoc($result)) {
 
                 $image = $CONFIG['fullpath'] . $row['filepath'] . $row['filename'];
                 $normal = $CONFIG['fullpath'] . $row['filepath'] . $CONFIG['normal_pfx'] . $row['filename'];
                 $thumb = $CONFIG['fullpath'] . $row['filepath'] . $CONFIG['thumb_pfx'] . $row['filename'];
+                $orig=$CONFIG['fullpath'] . $row['filepath'] . $CONFIG['orig_pfx'] . $row['filename'];
 
-                if ($updatetype == 0 || $updatetype == 2){
-                        if (resize_image($image, $thumb, $CONFIG['thumb_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use'])){
-                                echo "$thumb {$lang_util_php['updated_succesfully']} !<br />";
-                                my_flush();
+                if (file_exists($orig)) {
+                        $work_image=$orig;
+                        $orig_true='true';
+                } else {
+                        $work_image=$image;
+                        $orig_true='false';
+                }
+
+                $imagesize = getimagesize($work_image);
+                if ($updatetype == 0 || $updatetype == 2 || $updatetype == 5)  {
+                    if (resize_image($work_image, $thumb, $CONFIG['thumb_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use'], "false", 1)) {
+                        echo $thumb .' '. $lang_util_php['updated_succesfully'] . '!<br />';
+                        my_flush();
+                    } else {
+                        echo $lang_util_php['error_create'] . ':$thumb<br />';
+                        my_flush();
+                    }
+                }
+
+                if ($updatetype == 1 || $updatetype == 2 || $updatetype == 3 || $updatetype == 5) {
+                    ($CONFIG['enable_watermark'] == '1' && $CONFIG['which_files_to_watermark'] == 'both' || $CONFIG['which_files_to_watermark'] == 'resized') ? $watermark="true" : $watermark="false";
+                    if (max($imagesize[0], $imagesize[1]) > $CONFIG['picture_width'] && $CONFIG['make_intermediate']) {
+                        if (resize_image($work_image, $normal, $CONFIG['picture_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use'], $watermark)) {
+                            echo $normal . " " . $lang_util_php['updated_succesfully'] . '!<br />';
+                            my_flush();
                         } else {
-                                echo "{$lang_util_php['error_create']} : $thumb<br />";
-                                my_flush();
+                            echo $lang_util_php['error_create'] . ':$normal<br />';
+                            my_flush();
                         }
+                    }
                 }
 
-                if ($updatetype == 1 || $updatetype == 2){
+                if ($updatetype == 3 || $updatetype == 4 || $updatetype == 5) {
+                    ($CONFIG['thumb_use'] == "ex") ? $resize_method = "any" : $resize_method = $CONFIG['thumb_use'];
 
-                        $imagesize = getimagesize($image);
+                    if (((USER_IS_ADMIN && $CONFIG['auto_resize'] == 1) || (!USER_IS_ADMIN && $CONFIG['auto_resize'] > 0)) && max($imagesize[0], $imagesize[1]) > $CONFIG['max_upl_width_height']) {
+                        $max_size_size = $CONFIG['max_upl_width_height'];
+                    } else {
+                        $resize_method = "orig";
+                        $max_size_size = max($imagesize[0], $imagesize[1]);
+                    }
 
-                        if (max($imagesize[0], $imagesize[1]) > $CONFIG['picture_width'] && $CONFIG['make_intermediate']){
-                                if (resize_image($image, $normal, $CONFIG['picture_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use'])){
-                                        echo "$normal {$lang_util_php['updated_succesfully']} !<br />";
-                                        my_flush();
+                    if ($orig_true == 'false') {
+                        if (copy($image, $orig)) {
+                            if ($CONFIG['enable_watermark'] == '1' && $CONFIG['which_files_to_watermark'] == 'both' || $CONFIG['which_files_to_watermark'] == 'original') {
+                                if (resize_image($work_image, $image, $max_size_size, $CONFIG['thumb_method'], $resize_method, 'true')) {
+                                    echo $image . " " . $lang_util_php['updated_succesfully'] . '!<br />';
+                                    my_flush();
                                 } else {
-                                        echo "{$lang_util_php['error_create']} : $normal<br />";
-                                        my_flush();
+                                    echo $lang_util_php['error_create'] . ':$image<br />';
+                                    my_flush();
                                 }
+                            }
                         }
+                    } else {
+                        if ($CONFIG['enable_watermark'] == '1' && $CONFIG['which_files_to_watermark'] == 'both' || $CONFIG['which_files_to_watermark'] == 'original') {
+                            if (resize_image($work_image, $image, $max_size_size, $CONFIG['thumb_method'], $resize_method, 'true')) {
+                                echo $image . " " . $lang_util_php['updated_succesfully'] . '!<br />';
+                                my_flush();
+                            } else {
+                                echo $lang_util_php['error_create'] . ':$image<br />';
+                                my_flush();
+                            }
+                        } else {
+                            if (((USER_IS_ADMIN && $CONFIG['auto_resize'] == 1) || (!USER_IS_ADMIN && $CONFIG['auto_resize'] > 0)) && max($imagesize[0], $imagesize[1]) > $CONFIG['max_upl_width_height']) {
+                                if (resize_image($work_image, $image, $max_size_size, $CONFIG['thumb_method'], $resize_method, 'false')) {
+                                    echo $image . " " . $lang_util_php['updated_succesfully'] . '!<br />';
+                                    my_flush();
+                                } else {
+                                    echo $lang_util_php['error_create'] . ':$image<br />';
+                                    my_flush();
+                                }
+                            } elseif (copy($orig, $image)) {
+                                echo $orig . " " . $lang_util_php['updated_succesfully'] . '!<br />';
+                                my_flush();
+                            } else {
+                                echo $lang_util_php['error_create'] . ':$image<br />';
+                                my_flush();
+                            }
+                        }
+                    }
                 }
+
+                $imagesize = getimagesize($image);
+                $query_up = "UPDATE {$CONFIG['TABLE_PICTURES']} SET pwidth='$imagesize[0]' , pheight='$imagesize[1]' WHERE pid='".$row['pid']."' ";
+                cpg_db_query($query_up);
         }
 
-        if ($count == $numpics){
+        if ($count == $numpics) {
 
-                $startpic += $numpics;
-
-        echo <<< EOT
-                <form name="cpgform2" id="cpgform2" action="util.php" method="post">
-                                <input type="hidden" name="action" value="update_thumbs" />
-                                <input type="hidden" name="numpics" value="$numpics" />
-                                <input type="hidden" name="startpic" value="$startpic" />
-                                <input type="hidden" name="updatetype" value="$updatetype" />
-                                <input type="hidden" name="albumid" value="$albumid" />
-                                <input type="submit" value="{$lang_util_php['continue']}" class="button" />
-                        </form>
+            $startpic += $numpics;
+            if($autorefresh) {
+                echo <<< EOT
+                <meta http-equiv="refresh" content="1; URL=util.php?numpics={$numpics}&startpic={$startpic}&albumid={$albumid}&autorefresh={$autorefresh}&action=update_thumbs&updatetype={$updatetype}">
 EOT;
+            } else {
+                echo <<< EOT
+                <form action="util.php" method="post">
+                    <input type="hidden" name="action" value="update_thumbs" />
+                    <input type="hidden" name="numpics" value="$numpics" />
+                    <input type="hidden" name="startpic" value="$startpic" />
+                    <input type="hidden" name="updatetype" value="$updatetype" />
+                    <input type="hidden" name="albumid" value="$albumid" />
+                    <input type="hidden" name="autorefresh" value="$autorefresh" />
+                    <input type="submit" value="{$lang_util_php['continue']}" class="button" />
+                </form>
+EOT;
+            }
+        }
+        else echo $lang_util_php['finished'];
+}
+
+function deletbackup_img()
+{
+        global $CONFIG, $lang_util_php;
+
+        $albumid = (isset($_POST['albumid'])) ? $_POST['albumid'] : 0;
+        $albstr = ($albumid) ? "WHERE aid = $albumid" : '';
+
+        $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} $albstr");
+        $num = mysql_num_rows($result);
+        $i = 0;
+        while ($i < $num) {
+            $pid = mysql_result($result, $i, "pid");
+            $back = $CONFIG['fullpath'] . mysql_result($result, $i, "filepath") . $CONFIG['orig_pfx'] . mysql_result($result, $i, "filename");
+
+            if (file_exists($back)) {
+                            if(unlink($back)){
+                    printf("Success".$lang_util_php['main_success'], $back);
+                    print '!<br>';
+                                    }
+                } else {
+                    printf("Error".$lang_util_php['error_rename'], $back);
+                }
+            ++$i;
         }
 }
 

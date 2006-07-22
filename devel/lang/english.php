@@ -759,16 +759,16 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Default mode for files', 'default_file_mode', 0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_chmod_files&amp;ae=admin_picture_thumb_advanced_chmod_files_end'),
 
   ######### Watermark ########
-  'Image watermarking',
-  array('Watermark Image', 'enable_watermark', 1),
-  array('Watermark custom thumbs (movie, audio, document)', 'enable_thumb_watermark', 1),
-  array('Where to place the watermark', 'where_put_watermark', 20),
-  array('Which files to watermark', 'which_files_to_watermark', 21),
-  array('Which file to use for watermark', 'watermark_file', 0),
-  array('Transparency 0-100 for entire image', 'watermark_transparency', 0),
-  array('Downsize watermark if width of an picture is smaller than entered value. That is the 100% reference point. Resizing of the watermark is linear (0 to disable)', 'reduce_watermark', 0),
-  array('Set color transparent x (GD2 only)', 'watermark_transparency_featherx', 0),
-  array('Set color transparent y (GD2 only)', 'watermark_transparency_feathery', 0),
+  'Image watermarking', // cpg1.5
+  array('Watermark Image', 'enable_watermark', 1), // cpg1.5
+  array('Watermark custom thumbs (movie, audio, document)', 'enable_thumb_watermark', 1), // cpg1.5
+  array('Where to place the watermark', 'where_put_watermark', 20), // cpg1.5
+  array('Which files to watermark', 'which_files_to_watermark', 21), // cpg1.5
+  array('Which file to use for watermark', 'watermark_file', 0), // cpg1.5
+  array('Transparency 0-100 for entire image', 'watermark_transparency', 0), // cpg1.5
+  array('Downsize watermark if width of an picture is smaller than entered value. That is the 100% reference point. Resizing of the watermark is linear (0 to disable)', 'reduce_watermark', 0), // cpg1.5
+  array('Set color transparent x (GD2 only)', 'watermark_transparency_featherx', 0), // cpg1.5
+  array('Set color transparent y (GD2 only)', 'watermark_transparency_feathery', 0), // cpg1.5
   ############################
 
   'User settings',
@@ -2010,6 +2010,13 @@ $lang_util_php = array(
   'select_album' => 'Select album',
   'delete_orphans' => 'Delete comments on missing files',
   'delete_orphans_explanation' => 'This will identify and allow you to delete any comments associated with files no longer in the gallery.<br />Checks all albums.',
+  'update_full_normal_thumb' => 'Everything... full sized, resized and thumbs', // cpg1.5
+  'update_full_normal' => 'Both resized and full sized (if a orig copy is available)', // cpg1.5
+  'update_full' => 'Just full sized (if a orig copy is available)',// cpg1.5
+  'delete_back' => 'Delete original image backup (watermark mod)', // cpg1.5
+  'delete_back_explanation' => 'This will delete the backup image. You will save some disk space but not be able anymore to undo the watermark!!! After that the watermark will be permanent', // cpg1.5
+  'finished' => '<br />Finished updating thumbs/ images!<br />', // cpg1.5
+  'autorefresh' => ' Auto refresh (no need to click continue button anymore)<br /><br />', // cpg1.5
   'refresh_db' => 'Reload file dimensions and size information',
   'refresh_db_explanation' => 'This will re-read file sizes and dimensions. Use this if quota\'s are incorrect or you have changed the files manually.',
   'reset_views' => 'Reset view counters',
