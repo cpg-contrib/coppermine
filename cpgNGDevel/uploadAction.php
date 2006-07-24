@@ -18,6 +18,9 @@ define('DB_INPUT_PHP', true);
 define('ADMIN_PHP', true);
 /**#@-*/
 
+define("GIS_GIF", 1);
+define("GIS_JPG", 2);
+define("GIS_PNG", 3);
 require('include/init.inc.php');
 
 /**#@+
@@ -286,7 +289,6 @@ if (count($_FILES) && !isset($_SESSION['fileUpload'])) {
 
           // Create a testing alias.
           $picture_alias = $matches[1].".".$matches[2];
-
           // Check to see if the filename is consistent with that of a picture.
           if (is_image($picture_alias)) {
 
@@ -321,8 +323,12 @@ if (count($_FILES) && !isset($_SESSION['fileUpload'])) {
               // Check that picture size (in pixels) is lower than the maximum allowed. If not, delete it.
               } elseif (max($imginfo[0], $imginfo[1]) > $config->conf['max_upl_width_height']) {
                 if (($auth->isDefined('USER_IS_ADMIN') && $config->conf['auto_resize'] == 1) || (!$auth->isDefined('USER_IS_ADMIN') && $config->conf['auto_resize'] > 0)) {
-                  //resize_image($uploaded_pic, $uploaded_pic, $config->conf['max_upl_width_height'], $config->conf['thumb_method'], $imginfo[0] > $config->conf['max_upl_width_height'] ? 'wd' : 'ht');
-                  resize_image($uploaded_pic, $uploaded_pic, $config->conf['max_upl_width_height'], $config->conf['thumb_method'], $config->conf['thumb_use']);
+
+                  require_once('classes/cpgImgFactory.class.php');
+                  $imgResize = cpgImgFactory::getInstance();
+
+                  if (!$imgResize->resizeImage($path_to_image, $path_to_image, $config->conf['max_upl_width_height'], $config->conf['thumb_use']))
+                    return $imgResize->error;
                 } else {
                   @unlink($path_to_image);
 
