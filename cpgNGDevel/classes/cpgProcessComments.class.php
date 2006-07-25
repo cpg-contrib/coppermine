@@ -103,7 +103,7 @@ class cpgProcessComments {
   {
     global $lang_bad_words;
 
-    $ercp = array('/\S{' . ($this->config->conf['max_com_wlength'] + 1) . ',}/i');
+    $ercp = array('/(\s{' . ($this->config->conf['max_com_wlength'] + 1) . ',})/i');
     if ($this->config->conf['filter_bad_words']) foreach($lang_bad_words as $word) {
         $ercp[] = '/' . ($word[0] == '*' ? '': '\b') . str_replace('*', '', $word) . ($word[(strlen($word)-1)] == '*' ? '': '\b') . '/i';
     }
@@ -113,7 +113,7 @@ class cpgProcessComments {
     }
     $strippedStr = preg_replace($ercp, '(...)', $strippedStr);
 
-    return $str;
+    return $strippedStr;
   }
 
   /**
