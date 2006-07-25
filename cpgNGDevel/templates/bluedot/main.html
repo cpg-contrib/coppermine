@@ -55,10 +55,10 @@
 </ul>
 
 <ul>
-  <li><a href="{$DOMAIN_URL}{if $short_url eq 1}meta/lastup/{$cat}{if $smarty.get.album}/{$smarty.get.album}{/if}{else}thumbnails.php?meta=lastup&amp;cat={$smarty.get.cat}&amp;album={$smarty.get.album}{/if}" title="{$lang_main_menu.lastup_title}">{$lang_main_menu.lastup_lnk}</a></li>
-  <li><a href="{$DOMAIN_URL}{if $short_url eq 1}meta/lastcom/{$cat}{if $smarty.get.album}/{$smarty.get.album}{/if}{else}thumbnails.php?meta=lastcom&amp;cat={$smarty.get.cat}&amp;album={$smarty.get.album}{/if}" title="{$lang_main_menu.lastcom_title}">{$lang_main_menu.lastcom_lnk}</a></li>
-  <li><a href="{$DOMAIN_URL}{if $short_url eq 1}meta/topn/{$cat}{if $smarty.get.album}/{$smarty.get.album}{/if}{else}thumbnails.php?meta=topn&amp;cat={$smarty.get.cat}&amp;album={$smarty.get.album}{/if}" title="{$lang_main_menu.topn_title}">{$lang_main_menu.topn_lnk}</a></li>
-  <li><a href="{$DOMAIN_URL}{if $short_url eq 1}meta/toprated/{$cat}{if $smarty.get.album}/{$smarty.get.album}{/if}{else}thumbnails.php?meta=toprated&amp;cat={$smarty.get.cat}&amp;album={$smarty.get.album}{/if}" title="{$lang_main_menu.toprated_title}">{$lang_main_menu.toprated_lnk}</a></li>
+  <li><a href="{$DOMAIN_URL}{if $short_url eq 1}meta/lastup/{$cat|default:"0"}{if $smarty.get.album}/{$smarty.get.album}{/if}{else}thumbnails.php?meta=lastup&amp;cat={$smarty.get.cat}&amp;album={$smarty.get.album}{/if}" title="{$lang_main_menu.lastup_title}">{$lang_main_menu.lastup_lnk}</a></li>
+  <li><a href="{$DOMAIN_URL}{if $short_url eq 1}meta/lastcom/{$cat|default:"0"}{if $smarty.get.album}/{$smarty.get.album}{/if}{else}thumbnails.php?meta=lastcom&amp;cat={$smarty.get.cat}&amp;album={$smarty.get.album}{/if}" title="{$lang_main_menu.lastcom_title}">{$lang_main_menu.lastcom_lnk}</a></li>
+  <li><a href="{$DOMAIN_URL}{if $short_url eq 1}meta/topn/{$cat|default:"0"}{if $smarty.get.album}/{$smarty.get.album}{/if}{else}thumbnails.php?meta=topn&amp;cat={$smarty.get.cat}&amp;album={$smarty.get.album}{/if}" title="{$lang_main_menu.topn_title}">{$lang_main_menu.topn_lnk}</a></li>
+  <li><a href="{$DOMAIN_URL}{if $short_url eq 1}meta/toprated/{$cat|default:"0"}{if $smarty.get.album}/{$smarty.get.album}{/if}{else}thumbnails.php?meta=toprated&amp;cat={$smarty.get.cat}&amp;album={$smarty.get.album}{/if}" title="{$lang_main_menu.toprated_title}">{$lang_main_menu.toprated_lnk}</a></li>
   <li><a href="{$DOMAIN_URL}{if $short_url eq 1}meta/favpics{else}thumbnails.php?meta=favpics{/if}" title="{$lang_main_menu.fav_title}">{$lang_main_menu.fav_lnk}</a></li>
   <li><a href="{$DOMAIN_URL}search.php" title="{$lang_main_menu.search_title}">{$lang_main_menu.search_lnk}</a></li>
       {if $login eq 0 and USER_CAN_UPLOAD_PICTURES eq 1}
@@ -125,6 +125,7 @@
 <li><a href="{$DOMAIN_URL}rss.php?{if $meta ne ''}meta={$meta}{/if}{if $smarty.get.album ne ''}&amp;album={$smarty.get.album}{/if}{if $smarty.get.cat ne ''}&amp;cat={$smarty.get.cat}{/if}{if $smarty.get.uid ne ''}&amp;uid={$smarty.get.uid}{/if}"><img src="{$DOMAIN_URL}images/rss.gif" border="0" align="middle" alt="RSS" title="RSS"></a></li>
 </ul></li>
 {/if}
+<li><ul><li>{$THEME_SELECT_LIST}</li></ul></li>
 </ul></div>
 </td>
 </tr>

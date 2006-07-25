@@ -176,8 +176,7 @@ class cpgUtils {
         $timestamp += ($config->conf['time_offset'] - $diff_to_GMT) * 3600;
 
         $date = ereg_replace('%[aA]', $lang_day_of_week[(int)strftime('%w', $timestamp)], $datefmt);
-        $date = ereg_replace('%[bB]', $lang_month[(int)strftime('%m', $timestamp)-1], $date);
-
+        $date = ereg_replace('%[bB]', $lang_month[(int)strftime('%m', $timestamp)-1], $date);     
         return strftime($date, $timestamp);
     }
 
@@ -189,7 +188,7 @@ class cpgUtils {
      * @return
      */
     function localisedTimestamp()
-    {
+    {        
         return strtotime(cpgUtils::localisedDate(-1, '%B %d, %Y  %H : %M : %S'));
     }
 
@@ -325,17 +324,17 @@ class cpgUtils {
         global $lang_cpg_die;
 
         $auth = cpgAuth::getInstance();
-                $config = cpgConfig::getInstance();
+		$config = cpgConfig::getInstance();
         $t = new cpgTemplate;
 
         $t->assign('msgTitle', $lang_cpg_die[$msgCode]);
         $t->assign('msgText', $msgText);
-                if (($config->conf['debug_mode'] == 1 || ($config->conf['debug_mode'] == 2 && GALLERY_ADMIN_MODE))){
-                $t->assign('fileText', $lang_cpg_die['file']);
-                $t->assign('file', $errorFile);
-                $t->assign('lineText', $lang_cpg_die['line']);
-                $t->assign('line', $errorLine);
-                }
+		if (($config->conf['debug_mode'] == 1 || ($config->conf['debug_mode'] == 2 && GALLERY_ADMIN_MODE))){
+	        $t->assign('fileText', $lang_cpg_die['file']);
+	        $t->assign('file', $errorFile);
+	        $t->assign('lineText', $lang_cpg_die['line']);
+	        $t->assign('line', $errorLine);
+		}
 
         $t->assign('CONTENT', $t->fetchHTML('common/cpgDie.html'));
 
@@ -1136,36 +1135,36 @@ class cpgUtils {
      */
     function replaceForbidden($str)
     {
-            static $forbidden_chars;
-            $config = cpgConfig::getInstance();
-            if (!is_array($forbidden_chars)) {
-              global $mb_utf8_regex;
-              if (function_exists('html_entity_decode')) {
-                $chars = html_entity_decode($config->conf['forbiden_fname_char'], ENT_QUOTES, 'UTF-8');
-              } else {
-                $chars = str_replace(array('&amp;', '&quot;', '&lt;', '&gt;', '&nbsp;', '&#39;'), array('&', '"', '<', '>', ' ', "'"), $config->conf['forbiden_fname_char']);
-              }
-              preg_match_all("#$mb_utf8_regex".'|[\x00-\x7F]#', $chars, $forbidden_chars);
-            }
-            /**
-             * $str may also come from $_POST, in this case, all &, ", etc will get replaced with entities.
-             * Replace them back to normal chars so that the str_replace below can work.
-             */
-            $str = str_replace(array('&amp;', '&quot;', '&lt;', '&gt;'), array('&', '"', '<', '>'), $str);;
-            $return = str_replace($forbidden_chars[0], '_', $str);
+	    static $forbidden_chars;
+	    $config = cpgConfig::getInstance();
+	    if (!is_array($forbidden_chars)) {
+	      global $mb_utf8_regex;
+	      if (function_exists('html_entity_decode')) {
+	        $chars = html_entity_decode($config->conf['forbiden_fname_char'], ENT_QUOTES, 'UTF-8');
+  	      } else {
+	        $chars = str_replace(array('&amp;', '&quot;', '&lt;', '&gt;', '&nbsp;', '&#39;'), array('&', '"', '<', '>', ' ', "'"), $config->conf['forbiden_fname_char']);
+	      }
+	      preg_match_all("#$mb_utf8_regex".'|[\x00-\x7F]#', $chars, $forbidden_chars);
+	    }
+	    /**
+	     * $str may also come from $_POST, in this case, all &, ", etc will get replaced with entities.
+ 	     * Replace them back to normal chars so that the str_replace below can work.
+	     */
+	    $str = str_replace(array('&amp;', '&quot;', '&lt;', '&gt;'), array('&', '"', '<', '>'), $str);;
+	    $return = str_replace($forbidden_chars[0], '_', $str);
 
-            /**
-             * Fix the obscure, misdocumented "feature" in Apache that causes the server
-             * to process the last "valid" extension in the filename (rar exploit): replace all
-             * dots in the filename except the last one with an underscore.
-             */
-            // This could be concatenated into a more efficient string later, keeping it in three
-            // lines for better readability for now.
-            $extension = ltrim(substr($return,strrpos($return,'.')),'.');
-            $filenameWithoutExtension = str_replace('.' . $extension, '', $return);
-            $return = str_replace('.', '_', $filenameWithoutExtension) . '.' . $extension;
+	    /**
+	     * Fix the obscure, misdocumented "feature" in Apache that causes the server
+	     * to process the last "valid" extension in the filename (rar exploit): replace all
+	     * dots in the filename except the last one with an underscore.
+	     */
+	    // This could be concatenated into a more efficient string later, keeping it in three
+	    // lines for better readability for now.
+	    $extension = ltrim(substr($return,strrpos($return,'.')),'.');
+	    $filenameWithoutExtension = str_replace('.' . $extension, '', $return);
+	    $return = str_replace('.', '_', $filenameWithoutExtension) . '.' . $extension;
 
-            return $return;
+	    return $return;
     }
 
     /**
@@ -1195,6 +1194,57 @@ class cpgUtils {
         if (!function_exists('mb_strtolower')) { require_once 'include/mb.inc.php'; }
         return mb_strtolower($str);
     } // End of method 'utf_strtolower'
+    
+    /**
+     * themeSelect()
+     *
+     * Method to create theme selection drop down box.
+     *
+     * @param String $parameter String to be converted
+     * @return String $return
+     */
+    function themeSelect($parameter = '') {  
+        global $lang_theme_selection;        
+        $config = cpgConfig::getInstance();
+        $db = cpgDb::getInstance();
+        $t = new cpgTemplate();
+                               
+        if ($config->conf['theme_list'] == 0) {
+           return;
+        }
+                      
+        $cpgCurrentScript = $_SERVER["SCRIPT_NAME"]."?";
+        
+        foreach ($_GET as $key => $value) {
+            if ($key!="theme"){$cpgCurrentScript.= $key . "=" . $value . "&amp;";}
+        }
+        $cpgCurrentScript.="theme=";
+                   
+                   
+        $theme_dir = 'templates/';
+    
+        $dir = opendir($theme_dir);
+        while ($file = readdir($dir)) {
+            if (is_dir($theme_dir . $file) && $file != "." && $file != ".." && $file != 'CVS' && $file != 'sample' && $file != '.svn' && $file != 'common') {
+                $theme_array[] = $file;
+            }
+        }
+        closedir($dir);
+    
+        natcasesort($theme_array);
+        
+        //start the output
+        switch ($parameter) {
+          case 'table':
+              $return = 'not yet implemented';
+              break;
+          default:
+             
+              $return = $t->getThemeSelectHtml($theme_array,$cpgCurrentScript);
+          }
+                
+        return $return;                
+    }  
 }
 
 ?>

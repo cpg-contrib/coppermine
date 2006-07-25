@@ -1,0 +1,11 @@
+<form name="cpgChooseTheme"method="get" style="margin-top:0px;margin-bottom:0px;margin-left:0px;margin-right:0px;display:inline">
+   <select name="cpgThemeSelect" class="listbox_lang" onchange="if (this.options[this.selectedIndex].value) window.location.href='{$cpgCurrentScript}' + this.options[this.selectedIndex].value;">
+      <option selected="selected">{$lang_theme_selection.choose_theme}</option>
+      {foreach from=$theme_array item=theme}
+      <option value="{$theme}">{$theme}{if $theme eq $currentTheme}*{/if}</option>
+      {/foreach} 
+      {if $theme_reset == 1}
+      <option value="xxx">{$lang_theme_selection.reset_theme}</option>
+      {/if}
+  </select>
+</form>

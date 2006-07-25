@@ -209,6 +209,8 @@ class cpgTemplate extends Smarty {
         $this->assign('lang_main_menu', $lang_main_menu);
         $this->assign('lang_gallery_admin_menu', $lang_gallery_admin_menu);
         $this->assign('lang_user_admin_menu', $lang_user_admin_menu);
+        
+        $this->assign('THEME_SELECT_LIST',cpgUtils::themeSelect());
         /**
          * *#@-
          */
@@ -232,6 +234,28 @@ class cpgTemplate extends Smarty {
         } else {
             return $this->fetch($fileName);
         }
+    }
+    
+    /**
+     * cpgTemplate::getThemeSelectHtml()
+     *
+     * @param array $theme_array     
+     * @param string $cpgCurrentScript
+     * @return
+     */
+    function getThemeSelectHtml($theme_array,$cpgCurrentScript)
+    {
+        global $lang_theme_selection;
+                        
+        $config = cpgConfig::getInstance();
+        
+        $this->assign('theme_array',$theme_array);
+        $this->assign('currentTheme',$config->conf['theme']);
+        $this->assign('lang_theme_selection',$lang_theme_selection);
+        $this->assign('theme_reset',$config->conf['theme_reset']);
+        $this->assign('cpgCurrentScript',$cpgCurrentScript);
+                
+        return $this->fetch('common/themeSelect.html');
     }
 }
 
