@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /*************************
   Coppermine Photo Gallery
   ************************
@@ -23,11 +23,13 @@ if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 $lang_translation_info = array(
   'lang_name_english' => 'Hebrew', //cpg1.4
   'lang_name_native' => 'עברית', //cpg1.4
-  'lang_country_code' => 'hebrew', //cpg1.4
+  'lang_country_code' => 'he_IL.UTF-8', //cpg1.4
+  //translator comment: common country codes include are "he_IL.utf8" (recommended) / "he" / "hebrew" / "he_IL". if on *nix: use `locale -a`to find put
+  //I've only translated the fields I've needed. You can submit your changes to me and get credit for your work here.
   'trans_name'=> 'ליאור דוד',
-  'trans_email' => 'liorda@gmail.com',
-  'trans_website' => 'http://coppermine.sourceforge.net/',
-  'trans_date' => '2006-03-06',
+  'trans_email' => '',
+  'trans_website' => 'http://bsh.no-ip.com/coppermine',
+  'trans_date' => '2006-07-27',
 );
 
 $lang_charset = 'utf-8';
@@ -91,8 +93,8 @@ $lang_errors = array(
   'pic_in_invalid_album' => 'File is in a non existant album (%s)!?',
   'banned' => 'You are currently banned from using this site.',
   'not_with_udb' => 'This function is disabled in Coppermine because it is integrated with forum software. Either what you are trying to do is not supported in this configuration, or the function should be handled by the forum software.',
-  'offline_title' => 'Offline',
-  'offline_text' => 'Gallery is currently offline - check back soon',
+  'offline_title' => 'לא פעיל',
+  'offline_text' => 'הגלריה לא פעילה כרגע - אנא בדוק שוב מאוחר יותר',
   'ecards_empty' => 'לא קיים רישום בנוגע לגלויות אלקטרוניות.',
   'action_failed' => 'Action failed.  Coppermine is unable to process your request.',
   'no_zip' => 'The necessary libraries to process ZIP files are not available.  Please contact your Coppermine administrator.',
@@ -101,7 +103,7 @@ $lang_errors = array(
   'non_exist_comment' => 'The selected comment does not exist', //cpg1.4
 );
 
-$lang_bbcode_help_title = 'bbcode help'; //cpg1.4
+$lang_bbcode_help_title = 'עזרה ל- bbcode'; //cpg1.4
 $lang_bbcode_help = 'You can add clickable links and some formating to this field by using bbcode tags: <li>[b]Bold[/b] =&gt; <b>Bold</b></li><li>[i]Italic[/i] =&gt; <i>Italic</i></li><li>[url=http://yoursite.com/]Url Text[/url] =&gt; <a href="http://yoursite.com">Url Text</a></li><li>[email]user@domain.com[/email] =&gt; <a href="mailto:user@domain.com">user@domain.com</a></li><li>[color=red]some text[/color] =&gt; <span style="color:red">some text</span></li><li>[img]http://coppermine.sf.net/demo/images/red.gif[/img] => <img src="../images/red.gif" border="0" alt="" /></li>'; //cpg1.4
 
 // ------------------------------------------------------------------------- //
@@ -109,41 +111,41 @@ $lang_bbcode_help = 'You can add clickable links and some formating to this fiel
 // ------------------------------------------------------------------------- //
 
 $lang_main_menu = array(
-  'home_title' => 'Go to the home page',
+  'home_title' => 'חזרה לדף הראשי',
   'home_lnk' => 'דף ראשי',
-  'alb_list_title' => 'Go to the album list',
+  'alb_list_title' => 'רשימת אלבומים',
   'alb_list_lnk' => 'רשימת אלבומים',
-  'my_gal_title' => 'Go to my personal gallery',
+  'my_gal_title' => 'הגלריה שלי',
   'my_gal_lnk' => 'הגלריה שלי',
-  'my_prof_title' => 'Go to my personal profile', //cpg1.4
+  'my_prof_title' => 'הפרופיל שלי', //cpg1.4
   'my_prof_lnk' => 'הפרופיל שלי',
-  'adm_mode_title' => 'Switch to admin mode',
+  'adm_mode_title' => 'עבור למצב ניהול',
   'adm_mode_lnk' => 'מצב ניהול',
-  'usr_mode_title' => 'Switch to user mode',
+  'usr_mode_title' => 'עבור למצב משתמש רגיל',
   'usr_mode_lnk' => 'מצב משתמש רגיל',
-  'upload_pic_title' => 'Upload a file into an album',
+  'upload_pic_title' => 'הוסף קובץ לאלבום',
   'upload_pic_lnk' => 'שלח קובץ',
-  'register_title' => 'Create an account',
+  'register_title' => 'צור חשבון',
   'register_lnk' => 'הרשמה',
-  'login_title' => 'Log me in', //cpg1.4
+  'login_title' => 'חבר אותי לאתר', //cpg1.4
   'login_lnk' => 'התחבר',
-  'logout_title' => 'Log me out', //cpg1.4
+  'logout_title' => 'נתק אותי מהאתר', //cpg1.4
   'logout_lnk' => 'התנתקות',
-  'lastup_title' => 'Show most recent uploads', //cpg1.4
+  'lastup_title' => 'הצג קבצים אחרונים שנוספו', //cpg1.4
   'lastup_lnk' => 'האחרונים שנוספו',
-  'lastcom_title' => 'Show most recent comments', //cpg1.4
+  'lastcom_title' => 'הצג ההערות האחרונות שנוספו', //cpg1.4
   'lastcom_lnk' => 'הערות אחרונות',
-  'topn_title' => 'Show most viewed items', //cpg1.4
+  'topn_title' => 'הצג הקבצים הכי נצפים', //cpg1.4
   'topn_lnk' => 'הנצפים ביותר',
-  'toprated_title' => 'Show top rated items', //cpg1.4
-  'toprated_lnk' => 'המדורגים ביותר',
-  'search_title' => 'Search the gallery', //cpg1.4
+  'toprated_title' => 'הצג הקבצים המדורגים כטובים ביותר', //cpg1.4
+  'toprated_lnk' => 'המדורגים כטובים ביותר',
+  'search_title' => 'חפש בגלריה', //cpg1.4
   'search_lnk' => 'חיפוש',
-  'fav_title' => 'Go to my favorites', //cpg1.4
+  'fav_title' => 'המועדפים שלי', //cpg1.4
   'fav_lnk' => 'המועדפים שלי',
-  'memberlist_title' => 'Show Memberlist',
-  'memberlist_lnk' => 'Memberlist',
-  'faq_title' => 'Frequently Asked Questions on the picture gallery &quot;Coppermine&quot;',
+  'memberlist_title' => 'הצג רשימת חברים',
+  'memberlist_lnk' => 'רשימת חברים',
+  'faq_title' => 'שאלות נפוצות בקשר לגלריה "Coppermine"',
   'faq_lnk' => 'שו"ת',
 );
 
@@ -1581,25 +1583,25 @@ EOT;
 // ------------------------------------------------------------------------- //
 
 if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
-  'title' => 'Review comments',
-  'no_comment' => 'There is no comment to review',
-  'n_comm_del' => '%s comment(s) deleted',
+  'title' => 'צפייה בהערות',
+  'no_comment' => 'לא קיימות הערות בגלריה',
+  'n_comm_del' => '%s הערות נמחקו',
   'n_comm_disp' => 'Number of comments to display',
-  'see_prev' => 'See previous',
-  'see_next' => 'See next',
-  'del_comm' => 'Delete selected comments',
-  'user_name' => 'Name', //cpg1.4
-  'date' => 'Date', //cpg1.4
-  'comment' => 'Comment', //cpg1.4
+  'see_prev' => 'הצג את הקודם',
+  'see_next' => 'הצג את הבא',
+  'del_comm' => 'מחק ההערות שנבחרו',
+  'user_name' => 'שם', //cpg1.4
+  'date' => 'תאריך', //cpg1.4
+  'comment' => 'הערה', //cpg1.4
   'file' => 'קובץ', //cpg1.4
-  'name_a' => 'User name ascending', //cpg1.4
-  'name_d' => 'User name descending', //cpg1.4
-  'date_a' => 'Date ascending', //cpg1.4
-  'date_d' => 'Date descending', //cpg1.4
-  'comment_a' => 'Comment message ascending', //cpg1.4
-  'comment_d' => 'Comment message descending', //cpg1.4
-  'file_a' => 'File ascending', //cpg1.4
-  'file_d' => 'File descending', //cpg1.4
+  'name_a' => 'שם משתמש בסדר עולה', //cpg1.4
+  'name_d' => 'שם משתמש בסדר יורד', //cpg1.4
+  'date_a' => 'תאריך בסדר עולה', //cpg1.4
+  'date_d' => 'תאריך בסדר יורד', //cpg1.4
+  'comment_a' => 'הערה בסדר עולה', //cpg1.4
+  'comment_d' => 'הערה בסדר יורד', //cpg1.4
+  'file_a' => 'קובץ בסדר עולה', //cpg1.4
+  'file_d' => 'קובץ בסדר יורד', //cpg1.4
 );
 
 
@@ -1613,11 +1615,11 @@ if (defined('SEARCH_PHP')){
 $lang_search_php = array(
   'title' => 'חיפוש במאגר הקבצים', //cpg1.4
   'submit_search' => 'חיפוש', //cpg1.4
-  'keyword_list_title' => 'Keyword list', //cpg1.4
-  'keyword_msg' => 'The above list is not all inclusive. It does not include words from photo titles or descriptions. Try a full-text search.',  //cpg1.4
-  'edit_keywords' => 'Edit keywords', //cpg1.4
+  'keyword_list_title' => 'רשימת מילות מפתח', //cpg1.4
+  'keyword_msg' => 'הרשימה לעיל אינה מלאה. היא אינה כוללת מילים מכותרות התמונות או מתיאורן. נסה חיפוש מלא.',  //cpg1.4
+  'edit_keywords' => 'עריכת מילות מפתח', //cpg1.4
   'search in' => 'חפש ב:', //cpg1.4
-  'ip_address' => 'IP address', //cpg1.4
+  'ip_address' => 'כתובת IP', //cpg1.4
   'fields' => 'חפש ב', //cpg1.4
   'age' => 'גיל', //cpg1.4
   'newer_than' => 'חדשים מ', //cpg1.4
