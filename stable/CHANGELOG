@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-07-28 [D] Fixed anchor link in docs {GauGau}
 2006-07-17 [A] Added Albanian language file (user contribution) {GauGau}
 2006-07-13 [A] Added Brazilian-Portuguese language file (user contribution) {GauGau}
 2006-07-10 [D] Added documentation improvements {GauGau}
