@@ -239,10 +239,10 @@ class cpgAlbumData {
                     $r = $db->fetchRow();
                     if ($r['name']) {
                         // Album has a parent category
-                        $breadcrumb_alb[$i]['link'] = $this->config->conf['ecards_more_pic_target'] . "{$r['name']}/{$album[1]}";
+                        $breadcrumb_alb[$i]['link'] = $this->config->conf['ecards_more_pic_target'] . "cat/{$r['name']}/album/{$album[1]}";
                     } else {
                         // Album is a first level album
-                        $breadcrumb_alb[$i]['link'] = $this->config->conf['ecards_more_pic_target'] . "{$album[1]}";
+                        $breadcrumb_alb[$i]['link'] = $this->config->conf['ecards_more_pic_target'] . "album/{$album[1]}";
                     }
                 } else {
                     $breadcrumb_alb[$i]['link'] = $this->config->conf['ecards_more_pic_target'] . "thumbnails.php?album={$album[0]}";
@@ -329,6 +329,26 @@ class cpgAlbumData {
         global $lang_errors;
 
         $query = "SELECT title,keyword from {$this->config->conf['TABLE_ALBUMS']} WHERE aid='$aid'";
+        $this->db->query($query);
+        if ($this->db->nf() > 0) {
+            $row = $this->db->fetchRow();
+            return $row;
+        } else {
+            cpgUtils::cpgDie(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
+        }
+    }
+
+    /**
+     * cpgAlbumData::getCategoryName()
+     *
+     * @param  $cat
+     * @return
+     */
+    function getCategoryName($cat)
+    {
+        global $lang_errors;
+
+        $query = "SELECT name from {$config->conf['TABLE_CATEGORIES']} WHERE cid='$cat'";
         $this->db->query($query);
         if ($this->db->nf() > 0) {
             $row = $this->db->fetchRow();
@@ -430,7 +450,8 @@ class cpgAlbumData {
                 $thumb_list[$i]['picUrl'] = $pic_url;
                 $thumb_list[$i]['picTitle'] = $pic_title;
                 $thumb_list[$i]['filename'] = $row['filename'];
-                $thumb_list[$i]['target'] = $this->config->conf['ecards_more_pic_target'] . "displayimage.php?pid=".$row['pid'];
+                $thumb_list[$i]['target'] = $this->createLink($row['pid'], $album, $cat, $meta);
+                /*$thumb_list[$i]['target'] = $this->config->conf['ecards_more_pic_target'] . "displayimage.php?pid=".$row['pid'];
 
                 if (!empty($meta)) {
                     $thumb_list[$i]['target'] .= "&amp;meta=$meta";
@@ -446,7 +467,7 @@ class cpgAlbumData {
 
                 if (!empty($cat)) {
                     $thumb_list[$i]['target'] .= "&amp;cat=$cat";
-                }
+                }*/
 
                 $thumb_list[$i]['pid'] = $row['pid'];
             }
@@ -592,6 +613,65 @@ class cpgAlbumData {
                               os = '$os'";
             $this->db->query($query);
         }
+    }
+
+    /**
+     * cpgAlbumData::createLink()
+     *
+     * Decide whether to create short or long url's and return the created url
+     *
+     * @param  $pid
+     * @param  $album
+     * @param  $cat
+     * @param  $meta
+     * @param  $page
+     * 
+     * @return String
+     */
+    function createLink($pid, $album, $cat, $meta, $page='')
+    {
+        if ($this->config->conf['short_url']) {
+            //Short URL is ON
+            $url = substr($this->config->conf['ecards_more_pic_target'], 0, -1);
+            if ($pid) {
+                $url .=  "/image/$pid";
+            }
+            if ($meta) {
+                $url .= "/meta/$meta";
+            }
+            if ($cat) {
+                $url .= "/cat/$cat";
+            }
+            if ($album) {
+                $res = $this->getAlbumName($album);
+                $url .= "/album/{$res['title']}";
+            }
+            if ($page) {
+                $url .= "/page/$page";
+            }
+          } else {
+            //Short URL is OFF
+            $url = $this->config->conf['ecards_more_pic_target'].'displayimage.php?';
+            $tmpurl = '';
+            if ($pid) {
+                $tmpurl .= "&amp;pid=$pid";
+            }
+            if ($meta) {
+                $tmpurl .= "&amp;meta=$meta";
+            }
+            if ($cat) {
+                $tmpurl .= "&amp;cat=$cat";
+            }
+            if ($album) {
+                $tmpurl .= "&amp;album=$album";
+            }
+            if ($page) {
+                $tmpurl .= "&amp;page=$page";
+            }
+            $tmpurl = substr($tmpurl, 5);
+            $url .= $tmpurl;
+        }
+        return $url;
     }
 }
 

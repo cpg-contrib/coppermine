@@ -29,9 +29,9 @@
             <td colspan="2" height="1" valign="top" class="tableh2">
               {if $short_url}
                 {if $indexData->albList[element].catName ne ""}
-                <a href="{$DOMAIN_URL}{$indexData->albList[element].catName}/{$indexData->albList[element].album_title}">
+                <a href="{$DOMAIN_URL}cat/{$indexData->albList[element].catName}/album/{$indexData->albList[element].album_title}">
                 {else}
-                <a href="{$DOMAIN_URL}{$indexData->albList[element].album_title}">
+                <a href="{$DOMAIN_URL}album/{$indexData->albList[element].album_title}">
                 {/if}
               {else}
               <a href="{$DOMAIN_URL}thumbnails.php?album={$indexData->albList[element].aid}" class="albums">
@@ -43,9 +43,9 @@
             <td align="center" valign="top" class="thumbnails">
             {if $short_url}
               {if $indexData->albList[element].catName ne ""}
-              <a href="{$DOMAIN_URL}{$indexData->albList[element].catName}/{$indexData->albList[element].album_title}">
+              <a href="{$DOMAIN_URL}cat/{$indexData->albList[element].catName}/album/{$indexData->albList[element].album_title}">
               {else}
-              <a href="{$DOMAIN_URL}{$indexData->albList[element].album_title}">
+              <a href="{$DOMAIN_URL}album/{$indexData->albList[element].album_title}">
               {/if}
             {else}
              <a href="{$DOMAIN_URL}thumbnails.php?album={$indexData->albList[element].aid}" class="albums">

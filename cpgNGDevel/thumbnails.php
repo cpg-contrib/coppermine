@@ -36,13 +36,13 @@ if ($config->conf['enable_smilies']) {
  * Code if short url is on
  */
 if ($config->conf['short_url']) {
-  $cat = get_magic_quotes_gpc() ? $_GET['category'] : addslashes($_GET['category']);
+  $cat = get_magic_quotes_gpc() ? $_GET['cat'] : addslashes($_GET['cat']);
   $album = get_magic_quotes_gpc() ? $_GET['album'] : addslashes($_GET['album']);
 
   /**
    * If cat is set, get the cat is also with album id.
    */
-  if (!empty($cat)) {
+  if (!empty($cat) && !is_numeric($cat)) {
     $query = "SELECT c.cid, a.aid FROM {$config->conf['TABLE_ALBUMS']} a, {$config->conf['TABLE_CATEGORIES']} c
               WHERE
                 c.name = '$cat' AND
@@ -69,7 +69,7 @@ if ($config->conf['short_url']) {
 if (isset($_GET['sort'])) {
   $USER['sort'] = $_GET['sort'];
 }
-if (isset($_GET['cat'])) {
+if (!$cat && isset($_GET['cat'])) {
   $cat = (int)$_GET['cat'];
 }
 
