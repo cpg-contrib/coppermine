@@ -167,7 +167,7 @@ class cpgTemplate extends Smarty {
         $this->assign('allowRegistration', $this->config->conf['allow_user_registration'] == 1 ? 1 : 0);
         $this->assign('theme', $this->config->conf['theme']);
         $this->assign('charset', $this->config->conf['charset']);
-
+        
         /**
          * Assign user related data
          */
@@ -211,6 +211,24 @@ class cpgTemplate extends Smarty {
         $this->assign('lang_user_admin_menu', $lang_user_admin_menu);
         
         $this->assign('THEME_SELECT_LIST',cpgUtils::themeSelect());
+        
+        /**
+         * *#@+
+         * Assign custom link name & url to smarty.
+         */
+        if (trim($this->config->conf['custom_lnk_name']) != '') {
+             $this->assign('custom_lnk_name',$this->config->conf['custom_lnk_name']);
+             $this->assign('custom_lnk_url',$this->config->conf['custom_lnk_url']);
+        }
+        
+        /**
+         * *#@+
+         * Assign custom header & footer to smarty.
+         */
+     
+        $this->assign('CUSTOM_HEADER',cpgUtils::cpg_get_custom_include($this->config->conf['custom_header_path']));                                    
+        $this->assign('CUSTOM_FOOTER',cpgUtils::cpg_get_custom_include($this->config->conf['custom_footer_path']));               
+        
         /**
          * *#@-
          */

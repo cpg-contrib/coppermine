@@ -667,7 +667,11 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Display FAQ', 'display_faq', 1, 'f=index.htm&as=admin_language_faq&ae=admin_language_faq_end'),
   array('Display bbcode help', 'show_bbcode_help', 1, 'f=index.htm&as=admin_language_bbcode&ae=admin_language_bbcode_end&top=1'),
   array('Character encoding', 'charset', 2, 'f=index.htm&as=admin_language_charset&ae=admin_language_charset_end'),
-
+  array('Custom menu link name', 'custom_lnk_name', 0,'f=index.htm&amp;as=admin_theme_custom_lnk_name&amp;ae=admin_theme_custom_lnk_name_end'),
+  array('Custom menu link URL', 'custom_lnk_url', 0,'f=index.htm&amp;as=admin_language_custom_lnk_url&amp;ae=admin_language_custom_lnk_url_end'),
+  array('Path to custom header include', 'custom_header_path', 0, 'f=index.htm&as=admin_misc_include_path_start&ae=admin_misc_include_path_end'), //cpg1.4.0
+  array('Path to custom footer include', 'custom_footer_path', 0, 'f=index.htm&as=admin_misc_include_path_start&ae=admin_misc_include_path_end'), //cpg1.4.0
+  
   array('Album list view', '', 3),
   array('Width of the main table (pixels or %)', 'main_table_width', 0, 'f=index.htm&as=admin_album_table-width&ae=admin_album_table-width_end'),
   array('Number of levels of categories to display', 'subcat_level', 0, 'f=index.htm&as=admin_album_category-levels&ae=admin_album_category-levels_end'),
@@ -791,9 +795,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Display notices in debug mode', 'debug_notice', 1, 'f=index.htm&as=admin_misc_debug_notices&ae=admin_misc_debug_notices_end'),
   array('Enable plugins', 'enable_plugins', 1, 'f=index.htm&as=admin_misc_enable-plugins&ae=admin_misc_enable-plugins_end'),  //cpg1.4.0
   array('Allow banning of non-routable (private) IP addresses', 'ban_private_ip', 1,  'f=index.htm&as=admin_misc_private-ip&ae=admin_misc_private-ip_end'), //cpg1.4.0
-  array('Browsable batch-add interface', 'browse_batch_add', 1, 'f=index.htm&as=admin_misc_browsable_batch_add&ae=admin_misc_browsable_batch_add_end'), //cpg1.4.0
-  array('Path to custom header include', 'custom_header_path', 0, 'f=index.htm&as=admin_misc_include_path_start&ae=admin_misc_include_path_end'), //cpg1.4.0
-  array('Path to custom footer include', 'custom_footer_path', 0, 'f=index.htm&as=admin_misc_include_path_start&ae=admin_misc_include_path_end'), //cpg1.4.0
+  array('Browsable batch-add interface', 'browse_batch_add', 1, 'f=index.htm&as=admin_misc_browsable_batch_add&ae=admin_misc_browsable_batch_add_end'), //cpg1.4.0  
   array('Enable Report to Admin', 'report_post', 1, 'f=index.htm&as=admin_misc_enable_report&ae=admin_misc_enable_report_end'),  //cpg1.4.0
 );
 if (defined('ADMIN_PHP')) $lang_config_options = array(
@@ -805,7 +807,7 @@ if (defined('ADMIN_PHP')) $lang_config_options = array(
   'allow_user_registration' => array(
     $lang_yes => 1,
     $lang_no => 0,
-        $lang_admin_php['invitation'] => 2
+	$lang_admin_php['invitation'] => 2
   ),
   'clickable_keyword_search' => array(
     'extra_link' => array($lang_admin_php['manage_keyword'] => 'keywordmgr.php')

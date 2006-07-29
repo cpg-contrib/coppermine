@@ -1245,6 +1245,43 @@ class cpgUtils {
                 
         return $return;                
     }  
+    
+    /**
+     * cpg_get_custom_include()
+     *
+     * Method to include file.
+     *
+     * @param String $path  
+     * @return String $return
+     */
+    function cpg_get_custom_include($path='')
+    {
+        $return = '';        
+        // check if path is set in config
+        if ($path == '')
+        {
+            return $return;
+        }
+        // check if the include file exists
+        if (!file_exists($path))
+        {
+            return $return;
+        }
+        ob_start();
+        include($path);
+        $return = ob_get_contents();
+        ob_end_clean();
+        // crude sub-routine to remove the most basic "no-no" stuff from possible includes
+        // could need improvement
+        $return = str_replace('<html>', '', $return);
+        $return = str_replace('<head>', '', $return);
+        $return = str_replace('<body>', '', $return);
+        $return = str_replace('</html>', '', $return);
+        $return = str_replace('</head>', '', $return);
+        $return = str_replace('</body>', '', $return);
+        return $return;      
+    }
+    
 }
 
 ?>
