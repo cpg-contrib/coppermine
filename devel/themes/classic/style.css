@@ -370,7 +370,6 @@ a:active {
 }
 
 .navmenu a {
-        position: relative;
         display: block;
         padding-top: 2px;
         padding-right: 5px;
