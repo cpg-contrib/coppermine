@@ -1,0 +1,9 @@
+<form name="cpgChooseLanguage"  method="get" style="margin-top:0px;margin-bottom:0px;margin-left:0px;margin-right:0px;display:inline">
+	<select name="cpgLanguageSelect" class="listbox_lang" onchange="if (this.options[this.selectedIndex].value) window.location.href='{$cpgChangeUrl}' + this.options[this.selectedIndex].value;">
+		<option selected="selected">{$lang_language_selection.choose_language}</option>
+			   {foreach from=$lang_array item=lang}
+					 <option> {$lang} {if $lang eq $currentLang}*{/if} </option>
+				{/foreach}
+		<option value="xxx">{$lang_language_selection.reset_language}</option>
+	</select>
+</form>

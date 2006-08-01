@@ -109,7 +109,7 @@ class cpgTemplate extends Smarty {
         $this->assign('lang_picinfo', $lang_picinfo);
         $this->assign('DOMAIN_URL', $this->config->conf['ecards_more_pic_target']);
         $this->assign('short_url', $this->config->conf['short_url']);
-
+		
         $this->assign('commentsHTML', $this->fetchHTML('common/comments.html'));
 
         return $this->fetchHTML('common/displayimage.html');
@@ -156,7 +156,7 @@ class cpgTemplate extends Smarty {
         } else {
             $this->assign('showDebug', 0);
         }
-        //print_r($this->config->conf);
+       
         $this->assign('cat', $cat);
         $this->assign('DOMAIN_URL', $this->config->conf['ecards_more_pic_target']);
         $this->assign('short_url', $this->config->conf['short_url']);
@@ -209,7 +209,8 @@ class cpgTemplate extends Smarty {
         $this->assign('lang_main_menu', $lang_main_menu);
         $this->assign('lang_gallery_admin_menu', $lang_gallery_admin_menu);
         $this->assign('lang_user_admin_menu', $lang_user_admin_menu);
-        
+		$this->assign('LANGUAGE_SELECT_LIST',cpgUtils::languageSelect('list'));
+		$this->assign('LANGUAGE_SELECT_FLAG',cpgUtils::languageSelect('flags'));
         $this->assign('THEME_SELECT_LIST',cpgUtils::themeSelect());
         
         /**
@@ -235,6 +236,51 @@ class cpgTemplate extends Smarty {
         parent::display($this->config->conf['theme'] . '/' . $fileName);
     }
 
+
+	/**
+	 * cpgTemplate::getLanguageSelectHtml()
+	 *
+	 * @param string $cpgChangeUrl
+	 * @param array $lang_array
+	 * @return
+	 */
+	 function getLanguageSelectHtml($lang_array,$cpgChangeUrl)
+	{
+		global $lang_language_selection;
+
+		$config = cpgConfig::getInstance();
+
+		$this->assign('lang_language_selection',$lang_language_selection);
+		$this->assign('lang_array',$lang_array);
+		$this->assign('currentLang',$config->conf['lang']);
+		$this->assign('cpgChangeUrl',$cpgChangeUrl);
+
+		return $this->fetch('common/languageSelect.html');
+	}
+
+	/**
+	 * cogTemplate::getFlagSelectHtml()
+	 * 
+	 * @param string $cpgChangeUrl
+	 * @param array $language_arr
+	 * @param array $flagData
+	 * @return
+	 */
+	 function getFlagSelectHtml($cpgChangeUrl,$language_arr,$flagData) 
+	{
+		global $lang_language_selection,$config;
+
+		$this->assign('cpgChangeUrl',$cpgChangeUrl);
+		$this->assign('language_arr',$language_arr);
+		$this->assign('flagData',$flagData);
+		$this->assign('lang_language_selection',$lang_language_selection);
+		$this->assign('choose_lang', $config->conf['language_flags']);
+		$this->assign('language_reset', $config->conf['language_reset']);
+			
+		return $this->fetch('common/flagSelect.html');
+		
+	}
+
     /**
      * cpgTemplate::fetchHTML()
      *
@@ -247,7 +293,6 @@ class cpgTemplate extends Smarty {
         $this->assign('short_url', $this->config->conf['short_url']);
         $this->assign('theme', $this->config->conf['theme']);
         if (file_exists('templates/' . $this->config->conf['theme'] . '/' . $fileName)) {
-            // echo "HERE";
             return $this->fetch($this->config->conf['theme'] . '/' . $fileName);
         } else {
             return $this->fetch($fileName);
@@ -266,7 +311,7 @@ class cpgTemplate extends Smarty {
         global $lang_theme_selection;
                         
         $config = cpgConfig::getInstance();
-        
+
         $this->assign('theme_array',$theme_array);
         $this->assign('currentTheme',$config->conf['theme']);
         $this->assign('lang_theme_selection',$lang_theme_selection);

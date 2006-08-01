@@ -20,6 +20,9 @@
 </td>
 </tr>
 <tr>
+	<td colspan=2 align="center">{$LANGUAGE_SELECT_FLAG} </td>
+</tr>
+<tr>
 <td class="main" valign="top">
 <div id="content">
   <div class="innerdiv">
@@ -128,6 +131,8 @@
 <li><a href="rss.php?{if $meta ne ''}meta={$meta}{/if}{if $smarty.get.album ne ''}&amp;album={$smarty.get.album}{/if}{if $smarty.get.cat ne ''}&amp;cat={$smarty.get.cat}{/if}{if $smarty.get.uid ne ''}&amp;uid={$smarty.get.uid}{/if}"><img src="{$DOMAIN_URL}images/rss.gif" border="0" align="middle" alt="RSS" title="RSS"></a></li>
 </ul></li>
 {/if}
+<!-- For displaying the dropdown of lang list -->
+<li><ul><li> {$LANGUAGE_SELECT_LIST}</li></ul> </li>
 <li><ul><li>{$THEME_SELECT_LIST}</li></ul></li>
 </ul></div>
 </td>

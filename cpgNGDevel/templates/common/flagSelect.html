@@ -1,0 +1,25 @@
+<form name="cpgChooseFlag" method="get">
+	<table align="center">
+		<tr>
+			<td align="center">
+             {if $choose_lang == 2}
+				  { $lang_language_selection.choose_language}
+			 {/if}
+			  {foreach from = $language_arr item=language}
+			  
+			  {foreach from = $flagData item = lang_data key=key}
+			     {if $language == $key}                       				   
+    			<a href="{$cpgChangeUrl}{$language }" rel="nofollow">	   
+			    <img src="images/flags/{$lang_data.imageName}" border="0" width="16" height="10" alt="" title="{$lang_data.langName}"></a>             
+				 {/if}
+              {/foreach}
+			
+			 {/foreach}
+			 {if $language_reset == 1}
+					<a href="{$cpgChangeUrl}xxx" rel="nofollow"><img src="images/flags/reset.gif" border="0" width="16" height="11" alt="" title="{$lang_language_selection.reset_language}" /></a>
+			 {/if}
+			 </td>
+		</tr>
+	</table>
+
+</form>
