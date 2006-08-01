@@ -528,3 +528,17 @@ a.sortorder_options {
   text-decoration: underline;
   font-weight: bold;
 }
+
+.footer {
+        font-size : 9px;
+}
+
+.footer a {
+        text-decoration: none;
+        color: #153E7E;
+}
+
+.footer a:hover {
+        color: #000000;
+        text-decoration: underline;
+}
