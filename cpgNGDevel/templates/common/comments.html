@@ -55,11 +55,13 @@ function storeCaret(textEl) {
           ({$comments.$commentId.hdr_ip} [{$comments.$commentId.raw_ip}])
          {/if}
          {if $miscArr.showCommentInput}
+          <span id="reply_comment">          
           <script language="JavaScript">
           <!--
           document.write('<a href="javascript:;" onclick="showHideBox(\'reply_{$commentId}\');" title="{$lang_display_comments.reply_title}">{$lang_display_comments.reply_title}</a>');
           //-->
           </script>
+          </span>
           <noscript>
           <a href="{$DOMAIN_URL}displayimage.php?{$picData.editCommentLink}&amp;event=replyComment&amp;msg_id={$commentId}" title="{$lang_display_comments.reply_title}">{$lang_display_comments.reply_title}</a>
           </noscript>

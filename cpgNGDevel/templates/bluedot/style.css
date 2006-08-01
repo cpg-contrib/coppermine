@@ -326,10 +326,19 @@ td.filmImg {
   padding-left: 5px;
 }
 
+span#reply_comment a {
+  color: #AA0000;
+  text-decoration: none;
+}
+
+span#reply_comment a:hover {
+   color: #FFF;
+   
+}
+
 .image {
   border: 3px solid #FFFFFF;
 }
-
 /*
 .navmenu {
   font-family: Verdana, Arial, Helvetica, sans-serif;
