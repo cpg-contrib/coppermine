@@ -53,9 +53,22 @@ function exif_parse_file($filename)
                 $row = mysql_fetch_array($result);
                 mysql_free_result($result);
                 $exifRawData = unserialize($row["exifData"]);
-        } else {
-          // No data in the table - read it from the image file
-          $exifRawData = read_exif_data_raw($filename,0);
+        } else { // No data in the table - read it from the image file
+          // Get the file name
+          $file = basename($filename);
+          // Get the path
+          $path = dirname($filename);
+          // Path to original file (without watermark)
+          $orig_file = $path.'/'.$CONFIG['orig_pfx'].$file;
+
+          // Check whether original file exists
+          if (file_exists($orig_file)) {
+            // If original file is there then read exif data from it.
+            $exifRawData = read_exif_data_raw($orig_file,0);
+          } else {
+            $exifRawData = read_exif_data_raw($filename,0);
+          }
+
           // Insert it into table for future reference
           $sql = "INSERT INTO {$CONFIG['TABLE_EXIF']} ".
                     "VALUES ('$filename', '".addslashes(serialize($exifRawData))."')";
