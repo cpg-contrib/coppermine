@@ -138,6 +138,9 @@ INSERT INTO CPG_config VALUES ('global_registration_pw','');
 #INSERT INTO CPG_config VALUES ('picinfo_display_URL_bookmark', '1');
 #INSERT INTO CPG_config VALUES ('picinfo_display_favorites', '1');
 
+#movie download link -> to picinfo
+INSERT INTO CPG_config VALUES ('picinfo_movie_download_link', '1');
+
 INSERT INTO CPG_config VALUES ('reg_notify_admin_email', '0');
 INSERT INTO CPG_config VALUES ('disable_comment_flood_protect', '0');
 INSERT INTO CPG_config VALUES ('upl_notify_admin_email', '0');

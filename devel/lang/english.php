@@ -706,6 +706,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   'Image view',
   array('Width of the table for file display (pixels or %)', 'picture_table_width', 0, 'f=index.htm&amp;as=admin_image_comment_table-width&amp;ae=admin_image_comment_table-width_end'),
   array('File information is visible by default', 'display_pic_info', 1, 'f=index.htm&amp;as=admin_image_comment_info_visible&amp;ae=admin_image_comment_info_visible_end'),
+  array('Display movie download link in the file information area', 'picinfo_movie_download_link', 1),
   array('Max length for an image description', 'max_img_desc_length', 0, 'f=index.htm&amp;as=admin_image_comment_descr_length&amp;ae=admin_image_comment_descr_length_end'),
   array('Max number of characters in a word', 'max_com_wlength', 0, 'f=index.htm&amp;as=admin_image_comment_chars_per_word&amp;ae=admin_image_comment_chars_per_word_end'),
   array('Show film strip', 'display_film_strip', 1, 'f=index.htm&amp;as=admin_image_comment_filmstrip_toggle&amp;ae=admin_image_comment_filmstrip_toggle_end'),
@@ -1067,6 +1068,9 @@ $lang_picinfo = array(
   'submit' => 'Submit',
   'success' => 'Information updated successfully.',
   'details' => 'Details',
+  'download_URL' => 'Direct Link',
+  'movie_player' => 'Play the file in your standard application',
+
 );
 
 $lang_display_comments = array(

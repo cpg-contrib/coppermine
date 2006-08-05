@@ -175,6 +175,10 @@ INSERT INTO CPG_config (name, value) values ('unsharp_threshold', '3');
 INSERT INTO CPG_config (name, value) values ('thumb_height', '140');
 #########################
 
+#movie download link -> to picinfo
+INSERT INTO CPG_config VALUES ('picinfo_movie_download_link', '1');
+#########################
+
 #
 # Dumping data for table `CPG_filetypes`
 #

@@ -2272,7 +2272,15 @@ function theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments, 
 ******************************************************************************/
 function theme_html_picinfo(&$info)
 {
-    global $lang_picinfo;
+    global $lang_picinfo, $CONFIG, $CURRENT_PIC_DATA;
+	
+	if($CONFIG['picinfo_movie_download_link']){
+		$path_to_pic = $CONFIG['fullpath'] . $CURRENT_PIC_DATA['filepath'] . $CURRENT_PIC_DATA['filename'];
+		$mime_content = cpg_get_type($CURRENT_PIC_DATA['filename']);
+		if ($mime_content['content']=='movie') {
+			$info[$lang_picinfo['download_URL']] = '<a href="' . $CONFIG["ecards_more_pic_target"] . (substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') . $path_to_pic.'">'. $lang_picinfo['movie_player'] .'</a>';
+		}
+	}
 
     $html = '';
 
