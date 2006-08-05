@@ -353,6 +353,8 @@ function form_scale($text, $name, $help = '')
     $any_selected = ($value == 'max') ? 'selected="selected"' : '';
     $ht_selected = ($value == 'ht') ? 'selected="selected"' : '';
     $wd_selected = ($value == 'wd') ? 'selected="selected"' : '';
+    //thumb cropping
+    $ex_selected = ($value == 'ex') ? 'selected="selected"' : '';
 
     echo <<<EOT
         <tr>
@@ -364,6 +366,7 @@ function form_scale($text, $name, $help = '')
                                 <option value="any" $any_selected>{$lang_admin_php['th_any']}</option>
                                 <option value="ht" $ht_selected>{$lang_admin_php['th_ht']}</option>
                                 <option value="wd" $wd_selected>{$lang_admin_php['th_wd']}</option>
+                                <option value="ex" $ex_selected>{$lang_admin_php['th_ex']}</option>
                         </select>
                 </td>
                 <td class="tableb" width="10%">

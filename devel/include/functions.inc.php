@@ -1660,7 +1660,7 @@ function breadcrumb($cat, &$breadcrumb, &$BREADCRUMB_TEXT)
  * @param integer $max
  * @return array
  **/
-function compute_img_size($width, $height, $max)
+function compute_img_size($width, $height, $max, $system_icon=false, $normal=false)
 {
          global $CONFIG;
         $thumb_use=$CONFIG['thumb_use'];
@@ -1682,6 +1682,22 @@ function compute_img_size($width, $height, $max)
           $image_size['geom'] = ' height="'.$image_size['height'].'"';
         } elseif($thumb_use=='wd') {
           $image_size['geom'] = 'width="'.$image_size['width'].'"';
+        //thumb cropping
+		} elseif($thumb_use=='ex') {
+			if ($normal=="normal"){
+			$image_size['geom'] = 'width="'.$image_size['width'].'" height="'.$image_size['height'].'"';
+			}
+			elseif ($normal=="cat_thumb"){
+          		$image_size['geom'] = 'width="'.$max.'" height="'.$max.'"';
+			}
+			else {
+          		$image_size['geom'] = 'width="'.$CONFIG['thumb_width'].'" height="'.$CONFIG['thumb_height'].'"';
+			}
+			//if we have a system icon we override the previous calculation and take 'any' as base for the calc
+			if($system_icon){
+				$image_size['geom'] = 'width="'.$image_size['width'].'" height="'.$image_size['height'].'"';
+			}
+			
         } else {
           $image_size['geom'] = 'width="'.$image_size['width'].'" height="'.$image_size['height'].'"';
         }
@@ -1734,9 +1750,12 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
                                 $row['pwidth'] = $image_info[0];
                                 $row['pheight'] = $image_info[1];
                         }
-
-                        $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['thumb_width']);
-
+						//thumb cropping - if we display a system thumb we calculate the dimension by any and not ex
+						if($row['system_icon']=='true'){
+                        	$image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['thumb_width'], true);
+						} else {
+                        	$image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['thumb_width']);
+						}	
                         $thumb_list[$i]['pos'] = $key < 0 ? $key : $i - 1 + $lower_limit;
                         $thumb_list[$i]['pid'] = $row['pid'];;
                         $thumb_list[$i]['image'] = "<img src=\"" . $pic_url . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$row['filename']}\" title=\"$pic_title\"/>";
@@ -1900,8 +1919,13 @@ function display_film_strip($album, $cat, $pos)
                                 $row['pwidth'] = $image_info[0];
                                 $row['pheight'] = $image_info[1];
                         }
-
-                        $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['thumb_width']);
+						
+						//thumb cropping
+						if($row['system_icon']=='true'){
+                        	$image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['thumb_width'], true);
+						} else {
+                        	$image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['thumb_width']);
+						}	
 
                         $p=$i - 1 + $lower_limit;
                         $p=($p < 0 ? 0 : $p);
@@ -2007,14 +2031,18 @@ function& get_pic_url(&$pic_row, $mode,$system_pic = false)
                                                                // Check for extension-specific thumbs
                                                                if (file_exists($default_thumb_path.$CONFIG['thumb_pfx'].$mime_content['extension'].$extension)) {
                                                                        $filepathname = $default_thumb_path.$CONFIG['thumb_pfx'].$mime_content['extension'].$extension;
-                                                                       break 2;
+																		//thumb cropping - if we display a system thumb we calculate the dimension by any and not ex
+																	   $pic_row['system_icon']=true;
+																	   break 2;
                                                                }
                                                        }
                                                        foreach ($thumb_extensions as $extension) {
                                                                // Check for media-specific thumbs (movie,document,audio)
                                                                if (file_exists($default_thumb_path.$CONFIG['thumb_pfx'].$mime_content['content'].$extension)) {
                                                                        $filepathname = $default_thumb_path.$CONFIG['thumb_pfx'].$mime_content['content'].$extension;
-                                                                       break 2;
+                                                                       //thumb cropping
+																	   $pic_row['system_icon']=true;
+																	   break 2;
                                                                }
                                                        }
                                                } else {
@@ -2022,7 +2050,9 @@ function& get_pic_url(&$pic_row, $mode,$system_pic = false)
                                                        foreach ($thumb_extensions as $extension) {
                                                                if (file_exists($default_thumb_path.$CONFIG['thumb_pfx'].$file_base_name.$extension)) {
                                                                        $filepathname = $default_thumb_path.$CONFIG['thumb_pfx'].$file_base_name.$extension;
-                                                                       break 2;
+                                                                       //thumb cropping
+																	   $pic_row['system_icon']=true;
+																	   break 2;
                                                                }
                                                        }
                                                }

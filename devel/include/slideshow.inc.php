@@ -59,6 +59,9 @@ foreach ($pic_data as $picture) {
       $condition = true;
     }elseif($CONFIG['thumb_use']=='any' && max($picture['pwidth'], $picture['pheight']) > $CONFIG['picture_width']){
       $condition = true;
+	//thumb cropping
+    }elseif($CONFIG['thumb_use']=='ex' && max($picture['pwidth'], $picture['pheight']) > $CONFIG['picture_width']){
+      $condition = true;
     }else{
      $condition = false;
     }

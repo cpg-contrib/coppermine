@@ -379,7 +379,15 @@ function list_users()
                     $picture['pwidth'] = $image_info[0];
                     $picture['pheight'] = $image_info[1];
                 }
-                $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size']);
+				//thumb cropping
+                //$image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size']);
+				if($picture['system_icon']=='true'){
+                	$image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size'], true, 'cat_thumb');
+                } else {
+				    $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size'], false, 'cat_thumb');
+				}
+
+
                 $user_thumb = "<img src=\"" . $pic_url . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"\" />";
             }
         }
@@ -514,8 +522,15 @@ function list_albums()
                     $picture['pwidth'] = $image_info[0];
                     $picture['pheight'] = $image_info[1];
                 }
-                $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size']);
-                $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"" . $pic_url . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$picture['filename']}\" />";
+				//thumb cropping
+                //$image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size']);
+				if($picture['system_icon']=='true'){
+                	$image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size'], true, 'cat_thumb');
+                } else {
+				    $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size'], false, 'cat_thumb');
+				}
+                
+				$alb_list[$alb_idx]['thumb_pic'] = "<img src=\"" . $pic_url . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$picture['filename']}\" />";
             } else { // Inserts an empty thumbnail if the album contains 0 images
                 // $image_size = compute_img_size(100, 75, $CONFIG['alb_list_thumb_size']);
                 $cpg_nopic_data = cpg_get_system_thumb('nopic.jpg', $alb_thumb['category']);
@@ -676,8 +691,14 @@ function list_cat_albums($cat = 0)
                     $picture['pwidth'] = $image_info[0];
                     $picture['pheight'] = $image_info[1];
                 }
-                $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size']);
-                $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"" . $pic_url . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$picture['filename']}\" />";
+				//thumb cropping
+				if($picture['system_icon']=='true'){
+                	$image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size'], true, 'cat_thumb');
+                } else {
+				    $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size'], false, 'cat_thumb');
+				}
+				
+				$alb_list[$alb_idx]['thumb_pic'] = "<img src=\"" . $pic_url . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$picture['filename']}\" />";
             } else { // Inserts an empty thumbnail if the album contains 0 images
                 // $image_size = compute_img_size(100, 75, $CONFIG['alb_list_thumb_size']);
                 $alb_list[$alb_idx]['thumb_pic'] = '<img src="' . $cpg_nopic_data['thumb'] . '" ' . $cpg_nopic_data['whole'] . ' class="image" border="0" alt="" />';

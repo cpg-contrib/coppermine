@@ -2445,6 +2445,9 @@ function theme_html_picture()
       $condition = true;
     }elseif($CONFIG['thumb_use']=='any' && max($CURRENT_PIC_DATA['pwidth'], $CURRENT_PIC_DATA['pheight']) > $CONFIG['picture_width']){
       $condition = true;
+	//thumb cropping
+    }elseif($CONFIG['thumb_use']=='ex' && max($CURRENT_PIC_DATA['pwidth'], $CURRENT_PIC_DATA['pheight']) > $CONFIG['picture_width']){
+      $condition = true;
     }else{
      $condition = false;
     }
@@ -2478,7 +2481,8 @@ function theme_html_picture()
         $picture_url = get_pic_url($CURRENT_PIC_DATA, 'fullsize');
     }
 
-    $image_size = compute_img_size($CURRENT_PIC_DATA['pwidth'], $CURRENT_PIC_DATA['pheight'], $CONFIG['picture_width']);
+	//thumb cropping
+    $image_size = compute_img_size($CURRENT_PIC_DATA['pwidth'], $CURRENT_PIC_DATA['pheight'], $CONFIG['picture_width'], 'normal');
 
     $pic_title = '';
     $mime_content = cpg_get_type($CURRENT_PIC_DATA['filename']);

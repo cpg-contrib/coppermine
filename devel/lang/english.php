@@ -604,6 +604,8 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'th_any' => 'Max Aspect',
   'th_ht' => 'Height',
   'th_wd' => 'Width',
+  //thumb cropping
+  'th_ex' => 'Exact', // thumb cropping
   'label' => 'label',
   'item' => 'item',
   'debug_everyone' => 'Everyone',
@@ -724,8 +726,10 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
 
   'Files and thumbnails settings',
   array('Quality for JPEG files', 'jpeg_qual', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_jpeg_quality&amp;ae=admin_picture_thumbnail_jpeg_quality_end'),
-  array('Max dimension of a thumbnail <a href="#notice2" class="clickable_option">**</a>', 'thumb_width', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_max-dimension&amp;ae=admin_picture_thumbnail_max-dimension_end'),
+  array('Max dimension (width) of a thumbnail <a href="#notice2" class="clickable_option">**</a>', 'thumb_width', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_max-dimension&amp;ae=admin_picture_thumbnail_max-dimension_end'),
+  array('Height of a thumbnail (if you use exact as dimension -> see below)', 'thumb_height', 0),
   array('Use dimension ( width or height or Max aspect for thumbnail ) <a href="#notice2" class="clickable_option">**</a>', 'thumb_use', 7, 'f=index.htm&amp;as=admin_picture_thumbnail_use-dimension&amp;ae=admin_picture_thumbnail_use-dimension_end'),
+  array('Enable Custom Thumbs (movie, audio, document)', 'enable_custom_thumbs', 1),
   array('Create intermediate pictures','make_intermediate',1, 'f=index.htm&amp;as=admin_picture_thumbnail_intermediate_toggle&amp;ae=admin_picture_thumbnail_intermediate_toggle_end'),
   array('Max width or height of an intermediate picture/video <a href="#notice2" class="clickable_option">**</a>', 'picture_width', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_intermediate_dimension&amp;ae=admin_picture_thumbnail_intermediate_dimension_end'),
   array('Max size for uploaded files (KB)', 'max_upl_size', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_max_upload_size&amp;ae=admin_picture_thumbnail_max_upload_size_end'),
@@ -757,6 +761,14 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('The prefix for thumbnails <a href="#notice1" class="clickable_option">*</a>', 'thumb_pfx', 0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_thumbs_prefix&amp;ae=admin_picture_thumb_advanced_thumbs_prefix_end'),
   array('Default mode for directories', 'default_dir_mode', 0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_chmod_folder&amp;ae=admin_picture_thumb_advanced_chmod_folder_end'),
   array('Default mode for files', 'default_file_mode', 0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_chmod_files&amp;ae=admin_picture_thumb_advanced_chmod_files_end'),
+
+  ######### Thumb sharpening ########
+  'Thumb Sharpening', // cpg1.5
+  array('Enable Unsharp Mask', 'enable_unsharp', 1), // cpg1.5
+  array('Amount', 'unsharp_amount', 0), // cpg1.5
+  array('Radius', 'unsharp_radius', 0), // cpg1.5
+  array('Threshold', 'unsharp_threshold', 0), // cpg1.5
+  ############################
 
   ######### Watermark ########
   'Image watermarking', // cpg1.5

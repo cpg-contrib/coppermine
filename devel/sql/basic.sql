@@ -166,6 +166,15 @@ INSERT INTO CPG_config (name, value) values ('watermark_transparency_featherx', 
 INSERT INTO CPG_config (name, value) values ('watermark_transparency_feathery', '0');
 INSERT INTO CPG_config (name, value) values ('enable_thumb_watermark', '1');
 ####################
+
+###### thumb sharpening and cropping ########
+INSERT INTO CPG_config (name, value) values ('enable_unsharp', '0');
+INSERT INTO CPG_config (name, value) values ('unsharp_amount', '120');
+INSERT INTO CPG_config (name, value) values ('unsharp_radius', '0.5');
+INSERT INTO CPG_config (name, value) values ('unsharp_threshold', '3');
+INSERT INTO CPG_config (name, value) values ('thumb_height', '140');
+#########################
+
 #
 # Dumping data for table `CPG_filetypes`
 #
