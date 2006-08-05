@@ -51,12 +51,12 @@ if($CONFIG['read_iptc_data'] ){
 # Sanitize the data - to fix the XSS vulnerability - Aditya
 function sanitize_data(&$value, $key)
 {
-	if (is_array($value)) {
-		array_walk($value, 'sanitize_data');
-	} else {
-		# sanitize against sql/html injection; trim any nongraphical non-ASCII character:
-		$value = trim(htmlentities(strip_tags(trim($value,"\x7f..\xff\x0..\x1f")),ENT_QUOTES));
-	}
+        if (is_array($value)) {
+                array_walk($value, 'sanitize_data');
+        } else {
+                # sanitize against sql/html injection; trim any nongraphical non-ASCII character:
+                $value = trim(htmlentities(strip_tags(trim($value,"\x7f..\xff\x0..\x1f")),ENT_QUOTES));
+        }
 }
 function html_picture_menu()
 {
@@ -148,18 +148,23 @@ function html_picinfo()
     $info[$lang_picinfo['Displayed']] .= $detailsLink;
 
     $path_to_pic = $CONFIG['fullpath'] . $CURRENT_PIC_DATA['filepath'] . $CURRENT_PIC_DATA['filename'];
+    $path_to_orig_pic = $CONFIG['fullpath'] . $CURRENT_PIC_DATA['filepath'] . $CONFIG['orig_pfx'] . $CURRENT_PIC_DATA['filename'];
 
     if ($CONFIG['read_exif_data']) $exif = exif_parse_file($path_to_pic);
 
     if (isset($exif) && is_array($exif)) {
-		array_walk($exif, 'sanitize_data');
+                array_walk($exif, 'sanitize_data');
         $info = array_merge($info,$exif);
     }
 
-    if ($CONFIG['read_iptc_data']) $iptc = get_IPTC($path_to_pic);
+    // Read the iptc data
+    if ($CONFIG['read_iptc_data']) {
+      // Read the iptc data from original pic (if watermarked)
+      $iptc = file_exists($path_to_orig_pic) ? get_IPTC($path_to_orig_pic) : get_IPTC($path_to_pic);
+    }
 
     if (isset($iptc) && is_array($iptc)) {
-		array_walk($iptc, 'sanitize_data');
+                array_walk($iptc, 'sanitize_data');
         if (isset($iptc['Title'])) $info[$lang_picinfo['iptcTitle']] = $iptc['Title'];
         if (isset($iptc['Copyright'])) $info[$lang_picinfo['iptcCopyright']] = $iptc['Copyright'];
         if (!empty($iptc['Keywords'])) $info[$lang_picinfo['iptcKeywords']] = implode(' ',$iptc['Keywords']);
@@ -170,7 +175,7 @@ function html_picinfo()
     $info[$lang_picinfo['URL']] = '<a href="' . $CONFIG["ecards_more_pic_target"] . (substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') .basename($_SERVER['PHP_SELF']) . "?pid=$CURRENT_PIC_DATA[pid]" . '" >' . $CONFIG["ecards_more_pic_target"] . (substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') . basename($_SERVER['PHP_SELF']) . "?pid=$CURRENT_PIC_DATA[pid]" . '</a>';
     // with subdomains the variable is $_SERVER["SERVER_NAME"] does not return the right value instead of using a new config variable I reused $CONFIG["ecards_more_pic_target"] no trailing slash in the configure
     // Create the add to fav link
-	$ref = $REFERER ? "&amp;ref=$REFERER" : '';
+        $ref = $REFERER ? "&amp;ref=$REFERER" : '';
     if (!in_array($CURRENT_PIC_DATA['pid'], $FAVPICS)) {
         $info[$lang_picinfo['addFavPhrase']] = "<a href=\"addfav.php?pid=" . $CURRENT_PIC_DATA['pid'] . $ref . "\" >" . $lang_picinfo['addFav'] . '</a>';
     } else {
@@ -282,7 +287,7 @@ if ($pos < 0 || $pid > 0) {
       if (mysql_num_rows($result) == 0) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
       $row = mysql_fetch_array($result);
     }
-    $album = (!$album) ? $row['aid'] : $album; 
+    $album = (!$album) ? $row['aid'] : $album;
     $pic_data = get_pic_data($album, $pic_count, $album_name, -1, -1, false);
     for($pos = 0; $pic_data[$pos]['pid'] != $pid && $pos < $pic_count; $pos++);
     reset($pic_data);
