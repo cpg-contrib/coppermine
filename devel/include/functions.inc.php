@@ -1688,7 +1688,7 @@ function compute_img_size($width, $height, $max, $system_icon=false, $normal=fal
 			$image_size['geom'] = 'width="'.$image_size['width'].'" height="'.$image_size['height'].'"';
 			}
 			elseif ($normal=="cat_thumb"){
-          		$image_size['geom'] = 'width="'.$max.'" height="'.$max.'"';
+          		$image_size['geom'] = 'width="'.$max.'" height="'.($CONFIG['thumb_height'])*$max/$CONFIG['thumb_width'].'"';
 			}
 			else {
           		$image_size['geom'] = 'width="'.$CONFIG['thumb_width'].'" height="'.$CONFIG['thumb_height'].'"';
