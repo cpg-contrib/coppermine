@@ -27,6 +27,7 @@ Changelog
 *********************************************
 
 2006-08-07 [D] Added breadcrumb to config section of documentation {GauGau}
+2006-08-05 [B] Fixed the exif/iptc issues -  watermark related.
 2006-08-01 [C] Fixed relative positioning glitch of navmenu in IE {GauGau}
 2006-07-28 [D] Fixed anchor link in docs {GauGau}
 2006-07-22 [A] Added the undo watermark and autorefresh in admin tools {Abbas}
