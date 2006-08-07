@@ -268,7 +268,7 @@ hr {
         border-left: #000000 0px solid;
         border-bottom: #000000 0px solid;
         height: 0px;
-        width: 80%;
+        width: 98%;
         text-align: left;
 }
 
@@ -421,4 +421,14 @@ dt {
         padding-right: 10px;
         padding-bottom: 10px;
         padding-left: 10px;
+}
+
+.indent {
+        margin-left:20px;
+}
+
+. navlocator {
+        font-size:0.8em;
+        color: #0E72A4;
+        font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
 }
