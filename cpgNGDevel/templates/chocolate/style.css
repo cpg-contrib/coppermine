@@ -438,6 +438,13 @@ a.sortorder_options {
   font-size: 14px;
 }
 
+.listbox {
+        font-family: Verdana, Arial, Arial, Helvetica, sans-serif;
+        font-size: 100%;
+        border: 1px solid #E2DAC7;
+        vertical-align : middle;
+}
+
 .listbox_lang {
   color: #000000;
   background-color: #E2DAC7;
