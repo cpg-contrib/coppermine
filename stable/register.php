@@ -316,17 +316,6 @@ function check_user_info(&$error)
                                                                         '{USER_NAME}' => $user_name,
                                                                         '{ACT_LINK}' => $act_link,
                                                         );
-                                                        // custom hack: add profile fields - start
-                                                        $custom_line_break = "\n\r";
-                                                        $cutom_email_content = $custom_line_break.
-                                                                               $profile1.$custom_line_break.
-                                                                               $profile2.$custom_line_break.
-                                                                               $profile3.$custom_line_break.
-                                                                               $profile4.$custom_line_break.
-                                                                               $profile5.$custom_line_break.
-                                                                               $profile6;
-                                                        // custom hack: add profile fields - end
-
                                                         cpg_mail('admin', sprintf($lang_register_php_def['notify_admin_request_email_subject'], $CONFIG['gallery_name']), nl2br(strtr($lang_register_approve_email_def, $template_vars).$cutom_email_content));
                                         } else {
                                                         cpg_mail('admin', sprintf($lang_register_php_def['notify_admin_email_subject'], $CONFIG['gallery_name']), sprintf($lang_register_php_def['notify_admin_email_body'], $user_name));
