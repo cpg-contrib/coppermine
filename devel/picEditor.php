@@ -100,7 +100,7 @@ if ($CONFIG['thumb_method']=="gd2"){
 }elseif ($CONFIG['thumb_method']=="im"){
         require("include/imageObjectIM.class.php");
 }else{
-        die ("Editor class for your resize method not implemented");
+        die ($lang_editpics_php['error_editor_class']);
 }
 
 //////////////////////////////////Main script//////////////////////////////////////
@@ -176,7 +176,7 @@ if ($_GET['id']){
                                                         total_filesize = $total_filesize
                           WHERE pid = '$pid'");
 
-          $message = "Picture successfully saved - you can close this window now";
+          $message = sprintf($lang_editpics_php['success_picture'], '<a href="#" onclick="self.close();">', '</a>');
 
    }
 
@@ -211,7 +211,7 @@ if ($_GET['id']){
           cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET total_filesize = $total_filesize WHERE pid = '$pid'");
 
 
-        $message = "Thumbnail successfully saved - you can close this window now";
+        $message = sprintf($lang_editpics_php['success_thumb'], '<a href="#" onclick="self.close();">', '</a>');
 
    }
 
@@ -403,7 +403,7 @@ if ($_GET['id']){
     function lib_doc_size(){
       this.x=0;this.x2=bw.ie && document.body.offsetWidth-20||innerWidth||0;
       this.y=0;this.y2=bw.ie && document.body.offsetHeight-5||innerHeight||0;
-      if(!this.x2||!this.y2) return message('Document has no width or height')
+      if(!this.x2||!this.y2) return message('<?php print $lang_editpics_php['error_document_size']; ?>')
       this.x50=this.x2/2;this.y50=this.y2/2;
       return this;
     }
@@ -566,51 +566,59 @@ if ($_GET['id']){
 
    <td>
       <select name="angle" class="listbox">
-      <option value="0" selected="selected">Rotate</option>
-      <option value="90">-90&#176;</option>
-      <option value="180">180&#176;</option>
-      <option value="270">+90&#176;</option>
+        <option value="0" selected="selected"><?php print $lang_editpics_php['rotate']; ?></option>
+        <option value="90">-90&#176;</option>
+        <option value="180">180&#176;</option>
+        <option value="270">+90&#176;</option>
       </select>
    </td>
+<?php } ?>
    <!--
    <td >
-    <input valign="bottom" type="checkbox" class="checkbox" name="mirror" value="true" />
-      Mirror
+    <input valign="bottom" type="checkbox" class="checkbox" name="mirror" id="mirror" value="true" />
+    <label for="mirror" class="clickable_option">
+      <?php print $lang_editpics_php['mirror']; ?>
+    </label>
     </td>
 
 
-<?php } ?>
+
 
    <td>
        <select name="rescale" class="listbox">
-       <option value="">Scale
-       <option value="0.1">10%<option value="0.11">11%<option value="0.12">12%<option value="0.13">13%<option value="0.14">14%<option value="0.15">15%<option value="0.16">16%<option value="0.17">17%<option value="0.18">18%<option value="0.19">19%<option value="0.2">20%<option value="0.21">21%<option value="0.22">22%<option value="0.23">23%<option value="0.24">24%<option value="0.25">25%<option value="0.26">26%<option value="0.27">27%<option value="0.28">28%<option value="0.29">29%<option value="0.3">30%<option value="0.31">31%<option value="0.32">32%<option value="0.33">33%<option value="0.34">34%<option value="0.35">35%<option value="0.36">36%<option value="0.37">37%<option value="0.38">38%<option value="0.39">39%<option value="0.4">40%<option value="0.41">41%<option value="0.42">42%<option value="0.43">43%<option value="0.44">44%<option value="0.45">45%<option value="0.46">46%<option value="0.47">47%<option value="0.48">48%<option value="0.49">49%<option value="0.5">50%<option value="0.51">51%<option value="0.52">52%<option value="0.53">53%<option value="0.54">54%<option value="0.55">55%<option value="0.56">56%<option value="0.57">57%<option value="0.58">58%<option value="0.59">59%<option value="0.6">60%<option value="0.61">61%<option value="0.62">62%<option value="0.63">63%<option value="0.64">64%<option value="0.65">65%<option value="0.66">66%<option value="0.67">67%<option value="0.68">68%<option value="0.69">69%<option value="0.7">70%<option value="0.71">71%<option value="0.72">72%<option value="0.73">73%<option value="0.74">74%<option value="0.75">75%<option value="0.76">76%<option value="0.77">77%<option value="0.78">78%<option value="0.79">79%<option value="0.8">80%<option value="0.81">81%<option value="0.82">82%<option value="0.83">83%<option value="0.84">84%<option value="0.85">85%<option value="0.86">86%<option value="0.87">87%<option value="0.88">88%<option value="0.89">89%<option value="0.9">90%<option value="0.91">91%<option value="0.92">92%<option value="0.93">93%<option value="0.94">94%<option value="0.95">95%<option value="0.96">96%<option value="0.97">97%<option value="0.98">98%<option value="0.99">99%<option value="1">100%<option value="1.01">101%<option value="1.02">102%<option value="1.03">103%<option value="1.04">104%<option value="1.05">105%<option value="1.06">106%<option value="1.07">107%<option value="1.08">108%<option value="1.09">109%<option value="1.1">110%<option value="1.11">111%<option value="1.12">112%<option value="1.13">113%<option value="1.14">114%<option value="1.15">115%<option value="1.16">116%<option value="1.17">117%<option value="1.18">118%<option value="1.19">119%<option value="1.2">120%<option value="1.21">121%<option value="1.22">122%<option value="1.23">123%<option value="1.24">124%<option value="1.25">125%<option value="1.26">126%<option value="1.27">127%<option value="1.28">128%<option value="1.29">129%<option value="1.3">130%<option value="1.31">131%<option value="1.32">132%<option value="1.33">133%<option value="1.34">134%<option value="1.35">135%<option value="1.36">136%<option value="1.37">137%<option value="1.38">138%<option value="1.39">139%<option value="1.4">140%<option value="1.41">141%<option value="1.42">142%<option value="1.43">143%<option value="1.44">144%<option value="1.45">145%<option value="1.46">146%<option value="1.47">147%<option value="1.48">148%<option value="1.49">149%<option value="1.5">150%<option value="1.51">151%<option value="1.52">152%<option value="1.53">153%<option value="1.54">154%<option value="1.55">155%<option value="1.56">156%<option value="1.57">157%<option value="1.58">158%<option value="1.59">159%<option value="1.6">160%<option value="1.61">161%<option value="1.62">162%<option value="1.63">163%<option value="1.64">164%<option value="1.65">165%<option value="1.66">166%<option value="1.67">167%<option value="1.68">168%<option value="1.69">169%<option value="1.7">170%<option value="1.71">171%<option value="1.72">172%<option value="1.73">173%<option value="1.74">174%<option value="1.75">175%<option value="1.76">176%<option value="1.77">177%<option value="1.78">178%<option value="1.79">179%<option value="1.8">180%<option value="1.81">181%<option value="1.82">182%<option value="1.83">183%<option value="1.84">184%<option value="1.85">185%<option value="1.86">186%<option value="1.87">187%<option value="1.88">188%<option value="1.89">189%<option value="1.9">190%<option value="1.91">191%<option value="1.92">192%<option value="1.93">193%<option value="1.94">194%<option value="1.95">195%<option value="1.96">196%<option value="1.97">197%<option value="1.98">198%<option value="1.99">199%<option value="2">200%</option>
+         <option value=""><?php print $lang_editpics_php['scale']; ?></option>
+<?php
+for ($i=0.1;$i<=2.01;$i=$i+0.01) {
+print '         <option value="'.$i.'">';
+print $i*100;
+print '%</option>';
+print "\n";
+}
+?>
        </select>
    </td>
    <td>
-     OR
+     <?php print $lang_editpics_php['or'];  ?>
    </td>
    <td>
        <select name="widthheight" class="listbox" >
-       <option value="width">New width
-       <option value="height">New height
-       </option>
+           <option value="width"><?php print $lang_editpics_php['new_width'];  ?></option>
+           <option value="height"><?php print $lang_editpics_php['new_height'];  ?></option>
        </select>
    </td>
    <td>
-       <input type="text" size="3" name="newsize" class="textinput" /> px
+       <input type="text" size="3" name="newsize" id="newsize" class="textinput" /> px
    </td>
    -->
-
-
-
    <td>
-     <input type="checkbox" class="checkbox" name="cropping" value="true" onclick="showCorners(this)" />
-     Enable clipping, apply to crop
+     <input type="checkbox" class="checkbox" name="cropping" id="cropping" value="true" onclick="showCorners(this)" />
+     <label for="cropping" class="clickable_option">
+       <?php print $lang_editpics_php['enable_clipping'];  ?>
+     </label>
    </td>
    <td title="Less quality creates a smaller file, default is 80%" >
         <select id="quality" name="quality" class="listbox" >
-        <option value="80" selected="selected">JPEG Output Quality</option>
+        <option value="80" selected="selected"><?php print $lang_editpics_php['jpeg_quality'];  ?></option>
         <?php
         for ( $counter = 10; $counter <= 100; $counter += 5) {
             $selected = ($imgObj->quality == $counter) ? 'selected="selected" ' : '';

@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-08-09 [B] Replaced hard-coded strings in crop/rotate function with actual translation strings {GauGau}
 2006-08-08 [D] Resized some images in the docs for faster loading of the page {GauGau}
 2006-08-07 [D] Added breadcrumb to config section of documentation {GauGau}
 2006-08-06 [B] Fixed distorted album thumbs when using cropping and thumb width != height {Stramm}
