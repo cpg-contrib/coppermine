@@ -336,7 +336,7 @@ $lang_plugin_api = array(
   'error_wakeup' => "Couldn't awaken plugin '%s'",
   'error_install' => "Couldn't install plugin '%s'",
   'error_uninstall' => "Couldn't uninstall plugin '%s'",
-  'error_sleep' => "Couldn't uninstall plugin '%s'<br />",
+  'error_sleep' => "Couldn't switch off plugin '%s'<br />", //cpg1.5
 );
 
 // ------------------------------------------------------------------------- //

@@ -215,93 +215,93 @@ function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use, $wa
     // height/width
     $srcWidth = $imginfo[0];
     $srcHeight = $imginfo[1];
-	
-	//if cropping is enabled calculate cropping parameters
+
+        //if cropping is enabled calculate cropping parameters
     if ($thumb_use == 'ex') {
-		$thb_width = $CONFIG['thumb_width'];
-		$thb_height = $CONFIG['thumb_height'];
+                $thb_width = $CONFIG['thumb_width'];
+                $thb_height = $CONFIG['thumb_height'];
 
 
-		if ($new_size==$thb_width) {
-			$crop=1;
-			switch ($CONFIG['thumb_method']){
-				//cropping parameters for image magick
-				case "im" :
-				$resize_commands="";
-				if ($srcWidth/$srcHeight > $thb_width/$thb_height) {
-					$resize_commands .= "-resize x".$thb_height;
-					$resized_w = ($thb_height/$srcHeight) * $srcWidth;
-					$resize_commands .= " -crop ".$thb_width."x".$thb_height."+".round(($resized_w - $thb_width)/2)."+0";
-				} else {
-					$resize_commands .= "-resize ".$thb_width;
-					$resized_h = ($thb_width/$srcWidth) * $srcHeight;
-					$resize_commands .= " -crop ".$thb_width."x".$thb_height."+0+".round(($resized_h - $thb_height)/2);
-				}
-				break;
-				
-				//cropping parameters for GD2
-				default :
-			       if($srcHeight < $srcWidth)
-			       {
-			           $ratio = (double)($srcHeight / $thb_height);
-			
-			           $cpyWidth = round($thb_width * $ratio);
-			           if ($cpyWidth > $srcWidth)
-			           {
-			               $ratio = (double)($srcWidth / $thb_width);
-			               $cpyWidth = $srcWidth;
-			               $cpyHeight = round($thb_height * $ratio);
-			               $xOffset = 0;
-			               $yOffset = round(($srcHeight - $cpyHeight) / 2);
-			           } else {
-			               $cpyHeight = $srcHeight;
-			               $xOffset = round(($srcWidth - $cpyWidth) / 2);
-			               $yOffset = 0;
-			           }
-			
-			       } else {
-			           $ratio = (double)($srcWidth / $thb_width);
-			
-			           $cpyHeight = round($thb_height * $ratio);
-			           if ($cpyHeight > $srcHeight)
-			           {
-			               $ratio = (double)($srcHeight / $thb_height);
-			               $cpyHeight = $srcHeight;
-			               $cpyWidth = round($thb_width * $ratio);
-			               $xOffset = round(($srcWidth - $cpyWidth) / 2);
-			               $yOffset = 0;
-			           } else {
-			               $cpyWidth = $srcWidth;
-			               $xOffset = 0;
-			               $yOffset = round(($srcHeight - $cpyHeight) / 2);
-			           }
-			       }
+                if ($new_size==$thb_width) {
+                        $crop=1;
+                        switch ($CONFIG['thumb_method']){
+                                //cropping parameters for image magick
+                                case "im" :
+                                $resize_commands="";
+                                if ($srcWidth/$srcHeight > $thb_width/$thb_height) {
+                                        $resize_commands .= "-resize x".$thb_height;
+                                        $resized_w = ($thb_height/$srcHeight) * $srcWidth;
+                                        $resize_commands .= " -crop ".$thb_width."x".$thb_height."+".round(($resized_w - $thb_width)/2)."+0";
+                                } else {
+                                        $resize_commands .= "-resize ".$thb_width;
+                                        $resized_h = ($thb_width/$srcWidth) * $srcHeight;
+                                        $resize_commands .= " -crop ".$thb_width."x".$thb_height."+0+".round(($resized_h - $thb_height)/2);
+                                }
+                                break;
 
-			    $destWidth = $thb_width;
-			    $destHeight = $thb_height;
-				$srcWidth = $cpyWidth;
-				$srcHeight = $cpyHeight;
-				break;
-			}
-		}
-		else $ratio = max($srcWidth, $srcHeight) / $new_size;
-	
-	} elseif ($thumb_use == 'wd') { // resize method width
+                                //cropping parameters for GD2
+                                default :
+                               if($srcHeight < $srcWidth)
+                               {
+                                   $ratio = (double)($srcHeight / $thb_height);
+
+                                   $cpyWidth = round($thb_width * $ratio);
+                                   if ($cpyWidth > $srcWidth)
+                                   {
+                                       $ratio = (double)($srcWidth / $thb_width);
+                                       $cpyWidth = $srcWidth;
+                                       $cpyHeight = round($thb_height * $ratio);
+                                       $xOffset = 0;
+                                       $yOffset = round(($srcHeight - $cpyHeight) / 2);
+                                   } else {
+                                       $cpyHeight = $srcHeight;
+                                       $xOffset = round(($srcWidth - $cpyWidth) / 2);
+                                       $yOffset = 0;
+                                   }
+
+                               } else {
+                                   $ratio = (double)($srcWidth / $thb_width);
+
+                                   $cpyHeight = round($thb_height * $ratio);
+                                   if ($cpyHeight > $srcHeight)
+                                   {
+                                       $ratio = (double)($srcHeight / $thb_height);
+                                       $cpyHeight = $srcHeight;
+                                       $cpyWidth = round($thb_width * $ratio);
+                                       $xOffset = round(($srcWidth - $cpyWidth) / 2);
+                                       $yOffset = 0;
+                                   } else {
+                                       $cpyWidth = $srcWidth;
+                                       $xOffset = 0;
+                                       $yOffset = round(($srcHeight - $cpyHeight) / 2);
+                                   }
+                               }
+
+                            $destWidth = $thb_width;
+                            $destHeight = $thb_height;
+                                $srcWidth = $cpyWidth;
+                                $srcHeight = $cpyHeight;
+                                break;
+                        }
+                }
+                else $ratio = max($srcWidth, $srcHeight) / $new_size;
+
+        } elseif ($thumb_use == 'wd') { // resize method width
         $ratio = $srcWidth / $new_size;
     } elseif ($thumb_use == 'ht') { // resize method height
         $ratio = $srcHeight / $new_size;
-	} else { // resize method any
+        } else { // resize method any
         $ratio = max($srcWidth, $srcHeight) / $new_size;
     }
     $ratio = max($ratio, 1.0);
-	if ($thumb_use == 'orig') $ratio=1.0;
-	if ($crop != 1){
-	    $destWidth = (int)($srcWidth / $ratio);
-	    $destHeight = (int)($srcHeight / $ratio);
-		$resize_commands = "-geometry ".$destWidth."x".$destHeight;
-		$xOffset = 0;
-		$yOffset = 0;
-	}
+        if ($thumb_use == 'orig') $ratio=1.0;
+        if ($crop != 1){
+            $destWidth = (int)($srcWidth / $ratio);
+            $destHeight = (int)($srcHeight / $ratio);
+                $resize_commands = "-geometry ".$destWidth."x".$destHeight;
+                $xOffset = 0;
+                $yOffset = 0;
+        }
     // Method for thumbnails creation
     switch ($method) {
         case "im" :
@@ -317,14 +317,14 @@ function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use, $wa
 
             $output = array();
             /*
-             * Hack for working with ImageMagick on WIndows even if IM is installed in C:\Program Files.
+             * Hack for working with ImageMagick on Windows even if IM is installed in C:\Program Files.
              * By Aditya Mooley <aditya@sanisoft.com>
              */
-			if ($sharpen==1 && $CONFIG['enable_unsharp']==1) {
-			$unsharp_mask = " -unsharp ".$CONFIG['unsharp_radius']."x".sqrt($CONFIG['unsharp_radius'])."+".($CONFIG['unsharp_amount']/100)."+".($CONFIG['unsharp_threshold']/100)." ";
- 			} 
-			else $unsharp_mask = "";
-			
+                        if ($sharpen==1 && $CONFIG['enable_unsharp']==1) {
+                        $unsharp_mask = " -unsharp ".$CONFIG['unsharp_radius']."x".sqrt($CONFIG['unsharp_radius'])."+".($CONFIG['unsharp_amount']/100)."+".($CONFIG['unsharp_threshold']/100)." ";
+                         }
+                        else $unsharp_mask = "";
+
             if (eregi("win",$_ENV['OS'])) {
                 $cmd = "\"".str_replace("\\","/", $CONFIG['impath'])."convert\" -quality {$CONFIG['jpeg_qual']} {$CONFIG['im_options']} ".$resize_commands." ".$unsharp_mask." ".str_replace("\\","/" ,$src_file )." ".str_replace("\\","/" ,$im_dest_file );
                 exec ("\"$cmd\"", $output, $retval);
@@ -434,11 +434,11 @@ function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use, $wa
             touch($dest_file);
             $fh=fopen($dest_file,'w');
             fclose($fh);
-			
-			//sharpen the thumb
-			if ($sharpen==1 && $CONFIG['enable_unsharp']==1) {
-			UnsharpMask($dst_img, $CONFIG['unsharp_amount'], $CONFIG['unsharp_radius'], $CONFIG['unsharp_threshold']);
-			}
+
+                        //sharpen the thumb
+                        if ($sharpen==1 && $CONFIG['enable_unsharp']==1) {
+                        UnsharpMask($dst_img, $CONFIG['unsharp_amount'], $CONFIG['unsharp_radius'], $CONFIG['unsharp_threshold']);
+                        }
 
             if ($media_type != "false") {
                 //if a manual thumb gets generated we watermark the thumb with the media type
@@ -523,97 +523,97 @@ function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use, $wa
 }
 
 //function to sharpen images using GD2
-function UnsharpMask($img, $amount, $radius, $threshold)	{
+function UnsharpMask($img, $amount, $radius, $threshold)        {
 ////////////////////////////////////////////////////////////////////////////////////////////////
 ////
 ////                  p h p U n s h a r p M a s k
 ////
-////	Unsharp mask algorithm by Torstein Hønsi 2003.
-////	         thoensi_at_netcom_dot_no.
-////	           Please leave this notice.
+////        Unsharp mask algorithm by Torstein Hønsi 2003.
+////                 thoensi_at_netcom_dot_no.
+////                   Please leave this notice.
 ////
 ///////////////////////////////////////////////////////////////////////////////////////////////
-	if ($amount > 500)	$amount = 500;
-	$amount = $amount * 0.016;
-	if ($radius > 50)	$radius = 50;
-	$radius = $radius * 2;
-	if ($threshold > 255)	$threshold = 255;
-	
-	$radius = abs(round($radius)); 	// Only integers make sense.
-	if ($radius == 0) {
-		return $img; imagedestroy($img); break;		}
-	$w = imagesx($img); $h = imagesy($img);
-	$imgCanvas = imagecreatetruecolor($w, $h);
-	$imgCanvas2 = imagecreatetruecolor($w, $h);
-	$imgBlur = imagecreatetruecolor($w, $h);
-	$imgBlur2 = imagecreatetruecolor($w, $h);
-	imagecopy ($imgCanvas, $img, 0, 0, 0, 0, $w, $h);
-	imagecopy ($imgCanvas2, $img, 0, 0, 0, 0, $w, $h);
-	
-	for ($i = 0; $i < $radius; $i++)	{
-		imagecopy ($imgBlur, $imgCanvas, 0, 0, 1, 1, $w - 1, $h - 1); // up left
-		imagecopymerge ($imgBlur, $imgCanvas, 1, 1, 0, 0, $w, $h, 50); // down right
-		imagecopymerge ($imgBlur, $imgCanvas, 0, 1, 1, 0, $w - 1, $h, 33.33333); // down left
-		imagecopymerge ($imgBlur, $imgCanvas, 1, 0, 0, 1, $w, $h - 1, 25); // up right
-		imagecopymerge ($imgBlur, $imgCanvas, 0, 0, 1, 0, $w - 1, $h, 33.33333); // left
-		imagecopymerge ($imgBlur, $imgCanvas, 1, 0, 0, 0, $w, $h, 25); // right
-		imagecopymerge ($imgBlur, $imgCanvas, 0, 0, 0, 1, $w, $h - 1, 20 ); // up
-		imagecopymerge ($imgBlur, $imgCanvas, 0, 1, 0, 0, $w, $h, 16.666667); // down
-		imagecopymerge ($imgBlur, $imgCanvas, 0, 0, 0, 0, $w, $h, 50); // center
-		imagecopy ($imgCanvas, $imgBlur, 0, 0, 0, 0, $w, $h);
+        if ($amount > 500)        $amount = 500;
+        $amount = $amount * 0.016;
+        if ($radius > 50)        $radius = 50;
+        $radius = $radius * 2;
+        if ($threshold > 255)        $threshold = 255;
 
-		imagecopy ($imgBlur2, $imgCanvas2, 0, 0, 0, 0, $w, $h);
-		imagecopymerge ($imgBlur2, $imgCanvas2, 0, 0, 0, 0, $w, $h, 50);
-		imagecopymerge ($imgBlur2, $imgCanvas2, 0, 0, 0, 0, $w, $h, 33.33333);
-		imagecopymerge ($imgBlur2, $imgCanvas2, 0, 0, 0, 0, $w, $h, 25);
-		imagecopymerge ($imgBlur2, $imgCanvas2, 0, 0, 0, 0, $w, $h, 33.33333);
-		imagecopymerge ($imgBlur2, $imgCanvas2, 0, 0, 0, 0, $w, $h, 25);
-		imagecopymerge ($imgBlur2, $imgCanvas2, 0, 0, 0, 0, $w, $h, 20 );
-		imagecopymerge ($imgBlur2, $imgCanvas2, 0, 0, 0, 0, $w, $h, 16.666667);
-		imagecopymerge ($imgBlur2, $imgCanvas2, 0, 0, 0, 0, $w, $h, 50);
-		imagecopy ($imgCanvas2, $imgBlur2, 0, 0, 0, 0, $w, $h);
-		
-		}
+        $radius = abs(round($radius));         // Only integers make sense.
+        if ($radius == 0) {
+                return $img; imagedestroy($img); break;                }
+        $w = imagesx($img); $h = imagesy($img);
+        $imgCanvas = imagecreatetruecolor($w, $h);
+        $imgCanvas2 = imagecreatetruecolor($w, $h);
+        $imgBlur = imagecreatetruecolor($w, $h);
+        $imgBlur2 = imagecreatetruecolor($w, $h);
+        imagecopy ($imgCanvas, $img, 0, 0, 0, 0, $w, $h);
+        imagecopy ($imgCanvas2, $img, 0, 0, 0, 0, $w, $h);
 
-	for ($x = 0; $x < $w; $x++)	{ // each row
-		for ($y = 0; $y < $h; $y++)	{ // each pixel
-				
-			$rgbOrig = ImageColorAt($imgCanvas2, $x, $y);
-			$rOrig = (($rgbOrig >> 16) & 0xFF);
-			$gOrig = (($rgbOrig >> 8) & 0xFF);
-			$bOrig = ($rgbOrig & 0xFF);
-			
-			$rgbBlur = ImageColorAt($imgCanvas, $x, $y);
-			
-			$rBlur = (($rgbBlur >> 16) & 0xFF);
-			$gBlur = (($rgbBlur >> 8) & 0xFF);
-			$bBlur = ($rgbBlur & 0xFF);
-			
-			$rNew = (abs($rOrig - $rBlur) >= $threshold) 
-				? max(0, min(255, ($amount * ($rOrig - $rBlur)) + $rOrig)) 
-				: $rOrig;
-			$gNew = (abs($gOrig - $gBlur) >= $threshold) 
-				? max(0, min(255, ($amount * ($gOrig - $gBlur)) + $gOrig)) 
-				: $gOrig;
-			$bNew = (abs($bOrig - $bBlur) >= $threshold) 
-				? max(0, min(255, ($amount * ($bOrig - $bBlur)) + $bOrig)) 
-				: $bOrig;
-			
-			
-						
-			if (($rOrig != $rNew) || ($gOrig != $gNew) || ($bOrig != $bNew)) {
-    				$pixCol = ImageColorAllocate($img, $rNew, $gNew, $bNew);
-    				ImageSetPixel($img, $x, $y, $pixCol);
-				}
+        for ($i = 0; $i < $radius; $i++)        {
+                imagecopy ($imgBlur, $imgCanvas, 0, 0, 1, 1, $w - 1, $h - 1); // up left
+                imagecopymerge ($imgBlur, $imgCanvas, 1, 1, 0, 0, $w, $h, 50); // down right
+                imagecopymerge ($imgBlur, $imgCanvas, 0, 1, 1, 0, $w - 1, $h, 33.33333); // down left
+                imagecopymerge ($imgBlur, $imgCanvas, 1, 0, 0, 1, $w, $h - 1, 25); // up right
+                imagecopymerge ($imgBlur, $imgCanvas, 0, 0, 1, 0, $w - 1, $h, 33.33333); // left
+                imagecopymerge ($imgBlur, $imgCanvas, 1, 0, 0, 0, $w, $h, 25); // right
+                imagecopymerge ($imgBlur, $imgCanvas, 0, 0, 0, 1, $w, $h - 1, 20 ); // up
+                imagecopymerge ($imgBlur, $imgCanvas, 0, 1, 0, 0, $w, $h, 16.666667); // down
+                imagecopymerge ($imgBlur, $imgCanvas, 0, 0, 0, 0, $w, $h, 50); // center
+                imagecopy ($imgCanvas, $imgBlur, 0, 0, 0, 0, $w, $h);
+
+                imagecopy ($imgBlur2, $imgCanvas2, 0, 0, 0, 0, $w, $h);
+                imagecopymerge ($imgBlur2, $imgCanvas2, 0, 0, 0, 0, $w, $h, 50);
+                imagecopymerge ($imgBlur2, $imgCanvas2, 0, 0, 0, 0, $w, $h, 33.33333);
+                imagecopymerge ($imgBlur2, $imgCanvas2, 0, 0, 0, 0, $w, $h, 25);
+                imagecopymerge ($imgBlur2, $imgCanvas2, 0, 0, 0, 0, $w, $h, 33.33333);
+                imagecopymerge ($imgBlur2, $imgCanvas2, 0, 0, 0, 0, $w, $h, 25);
+                imagecopymerge ($imgBlur2, $imgCanvas2, 0, 0, 0, 0, $w, $h, 20 );
+                imagecopymerge ($imgBlur2, $imgCanvas2, 0, 0, 0, 0, $w, $h, 16.666667);
+                imagecopymerge ($imgBlur2, $imgCanvas2, 0, 0, 0, 0, $w, $h, 50);
+                imagecopy ($imgCanvas2, $imgBlur2, 0, 0, 0, 0, $w, $h);
+
+                }
+
+        for ($x = 0; $x < $w; $x++)        { // each row
+                for ($y = 0; $y < $h; $y++)        { // each pixel
+
+                        $rgbOrig = ImageColorAt($imgCanvas2, $x, $y);
+                        $rOrig = (($rgbOrig >> 16) & 0xFF);
+                        $gOrig = (($rgbOrig >> 8) & 0xFF);
+                        $bOrig = ($rgbOrig & 0xFF);
+
+                        $rgbBlur = ImageColorAt($imgCanvas, $x, $y);
+
+                        $rBlur = (($rgbBlur >> 16) & 0xFF);
+                        $gBlur = (($rgbBlur >> 8) & 0xFF);
+                        $bBlur = ($rgbBlur & 0xFF);
+
+                        $rNew = (abs($rOrig - $rBlur) >= $threshold)
+                                ? max(0, min(255, ($amount * ($rOrig - $rBlur)) + $rOrig))
+                                : $rOrig;
+                        $gNew = (abs($gOrig - $gBlur) >= $threshold)
+                                ? max(0, min(255, ($amount * ($gOrig - $gBlur)) + $gOrig))
+                                : $gOrig;
+                        $bNew = (abs($bOrig - $bBlur) >= $threshold)
+                                ? max(0, min(255, ($amount * ($bOrig - $bBlur)) + $bOrig))
+                                : $bOrig;
+
+
+
+                        if (($rOrig != $rNew) || ($gOrig != $gNew) || ($bOrig != $bNew)) {
+                                    $pixCol = ImageColorAllocate($img, $rNew, $gNew, $bNew);
+                                    ImageSetPixel($img, $x, $y, $pixCol);
+                                }
 }
-		}
+                }
 
-	imagedestroy($imgCanvas);
-	imagedestroy($imgCanvas2);
-	imagedestroy($imgBlur);
-	imagedestroy($imgBlur2);
-	
-	return $img;
-	}
+        imagedestroy($imgCanvas);
+        imagedestroy($imgCanvas2);
+        imagedestroy($imgBlur);
+        imagedestroy($imgBlur2);
+
+        return $img;
+        }
 
 ?>
