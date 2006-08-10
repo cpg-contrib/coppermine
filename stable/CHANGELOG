@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-08-10 [B] Removed BOM (Byte Order Mark) from Hebrew, Polish and Slovenian {GauGau}
 2006-08-10 [D] Changed minimum requirements section in docs from PHP4.1.0 to PHP4.2.0 {GauGau}
 2006-08-09 [B] Fixed invalid character at start of dutch language file {Nibbler}
 2006-08-01 [C] Fixed relative positioning glitch of navmenu in IE {GauGau}
