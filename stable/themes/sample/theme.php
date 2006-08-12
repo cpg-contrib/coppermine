@@ -1412,7 +1412,7 @@ function theme_admin_mode_menu()
                 '{PICTURES_TITLE}' => $lang_gallery_admin_menu['pictures_title'],
                 '{PICTURES_LNK}' => $lang_gallery_admin_menu['pictures_lnk'],
                 '{DOCUMENTATION_HREF}' => $documentation_href,
-                '{DOCUMENTATION_TITLE}' => $lang_gallery_admin_menu['documentation_lnk'],
+                '{DOCUMENTATION_TITLE}' => $lang_gallery_admin_menu['documentation_title'],
                 '{DOCUMENTATION_LNK}' => $lang_gallery_admin_menu['documentation_lnk'],
                 );
 
