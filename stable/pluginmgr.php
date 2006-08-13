@@ -50,6 +50,8 @@ EOT;
     $installed_count = 0;
     foreach ($CPG_PLUGINS as $thisplugin) {
         $installed_count++;
+        unset($extra_info);
+        unset($install_info);
         include('./plugins/'.$thisplugin->path.'/configuration.php');
 
         $safename = addslashes(str_replace('&nbsp;', '', $name));
@@ -68,42 +70,51 @@ EOT;
             <td width="90%">
                 <table border="0" width="100%" cellspacing="0" cellpadding="0">
                     <tr>
-                        <td class="tableb" width="50%"><b>{$lang_pluginmgr_php['name']}</b> $name {$lang_pluginmgr_php['vers']}$version</td>
-                        <td class="tableb" width="50%"><b>{$lang_pluginmgr_php['author']}</b> $author</td>
+                        <td class="tableh2" width="50%"><b>{$lang_pluginmgr_php['name']}</b> $name {$lang_pluginmgr_php['vers']}$version</td>
+                        <td class="tableh2" width="50%">$extra</td>
+                    </tr>
+                    <tr>
+                        <td class="tableb" colspan="2" width="100%"><b>{$lang_pluginmgr_php['author']}</b> $author</td>
                     </tr>
                     <tr>
                         <td class="tableb" colspan="2" width="100%"><b>{$lang_pluginmgr_php['desc']}</b> $description</td>
                     </tr>
-                    $extra
                 </table>
             </td>
+            <td class="tableh1" valign="top">
+            <table border="0" width="100%" cellspacing="0" cellpadding="0">
+            <tr>
 EOT;
         if ($thisplugin->index > 0 && count($CPG_PLUGINS) > 1) {
             echo <<<EOT
-            <td class="tableb" width="3%" align="center" valign="middle">
+            <td width="3%" align="center" valign="middle">
                 <a href="pluginmgr.php?op=moveu&amp;p={$thisplugin->plugin_id}"><img src="images/up.gif"  border="0" alt="" /></a>
             </td>
 EOT;
         } else {
-            echo '<td class="tableb" width="3%"><img src="images/spacer.gif" width="16" height="16" /></td>';
+            echo '<td width="3%"><img src="images/spacer.gif" width="16" height="16" /></td>';
         }
 
         if ($thisplugin->index < (count($CPG_PLUGINS)-1)) {
             echo <<<EOT
-            <td class="tableb" width="3%" align="center" valign="middle">
+            <td width="3%" align="center" valign="middle">
                 <a href="pluginmgr.php?op=moved&amp;p={$thisplugin->plugin_id}"><img src="images/down.gif"  border="0" alt="" /></a>
             </td>
 EOT;
         } else {
-            echo '<td class="tableb" width="3%"><img src="images/spacer.gif" width="16" height="16" /></td>';
+            echo '<td width="3%"><img src="images/spacer.gif" width="16" height="16" /></td>';
         }
 
         echo <<<EOT
-            <td class="tableb" width="3%" align="center" valign="middle">
+            <td width="3%" align="center" valign="middle">
                 <a href="pluginmgr.php?op=uninstall&amp;p={$thisplugin->plugin_id}" onClick="return confirmUninstall('$safename')">
                     <img src="images/delete.gif"  border="0" alt="" />
                 </a>
             </td>
+                    
+        </tr>
+        </table>
+        </td>    
         </tr>
 EOT;
     }
@@ -143,7 +154,9 @@ EOT;
             if (!(file_exists('./plugins/'.$path.'/codebase.php') && file_exists('./plugins/'.$path.'/configuration.php'))) {
                 continue;
             }
-
+            
+            unset($extra_info);
+            unset($install_info);
             include('./plugins/'.$path.'/configuration.php');
 
             $safename = addslashes(str_replace('&nbsp;', '', $name));
@@ -154,25 +167,34 @@ EOT;
             <td width="90%">
                 <table border="0" width="100%" cellspacing="0" cellpadding="0">
                     <tr>
-                        <td class="tableb" width="50%"><b>{$lang_pluginmgr_php['name']}</b> $name {$lang_pluginmgr_php['vers']}$version</td>
-                        <td class="tableb" width="50%"><b>{$lang_pluginmgr_php['author']}</b> $author</td>
+                        <td class="tableh2" width="50%"><b>{$lang_pluginmgr_php['name']}</b> $name {$lang_pluginmgr_php['vers']}$version</td>
+                        <td class="tableh2">$extra</td>                       
                     </tr>
                     <tr>
-                        <td class="tableb" colspan="2" width="100%"><b>{$lang_pluginmgr_php['desc']}</b> $description</td>
+                        <td class="tableb" width="50%" colspan="2"><b>{$lang_pluginmgr_php['author']}</b> $author</td>
                     </tr>
-                    $extra
+                    <tr>
+                        <td class="tableb" width="50%" colspan="2"><b>{$lang_pluginmgr_php['desc']}</b> $description</td>
+                    </tr>
+                    
                 </table>
             </td>
-            <td class="tableb" width="5%" align="center" valign="middle">
-                <img src="images/spacer.gif" width="16" height="16" />
-            </td>
-            <td class="tableb" width="5%" align="center" valign="middle">
-                <a href="pluginmgr.php?op=install&amp;p=$path"><img src="images/info.gif"  border="0" alt="" /></a>
-            </td>
-            <td class="tableb" width="5%" align="center" valign="middle">
-                <a href="pluginmgr.php?op=delete&amp;p=$path" onClick="return confirmDel('$safename')">
-                    <img src="images/delete.gif"  border="0" alt="" />
-                </a>
+            <td class="tableh1" valign="top">
+                <table border="0" width="100%" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td width="5%" align="center" valign="top">
+                        <img src="images/spacer.gif" width="16" height="16" />
+                    </td>
+                    <td width="5%" align="center" valign="top">
+                        <a href="pluginmgr.php?op=install&amp;p=$path"><img src="images/info.gif"  border="0" alt="" /></a>
+                    </td>
+                    <td width="5%" align="center" valign="top">
+                        <a href="pluginmgr.php?op=delete&amp;p=$path" onClick="return confirmDel('$safename')">
+                            <img src="images/delete.gif"  border="0" alt="" />
+                        </a>
+                    </td>
+                </tr>
+                </table>
             </td>
             </tr>
 EOT;
