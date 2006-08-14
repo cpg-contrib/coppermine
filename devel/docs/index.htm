@@ -566,8 +566,6 @@ If you have shell access to your server, you can apply the native <a href="http:
 
 <a name="getting"></a>
 <h2>2.2 Getting started</h2>
-<p>Log in with the admin username and password you set up during install, click on the &quot;Show admin controls&quot; link if it is visible, go to the <strong>Config</strong> page and start to configure your gallery. Note that even if you are a member of the administrator group, you need to be in &quot;admin mode&quot; to configure your gallery.</p>
-<p>There are some settings in config that can't be changed later (if there are already files in the database) - make sure to set them up correctly in the first place. Although you'll surely want to start using coppermine immediately it is advisable to configure those settings (marked with an asterisk &quot;*&quot;) properly at the very beginning.</p>
 <p>Use the &quot;<strong><a href="#albmgr">Album Manager</a></strong>&quot; (&quot;Albums&quot; link in the admin menu) in to create and order your albums. You'll need at least one album your files can go into.</p>
 <p>Use the <strong>anonymous</strong> group to define what non-registered users can and can't do (in the <a href="#group_cp">groups</a> panel).</p>
 <p>Use the <strong><a href="#modif_alb_pics">properties</a></strong> of an album to modify its description and permissions.
@@ -584,8 +582,37 @@ If you have shell access to your server, you can apply the native <a href="http:
 <a name="getting_concepts"></a>
 <h3>2.2.1 Basic concepts</h3>
 <p>Of course you're exited about Coppermine and want to start with it right now. However, there are some basic considerations you should make up your mind about first, as some settings can't be changed easily once your gallery has been populated with content.</p>
-TBC
+<p>So this section is meant as a guide once you've finished <a href="#installation">installing</a> Coppermine. Go through it carefully to avoid issues that may turn up later.</p>
+<ul>
+        <li><strong><a href="#getting_concepts_basic">Initial configuration</a></strong><br />
+        Settings you should edit immediately after finishing the install</li>
+        <li><strong><a href="#getting_admin_account">Your admin account</a></strong><br /></li>
+        <li><strong>Check uploads</strong><br /></li>
+        <li><strong>Consider bridging</strong><br /></li>
+        <li><strong>What are your visitors allowed to do?</strong><br /></li>
+        <li><strong>Change your coppermine's design</strong><br /></li>
+</ul>
 <p><a class="back" href="#top">Back to top</a></p><hr />
+
+<a name="getting_initial_configuration"></a>
+<h3>2.2.2 Initial configuration</h3>
+<p>There are some settings in Coppermine's config that you should edit right after finishing install.</p>
+<p>Log in with the admin username and password you set up during install, click on the &quot;Show admin controls&quot; link if it is visible, go to the <strong>Config</strong> page and start to configure your gallery. Note that even if you are a member of the administrator group, you need to be have &quot;Show admin controls&quot; enabled. In previous versions, this used to be named &quot;admin mode&quot;, but was renamed because some people thought that switching from admin mode to user mode showed them what regular users can see (which is not the case).</p>
+<ul>
+  <li><a href="#admin_general_email">Gallery administrator email</a></li>
+  <li><a href="#admin_general_coppermine-url">URL of your coppermine gallery folder</a></li>
+</ul>
+<p><a class="back" href="#top">Back to top</a></p><hr />
+
+<a name="getting_admin_account"></a>
+<h3>2.2.3 Your admin account</h3>
+<p>It's mandatory to have your admin account configured properly and to memorize the admin account data. Coppermine even provides you with the option to retrieve a lost password, but for this, you have to configure an email address for every account. When users sign up, they have to enter an email address, so this should not be a problem. However, the admin account that you created during setup doesn't have an email account yet. You should go to your profile when logged in as admin and specify a valid email address for the admin there - this way, you can later request a new password if you forget it.</p>
+<p><a class="back" href="#top">Back to top</a></p><hr />
+
+<p>There are some settings in config that can't be changed later (if there are already files in the database) - make sure to set them up correctly in the first place. Although you'll surely want to start using coppermine immediately it is advisable to configure those settings (marked with an asterisk &quot;*&quot;) properly at the very beginning.</p>
+
+
+
 
 
 <a name="creating"></a>
@@ -1263,8 +1290,9 @@ The process of uploading pictures is a matter of following a simple dialog. It t
 <a name="admin_general_time-offset_end"></a>
 <hr />
 <a name="admin_general_encrypt_password_start"></a><h4>Enable encrypted passwords</h4>
-<p>This option affects changes on user passwords that are stored as plain text in your database (this is the case if you have upgraded from previous versions of coppermine that did not have this feature). It will encrypt all passwords in the database, and all future passwords will be stored encypted as well. This process can not be reversed: once encryption in turned on, it can not be turned off, so use this option only after giving it some serious consideration.</p>
+<p>This option affects changes on user passwords that are stored as plain text in your database (this is the case if you have upgraded from previous versions of coppermine that did not have this feature). It will encrypt all passwords in the database, and all future passwords will be stored encypted as well. This process can not be reversed: once encryption is turned on, it can not be turned off, so use this option only after giving it some serious consideration.</p>
 <p>This option increases user security in coppermine, but comes with a drawback inherent to this method: even the admin will not be able to recover a lost password of a user (or his own password). The password can only be reset to another value using the "I forgot my password" option during login.</p>
+<p>This option is only available if you have upgraded your coppermine install from cpg1.0 to cpg1.3.x. More recent versions (cpg1.4.x or better) encrypt the passwords by default, so this option will not be shown.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; General settings &rarr; Enable encrypted passwords</p>
 <p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_general_encrypt_password_end"></a>
