@@ -25,6 +25,8 @@ Changelog
 [O] = Optimization of code
 [S] = Security fix (issues that are related to security)
 *********************************************
+
+2006-08-15 [A] Added CSS class tableb_alternate to all themes, allowing alternating rows for lists of any kind {GauGau}
 2006-08-11 [B] Fixed duplicate documentation_lnk per http://coppermine-gallery.net/forum/index.php?topic=33836.msg158112#msg158112 {Donnoman}
 2006-08-11 [D] Added $extra_info and $install_info implementations to the sample plugin {Donnoman}
 2006-08-11 [C] Changed pluginmgr.php to display $extra_info and $install_info clearly with its associated plugin {Donnoman}

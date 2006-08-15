@@ -23,6 +23,7 @@
 /* Hex BDBEBD = RGB 189,190,189 = dark grey    */
 /* Hex D1D7DC = RGB 209,215,220 = medium grey  */
 /* Hex CCD7E0 = RGB 204,215,224 = light grey   */
+/* Hex DDDDDD = RGB 221,221,221 = light grey   */
 /* Hex CBD7DE = RGB 203,215,222 = steel grey   */
 /* Hex F2F5F7 = RGB 242,245,247 = dark white   */
 /* Hex EFEFEF = RGB 239,239,239 = dark white   */
@@ -219,6 +220,13 @@ a:hover {
         padding-right: 10px;
         padding-bottom: 3px;
         padding-left: 10px;
+}
+
+/* This class will be used in conjunction with class tableb: attributes not particularly (re)-assigned will be taken into account from tableb. */
+/* It is being used to accomplish alternating row colors for lists. */
+/* It's recommended to only assign another background color that slightly differs from the one defined in tableb */
+.tableb_alternate {
+        background: #DDDDDD;
 }
 
 .tableb_compact {

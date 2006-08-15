@@ -58,6 +58,13 @@ body { background-color: #4A4A4A; }
 .tableh2, .catrow_noalb, .tableh2_compact, .tablef, .img_caption_table th {         background : #343333 ; }
 .tableb, .catrow, .display_media, .tableb_compact, .thumbnails, .img_caption_table td { background : #454444 ; }
 
+/* This class will be used in conjunction with class tableb: attributes not particularly (re)-assigned will be taken into account from tableb. */
+/* It is being used to accomplish alternating row colors for lists. */
+/* It's recommended to only assign another background color that slightly differs from the one defined in tableb */
+.tableb_alternate {
+        background: #666666;
+}
+
 /* Borders for input controls */
 .textinput, .listbox, .button, .comment_button, .admin_menu, .admin_menu_thumb  {        border: 1px solid #666666; }
 .image { border: 1px solid #000000; }

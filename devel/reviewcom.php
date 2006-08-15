@@ -337,7 +337,7 @@ while ($row = mysql_fetch_array($result)) {
         $rowcounter = 0;
         $tableclass = 'tableb'; // change to "tableh2_compact" or similar for alternation
     } else {
-        $tableclass = 'tableb_alternate';
+        $tableclass = 'tableb tableb_alternate';
     }
     // build a link to the author's profile if applicable
     if ($row['author_id'] != 0) {

@@ -111,10 +111,10 @@ EOT;
                     <img src="images/delete.gif"  border="0" alt="" />
                 </a>
             </td>
-                    
+
         </tr>
         </table>
-        </td>    
+        </td>
         </tr>
 EOT;
     }
@@ -154,7 +154,7 @@ EOT;
             if (!(file_exists('./plugins/'.$path.'/codebase.php') && file_exists('./plugins/'.$path.'/configuration.php'))) {
                 continue;
             }
-            
+
             unset($extra_info);
             unset($install_info);
             include('./plugins/'.$path.'/configuration.php');
@@ -168,7 +168,7 @@ EOT;
                 <table border="0" width="100%" cellspacing="0" cellpadding="0">
                     <tr>
                         <td class="tableh2" width="50%"><b>{$lang_pluginmgr_php['name']}</b> $name {$lang_pluginmgr_php['vers']}$version</td>
-                        <td class="tableh2">$extra</td>                       
+                        <td class="tableh2">$extra</td>
                     </tr>
                     <tr>
                         <td class="tableb" width="50%" colspan="2"><b>{$lang_pluginmgr_php['author']}</b> $author</td>
@@ -176,7 +176,7 @@ EOT;
                     <tr>
                         <td class="tableb" width="50%" colspan="2"><b>{$lang_pluginmgr_php['desc']}</b> $description</td>
                     </tr>
-                    
+
                 </table>
             </td>
             <td class="tableh1" valign="top">

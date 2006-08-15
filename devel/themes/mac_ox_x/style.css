@@ -24,6 +24,7 @@
 /* #999999 = RBG 153,153,153 = (light grey)    */
 /* #FAFAFA = RBG 250,250,250 = (light grey)    */
 /* #BDBEBD = RBG 189,190,189 = (light grey)    */
+/* #DEDFDE = RGB 222,223,222 = (medium grey)   */
 /* #EFF0F1 = RBG 239,240,241 = (dark white)    */
 /* #EFEFEF = RBG 239,239,239 = (dark white)    */
 /* #FFFFFF = RBG 255,255,255 = (white)         */
@@ -67,6 +68,12 @@ body { background-color: #FAFAFA; }
 
 .tableb, .catrow, .display_media, .tableb_compact, .thumbnails, .img_caption_table td { background : #FFFFFF ; }
 
+/* This class will be used in conjunction with class tableb: attributes not particularly (re)-assigned will be taken into account from tableb. */
+/* It is being used to accomplish alternating row colors for lists. */
+/* It's recommended to only assign another background color that slightly differs from the one defined in tableb */
+.tableb_alternate {
+        background: #DEDFDE;
+}
 
 /* Borders for input controls */
 .textinput, .listbox, .button, .comment_button, .admin_menu, .admin_menu_thumb  {        border: 1px solid #666666; }

@@ -27,6 +27,7 @@
 /* #BDBDBD = RBG 189,190,189 = (light grey)    */
 /* #BDBEBD = RBG 189,190,189 = (light grey)    */
 /* #E6E6E6 = RBG 230,230,230 = (dark white)    */
+/* #DEDFDE = RGB 222,223,222 = (medium grey)   */
 /* #EFEFEF = RBG 239,239,239 = (dark white)    */
 /* #FFFFFF = RBG 255,255,255 = (white)         */
 /* #87CFED = RBG 135,207,237 = (cyan)          */
@@ -277,6 +278,13 @@ a:hover {
         padding-right: 10px;
         padding-bottom: 3px;
         padding-left: 10px;
+}
+
+/* This class will be used in conjunction with class tableb: attributes not particularly (re)-assigned will be taken into account from tableb. */
+/* It is being used to accomplish alternating row colors for lists. */
+/* It's recommended to only assign another background color that slightly differs from the one defined in tableb */
+.tableb_alternate {
+        background: #DEDFDE;
 }
 
 .tableb_compact {

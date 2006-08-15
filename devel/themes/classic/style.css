@@ -227,12 +227,11 @@ a:active {
         padding-left: 10px;
 }
 
+/* This class will be used in conjunction with class tableb: attributes not particularly (re)-assigned will be taken into account from tableb. */
+/* It is being used to accomplish alternating row colors for lists. */
+/* It's recommended to only assign another background color that slightly differs from the one defined in tableb */
 .tableb_alternate {
         background: #E4E4E4;
-        padding-top: 3px;
-        padding-right: 10px;
-        padding-bottom: 3px;
-        padding-left: 10px;
 }
 
 

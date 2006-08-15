@@ -37,6 +37,7 @@ Hex 5D6674 = RBG  93, 102, 116 = medium grey
 Hex 5D6876 = RBG  93, 104, 118 = medium grey
 Hex 616C7A = RBG  97, 108, 122 = medium grey
 Hex 616D7B = RBG  97, 108, 123 = medium grey
+Hex 666666 = RGB 102, 102, 102 = medium grey
 Hex 6A7786 = RBG 106, 119, 134 = medium grey
 Hex 777777 = RBG 119, 119, 119 = medium grey
 Hex 8090A3 = RBG 128, 144, 163 = steel grey
@@ -241,6 +242,13 @@ a:hover {
         padding-right: 10px;
         padding-bottom: 3px;
         padding-left: 10px;
+}
+
+/* This class will be used in conjunction with class tableb: attributes not particularly (re)-assigned will be taken into account from tableb. */
+/* It is being used to accomplish alternating row colors for lists. */
+/* It's recommended to only assign another background color that slightly differs from the one defined in tableb */
+.tableb_alternate {
+        background: #666666;
 }
 
 .tableb_compact {

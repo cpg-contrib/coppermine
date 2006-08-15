@@ -21,6 +21,7 @@
 /* #FFFFFF = RBG 255,255,255 = (white)         */
 /* #000000 = RBG   0,  0,  0 = (black)         */
 /* #FFA600 = RGB 255,166,  0 = (orange)        */
+/* #CCFF66 = RGB 206,255, 99 = (light green)   */
 /* #6BBE10 = RGB 107,190, 16 = (green)         */
 /* #1B2D04 = RGB  27, 45,  4 = (dark green)    */
 /* #FFFF00 = RGB 255,255,  0 = (yellow)        */
@@ -241,6 +242,13 @@ a:hover.yebg {
         padding-right: 10px;
         padding-bottom: 3px;
         padding-left: 10px;
+}
+
+/* This class will be used in conjunction with class tableb: attributes not particularly (re)-assigned will be taken into account from tableb. */
+/* It is being used to accomplish alternating row colors for lists. */
+/* It's recommended to only assign another background color that slightly differs from the one defined in tableb */
+.tableb_alternate {
+        background: #CCFF66;
 }
 
 .tableb_compact {
