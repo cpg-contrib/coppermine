@@ -40,7 +40,7 @@ if ((!is_array($data)) && $CONFIG['log_ecards'] && (strlen($_GET['data']) > 12))
 if (is_array($data)) {
 
 // Remove HTML tags as we can't trust what we receive
-foreach($data as $key => $value) $data[$key] = strtr($value, $HTML_SUBST);
+foreach($data as $key => $value) $data[$key] = html_entity_decode(strtr($value, $HTML_SUBST));
 // Load template parameters
 $params = array('{LANG_DIR}' => $lang_text_dir,
     '{TITLE}' => sprintf($lang_ecard_php['ecard_title'], $data['sn']),
