@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-08-16 [B] Fixed SEF plugin issue with favpics meta album {Nibbler}
 2006-08-16 [A] Added row alternation for config, user manager, group manager, category manager, banning {GauGau}
 2006-08-15 [A] Added CSS class tableb_alternate to all themes, allowing alternating rows for lists of any kind {GauGau}
 2006-08-11 [B] Fixed duplicate documentation_lnk per http://coppermine-gallery.net/forum/index.php?topic=33836.msg158112#msg158112 {Donnoman}
