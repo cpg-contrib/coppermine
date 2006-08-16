@@ -26,6 +26,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-08-16 [A] Added mass comment approval {GauGau}
+2006-08-16 [A] Added comment placeholder option {GauGau}
 2006-08-16 [B] Fixed row striping when config entries are hidden (ie. md5 passwords) {Nibbler}
 2006-08-16 [M] PHP6 compatibility fixes {Nibbler}
 2006-08-16 [B] Fixed SEF plugin issue with favpics meta album {Nibbler}

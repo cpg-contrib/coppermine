@@ -724,6 +724,8 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Sort order of comments', 'comments_sort_descending', 17, 'f=index.htm&amp;as=admin_comment_sort_start&amp;ae=admin_comment_sort_end'),
   array('Prefix for anonymous comments authors', 'comments_anon_pfx', 0, 'f=index.htm&amp;as=comments_anon_pfx&amp;ae=comments_anon_pfx_end'),
   array('Comments require approval', 'comment_approval', 19, 'f=index.htm&amp;as=admin_comment_approval&amp;ae=admin_comment_approval_end'), // cpg1.5.x
+  array('Only display comments needing approval on the &quot;Review Comments&quot; page', 'display_comment_approval_only', 1, 'f=index.htm&amp;as=admin_comment_display_comment_approval_only_start&amp;ae=admin_comment_display_comment_approval_only_end'), // cpg1.5.x
+  array('Display placeholder text to end users for comments waiting for admin approval', 'comment_placeholder', 1, 'f=index.htm&amp;as=admin_comment_display_placeholder_start&amp;ae=admin_comment_display_placeholder_end'), // cpg1.5.x
 
   'Files and thumbnails settings',
   array('Quality for JPEG files', 'jpeg_qual', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_jpeg_quality&amp;ae=admin_picture_thumbnail_jpeg_quality_end'),
@@ -1685,6 +1687,10 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
   'approval' => 'Approved', // cpg1.5.x
   'save_changes' => 'Save changes', // cpg1.5.x
   'n_confirm_delete' => 'Do you really want to delete the selected comment(s)?', // cpg1.5.x
+  'with_selected' => 'With selected', // cpg1.5.x
+  'delete' => 'delete', // cpg1.5.x
+  'approve' => 'approve', // cpg1.5.x
+  'disapprove' => 'disapprove', // cpg1.5.x
 );
 
 

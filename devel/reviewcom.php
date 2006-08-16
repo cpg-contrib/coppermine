@@ -86,18 +86,26 @@ if (isset($_POST['status_approved_no']) == TRUE) {
     }
 }
 
-// Delete comments if form is posted
+
 $nb_com_del = 0;
-if (isset($_POST['cid_array'])) {
+if (isset($_POST['cid_array'])) { // have any checkboxes been ticked?
     $cid_array = $_POST['cid_array'];
     $cid_set = '';
     foreach ($cid_array as $cid) {
             $cid_set .= ($cid_set == '') ? '(' . $cid : ', ' . $cid;
     }
     $cid_set .= ')';
-
-    cpg_db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id IN $cid_set");
-    $nb_com_del = mysql_affected_rows();
+    if($_POST['with_selected'] == 'delete') {
+            // Delete selected comments if form is posted
+            cpg_db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id IN $cid_set");
+            $nb_com_del = mysql_affected_rows();
+    } elseif($_POST['with_selected'] == 'approve') {
+        cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET `approval` = 'YES' WHERE msg_id IN $cid_set");
+        $nb_com_yes = mysql_affected_rows();
+    } elseif($_POST['with_selected'] == 'disapprove') {
+        cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET `approval` = 'NO' WHERE msg_id IN $cid_set");
+        $nb_com_no = mysql_affected_rows();
+    }
 }
 
 $result = cpg_db_query("SELECT count(*) FROM {$CONFIG['TABLE_COMMENTS']} WHERE 1");
@@ -116,7 +124,7 @@ $s100 = $count == 100 ? 'selected' : '';
 $single_picture = isset($_GET['pid']) ? (int)$_GET['pid'] : '';
 
 if ($start + $count < $comment_count) {
-    $next_link = "<a href=\"$next_target\" class=\"admin_menu\">{$lang_reviewcom_php['see_next']}&raquo;</a>&nbsp;&nbsp;-&nbsp;&nbsp;";
+    $next_link = "<a href=\"$next_target\" class=\"admin_menu\">{$lang_reviewcom_php['see_next']}&raquo;</a>";
 } else {
     $next_link = '';
 }
@@ -179,9 +187,12 @@ function checkBeforeSubmit() {
         }
     }
     if (counter > 0) {
-        return confirm("{$lang_reviewcom_php['n_confirm_delete']}");
+        // at least one checkbox has been ticked
+        if (document.getElementById('delete_selected').checked == true) {
+            // the ticked items are scheduled for deletion
+            return confirm("{$lang_reviewcom_php['n_confirm_delete']}");
+        }
     }
-
 }
 
 -->
@@ -224,6 +235,7 @@ $msg_txt
 EOT;
 }
 
+$help = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=admin_comment_display_comment_approval_only_start&amp;ae=admin_comment_display_comment_approval_only_end&amp;top=1', '600', '400');
 echo <<<EOT
         <tr>
                 <td class="tableh1" colspan="6">
@@ -231,6 +243,11 @@ echo <<<EOT
                         <tr>
                             <td class="tableh1">
                                 {$lang_reviewcom_php['title']}
+                            </td>
+                            <td class="tableh1" align="center">
+                                <input type="checkbox" name="approval_only" id="approval_only" class="checkbox" title="{$lang_reviewcom_php['only_approval']}" {$comment_approval_only_checked} value="1" />
+                                <label for="approval_only" class="clickable_option">{$lang_reviewcom_php['only_approval']}</label>
+                                {$help}
                             </td>
                             <td class="tableh1" align="center">
                                 $prev_link
@@ -380,12 +397,19 @@ echo <<<EOT
             <td class="tablef" valign="middle" align="center">
                 <input type="checkbox" name="checkAll2" onClick="selectAll(this,'cid_array');" class="checkbox" title="$lang_check_uncheck_all" />
             </td>
-            <td colspan="2" class="tablef" valign="middle" align="left">
-                <input type="checkbox" name="approval_only" id="approval_only" class="checkbox" title="{$lang_reviewcom_php['only_approval']}" {$comment_approval_only_checked} value="1" />
-                <label for="approval_only" class="clickable_option">{$lang_reviewcom_php['only_approval']}</label>
+            <td colspan="3" class="tablef" valign="middle" align="left">
+                {$lang_reviewcom_php['with_selected']}:
+                <input name="with_selected" id="delete_selected" type="radio" value="delete" />
+                <label for="delete_selected">{$lang_reviewcom_php['delete']}</label>
+                &nbsp;&nbsp;
+                <input name="with_selected" id="approve_selected" type="radio" value="approve" checked="checked" />
+                <label for="approve_selected">{$lang_reviewcom_php['approve']}</label>
+                &nbsp;&nbsp;
+                <input name="with_selected" id="disapprove_selected" type="radio" value="disapprove" />
+                <label for="disapprove_selected">{$lang_reviewcom_php['disapprove']}</label>
             </td>
-            <td colspan="3" align="center" class="tablef">
-                        <input type="submit" value="{$lang_reviewcom_php['save_changes']}" class="button" onclick="return checkBeforeSubmit();" />
+            <td colspan="2" align="center" class="tablef">
+                <input type="submit" value="{$lang_reviewcom_php['save_changes']}" class="button" onclick="return checkBeforeSubmit();" />
                 </td>
         </form>
         </tr>

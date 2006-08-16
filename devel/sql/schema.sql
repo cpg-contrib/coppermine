@@ -85,7 +85,7 @@ CREATE TABLE CPG_comments (
   msg_hdr_ip tinytext,
   author_md5_id varchar(32) NOT NULL default '',
   author_id int(11) NOT NULL default '0',
-  approval enum('YES','NO') NOT NULL default 'NO',
+  approval enum('YES','NO') NOT NULL default 'YES',
   PRIMARY KEY  (msg_id),
   KEY com_pic_id (pid)
 ) TYPE=MyISAM COMMENT='Used to store comments made on pics';

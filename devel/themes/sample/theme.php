@@ -2273,14 +2273,14 @@ function theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments, 
 function theme_html_picinfo(&$info)
 {
     global $lang_picinfo, $CONFIG, $CURRENT_PIC_DATA;
-	
-	if($CONFIG['picinfo_movie_download_link']){
-		$path_to_pic = $CONFIG['fullpath'] . $CURRENT_PIC_DATA['filepath'] . $CURRENT_PIC_DATA['filename'];
-		$mime_content = cpg_get_type($CURRENT_PIC_DATA['filename']);
-		if ($mime_content['content']=='movie') {
-			$info[$lang_picinfo['download_URL']] = '<a href="' . $CONFIG["ecards_more_pic_target"] . (substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') . $path_to_pic.'">'. $lang_picinfo['movie_player'] .'</a>';
-		}
-	}
+
+        if($CONFIG['picinfo_movie_download_link']){
+                $path_to_pic = $CONFIG['fullpath'] . $CURRENT_PIC_DATA['filepath'] . $CURRENT_PIC_DATA['filename'];
+                $mime_content = cpg_get_type($CURRENT_PIC_DATA['filename']);
+                if ($mime_content['content']=='movie') {
+                        $info[$lang_picinfo['download_URL']] = '<a href="' . $CONFIG["ecards_more_pic_target"] . (substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') . $path_to_pic.'">'. $lang_picinfo['movie_player'] .'</a>';
+                }
+        }
 
     $html = '';
 
@@ -2323,7 +2323,7 @@ function theme_html_picture()
       $condition = true;
     }elseif($CONFIG['thumb_use']=='any' && max($CURRENT_PIC_DATA['pwidth'], $CURRENT_PIC_DATA['pheight']) > $CONFIG['picture_width']){
       $condition = true;
-	//thumb cropping
+        //thumb cropping
     }elseif($CONFIG['thumb_use']=='ex' && max($CURRENT_PIC_DATA['pwidth'], $CURRENT_PIC_DATA['pheight']) > $CONFIG['picture_width']){
       $condition = true;
     }else{
@@ -2359,7 +2359,7 @@ function theme_html_picture()
         $picture_url = get_pic_url($CURRENT_PIC_DATA, 'fullsize');
     }
 
-	//thumb cropping
+        //thumb cropping
     $image_size = compute_img_size($CURRENT_PIC_DATA['pwidth'], $CURRENT_PIC_DATA['pheight'], $CONFIG['picture_width'], 'normal');
 
     $pic_title = '';
@@ -2670,9 +2670,15 @@ function theme_html_comments($pid)
                 if ($user_can_edit) { // the comment comes from the current visitor, display it with a warning that it needs admin approval
                     $pending_approval = '<img src="images/approve.gif" border="0" alt="" title="' . $lang_display_comments['pending_approval'] . '" align="middle" />';
                 } else { // the comment comes from someone else - don't display it at all
-                    $row['msg_author'] = '<em>'.$lang_display_comments['unapproved_comment'].'</em>';
-                    $row['msg_body'] = '<em>'.$lang_display_comments['pending_approval_message'].'</em>';
-                    $row['author_id'] = 0;
+                    if ($CONFIG['comment_placeholder'] == 0) {
+                        $row['msg_author'] = '';
+                        $row['msg_body'] = '';
+                        $row['author_id'] = 0;
+                    } else {
+                        $row['msg_author'] = '<em>'.$lang_display_comments['unapproved_comment'].'</em>';
+                        $row['msg_body'] = '<em>'.$lang_display_comments['pending_approval_message'].'</em>';
+                        $row['author_id'] = 0;
+                    }
                 }
             } // the comment is not approved - end
         } // user or guest is logged in - end
@@ -2720,7 +2726,11 @@ function theme_html_comments($pid)
             '{WIDTH}' => $CONFIG['picture_table_width']
             );
 
-        $html .= template_eval($template, $params);
+        if ($row['msg_author'] == '' && $row['msg_body'] == '') {
+            // don't display the empty comment
+        } else {
+            $html .= template_eval($template, $params);
+        }
     } // while-loop end
 
     if (USER_CAN_POST_COMMENTS && $CURRENT_ALBUM_DATA['comments'] == 'YES') {

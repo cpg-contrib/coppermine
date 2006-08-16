@@ -511,7 +511,10 @@ INSERT INTO CPG_config VALUES ('fullsize_padding_x', '5');
 INSERT INTO CPG_config VALUES ('fullsize_padding_y', '3');
 
 # Config approval
-ALTER TABLE CPG_comments add approval enum('YES','NO') NOT NULL default 'NO';
+ALTER TABLE CPG_comments add approval enum('YES','NO') NOT NULL default 'YES';
 INSERT INTO CPG_config VALUES ('comment_approval', '0');
 INSERT INTO CPG_config VALUES ('display_comment_approval_only', '0');
+INSERT INTO CPG_config VALUES ('comment_placeholder', '1');
+
+# Safe mode
 INSERT INTO CPG_config VALUES ('silly_safe_mode', '0');
