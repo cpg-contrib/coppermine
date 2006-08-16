@@ -81,7 +81,7 @@ EOT;
         $cmi++;
 }
 
-function form_input($text, $name, $help = '')
+function form_input($text, $name, $help = '', $row_style_class = 'tableb')
 {
     global $CONFIG;
 
@@ -93,13 +93,13 @@ function form_input($text, $name, $help = '')
 
     echo <<<EOT
                 <tr>
-                        <td width="60%" class="tableb">
+                        <td width="60%" class="{$row_style_class}">
                                 $text
                         </td>
-                        <td width="50%" class="tableb" valign="top">
+                        <td width="50%" class="{$row_style_class}" valign="top">
                             <input type="$type" class="textinput" maxlength="255" style="width: 100%" name="$name" value="$value"/>
                         </td>
-                        <td class="tableb" width="10%">
+                        <td class="{$row_style_class}" width="10%">
                                 $help
                         </td>
         </tr>
@@ -107,7 +107,7 @@ function form_input($text, $name, $help = '')
 EOT;
 }
 
-function form_yes_no($text, $name, $help = '')
+function form_yes_no($text, $name, $help = '', $row_style_class = 'tableb')
 {
     global $CONFIG, $lang_yes, $lang_no;
     $help = cpg_display_help($help);
@@ -118,15 +118,15 @@ function form_yes_no($text, $name, $help = '')
 
     echo <<<EOT
         <tr>
-                        <td class="tableb" width="60%">
+                        <td class="{$row_style_class}" width="60%">
                                 $text
                         </td>
-                        <td class="tableb" valign="top" width="50%">
+                        <td class="{$row_style_class}" valign="top" width="50%">
                                 <input type="radio" id="{$name}1" name="$name" value="1" $yes_selected/><label for="{$name}1" class="clickable_option">$lang_yes</label>
                                 &nbsp;&nbsp;
                                 <input type="radio" id="{$name}0" name="$name" value="0" $no_selected/><label for="{$name}0" class="clickable_option">$lang_no</label>
                         </td>
-                        <td class="tableb" width="10%">
+                        <td class="{$row_style_class}" width="10%">
                                 $help
                         </td>
         </tr>
@@ -134,7 +134,7 @@ function form_yes_no($text, $name, $help = '')
 EOT;
 }
 
-function form_img_pkg($text, $name, $help = '')
+function form_img_pkg($text, $name, $help = '', $row_style_class = 'tableb')
 {
     global $CONFIG;
     $help = cpg_display_help($help);
@@ -147,17 +147,17 @@ function form_img_pkg($text, $name, $help = '')
 
     echo <<<EOT
         <tr>
-            <td class="tableb" width="60%">
+            <td class="{$row_style_class}" width="60%">
                 $text
             </td>
-            <td class="tableb" valign="top" width="50%">
+            <td class="{$row_style_class}" valign="top" width="50%">
                 <select name="$name" class="listbox">
                     <option value="im" $im_selected>Image Magick</option>
                     <option value="gd1" $gd1_selected>GD version 1.x</option>
                     <option value="gd2" $gd2_selected>GD version 2.x</option>
                 </select>
             </td>
-            <td class="tableb" width="10%">
+            <td class="{$row_style_class}" width="10%">
                 $help
             </td>
         </tr>
@@ -165,7 +165,7 @@ function form_img_pkg($text, $name, $help = '')
 EOT;
 }
 
-function form_sort_order($text, $name, $help = '')
+function form_sort_order($text, $name, $help = '', $row_style_class = 'tableb')
 {
     global $CONFIG, $lang_admin_php;
 
@@ -184,10 +184,10 @@ function form_sort_order($text, $name, $help = '')
 
     echo <<<EOT
         <tr>
-            <td class="tableb" width="60%">
+            <td class="{$row_style_class}" width="60%">
                         $text
         </td>
-        <td class="tableb" valign="top" width="50%">
+        <td class="{$row_style_class}" valign="top" width="50%">
                         <select name="$name" class="listbox">
                                 <option value="ta" $ta_selected>{$lang_admin_php['title_a']}</option>
                                 <option value="td" $td_selected>{$lang_admin_php['title_d']}</option>
@@ -199,7 +199,7 @@ function form_sort_order($text, $name, $help = '')
                                 <option value="pd" $pd_selected>{$lang_admin_php['pos_d']}</option>
                         </select>
                 </td>
-                <td class="tableb" width="10%">
+                <td class="{$row_style_class}" width="10%">
                 $help
                 </td>
         </tr>
@@ -207,7 +207,7 @@ function form_sort_order($text, $name, $help = '')
 EOT;
 }
 
-function form_charset($text, $name, $help = '')
+function form_charset($text, $name, $help = '', $row_style_class = 'tableb')
 {
     global $CONFIG;
 
@@ -237,10 +237,10 @@ function form_charset($text, $name, $help = '')
 
     echo <<<EOT
         <tr>
-            <td class="tableb" width="60%">
+            <td class="{$row_style_class}" width="60%">
                         $text
         </td>
-        <td class="tableb" valign="top" width="50%">
+        <td class="{$row_style_class}" valign="top" width="50%">
                         <select name="$name" class="listbox">
 
 EOT;
@@ -250,7 +250,7 @@ EOT;
     echo <<<EOT
                         </select>
                 </td>
-                <td class="tableb" width="10%">
+                <td class="{$row_style_class}" width="10%">
                 $help
                 </td>
         </tr>
@@ -258,7 +258,7 @@ EOT;
 EOT;
 }
 
-function form_language($text, $name, $help = '')
+function form_language($text, $name, $help = '', $row_style_class = 'tableb')
 {
     global $CONFIG;
 
@@ -278,10 +278,10 @@ function form_language($text, $name, $help = '')
 
     echo <<<EOT
         <tr>
-            <td class="tableb" width="60%">
+            <td class="{$row_style_class}" width="60%">
                         $text
         </td>
-        <td class="tableb" valign="top" width="50%">
+        <td class="{$row_style_class}" valign="top" width="50%">
                         <select name="$name" class="listbox">
 
 EOT;
@@ -291,7 +291,7 @@ EOT;
     echo <<<EOT
                         </select>
                 </td>
-                <td class="tableb" width="10%">
+                <td class="{$row_style_class}" width="10%">
                 $help
                 </td>
         </tr>
@@ -299,7 +299,7 @@ EOT;
 EOT;
 }
 
-function form_theme($text, $name, $help = '')
+function form_theme($text, $name, $help = '', $row_style_class = 'tableb')
 {
     global $CONFIG;
     $help = cpg_display_help($help);
@@ -322,10 +322,10 @@ function form_theme($text, $name, $help = '')
 
     echo <<<EOT
         <tr>
-            <td class="tableb" width="60%">
+            <td class="{$row_style_class}" width="60%">
                         $text
         </td>
-        <td class="tableb" valign="top" width="50%">
+        <td class="{$row_style_class}" valign="top" width="50%">
                         <select name="$name" class="listbox">
 
 EOT;
@@ -335,7 +335,7 @@ EOT;
     echo <<<EOT
                         </select>
                 </td>
-                <td class="tableb" width="10%">
+                <td class="{$row_style_class}" width="10%">
                 $help
                 </td>
         </tr>
@@ -343,7 +343,7 @@ EOT;
 EOT;
 }
 // Added for allowing user to select which aspect of thumbnails to scale
-function form_scale($text, $name, $help = '')
+function form_scale($text, $name, $help = '', $row_style_class = 'tableb')
 {
    global $CONFIG, $lang_admin_php ;
 
@@ -358,10 +358,10 @@ function form_scale($text, $name, $help = '')
 
     echo <<<EOT
         <tr>
-            <td class="tableb" width="60%">
+            <td class="{$row_style_class}" width="60%">
                         $text
         </td>
-        <td class="tableb" valign="top" width="50%">
+        <td class="{$row_style_class}" valign="top" width="50%">
                         <select name="$name" class="listbox">
                                 <option value="any" $any_selected>{$lang_admin_php['th_any']}</option>
                                 <option value="ht" $ht_selected>{$lang_admin_php['th_ht']}</option>
@@ -369,7 +369,7 @@ function form_scale($text, $name, $help = '')
                                 <option value="ex" $ex_selected>{$lang_admin_php['th_ex']}</option>
                         </select>
                 </td>
-                <td class="tableb" width="10%">
+                <td class="{$row_style_class}" width="10%">
                 $help
                 </td>
         </tr>
@@ -377,7 +377,7 @@ function form_scale($text, $name, $help = '')
 EOT;
 }
 
-function form_lang_theme($text, $name, $help = '')
+function form_lang_theme($text, $name, $help = '', $row_style_class = 'tableb')
 {
     global $CONFIG, $lang_yes, $lang_no, $lang_admin_php;
     $help = cpg_display_help($help);
@@ -390,17 +390,17 @@ function form_lang_theme($text, $name, $help = '')
 
     echo <<<EOT
         <tr>
-            <td class="tableb" width="60%">
+            <td class="{$row_style_class}" width="60%">
                         $text
         </td>
-        <td class="tableb" valign="top" width="50%">
+        <td class="{$row_style_class}" valign="top" width="50%">
                         <input type="radio" id="{$name}1" name="$name" value="1" $yes_1_selected /><label for="{$name}1" class="clickable_option">$lang_yes:{$lang_admin_php['item']}</label>
                         &nbsp;&nbsp;
                         <input type="radio" id="{$name}2" name="$name" value="2" $yes_2_selected /><label for="{$name}2" class="clickable_option">$lang_yes:{$lang_admin_php['label']}+{$lang_admin_php['item']}</label>
                 &nbsp;&nbsp;
                 <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">$lang_no</label>
         </td>
-        <td class="tableb" width="10%">
+        <td class="{$row_style_class}" width="10%">
         $help
         </td>
         </tr>
@@ -408,7 +408,7 @@ function form_lang_theme($text, $name, $help = '')
 EOT;
 }
 
-function form_lang_debug($text, $name, $help = '')
+function form_lang_debug($text, $name, $help = '', $row_style_class = 'tableb')
 {
     global $CONFIG, $lang_yes, $lang_no, $lang_admin_php;
     $help = cpg_display_help($help);
@@ -421,10 +421,10 @@ function form_lang_debug($text, $name, $help = '')
 
     echo <<<EOT
         <tr>
-            <td class="tableb" width="60%">
+            <td class="{$row_style_class}" width="60%">
                                 $text
                 </td>
-                <td class="tableb" valign="top" width="50%">
+                <td class="{$row_style_class}" valign="top" width="50%">
                                 <input type="radio" id="{$name}1" name="$name" value="1" $yes_1_selected /><label for="{$name}1" class="clickable_option">$lang_yes:{$lang_admin_php['debug_everyone']}</label>
                                 &nbsp;&nbsp;
                                 <input type="radio" id="{$name}2" name="$name" value="2" $yes_2_selected /><label for="{$name}2" class="clickable_option">$lang_yes:{$lang_admin_php['debug_admin']}</label>
@@ -432,7 +432,7 @@ function form_lang_debug($text, $name, $help = '')
                         <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">$lang_no</label>
 
                 </td>
-                <td class="tableb" width="10%">
+                <td class="{$row_style_class}" width="10%">
                         $help
                 </td>
         </tr>
@@ -440,7 +440,7 @@ function form_lang_debug($text, $name, $help = '')
 EOT;
 }
 
-function form_number_dropdown($text, $name, $help = '')
+function form_number_dropdown($text, $name, $help = '', $row_style_class = 'tableb')
 {
    global $CONFIG, $lang_admin_php ;
    $help = cpg_display_help($help);
@@ -448,10 +448,10 @@ function form_number_dropdown($text, $name, $help = '')
 
     echo <<<EOT
         <tr>
-            <td class="tableb" width="60%">
+            <td class="{$row_style_class}" width="60%">
                         $text
         </td>
-        <td class="tableb" valign="top" width="50%">
+        <td class="{$row_style_class}" valign="top" width="50%">
                         <select name="$name" class="listbox">
 EOT;
         for ($i = 5; $i <= 25; $i++) {
@@ -462,14 +462,14 @@ EOT;
      echo <<<EOT
      </select>
                 </td>
-                <td class="tableb" width="10%">
+                <td class="{$row_style_class}" width="10%">
                 $help
                 </td>
         </tr>
 EOT;
 }
 
-function form_lang_logmode($text, $name, $help = '')
+function form_lang_logmode($text, $name, $help = '', $row_style_class = 'tableb')
 {
     global $CONFIG, $lang_admin_php;
     $help = cpg_display_help($help);
@@ -482,10 +482,10 @@ function form_lang_logmode($text, $name, $help = '')
 
     echo <<<EOT
         <tr>
-            <td class="tableb" width="60%">
+            <td class="{$row_style_class}" width="60%">
                         $text
         </td>
-        <td class="tableb" valign="top" width="50%">
+        <td class="{$row_style_class}" valign="top" width="50%">
                          <input type="radio" id="{$name}1" name="$name" value="1" $normal_selected /><label for="{$name}1" class="clickable_option">{$lang_admin_php['log_normal']}</label>
                         &nbsp;&nbsp;
                         <input type="radio" id="{$name}2" name="$name" value="2" $all_selected /><label for="{$name}2" class="clickable_option">{$lang_admin_php['log_all']}</label>
@@ -494,7 +494,7 @@ function form_lang_logmode($text, $name, $help = '')
                         &nbsp;&nbsp;
                         ( <a href="viewlog.php">{$lang_admin_php['view_logs']}</a> )
         </td>
-        <td class="tableb" width="10%">
+        <td class="{$row_style_class}" width="10%">
         $help
         </td>
         </tr>
@@ -503,7 +503,7 @@ EOT;
 }
 
 
-function form_plugin_yes_no($text, $name, $help = '')
+function form_plugin_yes_no($text, $name, $help = '', $row_style_class = 'tableb')
 {
     global $CONFIG, $lang_yes, $lang_no,$lang_admin_php;
     $help = cpg_display_help($help);
@@ -515,16 +515,16 @@ function form_plugin_yes_no($text, $name, $help = '')
 
     echo <<<EOT
         <tr>
-            <td class="tableb" width="60%">
+            <td class="{$row_style_class}" width="60%">
                         $text
         </td>
-        <td class="tableb" valign="top" width="50%">
+        <td class="{$row_style_class}" valign="top" width="50%">
                         <input type="radio" id="{$name}1" name="$name" value="1" $yes_selected /><label for="{$name}1" class="clickable_option">$lang_yes</label>
                         &nbsp;&nbsp;
                         <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">$lang_no</label>
                         ( <a href="pluginmgr.php">{$lang_admin_php['manage_plugins']}</a> )
                 </td>
-                <td class="tableb" width="10%">
+                <td class="{$row_style_class}" width="10%">
                 $help
                 </td>
         </tr>
@@ -532,7 +532,7 @@ function form_plugin_yes_no($text, $name, $help = '')
 EOT;
 }
 
-function form_exif_yes_no($text, $name, $help = '')
+function form_exif_yes_no($text, $name, $help = '', $row_style_class = 'tableb')
 {
     global $CONFIG, $lang_yes, $lang_no, $lang_admin_php;
     $help = cpg_display_help($help);
@@ -543,16 +543,16 @@ function form_exif_yes_no($text, $name, $help = '')
 
     echo <<<EOT
         <tr>
-            <td class="tableb" width="60%">
+            <td class="{$row_style_class}" width="60%">
                         $text
         </td>
-        <td class="tableb" valign="top" width="50%">
+        <td class="{$row_style_class}" valign="top" width="50%">
                         <input type="radio" id="{$name}1" name="$name" value="1" $yes_selected /><label for="{$name}1" class="clickable_option">$lang_yes</label>
                         &nbsp;&nbsp;
                         <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">$lang_no</label>
                         ( <a href="exifmgr.php">{$lang_admin_php['manage_exif']}</a> )
                 </td>
-                <td class="tableb" width="10%">
+                <td class="{$row_style_class}" width="10%">
                 $help
                 </td>
         </tr>
@@ -560,7 +560,7 @@ function form_exif_yes_no($text, $name, $help = '')
 EOT;
 }
 
-function form_user_guest_yes_no($text, $name, $help = '')
+function form_user_guest_yes_no($text, $name, $help = '', $row_style_class = 'tableb')
 {
     global $CONFIG, $lang_yes, $lang_no, $lang_admin_php;
     $help = cpg_display_help($help);
@@ -573,10 +573,10 @@ function form_user_guest_yes_no($text, $name, $help = '')
 
     echo <<<EOT
         <tr>
-            <td class="tableb" width="60%">
+            <td class="{$row_style_class}" width="60%">
                                 $text
                 </td>
-                <td class="tableb" valign="top" width="50%">
+                <td class="{$row_style_class}" valign="top" width="50%">
                                 <input type="radio" id="{$name}1" name="$name" value="2" $yes_1_selected /><label for="{$name}1" class="clickable_option">$lang_yes:{$lang_admin_php['debug_everyone']}</label>
                                 &nbsp;&nbsp;
                                 <input type="radio" id="{$name}2" name="$name" value="1" $yes_2_selected /><label for="{$name}2" class="clickable_option">$lang_yes:{$lang_admin_php['guests_only']}</label>
@@ -584,7 +584,7 @@ function form_user_guest_yes_no($text, $name, $help = '')
                         <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">$lang_no</label>
 
                 </td>
-                <td class="tableb" width="10%">
+                <td class="{$row_style_class}" width="10%">
                         $help
                 </td>
         </tr>
@@ -592,7 +592,7 @@ function form_user_guest_yes_no($text, $name, $help = '')
 EOT;
 }
 
-function form_keywords_yes_no($text, $name, $help = '')
+function form_keywords_yes_no($text, $name, $help = '', $row_style_class = 'tableb')
 {
     global $CONFIG, $lang_yes, $lang_no,$lang_admin_php;
     $help = cpg_display_help($help);
@@ -604,16 +604,16 @@ function form_keywords_yes_no($text, $name, $help = '')
 
     echo <<<EOT
         <tr>
-            <td class="tableb" width="60%">
+            <td class="{$row_style_class}" width="60%">
                         $text
         </td>
-        <td class="tableb" valign="top" width="50%">
+        <td class="{$row_style_class}" valign="top" width="50%">
                         <input type="radio" id="{$name}1" name="$name" value="1" $yes_selected /><label for="{$name}1" class="clickable_option">$lang_yes</label>
                         &nbsp;&nbsp;
                         <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">$lang_no</label>
                         ( <a href="keywordmgr.php">{$lang_admin_php['manage_keyword']}</a> )
                 </td>
-                <td class="tableb" width="10%">
+                <td class="{$row_style_class}" width="10%">
                 $help
                 </td>
         </tr>
@@ -621,20 +621,20 @@ function form_keywords_yes_no($text, $name, $help = '')
 EOT;
 }
 
-function form_disabled($text, $name, $help = '')
+function form_disabled($text, $name, $help = '', $row_style_class = 'tableb')
 {
   global $lang_admin_php;
   $help = cpg_display_help($help);
 
     echo <<<EOT
                 <tr>
-                    <td width="60%" class="tableb">
+                    <td width="60%" class="{$row_style_class}">
                         $text
                     </td>
-                    <td width="50%" class="tableb" valign="top">
+                    <td width="50%" class="{$row_style_class}" valign="top">
                         {$lang_admin_php['bbs_disabled']}
                     </td>
-                    <td class="tableb" width="10%">
+                    <td class="{$row_style_class}" width="10%">
                         $help
                     </td>
                 </tr>
@@ -642,7 +642,7 @@ function form_disabled($text, $name, $help = '')
 EOT;
 }
 
-function form_auto_resize($text, $name, $help = '')
+function form_auto_resize($text, $name, $help = '', $row_style_class = 'tableb')
 {
     global $CONFIG, $lang_yes, $lang_no, $lang_admin_php;
     $help = cpg_display_help($help);
@@ -655,17 +655,17 @@ function form_auto_resize($text, $name, $help = '')
 
     echo <<<EOT
         <tr>
-            <td class="tableb" width="60%">
+            <td class="{$row_style_class}" width="60%">
                 $text
             </td>
-            <td class="tableb" valign="top" width="50%">
+            <td class="{$row_style_class}" valign="top" width="50%">
                 <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">$lang_no</label>
                 &nbsp;&nbsp;
                 <input type="radio" id="{$name}1" name="$name" value="1" $yes_1_selected /><label for="{$name}1" class="clickable_option">$lang_yes:{$lang_admin_php['auto_resize_everyone']}</label>
                 &nbsp;&nbsp;
                 <input type="radio" id="{$name}2" name="$name" value="2" $yes_2_selected /><label for="{$name}2" class="clickable_option">$lang_yes:{$lang_admin_php['auto_resize_user']}</label>
             </td>
-            <td class="tableb" width="10%">
+            <td class="{$row_style_class}" width="10%">
                 $help
             </td>
         </tr>
@@ -673,7 +673,7 @@ function form_auto_resize($text, $name, $help = '')
 EOT;
 }
 
-function form_asc_desc($text, $name, $help = '')
+function form_asc_desc($text, $name, $help = '', $row_style_class = 'tableb')
 {
     global $CONFIG, $lang_yes, $lang_no, $lang_admin_php;
     $help = cpg_display_help($help);
@@ -684,15 +684,15 @@ function form_asc_desc($text, $name, $help = '')
 
     echo <<<EOT
         <tr>
-                        <td class="tableb" width="60%">
+                        <td class="{$row_style_class}" width="60%">
                                 $text
                         </td>
-                        <td class="tableb" valign="top" width="50%">
+                        <td class="{$row_style_class}" valign="top" width="50%">
                                 <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">{$lang_admin_php['ascending']}</label>
                                 &nbsp;&nbsp;
                                 <input type="radio" id="{$name}1" name="$name" value="1" $yes_selected /><label for="{$name}1" class="clickable_option">{$lang_admin_php['descending']}</label>
                         </td>
-                        <td class="tableb" width="10%">
+                        <td class="{$row_style_class}" width="10%">
                                 $help
                         </td>
         </tr>
@@ -701,7 +701,7 @@ EOT;
 }
 
 ############## Watermark ############
-function form_watermark_place($text, $name)
+function form_watermark_place($text, $name, $row_style_class = 'tableb')
 {
    global $CONFIG, $lang_admin_php;
 
@@ -714,10 +714,10 @@ function form_watermark_place($text, $name)
 
    echo <<<EOT
        <tr>
-           <td class="tableb">
+           <td class="{$row_style_class}">
                        $text
        </td>
-       <td class="tableb" valign="top">
+       <td class="{$row_style_class}" valign="top">
                        <select name="$name" class="listbox">
                                <option value="southeast" $southeast_selected>{$lang_admin_php['wm_bottomright']}</option>
                                <option value="southwest" $southwest_selected>{$lang_admin_php['wm_bottomleft']}</option>
@@ -732,7 +732,7 @@ EOT;
 }
 
 // Added for allowing user to select which files to watermark...
-function form_watermark_files($text, $name)
+function form_watermark_files($text, $name, $row_style_class = 'tableb')
 {
    global $CONFIG, $lang_admin_php;
 
@@ -743,10 +743,10 @@ function form_watermark_files($text, $name)
 
    echo <<<EOT
        <tr>
-           <td class="tableb">
+           <td class="{$row_style_class}">
                        $text
        </td>
-       <td class="tableb" valign="top">
+       <td class="{$row_style_class}" valign="top">
                        <select name="$name" class="listbox">
                                <option value="both" $both_selected>{$lang_admin_php['wm_both']}</option>
                                <option value="original" $original_selected>{$lang_admin_php['wm_original']}</option>
@@ -759,7 +759,7 @@ EOT;
 }
 #############################
 
-function form_report_post_yes_no($text, $name, $help = '')
+function form_report_post_yes_no($text, $name, $help = '', $row_style_class = 'tableb')
 {
     global $CONFIG, $lang_yes, $lang_no,$lang_admin_php;
     $help = cpg_display_help($help);
@@ -771,16 +771,16 @@ function form_report_post_yes_no($text, $name, $help = '')
 
     echo <<<EOT
         <tr>
-            <td class="tableb" width="60%">
+            <td class="{$row_style_class}" width="60%">
                         $text
         </td>
-        <td class="tableb" valign="top" width="50%">
+        <td class="{$row_style_class}" valign="top" width="50%">
                         <input type="radio" id="{$name}1" name="$name" value="1" $yes_selected /><label for="{$name}1" class="clickable_option">$lang_yes</label>
                         &nbsp;&nbsp;
                         <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">$lang_no</label>
                         ( <a href="keywordmgr.php">{$lang_admin_php['report_post']}</a> )
                 </td>
-                <td class="tableb" width="10%">
+                <td class="{$row_style_class}" width="10%">
                 $help
                 </td>
         </tr>
@@ -788,7 +788,7 @@ function form_report_post_yes_no($text, $name, $help = '')
 EOT;
 }
 
-function form_registration_disclaimer($text, $name, $help = '') {
+function form_registration_disclaimer($text, $name, $help = '', $row_style_class = 'tableb') {
     global $CONFIG, $lang_yes, $lang_no, $lang_admin_php;
     $help = cpg_display_help($help);
 
@@ -800,17 +800,17 @@ function form_registration_disclaimer($text, $name, $help = '') {
 
     echo <<<EOT
         <tr>
-            <td class="tableb" width="60%">
+            <td class="{$row_style_class}" width="60%">
                 $text
             </td>
-            <td class="tableb" valign="top" width="50%">
+            <td class="{$row_style_class}" valign="top" width="50%">
                 <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">$lang_no</label>
                 &nbsp;&nbsp;
                 <input type="radio" id="{$name}1" name="$name" value="1" $yes_1_selected /><label for="{$name}1" class="clickable_option">$lang_yes:{$lang_admin_php['separate_page']}</label>
                 &nbsp;&nbsp;
                 <input type="radio" id="{$name}2" name="$name" value="2" $yes_2_selected /><label for="{$name}2" class="clickable_option">$lang_yes:{$lang_admin_php['inline']}</label>
             </td>
-            <td class="tableb" width="10%">
+            <td class="{$row_style_class}" width="10%">
                 $help
             </td>
         </tr>
@@ -824,9 +824,19 @@ EOT;
 function create_form(&$data)
 {
         global $sn1, $sn2, $sn3, $options_to_disable, $CONFIG;
+        $loop_counter = 0;
 
     foreach($data as $element) {
         if ((is_array($element))) {
+                if ($loop_counter == 0) {
+                    $row_style_class = 'tableb';
+                } else {
+                    $row_style_class = 'tableb tableb_alternate';
+                }
+                $loop_counter++;
+                if ($loop_counter > 1) {
+                    $loop_counter = 0;
+                }
                 $element[3] = (isset($element[3])) ? $element[3] : '';
                 if (UDB_INTEGRATION != 'coppermine' AND in_array($element[1],$options_to_disable) AND $CONFIG['bridge_enable']) $element[2] = 15;
                 $sn1 = max($sn1,(strpos($element[0],'<a href="#notice1"')));
@@ -834,80 +844,80 @@ function create_form(&$data)
                 $sn3 = max($sn3,(strpos($element[0],'<a href="#notice3"')));
             switch ($element[2]) {
                 case 0 :
-                    form_input($element[0], $element[1], $element[3]);
+                    form_input($element[0], $element[1], $element[3], $row_style_class);
                     break;
                 case 1 :
                     if (($element[1] == 'enable_encrypted_passwords' && !$CONFIG['enable_encrypted_passwords']) || $element[1] != 'enable_encrypted_passwords') {
-                        form_yes_no($element[0], $element[1], $element[3]);
+                        form_yes_no($element[0], $element[1], $element[3], $row_style_class);
                     }
                     break;
                 case 2 :
-                    form_img_pkg($element[0], $element[1], $element[3]);
+                    form_img_pkg($element[0], $element[1], $element[3], $row_style_class);
                     break;
                 case 3 :
-                    form_sort_order($element[0], $element[1], $element[3]);
+                    form_sort_order($element[0], $element[1], $element[3], $row_style_class);
                     break;
                 case 4 :
-                    form_charset($element[0], $element[1], $element[3]);
+                    form_charset($element[0], $element[1], $element[3], $row_style_class);
                     break;
                 case 5 :
-                    form_language($element[0], $element[1], $element[3]);
+                    form_language($element[0], $element[1], $element[3], $row_style_class);
                     break;
                 case 6 :
-                    form_theme($element[0], $element[1], $element[3]);
+                    form_theme($element[0], $element[1], $element[3], $row_style_class);
                     break;
                 // Thumbnail scaling
                 case 7 :
-                    form_scale($element[0], $element[1], $element[3]);
+                    form_scale($element[0], $element[1], $element[3], $row_style_class);
                     break;
                 // Language + Theme selection
                 case 8 :
-                    form_lang_theme($element[0], $element[1], $element[3]);
+                    form_lang_theme($element[0], $element[1], $element[3], $row_style_class);
                     break;
                 // debug mode selection
                 case 9 :
-                    form_lang_debug($element[0], $element[1], $element[3]);
+                    form_lang_debug($element[0], $element[1], $element[3], $row_style_class);
                     break;
                 // tabbed display fix
                 case 10 :
-                    form_number_dropdown($element[0], $element[1], $element[3]);
+                    form_number_dropdown($element[0], $element[1], $element[3], $row_style_class);
                     break;
                 case 11 :
-                    form_lang_logmode($element[0], $element[1], $element[3]);
+                    form_lang_logmode($element[0], $element[1], $element[3], $row_style_class);
                     break;
                 case 12 :
-                    form_plugin_yes_no($element[0], $element[1], $element[3]);
+                    form_plugin_yes_no($element[0], $element[1], $element[3], $row_style_class);
                     break;
                 case 13 :
-                    form_exif_yes_no($element[0], $element[1], $element[3]);
+                    form_exif_yes_no($element[0], $element[1], $element[3], $row_style_class);
                     break;
                 case 14 :
-                    form_keywords_yes_no($element[0], $element[1], $element[3]);
+                    form_keywords_yes_no($element[0], $element[1], $element[3], $row_style_class);
                     break;
                 case 15 :
-                    form_disabled($element[0], $element[1], $element[3]);
+                    form_disabled($element[0], $element[1], $element[3], $row_style_class);
                     break;
                 case 16 :
-                    form_auto_resize($element[0], $element[1], $element[3]);
+                    form_auto_resize($element[0], $element[1], $element[3], $row_style_class);
                     break;
                 // ascending or descending
                 case 17 :
-                    form_asc_desc($element[0], $element[1], $element[3]);
+                    form_asc_desc($element[0], $element[1], $element[3], $row_style_class);
                     break;
                 // registration disclaimer
                 case 18 :
-                    form_registration_disclaimer($element[0], $element[1], $element[3]);
+                    form_registration_disclaimer($element[0], $element[1], $element[3], $row_style_class);
                     break;
                 case 19:
-                    form_user_guest_yes_no($element[0], $element[1], $element[3]);
+                    form_user_guest_yes_no($element[0], $element[1], $element[3], $row_style_class);
                     break;
                 //Watermark place
                 case 20 :
-                        form_watermark_place($element[0], $element[1]);
+                        form_watermark_place($element[0], $element[1], $row_style_class);
                     break;
                 //Which filest to watermark
                 case 21 :
-                        form_watermark_files($element[0], $element[1]);
+                        form_watermark_files($element[0], $element[1], $row_style_class);
                     break;
                 default:
                     die('Invalid action');

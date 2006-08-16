@@ -193,33 +193,43 @@ EOT;
 function display_cat_list()
 {
     global $CAT_LIST, $CONFIG; //$PHP_SELF,
-
     $CAT_LIST3 = $CAT_LIST;
 
+    $loop_counter = 0;
+
     foreach ($CAT_LIST3 as $key => $category) {
+        if ($loop_counter == 0) {
+            $row_style_class = 'tableb';
+        } else {
+            $row_style_class = 'tableb tableb_alternate';
+        }
+        $loop_counter++;
+        if ($loop_counter > 1) {
+            $loop_counter = 0;
+        }
         echo "        <tr>\n";
-        echo '                <td class="tableb" width="80%"><b>' . $category['name'] . '</b></td>' . "\n";
+        echo '                <td class="'.$row_style_class.'" width="80%"><b>' . $category['name'] . '</b></td>' . "\n";
 
         if ($category['pos'] > 0 && $CONFIG['categories_alpha_sort'] != 1) {
-            echo '                <td class="tableb" width="4%"><a href="' . $_SERVER['PHP_SELF'] . '?op=move&amp;cid1=' . $category['cid'] . '&amp;pos1=' . ($category['pos']-1) . '&amp;cid2=' . $category['prev'] . '&amp;pos2=' . ($category['pos']) . '">' . '<img src="images/up.gif"  border="0" alt="" />' . '</a></td>' . "\n";
+            echo '                <td class="'.$row_style_class.'" width="4%"><a href="' . $_SERVER['PHP_SELF'] . '?op=move&amp;cid1=' . $category['cid'] . '&amp;pos1=' . ($category['pos']-1) . '&amp;cid2=' . $category['prev'] . '&amp;pos2=' . ($category['pos']) . '">' . '<img src="images/up.gif"  border="0" alt="" />' . '</a></td>' . "\n";
         } else {
-            echo '                <td class="tableb" width="4%">' . '&nbsp;' . '</td>' . "\n";
+            echo '                <td class="'.$row_style_class.'" width="4%">' . '&nbsp;' . '</td>' . "\n";
         }
 
         if ($category['pos'] < $category['cat_count']-1  && $CONFIG['categories_alpha_sort'] != 1) {
-            echo '                <td class="tableb" width="4%"><a href="' . $_SERVER['PHP_SELF'] . '?op=move&amp;cid1=' . $category['cid'] . '&amp;pos1=' . ($category['pos'] + 1) . '&amp;cid2=' . $category['next'] . '&amp;pos2=' . ($category['pos']) . '">' . '<img src="images/down.gif"  border="0" alt="" />' . '</a></td>' . "\n";
+            echo '                <td class="'.$row_style_class.'" width="4%"><a href="' . $_SERVER['PHP_SELF'] . '?op=move&amp;cid1=' . $category['cid'] . '&amp;pos1=' . ($category['pos'] + 1) . '&amp;cid2=' . $category['next'] . '&amp;pos2=' . ($category['pos']) . '">' . '<img src="images/down.gif"  border="0" alt="" />' . '</a></td>' . "\n";
         } else {
-            echo '                <td class="tableb" width="4%">' . '&nbsp;' . '</td>' . "\n";
+            echo '                <td class="'.$row_style_class.'" width="4%">' . '&nbsp;' . '</td>' . "\n";
         }
 
         if ($category['cid'] != 1) {
-            echo '                <td class="tableb" width="4%"><a href="' . $_SERVER['PHP_SELF'] . '?op=deletecat&amp;cid=' . $category['cid'] . '" onClick="return confirmDel(\'' . addslashes(str_replace('&nbsp;', '', $category['name'])) . '\')">' . '<img src="images/delete.gif"  border="0" alt="" />' . '</a></td>' . "\n";
+            echo '                <td class="'.$row_style_class.'" width="4%"><a href="' . $_SERVER['PHP_SELF'] . '?op=deletecat&amp;cid=' . $category['cid'] . '" onClick="return confirmDel(\'' . addslashes(str_replace('&nbsp;', '', $category['name'])) . '\')">' . '<img src="images/delete.gif"  border="0" alt="" />' . '</a></td>' . "\n";
         } else {
-            echo '                <td class="tableb" width="4%">' . '&nbsp;' . '</td>' . "\n";
+            echo '                <td class="'.$row_style_class.'" width="4%">' . '&nbsp;' . '</td>' . "\n";
         }
 
-        echo '                <td class="tableb" width="4%">' . '<a href="' . $_SERVER['PHP_SELF'] . '?op=editcat&amp;cid=' . $category['cid'] . '">' . '<img src="images/edit.gif" border="0" alt="" />' . '</a></td>' . "\n";
-        echo '                <td class="tableb" width="4%">' . "\n" . cat_list_box($category['parent'], $category['cid']) . "\n" . '</td>' . "\n";
+        echo '                <td class="'.$row_style_class.'" width="4%">' . '<a href="' . $_SERVER['PHP_SELF'] . '?op=editcat&amp;cid=' . $category['cid'] . '">' . '<img src="images/edit.gif" border="0" alt="" />' . '</a></td>' . "\n";
+        echo '                <td class="'.$row_style_class.'" width="4%">' . "\n" . cat_list_box($category['parent'], $category['cid']) . "\n" . '</td>' . "\n";
         echo "        </tr>\n";
     }
 }

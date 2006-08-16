@@ -65,7 +65,7 @@ function display_group_list()
     while ($group = mysql_fetch_array($result)) {
         $group['group_name'] = $group['group_name'];
         $row_counter++;
-        if ($row_counter == 1 ) {$table_background = 'tableb';}else{$table_background = 'tableh2';$row_counter = 0;}
+        if ($row_counter == 1 ) {$table_background = 'tableb';}else{$table_background = 'tableb tableb_alternate';$row_counter = 0;}
 
 
         if ($group['group_id'] > 4 && UDB_INTEGRATION == 'coppermine') {

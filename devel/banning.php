@@ -60,7 +60,17 @@ function create_banlist()
 EOHEAD;
 
         $row_counter = 0;
+        $loop_counter = 0;
         while ($row = mysql_fetch_array($result)) {
+            if ($loop_counter == 0) {
+                $row_style_class = 'tableb';
+            } else {
+                $row_style_class = 'tableb tableb_alternate';
+            }
+            $loop_counter++;
+            if ($loop_counter > 1) {
+                $loop_counter = 0;
+            }
             if ($row['user_id']) {
                 $username = get_username($row['user_id']);
             } else {
@@ -75,18 +85,18 @@ EOHEAD;
             echo <<<EOROW
                                         <tr>
                                                <form action="{$_SERVER['PHP_SELF']}" method="post" name="banlist$row_counter" id="banlist$row_counter">
-                                                     <td width="20%" class="tableb" valign="middle">
+                                                     <td width="20%" class="{$row_style_class}" valign="middle">
                                                              <input type="hidden" name="ban_id" value="{$row['ban_id']}" />
                                                 <input type="text" class="textinput" style="width: 100%" name="edit_ban_user_name" value="$username" />
                                         </td>
-                                                <td class="tableb" valign="middle">
+                                                <td class="{$row_style_class}" valign="middle">
                                                 <input type="text" class="textinput" size="15" name="edit_ban_ip_addr" value="{$row['ip_addr']}" />
                                         </td>
-                                                <td class="tableb" valign="middle">
+                                                <td class="{$row_style_class}" valign="middle">
                                                 <input type="text" class="listbox_lang" size="20" name="edit_ban_expires" value="$expiry" readonly="readonly" title="{$lang_banning_php['select_date']}" />
                                                 <a href="javascript:;"  onclick="return getCalendar(document.banlist$row_counter.edit_ban_expires);" title="{$lang_banning_php['select_date']}"><img src="images/calendar.gif" width="16" height="16" border="0" alt="" /></a>
                                         </td>
-                                        <td class="tableb" valign="middle">
+                                        <td class="{$row_style_class}" valign="middle">
                                                                 <input type="submit" class="button" name="edit_ban" value="{$lang_banning_php['edit_ban']}" />
                                         &nbsp;&nbsp;
                                                                 <input type="submit" class="button" name="delete_ban" value="{$lang_banning_php['delete_ban']}" />

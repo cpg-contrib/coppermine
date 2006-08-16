@@ -385,8 +385,18 @@ EOT;
 EOT;
     }
 
+    $loop_counter = 0;
 
     foreach ($users as $user) {
+        if ($loop_counter == 0) {
+            $row_style_class = 'tableb';
+        } else {
+            $row_style_class = 'tableb tableb_alternate';
+        }
+        $loop_counter++;
+        if ($loop_counter > 1) {
+            $loop_counter = 0;
+        }
         if ($user['disk_usage'] == '') {
             $user['disk_usage'] = 0;
         }
@@ -419,32 +429,32 @@ EOT;
                 }
                 echo <<< EOT
         <tr>
-                <td class="tableb" align="center">$checkbox_html</td>
-                <td class="tableb">$usr_link</td>
-                <td class="tableb" align="center">
+                <td class="{$row_style_class}" align="center">$checkbox_html</td>
+                <td class="{$row_style_class}">$usr_link</td>
+                <td class="{$row_style_class}" align="center">
                     <button type="button" class="button" {$makereadonly}onclick="window.location.href ='$profile_link';">
                         <img src="images/edit.gif" width="16" height="16" border="0" alt="" title="{$lang_usermgr_php['edit']}" />
                     </button>
                 </td>
-                <td class="tableb">{$user['group_name']}</td>
-                <td class="tableb">{$user['user_regdate']}</td>
-                <td class="tableb">{$user['user_lastvisit']}</td>
-                <td class="tableb" align="right">{$user['pic_count']}</td>
-                <td class="tableb" align="right">{$user['disk_usage']}&nbsp;{$lang_byte_units[1]}</td>
-                <td class="tableb" align="right">{$user['group_quota']}&nbsp;{$lang_byte_units[1]}</td>
+                <td class="{$row_style_class}">{$user['group_name']}</td>
+                <td class="{$row_style_class}">{$user['user_regdate']}</td>
+                <td class="{$row_style_class}">{$user['user_lastvisit']}</td>
+                <td class="{$row_style_class}" align="right">{$user['pic_count']}</td>
+                <td class="{$row_style_class}" align="right">{$user['disk_usage']}&nbsp;{$lang_byte_units[1]}</td>
+                <td class="{$row_style_class}" align="right">{$user['group_quota']}&nbsp;{$lang_byte_units[1]}</td>
         </tr>
 
 EOT;
         } else {
                   echo <<< EOT
         <tr>
-                <td class="tableb">$usr_link</td>
-                <td class="tableb">{$user['group_name']}</td>
-                <td class="tableb">{$user['user_regdate']}</td>
-                <td class="tableb">{$user['user_lastvisit']}</td>
-                <td class="tableb" align="right">{$user['pic_count']}</td>
-                <td class="tableb" align="right">{$user['disk_usage']}&nbsp;{$lang_byte_units[1]}</td>
-                <td class="tableb" align="right">{$user['group_quota']}&nbsp;{$lang_byte_units[1]}</td>
+                <td class="{$row_style_class}">$usr_link</td>
+                <td class="{$row_style_class}">{$user['group_name']}</td>
+                <td class="{$row_style_class}">{$user['user_regdate']}</td>
+                <td class="{$row_style_class}">{$user['user_lastvisit']}</td>
+                <td class="{$row_style_class}" align="right">{$user['pic_count']}</td>
+                <td class="{$row_style_class}" align="right">{$user['disk_usage']}&nbsp;{$lang_byte_units[1]}</td>
+                <td class="{$row_style_class}" align="right">{$user['group_quota']}&nbsp;{$lang_byte_units[1]}</td>
         </tr>
 
 EOT;
