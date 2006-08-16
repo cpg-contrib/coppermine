@@ -824,19 +824,11 @@ EOT;
 function create_form(&$data)
 {
         global $sn1, $sn2, $sn3, $options_to_disable, $CONFIG;
-        $loop_counter = 0;
-
+        $row_style_class = 'tableb';
+        
     foreach($data as $element) {
         if ((is_array($element))) {
-                if ($loop_counter == 0) {
-                    $row_style_class = 'tableb';
-                } else {
-                    $row_style_class = 'tableb tableb_alternate';
-                }
-                $loop_counter++;
-                if ($loop_counter > 1) {
-                    $loop_counter = 0;
-                }
+					$skipped = 0;
                 $element[3] = (isset($element[3])) ? $element[3] : '';
                 if (UDB_INTEGRATION != 'coppermine' AND in_array($element[1],$options_to_disable) AND $CONFIG['bridge_enable']) $element[2] = 15;
                 $sn1 = max($sn1,(strpos($element[0],'<a href="#notice1"')));
@@ -847,9 +839,11 @@ function create_form(&$data)
                     form_input($element[0], $element[1], $element[3], $row_style_class);
                     break;
                 case 1 :
-                    if (($element[1] == 'enable_encrypted_passwords' && !$CONFIG['enable_encrypted_passwords']) || $element[1] != 'enable_encrypted_passwords') {
+                    if (!($element[1] == 'enable_encrypted_passwords' && $CONFIG['enable_encrypted_passwords'])) {
                         form_yes_no($element[0], $element[1], $element[3], $row_style_class);
+                        break;
                     }
+                    $skipped = 1;
                     break;
                 case 2 :
                     form_img_pkg($element[0], $element[1], $element[3], $row_style_class);
@@ -925,6 +919,8 @@ function create_form(&$data)
         } else {
                 form_label($element);
         }
+        
+        if (!$skipped) $row_style_class = ($row_style_class == 'tableb') ? 'tableb tableb_alternate' : 'tableb';
     }
 }
 if (count($_POST) > 0) {
