@@ -916,11 +916,12 @@ function create_form(&$data)
                 default:
                     die('Invalid action');
             } // switch
+            
+            if (!$skipped) $row_style_class = ($row_style_class == 'tableb') ? 'tableb tableb_alternate' : 'tableb';
+            
         } else {
                 form_label($element);
-        }
-        
-        if (!$skipped) $row_style_class = ($row_style_class == 'tableb') ? 'tableb tableb_alternate' : 'tableb';
+        }  
     }
 }
 if (count($_POST) > 0) {
