@@ -527,7 +527,7 @@ function write_config_file()
 
 // --------------------------------- MAIN CODE ----------------------------- //
 // Disable magic_quotes_runtime if active to allow proper reading from .sql files.
-set_magic_quotes_runtime(0);
+if (@get_magic_quotes_runtime()) set_magic_quotes_runtime(0);
 // The defaults values
 $table_prefix = $_POST['table_prefix'];
 $DFLT = array('cfg_d' => 'include', // The config file dir

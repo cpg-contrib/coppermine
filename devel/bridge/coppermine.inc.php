@@ -163,7 +163,7 @@ class coppermine_udb extends core_udb {
         }
 		
         // Get groups of which user is member
-        function get_groups( &$user )
+        function get_groups( $user )
         {
 			$groups = array($user['group_id'] - 100);
 

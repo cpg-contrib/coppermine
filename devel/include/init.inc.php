@@ -25,7 +25,7 @@ if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 // Store all reported errors in the $cpgdebugger
 require_once('include/debugger.inc.php');
 
-set_magic_quotes_runtime(0);
+if (@get_magic_quotes_runtime()) set_magic_quotes_runtime(0);
 // used for timing purpose
 $query_stats = array();
 $queries = array();

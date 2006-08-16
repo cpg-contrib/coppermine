@@ -237,7 +237,7 @@ class core_udb {
     }
 
 
-    function get_groups() {}
+    function get_groups($row) {}
 
         // Retrieve the name of a user
         function get_user_name($uid)
