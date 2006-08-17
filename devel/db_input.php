@@ -124,6 +124,13 @@ switch ($event) {
 
     case 'comment':
         if (!(USER_CAN_POST_COMMENTS)) cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
+        if (($CONFIG['comment_captcha'] > 0 && !USER_ID) || ($CONFIG['comment_captcha'] == 2 && USER_ID)) {
+            require("include/captcha.inc.php");
+            if (!PhpCaptcha::Validate($_POST['confirmCode'])) {
+              //msg_box($lang_error, $lang_errors['captcha_error'], $lang_back, 'javascript:history.back()');
+              cpg_die(ERROR, $lang_errors['captcha_error'], __FILE__, __LINE__);
+            }
+        }
 
         check_comment($_POST['msg_body']);
                 check_comment($_POST['msg_author']);

@@ -101,10 +101,14 @@ $lang_errors = array(
   'database_query' => 'There was an error while processing a database query',
   'non_exist_comment' => 'The selected comment does not exist',
   'page_removed_redirector' => 'You are trying to access a page that has been removed from the coppermine package.<br />Redirecting...', //cpg1.5
+  'captcha_error' => 'The confirmation code didn\'t match', //cpg1.5
 );
 
 $lang_bbcode_help_title = 'bbcode help';
 $lang_bbcode_help = 'You can add clickable links and some formating to this field by using bbcode tags: <li>[b]Bold[/b] =&gt; <b>Bold</b></li><li>[i]Italic[/i] =&gt; <i>Italic</i></li><li>[url=http://yoursite.com/]Url Text[/url] =&gt; <a href="http://yoursite.com">Url Text</a></li><li>[email]user@domain.com[/email] =&gt; <a href="mailto:user@domain.com">user@domain.com</a></li><li>[color=red]some text[/color] =&gt; <span style="color:red">some text</span></li><li>[img]http://coppermine.sf.net/demo/images/red.gif[/img] => <img src="../images/red.gif" border="0" alt="" /></li>';
+
+$lang_captcha_help_title = 'Visual confirmation (captcha)';
+$lang_captcha_help = 'To avoid spam, you have to confirm that you are an actual human being and not just a bot script  by entering the displayed text.<br />Capitalization does not matter, you can type in lowercase.';
 
 // ------------------------------------------------------------------------- //
 // File theme.php
@@ -727,6 +731,9 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Only display comments needing approval on the &quot;Review Comments&quot; page', 'display_comment_approval_only', 1, 'f=index.htm&amp;as=admin_comment_display_comment_approval_only_start&amp;ae=admin_comment_display_comment_approval_only_end'), // cpg1.5.x
   array('Display placeholder text to end users for comments waiting for admin approval', 'comment_placeholder', 1, 'f=index.htm&amp;as=admin_comment_display_placeholder_start&amp;ae=admin_comment_display_placeholder_end'), // cpg1.5.x
 
+  array('Allow users to edit their comments', 'comment_user_edit', 1, 'f=index.htm&amp;as=admin_comment_user_edit_start&amp;ae=admin_comment_user_edit_end'), // cpg1.5.x
+  array('Display Captcha (Visual Confirmation) for adding comments', 'comment_captcha', 19, 'f=index.htm&amp;as=admin_comment_captcha_start&amp;ae=admin_comment_captcha_end'), // cpg1.5.x
+
   'Files and thumbnails settings',
   array('Quality for JPEG files', 'jpeg_qual', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_jpeg_quality&amp;ae=admin_picture_thumbnail_jpeg_quality_end'),
   array('Max dimension (width) of a thumbnail <a href="#notice2" class="clickable_option">**</a>', 'thumb_width', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_max-dimension&amp;ae=admin_picture_thumbnail_max-dimension_end'),
@@ -1090,6 +1097,7 @@ $lang_display_comments = array(
   'pending_approval_message' => 'Someone has posted a comment here. It will be visible after admin approval.', // cpg1.5.x
   'approve' => 'Approve comment', // cpg1.5.x
   'disapprove' => 'Disapprove comment', // cpg1.5.x
+  'confirm' => 'Confirmation', // cpg1.5.x
 );
 
 $lang_fullsize_popup = array(

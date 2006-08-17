@@ -285,7 +285,9 @@ INSERT INTO CPG_bridge VALUES ('global_moderators_group', '');
 INSERT INTO CPG_bridge VALUES ('recovery_logon_failures', '0');
 INSERT INTO CPG_bridge VALUES ('recovery_logon_timestamp', '');
 
-# Config approval
+# Comment approval
 INSERT INTO CPG_config VALUES ('comment_approval', '0');
 INSERT INTO CPG_config VALUES ('display_comment_approval_only', '0');
 INSERT INTO CPG_config VALUES ('comment_placeholder', '1');
+INSERT INTO CPG_config VALUES ('comment_user_edit', '1');
+INSERT INTO CPG_config VALUES ('comment_captcha', '1');

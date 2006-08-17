@@ -1766,7 +1766,6 @@ Descending: latest comment at the top, oldest comment at the bottom</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Comment settings &rarr; Only display comments needing approval on the &quot;Review Comments&quot; page</p>
 <p class="small">[cpg1.5.0 or better required]</p>
 <a name="admin_comment_display_comment_approval_only_end"></a>
-
 <hr />
 <a name="admin_comment_display_placeholder_start"></a>
 <h4>Display placeholder text to end users for comments waiting for admin approval</h4>
@@ -1775,6 +1774,24 @@ Descending: latest comment at the top, oldest comment at the bottom</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Comment settings &rarr; Display placeholder text to end users for comments waiting for admin approval</p>
 <p class="small">[cpg1.5.0 or better required]</p>
 <a name="admin_comment_display_placeholder_end"></a>
+
+<hr />
+<a name="admin_comment_user_edit_start"></a>
+<h4>Allow users to edit their comments</h4>
+<p>When enabled, users are allowed to edit or delete their comments after submitting them.</p>
+<p>Note: this setting doesn't determine if users can actually post comments at all (this is instead being determined on the groups page). Instead, it just displays an edit and delete icon next to a comment that turns the comment into an input field when being clicked.<br />The admin is not affected at all - he can edit any comment no matter what.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Comment settings &rarr; Allow users to edit their comments</p>
+<p class="small">[cpg1.5.0 or better required]</p>
+<a name="admin_comment_user_edit_end"></a>
+<hr />
+<a name="admin_comment_captcha_start"></a>
+<h4>Display Captcha (Visual Confirmation) for adding comments</h4>
+<p>To prevent spam comments being posted by bots (automated scripts), this toggle will display an image next to the comment field with some random letters on it. The visitor is required to enter those letters into a textfield to prove that he's actually a human and not just some dumb bot that drops spam. It's recommended to enable Captchas for anonymous comments (guests who are not logged in).</p>
+<p>Note: this setting doesn't determine if guests can actually post comments at all (this is instead being determined on the groups page).</p>
+<p class="important">Captchas will only work if GD2 is available on your server with FreeType support enabled.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Comment settings &rarr; Display Captcha (Visual Confirmation) for adding comments</p>
+<p class="small">[cpg1.5.0 or better required]</p>
+<a name="admin_comment_captcha_end"></a>
 
 <a name="admin_comment_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
@@ -2836,6 +2853,10 @@ Use post-based groups?:  0  </pre></li>
   Author: David Wilkinson<br />
   E-mail: davidw AT cascade DOT org DOT uk<br />
   URL: <a href="http://www.cascade.org.uk/software/php/calendar/">http://www.cascade.org.uk/software/php/calendar/</a><br />
+</p>
+<p><strong>PhpCaptcha</strong><br />
+  Author: Edward Eliot<br />
+  URL: <a href="http://www.ejeliot.com/">http://www.ejeliot.com/</a><br />
 </p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 

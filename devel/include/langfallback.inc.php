@@ -35,6 +35,9 @@ $lang_check_uncheck_all = cpg_lang_var("lang_check_uncheck_all");
 $lang_bbcode_help = cpg_lang_var("lang_bbcode_help");
 $lang_bbcode_help_title = cpg_lang_var("lang_bbcode_help_title");
 
+$lang_captcha_help_title = cpg_lang_var("lang_captcha_help_title");
+$lang_captcha_help = cpg_lang_var("lang_captcha_help");
+
 $lang_register_confirm_email = cpg_lang_var("lang_register_confirm_email");
 $lang_register_confirm_email = cpg_lang_var("lang_register_confirm_email");
 $lang_register_approve_email = cpg_lang_var("lang_register_approve_email");
@@ -261,8 +264,8 @@ if (defined('FAQ_PHP')) {
 }
 
 if (defined('FAQ_PHP')) {
-	$lang_faq_data_en = cpg_get_default_lang_var('lang_faq_data','english');
-	 if (!isset($lang_faq_data)) $lang_faq_data = $lang_faq_data_en;
+        $lang_faq_data_en = cpg_get_default_lang_var('lang_faq_data','english');
+         if (!isset($lang_faq_data)) $lang_faq_data = $lang_faq_data_en;
 }
 
 // ------------------------------------------------------------------------- //
@@ -477,10 +480,10 @@ if (defined('USERMGR_PHP')) {
 // ------------------------------------------------------------------------- //
 
 if (defined('UTIL_PHP')) {
-	$lang_util_php_en = cpg_get_default_lang_var('lang_util_php','english');
-	$lang_util_php = array_merge($lang_util_php_en, $lang_util_php);
-	$lang_util_desc_php_en = cpg_get_default_lang_var('lang_util_desc_php','english');
-	if (!isset($lang_util_desc_php)) $lang_util_desc_php = $lang_util_desc_php_en;
+        $lang_util_php_en = cpg_get_default_lang_var('lang_util_php','english');
+        $lang_util_php = array_merge($lang_util_php_en, $lang_util_php);
+        $lang_util_desc_php_en = cpg_get_default_lang_var('lang_util_desc_php','english');
+        if (!isset($lang_util_desc_php)) $lang_util_desc_php = $lang_util_desc_php_en;
 }
 
 // ------------------------------------------------------------------------- //
@@ -507,20 +510,20 @@ if (defined('HITDETAILS_PHP')) {
 // ------------------------------------------------------------------------- //
 
 if (defined('XP_PUBLISH_PHP')) {
-	$lang_xp_publish_php_en = cpg_get_default_lang_var('lang_xp_publish_php','english');
-	$lang_xp_publish_php = array_merge($lang_xp_publish_php_en, $lang_xp_publish_php);
-	$lang_xp_publish_required_en = cpg_get_default_lang_var('lang_xp_publish_required','english');
-	if (!isset($lang_xp_publish_required)) $lang_xp_publish_required = $lang_xp_publish_required_en;
-	$lang_xp_publish_client_en = cpg_get_default_lang_var('lang_xp_publish_client','english');
-	if (!isset($lang_xp_publish_client)) $lang_xp_publish_client =  $lang_xp_publish_client_en;
-	$lang_xp_publish_select_en = cpg_get_default_lang_var('lang_xp_publish_select','english');
-	if (!isset($lang_xp_publish_select)) $lang_xp_publish_select =  $lang_xp_publish_select_en;
-	$lang_xp_publish_testing_en = cpg_get_default_lang_var('lang_xp_publish_testing','english');
-	if (!isset($lang_xp_publish_testing)) $lang_xp_publish_testing =  $lang_xp_publish_testing_en;
-	$lang_xp_publish_notes_en = cpg_get_default_lang_var('lang_xp_publish_notes','english');
-	if (!isset($lang_xp_publish_notes)) $lang_xp_publish_notes =  $lang_xp_publish_notes_en;
-	$lang_xp_publish_flood_en = cpg_get_default_lang_var('lang_xp_publish_flood','english');
-	if (!isset($lang_xp_publish_flood)) $lang_xp_publish_flood =  $lang_xp_publish_flood_en;
+        $lang_xp_publish_php_en = cpg_get_default_lang_var('lang_xp_publish_php','english');
+        $lang_xp_publish_php = array_merge($lang_xp_publish_php_en, $lang_xp_publish_php);
+        $lang_xp_publish_required_en = cpg_get_default_lang_var('lang_xp_publish_required','english');
+        if (!isset($lang_xp_publish_required)) $lang_xp_publish_required = $lang_xp_publish_required_en;
+        $lang_xp_publish_client_en = cpg_get_default_lang_var('lang_xp_publish_client','english');
+        if (!isset($lang_xp_publish_client)) $lang_xp_publish_client =  $lang_xp_publish_client_en;
+        $lang_xp_publish_select_en = cpg_get_default_lang_var('lang_xp_publish_select','english');
+        if (!isset($lang_xp_publish_select)) $lang_xp_publish_select =  $lang_xp_publish_select_en;
+        $lang_xp_publish_testing_en = cpg_get_default_lang_var('lang_xp_publish_testing','english');
+        if (!isset($lang_xp_publish_testing)) $lang_xp_publish_testing =  $lang_xp_publish_testing_en;
+        $lang_xp_publish_notes_en = cpg_get_default_lang_var('lang_xp_publish_notes','english');
+        if (!isset($lang_xp_publish_notes)) $lang_xp_publish_notes =  $lang_xp_publish_notes_en;
+        $lang_xp_publish_flood_en = cpg_get_default_lang_var('lang_xp_publish_flood','english');
+        if (!isset($lang_xp_publish_flood)) $lang_xp_publish_flood =  $lang_xp_publish_flood_en;
 }
 
 ?>
