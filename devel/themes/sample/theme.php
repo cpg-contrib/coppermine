@@ -861,7 +861,7 @@ $template_image_comments = <<<EOT
                         <table width="100%" cellpadding="0" cellspacing="0">
                            <tr>
                                 <td class="tableh2_compact" nowrap="nowrap">
-                                        <strong>{MSG_AUTHOR}</strong><a name="comment{MSG_ID}"></a>&nbsp;
+                                        <strong>{MSG_AUTHOR_LNK}</strong><a name="comment{MSG_ID}"></a>&nbsp;
 <!-- BEGIN ipinfo -->
                                                                                  ({IP})
 <!-- END ipinfo -->
@@ -2625,7 +2625,7 @@ function theme_html_rating_box()
 function theme_html_comments($pid)
 {
     global $CONFIG, $USER, $CURRENT_ALBUM_DATA, $comment_date_fmt, $HTML_SUBST;
-    global $template_image_comments, $template_add_your_comment, $lang_display_comments;
+    global $template_image_comments, $template_add_your_comment, $lang_display_comments, $lang_captcha_help_title, $lang_captcha_help;
 
     $html = '';
 
@@ -2656,9 +2656,15 @@ function theme_html_comments($pid)
 
     while ($row = mysql_fetch_array($result)) { // while-loop start
         $user_can_edit = (GALLERY_ADMIN_MODE) || (USER_ID && USER_ID == $row['author_id'] && USER_CAN_POST_COMMENTS) || (!USER_ID && USER_CAN_POST_COMMENTS && ($USER['ID'] == $row['author_md5_id']));
-        $comment_buttons = $user_can_edit ? $tmpl_comments_buttons : '';
-        $comment_edit_box = $user_can_edit ? $tmpl_comment_edit_box : '';
+        if (($user_can_edit != '' && $CONFIG['comment_user_edit'] != 0) || (GALLERY_ADMIN_MODE)) {
+            $comment_buttons = $tmpl_comments_buttons;
+            $comment_edit_box = $tmpl_comment_edit_box;
+        } else {
+            $comment_buttons = '';
+            $comment_edit_box = '';
+        }
         $comment_ipinfo = ($row['msg_raw_ip'] && GALLERY_ADMIN_MODE)?$tmpl_comments_ipinfo : '';
+        $hide_comment = 0;
 
         // comment approval
         // todo: make the admin links point to the actual pid in reviewcom
@@ -2676,9 +2682,7 @@ function theme_html_comments($pid)
                     $pending_approval = '<img src="images/approve.gif" border="0" alt="" title="' . $lang_display_comments['pending_approval'] . '" align="middle" />';
                 } else { // the comment comes from someone else - don't display it at all
                     if ($CONFIG['comment_placeholder'] == 0) {
-                        $row['msg_author'] = '';
-                        $row['msg_body'] = '';
-                        $row['author_id'] = 0;
+                        $hide_comment = 1;
                     } else {
                         $row['msg_author'] = '<em>'.$lang_display_comments['unapproved_comment'].'</em>';
                         $row['msg_body'] = '<em>'.$lang_display_comments['pending_approval_message'].'</em>';
@@ -2715,7 +2719,8 @@ function theme_html_comments($pid)
             $profile_lnk = '<a href="profile.php?uid='.$row['author_id'].'">'.stripslashes($row['msg_author']).'</a>';
         }
 
-        $params = array('{MSG_AUTHOR}' => $profile_lnk,
+        $params = array('{MSG_AUTHOR_LNK}' => $profile_lnk,
+            '{MSG_AUTHOR}' => $row['msg_author'],
             '{MSG_ID}' => $row['msg_id'],
             '{PID}' => $row['pid'],
             '{EDIT_TITLE}' => &$lang_display_comments['edit_title'],
@@ -2731,9 +2736,7 @@ function theme_html_comments($pid)
             '{WIDTH}' => $CONFIG['picture_table_width']
             );
 
-        if ($row['msg_author'] == '' && $row['msg_body'] == '') {
-            // don't display the empty comment
-        } else {
+        if ($hide_comment != 1) {
             $html .= template_eval($template, $params);
         }
     } // while-loop end
@@ -2747,10 +2750,15 @@ function theme_html_comments($pid)
             $user_name = isset($USER['name']) ? '"' . strtr($USER['name'], $HTML_SUBST) . '"' : $lang_display_comments['your_name'] . '" onclick="javascript:this.value=\'\';';
         }
 
+        if (($CONFIG['comment_captcha'] == 0) || ($CONFIG['comment_captcha'] == 1 && USER_ID)) {
+            template_extract_block($template_add_your_comment, 'comment_captcha');
+        }
+
         $params = array('{ADD_YOUR_COMMENT}' => $lang_display_comments['add_your_comment'],
             // Modified Name and comment field
             '{NAME}' => $lang_display_comments['name'],
             '{COMMENT}' => $lang_display_comments['comment'],
+            '{CONFIRM}' => $lang_display_comments['confirm'].'&nbsp;'. cpg_display_help('f=index.html&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_captcha_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_captcha_help))),470,245),
             '{PIC_ID}' => $pid,
             '{USER_NAME}' => $user_name,
             '{MAX_COM_LENGTH}' => $CONFIG['max_com_size'],

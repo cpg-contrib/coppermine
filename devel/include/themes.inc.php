@@ -918,7 +918,7 @@ $template_image_comments = <<<EOT
                         <table width="100%" cellpadding="0" cellspacing="0">
                            <tr>
                                 <td class="tableh2_compact" nowrap="nowrap">
-                                        <strong>{MSG_AUTHOR}</strong><a name="comment{MSG_ID}"></a>&nbsp;
+                                        <strong>{MSG_AUTHOR_LNK}</strong><a name="comment{MSG_ID}"></a>&nbsp;
 <!-- BEGIN ipinfo -->
                                                                                  ({IP})
 <!-- END ipinfo -->
@@ -2867,7 +2867,8 @@ function theme_html_comments($pid)
             $profile_lnk = '<a href="profile.php?uid='.$row['author_id'].'">'.stripslashes($row['msg_author']).'</a>';
         }
 
-        $params = array('{MSG_AUTHOR}' => $profile_lnk,
+        $params = array('{MSG_AUTHOR_LNK}' => $profile_lnk,
+            '{MSG_AUTHOR}' => $row['msg_author'],
             '{MSG_ID}' => $row['msg_id'],
             '{PID}' => $row['pid'],
             '{EDIT_TITLE}' => &$lang_display_comments['edit_title'],

@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-08-17 [B] Fixed profile HTML shining through when editing comments {GauGau}
 2006-08-17 [A] Added visual confirmation (captcha) for comments {GauGau}
 2006-08-17 [A] Added option to disallow users editing their comments {GauGau}
 2006-08-16 [A] Added mass comment approval {GauGau}
