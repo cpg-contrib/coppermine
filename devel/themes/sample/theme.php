@@ -901,48 +901,53 @@ $template_image_comments = <<<EOT
                                                 <input type="text" name="msg_author" value="{MSG_AUTHOR}" class="textinput" size="25" />
                                                 <input type="hidden" name="event" value="comment_update" />
                                                 <input type="hidden" name="msg_id" value="{MSG_ID}" />
-                                            </td>
-                                            <td width="70%">
-                                                <textarea cols="40" rows="2" class="textinput" name="msg_body" onselect="storeCaret_f{MSG_ID}(this);" onclick="storeCaret_f{MSG_ID}(this);" onkeyup="storeCaret_f{MSG_ID}(this);" style="width:99%;">{MSG_BODY_RAW}</textarea>
-                                            </td>
-                                            <td align="right">
-                                                <input type="submit" class="comment_button" name="submit" value="{OK}" />
-                                            </td>
+                                                </td>
+                                                </tr>
+                                                <tr>
+                                                <td width="80%">
+                                                        <textarea cols="40" rows="2" class="textinput" name="msg_body" onselect="storeCaret_f{MSG_ID}(this);" onclick="storeCaret_f{MSG_ID}(this);" onkeyup="storeCaret_f{MSG_ID}(this);" style="width: 100%;">{MSG_BODY_RAW}</textarea>
+                                                </td>
+                                                <td class="tableb_compact">
+                                                </td>
+                                                <td>
+                                                        <input type="submit" class="comment_button" name="submit" value="{OK}" />
+                                                </td>
+                                                </form>
                                         </tr>
                                         <tr>
-                                            <td colspan="3">
-                                                <img src="images/spacer.gif" width="1" height="2" border="0" alt="" />
-                                                <br />
-                                            </td>
+                                                <td colspan="3">
+                                                    <img src="images/spacer.gif" width="1" height="2" border="0" alt="" />
+                                                    <br />
+                                                </td>
                                         </tr>
-                                    </table>
-                                </form>
+                                </table>
                                 {SMILIES}
 <!-- END edit_box_smilies -->
 <!-- BEGIN edit_box_no_smilies -->
-                                <form name="f{MSG_ID}" id="f{MSG_ID}" method="post" action="db_input.php">
-                                    <table width="100%" cellpadding="0" cellspacing="0">
+                                <table width="100%" cellpadding="0" cellspacing="0">
                                         <tr>
-                                            <td valign="top">
+                                                <form name="f{MSG_ID}" id="f{MSG_ID}" method="POST" action="db_input.php">
                                                 <input type="hidden" name="event" value="comment_update" />
                                                 <input type="hidden" name="msg_id" value="{MSG_ID}" />
+                                                <td>
                                                 <input type="text" name="msg_author" value="{MSG_AUTHOR}" class="textinput" size="25" />
-                                            </td>
-                                            <td width="70%">
-                                                <textarea cols="40" rows="2" class="textinput" name="msg_body" style="width:99%;">{MSG_BODY_RAW}</textarea>
-                                            </td>
-                                            <td align="right">
-                                                <input type="submit" class="comment_button" name="submit" value="{OK}" />
-                                            </td>
+                                                </td>
                                         </tr>
                                         <tr>
-                                            <td colspan="3">
-                                                <img src="images/spacer.gif" width="1" height="2" border="0" alt="" />
-                                                <br />
-                                            </td>
+                                                <td width="100%">
+                                                        <textarea cols="40" rows="2" class="textinput" name="msg_body" style="width: 100%;">{MSG_BODY_RAW}</textarea>
+                                                </td>
+                                                <td class="tableb_compact">
+                                                </td>
+                                                <td>
+                                                        <input type="submit" class="comment_button" name="submit" value="{OK}" />
+                                                </td>
+                                                </form>
                                         </tr>
-                                    </table>
-                                </form>
+                                        <tr>
+                                                <td colspan="3"><img src="images/spacer.gif" width="1" height="2" border="0" alt="" /><br /></td>
+                                        </tr>
+                                </table>
 <!-- END edit_box_no_smilies -->
                         </div>
                 </td>
