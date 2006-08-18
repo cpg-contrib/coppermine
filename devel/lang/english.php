@@ -1702,6 +1702,8 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
   'delete' => 'delete', // cpg1.5.x
   'approve' => 'approve', // cpg1.5.x
   'disapprove' => 'disapprove', // cpg1.5.x
+  'comment_approved' => 'Comment approved', // cpg1.5.x
+  'comment_disapproved' => 'Comment disapproved', // cpg1.5.x
 );
 
 

@@ -955,7 +955,7 @@ $template_image_comments = <<<EOT
                                     <table width="100%" cellpadding="0" cellspacing="0">
                                         <tr>
                                             <td valign="top">
-                                                <input type="text" name="msg_author" value="{MSG_AUTHOR}" class="textinput" size="25" />
+                                                <!--<input type="text" name="msg_author" value="{MSG_AUTHOR}" class="textinput" size="25" />-->
                                                 <input type="hidden" name="event" value="comment_update" />
                                                 <input type="hidden" name="msg_id" value="{MSG_ID}" />
                                                 </td>
@@ -987,7 +987,7 @@ $template_image_comments = <<<EOT
                                                 <input type="hidden" name="event" value="comment_update" />
                                                 <input type="hidden" name="msg_id" value="{MSG_ID}" />
                                                 <td>
-                                                <input type="text" name="msg_author" value="{MSG_AUTHOR}" class="textinput" size="25" />
+                                                <!--<input type="text" name="msg_author" value="{MSG_AUTHOR}" class="textinput" size="25" />-->
                                                 </td>
                                         </tr>
                                         <tr>
@@ -1016,7 +1016,10 @@ EOT;
 ******************************************************************************/
 } //{THEMES}
 
-if (!isset($template_add_your_comment))  //{THEMES}
+if (!isset($template_add_your_comment)) { //{THEMES}
+/******************************************************************************
+** Section <<<$template_add_your_comment>>> - START
+******************************************************************************/
 $template_add_your_comment = <<<EOT
         <form method="post" name="post" id="post" action="db_input.php">
                 <table align="center" width="{WIDTH}" cellspacing="1" cellpadding="0" class="maintable">
@@ -1082,7 +1085,10 @@ $template_add_your_comment = <<<EOT
                 </table>
         </form>
 EOT;
-
+/******************************************************************************
+** Section <<<$template_add_your_comment>>> - END
+******************************************************************************/
+} //{THEMES}
 
 if (!isset($template_cpg_die)) { //{THEMES}
 /******************************************************************************
@@ -2815,14 +2821,13 @@ function theme_html_comments($pid)
         $hide_comment = 0;
 
         // comment approval
-        // todo: make the admin links point to the actual pid in reviewcom
         $pending_approval = '';
         if (USER_IS_ADMIN) {
             //display the selector approve/disapprove
             if ($row['approval'] == 'NO') {
-                $pending_approval = '<a href="reviewcom.php" title="' . $lang_display_comments['approve'] . '"><img src="images/approve.gif" border="0" alt="" align="middle" /></a>';
+                $pending_approval = '<a href="reviewcom.php?pos=-{PID}&amp;msg_id={MSG_ID}&amp;what=approve" title="' . $lang_display_comments['approve'] . '"><img src="images/approve.gif" border="0" alt="" align="middle" /></a>';
             } else {
-                $pending_approval = '<a href="reviewcom.php" title="' . $lang_display_comments['disapprove'] . '"><img src="images/disapprove.gif" border="0" alt="" align="middle" /></a>';
+                $pending_approval = '<a href="reviewcom.php?pos=-{PID}&amp;msg_id={MSG_ID}&amp;what=disapprove" title="' . $lang_display_comments['disapprove'] . '"><img src="images/disapprove.gif" border="0" alt="" align="middle" /></a>';
             }
         } else { // user or guest is logged in - start
             if ($row['approval'] == 'NO') { // the comment is not approved - start
@@ -2832,8 +2837,8 @@ function theme_html_comments($pid)
                     if ($CONFIG['comment_placeholder'] == 0) {
                         $hide_comment = 1;
                     } else {
-                        $row['msg_author'] = '<em>'.$lang_display_comments['unapproved_comment'].'</em>';
-                        $row['msg_body'] = '<em>'.$lang_display_comments['pending_approval_message'].'</em>';
+                        $row['msg_author'] = $lang_display_comments['unapproved_comment'];
+                        $row['msg_body'] = $lang_display_comments['pending_approval_message'];
                         $row['author_id'] = 0;
                     }
                 }
@@ -2846,6 +2851,12 @@ function theme_html_comments($pid)
         } else {
             $comment_body = make_clickable($row['msg_body']);
             $smilies = '';
+        }
+
+        // wrap the comment into italics if it isn't approved
+        if ($row['approval'] == 'NO') {
+            $comment_body = '<em>'.$comment_body.'</em>';
+            $row['msg_author'] = $row['msg_author'];
         }
 
         $ip = $row['msg_hdr_ip'];

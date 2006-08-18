@@ -29,6 +29,115 @@ if (!GALLERY_ADMIN_MODE) {
     cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 }
 
+// we have made sure that an admin is logged in - let's check for GET parameters if the admin is trying to approve things from the intermediate image view
+$get_data_rejected = 0;
+$single_approval_array = array('pos' => $_GET['pos'], 'msg_id' => $_GET['msg_id'], 'what' => $_GET['what']);
+
+foreach ($single_approval_array as $value) {
+    if (!$value) {
+        $get_data_rejected++;
+    }
+}
+// We have gathered enough data for a basic check - let's only perform the rest of the individual approval if everthying is OK, i.e. all previous critieria have been met.
+if ($get_data_rejected==0) { // individual approval start
+    pageheader($lang_reviewcom_php['title']);
+
+    // Normally, we could trust this input, as only the admin should have gotten that far.
+    // Anyway, let's perform some more testing, it won't hurt performance-wise, but should be more secure - maybe the admin has followed a made-up link that led him here.
+    // Some of those checks could be performed more elegantly using regex - contributions would be welcome.
+
+    if (floor($single_approval_array['pos']) != $single_approval_array['pos']) {
+      $get_data_rejected++;
+    }
+    if (abs($single_approval_array['pos']) == $single_approval_array['pos']) {
+      $get_data_rejected++;
+    }
+    if (floor($single_approval_array['msg_id']) != $single_approval_array['msg_id']) {
+      $get_data_rejected++;
+    }
+    if (abs($single_approval_array['msg_id']) != $single_approval_array['msg_id']) {
+      $get_data_rejected++;
+    }
+    if ($single_approval_array['what'] != 'approve' && $single_approval_array['what'] != 'disapprove') {
+      $get_data_rejected++;
+    }
+
+    // Perform the lookup
+
+    $result = cpg_db_query("
+                        SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date)
+                        AS msg_date, approval, author_id, {$CONFIG['TABLE_COMMENTS']}.pid
+                        AS pid, aid, filepath, filename, url_prefix, pwidth, pheight
+                        FROM {$CONFIG['TABLE_COMMENTS']}, {$CONFIG['TABLE_PICTURES']}
+                        WHERE {$CONFIG['TABLE_COMMENTS']}.pid = {$CONFIG['TABLE_PICTURES']}.pid
+                        AND {$CONFIG['TABLE_COMMENTS']}.msg_id = {$single_approval_array['msg_id']}
+                        LIMIT 1
+                        ");
+    while ($row = mysql_fetch_array($result)) {
+        if ($row['pid'] != abs($single_approval_array['pos'])) {
+            $get_data_rejected++;
+        }
+        $thumb_url =  get_pic_url($row, 'thumb');
+        if (!is_image($row['filename'])) {
+        $image_info = getimagesize($thumb_url);
+        $row['pwidth'] = $image_info[0];
+        $row['pheight'] = $image_info[1];
+        }
+        $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['alb_list_thumb_size']);
+        $thumb_link = 'displayimage.php?pos=' . - $row['pid'];
+        $msg_date = localised_date($row['msg_date'], $scientific_date_fmt);
+        $msg_body = bb_decode(process_smilies($row['msg_body']));
+        // build a link to the author's profile if applicable
+        if ($row['author_id'] != 0) {
+                $profile_link_start = '<a href="profile.php?uid='.$row['author_id'].'">';
+                $profile_link_end = '</a>';
+        } else {
+                $profile_link_start = '';
+                $profile_link_end = '';
+        }
+        $msg_author = $row['msg_author'];
+    }
+
+    // if all verifications have passed, execute the change and output the result. Else, display an error message
+    if ($get_data_rejected == 0) {
+        if ($single_approval_array['what'] == 'approve') {
+            $query_approval = 'YES';
+            $title = $lang_reviewcom_php['comment_approved'];
+        } else {
+            $query_approval = 'NO';
+            $title = $lang_reviewcom_php['comment_disapproved'];
+        }
+        cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET `approval` = '{$query_approval}' WHERE msg_id = {$single_approval_array['msg_id']}");
+        starttable('-2', $title, 2);
+        print <<< EOT
+        <tr>
+            <td class="tableb">{$lang_reviewcom_php['user_name']}</td>
+            <td class="tableb">{$profile_link_start}{$msg_author}{$profile_link_end}</td>
+        </tr>
+        <tr>
+            <td class="tableb tableb_alternate">{$lang_reviewcom_php['date']}</td>
+            <td class="tableb tableb_alternate">{$msg_date}</td>
+        </tr>
+        <tr>
+            <td class="tableb">{$lang_reviewcom_php['comment']}</td>
+            <td class="tableb">{$msg_body}</td>
+        </tr>
+        <tr>
+            <td class="tableb tableb_alternate">{$lang_reviewcom_php['file']}</td>
+            <td class="tableb tableb_alternate"><a href="$thumb_link"><img src="$thumb_url" {$image_size['geom']} class="image" border="0" alt="" /></a></td>
+        </tr>
+        <tr>
+            <td class="tablef" colspan="2" align="center"><a href="$thumb_link#comment{$single_approval_array['msg_id']}" class="admin_menu">{$lang_continue}</a></td>
+        </tr>
+EOT;
+        endtable();
+    } else { // verification not passed
+        cpg_die(ERROR, $lang_errors['non_exist_comment'], __FILE__, __LINE__);
+    }
+    pagefooter();
+    ob_end_flush();
+} else { // individual approval end, mass-approval start
+
 // Change config options if applicable
 if (isset($_POST) == TRUE) {
         if ($_POST['approval_only'] != '') {
@@ -418,5 +527,5 @@ EOT;
 endtable();
 pagefooter();
 ob_end_flush();
-
+} // mass approval end
 ?>
