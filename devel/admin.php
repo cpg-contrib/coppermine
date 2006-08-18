@@ -41,6 +41,7 @@ $options_to_disable = array('reg_notify_admin_email',
     'user_profile6_name',
     'enable_encrypted_passwords',
     'user_registration_disclaimer',
+    'registration_captcha',
 );
 
 if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
@@ -825,10 +826,10 @@ function create_form(&$data)
 {
         global $sn1, $sn2, $sn3, $options_to_disable, $CONFIG;
         $row_style_class = 'tableb';
-        
+
     foreach($data as $element) {
         if ((is_array($element))) {
-					$skipped = 0;
+                                        $skipped = 0;
                 $element[3] = (isset($element[3])) ? $element[3] : '';
                 if (UDB_INTEGRATION != 'coppermine' AND in_array($element[1],$options_to_disable) AND $CONFIG['bridge_enable']) $element[2] = 15;
                 $sn1 = max($sn1,(strpos($element[0],'<a href="#notice1"')));
@@ -916,12 +917,12 @@ function create_form(&$data)
                 default:
                     die('Invalid action');
             } // switch
-            
+
             if (!$skipped) $row_style_class = ($row_style_class == 'tableb') ? 'tableb tableb_alternate' : 'tableb';
-            
+
         } else {
                 form_label($element);
-        }  
+        }
     }
 }
 if (count($_POST) > 0) {

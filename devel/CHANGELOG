@@ -26,6 +26,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-08-18 [A] Added captcha for registration {GauGau}
+2006-08-18 [O] Started language array $lang_common for common strings as replacement for various language strings {GauGau}
 2006-08-17 [B] Fixed profile HTML shining through when editing comments {GauGau}
 2006-08-17 [A] Added visual confirmation (captcha) for comments {GauGau}
 2006-08-17 [A] Added option to disallow users editing their comments {GauGau}

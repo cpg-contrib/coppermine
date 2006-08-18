@@ -520,3 +520,6 @@ INSERT INTO CPG_config VALUES ('comment_captcha', '1');
 
 # Safe mode
 INSERT INTO CPG_config VALUES ('silly_safe_mode', '0');
+
+# Registration Captcha
+INSERT INTO CPG_config VALUES ('registration_captcha', '0');

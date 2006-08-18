@@ -291,3 +291,5 @@ INSERT INTO CPG_config VALUES ('display_comment_approval_only', '0');
 INSERT INTO CPG_config VALUES ('comment_placeholder', '1');
 INSERT INTO CPG_config VALUES ('comment_user_edit', '1');
 INSERT INTO CPG_config VALUES ('comment_captcha', '1');
+
+INSERT INTO CPG_config VALUES ('registration_captcha', '0');

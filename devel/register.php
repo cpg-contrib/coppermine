@@ -12,7 +12,7 @@
   ********************************************
   Coppermine version: 1.5.0
   $Source: /cvsroot/coppermine/devel/register.php,v $
-  $Revision: 2979 $
+  $Revision$
   $LastChangedBy$
   $Date$
 **********************************************/
@@ -82,7 +82,7 @@ EOT;
 **/
 function input_user_info($errors = '') { // function input_user_info - start
     global $CONFIG; //, $PHP_SELF;
-    global $lang_register_php, $lang_register_disclamer;
+    global $lang_register_php, $lang_register_disclamer, $lang_common;
 
     echo <<<EOT
         <form name="cpgform" id="cpgform" method="post" action="{$_SERVER['PHP_SELF']}">
@@ -258,6 +258,22 @@ EOT;
 EOT;
     }
 
+    // captcha code
+    if ($CONFIG['registration_captcha'] != 0) {
+    $help = cpg_display_help('f=index.html&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_common['captcha_help_title']))).'&amp;t='.urlencode(base64_encode(serialize($lang_common['captcha_help']))),470,245);
+    echo <<<EOT
+        <tr>
+                <td align="right" class="tablef">
+                    {$lang_common['confirm']}&nbsp;{$help}
+                </td>
+                <td class="tablef">
+                    <input type="text" name="confirmCode" size="5" maxlength="5" class="textinput" />
+                    <img src="captcha.php" align="middle" border="0" alt="" />
+                </td>
+        </tr>
+EOT;
+    }
+
     echo <<<EOT
         <tr>
                 <td colspan="2" align="center" class="tablef">
@@ -286,7 +302,7 @@ function get_post_var($var) { // function get_post_var - start
 
 function check_user_info(&$error) { // function check_user_info - start
     global $CONFIG; //, $PHP_SELF;
-    global $lang_register_php, $lang_register_confirm_email, $lang_continue, $lang_register_approve_email, $lang_register_activated_email, $lang_register_user_login;
+    global $lang_register_php, $lang_register_confirm_email, $lang_continue, $lang_register_approve_email, $lang_register_activated_email, $lang_register_user_login, $lang_errors;
     //$CONFIG['admin_activation'] = FALSE;
     //$CONFIG['admin_activation'] = TRUE;
 
@@ -301,6 +317,7 @@ function check_user_info(&$error) { // function check_user_info - start
     $profile5 = addslashes($_POST['user_profile5']);
     $profile6 = addslashes($_POST['user_profile6']);
     $agree_disclaimer = $_POST['agree'];
+    $captcha_confirmation = $_POST['confirmCode'];
 
     $sql = "SELECT user_id " . "FROM {$CONFIG['TABLE_USERS']} " . "WHERE user_name = '" . addslashes($user_name) . "'";
     $result = cpg_db_query($sql);
@@ -327,6 +344,14 @@ function check_user_info(&$error) { // function check_user_info - start
     if (!eregi("^[_\.0-9a-z\-]+@([0-9a-z][0-9a-z-]+\.)+[a-z]{2,6}$", $email)) $error .= '<li>' . $lang_register_php['err_invalid_email'] . '</li>';
     if ($CONFIG['user_registration_disclaimer'] == 2 && $agree_disclaimer != 1) {
         $error .= '<li>' . $lang_register_php['err_disclaimer'] . '</li>';
+    }
+
+    // check captcha
+    if ($CONFIG['registration_captcha'] != 0) {
+        require("include/captcha.inc.php");
+        if (!PhpCaptcha::Validate($_POST['confirmCode'])) {
+          $error .= '<li>' . $lang_errors['captcha_error'] . '</li>';
+        }
     }
 
     if ($error != '') return false;

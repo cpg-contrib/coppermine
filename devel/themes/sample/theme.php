@@ -2625,7 +2625,7 @@ function theme_html_rating_box()
 function theme_html_comments($pid)
 {
     global $CONFIG, $USER, $CURRENT_ALBUM_DATA, $comment_date_fmt, $HTML_SUBST;
-    global $template_image_comments, $template_add_your_comment, $lang_display_comments, $lang_captcha_help_title, $lang_captcha_help;
+    global $template_image_comments, $template_add_your_comment, $lang_display_comments, $lang_common;
 
     $html = '';
 
@@ -2758,7 +2758,7 @@ function theme_html_comments($pid)
             // Modified Name and comment field
             '{NAME}' => $lang_display_comments['name'],
             '{COMMENT}' => $lang_display_comments['comment'],
-            '{CONFIRM}' => $lang_display_comments['confirm'].'&nbsp;'. cpg_display_help('f=index.html&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_captcha_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_captcha_help))),470,245),
+            '{CONFIRM}' => $lang_common['confirm'].'&nbsp;'. cpg_display_help('f=index.html&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_common['captcha_help_title']))).'&amp;t='.urlencode(base64_encode(serialize($lang_common['captcha_help']))),470,245),
             '{PIC_ID}' => $pid,
             '{USER_NAME}' => $user_name,
             '{MAX_COM_LENGTH}' => $CONFIG['max_com_size'],
