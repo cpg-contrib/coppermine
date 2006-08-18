@@ -35,9 +35,6 @@ $lang_check_uncheck_all = cpg_lang_var("lang_check_uncheck_all");
 $lang_bbcode_help = cpg_lang_var("lang_bbcode_help");
 $lang_bbcode_help_title = cpg_lang_var("lang_bbcode_help_title");
 
-$lang_captcha_help_title = cpg_lang_var("lang_captcha_help_title");
-$lang_captcha_help = cpg_lang_var("lang_captcha_help");
-
 $lang_register_confirm_email = cpg_lang_var("lang_register_confirm_email");
 $lang_register_confirm_email = cpg_lang_var("lang_register_confirm_email");
 $lang_register_approve_email = cpg_lang_var("lang_register_approve_email");
@@ -61,6 +58,9 @@ $lang_meta_album_names = array_merge($lang_meta_album_names_en, $lang_meta_album
 
 $lang_errors_en = cpg_get_default_lang_var('lang_errors','english');
 $lang_errors = array_merge($lang_errors_en, $lang_errors);
+
+$lang_common_en = cpg_get_default_lang_var('lang_common','english');
+$lang_common = array_merge($lang_common_en, $lang_common);
 
 // ------------------------------------------------------------------------- //
 // File theme.php
