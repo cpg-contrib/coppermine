@@ -2,7 +2,7 @@
 /*************************
   Coppermine Photo Gallery
   ************************
-  Copyright (c) 2003-2005 Coppermine Dev Team
+  Copyright (c) 2003-2006 Coppermine Dev Team
   v1.1 originally written by Gregory DEMAR
 
   This program is free software; you can redistribute it and/or modify
@@ -18,12 +18,12 @@
 **********************************************/
 
 /**
-* Coppermine Photo Gallery 1.4.2 addpic.php
+* Coppermine Photo Gallery addpic.php
 *
 * This file file gets called in the img src when you do batch add, there is nothing
 * much to look here the grunt work is done by the function add_picture
 *
-* @copyright 2002,2005 Gregory DEMAR, Coppermine Dev Team
+* @copyright 2002-2006 Gregory DEMAR, Coppermine Dev Team
 * @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
 * @package Coppermine
 * @version $Id$

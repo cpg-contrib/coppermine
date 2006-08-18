@@ -2,7 +2,7 @@
 /*************************
   Coppermine Photo Gallery
   ************************
-  Copyright (c) 2003-2005 Coppermine Dev Team
+  Copyright (c) 2003-2006 Coppermine Dev Team
   v1.1 originally written by Gregory DEMAR
 
   This program is free software; you can redistribute it and/or modify
@@ -18,13 +18,13 @@
 **********************************************/
 
 /**
-* Coppermine Photo Gallery 1.4.2 addfav.php
+* Coppermine Photo Gallery addfav.php
 *
 * This file does the needful when add to fav links are clicked, if the user is logged in then
 * the favs are stored in the database else the favs are stored in a local cookie, the favs in
 * database take precedence over the cookie favs
 *
-* @copyright 2002-2005 Gregory DEMAR, Coppermine Dev Team
+* @copyright 2002-2006 Gregory DEMAR, Coppermine Dev Team
 * @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
 * @package Coppermine
 * @version $Id$

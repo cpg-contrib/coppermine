@@ -2,7 +2,7 @@
 /*************************
   Coppermine Photo Gallery
   ************************
-  Copyright (c) 2003-2005 Coppermine Dev Team
+  Copyright (c) 2003-2006 Coppermine Dev Team
   v1.1 originally written by Gregory DEMAR
 
   This program is free software; you can redistribute it and/or modify
@@ -18,13 +18,13 @@
 **********************************************/
 
 /**
-* Coppermine Photo Gallery 1.4.2 albmgr.php
+* Coppermine Photo Gallery albmgr.php
 *
 * This file is the which allows creation of new Albumbs and editing the names of albums,
 * this is not the file which allows you to set album properties,
 * also see documentation for this file's {@relativelink ../_albmgr.php.php Free Standing Code}
 *
-* @copyright  2002,2005 Gregory DEMAR, Coppermine Dev Team
+* @copyright 2002-2006 Gregory DEMAR, Coppermine Dev Team
 * @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
 * @package Coppermine
 * @version $Id$
