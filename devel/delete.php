@@ -303,7 +303,7 @@ switch ($what) {
         }
         if ($need_caption) output_caption();
         echo "<tr><td colspan=\"6\" class=\"tablef\" align=\"center\">\n";
-        echo "<div class=\"admin_menu_thumb\"><a href=\"index.php\"  class=\"adm_menu\">$lang_continue</a></div>\n";
+        echo "<div class=\"admin_menu_thumb\"><a href=\"index.php\"  class=\"adm_menu\">".$lang_common['continue']."</a></div>\n";
         echo "</td></tr>";
         endtable();
         pagefooter();
@@ -368,7 +368,7 @@ switch ($what) {
       }
       if ($need_caption) output_caption();
       echo "<tr><td colspan=\"6\" class=\"tablef\" align=\"center\">\n";
-      echo "<div class=\"admin_menu_thumb\"><a href=\"index.php\"  class=\"adm_menu\">$lang_continue</a></div>\n";
+      echo "<div class=\"admin_menu_thumb\"><a href=\"index.php\"  class=\"adm_menu\">".$lang_common['continue']."</a></div>\n";
       echo "</td></tr>";
       endtable();
       pagefooter();
@@ -401,8 +401,8 @@ switch ($what) {
         $header_location = (@preg_match('/Microsoft|WebSTAR|Xitami/', getenv('SERVER_SOFTWARE'))) ? 'Refresh: 0; URL=' : 'Location: ';
         $redirect = "displayimage.php?pos=" . (- $comment_data['pid']);
         header($header_location . $redirect);
-        pageheader($lang_info, "<META http-equiv=\"refresh\" content=\"1;url=$redirect\">");
-        msg_box($lang_info, $lang_delete_php['comment_deleted'], $lang_continue, $redirect);
+        pageheader($lang_common['information'], "<META http-equiv=\"refresh\" content=\"1;url=$redirect\">");
+        msg_box($lang_common['information'], $lang_delete_php['comment_deleted'], $lang_common['continue'], $redirect);
         pagefooter();
         ob_end_flush();
         break;
@@ -418,7 +418,7 @@ switch ($what) {
         $aid = delete_picture($pid);
         output_caption();
         echo "<tr><td colspan=\"7\" class=\"tablef\" align=\"center\">\n";
-        echo "<div class=\"admin_menu_thumb\"><a href=\"thumbnails.php?album=$aid\"  class=\"adm_menu\">$lang_continue</a></div>\n";
+        echo "<div class=\"admin_menu_thumb\"><a href=\"thumbnails.php?album=$aid\"  class=\"adm_menu\">".$lang_common['continue']."</a></div>\n";
         echo "</td></tr>\n";
         endtable();
         pagefooter();
@@ -439,7 +439,7 @@ switch ($what) {
         if ($need_caption) output_caption();
 
         echo "<tr><td colspan=\"7\" class=\"tablef\" align=\"center\">\n";
-        echo "<div class=\"admin_menu_thumb\"><a href=\"index.php\"  class=\"adm_menu\">$lang_continue</a></div>\n";
+        echo "<div class=\"admin_menu_thumb\"><a href=\"index.php\"  class=\"adm_menu\">".$lang_common['continue']."</a></div>\n";
         echo "</td></tr>";
         endtable();
         pagefooter();
@@ -531,7 +531,7 @@ switch ($what) {
                         print '</tr>';
                     }
                     echo "<tr><td colspan=\"6\" class=\"tablef\" align=\"center\">\n";
-                    echo "<a href=\"usermgr.php\"  class=\"admin_menu\">$lang_continue</a>\n";
+                    echo "<a href=\"usermgr.php\"  class=\"admin_menu\">".$lang_common['continue']."</a>\n";
                     echo "</td></tr>";
                     endtable();
                     pagefooter();
@@ -568,7 +568,7 @@ switch ($what) {
                         mysql_free_result($result);
                     } // foreach --- end
                     echo "<tr><td colspan=\"2\" class=\"tablef\" align=\"center\">\n";
-                    echo "<a href=\"usermgr.php\" class=\"admin_menu\">$lang_continue</a>\n";
+                    echo "<a href=\"usermgr.php\" class=\"admin_menu\">".$lang_common['continue']."</a>\n";
                     echo "</td></tr>";
                     endtable();
                     pagefooter();
@@ -605,7 +605,7 @@ switch ($what) {
                         mysql_free_result($result);
                     } // foreach --- end
                     echo "<tr><td colspan=\"2\" class=\"tablef\" align=\"center\">\n";
-                    echo "<a href=\"usermgr.php\" class=\"admin_menu\">$lang_continue</a>\n";
+                    echo "<a href=\"usermgr.php\" class=\"admin_menu\">".$lang_common['continue']."</a>\n";
                     echo "</td></tr>";
                     endtable();
                     pagefooter();
@@ -638,7 +638,7 @@ switch ($what) {
                         mysql_free_result($result);
                     } // foreach --- end
                     echo "<tr><td colspan=\"2\" class=\"tablef\" align=\"center\">\n";
-                    echo "<a href=\"usermgr.php\" class=\"admin_menu\">$lang_continue</a>\n";
+                    echo "<a href=\"usermgr.php\" class=\"admin_menu\">".$lang_common['continue']."</a>\n";
                     echo "</td></tr>";
                     endtable();
                     pagefooter();
@@ -677,7 +677,7 @@ switch ($what) {
                         mysql_free_result($result);
                     } // foreach --- end
                     echo "<tr><td colspan=\"2\" class=\"tablef\" align=\"center\">\n";
-                    echo "<a href=\"usermgr.php\" class=\"admin_menu\">$lang_continue</a>\n";
+                    echo "<a href=\"usermgr.php\" class=\"admin_menu\">".$lang_common['continue']."</a>\n";
                     echo "</td></tr>";
                     endtable();
                     pagefooter();
@@ -736,7 +736,7 @@ switch ($what) {
                         mysql_free_result($result);
                     } // foreach --- end
                     echo "<tr><td colspan=\"2\" class=\"tablef\" align=\"center\">\n";
-                    echo "<a href=\"usermgr.php\" class=\"admin_menu\">$lang_continue</a>\n";
+                    echo "<a href=\"usermgr.php\" class=\"admin_menu\">".$lang_common['continue']."</a>\n";
                     echo "</td></tr>";
                     endtable();
                     pagefooter();

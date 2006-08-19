@@ -167,7 +167,7 @@ if (count($_POST) > 0 && $valid_sender_email) {
 
     if ($result) {
         pageheader($lang_report_php['title'], "<meta http-equiv=\"refresh\" content=\"3;url=displayimage.php?pos=-{$pid}\" />");
-        msg_box($lang_cpg_die[INFORMATION], $lang_report_php['send_success'], $lang_continue, "displayimage.php?pos=-{$pid}");
+        msg_box($lang_cpg_die[INFORMATION], $lang_report_php['send_success'], $lang_common['continue'], "displayimage.php?pos=-{$pid}");
         pagefooter();
         ob_end_flush();
         exit;

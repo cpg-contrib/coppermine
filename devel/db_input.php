@@ -102,8 +102,8 @@ switch ($event) {
             $header_location = (@preg_match('/Microsoft|WebSTAR|Xitami/', getenv('SERVER_SOFTWARE'))) ? 'Refresh: 0; URL=' : 'Location: ';
             $redirect = "index.php";
             header($header_location . $redirect);
-            pageheader($lang_info, "<meta http-equiv=\"refresh\" content=\"1;url=$redirect\" />");
-            msg_box($lang_info, $lang_db_input_php['redirect_msg'], $lang_db_input_php['continue'], $redirect);
+            pageheader($lang_common['information'], "<meta http-equiv=\"refresh\" content=\"1;url=$redirect\" />");
+            msg_box($lang_common['information'], $lang_db_input_php['redirect_msg'], $lang_db_input_php['continue'], $redirect);
             pagefooter();
             ob_end_flush();
             exit;
@@ -112,8 +112,8 @@ switch ($event) {
             mysql_free_result($result);
             $redirect = "displayimage.php?pos=" . (- $comment_data['pid']);
             header($header_location . $redirect);
-            pageheader($lang_info, "<meta http-equiv=\"refresh\" content=\"1;url=$redirect\" />");
-            msg_box($lang_info, $lang_db_input_php['redirect_msg'], $lang_db_input_php['continue'], $redirect);
+            pageheader($lang_common['information'], "<meta http-equiv=\"refresh\" content=\"1;url=$redirect\" />");
+            msg_box($lang_common['information'], $lang_db_input_php['redirect_msg'], $lang_db_input_php['continue'], $redirect);
             pagefooter();
             ob_end_flush();
             exit;
@@ -127,7 +127,7 @@ switch ($event) {
         if (($CONFIG['comment_captcha'] > 0 && !USER_ID) || ($CONFIG['comment_captcha'] == 2 && USER_ID)) {
             require("include/captcha.inc.php");
             if (!PhpCaptcha::Validate($_POST['confirmCode'])) {
-              //msg_box($lang_error, $lang_errors['captcha_error'], $lang_back, 'javascript:history.back()');
+              //msg_box($lang_common['error'], $lang_errors['captcha_error'], $lang_common['back'], 'javascript:history.back()');
               cpg_die(ERROR, $lang_errors['captcha_error'], __FILE__, __LINE__);
             }
         }
@@ -160,7 +160,7 @@ switch ($event) {
         if (!USER_ID) { // Anonymous users, we need to use META refresh to save the cookie
             if (mysql_result(cpg_db_query("select count(user_id) from {$CONFIG['TABLE_USERS']} where UPPER(user_name) = UPPER('$msg_author')"),0,0))
             {
-              cpg_die($lang_error, $lang_db_input_php['com_author_error'],__FILE__,__LINE__);
+              cpg_die($lang_common['error'], $lang_db_input_php['com_author_error'],__FILE__,__LINE__);
           }
 
             if ($CONFIG['comment_approval'] != 0) { // comments need approval, set approval status to "no"
@@ -176,7 +176,7 @@ switch ($event) {
                 cpg_mail('admin', $lang_db_input_php['email_comment_subject'], make_clickable($mail_body));
             }
             pageheader($lang_db_input_php['com_added'], "<meta http-equiv=\"refresh\" content=\"1;url=$redirect\" />");
-            msg_box($lang_db_input_php['info'], $lang_db_input_php['com_added'], $lang_continue, $redirect);
+            msg_box($lang_db_input_php['info'], $lang_db_input_php['com_added'], $lang_common['continue'], $redirect);
             pagefooter();
             ob_end_flush();
             exit;
@@ -194,7 +194,7 @@ switch ($event) {
             $header_location = (@preg_match('/Microsoft|WebSTAR|Xitami/', getenv('SERVER_SOFTWARE'))) ? 'Refresh: 0; URL=' : 'Location: ';
             header($header_location . $redirect);
             pageheader($lang_db_input_php['com_added'], "<meta http-equiv=\"refresh\" content=\"1;url=$redirect\" />");
-            msg_box($lang_db_input_php['info'], $lang_db_input_php['com_added'], $lang_continue, $redirect);
+            msg_box($lang_db_input_php['info'], $lang_db_input_php['com_added'], $lang_common['continue'], $redirect);
             pagefooter();
             ob_end_flush();
             exit;
@@ -233,7 +233,7 @@ switch ($event) {
 
         if (!mysql_affected_rows()) cpg_die(INFORMATION, $lang_db_input_php['no_udp_needed'], __FILE__, __LINE__);
                 pageheader($lang_db_input_php['alb_updated'], "<meta http-equiv=\"refresh\" content=\"1;url=modifyalb.php?album=$aid\" />");
-        msg_box($lang_db_input_php['info'], $lang_db_input_php['alb_updated'], $lang_continue, "modifyalb.php?album=$aid");
+        msg_box($lang_db_input_php['info'], $lang_db_input_php['alb_updated'], $lang_common['continue'], "modifyalb.php?album=$aid");
         pagefooter();
         ob_end_flush();
         exit;
@@ -300,7 +300,7 @@ switch ($event) {
         if ($CONFIG['debug_mode'] == 0) {
             pageheader($lang_db_input_php['alb_updated'], "<meta http-equiv=\"refresh\" content=\"1;url=modifyalb.php?album=$aid\" />");
         }
-        msg_box($lang_db_input_php['info'], $lang_db_input_php['alb_updated'], $lang_continue, "modifyalb.php?album=$aid");
+        msg_box($lang_db_input_php['info'], $lang_db_input_php['alb_updated'], $lang_common['continue'], "modifyalb.php?album=$aid");
         pagefooter();
         ob_end_flush();
         exit;
@@ -428,8 +428,8 @@ switch ($event) {
             @unlink($uploaded_pic);
             cpg_die(CRITICAL_ERROR, sprintf($lang_db_input_php['err_insert_pic'], $uploaded_pic) . '<br /><br />' . $ERROR, __FILE__, __LINE__, true);
         } elseif ($PIC_NEED_APPROVAL) {
-            pageheader($lang_info);
-            msg_box($lang_info, $lang_db_input_php['upload_success'], $lang_continue, 'index.php');
+            pageheader($lang_common['information']);
+            msg_box($lang_common['information'], $lang_db_input_php['upload_success'], $lang_common['continue'], 'index.php');
             // start: send admin approval mail added by gaugau: 03-11-09
             if ($CONFIG['upl_notify_admin_email'])
             {
@@ -442,8 +442,8 @@ switch ($event) {
             $header_location = (@preg_match('/Microsoft|WebSTAR|Xitami/', getenv('SERVER_SOFTWARE'))) ? 'Refresh: 0; URL=' : 'Location: ';
             $redirect = "displayimage.php?pos=" . (- mysql_insert_id());
             header($header_location . $redirect);
-            pageheader($lang_info, "<meta http-equiv=\"refresh\" content=\"1;url=$redirect\" />");
-            msg_box($lang_info, $lang_db_input_php['upl_success'], $lang_continue, $redirect);
+            pageheader($lang_common['information'], "<meta http-equiv=\"refresh\" content=\"1;url=$redirect\" />");
+            msg_box($lang_common['information'], $lang_db_input_php['upl_success'], $lang_common['continue'], $redirect);
             pagefooter();
             ob_end_flush();
             exit;

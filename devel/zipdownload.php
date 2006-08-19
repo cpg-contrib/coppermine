@@ -25,8 +25,8 @@ include ( 'include/archive.php');
 
 if ($CONFIG['enable_zipdownload'] != 1) {
 //someone has entered the url manually, while the admin has disabled zipdownload
-pageheader($lang_error);
-starttable('-2', $lang_error);
+pageheader($lang_common['error']);
+starttable('-2', $lang_common['error']);
 print <<<EOT
 <tr>
         <td align="center" class="tableb">

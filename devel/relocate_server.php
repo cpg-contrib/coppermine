@@ -22,8 +22,8 @@ require('include/init.inc.php');
 if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
 $redirect = "index.php";
-pageheader($lang_info, "<meta http-equiv=\"refresh\" content=\"120;url=$redirect\" />");
-msg_box($lang_info, $message, $lang_continue, $lang_errors['page_removed_redirector']);
+pageheader($lang_common['information'], "<meta http-equiv=\"refresh\" content=\"120;url=$redirect\" />");
+msg_box($lang_common['information'], $message, $lang_common['continue'], $lang_errors['page_removed_redirector']);
 pagefooter();
 ob_end_flush();
 ?>

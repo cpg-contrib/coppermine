@@ -203,7 +203,7 @@ if (isset($_POST['change_profile']) && USER_ID && UDB_INTEGRATION == 'coppermine
     $title = sprintf($lang_register_php['x_s_profile'], stripslashes(USER_NAME));
     $redirect = "index.php";
     pageheader($title, "<META http-equiv=\"refresh\" content=\"3;url=$redirect\">");
-    msg_box($lang_info, $lang_register_php['update_success'], $lang_continue, $redirect);
+    msg_box($lang_common['information'], $lang_register_php['update_success'], $lang_common['continue'], $redirect);
     pagefooter();
     ob_end_flush();
     exit;
@@ -245,7 +245,7 @@ if (isset($_POST['change_password']) && USER_ID && UDB_INTEGRATION == 'coppermin
     $title = sprintf($lang_register_php['x_s_profile'], stripslashes(USER_NAME));
     $redirect = $_SERVER['PHP_SELF'] . "?op=edit_profile";
     pageheader($title, "<META http-equiv=\"refresh\" content=\"3;url=$redirect\">");
-    msg_box($lang_info, $lang_register_php['pass_chg_success'], $lang_continue, $redirect);
+    msg_box($lang_common['information'], $lang_register_php['pass_chg_success'], $lang_common['continue'], $redirect);
     pagefooter();
     ob_end_flush();
     exit;

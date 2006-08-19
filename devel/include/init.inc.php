@@ -151,9 +151,9 @@ define('CRITICAL_ERROR', 3);
 
 // Include config and functions files
 if(file_exists('include/config.inc.php')){
-	ob_start();
-	require_once 'include/config.inc.php';
-	ob_clean();
+        ob_start();
+        require_once 'include/config.inc.php';
+        ob_clean();
 } else {
   // error handling: if the config file doesn't exist go to install
   die('<html>
@@ -304,7 +304,7 @@ $THEME_DIR = "themes/{$CONFIG['theme']}/";
 if (!empty($_GET['lang']))
 {
     //$USER['lang'] = $_GET['lang']; Nasty line permitting remote code execution
-	$USER['lang'] = ereg("^[a-z0-9_-]*$", $_GET['lang']) ? $_GET['lang'] : $CONFIG['lang'];
+        $USER['lang'] = ereg("^[a-z0-9_-]*$", $_GET['lang']) ? $_GET['lang'] : $CONFIG['lang'];
 }
 
 if (isset($USER['lang']) && !strstr($USER['lang'], '/') && file_exists('lang/' . $USER['lang'] . '.php'))
@@ -388,8 +388,8 @@ cpg_db_query("DELETE FROM {$CONFIG['TABLE_BANNED']} WHERE expiry < '$now'");
 $user_id = USER_ID;
 $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_BANNED']} WHERE (ip_addr='$raw_ip' OR ip_addr='$hdr_ip' OR user_id=$user_id) AND brute_force=0");
 if (mysql_num_rows($result)) {
-    pageheader($lang_error);
-    msg_box($lang_info, $lang_errors['banned']);
+    pageheader($lang_common['error']);
+    msg_box($lang_common['information'], $lang_errors['banned']);
     pagefooter();
     exit;
 }
@@ -407,8 +407,8 @@ if (!USER_IS_ADMIN && $CONFIG['offline'] && !strstr($_SERVER["SCRIPT_NAME"],'log
 // kick user into user_admin_mode (needed to fix "removed user mode for users" when upgrading)
 if (USER_ID && !USER_IS_ADMIN && !$USER['am']) { // user is logged in, but is not gallery admin and not in admin mode
     $USER['am'] = 1;
-    pageheader($lang_info, "<META http-equiv=\"refresh\" content=\"1;url=$referer\">");
-    msg_box($lang_info, 'Sending you to admin mode', $lang_continue, $referer);
+    pageheader($lang_common['information'], "<META http-equiv=\"refresh\" content=\"1;url=$referer\">");
+    msg_box($lang_common['information'], 'Sending you to admin mode', $lang_common['continue'], $referer);
     pagefooter();
     ob_end_flush();
     die();

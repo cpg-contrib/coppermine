@@ -108,6 +108,13 @@ $lang_bbcode_help_title = 'bbcode help';
 $lang_bbcode_help = 'You can add clickable links and some formating to this field by using bbcode tags: <li>[b]Bold[/b] =&gt; <b>Bold</b></li><li>[i]Italic[/i] =&gt; <i>Italic</i></li><li>[url=http://yoursite.com/]Url Text[/url] =&gt; <a href="http://yoursite.com">Url Text</a></li><li>[email]user@domain.com[/email] =&gt; <a href="mailto:user@domain.com">user@domain.com</a></li><li>[color=red]some text[/color] =&gt; <span style="color:red">some text</span></li><li>[img]http://coppermine.sf.net/demo/images/red.gif[/img] => <img src="../images/red.gif" border="0" alt="" /></li>';
 
 $lang_common = array(
+  'yes' => 'Yes', // cpg1.5.x
+  'no' => 'No', // cpg1.5.x
+  'back' => 'Back', // cpg1.5.x
+  'continue' => 'Continue', // cpg1.5.x
+  'information' => 'Information', // cpg1.5.x
+  'error' => 'Error', // cpg1.5.x
+  'check_uncheck_all' => 'check/uncheck all', // cpg1.5.x
   'confirm' => 'Confirmation', // cpg1.5.x
   'captcha_help_title' => 'Visual confirmation (captcha)', // cpg1.5.x
   'captcha_help' => 'To avoid spam, you have to confirm that you are an actual human being and not just a bot script  by entering the displayed text.<br />Capitalization does not matter, you can type in lowercase.', // cpg1.5.x

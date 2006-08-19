@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-08-19 [O] Replaced common language vars with array equivalents {GauGau}
 2006-08-18 [A] Added disapproval/disapproval option of individual comments {GauGau}
 2006-08-18 [M] Updated file header info {GauGau}
 2006-08-18 [A] Added captcha for registration {GauGau}

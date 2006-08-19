@@ -29,7 +29,7 @@ $cpg_udb->synchronize_groups();
 function display_group_list()
 {
     global $CONFIG, $custom_group_counter;
-    global $lang_groupmgr_php, $lang_byte_units, $lang_yes, $lang_no;
+    global $lang_groupmgr_php, $lang_byte_units, $lang_common;
     $row_counter = 0;
     $table_start = '<table border="0" cellspacing="0" cellpadding="0" style="white-space:nowrap;font-size:90%;">'."\n";
     $table_end = '</table>'."\n";
@@ -154,10 +154,10 @@ EOT;
             }
             echo <<< EOT
             $td_start
-            <input type="radio" id="{$field_name}_{$group['group_id']}1" name="{$field_name}_{$group['group_id']}" value="1" $yes_selected $disabled_yes /><label for="{$field_name}_{$group['group_id']}1" class="clickable_option">$lang_yes</label>
+            <input type="radio" id="{$field_name}_{$group['group_id']}1" name="{$field_name}_{$group['group_id']}" value="1" $yes_selected $disabled_yes /><label for="{$field_name}_{$group['group_id']}1" class="clickable_option">{$lang_common['yes']}</label>
             $td_end
             $td_start
-                        <input type="radio" id="{$field_name}_{$group['group_id']}0" name="{$field_name}_{$group['group_id']}" value="0" $no_selected $disabled_no /><label for="{$field_name}_{$group['group_id']}0" class="clickable_option">$lang_no</label>
+                        <input type="radio" id="{$field_name}_{$group['group_id']}0" name="{$field_name}_{$group['group_id']}" value="0" $no_selected $disabled_no /><label for="{$field_name}_{$group['group_id']}0" class="clickable_option">{$lang_common['no']}</label>
                         $td_end
                         $tr_end
 
@@ -354,7 +354,7 @@ $help_upload_method = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=group_cp_upl
 echo <<<EOT
 
         <tr style="white-space:nowrap">
-                <td class="tableh1"><input type="checkbox" name="checkAll" onclick="selectAll(this,'delete_group');" class="checkbox" title="$lang_check_uncheck_all" /></td>
+                <td class="tableh1"><input type="checkbox" name="checkAll" onclick="selectAll(this,'delete_group');" class="checkbox" title="{$lang_common['check_uncheck_all']}" /></td>
                 <td class="tableh1"><b><span class="statlink">{$lang_groupmgr_php['group_name']}</span></b>$help_group</td>
                 <td class="tableh1"><b><span class="statlink">{$lang_groupmgr_php['permissions']}</span></b>$help_permissions</td>
                 <td class="tableh1"><b><span class="statlink">{$lang_groupmgr_php['public_albums']}</span></b></td>
@@ -379,7 +379,7 @@ EOT;
 } else {
     echo <<<EOT
         <tr>
-            <td class="tablef"><input type="checkbox" name="checkAll2" onClick="selectAll(this,'delete_group');" class="checkbox" title="$lang_check_uncheck_all" /></td>
+            <td class="tablef"><input type="checkbox" name="checkAll2" onClick="selectAll(this,'delete_group');" class="checkbox" title="{$lang_common['check_uncheck_all']}" /></td>
             <td colspan="13" align="center" class="tablef">
                         <input type="submit" name="apply_modifs" value="{$lang_groupmgr_php['apply']}" class="button" />&nbsp;&nbsp;&nbsp;
                         <input type="submit" name="new_group" value="{$lang_groupmgr_php['create_new_group']}" class="button" />&nbsp;&nbsp;&nbsp;

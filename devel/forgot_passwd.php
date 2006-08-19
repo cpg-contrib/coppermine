@@ -69,7 +69,7 @@ if (!empty($_POST['email'])) {
         // output the message
         pageheader($lang_forgot_passwd_php['forgot_passwd'], "<META http-equiv=\"refresh\" content=\"3;url=index.php\">");
         $referer = 'index.php';
-        msg_box($lang_forgot_passwd_php['forgot_passwd'], sprintf($lang_forgot_passwd_php['verify_email_sent'], $USER_DATA['user_email']), $lang_continue, $referer);
+        msg_box($lang_forgot_passwd_php['forgot_passwd'], sprintf($lang_forgot_passwd_php['verify_email_sent'], $USER_DATA['user_email']), $lang_common['continue'], $referer);
         $USER_DATA['user_password'] = '***********';
         pagefooter();
         exit;
@@ -138,7 +138,7 @@ EOT;
     // output the message
     pageheader($lang_forgot_passwd_php['forgot_passwd'], "<META http-equiv=\"refresh\" content=\"3;url=login.php\">");
     $referer = 'login.php';
-    msg_box($lang_forgot_passwd_php['forgot_passwd'], sprintf($lang_forgot_passwd_php['email_sent'], $row['user_email']), $lang_continue, $referer);
+    msg_box($lang_forgot_passwd_php['forgot_passwd'], sprintf($lang_forgot_passwd_php['email_sent'], $row['user_email']), $lang_common['continue'], $referer);
     $USER_DATA['user_password'] = '***********';
     pagefooter();
     exit;

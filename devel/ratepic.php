@@ -119,8 +119,8 @@ cpg_db_query($query);
 $location = "displayimage.php?pid=" . ($pic);
 $header_location = (@preg_match('/Microsoft|WebSTAR|Xitami/', getenv('SERVER_SOFTWARE'))) ? 'Refresh: 0; URL=' : 'Location: ';
 header($header_location . $location);
-pageheader($lang_info, "<META http-equiv=\"refresh\" content=\"1;url=$location\">");
-msg_box($lang_info, $lang_rate_pic_php['rate_ok'], $lang_continue, $location);
+pageheader($lang_common['information'], "<META http-equiv=\"refresh\" content=\"1;url=$location\">");
+msg_box($lang_common['information'], $lang_rate_pic_php['rate_ok'], $lang_common['continue'], $location);
 pagefooter();
 ob_end_flush();
 

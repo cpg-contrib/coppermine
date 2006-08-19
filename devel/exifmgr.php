@@ -47,7 +47,7 @@ if (isset($_POST['save'])) {
   $selectedExifTags = $str;
   $sql = "UPDATE ".$CONFIG['TABLE_CONFIG']." SET value = '".$selectedExifTags."' WHERE name = 'show_which_exif'";
   cpg_db_query($sql);
-  msg_box($lang_picinfo['ManageExifDisplay'], $lang_picinfo['success'], $lang_continue, "admin.php");
+  msg_box($lang_picinfo['ManageExifDisplay'], $lang_picinfo['success'], $lang_common['continue'], "admin.php");
 } else {
   echo <<< EOT
     <form method="POST" action="" name="editForm" id="cpgform">
@@ -79,7 +79,7 @@ if (isset($_POST['save'])) {
 EOT;
   starttable(-2,$lang_picinfo['ManageExifDisplay'], 2);
   echo '<tr><td class="tableh2">&nbsp;</td><td class="tableh2" align="center">';
-  echo '<input type="checkbox" name="checkAll" onClick="selectAll(this,\'exif_tags\');" class="checkbox" title="'.$lang_check_uncheck_all.'" />';
+  echo '<input type="checkbox" name="checkAll" onClick="selectAll(this,\'exif_tags\');" class="checkbox" title="'.$lang_common['check_uncheck_all'].'" />';
   echo '</td></tr>';
   foreach ($exifRawData as $key => $val) {
     $checked = $exifCurrentData[$key] == 1 ? 'checked' : '';
@@ -88,7 +88,7 @@ EOT;
   echo '<tr>
   <td class="tablef" align="center"><input type="submit" class="button" name="submit" value="'.$lang_picinfo['submit'].'" />';
   echo '<td class="tablef" align="center">';
-  echo '<input type="checkbox" name="checkAll2" onClick="selectAll(this,\'exif_tags\');" class="checkbox" title="'.$lang_check_uncheck_all.'" />';
+  echo '<input type="checkbox" name="checkAll2" onClick="selectAll(this,\'exif_tags\');" class="checkbox" title="'.$lang_common['check_uncheck_all'].'" />';
   echo '  </td></tr>';
   endtable();
   echo <<< EOT

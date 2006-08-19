@@ -118,7 +118,7 @@ if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__,
  */
 function dirheader($dir, $dirid)
 {
-    global $CONFIG, $lang_search_new_php,$lang_check_uncheck_all;
+    global $CONFIG, $lang_search_new_php, $lang_common;
     $warning = '';
 
     if (!is_writable($CONFIG['fullpath'] . $dir))
@@ -383,7 +383,7 @@ function CPGscandir($dir, &$expic_array)
         echo <<< EOT
         <tr>
                 <td class="tablef">
-                    <input type="checkbox" name="checkAll2" onClick="selectAll(this,'pics');" class="checkbox" title="{$lang_check_uncheck_all}" />
+                    <input type="checkbox" name="checkAll2" onClick="selectAll(this,'pics');" class="checkbox" title="{$lang_common['check_uncheck_all']}" />
                 </td>
                 <td colspan="2" align="right" class="tablef">
                         <input type="submit" class="button" name="insert" value="{$lang_search_new_php['insert_selected']}" />
@@ -539,7 +539,7 @@ EOT;
         echo <<<EOT
         <tr>
                 <td class="tablef">
-                    <input type="checkbox" name="checkAll" onClick="selectAll(this,'pics');" class="checkbox" title="$lang_check_uncheck_all" />
+                    <input type="checkbox" name="checkAll" onClick="selectAll(this,'pics');" class="checkbox" title="{$lang_common['check_uncheck_all']}" />
                 </td>
                 <td colspan="2" align="right" class="tablef">
                         <input type="submit" class="button" name="insert" value="{$lang_search_new_php['insert_selected']}" />
@@ -614,9 +614,9 @@ EOT;
                         {$lang_search_new_php['browse_batch_add']}
                         $help
                         &nbsp;&nbsp;
-                        <input type="radio" id="browse_batch_add1" name="browse_batch_add" value="1"  onclick="document.interfaceconfig.submit();" $yes_selected /><label for="browse_batch_add1" class="clickable_option">$lang_yes</label>
+                        <input type="radio" id="browse_batch_add1" name="browse_batch_add" value="1"  onclick="document.interfaceconfig.submit();" $yes_selected /><label for="browse_batch_add1" class="clickable_option">{$lang_common['yes']}</label>
                         &nbsp;&nbsp;
-                        <input type="radio" id="browse_batch_add0" name="browse_batch_add" value="0"  onclick="document.interfaceconfig.submit();" $no_selected /><label for="browse_batch_add0" class="clickable_option">$lang_no</label>
+                        <input type="radio" id="browse_batch_add0" name="browse_batch_add" value="0"  onclick="document.interfaceconfig.submit();" $no_selected /><label for="browse_batch_add0" class="clickable_option">{$lang_common['no']}</label>
                         &nbsp;&nbsp;
                         <input type="hidden" name="update_config" value="1" />
                 </td>

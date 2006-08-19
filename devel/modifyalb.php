@@ -101,7 +101,7 @@ EOT;
 
 function form_yes_no($text, $name)
 {
-    global $ALBUM_DATA, $lang_yes, $lang_no;
+    global $ALBUM_DATA, $lang_common;
 
     if ($name == 'uploads' && USER_ADMIN_MODE) {
         echo "        <input type=\"hidden\" name=\"$name\" value=\"{$ALBUM_DATA['uploads']}\" />";
@@ -118,9 +118,9 @@ function form_yes_no($text, $name)
                         $text
         </td>
         <td class="tableb" valign="top">
-                        <input type="radio" id="{$name}1" name="$name" value="YES" $yes_selected /><label for="{$name}1" class="clickable_option">$lang_yes</label>
+                        <input type="radio" id="{$name}1" name="$name" value="YES" $yes_selected /><label for="{$name}1" class="clickable_option">{$lang_common['yes']}</label>
                         &nbsp;&nbsp;
-                        <input type="radio" id="{$name}0" name="$name" value="NO" $no_selected /><label for="{$name}0" class="clickable_option">$lang_no</label>
+                        <input type="radio" id="{$name}0" name="$name" value="NO" $no_selected /><label for="{$name}0" class="clickable_option">{$lang_common['no']}</label>
                 </td>
         </tr>
 

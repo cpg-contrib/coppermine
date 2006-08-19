@@ -127,7 +127,7 @@ if ($get_data_rejected==0) { // individual approval start
             <td class="tableb tableb_alternate"><a href="$thumb_link"><img src="$thumb_url" {$image_size['geom']} class="image" border="0" alt="" /></a></td>
         </tr>
         <tr>
-            <td class="tablef" colspan="2" align="center"><a href="$thumb_link#comment{$single_approval_array['msg_id']}" class="admin_menu">{$lang_continue}</a></td>
+            <td class="tablef" colspan="2" align="center"><a href="$thumb_link#comment{$single_approval_array['msg_id']}" class="admin_menu">{$lang_common['continue']}</a></td>
         </tr>
 EOT;
         endtable();
@@ -381,7 +381,7 @@ EOT;
     echo <<<EOT
         <tr>
           <td class="tableh2" valign="middle" align="center">
-            <input type="checkbox" name="checkAll" onClick="selectAll(this,'cid_array');" class="checkbox" title="$lang_check_uncheck_all" />
+            <input type="checkbox" name="checkAll" onClick="selectAll(this,'cid_array');" class="checkbox" title="{$lang_common['check_uncheck_all']}" />
           </td>
           <td class="tableh2" valign="top">
             {$lang_reviewcom_php['approval']}
@@ -450,11 +450,11 @@ while ($row = mysql_fetch_array($result)) {
     $msg_date = localised_date($row['msg_date'], $scientific_date_fmt);
     $msg_body = bb_decode(process_smilies($row['msg_body']));
     if ($row['approval'] == 'YES') {
-        $comment_approval_status = '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'yes" type="radio" value="1" checked="checked" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'yes" class="clickable_option">'.$lang_yes."</label>&nbsp;\n\r";
-        $comment_approval_status .= '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'no" type="radio" value="0" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'no" class="clickable_option">'.$lang_no.'</label>';
+        $comment_approval_status = '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'yes" type="radio" value="1" checked="checked" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'yes" class="clickable_option">'.$lang_common['yes']."</label>&nbsp;\n\r";
+        $comment_approval_status .= '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'no" type="radio" value="0" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'no" class="clickable_option">'.$lang_common['no'].'</label>';
     } else {
-        $comment_approval_status = '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'yes" type="radio" value="1" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'yes" class="clickable_option">'.$lang_yes."</label>&nbsp;\n\r                        ";
-        $comment_approval_status .= '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'no" type="radio" value="0" checked="checked" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'no" class="clickable_option">'.$lang_no.'</label>';
+        $comment_approval_status = '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'yes" type="radio" value="1" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'yes" class="clickable_option">'.$lang_common['yes']."</label>&nbsp;\n\r                        ";
+        $comment_approval_status .= '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'no" type="radio" value="0" checked="checked" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'no" class="clickable_option">'.$lang_common['no'].'</label>';
     }
     $comment_approval_status .= '<input type="hidden" name="status_approved_yes[]" id="status_approved_yes'.$row['msg_id'].'" value="" />';
     $comment_approval_status .= '<input type="hidden" name="status_approved_no[]" id="status_approved_no'.$row['msg_id'].'" value="" />';
@@ -504,7 +504,7 @@ mysql_free_result($result);
 echo <<<EOT
         <tr>
             <td class="tablef" valign="middle" align="center">
-                <input type="checkbox" name="checkAll2" onClick="selectAll(this,'cid_array');" class="checkbox" title="$lang_check_uncheck_all" />
+                <input type="checkbox" name="checkAll2" onClick="selectAll(this,'cid_array');" class="checkbox" title="{$lang_common['check_uncheck_all']}" />
             </td>
             <td colspan="3" class="tablef" valign="middle" align="left">
                 {$lang_reviewcom_php['with_selected']}:

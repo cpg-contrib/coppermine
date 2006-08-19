@@ -133,7 +133,7 @@ function list_groups_alb_access() //shows a list of albums each group can see. C
 function list_users($search = '')
 {
     global $CONFIG, $cpg_udb; //, $PHP_SELF;
-    global $lang_usermgr_php, $lang_byte_units, $register_date_fmt,$lang_check_uncheck_all;
+    global $lang_usermgr_php, $lang_byte_units, $register_date_fmt, $lang_common;
     global $lim_user,$number_of_columns;
     global $USER_DATA;
 
@@ -340,7 +340,7 @@ EOT;
      echo <<< EOT
 
         <tr>
-                <td class="tableh1" align="center"><input type="checkbox" {$makereadonly}name="checkAll" onClick="selectAll(this,'u');" class="checkbox" title="$lang_check_uncheck_all" /></td>
+                <td class="tableh1" align="center"><input type="checkbox" {$makereadonly}name="checkAll" onClick="selectAll(this,'u');" class="checkbox" title="{$lang_common['check_uncheck_all']}" /></td>
                 <td class="tableh1" colspan="2"><b><span class="statlink">{$lang_usermgr_php['name']}</span></b>
                 <a href="{$_SERVER['PHP_SELF']}?page=$page&amp;sort=name_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['name_a']}" /></a>
                 <a href="{$_SERVER['PHP_SELF']}?page=$page&amp;sort=name_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['name_d']}" /></a>
@@ -474,7 +474,7 @@ EOT;
             $help = cpg_display_help('f=index.htm&as=user_cp_search&ae=user_cp_search_end&top=1', '400', '150');
         echo <<<EOT
         <tr>
-                <td class="tablef" align="center"><input type="checkbox" name="checkAll2" {$makereadonly}onClick="selectAll(this,'u');" class="checkbox" title="$lang_check_uncheck_all" /></td>
+                <td class="tablef" align="center"><input type="checkbox" name="checkAll2" {$makereadonly}onClick="selectAll(this,'u');" class="checkbox" title="{$lang_common['check_uncheck_all']}" /></td>
                 <td colspan="$number_of_columns_minus_one"  class="tablef">
                 <table cellpadding="0" cellspacing="0" width="100%" border="0">
                 <tr>
@@ -566,7 +566,7 @@ EOT;
 function edit_user($user_id)
 {
     global $CONFIG; //, $PHP_SELF;
-    global $lang_usermgr_php, $lang_yes, $lang_no;
+    global $lang_usermgr_php, $lang_common;
 
     $form_data = array(
         array('input', 'user_name', $lang_usermgr_php['name'], 25),
@@ -655,9 +655,9 @@ EOT;
                         {$element[2]}
         </td>
                 <td class="tableb">
-                    <input type="radio" id="yes" name="{$element[1]}" value="YES" $yes_selected /><label for="yes" class="clickable_option">$lang_yes</label>
+                    <input type="radio" id="yes" name="{$element[1]}" value="YES" $yes_selected /><label for="yes" class="clickable_option">{$lang_common['yes']}</label>
                     &nbsp;&nbsp;
-                    <input type="radio" id="no" name="{$element[1]}" value="NO" $no_selected /><label for="no" class="clickable_option">$lang_no</label>
+                    <input type="radio" id="no" name="{$element[1]}" value="NO" $no_selected /><label for="no" class="clickable_option">{$lang_common['no']}</label>
                 </td>
         </tr>
 

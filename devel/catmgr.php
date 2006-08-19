@@ -424,9 +424,9 @@ echo <<<EOT
             <td class="tablef" colspan="6">
                         {$lang_catmgr_php['categories_alpha_sort']}
                         &nbsp;&nbsp;
-                        <input type="radio" id="categories_alpha_sort1" name="categories_alpha_sort" value="1"  onclick="checkFormSubmit()" $yes_selected /><label for="categories_alpha_sort1" class="clickable_option">$lang_yes</label>
+                        <input type="radio" id="categories_alpha_sort1" name="categories_alpha_sort" value="1"  onclick="checkFormSubmit()" $yes_selected /><label for="categories_alpha_sort1" class="clickable_option">{$lang_common['yes']}</label>
                         &nbsp;&nbsp;
-                        <input type="radio" id="categories_alpha_sort0" name="categories_alpha_sort" value="0"  onclick="checkFormSubmit()" $no_selected /><label for="categories_alpha_sort0" class="clickable_option">$lang_no</label>
+                        <input type="radio" id="categories_alpha_sort0" name="categories_alpha_sort" value="0"  onclick="checkFormSubmit()" $no_selected /><label for="categories_alpha_sort0" class="clickable_option">{$lang_common['no']}</label>
                         &nbsp;&nbsp;
                         <input type="hidden" name="update_config" value="{$lang_catmgr_php['save_cfg']}" class="button" />
                 </td>

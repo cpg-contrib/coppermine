@@ -37,7 +37,7 @@ if (isset($_POST['submitted'])) {
     if ( $USER_DATA = $cpg_udb->login( addslashes($_POST['username']), addslashes($_POST['password']), isset($_POST['remember_me']) ) ) {
         $referer=preg_replace("'&amp;'","&",$referer);
         pageheader($lang_login_php['login'], "<META http-equiv=\"refresh\" content=\"3;url=$referer\">");
-        msg_box($lang_login_php['login'], sprintf($lang_login_php['welcome'], $USER_DATA['user_name']), $lang_continue, $referer);
+        msg_box($lang_login_php['login'], sprintf($lang_login_php['welcome'], $USER_DATA['user_name']), $lang_common['continue'], $referer);
         pagefooter();
         exit;
     } else {

@@ -302,7 +302,7 @@ function get_post_var($var) { // function get_post_var - start
 
 function check_user_info(&$error) { // function check_user_info - start
     global $CONFIG; //, $PHP_SELF;
-    global $lang_register_php, $lang_register_confirm_email, $lang_continue, $lang_register_approve_email, $lang_register_activated_email, $lang_register_user_login, $lang_errors;
+    global $lang_register_php, $lang_register_confirm_email, $lang_common, $lang_register_approve_email, $lang_register_activated_email, $lang_register_user_login, $lang_errors;
     //$CONFIG['admin_activation'] = FALSE;
     //$CONFIG['admin_activation'] = TRUE;
 
@@ -406,12 +406,12 @@ function check_user_info(&$error) { // function check_user_info - start
                                         }
                                 }
         if ($CONFIG['admin_activation']==1) {
-                                        msg_box($lang_register_php['information'], $lang_register_php['thank_you_admin_activation'], $lang_continue, 'index.php');
+                                        msg_box($lang_register_php['information'], $lang_register_php['thank_you_admin_activation'], $lang_common['continue'], 'index.php');
                                 } else {
-                                        msg_box($lang_register_php['information'], $lang_register_php['thank_you'], $lang_continue, 'index.php');
+                                        msg_box($lang_register_php['information'], $lang_register_php['thank_you'], $lang_common['continue'], 'index.php');
                                 }
     } else {
-                                        msg_box($lang_register_php['information'], $lang_register_php['acct_active'], $lang_continue, 'index.php');
+                                        msg_box($lang_register_php['information'], $lang_register_php['acct_active'], $lang_common['continue'], 'index.php');
     }
 
     // email notification to admin
@@ -472,7 +472,7 @@ if (isset($_GET['activate'])) { // registration activation - start
     $result = cpg_db_query($sql);
 
                 if ($CONFIG['admin_activation']==1) { //after admin approves, user receives email notification
-                        msg_box($lang_register_php['information'], $lang_register_php['acct_active_admin_activation'], $lang_continue, 'index.php');
+                        msg_box($lang_register_php['information'], $lang_register_php['acct_active_admin_activation'], $lang_common['continue'], 'index.php');
                         $site_link = $CONFIG['site_url'];
                         $template_vars = array(
                          '{SITE_LINK}' => $site_link,
@@ -482,7 +482,7 @@ if (isset($_GET['activate'])) { // registration activation - start
                                 );
                         cpg_mail($email, sprintf($lang_register_php['notify_user_email_subject'], $CONFIG['gallery_name']), nl2br(strtr($lang_register_activated_email, $template_vars)));
                 } else { //user self-activated, gets message box that account was activated
-                        msg_box($lang_register_php['information'], $lang_register_php['acct_active'], $lang_continue, 'index.php');
+                        msg_box($lang_register_php['information'], $lang_register_php['acct_active'], $lang_common['continue'], 'index.php');
                 }
   // registration activation - end
 } else { // actual registration form logic - start

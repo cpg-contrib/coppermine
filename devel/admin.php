@@ -110,7 +110,7 @@ EOT;
 
 function form_yes_no($text, $name, $help = '', $row_style_class = 'tableb')
 {
-    global $CONFIG, $lang_yes, $lang_no;
+    global $CONFIG, $lang_common;
     $help = cpg_display_help($help);
 
     $value = $CONFIG[$name];
@@ -123,9 +123,9 @@ function form_yes_no($text, $name, $help = '', $row_style_class = 'tableb')
                                 $text
                         </td>
                         <td class="{$row_style_class}" valign="top" width="50%">
-                                <input type="radio" id="{$name}1" name="$name" value="1" $yes_selected/><label for="{$name}1" class="clickable_option">$lang_yes</label>
+                                <input type="radio" id="{$name}1" name="$name" value="1" $yes_selected/><label for="{$name}1" class="clickable_option">{$lang_common['yes']}</label>
                                 &nbsp;&nbsp;
-                                <input type="radio" id="{$name}0" name="$name" value="0" $no_selected/><label for="{$name}0" class="clickable_option">$lang_no</label>
+                                <input type="radio" id="{$name}0" name="$name" value="0" $no_selected/><label for="{$name}0" class="clickable_option">{$lang_common['no']}</label>
                         </td>
                         <td class="{$row_style_class}" width="10%">
                                 $help
@@ -380,7 +380,7 @@ EOT;
 
 function form_lang_theme($text, $name, $help = '', $row_style_class = 'tableb')
 {
-    global $CONFIG, $lang_yes, $lang_no, $lang_admin_php;
+    global $CONFIG, $lang_common, $lang_admin_php;
     $help = cpg_display_help($help);
 
 
@@ -395,11 +395,11 @@ function form_lang_theme($text, $name, $help = '', $row_style_class = 'tableb')
                         $text
         </td>
         <td class="{$row_style_class}" valign="top" width="50%">
-                        <input type="radio" id="{$name}1" name="$name" value="1" $yes_1_selected /><label for="{$name}1" class="clickable_option">$lang_yes:{$lang_admin_php['item']}</label>
+                        <input type="radio" id="{$name}1" name="$name" value="1" $yes_1_selected /><label for="{$name}1" class="clickable_option">{$lang_common['yes']}:{$lang_admin_php['item']}</label>
                         &nbsp;&nbsp;
-                        <input type="radio" id="{$name}2" name="$name" value="2" $yes_2_selected /><label for="{$name}2" class="clickable_option">$lang_yes:{$lang_admin_php['label']}+{$lang_admin_php['item']}</label>
+                        <input type="radio" id="{$name}2" name="$name" value="2" $yes_2_selected /><label for="{$name}2" class="clickable_option">{$lang_common['yes']}:{$lang_admin_php['label']}+{$lang_admin_php['item']}</label>
                 &nbsp;&nbsp;
-                <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">$lang_no</label>
+                <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">{$lang_common['no']}</label>
         </td>
         <td class="{$row_style_class}" width="10%">
         $help
@@ -411,7 +411,7 @@ EOT;
 
 function form_lang_debug($text, $name, $help = '', $row_style_class = 'tableb')
 {
-    global $CONFIG, $lang_yes, $lang_no, $lang_admin_php;
+    global $CONFIG, $lang_common, $lang_admin_php;
     $help = cpg_display_help($help);
 
 
@@ -426,11 +426,11 @@ function form_lang_debug($text, $name, $help = '', $row_style_class = 'tableb')
                                 $text
                 </td>
                 <td class="{$row_style_class}" valign="top" width="50%">
-                                <input type="radio" id="{$name}1" name="$name" value="1" $yes_1_selected /><label for="{$name}1" class="clickable_option">$lang_yes:{$lang_admin_php['debug_everyone']}</label>
+                                <input type="radio" id="{$name}1" name="$name" value="1" $yes_1_selected /><label for="{$name}1" class="clickable_option">{$lang_common['yes']}:{$lang_admin_php['debug_everyone']}</label>
                                 &nbsp;&nbsp;
-                                <input type="radio" id="{$name}2" name="$name" value="2" $yes_2_selected /><label for="{$name}2" class="clickable_option">$lang_yes:{$lang_admin_php['debug_admin']}</label>
+                                <input type="radio" id="{$name}2" name="$name" value="2" $yes_2_selected /><label for="{$name}2" class="clickable_option">{$lang_common['yes']}:{$lang_admin_php['debug_admin']}</label>
                         &nbsp;&nbsp;
-                        <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">$lang_no</label>
+                        <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">{$lang_common['no']}</label>
 
                 </td>
                 <td class="{$row_style_class}" width="10%">
@@ -506,7 +506,7 @@ EOT;
 
 function form_plugin_yes_no($text, $name, $help = '', $row_style_class = 'tableb')
 {
-    global $CONFIG, $lang_yes, $lang_no,$lang_admin_php;
+    global $CONFIG, $lang_common, $lang_admin_php;
     $help = cpg_display_help($help);
 
 
@@ -520,9 +520,9 @@ function form_plugin_yes_no($text, $name, $help = '', $row_style_class = 'tableb
                         $text
         </td>
         <td class="{$row_style_class}" valign="top" width="50%">
-                        <input type="radio" id="{$name}1" name="$name" value="1" $yes_selected /><label for="{$name}1" class="clickable_option">$lang_yes</label>
+                        <input type="radio" id="{$name}1" name="$name" value="1" $yes_selected /><label for="{$name}1" class="clickable_option">{$lang_common['yes']}</label>
                         &nbsp;&nbsp;
-                        <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">$lang_no</label>
+                        <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">{$lang_common['no']}</label>
                         ( <a href="pluginmgr.php">{$lang_admin_php['manage_plugins']}</a> )
                 </td>
                 <td class="{$row_style_class}" width="10%">
@@ -535,7 +535,7 @@ EOT;
 
 function form_exif_yes_no($text, $name, $help = '', $row_style_class = 'tableb')
 {
-    global $CONFIG, $lang_yes, $lang_no, $lang_admin_php;
+    global $CONFIG, $lang_common, $lang_admin_php;
     $help = cpg_display_help($help);
 
     $value = $CONFIG[$name];
@@ -548,9 +548,9 @@ function form_exif_yes_no($text, $name, $help = '', $row_style_class = 'tableb')
                         $text
         </td>
         <td class="{$row_style_class}" valign="top" width="50%">
-                        <input type="radio" id="{$name}1" name="$name" value="1" $yes_selected /><label for="{$name}1" class="clickable_option">$lang_yes</label>
+                        <input type="radio" id="{$name}1" name="$name" value="1" $yes_selected /><label for="{$name}1" class="clickable_option">{$lang_common['yes']}</label>
                         &nbsp;&nbsp;
-                        <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">$lang_no</label>
+                        <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">{$lang_common['no']}</label>
                         ( <a href="exifmgr.php">{$lang_admin_php['manage_exif']}</a> )
                 </td>
                 <td class="{$row_style_class}" width="10%">
@@ -563,7 +563,7 @@ EOT;
 
 function form_user_guest_yes_no($text, $name, $help = '', $row_style_class = 'tableb')
 {
-    global $CONFIG, $lang_yes, $lang_no, $lang_admin_php;
+    global $CONFIG, $lang_common, $lang_admin_php;
     $help = cpg_display_help($help);
 
 
@@ -578,11 +578,11 @@ function form_user_guest_yes_no($text, $name, $help = '', $row_style_class = 'ta
                                 $text
                 </td>
                 <td class="{$row_style_class}" valign="top" width="50%">
-                                <input type="radio" id="{$name}1" name="$name" value="2" $yes_1_selected /><label for="{$name}1" class="clickable_option">$lang_yes:{$lang_admin_php['debug_everyone']}</label>
+                                <input type="radio" id="{$name}1" name="$name" value="2" $yes_1_selected /><label for="{$name}1" class="clickable_option">{$lang_common['yes']}:{$lang_admin_php['debug_everyone']}</label>
                                 &nbsp;&nbsp;
-                                <input type="radio" id="{$name}2" name="$name" value="1" $yes_2_selected /><label for="{$name}2" class="clickable_option">$lang_yes:{$lang_admin_php['guests_only']}</label>
+                                <input type="radio" id="{$name}2" name="$name" value="1" $yes_2_selected /><label for="{$name}2" class="clickable_option">{$lang_common['yes']}:{$lang_admin_php['guests_only']}</label>
                         &nbsp;&nbsp;
-                        <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">$lang_no</label>
+                        <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">{$lang_common['no']}</label>
 
                 </td>
                 <td class="{$row_style_class}" width="10%">
@@ -595,7 +595,7 @@ EOT;
 
 function form_keywords_yes_no($text, $name, $help = '', $row_style_class = 'tableb')
 {
-    global $CONFIG, $lang_yes, $lang_no,$lang_admin_php;
+    global $CONFIG, $lang_common, $lang_admin_php;
     $help = cpg_display_help($help);
 
 
@@ -609,9 +609,9 @@ function form_keywords_yes_no($text, $name, $help = '', $row_style_class = 'tabl
                         $text
         </td>
         <td class="{$row_style_class}" valign="top" width="50%">
-                        <input type="radio" id="{$name}1" name="$name" value="1" $yes_selected /><label for="{$name}1" class="clickable_option">$lang_yes</label>
+                        <input type="radio" id="{$name}1" name="$name" value="1" $yes_selected /><label for="{$name}1" class="clickable_option">{$lang_common['yes']}</label>
                         &nbsp;&nbsp;
-                        <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">$lang_no</label>
+                        <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">{$lang_common['no']}</label>
                         ( <a href="keywordmgr.php">{$lang_admin_php['manage_keyword']}</a> )
                 </td>
                 <td class="{$row_style_class}" width="10%">
@@ -645,7 +645,7 @@ EOT;
 
 function form_auto_resize($text, $name, $help = '', $row_style_class = 'tableb')
 {
-    global $CONFIG, $lang_yes, $lang_no, $lang_admin_php;
+    global $CONFIG, $lang_common, $lang_admin_php;
     $help = cpg_display_help($help);
 
 
@@ -660,11 +660,11 @@ function form_auto_resize($text, $name, $help = '', $row_style_class = 'tableb')
                 $text
             </td>
             <td class="{$row_style_class}" valign="top" width="50%">
-                <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">$lang_no</label>
+                <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">{$lang_common['no']}</label>
                 &nbsp;&nbsp;
-                <input type="radio" id="{$name}1" name="$name" value="1" $yes_1_selected /><label for="{$name}1" class="clickable_option">$lang_yes:{$lang_admin_php['auto_resize_everyone']}</label>
+                <input type="radio" id="{$name}1" name="$name" value="1" $yes_1_selected /><label for="{$name}1" class="clickable_option">{$lang_common['yes']}:{$lang_admin_php['auto_resize_everyone']}</label>
                 &nbsp;&nbsp;
-                <input type="radio" id="{$name}2" name="$name" value="2" $yes_2_selected /><label for="{$name}2" class="clickable_option">$lang_yes:{$lang_admin_php['auto_resize_user']}</label>
+                <input type="radio" id="{$name}2" name="$name" value="2" $yes_2_selected /><label for="{$name}2" class="clickable_option">{$lang_common['yes']}:{$lang_admin_php['auto_resize_user']}</label>
             </td>
             <td class="{$row_style_class}" width="10%">
                 $help
@@ -676,7 +676,7 @@ EOT;
 
 function form_asc_desc($text, $name, $help = '', $row_style_class = 'tableb')
 {
-    global $CONFIG, $lang_yes, $lang_no, $lang_admin_php;
+    global $CONFIG, $lang_common, $lang_admin_php;
     $help = cpg_display_help($help);
 
     $value = $CONFIG[$name];
@@ -762,7 +762,7 @@ EOT;
 
 function form_report_post_yes_no($text, $name, $help = '', $row_style_class = 'tableb')
 {
-    global $CONFIG, $lang_yes, $lang_no,$lang_admin_php;
+    global $CONFIG, $lang_common, $lang_admin_php;
     $help = cpg_display_help($help);
 
 
@@ -776,9 +776,9 @@ function form_report_post_yes_no($text, $name, $help = '', $row_style_class = 't
                         $text
         </td>
         <td class="{$row_style_class}" valign="top" width="50%">
-                        <input type="radio" id="{$name}1" name="$name" value="1" $yes_selected /><label for="{$name}1" class="clickable_option">$lang_yes</label>
+                        <input type="radio" id="{$name}1" name="$name" value="1" $yes_selected /><label for="{$name}1" class="clickable_option">{$lang_common['yes']}</label>
                         &nbsp;&nbsp;
-                        <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">$lang_no</label>
+                        <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">{$lang_common['no']}</label>
                         ( <a href="keywordmgr.php">{$lang_admin_php['report_post']}</a> )
                 </td>
                 <td class="{$row_style_class}" width="10%">
@@ -790,7 +790,7 @@ EOT;
 }
 
 function form_registration_disclaimer($text, $name, $help = '', $row_style_class = 'tableb') {
-    global $CONFIG, $lang_yes, $lang_no, $lang_admin_php;
+    global $CONFIG, $lang_common, $lang_admin_php;
     $help = cpg_display_help($help);
 
 
@@ -805,11 +805,11 @@ function form_registration_disclaimer($text, $name, $help = '', $row_style_class
                 $text
             </td>
             <td class="{$row_style_class}" valign="top" width="50%">
-                <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">$lang_no</label>
+                <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">{$lang_common['no']}</label>
                 &nbsp;&nbsp;
-                <input type="radio" id="{$name}1" name="$name" value="1" $yes_1_selected /><label for="{$name}1" class="clickable_option">$lang_yes:{$lang_admin_php['separate_page']}</label>
+                <input type="radio" id="{$name}1" name="$name" value="1" $yes_1_selected /><label for="{$name}1" class="clickable_option">{$lang_common['yes']}:{$lang_admin_php['separate_page']}</label>
                 &nbsp;&nbsp;
-                <input type="radio" id="{$name}2" name="$name" value="2" $yes_2_selected /><label for="{$name}2" class="clickable_option">$lang_yes:{$lang_admin_php['inline']}</label>
+                <input type="radio" id="{$name}2" name="$name" value="2" $yes_2_selected /><label for="{$name}2" class="clickable_option">{$lang_common['yes']}:{$lang_admin_php['inline']}</label>
             </td>
             <td class="{$row_style_class}" width="10%">
                 $help
@@ -978,7 +978,7 @@ if (count($_POST) > 0) {
             }
         }
         pageheader($lang_admin_php['title']);
-        msg_box($lang_admin_php['info'], $lang_admin_php['upd_success'], $lang_continue, 'index.php');
+        msg_box($lang_admin_php['info'], $lang_admin_php['upd_success'], $lang_common['continue'], 'index.php');
 
     } elseif (isset($_POST['restore_config'])) {
         $default_config = 'sql/basic.sql';
@@ -995,8 +995,8 @@ if (count($_POST) > 0) {
                 var_dump($f);
                 var_dump(mysql_affected_rows());
         pageheader($lang_admin_php['title']);
-            //msg_box($lang_admin_php['info'], $lang_admin_php['restore_success'], $lang_continue, $PHP_SELF);
-            msg_box($lang_admin_php['info'], $lang_admin_php['restore_success'], $lang_continue, $_SERVER['PHP_SELF']);
+            //msg_box($lang_admin_php['info'], $lang_admin_php['restore_success'], $lang_common['continue'], $PHP_SELF);
+            msg_box($lang_admin_php['info'], $lang_admin_php['restore_success'], $lang_common['continue'], $_SERVER['PHP_SELF']);
     }
         pagefooter();
         exit;

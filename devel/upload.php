@@ -806,7 +806,7 @@ if ((CUSTOMIZE_UPLOAD_FORM) and (!isset($_REQUEST['file_upload_request'])) and (
         echo "</td></tr>";
         open_form($_SERVER['PHP_SELF']);
         create_form($data);
-        close_form($lang_continue);
+        close_form($lang_common['continue']);
         endtable();
         pagefooter();
 
@@ -1031,7 +1031,7 @@ if (!isset($_REQUEST['control'])) {
     } else {
 
         // Make button say 'Continue.'
-        close_form($lang_continue);
+        close_form($lang_common['continue']);
 
     }
 
@@ -2034,7 +2034,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
         );
 
         create_form($form_array);
-        close_form($lang_continue);
+        close_form($lang_common['continue']);
         endtable();
 
         // Throw in an HTML break for aesthetics.
@@ -2043,7 +2043,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
     } else {
 
         // we had no successful uploads. We create a redirect box.
-        msg_box($lang_info, sprintf($lang_upload_php['success'], $escrow_array_count), $lang_continue, 'index.php', "100%");
+        msg_box($lang_common['information'], sprintf($lang_upload_php['success'], $escrow_array_count), $lang_common['continue'], 'index.php', "100%");
 
         // Throw in an HTML break for aesthetics.
         echo "<br />";
@@ -2375,8 +2375,8 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
             }
 
             // That was the last one. Create a redirect box.
-            pageheader($lang_info);
-            msg_box($lang_info, $final_message, $lang_continue, 'index.php', "100%");
+            pageheader($lang_common['information']);
+            msg_box($lang_common['information'], $final_message, $lang_common['continue'], 'index.php', "100%");
             pagefooter();
 
             // Exit the script.
@@ -2595,7 +2595,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
     }
 
     // Make button say 'Continue.'
-    close_form($lang_continue);
+    close_form($lang_common['continue']);
 
     // Close the table, create footers, and flush the output buffer.
     endtable();

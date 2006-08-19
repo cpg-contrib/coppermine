@@ -143,7 +143,7 @@ if (count($_POST) > 0 && $valid_sender_email && $valid_recipient_email) {
 
     if ($result) {
         //pageheader($lang_ecard_php['title']);
-        msg_box($lang_cpg_die[INFORMATION], $lang_ecard_php['send_success'], $lang_continue, "displayimage.php?album=$album&amp;pos=$pos");
+        msg_box($lang_cpg_die[INFORMATION], $lang_ecard_php['send_success'], $lang_common['continue'], "displayimage.php?album=$album&amp;pos=$pos");
                                 echo '<br />';
                                 starttable('100%', $lang_ecard_php['preview']);
                                 echo '<tr><td>';

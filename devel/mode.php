@@ -43,8 +43,8 @@ $referer = $_GET['referer'] ? $_GET['referer'] : 'index.php';
 $USER['am'] = $admin_mode;
 if (!$admin_mode) $referer = 'index.php';
 
-pageheader($lang_info, "<META http-equiv=\"refresh\" content=\"1;url=$referer\">");
-msg_box($lang_info, $lang_mode_php[$admin_mode], $lang_continue, $referer);
+pageheader($lang_common['information'], "<META http-equiv=\"refresh\" content=\"1;url=$referer\">");
+msg_box($lang_common['information'], $lang_mode_php[$admin_mode], $lang_common['continue'], $referer);
 pagefooter();
 ob_end_flush();
 
