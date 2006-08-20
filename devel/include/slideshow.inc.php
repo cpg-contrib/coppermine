@@ -80,7 +80,7 @@ foreach ($pic_data as $picture) {
             $Title = $picture['filename'];
         }
         echo "Pic[$i] = '" . htmlspecialchars($picture_url, ENT_QUOTES) . "';\n";
-        echo "Title[$i] = '" . htmlspecialchars($Title, ENT_QUOTES) . "';\n";
+        echo "Title[$i] = '" . addslashes($Title) . "';\n";
         if ($picture['pid'] == $pid) {
             $j = $i;
             $start_img = $picture_url;
