@@ -43,6 +43,7 @@ var crossFadeDuration = 3
 
 // Specify the image files
 var Pic = new Array() // don't touch this
+var Title = new Array() // don't touch this
 // to add more images, just continue
 // the pattern, adding to the array below
 <?php
@@ -59,7 +60,7 @@ foreach ($pic_data as $picture) {
       $condition = true;
     }elseif($CONFIG['thumb_use']=='any' && max($picture['pwidth'], $picture['pheight']) > $CONFIG['picture_width']){
       $condition = true;
-	//thumb cropping
+        //thumb cropping
     }elseif($CONFIG['thumb_use']=='ex' && max($picture['pwidth'], $picture['pheight']) > $CONFIG['picture_width']){
       $condition = true;
     }else{
@@ -73,7 +74,13 @@ foreach ($pic_data as $picture) {
             $picture_url = get_pic_url($picture, 'fullsize');
         }
 
-        echo "Pic[$i] = '" . $picture_url . "'\n";
+        if ( $picture['title'] ) {
+            $Title = $picture['title'];
+        } else {
+            $Title = $picture['filename'];
+        }
+        echo "Pic[$i] = '" . htmlspecialchars($picture_url, ENT_QUOTES) . "';\n";
+        echo "Title[$i] = '" . htmlspecialchars($Title, ENT_QUOTES) . "';\n";
         if ($picture['pid'] == $pid) {
             $j = $i;
             $start_img = $picture_url;
@@ -110,6 +117,7 @@ function runSlideShow(){
                 document.images.SlideShow.style.filter= "blendTrans(duration=crossFadeDuration)"
       document.images.SlideShow.filters.blendTrans.Apply()
         }
+        document.getElementById('Title').innerHTML = Title[j];
         document.images.SlideShow.src = preLoad[j].src
         if (xIE4Up){
            document.images.SlideShow.filters.blendTrans.Play()

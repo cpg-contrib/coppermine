@@ -2821,6 +2821,16 @@ function theme_slideshow()
         );
 
     starttable();
+    echo <<<EOT
+        <tr>
+            <td align="center" class="navmenu" style="white-space: nowrap;">
+                <div id="Title"></div>
+            </td>
+        </tr>
+EOT;
+    endtable();
+
+    starttable();
     echo template_eval($template_display_media, $params);
     endtable();
     starttable();
