@@ -389,8 +389,6 @@ function localised_timestamp($timestamp = -1)
 	if ($timestamp == -1) {
 		$timestamp = time();
 	}
-
-	if (defined('AUTOTZ')) return $timestamp;
 	
 	$diff_to_GMT = date("O") / 100;
 
