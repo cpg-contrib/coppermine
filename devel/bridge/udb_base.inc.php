@@ -457,7 +457,7 @@ class core_udb {
                         $sql .= "FROM {$CONFIG['TABLE_ALBUMS']} AS a ";
                         $sql .= "INNER JOIN {$this->usertable} as u on u.{$f['user_id']} = a.category - " . FIRST_USER_CAT . " ";
                         $sql .= "INNER JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.aid = a.aid ";
-                        $sql .= "WHERE ((isnull(approved) or approved='YES') AND category > " . FIRST_USER_CAT . ") $forbidden_with_icon GROUP BY category ";
+                        $sql .= "WHERE ((isnull(approved) or approved='YES') AND category > " . FIRST_USER_CAT . ") $forbidden_with_icon GROUP BY user_id ";
                         $sql .= "ORDER BY category ";
                         $sql .= "LIMIT $lower_limit, $users_per_page ";
 
@@ -514,7 +514,7 @@ class core_udb {
                         $sql .= "FROM {$CONFIG['TABLE_ALBUMS']} AS a ";
                    // $sql .= "INNER JOIN {$this->usertable} as u on u.{$f['user_id']}+".FIRST_USER_CAT."=a.category ";
                         $sql .= "INNER JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.aid = a.aid ";
-                        $sql .= "WHERE ((isnull(approved) or approved='YES') AND category > " . FIRST_USER_CAT . ") $forbidden_with_icon GROUP BY category ";
+                        $sql .= "WHERE ((isnull(approved) or approved='YES') AND category > " . FIRST_USER_CAT . ") $forbidden_with_icon GROUP BY user_id ";
                         $sql .= "ORDER BY category ";
                         $sql .= "LIMIT $lower_limit, $users_per_page ";
 

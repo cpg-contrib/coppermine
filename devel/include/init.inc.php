@@ -206,6 +206,12 @@ mysql_free_result($results);
 // Reference 'site_url' to 'ecards_more_pic_target'
 $CONFIG['site_url'] =& $CONFIG['ecards_more_pic_target'];
 
+// Set default timezone
+if (function_exists('date_default_timezone_set')){
+	date_default_timezone_set(sprintf('Etc/GMT%+d', $CONFIG['time_offset']));
+	define('AUTOTZ', 1);
+}
+
 // Include logger functions
 include_once('include/logger.inc.php');
 
