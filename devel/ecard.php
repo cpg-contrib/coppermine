@@ -62,13 +62,33 @@ $thumb_pic_url = get_pic_url($row, 'thumb');
 $pic_title = $row['title'];
 $pic_caption = bb_decode($row['caption']);
 
-if (!is_image($row['filename'])) cpg_die(ERROR, $lang_ecard_php['error_not_image'], __FILE__, __LINE__);
+if (!is_image($row['filename']) && !is_flash($row['filename'])) {
+    cpg_die(ERROR, $lang_ecard_php['error_not_image'], __FILE__, __LINE__);
+}
+
+$gallery_url_prefix = $CONFIG['ecards_more_pic_target']. (substr($CONFIG['ecards_more_pic_target'], -1) == '/' ? '' : '/');
+
+if (is_flash($row['filename']) == TRUE) {
+  $markup_picname = get_pic_url($row, 'fullsize');
+  if (!stristr($markup_picname, 'http:')) {
+      $markup_picname = $gallery_url_prefix . $markup_picname;
+  }
+  $pic_markup = <<<EOT
+    <object id="SWFlash"  classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" type="application/x-shockwave-flash" width="{$thumb_size['width']}" height="{$thumb_size['height']}">
+    <param name="autostart" value="true" />
+    <param name="src" value="{$markup_picname}" />
+    <embed width="{$thumb_size['width']}" height="{$thumb_size['height']}" src="{$markup_picname}" autostart="true" type="application/x-shockwave-flash" ></embed>
+    </object>
+EOT;
+} else {
+  $pic_markup = '<img src="'.$thumb_pic_url.'" width="'.$thumb_size['width'].'" height="'.$thumb_size['height'].'" alt="" vspace="8" border="0" class="image" />';
+}
 
 // Check supplied email address
 $valid_email_pattern = "^[_\.0-9a-z\-]+@([0-9a-z][0-9a-z-]*\.)+[a-z]{2,6}$";
 $valid_sender_email = eregi($valid_email_pattern, $sender_email);
 $valid_recipient_email = eregi($valid_email_pattern, $recipient_email);
-$invalid_email = '<font size="1">' . $lang_ecard_php['invalid_email'] . ' (' . $recipient_email . ')</font>';
+$invalid_email = '<font size="1" color="red">' . $lang_ecard_php['invalid_email'] . ' (' . $recipient_email . ')</font>';
 if (!$valid_sender_email && count($_POST) > 0) $sender_email_warning = $invalid_email;
 if (!$valid_recipient_email && count($_POST) > 0) $recipient_email_warning = $invalid_email;
 
@@ -78,7 +98,7 @@ if (isset($_POST['submit'])) {
 
 // Create and send the e-card
 if (count($_POST) > 0 && $valid_sender_email && $valid_recipient_email) {
-    $gallery_url_prefix = $CONFIG['ecards_more_pic_target']. (substr($CONFIG['ecards_more_pic_target'], -1) == '/' ? '' : '/');
+
     if ($CONFIG['make_intermediate'] && max($row['pwidth'], $row['pheight']) > $CONFIG['picture_width']) {
         $n_picname = get_pic_url($row, 'normal');
     } else {
@@ -120,6 +140,7 @@ if (count($_POST) > 0 && $valid_sender_email && $valid_recipient_email) {
         '{PID}' => $pid,
         '{PIC_TITLE}' => $pic_title,
         '{PIC_CAPTION}' => $pic_caption,
+        '{PIC_MARKUP}' => $pic_markup,
         );
 
                                 $message = template_eval($template_ecard, $params);
@@ -195,6 +216,7 @@ elseif (isset($_POST['preview'])) {
         '{PID}' => $pid,
         '{PIC_TITLE}' => $pic_title,
         '{PIC_CAPTION}' => $pic_caption,
+        '{PIC_MARKUP}' => $pic_markup,
         );
 
                                 starttable('100%', $lang_ecard_php['preview']);
@@ -209,6 +231,12 @@ elseif (isset($_POST['preview'])) {
 
 //ecard form
 if ($CONFIG['show_bbcode_help']) {$captionLabel = '&nbsp;'. cpg_display_help('f=index.html&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
+if ($row['pwidth'] == 0 || $row['pheight'] == 0) {
+    $row['pwidth'] = $CONFIG['thumb_width'];
+    $row['pheight'] = floor($CONFIG['thumb_width']*2/3);
+}
+$thumb_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['thumb_width']);
+
 starttable("100%", $lang_ecard_php['title'], 3);
 
 echo <<<EOT
@@ -216,7 +244,22 @@ echo <<<EOT
                 <td class="tableh2" colspan="2"><b>{$lang_ecard_php['from']}</b></td>
                 <td rowspan="6" align="center" valign="top" class="tableb">
                         <a href="displayimage.php?pos=-{$pid}">
-                                                                                                <img src="$thumb_pic_url" alt="" vspace="8" border="0" class="image" /></a><br />
+EOT;
+    if (is_flash($row['filename']) == TRUE) {
+      $n_picname = get_pic_url($row, 'fullsize');
+      echo <<<EOT
+        <object id="SWFlash"  classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" type="application/x-shockwave-flash" width="{$thumb_size['width']}" height="{$thumb_size['height']}">
+        <param name="autostart" value="true" />
+        <param name="src" value="{$n_picname}" />
+        <embed width="{$thumb_size['width']}" height="{$thumb_size['height']}" src="{$n_picname}" autostart="true" type="application/x-shockwave-flash" ></embed>
+        </object>
+EOT;
+
+    } else {
+      echo '<img src="'.$thumb_pic_url.'" width="'.$thumb_size['width'].'" height="'.$thumb_size['height'].'" alt="" vspace="8" border="0" class="image" />';
+    }
+echo <<<EOT
+      </a>
                 </td>
         </tr>
         <tr>

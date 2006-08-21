@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-08-21 [A] Added Flash support to ecard {GauGau}
 2006-08-20 [B] Fixed sql issue with missing/incorrect user galleries {Nibbler}
 2006-08-20 [A] Added title to slideshow {GauGau}
 2006-08-19 [O] Replaced common language vars with array equivalents {GauGau}

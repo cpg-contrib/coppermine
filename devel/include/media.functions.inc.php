@@ -42,8 +42,7 @@ if (count($FILE_TYPES)==0) {
 
 $CONFIG['allowed_file_extensions'] = substr($CONFIG['allowed_file_extensions'],1);
 
-function cpg_get_type($filename,$filter=null)
-{
+function cpg_get_type($filename,$filter=null) {
     global $FILE_TYPES;
     if (!is_array($filename))
         $filename = explode('.',$filename);
@@ -58,35 +57,33 @@ function cpg_get_type($filename,$filter=null)
         return null;
 }
 
-function is_image(&$file)
-{
+function is_image(&$file) {
     return cpg_get_type($file,'image');
 }
 
-function is_movie(&$file)
-{
+function is_movie(&$file) {
     return cpg_get_type($file,'movie');
 }
 
-function is_audio(&$file)
-{
+function is_audio(&$file) {
     return cpg_get_type($file,'audio');
 }
 
-function is_document(&$file)
-{
+function is_document(&$file) {
     return cpg_get_type($file,'document');
 }
 
-function is_known_filetype($file)
-{
+function is_flash(&$file) {
+    return strrpos($file, '.swf' );
+}
+
+function is_known_filetype($file) {
     return is_image($file) || is_movie($file) || is_audio($file) || is_document($file);
 }
 
-// Not implemented yet--will be implemented by Chris
+// Not implemented yet--was scheduled to be implemented by Chris, not sure if it is going to be used
 /*
-function cpg_file_html(&$file,$type='thumb',$file_title='')
-{
+function cpg_file_html(&$file,$type='thumb',$file_title='') {
     global $CONFIG, $pic_title;
 
     $mime_content = cpg_get_type($file['filename']);
@@ -124,5 +121,6 @@ function cpg_file_html(&$file,$type='thumb',$file_title='')
         return "<object {$image_size['geom']}><param name=\"movie\" value=\"". $file_url . "\"><embed {$image_size['geom']} src=\"". $file_url . "\"></embed></object>\n";
     elseif ($mime_content['content']=='document')
         return "<a href=\"{$file_url}\" target=\"_blank\" class=\"document_link\"><img src=\"images/thumb_$extension.jpg\" border=\"0\" class=\"image\" /></a>\n";
-}*/
+}
+*/
 ?>

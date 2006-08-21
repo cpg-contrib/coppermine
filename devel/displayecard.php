@@ -57,7 +57,8 @@ $params = array('{LANG_DIR}' => $lang_text_dir,
     '{VIEW_MORE_LNK}' => $lang_ecard_php['view_more_pics'],
     '{PID}' => $data['pid'],
     '{PIC_TITLE}' => $data['pt'],
-	'{PIC_CAPTION}' => $data['pc'],
+    '{PIC_CAPTION}' => $data['pc'],
+    '{PIC_MARKUP}' => $pic_markup,
     );
 // Parse template
 echo template_eval($template_ecard, $params);

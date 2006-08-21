@@ -1122,9 +1122,9 @@ $lang_fullsize_popup = array(
 
 if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array(
   'title' => 'Send an e-card',
-  'invalid_email' => '<font color="red"><b>Warning</b></font>: invalid email address:',
+  'invalid_email' => 'Warning: invalid email address:', // cpg1.5.x
   'ecard_title' => 'An e-card from %s for you',
-  'error_not_image' => 'Only images can be sent as an ecard.',
+  'error_not_image' => 'Only images and flash files can be sent as an ecard.', // cpg1.5.x
   'view_ecard' => 'Alternate link if the e-card does not display correctly',
   'view_ecard_plaintext' => 'To view the ecard, copy and paste this url into your browser\'s address bar:',
   'view_more_pics' => 'View more pictures !',
