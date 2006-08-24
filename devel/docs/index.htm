@@ -102,6 +102,7 @@
                         <li class="level3"><a href="#user_cp_search">4.4.2 Searching for user(s)</a></li>
                         <li class="level3"><a href="#user_cp_new">4.4.3 Creating new users</a></li>
                         <li class="level3"><a href="#user_cp_edit">4.4.4 Editing users</a></li>
+                        <li class="level3"><a href="#user_cp_group">4.4.5 Group membership</a></li>
                 </ul>
         <ul class="level2">
                 <li class="level2"><a href="#cat_cp" class="menu2">4.5 The category control panel</a></li>
@@ -931,14 +932,22 @@ using a tool like <a href="http://www.phpmyadmin.net/" rel="external" class="ext
 <p>You can use the wildcards:  <tt class="code">*</tt> (for any <em>string</em>) and <tt class="code">?</tt> (<em>any single character</em>) or even <tt class="code">%expression%</tt>.<br />Example: searching for <tt class="code">j*</tt> will return both <tt class="code">Jack</tt> and <tt class="code">Jill</tt></p>
 <a name="user_cp_search_end"></a>
 <a name="user_cp_new"></a><h3>4.4.3 Creating new users</h3>
-<p>To create a new user, simply click on the button "Create new user" at the bottom of the page and fill in the form that will come up.</p>
+<p>To create a new user, simply click on the button "Create new user" at the bottom of the user manager and fill in the form that will come up.</p>
+<p>This does of course not apply if you have bridging enabled, as user management is being handled by the app you have bridged coppermine with. In this case, the user management screen of your bridged app should show - create a new user there.</p>
 <a name="user_cp_new_end"></a>
 <a name="user_cp_edit"></a><h3>4.4.4 Editing users</h3>
 <p><img src="pics/usermgr_edit.gif" width="295" height="326" border="0" alt="" align="right" />To edit the properties of a user, click the <img src="pics/edit.gif" width="16" height="16" border="0" alt="" title="edit" />-button next to the user name. You will then find a page where you can modify all user profile fields the user has. This includes the option to change the password of that user. If you don't want to change a user's password, leave the password field blank.<br />
 The dropdown list determines the primary group the user is in, the checkboxes beneath it determine the secondary groups.</p>
 <p>Please note that this screen (as well as the rest of Coppermine's user management) will not be available if you have enabled <a href="#integrating">bridging</a>, because then the user management of the application you have bridged with (e.g. your BBS) kicks in and handles everything related to user management.<br />
-The button "Album permissions by group" can <em>not</em> be used to set permissions, but only to <em>view</em> them. You can set permissions using the <a href="#album_prop">album properties</a> screen.<br clear="all" /></p>
+The button "Album permissions by group" can <em>not</em> be used to set permissions, but only to <em>view</em> them. You can set permissions using the <a href="#album_prop">album properties</a> screen.</p>
 <a name="user_cp_edit_end"></a>
+<a name="user_cp_group"></a><h3>4.4.5 Group membership</h3>
+<p>When creating a new user or editing an existing user, you will notice a row named &quot;User group&quot; - it determines what group(s) the user is in.<br />
+The first field (a dropdown field) determines the primary user group. It determines the status of a user. You should set it to &quot;Administrator&quot; (for users you want to assign admins powers to) or &quot;Registered&quot;.<br />
+Additional (secondary) group membership can be assigned using the checkboxes beneath the dropdown field. Here, all your custom groups (that you can create and manage using the <a href="#group_cp">group control panel</a>) should show as well as the core groups (the ones that come with coppermine out of the box and can't be deleted). Assign additional group membership to your users here. Privileges for a particular user inherited from group membership are added: the least restrictive permissions are taken into account.</p>
+<p>Example: if you want your registered users to be capable of viewing the gallery only, and only privileged users of your custom user group "photographers" are allowed to actually upload files, make all your users members of the built-in group "registered" (by default, they already are). Only for user you want to give the privilege to upload, tick the check box "photographers" as secondary group. Then go to your groups control panel and disallow uploads for the registered group there, but allow uploads for the custom group "photographers".</p>
+<p class="important">Note: the button "album permission by group" beneath the checkboxes is <strong>not</strong> meant to <strong>assign</strong> album permissions, but only to <strong>check</strong> the permissions set. You can only assign particular album permissions on the <a href="#album_prop">album properties</a> screen.<br clear="all" /></p>
+<a name="user_cp_group_end"></a>
 <a name="user_cp_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 </div><!-- end sub-section of "The user control panel" (level 2 x.x)-->
@@ -1243,7 +1252,7 @@ The process of uploading pictures is a matter of following a simple dialog. It t
 <li>Save your new settings</li>
 </ul>
 <p>Then try to upload (using http uploads, even if you experienced troubles using another upload method) - you should get a more detailed error message that tells you what exactly goes wrong with your uploads. If the error message doesn't mean anything to you, <a href="http://coppermine-gallery.net/forum/index.php?action=search" rel="external" class="external">search the support board</a> for the error message you get.</p>
-<p class="important">When asking for support on the coppermine forum, post a link to your site and a test user account (the test user mustn't be in the admin group!) with upload privileges, with the above mentioned settings in place - this way, supporters can see the error messages as well. Do not post debug_output unless requested. If you want fast results, you should disable admin approval for the group the test user is in, so supporters can tell instantly what is wrong without needing to double-check.</p>
+<p class="important">When asking for support on the coppermine forum, post a link to your site and a <a href="#user_cp_new">test user account</a> (the test user mustn't be in the admin group!) with upload privileges, with the above mentioned settings in place - this way, supporters can see the error messages as well. Do not post debug_output unless requested. If you want fast results, you should disable admin approval for the group the test user is in, so supporters can tell instantly what is wrong without needing to double-check.</p>
 <p>When people have issues with uploading and decide to post their question on the Coppermine support board, they usually are told to read this upload troubleshooting section. Many of them fail to do so properly, which results in frustration both for users as well as supporters. To make this absolutely clear: the above mentioned steps are absolutely <strong>mandatory</strong>, no matter what skill level you have, no matter what upload method you have troubles with. Failing to do <strong>exactly</strong> as suggested will result in your request for help being ignored. Yes, this applies to you. We mean it!</p>
 <a name="upload_trouble_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
