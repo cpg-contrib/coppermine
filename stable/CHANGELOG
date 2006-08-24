@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-08-24 [D] Added group membership section to docs {GauGau}
 2006-08-22 [C] Corrected spelling of 'determine' {Nibbler}
 2006-08-20 [B] Fixed sql issue with missing/incorrect user galleries {Nibbler}
 2006-08-16 [B] Fixed SEF plugin issue with favpics meta album {Nibbler}
