@@ -26,6 +26,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-08-26 [B] Fixed the file rename issue on editOnePic when watermarking is disabled {Abbas}
+2006-08-26 [A] Implemented the read exif info again checkbox on editOnePic {Abbas}
 2006-08-24 [D] Added group membership section to docs {GauGau}
 2006-08-22 [C] Corrected spelling of 'determine' {Nibbler}
 2006-08-21 [A] Added Flash support to ecard {GauGau}
