@@ -92,6 +92,12 @@ function process_post_data()
         $update .= ", pic_rating = '0', votes = '0'";
         resetDetailVotes($pid);
     }
+    if ($read_exif) {
+        $filepath = urldecode(get_pic_url($pic, 'fullsize'));
+        // If read exif info again is checked then we will just delete the entry from exif table. The new exif information will automatically be read when someone views the image.
+        $query = "DELETE FROM {$CONFIG['TABLE_EXIF']} WHERE filename = '$filepath'";
+        cpg_db_query($query);
+    }
 
     if ($del_comments) {
         $query = "DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid='$pid'";
@@ -116,9 +122,13 @@ function process_post_data()
         }
 
         if ($CONFIG['make_intermediate'] && $condition ) {
-            $prefices = array('fullsize', 'normal', 'thumb', 'orig');
+            $prefices = array('fullsize', 'normal', 'thumb');
         } else {
-            $prefices = array('fullsize', 'thumb', 'orig');
+            $prefices = array('fullsize', 'thumb');
+        }
+
+        if ($CONFIG['enable_watermark'] == '1' && ($CONFIG['which_files_to_watermark'] == 'both' || $CONFIG['which_files_to_watermark'] == 'original')) {
+            $prefices[] = 'orig';
         }
 
         if (!is_image($pic['filename'])){
