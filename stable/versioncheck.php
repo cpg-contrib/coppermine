@@ -4457,7 +4457,7 @@ $return = '
 1.4.9|upload.php|1.4.9|3142|mandatory|r@
 1.4.9|usermgr.php|1.4.9|3142|mandatory|r@
 1.4.9|util.php|1.4.9|3125|mandatory|r@
-1.4.9|versioncheck.php|1.4.9|3174|mandatory|r@
+1.4.9|versioncheck.php|1.4.9|3258|mandatory|r@
 1.4.9|viewlog.php|1.4.9|3125|mandatory|r@
 1.4.9|xp_publish.php|1.4.9|3125|mandatory|r@
 1.4.9|zipdownload.php|1.4.9|3125|mandatory|r@
@@ -4545,7 +4545,9 @@ $return = '
 1.4.9|include/makers/olympus.php|1.4.9|3125|mandatory|r@
 1.4.9|include/makers/sanyo.php|1.4.9|3125|mandatory|r@
 1.4.9|lang|||mandatory|r@
+1.4.9|lang/albanian.php|1.4.9|3125|optional|r@
 1.4.9|lang/basque.php|1.4.9|3125|optional|r@
+1.4.9|lang/brazilian_portuguese.php|1.4.9|3116|optional|r@
 1.4.9|lang/bulgarian.php|1.4.9|1.287|optional|r@
 1.4.9|lang/chinese_big5.php|1.4.9|3125|optional|r@
 1.4.9|lang/chinese_gb.php|1.4.9|3125|optional|r@
