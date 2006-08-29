@@ -1354,9 +1354,10 @@ Should you have difficulties using one, try the other. You can toggle between th
 <p><img src="pics/config_language.gif" width="612" height="234" border="1" alt="" /></p>
 <a name="admin_language_language"></a><h4>Language</h4>
 <p>This sets the default language for your gallery. All language files are stored in the <strong>lang</strong> directory on your server.</p>
-<p>Language files with an "<strong>-utf8</strong>" suffix are unicode encoded files. If you select an -utf8 file as the default language and you set "Character encoding" to "Unicode (utf-8)" then the script will auto detect the preferred language of your visitors based on what default language is configured in their browsers. If the corresponding language is available in your language directory, it will be used. Otherwise, the default language file will be used.</p>
+<p>Languages and internationalization (often refered to as i18n) is a complicated and complex thing. You (as Coppermine admin) probably don't want to go into details, so this documentation skips the in-depth issues existing with i18n and just gives you an overview how Coppermine handles languages:</p>
+<p>By default, language files are unicode encoded files. If you select an -utf8 file as the default language and you set "Character encoding" to "Unicode (utf-8)" then the script will auto detect the preferred language of your visitors based on what default language is configured in their browsers. If the corresponding language is available in your language directory, it will be used. Otherwise, the default language file will be used.</p>
 <p>When the script auto detects the preferred language, it stores the result in a cookie on the visitor's computer. To reset this cookie (and thus force the script to do another auto detection) the user must call this autodetect function with something like: <a href="#">http://yoursite.com/coppermine_dir/index.php?lang=xxx</a></p>
-<p>Once you have added comments or files to your gallery, you should not change the character set of your gallery. If you do so, non-ASCII characters may display properly.</p>
+<p>Once you have added comments or files to your gallery, you should not change the character set of your gallery. If you do so, non-ASCII characters may not display properly.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Language &amp; Charset settings &rarr; Language</p>
 <a name="admin_language_language_end"></a>
 <hr />

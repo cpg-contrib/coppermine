@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-08-29 [D] Improved language section of documentation {GauGau}
 2006-08-26 [B] Fixed the file rename issue on editOnePic when watermarking is disabled {Abbas}
 2006-08-26 [A] Implemented the read exif info again checkbox on editOnePic {Abbas}
 2006-08-24 [D] Added group membership section to docs {GauGau}
