@@ -1916,7 +1916,8 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
 // File usermgr.php
 // ------------------------------------------------------------------------- //
 
-if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
+if (defined('USERMGR_PHP')) {
+$lang_usermgr_php = array(
   'memberlist' => 'Memberlist',
   'user_manager' => 'User manager',
   'title' => 'Manage users',
@@ -1994,8 +1995,23 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
   'group_no_access' => 'This group has no special access',
   'notice' => 'Notice',
   'group_can_access' => 'Album(s) that only "%s" can access',
+  'send_login_data' => 'Send login data to this user (Password will be sent in email)', //cpg1.5
+  'send_login_email_subject' => 'Your new account information', //cpg1.5
+  'failed_sending_email' => 'The login data email can\'t be sent!', //cpg1.5
 );
 
+$lang_send_login_data_email = <<<EOT
+A new account has been created for you at {SITE_NAME}.
+
+You can now log in at <a href="{SITE_LINK}">{SITE_LINK}</a> using the username "{USER_NAME}" and password "{USER_PASS}"
+
+
+Regards,
+
+The management of {SITE_NAME}
+
+EOT;
+}
 // ------------------------------------------------------------------------- //
 // File util.php
 // ------------------------------------------------------------------------- //

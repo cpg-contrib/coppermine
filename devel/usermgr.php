@@ -588,6 +588,11 @@ function edit_user($user_id)
     $user_data = mysql_fetch_array($result);
     mysql_free_result($result);
 
+    // If this is a new user then add a checkbox for 'send login data to user' option
+    if ($user_data['user_name'] == '') {
+        $form_data[] = array('checkbox', 'send_login_data', $lang_usermgr_php['send_login_data']);
+    }
+
     starttable(500, $lang_usermgr_php['modify_user'], 2);
     echo <<<EOT
         <form name="cpgform3" id="cpgform3" method="post" action="{$_SERVER['PHP_SELF']}?op=update&user_id=$user_id">
@@ -708,6 +713,20 @@ EOT;
 EOT;
             break;
 
+        case 'checkbox':
+            echo <<< EOT
+        <tr>
+            <td class="tableb">
+                        <label for="send_login_data">{$element[2]}</label>
+        </td>
+                <td class="tableb">
+                    <input type="checkbox" id="send_login_data" name="{$element[1]}" value="YES" />
+                </td>
+        </tr>
+
+EOT;
+            break;
+
         default:
             cpg_die(CRITICAL_ERROR, 'Invalid action for form creation ' . $element[0], __FILE__, __LINE__);
     }
@@ -740,7 +759,7 @@ EOT;
 function update_user($user_id)
 {
     global $CONFIG; //, $PHP_SELF;
-    global $lang_usermgr_php, $lang_register_php;
+    global $lang_usermgr_php, $lang_register_php, $lang_send_login_data_email;
 
     $user_name = addslashes(trim($_POST['user_name']));
     $user_password = addslashes(trim($_POST['user_password']));
@@ -792,6 +811,21 @@ function update_user($user_id)
     $sql_update .= " WHERE user_id = '$user_id'";
 
     cpg_db_query($sql_update);
+
+    // If send login data checkbox is checked then send the username and password to the user in an email
+    if (isset($_POST['send_login_data']) && trim($_POST['user_email'])) {
+        require('include/mailer.inc.php');
+        $template_vars = array(
+                              '{SITE_NAME}' => $CONFIG['gallery_name'],
+                              '{SITE_LINK}' => $CONFIG['site_url'],
+                              '{USER_NAME}' => trim($_POST['user_name']),
+                              '{USER_PASS}' => trim($_POST['user_password']),
+                              );
+
+        if (!cpg_mail(trim($_POST['user_email']), $lang_usermgr_php['send_login_email_subject'], nl2br(strtr($lang_send_login_data_email, $template_vars)))) {
+            cpg_die(CRITICAL_ERROR, $lang_usermgr_php['failed_sending_email'], __FILE__, __LINE__);
+        }
+    }
 }
 
 $op = (GALLERY_ADMIN_MODE && isset($_GET['op'])) ? $_GET['op'] : '';

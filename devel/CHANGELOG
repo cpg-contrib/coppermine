@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-08-31 [A] Added the checkbox "send login data to this user" while creating new user in usermgr {Abbas}
 2006-08-31 [O] Removed hard-coded translation in versioncheck.php {GauGau}
 2006-08-31 [B] Fixed missing features for flash support in ecards, added config option {GauGau}
 2006-08-29 [D] Improved language section of documentation {GauGau}
