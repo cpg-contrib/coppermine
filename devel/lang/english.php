@@ -727,6 +727,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Display file name under film strip thumbnail', 'display_film_strip_filename', 1, 'f=index.htm&amp;as=admin_image_comment_display_film_strip_filename&amp;ae=admin_image_comment_display_film_strip_filename_end'),
   array('Number of items in film strip', 'max_film_strip_items', 0, 'f=index.htm&amp;as=admin_image_comment_filmstrip_number&amp;ae=admin_image_comment_filmstrip_number_end'),
   array('Slideshow interval in milliseconds (1 second = 1000 milliseconds)', 'slideshow_interval', 0, 'f=index.htm&amp;as=admin_image_comment_slideshow_interval&amp;ae=admin_image_comment_slideshow_interval_end'),
+  array('Allow Flash in Ecards (not recommended)', 'ecard_flash', 1, 'f=index.htm&amp;as=admin_image_ecard_flash_start&amp;ae=admin_image_ecard_flash_end'), // cpg1.5.x
 
   'Comment settings',
   array('Filter bad words in comments', 'filter_bad_words', 1, 'f=index.htm&amp;as=admin_image_comment_bad_words&amp;ae=admin_image_comment_bad_words_end'),
@@ -1124,7 +1125,8 @@ if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array
   'title' => 'Send an e-card',
   'invalid_email' => 'Warning: invalid email address:', // cpg1.5.x
   'ecard_title' => 'An e-card from %s for you',
-  'error_not_image' => 'Only images and flash files can be sent as an ecard.', // cpg1.5.x
+  'error_not_image' => 'Only images can be sent as an ecard.', // cpg1.5.x
+  'error_not_image_flash' => 'Only images and flash files can be sent as an ecard.', // cpg1.5.x
   'view_ecard' => 'Alternate link if the e-card does not display correctly',
   'view_ecard_plaintext' => 'To view the ecard, copy and paste this url into your browser\'s address bar:',
   'view_more_pics' => 'View more pictures !',

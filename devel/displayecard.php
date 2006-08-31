@@ -41,6 +41,28 @@ if (is_array($data)) {
 
 // Remove HTML tags as we can't trust what we receive
 foreach($data as $key => $value) $data[$key] = html_entity_decode(strtr($value, $HTML_SUBST));
+// get the dimensions
+$result = cpg_db_query("SELECT pwidth, pheight from {$CONFIG['TABLE_PICTURES']} WHERE pid='{$data['pid']}'");
+if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
+$row = mysql_fetch_array($result);
+if ($row['pwidth'] != 0 && $row['pheight'] != 0) {
+    $dimensions = 'width="'.$row['pwidth'].'" height="'.$row['pheight'].'"';
+} else {
+    $dimensions = '';
+}
+
+if (is_flash($data['p']) == TRUE) {
+  $pic_markup = <<<EOT
+    <object id="SWFlash" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" type="application/x-shockwave-flash" {$dimensions}>
+    <param name="autostart" value="true" />
+    <param name="src" value="{$data['p']}" />
+    <embed {$dimensions} src="{$data['p']}" autostart="true" type="application/x-shockwave-flash" ></embed>
+    </object>
+EOT;
+} else {
+  $pic_markup = '<img src="'.$data['p'].'" '.$dimensions.' alt="" vspace="8" border="0" class="image" />';
+}
+
 // Load template parameters
 $params = array('{LANG_DIR}' => $lang_text_dir,
     '{TITLE}' => sprintf($lang_ecard_php['ecard_title'], $data['sn']),

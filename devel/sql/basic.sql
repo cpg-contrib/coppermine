@@ -292,4 +292,8 @@ INSERT INTO CPG_config VALUES ('comment_placeholder', '1');
 INSERT INTO CPG_config VALUES ('comment_user_edit', '1');
 INSERT INTO CPG_config VALUES ('comment_captcha', '1');
 
+# Registration captcha
 INSERT INTO CPG_config VALUES ('registration_captcha', '0');
+
+# Flash in ecards
+INSERT INTO CPG_config VALUES ('ecard_flash', '0');

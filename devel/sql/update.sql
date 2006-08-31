@@ -523,3 +523,6 @@ INSERT INTO CPG_config VALUES ('silly_safe_mode', '0');
 
 # Registration Captcha
 INSERT INTO CPG_config VALUES ('registration_captcha', '0');
+
+# Flash in ecards
+INSERT INTO CPG_config VALUES ('ecard_flash', '0');

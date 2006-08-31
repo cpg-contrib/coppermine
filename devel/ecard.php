@@ -26,7 +26,6 @@ require('include/mailer.inc.php');
 
 if (!USER_CAN_SEND_ECARDS) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
-//print_r(get_defined_constants());
 
 function get_post_var($name, $default = '')
 {
@@ -58,12 +57,26 @@ $result = cpg_db_query("SELECT * from {$CONFIG['TABLE_PICTURES']} WHERE pid='$pi
 if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
 $row = mysql_fetch_array($result);
 $thumb_pic_url = get_pic_url($row, 'thumb');
-
+$normal_pic_url = get_pic_url($row, 'normal');
+// print $normal_pic_url;
+if (is_file($normal_pic_url) == FALSE) {
+    $normal_pic_url = get_pic_url($row, 'fullsize');
+}
 $pic_title = $row['title'];
 $pic_caption = bb_decode($row['caption']);
 
-if (!is_image($row['filename']) && !is_flash($row['filename'])) {
-    cpg_die(ERROR, $lang_ecard_php['error_not_image'], __FILE__, __LINE__);
+if (!is_image($row['filename'])) {
+    if (!is_flash($row['filename'])) {
+        // The file is neither image nor flash
+            if ($CONFIG['ecard_flash'] != 0) {
+                cpg_die(ERROR, $lang_ecard_php['error_not_image_flash'], __FILE__, __LINE__);
+            } else {
+                cpg_die(ERROR, $lang_ecard_php['error_not_image'], __FILE__, __LINE__);
+            }
+    } elseif ($CONFIG['ecard_flash'] == 0) {
+        // The file IS flash, but flash ecards are not enabled
+        cpg_die(ERROR, $lang_ecard_php['error_not_image'], __FILE__, __LINE__);
+    }
 }
 
 $gallery_url_prefix = $CONFIG['ecards_more_pic_target']. (substr($CONFIG['ecards_more_pic_target'], -1) == '/' ? '' : '/');
@@ -81,7 +94,10 @@ if (is_flash($row['filename']) == TRUE) {
     </object>
 EOT;
 } else {
-  $pic_markup = '<img src="'.$thumb_pic_url.'" width="'.$thumb_size['width'].'" height="'.$thumb_size['height'].'" alt="" vspace="8" border="0" class="image" />';
+  if (!stristr($normal_pic_url, 'http:')) {
+      $normal_pic_url = $gallery_url_prefix . $normal_pic_url;
+  }
+  $pic_markup = '<img src="'.$normal_pic_url.'" alt="" vspace="8" border="0" class="image" />';
 }
 
 // Check supplied email address
@@ -151,7 +167,6 @@ if (count($_POST) > 0 && $valid_sender_email && $valid_recipient_email) {
                                 $subject = sprintf($lang_ecard_php['ecard_title'], $sender_name);
 
                                 $result = cpg_mail($recipient_email, $subject, $message, 'text/html', $sender_name, $sender_email, $plaintext_message);
-
         //write ecard log
         if ($CONFIG['log_ecards'] == 1) {
           $result_log = cpg_db_query("INSERT INTO {$CONFIG['TABLE_ECARDS']} (sender_name, sender_email, recipient_name, recipient_email, link, date, sender_ip) VALUES ('$sender_name', '$sender_email', '$recipient_name', '$recipient_email',   '$encoded_data', '$tempTime', '{$_SERVER["REMOTE_ADDR"]}')");
