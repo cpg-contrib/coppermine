@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-09-01 [B] Reverted width="100%%" in themes.inc.php & sample theme - topic: 35701 {Paver}
 2006-08-26 [M] Release of cpg1.4.9 {GauGau}
 2006-08-24 [D] Added group membership section to docs {GauGau}
 2006-08-22 [C] Corrected spelling of 'determine' {Nibbler}
