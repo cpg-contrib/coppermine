@@ -195,6 +195,16 @@
                 <ul class="level3">
                         <li class="level3"><a href="#plugin_writing">4.14.4 Writing plugins</a></li>
                 </ul>
+        <ul class="level2">
+            <li class="level2"><a href="#comments" class="menu2">4.15 Comments</a></li>
+        </ul>
+                <ul class="level3">
+                        <li class="level3"><a href="#comments_allow">4.15.1 Allowing comments</a></li>
+                        <li class="level3"><a href="#comments_options">4.15.2 Comments options</a></li>
+                        <li class="level3"><a href="#comments_spam">4.15.3 Spam issues</a></li>
+                        <li class="level3"><a href="#comments_review">4.15.4 Reviewing Comments</a></li>
+                </ul>
+
 
 <ul class="level1">
         <li class="level1"><a href="#integrating" class="menu1">5. Integrating the script with your bulletin board</a></li>
@@ -835,7 +845,7 @@ using a tool like <a href="http://www.phpmyadmin.net/" rel="external" class="ext
   <li><strong>Ban Users</strong><br />Ban users based on hostname or IP address. Make sure not to ban yourself! Use this feature with extreme caution, as most users today do not have static IP addresses, this feature should only be employed if you really know what you're doing.<br />
   <span class="small">[cpg1.3.0 or better required]</span>
   </li>
-  <li><strong>Review Comments</strong><br />edit/delete user's comments</li>
+  <li><strong>Review Comments</strong><br />edit/approve/disapprove/delete user's comments</li>
   <li><a name="ecard_log"></a><strong>Display Ecards</strong><p>View the ecards sent by users.</p>
   <p>You must have ecard-logging enabled in the config menu, first (by default, logging is disabled). When enabled, all ecards that are being sent are written into the database, where the coppermine admin can view them.</p>
   <img src="pics/ecard_log.gif" border="0" alt="" /><br />
@@ -973,7 +983,7 @@ of a specific category. </li></ul>
 you have some users that have created their own gallery. It can't be
 deleted but you can edit its title and description by using the <img
 src="pics/edit.gif" width="16" height="16" alt="" /> button. </p>
-<p>You can specify how you want categories sorted in coppermine: alphabetically (instead of a customized order) by setting &quot;Sort categories alphabetically&quot; to &quot;Yes&quot;. This setting is available both in coppermine config and the category manager. If you enable alphabetical sorting, the move up and move down arrows that normally let you manually sort the categories will disappear. Disable this feature if you want to organize your categories in some other order.</p>
+<p>You can specify how you want categories sorted in coppermine: alphabetically (instead of a customized order) by setting &quot;<a href="#admin_album_list_alphasort_start">Sort categories alphabetically</a>&quot; to &quot;Yes&quot;. This setting is available both in coppermine config and the category manager. If you enable alphabetical sorting, the move up and move down arrows that normally let you manually sort the categories will disappear. Disable this feature if you want to organize your categories in some other order.</p>
 <p>You can only assign a picture to the category only if you have an album with images nested directly within it.</p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
@@ -2391,12 +2401,47 @@ Unfortunately, there is no API documentation available yet.</p>
 <a name="plugin_manager_end"></a>
 <a name="plugin_writing"></a>
 <h3>4.14.4 Writing plugins</h3>
-<p>As suggested above, there's no documentation available yet for plugin authors, so the only method to learn how plugins work is by looking at the source code. Examine the code of the plugins that come with coppermine, or take a look at some that are available for download from the plugin contributions sub-board on the coppermine web page.</p>
+<p>As suggested above, there's no documentation available yet for plugin authors, so the only method to learn how plugins work is by looking at the source code. Examine the code of the plugins that come with coppermine, or take a look at some that are available for download from the <a href="http://coppermine-gallery.net/forum/index.php?board=66.0">plugin contributions sub-board</a> on the coppermine web page.</p>
 <p>If you accomplished writing a plugin, we ask you to share it with the coppermine community by posting it on the appropriate board (this is of course not mandatory, but we'd appreciate to see your contribution). We would welcome a user-contributed API documentation or a list of hooks as well, or other related documentation.</p>
+<p>Although it is not mandatory (technically speaking) to add instructions to a plugin, it is being recommended that you include a readme file with your plugin that explains what it does and how to use it.</p>
 <a name="plugin_writing_end"></a>
 <a name="plugin_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 </div><!-- end sub-section of "Plugins" (level 2 x.x)-->
+
+<a name="comments_start"></a>
+<a name="comments"></a>
+<h2>4.15 Comments</h2>
+<p>Coppermine can be used both as a monolithic gallery for just you (as admin) or as a community gallery. Different level of user interaction are possible. One feature that you <em>can</em> use to improve user experience is allowing your visitors to comment the files in your gallery.</p>
+
+<div class="indent"><!-- start sub-section of "Comments" (level 2 x.x)-->
+<a name="comments_allow"></a>
+<h3>4.15.1 Allowing comments</h3>
+<p>Coppermine has different levels of permissions for visitors to post comments: you can assign the permission to post comments based on groups membership. By default, coppermine has the groups "administrators", "registered", "banned" and "guests". The guest group applies to visitors of your gallery who have not logged in.</p>
+<p>You can assign the permissions to post comments for particular groups on the <a href="#group_cp">group control panel</a>. By default, registered users are allowed to post comments, anonymous users (guests) are not allowed to. You're welcome to change this, but you should keep in mind that allowing comments for anybody might result in attracking spammers to your page.</p>
+<p>If you have disabled anonymous (guest) access by setting &quot;<a href="#admin_allow_unlogged_access">Allow unlogged users (guest or anonymous) access</a>&quot; to &quot;no&quot; in Coppermine's config, you don't have to worry about the guest group at all: since they are not able to access individual pics, they can't post comments no matter what.</p>
+<p>The above mentioned group settings are just a general switch that determines if a visitor can post comments at all. You can fine-tune this setting on a per-album page: on the <a href="#album_prop">album's properties</a> page you can switch off comments for particular albums. Even if a user belongs to a group that is allowed to post comments, he won't be able to post comments in albums where you have set &quot;Visitors can post comments&quot; turned off.</p>
+<a name="comments_allow_end"></a>
+<a name="comments_options"></a>
+<h3>4.15.2 Comments options</h3>
+<p>There are several options in <a href="#admin_comment_start">Coppermine's config</a> where you can fine-tune the behaviour of comments. It is advisable that you change only one option at a time and then test the impact the option has on your gallery.</p>
+<a name="comments_options_end"></a>
+<a name="comments_spam"></a>
+<h3>4.15.3 Spam issues</h3>
+<p>In the past few years, comment spam has started to become a problem. Spam is unsolicited, undesired bulk messages that orginally became an issue in emails. Recently, spammers started using techniques to flood web pages that allow users to interact by posting comments, mostly on blogs and forums, but an increasing number is reported for coppermine as well.</p>
+<p>There are basically two types of spam messages: those that get posted by a human spammer who vists your page and just pastes his unwanted messages into the input field and submits the form, and those that use a so-called &quot;bot&quot; (a script run on a remote computer that automatically scans the pages that allow comments and subsequently fills in the fields and submits them automatically). It's hard to fight spam posted by actual humans, as all methods to make it harder for them to post their spam messages will make it harder your regular, legitimate users as well. However, it's easier to fight the spam messages posted by bots: you just need to make it mandatory to do something only humans can do, but automated scripts can't. One of the things scripts currently can not do is reading scrambled text on images and entering the text into an input field. Images that show random, scrambled text are being called &quot;captchas&quot; - that's why a <a href="#admin_comment_captcha_start">visual confirmation (captcha) option</a> was added to coppermine in cpg1.5.x</p>
+<p>Another option to protect your gallery from being flooded with silly spam messages (most of those messages advertizing online pharmaceutical products) is enabling comment approval: when enabled, all comments posted will not be visible instantly, but require you (as coppermine admin) to approve them first.</p>
+<a name="comments_options_spam"></a>
+<a name="comments_review"></a>
+<h3>4.15.4 Reviewing Comments</h3>
+<p>On the &quot;Review comments&quot; page the admin can list all comments posted and sort them by different criteria You can approve or disapprove comments and delete them as well.</p>
+<img src="pics/review_comments.png" border="0" alt="" />
+<p class="small">[cpg1.5.0 or better required]</p>
+<a name="comments_review_end"></a>
+<a name="comments_end"></a>
+<p><a class="back" href="#top">Back to top</a></p><hr />
+</div><!-- end sub-section of "Comments" (level 2 x.x)-->
+
 </div><!-- end sub-section of "Configuration" (level 1 x)-->
 
 <a name="integrating"></a>
