@@ -344,7 +344,8 @@ $msg_txt
 EOT;
 }
 
-$help = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=admin_comment_display_comment_approval_only_start&amp;ae=admin_comment_display_comment_approval_only_end&amp;top=1', '600', '400');
+$help_approval_only = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=admin_comment_display_comment_approval_only_start&amp;ae=admin_comment_display_comment_approval_only_end&amp;top=1', '600', '400');
+$help = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=comments_review&amp;ae=comments_review_end&amp;top=1', '800', '400');
 echo <<<EOT
         <tr>
                 <td class="tableh1" colspan="6">
@@ -352,11 +353,12 @@ echo <<<EOT
                         <tr>
                             <td class="tableh1">
                                 {$lang_reviewcom_php['title']}
+                                {$help}
                             </td>
                             <td class="tableh1" align="center">
                                 <input type="checkbox" name="approval_only" id="approval_only" class="checkbox" title="{$lang_reviewcom_php['only_approval']}" {$comment_approval_only_checked} value="1" />
                                 <label for="approval_only" class="clickable_option">{$lang_reviewcom_php['only_approval']}</label>
-                                {$help}
+                                {$help_approval_only}
                             </td>
                             <td class="tableh1" align="center">
                                 $prev_link
@@ -488,7 +490,7 @@ while ($row = mysql_fetch_array($result)) {
             {$msg_body}
         </td>
         <td class="$tableclass" align="center">
-            <a href="$thumb_link"><img src="$thumb_url" {$image_size['geom']} class="image" border="0" alt="" /></a>
+            <a href="$thumb_link"><img src="$thumb_url" {$image_size['geom']} class="image" border="0" alt="" title="$thumb_url" /></a>
         </td>
         </tr>
 

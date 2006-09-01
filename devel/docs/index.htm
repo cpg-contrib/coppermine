@@ -845,7 +845,7 @@ using a tool like <a href="http://www.phpmyadmin.net/" rel="external" class="ext
   <li><strong>Ban Users</strong><br />Ban users based on hostname or IP address. Make sure not to ban yourself! Use this feature with extreme caution, as most users today do not have static IP addresses, this feature should only be employed if you really know what you're doing.<br />
   <span class="small">[cpg1.3.0 or better required]</span>
   </li>
-  <li><strong>Review Comments</strong><br />edit/approve/disapprove/delete user's comments</li>
+  <li><strong>Review Comments</strong><br />edit/approve/disapprove/delete user's <a href="comments">comments</a></li>
   <li><a name="ecard_log"></a><strong>Display Ecards</strong><p>View the ecards sent by users.</p>
   <p>You must have ecard-logging enabled in the config menu, first (by default, logging is disabled). When enabled, all ecards that are being sent are written into the database, where the coppermine admin can view them.</p>
   <img src="pics/ecard_log.gif" border="0" alt="" /><br />
@@ -2434,8 +2434,21 @@ Unfortunately, there is no API documentation available yet.</p>
 <a name="comments_options_spam"></a>
 <a name="comments_review"></a>
 <h3>4.15.4 Reviewing Comments</h3>
-<p>On the &quot;Review comments&quot; page the admin can list all comments posted and sort them by different criteria You can approve or disapprove comments and delete them as well.</p>
-<img src="pics/review_comments.png" border="0" alt="" />
+<img src="pics/review_comments.png" border="0" alt="" align="right" />
+<p>On the &quot;Review comments&quot; page the admin can list all comments posted and sort them by different criteria. You can approve or disapprove comments and delete them as well.</p>
+<ul>
+  <li>The option &quot;<strong>only display comments needing approval</strong>&quot; can both be toggled on the review comments page as well as in coppermine's config. The option should be pretty self-explanatory: when enabled, only comments needing approval will be displayed on the review comments page. This has no impact on the visibility of comments for regular users. It is recommended to keep this option enabled, as it will make comment administration much easier.</li>
+  <li>Using the dropdown box &quot;<strong>Number of comments to display</strong>&quot; you can change the maximum number of comments per page. If there are more comments than this amount, previous/next links will be displayed to move between pages.</li>
+  <li>By default, the page content will be <strong>sorted</strong> by date, displaying the most recent comment at the top. You can change the criteria by which the page is sorted and the sorting direction (ascending or descending) by clicking on the little triangular arrow icons(<img src="../images/ascending.gif" width="9" height="9" border="0" alt="" /><img src="../images/descending.gif" width="9" height="9" border="0" alt="" />).</li>
+  <li>Use the <strong>checkboxes</strong> in the first column to select the comments you want to change. Ticking the checkbox in the very first or very last row selects/disselects all other checkboxes.</li>
+  <li>The column &quot;<strong>Approved</strong>&quot; will show the current approval status. If you want to change the approval status of just one or only a few comments, use the radio buttons to change their status. Then submit the form by clicking on the &quot;Save changes&quot; at the bottom of the page. If you want to change the status of many comments (or all) comments at once, use the checkboxes in the first column, then select the radio buttons labelled &quot;With selected&quot; at the very bottom of the page and select the action you want to apply, then submit the form.</li>
+  <li>The names of registered users in the column &quot;<strong>Name</strong>&quot; are clickable links that lead to the user's profile. Names of anonymous users (guests) will of course not be clickable and are being displayed with the prefix you chose using the config option &quot;<a href="#comments_anon_pfx">Prefix for anonymous comments authors</a>&quot;.</li>
+  <li>The column &quot;<strong>Date</strong>&quot; should be self-explanatory. It even does more than advertized: it displays the posting time as well as the date.</li>
+  <li>The actual comment text is being displayed in the column &quot;<strong>Comment</strong>&quot;.</li>
+  <li>In the last column named &quot;<strong>File</strong>&quot; a thumbnail that represents the pic the comment has been posted for is being displayed. By clicking on the thumbnail you can go to the individual pic. This is particularly helpful if you need to see the context of the comment.</li>
+  <li>All changes you want to perform makes it mandatory to submit the form using the &quot;Save changes&quot; button at the bottom of the page. If you forget to submit the form, your changes will not be taken into account.</li>
+</ul>
+
 <p class="small">[cpg1.5.0 or better required]</p>
 <a name="comments_review_end"></a>
 <a name="comments_end"></a>
