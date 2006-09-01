@@ -408,6 +408,7 @@ EOT;
 // configure sort category alphabetically
     $yes_selected = $CONFIG['categories_alpha_sort'] ? 'checked="checked"' : '';
     $no_selected = !$CONFIG['categories_alpha_sort'] ? 'checked="checked"' : '';
+    $help = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=admin_album_list_alphasort_start&amp;ae=admin_album_list_alphasort_end&amp;top=1', '600', '250');
 
 echo <<<EOT
         <script language="javascript" type="text/javascript">
@@ -423,6 +424,7 @@ echo <<<EOT
         <tr>
             <td class="tablef" colspan="6">
                         {$lang_catmgr_php['categories_alpha_sort']}
+                        {$help}
                         &nbsp;&nbsp;
                         <input type="radio" id="categories_alpha_sort1" name="categories_alpha_sort" value="1"  onclick="checkFormSubmit()" $yes_selected /><label for="categories_alpha_sort1" class="clickable_option">{$lang_common['yes']}</label>
                         &nbsp;&nbsp;

@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-09-01 [O] Added help icons {GauGau}
 2006-09-01 [D] Added comments section to docs {GauGau}
 2006-08-31 [A] Added the checkbox "send login data to this user" while creating new user in usermgr {Abbas}
 2006-08-31 [O] Removed hard-coded translation in versioncheck.php {GauGau}

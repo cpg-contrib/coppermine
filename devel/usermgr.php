@@ -511,6 +511,8 @@ EOT;
             print '                                  <option value="' . $group['group_id'] . '"' . ($group['group_id'] == $sel_group ? ' selected' : '') . '>' . $group['group_name'] . "</option>\n";
         }
 
+    $help_create = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=user_cp_new&amp;ae=user_cp_new_end&amp;top=1', '600', '250');
+
     echo <<<EOT
                               </select>
                             <select name="delete_files" size="1" class="listbox" style="display:none">
@@ -525,6 +527,7 @@ EOT;
                         </td>
                         <td align="center">
                         <a href="{$_SERVER['PHP_SELF']}?op=new_user" {$makereadonly}class="admin_menu">{$lang_usermgr_php['create_new_user']}</a>
+                        {$help_create}
                         </td>
                         </form>
                 </tr>
