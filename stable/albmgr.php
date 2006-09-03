@@ -10,15 +10,15 @@
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
   ********************************************
-  Coppermine version: 1.4.9
-  $Source$
+  Coppermine version: 1.4.10
+  $HeadURL$
   $Revision$
   $Author$
   $Date$
 **********************************************/
 
 /**
-* Coppermine Photo Gallery 1.4.9 albmgr.php
+* Coppermine Photo Gallery 1.4.10 albmgr.php
 *
 * This file is the which allows creation of new Albumbs and editing the names of albums,
 * this is not the file which allows you to set album properties,
