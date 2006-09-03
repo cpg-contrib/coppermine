@@ -1365,8 +1365,15 @@ Should you have difficulties using one, try the other. You can toggle between th
 <a name="admin_language_language"></a><h4>Language</h4>
 <p>This sets the default language for your gallery. All language files are stored in the <strong>lang</strong> directory on your server.</p>
 <p>Languages and internationalization (often refered to as i18n) is a complicated and complex thing. You (as Coppermine admin) probably don't want to go into details, so this documentation skips the in-depth issues existing with i18n and just gives you an overview how Coppermine handles languages:</p>
-<p>By default, language files are unicode encoded files. If you select an -utf8 file as the default language and you set "Character encoding" to "Unicode (utf-8)" then the script will auto detect the preferred language of your visitors based on what default language is configured in their browsers. If the corresponding language is available in your language directory, it will be used. Otherwise, the default language file will be used.</p>
+<p>By default, language files are unicode encoded files. If you set "Character encoding" to "Unicode (utf-8)" then the script will auto detect the preferred language of your visitors based on what default language is configured in their browsers. If the corresponding language is available in your language directory, it will be used. Otherwise, the default language file will be used.</p>
 <p>When the script auto detects the preferred language, it stores the result in a cookie on the visitor's computer. To reset this cookie (and thus force the script to do another auto detection) the user must call this autodetect function with something like: <a href="#">http://yoursite.com/coppermine_dir/index.php?lang=xxx</a></p>
+<p>These steps are performed by the script:</p>
+<ul>
+  <li>Step one: Check "has a specific language been set by cookie or URL parameter?". If yes, the gallery will be displayed in that language, all subsequent steps are being skipped</li>
+  <li>Step two: which language has the user set as default language in his browser? If that language exists as Coppermine language file, it will be used - the subsequent step will be skipped.</li>
+  <li>Last step: only if the previous steps both don't apply, the default language that the admin has set up on the config page will be taken into account</li>
+</ul>
+
 <p>Once you have added comments or files to your gallery, you should not change the character set of your gallery. If you do so, non-ASCII characters may not display properly.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Language &amp; Charset settings &rarr; Language</p>
 <a name="admin_language_language_end"></a>
@@ -2448,9 +2455,20 @@ Unfortunately, there is no API documentation available yet.</p>
   <li>In the last column named &quot;<strong>File</strong>&quot; a thumbnail that represents the pic the comment has been posted for is being displayed. By clicking on the thumbnail you can go to the individual pic. This is particularly helpful if you need to see the context of the comment.</li>
   <li>All changes you want to perform makes it mandatory to submit the form using the &quot;Save changes&quot; button at the bottom of the page. If you forget to submit the form, your changes will not be taken into account.</li>
 </ul>
-
 <p class="small">[cpg1.5.0 or better required]</p>
 <a name="comments_review_end"></a>
+<a name="comments_options"></a>
+<h3>4.15.5 Individual Comments</h3>
+<p>When logged in as admin and browsing an individual file (intermediate image), you will see three icons next to comments:</p>
+<ul>
+  <li><img src="../images/approve.gif" width="16" height="16" border="0" alt="" /> or <img src="../images/disapprove.gif" width="16" height="16" border="0" alt="" /> are being displayed to show you the approval status of an individual comment.<br />
+  Approved comments will show the <img src="../images/disapprove.gif" width="16" height="16" border="0" alt="" />-icon; clicking on the icon will disapprove the comment.<br />
+  Comments that wait for approval or that have explicitely been disapproved will display the <img src="../images/approve.gif" width="16" height="16" border="0" alt="" />-icon to allow you to approve it by clicking on that icon.</li>
+  <li>When clicking on the <img src="../images/edit.gif" width="16" height="16" border="0" alt="" />-icon, the comment text will turn into an input field where you as admin can change the comment at will.</li>
+  <li>A click on the <img src="../images/delete.gif" width="16" height="16" border="0" alt="" />-icon will delete the comment.</li>
+</ul>
+<p class="small">[cpg1.5.0 or better required]</p>
+<a name="comments_options_end"></a>
 <a name="comments_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 </div><!-- end sub-section of "Comments" (level 2 x.x)-->
