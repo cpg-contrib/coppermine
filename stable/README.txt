@@ -9,7 +9,7 @@
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
   ********************************************
-  Coppermine version: 1.4.9
+  Coppermine version: 1.4.10
   $Source$
   $Revision$
   $Author$
@@ -23,7 +23,7 @@ Congratulations on downloading the most recent, most powerful, and feature rich 
 
 Look in the folder that you just extracted your Coppermine files into. In it, you'll find a folder called 'docs'. All the documentation for installation, faqs, administration, troubleshooting, modifying themes, and more is there. Familiarize yourself with the contents of the various docs to enhance your CPG experience and create the gallery that you've always dreamed about, in the least amount of time, and with the least amount of set-backs and frustration. Read it and in no time at all, your friends and relatives will be praising you and gawking at your incredible photo-gallery.
 
-Even if you are installing this as an upgrade from an older version of Coppermine, you'll still need to read the docs for directions and to understand some of the major changes between CPG 1.4x and all previous versions. You'll need to know what can and cannot be ported from your previous installation to this new version. It is important to note that upgrade installations are considerably different from update installations. For example, In version 1.35, an 'update' to 1.34, the Classic theme's theme.php script was a whopping 1487 lines long. In 1.4x, an upgrade, it's a mere 24. Nope, this is NOT a miss-type. So where did all that code go? Read the docs. Your custom themes from previous versions will undoubtedly need some changes made to it before you can use them in this new version. So, just how do you go about doing that? RTFM!
+Even if you are installing this as an upgrade from an older version of Coppermine, you'll still need to read the docs for directions and to understand some of the major changes between CPG 1.4x and all previous versions. You'll need to know what can and cannot be ported from your previous installation to this new version. It is important to note that upgrade installations are considerably different from update installations. For example, In version 1.3.5, an 'update' to 1.3.4, the Classic theme's theme.php script was a whopping 1487 lines long. In 1.4.x, an upgrade, it's a mere 24. Nope, this is NOT a miss-type. So where did all that code go? Read the docs. Your custom themes from previous versions will undoubtedly need some changes made to it before you can use them in this new version. So, just how do you go about doing that? RTFM!
 
 This download is a stand-alone version of Coppermine Photo Gallery– if you are looking for something that integrates with a CMS (content management system), you should visit http://www.cpgnuke.com.
 
@@ -86,4 +86,4 @@ Experiment with it with just a few pictures, categories, and albums at first. Se
 
 
 The Coppermine Dev Team
-http://coppermine.sourceforge.net
+http://coppermine-gallery.net

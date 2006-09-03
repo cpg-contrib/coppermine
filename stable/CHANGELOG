@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-09-03 [M] Updated version count from cpg1.4.9 to cpg1.4.10 in subversion repository as a preparation for a possible future release {GauGau}
 2006-09-02 [O] Updated brazilian language file (user contribution) {GauGau}
 2006-09-01 [B] Reverted width="100%%" in themes.inc.php & sample theme - topic: 35701 {Paver}
 2006-08-26 [M] Release of cpg1.4.9 {GauGau}

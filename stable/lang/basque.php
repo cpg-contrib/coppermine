@@ -11,7 +11,7 @@
   (at your option) any later version.
 ********************************************
 
-Coppermine version: 1.4.9
+Coppermine version: 1.4.10
 
   $Source$
   $Revision$
