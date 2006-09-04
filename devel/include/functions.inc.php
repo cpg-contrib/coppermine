@@ -365,9 +365,9 @@ function cpg_die($msg_code, $msg_text,  $error_file, $error_line, $output_buffer
 
 function localised_date($timestamp = -1, $datefmt)
 {
-	global $lang_month, $lang_day_of_week, $CONFIG;
+        global $lang_month, $lang_day_of_week, $CONFIG;
 
-	$timestamp = localised_timestamp($timestamp);
+        $timestamp = localised_timestamp($timestamp);
 
     $date = ereg_replace('%[aA]', $lang_day_of_week[(int)strftime('%w', $timestamp)], $datefmt);
     $date = ereg_replace('%[bB]', $lang_month[(int)strftime('%m', $timestamp)-1], $date);
@@ -384,17 +384,17 @@ function localised_date($timestamp = -1, $datefmt)
  **/
 function localised_timestamp($timestamp = -1)
 {
-	global $CONFIG;
-   
-	if ($timestamp == -1) {
-		$timestamp = time();
-	}
-	
-	$diff_to_GMT = date("O") / 100;
+        global $CONFIG;
 
-	$timestamp += ($CONFIG['time_offset'] - $diff_to_GMT) * 3600;
+        if ($timestamp == -1) {
+                $timestamp = time();
+        }
 
-	return $timestamp;
+        $diff_to_GMT = date("O") / 100;
+
+        $timestamp += ($CONFIG['time_offset'] - $diff_to_GMT) * 3600;
+
+        return $timestamp;
 }
 
 // Function to create correct URLs for image name with space or exotic characters
@@ -1011,7 +1011,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         $TMP_SET = "AND (1";
                 }
 
-                $query = "SELECT COUNT({$CONFIG['TABLE_PICTURES']}.pid) from {$CONFIG['TABLE_COMMENTS']}, {$CONFIG['TABLE_PICTURES']}  WHERE approved = 'YES' AND {$CONFIG['TABLE_COMMENTS']}.pid = {$CONFIG['TABLE_PICTURES']}.pid $TMP_SET $keyword)";
+                $query = "SELECT COUNT({$CONFIG['TABLE_PICTURES']}.pid) from {$CONFIG['TABLE_COMMENTS']}, {$CONFIG['TABLE_PICTURES']}  WHERE {$CONFIG['TABLE_PICTURES']}.approved = 'YES' AND {$CONFIG['TABLE_COMMENTS']}.pid = {$CONFIG['TABLE_PICTURES']}.pid AND {$CONFIG['TABLE_COMMENTS']}.approval = 'YES' $TMP_SET $keyword)";
                 $result = cpg_db_query($query);
 
                 $nbEnr = mysql_fetch_array($result);
@@ -1025,7 +1025,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 }
 
                 $TMP_SET = str_replace($CONFIG['TABLE_PICTURES'],'p',$TMP_SET);
-                $query = "SELECT $select_columns FROM {$CONFIG['TABLE_COMMENTS']} as c, {$CONFIG['TABLE_PICTURES']} as p WHERE approved = 'YES' AND c.pid = p.pid $TMP_SET $keyword) ORDER by msg_id DESC $limit";
+                $query = "SELECT $select_columns FROM {$CONFIG['TABLE_COMMENTS']} as c, {$CONFIG['TABLE_PICTURES']} as p WHERE approved = 'YES' AND c.pid = p.pid AND c.approval = 'YES' $TMP_SET $keyword) ORDER by msg_id DESC $limit";
                 $result = cpg_db_query($query);
 
 
