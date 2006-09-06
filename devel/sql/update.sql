@@ -526,3 +526,6 @@ INSERT INTO CPG_config VALUES ('registration_captcha', '0');
 
 # Flash in ecards
 INSERT INTO CPG_config VALUES ('ecard_flash', '0');
+
+# Create user album in personal gallery on registration
+INSERT INTO CPG_config VALUES ('personal_album_on_registration', '0');

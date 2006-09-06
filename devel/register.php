@@ -393,6 +393,15 @@ function check_user_info(&$error) { // function check_user_info - start
     }
     $result = cpg_db_query($sql);
 
+    // Create a personal album if corresponding option is enabled
+    if ($CONFIG['personal_album_on_registration'] == 1) {
+        print 'sub<br />';
+        $catid = mysql_insert_id() + FIRST_USER_CAT;
+        print $catid;
+        cpg_db_query("INSERT INTO {$CONFIG['TABLE_ALBUMS']} (`title`, `category`) VALUES ('".addslashes($user_name)."', $catid)");
+        print "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (`title`, `category`) VALUES ('".addslashes($user_name)."', $catid)";
+    }
+
     if ($CONFIG['reg_requires_valid_email']) {
         if (!$CONFIG['admin_activation']==1) { //user gets activation email
                                         $act_link = rtrim($CONFIG['site_url'], '/') . '/register.php?activate=' . $act_key;
