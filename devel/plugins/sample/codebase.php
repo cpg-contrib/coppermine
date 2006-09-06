@@ -47,7 +47,7 @@ function sample_block_mgr($block) {
 function sample_install() {
 
     // Install
-    if ($_POST['uid']=='me' && $_POST['pwd']=='you') {
+    if ($_POST['uid']=='foo' && $_POST['pwd']=='bar') {
 
         return true;
 
@@ -62,11 +62,35 @@ function sample_install() {
 // Displays the form
 function sample_configure() {
     echo <<< EOT
-    <h3>Enter the username ('me') and password ('you') to install</h3>
     <form name="cpgform" id="cpgform" action="{$_SERVER['REQUEST_URI']}" method="post">
-        uid:<input type="text" name="uid" /><br />
-        pwd:<input type="text" name="pwd" /><br />
-        <input type="submit" value="Go!" />
+            <table border="0" cellspacing="0" cellpadding="0" width="100%">
+              <tr>
+                <td class="tableh2" colspan="2">
+                  <h3>Enter the username ('foo') and password ('bar') to install</h3>
+                </td>
+              </tr>
+              <tr>
+                <td class="tableb">
+                  Username:
+                </td>
+                <td class="tableb">
+                  <input type="text" name="uid" />
+                </td>
+              </tr>
+              <tr>
+                <td class="tableb tableb_alternate">
+                  Password:
+                </td>
+                <td class="tableb tableb_alternate">
+                  <input type="text" name="pwd" />
+                </td>
+              </tr>
+              <tr>
+                <td class="tablef" colspan="2">
+                  <input type="submit" value="Go!" />
+                </td>
+              </tr>
+            </table>
     </form>
 EOT;
 }

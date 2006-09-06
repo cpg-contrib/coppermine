@@ -1535,6 +1535,7 @@ $lang_pluginmgr_php = array(
   'confirm_uninstall' => 'Are you sure you want to UNINSTALL this plugin',
   'confirm_delete' => 'Are you sure you want to DELETE this plugin',
   'pmgr' => 'Plugin Manager',
+  'explanation' => 'Install / uninstall / manage plugins using this page.', // cpg1.5.x
   'name' => 'Name',
   'author' => 'Author',
   'desc' => 'Description',
@@ -1548,6 +1549,7 @@ $lang_pluginmgr_php = array(
   'upload' => 'Upload',
   'configure_plugin' => 'Configure plugin',
   'cleanup_plugin' => 'Cleanup plugin',
+  'extra' => 'Extra', // cpg1.5.x
 );
 }
 

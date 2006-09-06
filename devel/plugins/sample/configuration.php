@@ -18,7 +18,7 @@
 **********************************************/
 
 $name='Sample Plugin';
-$description='This is a sample plugin.';
+$description='This is a sample plugin. It will not do anything particular usefull - it is just meant to demonstrate what plugins can do and how to code them. When enabled, it will display some sample text in red.';
 $author='Coppermine Development Team';
 $version='1.0';
 /*
@@ -27,7 +27,7 @@ $version='1.0';
  * example that forms a button the user can click.
  */
 $extra_info = <<<EOT
-    <table border="0" cellspacing="0" cellpadding="0"> 
+    <table border="0" cellspacing="0" cellpadding="0">
     <tr>
         <td class="admin_menu"><a target="_blank" href="docs/index.htm#plugin" title="Plugin Documentation">Documentation</a></td>
     </tr>
@@ -39,7 +39,7 @@ EOT;
  * example that forms a button the user can click.
  */
 $install_info=<<<EOT
-    <table border="0" cellspacing="0" cellpadding="0"> 
+    <table border="0" cellspacing="0" cellpadding="0">
     <tr>
         <td class="admin_menu"><a target="_blank" href="http://coppermine-gallery.net/forum/index.php?board=53.0" title="Plugin Support">Support</a></td>
     </tr>

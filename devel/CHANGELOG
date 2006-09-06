@@ -26,6 +26,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-09-06 [C] Minor fixes to sample plugin for illustration purposes {GauGau}
+2006-09-06 [C] Improved table layout on plugin manager page, added help icons and missing translation {GauGau}
 2006-09-04 [B] Updated query for lastcom meta album to reflect comment approval feature {GauGau}
 2006-09-01 [B] Reverted width="100%%" in themes.inc.php & sample theme - topic: 35701 {Paver}
 2006-09-01 [O] Added help icons {GauGau}

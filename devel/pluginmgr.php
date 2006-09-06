@@ -37,17 +37,34 @@ if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__,
 
 function display_plugin_list() {
     global $CPG_PLUGINS,$lang_pluginmgr_php;
+    $help = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=plugin_manager&amp;ae=plugin_manager_end&amp;top=1', '800', '600');
+    starttable('100%', $lang_pluginmgr_php['pmgr'].$help);
+echo <<< EOT
+        <tr>
+                <td>
+                    {$lang_pluginmgr_php['explanation']}
+                </td>
+        </tr>
+EOT;
+    endtable();
+echo <<< EOT
+        <br />
+EOT;
+
+
+    $help = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=plugin_manager_uninstall&amp;ae=plugin_manager_uninstall_end&amp;top=1', '640', '480');
     $available_plugins = cpg_get_dir_list('./plugins/');
     starttable('100%');
 
 echo <<<EOT
         <tr>
-                <td class="tableh1" width="90%"><b><span class="statlink">{$lang_pluginmgr_php['i_plugins']}</span></b></td>
-                <td colspan="3" class="tableh1" align="center" width="10%"><b><span class="statlink">{$lang_pluginmgr_php['operation']}</span></b></td>
+                <td class="tableh1" width="90%"><strong><span class="statlink">{$lang_pluginmgr_php['i_plugins']}</span></strong></td>
+                <td colspan="3" class="tableh1" align="center" width="10%"><strong><span class="statlink">{$lang_pluginmgr_php['operation']}</span></strong>{$help}</td>
         </tr>
 EOT;
 
     $installed_count = 0;
+    $loop_counter = 0;
     foreach ($CPG_PLUGINS as $thisplugin) {
         $installed_count++;
         unset($extra_info);
@@ -60,28 +77,42 @@ EOT;
         if (sizeof($thisplugin->error) > 0) {
             $error = $thisplugin->error['desc'];
             $extra = '<tr><td class="tableb" width="100%" colspan="2">'.
-                     '<b>Error:</b> <span style="color:red;">'.$error.'</span>'.
+                     '<strong>Error:</strong> <span style="color:red;">'.$error.'</span>'.
                      '</td></tr>'.$extra;
         }
 
+        if ($loop_counter == 0) {
+            $row_style_class = 'tableb';
+        } else {
+            $row_style_class = 'tableb tableb_alternate';
+        }
+        $loop_counter++;
+        if ($loop_counter > 1) {
+            $loop_counter = 0;
+        }
 
         echo <<<EOT
         <tr>
-            <td width="90%">
-                <table border="0" width="100%" cellspacing="0" cellpadding="0">
+            <td width="90%" class="{$row_style_class}">
+                <table border="0" width="100%" cellspacing="0" cellpadding="0" class="maintable">
                     <tr>
-                        <td class="tableh2" width="50%"><b>{$lang_pluginmgr_php['name']}</b> $name {$lang_pluginmgr_php['vers']}$version</td>
-                        <td class="tableh2" width="50%">$extra</td>
+                        <td colspan="2" class="tableh1">{$name}: {$lang_pluginmgr_php['vers']}$version</td>
                     </tr>
                     <tr>
-                        <td class="tableb" colspan="2" width="100%"><b>{$lang_pluginmgr_php['author']}</b> $author</td>
+                        <td class="tableb" width="20%">{$lang_pluginmgr_php['extra']}:</td>
+                        <td class="tableb">$extra</td>
                     </tr>
                     <tr>
-                        <td class="tableb" colspan="2" width="100%"><b>{$lang_pluginmgr_php['desc']}</b> $description</td>
+                        <td class="tableb tableb_alternate">{$lang_pluginmgr_php['author']}:</td>
+                        <td class="tableb tableb_alternate">$author</td>
+                    </tr>
+                    <tr>
+                        <td class="tableb">{$lang_pluginmgr_php['desc']}</td>
+                        <td class="tableb">$description</td>
                     </tr>
                 </table>
             </td>
-            <td class="tableh1" valign="top">
+            <td class="{$row_style_class}" valign="top">
             <table border="0" width="100%" cellspacing="0" cellpadding="0">
             <tr>
 EOT;
@@ -127,6 +158,8 @@ EOT;
     echo('<p>&nbsp;</p>');
     echo('<form name="cpgform" id="cpgform" action="pluginmgr.php?op=upload" method="post" enctype="multipart/form-data">');
 
+    $help_upload = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=plugin_manager_upload&amp;ae=plugin_manager_upload_end&amp;top=1', '640', '480');
+    $help_install = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=plugin_manager_install&amp;ae=plugin_manager_install_end&amp;top=1', '640', '480');
     starttable('100%');
 echo <<<EOT
         <tr>
@@ -134,18 +167,21 @@ echo <<<EOT
                     <table border="0" cellpadding="0" cellspacing="0" width="100%">
                         <tr>
                             <td align="left">
-                                <b><span class="statlink">{$lang_pluginmgr_php['n_plugins']}</span></b>
+                                <strong><span class="statlink">{$lang_pluginmgr_php['n_plugins']}</span></strong>{$help_install}
                             </td>
                             <td align="right">
-                                    <input type="file" size="40" name="plugin" />
-                                    <input type="submit" style="font-size: 12;" value="{$lang_pluginmgr_php['upload']}" />
+                                    <input type="file" size="40" name="plugin" class="textinput" />
+                                    <input type="submit" class="button" value="{$lang_pluginmgr_php['upload']}" />
+                                    {$help_upload}
                             </td>
                         </tr>
                     </table>
                 </td>
-                <td colspan="3" class="tableh1" align="center" width="10%"><b><span class="statlink">{$lang_pluginmgr_php['operation']}</span></b></td>
+                <td colspan="3" class="tableh1" align="center" width="10%"><strong><span class="statlink">{$lang_pluginmgr_php['operation']}</span></strong></td>
         </tr>
 EOT;
+
+    $loop_counter = 0;
 
     foreach ($available_plugins as $path) {
         if (($plugin_id = CPGPluginAPI::installed($path))===false) {
@@ -162,24 +198,34 @@ EOT;
             $safename = addslashes(str_replace('&nbsp;', '', $name));
             $extra = (isset($extra_info)) ? ($extra_info):(null);
 
+            if ($loop_counter == 0) {
+                $row_style_class = 'tableb';
+            } else {
+                $row_style_class = 'tableb tableb_alternate';
+            }
+            $loop_counter++;
+            if ($loop_counter > 1) {
+                $loop_counter = 0;
+            }
+
             echo <<<EOT
             <tr>
-            <td width="90%">
-                <table border="0" width="100%" cellspacing="0" cellpadding="0">
+            <td width="90%" class="{$row_style_class}">
+                <table border="0" width="100%" cellspacing="0" cellpadding="0" class="maintable">
                     <tr>
-                        <td class="tableh2" width="50%"><b>{$lang_pluginmgr_php['name']}</b> $name {$lang_pluginmgr_php['vers']}$version</td>
-                        <td class="tableh2">$extra</td>
+                        <td colspan="2" class="tableh1">{$name}: {$lang_pluginmgr_php['vers']}$version</td>
                     </tr>
                     <tr>
-                        <td class="tableb" width="50%" colspan="2"><b>{$lang_pluginmgr_php['author']}</b> $author</td>
+                        <td class="tableb tableb_alternate" width="20%">{$lang_pluginmgr_php['author']}:</td>
+                        <td class="tableb tableb_alternate">$author</td>
                     </tr>
                     <tr>
-                        <td class="tableb" width="50%" colspan="2"><b>{$lang_pluginmgr_php['desc']}</b> $description</td>
+                        <td class="tableb">{$lang_pluginmgr_php['desc']}</td>
+                        <td class="tableb">$description</td>
                     </tr>
-
                 </table>
             </td>
-            <td class="tableh1" valign="top">
+            <td class="{$row_style_class}" valign="top">
                 <table border="0" width="100%" cellspacing="0" cellpadding="0">
                 <tr>
                     <td width="5%" align="center" valign="top">
