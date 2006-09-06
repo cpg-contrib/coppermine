@@ -300,3 +300,6 @@ INSERT INTO CPG_config VALUES ('ecard_flash', '0');
 
 # Create user album in personal gallery on registration
 INSERT INTO CPG_config VALUES ('personal_album_on_registration', '0');
+
+# Count hits in slideshow
+INSERT INTO CPG_config VALUES ('slideshow_hits', '1');

@@ -19,6 +19,40 @@
 ?>
 
 <script language="JavaScript" type="text/JavaScript">
+var x1;
+
+x1 = createRequestObject();
+
+function createRequestObject() {
+  var x = false;
+
+  try {
+    x = new ActiveXObject("Msxml2.XMLHTTP");
+  } catch (e) {
+    try {
+      x = new ActiveXObject("Microsoft.XMLHTTP");
+    } catch (E) {
+      x = false;
+    }
+  }
+
+  if (!x && typeof XMLHttpRequest != "undefined") {
+    x = new XMLHttpRequest();
+  }
+
+  return x;
+}
+
+function addHit(pid) {
+  x1.open('get','addHit.php?pid='+pid);
+  x1.onreadystatechange = function() {
+    if (x1.readyState == 4) {
+      return (x1.responseText);
+    }
+  }
+  x1.send(null);
+}
+
 // (C) 2000 www.CodeLifter.com
 // http://www.codelifter.com
 // Free for all users, but leave in this  header
@@ -43,6 +77,7 @@ var crossFadeDuration = 3
 
 // Specify the image files
 var Pic = new Array() // don't touch this
+var Pid = new Array()
 var Title = new Array() // don't touch this
 // to add more images, just continue
 // the pattern, adding to the array below
@@ -80,6 +115,7 @@ foreach ($pic_data as $picture) {
             $Title = $picture['filename'];
         }
         echo "Pic[$i] = '" . htmlspecialchars($picture_url, ENT_QUOTES) . "';\n";
+        echo "Pid[$i] = '" . $picture['pid'] . "'\n";
         echo "Title[$i] = '" . addslashes($Title) . "';\n";
         if ($picture['pid'] == $pid) {
             $j = $i;
@@ -122,6 +158,7 @@ function runSlideShow(){
         if (xIE4Up){
            document.images.SlideShow.filters.blendTrans.Play()
         }
+        addHit(Pid[j])
 
         pos = j
 
