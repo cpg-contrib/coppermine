@@ -599,9 +599,12 @@ If you have shell access to your server, you can apply the native <a href="http:
         <li><strong><a href="#getting_concepts_basic">Initial configuration</a></strong><br />
         Settings you should edit immediately after finishing the install</li>
         <li><strong><a href="#getting_admin_account">Your admin account</a></strong><br /></li>
-        <li><strong><a href="#getting_check_uploads">Check uploads</a></strong><br /></li>
-        <li><strong>Consider bridging</strong><br /></li>
-        <li><strong>What are your visitors allowed to do?</strong><br /></li>
+        <li><strong><a href="#getting_check_uploads">Check uploads</a></strong><br />
+        Make sure uploading works as expected before letting in visitors</li>
+        <li><strong><a href="#getting_consider_bridging">Consider bridging</a></strong><br />
+        Bridging later when you already have users might get difficult</li>
+        <li><strong>What are your visitors allowed to do?</strong><br />
+        What level of user interaction are you going to allow?</li>
         <li><strong>Change your coppermine's design</strong><br /></li>
 </ul>
 <p><a class="back" href="#top">Back to top</a></p><hr />
@@ -614,6 +617,7 @@ If you have shell access to your server, you can apply the native <a href="http:
   <li><a href="#admin_general_email">Gallery administrator email</a></li>
   <li><a href="#admin_general_coppermine-url">URL of your coppermine gallery folder</a></li>
 </ul>
+<p>There are some settings in config that can't be changed later (if there are already files in the database) - make sure to set them up correctly in the first place. Although you'll surely want to start using coppermine immediately it is advisable to configure those settings (marked with an asterisk &quot;*&quot;) properly at the very beginning.</p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="getting_admin_account"></a>
@@ -626,8 +630,22 @@ If you have shell access to your server, you can apply the native <a href="http:
 <p>Before actually promoting your coppermine gallery publicly, you should make sure that uploads work as expected, as they are the most common issues users have, caused by the huge amount of factors that have to be taken into account.</p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
-<p>There are some settings in config that can't be changed later (if there are already files in the database) - make sure to set them up correctly in the first place. Although you'll surely want to start using coppermine immediately it is advisable to configure those settings (marked with an asterisk &quot;*&quot;) properly at the very beginning.</p>
+<a name="getting_consider_bridging"></a>
+<h3>2.2.5 Consider bridging</h3>
+<p>Coppermine was designed to be used as standalone application in the first place. However, many people wanted to integrate it with another app, so starting with cpg1.1.x coppermine came with a mechanism that allowed users to bridge coppermine with another app in terms of user management. The main advantage is giving your site visitors a single sign-on for your overall site (e.g. both in your gallery and your forum), so they don't have to sign in twice and memorize two different logons.</p>
+<p>Bridging does <strong>not</strong> integrate coppermine visually into your home page (you have to <a href="creating">create a custom theme</a> to accomplish this).</p>
+<p>You can enable (or disable) bridging at any time, but you should make up your mind on bridging when installing Coppermine in the first place, because there are some issues that have to be taken into account: if you already have users inside your coppermine database when enabling bridging, the correlation between those initial coppermine users and the "new" users from the app you bridge with gets lost. As a consequence, there will be no more correlation between things your "old" users did (uploading pic, posting comments etc.) and the "new" users from the bridge.</p>
+<p>To circumvent those future issues, you should make up your mind when installing coppermine: do you want to allow user interaction? Do you plan to offer a bulletin board later (or any other application that keeps track of users)? If your answer is "yes", or "maybe", then it's advisable to enable bridging before actually promoting your site publicly and starting to let users in.</p>
+<p>Read up details in the <a href="#integrating">bridging section</a> of the docs.</p>
+<p><a class="back" href="#top">Back to top</a></p><hr />
 
+<a name="getting_interaction"></a>
+<h3>2.2.6 What are your visitors allowed to do?</h3>
+<p>Coppermine can be used for a variety or purposes: some use it to display their personal files to everyone on the internet, others want only a limited number of users to be able to access the site for viewing only and no interaction at all. A large number of webmasters want to create a community site, where users can participate by uploading files, comment on other's files and rate them.</p>
+<p>You can use Coppermine in all those setups (and a mixture of it), but you should be aware of the possibilities and limitations first:</p>
+<p>Users "inherit" their permissions from the group they're in. That's why many settings in Coppermine are set per group. This way, you can have several levels of permissions.</p>
+TBC
+<p><a class="back" href="#top">Back to top</a></p><hr />
 
 
 
@@ -1201,7 +1219,7 @@ In general, upload_max_filesize &lt; post_max_size &lt; memory_limit in order fo
 The most common issue caused by this setting is an open_basedir warning.  In this situation, your server administrator has restricted the files that PHP can work with to a certain directory.  If he does not create and specify a temporary directory within the open_basedir restriction, PHP will attempt to use the OS temporary directory, and it will be rebuffed by the open_basedir restriction.</li>
 <li><strong>allow_fopen_url</strong> - This controls PHP's ability to read files using URL/URIs.  If it is disabled, Coppermine will not be able to upload from URLs.</li>
 </ol>
-<p>It should be obvious that the files have to be uploaded somewhere (into some folder) on your webserver - this is the albums folder within the folder you installed coppermine on your server. The HTTP uploads go into subfolders of the "userpics" folder (which resides within the "albums" folder). Obviously, the coppermine upload script needs write permissions to upload the files there. This is why you have to change permissions on the albums folder and everything within it during coppermine install - make it writable for the user the webserver runs under. This is done using the CHMOD command on Unix/Linux based servers. If you experience issues with uploading, make sure that you have set the permissions correctly.</p>
+<p>It should be obvious that the files have to be uploaded somewhere (into some folder) on your webserver - this is the albums folder within the folder you installed coppermine on your server. The HTTP uploads go into subfolders of the "userpics" folder (which resides within the "albums" folder). Obviously, the coppermine upload script needs write permissions to upload the files there. This is why you have to change <a href="#permissions">permissions</a> on the albums folder and everything within it during coppermine install - make it writable for the user the webserver runs under. This is done using the CHMOD command on Unix/Linux based servers. If you experience issues with uploading, make sure that you have set the permissions correctly.</p>
 <a name="upload_http_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
@@ -2364,6 +2382,7 @@ Unfortunately, there is no API documentation available yet.</p>
 <a name="plugin_api_end"></a>
 <a name="plugin_manager"></a>
 <h3>4.14.3 The Plugin Manager</h3>
+<img src="pics/plugin_manager.gif" border="0" alt="Coppermine Plugin Manager" align="right" />
 <p>The plugin manager is the central place from where you upload, install, configure and remove plugins. It can be acceessed in two ways:</p>
 <ul>
     <li><strong>Using Coppermine's navigation:</strong><br />
@@ -2376,7 +2395,6 @@ Unfortunately, there is no API documentation available yet.</p>
     <li>the plugins that are installed and running (upper section)</li>
     <li>the plugins that exist within the plugins folder of your server's hard drive but have not been installed and therefore are not running in your Coppermine gallery (lower section)</li>
 </ul>
-<p><img src="pics/plugin_manager.gif" width="716" height="234" border="0" alt="Coppermine Plugin Manager" /></p>
 <p>By default, coppermine comes with some sample or code plugins (none of them are enabled by default though), additional plugins can be found on the corresponding section of coppermine's forum.</p>
 
 <div class="indent"><!-- start sub-section of "The Plugin Manager" (level 3 x.x.x)-->
@@ -2565,7 +2583,7 @@ Coppermine: http://gallery.yourdomain.com/</td>
 <h3>5.3.1 Using the bridge manager</h3>
 <p>The bridge manager is a new feature in cpg1.4, it is not available in older versions. Instead of manually editing coppermine code files, you can enable/disable bridging in your browser, using a wizard-like user interface. To start the bridge manager, log in as admin, choose &quot;Admin Tools&quot; from the navigation and the &quot;bridge manager&quot;</p>
 <p><img src="pics/bridge_01_start.gif" width="429" height="72" border="0" alt="" align="right" />If you run the bridge manager for the first time, there will only be one button that let's you actually start the wizard (if you return to the bridge manager later, you will also find a switch to enable/disable bridging) click it.</p>
-<p class="important">Note: with each step in the wizard, some information is being written to the coppermine database. Unlike other wizards (mostly on your local machine), the bridge manager doesn't have a &quot;&quot;cancel&quot;-button! Once you have enabled bridging and everything is working fine, you shouldn't change any values just out of curiosity, as they will get written to the database, which might result in a bridging that used to work not working any more after &quot;playing&quot; with it.<br clear="all" /></p>
+<p class="important">Note: with each step in the wizard, some information is being written to the coppermine database. Unlike other wizards (mostly on your local machine), the bridge manager doesn't have a &quot;cancel&quot;-button! Once you have enabled bridging and everything is working fine, you shouldn't change any values just out of curiosity, as they will get written to the database, which might result in a bridging that used to work not working any more after &quot;playing&quot; with it.<br clear="all" /></p>
 <p><img src="pics/bridge_02_app.gif" width="581" height="347" border="0" alt="" align="right" />In the first actual step of the wizard &quot;choose application to bridge coppermine with&quot;, you have to choose the application you actually want to coppermine with. Note that you <strong>must</strong> have this application already installed on your webserver, it has to be properly configured and must be up-and-running. Don't use the bridge manager yet if you only <em>plan</em> to integrate coppermine with another application later.</p>
 <p>If you have a custom-made bridge file that is not available in the wizard, choose the radio button in front of the text field and enter the name of your bridge file there, without the extension &quot;.inc.php&quot; (the bridge file must reside in the coppermine sub-folder &quot;bridge&quot;).<br />
 Click &quot;next&quot;</p>
@@ -2985,7 +3003,7 @@ Use post-based groups?:  0  </pre></li>
 <p>This application is opensource software released under the <a href="http://www.gnu.org/copyleft/gpl.html">GPL</a>.
 </p>
 <p>Because the program is licensed free of charge, there is no warranty for the program, to the extent permitted by applicable law. Except when otherwise stated in writing the copyright holders and/or other parties provide the program &quot;as is&quot; without warranty of any kind, either expressed or implied, including, but not limited to, the implied warranties of merchantability and fitness for a particular purpose. The entire risk as to the quality and performance of the program is with you. Should the program prove defective, you assume the cost of all necessary servicing, repair or correction. </p>
-<p>Coppermine Photo Gallery is Copyright &copy; 2002 - 2005 Gr&eacute;gory  DEMAR and the Coppermine Dev Team, All Rights Reserved.<br />
+<p>Coppermine Photo Gallery is Copyright &copy; 2002 - 2006 Gr&eacute;gory  DEMAR and the Coppermine Dev Team, All Rights Reserved.<br />
 </p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 </div><!-- end sub-section of "Credits" (level 1 x)-->
