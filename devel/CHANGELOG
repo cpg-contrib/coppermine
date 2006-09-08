@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-09-08 [O] Added proper attribute to radio buttons for comment approval when editing files (standards compliance) {GauGau}
 2006-09-07 [A] Added slideshow view counter option {GauGau}
 2006-09-06 [A] Added "create personal album on registration" feature {GauGau}
 2006-09-06 [C] Minor fixes to sample plugin for illustration purposes {GauGau}

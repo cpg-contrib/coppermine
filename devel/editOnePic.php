@@ -347,8 +347,8 @@ print <<<EOT
 EOT;
 
 if (GALLERY_ADMIN_MODE) {
-  $checkYes = ($CURRENT_PIC['approved'] == 'YES') ? 'CHECKED' : '';
-  $checkNo = ($CURRENT_PIC['approved'] == 'NO') ? 'CHECKED' : '';
+  $checkYes = ($CURRENT_PIC['approved'] == 'YES') ? 'checked="checked"' : '';
+  $checkNo = ($CURRENT_PIC['approved'] == 'NO') ? 'checked="checked"' : '';
 
   echo <<<EOT
         <tr>
@@ -356,8 +356,8 @@ if (GALLERY_ADMIN_MODE) {
                         {$lang_editpics_php['approval']}
         </td>
         <td width="100%" class="tableb" valign="top">
-                <input type="radio" name="approved" value="YES" $checkYes />{$lang_editpics_php['approved']}&nbsp;&nbsp;
-                <input type="radio" name="approved" value="NO" $checkNo />{$lang_editpics_php['disapproved']}
+                <input type="radio" id="approved_yes" name="approved" value="YES" $checkYes /><label for="approved_yes" class="clickable_option">{$lang_editpics_php['approved']}</label>&nbsp;&nbsp;
+                <input type="radio" id="approved_no" name="approved" value="NO" $checkNo /><label for="approved_no" class="clickable_option">{$lang_editpics_php['disapproved']}</label>
                 </td>
         </tr>
 EOT;

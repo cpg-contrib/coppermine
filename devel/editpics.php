@@ -377,8 +377,8 @@ function form_status($text, $name)
 {
   global $CURRENT_PIC, $lang_editpics_php;
 
-  $checkYes = ($CURRENT_PIC[$name] == 'YES') ? 'CHECKED' : '';
-  $checkNo = ($CURRENT_PIC[$name] == 'NO') ? 'CHECKED' : '';
+  $checkYes = ($CURRENT_PIC[$name] == 'YES') ? 'checked="checked"' : '';
+  $checkNo = ($CURRENT_PIC[$name] == 'NO') ? 'checked="checked"' : '';
 
   $name .= $CURRENT_PIC['pid'];
 
@@ -389,8 +389,8 @@ function form_status($text, $name)
                         $text
         </td>
         <td width="100%" class="tableb" valign="top">
-                <input type="radio" name="$name" value="YES" $checkYes />{$lang_editpics_php['approved']}&nbsp;&nbsp;
-                <input type="radio" name="$name" value="NO" $checkNo />{$lang_editpics_php['disapproved']}
+                <input type="radio" id="approved_yes_{$name}" name="$name" value="YES" $checkYes /><label for="approved_yes_{$name}" class="clickable_option">{$lang_editpics_php['approved']}</label>&nbsp;&nbsp;
+                <input type="radio" id="approved_no_{$name}" name="$name" value="NO" $checkNo /><label for="approved_no_{$name}" class="clickable_option">{$lang_editpics_php['disapproved']}</label>
                 </td>
         </tr>
 
