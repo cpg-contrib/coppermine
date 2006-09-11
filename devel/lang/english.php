@@ -1493,8 +1493,9 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
   'alb_password' => 'Album password',
   'alb_password_hint' => 'Album password hint',
   'edit_files' =>'Edit files',
-  'parent_category' =>'Parent category',
-  'thumbnail_view' =>'Thumbnail view',
+  'parent_category' => 'Parent category',
+  'thumbnail_view' => 'Thumbnail view',
+  'random_image' => 'Random Image', //cpg 1.5
 );
 
 // ------------------------------------------------------------------------- //

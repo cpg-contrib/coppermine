@@ -224,7 +224,7 @@ Pic[0] = '$initial_thumb_url'
 
 EOT;
 
-    $img_list = array(0 => $lang_modifyalb_php['last_uploaded']);
+    $img_list = array(0 => $lang_modifyalb_php['last_uploaded'], -1 => $lang_modifyalb_php['random_image']);
     while ($picture = mysql_fetch_array($results)) {
         $thumb_url = get_pic_url($picture, 'thumb');
         echo "Pic[{$picture['pid']}] = '" . $thumb_url . "'\n";
@@ -235,6 +235,7 @@ EOT;
 
 function ChangeThumb(index)
 {
+        if (index == -1) index = 0;
         document.images.Thumb.src = Pic[index]
 }
 

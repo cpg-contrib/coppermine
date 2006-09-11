@@ -449,7 +449,7 @@ function list_albums()
     $upper_limit = min($nbAlb, $PAGE * $alb_per_page);
     $limit = "LIMIT " . $lower_limit . "," . ($upper_limit - $lower_limit);
 
-    $sql = 'SELECT a.aid, a.title, a.description, category, visibility, filepath, ' . 'filename, url_prefix, pwidth, pheight ' . 'FROM ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' . 'LEFT JOIN ' . $CONFIG['TABLE_PICTURES'] . ' as p ' . 'ON a.thumb=p.pid ' . 'WHERE category=' . $cat . $album_filter . ' ORDER BY a.pos ' . $limit;
+    $sql = 'SELECT a.aid, a.title, a.description, a.thumb, category, visibility, filepath, ' . 'filename, url_prefix, pwidth, pheight ' . 'FROM ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' . 'LEFT JOIN ' . $CONFIG['TABLE_PICTURES'] . ' as p ' . 'ON a.thumb=p.pid ' . 'WHERE category=' . $cat . $album_filter . ' ORDER BY a.pos ' . $limit;
 
     $alb_thumbs_q = cpg_db_query($sql);
     $alb_thumbs = cpg_db_fetch_rowset($alb_thumbs_q);
@@ -510,6 +510,11 @@ function list_albums()
             if ($count > 0 || $alb_stats[$alb_idx]['link_pic_count'] > 0) {
                 if ($alb_thumb['filename']) {
                     $picture = &$alb_thumb;
+                } elseif ($alb_thumb['thumb'] < 0) {
+                    $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight " . "FROM {$CONFIG['TABLE_PICTURES']} WHERE aid = '{$alb_thumb['aid']}' ORDER BY RAND() LIMIT 0,1";
+                    $result = cpg_db_query($sql);
+                    $picture = mysql_fetch_array($result);
+                    mysql_free_result($result);
                 } else {
                     $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='{$alb_stat['last_pid']}'";
                     $result = cpg_db_query($sql);
@@ -618,7 +623,7 @@ function list_cat_albums($cat = 0)
     $upper_limit = min($nbAlb, $PAGE * $alb_per_page);
     $limit = "LIMIT " . $lower_limit . "," . ($upper_limit - $lower_limit);
 
-    $sql = 'SELECT a.aid, a.title, a.description, visibility, filepath, ' . 'filename, url_prefix, pwidth, pheight ' . 'FROM ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' . 'LEFT JOIN ' . $CONFIG['TABLE_PICTURES'] . ' as p ' . 'ON a.thumb=p.pid ' . 'WHERE category=' . $cat . $album_filter . ' ORDER BY a.pos ' . $limit;
+    $sql = 'SELECT a.aid, a.title, a.description, a.thumb, visibility, filepath, ' . 'filename, url_prefix, pwidth, pheight ' . 'FROM ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' . 'LEFT JOIN ' . $CONFIG['TABLE_PICTURES'] . ' as p ' . 'ON a.thumb=p.pid ' . 'WHERE category=' . $cat . $album_filter . ' ORDER BY a.pos ' . $limit;
 
     $alb_thumbs_q = cpg_db_query($sql);
     $alb_thumbs = cpg_db_fetch_rowset($alb_thumbs_q);
@@ -679,6 +684,11 @@ function list_cat_albums($cat = 0)
             if ($count > 0) { // Inserts a thumbnail if the album contains 1 or more images
                 if ($alb_thumb['filename']) {
                     $picture = &$alb_thumb;
+                } elseif ($alb_thumb['thumb'] < 0) {
+                    $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight " . "FROM {$CONFIG['TABLE_PICTURES']} WHERE aid = '{$alb_thumb['aid']}' ORDER BY RAND() LIMIT 0,1";
+                    $result = cpg_db_query($sql);
+                    $picture = mysql_fetch_array($result);
+                    mysql_free_result($result);
                 } else {
                     $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='{$alb_stat['last_pid']}'";
                     $result = cpg_db_query($sql);
