@@ -31,13 +31,19 @@ if (mysql_num_rows($result)) {
 
   // Find unique keywords
   $keywords_array = array();
+  $keyword_count = array();
 
   while (list($keywords) = mysql_fetch_row($result)) {
       $array = explode(" ",$keywords);
 
       foreach($array as $word)
       {
-       if (!in_array($word = utf_strtolower($word),$keywords_array)) $keywords_array[] = $word;
+       if (!in_array($word = utf_strtolower($word),$keywords_array)) {
+        $keywords_array[] = $word;
+        $keyword_count[$word] = 1;
+       } else {
+        $keyword_count[$word]++;
+       }
       }
   }
 
@@ -45,14 +51,29 @@ if (mysql_num_rows($result)) {
   sort($keywords_array);
   $count = count($keywords_array);
 
+  $maxQuantity = max($keyword_count);
+  $minQuantity = min($keyword_count);
+
+  $spread = $maxQuantity - $minQuantity;
+
+  //spread should be greater than zero
+  if ($spread == 0) {
+    $spread = 1;
+  }
+
+  $step = ((25 - 10) / $spread);
+
   // Result to table
   echo '<tr><td class="tableb">' ;
   for ($i = 0; $i < $count; $i++) {
     if ($keywords_array[$i]) {     // Eliminates Null Keywords
-    echo "<a href=\"thumbnails.php?album=search&search=".$keywords_array[$i]."\">$keywords_array[$i]</a>";
-    if ($i<$count-1) {                     // Eliminates Trailing Pipe after last keyword
-      echo " | ";
-    }
+
+      $fontSize = (10 + ($keyword_count[$keywords_array[$i]] - $minQuantity) * $step);
+      
+      echo "<a href=\"thumbnails.php?album=search&search=".$keywords_array[$i]."\" style=\"font-size: {$fontSize}px;\">$keywords_array[$i]</a>";
+      if ($i<$count-1) {                     // Don't keep space after last keyword
+        echo " ";
+      }
     }
   }
   echo "</td></tr>" ;
