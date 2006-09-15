@@ -1853,27 +1853,39 @@ Descending: latest comment at the top, oldest comment at the bottom</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Comment settings &rarr; Display Captcha (Visual Confirmation) for adding comments</p>
 <p class="small">[cpg1.5.0 or better required]</p>
 <a name="admin_comment_captcha_end"></a>
-
 <a name="admin_comment_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
+<a name="admin_thumb_start"></a>
+<h3>4.12.8 Thumbnail settings</h3>
+<a name="admin_picture_thumbnail_max-dimension"></a><h4>Max dimension of a thumbnail</h4>
+<p>Sets the maximum allowable size in pixels for the specified dimension of your thumbnails.</p><p class="important">When changing this setting, only files that are added after the change will be affected. Therefore, it is advisable that this setting not be changed after photos have already been added to the gallery. You can, however, apply the changes to the existing pictures with the &quot;admin tools (resize pictures)&quot; utility from the admin menu.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Thumbnails settings &rarr; Max dimension of a thumbnail</p>
+<a name="admin_picture_thumbnail_max-dimension_end"></a>
+<hr />
+<a name="admin_picture_thumbnail_use-dimension"></a><h4>Use dimension ( width or height or Max aspect for thumbnail )</h4>
+<p>Sets the dimension (height or width) on which the maximum pixel size limitation should apply to.</p><p class="important">When changing this setting, only files that are added after the change will be affected. Therefore, it is advisable that this setting not be changed after photos have already been added to the gallery. You can, however, apply the changes to the existing pictures with the &quot;admin tools (resize pictures)&quot; utility from the admin menu.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Thumbnails settings &rarr; Use dimension</p>
+<a name="admin_picture_thumbnail_use-dimension_end"></a>
+<hr />
+<a name="admin_picture_thumb_advanced_thumbs_prefix"></a>
+<h4>The prefix for thumbnails</h4>
+<p>This prefix is added to the file name of created thumbnails.</p>
+<p>These setting mustn't be changed if you already have files in your database. If you do, all reference to your existing files will become invalid.</p>
+<p>It's recommended to leave the setting as is (thumb_) is you're not absolutely sure what you're doing.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Thumbnails settings &rarr; The prefix for thumbnails</p>
+<a name="admin_picture_thumb_advanced_thumbs_prefix_end"></a>
+<hr />
+<a name="admin_thumb_end"></a>
+<p><a class="back" href="#top">Back to top</a></p><hr />
+
 <a name="admin_picture_thumbnail"></a>
-<h3>4.12.8 Picture and thumbnail settings</h3>
+<h3>4.12.8 File settings</h3>
 <a name="admin_picture_thumbnail_jpeg_quality"></a>
 <h4>Quality for JPEG files</h4>
 <p>The quality used for JPEG compression when the script resizes an image. Values can range from 0 (worst) to 100 (best). By default this value is set to 80. This value can be set to 75 when using ImageMagick.<br />Do not change this setting unless you really know what you're doing. Other settings for thumbnail and intermediate pic (dimensions) may have a significant and undesireable impact on filesizes and image quality.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Quality for JPEG files</p>
 <a name="admin_picture_thumbnail_jpeg_quality_end"></a>
-<hr />
-<a name="admin_picture_thumbnail_max-dimension"></a><h4>Max dimension of a thumbnail</h4>
-<p>Sets the maximum allowable size in pixels for the specified dimension of your thumbnails.</p><p class="important">When changing this setting, only files that are added after the change will be affected. Therefore, it is advisable that this setting not be changed after photos have already been added to the gallery. You can, however, apply the changes to the existing pictures with the &quot;admin tools (resize pictures)&quot; utility from the admin menu.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Max dimension of a thumbnail</p>
-<a name="admin_picture_thumbnail_max-dimension_end"></a>
-<hr />
-<a name="admin_picture_thumbnail_use-dimension"></a><h4>Use dimension ( width or height or Max aspect for thumbnail )</h4>
-<p>Sets the dimension (height or width) on which the maximum pixel size limitation should apply to.</p><p class="important">When changing this setting, only files that are added after the change will be affected. Therefore, it is advisable that this setting not be changed after photos have already been added to the gallery. You can, however, apply the changes to the existing pictures with the &quot;admin tools (resize pictures)&quot; utility from the admin menu.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Use dimension</p>
-<a name="admin_picture_thumbnail_use-dimension_end"></a>
 <hr />
 <a name="admin_picture_thumbnail_intermediate_toggle"></a>
 <h4>Create intermediate pictures</h4>
@@ -2062,13 +2074,6 @@ If you have issues uploading pics, find out if safe_mode is enabled on your webs
 <p>These setting mustn't be changed if you already have files in your database. If you do, all reference to your existing files will become invalid.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Files and thumbnails advanced settings &rarr; The prefix for intermediate pictures</p>
 <a name="admin_picture_thumb_advanced_intermediate_prefix_end"></a>
-<hr />
-<a name="admin_picture_thumb_advanced_thumbs_prefix"></a>
-<h4>The prefix for thumbnails</h4>
-<p>This prefix is added to the file name of created intermediate thumbnails.</p>
-<p>These setting mustn't be changed if you already have files in your database. If you do, all reference to your existing files will become invalid.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Files and thumbnails advanced settings &rarr; The prefix for thumbnails</p>
-<a name="admin_picture_thumb_advanced_thumbs_prefix_end"></a>
 <hr />
 <a name="admin_picture_thumb_advanced_chmod_folder"></a>
 <h4>Default mode for directories</h4>

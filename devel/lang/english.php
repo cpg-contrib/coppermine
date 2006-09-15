@@ -745,12 +745,20 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Allow users to edit their comments', 'comment_user_edit', 1, 'f=index.htm&amp;as=admin_comment_user_edit_start&amp;ae=admin_comment_user_edit_end'), // cpg1.5.x
   array('Display Captcha (Visual Confirmation) for adding comments', 'comment_captcha', 19, 'f=index.htm&amp;as=admin_comment_captcha_start&amp;ae=admin_comment_captcha_end'), // cpg1.5.x
 
-  'Files and thumbnails settings',
-  array('Quality for JPEG files', 'jpeg_qual', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_jpeg_quality&amp;ae=admin_picture_thumbnail_jpeg_quality_end'),
+  'Thumbnails settings', // cpg1.5.x
   array('Max dimension (width) of a thumbnail <a href="#notice2" class="clickable_option">**</a>', 'thumb_width', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_max-dimension&amp;ae=admin_picture_thumbnail_max-dimension_end'),
-  array('Height of a thumbnail (if you use exact as dimension -> see below)', 'thumb_height', 0),
   array('Use dimension ( width or height or Max aspect for thumbnail ) <a href="#notice2" class="clickable_option">**</a>', 'thumb_use', 7, 'f=index.htm&amp;as=admin_picture_thumbnail_use-dimension&amp;ae=admin_picture_thumbnail_use-dimension_end'),
-  array('Enable Custom Thumbs (movie, audio, document)', 'enable_custom_thumbs', 1),
+  array('Height of a thumbnail (only applies if you use &quot;exact&quot; in &quot;Use dimension&quot;)', 'thumb_height', 0), // cpg1.5.x
+  array('Enable Custom Thumbs (movie, audio, document)', 'enable_custom_thumbs', 1), // cpg1.5
+  array('The prefix for thumbnails <a href="#notice1" class="clickable_option">*</a>', 'thumb_pfx', 0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_thumbs_prefix&amp;ae=admin_picture_thumb_advanced_thumbs_prefix_end'),
+  array('Thumb Sharpening: enable Unsharp Mask', 'enable_unsharp', 1), // cpg1.5
+  array('Thumb Sharpening amount', 'unsharp_amount', 0), // cpg1.5
+  array('Thumb Sharpening radius', 'unsharp_radius', 0), // cpg1.5
+  array('Thumb Sharpening threshold', 'unsharp_threshold', 0), // cpg1.5
+
+
+  'File settings',
+  array('Quality for JPEG files', 'jpeg_qual', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_jpeg_quality&amp;ae=admin_picture_thumbnail_jpeg_quality_end'),
   array('Create intermediate pictures','make_intermediate',1, 'f=index.htm&amp;as=admin_picture_thumbnail_intermediate_toggle&amp;ae=admin_picture_thumbnail_intermediate_toggle_end'),
   array('Max width or height of an intermediate picture/video <a href="#notice2" class="clickable_option">**</a>', 'picture_width', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_intermediate_dimension&amp;ae=admin_picture_thumbnail_intermediate_dimension_end'),
   array('Max size for uploaded files (KB)', 'max_upl_size', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_max_upload_size&amp;ae=admin_picture_thumbnail_max_upload_size_end'),
@@ -758,8 +766,6 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Auto resize images that are larger than max width or height', 'auto_resize', 16, 'f=index.htm&amp;as=admin_picture_thumbnail_auto-resize&amp;ae=admin_picture_thumbnail_auto-resize_end'),
   array('Horizontal padding for full-size pop-up', 'fullsize_padding_x', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_fullsize_padding_x&amp;ae=admin_picture_thumbnail_fullsize_padding_x_end'),
   array('Vertical padding for full-size pop-up', 'fullsize_padding_y', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_fullsize_padding_y&amp;ae=admin_picture_thumbnail_fullsize_padding_y_end'),
-
-  'Files and thumbnails advanced settings',
   array('Albums can be private (Note: if you switch from \'yes\' to \'no\' any current private albums will become public)', 'allow_private_albums', 1, 'f=index.htm&amp;as=admin_picture_thumb_advanced_private_toggle&amp;ae=admin_picture_thumb_advanced_private_toggle_end'),
   array('Show private album Icon to unlogged user','show_private',1, 'f=index.htm&amp;as=admin_picture_thumb_advanced_private_icon_show&amp;ae=admin_picture_thumb_advanced_private_icon_show_end'),
   array('Characters forbidden in filenames', 'forbiden_fname_char',0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_filename_forbidden_chars&amp;ae=admin_picture_thumb_advanced_filename_forbidden_chars_end'),
@@ -779,17 +785,9 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('The album directory <a href="#notice1" class="clickable_option">*</a>', 'fullpath', 0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_albums_dir&amp;ae=admin_picture_thumb_advanced_albums_dir_end'),
   array('The directory for user files <a href="#notice1" class="clickable_option">*</a>', 'userpics', 0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_userpics_dir&amp;ae=admin_picture_thumb_advanced_userpics_dir_end'),
   array('The prefix for intermediate pictures <a href="#notice1" class="clickable_option">*</a>', 'normal_pfx', 0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_intermediate_prefix&amp;ae=admin_picture_thumb_advanced_intermediate_prefix_end'),
-  array('The prefix for thumbnails <a href="#notice1" class="clickable_option">*</a>', 'thumb_pfx', 0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_thumbs_prefix&amp;ae=admin_picture_thumb_advanced_thumbs_prefix_end'),
   array('Default mode for directories', 'default_dir_mode', 0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_chmod_folder&amp;ae=admin_picture_thumb_advanced_chmod_folder_end'),
   array('Default mode for files', 'default_file_mode', 0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_chmod_files&amp;ae=admin_picture_thumb_advanced_chmod_files_end'),
 
-  ######### Thumb sharpening ########
-  'Thumb Sharpening', // cpg1.5
-  array('Enable Unsharp Mask', 'enable_unsharp', 1), // cpg1.5
-  array('Amount', 'unsharp_amount', 0), // cpg1.5
-  array('Radius', 'unsharp_radius', 0), // cpg1.5
-  array('Threshold', 'unsharp_threshold', 0), // cpg1.5
-  ############################
 
   ######### Watermark ########
   'Image watermarking', // cpg1.5
