@@ -742,7 +742,6 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Comments require approval', 'comment_approval', 19, 'f=index.htm&amp;as=admin_comment_approval&amp;ae=admin_comment_approval_end'), // cpg1.5.x
   array('Only display comments needing approval on the &quot;Review Comments&quot; page', 'display_comment_approval_only', 1, 'f=index.htm&amp;as=admin_comment_display_comment_approval_only_start&amp;ae=admin_comment_display_comment_approval_only_end'), // cpg1.5.x
   array('Display placeholder text to end users for comments waiting for admin approval', 'comment_placeholder', 1, 'f=index.htm&amp;as=admin_comment_display_placeholder_start&amp;ae=admin_comment_display_placeholder_end'), // cpg1.5.x
-
   array('Allow users to edit their comments', 'comment_user_edit', 1, 'f=index.htm&amp;as=admin_comment_user_edit_start&amp;ae=admin_comment_user_edit_end'), // cpg1.5.x
   array('Display Captcha (Visual Confirmation) for adding comments', 'comment_captcha', 19, 'f=index.htm&amp;as=admin_comment_captcha_start&amp;ae=admin_comment_captcha_end'), // cpg1.5.x
 
@@ -805,16 +804,18 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Set color transparent y (GD2 only)', 'watermark_transparency_feathery', 0), // cpg1.5
   ############################
 
-  'User settings',
+  'Registration', // cpg1.5.x
   array('Allow new user registrations', 'allow_user_registration', 1, 'f=index.htm&amp;as=admin_allow_registration&amp;ae=admin_allow_registration_end'),
   array('Global password for registration', 'global_registration_pw', 0, 'f=index.htm&amp;as=admin_global_registration_pw&amp;ae=admin_global_registration_pw_end'),
   array('Display disclaimer on user registration', 'user_registration_disclaimer', 18, 'f=index.htm&amp;as=admin_user_registration_disclaimer&amp;ae=admin_user_registration_disclaimer_end'), // cpg1.5
   array('Display Captcha (Visual Confirmation) on registration page', 'registration_captcha', 1, 'f=index.htm&amp;as=admin_registration_captcha_start&amp;ae=admin_registration_captcha_end'), // cpg1.5.x
-  array('Allow unlogged users (guest or anonymous) access', 'allow_unlogged_access', 1, 'f=index.htm&amp;as=admin_allow_unlogged_access&amp;ae=admin_allow_unlogged_access_end'),
   array('User registration requires email verification', 'reg_requires_valid_email', 1, 'f=index.htm&amp;as=admin_registration_verify&amp;ae=admin_registration_verify_end'),
   array('Notify admin of user registration by email', 'reg_notify_admin_email', 1, 'f=index.htm&amp;as=admin_registration_notify&amp;ae=admin_registration_notify_end'),
   array('Admin activation of registrations', 'admin_activation', 1, 'f=index.htm&amp;as=admin_activation&amp;ae=admin_activation_end'),
   array('Create user album in personal gallery on registration', 'personal_album_on_registration', 1, 'f=index.htm&amp;as=admin_personal_album_on_registration&amp;ae=admin_personal_album_on_registration_end'), // cpg1.5.x
+
+  'User settings',
+  array('Allow unlogged users (guest or anonymous) access', 'allow_unlogged_access', 1, 'f=index.htm&amp;as=admin_allow_unlogged_access&amp;ae=admin_allow_unlogged_access_end'),
   array('Allow two users to have the same email address', 'allow_duplicate_emails_addr', 1, 'f=index.htm&amp;as=admin_allow_duplicate_emails_addr&amp;ae=admin_allow_duplicate_emails_addr_end'),
   array('Notify admin of user upload awaiting approval', 'upl_notify_admin_email', 1, 'f=index.htm&amp;as=admin_approval_notify&amp;ae=admin_approval_notify_end'),
   array('Allow logged in users to view memberlist', 'allow_memberlist', 1, 'f=index.htm&amp;as=admin_user_memberlist&amp;ae=admin_user_memberlist_end'),
