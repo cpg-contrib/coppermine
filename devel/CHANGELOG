@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-09-16 [A] Added resend activation link feature per http://coppermine-gallery.net/forum/index.php?topic=15677.0 {Aditya}
 2006-09-15 [A] Added tag cloud hack (with better font size calculation) {Aditya}
 2006-09-15 [C] Split user settings into registration and user settings {GauGau}
 2006-09-11 [A] Added the option to show random image from the album as album thumbnail {Abbas}

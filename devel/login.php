@@ -81,6 +81,10 @@ if (!isset($_COOKIE[$CONFIG['cookie_name'] . '_data'])) {
 EOT;
 }
 
+if ($CONFIG['reg_requires_valid_email'] == 1) {
+  $send_activation_link = '<br /><a href="send_activation.php" class="topmenu">'.$lang_login_php['send_activation_link'].'</a>';
+}
+
 pageheader($lang_login_php['login']);
 $referer = urlencode($referer);
 echo '<form action="login.php?referer='.$referer.'" method="post" name="loginbox" id="cpgform">';
@@ -101,7 +105,10 @@ echo <<< EOT
                     <td colspan="2" align="center" class="tableb">{$lang_login_php['remember_me']} <input name="remember_me" type="checkbox" class="checkbox" value="1" tabindex="3" /></td>
                   </tr>
                   <tr>
-                    <td align="center" class="tablef"><a href="forgot_passwd.php" class="topmenu">{$lang_login_php['forgot_password_link']}</a></td>
+                    <td align="center" class="tablef">
+                      <a href="forgot_passwd.php" class="topmenu">{$lang_login_php['forgot_password_link']}</a>
+                      $send_activation_link
+                    </td>
                     <td align="left" class="tablef"><input name="submitted" type="submit" class="button" value="{$lang_login_php['login']}" tabindex="4" /></td>
                   </tr>
 

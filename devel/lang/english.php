@@ -1425,6 +1425,7 @@ if (defined('LOGIN_PHP')) $lang_login_php = array(
   'err_already_logged_in' => 'You are already logged in !',
   'forgot_password_link' => 'I forgot my password',
   'cookie_warning' => 'Warning your browser does not accept script\'s cookies',
+  'send_activation_link' => 'Missed activation link?',
 );
 
 // ------------------------------------------------------------------------- //
@@ -1435,6 +1436,21 @@ if (defined('LOGOUT_PHP')) $lang_logout_php = array(
   'logout' => 'Logout',
   'bye' => 'Bye bye %s ...',
   'err_not_loged_in' => 'You are not logged in !',
+);
+
+// ------------------------------------------------------------------------- //
+//File send_activation.php
+// ------------------------------------------------------------------------- //
+
+if (defined('SEND_ACTIVATION_PHP')) $lang_send_activation_php = array(
+  'err_already_logged_in' => 'You are already logged in !',
+  'activation_not_required' => 'This website does not require activation by email',
+  'err_unk_user' => 'Selected user does not exist!',
+  'resend_act_link' => 'Resend activation link',
+  'enter_email' => 'Enter your email address',
+  'submit' => 'Go',
+  'failed_sending_email' => 'Failed to send email with activation link',
+  'activation_email_sent' => 'An email with activation link sent to %s. Please check your email to complete the process',
 );
 
 // ------------------------------------------------------------------------- //
