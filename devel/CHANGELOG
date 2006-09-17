@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-09-17 [M] Updated credits section of documentation {GauGau}
 2006-09-17 [A] Added German language file (based on revision 3288 of english.php) to be able to test the dev version in a production environment of my personal page. During the dev stage of cpg1.5.x, I will update the German language file only from time to time {GauGau}
 2006-09-16 [A] Added resend activation link feature per http://coppermine-gallery.net/forum/index.php?topic=15677.0 {Aditya}
 2006-09-15 [A] Added tag cloud hack (with better font size calculation) {Aditya}
