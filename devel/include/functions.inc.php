@@ -1496,6 +1496,14 @@ function add_hit($pid)
             $os = "Windows XP";
         } else if(eregi("Windows",$_SERVER["HTTP_USER_AGENT"])) {
             $os = "Windows";
+        } else if(eregi("SunOS",$_SERVER["HTTP_USER_AGENT"])) {
+            $os = "Sun OS";
+        } else if(eregi("Macintosh",$_SERVER["HTTP_USER_AGENT"])) {
+            $os = "Macintosh";
+        } else if(eregi("Mac_PowerPC",$_SERVER["HTTP_USER_AGENT"])) {
+            $os = "Mac OS";
+        } else if(eregi("OS/2",$_SERVER["HTTP_USER_AGENT"])) {
+            $os = "OS/2";
         }
 
         $browser = 'Unknown';
@@ -1504,13 +1512,65 @@ function add_hit($pid)
                 $browser = "Microsoft Internet Explorer 5.5";
             } else if(eregi("MSIE 6.0",$browser)) {
                 $browser = "Microsoft Internet Explorer 6.0";
+            } else if(eregi("MSIE 7.0",$browser)) {
+                $browser = "Microsoft Internet Explorer 7.0";
+            } else if(eregi("MSIE 3.0",$browser)) {
+                $browser = "Microsoft Internet Explorer 3.0";
+            } else if(eregi("MSIE 4.0",$browser)) {
+                $browser = "Microsoft Internet Explorer 4.0";
+            } else if(eregi("MSIE 5.0",$browser)) {
+                $browser = "Microsoft Internet Explorer 5.0";
             }
-        } else if(eregi("Mozilla Firebird",$browser)) {
+        } else if(eregi("Firebird",$browser)) {
             $browser = "Mozilla Firebird";
         } else if(eregi("netscape",$browser)) {
             $browser = "Netscape";
         } else if(eregi("Firefox",$browser)) {
             $browser = "Firefox";
+        } else if(eregi("Galeon",$browser)) {
+            $browser = "Galeon";
+        } else if(eregi("Camino/",$browser)) {
+            $browser = "Camino/";
+        } else if(eregi("Konqueror",$browser)) {
+            $browser = "Konqueror";
+        } else if(eregi("Safari",$browser)) {
+            $browser = "Safari";
+        } else if(eregi("OmniWeb",$browser)) {
+            $browser = "OmniWeb";
+        } else if(eregi("Opera",$browser)) {
+            $browser = "Opera";
+        } else if(eregi("amaya",$browser)) {
+            $browser = "Amaya";
+        } else if(eregi("iCab",$browser)) {
+            $browser = "iCab";
+        } else if(eregi("Lynx",$browser)) {
+            $browser = "Lynx";
+        } else if(eregi("Googlebot",$browser)) {
+            $browser = "Googlebot";
+        } else if(eregi("Lycos_Spider",$browser)) {
+            $browser = "Lycos Spider";
+        } else if(eregi("Firefly",$browser)) {
+            $browser = "Fireball Spider";
+        } else if(eregi("Advanced Browser",$browser)) {
+            $browser = "Avant";
+        } else if(eregi("Amiga-AWeb",$browser)) {
+            $browser = "AWeb";
+        } else if(eregi("Cyberdog",$browser)) {
+            $browser = "Cyberdog";
+        } else if(eregi("Dillo",$browser)) {
+            $browser = "Dillo";
+        } else if(eregi("DreamPassport",$browser)) {
+            $browser = "DreamCast";
+        } else if(eregi("eCatch",$browser)) {
+            $browser = "eCatch";
+        } else if(eregi("ANTFresco",$browser)) {
+            $browser = "Fresco";
+        } else if(eregi("RSS",$browser)) {
+            $browser = "RSS";
+        } else if(eregi("Avant",$browser)) {
+            $browser = "Avant";
+        } else if(eregi("HotJava",$browser)) {
+            $browser = "HotJava";
         }
 
         //Code to get the search string if the referrer is any of the following

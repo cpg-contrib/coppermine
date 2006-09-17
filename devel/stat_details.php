@@ -94,6 +94,165 @@ if (isset($_GET['date_display'])) {
 
 $line_break = "\n";
 
+// os and browser icon / name array
+$browserArray = array(
+                      'Adobe' => 'adobe.png',
+                      'Alcatel' => 'alcatel.png',
+                      'Amaya' => 'amaya.png',
+                      'Amiga Voyager' => 'amigavoyager.png',
+                      'APT' => 'apt.png',
+                      'Avant' => 'avant.png',
+                      'AWeb' => 'aweb.png',
+                      'BPFTP' => 'bpftp.png',
+                      'Bytel' => 'bytel.png',
+                      'Chimera' => 'chimera.png',
+                      'Cyberdog' => 'cyberdog.png',
+                      'DA' => 'da.png',
+                      'Dillo' => 'dillo.png',
+                      'DreamCast' => 'dreamcast.png',
+                      'eCatch' => 'ecatch.png',
+                      'Encompass' => 'encompass.png',
+                      'Epiphany' => 'epiphany.png',
+                      'Ericsson' => 'ericsson.png',
+                      'Feeddemon' => 'feeddemon.png',
+                      'Feedreader' => 'feedreader.png',
+                      'Firefox' => 'firefox.png',
+                      'fpexpress' => 'fpexpress.png',
+                      'Fresco' => 'fresco.png',
+                      'Galeon' => 'galeon.png',
+                      'Getright' => 'getright.png',
+                      'Gozilla' => 'gozilla.png',
+                      'HotJava' => 'hotjava.png',
+                      'ibrowse' => 'ibrowse.png',
+                      'iCab' => 'icab.png',
+                      'java' => 'java.png',
+                      'jetbrains' => 'jetbrains_omea.png',
+                      'Kmeleon' => 'kmeleon.png',
+                      'Konqueror' => 'konqueror.png',
+                      'lg' => 'lg.png',
+                      'Lotus Notes' => 'lotusnotes.png',
+                      'Lynx' => 'lynx.png',
+                      'MacWeb' => 'macweb.png',
+                      'MediaPlayer' => 'mediaplayer.png',
+                      'Motorola' => 'motorola.png',
+                      'Mozilla' => 'mozilla.png',
+                      'mplayer' => 'mplayer.png',
+                      'Internet Explorer 3.0' => 'msie.png',
+                      'Internet Explorer 4.0' => 'msie.png',
+                      'Internet Explorer 5.0' => 'msie.png',
+                      'Internet Explorer 5.5' => 'msie.png',
+                      'Internet Explorer 6.0' => 'msie.png',
+                      'Internet Explorer 7.0' => 'msie.png',
+                      'Internet Explorer' => 'msie.png',
+                      'Multizilla' => 'multizilla.png',
+                      'Mosaic' => 'ncsa_mosaic.png',
+                      'Netnewswire' => 'netnewswire.png',
+                      'netpositive' => 'netpositive.png',
+                      'Netscape' => 'netscape.png',
+                      'netshow' => 'netshow.png',
+                      'newsfire' => 'newsfire.png',
+                      'newsgator' => 'newsgator.png',
+                      'newzcrawler' => 'newzcrawler.png',
+                      'nokia' => 'nokia.png',
+                      'Not Available' => 'notavailable.png',
+                      'OmniWeb' => 'omniweb.png',
+                      'Opera' => 'opera.png',
+                      'Panasonic' => 'panasonic.png',
+                      'PDA phone' => 'pdaphone.png',
+                      'Philips' => 'philips.png',
+                      'Phoenix' => 'phoenix.png',
+                      'Pluck' => 'pluck.png',
+                      'Pulpfiction' => 'pulpfiction.png',
+                      'Real' => 'real.png',
+                      'RSS' => 'rss.png',
+                      'RSSbandit' => 'rssbandit.png',
+                      'RSSowl' => 'rssowl.png',
+                      'RSSreader' => 'rssreader.png',
+                      'Safari' => 'safari.png',
+                      'Sagem' => 'sagem.png',
+                      'Samsung' => 'samsung.png',
+                      'Sharp' => 'sharp.png',
+                      'Sharp reader' => 'sharpreader.png',
+                      'Shrook' => 'shrook.png',
+                      'Siemens' => 'siemens.png',
+                      'Sony' => 'sony.png',
+                      'Staroffice' => 'staroffice.png',
+                      'Teleport' => 'teleport.png',
+                      'Trium' => 'trium.png',
+                      'Unknown' => 'unknown.png',
+                      'w3c' => 'w3c.png',
+                      'WebCopier' => 'webcopier.png',
+                      'Web TV' => 'webtv.png',
+                      'webzip' => 'webzip.png',
+);
+
+$osArray = array(
+                      'aix' => 'aix.png',
+                      'Amiga OS' => 'amigaos.png',
+                      'Apple' => 'apple.png',
+                      'Atari' => 'atari.png',
+                      'beOS' => 'beos.png',
+                      'BSD' => 'bsd.png',
+                      'BSD FreeBSD' => 'bsdfreebsd.png',
+                      'bsdi' => 'bsdi.png',
+                      'bsdnetbsd' => 'bsdnetbsd.png',
+                      'bsdopenbsd' => 'bsdopenbsd.png',
+                      'CP/m' => 'cpm.png',
+                      'Debian' => 'debian.png',
+                      'Digital' => 'digital.png',
+                      'DOS' => 'dos.png',
+                      'Dreamcast' => 'dreamcast.png',
+                      'Fireball Spider' => 'fireball.png',
+                      'Free BSD' => 'freebsd.png',
+                      'Googlebot' => 'google.png',
+                      'gnu' => 'gnu.png',
+                      'HP UX' => 'hpux.png',
+                      'IBM' => 'ibm.png',
+                      'iMode' => 'imode.png',
+                      'Irix' => 'irix.png',
+                      'Java' => 'java.png',
+                      'kFreeBSD' => 'kfreebsd.png',
+                      'Linux' => 'linux.png',
+                      'Linux CentOS' => 'linuxcentos.png',
+                      'Linux Debian' => 'linuxdebian.png',
+                      'Linux Fedora' => 'linuxfedora.png',
+                      'Linux Mandrake' => 'linuxmandr.png',
+                      'Linux RedHat' => 'linuxredhat.png',
+                      'Linux Suse' => 'linuxsuse.png',
+                      'Linux Ubuntu' => 'linuxubuntu.png',
+                      'Lycos Spider' => 'lycos.png',
+                      'Mac OS' => 'mac.png',
+                      'Macintosh' => 'macintosh.png',
+                      'Mac OS X' => 'macosx.png',
+                      'NetBSD' => 'netbsd.png',
+                      'Netware' => 'netware.png',
+                      'neXt' => 'next.png',
+                      'Open BSD' => 'openbsd.png',
+                      'OS/2' => 'os2.png',
+                      'osf' => 'osf.png',
+                      'qnx' => 'qnx.png',
+                      'Risc OS' => 'riscos.png',
+                      'SCO' => 'sco.png',
+                      'Sun OS' => 'sunos.png',
+                      'Symbian' => 'symbian.png',
+                      'Unix' => 'unix.png',
+                      'unknown' => 'unknown.png',
+                      'vms' => 'vms.png',
+                      'webtv' => 'webtv.png',
+                      'Windows' => 'win.png',
+                      'Windows 3.x' => 'win16.png',
+                      'Windows 2000' => 'win2000.png',
+                      'Windows 2003 Server' => 'win2003.png',
+                      'Windows 95' => 'win95.png',
+                      'Windows 98' => 'win98.png',
+                      'Wince' => 'wince.png',
+                      'Winlong' => 'winlong.png',
+                      'Windows ME' => 'winme.png',
+                      'Windows NT' => 'winnt.png',
+                      'Windows XP' => 'winxp.png',
+);
+
+
 /**
  * Main Code
  */
@@ -208,7 +367,7 @@ EOT;
             $match_coppermine_url = strpos($row['referer'],$CONFIG['ecards_more_pic_target']);
             if ($match_coppermine_url === FALSE) {
                 // make the referer url clickable
-                $row['referer'] = '<a href="'.$row['referer'].'">'.ltrim($row['referer'],'http://').'</a>';
+                $row['referer'] = '<a href="'.$row['referer'].'">'.ltrim(ltrim($row['referer'],'http://'),'http%3A%2F%2F').'</a>';
             } else {
                 // make the referer url clickable
                 $row['referer'] = $lang_stat_details_php['internal'].': <a href="'.$row['referer'].'">'.substr($row['referer'],strlen(rtrim($CONFIG['ecards_more_pic_target'],'/'))).'</a>';
@@ -220,7 +379,13 @@ EOT;
                 foreach($db_fields as $value) {
                     print '    <td class="tableb">'.$line_break;
                     if ($$value == 1) {
-                        print '      '.$row[$value].$line_break;
+                        if ($value == 'browser' && array_key_exists($row[$value],$browserArray)) {
+                            print '      <img src="images/browser/'.$browserArray[$row[$value]].'" width="14" height="14" border="0" title="'.$row[$value].'" alt="" />'.$line_break;
+                        } elseif ($value == 'os' && array_key_exists($row[$value],$osArray)) {
+                            print '      <img src="images/os/'.$osArray[$row[$value]].'" width="14" height="14" border="0" title="'.$row[$value].'" alt="" />'.$line_break;
+                        } else {
+                            print '      '.$row[$value].$line_break;
+                        }
                     }
                     print '    </td>'.$line_break;
                 }
