@@ -12,7 +12,7 @@
 <meta http-equiv="Content-Style-Type" content="text/css">
 <meta name="MSSmartTagsPreventParsing" content="true">
 <meta http-equiv="imagetoolbar" content="no">
-<!-- CVS version info: $Id$ -->
+<!-- SVN version info: $Id$ -->
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
@@ -741,7 +741,7 @@ If you have shell access to your server, you can apply the native <a href="http:
 <li><em>coppermine is installed in the webroot</em><br />Experimental: if all your files are being displayed as &quot;non-existant&quot;, you probably have installed coppermine in your webroot, or you are using subdomains. Check this option only if you are experiencing problems. This option hasn't been tested thoroughly yet, there's no guarantee it will work on your setup.</li>
 <li><em>try connecting to the online repository</em><br />Toggles wether versioncheck should try to connect to the online repository (checked by default). Only uncheck this option if you're sure you can not access the online repository because of your server setup and you want to reduce the time the script needs to execute a bit.</li>
 <li><em>show folder permissions</em><br />Toggles the option to show/hide the read/write permissions of a folder.</li>
-<li><em>don't display web cvs link</em> / <em>display web cvs link to stable branch</em> / <em>display web cvs link to devel branch</em><br />Toggles wether to show an additional column that contains a link to the web cvs. Only recommended if your cpg version is OK (<span style="color:green;font-weight:bold">green</span>), but your file version appears to be outdated. You can then connect to the web cvs to get a more recent version of your file. Only recommended if you know what you're doing (or you have been told to do so from a supporter from the coppermine support board).</li>
+<li><em>don't display web svn link</em> / <em>display web svn link to stable branch</em> / <em>display web svn link to devel branch</em><br />Toggles wether to show an additional column that contains a link to the web svn. Only recommended if your cpg version is OK (<span style="color:green;font-weight:bold">green</span>), but your file version appears to be outdated. You can then connect to the web svn to get a more recent version of your file. Only recommended if you know what you're doing (or you have been told to do so from a supporter from the coppermine support board).</li>
 <li><em>show condensed ouput (for easier screenshots)</em><br />When checked, this options reduces the width of the version comparison columns. This will allow you to create screenshots with reduced dimensions and size.</li>
 </ul>
 <a name="versioncheck_options_end"></a>
@@ -773,9 +773,9 @@ If you have shell access to your server, you can apply the native <a href="http:
 <li>
 <p>The column &quot;file version&quot; holds the individual file's version that get's increased during development of a new coppermine version (each time a developer modifies a certain file, the version number increases by one). As folders can't contain such version numbers, they are again labelled as &quot;n/a&quot; (rows &quot;A&quot; to &quot;E&quot;); the same applies to files that don't exist, that's why their file version is displayed as dash (rows &quot;G&quot; and &quot;H&quot;). Also the file version is irrelevant when comparing files from different coppermine packages, that's why row &quot;I&quot; has a dash as well.</p>
 <p>The coloring scheme is similar to the cpg version system: <span style="color:green;font-weight:bold">green</span> means &quot;everything is OK&quot;, <span style="color:red;font-weight:bold">red</span> means &quot;you're using an outdated version&quot; and <span style="color:#FFBE00;font-weight:bold">yellow</span> means &quot;you're using a newer version than you're actually suppossed to.</p>
-<p>The difference between the cpg version and the file version columns is indicative of the way you should obtain the file that you need to replace the existing one on your server: a <span style="color:red;font-weight:bold">red</span> entry in the cpg version column means the file on your server hasn't been replaced with the file from the coppermine package; a <span style="color:red;font-weight:bold">red</span> entry in the file version column (row &quot;J&quot;) usually means that there have been updates to a certain file after the release of the package - you should either check if there is a newer package available or get the most recent file from the <acronym title="Concurrent version system">CVS</acronym> (enable the web cvs link column in the versioncheck <a href="#versioncheck_options_start">options</a>).</p>
+<p>The difference between the cpg version and the file version columns is indicative of the way you should obtain the file that you need to replace the existing one on your server: a <span style="color:red;font-weight:bold">red</span> entry in the cpg version column means the file on your server hasn't been replaced with the file from the coppermine package; a <span style="color:red;font-weight:bold">red</span> entry in the file version column (row &quot;J&quot;) usually means that there have been updates to a certain file after the release of the package - you should either check if there is a newer package available or get the most recent file from the <acronym title="Subversion">SVN</acronym> (enable the web svn link column in the versioncheck <a href="#versioncheck_options_start">options</a>).</p>
 </li>
-<li>The column &quot;web cvs&quot; (off by default) links to the corresponding file in the <acronym title="Concurrent version system">CVS</acronym>. You're recommended to use this only if there appears to be a newer version in the cvs than your coppermine package has and you know what you're doing.</li>
+<li>The column &quot;web svn&quot; (off by default) links to the corresponding file in the <acronym title="Subversion">SVN</acronym>. You're recommended to use this only if there appears to be a newer version in the svn than your coppermine package has and you know what you're doing.</li>
 </ul>
 <a name="versioncheck_comparison_end"></a>
 <a name="versioncheck_end"></a>
@@ -2150,7 +2150,7 @@ Should Coppermine import the special groups that exist in the forum ? If you sel
   <li>Post on the board that deals with your version - bridging mechanisms have changed from version to version, that's why it's important to post on the board that actually corresponds to your coppermine version</li>
   <li>Don't hijack threads - when looking for bridging support, start your own thread</li>
   <li>Read the sticky threads before posting</li>
-  <li>Make sure you are using the latest versions of the bridging files, they are kept up to date between formal Coppermine releases. Download the relevant files from the <a href="http://cvs.sourceforge.net/viewcvs.py/coppermine/">CVS</a>. Update udb_base.inc.php and the file that corresponds to the bridge you are using and upload them into your bridge directory, overwriting the old ones. Of course you should make sure to use the most recent stable coppermine release in the first place.</li>
+  <li>Make sure you are using the latest versions of the bridging files, they are kept up to date between formal Coppermine releases. Download the relevant files from the <a href="http://svn.sourceforge.net/viewvc/coppermine/trunk/stable/">SVN</a>. Update udb_base.inc.php and the file that corresponds to the bridge you are using and upload them into your bridge directory, overwriting the old ones. Of course you should make sure to use the most recent stable coppermine release in the first place.</li>
   <li>When requesting bridge support, please post a link to your site, a test user account, and what you have set in the bridge manager.<br />Make sure that the test user account doesn't have admin privileges. When posting parts of your bridge file, make sure to replace passwords with asterisks.<br />&nbsp;<br />This is how your posting should look like (with actual URLs instead of the dummy URLs given here as an example):<br />
   <pre class="code">I have the following issue when trying to bridge coppermine and XXX:
 [error message here]
@@ -2225,86 +2225,62 @@ Use post-based groups?:  0  </pre></li>
   </tr>
   <tr>
     <td>Joachim M&uuml;ller</td>
-    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=2">gaugau</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=2">gaugau</a></td>
     <td>Project Manager</td>
     <td>active</td>
   </tr>
   <tr>
     <td>Dr Tarique Sani</td>
-    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=4">tarique</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=4">tarique</a></td>
     <td>Lead Developer</td>
     <td>active</td>
   </tr>
   <tr>
     <td>Abbas Ali</td>
-    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=11737">abbas</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=11737">abbas</a></td>
     <td>Developer</td>
     <td>active</td>
   </tr>
   <tr>
     <td>Aditya Mooley</td>
-    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=5957">Aditya</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=5957">Aditya</a></td>
     <td>Developer</td>
     <td>active</td>
   </tr>
   <tr>
     <td>Donovan Bray</td>
-    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=10059">donnoman</a></td>
-    <td>Developer</td>
-    <td>active</td>
-  </tr>
-  <tr>
-    <td>Eyal Zvi</td>
-    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=94">EZ</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=10059">donnoman</a></td>
     <td>Developer</td>
     <td>active</td>
   </tr>
   <tr>
     <td>Tommy Atkinson</td>
-    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=941">Nibbler</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=941">Nibbler</a></td>
     <td>Developer</td>
     <td>active</td>
   </tr>
   <tr>
-    <td>Clive Leech</td>
-    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=56">casper</a></td>
-    <td>Supporter</td>
-    <td>active</td>
-  </tr>
-  <tr>
     <td>Dave Kazebeer</td>
-    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=7">kegobeer</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=7">kegobeer</a></td>
     <td>Supporter</td>
     <td>active</td>
   </tr>
   <tr>
     <td>Thomas Lange</td>
     <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=14796">Stramm</a></td>
-    <td>Supporter</td>
+    <td>Developer</td>
     <td>active</td>
   </tr>
   <tr>
     <td>Thu Tu</td>
-    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=7792">TranzNDance</a></td>
-    <td>Supporter</td>
-    <td>active</td>
-  </tr>
-  <tr>
-    <td>Dennis Nakano</td>
-    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=19311">madeinhawaii</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=7792">TranzNDance</a></td>
     <td>Supporter</td>
     <td>active</td>
   </tr>
   <tr>
     <td>Paul Van Rompay</td>
     <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=23938">Paver</a></td>
-    <td>Supporter</td>
-    <td>active</td>
-  </tr>
-  <tr>
-    <td>Roberta</td>
-    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=24398">Blueiris</a></td>
-    <td>Supporter</td>
+    <td>Developer</td>
     <td>active</td>
   </tr>
   <tr>
@@ -2315,7 +2291,7 @@ Use post-based groups?:  0  </pre></li>
   </tr>
   <tr>
     <td>Andreas Ellsel</td>
-    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=898">Andi</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=898">Andi</a></td>
     <td>Tester</td>
     <td>active</td>
   </tr>
@@ -2327,87 +2303,111 @@ Use post-based groups?:  0  </pre></li>
   </tr>
   <tr>
     <td>Gr&eacute;gory Demar</td>
-    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=259">Greg</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=259">Greg</a></td>
     <td>Original creator of Coppermine</td>
     <td>retired</td>
   </tr>
   <tr>
     <td>Jack</td>
-    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=6">datajack</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=6">datajack</a></td>
     <td>Developer</td>
     <td>retired</td>
   </tr>
   <tr>
     <td>DJ Axion</td>
-    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=9">djaxion</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=9">djaxion</a></td>
     <td>Developer</td>
     <td>retired</td>
   </tr>
   <tr>
     <td>Scott Gahres</td>
-    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=66">gtroll</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=66">gtroll</a></td>
     <td>Developer</td>
     <td>retired</td>
   </tr>
   <tr>
     <td>Hyperion</td>
-    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=125">hyperion01</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=125">hyperion01</a></td>
     <td>Developer</td>
     <td>retired</td>
   </tr>
   <tr>
     <td>John Asendorf</td>
-    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=30">jasendorf</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=30">jasendorf</a></td>
     <td>Developer</td>
     <td>retired</td>
   </tr>
   <tr>
     <td>Jay Hao-En Liu</td>
-    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=59">Oasis</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=59">Oasis</a></td>
     <td>Developer</td>
     <td>retired</td>
   </tr>
   <tr>
     <td>Christopher Brown-Floyd</td>
-    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=1874">omniscientdeveloper</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=1874">omniscientdeveloper</a></td>
     <td>Developer</td>
     <td>retired</td>
   </tr>
   <tr>
     <td>Timothy</td>
-    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=6949">skybax</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=6949">skybax</a></td>
     <td>Developer</td>
     <td>retired</td>
   </tr>
   <tr>
     <td>David Holm</td>
-    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=14">wormie_dk</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=14">wormie_dk</a></td>
     <td>Developer</td>
     <td>retired</td>
   </tr>
   <tr>
     <td>Mark Zerr</td>
-    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=11">zarsky99</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=11">zarsky99</a></td>
     <td>Tester</td>
     <td>retired</td>
   </tr>
   <tr>
     <td>mitirapa</td>
-    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=133">mitirapa</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=133">mitirapa</a></td>
     <td>Porter (Cross Platform Devel.)</td>
     <td>retired</td>
   </tr>
   <tr>
     <td>Moorey</td>
-    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=13">moorey</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=13">moorey</a></td>
     <td>Web Designer</td>
     <td>retired</td>
   </tr>
   <tr>
     <td>Maarten Hagoort</td>
-    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=404">DJ Maze</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=404">DJ Maze</a></td>
     <td>Developer (nuke team)</td>
-    <td>active</td>
+    <td>retired</td>
+  </tr>
+  <tr>
+    <td>Eyal Zvi</td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=94">EZ</a></td>
+    <td>Developer</td>
+    <td>retired</td>
+  </tr>
+  <tr>
+    <td>Clive Leech</td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=56">casper</a></td>
+    <td>Supporter</td>
+    <td>retired</td>
+  </tr>
+  <tr>
+    <td>Dennis Nakano</td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=19311">madeinhawaii</a></td>
+    <td>Supporter</td>
+    <td>retired</td>
+  </tr>
+    <tr>
+    <td>Roberta</td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=24398">Blueiris</a></td>
+    <td>Supporter</td>
+    <td>retired</td>
   </tr>
 </table>
 <p><a class="back" href="#top">Back to top</a></p><hr />

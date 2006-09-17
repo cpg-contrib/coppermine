@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-09-17 [M] Updated credits section of documentation {GauGau}
 2006-09-04 [A] Added Indonesian language file (user contribution) {GauGau}
 2006-09-03 [M] Updated version count from cpg1.4.9 to cpg1.4.10 in subversion repository as a preparation for a possible future release {GauGau}
 2006-09-02 [O] Updated brazilian language file (user contribution) {GauGau}
