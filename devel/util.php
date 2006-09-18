@@ -83,6 +83,8 @@ $tasks =  array(
 
         'bridgemgr' => array('', '<a href="bridgemgr.php" class="statlink">' . $lang_util_php['bridgemanager'] . '</a>', $lang_util_php['bridgemanager_explanation']),
 
+        'overall_stats' => array('', '<a href="stat_details.php" class="statlink">' . $lang_util_php['overall_stats'] . '</a>', $lang_util_php['overall_stats_explanation']),
+
         );
 
 $action = (isset($_REQUEST['action'])) ? $_REQUEST['action'] : '';

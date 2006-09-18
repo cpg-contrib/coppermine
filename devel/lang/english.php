@@ -1840,6 +1840,14 @@ if (defined('STAT_DETAILS_PHP')) $lang_stat_details_php = array(
   'hide_internal_referers' => 'hide internal referers',
   'date_display' => 'Date display',
   'submit' => 'submit / refresh',
+  'overall_stats' => 'Overall Statistics', //cpg1.5
+  'stats_by_os' => 'Stats by operating systems', //cpg1.5
+  'number_of_hits' => 'Number of hits', //cpg1.5
+  'total' => 'Total', //cpg1.5
+  'stats_by_browser' => 'Stats by browser', //cpg1.5
+  'stats_config' => 'Stats configuration', //cpg1.5
+  'hit_details'  => 'Keep detailed hit statistics', //cpg1.5
+  'hit_details_explanation'  => 'Keep detailed hit statistics', //cpg1.5
 );
 
 // ------------------------------------------------------------------------- //
@@ -2129,6 +2137,8 @@ $lang_util_php = array(
   'versioncheck_explanation' => 'Check your file versions to find out if you have replaced all files after an upgrade, or if coppermine source files have been updated after the release of a package.',
   'bridgemanager' => 'Bridge Manager',
   'bridgemanager_explanation' => 'Enable/disable integration (bridging) of Coppermine with another application (e.g. your BBS).',
+  'overall_stats' => 'Overall Statistics', //cpg1.5
+  'overall_stats_explanation' => 'View overall hit stats by browser and operating system (if corresponding options are turned on in config).', //cpg1.5
 );
 }
 

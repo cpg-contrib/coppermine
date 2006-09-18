@@ -1951,6 +1951,11 @@ if (defined('STAT_DETAILS_PHP')) $lang_stat_details_php = array(
   'hide_internal_referers' => 'interne Verweise verbergen',
   'date_display' => 'Datumsformat',
   'submit' => 'absenden/aktualisieren',
+  'overall_stats' => 'Gesamt-Statistik', //cpg1.5
+  'stats_by_os' => 'Statistik nach Betriebssystem', //cpg1.5
+  'number_of_hits' => 'Anzahl Treffer', //cpg1.5
+  'total' => 'Summe', //cpg1.5
+  'stats_by_browser' => 'Statistik nach Browser', //cpg1.5
 );
 
 // ------------------------------------------------------------------------- //
@@ -2239,6 +2244,8 @@ $lang_util_php = array(
   'versioncheck_explanation' => 'Überprüfe die Versionen Deiner Dateien um herauszufinden, ob alle Dateien bei einem Update korrekt ersetzt wurden, oder ob die Coppermine-Dateien nach der Veröffentlichung eines Pakets aktualisiert wurden.',
   'bridgemanager' => 'Bridge-Assistent',
   'bridgemanager_explanation' => 'Assistent zur Integration der Benutzerverwaltung von Coppermine mit einer anderen Applikation (z.B. einem Forum) - sogenanntes "Bridging".',
+  'overall_stats' => 'Gesamt-Statistik', //cpg1.5
+  'overall_stats_explanation' => 'Trefferstatistiken nach Browser und Betriebssystem anzeigen (wenn entsprechende Option in den Einstellungen aktiviert sind).', //cpg1.5
 );
 }
 

@@ -26,12 +26,12 @@ require('include/init.inc.php');
  */
 
 $pid = $_GET['pid'] ? (int)$_GET['pid'] : 0;
-$type_allowed = array('vote','hits');
+$type_allowed = array('vote','hits','total');
 
 if (in_array($_GET['type'],$type_allowed) == TRUE) {
  $type = $_GET['type'];
 } else {
- $type = 'hits';
+ $type = 'total';
 }
 
 if ($type == 'vote') {
@@ -309,6 +309,8 @@ print "<br />\n";
  * Fetch the vote details like IP, referer if the user is ADMIN
  */
 if (GALLERY_ADMIN_MODE) { // admin is logged in start
+
+if ($type == 'hits') { // type == hits start
     print $line_break;
     print '<form method="get" action="'.$_SERVER['PHP_SELF'].'" name="editForm" id="cpgform">' . $line_break;
     print '<input type="hidden" name="type" value="'.$type.'" />'                 . $line_break;
@@ -433,8 +435,6 @@ print '    </td>'.$line_break;
 print '  </tr>'.$line_break;
 endtable();
 print '</form>'.$line_break;
-} // admin is logged in end
-
 echo <<<EOT
 <br />
 <div align="center">
@@ -443,8 +443,137 @@ echo <<<EOT
     </a>
 </div>
 <br />&nbsp;
-EOT;
-print $line_break;
-?>
+
+
 </body>
 </html>
+EOT;
+
+} else { // type == hits end // type == total start
+    pageheader($lang_stat_details_php['overall_stats']);
+    $maxBarWidth = 300;
+    foreach ($osArray as $key => $value) {
+            $query = "SELECT COUNT(*) FROM {$CONFIG['TABLE_HIT_STATS']} WHERE os = '$key'"; // Now this is a very crude way to query the database which is bound to overload larger galleries. Should be reviewed!
+            $result = cpg_db_query($query);
+            $row = mysql_fetch_array($result);
+            if ($row[0] != 0) {
+                $osResultArray[$key] = $row[0];
+            }
+    }
+    array_multisort($osResultArray,SORT_DESC);
+    $osTotal = array_sum($osResultArray);
+    starttable('-1', $lang_stat_details_php['stats_by_os'], 5);
+    print <<< EOT
+    <tr>
+      <td class="tableh2" colspan="2">{$lang_stat_details_php['os']}</td>
+      <td class="tableh2" colspan="2" align="right">%</td>
+      <td class="tableh2" align="right">{$lang_stat_details_php['number_of_hits']}</td>
+    </tr>
+EOT;
+    $loopCounter = 0;
+    foreach ($osResultArray as $key => $value) {
+      $individualBarWidth = floor(($value * $maxBarWidth) / $osTotal);
+      $individualPercentage = floor(($value * 1000) / $osTotal)/10;
+      if ($individualPercentage == floor($individualPercentage)) {
+        $individualPercentage .= '.0';
+      }
+      if ($loopCounter == 0) {
+        $row_style_class = 'tableb';
+        $loopCounter++;
+      } else {
+        $row_style_class = 'tableb tableb_alternate';
+        $loopCounter = 0;
+      }
+      print <<< EOT
+      <tr>
+        <td class="{$row_style_class}" width="20"><img src="images/os/{$osArray[$key]}" width="14" height="14" border="0" title="{$key}" alt="" /></td>
+        <td class="{$row_style_class}">{$key}</td>
+        <td class="{$row_style_class}" align="right"><img src="images/vote.jpg" width="{$individualBarWidth}" height="15" border="0" alt="" /></td>
+        <td class="{$row_style_class}" align="right">{$individualPercentage}</td>
+        <td class="{$row_style_class}" align="right">{$value}</td>
+      </tr>
+EOT;
+    }
+    print <<< EOT
+    <tr>
+      <td class="tablef" colspan="4">{$lang_stat_details_php['total']}</td>
+      <td class="tablef" align="right">{$osTotal}</td>
+    </tr>
+EOT;
+    endtable();
+
+    print '<br />';
+
+    foreach ($browserArray as $key => $value) {
+            $query = "SELECT COUNT(*) FROM {$CONFIG['TABLE_HIT_STATS']} WHERE browser = '$key'"; // Now this is a very crude way to query the database which is bound to overload larger galleries. Should be reviewed!
+            $result = cpg_db_query($query);
+            $row = mysql_fetch_array($result);
+            if ($row[0] != 0) {
+                $browserResultArray[$key] = $row[0];
+            }
+    }
+    array_multisort($browserResultArray,SORT_DESC);
+    $browserTotal = array_sum($browserResultArray);
+    starttable('-1', $lang_stat_details_php['stats_by_browser'], 5);
+    print <<< EOT
+    <tr>
+      <td class="tableh2" colspan="2">{$lang_stat_details_php['browser']}</td>
+      <td class="tableh2" colspan="2" align="right">%</td>
+      <td class="tableh2" align="right">{$lang_stat_details_php['number_of_hits']}</td>
+    </tr>
+EOT;
+    $loopCounter = 0;
+    foreach ($browserResultArray as $key => $value) {
+      $individualBarWidth = floor(($value * $maxBarWidth) / $browserTotal);
+      $individualPercentage = floor(($value * 1000) / $browserTotal)/10;
+      if ($individualPercentage == floor($individualPercentage)) {
+        $individualPercentage .= '.0';
+      }
+      if ($loopCounter == 0) {
+        $row_style_class = 'tableb';
+        $loopCounter++;
+      } else {
+        $row_style_class = 'tableb tableb_alternate';
+        $loopCounter = 0;
+      }
+      print <<< EOT
+      <tr>
+        <td class="{$row_style_class}" width="20"><img src="images/browser/{$browserArray[$key]}" width="14" height="14" border="0" title="{$key}" alt="" /></td>
+        <td class="{$row_style_class}">{$key}</td>
+        <td class="{$row_style_class}" align="right"><img src="images/vote.jpg" width="{$individualBarWidth}" height="15" border="0" alt="" /></td>
+        <td class="{$row_style_class}" align="right">{$individualPercentage}</td>
+        <td class="{$row_style_class}" align="right">{$value}</td>
+      </tr>
+EOT;
+    }
+    print <<< EOT
+    <tr>
+      <td class="tablef" colspan="4">{$lang_stat_details_php['total']}</td>
+      <td class="tablef" align="right">{$browserTotal}</td>
+    </tr>
+EOT;
+    endtable();
+
+    print '<br />';
+
+    // Configuration shortcut: enable/disable hit stats here as well as in config
+    $yes_selected = $CONFIG['hit_details'] ? 'checked="checked"' : '';
+    $no_selected = !$CONFIG['hit_details'] ? 'checked="checked"' : '';
+    $help = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=admin_logging_hitdetails&amp;ae=admin_logging_hitdetails_end&amp;top=1', '600', '250');
+
+    starttable('-1', $lang_stat_details_php['stats_config'].' (under construction)', 5);
+    print <<< EOT
+    <tr>
+      <td class="tableb" colspan="3">{$lang_stat_details_php['hit_details']}{$help}</td>
+      <td class="tableb" colspan="2">
+        <input type="radio" id="hit_details_yes" name="hit_details" value="1"  $yes_selected /><label for="hit_details_yes" class="clickable_option">{$lang_common['yes']}</label>
+        &nbsp;&nbsp;
+        <input type="radio" id="hit_details_no" name="hit_details" value="0"  $no_selected /><label for="hit_details_no" class="clickable_option">{$lang_common['no']}</label>
+      </td>
+    </tr>
+EOT;
+    endtable();
+
+    pagefooter();
+} // type == total end
+} // admin is logged in end
