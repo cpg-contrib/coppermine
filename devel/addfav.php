@@ -45,7 +45,7 @@ if (!isset($_GET['pid'])) cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'],
 
 $pic = (int)$_GET['pid'];
 
-$ref = $CONFIG['site_url'] . (isset($_GET['ref']) ? $_GET['ref'] : "displayimage.php?pos=-$pic");
+$ref = $CONFIG['site_url'] . (isset($_GET['ref']) ? $_GET['ref'] : "displayimage.php?pid=$pic");
 $ref = str_replace('&amp;', '&', $ref);
 
 // If user does not accept script's cookies, we don't accept the vote
