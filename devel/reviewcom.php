@@ -452,10 +452,10 @@ while ($row = mysql_fetch_array($result)) {
     $msg_date = localised_date($row['msg_date'], $scientific_date_fmt);
     $msg_body = bb_decode(process_smilies($row['msg_body']));
     if ($row['approval'] == 'YES') {
-        $comment_approval_status = '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'yes" type="radio" value="1" checked="checked" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'yes" class="clickable_option">'.$lang_common['yes']."</label>&nbsp;\n\r";
+        $comment_approval_status = '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'yes" type="radio" value="1" checked="checked" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'yes" class="clickable_option">'.$lang_common['yes']."</label><br />\n\r";
         $comment_approval_status .= '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'no" type="radio" value="0" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'no" class="clickable_option">'.$lang_common['no'].'</label>';
     } else {
-        $comment_approval_status = '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'yes" type="radio" value="1" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'yes" class="clickable_option">'.$lang_common['yes']."</label>&nbsp;\n\r                        ";
+        $comment_approval_status = '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'yes" type="radio" value="1" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'yes" class="clickable_option">'.$lang_common['yes']."</label><br />\n\r                        ";
         $comment_approval_status .= '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'no" type="radio" value="0" checked="checked" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'no" class="clickable_option">'.$lang_common['no'].'</label>';
     }
     $comment_approval_status .= '<input type="hidden" name="status_approved_yes[]" id="status_approved_yes'.$row['msg_id'].'" value="" />';
@@ -509,13 +509,13 @@ echo <<<EOT
                 <input type="checkbox" name="checkAll2" onClick="selectAll(this,'cid_array');" class="checkbox" title="{$lang_common['check_uncheck_all']}" />
             </td>
             <td colspan="3" class="tablef" valign="middle" align="left">
-                {$lang_reviewcom_php['with_selected']}:
+                {$lang_reviewcom_php['with_selected']}:<br />
                 <input name="with_selected" id="delete_selected" type="radio" value="delete" />
                 <label for="delete_selected">{$lang_reviewcom_php['delete']}</label>
-                &nbsp;&nbsp;
+                <br />
                 <input name="with_selected" id="approve_selected" type="radio" value="approve" checked="checked" />
                 <label for="approve_selected">{$lang_reviewcom_php['approve']}</label>
-                &nbsp;&nbsp;
+                <br />
                 <input name="with_selected" id="disapprove_selected" type="radio" value="disapprove" />
                 <label for="disapprove_selected">{$lang_reviewcom_php['disapprove']}</label>
             </td>
