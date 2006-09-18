@@ -1488,12 +1488,22 @@ function add_hit($pid)
         $os = "Unknown";
         if(eregi("Linux",$_SERVER["HTTP_USER_AGENT"])) {
             $os = "Linux";
+        } else if(eregi("Ubuntu",$_SERVER["HTTP_USER_AGENT"])) {
+            $os = "Linux Ubuntu";
+        } else if(eregi("Debian",$_SERVER["HTTP_USER_AGENT"])) {
+            $os = "Linux Debian";
         } else if(eregi("Windows NT 5.0",$_SERVER["HTTP_USER_AGENT"])) {
             $os = "Windows 2000";
         } else if(eregi("win98|Windows 98",$_SERVER["HTTP_USER_AGENT"])) {
             $os = "Windows 98";
         } else if(eregi("Windows NT 5.1",$_SERVER["HTTP_USER_AGENT"])) {
             $os = "Windows XP";
+        } else if(eregi("Windows NT 5.2",$_SERVER["HTTP_USER_AGENT"])) {
+            $os = "Windows 2003 Server";
+        } else if(eregi("Windows NT 6.0",$_SERVER["HTTP_USER_AGENT"])) {
+            $os = "Windows Vista";
+        } else if(eregi("Windows CE",$_SERVER["HTTP_USER_AGENT"])) {
+            $os = "Windows CE";
         } else if(eregi("Windows",$_SERVER["HTTP_USER_AGENT"])) {
             $os = "Windows";
         } else if(eregi("SunOS",$_SERVER["HTTP_USER_AGENT"])) {
@@ -1502,6 +1512,8 @@ function add_hit($pid)
             $os = "Macintosh";
         } else if(eregi("Mac_PowerPC",$_SERVER["HTTP_USER_AGENT"])) {
             $os = "Mac OS";
+        } else if(eregi("Mac_PPC",$_SERVER["HTTP_USER_AGENT"])) {
+            $os = "Macintosh";
         } else if(eregi("OS/2",$_SERVER["HTTP_USER_AGENT"])) {
             $os = "OS/2";
         }
@@ -1571,6 +1583,10 @@ function add_hit($pid)
             $browser = "Avant";
         } else if(eregi("HotJava",$_SERVER["HTTP_USER_AGENT"])) {
             $browser = "HotJava";
+        } else if(eregi("W3C-checklink|W3C_Validator|Jigsaw",$_SERVER["HTTP_USER_AGENT"])) {
+            $browser = "W3C";
+        } else if(eregi("K-Meleon",$_SERVER["HTTP_USER_AGENT"])) {
+            $browser = "K-Meleon";
         }
 
         //Code to get the search string if the referrer is any of the following

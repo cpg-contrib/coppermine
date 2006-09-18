@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-09-18 [A] Added overall stats mod {GauGau}
 2006-09-18 [B] Escape queries in include/exif_php.inc.php {Paver}
 2006-09-18 [A] Added browser and os icons for stats {GauGau}
 2006-09-17 [M] Updated credits section of documentation {GauGau}

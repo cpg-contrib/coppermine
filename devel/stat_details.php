@@ -127,7 +127,7 @@ $browserArray = array(
                       'iCab' => 'icab.png',
                       'java' => 'java.png',
                       'jetbrains' => 'jetbrains_omea.png',
-                      'Kmeleon' => 'kmeleon.png',
+                      'K-Meleon' => 'kmeleon.png',
                       'Konqueror' => 'konqueror.png',
                       'lg' => 'lg.png',
                       'Lotus Notes' => 'lotusnotes.png',
@@ -180,7 +180,7 @@ $browserArray = array(
                       'Teleport' => 'teleport.png',
                       'Trium' => 'trium.png',
                       'Unknown' => 'unknown.png',
-                      'w3c' => 'w3c.png',
+                      'W3C' => 'w3c.png',
                       'WebCopier' => 'webcopier.png',
                       'Web TV' => 'webtv.png',
                       'webzip' => 'webzip.png',
@@ -245,11 +245,12 @@ $osArray = array(
                       'Windows 2003 Server' => 'win2003.png',
                       'Windows 95' => 'win95.png',
                       'Windows 98' => 'win98.png',
-                      'Wince' => 'wince.png',
+                      'Windows CE' => 'wince.png',
                       'Winlong' => 'winlong.png',
                       'Windows ME' => 'winme.png',
                       'Windows NT' => 'winnt.png',
                       'Windows XP' => 'winxp.png',
+                      'Windows Vista' => 'winvista.png',
 );
 
 
