@@ -1507,69 +1507,69 @@ function add_hit($pid)
         }
 
         $browser = 'Unknown';
-        if(eregi("MSIE",$browser)) {
-            if(eregi("MSIE 5.5",$browser)) {
-                $browser = "Microsoft Internet Explorer 5.5";
-            } else if(eregi("MSIE 6.0",$browser)) {
-                $browser = "Microsoft Internet Explorer 6.0";
-            } else if(eregi("MSIE 7.0",$browser)) {
-                $browser = "Microsoft Internet Explorer 7.0";
-            } else if(eregi("MSIE 3.0",$browser)) {
-                $browser = "Microsoft Internet Explorer 3.0";
-            } else if(eregi("MSIE 4.0",$browser)) {
-                $browser = "Microsoft Internet Explorer 4.0";
-            } else if(eregi("MSIE 5.0",$browser)) {
-                $browser = "Microsoft Internet Explorer 5.0";
+        if(eregi("MSIE",$_SERVER["HTTP_USER_AGENT"])) {
+            if(eregi("MSIE 5.5",$_SERVER["HTTP_USER_AGENT"])) {
+                $browser = "MSIE 5.5";
+            } else if(eregi("MSIE 6.0",$_SERVER["HTTP_USER_AGENT"])) {
+                $browser = "MSIE 6.0";
+            } else if(eregi("MSIE 7.0",$_SERVER["HTTP_USER_AGENT"])) {
+                $browser = "MSIE 7.0";
+            } else if(eregi("MSIE 3.0",$_SERVER["HTTP_USER_AGENT"])) {
+                $browser = "MSIE 3.0";
+            } else if(eregi("MSIE 4.0",$_SERVER["HTTP_USER_AGENT"])) {
+                $browser = "MSIE 4.0";
+            } else if(eregi("MSIE 5.0",$_SERVER["HTTP_USER_AGENT"])) {
+                $browser = "MSIE 5.0";
             }
-        } else if(eregi("Firebird",$browser)) {
+        } else if(eregi("Firebird",$_SERVER["HTTP_USER_AGENT"])) {
             $browser = "Mozilla Firebird";
-        } else if(eregi("netscape",$browser)) {
+        } else if(eregi("netscape",$_SERVER["HTTP_USER_AGENT"])) {
             $browser = "Netscape";
-        } else if(eregi("Firefox",$browser)) {
+        } else if(eregi("Firefox",$_SERVER["HTTP_USER_AGENT"])) {
             $browser = "Firefox";
-        } else if(eregi("Galeon",$browser)) {
+        } else if(eregi("Galeon",$_SERVER["HTTP_USER_AGENT"])) {
             $browser = "Galeon";
-        } else if(eregi("Camino/",$browser)) {
+        } else if(eregi("Camino/",$_SERVER["HTTP_USER_AGENT"])) {
             $browser = "Camino/";
-        } else if(eregi("Konqueror",$browser)) {
+        } else if(eregi("Konqueror",$_SERVER["HTTP_USER_AGENT"])) {
             $browser = "Konqueror";
-        } else if(eregi("Safari",$browser)) {
+        } else if(eregi("Safari",$_SERVER["HTTP_USER_AGENT"])) {
             $browser = "Safari";
-        } else if(eregi("OmniWeb",$browser)) {
+        } else if(eregi("OmniWeb",$_SERVER["HTTP_USER_AGENT"])) {
             $browser = "OmniWeb";
-        } else if(eregi("Opera",$browser)) {
+        } else if(eregi("Opera",$_SERVER["HTTP_USER_AGENT"])) {
             $browser = "Opera";
-        } else if(eregi("amaya",$browser)) {
+        } else if(eregi("amaya",$_SERVER["HTTP_USER_AGENT"])) {
             $browser = "Amaya";
-        } else if(eregi("iCab",$browser)) {
+        } else if(eregi("iCab",$_SERVER["HTTP_USER_AGENT"])) {
             $browser = "iCab";
-        } else if(eregi("Lynx",$browser)) {
+        } else if(eregi("Lynx",$_SERVER["HTTP_USER_AGENT"])) {
             $browser = "Lynx";
-        } else if(eregi("Googlebot",$browser)) {
+        } else if(eregi("Googlebot",$_SERVER["HTTP_USER_AGENT"])) {
             $browser = "Googlebot";
-        } else if(eregi("Lycos_Spider",$browser)) {
+        } else if(eregi("Lycos_Spider",$_SERVER["HTTP_USER_AGENT"])) {
             $browser = "Lycos Spider";
-        } else if(eregi("Firefly",$browser)) {
+        } else if(eregi("Firefly",$_SERVER["HTTP_USER_AGENT"])) {
             $browser = "Fireball Spider";
-        } else if(eregi("Advanced Browser",$browser)) {
+        } else if(eregi("Advanced Browser",$_SERVER["HTTP_USER_AGENT"])) {
             $browser = "Avant";
-        } else if(eregi("Amiga-AWeb",$browser)) {
+        } else if(eregi("Amiga-AWeb",$_SERVER["HTTP_USER_AGENT"])) {
             $browser = "AWeb";
-        } else if(eregi("Cyberdog",$browser)) {
+        } else if(eregi("Cyberdog",$_SERVER["HTTP_USER_AGENT"])) {
             $browser = "Cyberdog";
-        } else if(eregi("Dillo",$browser)) {
+        } else if(eregi("Dillo",$_SERVER["HTTP_USER_AGENT"])) {
             $browser = "Dillo";
-        } else if(eregi("DreamPassport",$browser)) {
+        } else if(eregi("DreamPassport",$_SERVER["HTTP_USER_AGENT"])) {
             $browser = "DreamCast";
-        } else if(eregi("eCatch",$browser)) {
+        } else if(eregi("eCatch",$_SERVER["HTTP_USER_AGENT"])) {
             $browser = "eCatch";
-        } else if(eregi("ANTFresco",$browser)) {
+        } else if(eregi("ANTFresco",$_SERVER["HTTP_USER_AGENT"])) {
             $browser = "Fresco";
-        } else if(eregi("RSS",$browser)) {
+        } else if(eregi("RSS",$_SERVER["HTTP_USER_AGENT"])) {
             $browser = "RSS";
-        } else if(eregi("Avant",$browser)) {
+        } else if(eregi("Avant",$_SERVER["HTTP_USER_AGENT"])) {
             $browser = "Avant";
-        } else if(eregi("HotJava",$browser)) {
+        } else if(eregi("HotJava",$_SERVER["HTTP_USER_AGENT"])) {
             $browser = "HotJava";
         }
 
