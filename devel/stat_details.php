@@ -561,6 +561,7 @@ EOT;
     $yes_selected = $CONFIG['hit_details'] ? 'checked="checked"' : '';
     $no_selected = !$CONFIG['hit_details'] ? 'checked="checked"' : '';
     $help = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=admin_logging_hitdetails&amp;ae=admin_logging_hitdetails_end&amp;top=1', '600', '250');
+    print '<form method="post" name="changestats" id="cpgform" action="'.$_SERVER['PHP_SELF'].'" onSubmit="return defaultagree(this)">';
 
     starttable('-1', $lang_stat_details_php['stats_config'].' (under construction)', 5);
     print <<< EOT
@@ -572,8 +573,18 @@ EOT;
         <input type="radio" id="hit_details_no" name="hit_details" value="0"  $no_selected /><label for="hit_details_no" class="clickable_option">{$lang_common['no']}</label>
       </td>
     </tr>
+    <tr>
+      <td class="tablef" colspan="3" align="right">
+        <input name="emptystats" id="emptystats" type="checkbox" />
+        <label for="agreecheck" class="clickable_option">{$lang_stat_details_php['empty_hits_table']}</label>
+      </td>
+      <td class="tablef" colspan="2">
+        <input type="submit" class="button" name="delete" value="{$lang_stat_details_php['submit']}"  />
+      </td>
+    </tr>
 EOT;
     endtable();
+    print '</form>';
 
     pagefooter();
 } // type == total end

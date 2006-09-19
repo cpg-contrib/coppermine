@@ -1848,6 +1848,9 @@ if (defined('STAT_DETAILS_PHP')) $lang_stat_details_php = array(
   'stats_config' => 'Stats configuration', //cpg1.5
   'hit_details'  => 'Keep detailed hit statistics', //cpg1.5
   'hit_details_explanation'  => 'Keep detailed hit statistics', //cpg1.5
+  'empty_hits_table'  => 'Empty hit stats', //cpg1.5
+  'confirm_empty_hits'  => 'Warning: emptying the hit stats can not be undone. Do you really want to continue?', //cpg1.5 // JS-Alert
+  'submit'  => 'Submit', //cpg1.5
 );
 
 // ------------------------------------------------------------------------- //

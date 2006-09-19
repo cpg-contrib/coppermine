@@ -254,7 +254,7 @@ print '<input type="button" name="UnCheckAll" class="button" value="'.$lang_db_e
 print '</td>';
 print '<td colspan="4" class="tableh1_compact" align="left">';
 print '<input type="submit" class="button" name="delete" value="'.$lang_db_ecard_php['ecards_delete_selected'].'" disabled="disabled" />&nbsp;';
-print '<input name="agreecheck" type="checkbox" onClick="agreesubmit(this)" />'.$lang_db_ecard_php['ecards_delete_sure'];
+print '<input name="agreecheck" id="agreecheck" type="checkbox" onClick="agreesubmit(this)" /><label for="agreecheck" class="clickable_option">'.$lang_db_ecard_php['ecards_delete_sure'].'</label>';
 print '</td>';
 print '</tr>';
 endtable();
