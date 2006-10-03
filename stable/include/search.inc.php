@@ -66,7 +66,7 @@ if ($search_string && isset($_POST['params'])) {
           $sections[] = '(' . implode(' OR ', $fields) . ')';
         }
 
-        $sql .= implode($type, $sections);
+       $sql .= '(' . implode($type, $sections) . ')';
 
         $sql .= $_POST['newer_than'] ? ' AND ctime > UNIX_TIMESTAMP() - '.( (int) $_POST['newer_than'] * 60*60*24) : '';
         $sql .= $_POST['older_than'] ? ' AND ctime < UNIX_TIMESTAMP() - '.( (int) $_POST['older_than'] * 60*60*24) : '';
