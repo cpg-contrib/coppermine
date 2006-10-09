@@ -17,6 +17,10 @@
   $Date$
 **********************************************/
 
+
+
+if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
+
 define("EXIF_CACHE_FILE","exif.dat");
 require("include/exif.php");
 
@@ -45,7 +49,7 @@ function exif_parse_file($filename)
 
         //Check if we have the data of the said file in the table
         $sql = "SELECT * FROM {$CONFIG['TABLE_EXIF']} ".
-                  "WHERE filename = \"$filename\"";
+                  "WHERE filename='".addslashes($filename)."'";
 
         $result = cpg_db_query($sql);
 
@@ -58,8 +62,7 @@ function exif_parse_file($filename)
           $exifRawData = read_exif_data_raw($filename,0);
           // Insert it into table for future reference
           $sql = "INSERT INTO {$CONFIG['TABLE_EXIF']} ".
-                    "VALUES ('$filename', '".addslashes(serialize($exifRawData))."')";
-
+                    "VALUES ('".addslashes($filename)."', '".addslashes(serialize($exifRawData))."')";
           $result = cpg_db_query($sql);
         }
 

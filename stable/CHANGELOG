@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-10-08 [B] Escape queries in include/exif_php.inc.php {Donnoman}
 2006-10-03 [S] Corrected flaw in search logic {Nibbler}
 2006-09-17 [M] Updated credits section of documentation {GauGau}
 2006-09-04 [A] Added Indonesian language file (user contribution) {GauGau}
