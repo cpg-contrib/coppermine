@@ -25,7 +25,7 @@ Changelog
 [O] = Optimization of code
 [S] = Security fix (issues that are related to security)
 *********************************************
-
+2006-10-98 [S] block launch of exif_php.inc.php if not in Coppermine {Donnoman}
 2006-10-03 [S] Corrected flaw in search logic {Nibbler}
 2006-09-18 [A] Added overall stats mod {GauGau}
 2006-09-18 [B] Escape queries in include/exif_php.inc.php {Paver}

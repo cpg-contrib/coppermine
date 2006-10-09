@@ -17,6 +17,10 @@
   $Date$
 **********************************************/
 
+
+
+if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
+
 define("EXIF_CACHE_FILE","exif.dat");
 require("include/exif.php");
 
