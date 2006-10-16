@@ -81,6 +81,50 @@ if (!$file) {
 * Local functions definition
 */
 
+########### Added #############
+/**
+ * html_albummenu2()
+ *
+ * This function draws the links for moderator menu of Albums
+ *
+ * @param integer $id ID of the album for which the links are being drawn
+ * @return string The evaluated template block with links
+ **/
+function html_albummenu2($id) {
+    global $lang_album_admin_menu;
+
+    /**
+     * This template variable can be defined in theme.php of respective theme.
+     * This is done here for simplicity.
+     */    
+    $template_album_moderator_menu = <<<EOT
+        <table border="0" cellpadding="0" cellspacing="1">
+                <tr>
+                        <td align="center" valign="middle" class="admin_menu">
+                                <a href="editpics.php?album={ALBUM_ID}"  class="adm_menu">{EDIT_PICS}</a>
+                        </td>
+                </tr>
+        </table>                        
+EOT;
+    
+    
+    static $template = '';
+
+    if ($template == '') {
+        $params = array(
+            '{EDIT_PICS}' => $lang_album_admin_menu['edit_pics'],
+            );
+
+        $template = template_eval($template_album_moderator_menu, $params);
+    }
+
+    $params = array('{ALBUM_ID}' => $id,
+        );
+
+    return template_eval($template, $params);  
+}
+
+
 /**
  * html_albummenu()
  *
@@ -557,7 +601,7 @@ function list_albums()
             $alb_list[$alb_idx]['last_upl'] = $last_upload_date;
             $alb_list[$alb_idx]['link_pic_count'] = $link_pic_count;
             $alb_list[$alb_idx]['album_info'] = sprintf($lang_list_albums['n_pictures'], $count) . ($count ? sprintf($lang_list_albums['last_added'], $last_upload_date) : "") . (($CONFIG['link_pic_count'] && $link_pic_count > 0 ) ? sprintf(", {$lang_list_albums['n_link_pictures']},  {$lang_list_albums['total_pictures']}", $link_pic_count, $count + $link_pic_count) : "");
-            $alb_list[$alb_idx]['album_adm_menu'] = (GALLERY_ADMIN_MODE || (USER_ADMIN_MODE && $cat == USER_ID + FIRST_USER_CAT)) ? html_albummenu($alb_thumb['aid']) : ' ';
+            $alb_list[$alb_idx]['album_adm_menu'] = (GALLERY_ADMIN_MODE || (USER_ADMIN_MODE && $cat == USER_ID + FIRST_USER_CAT)) ? html_albummenu($alb_thumb['aid']) : (in_array($alb_thumb['aid'], $USER_DATA['allowed_albums']) ? html_albummenu2($alb_thumb['aid']) : '');
         } elseif ($CONFIG['show_private']) { // uncomment this else block to show private album description
             $last_upload_date = $count ? localised_date($alb_stat['last_upload'], $lastup_date_fmt) : '';
             $link_pic_count = !empty($alb_stat['link_pic_count']) ? $alb_stat['link_pic_count'] : 0;
@@ -568,7 +612,7 @@ function list_albums()
             $alb_list[$alb_idx]['last_upl'] = $last_upload_date;
             $alb_list[$alb_idx]['link_pic_count'] = $link_pic_count;
             $alb_list[$alb_idx]['album_info'] = sprintf($lang_list_albums['n_pictures'], $count) . ($count ? sprintf($lang_list_albums['last_added'], $last_upload_date) : "") . (($CONFIG['link_pic_count'] && $link_pic_count > 0 ) ? sprintf(", {$lang_list_albums['n_link_pictures']},   {$lang_list_albums['total_pictures']}", $link_pic_count, $count + $link_pic_count) : "");
-            $alb_list[$alb_idx]['album_adm_menu'] = (GALLERY_ADMIN_MODE || (USER_ADMIN_MODE && $cat == USER_ID + FIRST_USER_CAT)) ? html_albummenu($alb_thumb['aid']) : ' ';
+            $alb_list[$alb_idx]['album_adm_menu'] = (GALLERY_ADMIN_MODE || (USER_ADMIN_MODE && $cat == USER_ID + FIRST_USER_CAT)) ? html_albummenu($alb_thumb['aid']) : (in_array($alb_thumb['aid'], $USER_DATA['allowed_albums']) ? html_albummenu2($alb_thumb['aid']) : '');
         }
     }
 
@@ -727,7 +771,7 @@ function list_cat_albums($cat = 0)
             $alb_list[$alb_idx]['pic_count'] = $count;
             $alb_list[$alb_idx]['last_upl'] = $last_upload_date;
             $alb_list[$alb_idx]['album_info'] = sprintf($lang_list_albums['n_pictures'], $count) . ($count ? sprintf($lang_list_albums['last_added'], $last_upload_date) : "") . (($CONFIG['link_pic_count'] && $link_pic_count > 0)  ? sprintf(", {$lang_list_albums['n_link_pictures']}, {$lang_list_albums['total_pictures']}", $link_pic_count, $count + $link_pic_count) : "");
-            $alb_list[$alb_idx]['album_adm_menu'] = (GALLERY_ADMIN_MODE || (USER_ADMIN_MODE && $cat == USER_ID + FIRST_USER_CAT)) ? html_albummenu($alb_thumb['aid']) : '';
+            $alb_list[$alb_idx]['album_adm_menu'] = (GALLERY_ADMIN_MODE || (USER_ADMIN_MODE && $cat == USER_ID + FIRST_USER_CAT)) ? html_albummenu($alb_thumb['aid']) : (in_array($alb_thumb['aid'], $USER_DATA['allowed_albums']) ? html_albummenu2($alb_thumb['aid']) : '');
         } elseif ($CONFIG['show_private']) { // uncomment this else block to show private album description
             $last_upload_date = $count ? localised_date($alb_stat['last_upload'], $lastup_date_fmt) : '';
             $link_pic_count = !empty($alb_stat['link_pic_count']) ? $alb_stat['link_pic_count'] : 0;
@@ -737,7 +781,7 @@ function list_cat_albums($cat = 0)
             $alb_list[$alb_idx]['pic_count'] = $count;
             $alb_list[$alb_idx]['last_upl'] = $last_upload_date;
             $alb_list[$alb_idx]['album_info'] = sprintf($lang_list_albums['n_pictures'], $count) . ($count ? sprintf($lang_list_albums['last_added'], $last_upload_date) : "") . (($CONFIG['link_pic_count'] && $link_pic_count > 0 )? sprintf(", {$lang_list_albums['n_link_pictures']}, {$lang_list_albums['total_pictures']}", $link_pic_count, $count + $link_pic_count) : "");
-            $alb_list[$alb_idx]['album_adm_menu'] = (GALLERY_ADMIN_MODE || (USER_ADMIN_MODE && $cat == USER_ID + FIRST_USER_CAT)) ? html_albummenu($alb_thumb['aid']) : '';
+            $alb_list[$alb_idx]['album_adm_menu'] = (GALLERY_ADMIN_MODE || (USER_ADMIN_MODE && $cat == USER_ID + FIRST_USER_CAT)) ? html_albummenu($alb_thumb['aid']) : (in_array($alb_thumb['aid'], $USER_DATA['allowed_albums']) ? html_albummenu2($alb_thumb['aid']) : '');
         }
     }
     ob_start();

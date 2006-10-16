@@ -54,6 +54,10 @@ $data = array($lang_modifyalb_php['general_settings'],
     array($lang_modifyalb_php['can_rate'].$notice1, 'votes', 1),
     );
 
+if (GALLERY_ADMIN_MODE) {
+  $data[] = array($lang_modifyalb_php['can_moderate'], 'moderator_group', 8);
+}
+
 function get_subcat_data($parent, $ident = '')
 {
     global $CONFIG, $CAT_LIST;
@@ -383,6 +387,34 @@ EOT;
 EOT;
 }
 
+function form_moderator($text, $name) {
+    global $CONFIG,$ALBUM_DATA,$lang_modifyalb_php;
+    $result = cpg_db_query("SELECT group_id, group_name FROM {$CONFIG['TABLE_USERGROUPS']} WHERE group_id > 1");
+    $options[0] = $lang_modifyalb_php['admins_only'];
+    while ($group = mysql_fetch_array($result)) {
+        $options[$group['group_id']] = sprintf($lang_modifyalb_php['groupp_only'], $group['group_name']);
+    } // while
+
+    echo <<<EOT
+        <tr>
+                <td class="tableb">
+                        $text
+                </td>
+                <td class="tableb" valign="top">
+                        <select name="$name" class="listbox">
+
+EOT;
+    foreach ($options as $value => $caption) {
+        echo '                                <option value ="' . $value . '"' . ($ALBUM_DATA['moderator_group'] == $value ? ' selected': '') . '>' . $caption . "</option>\n";
+    }
+    echo <<<EOT
+                        </select>
+                </td>
+        </tr>
+
+EOT;
+}
+
 function create_form(&$data)
 {
     foreach($data as $element) {
@@ -412,6 +444,9 @@ function create_form(&$data)
                 case 7:
                     form_password_hint($element[0],$element[1]);
                     break;
+                case 8 :
+                    form_moderator($element[0], $element[1]);
+                    break;                    
                 default:
                     cpg_die(CRITICAL_ERROR, 'Invalid action for form creation', __FILE__, __LINE__);
             } // switch

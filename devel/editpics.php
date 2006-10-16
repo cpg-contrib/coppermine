@@ -22,7 +22,24 @@ define('EDITPICS_PHP', true);
 
 require('include/init.inc.php');
 
-if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+if (is_array($USER_DATA['allowed_albums']) && count($USER_DATA['allowed_albums'])) {
+
+    define('MODERATOR_MODE', 1);
+    $albStr = implode(",", $USER_DATA['allowed_albums']);
+    $albStr = "($albStr)";
+
+    if (isset($_REQUEST['album']) && in_array($_REQUEST['album'], $USER_DATA['allowed_albums'])) {
+      define('MODERATOR_EDIT_MODE', 1);
+    } else {
+      define('MODERATOR_EDIT_MODE', 0);
+    }
+} else {
+    define('MODERATOR_MODE', 0);
+    define('MODERATOR_EDIT_MODE', 0);
+}
+
+if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE || MODERATOR_MODE)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+
 
 define('UPLOAD_APPROVAL_MODE', isset($_GET['mode']));
 define('EDIT_PICTURES_MODE', !isset($_GET['mode']));
@@ -35,7 +52,7 @@ if (isset($_GET['album'])) {
         $album_id = -1;
 }
 
-if (UPLOAD_APPROVAL_MODE && !GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+if (UPLOAD_APPROVAL_MODE && !GALLERY_ADMIN_MODE && !MODERATOR_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
 if (EDIT_PICTURES_MODE) {
     $result = cpg_db_query("SELECT title, category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid = '$album_id'");
@@ -44,7 +61,7 @@ if (EDIT_PICTURES_MODE) {
         mysql_free_result($result);
         $cat = $ALBUM_DATA['category'];
         $actual_cat = $cat;
-        if ($cat != FIRST_USER_CAT + USER_ID && !GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
+        if ($cat != FIRST_USER_CAT + USER_ID && !GALLERY_ADMIN_MODE && !MODERATOR_EDIT_MODE) cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
 } else {
         $ALBUM_DATA = array();
 }
@@ -124,7 +141,7 @@ function process_post_data()
                 $pic = mysql_fetch_array($result);
                 mysql_free_result($result);
 
-                if (!GALLERY_ADMIN_MODE) {
+                if (!GALLERY_ADMIN_MODE && !MODERATOR_MODE) {
                         if ($pic['category'] != FIRST_USER_CAT + USER_ID) cpg_die(ERROR, $lang_errors['perm_denied']."<br />(picture category = {$pic['category']}/ $pid)", __FILE__, __LINE__);
                         if (!isset($user_album_set[$aid])) cpg_die(ERROR, $lang_errors['perm_denied']."<br />(target album = $aid)", __FILE__, __LINE__);
                 }
@@ -432,7 +449,7 @@ function create_form(&$data)
 
 function get_user_albums($user_id = '')
 {
-        global $CONFIG, $user_albums_list;
+        global $CONFIG, $user_albums_list, $albStr;
 
         $USER_ALBUMS_ARRAY=array(0 => array());
 
@@ -442,7 +459,12 @@ function get_user_albums($user_id = '')
         }
 
         if (!isset($USER_ALBUMS_ARRAY[USER_ID])) {
-                $user_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='".(FIRST_USER_CAT + USER_ID)."' $or ORDER BY title");
+                if (MODERATOR_MODE && UPLOAD_APPROVAL_MODE || MODERATOR_EDIT_MODE) {
+                    $user_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid IN $albStr AND category > '".FIRST_USER_CAT."' OR category='".(FIRST_USER_CAT + USER_ID)."' ORDER BY title");
+                } else {
+                    $user_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='".(FIRST_USER_CAT + USER_ID)."' $or ORDER BY title");
+                }
+
 
                 if (mysql_num_rows($user_albums)) {
                     $user_albums_list=cpg_db_fetch_rowset($user_albums);
@@ -465,6 +487,14 @@ if (GALLERY_ADMIN_MODE) {
                 $public_albums_list = array();
         }
         mysql_free_result($public_albums);
+				} elseif (MODERATOR_MODE) {
+				    $public_albums = cpg_db_query("SELECT DISTINCT aid, title, IF(category = 0, CONCAT('&gt; ', title), CONCAT(name,' &lt; ',title)) AS cat_title FROM {$CONFIG['TABLE_ALBUMS']}, {$CONFIG['TABLE_CATEGORIES']} WHERE aid IN $albStr AND category < '" . FIRST_USER_CAT . "' AND (category = 0 OR category = cid) ORDER BY cat_title");
+				    if (mysql_num_rows($public_albums)) {
+				        $public_albums_list=cpg_db_fetch_rowset($public_albums);
+				    } else {
+				            $public_albums_list = array();
+				    }
+				    mysql_free_result($public_albums);
 } else {
         $public_albums_list = array();
 }
@@ -482,7 +512,12 @@ $s75 = $count == 75 ? 'selected' : '';
 $s100 = $count == 100 ? 'selected' : '';
 
 if (UPLOAD_APPROVAL_MODE) {
-        $result=cpg_db_query("SELECT count(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'NO'");
+        if (MODERATOR_MODE) {
+            $result=cpg_db_query("SELECT count(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'NO' AND aid IN $albStr");
+        } else {
+            $result=cpg_db_query("SELECT count(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'NO'");
+        }
+
         $nbEnr = mysql_fetch_array($result);
         $pic_count = $nbEnr[0];
 
@@ -511,11 +546,19 @@ if (UPLOAD_APPROVAL_MODE) {
         }
         mysql_free_result($result);
 
-    $sql =  "SELECT * ".
+        if (MODERATOR_MODE) {
+            $sql =  "SELECT * ".
+                                "FROM {$CONFIG['TABLE_PICTURES']} ".
+                                "WHERE approved = 'NO' AND aid IN $albStr".
+                                "ORDER BY pid ".
+                                "LIMIT $start, $count";
+        } else {
+            $sql =  "SELECT * ".
                         "FROM {$CONFIG['TABLE_PICTURES']} ".
                         "WHERE approved = 'NO' ".
                         "ORDER BY pid ".
                         "LIMIT $start, $count";
+        }
         $result = cpg_db_query($sql);
         $form_target = $_SERVER['PHP_SELF'].'?mode=upload_approval&amp;start='.$start.'&amp;count='.$count;
         $title = $lang_editpics_php['upl_approval'];

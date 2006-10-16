@@ -918,7 +918,7 @@ function build_caption(&$rowset,$must_have=array())
 
 function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $set_caption = true)
 {
-        global $USER, $CONFIG, $ALBUM_SET, $META_ALBUM_SET, $CURRENT_CAT_NAME, $CURRENT_ALBUM_KEYWORD, $HTML_SUBST, $THEME_DIR, $FAVPICS, $FORBIDDEN_SET_DATA;
+        global $USER, $CONFIG, $ALBUM_SET, $META_ALBUM_SET, $CURRENT_CAT_NAME, $CURRENT_ALBUM_KEYWORD, $HTML_SUBST, $THEME_DIR, $FAVPICS, $FORBIDDEN_SET_DATA, $USER_DATA;
         global $album_date_fmt, $lastcom_date_fmt, $lastup_date_fmt, $lasthit_date_fmt, $cat;
         global $lang_get_pic_data, $lang_meta_album_names, $lang_errors;
 
@@ -964,6 +964,12 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         $keyword = "OR (keywords like '%$album_keyword%' $forbidden_set_string )";
                 } else {
                   $keyword = '';
+                }
+                
+                if (is_array($USER_DATA['allowed_albums']) && in_array($album,$USER_DATA['allowed_albums'])) {
+                  $approved = '';
+                } else {
+                  $approved = GALLERY_ADMIN_MODE ? '' : 'AND approved=\'YES\'';
                 }
 
                 $approved = GALLERY_ADMIN_MODE ? '' : 'AND approved=\'YES\'';

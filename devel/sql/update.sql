@@ -536,3 +536,6 @@ INSERT INTO CPG_config VALUES ('slideshow_hits', '1');
 # Shorten Browser entries in hit stats
 UPDATE `CPG_hit_stats` SET `browser` = 'MSIE 6.0' WHERE `browser` ='Microsoft Internet Explorer 6.0';
 UPDATE `CPG_hit_stats` SET `browser` = 'MSIE 5.5' WHERE `browser` ='Microsoft Internet Explorer 5.5'; 
+
+# Add album moderator entry
+ALTER TABLE `CPG_albums` ADD `moderator_group` INT NOT NULL default '';

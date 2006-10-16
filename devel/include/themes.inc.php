@@ -166,6 +166,9 @@ EOT;
     addbutton($sys_menu_buttons,'{HOME_LNK}','{HOME_TITLE}','{HOME_TGT}','home',$template_sys_menu_spacer);
     addbutton($sys_menu_buttons,'{MY_GAL_LNK}','{MY_GAL_TITLE}','{MY_GAL_TGT}','my_gallery',$template_sys_menu_spacer);
     addbutton($sys_menu_buttons,'{MEMBERLIST_LNK}','{MEMBERLIST_TITLE}','{MEMBERLIST_TGT}','allow_memberlist',$template_sys_menu_spacer);
+    if (is_array($USER_DATA['allowed_albums']) && count($USER_DATA['allowed_albums'])) {
+      addbutton($sys_menu_buttons,'{UPL_APP_LNK}','{UPL_APP_TITLE}','{UPL_APP_TGT}','upload_approval',$template_sys_menu_spacer);
+    }
     addbutton($sys_menu_buttons,'{MY_PROF_LNK}','{MY_PROF_TITLE}','{MY_PROF_TGT}','my_profile',$template_sys_menu_spacer);
     addbutton($sys_menu_buttons,'{ADM_MODE_LNK}','{ADM_MODE_TITLE}','{ADM_MODE_TGT}','enter_admin_mode',$template_sys_menu_spacer);
     addbutton($sys_menu_buttons,'{USR_MODE_LNK}','{USR_MODE_TITLE}','{USR_MODE_TGT}','leave_admin_mode',$template_sys_menu_spacer);
@@ -1582,7 +1585,7 @@ if (!function_exists('theme_main_menu')) {  //{THEMES}
 function theme_main_menu($which)
 {
     global $AUTHORIZED, $CONFIG, $album, $actual_cat, $cat, $REFERER;
-    global $lang_main_menu, $template_sys_menu, $template_sub_menu;
+    global $lang_main_menu, $template_sys_menu, $template_sub_menu, $lang_gallery_admin_menu;
 
 
     static $sys_menu = '', $sub_menu = '';
@@ -1674,6 +1677,9 @@ function theme_main_menu($which)
         '{FAQ_TGT}' => "faq.php",
         '{FAQ_TITLE}' => $lang_main_menu['faq_title'],
         '{FAQ_LNK}' => $lang_main_menu['faq_lnk'],
+        '{UPL_APP_LNK}' => $lang_gallery_admin_menu['upl_app_lnk'],
+        '{UPL_APP_TGT}' => "editpics.php?mode=upload_approval",
+        '{UPL_APP_TITLE}' => $lang_gallery_admin_menu['upl_app_lnk'],
         );
 
         $sys_menu = template_eval($template_sys_menu, $param);
@@ -1708,6 +1714,9 @@ function theme_main_menu($which)
         '{SEARCH_TGT}' => "search.php",
         '{SEARCH_TITLE}' => $lang_main_menu['search_title'],
         '{SEARCH_LNK}' => $lang_main_menu['search_lnk'],
+        '{UPL_APP_LNK}' => $lang_gallery_admin_menu['upl_app_lnk'],
+        '{UPL_APP_TGT}' => "editpics.php?mode=upload_approval",
+        '{UPL_APP_TITLE}' => $lang_gallery_admin_menu['upl_app_lnk'],
         );
     $sub_menu = template_eval($template_sub_menu, $param);
   }

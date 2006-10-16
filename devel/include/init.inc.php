@@ -282,6 +282,15 @@ if (!USER_IS_ADMIN) {
     error_reporting(0); // hide all errors for visitors
 }
 
+if (!GALLERY_ADMIN_MODE) {
+  $result = cpg_db_query("SELECT DISTINCT(aid) FROM {$CONFIG['TABLE_ALBUMS']} WHERE moderator_group IN ".USER_GROUP_SET);
+  if (mysql_num_rows($result)) {
+    while ($row = mysql_fetch_array($result)) {
+      $USER_DATA['allowed_albums'][] = $row['aid'];
+    }
+  }
+}
+
 // Process theme selection if present in URI or in user profile
 if (!empty($_GET['theme'])) {
     $USER['theme'] = $_GET['theme'];
