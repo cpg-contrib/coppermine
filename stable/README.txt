@@ -32,7 +32,7 @@ Ok, okay, so you don't want to read the documentation. At least, "not just yet,"
 Let's Start!
 
 Question: Does my webserver support Coppermine?
-Answer: You need to have a webserver or webhost (Apache 2.0.50 recommended)that provides the following: PHP 4.1.0 or newer (4.3.10 recommended, 5.xx not recommended at this time), and MySQL 3.23.23 or newer (4.0.20 recommended). You also need either GD 1.xx or 2.xx (2.xx recommended) or ImageMagick installed. GD normally comes bundled with PHP; ImageMagick must be installed by your webhost. If your webhost is using PHP 5.xx, ask them "if register_long_arrays" has been turned on before trying to install Coppermine.
+Answer: You need to have a webserver or webhost that provides the following:  PHP 4.2.0 or newer (PHP5 supported), and MySQL 3.23.23 or newer (MySQL 4.1 is recommended, MySQL 5 is supported).  You also need either GD 1.xx or 2.xx (2.xx recommended) or ImageMagick installed.  GD normally comes bundled with PHP;ImageMagick must be installed by your webhost.
 
 Question: Where can I find out that stuff?
 Answer: Ask your webhost, they should be able to tell you. You can also create a file called phpinfo.php, upload it to your website and enter www.yoursite.com/phpinfo.php in your browser, run it and see what versions of the above requirements you have. Only your host, however, can tell you the exact location of ImageMagick's convert utility, if it's available, at all.
