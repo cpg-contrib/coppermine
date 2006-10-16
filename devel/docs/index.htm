@@ -4,7 +4,7 @@
 <title>Coppermine Photo Gallery - Documentation &amp; Manual</title>
 <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
 <meta name="language"    content="en">
-<meta name="author"      content="Coppermine dev team">
+<meta name="author" content="Tom">
 <meta name="copyright"   content="Coppermine dev team">
 <meta name="description" content="Coppermine Photo Gallery project - Coppermine is an easily set-up, fast, feature-rich photo gallery script with mySQL database, user management, private galleries, automatic thumbnail creation, ecard feature and a template system for easy customization to match the rest of a site.">
 <meta name="keywords"    content="photo gallery,galery,image,coppermine,php,mysql,easy,feature,thumbnail,automatic,creation,gd,Image Magick,ecard">
@@ -308,9 +308,9 @@
 <ul>
   <li>A web server that supports PHP</li>
   <li>A MySQL database<br />
-  You will need MySQL version 3.23.23 or better (4.x recommended). The MySQL user needs permissions to perform CREATE, ALTER, REPLACE, SELECT, UPDATE, DELETE, INSERT data from the database. Most users have these permissions when webhosted. If you don't have them, you will not be able to use this or any other pre-made scripts at all. If you are uncertain about your permissions, please check with your webhost. Most hosting services can probably tell you whether coppermine can or cannot be run off of their servers.<br />
+  You will need MySQL version 3.23.23 or better. MySQL 4.1 is recommended, MySQL 5 is supported. The MySQL user needs permissions to perform CREATE, ALTER, REPLACE, SELECT, UPDATE, DELETE, INSERT data from the database. Most users have these permissions when webhosted. If you don't have them, you will not be able to use this or any other pre-made scripts at all. If you are uncertain about your permissions, please check with your webhost. Most hosting services can probably tell you whether coppermine can or cannot be run on their servers.<br />
   A database needs to be set up that Coppermine can use - the install script will not create a database for you, but it will automatically create the tables and data structure in your database for you. In most webhosted environments, you will already have at least one database set up for you by your webhost. If not, you will need to create one. If you do need to create a database, check with your webhost on the proper procedures for doing so. Write down your database name, userID and password. You will require all three to successfully install Coppermine. </li>
-  <li>PHP (version 4.2.0 or better), either compiled with the support for the GD library or permission to use the exec() function for the ImageMagick &quot;convert&quot; utility in order to make thumbnails and reduced size images. <strong>Note:</strong> If your server is using PHP 5+, "register_long_arrays" must be turned "on." Verify that this is the case with your webhost before attempting to install Coppermine.</li>
+  <li>PHP (version 4.2.0 or better), either compiled with the support for the GD library or permission to use the exec() function for the ImageMagick &quot;convert&quot; utility in order to make thumbnails and reduced size images.</li>
   <li>An image library: either GD version 1.x or 2.x (PHP has to be compiled to support it) or ImageMagick.<br />
   (see <a href="faq.htm#whatIsImageMagick">What's ImageMagick</a> and <a href="faq.htm#WhatIsGD">What is GD</a>)</li>
   <li>It's always a good idea to contact your webhosting service first and ask them if they are aware of any known issues when installing Coppermine.</li>
