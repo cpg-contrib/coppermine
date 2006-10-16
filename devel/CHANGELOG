@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-10-16 [B] BLOB and TEXT columns cannot have DEFAULT values. {Nibbler}
 2006-10-16 [D] Updated minimum requirements information. {Nibbler}
 2006-10-08 [S] block launch of exif_php.inc.php if not in Coppermine {Donnoman}
 2006-10-03 [S] Corrected flaw in search logic {Nibbler}

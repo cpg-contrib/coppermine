@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS CPG_sessions (
 CREATE TABLE CPG_albums (
   aid int(11) NOT NULL auto_increment,
   title varchar(255) NOT NULL default '',
-  description text NOT NULL default '',
+  description text NOT NULL,
   visibility int(11) NOT NULL default '0',
   uploads enum('YES','NO') NOT NULL default 'NO',
   comments enum('YES','NO') NOT NULL default 'YES',
@@ -191,7 +191,7 @@ CREATE TABLE CPG_users (
   user_profile3 varchar(255) NOT NULL default '',
   user_profile4 varchar(255) NOT NULL default '',
   user_profile5 varchar(255) NOT NULL default '',
-  user_profile6 text NOT NULL default '',
+  user_profile6 text NOT NULL,
   user_actkey varchar(32) NOT NULL default '',
 
   PRIMARY KEY  (user_id),
@@ -218,7 +218,7 @@ CREATE TABLE CPG_votes (
 CREATE TABLE CPG_banned (
         ban_id int(11) NOT NULL auto_increment,
         user_id int(11) DEFAULT NULL,
-        ip_addr tinytext DEFAULT NULL,
+        ip_addr tinytext,
         expiry datetime DEFAULT NULL,
         brute_force tinyint(5) NOT NULL default '0',
         PRIMARY KEY  (ban_id)
