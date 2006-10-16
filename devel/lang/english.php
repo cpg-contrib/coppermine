@@ -1237,7 +1237,7 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
   'rename_failed' => "Failed to rename '%s' to '%s'.",
   'src_file_missing' => "Source file '%s' is missing.",
   'mime_conv' => "Cannot convert file from '%s' to '%s'",
-  'forb_ext' => 'Forbidden file extension.',//cpg1.4
+  'forb_ext' => 'Forbidden file extension.',
   'error_editor_class' => 'Editor class for your resize method not implemented', //cpg 1.5
   'error_document_size' => 'Document has no width or height', //cpg 1.5  //js-alert
   'success_picture' => 'Picture successfully saved - you can %sclose%s this window now', //cpg 1.5 // do not translate "%s" here
@@ -1250,6 +1250,8 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
   'enable_clipping' => 'Enable clipping, apply to crop', //cpg 1.5
   'jpeg_quality' => 'JPEG Output Quality', //cpg 1.5
   'or' => 'OR', //cpg 1.5
+  'approve_pic' => 'Approve file', //cpg 1.5
+  'approve_all' => 'Approve ALL files', //cpg 1.5
 );
 
 // ------------------------------------------------------------------------- //
