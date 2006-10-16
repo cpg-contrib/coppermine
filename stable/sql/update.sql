@@ -178,7 +178,7 @@ ALTER TABLE `CPG_albums` ADD `keyword` VARCHAR( 50 ) NOT NULL ;
 CREATE TABLE CPG_banned (
         ban_id int(11) NOT NULL auto_increment,
         user_id int(11) DEFAULT NULL,
-        ip_addr tinytext DEFAULT NULL,
+        ip_addr tinytext,
         expiry datetime DEFAULT NULL,
         PRIMARY KEY  (ban_id)
 ) TYPE=MyISAM;
@@ -472,4 +472,4 @@ ALTER TABLE CPG_pictures DROP `randpos`;
 
 # MySQL 5 compat fixes
 ALTER TABLE `CPG_pictures` CHANGE `mtime` `mtime` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00';
-ALTER TABLE `CPG_albums` CHANGE `description` `description` TEXT NOT NULL default '';
+ALTER TABLE `CPG_albums` CHANGE `description` `description` TEXT NOT NULL;
