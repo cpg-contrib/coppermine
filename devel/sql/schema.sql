@@ -47,7 +47,7 @@ CREATE TABLE CPG_albums (
   keyword VARCHAR( 50 ),
   alb_password VARCHAR( 32 ),
   alb_password_hint TEXT,
-  moderator_group INT NOT NULL default '',
+  moderator_group INT NOT NULL default 0,
   PRIMARY KEY  (aid),
   KEY alb_category (category)
 ) TYPE=MyISAM COMMENT='Used to store albums';

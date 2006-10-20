@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-10-21 [B] An empty string is NOT an integer {Nibbler}
 2006-10-20 [O] Added sorting improvement to SEF_URLs plugin {GauGau}
 2006-10-16 [O] Improved editpics screen {GauGau}
 2006-10-16 [A] Added "Moderator for album pictures" hack {GauGau}
