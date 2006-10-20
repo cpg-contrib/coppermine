@@ -52,6 +52,9 @@ function sef_urls_convert(&$html) {
     // Rewrite thumbnails.php?album=[album]&cat=[category] URLs to thumbnails-[album]-[category].html
     $html = preg_replace('/thumbnails\.php\?album=([a-z0-9]+)(\&|\&amp;)cat=([\-0-9]+)/i','thumbnails-$1-$3.html',$html);
 
+	   // Rewrite thumbnails.php?album=[album]&page=[category]&sort=[type] URLs to thumbnails-[album]-page-[page]-sort-[type].html
+	$html = preg_replace('/thumbnails\.php\?album=([a-z0-9]+)(\&|\&amp;)page=([0-9]+)(\&|\&amp;)sort=([a-z]+)/i','thumbnails-$1-page-$3-sort-$5.html',$html);
+
     // Rewrite thumbnails.php?album=[album]&page=[category] URLs to thumbnails-[album]-page-[page].html
     $html = preg_replace('/thumbnails\.php\?album=([a-z0-9]+)(\&|\&amp;)page=([0-9]+)/i','thumbnails-$1-page-$3.html',$html);
 
@@ -70,11 +73,12 @@ function sef_urls_convert(&$html) {
     // Rewrite displayimage.php?pos=-[pid] URLs to displayimage-[pid].html
     $html = preg_replace('/displayimage\.php\?pos=-([0-9]+)/i','displayimage-$1.html',$html);
 
-         // Rewrite displayimage.php?album=[album]&pid=[pid]&slideshow=[interval] URLs to slideshow-[album]-[pid]-[interval].html
-        $html = preg_replace('/displayimage\.php\?album=([a-z0-9]+)(\&|\&amp;)pid=([0-9]+)(\&|\&amp;)slideshow=([0-9]+)/i','slideshow-$1-$3-$5.html',$html);
+    // Rewrite displayimage.php?album=[album]&pid=[pid]&slideshow=[interval] URLs to slideshow-[album]-[pid]-[interval].html
+    $html = preg_replace('/displayimage\.php\?album=([a-z0-9]+)(\&|\&amp;)pid=([0-9]+)(\&|\&amp;)slideshow=([0-9]+)/i','slideshow-$1-$3-$5.html',$html);
 
-         // Rewrite displayimage.php?album=[metaalbum]&cat=[category]&pid=[pid]&slideshow=[interval] URLs to slideshow-[album]-[category]-[pid]-[interval].html
-        $html = preg_replace('/displayimage\.php\?album=([a-z]+)(\&|\&amp;)cat=([\-0-9]+)(\&|\&amp;)pid=([0-9]+)(\&|\&amp;)slideshow=([0-9]+)/i','slideshow-$1-$3-$5-$7.html',$html);
+    // Rewrite displayimage.php?album=[metaalbum]&cat=[category]&pid=[pid]&slideshow=[interval] URLs to slideshow-[album]-[category]-[pid]-[interval].html
+    $html = preg_replace('/displayimage\.php\?album=([a-z]+)(\&|\&amp;)cat=([\-0-9]+)(\&|\&amp;)pid=([0-9]+)(\&|\&amp;)slideshow=([0-9]+)/i','slideshow-$1-$3-$5-$7.html',$html);
+    
 
 
     // Return modified HTML

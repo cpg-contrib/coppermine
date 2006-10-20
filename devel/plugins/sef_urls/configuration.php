@@ -20,5 +20,5 @@
 $name = 'Search Engine Friendly URLs';
 $description = 'Makes SEF URLs for index, thumbnails, and displayimage.php.<br />Warning: this plugin is still experimental, there are known issues when using it. Test thoroughly and use at your own risk.';
 $author = 'Coppermine Development Team';
-$version = '1.0';
+$version = '1.1';
 ?>
