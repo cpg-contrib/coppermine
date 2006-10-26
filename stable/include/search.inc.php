@@ -70,7 +70,7 @@ if ($search_string && isset($_POST['params'])) {
 
         $sql .= $_POST['newer_than'] ? ' AND ctime > UNIX_TIMESTAMP() - '.( (int) $_POST['newer_than'] * 60*60*24) : '';
         $sql .= $_POST['older_than'] ? ' AND ctime < UNIX_TIMESTAMP() - '.( (int) $_POST['older_than'] * 60*60*24) : '';
-        $sql .=  " $ALBUM_SET";
+        $sql .=  " $ALBUM_SET AND approved = 'YES'";
 
         $temp = str_replace('SELECT *', 'SELECT COUNT(*)', $sql);
         $result = cpg_db_query($temp);
