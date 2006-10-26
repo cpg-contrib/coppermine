@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-10-27 [B] Correcting difference between schema.sql and update.sql with respect to the user_password field. {Nibbler}
 2006-10-27 [B] Pictures awaiting approval are no longer found using the search feature. {Nibbler}
 2006-10-27 [B] Converting htmlentities back to normal format for use in emails {Nibbler}
 2006-10-16 [B] BLOB and TEXT columns cannot have DEFAULT values. {Nibbler}
