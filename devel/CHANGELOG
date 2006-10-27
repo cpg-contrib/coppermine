@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-10-28 [S] Removing SQL injection vulnerability {Nibbler}
 2006-10-27 [M] Removing unused file include/exifReader.inc.php {Nibbler}
 2006-10-27 [B] Adding missing checks for email address validity and duplicate email addresses to profile page. {Nibbler}
 2006-10-27 [B] Pictures awaiting approval are no longer found using the search feature. {Nibbler}

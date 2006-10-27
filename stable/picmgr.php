@@ -350,7 +350,7 @@ pageheader($lang_picmgr_php['pic_mgr']);
 <?php starttable("100%", $lang_picmgr_php['pic_mgr'], 1); ?>
 <tr>
 <?php
-   $aid = isset($_GET['aid']) ? ($_GET['aid']) : 0;
+   $aid = isset($_GET['aid']) ? (int) $_GET['aid'] : 0;
 
    if (GALLERY_ADMIN_MODE || USER_ADMIN_MODE) {
       $result = cpg_db_query("SELECT aid, pid, filename FROM {$CONFIG['TABLE_PICTURES']} WHERE aid = $aid ORDER BY position ASC, pid");
