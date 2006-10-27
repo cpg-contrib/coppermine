@@ -186,22 +186,49 @@ if (isset($_POST['change_pass'])) $op = 'change_pass';
 
 if (isset($_POST['change_profile']) && USER_ID && UDB_INTEGRATION == 'coppermine') { //!defined('UDB_INTEGRATION')) {
 
-        $profile1 = addslashes($_POST['user_profile1']);
-        $profile2 = addslashes($_POST['user_profile2']);
-        $profile3 = addslashes($_POST['user_profile3']);
-        $profile4 = addslashes($_POST['user_profile4']);
-        $profile5 = addslashes($_POST['user_profile5']);
-        $profile6 = addslashes($_POST['user_profile6']);
-        $email = addslashes($_POST['email']);
+	$profile1 = addslashes($_POST['user_profile1']);
+	$profile2 = addslashes($_POST['user_profile2']);
+	$profile3 = addslashes($_POST['user_profile3']);
+	$profile4 = addslashes($_POST['user_profile4']);
+	$profile5 = addslashes($_POST['user_profile5']);
+	$profile6 = addslashes($_POST['user_profile6']);
+	
+	$error = false;
+	
+	if ($CONFIG['allow_email_change']){
+	
+		$email = addslashes($_POST['email']);
+		
+		if (!eregi("^[_\.0-9a-z\-]+@([0-9a-z][0-9a-z-]+\.)+[a-z]{2,6}$", $email)){
+			$error = $lang_register_php['err_invalid_email'];
+			
+		} elseif (!$CONFIG['allow_duplicate_emails_addr']) {
+		
+			$sql = "SELECT user_id " . "FROM {$CONFIG['TABLE_USERS']} " . "WHERE user_email = '" . $email . "'";
+			$result = cpg_db_query($sql);
 
-    $sql = "UPDATE {$CONFIG['TABLE_USERS']} SET " . "user_profile1 = '$profile1', " . "user_profile2 = '$profile2', " . "user_profile3 = '$profile3', " . "user_profile4 = '$profile4', " . "user_profile5 = '$profile5', " . "user_profile6 = '$profile6'" . ($CONFIG['allow_email_change'] ? ", user_email = '$email'" : "") . " WHERE user_id = '" . USER_ID . "'";
+			if (mysql_num_rows($result)) {
+				$error = $lang_register_php['err_duplicate_email'];
+			}
+		}
+    }
+    
+    $sql = "UPDATE {$CONFIG['TABLE_USERS']} SET " . "user_profile1 = '$profile1', " . "user_profile2 = '$profile2', " . "user_profile3 = '$profile3', " . "user_profile4 = '$profile4', " . "user_profile5 = '$profile5', " . "user_profile6 = '$profile6'" . ($CONFIG['allow_email_change'] && !$error ? ", user_email = '$email'" : "") . " WHERE user_id = '" . USER_ID . "'";
 
     $result = cpg_db_query($sql);
 
     $title = sprintf($lang_register_php['x_s_profile'], stripslashes(USER_NAME));
-    $redirect = "index.php";
-    pageheader($title, "<META http-equiv=\"refresh\" content=\"3;url=$redirect\">");
-    msg_box($lang_info, $lang_register_php['update_success'], $lang_continue, $redirect);
+    
+    if (!$error){
+    	$redirect = "index.php";
+ 		pageheader($title, "<META http-equiv=\"refresh\" content=\"3;url=$redirect\">");
+    	msg_box($lang_info, $lang_register_php['update_success'], $lang_continue, $redirect);
+    } else {
+		$redirect = 'profile.php?op=edit_profile';
+		pageheader($title, "<META http-equiv=\"refresh\" content=\"3;url=$redirect\">");
+		msg_box($lang_error, $error, $lang_back, $redirect);
+    }
+    
     pagefooter();
     ob_end_flush();
     exit;
