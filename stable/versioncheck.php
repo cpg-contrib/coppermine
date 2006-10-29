@@ -4701,7 +4701,7 @@ $return = '
 1.4.10|upload.php|1.4.10|3275|mandatory|r@
 1.4.10|usermgr.php|1.4.10|3275|mandatory|r@
 1.4.10|util.php|1.4.10|3275|mandatory|r@
-1.4.10|versioncheck.php|1.4.10|3327|mandatory|r@
+1.4.10|versioncheck.php|1.4.10|3328|mandatory|r@
 1.4.10|viewlog.php|1.4.10|3275|mandatory|r@
 1.4.10|xp_publish.php|1.4.10|3275|mandatory|r@
 1.4.10|zipdownload.php|1.4.10|3275|mandatory|r@
@@ -4777,7 +4777,7 @@ $return = '
 1.4.10|include/smilies.inc.php|1.4.10|3275|mandatory|r@
 1.4.10|include/smtp.inc.php|1.4.10|3275|mandatory|r@
 1.4.10|include/sql_parse.php|1.4.10|3275|mandatory|r@
-1.4.10|include/themes.inc.php|1.4.10|3275|mandatory|r@
+1.4.10|include/themes.inc.php|1.4.10|3325|mandatory|r@
 1.4.10|include/update.inc.php|1.4.10|3275|mandatory|r@
 1.4.10|include/zip.lib.php|1.4.10|3275|mandatory|r@
 1.4.10|include/makers|||mandatory|w@
