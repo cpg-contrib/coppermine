@@ -4701,7 +4701,7 @@ $return = '
 1.4.10|upload.php|1.4.10|3275|mandatory|r@
 1.4.10|usermgr.php|1.4.10|3275|mandatory|r@
 1.4.10|util.php|1.4.10|3275|mandatory|r@
-1.4.10|versioncheck.php|1.4.10|3275|mandatory|r@
+1.4.10|versioncheck.php|1.4.10|3327|mandatory|r@
 1.4.10|viewlog.php|1.4.10|3275|mandatory|r@
 1.4.10|xp_publish.php|1.4.10|3275|mandatory|r@
 1.4.10|zipdownload.php|1.4.10|3275|mandatory|r@
