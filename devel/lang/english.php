@@ -263,6 +263,7 @@ $lang_rate_pic = array(
   'good' => 'Good',
   'excellent' => 'Excellent',
   'great' => 'Great',
+  'js_warning' => 'Javascript must be enabled in order to vote', // cpg1.5.x
 );
 
 // ------------------------------------------------------------------------- //

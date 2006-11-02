@@ -846,6 +846,11 @@ $template_image_rating = <<<EOT
                 <td class="tableb_compact" width="17%" align="center"><a href="{RATE4}" title="{EXCELLENT}" rel="nofollow"><img src="{LOCATION}images/rating4.gif" border="0" alt="{EXCELLENT}" /><br /></a></td>
                 <td class="tableb_compact" width="17%" align="center"><a href="{RATE5}" title="{GREAT}" rel="nofollow"><img src="{LOCATION}images/rating5.gif" border="0" alt="{GREAT}" /><br /></a></td>
         </tr>
+        <noscript>
+        <tr>
+          <td class="tableb_compact" colspan="6" align="center">{JS_WARNING}</td>
+        </tr>
+        </noscript>
 </table>
 EOT;
 /******************************************************************************
@@ -2623,12 +2628,12 @@ function theme_html_rating_box()
 
     $params = array('{TITLE}' => $lang_rate_pic['rate_this_pic'],
         '{VOTES}' => $votes,
-        '{RATE0}' => "ratepic.php?pic=$pid&amp;rate=0",
-        '{RATE1}' => "ratepic.php?pic=$pid&amp;rate=1",
-        '{RATE2}' => "ratepic.php?pic=$pid&amp;rate=2",
-        '{RATE3}' => "ratepic.php?pic=$pid&amp;rate=3",
-        '{RATE4}' => "ratepic.php?pic=$pid&amp;rate=4",
-        '{RATE5}' => "ratepic.php?pic=$pid&amp;rate=5",
+        '{RATE0}' => "javascript:redirect('ratepic.php?pic=$pid&amp;rate=0');",
+        '{RATE1}' => "javascript:redirect('ratepic.php?pic=$pid&amp;rate=1')",
+        '{RATE2}' => "javascript:redirect('ratepic.php?pic=$pid&amp;rate=2')",
+        '{RATE3}' => "javascript:redirect('ratepic.php?pic=$pid&amp;rate=3')",
+        '{RATE4}' => "javascript:redirect('ratepic.php?pic=$pid&amp;rate=4')",
+        '{RATE5}' => "javascript:redirect('ratepic.php?pic=$pid&amp;rate=5')",
         '{RUBBISH}' => $lang_rate_pic['rubbish'],
         '{POOR}' => $lang_rate_pic['poor'],
         '{FAIR}' => $lang_rate_pic['fair'],
@@ -2637,6 +2642,7 @@ function theme_html_rating_box()
         '{GREAT}' => $lang_rate_pic['great'],
         '{WIDTH}' => $CONFIG['picture_table_width'],
         '{LOCATION}' => $location,        //theme dir or default images directory
+        '{JS_WARNING}' => $lang_rate_pic['js_warning'],
         );
 
     return template_eval($template_image_rating, $params);

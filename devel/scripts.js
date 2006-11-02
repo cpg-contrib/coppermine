@@ -142,3 +142,8 @@ function hideall()
                 }
         }
 }
+
+function redirect(url)
+{
+        window.location=url;
+}
