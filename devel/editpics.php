@@ -86,12 +86,12 @@ $data = array(
         array($lang_editpics_php['title'], 'title', 0, 255),
         array($captionLabel, 'caption', 2, $CONFIG['max_img_desc_length']),
         array($lang_editpics_php['keywords'], 'keywords', 0, 255),
-        array($lang_editpics_php['approval'], 'approved', 5),
+//        array($lang_editpics_php['approval'], 'approved', 5),
         array($CONFIG['user_field1_name'], 'user1', 0, 255),
         array($CONFIG['user_field2_name'], 'user2', 0, 255),
         array($CONFIG['user_field3_name'], 'user3', 0, 255),
         array($CONFIG['user_field4_name'], 'user4', 0, 255),
-        array('', '', 4)
+  //      array('', '', 4)
 );
 
 function get_post_var($var, $pid)
@@ -185,8 +185,9 @@ function process_post_data()
                                 $del_comments = 1;
                                 $delete = 1;
                         }
-                } elseif (GALLERY_ADMIN_MODE) {
-                  $approved = get_post_var('approved', $pid);
+                } elseif (GALLERY_ADMIN_MODE || MODERATOR_EDIT_MODE) {
+//                  $approved = get_post_var('approved', $pid);
+                    $approved = isset($_POST['approved'.$pid]);
                   if ($approved == 'YES') {
                       $update .= ", approved = 'YES'";
                   } else {
@@ -264,34 +265,42 @@ function form_pic_info($text)
             $loop_counter = 0;
         }
         if ($CURRENT_PIC['approved'] == 'YES') {
-        	$pic_approval_checked = 'checked="checked"';
+                $pic_approval_checked = 'checked="checked"';
         }
+
+        // The approve checkbox is shown only if the user is admin or moderator.
+        if (GALLERY_ADMIN_MODE || MODERATOR_EDIT_MODE) {
+            $approve_html = <<<EOT
+                              <td class="{$row_style_class}" width="40" valign="top">
+                                      <input type="checkbox" name="approved{$CURRENT_PIC['pid']}" id="approve{$CURRENT_PIC['pid']}" value="YES" {$pic_approval_checked} class="checkbox" title="{$lang_editpics_php['approve_pic']}" /><label for="approve{$CURRENT_PIC['pid']}" class="clickable_option"><img src="images/approve.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['approve_pic']}" /></label>
+                              </td>
+EOT;
+        }
+
         echo <<<EOT
-        
+
         <tr>
                 <td colspan="3">
-									<table border="0" cellspacing="0" cellpadding="0" width="100%">
-										<tr>
-											<td class="{$row_style_class}">
-												$filename
-											</td>
-											<td class="{$row_style_class}" width="40" valign="top">
-											<input type="checkbox" name="delete{$CURRENT_PIC['pid']}" id="delete{$CURRENT_PIC['pid']}" value="1" class="checkbox" title="{$lang_editpics_php['del_pic']}" /><label for="delete{$CURRENT_PIC['pid']}" class="clickable_option"><img src="images/delete.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['del_pic']}" /></label>
-											</td>
-											<td class="{$row_style_class}" width="40" valign="top">
-												<input type="checkbox" name="approved{$CURRENT_PIC['pid']}" id="approve{$CURRENT_PIC['pid']}" value="YES" {$pic_approval_checked} class="checkbox" title="{$lang_editpics_php['approve_pic']}" /><label for="approve{$CURRENT_PIC['pid']}" class="clickable_option"><img src="images/approve.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['approve_pic']}" /></label>
-											</td>
-											<td class="{$row_style_class}" width="40">
-												<input type="checkbox" name="reset_vcount{$CURRENT_PIC['pid']}" id="reset_vcount{$CURRENT_PIC['pid']}" value="1" class="checkbox" title="{$lang_editpics_php['reset_view_count']}" /><label for="reset_vcount{$CURRENT_PIC['pid']}" class="clickable_option"><img src="images/views.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['reset_view_count']}" /></label>
-											</td>
-											<td class="{$row_style_class}" width="40">
-												<input type="checkbox" name="reset_votes{$CURRENT_PIC['pid']}" id="reset_votes{$CURRENT_PIC['pid']}" value="1" class="checkbox" title="{$lang_editpics_php['reset_votes']}" /><label for="reset_votes{$CURRENT_PIC['pid']}" class="clickable_option"><img src="images/rating.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['reset_votes']}" /></label>
-											</td>
-											<td class="{$row_style_class}" width="40">
-												<input type="checkbox" name="del_comments{$CURRENT_PIC['pid']}" id="del_comments{$CURRENT_PIC['pid']}" value="1" class="checkbox" title="{$lang_editpics_php['del_comm']}" /><label for="del_comments{$CURRENT_PIC['pid']}" class="clickable_option"><img src="images/report.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['del_comm']}" /></label>
-											</td>
-										</tr>
-									</table>
+                                                                        <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                                                                <tr>
+                                                                                        <td class="{$row_style_class}">
+                                                                                                $filename
+                                                                                        </td>
+                                                                                        <td class="{$row_style_class}" width="40" valign="top">
+                                                                                        <input type="checkbox" name="delete{$CURRENT_PIC['pid']}" id="delete{$CURRENT_PIC['pid']}" value="1" class="checkbox" title="{$lang_editpics_php['del_pic']}" /><label for="delete{$CURRENT_PIC['pid']}" class="clickable_option"><img src="images/delete.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['del_pic']}" /></label>
+                                                                                        </td>
+                                                                                        $approve_html
+                                                                                        <td class="{$row_style_class}" width="40">
+                                                                                                <input type="checkbox" name="reset_vcount{$CURRENT_PIC['pid']}" id="reset_vcount{$CURRENT_PIC['pid']}" value="1" class="checkbox" title="{$lang_editpics_php['reset_view_count']}" /><label for="reset_vcount{$CURRENT_PIC['pid']}" class="clickable_option"><img src="images/views.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['reset_view_count']}" /></label>
+                                                                                        </td>
+                                                                                        <td class="{$row_style_class}" width="40">
+                                                                                                <input type="checkbox" name="reset_votes{$CURRENT_PIC['pid']}" id="reset_votes{$CURRENT_PIC['pid']}" value="1" class="checkbox" title="{$lang_editpics_php['reset_votes']}" /><label for="reset_votes{$CURRENT_PIC['pid']}" class="clickable_option"><img src="images/rating.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['reset_votes']}" /></label>
+                                                                                        </td>
+                                                                                        <td class="{$row_style_class}" width="40">
+                                                                                                <input type="checkbox" name="del_comments{$CURRENT_PIC['pid']}" id="del_comments{$CURRENT_PIC['pid']}" value="1" class="checkbox" title="{$lang_editpics_php['del_comm']}" /><label for="del_comments{$CURRENT_PIC['pid']}" class="clickable_option"><img src="images/report.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['del_comm']}" /></label>
+                                                                                        </td>
+                                                                                </tr>
+                                                                        </table>
                 </td>
         </tr>
         <tr>
@@ -455,12 +464,14 @@ function create_form(&$data)
                             case 3 :
                                     form_pic_info($element[0]);
                                     break;
+/*
                             case 4 :
                                     form_options();
                                     break;
                             case 5:
                                     form_status($element[0], $element[1]);
                                     break;
+*/
                             default:
                                         cpg_die(CRITICAL_ERROR, 'Invalid action for form creation', __FILE__, __LINE__);
                     } // switch
@@ -510,14 +521,14 @@ if (GALLERY_ADMIN_MODE) {
                 $public_albums_list = array();
         }
         mysql_free_result($public_albums);
-				} elseif (MODERATOR_MODE) {
-				    $public_albums = cpg_db_query("SELECT DISTINCT aid, title, IF(category = 0, CONCAT('&gt; ', title), CONCAT(name,' &lt; ',title)) AS cat_title FROM {$CONFIG['TABLE_ALBUMS']}, {$CONFIG['TABLE_CATEGORIES']} WHERE aid IN $albStr AND category < '" . FIRST_USER_CAT . "' AND (category = 0 OR category = cid) ORDER BY cat_title");
-				    if (mysql_num_rows($public_albums)) {
-				        $public_albums_list=cpg_db_fetch_rowset($public_albums);
-				    } else {
-				            $public_albums_list = array();
-				    }
-				    mysql_free_result($public_albums);
+                                } elseif (MODERATOR_MODE) {
+                                    $public_albums = cpg_db_query("SELECT DISTINCT aid, title, IF(category = 0, CONCAT('&gt; ', title), CONCAT(name,' &lt; ',title)) AS cat_title FROM {$CONFIG['TABLE_ALBUMS']}, {$CONFIG['TABLE_CATEGORIES']} WHERE aid IN $albStr AND category < '" . FIRST_USER_CAT . "' AND (category = 0 OR category = cid) ORDER BY cat_title");
+                                    if (mysql_num_rows($public_albums)) {
+                                        $public_albums_list=cpg_db_fetch_rowset($public_albums);
+                                    } else {
+                                            $public_albums_list = array();
+                                    }
+                                    mysql_free_result($public_albums);
 } else {
         $public_albums_list = array();
 }
@@ -643,12 +654,12 @@ function selectAll(d,box) {
 
 function expandTextarea(elementName)
 {
-	document.getElementById(elementName).rows = 10;
+        document.getElementById(elementName).rows = 10;
 }
 
 function collapseTextarea(elementName)
 {
-	document.getElementById(elementName).rows = 2;
+        document.getElementById(elementName).rows = 2;
 }
 
 -->
@@ -683,31 +694,38 @@ echo <<<EOT
         </tr>
 EOT;
 
+// The approve all checkbox is shown only if the user is admin or moderator.
+if (GALLERY_ADMIN_MODE || MODERATOR_EDIT_MODE) {
+    $approve_all_html = <<<EOT
+                          <td class="tableh2" width="40" valign="top">
+                                  <input type="checkbox" name="approveAll" onclick="selectAll(this,'approved');" class="checkbox" id="approveAll" title="{$lang_editpics_php['approve_all']}" /><label for="approveAll" class="clickable_option"><img src="images/approve.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['approve_all']}" /></label>
+                          </td>
+EOT;
+}
+
 echo <<<EOT
         <tr>
             <td colspan="3" align="center">
-							<table border="0" cellspacing="0" cellpadding="0" width="100%">
-								<tr>
-									<td class="tableh2" align="right">
-										{$lang_editpics_php['select_unselect']}:
-									</td>
-									<td class="tableh2" width="40" valign="top">
-										<input type="checkbox" name="deleteAll" onclick="selectAll(this,'delete');" class="checkbox" id="deleteAll" title="{$lang_editpics_php['del_all']}" /><label for="deleteAll" class="clickable_option"><img src="images/delete.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['del_all']}" /></label>
-									</td>
-									<td class="tableh2" width="40" valign="top">
-										<input type="checkbox" name="approveAll" onclick="selectAll(this,'approved');" class="checkbox" id="approveAll" title="{$lang_editpics_php['approve_all']}" /><label for="approveAll" class="clickable_option"><img src="images/approve.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['approve_all']}" /></label>
-									</td>
-									<td class="tableh2" width="40">
-										<input type="checkbox" name="reset_vcountAll" onclick="selectAll(this,'reset_vcount');" class="checkbox" id="reset_vcountAll" title="{$lang_editpics_php['reset_all_view_count']}" /><label for="reset_vcountAll" class="clickable_option"><img src="images/views.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['reset_all_view_count']}" /></label>
-									</td>
-									<td class="tableh2" width="40">
-										<input type="checkbox" name="reset_votesAll" onclick="selectAll(this,'reset_votes');" class="checkbox" id="reset_votesAll" title="{$lang_editpics_php['reset_all_votes']}" /><label for="reset_votesAll" class="clickable_option"><img src="images/rating.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['reset_all_votes']}" /></label>
-									</td>
-									<td class="tableh2" width="40">
-										<input type="checkbox" name="del_commentsAll" onclick="selectAll(this,'del_comments');" class="checkbox"reset_votesAll" id="del_commentsAll" title="{$lang_editpics_php['del_all_comm']}" /><label for="del_commentsAll" class="clickable_option"><img src="images/report.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['del_all_comm']}" /></label>
-									</td>
-								</tr>
-							</table>
+                                                        <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                                                <tr>
+                                                                        <td class="tableh2" align="right">
+                                                                                {$lang_editpics_php['select_unselect']}:
+                                                                        </td>
+                                                                        <td class="tableh2" width="40" valign="top">
+                                                                                <input type="checkbox" name="deleteAll" onclick="selectAll(this,'delete');" class="checkbox" id="deleteAll" title="{$lang_editpics_php['del_all']}" /><label for="deleteAll" class="clickable_option"><img src="images/delete.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['del_all']}" /></label>
+                                                                        </td>
+                                                                        $approve_all_html
+                                                                        <td class="tableh2" width="40">
+                                                                                <input type="checkbox" name="reset_vcountAll" onclick="selectAll(this,'reset_vcount');" class="checkbox" id="reset_vcountAll" title="{$lang_editpics_php['reset_all_view_count']}" /><label for="reset_vcountAll" class="clickable_option"><img src="images/views.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['reset_all_view_count']}" /></label>
+                                                                        </td>
+                                                                        <td class="tableh2" width="40">
+                                                                                <input type="checkbox" name="reset_votesAll" onclick="selectAll(this,'reset_votes');" class="checkbox" id="reset_votesAll" title="{$lang_editpics_php['reset_all_votes']}" /><label for="reset_votesAll" class="clickable_option"><img src="images/rating.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['reset_all_votes']}" /></label>
+                                                                        </td>
+                                                                        <td class="tableh2" width="40">
+                                                                                <input type="checkbox" name="del_commentsAll" onclick="selectAll(this,'del_comments');" class="checkbox"reset_votesAll" id="del_commentsAll" title="{$lang_editpics_php['del_all_comm']}" /><label for="del_commentsAll" class="clickable_option"><img src="images/report.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['del_all_comm']}" /></label>
+                                                                        </td>
+                                                                </tr>
+                                                        </table>
             </td>
         </tr>
 EOT;
@@ -721,15 +739,15 @@ while($CURRENT_PIC = mysql_fetch_array($result)){
         }
         // wrap the actual block into another table
         print <<< EOT
-        
+
         <!-- individual file start -->
-        
+
 EOT;
         create_form($data);
         print <<< EOT
-        
+
         <!-- individual file end -->
-        
+
 EOT;
         flush();
 } // while
