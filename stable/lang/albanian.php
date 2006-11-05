@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /*************************
   Coppermine Photo Gallery
   ************************
@@ -35,6 +35,7 @@ $lang_text_dir = 'ltr'; // ('ltr' for left to right, 'rtl' for right to left)
 
 // shortcuts for Byte, Kilo, Mega
 $lang_byte_units = array('Bytes', 'KB', 'MB');
+
 // Day of weeks and months
 $lang_day_of_week = array('E dielë', 'E hënë', 'E martë', 'E mërkurë', 'E enjte', 'E premte', 'E shtunë');
 $lang_month = array('Janar', 'Shkurt', 'Mars', 'Prill', 'Maj', 'Qershor', 'Korrik', 'Gusht', 'Shtator', 'Tetor', 'Nëntor', 'Dhjetor');
@@ -49,7 +50,6 @@ $lang_error = 'Gabim';
 $lang_check_uncheck_all = 'zgjidhi/mos i zgjidh të gjitha'; //cpg1.4
 
 // The various date formats
-
 // See http://www.php.net/manual/en/function.strftime.php to define the variable below
 $album_date_fmt =    '%d %B %Y';
 $lastcom_date_fmt =  '%d/%m/%y @ %H:%M';
@@ -61,6 +61,7 @@ $log_date_fmt = '%B %d, %Y at %I:%M %p'; //cpg1.4
 
 // For the word censor
 $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*');
+
 $lang_meta_album_names = array(
         'random' => 'Fotografi të rastësishme',
         'lastup' => 'Futjet më të fundit',
@@ -70,9 +71,9 @@ $lang_meta_album_names = array(
         'toprated' => 'Më të vlerësuarat',
         'lasthits' => 'Të para së fundi',
         'search' => 'Rezultatet e kërkimit', 
-        'favpics'=> 'Fotografitë e preferuara', 
-	'favpics'=> 'Skedaret favorite',  //cpg1.4
+        'favpics'=> 'Fotografitë e preferuara',//cpg1.4
 );
+
 $lang_errors = array(
         'access_denied' => 'Ju nuk u lejohet hyrja në këtë faqe.',
         'perm_denied' => 'Ju nuk u lejohet të kryeni këtë veprim.',
@@ -104,81 +105,77 @@ $lang_bbcode_help_title = 'ndihmë bbcode'; //cpg1.4
 $lang_bbcode_help = 'Ju mund të shtoni një lidhje të klikueshme ose tekst të formatueshëm në këto fusha, duke përdorur etiketat bbcode: <li>[b](i)e Trashë[/b] =&gt; <b>(i)e Trashë</b></li><li>[i]Italike[/i] =&gt; <i>Italike</i></li><li>[url=http://sitijuaj.com/]Teksti me lidhjen[/url] =&gt; <a href="http://sitijuaj.com">Teksti me lidhjen</a></li><li>[email]përdorues@domain.com[/email] =&gt; <a href="mailto:përdorues@domain.com">përdorues@domain.com</a></li><li>[color=red]teksti juaj[/color] =&gt; <span style="color:red">teksti juaj</span></li><li>[img]http://coppermine.sf.net/demo/images/red.gif[/img] => <img src="../images/red.gif" border="0" alt="" /></li>'; //cpg1.4
 
 // ------------------------------------------------------------------------- //
-
 // File theme.php
-
 // ------------------------------------------------------------------------- //
 
-
 $lang_main_menu = array(
-	'home_title' => 'Shko tek faqja kryesore',
-  	'home_lnk' => 'Pritja',
+      	'home_title' => 'Shko tek faqja kryesore',
+     	'home_lnk' => 'Faqja kryesore',
         'alb_list_title' => 'Shko tek lista e albumeve',
         'alb_list_lnk' => 'Lista e albumeve',
         'my_gal_title' => 'Shko tek galeria ime personale',
         'my_gal_lnk' => 'Galeria ime',
-	'my_prof_title' => 'Shko tek profili im personal', //cpg1.4
+    	'my_prof_title' => 'Shko tek profili im personal', //cpg1.4
         'my_prof_lnk' => 'Profili im',
         'adm_mode_title' => 'Kalo në modë admin',
         'adm_mode_lnk' => 'Modë admin',
         'usr_mode_title' => 'Kalo në modë përdorues',
         'usr_mode_lnk' => 'Modë përdorues',
-	'upload_pic_title' => 'Ngarko një foto në një album',
+     	'upload_pic_title' => 'Ngarko një foto në një album',
         'upload_pic_lnk' => 'Ngarko foto',
         'register_title' => 'Krijo një llogari',
         'register_lnk' => 'Regjistrohu',
-	'login_title' => 'Më identifiko', //cpg1.4
+    	'login_title' => 'Më identifiko', //cpg1.4
         'login_lnk' => 'Identifikohu',
-	'logout_title' => 'Më çidentifiko', //cpg1.4
+     	'logout_title' => 'Më çidentifiko', //cpg1.4
         'logout_lnk' => 'Çidentifikohu',
-	'lastup_title' => 'Afisho ngarkimet më të fundit', //cpg1.4
+    	'lastup_title' => 'Afisho ngarkimet më të fundit', //cpg1.4
         'lastup_lnk' => 'Ngarkimet më të fundit',
-	'lastcom_title' => 'Afisho komentet më të fundit', //cpg1.4
+     	'lastcom_title' => 'Afisho komentet më të fundit', //cpg1.4
         'lastcom_lnk' => 'Komentet më të fundit',
-	'topn_title' => 'Afisho më të shikuarat', //cpg1.4
+	    'topn_title' => 'Afisho më të shikuarat', //cpg1.4
         'topn_lnk' => 'Më të shikuarat',
-	'toprated_title' => 'Afisho më të vlerësuarat', //cpg1.4
+	    'toprated_title' => 'Afisho më të vlerësuarat', //cpg1.4
         'toprated_lnk' => 'Më të vlerësuarat',
-	'search_title' => 'Kërko në një galeri', //cpg1.4
+	    'search_title' => 'Kërko në një galeri', //cpg1.4
         'search_lnk' => 'Kërko',
-	'fav_title' => 'Shko tek favoritet e mia', //cpg1.4
-        'fav_lnk' => 'Favoritet e mia', 
-	'memberlist_title' => 'Shfaq Listën e anëtarëve', 
-        'memberlist_lnk' => 'Lista e anëtarëve', 
+	    'fav_title' => 'Shko tek favoritet e mia', //cpg1.4
+        'fav_lnk' => 'Favoritet e mia',
+        'memberlist_title' => 'Shfaq Listën e anëtarëve',
+        'memberlist_lnk' => 'Lista e anëtarëve',
         'faq_title' => 'Pyetje të shpeshta të bëra përsa i përketë foto gallerisë &quot;Coppermine&quot;', //cpg1.3.0
-        'faq_lnk' => 'FAQ', 
+        'faq_lnk' => 'FAQ',
 );
 
 $lang_gallery_admin_menu = array(
-        'upl_app_title' => 'Aprovo ngarkimet e reja', //cpg1.4
-        'upl_app_lnk' => 'Aprovim i ngarkimeve',
+    'upl_app_title' => 'Aprovo ngarkimet e reja', //cpg1.4
+    'upl_app_lnk' => 'Aprovim i ngarkimeve',
 	'admin_title' => 'Shko tek konfigurimi', //cpg1.4
-	'config_lnk' => 'Konfigurimi',
+	'admin_lnk' => 'Konfigurimi', //cpg1.4
 	'albums_title' => 'Shko tek konfigurimi i albumeve', //cpg1.4
-        'albums_lnk' => 'Albumet',
+    'albums_lnk' => 'Albumet',
 	'categories_title' => 'Shko tek konfigurimi i kategorive', //cpg1.4
-        'categories_lnk' => 'Kategoritë',
+    'categories_lnk' => 'Kategoritë',
 	'users_title' => 'Shko tek konfigurimi i përdoruesve', //cpg1.4
-        'users_lnk' => 'Përdoruesit',
+    'users_lnk' => 'Përdoruesit',
 	'groups_title' => 'Shko tek konfigurimi i grupeve', //cpg1.4
-        'groups_lnk' => 'Grupe',
+    'groups_lnk' => 'Grupe',
 	'comments_title' => 'Shiko gjithë komentet', //cpg1.4
-        'comments_lnk' => 'Komente',
+    'comments_lnk' => 'Komente',
 	'searchnew_title' => 'Shko tek grumbulli i fotove të futura dhe procedo', //cpg1.4
-        'searchnew_lnk' => 'grumbull fotografish të futura',
+    'searchnew_lnk' => 'grumbull fotografish të futura',
 	'util_title' => 'Shko tek mjetet e administrimit', //cpg1.4
-        'util_lnk' => 'Mjetet e administrimit',
-        'key_title' => 'Shko tek fjalori i fjalëve-kyç', //cpg1.4
-        'key_lnk' => 'Fjalori i fjalëve-kyç', //cpg1.4
-        'ban_title' => 'Shko tek pëdoruesit e ndaluar', //cpg1.4        
-        'ban_lnk' => 'Ndalo përdoruesit', 
+    'util_lnk' => 'Mjetet e administrimit',
+    'key_title' => 'Shko tek fjalori i fjalëve-kyç', //cpg1.4
+    'key_lnk' => 'Fjalori i fjalëve-kyç', //cpg1.4
+    'ban_title' => 'Shko tek pëdoruesit e ndaluar', //cpg1.4
+    'ban_lnk' => 'Ndalo përdoruesit',
 	'db_ecard_title' => 'Shiko kartolinat', //cpg1.4
-        'pictures_title' => 'Klasifikim i fotografive të  mia', //cpg1.4
+    'db_ecard_lnk' =>   'Shfaq kartolinat e dërguara',
+    'pictures_title' => 'Klasifikim i fotografive të  mia', //cpg1.4
   	'pictures_lnk' => 'Klasifikim i fotografive', //cpg1.4
   	'documentation_lnk' => 'Documentacioni', //cpg1.4
   	'documentation_title' => 'Manuali Coppermine', //cpg1.4
-	'util_lnk' => 'Mjetet e admin',
-	'db_ecard_lnk' => 'Shfaq kartolinat e dërguara', //cpg1.3.0
 );
 
 $lang_user_admin_menu = array(
@@ -195,13 +192,13 @@ $lang_cat_list = array(
         'albums' => 'Albume',
         'pictures' => 'Fotografi',
 );
+
 $lang_album_list = array(
         'album_on_page' => '%d albume në %d faqe'
 );
 
 $lang_thumb_view = array(
         'date' => 'DATË',
-
         //Sort by filename and title
         'name' => 'EMRI I SKEDARIT', 
         'title' => 'TITULLI', 
@@ -253,17 +250,13 @@ $lang_rate_pic = array(
 );
 
 // ------------------------------------------------------------------------- //
-
 // File include/exif.inc.php
-
 // ------------------------------------------------------------------------- //
 
 // void
 
 // ------------------------------------------------------------------------- //
-
 // File include/functions.inc.php
-
 // ------------------------------------------------------------------------- //
 
 $lang_cpg_die = array(
@@ -286,6 +279,7 @@ $lang_get_pic_data = array(
         'n_views' => '%s shikime',
         'n_votes' => '(%s vota)'
 );
+
 $lang_cpg_debug_output = array(
   'debug_info' => 'Info për debug', 
   'select_all' => 'Përzgjidh të gjitha', 
@@ -315,26 +309,15 @@ $lang_create_tabs = array(
   'next' => 'i (e) mëpasëm(e)', //cpg1.4
 );
 
-
 // ------------------------------------------------------------------------- //
-
 // File include/init.inc.php
-
 // ------------------------------------------------------------------------- //
-
-
 
 // void
 
-
-
 // ------------------------------------------------------------------------- //
-
 // File include/picmgmt.inc.php
-
 // ------------------------------------------------------------------------- //
-
-
 
 // void
 
