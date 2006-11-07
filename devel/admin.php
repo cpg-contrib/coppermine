@@ -43,6 +43,7 @@ $options_to_disable = array('reg_notify_admin_email',
     'user_registration_disclaimer',
     'registration_captcha',
     'personal_album_on_registration',
+    'global_registration_pw',
 );
 
 if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
