@@ -10,7 +10,7 @@
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
   ********************************************
-  Coppermine version: 1.4.10
+  Coppermine version: 1.4.11
   $Source$
   $Revision$
   $Author$
@@ -18,7 +18,7 @@
 **********************************************/
 
 /**
-* Coppermine Photo Gallery 1.4.10 addpic.php
+* Coppermine Photo Gallery 1.4.11 addpic.php
 *
 * This file file gets called in the img src when you do batch add, there is nothing
 * much to look here the grunt work is done by the function add_picture
