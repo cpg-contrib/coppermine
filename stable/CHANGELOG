@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-11-09 [A] Added Thai language (user contribution) {GauGau}
 2006-10-30 [M] Release of cpg1.4.10 {GauGau}
 2006-10-29 [B] IE/WMP video playback fix {Nibbler}
 2006-10-28 [S] Removing SQL injection vulnerability {Nibbler}
