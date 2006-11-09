@@ -143,7 +143,7 @@ function html_picinfo()
     $info[$lang_picinfo['File Size']] = '<span dir="ltr">' . $info[$lang_picinfo['File Size']] . '</span>';
     $info[$lang_picinfo['Date Added']] = localised_date($CURRENT_PIC_DATA['ctime'],$lastup_date_fmt);
     $info[$lang_picinfo['Dimensions']] = sprintf($lang_display_image_php['size'], $CURRENT_PIC_DATA['pwidth'], $CURRENT_PIC_DATA['pheight']);
-    $detailsLink = ($CURRENT_PIC_DATA['hits'] && $CONFIG['vote_details'] && GALLERY_ADMIN_MODE) ? ' (<a href="#" onclick="MM_openBrWindow(\'stat_details.php?type=hits&amp;pid='.$CURRENT_PIC_DATA['pid'].'&amp;sort=sdate&amp;dir=&amp;sdate=1&amp;ip=1&amp;search_phrase=1&amp;referer=0&amp;browser=1&amp;os=1\',\'\',\'resizable=yes,width=800,height=500,top=50,left=50,scrollbars=yes\'); return false;">'.$lang_picinfo['details'].'</a>)' : '';
+    $detailsLink = ($CURRENT_PIC_DATA['hits'] && $CONFIG['hit_details'] && GALLERY_ADMIN_MODE) ? ' (<a href="#" onclick="MM_openBrWindow(\'stat_details.php?type=hits&amp;pid='.$CURRENT_PIC_DATA['pid'].'&amp;sort=sdate&amp;dir=&amp;sdate=1&amp;ip=1&amp;search_phrase=1&amp;referer=0&amp;browser=1&amp;os=1\',\'\',\'resizable=yes,width=800,height=500,top=50,left=50,scrollbars=yes\'); return false;">'.$lang_picinfo['details'].'</a>)' : '';
     $info[$lang_picinfo['Displayed']] = sprintf($lang_display_image_php['views'], $CURRENT_PIC_DATA['hits']);
     $info[$lang_picinfo['Displayed']] .= $detailsLink;
 

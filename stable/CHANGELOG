@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-11-09 [B] Fixed display of hit stats link on displayimage {Nibbler}
 2006-11-09 [M] Updated version count from cpg1.4.10 to cpg1.4.11 in subversion repository as a preparation for a possible future release {GauGau}
 2006-11-09 [A] Added Thai language (user contribution) {GauGau}
 2006-10-30 [M] Release of cpg1.4.10 {GauGau}

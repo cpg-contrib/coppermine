@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-11-09 [B] Fixed display of hit stats link on displayimage {Nibbler}
 2006-11-07 [B] Disabled global registration password for bridged installs {GauGau}
 2006-11-02 [O] Turned the voting links to javascript based redirection to stop bots from rating {Abbas}
 2006-11-02 [B] Fixed the pic approval on editpics {Abbas}
