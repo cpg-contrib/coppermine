@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /*************************
   Coppermine Photo Gallery
   ************************
@@ -277,6 +277,7 @@ $lang_rate_pic = array(
   'good' => 'gut',
   'excellent' => 'sehr gut',
   'great' => 'super',
+  'js_warning' => 'Javascript muss aktiviert sein, um abstimmen zu können', // cpg1.5.x
 );
 
 // ------------------------------------------------------------------------- //
@@ -1367,6 +1368,8 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
   'enable_clipping' => 'Zuschneiden aktivieren, auf Schnitt anwenden', //cpg 1.5
   'jpeg_quality' => 'JPEG Qualität', //cpg 1.5
   'or' => 'oder', //cpg 1.5
+  'approve_pic' => 'Datei bestätigen', //cpg 1.5
+  'approve_all' => 'Alle Dateien bestätigen', //cpg 1.5
 );
 
 // ------------------------------------------------------------------------- //
@@ -1607,6 +1610,8 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
   'submit_reset' => 'Änderungen durchführen',
   'reset_views_confirm' => 'ich bin mir sicher',
   'notice1' => '(*) abhängig von den %sGruppen%s Einstellungen', //(do not translate %s!)
+  'can_moderate' => 'Album kann moderiert werden von', //cpg 1.5
+  'admins_only' => 'Nur Administratoren', //cpg 1.5
   'alb_password' => 'Passwort des Albums',
   'alb_password_hint' => 'Hinweis für Albums-Passwort',
   'edit_files' =>'Dateien bearbeiten',
@@ -1956,6 +1961,12 @@ if (defined('STAT_DETAILS_PHP')) $lang_stat_details_php = array(
   'number_of_hits' => 'Anzahl Treffer', //cpg1.5
   'total' => 'Summe', //cpg1.5
   'stats_by_browser' => 'Statistik nach Browser', //cpg1.5
+  'stats_config' => 'Einstellungen Statistik', //cpg1.5
+  'hit_details'  => 'Detailierte Treffer-Statistiken speichern', //cpg1.5
+  'hit_details_explanation'  => 'Detailierte Treffer-Statistiken speichern', //cpg1.5
+  'empty_hits_table'  => 'Treffer-Statistiken leeren', //cpg1.5
+  'confirm_empty_hits'  => 'Achtung; das Leeren der Treffer-Statistiken kann nicht rückgängig gemacht werden. Wirklich fortfahren?', //cpg1.5 // JS-Alert
+  'submit'  => 'absenden', //cpg1.5
 );
 
 // ------------------------------------------------------------------------- //
