@@ -1546,6 +1546,7 @@ if (defined('LOGIN_PHP')) $lang_login_php = array(
   'err_already_logged_in' => 'Du bist schon angemeldet!',
   'forgot_password_link' => 'Passwort vergessen',
   'cookie_warning' => 'Achtung: Dein Browser akzeptiert nicht die Cookies dieses Skripts',
+  'send_activation_link' => 'Aktivierungs-Link nicht erhalten?', //cpg 1.5
 );
 
 // ------------------------------------------------------------------------- //
@@ -1930,6 +1931,21 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
   'edit_pics' => 'Dateien bearbeiten',
   'edit_properties' => 'Albums-Eigenschaften',
   'view_thumbs' => 'Thumbnail-Ansicht',
+);
+
+// ------------------------------------------------------------------------- //
+//File send_activation.php
+// ------------------------------------------------------------------------- //
+
+if (defined('SEND_ACTIVATION_PHP')) $lang_send_activation_php = array(
+  'err_already_logged_in' => 'Du bist schon angemeldet!', //cpg1.5
+  'activation_not_required' => 'Diese Webseite erfordert keine Aktiverung per eMail', //cpg1.5
+  'err_unk_user' => 'Der gewählte Benutzer existiert nicht!', //cpg1.5
+  'resend_act_link' => 'Aktivierungs-Link erneut versenden', //cpg1.5
+  'enter_email' => 'Gib Deine eMail-Adresse ein', //cpg1.5
+  'submit' => 'Los', //cpg1.5
+  'failed_sending_email' => 'Konnte eMail mit Aktivierungs-Link nicht versenden', //cpg1.5
+  'activation_email_sent' => 'Eine eMail mit Aktivierungs-Link wurde an %s gesendet. Bitte überprüfe Deinen Posteingang, um den Registrierungsprozess abzuschliessen', //cpg1.5
 );
 
 // ------------------------------------------------------------------------- //
