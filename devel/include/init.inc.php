@@ -22,87 +22,108 @@ define('COPPERMINE_VERSION_STATUS', 'alpha');
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 
-// Store all reported errors in the $cpgdebugger
-require_once('include/debugger.inc.php');
-
-if (@get_magic_quotes_runtime()) set_magic_quotes_runtime(0);
-
-// used for timing purpose
-$query_stats = array();
-$queries = array();
-
 function cpgGetMicroTime()
 {
     list($usec, $sec) = explode(" ", microtime());
     return ((float)$usec + (float)$sec);
 }
 $cpg_time_start = cpgGetMicroTime();
-// Do some cleanup in GET, POST and cookie data and un-register global vars
-$HTML_SUBST = array('&' => '&amp;', '"' => '&quot;', '<' => '&lt;', '>' => '&gt;', '%26' => '&amp;', '%22' => '&quot;', '%3C' => '&lt;', '%3E' => '&gt;','%27' => '&#39;', "'" => '&#39;');
 
-$keysToSkip = array('_POST', '_GET', '_COOKIE', '_REQUEST', '_SERVER', 'HTML_SUBST');
+function cpg_globals_clean($var) {
+    global $HTML_SUBST; //$HTML_SUBST should be in the global scope so it's effects can be reversed if necessary.
+    $HTML_SUBST = array('&' => '&amp;', '"' => '&quot;', '<' => '&lt;', '>' => '&gt;', '%26' => '&amp;', '%22' => '&quot;', '%3C' => '&lt;', '%3E' => '&gt;','%27' => '&#39;', "'" => '&#39;');
+    static $magicquotes;
+    if (!isset($magicquotes)) $magicquotes=get_magic_quotes_gpc();
 
-if (get_magic_quotes_gpc()) {
-    if (is_array($_POST)) {
-        foreach ($_POST as $key => $value) {
-            if (!is_array($value))
-                $_POST[$key] = strtr(stripslashes($value), $HTML_SUBST);
-            if (!in_array($key, $keysToSkip) && isset($$key) && ini_get('register_globals') == '1') unset($$key);
+    $clean=array();
+    if (is_array($var)) {
+        foreach ($var as $key => $value) {
+            $clean[cpg_globals_clean($key)] = cpg_globals_clean($value);
         }
+    } else {
+        if ($magicquotes) $var=stripslashes($var);
+        $clean = strtr($var, $HTML_SUBST);
     }
-
-    if (is_array($_GET)) {
-        foreach ($_GET as $key => $value) {
-            unset($_GET[$key]);
-            $_GET[strtr(stripslashes($key), $HTML_SUBST)] = strtr(stripslashes($value), $HTML_SUBST);
-            if (!in_array($key, $keysToSkip) && isset($$key) && ini_get('register_globals') == '1') unset($$key);
-        }
-    }
-
-    if (is_array($_COOKIE)) {
-        foreach ($_COOKIE as $key => $value) {
-            if (!is_array($value))
-                $_COOKIE[$key] = stripslashes($value);
-            if (!in_array($key, $keysToSkip) && isset($$key) && ini_get('register_globals') == '1') unset($$key);
-        }
-    }
-    if (is_array($_REQUEST)) {
-        foreach ($_REQUEST as $key => $value) {
-            if (!is_array($value))
-                $_REQUEST[$key] = strtr(stripslashes($value), $HTML_SUBST);
-            if (!in_array($key, $keysToSkip) && isset($$key) && ini_get('register_globals') == '1') unset($$key);
-        }
-    }
-} else {
-    if (is_array($_POST)) {
-        foreach ($_POST as $key => $value) {
-            if (!is_array($value))
-                $_POST[$key] = strtr($value, $HTML_SUBST);
-            if (!in_array($key, $keysToSkip) && isset($$key) && ini_get('register_globals') == '1') unset($$key);
-        }
-    }
-
-    if (is_array($_GET)) {
-        foreach ($_GET as $key => $value) {
-            unset($_GET[$key]);
-            $_GET[strtr(stripslashes($key), $HTML_SUBST)] = strtr(stripslashes($value), $HTML_SUBST);
-            if (!in_array($key, $keysToSkip) && isset($$key) && ini_get('register_globals') == '1') unset($$key);
-        }
-    }
-
-    if (is_array($_COOKIE)) {
-        foreach ($_COOKIE as $key => $value) {
-            if (!in_array($key, $keysToSkip) && isset($$key) && ini_get('register_globals') == '1') unset($$key);
-        }
-    }
-    if (is_array($_REQUEST)) {
-        foreach ($_REQUEST as $key => $value) {
-            if (!is_array($value))
-                $_REQUEST[$key] = strtr($value, $HTML_SUBST);
-            if (!in_array($key, $keysToSkip) && isset($$key) && ini_get('register_globals') == '1') unset($$key);
-        }
-    }
+    return $clean;
 }
+
+/**
+ * If register_globals is ON, ensure no unexpected globals are defined.
+ * ie. We'll try to emulate a register_globals OFF environment.
+ *
+ * This function also calls cpg_globals_clean to normalize GPC magic_quotes and
+ * translate characters known for sql and html injection.
+ *
+ * All variables used before calling init.inc.php are considered hostile
+ * and will be discarded. Those variables instantiated after or during init.inc.php
+ * should be considered less hostile.
+ */
+
+if( (bool)@ini_get('register_globals') )
+{
+   $superglobals = array(
+       '_ENV',        'HTTP_ENV_VARS',
+       '_GET',        'HTTP_GET_VARS',
+       '_POST',    'HTTP_POST_VARS',
+       '_COOKIE',    'HTTP_COOKIE_VARS',
+       '_FILES',    'HTTP_FILES_VARS',
+       '_SERVER',    'HTTP_SERVER_VARS',
+       '_REQUEST',
+   );
+   if( isset($_SESSION) )
+   {
+       array_merge($superglobals,array('_SESSION','HTTP_SESSION_VARS'));
+   }
+   $knownglobals = array(
+       //
+       // Known PHP Reserved globals and superglobals:
+       //
+       '_ENV',        'HTTP_ENV_VARS',
+       '_GET',        'HTTP_GET_VARS',
+       '_POST',    'HTTP_POST_VARS',
+       '_COOKIE',    'HTTP_COOKIE_VARS',
+       '_FILES',    'HTTP_FILES_VARS',
+       '_SERVER',    'HTTP_SERVER_VARS',
+       '_SESSION',    'HTTP_SESSION_VARS',
+       '_REQUEST',
+
+       //
+       // Global variables used by this code snippet:
+       //
+       'superglobals',
+       'knownglobals',
+       'superglobal',
+       'global',
+       'void',
+
+       //
+       // Known global variables defined before this code snippet is reached.
+       //
+       'cpg_time_start',
+   );
+   foreach( $superglobals as $superglobal )
+   {
+
+       foreach( $$superglobal as $global => $void ) //variable variable substition intended.
+       {
+           if( !in_array($global, $knownglobals) )
+           {
+               unset($GLOBALS[$global]);
+           }
+       }
+       $$superglobal=cpg_globals_clean($$superglobal); //variable variable substition intended.
+   }
+   unset($superglobals,$superglobal,$global,$void,$knownglobals);  //leave no trace
+}
+
+// Store all reported errors in the $cpgdebugger
+require_once('include/debugger.inc.php');
+
+set_magic_quotes_runtime(0);
+// used for timing purpos
+$query_stats = array();
+$queries = array();
+
 // Initialise the $CONFIG array and some other variables
 $CONFIG = array();
 //$PHP_SELF = isset($_SERVER['REDIRECT_URL']) ? $_SERVER['REDIRECT_URL'] : $_SERVER['SCRIPT_NAME'];
