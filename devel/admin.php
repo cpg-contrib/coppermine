@@ -315,7 +315,7 @@ function form_theme($text, $name, $help = '', $row_style_class = 'tableb')
 
     $dir = opendir($theme_dir);
     while ($file = readdir($dir)) {
-        if (is_dir($theme_dir . $file) && $file != "." && $file != ".." && $file != 'CVS' && $file != 'sample') {
+        if (is_dir($theme_dir . $file) && $file != "." && $file != ".." && $file != '.svn' && $file != 'sample') {
             $theme_array[] = $file;
         }
     }

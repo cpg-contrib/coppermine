@@ -277,7 +277,7 @@ function display_dir_tree($folder, $ident)
             strpos($file,"'") == FALSE &&
             strpos($file,trim($CONFIG['userpics'],'/')) === FALSE &&
             strpos($file,'edit') === FALSE &&
-            strpos($file,'CVS') === FALSE) {
+            strpos($file,'.svn') === FALSE) {
                 $start_target = $folder . $file;
                 $dir_path = $CONFIG['fullpath'] . $folder . $file;
 
@@ -586,7 +586,7 @@ EOT;
 
 
     $iframe_startfolder .= str_replace('searchnew.php', '', __FILE__).rtrim($CONFIG['fullpath'], '/').'/';
-    $iframe_hide = rawurlencode('.,..,CVS,edit,'.rtrim($CONFIG['userpics'], '/'));
+    $iframe_hide = rawurlencode('.,..,.svn,edit,'.rtrim($CONFIG['userpics'], '/'));
     print '    <tr>'."\n";
     print '        <td class="tableb" align="center">'."\n";
     if ($CONFIG['browse_batch_add'] == 1) {
