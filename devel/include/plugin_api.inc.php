@@ -253,7 +253,7 @@ class CPGPluginAPI {
             $thisplugin = $CPG_PLUGINS[$plugin_id];
 
             // Skip this plugin; the key isn't set
-            if (!isset($thisplugin->actions[$key]) || (!$thisplugin->awake)) {
+            if (!isset($thisplugin->actions[$key]) || (!$thisplugin->awake && $key!='plugin_wakeup')) {
 
                  return $value;
             }
