@@ -85,7 +85,7 @@ class CPGPluginAPI {
             include ('./plugins/'.$thisplugin->path.'/codebase.php');
 
             // Check if plugin has a wakeup action
-            if (!($thisplugin->awake = CPGPluginAPI::action('plugin_wakeup',true))) {
+            if (!($thisplugin->awake = CPGPluginAPI::action('plugin_wakeup',true,$thisplugin->plugin_id))) {
 
 
                 if ($CONFIG['log_mode']) {
@@ -98,7 +98,7 @@ class CPGPluginAPI {
                     $thisplugin->error['desc'] = "Couldn't wake plugin '{$thisplugin->name}'";
                 }
             }
-            
+
             $index++;
         }
         mysql_free_result($result);
@@ -355,7 +355,7 @@ class CPGPluginAPI {
         foreach($CPG_PLUGINS as $thisplugin) {
 
             // If the plugin has a sleep action, execute it
-            if (!CPGPluginAPI::action('plugin_sleep',true)) {
+            if (!CPGPluginAPI::action('plugin_sleep',true,$thisplugin->plugin_id)) {
 
                 if ($CONFIG['log_mode']) {
                     log_write("Couldn't put plugin '".$thisplugin->name."' to sleep at ".date("F j, Y, g:i a"),CPG_GLOBAL_LOG);
