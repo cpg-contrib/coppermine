@@ -98,7 +98,7 @@ class CPGPluginAPI {
                     $thisplugin->error['desc'] = "Couldn't wake plugin '{$thisplugin->name}'";
                 }
             }
-            
+
             $index++;
         }
         mysql_free_result($result);
