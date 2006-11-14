@@ -25,6 +25,8 @@ Changelog
 [O] = Optimization of code
 [S] = Security fix (issues that are related to security)
 *********************************************
+
+2006-11-14 [A] Added album hits feature. {Abbas}
 2006-11-12 [B] Fixed plugin api sleep and wake actions to be scoped correctly. {Donnoman}
 2006-11-11 [S] Replaced init.inc.php sanitization and magicquotes remediation code (topic=38166.0) {Donnoman}
 2006-11-09 [B] Fixed display of hit stats link on displayimage {Nibbler}

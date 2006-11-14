@@ -96,7 +96,7 @@ function html_albummenu2($id) {
     /**
      * This template variable can be defined in theme.php of respective theme.
      * This is done here for simplicity.
-     */    
+     */
     $template_album_moderator_menu = <<<EOT
         <table border="0" cellpadding="0" cellspacing="1">
                 <tr>
@@ -104,10 +104,10 @@ function html_albummenu2($id) {
                                 <a href="editpics.php?album={ALBUM_ID}"  class="adm_menu">{EDIT_PICS}</a>
                         </td>
                 </tr>
-        </table>                        
+        </table>
 EOT;
-    
-    
+
+
     static $template = '';
 
     if ($template == '') {
@@ -121,7 +121,7 @@ EOT;
     $params = array('{ALBUM_ID}' => $id,
         );
 
-    return template_eval($template, $params);  
+    return template_eval($template, $params);
 }
 
 
@@ -507,7 +507,7 @@ function list_albums()
     $album_set = '(' . substr($album_set, 0, -2) . ')';
 
     //This query will fetch album stats and keyword for the albums
-    $sql = "SELECT a.aid, count( p.pid )  AS pic_count, max( p.pid )  AS last_pid, max( p.ctime )  AS last_upload, a.keyword" .
+    $sql = "SELECT a.aid, count( p.pid )  AS pic_count, max( p.pid )  AS last_pid, max( p.ctime )  AS last_upload, a.keyword, a.alb_hits" .
             " FROM {$CONFIG['TABLE_ALBUMS']} AS a " .
             " LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON a.aid = p.aid AND p.approved =  'YES' ".
             "WHERE a.aid IN $album_set" . "GROUP BY a.aid";
@@ -515,7 +515,6 @@ function list_albums()
     $alb_stats_q = cpg_db_query($sql);
     $alb_stats = cpg_db_fetch_rowset($alb_stats_q);
     mysql_free_result($alb_stats_q);
-
 
     foreach($alb_stats as $key => $value) {
         $cross_ref[$value['aid']] = &$alb_stats[$key];
@@ -543,9 +542,11 @@ function list_albums()
         if (isset($cross_ref[$aid])) {
             $alb_stat = $cross_ref[$aid];
             $count = $alb_stat['pic_count'];
+            $alb_hits = $alb_stat['alb_hits'];
         } else {
             $alb_stat = array();
             $count = 0;
+            $alb_hits = 0;
         }
         // Inserts a thumbnail if the album contains 1 or more images
         $visibility = $alb_thumb['visibility'];
@@ -600,6 +601,7 @@ function list_albums()
             $alb_list[$alb_idx]['pic_count'] = $count;
             $alb_list[$alb_idx]['last_upl'] = $last_upload_date;
             $alb_list[$alb_idx]['link_pic_count'] = $link_pic_count;
+            $alb_list[$alb_idx]['alb_hits'] = sprintf($lang_list_albums['alb_hits'], $alb_hits);
             $alb_list[$alb_idx]['album_info'] = sprintf($lang_list_albums['n_pictures'], $count) . ($count ? sprintf($lang_list_albums['last_added'], $last_upload_date) : "") . (($CONFIG['link_pic_count'] && $link_pic_count > 0 ) ? sprintf(", {$lang_list_albums['n_link_pictures']},  {$lang_list_albums['total_pictures']}", $link_pic_count, $count + $link_pic_count) : "");
             $alb_list[$alb_idx]['album_adm_menu'] = (GALLERY_ADMIN_MODE || (USER_ADMIN_MODE && $cat == USER_ID + FIRST_USER_CAT)) ? html_albummenu($alb_thumb['aid']) : (in_array($alb_thumb['aid'], $USER_DATA['allowed_albums']) ? html_albummenu2($alb_thumb['aid']) : '');
         } elseif ($CONFIG['show_private']) { // uncomment this else block to show private album description
@@ -611,6 +613,7 @@ function list_albums()
             $alb_list[$alb_idx]['pic_count'] = $count;
             $alb_list[$alb_idx]['last_upl'] = $last_upload_date;
             $alb_list[$alb_idx]['link_pic_count'] = $link_pic_count;
+            $alb_list[$alb_idx]['alb_hits'] = sprintf($lang_list_albums['alb_hits'], $alb_hits);
             $alb_list[$alb_idx]['album_info'] = sprintf($lang_list_albums['n_pictures'], $count) . ($count ? sprintf($lang_list_albums['last_added'], $last_upload_date) : "") . (($CONFIG['link_pic_count'] && $link_pic_count > 0 ) ? sprintf(", {$lang_list_albums['n_link_pictures']},   {$lang_list_albums['total_pictures']}", $link_pic_count, $count + $link_pic_count) : "");
             $alb_list[$alb_idx]['album_adm_menu'] = (GALLERY_ADMIN_MODE || (USER_ADMIN_MODE && $cat == USER_ID + FIRST_USER_CAT)) ? html_albummenu($alb_thumb['aid']) : (in_array($alb_thumb['aid'], $USER_DATA['allowed_albums']) ? html_albummenu2($alb_thumb['aid']) : '');
         }
@@ -686,7 +689,7 @@ function list_cat_albums($cat = 0)
     mysql_free_result($alb_stats_q);*/
 
     //This query will fetch album stats and keyword for the albums
-    $sql = "SELECT a.aid, count( p.pid )  AS pic_count, max( p.pid )  AS last_pid, max( p.ctime )  AS last_upload, a.keyword" .
+    $sql = "SELECT a.aid, count( p.pid )  AS pic_count, max( p.pid )  AS last_pid, max( p.ctime )  AS last_upload, a.keyword, a.alb_hits" .
             " FROM {$CONFIG['TABLE_ALBUMS']} AS a " .
             " LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON a.aid = p.aid AND p.approved =  'YES' ".
             "WHERE a.aid IN $album_set" . "GROUP BY a.aid";
@@ -718,9 +721,11 @@ function list_cat_albums($cat = 0)
         if (isset($cross_ref[$aid])) {
             $alb_stat = $cross_ref[$aid];
             $count = $alb_stat['pic_count'];
+            $alb_hits = $alb_stat['alb_hits'];
         } else {
             $alb_stat = array();
             $count = 0;
+            $alb_hits = 0;
         }
         // Inserts a thumbnail if the album contains 1 or more images
         $visibility = $alb_thumb['visibility'];
@@ -770,6 +775,7 @@ function list_cat_albums($cat = 0)
             $alb_list[$alb_idx]['album_desc'] = bb_decode($alb_thumb['description']);
             $alb_list[$alb_idx]['pic_count'] = $count;
             $alb_list[$alb_idx]['last_upl'] = $last_upload_date;
+            $alb_list[$alb_idx]['alb_hits'] = sprintf($lang_list_albums['alb_hits'], $alb_hits);
             $alb_list[$alb_idx]['album_info'] = sprintf($lang_list_albums['n_pictures'], $count) . ($count ? sprintf($lang_list_albums['last_added'], $last_upload_date) : "") . (($CONFIG['link_pic_count'] && $link_pic_count > 0)  ? sprintf(", {$lang_list_albums['n_link_pictures']}, {$lang_list_albums['total_pictures']}", $link_pic_count, $count + $link_pic_count) : "");
             $alb_list[$alb_idx]['album_adm_menu'] = (GALLERY_ADMIN_MODE || (USER_ADMIN_MODE && $cat == USER_ID + FIRST_USER_CAT)) ? html_albummenu($alb_thumb['aid']) : (in_array($alb_thumb['aid'], $USER_DATA['allowed_albums']) ? html_albummenu2($alb_thumb['aid']) : '');
         } elseif ($CONFIG['show_private']) { // uncomment this else block to show private album description
@@ -780,6 +786,7 @@ function list_cat_albums($cat = 0)
             $alb_list[$alb_idx]['album_desc'] = bb_decode($alb_thumb['description']);
             $alb_list[$alb_idx]['pic_count'] = $count;
             $alb_list[$alb_idx]['last_upl'] = $last_upload_date;
+            $alb_list[$alb_idx]['alb_hits'] = sprintf($lang_list_albums['alb_hits'], $alb_hits);
             $alb_list[$alb_idx]['album_info'] = sprintf($lang_list_albums['n_pictures'], $count) . ($count ? sprintf($lang_list_albums['last_added'], $last_upload_date) : "") . (($CONFIG['link_pic_count'] && $link_pic_count > 0 )? sprintf(", {$lang_list_albums['n_link_pictures']}, {$lang_list_albums['total_pictures']}", $link_pic_count, $count + $link_pic_count) : "");
             $alb_list[$alb_idx]['album_adm_menu'] = (GALLERY_ADMIN_MODE || (USER_ADMIN_MODE && $cat == USER_ID + FIRST_USER_CAT)) ? html_albummenu($alb_thumb['aid']) : (in_array($alb_thumb['aid'], $USER_DATA['allowed_albums']) ? html_albummenu2($alb_thumb['aid']) : '');
         }

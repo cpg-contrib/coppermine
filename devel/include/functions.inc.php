@@ -158,7 +158,6 @@ function user_get_profile()
 function user_save_profile()
 {
         global $CONFIG, $USER;
-
         $data = base64_encode(serialize($USER));
         setcookie($CONFIG['cookie_name'].'_data', $data, time()+86400*30, $CONFIG['cookie_path']);
 }
@@ -965,7 +964,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 } else {
                   $keyword = '';
                 }
-                
+
                 if (is_array($USER_DATA['allowed_albums']) && in_array($album,$USER_DATA['allowed_albums'])) {
                   $approved = '';
                 } else {
@@ -1625,6 +1624,18 @@ function add_hit($pid)
 }
 
 /**
+ * add_album_hit()
+ * Add a hit to the album.
+ * @param $pid
+ * @return
+ **/
+function add_album_hit($aid)
+{
+        global $CONFIG, $USER;
+        $aid = (int)$aid;
+        cpg_db_query("UPDATE {$CONFIG['TABLE_ALBUMS']} SET alb_hits=alb_hits+1 WHERE aid='$aid'");
+}
+/**
  * breadcrumb()
  *
  * Build the breadcrumb navigation
@@ -1806,7 +1817,7 @@ function compute_img_size($width, $height, $max, $system_icon=false, $normal=fal
 
 function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $display_tabs)
 {
-        global $CONFIG, $AUTHORIZED;
+        global $CONFIG, $AUTHORIZED, $USER;
         global $album_date_fmt, $lang_display_thumbnails, $lang_errors, $lang_byte_units;
 
         $thumb_per_page = $thumbcols * $thumbrows;
@@ -1847,6 +1858,22 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
                         $thumb_list[$i]['pwidth'] = $row['pwidth'];
                         $thumb_list[$i]['pheight'] = $row['pheight'];
                 }
+
+                // Add a hit to album counter if it is a numeric album
+                if (is_numeric($album)) {
+                        // Create an array to hold the album id for hits (if not created)
+                        if (!isset($USER['liv_a']) || !is_array($USER['liv_a'])) {
+                                $USER['liv_a'] = array();
+                        }
+                        // Add 1 to album hit counter
+                        if (!USER_IS_ADMIN && !in_array($album, $USER['liv_a']) && isset($_COOKIE[$CONFIG['cookie_name'] . '_data'])) {
+                                add_album_hit($album);
+                                if (count($USER['liv_a']) > 4) array_shift($USER['liv_a']);
+                                array_push($USER['liv_a'], $album);
+                                user_save_profile();
+                        }
+                }
+
                 theme_display_thumbnails($thumb_list, $thumb_count, $album_name, $album, $cat, $page, $total_pages, is_numeric($album), $display_tabs);
         } else {
                 theme_no_img_to_display($album_name);

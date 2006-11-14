@@ -1394,6 +1394,7 @@ $lang_list_albums = array(
   'last_added' => ', last one added on %s',
   'n_link_pictures' => '%s linked files',
   'total_pictures' => '%s files total',
+  'alb_hits' => 'Album viewed %s times', // cpg1.5.x
 );
 
 }

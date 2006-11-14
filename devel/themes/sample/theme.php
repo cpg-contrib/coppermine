@@ -361,7 +361,7 @@ $template_album_list = <<<EOT
                 <td width="100%" valign="top" align="left" class="tableb_compact">
                         {ADMIN_MENU}
                         <p>{ALB_DESC}</p>
-                        <p class="album_stat">{ALB_INFOS}</p>
+                        <p class="album_stat">{ALB_INFOS}<br />{ALB_HITS}</p>
                 </td>
         </tr>
         </table>
@@ -492,7 +492,7 @@ $template_album_list_cat = <<<EOT
                 <td width="100%" valign="top" class="tableb_compact">
                         {ADMIN_MENU}
                         <p>{ALB_DESC}</p>
-                        <p class="album_stat">{ALB_INFOS}</p>
+                        <p class="album_stat">{ALB_INFOS}<br />{ALB_HITS}</p>
                 </td>
         </tr>
         </table>
@@ -1877,6 +1877,7 @@ function theme_display_album_list(&$alb_list, $nbAlb, $cat, $page, $total_pages)
                 '{ADMIN_MENU}' => $album['album_adm_menu'],
                 '{ALB_DESC}' => $album['album_desc'],
                 '{ALB_INFOS}' => $album['album_info'],
+                '{ALB_HITS}' => $album['alb_hits'],
                 );
 
             echo template_eval($album_cell, $params);
@@ -1968,6 +1969,7 @@ function theme_display_album_list_cat(&$alb_list, $nbAlb, $cat, $page, $total_pa
                 '{ADMIN_MENU}' => $album['album_adm_menu'],
                 '{ALB_DESC}' => $album['album_desc'],
                 '{ALB_INFOS}' => $album['album_info'],
+                '{ALB_HITS}' => $album['alb_hits'],
                 );
 
             echo template_eval($album_cell, $params);
