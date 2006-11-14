@@ -59,62 +59,66 @@ function cpg_globals_clean($var) {
  * should be considered less hostile.
  */
 
-if( (bool)@ini_get('register_globals') )
+
+$superglobals = array(
+   '_ENV',        'HTTP_ENV_VARS',
+   '_GET',        'HTTP_GET_VARS',
+   '_POST',    'HTTP_POST_VARS',
+   '_COOKIE',    'HTTP_COOKIE_VARS',
+   '_FILES',    'HTTP_FILES_VARS',
+   '_SERVER',    'HTTP_SERVER_VARS',
+   '_SESSION',    'HTTP_SESSION_VARS',
+   '_REQUEST',
+);
+$knownglobals = array(
+   //
+   // Known PHP Reserved globals and superglobals:
+   //
+   '_ENV',        'HTTP_ENV_VARS',
+   '_GET',        'HTTP_GET_VARS',
+   '_POST',    'HTTP_POST_VARS',
+   '_COOKIE',    'HTTP_COOKIE_VARS',
+   '_FILES',    'HTTP_FILES_VARS',
+   '_SERVER',    'HTTP_SERVER_VARS',
+   '_SESSION',    'HTTP_SESSION_VARS',
+   '_REQUEST',
+
+   //
+   // Global variables used by this code snippet:
+   //
+   'superglobals',
+   'knownglobals',
+   'superglobal',
+   'global',
+   'void',
+
+   //
+   // Known global variables defined before this code snippet is reached.
+   //
+   'cpg_time_start',
+);
+
+foreach( $superglobals as $superglobal )
 {
-   $superglobals = array(
-       '_ENV',        'HTTP_ENV_VARS',
-       '_GET',        'HTTP_GET_VARS',
-       '_POST',    'HTTP_POST_VARS',
-       '_COOKIE',    'HTTP_COOKIE_VARS',
-       '_FILES',    'HTTP_FILES_VARS',
-       '_SERVER',    'HTTP_SERVER_VARS',
-       '_REQUEST',
-   );
-   if( isset($_SESSION) )
-   {
-       array_merge($superglobals,array('_SESSION','HTTP_SESSION_VARS'));
-   }
-   $knownglobals = array(
-       //
-       // Known PHP Reserved globals and superglobals:
-       //
-       '_ENV',        'HTTP_ENV_VARS',
-       '_GET',        'HTTP_GET_VARS',
-       '_POST',    'HTTP_POST_VARS',
-       '_COOKIE',    'HTTP_COOKIE_VARS',
-       '_FILES',    'HTTP_FILES_VARS',
-       '_SERVER',    'HTTP_SERVER_VARS',
-       '_SESSION',    'HTTP_SESSION_VARS',
-       '_REQUEST',
-
-       //
-       // Global variables used by this code snippet:
-       //
-       'superglobals',
-       'knownglobals',
-       'superglobal',
-       'global',
-       'void',
-
-       //
-       // Known global variables defined before this code snippet is reached.
-       //
-       'cpg_time_start',
-   );
-   foreach( $superglobals as $superglobal )
-   {
-
-       foreach( $$superglobal as $global => $void ) //variable variable substition intended.
-       {
-           if( !in_array($global, $knownglobals) )
+    /**
+     * $$superglobal variable variable syntax is intended.
+     */
+    if (isset($$superglobal)) { //longvars and sessions may not be set
+        if(is_array($$superglobal)) { //every valid superglobal is an array
+           foreach( $$superglobal as $global => $void )
            {
-               unset($GLOBALS[$global]);
+               if( !in_array($global, $knownglobals) )
+               {
+                   unset($GLOBALS[$global]);
+               }
            }
-       }
-       $$superglobal=cpg_globals_clean($$superglobal); //variable variable substition intended.
-   }
-   unset($superglobals,$superglobal,$global,$void,$knownglobals);  //leave no trace
+           $$superglobal=cpg_globals_clean($$superglobal);
+        } else {
+            unset($$superglobal); //it is not a valid superglobal
+        }
+    }
 }
+unset($superglobals,$superglobal,$global,$void,$knownglobals);  //leave no trace
 
 // Store all reported errors in the $cpgdebugger
 require_once('include/debugger.inc.php');
