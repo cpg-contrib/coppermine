@@ -113,7 +113,7 @@ if (array_key_exists($action, $tasks)){
             list($name, $title, $options) = $task;
 
                 if ($name){
-                    starttable('100%', "<input type=\"radio\" name=\"action\" value=\"$name\" id=\"$name\" checked=\"checked\" class=\"nobg\" /><label for=\"$name\" class=\"clickable_option\" >$title</label> (1)");
+                    starttable('100%', "<input type=\"radio\" name=\"action\" value=\"$name\" id=\"$name\" class=\"nobg\" /><label for=\"$name\" class=\"clickable_option\" >$title</label> (1)");
                 } else {
                           starttable('100%', $title);
                 }
