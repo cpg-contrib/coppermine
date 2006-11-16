@@ -144,8 +144,6 @@ For credits and copyrights, see <a href="index.htm#credits">Coppermine documenta
 <ul class="nomargin">
 <li><a class="content" href="#LinkInAlbumDescription">How can I include a <b>link in an album description</b> or the caption of a pic?</a></li>
 <li><a class="content" href="#NoLastUploads">I don&#39;t want to show the <b>last uploads</b> and/or <b>random pictures</b> on the start page. How do I edit what&#39;s shown on the start page of coppermine?</a></li>
-<li><a class="content" href="#editCopyrights">How do I <b>remove/edit the bottom line</b> &quot;<tt class="code">Powered by Coppermine</tt>&quot; ?</a></li>
-<li><a class="content" href="#buyLicense">I want to buy a <b>license</b> for Coppermine (and get rid of the &quot;<tt class="code">Powered by Coppermine</tt>&quot; line). How?</a></li>
 <li><a class="content" href="#removeFeature">I don&#39;t want to use the feature XYZ of Coppermine. How can I <b>remove</b> it?</a></li>
 <li><a class="content" href="#customHeader">How do I add a <b>custom header/footer</b> to Coppermine?</a></li>
 <li><a class="content" href="#createPublicAlbum">How do I create an <b>album</b> that <b>anyone</b> can add photos to?</a></li>
@@ -465,13 +463,8 @@ Use your website's Control Panel to repair the table, or use phpMyAdmin to execu
       <li>'<b>anycontent</b>': inserts php-generated custom content that YOU have coded into the file 'anycontent.php' and displays the content on the index page. It can be used to include banner-rotation scripts, welcome scripts, or similar. Where it appears in the index page is determined by it's placement in the string example below.</li>
     </ul>
     (e.g. <tt class="code">anycontent/catlist/alblist/random,2/lastup,2</tt> translates to: &quot;anycontent file contents, category list, album list, 2 rows of random pics, 2 rows of last uploads&quot; -- and will display in the order that they are listed)</li>
-  </ol><br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr /><a name="editCopyrights"></a>
-  <h3>How do I <b>remove/edit the bottom line</b> &quot;<tt class="code">Powered by Coppermine</tt>&quot; ?</h3>
-<p>You mustn&#39;t remove the line - it&#39;s part of the deal: you&#39;re allowed to use and modify Coppermine on your site, but this line must remain! We feel strongly that it is more than a justified demand to give credit where credit is due. We hope that you will agree with us and just be glad that such a great piece of software is available for use at NO COST, with no banner ads or embedded spyware, to you.<br />
-You are allowed to change the way the line looks by editing the CSS class to make it fit into the design of your site; edit /themes/yourtheme/style.css, look for the class "Footer" and change the settings there as you wish.<br />
-Note: PLEASE don&#39;t ask idiotic questions on how to remove this line in the <a href="http://coppermine.sourceforge.net/board/">Coppermine Photo Gallery Support Board</a> - your posting will be deleted!<br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr /><a name="buyLicense"></a>
-<h3>I want to buy a <b>license</b> for Coppermine (and get rid of the &quot;<tt class="code">Powered by Coppermine</tt>&quot; line). How?</h3>
-<p>As Coppermine is based on OpenSource software published under GNU/GPL (which allows the modification of the code, but disallows changes of the license model of your modifications), you can not purchase a version of coppermine with or without the credit line removed. Read the file COPYING that comes with the distribution of Coppermine for details.<br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr /><a name="removeFeature"></a>
+  </ol><br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
+<a name="removeFeature"></a>
 <h3>I don&#39;t want to use the feature XYZ of Coppermine. How can I <b>remove</b> it?</h3>
 <p>Just remove the link; edit /themes/yourtheme/theme.php, look for the feature you want to remove and comment out the HTML code.<br />Example: if you want to remove the ecard-feature, just look for
 <pre>&lt;td align=&quot;center&quot; valign=&quot;middle&quot; class=&quot;navmenu&quot; width=&quot;48&quot;&gt;
