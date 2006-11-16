@@ -1430,6 +1430,7 @@ function pagefooter()
     $template_vars = array(
         '{CUSTOM_FOOTER}' => $custom_footer,
         '{VANITY}' => (defined('THEME_IS_XHTML10_TRANSITIONAL') && $CONFIG['vanity_block']) ? theme_vanity() : '',
+        '{CREDITS}' => theme_credits(),
     );
 
     echo template_eval($template_footer, $template_vars);
@@ -1453,6 +1454,35 @@ EOT;
 }
 /******************************************************************************
 ** Section <<<theme_javascript_head>>> - END
+******************************************************************************/
+
+/******************************************************************************
+** Section <<<theme_credits>>> - START
+******************************************************************************/
+/******************************************************************************
+// Function for the credits-section
+In previous versions of Coppermine the "Powered by Coppermine" used to be
+obfuscated to make it hard for non-coders to remove the tag. The reason behind
+this was an additional license add-on that disallowed users to change the line.
+The dev team has reviewed this policy for cpg1.5.x and decided that end users
+ARE allowed to change or remove the line in legal terms.
+HOWEVER: We have a forum policy for the support board instead: support will 
+only be given for galleries that show the "Powered by Coppermine" tag
+unobfuscated.
+Before removing the credits, please consider this as well:
+Coppermine is free software, the dev team ASKS you to keep the footer intact.
+We're convinced that you should give credit where credit is due. So please think
+twice before you decide to remove the tag.
+******************************************************************************/
+function theme_credits() {
+    $return = <<< EOT
+
+<div class="footer" align="center" style="padding-top:10px;display:block;visibility:visible; font-family: Verdana,Arial,sans-serif;">Powered by <a href="http://coppermine-gallery.net/" title="Coppermine Photo Gallery" rel="external">Coppermine Photo Gallery</a></div>
+EOT;
+    return $return;
+}
+/******************************************************************************
+** Section <<<theme_credits>>> - END
 ******************************************************************************/
 
 /******************************************************************************

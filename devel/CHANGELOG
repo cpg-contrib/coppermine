@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-11-16 [C] Unobfuscated the credits tag {GauGau}
 2006-11-14 [A] Added album hits feature. {Abbas}
 2006-11-12 [B] Fixed plugin api sleep and wake actions to be scoped correctly. {Donnoman}
 2006-11-11 [S] Replaced init.inc.php sanitization and magicquotes remediation code (topic=38166.0) {Donnoman}

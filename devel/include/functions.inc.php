@@ -290,11 +290,6 @@ function cpg_db_fetch_row($result)
    Utilities functions
  **************************************************************************/
 
- /**
- * @ignore
- */
- define ('LOC','YToyOntzOjE6ImwiO3M6OToie0dBTExFUll9IjtzOjE6InMiO3M6MjAwOiI8ZGl2IGNsYXNzPSJmb290ZXIiIGFsaWduPSJjZW50ZXIiIHN0eWxlPSJwYWRkaW5nLXRvcDogMTBweDsiPlBvd2VyZWQgYnkgPGEgaHJlZj0iaHR0cDovL2NvcHBlcm1pbmUuc291cmNlZm9yZ2UubmV0LyIgdGl0bGU9IkNvcHBlcm1pbmUgUGhvdG8gR2FsbGVyeSIgcmVsPSJleHRlcm5hbCI+Q29wcGVybWluZSBQaG90byBHYWxsZXJ5PC9hPjwvZGl2PiI7fQ==');
-
 // Replacement for the die function
 
 /**
@@ -689,9 +684,6 @@ function load_template()
 {
         global $THEME_DIR, $CONFIG, $template_header, $template_footer;
 
-        $tmpl_loc = array();
-        $tmpl_loc = unserialize(base64_decode(LOC));
-
         if (file_exists(TEMPLATE_FILE)) {
             $template_file = TEMPLATE_FILE;
         } elseif (file_exists($THEME_DIR . TEMPLATE_FILE)) {
@@ -710,8 +702,12 @@ function load_template()
         $template = str_replace('{THEME_DIR}', $THEME_DIR ,$template);
         $gallery_pos = strpos($template, '{THEME_SELECT_LIST}');
         $template = str_replace('{THEME_SELECT_LIST}', themeSelect('list') ,$template);
-        $gallery_pos = strpos($template, $tmpl_loc['l']);
-        $template = str_replace($tmpl_loc['l'], $tmpl_loc['s'] ,$template);
+        $gallery_pos = strpos($template, '{GALLERY}');
+        if (!strstr($template, '{CREDITS}')) {
+            $template = str_replace('{GALLERY}', '{CREDITS}' ,$template);
+        } else {
+            $template = str_replace('{GALLERY}', '' ,$template);
+        }
 
         $template_header = substr($template, 0, $gallery_pos);
         $template_header = str_replace('{META}','{META}'.CPGPluginAPI::filter('page_meta',''),$template_header);
