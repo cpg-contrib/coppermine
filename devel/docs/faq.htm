@@ -678,9 +678,18 @@ Greg</blockquote></p></td></tr></table><br /></p><br /><div class="totop">[<a hr
 <a name="changeOrderEdit"></a>
 <h3>How can I change the order of the pics <u>when <b>editing</b> them</u>?</h3>
 <p>By default, the pics are shown alphabetically when you edit them. To change the sorting order to &quot;by date&quot;, edit <tt class="code">editpics.php</tt> and change<br />
-<tt class="code">$result = cpg_db_query(&quot;SELECT * FROM {$CONFIG[&#39;TABLE_PICTURES&#39;]} WHERE aid = &#39;$album_id&#39; ORDER BY filename LIMIT $start, $count&quot;);</tt><br />
-to<br />
-<tt class="code">$result = cpg_db_query(&quot;SELECT * FROM {$CONFIG[&#39;TABLE_PICTURES&#39;]} WHERE aid = &#39;$album_id&#39; ORDER BY pid LIMIT $start, $count&quot;);</tt><br /></p><br />
+<pre>$sql = &quot;SELECT p.*,a.category FROM {$CONFIG['TABLE_PICTURES']} as p &quot;.
+                           &quot;INNER JOIN {$CONFIG['TABLE_ALBUMS']} as a &quot;.
+                           &quot;ON a.aid=p.aid &quot;.
+                           &quot;WHERE p.aid = '$album_id' &quot;.
+                           &quot;ORDER BY p.filename LIMIT $start, $count&quot;;
+                $result = cpg_db_query($sql);</pre><br />to<br />
+<pre>$sql = &quot;SELECT p.*,a.category FROM {$CONFIG['TABLE_PICTURES']} as p &quot;.
+                           &quot;INNER JOIN {$CONFIG['TABLE_ALBUMS']} as a &quot;.
+                           &quot;ON a.aid=p.aid &quot;.
+                           &quot;WHERE p.aid = '$album_id' &quot;.
+                           &quot;ORDER BY pid LIMIT $start, $count&quot;;
+                $result = cpg_db_query($sql);</pre><br /></p><br />
 <div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr /><a name="rightHandMenu"></a>
 <h3>How can I create a menu that&#39;s shown on the <b>right side</b> of the gallery?</h3>
 <p>When the template.html is read, it is split in 2. What is before the {GALLERY} tag is output by the pageheader function, what is after by the pagefooter function.<br />
