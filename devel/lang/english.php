@@ -639,6 +639,7 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'auto_resize_user' => 'User only',
   'ascending' => 'ascending',
   'descending' => 'descending',
+  'collapse_all' => 'Collapse All', // cpg1.5
   'separate_page' => 'on a separate page', // cpg1.5
   'inline' => 'inline', // cpg1.5
   'guests_only' => 'Guests only', // cpg1.5

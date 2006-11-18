@@ -1018,7 +1018,7 @@ starttable('100%', "{$lang_admin_php['title']} - $signature", 3);
 echo <<<EOT
     <tr>
         <td class="tableh2" colspan="3">
-            <a href="javascript:expand();" class="admin_menu">{$lang_admin_php['expand_all']}&nbsp;&nbsp;<img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['expand_all']}" /></a>
+            <a href="javascript:expand();" class="admin_menu">{$lang_admin_php['expand_all']}&nbsp;&nbsp;<img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['expand_all']}" /></a>     <a href="javascript:hideall();" class="admin_menu">{$lang_admin_php['collapse_all']}&nbsp;&nbsp;<img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['collapse_all']}" /></a>
         </td>
     </tr>
 EOT;
@@ -1037,7 +1037,7 @@ echo <<<EOT
                             <table border="0" cellspacing="0" cellpadding="0" width="100%">
                                 <tr>
                                     <td width="33%">
-                                        <a href="javascript:expand();" class="admin_menu">{$lang_admin_php['expand_all']}<img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['expand_all']}" /></a>
+                                        <a href="javascript:expand();" class="admin_menu">{$lang_admin_php['expand_all']}<img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['expand_all']}" /></a> <a href="javascript:hideall();" class="admin_menu">{$lang_admin_php['collapse_all']}&nbsp;&nbsp;<img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['collapse_all']}" /></a>
                                     </td>
                                     <td width="67%" align="center">
                                         <input type="submit" class="button" name="update_config" value="{$lang_admin_php['save_cfg']}" />
