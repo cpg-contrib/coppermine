@@ -139,7 +139,7 @@ EOT;
 } else { // individual approval end, mass-approval start
 
 // Change config options if applicable
-if (isset($_POST) == TRUE) {
+if (isset($_POST) == TRUE && count($_POST)) {
         if ($_POST['approval_only'] != '') {
            $approval_only = 1;
         } else {
