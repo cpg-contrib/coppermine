@@ -2659,6 +2659,7 @@ $lang_language_data['vietnamese'] = array('Vietnamese','Tieng Viet','vn');
 //start the output
 switch ($parameter) {
    case 'flags':
+       $return.= '<div id="cpgChooseFlags">';
        if ($CONFIG['language_flags'] == 2){
            $return.= $lang_language_selection['choose_language'].': ';
        }
@@ -2677,6 +2678,7 @@ switch ($parameter) {
               $return.=  '<a href="' .$cpgChangeUrl. 'xxx" rel="nofollow"><img src="images/flags/reset.gif" border="0" width="16" height="11" alt="" title="';
               $return.=  $lang_language_selection['reset_language'] . '" /></a>' . $lineBreak;
           }
+       $return.= '</div>';
        break;
    case 'table':
        $return = 'not yet implemented';
