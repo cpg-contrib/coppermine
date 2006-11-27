@@ -413,7 +413,7 @@ switch ($event) {
             ob_end_flush();
         } else {
             $header_location = (@preg_match('/Microsoft|WebSTAR|Xitami/', getenv('SERVER_SOFTWARE'))) ? 'Refresh: 0; URL=' : 'Location: ';
-            $redirect = "displayimage.php?pos=" . (- mysql_insert_id());
+            $redirect = "displayimage.php?pos=" . (- mysql_insert_id($CONFIG['LINK_ID']));
             header($header_location . $redirect);
             pageheader($lang_info, "<meta http-equiv=\"refresh\" content=\"1;url=$redirect\" />");
             msg_box($lang_info, $lang_db_input_php['upl_success'], $lang_continue, $redirect);
