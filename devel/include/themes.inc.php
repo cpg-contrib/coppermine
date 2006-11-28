@@ -1626,18 +1626,45 @@ function theme_main_menu($which)
     global $AUTHORIZED, $CONFIG, $album, $actual_cat, $cat, $REFERER;
     global $lang_main_menu, $template_sys_menu, $template_sub_menu, $lang_gallery_admin_menu;
 
-
     static $sys_menu = '', $sub_menu = '';
     if ($$which != '') {
         return $$which;
     }
 
+    //Check whether user has permission to upload file to the current album if any
+    $upload_allowed = false;
+    if (isset($album)) {
+        if (GALLERY_ADMIN_MODE) {
+            $upload_allowed = true;
+        } else {
+            if (USER_ID) {
+                $query = "SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='" . (FIRST_USER_CAT + USER_ID) . "' AND aid = '$album' ORDER BY title";
+                $user_albums = cpg_db_query($query);
+                if (mysql_num_rows($user_albums)) {
+                    $upload_allowed = true;
+                } else {
+                    $upload_allowed = false;
+                }
+            }
+
+            if (!$upload_allowed) {
+                $query = "SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " AND uploads='YES' AND (visibility = '0' OR visibility IN ".USER_GROUP_SET.") AND aid = '$album' ORDER BY title";
+                $public_albums = cpg_db_query($query);
+    
+                if (mysql_num_rows($public_albums)) {
+                    $upload_allowed = true;
+                } else {
+                    $upload_allowed = false;
+                }
+            }
+        }
+    }
+
     $album_l = isset($album) ? "?album=$album" : '';
+    $album_12 = ($upload_allowed) ? "?album=$album" : '';
     $cat_l = (isset($actual_cat))? "?cat=$actual_cat" : (isset($cat) ? "?cat=$cat" : '');
     $cat_l2 = isset($cat) ? "&amp;cat=$cat" : '';
     $my_gallery_id = FIRST_USER_CAT + USER_ID;
-
-
 
   if ($which == 'sys_menu' ) {
     if (USER_ID) {
@@ -1646,7 +1673,7 @@ function theme_main_menu($which)
         template_extract_block($template_sys_menu, 'logout');
         template_extract_block($template_sys_menu, 'my_profile');
     }
-
+    
     if (!USER_IS_ADMIN) {
         template_extract_block($template_sys_menu, 'enter_admin_mode');
         template_extract_block($template_sys_menu, 'leave_admin_mode');
@@ -1701,7 +1728,7 @@ function theme_main_menu($which)
         '{USR_MODE_TGT}' => "mode.php?admin_mode=0&amp;referer=$REFERER",
         '{USR_MODE_TITLE}' => $lang_main_menu['usr_mode_title'],
         '{USR_MODE_LNK}' => $lang_main_menu['usr_mode_lnk'],
-        '{UPL_PIC_TGT}' => "upload.php",
+        '{UPL_PIC_TGT}' => "upload.php$album_12",
         '{UPL_PIC_TITLE}' => $lang_main_menu['upload_pic_title'],
         '{UPL_PIC_LNK}' => $lang_main_menu['upload_pic_lnk'],
         '{REGISTER_TGT}' => "register.php",

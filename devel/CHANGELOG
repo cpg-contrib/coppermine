@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-11-28 [A] Passing album id with upload link so that current album can be shown selected by default in upload form. {Aditya}
 2006-11-28 [M] Prepared languages array for future language contributions {GauGau}
 2006-11-27 [B] Fixing redirect to file after new upload while bridged. {Nibbler}
 2006-11-18 [A] Added the collapse all button on admin/config page. {Abbas}

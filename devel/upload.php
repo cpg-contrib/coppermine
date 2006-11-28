@@ -759,6 +759,15 @@ function check_status($URI) {
 }
 //################################# MAIN CODE BLOCK ##################################################
 
+//Check whether we are getting album id through _GET or _POST
+if (isset($_GET['album'])) {
+  $sel_album = $_GET['album'];
+} elseif (isset($_POST['album'])) {
+  $sel_album = $_POST['album'];
+} else {
+  $sel_album = 0;
+}
+
 // Check to see if user customizations are allowed and if one the request has been made yet.
 
 if ((CUSTOMIZE_UPLOAD_FORM) and (!isset($_REQUEST['file_upload_request'])) and (!isset($_REQUEST['URI_upload_request'])) and (!isset($_POST['control']))) {
@@ -800,6 +809,11 @@ if ((CUSTOMIZE_UPLOAD_FORM) and (!isset($_REQUEST['file_upload_request'])) and (
 
             echo "<br /><br />";
 
+        }
+
+        if ($sel_album) {
+            //album id is available, put it in hidden field
+            $data[] = array('album', $sel_album, 4);
         }
 
         echo "{$lang_upload_php['cust_instr_7']}<br /><br />";
@@ -969,6 +983,11 @@ if (!isset($_REQUEST['control'])) {
 
         // Check for valid form number.
         if ((USER_UPLOAD_FORM >= '0') and (USER_UPLOAD_FORM <= '7')) {
+
+            if ($sel_album) {
+                //album id is available, put it in hidden field
+                $form_array[] = array('album', $sel_album, 4);
+            }
 
             // Create form array, and insert MAX_FILE_SIZE control.
             $form_array[] = array('MAX_FILE_SIZE', $max_file_size);
@@ -2032,6 +2051,10 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
              array('unique_ID', $unique_ID, 4),
              array('control', 'phase_2', 4)
         );
+        if ($sel_album) {
+            //album id is available, put it in hidden field
+            $form_array[] = array('album', $sel_album, 4);
+        }
 
         create_form($form_array);
         close_form($lang_common['continue']);
