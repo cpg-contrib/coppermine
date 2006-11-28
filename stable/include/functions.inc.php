@@ -2441,6 +2441,7 @@ $lang_language_data['georgian'] = array('Georgian','&#4325;&#4304;&#4320;&#4311;
 $lang_language_data['german'] = array('German','Deutsch','de');
 $lang_language_data['greek'] = array('Greek','&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;','gr');
 $lang_language_data['hebrew'] = array('Hebrew','&#1506;&#1489;&#1512;&#1497;&#1514;','il');
+$lang_language_data['hindi'] = array('Hindi','&#2361;&#2367;&#2344;&#2381;&#2342;&#2368;','in');
 $lang_language_data['hungarian'] = array('Hungarian','Magyarul','hu');
 $lang_language_data['indonesian'] = array('Indonesian','Bahasa Indonesia','id');
 $lang_language_data['italian'] = array('Italian','Italiano','it');
@@ -2500,7 +2501,7 @@ switch ($parameter) {
               $return.=  '<a href="' .$cpgChangeUrl. 'xxx" rel="nofollow"><img src="images/flags/reset.gif" border="0" width="16" height="11" alt="" title="';
               $return.=  $lang_language_selection['reset_language'] . '" /></a>' . $lineBreak;
           }
-       $return.= '</div>';   
+       $return.= '</div>';
        break;
    case 'table':
        $return = 'not yet implemented';
