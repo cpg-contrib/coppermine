@@ -58,8 +58,16 @@
                 <li class="level2"><a href="#getting" class="menu2">2.2 Getting Started</a></li>
         </ul>
         <ul class="level2">
-                <li class="level2"><a href="#creating" class="menu2">2.3 Creating or upgrading your own themes</a></li>
-
+                <li class="level2"><a href="#theme" class="menu2">2.3 Creating or upgrading your own themes</a></li>
+        </ul>
+                <ul class="level3">
+                  <li class="level3"><a href="#theme_upgrading">2.3.1 Upgrading your custom theme</a></li>
+                  <li class="level3"><a href="#theme_files">2.3.2 Content of a theme</a></li>
+                  <li class="level3"><a href="#theme_sample">2.3.3 The sample theme - a template to copy from</a></li>
+                  <li class="level3"><a href="#theme_engine">2.3.4 How the theme engine works</a></li>
+                  <li class="level3"><a href="#theme_create">2.3.5 Creating your custom theme</a></li>
+                </ul>
+        <ul class="level2">
                 <li class="level2"><a href="#smtp" class="menu2">2.4 Using SMTP to send emails</a></li>
         </ul>
 <ul class="level1">
@@ -652,23 +660,43 @@ TBC
 
 
 
-<a name="creating"></a>
+<a name="theme"></a>
 <h2>2.3 Creating or upgrading your own themes</h2>
-<p>To upgrade an existing custom theme, to version 1.5.x, read the <a href="theme/index.html">theme upgrade documentation</a>.</p>
+<a name="theme_upgrading"></a>
+<h3>2.3.1 Upgrading your custom theme</h3>
+<p>To upgrade an existing custom theme to version 1.5.x, read the <a href="theme/index.html">theme upgrade documentation</a>.</p>
+<p>You only have to upgrade your custom theme when upgrading between major versions (e.g. from cpg1.3.x to cpg1.4.x or from cpg1.4.x to cpg1.5.x), as from one major version to the next, the theming engine is subject to changes. When only upgrading from minor versions to the next (e.g. from cpg1.5.x to cpg1.5.y), you don't have to update your custom theme.</p>
+<p>The core themes that come with Coppermine packages don't need to be updated, as they should be replaced during the upgrade and therefor will contain all needed changes. However: if you have based your custom theme on one of the core themes that come with coppermine (e.g. the classic theme), pay attention to possible changes. As suggested below, it's advisable to rename your custom theme to make sure that it doesn't accidentally get overwritten when upgrading.</p>
+<a name="theme_upgrading_end"></a>
+<a name="theme_files"></a>
+<h3>2.3.2 Content of a theme</h3>
 <p>Coppermine themes are stored in the &quot;<strong>themes</strong>&quot; directory, each consists of 3 primary files : </p>
 <ul>
   <li>&quot;<strong>template.html</strong>&quot; the main template in plain HTML.</li>
   <li>&quot;<strong>style.css</strong>&quot; the stylesheet associated with the template</li>
   <li>&quot;<strong>theme.php</strong>&quot; the PHP theme file</li>
-  </ul>
+</ul>
+<p>Additionally, there usually is a folder named &quot;images&quot; that resides within the theme folder (themes/theme_name/images/) that contains the images used by the particular theme (logos, bullets, backgrounds and other graphical resources needed).</p>
+<a name="theme_files_end"></a>
+<a name="theme_sample"></a>
+<h3>2.3.3 The sample theme - a template to copy from</h3>
 <p>Your Coppermine installation also includes a &quot;sample&quot; theme directory. The &quot;sample&quot; theme includes each of these files but does not show up in the user selectable list of themes in your Coppermine display. Sample's theme.php also holds a copy of every themeable function and template for your reference. If you opt to use the &quot;sample&quot; theme to begin creating your own theme, you should follow the theme.php instructions in the &quot;<a href="theme/index.html">theme upgrade documentation</a>&quot; and begin with a blank theme.php.</p>
-<p>To create a new template, the best solution is to use an existing one as its core. To do that, make a copy of the folder of the theme you want to use as a basis. Then edit the &quot;<strong>template.html</strong>&quot; and &quot;<strong>theme.php</strong>&quot; files and replace all occurences of &quot;<strong>themes/old_theme_dir</strong>&quot; with &quot;<strong>themes/new_theme_dir</strong>&quot; in order for the links to point to the correct place.</p>
-<p>When editing the &quot;<strong>template.html</strong>&quot; file do not remove the elements between <strong>{}</strong> these are the placeholders used by the script. Also keep in mind that despite this file being located in the &quot;<strong>themes/your_theme_dir</strong>&quot; directory, it must be coded as if it was in the main directory of the coppermine installation. For example, in order to display an image, you must use <em>&lt;img src=&quot;<strong>themes</strong>/theme_dir/images/image.gif&quot; alt=&quot;&quot;/&gt;</em> and not just<em>&lt;img src=&quot;images/image.gif&quot; alt=&quot;&quot;/&gt;.</em> The same principle applies for the &quot;<strong>theme.php</strong>&quot; file.</p>
-<p>Be careful not to delete the line <em>&lt;script type="text/javascript" src="scripts.js"&gt;&lt;/script&gt;</em> this javascript is necessary for the full-size pop-ups and other t functions related to JavaScript.</p>
-<p>If you are using an HTML editor to design your template, the easist working solution might be to the &quot;<strong>template.html</strong>&quot; file into the main directory of your coppermine installation and edit it there. Whenever you load Coppermine, if the script finds a file named &quot;<strong>template.html</strong>&quot; in the main directory it will load it instead of the default one that you assigned in the CONFIG menu. Once you have finished  editing your theme be sure to move the file back into the directory it belongs.</p>
-<p>To modify the colors, fonts, font sizes, etc... used by the script, you should edit the &quot;<strong>style.css</strong>&quot; stylesheet whenever possible. For example, if you want to increase or decrease the size of the fonts you can simply modify the line with : <em>table { font-size: 12px; }</em>. Most of the font sizes used by the script are defined as a percentage of this size.</p>
-<p>The &quot;<strong>theme.php</strong>&quot; file contains all the HTML templates used by the script. You can edit them, as well. When making modifications to these templates, be careful that you do not alter the lines that start with <em>&lt;!-- BEGIN xxx --&gt;</em> and <em>&lt;!-- END xxx --&gt;</em>. These lines are often used to identify the start and end of specific code blocks that the script will use to display your gallery.</p>
-<p>If you're not sure how to go about creating your own theme, you could also have a look at the download section of the coppermine homepage: there are many <a href="http://sourceforge.net/project/showfiles.php?group_id=89658&amp;package_id=98541">user-contributed themes</a> available for download that can be previewed on the <a href="http://coppermine.sourceforge.net/demo/">coppermine demo page</a>.</p>
+<p>To clarify: you <strong>mustn't</strong> edit the sample theme (as it will not be displayed), but copy the sections you want to see changed from it into your custom theme. Don't copy the whole content from themes/sample/theme.php into your custom theme, as this will only clutter your custom theme and will make upgrading very hard in the future. Instead, copy the sections you want to modify.</p>
+<a name="theme_sample_end"></a>
+<a name="theme_engine"></a>
+<h3>2.3.4 How the theme engine works</h3>
+<p>When a Coppermine page is being parsed, the core code will call theme functions. If those functions exist in your custom theme, they will be taken into account. If a particular function does not exist in your custom theme, the core function will be used. The core functions (the default theme behaviour if you want to put it that way) reside in includes/themes.inc.php. Therefor, you <strong>mustn't</strong> edit includes/themes.inc.php, under no circumstances, as all your changes will be lost when upgrading in the future. Everything that possibly could be accomplished by editing include/themes.inc.php can be accomplished by editing themes/yourtheme/theme.php as well - stuff defined in your custom theme will take precedence over the core theme functions.</p>
+<a name="theme_engine_end"></a>
+<a name="theme_create"></a>
+<h3>2.3.5 Creating your custom theme</h3>
+<p>To create a new theme, the best solution is to use an existing one as its copy template. To do that, make a copy of the folder of the theme you want to use as a basis. Then edit the &quot;<strong>template.html</strong>&quot; and &quot;<strong>theme.php</strong>&quot; files and replace all occurences of &quot;<strong>themes/old_theme_dir</strong>&quot; with &quot;<strong>themes/new_theme_dir</strong>&quot; in order for the links to point to the correct place.<br />
+Avoid using spaces and special chars in your custom theme name - only use alphanumerals and the underscore (_).</p>
+<p>When editing the &quot;<strong>template.html</strong>&quot; file do not remove the elements between <strong>{}</strong> - these are the placeholders used by the script. Also keep in mind that despite this file being located in the &quot;<strong>themes/your_theme_dir</strong>&quot; directory, it must be coded as if it was in the main directory of the coppermine installation. For example, in order to display an image, you must use <tt class="code">&lt;img src=&quot;<strong>themes</strong>/theme_dir/images/image.gif&quot; alt=&quot;&quot;/&gt;</tt> and not just <tt class="code">&lt;img src=&quot;images/image.gif&quot; alt=&quot;&quot;/&gt;.</tt> The same principle applies for the &quot;<strong>theme.php</strong>&quot; file.</p>
+<p>Be careful not to delete the line <tt class="code">&lt;script type="text/javascript" src="scripts.js"&gt;&lt;/script&gt;</tt> - this javascript is necessary for the full-size pop-ups and other functions related to JavaScript.</p>
+<p>If you are using an HTML editor to design your template, the easist working solution might be to the &quot;<strong>template.html</strong>&quot; file into the main directory of your coppermine installation and edit it there. Whenever you load Coppermine, if the script finds a file named &quot;<strong>template.html</strong>&quot; in the main directory it will load it instead of the default one that you assigned in the CONFIG menu. Once you have finished  editing your theme be sure to move the file back into the directory it belongs. Don't forget to remove the temporary template.html file from the Coppermine root folder once you are done editing!</p>
+<p>To modify the colors, fonts, font sizes, etc... used by the script, you should edit the &quot;<strong>style.css</strong>&quot; stylesheet whenever possible. For example, if you want to increase or decrease the size of the fonts you can simply modify the line with : <tt class="code">table { font-size: 12px; }</tt>. Most of the font sizes used by the script are defined as a percentage of this size.</p>
+<p>The &quot;<strong>theme.php</strong>&quot; file contains all the HTML templates used by the script. You can edit them, as well. When making modifications to these templates, be careful that you do not alter the lines that start with <tt class="code">&lt;!-- BEGIN xxx --&gt;</tt> and <tt class="code">&lt;!-- END xxx --&gt;</tt>. These lines are often used to identify the start and end of specific code blocks that the script will use to display your gallery.</p>
+<p>If you're not sure how to go about creating your own theme, you could also have a look at the download section of the coppermine homepage: there are many user-contributed themes available for download that can be previewed on the <a href="http://coppermine.sourceforge.net/demo/">coppermine demo page</a>.</p>
 <p>While you're in the process of creating or testing a new theme, you might not want your theme to be displayed to visitors of your site, but you (as the coppermine admin) may want to still be able to preview your theme. To do that, simply add <tt class="code">theme=your_theme_name</tt> to the url in your browser.</p>
 <br />
 <strong>Examples:</strong>
@@ -677,6 +705,8 @@ TBC
 <li><tt class="code">http://yoursite.tld/coppermine/thumbnails.php?album=1&amp;theme=your_theme_name</tt> will show the thumbnail view of album 1, using your theme</li>
 <li><tt class="code">http://yoursite.tld/coppermine/?theme=xxx</tt> will reset your view back to the theme you chose as your default theme in coppermine config</li>
 </ul>
+<a name="theme_create_end"></a>
+<a name="theme_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="smtp"></a>
@@ -3021,7 +3051,7 @@ Use post-based groups?:  0  </pre></li>
 
 <a name="copyright"></a>
 <h2>8.4 Copyright and disclaimer</h2>
-<p>This application is opensource software released under the <a href="http://www.gnu.org/copyleft/gpl.html">GPL</a>.
+<p>This application is open source software released under the GNU <a href="http://www.gnu.org/copyleft/gpl.html">GPL</a>.
 </p>
 <p>Because the program is licensed free of charge, there is no warranty for the program, to the extent permitted by applicable law. Except when otherwise stated in writing the copyright holders and/or other parties provide the program &quot;as is&quot; without warranty of any kind, either expressed or implied, including, but not limited to, the implied warranties of merchantability and fitness for a particular purpose. The entire risk as to the quality and performance of the program is with you. Should the program prove defective, you assume the cost of all necessary servicing, repair or correction. </p>
 <p>Coppermine Photo Gallery is Copyright &copy; 2002 - 2006 Gr&eacute;gory  DEMAR and the Coppermine Dev Team, All Rights Reserved.<br />
