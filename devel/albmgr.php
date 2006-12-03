@@ -299,8 +299,7 @@ pageheader($lang_albmgr_php['alb_mrg']);
         this.album_no = option_value.substring(option_value.indexOf('album_no=') + 9, option_value.indexOf(','));
         option_value = option_value.substring(option_value.indexOf(',') + 1);
 
-        temp_nm = option_value.substring(option_value.indexOf('album_nm=') + 9, option_value.indexOf('album_sort=')-1);
-        this.album_nm = temp_nm.substring(1, temp_nm.length-1);
+        this.album_nm = option_value.substring(option_value.indexOf('album_nm=') + 9, option_value.indexOf(','));
         option_value = option_value.substring(option_value.indexOf('album_sort='));
 
         this.album_sort = option_value.substring(option_value.indexOf('album_sort=') + 11 ,option_value.indexOf(','));
@@ -338,7 +337,7 @@ pageheader($lang_albmgr_php['alb_mrg']);
 
     function make_value(album_no, album_nm, album_sort, action)
     {
-        return "album_no=" + album_no + ",album_nm='" + album_nm + "',album_sort=" + album_sort + ",action=" + action;
+        return "album_no=" + album_no + ",album_nm=" + album_nm + ",album_sort=" + album_sort + ",action=" + action;
     }
 -->
 </script>
@@ -402,7 +401,7 @@ EOT;
 $i = 100;
 $lb = '';
 if (count ($rowset) > 0) foreach ($rowset as $album) {
-    $lb .= '                                        <option value="album_no=' . $album['aid'] . ',album_nm=\'' . $album['title'] . '\',album_sort=' . ($i++) . ',action=0">' . stripslashes($album['title']) . "</option>\n";
+    $lb .= '                                        <option value="album_no=' . $album['aid'] . ',album_nm=' . $album['title'] . ',album_sort=' . ($i++) . ',action=0">' . stripslashes($album['title']) . "</option>\n";
 }
 echo $lb;
 

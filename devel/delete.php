@@ -174,7 +174,7 @@ function parse_select_option($value)
 {
     global $HTML_SUBST;
 
-    if (!preg_match("/.+?no=(\d+),album_nm='(.+?)',album_sort=(\d+),action=(\d)/", $value, $matches))
+    if (!preg_match("/.+?no=(\d+),album_nm=(.+?),album_sort=(\d+),action=(\d)/", $value, $matches))
         return false;
 
     return array('album_no' => (int)$matches[1],
@@ -277,8 +277,11 @@ switch ($what) {
             delete_album((int)$album_id);
         }
 
+
         if (isset($_POST['to'])) foreach ($_POST['to'] as $option_value) {
+
             $op = parse_select_option(stripslashes($option_value));
+
             switch ($op['action']) {
                 case '0':
                     break;
@@ -298,7 +301,7 @@ switch ($what) {
                     cpg_db_query($query);
                     break;
                 default:
-                    cpg_die (CRITICAL_ERROR, $lang_delete_php['err_invalid_data'], __FILE__, __LINE__);
+                   // cpg_die (CRITICAL_ERROR, $lang_delete_php['err_invalid_data'], __FILE__, __LINE__);
             }
         }
         if ($need_caption) output_caption();
