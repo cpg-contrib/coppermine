@@ -2262,8 +2262,12 @@ function cpg_debug_output()
 
         $debug_underline = '&#0010;------------------&#0010;';
         $debug_separate = '&#0010;==========================&#0010;';
+        $debug_toggle_link = ' <a href="javascript:;" onclick="show_section(\'debug_output_rows\');" class="admin_menu" id="debug_output_toggle" style="display:none;">show/hide</a>';
         echo '<form name="debug" action="'.$_SERVER['PHP_SELF'].'" id="debug">';
-        starttable('100%', $lang_cpg_debug_output['debug_info'],2);
+        starttable('100%', $lang_cpg_debug_output['debug_info']. $debug_toggle_link,2);
+        //echo '<div name="debug_output_rows" id="debug_output_rows" style="display:block;">';
+        echo '<tr><td align="center" valign="top" width="100%" colspan="2">';
+        echo '<table border="0" cellspacing="0" cellpadding="0" width="100%" id="debug_output_rows">';
         echo '<tr><td align="center" valign="middle" class="tableh2" width="100">';
         echo '<script language="javascript" type="text/javascript">
 <!--
@@ -2273,12 +2277,15 @@ var tempval=eval("document."+theField)
 tempval.focus()
 tempval.select()
 }
+// only hide the debug_output if the user is capable to display it, i.e. if JavaScript is enabled. If JavaScript is off, debug_output will be displayed and the toggle will remain invisible (as it would not do anything anyway with JS off)
+window.onload = document.getElementById(\'debug_output_rows\').style.display = \'none\';
+window.onload = document.getElementById(\'debug_output_toggle\').style.display = \'inline\';
 //-->
 </script>';
         echo '
         <a href="javascript:HighlightAll(\'debug.debugtext\')" class="admin_menu">' . $lang_cpg_debug_output['select_all'] . '</a>';
         echo '</td><td align="left" valign="middle" class="tableh2">';
-        if (GALLERY_ADMIN_MODE){echo '<span class="album_stat">('.$lang_cpg_debug_output['copy_and_paste_instructions'].')</span>';}
+        if (GALLERY_ADMIN_MODE){echo '<span class="album_stat">'.$lang_cpg_debug_output['copy_and_paste_instructions'].'</span>';}
         echo '</td></tr>';
         echo '<tr><td class="tableb" colspan="2">';
         echo '<textarea  rows="10" cols="60" class="debug_text" name="debugtext">';
@@ -2366,9 +2373,11 @@ tempval.select()
         echo <<<EOT
 Page generated in $time seconds - $query_count queries in $total_query_time seconds - Album set : $ALBUM_SET; Meta set: $META_ALBUM_SET;
 EOT;
-        echo "</textarea>";
-        echo "</td>";
-        echo "</tr>";
+        echo '</textarea>';
+        echo '</td>';
+        echo '</tr>';
+        echo '</table>';
+        echo '</td></tr>';
         if (GALLERY_ADMIN_MODE){
           echo "<tr><td class=\"tablef\" colspan=\"2\">";
           echo "<a href=\"phpinfo.php\" class=\"admin_menu\">".$lang_cpg_debug_output['phpinfo']."</a>";
