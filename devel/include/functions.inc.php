@@ -2262,7 +2262,7 @@ function cpg_debug_output()
 
         $debug_underline = '&#0010;------------------&#0010;';
         $debug_separate = '&#0010;==========================&#0010;';
-        $debug_toggle_link = ' <a href="javascript:;" onclick="show_section(\'debug_output_rows\');" class="admin_menu" id="debug_output_toggle" style="display:none;">show/hide</a>';
+        $debug_toggle_link = ' <a href="javascript:;" onclick="show_section(\'debug_output_rows\');" class="admin_menu" id="debug_output_toggle" style="display:none;">'.$lang_cpg_debug_output['show_hide'].'</a>';
         echo '<form name="debug" action="'.$_SERVER['PHP_SELF'].'" id="debug">';
         starttable('100%', $lang_cpg_debug_output['debug_info']. $debug_toggle_link,2);
         //echo '<div name="debug_output_rows" id="debug_output_rows" style="display:block;">';
