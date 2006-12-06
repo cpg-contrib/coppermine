@@ -30,6 +30,22 @@ class cpgTemplate extends Smarty {
     }
 
     /**
+     * cpgTemplate::getInstance()
+     * 
+     * @return 
+     */
+    function &getInstance()
+    {
+        static $instance;
+
+        if (!isset($instance)) {
+            $instance = new cpgTemplate;
+        } 
+
+        return ($instance);
+    }     
+
+    /**
      * cpgTemplate::getThumbnailHTML()
      *
      * @param  $thumbList

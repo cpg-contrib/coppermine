@@ -33,7 +33,7 @@ $selectOptions = array(25 => 25, 50 => 50, 75 => 75, 100 => 100);
 /**
  * Create new template object
  */
-$t = new cpgTemplate;
+$t = cpgTemplate::getInstance();
 
 /**
  * Create new ecard object

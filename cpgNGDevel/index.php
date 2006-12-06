@@ -63,7 +63,7 @@ $CONTENT = "";
 $albumData = new cpgAlbumData($cat);
 $indexData = new cpgIndexData($cat,'',$PAGE);
 
-$t = new cpgTemplate();
+$t = cpgTemplate::getInstance();
 
 /**#@+
  * Assign all the data to smarty

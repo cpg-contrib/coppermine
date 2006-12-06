@@ -22,7 +22,7 @@ require('classes/cpgTemplate.class.php');
 require('classes/cpgProcessAlbum.class.php');
 ///require('classes/cpgProcessCategory.class.php'); // Commented temporarily
 
-$t = new cpgTemplate;
+$t = cpgTemplate::getInstance();
 if (isset($_POST['update'])) {
   //print_r($_POST);
   $albumObj = new cpgProcessAlbum();

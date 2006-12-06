@@ -14,7 +14,7 @@ define('LOGOUT_PHP', true);
 require('include/init.inc.php');
 require_once('classes/cpgTemplate.class.php');
 
-$t = new cpgTemplate;
+$t = cpgTemplate::getInstance();
 
 if (!$auth->isDefined('USER_ID')) {
   cpgUtils::cpgDie(ERROR, $lang_logout_php['err_not_loged_in'], __FILE__, __LINE__);

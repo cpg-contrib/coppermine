@@ -109,7 +109,7 @@ $userObj->activateNewUser();
 //Set $REFERER to index.php
 $REFERER = 'index.php';
 
-$t = new cpgTemplate;
+$t = cpgTemplate::getInstance();
 
 /**
  * Assign all the data to smarty

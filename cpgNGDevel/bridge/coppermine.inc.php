@@ -20,31 +20,16 @@
 
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
 
-// Switch that allows overriding the bridge manager with hard-coded values
-define('USE_BRIDGEMGR', 1);
+class coppermine_udb extends core_udb {
 
-require 'udb_base.inc.php';
-
-class cpg_udb extends core_udb {
-
-        function cpg_udb()
+        function coppermine_udb()
         {
                 global $BRIDGE;
                 core_udb::core_udb();
 
-                if (!USE_BRIDGEMGR) {
-
-                        $this->boardurl = 'http://localhost/coppermine';
-                        include_once('../include/config.inc.php');
-
-                } else {
-                        //include_once($BRIDGE['relative_path_to_config_file'] . 'config.inc.php');
-                        $this->boardurl = $this->config->conf['site_url'];
-                        $this->use_post_based_groups = @$BRIDGE['use_post_based_groups'];
-                }
-
+	            $this->boardurl = $this->config->conf['site_url'];
+	            $this->use_post_based_groups = @$BRIDGE['use_post_based_groups'];
                 $this->multigroups = 1;
-
                 $this->group_overrride = !$this->use_post_based_groups;
 
                 // Database connection settings
@@ -53,7 +38,7 @@ class cpg_udb extends core_udb {
                         'host' => $this->config->dbserver ? $this->config->dbserver : 'localhost',
                         'user' => $this->config->dbuser,
                         'password' => $this->config->dbpass,
-                        'prefix' =>$this->config->table_prefix
+                        'prefix' => $this->config->table_prefix
                 );
 
                 // Board table names
@@ -293,5 +278,5 @@ user_password = '" . $password . "' AND user_active = 'YES'";
 }
 
 // and go !
-$cpg_udb = new cpg_udb;
+// the object is instantiated in cpgAuth.class.php based on the bridges short_name and appending _udb.
 ?>

@@ -31,7 +31,7 @@ if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) {
   cpgUtils::cpgDie(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 }
 
-$t = new cpgTemplate;
+$t = cpgTemplate::getInstance();
 
 if (isset($_REQUEST['pid'])) {
   $pid = (int)$_REQUEST['pid'];

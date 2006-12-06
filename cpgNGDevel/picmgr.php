@@ -87,7 +87,7 @@ if (isset($_POST['sort_order']) && !empty($_POST['sort_order'])) {
     $objPicmgr->sortedFiles();
 }
 
-$t = new cpgTemplate;
+$t = cpgTemplate::getInstance();
 
 /**
  * Assign all the data to smarty

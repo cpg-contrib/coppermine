@@ -325,7 +325,7 @@ class cpgUtils {
 
         $auth = cpgAuth::getInstance();
 		$config = cpgConfig::getInstance();
-        $t = new cpgTemplate;
+        $t = cpgTemplate::getInstance();
 
         $t->assign('msgTitle', $lang_cpg_die[$msgCode]);
         $t->assign('msgText', $msgText);
@@ -362,7 +362,7 @@ class cpgUtils {
      */
     function msgBox($title, $msgText, $buttonText = "", $buttonLink = "", $width = "-1", $meta = false)
     {
-        $t = new cpgTemplate;
+        $t = cpgTemplate::getInstance();
         $config = cpgConfig::getInstance();
         $auth = cpgAuth::getInstance();
 
@@ -854,7 +854,11 @@ class cpgUtils {
 
         if (!$uid) {
             return 'Anonymous';
-        } elseif (UDB_INTEGRATION != 'coppermine' && $config->conf['bridge_enable']) {
+        } else {
+            return $auth->get_user_name($uid);
+        }
+        /* UDB_INTEGRATION exception No longer needed. --Donnoman */
+/*        } elseif (UDB_INTEGRATION != 'coppermine' && $config->conf['bridge_enable']) {
             return $auth->get_user_name($uid);
         } else {
             $query = "SELECT user_name FROM {$config->conf['TABLE_USERS']} WHERE user_id = '$uid'";
@@ -867,7 +871,7 @@ class cpgUtils {
             $row = $db->fetchRow();
 
             return $row['user_name'];
-        }
+        }*/
     } // End of function 'getUsername'
 
     /**
@@ -888,7 +892,11 @@ class cpgUtils {
 
         if (!$username) {
             return 0;
-        } elseif (UDB_INTEGRATION != 'coppermine' && $config->conf['bridge_enable']) {
+        } else {
+            return $auth->get_user_id($username);
+        }
+        /* UDB_INTEGRATION exception No longer needed. --Donnoman */
+/*        } elseif (UDB_INTEGRATION != 'coppermine' && $config->conf['bridge_enable']) {
             return $auth->get_user_id($username);
         } else {
             $query = "SELECT user_id FROM {$config->conf['TABLE_USERS']} WHERE user_name = '$username'";
@@ -901,7 +909,7 @@ class cpgUtils {
             $row = $db->fetchRow();
 
             return (int)$row['user_id'];
-        }
+        }*/
     } // End of function 'getUserid'
 
     /**
@@ -1399,14 +1407,14 @@ class cpgUtils {
 						                                                     'langName'  =>   $lang_language_data[$language][0]);    
 					 	  }
 				 } 
-			 $t = new cpgTemplate; //Object created for cpgTemplate class
+			 $t = cpgTemplate::getInstance(); //Object created for cpgTemplate class
 			 $return = $t->getFlagSelectHtml($cpgChangeUrl,$lang_array,$flagData);
 			 break;
 		   case 'table':
 			   $return = 'not yet implemented';
 			   break;
 		   default:
-   		   $t = new cpgTemplate; //Object created for cpgTemplate class
+   		   $t = cpgTemplate::getInstance(); //Object created for cpgTemplate class
 		   $return = $t->getLanguageSelectHtml($lang_array,$cpgChangeUrl);	 
 		} //End of switch statement
 

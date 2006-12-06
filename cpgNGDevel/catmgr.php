@@ -84,7 +84,7 @@ if ($config->conf['show_bbcode_help']) {
   $miscArr['bbcodeHelp'] .= '&nbsp;'. cpgUtils::cpgDisplayHelp('f=index.html&base=64&h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);
 }
 
-$t = new cpgTemplate;
+$t = cpgTemplate::getInstance();
 $t->assign('groupList', $groupList);
 $t->assign('lang_catmgr_php', $lang_catmgr_php);
 $t->assign('lang_modifyalb_php', $lang_modifyalb_php);

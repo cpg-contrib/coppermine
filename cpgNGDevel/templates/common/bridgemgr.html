@@ -1,0 +1,111 @@
+{if $installedBridge->short_name}
+    <!-- Start standard table -->
+    <table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+      <tr>
+        <td class="tableh1" colspan="3"><b><span class="statlink">{$lang->bridgemgr_php->i_bridge}</span></b></td>
+      </tr>
+      <tr>
+        <td class="tableh2" width="10%" align="center">
+                <b><span class="statlink">{$lang->bridgemgr_php->status}</span></b>
+        </td>
+        <td class="tableh2" width="80%">
+                <b><span class="statlink">{$lang->bridgemgr_php->full_name}</span></b>
+        </td>    
+        <td class="tableh2" align="center" width="10%">
+            <b><span class="statlink">{$lang->bridgemgr_php->operation}</span></b>
+        </td>
+      </tr>
+      <tr>
+        <td class="tablef" align="center" width="10%">
+            {if $bridgeEnable}
+                <img src="images/green.gif" alt="{$lang->bridgemgr_php->enabled}" title="{$lang->bridgemgr_php->enabled}" />
+            {elseif $installedBridge->admin_group}
+                <img src="images/yellow.gif" alt="{$lang->bridgemgr_php->configured}" title="{$lang->bridgemgr_php->configured}" />
+            {else}
+                <img src="images/red.gif" alt="{$lang->bridgemgr_php->not_configured}" title="{$lang->bridgemgr_php->not_configured}" />
+            {/if}
+        </td>
+        <td class="tablef" width="80%">
+            <b><span class="statlink">{$installedBridge->defaults->full_name}</span></b>
+        </td>  
+        <td class="tablef" align="center" width="10%">
+            {if $bridgeEnable}
+                <a href="bridgemgr.php?op=deactivate">{$lang->bridgemgr_php->bridge_enable_no}</a>
+            {elseif $installedBridge->admin_group}
+                <a href="bridgemgr.php?op=activate">{$lang->bridgemgr_php->bridge_enable_yes}</a>            
+            {/if}
+            <a href="bridgemgr.php?op=reset">
+                <img src="images/delete.gif" alt="{$lang->bridgemgr_php->reset}" border="0" title="{$lang->bridgemgr_php->reset}" />
+            </a>
+        </td>
+      </tr>
+    </table>
+    <!-- End standard table -->
+{/if}
+{if !$step}
+    <!-- Start standard table -->
+    <table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+      <tr>
+        <td class="tableh1" colspan="3"><b><span class="statlink">{$lang->bridgemgr_php->bridges}</span></b></td>
+      </tr>    
+      <tr>
+        <td class="tableh2" width="10%" align="center">
+                <b><span class="statlink">{$lang->bridgemgr_php->short_name}</span></b>
+        </td>
+        <td class="tableh2" width="80%">
+                <b><span class="statlink">{$lang->bridgemgr_php->full_name}</span></b>
+        </td>    
+        <td class="tableh2" align="center" width="10%">
+            <b><span class="statlink">{$lang->bridgemgr_php->operation}</span></b>
+        </td>
+      </tr>
+     {foreach from=$availableBridges item=bridgeDetails}
+      <tr>
+          <td class="tablef">{$bridgeDetails->short_name}</td>
+          <td class="tablef"><a href="{$bridgeDetails->support_url}" target="_blank">{$bridgeDetails->full_name}</a></td>
+          <td class="tablef" align="center" valign="middle">
+             <a href="bridgemgr.php?op=choose&amp;b={$bridgeDetails->short_name}"><img src="images/info.gif" border="0" alt="" /></a>
+          </td>
+      </tr>
+     {/foreach}
+    </table>
+    <!-- End standard table -->
+{/if}
+{if $step == 'settings'}
+    <!-- Start standard table -->
+    <form name="settings" method="post" action="bridgemgr.php?op=settings">    
+    <table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+      <tr>
+        <td class="tableh1" colspan="3"><b><span class="statlink">{$lang->bridgemgr_php->your_bridge_settings}</span></b></td>
+      </tr>   
+      <tr>
+        <td class="tableh2" width="10%" align="center">
+                <b><span class="statlink">{$lang->bridgemgr_php->status}</span></b>
+        </td>         
+        <td class="tableh2" align="center" >
+                <b><span class="statlink">{$lang->bridgemgr_php->setting}</span></b>
+        </td>
+        <td class="tableh2" align="center" width="10%">
+                <b><span class="statlink">{$lang->bridgemgr_php->value}</span></b>
+        </td>    
+      </tr>        
+{foreach from=$installedBridge->defaults->config key=key item=item}
+      <tr>
+        <td align="center"><img src="images/red.gif" alt="{$lang->bridgemgr_php->not_configured}" title="{$lang->bridgemgr_php->not_configured}" /></td>      
+        <td><b>{$lang->bridgemgr_php->$key}</b></td>
+        <td>{include file='common/form_element.html' name=$key value=$installedBridge->$key type=$item->used size="40"}</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        {assign var="key_exp" value=$key|cat:"_explanation"}
+        <td colspan="2" class="tableb">{$lang->bridgemgr_php->$key_exp}</td>
+      </tr>      
+{/foreach}
+      <tr>
+        <td colspan="2">&nbsp;</td>
+        <td align="right"><input type="submit" class="button" name="update_bridge" value="{$lang->bridgemgr_php->next}" /></td>
+      </tr>
+    </table>
+    <!-- End standard table -->
+    </form>
+{/if}

@@ -47,7 +47,7 @@ if ($config->conf['enable_smilies']) {
 /**
  * Create a new template object
  */
-$t = new cpgTemplate;
+$t = cpgTemplate::getInstance();
 
 /**
  * Create object of comment class

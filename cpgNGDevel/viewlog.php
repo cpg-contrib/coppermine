@@ -35,7 +35,7 @@ if (!$auth->userData['has_admin_access']) {
 /**
  * Create new template object
  */
-$t = new cpgTemplate;
+$t = cpgTemplate::getInstance();
 
 /**
  * Create new log object

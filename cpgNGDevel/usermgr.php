@@ -307,7 +307,7 @@ switch ($op) {
 $miscArr['usermgrHelp'] = '&nbsp;'.cpgUtils::cpgDisplayHelp('f=index.htm&as=user_cp&ae=user_cp_end&top=1', '650', '500');
 $miscArr['searchHelp'] = cpgutils::cpgDisplayHelp('f=index.htm&as=user_cp_search&ae=user_cp_search_end&top=1', '400', '150');
 
-$t = new cpgTemplate;
+$t = cpgTemplate::getInstance();
 
 /**#@+
  * Assign all the data to smarty

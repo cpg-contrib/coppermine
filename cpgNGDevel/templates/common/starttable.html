@@ -1,0 +1,12 @@
+{if $width eq "-1"}
+	{assign var="table_width" value=$CONFIG.picture_table_width}
+{elseif $width eq "100%"}
+	{assing var="table_width" value=$CONFIG.main_table_width}
+{/if}
+<!-- Start standard table -->
+<table align="center" width="$table_width" cellspacing="1" cellpadding="0" class="maintable">
+{if $title}
+    <tr>
+            <td class="tableh1" colspan="{$title_colspan}">{$title}</td>
+    </tr>
+{/if}

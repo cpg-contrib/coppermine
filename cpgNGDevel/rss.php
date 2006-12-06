@@ -71,7 +71,7 @@ foreach ($data as $key => $value) {
 }
 
 
-$t = new cpgTemplate;
+$t = cpgTemplate::getInstance();
 
 $misArr['galleryName'] = $config->conf['gallery_name'];
 $misArr['picPath'] = $config->conf['ecards_more_pic_target'];

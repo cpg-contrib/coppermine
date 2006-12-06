@@ -443,6 +443,19 @@ if (defined('BANNING_PHP')) $lang_banning_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('BRIDGEMGR_PHP')) $lang_bridgemgr_php = array(
+  'bridges' => 'Bridges', //ng
+  'i_bridge' => 'Installed Bridge', //ng
+  'short_name' => 'Short Name', //ng
+  'full_name' => 'Full Name', //ng
+  'operation' => 'Operation', //ng
+  'none_installed' => 'None Installed', //ng-
+  'not_configured' => 'Not Configured', //ng
+  'configured' => 'Configured', //ng
+  'reset' => 'Reset', //ng
+  'status' => 'Status', //ng
+  'enabled' => 'Enabled', //ng
+  'setting' => 'Setting', //ng
+  'value' => 'Value', //ng
   'title' => 'Bridge Wizard',
   'warning' => 'Warning: when using this wizard you have to understand that sensitive data is being sent using html forms. Only run it on your own PC (not on a public client like an internet cafe), and make sure to clear the browser cache and temporary files after you have finished, or others might be able to access your data!',
   'back' => 'back',

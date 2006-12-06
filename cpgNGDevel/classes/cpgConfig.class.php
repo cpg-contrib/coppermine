@@ -48,11 +48,6 @@ class cpgConfig {
      *
      * @return
      */
-    /**
-     * cpgConfig::cpgConfig()
-     *
-     * @return
-     */
     function cpgConfig()
     {
 
@@ -135,6 +130,32 @@ class cpgConfig {
         }
         return ($instance);
     }
+   
+   private function __get($nm)
+   {
+        if (isset($this->conf[$nm])) {
+            return $this->conf[$nm];
+        } elseif (isset($this->conf[strtoupper($nm)])) {
+            return $this->conf[strtoupper($nm)];
+        } elseif (isset($this->conf[strtolower($nm)])) {
+            return $this->conf[strtolower($nm)];             
+        } else {         
+           throw new Exception('No cpgConfig __get for '.$nm);
+        }
+   }
+
+   private function __set($nm, $val)
+   {
+        if (isset($this->conf[$nm])) {
+            $this->conf[$nm]=$val;
+        } elseif (isset($this->conf[strtoupper($nm)])) {
+            $this->conf[strtoupper($nm)]=$val;
+        } elseif (isset($this->conf[strtolower($nm)])) {
+            $this->conf[strtolower($nm)]=$val;            
+        } else {            
+           throw new Exception('No cpgConfig __set for '.$nm);
+        }
+   }
 }
 
 ?>

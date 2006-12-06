@@ -62,7 +62,7 @@ $comment = array (
                   'msg_body' => $row['msg_body']
                  );
 
-$t = new cpgTemplate;
+$t = cpgTemplate::getInstance();
 
 if ($config->conf['enable_smilies']) {
   $comment['smilies'] = 'enabled';

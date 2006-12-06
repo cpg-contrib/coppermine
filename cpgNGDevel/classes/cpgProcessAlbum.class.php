@@ -107,9 +107,10 @@ class cpgProcessAlbum {
           //$this->permOptions = array (0 => $lang_modifyalb_php['public_alb'], FIRST_USER_CAT + $this->auth->isDefined('USER_ID') => $lang_modifyalb_php['me_only']);
 		  $this->permOptions = array (0 => $lang_modifyalb_php['public_alb'], FIRST_USER_CAT + $this->albumData['user_id'] => $lang_modifyalb_php['me_only']);
           if ($this->albumData['category'] > FIRST_USER_CAT) {
-              if (defined('UDB_INTEGRATION')) {
+            /* UDB_INTEGRATION exception No longer needed. --Donnoman */
+/*              if (defined('UDB_INTEGRATION')) {*/
                   $ownerName = $this->auth->get_user_name($this->albumData['category'] - FIRST_USER_CAT);
-              } else {
+/*              } else {
                   $query = "SELECT user_name FROM {$this->config->conf['TABLE_USERS']} WHERE user_id='" . ($this->albumData['category'] - FIRST_USER_CAT) . "'";
                   $this->db->query($query);
 
@@ -117,7 +118,7 @@ class cpgProcessAlbum {
                       $user = $this->db->fetchRow();
                       $ownerName = $user['user_name'];
                   }
-              }
+              }*/
               $this->permOptions[$this->albumData['category']] = sprintf($lang_modifyalb_php['owner_only'], $ownerName);
           }
 
@@ -348,12 +349,12 @@ class cpgProcessAlbum {
             $this->db->query($query);
 
             $this->albListArr = $this->db->fetchRowSet();
-
-            if (defined('UDB_INTEGRATION')) {
+            /* UDB_INTEGRATION exception No longer needed. --Donnoman */
+/*            if (defined('UDB_INTEGRATION')) {*/
                 $sql = $this->auth->get_admin_album_list();
-            } else {
+/*            } else {
                 $sql = "SELECT aid, CONCAT('(', user_name, ') ', title) AS title " . "FROM {$this->config->conf['TABLE_ALBUMS']} AS a " . "INNER JOIN {$this->config->conf['TABLE_USERS']} AS u ON category = (" . FIRST_USER_CAT . " + u.user_id) " . "ORDER BY title";
-            }
+            }*/
             $this->db->query($sql);
 
             while ($row = $this->db->fetchRow()) {

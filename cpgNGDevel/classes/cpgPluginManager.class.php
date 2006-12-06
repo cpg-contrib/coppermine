@@ -617,7 +617,10 @@ class cpgPluginManager
         // Upload plugin
         $uploaded = $pluginObj->upload();
       }
-
+      
+      //namesspaces probably needs to be moved to an "install" action.
+      //not all plugins will be "uploaded".
+      
       // If plugin's writer's upload method returns true
       if ($uploaded) {
         // Initialize variable

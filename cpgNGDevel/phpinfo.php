@@ -53,7 +53,7 @@ ob_end_clean();
  * create instance of the template class
  * and assign all the values to template
  */
-$t = new cpgTemplate;
+$t = cpgTemplate::getInstance();
 
 $t->assign('SUB_TITLE', $lang_cpg_debug_output['phpinfo']);
 $t->assign('lang_phpinfo_php',$lang_phpinfo_php);

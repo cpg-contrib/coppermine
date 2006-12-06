@@ -31,7 +31,7 @@ if (!GALLERY_ADMIN_MODE) cpgUtils::cpgDie(ERROR, $lang_errors['access_denied'], 
 /**
  * Create new template object
  */
-$t = new cpgTemplate;
+$t = cpgTemplate::getInstance();
 
 if (isset($_GET['op'])) {
   // Plugin's id

@@ -1,0 +1,9 @@
+{* passed: $value, $type ,$name , $size *}
+{if strpos($type,'radio') !== false}
+    {$lang->yes} <input type="radio" name="{$name}" value="1" {if $value}checked="checked"{/if} /> 
+    {$lang->no} <input type="radio" name="{$name}" value="0" {if !$value}checked="checked"{/if} /> 
+{elseif strpos($type,'button') !== false }
+    <input type="button" name="{$name}" value="{$value}" /> 
+{else}
+    <input type="text" name="{$name}" value="{$value}" {if $size}size="{$size}"{/if} /> 
+{/if}

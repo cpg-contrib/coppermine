@@ -1,0 +1,625 @@
+{if $smarty.const.GALLERY_ADMIN_MODE}
+
+    <style type="text/css">
+    .explanation {font-size: 80%;}
+    .important {color:red;}
+    </style>
+
+
+{if $step eq "choose_bbs"}
+    <form name="{$step}" action="bridgemgr.php" method="post">
+    <table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+        <tr>
+                <td class="tableh1" colspan="2">{$lang_bridgemgr_php.title}: {$lang_bridgemgr_php.choose_bbs_app}</td>
+        </tr>
+        
+    {foreach key=key item=value from=$default_bridge_data}
+        <tr>
+            <td class="tableb">
+                <input type="Radio" name="short_name" id="{$key}" class="radio" value="{$key}" {if $BRIDGE.short_name eq $key}checked="checked" {/if}/>
+                <label for="{$key}" class="clickable_option">
+                    {$value.full_name}
+                </label>
+            </td>
+            <td class="tableb">
+                <span class="explanation">
+                    <a href="{$value.support_url}" title="{$lang_bridgemgr_php.support_url}" rel="external">{$value.support_url}</a>
+                </span>
+            </td>
+        </tr>
+    {/foreach}
+    {$cpg_submit_button}
+    </table>
+    </form>
+{elseif $step eq "settings_path"}
+<form name="{$step}" action="bridgemgr.php" method="post">
+    <table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+        <tr>
+                <td class="tableh1" colspan="3">{$lang_bridgemgr_php.title}: {$lang_bridgemgr_php.settings_path}</td>
+        </tr>
+
+        {foreach item=key from=$loop_array}
+                 <tr>
+                    <td class="tableb">
+                        {$lang_bridgemgr_php.$key}:
+                    </td>
+                    <td class="tableb" style="overflow:visible">
+                        <input type="text" name="{$key}" id="{$key}" class="textinput" value="{$prefill}" {$disabled} size="50" />
+                        {$minibrowser}
+                        {$reset_to_default}
+                    </td>
+                    <td class="tableb">
+                        {$display1}
+                        {assign var="explanation" value=$key|cat:"_explanation"}
+                        <span class="explanation">{$lang_bridgemgr_php.$explanation}</span>
+                        {$display2}
+                    </td>
+                </tr>
+        {/foreach}
+        
+        {if $rows_displayed eq 0}
+            <tr>
+                <td class="tableh2" colspan="3" align="center">
+                    <h2>{$lang_bridgemgr_php.no_action_needed}</h2>
+                </td>
+            </tr>
+        {/if}
+        {$cpg_submit_button}
+        </table>
+        </form>
+
+{elseif $step eq "db_connect"}
+
+
+        <form name="{$step}" action="bridgemgr.php" method="post">
+    <table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+        <tr>
+                <td class="tableh1" colspan="3">{$lang_bridgemgr_php.title}: {$lang_bridgemgr_php.database_connection}</td>
+        </tr>        
+        {foreach from=$loop_array item=$key}
+                <tr>
+                    <td class="tableb">
+                        {$lang_bridgemgr_php.$key}:
+                    </td>
+                    <td class="tableb">
+                        <input type="{$fieldtype}" name="{$key}" id="{$key}" class="textinput" value="{$prefill}" {$disabled} size="30"  style="width:80%" />
+                        {$reset_to_default}
+                    </td>
+                    <td class="tableb">
+                        {assign var="explanation" value=$key|cat:"_explanation"}
+                        <span class="explanation">{$lang_bridgemgr_php.$explanation}</span>
+                    </td>
+                </tr>
+        {/foreach}
+        {if $rows_displayed eq 0}
+            <tr>
+                <td class="tableh2" colspan="3" align="center">
+                    <h2>{$lang_bridgemgr_php.no_action_needed}</h2>
+                </td>
+            </tr>
+        {/if}
+        {cpg_submit_button}
+        </table>
+        </form>
+
+{elseif $step eq "db_tables"}
+
+        <form name="{$step}" action="bridgemgr.php" method="post">
+    <table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+        <tr>
+                <td class="tableh1" colspan="3">{$lang_bridgemgr_php.title}: {$lang_bridgemgr_php.database_tables}</td>
+        </tr>        
+        {foreach from=$loop_array item=$key}
+                <tr>
+                    <td class="tableb">
+                        {$lang_bridgemgr_php.$key}:
+                    </td>
+                    <td class="tableb">
+                        <input type="{$fieldtype}" name="{$key}" id="{$key}" class="textinput" value="{$prefill}" {$disabled} size="30"  style="width:80%" />
+                        $reset_to_default
+                    </td>
+                    <td class="tableb">
+                        {assign var="explanation" value=$key|cat:"_explanation"}
+                        <span class="explanation">{$lang_bridgemgr_php.$explanation}</span>
+                    </td>
+                </tr>
+        {/foreach}
+        {if $rows_displayed eq 0}
+            <tr>
+                <td class="tableh2" colspan="3" align="center">
+                    <h2>{$lang_bridgemgr_php.no_action_needed}</h2>
+                </td>
+            </tr>
+        {/if}
+        {cpg_submit_button}
+        </table>
+        </form>
+
+{elseif $step eq "db_groups"}
+
+
+        <form name="{$step}" action="bridgemgr.php" method="post">
+    <table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+        <tr>
+                <td class="tableh1" colspan="3">{$lang_bridgemgr_php.title}: {$lang_bridgemgr_php.bbs_groups}</td>
+        </tr>     
+
+            <tr>
+                <td class="tableb" colspan="2" align="left">
+                    <input type="hidden" name="use_standard_groups" id="use_standard_groups" value="'.$prefill.'" />
+                    <input type="checkbox" name="dummy_use_standard_groups" id="dummy_use_standard_groups" class="checkbox" value="1" {$checked} onclick="toggleGroupFields();" />
+                    <label for="dummy_use_standard_groups" class="clickable_option">{$lang_bridgemgr_php.use_standard_groups</label>
+                </td>
+                <td class="tableb">
+                    <span class="explanation">{$lang_bridgemgr_php.use_standard_groups_explanation}</span>
+                </td>
+            </tr>
+        {foreach from=$loop_array item=$key}
+                <tr>
+                    <td class="tableb">
+                        {$lang_bridgemgr_php.$key}:
+                    </td>
+                    <td class="tableb">
+                        <input type="{$fieldtype}" name="{$key}" id="{$key}" class="textinput" value="{$prefill}" {$disabled} size="30"  style="width:80%" />
+                        {$reset_to_default}
+                    </td>
+                    <td class="tableb">
+                        {assign var="explanation" value=$key|cat:"_explanation"}
+                        <span class="explanation">{$lang_bridgemgr_php.$explanation}</span>
+                    </td>
+                </tr>
+        {/foreach}       
+        {if $rows_displayed eq 0}
+            <tr>
+                <td class="tableh2" colspan="3" align="center">
+                    <h2>{$lang_bridgemgr_php.no_action_needed}</h2>
+                </td>
+            </tr>
+        {else}      
+        {literal}
+    <script type="text/javascript">
+    <!--
+    toggleGroupFields();
+    function toggleGroupFields() {
+        var use_standard_groups = document.getElementById("dummy_use_standard_groups").checked;
+        if (use_standard_groups == true) {
+            AllGroupFieldsDisable();
+            document.getElementById("use_standard_groups").value = 1;
+        }
+        if (use_standard_groups == false) {
+            AllGroupFieldsEnable();
+            document.getElementById("use_standard_groups").value = 0;
+        }
+    }
+    function AllGroupFieldsDisable() {
+    {/literal}
+    {foreach from=$keywords item=key) 
+        document.getElementById("{$key}").disabled = true;
+        document.getElementById("{$key}").style.backgroundColor = 'InactiveCaptionText';
+        document.getElementById("{$key}").style.color = 'GrayText';
+    {/foreach}
+    {literal}
+    }
+    function AllGroupFieldsEnable() {
+    {/literal}
+    {foreach from=$keywords item=key) {
+        document.getElementById("{$key}").disabled = false;
+        document.getElementById("{$key}").style.backgroundColor = 'Window';
+        document.getElementById("{$key}").style.color = 'MenuText';
+    {/foreach}
+    {literal}
+    }
+    -->
+    </script>
+    {/literal}
+
+        {$cpg_submit_button}
+        </table>
+        </form>
+
+{elseif $step eq "special_settings"}
+        <form name="{$step}" action="bridgemgr.php" method="post">
+    <table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+        <tr>
+                <td class="tableh1" colspan="3">{$lang_bridgemgr_php.title}: {$lang_bridgemgr_php.special_settings}</td>
+        </tr>     
+
+   
+        {foreach from=$loop_array item=key} {* // foreach loop_array --- start *}
+    
+            {if $smarty.post.hide_unused_fields != 1 || $disabled == ''} {* actually display the row? --- start *}
+                {if $options.0 == 'radio'} {* radio button --- start *}
+                    <tr>
+                        <td class="tableb">
+                            {$lang_bridgemgr_php.$key}:
+                        </td>
+                        <td class="tableb">
+                            <input type="Radio" name="{$key}" id="{$key}_yes" class="radio" value="{$option_yes}" {$disabled} {$checked_yes} />
+                            {assign var=key_yes value=$key|cat:"_yes"}
+                            <label for="{$key_yes}" class="clickable_option">
+                                {$lang_bridgemgr_php.$key_yes}
+                            </label>&nbsp;
+                            <br />
+                            {assign var=key_no value=$key|cat:"_no"}
+                            <input type="Radio" name="{$key}" id="{$key_no}" class="radio" value="{$option_no}" {$disabled} {$checked_no} /><label for="{$key_no}" class="clickable_option">{$lang_bridgemgr_php.$key_no}</label>
+                        </td>
+                        <td class="tableb">
+                            {assign var=explanation value=$key|cat:"_explanation"}
+                            <span class="explanation">{$lang_bridgemgr_php.$explanation}</span>
+                        </td>
+                    </tr>
+                {/if} {* // radio button --- end *}
+                {if $options.0 == 'mandatory'} {* // input field --- start *}
+                    <tr>
+                        <td class="tableb">
+                            {$lang_bridgemgr_php.$key}:
+                        </td>
+                        <td class="tableb">
+                            <input type="{$fieldtype}" name="{$key}" id="{$key}" class="textinput" value="{$prefill}" {$disabled} size="30"  style="width:80%" />
+                            {$reset_to_default)
+                        </td>
+                        <td class="tableb">
+                            {assign var=explanation value=$key|cat:"_explanation"}                        
+                            <span class="explanation">{$lang_bridgemgr_php.$explanation}</span>
+                        </td>
+                    </tr>
+                {/if} {* // input field --- end *}
+                {if $options.0 == 'checkbox'} {* // checkbox --- start *}
+                    <tr>
+                        <td class="tableb" colspan="2">
+                            <input type="checkbox" name="{$key}" id="{$key}" class="checkbox" value="1" {$checked} />
+                            <label for="{$key}" class="clickable_option">
+                                {$lang_bridgemgr_php.$key}
+                            </label>&nbsp;
+                        </td>
+                        <td class="tableb">
+                            {assign var=explanation value=$key|cat:"_explanation"}                        
+                            <span class="explanation">{$lang_bridgemgr_php.$explanation}</span>
+                        </td>
+                    </tr>
+                {/if} {*// checkbox --- end *}
+            {/if} {* // actually display the row? --- end *}
+        {/foreach} {* // foreach loop_array --- end *}
+
+        {if $default_bridge_data.$BRIDGE['short_name'].create_redir_file_content != '')} {* // create redirection file question --- start *}
+            <!--
+            <tr>
+                <td class="tableb" colspan="2">
+                    <input type="checkbox" name="create_redir_file" id="create_redir_file" class="checkbox" value="1" checked="checked" />
+                    <label for="create_redir_file" class="clickable_option">
+                    <span class="explanation">
+                        {$lang_bridgemgr_php.create_redir_file}
+                    </span>
+                    </label>&nbsp;
+                </td>
+                <td class="tableb">
+                    <span class="explanation">
+                    {$lang_bridgemgr_php.create_redir_file_explanation}
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="tableb" colspan="3">
+                    <textarea style="width:100%">';
+            {$default_bridge_data.$BRIDGE['short_name'].create_redir_file_content}
+                    </textarea>
+                </td>
+            </tr>
+            -->
+           {* // temporarily removed this section, as it's still under construction --- end *}
+         {/if} {* // create redirection file question --- end *}
+
+        {if $rows_displayed == 0}
+            <tr>
+                <td class="tableh2" colspan="3" align="center">
+                    <h2>{$lang_bridgemgr_php.no_action_needed}</h2>
+                </td>
+            </tr>
+        {/if}
+        {$cpg_submit_button}
+        </table>
+        </form>
+   
+
+{elseif $step eq "finalize"}
+
+    <form name="{$step}" action="bridgemgr.php" method="post">    
+    <script type="text/javascript">
+    <!--
+    function changeSubmitButton() {
+        document.finalize.submit.value='{$lang_bridgemgr_php.finish}';
+        document.finalize.step.value='finalize';
+        document.finalize.force_startpage.value='1';
+    }
+    -->
+    </script>
+        
+    <table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+        <tr>
+                <td class="tableh1" colspan="3">{$lang_bridgemgr_php.title}: {$lang_bridgemgr_php.finalize}</td>
+        </tr>     
+
+        {if $_POST.submit && $CONFIG.bridge_enable != 1}
+            <tr>
+            <td class="tableb" colspan="2">
+            <span class="explanation">
+            printf($lang_bridgemgr_php['finalize_explanation'],$CONFIG['ecards_more_pic_target']}/bridgemgr.php');
+            </span>
+            </td>
+            </tr>
+        {/if}
+        {if is_array($BRIDGE)} {* // there are entries in the db already --- start *}
+        <tr>
+        <td class="tableh2" colspan="2">
+        {$lang_bridgemgr_php.your_bridge_settings}
+        </td>
+        </tr>
+        {$mandatory_fields_missing = 0}
+            foreach($BRIDGE as $key => $value) {
+                if ($default_bridge_data[$BRIDGE['short_name']][$key}_used'] != '') {
+                    print '<tr>';
+                    print '    <td class="tableb" width="50%">';
+                    print '        <span class="explanation">{$lang_bridgemgr_php[$key]}:</span>';
+                    print '    </td>';
+                    print '    <td class="tableb" width="50%">';
+                    if ($default_bridge_data[$BRIDGE['short_name']][$key}_used'] == 'password') {
+                        $pw = '';
+                        for ($i=1; $i <= strlen($value);$i++) {
+                            $pw = $pw}*';
+                        }
+                        $value = $pw;
+                    }
+                    print '        <span class="explanation">{$value;
+                    // check if we really can allow enabling bridging: are all required fields in the db?
+                    if (strstr($default_bridge_data[$BRIDGE['short_name']][$key}_used'], 'not_empty') != false && $value == '') {
+                        print ' (<span class="important">{$lang_bridgemgr_php['error_must_not_be_empty']}</span>)';
+                        $mandatory_fields_missing++;
+                    }
+                    $explode = explode(',', $default_bridge_data[$BRIDGE['short_name']][$key}_used']);
+                    if ($explode[0] == radio && ($value != $explode[1] && $value != $explode[2])) {
+                        printf(' ({$lang_bridgemgr_php['error_either_be']})',$explode[1],$explode[2]);
+                        $mandatory_fields_missing++;
+                    }
+                    //print '<br>';
+                    print '</span>';
+                    print '    </td>';
+                    print '</tr>';
+                }
+            }
+        }  // there are entries in the db already --- end
+        if ($BRIDGE['short_name'] != '') {// display the enable/disable option only if there's at least a db entry about the file to bridge with --- start
+            print '<tr>';
+            print '<td class="tableh2" colspan="2">';
+            printf($lang_bridgemgr_php['title_enable'], '<b>{$default_bridge_data[$BRIDGE['short_name']]['full_name']}</b>');
+            print '</td>';
+            print '</tr>';
+            //print 'bridge enabled:{$CONFIG['bridge_enable'];
+            if ($CONFIG['bridge_enable'] == 1) {
+                $checked_yes = 'checked="checked"';
+                $checked_no = '';
+                $disabled_yes = '';
+                $disabled_no = '';
+            } else {
+                $checked_yes = '';
+                $checked_no = 'checked="checked"';
+                if ($mandatory_fields_missing != 0) {
+                    $disabled_yes = 'disabled="disabled"';
+                    $disabled_no = '';
+                } else {
+                    $disabled_yes = '';
+                    $disabled_no = '';
+                }
+            }
+        } // display the enable/disable option only if there's at least a db entry about the file to bridge with --- end
+        if ($_POST['submit'] == '' || $_POST['wizard_finished'] != '' || $_POST['force_startpage'] == '1') {
+            if ($BRIDGE['short_name'] != '') {// display the enable/disable option only if there's at least a db entry about the file to bridge with --- start
+                print '<tr>';
+                print '    <td class="tableb" width="50%">';
+                print '        <input type="Radio" name="bridge_enable" id="bridge_enable_yes" class="radio" value="1" {$disabled_yes} {$checked_yes} onclick="changeSubmitButton();" /><label for="bridge_enable_yes" class="clickable_option">{$lang_bridgemgr_php['bridge_enable_yes']}</label>';
+                print '    </td>';
+                print '    <td class="tableb" width="50%">';
+                print '        <input type="Radio" name="bridge_enable" id="bridge_enable_no" class="radio" value="0" {$disabled_no} {$checked_no} onclick="changeSubmitButton();" /><label for="bridge_enable_no" class="clickable_option">{$lang_bridgemgr_php['bridge_enable_no']}</label>';
+                print '    </td>';
+                print '</tr>';
+            } // display the enable/disable option only if there's at least a db entry about the file to bridge with --- end
+            print '<tr>
+            print '        <td colspan="2" class="tablef" align="center">
+            print '            <table border="0" cellspacing="0" cellpadding="0" width="100%">
+            print '                <tr>
+            print '                    <td align="left">
+            print '                        <!--<input type="Checkbox" name="hide_unused_fields" id="hide_unused_fields" value="1" class="checkbox"  />
+            print '                        <label for="hide_unused_fields" class="clickable_option"><span class="explanation">hide unused form fields (recommended)</span></label>-->
+            print '                   </td>
+            print '                   <td align="center">
+            print '                        <!--<input type="button" name="back" value="&laquo;back" class="button" onclick="javascript:history.back()" />-->
+            print '                        <input type="submit" name="submit" value="{$lang_bridgemgr_php['start_wizard']}" class="button" />
+            print '                        <input type="hidden" name="step" value="choose_bbs" />
+            print '                        <input type="hidden" name="force_startpage" value="0" />
+            print '                   </td>
+            print '                 </tr>
+            print '             </table>
+            print '        </td>
+            print '</tr>
+        } else {
+            print '<tr>';
+            print '    <td class="tableb" width="50%">';
+            print '        <input type="Radio" name="bridge_enable" id="bridge_enable_yes" class="radio" value="1" {$disabled_yes} {$checked_yes} /><label for="bridge_enable_yes" class="clickable_option">{$lang_bridgemgr_php['bridge_enable_yes']}</label>';
+            print '    </td>';
+            print '    <td class="tableb" width="50%">';
+            print '        <input type="Radio" name="bridge_enable" id="bridge_enable_no" class="radio" value="0" {$disabled_no} {$checked_no} /><label for="bridge_enable_no" class="clickable_option">{$lang_bridgemgr_php['bridge_enable_no']}</label>';
+            print '    </td>';
+            print '</tr>';
+            print '<tr>
+            print '        <td colspan="2" class="tablef" align="center">
+            print '            <table border="0" cellspacing="0" cellpadding="0" width="100%">
+            print '                <tr>
+            print '                    <td align="left">
+            //print '                        <input type="Checkbox" name="clear_unused_db_fields" id="clear_unused_db_fields" value="1" class="checkbox"  checked="checked" />
+            //print '                        <label for="clear_unused_db_fields" class="clickable_option"><span class="explanation">{$lang_bridgemgr_php['clear_unused_db_fields']}</span></label>
+            print '                   </td>
+            print '                   <td align="center">
+            print '                        <input type="button" name="back" value="&laquo;{$lang_bridgemgr_php['back']}" class="button" onclick="javascript:history.back()" />
+            print '                        <input type="submit" name="submit" value="{$lang_bridgemgr_php['finish']}" class="button" />
+            print '                        <input type="hidden" name="step" value="finalize" />
+            print '                        <input type="hidden" name="wizard_finished" value="finished" />
+            print '                   </td>
+            print '                 </tr>
+            print '             </table>
+            print '        </td>
+            print '</tr>
+        }
+        endtable();
+        print '</form>';
+    } // end if error
+    break;
+}
+
+
+{else}
+{* not in gallery admin mode --- start *}
+
+    if ($CONFIG['bridge_enable'] != 1) { cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__); }
+
+    // initialize vars
+    $step = $_POST['step'];
+    $new_line = "\n";
+
+    pageheader($lang_bridgemgr_php['title']);
+    switch ($step) {
+    case "attempt_to_disable":
+    // check if the wait time is over; if it isn't, send them back
+    $results = cpg_db_query("SELECT value FROM {$CONFIG['TABLE_BRIDGE']} WHERE name = 'recovery_logon_timestamp'");
+    if (mysql_num_rows($results)) {
+        $row = mysql_fetch_array($results);
+    }
+    $recovery_logon_timestamp = $row['value'];
+    //print $recovery_logon_timestamp;
+    $results = cpg_db_query("SELECT value FROM {$CONFIG['TABLE_BRIDGE']} WHERE name = 'recovery_logon_failures'");
+    if (mysql_num_rows($results)) {
+        $row = mysql_fetch_array($results);
+    }
+    $recovery_logon_failures = $row['value'];
+    $logon_allowed = cpg_check_allowed_emergency_logon($recovery_logon_timestamp,$recovery_logon_failures);
+    if ($logon_allowed > 0) {
+        // the user is not allowed to logon yet, the wait time has not elapsed yet
+        msg_box($lang_bridgemgr_php['recovery_wait_title'], $lang_bridgemgr_php['recovery_wait_content'], $lang_bridgemgr_php['try_again'], $_SERVER['PHP_SELF'], "-1");
+    } else { // the logon wait time has passed, the user is allowed to try to logon now
+        // go through the list of standalone admins and check if we have a match
+        $temp_user_table = $CONFIG['TABLE_PREFIX']}users';
+
+        // Check if encrypted passwords are enabled
+        if ($CONFIG['enable_encrypted_passwords']) {
+                $encpassword = md5(addslashes($_POST['password']));
+        } else {
+                $encpassword = addslashes($_POST['password']);
+        }
+
+        $results = cpg_db_query("SELECT user_id, user_name, user_password FROM $temp_user_table WHERE user_name = '" . addslashes($_POST['username']) . "' AND BINARY user_password = '" . $encpassword . "' AND user_active = 'YES' AND user_group = '1'");
+        if (mysql_num_rows($results)) {
+            $retrieved_data = mysql_fetch_array($results);
+        }
+        if ($retrieved_data['user_name'] == $_POST['username'] && $retrieved_data['user_password'] == $encpassword && $retrieved_data['user_name'] != '' ) {
+            // authentification successfull
+            cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '0' WHERE name = 'bridge_enable'");
+            cpg_db_query("UPDATE {$CONFIG['TABLE_BRIDGE']} SET value = '0' WHERE name = 'recovery_logon_failures'");
+            cpg_db_query("UPDATE {$CONFIG['TABLE_BRIDGE']} SET value = NOW() WHERE name = 'recovery_logon_timestamp'");
+			
+			// ok, then restore group table
+				cpg_db_query("DELETE FROM {$CONFIG['TABLE_USERGROUPS']} WHERE 1");
+				cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
+				VALUES (1, 'Administrators', 0, 1, 1, 1, 1, 1, 1, 0, 0, 3, 0, 5, 3)");
+				cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
+				VALUES (2, 'Registered', 1024, 0, 1, 1, 1, 1, 1, 1, 0, 3, 0, 5, 3)");
+				cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
+				VALUES (3, 'Anonymous', 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 5, 3)");
+				cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
+				VALUES (4, 'Banned', 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 5, 3)");
+
+            if (USER_ID) { //user already logged in
+                msg_box($lang_bridgemgr_php['recovery_success_title'], $lang_bridgemgr_php['recovery_success_content'], $lang_bridgemgr_php['goto_bridgemgr'], $_SERVER['PHP_SELF'], "-1");
+            } else { // user not logged in yet
+                msg_box($lang_bridgemgr_php['recovery_success_title'], $lang_bridgemgr_php['recovery_success_content']}<br />{$lang_bridgemgr_php['recovery_success_advice_login'], $lang_bridgemgr_php['goto_login'], "login.php?referer=".$_SERVER['PHP_SELF'], "-1");
+            }
+        } else {
+            // authentification failed
+            cpg_db_query("UPDATE {$CONFIG['TABLE_BRIDGE']} SET value = NOW() WHERE name = 'recovery_logon_timestamp'");
+            $results = cpg_db_query("SELECT value FROM {$CONFIG['TABLE_BRIDGE']} WHERE name = 'recovery_logon_failures'");
+            if (mysql_num_rows($results)) {
+                $row = mysql_fetch_array($results);
+            }
+            $number_of_failed_attempts = $row['value'] + 1;
+            cpg_db_query("UPDATE {$CONFIG['TABLE_BRIDGE']} SET value = '$number_of_failed_attempts' WHERE name = 'recovery_logon_failures'");
+            msg_box($lang_bridgemgr_php['recovery_failure_title'], $lang_bridgemgr_php['recovery_failure_content'], $lang_bridgemgr_php['try_again'], $_SERVER['PHP_SELF'], "-1");
+        }
+    }
+    break;
+    default:
+    // check if the wait time is over; if it isn't, disable the submit button
+    $results = cpg_db_query("SELECT value FROM {$CONFIG['TABLE_BRIDGE']} WHERE name = 'recovery_logon_timestamp'");
+    if (mysql_num_rows($results)) {
+        $row = mysql_fetch_array($results);
+    }
+    $recovery_logon_timestamp = $row['value'];
+    //print $recovery_logon_timestamp;
+    $results = cpg_db_query("SELECT value FROM {$CONFIG['TABLE_BRIDGE']} WHERE name = 'recovery_logon_failures'");
+    if (mysql_num_rows($results)) {
+        $row = mysql_fetch_array($results);
+    }
+    $recovery_logon_failures = $row['value'];
+    $logon_allowed = cpg_check_allowed_emergency_logon($recovery_logon_timestamp,$recovery_logon_failures);
+    if ($logon_allowed < 0) {$logon_allowed = 0;}
+    starttable(-1,$lang_bridgemgr_php['recovery_title'],2);
+        echo <<<EOT
+        <form name="disable_integration" action="{$_SERVER['PHP_SELF']}" method="post">
+        <tr>
+            <td class="tableb" colspan="2">
+                {$lang_bridgemgr_php['recovery_explanation']}
+            </td>
+        </tr>
+        <tr>
+              <td class="tableb" width="40%">{$lang_bridgemgr_php['username']}</td>
+              <td class="tableb" width="60%"><input type="text" class="textinput" name="username" style="width: 100%" /></td>
+        </tr>
+        <tr>
+            <td class="tableb">{$lang_bridgemgr_php['password']}</td>
+            <td class="tableb"><input type="password" class="textinput" name="password" style="width: 100%" /></td>
+        </tr>
+        <tr>
+            <td class="tablef" colspan="2" align="center">
+                <input type="submit" name="submit" id="submit" value="{$lang_bridgemgr_php['disable_submit']}" class="button" />
+                <input type="hidden" name="step" value="attempt_to_disable" />
+            </td>
+        </tr>
+        <script language="javascript" type="text/javascript">
+        <!--
+        document.disable_integration.username.focus();
+        document.disable_integration.submit.disabled = true;
+
+EOT;
+print '        var countDownTime = {$logon_allowed;
+echo <<<EOT
+
+        counter=setTimeout("countDown()", 1000);
+        var aktiv = window.setInterval("countDown()",1000);
+        var message = '{$lang_bridgemgr_php['wait']}';
+        function countDown(){
+                countDownTime--;
+                if (countDownTime <=0) {
+                    message = '{$lang_bridgemgr_php['disable_submit']}';
+                    document.getElementById('submit').disabled = false;
+                    countDownTime='';
+                    clearTimeout(counter);
+                    //return;
+                }
+                document.getElementById('submit').value = message +' '+countDownTime;
+        }
+        window.onload=countDown();
+        -->
+        </script>
+EOT;
+        endtable();
+        print '</form>';
+{/if} {* not in gallery admin mode --- end *}
+
+
+

@@ -236,7 +236,7 @@ switch ($op) {
     break;
 }
 
-$t = new cpgTemplate;
+$t = cpgTemplate::getInstance();
 
 /**#@+
  * Assign all the data to smarty

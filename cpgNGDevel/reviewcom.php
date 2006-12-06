@@ -67,7 +67,7 @@ $miscArr['prevTarget'] = $_SERVER['PHP_SELF'] . '?start=' . max(0, $start - $cou
 
 $commentArr = $commentsObj->getAllComments($start, $count);
 
-$t = new cpgTemplate;
+$t = cpgTemplate::getInstance();
 
 /**#@+
  * Assign all the data to smarty

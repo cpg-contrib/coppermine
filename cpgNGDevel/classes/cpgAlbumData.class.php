@@ -371,7 +371,11 @@ class cpgAlbumData {
 
         if (!$uid) {
             return 'Anonymous';
-        } elseif (defined('UDB_INTEGRATION')) {
+        /* UDB_INTEGRATION exception No longer needed. --Donnoman */
+        } else {
+            return $this->auth->get_user_name($uid);
+        }
+/*        } elseif (defined('UDB_INTEGRATION')) {
             return $this->auth->get_user_name($uid);
         } else {
             $query = "SELECT user_name FROM {$this->config->conf['TABLE_USERS']} WHERE user_id = '" . $uid . "'";
@@ -381,7 +385,7 @@ class cpgAlbumData {
             }
             $row = $db->fetchRow();
             return $row['user_name'];
-        }
+        }*/
     }
 
     /**

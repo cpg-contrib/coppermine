@@ -28,7 +28,7 @@ $pid = (int)$_GET['pid'];
 /**
  * Create new template object
  */
-$t = new cpgTemplate;
+$t = cpgTemplate::getInstance();
 
 /**
  * Code to call a method to delete a particular picture and all it's information (comments etc.)

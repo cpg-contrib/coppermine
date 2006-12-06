@@ -29,7 +29,7 @@ require('include/init.inc.php');
 require_once('classes/cpgTemplate.class.php');
 /**#@-*/
 
-$t = new cpgTemplate;
+$t = cpgTemplate::getInstance();
 
 // Start the session
 session_start();

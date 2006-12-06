@@ -31,7 +31,7 @@ $miscArr['defpicnum'] = 45;
 
 if (!GALLERY_ADMIN_MODE) cpgUtils::cpgDie(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
-$t = new cpgTemplate;
+$t = cpgTemplate::getInstance();
 
 $action = (isset($_REQUEST['action'])) ? $_REQUEST['action'] : '';
 

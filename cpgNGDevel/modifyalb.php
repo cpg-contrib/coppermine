@@ -37,7 +37,7 @@ if (isset($_POST['aid']) && !empty($_POST['aid'])) {
   $album = (int)$_REQUEST['album'];
 }
 
-$t = new cpgTemplate;
+$t = cpgTemplate::getInstance();
 
 $albumObj = new cpgProcessAlbum($album);
 

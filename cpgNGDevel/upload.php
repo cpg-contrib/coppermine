@@ -36,7 +36,7 @@ if (isset($_SESSION['fileUpload'])) {
 /**
   * Main code
   */
-$t = new cpgTemplate;
+$t = cpgTemplate::getInstance();
 
 /**
  * Check to see whether user has permission to upload the picture

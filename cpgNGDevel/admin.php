@@ -140,7 +140,7 @@ if (isset($_POST['update_config'])) {
 /**
  * Create new template object
  */
-$t = new cpgTemplate;
+$t = cpgTemplate::getInstance();
 
 /**
  * Create new widget object

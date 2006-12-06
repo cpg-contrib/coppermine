@@ -40,8 +40,10 @@ class cpgAuth {
     static $instance;
 
     if ($bridge && !isset($instance)) {
+      require('bridge/udb_base.inc.php');
       require("bridge/$bridge.inc.php");
-      $instance = $cpg_udb;
+      $bridge_class = $bridge.'_udb';
+      $instance =  new $bridge_class;
     }
 
     return ($instance);

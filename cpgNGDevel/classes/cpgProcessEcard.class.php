@@ -86,8 +86,10 @@ class cpgProcessEcard {
     $USER_DATA = $auth->userData;
 
     $this->senderName = $this->getPostVar('sender_name', USER_NAME ? USER_NAME : (isset($auth->user['name']) ? $auth->user['name'] : ''));
+    /* UDB_INTEGRATION exception No longer needed. --Donnoman */
+/*    if (UDB_INTEGRATION != 'coppermine' && USER_ID) $USER_DATA = array_merge($USER_DATA, $auth->get_user_infos(USER_ID));*/
+    if (USER_ID) $USER_DATA = array_merge($USER_DATA, $auth->get_user_infos(USER_ID));
 
-    if (UDB_INTEGRATION != 'coppermine' && USER_ID) $USER_DATA = array_merge($USER_DATA, $auth->get_user_infos(USER_ID));
 
     if ($USER_DATA['user_email']){
       $this->senderEmail = $USER_DATA['user_email'];
@@ -195,7 +197,7 @@ class cpgProcessEcard {
     $this->viewMoreTgt = $this->config->conf['ecards_more_pic_target'];
     $this->viewMoreLnk = $lang_ecard_php['view_more_pics'];
 
-    $t = new cpgTemplate;
+    $t = cpgTemplate::getInstance();
 
     $t->assign('pid', $pid);
     $t->assign('ecard', $this);

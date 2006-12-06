@@ -26,7 +26,7 @@ require_once('classes/cpgTemplate.class.php');
 /**
  * Create new template object
  */
-$t = new cpgTemplate;
+$t = cpgTemplate::getInstance();
 
 /**
  * Create new search object

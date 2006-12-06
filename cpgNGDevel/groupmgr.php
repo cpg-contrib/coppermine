@@ -66,7 +66,7 @@ $groupObj->getGroups($defaultGroupNames);
  */
 $fieldList = array('can_rate_pictures', 'can_send_ecards', 'can_post_comments', 'can_upload_pictures', 'pub_upl_need_approval', 'can_create_albums', 'priv_upl_need_approval');
 
-$t = new cpgTemplate;
+$t = cpgTemplate::getInstance();
 $t->assign('lang_groupmgr_php', $lang_groupmgr_php);
 $t->assign('lang_byte_units', $lang_byte_units);
 $t->assign('lang_check_uncheck_all', $lang_check_uncheck_all);

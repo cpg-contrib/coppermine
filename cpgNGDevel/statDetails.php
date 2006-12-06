@@ -185,7 +185,7 @@ $misArr['type'] = $type;
 /**
  * assign all the values to template
  */
-$t = new cpgTemplate;
+$t = cpgTemplate::getInstance();
 $t->assign('show_column_checked', $show_column_checked);
 $t->assign('db_fields', $db_fields);
 $t->assign('rowset', $rowset);

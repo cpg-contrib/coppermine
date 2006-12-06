@@ -74,7 +74,7 @@ if(isset($_POST['send'])) {
 }
 
 //Create smarty object
-$t = new cpgTemplate;
+$t = cpgTemplate::getInstance();
 
 /**
  * Assign all the data to smarty

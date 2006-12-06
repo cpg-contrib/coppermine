@@ -178,7 +178,7 @@ if (isset($_GET['meta']) && !empty($_GET['meta'])) {
 /**
  * Create object of Template
  */
-$t = new cpgTemplate;
+$t = cpgTemplate::getInstance();
 
 $CONTENT = '';  //initialize content, all that follow simply add to it.
 

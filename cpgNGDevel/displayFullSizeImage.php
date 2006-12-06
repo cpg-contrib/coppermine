@@ -11,7 +11,7 @@ require('include/init.inc.php');
 require_once('classes/cpgAlbumData.class.php');
 require_once('classes/cpgTemplate.class.php');
 
-$t = new cpgTemplate;
+$t = cpgTemplate::getInstance();
 $picData = new cpgAlbumData;
 
 if (isset($_GET['picfile'])) {

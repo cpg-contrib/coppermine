@@ -35,7 +35,7 @@ $album = (int)$_GET['album'];
 /**
  * Create new template object
  */
-$t = new cpgTemplate;
+$t = cpgTemplate::getInstance();
 
 /**
  * Create new ecard object

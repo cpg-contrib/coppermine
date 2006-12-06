@@ -30,7 +30,7 @@ if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) {
   cpgUtils::cpgDie(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 }
 
-$t = new cpgTemplate;
+$t = cpgTemplate::getInstance();
 
 define('UPLOAD_APPROVAL_MODE', isset($_GET['mode']));
 define('EDIT_PICTURES_MODE', !isset($_GET['mode']));
@@ -104,9 +104,10 @@ if (UPLOAD_APPROVAL_MODE) {
     $db->query($sql);
 
     while($row = $db->fetchRow()) {
-            if(defined('UDB_INTEGRATION')) {
+/* UDB_INTEGRATION exception No longer needed. --Donnoman */        
+/*            if(defined('UDB_INTEGRATION')) {*/
               $ownerName = $auth->get_user_name($row['owner_id']);
-            } else {
+/*            } else {
               $query = "SELECT user_name FROM {$config->conf['TABLE_USERS']} WHERE user_id = '".$row['owner_id']."'";
 
               $db2->query($query);
@@ -117,7 +118,7 @@ if (UPLOAD_APPROVAL_MODE) {
               } else {
                 $ownerName = '';
               }
-            }
+            }*/
 
             if($ownerName){
               $query = "UPDATE {$config->conf['TABLE_PICTURES']} SET owner_name = '$ownerName' WHERE pid = {$row['pid']} LIMIT 1";

@@ -36,7 +36,7 @@ $pid = (int)$_GET['pid'];
 $interval = isset($_GET['slideshow']) ? $_GET['slideshow'] : 5000;
 
 $albumData = cpgAlbumFactory::getAlbumObj(!empty($meta) ? $meta : $album);
-$t = new cpgTemplate;
+$t = cpgTemplate::getInstance();
 
 $i = 0;
 $j = 0;

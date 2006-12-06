@@ -54,7 +54,7 @@ if (isset($_POST['submited']) && !empty($_POST['submited'])) {
  */
 $userObj->resetNewPassword();
 
-$t = new cpgTemplate;
+$t = cpgTemplate::getInstance();
 
 /**
  * Assign all the data to smarty
