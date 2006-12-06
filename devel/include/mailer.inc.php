@@ -20,8 +20,7 @@
 // Custom mail function
 function cpg_mail($to, $subject, $msg_body = '', $type = 'text/plain', $sender_name = '', $sender_email = '', $msg_body_plaintext = '')
 {
-    global $CONFIG;
-    global $lang_charset;
+	global $CONFIG, $lang_charset, $HTML_SUBST;
 
         // makeshift plaintext if not set
         if (!$msg_body_plaintext){
@@ -38,7 +37,7 @@ function cpg_mail($to, $subject, $msg_body = '', $type = 'text/plain', $sender_n
                     $to = array($CONFIG['gallery_admin_email']);
                     $result = cpg_db_query("SELECT user_email FROM {$CONFIG['TABLE_USERS']} WHERE user_group = 1");
                     while($row = mysql_fetch_assoc($result)) {
-                            if (isset($row['user_email'])) $to[] = $row['user_email'];
+                            if (!empty($row['user_email'])) $to[] = $row['user_email'];
                     }
                     $to = array_unique($to);
             } else {

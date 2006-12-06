@@ -37,7 +37,7 @@ function cpg_mail($to, $subject, $msg_body = '', $type = 'text/plain', $sender_n
                     $to = array($CONFIG['gallery_admin_email']);
                     $result = cpg_db_query("SELECT user_email FROM {$CONFIG['TABLE_USERS']} WHERE user_group = 1");
                     while($row = mysql_fetch_assoc($result)) {
-                            if (isset($row['user_email'])) $to[] = $row['user_email'];
+                            if (!empty($row['user_email'])) $to[] = $row['user_email'];
                     }
                     $to = array_unique($to);
             } else {
