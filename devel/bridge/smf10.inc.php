@@ -69,7 +69,7 @@ class cpg_udb extends core_udb {
 
                 // Table field names
                 $this->field = array(
-                        'username' => 'memberName', // name of 'username' field in users table
+                        'username' => 'realName', // name of 'username' field in users table
                         'user_id' => 'ID_MEMBER', // name of 'id' field in users table
                         'password' => 'passwd', // name of the password field in the users table
                         'email' => 'emailAddress', // name of 'email' field in users table
@@ -109,7 +109,7 @@ class cpg_udb extends core_udb {
 
                         $row = array(
                                 'id' => $user_settings['ID_MEMBER'],
-                                'username' => $user_settings['memberName'],
+                                'username' => $user_settings['realName'],
                                 'group_id' => $user_settings['ID_GROUP']
                         );
 
