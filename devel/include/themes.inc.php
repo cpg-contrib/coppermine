@@ -923,7 +923,7 @@ if (!isset($template_image_comments)) { //{THEMES}
 ******************************************************************************/
 // HTML template for the display of comments
 $template_image_comments = <<<EOT
-<table align="center" width="{WIDTH}" cellspacing="1" cellpadding="0" class="maintable" border="0">
+<table align="center" width="{WIDTH}" cellspacing="1" cellpadding="0" class="maintable" border="1">
 
         <tr>
                 <td>
@@ -2633,7 +2633,7 @@ function theme_html_picture()
         } else {
             if ($CONFIG['transparent_overlay'] == 1) {
                 $pic_html = "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td background=\"" . $picture_url . "\" width=\"{$CURRENT_PIC_DATA['pwidth']}\" height=\"{$CURRENT_PIC_DATA['pheight']}\" class=\"image\">";
-                $pic_html .= "<img src=\"images/overlay.gif\" width={$CURRENT_PIC_DATA['pwidth']} height={$CURRENT_PIC_DATA['pheight']} border=\"0\" alt=\"\" /><br />\n";
+                $pic_html .= "<img src=\"images/image.gif?id=".floor(rand()*1000+rand())."\" width={$CURRENT_PIC_DATA['pwidth']} height={$CURRENT_PIC_DATA['pheight']} border=\"0\" alt=\"\" /><br />\n";
                 $pic_html .= "</td></tr></table>";
             } else {
                 $pic_html = "<img src=\"" . $picture_url . "\" {$image_size['geom']} class=\"image\" border=\"0\" alt=\"\" /><br />\n";

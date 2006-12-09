@@ -2464,7 +2464,7 @@ function theme_html_picture()
                 $pic_html = "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td background=\"" . $picture_url . "\" width=\"{$imginfo[0]}\" height=\"{$imginfo[1]}\" class=\"image\">";
                 $pic_html .= "<a href=\"javascript:;\" onclick=\"MM_openBrWindow('displayimage.php?pid=$pid&amp;fullsize=1','" . uniqid(rand()) . "','scrollbars=yes,toolbar=no,status=no,resizable=yes,width=$winsizeX,height=$winsizeY')\">";
                 $pic_title = $lang_display_image_php['view_fs'] . "\n==============\n" . $pic_title;
-                $pic_html .= "<img src=\"images/overlay.gif\" width={$imginfo[0]} height={$imginfo[1]}  border=\"0\" alt=\"{$lang_display_image_php['view_fs']}\" /><br />";
+                $pic_html .= "<img src=\"images/image.gif?id=".floor(rand()*1000+rand())."\" width={$imginfo[0]} height={$imginfo[1]}  border=\"0\" alt=\"{$lang_display_image_php['view_fs']}\" /><br />";
                 $pic_html .= "</a>\n </td></tr></table>";
             } else {
                 $pic_html = "<a href=\"javascript:;\" onclick=\"MM_openBrWindow('displayimage.php?pid=$pid&amp;fullsize=1','" . uniqid(rand()) . "','scrollbars=yes,toolbar=no,status=no,resizable=yes,width=$winsizeX,height=$winsizeY')\">";
@@ -2475,7 +2475,7 @@ function theme_html_picture()
         } else {
             if ($CONFIG['transparent_overlay'] == 1) {
                 $pic_html = "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td background=\"" . $picture_url . "\" width=\"{$CURRENT_PIC_DATA['pwidth']}\" height=\"{$CURRENT_PIC_DATA['pheight']}\" class=\"image\">";
-                $pic_html .= "<img src=\"images/overlay.gif\" width={$CURRENT_PIC_DATA['pwidth']} height={$CURRENT_PIC_DATA['pheight']} border=\"0\" alt=\"\" /><br />\n";
+                $pic_html .= "<img src=\"images/image.gif?id=".floor(rand()*1000+rand())."\" width={$CURRENT_PIC_DATA['pwidth']} height={$CURRENT_PIC_DATA['pheight']} border=\"0\" alt=\"\" /><br />\n";
                 $pic_html .= "</td></tr></table>";
             } else {
                 $pic_html = "<img src=\"" . $picture_url . "\" {$image_size['geom']} class=\"image\" border=\"0\" alt=\"\" /><br />\n";
