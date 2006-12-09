@@ -732,6 +732,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Slideshow interval in milliseconds (1 second = 1000 milliseconds)', 'slideshow_interval', 0, 'f=index.htm&amp;as=admin_image_comment_slideshow_interval&amp;ae=admin_image_comment_slideshow_interval_end'),
   array('Count hits in slideshow', 'slideshow_hits', 1, 'f=index.htm&amp;as=admin_image_slideshow_hits&amp;ae=admin_image_slideshow_hits_end'),
   array('Allow Flash in Ecards (not recommended)', 'ecard_flash', 1, 'f=index.htm&amp;as=admin_image_ecard_flash_start&amp;ae=admin_image_ecard_flash_end'), // cpg1.5.x
+  array('Insert a transparent overlay to minimize image theft', 'transparent_overlay', 1, 'f=index.htm&amp;as=admin_image_transparent_overlay_start&amp;ae=admin_image_transparent_overlay_end'), // cpg1.5.x
 
   'Comment settings',
   array('Filter bad words in comments', 'filter_bad_words', 1, 'f=index.htm&amp;as=admin_image_comment_bad_words&amp;ae=admin_image_comment_bad_words_end'),

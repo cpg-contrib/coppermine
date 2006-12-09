@@ -1549,7 +1549,7 @@ obfuscated to make it hard for non-coders to remove the tag. The reason behind
 this was an additional license add-on that disallowed users to change the line.
 The dev team has reviewed this policy for cpg1.5.x and decided that end users
 ARE allowed to change or remove the line in legal terms.
-HOWEVER: We have a forum policy for the support board instead: support will 
+HOWEVER: We have a forum policy for the support board instead: support will
 only be given for galleries that show the "Powered by Coppermine" tag
 unobfuscated.
 Before removing the credits, please consider this as well:
@@ -1650,7 +1650,7 @@ function theme_main_menu($which)
             if (!$upload_allowed) {
                 $query = "SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " AND uploads='YES' AND (visibility = '0' OR visibility IN ".USER_GROUP_SET.") AND aid = '$album' ORDER BY title";
                 $public_albums = cpg_db_query($query);
-    
+
                 if (mysql_num_rows($public_albums)) {
                     $upload_allowed = true;
                 } else {
@@ -1673,7 +1673,7 @@ function theme_main_menu($which)
         template_extract_block($template_sys_menu, 'logout');
         template_extract_block($template_sys_menu, 'my_profile');
     }
-    
+
     if (!USER_IS_ADMIN) {
         template_extract_block($template_sys_menu, 'enter_admin_mode');
         template_extract_block($template_sys_menu, 'leave_admin_mode');
@@ -2615,14 +2615,29 @@ function theme_html_picture()
 
     if ($mime_content['content']=='image') {
         if (isset($image_size['reduced'])) {
+            $imginfo=getimagesize($picture_url);
             $winsizeX = $CURRENT_PIC_DATA['pwidth']+$CONFIG['fullsize_padding_x'];  //the +'s are the mysterious FF and IE paddings
             $winsizeY = $CURRENT_PIC_DATA['pheight']+$CONFIG['fullsize_padding_y']; //the +'s are the mysterious FF and IE paddings
-            $pic_html = "<a href=\"javascript:;\" onclick=\"MM_openBrWindow('displayimage.php?pid=$pid&amp;fullsize=1','" . uniqid(rand()) . "','scrollbars=yes,toolbar=no,status=no,resizable=yes,width=$winsizeX,height=$winsizeY')\">";
-            $pic_title = $lang_display_image_php['view_fs'] . "\n==============\n" . $pic_title;
-            $pic_html .= "<img src=\"" . $picture_url . "\" class=\"image\" border=\"0\" alt=\"{$lang_display_image_php['view_fs']}\" /><br />";
-            $pic_html .= "</a>\n";
+            if ($CONFIG['transparent_overlay'] == 1) {
+                $pic_html = "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td background=\"" . $picture_url . "\" width=\"{$imginfo[0]}\" height=\"{$imginfo[1]}\" class=\"image\">";
+                $pic_html .= "<a href=\"javascript:;\" onclick=\"MM_openBrWindow('displayimage.php?pid=$pid&amp;fullsize=1','" . uniqid(rand()) . "','scrollbars=yes,toolbar=no,status=no,resizable=yes,width=$winsizeX,height=$winsizeY')\">";
+                $pic_title = $lang_display_image_php['view_fs'] . "\n==============\n" . $pic_title;
+                $pic_html .= "<img src=\"images/image.gif?id=".floor(rand()*1000+rand())."\" width={$imginfo[0]} height={$imginfo[1]}  border=\"0\" alt=\"{$lang_display_image_php['view_fs']}\" /><br />";
+                $pic_html .= "</a>\n </td></tr></table>";
+            } else {
+                $pic_html = "<a href=\"javascript:;\" onclick=\"MM_openBrWindow('displayimage.php?pid=$pid&amp;fullsize=1','" . uniqid(rand()) . "','scrollbars=yes,toolbar=no,status=no,resizable=yes,width=$winsizeX,height=$winsizeY')\">";
+                $pic_title = $lang_display_image_php['view_fs'] . "\n==============\n" . $pic_title;
+                $pic_html .= "<img src=\"" . $picture_url . "\" class=\"image\" border=\"0\" alt=\"{$lang_display_image_php['view_fs']}\" /><br />";
+                $pic_html .= "</a>\n";
+            }
         } else {
-            $pic_html = "<img src=\"" . $picture_url . "\" {$image_size['geom']} class=\"image\" border=\"0\" alt=\"\" /><br />\n";
+            if ($CONFIG['transparent_overlay'] == 1) {
+                $pic_html = "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td background=\"" . $picture_url . "\" width=\"{$CURRENT_PIC_DATA['pwidth']}\" height=\"{$CURRENT_PIC_DATA['pheight']}\" class=\"image\">";
+                $pic_html .= "<img src=\"images/overlay.gif\" width={$CURRENT_PIC_DATA['pwidth']} height={$CURRENT_PIC_DATA['pheight']} border=\"0\" alt=\"\" /><br />\n";
+                $pic_html .= "</td></tr></table>";
+            } else {
+                $pic_html = "<img src=\"" . $picture_url . "\" {$image_size['geom']} class=\"image\" border=\"0\" alt=\"\" /><br />\n";
+            }
         }
     } elseif ($mime_content['content']=='document') {
         $pic_thumb_url = get_pic_url($CURRENT_PIC_DATA,'thumb');
@@ -2669,7 +2684,7 @@ function theme_html_picture()
 
         $player = $players[$user_player];
 
-        $pic_html  = '<object id="'.$player['id'].'" '.$player['clsid'].$player['codebase'].$player['mime'].$image_size['whole'].'>';
+        $pic_html  = '<object id="'.$player['id'].'" '.$player['classid'].$player['codebase'].$player['mime'].$image_size['whole'].'>';
         $pic_html .= "<param name=\"autostart\" value=\"$autostart\" /><param name=\"src\" value=\"". $picture_url . "\" />";
         $pic_html .= '<embed '.$image_size['whole'].' src="'. $picture_url . '" autostart="'.$autostart.'" '.$player['mime'].'></embed>';
         $pic_html .= "</object><br />\n";
@@ -3113,22 +3128,48 @@ function theme_display_fullsize_pic()
   <meta http-equiv="content-type" content="text/html; charset=<?php echo $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'] ?>" />
   <title><?php echo $CONFIG['gallery_name'] ?>: <?php echo $lang_fullsize_popup['click_to_close'];
       ?></title>
-  <script type="text/javascript" src="scripts.js"></script>
   <style type="text/css">
-  body { margin: 0; padding: 0; background-color: gray; }
-  img { margin:0; padding:0; border:0; }
-  #content { margin:0 auto; padding:0; border:0; }
-  table { border:0; height:100%; width:100%; border-collapse:collapse}
-  td {         vertical-align: middle; text-align:center; }
+    body { margin: 0; padding: 0; background-color: gray; }
+    img { margin:0; padding:0; border:0; }
+    #content { margin:0 auto; padding:0; border:0; }
+    table { border:0; width:<?php echo $row['pwidth'] ?>px; height:<?php echo $row['pheight'] ?>px; border-collapse:collapse}
+    td {         vertical-align: middle; text-align:center; }
   </style>
+  <script type="text/javascript" src="scripts.js"></script>
   </head>
-  <body>
+  <body style="margin:0px; padding:0px; background-color: gray;">
     <script language="JavaScript" type="text/JavaScript">
       adjust_popup();
     </script>
-    <table>
+<?php
+if ($CONFIG['transparent_overlay'] == 1) {
+?>
+    <table cellpadding="0" cellspacing="0" align="center" style="padding:0px;">
       <tr>
-            <td>
+              <?php
+        echo '<td align="center" valign="middle" background="' . htmlspecialchars($imagedata['path']) . '" ' . $imagedata['geometry'] . ' class="image">';
+        echo '<div id="content">';
+        echo  '<a href="javascript: window.close()" style="border:none"><img src="images/image.gif?id='
+                . floor(rand()*1000+rand())
+                . '&amp;fullsize=yes" '
+                . $imagedata['geometry']
+                . ' alt="'
+                . htmlspecialchars($imagedata['name'])
+                . '" title="'
+                . htmlspecialchars($imagedata['name'])
+                . "\n" . $lang_fullsize_popup['click_to_close']
+                . '" /></a><br />' ."\n";
+               ?>
+          </div>
+        </td>
+      </tr>
+    </table>
+<?php
+} else {
+?>
+    <table class="fullsize">
+      <tr>
+        <td>
           <div id="content">
               <?php     echo  '<a href="javascript: window.close()"><img src="'
                 . htmlspecialchars($imagedata['path']) . '" '
@@ -3144,6 +3185,9 @@ function theme_display_fullsize_pic()
         </td>
       </tr>
     </table>
+<?php
+}
+?>
   </body>
 </html>
 <?php

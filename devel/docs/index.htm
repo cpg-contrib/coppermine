@@ -1511,7 +1511,7 @@ Should you have difficulties using one, try the other. You can toggle between th
 <a name="vanity_block"></a><h4>Display the vanity block on themes that are defined as XHTML and CSS compliant</h4>
 <p>When enabled and using a theme that has been defined as XHTML and CSS compliant, the vanity block will be shown. The vanity block contains the logos and links for HTML and CSS compliance at w3.org, as well as pointers to the PHP, and MySQL projects.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Themes settings &rarr; Display the vanity block on themes that are defined as XHTML and CSS compliant</p>
-<p class="small">[cpg1.4.2 or better required]</p>
+<p class="small">[cpg1.4.0 or better required]</p>
 <a name="vanity_block_end"></a>
 <hr />
 <a name="admin_theme_include_path_start"></a>
@@ -1773,6 +1773,15 @@ You have to understand that this setting does <strong>not</strong> determine the
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Image view &rarr; Allow Flash in Ecards</p>
 <p class="small">[cpg1.5.0 or better required]</p>
 <a name="admin_image_ecard_flash_end"></a>
+
+<hr />
+<a name="admin_image_transparent_overlay_start"></a>
+<h4>Insert a transparent overlay to minimize image theft</h4>
+<p>When enabled, a transparent gif will be inserted "over" the pics displayed in your gallery (intermediate sized and full-size pics). Subsequently, if a user right-clicks the image and uses the "save as..." context menu of his browser, only the transparent gif will be saved on his PC, but not the actual image he tried to save. This option will reduce the number of users who are capable to steal your images, but it will only fool newbie users. There is no effective method to completely avoid image theft, but the transparent overlay method is much better than any no-right-click script that keeps users from the legitimate use of the right mouse button and subsequently makes them shy away. Please note that the transparent overlay is being added by using the deprecated HTML attribute "background" to avoid the context menu entry "save background image" that would appear if the overlay image was added using standards-compliant CSS methods. Subsequently, your pages will not contain valid, standards-compliant HTML output if this option is enabled, so you should turn off the  option "<a href="#vanity_block">Display the vanity block on themes that are defined as XHTML and CSS compliant</a>".<br />Recommended (and default) setting for this option is "off".</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Image view &rarr; Insert a transparent overlay to minimize image theft</p>
+<p class="small">[cpg1.5.0 or better required]</p>
+<a name="admin_image_transparent_overlay_end"></a>
+
 <a name="admin_image_comment_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
@@ -2175,7 +2184,7 @@ This setting only applies if coppermine is not bridged.</p>
 <a name="admin_activation_end"></a>
 <hr />
 <a name="admin_personal_album_on_registration"></a><h4>Create user album in personal gallery on registration</h4>
-<p>When enabled, each user will have a personal album created during the registration process, even if your permissions for the group new users are in do not allow this (i.e. if you have <a href="#group_cp">allowed personal galleries</a> for members of the registered group disabled). Don't enable this option if you don't know what it actually does!</p>
+<p>When enabled, each user will have a personal album created during the registration process, even if your permissions for the group new users are in do not allow this (i.e. if you have <a href="#group_cp">allowed personal galleries</a> for members of the registered group disabled). Warning: usually, only a small percentage of registered users actually upload files - when this option is enabled, a lot of unneeded user galleries will be created, severely cluttering the database (which has an impact on performance). Don't enable this option if you don't know what it actually does!</p>
 <p>This option is disabled when being bridged.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Registration &rarr; Create user album in personal gallery on registration</p>
 <p class="small">[cpg1.4.0 or better required]</p>

@@ -542,3 +542,6 @@ ALTER TABLE `CPG_albums` ADD `moderator_group` INT NOT NULL default 0;
 
 # Add album hits field
 ALTER TABLE `CPG_albums` ADD `alb_hits` INT( 10 ) NOT NULL default 0;
+
+# Display transparent overlay on images
+INSERT INTO CPG_config VALUES ('transparent_overlay', '0');

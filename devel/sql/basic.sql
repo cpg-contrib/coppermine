@@ -43,7 +43,7 @@ INSERT INTO CPG_config VALUES ('debug_notice', '0');
 INSERT INTO CPG_config VALUES ('default_dir_mode', '0755');
 INSERT INTO CPG_config VALUES ('default_file_mode', '0644');
 INSERT INTO CPG_config VALUES ('default_sort_order', 'na');
-INSERT INTO CPG_config VALUES ('ecards_more_pic_target', 'http://coppermine.sourceforge.net/');
+INSERT INTO CPG_config VALUES ('ecards_more_pic_target', 'http://change-this-to-your-gallery-url.tld/');
 INSERT INTO CPG_config VALUES ('home_target', 'index.php');
 INSERT INTO CPG_config VALUES ('custom_lnk_name', '');
 INSERT INTO CPG_config VALUES ('custom_lnk_url', '');
@@ -303,3 +303,6 @@ INSERT INTO CPG_config VALUES ('personal_album_on_registration', '0');
 
 # Count hits in slideshow
 INSERT INTO CPG_config VALUES ('slideshow_hits', '1');
+
+# Display transparent overlay on images
+INSERT INTO CPG_config VALUES ('transparent_overlay', '0');

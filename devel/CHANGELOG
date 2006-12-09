@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-12-09 [A] Optional transparent overlay against image theft {GauGau}
 2006-12-06 [B] Avoid attempting to send emails to admins who have no email address in profile. {Nibbler}
 2006-12-05 [C] Added visibility toggle for debug_output to avoid debug_mode breaking the layout (width) {GauGau}
 2006-12-02 [B] bugfix for topic=38484 Problem creating/editing album via albmgr {Donnoman}
