@@ -545,3 +545,7 @@ ALTER TABLE `CPG_albums` ADD `alb_hits` INT( 10 ) NOT NULL default 0;
 
 # Display transparent overlay on images
 INSERT INTO CPG_config VALUES ('transparent_overlay', '0');
+
+
+# Ask guests to log in to post comments
+INSERT INTO CPG_config VALUES ('comment_promote_registration', '0');

@@ -748,6 +748,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Display placeholder text to end users for comments waiting for admin approval', 'comment_placeholder', 1, 'f=index.htm&amp;as=admin_comment_display_placeholder_start&amp;ae=admin_comment_display_placeholder_end'), // cpg1.5.x
   array('Allow users to edit their comments', 'comment_user_edit', 1, 'f=index.htm&amp;as=admin_comment_user_edit_start&amp;ae=admin_comment_user_edit_end'), // cpg1.5.x
   array('Display Captcha (Visual Confirmation) for adding comments', 'comment_captcha', 19, 'f=index.htm&amp;as=admin_comment_captcha_start&amp;ae=admin_comment_captcha_end'), // cpg1.5.x
+  array('Ask guests to log in to post comments', 'comment_promote_registration', 1, 'f=index.htm&amp;as=admin_comment_promote_registration_start&amp;ae=admin_comment_promote_registration_end'), // cpg1.5.x
 
   'Thumbnails settings', // cpg1.5.x
   array('Max dimension (width) of a thumbnail <a href="#notice2" class="clickable_option">**</a>', 'thumb_width', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_max-dimension&amp;ae=admin_picture_thumbnail_max-dimension_end'),
@@ -1114,6 +1115,7 @@ $lang_display_comments = array(
   'pending_approval_message' => 'Someone has posted a comment here. It will be visible after admin approval.', // cpg1.5.x
   'approve' => 'Approve comment', // cpg1.5.x
   'disapprove' => 'Disapprove comment', // cpg1.5.x
+  'log_in_to_comment' => 'Anonymous comments are not allowed here. %sLog in%s to post your comment', // cpg1.5.x // do not translate the %s placeholders - they will be used as wrappers for the link (<a>)
 );
 
 $lang_fullsize_popup = array(

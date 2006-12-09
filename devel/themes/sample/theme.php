@@ -283,7 +283,7 @@ $template_cat_list = <<<EOT
 <!-- END catrow -->
 <!-- BEGIN footer -->
         <tr>
-                <td colspan="3" class="tableh1" align="center"><span class="statlink"><b>{STATISTICS}</b></span></td>
+                <td colspan="3" class="tableh1" align="center"><span class="statlink">{STATISTICS}</span></td>
         </tr>
 <!-- END footer -->
 <!-- BEGIN spacer -->
@@ -311,7 +311,7 @@ $template_breadcrumb = <<<EOT
                 <table width="100%" cellpadding="0" cellspacing="0" border="0">
                 <tr>
                         <td align="left"><span class="statlink"><b>{BREADCRUMB}</b></span></td>
-                        <td align="right"><span class="statlink"><b>{STATISTICS}</b></span></td>
+                        <td align="right"><span class="statlink">{STATISTICS}</span></td>
                 </tr>
                 </table>
                 </td>
@@ -331,7 +331,7 @@ $template_album_list = <<<EOT
 
 <!-- BEGIN stat_row -->
         <tr>
-                <td colspan="{COLUMNS}" class="tableh1" align="center"><span class="statlink"><b>{STATISTICS}</b></span></td>
+                <td colspan="{COLUMNS}" class="tableh1" align="center"><span class="statlink">{STATISTICS}</span></td>
         </tr>
 <!-- END stat_row -->
 <!-- BEGIN header -->
@@ -462,7 +462,7 @@ $template_album_list_cat = <<<EOT
 
 <!-- BEGIN c_stat_row -->
         <tr>
-                <td colspan="{COLUMNS}" class="tableh1" align="center"><span class="statlink"><b>{STATISTICS}</b></span></td>
+                <td colspan="{COLUMNS}" class="tableh1" align="center"><span class="statlink">{STATISTICS}</span></td>
         </tr>
 <!-- END c_stat_row -->
 <!-- BEGIN c_header -->
@@ -966,15 +966,6 @@ EOT;
 ** Section <<<$template_image_comments>>> - END
 ******************************************************************************/
 
-/******************************************************************************
-** Section <<<$captionLabel>>> - START
-******************************************************************************/
-if ($CONFIG['show_bbcode_help']) {
-  $captionLabel = '&nbsp;' .  cpg_display_help('f=index.html&base=64&h=' . urlencode(base64_encode(serialize($lang_bbcode_help_title))) . '&t=' . urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);
-}
-/******************************************************************************
-** Section <<<$captionLabel>>> - END
-******************************************************************************/
 
 /******************************************************************************
 ** Section <<<$template_add_your_comment>>> - START
@@ -1014,11 +1005,13 @@ $template_add_your_comment = <<<EOT
                                 <input type="text" class="textinput" id="message" name="msg_body"  maxlength="{MAX_COM_LENGTH}" style="width: 100%;" />
                                 </td>
 <!-- END input_box_no_smilies -->
+<!-- BEGIN submit -->
                                 <td class="tableb_compact">
                                 <input type="hidden" name="event" value="comment" />
                                 <input type="hidden" name="pid" value="{PIC_ID}" />
                                 <input type="submit" class="comment_button" name="submit" value="{OK}" />
                                 </td>
+<!-- END submit -->
                                                         </tr>
 <!-- BEGIN comment_captcha -->
                                                         <tr>
@@ -1041,6 +1034,13 @@ $template_add_your_comment = <<<EOT
                 </td>
         </tr>
 <!-- END smilies -->
+<!-- BEGIN login_to_comment -->
+        <tr>
+                                <td class="tableb_compact" colspan="2">
+                                  {LOGIN_TO_COMMENT}
+                                </td>
+        </tr>
+<!-- END login_to_comment -->
                 </table>
         </form>
 EOT;
@@ -1318,7 +1318,6 @@ EOT;
 ** Section <<<$template_report_comment_email>>> - START
 ******************************************************************************/
 // plain-text template for reports (as fallback for clients that can't display html-formatted mails)
-if (!isset($template_report_comment_email))  //{THEMES}
 $template_report_comment_email = <<<EOT
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="{LANG_DIR}">
@@ -1543,7 +1542,37 @@ function theme_main_menu($which)
         return $$which;
     }
 
+    //Check whether user has permission to upload file to the current album if any
+    $upload_allowed = false;
+    if (isset($album)) {
+        if (GALLERY_ADMIN_MODE) {
+            $upload_allowed = true;
+        } else {
+            if (USER_ID) {
+                $query = "SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='" . (FIRST_USER_CAT + USER_ID) . "' AND aid = '$album' ORDER BY title";
+                $user_albums = cpg_db_query($query);
+                if (mysql_num_rows($user_albums)) {
+                    $upload_allowed = true;
+                } else {
+                    $upload_allowed = false;
+                }
+            }
+
+            if (!$upload_allowed) {
+                $query = "SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " AND uploads='YES' AND (visibility = '0' OR visibility IN ".USER_GROUP_SET.") AND aid = '$album' ORDER BY title";
+                $public_albums = cpg_db_query($query);
+
+                if (mysql_num_rows($public_albums)) {
+                    $upload_allowed = true;
+                } else {
+                    $upload_allowed = false;
+                }
+            }
+        }
+    }
+
     $album_l = isset($album) ? "?album=$album" : '';
+    $album_12 = ($upload_allowed) ? "?album=$album" : '';
     $cat_l = (isset($actual_cat))? "?cat=$actual_cat" : (isset($cat) ? "?cat=$cat" : '');
     $cat_l2 = isset($cat) ? "&amp;cat=$cat" : '';
     $my_gallery_id = FIRST_USER_CAT + USER_ID;
@@ -1612,7 +1641,7 @@ function theme_main_menu($which)
         '{USR_MODE_TGT}' => "mode.php?admin_mode=0&amp;referer=$REFERER",
         '{USR_MODE_TITLE}' => $lang_main_menu['usr_mode_title'],
         '{USR_MODE_LNK}' => $lang_main_menu['usr_mode_lnk'],
-        '{UPL_PIC_TGT}' => "upload.php",
+        '{UPL_PIC_TGT}' => "upload.php$album_12",
         '{UPL_PIC_TITLE}' => $lang_main_menu['upload_pic_title'],
         '{UPL_PIC_LNK}' => $lang_main_menu['upload_pic_lnk'],
         '{REGISTER_TGT}' => "register.php",
@@ -1693,6 +1722,9 @@ function theme_admin_mode_menu()
 
     // Populate the admin menu only if empty to avoid template errors
     if ($admin_menu == '') {
+
+        if (GALLERY_ADMIN_MODE) {
+            
         if ($CONFIG['log_ecards'] == 0) {
             template_extract_block($template_gallery_admin_menu, 'log_ecards');
         }
@@ -1701,7 +1733,6 @@ function theme_admin_mode_menu()
              template_extract_block($template_gallery_admin_menu, 'admin_approval');
         }
 
-        if (GALLERY_ADMIN_MODE) {
             // do the docs exist on the webserver?
             if (file_exists('docs/index.htm') == true) {
                 $documentation_href = 'docs/index.htm';
@@ -2067,9 +2098,9 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
 
     if ($mode == 'thumb') {
         $theme_thumb_tab_tmpl['left_text'] = strtr($theme_thumb_tab_tmpl['left_text'], array('{LEFT_TEXT}' => $aid == 'lastalb' ? $lang_album_list['album_on_page'] : $lang_thumb_view['pic_on_page']));
-        $theme_thumb_tab_tmpl['inactive_tab'] = strtr($theme_thumb_tab_tmpl['inactive_tab'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . '&amp;page=%d'));
-        $theme_thumb_tab_tmpl['inactive_next_tab'] = strtr($theme_thumb_tab_tmpl['inactive_next_tab'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . '&amp;page=%d'));
-        $theme_thumb_tab_tmpl['inactive_prev_tab'] = strtr($theme_thumb_tab_tmpl['inactive_prev_tab'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . '&amp;page=%d'));
+        $theme_thumb_tab_tmpl['inactive_tab'] = strtr($theme_thumb_tab_tmpl['inactive_tab'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . $uid_link . '&amp;page=%d'));
+        $theme_thumb_tab_tmpl['inactive_next_tab'] = strtr($theme_thumb_tab_tmpl['inactive_next_tab'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . $uid_link . '&amp;page=%d'));
+        $theme_thumb_tab_tmpl['inactive_prev_tab'] = strtr($theme_thumb_tab_tmpl['inactive_prev_tab'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . $uid_link . '&amp;page=%d'));
     } else {
         $theme_thumb_tab_tmpl['left_text'] = strtr($theme_thumb_tab_tmpl['left_text'], array('{LEFT_TEXT}' => $lang_thumb_view['user_on_page']));
         $theme_thumb_tab_tmpl['inactive_tab'] = strtr($theme_thumb_tab_tmpl['inactive_tab'], array('{LINK}' => 'index.php?cat=' . $cat . '&amp;page=%d'));
@@ -2321,7 +2352,7 @@ function theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments, 
 
 
     $picinfo = isset($_COOKIE['picinfo']) ? $_COOKIE['picinfo'] : ($CONFIG['display_pic_info'] ? 'block' : 'none');
-    echo "<div id=\"picinfo\" style=\"display: $picinfo;\">\n";
+    echo "\n\r<div id=\"picinfo\" style=\"display: $picinfo;\">\n";
     starttable();
     echo $pic_info;
     endtable();
@@ -2557,7 +2588,7 @@ function theme_html_picture()
 function theme_html_img_nav_menu()
 {
     global $CONFIG, $CURRENT_PIC_DATA, $meta_nav, $THEME_DIR ; //$PHP_SELF,
-    global $album, $cat, $pos, $pic_count, $lang_img_nav_bar, $lang_text_dir, $template_img_navbar;
+    global $album, $cat, $pos, $pic_count, $pic_data, $lang_img_nav_bar, $lang_text_dir, $template_img_navbar;
 
     $cat_link = is_numeric($album) ? '' : '&amp;cat=' . $cat;
 
@@ -2566,19 +2597,19 @@ function theme_html_img_nav_menu()
     $pid = $CURRENT_PIC_DATA['pid'];
 
     $start = 0;
-        $start_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$start";
+        $start_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pid={$pic_data[$start]['pid']}";
         $start_title = $lang_img_nav_bar['go_album_start'];
         $meta_nav .= "<link rel=\"start\" href=\"$start_tgt\" title=\"$start_title\" />
         ";
         $end = $pic_count - 1;
-        $end_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$end";
+        $end_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pid={$pic_data[$end]['pid']}";
         $end_title = $lang_img_nav_bar['go_album_end'];
         $meta_nav .= "<link rel=\"last\" href=\"$end_tgt\" title=\"$end_title\" />
         ";
 
     if ($pos > 0) {
         $prev = $pos - 1;
-        $prev_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$prev";
+        $prev_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pid={$pic_data[$prev]['pid']}$uid_link";
         $prev_title = $lang_img_nav_bar['prev_title'];
                                 $meta_nav .= "<link rel=\"prev\" href=\"$prev_tgt\" title=\"$prev_title\" />
                                 ";
@@ -2589,7 +2620,7 @@ function theme_html_img_nav_menu()
 
     if ($pos < ($pic_count -1)) {
         $next = $pos + 1;
-        $next_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$next";
+        $next_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pid={$pic_data[$next]['pid']}$uid_link";
         $next_title = $lang_img_nav_bar['next_title'];
                                 $meta_nav .= "<link rel=\"next\" href=\"$next_tgt\" title=\"$next_title\"/>
                                 ";
@@ -2615,11 +2646,11 @@ function theme_html_img_nav_menu()
 
     }
 
-                    $thumb_tgt = "thumbnails.php?album=$album$cat_link&amp;page=$page";
+                    $thumb_tgt = "thumbnails.php?album=$album$cat_link&amp;page=$page$uid_link";
         $meta_nav .= "<link rel=\"up\" href=\"$thumb_tgt\" title=\"".$lang_img_nav_bar['thumb_title']."\"/>
         ";
 
-    $slideshow_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pid=$pid&amp;slideshow=".$CONFIG['slideshow_interval'];
+    $slideshow_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link$uid_link&amp;pid=$pid&amp;slideshow=".$CONFIG['slideshow_interval'];
 
     $pic_pos = sprintf($lang_img_nav_bar['pic_pos'], $human_pos, $pic_count);
 
@@ -2705,7 +2736,7 @@ function theme_html_rating_box()
 function theme_html_comments($pid)
 {
     global $CONFIG, $USER, $CURRENT_ALBUM_DATA, $comment_date_fmt, $HTML_SUBST;
-    global $template_image_comments, $template_add_your_comment, $lang_display_comments, $lang_common;
+    global $template_image_comments, $template_add_your_comment, $lang_display_comments, $lang_common, $REFERER;
 
     $html = '';
 
@@ -2747,14 +2778,13 @@ function theme_html_comments($pid)
         $hide_comment = 0;
 
         // comment approval
-        // todo: make the admin links point to the actual pid in reviewcom
         $pending_approval = '';
         if (USER_IS_ADMIN) {
             //display the selector approve/disapprove
             if ($row['approval'] == 'NO') {
-                $pending_approval = '<a href="reviewcom.php" title="' . $lang_display_comments['approve'] . '"><img src="images/approve.gif" border="0" alt="" align="middle" /></a>';
+                $pending_approval = '<a href="reviewcom.php?pos=-{PID}&amp;msg_id={MSG_ID}&amp;what=approve" title="' . $lang_display_comments['approve'] . '"><img src="images/approve.gif" border="0" alt="" align="middle" /></a>';
             } else {
-                $pending_approval = '<a href="reviewcom.php" title="' . $lang_display_comments['disapprove'] . '"><img src="images/disapprove.gif" border="0" alt="" align="middle" /></a>';
+                $pending_approval = '<a href="reviewcom.php?pos=-{PID}&amp;msg_id={MSG_ID}&amp;what=disapprove" title="' . $lang_display_comments['disapprove'] . '"><img src="images/disapprove.gif" border="0" alt="" align="middle" /></a>';
             }
         } else { // user or guest is logged in - start
             if ($row['approval'] == 'NO') { // the comment is not approved - start
@@ -2764,8 +2794,8 @@ function theme_html_comments($pid)
                     if ($CONFIG['comment_placeholder'] == 0) {
                         $hide_comment = 1;
                     } else {
-                        $row['msg_author'] = '<em>'.$lang_display_comments['unapproved_comment'].'</em>';
-                        $row['msg_body'] = '<em>'.$lang_display_comments['pending_approval_message'].'</em>';
+                        $row['msg_author'] = $lang_display_comments['unapproved_comment'];
+                        $row['msg_body'] = $lang_display_comments['pending_approval_message'];
                         $row['author_id'] = 0;
                     }
                 }
@@ -2778,6 +2808,12 @@ function theme_html_comments($pid)
         } else {
             $comment_body = make_clickable($row['msg_body']);
             $smilies = '';
+        }
+
+        // wrap the comment into italics if it isn't approved
+        if ($row['approval'] == 'NO') {
+            $comment_body = '<em>'.$comment_body.'</em>';
+            $row['msg_author'] = $row['msg_author'];
         }
 
         $ip = $row['msg_hdr_ip'];
@@ -2853,7 +2889,21 @@ function theme_html_comments($pid)
                         template_extract_block($template_add_your_comment, 'smilies');
                 }
 
+        template_extract_block($template_add_your_comment, 'login_to_comment');
         $html .= template_eval($template_add_your_comment, $params);
+    } else { // user can not post comments
+        if ($CONFIG['comment_promote_registration'] == 1 && $CURRENT_ALBUM_DATA['comments'] == 'YES') {
+          template_extract_block($template_add_your_comment, 'user_name_input');
+          template_extract_block($template_add_your_comment, 'input_box_smilies');
+          template_extract_block($template_add_your_comment, 'comment_captcha');
+          template_extract_block($template_add_your_comment, 'smilies');
+          template_extract_block($template_add_your_comment, 'submit');
+          $params = array('{ADD_YOUR_COMMENT}' => $lang_display_comments['add_your_comment'],
+              '{WIDTH}' => $CONFIG['picture_table_width'],
+              '{LOGIN_TO_COMMENT}' => sprintf($lang_display_comments['log_in_to_comment'], '<a href="login.php?referer='.$REFERER.'">', '</a>'),
+              );
+          $html .= template_eval($template_add_your_comment, $params);
+        }
     }
 
     return $html;

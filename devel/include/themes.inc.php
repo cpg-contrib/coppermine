@@ -923,7 +923,7 @@ if (!isset($template_image_comments)) { //{THEMES}
 ******************************************************************************/
 // HTML template for the display of comments
 $template_image_comments = <<<EOT
-<table align="center" width="{WIDTH}" cellspacing="1" cellpadding="0" class="maintable" border="1">
+<table align="center" width="{WIDTH}" cellspacing="1" cellpadding="0" class="maintable" border="0">
 
         <tr>
                 <td>
@@ -1067,11 +1067,13 @@ $template_add_your_comment = <<<EOT
                                 <input type="text" class="textinput" id="message" name="msg_body"  maxlength="{MAX_COM_LENGTH}" style="width: 100%;" />
                                 </td>
 <!-- END input_box_no_smilies -->
+<!-- BEGIN submit -->
                                 <td class="tableb_compact">
                                 <input type="hidden" name="event" value="comment" />
                                 <input type="hidden" name="pid" value="{PIC_ID}" />
                                 <input type="submit" class="comment_button" name="submit" value="{OK}" />
                                 </td>
+<!-- END submit -->
                                                         </tr>
 <!-- BEGIN comment_captcha -->
                                                         <tr>
@@ -1094,6 +1096,13 @@ $template_add_your_comment = <<<EOT
                 </td>
         </tr>
 <!-- END smilies -->
+<!-- BEGIN login_to_comment -->
+        <tr>
+                                <td class="tableb_compact" colspan="2">
+                                  {LOGIN_TO_COMMENT}
+                                </td>
+        </tr>
+<!-- END login_to_comment -->
                 </table>
         </form>
 EOT;
@@ -2875,7 +2884,7 @@ if (!function_exists('theme_html_comments')) {  //{THEMES}
 function theme_html_comments($pid)
 {
     global $CONFIG, $USER, $CURRENT_ALBUM_DATA, $comment_date_fmt, $HTML_SUBST;
-    global $template_image_comments, $template_add_your_comment, $lang_display_comments, $lang_common;
+    global $template_image_comments, $template_add_your_comment, $lang_display_comments, $lang_common, $REFERER;
 
     $html = '';
 
@@ -3028,7 +3037,21 @@ function theme_html_comments($pid)
                         template_extract_block($template_add_your_comment, 'smilies');
                 }
 
+        template_extract_block($template_add_your_comment, 'login_to_comment');
         $html .= template_eval($template_add_your_comment, $params);
+    } else { // user can not post comments
+        if ($CONFIG['comment_promote_registration'] == 1 && $CURRENT_ALBUM_DATA['comments'] == 'YES') {
+          template_extract_block($template_add_your_comment, 'user_name_input');
+          template_extract_block($template_add_your_comment, 'input_box_smilies');
+          template_extract_block($template_add_your_comment, 'comment_captcha');
+          template_extract_block($template_add_your_comment, 'smilies');
+          template_extract_block($template_add_your_comment, 'submit');
+          $params = array('{ADD_YOUR_COMMENT}' => $lang_display_comments['add_your_comment'],
+              '{WIDTH}' => $CONFIG['picture_table_width'],
+              '{LOGIN_TO_COMMENT}' => sprintf($lang_display_comments['log_in_to_comment'], '<a href="login.php?referer='.$REFERER.'">', '</a>'),
+              );
+          $html .= template_eval($template_add_your_comment, $params);
+        }
     }
 
     return $html;

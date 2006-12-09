@@ -306,3 +306,6 @@ INSERT INTO CPG_config VALUES ('slideshow_hits', '1');
 
 # Display transparent overlay on images
 INSERT INTO CPG_config VALUES ('transparent_overlay', '0');
+
+# Ask guests to log in to post comments
+INSERT INTO CPG_config VALUES ('comment_promote_registration', '0');
