@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-12-11 [B] Replaced HTML entities with actual characters in Danish language file {GauGau}
 2006-12-06 [B] Avoid attempting to send emails to admins who have no email address in profile. {Nibbler}
 2006-11-28 [A] Added Hindi language file (user contribution) {GauGau}
 2006-11-27 [B] Fixing redirect to file after new upload while bridged. {Nibbler}
