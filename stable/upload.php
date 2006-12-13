@@ -34,7 +34,7 @@ $allowed_URI_boxes = NUM_URI_BOXES;
 $allowed_file_boxes = NUM_FILE_BOXES;
 
 // Check to see if user can upload pictures.  Quit with an error if he cannot.
-if (!USER_CAN_UPLOAD_PICTURES) {
+if (!USER_CAN_UPLOAD_PICTURES && !USER_CAN_CREATE_ALBUMS) {
     cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
 }
 
@@ -841,7 +841,7 @@ if ((CUSTOMIZE_UPLOAD_FORM) and (!isset($_REQUEST['file_upload_request'])) and (
 if (GALLERY_ADMIN_MODE) {
     $public_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " ORDER BY title");
 } else {
-	$public_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " AND uploads='YES' AND (visibility = '0' OR visibility IN ".USER_GROUP_SET.") ORDER BY title");
+        $public_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " AND uploads='YES' AND (visibility = '0' OR visibility IN ".USER_GROUP_SET.") ORDER BY title");
 }
 if (mysql_num_rows($public_albums)) {
     $public_albums_list = cpg_db_fetch_rowset($public_albums);
@@ -860,8 +860,12 @@ if (USER_ID) {
     $user_albums_list = array();
 }
 
-if (!count($public_albums_list) && !count($user_albums_list)) {
-    cpg_die (ERROR, $lang_upload_php['err_no_alb_uploadables'], __FILE__, __LINE__);
+if (!count($public_albums_list) && !count($user_albums_list)) {  // there's no album where the user is allowed to upload to
+    if (USER_CAN_CREATE_ALBUMS) {
+        cpg_die (ERROR, $lang_upload_php['err_no_alb_uploadables'].'<br />&nbsp;<br /><a href="albmgr.php" title="'.$lang_user_admin_menu['albmgr_title'].'" class="admin_menu">'.$lang_user_admin_menu['albmgr_lnk'].'</a>', __FILE__, __LINE__);
+    } else {
+        cpg_die (ERROR, $lang_upload_php['err_no_alb_uploadables'], __FILE__, __LINE__);
+    }
 }
 
 // Assign maximum file size for browser crontrols.
@@ -2509,7 +2513,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
     $captionLabel = $lang_upload_php['description'];
     if ($CONFIG['show_bbcode_help']) {$captionLabel .= '&nbsp;'. cpg_display_help('f=index.html&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
     //$printed_file_name = "{$lang_upload_php['picture']} - {$file_set[0]}";
-    
+
     //Use the IPTC title or headline for the Coppermine title if available.
     if (isset($iptc['Title']) && !empty($iptc['Title'])) {
         $title=$iptc['Title'];
@@ -2518,7 +2522,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
     } else {
         $title='';
     }
-    
+
     $form_array = array(
     array($lang_upload_php['album'], 'album', 2),
     array($lang_upload_php['pic_title'], 'title', 0, 255, 1, $title),
