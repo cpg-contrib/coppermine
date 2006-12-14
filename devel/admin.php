@@ -1008,17 +1008,13 @@ pageheader($lang_admin_php['title']);
 
 $signature = 'Coppermine Photo Gallery ' . COPPERMINE_VERSION . ' ('. COPPERMINE_VERSION_STATUS . ')';
 
-?>
-<script type="text/javascript">
-        onload = hideall;
-</script>
-<?php
 echo '<form action="'.$_SERVER['PHP_SELF'].'" method="post" name="cpgform" id="cpgform">';
 starttable('100%', "{$lang_admin_php['title']} - $signature", 3);
 echo <<<EOT
     <tr>
         <td class="tableh2" colspan="3">
-            <a href="javascript:expand();" class="admin_menu">{$lang_admin_php['expand_all']}&nbsp;&nbsp;<img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['expand_all']}" /></a>     <a href="javascript:hideall();" class="admin_menu">{$lang_admin_php['collapse_all']}&nbsp;&nbsp;<img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['collapse_all']}" /></a>
+            <span id="expand_all_top" style="display:none"><a href="javascript:;" class="admin_menu" onclick="expand();show_section('expand_all_top');show_section('collapse_all_top');show_section('expand_all_bottom');show_section('collapse_all_bottom');">{$lang_admin_php['expand_all']}&nbsp;&nbsp;<img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['expand_all']}" /></a></span>
+            <span id="collapse_all_top" style="display:none"><a href="javascript:;" class="admin_menu" onclick="hideall();show_section('expand_all_top');show_section('collapse_all_top');show_section('expand_all_bottom');show_section('collapse_all_bottom');">{$lang_admin_php['collapse_all']}&nbsp;&nbsp;<img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['collapse_all']}" /></a></span>
         </td>
     </tr>
 EOT;
@@ -1037,7 +1033,8 @@ echo <<<EOT
                             <table border="0" cellspacing="0" cellpadding="0" width="100%">
                                 <tr>
                                     <td width="33%">
-                                        <a href="javascript:expand();" class="admin_menu">{$lang_admin_php['expand_all']}<img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['expand_all']}" /></a> <a href="javascript:hideall();" class="admin_menu">{$lang_admin_php['collapse_all']}&nbsp;&nbsp;<img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['collapse_all']}" /></a>
+                                        <span id="expand_all_bottom" style="display:none"><a href="javascript:;" class="admin_menu" onclick="expand();show_section('expand_all_top');show_section('collapse_all_top');show_section('expand_all_bottom');show_section('collapse_all_bottom');">{$lang_admin_php['expand_all']}<img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['expand_all']}" /></a></span>
+                                        <span id="collapse_all_bottom" style="display:none"><a href="javascript:;" class="admin_menu" onclick="hideall();show_section('expand_all_top');show_section('collapse_all_top');show_section('expand_all_bottom');show_section('collapse_all_bottom');">{$lang_admin_php['collapse_all']}&nbsp;&nbsp;<img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['collapse_all']}" /></a></span>
                                     </td>
                                     <td width="67%" align="center">
                                         <input type="submit" class="button" name="update_config" value="{$lang_admin_php['save_cfg']}" />
@@ -1050,7 +1047,12 @@ echo <<<EOT
                 </tr>
 EOT;
 endtable();
-echo '</form>';
+echo <<< EOT
+</form>
+<script type="text/javascript">
+        window.onload = hideall; show_section('expand_all_top'); show_section('expand_all_bottom');
+</script>
+EOT;
 pagefooter();
 ob_end_flush();
 ?>
