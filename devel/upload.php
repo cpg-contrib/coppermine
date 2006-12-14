@@ -34,7 +34,7 @@ $allowed_URI_boxes = NUM_URI_BOXES;
 $allowed_file_boxes = NUM_FILE_BOXES;
 
 // Check to see if user can upload pictures.  Quit with an error if he cannot.
-if (!USER_CAN_UPLOAD_PICTURES) {
+if (!USER_CAN_UPLOAD_PICTURES && !USER_CAN_CREATE_ALBUMS) {
     cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
 }
 
@@ -903,8 +903,12 @@ if (USER_ID) {
     $user_albums_list = array();
 }
 
-if (!count($public_albums_list) && !count($user_albums_list)) {
-    cpg_die (ERROR, $lang_upload_php['err_no_alb_uploadables'], __FILE__, __LINE__);
+if (!count($public_albums_list) && !count($user_albums_list)) {  // there's no album where the user is allowed to upload to
+    if (USER_CAN_CREATE_ALBUMS) {
+        cpg_die (ERROR, $lang_upload_php['err_no_alb_uploadables'].'<br />&nbsp;<br /><a href="albmgr.php" title="'.$lang_user_admin_menu['albmgr_title'].'" class="admin_menu">'.$lang_user_admin_menu['albmgr_lnk'].'</a>', __FILE__, __LINE__);
+    } else {
+        cpg_die (ERROR, $lang_upload_php['err_no_alb_uploadables'], __FILE__, __LINE__);
+    }
 }
 
 // Assign maximum file size for browser crontrols.

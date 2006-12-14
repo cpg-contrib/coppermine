@@ -1606,7 +1606,7 @@ function theme_main_menu($which)
         template_extract_block($template_sys_menu, 'my_profile');
     }
 
-    if (!USER_CAN_UPLOAD_PICTURES) {
+    if (!USER_CAN_UPLOAD_PICTURES && !USER_CAN_CREATE_ALBUMS) {
         template_extract_block($template_sys_menu, 'upload_pic');
     }
 
@@ -1724,7 +1724,7 @@ function theme_admin_mode_menu()
     if ($admin_menu == '') {
 
         if (GALLERY_ADMIN_MODE) {
-            
+
         if ($CONFIG['log_ecards'] == 0) {
             template_extract_block($template_gallery_admin_menu, 'log_ecards');
         }
