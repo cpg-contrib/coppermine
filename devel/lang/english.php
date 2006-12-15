@@ -1859,9 +1859,14 @@ if (defined('STAT_DETAILS_PHP')) $lang_stat_details_php = array(
   'stats_config' => 'Stats configuration', //cpg1.5
   'hit_details'  => 'Keep detailed hit statistics', //cpg1.5
   'hit_details_explanation'  => 'Keep detailed hit statistics', //cpg1.5
-  'empty_hits_table'  => 'Empty hit stats', //cpg1.5
-  'confirm_empty_hits'  => 'Warning: emptying the hit stats can not be undone. Do you really want to continue?', //cpg1.5 // JS-Alert
+  'vote_details'  => 'Keep detailed voting statistics', //cpg1.5
+  'vote_details_explanation'  => 'Keep detailed voting statistics', //cpg1.5
+  'empty_hits_table'  => 'Empty all hit stats', //cpg1.5
+  'empty_hits_table_confirm'  => 'Are you absolutely sure that you want to delete ALL hit stat records for your ENTIRE gallery? This can not be undone!', //cpg1.5 //JS-Alert
+  'empty_votes_table'  => 'Empty all voting stats', //cpg1.5
+  'empty_votes_table_confirm'  => 'Are you absolutely sure that you want to delete ALL voting records for your ENTIRE gallery? This can not be undone!', //cpg1.5 //JS-Alert
   'submit'  => 'Submit', //cpg1.5
+  'upd_success' => 'Coppermine configuration was updated', //cpg1.5
 );
 
 // ------------------------------------------------------------------------- //

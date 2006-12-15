@@ -117,7 +117,7 @@ function html_picinfo()
         }
         if (GALLERY_ADMIN_MODE) {
           $width = 800;
-          $height = 500;
+          $height = 700;
         } else {
           $width = 400;
           $height = 250;
