@@ -66,6 +66,7 @@
                   <li class="level3"><a href="#theme_sample">2.3.3 The sample theme - a template to copy from</a></li>
                   <li class="level3"><a href="#theme_engine">2.3.4 How the theme engine works</a></li>
                   <li class="level3"><a href="#theme_create">2.3.5 Creating your custom theme</a></li>
+                  <li class="level3"><a href="#theme_copyright">2.3.6 Copyright-disclaimer in footer</a></li>
                 </ul>
         <ul class="level2">
                 <li class="level2"><a href="#smtp" class="menu2">2.4 Using SMTP to send emails</a></li>
@@ -282,7 +283,7 @@
 <p><strong>Areas to be particularly mindful of:</strong></p>
 <ul>
 <li>Please test every facet of CPG, from the installation on to every feature available (and in as many themes and languages as possible).</li>
-<li>If you have the ability to test GD, GD2 and ImageMagick, please test all of them.</li>
+<li>If you have the ability to test GD1, GD2 and ImageMagick, please test all of them.</li>
 <li>Please attempt to use multiple types of graphics such as JPEG, PNG and GIF (for ImageMagick and GD 2.0.28+ users).</li>
 </ul>
 <p>Please report your test results to the <a href="http://coppermine-gallery.net/forum/index.php?board=85.0">testing board</a>, but before starting a new thread make sure that the potential bug you're going to report hasn't been posted before.</p>
@@ -696,7 +697,7 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
 <p>If you are using an HTML editor to design your template, the easist working solution might be to the &quot;<strong>template.html</strong>&quot; file into the main directory of your coppermine installation and edit it there. Whenever you load Coppermine, if the script finds a file named &quot;<strong>template.html</strong>&quot; in the main directory it will load it instead of the default one that you assigned in the CONFIG menu. Once you have finished  editing your theme be sure to move the file back into the directory it belongs. Don't forget to remove the temporary template.html file from the Coppermine root folder once you are done editing!</p>
 <p>To modify the colors, fonts, font sizes, etc... used by the script, you should edit the &quot;<strong>style.css</strong>&quot; stylesheet whenever possible. For example, if you want to increase or decrease the size of the fonts you can simply modify the line with : <tt class="code">table { font-size: 12px; }</tt>. Most of the font sizes used by the script are defined as a percentage of this size.</p>
 <p>The &quot;<strong>theme.php</strong>&quot; file contains all the HTML templates used by the script. You can edit them, as well. When making modifications to these templates, be careful that you do not alter the lines that start with <tt class="code">&lt;!-- BEGIN xxx --&gt;</tt> and <tt class="code">&lt;!-- END xxx --&gt;</tt>. These lines are often used to identify the start and end of specific code blocks that the script will use to display your gallery.</p>
-<p>If you're not sure how to go about creating your own theme, you could also have a look at the download section of the coppermine homepage: there are many user-contributed themes available for download that can be previewed on the <a href="http://coppermine.sourceforge.net/demo/">coppermine demo page</a>.</p>
+<p>If you're not sure how to go about creating your own theme, you could also have a look at the download section of the coppermine homepage: there are many user-contributed themes available for download that can be previewed on the <a href="http://coppermine-gallery.net/demo/">coppermine demo page</a>.</p>
 <p>While you're in the process of creating or testing a new theme, you might not want your theme to be displayed to visitors of your site, but you (as the coppermine admin) may want to still be able to preview your theme. To do that, simply add <tt class="code">theme=your_theme_name</tt> to the url in your browser.</p>
 <br />
 <strong>Examples:</strong>
@@ -706,6 +707,13 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
 <li><tt class="code">http://yoursite.tld/coppermine/?theme=xxx</tt> will reset your view back to the theme you chose as your default theme in coppermine config</li>
 </ul>
 <a name="theme_create_end"></a>
+<a name="theme_copyright"></a>
+<h3>2.3.6 Copyright-disclaimer in footer</h3>
+<p>In previous versions of Coppermine the "Powered by Coppermine" used to be obfuscated to make it hard for non-coders to remove the tag. The reason behind this was an additional license add-on that disallowed users to change the line. The dev team has reviewed this policy for cpg1.5.x and decided that end users <strong>are</strong> allowed to change or remove the line in legal terms.</p>
+<p><strong>However</strong>: We have a forum policy for the support board instead: support will only be given for galleries that show the "Powered by Coppermine" tag unobfuscated.</p>
+<p>Before removing the credits, please consider this as well: Coppermine is free software, the dev team <strong>asks</strong> you to keep the footer intact. We're convinced that you should give credit where credit is due. So please think twice before you decide to remove the tag.</p>
+<p>This being said, this is how you can change the tag: to edit the place where the tag is being displayed, edit <tt class="code">themes/yourtheme/template.html</tt> and move the placeholder <tt class="code">{CREDITS}</tt> around. As it is being generated by Coppermine's pagefooter function, it needs to appear below the <tt class="code">{GALLERY}</tt>-token. To change the content of the disclaimer, edit <tt class="code">themes/yourtheme/theme.php</tt> and edit the function <tt class="code">theme_credits</tt> as you see fit. If this function doesn't exist in your custom theme, copy it from the sample theme into your custom theme first.</p>
+<a name="theme_copyright_end"></a>
 <a name="theme_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
@@ -997,7 +1005,7 @@ using a tool like <a href="http://www.phpmyadmin.net/" rel="external" class="ext
 <p>This does of course not apply if you have bridging enabled, as user management is being handled by the app you have bridged coppermine with. In this case, the user management screen of your bridged app should show - create a new user there.</p>
 <a name="user_cp_new_end"></a>
 <a name="user_cp_edit"></a><h3>4.4.4 Editing users</h3>
-<p><img src="pics/usermgr_edit.gif" width="295" height="326" border="0" alt="" align="right" />To edit the properties of a user, click the <img src="pics/edit.gif" width="16" height="16" border="0" alt="" title="edit" />-button next to the user name. You will then find a page where you can modify all user profile fields the user has. This includes the option to change the password of that user. If you don't want to change a user's password, leave the password field blank.<br />
+<p><img src="pics/usermgr_edit.gif" width="294" height="329" border="0" alt="" align="right" />To edit the properties of a user, click the <img src="pics/edit.gif" width="16" height="16" border="0" alt="" title="edit" />-button next to the user name. You will then find a page where you can modify all user profile fields the user has. This includes the option to change the password of that user. If you don't want to change a user's password, leave the password field blank.<br />
 The dropdown list determines the primary group the user is in, the checkboxes beneath it determine the secondary groups.</p>
 <p>Please note that this screen (as well as the rest of Coppermine's user management) will not be available if you have enabled <a href="#integrating">bridging</a>, because then the user management of the application you have bridged with (e.g. your BBS) kicks in and handles everything related to user management.<br />
 The button "Album permissions by group" can <em>not</em> be used to set permissions, but only to <em>view</em> them. You can set permissions using the <a href="#album_prop">album properties</a> screen.</p>
@@ -2764,22 +2772,16 @@ Use post-based groups?:  0  </pre></li>
         <li>Missing Query in debug output: the value for $CONFIG['debug_mode'] is not yet set before the first query to the config table</li>
         <li>Page tabs in user manager don't behave in the same way as other tabs</li>
         <li>Resizing gif/png with transparent background doesn't preserve alpha info</li>
-        <li>Weird characters on mouseover tooltips in other browsers than IE</li>
         <li>Wrong charset in emails sent from coppermine</li>
-        <li>Language fallback not working for util.php and faq.php</li>
-        <li>Hardcoded charset in xp_publisher.php</li>
         <li>Thumbnail sizes over 120px causes edit fields to run over it's edge</li>
         <li>No album thumbnails for albums that contain only pics linked by keyword</li>
-        <li>Possible stability issues with PHP5 and plugins</li>
         <li>Crop/rotate doesn't work with GD1</li>
         <li>Rotate causing distorted image for large files</li>
         <li>Search Engine Frienldy URLs plugin is not working flawlessly, it's still experimental</li>
         <li><tt class="code">&lt;object&gt;&lt;param&gt;&lt;/param&gt;&lt;/object&gt;</tt> construct for multimedia files doesn't validate but is needed for backwards compatibility</li>
-        <li>Nuke check in installer needs improvement</li>
         <li>EXIF and IPTC information are lost when rotating</li>
         <li>Banned group doesn't work as expected</li>
         <li>Album created using XP publisher despite upload failure</li>
-        <li>Hebrew translation still incomplete</li>
         <li>No category thumbnail for user galleries and categories that don't contain albums with pics in it, but only sub-categories</li>
         <li>SEF plugin breaks custom sort order</li>
 </ul>

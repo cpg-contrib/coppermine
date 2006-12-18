@@ -31,6 +31,8 @@ h1 {
         line-height: 1.2em;
         font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
         text-decoration: none;
+        padding-top:20px;
+        padding-bottom:0px;
 }
 
 h2 {
@@ -39,22 +41,28 @@ h2 {
         color: #0E72A4;
         font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
         text-decoration: none;
+        padding-top:20px;
+        padding-bottom:0px;
 }
 
 h3 {
         font-weight: bolder;
-        font-size: 16px;
+        font-size: 1.2em;
         font-family: Verdana, Arial, Helvetica, sans-serif;
         text-decoration: none;
         color: #0E72A4;
+        padding-top:20px;
+        padding-bottom:0px;
 }
 
 h4 {
         font-weight: bold;
-        font-size: 14px;
+        font-size: 1.0em;
         font-family: Verdana, Arial, Helvetica, sans-serif;
         text-decoration: none;
         color: #0E72A4;
+        padding-top:20px;
+        padding-bottom:0px;
 }
 
 p {
