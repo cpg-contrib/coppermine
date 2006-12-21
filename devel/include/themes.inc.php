@@ -3244,4 +3244,93 @@ function theme_vanity()
 ******************************************************************************/
 } //{THEMES}
 
+if (!function_exists('theme_display_bar')) {  //{THEMES}
+/******************************************************************************
+** Section <<<theme_display_bar>>> - START
+******************************************************************************/
+/**
+* theme_display_bar()
+*
+* Display a bar graph.
+*
+* @param float $actualValue
+* @param float $maxValue
+* @param string $textColor // color code or hex value
+* @param string $textShadowColor // color code or hex value
+* @param string $textUnit // text to show up after value (e.g. % or kB)
+* @param string $leftBar // color code or hex value or path to background image
+* @param string $rightBar // color code or hex value or path to background image
+* @return string $return
+**/
+function theme_display_bar(
+                       $actualValue = 0,
+                       $maxValue = '100',
+                       $textColor = 'black',
+                       $textShadowColor = '',
+                       $textUnit = '',
+                       $leftBar = 'red',
+                       $rightBar = ''
+                       ) {
+
+  global $lang_errors;
+  // Validate parameters
+  if ($maxValue == 0 || $maxValue == '') {
+    cpg_die(ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
+  }
+  // Initialize some vars:
+  $return = '';
+  $cell1Width = floor((100 * $actualValue)/$maxValue);
+  $cell2Width = 100 - $cell1Width;
+  // compose the output string
+  $return .= '<table border="0" cellspacing="0" cellpadding="0" width="100%">';
+  $return .= '<tr>';
+  $return .= '<td width="'.$cell1Width.'" style="';
+  if ($leftBar != '') {
+    $leftBarColor = cpgValidateColor($leftBar);
+    if ($leftBarColor != '') {
+      $return .= 'background-color:'.$leftBarColor.';';
+    } else {
+      $return .= 'background-image:url('.$leftBar.');';
+    }
+  }
+  $return .= '">';
+  $return .= '<img src="images/spacer.gif" width="1" height="16" border="0" alt="" align="left" />';
+  if ($textShadowColor != '') {
+  $textShadowColor = cpgValidateColor($textShadowColor);
+    $return .= '<div style="position:absolute;display:block;color:'.$textShadowColor.';padding-top:1px;padding-left:1px';
+    $return .= '">';
+    $return .= $cell1Width;
+    $return .= $textUnit;
+    $return .= '</div>';
+  }
+  $return .= '<div style="position:absolute;display:block;';
+  if ($textColor != '') {
+    $textColor = cpgValidateColor($textColor);
+    $return .= 'color:'.$textColor;
+  }
+  $return .= '">';
+  $return .= $cell1Width;
+  $return .= $textUnit;
+  $return .= '</div>';
+  $return .= '</td>';
+  $return .= '<td width="'.$cell2Width.'" style="';
+  if ($rightBar != '') {
+    $rightBarColor = cpgValidateColor($rightBar);
+    if ($leftBarColor != '') {
+      $return .= 'background-color:'.$rightBarColor.';';
+    } else {
+      $return .= 'background-image:url('.$rightBar.');';
+    }
+  }
+  $return .= '">';
+  $return .= '<img src="images/spacer.gif" width="1" height="16" border="0" alt="" align="left" />';
+  $return .= '</td>';
+  $return .= '</tr>';
+  $return .= '</table>';
+  return $return;
+}
+/******************************************************************************
+** Section <<<theme_display_bar>>> - END
+******************************************************************************/
+} //{THEMES}
 ?>
