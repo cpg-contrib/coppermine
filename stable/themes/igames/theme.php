@@ -35,13 +35,13 @@ $template_sys_menu_spacer ="|";
 
 
 // HTML template for template sub_menu
-// special note: I left the java 'hide' off of the first and third buttons to help avoid trouble keeping sys_menu open. :Donnoman
+// special note: I left the JavaScript 'hide' off of the first and third buttons to help avoid trouble keeping sys_menu open. :Donnoman
 if ($CONFIG['custom_lnk_url'] != '') {
 $template_sub_menu = <<<EOT
                         <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                 <tr>
 <!-- BEGIN custom_link -->
-										<td class="top_menu_left_bttn">
+                                                                                <td class="top_menu_left_bttn">
                                                 <a href="{CUSTOM_LNK_TGT}" title="{CUSTOM_LNK_TITLE}">{CUSTOM_LNK_LNK}</a>
                                         </td>
                                         <td><img src="themes/igames/images/menu_spacer.gif" width="2" height="35" border="0" alt="" /><br /></td>
