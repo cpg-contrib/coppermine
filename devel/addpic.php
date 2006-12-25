@@ -39,9 +39,16 @@ define('ADDPIC_PHP', true);
 require('include/init.inc.php');
 require('include/picmgmt.inc.php');
 
+/**
+ * Clean up GPC and other Globals here
+ */
+$CLEAN['aid'] = (int)$_GET['aid'];
+
 if (!GALLERY_ADMIN_MODE) die('Access denied');
 
-$aid = (int)$_GET['aid'];
+/**
+ * TODO: $_GET['pic_file'] cannot be cleaned sensibly with current methods available. Refactor.
+ */
 $pic_file = base64_decode($_GET['pic_file']);
 $dir_name = dirname($pic_file) . '/';
 $file_name = basename($pic_file);
@@ -56,7 +63,7 @@ $result = cpg_db_query($sql);
 
 if (mysql_num_rows($result)) {
     $file_name = 'images/up_dup.gif';
-} elseif (add_picture($aid, $dir_name, $sane_name)) {
+} elseif (add_picture($CLEAN['aid'], $dir_name, $sane_name)) {
     $file_name = 'images/up_ok.gif';
 } else {
     $file_name = 'images/up_pb.gif';
