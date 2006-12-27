@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-12-27 [B] Updated zipdownload with more recent library to enable zip downloads for mac users {GauGau}
 2006-12-14 [C] Improved expand/collapse all buttons on config screen {GauGau}
 2006-12-14 [B] Fixed visibility of upload link for users disallowed public uploads, but allowed personal galleries {GauGau}
 2006-12-09 [A] Added feature to promote registration in the comments section {GauGau}
