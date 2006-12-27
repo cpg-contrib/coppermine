@@ -39,7 +39,6 @@ pagefooter();
 ob_end_flush();
 } else {
 // zipdownload allowed, go ahead...
-
 $filelist= array();
 
 if (count($FAVPICS)>0){
@@ -56,14 +55,11 @@ if (count($FAVPICS)>0){
         }
 }
 
-$flags['storepath'] = 0;
 $cwd = "./{$CONFIG['fullpath']}";
-$cwd = substr($cwd, 0, -1);
-
-$zip = new zipfile($cwd,$flags);
-
-$zip->addfiles($filelist);
-
-$zip->filedownload('pictures.zip');
+$zip = new zip_file('pictures.zip');
+$zip->set_options(array('basedir' => $cwd, 'inmemory' => 1, 'recurse' => 0, 'storepaths' => 0));
+$zip->add_files($filelist);
+$zip->create_archive();
+$zip->download_file();
 }
 ?>
