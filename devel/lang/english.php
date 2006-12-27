@@ -2,7 +2,7 @@
 /*************************
   Coppermine Photo Gallery
   ************************
-  Copyright (c) 2003-2006 Coppermine Dev Team
+  Copyright (c) 2003-2007 Coppermine Dev Team
   v1.1 originally written by Gregory DEMAR
 
   This program is free software; you can redistribute it and/or modify
@@ -1867,6 +1867,7 @@ if (defined('STAT_DETAILS_PHP')) $lang_stat_details_php = array(
   'empty_votes_table_confirm'  => 'Are you absolutely sure that you want to delete ALL voting records for your ENTIRE gallery? This can not be undone!', //cpg1.5 //JS-Alert
   'submit'  => 'Submit', //cpg1.5
   'upd_success' => 'Coppermine configuration was updated', //cpg1.5
+  'votes' => 'votes', //cpg1.5
 );
 
 // ------------------------------------------------------------------------- //

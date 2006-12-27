@@ -2,7 +2,7 @@
 /*************************
   Coppermine Photo Gallery
   ************************
-  Copyright (c) 2003-2006 Coppermine Dev Team
+  Copyright (c) 2003-2007 Coppermine Dev Team
   v1.1 originally written by Gregory DEMAR
 
   This program is free software; you can redistribute it and/or modify
@@ -304,10 +304,9 @@ while ($row = mysql_fetch_array($result)) {
                 <img src="images/rating$i.gif" />
             </td>
             <td class="{$row_style_class}">
-                <img src="images/vote.jpg" width="$width" height="15" border="0" alt="" />
-            </td>
-            <td class="{$row_style_class}">
-                {$voteArr[$i]}
+EOT;
+                print theme_display_bar($voteArr[$i],200,'', '', ' '.$lang_stat_details_php['votes']);
+        echo <<<EOT
             </td>
         </tr>
 
@@ -509,7 +508,12 @@ EOT;
         <tr>
           <td class="{$row_style_class}" width="20"><img src="images/os/{$osArray[$key]}" width="14" height="14" border="0" title="{$key}" alt="" /></td>
           <td class="{$row_style_class}">{$key}</td>
-          <td class="{$row_style_class}" align="right"><img src="images/vote.jpg" width="{$individualBarWidth}" height="15" border="0" alt="" /></td>
+          <td class="{$row_style_class}" align="right">
+EOT;
+              print theme_display_bar($value,100,'', '', ' ('.$individualPercentage.' %)');
+        print <<< EOT
+              <!--<img src="images/vote.jpg" width="{$individualBarWidth}" height="15" border="0" alt="" />-->
+          </td>
           <td class="{$row_style_class}" align="right">{$individualPercentage}</td>
           <td class="{$row_style_class}" align="right">{$value}</td>
         </tr>
