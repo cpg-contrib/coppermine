@@ -84,10 +84,9 @@ if ($pid > 0){
 
 //Garbage collection run at an probability of 25% and delete all files older than one hour
 if (rand(1,100) < 25){
-$d = opendir(IMG_DIR);
-
+        $d = opendir(IMG_DIR);
         while ($file = readdir($d)){
-                if (is_file(IMG_DIR.$file) && ((time() - filemtime(IMG_DIR.$file))/60) > 60 && $file !="index.html" ){
+                if (is_file(IMG_DIR.$file) && ((time() - filemtime(IMG_DIR.$file))/60) > 60 && $file !="index.html" && $file !="no_FTP-uploads_into_this_folder!"){
                         @unlink(IMG_DIR.$file);
                 }
 
