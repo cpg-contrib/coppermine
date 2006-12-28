@@ -92,7 +92,7 @@ if (isset($_POST['search'])) {
         $album = 'search';
 }
 if (isset($_GET['search'])) {
-    $USER['search']['search'] = $_GET['search'];
+    $USER['search'] = array('search' => $_GET['search']);
 }
 
 if (isset($_GET['page'])) {
