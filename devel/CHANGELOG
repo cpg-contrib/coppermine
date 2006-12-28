@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2006-12-28 [B] Fixed bug in search by keyword {GauGau}
 2006-12-27 [M] Updated copyright date {GauGau}
 2006-12-27 [C] Small fix in background image of sub menu for project_vii {GauGau}
 2006-12-27 [B] Updated zipdownload with more recent library to enable zip downloads for mac users {GauGau}
