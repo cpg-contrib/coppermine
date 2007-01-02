@@ -4,7 +4,6 @@
 <title>Coppermine Photo Gallery - Documentation &amp; Manual</title>
 <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
 <meta name="language"    content="en">
-<meta name="author" content="Tom">
 <meta name="copyright"   content="Coppermine dev team">
 <meta name="description" content="Coppermine Photo Gallery project - Coppermine is an easily set-up, fast, feature-rich photo gallery script with mySQL database, user management, private galleries, automatic thumbnail creation, ecard feature and a template system for easy customization to match the rest of a site.">
 <meta name="keywords"    content="photo gallery,galery,image,coppermine,php,mysql,easy,feature,thumbnail,automatic,creation,gd,Image Magick,ecard">
@@ -13,7 +12,9 @@
 <meta name="MSSmartTagsPreventParsing" content="true">
 <meta http-equiv="imagetoolbar" content="no">
 <!-- SVN version info: $Id$ -->
-<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="style.css" media="all" />
+<link rel="stylesheet" type="text/css" href="screen.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="print.css" media="print" />
 </head>
 <body>
 <table cellspacing="0" cellpadding="0" width="100%" border="0">
@@ -308,7 +309,7 @@
 <p class="important">Warning: cpg1.5.x hasn't been released yet - only a svn checkout is currently possible (devel branch). When testing alpha software, make sure that your checkout is up-to-date.</p>
 
 <p>Coppermine Development Team</p>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 
 
@@ -326,7 +327,7 @@
 
 </ul>
 
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <a name="installation"></a>
 <h1>2. Installation and Setup</h1>
@@ -346,7 +347,7 @@
 
   <li><strong>To run the install script on your server,</strong> type the following URL into your web browser:&nbsp;&nbsp; http://your_server/coppermine_dir/install.php&nbsp;&nbsp; (<em>your_server</em> = your website, <em>coppermine_dir</em> = the folder in which you uploaded your Coppermine files.)   Follow the online instructions inserting the necessary information as requested.</li>
 </ul>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <div class="indent"><!-- start sub-section of "install" (level 2 x.x)-->
 <a name="permissions"></a>
@@ -362,7 +363,7 @@ Coppermine needs <em>write access</em> to a number of files and folders on the w
 <p>By default, files and folders on a webserver are usually not writable, so you will probably have to change permissions before installion, for the reasons mentioned above. It's really mandatory that you set/change (CHMOD) permissions - or you will run into issues sooner or later.</p>
 <p>To be able to set permissions correctly, you have to understand how they work: there are <em><strong>r</strong>ead</em>, <em><strong>w</strong>rite</em> and <em>e<strong>x</strong>ecute</em> permissions (abbreviated with <strong>rwx</strong>) for each folder and file. Permissions on a parent folder can propagate to a child folder or the files within it, but it's possible to tweak your setup so that unwanted permissions will not propagate to child folders and resident files.</p>
 <p>However, there are differences between the different operating systems that are used as webservers. As a result, there are a number of different approaches. As coppermine is designed to run on many different setups, we've included some basic instructions. Those who know their way around may find these instructions somewhat generalized and lacking in details.<br />Note: it is not your local, client computer that matters, permission-wise, but, rather, the operating system used by your webserver. If you're not sure what OS your server is running on, try the CHMOD instructions first - most webservers run a version of Unix/Linux. <span class="important">If you can't figure how to set permissions properly, ask your webhost for support.</span></p>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <a name="permissions_chmod"></a>
 <h4>2.1.1.1 Apache on Unix/Linux (CHMOD)</h4>
@@ -438,7 +439,7 @@ If you have shell access to your server, you can apply the native <a href="http:
 </li>
 </ul>
 <a name="permissions_chmod_end"></a>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <a name="permissions_apache_windows"></a>
 <h4>2.1.1.2 Apache on Windows</h4>
@@ -446,7 +447,7 @@ If you have shell access to your server, you can apply the native <a href="http:
 <p>The apache webserver service runs under a particular user - if you have full access to the server, check the services control to find out which one it is. If you can't do this, ask your webhost.</p>
 <p>As a temporary workaround, set permissions on folder and file level as suggested in the section <a href="#permissions_iis_windows">IIS on Windows</a>, but not for the IUSR (which only exists on IIS), but for "everyone". However, allowing "everyone" to have read, write and execute permissions might be a security risk and is not recommended at all.</p>
 <a name="permissions_apache_windows_end"></a>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <a name="permissions_iis_windows"></a>
 <h4>2.1.1.3 IIS on Windows</h4>
@@ -470,7 +471,7 @@ If you have shell access to your server, you can apply the native <a href="http:
 <a name="permissions_iis_windows_end"></a>
 
 <a href="permissions_end"></a>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <a name="install_screen_start"></a>
 <h3>2.1.2 The install screen</h3>
@@ -584,7 +585,7 @@ If you have shell access to your server, you can apply the native <a href="http:
  </tr>
 </table>
 <a name="install_screen_end"></a>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 </div><!-- end sub-section of "install" (level 2 x.x)-->
 
 <a name="getting"></a>
@@ -600,7 +601,7 @@ If you have shell access to your server, you can apply the native <a href="http:
 </ul>
 <p>The same applies to <strong>picture rating</strong> and <strong>comment posting</strong>.</p>
 <p>If you have installed the script succesfully but are having trouble getting it working properly you can enable the &quot;<strong><a href="#debug_mode">debug mode</a></strong>&quot; on the <strong>Config page</strong>. In this mode, the script outputs most of the warning/error messages produced by PHP in addition to some debug information. This can provide valuable information to understand what is wrong.</p>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <a name="getting_concepts"></a>
 <h3>2.2.1 Basic concepts</h3>
@@ -618,7 +619,7 @@ If you have shell access to your server, you can apply the native <a href="http:
         What level of user interaction are you going to allow?</li>
         <li><strong>Change your coppermine's design</strong><br /></li>
 </ul>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <a name="getting_initial_configuration"></a>
 <h3>2.2.2 Initial configuration</h3>
@@ -629,17 +630,17 @@ If you have shell access to your server, you can apply the native <a href="http:
   <li><a href="#admin_general_coppermine-url">URL of your coppermine gallery folder</a></li>
 </ul>
 <p>There are some settings in config that can't be changed later (if there are already files in the database) - make sure to set them up correctly in the first place. Although you'll surely want to start using coppermine immediately it is advisable to configure those settings (marked with an asterisk &quot;*&quot;) properly at the very beginning.</p>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <a name="getting_admin_account"></a>
 <h3>2.2.3 Your admin account</h3>
 <p>It's mandatory to have your admin account configured properly and to memorize the admin account data. Coppermine even provides you with the option to retrieve a lost password, but for this, you have to configure an email address for every account. When users sign up, they have to enter an email address, so this should not be a problem. However, the admin account that you created during setup doesn't have an email account yet. You should go to your profile when logged in as admin and specify a valid email address for the admin there - this way, you can later request a new password if you forget it.</p>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <a name="getting_check_uploads"></a>
 <h3>2.2.4 Check uploads</h3>
 <p>Before actually promoting your coppermine gallery publicly, you should make sure that uploads work as expected, as they are the most common issues users have, caused by the huge amount of factors that have to be taken into account.</p>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <a name="getting_consider_bridging"></a>
 <h3>2.2.5 Consider bridging</h3>
@@ -648,7 +649,7 @@ If you have shell access to your server, you can apply the native <a href="http:
 <p>You can enable (or disable) bridging at any time, but you should make up your mind on bridging when installing Coppermine in the first place, because there are some issues that have to be taken into account: if you already have users inside your coppermine database when enabling bridging, the correlation between those initial coppermine users and the "new" users from the app you bridge with gets lost. As a consequence, there will be no more correlation between things your "old" users did (uploading pic, posting comments etc.) and the "new" users from the bridge.</p>
 <p>To circumvent those future issues, you should make up your mind when installing coppermine: do you want to allow user interaction? Do you plan to offer a bulletin board later (or any other application that keeps track of users)? If your answer is "yes", or "maybe", then it's advisable to enable bridging before actually promoting your site publicly and starting to let users in.</p>
 <p>Read up details in the <a href="#integrating">bridging section</a> of the docs.</p>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <a name="getting_interaction"></a>
 <h3>2.2.6 What are your visitors allowed to do?</h3>
@@ -656,7 +657,7 @@ If you have shell access to your server, you can apply the native <a href="http:
 <p>You can use Coppermine in all those setups (and a mixture of it), but you should be aware of the possibilities and limitations first:</p>
 <p>Users "inherit" their permissions from the group they're in. That's why many settings in Coppermine are set per group. This way, you can have several levels of permissions.</p>
 TBC
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 
 
@@ -715,13 +716,13 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
 <p>This being said, this is how you can change the tag: to edit the place where the tag is being displayed, edit <tt class="code">themes/yourtheme/template.html</tt> and move the placeholder <tt class="code">{CREDITS}</tt> around. As it is being generated by Coppermine's pagefooter function, it needs to appear below the <tt class="code">{GALLERY}</tt>-token. To change the content of the disclaimer, edit <tt class="code">themes/yourtheme/theme.php</tt> and edit the function <tt class="code">theme_credits</tt> as you see fit. If this function doesn't exist in your custom theme, copy it from the sample theme into your custom theme first.</p>
 <a name="theme_copyright_end"></a>
 <a name="theme_end"></a>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <a name="smtp"></a>
 <h2>2.4 Using SMTP to send emails</h2>
 <p>By default the script uses the PHP built-in <strong>mail</strong> function to send emails. In some cases, the PHP built-in function can't be used.</p>
 <p> If, in order to send emails with PHP, you are required to supply a <strong>hostname</strong>, a <strong>username</strong> and a <strong>password</strong>, you will need to edit the CONFIG menu section &quot;Email settings&quot; and insert the correct values there. If you don't need a username and password to connect to your SMTP server, just leave these lines blank. If you don't know what settings to enter, you will need to check with your webhost.</p>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 </div><!-- end sub-section of "installation and setup" (level 1 x)-->
 
 <a name="upgrade"></a>
@@ -744,7 +745,7 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
     <li>If you have made a custom theme, apply the changes that were introduced in the themes structure to your custom-made theme - refer to the <a href="theme/index.html">theme-upgrade guide</a>.</li>
     <li>If your webserver is running in safe_mode and you have enabled "SILLY_SAFE_MODE" in include/config.inc.php, you will have to go to coppermine's config after performing above mentioned steps and enable "<a href="#admin_picture_thumb_advanced_silly_safe_mode_start">silly safe mode</a>" there, as the setting in include/config.inc.php is no longer being taken into account in cpg1.5.x.</li>
 </ul>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <a name="upgrade_particular"></a>
 <h2>3.2 Additional actions for updating from particular versions</h2>
@@ -755,7 +756,7 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
 <h3>3.2.1 Upgrading from version cpg1.0 or cpg1.1</h3>
 
 <p>Support for a direct upgrade from cpg1.0 or cpg1.1 has been dropped - if you still have such an ancient version running, you will have to upgrade in a two-step-process (from your version to cpg1.4.x and then on to cpg1.5.x)</p>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <a name="upgrade_12"></a>
 <h3>3.2.2 Upgrading from cpg1.2.x or cpg1.3.x to version cpg1.5.x</h3>
@@ -774,12 +775,12 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
   </li>
   <li>The bridging method has changed from cpg1.3.x to cpg1.4.x. When upgrading, your bridged coppermine install will be unbridged - you will have to re-apply the bridging using the <a href="#integrating">bridge-manager</a> (using your standalone admin account you initially used to set up coppermine). You will not lose anything though, don't worry.</li>
 </ul>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <a name="upgrade_14"></a>
 <h3>3.2.3 Upgrading from cpg1.4.x to version cpg1.5.x</h3>
 <p>tbc</p>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 </div><!-- end sub-section of "updating from particular versions" (level 2 x.x)-->
 
 <a name="versioncheck"></a>
@@ -853,7 +854,7 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
 </ul>
 <a name="versioncheck_comparison_end"></a>
 <a name="versioncheck_end"></a>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 </div><!-- end sub-section of "The version check tool" (level 2 x.x)-->
 
 <a name="downgrading"></a>
@@ -867,7 +868,7 @@ ALTER TABLE `CPG_users` CHANGE `user_website` `user_profile3` VARCHAR(255);
 ALTER TABLE `CPG_users` CHANGE `user_occupation` `user_profile4` VARCHAR(255);</pre><br />
 using a tool like <a href="http://www.phpmyadmin.net/" rel="external" class="external">phpMyAdmin</a>, replacing <tt class="code">CPG_</tt> in the query with the prefix you have chosen during coppermine install.</p>
 <a name="downgrading_end"></a>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 </div><!-- end sub-section of "Upgrading" (level 1 x)-->
 
 <a name="administration"></a>
@@ -886,7 +887,7 @@ using a tool like <a href="http://www.phpmyadmin.net/" rel="external" class="ext
 <p>The administrator can create albums in any category. Non-administrative users can only create albums in the &quot;User galleries/Their_username&quot;.</p>
 <p>You can, however rename the &quot;User Galleries&quot;. To rename the &quot;<strong>User galleries</strong>&quot; category and description, simply go to your <a href="#cat_cp">category control panel</a> and change the name there (e.g. to translate the words &quot;User galleries&quot; into your language).</p>
 
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <h2>4.2 Turning admin controls on &amp; off<a name="admin_user_mode"></a></h2>
 <p>When you are logged in as an administrator, the script provides two modes of operation : Admin controls visible &amp; Admin controls disabled. You can switch between those modes by clicking on the corresponding link in the menu bar at the top of the screen.</p>
@@ -943,7 +944,7 @@ using a tool like <a href="http://www.phpmyadmin.net/" rel="external" class="ext
   <li><strong>Modify my albums</strong><br />The user can edit album title and description (similar to &quot;<a href="#album_prop">album properties</a>&quot; for the admin, but the user can't move his albums to other categories)</li>
   <li><strong>My profile</strong><br />The user can edit his profile (changing passwords, edit location, interests, home page and occupation properties, view quota usage). When integrated with a bbs service, the &quot;My profile&quot; link will send the user to the bbs's profile page. </li>
 </ul>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <a name="group_cp"></a><h2>4.3 The group control panel</h2>
 <p><img src="pics/group_cp.gif" width="638" height="232" border="0" alt="" /></p>
@@ -973,7 +974,7 @@ using a tool like <a href="http://www.phpmyadmin.net/" rel="external" class="ext
 <a name="group_cp_upload_method_end"></a>
 <p><strong>Please note</strong>: on unbridged installs (or standard, stand-alone coppermine installs), the group "banned" feature really doesn't accomplish much. A user who is member of this group is still able to log in and view pics, he's just not able to upload, rate, send ecards or post comments. If you truly want to place a full ban on someone you should use the "banning" feature (which isn't group-based but individually based), instead.</p>
 <a name="group_cp_end"></a>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <a name="user_cp"></a><h2>4.4 The user control panel</h2>
 <p>The user control panel can be found when clicking "users" from the admin menu. It is the place where you create and manage your users.</p>
@@ -1018,7 +1019,7 @@ Additional (secondary) group membership can be assigned using the checkboxes ben
 <p class="important">Note: the button "album permission by group" beneath the checkboxes is <strong>not</strong> meant to <strong>assign</strong> album permissions, but only to <strong>check</strong> the permissions set. You can only assign particular album permissions on the <a href="#album_prop">album properties</a> screen.<br clear="all" /></p>
 <a name="user_cp_group_end"></a>
 <a name="user_cp_end"></a>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 </div><!-- end sub-section of "The user control panel" (level 2 x.x)-->
 
 <a name="cat_cp"></a>
@@ -1044,7 +1045,7 @@ deleted but you can edit its title and description by using the <img
 src="pics/edit.gif" width="16" height="16" alt="" /> button. </p>
 <p>You can specify how you want categories sorted in coppermine: alphabetically (instead of a customized order) by setting &quot;<a href="#admin_album_list_alphasort_start">Sort categories alphabetically</a>&quot; to &quot;Yes&quot;. This setting is available both in coppermine config and the category manager. If you enable alphabetical sorting, the move up and move down arrows that normally let you manually sort the categories will disappear. Disable this feature if you want to organize your categories in some other order.</p>
 <p>You can only assign a picture to the category only if you have an album with images nested directly within it.</p>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <a name="albmgr"></a>
 <h2>4.6 The Album Manager</h2>
@@ -1062,7 +1063,7 @@ src="pics/edit.gif" width="16" height="16" alt="" /> button. </p>
 <li><strong>Then type in the album name you want to use</strong></li>
 <li>(repeat steps 2 through 4 to add additional albums)</li>
 <li><strong>Click &quot;Apply modifications&quot;</strong> to submit your changes to the database. failure to do so will result in the loss of all the changes you just made.  You can always return to this panel to edit and change album names, sort them within their parent category, and/or move them to different parent categories.</li>
-<li><strong>After clicking to Apply Modification, confirm your intent in the alert box with &the quot;OK&quot; </strong> (<em>Are you sure you want to make these modifications ? button.</em>)</li>
+<li><strong>After clicking on &quot;Apply Modification&quot;, confirm your intent in the alert box with the &quot;OK&quot; </strong> (<em>Are you sure you want to make these modifications ? button.</em>)</li>
 </ul>
 
 <a name="albmgr_rename"></a>
@@ -1073,7 +1074,7 @@ src="pics/edit.gif" width="16" height="16" alt="" /> button. </p>
 <li><strong>Click on the text input filed at the bottom of the screen</strong>, highlighting the album name</li>
 <li><strong>Type the album name you want to assign</strong></li>
 <li><strong>Click &quot;Apply modifications&quot;</strong></li>
-<li><strong>After clicking to Apply Modification, confirm your intent in the alert box with &the quot;OK&quot; </strong> (<em>Are you sure you want to make these modifications ? button.</em>)</li>
+<li><strong>After clicking on &quot;Apply Modification&quot;, confirm your intent in the alert box with the &quot;OK&quot; </strong> (<em>Are you sure you want to make these modifications ? button.</em>)</li>
 
 </ul>
 <h3><a name="albmgr_order"></a>4.6.3 Changing the album order</h3>
@@ -1082,7 +1083,7 @@ src="pics/edit.gif" width="16" height="16" alt="" /> button. </p>
 <li><strong>Click on the album you want to move up or down in the list</strong></li>
 <li><strong>Use the arrow buttons to move the album up<img src="../images/move_up.gif" width="26" height="21" border="0" alt="" title="move the album up" /> or down<img src="../images/move_down.gif" width="26" height="21" border="0" alt="" title="move the album down" /></strong></li>
 <li><strong>Click &quot;Apply modifications&quot;</strong></li>
-<li><strong>After clicking to Apply Modification, confirm your intent in the alert box with &the quot;OK&quot; </strong> (<em>Are you sure you want to make these modifications ? button.</em>)</li>
+<li><strong>After clicking to Apply Modification, confirm your intent in the alert box with the &quot;OK&quot; </strong> (<em>Are you sure you want to make these modifications ? button.</em>)</li>
 
 </ul>
 <h3><a name="albmgr_delete"></a>4.6.4 Deleting albums</h3>
@@ -1092,11 +1093,11 @@ src="pics/edit.gif" width="16" height="16" alt="" /> button. </p>
 <li><strong>Click the &quot;Delete&quot; button</strong></li>
 <li><strong>Confirm the alert box with &quot;OK&quot;</strong> (<em>Are you sure you want to delete this album ? All files and comments it contains will be lost !</em>)</li>
 <li><strong>Click &quot;Apply modifications&quot;</strong></li>
-<li><strong>After clicking to Apply Modification, confirm your intent in the alert box with &the quot;OK&quot; </strong> (<em>Are you sure you want to make these modifications ? button.</em>)</li>
+<li><strong>After clicking to Apply Modification, confirm your intent in the alert box with the &quot;OK&quot; </strong> (<em>Are you sure you want to make these modifications ? button.</em>)</li>
 
 </ul>
 <a name="albmgr_end"></a>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 </div><!-- end sub-section of "The Album Manager" (level 2 x.x)-->
 
 <h2>4.7 Modifying albums/files<a name="modif_alb_pics"></a></h2>
@@ -1106,7 +1107,7 @@ src="pics/edit.gif" width="16" height="16" alt="" /> button. </p>
 <p><strong>Delete</strong> allows you to delete the album and <strong>(CAUTION</strong>) all files within it.</p>
 <p><strong><a href="#album_prop">Properties</a></strong> allows you to modify the name, description and permissions of the album</p>
 <p><strong><a href="#edit_pics">Edit files</a></strong> allows you to modify the title/caption/keywords etc... of the files in the album</p>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <a name="album_prop"></a><h2>4.8 Album properties</h2>
 <img src="pics/edit_album.gif" border="0" alt="" align="right" />
@@ -1136,7 +1137,7 @@ src="pics/edit.gif" width="16" height="16" alt="" /> button. </p>
 <p>Use these options with care: the deleting of files is irreversible, as well as the reset of views and ratings (you can only restore views and ratings by manually editing coppermine's database entries with third-party tools like <a href="http://www.phpmyadmin.net/" class="external" rel="external">phpMyAdmin</a> - not recommended).</p>
 <a name="album_prop_reset_end"></a>
 <a name="album_prop_end"></a>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 </div><!-- end sub-section of "Album properties" (level 2 x.x)-->
 
 <a name="edit_pics"></a><h2>4.9 Editing files</h2>
@@ -1144,7 +1145,7 @@ src="pics/edit.gif" width="16" height="16" alt="" /> button. </p>
 <p>Use this link to modify your file's title, description, keywords, and custom fields (if they are used).</p>
 <p>Use the album drop down menu in the panel to move the file between albums.
 Use keywords to link files to other albums (see description in the albums section above).</p>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <div class="indent"><!-- start sub-section of "Editing files" (level 2 x.x)-->
 <h3>4.9.1 Editing videos<a name="edit_vids"></a></h3>
@@ -1154,7 +1155,7 @@ Use keywords to link files to other albums (see description in the albums sectio
 <p>Use the height and width fields to set the size of the video.</p>
 <p>Video uploads are possible beginning with cpg1.3.0 (or latter) and are included as part of the distribution package. For cpg1.2.1 you must install a separate modification.</p>
 <p class="small">[cpg1.3.0 or better required]</p>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <h3>4.9.2 Custom Thumbnails<a name="cust_thmb"></a></h3>
 <p><img src="pics/cust_thmb.gif" border="1" alt="" /></p>
@@ -1191,7 +1192,7 @@ Currently, this is not possible.</li>
 
 <p class="small">[cpg1.3.0 or better required]</p>
 <a name="edit_pics_end"></a>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 </div><!-- end sub-section of "Editing files" (level 2 x.x)-->
 
 
@@ -1208,13 +1209,13 @@ Currently, this is not possible.</li>
   <li><tt class="code">[img]http://coppermine.sf.net/demo/images/red.gif[/img]</tt> => <img src="../images/red.gif" border="0" alt="" /></li>
 </ul>
 <a name="bbcode_end"></a>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <a name="ftp"></a><a name="uploading"></a>
 <h2>4.11 Uploading pics/files</h2>
 <p>There are several methods to upload files within Coppermine. You (as gallery admin) should use <a href="#batch_add_pics">FTP-upload plus batch-add</a> (only the admin can do this). Regular users are supposed to use the "regular" <a href="#upload_http">http upload</a> or (if they have Windows XP) the <a href="#xp">XP Publisher</a>.</p>
 <a name="uploading_end"></a>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <div class="indent"><!-- start sub-section of "Uploading pics/files" (level 2 x.x)-->
 <a name="ftp"></a><a name="batch_add_pics"></a>
@@ -1241,7 +1242,7 @@ Should your browser time out, hit the reload button.
 <p>Giving FTP-access to other users can pose a serious security threat, this is why batch-add is only available for the coppermine gallery admin.</p>
 <p>Once files have been added to coppermine's database, make sure that you never rename or delete them via ftp - use coppermine's admin menu options to remove or rename files, instead.  Only in this way will these files be removed from both the file system <strong>and</strong> the database.</p>
 <a name="ftp_end"></a>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <a name="upload_http"></a>
 <h3>4.11.2 Uploading by HTTP</h3>
@@ -1261,7 +1262,7 @@ The most common issue caused by this setting is an open_basedir warning.  In thi
 </ol>
 <p>It should be obvious that the files have to be uploaded somewhere (into some folder) on your webserver - this is the albums folder within the folder you installed coppermine on your server. The HTTP uploads go into subfolders of the "userpics" folder (which resides within the "albums" folder). Obviously, the coppermine upload script needs write permissions to upload the files there. This is why you have to change <a href="#permissions">permissions</a> on the albums folder and everything within it during coppermine install - make it writable for the user the webserver runs under. This is done using the CHMOD command on Unix/Linux based servers. If you experience issues with uploading, make sure that you have set the permissions correctly.</p>
 <a name="upload_http_end"></a>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <a name="xp"></a>
 <h3>4.11.3 Using Windows XP Web Publishing Wizard with Coppermine</h3>
@@ -1303,7 +1304,7 @@ The process of uploading pictures is a matter of following a simple dialog. It t
 <li>Click "Finish" to end the XP Web Publishing Wizard and to enter the Gallery to check the new album contents.</li>
 </ul>
 <p class="small">[cpg1.1.1 or better required]</p>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 </div><!-- end sub-section of "Using Windows XP Web Publishing Wizard with Coppermine" (level 3 x.x.x)-->
 
 <a name="upload_trouble"></a>
@@ -1325,7 +1326,7 @@ The process of uploading pictures is a matter of following a simple dialog. It t
 <p class="important">When asking for support on the coppermine forum, post a link to your site and a <a href="#user_cp_new">test user account</a> (the test user mustn't be in the admin group!) with upload privileges, with the above mentioned settings in place - this way, supporters can see the error messages as well. Do not post debug_output unless requested. If you want fast results, you should disable admin approval for the group the test user is in, so supporters can tell instantly what is wrong without needing to double-check.</p>
 <p>When people have issues with uploading and decide to post their question on the Coppermine support board, they usually are told to read this upload troubleshooting section. Many of them fail to do so properly, which results in frustration both for users as well as supporters. To make this absolutely clear: the above mentioned steps are absolutely <strong>mandatory</strong>, no matter what skill level you have, no matter what upload method you have troubles with. Failing to do <strong>exactly</strong> as suggested will result in your request for help being ignored. Yes, this applies to you. We mean it!</p>
 <a name="upload_trouble_end"></a>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 </div><!-- end sub-section of "Uploading pics/files" (level 2 x.x)-->
 
 <h2>4.12 The gallery configuration page<a name="admin"></a></h2>
@@ -1417,7 +1418,7 @@ Should you have difficulties using one, try the other. You can toggle between th
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; General settings &rarr; Browsable batch-add interface</p>
 <p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_general_browsable_batch_add_end"></a>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <a name="admin_language"></a>
 <h3>4.12.2 Language &amp; Charset settings</h3>
@@ -1464,7 +1465,7 @@ Should you have difficulties using one, try the other. You can toggle between th
 <p class="small">[cpg1.3.0 or better required]</p>
 <a name="admin_language_reset_end"></a>
 <a name="admin_language_charset_end"></a>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <a name="admin_theme"></a>
 <h3>4.12.3 Themes settings</h3>
@@ -1535,7 +1536,7 @@ Should you have difficulties using one, try the other. You can toggle between th
 <a name="admin_theme_include_path_end"></a>
 <hr />
 <a name="admin_theme_end"></a>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <a name="admin_album_list"></a>
 <h3>4.12.4 Album list view</h3>
@@ -1612,7 +1613,7 @@ Setting this to a ridiculously high value (i.e. above 100% or a pixel value high
 <p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_album_linked_files_end"></a>
 <a name="admin_album_list_end"></a>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <a name="admin_thumbnail_view"></a>
 <h3>4.12.5 Thumbnail view</h3>
@@ -1717,7 +1718,7 @@ It is <b>not</b> recommended to enable this option, because
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Thumbnail view &rarr; Minimum number of votes for a file to appear in the 'top-rated' list</p>
 <a name="admin_thumbnail_minimum_votes_end"></a>
 <a name="admin_thumbnail_view_end"></a>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <a name="admin_image_comment"></a>
 <h3>4.12.6 Image view</h3>
@@ -1791,7 +1792,7 @@ You have to understand that this setting does <strong>not</strong> determine the
 <a name="admin_image_transparent_overlay_end"></a>
 
 <a name="admin_image_comment_end"></a>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <a name="admin_comment_start"></a>
 <h3>4.12.7 Comment settings</h3>
@@ -1913,7 +1914,7 @@ Of course this message will only be displayed if you have disallowed guests to p
 <a name="admin_comment_promote_registration_end"></a>
 
 <a name="admin_comment_end"></a>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <a name="admin_thumb_start"></a>
 <h3>4.12.8 Thumbnail settings</h3>
@@ -1936,7 +1937,7 @@ Of course this message will only be displayed if you have disallowed guests to p
 <a name="admin_picture_thumb_advanced_thumbs_prefix_end"></a>
 <hr />
 <a name="admin_thumb_end"></a>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <a name="admin_picture_thumbnail"></a>
 <h3>4.12.8 File settings</h3>
@@ -1994,7 +1995,7 @@ Of course this message will only be displayed if you have disallowed guests to p
 <p class="small">[cpg1.5.0 or better required]</p>
 <a name="admin_picture_thumbnail_fullsize_padding_y_end"></a>
 <a name="admin_picture_thumbnail_end"></a>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <a name="admin_picture_thumb_advanced"></a>
 <h3>4.12.9 Files and thumbnails advanced settings</h3>
@@ -2148,7 +2149,7 @@ If you have issues uploading pics, find out if safe_mode is enabled on your webs
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Files and thumbnails advanced settings &rarr; Default mode for files</p>
 <a name="admin_picture_thumb_advanced_chmod_files_end"></a>
 <a name="admin_picture_thumb_advanced_end"></a>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <a name="admin_registration"></a>
 <h3>4.12.10 Registration</h3>
@@ -2209,7 +2210,7 @@ This setting only applies if coppermine is not bridged.</p>
 <a name="admin_personal_album_on_registration_end"></a>
 <hr />
 <a name="admin_registration_end"></a>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <a name="admin_user"></a>
 <h3>4.12.11 User settings</h3>
@@ -2278,7 +2279,7 @@ address. Recommended setting is NO. As most internet users today have more than 
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; User settings &rarr; Enable reports</p>
 <p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_user_enable_report_end"></a>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <a name="admin_custom"></a>
 <h4>4.12.12 Custom fields for user profile (leave blank if unused). Use Profile 6 for long entries, such as biographies </h4>
@@ -2286,14 +2287,14 @@ address. Recommended setting is NO. As most internet users today have more than 
 <p>You can also use field 6 for avatars.  To show an avatar in the profile, it should be entered in bbcode, for example to show 'avatar.gif', which is located in your images folder, use the code [img]http://www.yoursite.com/images/avatar.gif[/img]</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Custom fields for user profile</p>
 <a name="admin_custom_end"></a>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <a name="admin_custom_image"></a>
 <h4>4.12.13 Custom fields for image description (leave blank if unused)</h4>
 <p>These fields are displayed within the &quot;file information&quot; area. They will appear only if you give them a name.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Custom fields for image description</p>
 <a name="admin_custom_image_end"></a>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <a name="admin_cookie"></a>
 <h4>4.12.14 Cookie settings</h4>
@@ -2311,7 +2312,7 @@ address. Recommended setting is NO. As most internet users today have more than 
 <p>When using bbs integration into Coppermine, make sure to use <strong>different</strong> cookie names for coppermine and your bbs! The paths in both applications have to be set so coppermine is able to read both. Usually the default value &quot;<tt class="code">/</tt>&quot; should be set as path both for coppermine install and the BBS app you bridge with.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Cookie settings &rarr; Path of the cookie used by the script</p>
 <a name="admin_cookie_path_end"></a>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <a name="admin_email"></a>
 <h4>4.12.15 Email settings</h4>
@@ -2332,7 +2333,7 @@ If you leave this blank, sendmail (or a surrogate) will be used to send emails f
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Email settings &rarr; SMTP Password</p>
 <p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_email_end"></a>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <a name="admin_logging"></a>
 <h3>4.12.16 Logging &amp; statistics</h3>
@@ -2384,7 +2385,7 @@ All log files are written in english</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Logging &amp; statistics &rarr; Keep detailed hit statistics</p>
 <a name="admin_logging_hitdetails_end"></a>
 <a name="admin_logging_end"></a>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <a name="admin_misc"></a>
 <h3>4.12.17 Miscellaneous settings</h3>
@@ -2406,7 +2407,7 @@ All log files are written in english</p>
 <p class="small">[cpg1.3.0 or better required]</p>
 <a name="admin_general_offline_end"></a>
 
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 </div><!-- end sub-section of "The gallery configuration page" (level 2 x.x)-->
 
 <a name="exif"></a>
@@ -2423,7 +2424,7 @@ To access the exif manager, go to coppermine's config and click within the secti
 <p>Tick the checkboxes in the exif manager that you want to show up in coppermine's pic info section (if the image file actually holds this particular set of information).</p>
 <br clear="all" />
 <span class="small">[cpg1.4.0 or better required]</span>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 </div><!-- end sub-section of "EXIF data" (level 2 x.x)-->
 
 <a name="plugin_start"></a>
@@ -2514,7 +2515,7 @@ Unfortunately, there is no API documentation available yet.</p>
 <p>Although it is not mandatory (technically speaking) to add instructions to a plugin, it is being recommended that you include a readme file with your plugin that explains what it does and how to use it.</p>
 <a name="plugin_writing_end"></a>
 <a name="plugin_end"></a>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 </div><!-- end sub-section of "Plugins" (level 2 x.x)-->
 
 <a name="comments_start"></a>
@@ -2571,7 +2572,7 @@ Unfortunately, there is no API documentation available yet.</p>
 <p class="small">[cpg1.5.0 or better required]</p>
 <a name="comments_individual_end"></a>
 <a name="comments_end"></a>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 </div><!-- end sub-section of "Comments" (level 2 x.x)-->
 
 </div><!-- end sub-section of "Configuration" (level 1 x)-->
@@ -2702,7 +2703,7 @@ Should Coppermine import the special groups that exist in the forum ? If you sel
 <a name="bridge_manager_enable_end"></a>
 <p class="small">[cpg1.4.0 or better required]</p>
 <a name="bridge_manager_end"></a>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 </div><!-- end sub-section of "Using the bridge manager" (level 3 x.x.x)-->
 
 <a name="bridge_manager_recover_start"></a>
@@ -2710,7 +2711,7 @@ Should Coppermine import the special groups that exist in the forum ? If you sel
 <p>If you have provided improper settings using the bridge manager, your integration might fail, resulting (in the worst case) in a stituation where bridging is enabled, but you can not log in as admin to switch it off again (e.g. if you provided improper cookie settings that stops authentication from working). For this situation a recovery setting was built into the bridge manager: if you are not logged in as coppermine admin (in fact: not logged in at all) and you access the URL of your bridge manager (http://yourdomain.tld/your_coppermine_folder/bridgemgr.php) by entering it manually into the address bar of your browser, you are prompted to enter your admin account details - use the admin account you used to install coppermine with in the first place (the standalone admin account). This will not log you in, but switch integration off, so you can fix improper bridging settings then. To avoid others trying to guess your admin account details, there's a login treshold that rises every time you enter wrong credentials, so enter your admin account details with care.</p>
 <p class="small">[cpg1.4.0 or better required]</p>
 <a name="bridge_manager_recover_end"></a>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 
 <a name="integrating_steps_sync_start"></a>
@@ -2721,7 +2722,7 @@ Should Coppermine import the special groups that exist in the forum ? If you sel
 <p class="important">It's mandatory that you (as admin) go to the groups page directly after bridging or whenever you change anything in your bridging configuration or if you change anything in your groups settings on your bbs, as you need to trigger the re-sync.</p>
 <a name="integrating_steps_sync_end"></a>
 <a name="integrating_steps_end"></a>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 </div><!-- end sub-section of "Integration steps" (level 2 x.x)-->
 
 <a name="integrating_support_start"></a>
@@ -2750,7 +2751,7 @@ Use post-based groups?:  0  </pre></li>
 </ul>
 <a name="integrating_support_start"></a>
 <a name="integrating_end"></a>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 </div><!-- end sub-section of "Bridging" (level 1 x)-->
 
 <a name="translating"></a>
@@ -2759,7 +2760,7 @@ Use post-based groups?:  0  </pre></li>
 <p>If you select an utf-8 language file as the default one, then the script will be able to automatically select a language file based on the visitor browser configuration. For instance if the default language file is danish-utf-8 and an english visitor access your gallery, the english-utf-8 language file will be used by the script.</p>
 <p> If you have translated Coppermine into a language not already supported, please read the <a href="translation.htm">translator's guide</a> and visit the <a href="http://coppermine-gallery.net/forum/index.php?topic=4623.0">Coppermine Web Site</a> and follow the instructions for submitting your language.</p>
 <p></p>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <a name="known_issues"></a>
 <h1>7. Known Issues</h1>
@@ -2785,7 +2786,7 @@ Use post-based groups?:  0  </pre></li>
         <li>No category thumbnail for user galleries and categories that don't contain albums with pics in it, but only sub-categories</li>
         <li>SEF plugin breaks custom sort order</li>
 </ul>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <a name="credits"></a>
 <h1>8. Credits</h1>
@@ -2999,7 +3000,7 @@ Use post-based groups?:  0  </pre></li>
     <td>retired</td>
   </tr>
 </table>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <a name="contributors"></a>
 <h2>8.2 Contributors</h2>
@@ -3021,7 +3022,7 @@ Use post-based groups?:  0  </pre></li>
   <td>Jason did the <a href="http://coppermine-gallery.net/forum/index.php?topic=1985.0">memberlist hack</a></td>
 </tr>
 </table>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <a name="codebase"></a>
 <h2>8.3 Coppermine uses code from the following free softwares :</h2>
@@ -3068,7 +3069,7 @@ Use post-based groups?:  0  </pre></li>
   URL: <a href="http://www.awstats.net/">http://www.awstats.net/</a><br />
   Browser and OS icons used.
 </p>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 
 <a name="copyright"></a>
 <h2>8.4 Copyright and disclaimer</h2>
@@ -3077,7 +3078,7 @@ Use post-based groups?:  0  </pre></li>
 <p>Because the program is licensed free of charge, there is no warranty for the program, to the extent permitted by applicable law. Except when otherwise stated in writing the copyright holders and/or other parties provide the program &quot;as is&quot; without warranty of any kind, either expressed or implied, including, but not limited to, the implied warranties of merchantability and fitness for a particular purpose. The entire risk as to the quality and performance of the program is with you. Should the program prove defective, you assume the cost of all necessary servicing, repair or correction. </p>
 <p>Coppermine Photo Gallery is Copyright &copy; 2002 - 2007 Gr&eacute;gory  DEMAR and the Coppermine Dev Team, All Rights Reserved.<br />
 </p>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<p class="back"><a href="#top">Back to top</a></p>
 </div><!-- end sub-section of "Credits" (level 1 x)-->
 
 
