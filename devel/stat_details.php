@@ -482,12 +482,11 @@ EOT;
       }
       array_multisort($osResultArray,SORT_DESC);
       $osTotal = array_sum($osResultArray);
-      starttable('100%', $lang_stat_details_php['stats_by_os'], 5);
+      starttable('-1', $lang_stat_details_php['stats_by_os'], 3);
       print <<< EOT
       <tr>
         <td class="tableh2" colspan="2">{$lang_stat_details_php['os']}</td>
-        <td class="tableh2" colspan="2" align="right">%</td>
-        <td class="tableh2" align="right">{$lang_stat_details_php['number_of_hits']}</td>
+        <td class="tableh2" align="left">{$lang_stat_details_php['number_of_hits']} (%)</td>
       </tr>
 EOT;
       $loopCounter = 0;
@@ -512,17 +511,14 @@ EOT;
 EOT;
               print theme_display_bar($value,100,'', '', ' ('.$individualPercentage.' %)');
         print <<< EOT
-              <!--<img src="images/vote.jpg" width="{$individualBarWidth}" height="15" border="0" alt="" />-->
           </td>
-          <td class="{$row_style_class}" align="right">{$individualPercentage}</td>
-          <td class="{$row_style_class}" align="right">{$value}</td>
         </tr>
 EOT;
       }
       print <<< EOT
       <tr>
-        <td class="tablef" colspan="4">{$lang_stat_details_php['total']}</td>
-        <td class="tablef" align="right">{$osTotal}</td>
+        <td class="tablef" colspan="2">{$lang_stat_details_php['total']}</td>
+        <td class="tablef" align="left">{$osTotal}</td>
       </tr>
 EOT;
       endtable();
@@ -539,12 +535,11 @@ EOT;
       }
       array_multisort($browserResultArray,SORT_DESC);
       $browserTotal = array_sum($browserResultArray);
-      starttable('100%', $lang_stat_details_php['stats_by_browser'], 5);
+      starttable('-1', $lang_stat_details_php['stats_by_browser'], 3);
       print <<< EOT
       <tr>
         <td class="tableh2" colspan="2">{$lang_stat_details_php['browser']}</td>
-        <td class="tableh2" colspan="2" align="right">%</td>
-        <td class="tableh2" align="right">{$lang_stat_details_php['number_of_hits']}</td>
+        <td class="tableh2" align="left">{$lang_stat_details_php['number_of_hits']} (%)</td>
       </tr>
 EOT;
       $loopCounter = 0;
@@ -565,16 +560,23 @@ EOT;
         <tr>
           <td class="{$row_style_class}" width="20"><img src="images/browser/{$browserArray[$key]}" width="14" height="14" border="0" title="{$key}" alt="" /></td>
           <td class="{$row_style_class}">{$key}</td>
+          <!--
           <td class="{$row_style_class}" align="right"><img src="images/vote.jpg" width="{$individualBarWidth}" height="15" border="0" alt="" /></td>
           <td class="{$row_style_class}" align="right">{$individualPercentage}</td>
           <td class="{$row_style_class}" align="right">{$value}</td>
+          -->
+          <td class="{$row_style_class}" align="left">
+EOT;
+        print theme_display_bar($value,100,'', '', ' ('.$individualPercentage.' %)');
+        print <<< EOT
+          </td>
         </tr>
 EOT;
       }
       print <<< EOT
       <tr>
-        <td class="tablef" colspan="4">{$lang_stat_details_php['total']}</td>
-        <td class="tablef" align="right">{$browserTotal}</td>
+        <td class="tablef" colspan="2">{$lang_stat_details_php['total']}</td>
+        <td class="tablef" align="left">{$browserTotal}</td>
       </tr>
 EOT;
       endtable();
@@ -602,7 +604,7 @@ EOT;
       <input type="hidden" name="os" value="{$_GET['os']}" />
 EOT;
 
-      starttable('100%', $lang_stat_details_php['stats_config'], 5);
+      starttable('-1', $lang_stat_details_php['stats_config'], 5);
       print <<< EOT
       <tr>
         <td class="tableb" colspan="3">{$lang_stat_details_php['vote_details']}{$help_vote}</td>
