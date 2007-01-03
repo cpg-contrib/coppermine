@@ -54,7 +54,7 @@ h4 {
         padding-bottom:0px;
 }
 
-p,li {
+p,li,td {
         font-size: 11px;
 }
 
@@ -64,4 +64,27 @@ p {
 
 .back {
         display:none;
+}
+
+a {
+        color: #000000;
+        text-decoration: none;
+}
+
+a.external {
+    margin:0px;
+    padding:0px;
+}
+
+em,strong {
+    margin:0px;
+    padding:0px;
+    font-weight:normal;
+    font-style:normal ;
+
+}
+
+.floatleft {
+        float:none;
+        margin-right:10px
 }
