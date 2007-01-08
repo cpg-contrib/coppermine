@@ -337,7 +337,7 @@ pageheader($lang_albmgr_php['alb_mrg']);
 ?>
 <tr>
 <?php
-$cat = isset($_GET['cat']) ? ($_GET['cat']) : 0;
+$cat = isset($_GET['cat']) ? (int)($_GET['cat']) : 0;
 if ($cat == 1) $cat = 0;
 
 if (GALLERY_ADMIN_MODE) {
