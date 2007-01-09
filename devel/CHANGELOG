@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-01-09 [O] Added nofollow attributes to image navigation bar to keep google from spidering slideshow links {GauGau}
 2007-01-08 [S] Fixed the vulnerability mentioned in topic 39943, though only admins could have exploited that. {Abbas}
 2007-01-02 [D] Added stylesheet for printing the documentation {GauGau}
 2006-12-28 [B] Fixed garbage collection deleting special file "no_FTP-uploads_into_this_folder!" inside edit folder {GauGau}

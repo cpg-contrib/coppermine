@@ -797,22 +797,22 @@ $template_img_navbar = <<<EOT
                         <a href="{THUMB_TGT}" class="navmenu_pic" title="{THUMB_TITLE}"><img src="{LOCATION}images/thumbnails.gif" align="middle" border="0" alt="{THUMB_TITLE}" /></a>
                 </td>
                 <td align="center" valign="middle" class="navmenu" width="48">
-                        <a href="javascript:;" class="navmenu_pic" onclick="blocking('picinfo','yes', 'block'); return false;" title="{PIC_INFO_TITLE}"><img src="{LOCATION}images/info.gif" border="0" align="middle" alt="{PIC_INFO_TITLE}" /></a>
+                        <a href="javascript:;" class="navmenu_pic" onclick="blocking('picinfo','yes', 'block'); return false;" title="{PIC_INFO_TITLE}" rel="nofollow"><img src="{LOCATION}images/info.gif" border="0" align="middle" alt="{PIC_INFO_TITLE}" /></a>
                 </td>
                 <td align="center" valign="middle" class="navmenu" width="48">
-                        <a href="{SLIDESHOW_TGT}" class="navmenu_pic" title="{SLIDESHOW_TITLE}"><img src="{LOCATION}images/slideshow.gif" border="0" align="middle" alt="{SLIDESHOW_TITLE}" /></a>
+                        <a href="{SLIDESHOW_TGT}" class="navmenu_pic" title="{SLIDESHOW_TITLE}" rel="nofollow"><img src="{LOCATION}images/slideshow.gif" border="0" align="middle" alt="{SLIDESHOW_TITLE}" /></a>
                 </td>
                 <td align="center" valign="middle" class="navmenu" width="100%">
                         {PIC_POS}
                 </td>
 <!-- BEGIN report_file_button -->
                 <td align="center" valign="middle" class="navmenu" width="48">
-                        <a href="{REPORT_TGT}" class="navmenu_pic" title="{REPORT_TITLE}"><img src="{LOCATION}images/report.gif" border="0" align="middle" alt="{REPORT_TITLE}" /></a>
+                        <a href="{REPORT_TGT}" class="navmenu_pic" title="{REPORT_TITLE}" rel="nofollow"><img src="{LOCATION}images/report.gif" border="0" align="middle" alt="{REPORT_TITLE}" /></a>
                 </td>
 <!-- END report_file_button -->
 <!-- BEGIN ecard_button -->
                 <td align="center" valign="middle" class="navmenu" width="48">
-                        <a href="{ECARD_TGT}" class="navmenu_pic" title="{ECARD_TITLE}"><img src="{LOCATION}images/ecard.gif"  border="0" align="middle" alt="{ECARD_TITLE}" /></a>
+                        <a href="{ECARD_TGT}" class="navmenu_pic" title="{ECARD_TITLE}" rel="nofollow"><img src="{LOCATION}images/ecard.gif"  border="0" align="middle" alt="{ECARD_TITLE}" /></a>
                 </td>
 <!-- END ecard_button -->
                 <td align="center" valign="middle" class="navmenu" width="48">
