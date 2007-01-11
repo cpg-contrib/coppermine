@@ -896,7 +896,7 @@ using a tool like <a href="http://www.phpmyadmin.net/" rel="external" class="ext
 <p>When you have the admin controls turned off you are still logged in as an admin user, but the admin controls (the admin menu bar etc.) are hidden from the screen to give you a basic preview of what the page would look like for "regular users". However (as you still are logged in as admin), certain permissions and options will still look the same as if you had admin controls on; you can <strong>not</strong> use "<em>Hide admin controls</em>" to see what a non-admin user is actually allowed to see.  To see what a casual visitor can see and do on your site, simply log out.  To see what a registered user can see and do on your site, create a test user account (non-admin) and log in with this particular user (when doing this it is recommended that you use two different browsers, NOT  two instances of the same browswer, to view your site so you can stay logged in as admin on one and view what regular users see while making changes in admin mode. You will have to refresh the non-admin mode screen to see what changes you incorporated).</p>
 <p>The items in the admin menu should be pretty self-explanatory:</p>
 <ul>
-  <li><strong>Upload approval</strong><br />See all pics that await approval by the admin (if you set admin approval as a required step on the settings in the &quot;<a href="#group_cp">groups</a>&quot; control panel)</li>
+  <li><strong>Upload approval</strong><br />See all pics that await approval by the admin (if you set admin approval as a required step on the settings in the &quot;<a href="#group_cp">groups</a>&quot; control panel). The upload approval menu item will only be displayed if there are actual uploads that require approval. If there are no pending approvals, the menu item will be skipped to avoid the admin menu becoming too crowded.</li>
   <li><strong>Config</strong><br />Configure the overall look of your gallery and the settings using the &quot;<a href="#admin">Config</a>&quot; button in the admin menu</li>
   <li><strong>Categories</strong><br />Create/edit/delete <a href="#cat_cp">categories</a></li>
   <li><strong>Albums</strong><br />Create/edit/delete <a href="#albmgr">albums</a></li>
@@ -1024,7 +1024,7 @@ Additional (secondary) group membership can be assigned using the checkboxes ben
 
 <a name="cat_cp"></a>
 <h2>4.5 The categories control panel</h2>
-<p><img src="pics/category_cp.gif" border="1" alt="" /></p>
+<img src="pics/category_cp.gif" border="1" alt="" title="The category control panel" align="right" style="padding-left:5px;" />
 <p>This panel allows you to edit your categories.</p>
 <ul>
 <li>The <img src="pics/edit.gif" border="0" width="16" height="16" alt="" /> button
@@ -1045,11 +1045,12 @@ deleted but you can edit its title and description by using the <img
 src="pics/edit.gif" width="16" height="16" alt="" /> button. </p>
 <p>You can specify how you want categories sorted in coppermine: alphabetically (instead of a customized order) by setting &quot;<a href="#admin_album_list_alphasort_start">Sort categories alphabetically</a>&quot; to &quot;Yes&quot;. This setting is available both in coppermine config and the category manager. If you enable alphabetical sorting, the move up and move down arrows that normally let you manually sort the categories will disappear. Disable this feature if you want to organize your categories in some other order.</p>
 <p>You can only assign a picture to the category only if you have an album with images nested directly within it.</p>
+<br clear="all" />
 <p class="back"><a href="#top">Back to top</a></p>
 
 <a name="albmgr"></a>
 <h2>4.6 The Album Manager</h2>
-<p><img src="pics/albmgr.gif" width="300" height="240" border="0" alt="" title="Album Manager" /></p>
+<img src="pics/albmgr.gif" width="300" height="240" border="0" alt="" title="Album Manager" align="right" style="padding-left:5px;" />
 <p>Coppermine stores files inside of albums, so you'll need at least one album for your pictures/files to be placed in. Albums can be stored in categories (but they don't <em>HAVE</em> to be in a category, they can just as well go into the coppermine &quot;root&quot;).</p>
 <p>When you click on &quot;albums&quot; in the admin menu, you will see the <em>Album Manager</em>.</p>
 
@@ -1330,7 +1331,7 @@ The process of uploading pictures is a matter of following a simple dialog. It t
 </div><!-- end sub-section of "Uploading pics/files" (level 2 x.x)-->
 
 <h2>4.12 The gallery configuration page<a name="admin"></a></h2>
-<p>This is where you will configure the most important parts of your coppermine gallery. Some settings have an impact on the files you upload - changing the ( * ) astericked options after you have alreaded added a large number of files in your gallery can be a difficult undertaking. For this reason, it is important that you spend time with your coppermine setup at the early stages of gallery development to get those settings exactly the way you want them, before actually uploading too many pics or listing the gallery to the general public.</p>
+<p>This is where you will configure the most important parts of your coppermine gallery. Some settings have an impact on the files you upload - changing the ( * ) asterisked options after you have alreaded added a large number of files in your gallery can be a difficult undertaking. For this reason, it is important that you spend time with your coppermine setup at the early stages of gallery development to get those settings exactly the way you want them, before actually uploading too many pics or listing the gallery to the general public.</p>
 
 <div class="indent"><!-- start sub-section of "The gallery configuration page" (level 2 x.x)-->
 <a name="admin_general"></a>
@@ -2413,6 +2414,7 @@ All log files are written in english</p>
 <a name="exif"></a>
 <h2>4.13 EXIF data</h2>
 <p>The &quot;Exchangeable image file&quot; format (Exif) is a specification for the image file format used by digital cameras with the addition of specific metadata tags. The meta data are written by the camera and can be post-processed using certain desktop applications. Coppermine is capable of displaying some of the EXIF data within the pic info section, like date and time information, camera settings, location information, descriptions and copyright information.<br />
+Please note that EXIF is far from being a standard: each camera vendor uses his own "flavor" of EXIF - therefor, the EXIF meta data will differ from camera to camera. Coppermine tries to circumvent this by using different libraries for the most common camera brands and only displaying the exif data that are most common for all brands.<br />
 <img src="pics/exif_data_cpg1.4.x.jpg" width="400" height="202" border="0" alt="Exif data in pic info section" />
 </p>
 <br />&nbsp;<br />
