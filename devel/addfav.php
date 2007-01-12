@@ -11,7 +11,7 @@
   (at your option) any later version.
   ********************************************
   Coppermine version: 1.5.0
-  $HeadURL$
+  $URL$
   $Revision$
   $LastChangedBy$
   $Date$
@@ -55,28 +55,28 @@ $ref = str_replace('&amp;', '&', $ref);
 
 // If user does not accept script's cookies, we don't accept the vote
 if (!isset($_COOKIE[$CONFIG['cookie_name'] . '_data'])) {
-	header("Location: $ref");
-	exit;
+        header("Location: $ref");
+        exit;
 }
 // See if this picture is already present in the array
 if (!in_array($CLEAN['pid'], $FAVPICS)) {
-	$FAVPICS[] = $CLEAN['pid'];
+        $FAVPICS[] = $CLEAN['pid'];
 } else {
-	$key = array_search($CLEAN['pid'], $FAVPICS);
-	unset ($FAVPICS[$key]);
+        $key = array_search($CLEAN['pid'], $FAVPICS);
+        unset ($FAVPICS[$key]);
 }
 
 $data = base64_encode(serialize($FAVPICS));
 setcookie($CONFIG['cookie_name'] . '_fav', $data, time() + 86400 * 30, $CONFIG['cookie_path']);
 // If the user is logged in then put it in the DB
 if (USER_ID > 0) {
-	$sql = "UPDATE {$CONFIG['TABLE_FAVPICS']} SET user_favpics = '$data' WHERE user_id = " . USER_ID;
-	cpg_db_query($sql);
-	// User never stored a fav... so insert new row
-	if (!mysql_affected_rows($CONFIG['LINK_ID'])) {
-		$sql = "INSERT INTO {$CONFIG['TABLE_FAVPICS']} ( user_id, user_favpics) VALUES (" . USER_ID . ", '$data')";
-		cpg_db_query($sql);
-	}
+        $sql = "UPDATE {$CONFIG['TABLE_FAVPICS']} SET user_favpics = '$data' WHERE user_id = " . USER_ID;
+        cpg_db_query($sql);
+        // User never stored a fav... so insert new row
+        if (!mysql_affected_rows($CONFIG['LINK_ID'])) {
+                $sql = "INSERT INTO {$CONFIG['TABLE_FAVPICS']} ( user_id, user_favpics) VALUES (" . USER_ID . ", '$data')";
+                cpg_db_query($sql);
+        }
 }
 
 
