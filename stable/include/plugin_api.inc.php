@@ -165,7 +165,7 @@ class CPGPluginAPI {
             $plugin_id = $execute_scope;
 
             // Reference current plugin to local scope
-            $thisplugin = $CPG_PLUGINS[$plugin_id];
+            $thisplugin =& $CPG_PLUGINS[$plugin_id];
 
             // Skip this plugin; the key isn't set
             if (!isset($thisplugin->filters[$key]) || (!$thisplugin->awake)) {
@@ -180,11 +180,11 @@ class CPGPluginAPI {
                 $value = call_user_func($plugin_function,$value);
 
                 // Copy back to global scope
-                $CPG_PLUGINS[$plugin_id] = $thisplugin;
+                //$CPG_PLUGINS[$plugin_id] = $thisplugin;
             }
 
             // Copy back to global scope
-            $CPG_PLUGINS[$plugin_id] = $thisplugin;
+            //$CPG_PLUGINS[$plugin_id] = $thisplugin;
 
         // Loop through all the plugins
         } else {
@@ -194,7 +194,7 @@ class CPGPluginAPI {
             foreach($ids as $plugin_id) {
 
                 // Reference current plugin to local scope
-                $thisplugin = $CPG_PLUGINS[$plugin_id];
+                $thisplugin =& $CPG_PLUGINS[$plugin_id];
 
                 // Get the filter's value from the plugin
                 if (!isset($thisplugin->filters[$key]) || ($key != 'plugin_wakeup' && !$thisplugin->awake)) {
@@ -213,11 +213,11 @@ class CPGPluginAPI {
                     $value = call_user_func($plugin_function,$value);
 
                     // Copy back to global scope
-                    $CPG_PLUGINS[$plugin_id] = $thisplugin;
+                    //$CPG_PLUGINS[$plugin_id] = $thisplugin;
                 }
 
                 // Copy back to global scope
-                $CPG_PLUGINS[$plugin_id] = $thisplugin;
+                //$CPG_PLUGINS[$plugin_id] = $thisplugin;
 
                 if ($execute_scope != CPG_EXEC_ALL) {
                     return $value;
@@ -250,7 +250,7 @@ class CPGPluginAPI {
             $plugin_id = $execute_scope;
 
             // Reference current plugin to local scope
-            $thisplugin = $CPG_PLUGINS[$plugin_id];
+            $thisplugin =& $CPG_PLUGINS[$plugin_id];
 
             // Skip this plugin; the key isn't set
             if (!isset($thisplugin->actions[$key]) || (!$thisplugin->awake && $key!='plugin_wakeup')) {
@@ -266,11 +266,11 @@ class CPGPluginAPI {
                 $value = call_user_func($plugin_function,$value);
 
                 // Copy back to global scope
-                $CPG_PLUGINS[$plugin_id] = $thisplugin;
+                //$CPG_PLUGINS[$plugin_id] = $thisplugin;
             }
 
             // Copy back to global scope
-            $CPG_PLUGINS[$plugin_id] = $thisplugin;
+            //$CPG_PLUGINS[$plugin_id] = $thisplugin;
 
         // Loop through all the plugins
         } else {
@@ -280,7 +280,7 @@ class CPGPluginAPI {
             foreach($ids as $plugin_id) {
 
                 // Copy current plugin to local scope
-                $thisplugin = $CPG_PLUGINS[$plugin_id];
+                $thisplugin =& $CPG_PLUGINS[$plugin_id]; //changed to reference for PHP4 see note below
 
                 // Get the action's value from the plugin
                 if (!isset($thisplugin->actions[$key]) || ($key != 'plugin_wakeup' && !$thisplugin->awake)) {
@@ -298,8 +298,23 @@ class CPGPluginAPI {
                     // Pass the value to the action's function and get a value back
                     $value = call_user_func($plugin_function,$value);
 
+                     /**
+                      * Disabled by donnoman
+                      * when plugins cause any other underlying api hooks to be executed while
+                      * they are running, $thisplugin becomes invalid because it is reset
+                      * by the underlying calls to the plugin system. Therefore the results of copying
+                      * $thisplugin to the global scope is undefined.  We don't know what plugin/revision is contained in
+                      * $thisplugin.
+                      *
+                      * This shouldn't be a problem with PHP5 since objects are passed by reference by default
+                      * there shouldn't be much cause to write over a refreenced object with a new reference to the same object.
+                      *
+                      * PHP4 on the other hand copies objects, we should probably always pass the object by reference
+                      * which shouldn't cause PHP5 any greif, and will allow PHP4 to have the latest information from the plugin before
+                      * it's reference was changed to a different plugin.
+                      */
                     // Copy back to global scope
-                    $CPG_PLUGINS[$plugin_id] = $thisplugin;
+                    //$CPG_PLUGINS[$plugin_id] = $thisplugin;
                 }
 
                 if ($execute_scope != CPG_EXEC_ALL) {
@@ -620,7 +635,7 @@ function& cpg_get_scope( $plugin_id = null ) {
         return $CPG_PLUGINS[$plugin_id];
     } else {
         $plugin_id = (int) $_GET['scope'];
-        $thisplugin = $CPG_PLUGINS[$plugin_id];
+        $thisplugin =& $CPG_PLUGINS[$plugin_id];
         return $CPG_PLUGINS[$plugin_id];
     }
 }
