@@ -390,10 +390,13 @@ EOT;
       }
       print "  </tr>\n";
       // display the table header end
+      $cpgUrlReplaceArray = array('%3A','%2F');
+      $cpgUrlReplaceWithArray = array(':','/');
       if (mysql_num_rows($result) > 0) {
           while ($row = mysql_fetch_array($result)) {
               $row['sdate'] = strftime($date_display_fmt,localised_timestamp($row['sdate']));
               $is_internal = '';
+              $row['referer'] = rawurldecode($row['referer']);
               // is it an internal reference (most should be)?
               $match_coppermine_url = strpos($row['referer'],$CONFIG['ecards_more_pic_target']);
               if ($match_coppermine_url === FALSE) {
