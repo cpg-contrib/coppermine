@@ -221,35 +221,36 @@
         <li class="level1"><a href="#integrating" class="menu1">5. Integrating the script with your bulletin board</a></li>
 </ul>
         <ul class="level2">
-                 <li class="level2"><a href="#integrating_bridge_start" class="menu2">5.1 Available bridge files</a></li>
-                 <li class="level2"><a href="#integrating_prerequisites_start" class="menu2">5.2 Pre-requistes</a></li>
+                 <li class="level2"><a href="#integrating_bridge_purpose" class="menu2">5.1 What bridging does</a></li>
+                 <li class="level2"><a href="#integrating_bridge_start" class="menu2">5.2 Available bridge files</a></li>
+                 <li class="level2"><a href="#integrating_prerequisites_start" class="menu2">5.3 Pre-requistes</a></li>
         </ul>
                 <ul class="level3">
-                         <li class="level3"><a href="#integrating_cookie_start">5.2.1 Authentication by cookie</a></li>
-                         <li class="level3"><a href="#integrating_standalone_start">5.2.2 Standalone version first</a></li>
-                         <li class="level3"><a href="#integrating_users_start">5.2.3 Coppermine users, groups and pics uploaded by users are lost when integrating</a></li>
-                         <li class="level3"><a href="#integrating_backup_start">5.2.4 Backup</a></li>
+                         <li class="level3"><a href="#integrating_cookie_start">5.3.1 Authentication by cookie</a></li>
+                         <li class="level3"><a href="#integrating_standalone_start">5.3.2 Standalone version first</a></li>
+                         <li class="level3"><a href="#integrating_users_start">5.3.3 Coppermine users, groups and pics uploaded by users are lost when integrating</a></li>
+                         <li class="level3"><a href="#integrating_backup_start">5.3.4 Backup</a></li>
                   </ul>
         <ul class="level2">
-                 <li class="level2"><a href="#integrating_steps_start" class="menu2">5.3 Integration steps</a></li>
+                 <li class="level2"><a href="#integrating_steps_start" class="menu2">5.4 Integration steps</a></li>
 
         </ul>
                 <ul class="level3">
-                        <li class="level3"><a href="#bridge_manager_start">5.3.1 Using the bridge manager</a></li>
+                        <li class="level3"><a href="#bridge_manager_start">5.4.1 Using the bridge manager</a></li>
                 </ul>
                          <ul class="level4">
-                                 <li class="level4"><a href="#bridge_manager_app_start">5.3.1.1 choose application to bridge coppermine with</a></li>
-                                 <li class="level4"><a href="#bridge_manager_path_start">5.3.1.2 path(s) used by your BBS app</a></li>
-                                 <li class="level4"><a href="#bridge_manager_specific_start">5.3.1.3 BBS-specific settings</a></li>
-                                 <li class="level4"><a href="#bridge_manager_enable_start">5.3.1.4 enable/disable BBS integration</a></li>
+                                 <li class="level4"><a href="#bridge_manager_app_start">5.4.1.1 choose application to bridge coppermine with</a></li>
+                                 <li class="level4"><a href="#bridge_manager_path_start">5.4.1.2 path(s) used by your BBS app</a></li>
+                                 <li class="level4"><a href="#bridge_manager_specific_start">5.4.1.3 BBS-specific settings</a></li>
+                                 <li class="level4"><a href="#bridge_manager_enable_start">5.4.1.4 enable/disable BBS integration</a></li>
                          </ul>
 
                  <ul class="level3">
-                                 <li class="level3"><a href="#bridge_manager_recover_start">5.3.2 Recover from failed bridging</a></li>
-                                                                 <li class="level3"><a href="#integrating_steps_sync_start">5.3.3 Synchronising the bbs groups with Coppermine's groups</a></li>
+                                 <li class="level3"><a href="#bridge_manager_recover_start">5.4.2 Recover from failed bridging</a></li>
+                                                                 <li class="level3"><a href="#integrating_steps_sync_start">5.4.3 Synchronising the bbs groups with Coppermine's groups</a></li>
                  </ul>
         <ul class="level2">
-                 <li class="level2"><a href="#integrating_support_start" class="menu2">5.4 Bridging support</a></li>
+                 <li class="level2"><a href="#integrating_support_start" class="menu2">5.5 Bridging support</a></li>
 
         </ul>
 <ul class="level1">
@@ -2583,10 +2584,16 @@ Unfortunately, there is no API documentation available yet.</p>
 
 <a name="integrating"></a>
 <h1>5. Integrating the script with your bulletin board (Bridging)</h1>
-<p>Originally, Coppermine bridging was designed to bridge with <acronym title="Bulletin Board System">BBS</acronym> apps. Later, bridges for other apps (that don't fall into the category "BBS") have been added - mostly Content Management Systems (CMS). However, the reference to BBS apps remained in some documents and strings. No reason to get alarmed.</p>
 <div class="indent"><!-- start sub-section of "Bridging" (level 1 x)-->
+<a name="integrating_bridge_purpose"></a>
+<h2>5.1 What bridging does</h2>
+<p>Coppermine can be integrated with other applications in terms of user management and sharing a common login on your overall website; this is what we call &quot;bridging&quot;. It can create a more seamless end user experience, as your users will only have to register once; their login will stick both on the Coppermine pages as well as the pages you bridge with.</p>
+<p>By default, bridging is turned off, and those who do not want to use it can safely leave it off forever. There are however <a href="#integrating_users_start">issues when bridging at a later stage</a> (after there is already content in Coppermine), so it is advisable to make up your mind about bridging in the first place.</p>
+<p>Originally, Coppermine bridging was designed to bridge with <acronym title="Bulletin Board System">BBS</acronym> apps. Later, bridges for other apps (that don't fall into the category "BBS") have been added - mostly Content Management Systems (CMS). However, the reference to BBS apps remained in some documents and strings. No reason to get alarmed.</p>
+<p>Bridging does <strong>not</strong> integrate your gallery and the application you bridge with in terms of visual appearance. If you want a seamless visual integration, create a <a href="#theme">custom theme</a> for your gallery that matches the look of your BBS or your overall site and add links pointing from Coppermine's navigation to your BBS and vice versa.</p>
+<a name="integrating_bridge_purpose_end"></a>
 <a name="integrating_bridge_start"></a>
-<h2>5.1 Available bridge files</h2>
+<h2>5.2 Available bridge files</h2>
 <p>Coppermine can be integrated with the following bulletin boards (eg. Coppermine
   and your bulletin board will share the same user database).</p>
 <ul>
@@ -2605,11 +2612,11 @@ Unfortunately, there is no API documentation available yet.</p>
 <a name="integrating_bridge_end"></a>
 
 <a name="integrating_prerequisites_start"></a>
-<h2>5.2 Pre-requistes</h2>
+<h2>5.3 Pre-requistes</h2>
 
 <div class="indent"><!-- start sub-section of "Pre-requistes" (level 2 x.x)-->
 <a name="integrating_cookie_start"></a>
-<h3>5.2.1 Authentication by cookie</h3>
+<h3>5.3.1 Authentication by cookie</h3>
 <p>The login integration uses your bulletin board cookies, therefore it won't work if your board cookies are not visible by Coppermine. So unless you are an expert, keep things simple and install Coppermine and your bulletin board on the same domain. Examples :</p>
 <table border="0" cellspacing="5" cellpadding="5" class="border1">
 <tr>
@@ -2628,17 +2635,17 @@ Coppermine: http://gallery.yourdomain.com/</td>
 <a name="integrating_cookie_end"></a>
 
 <a name="integrating_standalone_start"></a>
-<h3>5.2.2 Standalone version first</h3>
+<h3>5.3.2 Standalone version first</h3>
 <p>To avoid confusion, make sure to set up both coppermine and your bbs as standalone first. Make sure they both run correctly without integration. Test all features of coppermine (like upload, registration etc.) when Coppermine is installed, before you even start integration.</p>
 <a name="integrating_standalone_end"></a>
 
 <a name="integrating_users_start"></a>
-<h3>5.2.3 Coppermine users, groups and pics uploaded by users are lost when integrating</h3>
+<h3>5.3.3 Coppermine users, groups and pics uploaded by users are lost when integrating</h3>
 <p><span class="important">Warning:</span> If you already have users and custom groups in your coppermine database when you enable bbs integration, be aware that they will be lost. If your coppermine users have already created private albums and uploaded pics to them, they will be lost as well!</p>
 <a name="integrating_users_end"></a>
 
 <a name="integrating_backup_start"></a>
-<h3>5.2.4 Backup</h3>
+<h3>5.3.4 Backup</h3>
 <p><span class="important">Backup</span>: it is very advisable to backup both your coppermine database and your files before enabling bbs integration, so you can safely go back if the integration fails.</p>
 <p>In fact you're encouraged to backup your database on a regular base, and especially before applying code changes.</p>
 <a name="integrating_backup_end"></a>
@@ -2647,12 +2654,12 @@ Coppermine: http://gallery.yourdomain.com/</td>
 <a name="integrating_prerequisites_end"></a>
 
 <a name="integrating_steps_start"></a>
-<h2>5.3 Integration steps</h2>
+<h2>5.4 Integration steps</h2>
 <p>From cpg1.4.x on you can use the <a href="#bridge_manager_start">Bridge Manager</a> that will provide a wizard-like interface to enable/disable bridging.</p>
 
 <div class="indent"><!-- start sub-section of "Integration steps" (level 2 x.x)-->
 <a name="bridge_manager_start"></a>
-<h3>5.3.1 Using the bridge manager</h3>
+<h3>5.4.1 Using the bridge manager</h3>
 <p>The bridge manager is a new feature in cpg1.4, it is not available in older versions. Instead of manually editing coppermine code files, you can enable/disable bridging in your browser, using a wizard-like user interface. To start the bridge manager, log in as admin, choose &quot;Admin Tools&quot; from the navigation and the &quot;bridge manager&quot;</p>
 <p><img src="pics/bridge_01_start.gif" width="429" height="72" border="0" alt="" align="right" />If you run the bridge manager for the first time, there will only be one button that let's you actually start the wizard (if you return to the bridge manager later, you will also find a switch to enable/disable bridging) click it.</p>
 <p class="important">Note: with each step in the wizard, some information is being written to the coppermine database. Unlike other wizards (mostly on your local machine), the bridge manager doesn't have a &quot;cancel&quot;-button! Once you have enabled bridging and everything is working fine, you shouldn't change any values just out of curiosity, as they will get written to the database, which might result in a bridging that used to work not working any more after &quot;playing&quot; with it.<br clear="all" /></p>
@@ -2664,7 +2671,7 @@ Click &quot;next&quot;</p>
 
 <div class="indent"><!-- start sub-section of "Using the bridge manager" (level 3 x.x.x)-->
 <a name="bridge_manager_app_start"></a>
-<h4>5.3.1.1 choose application to bridge coppermine with</h4>
+<h4>5.4.1.1 choose application to bridge coppermine with</h4>
 <ul>
 <ul>
   <li>Invision Power Board</li>
@@ -2681,7 +2688,7 @@ Click &quot;next&quot;</p>
 </ul>
 <a name="bridge_manager_app_end"></a>
 <a name="bridge_manager_path_start"></a>
-<h4>5.3.1.2 path(s) used by your BBS app</h4>
+<h4>5.4.1.2 path(s) used by your BBS app</h4>
 <ul>
 <li><strong>Forum URL</strong><br />
 Full URL of your BBS app (including the leading http:// bit, e.g. http://www.yourdomain.tld/forum/)</li>
@@ -2692,14 +2699,14 @@ Relative path to your BBS, seen from your Coppermine folder (e.g. "../forum/" if
 </ul>
 <a name="bridge_manager_path_end"></a>
 <a name="bridge_manager_specific_start"></a>
-<h4>5.3.1.3 BBS-specific settings</h4>
+<h4>5.4.1.3 BBS-specific settings</h4>
 <ul>
 <li><strong>Use post-based groups?</strong><br />
 Should Coppermine import the special groups that exist in the forum ? If you select no, then Coppermine will use the standard groups (Administrator, Registered and Anonymous) which makes administration easier and is recommended. You can change this setting later as well.</li>
 </ul>
 <a name="bridge_manager_specific_end"></a>
 <a name="bridge_manager_enable_start"></a>
-<h4>5.3.1.4 enable/disable BBS integration</h4>
+<h4>5.4.1.4 enable/disable BBS integration</h4>
 <p>This is the last step of the bridge manager - it summarizes up the settings you have made in previous steps - you can enable or disable integration here. By default, integration is set to &quot;disabled&quot; after the bridge manager has been run for the first time. You should only enable integration if you're sure your BBS app is set up correctly. Click the &quot;Finish&quot; button in any case to finally write to the database, even if you choose to keep the current settings (leaving integration &quot;disabled&quot;).</p>
 <ul>
 <li><strong>Enable integration/bridging with XXX</strong></li>
@@ -2711,7 +2718,7 @@ Should Coppermine import the special groups that exist in the forum ? If you sel
 </div><!-- end sub-section of "Using the bridge manager" (level 3 x.x.x)-->
 
 <a name="bridge_manager_recover_start"></a>
-<h3>5.3.2 Recover from failed bridging</h3>
+<h3>5.4.2 Recover from failed bridging</h3>
 <p>If you have provided improper settings using the bridge manager, your integration might fail, resulting (in the worst case) in a stituation where bridging is enabled, but you can not log in as admin to switch it off again (e.g. if you provided improper cookie settings that stops authentication from working). For this situation a recovery setting was built into the bridge manager: if you are not logged in as coppermine admin (in fact: not logged in at all) and you access the URL of your bridge manager (http://yourdomain.tld/your_coppermine_folder/bridgemgr.php) by entering it manually into the address bar of your browser, you are prompted to enter your admin account details - use the admin account you used to install coppermine with in the first place (the standalone admin account). This will not log you in, but switch integration off, so you can fix improper bridging settings then. To avoid others trying to guess your admin account details, there's a login treshold that rises every time you enter wrong credentials, so enter your admin account details with care.</p>
 <p class="small">[cpg1.4.0 or better required]</p>
 <a name="bridge_manager_recover_end"></a>
@@ -2719,7 +2726,7 @@ Should Coppermine import the special groups that exist in the forum ? If you sel
 
 
 <a name="integrating_steps_sync_start"></a>
-<h3>5.3.3 Synchronising the bbs groups with Coppermine's groups</h3>
+<h3>5.4.3 Synchronising the bbs groups with Coppermine's groups</h3>
 <p>Login using the admin account of your board. Go to the gallery, enter admin mode and click on the &quot;Groups&quot; button. This will synchronize Coppermine groups with those of your board. The permission you will see for each group will be completely messy, so take some time to set them properly.</p>
 <p>Each time you add or delete a group in your board you will need to do the operation above in order to keep the synchronisation of the groups.</p>
 <p>When you will try to login / logout or manage users from Coppermine, you will be redirected to the corresponding page of your bulletin board. Once the login or logout is performed you won't be redirected automatically to the gallery because your board does not have any function for that. It's up to you to add a link on your board to get you back to the gallery.</p>
@@ -2730,7 +2737,7 @@ Should Coppermine import the special groups that exist in the forum ? If you sel
 </div><!-- end sub-section of "Integration steps" (level 2 x.x)-->
 
 <a name="integrating_support_start"></a>
-<h2>5.4 Bridging support</h2>
+<h2>5.5 Bridging support</h2>
 <p>With the explanations given above you should be able to bridge your (BBS) application with Coppermine. However, if things don't work as expected, you're welcome to look for help using the <a href="http://coppermine-gallery.net/forum/">coppermine support board</a>. When asking for support, please keep in mind that the supporters will need some information to enable them to help you:</p>
 <ul>
   <li>Search the board before posting - maybe somebody had similar issues to yours that have been solved already</li>
@@ -2744,7 +2751,7 @@ Should Coppermine import the special groups that exist in the forum ? If you sel
 
 Coppermine install: http://mysite.tld/my_coppermine_folder/
 Forum install: http://mysite.tld/my_forum_folder/
-Coppermine version: cpg1.4.4
+Coppermine version: cpg1.5.0
 Forum version: SuperDuper BBS app v0.8.15
 Test user account: some_testuser_name / the_password_for_the_test_user_account
 
