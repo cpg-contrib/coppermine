@@ -20,9 +20,12 @@
 define('IN_COPPERMINE', true);
 define('STAT_DETAILS_PHP', true);
 require('include/init.inc.php');
+require('include/stats.inc.php');
+
+
 
 /**
- * initialize the vars
+ * initialize the vars start
  */
 
 $pid = $_GET['pid'] ? (int)$_GET['pid'] : 0;
@@ -94,164 +97,9 @@ if (isset($_GET['date_display'])) {
 
 $line_break = "\n";
 
-// os and browser icon / name array
-$browserArray = array(
-                      'Adobe' => 'adobe.png',
-                      'Alcatel' => 'alcatel.png',
-                      'Amaya' => 'amaya.png',
-                      'Amiga Voyager' => 'amigavoyager.png',
-                      'APT' => 'apt.png',
-                      'Avant' => 'avant.png',
-                      'AWeb' => 'aweb.png',
-                      'BPFTP' => 'bpftp.png',
-                      'Bytel' => 'bytel.png',
-                      'Chimera' => 'chimera.png',
-                      'Cyberdog' => 'cyberdog.png',
-                      'DA' => 'da.png',
-                      'Dillo' => 'dillo.png',
-                      'DreamCast' => 'dreamcast.png',
-                      'eCatch' => 'ecatch.png',
-                      'Encompass' => 'encompass.png',
-                      'Epiphany' => 'epiphany.png',
-                      'Ericsson' => 'ericsson.png',
-                      'Feeddemon' => 'feeddemon.png',
-                      'Feedreader' => 'feedreader.png',
-                      'Firefox' => 'firefox.png',
-                      'fpexpress' => 'fpexpress.png',
-                      'Fresco' => 'fresco.png',
-                      'Galeon' => 'galeon.png',
-                      'Getright' => 'getright.png',
-                      'Gozilla' => 'gozilla.png',
-                      'HotJava' => 'hotjava.png',
-                      'ibrowse' => 'ibrowse.png',
-                      'iCab' => 'icab.png',
-                      'java' => 'java.png',
-                      'jetbrains' => 'jetbrains_omea.png',
-                      'K-Meleon' => 'kmeleon.png',
-                      'Konqueror' => 'konqueror.png',
-                      'lg' => 'lg.png',
-                      'Lotus Notes' => 'lotusnotes.png',
-                      'Lynx' => 'lynx.png',
-                      'MacWeb' => 'macweb.png',
-                      'MediaPlayer' => 'mediaplayer.png',
-                      'Motorola' => 'motorola.png',
-                      'Mozilla' => 'mozilla.png',
-                      'mplayer' => 'mplayer.png',
-                      'MSIE 3.0' => 'msie.png',
-                      'MSIE 4.0' => 'msie.png',
-                      'MSIE 5.0' => 'msie.png',
-                      'MSIE 5.5' => 'msie.png',
-                      'MSIE 6.0' => 'msie.png',
-                      'MSIE 7.0' => 'msie.png',
-                      'MSIE' => 'msie.png',
-                      'Multizilla' => 'multizilla.png',
-                      'Mosaic' => 'ncsa_mosaic.png',
-                      'Netnewswire' => 'netnewswire.png',
-                      'netpositive' => 'netpositive.png',
-                      'Netscape' => 'netscape.png',
-                      'netshow' => 'netshow.png',
-                      'newsfire' => 'newsfire.png',
-                      'newsgator' => 'newsgator.png',
-                      'newzcrawler' => 'newzcrawler.png',
-                      'nokia' => 'nokia.png',
-                      'Not Available' => 'notavailable.png',
-                      'OmniWeb' => 'omniweb.png',
-                      'Opera' => 'opera.png',
-                      'Panasonic' => 'panasonic.png',
-                      'PDA phone' => 'pdaphone.png',
-                      'Philips' => 'philips.png',
-                      'Phoenix' => 'phoenix.png',
-                      'Pluck' => 'pluck.png',
-                      'Pulpfiction' => 'pulpfiction.png',
-                      'Real' => 'real.png',
-                      'RSS' => 'rss.png',
-                      'RSSbandit' => 'rssbandit.png',
-                      'RSSowl' => 'rssowl.png',
-                      'RSSreader' => 'rssreader.png',
-                      'Safari' => 'safari.png',
-                      'Sagem' => 'sagem.png',
-                      'Samsung' => 'samsung.png',
-                      'Sharp' => 'sharp.png',
-                      'Sharp reader' => 'sharpreader.png',
-                      'Shrook' => 'shrook.png',
-                      'Siemens' => 'siemens.png',
-                      'Sony' => 'sony.png',
-                      'Staroffice' => 'staroffice.png',
-                      'Teleport' => 'teleport.png',
-                      'Trium' => 'trium.png',
-                      'Unknown' => 'unknown.png',
-                      'W3C' => 'w3c.png',
-                      'WebCopier' => 'webcopier.png',
-                      'Web TV' => 'webtv.png',
-                      'webzip' => 'webzip.png',
-);
-
-$osArray = array(
-                      'aix' => 'aix.png',
-                      'Amiga OS' => 'amigaos.png',
-                      'Apple' => 'apple.png',
-                      'Atari' => 'atari.png',
-                      'beOS' => 'beos.png',
-                      'BSD' => 'bsd.png',
-                      'BSD FreeBSD' => 'bsdfreebsd.png',
-                      'bsdi' => 'bsdi.png',
-                      'bsdnetbsd' => 'bsdnetbsd.png',
-                      'bsdopenbsd' => 'bsdopenbsd.png',
-                      'CP/m' => 'cpm.png',
-                      'Debian' => 'debian.png',
-                      'Digital' => 'digital.png',
-                      'DOS' => 'dos.png',
-                      'Dreamcast' => 'dreamcast.png',
-                      'Fireball Spider' => 'fireball.png',
-                      'Free BSD' => 'freebsd.png',
-                      'Googlebot' => 'google.png',
-                      'gnu' => 'gnu.png',
-                      'HP UX' => 'hpux.png',
-                      'IBM' => 'ibm.png',
-                      'iMode' => 'imode.png',
-                      'Irix' => 'irix.png',
-                      'Java' => 'java.png',
-                      'kFreeBSD' => 'kfreebsd.png',
-                      'Linux' => 'linux.png',
-                      'Linux CentOS' => 'linuxcentos.png',
-                      'Linux Debian' => 'linuxdebian.png',
-                      'Linux Fedora' => 'linuxfedora.png',
-                      'Linux Mandrake' => 'linuxmandr.png',
-                      'Linux RedHat' => 'linuxredhat.png',
-                      'Linux Suse' => 'linuxsuse.png',
-                      'Linux Ubuntu' => 'linuxubuntu.png',
-                      'Lycos Spider' => 'lycos.png',
-                      'Mac OS' => 'mac.png',
-                      'Macintosh' => 'macintosh.png',
-                      'Mac OS X' => 'macosx.png',
-                      'NetBSD' => 'netbsd.png',
-                      'Netware' => 'netware.png',
-                      'neXt' => 'next.png',
-                      'Open BSD' => 'openbsd.png',
-                      'OS/2' => 'os2.png',
-                      'osf' => 'osf.png',
-                      'qnx' => 'qnx.png',
-                      'Risc OS' => 'riscos.png',
-                      'SCO' => 'sco.png',
-                      'Sun OS' => 'sunos.png',
-                      'Symbian' => 'symbian.png',
-                      'Unix' => 'unix.png',
-                      'Unknown' => 'unknown.png',
-                      'vms' => 'vms.png',
-                      'webtv' => 'webtv.png',
-                      'Windows' => 'win.png',
-                      'Windows 3.x' => 'win16.png',
-                      'Windows 2000' => 'win2000.png',
-                      'Windows 2003 Server' => 'win2003.png',
-                      'Windows 95' => 'win95.png',
-                      'Windows 98' => 'win98.png',
-                      'Windows CE' => 'wince.png',
-                      'Winlong' => 'winlong.png',
-                      'Windows ME' => 'winme.png',
-                      'Windows NT' => 'winnt.png',
-                      'Windows XP' => 'winxp.png',
-                      'Windows Vista' => 'winvista.png',
-);
+/**
+ * initialize the vars end
+ */
 
 
 /**
@@ -280,15 +128,17 @@ $result = cpg_db_query($query);
 
 $rateArr = array();
 
-starttable("-2", $lang_stat_details_php['stats'], 3);
+starttable("-1", $lang_stat_details_php['stats'], 3);
+
+$totalVotesSum = 0;
 
 while ($row = mysql_fetch_array($result)) {
       $voteArr[$row['rating']] = $row['totalVotes'];
+      $totalVotesSum = $totalVotesSum + $row['totalVotes'];
       $loopCounter = 0;
 }
     for ($i=0; $i<6;$i++){
         $voteArr[$i] = isset($voteArr[$i]) ? $voteArr[$i] : 0;
-        $width = $voteArr[$i]*10;
         if ($loop_counter == 0) {
             $row_style_class = 'tableb';
         } else {
@@ -305,7 +155,7 @@ while ($row = mysql_fetch_array($result)) {
             </td>
             <td class="{$row_style_class}">
 EOT;
-                print theme_display_bar($voteArr[$i],200,'', '', ' '.$lang_stat_details_php['votes']);
+                print theme_display_bar($voteArr[$i],$totalVotesSum,400,'', '', ' '.$lang_stat_details_php['votes']);
         echo <<<EOT
             </td>
         </tr>
@@ -313,6 +163,7 @@ EOT;
 EOT;
     }
 endtable();
+
 
 print "<br />\n";
 } // type == vote end
@@ -324,12 +175,12 @@ if (GALLERY_ADMIN_MODE) { // admin is logged in start
 
   // has the form been submit?
   $configChangesApplied = '';
-  if ($_GET['hit_details'] != $CONFIG['hit_details']) {
+  if ($_GET['hit_details'] != $CONFIG['hit_details'] && $_GET['go'] != '') {
       cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '{$_GET['hit_details']}' WHERE name = 'hit_details'");
       $CONFIG['hit_details'] = $_GET['hit_details'];
       $configChangesApplied = $lang_stat_details_php['upd_success'];
   }
-  if ($_GET['vote_details'] != $CONFIG['vote_details']) {
+  if ($_GET['vote_details'] != $CONFIG['vote_details'] && $_GET['go'] != '') {
       cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '{$_GET['vote_details']}' WHERE name = 'vote_details'");
       $CONFIG['vote_details'] = $_GET['vote_details'];
       $configChangesApplied = $lang_stat_details_php['upd_success'];
@@ -369,7 +220,7 @@ EOT;
       }
       $result = cpg_db_query($query);
       // display the table header start
-      starttable("100%", $lang_stat_details_php[$type], count($db_fields));
+      starttable('-1', $lang_stat_details_php[$type], count($db_fields));
       print "  <tr>\n";
       foreach ($db_fields as $value) {
           $show_column_checked[$value] = ($$value == '1') ? 'checked="checked"' : '';
@@ -471,120 +322,16 @@ EOT;
   <br />
 
 EOT;
+    individualStatsByOS($pid);
+
+    individualStatsByBrowser($pid);
 
   } else { // type == hits end // type == total start
-      //pageheader($lang_stat_details_php['overall_stats']);
-      $maxBarWidth = 300;
-      foreach ($osArray as $key => $value) {
-              $query = "SELECT COUNT(*) FROM {$CONFIG['TABLE_HIT_STATS']} WHERE os = '$key'"; // Now this is a very crude way to query the database which is bound to overload larger galleries. Should be reviewed!
-              $result = cpg_db_query($query);
-              $row = mysql_fetch_array($result);
-              if ($row[0] != 0) {
-                  $osResultArray[$key] = $row[0];
-              }
-      }
-      array_multisort($osResultArray,SORT_DESC);
-      $osTotal = array_sum($osResultArray);
-      starttable('-1', $lang_stat_details_php['stats_by_os'], 3);
-      print <<< EOT
-      <tr>
-        <td class="tableh2" colspan="2">{$lang_stat_details_php['os']}</td>
-        <td class="tableh2" align="left">{$lang_stat_details_php['number_of_hits']} (%)</td>
-      </tr>
-EOT;
-      $loopCounter = 0;
-      foreach ($osResultArray as $key => $value) {
-        $individualBarWidth = floor(($value * $maxBarWidth) / $osTotal);
-        $individualPercentage = floor(($value * 1000) / $osTotal)/10;
-        if ($individualPercentage == floor($individualPercentage)) {
-          $individualPercentage .= '.0';
-        }
-        if ($loopCounter == 0) {
-          $row_style_class = 'tableb';
-          $loopCounter++;
-        } else {
-          $row_style_class = 'tableb tableb_alternate';
-          $loopCounter = 0;
-        }
-        print <<< EOT
-        <tr>
-          <td class="{$row_style_class}" width="20"><img src="images/os/{$osArray[$key]}" width="14" height="14" border="0" title="{$key}" alt="" /></td>
-          <td class="{$row_style_class}">{$key}</td>
-          <td class="{$row_style_class}" align="right">
-EOT;
-              print theme_display_bar($value,100,'', '', ' ('.$individualPercentage.' %)');
-        print <<< EOT
-          </td>
-        </tr>
-EOT;
-      }
-      print <<< EOT
-      <tr>
-        <td class="tablef" colspan="2">{$lang_stat_details_php['total']}</td>
-        <td class="tablef" align="left">{$osTotal}</td>
-      </tr>
-EOT;
-      endtable();
+    individualStatsByOS($pid);
 
-      print '<br />';
+    individualStatsByBrowser($pid);
 
-      foreach ($browserArray as $key => $value) {
-              $query = "SELECT COUNT(*) FROM {$CONFIG['TABLE_HIT_STATS']} WHERE browser = '$key'"; // Now this is a very crude way to query the database which is bound to overload larger galleries. Should be reviewed!
-              $result = cpg_db_query($query);
-              $row = mysql_fetch_array($result);
-              if ($row[0] != 0) {
-                  $browserResultArray[$key] = $row[0];
-              }
-      }
-      array_multisort($browserResultArray,SORT_DESC);
-      $browserTotal = array_sum($browserResultArray);
-      starttable('-1', $lang_stat_details_php['stats_by_browser'], 3);
-      print <<< EOT
-      <tr>
-        <td class="tableh2" colspan="2">{$lang_stat_details_php['browser']}</td>
-        <td class="tableh2" align="left">{$lang_stat_details_php['number_of_hits']} (%)</td>
-      </tr>
-EOT;
-      $loopCounter = 0;
-      foreach ($browserResultArray as $key => $value) {
-        $individualBarWidth = floor(($value * $maxBarWidth) / $browserTotal);
-        $individualPercentage = floor(($value * 1000) / $browserTotal)/10;
-        if ($individualPercentage == floor($individualPercentage)) {
-          $individualPercentage .= '.0';
-        }
-        if ($loopCounter == 0) {
-          $row_style_class = 'tableb';
-          $loopCounter++;
-        } else {
-          $row_style_class = 'tableb tableb_alternate';
-          $loopCounter = 0;
-        }
-        print <<< EOT
-        <tr>
-          <td class="{$row_style_class}" width="20"><img src="images/browser/{$browserArray[$key]}" width="14" height="14" border="0" title="{$key}" alt="" /></td>
-          <td class="{$row_style_class}">{$key}</td>
-          <!--
-          <td class="{$row_style_class}" align="right"><img src="images/vote.jpg" width="{$individualBarWidth}" height="15" border="0" alt="" /></td>
-          <td class="{$row_style_class}" align="right">{$individualPercentage}</td>
-          <td class="{$row_style_class}" align="right">{$value}</td>
-          -->
-          <td class="{$row_style_class}" align="left">
-EOT;
-        print theme_display_bar($value,100,'', '', ' ('.$individualPercentage.' %)');
-        print <<< EOT
-          </td>
-        </tr>
-EOT;
-      }
-      print <<< EOT
-      <tr>
-        <td class="tablef" colspan="2">{$lang_stat_details_php['total']}</td>
-        <td class="tablef" align="left">{$browserTotal}</td>
-      </tr>
-EOT;
-      endtable();
 
-      print '<br />';
 
       // Configuration shortcut: enable/disable hit stats here as well as in config
       $yes_selected_hit = $CONFIG['hit_details'] ? 'checked="checked"' : '';
@@ -606,7 +353,6 @@ EOT;
       <input type="hidden" name="browser" value="{$_GET['browser']}" />
       <input type="hidden" name="os" value="{$_GET['os']}" />
 EOT;
-
       starttable('-1', $lang_stat_details_php['stats_config'], 5);
       print <<< EOT
       <tr>
@@ -634,7 +380,7 @@ EOT;
           <label for="emptyvotestats" class="clickable_option">{$lang_stat_details_php['empty_votes_table']}</label>
         </td>
         <td class="tablef" colspan="2">
-          <input type="submit" class="button" name="delete" value="{$lang_stat_details_php['submit']}"  />
+          <input type="submit" class="button" name="go" value="{$lang_stat_details_php['submit']}"  />
         </td>
       </tr>
 EOT;
