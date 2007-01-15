@@ -3265,6 +3265,7 @@ if (!function_exists('theme_display_bar')) {  //{THEMES}
 function theme_display_bar(
                        $actualValue = 0,
                        $maxValue = '100',
+                       $maxBarSizeInPixels = '400',
                        $textColor = 'black',
                        $textShadowColor = '',
                        $textUnit = '',
@@ -3279,12 +3280,13 @@ function theme_display_bar(
   }
   // Initialize some vars:
   $return = '';
-  $cell1Width = floor((100 * $actualValue)/$maxValue);
+  $cell1Width = floor(100 * $actualValue/$maxValue);
   $cell2Width = 100 - $cell1Width;
   // compose the output string
-  $return .= '<table border="0" cellspacing="0" cellpadding="0" width="100%">';
+  //$return .= $cell1Width . '/' . $cell2Width;
+  $return .= '<table border="0" cellspacing="0" cellpadding="0" width="'.$maxBarSizeInPixels.'">';
   $return .= '<tr>';
-  $return .= '<td width="'.$cell1Width.'" style="';
+  $return .= '<td width="'.$cell1Width.'%" style="';
   if ($leftBar != '') {
     $leftBarColor = cpgValidateColor($leftBar);
     if ($leftBarColor != '') {
@@ -3297,9 +3299,9 @@ function theme_display_bar(
   $return .= '<img src="images/spacer.gif" width="1" height="16" border="0" alt="" align="left" />';
   if ($textShadowColor != '') {
   $textShadowColor = cpgValidateColor($textShadowColor);
-    $return .= '<div style="position:absolute;display:block;color:'.$textShadowColor.';padding-top:1px;padding-left:1px';
+    $return .= '<div style="position:absolute;display:block;color:'.$textShadowColor.';padding-top:1px;padding-left:1px;height:16px;';
     $return .= '">';
-    $return .= $cell1Width;
+    $return .= $actualValue;
     $return .= $textUnit;
     $return .= '</div>';
   }
@@ -3309,11 +3311,11 @@ function theme_display_bar(
     $return .= 'color:'.$textColor;
   }
   $return .= '">';
-  $return .= $cell1Width;
+  $return .= $actualValue;
   $return .= $textUnit;
   $return .= '</div>';
   $return .= '</td>';
-  $return .= '<td width="'.$cell2Width.'" style="';
+  $return .= '<td width="'.$cell2Width.'%" style="';
   if ($rightBar != '') {
     $rightBarColor = cpgValidateColor($rightBar);
     if ($leftBarColor != '') {
@@ -3327,6 +3329,7 @@ function theme_display_bar(
   $return .= '</td>';
   $return .= '</tr>';
   $return .= '</table>';
+  //$return .= '<br /><img src="images/rating5.gif" width="400" height="60" border="0" alt="" />'; //remove after debugging
   return $return;
 }
 /******************************************************************************
