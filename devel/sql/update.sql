@@ -235,7 +235,7 @@ CREATE TABLE CPG_ecards (
 ) TYPE=MyISAM COMMENT='Used to log ecards';
 
 #
-# Modify structure for table 'CPG_usergroups' - Upload form control - Hyperion
+# Modify structure for table 'CPG_usergroups'
 #
 
 ALTER TABLE `CPG_usergroups` ADD `upload_form_config` TINYINT(4) DEFAULT '3' NOT NULL;
@@ -533,9 +533,24 @@ INSERT INTO CPG_config VALUES ('personal_album_on_registration', '0');
 # Count hits in slideshow
 INSERT INTO CPG_config VALUES ('slideshow_hits', '1');
 
-# Shorten Browser entries in hit stats
-UPDATE `CPG_hit_stats` SET `browser` = 'MSIE 6.0' WHERE `browser` ='Microsoft Internet Explorer 6.0';
-UPDATE `CPG_hit_stats` SET `browser` = 'MSIE 5.5' WHERE `browser` ='Microsoft Internet Explorer 5.5';
+# Shorten Browser entries in hit stats and vote stats
+UPDATE `CPG_hit_stats` SET `browser` = 'IE6' WHERE `browser` ='Microsoft Internet Explorer 6.0';
+UPDATE `CPG_hit_stats` SET `browser` = 'IE5.5' WHERE `browser` ='Microsoft Internet Explorer 5.5';
+UPDATE `CPG_hit_stats` SET `browser` = 'IE6' WHERE `browser` ='MSIE 6.0';
+UPDATE `CPG_hit_stats` SET `browser` = 'IE5.5' WHERE `browser` ='IE5.5';
+UPDATE `CPG_hit_stats` SET `browser` = 'IE3' WHERE `browser` ='MSIE 3.0';
+UPDATE `CPG_hit_stats` SET `browser` = 'IE4' WHERE `browser` ='MSIE 4.0';
+UPDATE `CPG_hit_stats` SET `browser` = 'IE5.0' WHERE `browser` ='MSIE 5.0';
+UPDATE `CPG_hit_stats` SET `browser` = 'IE7' WHERE `browser` ='MSIE 7.0';
+UPDATE `CPG_vote_stats` SET `browser` = 'IE6' WHERE `browser` ='Microsoft Internet Explorer 6.0';
+UPDATE `CPG_vote_stats` SET `browser` = 'IE5.5' WHERE `browser` ='Microsoft Internet Explorer 5.5';
+UPDATE `CPG_vote_stats` SET `browser` = 'IE6' WHERE `browser` ='MSIE 6.0';
+UPDATE `CPG_vote_stats` SET `browser` = 'IE5.5' WHERE `browser` ='IE5.5';
+UPDATE `CPG_vote_stats` SET `browser` = 'IE3' WHERE `browser` ='MSIE 3.0';
+UPDATE `CPG_vote_stats` SET `browser` = 'IE4' WHERE `browser` ='MSIE 4.0';
+UPDATE `CPG_vote_stats` SET `browser` = 'IE5.0' WHERE `browser` ='MSIE 5.0';
+UPDATE `CPG_vote_stats` SET `browser` = 'IE7' WHERE `browser` ='MSIE 7.0';
+
 
 # Add album moderator entry
 ALTER TABLE `CPG_albums` ADD `moderator_group` INT NOT NULL default 0;
@@ -549,3 +564,6 @@ INSERT INTO CPG_config VALUES ('transparent_overlay', '0');
 
 # Ask guests to log in to post comments
 INSERT INTO CPG_config VALUES ('comment_promote_registration', '0');
+
+# Add uid column to vote stats
+ALTER TABLE `CPG_vote_stats` ADD `uid` INT(11)  NOT NULL default '0';

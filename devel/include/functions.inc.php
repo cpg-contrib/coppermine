@@ -1522,17 +1522,17 @@ function add_hit($pid)
         $browser = 'Unknown';
         if(eregi("MSIE",$_SERVER["HTTP_USER_AGENT"])) {
             if(eregi("MSIE 5.5",$_SERVER["HTTP_USER_AGENT"])) {
-                $browser = "MSIE 5.5";
+                $browser = "IE5.5";
             } else if(eregi("MSIE 6.0",$_SERVER["HTTP_USER_AGENT"])) {
-                $browser = "MSIE 6.0";
+                $browser = "IE6";
             } else if(eregi("MSIE 7.0",$_SERVER["HTTP_USER_AGENT"])) {
-                $browser = "MSIE 7.0";
+                $browser = "IE7";
             } else if(eregi("MSIE 3.0",$_SERVER["HTTP_USER_AGENT"])) {
-                $browser = "MSIE 3.0";
+                $browser = "IE3";
             } else if(eregi("MSIE 4.0",$_SERVER["HTTP_USER_AGENT"])) {
-                $browser = "MSIE 4.0";
+                $browser = "IE4";
             } else if(eregi("MSIE 5.0",$_SERVER["HTTP_USER_AGENT"])) {
-                $browser = "MSIE 5.0";
+                $browser = "IE5.0";
             }
         } else if(eregi("Firebird",$_SERVER["HTTP_USER_AGENT"])) {
             $browser = "Mozilla Firebird";

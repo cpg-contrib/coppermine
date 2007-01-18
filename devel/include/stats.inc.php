@@ -66,13 +66,13 @@ $browserArray = array(
                       'Motorola' => 'motorola.png',
                       'Mozilla' => 'mozilla.png',
                       'mplayer' => 'mplayer.png',
-                      'MSIE 3.0' => 'msie.png',
-                      'MSIE 4.0' => 'msie.png',
-                      'MSIE 5.0' => 'msie.png',
-                      'MSIE 5.5' => 'msie.png',
-                      'MSIE 6.0' => 'msie.png',
-                      'MSIE 7.0' => 'msie.png',
-                      'MSIE' => 'msie.png',
+                      'IE3' => 'msie.png',
+                      'IE4' => 'msie.png',
+                      'IE5.0' => 'msie.png',
+                      'IE5.5' => 'msie.png',
+                      'IE6' => 'msie.png',
+                      'IE7' => 'msie7.png',
+                      'IE' => 'msie.png',
                       'Multizilla' => 'multizilla.png',
                       'Mosaic' => 'ncsa_mosaic.png',
                       'Netnewswire' => 'netnewswire.png',
@@ -190,15 +190,21 @@ $osArray = array(
 /**
  * function defintions start
  */
-function individualStatsByOS($pid='') {
+function individualStatsByOS($pid='',$type='hits') {
       global $osArray, $CONFIG, $lang_stat_details_php;
       if (GALLERY_ADMIN_MODE == true){
         foreach ($osArray as $key => $value) {
-                if ($pid=='') {
-                    $query = "SELECT COUNT(*) FROM {$CONFIG['TABLE_HIT_STATS']} WHERE os = '$key'"; // Now this is a very crude way to query the database which is bound to overload larger galleries. Should be reviewed!
+                $query = "SELECT COUNT(*) FROM ";
+                if ($type=='votes') {
+                    $query .= $CONFIG['TABLE_VOTE_STATS'];
                 } else {
-                    $query = "SELECT COUNT(*) FROM {$CONFIG['TABLE_HIT_STATS']} WHERE os = '$key' AND pid='$pid'"; // Now this is a very crude way to query the database which is bound to overload larger galleries. Should be reviewed!
+                    $query .= $CONFIG['TABLE_HIT_STATS'];
                 }
+                $query .= " WHERE os = '$key'";
+                if ($pid!='') {
+                    $query .= " AND pid='$pid'";
+                }
+                // Now this is a very crude way to query the database which is bound to overload larger galleries. Should be reviewed!
                 $result = cpg_db_query($query);
                 $row = mysql_fetch_array($result);
                 if ($row[0] != 0) {
@@ -252,11 +258,21 @@ EOT;
     }
 }
 
-function individualStatsByBrowser($pid='') {
+function individualStatsByBrowser($pid='',$type='hits') {
       global $browserArray, $CONFIG, $lang_stat_details_php;
       if (GALLERY_ADMIN_MODE == true){
         foreach ($browserArray as $key => $value) {
-                $query = "SELECT COUNT(*) FROM {$CONFIG['TABLE_HIT_STATS']} WHERE browser = '$key' AND pid='$pid'"; // Now this is a very crude way to query the database which is bound to overload larger galleries. Should be reviewed!
+                $query = "SELECT COUNT(*) FROM ";
+                if ($type=='votes') {
+                    $query .= $CONFIG['TABLE_VOTE_STATS'];
+                } else {
+                    $query .= $CONFIG['TABLE_HIT_STATS'];
+                }
+                $query .= " WHERE browser = '$key'";
+                if ($pid!='') {
+                    $query .= " AND pid='$pid'";
+                }
+                // Now this is a very crude way to query the database which is bound to overload larger galleries. Should be reviewed!
                 $result = cpg_db_query($query);
                 $row = mysql_fetch_array($result);
                 if ($row[0] != 0) {

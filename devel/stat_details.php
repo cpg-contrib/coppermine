@@ -322,16 +322,14 @@ EOT;
   <br />
 
 EOT;
-    individualStatsByOS($pid);
+    individualStatsByOS($pid,'hits');
 
-    individualStatsByBrowser($pid);
+    individualStatsByBrowser($pid,'hits');
 
   } else { // type == hits end // type == total start
-    individualStatsByOS($pid);
+    individualStatsByOS($pid,'votes');
 
-    individualStatsByBrowser($pid);
-
-
+    individualStatsByBrowser($pid,'votes');
 
       // Configuration shortcut: enable/disable hit stats here as well as in config
       $yes_selected_hit = $CONFIG['hit_details'] ? 'checked="checked"' : '';
@@ -352,8 +350,21 @@ EOT;
       <input type="hidden" name="referer" value="{$_GET['referer']}" />
       <input type="hidden" name="browser" value="{$_GET['browser']}" />
       <input type="hidden" name="os" value="{$_GET['os']}" />
+      <hr /><!--
 EOT;
-      starttable('-1', $lang_stat_details_php['stats_config'], 5);
+    starttable("-1", $lang_stat_details_php['individual_stats_config'],1);
+    print <<< EOT
+    <tr>
+      <td class="tableb">Stat details will go here</td>
+    </tr>
+    <tr>
+      <td class="tableb">{$lang_stat_details_php['reset_votes_individual']}</td>
+    </tr>
+EOT;
+    endtable();
+    print '<br />-->';
+
+      starttable('-1', $lang_stat_details_php['overall_stats_config'], 5);
       print <<< EOT
       <tr>
         <td class="tableb" colspan="3">{$lang_stat_details_php['vote_details']}{$help_vote}</td>
