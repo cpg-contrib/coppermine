@@ -29,19 +29,25 @@ require('include/stats.inc.php');
  */
 
 $pid = $_GET['pid'] ? (int)$_GET['pid'] : 0;
-$type_allowed = array('vote','hits','total');
+$type_allowed = array('vote','hits','total','blank');
 
 if (in_array($_GET['type'],$type_allowed) == TRUE) {
  $type = $_GET['type'];
 } else {
- $type = 'total';
+ $type = 'blank';
+}
+
+if ($type=='blank') {
+    die();
 }
 
 if ($type == 'vote') {
     $db_fields = array('sdate', 'ip', 'rating', 'referer', 'browser', 'os');
+    $icon = array('sdate' => 'calendar.gif', 'ip' => 'info.gif', 'rating' => 'rating.gif', 'referer' => 'referer.gif', 'browser' => 'www.gif', 'os' => 'os.gif');
 }
 if ($type == 'hits') {
     $db_fields = array('sdate', 'ip', 'search_phrase', 'referer', 'browser', 'os');
+    $icon = array('sdate' => 'calendar.gif', 'ip' => 'info.gif', 'search_phrase' => 'views.gif', 'referer' => 'referer.gif', 'browser' => 'www.gif', 'os' => 'os.gif');
 }
 
 foreach($db_fields as $value) {
@@ -86,13 +92,16 @@ if (isset($_GET['date_display'])) {
     } elseif($_GET['date_display'] == '2') {
         $date_display = 2;
         $date_display_fmt = $log_date_fmt;
+    } elseif($_GET['date_display'] == '3') {
+        $date_display = 2;
+        $date_display_fmt = '%Y-%m-%d %H:%M:%S';;
     } else {
-        $date_display = 3;
-        $date_display_fmt = '%Y-%m-%d %H:%M:%S';
+        $date_display = 4;
+        $date_display_fmt = '%Y-%m-%d';
     }
 } else {
     $date_display = 0;
-    $date_display_fmt = $album_date_fmt;
+    $date_display_fmt = '%Y-%m-%d';
 }
 
 $line_break = "\n";
@@ -118,7 +127,7 @@ print  <<<EOT
     <link rel="stylesheet" href="themes/{$CONFIG['theme']}/style.css" />
     <script type="text/javascript" src="scripts.js"></script>
 </head>
-<body>
+<body class="tableb">
 EOT;
 
 if ($type == 'vote') { // type == vote start
@@ -128,7 +137,7 @@ $result = cpg_db_query($query);
 
 $rateArr = array();
 
-starttable("-1", $lang_stat_details_php['stats'], 3);
+starttable("-2", $lang_stat_details_php['stats'], 3);
 
 $totalVotesSum = 0;
 
@@ -155,7 +164,7 @@ while ($row = mysql_fetch_array($result)) {
             </td>
             <td class="{$row_style_class}">
 EOT;
-                print theme_display_bar($voteArr[$i],$totalVotesSum,400,'', '', ' '.$lang_stat_details_php['votes']);
+                print theme_display_bar($voteArr[$i],$totalVotesSum,200,'', '', ' '.$lang_stat_details_php['votes']);
         echo <<<EOT
             </td>
         </tr>
@@ -220,14 +229,14 @@ EOT;
       }
       $result = cpg_db_query($query);
       // display the table header start
-      starttable('-1', $lang_stat_details_php[$type], count($db_fields));
+      starttable('-2', $lang_stat_details_php[$type], count($db_fields));
       print "  <tr>\n";
       foreach ($db_fields as $value) {
           $show_column_checked[$value] = ($$value == '1') ? 'checked="checked"' : '';
           print '    <td class="tableh2" valign="top">'.$line_break;
           print '      ';
           print '<input type="checkbox" name="'.$value.'" value="1" class="checkbox" title="'.$lang_stat_details_php['show_hide'].'" '.$show_column_checked[$value].' onclick="sendForm();" />'.$line_break;
-          print '      '.$lang_stat_details_php[$value];
+          print '      <img src="images/'.$icon[$value].'" border="0" width="16" height="16" alt="" title="'.$lang_stat_details_php[$value].'" />';
           if ($$value == 1) {
               print '<a href="#" onclick="return sortthetable(\''.$value.'\',\'asc\');">';
               print '<img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="'.sprintf($lang_stat_details_php['sort_by_xxx'], $value).', '.$lang_stat_details_php['ascending'].'" />';
@@ -288,11 +297,13 @@ EOT;
   print '    <td class="tableh2" colspan="'.count($db_fields).'">'.$line_break;
   print '      <table border="0" cellspacing="0" cellpadding="0" width="100%">'.$line_break;
   print '        <tr>'.$line_break;
-  print '          <td class="tablef">'.$line_break;
+  print '          <td class="tablef" colspan="2">'.$line_break;
   print '            <input type="checkbox" name="hide_internal" id="hide_internal" value="1" class="checkbox" title="'.$lang_stat_details_php['hide_internal_referers'].'" '.$hide_internal_selected.' onclick="sendForm();" />';
   print '            <label for="hide_internal" class="clickable_option">'.$lang_stat_details_php['hide_internal_referers'].'</label>'."\n";
   print '          </td>'.$line_break;
-  print '          <td class="tablef">'.$line_break;
+  print '        </tr>'.$line_break;
+  print '        <tr>'.$line_break;
+  print '          <td class="tablef" colspan="2">'.$line_break;
   print '            '.$lang_stat_details_php['date_display'].$line_break;
   print '            <select name="date_display" size="1" onchange="sendForm();">'.$line_break;
   print '              <option value="0" '.$date_display_0_selected.'>'.$line_break;
@@ -350,35 +361,31 @@ EOT;
       <input type="hidden" name="referer" value="{$_GET['referer']}" />
       <input type="hidden" name="browser" value="{$_GET['browser']}" />
       <input type="hidden" name="os" value="{$_GET['os']}" />
-      <hr /><!--
+      <hr />
 EOT;
-    starttable("-1", $lang_stat_details_php['individual_stats_config'],1);
+
+    starttable("-2", $lang_stat_details_php['individual_stats_config'],2);
     print <<< EOT
     <tr>
-      <td class="tableb">Stat details will go here</td>
-    </tr>
-    <tr>
-      <td class="tableb">{$lang_stat_details_php['reset_votes_individual']}</td>
+      <td class="tablef" colspan="2"><input name="emptyvotestatsindividual" id="emptyvotestatsindividual" type="checkbox" onclick="if (this.checked) return confirm('{$lang_stat_details_php['reset_votes_individual_confirm']}');" /><label for="emptyvotestatsindividual" class="clickable_option">{$lang_stat_details_php['reset_votes_individual']}</label></td>
     </tr>
 EOT;
     endtable();
-    print '<br />-->';
+    print '<br />';
 
-      starttable('-1', $lang_stat_details_php['overall_stats_config'], 5);
+      starttable('-2', $lang_stat_details_php['overall_stats_config'], 5);
       print <<< EOT
       <tr>
         <td class="tableb" colspan="3">{$lang_stat_details_php['vote_details']}{$help_vote}</td>
         <td class="tableb" colspan="2">
-          <input type="radio" id="vote_details_yes" name="vote_details" value="1"  $yes_selected_vote /><label for="vote_details_yes" class="clickable_option">{$lang_common['yes']}</label>
-          &nbsp;&nbsp;
+          <input type="radio" id="vote_details_yes" name="vote_details" value="1"  $yes_selected_vote /><label for="vote_details_yes" class="clickable_option">{$lang_common['yes']}</label><br />
           <input type="radio" id="vote_details_no" name="vote_details" value="0"  $no_selected_vote /><label for="vote_details_no" class="clickable_option">{$lang_common['no']}</label>
         </td>
       </tr>
       <tr>
         <td class="tableb" colspan="3">{$lang_stat_details_php['hit_details']}{$help_hit}</td>
         <td class="tableb" colspan="2">
-          <input type="radio" id="hit_details_yes" name="hit_details" value="1"  $yes_selected_hit /><label for="hit_details_yes" class="clickable_option">{$lang_common['yes']}</label>
-          &nbsp;&nbsp;
+          <input type="radio" id="hit_details_yes" name="hit_details" value="1"  $yes_selected_hit /><label for="hit_details_yes" class="clickable_option">{$lang_common['yes']}</label><br />
           <input type="radio" id="hit_details_no" name="hit_details" value="0"  $no_selected_hit /><label for="hit_details_no" class="clickable_option">{$lang_common['no']}</label>
         </td>
       </tr>
@@ -412,10 +419,6 @@ EOT;
 } // admin is logged in end
 
 print  <<<EOT
-<br />
-<div align="center">
-<a href="javascript:;" onclick="window.close();" class="admin_menu">{$lang_stat_details_php['close']}</a>
-</div>
 </body>
 </html>
 EOT;

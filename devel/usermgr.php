@@ -90,7 +90,7 @@ function list_group_alb_access($group_id) {  //shows a list of albums a specific
 function list_groups_alb_access() //shows a list of albums each group can see. Categories are listed with albums for clarity
 {
     global $CONFIG;
-    global $lang_usermgr_php, $group_id;
+    global $lang_usermgr_php, $lang_common, $group_id;
 
     starttable(500, $lang_usermgr_php['groups_alb_access'], 3);
 
@@ -117,7 +117,7 @@ function list_groups_alb_access() //shows a list of albums each group can see. C
 
     echo "
     <td><b>{$lang_usermgr_php['category']}</b></td>
-    <td><b>{$lang_usermgr_php['album']}</b></td>
+    <td><b>{$lang_common['album']}</b></td>
     <td><b>{$lang_usermgr_php['modify']}</b></td>
     ";
     foreach($groups as $group) {
@@ -900,9 +900,9 @@ switch ($op) {
             pageheader(sprintf($lang_usermgr_php['group_can_access'], $group_name));
             starttable(500, sprintf($lang_usermgr_php['group_can_access'], $group_name), 3);
             echo "
-            <td><b>{$lang_usermgr_php['category']}</b></td>
-            <td><b>{$lang_usermgr_php['album']}</b></td>
-            <td><b>{$lang_usermgr_php['modify']}</b></td>
+            <td>{$lang_usermgr_php['category']}</td>
+            <td>{$lang_common['album']}</td>
+            <td>{$lang_usermgr_php['modify']}</td>
             ";
 
             list_group_alb_access($group_id);

@@ -213,7 +213,7 @@ function individualStatsByOS($pid='',$type='hits') {
         }
         array_multisort($osResultArray,SORT_DESC);
         $osTotal = array_sum($osResultArray);
-        starttable('-1', $lang_stat_details_php['stats_by_os'], 3);
+        starttable('-2', $lang_stat_details_php['stats_by_os'], 3);
         print <<< EOT
         <tr>
           <td class="tableh2" colspan="2">{$lang_stat_details_php['os']}</td>
@@ -240,7 +240,7 @@ EOT;
             <td class="{$row_style_class}">{$key}</td>
             <td class="{$row_style_class}" align="right">
 EOT;
-                print theme_display_bar($value,$osTotal,400,'', '', ' ('.$individualPercentage.' %)');
+                print theme_display_bar($value,$osTotal,200,'', '', ' ('.$individualPercentage.' %)');
           print <<< EOT
             </td>
           </tr>
@@ -281,7 +281,7 @@ function individualStatsByBrowser($pid='',$type='hits') {
         }
         array_multisort($browserResultArray,SORT_DESC);
         $browserTotal = array_sum($browserResultArray);
-        starttable('-1', $lang_stat_details_php['stats_by_browser'], 3);
+        starttable('-2', $lang_stat_details_php['stats_by_browser'], 3);
         print <<< EOT
         <tr>
           <td class="tableh2" colspan="2">{$lang_stat_details_php['browser']}</td>
@@ -308,7 +308,7 @@ EOT;
             <td class="{$row_style_class}">{$key}</td>
             <td class="{$row_style_class}" align="left">
 EOT;
-          print theme_display_bar($value,$browserTotal,400,'', '', ' ('.$individualPercentage.' %)');
+          print theme_display_bar($value,$browserTotal,200,'', '', ' ('.$individualPercentage.' %)');
           print <<< EOT
             </td>
           </tr>

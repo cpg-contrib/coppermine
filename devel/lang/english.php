@@ -123,6 +123,8 @@ $lang_common = array(
   'keywords' => 'Keywords', // cpg1.5.x
   'owner_name' => 'Owner name', // cpg1.5.x
   'filename' => 'Filename', // cpg1.5.x
+  'filesize' => 'Filesize', // cpg1.5.x
+  'album' => 'Album', // cpg1.5.x
 );
 
 // ------------------------------------------------------------------------- //
@@ -289,7 +291,6 @@ $lang_cpg_die = array(
 );
 
 $lang_display_thumbnails = array(
-  'filesize' => 'Filesize=',
   'dimensions' => 'Dimensions=',
   'date_added' => 'Date added=',
 );
@@ -1021,7 +1022,6 @@ $lang_picinfo = array(
   'title' =>'File information',
   'Album name' => 'Album name',
   'Rating' => 'Rating (%s votes)',
-  'File Size' => 'File Size',
   'Date Added' => 'Date added',
   'Dimensions' => 'Dimensions',
   'Displayed' => 'Displayed',
@@ -1094,7 +1094,8 @@ $lang_picinfo = array(
   'ManageExifDisplay' => 'Manage Exif Display',
   'submit' => 'Submit',
   'success' => 'Information updated successfully.',
-  'details' => 'Details',
+  'show_details' => 'Show details', // cpg1.5.x
+  'hide_details' => 'Hide details', // cpg1.5.x
   'download_URL' => 'Direct Link',
   'movie_player' => 'Play the file in your standard application',
 
@@ -1199,7 +1200,6 @@ if (defined('REPORT_FILE_PHP') || defined('DISPLAYREPORT_PHP')) $lang_report_php
 
 if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
   'pic_info' => 'File info',
-  'album' => 'Album',
   'desc' => 'Description',
   'approval' => 'Approval', //cpg 1.5
   'approved' => 'Approved', //cpg 1.5
@@ -1770,7 +1770,6 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
   'target_album' => '<b>Put files of &quot;</b>%s<b>&quot; into </b>%s',
   'folder' => 'Folder',
   'image' => 'file',
-  'album' => 'Album',
   'result' => 'Result',
   'dir_ro' => 'Not writable. ',
   'dir_cant_read' => 'Not readable. ',
@@ -1822,6 +1821,7 @@ if (defined('SEND_ACTIVATION_PHP')) $lang_send_activation_php = array(
 
 if (defined('STAT_DETAILS_PHP')) $lang_stat_details_php = array(
   'show_hide' => 'show/hide this column',
+  'title' => 'Statistic details', //cpg1.5
   'vote' => 'Vote Details',
   'hits' => 'Hit Details',
   'stats' => 'Vote Statistics',
@@ -1859,6 +1859,7 @@ if (defined('STAT_DETAILS_PHP')) $lang_stat_details_php = array(
   'votes' => 'votes', //cpg1.5
   'individual_stats_config' => 'Individual stats configuration', //cpg1.5
   'reset_votes_individual' => 'Reset vote stats for this file', //cpg1.5
+  'reset_votes_individual_confirm' => 'Are you sure that you want to reset the voting stats for this file?', //cpg1.5
 );
 
 // ------------------------------------------------------------------------- //
@@ -1933,7 +1934,6 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'no_place' => 'The previous file could not be placed.',
   'yes_place' => 'The previous file was placed successfully.',
   'max_fsize' => 'Maximum allowed file size is %s KB',
-  'album' => 'Album',
   'picture' => 'File',
   'pic_title' => 'File title',
   'description' => 'File description',
@@ -2028,7 +2028,6 @@ $lang_usermgr_php = array(
   'password' => 'password',
   'select_group' => 'Select group',
   'groups_alb_access' => 'Album permissions by group',
-  'album' => 'Album',
   'category' => 'Category',
   'modify' => 'Modify?',
   'group_no_access' => 'This group has no special access',
@@ -2274,7 +2273,6 @@ $lang_xp_publish_php = array(
   'no_alb' => 'Sorry but there is no album where you are allowed to upload pictures with this wizard.',
   'upload' => 'Upload your pictures into an existing album',
   'create_new' => 'Create a new album for your pictures',
-  'album' => 'Album',
   'category' => 'Category',
   'new_alb_created' => 'Your new album &quot;<b>%s</b>&quot; was created.',
   'continue' => 'Press &quot;Next&quot; to start to upload your pictures',

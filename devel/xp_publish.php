@@ -602,7 +602,7 @@ function form_publish()
     global $CONFIG, $CAT_LIST; //, $PHP_SELF;
     global $ONNEXT_SCRIPT, $ONBACK_SCRIPT, $WIZARD_BUTTONS;
     global $template_select_album;
-    global $lang_xp_publish_php;
+    global $lang_xp_publish_php, $lang_common;
 
     $alb_count = 0;
     $html_album_list = html_album_list($alb_count);
@@ -627,7 +627,7 @@ function form_publish()
 
         $params = array('{WELCOME}' => sprintf($lang_xp_publish_php['welcome'], USER_NAME),
             '{CREATE_NEW}' => $lang_xp_publish_php['create_new'],
-            '{ALBUM}' => $lang_xp_publish_php['album'],
+            '{ALBUM}' => $lang_common['album'],
             '{CATEGORY}' => $lang_xp_publish_php['category'],
             '{SELECT_CATEGORY}' => $html_cat_list,
             '{POST_ACTION}' => trim($CONFIG['site_url'], '/') . '/' . $_SERVER['PHP_SELF'] . '?cmd=create_album',
@@ -645,7 +645,7 @@ function form_publish()
 
         $params = array('{WELCOME}' => sprintf($lang_xp_publish_php['welcome'], USER_NAME),
             '{UPLOAD}' => $lang_xp_publish_php['upload'],
-            '{ALBUM}' => $lang_xp_publish_php['album'],
+            '{ALBUM}' => $lang_common['album'],
             '{SELECT_ALBUM}' => $html_album_list,
             '{CATEGORY}' => $lang_xp_publish_php['category'],
             '{SELECT_CATEGORY}' => $html_cat_list,

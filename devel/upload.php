@@ -958,7 +958,7 @@ if (!isset($_REQUEST['control'])) {
         if ($CONFIG['show_bbcode_help']) {$captionLabel .= '&nbsp;'. cpg_display_help('f=index.html&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
         $form_array = array(
         sprintf($lang_upload_php['max_fsize'], $CONFIG['max_upl_size']),
-        array($lang_upload_php['album'], 'album', 2),
+        array($lang_common['album'], 'album', 2),
         array('MAX_FILE_SIZE', $max_file_size, 4),
         array($lang_upload_php['picture'], 'userpicture', 1, 1),
         array($lang_upload_php['pic_title'], 'title', 0, 255, 1),
@@ -2576,7 +2576,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
     }
 
     $form_array = array(
-    array($lang_upload_php['album'], 'album', 2),
+    array($lang_common['album'], 'album', 2),
     array($lang_upload_php['pic_title'], 'title', 0, 255, 1, $title),
     array($captionLabel, 'caption', 3, $CONFIG['max_img_desc_length'], (isset($iptc['Caption'])) ? $iptc['Caption'] : ''),
     array($lang_upload_php['keywords'], 'keywords', 0, 255, 1,(isset($iptc['Keywords'])) ? implode(' ',$iptc['Keywords']): ''),

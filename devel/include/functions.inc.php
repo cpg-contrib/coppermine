@@ -1829,7 +1829,7 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
                         $i++;
 
                         $pic_title =$lang_common['filename'].'='.$row['filename']."\n".
-                                $lang_display_thumbnails['filesize'].($row['filesize'] >> 10).$lang_byte_units[1]."\n".
+                                $lang_common['filesize'].'='.($row['filesize'] >> 10).$lang_byte_units[1]."\n".
                                 $lang_display_thumbnails['dimensions'].$row['pwidth']."x".$row['pheight']."\n".
                                 $lang_display_thumbnails['date_added'].localised_date($row['ctime'], $album_date_fmt);
 
@@ -2014,7 +2014,7 @@ function display_film_strip($album, $cat, $pos)
                         $i++;
 
                         $pic_title =$lang_common['filename'].'='.$row['filename']."\n".
-                                $lang_display_thumbnails['filesize'].($row['filesize'] >> 10).$lang_byte_units[1]."\n".
+                                $lang_common['filesize'].'='.($row['filesize'] >> 10).$lang_byte_units[1]."\n".
                                 $lang_display_thumbnails['dimensions'].$row['pwidth']."x".$row['pheight']."\n".
                                 $lang_display_thumbnails['date_added'].localised_date($row['ctime'], $album_date_fmt);
 

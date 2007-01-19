@@ -123,8 +123,24 @@ function html_picinfo()
           $height = 250;
         }
 
-        $detailsLink = $CONFIG['vote_details'] ? ' (<a href="#" onclick="MM_openBrWindow(\'stat_details.php?type=vote&amp;pid='.$CURRENT_PIC_DATA['pid'].'&amp;sort=sdate&amp;dir=&amp;sdate=1&amp;ip=1&amp;rating=1&amp;referer=0&amp;browser=1&amp;os=1\',\'\',\'resizable=yes,width='.$width.',height='.$height.',top=50,left=50,scrollbars=yes\'); return false;">'.$lang_picinfo['details'].'</a>)' : '';
-        $info[sprintf($lang_picinfo['Rating'], $CURRENT_PIC_DATA['votes'])] = '<img src="' . $prefix . 'images/rating' . round($CURRENT_PIC_DATA['pic_rating'] / 2000) . '.gif" align="middle" alt="" />'.$detailsLink;
+        if ($CONFIG['vote_details'] == 1) {
+            $detailsLink = <<< EOT
+            <div id="votedetailsunhidetoggle" style="display:none">&nbsp;(<a href="javascript:;" onclick="voteDetailsDisplay();">{$lang_picinfo['show_details']}</a>)</div>
+            <div id="votedetailshidetoggle" style="display:none">&nbsp;(<a href="javascript:;" onclick="voteDetailsDisplay();">{$lang_picinfo['hide_details']}</a>)</div>
+            <iframe src="stat_details.?type=blank" width="100%" height="0" name="votedetails" id="votedetails" frameborder="0" style="display:none;border;none;"></iframe>
+            <script type="text/javascript">
+                window.onload = show_section('votedetailsunhidetoggle');
+                function voteDetailsDisplay() {
+                    show_section('votedetailsunhidetoggle');
+                    show_section('votedetailshidetoggle');
+                    show_section('votedetails');
+                    document.getElementById('votedetails').height = 800;
+                    top.frames.votedetails.document.location.href = "stat_details.php?type=vote&pid={$CURRENT_PIC_DATA['pid']}&sort=sdate&dir=&sdate=1&ip=1&rating=1&referer=0&browser=1&os=1";
+                }
+            </script>
+EOT;
+        }
+        $info[sprintf($lang_picinfo['Rating'], $CURRENT_PIC_DATA['votes'])] = '<img src="' . $prefix . 'images/rating' . round($CURRENT_PIC_DATA['pic_rating'] / 2000) . '.gif" align="left" alt="" />'.$detailsLink;
     }
 
     if ($CURRENT_PIC_DATA['keywords'] != "") {
@@ -139,11 +155,27 @@ function html_picinfo()
         }
     }
 
-    $info[$lang_picinfo['File Size']] = ($CURRENT_PIC_DATA['filesize'] > 10240 ? ($CURRENT_PIC_DATA['filesize'] >> 10) . '&nbsp;' . $lang_byte_units[1] : $CURRENT_PIC_DATA['filesize'] . '&nbsp;' . $lang_byte_units[0]);
-    $info[$lang_picinfo['File Size']] = '<span dir="ltr">' . $info[$lang_picinfo['File Size']] . '</span>';
+    $info[$lang_common['filesize']] = ($CURRENT_PIC_DATA['filesize'] > 10240 ? ($CURRENT_PIC_DATA['filesize'] >> 10) . '&nbsp;' . $lang_byte_units[1] : $CURRENT_PIC_DATA['filesize'] . '&nbsp;' . $lang_byte_units[0]);
+    $info[$lang_common['filesize']] = '<span dir="ltr">' . $info[$lang_common['filesize']] . '</span>';
     $info[$lang_picinfo['Date Added']] = localised_date($CURRENT_PIC_DATA['ctime'],$lastup_date_fmt);
     $info[$lang_picinfo['Dimensions']] = sprintf($lang_display_image_php['size'], $CURRENT_PIC_DATA['pwidth'], $CURRENT_PIC_DATA['pheight']);
-    $detailsLink = ($CURRENT_PIC_DATA['hits'] && $CONFIG['hit_details'] && GALLERY_ADMIN_MODE) ? ' (<a href="#" onclick="MM_openBrWindow(\'stat_details.php?type=hits&amp;pid='.$CURRENT_PIC_DATA['pid'].'&amp;sort=sdate&amp;dir=&amp;sdate=1&amp;ip=1&amp;search_phrase=1&amp;referer=0&amp;browser=1&amp;os=1\',\'\',\'resizable=yes,width=800,height=500,top=50,left=50,scrollbars=yes\'); return false;">'.$lang_picinfo['details'].'</a>)' : '';
+    if ($CURRENT_PIC_DATA['hits'] && $CONFIG['hit_details'] && GALLERY_ADMIN_MODE) {
+            $detailsLink = <<< EOT
+            <div id="hitdetailsunhidetoggle" style="display:none">&nbsp;(<a href="javascript:;" onclick="hitDetailsDisplay();">{$lang_picinfo['show_details']}</a>)</div>
+            <div id="hitdetailshidetoggle" style="display:none">&nbsp;(<a href="javascript:;" onclick="hitDetailsDisplay();">{$lang_picinfo['hide_details']}</a>)</div>
+            <iframe src="stat_details.?type=blank" width="100%" height="0" name="hitdetails" id="hitdetails" frameborder="0" style="display:none;border;none;"></iframe>
+            <script type="text/javascript">
+                window.onload = show_section('hitdetailsunhidetoggle');
+                function hitDetailsDisplay() {
+                    show_section('hitdetailsunhidetoggle');
+                    show_section('hitdetailshidetoggle');
+                    show_section('hitdetails');
+                    document.getElementById('hitdetails').height = 800;
+                    top.frames.hitdetails.document.location.href = "stat_details.php?type=hits&pid={$CURRENT_PIC_DATA['pid']}&sort=sdate&dir=&sdate=1&ip=1&search_phrase=0&referer=0&browser=1&os=1";
+                }
+            </script>
+EOT;
+        }
     $info[$lang_picinfo['Displayed']] = sprintf($lang_display_image_php['views'], $CURRENT_PIC_DATA['hits']);
     $info[$lang_picinfo['Displayed']] .= $detailsLink;
 

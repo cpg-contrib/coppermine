@@ -429,7 +429,7 @@ if (isset($_POST['insert'])) {
         <tr>
                 <td class="tableh2" valign="middle" align="center"><b>{$lang_search_new_php['folder']}</b></td>
                 <td class="tableh2" valign="middle" align="center"><b>{$lang_search_new_php['image']}</b></td>
-                <td class="tableh2" valign="middle" align="center"><b>{$lang_search_new_php['album']}</b></td>
+                <td class="tableh2" valign="middle" align="center"><b>{$lang_common['album']}</b></td>
                 <td class="tableh2" valign="middle" align="center"><b>{$lang_search_new_php['result']}</b></td>
         </tr>
 EOT;
@@ -470,7 +470,7 @@ EOT;
     // Display the albums that have new pictures added
     foreach ($edit_album_array as $edit_album)
     {
-      $edit_pics_content .= $lang_search_new_php['album'] . ' &laquo;' . $album_array[$edit_album] .'&raquo;: ';
+      $edit_pics_content .= $lang_common['album'] . ' &laquo;' . $album_array[$edit_album] .'&raquo;: ';
       $edit_pics_content .= '<a href="editpics.php?album='.$edit_album. '" class="admin_menu">' . $lang_search_new_php['edit_pics'] . '</a> ';
       $edit_pics_content .= '<a href="modifyalb.php?album='.$edit_album. '" class="admin_menu">' . $lang_search_new_php['edit_properties'] . '</a> ';
       $edit_pics_content .= '<a href="thumbnails.php?album='.$edit_album. '" class="admin_menu">' . $lang_search_new_php['view_thumbs'] . '</a> ';
