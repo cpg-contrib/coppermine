@@ -84,7 +84,7 @@ EOT;
 function html_picinfo()
 {
     global $CONFIG, $CURRENT_PIC_DATA, $CURRENT_ALBUM_DATA, $THEME_DIR, $FAVPICS, $REFERER;
-    global $album, $lang_picinfo, $lang_display_image_php, $lang_byte_units, $lastup_date_fmt;
+    global $album, $lang_picinfo, $lang_display_image_php, $lang_byte_units, $lang_common, $lastup_date_fmt;
 
     if ($CURRENT_PIC_DATA['owner_id'] && $CURRENT_PIC_DATA['owner_name']) {
         $owner_link = '<a href ="profile.php?uid=' . $CURRENT_PIC_DATA['owner_id'] . '">' . $CURRENT_PIC_DATA['owner_name'] . '</a> ';
@@ -106,7 +106,7 @@ function html_picinfo()
         }
     }
 
-    $info[$lang_picinfo['Filename']] = htmlspecialchars($CURRENT_PIC_DATA['filename']);
+    $info[$lang_common['filename']] = htmlspecialchars($CURRENT_PIC_DATA['filename']);
     $info[$lang_picinfo['Album name']] = '<span class="alblink">' . $owner_link . $ipinfo . '<a href="thumbnails.php?album=' . $CURRENT_PIC_DATA['aid'] . '">' . $CURRENT_ALBUM_DATA['title'] . '</a></span>';
 
     if ($CURRENT_PIC_DATA['votes'] > 0) {
@@ -128,7 +128,7 @@ function html_picinfo()
     }
 
     if ($CURRENT_PIC_DATA['keywords'] != "") {
-        $info[$lang_picinfo['Keywords']] = '<span class="alblink">' . preg_replace("/(\S+)/", "<a href=\"thumbnails.php?album=search&amp;search=\\1\">\\1</a>" , $CURRENT_PIC_DATA['keywords']) . '</span>';
+        $info[$lang_common['keywords']] = '<span class="alblink">' . preg_replace("/(\S+)/", "<a href=\"thumbnails.php?album=search&amp;search=\\1\">\\1</a>" , $CURRENT_PIC_DATA['keywords']) . '</span>';
     }
 
     for ($i = 1; $i <= 4; $i++) {

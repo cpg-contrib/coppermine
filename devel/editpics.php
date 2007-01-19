@@ -83,9 +83,9 @@ if ($CONFIG['show_bbcode_help']) {$captionLabel .= '&nbsp;'. cpg_display_help('f
 $data = array(
         array($lang_editpics_php['pic_info'], '', 3),
         array($lang_editpics_php['album'], 'aid', 1),
-        array($lang_editpics_php['title'], 'title', 0, 255),
+        array($lang_common['title'], 'title', 0, 255),
         array($captionLabel, 'caption', 2, $CONFIG['max_img_desc_length']),
-        array($lang_editpics_php['keywords'], 'keywords', 0, 255),
+        array($lang_common['keywords'], 'keywords', 0, 255),
 //        array($lang_editpics_php['approval'], 'approved', 5),
         array($CONFIG['user_field1_name'], 'user1', 0, 255),
         array($CONFIG['user_field2_name'], 'user2', 0, 255),
@@ -236,7 +236,7 @@ EOT;
 
 function form_pic_info($text)
 {
-        global $CURRENT_PIC, $THUMB_ROWSPAN, $CONFIG, $lang_byte_units, $lang_editpics_php, $loop_counter, $row_style_class;
+        global $CURRENT_PIC, $THUMB_ROWSPAN, $CONFIG, $lang_byte_units, $lang_editpics_php, $lang_common, $loop_counter, $row_style_class;
 
         if (!is_movie($CURRENT_PIC['filename'])) {
                 $pic_info = sprintf($lang_editpics_php['pic_info_str'], $CURRENT_PIC['pwidth'], $CURRENT_PIC['pheight'], ($CURRENT_PIC['filesize'] >> 10), $CURRENT_PIC['hits'], $CURRENT_PIC['votes']);
@@ -284,7 +284,7 @@ EOT;
                                                                         <table border="0" cellspacing="0" cellpadding="0" width="100%">
                                                                                 <tr>
                                                                                         <td class="{$row_style_class}">
-                                                                                                $filename
+                                                                                                {$lang_common['filename']}: $filename
                                                                                         </td>
                                                                                         <td class="{$row_style_class}" width="40" valign="top">
                                                                                         <input type="checkbox" name="delete{$CURRENT_PIC['pid']}" id="delete{$CURRENT_PIC['pid']}" value="1" class="checkbox" title="{$lang_editpics_php['del_pic']}" /><label for="delete{$CURRENT_PIC['pid']}" class="clickable_option"><img src="images/delete.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['del_pic']}" /></label>

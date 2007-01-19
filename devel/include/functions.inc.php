@@ -1814,7 +1814,7 @@ function compute_img_size($width, $height, $max, $system_icon=false, $normal=fal
 function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $display_tabs)
 {
         global $CONFIG, $AUTHORIZED, $USER;
-        global $album_date_fmt, $lang_display_thumbnails, $lang_errors, $lang_byte_units;
+        global $album_date_fmt, $lang_display_thumbnails, $lang_errors, $lang_byte_units, $lang_common;
 
         $thumb_per_page = $thumbcols * $thumbrows;
         $lower_limit = ($page-1) * $thumb_per_page;
@@ -1828,7 +1828,7 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
                 foreach ($pic_data as $key => $row) {
                         $i++;
 
-                        $pic_title =$lang_display_thumbnails['filename'].$row['filename']."\n".
+                        $pic_title =$lang_common['filename'].'='.$row['filename']."\n".
                                 $lang_display_thumbnails['filesize'].($row['filesize'] >> 10).$lang_byte_units[1]."\n".
                                 $lang_display_thumbnails['dimensions'].$row['pwidth']."x".$row['pheight']."\n".
                                 $lang_display_thumbnails['date_added'].localised_date($row['ctime'], $album_date_fmt);
@@ -1972,7 +1972,7 @@ function& cpg_get_system_thumb($filename,$user=10001)
 function display_film_strip($album, $cat, $pos)
 {
         global $CONFIG, $AUTHORIZED;
-        global $album_date_fmt, $lang_display_thumbnails, $lang_errors, $lang_byte_units;
+        global $album_date_fmt, $lang_display_thumbnails, $lang_errors, $lang_byte_units, $lang_common;
         $max_item=$CONFIG['max_film_strip_items'];
         //$thumb_per_page = $pos+$CONFIG['max_film_strip_items'];
         $thumb_per_page = $max_item*2;
@@ -2013,7 +2013,7 @@ function display_film_strip($album, $cat, $pos)
                         $hi =(($pos==($i + $lower_limit)) ? '1': '');
                         $i++;
 
-                        $pic_title =$lang_display_thumbnails['filename'].$row['filename']."\n".
+                        $pic_title =$lang_common['filename'].'='.$row['filename']."\n".
                                 $lang_display_thumbnails['filesize'].($row['filesize'] >> 10).$lang_byte_units[1]."\n".
                                 $lang_display_thumbnails['dimensions'].$row['pwidth']."x".$row['pheight']."\n".
                                 $lang_display_thumbnails['date_added'].localised_date($row['ctime'], $album_date_fmt);

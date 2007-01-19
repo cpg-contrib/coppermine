@@ -2071,7 +2071,7 @@ function theme_display_album_list_cat(&$alb_list, $nbAlb, $cat, $page, $total_pa
 function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $page, $total_pages, $sort_options, $display_tabs, $mode = 'thumb')
 {
     global $CONFIG;
-    global $template_thumb_view_title_row,$template_fav_thumb_view_title_row, $lang_thumb_view, $template_tab_display, $template_thumbnail_view, $lang_album_list;
+    global $template_thumb_view_title_row,$template_fav_thumb_view_title_row, $lang_thumb_view,$lang_common, $template_tab_display, $template_thumbnail_view, $lang_album_list;
 
     static $header = '';
     static $thumb_cell = '';
@@ -2118,7 +2118,7 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
             '{AID}' => $aid,
             '{PAGE}' => $page,
             '{NAME}' => $lang_thumb_view['name'],
-            '{TITLE}' => $lang_thumb_view['title'],
+            '{TITLE}' => $lang_common['title'],
             '{DATE}' => $lang_thumb_view['date'],
             '{SORT_TA}' => $lang_thumb_view['sort_ta'],
             '{SORT_TD}' => $lang_thumb_view['sort_td'],

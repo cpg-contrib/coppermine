@@ -75,27 +75,27 @@ echo <<< EOT
                                                 <td align="center">{$lang_search_php['age']}:</td>
                                         </tr>
                                         <tr>
-                                                <td><input type="checkbox" name="title" id="title" class="checkbox" checked="checked" /><label for="title" class="clickable_option">{$lang_adv_opts['title']}</label></td>
+                                                <td><input type="checkbox" name="title" id="title" class="checkbox" checked="checked" /><label for="title" class="clickable_option">{$lang_common['title']}</label></td>
                                                 <td align="right">{$lang_search_php['newer_than']} <input type="text" name="newer_than" size="3" maxlength="4" class="textinput" /> {$lang_search_php['days']}</td>
                                         </tr>
                                         <tr>
-                                                <td><input type="checkbox" name="caption" id="caption" class="checkbox" checked="checked" /><label for="caption" class="clickable_option">{$lang_adv_opts['caption']}</label></td>
+                                                <td><input type="checkbox" name="caption" id="caption" class="checkbox" checked="checked" /><label for="caption" class="clickable_option">{$lang_common['caption']}</label></td>
                                                 <td align="right">{$lang_search_php['older_than']} <input type="text" name="older_than" size="3" maxlength="4" class="textinput" /> {$lang_search_php['days']}</td>
                                         </tr>
                                         <tr>
-                                                <td><input type="checkbox" name="keywords" id="keywords" class="checkbox" checked="checked" /><label for="keywords" class="clickable_option">{$lang_adv_opts['keywords']}</label></td>
+                                                <td><input type="checkbox" name="keywords" id="keywords" class="checkbox" checked="checked" /><label for="keywords" class="clickable_option">{$lang_common['keywords']}</label></td>
                                                 <td>&nbsp;</td>
 
                                         </tr>
                                         <tr>
-                                                <td><input type="checkbox" name="owner_name" id="owner_name" class="checkbox" /><label for="owner_name" class="clickable_option">{$lang_adv_opts['owner_name']}</label></td>
+                                                <td><input type="checkbox" name="owner_name" id="owner_name" class="checkbox" /><label for="owner_name" class="clickable_option">{$lang_common['owner_name']}</label></td>
                                                 <td align="right"><select name="type" class="listbox">
                                                         <option value="AND" selected="selected">{$lang_search_php['all_words']}</option>
                                                         <option value="OR">{$lang_search_php['any_words']}</option></select>
                                                 </td>
                                         </tr>
                                         <tr>
-                                                <td><input type="checkbox" name="filename" id="filename" class="checkbox" /><label for="filename" class="clickable_option">{$lang_adv_opts['filename']}</label></td>
+                                                <td><input type="checkbox" name="filename" id="filename" class="checkbox" /><label for="filename" class="clickable_option">{$lang_common['filename']}</label></td>
                                                 <td>&nbsp;</td>
                                         </tr>
                                                 $customs

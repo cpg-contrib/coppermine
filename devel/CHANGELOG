@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-01-18 [O] Moved some frequently used strings into $lang_common array for easier translation {GauGau}
 2007-01-18 [A] Added recording of voter id {GauGau}
 2007-01-18 [O] Added browser and os entries to vote stats records {GauGau}
 2007-01-18 [B] Fixed vote stats reference to hit stats table {GauGau}

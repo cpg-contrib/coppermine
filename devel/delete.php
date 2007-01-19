@@ -51,10 +51,10 @@ EOT;
 
 function output_caption()
 {
-    global $lang_delete_php
+    global $lang_delete_php, $lang_common;
     ?>
 <tr><td colspan="7" class="tableb">&nbsp;</td></tr>
-<tr><td colspan="7" class="tableh2"><b><?php echo $lang_delete_php['caption'] ?></b></tr>
+<tr><td colspan="7" class="tableh2"><b><?php echo $lang_common['caption'] ?></b></tr>
 <tr><td colspan="7" class="tableb">
 <table cellpadding="1" cellspacing="0">
 <tr><td><b>F</b></td><td>:</td><td><?php echo $lang_delete_php['fs_pic'] ?></td><td width="20">&nbsp;</td><td><img src="images/green.gif" border="0" width="12" height="12" align="absmiddle"></td><td>:</td><td><?php echo $lang_delete_php['del_success'] ?></td></tr>

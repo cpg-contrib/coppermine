@@ -118,6 +118,11 @@ $lang_common = array(
   'confirm' => 'Confirmation', // cpg1.5.x
   'captcha_help_title' => 'Visual confirmation (captcha)', // cpg1.5.x
   'captcha_help' => 'To avoid spam, you have to confirm that you are an actual human being and not just a bot script  by entering the displayed text.<br />Capitalization does not matter, you can type in lowercase.', // cpg1.5.x
+  'title' => 'Title', // cpg1.5.x
+  'caption' => 'Caption', // cpg1.5.x
+  'keywords' => 'Keywords', // cpg1.5.x
+  'owner_name' => 'Owner name', // cpg1.5.x
+  'filename' => 'Filename', // cpg1.5.x
 );
 
 // ------------------------------------------------------------------------- //
@@ -214,17 +219,16 @@ $lang_album_list = array(
 );
 
 $lang_thumb_view = array(
-  'date' => 'DATE',
+  'date' => 'Date',
   //Sort by filename and title
-  'name' => 'FILE NAME',
-  'title' => 'TITLE',
+  'name' => 'File Name',
   'sort_da' => 'Sort by date ascending',
   'sort_dd' => 'Sort by date descending',
   'sort_na' => 'Sort by name ascending',
   'sort_nd' => 'Sort by name descending',
   'sort_ta' => 'Sort by title ascending',
   'sort_td' => 'Sort by title descending',
-  'position' => 'POSITION',
+  'position' => 'Position',
   'sort_pa' => 'Sort by position ascending',
   'sort_pd' => 'Sort by position descending',
   'download_zip' => 'Download as Zip file',
@@ -285,7 +289,6 @@ $lang_cpg_die = array(
 );
 
 $lang_display_thumbnails = array(
-  'filename' => 'Filename=',
   'filesize' => 'Filesize=',
   'dimensions' => 'Dimensions=',
   'date_added' => 'Date added=',
@@ -942,7 +945,6 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
 
 if (defined('DELETE_PHP')) $lang_delete_php = array(
   'orig_pic' => 'original image', // cpg1.5
-  'caption' => 'Caption',
   'fs_pic' => 'full size image',
   'del_success' => 'successfully deleted',
   'ns_pic' => 'normal size image',
@@ -1017,10 +1019,8 @@ $lang_display_image_php = array(
 
 $lang_picinfo = array(
   'title' =>'File information',
-  'Filename' => 'Filename',
   'Album name' => 'Album name',
   'Rating' => 'Rating (%s votes)',
-  'Keywords' => 'Keywords',
   'File Size' => 'File Size',
   'Date Added' => 'Date added',
   'Dimensions' => 'Dimensions',
@@ -1200,10 +1200,7 @@ if (defined('REPORT_FILE_PHP') || defined('DISPLAYREPORT_PHP')) $lang_report_php
 if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
   'pic_info' => 'File info',
   'album' => 'Album',
-  'title' => 'Title',
-  'filename' => 'Filename',
   'desc' => 'Description',
-  'keywords' => 'Keywords',
   'approval' => 'Approval', //cpg 1.5
   'approved' => 'Approved', //cpg 1.5
   'disapproved' => 'Disapproved', //cpg 1.5
@@ -1754,14 +1751,6 @@ $lang_search_php = array(
   'days' => 'days',
   'all_words' => 'Match all words (AND)',
   'any_words' => 'Match any words (OR)',
-);
-
-$lang_adv_opts = array(
-  'title' => 'Title',
-  'caption' => 'Caption',
-  'keywords' => 'Keywords',
-  'owner_name' => 'Owner name',
-  'filename' => 'Filename',
 );
 
 }
