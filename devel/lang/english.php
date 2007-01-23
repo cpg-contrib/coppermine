@@ -1832,6 +1832,7 @@ if (defined('STAT_DETAILS_PHP')) $lang_stat_details_php = array(
   'browser' => 'Browser',
   'os' => 'Operating System',
   'ip' => 'IP',
+  'uid' => 'User', //cpg1.5
   'sort_by_xxx' => 'Sort by %s',
   'ascending' => 'ascending',
   'descending' => 'descending',
@@ -1857,9 +1858,10 @@ if (defined('STAT_DETAILS_PHP')) $lang_stat_details_php = array(
   'submit'  => 'Submit', //cpg1.5
   'upd_success' => 'Coppermine configuration was updated', //cpg1.5
   'votes' => 'votes', //cpg1.5
-  'individual_stats_config' => 'Individual stats configuration', //cpg1.5
-  'reset_votes_individual' => 'Reset vote stats for this file', //cpg1.5
-  'reset_votes_individual_confirm' => 'Are you sure that you want to reset the voting stats for this file?', //cpg1.5
+  'reset_votes_individual' => 'Reset selected vote(s) for this file', //cpg1.5
+  'reset_votes_individual_confirm' => 'Are you sure that you want to delete the selected votes for this file? This can not be undone!', //cpg1.5
+  'fullscreen' => 'Display this page in fullscreen mode', //cpg1.5
+  'guest' => 'Guest', //cpg1.5
 );
 
 // ------------------------------------------------------------------------- //

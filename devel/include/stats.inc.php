@@ -190,12 +190,12 @@ $osArray = array(
 /**
  * function defintions start
  */
-function individualStatsByOS($pid='',$type='hits') {
+function individualStatsByOS($pid='',$type='hits', $tableWidth='100%') {
       global $osArray, $CONFIG, $lang_stat_details_php;
       if (GALLERY_ADMIN_MODE == true){
         foreach ($osArray as $key => $value) {
                 $query = "SELECT COUNT(*) FROM ";
-                if ($type=='votes') {
+                if ($type=='vote') {
                     $query .= $CONFIG['TABLE_VOTE_STATS'];
                 } else {
                     $query .= $CONFIG['TABLE_HIT_STATS'];
@@ -213,7 +213,7 @@ function individualStatsByOS($pid='',$type='hits') {
         }
         array_multisort($osResultArray,SORT_DESC);
         $osTotal = array_sum($osResultArray);
-        starttable('-2', $lang_stat_details_php['stats_by_os'], 3);
+        starttable($tableWidth, $lang_stat_details_php['stats_by_os'], 3);
         print <<< EOT
         <tr>
           <td class="tableh2" colspan="2">{$lang_stat_details_php['os']}</td>
@@ -238,7 +238,7 @@ EOT;
           <tr>
             <td class="{$row_style_class}" width="20"><img src="images/os/{$osArray[$key]}" width="14" height="14" border="0" title="{$key}" alt="" /></td>
             <td class="{$row_style_class}">{$key}</td>
-            <td class="{$row_style_class}" align="right">
+            <td class="{$row_style_class}" align="left">
 EOT;
                 print theme_display_bar($value,$osTotal,200,'', '', ' ('.$individualPercentage.' %)');
           print <<< EOT
@@ -258,12 +258,12 @@ EOT;
     }
 }
 
-function individualStatsByBrowser($pid='',$type='hits') {
+function individualStatsByBrowser($pid='',$type='hits', $tableWidth='100%') {
       global $browserArray, $CONFIG, $lang_stat_details_php;
       if (GALLERY_ADMIN_MODE == true){
         foreach ($browserArray as $key => $value) {
                 $query = "SELECT COUNT(*) FROM ";
-                if ($type=='votes') {
+                if ($type=='vote') {
                     $query .= $CONFIG['TABLE_VOTE_STATS'];
                 } else {
                     $query .= $CONFIG['TABLE_HIT_STATS'];
@@ -281,7 +281,7 @@ function individualStatsByBrowser($pid='',$type='hits') {
         }
         array_multisort($browserResultArray,SORT_DESC);
         $browserTotal = array_sum($browserResultArray);
-        starttable('-2', $lang_stat_details_php['stats_by_browser'], 3);
+        starttable($tableWidth, $lang_stat_details_php['stats_by_browser'], 3);
         print <<< EOT
         <tr>
           <td class="tableh2" colspan="2">{$lang_stat_details_php['browser']}</td>

@@ -135,7 +135,7 @@ function html_picinfo()
                     show_section('votedetailshidetoggle');
                     show_section('votedetails');
                     document.getElementById('votedetails').height = 800;
-                    top.frames.votedetails.document.location.href = "stat_details.php?type=vote&pid={$CURRENT_PIC_DATA['pid']}&sort=sdate&dir=&sdate=1&ip=1&rating=1&referer=0&browser=1&os=1";
+                    top.frames.votedetails.document.location.href = "stat_details.php?type=vote&pid={$CURRENT_PIC_DATA['pid']}&sort=sdate&dir=&sdate=1&ip=1&rating=1&referer=0&browser=0&os=0&uid=1";
                 }
             </script>
 EOT;
