@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-01-24 [A] Added Lithuanian translation (user contribution) {GauGau}
 2007-01-15 [A] Added Arabic translation (user contribution) {GauGau}
 2007-01-14 [B] Fixed situation in plugin api that caused bizarre plugin behavior when plugins called underlying plugin api hooks {Donnoman}
 2007-01-08 [S] Fixed the vulnerability mentioned in topic 39943, though only admins could have exploited that. {Abbas}
