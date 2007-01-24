@@ -2647,6 +2647,7 @@ $lang_language_data['kurdish'] = array('Kurdish','&#1603;&#1608;&#1585;&#1583;&#
 $lang_language_data['kyrgyz'] = array('Kyrgyz','','kg');
 $lang_language_data['laothian'] = array('Laothian ','','la');
 $lang_language_data['latvian'] = array('Latvian','Latvian','lv');
+$lang_language_data['lithuanian'] = array('Lithuanian','Lietuvi&#0353;kai','lt');
 $lang_language_data['macedonian'] = array('Macedonian','','mk');
 $lang_language_data['malay'] = array('Malay','Bahasa Melayu','my');
 $lang_language_data['maltese'] = array('Maltese','','mt');
