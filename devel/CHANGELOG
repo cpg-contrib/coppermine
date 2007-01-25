@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-01-25 [D] Improved groups control panel section {GauGau}
 2007-01-24 [O] Added Lithuanian preparation to language selector {GauGau}
 2007-01-23 [O] Improved stats page (work in progress) {GauGau}
 2007-01-19 [O] Embedded stats details into page instead of opening a pop-up {GauGau}

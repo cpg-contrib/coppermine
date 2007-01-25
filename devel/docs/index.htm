@@ -58,6 +58,7 @@
                   <li class="level4"><a href="#permissions_chmod">2.1.1.1 Apache on Unix/Linux (CHMOD)</a></li>
                   <li class="level4"><a href="#permissions_apache_windows">2.1.1.2 Apache on Windows</a></li>
                   <li class="level4"><a href="#permissions_iis_windows">2.1.1.3 IIS on Windows</a></li>
+                  <li class="level4"><a href="#permissions_support">2.1.1.4 Asking for support on permissions issues</a></li>
                 </ul>
                 <ul class="level3">
                   <li class="level3"><a href="#install_screen_start">2.1.2 The install screen</a></li>
@@ -107,14 +108,39 @@
         <li class="level1"><a href="#administration" class="menu1">4. Configuration &amp; Administration</a></li>
 </ul>
         <ul class="level2">
+        <!--
+        Config    Categories    Albums    Groups    Users    Ban Users    Review Comments    Display Ecards    Sort my pictures    Batch add files    Admin Tools    My profile    Documentation
+        -->
 
                 <li class="level2"><a href="#cat_alb_pic" class="menu2">4.1 Categories, albums and files</a></li>
                 <li class="level2"><a href="#admin_user_mode" class="menu2">4.2 Turning admin controls on &amp; off</a></li>
                 <li class="level2"><a href="#group_cp" class="menu2">4.3 The group control panel</a></li>
+        </ul>
+                <ul class="level3">
+                        <li class="level3"><a href="#group_cp_names">4.3.1 Group names</a></li>
+                        <li class="level3"><a href="#group_cp_pre_vs_custom">4.3.2 Group types</a></li>
+                </ul>
+                        <ul class="level4">
+                                 <li class="level4"><a href="#group_cp_administrators">4.3.2.1 Administrators</a></li>
+                                 <li class="level4"><a href="#group_cp_registered">4.3.2.2 Registered</a></li>
+                                 <li class="level4"><a href="#group_cp_anonymous">4.3.2.3 Anonymous/Guests</a></li>
+                                 <li class="level4"><a href="#group_cp_banned">4.3.2.4 Banned</a></li>
+                                 <li class="level4"><a href="#group_cp_custom">4.3.2.5 Custom groups</a></li>
+                        </ul>
+                <ul class="level3">
+                        <li class="level3"><a href="#group_cp_quota">4.3.3 Quota</a></li>
+                        <li class="level3"><a href="#group_cp_permissions">4.3.4 Group permissions (Rating/Ecards/Comments)</a></li>
+                        <li class="level3"><a href="#group_cp_public">4.3.5 Public albums upload</a></li>
+                        <li class="level3"><a href="#group_cp_personal">4.3.6 Personal gallery</a></li>
+                        <li class="level3"><a href="#group_cp_upload_method">4.3.7 Upload method</a></li>
+                        <li class="level3"><a href="#group_cp_create">4.3.8 Creating custom groups</a></li>
+                        <li class="level3"><a href="#group_cp_delete">4.3.9 Deleting custom groups</a></li>
+                        <li class="level3"><a href="#group_cp_sync">4.3.10 Triggering synchronisation (bridged only)</a></li>
+                </ul>
+        <ul class="level2">
                 <li class="level2"><a href="#user_cp" class="menu2">4.4 The user control panel</a></li>
         </ul>
                 <ul class="level3">
-
                         <li class="level3"><a href="#user_cp_page">4.4.1 Page controls</a></li>
                         <li class="level3"><a href="#user_cp_search">4.4.2 Searching for user(s)</a></li>
                         <li class="level3"><a href="#user_cp_new">4.4.3 Creating new users</a></li>
@@ -322,6 +348,7 @@
 
 
 <a name="what"><h1>1. What is required</h1></a>
+<p>There are certain <b>minimum requirements</b> that need to be met in order to be able to install Coppermine:</p>
 <ul>
   <li>A web server that supports PHP</li>
   <li>A MySQL database<br />
@@ -331,9 +358,8 @@
   <li>An image library: either GD version 1.x or 2.x (PHP has to be compiled to support it) or ImageMagick.<br />
   (see <a href="faq.htm#whatIsImageMagick">What's ImageMagick</a> and <a href="faq.htm#WhatIsGD">What is GD</a>)</li>
   <li>It's always a good idea to contact your webhosting service first and ask them if they are aware of any known issues when installing Coppermine.</li>
-
 </ul>
-
+<p>Although Coppermine can be run on <i>any</i> webserver that has the minimum requirements mentioned above, the Coppermine dev team can not support you on setting up your webserver in the first place. As suggested, those are requirements, i.e. they have to be met before actually considering to run Coppermine. Please note that the Coppermine group does not recommend self-hosting unless you're an experienced webserver administrator and know your way around.</p>
 <p class="back"><a href="#top">Back to top</a></p>
 
 
@@ -359,7 +385,8 @@
 <div class="indent"><!-- start sub-section of "install" (level 2 x.x)-->
 
 <a name="permissions"><h3>2.1.1 Setting permissions</h3></a>
-Coppermine needs <em>write access</em> to a number of files and folders on the webserver in order to accomplish the following:
+Any PHP script that is suppossed to be run on a webserver needs <em>read</em> and <em>execute</em> permissions on the server. Subsequently, all Coppermine-files need this permission.<br />
+Additionally, Coppermine needs <em>write access</em> to a number of files and folders on the webserver in order to accomplish the following:
 <ul>
 <li>during install, coppermine needs to create and write to the file "config.inc.php" in the "include" folder in order to store the necessary mySQL access data to run coppermine and to create and write the "install.lock" file, also in the same folder to prevent the installer from being run a second time after a successful install.</li>
 <li>when using http uploads, coppermine needs to write the files that are being uploaded into the subfolders that you or your users create in the coppermine <em>albums</em> folder</li>
@@ -476,6 +503,13 @@ If you have shell access to your server, you can apply the native <a href="http:
 </ul>
 <p>You have to understand that there is no such thing as CHMOD on Windows operating systems - this command is available on Unix/Linux only, even if your FTP application displays a CHMOD option. If you try to apply CHMOD on Windows, the command will simply be ignored and do nothing. However, there are permissions on Windows as well.</p>
 <a name="permissions_iis_windows_end"></a>
+
+<a name="permissions_support"><h4>2.1.1.4 Asking for support on permissions issues</h4></a>
+<p>Most users who come from a Windows-background (or who have no idea about how permissions work at all) frequently ask on the Coppermine support board &quot;<em>Why does this have to be so complicated? Why don't you just create a script that handles all those complicated permission issues for me?</em>&quot;. The answer is pretty straightforward: because we can't.<br />
+Coppermine has been built to work on a number of platforms and operating systems. The permissions that you need to set are part of how the operating system of your webserver works - they are not related to Coppermine in itself. A script can't assign permissions to itself if it doesn't have the privilege to do so.  Think of it as if it was the structure of an army: a soldier who is low in rank can not promote himself to be a general; only officers who actually have higher privileges can promote regular soldiers to a higher rank. They wouldn't make them a general in the first place though, but just give them the rank they need to do their job (i.e. they would promote a private to corporal).<br />
+As the setup of webservers differ, we can't give you a simple, straightforward instruction like &quot;CHMOD everything to 755 and you'll be done&quot;. Although this may be the case for many on shared webhosting, it might not apply to you. On some server setups, it might not be enough. On others, it might be a security risk. Yet on another machine, it may not apply at all because there is no such command.</p>
+<p>Supporters are reluctant to answer the same questions on permissions over and over gain, as they are not related to Coppermine in the first place. If you ask a permissions-related question on the Coppermine support board that clearly shows that you haven't read the documentation (at least the part that covers permissions), then you will probably get a harsh answer, or no answer at all. Please think twice, read the permissions section carefully. There's little others could do to help you on this. If you're really stuck, you better ask your webhost for support.</p>
+<a name="permissions_support_end"></a>
 
 <a href="permissions_end"></a>
 <p class="back"><a href="#top">Back to top</a></p>
@@ -622,7 +656,7 @@ If you have shell access to your server, you can apply the native <a href="http:
         Make sure uploading works as expected before letting in visitors</li>
         <li><strong><a href="#getting_consider_bridging">Consider bridging</a></strong><br />
         Bridging later when you already have users might get difficult</li>
-        <li><strong>What are your visitors allowed to do?</strong><br />
+        <li><strong><a href="#getting_interaction">What are your visitors allowed to do?</a></strong><br />
         What level of user interaction are you going to allow?</li>
         <li><strong>Change your coppermine's design</strong><br /></li>
 </ul>
@@ -859,13 +893,16 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
 
 <a name="downgrading"><h2>3.4 Downgrading from cpg1.5.x to an older version</h2></a>
 <p>CPG1.5.x incorporates many new features (compared to older versions), so we encourage all users to upgrade. However, there may be some who want to test cpg1.5.x and decide later that they want to go back to an older version. You have to keep in mind that a full upgrade changes the overall layout of coppermine's database that includes converting the encoding to unicode. This process can't be reverted: once you have done the conversion, the only way back is to restore a complete mySQL database dump (of course you have to create this backup <strong>before</strong> you upgraded in the first place). Creating mySQL dumps (backups) is recommended anyway, so you should do so <strong>now</strong>.</p>
-<p>If you haven't converted your database to unicode (utf-8) encoding, you can downgrade as explained below. To make this absolutely clear: you can only downgrade if you used to have cpg1.3.x before and upgraded this version to cpg1.5.x without converting the database. If you <em>have</em> converted the database or if you have made a <em>fresh</em> install of cpg1.5.x, you can't downgrade at all!</p>
-<p>To actually perform the downgrade, replace all cpg1.5.x files on your server with the files from the older version (as if you were doing an upgrade, see above). You then have to undo some changes in the database structure. To do so, run a query like<br />
+<p>To make this absolutely clear: you can only downgrade if you used to have cpg1.4.x before and upgraded this version to cpg1.5.x. If you have made a <em>fresh</em> install of cpg1.5.x, you can't downgrade at all!</p>
+<p>To actually perform the downgrade, replace all cpg1.5.x files on your server with the files from the older version (as if you were doing an upgrade, see above).<br />
+<!--You then have to undo some changes in the database structure. To do so, run a query like<br />
 <pre>ALTER TABLE `CPG_users` CHANGE `user_location`  `user_profile1` VARCHAR(255);
 ALTER TABLE `CPG_users` CHANGE `user_interests` `user_profile2` VARCHAR(255);
 ALTER TABLE `CPG_users` CHANGE `user_website` `user_profile3` VARCHAR(255);
 ALTER TABLE `CPG_users` CHANGE `user_occupation` `user_profile4` VARCHAR(255);</pre><br />
-using a tool like <a href="http://www.phpmyadmin.net/" rel="external" class="external">phpMyAdmin</a>, replacing <tt class="code">CPG_</tt> in the query with the prefix you have chosen during coppermine install.</p>
+using a tool like <a href="http://www.phpmyadmin.net/" rel="external" class="external">phpMyAdmin</a>, replacing <tt class="code">CPG_</tt> in the query with the prefix you have chosen during coppermine install.
+-->
+</p>
 <a name="downgrading_end"></a>
 <p class="back"><a href="#top">Back to top</a></p>
 </div><!-- end sub-section of "Upgrading" (level 1 x)-->
@@ -935,7 +972,7 @@ using a tool like <a href="http://www.phpmyadmin.net/" rel="external" class="ext
   </li>
   <li><strong>My profile</strong><br />Edit your own user profile</li>
 </ul>
-<p>In previous beta versions of cpg1.4.x there used to be an admin mode and user mode for &quot;regular registered&quot; users, somewhat like those for the true administrator. This feature has been removed as it was both confusing for end users and really didn't serve any special purpose.</p>
+<p>In previous beta versions of coppermine (cpg1.4.0 and older) there used to be an admin mode and user mode for &quot;regular registered&quot; users, somewhat like those for the true administrator. This feature has been removed as it was both confusing for end users and really didn't serve any special purpose.</p>
 <p>The user with upload permissions has the following admin options:</p>
 <ul>
   <li><strong>Create / order my albums</strong><br />similar to album manager in admin mode, the user can create albums within his user gallery</li>
@@ -945,20 +982,59 @@ using a tool like <a href="http://www.phpmyadmin.net/" rel="external" class="ext
 <p class="back"><a href="#top">Back to top</a></p>
 
 <a name="group_cp"><h2>4.3 The group control panel</h2></a>
-<p><img src="pics/group_cp.gif" width="638" height="232" border="0" alt="" /></p>
-<p>This is where you define what members of a user <em>group</em> can and can't do.</p>
-<p>The disk quota applies only for groups where &quot;<em>Personal gallery</em>&quot; has been set to &quot;<strong>Allowed</strong>&quot;. Both files uploaded by a user in his personal gallery as well as files uploaded to public galleries are included in the quota.</p>
-<p>Use the <strong>anonymous</strong> group to define what non-registered users can and can't do. Quota and &quot;<em>Personal gallery</em>&quot; are meaningless for anonymous users.</p>
-<a name="group_cp_permissions"></a>
+<p><img src="pics/group_cp.gif" width="638" height="232" border="0" alt="" align="right" /></p>
+<p>This is where you define what members of a user <em>group</em> can and can't do. In Coppermine, you don't assign privileges to individual users, but to groups. Users can be in various groups, so you can determine granular levels of permissions.</p>
+
+<a name="group_cp_names"><h3>4.3.1 Group names</h3></a>
+<p>Out of the box there are four groups in Coppermine. You can rename them just as well as you can rename custom groups, but it's recommended to leave them they way they are by default. This will make upgrades easier and help you administer and maintain your gallery. End users usually don't see the name of the group they are in, so you don't have to provide other group names.</p>
+<p>However, if you choose to rename a group, just change the name and submit the user control panel form by clicking on &quot;Apply modifications&quot;.</p>
+<a name="group_cp_names_end"></a>
+
+<a name="group_cp_types"><h3>4.3.2 Group types</h3></a>
+<p>There are two types of groups in Coppermine: those that come with it out of the box (default groups) and custom user groups. The ones that come with Coppermine by default (&quot;Administrators&quot;, &quot;Registered&quot;, &quot;Guests&quot;, &quot;Banned&quot;) can not be deleted.<br />
+Users can be member of several groups - privileges inherited from the group acumulate. This means that the least restrictive permission/setting is being taken into account.</p>
+<p>Example: user "Linus" is member of the "registered" group as primary group and additionally member of the custom user groups "Cartoonists" and "Photographers". Members of the group "registered" are allowed to send ecards, but are not allowed to rate nor to post comments. They are not allowed to have a personal gallery neither. Members of the "Cartoonists" group are allowed to comment, send ecards and rate. Members of the group "Photographers" are not allowed to comment, to send ecards nor to rate, but they are allowed to have personal galleries. Subsequently, the user "Linus" would have the privilege to send ecards (inherited from membership in the group "registered"); he would be allowed to post comments and rate files (inherited from membership in the group "Cartoonists"). Additionally, "Linus" would have the privilege to have a personal gallery (inherited from membership int the group "Photographers"). The fact that members of the group "Photographers" are not allowed to rate, send ecards or post comments would not be taken into account, since membership inside the other two groups that grant those privileges would override the more restrictive settings for the group "Photographers".</p>
+
+<a name="group_cp_administrators"><h4>4.3.2.1 Administrators</h4></a>
+<p>By default (after initial installation), there is only one user who resides in the Administrators group: the admin account you set up during initial install. You can later add other users to the administrators group (using the user control panel), but you have to keep in mind that all other members of this group have exactly the same privileges the original admin has: they could ruin your entire gallery in a couple of mouse clicks. It's strongly recommended to only assign others admin privileges that you fully trust.</p>
+<a name="group_cp_administrators_end"></a>
+
+<a name="group_cp_registered"><h4>4.3.2.2 Registered</h4></a>
+<p>By default, there is no user inside the "Registered" group. This will change as soon as you allow registration and members come in. All new users who get created (either by completing the login form or when they are created by an admin) reside in the "Registered" group (as primary group) no matter what.</p>
+<a name="group_cp_registered_end"></a>
+
+<a name="group_cp_anonymous"><h4>4.3.2.3 Anonymous/Guests</h4></a>
+<p>Use the <strong>anonymous</strong> group to define what non-registered users can and can't do. Quota and &quot;<em>Personal gallery</em>&quot; are meaningless for anonymous users. You can not (and mustn't try) to assign existing users to the &quot;anonymous&quot; group - being a registered user automatically keeps them from being a member of the "Anonymous" group.</p>
+<a name="group_cp_anonymous_end"></a>
+
+<a name="group_cp_banned"><h4>4.3.2.4 Banned</h4></a>
+<p>On unbridged installs (or standard, stand-alone coppermine installs), the group "banned" feature really doesn't accomplish much. A user who is member of this group is still able to log in and view pics, he's just not able to upload, rate, send ecards or post comments. If you truly want to place a full ban on someone you should use the "banning" feature (which isn't group-based but individually user-based), instead.</p>
+<a name="group_cp_banned_end"></a>
+
+<a name="group_cp_custom"><h4>4.3.2.5 Custom groups</h4></a>
+<p>You can <a href="group_cp_create">create groups</a> as you see fit. Make sure to come up with a naming scheme that makes sense in the first place. It's advisable to start with a minimum set of custom groups and only add them later if you must.</p>
+<a name="group_cp_custom_end"></a>
+<a name="group_cp_types_end"></a>
+
+<a name="group_cp_quota"><h3>4.3.3 Quota</h3></a>
+<p>The disk quota applies only for groups where &quot;<em>Personal gallery</em>&quot; has been set to &quot;<strong>Allowed</strong>&quot;. Both files uploaded by a user into his personal gallery as well as files uploaded to public galleries are included in the quota. The quota applies to each member of the group. Set the quota to a value that actually makes sense - setting it to several terrabytes does not make sense and may lead to funny side-effects.</p>
+<a name="group_cp_quota_end"></a>
+
+<a name="group_cp_permissions"><h3>4.3.4 Group permissions (Rating/Ecards/Comments)</h3></a>
 <p><em>Permissions</em> control what the user is allowed to do in the gallery (Rating/Sending Ecards/Posting Comments).</p>
-<p>Bear in mind that if a user is a member of a group where &quot;<em>Rating</em>&quot;, &quot;<em>Comments</em>&quot; or &quot;<em>Public albums upload</em>&quot; is set &quot;<em>YES</em>&quot;, s/he will have the right to perform these operations only in albums where they are allowed. ( ie. uploading files will only be possible in albums where &quot;<em>Visitors can upload files</em>&quot; has been set to <em>YES</em>.)</p>
+<p>Bear in mind that if a user is a member of a group where &quot;<em>Rating</em>&quot;, &quot;<em>Comments</em>&quot; or &quot;<em>Public albums upload</em>&quot; is set &quot;<em>YES</em>&quot;, s/he will have the right to perform these operations only in albums where they are allowed. ( ie. uploading files will only be possible in albums where &quot;<em>Visitors can upload files</em>&quot; has been set to <em>YES</em> using the album properties screen of particular albums.)</p>
 <a name="group_cp_permissions_end"></a>
-<a name="group_cp_personal"></a>
+
+<a name="group_cp_public"><h3>4.3.5 Public albums upload</h3></a>
+<a name="group_cp_public_end">Think of the setting "Public albums upload" as a general switch that determines if members of a particular group are allowed to upload to public albums (i.e. albums that the admin created) at all. Setting this to "Yes" will not immediately grant users access to upload to all public albums, but only to the albums that you explicitely specified upload permissions using the <a href="#album_prop">album properties</a> dialog of a particular public album you want to allow user uploads to.</a>
+
+<a name="group_cp_personal"><h3>4.3.6 Personal gallery</h3></a>
 <p>If &quot;<em>Personal gallery</em>&quot; is set to <em>Allowed</em>, the members of the group will be able to have their own gallery in the &quot;<em>User galleries</em>&quot; category where they will be able to create their own albums.</p>
 <p>If &quot;<em>Approval</em>&quot; is set to <em>NO</em>, files uploaded by members of the group in albums created in their own gallery won't need to be approved by the admin. If &quot;<em>Approval</em>&quot; is set to <em>YES</em>, the users in the particular group will be able to upload, however the uploaded files will only be shown after the admin (you) has approved them.</p>
 <a name="group_cp_personal_end"></a>
+
+<a name="group_cp_upload_method"><h3>4.3.7 Upload method</h3></a>
 <p>The group control panel enables you to control the upload parameters of any group.</p>
-<a name="group_cp_upload_method"></a>
 <p><em>Upload method</em> lets you select the type of upload method that a particular group may use. Four forms or methods are currently available.</p>
 <ul>
 <li><strong>Single file uploads only</strong> - Users of this group may not use advanced uploading features. They may upload one file at a time. To enable single file uploads only, set <em>File upload boxes</em> to &quot;1&quot;, <em>URI upload boxes</em> to &quot;0&quot; and <em>No. of boxes</em> to &quot;fixed&quot;</li>
@@ -970,7 +1046,23 @@ using a tool like <a href="http://www.phpmyadmin.net/" rel="external" class="ext
 <p><em>File upload boxes</em> controls the number of file upload boxes presented to the user. If the user may customize the number of boxes (<em>No. of boxes </em> set to &quot;variable&quot;), this setting serves a maximum limit for the number of boxes he may request. Otherwise, this setting determines the number of boxes that will appear on the upload form.</p>
 <p><em>URI upload boxes</em> is the same type of control as <em>File upload boxes</em>, but it controls the presentation of URI upload boxes.</p>
 <a name="group_cp_upload_method_end"></a>
-<p><strong>Please note</strong>: on unbridged installs (or standard, stand-alone coppermine installs), the group "banned" feature really doesn't accomplish much. A user who is member of this group is still able to log in and view pics, he's just not able to upload, rate, send ecards or post comments. If you truly want to place a full ban on someone you should use the "banning" feature (which isn't group-based but individually based), instead.</p>
+
+
+
+
+<a name="group_cp_create"><h3>4.3.8 Creating custom groups</h3></a>
+<p>To create a custom user group, click on the &quot;Create new group&quot; button located at the bottom of the &quot;Groups&quot; control panel. A new table row will appear at the bottom of the table with a blank name. It has not been saved yet - you will have to at least assign a unique name for it. Change any of the other properties of your new group and finally click the &quot;Apply modifications&quot; button.<br />It is recommended to only use web-safe alpha-numeric characters for group names (plus underscore and minus).</p>
+<p class="important">When being bridged you can't create new groups in Coppermine's groups control panel, as Coppermine then no longer controls the groups. Therefor, you have to create new custom groups inside the app you have bridged with.</p>
+<a name="group_cp_create_end"></a>
+
+<a name="group_cp_delete"><h3>4.3.9 Deleting custom groups</h3></a>
+<p>You can not delete the four pre-defined groups (&quot;Administrators&quot;, &quot;Registered&quot;, &quot;Guests&quot;, &quot;Banned&quot;). All other (custom) groups can be deleted by going to Coppermine's groups control panel, checking the tickbox in front of the group you want to delete and finally clicking on the &quot;Delete selected groups&quot; button at the bottom of the screen. Deleting groups can not be undone. Deleting a group does not delete the members within that particular group.<br />
+When bridged, a similar thing that applies for the creation of groups applies to deleting them as well: Coppermine doesn't control groups any longer when being bridged, so you have to delete user groups in the app that you have bridged Coppermine with.</p>
+<a name="group_cp_delete_end"></a>
+
+<a name="group_cp_sync"><h3>4.3.10 Triggering synchronisation (bridged only)</h3></a>
+<p>When Coppermine is being bridged, you create and delete custom groups using the application that you have bridged Coppermine with. However, each time you edit groups inside the app that you have bridged with, you should go to Coppermine's group control panel once to trigger a syncronisation between Coppermine and the app you have bridged with in terms of groups. In other words: you have to make Coppermine aware of the changes that have taken place in the other app.</p>
+<a name="group_cp_sync_end"></a>
 <a name="group_cp_end"></a>
 <p class="back"><a href="#top">Back to top</a></p>
 
