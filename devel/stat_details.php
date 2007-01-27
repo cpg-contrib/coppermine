@@ -421,7 +421,7 @@ EOT;
   <br />
   <script type="text/javascript">
     <!--//
-        // window.onload = show_section('detail_submit');
+        // addonload("show_section('detail_submit')");
 
         function selectAll(d,box) {
           var f = document.editForm;

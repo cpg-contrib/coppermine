@@ -546,7 +546,8 @@ if ($_GET['id']){
     <link rel="stylesheet" type="text/css" href="themes/<?php echo $CONFIG['theme'];?>/style.css" />
 </head>
 
-<body <?php if ($imgObj) print "onload=\"libinit()\"";?>>
+<body>
+<?php if ($imgObj) print "<script type=\"text/javascript\">addonload('libinit()');</script>";?>
 
 <form name="mainform" id="cpgform" method="post" enctype="multipart/form-data" action="picEditor.php">
 

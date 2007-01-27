@@ -123,7 +123,7 @@ function cropZoom(dir) {
   }
 }
 
-onload=libinit;
+addonload('libinit()');
 // -->
 </script>
 <style>

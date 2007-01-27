@@ -2278,8 +2278,8 @@ tempval.focus()
 tempval.select()
 }
 // only hide the debug_output if the user is capable to display it, i.e. if JavaScript is enabled. If JavaScript is off, debug_output will be displayed and the toggle will remain invisible (as it would not do anything anyway with JS off)
-window.onload = document.getElementById(\'debug_output_rows\').style.display = \'none\';
-window.onload = document.getElementById(\'debug_output_toggle\').style.display = \'inline\';
+addonload("document.getElementById(\'debug_output_rows\').style.display = \'none\'");
+addonload("document.getElementById(\'debug_output_toggle\').style.display = \'inline\'");
 //-->
 </script>';
         echo '

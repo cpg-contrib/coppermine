@@ -147,3 +147,15 @@ function redirect(url)
 {
         window.location=url;
 }
+
+var onloads = new Array()
+
+function addonload(func){
+	onloads.push(func);
+}
+
+function runonloads(){
+	for (func in onloads) eval(onloads[func]);
+}
+
+window.onload = runonloads;

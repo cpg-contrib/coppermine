@@ -1050,7 +1050,9 @@ endtable();
 echo <<< EOT
 </form>
 <script type="text/javascript">
-        window.onload = hideall; show_section('expand_all_top'); show_section('expand_all_bottom');
+	addonload('hideall()');
+    addonload("show_section('expand_all_top')");
+    addonload("show_section('expand_all_bottom')");
 </script>
 EOT;
 pagefooter();

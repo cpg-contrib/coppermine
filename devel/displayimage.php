@@ -129,7 +129,7 @@ function html_picinfo()
             <div id="votedetailshidetoggle" style="display:none">&nbsp;(<a href="javascript:;" onclick="voteDetailsDisplay();">{$lang_picinfo['hide_details']}</a>)</div>
             <iframe src="stat_details.?type=blank" width="100%" height="0" name="votedetails" id="votedetails" frameborder="0" style="display:none;border;none;"></iframe>
             <script type="text/javascript">
-                window.onload = show_section('votedetailsunhidetoggle');
+                addonload("show_section('votedetailsunhidetoggle')");
                 function voteDetailsDisplay() {
                     show_section('votedetailsunhidetoggle');
                     show_section('votedetailshidetoggle');
@@ -165,7 +165,7 @@ EOT;
             <div id="hitdetailshidetoggle" style="display:none">&nbsp;(<a href="javascript:;" onclick="hitDetailsDisplay();">{$lang_picinfo['hide_details']}</a>)</div>
             <iframe src="stat_details.?type=blank" width="100%" height="0" name="hitdetails" id="hitdetails" frameborder="0" style="display:none;border;none;"></iframe>
             <script type="text/javascript">
-                window.onload = show_section('hitdetailsunhidetoggle');
+                addonload("show_section('hitdetailsunhidetoggle')");
                 function hitDetailsDisplay() {
                     show_section('hitdetailsunhidetoggle');
                     show_section('hitdetailshidetoggle');

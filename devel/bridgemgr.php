@@ -1376,7 +1376,7 @@ echo <<<EOT
                 }
                 document.getElementById('submit').value = message +' '+countDownTime;
         }
-        window.onload=countDown();
+        addonload('countDown()');
         -->
         </script>
 EOT;
