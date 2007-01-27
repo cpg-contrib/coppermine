@@ -130,11 +130,6 @@ class phpbb2018_udb extends core_udb {
 			$result = cpg_db_query($sql, $this->link_id);
 
 			if (mysql_num_rows($result)){
-			
-				// Update page in sessions table
-				$sql = "UPDATE {$this->sessionstable} SET session_page = 123, session_time = UNIX_TIMESTAMP() WHERE s.session_id = '{$this->sid}'";
-				cpg_db_query($sql, $this->link_id);
-				
 				$row = mysql_fetch_array($result);
 				$this->userlevel = $row['user_level'];
 				return $row;

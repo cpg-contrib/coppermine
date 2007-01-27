@@ -373,7 +373,7 @@ if (USER_ID > 0){
  * @return N/A
  **/
 
-//CPGPluginAPI::action('page_start',null);
+CPGPluginAPI::action('page_start',null);
 
 // load the main template
 load_template();
