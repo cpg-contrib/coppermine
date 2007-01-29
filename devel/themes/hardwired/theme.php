@@ -139,7 +139,7 @@ $template_sub_menu = <<<EOT
                         <table border="0" cellpadding="0" cellspacing="0">
                                 <tr>
 <!-- BEGIN custom_link -->
-										<td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /></td>
+                                                                                <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /></td>
                                         <td><img name="buttonleft1" src="themes/hardwired/images/buttonleft1.gif" width="7" height="25" border="0" alt="" /></td>
                                         <td style="background: url(themes/hardwired/images/buttoncenter.gif);">
                                                 <a href="{CUSTOM_LNK_TGT}" title="{CUSTOM_LNK_TITLE}">{CUSTOM_LNK_LNK}</a>
@@ -194,39 +194,5 @@ $template_sub_menu = <<<EOT
                         </table>
 
 EOT;
-
-// HTML template for gallery admin menu
-$template_gallery_admin_menu = <<<EOT
-
-                <div align="center">
-                <table cellpadding="0" cellspacing="1">
-                        <tr>
-<!-- BEGIN admin_approval -->
-                                <td class="admin_menu" id="admin_menu_anim"><a href="editpics.php?mode=upload_approval" title="{UPL_APP_TITLE}">{UPL_APP_LNK}</a></td>
-<!-- END admin_approval -->
-                                <td class="admin_menu"><a href="admin.php" title="{ADMIN_TITLE}">{ADMIN_LNK}</a></td>
-                                <td class="admin_menu"><a href="catmgr.php" title="{CATEGORIES_TITLE}">{CATEGORIES_LNK}</a></td>
-                                <td class="admin_menu"><a href="albmgr.php{CATL}" title="{ALBUMS_TITLE}">{ALBUMS_LNK}</a></td>
-                                <td class="admin_menu"><a href="groupmgr.php" title="{GROUPS_TITLE}">{GROUPS_LNK}</a></td>
-                                <td class="admin_menu"><a href="usermgr.php" title="{USERS_TITLE}">{USERS_LNK}</a></td>
-                                <td class="admin_menu"><a href="banning.php" title="{BAN_TITLE}">{BAN_LNK}</a></td>
-                                <td class="admin_menu"><a href="reviewcom.php" title="{COMMENTS_TITLE}">{COMMENTS_LNK}</a></td>
-                                </tr><tr>
-<!-- BEGIN log_ecards -->
-                                <td class="admin_menu"><a href="db_ecard.php" title="{DB_ECARD_TITLE}">{DB_ECARD_LNK}</a></td>
-<!-- END log_ecards -->
-                                <td class="admin_menu"><a href="picmgr.php" title="{PICTURES_TITLE}">{PICTURES_LNK}</a></td>
-                                <td class="admin_menu"><a href="searchnew.php" title="{SEARCHNEW_TITLE}">{SEARCHNEW_LNK}</a></td>
-                                <td class="admin_menu"><a href="util.php" title="{UTIL_TITLE}">{UTIL_LNK}</a></td>
-                                <td class="admin_menu"><a href="profile.php?op=edit_profile" title="{MY_PROF_TITLE}">{MY_PROF_LNK}</a></td>
-<!-- BEGIN documentation -->
-                                <td class="admin_menu"><a href="{DOCUMENTATION_HREF}" title="{DOCUMENTATION_TITLE}" target="cpg_documentation">{DOCUMENTATION_LNK}</a></td>
-<!-- END documentation -->
-                        </tr>
-                </table>
-                </div>
-EOT;
-
-
 
 ?>

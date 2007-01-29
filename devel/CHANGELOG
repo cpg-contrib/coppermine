@@ -26,8 +26,9 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-01-29 [C] Replaced table-driven admin menu with CSS-driven one {GauGau}
 2007-01-27 [B] Adding support for multiple window.onloads to resolve issue of conflicting calls. {Nibbler}
-2007-01-25 [D] Improved groups control panel section {GauGau}
+2007-01-25 [D] Improved groups control panel section in documentation {GauGau}
 2007-01-24 [O] Added Lithuanian preparation to language selector {GauGau}
 2007-01-23 [O] Improved stats page (work in progress) {GauGau}
 2007-01-19 [O] Embedded stats details into page instead of opening a pop-up {GauGau}

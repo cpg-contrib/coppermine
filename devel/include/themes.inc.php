@@ -227,33 +227,30 @@ if (!isset($template_gallery_admin_menu)) { //{THEMES}
 // HTML template for gallery admin menu
 $template_gallery_admin_menu = <<<EOT
 
-                <div align="center">
-                <table cellpadding="0" cellspacing="1">
-                        <tr>
+                <div class="admin_menu_wrapper">
 <!-- BEGIN admin_approval -->
-                                <td class="admin_menu" id="admin_menu_anim"><a href="editpics.php?mode=upload_approval" title="{UPL_APP_TITLE}">{UPL_APP_LNK}</a></td>
+                                <div class="admin_menu admin_float" id="admin_menu_anim"><a href="editpics.php?mode=upload_approval" title="{UPL_APP_TITLE}">{UPL_APP_LNK}</a></div>
 <!-- END admin_approval -->
-                                <td class="admin_menu"><a href="admin.php" title="{ADMIN_TITLE}">{ADMIN_LNK}</a></td>
-                                <td class="admin_menu"><a href="catmgr.php" title="{CATEGORIES_TITLE}">{CATEGORIES_LNK}</a></td>
-                                <td class="admin_menu"><a href="albmgr.php{CATL}" title="{ALBUMS_TITLE}">{ALBUMS_LNK}</a></td>
-                                <td class="admin_menu"><a href="groupmgr.php" title="{GROUPS_TITLE}">{GROUPS_LNK}</a></td>
-                                <td class="admin_menu"><a href="usermgr.php" title="{USERS_TITLE}">{USERS_LNK}</a></td>
-                                <td class="admin_menu"><a href="banning.php" title="{BAN_TITLE}">{BAN_LNK}</a></td>
-                                <td class="admin_menu"><a href="reviewcom.php" title="{COMMENTS_TITLE}">{COMMENTS_LNK}</a></td>
+                                <div class="admin_menu admin_float"><a href="admin.php" title="{ADMIN_TITLE}">{ADMIN_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="catmgr.php" title="{CATEGORIES_TITLE}">{CATEGORIES_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="albmgr.php{CATL}" title="{ALBUMS_TITLE}">{ALBUMS_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="groupmgr.php" title="{GROUPS_TITLE}">{GROUPS_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="usermgr.php" title="{USERS_TITLE}">{USERS_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="banning.php" title="{BAN_TITLE}">{BAN_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="reviewcom.php" title="{COMMENTS_TITLE}">{COMMENTS_LNK}</a></div>
 <!-- BEGIN log_ecards -->
-                                <td class="admin_menu"><a href="db_ecard.php" title="{DB_ECARD_TITLE}">{DB_ECARD_LNK}</a></td>
+                                <div class="admin_menu admin_float"><a href="db_ecard.php" title="{DB_ECARD_TITLE}">{DB_ECARD_LNK}</a></div>
 <!-- END log_ecards -->
-                                <td class="admin_menu"><a href="picmgr.php" title="{PICTURES_TITLE}">{PICTURES_LNK}</a></td>
-                                <td class="admin_menu"><a href="searchnew.php" title="{SEARCHNEW_TITLE}">{SEARCHNEW_LNK}</a></td>
-                                <td class="admin_menu"><a href="util.php" title="{UTIL_TITLE}">{UTIL_LNK}</a></td>
-                                <td class="admin_menu"><a href="profile.php?op=edit_profile" title="{MY_PROF_TITLE}">{MY_PROF_LNK}</a></td>
+                                <div class="admin_menu admin_float"><a href="picmgr.php" title="{PICTURES_TITLE}">{PICTURES_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="searchnew.php" title="{SEARCHNEW_TITLE}">{SEARCHNEW_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="util.php" title="{UTIL_TITLE}">{UTIL_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="profile.php?op=edit_profile" title="{MY_PROF_TITLE}">{MY_PROF_LNK}</a></div>
 <!-- BEGIN documentation -->
-                                <td class="admin_menu"><a href="{DOCUMENTATION_HREF}" title="{DOCUMENTATION_TITLE}" target="cpg_documentation">{DOCUMENTATION_LNK}</a></td>
+                                <div class="admin_menu admin_float"><a href="{DOCUMENTATION_HREF}" title="{DOCUMENTATION_TITLE}" target="cpg_documentation">{DOCUMENTATION_LNK}</a></div>
 <!-- END documentation -->
-                        </tr>
-                </table>
+                <div class="admin_float_end">
                 </div>
-
+              </div>
 EOT;
 /******************************************************************************
 ** Section <<<$template_gallery_admin_menu>>> - END

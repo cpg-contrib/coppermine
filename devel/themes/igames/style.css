@@ -582,7 +582,23 @@ a:hover {
         text-decoration: underline;
 }
 
-td #admin_menu_anim {
+.admin_float {
+        float:left;
+        margin-left: 1px;
+        margin-right: 1px;
+        margin-top: 1px;
+        margin-bottom: 1px;
+}
+
+.admin_float_end {
+        clear:left;
+}
+
+.admin_menu_wrapper {
+        width:100%;
+}
+
+#admin_menu_anim {
         background-image : url(images/button_bg_anim.gif);
 }
 
