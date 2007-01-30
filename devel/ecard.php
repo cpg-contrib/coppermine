@@ -179,7 +179,7 @@ if (count($_POST) > 0 && $valid_sender_email && $valid_recipient_email) {
 
     if ($result) {
         //pageheader($lang_ecard_php['title']);
-        msg_box($lang_cpg_die[INFORMATION], $lang_ecard_php['send_success'], $lang_common['continue'], "displayimage.php?album=$album&amp;pos=$pos");
+        msg_box($lang_cpg_die[INFORMATION], $lang_ecard_php['send_success'], $lang_common['continue'], "displayimage.php?album=$album&amp;pid=$pid");
                                 echo '<br />';
                                 starttable('100%', $lang_ecard_php['preview']);
                                 echo '<tr><td>';
@@ -258,7 +258,7 @@ echo <<<EOT
         <tr>
                 <td class="tableh2" colspan="2"><b>{$lang_ecard_php['from']}</b></td>
                 <td rowspan="6" align="center" valign="top" class="tableb">
-                        <a href="displayimage.php?pos=-{$pid}">
+                        <a href="displayimage.php?pid=$pid">
 EOT;
     if (is_flash($row['filename']) == TRUE) {
       $n_picname = get_pic_url($row, 'fullsize');
@@ -279,7 +279,7 @@ echo <<<EOT
         </tr>
         <tr>
                 <td class="tableb" valign="top" width="40%">
-                        <form method="post" name="post" id="cpgform" action="{$_SERVER['PHP_SELF']}?album=$album&amp;pid=$pid&amp;pos=$pos">
+                        <form method="post" name="post" id="cpgform" action="{$_SERVER['PHP_SELF']}?album=$album&amp;pid=$pid">
                         {$lang_ecard_php['your_name']}<br />
                 </td>
                 <td valign="top" class="tableb" width="60%">

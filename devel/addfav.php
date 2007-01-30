@@ -45,12 +45,13 @@ require('include/init.inc.php');
  * Clean up GPC and other Globals here
  */
  $CLEAN['pid'] = (int)$_GET['pid'];
+ $CLEAN['ref'] = htmlspecialchars($_GET['ref']);
 
 
 // Check if required parameters are present
-if (!isset($_GET['pid'])) cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
+if (empty($CLEAN['pid'])) cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
 
-$ref = $CONFIG['site_url'] . (isset($_GET['ref']) ? $_GET['ref'] : "displayimage.php?pid=$CLEAN['pid']");
+$ref = $CONFIG['site_url'] . (!empty($CLEAN['ref']) ? $CLEAN['ref'] : "displayimage.php?pid=$CLEAN['pid']");
 $ref = str_replace('&amp;', '&', $ref);
 
 // If user does not accept script's cookies, we don't accept the vote
