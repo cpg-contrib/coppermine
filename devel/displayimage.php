@@ -36,6 +36,24 @@ $breadcrumb = '';
 $breadcrumb_text = '';
 $cat_data = array();
 
+/**
+ * Clean up GPC and other Globals here
+ */
+$CLEAN['pos'] = isset($_GET['pos']) ? (int)$_GET['pos'] : 0;
+$CLEAN['pid'] = isset($_GET['pid']) ? (int)$_GET['pid'] : 0;
+$CLEAN['cat'] = isset($_GET['cat']) ? (int)$_GET['cat'] : 0;
+$CLEAN['album'] = isset($_GET['album']) ? $_GET['album'] : '';
+
+if (isset($_GET['fullsize'])) {
+  $CLEAN['fullsize'] =  $_GET['fullsize'];
+}
+
+if (isset($_GET['slideshow'])) {
+  $CLEAN['slideshow'] = $_GET['slideshow'];
+}
+
+//END CLEANUP
+
 if($CONFIG['read_exif_data'] ){
         include("include/exif_php.inc.php");
 }
@@ -244,16 +262,16 @@ function get_subcat_data($parent, $level)
  * Main code
  */
 
-$pos = isset($_GET['pos']) ? (int)$_GET['pos'] : 0;
+$pos = $CLEAN['pos'];
 
 /**
  * Hack added by tarique to prevent incorrect picture being seen on last view or last uploaded
  */
 
-$pid = isset($_GET['pid']) ? (int)$_GET['pid'] : 0;
+$pid = $CLEAN['pid'];
 
-$cat = isset($_GET['cat']) ? (int)$_GET['cat'] : 0;
-$album = isset($_GET['album']) ? $_GET['album'] : '';
+$cat = $CLEAN['cat'];
+$album = $CLEAN['album'];
 // Build the album set if required
 /*
 //disabled by donnoman
@@ -326,7 +344,7 @@ if ($pos < 0 || $pid > 0) {
     $CURRENT_PIC_DATA = $pic_data[$pos];
     reset($pic_data);
     ########################################################
-} elseif (isset($_GET['pos'])) {
+} elseif (isset($CLEAN['pos'])) {
     $pic_data = get_pic_data($album, $pic_count, $album_name, $pos, 1, false);
     if ($pic_count == 0) {
         cpg_die(INFORMATION, $lang_errors['no_img_to_display'], __FILE__, __LINE__);
@@ -361,15 +379,15 @@ if (isset($CURRENT_PIC_DATA)) {
     }
 }
 
-if (isset($_GET['fullsize'])) {
+if (isset($CLEAN['fullsize'])) {
     theme_display_fullsize_pic();
     ob_end_flush();
-} elseif (isset($_GET['slideshow'])) {
+} elseif (isset($CLEAN['slideshow'])) {
     theme_slideshow();
     ob_end_flush();
 } else {
     //if (!isset($_GET['pos'])) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__); //Commented by Abbas
-    if (!isset($_GET['pos']) && !isset($_GET['pid'])) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
+    if (!$CLEAN['pos'] && !$CLEAN['pid']) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
 
     $picture_title = $CURRENT_PIC_DATA['title'] ? $CURRENT_PIC_DATA['title'] : strtr(preg_replace("/(.+)\..*?\Z/", "\\1", htmlspecialchars($CURRENT_PIC_DATA['filename'])), "_", " ");
 
