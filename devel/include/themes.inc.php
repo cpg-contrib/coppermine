@@ -1194,7 +1194,7 @@ $template_ecard = <<<EOT
       <table border="0" cellspacing="0" cellpadding="10" bgcolor="#ffffff">
         <tr>
           <td valign="top">
-           <a href="{VIEW_MORE_TGT}/displayimage.php?pos=-{PID}">{PIC_MARKUP}</a>
+           <a href="{VIEW_MORE_TGT}displayimage.php?pid={PID}">{PIC_MARKUP}</a>
                                          <br />
                                          <div align="center">
                                                  <h2>{PIC_TITLE}</h2>
