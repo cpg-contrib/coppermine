@@ -29,10 +29,27 @@ if (USER_ID) cpg_die(ERROR, $lang_forgot_passwd_php['err_already_logged_in'], __
 
 $lookup_failed = '';
 
-if (!empty($_POST['email'])) {
-    $emailaddress = addslashes($_POST['email']);
+/**
+ * Clean up GPC and other Globals here
+ */
+if (!empty($_POST['email']) && eregi("^[_\.0-9a-z\-]+@([0-9a-z][0-9a-z-]+\.)+[a-z]{2,6}$", $_POST['email'])) {
+  $CLEAN['email'] = addslashes($_POST['email']);
+}
 
-    $sql = "SELECT user_id, user_group,user_active,user_name, user_password, user_email  FROM {$CONFIG['TABLE_USERS']} WHERE user_email = '$emailaddress' AND user_active = 'YES'";
+if (isset($_GET['key'])) {
+  $CLEAN['key'] = addslashes($_GET['key']);
+}
+
+if (isset($_GET['id'])) {
+  $CLEAN['id'] = addslashes($_GET['id']);
+}
+
+//END CLEANUP
+
+if (isset($CLEAN['email'])) {
+    //$CLEAN['email'] = addslashes($_POST['email']);
+
+    $sql = "SELECT user_id, user_group,user_active,user_name, user_password, user_email  FROM {$CONFIG['TABLE_USERS']} WHERE user_email = '{$CLEAN['email']}' AND user_active = 'YES'";
 
     $results = cpg_db_query($sql);
     if (mysql_num_rows($results))
@@ -84,12 +101,12 @@ if (!empty($_POST['email'])) {
 
 EOT;
     }
-} elseif (isset($_GET['key']) && isset($_GET['id'])) {
+} elseif (isset($CLEAN['key']) && isset($CLEAN['id'])) {
 
-    $randkey = addslashes($_GET['key']);
-    $user_id = addslashes($_GET['id']);
+    /*$randkey = addslashes($_GET['key']);
+    $user_id = addslashes($_GET['id']);*/
 
-    $sql = "select null from {$cpg_udb->sessionstable} where session_id = md5('{$randkey}{$user_id}');";
+    $sql = "select null from {$cpg_udb->sessionstable} where session_id = md5('{$CLEAN['key']}{$CLEAN['id']}');";
 
     $result = cpg_db_query($sql);
 
@@ -99,7 +116,7 @@ EOT;
 
     mysql_free_result($result);
 
-    $sql = "select {$cpg_udb->field['username']}, {$cpg_udb->field['email']} from {$cpg_udb->usertable} where {$cpg_udb->field['user_id']}='$user_id';";
+    $sql = "select {$cpg_udb->field['username']}, {$cpg_udb->field['email']} from {$cpg_udb->usertable} where {$cpg_udb->field['user_id']}='{$CLEAN['id']}';";
 
     $result = cpg_db_query($sql);
     if (!$result) {
@@ -132,7 +149,7 @@ EOT;
         cpg_die(CRITICAL_ERROR, $lang_forgot_passwd_php['failed_sending_email'], __FILE__, __LINE__);
     }
 
-    $sql = "delete from {$cpg_udb->sessionstable} where session_id=md5('{$randkey}{$user_id}');";
+    $sql = "delete from {$cpg_udb->sessionstable} where session_id=md5('{$CLEAN['key']}{$CLEAN['id']}');";
     cpg_db_query($sql);
 
     // output the message
