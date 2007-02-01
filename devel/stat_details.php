@@ -247,11 +247,13 @@ EOT;
     }
 
     function confirmDelete() {
-      check = confirm('{$lang_stat_details_php['reset_votes_individual_confirm']}');
-      if (check == true) {
-        document.editForm.submit();
-      } else {
-        document.editForm.delete_selected.checked = false;
+      if (document.editForm.reset_selected.checked = true) {
+        check = confirm('{$lang_stat_details_php['reset_votes_individual_confirm']}');
+        if (check == true) {
+          //document.editForm.submit();
+        } else {
+          document.editForm.reset_selected.checked = false;
+        }
       }
     }
     //-->
@@ -375,8 +377,8 @@ EOT;
 EOT;
   if ($type == 'vote') {
   print <<< EOT
-              <input type="checkbox" name="delete_selected" id="delete_selected" value="" class="checkbox" title="{$lang_stat_details_php['hide_internal_referers']}" onclick="confirmDelete();" />
-              <label for="delete_selected" class="clickable_option">{$lang_stat_details_php['reset_votes_individual']}</label>
+              <input type="checkbox" name="reset_selected" id="reset_selected" value="" class="checkbox" title="{$lang_stat_details_php['hide_internal_referers']}" onclick="confirmDelete();" />
+              <label for="reset_selected" class="clickable_option">{$lang_stat_details_php['reset_votes_individual']}</label>
 EOT;
   }
   print <<< EOT
