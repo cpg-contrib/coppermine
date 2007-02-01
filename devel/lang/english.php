@@ -827,6 +827,9 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Notify admin of user upload awaiting approval', 'upl_notify_admin_email', 1, 'f=index.htm&amp;as=admin_approval_notify&amp;ae=admin_approval_notify_end'),
   array('Allow logged in users to view memberlist', 'allow_memberlist', 1, 'f=index.htm&amp;as=admin_user_memberlist&amp;ae=admin_user_memberlist_end'),
   array('Allow users to change their email address in profile', 'allow_email_change', 1, 'f=index.htm&amp;as=admin_user_allow_email_change&amp;ae=admin_user_allow_email_change_end'),
+
+  array('Allow users to delete their own user account', 'allow_user_account_delete', 1, 'f=index.htm&amp;as=admin_user_allow_account_delete&amp;ae=admin_user_allow_account_delete_end'), // cpg1.5.x
+
   array('Allow users to retain control over their pics in public galleries', 'users_can_edit_pics', 1, 'f=index.htm&amp;as=admin_user_editpics_public_start&amp;ae=admin_user_editpics_public_end'),
   array('Number of failed login attempts until temporary ban (to avoid brute force attacks)', 'login_threshold', 0, 'f=index.htm&amp;as=admin_user_login_start&amp;ae=admin_user_login_end'),
   array('Duration of a temporary ban after failed logins', 'login_expiry', 0, 'f=index.htm&amp;as=admin_user_login_start&amp;ae=admin_user_login_end'),
@@ -1650,6 +1653,8 @@ $lang_register_php = array(
   'thank_you_admin_activation' => 'Thank you.<br /><br />Your request for account activation was sent to the admin. You will receive an email if approved.',
   'acct_active_admin_activation' => 'The account is now active and an email has been sent to the user.',
   'notify_user_email_subject' => '%s - Activation notification',
+  'delete_my_account' => 'Delete my user account', // cpg1.5
+  'warning_delete' => 'Warning: deleting your account can not be undone. Your %suploaded files%s and your %scomments%s do not get deleted when deleting your user account!<br />To confirm deleting, enter your password below.', // cpg1.5 // The %s-placeholders mustn't be removed, they will later be replaced by the wrappers for the links
 );
 
 $lang_register_confirm_email = <<<EOT

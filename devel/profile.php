@@ -186,49 +186,49 @@ if (isset($_POST['change_pass'])) $op = 'change_pass';
 
 if (isset($_POST['change_profile']) && USER_ID && UDB_INTEGRATION == 'coppermine') { //!defined('UDB_INTEGRATION')) {
 
-	$profile1 = addslashes($_POST['user_profile1']);
-	$profile2 = addslashes($_POST['user_profile2']);
-	$profile3 = addslashes($_POST['user_profile3']);
-	$profile4 = addslashes($_POST['user_profile4']);
-	$profile5 = addslashes($_POST['user_profile5']);
-	$profile6 = addslashes($_POST['user_profile6']);
-	
-	$error = false;
-	
-	if ($CONFIG['allow_email_change']){
-	
-		$email = addslashes($_POST['email']);
-		
-		if (!eregi("^[_\.0-9a-z\-]+@([0-9a-z][0-9a-z-]+\.)+[a-z]{2,6}$", $email)){
-			$error = $lang_register_php['err_invalid_email'];
-			
-		} elseif (!$CONFIG['allow_duplicate_emails_addr']) {
-		
-			$sql = "SELECT user_id " . "FROM {$CONFIG['TABLE_USERS']} " . "WHERE user_email = '" . $email . "'";
-			$result = cpg_db_query($sql);
+        $profile1 = addslashes($_POST['user_profile1']);
+        $profile2 = addslashes($_POST['user_profile2']);
+        $profile3 = addslashes($_POST['user_profile3']);
+        $profile4 = addslashes($_POST['user_profile4']);
+        $profile5 = addslashes($_POST['user_profile5']);
+        $profile6 = addslashes($_POST['user_profile6']);
 
-			if (mysql_num_rows($result)) {
-				$error = $lang_register_php['err_duplicate_email'];
-			}
-		}
+        $error = false;
+
+        if ($CONFIG['allow_email_change']){
+
+                $email = addslashes($_POST['email']);
+
+                if (!eregi("^[_\.0-9a-z\-]+@([0-9a-z][0-9a-z-]+\.)+[a-z]{2,6}$", $email)){
+                        $error = $lang_register_php['err_invalid_email'];
+
+                } elseif (!$CONFIG['allow_duplicate_emails_addr']) {
+
+                        $sql = "SELECT user_id " . "FROM {$CONFIG['TABLE_USERS']} " . "WHERE user_email = '" . $email . "'";
+                        $result = cpg_db_query($sql);
+
+                        if (mysql_num_rows($result)) {
+                                $error = $lang_register_php['err_duplicate_email'];
+                        }
+                }
     }
-    
+
     $sql = "UPDATE {$CONFIG['TABLE_USERS']} SET " . "user_profile1 = '$profile1', " . "user_profile2 = '$profile2', " . "user_profile3 = '$profile3', " . "user_profile4 = '$profile4', " . "user_profile5 = '$profile5', " . "user_profile6 = '$profile6'" . ($CONFIG['allow_email_change'] && !$error ? ", user_email = '$email'" : "") . " WHERE user_id = '" . USER_ID . "'";
 
     $result = cpg_db_query($sql);
 
     $title = sprintf($lang_register_php['x_s_profile'], stripslashes(USER_NAME));
-    
+
     if (!$error){
-    	$redirect = "index.php";
- 		pageheader($title, "<META http-equiv=\"refresh\" content=\"3;url=$redirect\">");
-    	msg_box($lang_common['information'], $lang_register_php['update_success'], $lang_common['continue'], $redirect);
+            $redirect = "index.php";
+                 pageheader($title, "<META http-equiv=\"refresh\" content=\"3;url=$redirect\">");
+            msg_box($lang_common['information'], $lang_register_php['update_success'], $lang_common['continue'], $redirect);
     } else {
-		$redirect = 'profile.php?op=edit_profile';
-		pageheader($title, "<META http-equiv=\"refresh\" content=\"3;url=$redirect\">");
-		msg_box($lang_common['error'], $error, $lang_common['back'], $redirect);
+                $redirect = 'profile.php?op=edit_profile';
+                pageheader($title, "<META http-equiv=\"refresh\" content=\"3;url=$redirect\">");
+                msg_box($lang_common['error'], $error, $lang_common['back'], $redirect);
     }
-    
+
     pagefooter();
     ob_end_flush();
     exit;
@@ -302,18 +302,23 @@ switch ($op) {
             $group_list = '<br /><i>(' . substr($group_list, 0, -2) . ')</i>';
         }
 
+        $group_quota = '';
+        $group_quota_separator = '';
+        if ($user_data['group_quota']) {
+            $group_quota = $user_data['group_quota'];
+            $group_quota_separator = '/';
+        }
         $form_data = array('username' => $user_data['user_name'],
             'reg_date' => localised_date($user_data['user_regdate'], $register_date_fmt),
             'group' => $user_data['group_name'] . $group_list,
             'email' => $user_data['user_email'],
-            'disk_usage' => $user_data['disk_usage'] .
-            ($user_data['group_quota'] ? '/' . $user_data['group_quota'] : '') . '&nbsp;' . $lang_byte_units[1],
-                        'user_profile1' => $user_data['user_profile1'],
-                        'user_profile2' => $user_data['user_profile2'],
-                        'user_profile3' => $user_data['user_profile3'],
-                        'user_profile4' => $user_data['user_profile4'],
-                        'user_profile5' => $user_data['user_profile5'],
-                        'user_profile6' => $user_data['user_profile6'],
+            'disk_usage' => theme_display_bar($user_data['disk_usage'],$group_quota,200,'', '', $group_quota_separator.$group_quota.$lang_byte_units[1],'red','green'),
+            'user_profile1' => $user_data['user_profile1'],
+            'user_profile2' => $user_data['user_profile2'],
+            'user_profile3' => $user_data['user_profile3'],
+            'user_profile4' => $user_data['user_profile4'],
+            'user_profile5' => $user_data['user_profile5'],
+            'user_profile6' => $user_data['user_profile6'],
             );
 
         $title = sprintf($lang_register_php['x_s_profile'], stripslashes(USER_NAME));
@@ -336,6 +341,35 @@ EOT;
 EOT;
         endtable();
         echo "</form>";
+        if ($CONFIG['allow_user_account_delete'] != 0) {
+          print <<< EOT
+        <br />
+EOT;
+          starttable(-1, $lang_register_php['delete_my_account'], 2);
+          $user_id = USER_ID;
+          $warning = sprintf($lang_register_php['warning_delete'],'<a href="thumbnails.php?album=lastupby&uid='.$user_id.'">','</a>','<a href="thumbnails.php?album=lastcomby&uid='.$user_id.'">','</a>');
+          echo <<<EOT
+    <tr>
+        <td colspan="2" align="left" class="tableb">
+            {$warning}
+        </td>
+    </tr>
+    <tr>
+        <td width="40%" class="tableb">
+            {$lang_register_php['current_pass']}
+        </td>
+        <td width="60%" align="left" class="tableb">
+            <input type="password" style="width: 100%" name="password_confirmation" maxlength="255" value="" class="textinput" />
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center" class="tablef">
+            <button name="delete_account" type="button" value="foo" onclick="alert('This feature has not been fully implemented yet, so nothing happens right now!');" class="button">{$lang_register_php['delete_my_account']}</button>
+        </td>
+    </tr>
+EOT;
+          endtable();
+        }
         pagefooter();
         ob_end_flush();
         break;

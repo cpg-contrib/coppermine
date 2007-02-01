@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-02-01 [A] Added "user can delete own account" to comply with German legislation (work in progress) {GauGau}
 2007-01-30 [M] Cleaning all the GPC variables at the top of each file. (Work in progress ...) {Aditya}
 2007-01-29 [C] Replaced table-driven admin menu with CSS-driven one {GauGau}
 2007-01-27 [B] Adding support for multiple window.onloads to resolve issue of conflicting calls. {Nibbler}

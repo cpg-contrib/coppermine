@@ -567,3 +567,6 @@ INSERT INTO CPG_config VALUES ('comment_promote_registration', '0');
 
 # Add uid column to vote stats
 ALTER TABLE `CPG_vote_stats` ADD `uid` INT(11)  NOT NULL default '0';
+
+# Allow users to delete their own user account
+INSERT INTO CPG_config VALUES ('allow_user_account_delete', '0');

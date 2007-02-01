@@ -44,6 +44,7 @@ $options_to_disable = array('reg_notify_admin_email',
     'registration_captcha',
     'personal_album_on_registration',
     'global_registration_pw',
+    'allow_user_account_delete',
 );
 
 if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
@@ -1050,7 +1051,7 @@ endtable();
 echo <<< EOT
 </form>
 <script type="text/javascript">
-	addonload('hideall()');
+        addonload('hideall()');
     addonload("show_section('expand_all_top')");
     addonload("show_section('expand_all_bottom')");
 </script>

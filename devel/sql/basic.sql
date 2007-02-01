@@ -309,3 +309,6 @@ INSERT INTO CPG_config VALUES ('transparent_overlay', '0');
 
 # Ask guests to log in to post comments
 INSERT INTO CPG_config VALUES ('comment_promote_registration', '0');
+
+# Allow users to delete their own user account
+INSERT INTO CPG_config VALUES ('allow_user_account_delete', '0');
