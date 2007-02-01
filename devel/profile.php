@@ -302,6 +302,11 @@ switch ($op) {
             $group_list = '<br /><i>(' . substr($group_list, 0, -2) . ')</i>';
         }
 
+        if ($user_data['disk_usage'] != '') {
+            $disk_usage = $user_data['disk_usage'];
+        } else {
+            $disk_usage = 0;
+        }
         $group_quota = '';
         $group_quota_separator = '';
         if ($user_data['group_quota']) {
@@ -312,7 +317,7 @@ switch ($op) {
             'reg_date' => localised_date($user_data['user_regdate'], $register_date_fmt),
             'group' => $user_data['group_name'] . $group_list,
             'email' => $user_data['user_email'],
-            'disk_usage' => theme_display_bar($user_data['disk_usage'],$group_quota,200,'', '', $group_quota_separator.$group_quota.$lang_byte_units[1],'red','green'),
+            'disk_usage' => theme_display_bar($disk_usage,$group_quota,300,'', '', $group_quota_separator.$group_quota.$lang_byte_units[1],'red','green'),
             'user_profile1' => $user_data['user_profile1'],
             'user_profile2' => $user_data['user_profile2'],
             'user_profile3' => $user_data['user_profile3'],
@@ -344,6 +349,30 @@ EOT;
         if ($CONFIG['allow_user_account_delete'] != 0) {
           print <<< EOT
         <br />
+        <script type="text/javascript">
+          <!--//
+          function confirmUserDelete() {
+            if (document.cpgform2.confirmation.checked = true) {
+              check = confirm('{$lang_register_php['really_delete']}');
+              if (check == true) {
+                //document.cpgform2.submit();
+              } else {
+                document.cpgform2.confirmation.checked = false;
+                document.cpgform2.delete_submit.disabled = true;
+                return;
+              }
+            }
+          }
+
+          function agreesubmit(el){
+            check = document.cpgform2.confirmation.checked;
+            if (check == true) {
+                document.cpgform2.delete_submit.disabled = false;
+            }
+          }
+          //-->
+        </script>
+        <form name="cpgform2" id="cpgform2" method="get" action="delete.php" >
 EOT;
           starttable(-1, $lang_register_php['delete_my_account'], 2);
           $user_id = USER_ID;
@@ -355,20 +384,23 @@ EOT;
         </td>
     </tr>
     <tr>
-        <td width="40%" class="tableb">
-            {$lang_register_php['current_pass']}
-        </td>
-        <td width="60%" align="left" class="tableb">
-            <input type="password" style="width: 100%" name="password_confirmation" maxlength="255" value="" class="textinput" />
+        <td width="100%" colspan="2" class="tableb">
+            <input type="checkbox" name="confirmation" id="confirmation" value="1" class="checkbox" onClick="agreesubmit();" /><label for="confirmation" class="clickable_option">{$lang_register_php['i_am_sure']}</label>
         </td>
     </tr>
     <tr>
         <td colspan="2" align="center" class="tablef">
-            <button name="delete_account" type="button" value="foo" onclick="alert('This feature has not been fully implemented yet, so nothing happens right now!');" class="button">{$lang_register_php['delete_my_account']}</button>
+            <input type="hidden" name="id" value="u{$user_id}" />
+            <input type="hidden" name="action" value="delete" />
+            <input type="hidden" name="what" value="user" />
+            <input type="hidden" name="delete_files" value="no" />
+            <input type="hidden" name="delete_comments" value="no" />
+            <input type="submit" name="delete_submit" id="delete_submit" value="{$lang_register_php['delete_my_account']}" class="button" disabled="disabled" onclick="return confirmUserDelete(this);" />
         </td>
     </tr>
 EOT;
           endtable();
+          print '</form>';
         }
         pagefooter();
         ob_end_flush();

@@ -511,7 +511,7 @@ EOT;
             print '                                  <option value="' . $group['group_id'] . '"' . ($group['group_id'] == $sel_group ? ' selected' : '') . '>' . $group['group_name'] . "</option>\n";
         }
 
-    $help_create = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=user_cp_new&amp;ae=user_cp_new_end&amp;top=1', '600', '250');
+    $help_create = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=user_cp_new&amp;ae=user_cp_new_end', '600', '250');
 
     echo <<<EOT
                               </select>

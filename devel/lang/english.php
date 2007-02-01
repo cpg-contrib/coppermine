@@ -1654,7 +1654,9 @@ $lang_register_php = array(
   'acct_active_admin_activation' => 'The account is now active and an email has been sent to the user.',
   'notify_user_email_subject' => '%s - Activation notification',
   'delete_my_account' => 'Delete my user account', // cpg1.5
-  'warning_delete' => 'Warning: deleting your account can not be undone. Your %suploaded files%s and your %scomments%s do not get deleted when deleting your user account!<br />To confirm deleting, enter your password below.', // cpg1.5 // The %s-placeholders mustn't be removed, they will later be replaced by the wrappers for the links
+  'warning_delete' => 'Warning: deleting your account can not be undone. The %sfiles you uploaded%s into public albums and your %scomments%s do not get deleted when deleting your user account! However, the files you uploaded into your personal gallery will be deleted.', // cpg1.5 // The %s-placeholders mustn't be removed, they will later be replaced by the wrappers for the links
+  'i_am_sure' => 'I\'m sure that I want to delete my user account', // cpg1.5
+  'really_delete' => 'Do you really want to delete your user account?', // cpg1.5 //JS-Alert
 );
 
 $lang_register_confirm_email = <<<EOT
