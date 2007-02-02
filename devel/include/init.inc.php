@@ -232,6 +232,9 @@ mysql_free_result($results);
 // Reference 'site_url' to 'ecards_more_pic_target'
 $CONFIG['site_url'] =& $CONFIG['ecards_more_pic_target'];
 
+// Set default language (set up by the admin) as a constant, since it might get replaced during runtime
+define('DEFAULT_LANGUAGE', $CONFIG['lang']);
+
 // Include logger functions
 include_once('include/logger.inc.php');
 
