@@ -3273,7 +3273,8 @@ function theme_display_bar(
   global $lang_errors;
   // Validate parameters
   if ($maxValue == 0 || $maxValue == '') {
-    cpg_die(ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
+    //cpg_die(ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
+    $maxValue = $actualValue;
   }
   // Initialize some vars:
   $return = '';

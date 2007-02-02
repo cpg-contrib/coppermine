@@ -307,17 +307,22 @@ switch ($op) {
         } else {
             $disk_usage = 0;
         }
-        $group_quota = '';
+        $group_quota = '0';
         $group_quota_separator = '';
         if ($user_data['group_quota']) {
             $group_quota = $user_data['group_quota'];
             $group_quota_separator = '/';
         }
+        if (!GALLERY_ADMIN_MODE) {
+            $disk_usage_output = theme_display_bar($disk_usage,$group_quota,300,'', '', $group_quota_separator.$group_quota.$lang_byte_units[1],'red','green');
+        } else {
+            $disk_usage_output = $disk_usage . ' ' . $lang_byte_units[1];
+        }
         $form_data = array('username' => $user_data['user_name'],
             'reg_date' => localised_date($user_data['user_regdate'], $register_date_fmt),
             'group' => $user_data['group_name'] . $group_list,
             'email' => $user_data['user_email'],
-            'disk_usage' => theme_display_bar($disk_usage,$group_quota,300,'', '', $group_quota_separator.$group_quota.$lang_byte_units[1],'red','green'),
+            'disk_usage' => $disk_usage_output,
             'user_profile1' => $user_data['user_profile1'],
             'user_profile2' => $user_data['user_profile2'],
             'user_profile3' => $user_data['user_profile3'],
