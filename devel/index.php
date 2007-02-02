@@ -34,30 +34,50 @@
 */
 define('IN_COPPERMINE', true);
 
+/**
+ * Clean up GPC and other Globals here
+ */
+if (isset($_GET['page'])) {
+  $CLEAN['page'] = (int)$_GET['page'];
+}
+if (isset($_GET['cat'])) {
+  $CLEAN['cat']= (int)$_GET['cat'];
+}
 if (isset($_GET['file'])) {
-    // Scrub: Remove '..' and leftover '//' from filename
-    $file = str_replace('..','',str_replace('//','',$_GET['file']));
-    $fileValidationPattern = "/^([a-zA-Z0-9_\-]+)(\/{0,1}?)([a-zA-Z0-9_\-]+)$/";
-    // There can be only alphanumerals in a plugin's folder name. There mustn't be any dots or other special chars in it.
-    // The only exception is the hypen (-) and underscore (_)
-    // Examples for folder names: "myplugin" = OK, "my_plugin" = OK, "my plugin" = BAD, "m&uuml;_plugin" = BAD
-    // Files the plugin is meant to include can only contain one single dot that separates the actual filename from the php-extension
-    // Same restrictions apply as for the folder name (only alphanumerals, hyphen and underscore)
-    if (preg_match($fileValidationPattern, $file) == FALSE) {
-            $file = ''; // something's fishy with the filename, let's drop it
-    }
-    $path = './plugins/'.$file.'.php';
+  $tmpFile = str_replace('..','',str_replace('//','',$_GET['file']));
+  $fileValidationPattern = "/^([a-zA-Z0-9_\-]+)(\/{0,1}?)([a-zA-Z0-9_\-]+)$/";
+  // There can be only alphanumerals in a plugin's folder name. There mustn't be any dots or other special chars in it.
+  // The only exception is the hypen (-) and underscore (_)
+  // Examples for folder names: "myplugin" = OK, "my_plugin" = OK, "my plugin" = BAD, "m&uuml;_plugin" = BAD
+  // Files the plugin is meant to include can only contain one single dot that separates the actual filename from the php-extension
+  // Same restrictions apply as for the folder name (only alphanumerals, hyphen and underscore)
+  if (preg_match($fileValidationPattern, $tmpFile) == FALSE) {
+    $tmpFile = ''; // something's fishy with the filename, let's drop it
+  }
+  if ($tmpFile != 'codebase' && $tmpFile != 'configuration') {
+    $CLEAN['file'] = $tmpFile;
+  } else {
+    $CLEAN['file'] = '';
+  }
+} else {
+  $CLEAN['file'] = '';
+}
+
+
+if ($CLEAN['file']) {
+    $path = './plugins/'.$CLEAN['file'].'.php';
 
     // Don't include the codebase and credits files
-    if ($file != 'codebase' && $file != 'configuration' && file_exists($path)) {
-
+    if (file_exists($path)) {
         // Include the code from the plugin
         include_once($path);
         $file = true;
     } else {
         $file = false;
     }
-} else $file = false;
+} else {
+  $file = false;
+}
 
 if (!$file) {
     /**
@@ -806,8 +826,8 @@ if (!$file) {
     /**
     * See if $page has been passed in GET
     */
-    if (isset($_GET['page'])) {
-        $PAGE = max((int)$_GET['page'], 1);
+    if (isset($CLEAN['page'])) {
+        $PAGE = max($CLEAN['page'], 1);
         $USER['lap'] = $PAGE;
     } elseif (isset($USER['lap'])) {
         $PAGE = max((int)$USER['lap'], 1);
@@ -825,8 +845,8 @@ if (!$file) {
     * See if $cat has been passed in GET
     */
 
-    if (isset($_GET['cat'])) {
-        $cat = (int)$_GET['cat'];
+    if (isset($CLEAN['cat'])) {
+        $cat = $CLEAN['cat'];
     }
     // Gather data for categories
     $breadcrumb = '';
