@@ -62,6 +62,14 @@
         <ul class="level2">
                 <li class="level2"><a href="#getting" class="menu2">2.2 Getting Started</a></li>
         </ul>
+                <ul class="level3">
+                  <li class="level3"><a href="#getting_concepts">2.2.1 Basic concepts</a></li>
+                  <li class="level3"><a href="#getting_initial_configuration">2.2.2 Initial configuration</a></li>
+                  <li class="level3"><a href="#getting_admin_account">2.2.3 Your admin account</a></li>
+                  <li class="level3"><a href="#getting_check_uploads">2.2.4 Check uploads</a></li>
+                  <li class="level3"><a href="#getting_consider_bridging">2.2.5 Consider bridging</a></li>
+                  <li class="level3"><a href="#getting_interaction">2.2.6 What are your visitors allowed to do?</a></li>
+                </ul>
         <ul class="level2">
                 <li class="level2"><a href="#theme" class="menu2">2.3 Creating or upgrading your own themes</a></li>
         </ul>
@@ -935,7 +943,6 @@ using a tool like <a href="http://www.phpmyadmin.net/" rel="external" class="ext
   <li><strong>Groups</strong><br />Create/edit/delete <a href="#group_cp">groups</a></li>
   <li><strong>Users</strong><br />Create/edit/delete <a href="#user_cp">users</a></li>
   <li><strong>Ban Users</strong><br />Ban users based on hostname or IP address. Make sure not to ban yourself! Use this feature with extreme caution, as most users today do not have static IP addresses, this feature should only be employed if you really know what you're doing.<br />
-  <span class="small">[cpg1.3.0 or better required]</span>
   </li>
   <li><strong>Review Comments</strong><br />edit/approve/disapprove/delete user's <a href="comments">comments</a></li>
   <li><a name="ecard_log"></a><strong>Display Ecards</strong><p>View the ecards sent by users.</p>
@@ -943,7 +950,6 @@ using a tool like <a href="http://www.phpmyadmin.net/" rel="external" class="ext
   <img src="pics/ecard_log.gif" border="0" alt="" /><br />
   You can sort the log by clicking on the arrow icons next to each heading, and you can delete single or multiple log entries (deleting the log entries will not disable the ecard recipient to view the ecard).<br />
   <p>Before switching this option on, make sure that logging such information is legal in your country. It is also advisable to notify your users that all ecards are being logged (preferrably on the registration screen).</p>
-  <span class="small">[cpg1.3.0 or better required]</span>
   <a name="ecard_log_end"></a>
   </li>
   <li><strong>Sort my pictures</strong><p>Picture manager that can be used to custom-sort files within an album. By default, the thumbnail page that displays the contents of an album will be sorted by the sorting order specified in &quot;<a href="#admin_thumbnail_default_sortorder">Default sort order for files</a>&quot; on the config page. The "sort my pictures" option overrides the default sorting mechanism and displays the thumbnails in the order you specify. As this means an additional effort in the maintenance of each album, it's recommended to use the default sorting by filename and (instead of specifying a custom sort order) and naming the files appropriately before upload.</p>
@@ -1244,7 +1250,6 @@ Use keywords to link files to other albums (see description in the albums sectio
 <p>Use the album drop down menu to move the video to another album.</p>
 <p>Use the height and width fields to set the size of the video.</p>
 <p>Video uploads are possible beginning with cpg1.3.0 (or latter) and are included as part of the distribution package. For cpg1.2.1 you must install a separate modification.</p>
-<p class="small">[cpg1.3.0 or better required]</p>
 <p class="back"><a href="#top">Back to top</a></p>
 
 <a name="cust_thmb"><h3>4.9.2 Custom Thumbnails</h3></a>
@@ -1280,7 +1285,6 @@ Your users can upload their own thumbnails by using this trick: Create an album.
 Currently, this is not possible.</li>
 </ul>
 
-<p class="small">[cpg1.3.0 or better required]</p>
 <a name="edit_pics_end"></a>
 <p class="back"><a href="#top">Back to top</a></p>
 </div><!-- end sub-section of "Editing files" (level 2 x.x)-->
@@ -1387,7 +1391,6 @@ The process of uploading pictures is a matter of following a simple dialog. It t
 <li>You are presented with the last window of the dialog and given a choice of opening the Gallery when the upload is complete.</li>
 <li>Click "Finish" to end the XP Web Publishing Wizard and to enter the Gallery to check the new album contents.</li>
 </ul>
-<p class="small">[cpg1.1.1 or better required]</p>
 <p class="back"><a href="#top">Back to top</a></p>
 </div><!-- end sub-section of "Using Windows XP Web Publishing Wizard with Coppermine" (level 3 x.x.x)-->
 
@@ -1441,19 +1444,16 @@ The process of uploading pictures is a matter of following a simple dialog. It t
 <p>This is the URL where a user will be directed when he clicks on the &quot;Home&quot; button in the main menu.</p>
 <p>You can use &quot;/&quot; for the root of your domain, &quot;index.php&quot; for your gallery's default starting page, or any other valid URL. By default this is "index.php".</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; General settings &rarr; URL of your home page</p>
-<p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_general_home-url_end"></a>
 <hr />
 <a name="admin_general_zip-download"><h4>Allow ZIP-download of favorites</h4></a>
 <p>When enabled, users of your site may download files that they previously saved into their <em>favorites</em> collection. These files are dowloaded from the user's &quot;My favorites&quot; page and saved onto their computers in a zip-file format. This option requires zlib to be installed on your server (run <a href="http://www.php.net/phpinfo" class="external">phpinfo</a> to check if this php library file exists on your server).</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; General settings &rarr; Allow ZIP-download of favorites</p>
-<p class="small">[cpg1.3.0 or better required]</p>
 <a name="admin_general_zip-download_end"></a>
 <hr />
 <a name="admin_general_time-offset"><h4>Timezone difference relative to GMT</h4></a>
 <p>Specify the time zone difference between your local time and the time zone your webserver is in. This value will be used to adjust time stamps in ecards and other places.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; General settings &rarr; Timezone difference relative to GMT</p>
-<p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_general_time-offset_end"></a>
 <hr />
 <a name="admin_general_encrypt_password_start"><h4>Enable encrypted passwords</h4></a>
@@ -1461,7 +1461,6 @@ The process of uploading pictures is a matter of following a simple dialog. It t
 <p>This option increases user security in coppermine, but comes with a drawback inherent to this method: even the admin will not be able to recover a lost password of a user (or his own password). The password can only be reset to another value using the "I forgot my password" option during login.</p>
 <p>This option is only available if you have upgraded your coppermine install from cpg1.0 to cpg1.3.x. More recent versions (cpg1.4.x or better) encrypt the passwords by default, so this option will not be shown.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; General settings &rarr; Enable encrypted passwords</p>
-<p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_general_encrypt_password_end"></a>
 <hr />
 <a name="admin_general_help"><h4>Enable help-icons</h4></a>
@@ -1470,19 +1469,16 @@ The process of uploading pictures is a matter of following a simple dialog. It t
 <p>As the help text is based on the documentation that comes with coppermine, it is available in English only. If the native language of your user(s) is not English, it is advisable to set this option to &quot;Yes: admin only&quot; to avoid confusion among your users.</p>
 <p>It is strongly recommended that you do not disable the help icons altogether: even though you feel that you know your way around in your Coppermine install, the help icons might help you with the functinos of a new or unfamiliar option later.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; General settings &rarr; Enable help-icons</p>
-<p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_general_help_end"></a>
 <hr />
 <a name="admin_general_keywords_start"><h4>Enable clickable keywords in search</h4></a>
 <p>When enabled, a list of all keywords entered in the &quot;<a href="#edit_pics">Edit files</a>&quot; page will appear at the bottom of the search page, with each keyword being a clickable search link. Enabling this option is recommended only if you have a small number of keywords in use (e.g. less than 100) - it will provide your users with some ideas as to what they could be searching for in your gallery (in addition to the standard full-text search). Please note that enabling this option for a large list of keywords (e.g. thousands of keywords) can slow down the search page considerably and may be confusing for new users and visitors to your site.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; General settings &rarr; Enable clickable keywords in search</p>
-<p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_general_keywords_end"></a>
 <hr />
 <a name="admin_general_enable-plugins"><h4>Enable plugins</h4></a>
 <p>Enable or disable <a href="#plugin">plugins</a>, with a link to the <a href="#plugin_manager">plugin manager</a>. This is a brand-new feature of coppermine. This feature allows advanced copperminers to create plug-ins that can control the way coppermine looks and behaves without modifying the inherent code of the script itself. We anticipate many exciting, user-contributed, plug-ins in the near future.  More details can be found in the <a href="#plugin_start">plugins section of this documentation</a>.  Since plugins add on to the core Coppermine system, if you are having problems, try to disable all plugins using this setting to see if a plugin may be at fault.  If so, you can then enable all plugins here, then uninstall or install one plugin at a time in the <a href="#plugin_manager">plugin manager</a> to figure out which one is at fault.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; General settings &rarr; Enable plugins</p>
-<p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_general_enable-plugins_end"></a>
 <hr />
 
@@ -1490,7 +1486,6 @@ The process of uploading pictures is a matter of following a simple dialog. It t
 <p>Today, most people on the internet have dynamic IP addresses that are assigned to them when connecting to the internet by their Internet Service Provider. These IP adresses change each time the user connects to the internet, but during an internet session these IP addresses are &quot;visible&quot; at the web-sites that thee user is surfing. Within the range of all IP adresses (0.0.0.0 to 255.255.255.255), certan ranges are reserved for special purposes (mostly for the use on private networks). The banning feature will not accept IP adresses banning of addresses that belong to these private ranges (e.g. 192.168.0.1). This is necessary to prevent unexperienced, as well as experienced, coppermine admins from banning IP addresses within their own LAN. If you're actually running Coppermine on your LAN/WAN that uses private IP addresses (e.g. on a company's intranet) and you want the authority to be able to ban users, switch this option to &quot;Yes&quot;. If you're running coppermine on a webserver located in the internet (e.g. you're webhosted), you should keep this option set to &quot;No&quot;.<br />
 If you don't use banning at all, you can safely ignore this setting completely.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; General settings &rarr; Allow banning of non-routable (private) IP addresses</p>
-<p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_general_private-ip_end"></a>
 <hr />
 
@@ -1498,7 +1493,6 @@ If you don't use banning at all, you can safely ignore this setting completely.<
 <p>When <a href="#batch_add_pics">batch-adding</a> files (that you have uploaded using a <acronym title="File Transfer Protocol">FTP</acronym> before) to your gallery, you have the option to switch between a browsable list, where you can go scroll through the directory structure in your <tt class="code">albums</tt>-folder or to display the whole directory structure at once. Enable this option if you have a larger structure of directories and subdirectories you want to browse through (this requires your browser to be capable of displaying <a href="http://www.w3schools.com/tags/tag_iframe.asp" class="external" rel="external">iframes</a>). Set this option to &quot;No&quot; (disabled) if you want to use the &quot;classic&quot; coppermine interface that shows a complete list of the structure at once.<br />
 Should you have difficulties using one, try the other. You can toggle between these options on the <a href="#batch_add_pics">batch-add</a> page as well.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; General settings &rarr; Browsable batch-add interface</p>
-<p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_general_browsable_batch_add_end"></a>
 <p class="back"><a href="#top">Back to top</a></p>
 
@@ -1523,7 +1517,6 @@ Should you have difficulties using one, try the other. You can toggle between th
 <a name="admin_language_fallback"><h4>Fallback to English if translated phrase not found?</h4></a>
 <p>Enable this option if you're using languages other than english. If a certain word or phrase doesn't exist within your language file, coppermine will display the equivalent english phrase, instead.</p><p>This feature has been introduced to allow the use of previous version language files -- language files that may have not been translated for the this version, yet. Until an updated version of the language file is made available, you can use this option. Most translation differences affect the admin part of coppermine only, so  the admin will experience most of these untranslated strings. The admin will see some phrases in english instead of his/her preferred language for strings and words that don't exist in the currently available language file. NOTE: this fallback option only works for 95% of all phrases, there may still be some other translation omissions.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Language &amp; Charset settings &rarr; Fallback to English if translated phrase not found?</p>
-<p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_language_fallback_end"></a>
 <hr />
 <a name="admin_language_charset"><h4>Character encoding</h4></a>
@@ -1531,19 +1524,18 @@ Should you have difficulties using one, try the other. You can toggle between th
 <a name="admin_language_list"><h4>Display language list</h4></a>
 <p>Enable this option if you want your users to be able to select a preferred language from a dropdown list (you can specify to display only the list itself or a label saying &quot;<strong>Choose your language:</strong>&quot; in front of the list). Edit your template file (/themes/yourtheme/template.html) to specify where the language dropdown list should appear on your gallery (look for the call tag: <strong>{LANGUAGE_SELECT_LIST}</strong>).</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Language &amp; Charset settings &rarr; Character encoding</p>
-<p class="small">[cpg1.3.0 or better required]</p>
+
 <a name="admin_language_list_end"></a>
 <hr />
 <a name="admin_language_flags"><h4>Display language flags</h4></a>
 <p>Enable this option if you would like the option of having your users select languages appropriate for their use by merely clicking on a flag icon which representing their language or country (you can specify to display the flags themselves or include a label that states: &quot;<strong>Choose your language:</strong>&quot; in front of the flags). Edit your template file (/themes/yourtheme/template.html) to specify where the flags should appear in your gallery (look for the call tag:<strong>{LANGUAGE_SELECT_FLAGS}</strong>).</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Language &amp; Charset settings &rarr; Display language flags</p>
-<p class="small">[cpg1.3.0 or better required]</p>
+
 <a name="admin_language_flags_end"></a>
 <hr />
 <a name="admin_language_reset"><h4>Display &quot;reset&quot; in the language selection</h4></a>
 <p>This option only applies only if you enabled user language selection - it will show a &quot;default&quot;-icon or list entry to let the users go back to the original language of your gallery.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Language &amp; Charset settings &rarr; Display &quot;reset&quot; in the language selection</p>
-<p class="small">[cpg1.3.0 or better required]</p>
 <a name="admin_language_reset_end"></a>
 <a name="admin_language_charset_end"></a>
 <p class="back"><a href="#top">Back to top</a></p>
@@ -1557,13 +1549,11 @@ Should you have difficulties using one, try the other. You can toggle between th
 <p>Enable this option if you want your users to be able to select other themes from a dropdown list (you can specify to display only the list itself or a label saying &quot;<strong>Choose your theme:</strong>&quot; in front of the list). Edit your template file (/themes/yourtheme/template.html) to specify where the theme dropdown list should appear on your gallery (look for <strong>{THEME_SELECT_LIST}</strong>).</p>
 <p>This option only makes sense if you have at least one alternative theme in your /themes/ folder other than your default theme. We recommend using this option only if there's are additional benefits for the user (for example a theme with less graphics in it that loads faster for users on a dial-up connection, or a theme with reduced color pallettes and good contrast).</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Themes settings &rarr; Display theme list</p>
-<p class="small">[cpg1.3.0 or better required]</p>
 <a name="admin_theme_theme_list_end"></a>
 <hr />
 <a name="admin_theme_theme_reset"><h4>Display &quot;reset&quot; in theme selection</h4></a>
 <p>This option applies only if you enabled the user theme selection option - it will show a &quot;default&quot; list entry to let the users go back to the original theme of your gallery.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Themes settings &rarr; Display &quot;reset&quot; in theme selection</p>
-<p class="small">[cpg1.3.0 or better required]</p>
 <a name="admin_theme_theme_reset_end"></a>
 <hr />
 <a name="admin_theme_faq"><h4>Display FAQ</h4></a>
@@ -1573,13 +1563,11 @@ Should you have difficulties using one, try the other. You can toggle between th
 // ------------------------------------------------------------------------- //</pre>
 <p>Edit the content that comes after it.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Themes settings &rarr; Display FAQ</p>
-<p class="small">[cpg1.3.0 or better required]</p>
 <a name="admin_theme_faq_end"></a>
 <hr />
 <a name="admin_theme_custom_lnk_name"><h4>Name of your custom link</h4></a>
 <p>Use this if you want to create a custom link that will appear in the menu. What you enter here will be the name of the menu link or button.  Leave space blank if you do not have any specific use for it.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Themes settings &rarr; Name of your custom link</p>
-<p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_theme_custom_lnk_name_end"></a>
 <hr />
 <a name="admin_language_custom_lnk_url"><h4>URL of your custom link</h4></a>
@@ -1587,30 +1575,25 @@ Should you have difficulties using one, try the other. You can toggle between th
 <p>You can use any valid URL.</p>
 <p>Leave this blank if you do not have any specific use for it.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Themes settings &rarr; URL of your custom link</p>
-<p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_language_custom_lnk_url_end"></a>
 <hr />
 <a name="admin_theme_bbcode"><h4>Display bbcode help</h4></a>
 <p>When enabled, this will display the <a href="#bbcode">bulletin board codes</a> that may be used in description fields to help with the formatting of text, images and links.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Themes settings &rarr; Display bbcode help</p>
-<p class="small">[cpg1.3.0 or better required]</p>
 <a name="admin_theme_bbcode_end"></a>
 <hr />
 <a name="vanity_block"><h4>Display the vanity block on themes that are defined as XHTML and CSS compliant</h4></a>
 <p>When enabled and using a theme that has been defined as XHTML and CSS compliant, the vanity block will be shown. The vanity block contains the logos and links for HTML and CSS compliance at w3.org, as well as pointers to the PHP, and MySQL projects.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Themes settings &rarr; Display the vanity block on themes that are defined as XHTML and CSS compliant</p>
-<p class="small">[cpg1.4.0 or better required]</p>
 <a name="vanity_block_end"></a>
 <hr />
 <a name="admin_theme_include_path_start"><h4>Path to custom header include</h4></a>
 <p>Optional relative path to a custom header file. Using this option, you can include non-coppermine code bits to be included into your theme, e.g. an overall navigation that gets included on your whole website. You can only add a relative path (seen from the root path of your coppermine install) - not an absolute one, nor a http include from another website. This option is only meant for experienced users who have some PHP know-how. </p>
 <p><span class="important">Warning: you mustn't include full html pages that contain an html header or footer (tags like <tt class="code">&lt;head&gt;</tt> or <tt class="code">&lt;body&gt;</tt>), nor can the included file do file header manipulation, e.g. reading another (non-coppermine) cookie.</span></p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Themes settings &rarr; Path to custom header include</p>
-<p class="small">[cpg1.4.0 or better required]</p>
 <h4>Path to custom footer include</h4>
 <p>Optional relative path to a custom footer file. The same remarks apply as for the custom header include path.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Themes settings &rarr; Path to custom footer include</p>
-<p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_theme_include_path_end"></a>
 <hr />
 <a name="admin_theme_end"></a>
@@ -1674,13 +1657,11 @@ Setting this to a ridiculously high value (i.e. above 100% or a pixel value high
 <a name="admin_album_list_alphasort_start"><h4>Sort categories alphabetically (instead of custom sort order)</h4></a>
 <p>You can dictate that coppermine sort all categories alphabetically (instead of in a custom order) by setting &quot;Sort categories alphabetically&quot; to &quot;Yes&quot;. This setting is accessible both in the coppermine config menu and in the category manager. If you enable alphabetical sorting, the up and down arrows that normally let you move  categories up and down in the custom sorting list will disappear.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Album list view &rarr; Sort categories alphabetically</p>
-<p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_album_list_alphasort_end"></a>
 <hr />
 <a name="admin_album_linked_files_start"><h4>Show number of linked files</h4></a>
 <p>If you use album keywords to display images/files in more than one album, enabling this option will display additional information for the album stats: if an album doesn't only contain &quot;regular&quot; files, but files linked via the "<a href="#album_prop_keyword_start">album keyword</a>" option as well, the number of linked files will be displayed separately like this "3 files, last one added on Oct 07, 2004<em>, 3 linked files, 6 files total</em>".</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Album list view &rarr; Show number of linked files</p>
-<p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_album_linked_files_end"></a>
 <a name="admin_album_list_end"></a>
 <p class="back"><a href="#top">Back to top</a></p>
@@ -1704,43 +1685,40 @@ Setting this to a ridiculously high value (i.e. above 100% or a pixel value high
 <a name="admin_thumbnail_display_caption"><h4>Display file caption (in addition to title) below the thumbnail</h4></a>
 <p>Toggles whether the file caption is displayed below each thumbnail while user is in (regular) thumbnail view.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Thumbnail view &rarr; Display file caption below the thumbnail</p>
-<p class="small">[cpg1.3.0 or better required]</p>
 <a name="admin_thumbnail_display_caption_end"></a>
 <hr />
 <a name="admin_thumbnail_display_views"><h4>Display number of views below the thumbnail</h4></a>
 <p>Toggles whether the number of views is displayed below each thumbnail while user is in thumbnail view.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Thumbnail view &rarr; Display number of views below the thumbnail</p>
-<p class="small">[cpg1.3.0 or better required]</p>
 <a name="admin_thumbnail_display_views_end"></a>
 <hr />
 <a name="admin_thumbnail_display_comments"><h4>Display number of comments below the thumbnail</h4></a>
 <p>Toggles the display of the number of comments for below each thumbnail.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Thumbnail view &rarr; Display number of comments below the thumbnail</p>
-<p class="small">[cpg1.3.0 or better required]</p>
 <a name="admin_thumbnail_display_comments_end"></a>
 <hr />
 <a name="admin_thumbnail_display_uploader"><h4>Display uploader name below the thumbnail</h4></a>
 <p>Toggles the display of the name of non-admin uploaders below each thumbnail.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Thumbnail view &rarr; Display uploader name below the thumbnail</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+
 <a name="admin_thumbnail_display_uploader_end"></a>
 <hr />
 <a name="admin_thumbnail_display_admin_uploader"><h4>Display names of admin uploaders below the thumbnail</h4></a>
 <p>Toggles the display of admin uploader names below each thumbnail for users that have the administrators group set as thier default group.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Thumbnail view &rarr; Display names of admin uploaders below the thumbnail</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+
 <a name="admin_thumbnail_display_admin_uploader_end"></a>
 <hr />
 <a name="admin_thumbnail_display_filename"><h4>Display the file name below the thumbnail</h4></a>
 <p>Toggles the display of the file name below each thumbnail.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Thumbnail view &rarr; Display the file name below the thumbnail</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+
 <a name="admin_thumbnail_display_filename_end"></a>
 <hr />
 <a name="admin_thumbnail_display_rating"><h4>Display rating below the thumbnail</h4></a>
 <p>Toggles the display of the rating results below each thumbnail.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Thumbnail view &rarr; Display rating below the thumbnail</p>
-<p class="small">[cpg1.5.0 or better required]</p>
+
 <a name="admin_thumbnail_display_rating_end"></a>
 <hr />
 <a name="admin_thumbnail_display_description"><h4>Display album description</h4></a>
@@ -1760,7 +1738,7 @@ It is <b>not</b> recommended to enable this option, because
 </ul>
 <p>This option has been added because a lot of coppermine users have asked for it. However, the dev team does not recommend using it.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Thumbnail view &rarr; Go directly from thumbnail to full-sized image</p>
-<p class="small">[cpg1.5.0 or better required]</p>
+
 <a name="admin_thumbnail_to_fullsize_end"></a>
 <hr />
 <a name="admin_thumbnail_default_sortorder"><h4>Default sort order for files</h4></a>
@@ -1796,19 +1774,19 @@ It is <b>not</b> recommended to enable this option, because
 <a name="admin_image_comment_filmstrip_toggle"><h4>Show film strip</h4></a>
 <p>Toggles display of a "film strip" showing thumbnails of prior and subsequent files in the album.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Image view &rarr; Show film strip</p>
-<p class="small">[cpg1.2.0 or better required]</p>
+
 <a name="admin_image_comment_filmstrip_toggle_end"></a>
 <hr />
 <a name="admin_image_comment_display_film_strip_filename"><h4>Display file name under film strip thumbnail</h4></a>
 <p>Toggles the display of the file name below each thumbnail in the film strip.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Image view &rarr; Display file name under film strip thumbnail</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+
 <a name="admin_image_comment_display_film_strip_filename_end"></a>
 <hr />
 <a name="admin_image_comment_filmstrip_number"><h4>Number of items in film strip</h4></a>
 <p>Sets the number of thumbnails to display in film strip. The number you can set here is dependent on your thumbnail size and monitor size. If you do not want to inconvenience users with smaller monitors set this value between 4-6.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Image view &rarr; Number of items in film strip</p>
-<p class="small">[cpg1.2.0 or better required]</p>
+
 <a name="admin_image_comment_filmstrip_number_end"></a>
 <hr />
 <a name="admin_image_comment_slideshow_interval"><h4>Slideshow interval in milliseconds</h4></a>
@@ -1825,14 +1803,14 @@ It is <b>not</b> recommended to enable this option, because
 <p>When enabled, you can not only send images as ecards, but flash files as well. This feature has been added because many users requested it. However, it is not recommended at all, simply because most email clients will not display Flash embedded into emails or (even worse) will show messages that may confuse the recipient.<br />
 You have to understand that this setting does <strong>not</strong> determine the ability of users to send ecards in the first place (this is being configured on the <a href="#group_cp">groups page</a> instead). <strong>Only</strong> if a user is allowed to send ecards (i.e. belongs to a group that is allowed to do so), this setting is being taken into account.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Image view &rarr; Allow Flash in Ecards</p>
-<p class="small">[cpg1.5.0 or better required]</p>
+
 <a name="admin_image_ecard_flash_end"></a>
 
 <hr />
 <a name="admin_image_transparent_overlay_start"><h4>Insert a transparent overlay to minimize image theft</h4></a>
 <p>When enabled, a transparent gif will be inserted "over" the pics displayed in your gallery (intermediate sized and full-size pics). Subsequently, if a user right-clicks the image and uses the "save as..." context menu of his browser, only the transparent gif will be saved on his PC, but not the actual image he tried to save. This option will reduce the number of users who are capable to steal your images, but it will only fool newbie users. There is no effective method to completely avoid image theft, but the transparent overlay method is much better than any no-right-click script that keeps users from the legitimate use of the right mouse button and subsequently makes them shy away. Please note that the transparent overlay is being added by using the deprecated HTML attribute "background" to avoid the context menu entry "save background image" that would appear if the overlay image was added using standards-compliant CSS methods. Subsequently, your pages will not contain valid, standards-compliant HTML output if this option is enabled, so you should turn off the  option "<a href="#vanity_block">Display the vanity block on themes that are defined as XHTML and CSS compliant</a>".<br />Recommended (and default) setting for this option is "off".</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Image view &rarr; Insert a transparent overlay to minimize image theft</p>
-<p class="small">[cpg1.5.0 or better required]</p>
+
 <a name="admin_image_transparent_overlay_end"></a>
 
 <a name="admin_image_comment_end"></a>
@@ -1900,21 +1878,21 @@ Descending: latest comment at the top, oldest comment at the bottom</p>
 <li>When turning this option from on to off, this will only have an impact on the comments made from that point on. Older comments that haven't been approved by the admin yet still aren't being displayed.</li>
 </ul>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Comment settings &rarr; Comments require approval</p>
-<p class="small">[cpg1.5.0 or better required]</p>
+
 <a name="admin_comment_approval_end"></a>
 <hr />
 <a name="admin_comment_display_comment_approval_only_start"><h4>Only display comments needing approval on the &quot;Review Comments&quot; page</h4></a>
 <p>With this toggle you can determine if the admin will see only the comments that actually need approval on the &quot;Review Comments&quot; page. You can toggle this option in config or on the actual &quot;Review Comments&quot; page - it won't hurt to toggle this setting frequently when reviewing comments.</p>
 <p>This option does not have any impact on the visibility of comments, but only on the &quot;Review Comments&quot; page display.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Comment settings &rarr; Only display comments needing approval on the &quot;Review Comments&quot; page</p>
-<p class="small">[cpg1.5.0 or better required]</p>
+
 <a name="admin_comment_display_comment_approval_only_end"></a>
 <hr />
 <a name="admin_comment_display_placeholder_start"><h4>Display placeholder text to end users for comments waiting for admin approval</h4></a>
 <p>When enabled, the non-admin end user will see a placeholder text saying <tt class="code">Someone has posted a comment here. It will be visible after admin approval.</tt> instead of the comment. When disabled, the comment that needs approval will be completely invisible for the end user.</p>
 <p>This setting is only being taken into account for non-admin users, so you won't notice any difference when being logged in as admin.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Comment settings &rarr; Display placeholder text to end users for comments waiting for admin approval</p>
-<p class="small">[cpg1.5.0 or better required]</p>
+
 <a name="admin_comment_display_placeholder_end"></a>
 
 <hr />
@@ -1922,7 +1900,7 @@ Descending: latest comment at the top, oldest comment at the bottom</p>
 <p>When enabled, users are allowed to edit or delete their comments after submitting them.</p>
 <p>Note: this setting doesn't determine if users can actually post comments at all (this is instead being determined on the groups page). Instead, it just displays an edit and delete icon next to a comment that turns the comment into an input field when being clicked.<br />The admin is not affected at all - he can edit any comment no matter what.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Comment settings &rarr; Allow users to edit their comments</p>
-<p class="small">[cpg1.5.0 or better required]</p>
+
 <a name="admin_comment_user_edit_end"></a>
 <hr />
 <a name="admin_comment_captcha_start"><h4>Display Captcha (Visual Confirmation) for adding comments</h4></a>
@@ -1930,7 +1908,7 @@ Descending: latest comment at the top, oldest comment at the bottom</p>
 <p>Note: this setting doesn't determine if guests can actually post comments at all (this is instead being determined on the groups page).</p>
 <p class="important">Captchas will only work if GD2 is available on your server with FreeType support enabled.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Comment settings &rarr; Display Captcha (Visual Confirmation) for adding comments</p>
-<p class="small">[cpg1.5.0 or better required]</p>
+
 <a name="admin_comment_captcha_end"></a>
 
 <hr />
@@ -1938,7 +1916,7 @@ Descending: latest comment at the top, oldest comment at the bottom</p>
 <p>When enabled, an explanation will appear at the bottom of the comment section for anonymous users (guests) that explains that they need to log in if they want to post comments. This is meant to promote registration, to explain to your site's visitors that they could interact even more if they registered.<br />
 Of course this message will only be displayed if you have disallowed guests to post comments in the first place (you do so on the <a href="#group_cp">group control panel</a>). However, this switch does not take into account if there actually <strong>is</strong> a user group that is actually allowed to post comments at all, i.e. wether you have configured registered users to post comments. If you don't allow registered users to post comments, then don't enable this option.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Comment settings &rarr; Ask guests to log in to post comments</p>
-<p class="small">[cpg1.5.0 or better required]</p>
+
 <a name="admin_comment_promote_registration_end"></a>
 
 <a name="admin_comment_end"></a>
@@ -1998,19 +1976,19 @@ Of course this message will only be displayed if you have disallowed guests to p
 <ul><li>No - Disabled</li><li>Yes: Everyone - Enabled for all users, including the Admin during batch-add process.</li>
 <li>Yes: User only - Enabled only for regular users</li></ul>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Auto resize images that are larger than max width or height</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+
 <a name="admin_picture_thumbnail_auto-resize_end"></a>
 <hr />
 <a name="admin_picture_thumbnail_fullsize_padding_x"><h4>Horizontal padding for full-size pop-up</h4></a>
 <p>This setting is used to determine the width of a full-size pop-up, as most major browsers mysteriously add some padding to pics opened in a pop-up. It's recommended to leave this set to the default 5 pixels unless you know what you're doing.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Horizontal padding for full-size pop-up</p>
-<p class="small">[cpg1.5.0 or better required]</p>
+
 <a name="admin_picture_thumbnail_fullsize_padding_x_end"></a>
 <hr />
 <a name="admin_picture_thumbnail_fullsize_padding_y"><h4>Vertical padding for full-size pop-up</h4></a>
 <p>This setting is used to determine the height of a full-size pop-up, as most major browsers mysteriously add some padding to pics opened in a pop-up. It's recommended to leave this set to the default 3 pixels unless you know what you're doing.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Vertical padding for full-size pop-up</p>
-<p class="small">[cpg1.5.0 or better required]</p>
+
 <a name="admin_picture_thumbnail_fullsize_padding_y_end"></a>
 <a name="admin_picture_thumbnail_end"></a>
 <p class="back"><a href="#top">Back to top</a></p>
@@ -2047,14 +2025,14 @@ If you have issues uploading pics, find out if safe_mode is enabled on your webs
 <a name="admin_picture_thumb_advanced_pic_extensions"><h4>Allowed image types</h4></a>
 <p>&quot;<em>ALL</em>&quot; will result in all allowed image file types that your image library (GD or ImageMagick) is capable of handling to be allowed as uploads and content in your gallery. If you want to restrict the allowed file types to certain types only, enter a slash-separated list of extensions, e.g. <tt class="code">jpg/bmp/tif</tt></p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Files and thumbnails advanced settings &rarr; Allowed image types</p>
-<p class="small">[cpg1.3.0 or better required]</p>
+
 <a name="admin_picture_thumb_advanced_pic_extensions_end"></a>
 <hr />
 <a name="admin_thumbs_advanced_movie"><h4>Allowed movie types</h4></a>
 <p>&quot;<em>ALL</em>&quot; will result in all allowed movie file types to be uploaded. If you want to restrict the allowable file types to certain extensions only, enter a slash-separated list of extensions, e.g. <tt class="code">wmv/avi/mov</tt>.</p>
 <p>Note that being able to display a movie requires that the cpg-user have the necessary codecs properly configured on their computers to display the movie file, e.g. if you allow the file type <tt class="faq">mov</tt>, the user who wishes to view the file will need to have Apple's Quick-Time plug-in installed. Also note that <tt class="code">avi</tt> is just a container for different codecs - this means that a computer which is capable of playing movie1.avi may not be capable of playing movie2.avi if those files have been encoded with different 'avi' codecs.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Files and thumbnails advanced settings &rarr; Allowed movie types</p>
-<p class="small">[cpg1.3.0 or better required]</p>
+
 <a name="admin_thumbs_advanced_movie_end"></a>
 <hr />
 <a name="admin_movie_autoplay"><h4>Movie Playback Autostart</h4></a>
@@ -2066,14 +2044,14 @@ If you have issues uploading pics, find out if safe_mode is enabled on your webs
 <p>&quot;<em>ALL</em>&quot; will result in all allowable audio file types to be uploaded. If you want to restrict the allowed file types to certain extensions only, enter a slash-separated list of extensions, e.g. <tt class="code">wav/mp3/wma</tt>.</p>
 <p>Note that being able to listen to an audio file requires that the cpg-user have the necessary codecs properly configured on their computers to hear these files, e.g. if you allow the file type <tt class="code">mp3</tt>, users who wish to listen to the file will need to have a media player installed on their computer that can handle mp3 files.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Files and thumbnails advanced settings &rarr; Allowed audio types</p>
-<p class="small">[cpg1.3.0 or better required]</p>
+
 <a name="admin_picture_thumb_advanced_audio_extensions_end"></a>
 <hr />
 <a name="admin_picture_thumb_advanced_doc_extensions"><h4>Allowed document types</h4></a>
 <p>&quot;<em>ALL</em>&quot; will result in all allowable document file types to be uploaded. If you want to restrict the allowable file types to certain extensions only, enter a slash-separated list of extensions, e.g. <tt class="code">txt/pdf</tt>.</p>
 <p>Note that being able to browse a document file requires the cpg-user to have a compatible software installed and configured properly on their computer that is capable of displaying the type of document in question, e.g. if you allow the file type <tt class="code">xls</tt>, users who wish to browse the file will need to have an application installed on their computer that can display MS-Excel sheets. Be extremely careful with  document that are known to be vulnerable to virus contamination, embedded or as macros. This is especially true if you plan to allow users the capability of uploading documents without admin approval.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Files and thumbnails advanced settings &rarr; Allowed document types</p>
-<p class="small">[cpg1.3.0 or better required]</p>
+
 <a name="admin_picture_thumb_advanced_doc_extensions_end"></a>
 <hr />
 <a name="admin_picture_thumb_advanced_resize_method"><h4>Method for resizing images</h4></a>
@@ -2103,13 +2081,13 @@ If you have issues uploading pics, find out if safe_mode is enabled on your webs
 <a name="admin_picture_thumb_advanced_exif"><h4>Read EXIF data in JPEG files</h4></a>
 <p>With this option turned on, the script will read the EXIF data stored by digicams in JPEG files. For cpg1.x to cpg1.2.1, this option will work only if PHP was compiled with the EXIF extension. Coppermine 1.3.0 (or better) comes with built-in EXIF support even if the webserver itself doesn't have EXIF support, as it uses a <a href="http://www.offsky.com/software/exif/index.php" class="external">separate EXIF class</a>.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Files and thumbnails advanced settings &rarr; Read EXIF data in JPEG files</p>
-<p class="small">[cpg1.3.0 or better required]</p>
+
 <a name="admin_picture_thumb_advanced_exif_end"></a>
 <hr />
 <a name="admin_picture_thumb_advanced_iptc"><h4>Read IPTC data in JPEG files</h4></a>
 <p>With this option turned on, the script will read the <a href="http://www.iptc.org/" class="external">IPTC</a> data stored by digicams in picture files.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Files and thumbnails advanced settings &rarr; Read IPTC data in JPEG files</p>
-<p class="small">[cpg1.3.0 or better required]</p>
+
 <a name="admin_picture_thumb_advanced_iptc_end"></a>
 <hr />
 <a name="admin_picture_thumb_advanced_albums_dir"><h4>The album directory</h4></a>
@@ -2155,13 +2133,13 @@ If you have issues uploading pics, find out if safe_mode is enabled on your webs
 <p>General toggle that determines if watermarking should be enabled or disabled. By default, it is disabled.</p>
 <p>Note: as watermarking actually means that each picture needs to be re-calculated during the upload stage, there may be issues with memory consumption and speed. If you experience issues with watermarking, turn it off or ask your webhost to increase server-sided settings that have an impact on watermarking.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Image watermarking &rarr; Watermark Image</p>
-<p class="small">[cpg1.5.0 or better required]</p>
+
 <a name="admin_watermarking_enable_end"></a>
 <hr />
 <a name="admin_watermarking_custom_thumb"><h4>Watermark custom thumbs (movie, audio, document)</h4></a>
 <p>When enabled, custom thumbnails will be watermarked as well.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Image watermarking &rarr; Watermark custom thumbs</p>
-<p class="small">[cpg1.5.0 or better required]</p>
+
 <a name="admin_watermarking_custom_thumb_end"></a>
 <hr />
 <a name="admin_watermarking_orientation"><h4>Where to place the watermark</h4></a>
@@ -2174,7 +2152,7 @@ If you have issues uploading pics, find out if safe_mode is enabled on your webs
   <li>Center</li>
 </ul>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Image watermarking &rarr; Where to place the watermark</p>
-<p class="small">[cpg1.5.0 or better required]</p>
+
 <a name="admin_watermarking_orientation_end"></a>
 <hr />
 <a name="admin_watermarking_filetype"><h4>Which files to watermark</h4></a>
@@ -2185,37 +2163,37 @@ If you have issues uploading pics, find out if safe_mode is enabled on your webs
   <li>Both (which is default)</li>
 </ul>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Image watermarking &rarr; Which files to watermark</p>
-<p class="small">[cpg1.5.0 or better required]</p>
+
 <a name="admin_watermarking_filetype_end"></a>
 <hr />
 <a name="admin_watermarking_filepath"><h4>Which file to use for watermark</h4></a>
 <p>Specify the relative path to the watermark file, seen from the root folder of your coppermine-gallery. Default value: <tt class="code">images/watermark.png</tt>. You can (and are even encouraged) to come up with a watermarking file of your own - only a standard desktop drawing application is needed, e.g. MS Paint.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Image watermarking &rarr; Which file to use for watermark</p>
-<p class="small">[cpg1.5.0 or better required]</p>
+
 <a name="admin_watermarking_filepath_end"></a>
 <hr />
 <a name="admin_watermarking_transparency"><h4>Transparency 0-100 for entire image</h4></a>
 <p>Determines the transparency level for the watermark. By setting transparency you can make your image blend nicely into the pictures you upload that get watermarked.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Image watermarking &rarr; Transparency 0-100 for entire image</p>
-<p class="small">[cpg1.5.0 or better required]</p>
+
 <a name="admin_watermarking_transparency_end"></a>
 <hr />
 <a name="admin_watermarking_downsize"><h4>Downsize watermark if width of an picture is smaller than entered value</h4></a>
 <p>That is the 100% reference point. Resizing of the watermark is linear (0 to disable).</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Image watermarking &rarr; Downsize watermark if width of an picture is smaller than entered value</p>
-<p class="small">[cpg1.5.0 or better required]</p>
+
 <a name="admin_watermarking_downsize_end"></a>
 <hr />
 <a name="admin_watermarking_transparent_x"><h4>Set color transparent x</h4></a>
 <p>This option is only available if you have set the method for resizing images to GD2. Specify the horizontal coordinate of the pixel that should represent the transparent color, seen from the left of the watermarking image.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Image watermarking &rarr; Set color transparent x</p>
-<p class="small">[cpg1.5.0 or better required]</p>
+
 <a name="admin_watermarking_transparent_x_end"></a>
 <hr />
 <a name="admin_watermarking_transparent_y"><h4>Set color transparent y</h4></a>
 <p>This option is only available if you have set the method for resizing images to GD2. Specify the vertical coordinate of the pixel that should represent the transparent color, seen from the top of the watermarking image.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Image watermarking &rarr; Set color transparent y</p>
-<p class="small">[cpg1.5.0 or better required]</p>
+
 <a name="admin_watermarking_transparent_y_end"></a>
 <a name="admin_watermarking_end"></a>
 <hr />
@@ -2236,7 +2214,7 @@ If you have issues uploading pics, find out if safe_mode is enabled on your webs
 <p>Toggles wether users will see the disclaimer on the registration page. You have the option not to display the disclaimer at all, display it as separate page before the actual registration page or inline on the registration page.<br />
 This setting only applies if coppermine is not bridged.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Registration &rarr; Display disclaimer on user registration</p>
-<p class="small">[cpg1.5.0 or better required]</p>
+
 <a name="admin_user_registration_disclaimer_end"></a>
 <hr />
 <a name="admin_registration_captcha_start"><h4>Display Captcha (Visual Confirmation) on registration page</h4></a>
@@ -2244,7 +2222,7 @@ This setting only applies if coppermine is not bridged.</p>
 <p>Note: this setting isn't being taken into account when coppermine is bridged.</p>
 <p class="important">Captchas will only work if GD2 is available on your server.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Registration &rarr; Display Captcha (Visual Confirmation) on registration page</p>
-<p class="small">[cpg1.5.0 or better required]</p>
+
 <a name="admin_registration_captcha_end"></a>
 <hr />
 <a name="admin_registration_verify"><h4>User registration requires email verification</h4></a>
@@ -2255,21 +2233,21 @@ This setting only applies if coppermine is not bridged.</p>
 <a name="admin_registration_notify"><h4>Notify admin of user registration by email</h4></a>
 <p>If set to YES an email will be sent to the gallery admin when a new user registers.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Registration &rarr; Notify admin of user registration by email</p>
-<p class="small">[cpg1.3.0 or better required]</p>
+
 <a name="admin_registration_notify_end"></a>
 <hr />
 <a name="admin_activation"><h4>Admin Activation</h4></a>
 <p>Enable admin activation. When set to yes, a gallery administrator must first activate the new registration before the user can log-in and take advantage of any registered user privileges.</p>
 <p>By default, it is set to no, so users would activate their own accounts upon registering.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Registration &rarr; Admin Activation</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+
 <a name="admin_activation_end"></a>
 <hr />
 <a name="admin_personal_album_on_registration"><h4>Create user album in personal gallery on registration</h4></a>
 <p>When enabled, each user will have a personal album created during the registration process, even if your permissions for the group new users are in do not allow this (i.e. if you have <a href="#group_cp">allowed personal galleries</a> for members of the registered group disabled). Warning: usually, only a small percentage of registered users actually upload files - when this option is enabled, a lot of unneeded user galleries will be created, severely cluttering the database (which has an impact on performance). Don't enable this option if you don't know what it actually does!</p>
 <p>This option is disabled when being bridged.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Registration &rarr; Create user album in personal gallery on registration</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+
 <a name="admin_personal_album_on_registration_end"></a>
 <hr />
 <a name="admin_registration_end"></a>
@@ -2279,7 +2257,7 @@ This setting only applies if coppermine is not bridged.</p>
 <a name="admin_allow_unlogged_access"><h4>Allow unlogged users (guest or anonymous) access</h4></a>
 <p>When set to &quot;No&quot;, unlogged users (i.e. guests or anonymous users) can not access anything in your gallery except the login screen (and the registration screen, if you allow registrations). Completely disabling anonymous access will probably decrease your site's popularity. Use this option only if you need your gallery to be absolutely private. The recommended setting is to leave anonymous access enabled and use the more specific permissions by groups and albums settings instead.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; User settings &rarr; Allow unlogged users (guest or anonymous) access</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+
 <a name="admin_allow_unlogged_access_end"></a>
 <hr />
 <a name="admin_allow_duplicate_emails_addr"><h4>Allow two users to have the same email address</h4></a>
@@ -2291,27 +2269,27 @@ address. Recommended setting is NO. As most internet users today have more than 
 <a name="admin_approval_notify"><h4>Notify admin of user upload awaiting approval</h4></a>
 <p>When enabled, the gallery admin receives an email notification of all pics that await for his/her approval (depends on the approval settings in &quot;<a href="#group_cp">groups</a>&quot;). The email is sent to the address specified in &quot;<a href="#admin_general">General settings</a>&quot;.</p><p>This option is only recommended for websites with low or medium traffic (where users only upload every now and then).</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; User settings &rarr; Notify admin of user upload awaiting approval</p>
-<p class="small">[cpg1.3.0 or better required]</p>
+
 <a name="admin_approval_notify_end"></a>
 <hr />
 <a name="admin_user_memberlist"><h4>Allow logged in users to view memberlist</h4></a>
 <p>When enabled, an additional menu item &quot;Memberlist&quot; is displayed in the coppermine main menu if a user is logged in, to let him see a list of all users, with stats on their last visits, uploads and quota usage.</p>
 <p>Recommended setting is 'no'.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; User settings &rarr; Allow logged in users to view memberlist</p>
-<p class="small">[cpg1.3.0 or better required]</p>
+
 <a name="admin_user_memberlist_end"></a>
 <hr />
 <a name="admin_user_allow_email_change"><h4>Allow users to change their email address in profile</h4></a>
 <p>This option impacts the user's profile page, it determines whether or not the user can change his/her own email address.<br />Use this option wisely, as the old email address of a user is not preserved after a change: if you allow users to change their email address, abusers may change it to a non-existing email address (e.g. after uploading some pics that go against your gallery's rules) - you would have no chance of tracking this user.</p>
 <p>This option only applies if you use Coppermine as a standalone application; if you run Coppermine integrated with a bbs, this option will be deferred to the user profile from your bbs to manage each user's profile.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; User settings &rarr; Allow users to change their email address in profile</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+
 <a name="admin_user_allow_email_change_end"></a>
 <hr />
 <a name="admin_user_editpics_public_start"><h4>Allow users to retain control over their pics in public galleries</h4></a>
 <p>When enabled, both the admin and the uploading user can edit and delete files that were uploaded to a public gallery. Of course the user must have permissions to upload to the public gallery in the first place (see the <a href="#group_cp">groups control panel</a>) before this option will have any effect.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; User settings &rarr; Allow users to retain control over their pics in public galleries</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+
 <a name="admin_user_editpics_public_end"></a>
 <hr />
 <a name="admin_user_login_start"></a>
@@ -2319,13 +2297,13 @@ address. Recommended setting is NO. As most internet users today have more than 
 <p>To make brute force attacks (where a hostile script tries to log into coppermine as admin by running through all possible combinations of username and password automatically) less effective Coppermine temporarily bans the IP address of a possible attacker after a certain amount of failed logins. This way, the brute force attack would need way to long to try all possible combinations.</p>
 <p>With this setting you specify the maximum number of failed log-in attempts before the IP address of the user is temporarily banned.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; User settings &rarr; Number of failed login attempts until temporary ban</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+
 <a name="admin_user_login_threshold_end"></a>
 <hr />
 <a name="admin_user_login_expiry_start"><h4>Duration of a temporary ban after failed logins</h4></a>
 <p>This value specifies the duration of the temporary ban (in minutes) after the number of failed log-in attempts specified with <a href="#admin_user_login_threshold_start">Number of failed login attempts until temporary ban</a>.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; User settings &rarr; Duration of a temporary ban after failed logins</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+
 <a name="admin_user_login_expiry_end"></a>
 <hr />
 <a name="admin_user_login_end"></a>
@@ -2333,7 +2311,7 @@ address. Recommended setting is NO. As most internet users today have more than 
 <p>Enable reports. When set to "yes," this feature will allow users to report on uploaded files or comments to the site admin.</p>
 <p>This setting is dependant on e-cards being enabled.  Only users who have permission to send e-cards in the 'groups' settings are able to send reports. The report icon is hidden from those not allowed to do so.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; User settings &rarr; Enable reports</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+
 <a name="admin_user_enable_report_end"></a>
 <p class="back"><a href="#top">Back to top</a></p>
 
@@ -2371,17 +2349,17 @@ address. Recommended setting is NO. As most internet users today have more than 
 <p>The hostname of the <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> server<br />
 If you leave this blank, sendmail (or a surrogate) will be used to send emails from your server. Sendmail exists on most Unix/Linux webservers. If you specify a SMTP hostname, Coppermine will try to send emails using SMTP (this usually is needed on Windows webservers).</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Email settings &rarr; SMTP Host</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+
 <hr />
 <h4>SMTP Username</h4>
 <p>The username needed to authenticate on the SMTP server (this is <strong>not</strong> your coppermine admin username).</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Email settings &rarr; SMTP Username</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+
 <hr />
 <h4>SMTP Password</h4>
 <p>The password that goes with above mentioned username (<strong>not</strong> identical to your coppermine admin password).</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Email settings &rarr; SMTP Password</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+
 <a name="admin_email_end"></a>
 <p class="back"><a href="#top">Back to top</a></p>
 
@@ -2391,13 +2369,13 @@ If you leave this blank, sendmail (or a surrogate) will be used to send emails f
 <p>Set, what kind of logging you want to enable. This feature records all changes that are done in coppermine's database, which is especially helpful if you're trying to debug or if there are various admins on a gallery.<br />
 All log files are written in english</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Logging &amp; statistics &rarr; Logging mode</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+
 <a name="admin_logging_log_mode_end"></a>
 <hr />
 <a name="admin_general_log_ecards"><h4>Log ecards</h4></a>
 <p>When enabled, all ecards that are being sent are as well written into the database, where the coppermine admin can view them. Before switching this option on, make sure that logging is legal in your country. It is also advisable to notify your users that all ecards are being logged (preferrably on the registration screen).</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Logging &amp; statistics &rarr; Log ecards</p>
-<p class="small">[cpg1.3.0 or better required]</p>
+
 <a name="admin_general_log_ecards_end"></a>
 <hr />
 <a name="admin_logging_votedetails"><h4>Keep detailed vote statistics</h4></a>
@@ -2454,7 +2432,7 @@ All log files are written in english</p>
 <a name="admin_general_offline"><h4>Gallery is offline</h4></a>
 <p>If you have to do maintenance work on your gallery, switch it to offline mode. Only members of the admin group will be able to log in, all other users will only see &quot;Gallery is offline&quot;. Remember to switch this option off once your maintenance work is done.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Miscellaneous settings &rarr; Gallery is offline</p>
-<p class="small">[cpg1.3.0 or better required]</p>
+
 <a name="admin_general_offline_end"></a>
 
 <p class="back"><a href="#top">Back to top</a></p>
@@ -2472,7 +2450,7 @@ Please note that EXIF is far from being a standard: each camera vendor uses his 
 To access the exif manager, go to coppermine's config and click within the section <a href="#admin_picture_thumb_advanced">Files and thumbnails advanced settings</a> at &quot;Manage exif display&quot; next to the line &quot;<a href="#admin_picture_thumb_advanced_exif">Read EXIF data in JPEG files</a>&quot;. Alternatively, you can directly enter http://yoursite.tld/your_coppermine_folder/exifmgr.php into your browser's address bar.</p>
 <p>Tick the checkboxes in the exif manager that you want to show up in coppermine's pic info section (if the image file actually holds this particular set of information).</p>
 <br clear="all" />
-<span class="small">[cpg1.4.0 or better required]</span>
+
 <p class="back"><a href="#top">Back to top</a></p>
 </div><!-- end sub-section of "EXIF data" (level 2 x.x)-->
 
@@ -2484,7 +2462,7 @@ To access the exif manager, go to coppermine's config and click within the secti
     <li>SEF_URLS plugin: enables "Search-engine-friendly URLs" - this is an experimental plugin and should be used with caution.</li>
 </ul>
 <p>You can find more plugins on the Coppermine Support Forum, both from Coppermine developers and from user contributions.</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+
 
 <div class="indent"><!-- start sub-section of "Plugins" (level 2 x.x)-->
 <a name="plugin_definition"><h3>4.14.1 What is a plugin?</h3></a>
@@ -2592,7 +2570,7 @@ Unfortunately, there is no API documentation available yet.</p>
   <li>In the last column named &quot;<strong>File</strong>&quot; a thumbnail that represents the pic the comment has been posted for is being displayed. By clicking on the thumbnail you can go to the individual pic. This is particularly helpful if you need to see the context of the comment.</li>
   <li>All changes you want to perform makes it mandatory to submit the form using the &quot;Save changes&quot; button at the bottom of the page. If you forget to submit the form, your changes will not be taken into account.</li>
 </ul>
-<p class="small">[cpg1.5.0 or better required]</p>
+
 <a name="comments_review_end"></a>
 <a name="comments_individual"><h3>4.15.5 Individual Comments</h3></a>
 <p>When logged in as admin and browsing an individual file (intermediate image), you will see three icons next to comments:</p>
@@ -2603,7 +2581,7 @@ Unfortunately, there is no API documentation available yet.</p>
   <li>When clicking on the <img src="../images/edit.gif" width="16" height="16" border="0" alt="" />-icon, the comment text will turn into an input field where you as admin can change the comment at will.</li>
   <li>A click on the <img src="../images/delete.gif" width="16" height="16" border="0" alt="" />-icon will delete the comment.</li>
 </ul>
-<p class="small">[cpg1.5.0 or better required]</p>
+
 <a name="comments_individual_end"></a>
 <a name="comments_end"></a>
 <p class="back"><a href="#top">Back to top</a></p>
@@ -2728,14 +2706,14 @@ Should Coppermine import the special groups that exist in the forum ? If you sel
 <li><strong>Enable integration/bridging with XXX</strong></li>
 </ul>
 <a name="bridge_manager_enable_end"></a>
-<p class="small">[cpg1.4.0 or better required]</p>
+
 <a name="bridge_manager_end"></a>
 <p class="back"><a href="#top">Back to top</a></p>
 </div><!-- end sub-section of "Using the bridge manager" (level 3 x.x.x)-->
 
 <a name="bridge_manager_recover_start"><h3>5.4.2 Recover from failed bridging</h3></a>
 <p>If you have provided improper settings using the bridge manager, your integration might fail, resulting (in the worst case) in a stituation where bridging is enabled, but you can not log in as admin to switch it off again (e.g. if you provided improper cookie settings that stops authentication from working). For this situation a recovery setting was built into the bridge manager: if you are not logged in as coppermine admin (in fact: not logged in at all) and you access the URL of your bridge manager (http://yourdomain.tld/your_coppermine_folder/bridgemgr.php) by entering it manually into the address bar of your browser, you are prompted to enter your admin account details - use the admin account you used to install coppermine with in the first place (the standalone admin account). This will not log you in, but switch integration off, so you can fix improper bridging settings then. To avoid others trying to guess your admin account details, there's a login treshold that rises every time you enter wrong credentials, so enter your admin account details with care.</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+
 <a name="bridge_manager_recover_end"></a>
 <p class="back"><a href="#top">Back to top</a></p>
 
