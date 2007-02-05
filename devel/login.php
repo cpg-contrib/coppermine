@@ -26,6 +26,19 @@ if (USER_ID) cpg_die(ERROR, $lang_login_php['err_already_logged_in'], __FILE__, 
 
 if (defined('UDB_INTEGRATION')) $cpg_udb->login_page();
 
+/**
+ * Clean up GPC and other Globals here
+ */
+if (isset($_POST['submitted'])) {
+  $CLEAN['username'] = addslashes($_POST['username']);
+  $CLEAN['password'] = addslashes($_POST['password']);
+  if (isset($_POST['remember_me'])) {
+    $CLEAN['remember_me'] = 1;
+  } else {
+    $CLEAN['remember_me'] = 0;
+  }
+}
+
 $referer = $_GET['referer'] ? $_GET['referer'] : 'index.php';
 if (strpos($referer, "http") !== false) {
   $referer = "index.php";
@@ -34,14 +47,14 @@ $login_failed = '';
 $cookie_warning = '';
 
 if (isset($_POST['submitted'])) {
-    if ( $USER_DATA = $cpg_udb->login( addslashes($_POST['username']), addslashes($_POST['password']), isset($_POST['remember_me']) ) ) {
+    if ( $USER_DATA = $cpg_udb->login( addslashes($CLEAN['username']), addslashes($CLEAN['password']), isset($CLEAN['remember_me']) ) ) {
         $referer=preg_replace("'&amp;'","&",$referer);
         pageheader($lang_login_php['login'], "<META http-equiv=\"refresh\" content=\"3;url=$referer\">");
         msg_box($lang_login_php['login'], sprintf($lang_login_php['welcome'], $USER_DATA['user_name']), $lang_common['continue'], $referer);
         pagefooter();
         exit;
     } else {
-        log_write("Failed login attempt with Username: {$_POST['username']} from IP {$_SERVER['REMOTE_ADDR']} on " . localised_date(-1,$log_date_fmt),CPG_SECURITY_LOG);
+        log_write("Failed login attempt with Username: {$CLEAN['username']} from IP {$_SERVER['REMOTE_ADDR']} on " . localised_date(-1,$log_date_fmt),CPG_SECURITY_LOG);
 
         $login_failed = <<<EOT
                   <tr>
