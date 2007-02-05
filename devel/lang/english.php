@@ -199,6 +199,20 @@ $lang_gallery_admin_menu = array(
   'pictures_lnk' => 'Sort my pictures',
   'documentation_lnk' => 'Documentation',
   'documentation_title' => 'Coppermine manual',
+  'phpinfo_lnk' => 'PHPINFO', // cpg1.5.x
+  'phpinfo_title' => 'Contains technical information about your server. You may be asked to provide information from this when requesting support.', // cpg1.5.x
+  'update_database_lnk' => 'Update database', // cpg1.5.x
+  'update_database_title' => 'If you have replaced coppermine files, added a modification or upgraded from a previous version of coppermine, make sure to run the database update once. This will create the necessary tables and/or config values in your coppermine database.', // cpg1.5.x
+  'view_log_files_lnk' => 'View log files', // cpg1.5.x
+  'view_log_files_title' => 'Coppermine can keep track of various actions users perform. You can browse those logs if you have enabled logging in coppermine config.', // cpg1.5.x
+  'check_versions_lnk' => 'Check versions', // cpg1.5.x
+  'check_versions_title' => 'Check your file versions to find out if you have replaced all files after an upgrade, or if coppermine source files have been updated after the release of a package.', // cpg1.5.x
+  'bridgemgr_lnk' => 'Bridge Manager', // cpg1.5.x
+  'bridgemgr_title' => 'Enable/disable integration (bridging) of Coppermine with another application (e.g. your BBS).', // cpg1.5.x
+  'pluginmgr_lnk' => 'Plugin Manager', // cpg1.5.x
+  'pluginmgr_title' => 'Plugin manager', // cpg1.5.x
+  'overall_stats_lnk' => 'Overall Stats', // cpg1.5.x
+  'overall_stats_title' => 'View overall hit stats by browser and operating system (if corresponding options are turned on in config).', // cpg1.5.x
 );
 
 $lang_user_admin_menu = array(

@@ -257,6 +257,28 @@ EOT;
 ******************************************************************************/
 } //{THEMES}
 
+if (!isset($template_gallery_admin_block)) {  //{THEMES}
+/******************************************************************************
+** Section <<<$template_gallery_admin_block>>> - START
+******************************************************************************/
+// HTML template for gallery admin block
+$template_gallery_admin_block = <<< EOT
+              <div class="admin_menu_wrapper">
+                                <div class="admin_menu admin_float"><a href="pluginmgr.php" title="{PLUGINMGR_TITLE}">{PLUGINMGR_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="bridgemgr.php" title="{BRIDGEMGR_TITLE}">{BRIDGEMGR_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="phpinfo.php" title="{PHPINFO_TITLE}">{PHPINFO_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="update.php" title="{UPDATE_DATABASE_TITLE}">{UPDATE_DATABASE_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="viewlog.php" title="{VIEW_LOG_FILES_TITLE}">{VIEW_LOG_FILES_LNK}</a></div>
+                <div class="admin_float_end">
+                </div>
+              </div>
+
+EOT;
+/******************************************************************************
+** Section <<<$template_gallery_admin_block>>> - END
+******************************************************************************/
+}  //{THEMES}
+
 if (!isset($template_user_admin_menu)) { //{THEMES}
 /******************************************************************************
 ** Section <<<$template_user_admin_menu>>> - START
@@ -1484,6 +1506,7 @@ function pageheader($section, $meta = '')
         '{ADMIN_MENU}' => theme_admin_mode_menu(),
         '{CUSTOM_HEADER}' => $custom_header,
         '{JAVASCRIPT}' => theme_javascript_head(),
+        '{ADMIN_BLOCK}' => theme_display_admin_block(),
         );
 
     echo template_eval($template_header, $template_vars);
@@ -1867,7 +1890,7 @@ function theme_admin_mode_menu()
                 );
 
             $html = template_eval($template_gallery_admin_menu, $param);
-            $html.= cpg_alert_dev_version();
+            // $html.= cpg_alert_dev_version();
         } elseif (USER_ADMIN_MODE) {
             $param = array('{ALBMGR_TITLE}' => $lang_user_admin_menu['albmgr_title'],
                 '{ALBMGR_LNK}' => $lang_user_admin_menu['albmgr_lnk'],
@@ -1891,6 +1914,45 @@ function theme_admin_mode_menu()
 }
 /******************************************************************************
 ** Section <<<theme_admin_mode_menu>>> - END
+******************************************************************************/
+}  //{THEMES}
+
+if (!function_exists('theme_display_admin_block')) {  //{THEMES}
+/******************************************************************************
+** Section <<<theme_display_admin_block>>> - START
+******************************************************************************/
+/******************************************************************************
+// Function for the theme_display_admin_block
+The admin block (not to be confused with the admin menu) will display advanced
+admin options and an RSS feed from the coppermine project page.
+It's advisable not to change it unless you really know what you're doing.
+This function composes the individual sections of the block.
+******************************************************************************/
+function theme_display_admin_block() {
+    global $lang_gallery_admin_menu, $template_gallery_admin_block;
+    if (GALLERY_ADMIN_MODE) {
+            $param = array(
+                '{PLUGINMGR_TITLE}' => $lang_gallery_admin_menu['pluginmgr_title'],
+                '{PLUGINMGR_LNK}' => $lang_gallery_admin_menu['pluginmgr_lnk'],
+                '{BRIDGEMGR_TITLE}' => $lang_gallery_admin_menu['bridgemgr_title'],
+                '{BRIDGEMGR_LNK}' => $lang_gallery_admin_menu['bridgemgr_lnk'],
+                '{PHPINFO_TITLE}' => $lang_gallery_admin_menu['phpinfo_title'],
+                '{PHPINFO_LNK}' => $lang_gallery_admin_menu['phpinfo_lnk'],
+                '{UPDATE_DATABASE_TITLE}' => $lang_gallery_admin_menu['update_database_title'],
+                '{UPDATE_DATABASE_LNK}' => $lang_gallery_admin_menu['update_database_lnk'],
+                '{VIEW_LOG_FILES_TITLE}' => $lang_gallery_admin_menu['view_log_files_title'],
+                '{VIEW_LOG_FILES_LNK}' => $lang_gallery_admin_menu['view_log_files_lnk'],
+                );
+
+            $return = template_eval($template_gallery_admin_block, $param);
+        $return .= cpg_alert_dev_version();
+    } else {
+        $return = '';
+    }
+    return $return;
+}
+/******************************************************************************
+** Section <<<theme_display_admin_block>>> - END
 ******************************************************************************/
 }  //{THEMES}
 
