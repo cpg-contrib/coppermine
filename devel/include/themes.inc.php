@@ -264,11 +264,33 @@ if (!isset($template_gallery_admin_block)) {  //{THEMES}
 // HTML template for gallery admin block
 $template_gallery_admin_block = <<< EOT
               <div class="admin_menu_wrapper">
+                            <!-- BEGIN plugin_manager -->
                                 <div class="admin_menu admin_float"><a href="pluginmgr.php" title="{PLUGINMGR_TITLE}">{PLUGINMGR_LNK}</a></div>
+                            <!-- END plugin_manager -->
+                            <!-- BEGIN bridge_manager -->
                                 <div class="admin_menu admin_float"><a href="bridgemgr.php" title="{BRIDGEMGR_TITLE}">{BRIDGEMGR_LNK}</a></div>
+                            <!-- END bridge_manager -->
+                            <!-- BEGIN php_info -->
                                 <div class="admin_menu admin_float"><a href="phpinfo.php" title="{PHPINFO_TITLE}">{PHPINFO_LNK}</a></div>
+                            <!-- END php_info -->
+                            <!-- BEGIN update_database -->
                                 <div class="admin_menu admin_float"><a href="update.php" title="{UPDATE_DATABASE_TITLE}">{UPDATE_DATABASE_LNK}</a></div>
+                            <!-- END update_database -->
+                            <!-- BEGIN view_log_files -->
                                 <div class="admin_menu admin_float"><a href="viewlog.php" title="{VIEW_LOG_FILES_TITLE}">{VIEW_LOG_FILES_LNK}</a></div>
+                            <!-- END view_log_files -->
+                            <!-- BEGIN check_versions -->
+                                <div class="admin_menu admin_float"><a href="versioncheck.php" title="{CHECK_VERSIONS_TITLE}">{CHECK_VERSIONS_LNK}</a></div>
+                            <!-- END check_versions -->
+                            <!-- BEGIN overall_stats -->
+                                <div class="admin_menu admin_float"><a href="stat_details.php?type=hits&amp;sort=sdate&amp;dir=&amp;sdate=1&amp;ip=1&amp;search_phrase=0&amp;referer=0&amp;browser=1&amp;os=1&amp;mode=fullscreen" title="{OVERALL_STATS_TITLE}">{OVERALL_STATS_LNK}</a></div>
+                            <!-- END overall_stats -->
+                            <!-- BEGIN keyword_manager -->
+                                <div class="admin_menu admin_float"><a href="keywordmgr.php" title="{KEYWORDMGR_TITLE}">{KEYWORDMGR_LNK}</a></div>
+                            <!-- END keyword_manager -->
+                            <!-- BEGIN exif_manager -->
+                                <div class="admin_menu admin_float"><a href="exifmgr.php" title="{EXIFMGR_TITLE}">{EXIFMGR_LNK}</a></div>
+                            <!-- END exif_manager -->
                 <div class="admin_float_end">
                 </div>
               </div>
@@ -1929,8 +1951,23 @@ It's advisable not to change it unless you really know what you're doing.
 This function composes the individual sections of the block.
 ******************************************************************************/
 function theme_display_admin_block() {
-    global $lang_gallery_admin_menu, $template_gallery_admin_block;
+    global $lang_gallery_admin_menu, $template_gallery_admin_block, $CONFIG;
     if (GALLERY_ADMIN_MODE) {
+            if (!$CONFIG['enable_plugins']) {
+                template_extract_block($template_gallery_admin_block, 'plugin_manager');
+            }
+            if (!$CONFIG['log_mode']) {
+                template_extract_block($template_gallery_admin_block, 'view_log_files');
+            }
+            if (!$CONFIG['hit_details']) {
+                template_extract_block($template_gallery_admin_block, 'overall_stats');
+            }
+            if (!$CONFIG['clickable_keyword_search']) {
+                template_extract_block($template_gallery_admin_block, 'keyword_manager');
+            }
+            if (!$CONFIG['read_exif_data']) {
+                template_extract_block($template_gallery_admin_block, 'exif_manager');
+            }
             $param = array(
                 '{PLUGINMGR_TITLE}' => $lang_gallery_admin_menu['pluginmgr_title'],
                 '{PLUGINMGR_LNK}' => $lang_gallery_admin_menu['pluginmgr_lnk'],
@@ -1942,10 +1979,25 @@ function theme_display_admin_block() {
                 '{UPDATE_DATABASE_LNK}' => $lang_gallery_admin_menu['update_database_lnk'],
                 '{VIEW_LOG_FILES_TITLE}' => $lang_gallery_admin_menu['view_log_files_title'],
                 '{VIEW_LOG_FILES_LNK}' => $lang_gallery_admin_menu['view_log_files_lnk'],
+                '{CHECK_VERSIONS_TITLE}' => $lang_gallery_admin_menu['check_versions_title'],
+                '{CHECK_VERSIONS_LNK}' => $lang_gallery_admin_menu['check_versions_lnk'],
+                '{OVERALL_STATS_TITLE}' => $lang_gallery_admin_menu['overall_stats_title'],
+                '{OVERALL_STATS_LNK}' => $lang_gallery_admin_menu['overall_stats_lnk'],
+                '{KEYWORDMGR_TITLE}' => $lang_gallery_admin_menu['keywordmgr_title'],
+                '{KEYWORDMGR_LNK}' => $lang_gallery_admin_menu['keywordmgr_lnk'],
+                '{EXIFMGR_TITLE}' => $lang_gallery_admin_menu['exifmgr_title'],
+                '{EXIFMGR_LNK}' => $lang_gallery_admin_menu['exifmgr_lnk'],
                 );
 
             $return = template_eval($template_gallery_admin_block, $param);
+            // todo: display the sanitized get parameter for the stuff done in the
+            //       previous step here - do a similar thing for the end user later.
+            // As an example for the concept, let's display something silly here
+            if ($_GET['message'] != '') {
+                $return .= 'Sample message';
+            }
         $return .= cpg_alert_dev_version();
+        // $return .= cpg_display_rss(); //add RSS feed from coppermine-gallery.net later
     } else {
         $return = '';
     }
