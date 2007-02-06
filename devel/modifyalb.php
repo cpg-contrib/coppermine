@@ -25,6 +25,16 @@ include("include/init.inc.php");
 if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) {
     cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 }
+
+/**
+ * Clean up GPC and other Globals here
+ */
+if (isset($_GET['album'])) {
+  $CLEAN['album'] = (int)$_GET['album'];
+} else {
+  $CLEAN['album'] = 0;
+}
+
 // Type 0 => input
 // 1 => yes/no
 // 2 => Category
@@ -193,14 +203,14 @@ EOT;
 
 function form_alb_thumb($text, $name)
 {
-    global $CONFIG, $ALBUM_DATA, $album, $lang_modifyalb_php,$USER_DATA;
+    global $CONFIG, $ALBUM_DATA, $CLEAN, $lang_modifyalb_php,$USER_DATA;
 
     $cpg_nopic_data = cpg_get_system_thumb('nopic.jpg',$USER_DATA['user_id']);
 
     if ($ALBUM_DATA['keyword']) {
         $keyword = "OR (keywords like '%{$ALBUM_DATA['keyword']}%')";
     }
-    $results = cpg_db_query("SELECT pid, filepath, filename, url_prefix FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='$album' $keyword AND approved='YES' ORDER BY filename");
+    $results = cpg_db_query("SELECT pid, filepath, filename, url_prefix FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='{$CLEAN['album']}' $keyword AND approved='YES' ORDER BY filename");
     if (mysql_num_rows($results) == 0) {
         echo <<<EOT
         <tr>
@@ -458,7 +468,7 @@ function create_form(&$data)
 
 function alb_list_box()
 {
-    global $CONFIG, $album, $cpg_udb; //, $PHP_SELF;
+    global $CONFIG, $CLEAN, $cpg_udb; //, $PHP_SELF;
 
     if (GALLERY_ADMIN_MODE) {
         $result = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < '" . FIRST_USER_CAT . "' ORDER BY title");
@@ -482,7 +492,7 @@ function alb_list_box()
     if (count($rowset)) {
         $lb = "<select name=\"album_listbox\" class=\"listbox\" onChange=\"if(this.options[this.selectedIndex].value) window.location.href='{$_SERVER['PHP_SELF']}?album='+this.options[this.selectedIndex].value;\">\n";
         foreach ($rowset as $row) {
-            $selected = ($row['aid'] == $album) ? "SELECTED" : "";
+            $selected = ($row['aid'] == $CLEAN['album']) ? "SELECTED" : "";
             $lb .= "        <option value=\"" . $row['aid'] . "\" $selected>" . $row['title'] . "</option>\n";
         }
         $lb .= "</select>\n";
@@ -490,7 +500,7 @@ function alb_list_box()
     }
 }
 
-if (!isset($_GET['album'])) {
+if (!$CLEAN['album']) {
     if (GALLERY_ADMIN_MODE) {
         $results = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_ALBUMS']} WHERE 1 LIMIT 1");
     } else {
@@ -498,10 +508,10 @@ if (!isset($_GET['album'])) {
     }
     if (mysql_num_rows($results) == 0) cpg_die(ERROR, $lang_modifyalb_php['err_no_alb_to_modify'], __FILE__, __LINE__);
     $ALBUM_DATA = mysql_fetch_array($results);
-    $album = $ALBUM_DATA['aid'];
+    $CLEAN['album'] = $ALBUM_DATA['aid'];
 } else {
-    $album = (int)$_GET['album'];
-    $results = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album'");
+    //$album = (int)$_GET['album'];
+    $results = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='{$CLEAN['album']}'");
     if (!mysql_num_rows($results)) cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
     $ALBUM_DATA = mysql_fetch_array($results);
 }
@@ -524,11 +534,11 @@ starttable("100%",$lang_modifyalb_php['update'].$help, 2);
 echo <<<EOT
         <tr>
             <td class="tableh2" align="center">
-                <a href="editpics.php?album=$album" class="admin_menu">{$lang_modifyalb_php['edit_files']}</a>
+                <a href="editpics.php?album={$CLEAN['album']}" class="admin_menu">{$lang_modifyalb_php['edit_files']}</a>
                 &nbsp;&nbsp;-&nbsp;&nbsp;
                 <a href="index.php?cat={$ALBUM_DATA['category']}" class="admin_menu">{$lang_modifyalb_php['parent_category']}</a>
                 &nbsp;&nbsp;-&nbsp;&nbsp;
-                <a href="thumbnails.php?album=$album" class="admin_menu">{$lang_modifyalb_php['thumbnail_view']}</a>
+                <a href="thumbnails.php?album={$CLEAN['album']}" class="admin_menu">{$lang_modifyalb_php['thumbnail_view']}</a>
             </td>
             <td class="tableh2" align="right">
             $album_lb
@@ -536,7 +546,7 @@ echo <<<EOT
         </tr>
         <form method="post" name="modifyalbum" id="cpgform" action="db_input.php">
         <input type="hidden" name="event" value="album_update" />
-        <input type="hidden" name="aid" value="$album" />
+        <input type="hidden" name="aid" value="{$CLEAN['album']}" />
 
 EOT;
 
@@ -567,17 +577,17 @@ endtable();
 
 if (GALLERY_ADMIN_MODE) {
     // get the album stats
-    $result = cpg_db_query("SELECT SUM(hits) FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='$album'");
+    $result = cpg_db_query("SELECT SUM(hits) FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='{$CLEAN['album']}'");
     $nbEnr = mysql_fetch_array($result);
     $hits = $nbEnr[0];
     if (!$hits) { $hits = 0; }
     mysql_free_result($result);
-    $result = cpg_db_query("SELECT SUM(votes) FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='$album' AND votes > 0");
+    $result = cpg_db_query("SELECT SUM(votes) FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='{$CLEAN['album']}' AND votes > 0");
     $nbEnr = mysql_fetch_array($result);
     $votes = $nbEnr[0];
     if (!$votes) { $votes = 0; }
     mysql_free_result($result);
-    $result = cpg_db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='$album'");
+    $result = cpg_db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='{$CLEAN['album']}'");
     $nbEnr = mysql_fetch_array($result);
     $files = $nbEnr[0];
     if (!$files) { $files = 0; }
@@ -587,7 +597,7 @@ if (GALLERY_ADMIN_MODE) {
     <br />
     <form action="db_input.php" method="post" name="reset_views_form" id="cpgform" onSubmit="return defaultagree(this)">
     <input type="hidden" name="event" value="album_reset" />
-    <input type="hidden" name="aid" value="$album" />
+    <input type="hidden" name="aid" value="{$CLEAN['album']}" />
 EOT;
 // set up the translation strings
 $translation_reset_views = sprintf($lang_modifyalb_php['reset_views'], '&quot;'.$ALBUM_DATA['title'].'&quot;');
