@@ -18,7 +18,7 @@
 **********************************************/
 
 $name = 'Search Engine Friendly URLs';
-$description = 'Makes SEF URLs for index, thumbnails, and displayimage.php.<br />Warning: this plugin is still experimental, there are known issues when using it. Test thoroughly and use at your own risk.';
+$description = 'Makes SEF URLs for index, thumbnails, and displayimage.php. (Apache webserver only!)<br />Warning: this plugin is still experimental, there are known issues when using it. Test thoroughly and use at your own risk.<br />When getting unexpected results, disable the plugin and remove the .htaccess file the plugin creates manually (using your FTP app).';
 $author = 'Coppermine Development Team';
 $version = '1.1';
 ?>
