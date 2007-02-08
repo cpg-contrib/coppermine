@@ -30,10 +30,10 @@ if (defined('UDB_INTEGRATION')) $cpg_udb->logout_page();
 setcookie($CONFIG['cookie_name'] . '_pass', '', time()-86400, $CONFIG['cookie_path']);
 setcookie($CONFIG['cookie_name'] . '_uid', '', time()-86400, $CONFIG['cookie_path']);
 */
+$message_id = cpgStoreTempMessage(sprintf($lang_logout_php['bye'], stripslashes(USER_NAME)));
+$referer = 'index.php?message_id='.$message_id;
 
-$referer = 'index.php';
-
-pageheader($lang_logout_php['logout'], "<META http-equiv=\"refresh\" content=\"3;url=$referer\">");
+pageheader($lang_logout_php['logout'], "<META http-equiv=\"refresh\" content=\"0;url=$referer\">");
 msg_box($lang_logout_php['logout'], sprintf($lang_logout_php['bye'], stripslashes(USER_NAME)), $lang_common['continue'], $referer);
 pagefooter();
 ob_end_flush();

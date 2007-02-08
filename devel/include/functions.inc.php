@@ -3230,7 +3230,8 @@ function cpgValidateColor($color) {
 /**
 * cpgStoreTempMessage()
 *
-* Store a temporary message to the database to carry over from one page to the other
+* Store a temporary message to the database to carry over from one
+page to the other
 *
 *
 *
@@ -3239,10 +3240,11 @@ function cpgValidateColor($color) {
 **/
 function cpgStoreTempMessage($message) {
   global $CONFIG;
+  $message = urlencode($message);
   // come up with a unique message id
-  $message_id = '1234';
+  $message_id = ereg_replace("[^A-Za-z0-9]", "",
+base64_encode(rand(10000,30000).time().USER_ID.hash('md5', $message)));
   // write the message to the database
-  $message = urlencode(addslashes($message));
   $user_id = USER_ID;
   $time = time();
 
@@ -3254,8 +3256,54 @@ function cpgStoreTempMessage($message) {
                       time   = '$time',
                       message = '$message'";
   cpg_db_query($query);
-
   // return the message_id
   return $message_id;
 }
+
+/**
+* cpgFetchTempMessage()
+*
+* Fetch a temporary message from the database and then delete it.
+*
+*
+*
+* @param string $message_id
+* @return $message
+**/
+function cpgFetchTempMessage($message_id) {
+  global $CONFIG;
+  $user_id = USER_ID;
+  $time = time();
+  $message = '';
+
+  // Read the record in database
+  $query = "SELECT message AS message FROM {$CONFIG['TABLE_TEMP_MESSAGES']} WHERE message_id = '$message_id' LIMIT 1";
+  $result = cpg_db_query($query);
+  if (mysql_num_rows($result) > 0) {
+        $row = mysql_fetch_row($result);
+        $message = urldecode($row[0]);
+  }
+  // delete the message once fetched
+  $query = "DELETE FROM {$CONFIG['TABLE_TEMP_MESSAGES']} WHERE message_id = '$message_id'";
+  cpg_db_query($query);
+  // return the message
+  return $message;
+}
+
+/**
+* cpgCleanTempMessage()
+*
+* Clean up the temporary messages table (garbage collection).
+*
+* @param string $seconds
+* @return void
+**/
+function cpgCleanTempMessage($seconds = 3600) {
+  global $CONFIG;
+  $time = time() - (int)$seconds;
+  // delete the messages older than the specified amount
+  $query = "DELETE FROM {$CONFIG['TABLE_TEMP_MESSAGES']} WHERE time < '$time'";
+  cpg_db_query($query);
+}
+
 ?>

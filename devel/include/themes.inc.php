@@ -228,9 +228,9 @@ if (!isset($template_gallery_admin_menu)) { //{THEMES}
 $template_gallery_admin_menu = <<<EOT
 
                 <div class="admin_menu_wrapper">
-<!-- BEGIN admin_approval -->
+                            <!-- BEGIN admin_approval -->
                                 <div class="admin_menu admin_float" id="admin_menu_anim"><a href="editpics.php?mode=upload_approval" title="{UPL_APP_TITLE}">{UPL_APP_LNK}</a></div>
-<!-- END admin_approval -->
+                            <!-- END admin_approval -->
                                 <div class="admin_menu admin_float"><a href="admin.php" title="{ADMIN_TITLE}">{ADMIN_LNK}</a></div>
                                 <div class="admin_menu admin_float"><a href="catmgr.php" title="{CATEGORIES_TITLE}">{CATEGORIES_LNK}</a></div>
                                 <div class="admin_menu admin_float"><a href="albmgr.php{CATL}" title="{ALBUMS_TITLE}">{ALBUMS_LNK}</a></div>
@@ -238,32 +238,16 @@ $template_gallery_admin_menu = <<<EOT
                                 <div class="admin_menu admin_float"><a href="usermgr.php" title="{USERS_TITLE}">{USERS_LNK}</a></div>
                                 <div class="admin_menu admin_float"><a href="banning.php" title="{BAN_TITLE}">{BAN_LNK}</a></div>
                                 <div class="admin_menu admin_float"><a href="reviewcom.php" title="{COMMENTS_TITLE}">{COMMENTS_LNK}</a></div>
-<!-- BEGIN log_ecards -->
+                            <!-- BEGIN log_ecards -->
                                 <div class="admin_menu admin_float"><a href="db_ecard.php" title="{DB_ECARD_TITLE}">{DB_ECARD_LNK}</a></div>
-<!-- END log_ecards -->
+                            <!-- END log_ecards -->
                                 <div class="admin_menu admin_float"><a href="picmgr.php" title="{PICTURES_TITLE}">{PICTURES_LNK}</a></div>
                                 <div class="admin_menu admin_float"><a href="searchnew.php" title="{SEARCHNEW_TITLE}">{SEARCHNEW_LNK}</a></div>
                                 <div class="admin_menu admin_float"><a href="util.php" title="{UTIL_TITLE}">{UTIL_LNK}</a></div>
                                 <div class="admin_menu admin_float"><a href="profile.php?op=edit_profile" title="{MY_PROF_TITLE}">{MY_PROF_LNK}</a></div>
-<!-- BEGIN documentation -->
+                            <!-- BEGIN documentation -->
                                 <div class="admin_menu admin_float"><a href="{DOCUMENTATION_HREF}" title="{DOCUMENTATION_TITLE}" target="cpg_documentation">{DOCUMENTATION_LNK}</a></div>
-<!-- END documentation -->
-                <div class="admin_float_end">
-                </div>
-              </div>
-EOT;
-/******************************************************************************
-** Section <<<$template_gallery_admin_menu>>> - END
-******************************************************************************/
-} //{THEMES}
-
-if (!isset($template_gallery_admin_block)) {  //{THEMES}
-/******************************************************************************
-** Section <<<$template_gallery_admin_block>>> - START
-******************************************************************************/
-// HTML template for gallery admin block
-$template_gallery_admin_block = <<< EOT
-              <div class="admin_menu_wrapper">
+                            <!-- END documentation -->
                             <!-- BEGIN plugin_manager -->
                                 <div class="admin_menu admin_float"><a href="pluginmgr.php" title="{PLUGINMGR_TITLE}">{PLUGINMGR_LNK}</a></div>
                             <!-- END plugin_manager -->
@@ -294,12 +278,11 @@ $template_gallery_admin_block = <<< EOT
                 <div class="admin_float_end">
                 </div>
               </div>
-
 EOT;
 /******************************************************************************
-** Section <<<$template_gallery_admin_block>>> - END
+** Section <<<$template_gallery_admin_menu>>> - END
 ******************************************************************************/
-}  //{THEMES}
+} //{THEMES}
 
 if (!isset($template_user_admin_menu)) { //{THEMES}
 /******************************************************************************
@@ -1528,7 +1511,7 @@ function pageheader($section, $meta = '')
         '{ADMIN_MENU}' => theme_admin_mode_menu(),
         '{CUSTOM_HEADER}' => $custom_header,
         '{JAVASCRIPT}' => theme_javascript_head(),
-        '{ADMIN_BLOCK}' => theme_display_admin_block(),
+        '{MESSAGE_BLOCK}' => theme_display_message_block(),
         );
 
     echo template_eval($template_header, $template_vars);
@@ -1865,13 +1848,13 @@ function theme_admin_mode_menu()
 
         if (GALLERY_ADMIN_MODE) {
 
-        if ($CONFIG['log_ecards'] == 0) {
-            template_extract_block($template_gallery_admin_menu, 'log_ecards');
-        }
+            if ($CONFIG['log_ecards'] == 0) {
+                template_extract_block($template_gallery_admin_menu, 'log_ecards');
+            }
 
-        if (cpg_get_pending_approvals() == 0) {
-             template_extract_block($template_gallery_admin_menu, 'admin_approval');
-        }
+            if (cpg_get_pending_approvals() == 0) {
+                 template_extract_block($template_gallery_admin_menu, 'admin_approval');
+            }
 
             // do the docs exist on the webserver?
             if (file_exists('docs/index.htm') == true) {
@@ -1879,6 +1862,23 @@ function theme_admin_mode_menu()
             } else {
                 $documentation_href = 'http://coppermine.sf.net/docs/cpg14/index.php';
             }
+
+            if (!$CONFIG['enable_plugins']) {
+                template_extract_block($template_gallery_admin_menu, 'plugin_manager');
+            }
+            if (!$CONFIG['log_mode']) {
+                template_extract_block($template_gallery_admin_menu, 'view_log_files');
+            }
+            if (!$CONFIG['hit_details']) {
+                template_extract_block($template_gallery_admin_menu, 'overall_stats');
+            }
+            if (!$CONFIG['clickable_keyword_search']) {
+                template_extract_block($template_gallery_admin_menu, 'keyword_manager');
+            }
+            if (!$CONFIG['read_exif_data']) {
+                template_extract_block($template_gallery_admin_menu, 'exif_manager');
+            }
+
             $param = array('{CATL}' => $cat_l,
                 '{UPL_APP_TITLE}' => $lang_gallery_admin_menu['upl_app_title'],
                 '{UPL_APP_LNK}' => $lang_gallery_admin_menu['upl_app_lnk'],
@@ -1909,6 +1909,24 @@ function theme_admin_mode_menu()
                 '{DOCUMENTATION_HREF}' => $documentation_href,
                 '{DOCUMENTATION_TITLE}' => $lang_gallery_admin_menu['documentation_title'],
                 '{DOCUMENTATION_LNK}' => $lang_gallery_admin_menu['documentation_lnk'],
+                '{PLUGINMGR_TITLE}' => $lang_gallery_admin_menu['pluginmgr_title'],
+                '{PLUGINMGR_LNK}' => $lang_gallery_admin_menu['pluginmgr_lnk'],
+                '{BRIDGEMGR_TITLE}' => $lang_gallery_admin_menu['bridgemgr_title'],
+                '{BRIDGEMGR_LNK}' => $lang_gallery_admin_menu['bridgemgr_lnk'],
+                '{PHPINFO_TITLE}' => $lang_gallery_admin_menu['phpinfo_title'],
+                '{PHPINFO_LNK}' => $lang_gallery_admin_menu['phpinfo_lnk'],
+                '{UPDATE_DATABASE_TITLE}' => $lang_gallery_admin_menu['update_database_title'],
+                '{UPDATE_DATABASE_LNK}' => $lang_gallery_admin_menu['update_database_lnk'],
+                '{VIEW_LOG_FILES_TITLE}' => $lang_gallery_admin_menu['view_log_files_title'],
+                '{VIEW_LOG_FILES_LNK}' => $lang_gallery_admin_menu['view_log_files_lnk'],
+                '{CHECK_VERSIONS_TITLE}' => $lang_gallery_admin_menu['check_versions_title'],
+                '{CHECK_VERSIONS_LNK}' => $lang_gallery_admin_menu['check_versions_lnk'],
+                '{OVERALL_STATS_TITLE}' => $lang_gallery_admin_menu['overall_stats_title'],
+                '{OVERALL_STATS_LNK}' => $lang_gallery_admin_menu['overall_stats_lnk'],
+                '{KEYWORDMGR_TITLE}' => $lang_gallery_admin_menu['keywordmgr_title'],
+                '{KEYWORDMGR_LNK}' => $lang_gallery_admin_menu['keywordmgr_lnk'],
+                '{EXIFMGR_TITLE}' => $lang_gallery_admin_menu['exifmgr_title'],
+                '{EXIFMGR_LNK}' => $lang_gallery_admin_menu['exifmgr_lnk'],
                 );
 
             $html = template_eval($template_gallery_admin_menu, $param);
@@ -1939,73 +1957,35 @@ function theme_admin_mode_menu()
 ******************************************************************************/
 }  //{THEMES}
 
-if (!function_exists('theme_display_admin_block')) {  //{THEMES}
+if (!function_exists('theme_display_message_block')) {  //{THEMES}
 /******************************************************************************
-** Section <<<theme_display_admin_block>>> - START
+** Section <<<theme_display_message_block>>> - START
 ******************************************************************************/
 /******************************************************************************
-// Function for the theme_display_admin_block
-The admin block (not to be confused with the admin menu) will display advanced
-admin options and an RSS feed from the coppermine project page.
+// Function for the theme_display_message_block
+The message block (not to be confused with the admin menu) will display message carried over from one page to the other and an RSS feed from the coppermine project page for the admin.
 It's advisable not to change it unless you really know what you're doing.
 This function composes the individual sections of the block.
 ******************************************************************************/
-function theme_display_admin_block() {
-    global $lang_gallery_admin_menu, $template_gallery_admin_block, $CONFIG;
+function theme_display_message_block() {
+    global $lang_gallery_admin_menu, $CONFIG;
+    $return = '';
+    if ($_SERVER['message_id'] != '') {
+        $return = '<div id="cpgMessage" style="border:1px solid red;width:100%;">message block (under construction):';
+        $return .= cpgFetchTempMessage($_SERVER['message_id']);
+        $return .= '</div>';
+    }
     if (GALLERY_ADMIN_MODE) {
-            if (!$CONFIG['enable_plugins']) {
-                template_extract_block($template_gallery_admin_block, 'plugin_manager');
-            }
-            if (!$CONFIG['log_mode']) {
-                template_extract_block($template_gallery_admin_block, 'view_log_files');
-            }
-            if (!$CONFIG['hit_details']) {
-                template_extract_block($template_gallery_admin_block, 'overall_stats');
-            }
-            if (!$CONFIG['clickable_keyword_search']) {
-                template_extract_block($template_gallery_admin_block, 'keyword_manager');
-            }
-            if (!$CONFIG['read_exif_data']) {
-                template_extract_block($template_gallery_admin_block, 'exif_manager');
-            }
-            $param = array(
-                '{PLUGINMGR_TITLE}' => $lang_gallery_admin_menu['pluginmgr_title'],
-                '{PLUGINMGR_LNK}' => $lang_gallery_admin_menu['pluginmgr_lnk'],
-                '{BRIDGEMGR_TITLE}' => $lang_gallery_admin_menu['bridgemgr_title'],
-                '{BRIDGEMGR_LNK}' => $lang_gallery_admin_menu['bridgemgr_lnk'],
-                '{PHPINFO_TITLE}' => $lang_gallery_admin_menu['phpinfo_title'],
-                '{PHPINFO_LNK}' => $lang_gallery_admin_menu['phpinfo_lnk'],
-                '{UPDATE_DATABASE_TITLE}' => $lang_gallery_admin_menu['update_database_title'],
-                '{UPDATE_DATABASE_LNK}' => $lang_gallery_admin_menu['update_database_lnk'],
-                '{VIEW_LOG_FILES_TITLE}' => $lang_gallery_admin_menu['view_log_files_title'],
-                '{VIEW_LOG_FILES_LNK}' => $lang_gallery_admin_menu['view_log_files_lnk'],
-                '{CHECK_VERSIONS_TITLE}' => $lang_gallery_admin_menu['check_versions_title'],
-                '{CHECK_VERSIONS_LNK}' => $lang_gallery_admin_menu['check_versions_lnk'],
-                '{OVERALL_STATS_TITLE}' => $lang_gallery_admin_menu['overall_stats_title'],
-                '{OVERALL_STATS_LNK}' => $lang_gallery_admin_menu['overall_stats_lnk'],
-                '{KEYWORDMGR_TITLE}' => $lang_gallery_admin_menu['keywordmgr_title'],
-                '{KEYWORDMGR_LNK}' => $lang_gallery_admin_menu['keywordmgr_lnk'],
-                '{EXIFMGR_TITLE}' => $lang_gallery_admin_menu['exifmgr_title'],
-                '{EXIFMGR_LNK}' => $lang_gallery_admin_menu['exifmgr_lnk'],
-                );
-
-            $return = template_eval($template_gallery_admin_block, $param);
-            // todo: display the sanitized get parameter for the stuff done in the
-            //       previous step here - do a similar thing for the end user later.
-            // As an example for the concept, let's display something silly here
-
-            if ($_GET['message_id'] != '') {
-                $return .= 'Sample message';
-            }
+        cpgCleanTempMessage(); // garbage collection: when the admin is logged in, old messages that failed to display for whatever reason are being removed to keep the temp_messages table clean
         $return .= cpg_alert_dev_version();
         // $return .= cpg_display_rss(); //add RSS feed from coppermine-gallery.net later
-    } else {
+    } else { // not in admin mode
         $return = '';
     }
     return $return;
 }
 /******************************************************************************
-** Section <<<theme_display_admin_block>>> - END
+** Section <<<theme_display_message_block>>> - END
 ******************************************************************************/
 }  //{THEMES}
 

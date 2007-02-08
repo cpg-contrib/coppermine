@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS CPG_filetypes (
 
 # Create temporary table to store messages carried over from one page to the other
 CREATE TABLE IF NOT EXISTS CPG_temp_messages (
-  message_id varchar(40) NOT NULL default '',
+  message_id varchar(80) NOT NULL default '',
   user_id int(11) default '0',
   time int(11) default NULL,
   message text NOT NULL default '',
@@ -580,3 +580,5 @@ ALTER TABLE `CPG_vote_stats` ADD `uid` INT(11)  NOT NULL default '0';
 
 # Allow users to delete their own user account
 INSERT INTO CPG_config VALUES ('allow_user_account_delete', '0');
+
+ALTER TABLE CPG_temp_messages CHANGE `message_id` `message_id` VARCHAR(80) NOT NULL;

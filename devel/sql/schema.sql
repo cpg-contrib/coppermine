@@ -357,7 +357,7 @@ CREATE TABLE `CPG_hit_stats` (
 # --------------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS CPG_temp_messages (
-  message_id varchar(40) NOT NULL default '',
+  message_id varchar(80) NOT NULL default '',
   user_id int(11) default '0',
   time int(11) default NULL,
   message text NOT NULL default '',
