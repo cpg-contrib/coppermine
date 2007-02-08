@@ -3226,4 +3226,36 @@ function cpgValidateColor($color) {
     }
   }
 }
+
+/**
+* cpgStoreTempMessage()
+*
+* Store a temporary message to the database to carry over from one page to the other
+*
+*
+*
+* @param string $message
+* @return $message_id
+**/
+function cpgStoreTempMessage($message) {
+  global $CONFIG;
+  // come up with a unique message id
+  $message_id = '1234';
+  // write the message to the database
+  $message = urlencode(addslashes($message));
+  $user_id = USER_ID;
+  $time = time();
+
+  // Insert the record in database
+  $query = "INSERT INTO {$CONFIG['TABLE_TEMP_MESSAGES']}
+                    SET
+                      message_id = '$message_id',
+                      user_id = '$user_id',
+                      time   = '$time',
+                      message = '$message'";
+  cpg_db_query($query);
+
+  // return the message_id
+  return $message_id;
+}
 ?>

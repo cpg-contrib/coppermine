@@ -1993,7 +1993,8 @@ function theme_display_admin_block() {
             // todo: display the sanitized get parameter for the stuff done in the
             //       previous step here - do a similar thing for the end user later.
             // As an example for the concept, let's display something silly here
-            if ($_GET['message'] != '') {
+            
+            if ($_GET['message_id'] != '') {
                 $return .= 'Sample message';
             }
         $return .= cpg_alert_dev_version();

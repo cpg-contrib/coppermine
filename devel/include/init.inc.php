@@ -203,23 +203,24 @@ require 'include/functions.inc.php';
 # see http://php.net/mbstring for details
 if (function_exists('mb_internal_encoding')) { mb_internal_encoding('UTF-8'); }
 
-$CONFIG['TABLE_PICTURES']   = $CONFIG['TABLE_PREFIX'].'pictures';
-$CONFIG['TABLE_ALBUMS']     = $CONFIG['TABLE_PREFIX'].'albums';
-$CONFIG['TABLE_COMMENTS']   = $CONFIG['TABLE_PREFIX'].'comments';
-$CONFIG['TABLE_CATEGORIES'] = $CONFIG['TABLE_PREFIX'].'categories';
-$CONFIG['TABLE_CONFIG']     = $CONFIG['TABLE_PREFIX'].'config';
-$CONFIG['TABLE_USERGROUPS'] = $CONFIG['TABLE_PREFIX'].'usergroups';
-$CONFIG['TABLE_VOTES']      = $CONFIG['TABLE_PREFIX'].'votes';
-$CONFIG['TABLE_USERS']      = $CONFIG['TABLE_PREFIX'].'users';
-$CONFIG['TABLE_BANNED']     = $CONFIG['TABLE_PREFIX'].'banned';
-$CONFIG['TABLE_EXIF']       = $CONFIG['TABLE_PREFIX'].'exif';
-$CONFIG['TABLE_FILETYPES']  = $CONFIG['TABLE_PREFIX'].'filetypes';
-$CONFIG['TABLE_ECARDS']     = $CONFIG['TABLE_PREFIX'].'ecards';
-$CONFIG['TABLE_TEMPDATA']   = $CONFIG['TABLE_PREFIX'].'temp_data';
-$CONFIG['TABLE_FAVPICS']    = $CONFIG['TABLE_PREFIX'].'favpics';
-$CONFIG['TABLE_BRIDGE']     = $CONFIG['TABLE_PREFIX'].'bridge';
-$CONFIG['TABLE_VOTE_STATS'] = $CONFIG['TABLE_PREFIX'].'vote_stats';
-$CONFIG['TABLE_HIT_STATS']  = $CONFIG['TABLE_PREFIX'].'hit_stats';
+$CONFIG['TABLE_PICTURES']      = $CONFIG['TABLE_PREFIX'].'pictures';
+$CONFIG['TABLE_ALBUMS']        = $CONFIG['TABLE_PREFIX'].'albums';
+$CONFIG['TABLE_COMMENTS']      = $CONFIG['TABLE_PREFIX'].'comments';
+$CONFIG['TABLE_CATEGORIES']    = $CONFIG['TABLE_PREFIX'].'categories';
+$CONFIG['TABLE_CONFIG']        = $CONFIG['TABLE_PREFIX'].'config';
+$CONFIG['TABLE_USERGROUPS']    = $CONFIG['TABLE_PREFIX'].'usergroups';
+$CONFIG['TABLE_VOTES']         = $CONFIG['TABLE_PREFIX'].'votes';
+$CONFIG['TABLE_USERS']         = $CONFIG['TABLE_PREFIX'].'users';
+$CONFIG['TABLE_BANNED']        = $CONFIG['TABLE_PREFIX'].'banned';
+$CONFIG['TABLE_EXIF']          = $CONFIG['TABLE_PREFIX'].'exif';
+$CONFIG['TABLE_FILETYPES']     = $CONFIG['TABLE_PREFIX'].'filetypes';
+$CONFIG['TABLE_ECARDS']        = $CONFIG['TABLE_PREFIX'].'ecards';
+$CONFIG['TABLE_TEMPDATA']      = $CONFIG['TABLE_PREFIX'].'temp_data';
+$CONFIG['TABLE_FAVPICS']       = $CONFIG['TABLE_PREFIX'].'favpics';
+$CONFIG['TABLE_BRIDGE']        = $CONFIG['TABLE_PREFIX'].'bridge';
+$CONFIG['TABLE_VOTE_STATS']    = $CONFIG['TABLE_PREFIX'].'vote_stats';
+$CONFIG['TABLE_HIT_STATS']     = $CONFIG['TABLE_PREFIX'].'hit_stats';
+$CONFIG['TABLE_TEMP_MESSAGES'] = $CONFIG['TABLE_PREFIX'].'temp_messages';
 // Connect to database
 ($CONFIG['LINK_ID'] = cpg_db_connect()) || die('<b>Coppermine critical error</b>:<br />Unable to connect to database !<br /><br />MySQL said: <b>' . mysql_error() . '</b>');
 // Retrieve DB stored configuration

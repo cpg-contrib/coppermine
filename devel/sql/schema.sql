@@ -355,3 +355,12 @@ CREATE TABLE `CPG_hit_stats` (
   PRIMARY KEY  (`sid`)
 ) TYPE = MyISAM COMMENT='Detailed stats about hits, only used when enabled';
 # --------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS CPG_temp_messages (
+  message_id varchar(40) NOT NULL default '',
+  user_id int(11) default '0',
+  time int(11) default NULL,
+  message text NOT NULL default '',
+  PRIMARY KEY (message_id)
+) TYPE=MyISAM COMMENT='Used to store messages from one page to the other';
+# --------------------------------------------------------

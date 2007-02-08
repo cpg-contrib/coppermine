@@ -42,6 +42,16 @@ CREATE TABLE IF NOT EXISTS CPG_filetypes (
   KEY extension (extension)
 ) TYPE=MyISAM COMMENT='Used to store the file extensions';
 
+# Create temporary table to store messages carried over from one page to the other
+CREATE TABLE IF NOT EXISTS CPG_temp_messages (
+  message_id varchar(40) NOT NULL default '',
+  user_id int(11) default '0',
+  time int(11) default NULL,
+  message text NOT NULL default '',
+  PRIMARY KEY (message_id)
+) TYPE=MyISAM COMMENT='Used to store messages from one page to the other';
+# --------------------------------------------------------
+
 ALTER TABLE `CPG_filetypes` DROP INDEX `EXTENSION`, ADD PRIMARY KEY ( `extension` );
 ALTER TABLE `CPG_filetypes` ADD `player` VARCHAR( 5 ) ;
 
