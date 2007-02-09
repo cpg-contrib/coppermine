@@ -1971,7 +1971,7 @@ function theme_display_message_block() {
     global $lang_gallery_admin_menu, $CONFIG;
     $return = '';
     if ($_SERVER['message_id'] != '') {
-        $return = '<div id="cpgMessage" style="border:1px solid red;width:100%;">message block (under construction):';
+        $return = '<a name="cpgMessageBlock"></a><div id="cpgMessage" style="border:1px solid red;width:100%;">message block (under construction):';
         $return .= cpgFetchTempMessage($_SERVER['message_id']);
         $return .= '</div>';
     }
