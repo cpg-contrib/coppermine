@@ -1336,7 +1336,7 @@ if (defined('FORGOT_PASSWD_PHP')) $lang_forgot_passwd_php = array(
   'verify_email_sent' => 'An email has been sent to %s. Please check your email to complete the process.',
   'err_unk_user' => 'Selected user does not exist!',
   'account_verify_subject' => '%s - New password request',
-  'account_verify_body' => 'You have requested to a new password. If you would like to proceed with having a new password sent to you, click on the following link:
+  'account_verify_body' => 'You have requested a new password. If you would like to proceed with having a new password sent to you, click on the following link:
 
 %s',
   'passwd_reset_subject' => '%s - Your New Password',
