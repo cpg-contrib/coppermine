@@ -209,8 +209,8 @@ class coppermine_udb extends core_udb {
                 $session_life_time = time()-CPG_HOUR;
         
                 // Delete old sessions
-                $sql = "delete from {$this->sessionstable} where time<$session_life_time and remember=0 or time = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';";
-                cpg_db_query($sql, $this->link_id);
+				$sql = "delete from {$this->sessionstable} where time<$session_life_time and remember=0;";
+				cpg_db_query($sql, $this->link_id);
         
                 // Delete stale 'remember me' sessions
                 $sql = "delete from {$this->sessionstable} where time<$rememberme_life_time;";
