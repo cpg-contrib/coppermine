@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-02-24 [A] Improving ability of category manager to deal with large numbers of categories. {Nibbler}
 2007-02-05 [A] Added message block for advanced administration purposes and output of messages of previous screens (work in progress) {GauGau}
 2007-02-01 [A] Added "user can delete own account" to comply with German legislation {GauGau}
 2007-01-30 [M] Cleaning all the GPC variables at the top of each file. (Work in progress ...) {Aditya}

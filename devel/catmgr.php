@@ -21,6 +21,7 @@ define('IN_COPPERMINE', true);
 define('ALBMGR_PHP', true); // added this line as workaround for missing translation of *no category*. Should be removed in next version. GauGau 2005-08-09
 define('CATMGR_PHP', true);
 
+ini_set('memory_limit', '128M');
 
 require('include/init.inc.php');
 
@@ -59,7 +60,7 @@ function get_subcat_data($parent, $ident = '')
         $pos = 0;
         foreach ($rowset as $subcat) {
             if ($pos > 0) {
-                $CAT_LIST[] = array('cid' => $subcat['cid'],
+                $CAT_LIST[$subcat['cid']] = array('cid' => $subcat['cid'],
                     'parent' => $parent,
                     'pos' => $pos++,
                     'prev' => $prev_cid,
@@ -67,14 +68,14 @@ function get_subcat_data($parent, $ident = '')
                     'name' => $ident . $subcat['name']);
                 $CAT_LIST[$last_index]['next'] = $subcat['cid'];
             } else {
-                $CAT_LIST[] = array('cid' => $subcat['cid'],
+                $CAT_LIST[$subcat['cid']] = array('cid' => $subcat['cid'],
                     'parent' => $parent,
                     'pos' => $pos++,
                     'cat_count' => $cat_count,
                     'name' => $ident . $subcat['name']);
             }
-            $prev_cid = $subcat['cid'];
-            $last_index = count($CAT_LIST) -1;
+            $last_index = $prev_cid = $subcat['cid'];
+           // $last_index = count($CAT_LIST) -1;
             get_subcat_data($subcat['cid'], $ident . '&nbsp;&nbsp;&nbsp;');
         }
     }
@@ -88,33 +89,36 @@ function update_cat_order()
     cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET pos='{$category['pos']}' WHERE cid = '{$category['cid']}' LIMIT 1");
 }
 
-function cat_list_box($highlight = 0, $curr_cat, $on_change_refresh = true)
+function cat_list_box($cid, &$parent, $on_change_refresh = true)
 {
-    global $CAT_LIST, $lang_albmgr_php; //$PHP_SELF,
+    global $lang_albmgr_php, $CAT_LIST;
 
-    if ($on_change_refresh) {
-        $lb = <<< EOT
-                        <select onChange="if(this.options[this.selectedIndex].value) window.location.href='{$_SERVER['PHP_SELF']}?op=setparent&amp;cid=$curr_cat&amp;parent='+this.options[this.selectedIndex].value;"  name="parent" class="listbox">
-
-EOT;
+	if ($on_change_refresh){
+	
+		$lb = '<select name="parent" onmouseover="setbuild(this, '. (int) $parent['cid'].')" onchange="updateParent(this, ' . $cid . ')" class="listbox">';
+	
+		if ($parent['cid'] == 0){
+	    	$lb .= '<option value="0" selected="selected">' . $lang_albmgr_php['no_category'] . '</option>';
+	    } else {
+	     	$lb .= '<option value="' . $parent['cid'] .  ' selected="selected">' . $parent['name'] . '</option>';
+	    }
+	
+	    $lb .= '</select>';
+    
     } else {
-        $lb = <<< EOT
-                        <select name="parent" class="listbox">
-
-EOT;
+    
+	   	$lb = '<select name="parent" id="build_source" class="listbox">';
+	
+	    $lb .= '                        <option value="0"' . ($parent['cid'] == 0 ? ' selected': '') . '>' . $lang_albmgr_php['no_category'] . "</option>\n";
+	    foreach($CAT_LIST as $category) if ($category['cid'] != 1 && $category['cid'] != $cid) {
+	        $lb .= '                        <option value="' . $category['cid'] . '"' . ($parent['cid'] == $category['cid'] ? ' selected': '') . ">" . $category['name'] . "</option>\n";
+	    } elseif ($category['cid'] != 1 && $category['cid'] == $cid) {
+	        $lb .= '                        <option value="' . $category['parent'] . '"' . ($parent['cid'] == $category['cid'] ? ' selected': '') . ">" . $category['name'] . "</option>\n";
+	    }
+	
+	    $lb .= '</select>';
     }
-    $lb .= '                        <option value="0"' . ($highlight == 0 ? ' selected': '') . '>' . $lang_albmgr_php['no_category'] . "</option>\n";
-    foreach($CAT_LIST as $category) if ($category['cid'] != 1 && $category['cid'] != $curr_cat) {
-        $lb .= '                        <option value="' . $category['cid'] . '"' . ($highlight == $category['cid'] ? ' selected': '') . ">" . $category['name'] . "</option>\n";
-    } elseif ($category['cid'] != 1 && $category['cid'] == $curr_cat) {
-        $lb .= '                        <option value="' . $category['parent'] . '"' . ($highlight == $category['cid'] ? ' selected': '') . ">" . $category['name'] . "</option>\n";
-    }
-
-    $lb .= <<<EOT
-                        </select>
-
-EOT;
-
+	
     return $lb;
 }
 
@@ -180,7 +184,7 @@ EOT;
 
 EOT;
     foreach($img_list as $pid => $pic_name) {
-        echo '                                <option value="' . $pid . '"' . ($pid == $current_category['thumb'] ? ' selected':'') . '>' . $pic_name . "</option>\n";
+        echo '                                <option value="' . $pid . '"' . (!empty($current_category['thumb']) && $pid == $current_category['thumb'] ? ' selected':'') . '>' . $pic_name . "</option>\n";
     }
     echo <<<EOT
                         </select>
@@ -229,7 +233,7 @@ function display_cat_list()
         }
 
         echo '                <td class="'.$row_style_class.'" width="4%">' . '<a href="' . $_SERVER['PHP_SELF'] . '?op=editcat&amp;cid=' . $category['cid'] . '">' . '<img src="images/edit.gif" border="0" alt="" />' . '</a></td>' . "\n";
-        echo '                <td class="'.$row_style_class.'" width="4%">' . "\n" . cat_list_box($category['parent'], $category['cid']) . "\n" . '</td>' . "\n";
+        echo '                <td class="'.$row_style_class.'" width="4%">' . "\n" . cat_list_box($category['cid'], $CAT_LIST3[$category['parent']]) . "\n" . '</td>' . "\n";
         echo "        </tr>\n";
     }
 }
@@ -270,6 +274,7 @@ if (isset($_POST['update_config'])) {
 
 
 $op = isset($_GET['op']) ? $_GET['op'] : '';
+
 $current_category = array('cid' => '0', 'name' => '', 'parent' => '0', 'description' => '');
 
 switch ($op) {
@@ -367,6 +372,7 @@ switch ($op) {
 
 fix_cat_table();
 get_subcat_data(0);
+
 if ($CONFIG['categories_alpha_sort'] != 1) {
     update_cat_order();
 }
@@ -379,6 +385,59 @@ function confirmDel(catName)
 {
     return confirm("{$lang_catmgr_php['confirm_delete']} (" + catName + ") ?");
 }
+
+function build(target, category){
+
+	if (target.length > 1) return;
+
+	pos = target.options[0];
+	
+	source = document.getElementById('build_source');
+	
+	var oListFragment = document.createDocumentFragment();
+	
+	for (var i = 0; i < source.length; i++){
+
+		option = source.options[i];
+	
+		if (option.value == category){
+
+			target.insertBefore(oListFragment, target.options[0]);
+			var oListFragment = document.createDocumentFragment();
+			target.selectedIndex = i;
+
+		} else {
+
+			child = option.cloneNode(true);
+			child.value = option.value;
+			child.text = option.text;
+				
+			oListFragment.appendChild(child);
+		}
+	}
+
+	target.appendChild(oListFragment);
+
+	target.focus();
+}
+
+function setbuild(obj, cid){
+
+	var func = function () { build(obj, cid) }
+	
+	if (typeof(document.onbeforeactivate) == 'undefined'){
+		obj.onfocus = func;
+	} else {
+		obj.onbeforeactivate = func;
+	}
+}
+
+function updateParent(obj, cid){
+
+	if(obj.options[obj.selectedIndex].value)
+		window.location.href = 'catmgr.php?op=setparent&cid=' + cid + '&parent=' + obj.options[obj.selectedIndex].value;
+}
+
 </script>
 
 
@@ -472,7 +531,7 @@ echo <<<EOT
         </tr>
 EOT;
 
-form_alb_thumb();
+if ($_GET['op'] == 'editcat') form_alb_thumb();
 
 echo <<<EOT
         <tr>
