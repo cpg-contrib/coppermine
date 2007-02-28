@@ -84,6 +84,16 @@
         <ul class="level2">
                 <li class="level2"><a href="#smtp" class="menu2">2.4 Using SMTP to send emails</a></li>
         </ul>
+        <ul class="level2">
+                <li class="level2"><a href="#php-content" class="menu2">2.5 Dynamic (PHP-driven) content</a></li>
+        </ul>
+                <ul class="level3">
+                  <li class="level3"><a href="#php-content_anycontent">2.5.1 Using anycontent.php</a></li>
+                  <li class="level3"><a href="#php-content_header_footer">2.5.2 Custom header and footer</a></li>
+                  <li class="level3"><a href="#php-content_theme">2.5.3 Theme-based dynamic content (theme.php)</a></li>
+                  <li class="level3"><a href="#php-content_core">2.5.4 Modifying core files</a></li>
+                </ul>
+
 <ul class="level1">
         <li class="level1"><a href="#upgrade" class="menu1">3. Upgrading</a></li>
 </ul>
@@ -768,6 +778,25 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
 <a name="smtp"><h2>2.4 Using SMTP to send emails</h2></a>
 <p>By default the script uses the PHP built-in <strong>mail</strong> function to send emails. In some cases, the PHP built-in function can't be used.</p>
 <p> If, in order to send emails with PHP, you are required to supply a <strong>hostname</strong>, a <strong>username</strong> and a <strong>password</strong>, you will need to edit the CONFIG menu section &quot;Email settings&quot; and insert the correct values there. If you don't need a username and password to connect to your SMTP server, just leave these lines blank. If you don't know what settings to enter, you will need to check with your webhost.</p>
+<p class="back"><a href="#top">Back to top</a></p>
+
+<a name="php-content"><h2>2.5 Dynamic (PHP-driven) content</h2></a>
+<p>Coppermine is PHP-driven, which means that pages are being created dynamically on the server when requested and sent to the client. Don't worry though: you don't need to know PHP at all to be able to run Coppermine - that's the advantage of a pre-made script. However, there may be some who want to customize their Coppermine-installation to do additional things that can only be accomplished by adding or modifying the PHP code. If you're just getting started with Coppermine, you don't have to read this section - only advanced stuff will be explained here:</p>
+<div class="indent"><!-- start sub-section of "Dynamic (PHP-driven) content" (level 2 x.x)-->
+<a name="php-content_anycontent"><h3>2.5.1 Using anycontent.php</h3></a>
+<p>To come up with some custom output within the {GALLERY}-block, you can use the file "anycontent.php" that resides within the coppermine root folder. Edit it (using a plain text editor) and upload it to your webserver. By default, the anycontent block is disabled. To enable it (and specify the place where it is suppossed to show on the main page), use "<a href="#changing">the content of the main page</a>" in Coppermine's config.<br />
+The output of what you have in anycontent.php will be displayed on the index page only (i.e. the category list and album list pages). Therefore, it doesn't make sense to use anycontent.php to display a site logo that is suppossed to display on all pages of your gallery. Instead, you could for example display a welcome message to new users that explains what can be found on your gallery.</p>
+<p class="back"><a href="#top">Back to top</a></p>
+<a name="php-content_header_footer"><h3>2.5.2 Custom header and footer</h3></a>
+<p>tbc</p>
+<p class="back"><a href="#top">Back to top</a></p>
+<a name="php-content_theme"><h3>2.5.3 Theme-based dynamic content (theme.php)</h3></a>
+<p>tbc</p>
+<p class="back"><a href="#top">Back to top</a></p>
+<a name="php-content_core"><h3>2.5.4 Modifying core files</h3></a>
+<p>Core files (PHP files that come with the Coppermine package) could be modified as well to achieve custom features. However, the dev team strongly recommends to use this option only if you're absolutely sure what you're doing: although that you may not be planning to update Coppermine in the near future, an update may become mandatory. The reason is quite simple: every non-trivial piece of software contains bugs. This certainly is the case for Coppermine as well. Although we try to deliver a flawless application, there will almost certainly be bugs that will be fixed in future maintenance releases. Therefor, it will be mandatory to keep your Coppermine-install up-to-date. Updating your Coppermine install will require you to replace all core files with the new ones that come with the maintenance release. Subsequently, your custom modifications of core files would be lost, so you would have to re-apply your hacks.<br />
+This being said, you should think twice before starting to modify core files: almost all custom modifications can be accomplished by performing the recommended method to create or modify a custom theme instead of modifying core files. If you must use core file hacks, make sure to comment your modifications and to take notes of them. After upgrading, you could use a diff viewer to re-apply your custom hacks easily.</p>
+</div>
 <p class="back"><a href="#top">Back to top</a></p>
 </div><!-- end sub-section of "installation and setup" (level 1 x)-->
 
