@@ -785,13 +785,39 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
 <div class="indent"><!-- start sub-section of "Dynamic (PHP-driven) content" (level 2 x.x)-->
 <a name="php-content_anycontent"><h3>2.5.1 Using anycontent.php</h3></a>
 <p>To come up with some custom output within the {GALLERY}-block, you can use the file "anycontent.php" that resides within the coppermine root folder. Edit it (using a plain text editor) and upload it to your webserver. By default, the anycontent block is disabled. To enable it (and specify the place where it is suppossed to show on the main page), use "<a href="#changing">the content of the main page</a>" in Coppermine's config.<br />
-The output of what you have in anycontent.php will be displayed on the index page only (i.e. the category list and album list pages). Therefore, it doesn't make sense to use anycontent.php to display a site logo that is suppossed to display on all pages of your gallery. Instead, you could for example display a welcome message to new users that explains what can be found on your gallery.</p>
+The output of what you have in anycontent.php will be displayed on the index page only (i.e. the category list and album list pages). Therefore, it doesn't make sense to use anycontent.php to display a site logo that is suppossed to display on <em>all</em> pages of your gallery. Instead, you could for example display a welcome message to new users that explains what can be found on your gallery.</p>
 <p class="back"><a href="#top">Back to top</a></p>
 <a name="php-content_header_footer"><h3>2.5.2 Custom header and footer</h3></a>
-<p>tbc</p>
+<h4>Purpose</h4>
+<p>The custom header and footer feature of Coppermine is suppossed to be used to include bits of static or dynamic HTML into all of your Coppermine pages. Intended use could be to add a dynamic overall site menu for the navigation on your entire page into Coppermine. You can specify the place where the included content should be inserted by editing themes/your_theme/template.html and editing the location of the {CUSTOM_HEADER} and {CUSTOM_FOOTER}-tokens. In most cases, the default position within the HTML template (right after the <tt class="code">&lt;body&gt;</tt>-tag and right before the <tt class="code">&lt;/body&gt;</tt>-tag) should be fine though; only move it around if you have understood the basic concept.</p>
+<h4>Concept</h4>
+<p>Here's how the custom header/footer includes work: if you have specified a working and valid path to your include file in Coppermine's config (&quot;<a href="#admin_theme_custom_header_path_start">Path to custom header include</a>&quot; and &quot;<a href="#admin_theme_custom_footer_path_start">Path to custom footer include</a>&quot;), the code that resides in the include file is being inserted right at the place the placeholder token resides (the generated content replacing the placeholder token in the output) when the template is being parsed (i.e. each time a Coppermine page is being displayed).</p>
+<h4>Possible content</h4>
+<p>The include file can contain HTML, PHP (or a mixture of both), but you have to understand that you can't include all kinds of PHP code: in fact the same limitations apply that apply for all PHP includes - after the file headers have been sent, you can't include PHP code that tries to mess with the file header (e.g. cookie stuff). Be carefull as well with opening database connections: when a new one is opened, connection to the first one is lost.</p>
+<p>This may sound very geekish for non-coders, so let's take a look at some examples:<br />The content of your custom header include file could be:<br />
+<pre class="code">
+&lt;div style=&quot;background-color:blue&quot;&gt;
+  &lt;a href=&quot;/&quot;&gt;Site home page&lt;/a&gt; -
+  &lt;a href=&quot;/contact_form.htm&quot;&gt;Contact us&lt;/a&gt; -
+  &lt;a href=&quot;http://google.com&quot;&gt;Search the web&lt;/a&gt;
+&lt;/div&gt;
+</pre>
+Subsequently, this overall navigation would appear at the top of every Coppermine page. So far so good you might say, but what's the benefit? Well, in itself, there is no great advantage here, as you could as well have added this piece of code to template.html - the result would be the same. However, you could use the custom include file from other, non-coppermine pages on your website as well (using PHP's <a href="http://www.php.net/manual/en/function.include.php" class="external" rel="external">include</a>-command) to provide a unique, overall navigation for your entire website. If the navigation needs to be changed, you only need to change it once, in one file.</p>
+<h4>Dynamic content</h4>
+<p>Not too bad, but there are even better things you could do: you can have dynamic content, e.g. content based on certain conditions to be met (or not).<br />
+Often, you may want to display different content based on the visitor's status (registered user vs. guest), so let's come up with a simple switch:
+<pre class="code">&lt;?php
+  // The constant USER_ID is being populated by Coppermine.
+  // It is not defined if the visitor is a guest.
+  // It is set to the user's ID if he is a registered user and logged in.
+  if (!USER_ID) {
+    // here's what the guest will see:
+    echo 'Hello guest. Why not register (it is free!) to see even more pictures?';
+  }
+?&gt;</pre></p>
 <p class="back"><a href="#top">Back to top</a></p>
 <a name="php-content_theme"><h3>2.5.3 Theme-based dynamic content (theme.php)</h3></a>
-<p>tbc</p>
+<p>The most recommended method to come up with dynamic content is creating/modifying a custom theme. You can add PHP code to theme.php, but not to template.html! For details, refer to the <a href="#theme">theme section</a> of the documentation.</p>
 <p class="back"><a href="#top">Back to top</a></p>
 <a name="php-content_core"><h3>2.5.4 Modifying core files</h3></a>
 <p>Core files (PHP files that come with the Coppermine package) could be modified as well to achieve custom features. However, the dev team strongly recommends to use this option only if you're absolutely sure what you're doing: although that you may not be planning to update Coppermine in the near future, an update may become mandatory. The reason is quite simple: every non-trivial piece of software contains bugs. This certainly is the case for Coppermine as well. Although we try to deliver a flawless application, there will almost certainly be bugs that will be fixed in future maintenance releases. Therefor, it will be mandatory to keep your Coppermine-install up-to-date. Updating your Coppermine install will require you to replace all core files with the new ones that come with the maintenance release. Subsequently, your custom modifications of core files would be lost, so you would have to re-apply your hacks.<br />
@@ -839,7 +865,7 @@ This being said, you should think twice before starting to modify core files: al
   <li>You can not use language files from older versions of Coppermine as primary language (the language the admin will use) - make sure you only have the language files that come with this package inside of your lang folder (delete or rename all files from older versions within the lang folder).<br />
         If you need to use a language that hasn't been translated for cpg1.5.x, you can try using the language file from cpg1.3.x or better, however there are certain caveats:
       <ul>
-        <li>You need to enable the language fallback option in coppermine's config page</li>
+        <li>You need to enable the <a href="#admin_language_fallback">language fallback</a> option in coppermine's config page</li>
         <li>cpg1.5.x-phrases that don't exist in your old language file will go untranslated or show in english</li>
         <li>Coppermine can't be administered using an old language file - the admin needs to use a "true" cpg1.5.x language file</li>
         <li>You're free to try using old language files, however when running into issues or error messages, switch to US-English and see if the issue goes away then. Using outdated language files goes unsupported</li>
@@ -1002,7 +1028,16 @@ using a tool like <a href="http://www.phpmyadmin.net/" rel="external" class="ext
       <dd>After an update/upgrade, it is usually necessary to run update.php.  This can be done by typing the address directly into your browser, or by clicking this link.<a name="admin_tools_end"></a></dd>
           </dl>
   </li>
-  <li><strong>My profile</strong><br />Edit your own user profile</li>
+  <li><strong>My profile</strong><br />Edit your own user profile (the profile of the gallery admin)</li>
+  <li><strong>Documentation</strong><br />Read the online version of the Coppermine documentation (this document)</li>
+  <li><strong>Plugin Manager</strong><br />Install / uninstall / configure <a href="#plugin">plugins</a>.</li>
+  <li><strong>Bridge Manager</strong><br />Enable / disable / manage <a href="#integrating">bridging</a> (the integration of Coppermine with another application)</li>
+  <li><strong>phpinfo</strong><br />Display information about the PHP version running on your server and the modules it is using</li>
+  <li><strong>Update database</strong><br />Perform a database update when upgrading from older versions. It doesn't hurt to re-run this application, so if you're not certain if your database is up-to-date, run this script.</li>
+  <li><strong>View log files</strong><br />View the log files generated by Coppermine (only available if you have enabled logging in the first place)</li>
+  <li><strong>Check versions</strong><br />Check the file versions of your core files to make sure you have upgraded as suggested and every file is up-to-date</li>
+  <li><strong>Overall stats</strong><br />View the overall stats of your gallery (only available if you have enabled the corresponding option in config)</li>
+  <li><strong>Keyword manager</strong><br />Manage the keywords assigned to files</li>
 </ul>
 <p>In previous beta versions of coppermine (cpg1.4.0 and older) there used to be an admin mode and user mode for &quot;regular registered&quot; users, somewhat like those for the true administrator. This feature has been removed as it was both confusing for end users and really didn't serve any special purpose.</p>
 <p>The user with upload permissions has the following admin options:</p>
@@ -1544,7 +1579,9 @@ Should you have difficulties using one, try the other. You can toggle between th
 <a name="admin_language_language_end"></a>
 <hr />
 <a name="admin_language_fallback"><h4>Fallback to English if translated phrase not found?</h4></a>
-<p>Enable this option if you're using languages other than english. If a certain word or phrase doesn't exist within your language file, coppermine will display the equivalent english phrase, instead.</p><p>This feature has been introduced to allow the use of previous version language files -- language files that may have not been translated for the this version, yet. Until an updated version of the language file is made available, you can use this option. Most translation differences affect the admin part of coppermine only, so  the admin will experience most of these untranslated strings. The admin will see some phrases in english instead of his/her preferred language for strings and words that don't exist in the currently available language file. NOTE: this fallback option only works for 95% of all phrases, there may still be some other translation omissions.</p>
+<p>Enable this option if you're using language files that haven't been created for the Coppermine version you use, but for an earlier version. If a certain word or phrase doesn't exist within your language file, coppermine will display the equivalent english phrase, instead.</p>
+<p>This feature has been introduced to allow the use of previous version language files -- language files that may have not been translated for the this version, yet. Until an updated version of the language file is made available, you can use this option. Most translation differences affect the admin part of coppermine only, so  the admin will experience most of these untranslated strings. The admin will see some phrases in english instead of his/her preferred language for strings and words that don't exist in the currently available language file. NOTE: this fallback option only works for 95% of all phrases, there may still be some other translation omissions.</p>
+<p class="important">Enabling this option can have a huge impact on the overall performance of your gallery, especially the memory usage (RAM) may increase drastically. It is recommended to only enable this option if you must have it, not just out of curiosity or to enable as many features as possible.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Language &amp; Charset settings &rarr; Fallback to English if translated phrase not found?</p>
 <a name="admin_language_fallback_end"></a>
 <hr />
@@ -1616,13 +1653,18 @@ Should you have difficulties using one, try the other. You can toggle between th
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Themes settings &rarr; Display the vanity block on themes that are defined as XHTML and CSS compliant</p>
 <a name="vanity_block_end"></a>
 <hr />
-<a name="admin_theme_include_path_start"><h4>Path to custom header include</h4></a>
+<a name="admin_theme_include_path_start"></a>
+<a name="admin_theme_custom_header_path_start"><h4>Path to custom header include</h4></a>
 <p>Optional relative path to a custom header file. Using this option, you can include non-coppermine code bits to be included into your theme, e.g. an overall navigation that gets included on your whole website. You can only add a relative path (seen from the root path of your coppermine install) - not an absolute one, nor a http include from another website. This option is only meant for experienced users who have some PHP know-how. </p>
-<p><span class="important">Warning: you mustn't include full html pages that contain an html header or footer (tags like <tt class="code">&lt;head&gt;</tt> or <tt class="code">&lt;body&gt;</tt>), nor can the included file do file header manipulation, e.g. reading another (non-coppermine) cookie.</span></p>
+<p><span class="important">Warning: you mustn't include full html pages that contain an html header or footer (tags like <tt class="code">&lt;head&gt;</tt> or <tt class="code">&lt;body&gt;</tt>), nor can the included file do file header manipulation, e.g. reading another (non-coppermine) cookie.</span><br />
+For details on the include files, refer to the section <a href="#php-content_header_footer">Custom header and footer</a></p>
+<p><strong>Example</strong>: If your Coppermine install resides in http://yourdomain.tld/your_coppermine_folder/ and your include file is suppossed to be http://yourdomain.tld/my_overall_navigation/my_custom_header.php, you need to specify <tt class="code">../my_overall_navigation/my_custom_header.php</tt> (the relative path to your include file, seen from the folder coppermine resides in) as &quot;Path to custom header include&quot;.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Themes settings &rarr; Path to custom header include</p>
-<h4>Path to custom footer include</h4>
+<a name="admin_theme_custom_header_path_end">
+<a name="admin_theme_custom_footer_path_start"><h4>Path to custom footer include</h4></a>
 <p>Optional relative path to a custom footer file. The same remarks apply as for the custom header include path.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Themes settings &rarr; Path to custom footer include</p>
+<a name="admin_theme_custom_footer_path_end"></a>
 <a name="admin_theme_include_path_end"></a>
 <hr />
 <a name="admin_theme_end"></a>
@@ -1670,7 +1712,7 @@ Setting this to a ridiculously high value (i.e. above 100% or a pixel value high
   <li>'<strong>toprated</strong>': top rated</li>
   <li>'<strong>lastcom</strong>': last comments </li>
   <li>'<strong>lasthits</strong>': last viewed </li>
-  <li>'<strong>anycontent</strong>': inserts php-generated content that has to reside within the file 'anycontent.php' into the index page. Can be used to include banner-rotation scripts or similar.</li>
+  <li>'<strong>anycontent</strong>': inserts php-generated content that has to reside within the file 'anycontent.php' into the index page. Can be used to include banner-rotation scripts or similar. Refer to &quot;<a href="#php-content_anycontent">Using anycontent.php</a>&quot; for details.</li>
   <li>'<strong>lastalb</strong>': last created albums</li>
   </ul>
 <p>Unless you really know what you are doing you should always keep catlist and alblist in &quot;<em>the content of the main page</em>&quot;, as they make up the core parts of the index page or any gallery site, for that matter.</p>
