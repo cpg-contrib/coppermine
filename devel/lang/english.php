@@ -125,6 +125,7 @@ $lang_common = array(
   'filename' => 'Filename', // cpg1.5.x
   'filesize' => 'Filesize', // cpg1.5.x
   'album' => 'Album', // cpg1.5.x
+  'file' => 'File', // cpg1.5.x
 );
 
 // ------------------------------------------------------------------------- //

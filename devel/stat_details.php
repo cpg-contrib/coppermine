@@ -50,7 +50,7 @@ require_once('include/init.inc.php');
     }
 
     if (isset($_GET['sort'])) {
-        if (in_array($_GET['sort'],$db_fields) == TRUE) {
+        if (in_array($_GET['sort'],$db_fields) == TRUE || $_GET['sort'] == 'file') {
             $sort = $_GET['sort'];
         } else {
             $sort = 'sdate';
@@ -156,7 +156,7 @@ require_once('include/stats.inc.php');
 // include the stats function - end
 
 // output the stuff the user can see - start
-if ($type == 'vote') { // type == vote start
+if ($type == 'vote' && $pid != '') { // type == vote start
 
     $query = "SELECT rating, count(rating) AS totalVotes FROM {$CONFIG['TABLE_VOTE_STATS']} WHERE pid=$pid GROUP BY rating";
     $result = cpg_db_query($query);
@@ -259,19 +259,34 @@ EOT;
     //-->
   </script>
 EOT;
-      if ($type == 'vote') {
-          $query = "SELECT * FROM {$CONFIG['TABLE_VOTE_STATS']} WHERE pid=$pid ORDER BY $sort $dir";
+      if ($sort == 'file') {
+          $sort = 'pid';
       }
-      if ($type == 'hits') {
-          $query = "SELECT * FROM {$CONFIG['TABLE_HIT_STATS']} WHERE pid=$pid ORDER BY $sort $dir";
+      if ($pid != '') {
+        if ($type == 'vote') {
+            $query = "SELECT * FROM {$CONFIG['TABLE_VOTE_STATS']} WHERE pid=$pid ORDER BY $sort $dir";
+        }
+        if ($type == 'hits') {
+            $query = "SELECT * FROM {$CONFIG['TABLE_HIT_STATS']} WHERE pid=$pid ORDER BY $sort $dir";
+        }
+      } else {
+            // query for overall stats
+            // todo: include the join to get the picture_table data
+            $query = "SELECT {$CONFIG['TABLE_HIT_STATS']}.*
+                      FROM {$CONFIG['TABLE_HIT_STATS']}
+                      ORDER BY $sort $dir";
       }
       $result = cpg_db_query($query);
       // display the table header - start
-      starttable($statsTableWidth, $lang_stat_details_php[$type], count($db_fields)+1);
+      $tableColumns = count($db_fields);
+      if ($pid == '') {
+          $tableColumns++;
+      }
+      starttable($statsTableWidth, $lang_stat_details_php[$type], $tableColumns + 1);
       print '  <tr>'.$line_break;
       print '    <td class="tableh2" align="center" valign="bottom">'.$line_break;
       if ($type == 'vote') {
-          print '    <input type="checkbox" name="checkAll" onClick="selectAll(this,\'del\');" class="checkbox" title="'.$lang_common['check_uncheck_all'].'" />'.$line_break;
+          print '    <!-- *NOT IMPLEMENTED YET* <input type="checkbox" name="checkAll" onClick="selectAll(this,\'del\');" class="checkbox" title="'.$lang_common['check_uncheck_all'].'" />-->'.$line_break;
       }
       print '    </td>'.$line_break;
       foreach ($db_fields as $value) {
@@ -288,6 +303,17 @@ EOT;
               print '</a>';
           }
           print $line_break;
+          print '    </td>'.$line_break;
+      }
+      if ($pid == '') {
+          print '    <td class="tableh2">'.$line_break;
+          print '      '.$lang_common['file'];
+          print '<a href="#" onclick="return sortthetable(\'file\',\'asc\');">';
+          print '<img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="'.sprintf($lang_stat_details_php['sort_by_xxx'], $lang_common['file']).', '.$lang_stat_details_php['ascending'].'" />';
+          print '</a>';
+          print '<a href="#" onclick="return sortthetable(\'file\',\'desc\');">';
+          print '<img src="images/descending.gif" width="9" height="9" border="0" alt="" title="'.sprintf($lang_stat_details_php['sort_by_xxx'], $lang_common['file']).', '.$lang_stat_details_php['descending'].'" />';
+          print '</a>';
           print '    </td>'.$line_break;
       }
       print "  </tr>\n";
@@ -322,7 +348,7 @@ EOT;
                   print '  <tr>'.$line_break;
                   print '    <td class="'.$row_style_class.'" align="center">'.$line_break;
                   if ($type == 'vote') {
-                      print '      <input name="del'.$row['sid'].'" type="checkbox" value="" class="checkbox" />'.$line_break;
+                      print '      <!-- *NOT IMPLEMENTED YET* <input name="del'.$row['sid'].'" type="checkbox" value="" class="checkbox" />-->'.$line_break;
                   }
                   print '    </td>'.$line_break;
                   foreach($db_fields as $value) {
@@ -344,6 +370,14 @@ EOT;
                       }
                       print '    </td>'.$line_break;
                   }
+              if ($pid == '') {
+                  //$thumb_url =  get_pic_url(8, 'thumb');
+                  print '    <td class="'.$row_style_class.'">'.$line_break;
+                  print '      '.$row['pid'];
+                  //print $thumb_url;
+                  //print '      <a href="displayimage.php?pos='.$row['pid'].'"><img src="'.$thumb_url.'" class="image" border="0" alt="" /></a>';
+                  print '    </td>'.$line_break;
+              }
               print '  </tr>'.$line_break;
               } // check internals end
           }
@@ -355,7 +389,6 @@ EOT;
   $date_display_2_selected = ($date_display == '2') ? 'selected="selected"' : '';
   $date_display_3_selected = ($date_display == '3') ? 'selected="selected"' : '';
   $date_display_4_selected = ($date_display == '4') ? 'selected="selected"' : '';
-  $tableColumns = count($db_fields);
   $localized_time[0] = strftime($album_date_fmt,localised_timestamp(time()));
   $localized_time[1] = strftime($lastcom_date_fmt,localised_timestamp(time()));
   $localized_time[2] = strftime($log_date_fmt,localised_timestamp(time()));
@@ -366,7 +399,7 @@ EOT;
       <td class="tablef" align="center" valign="top">
 EOT;
   if ($type == 'vote') {
-      print '    <input type="checkbox" name="checkAll2" onClick="selectAll(this,\'del\');" class="checkbox" title="'.$lang_common['check_uncheck_all'].'" />'.$line_break;
+      print '    <!-- *NOT IMPLEMENTED YET* <input type="checkbox" name="checkAll2" onClick="selectAll(this,\'del\');" class="checkbox" title="'.$lang_common['check_uncheck_all'].'" />-->'.$line_break;
   }
   print <<< EOT
       </td>
@@ -377,8 +410,8 @@ EOT;
 EOT;
   if ($type == 'vote') {
   print <<< EOT
-              <input type="checkbox" name="reset_selected" id="reset_selected" value="" class="checkbox" title="{$lang_stat_details_php['hide_internal_referers']}" onclick="confirmDelete();" />
-              <label for="reset_selected" class="clickable_option">{$lang_stat_details_php['reset_votes_individual']}</label>
+              <!-- *NOT IMPLEMENTED YET* <input type="checkbox" name="reset_selected" id="reset_selected" value="" class="checkbox" title="{$lang_stat_details_php['hide_internal_referers']}" onclick="confirmDelete();" />
+              <label for="reset_selected" class="clickable_option">{$lang_stat_details_php['reset_votes_individual']}</label>-->
 EOT;
   }
   print <<< EOT
