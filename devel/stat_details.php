@@ -17,6 +17,15 @@
   $Date$
 **********************************************/
 
+// Todo list (stuff the hasn't been implemented yet):
+// * overall stats taking AID into account
+// * enable file column to be turned on or off
+// * Pagination (currently, all hits are being fetched, which is bound to break large galleries)
+// * Allow admin to delete single votes and corresponding stats entry (UI partly created and commented out. Tricky stuff in delete.php not even started)
+// * Enable link to profile instead of just displaying the UID
+// * Add stats about users, numbers of albums and other things stat lovers constantly request
+// * Display file details for single file stats in full-screen mode and add a link back to the intermediate image view
+
 define('IN_COPPERMINE', true);
 define('STAT_DETAILS_PHP', true);
 require_once('include/init.inc.php');
@@ -272,9 +281,20 @@ EOT;
       } else {
             // query for overall stats
             // todo: include the join to get the picture_table data
+            $query = "SELECT {$CONFIG['TABLE_HIT_STATS']}.*,
+                             {$CONFIG['TABLE_PICTURES']}.filepath,
+                             {$CONFIG['TABLE_PICTURES']}.filename,
+                             {$CONFIG['TABLE_PICTURES']}.pwidth,
+                             {$CONFIG['TABLE_PICTURES']}.pheight,
+                             {$CONFIG['TABLE_PICTURES']}.url_prefix
+                      FROM {$CONFIG['TABLE_HIT_STATS']},{$CONFIG['TABLE_PICTURES']}
+                      WHERE {$CONFIG['TABLE_HIT_STATS']}.pid = {$CONFIG['TABLE_PICTURES']}.pid
+                      ORDER BY $sort $dir";
+/*
             $query = "SELECT {$CONFIG['TABLE_HIT_STATS']}.*
                       FROM {$CONFIG['TABLE_HIT_STATS']}
                       ORDER BY $sort $dir";
+*/
       }
       $result = cpg_db_query($query);
       // display the table header - start
@@ -371,11 +391,15 @@ EOT;
                       print '    </td>'.$line_break;
                   }
               if ($pid == '') {
-                  //$thumb_url =  get_pic_url(8, 'thumb');
+                  $thumb_url =  get_pic_url($row, 'thumb');
+                  if (!is_image($row['filename'])) {
+                      $image_info = getimagesize($thumb_url);
+                      $row['pwidth'] = $image_info[0];
+                      $row['pheight'] = $image_info[1];
+                  }
+                  $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['alb_list_thumb_size']);
                   print '    <td class="'.$row_style_class.'">'.$line_break;
-                  print '      '.$row['pid'];
-                  //print $thumb_url;
-                  //print '      <a href="displayimage.php?pos='.$row['pid'].'"><img src="'.$thumb_url.'" class="image" border="0" alt="" /></a>';
+                  print '      <a href="displayimage.php?pos='.$row['pid'].'"><img src="'.$thumb_url.'" '.$image_size['geom'].' class="image" border="0" alt="" /></a>';
                   print '    </td>'.$line_break;
               }
               print '  </tr>'.$line_break;
