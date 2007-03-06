@@ -36,11 +36,13 @@ if (!isset($_COOKIE[$CONFIG['cookie_name'] . '_data'])) {
     exit;
 }
 
+/* Commented out by GauGau 2007-03-06 - there appears to be an issue with this block (doesn't work as expected), needs to be reviewed or removed.
 // If referer is not displayimage.php we don't accept the vote
 if (!eregi("displayimage",$_SERVER["HTTP_REFERER"])){
     header('Location: displayimage.php?pid=' . ($pic));
     exit;
 }
+*/
 
 
 // Retrieve picture/album information & check if user can rate picture
@@ -78,109 +80,9 @@ $result = cpg_db_query($sql);
  */
 if ($CONFIG['vote_details']) {
         // Get the details of user browser, IP, OS, etc
-        $os = "Unknown";
-        if(eregi("Linux",$_SERVER["HTTP_USER_AGENT"])) {
-            $os = "Linux";
-        } else if(eregi("Ubuntu",$_SERVER["HTTP_USER_AGENT"])) {
-            $os = "Linux Ubuntu";
-        } else if(eregi("Debian",$_SERVER["HTTP_USER_AGENT"])) {
-            $os = "Linux Debian";
-        } else if(eregi("Windows NT 5.0",$_SERVER["HTTP_USER_AGENT"])) {
-            $os = "Windows 2000";
-        } else if(eregi("win98|Windows 98",$_SERVER["HTTP_USER_AGENT"])) {
-            $os = "Windows 98";
-        } else if(eregi("Windows NT 5.1",$_SERVER["HTTP_USER_AGENT"])) {
-            $os = "Windows XP";
-        } else if(eregi("Windows NT 5.2",$_SERVER["HTTP_USER_AGENT"])) {
-            $os = "Windows 2003 Server";
-        } else if(eregi("Windows NT 6.0",$_SERVER["HTTP_USER_AGENT"])) {
-            $os = "Windows Vista";
-        } else if(eregi("Windows CE",$_SERVER["HTTP_USER_AGENT"])) {
-            $os = "Windows CE";
-        } else if(eregi("Windows",$_SERVER["HTTP_USER_AGENT"])) {
-            $os = "Windows";
-        } else if(eregi("SunOS",$_SERVER["HTTP_USER_AGENT"])) {
-            $os = "Sun OS";
-        } else if(eregi("Macintosh",$_SERVER["HTTP_USER_AGENT"])) {
-            $os = "Macintosh";
-        } else if(eregi("Mac_PowerPC",$_SERVER["HTTP_USER_AGENT"])) {
-            $os = "Mac OS";
-        } else if(eregi("Mac_PPC",$_SERVER["HTTP_USER_AGENT"])) {
-            $os = "Macintosh";
-        } else if(eregi("OS/2",$_SERVER["HTTP_USER_AGENT"])) {
-            $os = "OS/2";
-        }
+        $client_details = cpg_determine_client();
 
-        $browser = 'Unknown';
-        if(eregi("MSIE",$_SERVER["HTTP_USER_AGENT"])) {
-            if(eregi("MSIE 5.5",$_SERVER["HTTP_USER_AGENT"])) {
-                $browser = "IE5.5";
-            } else if(eregi("MSIE 6.0",$_SERVER["HTTP_USER_AGENT"])) {
-                $browser = "IE6";
-            } else if(eregi("MSIE 7.0",$_SERVER["HTTP_USER_AGENT"])) {
-                $browser = "IE7";
-            } else if(eregi("MSIE 3.0",$_SERVER["HTTP_USER_AGENT"])) {
-                $browser = "IE3";
-            } else if(eregi("MSIE 4.0",$_SERVER["HTTP_USER_AGENT"])) {
-                $browser = "IE4";
-            } else if(eregi("MSIE 5.0",$_SERVER["HTTP_USER_AGENT"])) {
-                $browser = "IE5.0";
-            }
-        } else if(eregi("Firebird",$_SERVER["HTTP_USER_AGENT"])) {
-            $browser = "Mozilla Firebird";
-        } else if(eregi("netscape",$_SERVER["HTTP_USER_AGENT"])) {
-            $browser = "Netscape";
-        } else if(eregi("Firefox",$_SERVER["HTTP_USER_AGENT"])) {
-            $browser = "Firefox";
-        } else if(eregi("Galeon",$_SERVER["HTTP_USER_AGENT"])) {
-            $browser = "Galeon";
-        } else if(eregi("Camino/",$_SERVER["HTTP_USER_AGENT"])) {
-            $browser = "Camino/";
-        } else if(eregi("Konqueror",$_SERVER["HTTP_USER_AGENT"])) {
-            $browser = "Konqueror";
-        } else if(eregi("Safari",$_SERVER["HTTP_USER_AGENT"])) {
-            $browser = "Safari";
-        } else if(eregi("OmniWeb",$_SERVER["HTTP_USER_AGENT"])) {
-            $browser = "OmniWeb";
-        } else if(eregi("Opera",$_SERVER["HTTP_USER_AGENT"])) {
-            $browser = "Opera";
-        } else if(eregi("amaya",$_SERVER["HTTP_USER_AGENT"])) {
-            $browser = "Amaya";
-        } else if(eregi("iCab",$_SERVER["HTTP_USER_AGENT"])) {
-            $browser = "iCab";
-        } else if(eregi("Lynx",$_SERVER["HTTP_USER_AGENT"])) {
-            $browser = "Lynx";
-        } else if(eregi("Googlebot",$_SERVER["HTTP_USER_AGENT"])) {
-            $browser = "Googlebot";
-        } else if(eregi("Lycos_Spider",$_SERVER["HTTP_USER_AGENT"])) {
-            $browser = "Lycos Spider";
-        } else if(eregi("Firefly",$_SERVER["HTTP_USER_AGENT"])) {
-            $browser = "Fireball Spider";
-        } else if(eregi("Advanced Browser",$_SERVER["HTTP_USER_AGENT"])) {
-            $browser = "Avant";
-        } else if(eregi("Amiga-AWeb",$_SERVER["HTTP_USER_AGENT"])) {
-            $browser = "AWeb";
-        } else if(eregi("Cyberdog",$_SERVER["HTTP_USER_AGENT"])) {
-            $browser = "Cyberdog";
-        } else if(eregi("Dillo",$_SERVER["HTTP_USER_AGENT"])) {
-            $browser = "Dillo";
-        } else if(eregi("DreamPassport",$_SERVER["HTTP_USER_AGENT"])) {
-            $browser = "DreamCast";
-        } else if(eregi("eCatch",$_SERVER["HTTP_USER_AGENT"])) {
-            $browser = "eCatch";
-        } else if(eregi("ANTFresco",$_SERVER["HTTP_USER_AGENT"])) {
-            $browser = "Fresco";
-        } else if(eregi("RSS",$_SERVER["HTTP_USER_AGENT"])) {
-            $browser = "RSS";
-        } else if(eregi("Avant",$_SERVER["HTTP_USER_AGENT"])) {
-            $browser = "Avant";
-        } else if(eregi("HotJava",$_SERVER["HTTP_USER_AGENT"])) {
-            $browser = "HotJava";
-        } else if(eregi("W3C-checklink|W3C_Validator|Jigsaw",$_SERVER["HTTP_USER_AGENT"])) {
-            $browser = "W3C";
-        } else if(eregi("K-Meleon",$_SERVER["HTTP_USER_AGENT"])) {
-            $browser = "K-Meleon";
-        }
+
 
         // Code to write the user id if a user is logged in
         $voteUserId = USER_ID;
@@ -199,8 +101,8 @@ if ($CONFIG['vote_details']) {
                             Ip   = '$raw_ip',
                             sdate = '$time',
                             referer = '$referer',
-                            browser = '$browser',
-                            os = '$os',
+                            browser = '{$client_details['browser']}',
+                            os = '{$client_details['os']}',
                             uid = '$voteUserId'";
         cpg_db_query($query);
 }

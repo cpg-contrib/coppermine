@@ -1468,23 +1468,20 @@ function count_pic_comments($pid, $skip=0)
         return $count;
 }
 
-// Add 1 everytime a picture is viewed.
-
+/******************
 /**
- * add_hit()
+ * cpg_determine_client()
  *
- * @param $pid
- * @return
+ * @param
+ * @return $return_array
  **/
-function add_hit($pid)
+function cpg_determine_client($pid)
 {
-        global $CONFIG, $raw_ip, $HTML_SUBST;
-        cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET hits=hits+1, lasthit_ip='$raw_ip', mtime=CURRENT_TIMESTAMP WHERE pid='$pid'");
+        global $CONFIG;
 
         /**
-         * Code to record the details of hits for the picture, if the option is set in CONFIG
+         * Populate the client stats
          */
-        if ($CONFIG['hit_details']) {
         // Get the details of user browser, IP, OS, etc
         $os = "Unknown";
         if(eregi("Linux",$_SERVER["HTTP_USER_AGENT"])) {
@@ -1599,6 +1596,31 @@ function add_hit($pid)
             break;
           }
         }
+        $return_array = array('os' => $os, 'browser' => $browser, 'query_term' => $query_terms);
+        return $return_array;
+}
+
+
+// Add 1 everytime a picture is viewed.
+
+/**
+ * add_hit()
+ *
+ * @param $pid
+ * @return
+ **/
+function add_hit($pid)
+{
+        global $CONFIG, $raw_ip, $HTML_SUBST;
+        cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET hits=hits+1, lasthit_ip='$raw_ip', mtime=CURRENT_TIMESTAMP WHERE pid='$pid'");
+
+        /**
+         * Code to record the details of hits for the picture, if the option is set in CONFIG
+         */
+        if ($CONFIG['hit_details']) {
+        // Get the details of user browser, IP, OS, etc
+        $client_details = cpg_determine_client();
+
 
         $time = time();
 
@@ -1609,12 +1631,12 @@ function add_hit($pid)
         $query = "INSERT INTO {$CONFIG['TABLE_HIT_STATS']}
                           SET
                             pid = $pid,
-                            search_phrase = '$query_term',
+                            search_phrase = '{$client_details['query_term']}',
                             Ip   = '$raw_ip',
                             sdate = '$time',
                             referer='$referer',
-                            browser = '$browser',
-                            os = '$os'";
+                            browser = '{$client_details['browser']}',
+                            os = '{$client_details['os']}'";
         cpg_db_query($query);
      }
 }

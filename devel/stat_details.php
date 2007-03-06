@@ -19,10 +19,9 @@
 
 // Todo list (stuff the hasn't been implemented yet):
 // * overall stats taking AID into account
-// * enable file column to be turned on or off (work in progress)
 // * Pagination (currently, all hits are being fetched, which is bound to break large galleries)
 // * Allow admin to delete single votes and corresponding stats entry (UI partly created and commented out. Tricky stuff in delete.php not even started)
-// * Enable link to profile instead of just displaying the UID
+// * Enable user name instead of just displaying the user id
 // * Add stats about users, numbers of albums and other things stat lovers constantly request
 // * Display file details for single file stats in full-screen mode and add a link back to the intermediate image view
 
@@ -112,6 +111,12 @@ require_once('include/init.inc.php');
         $mode = 'fullscreen';
     } else {
         $mode = 'embedded';
+    }
+
+    if ($_GET['file'] == '1') {
+        $file = '1';
+    } else {
+        $file = '0';
     }
 // sanitize the GET parameters - end
 
@@ -278,9 +283,19 @@ EOT;
         if ($type == 'hits') {
             $query = "SELECT * FROM {$CONFIG['TABLE_HIT_STATS']} WHERE pid=$pid ORDER BY $sort $dir";
         }
-      } else {
-            // query for overall stats
-            // todo: include the join to get the picture_table data
+      } else { // query for overall stats
+            if ($type == 'vote') {
+            $query = "SELECT {$CONFIG['TABLE_VOTE_STATS']}.*,
+                             {$CONFIG['TABLE_PICTURES']}.filepath,
+                             {$CONFIG['TABLE_PICTURES']}.filename,
+                             {$CONFIG['TABLE_PICTURES']}.pwidth,
+                             {$CONFIG['TABLE_PICTURES']}.pheight,
+                             {$CONFIG['TABLE_PICTURES']}.url_prefix
+                      FROM {$CONFIG['TABLE_VOTE_STATS']},{$CONFIG['TABLE_PICTURES']}
+                      WHERE {$CONFIG['TABLE_VOTE_STATS']}.pid = {$CONFIG['TABLE_PICTURES']}.pid
+                      ORDER BY $sort $dir";
+            }
+            if ($type == 'hits') {
             $query = "SELECT {$CONFIG['TABLE_HIT_STATS']}.*,
                              {$CONFIG['TABLE_PICTURES']}.filepath,
                              {$CONFIG['TABLE_PICTURES']}.filename,
@@ -290,6 +305,7 @@ EOT;
                       FROM {$CONFIG['TABLE_HIT_STATS']},{$CONFIG['TABLE_PICTURES']}
                       WHERE {$CONFIG['TABLE_HIT_STATS']}.pid = {$CONFIG['TABLE_PICTURES']}.pid
                       ORDER BY $sort $dir";
+            }
 /*
             $query = "SELECT {$CONFIG['TABLE_HIT_STATS']}.*
                       FROM {$CONFIG['TABLE_HIT_STATS']}
@@ -326,15 +342,18 @@ EOT;
           print '    </td>'.$line_break;
       }
       if ($pid == '') {
+          $show_file_column = ($file == '1') ? 'checked="checked"' : '';
           print '    <td class="tableh2">'.$line_break;
-          print '      <input type="checkbox" name="file" value="1" class="checkbox" title="'.$lang_stat_details_php['show_hide'].'" '.$lang_common['file'].' onclick="sendForm();" /><br />'.$line_break;
+          print '      <input type="checkbox" name="file" value="1" class="checkbox" title="'.$lang_stat_details_php['show_hide'].'" '.$lang_common['file'].' onclick="sendForm();" '.$show_file_column.' /><br />'.$line_break;
           print '      '.$lang_common['file'];
-          print '<a href="#" onclick="return sortthetable(\'file\',\'asc\');">';
-          print '<img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="'.sprintf($lang_stat_details_php['sort_by_xxx'], $lang_common['file']).', '.$lang_stat_details_php['ascending'].'" />';
-          print '</a>';
-          print '<a href="#" onclick="return sortthetable(\'file\',\'desc\');">';
-          print '<img src="images/descending.gif" width="9" height="9" border="0" alt="" title="'.sprintf($lang_stat_details_php['sort_by_xxx'], $lang_common['file']).', '.$lang_stat_details_php['descending'].'" />';
-          print '</a>';
+          if ($file == 1) {
+              print '<a href="#" onclick="return sortthetable(\'file\',\'asc\');">';
+              print '<img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="'.sprintf($lang_stat_details_php['sort_by_xxx'], $lang_common['file']).', '.$lang_stat_details_php['ascending'].'" />';
+              print '</a>';
+              print '<a href="#" onclick="return sortthetable(\'file\',\'desc\');">';
+              print '<img src="images/descending.gif" width="9" height="9" border="0" alt="" title="'.sprintf($lang_stat_details_php['sort_by_xxx'], $lang_common['file']).', '.$lang_stat_details_php['descending'].'" />';
+              print '</a>';
+          }
           print '    </td>'.$line_break;
       }
       print "  </tr>\n";
@@ -392,15 +411,17 @@ EOT;
                       print '    </td>'.$line_break;
                   }
               if ($pid == '') {
-                  $thumb_url =  get_pic_url($row, 'thumb');
-                  if (!is_image($row['filename'])) {
-                      $image_info = getimagesize($thumb_url);
-                      $row['pwidth'] = $image_info[0];
-                      $row['pheight'] = $image_info[1];
-                  }
-                  $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['alb_list_thumb_size']);
                   print '    <td class="'.$row_style_class.'">'.$line_break;
-                  print '      <a href="displayimage.php?pos='.$row['pid'].'"><img src="'.$thumb_url.'" '.$image_size['geom'].' class="image" border="0" alt="" /></a>';
+                  if ($file == 1) {
+                      $thumb_url =  get_pic_url($row, 'thumb');
+                      if (!is_image($row['filename'])) {
+                          $image_info = getimagesize($thumb_url);
+                          $row['pwidth'] = $image_info[0];
+                          $row['pheight'] = $image_info[1];
+                      }
+                      $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['alb_list_thumb_size']);
+                      print '      <a href="displayimage.php?pid='.$row['pid'].'"><img src="'.$thumb_url.'" '.$image_size['geom'].' class="image" border="0" alt="" /></a>';
+                  }
                   print '    </td>'.$line_break;
               }
               print '  </tr>'.$line_break;
