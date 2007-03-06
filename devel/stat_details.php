@@ -19,7 +19,7 @@
 
 // Todo list (stuff the hasn't been implemented yet):
 // * overall stats taking AID into account
-// * enable file column to be turned on or off
+// * enable file column to be turned on or off (work in progress)
 // * Pagination (currently, all hits are being fetched, which is bound to break large galleries)
 // * Allow admin to delete single votes and corresponding stats entry (UI partly created and commented out. Tricky stuff in delete.php not even started)
 // * Enable link to profile instead of just displaying the UID
@@ -327,6 +327,7 @@ EOT;
       }
       if ($pid == '') {
           print '    <td class="tableh2">'.$line_break;
+          print '      <input type="checkbox" name="file" value="1" class="checkbox" title="'.$lang_stat_details_php['show_hide'].'" '.$lang_common['file'].' onclick="sendForm();" /><br />'.$line_break;
           print '      '.$lang_common['file'];
           print '<a href="#" onclick="return sortthetable(\'file\',\'asc\');">';
           print '<img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="'.sprintf($lang_stat_details_php['sort_by_xxx'], $lang_common['file']).', '.$lang_stat_details_php['ascending'].'" />';
