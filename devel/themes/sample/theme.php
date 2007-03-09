@@ -199,10 +199,11 @@ if (!defined('THEME_HAS_NO_SUB_MENU_BUTTONS')) {
 ******************************************************************************/
 // HTML template for gallery admin menu
 $template_gallery_admin_menu = <<<EOT
+
                 <div class="admin_menu_wrapper">
-<!-- BEGIN admin_approval -->
+                            <!-- BEGIN admin_approval -->
                                 <div class="admin_menu admin_float" id="admin_menu_anim"><a href="editpics.php?mode=upload_approval" title="{UPL_APP_TITLE}">{UPL_APP_LNK}</a></div>
-<!-- END admin_approval -->
+                            <!-- END admin_approval -->
                                 <div class="admin_menu admin_float"><a href="admin.php" title="{ADMIN_TITLE}">{ADMIN_LNK}</a></div>
                                 <div class="admin_menu admin_float"><a href="catmgr.php" title="{CATEGORIES_TITLE}">{CATEGORIES_LNK}</a></div>
                                 <div class="admin_menu admin_float"><a href="albmgr.php{CATL}" title="{ALBUMS_TITLE}">{ALBUMS_LNK}</a></div>
@@ -210,19 +211,46 @@ $template_gallery_admin_menu = <<<EOT
                                 <div class="admin_menu admin_float"><a href="usermgr.php" title="{USERS_TITLE}">{USERS_LNK}</a></div>
                                 <div class="admin_menu admin_float"><a href="banning.php" title="{BAN_TITLE}">{BAN_LNK}</a></div>
                                 <div class="admin_menu admin_float"><a href="reviewcom.php" title="{COMMENTS_TITLE}">{COMMENTS_LNK}</a></div>
-<!-- BEGIN log_ecards -->
+                            <!-- BEGIN log_ecards -->
                                 <div class="admin_menu admin_float"><a href="db_ecard.php" title="{DB_ECARD_TITLE}">{DB_ECARD_LNK}</a></div>
-<!-- END log_ecards -->
+                            <!-- END log_ecards -->
                                 <div class="admin_menu admin_float"><a href="picmgr.php" title="{PICTURES_TITLE}">{PICTURES_LNK}</a></div>
                                 <div class="admin_menu admin_float"><a href="searchnew.php" title="{SEARCHNEW_TITLE}">{SEARCHNEW_LNK}</a></div>
                                 <div class="admin_menu admin_float"><a href="util.php" title="{UTIL_TITLE}">{UTIL_LNK}</a></div>
                                 <div class="admin_menu admin_float"><a href="profile.php?op=edit_profile" title="{MY_PROF_TITLE}">{MY_PROF_LNK}</a></div>
-<!-- BEGIN documentation -->
+                            <!-- BEGIN documentation -->
                                 <div class="admin_menu admin_float"><a href="{DOCUMENTATION_HREF}" title="{DOCUMENTATION_TITLE}" target="cpg_documentation">{DOCUMENTATION_LNK}</a></div>
-<!-- END documentation -->
+                            <!-- END documentation -->
+                            <!-- BEGIN plugin_manager -->
+                                <div class="admin_menu admin_float"><a href="pluginmgr.php" title="{PLUGINMGR_TITLE}">{PLUGINMGR_LNK}</a></div>
+                            <!-- END plugin_manager -->
+                            <!-- BEGIN bridge_manager -->
+                                <div class="admin_menu admin_float"><a href="bridgemgr.php" title="{BRIDGEMGR_TITLE}">{BRIDGEMGR_LNK}</a></div>
+                            <!-- END bridge_manager -->
+                            <!-- BEGIN php_info -->
+                                <div class="admin_menu admin_float"><a href="phpinfo.php" title="{PHPINFO_TITLE}">{PHPINFO_LNK}</a></div>
+                            <!-- END php_info -->
+                            <!-- BEGIN update_database -->
+                                <div class="admin_menu admin_float"><a href="update.php" title="{UPDATE_DATABASE_TITLE}">{UPDATE_DATABASE_LNK}</a></div>
+                            <!-- END update_database -->
+                            <!-- BEGIN view_log_files -->
+                                <div class="admin_menu admin_float"><a href="viewlog.php" title="{VIEW_LOG_FILES_TITLE}">{VIEW_LOG_FILES_LNK}</a></div>
+                            <!-- END view_log_files -->
+                            <!-- BEGIN check_versions -->
+                                <div class="admin_menu admin_float"><a href="versioncheck.php" title="{CHECK_VERSIONS_TITLE}">{CHECK_VERSIONS_LNK}</a></div>
+                            <!-- END check_versions -->
+                            <!-- BEGIN overall_stats -->
+                                <div class="admin_menu admin_float"><a href="stat_details.php?type=hits&amp;sort=sdate&amp;dir=&amp;sdate=1&amp;ip=1&amp;search_phrase=0&amp;referer=0&amp;browser=1&amp;os=1&amp;mode=fullscreen&amp;page=1&amp;amount=50" title="{OVERALL_STATS_TITLE}">{OVERALL_STATS_LNK}</a></div>
+                            <!-- END overall_stats -->
+                            <!-- BEGIN keyword_manager -->
+                                <div class="admin_menu admin_float"><a href="keywordmgr.php" title="{KEYWORDMGR_TITLE}">{KEYWORDMGR_LNK}</a></div>
+                            <!-- END keyword_manager -->
+                            <!-- BEGIN exif_manager -->
+                                <div class="admin_menu admin_float"><a href="exifmgr.php" title="{EXIFMGR_TITLE}">{EXIFMGR_LNK}</a></div>
+                            <!-- END exif_manager -->
                 <div class="admin_float_end">
                 </div>
-              </div>                
+              </div>
 EOT;
 /******************************************************************************
 ** Section <<<$template_gallery_admin_menu>>> - END

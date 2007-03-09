@@ -1866,6 +1866,7 @@ if (defined('STAT_DETAILS_PHP')) $lang_stat_details_php = array(
   'close' => 'close',
   'hide_internal_referers' => 'hide internal referers',
   'date_display' => 'Date display',
+  'records_per_page' => 'records per page',
   'submit' => 'submit / refresh',
   'overall_stats' => 'Overall Statistics', //cpg1.5
   'stats_by_os' => 'Stats by operating systems', //cpg1.5
@@ -1888,6 +1889,7 @@ if (defined('STAT_DETAILS_PHP')) $lang_stat_details_php = array(
   'reset_votes_individual_confirm' => 'Are you sure that you want to delete the selected votes for this file? This can not be undone!', //cpg1.5
   'fullscreen' => 'Display this page in fullscreen mode', //cpg1.5
   'back_to_intermediate' => 'Back to intermediate file view', //cpg1.5
+  'records_on_page' => '%s records on %s page(s)', //cpg1.5
   'guest' => 'Guest', //cpg1.5
 );
 

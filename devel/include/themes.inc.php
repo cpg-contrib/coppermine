@@ -267,7 +267,7 @@ $template_gallery_admin_menu = <<<EOT
                                 <div class="admin_menu admin_float"><a href="versioncheck.php" title="{CHECK_VERSIONS_TITLE}">{CHECK_VERSIONS_LNK}</a></div>
                             <!-- END check_versions -->
                             <!-- BEGIN overall_stats -->
-                                <div class="admin_menu admin_float"><a href="stat_details.php?type=hits&amp;sort=sdate&amp;dir=&amp;sdate=1&amp;ip=1&amp;search_phrase=0&amp;referer=0&amp;browser=1&amp;os=1&amp;mode=fullscreen" title="{OVERALL_STATS_TITLE}">{OVERALL_STATS_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="stat_details.php?type=hits&amp;sort=sdate&amp;dir=&amp;sdate=1&amp;ip=1&amp;search_phrase=0&amp;referer=0&amp;browser=1&amp;os=1&amp;mode=fullscreen&amp;page=1&amp;amount=50" title="{OVERALL_STATS_TITLE}">{OVERALL_STATS_LNK}</a></div>
                             <!-- END overall_stats -->
                             <!-- BEGIN keyword_manager -->
                                 <div class="admin_menu admin_float"><a href="keywordmgr.php" title="{KEYWORDMGR_TITLE}">{KEYWORDMGR_LNK}</a></div>

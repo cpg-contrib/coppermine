@@ -3328,4 +3328,26 @@ function cpgCleanTempMessage($seconds = 3600) {
   cpg_db_query($query);
 }
 
+/**
+* cpgGetScriptNameParams()
+*
+* Returns the script name and all vars except the ones defined in exception (which could be an array or a var).
+* Particularly helpfull to create links
+*
+* @param mixed $exception
+* @return $return
+**/
+function cpgGetScriptNameParams($exception = '') {
+    if(!is_array($exception)) {
+        $exception = array(0 => $exception);
+    }
+    $return = $_SERVER["SCRIPT_NAME"]."?";
+    foreach ($_GET as $key => $value) {
+       if (!in_array($key,$exception)) {
+           $return .= $key . "=" . $value . "&amp;";
+       }
+    }
+    return $return;
+}
+
 ?>

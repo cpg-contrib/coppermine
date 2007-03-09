@@ -19,9 +19,8 @@
 
 // Todo list (stuff the hasn't been implemented yet):
 // * overall stats taking AID into account
-// * Pagination (currently, all hits are being fetched, which is bound to break large galleries)
 // * Allow admin to delete single votes and corresponding stats entry (UI partly created and commented out. Tricky stuff in delete.php not even started)
-// * Enable user name instead of just displaying the user id
+// * Enable user name display instead of just displaying the user id for rating stats
 // * Add stats about users, numbers of albums and other things stat lovers constantly request
 
 define('IN_COPPERMINE', true);
@@ -36,6 +35,7 @@ require_once('include/init.inc.php');
 // sanitize the GET parameters - start
     $pid = $_GET['pid'] ? (int)$_GET['pid'] : 0;
     $type_allowed = array('vote','hits','total','blank');
+    $amount_allowed = array(20,50,100,200);
 
     if (in_array($_GET['type'],$type_allowed) == TRUE) {
       $type = $_GET['type'];
@@ -117,6 +117,19 @@ require_once('include/init.inc.php');
     } else {
         $file = '0';
     }
+
+    if ($_GET['amount'] == (int)$_GET['amount'] && in_array($_GET['amount'],$amount_allowed) == TRUE) {
+        $amount = $_GET['amount'];
+    } else {
+        $amount = 50; // default value for amount of records
+    }
+
+    if ($_GET['page'] == (int)$_GET['page'] && $_GET['page'] != '') {
+        $page = $_GET['page'];
+    } else {
+        $page = 1;
+    }
+
 // sanitize the GET parameters - end
 
 // end the script if we just need a blank page
@@ -225,21 +238,14 @@ EOT;
 if (GALLERY_ADMIN_MODE) { // admin is logged in - start
       //  display fullscreen link
       if ($mode != 'fullscreen') {
-           //get the url and all vars except $mode
-           $statFullsizeUrl = $_SERVER["SCRIPT_NAME"]."?";
-           foreach ($_GET as $key => $value) {
-               if ($key!="lang") {
-                   $statFullsizeUrl .= $key . "=" . $value . "&amp;";
-               }
-           }
-           $statFullsizeUrl .= 'mode=fullscreen';
+          $statFullsizeUrl = cpgGetScriptNameParams('mode').'mode=fullscreen';
           print <<< EOT
           <div align="center">
           <a href="{$statFullsizeUrl}" class="admin_menu" target="_parent">{$lang_stat_details_php['fullscreen']}</a>
           </div>
           <br />
 EOT;
-      } elseif($pid != '') {
+      } elseif ($pid != '') {
           print <<< EOT
           <div align="center">
           <a href="displayimage.php?pid={$pid}" class="admin_menu">{$lang_stat_details_php['back_to_intermediate']}</a>
@@ -254,6 +260,7 @@ EOT;
       <input type="hidden" name="sort" value="{$sort}" />
       <input type="hidden" name="dir" value="{$dir}" />
       <input type="hidden" name="mode" value="{$mode}" />
+      <input type="hidden" name="page" value="{$page}" />
   <script type="text/javascript">
     <!--//
     function sendForm() {
@@ -282,42 +289,44 @@ EOT;
       if ($sort == 'file') {
           $sort = 'pid';
       }
-      if ($pid != '') {
-        if ($type == 'vote') {
-            $query = "SELECT * FROM {$CONFIG['TABLE_VOTE_STATS']} WHERE pid=$pid ORDER BY $sort $dir";
-        }
-        if ($type == 'hits') {
-            $query = "SELECT * FROM {$CONFIG['TABLE_HIT_STATS']} WHERE pid=$pid ORDER BY $sort $dir";
-        }
-      } else { // query for overall stats
-            if ($type == 'vote') {
-            $query = "SELECT {$CONFIG['TABLE_VOTE_STATS']}.*,
-                             {$CONFIG['TABLE_PICTURES']}.filepath,
-                             {$CONFIG['TABLE_PICTURES']}.filename,
-                             {$CONFIG['TABLE_PICTURES']}.pwidth,
-                             {$CONFIG['TABLE_PICTURES']}.pheight,
-                             {$CONFIG['TABLE_PICTURES']}.url_prefix
-                      FROM {$CONFIG['TABLE_VOTE_STATS']},{$CONFIG['TABLE_PICTURES']}
-                      WHERE {$CONFIG['TABLE_VOTE_STATS']}.pid = {$CONFIG['TABLE_PICTURES']}.pid
-                      ORDER BY $sort $dir";
-            }
-            if ($type == 'hits') {
-            $query = "SELECT {$CONFIG['TABLE_HIT_STATS']}.*,
-                             {$CONFIG['TABLE_PICTURES']}.filepath,
-                             {$CONFIG['TABLE_PICTURES']}.filename,
-                             {$CONFIG['TABLE_PICTURES']}.pwidth,
-                             {$CONFIG['TABLE_PICTURES']}.pheight,
-                             {$CONFIG['TABLE_PICTURES']}.url_prefix
-                      FROM {$CONFIG['TABLE_HIT_STATS']},{$CONFIG['TABLE_PICTURES']}
-                      WHERE {$CONFIG['TABLE_HIT_STATS']}.pid = {$CONFIG['TABLE_PICTURES']}.pid
-                      ORDER BY $sort $dir";
-            }
-/*
-            $query = "SELECT {$CONFIG['TABLE_HIT_STATS']}.*
-                      FROM {$CONFIG['TABLE_HIT_STATS']}
-                      ORDER BY $sort $dir";
-*/
+
+      if ($type == 'vote') {
+          $queryTable = $CONFIG['TABLE_VOTE_STATS'];
+      } elseif ($type == 'hits') {
+          $queryTable = $CONFIG['TABLE_HIT_STATS'];
       }
+      if ($pid != '') {
+          $queryWhere = 'pid='.$pid;
+          $countWhere = 'WHERE pid='.$pid;
+      } else {
+          $queryWhere = $queryTable . '.pid = ' . $CONFIG['TABLE_PICTURES'] . '.pid';
+          $countWhere = '';
+          $querySelect = ','.$CONFIG['TABLE_PICTURES'].'.filepath,
+                           '.$CONFIG['TABLE_PICTURES'].'.filename,
+                           '.$CONFIG['TABLE_PICTURES'].'.pwidth,
+                           '.$CONFIG['TABLE_PICTURES'].'.pheight,
+                           '.$CONFIG['TABLE_PICTURES'].'.url_prefix';
+          $queryFrom = ','.$CONFIG['TABLE_PICTURES'];
+      }
+      $query = "SELECT COUNT(pid) FROM $queryTable $countWhere";
+      $result = cpg_db_query($query);
+      $nbEnr = mysql_fetch_array($result);
+      $count = $nbEnr[0];
+      mysql_free_result($result);
+
+      // Calculation for pagination tabs and query limit
+      $numPages = ceil($count/$amount);
+      $start = ($page - 1) * $amount;
+      if ($start < 0) {
+          $start = 0;
+      }
+
+      $query = $query = "SELECT {$queryTable}.* $querySelect
+                         FROM $queryTable $queryFrom
+                         WHERE $queryWhere
+                         ORDER BY $sort $dir
+                         LIMIT $start, $amount";
+
       $result = cpg_db_query($query);
       // display the table header - start
       $tableColumns = count($db_fields);
@@ -435,6 +444,35 @@ EOT;
               } // check internals end
           }
       }
+  // Display pagination
+  $record_selector = '&nbsp;&nbsp;-&nbsp;&nbsp;<select name="amount" size="1" onchange="sendForm();" class="listbox">';
+  foreach ($amount_allowed as $key) {
+      $record_selector .= '<option value="'.$key.'" ';
+      if ($amount==$key) {
+          $record_selector .= ' selected="selected"';
+      }
+      $record_selector .= '>'.$key.'</option>'.$line_break;
+  }
+  $record_selector .= '</select> '.$lang_stat_details_php['records_per_page'].$line_break;
+
+  $stats_tmpl = $template_tab_display;
+  $stats_tmpl['left_text'] = strtr($stats_tmpl['left_text'], array('{LEFT_TEXT}' => $lang_stat_details_php['records_on_page'] . $record_selector));
+  $stats_tmpl['inactive_tab'] = strtr($stats_tmpl['inactive_tab'], array('{LINK}' => cpgGetScriptNameParams('page').'page=%d#details'));
+  $stats_tmpl['inactive_next_tab'] = strtr($stats_tmpl['inactive_next_tab'], array('{LINK}' => cpgGetScriptNameParams('page').'page=%d#details'));
+  $stats_tmpl['inactive_prev_tab'] = strtr($stats_tmpl['inactive_prev_tab'], array('{LINK}' => cpgGetScriptNameParams('page').'page=%d#details'));
+  $tabs = create_tabs($count, $page, $numPages, $stats_tmpl);
+  $tableColumnsPlus = $tableColumns +1;
+  print <<< EOT
+  <tr>
+      <td align="right" valign="top" colspan="{$tableColumnsPlus}">
+          <table border="0" cellspacing="0" cellpadding="0" width="100%">
+              <tr>
+                  {$tabs}
+              </tr>
+          </table>
+      </td>
+  </tr>
+EOT;
   // display table footer with options
   $hide_internal_selected = ($hide_internal == '1') ? 'checked="checked"' : '';
   $date_display_0_selected = ($date_display == '0') ? 'selected="selected"' : '';
@@ -447,6 +485,8 @@ EOT;
   $localized_time[2] = strftime($log_date_fmt,localised_timestamp(time()));
   $localized_time[3] = strftime('%Y-%m-%d %H:%M:%S',localised_timestamp(time()));
   $localized_time[4] = strftime('%Y-%m-%d',localised_timestamp(time()));
+  foreach ($amount_allowed as $key) {
+  }
   print <<< EOT
   <tr>
       <td class="tablef" align="center" valign="top">
@@ -477,7 +517,7 @@ EOT;
           <tr>
             <td class="tablef" colspan="2">
               {$lang_stat_details_php['date_display']}
-              <select name="date_display" size="1" onchange="sendForm();">
+              <select name="date_display" size="1" onchange="sendForm();" class="listbox">
                 <option value="0" {$date_display_0_selected}>
                   {$localized_time[0]}
                 </option>
@@ -542,16 +582,17 @@ EOT;
       $help_vote = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=admin_logging_votedetails&amp;ae=admin_logging_votedetails_end&amp;top=1', '600', '400');
       print <<< EOT
       <form method="get" name="changestats" id="cpgform" action="{$_SERVER['PHP_SELF']}" onsubmit="return defaultagree(this)">
-      <input type="hidden" name="type" value="{$_GET['type']}" />
-      <input type="hidden" name="pid" value="{$_GET['pid']}" />
-      <input type="hidden" name="sort" value="{$_GET['sort']}" />
-      <input type="hidden" name="dir" value="{$_GET['dir']}" />
-      <input type="hidden" name="sdate" value="{$_GET['sdate']}" />
-      <input type="hidden" name="ip" value="{$_GET['ip']}" />
-      <input type="hidden" name="rating" value="{$_GET['rating']}" />
-      <input type="hidden" name="referer" value="{$_GET['referer']}" />
-      <input type="hidden" name="browser" value="{$_GET['browser']}" />
-      <input type="hidden" name="os" value="{$_GET['os']}" />
+      <input type="hidden" name="type" value="{$type}" />
+      <input type="hidden" name="pid" value="{$pid}" />
+      <input type="hidden" name="sort" value="{$sort}" />
+      <input type="hidden" name="dir" value="{$dir}" />
+      <input type="hidden" name="sdate" value="{$sdate}" />
+      <input type="hidden" name="ip" value="{$ip}" />
+      <input type="hidden" name="rating" value="{$rating}" />
+      <input type="hidden" name="referer" value="{$referer}" />
+      <input type="hidden" name="browser" value="{$browser}" />
+      <input type="hidden" name="os" value="{$os}" />
+      <input type="hidden" name="page" value="{$page}" />
 EOT;
 
     starttable('-2', $lang_stat_details_php['overall_stats_config'], 3);
