@@ -23,7 +23,6 @@
 // * Allow admin to delete single votes and corresponding stats entry (UI partly created and commented out. Tricky stuff in delete.php not even started)
 // * Enable user name instead of just displaying the user id
 // * Add stats about users, numbers of albums and other things stat lovers constantly request
-// * Display file details for single file stats in full-screen mode and add a link back to the intermediate image view
 
 define('IN_COPPERMINE', true);
 define('STAT_DETAILS_PHP', true);
@@ -240,9 +239,16 @@ if (GALLERY_ADMIN_MODE) { // admin is logged in - start
           </div>
           <br />
 EOT;
+      } elseif($pid != '') {
+          print <<< EOT
+          <div align="center">
+          <a href="displayimage.php?pid={$pid}" class="admin_menu">{$lang_stat_details_php['back_to_intermediate']}</a>
+          </div>
+          <br />
+EOT;
       }
       print <<< EOT
-      <form method="get" action="{$_SERVER['PHP_SELF']}" name="editForm" id="cpgform">
+      <form method="get" action="{$_SERVER['PHP_SELF']}#details" name="editForm" id="cpgform">
       <input type="hidden" name="type" value="{$type}" />
       <input type="hidden" name="pid" value="{$pid}" />
       <input type="hidden" name="sort" value="{$sort}" />
@@ -318,6 +324,7 @@ EOT;
       if ($pid == '') {
           $tableColumns++;
       }
+      print '<a name="details"></a>';
       starttable($statsTableWidth, $lang_stat_details_php[$type], $tableColumns + 1);
       print '  <tr>'.$line_break;
       print '    <td class="tableh2" align="center" valign="bottom">'.$line_break;

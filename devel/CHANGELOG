@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-03-05 [A] Added link to intermediate view for individual stats {GauGau}
 2007-03-05 [A] Added thumbnail column to overall hit stats {GauGau}
 2007-03-02 [B] Populated hit details list for overall stats {GauGau}
 2007-02-24 [A] Improving ability of category manager to deal with large numbers of categories. {Nibbler}
