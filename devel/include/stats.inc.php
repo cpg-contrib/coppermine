@@ -213,6 +213,7 @@ function individualStatsByOS($pid='',$type='hits', $tableWidth='100%') {
         }
         array_multisort($osResultArray,SORT_DESC);
         $osTotal = array_sum($osResultArray);
+        print '<a name="os"></a>';
         starttable($tableWidth, $lang_stat_details_php['stats_by_os'], 3);
         print <<< EOT
         <tr>
@@ -281,6 +282,7 @@ function individualStatsByBrowser($pid='',$type='hits', $tableWidth='100%') {
         }
         array_multisort($browserResultArray,SORT_DESC);
         $browserTotal = array_sum($browserResultArray);
+        print '<a name="browser"></a>';
         starttable($tableWidth, $lang_stat_details_php['stats_by_browser'], 3);
         print <<< EOT
         <tr>

@@ -22,8 +22,6 @@
 // * Allow admin to delete single votes and corresponding stats entry (UI partly created and commented out. Tricky stuff in delete.php not even started)
 // * Enable user name display instead of just displaying the user id for rating stats
 // * Add stats about users, numbers of albums and other things stat lovers constantly request
-// * Add a toggle between hits and votes overall stats
-// * Add a sub-menu at the top for a quick jump to the anchors
 
 define('IN_COPPERMINE', true);
 define('STAT_DETAILS_PHP', true);
@@ -165,33 +163,39 @@ require_once('include/init.inc.php');
         print <<< EOT
               <h1>{$lang_stat_details_php['title']}</h1>
               <div class="admin_menu_wrapper">
-                  <div class="admin_menu admin_float"><a href="" title="">{$lang_stat_details_php['stats_by_os']}</a></div>
-                  <div class="admin_menu admin_float"><a href="" title="">{$lang_stat_details_php['stats_by_browser']}</a></div>
+                  <div class="admin_menu admin_float"><a href="#os" title="">{$lang_stat_details_php['stats_by_os']}</a></div>
+                  <div class="admin_menu admin_float"><a href="#browser" title="">{$lang_stat_details_php['stats_by_browser']}</a></div>
 EOT;
         if (GALLERY_ADMIN_MODE) {
             print <<< EOT
-                  <div class="admin_menu admin_float"><a href="#details" title="">{$lang_stat_details_php['hits']}</a></div>
                   <!--<div class="admin_menu admin_float"><a href="" title="">{$lang_stat_details_php['']}</a></div>-->
                   <!--<div class="admin_menu admin_float"><a href="" title="">{$lang_stat_details_php['']}</a></div>-->
                   <!--<div class="admin_menu admin_float"><a href="" title="">{$lang_stat_details_php['']}</a></div>-->
 EOT;
             if ($type != 'hits') {
-                print '<div class="admin_menu admin_float"><a href="'.cpgGetScriptNameParams('type').'type=hits" title="">'.$lang_stat_details_php['hits'].'</a></div>';
+                print '<div class="admin_menu admin_float"><a href="'.cpgGetScriptNameParams('type').'type=hits#details" title="">'.$lang_stat_details_php['hits'].'</a></div>';
+            } else {
+                print '<div class="admin_menu admin_float"><a href="#details" title="">'.$lang_stat_details_php['hits'].'</a></div>';
             }
             if ($type != 'vote') {
-                print '<div class="admin_menu admin_float"><a href="'.cpgGetScriptNameParams('type').'type=vote" title="">'.$lang_stat_details_php['vote'].'</a></div>';
+                print '<div class="admin_menu admin_float"><a href="'.cpgGetScriptNameParams('type').'type=vote#details" title="">'.$lang_stat_details_php['vote'].'</a></div>';
+            } else {
+                print '<div class="admin_menu admin_float"><a href="#details" title="">'.$lang_stat_details_php['vote'].'</a></div>';
             }
             if ($type != 'users') {
-                print '<div class="admin_menu admin_float"><a href="'.cpgGetScriptNameParams('type').'type=users" title="">'.$lang_stat_details_php['users'].'</a></div>';
+                //print '<div class="admin_menu admin_float"><a href="'.cpgGetScriptNameParams('type').'type=users" title="">'.$lang_stat_details_php['users'].'</a></div>';
             }
-        }
+            if ($pid != '') {
+                print '<div class="admin_menu admin_float"><a href="displayimage.php?pid='.$pid.'">'.$lang_stat_details_php['back_to_intermediate'].'</a></div>';
+            }
+        } // gallery_admin_mode - end
         print <<< EOT
                   <div class="admin_float_end">
                   </div>
               </div>
 EOT;
         $statsTableWidth = '100%';
-    } else {
+    } else { // mode=fullscreen ends, mode=embedded starts
         $statsTableWidth = '-1';
         print  <<<EOT
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -204,8 +208,14 @@ EOT;
     <script type="text/javascript" src="scripts.js"></script>
 </head>
 <body class="tableb">
+<div class="admin_menu_wrapper">
+</div>
 EOT;
-    }
+        if ($pid != '') { // individual stat - start
+            print '<div class="admin_menu admin_float"><a href="'.cpgGetScriptNameParams('mode').'mode=fullscreen" target="_parent">'.$lang_stat_details_php['fullscreen'].'</a></div>';
+        } // individual stat - end
+    print '<div class="admin_float_end"></div>'.$line_break.'</div>';
+    } // mode=embedded ends
 // output the header depending on the mode (fullscreen vs embedded) - end
 
 // include the stats function - start
@@ -220,7 +230,7 @@ if ($type == 'vote' && $pid != '') { // type == vote start
 
     $rateArr = array();
 
-    print '';
+    print $line_break.'<a name="details"></a>'.$line_break;
     starttable($statsTableWidth, $lang_stat_details_php['stats'], 3);
 
     $totalVotesSum = 0;
@@ -261,30 +271,13 @@ EOT;
   } // type == vote end
   if ($type == 'hits') { // type == hits start
       // do nothing here, as the regular user isn't suppossed to see the hit stats
-  } // type == hits start
+  } // type == hits end
   individualStatsByOS($pid,$type,$statsTableWidth);
   individualStatsByBrowser($pid,$type,$statsTableWidth);
 // output the stuff the user can see - end
 
 // output the admin-only stuff - start
 if (GALLERY_ADMIN_MODE) { // admin is logged in - start
-      //  display fullscreen link
-      if ($mode != 'fullscreen') {
-          $statFullsizeUrl = cpgGetScriptNameParams('mode').'mode=fullscreen';
-          print <<< EOT
-          <div align="center">
-          <a href="{$statFullsizeUrl}" class="admin_menu" target="_parent">{$lang_stat_details_php['fullscreen']}</a>
-          </div>
-          <br />
-EOT;
-      } elseif ($pid != '') {
-          print <<< EOT
-          <div align="center">
-          <a href="displayimage.php?pid={$pid}" class="admin_menu">{$lang_stat_details_php['back_to_intermediate']}</a>
-          </div>
-          <br />
-EOT;
-      }
       print <<< EOT
       <form method="get" action="{$_SERVER['PHP_SELF']}#details" name="editForm" id="cpgform">
       <input type="hidden" name="type" value="{$type}" />
@@ -307,7 +300,7 @@ EOT;
 
     function confirmDelete() {
       if (document.editForm.reset_selected.checked = true) {
-        check = confirm('{$lang_stat_details_php['reset_votes_individual_confirm']}');
+        check = confirm('THIS FEATURE HAS NOT BEEN IMPLEMENTED YET!!!!! {$lang_stat_details_php['reset_votes_individual_confirm']}');
         if (check == true) {
           //document.editForm.submit();
         } else {
@@ -370,7 +363,7 @@ EOT;
       print '  <tr>'.$line_break;
       print '    <td class="tableh2" align="center" valign="bottom">'.$line_break;
       if ($type == 'vote') {
-          print '    <!-- *NOT IMPLEMENTED YET* <input type="checkbox" name="checkAll" onClick="selectAll(this,\'del\');" class="checkbox" title="'.$lang_common['check_uncheck_all'].'" />-->'.$line_break;
+          print '    <input type="checkbox" name="checkAll" onClick="selectAll(this,\'del\');" class="checkbox" title="'.$lang_common['check_uncheck_all'].'" />'.$line_break;
       }
       print '    </td>'.$line_break;
       foreach ($db_fields as $value) {
@@ -436,7 +429,7 @@ EOT;
                   print '  <tr>'.$line_break;
                   print '    <td class="'.$row_style_class.'" align="center">'.$line_break;
                   if ($type == 'vote') {
-                      print '      <!-- *NOT IMPLEMENTED YET* <input name="del'.$row['sid'].'" type="checkbox" value="" class="checkbox" />-->'.$line_break;
+                      print '      <input name="del'.$row['sid'].'" type="checkbox" value="" class="checkbox" />'.$line_break;
                   }
                   print '    </td>'.$line_break;
                   foreach($db_fields as $value) {
@@ -524,7 +517,7 @@ EOT;
       <td class="tablef" align="center" valign="top">
 EOT;
   if ($type == 'vote') {
-      print '    <!-- *NOT IMPLEMENTED YET* <input type="checkbox" name="checkAll2" onClick="selectAll(this,\'del\');" class="checkbox" title="'.$lang_common['check_uncheck_all'].'" />-->'.$line_break;
+      print '    <input type="checkbox" name="checkAll2" onClick="selectAll(this,\'del\');" class="checkbox" title="'.$lang_common['check_uncheck_all'].'" />'.$line_break;
   }
   print <<< EOT
       </td>
@@ -535,8 +528,8 @@ EOT;
 EOT;
   if ($type == 'vote') {
   print <<< EOT
-              <!-- *NOT IMPLEMENTED YET* <input type="checkbox" name="reset_selected" id="reset_selected" value="" class="checkbox" title="{$lang_stat_details_php['hide_internal_referers']}" onclick="confirmDelete();" />
-              <label for="reset_selected" class="clickable_option">{$lang_stat_details_php['reset_votes_individual']}</label>-->
+              <input type="checkbox" name="reset_selected" id="reset_selected" value="" class="checkbox" title="{$lang_stat_details_php['hide_internal_referers']}" onclick="confirmDelete();" />
+              <label for="reset_selected" class="clickable_option">{$lang_stat_details_php['reset_votes_individual']}</label>
 EOT;
   }
   print <<< EOT
