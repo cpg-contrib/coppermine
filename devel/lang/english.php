@@ -1851,6 +1851,7 @@ if (defined('STAT_DETAILS_PHP')) $lang_stat_details_php = array(
   'vote' => 'Vote Details',
   'hits' => 'Hit Details',
   'stats' => 'Vote Statistics',
+  'users' => 'User Statistics',
   'sdate' => 'Date',
   'rating' => 'Rating',
   'search_phrase' => 'Search phrase',

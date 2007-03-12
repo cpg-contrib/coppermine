@@ -22,6 +22,8 @@
 // * Allow admin to delete single votes and corresponding stats entry (UI partly created and commented out. Tricky stuff in delete.php not even started)
 // * Enable user name display instead of just displaying the user id for rating stats
 // * Add stats about users, numbers of albums and other things stat lovers constantly request
+// * Add a toggle between hits and votes overall stats
+// * Add a sub-menu at the top for a quick jump to the anchors
 
 define('IN_COPPERMINE', true);
 define('STAT_DETAILS_PHP', true);
@@ -34,7 +36,7 @@ require_once('include/init.inc.php');
 
 // sanitize the GET parameters - start
     $pid = $_GET['pid'] ? (int)$_GET['pid'] : 0;
-    $type_allowed = array('vote','hits','total','blank');
+    $type_allowed = array('vote','hits','total','blank','users');
     $amount_allowed = array(20,50,100,200);
 
     if (in_array($_GET['type'],$type_allowed) == TRUE) {
@@ -159,6 +161,35 @@ require_once('include/init.inc.php');
 // output the header depending on the mode (fullscreen vs embedded) - start
     if ($mode == 'fullscreen') {
         pageheader($lang_stat_details_php['title']);
+        // display a menu
+        print <<< EOT
+              <h1>{$lang_stat_details_php['title']}</h1>
+              <div class="admin_menu_wrapper">
+                  <div class="admin_menu admin_float"><a href="" title="">{$lang_stat_details_php['stats_by_os']}</a></div>
+                  <div class="admin_menu admin_float"><a href="" title="">{$lang_stat_details_php['stats_by_browser']}</a></div>
+EOT;
+        if (GALLERY_ADMIN_MODE) {
+            print <<< EOT
+                  <div class="admin_menu admin_float"><a href="#details" title="">{$lang_stat_details_php['hits']}</a></div>
+                  <!--<div class="admin_menu admin_float"><a href="" title="">{$lang_stat_details_php['']}</a></div>-->
+                  <!--<div class="admin_menu admin_float"><a href="" title="">{$lang_stat_details_php['']}</a></div>-->
+                  <!--<div class="admin_menu admin_float"><a href="" title="">{$lang_stat_details_php['']}</a></div>-->
+EOT;
+            if ($type != 'hits') {
+                print '<div class="admin_menu admin_float"><a href="'.cpgGetScriptNameParams('type').'type=hits" title="">'.$lang_stat_details_php['hits'].'</a></div>';
+            }
+            if ($type != 'vote') {
+                print '<div class="admin_menu admin_float"><a href="'.cpgGetScriptNameParams('type').'type=vote" title="">'.$lang_stat_details_php['vote'].'</a></div>';
+            }
+            if ($type != 'users') {
+                print '<div class="admin_menu admin_float"><a href="'.cpgGetScriptNameParams('type').'type=users" title="">'.$lang_stat_details_php['users'].'</a></div>';
+            }
+        }
+        print <<< EOT
+                  <div class="admin_float_end">
+                  </div>
+              </div>
+EOT;
         $statsTableWidth = '100%';
     } else {
         $statsTableWidth = '-1';
@@ -189,6 +220,7 @@ if ($type == 'vote' && $pid != '') { // type == vote start
 
     $rateArr = array();
 
+    print '';
     starttable($statsTableWidth, $lang_stat_details_php['stats'], 3);
 
     $totalVotesSum = 0;
