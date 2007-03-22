@@ -449,10 +449,6 @@ a:hover {
         margin-bottom: 1px;
 }
 
-.admin_float_end {
-        clear:left;
-}
-
 #admin_menu_anim {
         background-image : url(images/button_bg_anim.gif);
 }

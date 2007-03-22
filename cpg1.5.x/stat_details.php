@@ -190,7 +190,7 @@ EOT;
             }
         } // gallery_admin_mode - end
         print <<< EOT
-                  <div class="admin_float_end">
+                  <div style="clear:left;">
                   </div>
               </div>
 EOT;

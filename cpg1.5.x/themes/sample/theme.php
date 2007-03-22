@@ -248,7 +248,7 @@ $template_gallery_admin_menu = <<<EOT
                             <!-- BEGIN exif_manager -->
                                 <div class="admin_menu admin_float"><a href="exifmgr.php" title="{EXIFMGR_TITLE}">{EXIFMGR_LNK}</a></div>
                             <!-- END exif_manager -->
-                <div class="admin_float_end">
+                <div style="clear:left;">
                 </div>
               </div>
 EOT;
