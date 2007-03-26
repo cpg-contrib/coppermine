@@ -6,7 +6,7 @@
 <meta name="language" content="de" />
 <meta name="author" content="rehmaster" />
 <meta name="copyright" content="Coppermine dev team" />
-<meta name="description" content="Coppermine Photo Gallery project - Coppermine ist ein einfach zu installierendes, schnelles, funktionsreiches Fotogalerie Skript mit mySQL DAtenbank, User Management, privaten Galerien, automatischer Thumbnail Erstellung, ecard Angebot und einem Templatesystem f&uuml;r eine einfache Personalisierung." />
+<meta name="description" content="Coppermine Photo Gallery project - Coppermine ist ein einfach zu installierendes, schnelles, funktionsreiches Fotogalerie Skript mit mySQL DAtenbank, User Management, privaten Galerien, automatischer Thumbnail Erstellung, ecard Angebot und einem Templatesystem für eine einfache Personalisierung." />
 <meta name="keywords" content="Foto,Galerie,Bild,einfach,photo,gallery,galery,image,coppermine,php,mysql,easy,feature,phpnuke,thumbnail,automatic,creation,gd,Image Magick,ecard" />
 <meta name="page-topic" content="photo,gallery,galery,image,coppermine,php,mysql,easy,feature,phpnuke,thumbnail,automatic,creation,gd,Image Magick,ecard" />
 <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -17,11 +17,11 @@
 </head>
 <body>
 <h1>Coppermine 1.4.x FAQ</h1>
-<p>FAQ f&uuml;r <a href="http://coppermine-gallery.net/">Coppermine Photo Gallery v1.4.x</a><br />
+<p>FAQ für <a href="http://coppermine-gallery.net/">Coppermine Photo Gallery v1.4.x</a><br />
 Quellenangabe und Copyright unter <a href="http://coppermine-gallery.net/demo/cpg14x/docs/index.htm#credits">Coppermine Dokumentation</a></p>
 
 
-<p>Mit tausenden von Benutzern ist es keine &Uuml;berraschung, dass viele gleiche Fragen in den <a href="http://coppermine-gallery.net/forum/">Supportforen der Coppermine Fotogalerie</a> gestellt werden. Um die Hilfe bei Eurer Websiteentwicklung zu erleichtern haben wir diese grunds&auml;tzlichen <acronym class="tool" title="FAQ=Frequently Asked Questions">FAQ</acronym> hier hinzugef&uuml;gt. Bitte schaut erst diese FAQ durch, bevor ihr Eure Fragen im Forum stellt.</p>
+<p>Mit tausenden von Benutzern ist es keine Überraschung, dass viele gleiche Fragen in den <a href="http://coppermine-gallery.net/forum/">Supportforen der Coppermine Fotogalerie</a> gestellt werden. Um die Hilfe bei Eurer Websiteentwicklung zu erleichtern haben wir diese grundsätzlichen <acronym class="tool" title="FAQ=Frequently Asked Questions">FAQ</acronym> hier hinzugefügt. Bitte schaut erst diese FAQ durch, bevor ihr Eure Fragen im Forum stellt.</p>
 
 
 <a name="top"></a>
@@ -29,7 +29,7 @@ Quellenangabe und Copyright unter <a href="http://coppermine-gallery.net/demo/cp
 <ul class="nomargin">
 <li>Installation</li>
 <ul class="nomargin">
-<li><a class="content" href="#MinimumRequirements">Was ist die <b>Mindestvoraussetzung</b> f&uuml;r die Installation und Verwendung von Coppermine 1.4.x ?</a></li>
+<li><a class="content" href="#MinimumRequirements">Was ist die <b>Mindestvoraussetzung</b> für die Installation und Verwendung von Coppermine 1.4.x ?</a></li>
 <li><a class="content" href="#whatIsImageMagick">Was ist <b>ImageMagick</b> und wie bekomme ich es?</a></li>
 <li><a class="content" href="#WhatIsGD">Was ist <b>GD</b> und wie bekomme ich es?</a></li>
 <li><a class="content" href="#VersionPHP">Wie kann ich heraus finden, <b>welche PHP Version</b> ich benutze?</a></li>
@@ -37,7 +37,7 @@ Quellenangabe und Copyright unter <a href="http://coppermine-gallery.net/demo/cp
 <li><a class="content" href="#GD1vsGD2">Was ist der Unterschied zwischen <b>GD1 und GD2</b>?</a></li>
 <li><a class="content" href="#InstallSteps">Wie sind die einzelnen <b>Schritte</b> um Coppermine zum laufen zu bekommen?</a></li>
 <li><a class="content" href="#installIMwhenHosted">Wie kann ich <b>ImageMagick oder GD installieren</b>?</a></li>
-<li><a class="content" href="#minimumInstall">Ich habe geringe Speicherplatzkapazit&auml;t. Gibt es eine "<b>Minimum Installation</b>"?</a></li>
+<li><a class="content" href="#minimumInstall">Ich habe geringe Speicherplatzkapazität. Gibt es eine "<b>Minimum Installation</b>"?</a></li>
 </ul>
 
 <li>Upload</li>
@@ -50,7 +50,7 @@ Quellenangabe und Copyright unter <a href="http://coppermine-gallery.net/demo/cp
 <li><a class="content" href="#WhatIsImageMagick">Bei der Installation bekomme ich den <b>Error</b> <tt class="code">Fatal error: Call to undefined function: imagecreatefromjpeg() in /include/picmgmt.inc.php on line 168</tt>. Was bedeutet das?</a></li>
 <li><a class="content" href="#mkdirPermissionDenied">Bei der Installation bekomme ich den <b>Error</b> <tt class="code">Warning: mkdir(dummy) [function.mkdir]: Permission denied in /your/path/to/coppermine/install.php on line 126</tt>. Was bedeutet das?</a></li>
 <li><a class="content" href="#EmptyDelimiter">Ich bekomme den <b>Error</b> "<tt class="code">Warning: Empty Delimiter in search.inc.php line 33"</tt>. Was kann ich tun?</a></li>
-<li><a class="content" href="#zerosizedreply">Ich bekomme w&auml;hrend der Installation den <b>error</b> <tt class="code">Zero Sized Reply</tt>. Was kann ich tun?</a></li>
+<li><a class="content" href="#zerosizedreply">Ich bekomme während der Installation den <b>error</b> <tt class="code">Zero Sized Reply</tt>. Was kann ich tun?</a></li>
 <li><a class="content" href="#ErrorUndefinedIndex">Ich bekomme die Fehlermeldung <tt class="code">Warning: Undefined index: SCRIPT_NAME in /www.your-domain.com/include/init.inc.php on line 90</tt>. Was kann ich tun?</a></li>
 <li><a class="content" href="#ErrorCantMovePic">Wenn ich versuche ein Bild hochzuladen bekomme ich folgende Fehlermeldung: <tt class="code">Impossible
 to move somepic.jpg to albums/userpics/ | Warning:
@@ -64,26 +64,26 @@ failed to create stream: Operation not permitted</tt>. Was mache ich falsch?</a>
 
 <li>Setup / Konfiguration</li>
 <ul class="nomargin">
-<li><a class="content" href="#LinkInAlbumDescription">Wie kann ich einen <b>Link, in die Beschreibung eines Albums</b> oder die Beschriftung eines Bildes, einf&uuml;gen?</a></li>
-<li><a class="content" href="#NoLastUploads">Ich m&ouml;chte die <b>letzten Uploads</b> und/oder die <b>Zufallsbilder</b> auf der Startseite ausblenden. Wie kann ich bearbeiten, was auf der Startseite von coppermine angezeigt wird?</a></li>
-<li><a class="content" href="#editCopyrights">Wie kann ich die <b>Fu&szlig;zeile mit bearbeiten/l&ouml;schen</b>, wo "<tt class="code">Powered by Coppermine</tt>" steht ?</a></li>
-<li><a class="content" href="#buyLicense">Ich m&ouml;chte eine <b>Lizenz</b> von Coppermine kaufen (und das "<tt class="code">Powered by Coppermine</tt>" loswerden). Wie?</a></li>
-<li><a class="content" href="#removeFeature">Ich m&ouml;chte das Feature XYZ von Coppermine nicht nutzen. Wie kann ich es <b>beseitigen</b> ?</a></li>
-<li><a class="content" href="#customHeader">Wie kann ich eine <b>eigene Kopf-/Fu&szlig;zeile</b> zu Coppermine hinzuf&uuml;gen?</a></li>
-<li><a class="content" href="#createPublicAlbum">Wie kann ich ein <b>Album</b> erstellen, dass <b>jeder</b> mit Fotos best&uuml;cken kann?</a></li>
+<li><a class="content" href="#LinkInAlbumDescription">Wie kann ich einen <b>Link, in die Beschreibung eines Albums</b> oder die Beschriftung eines Bildes, einfügen?</a></li>
+<li><a class="content" href="#NoLastUploads">Ich möchte die <b>letzten Uploads</b> und/oder die <b>Zufallsbilder</b> auf der Startseite ausblenden. Wie kann ich bearbeiten, was auf der Startseite von coppermine angezeigt wird?</a></li>
+<li><a class="content" href="#editCopyrights">Wie kann ich die <b>Fußzeile mit bearbeiten/löschen</b>, wo "<tt class="code">Powered by Coppermine</tt>" steht ?</a></li>
+<li><a class="content" href="#buyLicense">Ich möchte eine <b>Lizenz</b> von Coppermine kaufen (und das "<tt class="code">Powered by Coppermine</tt>" loswerden). Wie?</a></li>
+<li><a class="content" href="#removeFeature">Ich möchte das Feature XYZ von Coppermine nicht nutzen. Wie kann ich es <b>beseitigen</b> ?</a></li>
+<li><a class="content" href="#customHeader">Wie kann ich eine <b>eigene Kopf-/Fußzeile</b> zu Coppermine hinzufügen?</a></li>
+<li><a class="content" href="#createPublicAlbum">Wie kann ich ein <b>Album</b> erstellen, dass <b>jeder</b> mit Fotos bestücken kann?</a></li>
 <li><a class="content" href="#BackupDatabase">Wie kann ich die Datenbank meiner Coppermine Galerie <b>sichern</b> ?</a></li>
-<li><a class="content" href="#noFullsizePopup">Die <b>Gro&szlig;ansicht des Bildes &ouml;ffnet sich nicht</b>, wenn ich auf die Zwischenansicht des Bildes klicke. Was mache ich falsch?</a></li>
+<li><a class="content" href="#noFullsizePopup">Die <b>Großansicht des Bildes öffnet sich nicht</b>, wenn ich auf die Zwischenansicht des Bildes klicke. Was mache ich falsch?</a></li>
 <li><a class="content" href="#viewThumbnailsOnly">Wie kann ich unregistrierte Benutzer <b>nur die Thumbnails sehen lassen</b>, aber nicht die eigentlichen Bilder?</a></li>
 <li><a class="content" href="#preventHotlinks">Wie kann ich verhindern, dass andere Seiten direkt auf eines meiner Bilder verlinken, anstatt auf meine Galerieseite?</a></li>
-<li><a class="content" href="#changeLanguage">Ich habe versucht die <b>Sprache</b> auf der Konfigurationsseite zu &auml;ndern, was leider nicht funktioniert hat. Was habe ich falsch gemacht?</a></li>
-<li><a class="content" href="#onlyregisteredcomments">Wie kann ich einrichten, dass nicht nur registrierte Benutzer, sondern auch G&auml;ste, <b>Kommentare</b> bei Bildern hinterlassen k&ouml;nnen??</a></li>
+<li><a class="content" href="#changeLanguage">Ich habe versucht die <b>Sprache</b> auf der Konfigurationsseite zu ändern, was leider nicht funktioniert hat. Was habe ich falsch gemacht?</a></li>
+<li><a class="content" href="#onlyregisteredcomments">Wie kann ich einrichten, dass nicht nur registrierte Benutzer, sondern auch Gäste, <b>Kommentare</b> bei Bildern hinterlassen können??</a></li>
 <li><a class="content" href="#httpUpload">Ich <b>kann</b> mit dem Upload Feature <b>nichts hochladen</b>. Was mache ich falsch?</a></li>
-<li><a class="content" href="#ordercategories">Wie kann ich die <b>Reihenfolge der Kategorien</b> ver&auml;ndern?</a></li>
-<li><a class="content" href="#cantDeletePic">Ich <b>kann ein bestimmtes Bild nicht</b> per ftp <b>l&ouml;schen</b>. Was kann ich tun?</a></li>
-<li><a class="content" href="#cantUploadBigPics">Ich kann <b>gro&szlig;e Bilder nicht hochladen. Was mache ich falsch?</a></li>
+<li><a class="content" href="#ordercategories">Wie kann ich die <b>Reihenfolge der Kategorien</b> verändern?</a></li>
+<li><a class="content" href="#cantDeletePic">Ich <b>kann ein bestimmtes Bild nicht</b> per ftp <b>löschen</b>. Was kann ich tun?</a></li>
+<li><a class="content" href="#cantUploadBigPics">Ich kann <b>große Bilder nicht hochladen. Was mache ich falsch?</a></li>
 <li><a class="content" href="#cookie">Ich kann mich bei Coppermine nicht <b>einloggen</b>. Was mache ich falsch?</a></li>
-<li><a class="content" href="#sortAlbum">Wie kann ich die <b>Sortierung der Alben</b> ver&auml;ndern?</a></li>
-<li><a class="content" href="#deleteIntermediates">Ich ben&ouml;tige das <b>Zwischenbild</b> nicht mehr. Wie kann ich es <b>l&ouml;schen</b> um Speicherplatz frei zu machen?</a></li>
+<li><a class="content" href="#sortAlbum">Wie kann ich die <b>Sortierung der Alben</b> verändern?</a></li>
+<li><a class="content" href="#deleteIntermediates">Ich benötige das <b>Zwischenbild</b> nicht mehr. Wie kann ich es <b>löschen</b> um Speicherplatz frei zu machen?</a></li>
 <li><a class="content" href="#howAlbumsFolderWork">Wie funktionieren <b>Alben und Ordner</b> in Coppermine?</a></li>
 <li><a class="content" href="#howMoveAlbum">Wie kann ich <b>Alben von einer Kategorie zu einer anderen verschieben</b>?</a></li>
 <li><a class="content" href="#moveGallery">Wie kann ich eine <b>Galerie verschieben</b>?</a></li>
@@ -92,16 +92,16 @@ failed to create stream: Operation not permitted</tt>. Was mache ich falsch?</a>
 </ul>
 <li>Add-ons / Modifikationen / Hacks</li>
 <ul class="nomargin">
-<li><a class="content" href="#changeOrderEdit">Wie kann ich die Reihenfolge der Bilder &auml;ndern, w&auml;hrend ich sie <b>bearbeite</b>?</a></li>
-<li><a class="content" href="#rightHandMenu">Wie kann ich ein Men&uuml; erstellen, dass auf der <b>rechten Seite</b> der Galerie angezeigt wird?</a></li>
+<li><a class="content" href="#changeOrderEdit">Wie kann ich die Reihenfolge der Bilder ändern, während ich sie <b>bearbeite</b>?</a></li>
+<li><a class="content" href="#rightHandMenu">Wie kann ich ein Menü erstellen, dass auf der <b>rechten Seite</b> der Galerie angezeigt wird?</a></li>
 <li><a class="content" href="#jumpToPrivateAlbum">Wie kann ich einen Benutzer <b>direkt zu seinem privaten Album</b> lenken, wenn er sich anmeldet?</a></li>
-<li><a class="content" href="#registeredUsersOnly">Wie kann ich <b>vermeiden</b>, dass <b>unregistrierte Benutzer</b> die Galerie anschauen k&ouml;nnen?</a></li>
+<li><a class="content" href="#registeredUsersOnly">Wie kann ich <b>vermeiden</b>, dass <b>unregistrierte Benutzer</b> die Galerie anschauen können?</a></li>
 <li><a class="content" href="#displayUploaderName">Wie kann ich den <b>Namen des Uploaders</b>, zusammen mit den Bildinformationen <b>anzeigen</b> lassen?</a></li>
-<li><a class="content" href="#linksInCustomFields">Wie kann ich anklickbare <b>Links Benutzerdefinierten Feldern</b> erm&ouml;glichen?</a></li>
+<li><a class="content" href="#linksInCustomFields">Wie kann ich anklickbare <b>Links Benutzerdefinierten Feldern</b> ermöglichen?</a></li>
 <li><a class="content" href="#sortThumbsByCustomField">Wie kann ich die <b>Thumbnails nach Benutzer definierten Feldern sortieren</b> lassen?</a></li>
-<li><a class="content" href="#iptcSupport">Wie kann ich die <b>IPTC Unterst&uuml;tzung erm&ouml;glichen</b>?</a></li>
-<li><a class="content" href="#addFooterBeforePoweredBy">Wie kann ich weitere Ausgaben <b>direkt vor</b> der Zeile "Powered by Coppermine" <b>hinzuf&uuml;gen</b> ?</a></li>
-<li><a class="content" href="#commonPHPerrors">Wie kann ich mich von h&auml;ufigen php Fehlern befreien?</a></li>
+<li><a class="content" href="#iptcSupport">Wie kann ich die <b>IPTC Unterstützung ermöglichen</b>?</a></li>
+<li><a class="content" href="#addFooterBeforePoweredBy">Wie kann ich weitere Ausgaben <b>direkt vor</b> der Zeile "Powered by Coppermine" <b>hinzufügen</b> ?</a></li>
+<li><a class="content" href="#commonPHPerrors">Wie kann ich mich von häufigen php Fehlern befreien?</a></li>
 <li><a class="content" href="#renameTemplateHtml">Kann ich <b>template.html in template.php umbenennen</b> um <b>PHP code</b> in mein Template zu integrieren?</a></li>
 <li><a class="content" href="#preventPictureStealing">Wie kann ich verhindern, dass Benutzer meine Bilder speichern (stehlen)?</a></li>
 </ul>
@@ -125,10 +125,10 @@ failed to create stream: Operation not permitted</tt>. Was mache ich falsch?</a>
 
 <br />&nbsp;<br />
 <h2>Installation</h2><a name="MinimumRequirements"></a>
-<h3>Was ist die <b>Mindestvoraussetzung</b> f&uuml;r die Installation und Verwendung von Coppermine 1.4.x ?</h3>
+<h3>Was ist die <b>Mindestvoraussetzung</b> für die Installation und Verwendung von Coppermine 1.4.x ?</h3>
 <p>
     </p><ul>
-        <li>beliebiger Webserver, Apache empfohlen (Es wurde berichtet, dass Coppermine unter <a href="http://httpd.apache.org/" class="external">Apache</a>, <a href="http://www.microsoft.com/iis/" class="external">Microsoft Internet Information Server</a> (IIS), <a href="http://www.roxen.com/products/webserver/" class="external">Roxen WebServer</a>, <a href="http://www.aprelium.com/" class="external">Abyss</a>, <a href="http://www.janaserver.de/" class="external">JanaServer</a> l&auml;uft)</li>
+        <li>beliebiger Webserver, Apache empfohlen (Es wurde berichtet, dass Coppermine unter <a href="http://httpd.apache.org/" class="external">Apache</a>, <a href="http://www.microsoft.com/iis/" class="external">Microsoft Internet Information Server</a> (IIS), <a href="http://www.roxen.com/products/webserver/" class="external">Roxen WebServer</a>, <a href="http://www.aprelium.com/" class="external">Abyss</a>, <a href="http://www.janaserver.de/" class="external">JanaServer</a> läuft)</li>
         <li>PHP 4.1.0 or better</li>
         <li><a href="#WhatIsGD">GD lib</a> oder Image Magick</li>
         <li>mySQL
@@ -137,18 +137,18 @@ Version (die in der phpinfo steht) mit der mySQL Version verwechseln!</li>
     </ul><br /><br /><div class="totop">[<a href="#top" class="nodeco">nach oben</a>]</div><hr />
 <a name="WhatIsGD"></a>
 <h3>Was ist <b>ImageMagick</b> und wie bekomme ich es?</h3>
-<p>GD ist eine graphical library, die es PHP erm&ouml;glicht Bilder zu bearbeiten. Wenn Du Deinen eigenen Webserver betreibst, dann kannst Du GD unter
+<p>GD ist eine graphical library, die es PHP ermöglicht Bilder zu bearbeiten. Wenn Du Deinen eigenen Webserver betreibst, dann kannst Du GD unter
  <a href="http://www.boutell.com/gd/" class="external">www.boutell.com/gd/</a> runterladen.
-Unter L(Unix) Systemen k&ouml;nnte es n&ouml;tig sein, abh&auml;ngig von der Apache Version, PHP neu zu kompilieren.
-Die meisten neusten PHP Versionen bringen GD direkt mit. Auf den meisten Windows Systemen kann GD direkt in der php.ini aktiviert werden. Wenn Du von einem Webhoster abh&auml;ngig bist, dann &uuml;berpr&uuml;fe, ob GD/GD2 Unterst&uuml;tzung f&uuml;r Deine Seite zur Verf&uuml;gung steht.
+Unter L(Unix) Systemen könnte es nötig sein, abhängig von der Apache Version, PHP neu zu kompilieren.
+Die meisten neusten PHP Versionen bringen GD direkt mit. Auf den meisten Windows Systemen kann GD direkt in der php.ini aktiviert werden. Wenn Du von einem Webhoster abhängig bist, dann überprüfe, ob GD/GD2 Unterstützung für Deine Seite zur Verfügung steht.
 Sollte das nicht der Fall sein, frage deinen Webhoster, ob Du es haben kannst oder Suche Dir einen Neuen.
 GD/GD2 sind meistens ein Standardfeature bei den meisten Webhostern.<br /></p><br /><div class="totop">[<a href="#top" class="nodeco">nach oben</a>]</div><hr />
 
 <a name="whatIsImageMagick"></a>
 <h3>Was ist <b>GD</b> und wie bekomme ich es?</h3>
-<p>ImageMagick ist eine andere graphical library wie GD/GD2 f&uuml;r die Bildbearbeitung.
+<p>ImageMagick ist eine andere graphical library wie GD/GD2 für die Bildbearbeitung.
  Solltest Du einen eigenen Webserver laufen haben, dann kannst Du es unter <a href="http://www.imagemagick.org/" class="external">imagemagick.org</a> runterladen.
-Dort sind Sources f&uuml;r Unix, Linux, Mac and Windows erh&auml;ltlich, sowie binary packeges f&uuml;r verschiedene Server Betriebssysteme.
+Dort sind Sources für Unix, Linux, Mac and Windows erhältlich, sowie binary packeges für verschiedene Server Betriebssysteme.
  Wenn man bei einem Webhoster ist, dann kann man ein ImageMagick installieren
 <br /></p>
 <br />
@@ -157,14 +157,14 @@ Dort sind Sources f&uuml;r Unix, Linux, Mac and Windows erh&auml;ltlich, sowie b
 <a name="VersionPHP"></a>
 <h3>Wie kann ich heraus finden, <b>welche PHP Version</b> ich benutze?</h3>
 <p>Wenn Du Coppermine noch nicht installiert hast, dann erstelle eine leere Datai mit dem Namen "info.php". Schreibe den folgenden Code hinein: <tt class="code">&lt;?php phpinfo(); ?&gt;</tt>.
-Speichere die Datei und lade sie auf Deinen Server hoch; anschlie&szlig;end rufe die Datei in deinem Browser auf. (z.B. http://www.deinedomain.de/info.php). In der ersten Zeile ist die PHP Version zu finden
-"PHP Version X.Y.Z"<br />Bitte beachte: die info.php Datei auf Deinem Websever kann ein Sicherheitsrisiko sein; am besten nach Gebrauch l&auml;schen
- in ein Passwort gesch&uuml;tztes Verzeichnis verschieben!<br />&nbsp;<br />Wenn Du bereits Coppermine installiert hast, dann findest Du eine phpinfo Datei
+Speichere die Datei und lade sie auf Deinen Server hoch; anschließend rufe die Datei in deinem Browser auf. (z.B. http://www.deinedomain.de/info.php). In der ersten Zeile ist die PHP Version zu finden
+"PHP Version X.Y.Z"<br />Bitte beachte: die info.php Datei auf Deinem Websever kann ein Sicherheitsrisiko sein; am besten nach Gebrauch läschen
+ in ein Passwort geschütztes Verzeichnis verschieben!<br />&nbsp;<br />Wenn Du bereits Coppermine installiert hast, dann findest Du eine phpinfo Datei
 (phpinfo.php) in den Coppermine Ordnern. Log Dich in Dein Coppermine Setup als Admin ein und tippe folgende URL in Deinen browser ein:
 http://deineadresse.tld/dein_coppermine_ordner/phpinfo.php .</p><br /><div class="totop">[<a href="#top" class="nodeco">nach oben</a>]</div><hr /><a name="VersionGD"></a>
 <h3>Wie kann ich heraus finden, <b>welche GD Version</b> ich benutze?</h3>
 <p>Wenn Du Coppermine noch nicht installiert hast, dann erstelle eine leere Datai mit dem Namen "info.php". Schreibe den folgenden Code hinein: <tt class="code">&lt;?php phpinfo(); ?&gt;</tt>.
-Speichere die Datei und lade sie auf Deinen Server hoch; anschlie&szlig;end rufe die Datei in deinem Browser auf. (z.B. http://www.deinedomain.de/info.php). Suche nach einer Tabelle wie dieser:<br />
+Speichere die Datei und lade sie auf Deinen Server hoch; anschließend rufe die Datei in deinem Browser auf. (z.B. http://www.deinedomain.de/info.php). Suche nach einer Tabelle wie dieser:<br />
 </p><div style="font-family: arial,helvetica,sans-serif; font-size: 14pt; font-weight: bold;" align="center">gd</div>
 <table align="center" bgcolor="#000000" border="0" cellpadding="3" cellspacing="1" width="600">
 <tbody><tr bgcolor="#cccccc" valign="baseline"><td bgcolor="#ccccff"><b>GD Support</b></td><td align="left">enabled</td></tr>
@@ -175,14 +175,14 @@ Speichere die Datei und lade sie auf Deinen Server hoch; anschlie&szlig;end rufe
 <tr bgcolor="#cccccc" valign="baseline"><td bgcolor="#ccccff"><b>PNG Support</b></td><td align="left">enabled</td></tr>
 <tr bgcolor="#cccccc" valign="baseline"><td bgcolor="#ccccff"><b>WBMP Support</b></td><td align="left">enabled</td></tr>
 </tbody></table>
-<br /><br />Bitte beachte: die info.php Datei auf Deinem Websever kann ein Sicherheitsrisiko sein; am besten nach Gebrauch l&auml;schen
- in ein Passwort gesch&uuml;tztes Verzeichnis verschieben!<br />&nbsp;<br />Wenn Du bereits Coppermine installiert hast, dann findest Du eine phpinfo Datei
+<br /><br />Bitte beachte: die info.php Datei auf Deinem Websever kann ein Sicherheitsrisiko sein; am besten nach Gebrauch läschen
+ in ein Passwort geschütztes Verzeichnis verschieben!<br />&nbsp;<br />Wenn Du bereits Coppermine installiert hast, dann findest Du eine phpinfo Datei
 (phpinfo.php) in den Coppermine Ordnern. Log Dich in Dein Coppermine Setup als Admin ein und tippe folgende URL in Deinen browser ein:
 http://deineadresse.tld/dein_coppermine_ordner/phpinfo.php . Scroll dann runter bis zum GD Bereich.<br /><br /><div class="totop">[<a href="#top" class="nodeco">nach oben</a>]</div><hr /><a name="GD1vsGD2"></a>
 <h3>Was ist der Unterschied zwischen <b>GD1 und GD2</b>?</h3>
-<p>GD2 ist eine aktualisierte Version von GD1 und als solche werden Bilder mit einer besseren Qualit&auml;t erzeugt (Zwischenbilder und Thumbnails). </p><table class="frame2" border="0"><tbody><tr><td colspan="2"><span class="winzig">Hier ist ein Beispiel, genommen von <a href="http://www.vddh.com/wnailer/index.php?pag=res&amp;pic=1#comp" class="external">w-nailer: about resizing</a><br />(Original Bildgr&ouml;&szlig;e: 1024 x 768 Pixel):</span></td></tr><tr><td align="center"><img src="pics/128x96gd1.jpg" alt="" title="GD1" border="0" height="96" width="128"></td><td align="center"><img src="pics/128x96gd2.jpg" alt="" title="GD2" border="0" height="96" width="128"></td></tr><tr><td align="center"><span class="winzig">GD 1.8.4:<br />ImageCreate<br />ImageCopyResized<br />128 x 96 pixels</span></td><td align="center"><span class="winzig">GD 2.0.1:<br />ImageCreateTrueColor<br />ImageCopyResampled<br />128 x 96 pixels</span></td></tr></tbody></table>
+<p>GD2 ist eine aktualisierte Version von GD1 und als solche werden Bilder mit einer besseren Qualität erzeugt (Zwischenbilder und Thumbnails). </p><table class="frame2" border="0"><tbody><tr><td colspan="2"><span class="winzig">Hier ist ein Beispiel, genommen von <a href="http://www.vddh.com/wnailer/index.php?pag=res&amp;pic=1#comp" class="external">w-nailer: about resizing</a><br />(Original Bildgröße: 1024 x 768 Pixel):</span></td></tr><tr><td align="center"><img src="pics/128x96gd1.jpg" alt="" title="GD1" border="0" height="96" width="128"></td><td align="center"><img src="pics/128x96gd2.jpg" alt="" title="GD2" border="0" height="96" width="128"></td></tr><tr><td align="center"><span class="winzig">GD 1.8.4:<br />ImageCreate<br />ImageCopyResized<br />128 x 96 pixels</span></td><td align="center"><span class="winzig">GD 2.0.1:<br />ImageCreateTrueColor<br />ImageCopyResampled<br />128 x 96 pixels</span></td></tr></tbody></table>
 Upgrades der GD Lib nach dem Coppermine installiert worden ist hat keinen Effekt mehr auf Bilder, die bereits erstellt worden sind. Allerdings auf diese, die nach dem Upgrade erstellt werden.
-<b>Nur Dein Webhoster kann GD Lib installieren oder verbessern, au&szlig;er wenn Du Deinen eigenen Webserver hast!</b><br /><br /><div class="totop">[<a href="#top" class="nodeco">nach oben</a>]</div><hr />
+<b>Nur Dein Webhoster kann GD Lib installieren oder verbessern, außer wenn Du Deinen eigenen Webserver hast!</b><br /><br /><div class="totop">[<a href="#top" class="nodeco">nach oben</a>]</div><hr />
 
 <a name="InstallSteps"></a>
 <h3>Wie sind die einzelnen <b>Schritte</b> um Coppermine zum laufen zu bekommen?</h3>
@@ -193,41 +193,41 @@ Upgrades der GD Lib nach dem Coppermine installiert worden ist hat keinen Effekt
 <li>Den Inhalt des Coppermine Ordners auf Deinen Server hochladen (Du kannst es im Wurzelverzeichnis oder einem anderen beliebigen Ordner installieren).</li>
 <li>CHMOD (<u>CH</u>ange permission settings <u>MOD</u>e) Deine neu hochgeladenen Coppermine "include" and "albums" Ordner und Unterordner um
 Schreib- und Leserechte zu setzen. Wenn Dein Webhoster keine Dateiverwaltung anbietet um die Rechte zu setzen, dann musst Du im Netz nach einem ftp Programm suchen, es downloaden und installieren um diese Aufgabe zu erledigen.</li>
-<li> Erstelle eine Datenbank, wenn noch keine vorhanden ist. Du brauchst keine Tabellen in Deiner neuen Datenbank zu erzeugen. Dies wird Coppermine f&uuml;r Dich tun. Wenn Du bereits eine Datenbank auf Deiner Website hast, dann kann Coppermine auch diese nutzen. </li>
+<li> Erstelle eine Datenbank, wenn noch keine vorhanden ist. Du brauchst keine Tabellen in Deiner neuen Datenbank zu erzeugen. Dies wird Coppermine für Dich tun. Wenn Du bereits eine Datenbank auf Deiner Website hast, dann kann Coppermine auch diese nutzen. </li>
 <li>Wenn Du auf einem Yahoo Webserver installierst, dann <a href="http://coppermine-gallery.net/forum/index.php?topic=18943.0">lies zuerst das</a>.</li>
 <li>Rufe mit Deinem Browser die Adresse
-http://www.deineseite.de/coppermine/install.php auf und folge den Anweisungen der Installationsdatei (Hier werden die mySQL Tabellen erstellt und mit den Standardwerten aufgef&uuml;llt)</li>
-<li>Nach erfolgreicher Installation l&ouml;sche die install.php Datei von Deinem Webserver.</li>
+http://www.deineseite.de/coppermine/install.php auf und folge den Anweisungen der Installationsdatei (Hier werden die mySQL Tabellen erstellt und mit den Standardwerten aufgefüllt)</li>
+<li>Nach erfolgreicher Installation lösche die install.php Datei von Deinem Webserver.</li>
 <li>Rufe mit Deinem Browser http://www.yoursite.com/coppermine/ auf und
 melde Dich als Admin an, indem Du Benutzername und Passwort, die Du bei der Installation angegeben hast, eingibst.
 Klicke im Adminmodus auf CONFIG um deine Coppermine Fotogalerie einzurichten.</li>
 <li>Experimentiere mit Deiner Installation herum, erstelle neue Kategorien, Unterkategorien und Alben. Lade ein einige Bilder hoch (noch nicht zu viele),
 und teste, ob alles funktioniert. </li>
 <li>Rufe mit Deinem Browser die Seite http://www.deineseite.de/coppermine/docs/ auf und
-LESE die Dokumentation. Die Dokumentation hilft dabei Deine Fragen zu beantworten und Probleme zu l&ouml;sen, so dass die Seite all Deinen W&uuml;nschen entspricht.
-Das Lesen der Dokumentation wird einige Minuten in Anspruch nehmen. Die Probleml&ouml;sung kan sogar Tage oder Wochen in Anspruch nehmen</li>
-<li>Wenn Deine neue Coppermine Installation in einem Unterordner auf Deiner Seite ist, dann ver&ouml;ffentliche diese indem Du auf diese verweist.</li>
+LESE die Dokumentation. Die Dokumentation hilft dabei Deine Fragen zu beantworten und Probleme zu lösen, so dass die Seite all Deinen Wünschen entspricht.
+Das Lesen der Dokumentation wird einige Minuten in Anspruch nehmen. Die Problemlösung kan sogar Tage oder Wochen in Anspruch nehmen</li>
+<li>Wenn Deine neue Coppermine Installation in einem Unterordner auf Deiner Seite ist, dann veröffentliche diese indem Du auf diese verweist.</li>
 </ol><br /><br /><div class="totop">[<a href="#top" class="nodeco">nach oben</a>]</div><hr />
 
 <a name="installIMwhenHosted"></a>
 <h3>Wie kann ich <b>ImageMagick oder GD installieren</b>?</h3>
-<p>Du kannst nur <a href="#enableIMonWindows">ImageMagic oder GD installieren, wenn Du Deinen eigenen Server laufen l&auml;sst</a>
- oder Du hast shell Zugriff auf Deinen Webserver. Wenn Deine Seite bei einem Webhoster liegt, dann kann st Du nur Kontakt zu ihm aufnehmen und fragen, ob er die Erweiterungen f&uuml;r Dich installiert.
- Sollte das nicht klappen, dann w&auml;hle einen anderen Anbieter.<br /></p><br /><div class="totop">[<a href="#top" class="nodeco">nach oben</a>]</div><hr />
+<p>Du kannst nur <a href="#enableIMonWindows">ImageMagic oder GD installieren, wenn Du Deinen eigenen Server laufen lässt</a>
+ oder Du hast shell Zugriff auf Deinen Webserver. Wenn Deine Seite bei einem Webhoster liegt, dann kann st Du nur Kontakt zu ihm aufnehmen und fragen, ob er die Erweiterungen für Dich installiert.
+ Sollte das nicht klappen, dann wähle einen anderen Anbieter.<br /></p><br /><div class="totop">[<a href="#top" class="nodeco">nach oben</a>]</div><hr />
 
 <a name="minimumInstall"></a>
-<h3>Ich habe geringe Speicherplatzkapazit&auml;t. Gibt es eine "<b>Minimum Installation</b>"?</b>"?</h3>
-<p>DAs ist nat&uuml;rlich ein Widerspruch in sich: Eine Galerie laufen zu haben bedeutet normalerweise, dass au&szlig;reichend Speicherplatz f&uuml;r Bilder vorhanden sein muss, aber wenn Du auf dem geringen Speicherplatz, der Dir noch &uuml;brig bleibt, nur ein paar wenige Bilder ver&ouml;ffentlichen m&ouml;chtest,
-dann gibt es schon ein paar Dateien, die Du (falls nicht ben&ouml;tigt) nicht dochzuladen brauchst oder l&ouml;schen kannst.
+<h3>Ich habe geringe Speicherplatzkapazität. Gibt es eine "<b>Minimum Installation</b>"?</b>"?</h3>
+<p>DAs ist natürlich ein Widerspruch in sich: Eine Galerie laufen zu haben bedeutet normalerweise, dass außreichend Speicherplatz für Bilder vorhanden sein muss, aber wenn Du auf dem geringen Speicherplatz, der Dir noch übrig bleibt, nur ein paar wenige Bilder veröffentlichen möchtest,
+dann gibt es schon ein paar Dateien, die Du (falls nicht benötigt) nicht dochzuladen brauchst oder löschen kannst.
  Es ist trotzdem empfehlenswert, dass nur erfahrende Benutzer eine Minimuminstallation erstellen. Bei Zweifel besser eine Komplettinstallation machen!</p>
 <ol>
-<li>Beseitige alle Sprachen, die Du nicht ben&ouml;tigst</b> (Wenn alle Benutzer aus dem gleichen Land kommen).<br />
-Es ist empfehlenswert f&uuml;r Dich als Admin Englisch zu behalten, auch wenn alle Benutzer andere Sprachen benutzen, damit Du ab und zu die Englische Sprachdatei nutzen kannst.<br />
-L&ouml;sche alle Dateien aus dem lang-Unterordner Deiner Coppermine Installation, au&szlig;er DeineSprache.php (z.B. wenn Du Deutsch nutzt, l&ouml;sche alle Dateien
-au&szlig;er /lang/german.php und /lang/german-utf-8.php).
+<li>Beseitige alle Sprachen, die Du nicht benötigst</b> (Wenn alle Benutzer aus dem gleichen Land kommen).<br />
+Es ist empfehlenswert für Dich als Admin Englisch zu behalten, auch wenn alle Benutzer andere Sprachen benutzen, damit Du ab und zu die Englische Sprachdatei nutzen kannst.<br />
+Lösche alle Dateien aus dem lang-Unterordner Deiner Coppermine Installation, außer DeineSprache.php (z.B. wenn Du Deutsch nutzt, lösche alle Dateien
+außer /lang/german.php und /lang/german-utf-8.php).
 <br /><div class="totop">Eingesparter Speicherplatz (maximal): 2.9 MB</div>
 </li>
-<li>Beseitige alle Sprachen mit einer Enkodierung, die Du nicht ben&ouml;tigst.</b><br />You'll
+<li>Beseitige alle Sprachen mit einer Enkodierung, die Du nicht benötigst.</b><br />You'll
 notice that for each language there are two files in the lang-folder:
 yourlanguage.php and yourlanguage-utf-8.php. You will need the utf-8
 files only if you chose "Unicode(utf-8)" in "Character encoding" on
