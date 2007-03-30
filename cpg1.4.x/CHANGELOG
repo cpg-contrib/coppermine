@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-03-30 [C] Renamed default cookie name to version-independant name to avoid confusion for beginners {GauGau}
 2007-03-26 [D] Added German version of the FAQ (user contribution, work in progress) {GauGau}
 2007-01-29 [D] Correcting links {Nibbler}
 2007-01-24 [A] Added Lithuanian translation (user contribution) {GauGau}
