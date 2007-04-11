@@ -1,0 +1,182 @@
+<!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Coppermine Photo Gallery - Documentation &amp; Manual</title>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="language"    content="en">
+<meta name="copyright"   content="Coppermine dev team">
+<meta name="description" content="Coppermine Photo Gallery project - Coppermine is an easily set-up, fast, feature-rich photo gallery script with mySQL database, user management, private galleries, automatic thumbnail creation, ecard feature and a template system for easy customization to match the rest of a site.">
+<meta name="keywords"    content="photo gallery,galery,image,coppermine,php,mysql,easy,feature,thumbnail,automatic,creation,gd,Image Magick,ecard">
+<meta name="page-topic"    content="photo gallery,galery,image,coppermine,php,mysql,easy,feature,thumbnail,automatic,creation,gd,Image Magick,ecard">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta name="MSSmartTagsPreventParsing" content="true">
+<meta http-equiv="imagetoolbar" content="no">
+<!--
+  SVN version info:
+  -----------------
+  Coppermine version: 1.5.0
+  $Revision: 3473 $
+  $LastChangedBy: gaugau $
+  $Date: 2007-03-01 19:33:52 +0100 (Do, 01 Mrz 2007) $
+-->
+<link rel="stylesheet" type="text/css" href="style.css" media="all" />
+<link rel="stylesheet" type="text/css" href="screen.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="print.css" media="print" />
+<script src="script.js" type="text/javascript"></script>
+</head>
+<body>
+<script type="text/javascript">
+  cpgDocHeader();
+</script>
+<div id="toc">
+<script type="text/javascript">
+  cpgDocToc();
+</script>
+<noscript>
+<a href="toc.htm">Table of Contents</a>
+</noscript>
+</div>
+
+<a name="upgrade"><h1>Upgrading</h1></a>
+<p>Please note: as there have been changes both in the coppermine files and the database from previous versions to cpg1.5.x, users of older versions than cpg1.5.0 will have to apply all steps mentioned above: both the files have to be replaced and the update.php script has to be run once.</p>
+
+<a name="upgrade_any"><h2>Steps needed to perform when upgrading Coppermine (from any version)</h2></a>
+<ul>
+    <li>Download the most recent stable version existing in the download section of the <a href="http://coppermine-gallery.net/">official Coppermine homepage</a><br />
+    <span class="small">(Don't assume that you have the most recent version, especially if you have installed Coppermine using a control panel app provided by your webhost. The coppermine dev team doesn't recommend using such auto-installers - please download the original from <i>our</i> site)</span></li>
+    <li>Make a backup (dump) of your database<br />
+    <span class="small">(Recommended tools for creating a database dump are <a href="http://mysqldumper.de/en/" rel="external" class="external">mySqlDumper</a> or <a href="http://phpmyadmin.net/" rel="external" class="external">phpMyAdmin</a>)</span></li>
+    <li>Backup your include/config.inc.php file, your anycontent.php file and your &quot;albums&quot; directoy as a safety precaution if anything should go wrong.<br />
+    <span class="small">(Usually, you just download your entire coppermine folder to your local hard drive using your FTP app)</span></li>
+    <li>Unpack the coppermine package you downloaded into a temporary folder on your local hard drive (preserving the folder structure within the package)</li>
+    <li><strong>Except for the &quot;albums&quot; directory</strong>, upload all of the new files and directories making sure not to overwrite your anycontent.php file or the albums directory.</li>
+    <li>Run the file &quot;update.php&quot; in the coppermine directory once in your browser (e.g. http://yourdomain.tld/your_coppermine_folder/update.php). This will update your coppermine install by making all necessary changes in the database.</li>
+    <li>If you have made a custom theme, apply the changes that were introduced in the themes structure to your custom-made theme - refer to the <a href="theme_upgrade_13x-14x.htm">theme-upgrade guide</a>.</li>
+    <li>If your webserver is running in safe_mode and you have enabled "SILLY_SAFE_MODE" in include/config.inc.php, you will have to go to coppermine's config after performing above mentioned steps and enable "<a href="configuration.htm#admin_picture_thumb_advanced_silly_safe_mode_start">silly safe mode</a>" there, as the setting in include/config.inc.php is no longer being taken into account in cpg1.5.x.</li>
+</ul>
+
+
+
+<a name="upgrade_particular"><h2>Additional actions for updating from particular versions</h2></a>
+<p>Depending on the version you're updating from, there are additional actions you need to perform:</p>
+
+
+<a name="upgrade_10"><h3>Upgrading from version cpg1.0 or cpg1.1</h3></a>
+
+<p>Support for a direct upgrade from cpg1.0 or cpg1.1 has been dropped - if you still have such an ancient version running, you will have to upgrade in a two-step-process (from your version to cpg1.4.x and then on to cpg1.5.x)</p>
+
+
+<a name="upgrade_12"><h3>Upgrading from cpg1.2.x or cpg1.3.x to version cpg1.5.x</h3></a>
+<ul>
+  <li>Delete all leftover, outdated language files in the lang folder that are named XXX-utf-8.php</li>
+  <li>If you have not already done so, create a folder called &quot;edit&quot; within your &quot;albums&quot; directory - this folder will be used by coppermine as a temporary folder, do not ftp-upload files there. Make sure the new &quot;edit&quot;-folder is CHMODed the same way your albums-directory is (755 or 777, depending on your server's config)</li>
+  <li>If you have made a custom theme, apply the changes that were introduced in the themes structure to your custom-made theme - refer to the <a href="theme_upgrade_13x-14x.htm">theme-upgrade guide</a>.</li>
+  <li>You can not use language files from older versions of Coppermine as primary language (the language the admin will use) - make sure you only have the language files that come with this package inside of your lang folder (delete or rename all files from older versions within the lang folder).<br />
+        If you need to use a language that hasn't been translated for cpg1.5.x, you can try using the language file from cpg1.3.x or better, however there are certain caveats:
+      <ul>
+        <li>You need to enable the <a href="configuration.htm#admin_language_fallback">language fallback</a> option in coppermine's config page</li>
+        <li>cpg1.5.x-phrases that don't exist in your old language file will go untranslated or show in english</li>
+        <li>Coppermine can't be administered using an old language file - the admin needs to use a "true" cpg1.5.x language file</li>
+        <li>You're free to try using old language files, however when running into issues or error messages, switch to US-English and see if the issue goes away then. Using outdated language files goes unsupported</li>
+      </ul>
+  </li>
+  <li>The bridging method has changed from cpg1.3.x to cpg1.4.x. When upgrading, your bridged coppermine install will be unbridged - you will have to re-apply the bridging using the <a href="bridging.htm">bridge-manager</a> (using your standalone admin account you initially used to set up coppermine). You will not lose anything though, don't worry.</li>
+</ul>
+
+
+
+<a name="upgrade_14"><h3>Upgrading from cpg1.4.x to version cpg1.5.x</h3></a>
+<p>tbc</p>
+
+
+
+<a name="versioncheck"><h2>The version check tool</h2></a>
+<p>Since the release of cpg1.3.2 Coppermine comes with an additional version checking tool to help you resolve issues with upgrades and updates easily. Except for specific files of coppermine that will only work for the version that it had been originally designed for, the versioncheck tool can be used with all versions starting from cpg1.2.1. To launch the versioncheck, simply add <tt>versioncheck.php</tt> to your browser's address bar after being logged into coppermine as admin (example: <tt>http://yourdomain.tld/your_coppermine_folder/versioncheck.php</tt>).  With version 1.5.x, you can run the versioncheck utility from the Admin Tools menu.</p>
+
+
+<a name="versioncheck_description_start"><h3>What it does</h3></a>
+<p>The script &quot;versioncheck&quot; is meant for users who have updated their coppermine install. This script goes through the files on your webserver and tries to determine if the local file versions on your webserver are the identical to the ones at the repository of http://coppermine.sourceforge.net. Files that do not match are displayed and are the files you should update as well. In Cpg1.5.x you can toggle the URL to the latest update for individual files in the versioncheck page.</p>
+<p>It will show everything in <span style="color:red;font-weight:bold">red</span> that needs to be fixed. Entries in <span style="color:#FFBE00;font-weight:bold">yellow</span> need looking into. Entries in <span style="color:green;font-weight:bold">green</span> (or your theme's default font color) are OK and should be left alone. When an entry is <span style="color:red;font-weight:bold">red</span> or <span style="color:#FFBE00;font-weight:bold">yellow</span>, a help icon will appear next to it. Click it to find out more. Hovering with your mouse over an item will display additional information as well (tooltip).</p>
+<p>The versioncheck screen has several sections:</p>
+<ul>
+<li>Section 1 explains what the versioncheck tool can be used for</li>
+<li>Section 2 (&quot;<a href="#versioncheck_options_start">Options</a>&quot;) displays the options you can chose</li>
+<li>Section 3 will display a warning if coppermine was not able to connect to the online repository (where the most recent version data is being stored). The script will default to a local copy of the repository file. If connection to the online repository was succesfull, there will of course be no error message (no section 3).</li>
+<li>Section 4 will show what version of coppermine you actually use. The versioncheck script draws this piece of information from the file <em>include/init.inc.php</em> - if you haven't replaced your copy of this file with the new version during upgrade, your old (outdated) version will appear in this section.</li>
+<li>Section 5 will show the core of versioncheck's file: the version comparison. The script will loop through all files that are suppossed to exist (based on repository data) and compare them to the files you actually have on your webserver.</li>
+<li>Section 6 will display a summary of the files and folders checked</li>
+</ul>
+<a name="versioncheck_description_end"></a>
+
+<a name="versioncheck_options_start"><h3>Options</h3></a>
+<p>The options screen lets you configure the versioncheck, or rather what is being displayed. The options aren't saved anywhere, so you will have to adjust them each time you run versioncheck. The default options should be OK for most users - only change them if you have good reasons to do so.</p>
+<img src="pics/versioncheck_options.gif" width="600" height="113" border="0" alt="" title="" />
+<ul>
+<li><em>show optional folders/files</em><br />Uncheck this to hide files that are tagged as &quot;optional&quot; (display mandatory files only)</li>
+<li><em>show mandatory files</em><br />Uncheck this to hide files that are tagged as &quot;mandatory&quot; (Note disabling both optional and mandatory files will of course result in no files being displayed at all)</li>
+<li><em>show additional information</em><br />Toggles whether informaton about the installed coppermine version and the repository connection status are being displayed. Uncheck if your're making screenshots to save space and reduce dimensions.</li>
+<li><em>show file versions</em><br />Toggles wether additional version information of a file that belongs to the release version you're using should be displayed. When viewing the source code of a coppermine file, the file version is the number that looks like this: <tt>Id: index.htm,v 1.66 2004/08/26 04:42:19 gaugau Exp</tt> (in this example the file version is 1.66)</li>
+<li><em>show folders/files with errors only</em><br />Toggles display of files that don't have errors. Enable this option if you want to make a screenshot and ask for support on the coppermine forum.</li>
+<li><em>coppermine is installed in the webroot</em><br />Experimental: if all your files are being displayed as &quot;non-existant&quot;, you probably have installed coppermine in your webroot, or you are using subdomains. Check this option only if you are experiencing problems. This option hasn't been tested thoroughly yet, there's no guarantee it will work on your setup.</li>
+<li><em>try connecting to the online repository</em><br />Toggles wether versioncheck should try to connect to the online repository (checked by default). Only uncheck this option if you're sure you can not access the online repository because of your server setup and you want to reduce the time the script needs to execute a bit.</li>
+<li><em>show folder permissions</em><br />Toggles the option to show/hide the read/write permissions of a folder.</li>
+<li><em>don't display web svn link</em> / <em>display web svn link to stable branch</em> / <em>display web svn link to devel branch</em><br />Toggles wether to show an additional column that contains a link to the web svn. Only recommended if your cpg version is OK (<span style="color:green;font-weight:bold">green</span>), but your file version appears to be outdated. You can then connect to the web svn to get a more recent version of your file. Only recommended if you know what you're doing (or you have been told to do so from a supporter from the coppermine support board).</li>
+<li><em>show condensed ouput (for easier screenshots)</em><br />When checked, this options reduces the width of the version comparison columns. This will allow you to create screenshots with reduced dimensions and size.</li>
+</ul>
+<a name="versioncheck_options_end"></a>
+
+<a name="versioncheck_comparison_start"><h3>Version comparison</h3></a>
+<p>There is a lot of information packed into a small space. Here's an example of a possible output and what the output means:</p>  <br />
+<img src="pics/versioncheck_comparison.gif" width="411" height="279" border="0" alt="" title="version comparison" />
+<ul>
+<li>The column &quot;icon&quot; shows if the entry is a folder or a file. Clicking on the icon takes you to the page, e.g. clicking on util.php will take you to the &quot;admin tools page&quot; (although not all coppermine files can be opened directly by running them in the browser).<p>In above example, rows &quot;A&quot; to &quot;E&quot; are folders, rows &quot;F&quot; to &quot;K&quot; are files.</p></li>
+<li>The column &quot;folder/file&quot; holds the relative path from your coppermine root to the folder/file in question.<br />
+<p>If an entry is in your default font color, it exists (in above example, all rows but &quot;G&quot; and &quot;H&quot;).<br />
+<p>If the entry is in <span style="color:#FFBE00;font-weight:bold">yellow</span> (row &quot;G&quot;), the corresponding folder/file doesn't exist on your webserver, but it is only considered to be optional (e.g. a language file that comes with the coppermine package that you don't want to use can be deleted from the webserver. It will then be shown in <span style="color:#FFBE00;font-weight:bold">yellow</span>, as it's only optional to have it). It's up to you if you need it.</p>
+<p>If the entry is in <span style="color:red;font-weight:bold">red</span> (row &quot;H&quot;), the folder/file in question doesn't exist on your webserver, but it is mandatory to have it. You should upload the file from your coppermine package to your webserver. Only leave it as-is if you really know what you're doing.</p></li>
+<li>The column &quot;writable&quot; shows information if the folder in question is writable, and whether this is correct or not. The write permissions for files are not being displayed, as this would slow down the script considerably. Usually, there are icons that show the writable status of your folder (if you have the icon resources on your webspace). Optionally, a plain text message in brackets might be visible (if you don't have the icon resources).
+<ul>
+<li>A white pencil with a <span style="color:green;font-weight:bold">green</span> &quot;x&quot; indicates that the folder is not writable and is isn't suppossed to be writable - everything is OK then (row &quot;A&quot;)</li>
+<li>A <span style="color:green;font-weight:bold">green</span> pencil indicates that the folder is writable and it is suppossed to be writable as well - everything is OK then (row &quot;D&quot;</li>
+<li>A white pencil with a <span style="color:red;font-weight:bold">red</span> &quot;x&quot; indicates that the folder is not writable, although it should be (row &quot;C&quot;). You should change write permissions (CHMOD) for this folder and everything within it, usually using your <acronym title="File Transfer Protocol">FTP</acronym> software.</li>
+<li>A <span style="color:red;font-weight:bold">red</span> pencil indicates that the folder is writable, but it shouldn't be (row &quot;E&quot;). Unless absolutely necessary, leaving files writable could be a security risk. Where possible, you should change permissions for this folder and everything within it to read/execute only.</li>
+</ul>
+</li>
+<li>A question mark in a yellow box (help icon) indicates that there is additional information available. Click on the icon to display the pop-up window with this information.</li>
+<li>The column &quot;cpg version&quot; displays what coppermine package your file on your webserver is from, and what version it should be from. The data is being extracted from the header of the file, that's why folders are shown as &quot;n/a&quot; - they have no header information containing their coppermine version (rows &quot;A&quot; to &quot;E&quot;).
+<p>Files that contain header information are being displayed with your file version and the cpg version of the file in the repository, separated with a slash. It is possible that a file version may differ from the version of your whole package - this doesn't matter as long as both your version and the repository versions match (the are displayed in <span style="color:green;font-weight:bold">green</span>) - in above example: rows &quot;F&quot;, &quot;J&quot; and &quot;K&quot;.</p>
+<p>Of course, version numbers from files that don't exist can't be extracted, that's why rows &quot;G&quot; and &quot;H&quot; have a dash as cpg version. If your cpg version is lower than the repository version, your version is  being displayed in <span style="color:red;font-weight:bold">red</span>: if this is the case, you probably haven't successfully uploaded the proper file of files from the coppermine package to your webserver (replacing files that may have already existed on your webserver) - you should do so now (row &quot;I&quot;).</p>
+<p>If your local version is being displayed in <span style="color:#FFBE00;font-weight:bold">yellow</span>, you are using a file that belongs to a higher coppermine version than the rest of your files - you probably downloaded a file from the devel branch: remember that using devel files go unsupported, do so on your own risk (if you know what you're doing). If most or all of your files are being displayed in <span style="color:#FFBE00;font-weight:bold">yellow</span>, you probably have upgraded some files, but you forgot to upgrade the file &quot;include/init.inc.php&quot; (that holds the version info for your install). Make sure to upload <strong>all</strong> files  from the package to your server.</p>
+</li>
+<li>
+<p>The column &quot;file version&quot; holds the individual file's version that get's increased during development of a new coppermine version (each time a developer modifies a certain file, the version number increases by one). As folders can't contain such version numbers, they are again labelled as &quot;n/a&quot; (rows &quot;A&quot; to &quot;E&quot;); the same applies to files that don't exist, that's why their file version is displayed as dash (rows &quot;G&quot; and &quot;H&quot;). Also the file version is irrelevant when comparing files from different coppermine packages, that's why row &quot;I&quot; has a dash as well.</p>
+<p>The coloring scheme is similar to the cpg version system: <span style="color:green;font-weight:bold">green</span> means &quot;everything is OK&quot;, <span style="color:red;font-weight:bold">red</span> means &quot;you're using an outdated version&quot; and <span style="color:#FFBE00;font-weight:bold">yellow</span> means &quot;you're using a newer version than you're actually suppossed to.</p>
+<p>The difference between the cpg version and the file version columns is indicative of the way you should obtain the file that you need to replace the existing one on your server: a <span style="color:red;font-weight:bold">red</span> entry in the cpg version column means the file on your server hasn't been replaced with the file from the coppermine package; a <span style="color:red;font-weight:bold">red</span> entry in the file version column (row &quot;J&quot;) usually means that there have been updates to a certain file after the release of the package - you should either check if there is a newer package available or get the most recent file from the <acronym title="Subversion">SVN</acronym> (enable the web svn link column in the versioncheck <a href="#versioncheck_options_start">options</a>).</p>
+</li>
+<li>The column &quot;web svn&quot; (off by default) links to the corresponding file in the <acronym title="Subversion">SVN</acronym>. You're recommended to use this only if there appears to be a newer version in the svn than your coppermine package has and you know what you're doing.</li>
+</ul>
+<a name="versioncheck_comparison_end"></a>
+<a name="versioncheck_end"></a>
+
+
+
+<a name="downgrading"><h2>Downgrading from cpg1.5.x to an older version</h2></a>
+<p>CPG1.5.x incorporates many new features (compared to older versions), so we encourage all users to upgrade. However, there may be some who want to test cpg1.5.x and decide later that they want to go back to an older version. You have to keep in mind that a full upgrade changes the overall layout of coppermine's database that includes converting the encoding to unicode. This process can't be reverted: once you have done the conversion, the only way back is to restore a complete mySQL database dump (of course you have to create this backup <strong>before</strong> you upgraded in the first place). Creating mySQL dumps (backups) is recommended anyway, so you should do so <strong>now</strong>.</p>
+<p>To make this absolutely clear: you can only downgrade if you used to have cpg1.4.x before and upgraded this version to cpg1.5.x. If you have made a <em>fresh</em> install of cpg1.5.x, you can't downgrade at all!</p>
+<p>To actually perform the downgrade, replace all cpg1.5.x files on your server with the files from the older version (as if you were doing an upgrade, see above).<br />
+<!--You then have to undo some changes in the database structure. To do so, run a query like<br />
+<pre>ALTER TABLE `CPG_users` CHANGE `user_location`  `user_profile1` VARCHAR(255);
+ALTER TABLE `CPG_users` CHANGE `user_interests` `user_profile2` VARCHAR(255);
+ALTER TABLE `CPG_users` CHANGE `user_website` `user_profile3` VARCHAR(255);
+ALTER TABLE `CPG_users` CHANGE `user_occupation` `user_profile4` VARCHAR(255);</pre><br />
+using a tool like <a href="http://www.phpmyadmin.net/" rel="external" class="external">phpMyAdmin</a>, replacing <tt class="code">CPG_</tt> in the query with the prefix you have chosen during coppermine install.
+-->
+</p>
+<a name="downgrading_end"></a>
+
+<script type="text/javascript">
+  cpgDocFooter();
+</script>
+
+</body>
+</html>

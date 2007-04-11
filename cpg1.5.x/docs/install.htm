@@ -1,0 +1,64 @@
+<!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Coppermine Photo Gallery - Documentation &amp; Manual</title>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="language"    content="en">
+<meta name="copyright"   content="Coppermine dev team">
+<meta name="description" content="Coppermine Photo Gallery project - Coppermine is an easily set-up, fast, feature-rich photo gallery script with mySQL database, user management, private galleries, automatic thumbnail creation, ecard feature and a template system for easy customization to match the rest of a site.">
+<meta name="keywords"    content="photo gallery,galery,image,coppermine,php,mysql,easy,feature,thumbnail,automatic,creation,gd,Image Magick,ecard">
+<meta name="page-topic"    content="photo gallery,galery,image,coppermine,php,mysql,easy,feature,thumbnail,automatic,creation,gd,Image Magick,ecard">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta name="MSSmartTagsPreventParsing" content="true">
+<meta http-equiv="imagetoolbar" content="no">
+<!--
+  SVN version info:
+  -----------------
+  Coppermine version: 1.5.0
+  $Revision: 3473 $
+  $LastChangedBy: gaugau $
+  $Date: 2007-03-01 19:33:52 +0100 (Do, 01 Mrz 2007) $
+-->
+<link rel="stylesheet" type="text/css" href="style.css" media="all" />
+<link rel="stylesheet" type="text/css" href="screen.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="print.css" media="print" />
+<script src="script.js" type="text/javascript"></script>
+</head>
+<body>
+<script type="text/javascript">
+  cpgDocHeader();
+</script>
+<div id="toc">
+<script type="text/javascript">
+  cpgDocToc();
+</script>
+<noscript>
+<a href="toc.htm">Table of Contents</a>
+</noscript>
+</div>
+<a name="installation"><h1>Installation and Setup</h1></a>
+<div class="indent"><!-- start sub-section of "installation and setup" (level 1 x)-->
+
+<a name="how"><h2>How to install the script</h2></a>
+<ul>
+  <li><strong>Unpack the archive preserving the directory structure.</strong><br /> You can rename the coppermine folder, but not the files or folders within.</li>
+  <li><strong>Upload all files onto your webserver</strong> (making sure to use the correct ftp mode)</li>
+  <li><strong><a href="install_permissions.htm#permissions">Set permissions</a> on the "<em>albums</em>" and "<em>include</em>" folders in your Coppermine directory</strong>. Usually, you have to apply the CHMOD command, setting the permissions to 755 (or 777, depending on your server config). <span class="important">This step is very important and must not be overlooked!</span></li>
+  <li><strong>Ensure you have correct information about your database</strong> - you need to <em>know</em> the database name as well as the details of a MySQL user account with which Coppermine should connect to the database. The database and the username must already exist, and the user must have access to the relevant database. Coppermine will not create the database for you, but it will create the tables in the database during installation, there is no need for you to add any tables yourself.</li>
+  <li><strong>Run the install script on your server</strong> (by going to <tt class="code">http://your_server/coppermine_dir/install.php</tt> with your web browser) and follow the instructions</li>
+</ul>
+  <li><strong>Confirm that you have all the correct information about the database that will be used for your Coppermine installation.</strong> If no database exists for your website, you will need to create one, or have one created for you by your webhost. Your webhost can best provide you with instructions on how to go about doing this.  For installation purposes, you will need to know the path of the database server that you will be using with Coppermine and details of the MySQL user account through which Coppermine will connect to the server. You must have the database server path (usually 'localhost'), your MySQL username, MySQL password, and MySQL database name prior to installing Coppermine. The user installing Coppermine must have all relevant access rights to this database.
+
+ If you are using a newly created database, there is no need for you to manually add any tables. Coppermine will create the necessary tables in the database during installation process.</li>
+
+  <li><strong>To run the install script on your server,</strong> type the following URL into your web browser:&nbsp;&nbsp; http://your_server/coppermine_dir/install.php&nbsp;&nbsp; (<em>your_server</em> = your website, <em>coppermine_dir</em> = the folder in which you uploaded your Coppermine files.)   Follow the online instructions inserting the necessary information as requested.</li>
+</ul>
+
+
+
+<script type="text/javascript">
+  cpgDocFooter();
+</script>
+
+</body>
+</html>

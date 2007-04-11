@@ -1,0 +1,215 @@
+<!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Coppermine Photo Gallery - Documentation &amp; Manual</title>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="language"    content="en">
+<meta name="copyright"   content="Coppermine dev team">
+<meta name="description" content="Coppermine Photo Gallery project - Coppermine is an easily set-up, fast, feature-rich photo gallery script with mySQL database, user management, private galleries, automatic thumbnail creation, ecard feature and a template system for easy customization to match the rest of a site.">
+<meta name="keywords"    content="photo gallery,galery,image,coppermine,php,mysql,easy,feature,thumbnail,automatic,creation,gd,Image Magick,ecard">
+<meta name="page-topic"    content="photo gallery,galery,image,coppermine,php,mysql,easy,feature,thumbnail,automatic,creation,gd,Image Magick,ecard">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta name="MSSmartTagsPreventParsing" content="true">
+<meta http-equiv="imagetoolbar" content="no">
+<!--
+  SVN version info:
+  -----------------
+  Coppermine version: 1.5.0
+  $Revision: 3473 $
+  $LastChangedBy: gaugau $
+  $Date: 2007-03-01 19:33:52 +0100 (Do, 01 Mrz 2007) $
+-->
+<link rel="stylesheet" type="text/css" href="style.css" media="all" />
+<link rel="stylesheet" type="text/css" href="screen.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="print.css" media="print" />
+<script src="script.js" type="text/javascript"></script>
+</head>
+<body>
+<script type="text/javascript">
+  cpgDocHeader();
+</script>
+<div id="toc">
+<script type="text/javascript">
+  cpgDocToc();
+</script>
+<noscript>
+<a href="toc.htm">Table of Contents</a>
+</noscript>
+</div>
+
+<a name="integrating"><h1>Integrating the script with another application (bridging)</h1></a>
+
+<a name="integrating_bridge_purpose"><h2>What bridging does</h2></a>
+<p>Coppermine can be integrated with other applications in terms of user management and sharing a common login on your overall website; this is what we call &quot;bridging&quot;. It can create a more seamless end user experience, as your users will only have to register once; their login will stick both on the Coppermine pages as well as the pages you bridge with.</p>
+<p>By default, bridging is turned off, and those who do not want to use it can safely leave it off forever. There are however <a href="#integrating_users_start">issues when bridging at a later stage</a> (after there is already content in Coppermine), so it is advisable to make up your mind about bridging in the first place.</p>
+<p>Originally, Coppermine bridging was designed to bridge with <acronym title="Bulletin Board System">BBS</acronym> apps. Later, bridges for other apps (that don't fall into the category "BBS") have been added - mostly Content Management Systems (CMS). However, the reference to BBS apps remained in some documents and strings. No reason to get alarmed.</p>
+<p>Bridging does <strong>not</strong> integrate your gallery and the application you bridge with in terms of visual appearance. If you want a seamless visual integration, create a <a href="theme.htm">custom theme</a> for your gallery that matches the look of your BBS or your overall site and add links pointing from Coppermine's navigation to your BBS and vice versa.</p>
+<p>When bridging is turned on, Coppermine drops the user management it comes with and uses the user management of the app you bridge with (i.e. your BBS app). Subsequently, your users will register and log in on your BBS. After they do, they may be redirected to coppermine (if they came from coppermine's login page in the first place and your BBS allows redirects).</p>
+<a name="integrating_bridge_purpose_end"></a>
+<a name="integrating_bridge_start"><h2>Available bridge files</h2></a>
+<p>Coppermine can be integrated with the following bulletin boards (eg. Coppermine
+  and your bulletin board will share the same user database).</p>
+<ul>
+  <li>Invision Power Board</li>
+  <li>Mambo</li>
+  <li>MyBB</li>
+  <li>Phorum</li>
+  <li>phpBB 2</li>
+  <li>PunBB</li>
+  <li>SMF</li>
+  <li>vBulletin</li>
+  <li>XMB</li>
+  <li>Xoops2</li>
+</ul>
+
+<a name="integrating_bridge_end"></a>
+
+<a name="integrating_prerequisites_start"><h2>Pre-requistes</h2></a>
+
+
+<a name="integrating_cookie_start"><h3>Authentication by cookie</h3></a>
+<p>The login integration uses your bulletin board cookies, therefore it won't work if your board cookies are not visible by Coppermine. So unless you are an expert, keep things simple and install Coppermine and your bulletin board on the same domain. Examples :</p>
+<table border="0" cellspacing="5" cellpadding="5" class="border1">
+<tr>
+<td>This <strong>will</strong> work:</td>
+<td>This <strong title="depending on your subdomain setup">might</strong> work:</td>
+<td>This <strong class="important">won't</strong> work:</td>
+</tr>
+<tr>
+<td class="code">Bulletin board: http://yourdomain.com/board/<br />
+Coppermine: http://yourdomain.com/gallery/</td>
+<td class="code">Bulletin board: http://board.yourdomain.com/<br />
+Coppermine: http://gallery.yourdomain.com/</td>
+<td class="code">Bulletin board: http://yourfirstdomain.com/board/<br />
+Coppermine: http://yourseconddomain.com/gallery/</td>
+</tr>
+</table>
+<p>The cookie path in the forum's configuration should be set to '/' where this option is available.</p>
+<p><span class="important">Important</span>: the cookie names of your bbs and coppermine must <strong>not</strong> be the same - they <strong>must</strong> differ!</p>
+<a name="integrating_cookie_end"></a>
+
+<a name="integrating_standalone_start"><h3>Standalone version first</h3></a>
+<p>To avoid confusion, make sure to set up both coppermine and your bbs as standalone first. Make sure they both run correctly without integration. Test all features of coppermine (like upload, registration etc.) when Coppermine is installed, before you even start integration.</p>
+<a name="integrating_standalone_end"></a>
+
+<a name="integrating_users_start"><h3>Coppermine users, groups and pics uploaded by users are lost when integrating</h3></a>
+<p><span class="important">Warning:</span> If you already have users and custom groups in your coppermine database when you enable bbs integration, be aware that they will be lost. If your coppermine users have already created private albums and uploaded pics to them, they will be lost as well!</p>
+<a name="integrating_users_end"></a>
+
+<a name="integrating_backup_start"><h3>Backup</h3></a>
+<p><span class="important">Backup</span>: it is very advisable to backup both your coppermine database and your files before enabling bbs integration, so you can safely go back if the integration fails.</p>
+<p>In fact you're encouraged to backup your database on a regular base, and especially before applying code changes.</p>
+<a name="integrating_backup_end"></a>
+
+
+<a name="integrating_prerequisites_end"></a>
+
+<a name="integrating_steps_start"><h2>Integration steps</h2></a>
+<p>From cpg1.4.x on you can use the <a href="#bridge_manager_start">Bridge Manager</a> that will provide a wizard-like interface to enable/disable bridging.</p>
+
+
+<a name="bridge_manager_start"><h3>Using the bridge manager</h3></a>
+<p>The bridge manager is a new feature in cpg1.4, it is not available in older versions. Instead of manually editing coppermine code files, you can enable/disable bridging in your browser, using a wizard-like user interface. To start the bridge manager, log in as admin, choose &quot;Admin Tools&quot; from the navigation and the &quot;bridge manager&quot;</p>
+<p><img src="pics/bridge_01_start.gif" width="429" height="72" border="0" alt="" align="right" />If you run the bridge manager for the first time, there will only be one button that let's you actually start the wizard (if you return to the bridge manager later, you will also find a switch to enable/disable bridging) click it.</p>
+<p class="important">Note: with each step in the wizard, some information is being written to the coppermine database. Unlike other wizards (mostly on your local machine), the bridge manager doesn't have a &quot;cancel&quot;-button! Once you have enabled bridging and everything is working fine, you shouldn't change any values just out of curiosity, as they will get written to the database, which might result in a bridging that used to work not working any more after &quot;playing&quot; with it.<br clear="all" /></p>
+<p><img src="pics/bridge_02_app.gif" width="581" height="347" border="0" alt="" align="right" />In the first actual step of the wizard &quot;choose application to bridge coppermine with&quot;, you have to choose the application you actually want to coppermine with. Note that you <strong>must</strong> have this application already installed on your webserver, it has to be properly configured and must be up-and-running. Don't use the bridge manager yet if you only <em>plan</em> to integrate coppermine with another application later.</p>
+<p>If you have a custom-made bridge file that is not available in the wizard, choose the radio button in front of the text field and enter the name of your bridge file there, without the extension &quot;.inc.php&quot; (the bridge file must reside in the coppermine sub-folder &quot;bridge&quot;).<br />
+Click &quot;next&quot;</p>
+<p>The next steps depend on the application you have chosen to bridge with: some applications need <acronym title="Uniform Resource Locator">URL</acronym>s to be entered, or paths. Some need mySQL table information or cookie data to be entered, others don't. The point of the wizard is that it will only &quot;ask&quot; you the relevant settings for your application - if one or more items of the following description doesn't turn up for your application, there's no need to worry - just keep filling in the mandatory information and then hit &quot;next&quot;. However, you have to understand that coppermine can proof-check only some of your input - some input goes unvalidated.</p>
+<p>If a reset button (<img src="../images/flags/reset.gif" width="16" height="11" border="0" alt="" />) is being displayed next to an input field, the field value doesn't have the default value. It can be perfectly OK to have a non-default value in a field, however you should keep in mind that if you have &quot;played&quot; with the bridge manager before, previous settings might exist in a field that are not correct - do not light-heartedly skip a step without paying attention to it. Use the reset button to revert to the default value (not necessarily &quot;quor&quot; default value though).<br clear="all" /></p>
+
+
+<a name="bridge_manager_app_start"><h4>Choose application to bridge coppermine with</h4></a>
+<ul>
+<ul>
+  <li>Invision Power Board</li>
+  <li>Mambo</li>
+  <li>MyBB</li>
+  <li>phpBB 2</li>
+  <li>Phorum</li>
+  <li>PunBB</li>
+  <li>SMF</li>
+  <li>vBulletin</li>
+  <li>XMB</li>
+  <li>Xoops2</li>
+</ul>
+</ul>
+<a name="bridge_manager_app_end"></a>
+<a name="bridge_manager_path_start"><h4>Path(s) used by your BBS app</h4></a>
+<ul>
+<li><strong>Forum URL</strong><br />
+Full URL of your BBS app (including the leading http:// bit, e.g. http://www.yourdomain.tld/forum/)</li>
+<li><strong>Relative forum path</strong><br />
+Relative path to your BBS app from the webroot (Example: if your BBS is at http://www.yourdomain.tld/forum/, enter "/forum/" into this field)</li>
+<li><strong>Relative path to your BBS's config file</strong><br />
+Relative path to your BBS, seen from your Coppermine folder (e.g. "../forum/" if your BBS is at http://www.yourdomain.tld/forum/ and Coppermine at http://www.yourdomain.tld/gallery/)</li>
+</ul>
+<a name="bridge_manager_path_end"></a>
+<a name="bridge_manager_specific_start"><h4>BBS-specific settings</h4></a>
+<ul>
+<li><strong>Use post-based groups?</strong><br />
+Should Coppermine import the special groups that exist in the forum ? If you select no, then Coppermine will use the standard groups (Administrator, Registered and Anonymous) which makes administration easier and is recommended. You can change this setting later as well.</li>
+</ul>
+<a name="bridge_manager_specific_end"></a>
+<a name="bridge_manager_enable_start"><h4>Enable/disable BBS integration</h4></a>
+<p>This is the last step of the bridge manager - it summarizes up the settings you have made in previous steps - you can enable or disable integration here. By default, integration is set to &quot;disabled&quot; after the bridge manager has been run for the first time. You should only enable integration if you're sure your BBS app is set up correctly. Click the &quot;Finish&quot; button in any case to finally write to the database, even if you choose to keep the current settings (leaving integration &quot;disabled&quot;).</p>
+<ul>
+<li><strong>Enable integration/bridging with XXX</strong></li>
+</ul>
+<a name="bridge_manager_enable_end"></a>
+
+<a name="bridge_manager_end"></a>
+
+
+
+<a name="bridge_manager_recover_start"><h2>Recover from failed bridging</h2></a>
+<p>If you have provided improper settings using the bridge manager, your integration might fail, resulting (in the worst case) in a stituation where bridging is enabled, but you can not log in as admin to switch it off again (e.g. if you provided improper cookie settings that stops authentication from working). For this situation a recovery setting was built into the bridge manager: if you are not logged in as coppermine admin (in fact: not logged in at all) and you access the URL of your bridge manager (http://yourdomain.tld/your_coppermine_folder/bridgemgr.php) by entering it manually into the address bar of your browser, you are prompted to enter your admin account details - use the admin account you used to install coppermine with in the first place (the standalone admin account). This will not log you in, but switch integration off, so you can fix improper bridging settings then. To avoid others trying to guess your admin account details, there's a login treshold that rises every time you enter wrong credentials, so enter your admin account details with care.</p>
+
+<a name="bridge_manager_recover_end"></a>
+
+
+
+<a name="integrating_steps_sync_start"><h2>Synchronising the bbs groups with Coppermine's groups</h2></a>
+<p>Login using the admin account of your board. Go to the gallery, enter admin mode and click on the &quot;Groups&quot; button. This will synchronize Coppermine groups with those of your board. The permission you will see for each group will be completely messy, so take some time to set them properly.</p>
+<p>Each time you add or delete a group in your board you will need to do the operation above in order to keep the synchronisation of the groups.</p>
+<p>When you will try to login / logout or manage users from Coppermine, you will be redirected to the corresponding page of your bulletin board. Once the login or logout is performed you won't be redirected automatically to the gallery because your board does not have any function for that. It's up to you to add a link on your board to get you back to the gallery.</p>
+<p class="important">It's mandatory that you (as admin) go to the groups page directly after bridging or whenever you change anything in your bridging configuration or if you change anything in your groups settings on your bbs, as you need to trigger the re-sync.</p>
+<a name="integrating_steps_sync_end"></a>
+<a name="integrating_steps_end"></a>
+
+
+
+<a name="integrating_support_start"><h2>Bridging support</h2></a>
+<p>With the explanations given above you should be able to bridge your (BBS) application with Coppermine. However, if things don't work as expected, you're welcome to look for help using the <a href="http://coppermine-gallery.net/forum/">coppermine support board</a>. When asking for support, please keep in mind that the supporters will need some information to enable them to help you:</p>
+<ul>
+  <li>Search the board before posting - maybe somebody had similar issues to yours that have been solved already</li>
+  <li>Post on the board that deals with your version - bridging mechanisms have changed from version to version, that's why it's important to post on the board that actually corresponds to your coppermine version</li>
+  <li>Don't hijack threads - when looking for bridging support, start your own thread</li>
+  <li>Read the sticky threads before posting</li>
+  <li>Make sure you are using the latest versions of the bridging files, they are kept up to date between formal Coppermine releases. Download the relevant files from the <a href="http://svn.sourceforge.net/viewvc/coppermine/">SVN</a>. Update udb_base.inc.php and the file that corresponds to the bridge you are using and upload them into your bridge directory, overwriting the old ones. Of course you should make sure to use the most recent stable coppermine release in the first place.</li>
+  <li>When requesting bridge support, please post a link to your site, a test user account, and what you have set in the bridge manager.<br />Make sure that the test user account doesn't have admin privileges. When posting parts of your bridge file, make sure to replace passwords with asterisks.<br />&nbsp;<br />This is how your posting should look like (with actual data from your setup instead of the dummy placeholders given here as an example - highlighted in red):<br />
+  <pre class="code">I have the following issue when trying to bridge coppermine and <span class="important">XXX</span>:
+<span class="important">[error message here]</span>
+
+Coppermine install: <span class="important">http://mysite.tld/my_coppermine_folder/</span>
+Bridging app install: <span class="important">http://mysite.tld/my_forum_folder/</span>
+Coppermine version: <span class="important">cpg1.5.0</span>
+Bridging app version: <span class="important">SuperDuper BBS app v0.8.15</span>
+Test user account: <span class="important">some_testuser_name</span> / <span class="important">the_password_for_the_test_user_account</span>
+
+BridgeManager settings:
+Forum URL:  <span class="important">http://mysite.tld/test/foo_bar</span>
+Relative path to your BBS's config file:  <span class="important">../bla/</span>
+Use post-based groups?:  <span class="important">1</span>  </pre></li>
+<li>Supporters need to look at the pages in question - make sure that you have bridging actually enabled when asking for support</li>
+<li>The test user account you're suppossed to post must not be an admin account, but a regular user account. The test user account needs of course to be created in the application you bridge with</li>
+</ul>
+<a name="integrating_support_end"></a>
+<a name="integrating_end"></a>
+
+<script type="text/javascript">
+  cpgDocFooter();
+</script>
+
+</body>
+</html>
