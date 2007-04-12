@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-04-11 [D] Restructured doscumentation into several documents {GauGau}
 2007-03-12 [A] Added sub-menu items to overall stats {GauGau}
 2007-03-09 [A] Added pagination to overall hit stats {GauGau}
 2007-03-09 [A] Added link to intermediate view for individual stats {GauGau}
