@@ -38,7 +38,7 @@
 </div>
 
 
-<a name="getting"><h2>Getting started</h2></a>
+<a name="getting"></a><h1>Getting started<a href="#getting" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
 <p>Use the &quot;<strong><a href="albums.htm#albmgr">Album Manager</a></strong>&quot; (&quot;Albums&quot; link in the admin menu) in to create and order your albums. You'll need at least one album your files can go into.</p>
 <p>Use the <strong>anonymous</strong> group to define what non-registered users can and can't do (in the <a href="groups.htm#group_cp">groups</a> panel).</p>
 <p>Use the <strong><a href="albums.htm#modif_alb_pics">properties</a></strong> of an album to modify its description and permissions.
@@ -53,7 +53,7 @@
 
 
 
-<a name="getting_concepts"><h3>Basic concepts</h3></a>
+<a name="getting_concepts"></a><h2>Basic concepts<a href="#getting_concepts" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Of course you're exited about Coppermine and want to start with it right now. However, there are some basic considerations you should make up your mind about first, as some settings can't be changed easily once your gallery has been populated with content.</p>
 <p>So this section is meant as a guide once you've finished <a href="install.htm#installation">installing</a> Coppermine. Go through it carefully to avoid issues that may turn up later.</p>
 <ul>
@@ -73,7 +73,7 @@
 
 
 
-<a name="getting_initial_configuration"><h3>Initial configuration</h3></a>
+<a name="getting_initial_configuration"></a><h2>Initial configuration<a href="#getting_initial_configuration" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>There are some settings in Coppermine's config that you should edit right after finishing install.</p>
 <p>Log in with the admin username and password you set up during install, click on the &quot;Show admin controls&quot; link if it is visible, go to the <strong>Config</strong> page and start to configure your gallery. Note that even if you are a member of the administrator group, you need to be have &quot;Show admin controls&quot; enabled. In previous versions, this used to be named &quot;admin mode&quot;, but was renamed because some people thought that switching from admin mode to user mode showed them what regular users can see (which is not the case).</p>
 <ul>
@@ -82,7 +82,7 @@
 </ul>
 <p>There are some settings in config that can't be changed later (if there are already files in the database) - make sure to set them up correctly in the first place. Although you'll surely want to start using coppermine immediately it is advisable to configure those settings (marked with an asterisk &quot;*&quot;) properly at the very beginning.</p>
 
-<a name="getting_structure"><h3>Category, albums and file structure</h3></a>
+<a name="getting_structure"></a><h2>Category, albums and file structure<a href="#getting_structure" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>The Coppermine Photo Gallery works in the following way:</p>
 <ul>
   <li>Files are stored in albums</li>
@@ -95,17 +95,17 @@
 <p>The administrator can create albums in any category. Non-administrative users can only create albums in the &quot;User galleries/Their_username&quot;.</p>
 <p>You can, however rename the &quot;User Galleries&quot;. To rename the &quot;<strong>User galleries</strong>&quot; category and description, simply go to your <a href="#cat_cp">category control panel</a> and change the name there (e.g. to translate the words &quot;User galleries&quot; into your language).</p>
 
-<a name="getting_admin_account"><h3>Your admin account</h3></a>
+<a name="getting_admin_account"></a><h2>Your admin account<a href="#getting_admin_account" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>It's mandatory to have your admin account configured properly and to memorize the admin account data. Coppermine even provides you with the option to retrieve a lost password, but for this, you have to configure an email address for every account. When users sign up, they have to enter an email address, so this should not be a problem. However, the admin account that you created during setup doesn't have an email account yet. You should go to your profile when logged in as admin and specify a valid email address for the admin there - this way, you can later request a new password if you forget it.</p>
 
 
 
-<a name="getting_check_uploads"><h3>Check uploads</h3></a>
+<a name="getting_check_uploads"></a><h2>Check uploads<a href="#getting_check_uploads" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Before actually promoting your coppermine gallery publicly, you should make sure that uploads work as expected, as they are the most common issues users have, caused by the huge amount of factors that have to be taken into account.</p>
 
 
 
-<a name="getting_consider_bridging"><h3>Consider bridging</h3></a>
+<a name="getting_consider_bridging"></a><h2>Consider bridging<a href="#getting_consider_bridging" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Coppermine was designed to be used as standalone application in the first place. However, many people wanted to integrate it with another app, so starting with cpg1.1.x coppermine came with a mechanism that allowed users to bridge coppermine with another app in terms of user management. The main advantage is giving your site visitors a single sign-on for your overall site (e.g. both in your gallery and your forum), so they don't have to sign in twice and memorize two different logons.</p>
 <p>Bridging does <strong>not</strong> integrate coppermine visually into your home page (you have to <a href="theme.htm#creating">create a custom theme</a> to accomplish this).</p>
 <p>You can enable (or disable) bridging at any time, but you should make up your mind on bridging when installing Coppermine in the first place, because there are some issues that have to be taken into account: if you already have users inside your coppermine database when enabling bridging, the correlation between those initial coppermine users and the "new" users from the app you bridge with gets lost. As a consequence, there will be no more correlation between things your "old" users did (uploading pic, posting comments etc.) and the "new" users from the bridge.</p>
@@ -114,7 +114,7 @@
 
 
 
-<a name="getting_interaction"><h3>What are your visitors allowed to do?</h3></a>
+<a name="getting_interaction"></a><h2>What are your visitors allowed to do?<a href="#getting_interaction" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Coppermine can be used for a variety or purposes: some use it to display their personal files to everyone on the internet, others want only a limited number of users to be able to access the site for viewing only and no interaction at all. A large number of webmasters want to create a community site, where users can participate by uploading files, comment on other's files and rate them.</p>
 <p>You can use Coppermine in all those setups (and a mixture of it), but you should be aware of the possibilities and limitations first:</p>
 <p>Users &quot;inherit&quot; their permissions from the group they're in. That's why many settings in Coppermine are set per group. This way, you can have several levels of permissions.</p>

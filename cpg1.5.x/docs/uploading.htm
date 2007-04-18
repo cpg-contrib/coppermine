@@ -37,14 +37,14 @@
 </noscript>
 </div>
 
-<a name="uploading"><h2>Uploading pics/files</h2></a>
+<a name="uploading"></a><h1>Uploading pics/files<a href="#uploading" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
 <p>There are several methods to upload files within Coppermine. You (as gallery admin) should use <a href="#batch_add_pics">FTP-upload plus batch-add</a> (only the admin can do this). Regular users are supposed to use the "regular" <a href="#upload_http">http upload</a> or (if they have Windows XP) the <a href="#xp">XP Publisher</a>.</p>
 <a name="uploading_end"></a>
 
 
 
 <a name="ftp"></a>
-<a name="batch_add_pics"><h3>Uploading pics by FTP / Batch-Add Pictures</h2></a>
+<a name="batch_add_pics"></a><h2>Uploading pics by FTP / Batch-Add Pictures<a href="#batch_add_pics" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
 <p>It is recommended that the coppermine admin use ftp to upload multiple pics/files at a time. Use your ftp software to create sub-folders within <em>your_coppermine_directory/albums/</em>, where your ftp uploads can be saved. Though not mandatory, it's always a good idea to have a folder structure within the <em>albums</em> folder that reflects or mirrors your coppermine categories and albums.</p><p><span class="important">Important</span>: do not create folders or ftp upload to the <em>userpics</em>- nor to the <em>edit</em>-folder by ftp: these folders are used by coppermine internally and must not be used for any other purpose! <strong><strong>Folder names must not contain dots</strong></strong>. We also highly recommend refraining from the use of any other special characters - use only a-z, numbers and <tt class="code">-</tt> (dashes) or <tt class="code">_</tt> (underscores) to fill blank spaces. Make sure to upload in binary or auto-mode.</p>
 <p>Once you have uploaded your photos by ftp, click on the &quot;Batch Add Pictures&quot; button. The batch-add is performed in three steps:</p>
 <ul>
@@ -69,7 +69,7 @@ Should your browser time out, hit the reload button.
 <a name="ftp_end"></a>
 
 
-<a name="upload_http"><h3>Uploading by HTTP</h3></a>
+<a name="upload_http"></a><h2>Uploading by HTTP<a href="#upload_http" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Regular HTTP uploads use the browser's built-in capabilities to upload files to a server. The maximum file size is determined by two basic factors: the speed and amount of data the web-browser can upload before timing out, and the allowed file size determined by server settings. Note that those settings are not determined by coppermine, but the server config (php.ini). Users who are webhosted usually can't edit php.ini, so they will have to live with the settings the webserver admin has set up. Those who actually run their own server and can edit php.ini should take a look at the settings if (large) http uploads fail:</p>
 <ol>
 <li><strong>max_input_time</strong>- 60 seconds is the default time limit for uploading files.<br />
@@ -88,13 +88,13 @@ The most common issue caused by this setting is an open_basedir warning.  In thi
 <a name="upload_http_end"></a>
 
 
-<a name="xp"><h3>Using Windows XP Web Publishing Wizard with Coppermine</h3></a>
+<a name="xp"></a><h2>Using Windows XP Web Publishing Wizard with Coppermine<a href="#xp" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>If you are using Windows XP, you can use its built-in web publishing wizard to upload your photos to your gallery.</p>
 <p>Once you have properly installed the script on your server, call the xp_publish.php file from your web browser (http://your_site.com/coppermine_dir/xp_publish.php).</p>
 <p>The script displays some information on how to do the installation on the client side and how to use the Wizard. Basically you will need to download a small file created by the script that needs to be loaded into your Windows registry.</p>
 <p>If you want to allow your users to use the Windows XP Web Publishing Wizard, it's advisable to promote it by showing a link to the file somewhere on your page.</p>
 
-<a name="xp_publish_setup"><h4>XP Web Publishing Wizard: Setup</h4></a>
+<a name="xp_publish_setup"></a><h3>XP Web Publishing Wizard: Setup<a href="#xp_publish_setup" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 Before you can use the XP Web Publishing Wizard, it needs to know the address of the your gallery.
 <ul>
 <li>Open your browser and type the following into the address box replacing "your_site.com" and "coppermine_dir" with your own Gallery address information : <tt class="code">http://your_site.com/coppermine_dir/xp_publish.php</tt></li>
@@ -107,7 +107,7 @@ Before you can use the XP Web Publishing Wizard, it needs to know the address of
 
 Above procedure needs to be done only once by users wishing to use the XP Publishing Wizard.
 
-<a name="xp_publish_upload"><h4>XP Web Publishing Wizard: Uploading pictures</h4></a>
+<a name="xp_publish_upload"></a><h3>XP Web Publishing Wizard: Uploading pictures<a href="#xp_publish_upload" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 The process of uploading pictures is a matter of following a simple dialog. It takes much longer to describe the process than do it.
 <ul>
 <li>Start Windows Explorer and locate the directory with your photographs and select one or more pictures for upload.</li>
@@ -126,7 +126,7 @@ The process of uploading pictures is a matter of following a simple dialog. It t
 
 
 
-<a name="upload_trouble"><h3>Upload troubleshooting</h3></a>
+<a name="upload_trouble"></a><h2>Upload troubleshooting<a href="#upload_trouble" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>If you are experiencing issues with coppermine's upload process, temporarily change your coppermine settings as suggested below to get more detailed error messages:</p>
 <ul>
 <li>Go to your coppermine page and log in as admin</li>
