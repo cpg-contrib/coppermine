@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-04-20 [D] Added developer-section to documentation {GauGau}
 2007-04-13 [D] Added link icons for anchors for easier reference on support board {GauGau}
 2007-04-11 [D] Restructured documentation into several documents {GauGau}
 2007-03-12 [A] Added sub-menu items to overall stats {GauGau}

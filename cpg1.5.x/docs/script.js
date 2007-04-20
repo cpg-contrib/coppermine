@@ -530,6 +530,8 @@ d.add(1480,1430,'Enable/disable BBS integration','bridging.htm#bridge_manager_en
 d.add(1490,1350,'Recover from failed bridging','bridging.htm#bridge_manager_recover_start');
 d.add(1500,1350,'Synchronising the bbs groups with Coppermine\'s groups','bridging.htm#integrating_steps_sync_start');
 d.add(1510,1350,'Bridging support','bridging.htm#integrating_support_start');
+d.add(1520,0,'Developer documentation','dev.htm');
+d.add(1530,1520,'Editing the documentation','dev_documentation.htm');
 
 function cpgDocToc() {
   document.write(d); // write the navigation
