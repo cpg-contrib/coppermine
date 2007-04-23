@@ -547,7 +547,7 @@ function cpgDocToc() {
   document.write('<form method="get" action="http://google.com/search" name="googlesearch" style="margin:0px">\n');
   document.write('<input type="text" name="q" size="20" maxlength="255" value="" style="border:1px solid black" title="Enter your search phrase here" />\n');
   document.write('<input type="hidden" value="documentation.coppermine-gallery.net" name="as_sitesearch" />\n');
-  document.write('<img src="../images/views.gif" width="16" height="16" border="0" alt="" title="Search the Coppermine documentation online (using Google)" onclick="document.googlesearch.submit();" style="cursor:pointer" />\n');
+  document.write('<img src="pics/views.gif" width="16" height="16" border="0" alt="" title="Search the Coppermine documentation online (using Google)" onclick="document.googlesearch.submit();" style="cursor:pointer" />\n');
   document.write('</form>\n');
 }
 
