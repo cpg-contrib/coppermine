@@ -615,6 +615,7 @@ if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
   'cat_desc' => 'Category description',
   'categories_alpha_sort' => 'Sort categories alphabetically (instead of custom sort order)',
   'save_cfg' => 'Save configuration',
+  'no_category' => '* No category *', // cpg1.5
 );
 
 // ------------------------------------------------------------------------- //

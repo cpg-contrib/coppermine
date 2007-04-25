@@ -18,7 +18,6 @@
 **********************************************/
 
 define('IN_COPPERMINE', true);
-define('ALBMGR_PHP', true); // added this line as workaround for missing translation of *no category*. Should be removed in next version. GauGau 2005-08-09
 define('CATMGR_PHP', true);
 
 ini_set('memory_limit', '128M');
@@ -91,34 +90,34 @@ function update_cat_order()
 
 function cat_list_box($cid, &$parent, $on_change_refresh = true)
 {
-    global $lang_albmgr_php, $CAT_LIST;
+    global $lang_catmgr_php, $CAT_LIST;
 
-	if ($on_change_refresh){
-	
-		$lb = '<select name="parent" onmouseover="setbuild(this, '. (int) $parent['cid'].')" onchange="updateParent(this, ' . $cid . ')" class="listbox">';
-	
-		if ($parent['cid'] == 0){
-	    	$lb .= '<option value="0" selected="selected">' . $lang_albmgr_php['no_category'] . '</option>';
-	    } else {
-	     	$lb .= '<option value="' . $parent['cid'] .  ' selected="selected">' . $parent['name'] . '</option>';
-	    }
-	
-	    $lb .= '</select>';
-    
+        if ($on_change_refresh){
+
+                $lb = '<select name="parent" onmouseover="setbuild(this, '. (int) $parent['cid'].')" onchange="updateParent(this, ' . $cid . ')" class="listbox">';
+
+                if ($parent['cid'] == 0){
+                    $lb .= '<option value="0" selected="selected">' . $lang_catmgr_php['no_category'] . '</option>';
+            } else {
+                     $lb .= '<option value="' . $parent['cid'] .  ' selected="selected">' . $parent['name'] . '</option>';
+            }
+
+            $lb .= '</select>';
+
     } else {
-    
-	   	$lb = '<select name="parent" id="build_source" class="listbox">';
-	
-	    $lb .= '                        <option value="0"' . ($parent['cid'] == 0 ? ' selected': '') . '>' . $lang_albmgr_php['no_category'] . "</option>\n";
-	    foreach($CAT_LIST as $category) if ($category['cid'] != 1 && $category['cid'] != $cid) {
-	        $lb .= '                        <option value="' . $category['cid'] . '"' . ($parent['cid'] == $category['cid'] ? ' selected': '') . ">" . $category['name'] . "</option>\n";
-	    } elseif ($category['cid'] != 1 && $category['cid'] == $cid) {
-	        $lb .= '                        <option value="' . $category['parent'] . '"' . ($parent['cid'] == $category['cid'] ? ' selected': '') . ">" . $category['name'] . "</option>\n";
-	    }
-	
-	    $lb .= '</select>';
+
+                   $lb = '<select name="parent" id="build_source" class="listbox">';
+
+            $lb .= '                        <option value="0"' . ($parent['cid'] == 0 ? ' selected': '') . '>' . $lang_catmgr_php['no_category'] . "</option>\n";
+            foreach($CAT_LIST as $category) if ($category['cid'] != 1 && $category['cid'] != $cid) {
+                $lb .= '                        <option value="' . $category['cid'] . '"' . ($parent['cid'] == $category['cid'] ? ' selected': '') . ">" . $category['name'] . "</option>\n";
+            } elseif ($category['cid'] != 1 && $category['cid'] == $cid) {
+                $lb .= '                        <option value="' . $category['parent'] . '"' . ($parent['cid'] == $category['cid'] ? ' selected': '') . ">" . $category['name'] . "</option>\n";
+            }
+
+            $lb .= '</select>';
     }
-	
+
     return $lb;
 }
 
@@ -388,54 +387,54 @@ function confirmDel(catName)
 
 function build(target, category){
 
-	if (target.length > 1) return;
+        if (target.length > 1) return;
 
-	pos = target.options[0];
-	
-	source = document.getElementById('build_source');
-	
-	var oListFragment = document.createDocumentFragment();
-	
-	for (var i = 0; i < source.length; i++){
+        pos = target.options[0];
 
-		option = source.options[i];
-	
-		if (option.value == category){
+        source = document.getElementById('build_source');
 
-			target.insertBefore(oListFragment, target.options[0]);
-			var oListFragment = document.createDocumentFragment();
-			target.selectedIndex = i;
+        var oListFragment = document.createDocumentFragment();
 
-		} else {
+        for (var i = 0; i < source.length; i++){
 
-			child = option.cloneNode(true);
-			child.value = option.value;
-			child.text = option.text;
-				
-			oListFragment.appendChild(child);
-		}
-	}
+                option = source.options[i];
 
-	target.appendChild(oListFragment);
+                if (option.value == category){
 
-	target.focus();
+                        target.insertBefore(oListFragment, target.options[0]);
+                        var oListFragment = document.createDocumentFragment();
+                        target.selectedIndex = i;
+
+                } else {
+
+                        child = option.cloneNode(true);
+                        child.value = option.value;
+                        child.text = option.text;
+
+                        oListFragment.appendChild(child);
+                }
+        }
+
+        target.appendChild(oListFragment);
+
+        target.focus();
 }
 
 function setbuild(obj, cid){
 
-	var func = function () { build(obj, cid) }
-	
-	if (typeof(document.onbeforeactivate) == 'undefined'){
-		obj.onfocus = func;
-	} else {
-		obj.onbeforeactivate = func;
-	}
+        var func = function () { build(obj, cid) }
+
+        if (typeof(document.onbeforeactivate) == 'undefined'){
+                obj.onfocus = func;
+        } else {
+                obj.onbeforeactivate = func;
+        }
 }
 
 function updateParent(obj, cid){
 
-	if(obj.options[obj.selectedIndex].value)
-		window.location.href = 'catmgr.php?op=setparent&cid=' + cid + '&parent=' + obj.options[obj.selectedIndex].value;
+        if(obj.options[obj.selectedIndex].value)
+                window.location.href = 'catmgr.php?op=setparent&cid=' + cid + '&parent=' + obj.options[obj.selectedIndex].value;
 }
 
 </script>
