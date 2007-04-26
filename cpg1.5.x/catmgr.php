@@ -443,7 +443,7 @@ function updateParent(obj, cid){
 EOT;
 
 starttable('100%');
-$help = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=cat_cp&amp;ae=albmgr&amp;top=1', '600', '400');
+$help = '&nbsp;'.cpg_display_help('f=categories.htm&amp;as=cat_cp&amp;ae=cat_cp_end&amp;top=1', '800', '600');
 echo <<<EOT
         <tr>
                 <td class="tableh1"><b><span class="statlink">{$lang_catmgr_php['category']}</span></b>$help</td>
@@ -466,7 +466,7 @@ EOT;
 // configure sort category alphabetically
     $yes_selected = $CONFIG['categories_alpha_sort'] ? 'checked="checked"' : '';
     $no_selected = !$CONFIG['categories_alpha_sort'] ? 'checked="checked"' : '';
-    $help = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=admin_album_list_alphasort_start&amp;ae=admin_album_list_alphasort_end&amp;top=1', '600', '250');
+    $help = '&nbsp;'.cpg_display_help('f=configuration.htm&amp;as=admin_album_list_alphasort_start&amp;ae=admin_album_list_alphasort_end&amp;top=1', '600', '250');
 
 echo <<<EOT
         <script language="javascript" type="text/javascript">
