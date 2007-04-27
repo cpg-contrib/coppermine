@@ -401,6 +401,7 @@ d.add(170,150,'Apache on Windows','install_permissions.htm#apache_windows');
 d.add(180,150,'IIS on Windows','install_permissions.htm#iis');
 d.add(190,150,'Asking for support on permissions issues','install_permissions.htm#support');
 d.add(200,130,'The install screen','install_screen.htm');
+d.add(205,130,'Auto-Installers','auto-installers.htm');
 d.add(210,0,'Upgrading','upgrading.htm');
 d.add(220,210,'Necessary upgrading steps (from any version)','upgrading.htm#upgrade_any');
 d.add(230,210,'Additional actions for updating from particular versions','upgrading.htm#upgrade_particular');
