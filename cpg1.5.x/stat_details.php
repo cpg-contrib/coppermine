@@ -603,8 +603,8 @@ EOT;
       $no_selected_hit = !$CONFIG['hit_details'] ? 'checked="checked"' : '';
       $yes_selected_vote = $CONFIG['vote_details'] ? 'checked="checked"' : '';
       $no_selected_vote = !$CONFIG['vote_details'] ? 'checked="checked"' : '';
-      $help_hit = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=admin_logging_hitdetails&amp;ae=admin_logging_hitdetails_end&amp;top=1', '600', '400');
-      $help_vote = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=admin_logging_votedetails&amp;ae=admin_logging_votedetails_end&amp;top=1', '600', '400');
+      $help_hit = '&nbsp;'.cpg_display_help('f=configuration.htm&amp;as=admin_logging_hitdetails&amp;ae=admin_logging_hitdetails_end&amp;top=1', '600', '400');
+      $help_vote = '&nbsp;'.cpg_display_help('f=configuration.htm&amp;as=admin_logging_votedetails&amp;ae=admin_logging_votedetails_end&amp;top=1', '600', '400');
       print <<< EOT
       <form method="get" name="changestats" id="cpgform" action="{$_SERVER['PHP_SELF']}" onsubmit="return defaultagree(this)">
       <input type="hidden" name="type" value="{$type}" />

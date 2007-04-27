@@ -610,7 +610,7 @@ if (UPLOAD_APPROVAL_MODE) {
                 $result = cpg_db_query($sql);
         $form_target = $_SERVER['PHP_SELF'].'?album='.$album_id.'&amp;start='.$start.'&amp;count='.$count;
         $title = $lang_editpics_php['edit_pics'];
-        $help = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=edit_pics&amp;ae=edit_pics_end&amp;top=1', '800', '500');
+        $help = '&nbsp;'.cpg_display_help('f=files.htm&amp;as=edit_pics&amp;ae=edit_pics_end&amp;top=1', '800', '500');
 }
 
 if (!mysql_num_rows($result)) cpg_die(INFORMATION, $lang_errors['no_img_to_display'], __FILE__, __LINE__);

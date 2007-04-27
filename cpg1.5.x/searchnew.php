@@ -420,7 +420,7 @@ if (isset($_POST['insert'])) {
     if (!isset($_POST['pics'])) cpg_die(ERROR, $lang_search_new_php['no_pic_to_add'], __FILE__, __LINE__);
 
     pageheader($lang_search_new_php['page_title']);
-    $help = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=ftp&amp;ae=ftp_end&amp;top=1#ftp_show_result', '600', '400');
+    $help = '&nbsp;'.cpg_display_help('f=uploading.htm&amp;as=ftp&amp;ae=ftp_end&amp;top=1#ftp_show_result', '600', '400');
     starttable("100%");
     echo <<<EOT
         <tr>
@@ -500,7 +500,7 @@ EOT;
     ob_end_flush();
 } elseif (isset($_GET['startdir'])) {
     pageheader($lang_search_new_php['page_title']);
-    $help = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=ftp&amp;ae=ftp_end&amp;top=1#ftp_select_file', '550', '400');
+    $help = '&nbsp;'.cpg_display_help('f=uploading.htm&amp;as=ftp&amp;ae=ftp_end&amp;top=1#ftp_select_file', '550', '400');
     echo <<<EOT
         <script language="javascript" type="text/javascript">
         <!--
@@ -565,7 +565,7 @@ EOT;
     ob_end_flush();
 } else {
     pageheader($lang_search_new_php['page_title']);
-    $help = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=ftp&amp;ae=ftp_end&amp;top=1', '600', '450');
+    $help = '&nbsp;'.cpg_display_help('f=uploading.htm&amp;as=ftp&amp;ae=ftp_end&amp;top=1', '600', '450');
     print '<form name="interfaceconfig" id="cpgform" action="'.$_SERVER['PHP_SELF'].'" method="post" style="margin:0px;padding:0px">';
     starttable(-1, $lang_search_new_php['select_dir'].$help);
 
@@ -602,7 +602,7 @@ EOT;
     // configure batch-add interface (classic or browsable)
     $yes_selected = $CONFIG['browse_batch_add'] ? 'checked="checked"' : '';
     $no_selected = !$CONFIG['browse_batch_add'] ? 'checked="checked"' : '';
-    $help = cpg_display_help('f=index.htm&amp;as=admin_general_browsable_batch_add&amp;ae=admin_general_browsable_batch_add_end', '500', '300');
+    $help = cpg_display_help('f=configuration.htm&amp;as=admin_general_browsable_batch_add&amp;ae=admin_general_browsable_batch_add_end', '500', '300');
     echo <<<EOT
         <tr>
                 <td class="tableb">

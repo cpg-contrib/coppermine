@@ -307,7 +307,7 @@ EOT;
         } else {
             $search_filter = '';
         }
-        $help = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=user_cp&amp;ae=user_cp_end&amp;top=1', '650', '500');
+        $help = '&nbsp;'.cpg_display_help('f=users.htm&amp;as=user_cp&amp;ae=user_cp_end&amp;top=1', '650', '500');
     echo <<<EOT
         <tr>
             <td colspan="$number_of_columns" class="tableh1">
@@ -471,7 +471,7 @@ EOT;
         } else {
             $search_string_default = 'value="'.$lang_usermgr_php['search'].'" onfocus="this.value=\'\'"';
         }
-            $help = cpg_display_help('f=index.htm&as=user_cp_search&ae=user_cp_search_end&top=1', '400', '150');
+            $help = cpg_display_help('f=users.htm&as=user_cp_search&ae=user_cp_search_end&top=1', '400', '150');
         echo <<<EOT
         <tr>
                 <td class="tablef" align="center"><input type="checkbox" name="checkAll2" {$makereadonly}onClick="selectAll(this,'u');" class="checkbox" title="{$lang_common['check_uncheck_all']}" /></td>
@@ -511,7 +511,7 @@ EOT;
             print '                                  <option value="' . $group['group_id'] . '"' . ($group['group_id'] == $sel_group ? ' selected' : '') . '>' . $group['group_name'] . "</option>\n";
         }
 
-    $help_create = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=user_cp_new&amp;ae=user_cp_new_end', '600', '250');
+    $help_create = '&nbsp;'.cpg_display_help('f=users.htm&amp;as=user_cp_new&amp;ae=user_cp_new_end', '600', '250');
 
     echo <<<EOT
                               </select>

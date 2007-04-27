@@ -344,8 +344,8 @@ $msg_txt
 EOT;
 }
 
-$help_approval_only = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=admin_comment_display_comment_approval_only_start&amp;ae=admin_comment_display_comment_approval_only_end&amp;top=1', '600', '400');
-$help = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=comments_review&amp;ae=comments_review_end&amp;top=1', '800', '400');
+$help_approval_only = '&nbsp;'.cpg_display_help('f=configuration.htm&amp;as=admin_comment_display_comment_approval_only_start&amp;ae=admin_comment_display_comment_approval_only_end&amp;top=1', '600', '400');
+$help = '&nbsp;'.cpg_display_help('f=comments.htm&amp;as=comments_review&amp;ae=comments_review_end&amp;top=1', '800', '400');
 echo <<<EOT
         <tr>
                 <td class="tableh1" colspan="6">

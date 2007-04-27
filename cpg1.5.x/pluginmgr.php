@@ -37,7 +37,7 @@ if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__,
 
 function display_plugin_list() {
     global $CPG_PLUGINS,$lang_pluginmgr_php;
-    $help = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=plugin_manager&amp;ae=plugin_manager_end&amp;top=1', '800', '600');
+    $help = '&nbsp;'.cpg_display_help('f=plugins.htm&amp;as=plugin_manager&amp;ae=plugin_manager_end&amp;top=1', '800', '600');
     starttable('100%', $lang_pluginmgr_php['pmgr'].$help);
 echo <<< EOT
         <tr>
@@ -52,7 +52,7 @@ echo <<< EOT
 EOT;
 
 
-    $help = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=plugin_manager_uninstall&amp;ae=plugin_manager_uninstall_end&amp;top=1', '640', '480');
+    $help = '&nbsp;'.cpg_display_help('f=plugins.htm&amp;as=plugin_manager_uninstall&amp;ae=plugin_manager_uninstall_end&amp;top=1', '640', '480');
     $available_plugins = cpg_get_dir_list('./plugins/');
     starttable('100%');
 
@@ -158,8 +158,8 @@ EOT;
     echo('<p>&nbsp;</p>');
     echo('<form name="cpgform" id="cpgform" action="pluginmgr.php?op=upload" method="post" enctype="multipart/form-data">');
 
-    $help_upload = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=plugin_manager_upload&amp;ae=plugin_manager_upload_end&amp;top=1', '640', '480');
-    $help_install = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=plugin_manager_install&amp;ae=plugin_manager_install_end&amp;top=1', '640', '480');
+    $help_upload = '&nbsp;'.cpg_display_help('f=plugins.htm&amp;as=plugin_manager_upload&amp;ae=plugin_manager_upload_end&amp;top=1', '640', '480');
+    $help_install = '&nbsp;'.cpg_display_help('f=plugins.htm&amp;as=plugin_manager_install&amp;ae=plugin_manager_install_end&amp;top=1', '640', '480');
     starttable('100%');
 echo <<<EOT
         <tr>

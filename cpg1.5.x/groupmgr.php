@@ -347,10 +347,10 @@ function selectall()
 EOT;
 
 starttable('100%');
-$help_group = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=group_cp&amp;ae=group_cp_end&amp;top=1', '700', '500');
-$help_permissions = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=group_cp_permissions&amp;ae=group_cp_permissions_end&amp;top=1', '500', '200');
-$help_personal = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=group_cp_personal&amp;ae=group_cp_personal_end&amp;top=1', '500', '200');
-$help_upload_method = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=group_cp_upload_method&amp;ae=group_cp_upload_method_end&amp;top=1', '700', '400');
+$help_group = '&nbsp;'.cpg_display_help('f=groups.htm&amp;as=group_cp&amp;ae=group_cp_end&amp;top=1', '700', '500');
+$help_permissions = '&nbsp;'.cpg_display_help('f=groups.htm&amp;as=group_cp_permissions&amp;ae=group_cp_permissions_end&amp;top=1', '500', '200');
+$help_personal = '&nbsp;'.cpg_display_help('f=groups.htm&amp;as=group_cp_personal&amp;ae=group_cp_personal_end&amp;top=1', '500', '200');
+$help_upload_method = '&nbsp;'.cpg_display_help('f=groups.htm&amp;as=group_cp_upload_method&amp;ae=group_cp_upload_method_end&amp;top=1', '700', '400');
 echo <<<EOT
 
         <tr style="white-space:nowrap">

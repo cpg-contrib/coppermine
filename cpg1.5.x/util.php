@@ -94,7 +94,7 @@ if (array_key_exists($action, $tasks)){
         echo "<br /><a href=\"util.php\">{$lang_util_php['back']}</a>";
 } else {
 
-        $help = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=admin_tools&amp;ae=admin_tools_end&amp;top=1', '600', '400');
+        $help = '&nbsp;'.cpg_display_help('f=admin_menu.htm&amp;as=admin_tools&amp;ae=admin_tools_end&amp;top=1', '600', '400');
 
         starttable('100%', $lang_util_php['title'].$help, 2);
 
