@@ -955,7 +955,7 @@ if (!isset($_REQUEST['control'])) {
 
         // Declare an array containing the various upload form box definitions.
         $captionLabel = $lang_upload_php['description'];
-        if ($CONFIG['show_bbcode_help']) {$captionLabel .= '&nbsp;'. cpg_display_help('f=index.html&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
+        if ($CONFIG['show_bbcode_help']) {$captionLabel .= '&nbsp;'. cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
         $form_array = array(
         sprintf($lang_upload_php['max_fsize'], $CONFIG['max_upl_size']),
         array($lang_common['album'], 'album', 2),
@@ -2563,7 +2563,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
 
     // Declare an array containing the various upload form box definitions.
     $captionLabel = $lang_upload_php['description'];
-    if ($CONFIG['show_bbcode_help']) {$captionLabel .= '&nbsp;'. cpg_display_help('f=index.html&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
+    if ($CONFIG['show_bbcode_help']) {$captionLabel .= '&nbsp;'. cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
     //$printed_file_name = "{$lang_upload_php['picture']} - {$file_set[0]}";
 
     //Use the IPTC title or headline for the Coppermine title if available.

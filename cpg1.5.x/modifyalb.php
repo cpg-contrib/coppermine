@@ -49,7 +49,7 @@ $help_album_keywords = '&nbsp;'.cpg_display_help('f=albums.htm&amp;as=album_prop
 $help_album_password = '&nbsp;'.cpg_display_help('f=albums.htm&amp;as=album_prop_password_start&amp;ae=album_prop_password_end&amp;top=1', '500', '250');
 
 $captionLabel = $lang_modifyalb_php['alb_desc'];
-if ($CONFIG['show_bbcode_help']) {$captionLabel .= '&nbsp;'. cpg_display_help('f=index.html&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
+if ($CONFIG['show_bbcode_help']) {$captionLabel .= '&nbsp;'. cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
 $data = array($lang_modifyalb_php['general_settings'],
     array($lang_modifyalb_php['alb_title'], 'title', 0),
     array($lang_modifyalb_php['alb_cat'], 'category', 2),

@@ -92,7 +92,7 @@ EOT;
             $explain_greyedout = '&nbsp;'.cpg_display_help('f=index.htm&amp;base=64&h='.urlencode(base64_encode(serialize($lang_groupmgr_php['explain_greyed_out_title']))).'&amp;t='.urlencode(base64_encode(serialize(sprintf($lang_groupmgr_php['explain_guests_greyed_out_text'],'<i>'.$group['group_name'].'</i>')))), '450', '300');
         } elseif ($group['group_id'] == 4) {
             $disabled = 'disabled="disabled" style="background-color:InactiveCaptionText;color:GrayText"';
-            $explain_greyedout = '&nbsp;'.cpg_display_help('f=index.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_groupmgr_php['explain_greyed_out_title']))).'&amp;t='.urlencode(base64_encode(serialize(sprintf($lang_groupmgr_php['explain_banned_greyed_out_text'],'<i>'.$group['group_name'].'</i>')))), '450', '300');
+            $explain_greyedout = '&nbsp;'.cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_groupmgr_php['explain_greyed_out_title']))).'&amp;t='.urlencode(base64_encode(serialize(sprintf($lang_groupmgr_php['explain_banned_greyed_out_text'],'<i>'.$group['group_name'].'</i>')))), '450', '300');
         } else {
             $disabled = '';
             $explain_greyedout = '';

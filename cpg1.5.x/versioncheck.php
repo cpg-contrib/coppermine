@@ -622,7 +622,7 @@ print $file_path['file'];
 print '</span>';
 if ($stylecolor != '') {
     print '&nbsp;';
-    print cpg_display_help('f=index.html&amp;base=64&amp;h='.urlencode(base64_encode(serialize($helptitle))).'&amp;t='.urlencode(base64_encode(serialize($helpoutput))),400,150);
+    print cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($helptitle))).'&amp;t='.urlencode(base64_encode(serialize($helpoutput))),400,150);
 }
 
 
@@ -685,7 +685,7 @@ if (!$cpg_is_file && $permissions == 1) { // we have a folder: start
     print $writable_output;
     if ($helptitle != '') {
         print '&nbsp;';
-        print cpg_display_help('f=index.html&amp;base=64&amp;h='.urlencode(base64_encode(serialize($helptitle))).'&amp;t='.urlencode(base64_encode(serialize($helpoutput)).'&amp;css=1'),400,150);
+        print cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($helptitle))).'&amp;t='.urlencode(base64_encode(serialize($helpoutput)).'&amp;css=1'),400,150);
         $helptitle = '';
         $helpoutput = '';
     }
@@ -866,7 +866,7 @@ function cpg_vc_help($helptitle='',$helpoutput='') {
    $return= '';
    if ($helptitle != '') {
       $return = '&nbsp;';
-      $return .= cpg_display_help('f=index.html&amp;base=64&amp;h='.urlencode(base64_encode(serialize($helptitle))).'&amp;t='.urlencode(base64_encode(serialize($helpoutput))),400,150);
+      $return .= cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($helptitle))).'&amp;t='.urlencode(base64_encode(serialize($helpoutput))),400,150);
 
    }
    return $return;

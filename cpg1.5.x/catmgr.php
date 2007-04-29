@@ -500,7 +500,7 @@ echo "<br />\n";
 starttable('100%', $lang_catmgr_php['update_create'], 2);
 $lb = cat_list_box($current_category['parent'], $current_category['cid'], false);
 $op = $current_category['cid'] ? 'updatecat' : 'createcat';
-if ($CONFIG['show_bbcode_help']) {$description_help .= '&nbsp;'. cpg_display_help('f=index.html&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
+if ($CONFIG['show_bbcode_help']) {$description_help .= '&nbsp;'. cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
 echo <<<EOT
         <form method="post" action="{$_SERVER['PHP_SELF']}?op=$op" name="cpgform3" id="cpgform3">
         <input type="hidden" name="cid" value ="{$current_category['cid']}" />

@@ -245,7 +245,7 @@ elseif (isset($_POST['preview'])) {
 //pageheader($lang_ecard_php['title']);
 
 //ecard form
-if ($CONFIG['show_bbcode_help']) {$captionLabel = '&nbsp;'. cpg_display_help('f=index.html&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
+if ($CONFIG['show_bbcode_help']) {$captionLabel = '&nbsp;'. cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
 if ($row['pwidth'] == 0 || $row['pheight'] == 0) {
     $row['pwidth'] = $CONFIG['thumb_width'];
     $row['pheight'] = floor($CONFIG['thumb_width']*2/3);
