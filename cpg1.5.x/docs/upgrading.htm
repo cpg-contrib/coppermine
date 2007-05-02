@@ -43,7 +43,7 @@
 <a name="upgrade_any"></a><h2>Steps needed to perform when upgrading Coppermine (from any version)<a href="#upgrade_any" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <ul>
     <li>Download the most recent stable version existing in the download section of the <a href="http://coppermine-gallery.net/">official Coppermine homepage</a><br />
-    <span class="small">(Don't assume that you have the most recent version, especially if you have installed Coppermine using a control panel app provided by your webhost. The coppermine dev team doesn't recommend using such auto-installers - please download the original from <i>our</i> site)</span></li>
+    <span class="small">(Don't assume that you have the most recent version, especially if you have installed Coppermine using a control panel app provided by your webhost. The coppermine dev team doesn't recommend using such <a href="auto-installers.htm#auto-installers">auto-installers</a> - please download the original from <i>our</i> site)</span></li>
     <li>Make a backup (dump) of your database<br />
     <span class="small">(Recommended tools for creating a database dump are <a href="http://mysqldumper.de/en/" rel="external" class="external">mySqlDumper</a> or <a href="http://phpmyadmin.net/" rel="external" class="external">phpMyAdmin</a>)</span></li>
     <li>Backup your include/config.inc.php file, your anycontent.php file and your &quot;albums&quot; directoy as a safety precaution if anything should go wrong.<br />
@@ -74,7 +74,7 @@
   <li>You can not use language files from older versions of Coppermine as primary language (the language the admin will use) - make sure you only have the language files that come with this package inside of your lang folder (delete or rename all files from older versions within the lang folder).<br />
         If you need to use a language that hasn't been translated for cpg1.5.x, you can try using the language file from cpg1.3.x or better, however there are certain caveats:
       <ul>
-        <li>You need to enable the <a href="configuration.htm#admin_language_fallback">language fallback</a> option in coppermine's config page</li>
+        <li>You need to enable the <a href="configuration.htm#admin_language_fallback">language fallback</a> option in coppermine's config page if you want to use a language file from cpg1.3.x with cpg1.4.x</li>
         <li>cpg1.5.x-phrases that don't exist in your old language file will go untranslated or show in english</li>
         <li>Coppermine can't be administered using an old language file - the admin needs to use a "true" cpg1.5.x language file</li>
         <li>You're free to try using old language files, however when running into issues or error messages, switch to US-English and see if the issue goes away then. Using outdated language files goes unsupported</li>
