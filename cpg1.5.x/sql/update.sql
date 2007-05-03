@@ -105,6 +105,31 @@ INSERT INTO CPG_filetypes VALUES ('rar', 'application/rar', 'document', '');
 INSERT INTO CPG_filetypes VALUES ('gz', 'application/gz', 'document', '');
 INSERT INTO CPG_filetypes VALUES ('mdb', 'application/msaccess', 'document', '');
 INSERT INTO CPG_config VALUES ('allowed_doc_types', 'doc/txt/rtf/pdf/xls/pps/ppt/zip/gz/mdb');
+INSERT INTO CPG_filetypes VALUES ('001', 'application/001', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('7z', 'application/7z', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('arj', 'application/arj', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('bz2', 'application/bz2', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('cab', 'application/cab', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('lzh', 'application/lzh', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('rpm', 'application/rpm', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('tar', 'application/tar', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('z', 'application/z', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('odt', 'application/vnd.oasis.opendocument.text', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('ods', 'application/vnd.oasis.opendocument.spreadsheet', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('odp', 'application/vnd.oasis.opendocument.presentation', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('odg', 'application/vnd.oasis.opendocument.graphics', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('odc', 'application/vnd.oasis.opendocument.chart', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('odf', 'application/vnd.oasis.opendocument.formula', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('odi', 'application/vnd.oasis.opendocument.image', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('odm', 'application/vnd.oasis.opendocument.text-master', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('ott', 'application/vnd.oasis.opendocument.text-template', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('ots', 'application/vnd.oasis.opendocument.spreadsheet-template', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('otp', 'application/vnd.oasis.opendocument.presentation-template', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('otg', 'application/vnd.oasis.opendocument.graphics-template', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('otc', 'application/vnd.oasis.opendocument.chart-template', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('otf', 'application/vnd.oasis.opendocument.formula-template', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('oti', 'application/vnd.oasis.opendocument.image-template', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('oth', 'application/vnd.oasis.opendocument.text-web', 'document', '');
 
 
 #
