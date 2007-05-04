@@ -45,19 +45,6 @@
 
 <a name="faq_toc"></a><h2>Table of contents:<a href="#faq_toc" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <ul class="nomargin">
-<li><b>Installation</b></li>
-<ul class="nomargin">
-<li><a class="content" href="#MinimumRequirements">What are the <b>minimum requirements</b> for the installation and use of Coppermine 1.5.x ?</a></li>
-<li><a class="content" href="#whatIsImageMagick">What's <b>ImageMagick</b> and how can I get it?</a></li>
-<li><a class="content" href="#WhatIsGD">What's <b>GD</b> and how can I get it?</a></li>
-<li><a class="content" href="#VersionPHP">How do I find out <b>which version of PHP</b> I have?</a></li>
-<li><a class="content" href="#VersionGD">How do I find out <b>which version of GD</b> I have?</a></li>
-<li><a class="content" href="#GD1vsGD2">What&#39;s the difference between <b>GD1 and GD2</b>?</a></li>
-<li><a class="content" href="#InstallSteps">What are the <b>steps</b> to get Coppermine running?</a></li>
-<li><a class="content" href="#installIMwhenHosted">How can I <b>install ImageMagick or GD</b>?</a></li>
-<li><a class="content" href="#minimumInstall">I'm short on webspace. Is there a &quot;<b>minimum install</b>&quot;?</a></li>
-</ul>
-
 <li><b>Upload</b></li>
 <ul class="nomargin">
 <li><a class="content" href="#uploadGeneralTroubleshooting">General Upload Troubleshooting</a></li>
@@ -136,110 +123,7 @@
 </ul>
 
 
-<br />&nbsp;<br />
-<a name="installation"></a><h2>Installation<a href="#installation" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<a name="MinimumRequirements"></a>
-<h3>What are the <b>minimum requirements</b> for the use of Coppermine 1.5.x ?<a href="#MinimumRequirements" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>
-    <ul>
-        <li>any webserver, Apache recommended (Coppermine has been reported to work with <a href="http://httpd.apache.org/" class="external">Apache</a>, <a href="http://www.microsoft.com/iis/" class="external">Microsoft Internet Information Server</a> (IIS), <a href="http://www.roxen.com/products/webserver/" class="external">Roxen WebServer</a>, <a href="http://www.aprelium.com/" class="external">Abyss</a>, <a href="http://www.janaserver.de/" class="external">JanaServer</a>)</li>
-        <li>PHP 4.2.0 or better, PHP 5 is supported</li>
-        <li><a href="#WhatIsGD">GD lib</a> or Image Magick</li>
-        <li>mySQL 3.23.23 or better (4.1 recommended). Don&#39;t confuse the client api version (which is shown in phpinfo) with the mySQL version!</li>
-    </ul><br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
-<a name="WhatIsGD"></a>
-<h3>What's <b>GD</b> and how can I get it?<a href="#WhatIsGD" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>GD is a graphical library which enables PHP to do image manipulation. If you are running your own webservem you can download it at <a href="http://www.boutell.com/gd/" class="external">www.boutell.com/gd/</a>. You will need to recompile PHP on (L)Unix systems, depending on your setup Apache as well. Most recent versions of PHP come with GD - go for a package. On most windows systems, you can just enable it in the php.ini file. If you are subscribing to a webhost: find out through your webhost if GD/GD2 support is available on your site. If not, ask your webhost if you can have it or find yourself another webhost. GD/GD2 are pretty much a standard feature at most webhosting services.<br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
 
-<a name="whatIsImageMagick"></a>
-<h3>What's ImageMagick and how can I get it?<a href="#whatIsImageMagick" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>ImageMagick is another graphical library like GD/GD2 for image manipulation. If you are running your own webserver, you can download it at <a href="http://www.imagemagick.org" class="external">imagemagick.org</a>. There are sources available for Unix, Linux, Mac and Windows executables, as well as binary packages for various server operating systems. You cannot install ImageMagick if you are subscribing to a webhost.
-<br /></p>
-<br />
-<div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
-
-<a name="VersionPHP"></a>
-<h3>How do I find out <b>which version of PHP</b> I have?<a href="#VersionPHP" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>If you haven't installed Coppermine, yet, create a blank file named "info.php". Add the following code to it: <tt class="code">&lt;?php phpinfo(); ?&gt;</tt>. Save the file and upload it to your webserver, then run it in your browser (e.g. http://www.yourdomain.com/info.php). The very first line should read &quot;PHP Version X.Y.Z&quot;<br />Please note: leaving info.php on your server could be a security risk; either delete it after use or move it into a password protected directory!<br />&nbsp;<br />If you have already installed Coppermine, you will find a phpinfo file (phpinfo.php) within the coppermine folder. Log in to your Coppermine setup as the admin and simply point (type in the URL) your browser to http://yourdomain.tld/your_coppermine_folder/phpinfo.php or click on the phpinfo link in Coppermine's <a href="admin_menu.htm">admin menu</a>.</p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
-<a name="VersionGD"></a>
-<h3>How do I find out <b>which version of GD</b> I have?<a href="#VersionGD" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>If you haven't installed Coppermine, yet, create a blank file named "info.php", put this code into it: <tt class="code">&lt;?php phpinfo(); ?&gt;</tt>. Save the file and upload this file to your webserver, then run it in your browser (e.g. http://www.yourdomain.com/info.php). Look for a table like this:<br />
-<div align="center" style="font-family: arial, helvetica, sans-serif; font-size: 14pt; font-weight: bold;">gd</div>
-<table border="0" cellpadding="3" cellspacing="1" width="600" bgcolor="#000000" align="center">
-<tr valign="baseline" bgcolor="#cccccc"><td bgcolor="#ccccff" ><b>GD Support</b></td><td align="left">enabled</td></tr>
-<tr valign="baseline" bgcolor="#cccccc"><td bgcolor="#ccccff" ><b>GD Version</b></td><td align="left">1.6.2 or higher</td></tr>
-<tr valign="baseline" bgcolor="#cccccc"><td bgcolor="#ccccff" ><b>FreeType Support</b></td><td align="left">enabled</td></tr>
-<tr valign="baseline" bgcolor="#cccccc"><td bgcolor="#ccccff" ><b>FreeType Linkage</b></td><td align="left">with TTF library</td></tr>
-<tr valign="baseline" bgcolor="#cccccc"><td bgcolor="#ccccff" ><b>JPG Support</b></td><td align="left">enabled</td></tr>
-<tr valign="baseline" bgcolor="#cccccc"><td bgcolor="#ccccff" ><b>PNG Support</b></td><td align="left">enabled</td></tr>
-<tr valign="baseline" bgcolor="#cccccc"><td bgcolor="#ccccff" ><b>WBMP Support</b></td><td align="left">enabled</td></tr>
-</table>
-<br /><br />Please note: leaving info.php on your server could be a security risk; either delete it after use or move it into a password protected directory!<br />&nbsp;<br />If you have already installed Coppermine, you will find a phpinfo file (phpinfo.php) within the coppermine folder. Log in to your Coppermine setup as the admin and simply point (type in the URL) your browser to http://yourdomain.tld/your_coppermine_folder/phpinfo.php. Then scoll down to the GD section of the display.<br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
-<a name="GD1vsGD2"></a>
-<h3>What&#39;s the difference between <b>GD1 and GD2</b>?<a href="#GD1vsGD2" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>GD2 is an updated version of GD1 and, as such, will create pictures with better quality (intermediate and thumbnails). <table border="0" class="frame2"><tr><td colspan="2"><span class="winzig">Here&#39;s an example taken from <a href="http://www.vddh.com/wnailer/index.php?pag=res&pic=1#comp" class="external">w-nailer: about resizing</a><br />(Original pic size: 1024 x 768 pixels):</span></td></tr><tr><td align="center"><img src="pics/128x96gd1.jpg" width="128" height="96" border="0" alt="" title="GD1"></td><td align="center"><img src="pics/128x96gd2.jpg" width="128" height="96" border="0" alt="" title="GD2"></td></tr><tr><td align="center"><span class="winzig">GD 1.8.4:<br />ImageCreate<br />ImageCopyResized<br />128 x 96 pixels</span></td><td align="center"><span class="winzig">GD 2.0.1:<br />ImageCreateTrueColor<br />ImageCopyResampled<br />128 x 96 pixels</span></td></tr></table>Upgrades of the GD lib after coppermine has already installed will not affect pictures that were previously created. It will only affect those created after the upgrade. <b>Unless you are running your own webserver, you cannot upgrade nor install GD lib  - only your webhost can!</b><br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
-
-<a name="InstallSteps"></a>
-<h3>What are the <b>steps</b> to get Coppermine running?<a href="#InstallSteps" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>as stated in the Coppermine readme file:
-<ol>
-<li>Download Coppermine</li>
-<li>Unzip it to your harddrive</li>
-<li>Upload the contents of the coppermine folder to your server (you can install it in the root or in a unique folder with a name of your choosing).</li>
-<li>CHMOD (<u>CH</u>ange permission settings <u>MOD</u>e) your newly uploaded Coppermine "include" and "albums" folders and subfolders to allow for read/write access. If your webhost does not provide file management tools to let you do this, you will probably need to search the net, download and install an FTP program to facilitate this.</li>
-<li> Create a database with your website management tools if you don't already have one. You do not have to add any tables to your newly created database. Coppermine will create them for you. If you already have a database on your site, Coppermine can use that as well. </li>
-<li>If you are installing on a Yahoo Webserver, <a href="http://coppermine-gallery.net/forum/index.php?topic=18943.0">read this thread first</a>.</li>
-<li>Point your browser to http://www.yoursite.com/coppermine/install.php and follow the directions of the install file (basically the mySQL-tables will be created there and the config table will be filled with default values)</li>
-<li>Upon successfull installation, delete the install.php file from your website.</li>
-<li>Point your browser to http://www.yoursite.com/coppermine/ , and login as admin using the ID and Password you provided during install. With admin controls turned on, click on the CONFIG menu button to start customizing your coppermine photo gallery.</li>
-<li>Experiment with your new install, create a few categories, sub-categories, and albums. Upload a few pics (not too many, just yet), test if everything works. </li>
-<li>Point your browser to http://www.yoursite.com/coppermine/docs/ and READ the docs. The documents included with CPG1.5.x have been updated from previous versions to help answer your questions and issues so that you can get the site you want the first time out. Reading the docs takes but a few minutes. Resolving issues after the fact can take days, even weeks.</li>
-<li>If your new Coppermine install is in a sub folder on your site, publish your site by linking it to your homepage.</li>
-</ol><br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
-
-<a name="installIMwhenHosted"></a>
-<h3>How can I <b>install ImageMagick or GD</b>?<a href="#installIMwhenHosted" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>You can only <a href="#enableIMonWindows">install ImageMagic or GD if you&#39;re running your own server</a> or if you have at least shell access to your webserver. If your site is being hosted by a webhost you can only contact your webhost and ask them to install it for you. If they refuse choose another webhost.<br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
-
-<a name="minimumInstall"></a>
-<h3>I'm running short on webspace. Is there a &quot;<b>minimum install</b>&quot;?<a href="#minimumInstall" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>This is of course a contradiction in terms: running a gallery page usually means you will considerable webspace to store your pics, but if you only want to publish a few pics with what little webspace you have left, there are some files that don't have to be uploaded or that can be removed if not needed. It is however recommended that only experienced users create a minimum install; when in doubt, do a full install.</p>
-<ol>
-<li><b>Remove all languages that you don't need</b> (if your users are all from the same country).<br />
-It's recommended that you keep English anyway even if your users use another language, just for you as admin to be able to temporarily switch to English.<br />
-Delete all files in the lang-subfolder of your coppermine install except yourlanguage.php (e.g. if you're using french, delete all files but /lang/french.php and /lang/french-utf-8.php).
-<br /><div class="totop">Webspace that can be saved (maximum): 2.9 MB</div>
-</li>
-<li><b>Remove all language files that come with an encoding you don't need</b><br />
-You'll notice that for each language there are two files in the lang-folder: yourlanguage.php and yourlanguage-utf-8.php. You will need the utf-8 files only if you chose &quot;Unicode(utf-8)&quot; in &quot;Character encoding&quot; on your config page. Using <i>Unicode (utf-8)</i> will display the gallery in the language your page visitor has set in his browser. If you haven't chosen <i>Unicode (utf-8)</i> in coppermine config, it's safe to delete all language files with &quot;utf-8&quot; in their filenames from the lang folder.
-<br /><div class="totop">Webspace that can be saved (maximum): 1.7 MB</div>
-</li>
-<li><b>Remove all unnecessary themes</b><br />
-Remove all themes you won't use from your themes folder. If you're using a customized theme, it's recommended to leave the classic/default theme in place for administrative purposes.<br />
-Example: if you're using the theme &quot;Eyeball&quot; that comes with coppermine, you can safely delete the sub-folders &quot;classic&quot;, &quot;fruity&quot;, &quot;hardwired&quot;, &quot;igames&quot;, &quot;mac_ox_x&quot;, &quot;project_vii&quot;, &quot;rainy_day&quot;, &quot;styleguide&quot; and &quot;water_drop&quot; from your themes folder.
-<br /><div class="totop">Webspace that can be saved (maximum): 1 MB</div>
-</li>
-<li><b>Remove some docs from the docs folder</b><br />
-The docs folder contains documents that are meant to help you set up and administer coppermine. In cpg1.5.x or better, there are some files in this folder that are mandatory to have on the server for the help icons to work; others are optional. You can remove the files &quot;credits.html&quot;, &quot;faq.html&quot;, &quot;README.html&quot;, &quot;theme.htm&quot; and &quot;translation.htm&quot;. All other files (and the subfolder &quot;pics&quot;) have to remain on the webserver if you want to use the help icons (recommended).
-<br /><div class="totop">Webspace that can be saved (maximum): 164 KB</div>
-</li>
-<li><b>Remove bridge files</b><br />
-The Coppermine package includes bridge files used for integration of coppermine with bulletin board software like phpBB, SMF etc. It is safe to delete some files in the bridge folder; if you <i>are</i> using bbs integration, you will have to keep the bridge file that corresponds to the bbs you're using. If you are not using integration, you must keep the file <b>coppermine.inc.php</b>. The file <b>udb_base.php</b> is required under all setups ans should not be deleted.
-<br /><div class="totop">Webspace that can be saved (maximum): 85 KB</div>
-</li>
-<li><b>Remove the flags</b><br />
-If you're not going to use the &quot;select language by flags&quot; option from the coppermine menu, it's safe to delete the flags folder (/your_coppermine_folder/images/flags/). If you <i>are</i> using the flags option, you can of course delete all flags you don't use at all.
-<br /><div class="totop">Webspace that can be saved (maximum): 80 KB</div>
-</li>
-<li><b>Remove files that are needed for install or upgrade only</b><br />
-Once Coppermine has been installed and is &quot;up-and-running&quot;, you can safely delete the files that are needed for installing only: from the coppermine root folder, delete install.php, installer.css, update.php,  upgrade-1.0-to-1.2.php. You can delete the folder &quot;sql&quot; as well.<br />
-If you want to update/upgrade your coppermine install later (once a new version comes out), you will of course have to re-upload the update files and the sql folder to your webserver.
-<br /><div class="totop">Webspace that can be saved (maximum): 73 KB</div>
-</li>
-<li><b>Choose to only display intermediate-sized pics and thumbnails.</b><br /> After you have batch added your pics and confirmed that they are displaying properly in your CPG setup, click on Admin Tools and select the "Delete original size photos (1)" option.</li><br />
-</ol>
-Summary: a minimum install of coppermine will need approx. 3.3 MB of webspace.
-<br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
 
 <a name="upload"></a><h2>Upload<a href="#upload" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 
