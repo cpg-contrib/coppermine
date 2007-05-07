@@ -214,7 +214,7 @@ EOT;
         if ($pid != '') { // individual stat - start
             print '<div class="admin_menu admin_float"><a href="'.cpgGetScriptNameParams('mode').'mode=fullscreen" target="_parent">'.$lang_stat_details_php['fullscreen'].'</a></div>';
         } // individual stat - end
-    print '<div class="admin_float_end"></div>'.$line_break.'</div>';
+    print '<div style="clear:left;"></div>'.$line_break.'</div>';
     } // mode=embedded ends
 // output the header depending on the mode (fullscreen vs embedded) - end
 
