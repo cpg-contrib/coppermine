@@ -163,7 +163,16 @@ if (is_numeric($album)) {
     }
 }
 
-pageheader(isset($CURRENT_ALBUM_DATA) ? $CURRENT_ALBUM_DATA['title'] : $lang_meta_album_names[$album]);
+if (isset($CURRENT_ALBUM_DATA)) {
+    $section = $CURRENT_ALBUM_DATA['title'];
+} else {
+    $section = $lang_meta_album_names[$album];
+}
+$meta_keywords = '';
+if($_GET['album'] == 'lastup' || $_GET['album'] == 'lastcom' || $_GET['album'] == 'topn' || $_GET['album'] == 'toprated' || $_GET['album'] == 'favpics' || $_GET['album'] == 'random') {  // keep the search engine spiders from indexing meta albums that are subject to constant changes
+    $meta_keywords .= '<meta name="robots" content="noindex, nofollow" />';
+}
+pageheader($section, $meta_keywords);
 if ($breadcrumb) {
     if (!(strpos($CONFIG['main_page_layout'], "breadcrumb") === false)) {
         theme_display_breadcrumb($breadcrumb, $cat_data);

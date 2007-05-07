@@ -396,10 +396,15 @@ if (isset($CLEAN['fullsize'])) {
     $votes = theme_html_rating_box();
     $pic_info = html_picinfo();
     $comments = theme_html_comments($CURRENT_PIC_DATA['pid']);
-    if ($CURRENT_PIC_DATA['keywords']) { $meta_keywords = "<meta name=\"keywords\" content=\"".$CURRENT_PIC_DATA['keywords']."\"/>"; }
-        //$meta_nav .= "<link rel=\"alternate\" type=\"text/xml\" title=\"RSS feed\" href=\"rss.php\" />
-       // ";
-        $meta_keywords .= $meta_nav;
+    if ($CURRENT_PIC_DATA['keywords']) {
+        $meta_keywords = "<meta name=\"keywords\" content=\"".$CURRENT_PIC_DATA['keywords']."\"/>";
+    }
+    //$meta_nav .= "<link rel=\"alternate\" type=\"text/xml\" title=\"RSS feed\" href=\"rss.php\" />
+    // ";
+    $meta_keywords .= $meta_nav;
+    if($_GET['album'] == 'lastup' || $_GET['album'] == 'lastcom' || $_GET['album'] == 'topn' || $_GET['album'] == 'toprated' || $_GET['album'] == 'favpics' || $_GET['album'] == 'random') {
+        $meta_keywords .= '<meta name="robots" content="noindex, nofollow" />';
+    }
     pageheader($album_name . '/' . $picture_title, $meta_keywords, false);
     // Display Breadcrumbs
     if ($breadcrumb && !(strpos($CONFIG['main_page_layout'],"breadcrumb")===false)) {

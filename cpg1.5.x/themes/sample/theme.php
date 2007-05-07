@@ -2623,20 +2623,17 @@ function theme_html_img_nav_menu()
     $start = 0;
         $start_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pid={$pic_data[$start]['pid']}";
         $start_title = $lang_img_nav_bar['go_album_start'];
-        $meta_nav .= "<link rel=\"start\" href=\"$start_tgt\" title=\"$start_title\" />
-        ";
+        $meta_nav .= "<link rel=\"start\" href=\"$start_tgt\" title=\"$start_title\" />\n";
         $end = $pic_count - 1;
         $end_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pid={$pic_data[$end]['pid']}";
         $end_title = $lang_img_nav_bar['go_album_end'];
-        $meta_nav .= "<link rel=\"last\" href=\"$end_tgt\" title=\"$end_title\" />
-        ";
+        $meta_nav .= "<link rel=\"last\" href=\"$end_tgt\" title=\"$end_title\" />\n";
 
     if ($pos > 0) {
         $prev = $pos - 1;
         $prev_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pid={$pic_data[$prev]['pid']}$uid_link";
         $prev_title = $lang_img_nav_bar['prev_title'];
-                                $meta_nav .= "<link rel=\"prev\" href=\"$prev_tgt\" title=\"$prev_title\" />
-                                ";
+                                $meta_nav .= "<link rel=\"prev\" href=\"$prev_tgt\" title=\"$prev_title\" />\n";
     } else {
         $prev_tgt = "javascript:;";
         $prev_title = "";
@@ -2646,8 +2643,7 @@ function theme_html_img_nav_menu()
         $next = $pos + 1;
         $next_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pid={$pic_data[$next]['pid']}$uid_link";
         $next_title = $lang_img_nav_bar['next_title'];
-                                $meta_nav .= "<link rel=\"next\" href=\"$next_tgt\" title=\"$next_title\"/>
-                                ";
+                                $meta_nav .= "<link rel=\"next\" href=\"$next_tgt\" title=\"$next_title\"/>\n";
     } else {
         $next_tgt = "javascript:;";
         $next_title = "";
@@ -2671,8 +2667,7 @@ function theme_html_img_nav_menu()
     }
 
                     $thumb_tgt = "thumbnails.php?album=$album$cat_link&amp;page=$page$uid_link";
-        $meta_nav .= "<link rel=\"up\" href=\"$thumb_tgt\" title=\"".$lang_img_nav_bar['thumb_title']."\"/>
-        ";
+        $meta_nav .= "<link rel=\"up\" href=\"$thumb_tgt\" title=\"".$lang_img_nav_bar['thumb_title']."\"/>\n";
 
     $slideshow_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link$uid_link&amp;pid=$pid&amp;slideshow=".$CONFIG['slideshow_interval'];
 
