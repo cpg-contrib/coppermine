@@ -1416,7 +1416,7 @@ function pageheader($section, $meta = '')
     user_save_profile();
 
     $template_vars = array('{LANG_DIR}' => $lang_text_dir,
-        '{TITLE}' => $CONFIG['gallery_name'] . ' - ' . strip_tags(bb_decode($section)),
+        '{TITLE}' => theme_page_title($section),
         '{CHARSET}' => $charset,
         '{META}' => $meta,
         '{GAL_NAME}' => $CONFIG['gallery_name'],
@@ -3201,6 +3201,20 @@ function theme_display_bar(
 }
 /******************************************************************************
 ** Section <<<theme_display_bar>>> - END
+******************************************************************************/
+
+/******************************************************************************
+** Section <<<theme_page_title>>> - START
+******************************************************************************/
+// Creates the title tag for each page
+// For the sake of search engine friendliness, the dynamic part $section should come first
+function theme_page_title($section) {
+    global $CONFIG;
+    $return = strip_tags(bb_decode($section)) . ' - ' . $CONFIG['gallery_name'];
+    return $return;
+}
+/******************************************************************************
+** Section <<<theme_page_title>>> - END
 ******************************************************************************/
 
 ?>

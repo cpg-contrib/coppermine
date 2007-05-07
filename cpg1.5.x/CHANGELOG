@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-05-07 [O] Inversed order of items in title tag for search engine friendliness {GauGau}
 2007-05-07 [A] Added option to hide stats on index page {GauGau}
 2007-05-03 [O] Added various archive and OpenDocument file types support {GauGau}
 2007-04-29 [D] Changed help function to reflect changes in documentation structure {GauGau}
