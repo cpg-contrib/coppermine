@@ -607,3 +607,7 @@ ALTER TABLE `CPG_vote_stats` ADD `uid` INT(11)  NOT NULL default '0';
 INSERT INTO CPG_config VALUES ('allow_user_account_delete', '0');
 
 ALTER TABLE CPG_temp_messages CHANGE `message_id` `message_id` VARCHAR(80) NOT NULL;
+
+
+# Display statistics on index page
+INSERT INTO CPG_config VALUES ('display_stats_on_index', '1');

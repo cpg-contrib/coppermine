@@ -335,70 +335,74 @@ function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
         $current_album_set = "AND aid IN (-1) ";
         $ALBUM_SET .= $current_album_set;
     }
-    // Gather gallery statistics
-    if ($cat == 0) {
-        $result = cpg_db_query("SELECT count(aid) FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE 1" . $album_filter);
-        $nbEnr = mysql_fetch_array($result);
-        $album_count = $nbEnr[0];
-        mysql_free_result($result);
+    // Gather gallery statistics - start
+    if ($CONFIG['display_stats_on_index'] != 0) {
+        if ($cat == 0) {
+            $result = cpg_db_query("SELECT count(aid) FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE 1" . $album_filter);
+            $nbEnr = mysql_fetch_array($result);
+            $album_count = $nbEnr[0];
+            mysql_free_result($result);
 
-        $sql = "SELECT count(pid) FROM {$CONFIG['TABLE_PICTURES']} as p " . 'LEFT JOIN ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' . 'ON a.aid=p.aid ' . 'WHERE 1' . $pic_filter . ' AND approved=\'YES\'';
-        $result = cpg_db_query($sql);
-        $nbEnr = mysql_fetch_array($result);
-        $picture_count = $nbEnr[0];
-        mysql_free_result($result);
+            $sql = "SELECT count(pid) FROM {$CONFIG['TABLE_PICTURES']} as p " . 'LEFT JOIN ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' . 'ON a.aid=p.aid ' . 'WHERE 1' . $pic_filter . ' AND approved=\'YES\'';
+            $result = cpg_db_query($sql);
+            $nbEnr = mysql_fetch_array($result);
+            $picture_count = $nbEnr[0];
+            mysql_free_result($result);
 
-        $sql = "SELECT count(msg_id) FROM {$CONFIG['TABLE_COMMENTS']} as c " . 'LEFT JOIN ' . $CONFIG['TABLE_PICTURES'] . ' as p ' . 'ON c.pid=p.pid ' . 'LEFT JOIN ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' . 'ON a.aid=p.aid ' . 'WHERE 1' . $pic_filter. ' AND approval=\'YES\'';
-        $result = cpg_db_query($sql);
-        $nbEnr = mysql_fetch_array($result);
-        $comment_count = $nbEnr[0];
-        mysql_free_result($result);
+            $sql = "SELECT count(msg_id) FROM {$CONFIG['TABLE_COMMENTS']} as c " . 'LEFT JOIN ' . $CONFIG['TABLE_PICTURES'] . ' as p ' . 'ON c.pid=p.pid ' . 'LEFT JOIN ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' . 'ON a.aid=p.aid ' . 'WHERE 1' . $pic_filter. ' AND approval=\'YES\'';
+            $result = cpg_db_query($sql);
+            $nbEnr = mysql_fetch_array($result);
+            $comment_count = $nbEnr[0];
+            mysql_free_result($result);
 
-        $sql = "SELECT count(cid) FROM {$CONFIG['TABLE_CATEGORIES']} WHERE 1";
-        $result = cpg_db_query($sql);
-        $nbEnr = mysql_fetch_array($result);
-        $cat_count = $nbEnr[0] - $HIDE_USER_CAT;
-        mysql_free_result($result);
+            $sql = "SELECT count(cid) FROM {$CONFIG['TABLE_CATEGORIES']} WHERE 1";
+            $result = cpg_db_query($sql);
+            $nbEnr = mysql_fetch_array($result);
+            $cat_count = $nbEnr[0] - $HIDE_USER_CAT;
+            mysql_free_result($result);
 
-        $sql = "SELECT sum(hits) FROM {$CONFIG['TABLE_PICTURES']} as p " . 'LEFT JOIN ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' . 'ON p.aid=a.aid ' . 'WHERE 1' . $pic_filter;
-        $result = cpg_db_query($sql);
-        $nbEnr = mysql_fetch_array($result);
-        $hit_count = (int)$nbEnr[0];
-        mysql_free_result($result);
+            $sql = "SELECT sum(hits) FROM {$CONFIG['TABLE_PICTURES']} as p " . 'LEFT JOIN ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' . 'ON p.aid=a.aid ' . 'WHERE 1' . $pic_filter;
+            $result = cpg_db_query($sql);
+            $nbEnr = mysql_fetch_array($result);
+            $hit_count = (int)$nbEnr[0];
+            mysql_free_result($result);
 
-        if (count($cat_data)) {
-            $statistics = strtr($lang_list_categories['stat1'], array('[pictures]' => $picture_count,
+            if (count($cat_data)) {
+                $statistics = strtr($lang_list_categories['stat1'], array('[pictures]' => $picture_count,
+                        '[albums]' => $album_count,
+                        '[cat]' => $cat_count,
+                        '[comments]' => $comment_count,
+                        '[views]' => $hit_count));
+            } else {
+                $STATS_IN_ALB_LIST = true;
+                $statistics = strtr($lang_list_categories['stat3'], array('[pictures]' => $picture_count,
+                        '[albums]' => $album_count,
+                        '[comments]' => $comment_count,
+                        '[views]' => $hit_count));
+            }
+        } elseif ($cat >= FIRST_USER_CAT && $ALBUM_SET) {
+            $result = cpg_db_query("SELECT count(aid) FROM {$CONFIG['TABLE_ALBUMS']} WHERE 1 $current_album_set");
+            $nbEnr = mysql_fetch_array($result);
+            $album_count = $nbEnr[0];
+            mysql_free_result($result);
+
+            $result = cpg_db_query("SELECT count(pid) FROM {$CONFIG['TABLE_PICTURES']} WHERE 1 $current_album_set");
+            $nbEnr = mysql_fetch_array($result);
+            $picture_count = $nbEnr[0];
+            mysql_free_result($result);
+
+            $result = cpg_db_query("SELECT sum(hits) FROM {$CONFIG['TABLE_PICTURES']} WHERE 1 $current_album_set AND approved='YES'");
+            $nbEnr = mysql_fetch_array($result);
+            $hit_count = (int)$nbEnr[0];
+            mysql_free_result($result);
+
+            $statistics = strtr($lang_list_categories['stat2'], array('[pictures]' => $picture_count,
                     '[albums]' => $album_count,
-                    '[cat]' => $cat_count,
-                    '[comments]' => $comment_count,
                     '[views]' => $hit_count));
         } else {
-            $STATS_IN_ALB_LIST = true;
-            $statistics = strtr($lang_list_categories['stat3'], array('[pictures]' => $picture_count,
-                    '[albums]' => $album_count,
-                    '[comments]' => $comment_count,
-                    '[views]' => $hit_count));
+            $statistics = '';
         }
-    } elseif ($cat >= FIRST_USER_CAT && $ALBUM_SET) {
-        $result = cpg_db_query("SELECT count(aid) FROM {$CONFIG['TABLE_ALBUMS']} WHERE 1 $current_album_set");
-        $nbEnr = mysql_fetch_array($result);
-        $album_count = $nbEnr[0];
-        mysql_free_result($result);
-
-        $result = cpg_db_query("SELECT count(pid) FROM {$CONFIG['TABLE_PICTURES']} WHERE 1 $current_album_set");
-        $nbEnr = mysql_fetch_array($result);
-        $picture_count = $nbEnr[0];
-        mysql_free_result($result);
-
-        $result = cpg_db_query("SELECT sum(hits) FROM {$CONFIG['TABLE_PICTURES']} WHERE 1 $current_album_set AND approved='YES'");
-        $nbEnr = mysql_fetch_array($result);
-        $hit_count = (int)$nbEnr[0];
-        mysql_free_result($result);
-
-        $statistics = strtr($lang_list_categories['stat2'], array('[pictures]' => $picture_count,
-                '[albums]' => $album_count,
-                '[views]' => $hit_count));
-    } else {
+    } else { // Gather gallery statistics - end
         $statistics = '';
     }
 }

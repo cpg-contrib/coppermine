@@ -337,3 +337,6 @@ INSERT INTO CPG_config VALUES ('comment_promote_registration', '0');
 
 # Allow users to delete their own user account
 INSERT INTO CPG_config VALUES ('allow_user_account_delete', '0');
+
+# Display statistics on index page
+INSERT INTO CPG_config VALUES ('display_stats_on_index', '1');
