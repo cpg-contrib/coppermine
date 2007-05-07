@@ -190,13 +190,13 @@ function get_user_albums($user_id = '')
 function form_alb_list_box()
 {
         global $CONFIG, $CURRENT_PIC;
-        global $user_albums_list, $public_albums_list, $lang_editpics_php;
+        global $user_albums_list, $public_albums_list, $lang_editpics_php, $lang_common;
         $sel_album = $CURRENT_PIC['aid'];
 
         echo <<<EOT
                 <tr>
                         <td class="tableb" style="white-space: nowrap;">
-                                {$lang_editpics_php['album']}
+                                {$lang_common['album']}
                 </td>
                 <td class="tableb" valign="top">
                                 <select name="aid" class="listbox">
@@ -293,15 +293,15 @@ print <<<EOT
                         </td>
         </tr>
         <tr>
-                        <td class="tableb" style="white-space: nowrap;">
+                        <td class="tableb" style="white-space:nowrap;">
                                 {$lang_editpics_php['pic_info']}
                         </td>
                         <td class="tableb">
                                 $pic_info
                         </td>
-                                <td class="tableb" align="center" rowspan="$THUMB_ROWSPAN">
-                                <a href="$thumb_link"><img src="$thumb_url" class="image" border="0" alt="{$CURRENT_PIC['title']}"/></a><br />
-            </td>
+                        <td class="tableb" align="center" rowspan="$THUMB_ROWSPAN">
+                            <a href="$thumb_link"><img src="$thumb_url" class="image" border="0" alt="{$CURRENT_PIC['title']}"/></a><br />
+                        </td>
         </tr>
 EOT;
 
@@ -312,7 +312,7 @@ if ($CONFIG['show_bbcode_help']) {$captionLabel = '&nbsp;'. cpg_display_help('f=
 print <<<EOT
         <tr>
                         <td class="tableb" style="white-space: nowrap;">
-                        {$lang_editpics_php['title']}
+                        {$lang_common['title']}
                 </td>
                 <td width="100%" class="tableb" valign="top">
                                 <input type="text" style="width: 100%" name="title" maxlength="255" value="{$CURRENT_PIC['title']}" class="textinput" />
@@ -321,7 +321,7 @@ print <<<EOT
 
         <tr>
                         <td class="tableb" style="white-space: nowrap;">
-                        {$lang_editpics_php['filename']}
+                        {$lang_common['filename']}
                 </td>
                 <td width="100%" class="tableb" valign="top">
                                 <input type="text" style="width: 100%" name="filename" maxlength="255" value="{$CURRENT_PIC['filename']}" class="textinput" />
@@ -338,7 +338,7 @@ print <<<EOT
         </tr>
         <tr>
                         <td class="tableb" style="white-space: nowrap;">
-                                {$lang_editpics_php['keywords']}
+                                {$lang_common['keywords']}
                 </td>
                 <td width="100%" class="tableb" valign="top">
                                 <input type="text" style="width: 100%" name="keywords" maxlength="255" value="{$CURRENT_PIC['keywords']}" class="textinput" />
