@@ -686,6 +686,36 @@ a:active .image{
         vertical-align : middle;
 }
 
+.pic_title {
+        color: #AEAEAE;
+        font-size: 100%;
+        font-family: Verdana, Helvetica, sans-serif;
+        font-weight:bold;
+        text-align : center;
+        padding-top:0px;
+        padding-bottom:0px;
+        margin-top:0px;
+        margin-bottom:0px;
+        line-height:1.0em;
+}
+
+.pic_caption {
+        color: #AEAEAE;
+        font-size: 100%;
+        font-family: Verdana, Helvetica, sans-serif;
+        font-weight:normal;
+        text-align : center;
+        padding-top:0px;
+        padding-bottom:0px;
+        margin-top:0px;
+        margin-bottom:0px;
+        line-height:1.0em;
+        background-image: none;
+        background-repeat : no-repeat;
+        background-position : left;
+        padding-left : 0px;
+}
+
 #vanity a {
         display:block;
         width:57px;

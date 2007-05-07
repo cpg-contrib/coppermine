@@ -696,6 +696,32 @@ a:active .image{
         font-size: 80%;
         vertical-align : middle;
 }
+
+.pic_title {
+        color: #000000;
+        font-size: 100%;
+        font-weight:bold;
+        text-align : center;
+        padding-top:0px;
+        padding-bottom:0px;
+        margin-top:0px;
+        margin-bottom:0px;
+        line-height:1.0em;
+}
+
+.pic_caption {
+        color: #000000;
+        font-size: 100%;
+        font-weight:normal;
+        text-align : center;
+        padding-top:0px;
+        padding-bottom:0px;
+        margin-top:0px;
+        margin-bottom:0px;
+        line-height:1.0em;
+        background-image:none;
+}
+
 #SUB_MENU {
         width:100%;
         padding: 0 20px;

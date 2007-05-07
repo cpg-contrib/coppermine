@@ -639,6 +639,32 @@ a:active .image{
         vertical-align: middle;
 }
 
+.pic_title {
+        color: black;
+        font-size: 110%;
+        font-weight:bold;
+        font-style: normal;
+        text-align : center;
+        padding-top:0px;
+        padding-bottom:0px;
+        margin-top:0px;
+        margin-bottom:0px;
+        line-height:1.0em;
+}
+
+.pic_caption {
+        color: black;
+        font-size: 100%;
+        font-weight:normal;
+        font-style: normal;
+        text-align : center;
+        padding-top:0px;
+        padding-bottom:0px;
+        margin-top:0px;
+        margin-bottom:0px;
+        line-height:1.0em;
+}
+
 #vanity a {
         display:block;
         width:57px;

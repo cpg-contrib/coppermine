@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-05-07 [O] Changed picture title and description from regular text to header formating for search engine friendliness {GauGau}
 2007-05-07 [O] Added noindex & nofollow meta-tags to meta albums for search engine friendliness {GauGau}
 2007-05-07 [O] Inversed order of items in title tag for search engine friendliness {GauGau}
 2007-05-07 [A] Added option to hide stats on index page {GauGau}

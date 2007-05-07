@@ -831,16 +831,16 @@ $template_display_media = <<<EOT
                         <table cellpadding="0" cellspacing="0" class="tableb" width="100%">
 <!-- BEGIN title -->
                                 <tr>
-                                        <td class="tableb"><center><b>
+                                        <td class="tableb""><h1 class="pic_title">
                                                 {TITLE}
-                                        </b></center></td>
+                                        </h1></td>
                                 </tr>
 <!-- END title -->
 <!-- BEGIN caption -->
                                 <tr>
-                                        <td class="tableb"><center>
+                                        <td class="tableb"><h2 class="pic_caption">
                                                 {CAPTION}
-                                        </center></td>
+                                        </h2></td>
                                 </tr>
 <!-- END caption -->
                         </table>
