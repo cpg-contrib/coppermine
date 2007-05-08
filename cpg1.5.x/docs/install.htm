@@ -41,17 +41,17 @@
 
 <a name="how"></a><h2>How to install the script<a href="#how" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <ul>
-  <li><strong>Unpack the archive preserving the directory structure.</strong><br /> You can rename the coppermine folder, but not the files or folders within.</li>
+  <li><strong>Unpack the archive preserving the directory structure.</strong><br />You can rename the coppermine folder, but not the files or folders within.</li>
   <li><strong>Upload all files onto your webserver</strong> (making sure to use the correct ftp mode)</li>
-  <li><strong><a href="install_permissions.htm#permissions">Set permissions</a> on the "<em>albums</em>" and "<em>include</em>" folders in your Coppermine directory</strong>. Usually, you have to apply the CHMOD command, setting the permissions to 755 (or 777, depending on your server config). <span class="important">This step is very important and must not be overlooked!</span></li>
-  <li><strong>Ensure you have correct information about your database</strong> - you need to <em>know</em> the database name as well as the details of a MySQL user account with which Coppermine should connect to the database. The database and the username must already exist, and the user must have access to the relevant database. Coppermine will not create the database for you, but it will create the tables in the database during installation, there is no need for you to add any tables yourself.</li>
-  <li><strong>Run the install script on your server</strong> (by going to <tt class="code">http://your_server/coppermine_dir/install.php</tt> with your web browser) and follow the instructions</li>
-</ul>
-  <li><strong>Confirm that you have all the correct information about the database that will be used for your Coppermine installation.</strong> If no database exists for your website, you will need to create one, or have one created for you by your webhost. Your webhost can best provide you with instructions on how to go about doing this.  For installation purposes, you will need to know the path of the database server that you will be using with Coppermine and details of the MySQL user account through which Coppermine will connect to the server. You must have the database server path (usually 'localhost'), your MySQL username, MySQL password, and MySQL database name prior to installing Coppermine. The user installing Coppermine must have all relevant access rights to this database.
-
- If you are using a newly created database, there is no need for you to manually add any tables. Coppermine will create the necessary tables in the database during installation process.</li>
-
-  <li><strong>To run the install script on your server,</strong> type the following URL into your web browser:&nbsp;&nbsp; http://your_server/coppermine_dir/install.php&nbsp;&nbsp; (<em>your_server</em> = your website, <em>coppermine_dir</em> = the folder in which you uploaded your Coppermine files.)   Follow the online instructions inserting the necessary information as requested.</li>
+  <li><strong><a href="install_permissions.htm#permissions">Set permissions</a> on the "<em>albums</em>" and "<em>include</em>" folders in your Coppermine directory</strong><br />
+Usually, you have to apply the CHMOD command, setting the permissions to 755 (or 777, depending on your server config). <span class="important">This step is very important and must not be overlooked!</span></li>
+  <li><strong>Ensure you have correct information about your database</strong><br />
+- you need to <em>know</em> the database name as well as the details of a MySQL user account with which Coppermine should connect to the database. The database and the username must already exist, and the user must have access to the relevant database. Coppermine will not create the database for you, but it will create the tables in the database during installation, there is no need for you to add any tables yourself.</li>
+  <li><strong>Run the install script on your server</strong><br />
+  type the following URL into your web browser:&nbsp;&nbsp; http://your_server/coppermine_dir/install.php&nbsp;&nbsp; (<em>your_server</em> = your website, <em>coppermine_dir</em> = the folder in which you uploaded your Coppermine files.)   Follow the online instructions on the <a href="install_screen.htm">install screen</a> inserting the necessary information as requested.</li>
+  <li><strong>Confirm that you have all the correct information about the database that will be used for your Coppermine installation.</strong><br />
+   If no database exists for your website, you will need to create one, or have one created for you by your webhost. Your webhost can best provide you with instructions on how to go about doing this.  For installation purposes, you will need to know the path of the database server that you will be using with Coppermine and details of the MySQL user account through which Coppermine will connect to the server. You must have the database server path (usually 'localhost'), your MySQL username, MySQL password, and MySQL database name prior to installing Coppermine. The user installing Coppermine must have all relevant access rights to this database.<br />
+If you are using a newly created database, there is no need for you to manually add any tables. Coppermine will create the necessary tables in the database during installation process.</li>
 </ul>
 
 
