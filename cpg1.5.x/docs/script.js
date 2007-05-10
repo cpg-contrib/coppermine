@@ -541,6 +541,7 @@ d.add(1510,1350,'Bridging support','bridging.htm#integrating_support_start');
 d.add(1520,0,'Developer documentation','dev.htm');
 d.add(1530,1520,'Plugin hooks','plugin_hooks.htm');
 d.add(1540,1520,'Editing the documentation','dev_documentation.htm');
+d.add(1550,1520,'Subversion','dev_subversion.htm');
 
 function cpgDocToc() {
   document.write(d); // write the navigation
