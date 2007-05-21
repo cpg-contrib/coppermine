@@ -187,6 +187,12 @@ $template_sub_menu = <<<EOT
                                         <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /></td>
                                         <td><img name="buttonleft1" src="themes/hardwired/images/buttonleft1.gif" width="7" height="25" border="0" alt="" /></td>
                                         <td style="background: url(themes/hardwired/images/buttoncenter.gif);">
+                                                <a href="{BROWSEBYDATE_TGT}" title="{BROWSEBYDATE_LNK}">{BROWSEBYDATE_LNK}</a>
+                                        </td>
+                                        <td><img name="buttonright1" src="themes/hardwired/images/buttonright1.gif" width="7" height="25" border="0" alt="" /></td>
+                                        <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /></td>
+                                        <td><img name="buttonleft1" src="themes/hardwired/images/buttonleft1.gif" width="7" height="25" border="0" alt="" /></td>
+                                        <td style="background: url(themes/hardwired/images/buttoncenter.gif);">
                                                 <a href="{SEARCH_TGT}" title="{SEARCH_LNK}">{SEARCH_LNK}</a>
                                         </td>
                                         <td><img name="buttonright1" src="themes/hardwired/images/buttonright1.gif" width="7" height="25" border="0" alt="" /></td>

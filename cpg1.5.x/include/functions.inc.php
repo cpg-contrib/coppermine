@@ -911,9 +911,8 @@ function build_caption(&$rowset,$must_have=array())
  * @return
  **/
 
-function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $set_caption = true)
-{
-        global $USER, $CONFIG, $ALBUM_SET, $META_ALBUM_SET, $CURRENT_CAT_NAME, $CURRENT_ALBUM_KEYWORD, $HTML_SUBST, $THEME_DIR, $FAVPICS, $FORBIDDEN_SET_DATA, $USER_DATA;
+function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $set_caption = true) {
+        global $USER, $CONFIG, $ALBUM_SET, $META_ALBUM_SET, $CURRENT_CAT_NAME, $CURRENT_ALBUM_KEYWORD, $HTML_SUBST, $THEME_DIR, $FAVPICS, $FORBIDDEN_SET_DATA, $USER_DATA, $lang_common;
         global $album_date_fmt, $lastcom_date_fmt, $lastup_date_fmt, $lasthit_date_fmt, $cat;
         global $lang_get_pic_data, $lang_meta_album_names, $lang_errors;
 
@@ -1060,7 +1059,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 $count = $nbEnr[0];
                 mysql_free_result($result);
 
-                                $select_columns = '*, UNIX_TIMESTAMP(msg_date) AS msg_date'; //allows building any data into any thumbnail caption
+                $select_columns = '*, UNIX_TIMESTAMP(msg_date) AS msg_date'; //allows building any data into any thumbnail caption
 
                 $query = "SELECT $select_columns FROM {$CONFIG['TABLE_COMMENTS']} as c, {$CONFIG['TABLE_PICTURES']} as p WHERE approved = 'YES' AND author_id = '$uid' AND c.pid = p.pid $META_ALBUM_SET ORDER by msg_id DESC $limit";
                 $result = cpg_db_query($query);
@@ -1333,7 +1332,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
                         $select_columns = '*';
 
-                        $query = "SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES'AND pid IN ($favs) $META_ALBUM_SET $limit";
+                        $query = "SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND pid IN ($favs) $META_ALBUM_SET $limit";
                         $result = cpg_db_query($query);
                         $rowset = cpg_db_fetch_rowset($result);
 
@@ -1347,6 +1346,23 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 return $rowset;
                 break;
 
+        case 'datebrowse': // Browsing by uploading date
+            $date = isset($_GET['date']) ? cpgValidateDate($_GET['date']) : null;
+            $album_name = $lang_common['date'] . ': '. $date;
+            $rowset = array();
+            $query = "SELECT COUNT(pid) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND substring(from_unixtime(ctime),1,10) = '".substr($date,0,10)."' $META_ALBUM_SET";
+            $result = cpg_db_query($query);
+            $nbEnr = mysql_fetch_array($result);
+            $count = $nbEnr[0];
+            mysql_free_result($result);
+            $select_columns = '*';
+            $query = "SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND substring(from_unixtime(ctime),1,10) = '".substr($date,0,10)."'  $META_ALBUM_SET $limit";
+            $result = cpg_db_query($query);
+            $rowset = cpg_db_fetch_rowset($result);
+            mysql_free_result($result);
+            if ($set_caption) build_caption($rowset,array('ctime'));
+            return $rowset;
+            break;
         default : // Invalid meta album
         cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
         }
@@ -1892,7 +1908,8 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
                         }
                 }
 
-                theme_display_thumbnails($thumb_list, $thumb_count, $album_name, $album, $cat, $page, $total_pages, is_numeric($album), $display_tabs);
+                $date = isset($_GET['date']) ? cpgValidateDate($_GET['date']) : null;
+                theme_display_thumbnails($thumb_list, $thumb_count, $album_name, $album, $cat, $page, $total_pages, is_numeric($album), $display_tabs, 'thumb', $date);
         } else {
                 theme_no_img_to_display($album_name);
         }
@@ -2065,7 +2082,8 @@ function display_film_strip($album, $cat, $pos)
                         ######################################
 
                 }
-                return theme_display_film_strip($thumb_list, $thumb_count, $album_name, $album, $cat, $pos, is_numeric($album));
+                $date = isset($_GET['date']) ? cpgValidateDate($_GET['date']) : null;
+                return theme_display_film_strip($thumb_list, $thumb_count, $album_name, $album, $cat, $pos, is_numeric($album), 'thumb', $date);
         } else {
                 theme_no_img_to_display($album_name);
         }
@@ -3346,6 +3364,24 @@ function cpgGetScriptNameParams($exception = '') {
        if (!in_array($key,$exception)) {
            $return .= $key . "=" . $value . "&amp;";
        }
+    }
+    return $return;
+}
+
+/**
+* cpgValidateDate()
+*
+* Returns $date if $date contains a valid date string representation (yyyy-mm-dd). Returns an empty string if not.
+*
+* @param mixed $date
+* @return $return
+**/
+function cpgValidateDate($date) {
+    $pattern = '^(19|20)([0-9]{2}-((0[13-9]|1[0-2])-(0[1-9]|[12][0-9]|30)|(0[13578]|1[02])-31|02-(0[1-9]|1[0-9]|2[0-8]))|([2468]0|[02468][48]|[13579][26])-02-29)$';
+    if (ereg($pattern, $date) == TRUE) {
+        $return = $date;
+    } else {
+        $return = '';
     }
     return $return;
 }

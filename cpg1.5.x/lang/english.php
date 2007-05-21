@@ -26,8 +26,8 @@ $lang_translation_info = array(
   'lang_country_code' => 'us',
   'trans_name'=> 'Coppermine dev team',
   'trans_email' => '',
-  'trans_website' => 'http://coppermine.sourceforge.net/',
-  'trans_date' => '2004-03-18',
+  'trans_website' => 'http://coppermine-gallery.net/',
+  'trans_date' => '2007-05-21',
 );
 
 $lang_charset = 'iso-8859-1';
@@ -72,7 +72,7 @@ $lang_meta_album_names = array(
   'toprated' => 'Top rated',
   'lasthits' => 'Last viewed',
   'search' => 'Search results',
-  'favpics'=> 'Favorite Files',
+  'favpics'=> 'Favorite files',
 );
 
 $lang_errors = array(
@@ -126,6 +126,7 @@ $lang_common = array(
   'filesize' => 'Filesize', // cpg1.5.x
   'album' => 'Album', // cpg1.5.x
   'file' => 'File', // cpg1.5.x
+  'date' => 'Date', // cpg1.5.x
   'help' => 'Help', // cpg1.5.x
   'close' => 'Close', // cpg1.5.x
 );
@@ -171,6 +172,8 @@ $lang_main_menu = array(
   'memberlist_lnk' => 'Memberlist',
   'faq_title' => 'Frequently Asked Questions on the picture gallery &quot;Coppermine&quot;',
   'faq_lnk' => 'FAQ',
+  'browse_by_date_lnk' => 'By Date', // cpg1.5.x
+  'browse_by_date_title' => 'Browse by date uploaded', // cpg1.5.x
 );
 
 $lang_gallery_admin_menu = array(
@@ -593,8 +596,8 @@ if (defined('BRIDGEMGR_PHP')) $lang_bridgemgr_php = array(
 
 if (defined('CALENDAR_PHP')) $lang_calendar_php = array(
   'title' => 'Calendar',
-  'close' => 'close',
   'clear_date' => 'clear date',
+  'files' => 'files', // cpg1.5
 );
 
 // ------------------------------------------------------------------------- //
@@ -718,6 +721,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Show the vanity block on themes that are defined as XHTML and CSS compliant','vanity_block',1, 'f=configuration.htm&amp;as=vanity_block&amp;ae=vanity_block_end'),
   array('Path to custom header include', 'custom_header_path', 0, 'f=configuration.htm&amp;as=admin_theme_include_path_start&amp;ae=admin_theme_include_path_end'),
   array('Path to custom footer include', 'custom_footer_path', 0, 'f=configuration.htm&amp;as=admin_theme_include_path_start&amp;ae=admin_theme_include_path_end'),
+  array('Enable browsing by date', 'browse_by_date', 1, 'f=configuration.htm&amp;as=admin_theme_browse_by_date&amp;ae=admin_theme_browse_by_date_end'), // cpg1.5.x
 
   'Album list view',
   array('Width of the main table (pixels or %)', 'main_table_width', 0, 'f=configuration.htm&amp;as=admin_album_table-width&amp;ae=admin_album_table-width_end'),
@@ -1475,7 +1479,6 @@ if (defined('LOGOUT_PHP')) $lang_logout_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('MINIBROWSER_PHP')) $lang_minibrowser_php = array(
-  'close' => 'close',
   'submit' => 'OK',
   'up' => 'up one level',
   'current_path' => 'current path',

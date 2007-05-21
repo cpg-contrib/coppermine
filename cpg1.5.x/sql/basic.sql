@@ -340,3 +340,6 @@ INSERT INTO CPG_config VALUES ('allow_user_account_delete', '0');
 
 # Display statistics on index page
 INSERT INTO CPG_config VALUES ('display_stats_on_index', '1');
+
+# Enable "browse by date" meta album
+INSERT INTO CPG_config VALUES ('browse_by_date', '0');

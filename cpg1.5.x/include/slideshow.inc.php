@@ -170,7 +170,8 @@ function runSlideShow(){
 
 function endSlideShow(){
         self.document.location = 'displayimage.php?album=<?php echo isset($_GET['album']) ? $_GET['album'] : '';
-echo isset($_GET['cat']) ? '&cat=' . $_GET['cat'] : '' ?>&pos='+pos
+echo isset($_GET['cat']) ? '&cat=' . $_GET['cat'] : '';
+echo isset($_GET['date']) ? '&date=' . $_GET['date'] : ''; ?>&pos='+pos
 }
 
 preLoadPic(j)

@@ -256,7 +256,7 @@ print '</td>'.$newline;
 print '</tr>'.$newline;
 }
 endtable();
-// print '<div align="center"><a href="#" class="admin_menu" onclick="window.close();">'.$lang_minibrowser_php['close'].'</a></div>';
+// print '<div align="center"><a href="#" class="admin_menu" onclick="window.close();">'.$lang_common['close'].'</a></div>';
 ?>
 </form>
 </body>

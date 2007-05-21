@@ -67,6 +67,10 @@ $template_sub_menu = <<<EOT
                                                 <a href="{FAV_TGT}" onmouseover="MM_showHideLayers('SYS_MENU','','hide')" title="{FAV_LNK}">{FAV_LNK}</a>
                                         </td>
                                         <td><img src="themes/project_vii/images/menu_spacer.gif" width="2" height="35" border="0"  alt="" /><br /></td>
+                                        <td class="top_menu_bttn">
+                                                <a href="{BROWSEBYDATE_TGT}" onmouseover="MM_showHideLayers('SYS_MENU','','hide')" title="{BROWSEBYDATE_LNK}">{BROWSEBYDATE_LNK}</a>
+                                        </td>
+                                        <td><img src="themes/project_vii/images/menu_spacer.gif" width="2" height="35" border="0"  alt="" /><br /></td>
                                         <td class="top_menu_right_bttn">
                                                 <a href="{SEARCH_TGT}" onmouseover="MM_showHideLayers('SYS_MENU','','hide')" title="{SEARCH_LNK}">{SEARCH_LNK}</a>
                                         </td>
@@ -108,6 +112,10 @@ $template_sub_menu = <<<EOT
                                         <td><img src="themes/project_vii/images/menu_spacer.gif" width="2" height="35" border="0"  alt="" /><br /></td>
                                         <td class="top_menu_bttn">
                                                 <a href="{FAV_TGT}" onmouseover="MM_showHideLayers('SYS_MENU','','hide')" title="{FAV_LNK}">{FAV_LNK}</a>
+                                        </td>
+                                        <td><img src="themes/project_vii/images/menu_spacer.gif" width="2" height="35" border="0"  alt="" /><br /></td>
+                                        <td class="top_menu_bttn">
+                                                <a href="{BROWSEBYDATE_TGT}" onmouseover="MM_showHideLayers('SYS_MENU','','hide')" title="{BROWSEBYDATE_LNK}">{BROWSEBYDATE_LNK}</a>
                                         </td>
                                         <td><img src="themes/project_vii/images/menu_spacer.gif" width="2" height="35" border="0"  alt="" /><br /></td>
                                         <td class="top_menu_right_bttn">

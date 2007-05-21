@@ -210,6 +210,9 @@ if (!defined('THEME_HAS_NO_SUB_MENU_BUTTONS')) {
     addbutton($sub_menu_buttons,'{TOPN_LNK}','{TOPN_TITLE}','{TOPN_TGT}','topn',$template_sub_menu_spacer);
     addbutton($sub_menu_buttons,'{TOPRATED_LNK}','{TOPRATED_TITLE}','{TOPRATED_TGT}','toprated',$template_sub_menu_spacer);
     addbutton($sub_menu_buttons,'{FAV_LNK}','{FAV_TITLE}','{FAV_TGT}','favpics',$template_sub_menu_spacer);
+    if ($CONFIG['browse_by_date'] != 0) {
+    addbutton($sub_menu_buttons, '{BROWSEBYDATE_LNK}', '{BROWSEBYDATE_TITLE}', '{BROWSEBYDATE_TGT}', 'brose_by_date', $template_sub_menu_spacer);
+    }
     addbutton($sub_menu_buttons,'{SEARCH_LNK}','{SEARCH_TITLE}','{SEARCH_TGT}','search','');
     } //{THEMES}
 
@@ -1557,7 +1560,8 @@ if (!function_exists('theme_javascript_head')) {  //{THEMES}
 ******************************************************************************/
 // Function for the JavaScript inside the <head>-section
 function theme_javascript_head() {
-    $return = '<script type="text/javascript" src="scripts.js"></script>'; // do not remove this line unless you really know what you're doing
+    global $CONFIG;
+    $return = '<script type="text/javascript" src="scripts.js"></script>'."\n"; // do not remove this line unless you really know what you're doing
     $return .= <<< EOT
 
 <script type="text/javascript">
@@ -1811,6 +1815,9 @@ function theme_main_menu($which)
         '{FAV_TGT}' => "thumbnails.php?album=favpics",
         '{FAV_TITLE}' => $lang_main_menu['fav_title'],
         '{FAV_LNK}' => $lang_main_menu['fav_lnk'],
+        '{BROWSEBYDATE_TGT}' => '"#" onclick="MM_openBrWindow(\'calendar.php?action=browsebydate&month='.ltrim(strftime('%m'),'0').'&year='.strftime('%Y').'\', \'Calendar\', \'width=300, height=200, scrollbars=no, toolbar=no, status=no, resizable=no\'); return false;',
+        '{BROWSEBYDATE_LNK}' => $lang_main_menu['browse_by_date_lnk'],
+        '{BROWSEBYDATE_TITLE}' => $lang_main_menu['browse_by_date_title'],
         '{SEARCH_TGT}' => "search.php",
         '{SEARCH_TITLE}' => $lang_main_menu['search_title'],
         '{SEARCH_LNK}' => $lang_main_menu['search_lnk'],
@@ -2268,7 +2275,7 @@ if (!function_exists('theme_display_thumbnails')) {  //{THEMES}
 /******************************************************************************
 ** Section <<<theme_display_thumbnails>>> - START
 ******************************************************************************/
-function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $page, $total_pages, $sort_options, $display_tabs, $mode = 'thumb')
+function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $page, $total_pages, $sort_options, $display_tabs, $mode = 'thumb', $date='')
 {
     global $CONFIG;
     global $template_thumb_view_title_row,$template_fav_thumb_view_title_row, $lang_thumb_view,$lang_common, $template_tab_display, $template_thumbnail_view, $lang_album_list;
@@ -2292,15 +2299,16 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
     }
 
     $cat_link = is_numeric($aid) ? '' : '&amp;cat=' . $cat;
+    $date_link = $date=='' ? '' : '&amp;date=' . $date;
     $uid_link = (isset($_GET['uid']) && is_numeric($_GET['uid'])) ? '&amp;uid=' . $_GET['uid'] : '';
 
     $theme_thumb_tab_tmpl = $template_tab_display;
 
     if ($mode == 'thumb') {
         $theme_thumb_tab_tmpl['left_text'] = strtr($theme_thumb_tab_tmpl['left_text'], array('{LEFT_TEXT}' => $aid == 'lastalb' ? $lang_album_list['album_on_page'] : $lang_thumb_view['pic_on_page']));
-        $theme_thumb_tab_tmpl['inactive_tab'] = strtr($theme_thumb_tab_tmpl['inactive_tab'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . $uid_link . '&amp;page=%d'));
-        $theme_thumb_tab_tmpl['inactive_next_tab'] = strtr($theme_thumb_tab_tmpl['inactive_next_tab'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . $uid_link . '&amp;page=%d'));
-        $theme_thumb_tab_tmpl['inactive_prev_tab'] = strtr($theme_thumb_tab_tmpl['inactive_prev_tab'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . $uid_link . '&amp;page=%d'));
+        $theme_thumb_tab_tmpl['inactive_tab'] = strtr($theme_thumb_tab_tmpl['inactive_tab'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . $date_link . $uid_link . '&amp;page=%d'));
+        $theme_thumb_tab_tmpl['inactive_next_tab'] = strtr($theme_thumb_tab_tmpl['inactive_next_tab'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . $date_link . $uid_link . '&amp;page=%d'));
+        $theme_thumb_tab_tmpl['inactive_prev_tab'] = strtr($theme_thumb_tab_tmpl['inactive_prev_tab'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . $date_link . $uid_link . '&amp;page=%d'));
     } else {
         $theme_thumb_tab_tmpl['left_text'] = strtr($theme_thumb_tab_tmpl['left_text'], array('{LEFT_TEXT}' => $lang_thumb_view['user_on_page']));
         $theme_thumb_tab_tmpl['inactive_tab'] = strtr($theme_thumb_tab_tmpl['inactive_tab'], array('{LINK}' => 'index.php?cat=' . $cat . '&amp;page=%d'));
@@ -2365,7 +2373,7 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
             /*
             } else {
                 $params = array('{CELL_WIDTH}' => $cell_width,
-                              '{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&amp;pos={$thumb['pos']}$uid_link",
+                    '{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&amp;pos={$thumb['pos']}$uid_link",
                     '{THUMB}' => $thumb['image'],
                     '{CAPTION}' => $thumb['caption'],
                     '{ADMIN_MENU}' => $thumb['admin_menu']
@@ -2394,7 +2402,7 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
                 if ($CONFIG['thumbnail_to_fullsize'] == 1) { // code for full-size pop-up
                     $target = 'javascript:;" onClick="MM_openBrWindow(\'displayimage.php?pid=' . $thumb['pid'] . '&fullsize=1\',\'' . uniqid(rand()) . '\',\'scrollbars=yes,toolbar=no,status=no,resizable=yes,width=' . ((int)$thumb['pwidth']+(int)$CONFIG['fullsize_padding_x']) .  ',height=' .   ((int)$thumb['pheight']+(int)$CONFIG['fullsize_padding_y']). '\');';
                 } else {
-                    $target = "displayimage.php?album=$aid$cat_link&amp;pid={$thumb['pid']}$uid_link";
+                    $target = "displayimage.php?album=$aid$cat_link$date_link&amp;pid={$thumb['pid']}$uid_link";
                 }
                 $params = array('{CELL_WIDTH}' => $cell_width,
                     //'{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&amp;pos={$thumb['pos']}",
@@ -2444,8 +2452,7 @@ if (!function_exists('theme_display_film_strip')) {  //{THEMES}
 ** Section <<<theme_display_film_strip>>> - START
 ******************************************************************************/
 // Added to display flim_strip
-function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $pos, $sort_options, $mode = 'thumb')
-{
+function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $pos, $sort_options, $mode = 'thumb', $date='') {
     global $CONFIG, $THEME_DIR;
     global $template_film_strip, $lang_film_strip;
 
@@ -2461,6 +2468,7 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
     }
 
     $cat_link = is_numeric($aid) ? '' : '&amp;cat=' . $cat;
+    $date_link = $date=='' ? '' : '&amp;date=' . $date;
     $uid_link = is_numeric($_GET['uid']) ? '&amp;uid=' . $_GET['uid'] : '';
 
     $thumbcols = $CONFIG['thumbcols'];
@@ -2475,7 +2483,7 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
             if ($CONFIG['thumbnail_to_fullsize'] == 1) { // code for full-size pop-up
                 $target = 'javascript:;" onClick="MM_openBrWindow(\'displayimage.php?pid=' . $thumb['pid'] . '&fullsize=1\',\'' . uniqid(rand()) . '\',\'scrollbars=yes,toolbar=no,status=no,resizable=yes,width=' . ((int)$thumb['pwidth']+(int)$CONFIG['fullsize_padding_x']) .  ',height=' .   ((int)$thumb['pheight']+(int)$CONFIG['fullsize_padding_y']). '\');';
             } else {
-                $target = "displayimage.php?album=$aid$cat_link&amp;pid={$thumb['pid']}$uid_link";
+                $target = "displayimage.php?album=$aid$cat_link$date_link&amp;pid={$thumb['pid']}$uid_link";
             }
             $params = array('{CELL_WIDTH}' => $cell_width,
                 '{LINK_TGT}' => $target,
@@ -2821,7 +2829,8 @@ function theme_html_img_nav_menu()
     global $album, $cat, $pos, $pic_count, $pic_data, $lang_img_nav_bar, $lang_text_dir, $template_img_navbar;
 
     $cat_link = is_numeric($album) ? '' : '&amp;cat=' . $cat;
-        $uid_link = is_numeric($_GET['uid']) ? '&amp;uid=' . $_GET['uid'] : '';
+    $date_link = $_GET['date']=='' ? '' : '&date=' . cpgValidateDate($_GET['date']);
+    $uid_link = is_numeric($_GET['uid']) ? '&amp;uid=' . $_GET['uid'] : '';
 
     $human_pos = $pos + 1;
     $page = ceil(($pos + 1) / ($CONFIG['thumbrows'] * $CONFIG['thumbcols']));
@@ -2830,21 +2839,21 @@ function theme_html_img_nav_menu()
     $start = 0;
 
         //$start_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$start"; // Abbas - added pid in URL instead of pos
-        $start_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pid={$pic_data[$start]['pid']}";
+        $start_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link$date_link&amp;pid={$pic_data[$start]['pid']}";
         $start_title = $lang_img_nav_bar['go_album_start'];
         $meta_nav .= "<link rel=\"start\" href=\"$start_tgt\" title=\"$start_title\" />\n";
         $end = $pic_count - 1;
         //$end_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$end";// Abbas - added pid in URL instead of pos
-        $end_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pid={$pic_data[$end]['pid']}";
+        $end_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link$date_link&amp;pid={$pic_data[$end]['pid']}";
         $end_title = $lang_img_nav_bar['go_album_end'];
         $meta_nav .= "<link rel=\"last\" href=\"$end_tgt\" title=\"$end_title\" />\n";
 
     if ($pos > 0) {
         $prev = $pos - 1;
         //$prev_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$prev$uid_link";// Abbas - added pid in URL instead of pos
-        $prev_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pid={$pic_data[$prev]['pid']}$uid_link";
+        $prev_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link$date_link&amp;pid={$pic_data[$prev]['pid']}$uid_link";
         $prev_title = $lang_img_nav_bar['prev_title'];
-                                $meta_nav .= "<link rel=\"prev\" href=\"$prev_tgt\" title=\"$prev_title\" />\n";
+        $meta_nav .= "<link rel=\"prev\" href=\"$prev_tgt\" title=\"$prev_title\" />\n";
     } else {
         $prev_tgt = "javascript:;";
         $prev_title = "";
@@ -2853,16 +2862,16 @@ function theme_html_img_nav_menu()
     if ($pos < ($pic_count -1)) {
         $next = $pos + 1;
         //$next_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$next$uid_link";// Abbas - added pid in URL instead of pos
-        $next_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pid={$pic_data[$next]['pid']}$uid_link";
+        $next_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link$date_link&amp;pid={$pic_data[$next]['pid']}$uid_link";
         $next_title = $lang_img_nav_bar['next_title'];
-                                $meta_nav .= "<link rel=\"next\" href=\"$next_tgt\" title=\"$next_title\"/>\n";
+        $meta_nav .= "<link rel=\"next\" href=\"$next_tgt\" title=\"$next_title\"/>\n";
     } else {
         $next_tgt = "javascript:;";
         $next_title = "";
     }
 
     if (USER_CAN_SEND_ECARDS) {
-        $ecard_tgt = "ecard.php?album=$album$cat_link&amp;pid=$pid&amp;pos=$pos";
+        $ecard_tgt = "ecard.php?album=$album$cat_link$date_link&amp;pid=$pid&amp;pos=$pos";
         $ecard_title = $lang_img_nav_bar['ecard_title'];
     } else {
         template_extract_block($template_img_navbar, 'ecard_button'); // added to remove button if cannot send ecard
@@ -2872,16 +2881,16 @@ function theme_html_img_nav_menu()
 
                 //report to moderator buttons
     if (($CONFIG['report_post']==1) && (USER_CAN_SEND_ECARDS)) {
-        $report_tgt = "report_file.php?album=$album$cat_link&amp;pid=$pid&amp;pos=$pos";
+        $report_tgt = "report_file.php?album=$album$cat_link$date_link&amp;pid=$pid&amp;pos=$pos";
     } else { // remove button if report toggle is off
         template_extract_block($template_img_navbar, 'report_file_button');
 
     }
 
-                              $thumb_tgt = "thumbnails.php?album=$album$cat_link&amp;page=$page$uid_link";
+                              $thumb_tgt = "thumbnails.php?album=$album$cat_link$date_link&amp;page=$page$uid_link";
         $meta_nav .= "<link rel=\"up\" href=\"$thumb_tgt\" title=\"".$lang_img_nav_bar['thumb_title']."\"/>\n";
 
-    $slideshow_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link$uid_link&amp;pid=$pid&amp;slideshow=".$CONFIG['slideshow_interval'];
+    $slideshow_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link$date_link$uid_link&amp;pid=$pid&amp;slideshow=".$CONFIG['slideshow_interval'];
 
     $pic_pos = sprintf($lang_img_nav_bar['pic_pos'], $human_pos, $pic_count);
 

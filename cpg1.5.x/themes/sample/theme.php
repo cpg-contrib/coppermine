@@ -185,6 +185,9 @@ if (!defined('THEME_HAS_NO_SUB_MENU_BUTTONS')) {
     addbutton($sub_menu_buttons,'{TOPN_LNK}','{TOPN_TITLE}','{TOPN_TGT}','topn',$template_sub_menu_spacer);
     addbutton($sub_menu_buttons,'{TOPRATED_LNK}','{TOPRATED_TITLE}','{TOPRATED_TGT}','toprated',$template_sub_menu_spacer);
     addbutton($sub_menu_buttons,'{FAV_LNK}','{FAV_TITLE}','{FAV_TGT}','favpics',$template_sub_menu_spacer);
+    if ($CONFIG['browse_by_date'] != 0) {
+    addbutton($sub_menu_buttons, '{BROWSEBYDATE_LNK}', '{BROWSEBYDATE_TITLE}', '{BROWSEBYDATE_TGT}', 'brose_by_date', '$template_sub_menu_spacer');
+    }
     addbutton($sub_menu_buttons,'{SEARCH_LNK}','{SEARCH_TITLE}','{SEARCH_TGT}','search','');
 
   $params = array('{BUTTONS}' => assemble_template_buttons($template_sub_menu_button,$sub_menu_buttons));
@@ -1153,7 +1156,7 @@ $template_ecard = <<<EOT
       <table border="0" cellspacing="0" cellpadding="10" bgcolor="#ffffff">
         <tr>
           <td valign="top">
-           <a href="{VIEW_MORE_TGT}/displayimage.php?pid={PID}">{PIC_MARKUP}</a>
+           <a href="{VIEW_MORE_TGT}displayimage.php?pid={PID}">{PIC_MARKUP}</a>
                                          <br />
                                          <div align="center">
                                                  <h2>{PIC_TITLE}</h2>
@@ -1378,7 +1381,7 @@ $template_tab_display = array('left_text' => '<td width="100%%" align="left" val
     'inactive_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}"><b>%d</b></a></td>' . "\n",
     'inactive_prev_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}"><b>{PREV}</b></a></td>' . "\n",
     'inactive_next_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}"><b>{NEXT}</b></a></td>' . "\n",
-    );
+);
 /******************************************************************************
 ** Section <<<$template_tab_display>>> - END
 ******************************************************************************/
@@ -1426,6 +1429,7 @@ function pageheader($section, $meta = '')
         '{ADMIN_MENU}' => theme_admin_mode_menu(),
         '{CUSTOM_HEADER}' => $custom_header,
         '{JAVASCRIPT}' => theme_javascript_head(),
+        '{MESSAGE_BLOCK}' => theme_display_message_block(),
         );
 
     echo template_eval($template_header, $template_vars);
@@ -1467,7 +1471,8 @@ function pagefooter()
 ******************************************************************************/
 // Function for the JavaScript inside the <head>-section
 function theme_javascript_head() {
-    $return = '<script type="text/javascript" src="scripts.js"></script>'; // do not remove this line unless you really know what you're doing
+    global $CONFIG;
+    $return = '<script type="text/javascript" src="scripts.js"></script>'."\n"; // do not remove this line unless you really know what you're doing
     $return .= <<< EOT
 
 <script type="text/javascript">
@@ -1560,7 +1565,6 @@ function theme_main_menu($which)
     global $AUTHORIZED, $CONFIG, $album, $actual_cat, $cat, $REFERER;
     global $lang_main_menu, $template_sys_menu, $template_sub_menu, $lang_gallery_admin_menu;
 
-
     static $sys_menu = '', $sub_menu = '';
     if ($$which != '') {
         return $$which;
@@ -1600,8 +1604,6 @@ function theme_main_menu($which)
     $cat_l = (isset($actual_cat))? "?cat=$actual_cat" : (isset($cat) ? "?cat=$cat" : '');
     $cat_l2 = isset($cat) ? "&amp;cat=$cat" : '';
     $my_gallery_id = FIRST_USER_CAT + USER_ID;
-
-
 
   if ($which == 'sys_menu' ) {
     if (USER_ID) {
@@ -1714,6 +1716,9 @@ function theme_main_menu($which)
         '{FAV_TGT}' => "thumbnails.php?album=favpics",
         '{FAV_TITLE}' => $lang_main_menu['fav_title'],
         '{FAV_LNK}' => $lang_main_menu['fav_lnk'],
+        '{BROWSEBYDATE_TGT}' => '"#" onclick="MM_openBrWindow(\'calendar.php?action=browsebydate&month='.ltrim(strftime('%m'),'0').'&year='.strftime('%Y').'\', \'Calendar\', \'width=300, height=200, scrollbars=no, toolbar=no, status=no, resizable=no\'); return false;',
+        '{BROWSEBYDATE_LNK}' => $lang_main_menu['browse_by_date_lnk'],
+        '{BROWSEBYDATE_TITLE}' => $lang_main_menu['browse_by_date_title'],
         '{SEARCH_TGT}' => "search.php",
         '{SEARCH_TITLE}' => $lang_main_menu['search_title'],
         '{SEARCH_LNK}' => $lang_main_menu['search_lnk'],
@@ -1763,6 +1768,23 @@ function theme_admin_mode_menu()
             } else {
                 $documentation_href = 'http://coppermine.sf.net/docs/cpg14/index.php';
             }
+
+            if (!$CONFIG['enable_plugins']) {
+                template_extract_block($template_gallery_admin_menu, 'plugin_manager');
+            }
+            if (!$CONFIG['log_mode']) {
+                template_extract_block($template_gallery_admin_menu, 'view_log_files');
+            }
+            if (!$CONFIG['hit_details']) {
+                template_extract_block($template_gallery_admin_menu, 'overall_stats');
+            }
+            if (!$CONFIG['clickable_keyword_search']) {
+                template_extract_block($template_gallery_admin_menu, 'keyword_manager');
+            }
+            if (!$CONFIG['read_exif_data']) {
+                template_extract_block($template_gallery_admin_menu, 'exif_manager');
+            }
+
             $param = array('{CATL}' => $cat_l,
                 '{UPL_APP_TITLE}' => $lang_gallery_admin_menu['upl_app_title'],
                 '{UPL_APP_LNK}' => $lang_gallery_admin_menu['upl_app_lnk'],
@@ -1793,10 +1815,28 @@ function theme_admin_mode_menu()
                 '{DOCUMENTATION_HREF}' => $documentation_href,
                 '{DOCUMENTATION_TITLE}' => $lang_gallery_admin_menu['documentation_title'],
                 '{DOCUMENTATION_LNK}' => $lang_gallery_admin_menu['documentation_lnk'],
+                '{PLUGINMGR_TITLE}' => $lang_gallery_admin_menu['pluginmgr_title'],
+                '{PLUGINMGR_LNK}' => $lang_gallery_admin_menu['pluginmgr_lnk'],
+                '{BRIDGEMGR_TITLE}' => $lang_gallery_admin_menu['bridgemgr_title'],
+                '{BRIDGEMGR_LNK}' => $lang_gallery_admin_menu['bridgemgr_lnk'],
+                '{PHPINFO_TITLE}' => $lang_gallery_admin_menu['phpinfo_title'],
+                '{PHPINFO_LNK}' => $lang_gallery_admin_menu['phpinfo_lnk'],
+                '{UPDATE_DATABASE_TITLE}' => $lang_gallery_admin_menu['update_database_title'],
+                '{UPDATE_DATABASE_LNK}' => $lang_gallery_admin_menu['update_database_lnk'],
+                '{VIEW_LOG_FILES_TITLE}' => $lang_gallery_admin_menu['view_log_files_title'],
+                '{VIEW_LOG_FILES_LNK}' => $lang_gallery_admin_menu['view_log_files_lnk'],
+                '{CHECK_VERSIONS_TITLE}' => $lang_gallery_admin_menu['check_versions_title'],
+                '{CHECK_VERSIONS_LNK}' => $lang_gallery_admin_menu['check_versions_lnk'],
+                '{OVERALL_STATS_TITLE}' => $lang_gallery_admin_menu['overall_stats_title'],
+                '{OVERALL_STATS_LNK}' => $lang_gallery_admin_menu['overall_stats_lnk'],
+                '{KEYWORDMGR_TITLE}' => $lang_gallery_admin_menu['keywordmgr_title'],
+                '{KEYWORDMGR_LNK}' => $lang_gallery_admin_menu['keywordmgr_lnk'],
+                '{EXIFMGR_TITLE}' => $lang_gallery_admin_menu['exifmgr_title'],
+                '{EXIFMGR_LNK}' => $lang_gallery_admin_menu['exifmgr_lnk'],
                 );
 
             $html = template_eval($template_gallery_admin_menu, $param);
-            $html.= cpg_alert_dev_version();
+            //$html.= cpg_alert_dev_version();
         } elseif (USER_ADMIN_MODE) {
             $param = array('{ALBMGR_TITLE}' => $lang_user_admin_menu['albmgr_title'],
                 '{ALBMGR_LNK}' => $lang_user_admin_menu['albmgr_lnk'],
@@ -1822,6 +1862,35 @@ function theme_admin_mode_menu()
 ** Section <<<theme_admin_mode_menu>>> - END
 ******************************************************************************/
 
+/******************************************************************************
+** Section <<<theme_display_message_block>>> - START
+******************************************************************************/
+/******************************************************************************
+// Function for the theme_display_message_block
+The message block (not to be confused with the admin menu) will display message carried over from one page to the other and an RSS feed from the coppermine project page for the admin.
+It's advisable not to change it unless you really know what you're doing.
+This function composes the individual sections of the block.
+******************************************************************************/
+function theme_display_message_block() {
+    global $lang_gallery_admin_menu, $CONFIG;
+    $return = '';
+    if ($_SERVER['message_id'] != '') {
+        $return = '<a name="cpgMessageBlock"></a><div id="cpgMessage" style="border:1px solid red;width:100%;">message block (under construction):';
+        $return .= cpgFetchTempMessage($_SERVER['message_id']);
+        $return .= '</div>';
+    }
+    if (GALLERY_ADMIN_MODE) {
+        cpgCleanTempMessage(); // garbage collection: when the admin is logged in, old messages that failed to display for whatever reason are being removed to keep the temp_messages table clean
+        $return .= cpg_alert_dev_version();
+        // $return .= cpg_display_rss(); //add RSS feed from coppermine-gallery.net later
+    } else { // not in admin mode
+        $return = '';
+    }
+    return $return;
+}
+/******************************************************************************
+** Section <<<theme_display_message_block>>> - END
+******************************************************************************/
 /******************************************************************************
 ** Section <<<theme_display_cat_list>>> - START
 ******************************************************************************/
@@ -2092,7 +2161,7 @@ function theme_display_album_list_cat(&$alb_list, $nbAlb, $cat, $page, $total_pa
 /******************************************************************************
 ** Section <<<theme_display_thumbnails>>> - START
 ******************************************************************************/
-function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $page, $total_pages, $sort_options, $display_tabs, $mode = 'thumb')
+function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $page, $total_pages, $sort_options, $display_tabs, $mode = 'thumb', $date='')
 {
     global $CONFIG;
     global $template_thumb_view_title_row,$template_fav_thumb_view_title_row, $lang_thumb_view,$lang_common, $template_tab_display, $template_thumbnail_view, $lang_album_list;
@@ -2116,15 +2185,16 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
     }
 
     $cat_link = is_numeric($aid) ? '' : '&amp;cat=' . $cat;
+    $date_link = $date=='' ? '' : '&amp;date=' . $date;
     $uid_link = (isset($_GET['uid']) && is_numeric($_GET['uid'])) ? '&amp;uid=' . $_GET['uid'] : '';
 
     $theme_thumb_tab_tmpl = $template_tab_display;
 
     if ($mode == 'thumb') {
         $theme_thumb_tab_tmpl['left_text'] = strtr($theme_thumb_tab_tmpl['left_text'], array('{LEFT_TEXT}' => $aid == 'lastalb' ? $lang_album_list['album_on_page'] : $lang_thumb_view['pic_on_page']));
-        $theme_thumb_tab_tmpl['inactive_tab'] = strtr($theme_thumb_tab_tmpl['inactive_tab'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . $uid_link . '&amp;page=%d'));
-        $theme_thumb_tab_tmpl['inactive_next_tab'] = strtr($theme_thumb_tab_tmpl['inactive_next_tab'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . $uid_link . '&amp;page=%d'));
-        $theme_thumb_tab_tmpl['inactive_prev_tab'] = strtr($theme_thumb_tab_tmpl['inactive_prev_tab'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . $uid_link . '&amp;page=%d'));
+        $theme_thumb_tab_tmpl['inactive_tab'] = strtr($theme_thumb_tab_tmpl['inactive_tab'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . $date_link . $uid_link . '&amp;page=%d'));
+        $theme_thumb_tab_tmpl['inactive_next_tab'] = strtr($theme_thumb_tab_tmpl['inactive_next_tab'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . $date_link . $uid_link . '&amp;page=%d'));
+        $theme_thumb_tab_tmpl['inactive_prev_tab'] = strtr($theme_thumb_tab_tmpl['inactive_prev_tab'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . $date_link . $uid_link . '&amp;page=%d'));
     } else {
         $theme_thumb_tab_tmpl['left_text'] = strtr($theme_thumb_tab_tmpl['left_text'], array('{LEFT_TEXT}' => $lang_thumb_view['user_on_page']));
         $theme_thumb_tab_tmpl['inactive_tab'] = strtr($theme_thumb_tab_tmpl['inactive_tab'], array('{LINK}' => 'index.php?cat=' . $cat . '&amp;page=%d'));
@@ -2202,7 +2272,7 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
                 if ($CONFIG['thumbnail_to_fullsize'] == 1) { // code for full-size pop-up
                     $target = 'javascript:;" onClick="MM_openBrWindow(\'displayimage.php?pid=' . $thumb['pid'] . '&fullsize=1\',\'' . uniqid(rand()) . '\',\'scrollbars=yes,toolbar=no,status=no,resizable=yes,width=' . ((int)$thumb['pwidth']+(int)$CONFIG['fullsize_padding_x']) .  ',height=' .   ((int)$thumb['pheight']+(int)$CONFIG['fullsize_padding_y']). '\');';
                 } else {
-                    $target = "displayimage.php?album=$aid$cat_link&amp;pid={$thumb['pid']}$uid_link";
+                    $target = "displayimage.php?album=$aid$cat_link$date_link&amp;pid={$thumb['pid']}$uid_link";
                 }
                 $params = array('{CELL_WIDTH}' => $cell_width,
                     '{LINK_TGT}' => $target,
@@ -2248,8 +2318,7 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
 ** Section <<<theme_display_film_strip>>> - START
 ******************************************************************************/
 // Added to display flim_strip
-function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $pos, $sort_options, $mode = 'thumb')
-{
+function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $pos, $sort_options, $mode = 'thumb', $date='') {
     global $CONFIG, $THEME_DIR;
     global $template_film_strip, $lang_film_strip;
 
@@ -2265,6 +2334,7 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
     }
 
     $cat_link = is_numeric($aid) ? '' : '&amp;cat=' . $cat;
+    $date_link = $date=='' ? '' : '&amp;date=' . $date;
     $uid_link = is_numeric($_GET['uid']) ? '&amp;uid=' . $_GET['uid'] : '';
 
     $thumbcols = $CONFIG['thumbcols'];
@@ -2279,7 +2349,7 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
             if ($CONFIG['thumbnail_to_fullsize'] == 1) { // code for full-size pop-up
                 $target = 'javascript:;" onClick="MM_openBrWindow(\'displayimage.php?pid=' . $thumb['pid'] . '&fullsize=1\',\'' . uniqid(rand()) . '\',\'scrollbars=yes,toolbar=no,status=no,resizable=yes,width=' . ((int)$thumb['pwidth']+(int)$CONFIG['fullsize_padding_x']) .  ',height=' .   ((int)$thumb['pheight']+(int)$CONFIG['fullsize_padding_y']). '\');';
             } else {
-                $target = "displayimage.php?album=$aid$cat_link&amp;pid={$thumb['pid']}$uid_link";
+                $target = "displayimage.php?album=$aid$cat_link$date_link&amp;pid={$thumb['pid']}$uid_link";
             }
             $params = array('{CELL_WIDTH}' => $cell_width,
                 '{LINK_TGT}' => $target,
@@ -2615,25 +2685,27 @@ function theme_html_img_nav_menu()
     global $album, $cat, $pos, $pic_count, $pic_data, $lang_img_nav_bar, $lang_text_dir, $template_img_navbar;
 
     $cat_link = is_numeric($album) ? '' : '&amp;cat=' . $cat;
+    $date_link = $_GET['date']=='' ? '' : '&date=' . cpgValidateDate($_GET['date']);
+    $uid_link = is_numeric($_GET['uid']) ? '&amp;uid=' . $_GET['uid'] : '';
 
     $human_pos = $pos + 1;
     $page = ceil(($pos + 1) / ($CONFIG['thumbrows'] * $CONFIG['thumbcols']));
     $pid = $CURRENT_PIC_DATA['pid'];
 
     $start = 0;
-        $start_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pid={$pic_data[$start]['pid']}";
+        $start_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link$date_link&amp;pid={$pic_data[$start]['pid']}";
         $start_title = $lang_img_nav_bar['go_album_start'];
         $meta_nav .= "<link rel=\"start\" href=\"$start_tgt\" title=\"$start_title\" />\n";
         $end = $pic_count - 1;
-        $end_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pid={$pic_data[$end]['pid']}";
+        $end_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link$date_link&amp;pid={$pic_data[$end]['pid']}";
         $end_title = $lang_img_nav_bar['go_album_end'];
         $meta_nav .= "<link rel=\"last\" href=\"$end_tgt\" title=\"$end_title\" />\n";
 
     if ($pos > 0) {
         $prev = $pos - 1;
-        $prev_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pid={$pic_data[$prev]['pid']}$uid_link";
+        $prev_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link$date_link&amp;pid={$pic_data[$prev]['pid']}$uid_link";
         $prev_title = $lang_img_nav_bar['prev_title'];
-                                $meta_nav .= "<link rel=\"prev\" href=\"$prev_tgt\" title=\"$prev_title\" />\n";
+        $meta_nav .= "<link rel=\"prev\" href=\"$prev_tgt\" title=\"$prev_title\" />\n";
     } else {
         $prev_tgt = "javascript:;";
         $prev_title = "";
@@ -2641,16 +2713,16 @@ function theme_html_img_nav_menu()
 
     if ($pos < ($pic_count -1)) {
         $next = $pos + 1;
-        $next_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pid={$pic_data[$next]['pid']}$uid_link";
+        $next_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link$date_link&amp;pid={$pic_data[$next]['pid']}$uid_link";
         $next_title = $lang_img_nav_bar['next_title'];
-                                $meta_nav .= "<link rel=\"next\" href=\"$next_tgt\" title=\"$next_title\"/>\n";
+        $meta_nav .= "<link rel=\"next\" href=\"$next_tgt\" title=\"$next_title\"/>\n";
     } else {
         $next_tgt = "javascript:;";
         $next_title = "";
     }
 
     if (USER_CAN_SEND_ECARDS) {
-        $ecard_tgt = "ecard.php?album=$album$cat_link&amp;pid=$pid&amp;pos=$pos";
+        $ecard_tgt = "ecard.php?album=$album$cat_link$date_link&amp;pid=$pid&amp;pos=$pos";
         $ecard_title = $lang_img_nav_bar['ecard_title'];
     } else {
         template_extract_block($template_img_navbar, 'ecard_button'); // added to remove button if cannot send ecard
@@ -2660,16 +2732,16 @@ function theme_html_img_nav_menu()
 
                 //report to moderator buttons
     if (($CONFIG['report_post']==1) && (USER_CAN_SEND_ECARDS)) {
-        $report_tgt = "report_file.php?album=$album$cat_link&amp;pid=$pid&amp;pos=$pos";
+        $report_tgt = "report_file.php?album=$album$cat_link$date_link&amp;pid=$pid&amp;pos=$pos";
     } else { // remove button if report toggle is off
         template_extract_block($template_img_navbar, 'report_file_button');
 
     }
 
-                    $thumb_tgt = "thumbnails.php?album=$album$cat_link&amp;page=$page$uid_link";
+                    $thumb_tgt = "thumbnails.php?album=$album$cat_link$date_link&amp;page=$page$uid_link";
         $meta_nav .= "<link rel=\"up\" href=\"$thumb_tgt\" title=\"".$lang_img_nav_bar['thumb_title']."\"/>\n";
 
-    $slideshow_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link$uid_link&amp;pid=$pid&amp;slideshow=".$CONFIG['slideshow_interval'];
+    $slideshow_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link$date_link$uid_link&amp;pid=$pid&amp;slideshow=".$CONFIG['slideshow_interval'];
 
     $pic_pos = sprintf($lang_img_nav_bar['pic_pos'], $human_pos, $pic_count);
 
@@ -3138,7 +3210,8 @@ function theme_display_bar(
   global $lang_errors;
   // Validate parameters
   if ($maxValue == 0 || $maxValue == '') {
-    cpg_die(ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
+    //cpg_die(ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
+    $maxValue = $actualValue;
   }
   // Initialize some vars:
   $return = '';

@@ -611,3 +611,7 @@ ALTER TABLE CPG_temp_messages CHANGE `message_id` `message_id` VARCHAR(80) NOT N
 
 # Display statistics on index page
 INSERT INTO CPG_config VALUES ('display_stats_on_index', '1');
+
+
+# Enable "browse by date" meta album
+INSERT INTO CPG_config VALUES ('browse_by_date', '0');
