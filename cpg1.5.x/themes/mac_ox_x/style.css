@@ -273,6 +273,7 @@ a:hover {
         padding-left: 10px;
         height: 25px;
         background-image: url(images/tableh1_bg.gif);
+        font-weight:bold;
 }
 
 
@@ -296,6 +297,7 @@ a:hover {
         padding-left: 5px;
         height: 25px;
         background-image: url(images/tableh1_bg.gif);
+        font-weight:bold;
 }
 
 
@@ -314,6 +316,7 @@ a:hover {
         padding-bottom: 2px;
         padding-left: 5px;
         background-image: url(images/tableh2_bg.gif);
+        font-weight:bold;
 }
 
 
@@ -583,6 +586,9 @@ a:hover {
         text-decoration: underline;
 }
 
+.alblink {
+        font-weight:bold;
+}
 
 .alblink a {
         text-decoration: underline;
@@ -597,6 +603,7 @@ a:hover {
 .catlink {
         display: block;
         margin-bottom: 2px;
+        font-weight:bold;
 }
 
 
@@ -691,6 +698,11 @@ a:hover {
         margin-top:0px;
         margin-bottom:0px;
         line-height:1.0em;
+}
+
+.cpg_user_message {
+        font-size:1.4em;
+        font-weight:bold;
 }
 
 #SUB_MENU {

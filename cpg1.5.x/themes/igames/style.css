@@ -81,7 +81,7 @@ a:active .image { border: 1px solid #000000; }
 
 /* Fonts definition */
 body { font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif; }
-.tableh1, .tableh1a, .catlink, .tableh2, .catrow_noalb { font-family: Verdana, Geneva, Arial, sans-serif; }
+.tableh1, .tableh1a, .catlink, .tableh2, .catrow_noalb { font-family: Verdana, Geneva, Arial, sans-serif; font-weight:bold;}
 .textinput, .listbox, .radio, .checkbox { font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif; }
 .button, .comment_button, .sortorder_options, .admin_menu_thumb { font-family: Arial, Helvetica, sans-serif; }
 
@@ -392,6 +392,7 @@ a:hover {
         padding-right: 5px;
         padding-bottom: 2px;
         padding-left: 5px;
+        font-weight:bold;
 }
 
 .tableb {
@@ -638,6 +639,10 @@ a:hover {
         text-decoration: underline;
 }
 
+.alblink {
+        font-weight:bold;
+}
+
 .alblink a {
         text-decoration: underline;
 }
@@ -649,6 +654,7 @@ a:hover {
 .catlink {
         display: block;
         margin-bottom: 2px;
+        font-weight:bold;
 }
 
 .catlink a {
@@ -742,6 +748,11 @@ a:hover {
         margin-bottom:0px;
         line-height:1.0em;
         background-image : none;
+}
+
+.cpg_user_message {
+        font-size:1.4em;
+        font-weight:bold;
 }
 
 #SELECT_LISTS {

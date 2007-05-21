@@ -207,6 +207,7 @@ a:hover.yebg {
         padding-right: 10px;
         padding-bottom: 3px;
         padding-left: 10px;
+        font-weight:bold;
 }
 
 .tableh1_compact {
@@ -216,6 +217,7 @@ a:hover.yebg {
         padding-right: 5px;
         padding-bottom: 2px;
         padding-left: 5px;
+        font-weight:bold;
 }
 
 .tableh2 {
@@ -230,6 +232,7 @@ a:hover.yebg {
 .tableh2_compact {
         background: #FFFF00 ;
         color : #000000;
+        font-weight:bold;
         padding-top: 2px;
         padding-right: 5px;
         padding-bottom: 2px;
@@ -568,6 +571,10 @@ a:active .image{
         text-decoration: none;
 }
 
+.alblink {
+        font-weight:bold;
+}
+
 .alblink a {
         text-decoration: underline;
         color: #000000;
@@ -581,6 +588,7 @@ a:active .image{
 .catlink {
         display: block;
         margin-bottom: 2px;
+        font-weight:bold;
 }
 
 .catlink a {
@@ -706,6 +714,11 @@ a:active .image{
         margin-top:0px;
         margin-bottom:0px;
         line-height:1.0em;
+}
+
+.cpg_user_message {
+        font-size:1.4em;
+        font-weight:bold;
 }
 
 #SELECT_LISTS {

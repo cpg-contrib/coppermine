@@ -319,19 +319,19 @@ if (!isset($template_cat_list)) { //{THEMES}
 $template_cat_list = <<<EOT
 <!-- BEGIN header -->
         <tr>
-                <td class="tableh1" width="80%" align="left"><b>{CATEGORY}</b></td>
-                <td class="tableh1" width="10%" align="center"><b>{ALBUMS}</b></td>
-                <td class="tableh1" width="10%" align="center"><b>{PICTURES}</b></td>
+                <td class="tableh1" width="80%" align="left">{CATEGORY}</td>
+                <td class="tableh1" width="10%" align="center">{ALBUMS}</td>
+                <td class="tableh1" width="10%" align="center">{PICTURES}</td>
         </tr>
 <!-- END header -->
 <!-- BEGIN catrow_noalb -->
         <tr>
-                <td class="catrow_noalb" colspan="3"><table border="0"><tr><td align="left">{CAT_THUMB}</td><td align="left"><span class="catlink"><b>{CAT_TITLE}</b></span>{CAT_DESC}</td></tr></table></td>
+                <td class="catrow_noalb" colspan="3"><table border="0"><tr><td align="left">{CAT_THUMB}</td><td align="left"><span class="catlink">{CAT_TITLE}</span>{CAT_DESC}</td></tr></table></td>
         </tr>
 <!-- END catrow_noalb -->
 <!-- BEGIN catrow -->
         <tr>
-                <td class="catrow" align="left"><table border="0"><tr><td>{CAT_THUMB}</td><td><span class="catlink"><b>{CAT_TITLE}</b></span>{CAT_DESC}</td></tr></table></td>
+                <td class="catrow" align="left"><table border="0"><tr><td>{CAT_THUMB}</td><td><span class="catlink">{CAT_TITLE}</span>{CAT_DESC}</td></tr></table></td>
                 <td class="catrow" align="center">{ALB_COUNT}</td>
                 <td class="catrow" align="center">{PIC_COUNT}</td>
         </tr>
@@ -362,7 +362,7 @@ if (!isset($template_breadcrumb)) { //{THEMES}
 $template_breadcrumb = <<<EOT
 <!-- BEGIN breadcrumb -->
         <tr>
-                <td colspan="3" align="left" class="tableh1"><span class="statlink"><b>{BREADCRUMB}</b></span></td>
+                <td colspan="3" align="left" class="tableh1"><span class="statlink">{BREADCRUMB}</span></td>
         </tr>
 <!-- END breadcrumb -->
 <!-- BEGIN breadcrumb_user_gal -->
@@ -370,7 +370,7 @@ $template_breadcrumb = <<<EOT
                 <td colspan="3" class="tableh1">
                 <table width="100%" cellpadding="0" cellspacing="0" border="0">
                 <tr>
-                        <td align="left"><span class="statlink"><b>{BREADCRUMB}</b></span></td>
+                        <td align="left"><span class="statlink">{BREADCRUMB}</span></td>
                         <td align="right"><span class="statlink">{STATISTICS}</span></td>
                 </tr>
                 </table>
@@ -404,7 +404,7 @@ $template_album_list = <<<EOT
         <table width="100%" cellspacing="0" cellpadding="0">
         <tr>
                 <td colspan="3" height="1" align="left" valign="top" class="tableh2">
-                        <span class="alblink"><a href="{ALB_LINK_TGT}"><b>{ALBUM_TITLE}</b></a></span>
+                        <span class="alblink"><a href="{ALB_LINK_TGT}">{ALBUM_TITLE}</a></span>
                 </td>
         </tr>
         <tr>
@@ -434,7 +434,7 @@ $template_album_list = <<<EOT
         <table width="100%" cellspacing="0" cellpadding="0">
         <tr>
                 <td height="1" valign="top" class="tableh2">
-                        <b>&nbsp;</b>
+                        &nbsp;
                 </td>
         </tr>
         <tr>
@@ -539,7 +539,7 @@ $template_album_list_cat = <<<EOT
         <table width="100%" cellspacing="0" cellpadding="0">
         <tr>
                 <td colspan="3" height="1" valign="top" class="tableh2">
-                        <span class="alblink"><a href="{ALB_LINK_TGT}"><b>{ALBUM_TITLE}</b></a></span>
+                        <span class="alblink"><a href="{ALB_LINK_TGT}">{ALBUM_TITLE}</a></span>
                 </td>
         </tr>
         <tr>
@@ -569,7 +569,7 @@ $template_album_list_cat = <<<EOT
         <table width="100%" cellspacing="0" cellpadding="0" >
         <tr>
                 <td height="1" valign="top" class="tableh2">
-                        <b>&nbsp;</b>
+                        &nbsp;
                 </td>
         </tr>
         <tr>
@@ -774,7 +774,7 @@ if (!isset($template_no_img_to_display)) { //{THEMES}
 $template_no_img_to_display = <<<EOT
         <tr>
                 <td class="tableb" height="200" align="center">
-                        <font size="3"><b>{TEXT}</b></font>
+                        <span class="cpg_user_message">{TEXT}</span>
                 </td>
         </tr>
 <!-- BEGIN spacer -->
@@ -922,7 +922,7 @@ if (!isset($template_image_rating)) { //{THEMES}
 $template_image_rating = <<<EOT
 <table align="center" width="{WIDTH}" cellspacing="1" cellpadding="0" class="maintable">
         <tr>
-                <td colspan="6" class="tableh2_compact"><b>{TITLE}</b> {VOTES}</td>
+                <td colspan="6" class="tableh2_compact">{TITLE} {VOTES}</td>
         </tr>
         <tr>
                 <td class="tableb_compact" width="17%" align="center"><a href="{RATE0}" title="{RUBBISH}" rel="nofollow"><img src="{LOCATION}images/rating0.gif" border="0" alt="{RUBBISH}" /><br /></a></td>
@@ -1063,7 +1063,7 @@ $template_add_your_comment = <<<EOT
         <form method="post" name="post" id="post" action="db_input.php">
                 <table align="center" width="{WIDTH}" cellspacing="1" cellpadding="0" class="maintable">
                         <tr>
-                                        <td width="100%" class="tableh2_compact"><b>{ADD_YOUR_COMMENT}</b></td>
+                                        <td width="100%" class="tableh2_compact">{ADD_YOUR_COMMENT}</td>
                         </tr>
                         <tr>
                 <td colspan="1">
@@ -1147,7 +1147,7 @@ $template_cpg_die = <<<EOT
 
         <tr>
                 <td class="tableb" align="center">
-                        <font size="3"><b>{MESSAGE}</b></font>
+                        <span class="cpg_user_message">{MESSAGE}</span>
 <!-- BEGIN file_line -->
                         <br />
                         <br />
@@ -1180,7 +1180,7 @@ $template_msg_box = <<<EOT
 
         <tr>
                 <td class="tableb" align="center">
-                        <font size="3"><b>{MESSAGE}</b></font>
+                        <span class="cpg_user_message">{MESSAGE}</span>
                 </td>
         </tr>
 <!-- BEGIN button -->
@@ -1217,7 +1217,7 @@ $template_ecard = <<<EOT
 </head>
 <body bgcolor="#FFFFFF" text="#0F5475" link="#0F5475" vlink="#0F5475" alink="#0F5475">
 <br />
-<p align="center"><a href="{VIEW_ECARD_TGT}"><b>{VIEW_ECARD_LNK}</b></a></p>
+<p align="center"><a href="{VIEW_ECARD_TGT}">{VIEW_ECARD_LNK}</a></p>
 <table border="0" cellspacing="0" cellpadding="1" align="center">
   <tr>
     <td bgcolor="#000000">
@@ -1253,7 +1253,7 @@ $template_ecard = <<<EOT
     </td>
   </tr>
 </table>
-<p align="center"><a href="{VIEW_MORE_TGT}"><b>{VIEW_MORE_LNK}</b></a></p>
+<p align="center"><a href="{VIEW_MORE_TGT}">{VIEW_MORE_LNK}</a></p>
 </body>
 </html>
 EOT;
@@ -1305,7 +1305,7 @@ $template_report = <<<EOT
 </head>
 <body bgcolor="#FFFFFF" text="#0F5475" link="#0F5475" vlink="#0F5475" alink="#0F5475">
 <br />
-<p align="center"><a href="{VIEW_REPORT_TGT}"><b>{VIEW_REPORT_LNK}</b></a></p>
+<p align="center"><a href="{VIEW_REPORT_TGT}">{VIEW_REPORT_LNK}</a></p>
 <table border="0" cellspacing="0" cellpadding="1" align="center">
   <tr>
     <td bgcolor="#000000">
@@ -1330,7 +1330,7 @@ $template_report = <<<EOT
     </td>
   </tr>
 </table>
-<p align="center"><a href="{VIEW_MORE_TGT}"><b>{VIEW_MORE_LNK}</b></a></p>
+<p align="center"><a href="{VIEW_MORE_TGT}">{VIEW_MORE_LNK}</a></p>
 </body>
 </html>
 EOT;
@@ -1383,7 +1383,7 @@ $template_report_comment = <<<EOT
 </head>
 <body bgcolor="#FFFFFF" text="#0F5475" link="#0F5475" vlink="#0F5475" alink="#0F5475">
 <br />
-<p align="center"><a href="{VIEW_REPORT_TGT}"><b>{VIEW_REPORT_LNK}</b></a></p>
+<p align="center"><a href="{VIEW_REPORT_TGT}">{VIEW_REPORT_LNK}</a></p>
 <table border="0" cellspacing="0" cellpadding="1" align="center">
   <tr>
     <td bgcolor="#000000">
@@ -1410,7 +1410,7 @@ $template_report_comment = <<<EOT
     </td>
   </tr>
 </table>
-<p align="center"><a href="{VIEW_MORE_TGT}"><b>{VIEW_MORE_LNK}</b></a></p>
+<p align="center"><a href="{VIEW_MORE_TGT}">{VIEW_MORE_LNK}</a></p>
 </body>
 </html>
 EOT;
@@ -1441,7 +1441,7 @@ $template_report_comment_email = <<<EOT
                 </p>
                 <font face="arial" color="#000000" size="2">{SENDER_NAME}</font>
                 (<a href="mailto:{SENDER_EMAIL}"><font face="arial" color="#000000" size="2">{SENDER_EMAIL}</font></a>)
-<p><a href="{VIEW_MORE_TGT}"><b>{VIEW_MORE_LNK}</b></a></p>
+<p><a href="{VIEW_MORE_TGT}">{VIEW_MORE_LNK}</a></p>
 </body>
 </html>
 EOT;
@@ -1455,13 +1455,13 @@ if (!isset($template_tab_display)) { //{THEMES}
 ** Section <<<$template_tab_display>>> - START
 ******************************************************************************/
 // Template used for tabbed display
-$template_tab_display = array('left_text' => '<td width="100%%" align="left" valign="middle" class="tableh1_compact" style="white-space: nowrap"><b>{LEFT_TEXT}</b></td>' . "\n",
+$template_tab_display = array('left_text' => '<td width="100%%" align="left" valign="middle" class="tableh1_compact" style="white-space: nowrap">{LEFT_TEXT}</td>' . "\n",
     'tab_header' => '',
     'tab_trailer' => '',
-    'active_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="tableb_compact"><b>%d</b></td>',
-    'inactive_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}"><b>%d</b></a></td>' . "\n",
-    'inactive_prev_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}"><b>{PREV}</b></a></td>' . "\n",
-    'inactive_next_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}"><b>{NEXT}</b></a></td>' . "\n",
+    'active_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="tableb_compact">%d</td>',
+    'inactive_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}">%d</a></td>' . "\n",
+    'inactive_prev_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}">{PREV}</a></td>' . "\n",
+    'inactive_next_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}">{NEXT}</a></td>' . "\n",
 );
 /******************************************************************************
 ** Section <<<$template_tab_display>>> - END
@@ -2618,7 +2618,7 @@ function theme_html_picinfo(&$info)
 
     $html = '';
 
-    $html .= "        <tr><td colspan=\"2\" class=\"tableh2_compact\"><b>{$lang_picinfo['title']}</b></td></tr>\n";
+    $html .= "        <tr><td colspan=\"2\" class=\"tableh2_compact\">{$lang_picinfo['title']}</td></tr>\n";
     $template = "        <tr><td class=\"tableb_compact\" valign=\"top\" >%s:</td><td class=\"tableb_compact\">%s</td></tr>\n";
     foreach ($info as $key => $value) $html .= sprintf($template, $key, $value);
 
