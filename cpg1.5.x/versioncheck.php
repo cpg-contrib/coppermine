@@ -88,7 +88,7 @@ if (isset($_REQUEST['pop'])) { // pop-up start
 
 if (function_exists('cpg_display_help') == false ) {
 function cpg_display_help($reference = '', $width = '600', $height = '350') {
-global $CONFIG, $USER;
+global $CONFIG, $USER, $lang_common;
 if ($reference == '' || $CONFIG['enable_help'] == '0') {return; }
 if ($CONFIG['enable_help'] == '2' && GALLERY_ADMIN_MODE == false) {return; }
 $help_theme = $CONFIG['theme'];
@@ -96,8 +96,8 @@ if ($USER['theme']) {
     $help_theme = $USER['theme'];
 }
 // check if the help icon is there. If it isn't, display a plain question mark
-if (file_exists('images/help.gif') == true) { $help_icon = '<img src="images/help.gif" width="13" height="11" border="0" alt="" title="'.$lang_versioncheck_php['help'].'" />';
-} else { $help_icon = '<span style="background-color:#FFFAD3;color:#000000;font-weight:bold;border:1px solid black;font-size:8pt;margin:0px;padding:0px" title="'.$lang_versioncheck_php['help'].'"> ? </span>';
+if (file_exists('images/help.gif') == true) { $help_icon = '<img src="images/help.gif" width="13" height="11" border="0" alt="" title="'.$lang_common['help'].'" />';
+} else { $help_icon = '<span style="background-color:#FFFAD3;color:#000000;font-weight:bold;border:1px solid black;font-size:8pt;margin:0px;padding:0px" title="'.$lang_common['help'].'"> ? </span>';
 }
 $help_html = "<a href=\"javascript:;\" onclick=\"MM_openBrWindow('".$_SERVER['PHP_SELF']."?pop=1&amp;css=" . $help_theme . "&amp;" . $reference . "','" . uniqid(rand()) . "','scrollbars=yes,toolbar=no,status=no,resizable=yes,width=" . $width . ",height=" . $height . "')\" style=\"cursor:help;text-decoration:none\">".$help_icon."</a>";
 return $help_html;

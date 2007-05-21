@@ -17,6 +17,13 @@
   $Date: 2006-08-18 08:52:27 +0200 (Fr, 18 Aug 2006) $
 **********************************************/
 
+define('IN_COPPERMINE', true);
+define('HELP_PHP', true);
+require('include/init.inc.php');
+
+// set charset
+$meta_charset = '<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />';
+
 // Get the vars from the url
 if (isset($_REQUEST['as'])) {
     $anchor_start = $_REQUEST['as']; } else { $anchor_start = '';
@@ -28,7 +35,14 @@ if (isset($_REQUEST['close'])) {
     $close = $_REQUEST['close']; } else { $close = '0';
 }
 if (isset($_REQUEST['base'])) {
-    $base = $_REQUEST['base']; } else { $base = '';
+    $base = $_REQUEST['base'];
+    if ($CONFIG['charset'] == 'language file') {
+        $meta_charset = '<meta http-equiv="Content-Type" content="text/html; charset='.$lang_charset.'" />';
+    } else {
+        $meta_charset = '<meta http-equiv="Content-Type" content="text/html; charset='.$CONFIG['charset'].'" />';
+    }
+} else {
+    $base = '';
 }
 if (isset($_REQUEST['h'])) {
     $header = $_REQUEST['h']; } else { $header = '';
@@ -59,7 +73,7 @@ $text = @unserialize(@base64_decode($text));
 }
 
 if ($close != 1) {
-$close_link = '<br />&nbsp;<br /><div align="center"><a href="#" class="admin_menu" onclick="window.close();">Close</a><br />&nbsp;</div>';
+$close_link = '<br />&nbsp;<br /><div align="center"><a href="#" class="admin_menu" onclick="window.close();">'.$lang_common['close'].'</a><br />&nbsp;</div>';
 }
 
 //print $file;
@@ -101,7 +115,11 @@ $string = str_replace('<a externalLinkTempReplacement', '<a href="http://', $str
 $string = str_replace('<a internalAnchorLinkTempReplacement', '<a href="#', $string); // restore links to anchors on this page
 
 
-    $string = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"\n\t\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n<html>\n<head>\n<title>Help</title>\n" . '<link href="themes/classic/style.css" rel="stylesheet" type="text/css" />' . "\n</head>\n<body class=\"tableb\">\n<div style=\"padding: 5px;\">\n" . $string;
+    $string = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"\n\t\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n<html>\n<head>\n<title>".$lang_common['help']."</title>\n" .
+              $meta_charset . "\n" .
+              '<link href="themes/'.$CONFIG['theme'].'/style.css" rel="stylesheet" type="text/css" />' .
+              "\n</head>\n<body class=\"tableb\">\n<div style=\"padding: 5px;\">\n" .
+              $string;
     if ($header != '') {
         $string .= '<h1>'.$header.'</h1>';
         $string .= $text;

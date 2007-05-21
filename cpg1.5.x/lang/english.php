@@ -126,6 +126,8 @@ $lang_common = array(
   'filesize' => 'Filesize', // cpg1.5.x
   'album' => 'Album', // cpg1.5.x
   'file' => 'File', // cpg1.5.x
+  'help' => 'Help', // cpg1.5.x
+  'close' => 'Close', // cpg1.5.x
 );
 
 // ------------------------------------------------------------------------- //
@@ -885,7 +887,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Log ecards', 'log_ecards', 1, 'f=configuration.htm&amp;as=admin_general_log_ecards&amp;ae=admin_general_log_ecards_end'),
   array('Keep detailed vote statistics','vote_details',1, 'f=configuration.htm&amp;as=admin_logging_votedetails&amp;ae=admin_logging_votedetails_end'),
   array('Keep detailed hit statistics','hit_details',1, 'f=configuration.htm&amp;as=admin_logging_hitdetails&amp;ae=admin_logging_hitdetails_end'),
-  array('Display statistics on index page','display_stats_on_index',1, 'f=configuration.htm&amp;as=admin_logging_display_stats_on_index&amp;ae=admin_logging_display_stats_on_index_end'), // cpg1.5.x                                                                                                            
+  array('Display statistics on index page','display_stats_on_index',1, 'f=configuration.htm&amp;as=admin_logging_display_stats_on_index&amp;ae=admin_logging_display_stats_on_index_end'), // cpg1.5.x
 
   'Maintenance settings',
   array('Enable debug mode', 'debug_mode', 9, 'f=configuration.htm&amp;as=debug_mode&amp;ae=debug_mode_end'),
@@ -2211,7 +2213,6 @@ if (defined('VERSIONCHECK_PHP')) $lang_versioncheck_php = array(
   'webcvs' => 'web SVN',
   'writable' => 'writable',
   'not_writable' => 'not writable',
-  'help' => 'Help',
   'help_file_not_exist_optional1' => 'file/folder does not exist',
   'help_file_not_exist_optional2' => 'The file/folder %s has not been found on your server. Although it is optional you should upload it (using your FTP client) to your webserver if you are experiencing problems.',
   'help_file_not_exist_mandatory1' => 'file/folder does not exist',
