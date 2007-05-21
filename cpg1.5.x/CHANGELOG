@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-05-21 [C] Removed deprecated HTML tags from email templates {GauGau}
 2007-05-21 [C] Replaced hard-coded bold tags with corresponding CSS formats in theme files {GauGau}
 2007-05-21 [A] Added browse-by-date meta-album {GauGau}
 2007-05-21 [B] Fixed charset for help pop-ups {GauGau}

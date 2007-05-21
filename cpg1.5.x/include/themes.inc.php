@@ -1234,14 +1234,14 @@ $template_ecard = <<<EOT
           <td valign="top" width="300">
             <div align="right"><img src="{URL_PREFIX}images/stamp.gif" border="0" alt="" /></div>
             <br />
-            <b><font face="arial" color="#000000" size="4">{GREETINGS}</font></b>
+            <span style="font-family:Arial,Verdana,Helvetica,sans-serif;color:#000000;font-size:2.0em;font-weight:bold;">{GREETINGS}</span>
             <br />
             <br />
-            <font face="arial" color="#000000" size="2">{MESSAGE}</font>
+            <span style="font-family:Arial,Verdana,Helvetica,sans-serif;color:#000000;font-size:1.6em;font-weight:bold;">{MESSAGE}</span>
             <br />
             <br />
-            <font face="arial" color="#000000" size="2">{SENDER_NAME}</font>
-            (<a href="mailto:{SENDER_EMAIL}"><font face="arial" color="#000000" size="2">{SENDER_EMAIL}</font></a>)
+            <span style="font-family:Arial,Verdana,Helvetica,sans-serif;color:#000000;font-size:1.6em;font-weight:bold;">{SENDER_NAME}</span>
+            (<a href="mailto:{SENDER_EMAIL}"><span style="font-family:Arial,Verdana,Helvetica,sans-serif;color:#000000;font-weight:bold;">{SENDER_EMAIL}</span></a>)
           </td>
         </tr>
                 <tr>
@@ -1315,15 +1315,15 @@ $template_report = <<<EOT
            <a href="{PIC_TGT}"><img src="{PIC_URL}" border="1" alt="" /></a><br />
           </td>
           <td valign="top" width="200">
-            <b><font face="arial" color="#000000" size="4">{SUBJECT}</font></b>
+            <span style="font-family:Arial,Verdana,Helvetica,sans-serif;color:#000000;font-size:2.0em;font-weight:bold;">{SUBJECT}</span>
             <br />
                                                 <br />
                                                 {REASON}
             <p>
-            <font face="arial" color="#000000" size="2">{MESSAGE}</font>
+            <span style="font-family:Arial,Verdana,Helvetica,sans-serif;color:#000000;font-size:1.6em;">{MESSAGE}</span>
             </p>
-            <font face="arial" color="#000000" size="2">{SENDER_NAME}</font>
-            (<a href="mailto:{SENDER_EMAIL}"><font face="arial" color="#000000" size="2">{SENDER_EMAIL}</font></a>)
+            <span style="font-family:Arial,Verdana,Helvetica,sans-serif;color:#000000;font-size:1.6em;">{SENDER_NAME}</span>
+            (<a href="mailto:{SENDER_EMAIL}"><span style="font-family:Arial,Verdana,Helvetica,sans-serif;color:#000000;font-size:1.6em;">{SENDER_EMAIL}</span></a>)
           </td>
         </tr>
       </table>
@@ -1391,19 +1391,19 @@ $template_report_comment = <<<EOT
         <tr>
           <td valign="top">
            {COMMENT}
-                                                <p align="center"><a href="{COMMENT_TGT}">{COMMENT_LNK}</a></p>
+           <p align="center"><a href="{COMMENT_TGT}">{COMMENT_LNK}</a></p>
           </td>
-                                        </tr>
-                                        <tr>
+        </tr>
+        <tr>
           <td valign="top">
-            <b><font face="arial" color="#000000" size="4">{SUBJECT}</font></b>
-                                                <p>
+            <span style="font-family:Arial,Verdana,Helvetica,sans-serif;color:#000000;font-size:2.0em;font-weight:bold;">{SUBJECT}</span></b>
+                                                <br />
               {REASON}
-            <p>
-            <font face="arial" color="#000000" size="2">{MESSAGE}</font>
-            </p>
-            <font face="arial" color="#000000" size="2">{SENDER_NAME}</font>
-            (<a href="mailto:{SENDER_EMAIL}"><font face="arial" color="#000000" size="2">{SENDER_EMAIL}</font></a>)
+            <br />
+            <span style="font-family:Arial,Verdana,Helvetica,sans-serif;color:#000000;font-size:1.6em;">{MESSAGE}</span>
+            <br />
+            <span style="font-family:Arial,Verdana,Helvetica,sans-serif;color:#000000;font-size:1.6em;">{SENDER_NAME}</span>
+            (<a href="mailto:{SENDER_EMAIL}"><span style="font-family:Arial,Verdana,Helvetica,sans-serif;color:#000000;font-size:1.6em;">{SENDER_EMAIL}</span></a>)
           </td>
         </tr>
       </table>
@@ -1433,14 +1433,14 @@ $template_report_comment_email = <<<EOT
 </head>
 <body bgcolor="#FFFFFF" text="#0F5475" link="#0F5475" vlink="#0F5475" alink="#0F5475">
 <p><a href="{VIEW_REPORT_TGT}">{VIEW_COMMENT_LNK}</a></p>
-                <b><font face="arial" color="#000000" size="4">{SUBJECT}</font></b>
-                <p>
+                <span style="font-family:Arial,Verdana,Helvetica,sans-serif;color:#000000;font-size:2.0em;font-weight:bold;">{SUBJECT}</span>
+                <br />
                         {REASON}
-                <p>
-                <font face="arial" color="#000000" size="2">{MESSAGE}</font>
-                </p>
-                <font face="arial" color="#000000" size="2">{SENDER_NAME}</font>
-                (<a href="mailto:{SENDER_EMAIL}"><font face="arial" color="#000000" size="2">{SENDER_EMAIL}</font></a>)
+                <br />
+                <span style="font-family:Arial,Verdana,Helvetica,sans-serif;color:#000000;font-size:1.6em;">{MESSAGE}</span>
+                <br />
+                <span style="font-family:Arial,Verdana,Helvetica,sans-serif;color:#000000;font-size:1.6em;">{SENDER_NAME}</span>
+                (<a href="mailto:{SENDER_EMAIL}"><span style="font-family:Arial,Verdana,Helvetica,sans-serif;color:#000000;font-size:1.6em;">{SENDER_EMAIL}</span></a>)
 <p><a href="{VIEW_MORE_TGT}">{VIEW_MORE_LNK}</a></p>
 </body>
 </html>
