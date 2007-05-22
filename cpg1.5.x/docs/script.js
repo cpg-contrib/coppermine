@@ -428,6 +428,7 @@ d.add(420,0,'Themes','theme.htm');
 d.add(425,420,'Themes that come with Coppermine','theme.htm#theme_builtin');
 d.add(430,420,'Upgrading your custom theme','theme.htm#theme_upgrading');
 d.add(440,430,'Converting cpg1.3.x themes to cpg1.4.x','theme_upgrade_13x-14x.htm');
+d.add(445,430,'Converting cpg1.4.x themes to cpg1.5.x','theme_upgrade_14x-15x.htm');
 d.add(443,440,'Edit style.css','theme_upgrade_13x-14x.htm#style');
 d.add(444,440,'Edit theme.php','theme_upgrade_13x-14x.htm#template');
 d.add(445,440,'Edit template.html','theme_upgrade_13x-14x.htm#theme');
