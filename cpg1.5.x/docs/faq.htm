@@ -53,7 +53,6 @@
 <ul class="nomargin">
 <li><a class="content" href="#EmptyDelimiter">I get the <strong>error</strong> &quot;<tt class="code">Warning: Empty Delimiter in search.inc.php line 33&quot;</tt>. What can I do?</a></li>
 <li><a class="content" href="#ErrorUndefinedIndex">I have the error message <tt class="code">Warning: Undefined index: SCRIPT_NAME in /www.your-domain.com/include/init.inc.php on line 90</tt>. What can I do?</a></li>
-<li><a class="content" href="#ErrorCantMovePic">When I try to upload a picture I get the error message <tt class="code">Impossible to move somepic.jpg to albums/userpics/ | Warning: move_uploaded_file(/tmp/phpezCYKr) [function.move-uploaded-file]: failed to create stream: Operation not permitted</tt>. What's wrong?</a></li>
 <li><a class="content" href="#ErrorFailedToOpenDir">When I try to upload a picture I get the error message <tt class="code">Warning: opendir(./albums/edit): failed to open dir: No such file or directory</tt>. What's wrong?</a></li>
 <li><a class="content" href="#httpPostVars">When uploading I get the error <tt class="code">Warning: Undefined variable: HTTP_POST_VARS in include/init.inc.php on line 43</tt>. What can I do?</a></li>
 <li><a class="content" href="#createWriteMYI">I get the error message <tt class="code">Can't create/write to file '/tmp/#sql_45d5_0.MYI'</tt>. What's wrong?</a></li>
@@ -177,11 +176,6 @@ change<br />
 to<br />
 <pre>$PHP_SELF = $_SERVER['PHP_SELF'];</pre>
 </p><hr />
-
-<a name="ErrorCantMovePic"></a>
-<h3>When a user tries to upload a picture s/he gets the error message <tt class="code">Impossible to move somepic.jpg to albums/userpics/ | Warning: move_uploaded_file(/tmp/phpezCYKr) [function.move-uploaded-file]: failed to create stream: Operation not permitted</tt>. What's wrong?<a href="#ErrorCantMovePic" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>You should contact the admin of your webhost because you usually can't change the location of the website's temporary directory for file uploads, yourself (it is part of PHP configuration) .<br />
-If the <em>open basedir restriction</em> is in effect on your site then the temp directory for file uploads should be one that you can access.</p><hr />
 
 <a name="ErrorFailedToOpenDir"></a>
 <h3>When I try to upload a picture I get the error message <tt class="code">Warning: opendir(./albums/edit): failed to open dir: No such file or directory</tt>. What's wrong?<a href="#ErrorFailedToOpenDir" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
