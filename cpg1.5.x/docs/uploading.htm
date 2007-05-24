@@ -126,20 +126,27 @@ The process of uploading pictures is a matter of following a simple dialog. It t
 
 
 <a name="upload_trouble"></a><h2>Upload troubleshooting<a href="#upload_trouble" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>If you are experiencing issues with coppermine's upload process, temporarily change your coppermine settings as suggested below to get more detailed error messages:</p>
+<p>If you are experiencing issues with coppermine's upload process, temporarily change your coppermine settings as suggested below to get more detailed error messages. This applies to all upload methods, not only <a href="#upload_http">HTTP uploads</a>.</p>
 <ul>
-<li>Go to your coppermine page and log in as admin</li>
-<li>Go to the config screen</li>
-<li>Scroll to the bottom of the page</li>
-<li>Expand the "Maintenance settings" section by clicking on it</li>
-<li>Enable debug mode for everyone</li>
-<li>Leave display of notices switched off</li>
-<li>Save the new settings by clicking on "Save new configuration"</li>
-<li>Go to the "groups" panel</li>
-<li>Set the upload form configuration for all groups to "Single file uploads only" (set <em>File upload boxes</em> to &quot;1&quot;, <em>URI upload boxes</em> to &quot;0&quot; and <em>No. of boxes</em> to &quot;fixed&quot;)</li>
-<li>Save your new settings</li>
+<li><em>Go to your coppermine page and log in as admin</em></li>
+<li><em>Go to the config screen</em></li>
+<li><em>Scroll to the bottom of the page</em></li>
+<li><em>Expand the "Maintenance settings" section by clicking on it</em></li>
+<li><em>Enable debug mode for everyone</em></li>
+<li><em>Leave display of notices switched off</em><br />
+(notices are only meant for developers. If you have idea what they mean, leave them off.)</li>
+<li><em>Save the new settings by clicking on "Save new configuration"</em></li>
+<li><em>Go to the <a href="groups.htm#group_cp">"groups" panel</a></em></li>
+<li><em>Set the upload form configuration for all groups to "Single file uploads only"</em><br />
+(set <em>File upload boxes</em> to &quot;1&quot;, <em>URI upload boxes</em> to &quot;0&quot; and <em>No. of boxes</em> to &quot;fixed&quot;)<br />
+<img src="pics/upload_groups.png" width="500" height="185" border="0" alt="" /></li>
+<li><em>Save your new settings</em><br />
+(click on "Apply Modifications")</li>
 </ul>
 <p>Then try to upload (using http uploads, even if you experienced troubles using another upload method) - you should get a more detailed error message that tells you what exactly goes wrong with your uploads. If the error message doesn't mean anything to you, <a href="http://coppermine-gallery.net/forum/index.php?action=search" rel="external" class="external">search the support board</a> for the error message you get.</p>
+
+<a name="upload_support"></a><h3>Asking for support on upload issues<a href="#upload_support" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+
 <p class="important">When asking for support on the coppermine forum, post a link to your site and a <a href="#user_cp_new">test user account</a> (the test user mustn't be in the admin group!) with upload privileges, with the above mentioned settings in place - this way, supporters can see the error messages as well. Do not post debug_output unless requested. If you want fast results, you should disable admin approval for the group the test user is in, so supporters can tell instantly what is wrong without needing to double-check.</p>
 <p>When people have issues with uploading and decide to post their question on the Coppermine support board, they usually are told to read this upload troubleshooting section. Many of them fail to do so properly, which results in frustration both for users as well as supporters. To make this absolutely clear: the above mentioned steps are absolutely <strong>mandatory</strong>, no matter what skill level you have, no matter what upload method you have troubles with. Failing to do <strong>exactly</strong> as suggested will result in your request for help being ignored. Yes, this applies to you. We mean it!</p>
 <a name="upload_trouble_end"></a>
