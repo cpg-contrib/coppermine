@@ -261,7 +261,7 @@ Setting this to a ridiculously high value (i.e. above 100% or a pixel value high
 <hr />
 <a name="changing"></a><a name="admin_album_list_content"></a><h3>The content of the main page<a href="#admin_album_list_content" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>This option allows you to change the content of the main page displayed by the script.</p>
-<p>The default value is &quot;<strong>catlist/alblist/random,2/lastup,2</strong>&quot;</p>
+<p>The default value is <tt class="code">catlist/alblist/random,2/lastup,2</tt></p>
 <p>You can use the following "codes" to include other items:</p>
 <ul>
   <li>'<strong>breadcrumb</strong>': navigation inside the gallery (e.g. &quot;home &gt; category &gt; subcategory &gt; album&quot;)</li>
@@ -278,6 +278,12 @@ Setting this to a ridiculously high value (i.e. above 100% or a pixel value high
   </ul>
 <p>Unless you really know what you are doing you should always keep catlist and alblist in &quot;<em>the content of the main page</em>&quot;, as they make up the core parts of the index page or any gallery site, for that matter.</p>
 <p>The <strong>,2</strong> dictates that cpg should display 2 rows of thumbnails.</p>
+<p>Some example configurations:</p>
+<ul>
+  <li>If you don't want to display the random files, change <tt class="code">catlist/alblist/random,2/lastup,2</tt> to <tt class="code">catlist/alblist/lastup,2</tt></li>
+  <li>If you want 3 rows of random files, but no last uploads at all, change <tt class="code">catlist/alblist/random,2/lastup,2</tt> to <tt class="code">catlist/alblist/random,3</tt></li>
+  <li><tt class="code">anycontent/catlist/alblist/random,2/lastup,2</tt> translates to: "anycontent file contents, category list, album list, 2 rows of random pics, 2 rows of last uploads" -- and will display in the order that they are listed</li>
+</ul>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Album list view &rarr; The content of the main page</p>
 <a name="admin_album_list_content_end"></a>
 <hr />

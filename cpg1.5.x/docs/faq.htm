@@ -53,15 +53,12 @@
 <ul class="nomargin">
 <li><a class="content" href="#EmptyDelimiter">I get the <strong>error</strong> &quot;<tt class="code">Warning: Empty Delimiter in search.inc.php line 33&quot;</tt>. What can I do?</a></li>
 <li><a class="content" href="#ErrorUndefinedIndex">I have the error message <tt class="code">Warning: Undefined index: SCRIPT_NAME in /www.your-domain.com/include/init.inc.php on line 90</tt>. What can I do?</a></li>
-<li><a class="content" href="#ErrorFailedToOpenDir">When I try to upload a picture I get the error message <tt class="code">Warning: opendir(./albums/edit): failed to open dir: No such file or directory</tt>. What's wrong?</a></li>
-<li><a class="content" href="#httpPostVars">When uploading I get the error <tt class="code">Warning: Undefined variable: HTTP_POST_VARS in include/init.inc.php on line 43</tt>. What can I do?</a></li>
 <li><a class="content" href="#createWriteMYI">I get the error message <tt class="code">Can't create/write to file '/tmp/#sql_45d5_0.MYI'</tt>. What's wrong?</a></li>
 <li><a class="content" href="#cantOpenMYI">I get the error message <tt class="code">Can't open file: 'yourPrefix_tableName.MYI'</tt> or similar. What's wrong?</a></li>
 </ul>
 
 <li><strong>Setup / Configuration</strong></li>
 <ul class="nomargin">
-<li><a class="content" href="#LinkInAlbumDescription">How can I include a <strong>link in an album description</strong> or the caption of a pic?</a></li>
 <li><a class="content" href="#NoLastUploads">I don't want to show the <strong>last uploads</strong> and/or <strong>random pictures</strong> on the start page. How do I edit what's shown on the start page of coppermine?</a></li>
 <li><a class="content" href="#removeFeature">I don't want to use the feature XYZ of Coppermine. How can I <strong>remove</strong> it?</a></li>
 <li><a class="content" href="#customHeader">How do I add a <strong>custom header/footer</strong> to Coppermine?</a></li>
@@ -177,21 +174,7 @@ to<br />
 <pre>$PHP_SELF = $_SERVER['PHP_SELF'];</pre>
 </p><hr />
 
-<a name="ErrorFailedToOpenDir"></a>
-<h3>When I try to upload a picture I get the error message <tt class="code">Warning: opendir(./albums/edit): failed to open dir: No such file or directory</tt>. What's wrong?<a href="#ErrorFailedToOpenDir" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<ul>
-<li>Make sure you have a folder named 'edit' in your albums folder.</li>
-<li>Make sure the edit directory has been chmod to 777/755.</li>
-<li>Make sure you have completely upgraded to Coppermine 1.5.x</li>
-</ul><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
 
-<a name="httpPostVars"></a>
-<h3>When uploading I get the error <tt class="code">Warning: Undefined variable: HTTP_POST_VARS in include/init.inc.php on line 43</tt>. What can I do?<a href="#httpPostVars" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Check if <a href="#VersionPHP">your version of PHP</a> fullfills the <a href="#MinimumRequirements">minimum requirements</a> for Coppermine. If your version is 4.1.0 or better, then this error is probably caused by a misconfiguration of your hosting server, and not a Coppermine issue. If the server isn't yours to configure properly (that is: if you're with a webhost), you can try this workaround (at your own risk):<br >
-Edit the file "init.inc.php" and look for<br />
-<pre>$PHP_SELF = isset($_SERVER['REDIRECT_URL']) ? $_SERVER['REDIRECT_URL'] : $_SERVER['SCRIPT_NAME'];</pre>
-Replace it with<br />
-<pre>$PHP_SELF = $_SERVER['PHP_SELF'];</pre></p><hr />
 
 <a name="createWriteMYI"></a>
 <h3>I get the error message <tt class="code">Can't create/write to file '/tmp/#sql_45d5_0.MYI'</tt>. What's wrong?<a href="#createWriteMYI" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -213,45 +196,11 @@ Use your website's Control Panel to repair the table, or use phpMyAdmin to execu
 <p><strong>If you don't understand the solution, ask your webhost to make the above changes.</strong></p>
 <br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
 
-<br />&nbsp;<br />
-<h2>Setup / configuration</h2><a name="LinkInAlbumDescription"></a>
-<h3>How can I include a <strong>link in an album description field</strong> or in the caption of a pic?<a href="#LinkInAlbumDescription" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Coppermine supports the following bbCodes (the same bbCodes that are used by phpBB) in image and album description:</p>
-<table border="0">
-<tr>
-<th>code</th>
-<th>output</th>
-</tr>
-<tr><td><pre>[b]bold text[/b]</pre></td><td><strong>bold text</strong></td></tr>
-<tr><td><pre>[i]italic[/i]</pre></td><td><em>italic</em></td></tr>
-<tr><td><pre>[url=http://www.foo.com/bar.html]URL text[/url]</pre></td><td><a href="http://www.foo.com/bar.html">URL text</a></td></tr>
-<tr><td><pre>[email]user@domain.tld[/email]</pre></td><td><a href="mailto:user@domain.tld">user@domain.tld</a></td></tr>
-</table>
 
 
-<div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
 <a name="NoLastUploads"></a>
 <h3>I don't want to show the <strong>last uploads</strong> and/or <strong>random pictures</strong>on the start page. How do I edit what's shown on the start page of coppermine?<a href="#NoLastUploads" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>  <ol>
-    <li>login as admin into your CPG setup</li>
-    <li>click on "Show admin controls" if it is not already enabled</li>
-    <li>Click on Config in the "Admin Menu"</li>
-    <li>under "Album list view" use the above provided keywords:
-    <ul>
-      <li>'<strong>breadcrumb</strong>': navigation inside the gallery (e.g. &quot;home &gt; category &gt; subcategory &gt; album&quot;)</li>
-      <li>'<strong>catlist</strong>': category list
-      <li>'<strong>alblist</strong>': album list
-      <li>'<strong>random</strong>': random pictures (leaving random pictures &quot;on&quot; for huge galleries with more than 10,000 pics might result in performance problems; switch random &quot;off&quot; in this case)
-      <li>'<strong>lastup</strong>': last uploads
-      <li>'<strong>topn</strong>': most viewed
-      <li>'<strong>toprated</strong>': top rated
-      <li>'<strong>lastcom</strong>': last comments </li>
-      <li>'<strong>lasthits</strong>': last viewed </li>
-      <li>'<strong>lastalb</strong>': last created albums</li>
-      <li>'<strong>anycontent</strong>': inserts php-generated custom content that YOU have coded into the file 'anycontent.php' and displays the content on the index page. It can be used to include banner-rotation scripts, welcome scripts, or similar. Where it appears in the index page is determined by it's placement in the string example below.</li>
-    </ul>
-    (e.g. <tt class="code">anycontent/catlist/alblist/random,2/lastup,2</tt> translates to: &quot;anycontent file contents, category list, album list, 2 rows of random pics, 2 rows of last uploads&quot; -- and will display in the order that they are listed)</li>
-  </ol></p><hr />
+<p>Refer to the configuration section <a href="configuration.htm#admin_album_list_content">The content of the main page</a></p><hr />
 <a name="removeFeature"></a>
 <h3>I don't want to use the feature XYZ of Coppermine. How can I <strong>remove</strong> it?<a href="#removeFeature" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Just remove the link; edit /themes/yourtheme/theme.php, look for the feature you want to remove and comment out the HTML code.<br />Example: if you want to remove the ecard-feature, just look for
