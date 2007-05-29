@@ -1,0 +1,152 @@
+<!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Uploading - Coppermine Photo Gallery - Documentation &amp; Manual</title>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="language"    content="en">
+<meta name="copyright"   content="Coppermine dev team">
+<meta name="description" content="There are several methods to upload files within Coppermine. You (as gallery admin) should use FTP-upload plus batch-add (only the admin can do this). Regular users are supposed to use the regular http upload or (if they have Windows XP) the XP Publisher.">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta name="MSSmartTagsPreventParsing" content="true">
+<meta http-equiv="imagetoolbar" content="no">
+<!--
+  SVN version info:
+  -----------------
+  Coppermine version: 1.5.0
+  $Revision: 3473 $
+  $LastChangedBy: gaugau $
+  $Date: 2007-03-01 19:33:52 +0100 (Do, 01 Mrz 2007) $
+-->
+<link rel="stylesheet" type="text/css" href="style.css" media="all" />
+<link rel="stylesheet" type="text/css" href="screen.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="print.css" media="print" />
+<script src="script.js" type="text/javascript"></script>
+</head>
+<body>
+<script type="text/javascript">
+  cpgDocHeader();
+</script>
+<div id="toc">
+<script type="text/javascript">
+  cpgDocToc();
+</script>
+<noscript>
+<a href="toc.htm">Table of Contents</a>
+</noscript>
+</div>
+
+
+<a name="upload_trouble"></a><h1>Upload troubleshooting<a href="#upload_trouble" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<p>If you are experiencing issues with coppermine's upload process, temporarily change your coppermine settings as suggested below to get more detailed error messages. This applies to all upload methods, not only <a href="#upload_http">HTTP uploads</a>.</p>
+<ul>
+<li><strong>Log in as admin</strong><br />
+Go to your coppermine page and log in as admin</li>
+<li><strong>Go to the <a href="configuration.htm#admin">config screen</a></strong></li>
+<li><strong>Scroll to the bottom of the page</strong></li>
+<li><strong>Expand the "Maintenance settings" section by clicking on it</strong></li>
+<li><strong>Enable debug mode for everyone</strong><br />
+(set <em>Enable debug mode</em> to "Yes: Everyone")</li>
+<li><strong>Leave display of notices switched off</strong><br />
+(notices are only meant for developers. If you have idea what they mean, leave them off.)</li>
+<li><strong>Save the new settings by clicking on "Save new configuration"</strong></li>
+<li><strong>Go to the <a href="groups.htm#group_cp">"groups" panel</a></strong></li>
+<li><strong>Set the upload form configuration for all groups to "Single file uploads only"</strong><br />
+ <ol>
+   <li>set <em>File upload boxes</em> to &quot;1&quot; (1)</li>
+   <li>set <em>URI upload boxes</em> to &quot;0&quot; (2)</li>
+   <li>set <em>No. of boxes</em> to &quot;fixed&quot; (3)</li>
+ </ul>
+<img src="pics/upload_groups.png" width="500" height="185" border="0" alt="" /></li>
+<li><strong>Save your new settings</strong><br />
+(click on "Apply Modifications")</li>
+</ul>
+<p>Then try to upload (using http uploads, even if you experienced troubles using another upload method) - you should get a more detailed error message that tells you what exactly goes wrong with your uploads. If the error message doesn't mean anything to you, <a href="http://coppermine-gallery.net/forum/index.php?action=search" rel="external" class="external">search the support board</a> for the error message you get.</p>
+
+<a name="upload_error_messages"></a><h2>Error messages<a href="#upload_error_messages" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <th valign="top" align="left"><h3>Error message</h3></th>
+    <th valign="top" align="left"><h3>Possible cause</h3></th>
+    <th valign="top" align="left"><h3>Suggested fix</h3></th>
+  </tr>
+  <tr>
+    <td valign="top" align="left" style="border-top:1px solid #0E72A4;border-left:1px solid #0E72A4;border-bottom:1px solid #0E72A4;">
+      <a name="ErrorCantMovePic"></a><tt class="code">Impossible to move <em>somepic.jpg</em> to albums/userpics/<br />
+      Warning: move_uploaded_file(/tmp/<em>phpezCYKr</em>)<br />
+      [function.move-uploaded-file]: failed to create stream: Operation not permitted</tt><a href="#ErrorCantMovePic" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+    </td>
+    <td valign="top" align="left" style="border-top:1px solid #0E72A4;border-bottom:1px solid #0E72A4;">
+      PHP's temporary folder is missing or doesn't have the needed permissions
+    </td>
+    <td valign="top" align="left" style="border-top:1px solid #0E72A4;border-right:1px solid #0E72A4;border-bottom:1px solid #0E72A4;">
+      You should contact the admin of your webhost because you usually can't change the location of the website's temporary directory for file uploads, yourself (it is part of PHP configuration) .<br />
+      If the <em>open basedir restriction</em> is in effect on your site then the temp directory for file uploads should be one that you can access.
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" align="left" style="border-top:1px solid #0E72A4;border-left:1px solid #0E72A4;border-bottom:1px solid #0E72A4;"></td>
+    <td valign="top" align="left" style="border-top:1px solid #0E72A4;border-bottom:1px solid #0E72A4;"></td>
+    <td valign="top" align="left" style="border-top:1px solid #0E72A4;border-right:1px solid #0E72A4;border-bottom:1px solid #0E72A4;"></td>
+  </tr>
+  <tr>
+    <td valign="top" align="left" style="border-top:1px solid #0E72A4;border-left:1px solid #0E72A4;border-bottom:1px solid #0E72A4;">
+      <a name="ErrorFailedToOpenDir"></a><tt class="code">Warning: opendir(./albums/edit): failed to open dir: No such file or directory</tt><a href="#ErrorFailedToOpenDir" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+    </td>
+    <td valign="top" align="left" style="border-top:1px solid #0E72A4;border-bottom:1px solid #0E72A4;">
+      <ul>
+        <li>'edit'-folder in your albums folder is missing</li>
+        <li>'edit'-folder in your albums folder doesn't have rwx-<a href="nstall_permissions.htm#permissions">permissions</a></li>
+        <li>Improper upgrade from cpg1.3.x</li>
+      </ul>
+    </td>
+    <td valign="top" align="left" style="border-top:1px solid #0E72A4;border-right:1px solid #0E72A4;border-bottom:1px solid #0E72A4;">
+      <ul>
+        <li>Make sure you have a folder named 'edit' in your albums folder.</li>
+        <li>Make sure the edit directory has been chmod to 777/755.</li>
+        <li>Make sure you have completely <a href="upgrading.htm#upgrade">upgraded</a> to Coppermine 1.5.x</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" align="left" style="border-top:1px solid #0E72A4;border-left:1px solid #0E72A4;border-bottom:1px solid #0E72A4;">
+      <a name="httpPostVars"></a><tt class="code">Warning: Undefined variable: HTTP_POST_VARS in include/init.inc.php on line 43</tt><a href="#httpPostVars" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+    </td>
+    <td valign="top" align="left" style="border-top:1px solid #0E72A4;border-bottom:1px solid #0E72A4;">
+      <ul>
+        <li>Outdated PHP-version on your server</li>
+        <li>Improper webserver configuration</li>
+      </ul>
+    </td>
+    <td valign="top" align="left" style="border-top:1px solid #0E72A4;border-right:1px solid #0E72A4;border-bottom:1px solid #0E72A4;">
+      Check if <a href="#VersionPHP">your version of PHP</a> fullfills the <a href="#MinimumRequirements">minimum requirements</a> for Coppermine. If your version is 4.1.0 or better, then this error is probably caused by a misconfiguration of your hosting server, and not a Coppermine issue. If the server isn't yours to configure properly (that is: if you're with a webhost), you can try this workaround (at your own risk):<br >
+      Edit the file "init.inc.php" and look for<br />
+      <pre>$PHP_SELF = isset($_SERVER['REDIRECT_URL']) ? $_SERVER['REDIRECT_URL'] : $_SERVER['SCRIPT_NAME'];</pre>
+Replace it with<br />
+      <pre>$PHP_SELF = $_SERVER['PHP_SELF'];</pre>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" align="left" style="border-top:1px solid #0E72A4;border-left:1px solid #0E72A4;border-bottom:1px solid #0E72A4;"></td>
+    <td valign="top" align="left" style="border-top:1px solid #0E72A4;border-bottom:1px solid #0E72A4;"></td>
+    <td valign="top" align="left" style="border-top:1px solid #0E72A4;border-right:1px solid #0E72A4;border-bottom:1px solid #0E72A4;"></td>
+  </tr>
+  <tr>
+    <td valign="top" align="left" style="border-top:1px solid #0E72A4;border-left:1px solid #0E72A4;border-bottom:1px solid #0E72A4;"></td>
+    <td valign="top" align="left" style="border-top:1px solid #0E72A4;border-bottom:1px solid #0E72A4;"></td>
+    <td valign="top" align="left" style="border-top:1px solid #0E72A4;border-right:1px solid #0E72A4;border-bottom:1px solid #0E72A4;"></td>
+  </tr>
+</table>
+
+
+<a name="upload_support"></a><h2>Asking for support on upload issues<a href="#upload_support" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+
+<p class="important">When asking for support on the coppermine forum, post a link to your site and a <a href="#user_cp_new">test user account</a> (the test user mustn't be in the admin group!) with upload privileges, with the above mentioned settings in place - this way, supporters can see the error messages as well. Do not post debug_output unless requested. If you want fast results, you should disable admin approval for the group the test user is in, so supporters can tell instantly what is wrong without needing to double-check.</p>
+<p>When people have issues with uploading and decide to post their question on the Coppermine support board, they usually are told to read this upload troubleshooting section. Many of them fail to do so properly, which results in frustration both for users as well as supporters. To make this absolutely clear: the above mentioned steps are absolutely <strong>mandatory</strong>, no matter what skill level you have, no matter what upload method you have troubles with. Failing to do <strong>exactly</strong> as suggested will result in your request for help being ignored. Yes, this applies to you. We mean it!</p>
+<a name="upload_trouble_end"></a>
+
+<script type="text/javascript">
+  cpgDocFooter();
+</script>
+
+</body>
+</html>
