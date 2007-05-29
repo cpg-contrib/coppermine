@@ -204,6 +204,7 @@ ul {
         margin-top:5xp;
         margin-bottom:30px;
         padding:2px;
+        position:static;
 }
 
 #toc a {
@@ -347,7 +348,7 @@ a.external {
 }
 
 .code {
-        font-size: 12px;
+        /*font-size: 12px;*/
         font-style: normal;
         font-family: "Courier New", Courier, monospace;
         background-color: #E0E0E0;
