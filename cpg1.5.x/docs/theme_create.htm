@@ -1,0 +1,67 @@
+<!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Creating your custom theme - Coppermine Photo Gallery - Documentation &amp; Manual</title>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="language"    content="en">
+<meta name="copyright"   content="Coppermine dev team">
+<meta name="description" content="Coppermine comes with a powerful engine that allows you to create your own theme, giving your gallery a unique look that matches the overall layout of your entire site. To make sure your custom theme does not get overwritten when upgrading, you should start with a custom theme name.">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta name="MSSmartTagsPreventParsing" content="true">
+<meta http-equiv="imagetoolbar" content="no">
+<!--
+  SVN version info:
+  -----------------
+  Coppermine version: 1.5.0
+  $Revision: 3550 $
+  $LastChangedBy: gaugau $
+  $Date: 2007-05-22 16:44:05 +0200 (Di, 22 Mai 2007) $
+-->
+<link rel="stylesheet" type="text/css" href="style.css" media="all" />
+<link rel="stylesheet" type="text/css" href="screen.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="print.css" media="print" />
+<script src="script.js" type="text/javascript"></script>
+</head>
+<body>
+<script type="text/javascript">
+  cpgDocHeader();
+</script>
+<div id="toc">
+<script type="text/javascript">
+  cpgDocToc();
+</script>
+<noscript>
+<a href="toc.htm">Table of Contents</a>
+</noscript>
+</div>
+
+
+
+
+<a name="theme_create"></a><h1>Creating your custom theme<a href="#theme_create" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<p>To create a new theme, the best solution is to use an existing one as its copy template. To do that, make a copy of the folder of the theme you want to use as a basis. Then edit the &quot;<strong>template.html</strong>&quot; and &quot;<strong>theme.php</strong>&quot; files and replace all occurences of &quot;<strong>themes/old_theme_dir</strong>&quot; with &quot;<strong>themes/new_theme_dir</strong>&quot; in order for the links to point to the correct place.<br />
+Avoid using spaces and special chars in your custom theme name - only use alphanumerals and the underscore (_).</p>
+<p>When editing the &quot;<strong>template.html</strong>&quot; file do not remove the elements between <strong>{}</strong> - these are the placeholders used by the script. Also keep in mind that despite this file being located in the &quot;<strong>themes/your_theme_dir</strong>&quot; directory, it must be coded as if it was in the main directory of the coppermine installation. For example, in order to display an image, you must use <tt class="code">&lt;img src=&quot;<strong>themes</strong>/theme_dir/images/image.gif&quot; alt=&quot;&quot;/&gt;</tt> and not just <tt class="code">&lt;img src=&quot;images/image.gif&quot; alt=&quot;&quot;/&gt;.</tt> The same principle applies for the &quot;<strong>theme.php</strong>&quot; file.</p>
+<p>Be careful not to delete the line <tt class="code">&lt;script type="text/javascript" src="scripts.js"&gt;&lt;/script&gt;</tt> - this javascript is necessary for the full-size pop-ups and other functions related to JavaScript.</p>
+<p>If you are using an HTML editor to design your template, the easist working solution might be to the &quot;<strong>template.html</strong>&quot; file into the main directory of your coppermine installation and edit it there. Whenever you load Coppermine, if the script finds a file named &quot;<strong>template.html</strong>&quot; in the main directory it will load it instead of the default one that you assigned in the CONFIG menu. Once you have finished  editing your theme be sure to move the file back into the directory it belongs. Don't forget to remove the temporary template.html file from the Coppermine root folder once you are done editing!</p>
+<p>To modify the colors, fonts, font sizes, etc... used by the script, you should edit the &quot;<strong>style.css</strong>&quot; stylesheet whenever possible. For example, if you want to increase or decrease the size of the fonts you can simply modify the line with : <tt class="code">table { font-size: 12px; }</tt>. Most of the font sizes used by the script are defined as a percentage of this size.</p>
+<p>The &quot;<strong>theme.php</strong>&quot; file contains all the HTML templates used by the script. You can edit them, as well. When making modifications to these templates, be careful that you do not alter the lines that start with <tt class="code">&lt;!-- BEGIN xxx --&gt;</tt> and <tt class="code">&lt;!-- END xxx --&gt;</tt>. These lines are often used to identify the start and end of specific code blocks that the script will use to display your gallery.</p>
+<p>If you're not sure how to go about creating your own theme, you could also have a look at the download section of the coppermine homepage: there are many user-contributed themes available for download that can be previewed on the <a href="http://coppermine-gallery.net/demo/">coppermine demo page</a>.</p>
+<p>While you're in the process of creating or testing a new theme, you might not want your theme to be displayed to visitors of your site, but you (as the coppermine admin) may want to still be able to preview your theme. To do that, simply add <tt class="code">theme=your_theme_name</tt> to the url in your browser.</p>
+<br />
+<strong>Examples:</strong>
+<ul>
+<li><tt class="code">http://yoursite.tld/coppermine/index.php?theme=your_theme_name</tt> will show the coppermine index page, using your theme</li>
+<li><tt class="code">http://yoursite.tld/coppermine/thumbnails.php?album=1&amp;theme=your_theme_name</tt> will show the thumbnail view of album 1, using your theme</li>
+<li><tt class="code">http://yoursite.tld/coppermine/?theme=xxx</tt> will reset your view back to the theme you chose as your default theme in coppermine config</li>
+</ul>
+<a name="theme_create_end"></a>
+
+
+
+<script type="text/javascript">
+  cpgDocFooter();
+</script>
+
+</body>
+</html>
