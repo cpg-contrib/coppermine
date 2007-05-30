@@ -58,10 +58,35 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
 </div>
 <p>It is strongly recommended to rename your custom theme as suggested above, even if you only plan to accomplish minor changes to a default theme that coppermine comes with. The reason is quite simple: when upgrading at a later stage, you will not run into issues (e.g. accidentally overwrite your customized theme with an updated default theme).</p>
 
-<a name="theme_create_template_token"></a><h2>Template tokens<a href="#theme_create_template_token" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<a name="theme_create_tipps"></a><h2>Tipps &amp; tricks<a href="#theme_create_tipps" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>If you're not sure how to go about creating your own theme, you could also have a look at the download section of the coppermine homepage: there are many user-contributed themes available for download that can be previewed on the <a href="http://coppermine-gallery.net/demo/">coppermine demo page</a>.</p>
+<p>While you're in the process of creating or testing a new theme, you might not want your theme to be displayed to visitors of your site, but you (as the coppermine admin) may want to still be able to preview your theme. To do that, simply add <tt class="code">theme=your_theme_name</tt> to the url in your browser.</p>
+<br />
+<div class="quote">
+<strong>Examples:</strong>
+<ul>
+<li><tt class="code">http://yoursite.tld/coppermine/index.php?theme=your_theme_name</tt> will show the coppermine index page, using your theme</li>
+<li><tt class="code">http://yoursite.tld/coppermine/thumbnails.php?album=1&amp;theme=your_theme_name</tt> will show the thumbnail view of album 1, using your theme</li>
+<li><tt class="code">http://yoursite.tld/coppermine/?theme=xxx</tt> will reset your view back to the theme you chose as your <a href="configuration.htm#admin_theme_theme">default theme</a> in coppermine config</li>
+</ul>
+</div>
+
+<a name="theme_create_wysiwyg"></a><h2>Using WYSIWYG-editors<a href="#theme_create_wysiwyg" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>If you are using an HTML editor to design your template, the easist working solution might be to save the &quot;<strong>template.html</strong>&quot; file into the main directory of your coppermine installation and edit it there. Whenever you load Coppermine, if the script finds a file named &quot;<strong>template.html</strong>&quot; in the main directory it will load it instead of the default one that you assigned in the CONFIG menu. Once you have finished  editing your theme be sure to move the file back into the directory it belongs. Don't forget to remove the temporary template.html file from the Coppermine root folder once you are done editing!</p>
+<p class="important">It is strongly recommended <strong>not</strong> to use a <acronym title="What You See Is What You Get">WYSIWYG</acronym>-editor at all to edit Coppermine files. The coppermine dev team is aware that it might seem easier for beginners to use those graphical editors. However, they have some major drawbacks:</p>
+<ul>
+  <li>Some editors (mostly MS Frontpage) are notorious for &quot;beautifying&quot; the code in a manner that renders embedded PHP code invalid. Subsequently, if you use a WYSIWYG-editor to edit theme.php, the file may get corrupt (i.e. un-usable)</li>
+  <li>Graphical editors tend to create deprecated, invalid, proprietary HTML. Yu have more control if you use a plain text editor instead.</li>
+  <li>You don't learn anything. Sooner or later, you will want to do something your precious WYSIWYG-editor isn't capable to do. Now what? You have always used the editor to do your work - you don't understand HTML. When using a plain text editor, the learning curve may be steep, but it's much more entertaining.</li>
+</ul>
+
+<a name="theme_create_template_html"></a><h2>Editing template.html<a href="#theme_create_template_html" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>The file template.html is the core file of each theme: it can only contain HTML/CSS/JavaScript code (no PHP!) plus some placeholder tokens that will get replaced with content when the theme is being parsed (i.e. when the HTML output of a gallery page is being generated). Template.html determines the overall layout of your gallery pages. Use it to make your gallery match the overall look of your entire website.</p>
+
+<a name="theme_create_template_token"></a><h3>Template tokens<a href="#theme_create_template_token" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>When editing the &quot;<strong>template.html</strong>&quot; file do not remove the elements between <strong>{}</strong> - these are the placeholders used by the script. Think of those items in curly brackets as placeholders that will be replaced later with dynamic content when your template is being parsed. You can move the placeholder tokens around to obtain different layouts. However, you have to understand that the {GALLERY}-token is a special placeholder: think of it more as a separator than an actual placeholder token. When the template is being parsed, the {GALLERY}-token will be replaced with the actual core component of the gallery. Other placeholders tokens in curly braces that come <em>before</em> the {GALLERY} token are being handled by the pageheader function; placeholder tokens that come <em>after</em> the {GALLERY}-token are being handled by the pagefooter function. Therefor, you have to keep in mind that you can freely move tokens around in template.html as long as you don't reverse the position of the token you move and the {GALLERY}-token.</p>
 
-<a name="theme_create_template_token_list"></a><h3>List of tokens in template.html<a href="#theme_create_template_token_list" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<a name="theme_create_template_token_list"></a><h4>List of tokens in template.html<a href="#theme_create_template_token_list" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 <table border="0" cellspacing="0" cellpadding="0" class="maintable">
   <tr>
     <th valign="top" align="left" class="tableh1">Token</th>
@@ -274,6 +299,10 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
 <p>Be careful not to delete the {JAVASCRIPT}-token - this javascript is necessary for the full-size pop-ups and other functions related to JavaScript.</p>
 
 
+
+
+
+
 <!--<div class="quote">
 <p><strong>Example:</strong></p>
 
@@ -282,34 +311,13 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
 
 
 
-
-<a name="theme_create_wysiwyg"></a><h2>Using WYSIWYG-editors<a href="#theme_create_wysiwyg" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>If you are using an HTML editor to design your template, the easist working solution might be to save the &quot;<strong>template.html</strong>&quot; file into the main directory of your coppermine installation and edit it there. Whenever you load Coppermine, if the script finds a file named &quot;<strong>template.html</strong>&quot; in the main directory it will load it instead of the default one that you assigned in the CONFIG menu. Once you have finished  editing your theme be sure to move the file back into the directory it belongs. Don't forget to remove the temporary template.html file from the Coppermine root folder once you are done editing!</p>
-<p class="important">It is strongly recommended <strong>not</strong> to use a <acronym title="What You See Is What You Get">WYSIWYG</acronym>-editor at all to edit Coppermine files. The coppermine dev team is aware that it might seem easier for beginners to use those graphical editors. However, they have some major drawbacks:</p>
-<ul>
-  <li>Some editors (mostly MS Frontpage) are notorious for &quot;beautifying&quot; the code in a manner that renders embedded PHP code invalid. Subsequently, if you use a WYSIWYG-editor to edit theme.php, the file may get corrupt (i.e. un-usable)</li>
-  <li>Graphical editors tend to create deprecated, invalid, proprietary HTML. Yu have more control if you use a plain text editor instead.</li>
-  <li>You don't learn anything. Sooner or later, you will want to do something your precious WYSIWYG-editor isn't capable to do. Now what? You have always used the editor to do your work - you don't understand HTML. When using a plain text editor, the learning curve may be steep, but it's much more entertaining.</li>
-</ul>
-
 <a name="theme_create_colors"></a><h2>Modifying colors<a href="#theme_create_colors" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>To modify the colors, fonts, font sizes, etc... used by the script, you should edit the &quot;<strong>style.css</strong>&quot; stylesheet whenever possible. For example, if you want to increase or decrease the size of the fonts you can simply modify the line with : <tt class="code">table { font-size: 12px; }</tt>. Most of the font sizes used by the script are defined as a percentage of this size.</p>
 
 <a name="theme_create_theme_php"></a><h2>Editing theme.php<a href="#theme_create_theme_php" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>The &quot;<strong>theme.php</strong>&quot; file contains all the HTML templates used by the script. You can edit them, as well. When making modifications to these templates, be careful that you do not alter the lines that start with <tt class="code">&lt;!-- BEGIN xxx --&gt;</tt> and <tt class="code">&lt;!-- END xxx --&gt;</tt>. These lines are often used to identify the start and end of specific code blocks that the script will use to display your gallery.</p>
 
-<a name="theme_create_tipps"></a><h2>Tipps &amp; tricks<a href="#theme_create_tipps" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>If you're not sure how to go about creating your own theme, you could also have a look at the download section of the coppermine homepage: there are many user-contributed themes available for download that can be previewed on the <a href="http://coppermine-gallery.net/demo/">coppermine demo page</a>.</p>
-<p>While you're in the process of creating or testing a new theme, you might not want your theme to be displayed to visitors of your site, but you (as the coppermine admin) may want to still be able to preview your theme. To do that, simply add <tt class="code">theme=your_theme_name</tt> to the url in your browser.</p>
-<br />
-<div class="quote">
-<strong>Examples:</strong>
-<ul>
-<li><tt class="code">http://yoursite.tld/coppermine/index.php?theme=your_theme_name</tt> will show the coppermine index page, using your theme</li>
-<li><tt class="code">http://yoursite.tld/coppermine/thumbnails.php?album=1&amp;theme=your_theme_name</tt> will show the thumbnail view of album 1, using your theme</li>
-<li><tt class="code">http://yoursite.tld/coppermine/?theme=xxx</tt> will reset your view back to the theme you chose as your <a href="configuration.htm#admin_theme_theme">default theme</a> in coppermine config</li>
-</ul>
-</div>
+
 <a name="theme_create_end"></a>
 
 
