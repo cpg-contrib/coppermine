@@ -1,7 +1,7 @@
 <!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<title>Uploading - Coppermine Photo Gallery - Documentation &amp; Manual</title>
+<title>Uploading troubleshooting - Coppermine Photo Gallery - Documentation &amp; Manual</title>
 <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
 <meta name="language"    content="en">
 <meta name="copyright"   content="Coppermine dev team">
@@ -95,7 +95,7 @@ Go to your coppermine page and log in as admin</li>
     <td valign="top" align="left" style="border-top:1px solid #0E72A4;border-bottom:1px solid #0E72A4;">
       <ul>
         <li>'edit'-folder in your albums folder is missing</li>
-        <li>'edit'-folder in your albums folder doesn't have rwx-<a href="nstall_permissions.htm#permissions">permissions</a></li>
+        <li>'edit'-folder in your albums folder doesn't have rwx-<a href="install_permissions.htm#permissions">permissions</a></li>
         <li>Improper upgrade from cpg1.3.x</li>
       </ul>
     </td>
@@ -118,7 +118,7 @@ Go to your coppermine page and log in as admin</li>
       </ul>
     </td>
     <td valign="top" align="left" style="border-top:1px solid #0E72A4;border-right:1px solid #0E72A4;border-bottom:1px solid #0E72A4;">
-      Check if <a href="#VersionPHP">your version of PHP</a> fullfills the <a href="#MinimumRequirements">minimum requirements</a> for Coppermine. If your version is 4.1.0 or better, then this error is probably caused by a misconfiguration of your hosting server, and not a Coppermine issue. If the server isn't yours to configure properly (that is: if you're with a webhost), you can try this workaround (at your own risk):<br >
+      Check if <a href="faq.htm#VersionPHP">your version of PHP</a> fullfills the <a href="requirements.htm#what">minimum requirements</a> for Coppermine. If your version is 4.1.0 or better, then this error is probably caused by a misconfiguration of your hosting server, and not a Coppermine issue. If the server isn't yours to configure properly (that is: if you're with a webhost), you can try this workaround (at your own risk):<br >
       Edit the file "init.inc.php" and look for<br />
       <pre>$PHP_SELF = isset($_SERVER['REDIRECT_URL']) ? $_SERVER['REDIRECT_URL'] : $_SERVER['SCRIPT_NAME'];</pre>
 Replace it with<br />
@@ -140,7 +140,7 @@ Replace it with<br />
 
 <a name="upload_support"></a><h2>Asking for support on upload issues<a href="#upload_support" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 
-<p class="important">When asking for support on the coppermine forum, post a link to your site and a <a href="#user_cp_new">test user account</a> (the test user mustn't be in the admin group!) with upload privileges, with the above mentioned settings in place - this way, supporters can see the error messages as well. Do not post debug_output unless requested. If you want fast results, you should disable admin approval for the group the test user is in, so supporters can tell instantly what is wrong without needing to double-check.</p>
+<p class="important">When asking for support on the coppermine forum, post a link to your site and a <a href="users.htm#user_cp_new">test user account</a> (the test user mustn't be in the admin group!) with upload privileges, with the above mentioned settings in place - this way, supporters can see the error messages as well. Do not post debug_output unless requested. If you want fast results, you should disable admin approval for the group the test user is in, so supporters can tell instantly what is wrong without needing to double-check.</p>
 <p>When people have issues with uploading and decide to post their question on the Coppermine support board, they usually are told to read this upload troubleshooting section. Many of them fail to do so properly, which results in frustration both for users as well as supporters. To make this absolutely clear: the above mentioned steps are absolutely <strong>mandatory</strong>, no matter what skill level you have, no matter what upload method you have troubles with. Failing to do <strong>exactly</strong> as suggested will result in your request for help being ignored. Yes, this applies to you. We mean it!</p>
 <a name="upload_trouble_end"></a>
 
