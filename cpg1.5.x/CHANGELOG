@@ -25,6 +25,8 @@ Changelog
 [O] = Optimization of code
 [S] = Security fix (issues that are related to security)
 *********************************************
+
+2007-06-04 [A] Added success/failure message on target page (instead of sending users to redirection page) {GauGau}
 2007-06-03 [B] Increased CPG_filetypes mime field length {Donnoman}
 2007-06-03 [O] Removed "CREATE TABLE IF NOT EXISTS" in update.sql; this case is already handled by the nature of update.php, a failure is preferred. {Donnoman}
 2007-06-03 [A] Additional mysql output while running update.php by appending ?debug to the url {Donnoman}

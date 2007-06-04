@@ -687,6 +687,7 @@ a:active .image{
 .cpg_user_message {
         font-size:1.4em;
         font-weight:bold;
+        color:red;
 }
 
 #vanity a {

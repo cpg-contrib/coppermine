@@ -980,8 +980,9 @@ if (count($_POST) > 0) {
                 }
             }
         }
-        pageheader($lang_admin_php['title']);
-        msg_box($lang_admin_php['info'], $lang_admin_php['upd_success'], $lang_common['continue'], 'index.php');
+        //pageheader($lang_admin_php['title']);
+        //msg_box($lang_admin_php['info'], $lang_admin_php['upd_success'], $lang_common['continue'], 'index.php');
+        $message_id= cpgStoreTempMessage($lang_admin_php['upd_success']);
 
     } elseif (isset($_POST['restore_config'])) {
         $default_config = 'sql/basic.sql';
@@ -997,12 +998,10 @@ if (count($_POST) > 0) {
                 $f= cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '{$CONFIG['enable_encrypted_passwords']}' WHERE name = 'enable_encrypted_passwords'");
                 var_dump($f);
                 var_dump(mysql_affected_rows());
-        pageheader($lang_admin_php['title']);
-            //msg_box($lang_admin_php['info'], $lang_admin_php['restore_success'], $lang_common['continue'], $PHP_SELF);
-            msg_box($lang_admin_php['info'], $lang_admin_php['restore_success'], $lang_common['continue'], $_SERVER['PHP_SELF']);
+        //pageheader($lang_admin_php['title']);
+            //msg_box($lang_admin_php['info'], $lang_admin_php['restore_success'], $lang_common['continue'], $_SERVER['PHP_SELF']);
+            $message_id= cpgStoreTempMessage($lang_admin_php['restore_success']);
     }
-        pagefooter();
-        exit;
 }
 
 pageheader($lang_admin_php['title']);

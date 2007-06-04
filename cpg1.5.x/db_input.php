@@ -232,11 +232,12 @@ switch ($event) {
 
         $update = cpg_db_query($query);
 
-        if (!mysql_affected_rows()) cpg_die(INFORMATION, $lang_db_input_php['no_udp_needed'], __FILE__, __LINE__);
-                pageheader($lang_db_input_php['alb_updated'], "<meta http-equiv=\"refresh\" content=\"1;url=modifyalb.php?album=$aid\" />");
-        msg_box($lang_db_input_php['info'], $lang_db_input_php['alb_updated'], $lang_common['continue'], "modifyalb.php?album=$aid");
-        pagefooter();
-        ob_end_flush();
+        if (!mysql_affected_rows()) {
+          $target_url = 'modifyalb.php?album='.$aid.'&message_id='.cpgStoreTempMessage($lang_db_input_php['no_udp_needed']);
+        } else {
+          $target_url = 'modifyalb.php?album='.$aid.'&message_id='.cpgStoreTempMessage($lang_db_input_php['alb_updated']);
+        }
+        header('Location: '.$target_url); /* Redirect browser */
         exit;
         break;
 

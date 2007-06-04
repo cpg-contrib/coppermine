@@ -1872,12 +1872,33 @@ It's advisable not to change it unless you really know what you're doing.
 This function composes the individual sections of the block.
 ******************************************************************************/
 function theme_display_message_block() {
-    global $lang_gallery_admin_menu, $CONFIG;
+    global $lang_gallery_admin_menu, $lang_info, $CONFIG, $message_id;
     $return = '';
-    if ($_SERVER['message_id'] != '') {
-        $return = '<a name="cpgMessageBlock"></a><div id="cpgMessage" style="border:1px solid red;width:100%;">message block (under construction):';
-        $return .= cpgFetchTempMessage($_SERVER['message_id']);
-        $return .= '</div>';
+    if ($_GET['message_id'] != '') {
+      $message_id = $_GET['message_id'];
+    }
+    if ($message_id != '') {
+        $tempMessage = cpgFetchTempMessage($message_id);
+        if ($tempMessage <> '') {
+            ob_start();
+            starttable(-1, $lang_info);
+            $return = ob_get_contents();
+            ob_end_clean();
+            $return .= <<< EOT
+            <tr>
+              <td class="tableb" align="center">
+                <a name="cpgMessageBlock"></a>
+                <div id="cpgMessage" class="cpg_user_message">
+                  {$tempMessage}
+                </div>
+              </td>
+            </tr>
+EOT;
+            ob_start();
+            endtable();
+            $return .= ob_get_contents();
+            ob_end_clean();
+        }
     }
     if (GALLERY_ADMIN_MODE) {
         cpgCleanTempMessage(); // garbage collection: when the admin is logged in, old messages that failed to display for whatever reason are being removed to keep the temp_messages table clean
@@ -1891,6 +1912,7 @@ function theme_display_message_block() {
 /******************************************************************************
 ** Section <<<theme_display_message_block>>> - END
 ******************************************************************************/
+
 /******************************************************************************
 ** Section <<<theme_display_cat_list>>> - START
 ******************************************************************************/
