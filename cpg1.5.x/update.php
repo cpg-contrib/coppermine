@@ -20,6 +20,7 @@
 // Report all errors except E_NOTICE
 // This is the default value set in php.ini
 error_reporting (E_ALL ^ E_NOTICE);
+set_magic_quotes_runtime(0);
 
 require ('include/sql_parse.php');
 require ('include/config.inc.php');
@@ -154,10 +155,52 @@ function update_tables()
 
     foreach($sql_query as $q) {
         echo "<tr><td class='tableb'>$q</td>";
-        if (@mysql_query($q)) {
+        /**
+         * Determining if the Alter Table actually made a change
+         * to properly reflect it's status on the update page.
+         */
+        if (stripos($q,'ALTER TABLE')!==false) {
+            $query=explode(" ",$q);
+            //var_dump($query);
+            $result=mysql_query("DESCRIBE ".$query[2]);
+            while ($row=mysql_fetch_row($result)) {
+                $description[]=$row;
+            }
+
+            $result = @mysql_query($q);
+            $affected = mysql_affected_rows();
+            $warnings=mysql_query('SHOW WARNINGS');
+
+            $result=mysql_query("DESCRIBE ".$query[2]);
+            while ($row=mysql_fetch_row($result)) {
+                $description2[]=$row;
+            }
+
+            if ($description == $description2) {
+               $affected = 0;
+            }
+        } else {
+            $result = @mysql_query($q);
+            $affected = mysql_affected_rows();
+            $warnings=mysql_query('SHOW WARNINGS;');
+        }
+
+        if ($result && $affected) {
             echo "<td class='updatesOK'>OK</td>";
         } else {
             echo "<td class='updatesFail'>Already Done</td>";
+        }
+        if (isset($_REQUEST['debug'])) {
+            echo "<tr><td class='tablef'>";
+            if ($affected > -1) {
+                echo "Rows Affected: ".$affected."<br />";
+            }
+            if ($warnings) {
+                while ($warning=mysql_fetch_row($warnings)) {
+                    echo "{$warning[0]} ({$warning[1]}) {$warning[2]}<br />";
+                }
+            }
+            echo "</td><td class='tableh2_compact'>MySQL Said</td></tr>";
         }
     }
     echo "</table>";

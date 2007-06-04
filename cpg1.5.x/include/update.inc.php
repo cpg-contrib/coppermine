@@ -48,6 +48,7 @@ function html_header($title, $charset = '')
 <head>
     <title><?php echo $title; ?></title>
         <?php if ($charset !='') echo '<meta http-equiv="Content-Type" content="text/html; charset='.$charset.'" />'; ?>
+    <meta http-equiv="Pragma" content="no-cache" />
     <link type="text/css" rel="stylesheet" href="installer.css">
 </head>
 <body>
