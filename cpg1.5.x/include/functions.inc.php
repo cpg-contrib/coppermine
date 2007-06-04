@@ -3283,7 +3283,7 @@ function cpgStoreTempMessage($message) {
   $message = urlencode($message);
   // come up with a unique message id
   $message_id = ereg_replace("[^A-Za-z0-9]", "",
-base64_encode(rand(10000,30000).time().USER_ID.hash('md5', $message)));
+base64_encode(rand(10000,30000).time().USER_ID.md5($message)));
   // write the message to the database
   $user_id = USER_ID;
   $time = time();
