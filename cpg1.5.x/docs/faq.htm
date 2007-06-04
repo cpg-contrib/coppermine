@@ -264,14 +264,14 @@ Here's a quick &quot;how to backup a database with phpMyAdmin&quot; primer:
 </ul></p><hr />
 <a name="noFullsizePopup"></a>
 <h3>The <strong>fullsize-pic doesn't pop up</strong> when clicking on the intermediate size pic. What's wrong?<a href="#noFullsizePopup" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>If you are certain that your original file is larger in dimensions than the settings you selected for intermediate sized pictures, there's a good chance that you over-edited your theme's template/html file: make sure that the line <tt class="code">&lt;script type=&quot;text/javascript&quot; src=&quot;scripts.js&quot;&gt;&lt;/script&gt;</tt> inside /themes/yourtheme/template.html is still there to make the pop-up window work...<br />
+<p>If you are certain that your original file is larger in dimensions than the settings you selected for intermediate sized pictures, there's a good chance that you over-edited your theme's template/html file: make sure that the line <tt class="code">{JAVASCRIPT}</tt> inside /themes/yourtheme/template.html is still there to make the pop-up window work...<br />
 The &lt;head&gt;-part of your template file should look like this:<br />
 <pre>&lt;head&gt;
 &lt;title&gt;{TITLE}&lt;/title&gt;
 &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset={CHARSET}&quot; /&gt;
 {META}
-&lt;link rel=&quot;stylesheet&quot; href=&quot;themes/default/style.css&quot; /&gt;
-&lt;script type=&quot;text/javascript&quot; src=&quot;scripts.js&quot;&gt;&lt;/script&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;themes/your_theme_name/style.css&quot; /&gt;
+{JAVASCRIPT}
 &lt;/head&gt;</pre>
 - If you're still unsure about this, just compare your theme's template.html with the default theme that comes with coppermine .</p><hr />
 <a name="viewThumbnailsOnly"></a>
