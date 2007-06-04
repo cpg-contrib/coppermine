@@ -25,7 +25,10 @@ Changelog
 [O] = Optimization of code
 [S] = Security fix (issues that are related to security)
 *********************************************
-
+2007-06-03 [B] Increased CPG_filetypes mime field length {Donnoman}
+2007-06-03 [O] Removed "CREATE TABLE IF NOT EXISTS" in update.sql; this case is already handled by the nature of update.php, a failure is preferred. {Donnoman}
+2007-06-03 [A] Additional mysql output while running update.php by appending ?debug to the url {Donnoman}
+2007-06-03 [B] Output_Buffer Template error due to magic_quotes_runtime not being forcibly set in update.php {Donnoman}
 2007-05-31 [C] Removed wrapping table in classic theme, moved formatting completely into style sheet {GauGau}
 2007-05-21 [C] Removed deprecated HTML tags from email templates {GauGau}
 2007-05-21 [C] Replaced hard-coded bold tags with corresponding CSS formats in theme files {GauGau}

@@ -20,7 +20,7 @@
 # Table structure for table `CPG_sessions`
 #
 
-CREATE TABLE IF NOT EXISTS CPG_sessions (
+CREATE TABLE CPG_sessions (
   session_id varchar(40) NOT NULL default '',
   user_id int(11) default '0',
   time int(11) default NULL,
@@ -356,7 +356,7 @@ CREATE TABLE `CPG_hit_stats` (
 ) TYPE = MyISAM COMMENT='Detailed stats about hits, only used when enabled';
 # --------------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS CPG_temp_messages (
+CREATE TABLE CPG_temp_messages (
   message_id varchar(80) NOT NULL default '',
   user_id int(11) default '0',
   time int(11) default NULL,

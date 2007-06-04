@@ -21,7 +21,7 @@
 # Table structure for table `CPG_sessions`
 #
 
-CREATE TABLE IF NOT EXISTS CPG_sessions (
+CREATE TABLE CPG_sessions (
   session_id varchar(40) NOT NULL default '',
   user_id int(11) default '0',
   time int(11) default NULL,
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS CPG_sessions (
 # Table structure for table `CPG_filetypes`
 #
 
-CREATE TABLE IF NOT EXISTS CPG_filetypes (
+CREATE TABLE CPG_filetypes (
   extension char(7) NOT NULL default '',
   mime char(30) default NULL,
   content char(15) default NULL,
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS CPG_filetypes (
 ) TYPE=MyISAM COMMENT='Used to store the file extensions';
 
 # Create temporary table to store messages carried over from one page to the other
-CREATE TABLE IF NOT EXISTS CPG_temp_messages (
+CREATE TABLE CPG_temp_messages (
   message_id varchar(80) NOT NULL default '',
   user_id int(11) default '0',
   time int(11) default NULL,
@@ -52,8 +52,9 @@ CREATE TABLE IF NOT EXISTS CPG_temp_messages (
 ) TYPE=MyISAM COMMENT='Used to store messages from one page to the other';
 # --------------------------------------------------------
 
-ALTER TABLE `CPG_filetypes` DROP INDEX `EXTENSION`, ADD PRIMARY KEY ( `extension` );
-ALTER TABLE `CPG_filetypes` ADD `player` VARCHAR( 5 ) ;
+ALTER TABLE CPG_filetypes DROP INDEX `EXTENSION`, ADD PRIMARY KEY ( `extension` );
+ALTER TABLE CPG_filetypes ADD `player` VARCHAR( 5 ) ;
+ALTER TABLE CPG_filetypes CHANGE `mime` `mime` CHAR(254) default NULL;
 
 INSERT INTO CPG_filetypes VALUES ('jpg', 'image/jpg', 'image', '');
 INSERT INTO CPG_filetypes VALUES ('jpeg', 'image/jpeg', 'image', '');
@@ -284,7 +285,7 @@ ALTER TABLE `CPG_usergroups` ADD `num_URI_upload` TINYINT(4) DEFAULT '3' NOT NUL
 # Table structure for table `CPG_temp_data` - Temporary data for file uploads - Hyperion
 #
 
-CREATE TABLE IF NOT EXISTS `CPG_temp_data` (
+CREATE TABLE `CPG_temp_data` (
 `unique_ID` CHAR( 8 ) NOT NULL ,
 `encoded_string` BLOB NOT NULL ,
 `timestamp` INT( 11 ) UNSIGNED NOT NULL ,
@@ -309,7 +310,8 @@ ALTER TABLE `CPG_users` CHANGE user_lang user_group_list varchar(255) NOT NULL d
 #
 # Fix usermgr timing out with 1k+ users -Omni
 #
-ALTER TABLE CPG_pictures DROP INDEX `owner_id`;
+## Disabled dropping the index 'owner_id' since it gets recreated.
+## ALTER TABLE CPG_pictures DROP INDEX `owner_id`;
 ALTER TABLE CPG_pictures DROP INDEX `owner_id_2`;
 ALTER TABLE CPG_pictures ADD INDEX owner_id( `owner_id` );
 
@@ -615,3 +617,4 @@ INSERT INTO CPG_config VALUES ('display_stats_on_index', '1');
 
 # Enable "browse by date" meta album
 INSERT INTO CPG_config VALUES ('browse_by_date', '0');
+
