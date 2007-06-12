@@ -92,6 +92,17 @@ Coppermine: http://yourseconddomain.com/gallery/</td>
 
 <a name="integrating_users_start"></a><h3>Coppermine users, groups and pics uploaded by users are lost when integrating<a href="#integrating_users_start" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p><span class="important">Warning:</span> If you already have users and custom groups in your coppermine database when you enable bbs integration, be aware that they will be lost. If your coppermine users have already created private albums and uploaded pics to them, they will be lost as well!</p>
+<p><strong>Detailed explanation:</strong><br />
+As most community applications, coppermine stores everything that users (including the admin) do (like uploading pics, posting comments, rating files) inside the database. The reference to each user action is being kept using a unique user ID. The correlation between the user actions and the corresponding user profile is being kept by storing the user ID within each record in the database that determines the user action.<br />
+When bridging is enabled, coppermine's user management is being dropped in favor of the user management that comes with the application you bridge with. Subsequently, the user IDs from your bridging app (that differ from Coppermine's user IDs) are being taken into account.</p>
+<div class="quote">
+<p><strong>Example:</strong><br />
+Coppermine-user &quot;Bill&quot; has got the coppermine user ID &quot;3&quot;. He used to upload several pics that went into the folder /albums/userpics/10003/. The URL of his personal gallery used to be http://yoursite.tld/your_coppermine_folder/index.php?cat=10003.<br /> In the BBS application, the user &quot;Linus&quot; has got the user ID &quot;3&quot;.<br />
+After enabling bridging, the URL http://yoursite.tld/your_coppermine_folder/index.php?cat=10003 points to the personal gallery of the user &quot;Linus&quot;. All pics that Bill used to upload appear to be owned by Linus.</p>
+</div>
+<p><strong>Summary:</strong><br />
+Correlation between the actions that the unbridged coppermine users have performed and the &quot;new&quot; accounts from the app you bridged with is lost. Subsequently, you don't actually loose files that have been uploaded previously, but they appear to have been uploaded by a different user.</p>
+
 <a name="integrating_users_end"></a>
 
 <a name="integrating_backup_start"></a><h3>Backup<a href="#integrating_backup_start" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
