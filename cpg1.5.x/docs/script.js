@@ -441,6 +441,7 @@ d.add(451,447,'Validation Methodology','theme_upgrade_14x-15x.htm#validation');
 d.add(460,420,'Content of a theme','theme.htm#theme_files');
 d.add(470,420,'The sample theme - a template to copy from','theme.htm#theme_sample');
 d.add(480,420,'How the theme engine works','theme.htm#theme_engine');
+d.add(485,420,'User-contributed themes','theme_user-contributions.htm#theme_user-contributions');
 d.add(490,420,'Creating your custom theme','theme_create.htm#theme_create');
 d.add(500,420,'Copyright-disclaimer in footer','theme_copyright.htm');
 d.add(510,420,'Dynamic (PHP-driven) content','php-content.htm');
