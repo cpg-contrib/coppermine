@@ -233,7 +233,7 @@ if ($CONFIG['allow_private_albums'] == 0 || !in_array($album, $FORBIDDEN_SET_DAT
         if (!empty($_COOKIE[$CONFIG['cookie_name'] . '_albpw'])) {
             $alb_pw = unserialize($_COOKIE[$CONFIG['cookie_name'] . '_albpw']);
             // Check whether the alubm id in the cookie is same as that of the album id send by get
-            if (isset($alb_pw[$album])) {
+            if (isset($alb_pw[$album]) && ctype_alnum($alb_pw[$album])) {
                 $sql = "SELECT aid FROM " . $CONFIG['TABLE_ALBUMS'] . " WHERE MD5(alb_password)='{$alb_pw[$album]}' AND aid='{$album}'";
                 $result = cpg_db_query($sql);
                 if (mysql_num_rows($result)) {

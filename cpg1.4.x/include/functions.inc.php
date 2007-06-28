@@ -757,8 +757,15 @@ function get_private_album_set($aid_str="")
                 //Stuff for Album level passwords
         if (isset($_COOKIE[$CONFIG['cookie_name']."_albpw"]) && empty($aid_str)) {
           $alb_pw = unserialize($_COOKIE[$CONFIG['cookie_name']."_albpw"]);
-          $aid_str = implode(",",array_keys($alb_pw));
+
+          foreach($alb_pw as $aid => $value) {
+            $aid_str = (int)$aid . ",";
+          }
+
+          $aid_str = substr($aid_str, 0, -1);
+
           $sql = "SELECT aid, MD5(alb_password) as md5_password FROM ".$CONFIG['TABLE_ALBUMS']." WHERE aid IN ($aid_str)";
+
           $result = cpg_db_query($sql);
           $albpw_db = array();
           if (mysql_num_rows($result)) {
