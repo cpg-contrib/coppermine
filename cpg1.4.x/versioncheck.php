@@ -905,7 +905,7 @@ if ($webcvs != '0') {
 print '<td class="tableb">';
 // web cvs start
 $webcvslink = 'http://svn.sourceforge.net/viewcvs.cgi/coppermine/trunk/';
-if ($webcvs == "devel") {$webcvslink .= 'devel/';} else {$webcvslink .= 'stable/';}
+if ($webcvs == "devel") {$webcvslink .= 'cpg1.5.x/';} else {$webcvslink .= 'cpg1.4.x/';}
 $webcvslink .= $file_complete_path;
 print sprintf($lang_versioncheck_php['go_to_webcvs'],'<a href="'.$webcvslink.'">'.$lang_versioncheck_php['webcvs'].'</a>');
 // web cvs end
@@ -4944,7 +4944,7 @@ $return = '
 1.4.11|upload.php|1.4.11|3406|mandatory|r@
 1.4.11|usermgr.php|1.4.11|3406|mandatory|r@
 1.4.11|util.php|1.4.11|3406|mandatory|r@
-1.4.11|versioncheck.php|1.4.11|3633|mandatory|r@
+1.4.11|versioncheck.php|1.4.11|3634|mandatory|r@
 1.4.11|viewlog.php|1.4.11|3406|mandatory|r@
 1.4.11|xp_publish.php|1.4.11|3406|mandatory|r@
 1.4.11|zipdownload.php|1.4.11|3406|mandatory|r@
@@ -5040,8 +5040,8 @@ $return = '
 1.4.11|lang/czech.php|1.4.11|3406|optional|r@
 1.4.11|lang/danish.php|1.4.11|1.15|optional|r@
 1.4.11|lang/dutch.php|1.4.11|3406|optional|r@
-1.4.11|lang/english.php|1.4.11|3469|mandatory|r@
-1.4.11|lang/english_gb.php|1.4.11|3406|optional|r@
+1.4.11|lang/english.php|1.4.11|3634|mandatory|r@
+1.4.11|lang/english_gb.php|1.4.11|3634|optional|r@
 1.4.11|lang/finnish.php|1.4.11|1.26|optional|r@
 1.4.11|lang/french.php|1.4.11|3406|optional|r@
 1.4.11|lang/galician.php|1.4.11|3406|optional|r@
