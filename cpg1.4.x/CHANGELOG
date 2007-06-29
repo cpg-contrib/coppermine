@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-06-28 [M] Release of cpg1.4.11 {GauGau}
 2007-06-28 [S] Fixed a vulnerability where SQL injection was possible with array indices of album password cookie {Abbas}
 2007-03-30 [C] Renamed default cookie name to version-independant name to avoid confusion for beginners {GauGau}
 2007-03-26 [D] Added German version of the FAQ (user contribution, work in progress) {GauGau}
