@@ -9,7 +9,7 @@ it under the terms of the GNU General Public License as published by
 the Free Software Foundation; either version 2 of the License, or
 (at your option) any later version.
 ********************************************
-Coppermine version: 1.4.11
+Coppermine version: 1.4.12
 $Source$
 $Revision$
 $Author$
@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-06-28 [M] Updated version count from cpg1.4.11 to cpg1.4.12 in subversion repository as a preparation for a possible future release {GauGau}
 2007-06-28 [M] Release of cpg1.4.11 {GauGau}
 2007-06-28 [S] Fixed a vulnerability where SQL injection was possible with array indices of album password cookie {Abbas}
 2007-03-30 [C] Renamed default cookie name to version-independant name to avoid confusion for beginners {GauGau}

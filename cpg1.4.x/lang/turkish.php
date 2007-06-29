@@ -10,7 +10,7 @@
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
   ********************************************
-  Coppermine version: 1.4.11
+  Coppermine version: 1.4.12
   $Source: /cvsroot/coppermine/devel/lang/english.php,v $
   $Revision$
   $Author$
