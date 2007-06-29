@@ -2,7 +2,7 @@
 /*************************
   Coppermine Photo Gallery
   ************************
-  Copyright (c) 2003-2007 Coppermine Dev Team
+  Copyright (c) 2003-2006 Coppermine Dev Team
   v1.1 originally written by Gregory DEMAR
 
   This program is free software; you can redistribute it and/or modify
@@ -10,7 +10,7 @@
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
   ********************************************
-  Coppermine version: 1.4.12
+  Coppermine version: 1.4.9
   $Source$
   $Revision$
   $Author$
@@ -29,8 +29,8 @@ $lang_translation_info = array(
   'lang_country_code' => 'ru', //cpg1.4
   'trans_name'=> 'Makc666',
   'trans_email' => 'makc666@yahoo.com',
-  'trans_website' => 'http://makc666.starnet.ru/',
-  'trans_date' => '2006-05-20',
+  'trans_website' => 'http://makc666.com/',
+  'trans_date' => '2007-06-29',
 );
 
 $lang_charset = 'utf-8';
@@ -58,9 +58,9 @@ $album_date_fmt =    '%B %d, %Y';
 $lastcom_date_fmt =  '%m/%d/%y в %H:%M';
 $lastup_date_fmt = '%B %d, %Y';
 $register_date_fmt = '%B %d, %Y';
-$lasthit_date_fmt = '%B %d, %Y в %I:%M %p';
-$comment_date_fmt =  '%B %d, %Y в %I:%M %p';
-$log_date_fmt = '%B %d, %Y в %I:%M %p'; //cpg1.4
+$lasthit_date_fmt = '%B %d, %Y в %H:%M';
+$comment_date_fmt =  '%B %d, %Y в %H:%M';
+$log_date_fmt = '%B %d, %Y в %H:%M; //cpg1.4
 
 // For the word censor
 $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*');
@@ -632,7 +632,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Название галереи', 'gallery_name', 0, 'f=index.htm&amp;as=admin_general_name&amp;ae=admin_general_name_end'), //cpg1.4
   array('Описание галереи', 'gallery_description', 0, 'f=index.htm&amp;as=admin_general_description&amp;ae=admin_general_description_end'), //cpg1.4
   array('Email адрес администратора', 'gallery_admin_email', 0, 'f=index.htm&amp;as=admin_general_email&amp;ae=admin_general_email_end'), //cpg1.4
-  array('Начальный адресс для ссылки \'Посмотреть остальные картинки!\' в открытках (никаких \'index.php\' или что-то подобного на конце ссылки)', 'ecards_more_pic_target', 0, 'f=index.htm&amp;as=admin_general_coppermine-url&amp;ae=admin_general_coppermine-url_end'), //cpg1.4
+  array('Начальный адрес для ссылки \'Посмотреть остальные картинки!\' в открытках (никаких \'index.php\' или что-то подобного на конце ссылки)', 'ecards_more_pic_target', 0, 'f=index.htm&amp;as=admin_general_coppermine-url&amp;ae=admin_general_coppermine-url_end'), //cpg1.4
   array('Ссылка на Вашу домашнюю страницу', 'home_target', 0, 'f=index.htm&amp;as=admin_general_home-url&amp;ae=admin_general_home-url_end'), //cpg1.4
   array('Включить ZIP-скачивание в избранном', 'enable_zipdownload', 1, 'f=index.htm&amp;as=admin_general_zip-download&amp;ae=admin_general_zip-download_end'), //cpg1.4
   array('Разница во времени относительно GMT (текущее время: ' . localised_date(-1, $comment_date_fmt) . ')','time_offset',0, 'f=index.htm&amp;as=admin_general_time-offset&amp;ae=admin_general_time-offset_end&amp;top=1'), //cpg1.4
@@ -710,11 +710,11 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Префикс для комментариев анонимных пользователей', 'comments_anon_pfx', 0, 'f=index.htm&amp;as=comments_anon_pfx&amp;ae=comments_anon_pfx_end'), //cpg1.4
 
   'Настройки файлов и миниатюр',
-  array('Качество для JPEG файлов', 'jpeg_qual', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_jpeg_quality&amp;ae=admin_picture_thumbnail_jpeg_quality_end'), //cpg1.4
+  array('Качество для JPEG файлов (в %)', 'jpeg_qual', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_jpeg_quality&amp;ae=admin_picture_thumbnail_jpeg_quality_end'), //cpg1.4
   array('Максимальный размер миниатюры <a href="#notice2" class="clickable_option">**</a>', 'thumb_width', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_max-dimension&amp;ae=admin_picture_thumbnail_max-dimension_end'), //cpg1.4
   array('Использовать размер (ширина или высота или максимальный размер для миниатюры) <a href="#notice2" class="clickable_option">**</a>', 'thumb_use', 7, 'f=index.htm&amp;as=admin_picture_thumbnail_use-dimension&amp;ae=admin_picture_thumbnail_use-dimension_end'), //cpg1.4
   array('Создавать промежуточные изображения','make_intermediate',1, 'f=index.htm&amp;as=admin_picture_thumbnail_intermediate_toggle&amp;ae=admin_picture_thumbnail_intermediate_toggle_end'), //cpg1.4
-  array('Максимальная ширина и высота для промежуточных изображений/видео <a href="#notice2" class="clickable_option">**</a>', 'picture_width', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_intermediate_dimension&amp;ae=admin_picture_thumbnail_intermediate_dimension_end'), //cpg1.4
+  array('Максимальная ширина или высота для промежуточных изображений/видео (пиксели) <a href="#notice2" class="clickable_option">**</a>', 'picture_width', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_intermediate_dimension&amp;ae=admin_picture_thumbnail_intermediate_dimension_end'), //cpg1.4
   array('Максимальных размер загружаемых файлов (KB)', 'max_upl_size', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_max_upload_size&amp;ae=admin_picture_thumbnail_max_upload_size_end'), //cpg1.4
   array('Максимальная ширина или высота для загруженных изображений/видео (пиксели)', 'max_upl_width_height', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_max_upload_dimension&amp;ae=admin_picture_thumbnail_max_upload_dimension_end'), //cpg1.4
   array('Автоматически изменять размер изображений, которые больше чем макс. ширина или высота', 'auto_resize', 16, 'f=index.htm&amp;as=admin_picture_thumbnail_auto-resize&amp;ae=admin_picture_thumbnail_auto-resize_end'), //cpg1.4
@@ -1369,7 +1369,7 @@ if (defined('MINIBROWSER_PHP')) $lang_minibrowser_php = array(
 
 if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
   'upd_alb_n' => 'Обновление альбома -> %s',
-  'general_settings' => 'Общий настройки',
+  'general_settings' => 'Общие настройки',
   'alb_title' => 'Название альбома',
   'alb_cat' => 'Категория альбома',
   'alb_desc' => 'Описание альбома',
@@ -1737,7 +1737,7 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'cust_instr_6' => 'Загрузка файлов:',
   'cust_instr_7' => 'Пожалуйста, введите количество строк для каждого типа необходимое Вам на этот раз. Потом нажмите \'ПРОДОЛЖИТЬ\'. ',
   'reg_instr_1' => 'Неправильное действие для создания формы.',
-  'reg_instr_2' => 'Теперь Вы можете загрузить файлы, используя соответствующие строчки ниже. Объем файлов загружаемых из под Вашего пользователя на сервер не должен привышать %s КБ каждый. ZIP файлы загруженные в \'Загрузка файлов\' и \'Загрузка ссылок\' секции останутся запакованными.',
+  'reg_instr_2' => 'Теперь Вы можете загрузить файлы, используя соответствующие строчки ниже. Объем файлов загружаемых из под Вашего пользователя на сервер не должен превышать %s КБ каждый. ZIP файлы загруженные в \'Загрузка файлов\' и \'Загрузка ссылок\' секции останутся запакованными.',
   'reg_instr_3' => 'Если Вы хотите, чтобы ZIP файлы или архивы была распакованы после загрузки, Вы должны использовать строчки для загрузки в секции \'ZIP загрузки для распаковки\'.',
   'reg_instr_4' => 'Когда используете загрузку ссылок, пожалуйста, указывайте путь к файлу в виде: http://www.mysite.com/images/example.jpg',
   'reg_instr_5' => 'Когда Вы заполнили форму, пожалуйста, нажмите \'ПРОДОЛЖИТЬ\'.',
@@ -1940,7 +1940,7 @@ $lang_util_php = array(
   'update_both' => 'Как миниатюры, так и измененные изображения',
   'update_number' => 'Количество обрабатываемых изображений по одному клику',
   'update_option' => '(Попробуйте установить это значение ниже, если возникают проблемы с таймаутами)',
-  'filename_title' => 'Имя файла &rArr; Название файла',
+  'filename_title' => 'Имя файла -&gt; Название файла',
   'filename_how' => 'Как должно быть изменено имя файла?',
   'filename_remove' => 'Удалить окончание .jpg и заменить _ (подчеркивание) на пробелы',
   'filename_euro' => 'Изменить 2003_11_23_13_20_20.jpg на 23/11/2003 13:20',
@@ -2005,7 +2005,7 @@ if (defined('VERSIONCHECK_PHP')) $lang_versioncheck_php = array(
   'folder_file' => 'папка/файл', //cpg1.4
   'coppermine_version' => 'cpg версия', //cpg1.4
   'file_version' => 'версия файла', //cpg1.4
-  'webcvs' => 'web cvs', //cpg1.4
+  'webcvs' => 'web svn', //cpg1.4
   'writable' => 'есть права на запись', //cpg1.4
   'not_writable' => 'нет прав на запись', //cpg1.4
   'help' => 'Помощь', //cpg1.4
@@ -2017,8 +2017,8 @@ if (defined('VERSIONCHECK_PHP')) $lang_versioncheck_php = array(
   'help_no_local_version2' => 'Скрипт не смог извлечь версию локального файла - Ваш файл или устарел, или был модифицирован путём удаления информации в заголовке файла. Рекомендуется обновить файл.', //cpg1.4
   'help_local_version_outdated1' => 'Локальная версия устарела', //cpg1.4
   'help_local_version_outdated2' => 'Похоже, что Ваша версия данного файла из старой версии Coppermine (возможно Вы недавно обновлялись). Убедитесь, что Вы также обновили этот файл.', //cpg1.4
-  'help_local_version_na1' => 'Не могу извлечь информацию о версии cvs', //cpg1.4
-  'help_local_version_na2' => 'Скрипт не смог определить cvs версию файла на Вашем сервере. Вы должны загрузить файл из Вашего архива.', //cpg1.4
+  'help_local_version_na1' => 'Не могу извлечь информацию о версии svn', //cpg1.4
+  'help_local_version_na2' => 'Скрипт не смог определить svn версию файла на Вашем сервере. Вы должны загрузить файл из Вашего архива.', //cpg1.4
   'help_local_version_dev1' => 'Разрабатываемая версия', //cpg1.4
   'help_local_version_dev2' => 'Похоже, что файл на Вашем сервере новее, чем Ваша версия Coppermine. Вы или используете разрабатываемую версию файла (Вы должны так поступать, если действительно знаете, что делаете), или Вы обновили Вашу версию Coppermine и не загрузили файл include/init.inc.php', //cpg1.4
   'help_not_writable1' => 'Папка не имеет прав на запись', //cpg1.4
@@ -2046,9 +2046,9 @@ if (defined('VERSIONCHECK_PHP')) $lang_versioncheck_php = array(
   'coppermine_in_webroot' => 'Coppermine установлен в корне сайта', //cpg1.4
   'connect_online_repository' => 'попытка подключения к онлайн сайту', //cpg1.4
   'show_additional_information' => 'показать дополнительную информацию', //cpg1.4
-  'no_webcvs_link' => 'не отображать интернет ссылки на cvs', //cpg1.4
-  'stable_webcvs_link' => 'отображать интернет ссылку на стабильную версию cvs ', //cpg1.4
-  'devel_webcvs_link' => 'отображать интернет ссылку на разрабатываемую версию cvs', //cpg1.4
+  'no_webcvs_link' => 'не отображать интернет ссылки на svn', //cpg1.4
+  'stable_webcvs_link' => 'отображать интернет ссылку на стабильную версию svn', //cpg1.4
+  'devel_webcvs_link' => 'отображать интернет ссылку на разрабатываемую версию svn', //cpg1.4
   'submit' => 'применить изменения / обновить', //cpg1.4
   'reset_to_defaults' => 'сбросить на значения по умолчанию', //cpg1.4
 );
