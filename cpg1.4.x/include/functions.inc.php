@@ -759,7 +759,7 @@ function get_private_album_set($aid_str="")
           $alb_pw = unserialize($_COOKIE[$CONFIG['cookie_name']."_albpw"]);
 
           foreach($alb_pw as $aid => $value) {
-            $aid_str = (int)$aid . ",";
+            $aid_str .= (int)$aid . ",";
           }
 
           $aid_str = substr($aid_str, 0, -1);
