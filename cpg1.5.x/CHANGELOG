@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-06-30 [S] Fixed a vulnerability where SQL injection was possible with array indices of album password cookie {Abbas}
 2007-06-12 [D] Added section about user-contributed themes to documentation {GauGau}
 2007-06-06 [A] Added rating confirmation on page {GauGau}
 2007-06-04 [A] Added success/failure message on target page (instead of sending users to redirection page) {GauGau}
