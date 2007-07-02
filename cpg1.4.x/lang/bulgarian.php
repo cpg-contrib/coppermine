@@ -11,8 +11,8 @@
   (at your option) any later version.
   ********************************************
   Coppermine version: 1.4.12
-  $Source: /cvsroot/coppermine/devel/lang/english.php,v $
-  $Revision: 1 $
+  $Source$
+  $Revision$
   $Author: gaugau $
   $Date: 2006/03/06 06:52:32 $
 **********************************************/
