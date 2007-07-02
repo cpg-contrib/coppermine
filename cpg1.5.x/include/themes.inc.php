@@ -1982,15 +1982,15 @@ function theme_display_message_block() {
     }
     if ($message_id != '') {
         $tempMessage = cpgFetchTempMessage($message_id);
-        if ($tempMessage <> '') {
+        if ($tempMessage != '') {
+            $return = '<a name="cpgMessageBlock"></a>';
             ob_start();
             starttable(-1, $lang_info);
-            $return = ob_get_contents();
+            $return .= ob_get_contents();
             ob_end_clean();
             $return .= <<< EOT
             <tr>
               <td class="tableb" align="center">
-                <a name="cpgMessageBlock"></a>
                 <div id="cpgMessage" class="cpg_user_message">
                   {$tempMessage}
                 </div>
@@ -3128,7 +3128,11 @@ function theme_html_comments($pid)
             template_extract_block($template_add_your_comment, 'user_name_input', $user_name_input);
             $user_name = '';
         } else {
-            $user_name = isset($USER['name']) ? '"' . strtr($USER['name'], $HTML_SUBST) . '"' : $lang_display_comments['your_name'] . '" onclick="javascript:this.value=\'\';';
+            if (isset($USER['name'])) {
+              $user_name = strtr($USER['name'], $HTML_SUBST);
+            } else {
+              $lang_display_comments['your_name'];
+            }
         }
 
         if (($CONFIG['comment_captcha'] == 0) || ($CONFIG['comment_captcha'] == 1 && USER_ID)) {
