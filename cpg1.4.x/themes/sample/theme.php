@@ -2328,7 +2328,12 @@ function theme_html_comments($pid)
             template_extract_block($template_add_your_comment, 'user_name_input', $user_name_input);
             $user_name = '';
         } else {
-            $user_name = isset($USER['name']) ? '"' . strtr($USER['name'], $HTML_SUBST) . '"' : $lang_display_comments['your_name'] . '" onclick="javascript:this.value=\'\';';
+            if (isset($USER['name'])) {
+              $user_name = strtr($USER['name'], $HTML_SUBST);
+            } else {
+              $lang_display_comments['your_name'];
+            }
+
         }
 
         $params = array('{ADD_YOUR_COMMENT}' => $lang_display_comments['add_your_comment'],
