@@ -53,13 +53,43 @@
                 </ul>
                 <ul class="level3">
                   <li class="level3"><a href="#install_screen_start">2.1.2 The install screen</a></li>
+                  <li class="level3"><a href="#install_what">2.1.3 What the installer does</a></li>
                 </ul>
         <ul class="level2">
                 <li class="level2"><a href="#getting" class="menu2">2.2 Getting Started</a></li>
         </ul>
+        <ul class="level3">
+                <li class="level3"><a href="#getting_concepts">2.2.1 Basic concepts</a></li>
+                <li class="level3"><a href="#getting_initial_configuration">2.2.2 Initial configuration</a></li>
+                <li class="level3"><a href="#getting_structure">2.2.3 Category, albums and file structure</a></li>
+                <li class="level3"><a href="#getting_admin_account">2.2.4 Your admin account</a></li>
+                <li class="level3"><a href="#getting_check_uploads">2.2.5 Check uploads</a></li>
+                <li class="level3"><a href="#getting_consider_bridging">2.2.6 Consider bridging</a></li>
+                <li class="level3"><a href="#getting_interaction">2.2.7 What are your visitors allowed to do?</a></li>
+                <li class="level3"><a href="#getting_design">2.2.8 Change your coppermine's design</a></li>
+        </ul>
         <ul class="level2">
                 <li class="level2"><a href="#creating" class="menu2">2.3 Creating or upgrading your own themes</a></li>
-
+        </ul>
+        <ul class="level3">
+                <li class="level3"><a href="#theme_builtin">2.3.1 Themes that come with Coppermine</a></li>
+                <li class="level3"><a href="#theme_upgrading">2.3.2 Upgrading your custom theme</a></li>
+                <li class="level3"><a href="#theme_files">2.3.3 Content of a theme</a></li>
+                <li class="level3"><a href="#theme_sample">2.3.4 The sample theme - a template to copy from</a></li>
+                <li class="level3"><a href="#theme_engine">2.3.5 How the theme engine works</a></li>
+                <li class="level3"><a href="#theme_create">2.3.6 Creating your custom theme</a></li>
+        </ul>
+                <ul class="level4">
+                  <li class="level4"><a href="#theme_create_rename">2.3.6.1 Rename your theme first</a></li>
+                  <li class="level4"><a href="#theme_create_tipps">2.3.6.2 Tipps & tricks</a></li>
+                  <li class="level4"><a href="#theme_create_wysiwyg">2.3.6.3 Using WYSIWYG-editors</a></li>
+                  <li class="level4"><a href="#theme_create_template_html">2.3.6.4 Editing template.html</a></li>
+                  <li class="level4"><a href="#theme_create_template_token">2.3.6.5 Template tokens</a></li>
+                  <li class="level4"><a href="#theme_create_template_token_list">2.3.6.6 List of tokens in template.html</a></li>
+                  <li class="level4"><a href="#theme_create_colors">2.3.6.7 Modifying colors</a></li>
+                  <li class="level4"><a href="#theme_create_theme_php">2.3.6.8 Editing theme.php</a></li>
+                </ul>
+        <ul class="level2">
                 <li class="level2"><a href="#safe" class="menu2">2.3 Safe mode issues</a></li>
                 <li class="level2"><a href="#smtp" class="menu2">2.5 Using SMTP to send emails</a></li>
         </ul>
@@ -291,17 +321,19 @@
 
 <a name="what"></a>
 <h1>1. What is required</h1>
+<p>There are certain <b>minimum requirements</b> that need to be met in order to be able to install Coppermine:</p>
 <ul>
-  <li>A web server that supports PHP</li>
-  <li>A MySQL database<br />
-  You will need MySQL version 3.23.23 or better. MySQL 4.1 is recommended, MySQL 5 is supported. The MySQL user needs permissions to perform CREATE, ALTER, SELECT, UPDATE, DELETE, INSERT data from the database. Most users have these permissions when webhosted. If you don't have them, you will not be able to use this or any other pre-made scripts at all. If you are uncertain about your permissions, please check with your webhost. Most hosting services can probably tell you whether coppermine can or cannot be run on their servers.<br />
-  A database needs to be set up that Coppermine can use - the install script will not create a database for you, but it will automatically create the tables and data structure in your database for you. In most webhosted environments, you will already have at least one database set up for you by your webhost. If not, you will need to create one. If you do need to create a database, check with your webhost on the proper procedures for doing so. Write down your database name, userID and password. You will require all three to successfully install Coppermine. </li>
-  <li>PHP (version 4.2.0 or better), either compiled with the support for the GD library or permission to use the exec() function for the ImageMagick &quot;convert&quot; utility in order to make thumbnails and reduced size images.</li>
-  <li>An image library: either GD version 1.x or 2.x (PHP has to be compiled to support it) or ImageMagick.<br />
-  (see <a href="faq.htm#whatIsImageMagick">What's ImageMagick</a> and <a href="faq.htm#WhatIsGD">What is GD</a>)</li>
+  <li><strong>A web server that supports PHP</strong><br />
+  PHP (version 4.2.0 or better), either compiled with the support for the GD library or permission to use the exec() function for the ImageMagick &quot;convert&quot; utility in order to make thumbnails and reduced size images. Mysql support needs to be compiled into PHP as well.</li>
+  <li><strong>A MySQL database</strong><br />
+  You will need MySQL version 3.23.23 or better. MySQL 4.1 is recommended, MySQL 5 is supported. The MySQL user needs permissions to perform CREATE, ALTER, REPLACE, SELECT, UPDATE, DELETE, INSERT data from the database. Most users have these permissions when webhosted. If you don't have them, you will not be able to use this or any other pre-made scripts at all. If you are uncertain about your permissions, please check with your webhost. Most hosting services can probably tell you whether coppermine can or cannot be run on their servers.<br />
+  A database needs to be set up that Coppermine can use - the install script will <strong>not</strong> create a database for you, but it will automatically create the tables and data structure in your database during install. In most webhosted environments, you will already have at least one database set up for you by your webhost. If not, you will need to create one. If you do need to create a database, check with your webhost on the proper procedures for doing so. Write down your database name, userID and password. You will require all three to successfully install Coppermine. </li>
+  <li><strong>An image library:</strong><br />
+  Either GD version 1.x or 2.x (PHP has to be compiled to support it) or ImageMagick.<br />
+  (see <a href="install_faq.htm#whatIsImageMagick">What's ImageMagick</a> and <a href="install_faq.htm#WhatIsGD">What is GD</a>)</li>
   <li>It's always a good idea to contact your webhosting service first and ask them if they are aware of any known issues when installing Coppermine.</li>
-
 </ul>
+<p>Although Coppermine can be run on <em>any</em> webserver that has the minimum requirements mentioned above, the Coppermine dev team can not support you on setting up your webserver in the first place. As suggested, those are requirements, i.e. they have to be met before actually considering to run Coppermine. Please note that the Coppermine group does not recommend self-hosting unless you're an experienced webserver administrator and know your way around.</p>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
@@ -314,7 +346,7 @@
   <li><strong>Upload all files onto your webserver</strong> (making sure to use the correct ftp mode)</li>
   <li><strong><a href="#permissions">Set permissions</a> on the "<em>albums</em>" and "<em>include</em>" folders in your Coppermine directory</strong>. Usually, you have to apply the CHMOD command, setting the permissions to 755 (or 777, depending on your server config).  <span class="important">This step is very important and must not be overlooked!</span></li>
   <li><strong>Ensure you have correct information about your database</strong> - you need to <em>know</em> the database name as well as the details of a MySQL user account with which Coppermine should connect to the database. The database and the username must already exist, and the user must have access to the relevent database. Coppermine will not create the database for you, but it will create the tables in the database during installation, there is no need for you to add any tables yourself.</li>
-  <li><strong>Run the install script on your server</strong> (by going to <tt class="code">http://your_server/coppermine_dir/install.php</tt> with your web browser) and follow the instructions</li>
+  <li><strong>Run the install script on your server</strong><br />Type the following URL into your web browser:&nbsp;&nbsp; http://your_server/coppermine_dir/install.php&nbsp;&nbsp; (<em>your_server</em> = your website, <em>coppermine_dir</em> = the folder in which you uploaded your Coppermine files.) Follow the online instructions on the <a href="#install_screen_start">install screen</a> inserting the necessary information as requested.</li>
 </ul>
   <li><strong>Confirm that you have all the correct information about the database that will be used for your Coppermine installation.</strong> If no database exists for your website, you will need to create one, or have one created for you by your webhost. Your webhost can best provide you with instructions on how to go about doing this.  For installation purposes, you will need to know the path of the database server that you will be using with Coppermine and details of the MySQL user account through which Coppermine will connect to the server. You must have the database server path (usually 'localhost'), your MySQL username, MySQL password, and MySQL database name prior to installing Coppermine. The user installing Coppermine must have all relevant access rights to this database.
 
@@ -562,10 +594,14 @@ If you have shell access to your server, you can apply the native <a href="http:
 <a name="install_screen_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
+<a name="install_what"></a>
+<h3>2.1.3 What the installer does</h3>
+<p>After performing some basic checks, the installer creates the needed database tables for you and fills them with default values. It creates the file include/config.inc.php within the coppermine folder on your server that stores the database details you entered during install. If you should change your mysql database details later (i.e. if you change the password of your mysql user account or if you migrate your gallery to another server), you will need to edit include/config.inc.php manually to reflect the changes. The file include/config.inc.php also keeps the install script from being run twice: if the installer is run, a check is performed wether the config file exists - if yes, the installer will stop and redirect the user to the index page.</p>
+<a name="install_what_end"></a>
+<p><a class="back" href="#top">Back to top</a></p><hr />
+
 <a name="getting"></a>
 <h2>2.2 Getting started</h2>
-<p>Log in with the admin username and password you set up during install, click on the &quot;admin mode&quot; link if it is visible, go to the <strong>Config</strong> page and start to configure your gallery. Note that even if you are a member of the administrator group, you need to be in &quot;admin mode&quot; to configure your gallery.</p>
-<p>There are some settings in config that can't be changed later (if there are already files in the database) - make sure to set them up correctly in the first place. Although you'll surely want to start using coppermine immediately it is advisable to configure those settings (marked with an asterisk &quot;*&quot;) properly at the very beginning.</p>
 <p>Use the &quot;<strong><a href="#albmgr">Album Manager</a></strong>&quot; (&quot;Albums&quot; link in the admin menu) in to create and order your albums. You'll need at least one album your files can go into.</p>
 <p>Use the <strong>anonymous</strong> group to define what non-registered users can and can't do (in the <a href="#group_cp">groups</a> panel).</p>
 <p>Use the <strong><a href="#modif_alb_pics">properties</a></strong> of an album to modify its description and permissions.
@@ -577,34 +613,375 @@ If you have shell access to your server, you can apply the native <a href="http:
 </ul>
 <p>The same applies to <strong>picture rating</strong> and <strong>comment posting</strong>.</p>
 <p>If you have installed the script succesfully but are having trouble getting it working properly you can enable the &quot;<strong><a href="#debug_mode">debug mode</a></strong>&quot; on the <strong>Config page</strong>. In this mode, the script outputs most of the warning/error messages produced by PHP in addition to some debug information. This can provide valuable information to understand what is wrong.</p>
+
+
+
+<a name="getting_concepts"></a><h3>2.2.1 Basic concepts<a href="#getting_concepts" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Of course you're exited about Coppermine and want to start with it right now. However, there are some basic considerations you should make up your mind about first, as some settings can't be changed easily once your gallery has been populated with content.</p>
+<p>So this section is meant as a guide once you've finished <a href="#installation">installing</a> Coppermine. Go through it carefully to avoid issues that may turn up later.</p>
+<ul>
+        <li><strong><a href="#getting_initial_configuration">Initial configuration</a></strong><br />
+        Settings you should edit immediately after finishing the install</li>
+        <li><strong><a href="#getting_structure">Category/album/file structure</a></strong><br />
+        Understand how Coppermine organizes navigation and storage of individual files</li>
+        <li><strong><a href="#getting_admin_account">Your admin account</a></strong><br /></li>
+        <li><strong><a href="#getting_check_uploads">Check uploads</a></strong><br />
+        Make sure uploading works as expected before letting in visitors</li>
+        <li><strong><a href="#getting_consider_bridging">Consider bridging</a></strong><br />
+        Bridging later when you already have users might get difficult</li>
+        <li><strong><a href="#getting_interaction">What are your visitors allowed to do?</a></strong><br />
+        What level of user interaction are you going to allow?</li>
+        <li><strong><a href="#getting_design">Change your coppermine's design</a></strong><br /></li>
+</ul>
+
+
+
+<a name="getting_initial_configuration"></a><h3>2.2.2 Initial configuration<a href="#getting_initial_configuration" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>There are some settings in Coppermine's config that you should edit right after finishing install.</p>
+<p>Log in with the admin username and password you set up during install, click on the &quot;Show admin controls&quot; link if it is visible, go to the <strong>Config</strong> page and start to configure your gallery. Note that even if you are a member of the administrator group, you need to be have &quot;Show admin controls&quot; enabled. In previous versions, this used to be named &quot;admin mode&quot;, but was renamed because some people thought that switching from admin mode to user mode showed them what regular users can see (which is not the case).</p>
+<ul>
+  <li><a href="#admin_general_email">Gallery administrator email</a></li>
+  <li><a href="#admin_general_coppermine-url">URL of your coppermine gallery folder</a></li>
+</ul>
+<p>There are some settings in config that can't be changed later (if there are already files in the database) - make sure to set them up correctly in the first place. Although you'll surely want to start using coppermine immediately it is advisable to configure those settings (marked with an asterisk &quot;*&quot;) properly at the very beginning.</p>
+
+<a name="getting_structure"></a><h3>2.2.3 Category, albums and file structure<a href="#getting_structure" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>The Coppermine Photo Gallery works in the following way:</p>
+<ul>
+  <li>Files are stored in albums</li>
+  <li>Albums are organised in categories</li>
+  <li>Categories can be nested (into subcategories)</li>
+</ul>
+
+<p>If you don't plan to have many albums, you really won't need to use the categories feature. If this applies to you, simply do not create any categories and all your albums will automatically appear on the main page of the script.</p>
+<p>There is, however, a special category named &quot;<strong>User galleries</strong>&quot;. This category can't be deleted. If a user belongs to the group &quot;can have a personal gallery&quot; and this is set to YES, he will have the right to create his own albums and his gallery will be a sub-category of &quot;User galleries&quot;. This link is not visible to visitors of your site, however, if you do not allow users to upload pics and have their own albums. </p>
+<p>The administrator can create albums in any category. Non-administrative users can only create albums in the &quot;User galleries/Their_username&quot;.</p>
+<p>You can, however rename the &quot;User Galleries&quot;. To rename the &quot;<strong>User galleries</strong>&quot; category and description, simply go to your <a href="#cat_cp">category control panel</a> and change the name there (e.g. to translate the words &quot;User galleries&quot; into your language).</p>
+
+<a name="getting_admin_account"></a><h3>2.2.4 Your admin account<a href="#getting_admin_account" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>It's mandatory to have your admin account configured properly and to memorize the admin account data. Coppermine even provides you with the option to retrieve a lost password, but for this, you have to configure an email address for every account. When users sign up, they have to enter an email address, so this should not be a problem. However, the admin account that you created during setup doesn't have an email account yet. You should go to your profile when logged in as admin and specify a valid email address for the admin there - this way, you can later request a new password if you forget it.</p>
+
+
+
+<a name="getting_check_uploads"></a><h3>2.2.5 Check uploads<a href="#getting_check_uploads" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Before actually promoting your coppermine gallery publicly, you should make sure that uploads work as expected, as they are the most common issues users have, caused by the huge amount of factors that have to be taken into account. Review the <a href="#upload_trouble">upload troubleshooting section</a> if you have issues.</p>
+
+
+
+<a name="getting_consider_bridging"></a><h3>2.2.6 Consider bridging<a href="#getting_consider_bridging" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Coppermine was designed to be used as standalone application in the first place. However, many people wanted to integrate it with another app, so starting with cpg1.1.x coppermine came with a mechanism that allowed users to bridge coppermine with another app in terms of user management. The main advantage is giving your site visitors a single sign-on for your overall site (e.g. both in your gallery and your forum), so they don't have to sign in twice and memorize two different logons.</p>
+<p>Bridging does <strong>not</strong> integrate coppermine visually into your home page (you have to <a href="#creating">create a custom theme</a> to accomplish this).</p>
+<p>You can enable (or disable) bridging at any time, but you should make up your mind on bridging when installing Coppermine in the first place, because there are some issues that have to be taken into account: if you already have users inside your coppermine database when enabling bridging, the correlation between those initial coppermine users and the "new" users from the app you bridge with gets lost. As a consequence, there will be no more correlation between things your "old" users did (uploading pic, posting comments etc.) and the "new" users from the bridge.</p>
+<p>To circumvent those future issues, you should make up your mind when installing coppermine: do you want to allow user interaction? Do you plan to offer a bulletin board later (or any other application that keeps track of users)? If your answer is "yes", or "maybe", then it's advisable to enable bridging before actually promoting your site publicly and starting to let users in.</p>
+<p>Read up details in the <a href="#integrating">bridging section</a> of the docs.</p>
+
+
+
+<a name="getting_interaction"></a><h3>2.2.7 What are your visitors allowed to do?<a href="#getting_interaction" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Coppermine can be used for a variety or purposes: some use it to display their personal files to everyone on the internet, others want only a limited number of users to be able to access the site for viewing only and no interaction at all. A large number of webmasters want to create a community site, where users can participate by uploading files, comment on other's files and rate them.</p>
+<p>You can use Coppermine in all those setups (and a mixture of it), but you should be aware of the possibilities and limitations first:</p>
+<p>Users &quot;inherit&quot; their permissions from the group they're in. That's why many settings in Coppermine are set per group. This way, you can have several levels of permissions. Set permissions by group using the <a href="#group_cp">group control panel</a></p>
+
+
+<a name="getting_design"></a><h3>2.2.8 Change your coppermine's design<a href="#getting_design" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>You can change some layout and design aspects (e.g. <a href="#admin_album_list_content">displaying random thumbnails on the index page</a>) in the corresponding config section. Coppermine comes with a theme engine that allows you to customize the look of your gallery. You can choose one of the themes that come with Coppermine or you can download user-contributed themes from the downloads section of the Coppermine homepage. Based on the available themes you can <a href="#theme_create">customize your individual theme</a> to make your site look unique and make your gallery match the overall look of your site.</p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 
 <a name="creating"></a>
 <h2>2.3 Creating or upgrading your own themes</h2>
-<p>To upgrade an existing custom theme, to version 1.4.x, read the <a href="theme/index.html">theme upgrade documentation</a>.</p>
+<p>Coppermine comes with a powerful engine that allows you to <a href="#theme_create">create your own theme</a>, giving your gallery a unique look that matches the overall layout of your entire site. Other applications call them &quot;skins&quot; or &quot;templates&quot;, well call them &quot;themes&quot;.</p>
+<p>There is a (constantly growing) number of user-contributed themes that can be previewed and downloaded from the Coppermine web site.</p>
+-------------------------------------
+<a name="theme_builtin"></a><h3>2.3.1 Themes that come with Coppermine<a href="#theme_builtin" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>The Coppermine package comes with some pre-made themes:</p>
+<ul>
+  <li><strong>Classic</strong><br />
+  The default theme with white background and a horizontal menu</li>
+  <li><strong>Eyeball</strong><br />
+  A theme with a dark background and a horizontal menu that expands for user interaction features</li>
+  <li><strong>Fruity</strong><br />
+  A colorful theme with a vertical menu on the left</li>
+  <li><strong>Hardwired</strong><br />
+  A theme with a dark background and a smallish font size that works well for narrow space and smaller resolutions. Comes with two horizontal menus</li>
+  <li><strong>IGames</strong><br />
+  A dark theme with 3D-effects and a horizontal menu</li>
+  <li><strong>Mac OX X</strong><br />
+  A theme with light background and an expanding horizontal menu that resembles the look of a Mac</li>
+  <li><strong>Project VII</strong><br />
+  A theme with white background featuring a horizontal expanding menu</li>
+  <li><strong>Rainy Day</strong><br />
+  A theme with dark background and rounded edges</li>
+  <li><strong>Sample</strong><br />
+  The sample theme would look identical to the classic theme. It will not be displayed using the <a href="#admin_theme_theme_list">theme selector</a> - it is just meant as <a href="#theme_sample">a template to copy from</a> when creating or modifying your own theme.</li>
+  <li><strong>Waterdrop</strong><br />
+  A theme with a light background and a &quot;conventional&quot; horizontal menu</li>
+</ul>
+
+<a name="theme_upgrading"></a><h3>2.3.2 Upgrading your custom theme<a href="#theme_upgrading" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>To upgrade an existing custom theme from cpg1.3.x to version 1.4.x, read the <a href="theme/index.html">theme upgrade documentation</a>.</p>
+<p>You only have to upgrade your custom theme when upgrading between major versions (e.g. from cpg1.3.x to cpg1.4.x), as from one major version to the next, the theming engine is subject to changes. When only upgrading from minor versions to the next (e.g. from cpg1.4.x to cpg1.4.y), you don't have to update your custom theme.</p>
+<p>The core themes that come with Coppermine packages don't need to be updated, as they should be replaced during the upgrade and therefor will contain all needed changes. However: if you have based your custom theme on one of the core themes that come with coppermine (e.g. the classic theme), pay attention to possible changes. As suggested below, it's advisable to rename your custom theme to make sure that it doesn't accidentally get overwritten when upgrading.</p>
+<a name="theme_upgrading_end"></a>
+
+<a name="theme_files"></a><h3>2.3.3 Content of a theme<a href="#theme_files" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Coppermine themes are stored in the &quot;<strong>themes</strong>&quot; directory, each consists of 3 primary files : </p>
 <ul>
   <li>&quot;<strong>template.html</strong>&quot; the main template in plain HTML.</li>
   <li>&quot;<strong>style.css</strong>&quot; the stylesheet associated with the template</li>
   <li>&quot;<strong>theme.php</strong>&quot; the PHP theme file</li>
-  </ul>
+</ul>
+<p>Additionally, there usually is a folder named &quot;images&quot; that resides within the theme folder (themes/theme_name/images/) that contains the images used by the particular theme (logos, bullets, backgrounds and other graphical resources needed).</p>
+<a name="theme_files_end"></a>
+
+<a name="theme_sample"></a><h3>2.3.4 The sample theme - a template to copy from<a href="#theme_sample" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Your Coppermine installation also includes a &quot;sample&quot; theme directory. The &quot;sample&quot; theme includes each of these files but does not show up in the user selectable list of themes in your Coppermine display. Sample's theme.php also holds a copy of every themeable function and template for your reference. If you opt to use the &quot;sample&quot; theme to begin creating your own theme, you should follow the theme.php instructions in the &quot;<a href="theme/index.html">theme upgrade documentation</a>&quot; and begin with a blank theme.php.</p>
-<p>To create a new template, the best solution is to use an existing one as its core. To do that, make a copy of the folder of the theme you want to use as a basis. Then edit the &quot;<strong>template.html</strong>&quot; and &quot;<strong>theme.php</strong>&quot; files and replace all occurences of &quot;<strong>themes/old_theme_dir</strong>&quot; with &quot;<strong>themes/new_theme_dir</strong>&quot; in order for the links to point to the correct place.</p>
-<p>When editing the &quot;<strong>template.html</strong>&quot; file do not remove the elements between <strong>{}</strong> - these are the placeholders used by the script. Also keep in mind that despite this file being located in the &quot;<strong>themes/your_theme_dir</strong>&quot; directory, it must be coded as if it was in the main directory of the coppermine installation. For example, in order to display an image, you must use <em>&lt;img src=&quot;<strong>themes</strong>/theme_dir/images/image.gif&quot; alt=&quot;&quot;/&gt;</em> and not just<em>&lt;img src=&quot;images/image.gif&quot; alt=&quot;&quot;/&gt;.</em> The same principle applies for the &quot;<strong>theme.php</strong>&quot; file.</p>
-<p>Be careful not to delete the line <em>&lt;script type="text/javascript" src="scripts.js"&gt;&lt;/script&gt;</em> this javascript is necessary for the full-size pop-ups and other t functions related to JavaScript.</p>
-<p>If you are using an HTML editor to design your template, the easist working solution might be to the &quot;<strong>template.html</strong>&quot; file into the main directory of your coppermine installation and edit it there. Whenever you load Coppermine, if the script finds a file named &quot;<strong>template.html</strong>&quot; in the main directory it will load it instead of the default one that you assigned in the CONFIG menu. Once you have finished  editing your theme be sure to move the file back into the directory it belongs.</p>
-<p>To modify the colors, fonts, font sizes, etc... used by the script, you should edit the &quot;<strong>style.css</strong>&quot; stylesheet whenever possible. For example, if you want to increase or decrease the size of the fonts you can simply modify the line with : <em>table { font-size: 12px; }</em>. Most of the font sizes used by the script are defined as a percentage of this size.</p>
-<p>The &quot;<strong>theme.php</strong>&quot; file contains all the HTML templates used by the script. You can edit them, as well. When making modifications to these templates, be careful that you do not alter the lines that start with <em>&lt;!-- BEGIN xxx --&gt;</em> and <em>&lt;!-- END xxx --&gt;</em>. These lines are often used to identify the start and end of specific code blocks that the script will use to display your gallery.</p>
-<p>If you're not sure how to go about creating your own theme, you could also have a look at the download section of the coppermine homepage: there are many <a href="http://sourceforge.net/project/showfiles.php?group_id=89658&amp;package_id=98541">user-contributed themes</a> available for download that can be previewed on the <a href="http://coppermine.sourceforge.net/demo/">coppermine demo page</a>.</p>
+<p>To clarify: you <strong>mustn't</strong> edit the sample theme (as it will not be displayed), but copy the sections you want to see changed from it into your custom theme. Don't copy the whole content from themes/sample/theme.php into your custom theme, as this will only clutter your custom theme and will make upgrading very hard in the future. Instead, copy the sections you want to modify.</p>
+<a name="theme_sample_end"></a>
+
+<a name="theme_engine"></a><h3>2.3.5 How the theme engine works<a href="#theme_engine" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>When a Coppermine page is being parsed, the core code will call theme functions. If those functions exist in your custom theme, they will be taken into account. If a particular function does not exist in your custom theme, the core function will be used. The core functions (the default theme behaviour if you want to put it that way) reside in includes/themes.inc.php. Therefor, you <strong>mustn't</strong> edit includes/themes.inc.php, under no circumstances, as all your changes will be lost when upgrading in the future. Everything that possibly could be accomplished by editing include/themes.inc.php can be accomplished by editing themes/yourtheme/theme.php as well - stuff defined in your custom theme will take precedence over the core theme functions.</p>
+<a name="theme_engine_end"></a>
+
+<a name="theme_create"></a><h3>2.3.6 Creating your custom theme<a href="#theme_create" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<a name="theme_create_rename"></a><h4>2.3.6.1 Rename your theme first<a href="#theme_create_rename" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+<p>To create a new theme, the best solution is to use an existing one as its copy template. To do that, make a copy of the folder of the theme you want to use as a basis. Then edit the &quot;<strong>template.html</strong>&quot;, &quot;style.css&quot; and &quot;<strong>theme.php</strong>&quot; files and replace all occurences of &quot;<strong>themes/old_theme_dir</strong>&quot; with &quot;<strong>themes/new_theme_dir</strong>&quot; in order for the links to point to the correct place.<br />
+Avoid using spaces and special chars in your custom theme name - only use alphanumerals and the underscore (_).</p>
+<p>Also keep in mind that despite this file being located in the &quot;<strong>themes/your_theme_dir</strong>&quot; directory, it must be coded as if it was in the main directory of the coppermine installation. For example, in order to display an image, you must use <tt class="code">&lt;img src=&quot;<strong>themes</strong>/theme_dir/images/image.gif&quot; alt=&quot;&quot;/&gt;</tt> and not just <tt class="code">&lt;img src=&quot;images/image.gif&quot; alt=&quot;&quot;/&gt;.</tt> The same principle applies for the &quot;<strong>theme.php</strong>&quot; file.</p>
+<div class="quote">
+<p><strong>Example:</strong></p>
+<ul>
+  <li><strong>Create a copy</strong><br />
+  Browse the local coppermine gallery copy on your client, navigate to the themes folder (<tt class="code">your_coppermine_folder/themes/</tt>), right-click on the folder name that represents the theme you want to base your custom theme on (in this example, we will use the classic theme, so we will use <tt class="code">your_coppermine_folder/themes/classic/</tt>), select &quot;copy&quot; from the context menu. Then paste the content of the clipboard into the themes folder; a folder (named &quot;Copy of classic&quot; or similar) will turn up.</li>
+  <li><strong>Rename the folder</strong><br />
+  Right-click on the newly created folder (<tt class="code">your_coppermine_folder/themes/Copy of classic/</tt>) and select &quot; rename&quot; from the context menu. Choose a unique theme name - in this example, we will use &quot;my_theme&quot; (resulting in the folder to be renamed to <tt class="code">your_coppermine_folder/themes/my_theme/</tt>).<br />
+  Keep in mind that we will upload the theme to your webserver later - you will have to make sure to properly use capitalization: on Windows-driven clients, capitalization does not matter, so there is no difference between &quot;<tt class="code">My_theme</tt>&quot; and &quot;<tt class="code">My_theme</tt>&quot;. Most webservers are Linux-driven though, where capitalization <em>does</em> matter (there <em>is</em> a difference between &quot;<tt class="code">My_theme</tt>&quot; and &quot;<tt class="code">My_theme</tt>&quot;). To be safe it is recommended to use lower case to stay out of harms way.</li>
+  <li><strong>Edit the files to reflect the theme name</strong><br />
+  Use a plain text editor (in this example, we will use notepad.exe), open <tt class="code">your_coppermine_folder/themes/my_theme/template.html</tt>. Find &quot;<tt class="code">themes/classic</tt>&quot; and replace with &quot;<tt class="code">themes/my_theme</tt>&quot; (may exist in the file several times, so make sure to replace <em>all</em> occurrences of &quot;<tt class="code">themes/classic</tt>&quot; with &quot;<tt class="code">themes/my_theme</tt>&quot;). Save your changes. Then do the same thing for the files <tt class="code">theme.php</tt> and <tt class="code">style.css</tt>.
+  </li>
+</ul>
+</div>
+<p>It is strongly recommended to rename your custom theme as suggested above, even if you only plan to accomplish minor changes to a default theme that coppermine comes with. The reason is quite simple: when upgrading at a later stage, you will not run into issues (e.g. accidentally overwrite your customized theme with an updated default theme).</p>
+
+<a name="theme_create_tipps"></a><h4>2.3.6.2 Tipps &amp; tricks<a href="#theme_create_tipps" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+<p>If you're not sure how to go about creating your own theme, you could also have a look at the download section of the coppermine homepage: there are many user-contributed themes available for download that can be previewed on the <a href="http://coppermine-gallery.net/demo/cpg14x/">coppermine demo page</a>.</p>
 <p>While you're in the process of creating or testing a new theme, you might not want your theme to be displayed to visitors of your site, but you (as the coppermine admin) may want to still be able to preview your theme. To do that, simply add <tt class="code">theme=your_theme_name</tt> to the url in your browser.</p>
 <br />
+<div class="quote">
 <strong>Examples:</strong>
 <ul>
 <li><tt class="code">http://yoursite.tld/coppermine/index.php?theme=your_theme_name</tt> will show the coppermine index page, using your theme</li>
 <li><tt class="code">http://yoursite.tld/coppermine/thumbnails.php?album=1&amp;theme=your_theme_name</tt> will show the thumbnail view of album 1, using your theme</li>
-<li><tt class="code">http://yoursite.tld/coppermine/?theme=xxx</tt> will reset your view back to the theme you chose as your default theme in coppermine config</li>
+<li><tt class="code">http://yoursite.tld/coppermine/?theme=xxx</tt> will reset your view back to the theme you chose as your <a href="#admin_theme_theme">default theme</a> in coppermine config</li>
 </ul>
+</div>
+
+<a name="theme_create_wysiwyg"></a><h4>2.3.6.3 Using WYSIWYG-editors<a href="#theme_create_wysiwyg" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+<p>If you are using an HTML editor to design your template, the easist working solution might be to save the &quot;<strong>template.html</strong>&quot; file into the main directory of your coppermine installation and edit it there. Whenever you load Coppermine, if the script finds a file named &quot;<strong>template.html</strong>&quot; in the main directory it will load it instead of the default one that you assigned in the CONFIG menu. Once you have finished  editing your theme be sure to move the file back into the directory it belongs. Don't forget to remove the temporary template.html file from the Coppermine root folder once you are done editing!</p>
+<p class="important">It is strongly recommended <strong>not</strong> to use a <acronym title="What You See Is What You Get">WYSIWYG</acronym>-editor at all to edit Coppermine files. The coppermine dev team is aware that it might seem easier for beginners to use those graphical editors. However, they have some major drawbacks:</p>
+<ul>
+  <li>Some editors (mostly MS Frontpage) are notorious for &quot;beautifying&quot; the code in a manner that renders embedded PHP code invalid. Subsequently, if you use a WYSIWYG-editor to edit theme.php, the file may get corrupt (i.e. un-usable)</li>
+  <li>Graphical editors tend to create deprecated, invalid, proprietary HTML. You have more control if you use a plain text editor instead.</li>
+  <li>You don't learn anything. Sooner or later, you will want to do something your precious WYSIWYG-editor isn't capable to do. Now what? You have always used the editor to do your work - you don't understand HTML. When using a plain text editor, the learning curve may be steep, but it's much more entertaining.</li>
+</ul>
+
+<a name="theme_create_template_html"></a><h4>2.3.6.4 Editing template.html<a href="#theme_create_template_html" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+<p>The file template.html is the core file of each theme: it can only contain HTML/CSS/JavaScript code (no PHP!) plus some placeholder tokens that will get replaced with content when the theme is being parsed (i.e. when the HTML output of a gallery page is being generated). Template.html determines the overall layout of your gallery pages. Use it to make your gallery match the overall look of your entire website.</p>
+
+<a name="theme_create_template_token"></a><h4>2.3.6.5 Template tokens<a href="#theme_create_template_token" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+<p>When editing the &quot;<strong>template.html</strong>&quot; file do not remove the elements between <strong>{}</strong> - these are the placeholders used by the script. Think of those items in curly brackets as placeholders that will be replaced later with dynamic content when your template is being parsed. You can move the placeholder tokens around to obtain different layouts. However, you have to understand that the {GALLERY}-token is a special placeholder: think of it more as a separator than an actual placeholder token. When the template is being parsed, the {GALLERY}-token will be replaced with the actual core component of the gallery. Other placeholders tokens in curly braces that come <em>before</em> the {GALLERY} token are being handled by the pageheader function; placeholder tokens that come <em>after</em> the {GALLERY}-token are being handled by the pagefooter function. Therefor, you have to keep in mind that you can freely move tokens around in template.html as long as you don't reverse the position of the token you move and the {GALLERY}-token.</p>
+
+<a name="theme_create_template_token_list"></a><h4>2.3.6.6 List of tokens in template.html<a href="#theme_create_template_token_list" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+  <tr>
+    <th valign="top" align="left" class="tableh1">Token</th>
+    <th valign="top" align="left" class="tableh1">Description</th>
+    <th valign="top" align="left" class="tableh1">Default position</th>
+    <th valign="top" align="left" class="tableh1">Needed?</th>
+    <th valign="top" align="left" class="tableh1">Dependancies</th>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">{LANG_DIR}</td>
+    <td valign="top" class="tableb" class="tableb">
+      <strong>Language direction</strong><br />
+      Possible values are <abbr title="left-to-right">LTR</abbr> and <abbr title="right-to-left">RTL</abbr>. Should not be changed or modified at all.
+    </td>
+    <td valign="top" class="tableb">pageheader</td>
+    <td valign="top" class="tableb">mandatory</td>
+    <td valign="top" class="tableb">Filled by Coppermine, depending on the orientation of the language the end user has chosen</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">{CHARSET}</td>
+    <td valign="top" class="tableb tableb_alternate">
+      <strong>Character set</strong><br />
+      Determines the character set used - filling the HTML tag <tt class="code"><meta http-equiv="Content-Type" content="text/html; charset={CHARSET}" /></tt>. Do not change unless you <em>really</em> know what you're doing.
+    </td>
+    <td valign="top" class="tableb tableb_alternate">pageheader</td>
+    <td valign="top" class="tableb tableb_alternate">mandatory</td>
+    <td valign="top" class="tableb tableb_alternate">Filled by Coppermine, depending on the <a href="#admin_language_charset">encoding</a> the admin has chosen in config.</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">{TITLE}</td>
+    <td valign="top" class="tableb">
+      <strong>Page Title</strong><br />
+      The page title that is mainly taken into account by search engines. The human visitor sees the title tag in the browser window.
+    </td>
+    <td valign="top" class="tableb">pageheader</td>
+    <td valign="top" class="tableb">mandatory</td>
+    <td valign="top" class="tableb">Title tag is being composed in the individual coppermine core file (e.g. displayimage.php, thumbnails.php etc.), handed over to the pageheader function.</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">{META}</td>
+    <td valign="top" class="tableb tableb_alternate">
+      <strong>Meta tags</strong><br />
+      Meta tags that depend on the dynamic content of a page are being inserted here. Currently, Coppermine uses the keywords meta tag (<tt class="code">&lt;meta name="keywords" content="DYNAMIC CONTENT HERE" /&gt;</tt>) and the refresh meta tag (<tt class="code">&lt;meta http-equiv="refresh" content="5; URL=REDIRECTION_PAGE" /&gt;</tt>).<br />
+      If you want to add other meta tags (e.g. author meta data like <tt class="code">&lt;meta name="author" content="Firstname Lastname" /&gt;</tt>), do not replace the token, but add your custom meta tags below the {META}-token.
+    </td>
+    <td valign="top" class="tableb tableb_alternate">pageheader</td>
+    <td valign="top" class="tableb tableb_alternate">mandatory</td>
+    <td valign="top" class="tableb tableb_alternate">Populated dynamically by the script, e.g. for meta keywords based on file keywords or for redirection for status change screens.</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">{CUSTOM_HEADER}</td>
+    <td valign="top" class="tableb tableb_alternate">
+      <strong>Custom Header</strong><br />
+      If the corresponding option has been set in config, this token will be replaced with the output that your <a href="#admin_theme_include_path_start">custom header</a> generates. If you don't use the custom header feature, you can remove the {CUSTOM_HEADER}-token from your template, but it's advisable to leave it in place if you decide to use the feature later.
+    </td>
+    <td valign="top" class="tableb tableb_alternate">pageheader</td>
+    <td valign="top" class="tableb tableb_alternate">optional</td>
+    <td valign="top" class="tableb tableb_alternate"><a href="#admin_theme_include_path_start">Path to custom header include</a> set up in config</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">{GAL_NAME}</td>
+    <td valign="top" class="tableb">
+      <strong>Gallery name</strong><br />
+      Will be replaced with the gallery name you set up in config when the template is being parsed. You might want to remove this token, especially if you already have a banner in your theme that displays your gallery name.
+    </td>
+    <td valign="top" class="tableb">pageheader</td>
+    <td valign="top" class="tableb">optional</td>
+    <td valign="top" class="tableb"><a href="#admin_general_name">Gallery name</a> set in config</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">{GAL_DESCRIPTION}</td>
+    <td valign="top" class="tableb tableb_alternate">
+      <strong>Gallery description</strong><br />
+      Will be replaced with the gallery description you set up in config when the template is being parsed. You might want to remove this token, especially if you already have a banner in your theme that displays your gallery name.
+    </td>
+    <td valign="top" class="tableb tableb_alternate">pageheader</td>
+    <td valign="top" class="tableb tableb_alternate">optional</td>
+    <td valign="top" class="tableb tableb_alternate"><a href="#admin_general_description">Gallery description</a> set in config</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">{SYS_MENU}</td>
+    <td valign="top" class="tableb">
+      <strong>System menu</strong><br />
+      Determines the position of the first level menu the end user will see on your page (the one that contains the login/logout link). Even if you want to get rid of the menu or parts of it, do not remove the {SYS_MENU} token itself, but remove the menu items you don't want displayed by editing theme.php instead.
+    </td>
+    <td valign="top" class="tableb">pageheader</td>
+    <td valign="top" class="tableb">mandatory</td>
+    <td valign="top" class="tableb">
+      <ul>
+        <li>Login/Logout link: Status of user (admin/registered user/guest).</li>
+        <li>Upload-link: Permission of current user to upload (determined in <a href="#group_cp">groups panel</a>).</li>
+        <li>Register-link: <a href="#admin_allow_registration">Allow new user registrations</a> enabled/disabled in config.</li>
+        <li>FAQ-link: <a href="#admin_theme_faq">Display FAQ</a> enabled/disabled in config.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">{SUB_MENU}</td>
+    <td valign="top" class="tableb tableb_alternate">
+      <strong>Sub menu</strong><br />
+      Determines the position of the second level menu the end user will see on your page (the one that contains the links &quot;Album list&quot; / &quot;Last uploads&quot; / &quot;Last comments&quot; / &quot;Most viewed&quot; / &quot;Top rated&quot; / &quot;My Favorites&quot; / &quot;By Date&quot; / &quot;Search&quot;). Even if you want to get rid of the menu or parts of it, do not remove the {SUB_MENU} token itself, but remove the menu items you don't want displayed by editing theme.php instead.
+    </td>
+    <td valign="top" class="tableb tableb_alternate">pageheader</td>
+    <td valign="top" class="tableb tableb_alternate">mandatory</td>
+    <td valign="top" class="tableb tableb_alternate"><abbr title="not applicable">n/a</abbr></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">{LANGUAGE_SELECT_FLAGS}</td>
+    <td valign="top" class="tableb">
+      <strong>Language selector (flags)</strong><br />
+      Will display a row of flags representing the languages available for the end user to choose if corresponding config setting is enabled.
+    </td>
+    <td valign="top" class="tableb">pageheader</td>
+    <td valign="top" class="tableb">optional</td>
+    <td valign="top" class="tableb"><a href="#admin_language_flags">Display language flags</a> enabled/disabled in config.</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">{LANGUAGE_SELECT_LIST}</td>
+    <td valign="top" class="tableb tableb_alternate">
+      <strong>Language selector (list)</strong><br />
+      Will display a dropdown list of languages available for the end user to choose if corresponding config setting is enabled.
+    </td>
+    <td valign="top" class="tableb tableb_alternate">pageheader</td>
+    <td valign="top" class="tableb tableb_alternate">optional</td>
+    <td valign="top" class="tableb tableb_alternate"><a href="#admin_language_list">Display language list</a> enabled/disabled in config.</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">{THEME_SELECT_LIST}</td>
+    <td valign="top" class="tableb">
+      <strong>Theme selector (list)</strong><br />
+      Will display a dropdown list of themes available for the end user to choose if corresponding config setting is enabled.
+    </td>
+    <td valign="top" class="tableb">pageheader</td>
+    <td valign="top" class="tableb">optional</td>
+    <td valign="top" class="tableb"><a href="#admin_theme_theme_list">Display theme list</a> enabled/disabled in config.</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">{ADMIN_MENU}</td>
+    <td valign="top" class="tableb tableb_alternate">
+      <strong>Admin menu</strong><br />
+      Displays the admin menu.
+    </td>
+    <td valign="top" class="tableb tableb_alternate">pageheader</td>
+    <td valign="top" class="tableb tableb_alternate">mandatory</td>
+    <td valign="top" class="tableb tableb_alternate">Admin must be logged in. Admin controls mustn't be hidden.</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">{GALLERY}</td>
+    <td valign="top" class="tableb tableb_alternate">
+      <strong>Gallery</strong><br />
+    </td>
+    <td valign="top" class="tableb tableb_alternate"><abbr title="not applicable">n/a</abbr></td>
+    <td valign="top" class="tableb tableb_alternate">mandatory</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">{CUSTOM_FOOTER}</td>
+    <td valign="top" class="tableb">
+      <strong>Custom Footer</strong><br />
+      If the corresponding option has been set in config, this token will be replaced with the output that your <a href="#php-content_header_footer">custom footer</a> generates. If you don't use the custom footer feature, you can remove the {CUSTOM_FOOTER}-token from your template, but it's advisable to leave it in place if you decide to use the feature later.
+    </td>
+    <td valign="top" class="tableb">pagefooter</td>
+    <td valign="top" class="tableb">optional</td>
+    <td valign="top" class="tableb"><a href="#admin_theme_include_path_start">Path to custom footer include</a> set up in config</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">{VANITY}</td>
+    <td valign="top" class="tableb tableb_alternate">
+      <strong>Vanity block</strong><br />
+      If your custom theme is defined as valid theme and you have enabled the corresponding option in config, the {VANITY}-placeholder will be replaced with mini-banners that link to PHP.net, mysql.com and the HTML and CSS validators of the W3C.<br />
+      <img src="pics/vanity.png" width="351" height="26" border="0" alt="" title="vanity block" />
+    </td>
+    <td valign="top" class="tableb tableb_alternate">pagefooter</td>
+    <td valign="top" class="tableb tableb_alternate">optional</td>
+    <td valign="top" class="tableb tableb_alternate">
+      <a href="#vanity_block">Display the vanity block on themes that are defined as XHTML and CSS compliant</a> enabled in config.<br />
+      Theme defined XHTML and CSS compliant in theme.php
+    </td>
+  </tr>
+</table>
+
+
+<a name="theme_create_colors"></a><h4>2.3.6.7 Modifying colors<a href="#theme_create_colors" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+<p>To modify the colors, fonts, font sizes, etc... used by the script, you should edit the &quot;<strong>style.css</strong>&quot; stylesheet whenever possible. For example, if you want to increase or decrease the size of the fonts you can simply modify the line with : <tt class="code">table { font-size: 12px; }</tt>. Most of the font sizes used by the script are defined as a percentage of this size.</p>
+
+<a name="theme_create_theme_php"></a><h4>2.3.6.8 Editing theme.php<a href="#theme_create_theme_php" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+<p>The &quot;<strong>theme.php</strong>&quot; file contains all the HTML templates used by the script. You can edit them, as well. When making modifications to these templates, be careful that you do not alter the lines that start with <tt class="code">&lt;!-- BEGIN xxx --&gt;</tt> and <tt class="code">&lt;!-- END xxx --&gt;</tt>. These lines are often used to identify the start and end of specific code blocks that the script will use to display your gallery.</p>
+
+
+<a name="theme_create_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="safe"></a>
@@ -1298,8 +1675,19 @@ Should you have difficulties using one, try the other. You can toggle between th
 <h3>4.12.2 Language &amp; Charset settings</h3>
 <p><img src="pics/config_language.gif" width="612" height="234" border="1" alt="" /></p>
 <a name="admin_language_language"></a><h4>Language</h4>
-<p>This sets the default language for your gallery. All language files are stored in the <strong>lang</strong> directory on your server.</p>
-<p>Language files with an "<strong>-utf8</strong>" suffix are unicode encoded files. If you select an -utf8 file as the default language and you set "Character encoding" to "Unicode (utf-8)" then the script will auto detect the preferred language of your visitors based on what default language is configured in their browsers. If the corresponding language is available in your language directory, it will be used. Otherwise, the default language file will be used.</p>
+<p>This sets the default language for your gallery.</p>
+<p>Coppermine has a separate language file that makes the translation of the script much more easy. The language files are stored in the <strong>lang </strong>directory. The files are unicode encoded (utf-8). They are automatically generated with the <a href="http://www.iconv.com/iconv.htm" class="external">iconv</a> program so there is no need for you to make an unicode version of your translation.</p>
+<p>If you select utf-8 to be the default encoding in coppermine's config, then the script will be able to automatically select a language file based on the visitor browser configuration.</p>
+<p>Here's how coppermine determines the language of a user: when accessed, coppermine checks if a user explicitely has set a language preference (which is stored in a cookie on the client). If one is set, coppermine is being displayed in that particular language.</p>
+<p>If no individual language preference has been set, coppermine detects the language preference of a user set up in his browser. If the browser language is (for example) English, then coppermine will display in English.</p>
+<p>If the browser language is set to hindi (as an example), while there is no Coppermine language file available for that particular language, then coppermine will fall back to the default language you have set up in Coppermine's config.</p>
+<p>As you can see, the determination of the actual language setting is a three step process:</p>
+<ul>
+<li>user preference (cookie)</li>
+<li>browser setting</li>
+<li>coppermine config setting</li>
+</ul>
+<p>This three-step-process is very helpful: in fact, you only set a default language in Coppermine's config (usually the language the majority of your visitors is speaking) and that's it: if a visitor who speaks another language visits your page, Coppermine's controls will display in his language. Usually, you don't have to provide a <a href="htm#admin_language_list">language selector</a> on your page (but it's an option in Coppermine's config to display one if you prefer so). The language selector in fact just adds a parameter to the URL, which then subsequently triggers a cookie to be set on the client. You (as Coppermine admin) can accomplish the same by manually adding the parameter to the URL in the address bar of your browser. Just observe how the URL changes on the your coppermine gallery if you have enabled the language selector in coppermine's config to get an idea how this works.</p>
 <p>When the script auto detects the preferred language, it stores the result in a cookie on the visitor's computer. To reset this cookie (and thus force the script to do another auto detection) the user must call this autodetect function with something like: <a href="#">http://yoursite.com/coppermine_dir/index.php?lang=xxx</a></p>
 <p>Once you have added comments or files to your gallery, you should not change the character set of your gallery. If you do so, non-ASCII characters may display properly.</p>
 <a name="admin_language_language_end"></a>
