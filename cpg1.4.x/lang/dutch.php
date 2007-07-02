@@ -1989,7 +1989,7 @@ EOT;
 		'folder_file' => 'directory/bestand', //cpg1.4
 		'coppermine_version' => 'Coppermine versie', //cpg1.4
 		'file_version' => 'bestandsversie', //cpg1.4
-		'webcvs' => 'web cvs', //cpg1.4
+		'webcvs' => 'web svn', //cpg1.4
 		'writable' => 'schrijfbaar', //cpg1.4
 		'not_writable' => 'niet schrijfbaar', //cpg1.4
 		'help' => 'Help', //cpg1.4

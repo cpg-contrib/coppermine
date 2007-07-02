@@ -2034,9 +2034,9 @@ if (defined('VERSIONCHECK_PHP')) $lang_versioncheck_php = array(
   'coppermine_in_webroot' => '코퍼마인이 웹루트에 설치되었습니다.', //cpg1.4
   'connect_online_repository' => '언라인 레포지토리에 연결 시도', //cpg1.4
   'show_additional_information' => '추가 정보 보기', //cpg1.4
-  'no_webcvs_link' => 'web cvs 경로 숨기기', //cpg1.4
-  'stable_webcvs_link' => '스테이블 브랜치로의 web cvs 경로 보여주기', //cpg1.4
-  'devel_webcvs_link' => '데블 브랜치로의 web cvs 경로 보여주기', //cpg1.4
+  'no_webcvs_link' => 'web svn 경로 숨기기', //cpg1.4
+  'stable_webcvs_link' => '스테이블 브랜치로의 web svn 경로 보여주기', //cpg1.4
+  'devel_webcvs_link' => '데블 브랜치로의 web svn 경로 보여주기', //cpg1.4
   'submit' => '수정 적용 / 새로고침', //cpg1.4
   'reset_to_defaults' => '디폴트 값으로 리셋', //cpg1.4
 );
