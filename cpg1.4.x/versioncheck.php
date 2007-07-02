@@ -5187,7 +5187,7 @@ $return = '
 1.4.12|upload.php|1.4.12|3636|mandatory|r@
 1.4.12|usermgr.php|1.4.12|3636|mandatory|r@
 1.4.12|util.php|1.4.12|3636|mandatory|r@
-1.4.12|versioncheck.php|1.4.12|3661|mandatory|r@
+1.4.12|versioncheck.php|1.4.12|3662|mandatory|r@
 1.4.12|viewlog.php|1.4.12|3636|mandatory|r@
 1.4.12|xp_publish.php|1.4.12|3636|mandatory|r@
 1.4.12|zipdownload.php|1.4.12|3636|mandatory|r@
@@ -5282,7 +5282,7 @@ $return = '
 1.4.12|lang/chinese_big5.php|1.4.12|3636|optional|r@
 1.4.12|lang/chinese_gb.php|1.4.12|3636|optional|r@
 1.4.12|lang/czech.php|1.4.12|3654|optional|r@
-1.4.12|lang/danish.php|1.4.12|1.15|optional|r@
+1.4.12|lang/danish.php|1.4.12|3275|optional|r@
 1.4.12|lang/dutch.php|1.4.12|3654|optional|r@
 1.4.12|lang/english.php|1.4.12|3654|mandatory|r@
 1.4.12|lang/english_gb.php|1.4.12|3654|optional|r@
