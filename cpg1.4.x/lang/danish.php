@@ -12,7 +12,7 @@
   ********************************************
   Coppermine version: 1.4.12
   $Source: /cvsroot/coppermine/stable/lang/danish.php,v $
-  $Revision: 1.15 $
+  $Revision: 3275 $
   $Author: gaugau $
   $Date: 2006/05/03 07:12:36 $
 **********************************************/
