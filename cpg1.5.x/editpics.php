@@ -52,7 +52,9 @@ if (isset($_GET['album'])) {
         $album_id = -1;
 }
 
-if (UPLOAD_APPROVAL_MODE && !GALLERY_ADMIN_MODE && !MODERATOR_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+if (UPLOAD_APPROVAL_MODE && !GALLERY_ADMIN_MODE && !MODERATOR_MODE) {
+    cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+}
 
 if (EDIT_PICTURES_MODE) {
     $result = cpg_db_query("SELECT title, category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid = '$album_id'");
@@ -79,13 +81,14 @@ if ($CONFIG['user_field4_name'] != '') $THUMB_ROWSPAN++;
 //      2 => text_area
 //      3 => picture information
 $captionLabel = $lang_editpics_php['desc'];
+$keywordLabel = $lang_common['keywords_insert1']. '<br /><a href="#" onClick="return MM_openBrWindow(\'keyword_select.php?id=%s\',\'selectKey\',\'width=250, height=400, scrollbars=yes,toolbar=no,status=yes,resizable=yes\')">' . $lang_common['keywords_insert2'] .'</a>';
 if ($CONFIG['show_bbcode_help']) {$captionLabel .= '&nbsp;'. cpg_display_help('f=index.html&base=64&h='.urlencode(base64_encode(serialize($lang_bbcode_help_title.'&nbsp;'))).'&t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
 $data = array(
         array($lang_editpics_php['pic_info'], '', 3),
         array($lang_common['album'], 'aid', 1),
         array($lang_common['title'], 'title', 0, 255),
         array($captionLabel, 'caption', 2, $CONFIG['max_img_desc_length']),
-        array($lang_common['keywords'], 'keywords', 0, 255),
+        array($keywordLabel, 'keywords', 0, 255),
 //        array($lang_editpics_php['approval'], 'approved', 5),
         array($CONFIG['user_field1_name'], 'user1', 0, 255),
         array($CONFIG['user_field2_name'], 'user2', 0, 255),
@@ -99,7 +102,9 @@ function get_post_var($var, $pid)
         global $lang_errors;
 
         $var_name = $var.$pid;
-        if(!isset($_POST[$var_name])) cpg_die(CRITICAL_ERROR, $lang_errors['param_missing']." ($var_name)", __FILE__, __LINE__);
+        if(!isset($_POST[$var_name])) {
+            cpg_die(CRITICAL_ERROR, $lang_errors['param_missing']." ($var_name)", __FILE__, __LINE__);
+        }
         return $_POST[$var_name];
 }
 
@@ -254,7 +259,7 @@ function form_pic_info($text)
         $thumb_link = 'displayimage.php?&amp;pos='.(-$CURRENT_PIC['pid']);
         $filename = htmlspecialchars($CURRENT_PIC['filename']);
         $isgalleryicon_selected = ($CURRENT_PIC['galleryicon']) ? 'checked="checked" ':'';
-        $isgalleryicon_disabled = ($CURRENT_PIC['category'] < FIRST_USER_CAT) ? 'disabled="disabled" ':'';
+        $isgalleryicon_disabled = ($CURRENT_PIC['category'] < FIRST_USER_CAT) ? ' style="display:none;" ':'';
         if ($loop_counter == 0) {
             $row_style_class = 'tableb';
         } else {
@@ -313,7 +318,7 @@ EOT;
                 </td>
                    <td class="{$row_style_class}" align="center" valign="top" rowspan="$THUMB_ROWSPAN">
                         <a href="$thumb_link" target="_blank"><img src="$thumb_url" class="image" border="0" alt="" /></a><br />
-                        <input type="radio" name="galleryicon" id="galleryicon{$CURRENT_PIC['pid']}" value="{$CURRENT_PIC['pid']}" {$isgalleryicon_selected}{$isgalleryicon_disabled}class="checkbox" /><label for="galleryicon{$CURRENT_PIC['pid']}" class="clickable_option">{$lang_editpics_php['gallery_icon']}</label>
+                        <span{$isgalleryicon_disabled}><input type="radio" name="galleryicon" id="galleryicon{$CURRENT_PIC['pid']}" value="{$CURRENT_PIC['pid']}" {$isgalleryicon_selected}class="checkbox" /><label for="galleryicon{$CURRENT_PIC['pid']}" class="clickable_option">{$lang_editpics_php['gallery_icon']}</label></span>
             </td>
         </tr>
 
@@ -353,6 +358,7 @@ function form_input($text, $name, $max_length,$field_width=100)
 
     $value = $CURRENT_PIC[$name];
     $name .= $CURRENT_PIC['pid'];
+    $text = sprintf($text,$CURRENT_PIC['pid']);
     if ($text == '') {
         echo "        <input type=\"hidden\" name=\"$name\" value=\"\" />\n";
         return;
@@ -364,7 +370,7 @@ function form_input($text, $name, $max_length,$field_width=100)
                         $text
         </td>
         <td width="100%" class="{$row_style_class}" valign="top">
-                <input type="text" style="width: {$field_width}%" name="$name" maxlength="$max_length" value="$value" class="textinput" />
+                <input type="text" style="width: {$field_width}%" name="$name" id="$name" maxlength="$max_length" value="$value" class="textinput" />
                 </td>
         </tr>
 

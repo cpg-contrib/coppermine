@@ -53,7 +53,7 @@ $charset = $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['char
 $html_header = <<<EOT
 <html dir="ltr">
 <head>
-<title>{$CONFIG['gallery_name']}</title>
+<title>{$lang_upload_php['keywords_sel']}</title>
 <meta http-equiv="Content-Type" content="text/html; charset=$charset" />
 <meta http-equiv="Pragma" content="no-cache" />
 
@@ -63,6 +63,10 @@ $html_header = <<<EOT
 EOT;
 
 print $html_header;
+if (ISSET($_GET['id'])) {
+  $formFieldId = (int)$_GET['id'];
+}
+print '    <form name="form" name="keywordform" id="cpgform2">'."\n";
 starttable("100%",$lang_upload_php['keywords_sel'], 3);
 if ($total > 0) {
 
@@ -74,9 +78,9 @@ if ($total > 0) {
     function CM_select(f)
     {
         str = window.document.form.elements[0].value;
-        var substrings = window.opener.document.getElementById(\'keywords\').value.split(str);
+        var substrings = window.opener.document.getElementById(\'keywords' . $formFieldId . '\').value.split(str);
         if (substrings.length <= 1){
-                window.opener.document.getElementById(\'keywords\').value += \' \' + str;
+                window.opener.document.getElementById(\'keywords' . $formFieldId . '\').value += \' \' + str;
         }
 
 
@@ -87,10 +91,9 @@ if ($total > 0) {
     //-->
     </script>
 
-    <form name="form" name="keywordform" id="cpgform2">
-    <table align="center">
+
     <tr>
-        <td align="center"><select name="keyword" size="15" onChange="CM_select(this)">';
+        <td class="tableb" align="center"><select name="keyword" size="15" onChange="CM_select(this)" class="listbox">';
 
         foreach ($keywords as $keyword) {
             $form.= '<option value="'.$keyword.'">'.$keyword.'</option>';
@@ -100,19 +103,26 @@ if ($total > 0) {
         </td>
     </tr>
     <tr>
-        <td align="center"><a href="#" onClick="window.close()">'.$lang_upload_php['close'].'</a></td>
-    </tr>
-    </table>
-    </form>';
+        <td class="tablef" align="center"><a href="#" onClick="window.close()" class="admin_menu">'.$lang_upload_php['close'].'</a></td>
+    </tr>';
 } else {
-    echo '<b>'.$lang_upload_php['no_keywords'].'</b>';
+    $form .= <<< EOT
+    <tr>
+        <td class="tablef" align="center"><a href="#" onclick="window.close()" class="admin_menu">{$lang_upload_php['no_keywords']}</a></td>
+    </tr>
+EOT;
 }
 print($form);
-endtable();
-
 if (GALLERY_ADMIN_MODE) {
-        echo '<center><a href="keyword_create_dict.php">'.$lang_upload_php['regenerate_dictionary'].'</a></center>';
+        echo <<< EOT
+    <tr>
+        <td class="tablef" align="center"><a href="keyword_create_dict.php" class="admin_menu">{$lang_upload_php['regenerate_dictionary']}</a></td>
+    </tr>
+EOT;
 }
+endtable();
+print '    </form>'."\n";
+
 ?>
 </body>
 </html>

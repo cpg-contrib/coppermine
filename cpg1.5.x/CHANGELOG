@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-07-05 [A] Added 'insert from list' selection for keywords field when editing files {GauGau}
 2007-07-04 [D] Added basic plugin-writing chapter to developer documentation {GauGau}
 2007-07-02 [C] Fixed double quotes for comment input fields (thread ID 40423) {GauGau}
 2007-06-12 [D] Added section about user-contributed themes to documentation {GauGau}

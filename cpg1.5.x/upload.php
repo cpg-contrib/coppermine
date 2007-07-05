@@ -955,6 +955,7 @@ if (!isset($_REQUEST['control'])) {
 
         // Declare an array containing the various upload form box definitions.
         $captionLabel = $lang_upload_php['description'];
+        $keywordLabel = $lang_common['keywords_insert1']. '<br /><a href="#" onClick="return MM_openBrWindow(\'keyword_select.php\',\'selectKey\',\'width=250, height=400, scrollbars=yes,toolbar=no,status=yes,resizable=yes\')">' . $lang_common['keywords_insert2'] .'</a>';
         if ($CONFIG['show_bbcode_help']) {$captionLabel .= '&nbsp;'. cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
         $form_array = array(
         sprintf($lang_upload_php['max_fsize'], $CONFIG['max_upl_size']),
@@ -963,7 +964,7 @@ if (!isset($_REQUEST['control'])) {
         array($lang_upload_php['picture'], 'userpicture', 1, 1),
         array($lang_upload_php['pic_title'], 'title', 0, 255, 1),
         array($captionLabel, 'caption', 3, $CONFIG['max_img_desc_length']),
-        array($lang_upload_php['keywords'], 'keywords', 0, 255, 1),
+        array($keywordLabel, 'keywords', 0, 255, 1),
         array('event', 'picture', 4)
         );
 
@@ -2563,6 +2564,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
 
     // Declare an array containing the various upload form box definitions.
     $captionLabel = $lang_upload_php['description'];
+    $keywordLabel = $lang_common['keywords_insert1']. '<br /><a href="#" onClick="return MM_openBrWindow(\'keyword_select.php\',\'selectKey\',\'width=250, height=400, scrollbars=yes,toolbar=no,status=yes,resizable=yes\')">' . $lang_common['keywords_insert2'] .'</a>';
     if ($CONFIG['show_bbcode_help']) {$captionLabel .= '&nbsp;'. cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
     //$printed_file_name = "{$lang_upload_php['picture']} - {$file_set[0]}";
 
@@ -2579,7 +2581,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
     array($lang_common['album'], 'album', 2),
     array($lang_upload_php['pic_title'], 'title', 0, 255, 1, $title),
     array($captionLabel, 'caption', 3, $CONFIG['max_img_desc_length'], (isset($iptc['Caption'])) ? $iptc['Caption'] : ''),
-    array($lang_upload_php['keywords'], 'keywords', 0, 255, 1,(isset($iptc['Keywords'])) ? implode(' ',$iptc['Keywords']): ''),
+    array($keywordLabel, 'keywords', 0, 255, 1,(isset($iptc['Keywords'])) ? implode(' ',$iptc['Keywords']): ''),
     array('control', 'phase_2', 4),
     array('unique_ID', $_POST['unique_ID'], 4),
     );

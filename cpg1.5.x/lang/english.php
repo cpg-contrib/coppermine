@@ -121,6 +121,8 @@ $lang_common = array(
   'title' => 'Title', // cpg1.5.x
   'caption' => 'Caption', // cpg1.5.x
   'keywords' => 'Keywords', // cpg1.5.x
+  'keywords_insert1' => 'Keywords (separate with spaces)', // cpg1.5.x
+  'keywords_insert2' => 'Insert from list', // cpg1.5.x
   'owner_name' => 'Owner name', // cpg1.5.x
   'filename' => 'Filename', // cpg1.5.x
   'filesize' => 'Filesize', // cpg1.5.x
@@ -1976,7 +1978,6 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'picture' => 'File',
   'pic_title' => 'File title',
   'description' => 'File description',
-  'keywords' => 'Keywords (separate with spaces)<br /><a href="#" onClick="return MM_openBrWindow(\'keyword_select.php\',\'selectKey\',\'width=250, height=400, scrollbars=yes,toolbar=no,status=yes,resizable=yes\')">Insert from list</a>',
   'keywords_sel' =>'Select a Keyword',
   'err_no_alb_uploadables' => 'Sorry there is no album where you are allowed to upload files',
   'place_instr_1' => 'Please place the files in albums at this time.  You may also enter relevant information about each file now.',

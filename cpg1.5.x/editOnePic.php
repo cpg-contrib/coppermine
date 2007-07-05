@@ -338,10 +338,10 @@ print <<<EOT
         </tr>
         <tr>
                         <td class="tableb" style="white-space: nowrap;">
-                                {$lang_common['keywords']}
+                                {$lang_common['keywords_insert1']}<br /><a href="#" onClick="return MM_openBrWindow('keyword_select.php','selectKey','width=250, height=400, scrollbars=yes,toolbar=no,status=yes,resizable=yes')">{$lang_common['keywords_insert2']}</a>
                 </td>
                 <td width="100%" class="tableb" valign="top">
-                                <input type="text" style="width: 100%" name="keywords" maxlength="255" value="{$CURRENT_PIC['keywords']}" class="textinput" />
+                                <input type="text" style="width: 100%" name="keywords" maxlength="255" value="{$CURRENT_PIC['keywords']}" id="keywords" class="textinput" />
                         </td>
         </tr>
 EOT;
