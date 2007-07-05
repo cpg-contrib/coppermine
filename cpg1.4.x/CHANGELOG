@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-07-04 [B] Fixed improper fix for double quotes for comment input fields (thread ID 40423) {GauGau}
 2007-07-04 [M] Updated version count from cpg1.4.12 to cpg1.4.13 in subversion repository as a preparation for a possible future release {GauGau}
 2007-07-02 [M] Release of cpg1.4.12 {GauGau}
 2007-07-02 [D] Backported parts of the cpg1.5.x documentation for cpg1.4.x {GauGau}

@@ -2331,7 +2331,7 @@ function theme_html_comments($pid)
             if (isset($USER['name'])) {
               $user_name = strtr($USER['name'], $HTML_SUBST);
             } else {
-              $lang_display_comments['your_name'];
+              $user_name = $lang_display_comments['your_name'];
             }
 
         }
