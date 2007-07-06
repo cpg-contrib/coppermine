@@ -39,13 +39,14 @@
 <a name="plugin_writing"></a><h1>Plugin Writing<a href="#plugin_writing" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
 <p>Coppermine comes with a plugin architecture that allows skilled users to come up with plugins that can be installed by the end user with just some clicks in the plugin manager section. Main benefit of plugins is that end users don't have to hack core code files. As a result, plugins don't need to be applied when upgrading between minor versions of coppermine (when replacing all core files due to maintenance releases).</p>
 <p>Many things that could be done using core hacks can be accomplished using plugins as well. The only disadvantage of plugins is the fact that the plugin author needs to become a bit more familiar with coppermine's plugin API.</p>
-<p>This short guide is suppossed to help possible plugin authors to get familiar with the plugin system. You have to understand though that this section will not teach you how to edit PHP - this would be beyond the scope of this documentation. We asume that you're familar both with HTML as well as PHP to some extent.</p>
+<p>This short guide is suppossed to help possible plugin authors to get familiar with the plugin system. You have to understand though that this section will not teach you how to edit PHP - this would be beyond the scope of this documentation. We asume that you're familar both with HTML as well as PHP to some extent. This section of the docs will definitely <strong>not</strong> teach you how to code in the first place, nor is it a beginner's tutorial for programming. If you have never written one line of PHP code you should get familiar with PHP first and apply some hacks before actually considering to come up with a plugin of your own.</p>
 
 <a name="plugin_writing_preparation"></a><h2>Preparations<a href="#plugin_writing_preparation" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Before starting to hack away, you should make some preparations and maybe sketch the layout of your plugin.</p>
 <ul>
   <li><strong>Choose a name</strong><br />
   Your plugin needs a meaningfull, simple name. Make sure that a plugin doesn't already exist with the same name you've chosen. Then create a sub-folder within the plugin folder and name it as you see fit. Make sure to use web-safe names (only alphanumerals, all lower-case, no special chars except dash and underscore.<br />
+  For clarification: there can be only alphanumerals in a plugin's folder name. There mustn't be any dots or other special chars in it. The only exception is the hypen (-) and underscore (_)
   Example: <tt class="code">your_coppermine_folder/plugins/coffee_maker/</tt></li>
   <li><strong>Consider translations</strong><br />
   Coppermine is an international project, with users from all over the world. If you should decide to contribute your custom plugin later, it would be a good idea to design it properly in the first place: keep all strings that could need translation in a separate include file and only hard-code the corresponding vars into your code.
@@ -123,6 +124,12 @@ EOT;</div>
   It's a good idea (not mandatory though) to provide a plain-text file within your plugin's folder as well (readme.txt or similar) that contains copyright and support information and basic instructions what your plugin does and how the end user can install it.</li>
 </ul>
 
+<a name="plugin_writing_types"></a><h2>Plugin Types<a href="#plugin_writing" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+Plugins (or rather individual pages of a plugin) can roughly fall into two categories: they can reside on a page of their own (a good example would be the plugin config screen some plugins come with or a plugin that adds a contact form) or they can reside within each or some coppermine-driven pages, modifying the output or functionality of the pages they reside on (a good example would be plugins that add menu items).<br />
+It is comparatively easy to come up with plugins that fall into the first category (creating additional pages). The second option is the more advanced and powerfull option that plugins authors can use. For this purpose, there are &quot;anchors&quot; all over coppermine's core code that allow plugin interaction with the code, the so-called &quot;<a href="D:/home/Coppermine_Live-Demo/htdocs/devel/docs/plugin_hooks.htm">plugin hooks</a>&quot;.
+
+<a name="plugin_writing_includes"></a><h2>Using includes<a href="#plugin_writing_includes" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Files the plugin is meant to include can only contain one single dot that separates the actual filename from the php-extension!</p>
 
 <script type="text/javascript">
   cpgDocFooter();
