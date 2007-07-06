@@ -60,7 +60,7 @@ $lastup_date_fmt = '%B %d, %Y';
 $register_date_fmt = '%B %d, %Y';
 $lasthit_date_fmt = '%B %d, %Y в %H:%M';
 $comment_date_fmt =  '%B %d, %Y в %H:%M';
-$log_date_fmt = '%B %d, %Y в %H:%M; //cpg1.4
+$log_date_fmt = '%B %d, %Y в %H:%M'; //cpg1.4
 
 // For the word censor
 $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*');
