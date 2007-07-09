@@ -122,13 +122,9 @@ function lang_detect($str = '', $envType = '')
  */
 if (!empty($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
     $HTTP_ACCEPT_LANGUAGE = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
-} else if (!empty($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
-    $HTTP_ACCEPT_LANGUAGE = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
 }
 
 if (!empty($_SERVER['HTTP_USER_AGENT'])) {
-    $HTTP_USER_AGENT = $_SERVER['HTTP_USER_AGENT'];
-} else if (!empty($_SERVER['HTTP_USER_AGENT'])) {
     $HTTP_USER_AGENT = $_SERVER['HTTP_USER_AGENT'];
 }
 
