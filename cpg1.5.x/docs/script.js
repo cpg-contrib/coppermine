@@ -592,7 +592,7 @@ function cpgDocBreadcrumb() {
 
 
 function cpgDocHeader() {
-  document.write('<!--<img src="../images/coppermine_logo.png" alt="Coppermine Photo Gallery - Your Online Photo Gallery" align="left" />-->');
+  document.write('<img src="pics/coppermine-logo.png" alt="Coppermine Photo Gallery - Your Online Photo Gallery" align="left" />');
   document.write('<h1>Coppermine Photo Gallery v1.5.0: Documentation and Manual</h1>');
   document.write('<br clear="all" />');
   //cpgDocPrevNext();
