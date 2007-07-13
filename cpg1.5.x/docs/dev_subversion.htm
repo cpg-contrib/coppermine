@@ -51,33 +51,51 @@
 <a name="dev_subversion_hosting"></a><h2>Where is the subversion repository hosted?<a href="#dev_subversion_hosting" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Setting up and maintaining a subversion server is something that you can't accomplish on a &quot;regular&quot; webserver (on shared webhosting). That's why the Coppermine group has decided to host the subversion repository at <a href="http://sourceforge.net/" rel="external" class="external">sourceforge.net</a>, who provide hosting and services for many open source projects. Originally, the Coppermine project started using Sourceforge's CVS services and later moved to SVN.</p>
 
-<a name=""></a><h2>Recommended software<a href="#" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<a name="dev_subversion_software"></a><h2>Recommended software<a href="#dev_subversion_software" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <ul>
   <li>Free SVN client for Windows: <a href="http://tortoisesvn.net/" rel="external" class="external">TortoiseSVN</a></li>
   <li>Official SVN client for Linux and BSD: <a href="http://subversion.tigris.org/" rel="external" class="external">subversion.tigris.org</a></li>
 </ul>
 
-<a name=""></a><h2>Repository structure<a href="#" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<a name="dev_subversion_repository_structure"></a><h2>Repository structure<a href="#dev_subversion_repository_structure" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>The coppermine SVN root resides in <tt class="code">https://coppermine.svn.sourceforge.net/svnroot/coppermine</tt><br />
-Within this section you will find several folders: the "trunk" folder contains the mainstream folders of the existing coppermine versions. In the "branches" folder, there are copies of the mainstream versions that are being created as a fork of the mainstream versions, used by particular developers or groups that need control over the structure for a longer period (e.g. during the "summer of code"-stage) to add in-depth changes. Users interessted in the mainstream development should check out the sub-folders of the "trunks"-folder. For cpg1.5.x, you should check out <tt class="code">https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunks/cpg1.5.x/</tt></p>
+Within this section you will find several folders: the "trunk" folder contains the mainstream folders of the existing coppermine versions. In the "branches" folder, there are copies of the mainstream versions that are being created as a fork of the mainstream versions, used by particular developers or groups that need control over the structure for a longer period (e.g. during the "summer of code"-stage) to add in-depth changes.</p>
 
-<a name=""></a><h2>Checking out<a href="#" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<a name="dev_subversion_checking_out"></a><h2>Checking out<a href="#dev_subversion_checking_out" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>The term &quot;checkout&quot; actually stands for &quot;download the files from the repository to your local (working) copy on your client&quot;.</p>
 
-<a name=""></a><h3>Checking out the entire repository<a href="#" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<a name="dev_subversion_checking_out_entire"></a><h3>Checking out the entire repository<a href="#dev_subversion_checking_out_entire" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p> svn co https://coppermine.svn.sourceforge.net/svnroot/coppermine coppermine</p>
 
-<a name=""></a><h3>Checking out a particular Package<a href="#" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<a name="dev_subversion_checking_out_particular_package"></a><h3>Checking out a particular Package<a href="#dev_subversion_checking_out_particular_package" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Users interessted in the mainstream development should check out the sub-folders of the "trunks"-folder. For cpg1.5.x, you should check out <tt class="code">https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunks/cpg1.5.x/</tt></p>
 
-<a name=""></a><h3>Checking out a particular file<a href="#" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<a name="dev_subversion_checking_out_particular_file"></a><h3>Checking out a particular file<a href="#dev_subversion_checking_out_particular_file" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>If you're interessted in just one particular file (e.g. a language file that didn't exist when you downloaded your coppermine package), you're welcome to use the <a href="http://coppermine.svn.sourceforge.net/viewvc/coppermine/" rel="external" class="external">webSVN interface provided by sourceforge.net</a>. Just navigate to the file you want and use the download link there.</p>
 
 <a name="dev_subversion_download"></a><h2>Is there no single package that I could download instead?<a href="#dev_subversion_download" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Many end users complain that this sounds too complicated - they ask for a single file that they could download. You have to understand that there <em>are</em> packages for end users - you can get them from the downloads section: download the most recent stable release! Using subversion to check out the development version is only meant for experienced users who are eager to test the unsupported development version. Consider the effort needed to check out using subversion as a ticket that allows you to get the cutting edge of Coppermine. Bottom line: no, there is no single file that you could download instead of checking out the repository.</p>
 
-<a name=""></a><h2>Developers-only<a href="#" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<a name="dev_subversion_dev-only"></a><h2>Developers-only<a href="#dev_subversion_dev-only" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Don't be afraid that there is some special magic or hidden password stuff if you want to perform a checkout: anybody can check out (i.e. download) from the SVN repository. Active Coppermine developers can additionally write their changes back from their local working copy to the repository - this is named &quot;checking in&quot; or &quot;committing&quot;. Regular users (non-developers) don't need to worry about passwords - they can't write back their suggested changes to the repository. If you (as non-developer) want to propose code changes, use the forum and post your proposals.</p>
 
-<a name=""></a><h3>Check out before checking in<a href="#" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<a name="dev_subversion_checkout_checkin"></a><h3>Check out before checking in<a href="#dev_subversion_checkout_checkin" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>To make sure that changes made by other developers don't get lost you (as Coppermine developer) should always perform a checkout (update) before checking in.</p>
 
-<a name=""></a><h3>Committing your code<a href="#" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<a name="dev_subversion_commit"></a><h3>Committing your code<a href="#dev_subversion_commit" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>When using the Windows-driven subversion client tortoise, simply right-click on folder that represents the root folder of your local working copy and choose "commit" from the context menu to upload your changes to the repository.</p>
+
+<a name="dev_subversion_step-by-step"></a><h2>Step by step<a href="#dev_subversion_step-by-step" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>We will provide a short step-by-step guide how to check out the mainstream cpg1.5.x repository using the Windows-client TortoiseSVN. Please understand though that this goes unsupported; please don't ask questions about it on Coppermine's support forum.</p>
+
+<a name="dev_subversion_client-downloadt"></a><h3>Download the client application<a href="#dev_subversion_client-download" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<ul>
+  <li>Download the most recent stable version of the <a href="#dev_subversion_software">TortoiseSVN</a></li>
+  <li>After the download has finished, start the install by double-clicking the installer you just downloaded</li>
+  <li>Follow the steps of the installer</li>
+  <li>Reboot your PC once the installer has been run successfully</li>
+  <li>After the reboot, create a folder on your PC that will later contain your local copy. You will need approximately 25 MB of hard disk space. The location of the folder doesn't matter. In this example, we will create it within c:\my_svn_checkouts\, naming the folder <tt class="code">cpg1.5.x</tt>. Subsequently, we will have an empty folder c:\my_svn_checkouts\cpg1.5.x\</li>
+</ul>
 
 <p>tbc</p>
 
