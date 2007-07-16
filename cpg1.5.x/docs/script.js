@@ -522,8 +522,8 @@ d.add(1260,1230,'Windows XP Web Publishing Wizard','uploading.htm#xp_publish_upl
 d.add(1270,1270,'XP Web Publishing Wizard: Setup','uploading.htm#xp_publish_setup');
 d.add(1280,1270,'XP Web Publishing Wizard: Uploading pictures','uploading.htm#xp_publish_upload');
 d.add(1290,1230,'Upload troubleshooting','upload_troubleshooting.htm#upload_trouble');
-d.add(1293,1290,'Error messages','upload_troubleshooting#upload_error_messages');
-d.add(1295,1290,'Asking for support on upload issues','upload_troubleshooting#upload_support');
+d.add(1293,1290,'Error messages','upload_troubleshooting.htm#upload_error_messages');
+d.add(1295,1290,'Asking for support on upload issues','upload_troubleshooting.htm#upload_support');
 d.add(1300,0,'Comments','comments.htm');
 d.add(1310,1300,'Allowing comments','comments.htm#comments_allow');
 d.add(1320,1300,'Comments options','comments.htm#comments_options');
