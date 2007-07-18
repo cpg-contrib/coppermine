@@ -10,7 +10,7 @@
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
   ********************************************
-  Coppermine version: 1.4.13
+  Coppermine version: 1.4.12
   $Source$
   $Revision$
   $Author$
@@ -2457,6 +2457,7 @@ $lang_language_data['korean'] = array('Korean','&#54620;&#44397;&#50612;','kr');
 $lang_language_data['kurdish'] = array('Kurdish','&#1603;&#1608;&#1585;&#1583;&#1740;','ku');
 $lang_language_data['latvian'] = array('Latvian','Latvian','lv');
 $lang_language_data['lithuanian'] = array('Lithuanian','Lietuvi&#0353;kai','lt');
+$lang_language_data['macedonian'] = array('Macedonian','&#1052;&#1072;&#1082;&#1077;&#1076;&#1086;&#1085;&#1089;&#1082;&#1080;','mk');
 $lang_language_data['malay'] = array('Malay','Bahasa Melayu','my');
 $lang_language_data['norwegian'] = array('Norwegian','Norsk','no');
 $lang_language_data['persian'] = array('Persian','&#1601;&#1575;&#1585;&#1587;&#1740;','ir');//modified by B.Mossavari
