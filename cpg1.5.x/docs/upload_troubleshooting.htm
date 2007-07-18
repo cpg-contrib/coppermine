@@ -37,7 +37,7 @@
 
 
 <a name="upload_trouble"></a><h1>Upload troubleshooting<a href="#upload_trouble" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
-<p>If you are experiencing issues with coppermine's upload process, temporarily change your coppermine settings as suggested below to get more detailed error messages. This applies to all upload methods, not only <a href="#upload_http">HTTP uploads</a>.</p>
+<p>If you are experiencing issues with coppermine's upload process, temporarily change your coppermine settings as suggested below to get more detailed error messages. This applies to all upload methods, not only <a href="uploading.htm#upload_http">HTTP uploads</a>.</p>
 <ul>
 <li><strong>Log in as admin</strong><br />
 Go to your coppermine page and log in as admin</li>
@@ -132,9 +132,9 @@ Go to your coppermine page and log in as admin</li>
     <td valign="top" class="tableb tableb_alternate">
       Check if <a href="faq.htm#VersionPHP">your version of PHP</a> fullfills the <a href="requirements.htm#what">minimum requirements</a> for Coppermine. If your version is 4.1.0 or better, then this error is probably caused by a misconfiguration of your hosting server, and not a Coppermine issue. If the server isn't yours to configure properly (that is: if you're with a webhost), you can try this workaround (at your own risk):<br >
       Edit the file "init.inc.php" and look for<br />
-      <pre>$PHP_SELF = isset($_SERVER['REDIRECT_URL']) ? $_SERVER['REDIRECT_URL'] : $_SERVER['SCRIPT_NAME'];</pre>
+      <div class="quote">$PHP_SELF = isset($_SERVER['REDIRECT_URL']) ? $_SERVER['REDIRECT_URL'] : $_SERVER['SCRIPT_NAME'];</div>
 Replace it with<br />
-      <pre>$PHP_SELF = $_SERVER['PHP_SELF'];</pre>
+      <div class="quote">$PHP_SELF = $_SERVER['PHP_SELF'];</div>
     </td>
   </tr>
   <tr>
@@ -228,7 +228,7 @@ Replace it with<br />
       Your webserver doesn't come with support for the GD image library.
     </td>
     <td valign="top" class="tableb tableb_alternate">
-      Make sure that you fullfill the <a href="requirements.htm#what">minimum requirements</a> to run Coppermine.
+      Make sure that you fullfill the <a href="requirements.htm#what">minimum requirements</a> to run Coppermine. If GD is not available on your server, you could use ImageMagick. Ask your webhost if ImageMagick is available on your webserver.
     </td>
   </tr>
   <tr>

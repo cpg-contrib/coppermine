@@ -84,7 +84,7 @@ In general, upload_max_filesize &lt; post_max_size &lt; memory_limit in order fo
 The most common issue caused by this setting is an open_basedir warning.  In this situation, your server administrator has restricted the files that PHP can work with to a certain directory.  If he does not create and specify a temporary directory within the open_basedir restriction, PHP will attempt to use the OS temporary directory, and it will be rebuffed by the open_basedir restriction.</li>
 <li><strong>allow_fopen_url</strong> - This controls PHP's ability to read files using URL/URIs.  If it is disabled, Coppermine will not be able to upload from URLs.</li>
 </ol>
-<p>It should be obvious that the files have to be uploaded somewhere (into some folder) on your webserver - this is the albums folder within the folder you installed coppermine on your server. The HTTP uploads go into subfolders of the "userpics" folder (which resides within the "albums" folder). Obviously, the coppermine upload script needs write permissions to upload the files there. This is why you have to change <a href="#permissions">permissions</a> on the albums folder and everything within it during coppermine install - make it writable for the user the webserver runs under. This is done using the CHMOD command on Unix/Linux based servers. If you experience issues with uploading, make sure that you have set the permissions correctly.</p>
+<p>It should be obvious that the files have to be uploaded somewhere (into some folder) on your webserver - this is the albums folder within the folder you installed coppermine on your server. The HTTP uploads go into subfolders of the "userpics" folder (which resides within the "albums" folder). Obviously, the coppermine upload script needs write permissions to upload the files there. This is why you have to change <a href="install_permissions.htm#permissions">permissions</a> on the albums folder and everything within it during coppermine install - make it writable for the user the webserver runs under. This is done using the CHMOD command on Unix/Linux based servers. If you experience issues with uploading, make sure that you have set the permissions correctly.</p>
 <a name="upload_http_end"></a>
 
 
@@ -124,6 +124,17 @@ The process of uploading pictures is a matter of following a simple dialog. It t
 <li>Click "Finish" to end the XP Web Publishing Wizard and to enter the Gallery to check the new album contents.</li>
 </ul>
 
+<a name="xp_publish_remove"></a><h3>XP Web Publishing Wizard: Removal/Uninstall<a href="#xp_publish_remove" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>If you want to remove the XP Web Publishing entry created from your gallery (e.g. because you have moved to a new domain), you have to edit the registry manually. Be carefull when doing so - messing with the registry without knowing what you do may damage your operating system.</p>
+<ul>
+  <li>Click &quot;Start&quot; - &quot;Run...&quot;</li>
+  <li>Type &quot;<tt class="code">regedit</tt>&quot; (without the quotes) and hit enter</li>
+  <li>Navigate to <tt class="code">HKEY_CURRENT_USER \ Software \ Microsoft \ Windows \ CurrentVersion \ Explorer \ PublishingWizard \ PublishingWizard \ Providers \</tt></li>
+  <li>Highlight the entry on the left side of the screen that corresponds to your coppermine install</li>
+  <li>Hit the &quot;delete&quot;-key on your keyboard</li>
+  <li>Click &quot;Yes&quot; on the confirmation dialog</li>
+  <li>Close the registry editor</li>
+</ul>
 
 
 
