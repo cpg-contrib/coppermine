@@ -159,7 +159,7 @@ function update_tables()
          * Determining if the Alter Table actually made a change
          * to properly reflect it's status on the update page.
          */
-        if (stripos($q,'ALTER TABLE')!==false) {
+        if (strpos(strtolower($q),'alter table')!==false) {
             $query=explode(" ",$q);
             //var_dump($query);
             $result=mysql_query("DESCRIBE ".$query[2]);

@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-07-19 [B] Replaced the PHP5 specific function (stripos) with PHP4 compatible function in update.php {Abbas}
 2007-07-06 [D] Added documentation sections about plugin writing and plugin hooks {GauGau}
 2007-07-04 [B] Fixed improper fix for double quotes for comment input fields (thread ID 40423) {GauGau}
 2007-07-05 [A] Added 'insert from list' selection for keywords field when editing files {GauGau}
