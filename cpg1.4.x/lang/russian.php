@@ -2,7 +2,7 @@
 /*************************
   Coppermine Photo Gallery
   ************************
-  Copyright (c) 2003-2006 Coppermine Dev Team
+  Copyright (c) 2003-2007 Coppermine Dev Team
   v1.1 originally written by Gregory DEMAR
 
   This program is free software; you can redistribute it and/or modify
@@ -10,7 +10,7 @@
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
   ********************************************
-  Coppermine version: 1.4.13
+  Coppermine version: 1.4.12
   $Source$
   $Revision$
   $Author$
@@ -30,7 +30,7 @@ $lang_translation_info = array(
   'trans_name'=> 'Makc666',
   'trans_email' => 'makc666@yahoo.com',
   'trans_website' => 'http://makc666.com/',
-  'trans_date' => '2007-06-29',
+  'trans_date' => '2007-07-25',
 );
 
 $lang_charset = 'utf-8';
@@ -632,7 +632,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Название галереи', 'gallery_name', 0, 'f=index.htm&amp;as=admin_general_name&amp;ae=admin_general_name_end'), //cpg1.4
   array('Описание галереи', 'gallery_description', 0, 'f=index.htm&amp;as=admin_general_description&amp;ae=admin_general_description_end'), //cpg1.4
   array('Email адрес администратора', 'gallery_admin_email', 0, 'f=index.htm&amp;as=admin_general_email&amp;ae=admin_general_email_end'), //cpg1.4
-  array('Начальный адрес для ссылки \'Посмотреть остальные картинки!\' в открытках (никаких \'index.php\' или что-то подобного на конце ссылки)', 'ecards_more_pic_target', 0, 'f=index.htm&amp;as=admin_general_coppermine-url&amp;ae=admin_general_coppermine-url_end'), //cpg1.4
+  array('Ссылка на папку Вашей галереи (никаких \'index.php\' или что-то подобного на конце ссылки)<br /><font size="-7">Ранее пункт назывался: Начальный адрес для ссылки \'Посмотреть остальные картинки!\' в открытках</font>', 'ecards_more_pic_target', 0, 'f=index.htm&amp;as=admin_general_coppermine-url&amp;ae=admin_general_coppermine-url_end'), //cpg1.4
   array('Ссылка на Вашу домашнюю страницу', 'home_target', 0, 'f=index.htm&amp;as=admin_general_home-url&amp;ae=admin_general_home-url_end'), //cpg1.4
   array('Включить ZIP-скачивание в избранном', 'enable_zipdownload', 1, 'f=index.htm&amp;as=admin_general_zip-download&amp;ae=admin_general_zip-download_end'), //cpg1.4
   array('Разница во времени относительно GMT (текущее время: ' . localised_date(-1, $comment_date_fmt) . ')','time_offset',0, 'f=index.htm&amp;as=admin_general_time-offset&amp;ae=admin_general_time-offset_end&amp;top=1'), //cpg1.4
@@ -1333,7 +1333,7 @@ if (defined('LOGIN_PHP')) $lang_login_php = array(
   'username' => 'Имя (ник)',
   'password' => 'Пароль',
   'remember_me' => 'Автоматически входить при каждом посещении',
-  'welcome' => 'Добро пожаловать %s',
+  'welcome' => 'Добро пожаловать, %s',
   'err_login' => 'Вы ввели неверное/неактивное имя пользователя или неверный пароль.<br />Попробуйте снова.',
   'err_already_logged_in' => 'Вы уже осуществили вход в систему!',
   'forgot_password_link' => 'Забыли пароль?',
@@ -1980,7 +1980,7 @@ $lang_util_php = array(
   'versioncheck_explanation' => 'Проверить версии файлов, чтобы определить, заменили ли Вы все файлы после обновления, или исходные файлы Coppermine были обновлены после выхода данной версии.', //cpg1.4
   'bridgemanager' => 'Менеджер интеграции', //cpg1.4
   'bridgemanager_explanation' => 'Включает/выключает интеграцию (bridging) Coppermine галереи с другими приложениями (например Вашим форумом).', //cpg1.4
- );
+);
 }
 
 // ------------------------------------------------------------------------- //
@@ -2084,11 +2084,11 @@ $lang_xp_publish_select = <<<EOT
 EOT;
 
 $lang_xp_publish_testing = <<<EOT
-<h2>Testing</h2><ul><li>В Проводнике Windows, выберите любые файлы и кликните по <b>Опубликовать выбранные объекты в вебе</b> в левой части панели Проводника.</li><li>Подтвердите Ваш выбор файлов. Нажмите <b>Далее</b>.</li><li>В появившемся списке служб, выберите службу для Вашей фото галереи (служба называется также, как Ваша галерея). Если служба не появилась, проверьте, установили ли Вы <b>cpg_pub_wizard.reg</b> как описано выше.</li><li>Введите информацию Вашей учетной записи, если потребуется.</li><li>Выберите альбом для Ваших изображений или создайте новый.</li><li>Нажмите <b>Далее</b>. Начнется загрузка Ваших изображений.</li><li>Когда загрузка завершится, проверьте Вашу галерею, чтобы убедится, что изображения были добавлены правильно.</li></ul>
+<h2>Тестирование</h2><ul><li>В Проводнике Windows, выберите любые файлы и кликните по <b>Опубликовать выбранные объекты в вебе</b> в левой части панели Проводника.</li><li>Подтвердите Ваш выбор файлов. Нажмите <b>Далее</b>.</li><li>В появившемся списке служб, выберите службу для Вашей фото галереи (служба называется также, как Ваша галерея). Если служба не появилась, проверьте, установили ли Вы <b>cpg_pub_wizard.reg</b> как описано выше.</li><li>Введите информацию Вашей учетной записи, если потребуется.</li><li>Выберите альбом для Ваших изображений или создайте новый.</li><li>Нажмите <b>Далее</b>. Начнется загрузка Ваших изображений.</li><li>Когда загрузка завершится, проверьте Вашу галерею, чтобы убедится, что изображения были добавлены правильно.</li></ul>
 EOT;
 
 $lang_xp_publish_notes = <<<EOT
-<h2>Замечаения :</h2><ul><li>После начала загрузки, помощник не отображать никакие сообщения об ошибка, передаваемых скриптом, поэтому Вы не сможете узнать, правильно ли добавились Ваши изображения или нет, до тех пор, пока не посетите Вашу галерею.</li><li>Если процесс загрузки будет неудачным, выберите &quot;Включить режим отладки&quot; в конфигурации Coppermine и попытайтесь загрузить одно единственное изображение, а затем проверьте сообщения об ошибках в файле
+<h2>Замечаения</h2><ul><li>После начала загрузки, помощник не отображать никакие сообщения об ошибка, передаваемых скриптом, поэтому Вы не сможете узнать, правильно ли добавились Ваши изображения или нет, до тех пор, пока не посетите Вашу галерею.</li><li>Если процесс загрузки будет неудачным, выберите &quot;Включить режим отладки&quot; в конфигурации Coppermine и попытайтесь загрузить одно единственное изображение, а затем проверьте сообщения об ошибках в файле
 EOT;
 
 $lang_xp_publish_flood = <<<EOT
@@ -2097,7 +2097,7 @@ EOT;
 
 $lang_xp_publish_php = array(
   'title' => 'Coppermine - Помощник веб публикации XP', //cpg1.4
-  'welcome' => 'Добро пожаловать <b>%s</b>,', //cpg1.4
+  'welcome' => 'Добро пожаловать, <b>%s</b>', //cpg1.4
   'need_login' => 'Вы должны войти в галерею, используя Ваш веб браузер, прежде чем Вы сможете использовать данный помощник.<p/><p>Когда входите в галерею, не забудьте отметить опцию <b>Автоматически входить при каждом посещении</b>, если она присутствует.', //cpg1.4
   'no_alb' => 'Извините, но нет ни одного доступного альбома, куда Вам разрешено загружать изображения с помощью данного помощника.', //cpg1.4
   'upload' => 'Загрузите Ваши изображения в существующий альбом', //cpg1.4
