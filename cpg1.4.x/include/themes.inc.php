@@ -1446,7 +1446,7 @@ function theme_admin_mode_menu()
             if (file_exists('docs/index.htm') == true) {
                 $documentation_href = 'docs/index.htm';
             } else {
-                $documentation_href = 'http://coppermine.sf.net/docs/cpg14/index.php';
+                $documentation_href = 'http://coppermine-gallery.net/demo/cpg14x/docs/index.htm';
             }
             $param = array('{CATL}' => $cat_l,
                 '{UPL_APP_TITLE}' => $lang_gallery_admin_menu['upl_app_title'],
