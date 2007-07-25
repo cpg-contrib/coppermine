@@ -1867,7 +1867,7 @@ function theme_admin_mode_menu()
             if (file_exists('docs/index.htm') == true) {
                 $documentation_href = 'docs/index.htm';
             } else {
-                $documentation_href = 'http://coppermine.sf.net/docs/cpg14/index.php';
+                $documentation_href = 'http://documentation.coppermine-gallery.net/';
             }
 
             if (!$CONFIG['enable_plugins']) {
