@@ -618,3 +618,5 @@ INSERT INTO CPG_config VALUES ('display_stats_on_index', '1');
 # Enable "browse by date" meta album
 INSERT INTO CPG_config VALUES ('browse_by_date', '0');
 
+# Display redirection pages
+INSERT INTO CPG_config VALUES ('display_redirection_page', '0');

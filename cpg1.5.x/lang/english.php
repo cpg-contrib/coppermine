@@ -724,6 +724,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Path to custom header include', 'custom_header_path', 0, 'f=configuration.htm&amp;as=admin_theme_include_path_start&amp;ae=admin_theme_include_path_end'),
   array('Path to custom footer include', 'custom_footer_path', 0, 'f=configuration.htm&amp;as=admin_theme_include_path_start&amp;ae=admin_theme_include_path_end'),
   array('Enable browsing by date', 'browse_by_date', 1, 'f=configuration.htm&amp;as=admin_theme_browse_by_date&amp;ae=admin_theme_browse_by_date_end'), // cpg1.5.x
+  array('Display redirection pages', 'display_redirection_page', 1, 'f=configuration.htm&amp;as=admin_theme_display_redirection_page&amp;ae=admin_theme_display_redirection_page_end'), // cpg1.5.x
 
   'Album list view',
   array('Width of the main table (pixels or %)', 'main_table_width', 0, 'f=configuration.htm&amp;as=admin_album_table-width&amp;ae=admin_album_table-width_end'),
@@ -960,6 +961,7 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
   'notify_admin_email_body' => 'A picture has been uploaded by %s that needs your approval. Visit %s',
   'info' => 'Information',
   'com_added' => 'Comment added',
+  'com_updated' => 'Comment updated',  // cpg1.5.x
   'alb_updated' => 'Album updated',
   'err_comment_empty' => 'Your comment is empty !',
   'err_invalid_fext' => 'Only files with the following extensions are accepted : <br /><br />%s.',

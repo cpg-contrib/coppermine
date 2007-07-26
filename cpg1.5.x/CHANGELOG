@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-07-26 [A] Added admin option to display redirection page or jump directly to target page with success/failure message at top of screen {GauGau}
 2007-07-26 [O] Allowed admin to change his email address in profile even if "Allow users to change their email address in profile" is set to "no" {GauGau}
 2007-07-19 [B] Replaced the PHP5 specific function (stripos) with PHP4 compatible function in update.php {Abbas}
 2007-07-06 [D] Added documentation sections about plugin writing and plugin hooks {GauGau}

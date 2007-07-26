@@ -99,24 +99,26 @@ switch ($event) {
         $result = cpg_db_query("SELECT pid FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id='$msg_id'");
         if (!mysql_num_rows($result)) {
             mysql_free_result($result);
-            $header_location = (@preg_match('/Microsoft|WebSTAR|Xitami/', getenv('SERVER_SOFTWARE'))) ? 'Refresh: 0; URL=' : 'Location: ';
-            $redirect = "index.php";
-            header($header_location . $redirect);
-            pageheader($lang_common['information'], "<meta http-equiv=\"refresh\" content=\"1;url=$redirect\" />");
-            msg_box($lang_common['information'], $lang_db_input_php['redirect_msg'], $lang_db_input_php['continue'], $redirect);
-            pagefooter();
-            ob_end_flush();
-            exit;
+            cpgRedirectPage('index.php', $lang_common['information'], $lang_db_input_php['com_updated'], 1);
+            //$header_location = (@preg_match('/Microsoft|WebSTAR|Xitami/', getenv('SERVER_SOFTWARE'))) ? 'Refresh: 0; URL=' : 'Location: ';
+            //$redirect = "index.php";
+            //header($header_location . $redirect);
+            //pageheader($lang_common['information'], "<meta http-equiv=\"refresh\" content=\"1;url=$redirect\" />");
+            //msg_box($lang_common['information'], $lang_db_input_php['redirect_msg'], $lang_db_input_php['continue'], $redirect);
+            //pagefooter();
+            //ob_end_flush();
+            //exit;
         } else {
             $comment_data = mysql_fetch_array($result);
             mysql_free_result($result);
             $redirect = "displayimage.php?pos=" . (- $comment_data['pid']);
-            header($header_location . $redirect);
-            pageheader($lang_common['information'], "<meta http-equiv=\"refresh\" content=\"1;url=$redirect\" />");
-            msg_box($lang_common['information'], $lang_db_input_php['redirect_msg'], $lang_db_input_php['continue'], $redirect);
-            pagefooter();
-            ob_end_flush();
-            exit;
+            cpgRedirectPage($redirect, $lang_common['information'], $lang_db_input_php['com_updated'], 1);
+            //header($header_location . $redirect);
+            //pageheader($lang_common['information'], "<meta http-equiv=\"refresh\" content=\"1;url=$redirect\" />");
+            //msg_box($lang_common['information'], $lang_db_input_php['redirect_msg'], $lang_db_input_php['continue'], $redirect);
+            //pagefooter();
+            //ob_end_flush();
+            //exit;
         }
         break;
 
@@ -191,13 +193,14 @@ switch ($event) {
                 $mail_body = "<p>" . bb_decode(process_smilies($msg_body, $CONFIG['ecards_more_pic_target'])) . "</p>\n\r ".$lang_db_input_php['email_comment_body'] . " " . $CONFIG['ecards_more_pic_target'] . (substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') . $redirect;
                 cpg_mail('admin', $lang_db_input_php['email_comment_subject'], make_clickable($mail_body));
             }
-            $header_location = (@preg_match('/Microsoft|WebSTAR|Xitami/', getenv('SERVER_SOFTWARE'))) ? 'Refresh: 0; URL=' : 'Location: ';
-            header($header_location . $redirect);
-            pageheader($lang_db_input_php['com_added'], "<meta http-equiv=\"refresh\" content=\"1;url=$redirect\" />");
-            msg_box($lang_db_input_php['info'], $lang_db_input_php['com_added'], $lang_common['continue'], $redirect);
-            pagefooter();
-            ob_end_flush();
-            exit;
+            cpgRedirectPage($redirect, $lang_db_input_php['info'], $lang_db_input_php['com_added'], 1);
+            //$header_location = (@preg_match('/Microsoft|WebSTAR|Xitami/', getenv('SERVER_SOFTWARE'))) ? 'Refresh: 0; URL=' : 'Location: ';
+            //header($header_location . $redirect);
+            //pageheader($lang_db_input_php['com_added'], "<meta http-equiv=\"refresh\" content=\"1;url=$redirect\" />");
+            //msg_box($lang_db_input_php['info'], $lang_db_input_php['com_added'], $lang_common['continue'], $redirect);
+            //pagefooter();
+            //ob_end_flush();
+            //exit;
         }
         break;
 
@@ -233,12 +236,14 @@ switch ($event) {
         $update = cpg_db_query($query);
 
         if (!mysql_affected_rows()) {
-          $target_url = 'modifyalb.php?album='.$aid.'&message_id='.cpgStoreTempMessage($lang_db_input_php['no_udp_needed']);
+          cpgRedirectPage('modifyalb.php?album='.$aid, $lang_db_input_php['info'], $lang_db_input_php['no_udp_needed'], 0);
+          //$target_url = 'modifyalb.php?album='.$aid.'&message_id='.cpgStoreTempMessage($lang_db_input_php['no_udp_needed']);
         } else {
-          $target_url = 'modifyalb.php?album='.$aid.'&message_id='.cpgStoreTempMessage($lang_db_input_php['alb_updated']);
+          cpgRedirectPage('modifyalb.php?album='.$aid, $lang_db_input_php['info'], $lang_db_input_php['alb_updated'], 0);
+          //$target_url = 'modifyalb.php?album='.$aid.'&message_id='.cpgStoreTempMessage($lang_db_input_php['alb_updated']);
         }
-        header('Location: '.$target_url); /* Redirect browser */
-        exit;
+        //header('Location: '.$target_url); /* Redirect browser */
+        //exit;
         break;
 
     // Reset album
@@ -441,14 +446,15 @@ switch ($event) {
             // end: send admin approval mail
             ob_end_flush();
         } else {
-            $header_location = (@preg_match('/Microsoft|WebSTAR|Xitami/', getenv('SERVER_SOFTWARE'))) ? 'Refresh: 0; URL=' : 'Location: ';
+            //$header_location = (@preg_match('/Microsoft|WebSTAR|Xitami/', getenv('SERVER_SOFTWARE'))) ? 'Refresh: 0; URL=' : 'Location: ';
             $redirect = "displayimage.php?pos=" . (- mysql_insert_id($CONFIG['LINK_ID'] ));
-            header($header_location . $redirect);
-            pageheader($lang_common['information'], "<meta http-equiv=\"refresh\" content=\"1;url=$redirect\" />");
-            msg_box($lang_common['information'], $lang_db_input_php['upl_success'], $lang_common['continue'], $redirect);
-            pagefooter();
-            ob_end_flush();
-            exit;
+            cpgRedirectPage($redirect, $lang_common['information'], $lang_db_input_php['upl_success'], 1);
+            //header($header_location . $redirect);
+            //pageheader($lang_common['information'], "<meta http-equiv=\"refresh\" content=\"1;url=$redirect\" />");
+            //msg_box($lang_common['information'], $lang_db_input_php['upl_success'], $lang_common['continue'], $redirect);
+            //pagefooter();
+            //ob_end_flush();
+            //exit;
         }
         break;
 

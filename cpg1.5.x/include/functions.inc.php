@@ -3353,6 +3353,36 @@ function cpgCleanTempMessage($seconds = 3600) {
 }
 
 /**
+* cpgRedirectPage()
+*
+* Redirect to the target page or display an info screen first and then redirect
+*
+* @param string $targetAddress
+* @param string $caption
+* @param string $message
+* @param string $countdown
+* @return void
+**/
+function cpgRedirectPage($targetAddress = '', $caption = '', $message = '', $countdown = 0) {
+  global $CONFIG, $lang_common;
+  if ($CONFIG['display_redirection_page'] == 0) {
+    $header_location = (@preg_match('/Microsoft|WebSTAR|Xitami/', getenv('SERVER_SOFTWARE'))) ? 'Refresh: 0; URL=' : 'Location: ';
+    header($header_location . $targetAddress.'&message_id='.cpgStoreTempMessage($message).'#cpgMessageBlock');
+    pageheader($caption, "<META http-equiv=\"refresh\" content=\"1;url=$targetAddress\">");
+    msg_box($caption, $message, $lang_common['continue'], $location);
+    pagefooter();
+    ob_end_flush();
+    exit;
+  } else {
+    pageheader($caption, "<META http-equiv=\"refresh\" content=\"1;url=$targetAddress\">");
+    msg_box($caption, $message, $lang_common['continue'], $location);
+    pagefooter();
+    ob_end_flush();
+    exit;
+  }
+}
+
+/**
 * cpgGetScriptNameParams()
 *
 * Returns the script name and all vars except the ones defined in exception (which could be an array or a var).

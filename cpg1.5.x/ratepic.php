@@ -62,13 +62,8 @@ $user_md5_id = USER_ID ? md5(USER_ID) : $USER['ID'];
 $sql = "SELECT * " . "FROM {$CONFIG['TABLE_VOTES']} " . "WHERE pic_id = '$pic' AND user_md5_id = '$user_md5_id'";
 $result = cpg_db_query($sql);
 if (mysql_num_rows($result)) { // user has already rated this file
-    $location = "displayimage.php?pid=" . ($pic).'&message_id='.cpgStoreTempMessage($lang_rate_pic_php['already_rated']).'#cpgMessageBlock';
-    $header_location = (@preg_match('/Microsoft|WebSTAR|Xitami/', getenv('SERVER_SOFTWARE'))) ? 'Refresh: 0; URL=' : 'Location: ';
-    header($header_location . $location);
-    pageheader($lang_common['information'], "<META http-equiv=\"refresh\" content=\"1;url=$location\">");
-    msg_box($lang_common['information'], $lang_rate_pic_php['already_rated'], $lang_common['continue'], $location);
-    pagefooter();
-    ob_end_flush();
+    $location = "displayimage.php?pid=" . ($pic);
+    cpgRedirectPage($location, $lang_common['information'], $lang_rate_pic_php['already_rated'], 0);
     // cpg_die(ERROR, $lang_rate_pic_php['already_rated'], __FILE__, __LINE__); // commented out in favor of message-block
 }
 //Test for Self-Rating
@@ -76,13 +71,8 @@ $user=USER_ID;
 $owner=$row['owner_id'];
 
 if (!empty($user) && $user==$owner && !USER_IS_ADMIN) {
-    $location = "displayimage.php?pid=" . ($pic).'&message_id='.cpgStoreTempMessage($lang_rate_pic_php['forbidden']).'#cpgMessageBlock';
-    $header_location = (@preg_match('/Microsoft|WebSTAR|Xitami/', getenv('SERVER_SOFTWARE'))) ? 'Refresh: 0; URL=' : 'Location: ';
-    header($header_location . $location);
-    pageheader($lang_common['information'], "<META http-equiv=\"refresh\" content=\"1;url=$location\">");
-    msg_box($lang_common['information'], $lang_rate_pic_php['forbidden'], $lang_common['continue'], $location);
-    pagefooter();
-    ob_end_flush();
+    $location = "displayimage.php?pid=" . ($pic);
+    cpgRedirectPage($location, $lang_common['information'], $lang_rate_pic_php['forbidden'], 1);
     // cpg_die(ERROR, $lang_rate_pic_php['forbidden'], __FILE__, __LINE__); // commented out in favor of message-block
 }
 // Update picture rating
@@ -125,12 +115,7 @@ if ($CONFIG['vote_details']) {
         cpg_db_query($query);
 }
 
-$location = "displayimage.php?pid=" . ($pic).'&message_id='.cpgStoreTempMessage($lang_rate_pic_php['rate_ok']).'#cpgMessageBlock';
-$header_location = (@preg_match('/Microsoft|WebSTAR|Xitami/', getenv('SERVER_SOFTWARE'))) ? 'Refresh: 0; URL=' : 'Location: ';
-header($header_location . $location);
-pageheader($lang_common['information'], "<META http-equiv=\"refresh\" content=\"1;url=$location\">");
-msg_box($lang_common['information'], $lang_rate_pic_php['rate_ok'], $lang_common['continue'], $location);
-pagefooter();
-ob_end_flush();
+$location = "displayimage.php?pid=" . ($pic);
+cpgRedirectPage($location, $lang_common['information'], $lang_rate_pic_php['rate_ok'], 1);
 
 ?>
