@@ -208,7 +208,7 @@ $template_gallery_admin_menu = <<<EOT
 
 EOT;
 // HTML template for user admin menu
-if (!isset($template_user_admin_menu))  //{THEMES}
+if (!isset($template_user_admin_menu)) {  //{THEMES}
 $template_user_admin_menu = <<<EOT
 
                 <div align="center">
@@ -223,6 +223,7 @@ $template_user_admin_menu = <<<EOT
                 </div>
 
 EOT;
+}
 
 // HTML template for the category list
 if (!isset($template_cat_list))  //{THEMES}
@@ -1446,7 +1447,7 @@ function theme_admin_mode_menu()
             if (file_exists('docs/index.htm') == true) {
                 $documentation_href = 'docs/index.htm';
             } else {
-                $documentation_href = 'http://coppermine-gallery.net/demo/cpg14x/docs/index.htm';
+                $documentation_href = 'http://coppermine.sf.net/docs/cpg14/index.php';
             }
             $param = array('{CATL}' => $cat_l,
                 '{UPL_APP_TITLE}' => $lang_gallery_admin_menu['upl_app_title'],
