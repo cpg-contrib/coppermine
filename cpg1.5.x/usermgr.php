@@ -862,7 +862,7 @@ switch ($op) {
 
     case 'new_user' :
         $cpg_udb->edit_users();
-        cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERS']}(user_regdate, user_active) VALUES (NOW(), 'YES')");
+        cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERS']}(user_regdate, user_active, user_profile6) VALUES (NOW(), 'YES', '')");
 
         $user_id = mysql_insert_id();
 

@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-07-27 [B] Fixing issue creating new user with mysql strict mode {Nibbler}
 2007-07-26 [B] Added missing curly brackets to user admin menu default definition {GauGau}
 2007-07-18 [A] Added Macedonian language file (partial translation, user contribution) {GauGau}
 2007-07-04 [B] Fixed improper fix for double quotes for comment input fields (thread ID 40423) {GauGau}
