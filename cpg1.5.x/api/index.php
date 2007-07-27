@@ -6,10 +6,26 @@
  * Tested with Coppermine 1.4
  *
  * @copyright Aditya Mooley <adityamooley@sanisoft.com>, Abbas Ali <abbas@sanisoft.com>, Tarique Sani <tarique@sanisoft.com>
- * @license http://opensource.org/licenses/gpl-license.php GNU General Public License version 2 of the License, or
- * any later version.
+ * @license http://opensource.org/licenses/gpl-license.php GNU General Public License version 3 of the License.
  *
  */
+/*************************
+  Coppermine Photo Gallery
+  ************************
+  Copyright (c) 2003-2007 Coppermine Dev Team
+  v1.1 originally written by Gregory DEMAR
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License version 3
+  as published by the Free Software Foundation.
+
+  ********************************************
+  Coppermine version: 1.5.0
+  $HeadURL$
+  $Revision: 3513 $
+  $LastChangedBy: gaugau $
+  $Date: 2007-04-27 10:03:57 +0200 (Fr, 27 Apr 2007) $
+**********************************************/
 $function = $_POST['function'];
 $fp = fopen("post.txt", "w");
 foreach ($_POST as $k => $v) {
