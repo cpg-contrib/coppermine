@@ -104,79 +104,85 @@ function addbutton(&$menu,$href_lnk,$href_title,$href_tgt,$block_id,$spacer) {
 
 
 // HTML template for sys_menu
-if (!isset($template_sys_menu))  //{THEMES}
+if (!isset($template_sys_menu)) { //{THEMES}
 $template_sys_menu = <<<EOT
           {BUTTONS}
 EOT;
+}  //{THEMES}
 
 // HTML template for sub_menu
-if (!isset($template_sub_menu))  //{THEMES}
+if (!isset($template_sub_menu)) { //{THEMES}
 $template_sub_menu = $template_sys_menu;
+} //{THEMES}
 
-if (!defined('THEME_HAS_NO_SYS_MENU_BUTTONS')) {
+if (!defined('THEME_HAS_NO_SYS_MENU_BUTTONS')) { // theme has no sys menu buttons - start
 
   // HTML template for template sys_menu spacer
-  if (!isset($template_sys_menu_spacer))  //{THEMES}
+  if (!isset($template_sys_menu_spacer)) { //{THEMES}
   $template_sys_menu_spacer ="::";
+  } //{THEMES}
 
   // HTML template for template sys_menu buttons
-  if (!isset($template_sys_menu_button))  //{THEMES}
+  if (!isset($template_sys_menu_button)) { //{THEMES}
   $template_sys_menu_button = <<<EOT
   <!-- BEGIN {BLOCK_ID} -->
         <a href="{HREF_TGT}" title="{HREF_TITLE}">{HREF_LNK}</a> {SPACER}
   <!-- END {BLOCK_ID} -->
 EOT;
-
-  // HTML template for template sys_menu buttons
-  if (!isset($sys_menu_buttons)) { //{THEMES}
-    // {HREF_LNK}{HREF_TITLE}{HREF_TGT}{BLOCK_ID}{SPACER}
-    addbutton($sys_menu_buttons,'{HOME_LNK}','{HOME_TITLE}','{HOME_TGT}','home',$template_sys_menu_spacer);
-    addbutton($sys_menu_buttons,'{MY_GAL_LNK}','{MY_GAL_TITLE}','{MY_GAL_TGT}','my_gallery',$template_sys_menu_spacer);
-    addbutton($sys_menu_buttons,'{MEMBERLIST_LNK}','{MEMBERLIST_TITLE}','{MEMBERLIST_TGT}','allow_memberlist',$template_sys_menu_spacer);
-    addbutton($sys_menu_buttons,'{MY_PROF_LNK}','{MY_PROF_TITLE}','{MY_PROF_TGT}','my_profile',$template_sys_menu_spacer);
-    addbutton($sys_menu_buttons,'{ADM_MODE_LNK}','{ADM_MODE_TITLE}','{ADM_MODE_TGT}','enter_admin_mode',$template_sys_menu_spacer);
-    addbutton($sys_menu_buttons,'{USR_MODE_LNK}','{USR_MODE_TITLE}','{USR_MODE_TGT}','leave_admin_mode',$template_sys_menu_spacer);
-    addbutton($sys_menu_buttons,'{UPL_PIC_LNK}','{UPL_PIC_TITLE}','{UPL_PIC_TGT}','upload_pic',$template_sys_menu_spacer);
-    addbutton($sys_menu_buttons,'{REGISTER_LNK}','{REGISTER_TITLE}','{REGISTER_TGT}','register',$template_sys_menu_spacer);
-    addbutton($sys_menu_buttons,'{FAQ_LNK}','{FAQ_TITLE}','{FAQ_TGT}','faq',$template_sys_menu_spacer);
-    addbutton($sys_menu_buttons,'{LOGIN_LNK}','{LOGIN_TITLE}','{LOGIN_TGT}','login','');
-    addbutton($sys_menu_buttons,'{LOGOUT_LNK}','{LOGOUT_TITLE}','{LOGOUT_TGT}','logout','');
-    // Login and Logout don't have a spacer as only one is shown, and either would be the last option.
   } //{THEMES}
+
+// HTML template for template sys_menu buttons
+if (!isset($sys_menu_buttons)) { //{THEMES}
+  // {HREF_LNK}{HREF_TITLE}{HREF_TGT}{BLOCK_ID}{SPACER}
+  addbutton($sys_menu_buttons,'{HOME_LNK}', '{HOME_TITLE}', '{HOME_TGT}', 'home', $template_sys_menu_spacer);
+  addbutton($sys_menu_buttons,'{MY_GAL_LNK}', '{MY_GAL_TITLE}', '{MY_GAL_TGT}', 'my_gallery', $template_sys_menu_spacer);
+  addbutton($sys_menu_buttons,'{MEMBERLIST_LNK}', '{MEMBERLIST_TITLE}', '{MEMBERLIST_TGT}', 'allow_memberlist', $template_sys_menu_spacer);
+  addbutton($sys_menu_buttons, '{MY_PROF_LNK}', '{MY_PROF_TITLE}', '{MY_PROF_TGT}', 'my_profile', $template_sys_menu_spacer);
+  addbutton($sys_menu_buttons, '{ADM_MODE_LNK}', '{ADM_MODE_TITLE}', '{ADM_MODE_TGT}', 'enter_admin_mode', $template_sys_menu_spacer);
+  addbutton($sys_menu_buttons, '{USR_MODE_LNK}', '{USR_MODE_TITLE}', '{USR_MODE_TGT}', 'leave_admin_mode' ,$template_sys_menu_spacer);
+  addbutton($sys_menu_buttons, '{UPL_PIC_LNK}', '{UPL_PIC_TITLE}', '{UPL_PIC_TGT}', 'upload_pic', $template_sys_menu_spacer);
+  addbutton($sys_menu_buttons, '{REGISTER_LNK}', '{REGISTER_TITLE}', '{REGISTER_TGT}', 'register', $template_sys_menu_spacer);
+  addbutton($sys_menu_buttons, '{FAQ_LNK}', '{FAQ_TITLE}', '{FAQ_TGT}', 'faq', $template_sys_menu_spacer);
+  addbutton($sys_menu_buttons, '{LOGIN_LNK}', '{LOGIN_TITLE}', '{LOGIN_TGT}', 'login','');
+  addbutton($sys_menu_buttons, '{LOGOUT_LNK}', '{LOGOUT_TITLE}', '{LOGOUT_TGT}', 'logout', '');
+  // Login and Logout don't have a spacer as only one is shown, and either would be the last option.
+} //{THEMES}
 
   $params = array('{BUTTONS}' => assemble_template_buttons($template_sys_menu_button,$sys_menu_buttons));
   $template_sys_menu = template_eval($template_sys_menu,$params);
-}
+} // theme has no sys menu buttons - end
 
-if (!defined('THEME_HAS_NO_SUB_MENU_BUTTONS')) {
+if (!defined('THEME_HAS_NO_SUB_MENU_BUTTONS')) { // theme has no sub menu buttons - start
 
   // HTML template for template sub_menu spacer
-  if (!isset($template_sub_menu_spacer))  //{THEMES}
+  if (!isset($template_sub_menu_spacer)) { //{THEMES}
   $template_sub_menu_spacer = $template_sys_menu_spacer;
+  } //{THEMES}
 
   // HTML template for template sub_menu buttons
-  if (!isset($template_sub_menu_button))  //{THEMES}
+  if (!isset($template_sub_menu_button)) { //{THEMES}
   $template_sub_menu_button= $template_sys_menu_button;
+  } //{THEMES}
 
   // HTML template for template sub_menu buttons
   if (!isset($sub_menu_buttons)) { //{THEMES}
     // {HREF_LNK}{HREF_TITLE}{HREF_TGT}{BLOCK_ID}{SPACER}
-    addbutton($sub_menu_buttons,'{CUSTOM_LNK_LNK}','{CUSTOM_LNK_TITLE}','{CUSTOM_LNK_TGT}','custom_link',$template_sub_menu_spacer);
-    addbutton($sub_menu_buttons,'{ALB_LIST_LNK}','{ALB_LIST_TITLE}','{ALB_LIST_TGT}','album_list',$template_sub_menu_spacer);
-    addbutton($sub_menu_buttons,'{LASTUP_LNK}','{LASTUP_TITLE}','{LASTUP_TGT}','lastup',$template_sub_menu_spacer);
-    addbutton($sub_menu_buttons,'{LASTCOM_LNK}','{LASTCOM_TITLE}','{LASTCOM_TGT}','lastcom',$template_sub_menu_spacer);
-    addbutton($sub_menu_buttons,'{TOPN_LNK}','{TOPN_TITLE}','{TOPN_TGT}','topn',$template_sub_menu_spacer);
-    addbutton($sub_menu_buttons,'{TOPRATED_LNK}','{TOPRATED_TITLE}','{TOPRATED_TGT}','toprated',$template_sub_menu_spacer);
-    addbutton($sub_menu_buttons,'{FAV_LNK}','{FAV_TITLE}','{FAV_TGT}','favpics',$template_sub_menu_spacer);
-    addbutton($sub_menu_buttons,'{SEARCH_LNK}','{SEARCH_TITLE}','{SEARCH_TGT}','search','');
+    addbutton($sub_menu_buttons, '{CUSTOM_LNK_LNK}', '{CUSTOM_LNK_TITLE}', '{CUSTOM_LNK_TGT}', 'custom_link', $template_sub_menu_spacer);
+    addbutton($sub_menu_buttons, '{ALB_LIST_LNK}', '{ALB_LIST_TITLE}', '{ALB_LIST_TGT}', 'album_list', $template_sub_menu_spacer);
+    addbutton($sub_menu_buttons, '{LASTUP_LNK}', '{LASTUP_TITLE}', '{LASTUP_TGT}', 'lastup', $template_sub_menu_spacer);
+    addbutton($sub_menu_buttons, '{LASTCOM_LNK}', '{LASTCOM_TITLE}', '{LASTCOM_TGT}', 'lastcom', $template_sub_menu_spacer);
+    addbutton($sub_menu_buttons, '{TOPN_LNK}', '{TOPN_TITLE}', '{TOPN_TGT}', 'topn', $template_sub_menu_spacer);
+    addbutton($sub_menu_buttons, '{TOPRATED_LNK}', '{TOPRATED_TITLE}', '{TOPRATED_TGT}', 'toprated', $template_sub_menu_spacer);
+    addbutton($sub_menu_buttons, '{FAV_LNK}', '{FAV_TITLE}', '{FAV_TGT}', 'favpics', $template_sub_menu_spacer);
+    addbutton($sub_menu_buttons, '{SEARCH_LNK}', '{SEARCH_TITLE}', '{SEARCH_TGT}', 'search','');
     } //{THEMES}
 
   $params = array('{BUTTONS}' => assemble_template_buttons($template_sub_menu_button,$sub_menu_buttons));
   $template_sub_menu = template_eval($template_sub_menu,$params);
-}
+} // theme has no sub menu buttons - end
 
 // HTML template for gallery admin menu
-if (!isset($template_gallery_admin_menu))  //{THEMES}
+if (!isset($template_gallery_admin_menu)) { //{THEMES}
 $template_gallery_admin_menu = <<<EOT
 
                 <div align="center">
@@ -207,6 +213,8 @@ $template_gallery_admin_menu = <<<EOT
                 </div>
 
 EOT;
+}  //{THEMES}
+
 // HTML template for user admin menu
 if (!isset($template_user_admin_menu)) {  //{THEMES}
 $template_user_admin_menu = <<<EOT
@@ -223,10 +231,10 @@ $template_user_admin_menu = <<<EOT
                 </div>
 
 EOT;
-}
+}  //{THEMES}
 
 // HTML template for the category list
-if (!isset($template_cat_list))  //{THEMES}
+if (!isset($template_cat_list)) { //{THEMES}
 $template_cat_list = <<<EOT
 <!-- BEGIN header -->
         <tr>
@@ -260,9 +268,10 @@ $template_cat_list = <<<EOT
 <!-- END spacer -->
 
 EOT;
+}  //{THEMES}
 
 // HTML template for the breadcrumb
-if (!isset($template_breadcrumb))  //{THEMES}
+if (!isset($template_breadcrumb)) { //{THEMES}
 $template_breadcrumb = <<<EOT
 <!-- BEGIN breadcrumb -->
         <tr>
@@ -283,9 +292,10 @@ $template_breadcrumb = <<<EOT
 <!-- END breadcrumb_user_gal -->
 
 EOT;
+}  //{THEMES}
 
 // HTML template for the album list
-if (!isset($template_album_list))  //{THEMES}
+if (!isset($template_album_list)) { //{THEMES}
 $template_album_list = <<<EOT
 
 <!-- BEGIN stat_row -->
@@ -370,9 +380,10 @@ $template_album_list = <<<EOT
 <!-- END spacer -->
 
 EOT;
+}  //{THEMES}
 
 // HTML template for filmstrip display
-if (!isset($template_film_strip))  //{THEMES}
+if (!isset($template_film_strip)) { //{THEMES}
 $template_film_strip = <<<EOT
 
         <tr>
@@ -404,9 +415,10 @@ $template_film_strip = <<<EOT
 <!-- END empty_cell -->
 
 EOT;
+}  //{THEMES}
 
 // HTML template for the album list
-if (!isset($template_album_list_cat))  //{THEMES}
+if (!isset($template_album_list_cat)) { //{THEMES}
 $template_album_list_cat = <<<EOT
 
 <!-- BEGIN c_stat_row -->
@@ -491,9 +503,10 @@ $template_album_list_cat = <<<EOT
 <!-- END c_spacer -->
 
 EOT;
+}  //{THEMES}
 
 // HTML template for the ALBUM admin menu displayed in the album list
-if (!isset($template_album_admin_menu))  //{THEMES}
+if (!isset($template_album_admin_menu)) { //{THEMES}
 $template_album_admin_menu = <<<EOT
         <table border="0" cellpadding="0" cellspacing="1">
                 <tr>
@@ -510,9 +523,10 @@ $template_album_admin_menu = <<<EOT
         </table>
 
 EOT;
+}  //{THEMES}
 
 // HTML template for title row of the thumbnail view (album title + sort options)
-if (!isset($template_thumb_view_title_row))  //{THEMES}
+if (!isset($template_thumb_view_title_row)) { //{THEMES}
 $template_thumb_view_title_row = <<<EOT
 
                         <table width="100%" cellpadding="0" cellspacing="0">
@@ -547,9 +561,10 @@ $template_thumb_view_title_row = <<<EOT
                         </table>
 
 EOT;
+}  //{THEMES}
 
 // HTML template for title row of the fav thumbnail view (album title + download)
-if (!isset($template_fav_thumb_view_title_row))  //{THEMES}
+if (!isset($template_fav_thumb_view_title_row)) { //{THEMES}
 $template_fav_thumb_view_title_row = <<<EOT
 
                         <table width="100%" cellpadding="0" cellspacing="0">
@@ -567,9 +582,10 @@ $template_fav_thumb_view_title_row = <<<EOT
                         </table>
 
 EOT;
+}  //{THEMES}
 
 // HTML template for thumbnails display
-if (!isset($template_thumbnail_view))  //{THEMES}
+if (!isset($template_thumbnail_view)) { //{THEMES}
 $template_thumbnail_view = <<<EOT
 
 <!-- BEGIN header -->
@@ -614,9 +630,10 @@ $template_thumbnail_view = <<<EOT
 <!-- END spacer -->
 
 EOT;
+}  //{THEMES}
 
 // HTML template for the thumbnail view when there is no picture to show
-if (!isset($template_no_img_to_display))  //{THEMES}
+if (!isset($template_no_img_to_display)) { //{THEMES}
 $template_no_img_to_display = <<<EOT
         <tr>
                 <td class="tableb" height="200" align="center">
@@ -628,9 +645,10 @@ $template_no_img_to_display = <<<EOT
 <!-- END spacer -->
 
 EOT;
+}  //{THEMES}
 
 // HTML template for the USER info box in the user list view
-if (!isset($template_user_list_info_box))  //{THEMES}
+if (!isset($template_user_list_info_box)) { //{THEMES}
 $template_user_list_info_box = <<<EOT
 
         <table cellspacing="1" cellpadding="0" border="0" width="100%" class="user_thumb_infobox">
@@ -646,9 +664,10 @@ $template_user_list_info_box = <<<EOT
         </table>
 
 EOT;
+}  //{THEMES}
 
 // HTML template for the image navigation bar
-if (!isset($template_img_navbar))  //{THEMES}
+if (!isset($template_img_navbar)) { //{THEMES}
 $template_img_navbar = <<<EOT
 
         <tr>
@@ -683,9 +702,10 @@ $template_img_navbar = <<<EOT
         </tr>
 
 EOT;
+}  //{THEMES}
 
 // HTML template for intermediate image display
-if (!isset($template_display_media))  //{THEMES}
+if (!isset($template_display_media)) { //{THEMES}
 $template_display_media = <<<EOT
         <tr>
                 <td align="center" class="display_media" nowrap="nowrap">
@@ -734,9 +754,10 @@ $template_display_media = <<<EOT
         </tr>
 
 EOT;
+}  //{THEMES}
 
 // HTML template for the image rating box
-if (!isset($template_image_rating))  //{THEMES}
+if (!isset($template_image_rating)) { //{THEMES}
 $template_image_rating = <<<EOT
 <table align="center" width="{WIDTH}" cellspacing="1" cellpadding="0" class="maintable">
         <tr>
@@ -752,9 +773,10 @@ $template_image_rating = <<<EOT
         </tr>
 </table>
 EOT;
+}  //{THEMES}
 
 // HTML template for the display of comments
-if (!isset($template_image_comments))  //{THEMES}
+if (!isset($template_image_comments)) { //{THEMES}
 $template_image_comments = <<<EOT
 <table align="center" width="{WIDTH}" cellspacing="1" cellpadding="0" class="maintable">
 
@@ -852,9 +874,10 @@ $template_image_comments = <<<EOT
         </tr>
 </table>
 EOT;
+}  //{THEMES}
 
 // HTML template for the form to add comments
-if (!isset($template_add_your_comment))  //{THEMES}
+if (!isset($template_add_your_comment)) { //{THEMES}
 $template_add_your_comment = <<<EOT
         <form method="post" name="post" action="db_input.php">
                 <table align="center" width="{WIDTH}" cellspacing="1" cellpadding="0" class="maintable">
@@ -909,9 +932,10 @@ $template_add_your_comment = <<<EOT
                 </table>
         </form>
 EOT;
+}  //{THEMES}
 
 // HTML template used by the cpg_die function
-if (!isset($template_cpg_die))  //{THEMES}
+if (!isset($template_cpg_die)) { //{THEMES}
 $template_cpg_die = <<<EOT
 
         <tr>
@@ -935,9 +959,10 @@ $template_cpg_die = <<<EOT
 
 
 EOT;
+}  //{THEMES}
 
 // HTML template used by the msg_box function
-if (!isset($template_msg_box))  //{THEMES}
+if (!isset($template_msg_box)) { //{THEMES}
 $template_msg_box = <<<EOT
 
         <tr>
@@ -960,9 +985,10 @@ $template_msg_box = <<<EOT
 <!-- END button -->
 
 EOT;
+}  //{THEMES}
 
 // HTML template for e-cards
-if (!isset($template_ecard))  //{THEMES}
+if (!isset($template_ecard)) { //{THEMES}
 $template_ecard = <<<EOT
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="{LANG_DIR}">
@@ -1013,9 +1039,10 @@ $template_ecard = <<<EOT
 </body>
 </html>
 EOT;
+}  //{THEMES}
 
 // plain-text template for e-cards (as fallback for clients that can't display html-formatted mails)
-if (!isset($template_ecard_plaintext))  //{THEMES}
+if (!isset($template_ecard_plaintext)) { //{THEMES}
 $template_ecard_plaintext = <<<EOT
 {TITLE}
 =========================================
@@ -1034,9 +1061,10 @@ $template_ecard_plaintext = <<<EOT
 {VIEW_MORE_LNK}:
 {VIEW_MORE_TGT}
 EOT;
+}  //{THEMES}
 
 // HTML template for report
-if (!isset($template_report))  //{THEMES}
+if (!isset($template_report)) { //{THEMES}
 $template_report = <<<EOT
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="{LANG_DIR}">
@@ -1075,9 +1103,10 @@ $template_report = <<<EOT
 </body>
 </html>
 EOT;
+}  //{THEMES}
 
 // plain-text template for reports (as fallback for clients that can't display html-formatted mails)
-if (!isset($template_report_plaintext))  //{THEMES}
+if (!isset($template_report_plaintext)) { //{THEMES}
 $template_report_plaintext = <<<EOT
 {TITLE}
 =========================================
@@ -1098,9 +1127,10 @@ $template_report_plaintext = <<<EOT
 {VIEW_MORE_LNK}:
 {VIEW_MORE_TGT}
 EOT;
+}  //{THEMES}
 
 // HTML template for displaying a reported comment
-if (!isset($template_report_comment))  //{THEMES}
+if (!isset($template_report_comment)) { //{THEMES}
 $template_report_comment = <<<EOT
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="{LANG_DIR}">
@@ -1141,9 +1171,10 @@ $template_report_comment = <<<EOT
 </body>
 </html>
 EOT;
+}  //{THEMES}
 
 // plain-text template for reports (as fallback for clients that can't display html-formatted mails)
-if (!isset($template_report_comment_email))  //{THEMES}
+if (!isset($template_report_comment_email)) { //{THEMES}
 $template_report_comment_email = <<<EOT
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="{LANG_DIR}">
@@ -1165,9 +1196,10 @@ $template_report_comment_email = <<<EOT
 </body>
 </html>
 EOT;
+}  //{THEMES}
 
 // Template used for tabbed display
-if (!isset($template_tab_display))  //{THEMES}
+if (!isset($template_tab_display)) { //{THEMES}
 $template_tab_display = array('left_text' => '<td width="100%%" align="left" valign="middle" class="tableh1_compact" style="white-space: nowrap"><b>{LEFT_TEXT}</b></td>' . "\n",
     'tab_header' => '',
     'tab_trailer' => '',
@@ -1176,9 +1208,10 @@ $template_tab_display = array('left_text' => '<td width="100%%" align="left" val
     'inactive_prev_tab' => '<td><img src="images/spacer.gif" width="1" height="1" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}"><b>{PREV}</b></a></td>' . "\n",
     'inactive_next_tab' => '<td><img src="images/spacer.gif" width="1" height="1" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}"><b>{NEXT}</b></a></td>' . "\n",
 );
+}
 
 // Template used for Vanity Footer
-if (!isset($template_vanity))  //{THEMES}
+if (!isset($template_vanity)) { //{THEMES}
 $template_vanity = <<<EOT
 <div id="vanity">
       <a id="v_php" href="http://www.php.net/" target="_blank"></a>
@@ -1187,6 +1220,7 @@ $template_vanity = <<<EOT
       <a id="v_css" href="http://jigsaw.w3.org/css-validator/check/referer" target="_blank"></a>
 </div>
 EOT;
+}  //{THEMES}
 
 // Function for writing a pageheader
 if (!function_exists('pageheader')) {  //{THEMES}
