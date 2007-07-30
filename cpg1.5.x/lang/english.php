@@ -468,7 +468,7 @@ if (defined('BANNING_PHP')) $lang_banning_php = array(
   'error_ban_id' => 'Invalid ban ID!',
   'error_admin_ban' => 'You cannnot ban yourself!',
   'error_server_ban' => 'You were going to ban your own server? Tsk tsk, cannot do that...',
-  'error_ip_forbidden' => 'You cannnot ban this IP - it is non-routable (private) anyway!<br />If you want to allow banning for private IPs, change this in your <a href="admin.php">Config</a> (only makes sense when Coppermine runs on a LAN).',
+  'error_ip_forbidden' => 'You cannnot ban this IP - it is non-routable (private) anyway!<br />If you want to allow banning for private IPs, change this in your %sConfig%s (only makes sense when Coppermine runs on a LAN).', // cpg1.5
   'lookup_ip' => 'Lookup an IP address',
   'submit' => 'go!',
   'select_date' => 'select date',

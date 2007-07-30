@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
@@ -45,7 +45,7 @@ if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__,
  **/
 function create_banlist()
 {
-    global $CONFIG, $lang_banning_php, $album_date_fmt; //$PHP_SELF,
+    global $CONFIG, $lang_banning_php, $lang_common, $album_date_fmt; //$PHP_SELF,
 
     $result = cpg_db_query ("SELECT *, UNIX_TIMESTAMP(expiry) AS expiry FROM {$CONFIG['TABLE_BANNED']} WHERE brute_force=0");
     $count = mysql_num_rows($result);
@@ -146,7 +146,7 @@ if (count($_POST) > 0) {
             if (strpos($ip_to_check,$i.'.') == 2){$ip_is_illegal++;}
             }
             if ($ip_is_illegal != 0 && $CONFIG['ban_private_ip'] == 0) {
-            cpg_die(ERROR, $lang_banning_php['error_ip_forbidden'], __FILE__, __LINE__);
+              cpg_die(ERROR, sprintf($lang_banning_php['error_ip_forbidden'], '<a href="admin.php">', '</a>'), __FILE__, __LINE__);
             }
         } else {
             $ban_ip_addr = 'NULL';
