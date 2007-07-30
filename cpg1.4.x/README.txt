@@ -44,9 +44,9 @@ To create your phpinfo file, copy the following into a text file and save the fi
     ?>
 
 Question: Where do I put all these files?
-Answer: You could put them in your root directory (not recommended) or upload the coppermine directory to your website. If you are uncertain about where exactly to upload it,ask your webhost into what folder you need to upload your html and other script files. We recommend uploading the directory cpg140 (and all the files contained within) directly to your webhost's recommended folder and renaming to your liking after the upload is complete. Compare your uploaded files with your coppermine package. Make sure all the files were successfully uploaded.
+Answer: You could put them in your root directory (not recommended) or upload the coppermine directory to your website. If you are uncertain about where exactly to upload it,ask your webhost into what folder you need to upload your html and other script files. We recommend uploading the directory cpg14x (and all the files contained within) directly to your webhost's recommended folder and renaming to your liking after the upload is complete. Compare your uploaded files with your coppermine package. Make sure all the files were successfully uploaded.
 
-Question: Ok, I uploaded everything to www.yoursite.com/cpg140. Now what?
+Question: Ok, I uploaded everything to www.yoursite.com/cpg14x. Now what?
 Answer: You need to change permissions on a few directories before you can do anything else. Using your FTP program or website Control Panel, change permissions on the: "include", "albums", "albums/userpics", and "albums/edit" directories to 777. You should also create a new directory in albums that you will FTP your images/files into (name it "uploads" or any thing that catches your fancy -just no spaces or funny diacritical symbols, please.) and set it's permissions to '777' also. Some server set-ups will not work with chmod '777'. In which case, you should use '755'. (Confused? Don't know what CHMODE is? You've been warned, need we say more?)
 
 Question: I changed the permissions. What's next?
