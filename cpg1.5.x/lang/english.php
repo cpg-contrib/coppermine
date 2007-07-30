@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $Source: /cvsroot/coppermine/devel/lang/english.php,v $
@@ -2106,9 +2106,6 @@ $lang_util_desc_php = array(
 'Deletes orphaned comments',
 'Re-reads file sizes and dimensions (if you manually edited pics)',
 'Resets views counter',
-'Displays phpinfo',
-'Updates the database',
-'Displays log files',
 );
 $lang_util_php = array(
   'title' => 'Admin utilities (Resize pictures)',
@@ -2179,18 +2176,6 @@ $lang_util_php = array(
   'delete_all_orphans' => 'Delete all orphans?',
   'comment' => 'Comment: ',
   'nonexist' => 'attached to non existant file # ',
-  'phpinfo' => 'Display phpinfo',
-  'phpinfo_explanation' => 'Contains technical information about your server.<br /> - You may be asked to provide information from this when requesting support.',
-  'update_db' => 'Update database',
-  'update_db_explanation' => 'If you have replaced coppermine files, added a modification or upgraded from a previous version of coppermine, make sure to run the database update once. This will create the necessary tables and/or config values in your coppermine database.',
-  'view_log' => 'View log files',
-  'view_log_explanation' => 'Coppermine can keep track of various actions users perform. You can browse those logs if you have enabled logging in <a href="admin.php">coppermine config</a>.',
-  'versioncheck' => 'Check versions',
-  'versioncheck_explanation' => 'Check your file versions to find out if you have replaced all files after an upgrade, or if coppermine source files have been updated after the release of a package.',
-  'bridgemanager' => 'Bridge Manager',
-  'bridgemanager_explanation' => 'Enable/disable integration (bridging) of Coppermine with another application (e.g. your BBS).',
-  'overall_stats' => 'Overall Statistics', //cpg1.5
-  'overall_stats_explanation' => 'View overall hit stats by browser and operating system (if corresponding options are turned on in config).', //cpg1.5
 );
 }
 

@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
@@ -72,19 +72,6 @@ $tasks =  array(
                 <input type="text" name="refresh_numpics" value="'.$defpicnum.'" size="5" class="textinput" /><br />'.$lang_util_php['update_option']),
 
         'reset_views' => array('reset_views', $lang_util_php['reset_views'], $lang_util_php['reset_views_explanation']),
-
-        'php_info' => array('', '<a href="phpinfo.php" class="statlink">' . $lang_util_php['phpinfo'] . '</a>', $lang_util_php['phpinfo_explanation']),
-
-        'upd_db' => array('', '<a href="update.php" class="statlink">' . $lang_util_php['update_db'].'</a>',$lang_util_php['update_db_explanation']),
-
-        'view_log' => array('', '<a href="viewlog.php" class="statlink">' . $lang_util_php['view_log'] . '</a>', $lang_util_php['view_log_explanation']),
-
-        'versioncheck' => array('', '<a href="versioncheck.php" class="statlink">' . $lang_util_php['versioncheck'] . '</a>', $lang_util_php['versioncheck_explanation']),
-
-        'bridgemgr' => array('', '<a href="bridgemgr.php" class="statlink">' . $lang_util_php['bridgemanager'] . '</a>', $lang_util_php['bridgemanager_explanation']),
-
-        'overall_stats' => array('', '<a href="stat_details.php" class="statlink">' . $lang_util_php['overall_stats'] . '</a>', $lang_util_php['overall_stats_explanation']),
-
         );
 
 $action = (isset($_REQUEST['action'])) ? $_REQUEST['action'] : '';
