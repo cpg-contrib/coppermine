@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-07-31 [A] Added plugin hook at the end of function get_pic_url {GauGau}
 2007-07-30 [O] Re-ordered entries in config table for fresh installs {GauGau}
 2007-07-30 [O] Replaced link tag in language file for banning with placeholder {GauGau}
 2007-07-30 [C] Added attributes to class admin_float to fix overflow issue in IE for admin menu {GauGau}

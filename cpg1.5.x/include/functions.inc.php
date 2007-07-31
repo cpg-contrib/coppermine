@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
@@ -2228,7 +2228,7 @@ function& get_pic_url(&$pic_row, $mode,$system_pic = false)
         } else {
             $pic_row['url'] = $filepathname;
         }
-
+        $pic_row = CPGPluginAPI::filter('picture_url',$pic_row);
         return $pic_row['url'];
 }
 
