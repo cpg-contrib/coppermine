@@ -7,7 +7,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $Revision: 3440 $
@@ -443,6 +443,12 @@ d.add(470,420,'The sample theme - a template to copy from','theme.htm#theme_samp
 d.add(480,420,'How the theme engine works','theme.htm#theme_engine');
 d.add(485,420,'User-contributed themes','theme_user-contributions.htm#theme_user-contributions');
 d.add(490,420,'Creating your custom theme','theme_create.htm#theme_create');
+d.add(491,490,'Rename your theme first','theme_create.htm#theme_create_rename');
+d.add(492,490,'Tipps & tricks','theme_create.htm#theme_create_tipps');
+d.add(493,490,'Using WYSIWYG-editors','theme_create.htm#theme_create_wysiwyg');
+d.add(494,490,'Editing template.html','theme_create.htm#theme_create_template_html');
+d.add(495,490,'Modifying colors','theme_create.htm#theme_create_colors');
+d.add(496,490,'Editing theme.php','theme_create.htm#theme_create_theme_php');
 d.add(500,420,'Copyright-disclaimer in footer','theme_copyright.htm');
 d.add(510,420,'Dynamic (PHP-driven) content','php-content.htm');
 d.add(520,510,'Using anycontent.php','php-content.htm#php-content_anycontent');
