@@ -97,7 +97,7 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
   </tr>
   <tr>
     <td valign="top" class="tableb">{LANG_DIR}</td>
-    <td valign="top" class="tableb" class="tableb">
+    <td valign="top" class="tableb">
       <strong>Language direction</strong><br />
       Possible values are <abbr title="left-to-right">LTR</abbr> and <abbr title="right-to-left">RTL</abbr>. Should not be changed or modified at all.
     </td>
@@ -317,6 +317,135 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
 <a name="theme_create_theme_php"></a><h2>Editing theme.php<a href="#theme_create_theme_php" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>The &quot;<strong>theme.php</strong>&quot; file contains all the HTML templates used by the script. You can edit them, as well. When making modifications to these templates, be careful that you do not alter the lines that start with <tt class="code">&lt;!-- BEGIN xxx --&gt;</tt> and <tt class="code">&lt;!-- END xxx --&gt;</tt>. These lines are often used to identify the start and end of specific code blocks that the script will use to display your gallery.</p>
 
+<a name="theme_create_theme_php_types"></a><h3>Item types<a href="#theme_create_theme_php_types" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Basically, there can be three types of content in theme.php (from a PHP-coder's point of view). Don't worry though - you don't have to be a coder to be capable to change your theme</p>
+<ul>
+  <li><strong>Definitions of constants</strong><br />
+  Think of constants as general switches that can be set once while the script is run
+  <div class="quote"><p><strong>Example:</strong><br />
+  <tt class="code">define('THEME_IS_XHTML10_TRANSITIONAL',1);</tt></p></div></li>
+  <li><strong>Definition of variables</strong><br />
+  Variables can be manipulated (i.e. changed) during runtime. The vast majority of items that can reside in theme.php are variables. Variable names always start with a &dollar;-sign.
+  <div class="quote"><p><strong>Example:</strong><br />
+  <tt class="code">$template_sys_menu = &lt;&lt;&lt;EOT<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{BUTTONS}<br />EOT;</tt></p></div></li>
+  <li><strong>Definition of functions</strong><br />
+  Functions are the most powerfull mechanisms that can reside in theme.php, as they allow great flexibility and are re-usable. They start with the word <tt class="code">function</tt>, followed by the function name and the parameters in brackets and a curly bracket that actually determines the start of the function. The function definition usually contains several lines of code and ends with a closing curly bracket.
+  <div class="quote"><p><strong>Example:</strong><br />
+  <tt class="code">function endtable()<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;echo &lt;&lt;&lt;EOT<br />
+&lt;/table&gt;<br />
+&lt;!-- End standard table --&gt;<br />
+<br />
+EOT;<br />
+}</tt></p></div></li>
+</ul>
+
+<a name="theme_create_theme_php_list"></a><h3>List of items in theme.php<a href="#theme_create_theme_php_list" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+  <tr>
+    <th valign="top" align="left" class="tableh1">Item</th>
+    <th valign="top" align="left" class="tableh1">Description</th>
+    <th valign="top" align="left" class="tableh1">Type</th>
+    <th valign="top" align="left" class="tableh1">Dependancies</th>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">define('THEME_IS_XHTML10_TRANSITIONAL',1);</td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">define('THEME_HAS_RATING_GRAPHICS',1);</td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">define('THEME_HAS_NAVBAR_GRAPHICS',1);</td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">define('THEME_HAS_FILM_STRIP_GRAPHIC',1);</td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">define('THEME_HAS_FILM_STRIP_GRAPHICS',1);</td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">define('THEME_HAS_NO_SYS_MENU_BUTTONS',1);</td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">define('THEME_HAS_NO_SUB_MENU_BUTTONS',1);</td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">function assemble_template_buttons($template_buttons,$buttons)</td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">function addbutton(&$menu,$href_lnk,$href_title,$href_tgt,$block_id,$spacer)</td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">$template_sys_menu</td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">$template_sub_menu</td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">$template_sys_menu_spacer</td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">$template_sys_menu_button</td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">$template_sub_menu_spacer</td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">$template_sub_menu_button</td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+</table>
 
 <a name="theme_create_end"></a>
 
