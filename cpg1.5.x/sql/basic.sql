@@ -318,4 +318,3 @@ INSERT INTO CPG_bridge VALUES ('banned_group', '');
 INSERT INTO CPG_bridge VALUES ('global_moderators_group', '');
 INSERT INTO CPG_bridge VALUES ('recovery_logon_failures', '0');
 INSERT INTO CPG_bridge VALUES ('recovery_logon_timestamp', '');
-

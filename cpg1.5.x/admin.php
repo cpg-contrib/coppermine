@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $Source: /cvsroot/coppermine/devel/admin.php,v $
@@ -21,913 +21,123 @@ define('IN_COPPERMINE', true);
 define('ADMIN_PHP', true);
 define('CONFIG_PHP', true); // added for backwards compatibility (language fallback)
 
-require('include/init.inc.php');
-require('include/sql_parse.php');
+require_once('include/init.inc.php');
+require_once('include/sql_parse.php');
 
-$lang_admin_data = isset($lang_config_data) ? $lang_config_data : $lang_admin_data;
 
-// Options disabled in bridged version
-$options_to_disable = array('reg_notify_admin_email',
-    'reg_requires_valid_email',
-    'allow_duplicate_emails_addr',
-    'allow_email_change',
-    'login_threshold',
-    'login_expiry',
-    'user_profile1_name',
-    'user_profile2_name',
-    'user_profile3_name',
-    'user_profile4_name',
-    'user_profile5_name',
-    'user_profile6_name',
-    'enable_encrypted_passwords',
-    'user_registration_disclaimer',
-    'registration_captcha',
-    'personal_album_on_registration',
-    'global_registration_pw',
-    'allow_user_account_delete',
-);
+$admin_data_array = $CONFIG;
+
+
+$lineBreak = "\n\r";
+
 
 if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
-function form_label($text)
-{
-        global $lang_admin_php;
-        global $sn1,$sn2,$sn3;
-
-        static $cmi = 0;
-        static $open = false;
-
-        if ($sn1) echo '<tr><td colspan ="3" class="tableb_compact"><a name="notice1"></a>'.$lang_admin_php['notice1'].'</td></tr>';
-        if ($sn2) echo '<tr><td colspan ="3" class="tableb_compact"><a name="notice2"></a>'.$lang_admin_php['notice2'].'</td></tr>';
-        if ($sn3) echo '<tr><td colspan ="3" class="tableb_compact"><a name="notice3"></a>'.$lang_admin_php['notice3'].'</td></tr>';
-
-        $sn1 = $sn2 = $sn3 = 0;
-
-        if ($open){
-        echo <<< EOT
-                                </table>
-                        </td>
-                </tr>
-EOT;
-        }
-        echo <<< EOT
-                <tr>
-                        <td class="tableh2" colspan="3" onclick="show_section('section{$cmi}')">
-                                <span style="cursor:pointer"><img src="images/descending.gif" border="0" width="9" height="9" alt="" title="{$lang_admin_php['click_expand']}" /> <b>$text</b></span>
-                        </td>
-                </tr>
-                <tr>
-                        <td>
-                                <table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable" id="section{$cmi}" border="0">
-EOT;
-
-        $open = true;
-        $cmi++;
-}
-
-function form_input($text, $name, $help = '', $row_style_class = 'tableb')
-{
+if (!function_exists('form_get_foldercontent')) {
+  function form_get_foldercontent ($foldername, $fileOrFolder = 'folder', $validextension = '', $exception_array = '') {
     global $CONFIG;
-
-    $value = $CONFIG[$name];
-    $help = cpg_display_help($help);
-
-    $type = ($name == 'smtp_password') ? 'password' : 'text';
-
-
-    echo <<<EOT
-                <tr>
-                        <td width="60%" class="{$row_style_class}">
-                                $text
-                        </td>
-                        <td width="50%" class="{$row_style_class}" valign="top">
-                            <input type="$type" class="textinput" maxlength="255" style="width: 100%" name="$name" value="$value"/>
-                        </td>
-                        <td class="{$row_style_class}" width="10%">
-                                $help
-                        </td>
-        </tr>
-
-EOT;
-}
-
-function form_yes_no($text, $name, $help = '', $row_style_class = 'tableb')
-{
-    global $CONFIG, $lang_common;
-    $help = cpg_display_help($help);
-
-    $value = $CONFIG[$name];
-    $yes_selected = $value ? 'checked="checked"' : '';
-    $no_selected = !$value ? 'checked="checked"' : '';
-
-    echo <<<EOT
-        <tr>
-                        <td class="{$row_style_class}" width="60%">
-                                $text
-                        </td>
-                        <td class="{$row_style_class}" valign="top" width="50%">
-                                <input type="radio" id="{$name}1" name="$name" value="1" $yes_selected/><label for="{$name}1" class="clickable_option">{$lang_common['yes']}</label>
-                                &nbsp;&nbsp;
-                                <input type="radio" id="{$name}0" name="$name" value="0" $no_selected/><label for="{$name}0" class="clickable_option">{$lang_common['no']}</label>
-                        </td>
-                        <td class="{$row_style_class}" width="10%">
-                                $help
-                        </td>
-        </tr>
-
-EOT;
-}
-
-function form_img_pkg($text, $name, $help = '', $row_style_class = 'tableb')
-{
-    global $CONFIG;
-    $help = cpg_display_help($help);
-
-
-    $value = $CONFIG[$name];
-    $im_selected = ($value == 'im') ? 'selected="selected"' : '';
-    $gd1_selected = ($value == 'gd1') ? 'selected="selected"' : '';
-    $gd2_selected = ($value == 'gd2') ? 'selected="selected"' : '';
-
-    echo <<<EOT
-        <tr>
-            <td class="{$row_style_class}" width="60%">
-                $text
-            </td>
-            <td class="{$row_style_class}" valign="top" width="50%">
-                <select name="$name" class="listbox">
-                    <option value="im" $im_selected>Image Magick</option>
-                    <option value="gd1" $gd1_selected>GD version 1.x</option>
-                    <option value="gd2" $gd2_selected>GD version 2.x</option>
-                </select>
-            </td>
-            <td class="{$row_style_class}" width="10%">
-                $help
-            </td>
-        </tr>
-
-EOT;
-}
-
-function form_sort_order($text, $name, $help = '', $row_style_class = 'tableb')
-{
-    global $CONFIG, $lang_admin_php;
-
-    $help = cpg_display_help($help);
-
-    $value = $CONFIG[$name];
-    $ta_selected = ($value == 'ta') ? 'selected="selected"' : '';
-    $td_selected = ($value == 'td') ? 'selected="selected"' : '';
-    $na_selected = ($value == 'na') ? 'selected="selected"' : '';
-    $nd_selected = ($value == 'nd') ? 'selected="selected"' : '';
-    $da_selected = ($value == 'da') ? 'selected="selected"' : '';
-    $dd_selected = ($value == 'dd') ? 'selected="selected"' : '';
-    $pa_selected = ($value == 'pa') ? 'selected="selected"' : '';
-    $pd_selected = ($value == 'pd') ? 'selected="selected"' : '';
-
-
-    echo <<<EOT
-        <tr>
-            <td class="{$row_style_class}" width="60%">
-                        $text
-        </td>
-        <td class="{$row_style_class}" valign="top" width="50%">
-                        <select name="$name" class="listbox">
-                                <option value="ta" $ta_selected>{$lang_admin_php['title_a']}</option>
-                                <option value="td" $td_selected>{$lang_admin_php['title_d']}</option>
-                                <option value="na" $na_selected>{$lang_admin_php['name_a']}</option>
-                                <option value="nd" $nd_selected>{$lang_admin_php['name_d']}</option>
-                                <option value="da" $da_selected>{$lang_admin_php['date_a']}</option>
-                                <option value="dd" $dd_selected>{$lang_admin_php['date_d']}</option>
-                                <option value="pa" $pa_selected>{$lang_admin_php['pos_a']}</option>
-                                <option value="pd" $pd_selected>{$lang_admin_php['pos_d']}</option>
-                        </select>
-                </td>
-                <td class="{$row_style_class}" width="10%">
-                $help
-                </td>
-        </tr>
-
-EOT;
-}
-
-function form_charset($text, $name, $help = '', $row_style_class = 'tableb')
-{
-    global $CONFIG;
-
-    $help = cpg_display_help($help);
-
-    $charsets = array('Default (not recommended)' => 'language file',
-        'Arabic' => 'iso-8859-6',
-        'Baltic' => 'iso-8859-4',
-        'Central European' => 'iso-8859-2',
-        'Chinese Simplified' => 'euc-cn',
-        'Chinese Traditional' => 'big5',
-        'Cyrillic' => 'koi8-r',
-        'Greek' => 'iso-8859-7',
-        'Hebrew' => 'iso-8859-8-i',
-        'Icelandic' => 'x-mac-icelandic',
-        'Japanese' => 'euc-jp',
-        'Korean' => 'euc-kr',
-        'Maltese' => 'iso-8859-3',
-        'Thai' => 'windows-874 ',
-        'Turkish' => 'iso-8859-9',
-        'Unicode (recommended)' => 'utf-8',
-        'Vietnamese' => 'windows-1258',
-        'Western' => 'iso-8859-1'
-        );
-
-    $value = strtolower($CONFIG[$name]);
-
-    echo <<<EOT
-        <tr>
-            <td class="{$row_style_class}" width="60%">
-                        $text
-        </td>
-        <td class="{$row_style_class}" valign="top" width="50%">
-                        <select name="$name" class="listbox">
-
-EOT;
-    foreach ($charsets as $country => $charset) {
-        echo "                                <option value=\"$charset\" " . ($value == $charset ? 'selected="selected"' : '') . ">$country ($charset)</option>\n";
-    }
-    echo <<<EOT
-                        </select>
-                </td>
-                <td class="{$row_style_class}" width="10%">
-                $help
-                </td>
-        </tr>
-
-EOT;
-}
-
-function form_language($text, $name, $help = '', $row_style_class = 'tableb')
-{
-    global $CONFIG;
-
-    $help = cpg_display_help($help);
-    $value = strtolower($CONFIG[$name]);
-    $lang_dir = 'lang/';
-
-    $dir = opendir($lang_dir);
+    $dir = opendir($foldername);
     while ($file = readdir($dir)) {
-        if (is_file($lang_dir . $file) && strtolower(substr($file, -4)) == '.php') {
-            $lang_array[] = strtolower(substr($file, 0 , -4));
+        if ($fileOrFolder == 'file') {
+          $extension = ltrim(substr($file,strrpos($file,'.')),'.');
+          $filenameWithoutExtension = str_replace('.' . $extension, '', $file);
+          if (is_file($foldername . $file) && $extension == $validextension && in_array($filenameWithoutExtension, $exception_array) != TRUE) {
+              $return_array[] = $filenameWithoutExtension;
+          }
+        } elseif ($fileOrFolder == 'folder') {
+            if ($file != '.' && $file != '..' && in_array($file, $exception_array) != TRUE && is_dir($foldername.$file)) {
+              $return_array[] = $file;
+            }
         }
     }
     closedir($dir);
-
-    natcasesort($lang_array);
-
-    echo <<<EOT
-        <tr>
-            <td class="{$row_style_class}" width="60%">
-                        $text
-        </td>
-        <td class="{$row_style_class}" valign="top" width="50%">
-                        <select name="$name" class="listbox">
-
-EOT;
-    foreach ($lang_array as $language) {
-        echo "                                <option value=\"$language\" " . ($value == $language ? 'selected="selected"' : '') . ">" . ucfirst($language) . "</option>\n";
-    }
-    echo <<<EOT
-                        </select>
-                </td>
-                <td class="{$row_style_class}" width="10%">
-                $help
-                </td>
-        </tr>
-
-EOT;
+    natcasesort($return_array);
+    return $return_array;
+  }
 }
 
-function form_theme($text, $name, $help = '', $row_style_class = 'tableb')
-{
-    global $CONFIG;
-    $help = cpg_display_help($help);
-
-
-    $result = cpg_db_query("SELECT value FROM {$CONFIG['TABLE_CONFIG']} WHERE name = 'theme'");
-    list($value) = mysql_fetch_row($result);
-    mysql_free_result($result);
-    $theme_dir = 'themes/';
-
-    $dir = opendir($theme_dir);
-    while ($file = readdir($dir)) {
-        if (is_dir($theme_dir . $file) && $file != "." && $file != ".." && $file != '.svn' && $file != 'sample') {
-            $theme_array[] = $file;
-        }
-    }
-    closedir($dir);
-
-    natcasesort($theme_array);
-
-    echo <<<EOT
-        <tr>
-            <td class="{$row_style_class}" width="60%">
-                        $text
-        </td>
-        <td class="{$row_style_class}" valign="top" width="50%">
-                        <select name="$name" class="listbox">
-
-EOT;
-    foreach ($theme_array as $theme) {
-        echo "                                <option value=\"$theme\" " . ($value == $theme ? 'selected="selected"' : '') . ">" . strtr(ucfirst($theme), '_', ' ') . "</option>\n";
-    }
-    echo <<<EOT
-                        </select>
-                </td>
-                <td class="{$row_style_class}" width="10%">
-                $help
-                </td>
-        </tr>
-
-EOT;
-}
-// Added for allowing user to select which aspect of thumbnails to scale
-function form_scale($text, $name, $help = '', $row_style_class = 'tableb')
-{
-   global $CONFIG, $lang_admin_php ;
-
-           $help = cpg_display_help($help);
-
-    $value = $CONFIG[$name];
-    $any_selected = ($value == 'max') ? 'selected="selected"' : '';
-    $ht_selected = ($value == 'ht') ? 'selected="selected"' : '';
-    $wd_selected = ($value == 'wd') ? 'selected="selected"' : '';
-    //thumb cropping
-    $ex_selected = ($value == 'ex') ? 'selected="selected"' : '';
-
-    echo <<<EOT
-        <tr>
-            <td class="{$row_style_class}" width="60%">
-                        $text
-        </td>
-        <td class="{$row_style_class}" valign="top" width="50%">
-                        <select name="$name" class="listbox">
-                                <option value="any" $any_selected>{$lang_admin_php['th_any']}</option>
-                                <option value="ht" $ht_selected>{$lang_admin_php['th_ht']}</option>
-                                <option value="wd" $wd_selected>{$lang_admin_php['th_wd']}</option>
-                                <option value="ex" $ex_selected>{$lang_admin_php['th_ex']}</option>
-                        </select>
-                </td>
-                <td class="{$row_style_class}" width="10%">
-                $help
-                </td>
-        </tr>
-
-EOT;
-}
-
-function form_lang_theme($text, $name, $help = '', $row_style_class = 'tableb')
-{
-    global $CONFIG, $lang_common, $lang_admin_php;
-    $help = cpg_display_help($help);
-
-
-    $value = $CONFIG[$name];
-    $no_selected = ($value == '0') ? 'checked="checked"' : '';
-    $yes_1_selected = ($value == '1') ? 'checked="checked"' : '';
-    $yes_2_selected = ($value == '2') ? 'checked="checked"' : '';
-
-    echo <<<EOT
-        <tr>
-            <td class="{$row_style_class}" width="60%">
-                        $text
-        </td>
-        <td class="{$row_style_class}" valign="top" width="50%">
-                        <input type="radio" id="{$name}1" name="$name" value="1" $yes_1_selected /><label for="{$name}1" class="clickable_option">{$lang_common['yes']}:{$lang_admin_php['item']}</label>
-                        &nbsp;&nbsp;
-                        <input type="radio" id="{$name}2" name="$name" value="2" $yes_2_selected /><label for="{$name}2" class="clickable_option">{$lang_common['yes']}:{$lang_admin_php['label']}+{$lang_admin_php['item']}</label>
-                &nbsp;&nbsp;
-                <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">{$lang_common['no']}</label>
-        </td>
-        <td class="{$row_style_class}" width="10%">
-        $help
-        </td>
-        </tr>
-
-EOT;
-}
-
-function form_lang_debug($text, $name, $help = '', $row_style_class = 'tableb')
-{
-    global $CONFIG, $lang_common, $lang_admin_php;
-    $help = cpg_display_help($help);
-
-
-    $value = $CONFIG[$name];
-    $no_selected = ($value == '0') ? 'checked="checked"' : '';
-    $yes_1_selected = ($value == '1') ? 'checked="checked"' : '';
-    $yes_2_selected = ($value == '2') ? 'checked="checked"' : '';
-
-    echo <<<EOT
-        <tr>
-            <td class="{$row_style_class}" width="60%">
-                                $text
-                </td>
-                <td class="{$row_style_class}" valign="top" width="50%">
-                                <input type="radio" id="{$name}1" name="$name" value="1" $yes_1_selected /><label for="{$name}1" class="clickable_option">{$lang_common['yes']}:{$lang_admin_php['debug_everyone']}</label>
-                                &nbsp;&nbsp;
-                                <input type="radio" id="{$name}2" name="$name" value="2" $yes_2_selected /><label for="{$name}2" class="clickable_option">{$lang_common['yes']}:{$lang_admin_php['debug_admin']}</label>
-                        &nbsp;&nbsp;
-                        <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">{$lang_common['no']}</label>
-
-                </td>
-                <td class="{$row_style_class}" width="10%">
-                        $help
-                </td>
-        </tr>
-
-EOT;
-}
-
-function form_number_dropdown($text, $name, $help = '', $row_style_class = 'tableb')
-{
-   global $CONFIG, $lang_admin_php ;
-   $help = cpg_display_help($help);
-
-
-    echo <<<EOT
-        <tr>
-            <td class="{$row_style_class}" width="60%">
-                        $text
-        </td>
-        <td class="{$row_style_class}" valign="top" width="50%">
-                        <select name="$name" class="listbox">
-EOT;
-        for ($i = 5; $i <= 25; $i++) {
-        echo "<option value=\"".$i."\"";
-        if ($i == $CONFIG[$name]) { echo " selected=\"selected\"";}
-        echo ">".$i."</option>\n";
-        }
-     echo <<<EOT
-     </select>
-                </td>
-                <td class="{$row_style_class}" width="10%">
-                $help
-                </td>
-        </tr>
-EOT;
-}
-
-function form_lang_logmode($text, $name, $help = '', $row_style_class = 'tableb')
-{
-    global $CONFIG, $lang_admin_php;
-    $help = cpg_display_help($help);
-
-
-    $value = $CONFIG[$name];
-    $off_selected = ($value == '0') ? 'checked="checked"' : '';
-    $normal_selected = ($value == '1') ? 'checked="checked"' : '';
-    $all_selected = ($value == '2') ? 'checked="checked"' : '';
-
-    echo <<<EOT
-        <tr>
-            <td class="{$row_style_class}" width="60%">
-                        $text
-        </td>
-        <td class="{$row_style_class}" valign="top" width="50%">
-                         <input type="radio" id="{$name}1" name="$name" value="1" $normal_selected /><label for="{$name}1" class="clickable_option">{$lang_admin_php['log_normal']}</label>
-                        &nbsp;&nbsp;
-                        <input type="radio" id="{$name}2" name="$name" value="2" $all_selected /><label for="{$name}2" class="clickable_option">{$lang_admin_php['log_all']}</label>
-                        &nbsp;&nbsp;
-                        <input type="radio" id="{$name}0" name="$name" value="0" $off_selected /><label for="{$name}0" class="clickable_option">{$lang_admin_php['no_logs']}</label>
-                        &nbsp;&nbsp;
-                        ( <a href="viewlog.php">{$lang_admin_php['view_logs']}</a> )
-        </td>
-        <td class="{$row_style_class}" width="10%">
-        $help
-        </td>
-        </tr>
-
-EOT;
-}
-
-
-function form_plugin_yes_no($text, $name, $help = '', $row_style_class = 'tableb')
-{
-    global $CONFIG, $lang_common, $lang_admin_php;
-    $help = cpg_display_help($help);
-
-
-    $value = $CONFIG[$name];
-    $yes_selected = $value ? 'checked="checked"' : '';
-    $no_selected = !$value ? 'checked="checked"' : '';
-
-    echo <<<EOT
-        <tr>
-            <td class="{$row_style_class}" width="60%">
-                        $text
-        </td>
-        <td class="{$row_style_class}" valign="top" width="50%">
-                        <input type="radio" id="{$name}1" name="$name" value="1" $yes_selected /><label for="{$name}1" class="clickable_option">{$lang_common['yes']}</label>
-                        &nbsp;&nbsp;
-                        <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">{$lang_common['no']}</label>
-                        ( <a href="pluginmgr.php">{$lang_admin_php['manage_plugins']}</a> )
-                </td>
-                <td class="{$row_style_class}" width="10%">
-                $help
-                </td>
-        </tr>
-
-EOT;
-}
-
-function form_exif_yes_no($text, $name, $help = '', $row_style_class = 'tableb')
-{
-    global $CONFIG, $lang_common, $lang_admin_php;
-    $help = cpg_display_help($help);
-
-    $value = $CONFIG[$name];
-    $yes_selected = $value ? 'checked="checked"' : '';
-    $no_selected = !$value ? 'checked="checked"' : '';
-
-    echo <<<EOT
-        <tr>
-            <td class="{$row_style_class}" width="60%">
-                        $text
-        </td>
-        <td class="{$row_style_class}" valign="top" width="50%">
-                        <input type="radio" id="{$name}1" name="$name" value="1" $yes_selected /><label for="{$name}1" class="clickable_option">{$lang_common['yes']}</label>
-                        &nbsp;&nbsp;
-                        <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">{$lang_common['no']}</label>
-                        ( <a href="exifmgr.php">{$lang_admin_php['manage_exif']}</a> )
-                </td>
-                <td class="{$row_style_class}" width="10%">
-                $help
-                </td>
-        </tr>
-
-EOT;
-}
-
-function form_user_guest_yes_no($text, $name, $help = '', $row_style_class = 'tableb')
-{
-    global $CONFIG, $lang_common, $lang_admin_php;
-    $help = cpg_display_help($help);
-
-
-    $value = $CONFIG[$name];
-    $no_selected = ($value == '0') ? 'checked="checked"' : '';
-    $yes_1_selected = ($value == '2') ? 'checked="checked"' : '';
-    $yes_2_selected = ($value == '1') ? 'checked="checked"' : '';
-
-    echo <<<EOT
-        <tr>
-            <td class="{$row_style_class}" width="60%">
-                                $text
-                </td>
-                <td class="{$row_style_class}" valign="top" width="50%">
-                                <input type="radio" id="{$name}1" name="$name" value="2" $yes_1_selected /><label for="{$name}1" class="clickable_option">{$lang_common['yes']}:{$lang_admin_php['debug_everyone']}</label>
-                                &nbsp;&nbsp;
-                                <input type="radio" id="{$name}2" name="$name" value="1" $yes_2_selected /><label for="{$name}2" class="clickable_option">{$lang_common['yes']}:{$lang_admin_php['guests_only']}</label>
-                        &nbsp;&nbsp;
-                        <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">{$lang_common['no']}</label>
-
-                </td>
-                <td class="{$row_style_class}" width="10%">
-                        $help
-                </td>
-        </tr>
-
-EOT;
-}
-
-function form_keywords_yes_no($text, $name, $help = '', $row_style_class = 'tableb')
-{
-    global $CONFIG, $lang_common, $lang_admin_php;
-    $help = cpg_display_help($help);
-
-
-    $value = $CONFIG[$name];
-    $yes_selected = $value ? 'checked="checked"' : '';
-    $no_selected = !$value ? 'checked="checked"' : '';
-
-    echo <<<EOT
-        <tr>
-            <td class="{$row_style_class}" width="60%">
-                        $text
-        </td>
-        <td class="{$row_style_class}" valign="top" width="50%">
-                        <input type="radio" id="{$name}1" name="$name" value="1" $yes_selected /><label for="{$name}1" class="clickable_option">{$lang_common['yes']}</label>
-                        &nbsp;&nbsp;
-                        <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">{$lang_common['no']}</label>
-                        ( <a href="keywordmgr.php">{$lang_admin_php['manage_keyword']}</a> )
-                </td>
-                <td class="{$row_style_class}" width="10%">
-                $help
-                </td>
-        </tr>
-
-EOT;
-}
-
-function form_disabled($text, $name, $help = '', $row_style_class = 'tableb')
-{
-  global $lang_admin_php;
-  $help = cpg_display_help($help);
-
-    echo <<<EOT
-                <tr>
-                    <td width="60%" class="{$row_style_class}">
-                        $text
-                    </td>
-                    <td width="50%" class="{$row_style_class}" valign="top">
-                        {$lang_admin_php['bbs_disabled']}
-                    </td>
-                    <td class="{$row_style_class}" width="10%">
-                        $help
-                    </td>
-                </tr>
-
-EOT;
-}
-
-function form_auto_resize($text, $name, $help = '', $row_style_class = 'tableb')
-{
-    global $CONFIG, $lang_common, $lang_admin_php;
-    $help = cpg_display_help($help);
-
-
-    $value = $CONFIG[$name];
-    $no_selected = ($value == '0') ? 'checked="checked"' : '';
-    $yes_1_selected = ($value == '1') ? 'checked="checked"' : '';
-    $yes_2_selected = ($value == '2') ? 'checked="checked"' : '';
-
-    echo <<<EOT
-        <tr>
-            <td class="{$row_style_class}" width="60%">
-                $text
-            </td>
-            <td class="{$row_style_class}" valign="top" width="50%">
-                <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">{$lang_common['no']}</label>
-                &nbsp;&nbsp;
-                <input type="radio" id="{$name}1" name="$name" value="1" $yes_1_selected /><label for="{$name}1" class="clickable_option">{$lang_common['yes']}:{$lang_admin_php['auto_resize_everyone']}</label>
-                &nbsp;&nbsp;
-                <input type="radio" id="{$name}2" name="$name" value="2" $yes_2_selected /><label for="{$name}2" class="clickable_option">{$lang_common['yes']}:{$lang_admin_php['auto_resize_user']}</label>
-            </td>
-            <td class="{$row_style_class}" width="10%">
-                $help
-            </td>
-        </tr>
-
-EOT;
-}
-
-function form_asc_desc($text, $name, $help = '', $row_style_class = 'tableb')
-{
-    global $CONFIG, $lang_common, $lang_admin_php;
-    $help = cpg_display_help($help);
-
-    $value = $CONFIG[$name];
-    $yes_selected = $value ? 'checked="checked"' : '';
-    $no_selected = !$value ? 'checked="checked"' : '';
-
-    echo <<<EOT
-        <tr>
-                        <td class="{$row_style_class}" width="60%">
-                                $text
-                        </td>
-                        <td class="{$row_style_class}" valign="top" width="50%">
-                                <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">{$lang_admin_php['ascending']}</label>
-                                &nbsp;&nbsp;
-                                <input type="radio" id="{$name}1" name="$name" value="1" $yes_selected /><label for="{$name}1" class="clickable_option">{$lang_admin_php['descending']}</label>
-                        </td>
-                        <td class="{$row_style_class}" width="10%">
-                                $help
-                        </td>
-        </tr>
-
-EOT;
-}
-
-############## Watermark ############
-function form_watermark_place($text, $name, $row_style_class = 'tableb')
-{
-   global $CONFIG, $lang_admin_php;
-
-   $value = $CONFIG[$name];
-   $southeast_selected = ($value == 'southeast') ? 'selected' : '';
-   $southwest_selected = ($value == 'southwest') ? 'selected' : '';
-   $northwest_selected = ($value == 'northwest') ? 'selected' : '';
-   $northeast_selected = ($value == 'northeast') ? 'selected' : '';
-   $center_selected = ($value == 'center') ? 'selected' : '';
-
-   echo <<<EOT
-       <tr>
-           <td class="{$row_style_class}">
-                       $text
-       </td>
-       <td class="{$row_style_class}" valign="top">
-                       <select name="$name" class="listbox">
-                               <option value="southeast" $southeast_selected>{$lang_admin_php['wm_bottomright']}</option>
-                               <option value="southwest" $southwest_selected>{$lang_admin_php['wm_bottomleft']}</option>
-                               <option value="northwest" $northwest_selected>{$lang_admin_php['wm_topleft']}</option>
-                               <option value="northeast" $northeast_selected>{$lang_admin_php['wm_topright']}</option>
-                               <option value="center" $center_selected>{$lang_admin_php['wm_center']}</option>
-                       </select>
-               </td>
-       </tr>
-
-EOT;
-}
-
-// Added for allowing user to select which files to watermark...
-function form_watermark_files($text, $name, $row_style_class = 'tableb')
-{
-   global $CONFIG, $lang_admin_php;
-
-   $value = $CONFIG[$name];
-   $both_selected = ($value == 'both') ? 'selected' : '';
-   $original_selected = ($value == 'original') ? 'selected' : '';
-   $resized_selected = ($value == 'resized') ? 'selected' : '';
-
-   echo <<<EOT
-       <tr>
-           <td class="{$row_style_class}">
-                       $text
-       </td>
-       <td class="{$row_style_class}" valign="top">
-                       <select name="$name" class="listbox">
-                               <option value="both" $both_selected>{$lang_admin_php['wm_both']}</option>
-                               <option value="original" $original_selected>{$lang_admin_php['wm_original']}</option>
-                               <option value="resized" $resized_selected>{$lang_admin_php['wm_resized']}</option>
-                       </select>
-               </td>
-       </tr>
-
-EOT;
-}
-#############################
-
-function form_report_post_yes_no($text, $name, $help = '', $row_style_class = 'tableb')
-{
-    global $CONFIG, $lang_common, $lang_admin_php;
-    $help = cpg_display_help($help);
-
-
-    $value = $CONFIG[$name];
-    $yes_selected = $value ? 'checked="checked"' : '';
-    $no_selected = !$value ? 'checked="checked"' : '';
-
-    echo <<<EOT
-        <tr>
-            <td class="{$row_style_class}" width="60%">
-                        $text
-        </td>
-        <td class="{$row_style_class}" valign="top" width="50%">
-                        <input type="radio" id="{$name}1" name="$name" value="1" $yes_selected /><label for="{$name}1" class="clickable_option">{$lang_common['yes']}</label>
-                        &nbsp;&nbsp;
-                        <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">{$lang_common['no']}</label>
-                        ( <a href="keywordmgr.php">{$lang_admin_php['report_post']}</a> )
-                </td>
-                <td class="{$row_style_class}" width="10%">
-                $help
-                </td>
-        </tr>
-
-EOT;
-}
-
-function form_registration_disclaimer($text, $name, $help = '', $row_style_class = 'tableb') {
-    global $CONFIG, $lang_common, $lang_admin_php;
-    $help = cpg_display_help($help);
-
-
-    $value = $CONFIG[$name];
-    $no_selected = ($value == '0') ? 'checked="checked"' : '';
-    $yes_1_selected = ($value == '1') ? 'checked="checked"' : '';
-    $yes_2_selected = ($value == '2') ? 'checked="checked"' : '';
-
-    echo <<<EOT
-        <tr>
-            <td class="{$row_style_class}" width="60%">
-                $text
-            </td>
-            <td class="{$row_style_class}" valign="top" width="50%">
-                <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">{$lang_common['no']}</label>
-                &nbsp;&nbsp;
-                <input type="radio" id="{$name}1" name="$name" value="1" $yes_1_selected /><label for="{$name}1" class="clickable_option">{$lang_common['yes']}:{$lang_admin_php['separate_page']}</label>
-                &nbsp;&nbsp;
-                <input type="radio" id="{$name}2" name="$name" value="2" $yes_2_selected /><label for="{$name}2" class="clickable_option">{$lang_common['yes']}:{$lang_admin_php['inline']}</label>
-            </td>
-            <td class="{$row_style_class}" width="10%">
-                $help
-            </td>
-        </tr>
-
-EOT;
+if (!function_exists('array_is_associative')) { // make sure that this will not break in future PHP versions
+  function array_is_associative($array) {
+      if ( is_array($array) && ! empty($array) )
+      {
+          for ( $iterator = count($array) - 1; $iterator; $iterator-- )
+          {
+              if ( ! array_key_exists($iterator, $array) ) { return true; }
+          }
+          return ! array_key_exists(0, $array);
+      }
+      return false;
+  }
 }
 
 
 
 
-function create_form(&$data)
-{
-        global $sn1, $sn2, $sn3, $options_to_disable, $CONFIG;
-        $row_style_class = 'tableb';
+require_once('include/admin.inc.php');
 
-    foreach($data as $element) {
-        if ((is_array($element))) {
-                                        $skipped = 0;
-                $element[3] = (isset($element[3])) ? $element[3] : '';
-                if (UDB_INTEGRATION != 'coppermine' AND in_array($element[1],$options_to_disable) AND $CONFIG['bridge_enable']) $element[2] = 15;
-                $sn1 = max($sn1,(strpos($element[0],'<a href="#notice1"')));
-                $sn2 = max($sn2,(strpos($element[0],'<a href="#notice2"')));
-                $sn3 = max($sn3,(strpos($element[0],'<a href="#notice3"')));
-            switch ($element[2]) {
-                case 0 :
-                    form_input($element[0], $element[1], $element[3], $row_style_class);
-                    break;
-                case 1 :
-                    if (!($element[1] == 'enable_encrypted_passwords' && $CONFIG['enable_encrypted_passwords'])) {
-                        form_yes_no($element[0], $element[1], $element[3], $row_style_class);
-                        break;
-                    }
-                    $skipped = 1;
-                    break;
-                case 2 :
-                    form_img_pkg($element[0], $element[1], $element[3], $row_style_class);
-                    break;
-                case 3 :
-                    form_sort_order($element[0], $element[1], $element[3], $row_style_class);
-                    break;
-                case 4 :
-                    form_charset($element[0], $element[1], $element[3], $row_style_class);
-                    break;
-                case 5 :
-                    form_language($element[0], $element[1], $element[3], $row_style_class);
-                    break;
-                case 6 :
-                    form_theme($element[0], $element[1], $element[3], $row_style_class);
-                    break;
-                // Thumbnail scaling
-                case 7 :
-                    form_scale($element[0], $element[1], $element[3], $row_style_class);
-                    break;
-                // Language + Theme selection
-                case 8 :
-                    form_lang_theme($element[0], $element[1], $element[3], $row_style_class);
-                    break;
-                // debug mode selection
-                case 9 :
-                    form_lang_debug($element[0], $element[1], $element[3], $row_style_class);
-                    break;
-                // tabbed display fix
-                case 10 :
-                    form_number_dropdown($element[0], $element[1], $element[3], $row_style_class);
-                    break;
-                case 11 :
-                    form_lang_logmode($element[0], $element[1], $element[3], $row_style_class);
-                    break;
-                case 12 :
-                    form_plugin_yes_no($element[0], $element[1], $element[3], $row_style_class);
-                    break;
-                case 13 :
-                    form_exif_yes_no($element[0], $element[1], $element[3], $row_style_class);
-                    break;
-                case 14 :
-                    form_keywords_yes_no($element[0], $element[1], $element[3], $row_style_class);
-                    break;
-                case 15 :
-                    form_disabled($element[0], $element[1], $element[3], $row_style_class);
-                    break;
-                case 16 :
-                    form_auto_resize($element[0], $element[1], $element[3], $row_style_class);
-                    break;
-                // ascending or descending
-                case 17 :
-                    form_asc_desc($element[0], $element[1], $element[3], $row_style_class);
-                    break;
-                // registration disclaimer
-                case 18 :
-                    form_registration_disclaimer($element[0], $element[1], $element[3], $row_style_class);
-                    break;
-                case 19:
-                    form_user_guest_yes_no($element[0], $element[1], $element[3], $row_style_class);
-                    break;
-                //Watermark place
-                case 20 :
-                        form_watermark_place($element[0], $element[1], $row_style_class);
-                    break;
-                //Which filest to watermark
-                case 21 :
-                        form_watermark_files($element[0], $element[1], $row_style_class);
-                    break;
-                default:
-                    die('Invalid action');
-            } // switch
-
-            if (!$skipped) $row_style_class = ($row_style_class == 'tableb') ? 'tableb tableb_alternate' : 'tableb';
-
-        } else {
-                form_label($element);
-        }
-    }
+// loop through the config sections and populate the array that determines what sections to expand/collapse
+$collapseSections_array = array(); // By default, all sections should be hidden. Let's populate the array first with all existing sections and then later remove the ones that are suppossed to be expanded by default
+foreach ($config_data as $key => $value) {
+  $collapseSections_array[] = $key;
 }
+
+$postCount = count($_POST);
+
+if ($postCount > 0) {
+  $evaluation_array = $_POST;
+} else {
+  $evaluation_array = $CONFIG;
+}
+
+  $userMessage = ''; //The message that the will be displayed if something went wrong or to tell the user that we had success
+  $problemFields_array = array(); // we'll add field-wrapper-IDs to this array to visualize that something went wrong. Onload we'll assign the class "important" to the boxes that correspond to the array data
+  foreach ($config_data as $config_section_key => $config_section_value) { // Loop through the config fields to check posted values for validity -- start
+    foreach ($config_section_value as $adminDataKey => $adminDataValue) {
+      // We need to catter for the fact that checkboxes that haven't been ticked are not being submit
+      if ($adminDataValue['type'] == 'checkbox' && !$_POST[$adminDataKey]) {
+        $_POST[$adminDataKey] = '0';
+      }
+      if ($adminDataValue['type'] == 'checkbox' && !$CONFIG[$adminDataKey]) {
+        $CONFIG[$adminDataKey] = '0';
+      }
+      // regex check
+      if (isset($adminDataValue['regex']) && $adminDataValue['regex'] != '') {
+        if (eregi($adminDataValue['regex'],$evaluation_array[$adminDataKey]) == FALSE) {
+          $userMessage .= '<li style="list-style-image:url(images/red.gif)">'.sprintf($lang_admin_php['config_setting_invalid'], $lang_admin_php[$adminDataKey]).'</li>'.$lineBreak;
+          $regexValidation = '0';
+          $admin_data_array[$adminDataKey] = $_POST[$adminDataKey]; // replace the stuff in the form field with the improper input, so the user can see and correct his error
+          if (in_array($adminDataKey,$problemFields_array) != TRUE) {
+            $problemFields_array[] = $adminDataKey;
+          }
+          if (in_array($config_section_key,$collapseSections_array) == TRUE) {
+            unset($collapseSections_array[array_search($config_section_key,$collapseSections_array)]);
+          }
+        } else { // regex validation succesfull -- start
+          $regexValidation = '1';
+        } // regex validation succesfull -- end
+      } else { // no regex settings available - set validation var to successfull anyway
+        $regexValidation = '1';
+      }
+      if ($postCount > 0 && $regexValidation == '1' && $_POST[$adminDataKey] != $CONFIG[$adminDataKey]) {
+        //  finally, all criteria have been met - let's write the updated data to the database
+        cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '{$_POST[$adminDataKey]}' WHERE name = '$adminDataKey'");
+        $admin_data_array[$adminDataKey] = $_POST[$adminDataKey];
+        $CONFIG[$adminDataKey] = $_POST[$adminDataKey];
+        $userMessage .= '<li style="list-style-image:url(images/green.gif)">'.sprintf($lang_admin_php['config_setting_ok'], $lang_admin_php[$adminDataKey]).'</li>'.$lineBreak;
+        //print $adminDataKey;
+        //print '<br />';
+        //print $_POST[$adminDataKey] .'='. $CONFIG[$adminDataKey];
+        //print '<hr />';
+      }
+    } // inner foreach loop -- end
+  } // Loop through the config fields to check posted values for validity -- end
+  if ($userMessage != '') {
+    $userMessage = '<ul>'.$lineBreak.$userMessage.'</ul>'.$lineBreak;
+  }
+//print_r($_POST);
+
+/*
+//
 if (count($_POST) > 0) {
     if (isset($_POST['update_config'])) {
         $need_to_be_positive = array('albums_per_page',
@@ -960,7 +170,7 @@ if (count($_POST) > 0) {
 
         foreach($lang_admin_data as $element) {
             if ((is_array($element))) {
-                if (!isset($_POST[$element[1]])) /*cpg_die(CRITICAL_ERROR, "Missing admin value for '{$element[1]}'", __FILE__, __LINE__);*/ continue;
+                if (!isset($_POST[$element[1]])) //cpg_die(CRITICAL_ERROR, "Missing admin value for '{$element[1]}'", __FILE__, __LINE__);// continue;
                 $value = addslashes($_POST[$element[1]]);
                 if ($element[1] == 'ecards_more_pic_target' && substr($value, -1, 1) != '/') $value .= '/';
                 if ($CONFIG[$element[1]] !== stripslashes($value))
@@ -1003,56 +213,232 @@ if (count($_POST) > 0) {
             $message_id= cpgStoreTempMessage($lang_admin_php['restore_success']);
     }
 }
+*/
+
+$message_id= cpgStoreTempMessage('The config page is currently a work in progress. Restore to factory results doesn\'t work yet. I will document my changes asap. Joachim');
 
 pageheader($lang_admin_php['title']);
 
+if ($userMessage != '') {
+  starttable('100%', $lang_common['information'], 1);
+  print <<< EOT
+    <tr>
+        <td class="tableb">
+          {$userMessage}
+        </td>
+    </tr>
+EOT;
+  endtable();
+}
+
 $signature = 'Coppermine Photo Gallery ' . COPPERMINE_VERSION . ' ('. COPPERMINE_VERSION_STATUS . ')';
 
-echo '<form action="'.$_SERVER['PHP_SELF'].'" method="post" name="cpgform" id="cpgform">';
-starttable('100%', "{$lang_admin_php['title']} - $signature", 3);
-echo <<<EOT
+$tabindexCounter = 1;
+$numberOfConfigFields = count($CONFIG);
+
+print '<form action="'.$_SERVER['PHP_SELF'].'" method="post" name="cpgform" id="cpgform">';
+starttable('100%', "{$lang_admin_php['title']} - $signature", 2);
+print <<< EOT
     <tr>
-        <td class="tableh2" colspan="3">
-            <span id="expand_all_top" style="display:none"><a href="javascript:;" class="admin_menu" onclick="expand();show_section('expand_all_top');show_section('collapse_all_top');show_section('expand_all_bottom');show_section('collapse_all_bottom');">{$lang_admin_php['expand_all']}&nbsp;&nbsp;<img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['expand_all']}" /></a></span>
-            <span id="collapse_all_top" style="display:none"><a href="javascript:;" class="admin_menu" onclick="hideall();show_section('expand_all_top');show_section('collapse_all_top');show_section('expand_all_bottom');show_section('collapse_all_bottom');">{$lang_admin_php['collapse_all']}&nbsp;&nbsp;<img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['collapse_all']}" /></a></span>
+        <td class="tableh2" colspan="2">
+            <span id="expand_all_top" style="display:none"><a href="javascript:;" class="admin_menu" onclick="expand();show_section('expand_all_top');show_section('collapse_all_top');show_section('expand_all_bottom');show_section('collapse_all_bottom');toggleExpandCollpaseButtons('expand');">{$lang_admin_php['expand_all']}&nbsp;&nbsp;<img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['expand_all']}" /></a></span>
+            <span id="collapse_all_top" style="display:none"><a href="javascript:;" class="admin_menu" onclick="hideall();show_section('expand_all_top');show_section('collapse_all_top');show_section('expand_all_bottom');show_section('collapse_all_bottom');toggleExpandCollpaseButtons('collapse')">{$lang_admin_php['collapse_all']}&nbsp;&nbsp;<img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['collapse_all']}" /></a></span>
         </td>
     </tr>
 EOT;
 
-create_form($lang_admin_data);
-
-        if ($sn1) echo '<tr><td colspan ="3" class="tableb_compact"><a name="notice1"></a>'.$lang_admin_php['notice1'].'</td></tr>';
-        if ($sn2) echo '<tr><td colspan ="3" class="tableb_compact"><a name="notice2"></a>'.$lang_admin_php['notice2'].'</td></tr>';
-        if ($sn3) echo '<tr><td colspan ="3" class="tableb_compact"><a name="notice3"></a>'.$lang_admin_php['notice3'].'</td></tr>';
-
-echo '</table></td></tr>';
-
-echo <<<EOT
-                <tr>
-                        <td align="left" class="tablef">
-                            <table border="0" cellspacing="0" cellpadding="0" width="100%">
-                                <tr>
-                                    <td width="33%">
-                                        <span id="expand_all_bottom" style="display:none"><a href="javascript:;" class="admin_menu" onclick="expand();show_section('expand_all_top');show_section('collapse_all_top');show_section('expand_all_bottom');show_section('collapse_all_bottom');">{$lang_admin_php['expand_all']}<img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['expand_all']}" /></a></span>
-                                        <span id="collapse_all_bottom" style="display:none"><a href="javascript:;" class="admin_menu" onclick="hideall();show_section('expand_all_top');show_section('collapse_all_top');show_section('expand_all_bottom');show_section('collapse_all_bottom');">{$lang_admin_php['collapse_all']}&nbsp;&nbsp;<img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['collapse_all']}" /></a></span>
-                                    </td>
-                                    <td width="67%" align="center">
-                                        <input type="submit" class="button" name="update_config" value="{$lang_admin_php['save_cfg']}" />
-                                &nbsp;&nbsp;
-                                                                                <input type="submit" onclick="return confirm('{$lang_admin_php['restore_cfg']}');" class="button" name="restore_config" value="{$lang_admin_php['restore_cfg']}" />
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
+$sectionLoopCounter = 0;
+foreach ($config_data as $config_section_key => $config_section_value) { // start foreach-loop through the config sections
+  print <<< EOT
+          <tr>
+            <td class="tableh2" colspan="2" onclick="show_section('section{$sectionLoopCounter}');show_section('expand{$sectionLoopCounter}');show_section('collapse{$sectionLoopCounter}')">
+                    <span style="cursor:pointer">
+                    <img src="images/descending.gif" border="0" width="9" height="9" alt="" title="{$lang_admin_php['click_expand']}" id="expand{$sectionLoopCounter}" align="left" />
+                    <img src="images/ascending.gif" border="0" width="9" height="9" alt="" title="{$lang_admin_php['click_collapse']}" id="collapse{$sectionLoopCounter}" style="display:none;" align="left" />
+                    &nbsp;
+                    {$lang_admin_php[$config_section_key]}
+                    </span>
+            </td>
+          </tr>
+          <tr>
+            <td class="tableb" colspan="2">
+              <table align="center" width="90%" cellspacing="1" cellpadding="0" class="maintable" id="section{$sectionLoopCounter}" border="0">
+EOT;
+  $withinSectionLoopCounter = 0;
+  foreach ($config_section_value as $key => $value) {
+    if ($withinSectionLoopCounter/2 == floor($withinSectionLoopCounter/2)) {
+      $cellStyle = 'tableb';
+    } else {
+      $cellStyle = 'tableb tableb_alternate';
+    }
+    // hide entries labelled as "hidden" completely
+    if (isset($value['only_display_if']) && $value['only_display_if'] != $CONFIG[$key]) {  // change the type if a "one-way-setting" is in place
+      $value['type'] = 'hidden';
+    }
+    if ($value['type'] == 'hidden') {
+      $visibility = ' style="display:none;"';
+    } else {
+      $visibility = '';
+    }
+    if ($value['type'] == 'checkbox') {
+      $labelWrapperStart = '<label for="'.$key.'">';
+      $labelWrapperEnd = '</label>';
+    } else {
+      $labelWrapperStart = '';
+      $labelWrapperEnd = '';
+    }
+    print <<< EOT
+                <tr{$visibility}>
+                  <td class="{$cellStyle}" width="60%">
+                    {$labelWrapperStart}{$lang_admin_php[$key]}{$labelWrapperEnd}
+                  </td>
+                  <td class="{$cellStyle}" width="50%">
+EOT;
+    // grey out the field if not applicable because bridging is enabled
+    if ($CONFIG['bridge_enable'] != 0 && $value['bridged'] == 'hide') { //
+      $readonly_text = ' readonly="readonly" disabled="disabled" title="'.$lang_admin_php['bbs_disabled'].'"';
+      $readonly_radio = ' disabled="disabled" title="'.$lang_admin_php['bbs_disabled'].'"';
+    } else {
+      $readonly_text = '';
+      $readonly_radio = '';
+    }
+    if ($value['width'] != '') { // set width if option is set in array
+      $widthOption = ' style="width:'.$value['width'].'"';
+    } else {
+      $widthOption = ' style="width:90%"';
+    }
+    if ($value['size'] != '') { // set width if option is set in array
+      $sizeOption = ' size="'.$value['size'].'"';
+    } else {
+      $sizeOption = '';
+    }
+    if ($value['maxlength'] != '') { // set width if option is set in array
+      $maxlengthOption = ' maxlength="'.$value['maxlength'].'"';
+    } else {
+      $maxlengthOption = '';
+    }
+    if (in_array($key,$problemFields_array) == TRUE) {
+      $highlightFieldCSS = ' important';
+    } else {
+      $highlightFieldCSS = '';
+    }
+    if ($value['type'] == 'textfield') {
+      print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><input type="text" class="textinput"'.$widthOption.$sizeOption.$maxlengthOption.'  name="'.$key.'" id="'.$key.'" value="'.$admin_data_array[$key].'"'.$readonly_text.' tabindex="'.$tabindexCounter.'" /></span>';
+    } elseif ($value['type'] == 'password') {
+      print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><input type="password" class="textinput" maxlength="255"'.$widthOption.$sizeOption.$maxlengthOption.' name="'.$key.'" id="'.$key.'" value="'.$admin_data_array[$key].'"'.$readonly_text.' tabindex="'.$tabindexCounter.'" /></span>';
+    } elseif ($value['type'] == 'checkbox') {
+      $checked = '';
+      if ($admin_data_array[$key] == 1) {
+        $checked = ' checked="checked"';
+      }
+      print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><input type="checkbox" name="'.$key.'" id="'.$key.'" value="1" class="checkbox"'.$checked.$readonly_radio.' tabindex="'.$tabindexCounter.'" />';
+    } elseif ($value['type'] == 'radio') {
+      $optionLoopCounter = 0;
+      print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'">'; // wrap the radio-buttons set into a container box
+      foreach ($value['options'] as $option) { // loop through the options array
+        $checked='';
+        if ($admin_data_array[$key] == $optionLoopCounter) {
+          $checked = ' checked="checked"';
+        }
+        print '<input type="radio" name="'.$key.'" id="'.$key.$optionLoopCounter.'" value="'.$optionLoopCounter.'" class="radio"'.$checked.$readonly_radio.' tabindex="'.$tabindexCounter.'" /><label for="'.$key.$optionLoopCounter.'" class="clickable_option">'.$option.'</label>&nbsp;';
+        $optionLoopCounter++;
+        $tabindexCounter++;
+      }
+      print '</span>';
+    } elseif ($value['type'] == 'hidden') {
+      print '<input type="hidden"  name="'.$key.'" value="'.$admin_data_array[$key].'"'.$readonly.' />';
+    } elseif ($value['type'] == 'select_function') {
+    } elseif ($value['type'] == 'select') {
+      $optionLoopCounter = 0;
+      //print_r($value['options']);
+      $associativeArray = array_is_associative($value['options']);
+      print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><select name="'.$key.'" id="'.$key.'" class="listbox" size="1" '.$readonly_radio.' tabindex="'.$tabindexCounter.'">';
+      foreach ($value['options'] as $option_key => $option_value) { // loop through the options array
+        if ($admin_data_array[$key] == $option_value) {
+          $selected = ' selected="selected"';
+        } else {
+          $selected = '';
+        }
+        if ($associativeArray == TRUE) {
+          print '<option value="'.$option_value.'"'.$selected.'>'.$option_key;
+        } else {
+          print '<option value="'.$option_value.'"'.$selected.'>'.ucfirst($option_value);
+        }
+        print '</option>';
+        $optionLoopCounter++;
+      }
+      print '</select></span>';
+    }
+    $helpIcon = '';
+    if ($value['help_link'] != '' && $admin_data_array['enable_help'] != 0) {
+      $helpIcon = cpg_display_help($value['help_link']);
+    }
+    print <<< EOT
+                  </td>
+                  <td class="{$cellStyle}">
+                    {$helpIcon}
+                  </td>
                 </tr>
 EOT;
+    $withinSectionLoopCounter++;
+    $tabindexCounter++;
+  }
+  print <<< EOT
+              </table>
+            </td>
+          </tr>
+EOT;
+  $sectionLoopCounter++;
+} // foreach-loop through the config sections
+
+print <<<EOT
+          <tr>
+            <td align="left" class="tablef" colspan="2">
+                <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                    <tr>
+                        <td width="33%">
+                            <span id="expand_all_bottom" style="display:none"><a href="javascript:;" class="admin_menu" onclick="expand();show_section('expand_all_top');show_section('collapse_all_top');show_section('expand_all_bottom');show_section('collapse_all_bottom');toggleExpandCollpaseButtons('expand');">{$lang_admin_php['expand_all']}<img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['expand_all']}" /></a></span>
+                            <span id="collapse_all_bottom" style="display:none"><a href="javascript:;" class="admin_menu" onclick="hideall();show_section('expand_all_top');show_section('collapse_all_top');show_section('expand_all_bottom');show_section('collapse_all_bottom');toggleExpandCollpaseButtons('collapse')">{$lang_admin_php['collapse_all']}&nbsp;&nbsp;<img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['collapse_all']}" /></a></span>
+                        </td>
+                        <td width="67%" align="center">
+                            <input type="submit" class="button" name="update_config" value="{$lang_admin_php['save_cfg']}" />
+                    &nbsp;&nbsp;
+                                                                    <input type="submit" onclick="return confirm('{$lang_admin_php['restore_cfg']}');" class="button" name="restore_config" value="{$lang_admin_php['restore_cfg']}" />
+                        </td>
+                    </tr>
+                </table>
+            </td>
+          </tr>
+EOT;
+
 endtable();
+print '<br />';
+//print eregi('^[0-9]$','g');
+
+
 echo <<< EOT
 </form>
 <script type="text/javascript">
-        addonload('hideall()');
+    //addonload('hideall()'); // commented out: instead of hiding all, we loop through all sections below
     addonload("show_section('expand_all_top')");
     addonload("show_section('expand_all_bottom')");
+
+EOT;
+foreach ($collapseSections_array as $key => $value) {
+  print '    addonload("show_section(\'section'.$key.'\')");'.$lineBreak;
+}
+echo <<< EOT
+    function toggleExpandCollpaseButtons(action) {
+      for (var i = 0; i < {$sectionLoopCounter}; i++) {
+        if (action == 'collapse') {
+          document.getElementById('expand' + i).style.display = 'block';
+          document.getElementById('collapse' + i).style.display = 'none';
+        } else {
+          document.getElementById('expand' + i).style.display = 'none';
+          document.getElementById('collapse' + i).style.display = 'block';
+        }
+      }
+    }
 </script>
 EOT;
 pagefooter();

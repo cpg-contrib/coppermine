@@ -11,7 +11,7 @@
 
   ********************************************
   Coppermine version: 1.5.0
-  $Source: /cvsroot/coppermine/devel/lang/english.php,v $
+  $Source$
   $Revision$
   $LastChangedBy$
   $Date$
@@ -631,6 +631,24 @@ if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
 
 if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'title' => 'Gallery Configuration',
+  'general_settings' => 'General settings', // cpg1.5
+  'language_charset_settings' => 'Language &amp; Charset settings', // cpg1.5
+  'themes_settings' => 'Themes settings', // cpg1.5
+  'album_list_view' => 'Album list view', // cpg1.5
+  'thumbnail_view' => 'Thumbnail view', // cpg1.5
+  'image_view' => 'Image view', // cpg1.5
+  'comment_settings' => 'Comment settings', // cpg1.5
+  'thumbnail_settings' => 'Thumbnails settings', // cpg1.5
+  'file_settings' => 'File settings', // cpg1.5
+  'image_watermarking' => 'Image watermarking', // cpg1.5
+  'registration' => 'Registration', // cpg1.5
+  'user_settings' => 'User settings', // cpg1.5
+  'custom_fields_user_profile' => 'Custom fields for user profile (leave blank if unused). Use Profile 6 for long entries, such as biographies', // cpg1.5
+  'custom_fields_image_description' => 'Custom fields for image description (leave blank if unused)', // cpg1.5
+  'cookie_settings' => 'Cookies settings', // cpg1.5
+  'email_settings' => 'Email settings  (usually nothing has to be changed here; leave all fields blank when not sure)', // cpg1.5
+  'logging_stats' => 'Logging and statistics', // cpg1.5
+  'maintenance_settings' => 'Maintenance settings', // cpg1.5
   'manage_exif' => 'Manage exif display',
   'manage_plugins' => 'Manage plugins',
   'manage_keyword' => 'Manage keywords',
@@ -662,11 +680,12 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'log_all' => 'All',
   'view_logs' => 'View logs',
   'click_expand' => 'click section name to expand',
+  'click_collapse' => 'click section name to collapse', // cpg1.5
   'expand_all' => 'Expand All',
   'notice1' => '(*) These settings mustn\'t be changed if you already have files in your database.',
   'notice2' => '(**) When changing this setting, only the files that are added from that point on are affected, so it is advisable that this setting must not be changed if there are already files in the gallery. You can, however, apply the changes to the existing files with the &quot;<a href="util.php">admin tools</a> (resize pictures)&quot; utility from the admin menu.',
   'notice3' => '(***) All log files are written in english.',
-  'bbs_disabled' => 'Function disabled when using bb integration',
+  'bbs_disabled' => 'Function disabled when using bridging/integration',
   'auto_resize_everyone' => 'Everyone',
   'auto_resize_user' => 'User only',
   'ascending' => 'ascending',
@@ -675,7 +694,6 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'separate_page' => 'on a separate page', // cpg1.5
   'inline' => 'inline', // cpg1.5
   'guests_only' => 'Guests only', // cpg1.5
-  ######## watermark #####
   'wm_bottomright' => 'Bottom right', // cpg1.5
   'wm_bottomleft' => 'Bottom left', // cpg1.5
   'wm_topleft' => 'Up left', // cpg1.5
@@ -684,222 +702,177 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'wm_both' => 'Both', // cpg1.5
   'wm_original' => 'Original', // cpg1.5
   'wm_resized' => 'Resized', // cpg1.5
-  ###################
-);
-
-if (defined('ADMIN_PHP')) $lang_admin_data = array(
-  'General settings',
-  array('Gallery name', 'gallery_name', 0, 'f=configuration.htm&amp;as=admin_general_name&amp;ae=admin_general_name_end'),
-  array('Gallery description', 'gallery_description', 0, 'f=configuration.htm&amp;as=admin_general_description&amp;ae=admin_general_description_end'),
-  array('Gallery administrator email', 'gallery_admin_email', 0, 'f=configuration.htm&amp;as=admin_general_email&amp;ae=admin_general_email_end'),
-  array('URL of your coppermine gallery folder (no \'index.php\' or similar at the end)', 'ecards_more_pic_target', 0, 'f=configuration.htm&amp;as=admin_general_coppermine-url&amp;ae=admin_general_coppermine-url_end'),
-  array('URL of your home page', 'home_target', 0, 'f=configuration.htm&amp;as=admin_general_home-url&amp;ae=admin_general_home-url_end'),
-  array('Allow ZIP-download of favorites', 'enable_zipdownload', 1, 'f=configuration.htm&amp;as=admin_general_zip-download&amp;ae=admin_general_zip-download_end'),
-  array('Timezone difference relative to GMT (current time: ' . localised_date(-1, $comment_date_fmt) . ')','time_offset',0, 'f=configuration.htm&amp;as=admin_general_time-offset&amp;ae=admin_general_time-offset_end&amp;top=1'),
-  array('Enable encrypted passwords (can not be undone)','enable_encrypted_passwords',1, 'f=configuration.htm&amp;as=admin_general_encrypt_password_start&amp;ae=admin_general_encrypt_password_end&amp;top=1'), // cpg 1.4
-  array('Enable help-icons (help available in English only)','enable_help',9, 'f=configuration.htm&amp;as=admin_general_help&amp;ae=admin_general_help_end'),
-  array('Enable clickable keywords in search','clickable_keyword_search',14, 'f=configuration.htm&amp;as=admin_general_keywords_start&amp;ae=admin_general_keywords_end'),
-  array('Enable plugins', 'enable_plugins', 12, 'f=configuration.htm&amp;as=admin_general_enable-plugins&amp;ae=admin_general_enable-plugins_end'),
-  array('Allow banning of non-routable (private) IP addresses', 'ban_private_ip', 1,  'f=configuration.htm&amp;as=admin_general_private-ip&amp;ae=admin_general_private-ip_end'),
-  array('Browsable batch-add interface', 'browse_batch_add', 1, 'f=configuration.htm&amp;as=admin_general_browsable_batch_add&amp;ae=admin_general_browsable_batch_add_end'),
-
-  'Language &amp; Charset settings',
-  array('Language', 'lang', 5, 'f=configuration.htm&amp;as=admin_language_language&amp;ae=admin_language_language_end'),
-  array('Fallback to English if translated phrase not found?', 'language_fallback', 1, 'f=configuration.htm&amp;as=admin_language_fallback&amp;ae=admin_language_fallback_end'),
-  array('Character encoding', 'charset', 4, 'f=configuration.htm&amp;as=admin_language_charset&amp;ae=admin_language_charset_end'),
-  array('Display language list', 'language_list', 1, 'f=configuration.htm&amp;as=admin_language_list&amp;ae=admin_language_list_end'),
-  array('Display language flags', 'language_flags', 8, 'f=configuration.htm&amp;as=admin_language_flags&amp;ae=admin_language_flags_end&amp;top=1'),
-  array('Display &quot;reset&quot; in language selection', 'language_reset', 1, 'f=configuration.htm&amp;as=admin_language_reset&amp;ae=admin_language_reset_end&amp;top=1'),
-  //array('Display previous/next on tabbed pages', 'previous_next_tab', 1),
-
-  'Themes settings',
-  array('Theme', 'theme', 6, 'f=configuration.htm&amp;as=admin_theme_theme&amp;ae=admin_theme_theme_end'),
-  array('Display theme list', 'theme_list', 1, 'f=configuration.htm&amp;as=admin_theme_theme_list&amp;ae=admin_theme_theme_list_end'),
-  array('Display &quot;reset&quot; in theme selection', 'theme_reset', 1, 'f=configuration.htm&amp;as=admin_theme_theme_reset&amp;ae=admin_theme_theme_reset_end'),
-  array('Display FAQ', 'display_faq', 1, 'f=configuration.htm&amp;as=admin_theme_faq&amp;ae=admin_theme_faq_end'),
-  array('Custom menu link name', 'custom_lnk_name', 0,'f=configuration.htm&amp;as=admin_theme_custom_lnk_name&amp;ae=admin_theme_custom_lnk_name_end'),
-  array('Custom menu link URL', 'custom_lnk_url', 0,'f=configuration.htm&amp;as=admin_language_custom_lnk_url&amp;ae=admin_language_custom_lnk_url_end'),
-  array('Display bbcode help', 'show_bbcode_help', 1, 'f=configuration.htm&amp;as=admin_theme_bbcode&amp;ae=admin_theme_bbcode_end&amp;top=1'),
-  array('Show the vanity block on themes that are defined as XHTML and CSS compliant','vanity_block',1, 'f=configuration.htm&amp;as=vanity_block&amp;ae=vanity_block_end'),
-  array('Path to custom header include', 'custom_header_path', 0, 'f=configuration.htm&amp;as=admin_theme_include_path_start&amp;ae=admin_theme_include_path_end'),
-  array('Path to custom footer include', 'custom_footer_path', 0, 'f=configuration.htm&amp;as=admin_theme_include_path_start&amp;ae=admin_theme_include_path_end'),
-  array('Enable browsing by date', 'browse_by_date', 1, 'f=configuration.htm&amp;as=admin_theme_browse_by_date&amp;ae=admin_theme_browse_by_date_end'), // cpg1.5.x
-  array('Display redirection pages', 'display_redirection_page', 1, 'f=configuration.htm&amp;as=admin_theme_display_redirection_page&amp;ae=admin_theme_display_redirection_page_end'), // cpg1.5.x
-
-  'Album list view',
-  array('Width of the main table (pixels or %)', 'main_table_width', 0, 'f=configuration.htm&amp;as=admin_album_table-width&amp;ae=admin_album_table-width_end'),
-  array('Number of levels of categories to display', 'subcat_level', 0, 'f=configuration.htm&amp;as=admin_album_category-levels&amp;ae=admin_album_category-levels_end'),
-  array('Number of albums to display', 'albums_per_page', 0, 'f=configuration.htm&amp;as=admin_album_number&amp;ae=admin_album_number_end'),
-  array('Number of columns for the album list', 'album_list_cols', 0, 'f=configuration.htm&amp;as=admin_album_columns&amp;ae=admin_album_columns_end'),
-  array('Size of thumbnails in pixels', 'alb_list_thumb_size', 0, 'f=configuration.htm&amp;as=admin_album_thumbnail-size&amp;ae=admin_album_thumbnail-size_end'),
-  array('The content of the main page', 'main_page_layout', 0, 'f=configuration.htm&amp;as=admin_album_list_content&amp;ae=admin_album_list_content_end'),
-  array('Show first level album thumbnails in categories','first_level',1, 'f=configuration.htm&amp;as=admin_album_first-level_thumbs&amp;ae=admin_album_first-level_thumbs_end'),
-  array('Sort categories alphabetically (instead of custom sort order)','categories_alpha_sort',1, 'f=configuration.htm&amp;as=admin_album_list_alphasort_start&amp;ae=admin_album_list_alphasort_end'),
-  array('Show number of linked files','link_pic_count',1, 'f=configuration.htm&amp;as=admin_album_linked_files_start&amp;ae=admin_album_linked_files_end'),
-
-  'Thumbnail view',
-  array('Number of columns on thumbnail page', 'thumbcols', 0, 'f=configuration.htm&amp;as=admin_thumbnail_columns&amp;ae=admin_thumbnail_columns_end'),
-  array('Number of rows on thumbnail page', 'thumbrows', 0, 'f=configuration.htm&amp;as=admin_thumbnail_rows&amp;ae=admin_thumbnail_rows_end'),
-  array('Maximum number of tabs to display', 'max_tabs', 10, 'f=configuration.htm&amp;as=admin_thumbnail_tabs&amp;ae=admin_thumbnail_tabs_end'),
-  array('Display file caption (in addition to title) below the thumbnail', 'caption_in_thumbview', 1, 'f=configuration.htm&amp;as=admin_thumbnail_display_caption&amp;ae=admin_thumbnail_display_caption_end'),
-  array('Display number of views below the thumbnail', 'views_in_thumbview', 1, 'f=configuration.htm&amp;as=admin_thumbnail_display_views&amp;ae=admin_thumbnail_display_views_end'),
-  array('Display number of comments below the thumbnail', 'display_comment_count', 1, 'f=configuration.htm&amp;as=admin_thumbnail_display_comments&amp;ae=admin_thumbnail_display_comments_end'),
-  array('Display uploader name below the thumbnail', 'display_uploader', 1, 'f=configuration.htm&amp;as=admin_thumbnail_display_uploader&amp;ae=admin_thumbnail_display_uploader_end'),
-  //array('Display name of admin uploaders below the thumbnail', 'display_admin_uploader', 1, 'f=configuration.htm&amp;as=admin_thumbnail_display_admin_uploader&amp;ae=admin_thumbnail_display_admin_uploader_end'),
-  array('Display file name below the thumbnail', 'display_filename', 1, 'f=configuration.htm&amp;as=admin_thumbnail_display_filename&amp;ae=admin_thumbnail_display_filename_end'),
-  array('Display rating below the thumbnail', 'display_thumbnail_rating', 1, 'f=configuration.htm&amp;as=admin_thumbnail_display_rating&amp;ae=admin_thumbnail_display_rating_end'), //cpg1.5
-  array('Display album description', 'alb_desc_thumb', 1, 'f=configuration.htm&amp;as=admin_thumbnail_display_description&amp;ae=admin_thumbnail_display_description_end'),
-  array('Go directly from thumbnail to full-sized image', 'thumbnail_to_fullsize', 1, 'f=configuration.htm&amp;as=admin_thumbnail_to_fullsize&amp;ae=admin_thumbnail_to_fullsize_end'),
-  array('Default sort order for files', 'default_sort_order', 3, 'f=configuration.htm&amp;as=admin_thumbnail_default_sortorder&amp;ae=admin_thumbnail_default_sortorder_end'),
-  array('Minimum number of votes for a file to appear in the \'top-rated\' list', 'min_votes_for_rating', 0, 'f=configuration.htm&amp;as=admin_thumbnail_minimum_votes&amp;ae=admin_thumbnail_minimum_votes_end'),
-
-  'Image view',
-  array('Width of the table for file display (pixels or %)', 'picture_table_width', 0, 'f=configuration.htm&amp;as=admin_image_comment_table-width&amp;ae=admin_image_comment_table-width_end'),
-  array('File information is visible by default', 'display_pic_info', 1, 'f=configuration.htm&amp;as=admin_image_comment_info_visible&amp;ae=admin_image_comment_info_visible_end'),
-  array('Display movie download link in the file information area', 'picinfo_movie_download_link', 1),
-  array('Max length for an image description', 'max_img_desc_length', 0, 'f=configuration.htm&amp;as=admin_image_comment_descr_length&amp;ae=admin_image_comment_descr_length_end'),
-  array('Max number of characters in a word', 'max_com_wlength', 0, 'f=configuration.htm&amp;as=admin_image_comment_chars_per_word&amp;ae=admin_image_comment_chars_per_word_end'),
-  array('Show film strip', 'display_film_strip', 1, 'f=configuration.htm&amp;as=admin_image_comment_filmstrip_toggle&amp;ae=admin_image_comment_filmstrip_toggle_end'),
-  array('Display file name under film strip thumbnail', 'display_film_strip_filename', 1, 'f=configuration.htm&amp;as=admin_image_comment_display_film_strip_filename&amp;ae=admin_image_comment_display_film_strip_filename_end'),
-  array('Number of items in film strip', 'max_film_strip_items', 0, 'f=configuration.htm&amp;as=admin_image_comment_filmstrip_number&amp;ae=admin_image_comment_filmstrip_number_end'),
-  array('Slideshow interval in milliseconds (1 second = 1000 milliseconds)', 'slideshow_interval', 0, 'f=configuration.htm&amp;as=admin_image_comment_slideshow_interval&amp;ae=admin_image_comment_slideshow_interval_end'),
-  array('Count hits in slideshow', 'slideshow_hits', 1, 'f=configuration.htm&amp;as=admin_image_slideshow_hits&amp;ae=admin_image_slideshow_hits_end'),
-  array('Allow Flash in Ecards (not recommended)', 'ecard_flash', 1, 'f=configuration.htm&amp;as=admin_image_ecard_flash_start&amp;ae=admin_image_ecard_flash_end'), // cpg1.5.x
-  array('Insert a transparent overlay to minimize image theft', 'transparent_overlay', 1, 'f=configuration.htm&amp;as=admin_image_transparent_overlay_start&amp;ae=admin_image_transparent_overlay_end'), // cpg1.5.x
-
-  'Comment settings',
-  array('Filter bad words in comments', 'filter_bad_words', 1, 'f=configuration.htm&amp;as=admin_image_comment_bad_words&amp;ae=admin_image_comment_bad_words_end'),
-  array('Allow smiles in comments', 'enable_smilies', 1, 'f=configuration.htm&amp;as=admin_image_comment_smilies&amp;ae=admin_image_comment_smilies_end'),
-  array('Allow several consecutive comments on one file from the same user (disable flood protection)', 'disable_comment_flood_protect', 1, 'f=configuration.htm&amp;as=admin_image_comment_flood&amp;ae=admin_image_comment_flood_end'),
-  array('Max number of lines in a comment', 'max_com_lines', 0, 'f=configuration.htm&amp;as=admin_image_comment_lines&amp;ae=admin_image_comment_lines_end'),
-  array('Maximum length of a comment', 'max_com_size', 0, 'f=configuration.htm&amp;as=admin_image_comment_length&amp;ae=admin_image_comment_length_end'),
-  array('Notify admin of comments by email', 'email_comment_notification', 1, 'f=configuration.htm&amp;as=admin_image_comment_admin_notify&amp;ae=admin_image_comment_admin_notify_end'),
-  array('Sort order of comments', 'comments_sort_descending', 17, 'f=configuration.htm&amp;as=admin_comment_sort_start&amp;ae=admin_comment_sort_end'),
-  array('Prefix for anonymous comments authors', 'comments_anon_pfx', 0, 'f=configuration.htm&amp;as=comments_anon_pfx&amp;ae=comments_anon_pfx_end'),
-  array('Comments require approval', 'comment_approval', 19, 'f=configuration.htm&amp;as=admin_comment_approval&amp;ae=admin_comment_approval_end'), // cpg1.5.x
-  array('Only display comments needing approval on the &quot;Review Comments&quot; page', 'display_comment_approval_only', 1, 'f=configuration.htm&amp;as=admin_comment_display_comment_approval_only_start&amp;ae=admin_comment_display_comment_approval_only_end'), // cpg1.5.x
-  array('Display placeholder text to end users for comments waiting for admin approval', 'comment_placeholder', 1, 'f=configuration.htm&amp;as=admin_comment_display_placeholder_start&amp;ae=admin_comment_display_placeholder_end'), // cpg1.5.x
-  array('Allow users to edit their comments', 'comment_user_edit', 1, 'f=configuration.htm&amp;as=admin_comment_user_edit_start&amp;ae=admin_comment_user_edit_end'), // cpg1.5.x
-  array('Display Captcha (Visual Confirmation) for adding comments', 'comment_captcha', 19, 'f=configuration.htm&amp;as=admin_comment_captcha_start&amp;ae=admin_comment_captcha_end'), // cpg1.5.x
-  array('Ask guests to log in to post comments', 'comment_promote_registration', 1, 'f=configuration.htm&amp;as=admin_comment_promote_registration_start&amp;ae=admin_comment_promote_registration_end'), // cpg1.5.x
-
-  'Thumbnails settings', // cpg1.5.x
-  array('Max dimension (width) of a thumbnail <a href="#notice2" class="clickable_option">**</a>', 'thumb_width', 0, 'f=configuration.htm&amp;as=admin_picture_thumbnail_max-dimension&amp;ae=admin_picture_thumbnail_max-dimension_end'),
-  array('Use dimension ( width or height or Max aspect for thumbnail ) <a href="#notice2" class="clickable_option">**</a>', 'thumb_use', 7, 'f=configuration.htm&amp;as=admin_picture_thumbnail_use-dimension&amp;ae=admin_picture_thumbnail_use-dimension_end'),
-  array('Height of a thumbnail (only applies if you use &quot;exact&quot; in &quot;Use dimension&quot;)', 'thumb_height', 0), // cpg1.5.x
-  array('Enable Custom Thumbs (movie, audio, document)', 'enable_custom_thumbs', 1), // cpg1.5
-  array('The prefix for thumbnails <a href="#notice1" class="clickable_option">*</a>', 'thumb_pfx', 0, 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_thumbs_prefix&amp;ae=admin_picture_thumb_advanced_thumbs_prefix_end'),
-  array('Thumb Sharpening: enable Unsharp Mask', 'enable_unsharp', 1), // cpg1.5
-  array('Thumb Sharpening amount', 'unsharp_amount', 0), // cpg1.5
-  array('Thumb Sharpening radius', 'unsharp_radius', 0), // cpg1.5
-  array('Thumb Sharpening threshold', 'unsharp_threshold', 0), // cpg1.5
-
-
-  'File settings',
-  array('Quality for JPEG files', 'jpeg_qual', 0, 'f=configuration.htm&amp;as=admin_picture_thumbnail_jpeg_quality&amp;ae=admin_picture_thumbnail_jpeg_quality_end'),
-  array('Create intermediate pictures','make_intermediate',1, 'f=configuration.htm&amp;as=admin_picture_thumbnail_intermediate_toggle&amp;ae=admin_picture_thumbnail_intermediate_toggle_end'),
-  array('Max width or height of an intermediate picture/video <a href="#notice2" class="clickable_option">**</a>', 'picture_width', 0, 'f=configuration.htm&amp;as=admin_picture_thumbnail_intermediate_dimension&amp;ae=admin_picture_thumbnail_intermediate_dimension_end'),
-  array('Max size for uploaded files (KB)', 'max_upl_size', 0, 'f=configuration.htm&amp;as=admin_picture_thumbnail_max_upload_size&amp;ae=admin_picture_thumbnail_max_upload_size_end'),
-  array('Max width or height for uploaded pictures/videos (pixels)', 'max_upl_width_height', 0, 'f=configuration.htm&amp;as=admin_picture_thumbnail_max_upload_dimension&amp;ae=admin_picture_thumbnail_max_upload_dimension_end'),
-  array('Auto resize images that are larger than max width or height', 'auto_resize', 16, 'f=configuration.htm&amp;as=admin_picture_thumbnail_auto-resize&amp;ae=admin_picture_thumbnail_auto-resize_end'),
-  array('Horizontal padding for full-size pop-up', 'fullsize_padding_x', 0, 'f=configuration.htm&amp;as=admin_picture_thumbnail_fullsize_padding_x&amp;ae=admin_picture_thumbnail_fullsize_padding_x_end'),
-  array('Vertical padding for full-size pop-up', 'fullsize_padding_y', 0, 'f=configuration.htm&amp;as=admin_picture_thumbnail_fullsize_padding_y&amp;ae=admin_picture_thumbnail_fullsize_padding_y_end'),
-  array('Albums can be private (Note: if you switch from \'yes\' to \'no\' any current private albums will become public)', 'allow_private_albums', 1, 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_private_toggle&amp;ae=admin_picture_thumb_advanced_private_toggle_end'),
-  array('Show private album Icon to unlogged user','show_private',1, 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_private_icon_show&amp;ae=admin_picture_thumb_advanced_private_icon_show_end'),
-  array('Characters forbidden in filenames', 'forbiden_fname_char',0, 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_filename_forbidden_chars&amp;ae=admin_picture_thumb_advanced_filename_forbidden_chars_end'),
-  array('Enable &quot;silly safe mode&quot;', 'silly_safe_mode',1, 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_silly_safe_mode_start&amp;ae=admin_picture_thumb_advanced_silly_safe_mode_end'),
-  //array('Accepted file extensions for uploaded pictures', 'allowed_file_extensions',0, 'f=configuration.htm&amp;as=&amp;ae=_end'),
-  array('Allowed image types', 'allowed_img_types',0, 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_pic_extensions&amp;ae=admin_picture_thumb_advanced_pic_extensions_end'),
-  array('Allowed movie types', 'allowed_mov_types',0, 'f=configuration.htm&amp;as=admin_thumbs_advanced_movie&amp;ae=admin_thumbs_advanced_movie_end'),
-  array('Movie Playback Autostart', 'media_autostart',1, 'f=configuration.htm&amp;as=admin_movie_autoplay&amp;ae=admin_movie_autoplay_end'),
-  array('Allowed audio types', 'allowed_snd_types',0, 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_audio_extensions&amp;ae=admin_picture_thumb_advanced_audio_extensions_end'),
-  array('Allowed document types', 'allowed_doc_types',0, 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_doc_extensions&amp;ae=admin_picture_thumb_advanced_doc_extensions_end'),
-  array('Method for resizing images','thumb_method',2, 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_resize_method&amp;ae=admin_picture_thumb_advanced_resize_method_end'),
-  array('Path to ImageMagick \'convert\' utility (example /usr/bin/X11/)', 'impath', 0, 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_im_path&amp;ae=admin_picture_thumb_advanced_im_path_end'),
-  //array('Allowed image types (only valid for ImageMagick)', 'allowed_img_types',0, 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_allowed_imagetypes&amp;ae=admin_picture_thumb_advanced_allowed_imagetypes_end'),
-  array('Command line options for ImageMagick', 'im_options', 0, 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_im_commandline&amp;ae=admin_picture_thumb_advanced_im_commandline_end'),
-  array('Read EXIF data in JPEG files', 'read_exif_data', 13, 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_exif&amp;ae=admin_picture_thumb_advanced_exif_end'),
-  array('Read IPTC data in JPEG files', 'read_iptc_data', 1, 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_iptc&amp;ae=admin_picture_thumb_advanced_iptc_end'),
-  array('The album directory <a href="#notice1" class="clickable_option">*</a>', 'fullpath', 0, 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_albums_dir&amp;ae=admin_picture_thumb_advanced_albums_dir_end'),
-  array('The directory for user files <a href="#notice1" class="clickable_option">*</a>', 'userpics', 0, 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_userpics_dir&amp;ae=admin_picture_thumb_advanced_userpics_dir_end'),
-  array('The prefix for intermediate pictures <a href="#notice1" class="clickable_option">*</a>', 'normal_pfx', 0, 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_intermediate_prefix&amp;ae=admin_picture_thumb_advanced_intermediate_prefix_end'),
-  array('Default mode for directories', 'default_dir_mode', 0, 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_chmod_folder&amp;ae=admin_picture_thumb_advanced_chmod_folder_end'),
-  array('Default mode for files', 'default_file_mode', 0, 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_chmod_files&amp;ae=admin_picture_thumb_advanced_chmod_files_end'),
-
-
-  ######### Watermark ########
-  'Image watermarking', // cpg1.5
-  array('Watermark Image', 'enable_watermark', 1), // cpg1.5
-  array('Watermark custom thumbs (movie, audio, document)', 'enable_thumb_watermark', 1), // cpg1.5
-  array('Where to place the watermark', 'where_put_watermark', 20), // cpg1.5
-  array('Which files to watermark', 'which_files_to_watermark', 21), // cpg1.5
-  array('Which file to use for watermark', 'watermark_file', 0), // cpg1.5
-  array('Transparency 0-100 for entire image', 'watermark_transparency', 0), // cpg1.5
-  array('Downsize watermark if width of an picture is smaller than entered value. That is the 100% reference point. Resizing of the watermark is linear (0 to disable)', 'reduce_watermark', 0), // cpg1.5
-  array('Set color transparent x (GD2 only)', 'watermark_transparency_featherx', 0), // cpg1.5
-  array('Set color transparent y (GD2 only)', 'watermark_transparency_feathery', 0), // cpg1.5
-  ############################
-
-  'Registration', // cpg1.5.x
-  array('Allow new user registrations', 'allow_user_registration', 1, 'f=configuration.htm&amp;as=admin_allow_registration&amp;ae=admin_allow_registration_end'),
-  array('Global password for registration', 'global_registration_pw', 0, 'f=configuration.htm&amp;as=admin_global_registration_pw&amp;ae=admin_global_registration_pw_end'),
-  array('Display disclaimer on user registration', 'user_registration_disclaimer', 18, 'f=configuration.htm&amp;as=admin_user_registration_disclaimer&amp;ae=admin_user_registration_disclaimer_end'), // cpg1.5
-  array('Display Captcha (Visual Confirmation) on registration page', 'registration_captcha', 1, 'f=configuration.htm&amp;as=admin_registration_captcha_start&amp;ae=admin_registration_captcha_end'), // cpg1.5.x
-  array('User registration requires email verification', 'reg_requires_valid_email', 1, 'f=configuration.htm&amp;as=admin_registration_verify&amp;ae=admin_registration_verify_end'),
-  array('Notify admin of user registration by email', 'reg_notify_admin_email', 1, 'f=configuration.htm&amp;as=admin_registration_notify&amp;ae=admin_registration_notify_end'),
-  array('Admin activation of registrations', 'admin_activation', 1, 'f=configuration.htm&amp;as=admin_activation&amp;ae=admin_activation_end'),
-  array('Create user album in personal gallery on registration', 'personal_album_on_registration', 1, 'f=configuration.htm&amp;as=admin_personal_album_on_registration&amp;ae=admin_personal_album_on_registration_end'), // cpg1.5.x
-
-  'User settings',
-  array('Allow unlogged users (guest or anonymous) access', 'allow_unlogged_access', 1, 'f=configuration.htm&amp;as=admin_allow_unlogged_access&amp;ae=admin_allow_unlogged_access_end'),
-  array('Allow two users to have the same email address', 'allow_duplicate_emails_addr', 1, 'f=configuration.htm&amp;as=admin_allow_duplicate_emails_addr&amp;ae=admin_allow_duplicate_emails_addr_end'),
-  array('Notify admin of user upload awaiting approval', 'upl_notify_admin_email', 1, 'f=configuration.htm&amp;as=admin_approval_notify&amp;ae=admin_approval_notify_end'),
-  array('Allow logged in users to view memberlist', 'allow_memberlist', 1, 'f=configuration.htm&amp;as=admin_user_memberlist&amp;ae=admin_user_memberlist_end'),
-  array('Allow users to change their email address in profile', 'allow_email_change', 1, 'f=configuration.htm&amp;as=admin_user_allow_email_change&amp;ae=admin_user_allow_email_change_end'),
-
-  array('Allow users to delete their own user account', 'allow_user_account_delete', 1, 'f=configuration.htm&amp;as=admin_user_allow_account_delete&amp;ae=admin_user_allow_account_delete_end'), // cpg1.5.x
-
-  array('Allow users to retain control over their pics in public galleries', 'users_can_edit_pics', 1, 'f=configuration.htm&amp;as=admin_user_editpics_public_start&amp;ae=admin_user_editpics_public_end'),
-  array('Number of failed login attempts until temporary ban (to avoid brute force attacks)', 'login_threshold', 0, 'f=configuration.htm&amp;as=admin_user_login_start&amp;ae=admin_user_login_end'),
-  array('Duration of a temporary ban after failed logins', 'login_expiry', 0, 'f=configuration.htm&amp;as=admin_user_login_start&amp;ae=admin_user_login_end'),
-  array('Enable Report to Admin', 'report_post', 1, 'f=configuration.htm&amp;as=admin_user_enable_report&amp;ae=admin_user_enable_report_end'),
-
-// custom profile fields,
-  'Custom fields for user profile (leave blank if unused).
-  Use Profile 6 for long entries, such as biographies',
-  array('Profile 1 name', 'user_profile1_name', 0, 'f=configuration.htm&amp;as=admin_custom&amp;ae=admin_custom_end'),
-  array('Profile 2 name', 'user_profile2_name', 0),
-  array('Profile 3 name', 'user_profile3_name', 0),
-  array('Profile 4 name', 'user_profile4_name', 0),
-  array('Profile 5 name', 'user_profile5_name', 0),
-  array('Profile 6 name', 'user_profile6_name', 0),
-
-  'Custom fields for image description (leave blank if unused)',
-  array('Field 1 name', 'user_field1_name', 0, 'f=configuration.htm&amp;as=admin_custom_image&amp;ae=admin_custom_image_end'),
-  array('Field 2 name', 'user_field2_name', 0),
-  array('Field 3 name', 'user_field3_name', 0),
-  array('Field 4 name', 'user_field4_name', 0),
-
-  'Cookies settings',
-  array('Cookie name', 'cookie_name', 0, 'f=configuration.htm&amp;as=admin_cookie_name&amp;ae=admin_cookie_name_end'),
-  array('Cookie path', 'cookie_path', 0, 'f=configuration.htm&amp;as=admin_cookie_path&amp;ae=admin_cookie_path_end'),
-
-  'Email settings  (usually nothing has to be changed here; leave all fields blank when not sure)',
-  array('SMTP Host (when left blank, sendmail will be used)', 'smtp_host', 0, 'f=configuration.htm&amp;as=admin_email&amp;ae=admin_email_end'),
-  array('SMTP Username', 'smtp_username', 0),
-  array('SMTP Password', 'smtp_password', 0),
-
-  'Logging and statistics',
-  array('Logging mode <a href="#notice3" class="clickable_option">***</a>', 'log_mode', 11, 'f=configuration.htm&amp;as=admin_logging_log_mode&amp;ae=admin_logging_log_mode_end'),
-  array('Log ecards', 'log_ecards', 1, 'f=configuration.htm&amp;as=admin_general_log_ecards&amp;ae=admin_general_log_ecards_end'),
-  array('Keep detailed vote statistics','vote_details',1, 'f=configuration.htm&amp;as=admin_logging_votedetails&amp;ae=admin_logging_votedetails_end'),
-  array('Keep detailed hit statistics','hit_details',1, 'f=configuration.htm&amp;as=admin_logging_hitdetails&amp;ae=admin_logging_hitdetails_end'),
-  array('Display statistics on index page','display_stats_on_index',1, 'f=configuration.htm&amp;as=admin_logging_display_stats_on_index&amp;ae=admin_logging_display_stats_on_index_end'), // cpg1.5.x
-
-  'Maintenance settings',
-  array('Enable debug mode', 'debug_mode', 9, 'f=configuration.htm&amp;as=debug_mode&amp;ae=debug_mode_end'),
-  array('Display notices in debug mode', 'debug_notice', 1, 'f=configuration.htm&amp;as=admin_misc_debug_notices&amp;ae=admin_misc_debug_notices_end'),
-  array('Gallery is offline', 'offline', 1, 'f=configuration.htm&amp;as=admin_general_offline&amp;ae=admin_general_offline_end'),
+  'gallery_name' =>   'Gallery name', // cpg1.5
+  'gallery_description' =>   'Gallery description', // cpg1.5
+  'gallery_admin_email' =>   'Gallery administrator email', // cpg1.5
+  'ecards_more_pic_target' =>   'URL of your coppermine gallery folder (no \'index.php\' or similar at the end)', // cpg1.5
+  'home_target' =>   'URL of your home page', // cpg1.5
+  'enable_zipdownload' =>   'Allow ZIP-download of favorites', // cpg1.5
+  'time_offset' =>   'Timezone difference relative to GMT (current time: ' . localised_date(-1, $comment_date_fmt) . ')', // cpg1.5
+  'enable_encrypted_passwords' =>   'Enable encrypted passwords (can not be undone)', // cpg1.5
+  'enable_help' =>   'Enable help-icons (help available in English only)', // cpg1.5
+  'clickable_keyword_search' =>   'Enable clickable keywords in search', // cpg1.5
+  'enable_plugins' =>   'Enable plugins', // cpg1.5
+  'ban_private_ip' =>   'Allow banning of non-routable (private) IP addresses', // cpg1.5
+  'browse_batch_add' =>   'Browsable batch-add interface', // cpg1.5
+  'lang' =>   'Language', // cpg1.5
+  'language_fallback' =>   'Fallback to English if translated phrase not found?', // cpg1.5
+  'charset' =>   'Character encoding', // cpg1.5
+  'language_list' =>   'Display language list', // cpg1.5
+  'language_flags' =>   'Display language flags', // cpg1.5
+  'language_reset' =>   'Display &quot;reset&quot; in language selection', // cpg1.5
+  // 'previous_next_tab' =>   'Display previous/next on tabbed pages', // cpg1.5
+  'theme' =>   'Theme', // cpg1.5
+  'theme_list' =>   'Display theme list', // cpg1.5
+  'theme_reset' =>   'Display &quot;reset&quot; in theme selection', // cpg1.5
+  'display_faq' =>   'Display FAQ', // cpg1.5
+  'custom_lnk_name' =>   'Custom menu link name', // cpg1.5
+  'custom_lnk_url' =>   'Custom menu link URL', // cpg1.5
+  'show_bbcode_help' =>   'Display bbcode help', // cpg1.5
+  'vanity_block' =>   'Show the vanity block on themes that are defined as XHTML and CSS compliant', // cpg1.5
+  'custom_header_path' =>   'Path to custom header include', // cpg1.5
+  'custom_footer_path' =>   'Path to custom footer include', // cpg1.5
+  'browse_by_date' =>   'Enable browsing by date', // cpg1.5
+  'display_redirection_page' =>   'Display redirection pages', // cpg1.5
+  'main_table_width' =>   'Width of the main table (pixels or %)', // cpg1.5
+  'subcat_level' =>   'Number of levels of categories to display', // cpg1.5
+  'albums_per_page' =>   'Number of albums to display', // cpg1.5
+  'album_list_cols' =>   'Number of columns for the album list', // cpg1.5
+  'alb_list_thumb_size' =>   'Size of thumbnails in pixels', // cpg1.5
+  'main_page_layout' =>   'The content of the main page', // cpg1.5
+  'first_level' =>   'Show first level album thumbnails in categories', // cpg1.5
+  'categories_alpha_sort' =>   'Sort categories alphabetically (instead of custom sort order)', // cpg1.5
+  'link_pic_count' =>   'Show number of linked files', // cpg1.5
+  'thumbcols' =>   'Number of columns on thumbnail page', // cpg1.5
+  'thumbrows' =>   'Number of rows on thumbnail page', // cpg1.5
+  'max_tabs' =>   'Maximum number of tabs to display', // cpg1.5
+  'caption_in_thumbview' =>   'Display file caption (in addition to title) below the thumbnail', // cpg1.5
+  'views_in_thumbview' =>   'Display number of views below the thumbnail', // cpg1.5
+  'display_comment_count' =>   'Display number of comments below the thumbnail', // cpg1.5
+  'display_uploader' =>   'Display uploader name below the thumbnail', // cpg1.5
+  // 'display_admin_uploader' =>   'Display name of admin uploaders below the thumbnail', // cpg1.5
+  'display_filename' =>   'Display file name below the thumbnail', // cpg1.5
+  'display_thumbnail_rating' =>   'Display rating below the thumbnail', // cpg1.5
+  'alb_desc_thumb' =>   'Display album description', // cpg1.5
+  'thumbnail_to_fullsize' =>   'Go directly from thumbnail to full-sized image', // cpg1.5
+  'default_sort_order' =>   'Default sort order for files', // cpg1.5
+  'min_votes_for_rating' =>   'Minimum number of votes for a file to appear in the \'top-rated\' list', // cpg1.5
+  'picture_table_width' =>   'Width of the table for file display (pixels or %)', // cpg1.5
+  'display_pic_info' =>   'File information is visible by default', // cpg1.5
+  'picinfo_movie_download_link' =>   'Display movie download link in the file information area', // cpg1.5
+  'max_img_desc_length' =>   'Max length for an image description', // cpg1.5
+  'max_com_wlength' =>   'Max number of characters in a word', // cpg1.5
+  'display_film_strip' =>   'Show film strip', // cpg1.5
+  'display_film_strip_filename' =>   'Display file name under film strip thumbnail', // cpg1.5
+  'max_film_strip_items' =>   'Number of items in film strip', // cpg1.5
+  'slideshow_interval' =>   'Slideshow interval in milliseconds (1 second = 1000 milliseconds)', // cpg1.5
+  'slideshow_hits' =>   'Count hits in slideshow', // cpg1.5
+  'ecard_flash' =>   'Allow Flash in Ecards (not recommended)', // cpg1.5
+  'transparent_overlay' =>   'Insert a transparent overlay to minimize image theft', // cpg1.5
+  'filter_bad_words' =>   'Filter bad words in comments', // cpg1.5
+  'enable_smilies' =>   'Allow smiles in comments', // cpg1.5
+  'disable_comment_flood_protect' =>   'Allow several consecutive comments on one file from the same user (disable flood protection)', // cpg1.5
+  'max_com_lines' =>   'Max number of lines in a comment', // cpg1.5
+  'max_com_size' =>   'Maximum length of a comment', // cpg1.5
+  'email_comment_notification' =>   'Notify admin of comments by email', // cpg1.5
+  'comments_sort_descending' =>   'Sort order of comments', // cpg1.5
+  'comments_anon_pfx' =>   'Prefix for anonymous comments authors', // cpg1.5
+  'comment_approval' =>   'Comments require approval', // cpg1.5
+  'display_comment_approval_only' =>   'Only display comments needing approval on the &quot;Review Comments&quot; page', // cpg1.5
+  'comment_placeholder' =>   'Display placeholder text to end users for comments waiting for admin approval', // cpg1.5
+  'comment_user_edit' =>   'Allow users to edit their comments', // cpg1.5
+  'comment_captcha' =>   'Display Captcha (Visual Confirmation) for adding comments', // cpg1.5
+  'comment_promote_registration' =>   'Ask guests to log in to post comments', // cpg1.5
+  'thumb_width' =>   'Max dimension (width) of a thumbnail', // cpg1.5
+  'thumb_use' =>   'Use dimension ( width or height or Max aspect for thumbnail )', // cpg1.5
+  'thumb_height' =>   'Height of a thumbnail (only applies if you use &quot;exact&quot; in &quot;Use dimension&quot;)', // cpg1.5
+  'enable_custom_thumbs' =>   'Enable Custom Thumbs (movie, audio, document)', // cpg1.5
+  'thumb_pfx' =>   'The prefix for thumbnails', // cpg1.5
+  'enable_unsharp' =>   'Thumb Sharpening: enable Unsharp Mask', // cpg1.5
+  'unsharp_amount' =>   'Thumb Sharpening amount', // cpg1.5
+  'unsharp_radius' =>   'Thumb Sharpening radius', // cpg1.5
+  'unsharp_threshold' =>   'Thumb Sharpening threshold', // cpg1.5
+  'jpeg_qual' =>   'Quality for JPEG files', // cpg1.5
+  'make_intermediate' =>   'Create intermediate pictures', // cpg1.5
+  'picture_width' =>   'Max width or height of an intermediate picture/video', // cpg1.5
+  'max_upl_size' =>   'Max size for uploaded files (KB)', // cpg1.5
+  'max_upl_width_height' =>   'Max width or height for uploaded pictures/videos (pixels)', // cpg1.5
+  'auto_resize' =>   'Auto resize images that are larger than max width or height', // cpg1.5
+  'fullsize_padding_x' =>   'Horizontal padding for full-size pop-up', // cpg1.5
+  'fullsize_padding_y' =>   'Vertical padding for full-size pop-up', // cpg1.5
+  'allow_private_albums' =>   'Albums can be private (Note: if you switch from \'yes\' to \'no\' any current private albums will become public)', // cpg1.5
+  'show_private' =>   'Show private album Icon to unlogged user', // cpg1.5
+  'forbiden_fname_char' =>   'Characters forbidden in filenames', // cpg1.5
+  'silly_safe_mode' =>   'Enable &quot;silly safe mode&quot;', // cpg1.5
+  // 'allowed_file_extensions' =>   'Accepted file extensions for uploaded pictures', // cpg1.5
+  'allowed_img_types' =>   'Allowed image types', // cpg1.5
+  'allowed_mov_types' =>   'Allowed movie types', // cpg1.5
+  'media_autostart' =>   'Movie Playback Autostart', // cpg1.5
+  'allowed_snd_types' =>   'Allowed audio types', // cpg1.5
+  'allowed_doc_types' =>   'Allowed document types', // cpg1.5
+  'thumb_method' =>   'Method for resizing images', // cpg1.5
+  'impath' =>   'Path to ImageMagick \'convert\' utility (example /usr/bin/X11/)', // cpg1.5
+  // 'allowed_img_types' =>   'Allowed image types (only valid for ImageMagick)', // cpg1.5
+  'im_options' =>   'Command line options for ImageMagick', // cpg1.5
+  'read_exif_data' =>   'Read EXIF data in JPEG files', // cpg1.5
+  'read_iptc_data' =>   'Read IPTC data in JPEG files', // cpg1.5
+  'fullpath' =>   'The album directory', // cpg1.5
+  'userpics' =>   'The directory for user files', // cpg1.5
+  'normal_pfx' =>   'The prefix for intermediate pictures', // cpg1.5
+  'default_dir_mode' =>   'Default mode for directories', // cpg1.5
+  'default_file_mode' =>   'Default mode for files', // cpg1.5
+  'enable_watermark' =>   'Watermark Image', // cpg1.5
+  'enable_thumb_watermark' =>   'Watermark custom thumbs (movie, audio,document)', // cpg1.5
+  'where_put_watermark' =>   'Where to place the watermark', // cpg1.5
+  'which_files_to_watermark' =>   'Which files to watermark', // cpg1.5
+  'watermark_file' =>   'Which file to use for watermark', // cpg1.5
+  'watermark_transparency' =>   'Transparency 0-100 for entire image', // cpg1.5
+  'reduce_watermark' =>   'Downsize watermark if width of a picture is smaller than entered value. That is the 100% reference point. Resizing of the watermark is linear (0 to disable)', // cpg1.5
+  'watermark_transparency_featherx' =>   'Set color transparent x (GD2 only)', // cpg1.5
+  'watermark_transparency_feathery' =>   'Set color transparent y (GD2 only)', // cpg1.5
+  'allow_user_registration' =>   'Allow new user registrations', // cpg1.5
+  'global_registration_pw' =>   'Global password for registration', // cpg1.5
+  'user_registration_disclaimer' =>   'Display disclaimer on user registration', // cpg1.5
+  'registration_captcha' =>   'Display Captcha (Visual Confirmation) on registration page', // cpg1.5
+  'reg_requires_valid_email' =>   'User registration requires email verification', // cpg1.5
+  'reg_notify_admin_email' =>   'Notify admin of user registration by email', // cpg1.5
+  'admin_activation' =>   'Admin activation of registrations', // cpg1.5
+  'personal_album_on_registration' =>   'Create user album in personal gallery on registration', // cpg1.5
+  'allow_unlogged_access' =>   'Allow unlogged users (guest or anonymous) access', // cpg1.5
+  'allow_duplicate_emails_addr' =>   'Allow two users to have the same email address', // cpg1.5
+  'upl_notify_admin_email' =>   'Notify admin of user upload awaiting approval', // cpg1.5
+  'allow_memberlist' =>   'Allow logged in users to view memberlist', // cpg1.5
+  'allow_email_change' =>   'Allow users to change their email address in profile', // cpg1.5
+  'allow_user_account_delete' =>   'Allow users to delete their own user account', // cpg1.5
+  'users_can_edit_pics' =>   'Allow users to retain control over their pics in public galleries', // cpg1.5
+  'login_threshold' =>   'Number of failed login attempts until temporary ban (to avoid brute force attacks)', // cpg1.5
+  'login_expiry' =>   'Duration of a temporary ban after failed logins', // cpg1.5
+  'report_post' =>   'Enable Report to Admin', // cpg1.5
+  'user_profile1_name' =>   'Profile 1 name', // cpg1.5
+  'user_profile2_name' =>   'Profile 2 name', // cpg1.5
+  'user_profile3_name' =>   'Profile 3 name', // cpg1.5
+  'user_profile4_name' =>   'Profile 4 name', // cpg1.5
+  'user_profile5_name' =>   'Profile 5 name', // cpg1.5
+  'user_profile6_name' =>   'Profile 6 name', // cpg1.5
+  'user_field1_name' =>   'Field 1 name', // cpg1.5
+  'user_field2_name' =>   'Field 2 name', // cpg1.5
+  'user_field3_name' =>   'Field 3 name', // cpg1.5
+  'user_field4_name' =>   'Field 4 name', // cpg1.5
+  'cookie_name' =>   'Cookie name', // cpg1.5
+  'cookie_path' =>   'Cookie path', // cpg1.5
+  'smtp_host' =>   'SMTP Host (when left blank, sendmail will be used)', // cpg1.5
+  'smtp_username' =>   'SMTP Username', // cpg1.5
+  'smtp_password' =>   'SMTP Password', // cpg1.5
+  'log_mode' =>   'Logging mode', // cpg1.5
+  'log_ecards' =>   'Log ecards', // cpg1.5
+  'vote_details' =>   'Keep detailed vote statistics', // cpg1.5
+  'hit_details' =>   'Keep detailed hit statistics', // cpg1.5
+  'display_stats_on_index' =>   'Display statistics on index page', // cpg1.5
+  'debug_mode' =>   'Enable debug mode', // cpg1.5
+  'debug_notice' =>   'Display notices in debug mode', // cpg1.5
+  'offline' =>   'Gallery is offline', // cpg1.5
+  'config_setting_invalid' =>   'The value you have set for &laquo;%s&raquo; is invalid, please review it.', // cpg1.5
+  'config_setting_ok' =>   'Your setting for &laquo;%s&raquo; has been saved.', // cpg1.5
 );
 
 
