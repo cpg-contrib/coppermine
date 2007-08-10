@@ -33,7 +33,6 @@ $config_data = array(
       'width' => '',
       'size' => '',
       'maxlength' => '',
-      'regex' => '',
     ),
     'gallery_description' => array(
       'type' => 'textfield',
@@ -43,7 +42,17 @@ $config_data = array(
     'gallery_admin_email' => array(
       'type' => 'textfield',
       'help_link' => 'f=configuration.htm&amp;as=admin_general_email&amp;ae=admin_general_email_end',
-      'regex' => '^([a-zA-Z0-9]((\.|\-)?[a-zA-Z0-9])*)@([a-zA-Z]((\.|\-)?[a-zA-Z0-9])*)$',
+      'regex' => '^'
+                  .'('
+                  .'[a-zA-Z0-9]((\.|\-){0,1}'
+                  .'[a-zA-Z0-9]){0,}'
+                  .')'
+                  .'@'
+                  .'('
+                  .'[a-zA-Z]((\.|\-){0,1}'
+                  .'[a-zA-Z0-9]){0,}'
+                  .')'
+                  .'$',
     ),
     'ecards_more_pic_target' => array(
       'type' => 'textfield',
@@ -64,6 +73,7 @@ $config_data = array(
                   .'([0-9a-zA-Z_!~.()-])+/{1}'
                   .'){0,}'
                   .'$',
+      'additional_description' => $lang_admin_php['ecards_more_pic_target_detail'],
     ),
     'home_target' => array(
       'type' => 'textfield',
@@ -80,6 +90,7 @@ $config_data = array(
       'size' => '5',
       'width' => '5',
       'maxlength' => '5',
+      'end_description' => $lang_admin_php['time_offset_detail'],
     ),
     'enable_encrypted_passwords' => array(
       'type' => 'checkbox',
@@ -99,15 +110,17 @@ $config_data = array(
       'type' => 'radio',
       'help_link' => 'f=configuration.htm&amp;as=admin_general_keywords_start&amp;ae=admin_general_keywords_end',
       'options' => array($lang_common['no'],
-                         $lang_common['yes'].'&nbsp;&nbsp;(<a href="keywordmgr.php">'.$lang_admin_php['manage_keyword'].'</a>)'
-                         )
+                         $lang_common['yes']
+                         ),
+      'end_description' => '&nbsp;&nbsp;(<a href="keywordmgr.php">'.$lang_admin_php['manage_keyword'].'</a>)',
     ),
     'enable_plugins' => array(
       'type' => 'radio',
       'help_link' => 'f=configuration.htm&amp;as=admin_general_enable-plugins&amp;ae=admin_general_enable-plugins_end',
       'options' => array($lang_common['no'],
-                         $lang_common['yes'].'&nbsp;&nbsp;(<a href="pluginmgr.php">'.$lang_admin_php['manage_plugins'].'</a>)'
-                         )
+                         $lang_common['yes']
+                         ),
+      'end_description' => '&nbsp;&nbsp;(<a href="pluginmgr.php">'.$lang_admin_php['manage_plugins'].'</a>)',
     ),
     'ban_private_ip' => array(
       'type' => 'checkbox',
@@ -224,6 +237,7 @@ $config_data = array(
       'regex' => '^([0-9]{1,3}){1}([%]{0,1})$',
       'size' => '5',
       'width' => '5',
+      'end_description' => $lang_admin_php['pixels_or_percent'],
     ),
     'subcat_level' => array(
       'type' => 'textfield',
@@ -283,6 +297,7 @@ $config_data = array(
     'categories_alpha_sort' => array(
       'type' => 'checkbox',
       'help_link' => 'f=configuration.htm&amp;as=admin_album_list_alphasort_start&amp;ae=admin_album_list_alphasort_end',
+      'additional_description' => $lang_admin_php['categories_alpha_sort_details'],
     ),
     'link_pic_count' => array(
       'type' => 'checkbox',
@@ -326,7 +341,7 @@ $config_data = array(
       'help_link' => 'f=configuration.htm&amp;as=admin_thumbnail_display_uploader&amp;ae=admin_thumbnail_display_uploader_end',
     ),
     'display_admin_uploader' => array(
-      'type' => 'checkbox',
+      'type' => 'hidden',
       'help_link' => 'f=configuration.htm&amp;as=admin_thumbnail_display_admin_uploader&amp;ae=admin_thumbnail_display_admin_uploader_end',
     ),
     'display_filename' => array(
@@ -372,6 +387,7 @@ $config_data = array(
       'help_link' => 'f=configuration.htm&amp;as=admin_image_comment_table-width&amp;ae=admin_image_comment_table-width_end',
       'size' => '5',
       'width' => '5',
+      'end_description' => $lang_admin_php['pixels_or_percent'],
     ),
     'display_pic_info' => array(
       'type' => 'checkbox',
@@ -416,6 +432,7 @@ $config_data = array(
       'regex' => '^[0-9]{1,6}$',
       'size' => '6',
       'width' => '6',
+      'end_description' => $lang_admin_php['slideshow_interval_detail'],
     ),
     'slideshow_hits' => array(
       'type' => 'checkbox',
@@ -424,6 +441,7 @@ $config_data = array(
     'ecard_flash' => array(
       'type' => 'checkbox',
       'help_link' => 'f=configuration.htm&amp;as=admin_image_ecard_flash_start&amp;ae=admin_image_ecard_flash_end',
+      'end_description' => '('.$lang_admin_php['not_recommended'].')',
     ),
     'transparent_overlay' => array(
       'type' => 'checkbox',
@@ -443,6 +461,7 @@ $config_data = array(
       'type' => 'checkbox',
       'default_value' => '0',
       'help_link' => 'f=configuration.htm&amp;as=admin_image_comment_flood&amp;ae=admin_image_comment_flood_end',
+      'additional_description' => $lang_admin_php['disable_comment_flood_protect_details'],
     ),
     'max_com_lines' => array(
       'type' => 'textfield',
@@ -519,7 +538,8 @@ $config_data = array(
                          $lang_admin_php['th_ht'] => 'ht',
                          $lang_admin_php['th_wd'] => 'wd',
                          $lang_admin_php['th_ex'] => 'ex',
-                         )
+                         ),
+      'additional_description' => $lang_admin_php['thumb_use_detail'],
     ),
     'thumb_height' => array(
       'type' => 'textfield',
@@ -527,11 +547,13 @@ $config_data = array(
       'regex' => '^[0-9]{1,5}$',
       'size' => '5',
       'width' => '5',
+      'additional_description' => $lang_admin_php['thumb_height_detail'],
     ),
     'enable_custom_thumbs' => array(
       'type' => 'checkbox',
       'default_value' => '1',
       'help_link' => '',
+      'additional_description' => '('.$lang_admin_php['movie_audio_document'].')',
     ),
     'thumb_pfx' => array(
       'type' => 'textfield',
@@ -588,6 +610,7 @@ $config_data = array(
       'regex' => '^[0-9]{1,7}$',
       'size' => '7',
       'width' => '7',
+      'end_description' => $lang_admin_php['kilobytes'],
     ),
     'max_upl_width_height' => array(
       'type' => 'textfield',
@@ -595,6 +618,7 @@ $config_data = array(
       'regex' => '^[0-9]{1,5}$',
       'size' => '5',
       'width' => '5',
+      'end_description' => $lang_admin_php['pixels'],
     ),
     'auto_resize' => array(
       'type' => 'radio',
@@ -622,6 +646,8 @@ $config_data = array(
       'type' => 'checkbox',
       'default_value' => '1',
       'help_link' => 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_private_toggle&amp;ae=admin_picture_thumb_advanced_private_toggle_end',
+      'additional_description' => $lang_admin_php['allow_private_albums_note'],
+      'end_description' => '('.$lang_admin_php['recommended'].')',
     ),
     'show_private' => array(
       'type' => 'checkbox',
@@ -643,10 +669,12 @@ $config_data = array(
     'allowed_img_types' => array(
       'type' => 'textfield',
       'help_link' => 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_pic_extensions&amp;ae=admin_picture_thumb_advanced_pic_extensions_end',
+      'regex' => '^(([a-z0-9]{1,}){1}([/]{1,1})){0,}([a-z0-9]{1,}){1}$',
     ),
     'allowed_mov_types' => array(
       'type' => 'textfield',
       'help_link' => 'f=configuration.htm&amp;as=admin_thumbs_advanced_movie&amp;ae=admin_thumbs_advanced_movie_end',
+      'regex' => '^(([a-z0-9]{1,}){1}([/]{1,1})){0,}([a-z0-9]{1,}){1}$',
     ),
     'media_autostart' => array(
       'type' => 'checkbox',
@@ -655,10 +683,12 @@ $config_data = array(
     'allowed_snd_types' => array(
       'type' => 'textfield',
       'help_link' => 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_audio_extensions&amp;ae=admin_picture_thumb_advanced_audio_extensions_end',
+      'regex' => '^(([a-z0-9]{1,}){1}([/]{1,1})){0,}([a-z0-9]{1,}){1}$',
     ),
     'allowed_doc_types' => array(
       'type' => 'textfield',
       'help_link' => 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_doc_extensions&amp;ae=admin_picture_thumb_advanced_doc_extensions_end',
+      'regex' => '^(([a-z0-9]{1,}){1}([/]{1,1})){0,}([a-z0-9]{1,}){1}$',
     ),
     'thumb_method' => array(
       'type' => 'select',
@@ -675,6 +705,7 @@ $config_data = array(
     'allowed_img_types' => array(
       'type' => 'textfield',
       'help_link' => 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_allowed_imagetypes&amp;ae=admin_picture_thumb_advanced_allowed_imagetypes_end',
+      'additional_description' => $lang_admin_php['impath_example'],
     ),
     'im_options' => array(
       'type' => 'textfield',
@@ -684,7 +715,9 @@ $config_data = array(
       'type' => 'radio',
       'help_link' => 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_exif&amp;ae=admin_picture_thumb_advanced_exif_end',
       'options' => array($lang_common['no'],
-                         $lang_common['yes'] . '&nbsp;&nbsp;(<a href="exifmgr.php">'.$lang_admin_php['manage_exif'].'</a>)')
+                         $lang_common['yes']
+                         ),
+      'end_description' => '&nbsp;&nbsp;(<a href="exifmgr.php">'.$lang_admin_php['manage_exif'].'</a>)',
     ),
     'read_iptc_data' => array(
       'type' => 'checkbox',
@@ -725,6 +758,7 @@ $config_data = array(
     'enable_thumb_watermark' => array(
       'type' => 'checkbox',
       'help_link' => '',
+      'additional_description' => '('.$lang_admin_php['movie_audio_document'].')',
     ),
     'where_put_watermark' => array(
       'type' => 'select',
@@ -754,6 +788,7 @@ $config_data = array(
       'regex' => '^[0-9]{0,3}$',
       'size' => '3',
       'width' => '3',
+      'end_description' => '('.$lang_admin_php['zero_2_hundred'].')',
     ),
     'reduce_watermark' => array(
       'type' => 'textfield',
@@ -765,6 +800,7 @@ $config_data = array(
       'regex' => '^[0-9]{0,6}$',
       'size' => '6',
       'width' => '6',
+      'additional_description' => '('.$lang_admin_php['gd2_only'].')',
     ),
     'watermark_transparency_feathery' => array(
       'type' => 'textfield',
@@ -772,6 +808,7 @@ $config_data = array(
       'regex' => '^[0-9]{0,6}$',
       'size' => '6',
       'width' => '6',
+      'additional_description' => '('.$lang_admin_php['gd2_only'].')',
     ),
   ),
   'registration' => array(
@@ -817,6 +854,7 @@ $config_data = array(
       'type' => 'checkbox',
       'bridged' => 'hide',
       'help_link' => 'f=configuration.htm&amp;as=admin_personal_album_on_registration&amp;ae=admin_personal_album_on_registration_end',
+      'end_description' => '('.$lang_admin_php['not_recommended'].')',
     ),
   ),
   'user_settings' => array(
@@ -858,6 +896,7 @@ $config_data = array(
       'regex' => '^[0-9]{1,4}$',
       'size' => '4',
       'width' => '4',
+      'additional_description' => $lang_admin_php['login_threshold_detail'],
     ),
     'login_expiry' => array(
       'type' => 'textfield',
@@ -926,6 +965,7 @@ $config_data = array(
     'cookie_name' => array(
       'type' => 'textfield',
       'help_link' => 'f=configuration.htm&amp;as=admin_cookie_name&amp;ae=admin_cookie_name_end',
+      'regex' => '^([a-z0-9_-]){1,}$',
     ),
     'cookie_path' => array(
       'type' => 'textfield',
@@ -952,8 +992,9 @@ $config_data = array(
       'help_link' => 'f=configuration.htm&amp;as=admin_logging_log_mode&amp;ae=admin_logging_log_mode_end',
       'options' => array($lang_admin_php['no_logs'],
                          $lang_admin_php['log_normal'],
-                         $lang_admin_php['log_all'] . '&nbsp;&nbsp;(<a href="viewlog.php">'.$lang_admin_php['view_logs'].'</a>)'
-                         )
+                         $lang_admin_php['log_all']
+                         ),
+      'end_description' => '&nbsp;&nbsp;(<a href="viewlog.php">'.$lang_admin_php['view_logs'].'</a>)',
     ),
     'log_ecards' => array(
       'type' => 'checkbox',

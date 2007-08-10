@@ -94,8 +94,8 @@ if ($postCount > 0) {
   foreach ($config_data as $config_section_key => $config_section_value) { // Loop through the config fields to check posted values for validity -- start
     foreach ($config_section_value as $adminDataKey => $adminDataValue) {
       // We need to catter for the fact that checkboxes that haven't been ticked are not being submit
-      if ($adminDataValue['type'] == 'checkbox' && !$_POST[$adminDataKey]) {
-        $_POST[$adminDataKey] = '0';
+      if ($adminDataValue['type'] == 'checkbox' && !$evaluation_array[$adminDataKey]) {
+        $evaluation_array[$adminDataKey] = '0';
       }
       if ($adminDataValue['type'] == 'checkbox' && !$CONFIG[$adminDataKey]) {
         $CONFIG[$adminDataKey] = '0';
@@ -105,7 +105,7 @@ if ($postCount > 0) {
         if (eregi($adminDataValue['regex'],$evaluation_array[$adminDataKey]) == FALSE) {
           $userMessage .= '<li style="list-style-image:url(images/red.gif)">'.sprintf($lang_admin_php['config_setting_invalid'], '<a href="#'.$adminDataKey.'">'.$lang_admin_php[$adminDataKey].'</a>').'</li>'.$lineBreak;
           $regexValidation = '0';
-          $admin_data_array[$adminDataKey] = $_POST[$adminDataKey]; // replace the stuff in the form field with the improper input, so the user can see and correct his error
+          $admin_data_array[$adminDataKey] = $evaluation_array[$adminDataKey]; // replace the stuff in the form field with the improper input, so the user can see and correct his error
           if (in_array($adminDataKey,$problemFields_array) != TRUE) {
             $problemFields_array[] = $adminDataKey;
           }
@@ -118,15 +118,40 @@ if ($postCount > 0) {
       } else { // no regex settings available - set validation var to successfull anyway
         $regexValidation = '1';
       }
-      if ($postCount > 0 && $regexValidation == '1' && $_POST[$adminDataKey] != $CONFIG[$adminDataKey]) {
+      if ($postCount > 0 && $regexValidation == '1' && $evaluation_array[$adminDataKey] != $CONFIG[$adminDataKey] && $CONFIG[$adminDataKey] !== stripslashes(addslashes($evaluation_array[$adminDataKey])) ) {
         //  finally, all criteria have been met - let's write the updated data to the database
-        cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '{$_POST[$adminDataKey]}' WHERE name = '$adminDataKey'");
-        $admin_data_array[$adminDataKey] = $_POST[$adminDataKey];
-        $CONFIG[$adminDataKey] = $_POST[$adminDataKey];
+        cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '{$evaluation_array[$adminDataKey]}' WHERE name = '$adminDataKey'");
+        // perform special tasks -- start
+        if ($adminDataKey == 'enable_encrypted_passwords' && $_POST['enable_encrypted_passwords'] == 1 && $CONFIG['enable_encrypted_passwords'] == 0) { // encrypt the passwords -- start
+          cpg_db_query("update {$CONFIG['TABLE_USERS']} set user_password=md5(user_password);");
+        } // encrypt the passwords -- end
+        if ($CONFIG['log_mode'] == CPG_LOG_ALL) { // write log -- start
+                log_write('CONFIG UPDATE SQL: '.
+                          "UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '{$evaluation_array[$adminDataKey]}' WHERE name = '$adminDataKey'\n".
+                          'TIME: '.date("F j, Y, g:i a")."\n".
+                          'USER: '.$USER_DATA['user_name'],
+                          CPG_DATABASE_LOG
+                          );
+        } // write log -- end
+        // Code to rename system thumbs in images folder
+        $old_thumb_pfx =& $CONFIG['thumb_pfx'];
+        if ($old_thumb_pfx != $_POST['thumb_pfx']) {
+            $folders = array('images/', $THEME_DIR.'images/');
+            foreach ($folders as $folder) {
+                $thumbs = cpg_get_system_thumb_list($folder);
+                foreach ($thumbs as $thumb) {
+                    @rename($folder.$thumb['filename'],
+                            $folder.str_replace($old_thumb_pfx,$_POST['thumb_pfx'],$thumb['filename']));
+                }
+            }
+        }
+        // perform special tasks -- end
+        $admin_data_array[$adminDataKey] = $evaluation_array[$adminDataKey];
+        $CONFIG[$adminDataKey] = $evaluation_array[$adminDataKey];
         $userMessage .= '<li style="list-style-image:url(images/green.gif)">'.sprintf($lang_admin_php['config_setting_ok'], $lang_admin_php[$adminDataKey]).'</li>'.$lineBreak;
         //print $adminDataKey;
         //print '<br />';
-        //print $_POST[$adminDataKey] .'='. $CONFIG[$adminDataKey];
+        //print $evaluation_array[$adminDataKey] .'='. $CONFIG[$adminDataKey];
         //print '<hr />';
       }
     } // inner foreach loop -- end
@@ -134,7 +159,10 @@ if ($postCount > 0) {
   if ($userMessage != '') {
     $userMessage = '<ul>'.$lineBreak.$userMessage.'</ul>'.$lineBreak;
   }
-//print_r($_POST);
+//print_r($evaluation_array);
+if ($postCount > 0 && $userMessage == '') {
+  $userMessage = $lang_admin_php['upd_not_needed'];
+}
 
 /*
 //
@@ -215,8 +243,6 @@ if (count($_POST) > 0) {
 }
 */
 
-$message_id= cpgStoreTempMessage('The config page is currently a work in progress. Restore to factory results doesn\'t work yet. Please refer to <a href="docs/dev_config.htm">dev docs</a>. Joachim');
-
 pageheader($lang_admin_php['title']);
 
 if ($userMessage != '') {
@@ -229,6 +255,7 @@ if ($userMessage != '') {
     </tr>
 EOT;
   endtable();
+  print '<br />'.$lineBreak;
 }
 
 $signature = 'Coppermine Photo Gallery ' . COPPERMINE_VERSION . ' ('. COPPERMINE_VERSION_STATUS . ')';
@@ -267,9 +294,9 @@ EOT;
   $withinSectionLoopCounter = 0;
   foreach ($config_section_value as $key => $value) {
     if ($withinSectionLoopCounter/2 == floor($withinSectionLoopCounter/2)) {
-      $cellStyle = 'tableb';
+      $cellStyle = 'tableb '.$withinSectionLoopCounter;
     } else {
-      $cellStyle = 'tableb tableb_alternate';
+      $cellStyle = 'tableb tableb_alternate '.$withinSectionLoopCounter;
     }
     // hide entries labelled as "hidden" completely
     if (isset($value['only_display_if']) && $value['only_display_if'] != $CONFIG[$key]) {  // change the type if a "one-way-setting" is in place
@@ -277,6 +304,7 @@ EOT;
     }
     if ($value['type'] == 'hidden') {
       $visibility = ' style="display:none;"';
+      $withinSectionLoopCounter++; // increase the counter, as the hidden row should not be taken into account for style alternation
     } else {
       $visibility = '';
     }
@@ -288,10 +316,11 @@ EOT;
       $labelWrapperEnd = '';
     }
     print <<< EOT
+
                 <tr{$visibility}>
                   <td class="{$cellStyle}" width="60%">
                     <a name="{$key}"></a>
-                    {$labelWrapperStart}{$lang_admin_php[$key]}{$labelWrapperEnd}
+                    {$labelWrapperStart}{$lang_admin_php[$key]} {$value['additional_description']}{$labelWrapperEnd}
                   </td>
                   <td class="{$cellStyle}" width="50%">
 EOT;
@@ -370,6 +399,7 @@ EOT;
       }
       print '</select></span>';
     }
+    print '&nbsp;'.$value['end_description'];
     $helpIcon = '';
     if ($value['help_link'] != '' && $admin_data_array['enable_help'] != 0) {
       $helpIcon = cpg_display_help($value['help_link']);
