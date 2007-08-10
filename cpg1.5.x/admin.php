@@ -215,7 +215,7 @@ if (count($_POST) > 0) {
 }
 */
 
-$message_id= cpgStoreTempMessage('The config page is currently a work in progress. Restore to factory results doesn\'t work yet. I will document my changes asap. Joachim');
+$message_id= cpgStoreTempMessage('The config page is currently a work in progress. Restore to factory results doesn\'t work yet. Please refer to <a href="docs/dev_config.htm">dev docs</a>. Joachim');
 
 pageheader($lang_admin_php['title']);
 
