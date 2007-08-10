@@ -769,3 +769,11 @@ a:active .image{
 }
 .top-left {background-image:url(images/top-left.gif);}
 .top-right {background-image:url(images/top-right.gif);}
+
+.important {
+        background-image : url(images/important.gif);
+        padding-left:1px;
+        padding-right:1px;
+        padding-top:3px;
+        padding-bottom:3px;
+}

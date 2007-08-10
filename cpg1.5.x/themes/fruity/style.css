@@ -761,3 +761,11 @@ a:active .image{
 /* #E7F38C = RGB 239,243,140 = (light green)   */
 /* if you don't like a color, just do a search */
 /* and replace on the hex color...             */
+
+.important {
+        background-image : url(images/important.gif);
+        padding-left:1px;
+        padding-right:1px;
+        padding-top:3px;
+        padding-bottom:3px;
+}
