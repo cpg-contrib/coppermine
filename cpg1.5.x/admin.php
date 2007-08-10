@@ -103,7 +103,7 @@ if ($postCount > 0) {
       // regex check
       if (isset($adminDataValue['regex']) && $adminDataValue['regex'] != '') {
         if (eregi($adminDataValue['regex'],$evaluation_array[$adminDataKey]) == FALSE) {
-          $userMessage .= '<li style="list-style-image:url(images/red.gif)">'.sprintf($lang_admin_php['config_setting_invalid'], $lang_admin_php[$adminDataKey]).'</li>'.$lineBreak;
+          $userMessage .= '<li style="list-style-image:url(images/red.gif)">'.sprintf($lang_admin_php['config_setting_invalid'], '<a href="#'.$adminDataKey.'">'.$lang_admin_php[$adminDataKey].'</a>').'</li>'.$lineBreak;
           $regexValidation = '0';
           $admin_data_array[$adminDataKey] = $_POST[$adminDataKey]; // replace the stuff in the form field with the improper input, so the user can see and correct his error
           if (in_array($adminDataKey,$problemFields_array) != TRUE) {
@@ -290,6 +290,7 @@ EOT;
     print <<< EOT
                 <tr{$visibility}>
                   <td class="{$cellStyle}" width="60%">
+                    <a name="{$key}"></a>
                     {$labelWrapperStart}{$lang_admin_php[$key]}{$labelWrapperEnd}
                   </td>
                   <td class="{$cellStyle}" width="50%">
