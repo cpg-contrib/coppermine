@@ -753,16 +753,16 @@ $config_data = array(
   'image_watermarking' => array(
     'enable_watermark' => array(
       'type' => 'checkbox',
-      'help_link' => '',
+      'help_link' => 'f=configuration.htm&amp;as=admin_watermarking_enable&amp;ae=admin_watermarking_enable_end',
     ),
     'enable_thumb_watermark' => array(
       'type' => 'checkbox',
-      'help_link' => '',
+      'help_link' => 'f=configuration.htm&amp;as=admin_watermarking_custom_thumb&amp;ae=admin_watermarking_custom_thumb_end',
       'additional_description' => '('.$lang_admin_php['movie_audio_document'].')',
     ),
     'where_put_watermark' => array(
       'type' => 'select',
-      'help_link' => '',
+      'help_link' => 'f=configuration.htm&amp;as=admin_watermarking_orientation&amp;ae=admin_watermarking_orientation_end',
       'options' => array($lang_admin_php['wm_bottomright'] => 'southeast',
                          $lang_admin_php['wm_bottomleft'] => 'southwest',
                          $lang_admin_php['wm_topleft'] => 'northwest',
@@ -772,7 +772,7 @@ $config_data = array(
     ),
     'which_files_to_watermark' => array(
       'type' => 'select',
-      'help_link' => '',
+      'help_link' => 'f=configuration.htm&amp;as=admin_watermarking_filetype&amp;ae=admin_watermarking_filetype_end',
       'options' => array($lang_admin_php['wm_both'] => 'both',
                          $lang_admin_php['wm_original'] => 'original',
                          $lang_admin_php['wm_resized'] => 'resized',
@@ -780,11 +780,11 @@ $config_data = array(
     ),
     'watermark_file' => array(
       'type' => 'textfield',
-      'help_link' => '',
+      'help_link' => 'f=configuration.htm&amp;as=admin_watermarking_filepath&amp;ae=admin_watermarking_filepath_end',
     ),
     'watermark_transparency' => array(
       'type' => 'textfield',
-      'help_link' => '',
+      'help_link' => 'f=configuration.htm&amp;as=admin_watermarking_transparency&amp;ae=admin_watermarking_transparency_end',
       'regex' => '^[0-9]{0,3}$',
       'size' => '3',
       'width' => '3',
@@ -792,11 +792,11 @@ $config_data = array(
     ),
     'reduce_watermark' => array(
       'type' => 'textfield',
-      'help_link' => '',
+      'help_link' => 'f=configuration.htm&amp;as=admin_watermarking_downsize&amp;ae=admin_watermarking_downsize_end',
     ),
     'watermark_transparency_featherx' => array(
       'type' => 'textfield',
-      'help_link' => '',
+      'help_link' => 'f=configuration.htm&amp;as=admin_watermarking_transparent_x&amp;ae=admin_watermarking_transparent_x_end',
       'regex' => '^[0-9]{0,6}$',
       'size' => '6',
       'width' => '6',
@@ -804,7 +804,7 @@ $config_data = array(
     ),
     'watermark_transparency_feathery' => array(
       'type' => 'textfield',
-      'help_link' => '',
+      'help_link' => 'f=configuration.htm&amp;as=admin_watermarking_transparent_y&amp;ae=admin_watermarking_transparent_y_end',
       'regex' => '^[0-9]{0,6}$',
       'size' => '6',
       'width' => '6',
