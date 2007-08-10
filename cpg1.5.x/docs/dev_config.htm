@@ -42,6 +42,11 @@
 
 <a name="dev_config_history"></a><h2>History<a href="#dev_config_history" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>In versions prior to cpg1.5.x, the language file contained part of the logic how the config page looked and worked (section separation, help-icon links, input field type). This caused confusion for translators and kept the language fallback function from fully working as expected.</p>
+<p>Additionally, every new config option that displayed a link to another page or that was suppossed to offer different text for radio buttons required devs to come up with a separate function that made the code of the config file become more and more bloated.</p>
+<p>In an effort to clean up the config screen and allow future enhancements, the config page (admin.php) has been re-coded.</p>
+
+<a name="dev_config_new_features"></a><h2>New features<a href="#dev_config_new_features" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>The end user will see little changes on the new config screen - most changes happened &quot;under the hood&quot;. Most obvious change is the regex check that is performed when the form is being submit: invalid entries are being caught and subsequently won't be written to the database. The end user will see a visualization what config setting needs review.</p>
 
 <a name="dev_config_step_by_step"></a><h2>Step by Step<a href="#dev_config_step_by_step" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Apply the following steps when adding a config option during the development stage:</p>
