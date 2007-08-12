@@ -1,7 +1,7 @@
 <!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<title>Adding a config option - Coppermine Photo Gallery - Documentation &amp; Manual</title>
+<title>Adding config options - Coppermine Photo Gallery - Documentation &amp; Manual</title>
 <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
 <meta name="language"    content="en">
 <meta name="copyright"   content="Coppermine dev team">
@@ -35,7 +35,7 @@
 </noscript>
 </div>
 
-<a name="dev_config_add"></a><h1>Adding a config option<a href="#dev_config_add" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<a name="dev_config_add"></a><h1>Adding config options<a href="#dev_config_add" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
 <p>This page is supposed to explain how to add (or edit) a config option.</p>
 <a name="dev_config_add_target_audience"></a><h2>Target audience<a href="#dev_config_add_target_audience" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>This part of the documentation is not meant for end users of Coppermine, but only for developers. There is no support for this section, it comes as-is.</p>
@@ -174,6 +174,13 @@ $lang_common['yes'].': '.$lang_admin_php['debug_admin']</tt></div><hr />
     <td valign="top" class="tableb">Both hardcoded text as well as a reference to a language string.</td>
     <td valign="top" class="tableb">none</td>
   </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">preserve_when_resetting</td>
+    <td valign="top" class="tableb tableb_alternate">If set to '1', the setting will remain as-is even if the entire config is reset to factory defaults. Currently only used for the legacy feature &quot;password encryption&quot;, as it is a one-way feature that can not be undone.</td>
+    <td valign="top" class="tableb tableb_alternate">optional</td>
+    <td valign="top" class="tableb tableb_alternate">1</td>
+    <td valign="top" class="tableb tableb_alternate">none</td>
+  </tr>
 </table>
 
 <a name="dev_config_step_language_file"></a><h3>Language file<a href="#dev_config_step_language_file" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -190,7 +197,6 @@ $lang_common['yes'].': '.$lang_admin_php['debug_admin']</tt></div><hr />
   <li>Change the data taken from include/admin.inc.php from an array definition to XML. Should be easy to implement once we have XML support</li>
   <li>Add a config section for plugins: allow plugin authors to use the plugin page to control their plugin as well. End users will then have <strong>one</strong> config screen where they can configure their gallery, as a separation between a core config and a plugin config feels alien for most non-coders</li>
   <li>Improve the regex checks</li>
-  <li>Re-implement the &quot;restore to factory defaults&quot; feature</li>
   <li>Implement a &quot;reset single field to default&quot; option</li>
 </ul>
 

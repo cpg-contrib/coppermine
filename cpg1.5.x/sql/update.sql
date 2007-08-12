@@ -7,7 +7,7 @@
 ##  This program is free software; you can redistribute it and/or modify
 ##  it under the terms of the GNU General Public License version 3
 ##  as published by the Free Software Foundation.
-##  
+##
 ##  ********************************************
 ##  Coppermine version: 1.5.0
 ##  $Source: /cvsroot/coppermine/devel/sql/update.sql,v $
@@ -206,24 +206,24 @@ INSERT INTO CPG_config VALUES ('media_autostart', '1');
 INSERT INTO CPG_config VALUES ('enable_encrypted_passwords','0');
 
 ###### watermark ########
-INSERT INTO CPG_config (name, value) values ('enable_watermark', '0');
-INSERT INTO CPG_config (name, value) values ('where_put_watermark', 'southeast');
-INSERT INTO CPG_config (name, value) values ('watermark_file', 'images/watermark.png');
-INSERT INTO CPG_config (name, value) values ('which_files_to_watermark', 'both');
-INSERT INTO CPG_config (name, value) values ('orig_pfx', 'orig_');
-INSERT INTO CPG_config (name, value) values ('watermark_transparency', '40');
-INSERT INTO CPG_config (name, value) values ('reduce_watermark', '0');
-INSERT INTO CPG_config (name, value) values ('watermark_transparency_featherx', '0');
-INSERT INTO CPG_config (name, value) values ('watermark_transparency_feathery', '0');
-INSERT INTO CPG_config (name, value) values ('enable_thumb_watermark', '1');
+INSERT INTO CPG_config VALUES ('enable_watermark', '0');
+INSERT INTO CPG_config VALUES ('where_put_watermark', 'southeast');
+INSERT INTO CPG_config VALUES ('watermark_file', 'images/watermark.png');
+INSERT INTO CPG_config VALUES ('which_files_to_watermark', 'both');
+INSERT INTO CPG_config VALUES ('orig_pfx', 'orig_');
+INSERT INTO CPG_config VALUES ('watermark_transparency', '40');
+INSERT INTO CPG_config VALUES ('reduce_watermark', '0');
+INSERT INTO CPG_config VALUES ('watermark_transparency_featherx', '0');
+INSERT INTO CPG_config VALUES ('watermark_transparency_feathery', '0');
+INSERT INTO CPG_config VALUES ('enable_thumb_watermark', '1');
 #########################
 
 ###### thumb sharpening and cropping ########
-INSERT INTO CPG_config (name, value) values ('enable_unsharp', '0');
-INSERT INTO CPG_config (name, value) values ('unsharp_amount', '120');
-INSERT INTO CPG_config (name, value) values ('unsharp_radius', '0.5');
-INSERT INTO CPG_config (name, value) values ('unsharp_threshold', '3');
-INSERT INTO CPG_config (name, value) values ('thumb_height', '140');
+INSERT INTO CPG_config VALUES ('enable_unsharp', '0');
+INSERT INTO CPG_config VALUES ('unsharp_amount', '120');
+INSERT INTO CPG_config VALUES ('unsharp_radius', '0.5');
+INSERT INTO CPG_config VALUES ('unsharp_threshold', '3');
+INSERT INTO CPG_config VALUES ('thumb_height', '140');
 #########################
 
 # Modify structure for category thumb

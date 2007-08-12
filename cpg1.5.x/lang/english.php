@@ -653,6 +653,7 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'manage_plugins' => 'Manage plugins',
   'manage_keyword' => 'Manage keywords',
   'restore_cfg' => 'Restore factory defaults',
+  'restore_cfg_confirm' => 'Do you really want to restore the entire configuration to factory defaults? This can not be undone!', // cpg1.5 //js-alert
   'save_cfg' => 'Save new configuration',
   'notes' => 'Notes',
   'info' => 'Information',
@@ -669,8 +670,7 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'th_any' => 'Max Aspect',
   'th_ht' => 'Height',
   'th_wd' => 'Width',
-  //thumb cropping
-  'th_ex' => 'Exact', // thumb cropping
+  'th_ex' => 'Exact', // cpg1.5
   'label' => 'label',
   'item' => 'item',
   'debug_everyone' => 'Everyone',

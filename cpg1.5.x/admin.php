@@ -70,10 +70,7 @@ if (!function_exists('array_is_associative')) { // make sure that this will not 
   }
 }
 
-
-
-
-require_once('include/admin.inc.php');
+require_once('include/admin.inc.php'); // populate the array for the admin data (could later be done using an XML file)
 
 // loop through the config sections and populate the array that determines what sections to expand/collapse
 $collapseSections_array = array(); // By default, all sections should be hidden. Let's populate the array first with all existing sections and then later remove the ones that are suppossed to be expanded by default
@@ -89,8 +86,42 @@ if ($postCount > 0) {
   $evaluation_array = $CONFIG;
 }
 
-  $userMessage = ''; //The message that the will be displayed if something went wrong or to tell the user that we had success
-  $problemFields_array = array(); // we'll add field-wrapper-IDs to this array to visualize that something went wrong. Onload we'll assign the class "important" to the boxes that correspond to the array data
+$userMessage = ''; //The message that the will be displayed if something went wrong or to tell the user that we had success
+$problemFields_array = array(); // we'll add field-wrapper-IDs to this array to visualize that something went wrong. Onload we'll assign the class "important" to the boxes that correspond to the array data
+
+if (isset($_POST['restore_config'])) { // user has chosen to factory-reset the config --- start
+  // Get an array of settings that mustn't be reset
+  $doNotReset_array = array();
+  foreach ($config_data as $config_section_key => $config_section_value) { // loop through the array of config sections --- start
+    foreach ($config_section_value as $adminDataKey => $adminDataValue) { // loop through the array of individual config entries per section --- start
+      if ($adminDataValue['preserve_when_resetting'] == '1') {
+        $doNotReset_array[] = $adminDataKey;
+      }
+    } // loop through the array of individual config entries per section --- end
+  } // loop through the array of config sections --- end
+  $default_config = 'sql/basic.sql';
+  $sql_query = fread(fopen($default_config, 'r'), filesize($default_config));
+  $sql_query = preg_replace('/CPG_/', $CONFIG['TABLE_PREFIX'], $sql_query);
+  cpg_db_query("TRUNCATE TABLE {$CONFIG['TABLE_CONFIG']}");
+  cpg_db_query("TRUNCATE TABLE {$CONFIG['TABLE_FILETYPES']}");
+  $sql_query = remove_remarks($sql_query);
+  $sql_query = split_sql_file($sql_query, ';');
+  $sql_count = count($sql_query);
+  for($i = 0; $i < $sql_count; $i++) {
+    if (strpos($sql_query[$i],'config VALUES') || strpos($sql_query[$i],'filetypes VALUES')) {
+      cpg_db_query($sql_query[$i]);
+    }
+  }
+  // undo the reset for config fields specified in $doNotReset_array
+  foreach ($doNotReset_array as $key) {
+    $f= cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '{$CONFIG[$key]}' WHERE name = '$key'");
+    //var_dump($f);
+    //var_dump(mysql_affected_rows());
+  }
+  cpgRedirectPage($_SERVER['PHP_SELF'].'?', $lang_common['information'], $lang_admin_php['restore_success']);
+}  // user has chosen to factory-reset the config --- end
+
+
   foreach ($config_data as $config_section_key => $config_section_value) { // Loop through the config fields to check posted values for validity -- start
     foreach ($config_section_value as $adminDataKey => $adminDataValue) {
       // We need to catter for the fact that checkboxes that haven't been ticked are not being submit
@@ -434,7 +465,7 @@ print <<<EOT
                         <td width="67%" align="center">
                             <input type="submit" class="button" name="update_config" value="{$lang_admin_php['save_cfg']}" />
                     &nbsp;&nbsp;
-                                                                    <input type="submit" onclick="return confirm('{$lang_admin_php['restore_cfg']}');" class="button" name="restore_config" value="{$lang_admin_php['restore_cfg']}" />
+                                                                    <input type="submit" onclick="return confirm('{$lang_admin_php['restore_cfg_confirm']}');" class="button" name="restore_config" value="{$lang_admin_php['restore_cfg']}" />
                         </td>
                     </tr>
                 </table>
@@ -444,7 +475,7 @@ EOT;
 
 endtable();
 print '<br />';
-//print eregi('^[0-9]$','g');
+
 
 
 echo <<< EOT

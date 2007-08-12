@@ -97,6 +97,7 @@ $config_data = array(
       'only_display_if' => '0',
       'bridged' => 'hide',
       'help_link' => 'f=configuration.htm&amp;as=admin_general_encrypt_password_start&amp;ae=admin_general_encrypt_password_end&amp;top=1',
+      'preserve_when_resetting' => '1',
     ),
     'enable_help' => array(
       'type' => 'radio',
