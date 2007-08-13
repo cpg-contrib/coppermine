@@ -7,7 +7,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
@@ -143,6 +143,16 @@ function hideall()
         }
 }
 
+function expandTextarea(elementName)
+{
+        document.getElementById(elementName).rows = 10;
+}
+
+function collapseTextarea(elementName)
+{
+        document.getElementById(elementName).rows = 2;
+}
+
 function redirect(url)
 {
         window.location=url;
@@ -151,11 +161,11 @@ function redirect(url)
 var onloads = new Array()
 
 function addonload(func){
-	onloads.push(func);
+        onloads.push(func);
 }
 
 function runonloads(){
-	for (func in onloads) eval(onloads[func]);
+        for (func in onloads) eval(onloads[func]);
 }
 
 window.onload = runonloads;
