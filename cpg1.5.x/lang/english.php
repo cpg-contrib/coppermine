@@ -131,6 +131,7 @@ $lang_common = array(
   'date' => 'Date', // cpg1.5.x
   'help' => 'Help', // cpg1.5.x
   'close' => 'Close', // cpg1.5.x
+  'go' => 'go', // cpg1.5.x
 );
 
 // ------------------------------------------------------------------------- //
@@ -283,6 +284,7 @@ $lang_img_nav_bar = array(
   'go_album_start' => 'Return to start',
   'go_back_x_items' => 'go back %s items',
   'go_forward_x_items' => 'go forward %s items',
+  'no_javascript' => 'JavaScript must be enabled to toggle the file information', //cpg1.5
 );
 
 $lang_rate_pic = array(
@@ -2097,9 +2099,10 @@ $lang_util_desc_php = array(
 'Deletes orphaned comments',
 'Re-reads file sizes and dimensions (if you manually edited pics)',
 'Resets views counter',
+'Runs an individual query against your database (use with care)', //cpg1.5
 );
 $lang_util_php = array(
-  'title' => 'Admin utilities (Resize pictures)',
+  'title' => 'Admin tools',  //cpg1.5
   'what_it_does' => 'What it does',
   'file' => 'File',
   'problem' => 'Problem',
@@ -2112,7 +2115,7 @@ $lang_util_php = array(
   'main_success' => 'The file %s was successfully used as main file',
   'error_rename' => 'Error renaming %s to %s',
   'error_not_found' => 'The file %s was not found',
-  'back' => 'back to main',
+  'back' => 'back to Admin tools start', // cpg1.5
   'thumbs_wait' => 'Updating thumbnails and/or resized images, please wait...',
   'thumbs_continue_wait' => 'Continuing to update thumbnails and/or resized images...',
   'titles_wait' => 'Updating titles, please wait...',

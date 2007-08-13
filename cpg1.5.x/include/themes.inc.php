@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
@@ -824,7 +824,12 @@ $template_img_navbar = <<<EOT
                         <a href="{THUMB_TGT}" class="navmenu_pic" title="{THUMB_TITLE}"><img src="{LOCATION}images/thumbnails.gif" align="middle" border="0" alt="{THUMB_TITLE}" /></a>
                 </td>
                 <td align="center" valign="middle" class="navmenu" width="48">
-                        <a href="javascript:;" class="navmenu_pic" onclick="blocking('picinfo','yes', 'block'); return false;" title="{PIC_INFO_TITLE}" rel="nofollow"><img src="{LOCATION}images/info.gif" border="0" align="middle" alt="{PIC_INFO_TITLE}" /></a>
+                        <script type="text/javascript">
+                          document.write('<a href="javascript:;" class="navmenu_pic" onclick="blocking(\'picinfo\',\'yes\', \'block\'); return false;" title="{PIC_INFO_TITLE}" rel="nofollow"><img src="{LOCATION}images/info.gif" border="0" align="middle" alt="{PIC_INFO_TITLE}" /></a>');
+                        </script>
+                        <noscript>
+                          <img src="{LOCATION}images/info.gif" border="0" align="middle" alt="{NO_JAVASCRIPT}" title="{NO_JAVASCRIPT}" />
+                        </noscript>
                 </td>
                 <td align="center" valign="middle" class="navmenu" width="48">
                         <a href="{SLIDESHOW_TGT}" class="navmenu_pic" title="{SLIDESHOW_TITLE}" rel="nofollow"><img src="{LOCATION}images/slideshow.gif" border="0" align="middle" alt="{SLIDESHOW_TITLE}" /></a>
@@ -2924,6 +2929,7 @@ function theme_html_img_nav_menu()
     $params = array('{THUMB_TGT}' => $thumb_tgt,
         '{THUMB_TITLE}' => $lang_img_nav_bar['thumb_title'],
         '{PIC_INFO_TITLE}' => $lang_img_nav_bar['pic_info_title'],
+        '{NO_JAVASCRIPT}' => $lang_img_nav_bar['no_javascript'],
         '{SLIDESHOW_TGT}' => $slideshow_tgt,
         '{SLIDESHOW_TITLE}' => $lang_img_nav_bar['slideshow_title'],
         '{PIC_POS}' => $pic_pos,
