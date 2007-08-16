@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-08-16 [A] Added Romanian language file (user contribution) {GauGau}
 2007-08-14 [A] Added Catalan language file (user contribution) {GauGau}
 2007-07-27 [B] Added missing curly brackets to various default theme definitions {GauGau}
 2007-07-27 [B] Fixing issue creating new user with mysql strict mode {Nibbler}
