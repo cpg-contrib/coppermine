@@ -6,9 +6,9 @@
   v1.1 originally written by Gregory DEMAR
 
   This program is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation; either version 2 of the License, or
-  (at your option) any later version.
+  it under the terms of the GNU General Public License version 3
+  as published by the Free Software Foundation.
+  
   ********************************************
   Coppermine version: 1.4.12
   $Source$
@@ -105,7 +105,7 @@ $lang_errors = array(
 );
 
 $lang_bbcode_help_title = 'помощь по bbcode'; //cpg1.4
-$lang_bbcode_help = 'Вы можете добавлять ссылки и форматирование в этом поле, использую тэги bbcode: <li>[b]Жирный[/b] =&gt; <b>Жирный</b></li><li>[i]Курсив[/i] =&gt; <i>Курсив</i></li><li>[url=http://вашсайт.ru/]Описание ссылки[/url] =&gt; <a href="http://вашсайт.ru">Описание ссылки</a></li><li>[email]пользователь@сайт.ru[/email] =&gt; <a href="mailto:пользователь@сайт.ru">пользователь@сайт.ru</a></li><li>[color=red]любой текст[/color] =&gt; <span style="color:red">любой текст</span></li><li>[img]http://coppermine.sf.net/demo/images/red.gif[/img] => <img src="../images/red.gif" border="0" alt="" /></li>'; //cpg1.4
+$lang_bbcode_help = 'Вы можете добавлять ссылки и форматирование в этом поле, использую тэги bbcode: <li>[b]Жирный[/b] =&gt; <b>Жирный</b></li><li>[i]Курсив[/i] =&gt; <i>Курсив</i></li><li>[url=http://вашсайт.ru/]Описание ссылки[/url] =&gt; <a href="http://вашсайт.ru">Описание ссылки</a></li><li>[email]пользователь@сайт.ru[/email] =&gt; <a href="mailto:пользователь@сайт.ru">пользователь@сайт.ru</a></li><li>[color=red]любой текст[/color] =&gt; <span style="color:red">любой текст</span></li><li>[img]http://coppermine-gallery.net/demo/cpg14x/images/red.gif[/img] => <img src="../images/red.gif" border="0" alt="" /></li>'; //cpg1.4
 
 // ------------------------------------------------------------------------- //
 // File theme.php

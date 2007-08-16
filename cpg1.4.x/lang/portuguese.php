@@ -6,9 +6,9 @@
   v1.1 originally written by Gregory DEMAR
 
   This program is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation; either version 2 of the License, or
-  (at your option) any later version.
+  it under the terms of the GNU General Public License version 3
+  as published by the Free Software Foundation.
+  
   ********************************************
   Coppermine version: 1.4.13
   $Source$
@@ -104,7 +104,7 @@ interpretada pela biblioteca GD',
 );
 
 $lang_bbcode_help_title = 'Ajuda bbcode'; //cpg1.4
-$lang_bbcode_help = 'Pode adicionar links clicaveis e alguma formatação de texto, utilizando bbcode tags : <li>[b]Bold[/b] =&gt; <b>Bold</b></li><li>[i]Italic[/i] =&gt; <i>Italic</i></li><li>[url=http://oseusite.com/]Url Text[/url] =&gt; <a href="http://oseusite.com">Url Text</a></li><li>[email]user@dominio.com[/email] =&gt; <a href="mailto:user@dominio.com">user@dominio.com</a></li><li>[color=red]seu texto[/color] =&gt; <span style="color:red">seu texto</span></li><li>[img]http://coppermine.sf.net/demo/images/red.gif[/img] => <img src="../images/red.gif" border="0" alt="" /></li>'; //cpg1.4
+$lang_bbcode_help = 'Pode adicionar links clicaveis e alguma formatação de texto, utilizando bbcode tags : <li>[b]Bold[/b] =&gt; <b>Bold</b></li><li>[i]Italic[/i] =&gt; <i>Italic</i></li><li>[url=http://oseusite.com/]Url Text[/url] =&gt; <a href="http://oseusite.com">Url Text</a></li><li>[email]user@dominio.com[/email] =&gt; <a href="mailto:user@dominio.com">user@dominio.com</a></li><li>[color=red]seu texto[/color] =&gt; <span style="color:red">seu texto</span></li><li>[img]http://coppermine-gallery.net/demo/cpg14x/images/red.gif[/img] => <img src="../images/red.gif" border="0" alt="" /></li>'; //cpg1.4
 
 // ------------------------------------------------------------------------- //
 // File theme.php

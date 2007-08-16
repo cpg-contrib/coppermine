@@ -6,9 +6,9 @@
   v1.1 originally written by Gregory DEMAR
 
   This program is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation; either version 2 of the License, or
-  (at your option) any later version.
+  it under the terms of the GNU General Public License version 3
+  as published by the Free Software Foundation.
+  
   ********************************************
   Coppermine version: 1.4.13
   $Source$
@@ -102,7 +102,7 @@ $lang_errors = array(
 );
 
 $lang_bbcode_help_title = '<span dir=rtl>راهنماي bbcode<span>'; //cpg1.4
-$lang_bbcode_help = '<span dir=rtl>بوسيله اين كدها شما ميتوانيد در اين فيلد لينكهاي قابل كليك كردن و متون متنوع ايجاد كنيد:</span><span dir=ltr> <li>[b]Bold[/b] =&gt; <b>Bold</b></li><li>[i]Italic[/i] =&gt; <i>Italic</i></li><li>[url=http://yoursite.com/]متن لينك[/url] =&gt; <a href="http://yoursite.com">متن لينك</a></li><li>[email]user@domain.com[/email] =&gt; <a href="mailto:user@domain.com">user@domain.com</a></li><li>[color=red]متن شما[/color] =&gt; <span style="color:red">متن شما</span></li><li>[img]http://coppermine.sf.net/demo/images/red.gif[/img] => <img src="../images/red.gif" border="0" alt="" /></li></span>'; //cpg1.4
+$lang_bbcode_help = '<span dir=rtl>بوسيله اين كدها شما ميتوانيد در اين فيلد لينكهاي قابل كليك كردن و متون متنوع ايجاد كنيد:</span><span dir=ltr> <li>[b]Bold[/b] =&gt; <b>Bold</b></li><li>[i]Italic[/i] =&gt; <i>Italic</i></li><li>[url=http://yoursite.com/]متن لينك[/url] =&gt; <a href="http://yoursite.com">متن لينك</a></li><li>[email]user@domain.com[/email] =&gt; <a href="mailto:user@domain.com">user@domain.com</a></li><li>[color=red]متن شما[/color] =&gt; <span style="color:red">متن شما</span></li><li>[img]http://coppermine-gallery.net/demo/cpg14x/images/red.gif[/img] => <img src="../images/red.gif" border="0" alt="" /></li></span>'; //cpg1.4
 
 // ------------------------------------------------------------------------- //
 // File theme.php

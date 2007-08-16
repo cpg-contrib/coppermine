@@ -6,9 +6,9 @@
   v1.1 originally written by Gregory DEMAR
 
   This program is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation; either version 2 of the License, or
-  (at your option) any later version.
+  it under the terms of the GNU General Public License version 3
+  as published by the Free Software Foundation.
+  
   ********************************************
   Coppermine version: 1.4.13
   $Source$
@@ -103,7 +103,7 @@ $lang_errors = array(
 );
 
 $lang_bbcode_help_title = 'Axuda bbcode'; //cpg1.4
-$lang_bbcode_help = 'Podes engadir ligazóns nas que se poida premer e formatear este campo usando etiquetas bbcode: <li>[b]Resaltado[/b] =&gt; <b>Resaltado</b></li><li>[i]Cursiva[/i] =&gt; <i>Cursiva</i></li><li>[url=http://www.ciberirmandade.org/]Texto Url[/url] =&gt; <a href="http://www.ciberirmandade.org">Text Url</a></li><li>[email]usuario@dominio.gz[/email] =&gt; <a href="mailto:usuario@dominio.gz">usuario@dominio.gz</a></li><li>[color=red]calquera texto[/color] =&gt; <span style="color:red">calquera texto</span></li><li>[img]http://coppermine.sf.net/demo/images/red.gif[/img] => <img src="../images/red.gif" border="0" alt="" /></li>'; //cpg1.4
+$lang_bbcode_help = 'Podes engadir ligazóns nas que se poida premer e formatear este campo usando etiquetas bbcode: <li>[b]Resaltado[/b] =&gt; <b>Resaltado</b></li><li>[i]Cursiva[/i] =&gt; <i>Cursiva</i></li><li>[url=http://www.ciberirmandade.org/]Texto Url[/url] =&gt; <a href="http://www.ciberirmandade.org">Text Url</a></li><li>[email]usuario@dominio.gz[/email] =&gt; <a href="mailto:usuario@dominio.gz">usuario@dominio.gz</a></li><li>[color=red]calquera texto[/color] =&gt; <span style="color:red">calquera texto</span></li><li>[img]http://coppermine-gallery.net/demo/cpg14x/images/red.gif[/img] => <img src="../images/red.gif" border="0" alt="" /></li>'; //cpg1.4
 
 // ------------------------------------------------------------------------- //
 // File theme.php

@@ -6,9 +6,9 @@
   v1.1 originally written by Gregory DEMAR
 
   This program is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation; either version 2 of the License, or
-  (at your option) any later version.
+  it under the terms of the GNU General Public License version 3
+  as published by the Free Software Foundation.
+  
   ********************************************
   Coppermine version: 1.4.13
   $Source: /cvsroot/coppermine/stable/lang/english.php,v $
@@ -102,7 +102,7 @@ $lang_errors = array(
 );
 
 $lang_bbcode_help_title = 'bbcode-ohje'; //cpg1.4
-$lang_bbcode_help = 'Voit lisätä klikattavia linkkejä ja muotoiluja tähän kenttään käyttämällä bbcode tageja: <li>[b]Lihavoitu[/b] =&gt; <b>Lihavoitu</b></li><li>[i]Kursivoitu[/i] =&gt; <i>Kursivoitu</i></li><li>[url=http://esimerkki.fi/]URL -teksti[/url] =&gt; <a href="http://esimerkki.fi">URL -teksti</a></li><li>[email]etunimi.sukunimi@esimerkki.fi[/email] =&gt; <a href="mailto:etunimi.sukunimi@esimerkki.fi">user@domain.com</a></li><li>[color=red]punaista tekstiä[/color] =&gt; <span style="color:red">punaista tekstiä</span></li><li>[img]http://coppermine.sf.net/demo/images/red.gif[/img] => <img src="../images/red.gif" border="0" alt="" /></li>'; //cpg1.4
+$lang_bbcode_help = 'Voit lisätä klikattavia linkkejä ja muotoiluja tähän kenttään käyttämällä bbcode tageja: <li>[b]Lihavoitu[/b] =&gt; <b>Lihavoitu</b></li><li>[i]Kursivoitu[/i] =&gt; <i>Kursivoitu</i></li><li>[url=http://esimerkki.fi/]URL -teksti[/url] =&gt; <a href="http://esimerkki.fi">URL -teksti</a></li><li>[email]etunimi.sukunimi@esimerkki.fi[/email] =&gt; <a href="mailto:etunimi.sukunimi@esimerkki.fi">user@domain.com</a></li><li>[color=red]punaista tekstiä[/color] =&gt; <span style="color:red">punaista tekstiä</span></li><li>[img]http://coppermine-gallery.net/demo/cpg14x/images/red.gif[/img] => <img src="../images/red.gif" border="0" alt="" /></li>'; //cpg1.4
 
 // ------------------------------------------------------------------------- //
 // File theme.php

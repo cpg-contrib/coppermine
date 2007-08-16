@@ -6,9 +6,9 @@
   v1.1 originally written by Gregory DEMAR
 
   This program is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation; either version 2 of the License, or
-  (at your option) any later version.
+  it under the terms of the GNU General Public License version 3
+  as published by the Free Software Foundation.
+  
   ********************************************
   Coppermine version: 1.4.13
   $Source$
@@ -102,7 +102,7 @@ $lang_errors = array(
 );
 
 $lang_bbcode_help_title = 'bbcode सहायता'; //cpg1.4
-$lang_bbcode_help = 'आप क्लिक करने योग्य लिंक और कुछेक फोरमेटिंग इस जगह bbcode की सहायता से काम में ले सकते हैं: <li>[b]बोल्ड[/b] =&gt; <b>बोल्ड</b></li><li>[i]इटालिक[/i] =&gt; <i>इटालिक</i></li><li>[url=http://yoursite.com/]Url शब्द[/url] =&gt; <a href="http://yoursite.com">Url शब्द</a></li><li>[email]user@domain.com[/email] =&gt; <a href="mailto:user@domain.com">user@domain.com</a></li><li>[color=red]some शब्द[/color] =&gt; <span style="color:red">some शब्द</span></li><li>[img]http://coppermine.sf.net/demo/images/red.gif[/img] => <img src="../images/red.gif" border="0" alt="" /></li>'; //cpg1.4
+$lang_bbcode_help = 'आप क्लिक करने योग्य लिंक और कुछेक फोरमेटिंग इस जगह bbcode की सहायता से काम में ले सकते हैं: <li>[b]बोल्ड[/b] =&gt; <b>बोल्ड</b></li><li>[i]इटालिक[/i] =&gt; <i>इटालिक</i></li><li>[url=http://yoursite.com/]Url शब्द[/url] =&gt; <a href="http://yoursite.com">Url शब्द</a></li><li>[email]user@domain.com[/email] =&gt; <a href="mailto:user@domain.com">user@domain.com</a></li><li>[color=red]some शब्द[/color] =&gt; <span style="color:red">some शब्द</span></li><li>[img]http://coppermine-gallery.net/demo/cpg14x/images/red.gif[/img] => <img src="../images/red.gif" border="0" alt="" /></li>'; //cpg1.4
 
 // ------------------------------------------------------------------------- //
 // File theme.php

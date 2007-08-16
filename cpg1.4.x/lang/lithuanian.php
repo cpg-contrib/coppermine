@@ -6,9 +6,9 @@
   v1.1 originally written by Gregory DEMAR
 
   This program is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation; either version 2 of the License, or
-  (at your option) any later version.
+  it under the terms of the GNU General Public License version 3
+  as published by the Free Software Foundation.
+  
   ********************************************
   Coppermine version: 1.4.13
   $Source$
@@ -107,7 +107,7 @@ $lang_bbcode_help = 'bbcode turi žymenis, kurie leis greitai keisti pradinį te
 <li>[i]Pasvirę[/i] =&gt; <i>Pasvirę</i></li>
 <li>[url=http://foto.c-4.lt/]Nuorodos tekstas[/url] =&gt; <a href="http://foto.c-4.lt">Nuorodos tekstas</a></li><li>[email]vardas@domainas.lt[/email] =&gt; <a href="mailto:vardas@domainas.lt">vardas@domainas.lt</a></li>
 <li>[color=red]tekstas[/color] =&gt; <span style="color:red">tekstas</span></li>
-<li>[img]http://coppermine.sf.net/demo/images/red.gif[/img] => <img src="../images/red.gif" border="0" alt="" /></li>'; //cpg1.4
+<li>[img]http://coppermine-gallery.net/demo/cpg14x/images/red.gif[/img] => <img src="../images/red.gif" border="0" alt="" /></li>'; //cpg1.4
 
 // ------------------------------------------------------------------------- //
 // File theme.php

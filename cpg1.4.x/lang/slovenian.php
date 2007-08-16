@@ -6,9 +6,9 @@
   v1.1 originally written by Gregory DEMAR
 
   This program is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation; either version 2 of the License, or
-  (at your option) any later version.
+  it under the terms of the GNU General Public License version 3
+  as published by the Free Software Foundation.
+  
   ********************************************
   Coppermine version: 1.4.13
   $Source$
@@ -102,7 +102,7 @@ $lang_errors = array(
 );
 
 $lang_bbcode_help_title = 'Pomoč za bbcode'; //cpg1.4
-$lang_bbcode_help = 'Dodajate lahko povezave in uporabite oblikovanje s pomočjo bbcode oznak: <li>[b]Poudarjeno[/b] =&gt; <b>Poudarjeno</b></li><li>[i]Poševno[/i] =&gt; <i>Poševno</i></li><li>[url=http://vasastran.com/]To je moja stran...[/url] =&gt; <a href="http://vasastran.com">To je moja stran...</a></li><li>[email]user@domain.com[/email] =&gt; <a href="mailto:user@domain.com">user@domain.com</a></li><li>[color=red]besedilo...[/color] =&gt; <span style="color:red">besedilo...</span></li><li>[img]http://coppermine.sf.net/demo/images/red.gif[/img] => <img src="../images/red.gif" border="0" alt="" /></li>'; //cpg1.4
+$lang_bbcode_help = 'Dodajate lahko povezave in uporabite oblikovanje s pomočjo bbcode oznak: <li>[b]Poudarjeno[/b] =&gt; <b>Poudarjeno</b></li><li>[i]Poševno[/i] =&gt; <i>Poševno</i></li><li>[url=http://vasastran.com/]To je moja stran...[/url] =&gt; <a href="http://vasastran.com">To je moja stran...</a></li><li>[email]user@domain.com[/email] =&gt; <a href="mailto:user@domain.com">user@domain.com</a></li><li>[color=red]besedilo...[/color] =&gt; <span style="color:red">besedilo...</span></li><li>[img]http://coppermine-gallery.net/demo/cpg14x/images/red.gif[/img] => <img src="../images/red.gif" border="0" alt="" /></li>'; //cpg1.4
 
 // -------------------------povezavo in ne------------------------------------------------ //
 // File theme.php

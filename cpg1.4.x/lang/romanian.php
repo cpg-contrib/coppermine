@@ -6,9 +6,9 @@
   v1.1 originally written by Gregory DEMAR
 
   This program is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation; either version 2 of the License, or
-  (at your option) any later version.
+  it under the terms of the GNU General Public License version 3
+  as published by the Free Software Foundation.
+  
   ********************************************
   Coppermine version: 1.4.13
   $Source$
@@ -112,7 +112,7 @@ $lang_errors = array(
 );
 
 $lang_bbcode_help_title = 'Ajutor coduri bbcode'; //cpg1.4
-$lang_bbcode_help = 'Puteţi adăuga adrese de pagini web şi\/sau paginare  pentru acest câmp  utilizând următoarele coduri bbcode : <li>[b]Text Bold (Ingrosat)[/b] =&gt; <b>Text Bold (Ingrosat)</b></li><li>[i]Text Italic (Inclinat)[/i] =&gt; <i>Text Italic</i></li><li>[url=http://nume-de-pagină.com/]Url Text[/url] =&gt; <a href="http://nume-de-pagină.com">Text pentru adresa </a></li><li>[email]utilizator@serviciu-de-email.com[/email] =&gt; <a href="mailto:nume@serviciu-de-email.com">nume@serviciu-de-email.com</a></li><li>[color=red]Exemplu de text[/color] =&gt; <span style="color:red">Exemplu de text</span></li><li>[img]http://coppermine.sf.net/demo/images/red.gif[/img] => <img src="../images/red.gif" border="0" alt="" /></li>'; //cpg1.4
+$lang_bbcode_help = 'Puteţi adăuga adrese de pagini web şi\/sau paginare  pentru acest câmp  utilizând următoarele coduri bbcode : <li>[b]Text Bold (Ingrosat)[/b] =&gt; <b>Text Bold (Ingrosat)</b></li><li>[i]Text Italic (Inclinat)[/i] =&gt; <i>Text Italic</i></li><li>[url=http://nume-de-pagină.com/]Url Text[/url] =&gt; <a href="http://nume-de-pagină.com">Text pentru adresa </a></li><li>[email]utilizator@serviciu-de-email.com[/email] =&gt; <a href="mailto:nume@serviciu-de-email.com">nume@serviciu-de-email.com</a></li><li>[color=red]Exemplu de text[/color] =&gt; <span style="color:red">Exemplu de text</span></li><li>[img]http://coppermine-gallery.net/demo/cpg14x/images/red.gif[/img] => <img src="../images/red.gif" border="0" alt="" /></li>'; //cpg1.4
 
 // ------------------------------------------------------------------------- //
 // File theme.php

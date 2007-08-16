@@ -6,9 +6,9 @@
   v1.1 originally written by Gregory DEMAR
 
   This program is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation; either version 2 of the License, or
-  (at your option) any later version.
+  it under the terms of the GNU General Public License version 3
+  as published by the Free Software Foundation.
+  
   ********************************************
   Coppermine version: 1.4.13
   $Source$
@@ -102,7 +102,7 @@ $lang_errors = array(
 );
 
 $lang_bbcode_help_title = 'Hjälp med BBkod'; //cpg1.4
-$lang_bbcode_help = 'Du kan lägga till klickbara länkar och enkel textformatering här genom att använda BBkod: <li>[b]Fet[/b] =&gt; <b>Fet</b></li><li>[i]Kursiv[/i] =&gt; <i>Kursiv</i></li><li>[url=http://dinsajt.se/]URL-text[/url] =&gt; <a href="http://dinsajt.se">URL-text</a></li><li>[email]användare@sajt.se[/email] =&gt; <a href="mailto:användare@sajt.se">användare@sajt.se</a></li><li>[color=red]Text[/color] =&gt; <span style="color:red">Text</span></li><li>[img]http://coppermine.sf.net/demo/images/red.gif[/img] => <img src="../images/red.gif" border="0" alt="" /></li>'; //cpg1.4
+$lang_bbcode_help = 'Du kan lägga till klickbara länkar och enkel textformatering här genom att använda BBkod: <li>[b]Fet[/b] =&gt; <b>Fet</b></li><li>[i]Kursiv[/i] =&gt; <i>Kursiv</i></li><li>[url=http://dinsajt.se/]URL-text[/url] =&gt; <a href="http://dinsajt.se">URL-text</a></li><li>[email]användare@sajt.se[/email] =&gt; <a href="mailto:användare@sajt.se">användare@sajt.se</a></li><li>[color=red]Text[/color] =&gt; <span style="color:red">Text</span></li><li>[img]http://coppermine-gallery.net/demo/cpg14x/images/red.gif[/img] => <img src="../images/red.gif" border="0" alt="" /></li>'; //cpg1.4
 
 // ------------------------------------------------------------------------- //
 // File theme.php

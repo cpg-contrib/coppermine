@@ -5,9 +5,9 @@
   v1.1 originally written by Gregory DEMAR
 
   This program is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation; either version 2 of the License, or
-  (at your option) any later version.
+  it under the terms of the GNU General Public License version 3
+  as published by the Free Software Foundation.
+
   ********************************************
   Coppermine version: 1.4.13
   $Source$
@@ -28,14 +28,13 @@ h1 {
         font-weight: bolder;
         font-size: 1.8em;
         color: #0E72A4;
-        line-height: 1.2em;
         font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
         text-decoration: none;
+        margin:0px;
 }
 
 h2 {
-        font-size: 1.5em;
-        line-height: 1.3em;
+        font-size: 1.6em;
         color: #0E72A4;
         font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
         text-decoration: none;
@@ -43,7 +42,7 @@ h2 {
 
 h3 {
         font-weight: bolder;
-        font-size: 16px;
+        font-size: 1.4em;
         font-family: Verdana, Arial, Helvetica, sans-serif;
         text-decoration: none;
         color: #0E72A4;
@@ -51,10 +50,16 @@ h3 {
 
 h4 {
         font-weight: bold;
-        font-size: 14px;
+        font-size: 1.2em;
         font-family: Verdana, Arial, Helvetica, sans-serif;
         text-decoration: none;
         color: #0E72A4;
+}
+
+h1,h2,h3,h4 {
+        margin-top:20px;
+        margin-bottom:5px;
+        padding:0px;
 }
 
 p {
@@ -366,9 +371,12 @@ a.external {
 
 .small {
         font-size: 9px;
-        text-align:right;
         margin-top:0px;
         margin-bottom:0px;
+}
+
+.right_align {
+        text-align:right;
 }
 
 acronym {

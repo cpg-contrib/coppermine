@@ -6,9 +6,9 @@ Copyright (c) 2003-2007 Coppermine Dev Team
 v1.1 originally written by Gregory DEMAR
 
 This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 2 of the License, or
-(at your option) any later version.
+it under the terms of the GNU General Public License version 3
+as published by the Free Software Foundation.
+
 ********************************************
 Coppermine version: 1.4.13
 $Source$
@@ -132,7 +132,7 @@ $lang_errors = array(
 );
 
 $lang_bbcode_help_title = 'Pomoc - bbcode'; //cpg1.4
-$lang_bbcode_help = 'Możesz użyć następujących kodów: <li>[b]Pogrubienie[/b] =&gt; <b>Pogrubienie</b></li><li>[i]Kursywa[/i] =&gt; <i>Kursywa</i></li><li>[url=http://twojastrona.com/]Adres URL[/url] =&gt; <a href="http://twojastrona.com">Tekst URL</a></li><li>[email]uzytkownik@domena.com[/email] =&gt; <a href="mailto:uzytkownik@domena.com">uzytkownik@domena.com</a></li><li>[color=red]kolorowy tekst[/color] =&gt; <span style="color:red">kolorowy tekst</span></li><li>[img]http://coppermine.sf.net/demo/images/red.gif[/img] => <img src="../images/red.gif" border="0" alt="" /></li>'; //cpg1.4
+$lang_bbcode_help = 'Możesz użyć następujących kodów: <li>[b]Pogrubienie[/b] =&gt; <b>Pogrubienie</b></li><li>[i]Kursywa[/i] =&gt; <i>Kursywa</i></li><li>[url=http://twojastrona.com/]Adres URL[/url] =&gt; <a href="http://twojastrona.com">Tekst URL</a></li><li>[email]uzytkownik@domena.com[/email] =&gt; <a href="mailto:uzytkownik@domena.com">uzytkownik@domena.com</a></li><li>[color=red]kolorowy tekst[/color] =&gt; <span style="color:red">kolorowy tekst</span></li><li>[img]http://coppermine-gallery.net/demo/cpg14x/images/red.gif[/img] => <img src="../images/red.gif" border="0" alt="" /></li>'; //cpg1.4
 
 // ------------------------------------------------------------------------- //
 // File theme.php

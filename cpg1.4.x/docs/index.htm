@@ -273,51 +273,23 @@
         <ul class="level2">
                 <li class="level2"><a href="#developers" class="menu2">8.1 Coppermine team</a></li>
                 <li class="level2"><a href="#contributors" class="menu2">8.2 Contributors</a></li>
-
                 <li class="level2"><a href="#codebase" class="menu2">8.3 Code used in Coppermine</a></li>
-                <li class="level2"><a href="#copyright" class="menu2">8.4 License</a> (Copyright &amp; disclaimer)</li>
+                <li class="level2"><a href="#copyright" class="menu2">8.4 Copyright, license and disclaimer</a></li>
+        </ul>
+        <ul class="level3">
+                <li class="level3"><a href="#copyright_license">8.4.1 License</a></li>
+                <li class="level3"><a href="#copyright_additional">8.4.2 Additional terms</a></li>
+        </ul>
+        <ul class="level4">
+                <li class="level4"><a href="#copyright_additional_disclaimer">8.4.2.1 Disclaimer</a></li>
+                <li class="level4"><a href="#copyright_additional_preservation">8.4.2.2 Preservation of author attributions</a></li>
+                <li class="level4"><a href="#copyright_additional_marking">8.4.2.3 Marking of modified versions</a></li>
+        </ul>
+        <ul class="level3">
+                <li class="level3"><a href="#copyright_copyright">8.4.3 Copyrights</a></li>
         </ul>
 </div><!-- end toc -->
       <hr />
-
-<a name="testVersion"></a>
-<!--
-<h1>0. Beta (Testing) version</h1>
-<p>Dear Tester,</p>
-<p>Thank you for taking the time to test Coppermine Photo Gallery. Please be rough on the program so that we can track down and eliminate bugs from our public release of version 1.4.</p>
-<p>Please understand that this is still beta software that is meant to be used for testing purposes and not for production, so there is no support for cpg1.4.2 yet.</p>
-
-<p>While testing CPG 1.4, please make certain to note any odd behavior you encounter.  This could include typographical errors, misleading instructions, or any other out-right error.  If you encounter a major error, please switch the debug mode to &quot;on&quot; in the configuration panel and copy the text in the debug window.  This will greatly aid the development team in hunting down the problem.</p>
-
-<p><strong>Areas to be particularly mindful of:</strong></p>
-<ul>
-<li>Please test every facet of CPG, from the installation on to every feature available (and in as many themes and languages as possible).</li>
-<li>If you have the ability to test GD, GD2 and ImageMagick, please test all of them.</li>
-<li>Please attempt to use multiple types of graphics such as JPEG, PNG and GIF (for ImageMagick and GD 2.0.28+ users).</li>
-</ul>
-<p>Please report your test results to the <a href="http://coppermine.sourceforge.net/board/index.php?board=29.0">testing board</a>, but before starting a new thread make sure that the potential bug you're going to report hasn't been posted before.</p>
-
-<p><strong>The report format should include:</strong></p>
-<ul>
-<li>Server OS</li>
-<li>Web Server Software</li>
-<li>GD, GD2 or ImageMagick Test</li>
-<li>PHP Version</li>
-<li>BB Integration (if any)</li>
-<li>Themes fully tested (by fully tested, we mean as many different features as possible using that theme)</li>
-<li>Major Errors</li>
-<li>Client OS and Browser</li>
-<li>Fresh install or upgrade (if upgrade, from which version of cpg)</li>
-</ul>
-
-<p>Your test results will not merely be used to fix problems but will also be used to tout the compatibility of CPG with multiple browsers and OS's.  That is why this information is important EVEN IF YOU FIND NOTHING WRONG.</p>
-
-<p>Thanks for your participation and your time in making CPG the premiere open-source photo gallery!</p>
-
-<p>Coppermine Development Team</p>
-<p><a class="back" href="#top">Back to top</a></p><hr />
--->
-
 
 <a name="what"></a>
 <h1>1. What is required</h1>
@@ -764,7 +736,7 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
 <p>It is strongly recommended to rename your custom theme as suggested above, even if you only plan to accomplish minor changes to a default theme that coppermine comes with. The reason is quite simple: when upgrading at a later stage, you will not run into issues (e.g. accidentally overwrite your customized theme with an updated default theme).</p>
 
 <a name="theme_create_tipps"></a><h4>2.3.6.2 Tipps &amp; tricks<a href="#theme_create_tipps" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-<p>If you're not sure how to go about creating your own theme, you could also have a look at the download section of the coppermine homepage: there are many user-contributed themes available for download that can be previewed on the <a href="http://coppermine-gallery.net/demo/cpg14x/">coppermine demo page</a>.</p>
+<p>If you're not sure how to go about creating your own theme, you could also have a look at the download section of the coppermine homepage: there are many user-contributed themes available for download that can be previewed on the <a href="http://coppermine-gallery.net/demo/cpg14x/" rel="external" class="external">coppermine demo page</a>.</p>
 <p>While you're in the process of creating or testing a new theme, you might not want your theme to be displayed to visitors of your site, but you (as the coppermine admin) may want to still be able to preview your theme. To do that, simply add <tt class="code">theme=your_theme_name</tt> to the url in your browser.</p>
 <br />
 <div class="quote">
@@ -1439,7 +1411,7 @@ Use keywords to link files to other albums (see description in the albums sectio
 <p>Use the album drop down menu to move the video to another album.</p>
 <p>Use the height and width fields to set the size of the video.</p>
 <p>Video uploads are possible beginning with cpg1.3.0 (or latter) and are included as part of the distribution package. For cpg1.2.1 you must install a separate modification.</p>
-<p class="small">[cpg1.3.0 or better required]</p>
+<p class="small right_align">[cpg1.3.0 or better required]</p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <h3>4.9.2 Custom Thumbnails<a name="cust_thmb"></a></h3>
@@ -1475,7 +1447,7 @@ Your users can upload their own thumbnails by using this trick: Create an album.
 Currently, this is not possible.</li>
 </ul>
 
-<p class="small">[cpg1.3.0 or better required]</p>
+<p class="small right_align">[cpg1.3.0 or better required]</p>
 <a name="edit_pics_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
@@ -1584,7 +1556,7 @@ The process of uploading pictures is a matter of following a simple dialog. It t
 <li>You are presented with the last window of the dialog and given a choice of opening the Gallery when the upload is complete.</li>
 <li>Click "Finish" to end the XP Web Publishing Wizard and to enter the Gallery to check the new album contents.</li>
 </ul>
-<p class="small">[cpg1.1.1 or better required]</p>
+<p class="small right_align">[cpg1.1.1 or better required]</p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="upload_trouble"></a>
@@ -1627,47 +1599,47 @@ The process of uploading pictures is a matter of following a simple dialog. It t
 <a name="admin_general_home-url"></a><h4>URL of your home page</h4>
 <p>This is the URL where a user will be directed when he clicks on the &quot;Home&quot; button in the main menu.</p>
 <p>You can use &quot;/&quot; for the root of your domain, &quot;index.php&quot; for your gallery's default starting page, or any other valid URL. By default this is "index.php".</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+<p class="small right_align">[cpg1.4.0 or better required]</p>
 <a name="admin_general_home-url_end"></a>
 <a name="admin_general_zip-download"></a><h4>Allow ZIP-download of favorites</h4>
-<p>When enabled, users of your site may download files that they previously saved into their <em>favorites</em> collection. These files are dowloaded from the user's &quot;My favorites&quot; page and saved onto their computers in a zip-file format. This option requires zlib to be installed on your server (run <a href="http://www.php.net/phpinfo" class="external">phpinfo</a> to check if this php library file exists on your server).</p>
-<p class="small">[cpg1.3.0 or better required]</p>
+<p>When enabled, users of your site may download files that they previously saved into their <em>favorites</em> collection. These files are dowloaded from the user's &quot;My favorites&quot; page and saved onto their computers in a zip-file format. This option requires zlib to be installed on your server (run <a href="http://www.php.net/phpinfo" rel="external" class="external">phpinfo</a> to check if this php library file exists on your server).</p>
+<p class="small right_align">[cpg1.3.0 or better required]</p>
 <a name="admin_general_zip-download_end"></a>
 <a name="admin_general_time-offset"></a><h4>Timezone difference relative to GMT</h4>
 <p>Specify the time zone difference between your local time and the time zone your webserver is in. This value will be used to adjust time stamps in ecards and other places.</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+<p class="small right_align">[cpg1.4.0 or better required]</p>
 <a name="admin_general_time-offset_end"></a>
 <a name="admin_general_encrypt_password_start"></a><h4>Enable encrypted passwords</h4>
 <p>This option affects changes on user passwords that are stored as plain text in your database (this is the case if you have upgraded from previous versions of coppermine that did not have this feature). It will encrypt all passwords in the database, and all future passwords will be stored encypted as well. This process can not be reversed: once encryption in turned on, it can not be turned off, so use this option only after giving it some serious consideration.</p>
 <p>This option increases user security in coppermine, but comes with a drawback inherent to this method: even the admin will not be able to recover a lost password of a user (or his own password). The password can only be reset to another value using the "I forgot my password" option during login.</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+<p class="small right_align">[cpg1.4.0 or better required]</p>
 <a name="admin_general_encrypt_password_end"></a>
 <a name="admin_general_help"></a><h4>Enable help-icons</h4>
 <p>Enables the display of help icons in various sections of the coppermine admin pages. When enabled, make sure you have also uploaded the "docs" folder into your coppermine folder on your webserver.</p>
 <p>If you choose to set this to &quot;Yes: everyone&quot;, logged in (registered) users will be able to see the help icons in strategic locations as well, e.g. when creating a user gallery.</p>
 <p>As the help text is based on the documentation that comes with coppermine, it is available in English only. If the native language of your user(s) is not English, it is advisable to set this option to &quot;Yes: admin only&quot; to avoid confusion among your users.</p>
 <p>It is strongly recommended that you do not disable the help icons altogether: even though you feel that you know your way around in your Coppermine install, the help icons might help you with the functinos of a new or unfamiliar option later.</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+<p class="small right_align">[cpg1.4.0 or better required]</p>
 <a name="admin_general_help_end"></a>
 <a name="admin_general_keywords_start"></a><h4>Enable clickable keywords in search</h4>
 <p>When enabled, a list of all keywords entered in the &quot;<a href="#edit_pics">Edit files</a>&quot; page will appear at the bottom of the search page, with each keyword being a clickable search link. Enabling this option is recommended only if you have a small number of keywords in use (e.g. less than 100) - it will provide your users with some ideas as to what they could be searching for in your gallery (in addition to the standard full-text search). Please note that enabling this option for a large list of keywords (e.g. thousands of keywords) can slow down the search page considerably and may be confusing for new users and visitors to your site.</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+<p class="small right_align">[cpg1.4.0 or better required]</p>
 <a name="admin_general_keywords_end"></a>
 <a name="admin_general_enable-plugins"></a><h4>Enable plugins</h4>
 <p>Enable or disable <a href="#plugin">plugins</a>, with a link to the <a href="#plugin_manager">plugin manager</a>. This is a brand-new feature of coppermine. This feature allows advanced copperminers to create plug-ins that can control the way coppermine looks and behaves without modifying the inherent code of the script itself. We anticipate many exciting, user-contributed, plug-ins in the near future.  More details can be found in the <a href="#plugin_start">plugins section of this documentation</a>.  Since plugins add on to the core Coppermine system, if you are having problems, try to disable all plugins using this setting to see if a plugin may be at fault.  If so, you can then enable all plugins here, then uninstall or install one plugin at a time in the <a href="#plugin_manager">plugin manager</a> to figure out which one is at fault.</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+<p class="small right_align">[cpg1.4.0 or better required]</p>
 <a name="admin_general_enable-plugins_end"></a>
 
 <a name="admin_general_private-ip"></a><h4>Allow banning of non-routable (private) IP addresses</h4>
 <p>Today, most people on the internet have dynamic IP addresses that are assigned to them when connecting to the internet by their Internet Service Provider. These IP adresses change each time the user connects to the internet, but during an internet session these IP addresses are &quot;visible&quot; at the web-sites that thee user is surfing. Within the range of all IP adresses (0.0.0.0 to 255.255.255.255), certan ranges are reserved for special purposes (mostly for the use on private networks). The banning feature will not accept IP adresses banning of addresses that belong to these private ranges (e.g. 192.168.0.1). This is necessary to prevent unexperienced, as well as experienced, coppermine admins from banning IP addresses within their own LAN. If you're actually running Coppermine on your LAN/WAN that uses private IP addresses (e.g. on a company's intranet) and you want the authority to be able to ban users, switch this option to &quot;Yes&quot;. If you're running coppermine on a webserver located in the internet (e.g. you're webhosted), you should keep this option set to &quot;No&quot;.<br />
 If you don't use banning at all, you can safely ignore this setting completely.</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+<p class="small right_align">[cpg1.4.0 or better required]</p>
 <a name="admin_general_private-ip_end"></a>
 
 <a name="admin_general_browsable_batch_add"></a><h4>Browsable batch-add interface</h4>
 <p>When <a href="#batch_add_pics">batch-adding</a> files (that you have uploaded using <acronym title="File Transfer Protocol">FTP</acronym> before) to your gallery, you have the option to switch between a browsable list, where you can go scroll through the directory structure in your <tt class="code">albums</tt>-folder or to display the whole directory structure at once. Enable this option if you have a larger structure of directories and subdirectories you want to browse through (this requires your browser to be capable of displaying <a href="http://www.w3schools.com/tags/tag_iframe.asp" class="external" rel="external">iframes</a>). Set this option to &quot;No&quot; (disabled) if you want to use the &quot;classic&quot; coppermine interface that shows a complete list of the structure at once.<br />
 Should you have difficulties using one, try the other. You can toggle between these options on the <a href="#batch_add_pics">batch-add</a> page as well.</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+<p class="small right_align">[cpg1.4.0 or better required]</p>
 <a name="admin_general_browsable_batch_add_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
@@ -1676,7 +1648,7 @@ Should you have difficulties using one, try the other. You can toggle between th
 <p><img src="pics/config_language.gif" width="612" height="234" border="1" alt="" /></p>
 <a name="admin_language_language"></a><h4>Language</h4>
 <p>This sets the default language for your gallery.</p>
-<p>Coppermine has a separate language file that makes the translation of the script much more easy. The language files are stored in the <strong>lang </strong>directory. The files are unicode encoded (utf-8). They are automatically generated with the <a href="http://www.iconv.com/iconv.htm" class="external">iconv</a> program so there is no need for you to make an unicode version of your translation.</p>
+<p>Coppermine has a separate language file that makes the translation of the script much more easy. The language files are stored in the <strong>lang </strong>directory. The files are unicode encoded (utf-8). They are automatically generated with the <a href="http://www.iconv.com/iconv.htm" rel="external" class="external">iconv</a> program so there is no need for you to make an unicode version of your translation.</p>
 <p>If you select utf-8 to be the default encoding in coppermine's config, then the script will be able to automatically select a language file based on the visitor browser configuration.</p>
 <p>Here's how coppermine determines the language of a user: when accessed, coppermine checks if a user explicitely has set a language preference (which is stored in a cookie on the client). If one is set, coppermine is being displayed in that particular language.</p>
 <p>If no individual language preference has been set, coppermine detects the language preference of a user set up in his browser. If the browser language is (for example) English, then coppermine will display in English.</p>
@@ -1693,21 +1665,21 @@ Should you have difficulties using one, try the other. You can toggle between th
 <a name="admin_language_language_end"></a>
 <a name="admin_language_fallback"></a><h4>Fallback to English if translated phrase not found?</h4>
 <p>Enable this option if you're using languages other than english. If a certain word or phrase doesn't exist within your language file, coppermine will display the equivalent english phrase, instead.</p><p>This feature has been introduced to allow the use of previous version language files -- language files that may have not been translated for the this version, yet. Until an updated version of the language file is made available, you can use this option. Most translation differences affect the admin part of coppermine only, so  the admin will experience most of these untranslated strings. The admin will see some phrases in english instead of his/her preferred language for strings and words that don't exist in the currently available language file. NOTE: this fallback option only works for 95% of all phrases, there may still be some other translation omissions.</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+<p class="small right_align">[cpg1.4.0 or better required]</p>
 <a name="admin_language_fallback_end"></a>
 <a name="admin_language_charset"></a><h4>Character encoding</h4>
 <p>This should normally be set to "Unicode (utf-8)" (or "Default (language file)"). See the discussion in the &quot;<strong><a href="#admin_language">language</a></strong>&quot; section of this page.</p>
 <a name="admin_language_list"></a><h4>Display language list</h4>
 <p>Enable this option if you want your users to be able to select a preferred language from a dropdown list (you can specify to display only the list itself or a label saying &quot;<strong>Choose your language:</strong>&quot; in front of the list). Edit your template file (/themes/yourtheme/template.html) to specify where the language dropdown list should appear on your gallery (look for the call tag: <strong>{LANGUAGE_SELECT_LIST}</strong>).</p>
-<p class="small">[cpg1.3.0 or better required]</p>
+<p class="small right_align">[cpg1.3.0 or better required]</p>
 <a name="admin_language_list_end"></a>
 <a name="admin_language_flags"></a><h4>Display language flags</h4>
 <p>Enable this option if you would like the option of having your users select languages appropriate for their use by merely clicking on a flag icon which representing their language or country (you can specify to display the flags themselves or include a label that states: &quot;<strong>Choose your language:</strong>&quot; in front of the flags). Edit your template file (/themes/yourtheme/template.html) to specify where the flags should appear in your gallery (look for the call tag:<strong>{LANGUAGE_SELECT_FLAGS}</strong>).</p>
-<p class="small">[cpg1.3.0 or better required]</p>
+<p class="small right_align">[cpg1.3.0 or better required]</p>
 <a name="admin_language_flags_end"></a>
 <a name="admin_language_reset"></a><h4>Display &quot;reset&quot; in the language selection</h4>
 <p>This option only applies only if you enabled user language selection - it will show a &quot;default&quot;-icon or list entry to let the users go back to the original language of your gallery.</p>
-<p class="small">[cpg1.3.0 or better required]</p>
+<p class="small right_align">[cpg1.3.0 or better required]</p>
 <a name="admin_language_reset_end"></a>
 <a name="admin_language_charset_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
@@ -1720,11 +1692,11 @@ Should you have difficulties using one, try the other. You can toggle between th
 <a name="admin_theme_theme_list"></a><h4>Display theme list</h4>
 <p>Enable this option if you want your users to be able to select other themes from a dropdown list (you can specify to display only the list itself or a label saying &quot;<strong>Choose your theme:</strong>&quot; in front of the list). Edit your template file (/themes/yourtheme/template.html) to specify where the theme dropdown list should appear on your gallery (look for <strong>{THEME_SELECT_LIST}</strong>).</p>
 <p>This option only makes sense if you have at least one alternative theme in your /themes/ folder other than your default theme. We recommend using this option only if there's are additional benefits for the user (for example a theme with less graphics in it that loads faster for users on a dial-up connection, or a theme with reduced color pallettes and good contrast).</p>
-<p class="small">[cpg1.3.0 or better required]</p>
+<p class="small right_align">[cpg1.3.0 or better required]</p>
 <a name="admin_theme_theme_list_end"></a>
 <a name="admin_theme_theme_reset"></a><h4>Display &quot;reset&quot; in theme selection</h4>
 <p>This option applies only if you enabled the user theme selection option - it will show a &quot;default&quot; list entry to let the users go back to the original theme of your gallery.</p>
-<p class="small">[cpg1.3.0 or better required]</p>
+<p class="small right_align">[cpg1.3.0 or better required]</p>
 <a name="admin_theme_theme_reset_end"></a>
 <a name="admin_theme_faq"></a><h4>Display FAQ</h4>
 <p>This option adds a &quot;FAQ&quot; link to the menu bar when enabled. If a user clicks on it, it will display a list of &quot;Frequently asked question&quot; on how to use coppermine. To change the content of the FAQ, edit the file /your_coppermine_folder/lang/yourlanguage.php (e.g. english.php) and look for</p>
@@ -1732,34 +1704,34 @@ Should you have difficulties using one, try the other. You can toggle between th
 // File faq.php
 // ------------------------------------------------------------------------- //</pre>
 <p>Edit the content that comes after it.</p>
-<p class="small">[cpg1.3.0 or better required]</p>
+<p class="small right_align">[cpg1.3.0 or better required]</p>
 <a name="admin_theme_faq_end"></a>
 <a name="admin_theme_custom_lnk_name"></a><h4>Name of your custom link</h4>
 <p>Use this if you want to create a custom link that will appear in the menu. What you enter here will be the name of the menu link or button.  Leave space blank if you do not have any specific use for it.</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+<p class="small right_align">[cpg1.4.0 or better required]</p>
 <a name="admin_theme_custom_lnk_name_end"></a>
 <a name="admin_language_custom_lnk_url"></a><h4>URL of your custom link</h4>
 <p>This is the URL where the user's browser will be directed to when s/he clicks on the &quot;Custom link name&quot; button in the main menu.</p>
 <p>You can use any valid URL.</p>
 <p>Leave this blank if you do not have any specific use for it.</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+<p class="small right_align">[cpg1.4.0 or better required]</p>
 <a name="admin_language_custom_lnk_url_end"></a>
 <a name="admin_theme_bbcode"></a><h4>Display bbcode help</h4>
 <p>When enabled, this will display the <a href="#bbcode">bulletin board codes</a> that may be used in description fields to help with the formatting of text, images and links.</p>
-<p class="small">[cpg1.3.0 or better required]</p>
+<p class="small right_align">[cpg1.3.0 or better required]</p>
 <a name="admin_theme_bbcode_end"></a>
 <a name="vanity_block"></a><h4>Display the vanity block on themes that are defined as XHTML and CSS compliant</h4>
 <p>When enabled and using a theme that has been defined as XHTML and CSS compliant, the vanity block will be shown. The vanity block contains the logos and links for HTML and CSS compliance at w3.org, as well as pointers to the PHP, and MySQL projects.</p>
-<p class="small">[cpg1.4.2 or better required]</p>
+<p class="small right_align">[cpg1.4.2 or better required]</p>
 <a name="vanity_block_end"></a>
 <a name="admin_theme_include_path_start"></a>
 <h4>Path to custom header include</h4>
 <p>Optional relative path to a custom header file. Using this option, you can include non-coppermine code bits to be included into your theme, e.g. an overall navigation that gets included on your whole website. You can only add a relative path (seen from the root path of your coppermine install) - not an absolute one, nor a http include from another website. This option is only meant for experienced users who have some PHP know-how. </p>
 <p><span class="important">Warning: you mustn't include full html pages that contain an html header or footer (tags like <tt class="code">&lt;head&gt;</tt> or <tt class="code">&lt;body&gt;</tt>), nor can the included file do file header manipulation, e.g. reading another (non-coppermine) cookie.</span></p>
-<p class="small">[cpg1.4.0 or better required]</p>
+<p class="small right_align">[cpg1.4.0 or better required]</p>
 <h4>Path to custom footer include</h4>
 <p>Optional relative path to a custom footer file. The same remarks apply as for the custom header include path.</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+<p class="small right_align">[cpg1.4.0 or better required]</p>
 <a name="admin_theme_include_path_end"></a>
 <a name="admin_theme_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
@@ -1814,11 +1786,11 @@ Should you have difficulties using one, try the other. You can toggle between th
 <a name="admin_album_list_alphasort_start"></a>
 <h4>Sort categories alphabetically (instead of custom sort order)</h4>
 <p>You can dictate that coppermine sort all categories alphabetically (instead of in a custom order) by setting &quot;Sort categories alphabetically&quot; to &quot;Yes&quot;. This setting is accessible both in the coppermine config menu and in the category manager. If you enable alphabetical sorting, the up and down arrows that normally let you move  categories up and down in the custom sorting list will disappear.</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+<p class="small right_align">[cpg1.4.0 or better required]</p>
 <a name="admin_album_list_alphasort_end"></a>
 <a name="admin_album_linked_files_start"></a><h4>Show number of linked files</h4>
 <p>If you use album keywords to display images/files in more than one album, enabling this option will display additional information for the album stats: if an album doesn't only contain &quot;regular&quot; files, but files linked via the "<a href="#album_prop_keyword_start">album keyword</a>" option as well, the number of linked files will be displayed separately like this "3 files, last one added on Oct 07, 2004<em>, 3 linked files, 6 files total</em>".</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+<p class="small right_align">[cpg1.4.0 or better required]</p>
 <a name="admin_album_linked_files_end"></a>
 <a name="admin_album_list_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
@@ -1840,32 +1812,32 @@ Should you have difficulties using one, try the other. You can toggle between th
 <a name="admin_thumbnail_display_caption"></a>
 <h4>Display file caption (in addition to title) below the thumbnail </h4>
 <p>Toggles whether the file caption is displayed below each thumbnail while user is in (regular) thumbnail view.</p>
-<p class="small">[cpg1.3.0 or better required]</p>
+<p class="small right_align">[cpg1.3.0 or better required]</p>
 <a name="admin_thumbnail_display_caption_end"></a>
 <a name="admin_thumbnail_display_views"></a>
 <h4>Display number of views below the thumbnail</h4>
 <p>Toggles whether the number of views is displayed below each thumbnail while user is in thumbnail view.</p>
-<p class="small">[cpg1.3.0 or better required]</p>
+<p class="small right_align">[cpg1.3.0 or better required]</p>
 <a name="admin_thumbnail_display_views_end"></a>
 <a name="admin_thumbnail_display_comments"></a>
 <h4>Display number of comments below the thumbnail</h4>
 <p>Toggles the display of the number of comments for below each thumbnail.</p>
-<p class="small">[cpg1.3.0 or better required]</p>
+<p class="small right_align">[cpg1.3.0 or better required]</p>
 <a name="admin_thumbnail_display_comments_end"></a>
 <a name="admin_thumbnail_display_uploader"></a>
 <h4>Display uploader name below the thumbnail</h4>
 <p>Toggles the display of the name of non-admin uploaders below each thumbnail.</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+<p class="small right_align">[cpg1.4.0 or better required]</p>
 <a name="admin_thumbnail_display_uploader_end"></a>
 <a name="admin_thumbnail_display_admin_uploader"></a>
 <h4>Display names of admin uploaders below the thumbnail</h4>
 <p>Toggles the display of admin uploader names below each thumbnail for users that have the administrators group set as thier default group.</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+<p class="small right_align">[cpg1.4.0 or better required]</p>
 <a name="admin_thumbnail_display_admin_uploader_end"></a>
 <a name="admin_thumbnail_display_filename"></a>
 <h4>Display the file name below the thumbnail</h4>
 <p>Toggles the display of the file name below each thumbnail.</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+<p class="small right_align">[cpg1.4.0 or better required]</p>
 <a name="admin_thumbnail_display_filename_end"></a>
 <a name="admin_thumbnail_display_description"></a>
 <h4>Display album description</h4>
@@ -1901,17 +1873,17 @@ Should you have difficulties using one, try the other. You can toggle between th
 <a name="admin_image_comment_filmstrip_toggle"></a>
 <h4>Show film strip</h4>
 <p>Toggles display of a "film strip" showing thumbnails of prior and subsequent files in the album.</p>
-<p class="small">[cpg1.2.0 or better required]</p>
+<p class="small right_align">[cpg1.2.0 or better required]</p>
 <a name="admin_image_comment_filmstrip_toggle_end"></a>
 <a name="admin_image_comment_display_film_strip_filename"></a>
 <h4>Display file name under film strip thumbnail</h4>
 <p>Toggles the display of the file name below each thumbnail in the film strip.</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+<p class="small right_align">[cpg1.4.0 or better required]</p>
 <a name="admin_image_comment_display_film_strip_filename_end"></a>
 <a name="admin_image_comment_filmstrip_number"></a>
 <h4>Number of items in film strip</h4>
 <p>Sets the number of thumbnails to display in film strip. The number you can set here is dependent on your thumbnail size and monitor size. If you do not want to inconvenience users with smaller monitors set this value between 4-6.</p>
-<p class="small">[cpg1.2.0 or better required]</p>
+<p class="small right_align">[cpg1.2.0 or better required]</p>
 <a name="admin_image_comment_filmstrip_number_end"></a>
 <a name="admin_image_comment_slideshow_interval"></a>
 <h4>Slideshow interval in milliseconds</h4>
@@ -1997,7 +1969,7 @@ Descending: latest comment at the top, oldest comment at the bottom</p>
 <p>There are three options:</p>
 <ul><li>No - Disabled</li><li>Yes: Everyone - Enabled for all users, including the Admin during batch-add process.</li>
 <li>Yes: User only - Enabled only for regular users</li></ul>
-<p class="small">[cpg1.4.0 or better required]</p>
+<p class="small right_align">[cpg1.4.0 or better required]</p>
 <a name="admin_picture_thumbnail_auto-resize_end"></a>
 <a name="admin_picture_thumbnail_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
@@ -2023,13 +1995,13 @@ Descending: latest comment at the top, oldest comment at the bottom</p>
 <a name="admin_picture_thumb_advanced_pic_extensions"></a>
 <h4>Allowed image types</h4>
 <p>&quot;<em>ALL</em>&quot; will result in all allowed image file types that your image library (GD or ImageMagick) is capable of handling to be allowed as uploads and content in your gallery. If you want to restrict the allowed file types to certain types only, enter a slash-separated list of extensions, e.g. <tt class="code">jpg/bmp/tif</tt></p>
-<p class="small">[cpg1.3.0 or better required]</p>
+<p class="small right_align">[cpg1.3.0 or better required]</p>
 <a name="admin_picture_thumb_advanced_pic_extensions_end"></a>
 <a name="admin_thumbs_advanced_movie"></a>
 <h4>Allowed movie types</h4>
 <p>&quot;<em>ALL</em>&quot; will result in all allowed movie file types to be uploaded. If you want to restrict the allowable file types to certain extensions only, enter a slash-separated list of extensions, e.g. <tt class="code">wmv/avi/mov</tt>.</p>
 <p>Note that being able to display a movie requires that the cpg-user have the necessary codecs properly configured on their computers to display the movie file, e.g. if you allow the file type <tt class="faq">mov</tt>, the user who wishes to view the file will need to have Apple's Quick-Time plug-in installed. Also note that <tt class="code">avi</tt> is just a container for different codecs - this means that a computer which is capable of playing movie1.avi may not be capable of playing movie2.avi if those files have been encoded with different 'avi' codecs.</p>
-<p class="small">[cpg1.3.0 or better required]</p>
+<p class="small right_align">[cpg1.3.0 or better required]</p>
 <a name="admin_thumbs_advanced_movie_end"></a>
 <a name="admin_movie_autoplay"></a>
 <h4>Movie Playback Autostart</h4>
@@ -2040,14 +2012,14 @@ Descending: latest comment at the top, oldest comment at the bottom</p>
 <p>&quot;<em>ALL</em>&quot; will result in all allowable audio file types to be uploaded. If you want to restrict the allowed file types to certain extensions only, enter a slash-separated list of extensions, e.g. <tt class="code">wav/mp3/wma</tt>.</p>
 <p>Note that being able to listen to an audio file requires that the cpg-user have the necessary codecs properly configured on their computers to hear these files, e.g. if you allow the file type <tt class="code">mp3</tt>, users who wish to listen to the file will need to have a media player installed on their computer that can handle mp3 files.</p>
 <p class="important">Warning: if your webserver is not hardened against an exploit of a vulnerability in the apache webserver setup, then it might be a security risk to allow the upload of <tt class="code">ram</tt>, <tt class="code">ra</tt> and <tt class="code">rm</tt>-files. If you're not sure, do not allow this file types.</p>
-<p class="small">[cpg1.3.0 or better required]</p>
+<p class="small right_align">[cpg1.3.0 or better required]</p>
 <a name="admin_picture_thumb_advanced_audio_extensions_end"></a>
 <a name="admin_picture_thumb_advanced_doc_extensions"></a>
 <h4>Allowed document types</h4>
 <p>&quot;<em>ALL</em>&quot; will result in all allowable document file types to be uploaded. If you want to restrict the allowable file types to certain extensions only, enter a slash-separated list of extensions, e.g. <tt class="code">txt/pdf</tt>.</p>
 <p>Note that being able to browse a document file requires the cpg-user to have a compatible software installed and configured properly on their computer that is capable of displaying the type of document in question, e.g. if you allow the file type <tt class="code">xls</tt>, users who wish to browse the file will need to have an application installed on their computer that can display MS-Excel sheets. Be extremely careful with  document that are known to be vulnerable to virus contamination, embedded or as macros. This is especially true if you plan to allow users the capability of uploading documents without admin approval.</p>
 <p class="important">Warning: if your webserver is not hardened against an exploit of a vulnerability in the apache webserver setup, then it might be a security risk to allow the upload of <tt class="code">rar</tt>-files. If you're not sure, do not allow this file type.</p>
-<p class="small">[cpg1.3.0 or better required]</p>
+<p class="small right_align">[cpg1.3.0 or better required]</p>
 <a name="admin_picture_thumb_advanced_doc_extensions_end"></a>
 <a name="admin_picture_thumb_advanced_resize_method"></a>
 <h4>Method for resizing images</h4>
@@ -2071,13 +2043,13 @@ Descending: latest comment at the top, oldest comment at the bottom</p>
 <a name="admin_picture_thumb_advanced_im_commandline_end"></a>
 <a name="admin_picture_thumb_advanced_exif"></a>
 <h4>Read EXIF data in JPEG files</h4>
-<p>With this option turned on, the script will read the EXIF data stored by digicams in JPEG files. For cpg1.x to cpg1.2.1, this option will work only if PHP was compiled with the EXIF extension. Coppermine 1.3.0 (or better) comes with built-in EXIF support even if the webserver itself doesn't have EXIF support, as it uses a <a href="http://www.offsky.com/software/exif/index.php" class="external">separate EXIF class</a>.</p>
-<p class="small">[cpg1.3.0 or better required]</p>
+<p>With this option turned on, the script will read the EXIF data stored by digicams in JPEG files. For cpg1.x to cpg1.2.1, this option will work only if PHP was compiled with the EXIF extension. Coppermine 1.3.0 (or better) comes with built-in EXIF support even if the webserver itself doesn't have EXIF support, as it uses a <a href="http://www.offsky.com/software/exif/index.php" rel="external" class="external">separate EXIF class</a>.</p>
+<p class="small right_align">[cpg1.3.0 or better required]</p>
 <a name="admin_picture_thumb_advanced_exif_end"></a>
 <a name="admin_picture_thumb_advanced_iptc"></a>
 <h4>Read IPTC data in JPEG files</h4>
-<p>With this option turned on, the script will read the <a href="http://www.iptc.org/" class="external">IPTC</a> data stored by digicams in picture files.</p>
-<p class="small">[cpg1.3.0 or better required]</p>
+<p>With this option turned on, the script will read the <a href="http://www.iptc.org/" rel="external" class="external">IPTC</a> data stored by digicams in picture files.</p>
+<p class="small right_align">[cpg1.3.0 or better required]</p>
 <a name="admin_picture_thumb_advanced_iptc_end"></a>
 <a name="admin_picture_thumb_advanced_albums_dir"></a>
 <h4>The album directory</h4>
@@ -2125,7 +2097,7 @@ Descending: latest comment at the top, oldest comment at the bottom</p>
 <h4>Allow unlogged users (guest or anonymous) access</h4>
 <p>When set to &quot;No&quot;, unlogged users (i.e. guests or anonymous users) can not access anything in your gallery except the login screen (and the registration screen, if you allow registrations). Completely disabling anonymous access will probably decrease your site's popularity. Use this option only if you need your gallery to be absolutely private. The recommended setting is to leave anonymous access enabled and use the more specific permissions by groups and albums settings instead.</p>
 <a name="admin_allow_unlogged_access_end"></a>
-<p class="small">[cpg1.4.0 or better required]</p>
+<p class="small right_align">[cpg1.4.0 or better required]</p>
 <a name="admin_allow_registration_end"></a>
 <a name="admin_registration_verify"></a>
 <h4>User registration requires email verification</h4>
@@ -2135,11 +2107,11 @@ Descending: latest comment at the top, oldest comment at the bottom</p>
 <h4>Notify admin of user registration by email</h4>
 <p>If set to YES an email will be sent to the gallery admin when a new user registers.</p>
 <a name="admin_registration_notify_end"></a>
-<p class="small">[cpg1.3.0 or better required]</p>
+<p class="small right_align">[cpg1.3.0 or better required]</p>
 <a name="admin_activation"></a><h4>Admin Activation</h4>
 <p>Enable admin activation. When set to yes, a gallery administrator must first activate the new registration before the user can log-in and take advantage of any registered user privileges.</p>
 <p>By default, it is set to no, so users would activate their own accounts upon registering.</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+<p class="small right_align">[cpg1.4.0 or better required]</p>
 <a name="admin_activation_end"></a>
 <a name="admin_allow_duplicate_emails_addr"></a>
 <h4>Allow two users to have the same email address</h4>
@@ -2150,38 +2122,38 @@ address. Recommended setting is NO. As most internet users today have more than 
 <h4>Notify admin of user upload awaiting approval</h4>
 <p>When enabled, the gallery admin receives an email notification of all pics that await for his/her approval (depends on the approval settings in &quot;<a href="#group_cp">groups</a>&quot;). The email is sent to the address specified in &quot;<a href="#admin_general">General settings</a>&quot;.</p><p>This option is only recommended for websites with low or medium traffic (where users only upload every now and then).</p>
 <a name="admin_approval_notify_end"></a>
-<p class="small">[cpg1.3.0 or better required]</p>
+<p class="small right_align">[cpg1.3.0 or better required]</p>
 <a name="admin_user_memberlist"></a>
 <h4>Allow logged in users to view memberlist</h4>
-<p>When enabled, an additional menu item &quot;Memberlist&quot; is displayed in the coppermine main menu if a user is logged in, to let him see a list of all users, with stats on their last visits, uploads and quota usage.</p><p>This is a new feature since cpg1.3.0 (user contribution by <a href="#contributors">Jason</a>) - it's available as <a href="http://sourceforge.net/project/showfiles.php?group_id=89658&amp;package_id=98542">mod</a> (not in the regular coppermine package) for older versions than cpg1.3.0.</p>
+<p>When enabled, an additional menu item &quot;Memberlist&quot; is displayed in the coppermine main menu if a user is logged in, to let him see a list of all users, with stats on their last visits, uploads and quota usage.</p><p>This is a new feature since cpg1.3.0 (user contribution by <a href="#contributors">Jason</a>) - it's available as <a href="http://sourceforge.net/project/showfiles.php?group_id=89658&amp;package_id=98542" rel="external" class="external">mod</a> (not in the regular coppermine package) for older versions than cpg1.3.0.</p>
 <a name="admin_user_memberlist_end"></a>
-<p class="small">[cpg1.3.0 or better required]</p>
+<p class="small right_align">[cpg1.3.0 or better required]</p>
 <a name="admin_user_allow_email_change"></a><h4>Allow users to change their email address in profile</h4>
 <p>This option impacts the user's profile page, it determines whether or not the user can change his/her own email address.<br />Use this option wisely, as the old email address of a user is not preserved after a change: if you allow users to change their email address, abusers may change it to a non-existing email address (e.g. after uploading some pics that go against your gallery's rules) - you would have no chance of tracking this user.</p>
 <p>This option only applies if you use Coppermine as a standalone application; if you run Coppermine integrated with a bbs, this option will be deferred to the user profile from your bbs to manage each user's profile.</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+<p class="small right_align">[cpg1.4.0 or better required]</p>
 <a name="admin_user_allow_email_change_end"></a>
 <a name="admin_user_editpics_public_start"></a><h4>Allow users to retain control over their pics in public galleries</h4>
 <p>When enabled, both the admin and the uploading user can edit and delete files that were uploaded to a public gallery. Of course the user must have permissions to upload to the public gallery in the first place (see the <a href="#group_cp">groups control panel</a>) before this option will have any effect.</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+<p class="small right_align">[cpg1.4.0 or better required]</p>
 <a name="admin_user_editpics_public_end"></a>
 <a name="admin_user_login_start"></a>
 <a name="admin_user_login_threshold_start"></a>
 <h4>Number of failed login attempts until temporary ban (to avoid brute force attacks)</h4>
 <p>To make brute force attacks (where a hostile script tries to log into coppermine as admin by running through all possible combinations of username and password automatically) less effective Coppermine temporarily bans the IP address of a possible attacker after a certain amount of failed logins. This way, the brute force attack would need way to long to try all possible combinations.</p>
 <p>With this setting you specify the maximum number of failed log-in attempts before the IP address of the user is temporarily banned.</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+<p class="small right_align">[cpg1.4.0 or better required]</p>
 <a name="admin_user_login_threshold_end"></a>
 <a name="admin_user_login_expiry_start"></a>
 <h4>Duration of a temporary ban after failed logins</h4>
 <p>This value specifies the duration of the temporary ban (in minutes) after the number of failed log-in attempts specified with <a href="#admin_user_login_threshold_start">Number of failed login attempts until temporary ban</a>.</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+<p class="small right_align">[cpg1.4.0 or better required]</p>
 <a name="admin_user_login_expiry_end"></a>
 <a name="admin_user_login_end"></a>
 <a name="admin_user_enable_report"></a><h4>Enable reports</h4>
 <p>Enable reports. When set to "yes," this feature will allow users to report on uploaded files or comments to the site admin.</p>
 <p>This setting is dependant on e-cards being enabled.  Only users who have permission to send e-cards in the 'groups' settings are able to send reports. The report icon is hidden from those not allowed to do so.</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+<p class="small right_align">[cpg1.4.0 or better required]</p>
 <a name="admin_user_enable_report_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
@@ -2218,13 +2190,13 @@ address. Recommended setting is NO. As most internet users today have more than 
 <h4>SMTP Host</h4>
 <p>The hostname of the <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> server<br />
 If you leave this blank, sendmail (or a surrogate) will be used to send emails from your server. Sendmail exists on most Unix/Linux webservers. If you specify a SMTP hostname, Coppermine will try to send emails using SMTP (this usually is needed on Windows webservers).</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+<p class="small right_align">[cpg1.4.0 or better required]</p>
 <h4>SMTP Username</h4>
 <p>The username needed to authenticate on the SMTP server (this is <strong>not</strong> your coppermine admin username).</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+<p class="small right_align">[cpg1.4.0 or better required]</p>
 <h4>SMTP Password</h4>
 <p>The password that goes with above mentioned username (<strong>not</strong> identical to your coppermine admin password).</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+<p class="small right_align">[cpg1.4.0 or better required]</p>
 <a name="admin_email_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
@@ -2234,11 +2206,11 @@ If you leave this blank, sendmail (or a surrogate) will be used to send emails f
 <a name="admin_logging_log_mode"></a><h4>Logging mode</h4>
 <p>Set, what kind of logging you want to enable. This feature records all changes that are done in coppermine's database, which is especially helpful if you're trying to debug or if there are various admins on a gallery.<br />
 All log files are written in english</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+<p class="small right_align">[cpg1.4.0 or better required]</p>
 <a name="admin_logging_log_mode_end"></a>
 <a name="admin_general_log_ecards"></a><h4>Log ecards</h4>
 <p>When enabled, all ecards that are being sent are as well written into the database, where the coppermine admin can view them. Before switching this option on, make sure that logging is legal in your country. It is also advisable to notify your users that all ecards are being logged (preferrably on the registration screen).</p>
-<p class="small">[cpg1.3.0 or better required]</p>
+<p class="small right_align">[cpg1.3.0 or better required]</p>
 <a name="admin_general_log_ecards_end"></a>
 <a name="admin_logging_votedetails"></a><h4>Keep detailed vote statistics</h4>
 <p>
@@ -2280,8 +2252,8 @@ All log files are written in english</p>
 <a name="admin_misc"></a>
 <h3>4.12.16 Miscellaneous settings</h3>
 <a name="debug_mode"></a><h4>Enable debug mode</h4>
-<p>CPG will show error messages which are normally suppressed.  This is helpful in troubleshooting problems with your gallery or when asking      for help on the <a href="http://coppermine.sourceforge.net/board/">CPG Support Forums</a>. Turn this feature off if you don't experience problems.</p>
-<p>Turn it on (option &quot;Everyone&quot;) if you are requesting help on the <a href="http://coppermine.sourceforge.net/board/">coppermine support board</a>, so the supporters can have a look at the debug output as well. Choose the option &quot;Admin only&quot; when troubleshooting on your own - debug output will be only visible when you're logged in as admin, regular users or guests won't see the debug output.</p>
+<p>CPG will show error messages which are normally suppressed.  This is helpful in troubleshooting problems with your gallery or when asking      for help on the <a href="http://coppermine-gallery.net/forum/" rel="external" class="external">CPG Support Forums</a>. Turn this feature off if you don't experience problems.</p>
+<p>Turn it on (option &quot;Everyone&quot;) if you are requesting help on the <a href="http://coppermine-gallery.net/forum/" rel="external" class="external">coppermine support board</a>, so the supporters can have a look at the debug output as well. Choose the option &quot;Admin only&quot; when troubleshooting on your own - debug output will be only visible when you're logged in as admin, regular users or guests won't see the debug output.</p>
 <a name="admin_misc_debug_notices"></a><h4>Display notices in debug mode</h4>
 <p>May be helpful to troubleshoot problems with your coppermine install - only recommended if you know a little PHP and you can understand the additional error messages this option shows. This option only applies if debug mode is enabled.</p>
 <a name="admin_misc_debug_notices_end"></a>
@@ -2289,7 +2261,7 @@ All log files are written in english</p>
 
 <a name="admin_general_offline"></a><h4>Gallery is offline</h4>
 <p>If you have to do maintenance work on your gallery, switch it to offline mode. Only members of the admin group will be able to log in, all other users will only see &quot;Gallery is offline&quot;. Remember to switch this option off once your maintenance work is done.</p>
-<p class="small">[cpg1.3.0 or better required]</p>
+<p class="small right_align">[cpg1.3.0 or better required]</p>
 <a name="admin_general_offline_end"></a>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
@@ -2317,7 +2289,7 @@ To access the exif manager, go to coppermine's config and click within the secti
     <li>SEF_URLS plugin: enables "Search-engine-friendly URLs" - this is an experimental plugin and should be used with caution.</li>
 </ul>
 <p>You can find more plugins on the Coppermine Support Forum, both from Coppermine developers and from user contributions.</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+<p class="small right_align">[cpg1.4.0 or better required]</p>
 <a name="plugin_definition"></a>
 <h3>4.14.1 What is a plugin?</h3>
 <p>Starting from cpg1.4.0, coppermine comes with a plugin <acronym title="Application Programming Interface">API</acronym> that enables plugin authors to modify coppermine features without hacking the core code, making upgrading easier, as modifications don't have to be re-applied every time you upgrade your coppermine version. It's recommended to use plugins instead of code modifications that require hacking the core code.</p>
@@ -2349,7 +2321,7 @@ Unfortunately, there is no API documentation available yet.</p>
 <ul>
     <li>Method 1: <strong>Using the upload interface on coppermine's plugin manager page</strong><br />
     <ul>
-        <li>Download the plugin you need from the internet (usually the <a href="http://coppermine-gallery.net/">coppermine page</a>) to your local hard drive</li>
+        <li>Download the plugin you need from the internet (usually the <a href="http://coppermine-gallery.net/" rel="external" class="external">coppermine page</a>) to your local hard drive</li>
         <li>Click the "browse" button on the plugin manager page</li>
         <li>Navigate to the plugin zip file you just have downloaded to your local PC's hard drive</li>
         <li>Click "upload"</li>
@@ -2510,14 +2482,14 @@ Should Coppermine import the special groups that exist in the forum ? If you sel
 <li><strong>Enable integration/bridging with XXX</strong></li>
 </ul>
 <a name="bridge_manager_enable_end"></a>
-<p class="small">[cpg1.4.0 or better required]</p>
+<p class="small right_align">[cpg1.4.0 or better required]</p>
 <a name="bridge_manager_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="bridge_manager_recover_start"></a>
 <h3>5.3.2 Recover from failed bridging</h3>
 <p>If you have provided improper settings using the bridge manager, your integration might fail, resulting (in the worst case) in a stituation where bridging is enabled, but you can not log in as admin to switch it off again (e.g. if you provided improper cookie settings that stops authentication from working). For this situation a recovery setting was built into the bridge manager: if you are not logged in as coppermine admin (in fact: not logged in at all) and you access the URL of your bridge manager (http://yourdomain.tld/your_coppermine_folder/bridgemgr.php) by entering it manually into the address bar of your browser, you are prompted to enter your admin account details - use the admin account you used to install coppermine with in the first place (the standalone admin account). This will not log you in, but switch integration off, so you can fix improper bridging settings then. To avoid others trying to guess your admin account details, there's a login treshold that rises every time you enter wrong credentials, so enter your admin account details with care.</p>
-<p class="small">[cpg1.4.0 or better required]</p>
+<p class="small right_align">[cpg1.4.0 or better required]</p>
 <a name="bridge_manager_recover_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
@@ -2534,13 +2506,13 @@ Should Coppermine import the special groups that exist in the forum ? If you sel
 
 <a name="integrating_support_start"></a>
 <h2>5.4 Bridging support</h2>
-<p>With the explanations given above you should be able to bridge your (BBS) application with Coppermine. However, if things don't work as expected, you're welcome to look for help using the <a href="http://coppermine-gallery.net/forum/">coppermine support board</a>. When asking for support, please keep in mind that the supporters will need some information to enable them to help you:</p>
+<p>With the explanations given above you should be able to bridge your (BBS) application with Coppermine. However, if things don't work as expected, you're welcome to look for help using the <a href="http://coppermine-gallery.net/forum/" rel="external" class="external">coppermine support board</a>. When asking for support, please keep in mind that the supporters will need some information to enable them to help you:</p>
 <ul>
   <li>Search the board before posting - maybe somebody had similar issues to yours that have been solved already</li>
   <li>Post on the board that deals with your version - bridging mechanisms have changed from version to version, that's why it's important to post on the board that actually corresponds to your coppermine version</li>
   <li>Don't hijack threads - when looking for bridging support, start your own thread</li>
   <li>Read the sticky threads before posting</li>
-  <li>Make sure you are using the latest versions of the bridging files, they are kept up to date between formal Coppermine releases. Download the relevant files from the <a href="http://svn.sourceforge.net/viewvc/coppermine/trunk/stable/">SVN</a>. Update udb_base.inc.php and the file that corresponds to the bridge you are using and upload them into your bridge directory, overwriting the old ones. Of course you should make sure to use the most recent stable coppermine release in the first place.</li>
+  <li>Make sure you are using the latest versions of the bridging files, they are kept up to date between formal Coppermine releases. Download the relevant files from the <a href="http://coppermine.svn.sourceforge.net/viewvc/coppermine/trunk/cpg1.4.x/" rel="external" class="external">SVN</a>. Update udb_base.inc.php and the file that corresponds to the bridge you are using and upload them into your bridge directory, overwriting the old ones. Of course you should make sure to use the most recent stable coppermine release in the first place.</li>
   <li>When requesting bridge support, please post a link to your site, a test user account, and what you have set in the bridge manager.<br />Make sure that the test user account doesn't have admin privileges. When posting parts of your bridge file, make sure to replace passwords with asterisks.<br />&nbsp;<br />This is how your posting should look like (with actual URLs instead of the dummy URLs given here as an example):<br />
   <pre class="code">I have the following issue when trying to bridge coppermine and XXX:
 [error message here]
@@ -2565,7 +2537,7 @@ Use post-based groups?:  0  </pre></li>
 <h1>6. Translating Coppermine into other languages</h1>
 <p>Coppermine has a separate language file that make the translation of the script much more easy. The language files are stored in the <strong>lang </strong>directory.</p>
 <p>If you select an utf-8 language file as the default one, then the script will be able to automatically select a language file based on the visitor browser configuration. For instance if the default language file is danish (utf-8) and an english visitor accesses your gallery, the english language file will be used by the script.</p>
-<p> If you have translated Coppermine into a language not already supported, please read the <a href="translation.htm">translator's guide</a> and visit the <a href="http://coppermine.sourceforge.net/board/index.php?topic=4623.0">Coppermine Web Site</a> and follow the instructions for submitting your language.</p>
+<p> If you have translated Coppermine into a language not already supported, please read the <a href="translation.htm">translator's guide</a> and visit the <a href="http://coppermine-gallery.net/forum/index.php?topic=20355.0" rel="external" class="external">Coppermine Web Site</a> and follow the instructions for submitting your language.</p>
 <p></p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
@@ -2573,7 +2545,7 @@ Use post-based groups?:  0  </pre></li>
 <h1>7. Known Issues</h1>
 <p>The following slight quirks and tiny issues are known and will hopefully be fixed in future releases.</p>
 <ul>
-        <li>The <a href="http://coppermine.sourceforge.net/board/index.php?topic=1866.0">arrows used for navigation</a> from one pic to the other display in the wrong order for rtl-languages</li>
+        <li>The <a href="http://coppermine-gallery.net/forum/index.php?topic=1866.0" rel="external" class="external">arrows used for navigation</a> from one pic to the other display in the wrong order for rtl-languages</li>
         <li>Keyword list returns incorrect result for asian characters</li>
         <li>Browser bug: IE displays 100%-width values incorrectly</li>
         <li>New batch-add interface doesn't work on all server setups. Users who have issues with it should use the classic interface instead.</li>
@@ -2615,73 +2587,73 @@ Use post-based groups?:  0  </pre></li>
   </tr>
   <tr>
     <td>Joachim M&uuml;ller</td>
-    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=2">gaugau</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=2" rel="external" class="external">gaugau</a></td>
     <td>Project Manager</td>
     <td>active</td>
   </tr>
   <tr>
     <td>Dr Tarique Sani</td>
-    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=4">tarique</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=4" rel="external" class="external">tarique</a></td>
     <td>Lead Developer</td>
     <td>active</td>
   </tr>
   <tr>
     <td>Abbas Ali</td>
-    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=11737">abbas</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=11737" rel="external" class="external">abbas</a></td>
     <td>Developer</td>
     <td>active</td>
   </tr>
   <tr>
     <td>Aditya Mooley</td>
-    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=5957">Aditya</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=5957" rel="external" class="external">Aditya</a></td>
     <td>Developer</td>
     <td>active</td>
   </tr>
   <tr>
     <td>Donovan Bray</td>
-    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=10059">donnoman</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=10059" rel="external" class="external">donnoman</a></td>
     <td>Developer</td>
     <td>active</td>
   </tr>
   <tr>
     <td>Tommy Atkinson</td>
-    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=941">Nibbler</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=941" rel="external" class="external">Nibbler</a></td>
     <td>Developer</td>
     <td>active</td>
   </tr>
   <tr>
     <td>Dave Kazebeer</td>
-    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=7">kegobeer</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=7" rel="external" class="external">kegobeer</a></td>
     <td>Supporter</td>
     <td>active</td>
   </tr>
   <tr>
     <td>Thomas Lange</td>
-    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=14796">Stramm</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=14796" rel="external" class="external">Stramm</a></td>
     <td>Developer</td>
     <td>active</td>
   </tr>
   <tr>
     <td>Thu Tu</td>
-    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=7792">TranzNDance</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=7792" rel="external" class="external">TranzNDance</a></td>
     <td>Supporter</td>
     <td>active</td>
   </tr>
   <tr>
     <td>Paul Van Rompay</td>
-    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=23938">Paver</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=23938" rel="external" class="external">Paver</a></td>
     <td>Developer</td>
     <td>active</td>
   </tr>
   <tr>
     <td>Amit Badkas</td>
-    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=18262">Amit</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=18262" rel="external" class="external">Amit</a></td>
     <td>Developer</td>
     <td>active</td>
   </tr>
   <tr>
     <td>Andreas Ellsel</td>
-    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=898">Andi</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=898" rel="external" class="external">Andi</a></td>
     <td>Tester</td>
     <td>active</td>
   </tr>
@@ -2693,109 +2665,109 @@ Use post-based groups?:  0  </pre></li>
   </tr>
   <tr>
     <td>Gr&eacute;gory Demar</td>
-    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=259">Greg</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=259" rel="external" class="external">Greg</a></td>
     <td>Original creator of Coppermine</td>
     <td>retired</td>
   </tr>
   <tr>
     <td>Jack</td>
-    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=6">datajack</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=6" rel="external" class="external">datajack</a></td>
     <td>Developer</td>
     <td>retired</td>
   </tr>
   <tr>
     <td>DJ Axion</td>
-    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=9">djaxion</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=9" rel="external" class="external">djaxion</a></td>
     <td>Developer</td>
     <td>retired</td>
   </tr>
   <tr>
     <td>Scott Gahres</td>
-    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=66">gtroll</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=66" rel="external" class="external">gtroll</a></td>
     <td>Developer</td>
     <td>retired</td>
   </tr>
   <tr>
     <td>Hyperion</td>
-    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=125">hyperion01</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=125" rel="external" class="external">hyperion01</a></td>
     <td>Developer</td>
     <td>retired</td>
   </tr>
   <tr>
     <td>John Asendorf</td>
-    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=30">jasendorf</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=30" rel="external" class="external">jasendorf</a></td>
     <td>Developer</td>
     <td>retired</td>
   </tr>
   <tr>
     <td>Jay Hao-En Liu</td>
-    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=59">Oasis</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=59" rel="external" class="external">Oasis</a></td>
     <td>Developer</td>
     <td>retired</td>
   </tr>
   <tr>
     <td>Christopher Brown-Floyd</td>
-    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=1874">omniscientdeveloper</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=1874" rel="external" class="external">omniscientdeveloper</a></td>
     <td>Developer</td>
     <td>retired</td>
   </tr>
   <tr>
     <td>Timothy</td>
-    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=6949">skybax</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=6949" rel="external" class="external">skybax</a></td>
     <td>Developer</td>
     <td>retired</td>
   </tr>
   <tr>
     <td>David Holm</td>
-    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=14">wormie_dk</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=14" rel="external" class="external">wormie_dk</a></td>
     <td>Developer</td>
     <td>retired</td>
   </tr>
   <tr>
     <td>Mark Zerr</td>
-    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=11">zarsky99</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=11" rel="external" class="external">zarsky99</a></td>
     <td>Tester</td>
     <td>retired</td>
   </tr>
   <tr>
     <td>mitirapa</td>
-    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=133">mitirapa</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=133" rel="external" class="external">mitirapa</a></td>
     <td>Porter (Cross Platform Devel.)</td>
     <td>retired</td>
   </tr>
   <tr>
     <td>Moorey</td>
-    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=13">moorey</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=13" rel="external" class="external">moorey</a></td>
     <td>Web Designer</td>
     <td>retired</td>
   </tr>
   <tr>
     <td>Maarten Hagoort</td>
-    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=404">DJ Maze</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=404" rel="external" class="external">DJ Maze</a></td>
     <td>Developer (nuke team)</td>
     <td>retired</td>
   </tr>
   <tr>
     <td>Eyal Zvi</td>
-    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=94">EZ</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=94" rel="external" class="external">EZ</a></td>
     <td>Developer</td>
     <td>retired</td>
   </tr>
   <tr>
     <td>Clive Leech</td>
-    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=56">casper</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=56" rel="external" class="external">casper</a></td>
     <td>Supporter</td>
     <td>retired</td>
   </tr>
   <tr>
     <td>Dennis Nakano</td>
-    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=19311">madeinhawaii</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=19311" rel="external" class="external">madeinhawaii</a></td>
     <td>Supporter</td>
     <td>retired</td>
   </tr>
     <tr>
     <td>Roberta</td>
-    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=24398">Blueiris</a></td>
+    <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=24398" rel="external" class="external">Blueiris</a></td>
     <td>Supporter</td>
     <td>retired</td>
   </tr>
@@ -2806,20 +2778,20 @@ Use post-based groups?:  0  </pre></li>
 <h2>8.2 Contributors</h2>
 <table border="0" cellspacing="6" cellpadding="4">
 <tr>
-  <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=101">DaMysterious</a></td>
+  <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=101" rel="external" class="external">DaMysterious</a></td>
   <td>DaMysterious has created loads of fantastic themes for Coppermine</td>
 </tr>
 <tr>
-  <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=1399">Nanobot</a></td>
+  <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=1399" rel="external" class="external">Nanobot</a></td>
   <td>Doug has done the vBulletin v3 bridge file</td>
 </tr>
 <tr>
-  <td><a href="http://www.sanisoft.com/aboutus.php3">Girish Nair</a></td>
+  <td><a href="http://www.sanisoft.com/aboutus.php3" rel="external" class="external">Girish Nair</a></td>
   <td>Girish has contributed to the film strip feature</td>
 </tr>
 <tr>
-  <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=378">Jason Kawaja</a></td>
-  <td>Jason did the <a href="http://coppermine.sourceforge.net/board/index.php?topic=1985.0">memberlist hack</a></td>
+  <td><a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=378" rel="external" class="external">Jason Kawaja</a></td>
+  <td>Jason did the <a href="http://coppermine-gallery.net/forum/index.php?topic=1985.0" rel="external" class="external">memberlist hack</a></td>
 </tr>
 </table>
 <p><a class="back" href="#top">Back to top</a></p><hr />
@@ -2828,22 +2800,22 @@ Use post-based groups?:  0  </pre></li>
 <h2>8.3 Coppermine uses code from the following free softwares :</h2>
 <p><strong>phpBB</strong><br />
   Author: phpBBGroup <br />
-  URL: <a href="http://www.phpbb.com/">http://www.phpbb.com/</a><br />
+  URL: <a href="http://www.phpbb.com/" rel="external" class="external">http://www.phpbb.com/</a><br />
 </p>
 <p><strong>phpMyAdmin</strong><br />
   Author: phpMyAdmin devel team<br />
-  URL: <a href="http://www.phpmyadmin.net/">http://www.phpmyadmin.net/</a><br />
+  URL: <a href="http://www.phpmyadmin.net/" rel="external" class="external">http://www.phpmyadmin.net/</a><br />
 </p>
 <p><strong>phpPhotoAlbum</strong><br />
   Author: Henning St&oslash;verud<br />
   E-mail: henning AT stoverud DOT com<br />
-  URL: <a href="http://www.stoverud.com/PHPhotoalbum/">http://www.stoverud.com/PHPhotoalbum/</a><br />
+  URL: <a href="http://www.stoverud.com/PHPhotoalbum/" rel="external" class="external">http://www.stoverud.com/PHPhotoalbum/</a><br />
 </p>
 <p><strong>DOM Tooltip 0.6.0</strong><br />
   Author: Dan Allen<br />
   E-mail: dan AT mojavelinux DOT com<br />
-  URL: <a href="http://www.mojavelinux.com/forum/viewtopic.php?t=127">http://www.mojavelinux.com/forum/viewtopic.php?t=127</a><br />
-  Note: DOM Tooltip, which is being used with the theme &quot;styleguide&quot; only, is released under <a href="http://www.gnu.org/copyleft/lesser.html">LGPL</a><br />
+  URL: <a href="http://www.mojavelinux.com/forum/viewtopic.php?t=127" rel="external" class="external">http://www.mojavelinux.com/forum/viewtopic.php?t=127</a><br />
+  Note: DOM Tooltip, which is being used with the theme &quot;styleguide&quot; only, is released under <a href="http://www.gnu.org/copyleft/lesser.html" rel="external" class="external">LGPL</a><br />
 </p>
 <p><strong>TAR/GZIP/ZIP Archive Classes</strong><br />
   Author: Devin Doucette<br />
@@ -2852,27 +2824,60 @@ Use post-based groups?:  0  </pre></li>
 
 <p><strong>Exifixer</strong><br />
   Author: Jake Olefsky<br />
-  URL: <a href="http://www.offsky.com/software/exif/index.php">http://www.offsky.com/software/exif/index.php</a><br />
+  URL: <a href="http://www.offsky.com/software/exif/index.php" rel="external" class="external">http://www.offsky.com/software/exif/index.php</a><br />
 </p>
 <p><strong>Codelifter Slideshow</strong><br />
   URL: <a href="http://www.codelifter.com/">http://www.codelifter.com</a><br />
 </p>
 <p><strong>PHPMailer</strong><br />
-  Author: <a href="http://sourceforge.net/project/memberlist.php?group_id=26031">PHPMailer Team</a><br />
-  URL: <a href="http://phpmailer.sourceforge.net/">http://phpmailer.sourceforge.net/</a><br />
+  Author: <a href="http://sourceforge.net/project/memberlist.php?group_id=26031" rel="external" class="external">PHPMailer Team</a><br />
+  URL: <a href="http://phpmailer.sourceforge.net/" rel="external" class="external">http://phpmailer.sourceforge.net/</a><br />
 </p>
 <p><strong>PHP Calendar Class Version 1.4</strong><br />
   Author: David Wilkinson<br />
   E-mail: davidw AT cascade DOT org DOT uk<br />
-  URL: <a href="http://www.cascade.org.uk/software/php/calendar/">http://www.cascade.org.uk/software/php/calendar/</a><br />
+  URL: <a href="http://www.cascade.org.uk/software/php/calendar/" rel="external" class="external">http://www.cascade.org.uk/software/php/calendar/</a><br />
 </p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="copyright"></a>
-<h2>8.4 Copyright and disclaimer</h2>
-<p>This application is opensource software released under the <a href="http://www.gnu.org/copyleft/gpl.html">GPL</a>.
+<h2>8.4 Copyright, license and disclaimer</h2>
+<a name="copyright_license"></a>
+<h3>8.4.1 License</h3>
+<p>This application is opensource software released under the GNU <a href="http://www.gnu.org/licenses/gpl.html" rel="external" class="external">GPL</a>, version 3.</p>
+<p>Versions prior to cpg1.4.13 used to be released under GNU GPL version 2. As the Free Software Foundation has released version 3 of the license, we updated the license reference for this release accordingly.<br />
+Subsequently, all versions of Coppermine from that time on (July 2007) will be released under GNU GPL version 3.</p>
+<a name="copyright_additional"></a>
+<h3>8.4.2 Additional terms (license add-ons)</h3>
+<p>The GNU GPL does not allow further restrictions of permissions except the additional terms that <em>can</em> be added according to section 7 of the GNU GPL v3.</p>
+<p>Coppermine <strong>is</strong> being released under the GNU GPL with the following, GPL-compliant additional terms:</p>
+<a name="copyright_additional_disclaimer"></a>
+<h4>8.4.2.1 Disclaimer</h4>
+<p class="small">According to GNU GPL v3, section 7 a)</p>
+<p>Because the program is licensed free of charge, there is no warranty for the program, to the extent permitted by applicable law. Except when otherwise stated in writing the copyright holders and/or other parties provide the program &quot;as is&quot; without warranty of any kind, either expressed or implied, including, but not limited to, the implied warranties of merchantability and fitness for a particular purpose. The entire risk as to the quality and performance of the program is with you. Should the program prove defective, you assume the cost of all necessary servicing, repair or correction.</p>
+<a name="copyright_additional_preservation"></a>
+<h4>8.4.2.2 Preservation of author attributions</h4>
+<p class="small">According to GNU GPL v3, section 7 b)</p>
+<p>The Coppermine group (<acronym title="also known as">aka</acronym> Coppermine Dev Team) requires the preservation of the &quot;Powered by Coppermine&quot; footer in a legible, unobscured manner in the output of all pages generated by Coppermine-driven galleries.<br />This policy may be subject of change in future versions. It has originally been made a requirement by the initial author of the first version of Coppermine. We ask you (the end user) to respect this policy and keep the footer intact. Additionally, we have a strict policy on the Coppermine support forum that galleries with the footer tag removed will not receive support. We're convinced that you should give credit where credit is due. We ask you to think twice before removing the tag, as it is meant to spread the word about Coppermine and give others who like your Coppermine-driven gallery to get one of their own.</p>
+<p>In previous versions (prior to cpg1.4.13) of Coppermine (which used to be covered by the GNU GPL v2), the additional term that the footer should not be removed existed as well. There have been third parties though who doubted the rightfulness of this additional term and subsequently claimed that it <em>was</em> legal to remove the tag; some of those third-parties even offered instructions how to accomplish this code-wise (although the legal details had been clarified long before with the <a href="http://fsf.org/" rel="external" class="external">Free Software Foundation</a> and the <a href="http://www.opensource.org/" rel="external" class="external">Open Source Initiative</a>). The Coppermine Dev Team welcomes that version 3 of the GNU GPL clarifies this legal aspect and demands of any third parties to respect the <em>full</em> license, including the additional terms covered in this section of the documentation.</p>
+<a name="copyright_additional_marking"></a>
+<h4>8.4.2.3 Marking of modified versions</h4>
+<p class="small">According to GNU GPL v3, section 7 c)</p>
+<p>The Coppermine Dev Team requires as additional term of the license Coppermine comes with that modified versions of Coppermine conveyed to others should be marked in a reasonable way. Modified versions mustn't be conveyed to others under the same name as the original coppermine release. Package name, source code and the output generated by the modified version should make it obvious for potential users that the modified version and the original coppermine version that the modified version is based upon differ.</p>
+<p><strong>Examples:</strong><br />
+<div class="quote">If you create a port of coppermine with the added feature to brew coffee, name it in a way as suggested below:
+<ul>
+  <li>Coppermine - coffee edition</li>
+  <li>Coppermine with Coffe-Support</li>
+  <li>Coppermine ported for CoffeeMaker v1.8</li>
+</ul>
+</div>
 </p>
-<p>Because the program is licensed free of charge, there is no warranty for the program, to the extent permitted by applicable law. Except when otherwise stated in writing the copyright holders and/or other parties provide the program &quot;as is&quot; without warranty of any kind, either expressed or implied, including, but not limited to, the implied warranties of merchantability and fitness for a particular purpose. The entire risk as to the quality and performance of the program is with you. Should the program prove defective, you assume the cost of all necessary servicing, repair or correction. </p>
+<p><strong>Explanation:</strong><br />
+If you download Coppermine and modify it for the use on your webspace, you don't have to rename it - the above mentioned additional term does not apply to you. It only applies if you make your modified version available for others for download or other means of distribution.<br />
+We think that this helps both the Coppermine project as well as the author of the modified version: people who are using the modified version can find out easily where they can turn to for help. The author of the modification get get the credit he deserves. The Coppermine Dev Team can make sure that issues caused by third-party modifications have less impact on the reputation of the original package.</p>
+<a name="copyright_copyright"></a>
+<h3>8.4.3 Copyrights</h3>
 <p>Coppermine Photo Gallery is Copyright &copy; 2002 - 2007 Gr&eacute;gory  DEMAR and the Coppermine Dev Team, All Rights Reserved.<br />
 </p>
 <p><a class="back" href="#top">Back to top</a></p><hr />

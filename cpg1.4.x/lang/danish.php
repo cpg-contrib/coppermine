@@ -6,9 +6,9 @@
   v1.1 originally written by Gregory DEMAR
 
   This program is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation; either version 2 of the License, or
-  (at your option) any later version.
+  it under the terms of the GNU General Public License version 3
+  as published by the Free Software Foundation.
+  
   ********************************************
   Coppermine version: 1.4.13
   $Source: /cvsroot/coppermine/stable/lang/danish.php,v $
@@ -102,7 +102,7 @@ $lang_errors = array(
 );
 
 $lang_bbcode_help_title = 'Hjælp til bbkode '; //cpg1.4
-$lang_bbcode_help = 'Følgende koder kan være nyttige: <li>[b]Fed[/b] =&gt; <b>Fed</b></li><li>[i]Kursiv[/i] =&gt; <i>Kursiv</i></li><li>[url=http://dinside.dk/]Url Tekst[/url] =&gt; <a href="http://dinside.dk">Url Tekst</a></li><li>[email]bruger@domain.dk[/email] =&gt; <a href="mailto:bruger@domain.dk">bruger@domain.dk</a></li><li>[color=red]Tekst[/color] =&gt; <span style="color:red">Tekst</span></li><li>[img]http://coppermine.sf.net/demo/images/red.gif[/img] => <img src="../images/red.gif" border="0" alt="" /></li>'; //cpg1.4
+$lang_bbcode_help = 'Følgende koder kan være nyttige: <li>[b]Fed[/b] =&gt; <b>Fed</b></li><li>[i]Kursiv[/i] =&gt; <i>Kursiv</i></li><li>[url=http://dinside.dk/]Url Tekst[/url] =&gt; <a href="http://dinside.dk">Url Tekst</a></li><li>[email]bruger@domain.dk[/email] =&gt; <a href="mailto:bruger@domain.dk">bruger@domain.dk</a></li><li>[color=red]Tekst[/color] =&gt; <span style="color:red">Tekst</span></li><li>[img]http://coppermine-gallery.net/demo/cpg14x/images/red.gif[/img] => <img src="../images/red.gif" border="0" alt="" /></li>'; //cpg1.4
 
 // ------------------------------------------------------------------------- //
 // File theme.php

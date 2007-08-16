@@ -6,9 +6,9 @@
   v1.1 originally written by Gregory DEMAR
 
   This program is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation; either version 2 of the License, or
-  (at your option) any later version.
+  it under the terms of the GNU General Public License version 3
+  as published by the Free Software Foundation.
+  
   ********************************************
   Coppermine version: 1.4.13
   $Source: /cvsroot/coppermine/stable/lang/indonesian.php,v $
@@ -102,7 +102,7 @@ $lang_errors = array(
 );
 
 $lang_bbcode_help_title = 'Bantuan bbkode'; //cpg1.4
-$lang_bbcode_help = 'Kamu bisa menambahkan link dan beberapa format di field ini dengan menggunakan bbkode: <li>[b]Tebal[/b] =&gt; <b>Tebal</b></li><li>[i]Miring[/i] =&gt; <i>Miring</i></li><li>[url=http://domainanda.com/]Teks URL[/url] =&gt; <a href="http://domainanda.com">Teks URL</a></li><li>[email]namauser@domainanda.com[/email] =&gt; <a href="mailto:namauser@domainanda.com">namauser@domainanda.com</a></li><li>[color=red]beberapa teks[/color] =&gt; <span style="color:beberapa teks</span></li><li>[img]http://coppermine.sf.net/demo/images/red.gif[/img] => <img src="../images/red.gif" border="0" alt="" /></li>'; //cpg1.4
+$lang_bbcode_help = 'Kamu bisa menambahkan link dan beberapa format di field ini dengan menggunakan bbkode: <li>[b]Tebal[/b] =&gt; <b>Tebal</b></li><li>[i]Miring[/i] =&gt; <i>Miring</i></li><li>[url=http://domainanda.com/]Teks URL[/url] =&gt; <a href="http://domainanda.com">Teks URL</a></li><li>[email]namauser@domainanda.com[/email] =&gt; <a href="mailto:namauser@domainanda.com">namauser@domainanda.com</a></li><li>[color=red]beberapa teks[/color] =&gt; <span style="color:beberapa teks</span></li><li>[img]http://coppermine-gallery.net/demo/cpg14x/images/red.gif[/img] => <img src="../images/red.gif" border="0" alt="" /></li>'; //cpg1.4
 
 // ------------------------------------------------------------------------- //
 // File theme.php
