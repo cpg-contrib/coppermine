@@ -31,18 +31,53 @@ require('include/init.inc.php');
 
 if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
+// write the plugin enable/disable change to the db
+    if (isset($_POST['update_config'])) {
+        $value = $_POST['enable_plugins'];
+        cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = 'enable_plugins'");
+        $CONFIG['enable_plugins'] = $value;
+        if ($CONFIG['log_mode'] == CPG_LOG_ALL) {
+            log_write('CONFIG UPDATE SQL: '.
+              "UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = 'enable_plugins'\n".
+              'TIME: '.date("F j, Y, g:i a")."\n".
+              'USER: '.$USER_DATA['user_name'],
+              CPG_DATABASE_LOG
+              );
+        }
+    }
+
 function display_plugin_list() {
-    global $CPG_PLUGINS,$lang_pluginmgr_php,$lang_common;
+    global $CPG_PLUGINS,$lang_pluginmgr_php,$lang_common,$CONFIG;
     $help = '&nbsp;'.cpg_display_help('f=plugins.htm&amp;as=plugin_manager&amp;ae=plugin_manager_end&amp;top=1', '800', '600');
-    starttable('100%', $lang_pluginmgr_php['pmgr'].$help);
+    $help_plugin_enable = cpg_display_help('f=configuration.htm&amp;as=admin_general_enable-plugins&amp;ae=admin_general_enable-plugins_end', 400, 300);
+    // configure plugin api (enabled or disabled)
+    $yes_selected = $CONFIG['enable_plugins'] ? 'checked="checked"' : '';
+    $no_selected = !$CONFIG['enable_plugins'] ? 'checked="checked"' : '';
+    print '<form name="pluginenableconfig" id="cpgform2" action="'.$_SERVER['PHP_SELF'].'" method="post" style="margin:0px;padding:0px">';
+    starttable('-1', $lang_pluginmgr_php['pmgr'].$help,3);
 echo <<< EOT
         <tr>
-                <td>
+                <td class="tableh2" colspan="3">
                     {$lang_pluginmgr_php['explanation']}
+                </td>
+        </tr>
+        <tr>
+                <td class="tableb">
+                    {$lang_pluginmgr_php['plugin_enabled']}
+                </td>
+                <td class="table">
+                    <input type="radio" id="enable_plugins1" name="enable_plugins" value="1"  onclick="document.pluginenableconfig.submit();" $yes_selected /><label for="enable_plugins1" class="clickable_option">{$lang_common['yes']}</label>
+                    &nbsp;&nbsp;
+                    <input type="radio" id="enable_plugins0" name="enable_plugins" value="0"  onclick="document.pluginenableconfig.submit();" $no_selected /><label for="enable_plugins0" class="clickable_option">{$lang_common['no']}</label>
+                    <input type="hidden" name="update_config" value="1" />
+                </td>
+                <td class="tableb">
+                    {$help_plugin_enable}
                 </td>
         </tr>
 EOT;
     endtable();
+    print '</form>';
 echo <<< EOT
         <br />
 EOT;
@@ -103,7 +138,7 @@ EOT;
                         <td class="tableb tableb_alternate">$author</td>
                     </tr>
                     <tr>
-                        <td class="tableb">{$lang_pluginmgr_php['desc']}foo</td>
+                        <td class="tableb">{$lang_pluginmgr_php['desc']}</td>
                         <td class="tableb">$description</td>
                     </tr>
                 </table>

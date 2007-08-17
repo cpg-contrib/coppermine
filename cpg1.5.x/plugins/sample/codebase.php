@@ -34,7 +34,8 @@ $thisplugin->add_filter('plugin_block','sample_block_mgr');
 // Sample function to modify gallery header html
 function sample_header($html) {
     global $thisplugin;
-    return '<p style="color:red;"><b>This is sample data returned from plugin "'.$thisplugin->name.'".</b></p>'.$html;
+    $return = '<p style="color:red;"><b>This is sample data returned from plugin "'.$thisplugin->name.'".</b></p>'.$html;
+    return $return;
 }
 
 function sample_block_mgr($block) {
@@ -43,7 +44,7 @@ function sample_block_mgr($block) {
 
 
 // Install function
-// Checks if uid is 'me' and pwd is 'you'; If so, then install the plugin
+// Checks if uid is 'foo' and pwd is 'bar'; If so, then install the plugin
 function sample_install() {
 
     // Install
@@ -70,19 +71,19 @@ function sample_configure() {
                 </td>
               </tr>
               <tr>
-                <td class="tableb">
+                <td class="tableb" align="right">
                   Username:
                 </td>
                 <td class="tableb">
-                  <input type="text" name="uid" class="textinput" />
+                  <input type="text" name="uid" class="textinput" style="width:100%" />
                 </td>
               </tr>
               <tr>
-                <td class="tableb tableb_alternate">
+                <td class="tableb tableb_alternate" align="right">
                   Password:
                 </td>
                 <td class="tableb tableb_alternate">
-                  <input type="text" name="pwd" class="textinput" />
+                  <input type="password" name="pwd" class="textinput" style="width:100%" />
                 </td>
               </tr>
               <tr>

@@ -1573,6 +1573,7 @@ $lang_pluginmgr_php = array(
   'confirm_delete' => 'Are you sure you want to DELETE this plugin',
   'pmgr' => 'Plugin Manager',
   'explanation' => 'Install / uninstall / manage plugins using this page.', // cpg1.5.x
+  'plugin_enabled' => 'Plugin API enabled', // cpg1.5.x
   'name' => 'Name',
   'author' => 'Author',
   'desc' => 'Description',
