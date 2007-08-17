@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
@@ -144,26 +144,36 @@ function delete_album($aid)
 {
     global $CONFIG, $lang_errors, $lang_delete_php;
 
+    $return = '';
     $query = "SELECT title, category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid ='$aid'";
     $result = cpg_db_query($query);
-    if (!mysql_num_rows($result)) cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
+    if (!mysql_num_rows($result)) {
+      cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
+    }
     $album_data = mysql_fetch_array($result);
 
     if (!GALLERY_ADMIN_MODE) {
-        if ($album_data['category'] != FIRST_USER_CAT + USER_ID) cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
+        if ($album_data['category'] != FIRST_USER_CAT + USER_ID) {
+          cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
+        }
     }
 
     $query = "SELECT pid FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='$aid'";
     $result = cpg_db_query($query);
     // Delete all files
     while ($pic = mysql_fetch_array($result)) {
+        ob_start();
         delete_picture($pic['pid']);
+        $return .= ob_get_contents();
+        ob_end_clean();
     }
     // Delete album
     $query = "DELETE from {$CONFIG['TABLE_ALBUMS']} WHERE aid='$aid'";
     $result = cpg_db_query($query);
-    if (mysql_affected_rows() > 0)
-        echo "<tr><td colspan=\"6\" class=\"tableb\">" . sprintf($lang_delete_php['alb_del_success'], $album_data['title']) . "</td></tr>\n";
+    if (mysql_affected_rows() > 0) {
+        $return .= "<tr><td colspan=\"6\" class=\"tableb\">" . sprintf($lang_delete_php['alb_del_success'], $album_data['title']) . "</td></tr>\n";
+    }
+    return $return;
 }
 
 /**
@@ -258,8 +268,12 @@ switch ($what) {
             $restrict = '';
         }
 
-        pageheader($lang_delete_php['alb_mgr']);
-        starttable("100%", $lang_delete_php['alb_mgr'], 6);
+        $returnOutput = ''; // the var that will later be shown as a result of the action performed
+        //pageheader($lang_delete_php['alb_mgr']);
+        $returnOutput .= <<< EOT
+        <table border="0" cellspacing="0" cellpadding="0" width="100%">
+EOT;
+
 
         $orig_sort_order = parse_list($_POST['sort_order']);
         foreach ($orig_sort_order as $album) {
@@ -274,7 +288,7 @@ switch ($what) {
 
         $to_delete = parse_list($_POST['delete_album']);
         foreach ($to_delete as $album_id) {
-            delete_album((int)$album_id);
+            $returnOutput .= delete_album((int)$album_id);
         }
 
 
@@ -291,12 +305,12 @@ switch ($what) {
                     } else {
                         $category = FIRST_USER_CAT + USER_ID;
                     }
-                    echo "<tr><td colspan=\"6\" class=\"tableb\">" . sprintf($lang_delete_php['create_alb'], $op['album_nm']) . "</td></tr>\n";
+                    $returnOutput .= "<tr><td colspan=\"6\" class=\"tableb\">" . sprintf($lang_delete_php['create_alb'], $op['album_nm']) . "</td></tr>\n";
                     $query = "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (category, title, uploads, pos, description) VALUES ('$category', '" . addslashes($op['album_nm']) . "', 'NO',  '{$op['album_sort']}', '')";
                     cpg_db_query($query);
                     break;
                 case '2':
-                    echo "<tr><td colspan=\"6\" class=\"tableb\">" . sprintf($lang_delete_php['update_alb'], $op['album_no'], $op['album_nm'], $op['album_sort']) . "</td></tr>\n";
+                    $returnOutput .= "<tr><td colspan=\"6\" class=\"tableb\">" . sprintf($lang_delete_php['update_alb'], $op['album_no'], $op['album_nm'], $op['album_sort']) . "</td></tr>\n";
                     $query = "UPDATE $CONFIG[TABLE_ALBUMS] SET title='" . addslashes($op['album_nm']) . "', pos='{$op['album_sort']}' WHERE aid='{$op['album_no']}' $restrict LIMIT 1";
                     cpg_db_query($query);
                     break;
@@ -304,13 +318,17 @@ switch ($what) {
                    // cpg_die (CRITICAL_ERROR, $lang_delete_php['err_invalid_data'], __FILE__, __LINE__);
             }
         }
-        if ($need_caption) output_caption();
-        echo "<tr><td colspan=\"6\" class=\"tablef\" align=\"center\">\n";
-        echo "<div class=\"admin_menu_thumb\"><a href=\"index.php\"  class=\"adm_menu\">".$lang_common['continue']."</a></div>\n";
-        echo "</td></tr>";
-        endtable();
-        pagefooter();
-        ob_end_flush();
+        if ($need_caption) {
+              ob_start();
+              output_caption();
+              $returnOutput .= ob_get_contents();
+              ob_end_clean();
+        }
+        $returnOutput .= '</table>';
+        //endtable();
+        //pagefooter();
+        //ob_end_flush();
+        cpgRedirectPage('albmgr.php', $lang_common['information'], $returnOutput); // redirect the user
         break;
 
 //
@@ -438,7 +456,7 @@ switch ($what) {
         pageheader($lang_delete_php['del_alb']);
         starttable("100%", $lang_delete_php['del_alb'], 7);
 
-        delete_album($aid);
+        print delete_album($aid);
         if ($need_caption) output_caption();
 
         echo "<tr><td colspan=\"7\" class=\"tablef\" align=\"center\">\n";
@@ -480,7 +498,7 @@ switch ($what) {
                                 $user_alb_counter = 0;
                                 while ($album = mysql_fetch_array($result2)) {
                                     starttable('100%');
-                                    delete_album($album['aid']);
+                                    print delete_album($album['aid']);
                                     endtable();
                                     $user_alb_counter++;
                                 } // while
@@ -776,7 +794,7 @@ switch ($what) {
                                 $user_alb_counter = 0;
                                 while ($album = mysql_fetch_array($result2)) {
                                     starttable('100%');
-                                    delete_album($album['aid']);
+                                    print delete_album($album['aid']);
                                     endtable();
                                     $user_alb_counter++;
                                 } // while
