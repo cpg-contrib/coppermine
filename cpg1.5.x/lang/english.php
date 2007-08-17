@@ -132,6 +132,7 @@ $lang_common = array(
   'help' => 'Help', // cpg1.5.x
   'close' => 'Close', // cpg1.5.x
   'go' => 'go', // cpg1.5.x
+  'javascript_needed' => 'This pages requires JavaScript. Please turn it on in your browser.', // cpg1.5.x
 );
 
 // ------------------------------------------------------------------------- //
