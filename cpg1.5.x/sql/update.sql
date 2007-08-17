@@ -620,3 +620,6 @@ INSERT INTO CPG_config VALUES ('browse_by_date', '0');
 
 # Display redirection pages
 INSERT INTO CPG_config VALUES ('display_redirection_page', '0');
+
+# Display thumbnail previews on batch-add pages
+INSERT INTO CPG_config VALUES ('display_thumbs_batch_add', '1');

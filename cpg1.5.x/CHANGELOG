@@ -26,6 +26,9 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-07-18 [A] Added link to table footer of batch-add results to jump quickly to the second step of the batch-add {GauGau}
+2007-07-18 [A] Added toggle to config and batch-add screen to display/hide preview thumbnails on the second batch-add screen {GauGau}
+2007-07-18 [A] Added alternating table rows to batch-add {GauGau}
 2007-08-18 [A] Skip redirection for album manager {GauGau}
 2007-08-18 [A] Added code to skip redirection for login and logout {GauGau}
 2007-08-17 [B] Replaced hard-coded text in plugin manager with translation string {GauGau}

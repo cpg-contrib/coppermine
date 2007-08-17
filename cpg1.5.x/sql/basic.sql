@@ -33,6 +33,7 @@ INSERT INTO CPG_config VALUES ('clickable_keyword_search', '1');
 INSERT INTO CPG_config VALUES ('enable_plugins', '1');
 INSERT INTO CPG_config VALUES ('ban_private_ip', '0');
 INSERT INTO CPG_config VALUES ('browse_batch_add', '1');
+INSERT INTO CPG_config VALUES ('display_thumbs_batch_add', '1');
 INSERT INTO CPG_config VALUES ('lang', 'english');
 INSERT INTO CPG_config VALUES ('language_fallback', '1');
 INSERT INTO CPG_config VALUES ('charset', 'utf-8');

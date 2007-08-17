@@ -720,6 +720,7 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'enable_plugins' =>   'Enable plugins', // cpg1.5
   'ban_private_ip' =>   'Allow banning of non-routable (private) IP addresses', // cpg1.5
   'browse_batch_add' =>   'Browsable batch-add interface', // cpg1.5
+  'display_thumbs_batch_add' =>   'Display preview thumbnails on batch-add interface', // cpg1.5
   'lang' =>   'Language', // cpg1.5
   'language_fallback' =>   'Fallback to English if translated phrase not found?', // cpg1.5
   'charset' =>   'Character encoding', // cpg1.5
@@ -1813,23 +1814,25 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
   'no_album' => 'no album selected',
   'result_icon' => 'click for details or to reload',
   'notes' =>  '<ul>'.
-                          '<li><b>OK</b> : means that the file was succesfully added'.
-                          '<li><b>DP</b> : means that the file is a duplicate and is already in the database'.
-                          '<li><b>PB</b> : means that the file could not be added, check your configuration and the permission of directories where the files are located'.
-                          '<li><b>NA</b> : means that you haven\'t selected an album the files should go to, hit \'<a href="javascript:history.back(1)">back</a>\' and select an album. If you don\'t have an album <a href="albmgr.php">create one first</a></li>'.
+                          '<li><b>OK</b>: means that the file was succesfully added'.
+                          '<li><b>DP</b>: means that the file is a duplicate and is already in the database'.
+                          '<li><b>PB</b>: means that the file could not be added, check your configuration and the permission of directories where the files are located'.
+                          '<li><b>NA</b>: means that you haven\'t selected an album the files should go to, hit \'<a href="javascript:history.back(1)">back</a>\' and select an album. If you don\'t have an album <a href="albmgr.php">create one first</a></li>'.
                           '<li>If the OK, DP, PB \'signs\' does not appear click on the broken file to see any error message produced by PHP'.
                           '<li>If your browser timeouts, hit the reload button'.
-                          '</ul>',
+              '</ul>',
   'select_album' => 'select album',
   'check_all' => 'Check All',
   'uncheck_all' => 'Uncheck All',
   'no_folders' => 'There are no folders inside the "albums" folder yet. Make sure to create at least one custom folder within "albums" folder and ftp-upload your files there. You mustn\'t upload to the "userpics" nor "edit" folders, they are reserved for http uploads and internal purposes.',
    'albums_no_category' => 'Albums with no category', // album pulldown mod, added by frogfoot
   'personal_albums' => '* Personal albums', // album pulldown mod, added by frogfoot
-  'browse_batch_add' => 'Browsable interface (recommended)',
+  'browse_batch_add' => 'Browsable interface', //cpg1.5
+  'display_thumbs_batch_add' => 'Display preview thumbnails', //cpg1.5
   'edit_pics' => 'Edit files',
   'edit_properties' => 'Album properties',
   'view_thumbs' => 'Thumbnail view',
+  'add_more_folder' => 'Batch-add more files from the folder %s', //cpg1.5
 );
 
 // ------------------------------------------------------------------------- //

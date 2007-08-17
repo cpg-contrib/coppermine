@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
@@ -24,6 +24,8 @@ define('DB_INPUT_PHP', true);
 require('include/init.inc.php');
 
 if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+
+$rowCounter = 0;
 
 /**
  * Local functions definition
@@ -139,7 +141,13 @@ function dirheader($dir, $dirid)
  */
 function picrow($picfile, $picid, $albid)
 {
-    global $CONFIG, $expic_array;
+    global $CONFIG, $expic_array, $rowCounter;
+    $rowCounter++;
+    if ( ($rowCounter / 2) == floor($rowCounter / 2) ) {
+      $rowStyle = 'tableb';
+    } else {
+      $rowStyle = 'tableb tableb_alternate';
+    }
 
     $encoded_picfile = base64_encode($picfile);
     $picname = $CONFIG['fullpath'] . $picfile;
@@ -151,9 +159,13 @@ function picrow($picfile, $picid, $albid)
     if (file_exists($thumb_file)) {
         $thumb_info = getimagesize($picname);
         $thumb_size = compute_img_size($thumb_info[0], $thumb_info[1], 48);
-        $img = '<img src="' . path2url($thumb_file) . '" ' . $thumb_size['geom'] . ' class="thumbnail" border="0" alt="" />';
+        if ($CONFIG['display_thumbs_batch_add'] == 1) {
+          $img = '<img src="' . path2url($thumb_file) . '" ' . $thumb_size['geom'] . ' class="thumbnail" border="0" alt="" />';
+        }
     } elseif (is_image($picname)) {
-        $img = '<img src="showthumb.php?picfile=' . $pic_url . '&amp;size=48" class="thumbnail" border="0" alt="" />';
+        if ($CONFIG['display_thumbs_batch_add'] == 1) {
+          $img = '<img src="showthumb.php?picfile=' . $pic_url . '&amp;size=48" class="thumbnail" border="0" alt="" />';
+        }
     } else {
         $file['filepath'] = $pic_dirname.'/'; //substr($picname,0,strrpos($picname,'/'))
         $file['filename'] = $pic_fname;
@@ -161,7 +173,9 @@ function picrow($picfile, $picid, $albid)
         //$mime_content = cpg_get_type($picname);
         //$extension = file_exists("images/thumb_{$mime_content['extension']}.jpg") ? $mime_content['extension']:$mime_content['content'];
         //$img = '<img src="images/thumb_'.$extension.'.jpg" class="thumbnail" width="48" border="0" alt="" />';
-        $img = '<img src="'.$filepathname.'" class="thumbnail" width="48" border="0" alt="" />';
+        if ($CONFIG['display_thumbs_batch_add'] == 1) {
+          $img = '<img src="'.$filepathname.'" class="thumbnail" width="48" border="0" alt="" />';
+        }
     }
 
     if (filesize($picname) && is_readable($picname)) {
@@ -173,37 +187,55 @@ function picrow($picfile, $picid, $albid)
 
         $checked = isset($expic_array[$picfile]) ? '' : 'checked';
 
-        return <<<EOT
+        $return = <<<EOT
         <tr>
-                <td class="tableb" valign="middle">
+                <td class="$rowStyle" valign="middle" width="30">
                         <input name="pics[]" id="picselector" type="checkbox" value="$picid" $checked />
                         <input name="album_lb_id_$picid" type="hidden" value="$albid" />
                         <input name="picfile_$picid" type="hidden" value="$encoded_picfile" />
                 </td>
-                <td class="tableb" valign="middle" width="100%">
+                <td class="$rowStyle" valign="middle">
                         <a href="javascript:;" onclick= "MM_openBrWindow('displayimage.php?fullsize=1&amp;picfile=$pic_url', 'ImageViewer', 'toolbar=yes, status=yes, resizable=yes, width=$winsizeX, height=$winsizeY')">$pic_fname</a>
                 </td>
-                <td class="tableb" valign="middle" align="center">
-                        <a href="javascript:;" onclick= "MM_openBrWindow('displayimage.php?fullsize=1&amp;picfile=$pic_url', 'ImageViewer', 'toolbar=yes, status=yes, resizable=yes, width=$winsizeX, height=$winsizeY')"><img src="images/spacer.gif" width="1" height="48" border="0" alt="" />$img<br /></a>
+                <td class="$rowStyle" valign="middle" align="center">
+                        <a href="javascript:;" onclick= "MM_openBrWindow('displayimage.php?fullsize=1&amp;picfile=$pic_url', 'ImageViewer', 'toolbar=yes, status=yes, resizable=yes, width=$winsizeX, height=$winsizeY')">
+EOT;
+        if ($CONFIG['display_thumbs_batch_add'] == 1) {
+          $return .= <<<EOT
+                        <img src="images/spacer.gif" width="1" height="48" border="0" alt="" />
+EOT;
+        }
+        $return .= <<<EOT
+                        $img</a><br />
                 </td>
         </tr>
 EOT;
+        return $return;
     } else {
         $winsizeX = (300);
         $winsizeY = (300);
-        return <<<EOT
+        $return = <<<EOT
         <tr>
-                <td class="tableb" valign="middle">
+                <td class="$rowStyle" valign="middle">
                         &nbsp;
                 </td>
-                <td class="tableb" valign="middle" width="100%">
+                <td class="$rowStyle" valign="middle">
                         <i>$pic_fname</i>
                 </td>
-                <td class="tableb" valign="middle" align="center">
-                        <a href="javascript:;" onclick= "MM_openBrWindow('displayimage.php?fullsize=1&amp;picfile=$pic_url', 'ImageViewer', 'toolbar=yes, status=yes, resizable=yes, width=$winsizeX, height=$winsizeY')"><img src="showthumb.php?picfile=$pic_url&amp;size=48" class="thumbnail" border="0" alt="" /><br /></a>
+                <td class="$rowStyle" valign="middle" align="center">
+                        <a href="javascript:;" onclick= "MM_openBrWindow('displayimage.php?fullsize=1&amp;picfile=$pic_url', 'ImageViewer', 'toolbar=yes, status=yes, resizable=yes, width=$winsizeX, height=$winsizeY')">
+EOT;
+        if ($CONFIG['display_thumbs_batch_add'] == 1) {
+          $return .= <<<EOT
+                        <img src="showthumb.php?picfile=$pic_url&amp;size=48" class="thumbnail" border="0" alt="" />
+EOT;
+        }
+        $return .= <<<EOT
+                        </a>
                 </td>
         </tr>
 EOT;
+        return $return;
     }
 }
 
@@ -392,6 +424,7 @@ function CPGscandir($dir, &$expic_array)
 EOT;
         foreach ($pic_array as $picture) {
             $count++;
+            $rowCounter++;
             $pic_id_str = sprintf("i%04d", $pic_id++);
             echo picrow($dir . $picture, $pic_id_str, $dir_id_str);
         }
@@ -455,11 +488,16 @@ EOT;
             $album_name = $lang_search_new_php['no_album'];
             $status = "<img src=\"images/up_na.gif\" alt=\"" . $lang_search_new_php['no_album'] . "\" class=\"thumbnail\" border=\"0\" width=\"24\" height=\"24\" /><br />";
         }
+        if ( ($count/2) == floor($count/2) ) {
+          $rowStyle = 'tableb';
+        }  else {
+          $rowStyle = 'tableb tableb_alternate';
+        }
         echo "<tr>\n";
-        echo "<td class=\"tableb\" valign=\"middle\" align=\"left\">$dir_name</td>\n";
-        echo "<td class=\"tableb\" valign=\"middle\" align=\"left\">$file_name</td>\n";
-        echo "<td class=\"tableb\" valign=\"middle\" align=\"left\">$album_name</td>\n";
-        echo "<td class=\"tableb\" valign=\"middle\" align=\"center\">$status</td>\n";
+        echo "<td class=\"".$rowStyle."\" valign=\"middle\" align=\"left\">$dir_name</td>\n";
+        echo "<td class=\"".$rowStyle."\" valign=\"middle\" align=\"left\">$file_name</td>\n";
+        echo "<td class=\"".$rowStyle."\" valign=\"middle\" align=\"left\">$album_name</td>\n";
+        echo "<td class=\"".$rowStyle."\" valign=\"middle\" align=\"center\">$status</td>\n";
         echo "</tr>\n";
         $count++;
         flush();
@@ -476,11 +514,12 @@ EOT;
       $edit_pics_content .= '<a href="thumbnails.php?album='.$edit_album. '" class="admin_menu">' . $lang_search_new_php['view_thumbs'] . '</a> ';
       $edit_pics_content .= '<br />';
     }
+    $add_more_folder = '<a href="'.$_SERVER['PHP_SELF'].'?startdir='.rtrim($dir_name, '/').'" class="admin_menu">'.sprintf($lang_search_new_php['add_more_folder'], '&laquo;'.rtrim($dir_name, '/').'&raquo;').'</a>';
 
     echo <<<EOT
         <tr>
                 <td class="tableh2" colspan="4">
-                        <b>{$lang_search_new_php['be_patient']}</b>
+                        {$lang_search_new_php['be_patient']}
                 </td>
         </tr>
         <tr>
@@ -489,11 +528,15 @@ EOT;
                 </td>
         </tr>
         <tr>
-                <td class="tableb" colspan="4">
-                <p align="center">{$edit_pics_content}</p>
+                <td class="tablef" colspan="4" align="center">
+                {$edit_pics_content}
                 </td>
         </tr>
-
+        <tr>
+                <td class="tablef" colspan="4" align="center">
+                {$add_more_folder}
+                </td>
+        </tr>
 EOT;
     endtable();
     pagefooter();
@@ -571,16 +614,31 @@ EOT;
 
     // write the interface change to the db
     if (isset($_POST['update_config'])) {
-        $value = $_POST['browse_batch_add'];
-        cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = 'browse_batch_add'");
-        $CONFIG['browse_batch_add'] = $value;
-        if ($CONFIG['log_mode'] == CPG_LOG_ALL) {
-            log_write('CONFIG UPDATE SQL: '.
-              "UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = 'browse_batch_add'\n".
-              'TIME: '.date("F j, Y, g:i a")."\n".
-              'USER: '.$USER_DATA['user_name'],
-              CPG_DATABASE_LOG
-              );
+        $browse_batch_add = (int)$_POST['browse_batch_add'];
+        if ($browse_batch_add != $CONFIG['browse_batch_add']) {
+          cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$browse_batch_add' WHERE name = 'browse_batch_add'");
+          $CONFIG['browse_batch_add'] = $browse_batch_add;
+          if ($CONFIG['log_mode'] == CPG_LOG_ALL) {
+              log_write('CONFIG UPDATE SQL: '.
+                "UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$browse_batch_add' WHERE name = 'browse_batch_add'\n".
+                'TIME: '.date("F j, Y, g:i a")."\n".
+                'USER: '.$USER_DATA['user_name'],
+                CPG_DATABASE_LOG
+                );
+          }
+        }
+        $display_thumbs_batch_add = (int)$_POST['display_thumbs_batch_add'];
+        if ($display_thumbs_batch_add != $CONFIG['display_thumbs_batch_add']) {
+          cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$display_thumbs_batch_add' WHERE name = 'display_thumbs_batch_add'");
+          $CONFIG['display_thumbs_batch_add'] = $display_thumbs_batch_add;
+          if ($CONFIG['log_mode'] == CPG_LOG_ALL) {
+              log_write('CONFIG UPDATE SQL: '.
+                "UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$display_thumbs_batch_add' WHERE name = 'display_thumbs_batch_add'\n".
+                'TIME: '.date("F j, Y, g:i a")."\n".
+                'USER: '.$USER_DATA['user_name'],
+                CPG_DATABASE_LOG
+                );
+          }
         }
     }
 
@@ -603,6 +661,10 @@ EOT;
     $yes_selected = $CONFIG['browse_batch_add'] ? 'checked="checked"' : '';
     $no_selected = !$CONFIG['browse_batch_add'] ? 'checked="checked"' : '';
     $help = cpg_display_help('f=configuration.htm&amp;as=admin_general_browsable_batch_add&amp;ae=admin_general_browsable_batch_add_end', '500', '300');
+    // configure preview thumbnail interface (enabled or disabled)
+    $thumb_yes_selected = $CONFIG['display_thumbs_batch_add'] ? 'checked="checked"' : '';
+    $thumb_no_selected = !$CONFIG['display_thumbs_batch_add'] ? 'checked="checked"' : '';
+    $help_thumb = cpg_display_help('f=configuration.htm&amp;as=admin_general_display_thumbs_batch_add&amp;ae=admin_general_display_thumbs_batch_add_end', '600', '250');
     echo <<<EOT
         <tr>
                 <td class="tableb">
@@ -619,6 +681,17 @@ EOT;
                         <input type="radio" id="browse_batch_add0" name="browse_batch_add" value="0"  onclick="document.interfaceconfig.submit();" $no_selected /><label for="browse_batch_add0" class="clickable_option">{$lang_common['no']}</label>
                         &nbsp;&nbsp;
                         <input type="hidden" name="update_config" value="1" />
+                </td>
+        </tr>
+        <tr>
+            <td class="tablef" colspan="6">
+                        {$lang_search_new_php['display_thumbs_batch_add']}
+                        $help_thumb
+                        &nbsp;&nbsp;
+                        <input type="radio" id="display_thumbs_batch_add1" name="display_thumbs_batch_add" value="1"  onclick="document.interfaceconfig.submit();" $thumb_yes_selected /><label for="display_thumbs_batch_add1" class="clickable_option">{$lang_common['yes']}</label>
+                        &nbsp;&nbsp;
+                        <input type="radio" id="display_thumbs_batch_add0" name="display_thumbs_batch_add" value="0"  onclick="document.interfaceconfig.submit();" $thumb_no_selected /><label for="display_thumbs_batch_add0" class="clickable_option">{$lang_common['no']}</label>
+                        &nbsp;&nbsp;
                 </td>
         </tr>
 EOT;

@@ -131,6 +131,10 @@ $config_data = array(
       'type' => 'checkbox',
       'help_link' => 'f=configuration.htm&amp;as=admin_general_browsable_batch_add&amp;ae=admin_general_browsable_batch_add_end',
     ),
+    'display_thumbs_batch_add' => array(
+      'type' => 'checkbox',
+      'help_link' => 'f=configuration.htm&amp;as=admin_general_display_thumbs_batch_add&amp;ae=admin_general_display_thumbs_batch_add_end',
+    ),
   ),
   'language_charset_settings' => array(
     'lang' => array(
