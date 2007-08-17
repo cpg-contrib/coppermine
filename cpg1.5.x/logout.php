@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
@@ -30,12 +30,11 @@ if (defined('UDB_INTEGRATION')) $cpg_udb->logout_page();
 setcookie($CONFIG['cookie_name'] . '_pass', '', time()-86400, $CONFIG['cookie_path']);
 setcookie($CONFIG['cookie_name'] . '_uid', '', time()-86400, $CONFIG['cookie_path']);
 */
-$message_id = cpgStoreTempMessage(sprintf($lang_logout_php['bye'], stripslashes(USER_NAME)));
-$referer = 'index.php?message_id='.$message_id;
+$referer = $_GET['referer'] ? $_GET['referer'] : 'index.php';
+if (strpos($referer, "http") !== false) {
+  $referer = "index.php";
+}
+cpgRedirectPage($referer, $lang_logout_php['logout'], sprintf($lang_logout_php['bye'], stripslashes(USER_NAME)),3);
 
-pageheader($lang_logout_php['logout'], "<META http-equiv=\"refresh\" content=\"0;url=$referer\">");
-msg_box($lang_logout_php['logout'], sprintf($lang_logout_php['bye'], stripslashes(USER_NAME)), $lang_common['continue'], $referer);
-pagefooter();
-ob_end_flush();
 
 ?>

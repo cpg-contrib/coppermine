@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
@@ -49,9 +49,7 @@ $cookie_warning = '';
 if (isset($_POST['submitted'])) {
     if ( $USER_DATA = $cpg_udb->login( addslashes($CLEAN['username']), addslashes($CLEAN['password']), isset($CLEAN['remember_me']) ) ) {
         $referer=preg_replace("'&amp;'","&",$referer);
-        pageheader($lang_login_php['login'], "<META http-equiv=\"refresh\" content=\"3;url=$referer\">");
-        msg_box($lang_login_php['login'], sprintf($lang_login_php['welcome'], $USER_DATA['user_name']), $lang_common['continue'], $referer);
-        pagefooter();
+        cpgRedirectPage($referer, $lang_login_php['login'], sprintf($lang_login_php['welcome'], $USER_DATA['user_name']),3);
         exit;
     } else {
         log_write("Failed login attempt with Username: {$CLEAN['username']} from IP {$_SERVER['REMOTE_ADDR']} on " . localised_date(-1,$log_date_fmt),CPG_SECURITY_LOG);
