@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
@@ -39,7 +39,9 @@ define('ALBMGR_PHP', true);
 
 require('include/init.inc.php');
 
-if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) {
+    cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+}
 
 /**
  * Clean up GPC and other Globals here
@@ -346,9 +348,16 @@ pageheader($lang_albmgr_php['alb_mrg']);
         }
 -->
 </script>
-
+<form name="album_menu" id="cpgform" method="post" action="delete.php?what=albmgr" onSubmit="return CheckAlbumForm(this);">
 <?php starttable("100%", $lang_albmgr_php['alb_mrg'].'&nbsp;'.cpg_display_help('f=albums.htm&as=albmgr&ae=albmgr_end&top=1', '600', '400'), 1);
 ?>
+<noscript>
+<tr>
+                <td colspan="2" class="tableh2">
+                <?php echo $lang_common['javascript_needed'] ?>
+                </td>
+</tr>
+</noscript>
 <tr>
 <?php
 $cat = $CLEAN['cat'];
@@ -368,7 +377,7 @@ if (count ($rowset) > 0) foreach ($rowset as $album) {
 }
 
 ?>
-                <form name="album_menu" id="cpgform" method="post" action="delete.php?what=albmgr" onSubmit="return CheckAlbumForm(this);">
+
                 <input type="hidden" name="delete_album" value="" />
                 <input type="hidden" name="sort_order" value="<?php echo $sort_order ?>" />
                 <td class="tableb" valign="top" align="center">
@@ -445,10 +454,10 @@ echo $lb;
                 <td colspan="2" align="center" class="tablef">
                 <input type="submit" class="button" value="<?php echo $lang_albmgr_php['apply_modifs'] ?>" />
                 </td>
-                </form>
 </tr>
 <?php
 endtable();
+print '                </form>';
 pagefooter();
 ob_end_flush();
 
