@@ -1884,15 +1884,15 @@ function theme_display_message_block() {
     }
     if ($message_id != '') {
         $tempMessage = cpgFetchTempMessage($message_id);
-        if ($tempMessage <> '') {
+        if ($tempMessage != '') {
+            $return .= '<a name="cpgMessageBlock"></a>';
             ob_start();
             starttable(-1, $lang_info);
-            $return = ob_get_contents();
+            $return .= ob_get_contents();
             ob_end_clean();
             $return .= <<< EOT
             <tr>
               <td class="tableb" align="center">
-                <a name="cpgMessageBlock"></a>
                 <div id="cpgMessage" class="cpg_user_message">
                   {$tempMessage}
                 </div>
@@ -1910,7 +1910,7 @@ EOT;
         $return .= cpg_alert_dev_version();
         // $return .= cpg_display_rss(); //add RSS feed from coppermine-gallery.net later
     } else { // not in admin mode
-        $return = '';
+        //$return = '';
     }
     return $return;
 }

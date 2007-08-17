@@ -3369,7 +3369,12 @@ function cpgRedirectPage($targetAddress = '', $caption = '', $message = '', $cou
   global $CONFIG, $lang_common;
   if ($CONFIG['display_redirection_page'] == 0) {
     $header_location = (@preg_match('/Microsoft|WebSTAR|Xitami/', getenv('SERVER_SOFTWARE'))) ? 'Refresh: 0; URL=' : 'Location: ';
-    header($header_location . $targetAddress.'&message_id='.cpgStoreTempMessage($message).'#cpgMessageBlock');
+    if (strpos($targetAddress, '?') == FALSE) {
+      $separator = '?';
+    } else {
+      $separator = '&';
+    }
+    header($header_location . $targetAddress.$separator.'message_id='.cpgStoreTempMessage($message).'#cpgMessageBlock');
     pageheader($caption, "<META http-equiv=\"refresh\" content=\"1;url=$targetAddress\">");
     msg_box($caption, $message, $lang_common['continue'], $location);
     pagefooter();
