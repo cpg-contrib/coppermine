@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
@@ -74,7 +74,7 @@ function sample_configure() {
                   Username:
                 </td>
                 <td class="tableb">
-                  <input type="text" name="uid" />
+                  <input type="text" name="uid" class="textinput" />
                 </td>
               </tr>
               <tr>
@@ -82,12 +82,12 @@ function sample_configure() {
                   Password:
                 </td>
                 <td class="tableb tableb_alternate">
-                  <input type="text" name="pwd" />
+                  <input type="text" name="pwd" class="textinput" />
                 </td>
               </tr>
               <tr>
                 <td class="tablef" colspan="2">
-                  <input type="submit" value="Go!" />
+                  <input type="submit" value="Go!" class="button" />
                 </td>
               </tr>
             </table>
