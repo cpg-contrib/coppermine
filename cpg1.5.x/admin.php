@@ -118,7 +118,7 @@ if (isset($_POST['restore_config'])) { // user has chosen to factory-reset the c
     //var_dump($f);
     //var_dump(mysql_affected_rows());
   }
-  cpgRedirectPage($_SERVER['PHP_SELF'].'?', $lang_common['information'], $lang_admin_php['restore_success']);
+  cpgRedirectPage($_SERVER['PHP_SELF'], $lang_common['information'], $lang_admin_php['restore_success']);
 }  // user has chosen to factory-reset the config --- end
 
 
