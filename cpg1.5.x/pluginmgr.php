@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
@@ -23,10 +23,6 @@
 //  Copyright (C) 2004  Christopher Brown-Floyd                              //
 //  http://www.brownfloyd.com/                                               //
 // ------------------------------------------------------------------------- //
-//  For Coppermine support goto http://coppermine.sf.net/board/              //
-//  For generic support (non-Coppermine integration) goto                    //
-//  the Open Plugin API webpage: http://www.brownfloyd.com/openpapi/         //
-// ------------------------------------------------------------------------- //
 
 define('IN_COPPERMINE', true);
 define('PLUGINMGR_PHP', true);
@@ -36,7 +32,7 @@ require('include/init.inc.php');
 if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
 function display_plugin_list() {
-    global $CPG_PLUGINS,$lang_pluginmgr_php;
+    global $CPG_PLUGINS,$lang_pluginmgr_php,$lang_common;
     $help = '&nbsp;'.cpg_display_help('f=plugins.htm&amp;as=plugin_manager&amp;ae=plugin_manager_end&amp;top=1', '800', '600');
     starttable('100%', $lang_pluginmgr_php['pmgr'].$help);
 echo <<< EOT
@@ -77,7 +73,7 @@ EOT;
         if (sizeof($thisplugin->error) > 0) {
             $error = $thisplugin->error['desc'];
             $extra = '<tr><td class="tableb" width="100%" colspan="2">'.
-                     '<strong>Error:</strong> <span style="color:red;">'.$error.'</span>'.
+                     '<strong>'.$lang_common['error'].':</strong> <span style="color:red;">'.$error.'</span>'.
                      '</td></tr>'.$extra;
         }
 
@@ -107,7 +103,7 @@ EOT;
                         <td class="tableb tableb_alternate">$author</td>
                     </tr>
                     <tr>
-                        <td class="tableb">{$lang_pluginmgr_php['desc']}</td>
+                        <td class="tableb">{$lang_pluginmgr_php['desc']}foo</td>
                         <td class="tableb">$description</td>
                     </tr>
                 </table>
