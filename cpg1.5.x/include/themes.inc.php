@@ -823,17 +823,20 @@ $template_img_navbar = <<<EOT
                 <td align="center" valign="middle" class="navmenu" width="48"><a name="top_display_media"></a>
                         <a href="{THUMB_TGT}" class="navmenu_pic" title="{THUMB_TITLE}"><img src="{LOCATION}images/thumbnails.gif" align="middle" border="0" alt="{THUMB_TITLE}" /></a>
                 </td>
-                <td align="center" valign="middle" class="navmenu" width="48">
+<!-- BEGIN pic_info_button -->
                         <script type="text/javascript">
+                          document.write('<td align="center" valign="middle" class="navmenu" width="48">');
                           document.write('<a href="javascript:;" class="navmenu_pic" onclick="blocking(\'picinfo\',\'yes\', \'block\'); return false;" title="{PIC_INFO_TITLE}" rel="nofollow"><img src="{LOCATION}images/info.gif" border="0" align="middle" alt="{PIC_INFO_TITLE}" /></a>');
+                          document.write('</td>');
                         </script>
-                        <noscript>
-                          <img src="{LOCATION}images/info.gif" border="0" align="middle" alt="{NO_JAVASCRIPT}" title="{NO_JAVASCRIPT}" />
-                        </noscript>
-                </td>
-                <td align="center" valign="middle" class="navmenu" width="48">
-                        <a href="{SLIDESHOW_TGT}" class="navmenu_pic" title="{SLIDESHOW_TITLE}" rel="nofollow"><img src="{LOCATION}images/slideshow.gif" border="0" align="middle" alt="{SLIDESHOW_TITLE}" /></a>
-                </td>
+<!-- END pic_info_button -->
+<!-- BEGIN slideshow_button -->
+                        <script type="text/javascript">
+                          document.write('<td align="center" valign="middle" class="navmenu" width="48">');
+                          document.write('<a href="{SLIDESHOW_TGT}" class="navmenu_pic" title="{SLIDESHOW_TITLE}" rel="nofollow"><img src="{LOCATION}images/slideshow.gif" border="0" align="middle" alt="{SLIDESHOW_TITLE}" /></a>');
+                          document.write('</td>');
+                        </script>
+<!-- END slideshow_button -->
                 <td align="center" valign="middle" class="navmenu" width="100%">
                         {PIC_POS}
                 </td>
@@ -978,7 +981,9 @@ $template_image_comments = <<<EOT
                                         {PENDING_APPROVAL}
 <!-- END pending approval -->
 <!-- BEGIN buttons -->
-                                        <a href="javascript:;" onclick="blocking('cbody{MSG_ID}','', 'block'); blocking('cedit{MSG_ID}','', 'block'); return false;" title="{EDIT_TITLE}"><img src="images/edit.gif" border="0" align="middle" alt="" /></a>
+                                        <script type="text/javascript">
+                                          document.write('<a href="javascript:;" onclick="blocking(\'cbody{MSG_ID}\',\'\', \'block\'); blocking(\'cedit{MSG_ID}\',\'\', \'block\'); return false;" title="{EDIT_TITLE}"><img src="images/edit.gif" border="0" align="middle" alt="" /></a>');
+                                        </script>
                                         <a href="delete.php?msg_id={MSG_ID}&amp;what=comment" onclick="return confirm('{CONFIRM_DELETE}');" title="{DELETE_TITLE}"><img src="images/delete.gif" border="0" align="middle" alt="" /></a>
 <!-- END buttons -->
                                 </td>
@@ -2849,8 +2854,7 @@ if (!function_exists('theme_html_img_nav_menu')) {  //{THEMES}
 /******************************************************************************
 ** Section <<<theme_html_img_nav_menu>>> - START
 ******************************************************************************/
-function theme_html_img_nav_menu()
-{
+function theme_html_img_nav_menu() {
     global $CONFIG, $CURRENT_PIC_DATA, $meta_nav, $THEME_DIR ; //$PHP_SELF,
     global $album, $cat, $pos, $pic_count, $pic_data, $lang_img_nav_bar, $lang_text_dir, $template_img_navbar;
 
@@ -2929,7 +2933,6 @@ function theme_html_img_nav_menu()
     $params = array('{THUMB_TGT}' => $thumb_tgt,
         '{THUMB_TITLE}' => $lang_img_nav_bar['thumb_title'],
         '{PIC_INFO_TITLE}' => $lang_img_nav_bar['pic_info_title'],
-        '{NO_JAVASCRIPT}' => $lang_img_nav_bar['no_javascript'],
         '{SLIDESHOW_TGT}' => $slideshow_tgt,
         '{SLIDESHOW_TITLE}' => $lang_img_nav_bar['slideshow_title'],
         '{PIC_POS}' => $pic_pos,
@@ -3194,7 +3197,7 @@ if (!function_exists('theme_slideshow')) {  //{THEMES}
 ******************************************************************************/
 function theme_slideshow()
 {
-    global $CONFIG, $lang_display_image_php, $template_display_media;
+    global $CONFIG, $lang_display_image_php, $template_display_media, $lang_common;
 
     pageheader($lang_display_image_php['slideshow']);
 
@@ -3210,6 +3213,13 @@ function theme_slideshow()
 
     starttable();
     echo <<<EOT
+        <noscript>
+        <tr>
+            <td align="center" class="tableh2">
+              {$lang_common['javascript_needed']}
+            </td>
+        </tr>
+        </noscript>
         <tr>
             <td align="center" class="navmenu" style="white-space: nowrap;">
                 <div id="Title"></div>

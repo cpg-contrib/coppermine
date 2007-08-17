@@ -26,13 +26,14 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-07-18 [O] Removed from intermediate image view page (dsiplayimage.php) JavaScript-only features for users with JavaScript disabled {GauGau}
 2007-07-18 [A] Added link to table footer of batch-add results to jump quickly to the second step of the batch-add {GauGau}
 2007-07-18 [A] Added toggle to config and batch-add screen to display/hide preview thumbnails on the second batch-add screen {GauGau}
 2007-07-18 [A] Added alternating table rows to batch-add {GauGau}
 2007-08-18 [A] Skip redirection for album manager {GauGau}
 2007-08-18 [A] Added code to skip redirection for login and logout {GauGau}
 2007-08-17 [B] Replaced hard-coded text in plugin manager with translation string {GauGau}
-2007-08-17 [A] Added faster mode switch {GauGau}
+2007-08-17 [A] Added faster mode (show/hide admin controls) switch {GauGau}
 2007-08-09 [O] Re-structured config page for easier translation, separation of logic and content in language files, better usability and increased functionality {GauGau}
 2007-07-31 [A] Added plugin hook at the end of function get_pic_url {GauGau}
 2007-07-30 [O] Re-ordered entries in config table for fresh installs {GauGau}

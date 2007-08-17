@@ -285,7 +285,6 @@ $lang_img_nav_bar = array(
   'go_album_start' => 'Return to start',
   'go_back_x_items' => 'go back %s items',
   'go_forward_x_items' => 'go forward %s items',
-  'no_javascript' => 'JavaScript must be enabled to toggle the file information', //cpg1.5
 );
 
 $lang_rate_pic = array(
