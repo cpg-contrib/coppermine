@@ -64,7 +64,8 @@ if ($what == 'comment') {
         $result = cpg_db_query("SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date) AS msg_date, author_id, author_md5_id, msg_raw_ip, msg_hdr_ip FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id='$cid' AND pid='$pid'");
         if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['non_exist_comment'], __FILE__, __LINE__);
         $row = mysql_fetch_array($result);
-        $comment = bb_decode(process_smilies($row['msg_body']));
+        $comment = bb_decode($row['msg_body']);
+        if ($CONFIG['enable_smilies']) $comment = process_smilies($comment);
         $msg_author = $row['msg_author'];
         $comment_field_name = sprintf($lang_report_php['comment_field_name'], $msg_author);
         $type = $lang_report_php['type_comment'];
