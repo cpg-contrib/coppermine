@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-08-18 [B] XHTML ampersand fix in clickable keywords {Nibbler}
 2007-08-18 [B] Fixing conditional call to process_smilies() in report file {Nibbler}
 2007-08-18 [B] Quota check only applies to uploads to user galleries {Nibbler}
 2007-08-18 [B] Avoid redirecting users to the logout page after logging in {Nibbler}

@@ -70,7 +70,7 @@ if (mysql_num_rows($result)) {
 
       $fontSize = (10 + ($keyword_count[$keywords_array[$i]] - $minQuantity) * $step);
       
-      echo "<a href=\"thumbnails.php?album=search&search=".$keywords_array[$i]."\" style=\"font-size: {$fontSize}px;\">$keywords_array[$i]</a>";
+      echo "<a href=\"thumbnails.php?album=search&amp;search=".$keywords_array[$i]."\" style=\"font-size: {$fontSize}px;\">$keywords_array[$i]</a>";
       if ($i<$count-1) {                     // Don't keep space after last keyword
         echo " ";
       }

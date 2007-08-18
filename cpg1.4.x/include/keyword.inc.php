@@ -49,7 +49,7 @@ if (mysql_num_rows($result)) {
   echo '<tr><td class="tableb">' ;
   for ($i = 0; $i < $count; $i++) {
     if ($keywords_array[$i]) {     // Eliminates Null Keywords
-    echo "<a href=\"thumbnails.php?album=search&search=".$keywords_array[$i]."\">$keywords_array[$i]</a>";
+    echo "<a href=\"thumbnails.php?album=search&amp;search=".$keywords_array[$i]."\">$keywords_array[$i]</a>";
     if ($i<$count-1) {                     // Eliminates Trailing Pipe after last keyword
       echo " | ";
     }
