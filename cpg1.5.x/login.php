@@ -40,7 +40,7 @@ if (isset($_POST['submitted'])) {
 }
 
 $referer = $_GET['referer'] ? $_GET['referer'] : 'index.php';
-if (strpos($referer, "http") !== false) {
+if (strpos($referer, "http") !== false || strpos($referer, "logout.php") !== false) {
   $referer = "index.php";
 }
 $login_failed = '';

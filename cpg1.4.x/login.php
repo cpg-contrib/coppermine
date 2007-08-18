@@ -27,7 +27,7 @@ if (USER_ID) cpg_die(ERROR, $lang_login_php['err_already_logged_in'], __FILE__, 
 if (defined('UDB_INTEGRATION')) $cpg_udb->login_page();
 
 $referer = $_GET['referer'] ? $_GET['referer'] : 'index.php';
-if (strpos($referer, "http") !== false) {
+if (strpos($referer, "http") !== false || strpos($referer, "logout.php") !== false) {
   $referer = "index.php";
 }
 $login_failed = '';

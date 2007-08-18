@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-08-18 [B] Avoid redirecting users to the logout page after logging in {Nibbler}
 2007-08-18 [B] Fixed sending of duplicate forgot password emails {Nibbler}
 2007-08-16 [M] Updated license reference from GNU GPL v2 to GNU GPL v3 {GauGau}
 2007-08-16 [A] Added Romanian language file (user contribution) {GauGau}
