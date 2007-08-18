@@ -110,7 +110,7 @@ EOT;
 
     $result = cpg_db_query($sql);
 
-    if (!$result) {
+	if (!mysql_num_rows($result)) {
         cpg_die($lang_forgot_passwd_php['forgot_passwd'], $lang_forgot_passwd_php['illegal_session']);
     }
 
@@ -119,7 +119,8 @@ EOT;
     $sql = "select {$cpg_udb->field['username']}, {$cpg_udb->field['email']} from {$cpg_udb->usertable} where {$cpg_udb->field['user_id']}='{$CLEAN['id']}';";
 
     $result = cpg_db_query($sql);
-    if (!$result) {
+    
+	if (!mysql_num_rows($result)) {
         cpg_die($lang_forgot_passwd_php['forgot_passwd'], $lang_forgot_passwd_php['err_unk_user']);
     }
 

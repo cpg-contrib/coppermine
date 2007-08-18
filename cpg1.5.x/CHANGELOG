@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-08-18 [B] Fixed sending of duplicate forgot password emails {Nibbler}
 2007-07-18 [O] Removed from intermediate image view page (dsiplayimage.php) JavaScript-only features for users with JavaScript disabled {GauGau}
 2007-07-18 [A] Added link to table footer of batch-add results to jump quickly to the second step of the batch-add {GauGau}
 2007-07-18 [A] Added toggle to config and batch-add screen to display/hide preview thumbnails on the second batch-add screen {GauGau}
