@@ -509,6 +509,7 @@ d.add(1070,560,'Files','files.htm');
 d.add(1080,1070,'Editing files','files.htm#edit_pics');
 d.add(1090,1070,'Editing videos','files.htm#edit_vids');
 d.add(1100,1070,'Custom Thumbnails','files.htm#cust_thmb');
+d.add(1105,560,'Keywords','keywords.htm');
 d.add(1110,560,'BBCODE','bbcode.htm');
 d.add(1120,560,'EXIF data','exif.htm');
 d.add(1130,560,'Plugins','plugins.htm');
