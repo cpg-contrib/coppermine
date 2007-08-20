@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /*************************
   Coppermine Photo Gallery
   ************************
@@ -1125,7 +1125,7 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
   	'existing_keyword' => 'Palabra clave existente', //cpg1.4
 	'pic_info_str' => '%sx%s - %sKB - %s veces vista - %s votos',
 	'approve' => 'Aprobar el fichero',
-	'postpone_app' => 'Posponer el aprobado',
+	'postpone_app' => 'Posponer la aprobación',
 	'del_pic' => 'Borrar el fichero',
   	'del_all' => 'Borrar TODOS los archivos', //cpg1.4
 	'read_exif' => 'Leer los datos EXIF de nuevo', //cpg1.3.0
@@ -1243,7 +1243,7 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
   	'ecards' => 'Postales', //cpg1.4
   	'comments' => 'Comentarios', //cpg1.4
   	'allowed' => 'Permitido', //cpg1.4
-  	'approval' => 'Aprobado', //cpg1.4
+  	'approval' => 'Aprobación', //cpg1.4
   	'boxes_number' => 'No. de cajas', //cpg1.4
   	'variable' => 'variable', //cpg1.4
   	'fixed' => 'fijo', //cpg1.4
