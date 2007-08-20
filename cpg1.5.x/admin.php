@@ -115,8 +115,6 @@ if (isset($_POST['restore_config'])) { // user has chosen to factory-reset the c
   // undo the reset for config fields specified in $doNotReset_array
   foreach ($doNotReset_array as $key) {
     $f= cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '{$CONFIG[$key]}' WHERE name = '$key'");
-    //var_dump($f);
-    //var_dump(mysql_affected_rows());
   }
   cpgRedirectPage($_SERVER['PHP_SELF'], $lang_common['information'], $lang_admin_php['restore_success']);
 }  // user has chosen to factory-reset the config --- end
@@ -180,10 +178,6 @@ if (isset($_POST['restore_config'])) { // user has chosen to factory-reset the c
         $admin_data_array[$adminDataKey] = $evaluation_array[$adminDataKey];
         $CONFIG[$adminDataKey] = $evaluation_array[$adminDataKey];
         $userMessage .= '<li style="list-style-image:url(images/green.gif)">'.sprintf($lang_admin_php['config_setting_ok'], $lang_admin_php[$adminDataKey]).'</li>'.$lineBreak;
-        //print $adminDataKey;
-        //print '<br />';
-        //print $evaluation_array[$adminDataKey] .'='. $CONFIG[$adminDataKey];
-        //print '<hr />';
       }
     } // inner foreach loop -- end
   } // Loop through the config fields to check posted values for validity -- end
@@ -198,6 +192,34 @@ if ($postCount > 0 && $userMessage == '') {
 
 
 pageheader($lang_admin_php['title']);
+/*
+// section to test new regex stuff - uncomment temporarily if needed
+$string = 'http://localhost/foo/';
+$regex = '^'
+                  .'(http://){1,1}' // leading 'http://' is mandatory - no support for https yet
+                  .'(([0-9a-z_!~*\'().&=+$%-]+: ){0,1}' //password, separated with a colon
+                  .'[0-9a-z_!~*\'().&=+$%-]+@){0,1}' //username, separated with an @
+                  .'(([0-9]{1,3}\.){3}[0-9]{1,3}' // IP- 199.194.52.184
+                  .'|' // allows either IP or domain or localhost
+                  .'('
+                  .'([0-9a-z_!~*\'()-]+\.)*' // tertiary domain(s)- www.
+                  .'([0-9a-z][0-9a-z-]{0,61})?[0-9a-z]\.' // second level domain
+                  .'[a-z]{2,6}' // first level domain- .com or .museum
+                  .')'
+                  .'|'
+                  .'localhost'
+                  .')' // end of domain / IP address
+                  .'(:[0-9]{1,4}){0,1}' // port number- :80
+                  .'[/]{1,1}' // trailing slash after domain-part of URL
+                  .'('
+                  .'([0-9a-zA-Z_!~.()-])+/{1}'
+                  .'){0,}'
+                  .'$';
+print eregi($regex,$string);
+print '<br />';
+print $string;
+die;
+*/
 
 if ($userMessage != '') {
   starttable('100%', $lang_common['information'], 1);
