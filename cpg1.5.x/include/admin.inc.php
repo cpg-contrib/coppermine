@@ -44,7 +44,7 @@ $config_data = array(
       'help_link' => 'f=configuration.htm&amp;as=admin_general_email&amp;ae=admin_general_email_end',
       'regex' => '^'
                   .'('
-                  .'[a-zA-Z0-9]((\.|\-){0,1}'
+                  .'[a-zA-Z0-9]((\.|\-|\_){0,1}'
                   .'[a-zA-Z0-9]){0,}'
                   .')'
                   .'@'
@@ -52,6 +52,8 @@ $config_data = array(
                   .'[a-zA-Z]((\.|\-){0,1}'
                   .'[a-zA-Z0-9]){0,}'
                   .')'
+                  .'\.'
+                  .'([a-zA-Z]{2,4})'
                   .'$',
     ),
     'ecards_more_pic_target' => array(
