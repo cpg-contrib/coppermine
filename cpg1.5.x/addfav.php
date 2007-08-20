@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $URL$
@@ -51,7 +51,7 @@ require('include/init.inc.php');
 // Check if required parameters are present
 if (empty($CLEAN['pid'])) cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
 
-$ref = $CONFIG['site_url'] . (!empty($CLEAN['ref']) ? $CLEAN['ref'] : "displayimage.php?pid=$CLEAN['pid']");
+$ref = $CONFIG['site_url'] . (!empty($CLEAN['ref']) ? $CLEAN['ref'] : "displayimage.php?pid={$CLEAN['pid']}");
 $ref = str_replace('&amp;', '&', $ref);
 
 // If user does not accept script's cookies, we don't accept the vote
