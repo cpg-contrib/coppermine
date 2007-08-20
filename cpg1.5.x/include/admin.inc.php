@@ -62,10 +62,14 @@ $config_data = array(
                   .'(([0-9a-z_!~*\'().&=+$%-]+: ){0,1}' //password, separated with a colon
                   .'[0-9a-z_!~*\'().&=+$%-]+@){0,1}' //username, separated with an @
                   .'(([0-9]{1,3}\.){3}[0-9]{1,3}' // IP- 199.194.52.184
-                  .'|' // allows either IP or domain
+                  .'|' // allows either IP or domain or localhost
+                  .'(' // domain start
                   .'([0-9a-z_!~*\'()-]+\.)*' // tertiary domain(s)- www.
                   .'([0-9a-z][0-9a-z-]{0,61})?[0-9a-z]\.' // second level domain
                   .'[a-z]{2,6}' // first level domain- .com or .museum
+                  .')' // domain end
+                  .'|' // allows either IP or domain or localhost
+                  .'(localhost)' // allow localhost
                   .')' // end of domain / IP address
                   .'(:[0-9]{1,4}){0,1}' // port number- :80
                   .'[/]{1,1}' // trailing slash after domain-part of URL
