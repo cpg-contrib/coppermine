@@ -47,7 +47,7 @@ CREATE TABLE CPG_temp_messages (
   message_id varchar(80) NOT NULL default '',
   user_id int(11) default '0',
   time int(11) default NULL,
-  message text NOT NULL default '',
+  message text NOT NULL,
   PRIMARY KEY (message_id)
 ) TYPE=MyISAM COMMENT='Used to store messages from one page to the other';
 # --------------------------------------------------------
