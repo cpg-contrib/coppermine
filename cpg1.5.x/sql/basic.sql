@@ -20,10 +20,10 @@
 # Dumping data for table `CPG_config`
 #
 
-INSERT INTO CPG_config VALUES ('gallery_name', 'Coppermine Photo Gallery');
-INSERT INTO CPG_config VALUES ('gallery_description', 'Your online photo album');
+INSERT INTO CPG_config VALUES ('gallery_name', 'Your gallery name here');
+INSERT INTO CPG_config VALUES ('gallery_description', 'Your gallery description here');
 INSERT INTO CPG_config VALUES ('gallery_admin_email', 'you@somewhere.com');
-INSERT INTO CPG_config VALUES ('ecards_more_pic_target', 'http://change-this-to-your-gallery-url.tld/');
+INSERT INTO CPG_config VALUES ('ecards_more_pic_target', 'http://yoursite.tld/your_coppermine_folder/');
 INSERT INTO CPG_config VALUES ('home_target', 'index.php');
 INSERT INTO CPG_config VALUES ('enable_zipdownload', '1');
 INSERT INTO CPG_config VALUES ('time_offset', '0');

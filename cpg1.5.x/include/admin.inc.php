@@ -28,16 +28,14 @@ $config_data = array(
   'general_settings' => array(
     'gallery_name' => array(
       'type' => 'textfield',
-      'default_value' => 'Coppermine Photo Gallery',
       'help_link' => 'f=configuration.htm&amp;as=admin_general_name&amp;ae=admin_general_name_end',
-      'width' => '',
-      'size' => '',
-      'maxlength' => '',
+      'regex_not' => '^Your gallery name here$',
     ),
     'gallery_description' => array(
       'type' => 'textfield',
       'default_value' => 'Coppermine Photo Gallery',
       'help_link' => 'f=configuration.htm&amp;as=admin_general_description&amp;ae=admin_general_description_end',
+      'regex_not' => '^Your gallery description here$',
     ),
     'gallery_admin_email' => array(
       'type' => 'textfield',
@@ -55,6 +53,7 @@ $config_data = array(
                   .'\.'
                   .'([a-zA-Z]{2,4})'
                   .'$',
+      'regex_not' => '^you@somewhere\.com$',
     ),
     'ecards_more_pic_target' => array(
       'type' => 'textfield',
@@ -79,6 +78,7 @@ $config_data = array(
                   .'([0-9a-zA-Z_!~.()-])+/{1}'
                   .'){0,}'
                   .'$',
+      'regex_not' => '^http://yoursite.tld/your_coppermine_folder/$',
       'additional_description' => $lang_admin_php['ecards_more_pic_target_detail'],
     ),
     'home_target' => array(
