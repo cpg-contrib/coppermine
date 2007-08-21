@@ -2328,9 +2328,14 @@ addonload("document.getElementById(\'debug_output_rows\').style.display = \'none
 addonload("document.getElementById(\'debug_output_toggle\').style.display = \'inline\'");
 //-->
 </script>';
-        echo '
-        <a href="javascript:HighlightAll(\'debug.debugtext\')" class="admin_menu">' . $lang_cpg_debug_output['select_all'] . '</a>';
-        echo '</td><td align="left" valign="middle" class="tableh2">';
+        echo <<< EOT
+        <script type="text/javascript">
+            document.write('<a href="javascript:HighlightAll(\'debug.debugtext\')" class="admin_menu">');
+            document.write("{$lang_cpg_debug_output['select_all']}");
+            document.write('</a>');
+        </script>
+        </td><td align="left" valign="middle" class="tableh2">
+EOT;
         if (GALLERY_ADMIN_MODE){echo '<span class="album_stat">'.$lang_cpg_debug_output['copy_and_paste_instructions'].'</span>';}
         echo '</td></tr>';
         echo '<tr><td class="tableb" colspan="2">';

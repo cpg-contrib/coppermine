@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-08-21 [C] Added noscript section to pages that require JavaScript {GauGau}
 2007-08-20 [D] Added keyword manager section to documentation {GauGau}
 2007-08-19 [D] Added keywords section to documentation {GauGau}
 2007-08-18 [B] XHTML ampersand fix in clickable keywords {Nibbler}

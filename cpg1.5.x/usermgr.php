@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
@@ -174,19 +174,6 @@ function list_users($search = '')
     $total_pages = ceil($user_count / $user_per_page);
 
 
-    /*
-   * Commented out to support bridge files -Omni
-   *
-  $sql = "SELECT user_id, user_name, user_email, UNIX_TIMESTAMP(user_regdate) as user_regdate, UNIX_TIMESTAMP(user_lastvisit) as user_lastvisit, user_active, ".
-           "COUNT(pid) as pic_count, ROUND(SUM(total_filesize)/1024) as disk_usage, group_name, group_quota ".
-           "FROM {$CONFIG['TABLE_USERS']} AS u ".
-           "INNER JOIN {$CONFIG['TABLE_USERGROUPS']} AS g ON user_group = group_id ".
-           "LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.owner_id = u.user_id ".
-           $search.
-           "GROUP BY user_id " . "ORDER BY " . $sort_codes[$sort] . " ".
-           "LIMIT $lower_limit, $user_per_page";
-    */
-
     $users = $cpg_udb->get_users(
                                   array(
                                         'users_per_page' => $user_per_page,
@@ -197,20 +184,18 @@ function list_users($search = '')
                                   );
 
 
-    /*
-   * Commented out to support bridge files -Omni
-   *
-   */
-    //$result = cpg_db_query($sql);
 
     $tabs = create_tabs($user_count, $page, $total_pages, $tab_tmpl);
 
-    $lb = "<select name=\"album_listbox\" class=\"listbox\" onChange=\"if(this.options[this.selectedIndex].value) window.location.href='{$_SERVER['PHP_SELF']}?page=$page&amp;sort='+this.options[this.selectedIndex].value;\">\n";
+    $lb = '<span id="album_listbox_wrapper" style="display:none">';
+    $lb .= $lang_usermgr_php['sort_by'].': ';
+    $lb .= "<select name=\"album_listbox\" id=\"album_listbox\" class=\"listbox\" onChange=\"if(this.options[this.selectedIndex].value) window.location.href='{$_SERVER['PHP_SELF']}?page=$page&amp;sort='+this.options[this.selectedIndex].value;\">\n";
     foreach($sort_codes as $key => $value) {
         $selected = ($key == $sort) ? "SELECTED" : "";
         $lb .= "        <option value=\"" . $key . "\" $selected>" . $lang_usermgr_php[$key] . "</option>\n";
     }
     $lb .= "</select>\n";
+    $lb .= "</span>\n";
 
 echo <<<EOT
 <script type="text/javascript" language="javascript">
@@ -297,6 +282,10 @@ function selectaction(d,box) {
     break;
   }
 }
+addonload("show_section('album_listbox_wrapper')");
+addonload("show_section('checkAll')");
+addonload("show_section('checkAll2')");
+addonload("show_section('action')");
 -->
 </script>
 EOT;
@@ -323,8 +312,9 @@ if (!$lim_user) {
 echo <<<EOT
                         </td>
                         $search_filter
-                        <td class="tableh1" align="right"><b>{$lang_usermgr_php['sort_by']}</b>:
-                        $lb</td>
+                        <td class="tableh1" align="right">
+                            $lb
+                        </td>
                     </tr>
                 </table>
             </td>
@@ -340,7 +330,7 @@ EOT;
      echo <<< EOT
 
         <tr>
-                <td class="tableh1" align="center"><input type="checkbox" {$makereadonly}name="checkAll" onClick="selectAll(this,'u');" class="checkbox" title="{$lang_common['check_uncheck_all']}" /></td>
+                <td class="tableh1" align="center"><input type="checkbox" {$makereadonly}name="checkAll" id="checkAll" onClick="selectAll(this,'u');" class="checkbox" title="{$lang_common['check_uncheck_all']}" style="display:none" /></td>
                 <td class="tableh1" colspan="2"><b><span class="statlink">{$lang_usermgr_php['name']}</span></b>
                 <a href="{$_SERVER['PHP_SELF']}?page=$page&amp;sort=name_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['name_a']}" /></a>
                 <a href="{$_SERVER['PHP_SELF']}?page=$page&amp;sort=name_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['name_d']}" /></a>
@@ -432,9 +422,14 @@ EOT;
                 <td class="{$row_style_class}" align="center">$checkbox_html</td>
                 <td class="{$row_style_class}">$usr_link</td>
                 <td class="{$row_style_class}" align="center">
-                    <button type="button" class="button" {$makereadonly}onclick="window.location.href ='$profile_link';">
-                        <img src="images/edit.gif" width="16" height="16" border="0" alt="" title="{$lang_usermgr_php['edit']}" />
-                    </button>
+                    <script type="text/javascript">
+                        document.write('<button type="button" class="button" {$makereadonly}onclick="window.location.href =\'$profile_link\';">');
+                        document.write('<img src="images/edit.gif" width="16" height="16" border="0" alt="" title="{$lang_usermgr_php['edit']}" />');
+                        document.write('</button>');
+                    </script>
+                    <noscript>
+                        <a href="$profile_link" class="admin_menu">{$lang_usermgr_php['edit']}</a>
+                    </noscript>
                 </td>
                 <td class="{$row_style_class}">{$user['group_name']}</td>
                 <td class="{$row_style_class}">{$user['user_regdate']}</td>
@@ -474,12 +469,12 @@ EOT;
             $help = cpg_display_help('f=users.htm&as=user_cp_search&ae=user_cp_search_end&top=1', '400', '150');
         echo <<<EOT
         <tr>
-                <td class="tablef" align="center"><input type="checkbox" name="checkAll2" {$makereadonly}onClick="selectAll(this,'u');" class="checkbox" title="{$lang_common['check_uncheck_all']}" /></td>
+                <td class="tablef" align="center"><input type="checkbox" name="checkAll2" id="checkAll2" {$makereadonly}onClick="selectAll(this,'u');" class="checkbox" title="{$lang_common['check_uncheck_all']}" style="display:none" /></td>
                 <td colspan="$number_of_columns_minus_one"  class="tablef">
                 <table cellpadding="0" cellspacing="0" width="100%" border="0">
                 <tr>
                         <td align="left">
-                            <select name="action" size="1" class="listbox" {$makereadonly}onchange="return selectaction(this,'u');">
+                            <select name="action" id="action" size="1" class="listbox" {$makereadonly}onchange="return selectaction(this,'u');" style="display:none">
                                 <option value="" checked="checked">{$lang_usermgr_php['with_selected']}</option>
                                 <option value="delete">{$lang_usermgr_php['delete']}</option>
                                 <option value="activate">{$lang_usermgr_php['activate']}</option>

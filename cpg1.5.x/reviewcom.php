@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
@@ -377,6 +377,13 @@ echo <<<EOT
                     </table>
                 </td>
         </tr>
+        <noscript>
+        <tr>
+                <td class="tableh2" colspan="6">
+                  {$lang_common['javascript_needed']}
+                </td>
+        </tr>
+        </noscript>
 
 EOT;
 

@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
@@ -340,6 +340,8 @@ function selectall()
                 }
         }
 }
+addonload("show_section('checkAll')");
+addonload("show_section('checkAll2')");
 //]]>-->
 </script>
 
@@ -354,7 +356,7 @@ $help_upload_method = '&nbsp;'.cpg_display_help('f=groups.htm&amp;as=group_cp_up
 echo <<<EOT
 
         <tr style="white-space:nowrap">
-                <td class="tableh1"><input type="checkbox" name="checkAll" onclick="selectAll(this,'delete_group');" class="checkbox" title="{$lang_common['check_uncheck_all']}" /></td>
+                <td class="tableh1"><input type="checkbox" name="checkAll" id="checkAll" onclick="selectAll(this,'delete_group');" class="checkbox" title="{$lang_common['check_uncheck_all']}" style="display:none" /></td>
                 <td class="tableh1"><b><span class="statlink">{$lang_groupmgr_php['group_name']}</span></b>$help_group</td>
                 <td class="tableh1"><b><span class="statlink">{$lang_groupmgr_php['permissions']}</span></b>$help_permissions</td>
                 <td class="tableh1"><b><span class="statlink">{$lang_groupmgr_php['public_albums']}</span></b></td>
@@ -379,7 +381,7 @@ EOT;
 } else {
     echo <<<EOT
         <tr>
-            <td class="tablef"><input type="checkbox" name="checkAll2" onClick="selectAll(this,'delete_group');" class="checkbox" title="{$lang_common['check_uncheck_all']}" /></td>
+            <td class="tablef"><input type="checkbox" name="checkAll2" id="checkAll2" onClick="selectAll(this,'delete_group');" class="checkbox" title="{$lang_common['check_uncheck_all']}" style="display:none" /></td>
             <td colspan="13" align="center" class="tablef">
                         <input type="submit" name="apply_modifs" value="{$lang_groupmgr_php['apply']}" class="button" />&nbsp;&nbsp;&nbsp;
                         <input type="submit" name="new_group" value="{$lang_groupmgr_php['create_new_group']}" class="button" />&nbsp;&nbsp;&nbsp;

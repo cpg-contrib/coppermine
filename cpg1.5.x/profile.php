@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
@@ -390,7 +390,12 @@ EOT;
     </tr>
     <tr>
         <td width="100%" colspan="2" class="tableb">
-            <input type="checkbox" name="confirmation" id="confirmation" value="1" class="checkbox" onClick="agreesubmit();" /><label for="confirmation" class="clickable_option">{$lang_register_php['i_am_sure']}</label>
+            <script type="text/javascript">
+                document.write('<input type="checkbox" name="confirmation" id="confirmation" value="1" class="checkbox" onClick="agreesubmit();" />');
+                document.write('<label for="confirmation" class="clickable_option">');
+                document.write("{$lang_register_php['i_am_sure']}");
+                document.write('</label>');
+            </script>
         </td>
     </tr>
     <tr>
@@ -400,7 +405,12 @@ EOT;
             <input type="hidden" name="what" value="user" />
             <input type="hidden" name="delete_files" value="no" />
             <input type="hidden" name="delete_comments" value="no" />
-            <input type="submit" name="delete_submit" id="delete_submit" value="{$lang_register_php['delete_my_account']}" class="button" disabled="disabled" onclick="return confirmUserDelete(this);" />
+            <script type="text/javascript">
+              document.write('<input type="submit" name="delete_submit" id="delete_submit" value="{$lang_register_php['delete_my_account']}" class="button" disabled="disabled" onclick="return confirmUserDelete(this);" />');
+            </script>
+            <noscript>
+            <input type="submit" name="delete_submit" id="delete_submit" value="{$lang_register_php['delete_my_account']}" class="button" />
+            </noscript>
         </td>
     </tr>
 EOT;
