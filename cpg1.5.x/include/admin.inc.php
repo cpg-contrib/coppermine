@@ -681,11 +681,13 @@ $config_data = array(
       'type' => 'textfield',
       'help_link' => 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_pic_extensions&amp;ae=admin_picture_thumb_advanced_pic_extensions_end',
       'regex' => '^(([a-z0-9]{1,}){1}([/]{1,1})){0,}([a-z0-9]{1,}){1}$',
+      'regex_not' => '^ALL$',
     ),
     'allowed_mov_types' => array(
       'type' => 'textfield',
       'help_link' => 'f=configuration.htm&amp;as=admin_thumbs_advanced_movie&amp;ae=admin_thumbs_advanced_movie_end',
       'regex' => '^(([a-z0-9]{1,}){1}([/]{1,1})){0,}([a-z0-9]{1,}){1}$',
+      'regex_not' => '^ALL$',
     ),
     'media_autostart' => array(
       'type' => 'checkbox',
@@ -695,11 +697,13 @@ $config_data = array(
       'type' => 'textfield',
       'help_link' => 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_audio_extensions&amp;ae=admin_picture_thumb_advanced_audio_extensions_end',
       'regex' => '^(([a-z0-9]{1,}){1}([/]{1,1})){0,}([a-z0-9]{1,}){1}$',
+      'regex_not' => '^ALL$',
     ),
     'allowed_doc_types' => array(
       'type' => 'textfield',
       'help_link' => 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_doc_extensions&amp;ae=admin_picture_thumb_advanced_doc_extensions_end',
       'regex' => '^(([a-z0-9]{1,}){1}([/]{1,1})){0,}([a-z0-9]{1,}){1}$',
+      'regex_not' => '^ALL$',
     ),
     'thumb_method' => array(
       'type' => 'select',
@@ -712,11 +716,6 @@ $config_data = array(
     'impath' => array(
       'type' => 'textfield',
       'help_link' => 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_im_path&amp;ae=admin_picture_thumb_advanced_im_path_end',
-    ),
-    'allowed_img_types' => array(
-      'type' => 'textfield',
-      'help_link' => 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_allowed_imagetypes&amp;ae=admin_picture_thumb_advanced_allowed_imagetypes_end',
-      'additional_description' => $lang_admin_php['impath_example'],
     ),
     'im_options' => array(
       'type' => 'textfield',

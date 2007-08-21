@@ -69,7 +69,7 @@ INSERT INTO CPG_filetypes VALUES ('jpx', 'image/jpx', 'image', '');
 INSERT INTO CPG_filetypes VALUES ('jb2', 'image/jb2', 'image', '');
 INSERT INTO CPG_filetypes VALUES ('swc', 'image/swc', 'image', '');
 INSERT INTO CPG_filetypes VALUES ('iff', 'image/iff', 'image', '');
-UPDATE CPG_config SET value='ALL' WHERE name='allowed_img_types';
+INSERT INTO CPG_config VALUES ('allowed_img_types', 'jpeg/jpg/png/gif');
 
 INSERT INTO CPG_filetypes VALUES ('asf', 'video/x-ms-asf', 'movie', 'WMP');
 INSERT INTO CPG_filetypes VALUES ('asx', 'video/x-ms-asx', 'movie', 'WMP');
@@ -79,7 +79,7 @@ INSERT INTO CPG_filetypes VALUES ('wmv', 'video/x-ms-wmv', 'movie', 'WMP');
 INSERT INTO CPG_filetypes VALUES ('swf', 'application/x-shockwave-flash', 'movie', 'SWF');
 INSERT INTO CPG_filetypes VALUES ('avi', 'video/avi', 'movie', 'WMP');
 INSERT INTO CPG_filetypes VALUES ('mov', 'video/quicktime', 'movie', 'QT');
-INSERT INTO CPG_config VALUES ('allowed_mov_types', 'ALL');
+INSERT INTO CPG_config VALUES ('allowed_mov_types', 'asf/asx/mpg/mpeg/wmv/swf/avi/mov');
 
 INSERT INTO CPG_filetypes VALUES ('mp3', 'audio/mpeg3', 'audio', 'WMP');
 INSERT INTO CPG_filetypes VALUES ('midi', 'audio/midi', 'audio', 'WMP');
@@ -571,22 +571,22 @@ INSERT INTO CPG_config VALUES ('personal_album_on_registration', '0');
 INSERT INTO CPG_config VALUES ('slideshow_hits', '1');
 
 # Shorten Browser entries in hit stats and vote stats
-UPDATE `CPG_hit_stats` SET `browser` = 'IE6' WHERE `browser` ='Microsoft Internet Explorer 6.0';
-UPDATE `CPG_hit_stats` SET `browser` = 'IE5.5' WHERE `browser` ='Microsoft Internet Explorer 5.5';
-UPDATE `CPG_hit_stats` SET `browser` = 'IE6' WHERE `browser` ='MSIE 6.0';
-UPDATE `CPG_hit_stats` SET `browser` = 'IE5.5' WHERE `browser` ='IE5.5';
-UPDATE `CPG_hit_stats` SET `browser` = 'IE3' WHERE `browser` ='MSIE 3.0';
-UPDATE `CPG_hit_stats` SET `browser` = 'IE4' WHERE `browser` ='MSIE 4.0';
-UPDATE `CPG_hit_stats` SET `browser` = 'IE5.0' WHERE `browser` ='MSIE 5.0';
-UPDATE `CPG_hit_stats` SET `browser` = 'IE7' WHERE `browser` ='MSIE 7.0';
-UPDATE `CPG_vote_stats` SET `browser` = 'IE6' WHERE `browser` ='Microsoft Internet Explorer 6.0';
-UPDATE `CPG_vote_stats` SET `browser` = 'IE5.5' WHERE `browser` ='Microsoft Internet Explorer 5.5';
-UPDATE `CPG_vote_stats` SET `browser` = 'IE6' WHERE `browser` ='MSIE 6.0';
-UPDATE `CPG_vote_stats` SET `browser` = 'IE5.5' WHERE `browser` ='IE5.5';
-UPDATE `CPG_vote_stats` SET `browser` = 'IE3' WHERE `browser` ='MSIE 3.0';
-UPDATE `CPG_vote_stats` SET `browser` = 'IE4' WHERE `browser` ='MSIE 4.0';
-UPDATE `CPG_vote_stats` SET `browser` = 'IE5.0' WHERE `browser` ='MSIE 5.0';
-UPDATE `CPG_vote_stats` SET `browser` = 'IE7' WHERE `browser` ='MSIE 7.0';
+UPDATE CPG_hit_stats SET `browser` = 'IE6' WHERE `browser` ='Microsoft Internet Explorer 6.0';
+UPDATE CPG_hit_stats SET `browser` = 'IE5.5' WHERE `browser` ='Microsoft Internet Explorer 5.5';
+UPDATE CPG_hit_stats SET `browser` = 'IE6' WHERE `browser` ='MSIE 6.0';
+UPDATE CPG_hit_stats SET `browser` = 'IE5.5' WHERE `browser` ='IE5.5';
+UPDATE CPG_hit_stats SET `browser` = 'IE3' WHERE `browser` ='MSIE 3.0';
+UPDATE CPG_hit_stats SET `browser` = 'IE4' WHERE `browser` ='MSIE 4.0';
+UPDATE CPG_hit_stats SET `browser` = 'IE5.0' WHERE `browser` ='MSIE 5.0';
+UPDATE CPG_hit_stats SET `browser` = 'IE7' WHERE `browser` ='MSIE 7.0';
+UPDATE CPG_vote_stats SET `browser` = 'IE6' WHERE `browser` ='Microsoft Internet Explorer 6.0';
+UPDATE CPG_vote_stats SET `browser` = 'IE5.5' WHERE `browser` ='Microsoft Internet Explorer 5.5';
+UPDATE CPG_vote_stats SET `browser` = 'IE6' WHERE `browser` ='MSIE 6.0';
+UPDATE CPG_vote_stats SET `browser` = 'IE5.5' WHERE `browser` ='IE5.5';
+UPDATE CPG_vote_stats SET `browser` = 'IE3' WHERE `browser` ='MSIE 3.0';
+UPDATE CPG_vote_stats SET `browser` = 'IE4' WHERE `browser` ='MSIE 4.0';
+UPDATE CPG_vote_stats SET `browser` = 'IE5.0' WHERE `browser` ='MSIE 5.0';
+UPDATE CPG_vote_stats SET `browser` = 'IE7' WHERE `browser` ='MSIE 7.0';
 
 
 # Add album moderator entry
@@ -623,3 +623,9 @@ INSERT INTO CPG_config VALUES ('display_redirection_page', '0');
 
 # Display thumbnail previews on batch-add pages
 INSERT INTO CPG_config VALUES ('display_thumbs_batch_add', '1');
+
+# The ALL setting for filetypes is not a good idea - replace it!
+UPDATE CPG_config SET `allowed_img_types` = 'jpeg/jpg/png/gif' WHERE `allowed_img_types`='ALL';
+UPDATE CPG_config SET `allowed_mov_types` = 'asf/asx/mpg/mpeg/wmv/swf/avi/mov' WHERE `allowed_mov_types`='ALL';
+UPDATE CPG_config SET `allowed_snd_types` = 'mp3/midi/mid/wma/wav/ogg' WHERE `allowed_snd_types`='ALL';
+UPDATE CPG_config SET `allowed_doc_types` = 'doc/txt/rtf/pdf/xls/pps/ppt/zip/gz/mdb' WHERE `allowed_doc_types`='ALL';

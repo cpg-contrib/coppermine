@@ -131,7 +131,7 @@ if (isset($_POST['restore_config'])) { // user has chosen to factory-reset the c
       }
       // regex check
       if ((isset($adminDataValue['regex']) && $adminDataValue['regex'] != '') || (isset($adminDataValue['regex_not']) && $adminDataValue['regex_not'] != '')) {
-        if ((isset($adminDataValue['regex']) && eregi($adminDataValue['regex'],$evaluation_array[$adminDataKey]) == FALSE) || (isset($adminDataValue['regex_not']) && eregi($adminDataValue['regex_not'],$evaluation_array[$adminDataKey]) == TRUE)) {
+        if ((isset($adminDataValue['regex']) && $adminDataValue['regex'] != '' && eregi($adminDataValue['regex'],$evaluation_array[$adminDataKey]) == FALSE) || (isset($adminDataValue['regex_not']) && $adminDataValue['regex_not'] != '' && eregi($adminDataValue['regex_not'],$evaluation_array[$adminDataKey]) == TRUE)) {
           $userMessage .= '<li style="list-style-image:url(images/red.gif)">'.sprintf($lang_admin_php['config_setting_invalid'], '<a href="#'.$adminDataKey.'">'.$lang_admin_php[$adminDataKey].'</a>').'</li>'.$lineBreak;
           $regexValidation = '0';
           $admin_data_array[$adminDataKey] = $evaluation_array[$adminDataKey]; // replace the stuff in the form field with the improper input, so the user can see and correct his error

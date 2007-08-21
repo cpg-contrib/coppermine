@@ -674,23 +674,24 @@ If you have issues uploading pics, find out if safe_mode is enabled on your webs
 <a name="admin_picture_thumb_advanced_silly_safe_mode_end"></a>
 <hr />
 <a name="admin_picture_thumb_advanced_pic_extensions"></a><h3>Allowed image types<a href="#admin_picture_thumb_advanced_pic_extensions" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>&quot;<em>ALL</em>&quot; will result in all allowed image file types that your image library (GD or ImageMagick) is capable of handling to be allowed as uploads and content in your gallery. If you want to restrict the allowed file types to certain types only, enter a slash-separated list of extensions, e.g. <tt class="code">jpg/bmp/tif</tt></p>
-<p>You have to understand that &quot;ALL&quot; does not mean &quot;all image file types that exist&quot;, but instead &quot;all image file types that your <a href="#admin_picture_thumb_advanced_resize_method">image library</a> (GD or ImageMagick) supports.</p>
+<p>Enter the allowed image file types that your image library (GD or ImageMagick) is capable of handling to be allowed as uploads and content in your gallery. Restrict the allowed file types to certain types only by entering a slash-separated list of extensions, e.g. <tt class="code">jpg/bmp/tif</tt> (only possible if you use ImageMagick) or <tt class="code">jpg/png</tt> (possible both for Image Magick as well as GD).</p>
+<p>You have to understand that you can not specify &quot;all image file types that exist&quot;, but instead &quot;all image file types that your <a href="#admin_picture_thumb_advanced_resize_method">image library</a> (GD or ImageMagick) supports.</p>
 <ul>
   <li><strong>File types supported by GD:</strong><br />
   jpeg/jpg/png/gif</li>
   <li><strong>File types supported by ImageMagick:</strong><br />
   jpeg/jpg/png/gif/bmp/jpc/jp2/jpx/jb2/swc/iff/psd</li>
 </ul>
+In Coppermine versions prior to cpg1.5.0, the option &quot;ALLquot; used to be available as well for this field - it has been removed, as it caused users to think that this actually meant &quot;all image file types that exist&quot;.
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Files and thumbnails advanced settings &rarr; Allowed image types</p>
-
 <a name="admin_picture_thumb_advanced_pic_extensions_end"></a>
 <hr />
 <a name="admin_thumbs_advanced_movie"></a><h3>Allowed movie types<a href="#admin_thumbs_advanced_movie" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>&quot;<em>ALL</em>&quot; will result in all allowed movie file types to be uploaded. If you want to restrict the allowable file types to certain extensions only, enter a slash-separated list of extensions, e.g. <tt class="code">wmv/avi/mov</tt>.</p>
+<p>Specify the allowed movie file types to be uploaded. If you want to restrict the allowable file types to certain extensions only, enter a slash-separated list of extensions, e.g. <tt class="code">wmv/avi/mov</tt>.</p>
 <p>Note that being able to display a movie requires that the cpg-user have the necessary codecs properly configured on their computers to display the movie file, e.g. if you allow the file type <tt class="faq">mov</tt>, the user who wishes to view the file will need to have Apple's Quick-Time plug-in installed. Also note that <tt class="code">avi</tt> is just a container for different codecs - this means that a computer which is capable of playing movie1.avi may not be capable of playing movie2.avi if those files have been encoded with different 'avi' codecs.</p>
 <p><strong>File types supported by Coppermine:</strong><br />
 asf/asx/mpg/mpeg/wmv/swf/avi/mov</p>
+<p>In Coppermine versions prior to cpg1.5.0, the option &quot;ALLquot; used to be available as well for this field - it has been removed, as it caused users to think that this actually meant &quot;all movie file types that exist&quot;.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Files and thumbnails advanced settings &rarr; Allowed movie types</p>
 <a name="admin_thumbs_advanced_movie_end"></a>
 <hr />
@@ -700,17 +701,18 @@ asf/asx/mpg/mpeg/wmv/swf/avi/mov</p>
 <a name="admin_movie_autoplay_end"></a>
 <hr />
 <a name="admin_picture_thumb_advanced_audio_extensions"></a><h3>Allowed audio types<a href="#admin_picture_thumb_advanced_audio_extensions" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>&quot;<em>ALL</em>&quot; will result in all allowable audio file types to be uploaded. If you want to restrict the allowed file types to certain extensions only, enter a slash-separated list of extensions, e.g. <tt class="code">wav/mp3/wma</tt>.</p>
+<p>Specify the allowable audio file types to be uploaded. If you want to restrict the allowed file types to certain extensions only, enter a slash-separated list of extensions, e.g. <tt class="code">wav/mp3/wma</tt>.</p>
 <p>Note that being able to listen to an audio file requires that the cpg-user have the necessary codecs properly configured on their computers to hear these files, e.g. if you allow the file type <tt class="code">mp3</tt>, users who wish to listen to the file will need to have a media player installed on their computer that can handle mp3 files.</p>
 <p><strong>File types supported by Coppermine:</strong><br />
 mp3/midi/mid/wma/wav/ogg</p>
+<p>In Coppermine versions prior to cpg1.5.0, the option &quot;ALLquot; used to be available as well for this field - it has been removed, as it caused users to think that this actually meant &quot;all sound file types that exist&quot;.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Files and thumbnails advanced settings &rarr; Allowed audio types</p>
 
 <a name="admin_picture_thumb_advanced_audio_extensions_end"></a>
 <hr />
 <a name="admin_picture_thumb_advanced_doc_extensions"></a><h3>Allowed document types<a href="#admin_picture_thumb_advanced_doc_extensions" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>&quot;<em>ALL</em>&quot; will result in all allowable document file types to be uploaded. If you want to restrict the allowable file types to certain extensions only, enter a slash-separated list of extensions, e.g. <tt class="code">txt/pdf</tt>.</p>
-<p>Note that being able to browse a document file requires the cpg-user to have a compatible software installed and configured properly on their computer that is capable of displaying the type of document in question, e.g. if you allow the file type <tt class="code">xls</tt>, users who wish to browse the file will need to have an application installed on their computer that can display MS-Excel sheets. Be extremely careful with  document that are known to be vulnerable to virus contamination, embedded or as macros. This is especially true if you plan to allow users the capability of uploading documents without admin approval.</p>
+<p>Specify the allowable document file types to be uploaded. If you want to restrict the allowable file types to certain extensions only, enter a slash-separated list of extensions, e.g. <tt class="code">txt/pdf</tt>.</p>
+<p>Note that being able to browse a document file requires the cpg-user to have a compatible software installed and configured properly on their computer that is capable of displaying the type of document in question, e.g. if you allow the file type <tt class="code">xls</tt>, users who wish to browse the file will need to have an application installed on their computer that can display MS-Excel sheets. Be extremely careful with  documents that are known to be vulnerable to virus contamination, embedded or as macros. This is especially true if you plan to allow users the capability of uploading documents without admin approval.</p>
 <p><strong>File types supported by Coppermine:</strong><br />
 Real-Media-files: ram/ra/rm<br />
 Images: tiff/tif<br />
@@ -718,7 +720,8 @@ MS Office: doc/xls/pps/ppt/mdb<br />
 Misc: txt/rtf/pdf<br />
 Archives: zip/rar/gz/001/7z/arj/bz2/cab/lzh/rpm/tar/z<br />
 OpenDocument: odt/ods/odp/odg/odc/odf/odi/odm/ott/ots/otp/otg/otc/otf/oti/oth</p>
-<p>For security reasons coppermine doesn't enable all document types by default. Before adding more file types or changing this setting to &quot;ALL&quot;, make sure that the file types are supported on your webserver.</p>
+<p>For security reasons coppermine doesn't enable all document types by default. Before adding more file types, make sure that the file types are supported on your webserver.</p>
+<p>In Coppermine versions prior to cpg1.5.0, the option &quot;ALLquot; used to be available as well for this field - it has been removed, as it caused users to think that this actually meant &quot;all document file types that exist&quot;.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Files and thumbnails advanced settings &rarr; Allowed document types</p>
 
 <a name="admin_picture_thumb_advanced_doc_extensions_end"></a>
@@ -737,11 +740,13 @@ OpenDocument: odt/ods/odp/odg/odc/odf/odi/odm/ott/ots/otp/otg/otc/otf/oti/oth</p
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Files and thumbnails advanced settings &rarr; Path to ImageMagick 'convert' utility</p>
 <a name="admin_picture_thumb_advanced_im_path_end"></a>
 <hr />
+<!--
 <a name="admin_picture_thumb_advanced_allowed_imagetypes"></a><h3>Allowed image types (only valid for ImageMagick)<a href="#admin_picture_thumb_advanced_allowed_imagetypes" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>This is the list of image types that the script will accept when using ImageMagick. Image type detection is performed by reading the header of the file and not by looking at its file extension.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Files and thumbnails advanced settings &rarr; Allowed image types</p>
 <a name="admin_picture_thumb_advanced_allowed_imagetypes_end"></a>
 <hr />
+-->
 <a name="admin_picture_thumb_advanced_im_commandline"></a><h3>Command line options for ImageMagick<a href="#admin_picture_thumb_advanced_im_commandline" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Here you can add options that will be appended to the command line when executing ImageMagick. Read the ImageMagick Convert manual to see what is available.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Files and thumbnails advanced settings &rarr; Command line options for ImageMagick</p>

@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-08-21 [O] Replaced "ALL" setting for filetypes with slash-separated list {GauGau}
 2007-08-21 [A] Added another regex check to config that makes sure the user overwrites certain default values when configuring his gallery for the first time {GauGau}
 2007-08-21 [C] Added noscript section to pages that require JavaScript {GauGau}
 2007-08-20 [D] Added keyword manager section to documentation {GauGau}
