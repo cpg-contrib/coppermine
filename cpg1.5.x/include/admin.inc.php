@@ -21,7 +21,7 @@
   Defines the scope of configuration variables
 **********************************************/
 
-//if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
+if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
 
 
 $config_data = array(
@@ -1042,34 +1042,16 @@ $config_data = array(
       'default_value' => '0',
       'help_link' => 'f=configuration.htm&amp;as=admin_general_offline&amp;ae=admin_general_offline_end',
     ),
+    'display_coppermine_news' => array(
+      'type' => 'checkbox',
+      'default_value' => '1',
+      'help_link' => 'f=configuration.htm&amp;as=admin_general_coppermine_news&amp;ae=admin_general_coppermine_news_end',
+      'end_description' => '('.$lang_admin_php['display_coppermine_detail'].')',
+    ),
   ),
 );
 
-/*
-$string2check = 'aad,2/breadcrumb,2/foo/bar,5';
-$regex = '';
-$regex .= '^';
-$regex .= '(';
-$regex .= '([0-9a-z]){1,}';
-$regex .= '('; // start of optional number that must be separated with a coma
-$regex .= '([,]){0,1}'; // coma-separator
-$regex .= '([0-9]){1,2}'; // numerical expression
-$regex .= '){0,1}';  // end of optional number that must be separated with a coma
-$regex .= '){1,1}'; // alphanumerical string without special chars
-$regex .= '(';
-$regex .= '(/){1,1}';
-$regex .= '(';
-$regex .= '[0-9a-z]{1,}';
-$regex .= '('; // start of optional number that must be separated with a coma
-$regex .= '([,]){0,1}'; // coma-separator
-$regex .= '([0-9]){1,2}'; // numerical expression
-$regex .= '){0,1}';  // end of optional number that must be separated with a coma
-$regex .= ')';
-$regex .= '){1,}';
-$regex .= '$';
-print eregi($regex,$string2check);
-die;
-*/
+
 
 
 ?>

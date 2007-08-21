@@ -352,6 +352,9 @@ $lang_version_alert = array(
   'version_alert' => 'Unsupported version!',
   'no_stable_version' => 'You are running Coppermine %s (%s) which is only meant for very experienced users - this version comes without support nor any warranties. Use it at your own risk or downgrade to the latest stable version if you need support!',
   'gallery_offline' => 'The gallery is currently offline and will be only visible for you as admin. Don\'t forget to switch it back online after finishing maintenance.',
+  'coppermine_news' => 'News from coppermine-gallery.net', //cpg1.5
+  'no_iframe' => 'Your browser can not display inline frames', //cpg1.5
+  'hide' => 'hide', //cpg1.5
 );
 
 $lang_create_tabs = array(
@@ -429,6 +432,7 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
 if (defined('MODE_PHP')) $lang_mode_php = array(
   0 => 'Turning display of admin controls off...', // cpg1.5.x
   1 => 'Turning display of admin controls on...', // cpg1.5.x
+  'news_hide...' => 'Hiding news', // cpg1.5.x
 );
 
 // ------------------------------------------------------------------------- //
@@ -892,6 +896,8 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'debug_mode' =>   'Enable debug mode', // cpg1.5
   'debug_notice' =>   'Display notices in debug mode', // cpg1.5
   'offline' =>   'Gallery is offline', // cpg1.5
+  'display_coppermine_news' =>   'Display news from coppermine-gallery.net', // cpg1.5
+  'display_coppermine_detail' =>   'will only be displayed for the admin', // cpg1.5
   'config_setting_invalid' =>   'The value you have set for &laquo;%s&raquo; is invalid, please review it.', // cpg1.5
   'config_setting_ok' =>   'Your setting for &laquo;%s&raquo; has been saved.', // cpg1.5
 );

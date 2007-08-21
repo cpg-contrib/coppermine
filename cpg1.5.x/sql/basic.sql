@@ -187,6 +187,7 @@ INSERT INTO CPG_config VALUES ('display_stats_on_index', '1');
 INSERT INTO CPG_config VALUES ('debug_mode', '0');
 INSERT INTO CPG_config VALUES ('debug_notice', '0');
 INSERT INTO CPG_config VALUES ('offline', '0');
+INSERT INTO CPG_config VALUES ('display_coppermine_news', '1');
 INSERT INTO CPG_config VALUES ('keep_votes_time', '30');
 # INSERT INTO CPG_config VALUES ('randpos_interval', '1063623637');
 #INSERT INTO CPG_config VALUES ('comment_email_notification', '0');

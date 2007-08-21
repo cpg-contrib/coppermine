@@ -31,7 +31,9 @@ $admin_data_array = $CONFIG;
 $lineBreak = "\n\r";
 
 
-if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+if (!GALLERY_ADMIN_MODE) {
+  cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+}
 
 if (!function_exists('form_get_foldercontent')) {
   function form_get_foldercontent ($foldername, $fileOrFolder = 'folder', $validextension = '', $exception_array = '') {

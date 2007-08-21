@@ -2863,7 +2863,7 @@ return $return;
  **/
 
 function cpg_alert_dev_version() {
-        global $lang_version_alert, $CONFIG;
+        global $lang_version_alert, $lang_common, $CONFIG;
         $return = '';
         if (COPPERMINE_VERSION_STATUS != 'stable') {
             ob_start();
@@ -2878,7 +2878,48 @@ function cpg_alert_dev_version() {
         }
         // check if gallery is offline
         if ($CONFIG['offline'] == 1 && GALLERY_ADMIN_MODE) {
-            $return .= '<span style="color:red;font-weight:bold">'.$lang_version_alert['gallery_offline'].'</span><br />&nbsp;<br />';
+            ob_start();
+            starttable('100%', $lang_common['information']);
+            print '<tr><td class="tableb">';
+            print '<span style="color:red;font-weight:bold">'.$lang_version_alert['gallery_offline'].'</span>';
+            print '</td></tr>';
+            endtable();
+            print '<br />';
+            $return .= ob_get_contents();
+            ob_end_clean();
+        }
+        // display news from coppermine-gallery.net
+        if ($CONFIG['display_coppermine_news'] == 1 && GALLERY_ADMIN_MODE) {
+            $help_news = '&nbsp;'.cpg_display_help('f=configuration.htm&amp;as=admin_general_coppermine_news&amp;ae=admin_general_coppermine_news_end&amp;top=1', '600', '300');
+            ob_start();
+            starttable('100%');
+            print <<< EOT
+            <tr>
+              <td>
+                <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                  <tr>
+                    <td class="tableh1">
+                      {$lang_version_alert['coppermine_news']}{$help_news}
+                    </td>
+                    <td class="tableh1" align="right">
+                      <a href="mode.php?what=news" class="admin_menu">{$lang_version_alert['hide']}</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="tableb" colspan="2">
+                      <iframe src="http://coppermine-gallery.net/cpg15x_news.htm" align="left" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" width="100%" height="100" name="coppermine_news" id="coppermine_news" class="textinput">
+                        {$lang_version_alert['no_iframe']}
+                      </iframe>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+EOT;
+            endtable();
+            print '<br />';
+            $return .= ob_get_contents();
+            ob_end_clean();
         }
         return $return;
 }

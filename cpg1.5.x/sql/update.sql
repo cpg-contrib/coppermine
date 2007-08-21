@@ -629,3 +629,6 @@ UPDATE CPG_config SET `allowed_img_types` = 'jpeg/jpg/png/gif' WHERE `allowed_im
 UPDATE CPG_config SET `allowed_mov_types` = 'asf/asx/mpg/mpeg/wmv/swf/avi/mov' WHERE `allowed_mov_types`='ALL';
 UPDATE CPG_config SET `allowed_snd_types` = 'mp3/midi/mid/wma/wav/ogg' WHERE `allowed_snd_types`='ALL';
 UPDATE CPG_config SET `allowed_doc_types` = 'doc/txt/rtf/pdf/xls/pps/ppt/zip/gz/mdb' WHERE `allowed_doc_types`='ALL';
+
+# Display the news section from coppermine-gallery.net
+INSERT INTO CPG_config VALUES ('display_coppermine_news', '1');

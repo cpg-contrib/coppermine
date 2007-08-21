@@ -22,8 +22,7 @@
 *
 * Toggles admin controls on / off
 *
-* @copyright 2002,2003 Gregory DEMAR, Coppermine Dev Team
-* @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
+* @copyright 2002-2007 Gregory DEMAR, Coppermine Dev Team
 * @package Coppermine
 * @version $Id$
 */
@@ -34,21 +33,28 @@ define('MODE_PHP', true);
 
 require('include/init.inc.php');
 
-if (!USER_IS_ADMIN) {
+if ($_GET['what'] == 'news') {
+  if (!GALLERY_ADMIN_MODE) {
     cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+  }
+  cpgRedirectPage($CONFIG['ecards_more_pic_target'].$referer, $lang_common['information'], $lang_mode_php['news_hide'],3);
+} else {
+
+  if (!USER_IS_ADMIN) {
+      cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+  }
+
+  if (!isset($_GET['admin_mode']) || !isset($_GET['referer'])) {
+      cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
+  }
+
+  $admin_mode = (int)$_GET['admin_mode'] ? 1 : 0;
+  $referer = $_GET['referer'] ? $_GET['referer'] : 'index.php';
+  $USER['am'] = $admin_mode;
+  if (!$admin_mode) {
+      $referer = 'index.php';
+  }
+
+  cpgRedirectPage($CONFIG['ecards_more_pic_target'].$referer, $lang_common['information'], $lang_mode_php[$admin_mode],3);
 }
-
-if (!isset($_GET['admin_mode']) || !isset($_GET['referer'])) {
-    cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
-}
-
-$admin_mode = (int)$_GET['admin_mode'] ? 1 : 0;
-$referer = $_GET['referer'] ? $_GET['referer'] : 'index.php';
-$USER['am'] = $admin_mode;
-if (!$admin_mode) {
-    $referer = 'index.php';
-}
-
-cpgRedirectPage($CONFIG['ecards_more_pic_target'].$referer, $lang_common['information'], $lang_mode_php[$admin_mode],3);
-
 ?>
