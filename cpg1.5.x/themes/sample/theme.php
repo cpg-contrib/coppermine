@@ -251,6 +251,9 @@ $template_gallery_admin_menu = <<<EOT
                             <!-- BEGIN exif_manager -->
                                 <div class="admin_menu admin_float"><a href="exifmgr.php" title="{EXIFMGR_TITLE}">{EXIFMGR_LNK}</a></div>
                             <!-- END exif_manager -->
+                            <!-- BEGIN show_news -->
+                                <div class="admin_menu admin_float"><a href="mode.php?what=news&amp;referer=$REFERER" title="{SHOWNEWS_TITLE}">{SHOWNEWS_LNK}</a></div>
+                            <!-- END show_news -->
                 <div style="clear:left;">
                 </div>
               </div>
@@ -1794,6 +1797,9 @@ function theme_admin_mode_menu()
             if (!$CONFIG['read_exif_data']) {
                 template_extract_block($template_gallery_admin_menu, 'exif_manager');
             }
+            if ($CONFIG['display_coppermine_news'] != 0) {
+                template_extract_block($template_gallery_admin_menu, 'show_news');
+            }
 
             $param = array('{CATL}' => $cat_l,
                 '{UPL_APP_TITLE}' => $lang_gallery_admin_menu['upl_app_title'],
@@ -1843,6 +1849,8 @@ function theme_admin_mode_menu()
                 '{KEYWORDMGR_LNK}' => $lang_gallery_admin_menu['keywordmgr_lnk'],
                 '{EXIFMGR_TITLE}' => $lang_gallery_admin_menu['exifmgr_title'],
                 '{EXIFMGR_LNK}' => $lang_gallery_admin_menu['exifmgr_lnk'],
+                '{SHOWNEWS_TITLE}' => $lang_gallery_admin_menu['shownews_title'],
+                '{SHOWNEWS_LNK}' => $lang_gallery_admin_menu['shownews_lnk'],
                 );
 
             $html = template_eval($template_gallery_admin_menu, $param);

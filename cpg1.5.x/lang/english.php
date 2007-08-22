@@ -227,6 +227,8 @@ $lang_gallery_admin_menu = array(
   'keywordmgr_title' => 'Manage keywords (if corresponding option is turned on in config).', // cpg1.5.x
   'exifmgr_lnk' => 'EXIF manager', // cpg1.5.x
   'exifmgr_title' => 'Manage EXIF display (if corresponding option is turned on in config).', // cpg1.5.x
+  'shownews_lnk' => 'Show News', // cpg1.5.x
+  'shownews_title' => 'Display the news from coppermine-gallery.net', // cpg1.5.x
 );
 
 $lang_user_admin_menu = array(
@@ -432,7 +434,8 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
 if (defined('MODE_PHP')) $lang_mode_php = array(
   0 => 'Turning display of admin controls off...', // cpg1.5.x
   1 => 'Turning display of admin controls on...', // cpg1.5.x
-  'news_hide...' => 'Hiding news', // cpg1.5.x
+  'news_hide' => 'Hiding news...', // cpg1.5.x
+  'news_show' => 'Showing news...', // cpg1.5.x
 );
 
 // ------------------------------------------------------------------------- //

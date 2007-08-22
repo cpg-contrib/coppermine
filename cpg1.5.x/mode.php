@@ -37,7 +37,30 @@ if ($_GET['what'] == 'news') {
   if (!GALLERY_ADMIN_MODE) {
     cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
   }
-  cpgRedirectPage($CONFIG['ecards_more_pic_target'].$referer, $lang_common['information'], $lang_mode_php['news_hide'],3);
+  if ($CONFIG['display_coppermine_news'] == 0) {
+    $value = 1;
+    $message = $lang_mode_php['news_show'];
+  } else {
+    $value = 0;
+    $message = $lang_mode_php['news_hide'];
+  }
+
+  cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = 'display_coppermine_news'");
+  $CONFIG['display_coppermine_news'] = $value;
+  if ($CONFIG['log_mode'] == CPG_LOG_ALL) {
+      log_write('CONFIG UPDATE SQL: '.
+        "UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = 'display_coppermine_news'\n".
+        'TIME: '.date("F j, Y, g:i a")."\n".
+        'USER: '.$USER_DATA['user_name'],
+        CPG_DATABASE_LOG
+        );
+  }
+  $referer = $_GET['referer'] ? $_GET['referer'] : 'index.php';
+  $referer = rawurldecode($referer);
+  $referer = str_replace('&amp;', '&', $referer);
+  $referer = str_replace('&amp;', '&', $referer);
+  cpgRedirectPage($referer, $lang_common['information'], $message,3);
+
 } else {
 
   if (!USER_IS_ADMIN) {

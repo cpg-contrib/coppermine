@@ -2863,7 +2863,7 @@ return $return;
  **/
 
 function cpg_alert_dev_version() {
-        global $lang_version_alert, $lang_common, $CONFIG;
+        global $lang_version_alert, $lang_common, $CONFIG, $REFERER;
         $return = '';
         if (COPPERMINE_VERSION_STATUS != 'stable') {
             ob_start();
@@ -2902,7 +2902,7 @@ function cpg_alert_dev_version() {
                       {$lang_version_alert['coppermine_news']}{$help_news}
                     </td>
                     <td class="tableh1" align="right">
-                      <a href="mode.php?what=news" class="admin_menu">{$lang_version_alert['hide']}</a>
+                      <a href="mode.php?what=news&amp;referer={$REFERER}" class="admin_menu">{$lang_version_alert['hide']}</a>
                     </td>
                   </tr>
                   <tr>
