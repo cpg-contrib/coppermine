@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
@@ -441,7 +441,8 @@ EOT;
                               print '      <img src="images/os/'.$osArray[$row[$value]].'" width="14" height="14" border="0" title="'.$row[$value].'" alt="" />'.$line_break;
                           } elseif ($value == 'uid') {
                               if ($row[$value] != 0) {
-                                  print '      <a href="profile.php?uid='.$row[$value].'">'.$row[$value].'</a>'.$line_break;
+                                  $user_data = $cpg_udb->get_user_infos($row[$value]);
+                                  print '      <a href="profile.php?uid='.$row[$value].'">'.$user_data['user_name'].'</a>'.$line_break;
                               }  else {
                                   print '      <span title="'.$lang_stat_details_php['guest'].'">-</span>'.$line_break;
                               }
