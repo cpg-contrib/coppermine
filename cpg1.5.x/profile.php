@@ -27,18 +27,97 @@ include("include/smilies.inc.php");
   $cpg_udb->view_profile($_GET['uid']);
 //}
 
+function cpgUserPicCount() {
+        global $CONFIG, $user_data;
+        $result = cpg_db_query("SELECT pid FROM {$CONFIG['TABLE_PICTURES']} WHERE owner_name = '".addslashes($user_data['user_name'])."'");
+        $pic_count = mysql_num_rows($result);
+        mysql_free_result($result);
+        return $pic_count;
+}
+
+function cpgUserThumb($uid) {
+        global $CONFIG, $FORBIDDEN_SET;
+        if ($FORBIDDEN_SET != "") $FORBIDDEN_SET = "AND $FORBIDDEN_SET";
+        $query = "SELECT count(*), MAX(pid) FROM {$CONFIG['TABLE_PICTURES']} AS p WHERE owner_id = '$uid' AND approved = 'YES' $FORBIDDEN_SET";
+        $result = cpg_db_query($query);
+        $nbEnr = mysql_fetch_array($result);
+        $picture_count = $nbEnr[0];
+        $thumb_pid = $nbEnr[1];
+        mysql_free_result($result);
+
+        $result = cpg_db_query("SELECT count(*) FROM {$CONFIG['TABLE_ALBUMS']} AS p WHERE category = '" . (FIRST_USER_CAT + $uid) . "' $FORBIDDEN_SET");
+        $nbEnr = mysql_fetch_array($result);
+        $album_count = $nbEnr[0];
+        mysql_free_result($result);
+
+        $user_thumb = '';
+        if ($picture_count) {
+            $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='" . $thumb_pid . "'";
+            $result = cpg_db_query($sql);
+            if (mysql_num_rows($result)) {
+                $picture = mysql_fetch_array($result);
+                mysql_free_result($result);
+                $pic_url =  get_pic_url($picture, 'thumb');
+                if (!is_image($picture['filename'])) {
+                        $image_info = getimagesize(urldecode($pic_url));
+                        $picture['pwidth'] = $image_info[0];
+                        $picture['pheight'] = $image_info[1];
+                }
+                $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['thumb_width']);
+                $mime_content = cpg_get_type($picture['filename']);
+                $user_thumb = '<img src="' . $pic_url . '" class="image"'
+                                . $image_size['geom'] . ' border="0" alt="" />';
+            }
+        }
+        return $user_thumb;
+}
+
+function cpgUserLastComment($uid) {
+        global $CONFIG;
+
+        $result = cpg_db_query("SELECT count(*), MAX(msg_id) FROM {$CONFIG['TABLE_COMMENTS']} as c, {$CONFIG['TABLE_PICTURES']} as p WHERE c.pid = p.pid AND approval='YES' AND author_id = '$uid' $FORBIDDEN_SET");
+        $nbEnr = mysql_fetch_array($result);
+        $comment_count = $nbEnr[0];
+        $lastcom_id = $nbEnr[1];
+        mysql_free_result($result);
+
+        $lastcom = '';
+        if ($comment_count) {
+            $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight, msg_author, UNIX_TIMESTAMP(msg_date) as msg_date, msg_body, approval " . "FROM {$CONFIG['TABLE_COMMENTS']} AS c, {$CONFIG['TABLE_PICTURES']} AS p " . "WHERE msg_id='" . $lastcom_id . "' AND approval = 'YES' AND c.pid = p.pid";
+            $result = cpg_db_query($sql);
+            if (mysql_num_rows($result)) {
+                $row = mysql_fetch_array($result);
+                mysql_free_result($result);
+                $pic_url =  get_pic_url($row, 'thumb');
+                if (!is_image($row['filename'])) {
+                        $image_info = getimagesize(urldecode($pic_url));
+                        $row['pwidth'] = $image_info[0];
+                        $row['pheight'] = $image_info[1];
+                }
+                $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['thumb_width']);
+                $mime_content = cpg_get_type($row['filename']);
+                $lastcom = '<img src="' . $pic_url . '" class="image"' . $image_size['geom'] . ' border="0" alt="" />';
+            }
+        }
+        $lastComArray = array();
+        $lastComArray['thumb'] = $lastcom;
+        $lastComArray['comment'] = $row['msg_body'];
+        $lastComArray['msg_date'] = $row['msg_date'];
+        return $lastComArray;
+}
+
 $edit_profile_form_param = array(
     array('text', 'username', $lang_register_php['username']),
     array('text', 'reg_date', $lang_register_php['reg_date']),
     array('text', 'group', $lang_register_php['group']),
     array('text', 'email', $lang_register_php['email'],255),
+    array('input', 'user_profile1', $CONFIG['user_profile1_name'], 255),
+    array('input', 'user_profile2', $CONFIG['user_profile2_name'], 255),
+    array('input', 'user_profile3', $CONFIG['user_profile3_name'], 255),
+    array('input', 'user_profile4', $CONFIG['user_profile4_name'], 255),
+    array('input', 'user_profile5', $CONFIG['user_profile5_name'], 255),
+    array('textarea', 'user_profile6', $CONFIG['user_profile6_name'], 255),
     array('text', 'disk_usage', $lang_register_php['disk_usage']),
-        array('input', 'user_profile1', $CONFIG['user_profile1_name'], 255),
-        array('input', 'user_profile2', $CONFIG['user_profile2_name'], 255),
-        array('input', 'user_profile3', $CONFIG['user_profile3_name'], 255),
-        array('input', 'user_profile4', $CONFIG['user_profile4_name'], 255),
-        array('input', 'user_profile5', $CONFIG['user_profile5_name'], 255),
-        array('textarea', 'user_profile6', $CONFIG['user_profile6_name'], 255),
     );
 
 
@@ -340,7 +419,34 @@ switch ($op) {
 EOT;
         starttable(-1, $title, 2);
         make_form($edit_profile_form_param, $form_data);
+        $pic_count = cpgUserPicCount();
+        $user_thumb = cpgUserThumb(USER_ID);
+        $userID = USER_ID;
+        $lastComArray = cpgUserLastComment(USER_ID);
+        $lastComDate = localised_date($lastComArray['msg_date'], $lastcom_date_fmt);
+        $lastComText = bb_decode(process_smilies($lastComArray['comment']));
         echo <<<EOT
+    <tr>
+        <td align="left" valign="top" class="tableb">
+          {$lang_register_php['pic_count']}
+        </td>
+        <td align="left" class="tableb">
+          {$pic_count}
+        </td>
+    </tr>
+    <tr>
+        <td align="left" valign="top" class="tableb">
+          {$lang_register_php['last_comments']}<br />
+          (<a href="thumbnails.php?album=lastcomby&amp;uid={$userID}" title="{$lang_register_php['last_comments_detail']} {$lang_register_php['you']}">
+          {$lang_register_php['last_comments_detail']} {$lang_register_php['you']}
+          </a>)
+        </td>
+        <td align="left" valign="top" class="tableb">
+          <a href="thumbnails.php?album=lastcomby&amp;uid={$userID}" title="{$lang_register_php['last_comments_detail']} {$lang_register_php['you']}"><span class="thumb_title">{$lastComArray['thumb']}<br /></a><br />
+          <span class="thumb_caption">{$lastComDate}</span><br />
+          <span class="thumb_caption">{$lastComText}</span>
+        </td>
+    </tr>
     <tr>
         <td colspan="2" align="center" class="tablef">
             <input type="submit" name="change_profile" value="{$lang_register_php['apply_modif']}" class="button" />
@@ -351,7 +457,7 @@ EOT;
 EOT;
         endtable();
         echo "</form>";
-        if ($CONFIG['allow_user_account_delete'] != 0) {
+        if ($CONFIG['allow_user_account_delete'] != 0) { // user is allowed to delete his account --- start
           print <<< EOT
         <br />
         <script type="text/javascript">
@@ -416,13 +522,15 @@ EOT;
 EOT;
           endtable();
           print '</form>';
-        }
+        } // user is allowed to delete his account --- end
         pagefooter();
         ob_end_flush();
         break;
     // ------------------------------------------------------------------------- //
     case 'change_pass' :
-        if (!USER_ID /*|| defined('UDB_INTEGRATION')*/) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+        if (!USER_ID /*|| defined('UDB_INTEGRATION')*/) {
+            cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+        }
 
         // Just a sanity check (should get caught when user clicks 'My Profile')
         if (UDB_INTEGRATION != 'coppermine') {
@@ -451,90 +559,20 @@ EOT;
     // ------------------------------------------------------------------------- //
     default :
 
-        //if (defined('UDB_INTEGRATION')) {
-            $user_data = $cpg_udb->get_user_infos($uid);
-        /*} else {
-            $sql = "SELECT user_name, user_email, UNIX_TIMESTAMP(user_regdate) as user_regdate, group_name, " . "user_profile1, user_profile2, user_profile3, user_profile4, user_profile5, user_profile6 " . "FROM {$CONFIG['TABLE_USERS']} AS u " . "INNER JOIN {$CONFIG['TABLE_USERGROUPS']} AS g ON user_group = group_id " . "WHERE user_id ='$uid'";
+        $user_data = $cpg_udb->get_user_infos($uid);
+        $user_thumb = '<td width="50%" valign="top" align="center">'
+                    . '<a href="thumbnails.php?album=lastupby&amp;uid=' . $uid . '">'
+                    . '<span class="thumb_title">' . $lang_register_php['last_uploads']. '<br />'. $lang_register_php['last_uploads_detail'] . ' ' . $user_data['user_name'] . '<br /></span>'
+                    . cpgUserThumb($uid)
+                    . '</a></td>';
+        $lastComArray = cpgUserLastComment($uid);
+        $lastcom = '<td width="50%" valign="top" align="center">'
+                    . '<a href="thumbnails.php?album=lastcomby&amp;uid=' . $uid . '">'
+                    . '<span class="thumb_title">' . $lang_register_php['last_comments'] . '<br />' . $lang_register_php['last_comments_detail'] . ' ' . $user_data['user_name'] . '<br /></span>'
+                    . $lastComArray['thumb']
+                    . '</a><br />';
+        $lastcom .= "<span class=\"thumb_caption\">" . localised_date($lastComArray['msg_date'], $lastcom_date_fmt) . '</span>' . "<span class=\"thumb_caption\">" . bb_decode(process_smilies($lastComArray['comment'])) . '</span></td>';
 
-            $result = cpg_db_query($sql);
-
-            if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_register_php['err_unk_user'], __FILE__, __LINE__);
-            $user_data = mysql_fetch_array($result);
-            mysql_free_result($result);
-        }*/
-
-        if ($FORBIDDEN_SET != "") $FORBIDDEN_SET = "AND $FORBIDDEN_SET";
-        $query = "SELECT count(*), MAX(pid) FROM {$CONFIG['TABLE_PICTURES']} AS p WHERE owner_id = '$uid' AND approved = 'YES' $FORBIDDEN_SET";
-        $result = cpg_db_query($query);
-        $nbEnr = mysql_fetch_array($result);
-        $picture_count = $nbEnr[0];
-        $thumb_pid = $nbEnr[1];
-        mysql_free_result($result);
-
-        $result = cpg_db_query("SELECT count(*) FROM {$CONFIG['TABLE_ALBUMS']} AS p WHERE category = '" . (FIRST_USER_CAT + $uid) . "' $FORBIDDEN_SET");
-        $nbEnr = mysql_fetch_array($result);
-        $album_count = $nbEnr[0];
-        mysql_free_result($result);
-
-        $result = cpg_db_query("SELECT count(*), MAX(msg_id) FROM {$CONFIG['TABLE_COMMENTS']} as c, {$CONFIG['TABLE_PICTURES']} as p WHERE c.pid = p.pid AND approval='YES' AND author_id = '$uid' $FORBIDDEN_SET");
-        $nbEnr = mysql_fetch_array($result);
-        $comment_count = $nbEnr[0];
-        $lastcom_id = $nbEnr[1];
-        mysql_free_result($result);
-
-        $result = cpg_db_query("SELECT pid FROM {$CONFIG['TABLE_PICTURES']} WHERE owner_name = '".addslashes($user_data['user_name'])."'");
-        $pic_count = mysql_num_rows($result);
-        mysql_free_result($result);
-
-        $lastcom = '';
-        if ($comment_count) {
-            $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight, msg_author, UNIX_TIMESTAMP(msg_date) as msg_date, msg_body, approval " . "FROM {$CONFIG['TABLE_COMMENTS']} AS c, {$CONFIG['TABLE_PICTURES']} AS p " . "WHERE msg_id='" . $lastcom_id . "' AND approval = 'YES' AND c.pid = p.pid";
-            $result = cpg_db_query($sql);
-            if (mysql_num_rows($result)) {
-                $row = mysql_fetch_array($result);
-                mysql_free_result($result);
-                $pic_url =  get_pic_url($row, 'thumb');
-                if (!is_image($row['filename'])) {
-                        $image_info = getimagesize(urldecode($pic_url));
-                        $row['pwidth'] = $image_info[0];
-                        $row['pheight'] = $image_info[1];
-                }
-                $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['thumb_width']);
-                $mime_content = cpg_get_type($row['filename']);
-                $lastcom = '<img src="' . $pic_url . '" class="image"' . $image_size['geom'] . ' border="0" alt="" />';
-                $lastcom = '<td width="50%" valign="top" align="center">'
-                            . '<a href="thumbnails.php?album=lastcomby&amp;uid=' . $uid . '">'
-                            . '<span class="thumb_title">' . $lang_register_php['last_comments'] . ' ' . $user_data['user_name'] . '<br /></span>'
-                            . $lastcom
-                            . '</a><br />';
-                $lastcom .= "<span class=\"thumb_caption\">" . localised_date($row['msg_date'], $lastcom_date_fmt) . '</span>' . "<span class=\"thumb_caption\">" . bb_decode(process_smilies($row['msg_body'])) . '</span></td>';
-            }
-        }
-
-        $user_thumb = '';
-        if ($picture_count) {
-            $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='" . $thumb_pid . "'";
-            $result = cpg_db_query($sql);
-            if (mysql_num_rows($result)) {
-                $picture = mysql_fetch_array($result);
-                mysql_free_result($result);
-                $pic_url =  get_pic_url($picture, 'thumb');
-                if (!is_image($picture['filename'])) {
-                        $image_info = getimagesize(urldecode($pic_url));
-                        $picture['pwidth'] = $image_info[0];
-                        $picture['pheight'] = $image_info[1];
-                }
-                $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['thumb_width']);
-                $mime_content = cpg_get_type($picture['filename']);
-                $user_thumb = '<img src="' . $pic_url . '" class="image"'
-                                . $image_size['geom'] . ' border="0" alt="" />';
-                $user_thumb = '<td width="50%" valign="top" align="center">'
-                            . '<a href="thumbnails.php?album=lastupby&amp;uid=' . $uid . '">'
-                            . '<span class="thumb_title">' . $lang_register_php['last_uploads'] . ' ' . $user_data['user_name'] . '<br /></span>'
-                            . $user_thumb
-                            . '</a></td>';
-            }
-        }
 
         $quick_jump = ($user_thumb . $lastcom) ? '<table width="100%" border="0" cellspacing="5"><tr>' . $user_thumb . $lastcom . '</tr></table>' : '';
 
@@ -548,7 +586,7 @@ EOT;
                         'user_profile5' => $user_data['user_profile5'],
                         'user_profile6' => bb_decode($user_data['user_profile6']),
                         'user_thumb' => $quick_jump,
-                        'pic_count' => $pic_count,
+                        'pic_count' => cpgUserPicCount(),
             );
 
         $title = sprintf($lang_register_php['x_s_profile'], $user_data['user_name']);
