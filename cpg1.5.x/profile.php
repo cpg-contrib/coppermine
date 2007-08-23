@@ -27,9 +27,9 @@ include("include/smilies.inc.php");
   $cpg_udb->view_profile($_GET['uid']);
 //}
 
-function cpgUserPicCount() {
-        global $CONFIG, $user_data;
-        $result = cpg_db_query("SELECT pid FROM {$CONFIG['TABLE_PICTURES']} WHERE owner_name = '".addslashes($user_data['user_name'])."'");
+function cpgUserPicCount($username) {
+        global $CONFIG;
+        $result = cpg_db_query("SELECT pid FROM {$CONFIG['TABLE_PICTURES']} WHERE owner_name = '".addslashes($username)."'");
         $pic_count = mysql_num_rows($result);
         mysql_free_result($result);
         return $pic_count;
@@ -103,6 +103,7 @@ function cpgUserLastComment($uid) {
         $lastComArray['thumb'] = $lastcom;
         $lastComArray['comment'] = $row['msg_body'];
         $lastComArray['msg_date'] = $row['msg_date'];
+        $lastComArray['count'] = $comment_count;
         return $lastComArray;
 }
 
@@ -138,6 +139,7 @@ $display_profile_form_param = array(
     array('text', 'user_profile6', $CONFIG['user_profile6_name']),
     array('text', 'pic_count', $lang_register_php['pic_count']),
     array('thumb', 'user_thumb'),
+    array('text', 'admin_link'),
     );
 
 
@@ -154,11 +156,21 @@ function make_form($form_param, $form_data)
     global $CONFIG; //, $PHP_SELF;
     global $lang_register_php;
 
-    foreach ($form_param as $element) switch ($element[0]) {
+    $loopCounter = 0;
+    foreach ($form_param as $element) {
+
+      if ( ($loopCounter / 2) == floor($loopCounter/2) ) {
+        $cellStyle = 'tableb';
+      } else {
+        $cellStyle = 'tableb tableb_alternate';
+      }
+
+
+      switch ($element[0]) {
         case 'label' :
             echo <<<EOT
     <tr>
-        <td colspan="2" class="tableh2">
+        <td colspan="2" class="{$cellStyle}">
             <b>{$element[1]}<b>
         </td>
     </tr>
@@ -170,10 +182,10 @@ EOT;
             if ($form_data[$element[1]] == '') break;
             echo <<<EOT
     <tr>
-        <td width="40%" class="tableb" height="25">
+        <td width="40%" class="{$cellStyle}" height="25">
             {$element[2]}
         </td>
-        <td width="60%" class="tableb">
+        <td width="60%" class="{$cellStyle}">
             {$form_data[$element[1]]}
         </td>
     </tr>
@@ -186,10 +198,10 @@ EOT;
 
         if ($element[2]) echo <<<EOT
     <tr>
-        <td width="40%" class="tableb"  height="25">
+        <td width="40%" class="{$cellStyle}"  height="25">
             {$element[2]}
         </td>
-        <td width="60%" class="tableb" valign="top">
+        <td width="60%" class="{$cellStyle}" valign="top">
             <input type="text" style="width: 100%" name="{$element[1]}" maxlength="{$element[3]}" value="$value" class="textinput" />
         </td>
     </tr>
@@ -203,10 +215,10 @@ EOT;
 
            if ($element[2]) echo <<<EOT
         <tr>
-            <td width="40%" class="tableb"  height="25">
+            <td width="40%" class="{$cellStyle}"  height="25">
                         {$element[2]}
         </td>
-        <td width="60%" class="tableb" valign="top">
+        <td width="60%" class="{$cellStyle}" valign="top">
                 <textarea name="{$element[1]}" rows="7" cols="40" class="textinput" style="width: 100%">$value</textarea>
                 </td>
         </tr>
@@ -218,10 +230,10 @@ EOT;
         case 'password' :
             echo <<<EOT
     <tr>
-        <td width="40%" class="tableb">
+        <td width="40%" class="{$cellStyle}">
             {$element[2]}
         </td>
-        <td width="60%" class="tableb" valign="top">
+        <td width="60%" class="{$cellStyle}" valign="top">
             <input type="password" style="width: 100%" name="{$element[1]}" maxlength="{$element[3]}" value="" class="textinput" />
         </td>
     </tr>
@@ -233,7 +245,7 @@ EOT;
 
             if ($value) echo <<<EOT
     <tr>
-        <td valign="top" colspan="2" class="thumbnails" align="center">
+        <td valign="top" colspan="2" class="{$cellStyle}" align="center">
             <table width="100%" cellpadding="0" cellspacing="0">
                 <tr>
                     <td align="center">
@@ -248,6 +260,8 @@ EOT;
 
         default:
             cpg_die(CRITICAL_ERROR, 'Invalid action for form creation ' . $element[0], __FILE__, __LINE__);
+      }
+      $loopCounter++;
     }
 }
 
@@ -419,32 +433,65 @@ switch ($op) {
 EOT;
         starttable(-1, $title, 2);
         make_form($edit_profile_form_param, $form_data);
-        $pic_count = cpgUserPicCount();
+        $pic_count = cpgUserPicCount($user_data['user_name']);
         $user_thumb = cpgUserThumb(USER_ID);
         $userID = USER_ID;
         $lastComArray = cpgUserLastComment(USER_ID);
-        $lastComDate = localised_date($lastComArray['msg_date'], $lastcom_date_fmt);
-        $lastComText = bb_decode(process_smilies($lastComArray['comment']));
+        if ($lastComArray['count'] > 0) {
+          $lastComByText = '<br />'.
+                           '(<a href="thumbnails.php?album=lastcomby&amp;uid='.$userID.'">'.
+                           sprintf($lang_register_php['last_comments_detail'], $lang_register_php['you']).
+                           '</a>)';
+          $lastComDate = '<br />'.
+                         '<span class="thumb_caption">'.
+                         localised_date($lastComArray['msg_date'], $lastcom_date_fmt).
+                         '</span>';
+          $lastComText = '<br />'.
+                         '<span class="thumb_caption">'.
+                         bb_decode(process_smilies($lastComArray['comment'])).
+                         '</span>';
+        } else {
+          $lastComText = $lang_register_php['none'];
+        }
+        if ($pic_count > 0) {
+          $lastUploadByText = '<br />'.
+                            '(<a href="thumbnails.php?album=lastupby&amp;uid='.$userID.'">'.
+                            sprintf($lang_register_php['last_uploads_detail'], $lang_register_php['you']).
+                            '</a>)';
+          $lastUploadText = '<a href="thumbnails.php?album=lastupby&amp;uid='.$userID.'">'.
+                            '<span class="thumb_title">'.
+                            $user_thumb.
+                            '</a>';
+        } else {
+          $lastUploadText = $lang_register_php['none'];
+        }
         echo <<<EOT
     <tr>
-        <td align="left" valign="top" class="tableb">
+        <td align="left" valign="top" class="tableb tableb_alternate">
           {$lang_register_php['pic_count']}
         </td>
-        <td align="left" class="tableb">
+        <td align="left" class="tableb tableb_alternate">
           {$pic_count}
         </td>
     </tr>
     <tr>
         <td align="left" valign="top" class="tableb">
-          {$lang_register_php['last_comments']}<br />
-          (<a href="thumbnails.php?album=lastcomby&amp;uid={$userID}" title="{$lang_register_php['last_comments_detail']} {$lang_register_php['you']}">
-          {$lang_register_php['last_comments_detail']} {$lang_register_php['you']}
-          </a>)
+          {$lang_register_php['last_comments']}
+          {$lastComByText}
         </td>
         <td align="left" valign="top" class="tableb">
-          <a href="thumbnails.php?album=lastcomby&amp;uid={$userID}" title="{$lang_register_php['last_comments_detail']} {$lang_register_php['you']}"><span class="thumb_title">{$lastComArray['thumb']}<br /></a><br />
-          <span class="thumb_caption">{$lastComDate}</span><br />
-          <span class="thumb_caption">{$lastComText}</span>
+          <a href="thumbnails.php?album=lastcomby&amp;uid={$userID}"><span class="thumb_title">{$lastComArray['thumb']}</a>
+          {$lastComDate}
+          {$lastComText}
+        </td>
+    </tr>
+    <tr>
+        <td align="left" valign="top" class="tableb tableb_alternate">
+          {$lang_register_php['last_uploads']}
+          {$lastUploadByText}
+        </td>
+        <td align="left" valign="top" class="tableb tableb_alternate">
+          {$lastUploadText}
         </td>
     </tr>
     <tr>
@@ -560,33 +607,47 @@ EOT;
     default :
 
         $user_data = $cpg_udb->get_user_infos($uid);
-        $user_thumb = '<td width="50%" valign="top" align="center">'
-                    . '<a href="thumbnails.php?album=lastupby&amp;uid=' . $uid . '">'
-                    . '<span class="thumb_title">' . $lang_register_php['last_uploads']. '<br />'. $lang_register_php['last_uploads_detail'] . ' ' . $user_data['user_name'] . '<br /></span>'
-                    . cpgUserThumb($uid)
-                    . '</a></td>';
+        $user_thumb = cpgUserThumb($uid);
+        if ($user_thumb != '') {
+          $user_thumb = '<td width="50%" valign="top" align="center">'
+                      . '<a href="thumbnails.php?album=lastupby&amp;uid=' . $uid . '">'
+                      . '<span class="thumb_title">' . $lang_register_php['last_uploads']. '<br />'. sprintf($lang_register_php['last_uploads_detail'], $user_data['user_name']) . '<br /></span>'
+                      . $user_thumb
+                      . '</a></td>';
+        }
         $lastComArray = cpgUserLastComment($uid);
-        $lastcom = '<td width="50%" valign="top" align="center">'
+        if ($lastComArray['count'] != 0) {
+                $lastcom = '<td width="50%" valign="top" align="center">'
                     . '<a href="thumbnails.php?album=lastcomby&amp;uid=' . $uid . '">'
-                    . '<span class="thumb_title">' . $lang_register_php['last_comments'] . '<br />' . $lang_register_php['last_comments_detail'] . ' ' . $user_data['user_name'] . '<br /></span>'
+                    . '<span class="thumb_title">' . $lang_register_php['last_comments'] . '<br />' . sprintf($lang_register_php['last_comments_detail'], $user_data['user_name']) . '<br /></span>'
                     . $lastComArray['thumb']
                     . '</a><br />';
-        $lastcom .= "<span class=\"thumb_caption\">" . localised_date($lastComArray['msg_date'], $lastcom_date_fmt) . '</span>' . "<span class=\"thumb_caption\">" . bb_decode(process_smilies($lastComArray['comment'])) . '</span></td>';
+                $lastcom .= "<span class=\"thumb_caption\">" . localised_date($lastComArray['msg_date'], $lastcom_date_fmt) . '</span>' . "<span class=\"thumb_caption\">" . bb_decode(process_smilies($lastComArray['comment'])) . '</span></td>';
+        }
 
 
         $quick_jump = ($user_thumb . $lastcom) ? '<table width="100%" border="0" cellspacing="5"><tr>' . $user_thumb . $lastcom . '</tr></table>' : '';
 
+        if (GALLERY_ADMIN_MODE || $uid == USER_ID) {
+          if ($uid == USER_ID) {
+            $adminLink = '<a href="profile.php?op=edit_profile" class="admin_menu">'.$lang_register_php['edit_my_profile'].'</a>';
+          } elseif(GALLERY_ADMIN_MODE) {
+            $adminLink = '<a href="usermgr.php?op=edit&user_id='.$uid.'" class="admin_menu">'.sprintf($lang_register_php['edit_xs_profile'], $user_data['user_name']).'</a>';
+          }
+        }
+
         $form_data = array('username' => $user_data['user_name'],
             'reg_date' => localised_date($user_data['user_regdate'], $register_date_fmt),
             'group' => $user_data['group_name'],
-                        'user_profile1' => $user_data['user_profile1'],
-                        'user_profile2' => $user_data['user_profile2'],
-                        'user_profile3' => $user_data['user_profile3'],
-                        'user_profile4' => $user_data['user_profile4'],
-                        'user_profile5' => $user_data['user_profile5'],
-                        'user_profile6' => bb_decode($user_data['user_profile6']),
-                        'user_thumb' => $quick_jump,
-                        'pic_count' => cpgUserPicCount(),
+            'user_profile1' => $user_data['user_profile1'],
+            'user_profile2' => $user_data['user_profile2'],
+            'user_profile3' => $user_data['user_profile3'],
+            'user_profile4' => $user_data['user_profile4'],
+            'user_profile5' => $user_data['user_profile5'],
+            'user_profile6' => bb_decode($user_data['user_profile6']),
+            'user_thumb' => $quick_jump,
+            'pic_count' => cpgUserPicCount($user_data['user_name']),
+            'admin_link' => $adminLink,
             );
 
         $title = sprintf($lang_register_php['x_s_profile'], $user_data['user_name']);

@@ -1680,10 +1680,10 @@ $lang_register_php = array(
   'pass_chg_error' => 'Your password was not changed',
   'notify_admin_email_subject' => '%s - Registration notification',
   'last_uploads' => 'Last uploaded file', //cpg1.5
-  'last_uploads_detail' => 'Click to see all uploads by', //cpg1.5
+  'last_uploads_detail' => 'Click to see all uploads by %s', //cpg1.5
   'last_comments' => 'Last comment', //cpg1.5
   'you' => 'you', //cpg1.5
-  'last_comments_detail' => 'Click to see all comments made by', //cpg1.5
+  'last_comments_detail' => 'Click to see all comments made by %s', //cpg1.5
   'notify_admin_email_body' => 'A new user with the username "%s" has registered in your gallery',
   'pic_count' => 'Files uploaded',
   'notify_admin_request_email_subject' => '%s - Registration request',
@@ -1694,6 +1694,9 @@ $lang_register_php = array(
   'warning_delete' => 'Warning: deleting your account can not be undone. The %sfiles you uploaded%s into public albums and your %scomments%s do not get deleted when deleting your user account! However, the files you uploaded into your personal gallery will be deleted.', // cpg1.5 // The %s-placeholders mustn't be removed, they will later be replaced by the wrappers for the links
   'i_am_sure' => 'I\'m sure that I want to delete my user account', // cpg1.5
   'really_delete' => 'Do you really want to delete your user account?', // cpg1.5 //JS-Alert
+  'edit_xs_profile' => 'Edit the profile of %s', // cpg1.5
+  'edit_my_profile' => 'Edit my profile', // cpg1.5
+  'none' => 'none', // cpg1.5
 );
 
 $lang_register_confirm_email = <<<EOT
