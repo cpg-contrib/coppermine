@@ -108,11 +108,8 @@
         </ul>
           <ul class="level3">
                 <li class="level3"><a href="#10" class="menu3">3.1.1 Upgrading from version 1.0</a></li>
-
-                <li class="level3"><a href="#11" class="menu3">3.1.2 Upgrading from releases of version 1.1</a></li>
-                <li class="level3"><a href="#12" class="menu3">3.1.3 Upgrading from cpg1.2.0rc2 or cpg1.2.0final to version cpg1.4.x</a></li>
-                <li class="level3"><a href="#13" class="menu3">3.1.4 Upgrading from cpg1.2.0 (or better) to version cpg1.4.x</a></li>
-                <li class="level3"><a href="#14" class="menu3">3.1.5 Upgrading from cpg1.4.0 (or better) to version cpg1.4.13</a></li>
+                <li class="level3"><a href="#13" class="menu3">3.1.2 Upgrading from cpg1.1.x, cpg1.2.x or cpg1.3.x to version cpg1.4.x</a></li>
+                <li class="level3"><a href="#14" class="menu3">3.1.3 Upgrading from cpg1.4.0 (or better) to version cpg1.4.13</a></li>
            </ul>
         <ul class="level2">
                 <li class="level2"><a href="#upgrade_why" class="menu2">3.2 Why upgrade?</a></li>
@@ -312,7 +309,8 @@
 
 <a name="what"></a>
 <h1>1. What is required</h1>
-<p>There are certain <b>minimum requirements</b> that need to be met in order to be able to install Coppermine:</p>
+<p>There are certain <strong>minimum requirements</strong> that need to be met in order to be able to install Coppermine:</p>
+<h2>1.1 Technical requirements</h2>
 <ul>
   <li><strong>A web server that supports PHP</strong><br />
   PHP (version 4.2.0 or better), either compiled with the support for the GD library or permission to use the exec() function for the ImageMagick &quot;convert&quot; utility in order to make thumbnails and reduced size images. Mysql support needs to be compiled into PHP as well.</li>
@@ -325,6 +323,9 @@
   <li>It's always a good idea to contact your webhosting service first and ask them if they are aware of any known issues when installing Coppermine.</li>
 </ul>
 <p>Although Coppermine can be run on <em>any</em> webserver that has the minimum requirements mentioned above, the Coppermine dev team can not support you on setting up your webserver in the first place. As suggested, those are requirements, i.e. they have to be met before actually considering to run Coppermine. Please note that the Coppermine group does not recommend self-hosting unless you're an experienced webserver administrator and know your way around.</p>
+
+<h2>1.2 Personal requirements</h2>
+<p>Coppermine is aimed at webmasters who have at least basic HTML know-how and some experience in setting up pre-made scripts. The Coppermine dev team is aware that there are Coppermine users who set up their gallery using auto-installers who have little or no experience in setting up similar scripts, which is fine as well. We just ask you to read the documentation thoroughly before asking questions on the Coppermine support board, as this should answer most newbie questions. You can use coppermine just fine using the <a href="#theme_builtin">pre-made themes that come with the coppermine package</a>. However, if you want to modify existing themes or <a href="#theme_create">come up with a theme of your own</a> (that matches the look of the rest of your site), you should have basic to intermediate <acronym title="Hyper Text Markup Language">HTML</acronym> and <acronym title="Cascading Style Sheets">CSS</acronym> skills.</p>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
@@ -1014,43 +1015,14 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
 <p> <strong>This upgrade process leaves your v1.0 gallery untouched </strong></p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
-<a name="11"></a>
-<h3>3.1.2 Upgrading from releases of version 1.1</h3>
-  <ul>
-      <li>First, make a backup (dump) of your database.</li>
-      <li>Backup your include/config.inc.php file, your anycontent.php file and your "albums" directory.</li>
-      <li>Unpack the archive</li>
-      <li>If the file <strong>install.php</strong> exists in the root directory, delete it.</li>
-      <li>Upload all of the new files and directories</li>
-      <li>CHMOD the albums directory and all subfolders once more to 755 or 777 (depending on your server config)</li>
-      <li>Call the upgrade script http://yousitename/coppermine_dir/update.php</li>
-      <li>Your upgrade should be complete.</li>
-  </ul>
-<p><a class="back" href="#top">Back to top</a></p><hr />
-
-<a name="12"></a>
-<h3>3.1.3 Upgrading from cpg1.2.0rc2 or cpg1.2.0final to version cpg1.4.x</h3>
-    <ul>
-                <li>First, make a backup (dump) of your database.</li>
-        <li>Backup your include/config.inc.php file, your anycontent.php file and your "albums" directory.</li>
-        <li>Unpack the archive</li>
-        <li>If the file <strong>install.php</strong> exists in the root directory, delete it.</li>
-        <li><strong>Except for the "albums" directory</strong>, upload all of the new files and directories making sure not to overwrite the include/config.inc.php file, your anycontent.php file or the albums directory.</li>
-        <li>create a folder called &quot;edit&quot; within your &quot;albums&quot; directory - this folder will be used by coppermine as a temporary folder, do not ftp-upload files there. Make sure the new &quot;edit&quot;-folder is CHMODed the same way your albums-directory is (755 or 777, depending on your server's config)</li>
-        <li>No database update is necessary, and you're ready to roll</li>
-    </ul>
-
-<p><a class="back" href="#top">Back to top</a></p><hr />
-
 <a name="13"></a>
-<h3>3.1.4 Upgrading from cpg1.2.x or cpg1.3.x to version cpg1.4.x</h3>
+<h3>3.1.2 Upgrading from cpg1.1.x, cpg1.2.x or cpg1.3.x to version cpg1.4.x</h3>
     <ul>
-                <li>First, make a backup (dump) of your database.</li>
+        <li>First, make a backup (dump) of your database.</li>
         <li>Backup your include/config.inc.php file, your anycontent.php file and your &quot;albums&quot; directory.</li>
         <li>Unpack the archive</li>
-        <li>If the file <strong>install.php</strong> exists in the root directory, delete it.</li>
         <li><strong>Except for the &quot;albums&quot; directory</strong>, upload all of the new files and directories making sure not to overwrite the include/config.inc.php file, your anycontent.php file or the albums directory.</li>
-        <li>Delete all leftover, outdated language files in the lang folder that are named XXX-utf-8.php</li>
+        <li>Delete all leftover, outdated language files in the lang folder</li>
         <li>If you have not already done so, create a folder called &quot;edit&quot; within your &quot;albums&quot; directory - this folder will be used by coppermine as a temporary folder, do not ftp-upload files there. Make sure the new &quot;edit&quot;-folder is CHMODed the same way your albums-directory is (755 or 777, depending on your server's config)</li>
         <li>Run the file &quot;update.php&quot; in the coppermine directory once in your browser (e.g. http://yourdomain.tld/coppermine/update.php). This will update your coppermine install by making all necessary changes in the database.</li>
         <li>If you have made a custom theme, apply the changes that were introduced in the themes structure to your custom-made theme - refer to the <a href="theme/index.html">theme-upgrade guide</a>.</li>
@@ -1068,12 +1040,11 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
 <p>Please note: as there have been changes both in the coppermine files and the database from cpg1.3.0 or better to cpg1.4.x, users of previous versions will have to apply all steps mentioned above: both the files have to be replaced and the update.php script has to be run once.</p>
 
 <a name="14"></a>
-<h3>3.1.5 Upgrading from cpg1.4.0 or better to version cpg1.4.13</h3>
+<h3>3.1.3 Upgrading from cpg1.4.0 or better to version cpg1.4.13</h3>
     <ul>
         <li>First, make a backup (dump) of your database.</li>
         <li>Backup your include/config.inc.php file, your anycontent.php file and your &quot;albums&quot; directory.</li>
         <li>Unpack the archive</li>
-        <li>If the file <strong>install.php</strong> exists in the root directory, delete it. When performing an upgrade, it is not needed.</li>
         <li><strong>Except for the &quot;albums&quot; directory</strong>, upload all of the new files and directories making sure not to overwrite the include/config.inc.php file, your anycontent.php file or the albums directory.</li>
         <li>Run the file &quot;update.php&quot; in the coppermine directory once in your browser (e.g. http://yourdomain.tld/coppermine/update.php). This will update your coppermine install by making all necessary changes in the database.</li>
         <li>If you have made a custom theme, apply the changes that were introduced in the themes structure to your custom-made theme - refer to the <a href="theme/index.html">theme-upgrade guide</a>.</li>
@@ -1242,6 +1213,7 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
     <td class="tableb tableb_alternate" valign="top" align="right">not yet</td>
   </tr>
 </table>
+<p>As you can see, the coppermine dev team is constantly fixing and improving coppermine. Every non-trivial piece of software contains bugs, so there is no guarantee that the version that currently is the most recent one will be the final, ultimately bug-free version to be released in the cpg1.4.x series. It is absolutely vital that you perform regular updates as soon as new packages are being released.</p>
 <a name="upgrade_why_reasons_end"></a>
 <a name="upgrade_why_changelog"></a>
 <h3>3.2.2 Changelog</h3>
@@ -1751,22 +1723,201 @@ The process of uploading pictures is a matter of following a simple dialog. It t
 
 <a name="upload_trouble"></a>
 <h3>4.11.4 Upload troubleshooting</h3>
-<p>If you are experiencing issues with coppermine's upload process, temporarily change your coppermine settings as suggested below to get more detailed error messages:</p>
+<p>If you are experiencing issues with coppermine's upload process, temporarily change your coppermine settings as suggested below to get more detailed error messages. This applies to all upload methods, not only <a href="#upload_http">HTTP uploads</a>.</p>
 <ul>
-<li>Go to your coppermine page and log in as admin</li>
-<li>Go to the config screen</li>
-<li>Scroll to the bottom of the page</li>
-<li>Expand the "Maintenance settings" section by clicking on it</li>
-<li>Enable debug mode for everyone</li>
-<li>Leave display of notices switched off</li>
-<li>Save the new settings by clicking on "Save new configuration"</li>
-<li>Go to the "groups" panel</li>
-<li>Set the upload form configuration for all groups to "Single file uploads only" (set <em>File upload boxes</em> to &quot;1&quot;, <em>URI upload boxes</em> to &quot;0&quot; and <em>No. of boxes</em> to &quot;fixed&quot;)</li>
-<li>Save your new settings</li>
+<li><strong>Log in as admin</strong><br />
+Go to your coppermine page and log in as admin</li>
+<li><strong>Go to the <a href="#admin">config screen</a></strong></li>
+<li><strong>Scroll to the bottom of the page</strong></li>
+<li><strong>Expand the "Maintenance settings" section by clicking on it</strong></li>
+<li><strong>Enable debug mode for everyone</strong><br />
+(set <em>Enable debug mode</em> to "Yes: Everyone")</li>
+<li><strong>Leave display of notices switched off</strong><br />
+(notices are only meant for developers. If you have idea what they mean, leave them off.)</li>
+<li><strong>Save the new settings by clicking on "Save new configuration"</strong></li>
+<li><strong>Go to the <a href="#group_cp">"groups" panel</a></strong></li>
+<li><strong>Set the upload form configuration for all groups to "Single file uploads only"</strong><br />
+ <ol>
+   <li>set <em>File upload boxes</em> to &quot;1&quot; (1)</li>
+   <li>set <em>URI upload boxes</em> to &quot;0&quot; (2)</li>
+   <li>set <em>No. of boxes</em> to &quot;fixed&quot; (3)</li>
+ </ul>
+</li>
+<li><strong>Save your new settings</strong><br />
+(click on "Apply Modifications")</li>
 </ul>
-<p>Then try to upload (using http uploads, even if you experienced troubles using another upload method) - you should get a more detailed error message that tells you what exactly goes wrong with your uploads. If the error message doesn't mean anything to you, <a href="http://coppermine-gallery.net/forum/index.php?action=search" rel="external" class="external">search the support board</a> for the error message you get.<br />
-<span class="important">When asking for support on the coppermine forum, post a link to your site and a <a href="#user_cp_new">test user account</a> (the test user mustn't be in the admin group!) with upload privileges, with the above mentioned settings in place - this way, supporters can see the error messages as well. Do not post debug_output unless requested.</span></p>
+<p>Then try to upload (using http uploads, even if you experienced troubles using another upload method) - you should get a more detailed <a href="#upload_error_messages">error message</a> that tells you what exactly goes wrong with your uploads. If the error message doesn't mean anything to you, <a href="http://coppermine-gallery.net/forum/index.php?action=search" rel="external" class="external">search the support board</a> for the error message you get.</p>
+
+
+<a name="upload_support"></a><h3>4.11.5 Asking for support on upload issues<a href="#upload_support" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+
+<p class="important">When asking for support on the coppermine forum, post a link to your site and a <a href="#user_cp_new">test user account</a> (the test user mustn't be in the admin group!) with upload privileges, with the above mentioned settings in place - this way, supporters can see the error messages as well. Do not post debug_output unless requested. If you want fast results, you should disable admin approval for the group the test user is in, so supporters can tell instantly what is wrong without needing to double-check.</p>
 <p>When people have issues with uploading and decide to post their question on the Coppermine support board, they usually are told to read this upload troubleshooting section. Many of them fail to do so properly, which results in frustration both for users as well as supporters. To make this absolutely clear: the above mentioned steps are absolutely <strong>mandatory</strong>, no matter what skill level you have, no matter what upload method you have troubles with. Failing to do <strong>exactly</strong> as suggested will result in your request for help being ignored. Yes, this applies to you. We mean it!</p>
+<a name="upload_support_end"></a>
+
+<a name="upload_error_messages"></a><h3>4.11.6 Error messages<a href="#upload_error_messages" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Below is a list of common error messages and possible reasons / fixes. Before <a href="#upload_support">asking for support</a>, make sure to have read the row that deals with the error you get and tried to apply the suggested fix.</p>
+<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+  <tr>
+    <th align="left" class="tableh1">Error message</th>
+    <th align="left" class="tableh1">Possible cause</th>
+    <th align="left" class="tableh1">Suggested fix</th>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">
+      <a name="ErrorCantMovePic"></a><tt class="code">Impossible to move <em>somepic.jpg</em> to albums/userpics/<br />
+      Warning: move_uploaded_file(/tmp/<em>phpezCYKr</em>)<br />
+      [function.move-uploaded-file]: failed to create stream: Operation not permitted</tt><a href="#ErrorCantMovePic" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+    </td>
+    <td valign="top" class="tableb">
+      PHP's temporary folder is missing or doesn't have the needed permissions
+    </td>
+    <td valign="top" class="tableb">
+      You should contact the admin of your webhost because you usually can't change the location of the website's temporary directory for file uploads, yourself (it is part of PHP configuration) .<br />
+      If the <em><a href="http://www.php.net/manual/en/ini.php#ini.list" rel="external" class="external">open_basedir</a> restriction</em> is in effect on your site then the temp directory for file uploads should be one that you can access.
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">
+      <a name="ErrorImpossibleToMove"></a><tt class="code">Impossible to move <em>somepic.jpg</em> to albums/userpics/</tt><a href="#ErrorImpossibleToMove" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+    </td>
+    <td valign="top" class="tableb tableb_alternate">The coppermine script doesn't have permissions on the filesystem of the server to create the thumbnail or intermediate image within the specified folder</td>
+    <td valign="top" class="tableb tableb_alternate">Apply permissions on the albums folder and everything within it as suggested in the section <a href="#permissions">Setting permissions</a>. This error message is the most frequent one, as many users tend to skip reading the permissions section. At least when getting this error message, you should read it thoroughly.</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">
+      <a name="ErrorFailedToOpenDir"></a><tt class="code">Warning: opendir(./albums/edit): failed to open dir: No such file or directory</tt><a href="#ErrorFailedToOpenDir" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+    </td>
+    <td valign="top" class="tableb">
+      <ul>
+        <li>'edit'-folder in your albums folder is missing</li>
+        <li>'edit'-folder in your albums folder doesn't have rwx-<a href="#permissions">permissions</a></li>
+        <li>Improper upgrade from cpg1.3.x</li>
+      </ul>
+    </td>
+    <td valign="top" class="tableb">
+      <ul>
+        <li>Make sure you have a folder named 'edit' in your albums folder.</li>
+        <li>Make sure the edit directory has been chmod to 777/755.</li>
+        <li>Make sure you have completely <a href="#upgrade">upgraded</a> to Coppermine 1.5.x</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">
+      <a name="httpPostVars"></a><tt class="code">Warning: Undefined variable: HTTP_POST_VARS in include/init.inc.php on line 43</tt><a href="#httpPostVars" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+    </td>
+    <td valign="top" class="tableb tableb_alternate">
+      <ul>
+        <li>Outdated PHP-version on your server</li>
+        <li>Improper webserver configuration</li>
+      </ul>
+    </td>
+    <td valign="top" class="tableb tableb_alternate">
+      Check if <a href="faq.htm#VersionPHP">your version of PHP</a> fullfills the <a href="#what">minimum requirements</a> for Coppermine. If your version is 4.1.0 or better, then this error is probably caused by a misconfiguration of your hosting server, and not a Coppermine issue. If the server isn't yours to configure properly (that is: if you're with a webhost), you can try this workaround (at your own risk):<br >
+      Edit the file "init.inc.php" and look for<br />
+      <div class="quote">$PHP_SELF = isset($_SERVER['REDIRECT_URL']) ? $_SERVER['REDIRECT_URL'] : $_SERVER['SCRIPT_NAME'];</div>
+Replace it with<br />
+      <div class="quote">$PHP_SELF = $_SERVER['PHP_SELF'];</div>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">
+      <a name="ErrorNoAlbumExisting"></a><tt class="code">Sorry there is no album where you are allowed to upload files</tt><a href="#ErrorNoAlbumExisting" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+    </td>
+    <td valign="top" class="tableb">
+      <ul>
+        <li>You (as admin) haven't created any albums yet.</li>
+        <li>You (as non-admin user) don't have the permission to upload to public albums</li>
+        <li>You haven't created at least one album in your personal gallery</li>
+      </ul>
+    </td>
+    <td valign="top" class="tableb">
+      <ul>
+        <li>If you get this message when being logged in as the admin of your gallery, you have to <a href="#albmgr_create">create at least one album</a> where file uploads could possibly be uploaded to</li>
+        <li>If you get this message when being logged in as non-admin, you have to make sure that you have understood the concept behind coppermine: the admin determines on the <a href="#group_cp">groups control panel</a> wether users can have personal galleries (i.e. create albums inside their user gallery) or if they are allowed to upload into admin-created public albums. If the user <strong>is</strong> allowed to have personal galleries and gets this message, he needs to create at least one album first by clicking on &quot;Create / oder my albums&quot;. If the user is suppossed to upload to public albums (that need to be created by the admin in advance) and gets the above mentioned error message, the admin needs to specify at least one public album where users are allowed to upload to using the <a href="#album_prop">album properties</a> screen.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">
+      <a name="ErrorAllowedMemorySize"></a><tt class="code">Fatal error: Allowed memory size of <em>XXXXXXX</em> bytes exhausted at (null):0 (tried to allocate <em>XXXX</em> bytes) in /var/www/html/include/picmgmt.inc.php</tt><a href="#ErrorAllowedMemorySize" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+    </td>
+    <td valign="top" class="tableb tableb_alternate">
+      This error occurs when using GD and attempting to upload a high resoltuion image.  It's not the size of the file that matters here; it's the number of pixels that determine memory use in GD.
+    </td>
+    <td valign="top" class="tableb tableb_alternate">
+      There is (at least in theory) no limit <em>in Coppermine</em> to the file size or dimensions that the script can handle. However, there is at least one limit existing on the webserver: resizing images (to create intermediate images and/or thumbnails) consumes memory and burns CPU cylces. To prevent the server from crashing, the server admin has to restrict the amount of memory that a PHP script is allowed to consume. The error message mentioned above means that the limit imposed by the server admin has been reached, i.e. the image that the script tried to process consumed to much memory.
+      <ul>
+        <li><strong>Alternative 1 (ideal):</strong><br />
+        Increase the memory limit allocation in php.ini. You must be the server's administrator to do this. Also, .htaccess files cannot change this configuration setting, and it cannot be changed using ini_set(). First, you locate the following block in php.ini (if you actually are the server admin):<br />
+        <div class="quote"><tt>;;;;;;;;;;;;;;;;;;;<br />; Resource Limits ;<br />;;;;;;;;;;;;;;;;;;;<br />&nbsp;<br />max_execution_time = 30     ; Maximum execution time of each script, in seconds<br />max_input_time = 60        ; Maximum amount of time each script may spend parsing request data<br />memory_limit = 8M      ; Maximum amount of memory a script may consume (8MB)</tt></div>
+         Now you increase the memory limit to fit your needs. 9 to 16 MB should handle most requirements. To calculate the amount of memory an image uses, you simply multiply the pixel width and height, and then you multiply the result by the number of base colors (RGB - 3, CMYK - 4). Finally, you divide by 1048576 to get the memory usage in MB.<br />
+         Here are some common image resolutions and their memory use in GD (assuming RGB):
+         <ul>
+           <li>800 x 600 - 1.37 MB</li>
+           <li>1024 x 768 - 2.25 MB</li>
+           <li>1200 x 1600 - 5.49 MB</li>
+         </ul>
+         Remember when using the above figures that the amount of memory being used by the rest of Coppermine must be taken into account, too.<br />
+         If you are unable to change php.ini settings yourself, you can always ask your server administrator to change this for you.  However, most administrators (especially on shared webhsoting) will be reluctant to do so, as this setting will affect everyone on a shared server. A higher memory limit requires reducing the number of people who can be hosted on the same server in order to maintain server stability. This reduces profitability, etc.<br />
+         If you cannot change php.ini, you should read alternatives 2 and 3.</li>
+         <li><strong>Alternative 2 (sensible):</strong><br />
+         Resize your images before uploading if you do not require high resolution images.  This saves upload bandwidth and time for you.</li>
+         <li><strong>Alternative 3 (workaround):</strong><br />
+         You may download one of many free programs that resize images. Then resize the images to a smaller resolution (like 800 x 600) by the batch into a different folder while maintaining the same filenames.<br />
+         Upload the resized images to Coppermine.  Then use your FTP client to overwrite the images with the higher resolution images. </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">
+      <a name="ErrorExecDisabled"></a><tt class="code">Exec() has been disabled</tt><a href="#ErrorExecDisabled" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+    </td>
+    <td valign="top" class="tableb">
+      php.ini allows the server administrator to disable certain functions. Usually this is the case if your server is running in safe_mode.
+    </td>
+    <td valign="top" class="tableb">
+      If the server administrator has disabled exec() you will not be able to use Image Magick.<br />
+      You may try to replace exec() with passthru() in the entire core code of coppermine (not recommended) if it has not been disabled as well.  Otherwise, you can't use ImageMagick and must use GD. Change <a href="#admin_picture_thumb_advanced_resize_method">Method for resizing images</a> in config accordingly.
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">
+      <a name="ErrorNotAGdExtension"></a><tt class="code">Not a GD extension</tt><a href="#ErrorNotAGdExtension" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+    </td>
+    <td valign="top" class="tableb tableb_alternate">
+      The file(s) you tried to upload can not be handled using the GD ImageLibrary
+    </td>
+    <td valign="top" class="tableb tableb_alternate">
+      The GD library can only handle jpeg, png and gif files, while the ImageMagick library supports additionally bmp, psd and some other (less common) file types. However, those files are not suitable for use on the internet. Details can be found in the <a href="#admin_picture_thumb_advanced_pic_extensions">Allowed image types</a> section in the config page of the docs.
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">
+      <a name=""></a><tt class="code">The file '<em>albums/userpics/10001/somepic.jpg</em>' can't be inserted in the album. Error executing ImageMagick - Return value <strong>127</strong></tt><a href="#" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+    </td>
+    <td valign="top" class="tableb">
+      You haven't specified the correct <a href="#admin_picture_thumb_advanced_im_path">path to ImageMagick</a>, or you don't have ImageMagic at all.
+    </td>
+    <td valign="top" class="tableb">
+      If you're sure that you actually have ImageMagick available on your server, review <a href="#admin_picture_thumb_advanced_im_path">path to ImageMagick</a>. If the path appears to be correct, make sure that the coppermine script has permissions to read and execute the convert executable within the ImageMagick folder. If you're not sure, switch <a href="#admin_picture_thumb_advanced_resize_method">Method for resizing images</a> from &quot;ImageMagick&quot; to &quot;GD2&quot;, then try uploading again.
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">
+      <a name=""></a><tt class="code">PHP running on your server does not support the GD image library, check with your webhost if ImageMagick is installed.</tt><a href="#" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+    </td>
+    <td valign="top" class="tableb tableb_alternate">
+      Your webserver doesn't come with support for the GD image library.
+    </td>
+    <td valign="top" class="tableb tableb_alternate">
+      Make sure that you fullfill the <a href="#what">minimum requirements</a> to run Coppermine. If GD is not available on your server, you could use ImageMagick. Ask your webhost if ImageMagick is available on your webserver.
+    </td>
+  </tr>
+</table>
+<a name="upload_error_messages_end"></a>
+
 <a name="upload_trouble_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
