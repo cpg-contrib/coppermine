@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-08-24 [D] Added section to documentation that is meant to explain the need for upgrading {GauGau}
 2007-08-18 [B] XHTML ampersand fix in clickable keywords {Nibbler}
 2007-08-18 [B] Fixing conditional call to process_smilies() in report file {Nibbler}
 2007-08-18 [B] Quota check only applies to uploads to user galleries {Nibbler}
