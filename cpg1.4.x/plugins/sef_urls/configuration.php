@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.4.13
   $Source$
@@ -18,7 +18,7 @@
 **********************************************/
 
 $name = 'Search Engine Friendly URLs';
-$description = 'Makes SEF URLs for index, thumbnails, and displayimage.php.<br />Warning: this plugin is still experimental, there are known issues when using it. Test thoroughly and use at your own risk.';
+$description = 'Makes SEF URLs for index, thumbnails, and displayimage.php.<br />Warning: this plugin is still experimental, there are known issues when using it. Test thoroughly and use at your own risk.<br />If you experience issues with this plugin, disable/uninstall it and get rid of the .htaccess-file it creates within the root folder of your coppermine gallery.';
 $author = 'Coppermine Development Team';
-$version = '1.0';
+$version = '1.1';
 ?>
