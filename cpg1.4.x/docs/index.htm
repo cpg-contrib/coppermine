@@ -12,7 +12,14 @@
 <meta http-equiv="Content-Style-Type" content="text/css">
 <meta name="MSSmartTagsPreventParsing" content="true">
 <meta http-equiv="imagetoolbar" content="no">
-<!-- SVN version info: $Id$ -->
+<!--
+  Subversion information (for information and developer purposes only - safe to ignore for everybody else):
+  Coppermine version: 1.4.13
+  $Source$
+  $Revision$
+  $Author$
+  $Date$
+-->
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
@@ -97,23 +104,34 @@
         <li class="level1"><a href="#upgrade" class="menu1">3. Upgrading</a></li>
 </ul>
         <ul class="level2">
-                <li class="level2"><a href="#10" class="menu2">3.1 Upgrading from version 1.0</a></li>
+                <li class="level2"><a href="#upgrade_steps" class="menu2">3.1 Upgrade steps</a></li>
+        </ul>
+          <ul class="level3">
+                <li class="level3"><a href="#10" class="menu3">3.1.1 Upgrading from version 1.0</a></li>
 
-                <li class="level2"><a href="#11" class="menu2">3.2 Upgrading from releases of version 1.1</a></li>
-                <li class="level2"><a href="#12" class="menu2">3.3 Upgrading from cpg1.2.0rc2 or cpg1.2.0final to version cpg1.4.x</a></li>
-                <li class="level2"><a href="#13" class="menu2">3.4 Upgrading from cpg1.2.0 (or better) to version cpg1.4.x</a></li>
-                <li class="level2"><a href="#14" class="menu2">3.5 Upgrading from cpg1.4.0 (or better) to version cpg1.4.13</a></li>
-                <li class="level2"><a href="#changelog" class="menu2">3.6 Why upgrade?</a></li>
-                <li class="level2"><a href="#versioncheck" class="menu2">3.7 The version check tool</a></li>
+                <li class="level3"><a href="#11" class="menu3">3.1.2 Upgrading from releases of version 1.1</a></li>
+                <li class="level3"><a href="#12" class="menu3">3.1.3 Upgrading from cpg1.2.0rc2 or cpg1.2.0final to version cpg1.4.x</a></li>
+                <li class="level3"><a href="#13" class="menu3">3.1.4 Upgrading from cpg1.2.0 (or better) to version cpg1.4.x</a></li>
+                <li class="level3"><a href="#14" class="menu3">3.1.5 Upgrading from cpg1.4.0 (or better) to version cpg1.4.13</a></li>
+           </ul>
+        <ul class="level2">
+                <li class="level2"><a href="#upgrade_why" class="menu2">3.2 Why upgrade?</a></li>
         </ul>
                 <ul class="level3">
-                        <li class="level3"><a href="#versioncheck_description_start">3.7.1 What it does</a></li>
-
-                        <li class="level3"><a href="#versioncheck_options_start">3.7.2 Options</a></li>
-                        <li class="level3"><a href="#versioncheck_comparison_start">3.7.3 Version comparison</a></li>
+                        <li class="level3"><a href="#upgrade_why_reasons">3.2.1 Reasons for package releases</a></li>
+                        <li class="level3"><a href="#upgrade_why_changelog">3.2.2 Changelog </a></li>
                 </ul>
         <ul class="level2">
-                <li class="level2"><a href="#downgrading" class="menu2">3.8 Downgrading from cpg1.4.x</a></li>
+                <li class="level2"><a href="#versioncheck" class="menu2">3.3 The version check tool</a></li>
+        </ul>
+                <ul class="level3">
+                        <li class="level3"><a href="#versioncheck_description_start">3.3.1 What it does</a></li>
+
+                        <li class="level3"><a href="#versioncheck_options_start">3.3.2 Options</a></li>
+                        <li class="level3"><a href="#versioncheck_comparison_start">3.3.3 Version comparison</a></li>
+                </ul>
+        <ul class="level2">
+                <li class="level2"><a href="#downgrading" class="menu2">3.4 Downgrading from cpg1.4.x</a></li>
         </ul>
 
 <ul class="level1">
@@ -976,8 +994,10 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
 
 <a name="upgrade"></a>
 <h1>3. Upgrading</h1>
+<a name="upgrade_steps"></a>
+<h2>3.1 Upgrade steps</h2>
 <a name="10"></a>
-<h2>3.1 Upgrading from version 1.0</h2>
+<h3>3.1.1 Upgrading from version 1.0</h3>
 
 <p>If you already have installed version 1.0 and you want to transfer your albums to version 1.4x follow the following steps:</p>
 <ul>
@@ -995,7 +1015,7 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="11"></a>
-<h2>3.2 Upgrading from releases of version 1.1</h2>
+<h3>3.1.2 Upgrading from releases of version 1.1</h3>
   <ul>
       <li>First, make a backup (dump) of your database.</li>
       <li>Backup your include/config.inc.php file, your anycontent.php file and your "albums" directory.</li>
@@ -1009,7 +1029,7 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="12"></a>
-<h2>3.3 Upgrading from cpg1.2.0rc2 or cpg1.2.0final to version cpg1.4.x</h2>
+<h3>3.1.3 Upgrading from cpg1.2.0rc2 or cpg1.2.0final to version cpg1.4.x</h3>
     <ul>
                 <li>First, make a backup (dump) of your database.</li>
         <li>Backup your include/config.inc.php file, your anycontent.php file and your "albums" directory.</li>
@@ -1023,7 +1043,7 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="13"></a>
-<h2>3.4 Upgrading from cpg1.2.x or cpg1.3.x to version cpg1.4.x</h2>
+<h3>3.1.4 Upgrading from cpg1.2.x or cpg1.3.x to version cpg1.4.x</h3>
     <ul>
                 <li>First, make a backup (dump) of your database.</li>
         <li>Backup your include/config.inc.php file, your anycontent.php file and your &quot;albums&quot; directory.</li>
@@ -1048,7 +1068,7 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
 <p>Please note: as there have been changes both in the coppermine files and the database from cpg1.3.0 or better to cpg1.4.x, users of previous versions will have to apply all steps mentioned above: both the files have to be replaced and the update.php script has to be run once.</p>
 
 <a name="14"></a>
-<h2>3.5 Upgrading from cpg1.4.0 or better to version cpg1.4.13</h2>
+<h3>3.1.5 Upgrading from cpg1.4.0 or better to version cpg1.4.13</h3>
     <ul>
         <li>First, make a backup (dump) of your database.</li>
         <li>Backup your include/config.inc.php file, your anycontent.php file and your &quot;albums&quot; directory.</li>
@@ -1059,23 +1079,180 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
         <li>If you have made a custom theme, apply the changes that were introduced in the themes structure to your custom-made theme - refer to the <a href="theme/index.html">theme-upgrade guide</a>.</li>
     </ul>
 <p>Please note: as there have been changes both in the coppermine files and the database from cpg1.4.0 or better to cpg1.4.13, users of older versions than cpg1.4.13 will have to apply all steps mentioned above: both the files have to be replaced and the update.php script has to be run once.</p>
-
+<a name="upgrade_steps_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
-<a name="changelog"></a>
-<h2>3.6 Why upgrade?</h2>
-<p>There are major and minor releases of Coppermine. Major releases have so far been cpg1.0, cpg1.1, cpg1.2.x, cpg1.3.x and cpg1.4.x. Minor releases (the third number in the version numbering scheme) represent updates, also known as &quot;maintenance releases&quot;. Major releases contain new features (compared to the previous major release), minor releases do not contain new features, but only bug fixes and slight improvements.</p>
-<p>To understand the release policy of the coppermine dev team you have to understand how bugs are being fixed: we maintain a repository where the core code of each major release is being constantly being improved. Major and minor bugs that are reported on the coppermine support board are being fixed in that repository. Once a new package is being bundled, all fixes that have been made in that repository go into the new minor release.</p>
-<p>There is a good reason for every new maintenance release: they are usually being packaged when a new bug or vulnerability is being discovered that is relevant in terms of security. As suggested above, there are several minor bugfixes that go into each new release as well. Therefor, it will not be enough to just fix the single vulnerability that has been the initial reason for a new package to be released.</p>
-<h3>3.6.1 Reasons for package releases</h3>
-<p>This is a list of minor releases of cpg1.4.x and the reason why they have been released. It is meant to explain why you should upgrade as soon as possible to the most recent stable release if you are running an outdated version:</p>
-<h3>3.6.1 Changelog</h3>
-<p>Details on the changes that went into a release can be found in the changelog that comes with each package. The changelog file can be found in the root directory of the coppermine package.</p>
-<a name="changelog_end"></a>
+<a name="upgrade_why"></a>
+<h2>3.2 Why upgrade?</h2>
+<p>There are major and minor releases of Coppermine. Major releases have so far been cpg1.0, cpg1.1, cpg1.2.x, cpg1.3.x and cpg1.4.x. The next major release will be cpg1.5.x (which currently is in the dev pipeline - no scheduled release date yet). Minor releases (the third number in the version numbering scheme) represent updates, also known as &quot;maintenance releases&quot;. Major releases contain new features (compared to the previous major release), minor releases do not contain new features, but only bug fixes and slight improvements (like additional language files).</p>
+<p>To understand the release policy of the coppermine dev team you have to understand how bugs are being fixed: we maintain a repository where the core code of each major release is being constantly being improved. Major and minor bugs that are reported on the coppermine support board are being fixed in that repository. Once a new package is being bundled, all fixes that have been made in that repository go into the new maintenance release.</p>
+<p>There is a good reason for every new maintenance release: they are usually being packaged when a new bug or vulnerability is being discovered that is relevant in terms of security. As suggested above, there are several minor bugfixes that go into each new release as well, not only the one major bug or vulnerability that lead to the maintenance release. Therefor, it will not be enough to just fix the single vulnerability that has been the initial reason for a new package to be released. Instead, always upgrade to the most recent stable release as soon as it has been announced.</p>
+
+<a name="upgrade_why_reasons"></a>
+<h3>3.2.1 Reasons for package releases</h3>
+<p>This is a list of minor releases of cpg1.4.x and the reason why they have been released. It is meant to explain why you should upgrade as soon as possible to the most recent stable release if you are running an outdated version.</p>
+<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+  <tr>
+    <th class="tableh1" valign="top" align="left">Package</td>
+    <th class="tableh1" valign="top" align="left">Reason for release</td>
+    <th class="tableh1" valign="top" align="left"><span class="small">Release Date</span></td>
+  </tr>
+  <tr>
+    <td class="tableb" valign="top">cpg1.4.0</td>
+    <td class="tableb" valign="top">
+      <ul>
+        <li>Alpha release for testers and developers only</li>
+      </ul>
+    </td>
+    <td class="tableb" valign="top" align="right">no package</td>
+  </tr>
+  <tr>
+    <td class="tableb tableb_alternate" valign="top">cpg1.4.1</td>
+    <td class="tableb tableb_alternate" valign="top">
+      <ul>
+        <li>Beta release for public testing</li>
+      </ul>
+      <div class="small" align="right">[<a href="http://coppermine-gallery.net/forum/index.php?topic=19374.0">more</a>]</div>
+    </td>
+    <td class="tableb tableb_alternate" valign="bottom" align="left">2005-07-02</td>
+  </tr>
+  <tr>
+    <td class="tableb" valign="top">cpg1.4.2</td>
+    <td class="tableb" valign="top">
+      <ul>
+        <li>Initial Stable release</li>
+      </ul>
+      <div class="small" align="right">[<a href="http://coppermine-gallery.net/forum/index.php?topic=24001.0">more</a>]</div>
+    </td>
+    <td class="tableb" valign="bottom" align="left">2005-11-23</td>
+  </tr>
+  <tr>
+    <td class="tableb tableb_alternate" valign="top">cpg1.4.3</td>
+    <td class="tableb tableb_alternate" valign="top">
+      <ul>
+        <li>The file relocate_server.php removed that contained a security flaw</li>
+        <li>Leftover language files from cpg1.3.x was removed from the package that caused issues</li>
+      </ul>
+      <div class="small" align="right">[<a href="http://coppermine-gallery.net/forum/index.php?topic=25598.0">more</a>]</div>
+    </td>
+    <td class="tableb tableb_alternate" valign="top" align="right">2005-12-27</td>
+  </tr>
+  <tr>
+    <td class="tableb" valign="top">cpg1.4.4</td>
+    <td class="tableb" valign="top">
+      <ul>
+        <li>Remote code execution flaw caused by language file inclusion</li>
+      </ul>
+      <div class="small" align="right">[<a href="http://coppermine-gallery.net/forum/index.php?topic=28445.0">more</a>]</div>
+    </td>
+    <td class="tableb" valign="top" align="right">2006-02-26</td>
+  </tr>
+  <tr>
+    <td class="tableb tableb_alternate" valign="top">cpg1.4.5</td>
+    <td class="tableb tableb_alternate" valign="top">
+      <ul>
+        <li>Directory traversal bug (<acronym title="also known as">aka</acronym> &quot;IMEI-Bug&quot;)</li>
+      </ul>
+      <div class="small" align="right">[<a href="http://coppermine-gallery.net/forum/index.php?topic=30655.0">more</a>]</div>
+    </td>
+    <td class="tableb tableb_alternate" valign="top" align="right">2006-04-21</td>
+  </tr>
+  <tr>
+    <td class="tableb" valign="top">cpg1.4.6</td>
+    <td class="tableb" valign="top">
+      <ul>
+        <li>Protection against the .rar-vulnerability of Apache-driven webservers</li>
+      </ul>
+      <div class="small" align="right">[<a href="http://coppermine-gallery.net/forum/index.php?topic=31671.0">more</a>]</div>
+    </td>
+    <td class="tableb" valign="top" align="right">2006-05-19</td>
+  </tr>
+  <tr>
+    <td class="tableb tableb_alternate" valign="top">cpg1.4.7</td>
+    <td class="tableb tableb_alternate" valign="top">
+      <ul>
+        <li>Fixed vulnerability of user manager</li>
+      </ul>
+      <div class="small" align="right">[<a href="http://coppermine-gallery.net/forum/index.php?topic=32333.0">more</a>]</div>
+    </td>
+    <td class="tableb tableb_alternate" valign="top" align="right">2006-06-06</td>
+  </tr>
+  <tr>
+    <td class="tableb" valign="top">cpg1.4.8</td>
+    <td class="tableb" valign="top">
+      <ul>
+        <li>Stability fix for &quot;Last updated Albums&quot; caused by improper fix in cpg1.4.7</li>
+      </ul>
+      <div class="small" align="right">[<a href="http://coppermine-gallery.net/forum/index.php?topic=32413.0">more</a>]</div>
+    </td>
+    <td class="tableb" valign="top" align="right">2006-06-08</td>
+  </tr>
+  <tr>
+    <td class="tableb tableb_alternate" valign="top">cpg1.4.9</td>
+    <td class="tableb tableb_alternate" valign="top">
+      <ul>
+        <li>Fixing security flaw</li>
+      </ul>
+      <div class="small" align="right">[<a href="http://coppermine-gallery.net/forum/index.php?topic=35473.0">more</a>]</div>
+    </td>
+    <td class="tableb tableb_alternate" valign="top" align="right">2006-08-27</td>
+  </tr>
+  <tr>
+    <td class="tableb" valign="top">cpg1.4.10</td>
+    <td class="tableb" valign="top">
+      <ul>
+        <li>Potential disclosure of sensitive information (sql injection)</li>
+        <li>Removal of unused file</li>
+        <li>Missing checks for email validity</li>
+        <li>Flaw in search logic</li>
+        <li>Fixed video playback in IE</li>
+      </ul>
+      <div class="small" align="right">[<a href="http://coppermine-gallery.net/forum/index.php?topic=37895.0">more</a>]</div>
+    </td>
+    <td class="tableb" valign="top" align="right">2006-10-29</td>
+  </tr>
+  <tr>
+    <td class="tableb tableb_alternate" valign="top">cpg1.4.11</td>
+    <td class="tableb tableb_alternate" valign="top">
+      <ul>
+        <li>mysql injection vulnerability in include/functions-inc.php</li>
+      </ul>
+      <div class="small" align="right">[<a href="http://coppermine-gallery.net/forum/index.php?topic=44845.0">more</a>]</div>
+    </td>
+    <td class="tableb tableb_alternate" valign="top" align="right">2007-06-29</td>
+  </tr>
+  <tr>
+    <td class="tableb" valign="top">cpg1.4.12</td>
+    <td class="tableb" valign="top">
+      <ul>
+        <li>mysql injection could lead to disclosure of sensitive information</li>
+        <li>Fixed double quotes for input fields in comments</li>
+      </ul>
+      <div class="small" align="right">[<a href="http://coppermine-gallery.net/forum/index.php?topic=44924.0">more</a>]</div>
+    </td>
+    <td class="tableb" valign="top" align="right">2007-07-02</td>
+  </tr>
+  <tr>
+    <td class="tableb tableb_alternate" valign="top">cpg1.4.13</td>
+    <td class="tableb tableb_alternate" valign="top">
+      <ul>
+        <li>Fixed broken russian language file (no security impact)</li>
+      </ul>
+    </td>
+    <td class="tableb tableb_alternate" valign="top" align="right">not yet</td>
+  </tr>
+</table>
+<a name="upgrade_why_reasons_end"></a>
+<a name="upgrade_why_changelog"></a>
+<h3>3.2.2 Changelog</h3>
+<p>Details on the changes that went into a release can be found in the changelog that comes with each package. The changelog file can be found in the root directory of the coppermine package. The changelog contains more information on additional languages and the time and date of the fix as well.</p>
+<p>The changelog is a plain-text file that can be read using a simple editor - on Windows-driven machines, notepad.exe is fine.</p>
+<a name="upgrade_why_changelog_end"></a>
+<a name="upgrade_why_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="versioncheck"></a>
-<h2>3.7 The version check tool</h2>
+<h2>3.3 The version check tool</h2>
 <p>Since the release of cpg1.3.2 Coppermine comes with an additional version checking tool to help you resolve issues with upgrades and updates easily. Except for specific files of coppermine that will only work for the version that it had been originally designed for, the versioncheck tool can be used with all versions starting from cpg1.2.1. To launch the versioncheck, simply add <tt>versioncheck.php</tt> to your browser's address bar after being logged into coppermine as admin (example: <tt>http://yourdomain.tld/your_coppermine_folder/versioncheck.php</tt>).  With version 1.4x, you can run the versioncheck utility from the Admin Tools menu.</p>
 <a name="versioncheck_description_start"></a>
 <h3>3.7.1 What it does</h3>
@@ -1093,7 +1270,7 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
 <a name="versioncheck_description_end"></a>
 
 <a name="versioncheck_options_start"></a>
-<h3>3.7.2 Options</h3>
+<h3>3.3.2 Options</h3>
 <p>The options screen lets you configure the versioncheck, or rather what is being displayed. The options aren't saved anywhere, so you will have to adjust them each time you run versioncheck. The default options should be OK for most users - only change them if you have good reasons to do so.</p>
 <img src="pics/versioncheck_options.gif" width="844" height="159" border="0" alt="" title="" />
 <ul>
@@ -1111,7 +1288,7 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
 <a name="versioncheck_options_end"></a>
 
 <a name="versioncheck_comparison_start"></a>
-<h3>3.7.3 Version comparison</h3>
+<h3>3.3.3 Version comparison</h3>
 <p>There is a lot of information packed into a small space. Here's an example of a possible output and what the output means:</p>  <br />
 <img src="pics/versioncheck_comparison.gif" width="411" height="279" border="0" alt="" title="version comparison" />
 <ul>
@@ -1145,7 +1322,7 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
 <a name="versioncheck_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 <a name="downgrading"></a>
-<h2>3.8 Downgrading from cpg1.4.x to an older version</h2>
+<h2>3.4 Downgrading from cpg1.4.x to an older version</h2>
 <p>CPG1.4.x incorporates many new features (compared to older versions), so we encourage all users to upgrade. However, there may be some who want to test cpg1.4.x and decide later that they want to go back to an older version. You have to keep in mind that a full upgrade changes the overall layout of coppermine's database that includes converting the encoding to unicode. This process can't be reverted: once you have done the conversion, the only way back is to restore a complete mySQL database dump (of course you have to create this backup <strong>before</strong> you upgraded in the first place). Creating mySQL dumps (backups) is recommended anyway, so you should do so <strong>now</strong>.</p>
 <p>If you haven't converted your database to unicode (utf-8) encoding, you can downgrade as explained below. To make this absolutely clear: you can only downgrade if you used to have cpg1.3.x before and upgraded this version to cpg1.4.x without converting the database. If you <em>have</em> converted the database or if you have made a <em>fresh</em> install of cpg1.4.x, you can't downgrade at all!</p>
 <p>To actually perform the downgrade, replace all cpg1.4.x files on your server with the files from the older version (as if you were doing an upgrade, see above). You then have to undo some changes in the database structure. To do so, run a query like<br />
