@@ -364,7 +364,7 @@ $config_data = array(
       'help_link' => 'f=configuration.htm&amp;as=admin_thumbnail_display_rating&amp;ae=admin_thumbnail_display_rating_end',
     ),
     'alb_desc_thumb' => array(
-      'type' => 'checkbox',
+      'type' => 'hidden', // not implemented yet
       'help_link' => 'f=configuration.htm&amp;as=admin_thumbnail_display_description&amp;ae=admin_thumbnail_display_description_end',
     ),
     'thumbnail_to_fullsize' => array(
