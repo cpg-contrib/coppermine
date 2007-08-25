@@ -680,7 +680,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Εμφάνιση του προσθέτη κάτω από την μικρογραφία', 'display_uploader', 1, 'f=index.htm&amp;as=admin_thumbnail_display_uploader&amp;ae=admin_thumbnail_display_uploader_end'), //cpg1.4
   //array('Εμφάνιση ονόματος διαχειριστή των προσθετών κάτω από την μικρογραφία', 'display_admin_uploader', 1, 'f=index.htm&amp;as=admin_thumbnail_display_admin_uploader&amp;ae=admin_thumbnail_display_admin_uploader_end'), //cpg1.4
   array('Εμφάνιση ονόματος αρχείου κάτω από την μικρογραφία', 'display_filename', 1, 'f=index.htm&amp;as=admin_thumbnail_display_filename&amp;ae=admin_thumbnail_display_filename_end'), //cpg1.4
-  array('Εμφάνιση περιγραφής του άλμπουμ', 'alb_desc_thumb', 1, 'f=index.htm&amp;as=admin_thumbnail_display_description&amp;ae=admin_thumbnail_display_description_end'), //cpg1.4
+  //array('Εμφάνιση περιγραφής του άλμπουμ', 'alb_desc_thumb', 1, 'f=index.htm&amp;as=admin_thumbnail_display_description&amp;ae=admin_thumbnail_display_description_end'), //cpg1.4
   array('Προεπιλεγμένη ταξινόμηση για τα αρχεία', 'default_sort_order', 3, 'f=index.htm&amp;as=admin_thumbnail_default_sortorder&amp;ae=admin_thumbnail_default_sortorder_end'), //cpg1.4
   array('Ελάχιστος αριθμός ψήφων για την εμφάνιση ενός αρχείου στην λίστα \'υψηλά-βαθμολογημένα\'', 'min_votes_for_rating', 0, 'f=index.htm&amp;as=admin_thumbnail_minimum_votes&amp;ae=admin_thumbnail_minimum_votes_end'), //cpg1.4
 

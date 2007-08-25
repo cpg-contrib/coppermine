@@ -7,7 +7,7 @@
 ##  This program is free software; you can redistribute it and/or modify
 ##  it under the terms of the GNU General Public License version 3
 ##  as published by the Free Software Foundation.
-##  
+##
 ##  ********************************************
 ##  Coppermine version: 1.4.13
 ##  $Source$
@@ -235,7 +235,7 @@ INSERT INTO CPG_usergroups VALUES (4, 'Banned', 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0,
 INSERT INTO CPG_categories (cid, name, description) VALUES (1, 'User galleries', 'This category contains albums that belong to Coppermine users.');
 
 INSERT INTO CPG_config VALUES ('show_which_exif', '|0|0|0|0|0|0|0|0|1|0|1|1|0|0|0|0|0|0|0|0|0|0|0|1|0|0|0|1|0|0|0|1|1|0|0|0|0|1|0|0|0|1|0|0|1|1|0|0|0|0|0|1|0|1|1');
-INSERT INTO CPG_config VALUES ('alb_desc_thumb', '1');
+# INSERT INTO CPG_config VALUES ('alb_desc_thumb', '1');
 INSERT INTO CPG_config VALUES ('link_pic_count', '0');
 
 INSERT INTO CPG_config VALUES ('bridge_enable', '0');

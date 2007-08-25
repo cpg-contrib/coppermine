@@ -683,7 +683,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
 	array('Orden por defecto de las imágenes', 'default_sort_order', 3, 'f=index.htm&amp;as=admin_thumbnail_default_sortorder&amp;ae=admin_thumbnail_default_sortorder_end'),
 	array('Mínimo número de votos para que una foto aparezca el la lista de \'Más Valoradas\'', 'min_votes_for_rating', 0, 'f=index.htm&amp;as=admin_thumbnail_minimum_votes&amp;ae=admin_thumbnail_minimum_votes_end'), //cpg1.3.0
   	array('Mostrar nombre de la imagen miniatura', 'display_filename', 1, 'f=index.htm&amp;as=admin_thumbnail_display_filename&amp;ae=admin_thumbnail_display_filename_end'), //cpg1.4
-	array('Mostrar descripción del álbum', 'alb_desc_thumb', 1, 'f=index.htm&amp;as=admin_thumbnail_display_description&amp;ae=admin_thumbnail_display_description_end'), //cpg1.4
+	//array('Mostrar descripción del álbum', 'alb_desc_thumb', 1, 'f=index.htm&amp;as=admin_thumbnail_display_description&amp;ae=admin_thumbnail_display_description_end'), //cpg1.4
 
 	'Vista de imágenes',
 	array('Anchura de la tabla donde mostrar la imagen (pixels o %)', 'picture_table_width', 0, 'f=index.htm&amp;as=admin_image_comment_table-width&amp;ae=admin_image_comment_table-width_end'),

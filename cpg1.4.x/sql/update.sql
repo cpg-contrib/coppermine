@@ -7,7 +7,7 @@
 ##  This program is free software; you can redistribute it and/or modify
 ##  it under the terms of the GNU General Public License version 3
 ##  as published by the Free Software Foundation.
-##  
+##
 ##  ********************************************
 ##  Coppermine version: 1.4.13
 ##  $Source$
@@ -343,7 +343,9 @@ INSERT INTO CPG_config VALUES ('enable_help', '2');
 
 INSERT INTO CPG_config VALUES ('allow_email_change', '0');
 INSERT INTO CPG_config VALUES ('show_which_exif', '|0|0|0|0|0|0|0|0|1|0|1|1|0|0|0|0|0|0|0|0|0|0|0|1|0|0|0|1|0|0|0|1|1|0|0|0|0|1|0|0|0|1|0|0|1|1|0|0|0|0|0|1|0|1|1');
-INSERT INTO CPG_config VALUES ('alb_desc_thumb', '1');
+# INSERT INTO CPG_config VALUES ('alb_desc_thumb', '1');
+DELETE FROM CPG_config WHERE `name` = 'alb_desc_thumb';
+# Has not been implemented and went into the release in error.
 
 ALTER TABLE `CPG_albums` ADD `alb_password_hint` TEXT ;
 

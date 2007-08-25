@@ -690,7 +690,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
 	array('Ordre per defecte de les imatges', 'default_sort_order', 3, 'f=index.htm&amp;as=admin_thumbnail_default_sortorder&amp;ae=admin_thumbnail_default_sortorder_end'),
 	array('Nombre mínim de vots per a que una imatge aparegui a la llista de \'Millor valorades\'', 'min_votes_for_rating', 0, 'f=index.htm&amp;as=admin_thumbnail_minimum_votes&amp;ae=admin_thumbnail_minimum_votes_end'), //cpg1.3.0
   	array('Visualitza el nom de la miniatura', 'display_filename', 1, 'f=index.htm&amp;as=admin_thumbnail_display_filename&amp;ae=admin_thumbnail_display_filename_end'), //cpg1.4
-	array('Visualitza la descripció de l\'àlbum', 'alb_desc_thumb', 1, 'f=index.htm&amp;as=admin_thumbnail_display_description&amp;ae=admin_thumbnail_display_description_end'), //cpg1.4
+	//array('Visualitza la descripció de l\'àlbum', 'alb_desc_thumb', 1, 'f=index.htm&amp;as=admin_thumbnail_display_description&amp;ae=admin_thumbnail_display_description_end'), //cpg1.4
 
 	'Visualització de les imatges',
 	array('Amplada de la taula on es visualitzaran les imatges (píxels o %)', 'picture_table_width', 0, 'f=index.htm&amp;as=admin_image_comment_table-width&amp;ae=admin_image_comment_table-width_end'),
