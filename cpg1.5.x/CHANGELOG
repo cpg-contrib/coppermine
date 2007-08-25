@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-08-25 [C] Removed config option "Display album description" that hasn't been implemented yet {GauGau}
 2007-08-23 [A] Adding "last comment" and "last upload" to user's profile edit page {GauGau}
 2007-08-21 [A] Adding news section for the admin to alert him about updates {GauGau}
 2007-08-21 [O] Replaced "ALL" setting for filetypes with slash-separated list {GauGau}
