@@ -26,6 +26,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-08-25 [C] Removed config option "Display album description" that hasn't been implemented yet {GauGau}
+2007-08-25 [O] Removed byte order mark for some language files {GauGau}
 2007-08-24 [D] Back-ported some of the documentation improvements for the next coppermine version to cpg1.4.x {GauGau}
 2007-08-24 [D] Added section to documentation that is meant to explain the need for upgrading {GauGau}
 2007-08-18 [B] XHTML ampersand fix in clickable keywords {Nibbler}
