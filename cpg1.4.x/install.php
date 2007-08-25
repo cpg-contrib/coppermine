@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.4.13
   $Source$
@@ -279,6 +279,10 @@ function html_input_config($error_msg = '')
           <td class="tableh1" colspan="2"><h2>Welcome to Coppermine installation</h2>
           </td>
          </tr>
+         <tr>
+          <td class="tableb" colspan="2">Coppermine is a picture/multimedia gallery script that is being released under GNU GPL v3. Please review the documentation for <a href="docs/index.htm#copyright">license details</a>.
+          </td>
+         </tr>
 <?php
     if ($error_msg) {
 
@@ -296,11 +300,11 @@ function html_input_config($error_msg = '')
 
     ?>
          <tr>
-          <td class="tableh2" colspan="2"><b>Your admin account</b>
+          <td class="tableh1" colspan="2"><b>Your admin account</b>
           </td>
          </tr>
          <tr>
-          <td class="tableb" colspan="2"> This section requires information to create your administration account. Use only alphanumeric characters. Enter the data carefully !
+          <td class="tableh2" colspan="2"> This section requires information to create your coppermine administration account. Use only alphanumeric characters. Enter the data carefully !
           </td>
          </tr>
          <tr>
@@ -325,11 +329,11 @@ function html_input_config($error_msg = '')
           </td>
          </tr>
          <tr>
-          <td class="tableh2" colspan="2"><b>Your MySQL configuration</b>
+          <td class="tableh1" colspan="2"><b>Your MySQL configuration</b>
           </td>
          </tr>
          <tr>
-          <td class="tableb" colspan="2">This section requires information on how to access your MySQL database. If you don't know how to fill them, check with your webhost support.
+          <td class="tableh2" colspan="2">This section requires information on how to access your MySQL database. If you don't know how to fill them, check with your webhost support.
           </td>
          </tr>
          <tr>
@@ -368,12 +372,13 @@ function html_input_config($error_msg = '')
           </td>
          </tr>
          <tr>
-          <td class="tableh2" colspan="2"><b>ImageMagick</b>
+          <td class="tableh1" colspan="2"><b>ImageMagick</b>
           </td>
          </tr>
          <tr>
-          <td class="tableb" colspan="2">Coppermine can use the <a href="http://www.imagemagick.org/" target="_blank">ImageMagick</a> 'convert' program to create thumbnails. Quality of images produced by ImageMagick is superior to GD1 but equivalent to GD2.<br /><br />
-          If ImageMagick is installed on your system and you want to use it, you need to input the full path to the 'convert' program below. On Windows the path should look like 'c:/ImageMagick/' (use / not \ in the path) and should not contain any space, on Unix is it something like '/usr/bin/X11/'.
+          <td class="tableh2" colspan="2">Coppermine can use the <a href="http://www.imagemagick.org/" target="_blank">ImageMagick</a> 'convert' program to create thumbnails. Quality of images produced by ImageMagick is superior to GD1 but equivalent to GD2.<br /><br />
+          If ImageMagick is installed on your system and you want to use it, you need to input the full path to the 'convert' program below. On Windows the path should look like 'c:/ImageMagick/' (use / not \ in the path) and should not contain any space, on Unix is it something like '/usr/bin/X11/'.<br />
+          If you have no idea wether you have ImageMagick or not, leave this field empty - the installer will try to use GD2 then by default (which is what most users have). You can change this later as well (in Coppermine's config screen), so don't be afraid if you're not sure what to enter here - leave it blank.
           </td>
          </tr>
          <tr>
