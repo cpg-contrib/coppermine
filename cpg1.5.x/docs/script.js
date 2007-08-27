@@ -646,3 +646,24 @@ function displayNavigation() {
   alert(expandNavigation);
   //document.getElementById(expandNavigation).style.display = 'block';
 }
+
+function dateRevision(lastChangeDate, revisionNumber) {
+  // strip the unneeded data from last_changed and revision fields
+  var lastChangeDate = lastChangeDate.replace('$', '');
+  var lastChangeDate = lastChangeDate.replace('$', '');
+  var lastChangeDate = lastChangeDate.replace(/Date: /g, '');
+
+  var revisionNumber = revisionNumber.replace('$', '');
+  var revisionNumber = revisionNumber.replace('$', '');
+  var revisionNumber = revisionNumber.replace(/Revision: /g, '');
+
+  document.write('<div class="doc_info_wrapper">');
+  document.write('About this document: ');
+  document.write('Last changed on ');
+  document.write(lastChangeDate);
+  document.write(',&nbsp;Revision ');
+  document.write(revisionNumber);
+  document.write('</div>');
+}
+
+
