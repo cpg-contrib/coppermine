@@ -182,22 +182,13 @@ function process_post_data()
                     resetDetailVotes($pid);
                 }
 
-                if (UPLOAD_APPROVAL_MODE) {
-                    $approved = get_post_var('approved', $pid);
-                        if ($approved == 'YES') {
-                                $update .= ", approved = 'YES'";
-                        } elseif ($approved == 'DELETE') {
-                                $del_comments = 1;
-                                $delete = 1;
-                        }
-                } elseif (GALLERY_ADMIN_MODE || MODERATOR_EDIT_MODE) {
-//                  $approved = get_post_var('approved', $pid);
-                    $approved = isset($_POST['approved'.$pid]);
-                  if ($approved == 'YES') {
-                      $update .= ", approved = 'YES'";
-                  } else {
-                      $update .= ", approved = 'NO'";
-                  }
+                if (GALLERY_ADMIN_MODE || UPLOAD_APPROVAL_MODE || MODERATOR_MODE) {
+	                $approved = isset($_POST['approved'.$pid]);
+	                if ($approved) {
+	                    $update .= ", approved = 'YES'";
+	                } else {
+	                    $update .= ", approved = 'NO'";
+	                }
                 }
 
                 if ($del_comments) {
@@ -274,7 +265,7 @@ function form_pic_info($text)
         }
 
         // The approve checkbox is shown only if the user is admin or moderator.
-        if (GALLERY_ADMIN_MODE || MODERATOR_EDIT_MODE) {
+        if (GALLERY_ADMIN_MODE || MODERATOR_MODE) {
             $approve_html = <<<EOT
                               <td class="{$row_style_class}" width="40" valign="top">
                                       <input type="checkbox" name="approved{$CURRENT_PIC['pid']}" id="approve{$CURRENT_PIC['pid']}" value="YES" {$pic_approval_checked} class="checkbox" title="{$lang_editpics_php['approve_pic']}" /><label for="approve{$CURRENT_PIC['pid']}" class="clickable_option"><img src="images/approve.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['approve_pic']}" /></label>
@@ -691,7 +682,7 @@ echo <<<EOT
 EOT;
 
 // The approve all checkbox is shown only if the user is admin or moderator.
-if (GALLERY_ADMIN_MODE || MODERATOR_EDIT_MODE) {
+if (GALLERY_ADMIN_MODE || MODERATOR_MODE) {
     $approve_all_html = <<<EOT
                           <td class="tableh2" width="40" valign="top">
                                   <input type="checkbox" name="approveAll" onclick="selectAll(this,'approved');" class="checkbox" id="approveAll" title="{$lang_editpics_php['approve_all']}" /><label for="approveAll" class="clickable_option"><img src="images/approve.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['approve_all']}" /></label>
