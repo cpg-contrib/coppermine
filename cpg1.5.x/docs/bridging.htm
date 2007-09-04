@@ -54,7 +54,8 @@
   <li>Phorum</li>
   <li>phpBB 2</li>
   <li>PunBB</li>
-  <li>SMF</li>
+  <li>SMF 1.x</li>
+  <li>SMF 2.x</li>
   <li>vBulletin</li>
   <li>XMB</li>
   <li>Xoops2</li>
@@ -121,7 +122,7 @@ Correlation between the actions that the unbridged coppermine users have perform
 <p>The bridge manager is a new feature in cpg1.4, it is not available in older versions. Instead of manually editing coppermine code files, you can enable/disable bridging in your browser, using a wizard-like user interface. To start the bridge manager, log in as admin, choose &quot;Admin Tools&quot; from the navigation and the &quot;bridge manager&quot;</p>
 <p><img src="pics/bridge_01_start.gif" width="429" height="72" border="0" alt="" align="right" />If you run the bridge manager for the first time, there will only be one button that let's you actually start the wizard (if you return to the bridge manager later, you will also find a switch to enable/disable bridging) click it.</p>
 <p class="important">Note: with each step in the wizard, some information is being written to the coppermine database. Unlike other wizards (mostly on your local machine), the bridge manager doesn't have a &quot;cancel&quot;-button! Once you have enabled bridging and everything is working fine, you shouldn't change any values just out of curiosity, as they will get written to the database, which might result in a bridging that used to work not working any more after &quot;playing&quot; with it.<br clear="all" /></p>
-<p><img src="pics/bridge_02_app.gif" width="581" height="347" border="0" alt="" align="right" />In the first actual step of the wizard &quot;choose application to bridge coppermine with&quot;, you have to choose the application you actually want to coppermine with. Note that you <strong>must</strong> have this application already installed on your webserver, it has to be properly configured and must be up-and-running. Don't use the bridge manager yet if you only <em>plan</em> to integrate coppermine with another application later.</p>
+<p><img src="pics/bridge_02_app.png" width="600" height="340" border="0" alt="" align="right" />In the first actual step of the wizard &quot;choose application to bridge coppermine with&quot;, you have to choose the application you actually want to coppermine with. Note that you <strong>must</strong> have this application already installed on your webserver, it has to be properly configured and must be up-and-running. Don't use the bridge manager yet if you only <em>plan</em> to integrate coppermine with another application later.</p>
 <p>If you have a custom-made bridge file that is not available in the wizard, choose the radio button in front of the text field and enter the name of your bridge file there, without the extension &quot;.inc.php&quot; (the bridge file must reside in the coppermine sub-folder &quot;bridge&quot;).<br />
 Click &quot;next&quot;</p>
 <p>The next steps depend on the application you have chosen to bridge with: some applications need <acronym title="Uniform Resource Locator">URL</acronym>s to be entered, or paths. Some need mySQL table information or cookie data to be entered, others don't. The point of the wizard is that it will only &quot;ask&quot; you the relevant settings for your application - if one or more items of the following description doesn't turn up for your application, there's no need to worry - just keep filling in the mandatory information and then hit &quot;next&quot;. However, you have to understand that coppermine can proof-check only some of your input - some input goes unvalidated.</p>
@@ -137,7 +138,8 @@ Click &quot;next&quot;</p>
   <li>phpBB 2</li>
   <li>Phorum</li>
   <li>PunBB</li>
-  <li>SMF</li>
+  <li>SMF 1.x</li>
+  <li>SMF 2.x</li>
   <li>vBulletin</li>
   <li>XMB</li>
   <li>Xoops2</li>

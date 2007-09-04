@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
@@ -456,8 +456,21 @@ $default_bridge_data['punbb12'] = array(
 
 // status: bridge ok, manager ok
 $default_bridge_data['smf10'] = array(
-  'full_name' => 'Simple Machines (SMF)',
+  'full_name' => 'Simple Machines (SMF) 1.x',
   'short_name' => 'smf10',
+  'support_url' => 'http://www.simplemachines.org/',
+  'full_forum_url_default' => 'http://www.yoursite.com/board',
+  'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',
+  'relative_path_to_config_file_default' => '../board/',
+  'relative_path_to_config_file_used' => 'lookfor,Settings.php',
+  'use_post_based_groups_default' => '0',
+  'use_post_based_groups_used' => 'radio,1,0',
+);
+
+// status: bridge ok, manager ok
+$default_bridge_data['smf20'] = array(
+  'full_name' => 'Simple Machines (SMF) 2.x',
+  'short_name' => 'smf20',
   'support_url' => 'http://www.simplemachines.org/',
   'full_forum_url_default' => 'http://www.yoursite.com/board',
   'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',
