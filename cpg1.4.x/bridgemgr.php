@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.4.13
   $Source$
@@ -456,8 +456,21 @@ $default_bridge_data['punbb12'] = array(
 
 // status: bridge ok, manager ok
 $default_bridge_data['smf10'] = array(
-  'full_name' => 'Simple Machines (SMF)',
+  'full_name' => 'Simple Machines (SMF) 1.x',
   'short_name' => 'smf10',
+  'support_url' => 'http://www.simplemachines.org/',
+  'full_forum_url_default' => 'http://www.yoursite.com/board',
+  'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',
+  'relative_path_to_config_file_default' => '../board/',
+  'relative_path_to_config_file_used' => 'lookfor,Settings.php',
+  'use_post_based_groups_default' => '0',
+  'use_post_based_groups_used' => 'radio,1,0',
+);
+
+// status: bridge ok, manager ok
+$default_bridge_data['smf20'] = array(
+  'full_name' => 'Simple Machines (SMF) 2.x',
+  'short_name' => 'smf20',
   'support_url' => 'http://www.simplemachines.org/',
   'full_forum_url_default' => 'http://www.yoursite.com/board',
   'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',
@@ -1074,7 +1087,7 @@ case "finalize":
 
                 // sync groups here now :)
                 if ($CONFIG['bridge_enable']){
-						include_once 'bridge/' . $BRIDGE['short_name'] . '.inc.php';
+                                                include_once 'bridge/' . $BRIDGE['short_name'] . '.inc.php';
                         $cpg_udb->synchronize_groups();
                 } else {
                         // ok, then restore group table
@@ -1286,17 +1299,17 @@ else { // not in gallery admin mode --- start
             cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '0' WHERE name = 'bridge_enable'");
             cpg_db_query("UPDATE {$CONFIG['TABLE_BRIDGE']} SET value = '0' WHERE name = 'recovery_logon_failures'");
             cpg_db_query("UPDATE {$CONFIG['TABLE_BRIDGE']} SET value = NOW() WHERE name = 'recovery_logon_timestamp'");
-			
-			// ok, then restore group table
-				cpg_db_query("DELETE FROM {$CONFIG['TABLE_USERGROUPS']} WHERE 1");
-				cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
-				VALUES (1, 'Administrators', 0, 1, 1, 1, 1, 1, 1, 0, 0, 3, 0, 5, 3)");
-				cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
-				VALUES (2, 'Registered', 1024, 0, 1, 1, 1, 1, 1, 1, 0, 3, 0, 5, 3)");
-				cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
-				VALUES (3, 'Anonymous', 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 5, 3)");
-				cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
-				VALUES (4, 'Banned', 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 5, 3)");
+
+                        // ok, then restore group table
+                                cpg_db_query("DELETE FROM {$CONFIG['TABLE_USERGROUPS']} WHERE 1");
+                                cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
+                                VALUES (1, 'Administrators', 0, 1, 1, 1, 1, 1, 1, 0, 0, 3, 0, 5, 3)");
+                                cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
+                                VALUES (2, 'Registered', 1024, 0, 1, 1, 1, 1, 1, 1, 0, 3, 0, 5, 3)");
+                                cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
+                                VALUES (3, 'Anonymous', 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 5, 3)");
+                                cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
+                                VALUES (4, 'Banned', 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 5, 3)");
 
             if (USER_ID) { //user already logged in
                 msg_box($lang_bridgemgr_php['recovery_success_title'], $lang_bridgemgr_php['recovery_success_content'], $lang_bridgemgr_php['goto_bridgemgr'], $_SERVER['PHP_SELF'], "-1");
