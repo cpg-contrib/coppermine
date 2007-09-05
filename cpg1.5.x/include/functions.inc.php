@@ -2671,8 +2671,8 @@ function languageSelect($parameter) {
     $lang_language_data['czech'] = array('Czech','&#x010C;esky','cz');
     $lang_language_data['danish'] = array('Danish','Dansk','dk');
     $lang_language_data['dutch'] = array('Dutch','Nederlands','nl');
-    $lang_language_data['english'] = array('English (US)','English (US)','us');
-    $lang_language_data['english_gb'] = array('English (British)','English (British)','gb');
+    $lang_language_data['english'] = array('English [US]','English [US]','us');
+    $lang_language_data['english_gb'] = array('English [British]','English [British]','gb');
     $lang_language_data['estonian'] = array('Estonian','Eesti','ee');
     $lang_language_data['filipino'] = array('Filipino Tagalog','','ph');
     $lang_language_data['finnish'] = array('Finnish','Suomea','fi');
@@ -2680,6 +2680,7 @@ function languageSelect($parameter) {
     $lang_language_data['galician'] = array('Galician','Galego','es_gln');
     $lang_language_data['georgian'] = array('Georgian','&#4325;&#4304;&#4320;&#4311;&#4323;&#4314;&#4312;','ge');
     $lang_language_data['german'] = array('German','Deutsch','de');
+    $lang_language_data['german_sie'] = array('German [formal]','Deutsch [Sie]','de');
     $lang_language_data['greek'] = array('Greek','&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;','gr');
     $lang_language_data['hebrew'] = array('Hebrew','&#1506;&#1489;&#1512;&#1497;&#1514;','il');
     $lang_language_data['hindi'] = array('Hindi','&#2361;&#2367;&#2344;&#2381;&#2342;&#2368;','in');
