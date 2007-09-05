@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-09-05 [S] If 'http' or 'script' is set in referer then referer will be set to 'index.php' {Amit}
 2007-09-04 [A] Added preliminary (beta) bridge for SMF 2.x (user contribution) {GauGau}
 2007-09-01 [B] Fixed the bugs introduced because of moderator mod and editpics changes {Abbas}
 2007-08-25 [C] Removed config option "Display album description" that hasn't been implemented yet {GauGau}
