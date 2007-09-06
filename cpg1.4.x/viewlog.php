@@ -112,7 +112,7 @@ if (isset($action)) {
 if (!isset($log) || dirname($log) != '.') {
 	display_log_list();
 } else {
-	display_log(ereg_replace('..|/|%00', '', $log));
+	display_log(ereg_replace('\.|/|%00', '', $log));
 }
 
 endtable();
