@@ -19,6 +19,7 @@
 
 define('IN_COPPERMINE', true);
 define('DB_INPUT_PHP', true);
+define('DISPLAYIMAGE_PHP', true);
 
 require('include/init.inc.php');
 require('include/picmgmt.inc.php');
@@ -164,6 +165,11 @@ switch ($event) {
             {
               cpg_die($lang_common['error'], $lang_db_input_php['com_author_error'],__FILE__,__LINE__);
           }
+
+            // If username for comment is same as default username then display error message
+            if ($msg_author == $lang_display_comments['your_name']) {
+                cpg_die(ERROR, $lang_display_comments['default_username_message'], __FILE__, __LINE__);
+            }
 
             if ($CONFIG['comment_approval'] != 0) { // comments need approval, set approval status to "no"
                 $insert = cpg_db_query("INSERT INTO {$CONFIG['TABLE_COMMENTS']} (pid, msg_author, msg_body, msg_date, author_md5_id, author_id, msg_raw_ip, msg_hdr_ip, approval) VALUES ('$pid', '{$CONFIG['comments_anon_pfx']}$msg_author', '$msg_body', NOW(), '{$USER['ID']}', '0', '$raw_ip', '$hdr_ip', 'NO')");

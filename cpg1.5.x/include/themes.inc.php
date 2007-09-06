@@ -1111,7 +1111,7 @@ $template_add_your_comment = <<<EOT
                                 <td class="tableb_compact">
                                 <input type="hidden" name="event" value="comment" />
                                 <input type="hidden" name="pid" value="{PIC_ID}" />
-                                <input type="submit" class="comment_button" name="submit" value="{OK}" />
+                                <input type="submit" class="comment_button" name="submit" value="{OK}" onclick="return notDefaultUsername(this.form, '{DEFAULT_USERNAME}', '{DEFAULT_USERNAME_MESSAGE}');" />
                                 </td>
 <!-- END submit -->
                                                         </tr>
@@ -3165,6 +3165,8 @@ function theme_html_comments($pid)
             '{USER_NAME}' => $user_name,
             '{MAX_COM_LENGTH}' => $CONFIG['max_com_size'],
             '{OK}' => $lang_display_comments['OK'],
+            '{DEFAULT_USERNAME}' => $lang_display_comments['your_name'],
+            '{DEFAULT_USERNAME_MESSAGE}' => $lang_display_comments['default_username_message'],
             '{SMILIES}' => '',
             '{WIDTH}' => $CONFIG['picture_table_width'],
             );

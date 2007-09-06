@@ -158,6 +158,19 @@ function redirect(url)
         window.location=url;
 }
 
+// Function used to not allow user to enter default username as username for comment
+function notDefaultUsername(f, defaultUsername, defaultUsernameMessage)
+{
+    // If username for comment is default username then display error message and return false
+    if (f.msg_author.value == defaultUsername) {
+        alert(defaultUsernameMessage);
+        return false;
+    }
+
+    // By default return true
+    return true;
+}
+
 var onloads = new Array()
 
 function addonload(func){

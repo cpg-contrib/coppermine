@@ -1154,6 +1154,7 @@ $lang_display_comments = array(
   'approve' => 'Approve comment', // cpg1.5.x
   'disapprove' => 'Disapprove comment', // cpg1.5.x
   'log_in_to_comment' => 'Anonymous comments are not allowed here. %sLog in%s to post your comment', // cpg1.5.x // do not translate the %s placeholders - they will be used as wrappers for the link (<a>)
+  'default_username_message' => 'Please provide your name for comment', // cpg1.5.x
 );
 
 $lang_fullsize_popup = array(
@@ -1828,13 +1829,13 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
   'no_album' => 'no album selected',
   'result_icon' => 'click for details or to reload',
   'notes' =>  '<ul>'.
-                          '<li><b>OK</b>: means that the file was succesfully added'.
-                          '<li><b>DP</b>: means that the file is a duplicate and is already in the database'.
-                          '<li><b>PB</b>: means that the file could not be added, check your configuration and the permission of directories where the files are located'.
-                          '<li><b>NA</b>: means that you haven\'t selected an album the files should go to, hit \'<a href="javascript:history.back(1)">back</a>\' and select an album. If you don\'t have an album <a href="albmgr.php">create one first</a></li>'.
-                          '<li>If the OK, DP, PB \'signs\' does not appear click on the broken file to see any error message produced by PHP'.
-                          '<li>If your browser timeouts, hit the reload button'.
-              '</ul>',
+						  '<li><b>OK</b>: means that the file was succesfully added'.
+						  '<li><b>DP</b>: means that the file is a duplicate and is already in the database'.
+						  '<li><b>PB</b>: means that the file could not be added, check your configuration and the permission of directories where the files are located'.
+						  '<li><b>NA</b>: means that you haven\'t selected an album the files should go to, hit \'<a href="javascript:history.back(1)">back</a>\' and select an album. If you don\'t have an album <a href="albmgr.php">create one first</a></li>'.
+						  '<li>If the OK, DP, PB \'signs\' does not appear click on the broken file to see any error message produced by PHP'.
+						  '<li>If your browser timeouts, hit the reload button'.
+			  '</ul>',
   'select_album' => 'select album',
   'check_all' => 'Check All',
   'uncheck_all' => 'Uncheck All',
