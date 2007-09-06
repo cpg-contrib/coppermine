@@ -406,7 +406,7 @@ if (USER_ID > 0){
 
 // If referer is set in URL and it contains 'http' or 'script' texts then set it to 'index.php' script
 if (isset($_GET['referer'])) {
-	if (strpos($_GET['referer'], 'http') !== false || strpos($_GET['referer'], 'script') !== false) {
+	if (preg_match('/((\%3C)|<)[^\n]+((\%3E)|>)|(.*http.*)|(.*script.*)/i', $_GET['referer'])) {
 		$_GET['referer'] = 'index.php';
 	}
 }
