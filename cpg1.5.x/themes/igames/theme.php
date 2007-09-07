@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
@@ -35,7 +35,7 @@ $template_sys_menu_spacer ="|";
 
 
 // HTML template for template sub_menu
-// special note: I left the java 'hide' off of the first and third buttons to help avoid trouble keeping sys_menu open. :Donnoman
+// special note: I left the JavaScript 'hide' off of the first and third buttons to help avoid trouble keeping sys_menu open. :Donnoman
 if ($CONFIG['custom_lnk_url'] != '') {
 $template_sub_menu = <<<EOT
                         <table border="0" cellpadding="0" cellspacing="0" width="100%">

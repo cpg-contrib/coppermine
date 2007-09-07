@@ -574,6 +574,52 @@ Of course this message will only be displayed if you have disallowed guests to p
 
 <a name="admin_comment_end"></a>
 
+<a name="admin_contact_start"></a><h2>Contact form settings<a href="#admin_contact_start" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<a name="admin_contact_end"></a>
+<p>Settings that determine if the contact-form is available. Make sure that sending emails from Coppermine works in the first place before enabling the contact form.</p>
+<a name="admin_contact_guest_enable"></a><h3>Display contact form to anonymous visitors (guests)<a href="#admin_contact_guest_enable" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Toggles wether the link to the contact form will be displayed in the menu and wether guests (visitors of your gallery who are not logged in) can use the contact form.</p>
+<p>Possible options:</p>
+<ul>
+  <li>
+    <strong>No</strong><br />
+    (default setting).
+  </li>
+  <li>
+    <strong>Yes (with captcha)</strong><br />
+    (recommended setting). A captcha is a visual confirmation that the visitor has to fill in to prove that he is not a bot or malicious script.
+  </li>
+  <li>
+    <strong>Yes (without captcha)</strong><br />
+    (not recommended). A captcha is a visual confirmation that the visitor has to fill in to prove that he is not a bot or malicious script. When allowing guests to send you an email using the contact form without asking them to confirm that they are humans can result in unwanted spam.
+  </li>
+</ul>
+<p>If disabled, the below options that apply to guests using the contact form will not be taken into account.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Contact form settings &rarr; Display contact form to anonymous visitors (guests)</p>
+<a name="admin_contact_guest_enable_end"></a>
+<hr />
+<a name="admin_contact_guest_name_field"></a><h3>Display sender-name field for guests<a href="#admin_contact_guest_name_field" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>When enabled, the visitor (guest) using the contact form will be allowed to enter his name.</p>
+<p>Possible options:</p>
+<ul>
+  <li>
+    <strong>No</strong><br />
+    (default setting). The field will not be displayed.
+  </li>
+  <li>
+    <strong>Yes (optional)</strong><br />
+    (recommended setting). The guest using the form can fill in the name field, but he is not required to do so. If he choses not to fill in the name field and submits the form, the email will be sent anyway.
+  </li>
+  <li>
+    <strong>Yes (mandatory)</strong><br />
+    The guest using the contact form is required to fill in the name field. If he fails to do so and submits the form, he will be returned to the form and the email will not be sent unless he enters a name.
+  </li>
+</ul>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Contact form settings &rarr; Display sender-name field for guests</p>
+<a name="admin_contact_guest_name_field_end"></a>
+<hr />
+
+<a name="admin_contact_end"></a>
 
 <a name="admin_thumb_start"></a><h2>Thumbnail settings<a href="#admin_thumb_start" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <a name="admin_picture_thumbnail_max-dimension"></a><h3>Max dimension of a thumbnail<a href="#admin_picture_thumbnail_max-dimension" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>

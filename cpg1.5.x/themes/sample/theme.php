@@ -143,6 +143,7 @@ EOT;
   // HTML template for template sys_menu buttons
     // {HREF_LNK}{HREF_TITLE}{HREF_TGT}{BLOCK_ID}{SPACER}
     addbutton($sys_menu_buttons,'{HOME_LNK}','{HOME_TITLE}','{HOME_TGT}','home',$template_sys_menu_spacer);
+    addbutton($sys_menu_buttons,'{CONTACT_LNK}','{CONTACT_TITLE}','{CONTACT_TGT}','contact',$template_sys_menu_spacer);
     addbutton($sys_menu_buttons,'{MY_GAL_LNK}','{MY_GAL_TITLE}','{MY_GAL_TGT}','my_gallery',$template_sys_menu_spacer);
     addbutton($sys_menu_buttons,'{MEMBERLIST_LNK}','{MEMBERLIST_TITLE}','{MEMBERLIST_TGT}','allow_memberlist',$template_sys_menu_spacer);
     if (is_array($USER_DATA['allowed_albums']) && count($USER_DATA['allowed_albums'])) {
@@ -1637,6 +1638,16 @@ function theme_main_menu($which)
         }
     }
 
+    if (!USER_ID) {
+        if ($CONFIG['contact_form_guest_enable'] == 0) {
+          template_extract_block($template_sys_menu, 'contact');
+        }
+    } else {
+        if ($CONFIG['contact_form_registered_enable'] == 0) {
+          template_extract_block($template_sys_menu, 'contact');
+        }
+    }
+
     if (!USER_CAN_CREATE_ALBUMS) {
         template_extract_block($template_sys_menu, 'my_gallery');
     }
@@ -1665,6 +1676,9 @@ function theme_main_menu($which)
         '{HOME_TGT}' => $CONFIG['home_target'],
         '{HOME_TITLE}' => $lang_main_menu['home_title'],
         '{HOME_LNK}' => $lang_main_menu['home_lnk'],
+        '{CONTACT_TGT}' => "contact.php?referer=$REFERER",
+        '{CONTACT_TITLE}' => sprintf($lang_main_menu['contact_title'], $CONFIG['gallery_name']),
+        '{CONTACT_LNK}' => $lang_main_menu['contact_lnk'],
         '{MY_GAL_TGT}' => "index.php?cat=$my_gallery_id",
         '{MY_GAL_TITLE}' => $lang_main_menu['my_gal_title'],
         '{MY_GAL_LNK}' => $lang_main_menu['my_gal_lnk'],

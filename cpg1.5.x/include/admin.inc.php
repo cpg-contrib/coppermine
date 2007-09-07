@@ -534,6 +534,58 @@ $config_data = array(
       'help_link' => 'f=configuration.htm&amp;as=admin_comment_promote_registration_start&amp;ae=admin_comment_promote_registration_end',
     ),
   ),
+  'contact_form_settings' => array(
+    'contact_form_guest_enable' => array(
+      'type' => 'radio',
+      'help_link' => 'f=configuration.htm&amp;as=admin_contact_guest_enable&amp;ae=admin_contact_guest_enable_end',
+      'options' => array($lang_common['no'],
+                         $lang_common['yes'].' ('.$lang_admin_php['with_captcha'].')',
+                         $lang_common['yes'].' ('.$lang_admin_php['without_captcha'].')'
+                         )
+    ),
+    'contact_form_guest_name_field' => array(
+      'type' => 'radio',
+      'help_link' => '',
+      'options' => array($lang_common['no'],
+                         $lang_common['yes'].' ('.$lang_admin_php['optional'].')',
+                         $lang_common['yes'].' ('.$lang_admin_php['mandatory'].')'
+                         )
+    ),
+    'contact_form_guest_email_field' => array(
+      'type' => 'radio',
+      'help_link' => '',
+      'options' => array($lang_common['no'],
+                         $lang_common['yes'].' ('.$lang_admin_php['optional'].')',
+                         $lang_common['yes'].' ('.$lang_admin_php['mandatory'].')'
+                         )
+    ),
+    'contact_form_registered_enable' => array(
+      'type' => 'radio',
+      'help_link' => '',
+      'options' => array($lang_common['no'],
+                         $lang_common['yes'].' ('.$lang_admin_php['with_captcha'].')',
+                         $lang_common['yes'].' ('.$lang_admin_php['without_captcha'].')'
+                         )
+    ),
+    'contact_form_subject_content' => array(
+      'type' => 'textfield',
+      'help_link' => '',
+      'size' => '100%',
+      'width' => '200',
+    ),
+    'contact_form_subject_field' => array(
+      'type' => 'radio',
+      'help_link' => '',
+      'options' => array($lang_common['no'],
+                         $lang_common['yes'].' ('.$lang_admin_php['optional'].')',
+                         $lang_common['yes'].' ('.$lang_admin_php['mandatory'].')'
+                         )
+    ),
+    'contact_form_sender_email' => array(
+      'type' => 'checkbox',
+      'help_link' => '',
+    ),
+  ),
   'thumbnail_settings' => array(
     'thumb_width' => array(
       'type' => 'textfield',

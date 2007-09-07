@@ -632,3 +632,12 @@ UPDATE CPG_config SET `allowed_doc_types` = 'doc/txt/rtf/pdf/xls/pps/ppt/zip/gz/
 
 # Display the news section from coppermine-gallery.net
 INSERT INTO CPG_config VALUES ('display_coppermine_news', '1');
+
+# Contact form settings
+INSERT INTO CPG_config VALUES ('contact_form_guest_enable', '0');
+INSERT INTO CPG_config VALUES ('contact_form_guest_name_field', '2');
+INSERT INTO CPG_config VALUES ('contact_form_guest_email_field', '2');
+INSERT INTO CPG_config VALUES ('contact_form_registered_enable', '0');
+INSERT INTO CPG_config VALUES ('contact_form_subject_content', 'Coppermine gallery contact form');
+INSERT INTO CPG_config VALUES ('contact_form_subject_field', '0');
+INSERT INTO CPG_config VALUES ('contact_form_sender_email', '1');
