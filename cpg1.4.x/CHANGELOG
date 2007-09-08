@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-09-08 [M] Upgraded version numbers to prepare for release {GauGau}
 2007-09-08 [B] Removed SEF_URL plugin from standard package as it is known to cause issues. Plugin can be downloaded separately instead from http://coppermine-gallery.net/forum/index.php?topic=46718.0 {GauGau}
 2007-09-05 [S] Added code to remove risky characters in log file name in URL and to check if given log file name's directory is current directory or not to fix second vulnerability posted at http://coppermine-gallery.net/forum/index.php?topic=46623 {Amit}
 2007-09-05 [S] If 'http' or 'script' is set in referer then referer will be set to 'index.php' - first vulnerability posted at http://coppermine-gallery.net/forum/index.php?topic=46623 {Amit}

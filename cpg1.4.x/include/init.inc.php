@@ -17,7 +17,7 @@
   $Date$
 **********************************************/
 
-define('COPPERMINE_VERSION', '1.4.12');
+define('COPPERMINE_VERSION', '1.4.13');
 define('COPPERMINE_VERSION_STATUS', 'stable');
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
@@ -32,8 +32,8 @@ $queries = array();
 
 function cpgGetMicroTime()
 {
-	list($usec, $sec) = explode(" ", microtime());
-	return ((float)$usec + (float)$sec);
+        list($usec, $sec) = explode(" ", microtime());
+        return ((float)$usec + (float)$sec);
 }
 $cpg_time_start = cpgGetMicroTime();
 // Do some cleanup in GET, POST and cookie data and un-register global vars
@@ -42,65 +42,65 @@ $HTML_SUBST = array('&' => '&amp;', '"' => '&quot;', '<' => '&lt;', '>' => '&gt;
 $keysToSkip = array('_POST', '_GET', '_COOKIE', '_REQUEST', '_SERVER', 'HTML_SUBST');
 
 if (get_magic_quotes_gpc()) {
-	if (is_array($_POST)) {
-		foreach ($_POST as $key => $value) {
-			if (!is_array($value))
-				$_POST[$key] = strtr(stripslashes($value), $HTML_SUBST);
-			if (!in_array($key, $keysToSkip) && isset($$key) && ini_get('register_globals') == '1') unset($$key);
-		}
-	}
+        if (is_array($_POST)) {
+                foreach ($_POST as $key => $value) {
+                        if (!is_array($value))
+                                $_POST[$key] = strtr(stripslashes($value), $HTML_SUBST);
+                        if (!in_array($key, $keysToSkip) && isset($$key) && ini_get('register_globals') == '1') unset($$key);
+                }
+        }
 
-	if (is_array($_GET)) {
-		foreach ($_GET as $key => $value) {
-			unset($_GET[$key]);
-			$_GET[strtr(stripslashes($key), $HTML_SUBST)] = strtr(stripslashes($value), $HTML_SUBST);
-			if (!in_array($key, $keysToSkip) && isset($$key) && ini_get('register_globals') == '1') unset($$key);
-		}
-	}
+        if (is_array($_GET)) {
+                foreach ($_GET as $key => $value) {
+                        unset($_GET[$key]);
+                        $_GET[strtr(stripslashes($key), $HTML_SUBST)] = strtr(stripslashes($value), $HTML_SUBST);
+                        if (!in_array($key, $keysToSkip) && isset($$key) && ini_get('register_globals') == '1') unset($$key);
+                }
+        }
 
-	if (is_array($_COOKIE)) {
-		foreach ($_COOKIE as $key => $value) {
-			if (!is_array($value))
-				$_COOKIE[$key] = stripslashes($value);
-			if (!in_array($key, $keysToSkip) && isset($$key) && ini_get('register_globals') == '1') unset($$key);
-		}
-	}
-	if (is_array($_REQUEST)) {
-		foreach ($_REQUEST as $key => $value) {
-			if (!is_array($value))
-				$_REQUEST[$key] = strtr(stripslashes($value), $HTML_SUBST);
-			if (!in_array($key, $keysToSkip) && isset($$key) && ini_get('register_globals') == '1') unset($$key);
-		}
-	}
+        if (is_array($_COOKIE)) {
+                foreach ($_COOKIE as $key => $value) {
+                        if (!is_array($value))
+                                $_COOKIE[$key] = stripslashes($value);
+                        if (!in_array($key, $keysToSkip) && isset($$key) && ini_get('register_globals') == '1') unset($$key);
+                }
+        }
+        if (is_array($_REQUEST)) {
+                foreach ($_REQUEST as $key => $value) {
+                        if (!is_array($value))
+                                $_REQUEST[$key] = strtr(stripslashes($value), $HTML_SUBST);
+                        if (!in_array($key, $keysToSkip) && isset($$key) && ini_get('register_globals') == '1') unset($$key);
+                }
+        }
 } else {
-	if (is_array($_POST)) {
-		foreach ($_POST as $key => $value) {
-			if (!is_array($value))
-				$_POST[$key] = strtr($value, $HTML_SUBST);
-			if (!in_array($key, $keysToSkip) && isset($$key) && ini_get('register_globals') == '1') unset($$key);
-		}
-	}
+        if (is_array($_POST)) {
+                foreach ($_POST as $key => $value) {
+                        if (!is_array($value))
+                                $_POST[$key] = strtr($value, $HTML_SUBST);
+                        if (!in_array($key, $keysToSkip) && isset($$key) && ini_get('register_globals') == '1') unset($$key);
+                }
+        }
 
-	if (is_array($_GET)) {
-		foreach ($_GET as $key => $value) {
-			unset($_GET[$key]);
-			$_GET[strtr(stripslashes($key), $HTML_SUBST)] = strtr(stripslashes($value), $HTML_SUBST);
-			if (!in_array($key, $keysToSkip) && isset($$key) && ini_get('register_globals') == '1') unset($$key);
-		}
-	}
+        if (is_array($_GET)) {
+                foreach ($_GET as $key => $value) {
+                        unset($_GET[$key]);
+                        $_GET[strtr(stripslashes($key), $HTML_SUBST)] = strtr(stripslashes($value), $HTML_SUBST);
+                        if (!in_array($key, $keysToSkip) && isset($$key) && ini_get('register_globals') == '1') unset($$key);
+                }
+        }
 
-	if (is_array($_COOKIE)) {
-		foreach ($_COOKIE as $key => $value) {
-			if (!in_array($key, $keysToSkip) && isset($$key) && ini_get('register_globals') == '1') unset($$key);
-		}
-	}
-	if (is_array($_REQUEST)) {
-		foreach ($_REQUEST as $key => $value) {
-			if (!is_array($value))
-				$_REQUEST[$key] = strtr($value, $HTML_SUBST);
-			if (!in_array($key, $keysToSkip) && isset($$key) && ini_get('register_globals') == '1') unset($$key);
-		}
-	}
+        if (is_array($_COOKIE)) {
+                foreach ($_COOKIE as $key => $value) {
+                        if (!in_array($key, $keysToSkip) && isset($$key) && ini_get('register_globals') == '1') unset($$key);
+                }
+        }
+        if (is_array($_REQUEST)) {
+                foreach ($_REQUEST as $key => $value) {
+                        if (!is_array($value))
+                                $_REQUEST[$key] = strtr($value, $HTML_SUBST);
+                        if (!in_array($key, $keysToSkip) && isset($$key) && ini_get('register_globals') == '1') unset($$key);
+                }
+        }
 }
 // Initialise the $CONFIG array and some other variables
 $CONFIG = array();
@@ -111,8 +111,8 @@ $ORIGINAL_PHP_SELF = $_SERVER['PHP_SELF'];
 $possibilities = array('REDIRECT_URL', 'PHP_SELF', 'SCRIPT_URL', 'SCRIPT_NAME','SCRIPT_FILENAME');
 foreach ($possibilities as $test){
   if (isset($_SERVER[$test]) && preg_match('/([^\/]+\.php)$/', $_SERVER[$test], $matches)){
-	$PHP_SELF = $_SERVER['PHP_SELF'] = $_SERVER['SCRIPT_NAME'] = $matches[1];
-	break;
+        $PHP_SELF = $_SERVER['PHP_SELF'] = $_SERVER['SCRIPT_NAME'] = $matches[1];
+        break;
   }
 }
 
@@ -127,13 +127,13 @@ $CAT_LIST = '';
 $raw_ip = stripslashes($_SERVER['REMOTE_ADDR']);
 
 if (isset($_SERVER['HTTP_CLIENT_IP'])) {
-	$hdr_ip = stripslashes($_SERVER['HTTP_CLIENT_IP']);
+        $hdr_ip = stripslashes($_SERVER['HTTP_CLIENT_IP']);
 } else {
-	if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-		$hdr_ip = stripslashes($_SERVER['HTTP_X_FORWARDED_FOR']);
-	} else {
-		$hdr_ip = $raw_ip;
-	}
+        if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+                $hdr_ip = stripslashes($_SERVER['HTTP_X_FORWARDED_FOR']);
+        } else {
+                $hdr_ip = $raw_ip;
+        }
 }
 
 if (!preg_match('/^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$/', $raw_ip)) $raw_ip = '0.0.0.0';
@@ -151,25 +151,25 @@ define('CRITICAL_ERROR', 3);
 
 // Include config and functions files
 if(file_exists('include/config.inc.php')){
-		ob_start();
-		require_once 'include/config.inc.php';
-		ob_clean();
+                ob_start();
+                require_once 'include/config.inc.php';
+                ob_clean();
 } else {
   // error handling: if the config file doesn't exist go to install
   die('<html>
-	<head>
-	  <title>Coppermine not installed yet</title>
-	  <meta http-equiv="refresh" content="10;url=install.php">
-	  <style type="text/css">
-	  <!--
-	  body { font-size: 12px; background: #FFFFFF; margin: 20%; color: black; font-family: verdana, arial, helvetica, sans-serif;}
-	  -->
-	  </style>
-	</head>
-	<body>
-	  <img src="images/coppermine_logo.png" alt="Coppermine Photo Gallery - Your Online Photo Gallery" /><br />
-	  Coppermine Photo Gallery seems not to be installed correctly, or you are running coppermine for the first time. You\'ll be redirected to the installer. If your browser doesn\'t support redirect, click <a href="install.php">here</a>.
-	</body>
+        <head>
+          <title>Coppermine not installed yet</title>
+          <meta http-equiv="refresh" content="10;url=install.php">
+          <style type="text/css">
+          <!--
+          body { font-size: 12px; background: #FFFFFF; margin: 20%; color: black; font-family: verdana, arial, helvetica, sans-serif;}
+          -->
+          </style>
+        </head>
+        <body>
+          <img src="images/coppermine_logo.png" alt="Coppermine Photo Gallery - Your Online Photo Gallery" /><br />
+          Coppermine Photo Gallery seems not to be installed correctly, or you are running coppermine for the first time. You\'ll be redirected to the installer. If your browser doesn\'t support redirect, click <a href="install.php">here</a>.
+        </body>
 </html>');
 }
 $mb_utf8_regex = '[\xE1-\xEF][\x80-\xBF][\x80-\xBF]|\xE0[\xA0-\xBF][\x80-\xBF]|[\xC2-\xDF][\x80-\xBF]';
@@ -199,7 +199,7 @@ $CONFIG['TABLE_HIT_STATS']  = $CONFIG['TABLE_PREFIX'].'hit_stats';
 // Retrieve DB stored configuration
 $results = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_CONFIG']}");
 while ($row = mysql_fetch_array($results)) {
-	$CONFIG[$row['name']] = $row['value'];
+        $CONFIG[$row['name']] = $row['value'];
 } // while
 mysql_free_result($results);
 
@@ -221,12 +221,12 @@ else
 // Include plugin API
 require('include/plugin_api.inc.php');
 if ($CONFIG['enable_plugins'] == 1) {
-	CPGPluginAPI::load();
+        CPGPluginAPI::load();
 }
 
 // Set UDB_INTEGRATION if enabled in admin
 if ($CONFIG['bridge_enable'] == 1 && !defined('BRIDGEMGR_PHP')) {
-	$BRIDGE = cpg_get_bridge_db_values();
+        $BRIDGE = cpg_get_bridge_db_values();
 } else {
   $BRIDGE['short_name'] = 'coppermine';
   $BRIDGE['use_standard_groups'] = 1;
@@ -246,7 +246,7 @@ Removed temporarily due to non-compliance with bridging system - Nibbler
 $results = cpg_db_query("SELECT group_id FROM {$CONFIG['TABLE_USERGROUPS']} WHERE has_admin_access ");
 $CONFIG['ADMIN_GROUPS']=array();
 while ($row = mysql_fetch_array($results)) {
-	$CONFIG['ADMIN_GROUPS'][]= $row['group_id'];
+        $CONFIG['ADMIN_GROUPS'][]= $row['group_id'];
 } // while
 mysql_free_result($results);
 
@@ -254,7 +254,7 @@ mysql_free_result($results);
 $results = cpg_db_query("SELECT {$cpg_udb->field['user_id']} as user_id FROM $cpg_udb->usertable WHERE {$cpg_udb->field['usertbl_group_id']} in (" . implode(',',$CONFIG['ADMIN_GROUPS']).')');
 $CONFIG['ADMIN_USERS']=array();
 while ($row = mysql_fetch_array($results)) {
-	$CONFIG['ADMIN_USERS'][] = $row['user_id'];
+        $CONFIG['ADMIN_USERS'][] = $row['user_id'];
 } // while
 mysql_free_result($results);
 
@@ -278,19 +278,19 @@ define('USER_ADMIN_MODE', USER_ID && USER_CAN_CREATE_ALBUMS && $USER['am'] && !G
 // Set error logging level
 // Maze's new error report system
 if (!USER_IS_ADMIN) {
-	if (!$CONFIG['debug_mode']) $cpgdebugger->stop(); // useless to run debugger cos there's no output
-	error_reporting(E_PARSE); // hide all errors for visitors
+        if (!$CONFIG['debug_mode']) $cpgdebugger->stop(); // useless to run debugger cos there's no output
+        error_reporting(E_PARSE); // hide all errors for visitors
 }
 
 // Process theme selection if present in URI or in user profile
 if (!empty($_GET['theme'])) {
-	$USER['theme'] = $_GET['theme'];
+        $USER['theme'] = $_GET['theme'];
 }
 // Load theme file
 if (isset($USER['theme']) && !strstr($USER['theme'], '/') && is_dir('themes/' . $USER['theme'])) {
-	$CONFIG['theme'] = strtr($USER['theme'], '$/\\:*?"\'<>|`', '____________');
+        $CONFIG['theme'] = strtr($USER['theme'], '$/\\:*?"\'<>|`', '____________');
 } else {
-	unset($USER['theme']);
+        unset($USER['theme']);
 }
 
 if (!file_exists("themes/{$CONFIG['theme']}/theme.php")) $CONFIG['theme'] = 'classic';
@@ -303,31 +303,31 @@ $THEME_DIR = "themes/{$CONFIG['theme']}/";
 // autodetection if default charset is utf-8
 if (!empty($_GET['lang']))
 {
-	$USER['lang'] = ereg("^[a-z0-9_-]*$", $_GET['lang']) ? $_GET['lang'] : $CONFIG['lang'];
+        $USER['lang'] = ereg("^[a-z0-9_-]*$", $_GET['lang']) ? $_GET['lang'] : $CONFIG['lang'];
 }
 
 if (isset($USER['lang']) && !strstr($USER['lang'], '/') && file_exists('lang/' . $USER['lang'] . '.php'))
 {
-	$CONFIG['default_lang'] = $CONFIG['lang'];          // Save default language
-	$CONFIG['lang'] = strtr($USER['lang'], '$/\\:*?"\'<>|`', '____________');
+        $CONFIG['default_lang'] = $CONFIG['lang'];          // Save default language
+        $CONFIG['lang'] = strtr($USER['lang'], '$/\\:*?"\'<>|`', '____________');
 }
 elseif ($CONFIG['charset'] == 'utf-8')
 {
-	include('include/select_lang.inc.php');
-	if (file_exists('lang/' . $USER['lang'] . '.php'))
-	{
-		$CONFIG['default_lang'] = $CONFIG['lang'];      // Save default language
-		$CONFIG['lang'] = $USER['lang'];
-	}
+        include('include/select_lang.inc.php');
+        if (file_exists('lang/' . $USER['lang'] . '.php'))
+        {
+                $CONFIG['default_lang'] = $CONFIG['lang'];      // Save default language
+                $CONFIG['lang'] = $USER['lang'];
+        }
 }
 else
 {
-	unset($USER['lang']);
+        unset($USER['lang']);
 }
 
 if (isset($CONFIG['default_lang']) && ($CONFIG['default_lang']==$CONFIG['lang']))
 {
-		unset($CONFIG['default_lang']);
+                unset($CONFIG['default_lang']);
 }
 
 if (!file_exists("lang/{$CONFIG['lang']}.php"))
@@ -338,37 +338,37 @@ require "lang/{$CONFIG['lang']}.php";
 
 // Include and process fallback here if lang <> english
 if($CONFIG['lang'] != 'english' && $CONFIG['language_fallback']==1 ){
-		require "include/langfallback.inc.php";
+                require "include/langfallback.inc.php";
 }
 
 
 // See if the fav cookie is set else set it
 if (isset($_COOKIE[$CONFIG['cookie_name'] . '_fav'])) {
-	$FAVPICS = @unserialize(@base64_decode($_COOKIE[$CONFIG['cookie_name'] . '_fav']));
-	foreach ($FAVPICS as $key => $id ){
-		$FAVPICS[$key] = (int)$id; //protect against sql injection attacks
-	}
+        $FAVPICS = @unserialize(@base64_decode($_COOKIE[$CONFIG['cookie_name'] . '_fav']));
+        foreach ($FAVPICS as $key => $id ){
+                $FAVPICS[$key] = (int)$id; //protect against sql injection attacks
+        }
 } else {
-	$FAVPICS = array();
+        $FAVPICS = array();
 }
 
 // If the person is logged in get favs from DB those in the DB have precedence
 if (USER_ID > 0){
-		$sql = "SELECT user_favpics FROM {$CONFIG['TABLE_FAVPICS']} WHERE user_id = ".USER_ID;
-		$results = cpg_db_query($sql);
-		$row = mysql_fetch_array($results);
-		if (!empty($row['user_favpics'])){
-				$FAVPICS = @unserialize(@base64_decode($row['user_favpics']));
-		}else{
-				$FAVPICS = array();
-		}
+                $sql = "SELECT user_favpics FROM {$CONFIG['TABLE_FAVPICS']} WHERE user_id = ".USER_ID;
+                $results = cpg_db_query($sql);
+                $row = mysql_fetch_array($results);
+                if (!empty($row['user_favpics'])){
+                                $FAVPICS = @unserialize(@base64_decode($row['user_favpics']));
+                }else{
+                                $FAVPICS = array();
+                }
 }
 
 // If referer is set in URL and it contains 'http' or 'script' texts then set it to 'index.php' script
 if (isset($_GET['referer'])) {
-	if (preg_match('/((\%3C)|<)[^\n]+((\%3E)|>)|(.*http.*)|(.*script.*)/i', $_GET['referer'])) {
-		$_GET['referer'] = 'index.php';
-	}
+        if (preg_match('/((\%3C)|<)[^\n]+((\%3E)|>)|(.*http.*)|(.*script.*)/i', $_GET['referer'])) {
+                $_GET['referer'] = 'index.php';
+        }
 }
 
 /**
@@ -394,30 +394,30 @@ cpg_db_query("DELETE FROM {$CONFIG['TABLE_BANNED']} WHERE expiry < '$now'");
 $user_id = USER_ID;
 $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_BANNED']} WHERE (ip_addr='$raw_ip' OR ip_addr='$hdr_ip' OR user_id=$user_id) AND brute_force=0");
 if (mysql_num_rows($result)) {
-	pageheader($lang_error);
-	msg_box($lang_info, $lang_errors['banned']);
-	pagefooter();
-	exit;
+        pageheader($lang_error);
+        msg_box($lang_info, $lang_errors['banned']);
+        pagefooter();
+        exit;
 }
 mysql_free_result($result);
 // Retrieve the "private" album set
 if (!GALLERY_ADMIN_MODE && $CONFIG['allow_private_albums']) get_private_album_set();
 
 if (!USER_IS_ADMIN && $CONFIG['offline'] && !strstr($_SERVER["SCRIPT_NAME"],'login')) {
-	pageheader($lang_errors['offline_title']);
-	msg_box($lang_errors['offline_title'], $lang_errors['offline_text']);
-	pagefooter();
-	exit;
+        pageheader($lang_errors['offline_title']);
+        msg_box($lang_errors['offline_title'], $lang_errors['offline_text']);
+        pagefooter();
+        exit;
 }
 
 // kick user into user_admin_mode (needed to fix "removed user mode for users" when upgrading)
 if (USER_ID && !USER_IS_ADMIN && !$USER['am']) { // user is logged in, but is not gallery admin and not in admin mode
-	$USER['am'] = 1;
-	pageheader($lang_info, "<META http-equiv=\"refresh\" content=\"1;url=$referer\">");
-	msg_box($lang_info, 'Sending you to admin mode', $lang_continue, $referer);
-	pagefooter();
-	ob_end_flush();
-	die();
+        $USER['am'] = 1;
+        pageheader($lang_info, "<META http-equiv=\"refresh\" content=\"1;url=$referer\">");
+        msg_box($lang_info, 'Sending you to admin mode', $lang_continue, $referer);
+        pagefooter();
+        ob_end_flush();
+        die();
 }
 
 ?>

@@ -12,7 +12,7 @@
   ********************************************
   Coppermine version: 1.4.13
   $Source: /cvsroot/coppermine/stable/lang/english.php,v $
-  $Revision: 1.26 $
+  $Revision: 3918 $
   $Author: gaugau $
   $Date: 2006/03/02 08:23:48 $
 **********************************************/

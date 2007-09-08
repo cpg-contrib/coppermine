@@ -10,7 +10,7 @@
   as published by the Free Software Foundation.
 
   ********************************************
-  Coppermine version: 1.4.12
+  Coppermine version: 1.4.13
   $Source$
   $Revision$
   $Author$
@@ -22,7 +22,7 @@
 *
 * This file has almost all the functions of Coppermine
 *
-* @copyright  2002,2006 Gregory DEMAR, Coppermine Dev Team
+* @copyright  2002-2007 Gregory DEMAR, Coppermine Dev Team
 * @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
 * @package Coppermine
 * @version  $Id$
