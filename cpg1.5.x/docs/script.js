@@ -465,6 +465,7 @@ d.add(620,580,'Album list view','configuration.htm#admin_album_list');
 d.add(630,580,'Thumbnail view','configuration.htm#admin_thumbnail_view');
 d.add(640,580,'Image view','configuration.htm#admin_image_comment');
 d.add(650,580,'Comment settings','configuration.htm#admin_comment_start');
+d.add(650,580,'Contact form settings','configuration.htm#admin_contact_start');
 d.add(660,580,'File settings','configuration.htm#admin_picture_thumbnail');
 d.add(670,580,'Image watermarking','configuration.htm#admin_watermarking');
 d.add(680,580,'Registration','configuration.htm#admin_registration');
@@ -665,5 +666,4 @@ function dateRevision(lastChangeDate, revisionNumber) {
   document.write(revisionNumber);
   document.write('</div>');
 }
-
 
