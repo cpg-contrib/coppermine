@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /*************************
   Coppermine Photo Gallery
   ************************
@@ -134,11 +134,19 @@ $lang_common = array(
   'title' => 'Titel', // cpg1.5.x
   'caption' => 'Überschrift', // cpg1.5.x
   'keywords' => 'Schlüsselwörter', // cpg1.5.x
+  'keywords_insert1' => 'Schlüsselwörter (mit Leerzeichen trennen)', // cpg1.5.x
+  'keywords_insert2' => 'Aus Liste einfügen', // cpg1.5.x
   'owner_name' => 'Eigentümer Name', // cpg1.5.x
   'filename' => 'Dateiname', // cpg1.5.x
   'filesize' => 'Dateigrösse', // cpg1.5.x
   'album' => 'Album', // cpg1.5.x
   'file' => 'Datei', // cpg1.5.x
+  'date' => 'Datum', // cpg1.5.x
+  'help' => 'Hilfe', // cpg1.5.x
+  'close' => 'Schliessen', // cpg1.5.x
+  'go' => 'los', // cpg1.5.x
+  'javascript_needed' => 'Diese Seite benötigt JavaScript. Bitte aktiviere JavaScript in Deinem Browser.', // cpg1.5.x
+
 );
 
 
@@ -183,6 +191,11 @@ $lang_main_menu = array(
   'memberlist_lnk' => 'Benutzerliste',
   'faq_title' => 'Häufig gestellte Fragen (Frequently Asked Questions) zur Galerie &quot;Coppermine&quot;',
   'faq_lnk' => 'FAQ',
+  'browse_by_date_lnk' => 'Nach Datum', // cpg1.5.x
+  'browse_by_date_title' => 'Nach dem Datum des Uploads betrachten', // cpg1.5.x
+  'contact_title' => 'Tritt mit %s in Kontakt', // cpg1.5.x
+  'contact_lnk' => 'Kontakt', // cpg1.5.x
+
 );
 
 $lang_gallery_admin_menu = array(
@@ -232,6 +245,9 @@ $lang_gallery_admin_menu = array(
   'keywordmgr_title' => 'Verwalte Schlagworte (falls die entsprechende Option in den Einstellungen aktiviert wurde).', // cpg1.5.x
   'exifmgr_lnk' => 'EXIF', // cpg1.5.x
   'exifmgr_title' => 'EXIF-Anzeige verwalten (falls die entsprechende Option in den Einstellungen aktiviert wurde).', // cpg1.5.x
+  'shownews_lnk' => 'News anzeigen', // cpg1.5.x
+  'shownews_title' => 'Zeige neueste Nachrichten von coppermine-gallery.net', // cpg1.5.x
+
 );
 
 $lang_user_admin_menu = array(
@@ -364,9 +380,11 @@ $lang_version_alert = array(
 Version gibt es keinen Support oder Funktions-Garantien. Benutze sie auf eigenes Risiko oder downgrade auf die aktuellste 
 
 stabile Version, wenn Du Support brauchst!',
-  'gallery_offline' => 'Die Galerie ist zur Zeit im Wartungs-Modus und ist nur für Dich als Admin zugänglich. Vergiss nicht, 
-
-sie wieder aus dem Wartungs-Modus in den "normalen" Modus zurück zu schalten, wenn Deine Wartungsarbeiten beendet sind.', 
+  'gallery_offline' => 'Die Galerie ist zur Zeit im Wartungs-Modus und ist nur für Dich als Admin zugänglich. Vergiss nicht, sie wieder aus dem Wartungs-Modus in den "normalen" Modus zurück zu schalten, wenn Deine Wartungsarbeiten beendet sind.',
+  'coppermine_news' => 'News von coppermine-gallery.net', //cpg1.5
+  'no_iframe' => 'Dein Browser kann keine eingebetteten Frames darstellen', //cpg1.5
+  'hide' => 'verbergen', //cpg1.5
+ 
 );
 
 $lang_create_tabs = array(
@@ -444,6 +462,9 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
 if (defined('MODE_PHP')) $lang_mode_php = array(
   0 => 'Anzeige der Admin-Menüs wird deaktiviert',
   1 => 'Anzeige der Admin-Menüs wird aktiviert',
+  'news_hide' => 'Verberge News...', // cpg1.5.x
+  'news_show' => 'Zeige News...', // cpg1.5.x
+
 );
 
 // ------------------------------------------------------------------------- //
@@ -717,8 +738,8 @@ erzeugen.',
 
 if (defined('CALENDAR_PHP')) $lang_calendar_php = array(
   'title' => 'Kalender',
-  'close' => 'schliessen',
   'clear_date' => 'Datum löschen',
+  'files' => 'Dateien', // cpg1.5
 );
 
 // ------------------------------------------------------------------------- //
@@ -745,9 +766,36 @@ if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
 );
 
 // ------------------------------------------------------------------------- //
-// File admin.php
+// File contact.php
 // ------------------------------------------------------------------------- //
 
+if (defined('CONTACT_PHP')) $lang_contact_php = array(
+  'title' => 'Kontakt', // cpg1.5
+  'your_name' => 'Dein Name', // cpg1.5
+  'your_email' => 'Deine eMail-Adresse', // cpg1.5
+  'subject' => 'Betreff', // cpg1.5
+  'your_message' => 'Dein Nachricht', // cpg1.5
+  'name_field_mandatory' => 'Bitte gib Deinen Namen ein', // cpg1.5 //js-alert
+  'name_field_invalid' => 'Bitte gib Deinen tatsächlichen Namen ein', // cpg1.5 //js-alert
+  'email_field_mandatory' => 'Bitte gib Deine eMail-Adresse ein', // cpg1.5 //js-alert
+  'email_field_invalid' => 'Bitte gib eine gültige eMail-Adresse ein', // cpg1.5 //js-alert
+  'subject_field_mandatory' => 'Bitte gib einen sinnvollen Betreff ein', // cpg1.5 //js-alert
+  'message_field_mandatory' => 'Bitte gib Deine Nachricht ein', // cpg1.5 //js-alert
+  'confirmation' => 'Bestätigung', // cpg1.5
+  'email_headline' => 'Am %s wurde diese eMail von dem Kontakformular auf %s versendet. Die IP-Adresse %s wurde verwendet.', // cpg1.5
+  'registered_user' => 'registrierte Benutzer', // cpg1.5
+  'guest' => 'Gast', // cpg1.5
+  'unknown' => 'unbekannt', // cpg1.5
+  'user_info' => 'Der %s namens %s mit der eMail-Adresse %s sagte:', // cpg1.5
+  'failed_sending_email' => 'Konnte die eMail nicht versenden. Bitte versuche es später noch einmal.', //cpg1.5
+  'email_sent' => 'Deine eMail wurde gesendet.', //cpg1.5
+);
+
+
+// ------------------------------------------------------------------------- //
+// File admin.php
+// ------------------------------------------------------------------------- //
+/*
 if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'title' => 'Galerie-Einstellungen',
   'manage_exif' => 'Exif-Einstellungen verwalten',
@@ -1004,6 +1052,283 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('PHP-notices in Debug-Modus anzeigen (empfohlen: aus)', 'debug_notice', 1, 'f=configuration.htm&amp;as=admin_misc_debug_notices&amp;ae=admin_misc_debug_notices_end'),
   array('Galerie ist im Wartungsmodus', 'offline', 1, 'f=configuration.htm&amp;as=admin_general_offline&amp;ae=admin_general_offline_end'),
 );
+*/
+if (defined('ADMIN_PHP')) $lang_admin_php = array(
+  'title' => 'Galerie-Einstellungen',
+  'general_settings' => 'Allgemeine Einstellungen', // cpg1.5
+  'language_charset_settings' => 'Sprach- &amp; Zeichensatz-Einstellungen', // cpg1.5
+  'themes_settings' => 'Design-Einstellungen', // cpg1.5
+  'album_list_view' => 'Ansicht Albenliste', // cpg1.5
+  'thumbnail_view' => 'Ansicht Thumbnail', // cpg1.5
+  'image_view' => 'Ansicht Bild', // cpg1.5
+  'comment_settings' => 'Einstellungen Kommentare', // cpg1.5
+  'thumbnail_settings' => 'Thumbnail Einstellungen', // cpg1.5
+  'file_settings' => 'Bild/Datei-Einstellungen', // cpg1.5
+  'image_watermarking' => 'Wasserzeichen auf Bildern', // cpg1.5
+  'registration' => 'Registrierung', // cpg1.5
+  'user_settings' => 'Benutzer-Einstellungen', // cpg1.5
+  'custom_fields_user_profile' => 'Benutzerdefinierte Felder für Benutzerprofile (leer lassen, falls ungenutzt). Benutze Profilfeld 6 für Langeinträge (wie Biographien).', // cpg1.5
+  'custom_fields_image_description' => 'Benutzerdefinierte Felder für zusätzliche Dateiinformationen (leer lassen, falls nicht benötigt)', // cpg1.5
+  'cookie_settings' => 'Cookies-Einstellungen', // cpg1.5
+  'email_settings' => 'Email-Einstellungen  (normalerweise muss hier nichts eingestellt werden; lasse im Zweifelsfall alle Felder leer)', // cpg1.5
+  'logging_stats' => 'Logging und Statistiken', // cpg1.5
+  'maintenance_settings' => 'Wartungs-Einstellungen', // cpg1.5
+  'manage_exif' => 'Exif-Einstellungen verwalten',
+  'manage_plugins' => 'Plugins verwalten',
+  'manage_keyword' => 'Schlüsselwörter verwalten',
+  'restore_cfg' => 'auf Werkseinstellungen zurücksetzen',
+  'restore_cfg_confirm' => 'Do you really want to restore the entire configuration to factory defaults? This can not be undone!', // cpg1.5 //js-alert
+  'save_cfg' => 'Neue Einstellungen speichern',
+  'notes' => 'Anmerkungen',
+  'info' => 'Information',
+  'upd_success' => 'Die Einstellungen von Coppermine wurden aktualisiert',
+  'restore_success' => 'Coppermine Standard-Einstellungen wiederhergestellt',
+  'name_a' => 'aufsteigend nach Name',
+  'name_d' => 'absteigend nach Name',
+  'title_a' => 'aufsteigend nach Titel',
+  'title_d' => 'absteigend nach Titel',
+  'date_a' => 'aufsteigend nach Datum',
+  'date_d' => 'absteigend nach Datum',
+  'pos_a' => 'Position ascending',
+  'pos_d' => 'Position descending',
+  'th_any' => 'Maximalwert (entweder Höhe oder Breite)',
+  'th_ht' => 'Höhe',
+  'th_wd' => 'Breite',
+  'th_ex' => 'Exakt', // cpg1.5
+  'label' => 'Beschriftung',
+  'item' => 'Eintrag',
+  'debug_everyone' => 'alle',
+  'debug_admin' => 'Admin only',
+  'no_logs'=> 'Off',
+  'log_normal'=> 'Normal',
+  'log_all' => 'All',
+  'view_logs' => 'Historie anzeigen',
+  'click_expand' => 'Klicke auf die jeweilige Bezeichnung zum Ausklappen des Abschnitts',
+  'expand_all' => 'Alle ausklappen',
+  'notice1' => '(*) Diese Einstellungen dürfen nicht mehr verändert werden, wenn bereits Dateien in der Datenbank vorhanden sind.',
+  'notice2' => '(**) Bei Änderung dieser Einstellung werden die geänderten Werte nur für Dateien herangezogen, die ab dem Zeitpunkt der Änderung hinzugefügt werden - daher ist es ratsam, hier nichts zu ändern, wenn bereits Bilder in der Galerie vorhanden sind. Die geänderten Einstellungen können jedoch auch auf ältere Dateien angewendet werden durch Verwendung der &quot;<a href="util.php">Admin-Werkzeuge</a> (Thumbnails und/oder Bilder in Zwischengrösse aktualisieren)&quot; aus dem Admin-Menü.',
+  'notice3' => '(***) Alle Logs werden in Englisch geschrieben.',
+  'bbs_disabled' => 'Funktion deaktiviert bei der Verwendung des Bridging',
+  'auto_resize_everyone' => 'Alle (Benutzer+Admin)',
+  'auto_resize_user' => 'Nur Benutzer',
+  'ascending' => 'aufsteigend',
+  'descending' => 'absteigend',
+  'separate_page' => 'auf einer separaten Seite', // cpg1.5
+  'inline' => 'inline', // cpg1.5
+  'guests_only' => 'Nur Gäste', // cpg1.5
+  'wm_bottomright' => 'Unten rechts', // cpg1.5
+  'wm_bottomleft' => 'Unten links', // cpg1.5
+  'wm_topleft' => 'Oben links', // cpg1.5
+  'wm_topright' => 'Oben rechts', // cpg1.5
+  'wm_center' => 'Mittig', // cpg1.5
+  'wm_both' => 'Beide', // cpg1.5
+  'wm_original' => 'Original', // cpg1.5
+  'wm_resized' => 'Geänderte Grösse', // cpg1.5
+  'gallery_name' =>   'Galerie-Name', // cpg1.5
+  'gallery_description' =>   'Galerie-Beschreibung', // cpg1.5
+  'gallery_admin_email' =>   'Galerie-Admin eMail', // cpg1.5
+  'ecards_more_pic_target' =>   'URL Deines Coppermine-Galerie Verzeichnisses', // cpg1.5
+  'ecards_more_pic_target_detail' =>   '(mit abschliessendem Schrägstrich, kein \'index.php\' oder ähnliches am Ende)', // cpg1.5
+  'home_target' =>   'URL Deiner Homepage', // cpg1.5
+  'enable_zipdownload' =>   'ZIP-Download der Favoriten erlauben', // cpg1.5
+  'time_offset' =>   'Zeitzonen-Differenz relative zur MEZ', // cpg1.5
+  'time_offset_detail' =>   '(aktuelle Zeit: ' . localised_date(-1, $comment_date_fmt) . ')', // cpg1.5
+  'enable_encrypted_passwords' =>   'Verschlüsselte Passwörter aktivieren (kann nicht rückgängig gemacht werden)', // cpg1.5
+  'enable_help' =>   'Hilfe-Icons aktivieren (Hilfe nur in Englisch verfügbar)', // cpg1.5
+  'clickable_keyword_search' =>   'Anklickbare Stichwörter in Suche aktivieren', // cpg1.5
+  'enable_plugins' =>   'Plugins aktivieren', // cpg1.5
+  'ban_private_ip' =>   'Verbannung von nicht-routebaren IP-Adressen aktivieren', // cpg1.5
+  'browse_batch_add' =>   'Baumstruktur für Batch-hinzufügen aktivieren', // cpg1.5
+  'display_thumbs_batch_add' =>   'Vorschau-Thumbnails beim Batch-hinzufügen anzeigen', // cpg1.5
+  'lang' =>   'Sprache', // cpg1.5
+  'language_fallback' =>   'Auf Englisch zurückgreifen, wenn Deutsche Übersetzung nicht verfügbar?', // cpg1.5
+  'charset' =>   'Zeichensatz', // cpg1.5
+  'language_list' =>   'Sprachauswahl-Liste anzeigen', // cpg1.5
+  'language_flags' =>   'Sprachauswahl-Flaggen anzeigen', // cpg1.5
+  'language_reset' =>   '&quot;Standard&quot; in Sprachauswahl anzeigen', // cpg1.5
+  // 'previous_next_tab' =>   'Display previous/next on tabbed pages', // cpg1.5
+  'theme' =>   'Design (Theme)', // cpg1.5
+  'theme_list' =>   'Designauswahl-Liste anzeigen', // cpg1.5
+  'theme_reset' =>   '&quot;Standard&quot; in Designauswahl-Liste anzeigen', // cpg1.5
+  'display_faq' =>   'FAQ anzeigen', // cpg1.5
+  'custom_lnk_name' =>   'Name eines benutzerdefinierten Menü-Eintrags', // cpg1.5
+  'custom_lnk_url' =>   'URL eines benutzerdefinierten Menü-Eintrags', // cpg1.5
+  'show_bbcode_help' =>   'bcode-Hilfe anzeigen', // cpg1.5
+  'vanity_block' =>   'Vanity Block in Designs anzeigen, die als XHTML und CSS konform definiert sind?', // cpg1.5
+  'custom_header_path' =>   'Pfad zu benutzerdefiniertem header-include', // cpg1.5
+  'custom_footer_path' =>   'Pfad zu benutzerdefiniertem footer-include', // cpg1.5
+  'browse_by_date' =>   'Enable browsing by date', // cpg1.5
+  'display_redirection_page' =>   'Display redirection pages', // cpg1.5
+  'main_table_width' =>   'Breite der Haupttabelle', // cpg1.5
+  'pixels_or_percent' =>   '(in Pixel oder %)', // cpg1.5
+  'subcat_level' =>   'Anzahl angezeigter Kategorie-Ebenen', // cpg1.5
+  'albums_per_page' =>   'Anzahl angezeigter Alben', // cpg1.5
+  'album_list_cols' =>   'Anzahl Spalten in Album-Liste', // cpg1.5
+  'alb_list_thumb_size' =>   'Thumbnail-Größe in Pixeln', // cpg1.5
+  'main_page_layout' =>   'Inhalt der Hauptseite', // cpg1.5
+  'first_level' =>   'Erste Ebene der Thumbnails der Alben auch in Kategorien anzeigen', // cpg1.5
+  'categories_alpha_sort' =>   'Kategorien alphabetisch sortieren', // cpg1.5
+  'categories_alpha_sort_details' =>   '(anstatt benutzerdefinierter Sortierreihenfolge)', // cpg1.5
+  'link_pic_count' =>   'Anzahl der verlinkten Dateien anzeigen', // cpg1.5
+  'thumbcols' =>   'Spaltenzahl auf Thumbnail-Seite', // cpg1.5
+  'thumbrows' =>   'Zeilenzahl auf Thumbnail-Seite', // cpg1.5
+  'max_tabs' =>   'Anzahl maximal angezeigter Tabs', // cpg1.5
+  'caption_in_thumbview' =>   'Datei-Beschriftung anzeigen (zusätzlich zum Datei-Titel) unterhalb der Thumbnails', // cpg1.5
+  'views_in_thumbview' =>   'Anzahl der Treffer unterhalb des Thumbnails anzeigen', // cpg1.5
+  'display_comment_count' =>   'Display number of comments below the thumbnail', // cpg1.5
+  'display_uploader' =>   'Display uploader name below the thumbnail', // cpg1.5
+  // 'display_admin_uploader' =>   'Display name of admin uploaders below the thumbnail', // cpg1.5
+  'display_filename' =>   'Display file name below the thumbnail', // cpg1.5
+  'display_thumbnail_rating' =>   'Bewertung unterhalb des Thumbnails anzeigen', // cpg1.5
+  'alb_desc_thumb' =>   'Display album description', // cpg1.5
+  'thumbnail_to_fullsize' =>   'Go directly from thumbnail to full-sized image', // cpg1.5
+  'default_sort_order' =>   'Default sort order for files', // cpg1.5
+  'min_votes_for_rating' =>   'Minimum number of votes for a file to appear in the \'top-rated\' list', // cpg1.5
+  'picture_table_width' =>   'Width of the table for file display', // cpg1.5
+  'display_pic_info' =>   'File information is visible by default', // cpg1.5
+  'picinfo_movie_download_link' =>   'Display movie download link in the file information area', // cpg1.5
+  'max_img_desc_length' =>   'Max length for an image description', // cpg1.5
+  'max_com_wlength' =>   'Max number of characters in a word', // cpg1.5
+  'display_film_strip' =>   'Show film strip', // cpg1.5
+  'display_film_strip_filename' =>   'Display file name under film strip thumbnail', // cpg1.5
+  'max_film_strip_items' =>   'Number of items in film strip', // cpg1.5
+  'slideshow_interval' =>   'Slideshow interval in milliseconds', // cpg1.5
+  'slideshow_interval_detail' =>   '(1 second = 1000 milliseconds)', // cpg1.5
+  'slideshow_hits' =>   'Count hits in slideshow', // cpg1.5
+  'ecard_flash' =>   'Allow Flash in Ecards', // cpg1.5
+  'not_recommended' =>   'not recommended', // cpg1.5
+  'recommended' =>   'recommended', // cpg1.5
+  'transparent_overlay' =>   'Insert a transparent overlay to minimize image theft', // cpg1.5
+  'filter_bad_words' =>   'Filter bad words in comments', // cpg1.5
+  'enable_smilies' =>   'Allow smiles in comments', // cpg1.5
+  'disable_comment_flood_protect' =>   'Allow several consecutive comments on one file from the same user', // cpg1.5
+  'disable_comment_flood_protect_details' =>   '(disable flood protection)', // cpg1.5
+  'max_com_lines' =>   'Max number of lines in a comment', // cpg1.5
+  'max_com_size' =>   'Maximum length of a comment', // cpg1.5
+  'email_comment_notification' =>   'Notify admin of comments by email', // cpg1.5
+  'comments_sort_descending' =>   'Sort order of comments', // cpg1.5
+  'comments_anon_pfx' =>   'Prefix for anonymous comments authors', // cpg1.5
+  'comment_approval' =>   'Comments require approval', // cpg1.5
+  'display_comment_approval_only' =>   'Only display comments needing approval on the &quot;Review Comments&quot; page', // cpg1.5
+  'comment_placeholder' =>   'Display placeholder text to end users for comments waiting for admin approval', // cpg1.5
+  'comment_user_edit' =>   'Allow users to edit their comments', // cpg1.5
+  'comment_captcha' =>   'Display Captcha (Visual Confirmation) for adding comments', // cpg1.5
+  'comment_promote_registration' =>   'Ask guests to log in to post comments', // cpg1.5
+  'thumb_width' =>   'Max dimension (width) of a thumbnail', // cpg1.5
+  'thumb_use' =>   'Use dimension', // cpg1.5
+  'thumb_use_detail' =>   '(width or height or Max aspect for thumbnail)', // cpg1.5
+  'thumb_height' =>   'Height of a thumbnail', // cpg1.5
+  'thumb_height_detail' =>   '(only applies if you use &quot;exact&quot; in &quot;Use dimension&quot;)', // cpg1.5
+  'enable_custom_thumbs' =>   'Enable Custom Thumbs', // cpg1.5
+  'movie_audio_document' =>   'movie, audio, document', // cpg1.5
+  'thumb_pfx' =>   'The prefix for thumbnails', // cpg1.5
+  'enable_unsharp' =>   'Thumb Sharpening: enable Unsharp Mask', // cpg1.5
+  'unsharp_amount' =>   'Thumb Sharpening amount', // cpg1.5
+  'unsharp_radius' =>   'Thumb Sharpening radius', // cpg1.5
+  'unsharp_threshold' =>   'Thumb Sharpening threshold', // cpg1.5
+  'jpeg_qual' =>   'Quality for JPEG files', // cpg1.5
+  'make_intermediate' =>   'Create intermediate pictures', // cpg1.5
+  'picture_width' =>   'Max width or height of an intermediate picture/video', // cpg1.5
+  'max_upl_size' =>   'Max size for uploaded files', // cpg1.5
+  'kilobytes' =>   'KB', // cpg1.5
+  'pixels' =>   'pixels', // cpg1.5
+  'max_upl_width_height' =>   'Max width or height for uploaded pictures/videos', // cpg1.5
+  'auto_resize' =>   'Auto resize images that are larger than max width or height', // cpg1.5
+  'fullsize_padding_x' =>   'Horizontal padding for full-size pop-up', // cpg1.5
+  'fullsize_padding_y' =>   'Vertical padding for full-size pop-up', // cpg1.5
+  'allow_private_albums' =>   'Albums can be private', // cpg1.5
+  'allow_private_albums_note' =>   '(Note: if you switch from \'yes\' to \'no\' any current private albums will become public)', // cpg1.5
+  'show_private' =>   'Show private album Icon to unlogged user', // cpg1.5
+  'forbiden_fname_char' =>   'Characters forbidden in filenames', // cpg1.5
+  'silly_safe_mode' =>   'Enable &quot;silly safe mode&quot;', // cpg1.5
+  // 'allowed_file_extensions' =>   'Accepted file extensions for uploaded pictures', // cpg1.5
+  'allowed_img_types' =>   'Allowed image types', // cpg1.5
+  'allowed_mov_types' =>   'Allowed movie types', // cpg1.5
+  'media_autostart' =>   'Movie Playback Autostart', // cpg1.5
+  'allowed_snd_types' =>   'Allowed audio types', // cpg1.5
+  'allowed_doc_types' =>   'Allowed document types', // cpg1.5
+  'thumb_method' =>   'Method for resizing images', // cpg1.5
+  'impath' =>   'Path to ImageMagick \'convert\' utility', // cpg1.5
+  'impath_example' =>   '(example /usr/bin/X11/)', // cpg1.5
+  // 'allowed_img_types' =>   'Allowed image types (only valid for ImageMagick)', // cpg1.5
+  'im_options' =>   'Command line options for ImageMagick', // cpg1.5
+  'read_exif_data' =>   'Read EXIF data in JPEG files', // cpg1.5
+  'read_iptc_data' =>   'Read IPTC data in JPEG files', // cpg1.5
+  'fullpath' =>   'The album directory', // cpg1.5
+  'userpics' =>   'The directory for user files', // cpg1.5
+  'normal_pfx' =>   'The prefix for intermediate pictures', // cpg1.5
+  'default_dir_mode' =>   'Default mode for directories', // cpg1.5
+  'default_file_mode' =>   'Default mode for files', // cpg1.5
+  'enable_watermark' =>   'Watermark Image', // cpg1.5
+  'enable_thumb_watermark' =>   'Watermark custom thumbs', // cpg1.5
+  'where_put_watermark' =>   'Where to place the watermark', // cpg1.5
+  'which_files_to_watermark' =>   'Which files to watermark', // cpg1.5
+  'watermark_file' =>   'Which file to use for watermark', // cpg1.5
+  'watermark_transparency' =>   'Transparency for entire image', // cpg1.5
+  'zero_2_hundred' =>   '0-100', // cpg1.5
+  'reduce_watermark' =>   'Downsize watermark if width of a picture is smaller than entered value. That is the 100% reference point. Resizing of the watermark is linear (0 to disable)', // cpg1.5
+  'watermark_transparency_featherx' =>   'Set color transparent x', // cpg1.5
+  'watermark_transparency_feathery' =>   'Set color transparent y', // cpg1.5
+  'gd2_only' =>   'GD2 only', // cpg1.5
+  'allow_user_registration' =>   'Allow new user registrations', // cpg1.5
+  'global_registration_pw' =>   'Global password for registration', // cpg1.5
+  'user_registration_disclaimer' =>   'Display disclaimer on user registration', // cpg1.5
+  'registration_captcha' =>   'Display Captcha (Visual Confirmation) on registration page', // cpg1.5
+  'reg_requires_valid_email' =>   'User registration requires email verification', // cpg1.5
+  'reg_notify_admin_email' =>   'Notify admin of user registration by email', // cpg1.5
+  'admin_activation' =>   'Admin activation of registrations', // cpg1.5
+  'personal_album_on_registration' =>   'Create user album in personal gallery on registration', // cpg1.5
+  'allow_unlogged_access' =>   'Allow unlogged users (guest or anonymous) access', // cpg1.5
+  'allow_duplicate_emails_addr' =>   'Allow two users to have the same email address', // cpg1.5
+  'upl_notify_admin_email' =>   'Notify admin of user upload awaiting approval', // cpg1.5
+  'allow_memberlist' =>   'Allow logged in users to view memberlist', // cpg1.5
+  'allow_email_change' =>   'Allow users to change their email address in profile', // cpg1.5
+  'allow_user_account_delete' =>   'Allow users to delete their own user account', // cpg1.5
+  'users_can_edit_pics' =>   'Allow users to retain control over their pics in public galleries', // cpg1.5
+  'login_threshold' =>   'Number of failed login attempts until temporary ban', // cpg1.5
+  'login_threshold_detail' =>   '(to avoid brute force attacks)', // cpg1.5
+  'login_expiry' =>   'Duration of a temporary ban after failed logins', // cpg1.5
+  'report_post' =>   'Enable Report to Admin', // cpg1.5
+  'user_profile1_name' =>   'Profile 1 name', // cpg1.5
+  'user_profile2_name' =>   'Profile 2 name', // cpg1.5
+  'user_profile3_name' =>   'Profile 3 name', // cpg1.5
+  'user_profile4_name' =>   'Profile 4 name', // cpg1.5
+  'user_profile5_name' =>   'Profile 5 name', // cpg1.5
+  'user_profile6_name' =>   'Profile 6 name', // cpg1.5
+  'user_field1_name' =>   'Field 1 name', // cpg1.5
+  'user_field2_name' =>   'Field 2 name', // cpg1.5
+  'user_field3_name' =>   'Field 3 name', // cpg1.5
+  'user_field4_name' =>   'Field 4 name', // cpg1.5
+  'cookie_name' =>   'Cookie name', // cpg1.5
+  'cookie_path' =>   'Cookie path', // cpg1.5
+  'smtp_host' =>   'SMTP Host (when left blank, sendmail will be used)', // cpg1.5
+  'smtp_username' =>   'SMTP Username', // cpg1.5
+  'smtp_password' =>   'SMTP Password', // cpg1.5
+  'log_mode' =>   'Logging mode', // cpg1.5
+  'log_ecards' =>   'Log ecards', // cpg1.5
+  'vote_details' =>   'Keep detailed vote statistics', // cpg1.5
+  'hit_details' =>   'Keep detailed hit statistics', // cpg1.5
+  'display_stats_on_index' =>   'Display statistics on index page', // cpg1.5
+  'debug_mode' =>   'Enable debug mode', // cpg1.5
+  'debug_notice' =>   'Display notices in debug mode', // cpg1.5
+  'offline' =>   'Gallery is offline', // cpg1.5
+  'display_coppermine_news' =>   'Display news from coppermine-gallery.net', // cpg1.5
+  'display_coppermine_detail' =>   'will only be displayed for the admin', // cpg1.5
+  'config_setting_invalid' =>   'The value you have set for &laquo;%s&raquo; is invalid, please review it.', // cpg1.5
+  'config_setting_ok' =>   'Your setting for &laquo;%s&raquo; has been saved.', // cpg1.5
+  'contact_form_settings' =>   'Contact form settings', // cpg1.5
+  'contact_form_guest_enable' =>   'Display contact form to anonymous visitors (guests)', // cpg1.5
+  'contact_form_registered_enable' =>   'Display contact form to registered users', // cpg1.5
+  'with_captcha' =>   'with captcha', // cpg1.5
+  'without_captcha' =>   'without captcha', // cpg1.5
+  'optional' =>   'optional', // cpg1.5
+  'mandatory' =>   'mandatory', // cpg1.5
+  'contact_form_guest_name_field' =>   'Display sender-name field for guests', // cpg1.5
+  'contact_form_guest_email_field' =>   'Display sender-email field for guests', // cpg1.5
+  'contact_form_subject_field' =>   'Display subject field', // cpg1.5
+  'contact_form_subject_content' =>   'Subject line for emails generated by contact form', // cpg1.5
+  'contact_form_sender_email' =>   'Use the sender\'s email address as &quot;from&quot;-address', // cpg1.5
+);
 
 
 // ------------------------------------------------------------------------- //
@@ -1045,7 +1370,6 @@ if (defined('DB_ECARD_PHP')) $lang_db_ecard_php = array(
 
 if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
   'empty_name_or_com' => 'Du musst Deinen Namen und einen Kommentar eingeben',
-  'com_added' => 'Dein Kommentar wurde hinzugefügt',
   'alb_need_title' => 'Du musst einen Titel für das Album eingeben!',
   'no_udp_needed' => 'Keine Aktualisierung notwendig.',
   'alb_updated' => 'Das Album wurde aktualisiert',
@@ -1063,7 +1387,8 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
   'notify_admin_email_subject' => '%s - Upload-Benachrichtigung',
   'notify_admin_email_body' => '%s hat eine Datei hochgeladen, die bestätigt werden muss. Gehe zu %s',
   'info' => 'Information',
-  'com_added' => 'Kommentar hinzugefügt',
+  'com_added' => 'Dein Kommentar wurde hinzugefügt',
+  'com_updated' => 'Dein Kommentar wurde aktualisiert',  // cpg1.5.x
   'alb_updated' => 'Album aktualisiert',
   'err_comment_empty' => 'Dein Kommentar enthält keine Zeichen!',
   'err_invalid_fext' => 'Nur Dateien mit den folgenden Erweiterungen sind zulässig: <br /><br />%s.',
@@ -1253,6 +1578,9 @@ $lang_display_comments = array(
   'pending_approval_message' => 'Jemand hat hier einen Kommentar abgegeben, der nach der Bestätigung durch den Admin sichtbar sein wird.', // cpg1.5.x
   'approve' => 'Kommentar bestätigen', // cpg1.5.x
   'disapprove' => 'Kommentar-Bestätigung aufheben', // cpg1.5.x
+  'log_in_to_comment' => 'Anonyme Kommentare sind hier nicht erlaubt. %sMelde Dich an%s, um einen Kommentar abzugeben', // cpg1.5.x // do not translate the %s placeholders - they will be used as wrappers for the link (<a>)
+  'default_username_message' => 'Bitte gib Deinen Namen an, um einen Kommentar abzugeben', // cpg1.5.x
+
 );
 
 $lang_fullsize_popup = array(
@@ -1584,7 +1912,6 @@ if (defined('LOGOUT_PHP')) $lang_logout_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('MINIBROWSER_PHP')) $lang_minibrowser_php = array(
-  'close' => 'schliessen',
   'submit' => 'OK',
   'up' => 'eine Ebene höher',
   'current_path' => 'derzeitiger Pfad',
@@ -1682,6 +2009,7 @@ $lang_pluginmgr_php = array(
   'confirm_delete' => 'Dieses Plugin wirklich LÖSCHEN',
   'pmgr' => 'Plugin Manager',
   'explanation' => 'Installieren / Deinstallieren / Verwalten von Plugins.', // cpg1.5.x
+  'plugin_enabled' => 'Plugin API aktiviert', // cpg1.5.x
   'name' => 'Name',
   'author' => 'Author',
   'desc' => 'Beschreibung',
@@ -1786,6 +2114,11 @@ $lang_register_php = array(
   'pass_chg_success' => 'Dein Passwort wurde geändert',
   'pass_chg_error' => 'Dein Passwort wurde nicht geändert',
   'notify_admin_email_subject' => '%s - Registrierungs-Benachrichtigung',
+  'last_uploads' => 'Zuletzt hochgeladene Datei', //cpg1.5
+  'last_uploads_detail' => 'Klicke hier, um all Uploads von %s zu sehen', //cpg1.5
+  'last_comments' => 'Letzter Kommentar', //cpg1.5
+  'you' => 'Du', //cpg1.5
+  'last_comments_detail' => 'Klicke hier, um alle Kommentare von %s zu sehen', //cpg1.5
   'last_uploads' => 'Zuletzt hochgeladenen Datei.<br />Klicken, um alle Uploads zu sehen von',
   'last_comments' => 'Neueste Kommentare.<br />Klicken, um alle Komentare zu sehen, die abgegeben wurden von',
   'notify_admin_email_body' => 'Jemand mit dem Benutzernamen "%s" hat sich in Deiner Galerie registriert',
@@ -1798,7 +2131,9 @@ $lang_register_php = array(
   'warning_delete' => 'Achtung: das Löschen des Benutzer-Kontos kann nicht rückgängig gemacht werden. Die %sDateien, die Du hochgeladen hast%s in öffentlichen Alben und die %sKommentare%s werden nicht gelöscht, wenn Du Dein Konto löschst! Die Dateien, die Du in Deine persönlichen Alben hochgeladen hast werden jedoch gelöscht.', // cpg1.5 // The %s-placeholders mustn't be removed, they will later be replaced by the wrappers for the links
   'i_am_sure' => 'Ja, ich will mein Konto löschen', // cpg1.5
   'really_delete' => 'Möchtest Du wirklich Dein Benutzer-Konto löschen?', // cpg1.5 //JS-Alert
-
+  'edit_xs_profile' => 'Das Profil von %s bearbeiten', // cpg1.5
+  'edit_my_profile' => 'Mein Profil bearbeiten', // cpg1.5
+  'none' => 'keine', // cpg1.5
 );
 
 $lang_register_confirm_email = <<<EOT
@@ -1943,10 +2278,12 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
   'no_folders' => 'Im Verzeichnis "albums" wurden noch keine Unterverzeichnisse angelegt. Du musst mindestens ein benutzerdefiniertes Unterverzeichnis innerhalb des Ordners "albums" anlegen und Deine Dateien per FTP dorthin hochladen. Du darfst per FTP keine Dateien in die Unterverzeichnisse "userpics" oder "edit" hochladen, da diese für http-uploads und interne Zwecke reserviert sind.',
   'albums_no_category' => 'Alben ohne Kategorie', // album pulldown mod, added by frogfoot
   'personal_albums' => '* Persönliche Alben', // album pulldown mod, added by frogfoot
-  'browse_batch_add' => 'Durchsuchbare Oberfläche (empfohlen)',
+  'browse_batch_add' => 'Durchsuchbare Oberfläche', //cpg1.5
+  'display_thumbs_batch_add' => 'Vorschau-Thumbnails anzeigen', //cpg1.5
   'edit_pics' => 'Dateien bearbeiten',
   'edit_properties' => 'Albums-Eigenschaften',
   'view_thumbs' => 'Thumbnail-Ansicht',
+  'add_more_folder' => 'Noch mehr Dateien aus dem Ordner %s hinzufügen', //cpg1.5
 );
 
 // ------------------------------------------------------------------------- //
@@ -2089,7 +2426,6 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'picture' => 'Datei',
   'pic_title' => 'Datei-Titel',
   'description' => 'Datei-Beschreibung',
-  'keywords' => 'Stichworte (Trennung mit Komma)<br /><a href="#" onClick="return MM_openBrWindow(\'keyword_select.php\',\'selectKey\',\'width=250, height=400, scrollbars=yes,toolbar=no,status=yes,resizable=yes\')">von Liste einfügen</a>',
   'keywords_sel' =>'Wähle Schlagwort',
   'err_no_alb_uploadables' => 'Leider gibt es kein Album, in das Du Bilder hochladen darfst',
   'place_instr_1' => 'Bitte Dateien jetzt den Alben zuordnen.  Es können jetzt zusätzliche Angaben zu den Dateien gemacht werden.',
@@ -2215,12 +2551,9 @@ $lang_util_desc_php = array(
 'Löscht verwaiste Kommentare',
 'Liest Dateigrössen und Dimensionen erneut ein (falls Du Bilder manuell bearbeitet hast)',
 'Setzt Hits-Zähler zurück',
-'Zeigt phpinfo an',
-'Aktualisert die Datenbank',
-'Zeigt Log-Dateien an',
 );
 $lang_util_php = array(
-  'title' => 'Admin-Werkzeuge (Größe ändern)',
+  'title' => 'Admin-Werkzeuge',
   'what_it_does' => 'Was macht dieses Tool',
   'file' => 'Datei',
   'problem' => 'Problem',
@@ -2233,7 +2566,7 @@ $lang_util_php = array(
   'main_success' => 'Die Datei %s wurde erfolgreich als Hauptbild benutzt',
   'error_rename' => 'Fehler beim Umbenennen von %s zu %s',
   'error_not_found' => 'Die Datei %s wurde nicht gefunden',
-  'back' => 'zurück zur Auswahl',
+  'back' => 'zurück zur Auswahl (Admin-Werkzeuge)',
   'thumbs_wait' => 'Aktualisiere Thumbnails und/oder Bilder in Zwischengröße, bitte warten...',
   'thumbs_continue_wait' => 'Fortfahren mit der Aktualisierung der Thumbnails und/oder Bilder in Zwischengröße...',
   'titles_wait' => 'Aktualisiere Überschriften, bitte warten...',
@@ -2288,18 +2621,6 @@ $lang_util_php = array(
   'delete_all_orphans' => 'Alle verwaisten Kommentare löschen?',
   'comment' => 'Kommentar: ',
   'nonexist' => 'Bezug auf nicht-existierende Datei # ',
-  'phpinfo' => 'phpinfo anzeigen',
-  'phpinfo_explanation' => 'Zeigt technische Informationen über Deinen Server an.<br /> - Möglicherweise wirst Du nach diesen Informationen gefragt, wenn Du im Coppermine-Forum um Hilfe bittest.',
-  'update_db' => 'Datenbank aktualisieren',
-  'update_db_explanation' => 'Wenn Du Coppermine-Dateien ersetzt hast, eine Modifikation oder ein Upgrade von einer frühreren Version von Coppermine durchgeführt hast, lasse diese Datenbank-Aktualisierung einmal laufen, um die möglicherweise notwendigen Änderungen an der Datenbank durchzuführen bzw. fehlende Tabellen zu erzeugen.',
-  'view_log' => 'Log-Dateien anzeigen',
-  'view_log_explanation' => 'Coppermine kann verschiedene Benutzer-Aktionen protokollieren. Diese Protokolle können hier angesehen werden, wenn die Aufzeichnung von Log-Dateien in den Coppermine-<a href="admin.php">Einstellungen</a> aktiviert wurde.',
-  'versioncheck' => 'Versions-Check',
-  'versioncheck_explanation' => 'Überprüfe die Versionen Deiner Dateien um herauszufinden, ob alle Dateien bei einem Update korrekt ersetzt wurden, oder ob die Coppermine-Dateien nach der Veröffentlichung eines Pakets aktualisiert wurden.',
-  'bridgemanager' => 'Bridge-Assistent',
-  'bridgemanager_explanation' => 'Assistent zur Integration der Benutzerverwaltung von Coppermine mit einer anderen Applikation (z.B. einem Forum) - sogenanntes "Bridging".',
-  'overall_stats' => 'Gesamt-Statistik', //cpg1.5
-  'overall_stats_explanation' => 'Trefferstatistiken nach Browser und Betriebssystem anzeigen (wenn entsprechende Option in den Einstellungen aktiviert sind).', //cpg1.5
 );
 }
 
@@ -2328,7 +2649,6 @@ if (defined('VERSIONCHECK_PHP')) $lang_versioncheck_php = array(
   'webcvs' => 'web SVN',
   'writable' => 'beschreibbar',
   'not_writable' => 'nicht beschreibbar',
-  'help' => 'Hilfe',
   'help_file_not_exist_optional1' => 'Datei/Verzeichnis existiert nicht',
   'help_file_not_exist_optional2' => 'Die Datei / das Verzeichnis %s wurde auf Deinem Server nicht  gefunden. Obwohl sie optional ist solltest Du sie auf Deinen Server hochladen (benutze dazu Dein FTP-Programm), zumindest wenn Probleme auftreten.',
   'help_file_not_exist_mandatory1' => 'Datei/Verzeichnis existiert nicht',
