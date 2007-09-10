@@ -1061,6 +1061,7 @@ $config_data = array(
     'log_ecards' => array(
       'type' => 'checkbox',
       'help_link' => 'f=configuration.htm&amp;as=admin_general_log_ecards&amp;ae=admin_general_log_ecards_end',
+      'additional_description' => '<br />('.$lang_admin_php['log_ecards_detail'].')',
     ),
     'vote_details' => array(
       'type' => 'checkbox',
