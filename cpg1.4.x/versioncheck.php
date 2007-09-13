@@ -5437,7 +5437,7 @@ $return = '
 1.4.13|upload.php|1.4.13|3837|mandatory|r@
 1.4.13|usermgr.php|1.4.13|3837|mandatory|r@
 1.4.13|util.php|1.4.13|3837|mandatory|r@
-1.4.13|versioncheck.php|1.4.13|3662|mandatory|r@
+1.4.13|versioncheck.php|1.4.13|3951|mandatory|r@
 1.4.13|viewlog.php|1.4.13|3941|mandatory|r@
 1.4.13|xp_publish.php|1.4.13|3837|mandatory|r@
 1.4.13|zipdownload.php|1.4.13|3837|mandatory|r@
@@ -5468,6 +5468,7 @@ $return = '
 1.4.13|bridge/xoops.inc.php|1.4.13|3837|optional|r@
 1.4.13|docs|||mandatory|r@
 1.4.13|docs/faq.htm|||optional|r@
+1.4.13|docs/faq_de.htm|||optional|r@
 1.4.13|docs/faq_fr.htm|||optional|r@
 1.4.13|docs/index.htm|1.4.13|3933|mandatory|r@
 1.4.13|docs/index_fr.htm||3837|mandatory|r@
@@ -5492,11 +5493,11 @@ $return = '
 1.4.13|include/debugger.inc.php|1.4.13|3837|mandatory|r@
 1.4.13|include/exif.php|1.4.13|3837|mandatory|r@
 1.4.13|include/exif_php.inc.php|1.4.13|3837|mandatory|r@
-1.4.13|include/functions.inc.php|1.4.13|3939|mandatory|r@
+1.4.13|include/functions.inc.php|1.4.13|3950|mandatory|r@
 1.4.13|include/imageObjectGD.class.php|1.4.13|3837|mandatory|r@
 1.4.13|include/imageObjectIM.class.php|1.4.13|3837|mandatory|r@
 1.4.13|include/index.html|1.4.13|3837|mandatory|r@
-1.4.13|include/init.inc.php|1.4.13|3941|mandatory|r@
+1.4.13|include/init.inc.php|1.4.13|3950|mandatory|r@
 1.4.13|include/iptc.inc.php|1.4.13|3837|mandatory|r@
 1.4.13|include/keyword.inc.php|1.4.13|3864|mandatory|r@
 1.4.13|include/langfallback.inc.php|1.4.13|3837|mandatory|r@
@@ -5558,7 +5559,7 @@ $return = '
 1.4.13|lang/polish.php|1.4.13|3918|optional|r@
 1.4.13|lang/portuguese.php|1.4.13|3918|optional|r@
 1.4.13|lang/romanian.php|1.4.13|3654|optional|r@
-1.4.13|lang/russian.php|1.4.13|3918|optional|r@
+1.4.13|lang/russian.php|1.4.13|3950|optional|r@
 1.4.13|lang/slovak.php|1.4.13|3918|optional|r@
 1.4.13|lang/slovenian.php|1.4.13|3918|optional|r@
 1.4.13|lang/spanish.php|1.4.13|3918|optional|r@
