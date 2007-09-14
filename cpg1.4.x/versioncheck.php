@@ -5437,7 +5437,7 @@ $return = '
 1.4.13|upload.php|1.4.13|3837|mandatory|r@
 1.4.13|usermgr.php|1.4.13|3837|mandatory|r@
 1.4.13|util.php|1.4.13|3837|mandatory|r@
-1.4.13|versioncheck.php|1.4.13|3951|mandatory|r@
+1.4.13|versioncheck.php|1.4.13|3961|mandatory|r@
 1.4.13|viewlog.php|1.4.13|3941|mandatory|r@
 1.4.13|xp_publish.php|1.4.13|3837|mandatory|r@
 1.4.13|zipdownload.php|1.4.13|3837|mandatory|r@
