@@ -506,6 +506,7 @@ d.add(1030,980,'Deleting albums','albums.htm#albmgr_delete');
 d.add(1040,970,'Modifying albums/files','albums.htm#modif_alb_pics');
 d.add(1050,970,'Album properties','albums.htm#album_prop');
 d.add(1060,1050,'Reset album properties','albums.htm#album_prop_reset_start');
+d.add(1062,970,'Admin vs. user','albums.htm#album_admin_user');
 d.add(1070,560,'Files','files.htm');
 d.add(1080,1070,'Editing files','files.htm#edit_pics');
 d.add(1090,1070,'Editing videos','files.htm#edit_vids');
@@ -666,4 +667,3 @@ function dateRevision(lastChangeDate, revisionNumber) {
   document.write(revisionNumber);
   document.write('</div>');
 }
-
