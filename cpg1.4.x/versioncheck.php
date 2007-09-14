@@ -5470,7 +5470,7 @@ $return = '
 1.4.13|docs/faq.htm|||optional|r@
 1.4.13|docs/faq_de.htm|||optional|r@
 1.4.13|docs/faq_fr.htm|||optional|r@
-1.4.13|docs/index.htm|1.4.13|3933|mandatory|r@
+1.4.13|docs/index.htm|1.4.13|3956|mandatory|r@
 1.4.13|docs/index_fr.htm||3837|mandatory|r@
 1.4.13|docs/README.html||3837|optional|r@
 1.4.13|docs/showdoc.php|1.4.13|3837|mandatory|r@
