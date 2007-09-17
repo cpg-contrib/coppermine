@@ -8,9 +8,9 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
-  Coppermine version: 1.4.13
+  Coppermine version: 1.4.14
   $Source$
   $Revision$
   $Author$
@@ -18,14 +18,14 @@
 **********************************************/
 
 /**
-* Coppermine Photo Gallery 1.4.11 addfav.php
+* Coppermine Photo Gallery 1.4.14 addfav.php
 *
 * This file does the needful when add to fav links are clicked, if the user is logged in then
 * the favs are stored in the database else the favs are stored in a local cookie, the favs in
 * database take precedence over the cookie favs
 *
-* @copyright 2002-2006 Gregory DEMAR, Coppermine Dev Team
-* @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
+* @copyright 2002-2007 Gregory DEMAR, Coppermine Dev Team
+* @license http://www.gnu.org/licenses/gpl.html GNU General Public License V3
 * @package Coppermine
 * @version $Id$
 */

@@ -10,7 +10,7 @@
   as published by the Free Software Foundation.
   
   ********************************************
-  Coppermine version: 1.4.13
+  Coppermine version: 1.4.14
   $Source: /cvsroot/coppermine/stable/lang/indonesian.php,v $
   $Revision: 3125 $
   $Author: gaugau $

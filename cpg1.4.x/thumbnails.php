@@ -10,7 +10,7 @@
   as published by the Free Software Foundation.
   
   ********************************************
-  Coppermine version: 1.4.13
+  Coppermine version: 1.4.14
   $Source$
   $Revision$
   $Author$
@@ -18,14 +18,14 @@
 **********************************************/
 
 /**
- * Coppermine Photo Gallery 1.4.11 thumbnails.php
+ * Coppermine Photo Gallery 1.4.14 thumbnails.php
  *
  * This file generates the data of thumbnails for all the albums and metalbums,
  * the actual display is handled by the display_thumbnails and then in-turn
  * theme_display_thumbnail function
  *
  * @copyright 2002-2006 Gregory DEMAR, Coppermine Dev Team
- * @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
+ * @license http://www.gnu.org/licenses/gpl.html GNU General Public License V3
  * @package Coppermine
  * @version $Id$
  */

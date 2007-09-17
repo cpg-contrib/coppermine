@@ -10,7 +10,7 @@
   as published by the Free Software Foundation.
   
   ********************************************
-  Coppermine version: 1.4.13
+  Coppermine version: 1.4.14
   $Source$
   $Revision$
   $Author$
@@ -18,13 +18,13 @@
 **********************************************/
 
 /**
-* Coppermine Photo Gallery 1.4.11 addpic.php
+* Coppermine Photo Gallery 1.4.14 addpic.php
 *
 * This file file gets called in the img src when you do batch add, there is nothing
 * much to look here the grunt work is done by the function add_picture
 *
-* @copyright 2002,2005 Gregory DEMAR, Coppermine Dev Team
-* @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
+* @copyright 2002,2007 Gregory DEMAR, Coppermine Dev Team
+* @license http://www.gnu.org/licenses/gpl.html GNU General Public License V3
 * @package Coppermine
 * @version $Id$
 */

@@ -10,7 +10,7 @@
   as published by the Free Software Foundation.
   
   ********************************************
-  Coppermine version: 1.4.13
+  Coppermine version: 1.4.14
   $Source$
   $Revision$
   $Author$
@@ -18,12 +18,12 @@
 **********************************************/
 
 /**
-* Coppermine Photo Gallery 1.4.11 banning.php
+* Coppermine Photo Gallery 1.4.14 banning.php
 *
 * Someone please add a description
 *
 * @copyright 2002-2006 Gregory DEMAR, Coppermine Dev Team
-* @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
+* @license http://www.gnu.org/licenses/gpl.html GNU General Public License V3
 * @package Coppermine
 * @version $Id$
 */

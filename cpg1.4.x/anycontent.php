@@ -10,7 +10,7 @@
   as published by the Free Software Foundation.
   
   ********************************************
-  Coppermine version: 1.4.13
+  Coppermine version: 1.4.14
   $Source$
   $Revision$
   $Author$
@@ -18,14 +18,14 @@
 **********************************************/
 
 /**
-* Coppermine Photo Gallery 1.4.11 anycontent.php
+* Coppermine Photo Gallery 1.4.14 anycontent.php
 *
 * This file file gets included in the index.php if you set the option in admin
 * can be used to display any content from any program, it is always to be edited
 * according to tastes and then used
 *
-* @copyright 2002,2005 Gregory DEMAR, Coppermine Dev Team
-* @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
+* @copyright 2002,2007 Gregory DEMAR, Coppermine Dev Team
+* @license http://www.gnu.org/licenses/gpl.html GNU General Public License V3
 * @package Coppermine
 * @version $Id$
 */
