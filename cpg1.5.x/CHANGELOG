@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-09-17 [B] Fixed usergroups-bug in bridge file for SMF2.0 (user contribution) {GauGau}
 2007-09-07 [A] Added optional contact form with captcha option {GauGau}
 2007-09-06 [A] Added feature (posted at http://coppermine-gallery.net/forum/index.php?topic=36087) to display error message (using javascript and PHP both) if name for comment is same as default name of comment {Amit}
 2007-09-05 [S] Added code to remove risky characters in log file name in URL and to check if given log file name's directory is current directory or not to fix second vulnerability posted at http://coppermine-gallery.net/forum/index.php?topic=46623 {Amit}
