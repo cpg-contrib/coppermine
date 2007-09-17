@@ -3,19 +3,18 @@
   Coppermine Photo Gallery
   ************************
   Copyright (c) 2003-2007 Coppermine Dev Team
-  v2.0 (update for SMF 2.0) by Aaron van Geffen
   v1.1 originally written by Gregory DEMAR
 
   This program is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation; either version 2 of the License, or
-  (at your option) any later version.
+  it under the terms of the GNU General Public License version 3
+  as published by the Free Software Foundation.
+
   ********************************************
-  Coppermine version: 1.4.12
+  Coppermine version: 1.4.13
   $Source$
-  $Revision: 3636 $
+  $Revision: 3837 $
   $Author: gaugau $
-  $Date: 2007-06-29 11:35:30 +0200 (Fr, 29 Jun 2007) $
+  $Date: 2007-08-16 18:56:06 +0200 (Do, 16 Aug 2007) $
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
@@ -119,30 +118,30 @@ class cpg_udb extends core_udb {
 
                 $user_group_set = '(' . implode(',', $USER_DATA['groups']) . ')';
 
-				$USER_DATA = array_merge($USER_DATA, $this->get_user_data($USER_DATA['groups'][0], $USER_DATA['groups'], $this->guestgroup));
+                                $USER_DATA = array_merge($USER_DATA, $this->get_user_data($USER_DATA['groups'][0], $USER_DATA['groups'], $this->guestgroup));
 
                  $USER_DATA['can_see_all_albums'] = $USER_DATA['has_admin_access'] = array_intersect($USER_DATA['groups'],$this->admingroups) ? 1 : 0;
 
                 // avoids a template error
                 if (!$USER_DATA['user_id']) $USER_DATA['can_create_albums'] = 0;
 
-				// For error checking
+                                // For error checking
                 $CONFIG['TABLE_USERS'] = '**ERROR**';
 
                 define('USER_ID', $USER_DATA['user_id']);
-				define('USER_NAME', addslashes($USER_DATA['user_name']));
-				define('USER_GROUP', $USER_DATA['group_name']);
-				define('USER_GROUP_SET', $user_group_set);
-				define('USER_IS_ADMIN', $USER_DATA['has_admin_access']);
-				define('USER_CAN_SEND_ECARDS', (int)$USER_DATA['can_send_ecards']);
-				define('USER_CAN_RATE_PICTURES', (int)$USER_DATA['can_rate_pictures']);
-				define('USER_CAN_POST_COMMENTS', (int)$USER_DATA['can_post_comments']);
-				define('USER_CAN_UPLOAD_PICTURES', (int)$USER_DATA['can_upload_pictures']);
-				define('USER_CAN_CREATE_ALBUMS', (int)$USER_DATA['can_create_albums']);
-				define('USER_UPLOAD_FORM', (int)$USER_DATA['upload_form_config']);
-				define('CUSTOMIZE_UPLOAD_FORM', (int)$USER_DATA['custom_user_upload']);
-				define('NUM_FILE_BOXES', (int)$USER_DATA['num_file_upload']);
-				define('NUM_URI_BOXES', (int)$USER_DATA['num_URI_upload']);
+                                define('USER_NAME', addslashes($USER_DATA['user_name']));
+                                define('USER_GROUP', $USER_DATA['group_name']);
+                                define('USER_GROUP_SET', $user_group_set);
+                                define('USER_IS_ADMIN', $USER_DATA['has_admin_access']);
+                                define('USER_CAN_SEND_ECARDS', (int)$USER_DATA['can_send_ecards']);
+                                define('USER_CAN_RATE_PICTURES', (int)$USER_DATA['can_rate_pictures']);
+                                define('USER_CAN_POST_COMMENTS', (int)$USER_DATA['can_post_comments']);
+                                define('USER_CAN_UPLOAD_PICTURES', (int)$USER_DATA['can_upload_pictures']);
+                                define('USER_CAN_CREATE_ALBUMS', (int)$USER_DATA['can_create_albums']);
+                                define('USER_UPLOAD_FORM', (int)$USER_DATA['upload_form_config']);
+                                define('CUSTOMIZE_UPLOAD_FORM', (int)$USER_DATA['custom_user_upload']);
+                                define('NUM_FILE_BOXES', (int)$USER_DATA['num_file_upload']);
+                                define('NUM_URI_BOXES', (int)$USER_DATA['num_URI_upload']);
 
                 $this->session_update();
 
@@ -153,17 +152,17 @@ class cpg_udb extends core_udb {
                 global $user_settings;
 
                 $i = $this->use_post_based_groups ? 100 : 0;
-				$data = array();
-				
+                                $data = array();
+
                 if ($user_settings['id_group'] == 0){
                         $data[0] = 2;
                 } else {
                         $data[0] = $user_settings['id_group'] + $i;
                 }
 
-                if ($user_settings['additionalGroups']){
+                if ($user_settings['additional_groups']){
 
-                        $groups = explode(',', $user_settings['additionalGroups']);
+                        $groups = explode(',', $user_settings['additional_groups']);
 
                         foreach ($groups as $id => $group){
                                    //$data[$id] = $group+$i; This was overwriting the primary group
@@ -217,12 +216,12 @@ class cpg_udb extends core_udb {
         $this->redirect($matches[1]);
         }
 
-	function view_users()
-	{
-		$this->redirect($this->page['editusers']);
-	}
-	
-	function view_profile() {}
+        function view_users()
+        {
+                $this->redirect($this->page['editusers']);
+        }
+
+        function view_profile() {}
 }
 
 
