@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.4.14
   $Source$
@@ -78,7 +78,7 @@ if (!empty($_POST['email'])) {
         $lookup_failed = <<<EOT
                   <tr>
                           <td colspan="2" align="center" class="tableh2">
-                        <span style="color:red"><b>{$lang_forgot_passwd_php['err_unk_user']}<b></span>
+                        <span style="color:red;font-weight:bold;">{$lang_forgot_passwd_php['err_unk_user']}</span>
                         </td>
                   </tr>
 
@@ -102,7 +102,7 @@ EOT;
     $sql = "select {$cpg_udb->field['username']}, {$cpg_udb->field['email']} from {$cpg_udb->usertable} where {$cpg_udb->field['user_id']}='$user_id';";
 
     $result = cpg_db_query($sql);
-    
+
     if (!mysql_num_rows($result)) {
         cpg_die($lang_forgot_passwd_php['forgot_passwd'], $lang_forgot_passwd_php['err_unk_user']);
     }
