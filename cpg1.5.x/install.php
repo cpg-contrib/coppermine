@@ -110,7 +110,7 @@ function test_im()
         } else {
             $output = array();
             $tst_image = "{$DFLT['alb_d']}/{$DFLT['upl_d']}/im.gif";
-            exec ("{$_POST['impath']}convert images/coppermine_logo.png $tst_image", $output, $result);
+            exec ("{$_POST['impath']}convert images/coppermine-logo.png $tst_image", $output, $result);
             $size = getimagesize($tst_image);
             unlink($tst_image);
             $im_installed = ($size[2] == 1);
@@ -200,7 +200,7 @@ function html_logo()
     ?>
       <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
        <tr>
-        <td valign="top" style="background-color:#EFEFEF"><img src="images/logo.gif" width="430" height="60" border="0" alt="" /><br />
+        <td valign="top" style="background-color:#EFEFEF"><img src="images/coppermine-logo.png" width="260" height="60" border="0" alt="" /><br />
         </td>
        </tr>
       </table>
