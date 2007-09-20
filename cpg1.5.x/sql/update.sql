@@ -37,7 +37,7 @@ CREATE TABLE CPG_sessions (
 
 CREATE TABLE CPG_filetypes (
   extension char(7) NOT NULL default '',
-  mime char(30) default NULL,
+  mime char(70) default NULL,
   content char(15) default NULL,
   KEY extension (extension)
 ) TYPE=MyISAM COMMENT='Used to store the file extensions';
