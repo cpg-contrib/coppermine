@@ -702,7 +702,7 @@ $file_data_array = array(
   'fullpath' => 'bridge/eblah.inc.php',
   'expected_release' => '1.5.0',
   'expected_revision' => '3786',
-  'status' => 'mandatory',
+  'status' => 'optional',
   'expected_permission' => 'read',
   'expected_hash' => '59f6baa01797badb6866fa76b1d6dcc7',
   ),

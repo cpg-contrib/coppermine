@@ -566,6 +566,7 @@ d.add(1535,1520,'Plugin hooks','plugin_hooks.htm');
 d.add(1540,1520,'Editing the documentation','dev_documentation.htm');
 d.add(1550,1520,'Subversion','dev_subversion.htm');
 d.add(1560,1520,'Adding config options','dev_config.htm');
+d.add(1570,1520,'Versioncheck','dev_versioncheck.htm');
 
 function cpgDocToc() {
   document.write(d); // write the navigation
