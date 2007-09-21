@@ -188,7 +188,7 @@ if ($displayOption_array['output'] != 'download' && $displayOption_array['output
 
 // Print options if applicable
 if ($displayOption_array['output'] == 'options' || $displayOption_array['output'] == 'screen' || $displayOption_array['output'] == 'textarea') {
-  print 'work in progress - GauGau';
+  print '<h1>work in progress - GauGau</h1>';
   print '<form name="options" action="'.$_SERVER['PHP_SELF'].'" method="get">';
   starttable(-1, $lang_versioncheck_php['options'],2);
   print <<< EOT
@@ -225,11 +225,11 @@ if ($displayOption_array['output'] == 'options' || $displayOption_array['output'
   <tr>
     <td class="tableb tableb_alternate" valign="top">
       <label for="do_not_connect_to_online_repository">
-        <s>{$lang_versioncheck_php['do_not_connect_to_online_repository']}</s> (not implemented yet)
+        <s title="(not implemented yet)">{$lang_versioncheck_php['do_not_connect_to_online_repository']}</s>
       </label>
     </td>
     <td class="tableb tableb_alternate" valign="top">
-      <input type="checkbox" name="do_not_connect_to_online_repository" id="do_not_connect_to_online_repository" value="1" class="checkbox" {$optionDisplayOutput_array['do_not_connect_to_online_repository']} />
+      <input type="checkbox" name="do_not_connect_to_online_repository" id="do_not_connect_to_online_repository" value="1" class="checkbox" {$optionDisplayOutput_array['do_not_connect_to_online_repository']} checked="checked" disabled="disabled" />
     </td>
   </tr>
   <tr>
@@ -300,7 +300,7 @@ if ($displayOption_array['output'] != 'create') {
         }
       } // check if the file is readable/writable --- end
       if ($file_data_array[$file_data_key]['exists'] && $file_data_array[$file_data_key]['readwrite'] != '') {
-          if ($file_data_array[$file_data_key]['expected_type'] == 'txt') { // the file is not binary --- start
+          if (in_array($file_data_array[$file_data_key]['extension'],$textFileExtensions_array) == TRUE) { // the file is not binary --- start
             $handle = @fopen($file_data_values['fullpath'], 'r');
             $blob = '';
             $blob = @fread($handle, filesize($file_data_values['fullpath']));
@@ -413,6 +413,7 @@ if ($displayOption_array['output'] != 'create') {
 } else { // create data --- start
   // loop through all folders
   $loopCounter = 0;
+  print '<form name="versioncheckdisplay"><textarea name="versioncheck_text" rows="10000" class="textinput" style="width:98%;font-family:\'Courier New\',Courier,monospace;font-size:9px;">';
   print '$file_data_array = array('.$newLine;
   foreach ($file_data_array as $file_data_key => $file_data_values) {
     print '  array('.$newLine;
@@ -422,10 +423,7 @@ if ($displayOption_array['output'] != 'create') {
     $file_data_array[$file_data_key]['file'] = $tempArray['file'];
     $file_data_array[$file_data_key]['extension'] = ltrim(substr($file_data_array[$file_data_key]['file'],strrpos($file_data_array[$file_data_key]['file'],'.')),'.');
     print "  'fullpath' => '".$file_data_values['fullpath']."',".$newLine;
-    if (in_array($file_data_array[$file_data_key]['extension'],$textFileExtensions_array) == TRUE && $file_data_array[$file_data_key]['expected_type'] == '') {
-      $file_data_array[$file_data_key]['expected_type'] = 'txt';
-    }
-    if ($file_data_array[$file_data_key]['expected_type'] == 'txt') { // the file is not binary --- start
+    if (in_array($file_data_array[$file_data_key]['extension'],$textFileExtensions_array) == TRUE) { // the file is not binary --- start
       $handle = @fopen($file_data_values['fullpath'], 'r');
       $blob = '';
       $blob = @fread($handle, filesize($file_data_values['fullpath']));
@@ -455,10 +453,24 @@ if ($displayOption_array['output'] != 'create') {
     } // the file is not binary --- end
     print "  'expected_release' => '".$file_data_array[$file_data_key]['version']."',".$newLine;
     print "  'expected_revision' => '".$file_data_array[$file_data_key]['revision']."',".$newLine;
-    print "  'status' => '".$file_data_array[$file_data_key]['status']."',".$newLine;
-    print "  'expected_permission' => '".$file_data_array[$file_data_key]['expected_permission']."',".$newLine;
-    print "  'expected_type' => '".$file_data_array[$file_data_key]['expected_type']."',".$newLine;
-    print "  'expected_hash' => '".md5($file_data_values['fullpath'])."',".$newLine;
+    if ($file_data_array[$file_data_key]['status'] != '') {
+      $status = $file_data_array[$file_data_key]['status'];
+    } else {
+      $status = 'mandatory';
+    }
+    print "  'status' => '".$status."',".$newLine;
+    if ($file_data_array[$file_data_key]['expected_permission'] != '') {
+      $expected_permission = $file_data_array[$file_data_key]['expected_permission'];
+    } else {
+      $expected_permission = 'read';
+    }
+    print "  'expected_permission' => '".$expected_permission."',".$newLine;
+    if ($file_data_array[$file_data_key]['file'] != '') {
+      $hash = md5($file_data_values['fullpath']);
+    } else {
+      $hash = '';
+    }
+    print "  'expected_hash' => '".$hash."',".$newLine;
     print "  ),".$newLine;
   }
   print ');'.$newLine;
@@ -467,7 +479,7 @@ if ($displayOption_array['output'] != 'create') {
 $file_data_count = count($file_data_array);
 
 // display formatted header data
-if ($displayOption_array['output'] == 'textarea' || $displayOption_array['output'] == 'create') {
+if ($displayOption_array['output'] == 'textarea') {
   print '<form name="versioncheckdisplay"><textarea name="versioncheck_text" rows="'.($file_data_count + 5).'" class="textinput" style="width:98%;font-family:\'Courier New\',Courier,monospace;font-size:9px;">';
 }
 
@@ -550,15 +562,15 @@ if ($displayOption_array['output'] == 'screen' || $displayOption_array['output']
   starttable('100%', $lang_versioncheck_php['title'], 9);
   print <<< EOT
   <tr>
-    <th class="tableh2">{$lang_versioncheck_php['path']}</th>
-    <th class="tableh2">{$lang_versioncheck_php['missing']}</th>
-    <th class="tableh2">{$lang_versioncheck_php['permissions']}</th>
-    <th class="tableh2">{$lang_versioncheck_php['version']}</th>
-    <th class="tableh2">{$lang_versioncheck_php['revision']}</th>
-    <th class="tableh2">{$lang_versioncheck_php['modified']}</th>
-    <th class="tableh2">{$lang_versioncheck_php['comment']}</th>
-    <th class="tableh2">{$lang_versioncheck_php['repository_link']}</th>
-    <th class="tableh2">{$lang_versioncheck_php['help']}</th>
+    <th class="tableh2" style="font-size:8px">{$lang_versioncheck_php['path']}</th>
+    <th class="tableh2" style="font-size:8px">{$lang_versioncheck_php['missing']}</th>
+    <th class="tableh2" style="font-size:8px">{$lang_versioncheck_php['permissions']}</th>
+    <th class="tableh2" style="font-size:8px">{$lang_versioncheck_php['version']}</th>
+    <th class="tableh2" style="font-size:8px">{$lang_versioncheck_php['revision']}</th>
+    <th class="tableh2" style="font-size:8px">{$lang_versioncheck_php['modified']}</th>
+    <th class="tableh2" style="font-size:8px">{$lang_versioncheck_php['comment']}</th>
+    <th class="tableh2" style="font-size:8px">{$lang_versioncheck_php['repository_link']}</th>
+    <th class="tableh2" style="font-size:8px">{$lang_versioncheck_php['help']}</th>
   </tr>
 EOT;
   foreach ($file_data_array as $file_data_values) {
@@ -581,6 +593,7 @@ EOT;
     $important['revision'] = '';
     $important['modified'] = '';
     $important['comment'] = '';
+    $important['svn'] = '';
     $important['help'] = '';
     if ($displayOption_array['errors_only'] == 0 && $file_data_values['comment'] != '') {
       if ($file_data_values['txt_missing'] == $lang_versioncheck_php['mandatory']) {
@@ -593,15 +606,15 @@ EOT;
     if (($displayOption_array['errors_only'] == 0) || ($displayOption_array['errors_only'] == 1 && $file_data_values['comment'] != '')) { // only display if corrsponding option is not disabled --- start
       print <<< EOT
     <tr>
-      <td class="{$cellstyle}{$important['path']}" valign="top" align="left">{$file_data_values['icon']}{$file_data_values['link_start']}{$file_data_values['fullpath']}{$file_data_values['link_start']}</td>
-      <td class="{$cellstyle}{$important['missing']}" valign="top" align="left">{$file_data_values['txt_missing']}</td>
-      <td class="{$cellstyle}{$important['readwrite']}" valign="top" align="left">{$file_data_values['txt_readwrite']}</td>
-      <td class="{$cellstyle}{$important['version']}" valign="top" align="left">{$file_data_values['txt_version']}</td>
-      <td class="{$cellstyle}{$important['revision']}" valign="top" align="left">{$file_data_values['txt_revision']}</td>
-      <td class="{$cellstyle}{$important['modified']}" valign="top" align="left">{$file_data_values['txt_modified']}</td>
-      <td class="{$cellstyle}{$important['comment']}" valign="top" align="left">{$file_data_values['comment']}</td>
-      <td class="{$cellstyle}{$important['help']}" valign="top" align="left"><a href="{$subversionRepository}{$majorVersion}/{$file_data_values['fullpath']}"><img src="images/subversion.gif" width="16" height="16" border="0" alt="" title="{$lang_versioncheck_php['browse_corresponding_page_subversion']}" /></a></td>
-      <td class="{$cellstyle}{$important}" valign="top" align="left"></td>
+      <td class="{$cellstyle}{$important['path']}" align="left" style="font-size:9px">{$file_data_values['icon']}{$file_data_values['link_start']}{$file_data_values['fullpath']}{$file_data_values['link_start']}</td>
+      <td class="{$cellstyle}{$important['missing']}" align="left" style="font-size:9px">{$file_data_values['txt_missing']}</td>
+      <td class="{$cellstyle}{$important['readwrite']}" align="left" style="font-size:9px">{$file_data_values['txt_readwrite']}</td>
+      <td class="{$cellstyle}{$important['version']}" align="left" style="font-size:9px">{$file_data_values['txt_version']}</td>
+      <td class="{$cellstyle}{$important['revision']}" align="left" style="font-size:9px">{$file_data_values['txt_revision']}</td>
+      <td class="{$cellstyle}{$important['modified']}" align="left" style="font-size:9px">{$file_data_values['txt_modified']}</td>
+      <td class="{$cellstyle}{$important['comment']}" align="left" style="font-size:9px">{$file_data_values['comment']}</td>
+      <td class="{$cellstyle}{$important['svn']}" align="left" style="font-size:9px"><a href="{$subversionRepository}{$majorVersion}/{$file_data_values['fullpath']}"><img src="images/subversion.gif" width="16" height="16" border="0" alt="" title="{$lang_versioncheck_php['browse_corresponding_page_subversion']}" /></a></td>
+      <td class="{$cellstyle}{$important['help']}" align="left" style="font-size:9px"></td>
     </tr>
 EOT;
       ob_end_flush();
