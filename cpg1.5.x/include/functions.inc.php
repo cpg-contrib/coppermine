@@ -702,6 +702,8 @@ function load_template()
         $template = str_replace('{THEME_DIR}', $THEME_DIR ,$template);
         $gallery_pos = strpos($template, '{THEME_SELECT_LIST}');
         $template = str_replace('{THEME_SELECT_LIST}', themeSelect('list') ,$template);
+        $gallery_pos = strpos($template, '{SOCIAL_BOOKMARKS}');
+        $template = str_replace('{SOCIAL_BOOKMARKS}', cpgSocialBookmark() ,$template);
         $gallery_pos = strpos($template, '{GALLERY}');
         if (!strstr($template, '{CREDITS}')) {
             $template = str_replace('{GALLERY}', '{CREDITS}' ,$template);
@@ -2736,7 +2738,7 @@ function languageSelect($parameter) {
     //start the output
     switch ($parameter) {
        case 'flags':
-           $return.= '<div id="cpgChooseFlags">';
+           $return.= '<div id="cpgChooseFlags" class="inline">';
            if ($CONFIG['language_flags'] == 2){
                $return.= $lang_language_selection['choose_language'].': ';
            }
@@ -2854,6 +2856,129 @@ switch ($parameter) {
    }
 
 return $return;
+}
+
+/**
+ * cpgSocialBookmark()
+ *
+ * @return
+ **/
+function cpgSocialBookmark() {
+  global $CONFIG, $lang_social_bookmarks;
+  if ($CONFIG['display_social_bookmarks'] != 0) {
+    $addressParamsToRemove_array = array('message_id', 'theme');
+    $url = $CONFIG['ecards_more_pic_target'] . rawurlencode(str_replace('&amp;', '&', rtrim(cpgGetScriptNameParams($addressParamsToRemove_array), '&amp;')));
+    $title = rawurlencode($CONFIG['gallery_name']);
+    $description = rawurlencode($CONFIG['gallery_description']);
+    $socialBookmarks_array = array(
+      array(
+      'name' => 'digg.com',
+      'url' => 'http://www.digg.com/submit?url={URL}',
+      'icon' => 'images/bookmarks/digg.gif',
+      ),
+      array(
+      'name' => 'del.icio.us',
+      'url' => 'http://del.icio.us/post?url={URL}&title={TITLE}',
+      'icon' => 'images/bookmarks/del.icio.us.gif',
+      ),
+      array(
+      'name' => 'Yahoo MyWeb',
+      'url' => 'http://myweb2.search.yahoo.com/myresults/bookmarklet?t={TITLE}&u={URL}',
+      'icon' => 'images/bookmarks/myweb.yahoo.gif',
+      ),
+      array(
+      'name' => 'technorati',
+      'url' => 'http://technorati.com/cosmos/search.html?url={URL}',
+      'icon' => 'images/bookmarks/technorati.gif',
+      ),
+      array(
+      'name' => 'Spurl',
+      'url' => 'http://www.spurl.net/spurl.php?url={URL}&title={TITLE}',
+      'icon' => 'images/bookmarks/spurl.gif',
+      ),
+      array(
+      'name' => 'Furl',
+      'url' => 'http://www.furl.net/storeIt.jsp?t={TITLE}&u={URL}',
+      'icon' => 'images/bookmarks/furl.gif',
+      ),
+      array(
+      'name' => 'Blinklist',
+      'url' => 'http://www.blinklist.com/index.php?Action=Blink/addblink.php&Description={DESCRIPTION}&Url={URL}&Title={TITLE}',
+      'icon' => 'images/bookmarks/blinklist.gif',
+      ),
+      array(
+      'name' => 'Fark',
+      'url' => 'http://cgi.fark.com/cgi/fark/edit.pl?new_url={URL}&new_comment={TITLE}',
+      'icon' => 'images/bookmarks/fark.gif',
+      ),
+      array(
+      'name' => 'Blogmarks',
+      'url' => 'http://blogmarks.net/my/new.php?mini=1&simple=1&url={URL}&title={TITLE}',
+      'icon' => 'images/bookmarks/blogmarks.gif',
+      ),
+      array(
+      'name' => 'Simpy',
+      'url' => 'http://www.simpy.com/simpy/LinkAdd.do?href={URL}&title={TITLE}',
+      'icon' => 'images/bookmarks/simpy.gif',
+      ),
+      array(
+      'name' => 'Reddit',
+      'url' => 'http://reddit.com/submit?url={URL}&title={TITLE}',
+      'icon' => 'images/bookmarks/reddit.gif',
+      ),
+      array(
+      'name' => 'StumbleUpon',
+      'url' => 'http://www.stumbleupon.com/submit?url={URL}&newcomment={DESCRIPTION}&title={TITLE}',
+      'icon' => 'images/bookmarks/stumbleupon.gif',
+      ),
+      array(
+      'name' => 'Slashdot',
+      'url' => 'http://slashdot.org/bookmark.pl?url={URL}&tags={DESCRIPTION}&title={TITLE}',
+      'icon' => 'images/bookmarks/slashdot.gif',
+      ),
+      array(
+      'name' => 'Netscape',
+      'url' => 'http://www.netscape.com/submit/?U={URL}&storyText={DESCRIPTION}&storyTags=&T={TITLE}',
+      'icon' => 'images/bookmarks/netscape.gif',
+      ),
+      array(
+      'name' => 'diigo',
+      'url' => 'http://www.diigo.com/post?url={URL}&title={TITLE}&tag=&comments={DESCRIPTION}',
+      'icon' => 'images/bookmarks/diigo.gif',
+      ),
+      array(
+      'name' => 'NewsVine',
+      'url' => 'http://www.newsvine.com/_wine/save?popoff=1&u={URL}&tags={DESCRIPTION}&blurb={TITLE}',
+      'icon' => 'images/bookmarks/newsvine.gif',
+      ),
+      array(
+      'name' => 'ma.gnolia',
+      'url' => 'http://ma.gnolia.com/bookmarklet/add?url={URL}&title={TITLE}&description={DESCRIPTION}',
+      'icon' => 'images/bookmarks/ma.gnolia.gif',
+      ),
+      array(
+      'name' => 'Google',
+      'url' => 'http://www.google.com/bookmarks/mark?op=add&bkmk={URL}&annotation={DESCRIPTION}&labels=&title={TITLE}',
+      'icon' => 'images/bookmarks/google.gif',
+      ),
+    );
+    $return = '<div id="social_bookmarks_wrapper" class="inline">';
+    $return .= $lang_social_bookmarks['add_this_page_to'].': ';
+    $countLoop = 0;
+    foreach ($socialBookmarks_array as $key) {
+      if (($CONFIG['display_social_bookmarks'] & pow(2,$countLoop)) == TRUE) {
+        $key['url'] = str_replace('{URL}', $url, $key['url']);
+        $key['url'] = str_replace('{TITLE}', $title, $key['url']);
+        $key['url'] = str_replace('{DESCRIPTION}', $description, $key['url']);
+        $return .= '<a href="' . $key['url'] . '" title="' . sprintf($lang_social_bookmarks['bookmark_this_page'],$key['name']) . '" rel="nofollow">';
+        $return .= '<img src="' . $key['icon'] . '" border="0" alt="" class="social_bookmarks" />';
+        $return .= '</a>';
+      }
+      $countLoop++;
+    }
+    $return .= '</div>';
+  }
+  return $return;
 }
 
 

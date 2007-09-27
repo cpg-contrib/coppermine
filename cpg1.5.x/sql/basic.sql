@@ -48,6 +48,7 @@ INSERT INTO CPG_config VALUES ('custom_lnk_name', '');
 INSERT INTO CPG_config VALUES ('custom_lnk_url', '');
 INSERT INTO CPG_config VALUES ('show_bbcode_help', '1');
 INSERT INTO CPG_config VALUES ('vanity_block','1');
+INSERT INTO CPG_config VALUES ('display_social_bookmarks','0');
 INSERT INTO CPG_config VALUES ('custom_header_path', '');
 INSERT INTO CPG_config VALUES ('custom_footer_path', '');
 INSERT INTO CPG_config VALUES ('browse_by_date', '0');

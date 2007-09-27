@@ -352,6 +352,11 @@ $lang_theme_selection = array(
   'choose_theme' => 'Choose a theme',
 );
 
+$lang_social_bookmarks = array(
+  'bookmark_this_page' => 'Bookmark this page at %s',
+  'add_this_page_to' => 'Add this page to',
+);
+
 $lang_version_alert = array(
   'version_alert' => 'Unsupported version!',
   'no_stable_version' => 'You are running Coppermine %s (%s) which is only meant for very experienced users - this version comes without support nor any warranties. Use it at your own risk or downgrade to the latest stable version if you need support!',
@@ -770,6 +775,8 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'custom_lnk_url' =>   'Custom menu link URL', // cpg1.5
   'show_bbcode_help' =>   'Display bbcode help', // cpg1.5
   'vanity_block' =>   'Show the vanity block on themes that are defined as XHTML and CSS compliant', // cpg1.5
+  'display_social_bookmarks' =>   'Display social bookmarks icons', // cpg1.5
+  'highlight_multiple' =>   'To highlight multiple lines, hold the [Ctrl]-key down', // cpg1.5
   'custom_header_path' =>   'Path to custom header include', // cpg1.5
   'custom_footer_path' =>   'Path to custom footer include', // cpg1.5
   'browse_by_date' =>   'Enable browsing by date', // cpg1.5

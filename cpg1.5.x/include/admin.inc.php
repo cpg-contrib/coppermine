@@ -222,6 +222,12 @@ $config_data = array(
       'type' => 'checkbox',
       'help_link' => 'f=configuration.htm&amp;as=vanity_block&amp;ae=vanity_block_end',
     ),
+    'display_social_bookmarks' => array(
+      'type' => 'select_multiple',
+      'help_link' => '',
+      'options' => array('Digg.com', 'del.icio.us', 'Yahoo MyWeb', 'Technorati', 'Spurl', 'Furl', 'Blinklist', 'Fark', 'Blogmarks', 'Simpy', 'Reddit', 'StumbleUpon', 'Slashdot', 'Netscape', 'diigo', 'NewsVine', 'ma.gnolia', 'Google'),
+      'end_description' => '('.$lang_admin_php['highlight_multiple'].')',
+    ),
     'custom_header_path' => array(
       'type' => 'textfield',
       'help_link' => 'f=configuration.htm&amp;as=admin_theme_include_path_start&amp;ae=admin_theme_include_path_end',

@@ -28,8 +28,7 @@ require_once('include/sql_parse.php');
 $admin_data_array = $CONFIG;
 
 
-$lineBreak = "\n\r";
-
+$lineBreak = "\r\n";
 
 if (!GALLERY_ADMIN_MODE) {
   cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
@@ -84,6 +83,8 @@ $postCount = count($_POST);
 
 if ($postCount > 0) {
   $evaluation_array = $_POST;
+  //print_r($evaluation_array);
+  //die();
 } else {
   $evaluation_array = $CONFIG;
 }
@@ -130,6 +131,15 @@ if (isset($_POST['restore_config'])) { // user has chosen to factory-reset the c
       }
       if ($adminDataValue['type'] == 'checkbox' && !$CONFIG[$adminDataKey]) {
         $CONFIG[$adminDataKey] = '0';
+      }
+      // the data for 'select_multiple' is an array. Let's concatenate it into a single value
+      if ($adminDataValue['type'] == 'select_multiple') {
+        if (is_array($evaluation_array[$adminDataKey]) == TRUE) {
+          $temp = array_sum($evaluation_array[$adminDataKey]);
+          unset($evaluation_array[$adminDataKey]);
+          $evaluation_array[$adminDataKey] = $temp;
+          unset($temp);
+        }
       }
       // regex check
       if ((isset($adminDataValue['regex']) && $adminDataValue['regex'] != '') || (isset($adminDataValue['regex_not']) && $adminDataValue['regex_not'] != '')) {
@@ -356,6 +366,24 @@ EOT;
     } elseif ($value['type'] == 'hidden') {
       print '<input type="hidden"  name="'.$key.'" value="'.$admin_data_array[$key].'"'.$readonly.' />';
     } elseif ($value['type'] == 'select_function') {
+    } elseif ($value['type'] == 'select_multiple') {
+      $optionLoopCounter = 0;
+      //print '<input type="hidden" name="'.$key.'" id="'.$key.'" value="'.$admin_data_array[$key].'" />'.$lineBreak;
+      print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><select name="'.$key.'[]" id="'.$key.'" class="listbox" size="'.count($value['options']).'" '.$readonly_radio.' tabindex="'.$tabindexCounter.'" multiple="multiple">'.$lineBreak;
+      foreach ($value['options'] as $option_value) { // loop through the options array
+        $admin_data_array[$key] = (int)$admin_data_array[$key];
+        if (($admin_data_array[$key] & pow(2,$optionLoopCounter)) == TRUE) {
+          $selected = ' selected="selected"';
+          //print $admin_data_array[$key].'|'.pow(2,$optionLoopCounter).'|'.'true<br />';
+        } else {
+          $selected = '';
+          //print $admin_data_array[$key].'|'.pow(2,$optionLoopCounter).'|'.'false<br />';
+        }
+        print '<option value="'.pow(2,$optionLoopCounter).'"'.$selected.'>'.ucfirst($option_value);
+        print '</option>'.$lineBreak;
+        $optionLoopCounter++;
+      }
+      print '</select></span><br />'.$lineBreak;
     } elseif ($value['type'] == 'select') {
       $optionLoopCounter = 0;
       //print_r($value['options']);

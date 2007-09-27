@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-09-27 [A] Added social bookmarks icons {GauGau}
 2007-09-20 [O] Re-did versioncheck.php (work in progress) {GauGau}
 2007-09-17 [B] Fixed usergroups-bug in bridge file for SMF2.0 (user contribution) {GauGau}
 2007-09-07 [A] Added optional contact form with captcha option {GauGau}
