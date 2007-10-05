@@ -92,7 +92,7 @@ form {
 }
 
 .inline {
-        display:inline;
+        /*display:inline;*/
 }
 
 .textinput {
@@ -725,3 +725,29 @@ a:active .image{
         padding-bottom:3px;
 }
 
+#social_bookmarks_wrapper {
+        text-align:center;
+        vertical-align:middle;
+        float:left;
+        padding-left:15px;
+}
+
+#social_bookmarks_text {
+        font-size: 9px;
+        padding-top:2px;
+        /*display:none;*/ /* un-comment to hide the text in front of the social bookmarks */
+}
+
+div.social_bookmarks {
+        float:left;
+        padding-left:2px;
+        padding-right:2px;
+}
+
+#cpgChooseLanguageWrapper {
+        float:left;
+}
+
+#cpgChooseThemeWrapper {
+        float:left;
+}

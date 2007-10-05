@@ -2763,7 +2763,7 @@ function languageSelect($parameter) {
            $return = 'not yet implemented';
            break;
        default:
-           $return.= $lineBreak . '<form name="cpgChooseLanguage" id="cpgChooseLanguage" action="' . $_SERVER['PHP_SELF'] . '" method="get" class="inline">' . $lineBreak;
+           $return.= $lineBreak . '<div id="cpgChooseLanguageWrapper">' . $lineBreak . '<form name="cpgChooseLanguage" id="cpgChooseLanguage" action="' . $_SERVER['PHP_SELF'] . '" method="get" class="inline">' . $lineBreak;
            $return.= '<select name="lang" class="listbox_lang" onchange="if (this.options[this.selectedIndex].value) window.location.href=\'' . $cpgChangeUrl . '\' + this.options[this.selectedIndex].value;">' . $lineBreak;
            $return.='<option selected="selected">' . $lang_language_selection['choose_language'] . '</option>' . $lineBreak;
            foreach ($lang_array as $language) {
@@ -2788,6 +2788,7 @@ function languageSelect($parameter) {
               $return.=  '<input type="submit" name="language_submit" value="'.$lang_common['go'].'" class="listbox_lang" />&nbsp;'. $lineBreak;
               $return.=  '</noscript>'. $lineBreak;
               $return.=  '</form>' . $lineBreak;
+              $return.=  '</div>' . $lineBreak;
        }
 
     return $return;
@@ -2839,7 +2840,7 @@ switch ($parameter) {
        $return = 'not yet implemented';
        break;
    default:
-       $return.= $lineBreak . '<form name="cpgChooseTheme" id="cpgChooseTheme" action="' . $_SERVER['PHP_SELF'] . '" method="get" class="inline">' . $lineBreak;
+       $return.= $lineBreak . '<div id="cpgChooseThemeWrapper">' . $lineBreak . '<form name="cpgChooseTheme" id="cpgChooseTheme" action="' . $_SERVER['PHP_SELF'] . '" method="get" class="inline">' . $lineBreak;
        $return.= '<select name="theme" class="listbox_lang" onchange="if (this.options[this.selectedIndex].value) window.location.href=\'' . $cpgCurrentTheme . '\' + this.options[this.selectedIndex].value;">' . $lineBreak;
        $return.='<option selected="selected">' . $lang_theme_selection['choose_theme'] . '</option>';
        foreach ($theme_array as $theme) {
@@ -2853,6 +2854,7 @@ switch ($parameter) {
           $return.=  '<input type="submit" name="theme_submit" value="'.$lang_common['go'].'" class="listbox_lang" />&nbsp;'. $lineBreak;
           $return.=  '</noscript>'. $lineBreak;
           $return.=  '</form>' . $lineBreak;
+          $return.=  '</div>' . $lineBreak;
    }
 
 return $return;
@@ -2962,21 +2964,22 @@ function cpgSocialBookmark() {
       'icon' => 'images/bookmarks/google.gif',
       ),
     );
-    $return = '<div id="social_bookmarks_wrapper" class="inline">';
-    $return .= $lang_social_bookmarks['add_this_page_to'].': ';
+    $return = '<div id="social_bookmarks_wrapper">';
+    $return .= '<div class="social_bookmarks" id="social_bookmarks_text">' . $lang_social_bookmarks['add_this_page_to'].': </div>';
     $countLoop = 0;
     foreach ($socialBookmarks_array as $key) {
       if (($CONFIG['display_social_bookmarks'] & pow(2,$countLoop)) == TRUE) {
         $key['url'] = str_replace('{URL}', $url, $key['url']);
         $key['url'] = str_replace('{TITLE}', $title, $key['url']);
         $key['url'] = str_replace('{DESCRIPTION}', $description, $key['url']);
-        $return .= '<a href="' . $key['url'] . '" title="' . sprintf($lang_social_bookmarks['bookmark_this_page'],$key['name']) . '" rel="nofollow">';
-        $return .= '<img src="' . $key['icon'] . '" border="0" alt="" class="social_bookmarks" />';
-        $return .= '</a>';
+        $return .= '<div class="social_bookmarks"><a href="' . $key['url'] . '" rel="external" class="external social_bookmarks2">';
+        $return .= '<img src="' . $key['icon'] . '" border="0" alt="" class="social_bookmarks2" title="' . sprintf($lang_social_bookmarks['bookmark_this_page'],$key['name']) . '" />';
+        $return .= '</a></div>';
       }
       $countLoop++;
     }
     $return .= '</div>';
+    $return = "\r\n" . '<script type="text/javascript">' . "\r\n" . 'document.write(\'' . $return . '\');' . "\r\n" . '</script>' . "\r\n";
   }
   return $return;
 }
