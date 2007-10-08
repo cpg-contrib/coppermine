@@ -1824,6 +1824,22 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
   'comment_disapproved' => 'Comment disapproved', // cpg1.5.x
 );
 
+// ------------------------------------------------------------------------- //
+// File sidebar.php
+// ------------------------------------------------------------------------- //
+
+if (defined('SIDEBAR_PHP')) $lang_sidebar_php = array(
+  'sidebar' => 'Side Bar', // cpg1.5.x
+  'install' => 'install', // cpg1.5.x
+  'install_explain' => 'Among the many smart access methods to get to information quickly on the site, we provide sidebars for the most popular browsers used on different operating systems to access pages easily. Here you can find setup and uninstall information for the browsers supported.', // cpg1.5.x
+  'os_browser_detect' => 'Detecting your OS and browser', // cpg1.5.x
+  'os_browser_detect_explain' => 'The script is trying to detect your operating system and browser version - please wait a second. If auto-detection fails, you might want to %sunhide%s all possible sidebar install options manually.', // cpg1.5.x
+  '' => '', // cpg1.5.x
+  '' => '', // cpg1.5.x
+  '' => '', // cpg1.5.x
+  '' => '', // cpg1.5.x
+);
+
 
 // ------------------------------------------------------------------------- //
 // File search.php                                                           //
