@@ -44,6 +44,8 @@ INSERT INTO CPG_config VALUES ('theme', 'core');
 INSERT INTO CPG_config VALUES ('theme_list', '0');
 INSERT INTO CPG_config VALUES ('theme_reset', '1');
 INSERT INTO CPG_config VALUES ('display_faq', '0');
+INSERT INTO CPG_config VALUES ('display_sidebar_user', '1');
+INSERT INTO CPG_config VALUES ('display_sidebar_guest', '1');
 INSERT INTO CPG_config VALUES ('custom_lnk_name', '');
 INSERT INTO CPG_config VALUES ('custom_lnk_url', '');
 INSERT INTO CPG_config VALUES ('show_bbcode_help', '1');

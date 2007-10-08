@@ -195,6 +195,33 @@ You can toggle between these options (enabled or disabled) on the <a href="uploa
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Themes settings &rarr; Display FAQ</p>
 <a name="admin_theme_faq_end"></a>
 <hr />
+<a name="admin_sidebar"></a><h3>Sidebar for admins / users / guests<a href="#admin_sidebar_admin" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Determines wether a sidebar for browsers will be available for members of the admin group, registered users group and guest group.</p>
+<p>The sidebar is a minimalistic interface to control your coppermine-driven gallery. Think of it as a sort of snap-in for your favorite browser. If you enabled the sidebar, the control structure of your gallery (with all categories/subcategories and albums) will be available in a separate panel in the browser for faster navigation.</p>
+<p>It is recommended that you try this option first for the admin only: play with it and decide if it would be a helpfull feature for your site's visitors. If yes, enable/promote the sidebar for the registered users and/or guests as well. It's up to you if you want to promote the usage of the sidebar by displaying a link to it in coppermine's menu or if you want to promote it by some other mechanism (e.g. by telling your users about it on a non-coppermine driven page of your website).</p>
+<p>The sidebar is helpfull for users who return to your page often. It provides an alternative method of browsing your gallery by displaying a tree structure of your categories, subcategories and albums. It is meant for advanced users who understand how their browser works.</p>
+<p>The sidebar install screen tries to auto-detect the operating system and browser that the visitor is using and offers the corresponding option to install the sidebar (as those methods differ from browser to browser). Some browsers are capable so to pose as different browsers, which will make the auto-detection routine fail. Subsequently, there is an option on the install screen as well to skip auto-detection and make the visitor select his browser.</p>
+<p>Group membership is being determined if a visitor is logged in or not: if he is not logged in, he is a member of the guest group and the corresponding option set up for guests (anonymous) is being taken into account. If the visitor is logged in, he is automatically a member of the registered group.</p>
+<p>There are two independant config sections for granular permissions who can access the sidebar:</p>
+<ul>
+  <li><strong>Sidebar for registered users</strong><br />Options for registered users (members of the "registered" group) who are logged in</li>
+  <li><strong>Sidebar for guests</strong><br />Options for visitors of your gallery who are not logged in</li>
+</ul>
+<p>Members of the admin group can access the sidebar no matter what option you select.</p>
+<p>Possible options for each of the above settings:</p>
+<ul>
+  <li><strong>No</strong><br />
+  Don't display a link to the sidebar install screen. Don't allow access to the sidebar nor the sidebar install screen at all.</li>
+  <li><strong>Yes: allow, but don't display link</strong><br />
+  Allow access to the sidebar and the corresponding install screen, but do not promote the sidebar. There will be no link in coppermine's menu that will send the user to the sidebar install page, so your visitors will not be aware of it. You will have to promote it by some other means (e.g. by telling your power-users about it in a newsletter). If you decide to manually promote the use of the sidebar, send your visitors to <tt class="code">http://yoursite.tld/your_coppermine_folder/sidebar.php?action=install</tt></li>
+  <li><strong>Yes: allow and promote it by displaying a link</strong><br />
+  Allow access to the sidebar and promote the sidebar by displaying a link to the sidebar installer screen in coppermine's menu</li>
+</ul>
+<p>Make sure to set the sidebar options up so that they make sense: it is not a bright idea to allow guests to access the sidebar, but deny access to registered users; registered users would be "punished" for registering. It is advisable to test the sidebar feature thoroughly before allowing your visitors to access it.</p>
+
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Themes settings &rarr; Sidebar for admins</p>
+<a name="admin_sidebar_end"></a>
+<hr />
 <a name="admin_theme_custom_lnk_name"></a><h3>Name of your custom link<a href="#admin_theme_custom_lnk_name" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Use this if you want to create a custom link that will appear in the menu. What you enter here will be the name of the menu link or button.  Leave space blank if you do not have any specific use for it.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Themes settings &rarr; Name of your custom link</p>

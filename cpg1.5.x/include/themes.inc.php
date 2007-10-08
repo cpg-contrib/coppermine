@@ -173,6 +173,7 @@ EOT;
     addbutton($sys_menu_buttons,'{MY_PROF_LNK}','{MY_PROF_TITLE}','{MY_PROF_TGT}','my_profile',$template_sys_menu_spacer);
     addbutton($sys_menu_buttons,'{ADM_MODE_LNK}','{ADM_MODE_TITLE}','{ADM_MODE_TGT}','enter_admin_mode',$template_sys_menu_spacer);
     addbutton($sys_menu_buttons,'{USR_MODE_LNK}','{USR_MODE_TITLE}','{USR_MODE_TGT}','leave_admin_mode',$template_sys_menu_spacer);
+    addbutton($sys_menu_buttons,'{SIDEBAR_LNK}','{SIDEBAR_TITLE}','{SIDEBAR_TGT}','sidebar',$template_sys_menu_spacer);
     addbutton($sys_menu_buttons,'{UPL_PIC_LNK}','{UPL_PIC_TITLE}','{UPL_PIC_TGT}','upload_pic',$template_sys_menu_spacer);
     addbutton($sys_menu_buttons,'{REGISTER_LNK}','{REGISTER_TITLE}','{REGISTER_TGT}','register',$template_sys_menu_spacer);
     addbutton($sys_menu_buttons,'{FAQ_LNK}','{FAQ_TITLE}','{FAQ_TGT}','faq',$template_sys_menu_spacer);
@@ -1719,9 +1720,21 @@ function theme_main_menu($which)
     $my_gallery_id = FIRST_USER_CAT + USER_ID;
 
   if ($which == 'sys_menu' ) {
-    if (USER_ID) {
+    if (USER_ID) { // visitor is logged in
         template_extract_block($template_sys_menu, 'login');
-    } else {
+        if ($CONFIG['contact_form_registered_enable'] == 0) {
+          template_extract_block($template_sys_menu, 'contact');
+        }
+        if ($CONFIG['display_sidebar_user'] != 2) {
+          template_extract_block($template_sys_menu, 'sidebar');
+        }
+    } else { // visitor is not logged in
+        if ($CONFIG['contact_form_guest_enable'] == 0) {
+          template_extract_block($template_sys_menu, 'contact');
+        }
+        if ($CONFIG['display_sidebar_guest'] != 2) {
+          template_extract_block($template_sys_menu, 'sidebar');
+        }
         template_extract_block($template_sys_menu, 'logout');
         template_extract_block($template_sys_menu, 'my_profile');
     }
@@ -1734,16 +1747,6 @@ function theme_main_menu($which)
             template_extract_block($template_sys_menu, 'enter_admin_mode');
         } else {
             template_extract_block($template_sys_menu, 'leave_admin_mode');
-        }
-    }
-
-    if (!USER_ID) {
-        if ($CONFIG['contact_form_guest_enable'] == 0) {
-          template_extract_block($template_sys_menu, 'contact');
-        }
-    } else {
-        if ($CONFIG['contact_form_registered_enable'] == 0) {
-          template_extract_block($template_sys_menu, 'contact');
         }
     }
 
@@ -1793,6 +1796,9 @@ function theme_main_menu($which)
         '{USR_MODE_TGT}' => "mode.php?admin_mode=0&amp;referer=$REFERER",
         '{USR_MODE_TITLE}' => $lang_main_menu['usr_mode_title'],
         '{USR_MODE_LNK}' => $lang_main_menu['usr_mode_lnk'],
+        '{SIDEBAR_TGT}' => "sidebar.php?action=install",
+        '{SIDEBAR_TITLE}' => $lang_main_menu['sidebar_title'],
+        '{SIDEBAR_LNK}' => $lang_main_menu['sidebar_lnk'],
         '{UPL_PIC_TGT}' => "upload.php$album_12",
         '{UPL_PIC_TITLE}' => $lang_main_menu['upload_pic_title'],
         '{UPL_PIC_LNK}' => $lang_main_menu['upload_pic_lnk'],

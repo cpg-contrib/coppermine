@@ -359,6 +359,9 @@ EOT;
           $checked = ' checked="checked"';
         }
         print '<input type="radio" name="'.$key.'" id="'.$key.$optionLoopCounter.'" value="'.$optionLoopCounter.'" class="radio"'.$checked.$readonly_radio.' tabindex="'.$tabindexCounter.'" /><label for="'.$key.$optionLoopCounter.'" class="clickable_option">'.$option.'</label>&nbsp;';
+        if ($value['linebreak'] != '') {
+          print $value['linebreak'];
+        }
         $optionLoopCounter++;
         $tabindexCounter++;
       }

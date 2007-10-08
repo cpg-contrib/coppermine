@@ -307,7 +307,7 @@ function cpg_db_fetch_row($result)
 
 function cpg_die($msg_code, $msg_text,  $error_file, $error_line, $output_buffer = false)
 {
-        global $CONFIG, $lang_cpg_die, $template_cpg_die;
+        global $CONFIG, $lang_cpg_die, $template_cpg_die, $lang_common;
 
         // Simple output if theme file is not loaded
         if(!function_exists('pageheader')){

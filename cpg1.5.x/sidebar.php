@@ -25,6 +25,20 @@
 define('IN_COPPERMINE', true);
 define('SIDEBAR_PHP', true);
 require('include/init.inc.php');
+
+// determine if visitor is allowed to access this page
+if (USER_ID) {
+  // the visitor is logged in
+  if ($CONFIG['display_sidebar_user'] == 0 && !GALLERY_ADMIN_MODE) {
+    cpg_die($lang_common['error'], $lang_errors['access_denied'], __FILE__, __LINE__);
+  }
+} else { // the visitor is not logged in
+  if ($CONFIG['display_sidebar_guest'] == 0) {
+    cpg_die($lang_common['error'], $lang_errors['access_denied'], __FILE__, __LINE__);
+  }
+}
+
+
 if ($_GET['action'] == 'install') {
 //////// install --- start
 pageheader($lang_sidebar_php['sidebar'] . ' - ' . $lang_sidebar_php['install']);
@@ -60,10 +74,14 @@ print <<< EOT
 
 <div id="mozilla" style="display:none">
 EOT;
-starttable('100%', 'Mozilla, Firefox, Netscape 6+, Konqueror 3.2+' , 1);
+starttable('100%', $lang_sidebar_php['mozilla'] , 1);
 print <<< EOT
 <tr>
-<td class="tableb"> If you use Mozilla 0.9.4 or later, you can <a href="javascript:addPanel()">add our sidebar to your set</a>. You can uninstall this sidebar using the "Customize Sidebar" dialog in Mozilla.</td>
+<td class="tableb">
+EOT;
+printf($lang_sidebar_php['mozilla_explain'], '<a href="javascript:addPanel()">', '</a>');
+print <<< EOT
+</td>
 </tr>
 EOT;
 endtable();
@@ -72,11 +90,15 @@ print <<< EOT
 </div>
 <div id="ie5win" style="display:none">
 EOT;
-starttable('100%', 'Internet Explorer 5 and above on Windows' , 1);
+starttable('100%', $lang_sidebar_php['ie_win'] , 1);
 print <<< EOT
 <tr>
   <td class="tableb">
-    <p>If you use Internet Explorer 5 or above on Windows, you can add the <a href="javascript:void(open('{$CONFIG['ecards_more_pic_target']}sidebar.php','_search'))">Side Bar</a> to your Links toolbar (dragging the link there) or you can add it to your favorites and clicking on it you can see our bar displayed in place of your usual search bar. This link does not install our bar as your default search bar, so no modification is made to your system.</p>
+EOT;
+ printf($lang_sidebar_php['ie_win_explain'], '<a href="javascript:void(open(\''.$CONFIG['ecards_more_pic_target'].'sidebar.php\',\'_search\'));">', '</a>');
+//printf($lang_sidebar_php['ie_win_explain'], '<a href="javascript:'. "window.external.AddFavorite('foo.htm', '{$CONFIG['gallery_name']} - {$lang_sidebar_php['sidebar']}')" .';">', '</a>');
+//printf($lang_sidebar_php['ie_win_explain'], '<a href="javascript:window.external.AddFavorite(location.href, \''.$CONFIG['gallery_name'].' - '. $lang_sidebar_php['sidebar'].'\');">', '</a>');
+print <<< EOT
   </td>
 </tr>
 EOT;
@@ -86,11 +108,13 @@ print <<< EOT
 </div>
 <div id="ie5mac" style="display:none">
 EOT;
-starttable('100%', 'Internet Explorer 5 and above on Mac OS' , 1);
+starttable('100%', $lang_sidebar_php['ie_mac'] , 1);
 print <<< EOT
 <tr>
   <td class="tableb">
-    If you use Internet Explorer 5 or above on MacOS, <a href="{$CONFIG['ecards_more_pic_target']}sidebar.php">open our sidebar page</a> in a  separate window. In that window, open the "Page Holder" tab on the left side of the window. Click "Add." If you want to keep it for future use, click on "Favorites" and select "Add to Page Holder Favorites."
+EOT;
+printf($lang_sidebar_php['ie_mac_explain'], '<a href="'.$CONFIG['ecards_more_pic_target'].'sidebar.php">', '</a>');
+print <<< EOT
   </td>
 </tr>
 EOT;
@@ -100,11 +124,13 @@ print <<< EOT
 </div>
 <div id="opera" style="display:none">
 EOT;
-starttable('100%', 'Opera 6 and above' , 1);
+starttable('100%', $lang_sidebar_php['opera'] , 1);
 print <<< EOT
 <tr>
   <td class="tableb">
-    If you are using Opera, you can <a href="{$CONFIG['ecards_more_pic_target']}sidebar.php" rel="sidebar" title="{$CONFIG['gallery_name']}">click on this link to add our sidebar to your set</a>. You can uninstall the sidebar by right clicking on it's tab and choosing "Delete" from the context menu.
+EOT;
+printf($lang_sidebar_php['opera_explain'], '<a href="'.$CONFIG['ecards_more_pic_target'].'sidebar.php" rel="sidebar" title="'.$CONFIG['gallery_name'].'">', '</a>');
+print <<< EOT
 </td>
 </tr>
 EOT;
@@ -114,11 +140,13 @@ print <<< EOT
 </div>
 <div id="additional" style="display:none">
 EOT;
-starttable('100%', 'Additional options' , 1);
+starttable('100%', $lang_sidebar_php['additional_options'] , 1);
 print <<< EOT
 <tr>
   <td class="tableb">
-    If you have another browser than the one mentioned above, then click <a href="javascript:unhide_all();">here</a> to display all possible sidebar options.
+EOT;
+printf($lang_sidebar_php['additional_options_explain'], '<a href="javascript:unhide_all();">', '</a>');
+print <<< EOT
   </td>
 </tr>
 EOT;
@@ -130,9 +158,9 @@ print <<< EOT
 <script type="text/javascript">
 function addPanel() {
   if ((typeof window.sidebar == "object") && (typeof window.sidebar.addPanel == "function")) {
-    window.sidebar.addPanel("{$CONFIG['gallery_name']}", "{$CONFIG['ecards_more_pic_target']}/sidebar.php", "");
+    window.sidebar.addPanel("{$CONFIG['gallery_name']} - {$lang_sidebar_php['sidebar']}", "{$CONFIG['ecards_more_pic_target']}sidebar.php", "");
   } else {
-    alert('Sidebar cannot be added! Your browser does not support this method!');
+    alert('{$lang_sidebar_php['cannot_add_sidebar']}');
   }
 }
 
@@ -181,11 +209,11 @@ self.onload = os_browser_detection();
 </script>
 <noscript>
 EOT;
-starttable('100%', 'Error: JavaScript disabled' , 1);
+starttable('100%', $lang_common['error'] , 1);
 print <<< EOT
 <tr>
   <td class="tableb">
-You appear to have disabled JavaScript. You can't use the sidebar without JavaScript. If you need it, re-enable it or use another browser.
+{$lang_common['javascript_needed']}
 </td>
 </tr>
 EOT;
@@ -651,7 +679,8 @@ echo "d = new dTree('d');\n";
 echo "d.add(0,-1,'".$CONFIG['gallery_name'].$lang_list_categories['home']."','index.php');\n";
 echo $catStr;
 echo "document.write(d);\n";
-?>
+print <<< EOT
+
 </script>
 <style type="text/css">
 .dtree {
@@ -684,18 +713,19 @@ echo "document.write(d);\n";
 }
 </style>
 </head>
-<body >
+<body>
 <form method="GET" action="thumbnails.php" target="_content">
-<input type="hidden" name="album" value="search" />
-<input type="hidden" name="type" value="full" />
-<div id="tlbSearch" style="margin: 1px 1px;float: left;">
-<input id="fldSearch" type="text" name="search" style="font-size: 7pt;background: white;width: 7em;" />
-<input id="btnSearch" type="image" src="images/sidebar/search.gif" alt="Search" />
-<a href="sidebar.php" target="_self" ><img id="btnReload" src="images/sidebar/reload.gif" border="0" width="13" height="15" alt="Reload" /></a>
-</div>
+  <input type="hidden" name="album" value="search" />
+  <input type="hidden" name="type" value="full" />
+  <div id="tlbSearch" style="margin: 1px 1px;float: left;">
+    <input id="fldSearch" type="text" name="search" style="font-size: 7pt;background: white;width: 7em;" />
+    <input id="btnSearch" type="image" src="images/sidebar/search.gif" alt="{$lang_sidebar_php['search']}" title="{$lang_sidebar_php['search']}" />
+    <a href="sidebar.php" target="_self" ><img id="btnReload" src="images/sidebar/reload.gif" border="0" width="13" height="15" alt="{$lang_sidebar_php['reload']}" title="{$lang_sidebar_php['reload']}" /></a>
+  </div>
 </form>
 </body>
 </html>
-<?php
+EOT;
+
 }
 ?>

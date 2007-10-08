@@ -206,6 +206,18 @@ $config_data = array(
       'type' => 'checkbox',
       'help_link' => 'f=configuration.htm&amp;as=admin_theme_faq&amp;ae=admin_theme_faq_end',
     ),
+    'display_sidebar_user' => array(
+      'type' => 'radio',
+      'help_link' => 'f=configuration.htm&amp;as=admin_sidebar&amp;ae=admin_sidebar_end',
+      'options' => array($lang_common['no'], $lang_common['yes'].': '.$lang_admin_php['allow_no_link'], $lang_common['yes'].': '.$lang_admin_php['allow_show_link']),
+      'linebreak' => '<br />',
+    ),
+    'display_sidebar_guest' => array(
+      'type' => 'radio',
+      'help_link' => 'f=configuration.htm&amp;as=admin_sidebar&amp;ae=admin_sidebar_end',
+      'options' => array($lang_common['no'], $lang_common['yes'].': '.$lang_admin_php['allow_no_link'], $lang_common['yes'].': '.$lang_admin_php['allow_show_link']),
+      'linebreak' => '<br />',
+    ),
     'custom_lnk_name' => array(
       'type' => 'textfield',
       'help_link' => 'f=configuration.htm&amp;as=admin_theme_custom_lnk_name&amp;ae=admin_theme_custom_lnk_name_end',

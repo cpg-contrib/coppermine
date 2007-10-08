@@ -644,3 +644,7 @@ INSERT INTO CPG_config VALUES ('contact_form_sender_email', '1');
 
 # Social bookmarks settings
 INSERT INTO CPG_config VALUES ('display_social_bookmarks','0');
+
+# Sidebar settings
+INSERT INTO CPG_config VALUES ('display_sidebar_user', '0');
+INSERT INTO CPG_config VALUES ('display_sidebar_guest', '0');
