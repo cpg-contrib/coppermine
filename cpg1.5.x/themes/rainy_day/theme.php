@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
@@ -22,6 +22,7 @@
 // ------------------------------------------------------------------------- //
 
 define('THEME_HAS_RATING_GRAPHICS', 1);
+define('THEME_HAS_SIDEBAR_GRAPHICS',1);
 define('THEME_IS_XHTML10_TRANSITIONAL',1);
 
 // HTML template for sys_menu
