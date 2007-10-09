@@ -67,6 +67,24 @@
 //  ('THEME_IS_XHTML10_TRANSITIONAL',1) : If theme is defined as XHTML10_TRANSITIONAL the VANITY footer will be enabled
 //    if the theme has a {VANITY} token in its template.html. Don't enable this if you have modified the code! See the
 //    docs/theme.html documentation for validation methodology.
+// ('THEME_HAS_SIDEBAR_GRAPHICS', 1) : The location for the sidebar graphics that compose the tree menu will
+//    be directed to the themes images folder, subfolder 'sidebar', i.e. themes/yourtheme/images/sidebar/.
+//    Gallery root                                                             : images/sidebar/base.gif
+//    Blank image                                                              : images/sidebar/empty.gif
+//    Category icon, collapsed state                                           : images/sidebar/folder.gif
+//    Category icon, expanded state                                            : images/sidebar/folderopen.gif
+//    Line between parent folder, child folder and next folder                 : images/sidebar/join.gif
+//    Line between parent folder and child folder                              : images/sidebar/joinbottom.gif
+//    Line between parent and next folder                                      : images/sidebar/line.gif
+//    Line between parent folder, child folder and next folder, expanded state : images/sidebar/minus.gif
+//    Line between parent folder and child folder, expanded state              : images/sidebar/minusbottom.gif
+//    Expanded state                                                           : images/sidebar/nolines_minus.gif
+//    Collapsed state                                                          : images/sidebar/nolines_plus.gif
+//    Album icon                                                               : images/sidebar/page.gif
+//    Line between parent folder, child folder and next folder, collapsed state: images/sidebar/plus.gif
+//    Line between parent folder and child folder, collapsed state             : images/sidebar/plusbottom.gif
+//    Reload the sidebar                                                       : images/sidebar/reload.gif
+//    Search icon                                                              : images/sidebar/search.gif
 
 /******************************************************************************
 ** Section <<<assemble_template_buttons>>> - START
@@ -152,6 +170,7 @@ EOT;
     addbutton($sys_menu_buttons,'{MY_PROF_LNK}','{MY_PROF_TITLE}','{MY_PROF_TGT}','my_profile',$template_sys_menu_spacer);
     addbutton($sys_menu_buttons,'{ADM_MODE_LNK}','{ADM_MODE_TITLE}','{ADM_MODE_TGT}','enter_admin_mode',$template_sys_menu_spacer);
     addbutton($sys_menu_buttons,'{USR_MODE_LNK}','{USR_MODE_TITLE}','{USR_MODE_TGT}','leave_admin_mode',$template_sys_menu_spacer);
+    addbutton($sys_menu_buttons,'{SIDEBAR_LNK}','{SIDEBAR_TITLE}','{SIDEBAR_TGT}','sidebar',$template_sys_menu_spacer);
     addbutton($sys_menu_buttons,'{UPL_PIC_LNK}','{UPL_PIC_TITLE}','{UPL_PIC_TGT}','upload_pic',$template_sys_menu_spacer);
     addbutton($sys_menu_buttons,'{REGISTER_LNK}','{REGISTER_TITLE}','{REGISTER_TGT}','register',$template_sys_menu_spacer);
     addbutton($sys_menu_buttons,'{FAQ_LNK}','{FAQ_TITLE}','{FAQ_TGT}','faq',$template_sys_menu_spacer);
@@ -1620,9 +1639,21 @@ function theme_main_menu($which)
     $my_gallery_id = FIRST_USER_CAT + USER_ID;
 
   if ($which == 'sys_menu' ) {
-    if (USER_ID) {
+    if (USER_ID) { // visitor is logged in
         template_extract_block($template_sys_menu, 'login');
-    } else {
+        if ($CONFIG['contact_form_registered_enable'] == 0) {
+          template_extract_block($template_sys_menu, 'contact');
+        }
+        if ($CONFIG['display_sidebar_user'] != 2) {
+          template_extract_block($template_sys_menu, 'sidebar');
+        }
+    } else { // visitor is not logged in
+        if ($CONFIG['contact_form_guest_enable'] == 0) {
+          template_extract_block($template_sys_menu, 'contact');
+        }
+        if ($CONFIG['display_sidebar_guest'] != 2) {
+          template_extract_block($template_sys_menu, 'sidebar');
+        }
         template_extract_block($template_sys_menu, 'logout');
         template_extract_block($template_sys_menu, 'my_profile');
     }
@@ -1635,16 +1666,6 @@ function theme_main_menu($which)
             template_extract_block($template_sys_menu, 'enter_admin_mode');
         } else {
             template_extract_block($template_sys_menu, 'leave_admin_mode');
-        }
-    }
-
-    if (!USER_ID) {
-        if ($CONFIG['contact_form_guest_enable'] == 0) {
-          template_extract_block($template_sys_menu, 'contact');
-        }
-    } else {
-        if ($CONFIG['contact_form_registered_enable'] == 0) {
-          template_extract_block($template_sys_menu, 'contact');
         }
     }
 
@@ -1694,6 +1715,9 @@ function theme_main_menu($which)
         '{USR_MODE_TGT}' => "mode.php?admin_mode=0&amp;referer=$REFERER",
         '{USR_MODE_TITLE}' => $lang_main_menu['usr_mode_title'],
         '{USR_MODE_LNK}' => $lang_main_menu['usr_mode_lnk'],
+        '{SIDEBAR_TGT}' => "sidebar.php?action=install",
+        '{SIDEBAR_TITLE}' => $lang_main_menu['sidebar_title'],
+        '{SIDEBAR_LNK}' => $lang_main_menu['sidebar_lnk'],
         '{UPL_PIC_TGT}' => "upload.php$album_12",
         '{UPL_PIC_TITLE}' => $lang_main_menu['upload_pic_title'],
         '{UPL_PIC_LNK}' => $lang_main_menu['upload_pic_lnk'],
@@ -3355,5 +3379,395 @@ function theme_page_title($section) {
 /******************************************************************************
 ** Section <<<theme_page_title>>> - END
 ******************************************************************************/
+
+
+/******************************************************************************
+** Section <<<$template_sidebar>>> - START
+******************************************************************************/
+// HTML template for sidebar
+if (defined('THEME_HAS_NAVBAR_GRAPHICS')) {
+    $location= $THEME_DIR;
+} else {
+    $location= '';
+}
+$template_sidebar = <<<EOT
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="{LANG_DIR}">
+<head>
+<meta http-equiv="content-type" content="text/html; charset={CHARSET}" />
+<title>{TITLE}</title>
+<script type="text/javascript">
+/*--------------------------------------------------|
+| dTree 2.05 | www.destroydrop.com/javascript/tree/ |
+|---------------------------------------------------|
+| Copyright (c) 2002-2003 Geir Landro               |
+|                                                   |
+| This script can be used freely as long as all     |
+| copyright messages are intact.                    |
+|                                                   |
+| Updated: 17.04.2003                               |
+|--------------------------------------------------*/
+
+// Node object
+function Node(id, pid, name, url, title, target, icon, iconOpen, open) {
+        var target = '_content';
+        if(document.all){
+          var target='_main';
+        }
+        this.id = id;
+        this.pid = pid;
+        this.name = name;
+        this.url = url;
+        this.title = title;
+        this.target = target;
+        this.icon = icon;
+        this.iconOpen = iconOpen;
+        this._io = open || false;
+        this._is = false;
+        this._ls = false;
+        this._hc = false;
+        this._ai = 0;
+        this._p;
+};
+
+// Tree object
+function dTree(objName) {
+        this.config = {
+                target         : null,
+                folderLinks    : true,
+                useSelection   : true,
+                useCookies     : true,
+                useLines       : true,
+                useIcons       : true,
+                useStatusText  : false,
+                closeSameLevel : false,
+                inOrder        : false
+        }
+        this.icon = {
+                root           : '{LOCATION}images/sidebar/base.gif',
+                folder         : '{LOCATION}images/sidebar/folder.gif',
+                folderOpen     : '{LOCATION}images/sidebar/folderopen.gif',
+                node           : '{LOCATION}images/sidebar/page.gif',
+                empty          : '{LOCATION}images/sidebar/empty.gif',
+                line           : '{LOCATION}images/sidebar/line.gif',
+                join           : '{LOCATION}images/sidebar/join.gif',
+                joinBottom     : '{LOCATION}images/sidebar/joinbottom.gif',
+                plus           : '{LOCATION}images/sidebar/plus.gif',
+                plusBottom     : '{LOCATION}images/sidebar/plusbottom.gif',
+                minus          : '{LOCATION}images/sidebar/minus.gif',
+                minusBottom    : '{LOCATION}images/sidebar/minusbottom.gif',
+                nlPlus         : '{LOCATION}images/sidebar/nolines_plus.gif',
+                nlMinus        : '{LOCATION}images/sidebar/nolines_minus.gif'
+        };
+        this.obj = objName;
+        this.aNodes = [];
+        this.aIndent = [];
+        this.root = new Node(-1);
+        this.selectedNode = null;
+        this.selectedFound = false;
+        this.completed = false;
+};
+
+// Adds a new node to the node array
+dTree.prototype.add = function(id, pid, name, url, title, target, icon, iconOpen, open) {
+        this.aNodes[this.aNodes.length] = new Node(id, pid, name, url, title, target, icon, iconOpen, open);
+};
+
+// Open/close all nodes
+dTree.prototype.openAll = function() {
+        this.oAll(true);
+};
+dTree.prototype.closeAll = function() {
+        this.oAll(false);
+};
+
+// Outputs the tree to the page
+dTree.prototype.toString = function() {
+        var str = '<div class="dtree">';
+        if (document.getElementById) {
+                if (this.config.useCookies) this.selectedNode = this.getSelected();
+                str += this.addNode(this.root);
+        } else str += 'Browser not supported.';
+        str += '</div>';
+        if (!this.selectedFound) this.selectedNode = null;
+        this.completed = true;
+        return str;
+};
+
+// Creates the tree structure
+dTree.prototype.addNode = function(pNode) {
+        var str = '';
+        var n=0;
+        if (this.config.inOrder) n = pNode._ai;
+        for (n; n<this.aNodes.length; n++) {
+                if (this.aNodes[n].pid == pNode.id) {
+                        var cn = this.aNodes[n];
+                        cn._p = pNode;
+                        cn._ai = n;
+                        this.setCS(cn);
+                        if (!cn.target && this.config.target) cn.target = this.config.target;
+                        if (cn._hc && !cn._io && this.config.useCookies) cn._io = this.isOpen(cn.id);
+                        if (!this.config.folderLinks && cn._hc) cn.url = null;
+                        if (this.config.useSelection && cn.id == this.selectedNode && !this.selectedFound) {
+                                        cn._is = true;
+                                        this.selectedNode = n;
+                                        this.selectedFound = true;
+                        }
+                        str += this.node(cn, n);
+                        if (cn._ls) break;
+                }
+        }
+        return str;
+};
+
+// Creates the node icon, url and text
+dTree.prototype.node = function(node, nodeId) {
+        var str = '<div class="dTreeNode">' + this.indent(node, nodeId);
+        if (this.config.useIcons) {
+                if (!node.icon) node.icon = (this.root.id == node.pid) ? this.icon.root : ((node._hc) ? this.icon.folder : this.icon.node);
+                if (!node.iconOpen) node.iconOpen = (node._hc) ? this.icon.folderOpen : this.icon.node;
+                if (this.root.id == node.pid) {
+                        node.icon = this.icon.root;
+                        node.iconOpen = this.icon.root;
+                }
+                str += '<img id="i' + this.obj + nodeId + '" src="' + ((node._io) ? node.iconOpen : node.icon) + '" alt="" />';
+        }
+        if (node.url) {
+                str += '<a id="s' + this.obj + nodeId + '" class="' + ((this.config.useSelection) ? ((node._is ? 'nodeSel' : 'node')) : 'node') + '" href="' + node.url + '"';
+                if (node.title) str += ' title="' + node.title + '"';
+                if (node.target) str += ' target="' + node.target + '"';
+                if (this.config.useStatusText) str += ' onmouseover="window.status=\'' + node.name + '\';return true;" onmouseout="window.status=\'\';return true;" ';
+                if (this.config.useSelection && ((node._hc && this.config.folderLinks) || !node._hc))
+                        str += ' onclick="javascript: ' + this.obj + '.s(' + nodeId + ');"';
+                str += '>';
+        }
+        else if ((!this.config.folderLinks || !node.url) && node._hc && node.pid != this.root.id)
+                str += '<a href="javascript: ' + this.obj + '.o(' + nodeId + ');" class="node">';
+        str += node.name;
+        if (node.url || ((!this.config.folderLinks || !node.url) && node._hc)) str += '</a>';
+        str += '</div>';
+        if (node._hc) {
+                str += '<div id="d' + this.obj + nodeId + '" class="clip" style="display:' + ((this.root.id == node.pid || node._io) ? 'block' : 'none') + ';">';
+                str += this.addNode(node);
+                str += '</div>';
+        }
+        this.aIndent.pop();
+        return str;
+};
+
+// Adds the empty and line icons
+dTree.prototype.indent = function(node, nodeId) {
+        var str = '';
+        if (this.root.id != node.pid) {
+                for (var n=0; n<this.aIndent.length; n++)
+                        str += '<img src="' + ( (this.aIndent[n] == 1 && this.config.useLines) ? this.icon.line : this.icon.empty ) + '" alt="" />';
+                (node._ls) ? this.aIndent.push(0) : this.aIndent.push(1);
+                if (node._hc) {
+                        str += '<a href="javascript: ' + this.obj + '.o(' + nodeId + ');"><img id="j' + this.obj + nodeId + '" src="';
+                        if (!this.config.useLines) str += (node._io) ? this.icon.nlMinus : this.icon.nlPlus;
+                        else str += ( (node._io) ? ((node._ls && this.config.useLines) ? this.icon.minusBottom : this.icon.minus) : ((node._ls && this.config.useLines) ? this.icon.plusBottom : this.icon.plus ) );
+                        str += '" alt="" /></a>';
+                } else str += '<img src="' + ( (this.config.useLines) ? ((node._ls) ? this.icon.joinBottom : this.icon.join ) : this.icon.empty) + '" alt="" />';
+        }
+        return str;
+};
+
+// Checks if a node has any children and if it is the last sibling
+dTree.prototype.setCS = function(node) {
+        var lastId;
+        for (var n=0; n<this.aNodes.length; n++) {
+                if (this.aNodes[n].pid == node.id) node._hc = true;
+                if (this.aNodes[n].pid == node.pid) lastId = this.aNodes[n].id;
+        }
+        if (lastId==node.id) node._ls = true;
+};
+
+// Returns the selected node
+dTree.prototype.getSelected = function() {
+        var sn = this.getCookie('cs' + this.obj);
+        return (sn) ? sn : null;
+};
+
+// Highlights the selected node
+dTree.prototype.s = function(id) {
+        if (!this.config.useSelection) return;
+        var cn = this.aNodes[id];
+        if (cn._hc && !this.config.folderLinks) return;
+        if (this.selectedNode != id) {
+                if (this.selectedNode || this.selectedNode==0) {
+                        eOld = document.getElementById("s" + this.obj + this.selectedNode);
+                        eOld.className = "node";
+                }
+                eNew = document.getElementById("s" + this.obj + id);
+                eNew.className = "nodeSel";
+                this.selectedNode = id;
+                if (this.config.useCookies) this.setCookie('cs' + this.obj, cn.id);
+        }
+};
+
+// Toggle Open or close
+dTree.prototype.o = function(id) {
+        var cn = this.aNodes[id];
+        this.nodeStatus(!cn._io, id, cn._ls);
+        cn._io = !cn._io;
+        if (this.config.closeSameLevel) this.closeLevel(cn);
+        if (this.config.useCookies) this.updateCookie();
+};
+
+// Open or close all nodes
+dTree.prototype.oAll = function(status) {
+        for (var n=0; n<this.aNodes.length; n++) {
+                if (this.aNodes[n]._hc && this.aNodes[n].pid != this.root.id) {
+                        this.nodeStatus(status, n, this.aNodes[n]._ls)
+                        this.aNodes[n]._io = status;
+                }
+        }
+        if (this.config.useCookies) this.updateCookie();
+};
+
+// Opens the tree to a specific node
+dTree.prototype.openTo = function(nId, bSelect, bFirst) {
+        if (!bFirst) {
+                for (var n=0; n<this.aNodes.length; n++) {
+                        if (this.aNodes[n].id == nId) {
+                                nId=n;
+                                break;
+                        }
+                }
+        }
+        var cn=this.aNodes[nId];
+        if (cn.pid==this.root.id || !cn._p) return;
+        cn._io = true;
+        cn._is = bSelect;
+        if (this.completed && cn._hc) this.nodeStatus(true, cn._ai, cn._ls);
+        if (this.completed && bSelect) this.s(cn._ai);
+        else if (bSelect) this._sn=cn._ai;
+        this.openTo(cn._p._ai, false, true);
+};
+
+// Closes all nodes on the same level as certain node
+dTree.prototype.closeLevel = function(node) {
+        for (var n=0; n<this.aNodes.length; n++) {
+                if (this.aNodes[n].pid == node.pid && this.aNodes[n].id != node.id && this.aNodes[n]._hc) {
+                        this.nodeStatus(false, n, this.aNodes[n]._ls);
+                        this.aNodes[n]._io = false;
+                        this.closeAllChildren(this.aNodes[n]);
+                }
+        }
+}
+
+// Closes all children of a node
+dTree.prototype.closeAllChildren = function(node) {
+        for (var n=0; n<this.aNodes.length; n++) {
+                if (this.aNodes[n].pid == node.id && this.aNodes[n]._hc) {
+                        if (this.aNodes[n]._io) this.nodeStatus(false, n, this.aNodes[n]._ls);
+                        this.aNodes[n]._io = false;
+                        this.closeAllChildren(this.aNodes[n]);
+                }
+        }
+}
+
+// Change the status of a node(open or closed)
+dTree.prototype.nodeStatus = function(status, id, bottom) {
+        eDiv        = document.getElementById('d' + this.obj + id);
+        eJoin        = document.getElementById('j' + this.obj + id);
+        if (this.config.useIcons) {
+                eIcon        = document.getElementById('i' + this.obj + id);
+                eIcon.src = (status) ? this.aNodes[id].iconOpen : this.aNodes[id].icon;
+        }
+        eJoin.src = (this.config.useLines)?
+        ((status)?((bottom)?this.icon.minusBottom:this.icon.minus):((bottom)?this.icon.plusBottom:this.icon.plus)):
+        ((status)?this.icon.nlMinus:this.icon.nlPlus);
+        eDiv.style.display = (status) ? 'block': 'none';
+};
+
+
+// [Cookie] Clears a cookie
+dTree.prototype.clearCookie = function() {
+        var now = new Date();
+        var yesterday = new Date(now.getTime() - 1000 * 60 * 60 * 24);
+        this.setCookie('co'+this.obj, 'cookieValue', yesterday);
+        this.setCookie('cs'+this.obj, 'cookieValue', yesterday);
+};
+
+// [Cookie] Sets value in a cookie
+dTree.prototype.setCookie = function(cookieName, cookieValue, expires, path, domain, secure) {
+        document.cookie =
+                escape(cookieName) + '=' + escape(cookieValue)
+                + (expires ? '; expires=' + expires.toGMTString() : '')
+                + (path ? '; path=' + path : '')
+                + (domain ? '; domain=' + domain : '')
+                + (secure ? '; secure' : '');
+};
+
+// [Cookie] Gets a value from a cookie
+dTree.prototype.getCookie = function(cookieName) {
+        var cookieValue = '';
+        var posName = document.cookie.indexOf(escape(cookieName) + '=');
+        if (posName != -1) {
+                var posValue = posName + (escape(cookieName) + '=').length;
+                var endPos = document.cookie.indexOf(';', posValue);
+                if (endPos != -1) cookieValue = unescape(document.cookie.substring(posValue, endPos));
+                else cookieValue = unescape(document.cookie.substring(posValue));
+        }
+        return (cookieValue);
+};
+
+// [Cookie] Returns ids of open nodes as a string
+dTree.prototype.updateCookie = function() {
+        var str = '';
+        for (var n=0; n<this.aNodes.length; n++) {
+                if (this.aNodes[n]._io && this.aNodes[n].pid != this.root.id) {
+                        if (str) str += '.';
+                        str += this.aNodes[n].id;
+                }
+        }
+        this.setCookie('co' + this.obj, str);
+};
+
+// [Cookie] Checks if a node id is in a cookie
+dTree.prototype.isOpen = function(id) {
+        var aOpen = this.getCookie('co' + this.obj).split('.');
+        for (var n=0; n<aOpen.length; n++)
+                if (aOpen[n] == id) return true;
+        return false;
+};
+
+// If Push and pop is not implemented by the browser
+if (!Array.prototype.push) {
+        Array.prototype.push = function array_push() {
+                for(var i=0;i<arguments.length;i++)
+                        this[this.length]=arguments[i];
+                return this.length;
+        }
+};
+if (!Array.prototype.pop) {
+        Array.prototype.pop = function array_pop() {
+                lastElement = this[this.length-1];
+                this.length = Math.max(this.length-1,0);
+                return lastElement;
+        }
+};
+{SIDEBAR_CONTENT}
+</script>
+<link href="themes/{THEME}/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<form method="GET" action="thumbnails.php" target="_content">
+  <input type="hidden" name="album" value="search" />
+  <input type="hidden" name="type" value="full" />
+  <div id="dtreeSearchWrapper" style="margin: 1px 1px;float: left;">
+    <input id="dtreeSearchField" type="text" name="search" class="textinput" />
+    <input id="dtreeSearchButton" type="image" src="{LOCATION}images/sidebar/search.gif" alt="" title="{SEARCH_TITLE}" />
+    <a href="sidebar.php" target="_self" ><img id="dtreeReloadButton" src="{LOCATION}images/sidebar/reload.gif" border="0" width="13" height="15" alt="" title="{RELOAD_TITLE}" /></a>
+  </div>
+</form>
+</body>
+</html>
+EOT;
+/******************************************************************************
+** Section <<<$template_sidebar>>> - END
+******************************************************************************/
+
 
 ?>

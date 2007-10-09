@@ -77,22 +77,22 @@ if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}         //{THEMES
 //    docs/theme.html documentation for validation methodology.
 // ('THEME_HAS_SIDEBAR_GRAPHICS', 1) : The location for the sidebar graphics that compose the tree menu will
 //    be directed to the themes images folder, subfolder 'sidebar', i.e. themes/yourtheme/images/sidebar/.
-//    Gallery root                                                             : images/base.gif
-//    Blank image                                                              : images/empty.gif
-//    Category icon, collapsed state                                           : images/folder.gif
-//    Category icon, expanded state                                            : images/folderopen.gif
-//    Line between parent folder, child folder and next folder                 : images/join.gif
-//    Line between parent folder and child folder                              : images/joinbottom.gif
-//    Line between parent and next folder                                      : images/line.gif
-//    Line between parent folder, child folder and next folder, expanded state : images/minus.gif
-//    Line between parent folder and child folder, expanded state              : images/minusbottom.gif
-//    Expanded state                                                           : images/nolines_minus.gif
-//    Collapsed state                                                          : images/nolines_plus.gif
-//    Album icon                                                               : images/page.gif
-//    Line between parent folder, child folder and next folder, collapsed state: images/plus.gif
-//    Line between parent folder and child folder, collapsed state             : images/plusbottom.gif
-//    Reload the sidebar                                                       : images/reload.gif
-//    Search icon                                                              : images/search.gif
+//    Gallery root                                                             : images/sidebar/base.gif
+//    Blank image                                                              : images/sidebar/empty.gif
+//    Category icon, collapsed state                                           : images/sidebar/folder.gif
+//    Category icon, expanded state                                            : images/sidebar/folderopen.gif
+//    Line between parent folder, child folder and next folder                 : images/sidebar/join.gif
+//    Line between parent folder and child folder                              : images/sidebar/joinbottom.gif
+//    Line between parent and next folder                                      : images/sidebar/line.gif
+//    Line between parent folder, child folder and next folder, expanded state : images/sidebar/minus.gif
+//    Line between parent folder and child folder, expanded state              : images/sidebar/minusbottom.gif
+//    Expanded state                                                           : images/sidebar/nolines_minus.gif
+//    Collapsed state                                                          : images/sidebar/nolines_plus.gif
+//    Album icon                                                               : images/sidebar/page.gif
+//    Line between parent folder, child folder and next folder, collapsed state: images/sidebar/plus.gif
+//    Line between parent folder and child folder, collapsed state             : images/sidebar/plusbottom.gif
+//    Reload the sidebar                                                       : images/sidebar/reload.gif
+//    Search icon                                                              : images/sidebar/search.gif
 
 if (!function_exists('assemble_template_buttons')) {  //{THEMES}
 /******************************************************************************

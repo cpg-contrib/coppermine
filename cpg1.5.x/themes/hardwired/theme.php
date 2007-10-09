@@ -105,6 +105,14 @@ $template_sys_menu = <<<EOT
                                         </td>
                                         <td><img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0" alt="" /></td>
 <!-- END leave_admin_mode -->
+<!-- BEGIN sidebar -->
+                                        <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /></td>
+                                        <td><img name="buttonleftad" src="themes/hardwired/images/buttonleftmemb.gif" width="17" height="25" border="0" alt="" /></td>
+                                        <td style="background: url(themes/hardwired/images/buttoncenter.gif);">
+                                                <a href="{SIDEBAR_TGT}" title="{SIDEBAR_TITLE}">{SIDEBAR_LNK}</a>
+                                        </td>
+                                        <td><img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0" alt="" /></td>
+<!-- END sidebar -->
 <!-- BEGIN upload_pic -->
                                         <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /></td>
                                         <td><img name="buttonleftup" src="themes/hardwired/images/buttonleftup.gif" width="17" height="25" border="0" alt="" /></td>
