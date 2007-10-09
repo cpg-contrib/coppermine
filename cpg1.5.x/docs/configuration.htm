@@ -195,7 +195,7 @@ You can toggle between these options (enabled or disabled) on the <a href="uploa
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Themes settings &rarr; Display FAQ</p>
 <a name="admin_theme_faq_end"></a>
 <hr />
-<a name="admin_sidebar"></a><h3>Sidebar for admins / users / guests<a href="#admin_sidebar_admin" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<a name="admin_sidebar"></a><h3>Sidebar for users / guests<a href="#admin_sidebar" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Determines wether a sidebar for browsers will be available for members of the admin group, registered users group and guest group.</p>
 <p>The sidebar is a minimalistic interface to control your coppermine-driven gallery. Think of it as a sort of snap-in for your favorite browser. If you enabled the sidebar, the control structure of your gallery (with all categories/subcategories and albums) will be available in a separate panel in the browser for faster navigation.</p>
 <p>It is recommended that you try this option first for the admin only: play with it and decide if it would be a helpfull feature for your site's visitors. If yes, enable/promote the sidebar for the registered users and/or guests as well. It's up to you if you want to promote the usage of the sidebar by displaying a link to it in coppermine's menu or if you want to promote it by some other mechanism (e.g. by telling your users about it on a non-coppermine driven page of your website).</p>
@@ -218,6 +218,8 @@ You can toggle between these options (enabled or disabled) on the <a href="uploa
   Allow access to the sidebar and promote the sidebar by displaying a link to the sidebar installer screen in coppermine's menu</li>
 </ul>
 <p>Make sure to set the sidebar options up so that they make sense: it is not a bright idea to allow guests to access the sidebar, but deny access to registered users; registered users would be "punished" for registering. It is advisable to test the sidebar feature thoroughly before allowing your visitors to access it.</p>
+<p>How the sidebar is installed greatly differs from browser to browser. Sadly, the most complicated version is the sidebar for Internet Explorer, which is the most popular browser. In the past, it has been comparatively easy to add anything to IE's favorites and to come up with a "real" sidebar. However, as Microsoft had some bad press for releasing a browser with severe security holes, the options for developers to create a working sidebar that end users can add easily have been reduced deliberately by Microsoft when releasing patches for their browser and operating system. Therefor, you might have issues with the sidebar, depending on which version of Windows and IE you are using.</p>
+<p>If you want to edit the text that explains the install of the sidebar, edit the file <tt class="code">http://yoursite.tld/your_coppermine_folder/lang/yourlanguage.php</tt> with a plain text editor.</p>
 
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Themes settings &rarr; Sidebar for admins</p>
 <a name="admin_sidebar_end"></a>

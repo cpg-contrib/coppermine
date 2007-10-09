@@ -96,6 +96,23 @@ print <<< EOT
   <td class="tableb">
 EOT;
  printf($lang_sidebar_php['ie_win_explain'], '<a href="javascript:void(open(\''.$CONFIG['ecards_more_pic_target'].'sidebar.php\',\'_search\'));">', '</a>');
+print <<< EOT
+  </td>
+</tr>
+EOT;
+endtable();
+print <<< EOT
+<br />
+</div>
+
+<div id="ie7win" style="display:none">
+EOT;
+starttable('100%', $lang_sidebar_php['ie7_win'] , 1);
+print <<< EOT
+<tr>
+  <td class="tableb">
+EOT;
+ printf($lang_sidebar_php['ie7_win_explain'], '<a href="javascript:void(open(\''.$CONFIG['ecards_more_pic_target'].'sidebar.php\',\'_search\'));">', '</a>');
 //printf($lang_sidebar_php['ie_win_explain'], '<a href="javascript:'. "window.external.AddFavorite('foo.htm', '{$CONFIG['gallery_name']} - {$lang_sidebar_php['sidebar']}')" .';">', '</a>');
 //printf($lang_sidebar_php['ie_win_explain'], '<a href="javascript:window.external.AddFavorite(location.href, \''.$CONFIG['gallery_name'].' - '. $lang_sidebar_php['sidebar'].'\');">', '</a>');
 print <<< EOT
@@ -106,6 +123,7 @@ endtable();
 print <<< EOT
 <br />
 </div>
+
 <div id="ie5mac" style="display:none">
 EOT;
 starttable('100%', $lang_sidebar_php['ie_mac'] , 1);
@@ -169,6 +187,7 @@ function unhide_all() {
   document.getElementById('additional').style.display = 'none';
   document.getElementById('mozilla').style.display = 'block';
   document.getElementById('ie5win').style.display = 'block';
+  document.getElementById('ie7win').style.display = 'block';
   document.getElementById('ie5mac').style.display = 'block';
   document.getElementById('opera').style.display = 'block';
 }
@@ -196,10 +215,17 @@ function os_browser_detection() {
            document.getElementById('detecting').style.display = 'none';
            detection_success = 1;
        } else {
-           document.getElementById('ie5win').style.display = 'block';
-           document.getElementById('additional').style.display = 'block';
-           document.getElementById('detecting').style.display = 'none';
-           detection_success = 1;
+           if(navigator.userAgent.indexOf('MSIE 7') != -1) {
+             document.getElementById('ie7win').style.display = 'block';
+             document.getElementById('additional').style.display = 'block';
+             document.getElementById('detecting').style.display = 'none';
+             detection_success = 1;
+           } else {
+             document.getElementById('ie5win').style.display = 'block';
+             document.getElementById('additional').style.display = 'block';
+             document.getElementById('detecting').style.display = 'none';
+             detection_success = 1;
+           }
        }
    }
 }
