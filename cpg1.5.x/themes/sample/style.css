@@ -777,7 +777,8 @@ div.social_bookmarks {
         text-decoration: underline;
 }
 .dtree a.nodeSel {
-        background-color: #c0d2ec;
+        background-color: #0871A5;
+        color: #FFFFFF;
 }
 .dtree .clip {
         overflow: hidden;

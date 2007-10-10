@@ -3743,7 +3743,7 @@ dTree.prototype.setCS = function(node) {
 
 // Returns the selected node
 dTree.prototype.getSelected = function() {
-        var sn = this.getCookie('cs' + this.obj);
+        var sn = this.getCookie('{$CONFIG['cookie_name']}_sidebar_cs' + this.obj);
         return (sn) ? sn : null;
 };
 
@@ -3760,7 +3760,7 @@ dTree.prototype.s = function(id) {
                 eNew = document.getElementById("s" + this.obj + id);
                 eNew.className = "nodeSel";
                 this.selectedNode = id;
-                if (this.config.useCookies) this.setCookie('cs' + this.obj, cn.id);
+                if (this.config.useCookies) this.setCookie('{$CONFIG['cookie_name']}_sidebar_cs' + this.obj, cn.id);
         }
 };
 
@@ -3845,8 +3845,8 @@ dTree.prototype.nodeStatus = function(status, id, bottom) {
 dTree.prototype.clearCookie = function() {
         var now = new Date();
         var yesterday = new Date(now.getTime() - 1000 * 60 * 60 * 24);
-        this.setCookie('co'+this.obj, 'cookieValue', yesterday);
-        this.setCookie('cs'+this.obj, 'cookieValue', yesterday);
+        this.setCookie('{$CONFIG['cookie_name']}_sidebar_co'+this.obj, 'cookieValue', yesterday);
+        this.setCookie('{$CONFIG['cookie_name']}_sidebar_cs'+this.obj, 'cookieValue', yesterday);
 };
 
 // [Cookie] Sets value in a cookie
@@ -3881,12 +3881,12 @@ dTree.prototype.updateCookie = function() {
                         str += this.aNodes[n].id;
                 }
         }
-        this.setCookie('co' + this.obj, str);
+        this.setCookie('{$CONFIG['cookie_name']}_sidebar_co' + this.obj, str);
 };
 
 // [Cookie] Checks if a node id is in a cookie
 dTree.prototype.isOpen = function(id) {
-        var aOpen = this.getCookie('co' + this.obj).split('.');
+        var aOpen = this.getCookie('{$CONFIG['cookie_name']}_sidebar_co' + this.obj).split('.');
         for (var n=0; n<aOpen.length; n++)
                 if (aOpen[n] == id) return true;
         return false;

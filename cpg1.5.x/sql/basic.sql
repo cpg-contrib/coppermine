@@ -184,7 +184,7 @@ INSERT INTO CPG_config VALUES ('user_field1_name', '');
 INSERT INTO CPG_config VALUES ('user_field2_name', '');
 INSERT INTO CPG_config VALUES ('user_field3_name', '');
 INSERT INTO CPG_config VALUES ('user_field4_name', '');
-INSERT INTO CPG_config VALUES ('cookie_name', 'cpg150');
+INSERT INTO CPG_config VALUES ('cookie_name', 'cpg15x');
 INSERT INTO CPG_config VALUES ('cookie_path', '/');
 INSERT INTO CPG_config VALUES ('smtp_host', '');
 INSERT INTO CPG_config VALUES ('smtp_username', '');
