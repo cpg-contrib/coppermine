@@ -237,7 +237,7 @@ $config_data = array(
     'display_social_bookmarks' => array(
       'type' => 'select_multiple',
       'help_link' => '',
-      'options' => array('Digg.com', 'del.icio.us', 'Yahoo MyWeb', 'Technorati', 'Spurl', 'Furl', 'Blinklist', 'Fark', 'Blogmarks', 'Simpy', 'Reddit', 'StumbleUpon', 'Slashdot', 'Netscape', 'diigo', 'NewsVine', 'ma.gnolia', 'Google'),
+      'options' => array('Digg.com', 'del.icio.us', 'Yahoo MyWeb', 'Technorati', 'Spurl', 'Furl', 'Blinklist', 'Fark', 'Blogmarks', 'Simpy', 'Reddit', 'StumbleUpon', 'Slashdot', 'Netscape', 'diigo', 'NewsVine', 'ma.gnolia', 'Google', 'Mister Wong', 'Linkarena', 'Newskick.de', 'Weblinkr.com', 'Alltagz', 'Webbrille.de', 'Newstube.de', 'Webnews.de', 'Readster.de', 'oneview.de', 'Maodi.de', 'Tausendreporter', 'Linksilo'),
       'end_description' => '('.$lang_admin_php['highlight_multiple'].')',
     ),
     'custom_header_path' => array(

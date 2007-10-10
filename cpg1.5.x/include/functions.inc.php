@@ -2963,6 +2963,71 @@ function cpgSocialBookmark() {
       'url' => 'http://www.google.com/bookmarks/mark?op=add&bkmk={URL}&annotation={DESCRIPTION}&labels=&title={TITLE}',
       'icon' => 'images/bookmarks/google.gif',
       ),
+      array(
+      'name' => 'Mister Wong',
+      'url' => 'http://www.mister-wong.de/index.php?action=addurl&bm_url={URL}&bm_description={DESCRIPTION}',
+      'icon' => 'images/bookmarks/misterbook.gif',
+      ),
+      array(
+      'name' => 'Linkarena',
+      'url' => 'http://www.linkarena.com/bookmarks/addlink/?url={URL}&title={TITLE}',
+      'icon' => 'images/bookmarks/linkarena.gif',
+      ),
+      array(
+      'name' => 'Newskick.de',
+      'url' => 'http://www.newskick.de/submit.php?url={URL}',
+      'icon' => 'images/bookmarks/newskick.gif',
+      ),
+      array(
+      'name' => 'Weblinkr.com',
+      'url' => 'http://weblinkr.com/login?action=add&address={URL}&description={DESCRIPTION}',
+      'icon' => 'images/bookmarks/weblinkr.gif',
+      ),
+      array(
+      'name' => 'Alltagz',
+      'url' => 'http://www.alltagz.de/bookmarks/?action=add&address={URL}&title={TITLE}',
+      'icon' => 'images/bookmarks/alltagz.gif',
+      ),
+      array(
+      'name' => 'Webbrille.de',
+      'url' => 'http://www.webbrille.de/bookmarks.php/?action=add&address={URL}&title={TITLE}',
+      'icon' => 'images/bookmarks/webbrille.gif',
+      ),
+      array(
+      'name' => 'Newstube.de',
+      'url' => 'http://newstube.de/submit.php?url={URL}',
+      'icon' => 'images/bookmarks/newstube.gif',
+      ),
+      array(
+      'name' => 'Webnews.de',
+      'url' => 'http://www.webnews.de/einstellen?url={URL}&title={TITLE}',
+      'icon' => 'images/bookmarks/webnews.gif',
+      ),
+      array(
+      'name' => 'Readster.de',
+      'url' => 'http://www.readster.de/submit/?url={URL}&title={TITLE}',
+      'icon' => 'images/bookmarks/readster.gif',
+      ),
+      array(
+      'name' => 'oneview.de',
+      'url' => 'http://www.oneview.de/quickadd/neu/addBookmark.jsf?URL={URL}&title={TITLE}',
+      'icon' => 'images/bookmarks/oneview.gif',
+      ),
+      array(
+      'name' => 'Maodi.de',
+      'url' => 'http://www.maodi.de/bookmarks/?action=add&address={URL}&title={TITLE}',
+      'icon' => 'images/bookmarks/maodi.gif',
+      ),
+      array(
+      'name' => 'Tausendreporter',
+      'url' => 'http://tausendreporter.stern.de/submit.php?url={URL}',
+      'icon' => 'images/bookmarks/tausendreporter.gif',
+      ),
+      array(
+      'name' => 'Linksilo',
+      'url' => 'http://www.linksilo.de/index.php?area=bookmarks&func=bookmark_new&addurl={URL}&addtitle={TITLE}',
+      'icon' => 'images/bookmarks/linksilo.gif',
+      ),
     );
     $return = '<div id="social_bookmarks_wrapper">';
     $return .= '<div class="social_bookmarks" id="social_bookmarks_text">' . $lang_social_bookmarks['add_this_page_to'].': </div>';
@@ -3602,6 +3667,71 @@ function cpgValidateDate($date) {
         $return = '';
     }
     return $return;
+}
+
+/**
+* cpgGetRemoteFileByFsock()
+*
+* Returns array that contains content of a file (URL) retrieved by fsockopen. Array consists of:
+* $return['headers'] = header array,
+* $return['error'] = error number and messages array (if error)
+* $return['body'] = actual content of the fetched file as string
+*
+* @param mixed $url, $method, $data, $redirect
+* @return array
+**/
+function cpgGetRemoteFileByFsock($url, $method = "GET", $data = "", $redirect = 10) {
+    // taken from http://jeenaparadies.net/weblog/2007/jan/get_remote_file
+    $url = parse_url($url); // chop the URL into protocol, domain, port, folder, file, parameter
+
+    $fp = @fsockopen ($url['host'], (!empty($url['port']) ? (int)$url['port'] : 80), $errno, $errstr, 30);
+
+    if ($fp) { // file handle success - start
+        $path = (!empty($url['path']) ? $url['path'] : "/").(!empty($url['query']) ? "?".$url['query'] : "");
+        $header = "\r\nHost: ".$url['host'];
+        if("post" == strtolower($method)) {
+          $header .= "\r\nContent-Length: ".mb_strlen($data);
+        }
+
+        fputs ($fp, $method." ".$path." HTTP/1.0".$header."\r\n\r\n".("post" == strtolower($method) ? $data : ""));
+
+        if(!feof($fp)) {
+             $scheme = fgets($fp);
+            list(, $code ) = explode(" ", $scheme);
+            $headers = array("Scheme" => $scheme);
+        }
+
+        while ( !feof($fp) ) {
+            $h = fgets($fp);
+            if($h == "\r\n" OR $h == "\n") {
+              break;
+            }
+
+            list($key, $value) = explode(":", $h, 2);
+            $key = strtolower($key);
+            $value = trim($value);
+            if(isset($headers[$key])) {
+              $headers[$key] .= ','.trim($value);
+            } else {
+              $headers[$key] = trim($value);
+            }
+
+            if($code >= 300 && $code < 400 && strtolower($key) == "location" && $redirect > 0) {
+              return cpgGetRemoteFileByFsock($headers[$key], $method, $data, --$redirect);
+            }
+        }
+
+        $body = '';
+        while ( !feof($fp) ) {
+          $body .= fgets($fp);
+        }
+
+        fclose($fp);
+    } else {  // file handle failure - start
+      return (array("error" => array("errno" => $errno, "errstr" => $errstr)));
+    }
+
+    return array("headers" => $headers, "body" => $body);
 }
 
 ?>
