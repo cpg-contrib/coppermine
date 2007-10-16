@@ -102,6 +102,8 @@ $lang_errors = array(
   'non_exist_comment' => 'The selected comment does not exist',
   'page_removed_redirector' => 'You are trying to access a page that has been removed from the coppermine package.<br />Redirecting...', //cpg1.5
   'captcha_error' => 'The confirmation code didn\'t match', //cpg1.5
+  'no_data' => 'No data returned', //cpg1.5
+  'no_connection' => 'No connection to %s established.', //cpg1.5
 );
 
 $lang_bbcode_help_title = 'bbcode help';
@@ -2200,7 +2202,6 @@ $lang_util_desc_php = array(
 'Deletes orphaned comments',
 'Re-reads file sizes and dimensions (if you manually edited pics)',
 'Resets views counter',
-'Runs an individual query against your database (use with care)', //cpg1.5
 );
 $lang_util_php = array(
   'title' => 'Admin tools',  //cpg1.5

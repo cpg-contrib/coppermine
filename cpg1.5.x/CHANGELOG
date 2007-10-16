@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-10-15 [D] Split admin tools into separate page {GauGau}
 2007-10-08 [O] Sidebar made themeable {GauGau}
 2007-10-08 [A] Added sidebar {GauGau}
 2007-09-27 [A] Added social bookmarks icons {GauGau}

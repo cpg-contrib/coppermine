@@ -529,6 +529,7 @@ d.add(1190,1170,'Installing a plugin','plugins.htm#plugin_manager_install');
 d.add(1200,1170,'Plugin Configuration','plugins.htm#plugin_manager_configuration');
 d.add(1210,1170,'Uninstalling a plugin','plugins.htm#plugin_manager_uninstall');
 d.add(1220,1130,'Writing plugins','plugins.htm#plugin_writing');
+d.add(1225,560,'Admin Tools','admin-tools.htm#admin_tools');
 d.add(1230,0,'Uploading','uploading.htm');
 d.add(1240,1230,'Uploading pics by FTP / Batch-Add Pictures','uploading.htm#batch_add_pics');
 d.add(1250,1230,'Uploading by HTTP','uploading.htm#upload_http');
