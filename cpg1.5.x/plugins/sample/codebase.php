@@ -34,7 +34,7 @@ $thisplugin->add_filter('plugin_block','sample_block_mgr');
 // Sample function to modify gallery header html
 function sample_header($html) {
     global $thisplugin;
-    $return = '<p style="color:red;"><b>This is sample data returned from plugin "'.$thisplugin->name.'".</b></p>'.$html;
+    $return = '<p style="color:red;"><strong>This is sample data returned from the plugin "'.$thisplugin->name.'".</strong></p>'.$html;
     return $return;
 }
 

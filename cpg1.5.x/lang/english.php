@@ -1655,6 +1655,7 @@ $lang_pluginmgr_php = array(
   'configure_plugin' => 'Configure plugin',
   'cleanup_plugin' => 'Cleanup plugin',
   'extra' => 'Extra', // cpg1.5.x
+  'install_info' => 'Install information', // cpg1.5.x
 );
 }
 

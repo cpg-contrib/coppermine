@@ -103,7 +103,11 @@ EOT;
         include('./plugins/'.$thisplugin->path.'/configuration.php');
 
         $safename = addslashes(str_replace('&nbsp;', '', $name));
-        $extra = (isset($install_info)) ? ($install_info):(null);
+        if (isset($extra_info) == TRUE) {
+              $extra = $extra_info;
+            } else {
+              $extra = '';
+            }
 
         if (sizeof($thisplugin->error) > 0) {
             $error = $thisplugin->error['desc'];
@@ -130,16 +134,16 @@ EOT;
                         <td colspan="2" class="tableh1">{$name}: {$lang_pluginmgr_php['vers']}$version</td>
                     </tr>
                     <tr>
-                        <td class="tableb" width="20%">{$lang_pluginmgr_php['extra']}:</td>
-                        <td class="tableb">$extra</td>
+                        <td class="tableb" width="20%" valign="top">{$lang_pluginmgr_php['extra']}:</td>
+                        <td class="tableb" valign="top">{$extra}</td>
                     </tr>
                     <tr>
-                        <td class="tableb tableb_alternate">{$lang_pluginmgr_php['author']}:</td>
-                        <td class="tableb tableb_alternate">$author</td>
+                        <td class="tableb tableb_alternate" valign="top">{$lang_pluginmgr_php['author']}:</td>
+                        <td class="tableb tableb_alternate" valign="top">$author</td>
                     </tr>
                     <tr>
-                        <td class="tableb">{$lang_pluginmgr_php['desc']}</td>
-                        <td class="tableb">$description</td>
+                        <td class="tableb" valign="top">{$lang_pluginmgr_php['desc']}</td>
+                        <td class="tableb" valign="top">$description</td>
                     </tr>
                 </table>
             </td>
@@ -227,7 +231,11 @@ EOT;
             include('./plugins/'.$path.'/configuration.php');
 
             $safename = addslashes(str_replace('&nbsp;', '', $name));
-            $extra = (isset($extra_info)) ? ($extra_info):(null);
+            if (isset($install_info) == TRUE) {
+              $extra = $install_info;
+            } else {
+              $extra = '';
+            }
 
             if ($loop_counter == 0) {
                 $row_style_class = 'tableb';
@@ -247,13 +255,23 @@ EOT;
                         <td colspan="2" class="tableh1">{$name}: {$lang_pluginmgr_php['vers']}$version</td>
                     </tr>
                     <tr>
-                        <td class="tableb tableb_alternate" width="20%">{$lang_pluginmgr_php['author']}:</td>
-                        <td class="tableb tableb_alternate">$author</td>
+                        <td class="tableb tableb_alternate" width="20%" valign="top">{$lang_pluginmgr_php['author']}:</td>
+                        <td class="tableb tableb_alternate" valign="top">$author</td>
                     </tr>
                     <tr>
-                        <td class="tableb">{$lang_pluginmgr_php['desc']}</td>
-                        <td class="tableb">$description</td>
+                        <td class="tableb" valign="top">{$lang_pluginmgr_php['desc']}:</td>
+                        <td class="tableb" valign="top">$description</td>
                     </tr>
+EOT;
+            if ($extra != '') {
+              echo <<<EOT
+                    <tr>
+                        <td class="tableb tableb_alternate" width="20%" valign="top">{$lang_pluginmgr_php['install_info']}:</td>
+                        <td class="tableb tableb_alternate" valign="top">{$extra}</td>
+                    </tr>
+EOT;
+            }
+            echo <<<EOT
                 </table>
             </td>
             <td class="{$row_style_class}" valign="top">
