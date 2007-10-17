@@ -513,6 +513,7 @@ function del_old() {
   global $CONFIG, $lang_util_php;
   $d = $_POST['day_number']*60*60*24;
   $start = strtotime(date("Ymd")) - $d;
+  $delete_counter = 0;
   $albumid = (isset($_POST['albumid'])) ? $_POST['albumid'] : 0;
   $albstr = ($albumid) ? "WHERE ctime <= $start AND aid = $albumid " : "WHERE ctime <= $start";
   $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} $albstr");
@@ -563,9 +564,14 @@ function del_old() {
       printf($lang_util_php['error_not_found'], '&laquo;'.$thumb.'&raquo;');
       print '<br />';
     }
-    cpg_db_query("DELETE FROM {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid'");
-    cpg_db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid='$pid'");
+    cpg_db_query("DELETE FROM {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid' LIMIT 1");
+    if (mysql_affected_rows()>0){
+      $delete_counter++;
+    }
+    cpg_db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid='$pid' LIMIT 1");
+    cpg_db_query("DELETE FROM {$CONFIG['TABLE_EXIF']} WHERE filename='".addslashes($image)."' LIMIT 1");
   }
+  printf($lang_util_php['affected_records'], $delete_counter);
 }
 
 function reset_views()
