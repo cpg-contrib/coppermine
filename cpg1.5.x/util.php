@@ -24,9 +24,8 @@ define('UPLOAD_PHP', true);
 require('include/init.inc.php');
 require('include/picmgmt.inc.php');
 
-// Default number of pictures to process at a time when rebuilding thumbs or normals:
-$defpicnum = 25;
-
+$defpicnum = 25; // Default number of pictures to process at a time when rebuilding thumbs or normals:
+$dayolder = 365; // Default number of days for deleting files older than xxx days {Frantz}
 if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
 pageheader($lang_util_php['title']);
@@ -37,7 +36,7 @@ $tasks =  array(
 
         'update_thumbs' => array('update_thumbs', $lang_util_php['update'],'
 
-                <b>'.$lang_util_php['update_what'].' (2):</b><br />
+                <strong>'.$lang_util_php['update_what'].' (2):</strong><br />
                 <input type="radio" name="updatetype" id="updatetype1" value="0" class="nobg" /><label for="updatetype1" class="clickable_option">'.$lang_util_php['update_thumb'].'</label><br />
                 <input type="radio" name="updatetype" id="updatetype2" value="1" class="nobg" /><label for="updatetype2" class="clickable_option">'.$lang_util_php['update_pic'].'</label><br />
                 <input type="radio" name="updatetype" id="updatetype3" value="2" class="nobg" /><label for="updatetype3" class="clickable_option">'.$lang_util_php['update_both'].'</label><br />
@@ -51,7 +50,7 @@ $tasks =  array(
 
         'filename_to_title' => array('filename_to_title', $lang_util_php['filename_title'],'
 
-                <b>'.$lang_util_php['filename_how'].' (2):</b><br />
+                <strong>'.$lang_util_php['filename_how'].' (2):</strong><br />
         <input type="radio" name="parsemode" id="parsemode1" value="0" checked="checked" class="nobg" /><label for="parsemode1" class="clickable_option">' . $lang_util_php['filename_remove'] . '</label><br />
                 <input type="radio" name="parsemode" id="parsemode2" value="1" class="nobg" /><label for="parsemode2" class="clickable_option">'.$lang_util_php['filename_euro'].'</label><br />
                 <input type="radio" name="parsemode" id="parsemode3" value="2" class="nobg" /><label for="parsemode3" class="clickable_option">'.$lang_util_php['filename_us'].'</label><br />
@@ -62,6 +61,17 @@ $tasks =  array(
         'del_orig' => array('del_orig', $lang_util_php['delete_original'], $lang_util_php['delete_original_explanation']),
 
         'del_norm' => array('del_norm', $lang_util_php['delete_intermediate'], $lang_util_php['delete_intermediate_explanation']),
+
+        'del_old' => array('del_old',
+                           $lang_util_php['delete_old'],
+                           $lang_util_php['delete_old_explanation'].
+                           '<br /><span style="color:red">'.
+                           $lang_util_php['delete_old_warning'].
+                           '</span><br />'.
+                           sprintf($lang_util_php['older_than'],
+                           '<input type="text" name="day_number" value="'.$dayolder.'" size="5" class="textinput"/>')
+                           ),
+
 
         'del_orphans' => array('del_orphans', $lang_util_php['delete_orphans'], $lang_util_php['delete_orphans_explanation']),
 
@@ -86,14 +96,14 @@ if (array_key_exists($action, $tasks)){
         starttable('100%', $lang_util_php['title'].$help, 2);
 
         echo '<tr>
-                        <td class="tablef"><b>'.$lang_util_php['what_it_does'] . '</b>:
+                        <td class="tablef"><strong>'.$lang_util_php['what_it_does'] . '</strong>:
                                 <ul style="margin-top:0px;margin-bottom:0px;list-style-type:square">';
         foreach($lang_util_desc_php as $value) {
         echo "<li>$value</li>\n";
         }
         echo '                        </ul>
                           </td>
-                        <td class="tableb"><b>' . $lang_util_php['instruction'] . '</b>:<br />
+                        <td class="tableb"><strong>' . $lang_util_php['instruction'] . '</strong>:<br />
                                 (1) ' . $lang_util_php['instruction_action'] . '<br />
                               (2) ' . $lang_util_php['instruction_parameter'] . '<br />
                               (3) ' . $lang_util_php['instruction_album'] . '<br />
@@ -497,6 +507,65 @@ function del_orphans()
 EOT;
         }
         }
+}
+
+function del_old() {
+  global $CONFIG, $lang_util_php;
+  $d = $_POST['day_number']*60*60*24;
+  $start = strtotime(date("Ymd")) - $d;
+  $albumid = (isset($_POST['albumid'])) ? $_POST['albumid'] : 0;
+  $albstr = ($albumid) ? "WHERE ctime <= $start AND aid = $albumid " : "WHERE ctime <= $start";
+  $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} $albstr");
+  $num = mysql_num_rows($result);
+  echo "<h2>".$lang_util_php['deleting_old']."</h2>";
+  while ($row = mysql_fetch_assoc($result)){
+    $pid = $row['pid'];
+    $image = $CONFIG['fullpath'] . $row['filepath'] . $row['filename'];
+    $normal = $CONFIG['fullpath'] . $row['filepath'] . $CONFIG['normal_pfx'] . $row['filename'];
+    $thumb = $CONFIG['fullpath'] . $row['filepath'] . $CONFIG['thumb_pfx'] . $row['filename'];
+
+    if (file_exists($normal)){
+      $test = unlink($normal);
+      if ($test){
+              printf($lang_util_php['del_intermediate'], '&laquo;'.$normal.'&raquo;');
+              print '<br />';
+      } else {
+              printf($lang_util_php['del_error'], '&laquo;'.$normal.'&raquo;');
+      }
+
+    } else {
+      printf($lang_util_php['error_not_found'], '&laquo;'.$normal.'&raquo;');
+      print '<br />';
+    }
+    if (file_exists($image)){
+      $test = unlink($image);
+      if ($test){
+              printf($lang_util_php['del_orig'], '&laquo;'.$image.'&raquo;');
+              print '<br />';
+      } else {
+              printf($lang_util_php['del_error'], '&laquo;'.$image.'&raquo;');
+      }
+
+    } else {
+      printf($lang_util_php['error_not_found'], '&laquo;'.$image.'&raquo;');
+      print '<br />';
+    }
+    if (file_exists($thumb)){
+      $test = unlink($thumb);
+      if ($test){
+              printf($lang_util_php['del_thumb'], '&laquo;'.$thumb.'&raquo;');
+              print '<br />';
+      } else {
+              printf($lang_util_php['del_error'], '&laquo;'.$thumb.'&raquo;');
+      }
+
+    } else {
+      printf($lang_util_php['error_not_found'], '&laquo;'.$thumb.'&raquo;');
+      print '<br />';
+    }
+    cpg_db_query("DELETE FROM {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid'");
+    cpg_db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid='$pid'");
+  }
 }
 
 function reset_views()

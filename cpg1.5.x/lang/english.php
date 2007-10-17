@@ -2272,6 +2272,15 @@ $lang_util_php = array(
   'delete_all_orphans' => 'Delete all orphans?',
   'comment' => 'Comment: ',
   'nonexist' => 'attached to non existant file # ',
+  'delete_old' => 'Delete files that are older than a set number of days', //cpg1.5
+  'delete_old_explanation' => 'This will delete files that are older than the number of days you specify (normal, intermediate, thumbnails). Use this feature to free up disk space.', //cpg1.5
+  'delete_old_warning' => 'Warning: the files you specify will be deleted for good without further warnings!', //cpg1.5
+  'deleting_old' => 'Deleting older images, please wait...', //cpg1.5
+  'older_than' => 'Delete files older than %s days', //cpg1.5
+  'del_orig' => 'The original file %s was successfully deleted', //cpg1.5
+  'del_intermediate' => 'The intermediate image %s was successfully deleted', //cpg1.5
+  'del_thumb' => 'The thumbnail %s was successfully deleted', //cpg1.5
+  'del_error' => 'Error deleting %s !', //cpg1.5
 );
 }
 
