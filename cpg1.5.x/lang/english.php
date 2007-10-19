@@ -2200,6 +2200,7 @@ $lang_util_desc_php = array(
 'Rebuilds thumbnails and resized photos',
 'Deletes original sized photos replacing them with the resized version',
 'Deletes original or intermediate size photos to free webspace',
+'Deletes files that are older than a set number of days', //cpg1.5
 'Deletes orphaned comments',
 'Re-reads file sizes and dimensions (if you manually edited pics)',
 'Resets views counter',
@@ -2267,6 +2268,7 @@ $lang_util_php = array(
   'refresh_db_explanation' => 'This will re-read file sizes and dimensions. Use this if quota\'s are incorrect or you have changed the files manually.',
   'reset_views' => 'Reset view counters',
   'reset_views_explanation' => 'Sets all file view counts to zero in the album specified.',
+  'reset_succes' => 'Reset successful', // cpg1.5
   'orphan_comment' => 'orphan comments found',
   'delete' => 'Delete',
   'delete_all' => 'Delete all',
@@ -2283,6 +2285,22 @@ $lang_util_php = array(
   'del_thumb' => 'The thumbnail %s was successfully deleted',  // cpg1.5
   'del_error' => 'Error deleting %s !',  // cpg1.5
   'affected_records' => '%s affected records.', // cpg1.5
+  'all_albums' => 'All Albums', // cpg1.5
+  'update_result' => 'Update results', //cpg1.5
+  'incorrect_filesize' => 'Total filesize is incorrect', // cpg1.5
+  'database' => 'Database: ', // cpg1.5
+  'bytes' => ' bytes', // cpg1.5
+  'actual' => ' Actual: ', // cpg1.5
+  'updated' => 'Updated', // cpg1.5
+  'update_failed' => 'Update failed.', // cpg1.5
+  'filesize_error' => 'Could not obtain file size (may be invalid file), skipping....', // cpg1.5
+  'skipped' => 'Skipped', // cpg1.5
+  'incorrect_dimension' => 'Dimensions are incorrect', // cpg1.5
+  'dimension_error' => 'Could not obtain dimension info, skipping....', // cpg1.5
+  'cannot_fix' => 'Cannot fix', // cpg1.5
+  'fullpic_error' => 'File %s does not exist!', // cpg1.5
+  'no_prob_detect' => 'No problems detected', // cpg1.5
+  'no_prob_found' => 'No problems were found.', // cpg1.5
 );
 }
 

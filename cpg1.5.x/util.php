@@ -219,7 +219,7 @@ function filloptions()
 
         $result = cpg_db_query("SELECT aid, category, IF(user_name IS NOT NULL, CONCAT('(', user_name, ') ',title), CONCAT(' - ', title)) AS title " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "LEFT JOIN {$CONFIG['TABLE_USERS']} AS u ON category = (" . FIRST_USER_CAT . " + user_id) " . "ORDER BY category, title");
 
-        echo '&nbsp;&nbsp;&nbsp;&nbsp;<select size="1" name="albumid" class="listbox"><option value="0">All Albums</option>';
+        echo "&nbsp;&nbsp;&nbsp;&nbsp;<select size='1' name='albumid' class='listbox'><option value='0'>{$lang_util_php['all_albums']}</option>";
 
         while ($row = mysql_fetch_array($result)){
                 $result2 = cpg_db_query("SELECT name FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = {$row['category']}");
@@ -453,7 +453,7 @@ function del_norm()
                                 printf('The intermediate pic %s was successfully deleted', $normal);
                                 print '<br />';
                         } else {
-                                printf('Error deleting %s !', $normal);
+                                printf($lang_util_php['del_error'], $normal);
                         }
                 } else {
                         printf($lang_util_php['error_not_found'], $normal);
@@ -581,7 +581,7 @@ function reset_views()
         $albumid = (isset($_POST['albumid'])) ? $_POST['albumid'] : 0;
         $albstr = ($albumid) ? "WHERE aid = $albumid" : '';
 
-        if (cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET hits ='0' $albstr")) echo 'Reset successful';
+        if (cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET hits ='0' $albstr")) echo $lang_util_pgp['reset_succes'];
 
 }
 function refresh_db()
@@ -593,7 +593,7 @@ function refresh_db()
         $numpics = $_POST['refresh_numpics'];
         $startpic = (isset($_POST['refresh_startpic'])) ? $_POST['refresh_startpic'] : 0;
 
-        starttable('100%', "Update results", 3);
+        starttable('100%', $lang_util_php['update_result'], 3);
 
         echo "<tr><th class=\"tableh2\">{$lang_util_php['file']}</th><th class=\"tableh2\">{$lang_util_php['problem']}</th><th class=\"tableh2\">{$lang_util_php['status']}</th></tr>";
 
@@ -625,36 +625,36 @@ function refresh_db()
 
                                 if ($total_filesize <> $db_total_filesize){
 
-                                        $prob .= "Total filesize is incorrect<br />Database: {$db_total_filesize} bytes<br /> Actual: {$total_filesize} bytes<br />";
+                                        $prob .= "{$lang_util_php['incorrect_filesize']}<br />{$lang_util_php['database']}{$db_total_filesize}{$lang_util_php['bytes']}<br />{$lang_util_php['actual']}{$total_filesize}{$lang_util_php['bytes']}<br />";
                                         $fs1_upd = @cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET total_filesize = '$total_filesize' WHERE pid = '$db_pid' LIMIT 1");
-                                        $outcome = ($fs1_upd) ? 'Updated' : 'Update failed.';
+                                        $outcome = ($fs1_upd) ? $lang_util_php['updated'] : $lang_util_php['update_failled'];
                                 }
 
                                 if ($filesize <> $db_filesize){
 
-                                        $prob .= "Total filesize is incorrect<br />Database: {$db_filesize} bytes<br />Actual: {$filesize} bytes<br />";
+                                        $prob .= "{$lang_util_php['incorrect_filesize']}<br />{$lang_util_php['database']}{$db_filesize}{$lang_util_php['bytes']}<br />{$lang_util_php['actual']}{$filesize}{$lang_util_php['bytes']}<br />";
                                         $fs2_upd = @cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET filesize = '$filesize' WHERE pid = '$db_pid' LIMIT 1");
-                                        $outcome = ($fs2_upd) ? 'Updated' : 'Update failed.';
+                                        $outcome = ($fs2_upd) ? $lang_util_php['updated'] : $lang_util_php['update_failled'];
                                 }
                         } else {
-                                $prob .= "Could not obtain file size (may be invalid file), skipping....<br />";
-                                $outcome = "Skipped";
+                                $prob .= $lang_util_php['filesize_error'].'<br />';
+                                $outcome = $lang_util_php['skipped'];
                         }
 
                         if ($dimensions){
                                 if (($dimensions[0] <> $db_pwidth) ||  ($dimensions[1] <> $db_pheight)){
 
-                                        $prob .= "Dimensions are incorrect<br />Database: {$db_pwidth}x{$db_pheight}<br />Actual:{$dimensions[0]}x{$dimensions[1]}<br />";
+                                        $prob .= "{$lang_util_php['incorect_dimension']}<br />{$lang_util_php['database']}{$db_pwidth}x{$db_pheight}<br />{$lang_util_php['actual']}{$dimensions[0]}x{$dimensions[1]}<br />";
                                         $dim_upd = @cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET `pwidth` = '{$dimensions[0]}', `pheight` = '{$dimensions[1]}' WHERE `pid` = '$db_pid' LIMIT 1");
-                                        $outcome = ($dim_upd) ? 'Updated' : 'Update failed - '.mysql_error();
+                                        $outcome = ($dim_upd) ? $lang_util_php['updated'] : $lang_util_php['update_failled'].mysql_error();
                                 }
                         } else {
-                                $prob .= "Could not obtain dimension info, skipping....<br />";
-                                $outcome = "Skipped";
+                                $prob .= $lang_util_php['dimension_error'].'<br />';
+                                $outcome = $lang_util_php['skipped'];
                         }
                 } else {
-                        $prob .= "File $full_pic_url does not exist !<br />";
-                        $outcome = "Cannot fix";
+                        $prob .= sprintf($lang_util_php['fullpic_error'], $full_pic_url).'<br />';
+                        $outcome = $lang_util_php['cannot_fix'];
                 }
 
                 if ($prob){
@@ -662,7 +662,7 @@ function refresh_db()
                         $found++;
                         echo "<tr><td class=\"tableb\">$url</td><td class=\"tableb\">$prob</td><td class=\"tableb\">$outcome</td></tr>";
                 } else {
-                        echo "<tr><td class=\"tableb\">$url</td><td class=\"tableb\">No problems detected</td><td class=\"tableb\">OK</td></tr>";
+                        echo "<tr><td class=\"tableb\">$url</td><td class=\"tableb\">{$lang_util_php['no_prob_detect']}</td><td class=\"tableb\">OK</td></tr>";
                 }
                 my_flush();
 
@@ -670,7 +670,7 @@ function refresh_db()
 
         endtable();
 
-        if ($outcome == 'none') echo 'No problems were found.';
+        if ($outcome == 'none') echo $lang_util_php['no_prob_found'];
 
         if ($count == $numpics){
                    $startpic += $numpics;
