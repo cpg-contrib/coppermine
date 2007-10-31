@@ -566,15 +566,18 @@ if ($_GET['test_gd1']) { // GD1 test
     if (file_exists($DFLT['cfg_f'])) {
         html_installer_locked();
     } elseif (count($_POST)) {
-            test_fs();
+        test_fs();
         test_sql_connection();
         test_admin_login();
-        write_config_file();
-        if ($errors == '') create_tables();
-        if ($errors != '')
+
+        if ($errors == '') {
+            create_tables();
+        }
+        if ($errors != '') {
             html_input_config($errors);
-        else {
-            //lock_install();
+        } else {
+            //Config file should be written only when there are no errors.
+            write_config_file();
             html_install_success($notes);
         }
     } else {
