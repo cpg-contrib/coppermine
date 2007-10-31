@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.4.14
   $Source$
@@ -40,7 +40,7 @@ if ((!is_array($data)) && $CONFIG['log_ecards'] && (strlen($_GET['data']) > 12))
 if (is_array($data)) {
 
 // Remove HTML tags as we can't trust what we receive
-foreach($data as $key => $value) $data[$key] = html_entity_decode(strtr($value, $HTML_SUBST));
+foreach($data as $key => $value) $data[$key] = strtr($value, $HTML_SUBST);
 // Load template parameters
 $params = array('{LANG_DIR}' => $lang_text_dir,
     '{TITLE}' => sprintf($lang_ecard_php['ecard_title'], $data['sn']),
