@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-10-31 [S] Removed html_entity_decode causing potential XSS vulnerability as discussed in http://coppermine-gallery.net/forum/index.php?topic=47390.0 {Aditya}
 2007-10-19 [O] Replaced hard-coded language in util.php with translation strings {Frantz}
 2007-10-17 [A] Added plugin "Visible HookPoints" to package {GauGau}
 2007-10-17 [A] Added feature "delete files older than XXX days" {Frantz}

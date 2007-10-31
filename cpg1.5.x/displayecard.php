@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
@@ -35,7 +35,7 @@ if (!is_array($tmpData['data'])) {
 } else {
   // Remove HTML tags as we can't trust what we receive
   foreach($tmpData['data'] as $key => $value) {
-    $CLEAN['data'][$key] = html_entity_decode(strtr($value, $HTML_SUBST));
+    $CLEAN['data'][$key] = strtr($value, $HTML_SUBST);
     if ($key == 'pid') {
       $CLEAN['data'][$key] = (int)$CLEAN['data'][$key];
     }
