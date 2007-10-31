@@ -22,103 +22,22 @@ define('COPPERMINE_VERSION_STATUS', 'alpha');
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 
+set_include_path(get_include_path().PATH_SEPARATOR.dirname(__FILE__).PATH_SEPARATOR.'Inspekt');
+require_once "Inspekt.php";
+
+//Workaround for notice given by Inspekt when _SESSION is not set.
+if (!isset($_SESSION)) {
+    $_SESSION = array();
+}
+
+$superCage = Inspekt::makeSuperCage();
+
 function cpgGetMicroTime()
 {
 	list($usec, $sec) = explode(" ", microtime());
 	return ((float)$usec + (float)$sec);
 }
 $cpg_time_start = cpgGetMicroTime();
-
-function cpg_globals_clean($var) {
-	global $HTML_SUBST; //$HTML_SUBST should be in the global scope so it's effects can be reversed if necessary.
-	$HTML_SUBST = array('&' => '&amp;', '"' => '&quot;', '<' => '&lt;', '>' => '&gt;', '%26' => '&amp;', '%22' => '&quot;', '%3C' => '&lt;', '%3E' => '&gt;','%27' => '&#39;', "'" => '&#39;');
-	static $magicquotes;
-	if (!isset($magicquotes)) $magicquotes=get_magic_quotes_gpc();
-
-	$clean=array();
-	if (is_array($var)) {
-		foreach ($var as $key => $value) {
-			$clean[cpg_globals_clean($key)] = cpg_globals_clean($value);
-		}
-	} else {
-		if ($magicquotes) $var=stripslashes($var);
-		$clean = strtr($var, $HTML_SUBST);
-	}
-	return $clean;
-}
-
-/**
- * If register_globals is ON, ensure no unexpected globals are defined.
- * ie. We'll try to emulate a register_globals OFF environment.
- *
- * This function also calls cpg_globals_clean to normalize GPC magic_quotes and
- * translate characters known for sql and html injection.
- *
- * All variables used before calling init.inc.php are considered hostile
- * and will be discarded. Those variables instantiated after or during init.inc.php
- * should be considered less hostile.
- */
-
-
-$superglobals = array(
-   '_ENV',        'HTTP_ENV_VARS',
-   '_GET',        'HTTP_GET_VARS',
-   '_POST',    'HTTP_POST_VARS',
-   '_COOKIE',    'HTTP_COOKIE_VARS',
-   '_FILES',    'HTTP_FILES_VARS',
-   '_SERVER',    'HTTP_SERVER_VARS',
-   '_SESSION',    'HTTP_SESSION_VARS',
-   '_REQUEST',
-);
-$knownglobals = array(
-   //
-   // Known PHP Reserved globals and superglobals:
-   //
-   '_ENV',        'HTTP_ENV_VARS',
-   '_GET',        'HTTP_GET_VARS',
-   '_POST',    'HTTP_POST_VARS',
-   '_COOKIE',    'HTTP_COOKIE_VARS',
-   '_FILES',    'HTTP_FILES_VARS',
-   '_SERVER',    'HTTP_SERVER_VARS',
-   '_SESSION',    'HTTP_SESSION_VARS',
-   '_REQUEST',
-
-   //
-   // Global variables used by this code snippet:
-   //
-   'superglobals',
-   'knownglobals',
-   'superglobal',
-   'global',
-   'void',
-
-   //
-   // Known global variables defined before this code snippet is reached.
-   //
-   'cpg_time_start',
-);
-
-foreach( $superglobals as $superglobal )
-{
-	/**
-	 * $$superglobal variable variable syntax is intended.
-	 */
-	if (isset($$superglobal)) { //longvars and sessions may not be set
-		if(is_array($$superglobal)) { //every valid superglobal is an array
-		   foreach( $$superglobal as $global => $void )
-		   {
-			   if( !in_array($global, $knownglobals) )
-			   {
-				   unset($GLOBALS[$global]);
-			   }
-		   }
-		   $$superglobal=cpg_globals_clean($$superglobal);
-		} else {
-			unset($$superglobal); //it is not a valid superglobal
-		}
-	}
-}
-unset($superglobals,$superglobal,$global,$void,$knownglobals);  //leave no trace
 
 // Store all reported errors in the $cpgdebugger
 require_once('include/debugger.inc.php');
@@ -193,7 +112,7 @@ if(file_exists('include/config.inc.php')){
 	  </style>
 	</head>
 	<body>
-	  <img src="images/coppermine_logo.png" alt="Coppermine Photo Gallery - Your Online Photo Gallery" /><br />
+	  <img src="images/coppermine-logo.png" alt="Coppermine Photo Gallery - Your Online Photo Gallery" /><br />
 	  Coppermine Photo Gallery seems not to be installed correctly, or you are running coppermine for the first time. You\'ll be redirected to the installer. If your browser doesn\'t support redirect, click <a href="install.php">here</a>.
 	</body>
 </html>');
