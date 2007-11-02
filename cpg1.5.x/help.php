@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
@@ -25,17 +25,23 @@ require('include/init.inc.php');
 $meta_charset = '<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />';
 
 // Get the vars from the url
-if (isset($_REQUEST['as'])) {
-    $anchor_start = $_REQUEST['as']; } else { $anchor_start = '';
+if ($superCage->get->keyExists('as')) {
+    $anchor_start = $superCage->get->getEscaped('as');
+} else {
+    $anchor_start = '';
 }
-if (isset($_REQUEST['ae'])) {
-    $anchor_end = $_REQUEST['ae']; } else { $anchor_end = '';
+if ($superCage->get->keyExists('ae')) {
+    $anchor_end = $superCage->get->getEscaped('ae');
+} else {
+    $anchor_end = '';
 }
-if (isset($_REQUEST['close'])) {
-    $close = $_REQUEST['close']; } else { $close = '0';
+if ($superCage->get->keyExists('close')) {
+    $close = $superCage->get->getEscaped('close');
+} else {
+    $close = '0';
 }
-if (isset($_REQUEST['base'])) {
-    $base = $_REQUEST['base'];
+if ($superCage->get->keyExists('base')) {
+    $base = $superCage->get->getEscaped('base');
     if ($CONFIG['charset'] == 'language file') {
         $meta_charset = '<meta http-equiv="Content-Type" content="text/html; charset='.$lang_charset.'" />';
     } else {
@@ -44,18 +50,26 @@ if (isset($_REQUEST['base'])) {
 } else {
     $base = '';
 }
-if (isset($_REQUEST['h'])) {
-    $header = $_REQUEST['h']; } else { $header = '';
+if ($superCage->get->keyExists('h')) {
+    $header = $superCage->get->getEscaped('h');
+} else {
+    $header = '';
 }
-if (isset($_REQUEST['t'])) {
-    $text = $_REQUEST['t']; } else { $text = '';
+if ($superCage->get->keyExists('t')) {
+    $text = $superCage->get->getEscaped('t');
+} else {
+    $text = '';
 }
 
-if (isset($_REQUEST['style'])) {
-    $style = $_REQUEST['style']; } else { $style = '';
+if ($superCage->get->keyExists('style')) {
+    $style = $superCage->get->getEscaped('style');
+} else {
+    $style = '';
 }
-if (isset($_REQUEST['f'])) {
-    $file = $_REQUEST['f']; } else { $file = 'index.htm';
+if ($superCage->get->keyExists('f')) {
+    $file = $superCage->get->getEscaped('f');
+} else {
+    $file = 'index.htm';
 }
 // sanitize the file name
 if (strrpos($file, '.') != FALSE) {
@@ -63,8 +77,6 @@ if (strrpos($file, '.') != FALSE) {
 }
 $file = preg_replace('/[^0-9a-zA-Z_-]/', '', $file);
 $file = $file . '.htm';
-
-
 
 if ($base != '') {
 // content of header and text have been base64-encoded - decode it now
@@ -75,10 +87,6 @@ $text = @unserialize(@base64_decode($text));
 if ($close != 1) {
 $close_link = '<br />&nbsp;<br /><div align="center"><a href="#" class="admin_menu" onclick="window.close();">'.$lang_common['close'].'</a><br />&nbsp;</div>';
 }
-
-//print $file;
-//print_r($_GET);
-//die;
 
 ob_start();
 @include('docs/'.$file);
