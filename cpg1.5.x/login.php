@@ -26,33 +26,26 @@ if (USER_ID) cpg_die(ERROR, $lang_login_php['err_already_logged_in'], __FILE__, 
 
 if (defined('UDB_INTEGRATION')) $cpg_udb->login_page();
 
-/**
- * Clean up GPC and other Globals here
- */
-if (isset($_POST['submitted'])) {
-  $CLEAN['username'] = addslashes($_POST['username']);
-  $CLEAN['password'] = addslashes($_POST['password']);
-  if (isset($_POST['remember_me'])) {
-    $CLEAN['remember_me'] = 1;
-  } else {
-    $CLEAN['remember_me'] = 0;
-  }
-}
-
-$referer = $_GET['referer'] ? $_GET['referer'] : 'index.php';
+$referer = $superCage->get->keyExists('referer') ? $superCage->get->getRaw('referer') : 'index.php';
 if (strpos($referer, "http") !== false || strpos($referer, "logout.php") !== false) {
   $referer = "index.php";
 }
 $login_failed = '';
 $cookie_warning = '';
 
-if (isset($_POST['submitted'])) {
-    if ( $USER_DATA = $cpg_udb->login( addslashes($CLEAN['username']), addslashes($CLEAN['password']), isset($CLEAN['remember_me']) ) ) {
+if ($superCage->post->keyExists('submitted')) {
+    echo "USERNAME: ".$superCage->post->getEscaped('username');
+    if ( $USER_DATA = $cpg_udb->login( $superCage->post->getEscaped('username'), $superCage->post->getEscaped('password'), $superCage->post->getInt('remember_me') ) ) {
         $referer=preg_replace("'&amp;'","&",$referer);
         cpgRedirectPage($referer, $lang_login_php['login'], sprintf($lang_login_php['welcome'], $USER_DATA['user_name']),3);
         exit;
     } else {
-        log_write("Failed login attempt with Username: {$CLEAN['username']} from IP {$_SERVER['REMOTE_ADDR']} on " . localised_date(-1,$log_date_fmt),CPG_SECURITY_LOG);
+        if ($superCage->server->testip('REMOTE_ADDR')) {
+        	$ip = $superCage->server->getRaw('REMOTE_ADDR');
+        } else {
+        	$ip = 'Unknown';
+        }
+        log_write("Failed login attempt with Username: ".$superCage->post->getEscaped('username')." from IP $ip on " . localised_date(-1,$log_date_fmt),CPG_SECURITY_LOG);
 
         $login_failed = <<<EOT
                   <tr>
@@ -81,7 +74,8 @@ EOT;
     }
 }
 
-if (!isset($_COOKIE[$CONFIG['cookie_name'] . '_data'])) {
+//if (!isset($_COOKIE[$CONFIG['cookie_name'] . '_data'])) {
+if (!$superCage->cookie->keyExists($CONFIG['cookie_name'] . '_data')) {
     $cookie_warning = <<<EOT
                   <tr>
                           <td colspan="2" align="center" class="tableh2">

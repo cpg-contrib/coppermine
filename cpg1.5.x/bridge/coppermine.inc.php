@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
@@ -31,6 +31,8 @@ class coppermine_udb extends core_udb {
         {
                 global $BRIDGE,$CONFIG;
 
+                $superCage = Inspekt::makeSuperCage();
+
                 if (!USE_BRIDGEMGR) {
 
                         $this->boardurl = 'http://localhost/coppermine';
@@ -42,7 +44,7 @@ class coppermine_udb extends core_udb {
                 }
 
                 // A hash that's a little specific to the client's configuration
-                $this->client_id = md5($_SERVER['HTTP_USER_AGENT'].$_SERVER['SERVER_PROTOCOL'].$CONFIG['site_url']);
+                $this->client_id = md5($superCage->server->getRaw('HTTP_USER_AGENT').$superCage->server->getRaw('SERVER_PROTOCOL').$CONFIG['site_url']);
 
                 $this->multigroups = 1;
 
@@ -127,17 +129,17 @@ class coppermine_udb extends core_udb {
                         $sql =  "UPDATE {$this->usertable} SET user_lastvisit = NOW() ";
                         $sql .= "WHERE user_name = '$username' AND BINARY user_password = '$encpassword' AND user_active = 'YES'";
                         cpg_db_query($sql, $this->link_id);
-        
+
                         $USER_DATA = mysql_fetch_assoc($results);
                         mysql_free_result($results);
-        
+
                         // If this is a 'remember me' login set the remember field to true
                         if ($remember) {
                                 $remember_sql = ",remember = '1' ";
                         } else {
                                 $remember_sql = '';
                         }
-        
+
                         // Update guest session with user's information
                         $sql  = "update {$this->sessionstable} set ";
                         $sql .= "user_id={$USER_DATA['user_id']} ";
@@ -161,7 +163,7 @@ class coppermine_udb extends core_udb {
                 $sql  = "update {$this->sessionstable} set user_id = 0, remember=0 where session_id=md5('$session_id');";
                 cpg_db_query($sql, $this->link_id);
         }
-		
+
         // Get groups of which user is member
         function get_groups( $user )
         {
@@ -174,12 +176,12 @@ class coppermine_udb extends core_udb {
 			if ($row = mysql_fetch_array($result)){
 				$groups = array_merge($groups, explode(',', $row['user_group_list']));
 			}
-			
+
 			mysql_free_result($result);
 
 			return $groups;
         }
-		
+
         // definition of actions required to convert a password from user database form to cookie form
         function udb_hash_db($password)
         {
@@ -192,75 +194,77 @@ class coppermine_udb extends core_udb {
         {
             global $CONFIG;
 
-                // Default anonymous values
-                $id = 0;
-                $pass = '';
+            $superCage = Inspekt::makeSuperCage();
 
-                // Get the session cookie value
-                $sessioncookie = $_COOKIE[$this->client_id];
+            // Default anonymous values
+            $id = 0;
+            $pass = '';
 
-                // Create the session id by concat(session_cookie_value, client_id)
-                $session_id = $sessioncookie.$this->client_id;
+            // Get the session cookie value
+            $sessioncookie = $superCage->cookie->getRaw($this->client_id);
 
-                // Lifetime of 'remember me' session is 2 weeks
-                $rememberme_life_time = time()-(CPG_WEEK*2);
-        
-                // Lifetime of normal session is 1 hour
-                $session_life_time = time()-CPG_HOUR;
-        
-                // Delete old sessions
-				$sql = "delete from {$this->sessionstable} where time<$session_life_time and remember=0;";
-				cpg_db_query($sql, $this->link_id);
-        
-                // Delete stale 'remember me' sessions
-                $sql = "delete from {$this->sessionstable} where time<$rememberme_life_time;";
-                cpg_db_query($sql, $this->link_id);
-        
-                // Check for valid session if session_cookie_value exists
-                if ($sessioncookie) {
-        
-                    // Check for valid session
-                    $sql =  'select user_id from '.$this->sessionstable.' where session_id=md5("'.$session_id.'");';
-                    $result = cpg_db_query($sql);
-        
-                    // If session exists...
-                    if (mysql_num_rows($result)) {
+            // Create the session id by concat(session_cookie_value, client_id)
+            $session_id = $sessioncookie.$this->client_id;
+
+            // Lifetime of 'remember me' session is 2 weeks
+            $rememberme_life_time = time()-(CPG_WEEK*2);
+
+            // Lifetime of normal session is 1 hour
+            $session_life_time = time()-CPG_HOUR;
+
+            // Delete old sessions
+			$sql = "delete from {$this->sessionstable} where time<$session_life_time and remember=0;";
+			cpg_db_query($sql, $this->link_id);
+
+            // Delete stale 'remember me' sessions
+            $sql = "delete from {$this->sessionstable} where time<$rememberme_life_time;";
+            cpg_db_query($sql, $this->link_id);
+
+            // Check for valid session if session_cookie_value exists
+            if ($sessioncookie) {
+
+                // Check for valid session
+                $sql =  'select user_id from '.$this->sessionstable.' where session_id=md5("'.$session_id.'");';
+                $result = cpg_db_query($sql);
+
+                // If session exists...
+                if (mysql_num_rows($result)) {
+                    $row = mysql_fetch_assoc($result);
+                    mysql_free_result($result);
+
+                    $row['user_id'] = (int) $row['user_id'];
+
+                    // Check if there's a user for this session
+                    $sql =  'select user_id as id, user_password as password ';
+                    $sql .= 'from '.$this->usertable.' ';
+                    $sql .= 'where user_id='.$row['user_id'];
+                    $result = cpg_db_query($sql, $this->link_id);
+
+                    // If user exists, use the current session
+                    if ($result) {
                         $row = mysql_fetch_assoc($result);
                         mysql_free_result($result);
-        
-                        $row['user_id'] = (int) $row['user_id'];
-        
-                        // Check if there's a user for this session
-                        $sql =  'select user_id as id, user_password as password ';
-                        $sql .= 'from '.$this->usertable.' ';
-                        $sql .= 'where user_id='.$row['user_id'];
-                        $result = cpg_db_query($sql, $this->link_id);
-        
-                        // If user exists, use the current session
-                        if ($result) {
-                            $row = mysql_fetch_assoc($result);
-                            mysql_free_result($result);
-        
-                            $pass = $row['password'];
-                            $id = (int) $row['id'];
-                            $this->session_id = $sessioncookie;
-        
-                        // If the user doesn't exist, use default guest credentials
-                        }
-        
-                    // If not a valid session exists, create a new session
-                    } else {
-        
-                        $this->create_session();
+
+                        $pass = $row['password'];
+                        $id = (int) $row['id'];
+                        $this->session_id = $sessioncookie;
+
+                    // If the user doesn't exist, use default guest credentials
                     }
-        
-                // No session exists; create one
+
+                // If not a valid session exists, create a new session
                 } else {
-        
+
                     $this->create_session();
                 }
 
-                return ($id) ? array($id, $pass) : false;
+            // No session exists; create one
+            } else {
+
+                $this->create_session();
+            }
+
+            return ($id) ? array($id, $pass) : false;
         }
 
 
@@ -279,13 +283,13 @@ class coppermine_udb extends core_udb {
                 // start session
                 $this->session_id = $this->generateId();
                 $session_id = $this->session_id.$this->client_id;
-        
+
                 $sql =  'insert into '.$this->sessionstable.' (session_id, user_id, time, remember) values ';
                 $sql .= '("'.md5($session_id).'", 0, "'.time().'", 0);';
-        
+
                 // insert the guest session
                 cpg_db_query($sql, $this->link_id);
-        
+
                 // set the session cookie
                 setcookie( $this->client_id, $this->session_id, time() + (CPG_WEEK*2), $CONFIG['cookie_path'] );
         }
@@ -313,13 +317,13 @@ class coppermine_udb extends core_udb {
         // Gets user/guest count
         function get_session_users() {
                 static $count = array();
-    
+
                 if (!$count) {
                         // Get guest count
                         $sql = "select count(user_id) as num_guests from {$this->sessionstable} where user_id=0;";
                         $result = cpg_db_query($sql, $this->link_id);
                         $count = mysql_fetch_assoc($result);
-            
+
                         // Get authenticated user count
                         $sql = "select count(user_id) as num_users from {$this->sessionstable} where user_id>0;";
                         $result = cpg_db_query($sql, $this->link_id);
@@ -368,7 +372,7 @@ class coppermine_udb extends core_udb {
 		/* Note : we don't want to overide this - the groups need to be resynced to coppermine default after un-integration
          * Rebuttal: without overriding and removing Coppermine group deletion (see below) its impossible to add new groups to a non-bridged install.
          */
-		
+
     	function synchronize_groups()
     	{
     		global $CONFIG ;

@@ -129,8 +129,17 @@ function user_get_profile()
 {
         global $CONFIG, $USER;
 
-        if (isset($_COOKIE[$CONFIG['cookie_name'].'_data'])) {
-                $USER = @unserialize(@base64_decode($_COOKIE[$CONFIG['cookie_name'].'_data']));
+        $superCage = Inspekt::makeSuperCage();
+
+        /**
+         * TODO: Use the md5 # to verify integrity of cookie string
+         * At the time of installation we write a randonmly generated secret salt in config.inc
+         * This secret salt will be appended to the encoded string and the resulting md5 # of this string will
+         * be appended to the encoded string with @ separator
+         * e.g. $encoded_string_with_md5 = "asdfkhasdf987we89rfadfjhasdfklj@^@".md5("asdfkhasdf987we89rfadfjhasdfklj".$secret_salt)
+         */
+        if ($superCage->cookie->keyExists($CONFIG['cookie_name'].'_data')) {
+            $USER = @unserialize(@base64_decode($superCage->cookie->getRaw($CONFIG['cookie_name'].'_data')));
         }
 
         if (!isset($USER['ID']) || strlen($USER['ID']) != 32) {
@@ -142,7 +151,9 @@ function user_get_profile()
                 $USER['ID'] = addslashes($USER['ID']);
         }
 
-        if (!isset($USER['am'])) $USER['am'] = 1;
+        if (!isset($USER['am'])) {
+            $USER['am'] = 1;
+        }
 }
 
 // Save the user profile in a cookie
@@ -158,6 +169,14 @@ function user_get_profile()
 function user_save_profile()
 {
         global $CONFIG, $USER;
+
+        /**
+         * TODO: Use the md5 # to verify integrity of cookie string
+         * At the time of installation we write a randonmly generated secret salt in config.inc
+         * This secret salt will be appended to the encoded string and the resulting md5 # of this string will
+         * be appended to the encoded string with @ separator
+         * e.g. $encoded_string_with_md5 = "asdfkhasdf987we89rfadfjhasdfklj@^@".md5("asdfkhasdf987we89rfadfjhasdfklj".$secret_salt)
+         */
         $data = base64_encode(serialize($USER));
         setcookie($CONFIG['cookie_name'].'_data', $data, time()+86400*30, $CONFIG['cookie_path']);
 }

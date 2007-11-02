@@ -22,103 +22,23 @@ define('COPPERMINE_VERSION_STATUS', 'alpha');
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 
+set_include_path(get_include_path().PATH_SEPARATOR.dirname(__FILE__).PATH_SEPARATOR.dirname(__FILE__).DIRECTORY_SEPARATOR.'Inspekt');
+
+require_once "Inspekt.php";
+
+//Workaround for notice given by Inspekt when _SESSION is not set.
+if (!isset($_SESSION)) {
+    $_SESSION = array();
+}
+
+$superCage = Inspekt::makeSuperCage();
+
 function cpgGetMicroTime()
 {
 	list($usec, $sec) = explode(" ", microtime());
 	return ((float)$usec + (float)$sec);
 }
 $cpg_time_start = cpgGetMicroTime();
-
-function cpg_globals_clean($var) {
-	global $HTML_SUBST; //$HTML_SUBST should be in the global scope so it's effects can be reversed if necessary.
-	$HTML_SUBST = array('&' => '&amp;', '"' => '&quot;', '<' => '&lt;', '>' => '&gt;', '%26' => '&amp;', '%22' => '&quot;', '%3C' => '&lt;', '%3E' => '&gt;','%27' => '&#39;', "'" => '&#39;');
-	static $magicquotes;
-	if (!isset($magicquotes)) $magicquotes=get_magic_quotes_gpc();
-
-	$clean=array();
-	if (is_array($var)) {
-		foreach ($var as $key => $value) {
-			$clean[cpg_globals_clean($key)] = cpg_globals_clean($value);
-		}
-	} else {
-		if ($magicquotes) $var=stripslashes($var);
-		$clean = strtr($var, $HTML_SUBST);
-	}
-	return $clean;
-}
-
-/**
- * If register_globals is ON, ensure no unexpected globals are defined.
- * ie. We'll try to emulate a register_globals OFF environment.
- *
- * This function also calls cpg_globals_clean to normalize GPC magic_quotes and
- * translate characters known for sql and html injection.
- *
- * All variables used before calling init.inc.php are considered hostile
- * and will be discarded. Those variables instantiated after or during init.inc.php
- * should be considered less hostile.
- */
-
-
-$superglobals = array(
-   '_ENV',        'HTTP_ENV_VARS',
-   '_GET',        'HTTP_GET_VARS',
-   '_POST',    'HTTP_POST_VARS',
-   '_COOKIE',    'HTTP_COOKIE_VARS',
-   '_FILES',    'HTTP_FILES_VARS',
-   '_SERVER',    'HTTP_SERVER_VARS',
-   '_SESSION',    'HTTP_SESSION_VARS',
-   '_REQUEST',
-);
-$knownglobals = array(
-   //
-   // Known PHP Reserved globals and superglobals:
-   //
-   '_ENV',        'HTTP_ENV_VARS',
-   '_GET',        'HTTP_GET_VARS',
-   '_POST',    'HTTP_POST_VARS',
-   '_COOKIE',    'HTTP_COOKIE_VARS',
-   '_FILES',    'HTTP_FILES_VARS',
-   '_SERVER',    'HTTP_SERVER_VARS',
-   '_SESSION',    'HTTP_SESSION_VARS',
-   '_REQUEST',
-
-   //
-   // Global variables used by this code snippet:
-   //
-   'superglobals',
-   'knownglobals',
-   'superglobal',
-   'global',
-   'void',
-
-   //
-   // Known global variables defined before this code snippet is reached.
-   //
-   'cpg_time_start',
-);
-
-foreach( $superglobals as $superglobal )
-{
-	/**
-	 * $$superglobal variable variable syntax is intended.
-	 */
-	if (isset($$superglobal)) { //longvars and sessions may not be set
-		if(is_array($$superglobal)) { //every valid superglobal is an array
-		   foreach( $$superglobal as $global => $void )
-		   {
-			   if( !in_array($global, $knownglobals) )
-			   {
-				   unset($GLOBALS[$global]);
-			   }
-		   }
-		   $$superglobal=cpg_globals_clean($$superglobal);
-		} else {
-			unset($$superglobal); //it is not a valid superglobal
-		}
-	}
-}
-unset($superglobals,$superglobal,$global,$void,$knownglobals);  //leave no trace
 
 // Store all reported errors in the $cpgdebugger
 require_once('include/debugger.inc.php');
@@ -133,16 +53,20 @@ $CONFIG = array();
 //$PHP_SELF = isset($_SERVER['REDIRECT_URL']) ? $_SERVER['REDIRECT_URL'] : $_SERVER['SCRIPT_NAME'];
 
 $PHP_SELF = '';
-$ORIGINAL_PHP_SELF = $_SERVER['PHP_SELF'];
+$ORIGINAL_PHP_SELF = $superCage->server->getRaw('PHP_SELF');
 $possibilities = array('REDIRECT_URL', 'PHP_SELF', 'SCRIPT_URL', 'SCRIPT_NAME','SCRIPT_FILENAME');
 foreach ($possibilities as $test){
-  if (isset($_SERVER[$test]) && preg_match('/([^\/]+\.php)$/', $_SERVER[$test], $matches)){
-	$PHP_SELF = $_SERVER['PHP_SELF'] = $_SERVER['SCRIPT_NAME'] = $matches[1];
-	break;
-  }
+    if ($matches = $superCage->server->getMatched($test, '/([^\/]+\.php)$/')) {
+        $CPG_PHP_SELF = $matches[1];
+        break;
+    }
 }
-
-$REFERER = urlencode($_SERVER['PHP_SELF'] . (isset($_SERVER['QUERY_STRING']) && $_SERVER['QUERY_STRING'] ? '?' . $_SERVER['QUERY_STRING'] : ''));
+/**
+ * TODO: $REFERER has a potential for exploitation as the QUERY_STRING is being fetched with getRaw()
+ * A probable solution is to parse the query string into its individual key and values and check
+ * them against a regex, recombine and use only if all the values are safe else set referer to index.php
+ */
+$REFERER = urlencode($CPG_PHP_SELF . (($superCage->server->keyExists('QUERY_STRING') && $superCage->server->getRaw('QUERY_STRING')) ? '?' . $superCage->server->getRaw('QUERY_STRING') : ''));
 $ALBUM_SET = '';
 $META_ALBUM_SET = '';
 $FORBIDDEN_SET = '';
@@ -150,20 +74,20 @@ $FORBIDDEN_SET_DATA = array();
 $CURRENT_CAT_NAME = '';
 $CAT_LIST = '';
 // Record User's IP address
-$raw_ip = stripslashes($_SERVER['REMOTE_ADDR']);
+$raw_ip = $superCage->server->testIp('REMOTE_ADDR') ? $superCage->server->getEscaped('REMOTE_ADDR') : '0.0.0.0';
 
-if (isset($_SERVER['HTTP_CLIENT_IP'])) {
-	$hdr_ip = stripslashes($_SERVER['HTTP_CLIENT_IP']);
+if ($superCage->server->testIp('HTTP_CLIENT_IP')) {
+	$hdr_ip = $superCage->server->getEscaped('HTTP_CLIENT_IP');
 } else {
-	if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-		$hdr_ip = stripslashes($_SERVER['HTTP_X_FORWARDED_FOR']);
+	if ($superCage->server->testIp('HTTP_X_FORWARDED_FOR')) {
+		$hdr_ip = $superCage->server->getEscaped('X_FORWARDED_FOR');
 	} else {
 		$hdr_ip = $raw_ip;
 	}
 }
 
-if (!preg_match('/^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$/', $raw_ip)) $raw_ip = '0.0.0.0';
-if (!preg_match('/^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$/', $hdr_ip)) $hdr_ip = '0.0.0.0';
+/*if (!preg_match('/^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$/', $raw_ip)) $raw_ip = '0.0.0.0';
+if (!preg_match('/^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$/', $hdr_ip)) $hdr_ip = '0.0.0.0';*/
 
 // Define some constants
 define('USER_GAL_CAT', 1);
@@ -322,17 +246,16 @@ if (!GALLERY_ADMIN_MODE) {
 }
 
 // Process theme selection if present in URI or in user profile
-if (!empty($_GET['theme'])) {
-	$USER['theme'] = $_GET['theme'];
-}
-// Load theme file
-if (isset($USER['theme']) && !strstr($USER['theme'], '/') && is_dir('themes/' . $USER['theme'])) {
-	$CONFIG['theme'] = strtr($USER['theme'], '$/\\:*?"\'<>|`', '____________');
+if ($matches = $superCage->get->getMatched('theme', '/^[A-Za-z0-9_]+$/')) {
+    $USER['theme'] = $CONFIG['theme'] = $matches[0];
 } else {
 	unset($USER['theme']);
 }
 
-if (!file_exists("themes/{$CONFIG['theme']}/theme.php")) $CONFIG['theme'] = 'classic';
+if (!file_exists("themes/{$CONFIG['theme']}/theme.php")) {
+    $CONFIG['theme'] = 'classic';
+}
+
 require "themes/{$CONFIG['theme']}/theme.php";
 require "include/themes.inc.php";  //All Fallback Theme Templates and Functions
 $THEME_DIR = "themes/{$CONFIG['theme']}/";
@@ -340,51 +263,38 @@ $THEME_DIR = "themes/{$CONFIG['theme']}/";
 
 // Process language selection if present in URI or in user profile or try
 // autodetection if default charset is utf-8
-if (!empty($_GET['lang']))
-{
-	//$USER['lang'] = $_GET['lang']; Nasty line permitting remote code execution
-		$USER['lang'] = ereg("^[a-z0-9_-]*$", $_GET['lang']) ? $_GET['lang'] : $CONFIG['lang'];
+$CONFIG['default_lang'] = $CONFIG['lang'];      // Save default language
+if ($matches = $superCage->get->getMatched('lang', '/^[a-z0-9_-]+$/')) {
+    $USER['lang'] = $CONFIG['lang'] = $matches[0];
+} else {
+	unset($USER['lang']);
 }
 
-if (isset($USER['lang']) && !strstr($USER['lang'], '/') && file_exists('lang/' . $USER['lang'] . '.php'))
+if ($CONFIG['charset'] == 'utf-8')
 {
-	$CONFIG['default_lang'] = $CONFIG['lang'];          // Save default language
-	$CONFIG['lang'] = strtr($USER['lang'], '$/\\:*?"\'<>|`', '____________');
-}
-elseif ($CONFIG['charset'] == 'utf-8')
-{
-	include('include/select_lang.inc.php');
-	if (file_exists('lang/' . $USER['lang'] . '.php'))
-	{
-		$CONFIG['default_lang'] = $CONFIG['lang'];      // Save default language
-		$CONFIG['lang'] = $USER['lang'];
-	}
-}
-else
-{
-	unset($USER['lang']);
+    include('include/select_lang.inc.php');
 }
 
 if (isset($CONFIG['default_lang']) && ($CONFIG['default_lang']==$CONFIG['lang']))
 {
-		unset($CONFIG['default_lang']);
+    unset($CONFIG['default_lang']);
 }
 
-if (!file_exists("lang/{$CONFIG['lang']}.php"))
-  $CONFIG['lang'] = 'english';
+if (!file_exists("lang/{$CONFIG['lang']}.php")) {
+    $CONFIG['lang'] = 'english';
+}
 
 // We load the chosen language file
 require "lang/{$CONFIG['lang']}.php";
 
 // Include and process fallback here if lang <> english
 if($CONFIG['lang'] != 'english' && $CONFIG['language_fallback']==1 ){
-		require "include/langfallback.inc.php";
+    require "include/langfallback.inc.php";
 }
 
-
 // See if the fav cookie is set else set it
-if (isset($_COOKIE[$CONFIG['cookie_name'] . '_fav'])) {
-	$FAVPICS = @unserialize(@base64_decode($_COOKIE[$CONFIG['cookie_name'] . '_fav']));
+if ($superCage->cookie->keyExists($CONFIG['cookie_name'] . '_fav')) {
+	$FAVPICS = @unserialize(@base64_decode($superCage->cookie->getRaw($CONFIG['cookie_name'] . '_fav')));
 	foreach ($FAVPICS as $key => $id ){
 		$FAVPICS[$key] = (int)$id; //protect against sql injection attacks
 	}
@@ -405,10 +315,13 @@ if (USER_ID > 0){
 }
 
 // If referer is set in URL and it contains 'http' or 'script' texts then set it to 'index.php' script
-if (isset($_GET['referer'])) {
-	if (preg_match('/((\%3C)|<)[^\n]+((\%3E)|>)|(.*http.*)|(.*script.*)/i', $_GET['referer'])) {
-		$_GET['referer'] = 'index.php';
-	}
+/**
+ * Use $CPG_REFERER wherever $_GET['referer'] is used
+ */
+if ($matches = $superCage->get->getMatched('referer', '/((\%3C)|<)[^\n]+((\%3E)|>)|(.*http.*)|(.*script.*)/i')) {
+    $CPG_REFERER = $matches[0];
+} else {
+    $CPG_REFERER = 'index.php';
 }
 
 /**
@@ -443,7 +356,7 @@ mysql_free_result($result);
 // Retrieve the "private" album set
 if (!GALLERY_ADMIN_MODE && $CONFIG['allow_private_albums']) get_private_album_set();
 
-if (!USER_IS_ADMIN && $CONFIG['offline'] && !strstr($_SERVER["SCRIPT_NAME"],'login')) {
+if (!USER_IS_ADMIN && $CONFIG['offline'] && !strstr($CPG_PHP_SELF,'login')) {
 	pageheader($lang_errors['offline_title']);
 	msg_box($lang_errors['offline_title'], $lang_errors['offline_text']);
 	pagefooter();
