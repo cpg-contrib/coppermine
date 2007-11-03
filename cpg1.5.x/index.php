@@ -34,6 +34,8 @@
 */
 define('IN_COPPERMINE', true);
 
+define('INDEX_PHP', true);
+
 require('include/init.inc.php');
 
 /**
@@ -89,9 +91,9 @@ if (!$file) {
     /**
     * Sets the flag for lang file
     */
-    define('INDEX_PHP', true);
+    //define('INDEX_PHP', true);
 
-    require_once('include/init.inc.php');
+    //require_once('include/init.inc.php');
 
     if (!USER_ID && $CONFIG['allow_unlogged_access'] == 0) {
         $redirect = $redirect . "login.php";
