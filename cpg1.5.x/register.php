@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $Source: /cvsroot/coppermine/devel/register.php,v $
@@ -31,8 +31,6 @@ if (defined('UDB_INTEGRATION')) {
     $cpg_udb->register_page();
 }
 
-
-
 /*****************************
 * function definitions start *
 *****************************/
@@ -46,12 +44,12 @@ if (defined('UDB_INTEGRATION')) {
 * @return void
 **/
 function display_disclaimer() { // Display the disclaimer - start
-    global $CONFIG; //, $PHP_SELF;
+    global $CONFIG, $CPG_PHP_SELF; //, $PHP_SELF;
     global $lang_register_disclamer, $lang_register_php;
 
     starttable(-1, $lang_register_php['term_cond']);
     echo <<<EOT
-        <form name="cpgform" id="cpgform" method="post" action="{$_SERVER['PHP_SELF']}">
+        <form name="cpgform" id="cpgform" method="post" action="$CPG_PHP_SELF">
         <tr>
                 <td class="tableb" style="padding: 10px;">
 
@@ -81,11 +79,13 @@ EOT;
 * @return void
 **/
 function input_user_info($errors = '') { // function input_user_info - start
-    global $CONFIG; //, $PHP_SELF;
+    global $CONFIG, $CPG_PHP_SELF; //, $PHP_SELF;
     global $lang_register_php, $lang_register_disclamer, $lang_common;
 
+    $superCage = Inspekt::makeSuperCage();
+
     echo <<<EOT
-        <form name="cpgform" id="cpgform" method="post" action="{$_SERVER['PHP_SELF']}">
+        <form name="cpgform" id="cpgform" method="post" action="$CPG_PHP_SELF">
 
 EOT;
 
@@ -156,8 +156,9 @@ EOT;
               // added the radio option for possible future use. The array definition would have to look like this:
               // array('radio', 'user_var', 'Text label', 'option 1','option 2'),
               // enabling this option requires changes in profile.php and usermgr.php as well
-              if (isset($_POST[$element[1]])) {
-                  $value = $_POST[$element[1]];
+              //if (isset($_POST[$element[1]])) {
+              if ($superCage->post->keyExists($element[1])) {
+                  $value = $superCage->post->getAlnum($element[1]);
               } else {
                   $value = '';
               }
@@ -179,8 +180,8 @@ EOT;
               // added the checkbox option for possible future use. The array definition would have to look like this:
               // array('radio', 'user_var', 'preceeding text', 'Text label', 'value'),
               // enabling this option requires changes in profile.php and usermgr.php as well
-              if (isset($_POST[$element[1]])) {
-                  $value = $_POST[$element[1]];
+              if ($superCage->post->keyExists($element[1])) {
+                  $value = $superCage->post->getAlnum($element[1]);
               } else {
                   $value = '';
               }
@@ -296,13 +297,21 @@ EOT;
 **/
 function get_post_var($var) { // function get_post_var - start
     global $lang_errors;
-    if (!isset($_POST[$var])) cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'] . " ($var)", __FILE__, __LINE__);
-    return trim($_POST[$var]);
+
+    $superCage = Inspekt::makeSuperCage();
+
+    if (!$superCage->post->keyExists($var) || !trim($superCage->post->getEscaped($var))) {
+    	cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'] . " ($var)", __FILE__, __LINE__);
+    }
+    return $superCage->post->getEscaped($var);
 } // function get_post_var - end
 
 function check_user_info(&$error) { // function check_user_info - start
     global $CONFIG; //, $PHP_SELF;
-    global $lang_register_php, $lang_register_confirm_email, $lang_common, $lang_register_approve_email, $lang_register_activated_email, $lang_register_user_login, $lang_errors;
+    global $lang_register_php, $lang_register_confirm_email, $lang_common, $lang_register_approve_email;
+    global $lang_register_activated_email, $lang_register_user_login, $lang_errors;
+
+    $superCage = Inspekt::makeSuperCage();
     //$CONFIG['admin_activation'] = FALSE;
     //$CONFIG['admin_activation'] = TRUE;
 
@@ -310,16 +319,16 @@ function check_user_info(&$error) { // function check_user_info - start
     $password = trim(get_post_var('password'));
     $password_again = trim(get_post_var('password_verification'));
     $email = trim(get_post_var('email'));
-    $profile1 = addslashes($_POST['user_profile1']);
-    $profile2 = addslashes($_POST['user_profile2']);
-    $profile3 = addslashes($_POST['user_profile3']);
-    $profile4 = addslashes($_POST['user_profile4']);
-    $profile5 = addslashes($_POST['user_profile5']);
-    $profile6 = addslashes($_POST['user_profile6']);
-    $agree_disclaimer = $_POST['agree'];
-    $captcha_confirmation = $_POST['confirmCode'];
+    $profile1 = $superCage->post->getEscaped('user_profile1');
+    $profile2 = $superCage->post->getEscaped('user_profile2');
+    $profile3 = $superCage->post->getEscaped('user_profile3');
+    $profile4 = $superCage->post->getEscaped('user_profile4');
+    $profile5 = $superCage->post->getEscaped('user_profile5');
+    $profile6 = $superCage->post->getEscaped('user_profile6');
+    $agree_disclaimer = $superCage->post->getEscaped('agree');
+    $captcha_confirmation = $superCage->post->getEscaped('confirmCode');
 
-    $sql = "SELECT user_id " . "FROM {$CONFIG['TABLE_USERS']} " . "WHERE user_name = '" . addslashes($user_name) . "'";
+    $sql = "SELECT user_id " . "FROM {$CONFIG['TABLE_USERS']} " . "WHERE user_name = '" . $user_name . "'";
     $result = cpg_db_query($sql);
 
     if (mysql_num_rows($result)) {
@@ -349,7 +358,7 @@ function check_user_info(&$error) { // function check_user_info - start
     // check captcha
     if ($CONFIG['registration_captcha'] != 0) {
         require("include/captcha.inc.php");
-        if (!PhpCaptcha::Validate($_POST['confirmCode'])) {
+        if (!PhpCaptcha::Validate($captcha_confirmation)) {
           $error .= '<li>' . $lang_errors['captcha_error'] . '</li>';
         }
     }
@@ -387,9 +396,9 @@ function check_user_info(&$error) { // function check_user_info - start
 
     $sql = "INSERT INTO {$CONFIG['TABLE_USERS']} ".
            "(user_regdate, user_active, user_actkey, user_name, user_password, user_email, user_profile1, user_profile2, user_profile3, user_profile4, user_profile5, user_profile6) ".
-           "VALUES (NOW(), '$active', '$act_key', '" . addslashes($user_name) . "', '" . addslashes($encpassword) . "', '" . addslashes($email) . "', '$profile1', '$profile2', '$profile3', '$profile4', '$profile5', '$profile6')";
+           "VALUES (NOW(), '$active', '$act_key', '$user_name', '$encpassword', '$email', '$profile1', '$profile2', '$profile3', '$profile4', '$profile5', '$profile6')";
     if ($CONFIG['log_mode']) {
-        log_write('New user "'.addslashes($user_name).'" created on '.date("F j, Y, g:i a"),CPG_ACCESS_LOG);
+        log_write('New user "$user_name" created on '.date("F j, Y, g:i a"),CPG_ACCESS_LOG);
     }
     $result = cpg_db_query($sql);
 
@@ -398,8 +407,8 @@ function check_user_info(&$error) { // function check_user_info - start
         print 'sub<br />';
         $catid = mysql_insert_id() + FIRST_USER_CAT;
         print $catid;
-        cpg_db_query("INSERT INTO {$CONFIG['TABLE_ALBUMS']} (`title`, `category`) VALUES ('".addslashes($user_name)."', $catid)");
-        print "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (`title`, `category`) VALUES ('".addslashes($user_name)."', $catid)";
+        cpg_db_query("INSERT INTO {$CONFIG['TABLE_ALBUMS']} (`title`, `category`) VALUES ('$user_name', $catid)");
+        print "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (`title`, `category`) VALUES ('$user_name', $catid)";
     }
 
     if ($CONFIG['reg_requires_valid_email']) {
@@ -456,11 +465,13 @@ function check_user_info(&$error) { // function check_user_info - start
 * main code start          *
 ***************************/
 
-if (isset($_GET['activate'])) { // registration activation - start
+//if (isset($_GET['activate'])) { // registration activation - start
+if ($superCage->get->keyExists('activate')) {
                 //$CONFIG['admin_activation'] = FALSE;
                 //$CONFIG['admin_activation'] = TRUE;
 
-    $act_key = addslashes(substr($_GET['activate'], 0 , 32));
+    //$act_key = addslashes(substr($_GET['activate'], 0 , 32));
+    $act_key = mysql_real_escape_string($superCage->get->getAlnum('activate'));
     if (strlen($act_key) != 32) cpg_die(ERROR, $lang_register_php['acct_act_failed'], __FILE__, __LINE__);
 
     $sql = "SELECT user_active user_active, user_email, user_name, user_password " . "FROM {$CONFIG['TABLE_USERS']} " . "WHERE user_actkey = '$act_key' " . "LIMIT 1";
@@ -477,7 +488,7 @@ if (isset($_GET['activate'])) { // registration activation - start
     $user_name = $row['user_name'];
     $password = $row['user_password'];
 
-    $sql = "UPDATE {$CONFIG['TABLE_USERS']} " . "SET user_active = 'YES' " . "WHERE user_actkey = '$act_key' " . "LIMIT 1";
+    $sql = "UPDATE {$CONFIG['TABLE_USERS']} SET user_active = 'YES' WHERE user_actkey = '$act_key' LIMIT 1";
     $result = cpg_db_query($sql);
 
                 if ($CONFIG['admin_activation']==1) { //after admin approves, user receives email notification
@@ -496,11 +507,12 @@ if (isset($_GET['activate'])) { // registration activation - start
   // registration activation - end
 } else { // actual registration form logic - start
   pageheader($lang_register_php['page_title']);
-  if ($CONFIG['user_registration_disclaimer'] == 1 && isset($_POST['submit']) == FALSE && isset($_POST['agree']) == FALSE) {
+  if ($CONFIG['user_registration_disclaimer'] == 1 && !$superCage->post->keyExists('submit') && !$superCage->post->keyExists('agree')) {
       // display the disclaimer page
       display_disclaimer();
   } else {
-      if(isset($_POST['submit']) == FALSE){
+      //if(isset($_POST['submit']) == FALSE){
+      if (!$superCage->post->keyExists('submit')) {
           input_user_info();
       } else {
           if(!check_user_info($errors)) {
