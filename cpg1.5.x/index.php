@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
@@ -34,38 +34,44 @@
 */
 define('IN_COPPERMINE', true);
 
+require('include/init.inc.php');
+
 /**
  * Clean up GPC and other Globals here
  */
-if (isset($_GET['page'])) {
-  $CLEAN['page'] = (int)$_GET['page'];
+if ($superCage->get->keyExists('page')) {
+	$page = $superCage->get->getInt('page');
 }
-if (isset($_GET['cat'])) {
-  $CLEAN['cat']= (int)$_GET['cat'];
+
+if ($superCage->get->keyExists('cat')) {
+    $cat = $superCage->get->getInt('cat');
 }
-if (isset($_GET['file'])) {
-  $tmpFile = str_replace('..','',str_replace('//','',$_GET['file']));
-  $fileValidationPattern = "/^([a-zA-Z0-9_\-]+)(\/{0,1}?)([a-zA-Z0-9_\-]+)$/";
-  // There can be only alphanumerals in a plugin's folder name. There mustn't be any dots or other special chars in it.
-  // The only exception is the hypen (-) and underscore (_)
-  // Examples for folder names: "myplugin" = OK, "my_plugin" = OK, "my plugin" = BAD, "m&uuml;_plugin" = BAD
-  // Files the plugin is meant to include can only contain one single dot that separates the actual filename from the php-extension
-  // Same restrictions apply as for the folder name (only alphanumerals, hyphen and underscore)
-  if (preg_match($fileValidationPattern, $tmpFile) == FALSE) {
-    $tmpFile = ''; // something's fishy with the filename, let's drop it
-  }
-  if ($tmpFile != 'codebase' && $tmpFile != 'configuration') {
-    $CLEAN['file'] = $tmpFile;
-  } else {
-    $CLEAN['file'] = '';
-  }
+
+if ($superCage->get->keyExists('file')) {
+    /**
+     * There can be only alphanumerals in a plugin's folder name. There mustn't be any dots or other special
+     * chars in it.
+     * The only exception is the hypen (-) and underscore (_)
+     * Examples for folder names: "myplugin" = OK, "my_plugin" = OK, "my plugin" = BAD, "m&uuml;_plugin" = BAD
+     * Files the plugin is meant to include can only contain one single dot that separates the actual filename
+     * from the php-extension
+     * Same restrictions apply as for the folder name (only alphanumerals, hyphen and underscore)
+     */
+    if ($matched = $superCage->get->getMatched('page', "/^([a-zA-Z0-9_\-]+)(\/{0,1}?)([a-zA-Z0-9_\-]+)$/")) {
+        $tmpFile = $matched[0];
+    } else {
+    	$tmpFile = '';
+    }
+}
+
+if ($tmpFile != 'codebase' && $tmpFile != 'configuration') {
+    $file = $tmpFile;
 } else {
-  $CLEAN['file'] = '';
+    $file = '';
 }
 
-
-if ($CLEAN['file']) {
-    $path = './plugins/'.$CLEAN['file'].'.php';
+if ($file) {
+    $path = './plugins/'.$file.'.php';
 
     // Don't include the codebase and credits files
     if (file_exists($path)) {
@@ -85,7 +91,7 @@ if (!$file) {
     */
     define('INDEX_PHP', true);
 
-    require('include/init.inc.php');
+    require_once('include/init.inc.php');
 
     if (!USER_ID && $CONFIG['allow_unlogged_access'] == 0) {
         $redirect = $redirect . "login.php";
@@ -830,8 +836,8 @@ if (!$file) {
     /**
     * See if $page has been passed in GET
     */
-    if (isset($CLEAN['page'])) {
-        $PAGE = max($CLEAN['page'], 1);
+    if (isset($page)) {
+        $PAGE = max($page, 1);
         $USER['lap'] = $PAGE;
     } elseif (isset($USER['lap'])) {
         $PAGE = max((int)$USER['lap'], 1);
@@ -839,19 +845,6 @@ if (!$file) {
         $PAGE = 1;
     }
 
-    /**
-    * Loop through the $elements array to build the page using the parameters
-    * set in the config
-    */
-
-
-    /**
-    * See if $cat has been passed in GET
-    */
-
-    if (isset($CLEAN['cat'])) {
-        $cat = $CLEAN['cat'];
-    }
     // Gather data for categories
     $breadcrumb = '';
     $cat_data = array();
@@ -872,6 +865,10 @@ if (!$file) {
 
     $elements = preg_split("|/|", $CONFIG['main_page_layout'], -1, PREG_SPLIT_NO_EMPTY);
 
+    /**
+     * Loop through the $elements array to build the page using the parameters
+     * set in the config
+     */
     foreach ($elements as $element) {
         if (preg_match("/(\w+),*(\d+)*/", $element, $matches)){
             if (!isset($matches[2])) { // added to fix notice about undefined index

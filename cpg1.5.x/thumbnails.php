@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
@@ -75,18 +75,31 @@ function thumb_get_subcat_data($parent, &$album_set_array, $level)
 /**
  * Main code
  */
+if ($superCage->get->keyExists('sort')) {
+	$USER['sort'] = $superCage->get->getAlpha('sort');
+}
+if ($superCage->get->keyExists('cat')) {
+    $cat = $superCage->get->getInt('cat');
+}
+if ($superCage->get->keyExists('uid')) {
+    $USER['uid'] = $superCage->get->getInt('uid');
+}
 
-if (isset($_GET['sort'])) $USER['sort'] = $_GET['sort'];
-if (isset($_GET['cat'])) $cat = (int)$_GET['cat'];
-if (isset($_GET['uid'])) $USER['uid'] = (int)$_GET['uid'];
+if ($superCage->get->keyExists('album')) {
+    if ($superCage->get->testAlpha('album')) {
+        $album = $superCage->get->getAlpha('album');
+    } else {
+        $album = $superCage->get->getInt('album');
+    }
+}
 
-if (isset($_GET['album'])) $album = $_GET['album'];
-
-if (isset($_GET['search'])) {
+//if (isset($_GET['search'])) {
+if ($superCage->get->keyExists('search')) {
     // find out if a parameter has been submitted at all
     $allowed = array('title', 'caption', 'keywords', 'owner_name', 'filename', 'pic_raw_ip', 'pic_hrd_ip', 'user1', 'user2', 'user3', 'user4');
     foreach ($allowed as $key) {
-        if (isset($_GET[$key]) == TRUE) {
+        //if (isset($_GET[$key]) == TRUE) {
+        if ($superCage->get->keyExists($key)) {
             $_GET['params'][$key] = $_GET[$key];
         }
     }
@@ -98,8 +111,9 @@ if (isset($_GET['search'])) {
     $USER['search'] = array('search' => $_GET['search']);
 }
 
-if (isset($_GET['page'])) {
-    $page = max((int)$_GET['page'], 1);
+//if (isset($_GET['page'])) {
+if ($superCage->get->keyExists('page')) {
+    $page = max($superCage->get->getInt('page'), 1);
 } else {
     $page = 1;
 }
@@ -188,7 +202,7 @@ function form_albpw()
     global $lang_thumb_view, $CURRENT_ALBUM_DATA;
     $login_falied =
     starttable('-1', $lang_thumb_view['enter_alb_pass'], 2);
-    if (isset($_POST['validate_album'])) {
+    if ($superCage->post->keyExists('validate_album')) {
         $login_failed = "<tr><td class='tableh2' colspan='2' align='center'>
                                <span style='color:red'>{$lang_thumb_view['invalid_pass']}</span></td></tr>
                                          ";
@@ -219,8 +233,8 @@ EOT;
 $valid = false; //flag to test whether the album is validated.
 if ($CONFIG['allow_private_albums'] == 0 || !in_array($album, $FORBIDDEN_SET_DATA)) {
     $valid = true;
-} elseif (isset($_POST['validate_album'])) {
-    $password = $_POST['password'];
+} elseif ($superCage->post->keyExists('validate_album')) {
+    $password = $superCage->post->getEscaped('password');
     $sql = "SELECT aid FROM " . $CONFIG['TABLE_ALBUMS'] . " WHERE alb_password='$password' AND aid='$album'";
     $result = cpg_db_query($sql);
     if (mysql_num_rows($result)) {
