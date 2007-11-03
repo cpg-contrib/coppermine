@@ -3245,7 +3245,8 @@ if (!function_exists('theme_slideshow')) {  //{THEMES}
 ******************************************************************************/
 function theme_slideshow()
 {
-    global $CONFIG, $lang_display_image_php, $template_display_media, $lang_common;
+    global $CONFIG, $lang_display_image_php, $template_display_media, $lang_common, $album, $pid, $slideshow;
+    global $cat, $date;
 
     pageheader($lang_display_image_php['slideshow']);
 
@@ -3303,7 +3304,7 @@ if (!function_exists('theme_display_fullsize_pic')) {  //{THEMES}
 // Display the full size image
 function theme_display_fullsize_pic()
 {
-    global $CONFIG, $THEME_DIR, $ALBUM_SET;
+    global $CONFIG, $THEME_DIR, $ALBUM_SET, $pid;
     global $lang_errors, $lang_fullsize_popup, $lang_charset;
 
     if (isset($_GET['picfile']))
@@ -3315,9 +3316,9 @@ function theme_display_fullsize_pic()
     $imagesize = @getimagesize($picname);
     $imagedata = array('name' => $picfile, 'path' => path2url($picname), 'geometry' => $imagesize[3]);
     }
-    elseif (isset($_GET['pid']))
+    elseif (pid)
     {
-    $pid = (int)$_GET['pid'];
+    //$pid = (int)$_GET['pid'];
     $sql = "SELECT * " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='$pid' $ALBUM_SET";
     $result = cpg_db_query($sql);
 

@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
@@ -61,7 +61,7 @@ function addHit(pid) {
 // ------------------------------------------------------------------------- //
 
 // Set slideShowSpeed (milliseconds)
-var slideShowSpeed = <?php echo (int)$_GET['slideshow'] ?>
+var slideShowSpeed = <?php echo $slideshow ?>
 
 // Agent sniffer shamelessly 'stolen' from the excellent X library from cross-browser.com
 var xOp7=false,xOp5or6=false,xIE4Up=false,xNN4=false,xUA=navigator.userAgent.toLowerCase();
@@ -84,9 +84,9 @@ var Title = new Array() // don't touch this
 <?php
 $i = 0;
 $j = 0;
-$pid = (int)$_GET['pid'];
+//$pid = (int)$_GET['pid'];
 $start_img = '';
-$pic_data = get_pic_data($_GET['album'], $pic_count, $album_name, -1, -1, false);
+$pic_data = get_pic_data($album, $pic_count, $album_name, -1, -1, false);
 foreach ($pic_data as $picture) {
 
     if($CONFIG['thumb_use']=='ht' && $picture['pheight'] > $CONFIG['picture_width'] ){ // The wierd comparision is because only picture_width is stored
@@ -169,9 +169,9 @@ function runSlideShow(){
 }
 
 function endSlideShow(){
-        self.document.location = 'displayimage.php?album=<?php echo isset($_GET['album']) ? $_GET['album'] : '';
-echo isset($_GET['cat']) ? '&cat=' . $_GET['cat'] : '';
-echo isset($_GET['date']) ? '&date=' . $_GET['date'] : ''; ?>&pos='+pos
+        self.document.location = 'displayimage.php?album=<?php echo isset($album) ? $album : '';
+echo isset($cat) ? '&cat=' . $cat : '';
+echo isset($date) ? '&date=' . $date : ''; ?>&pos='+pos
 }
 
 preLoadPic(j)

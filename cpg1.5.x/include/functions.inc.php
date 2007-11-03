@@ -953,6 +953,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
           'pa' => 'position ASC',
           'pd' => 'position DESC',
         );
+
         $sort_code = isset($USER['sort'])? $USER['sort'] : $CONFIG['default_sort_order'];
         $sort_order = isset($sort_array[$sort_code]) ? $sort_array[$sort_code] : $sort_array[$CONFIG['default_sort_order']];
         $limit = ($limit1 != -1) ? ' LIMIT '. $limit1 : '';
@@ -1391,7 +1392,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
             return $rowset;
             break;
         default : // Invalid meta album
-        cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
+        cpg_die(ERROR, $lang_errors['non_exist_ap']." - $album", __FILE__, __LINE__);
         }
 } // End of get_pic_data
 

@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
@@ -35,28 +35,10 @@ if ($CONFIG['enable_smilies']) include("include/smilies.inc.php");
 $breadcrumb = '';
 $breadcrumb_text = '';
 $cat_data = array();
-
-/**
- * Clean up GPC and other Globals here
- */
-$CLEAN['pos'] = isset($_GET['pos']) ? (int)$_GET['pos'] : 0;
-$CLEAN['pid'] = isset($_GET['pid']) ? (int)$_GET['pid'] : 0;
-$CLEAN['cat'] = isset($_GET['cat']) ? (int)$_GET['cat'] : 0;
-$CLEAN['album'] = isset($_GET['album']) ? $_GET['album'] : '';
-
-if (isset($_GET['fullsize'])) {
-  $CLEAN['fullsize'] =  $_GET['fullsize'];
-}
-
-if (isset($_GET['slideshow'])) {
-  $CLEAN['slideshow'] = $_GET['slideshow'];
-}
-
-//END CLEANUP
-
 if($CONFIG['read_exif_data'] ){
         include("include/exif_php.inc.php");
 }
+
 if($CONFIG['read_iptc_data'] ){
         include("include/iptc.inc.php");
 }
@@ -222,7 +204,7 @@ EOT;
         if (!empty($iptc['SubCategories'])) $info[$lang_picinfo['iptcSubCategories']] = implode(' ',$iptc['SubCategories']);
     }
     // Create the absolute URL for display in info
-    $info[$lang_picinfo['URL']] = '<a href="' . $CONFIG["ecards_more_pic_target"] . (substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') .basename($_SERVER['PHP_SELF']) . "?pid=$CURRENT_PIC_DATA[pid]" . '" >' . $CONFIG["ecards_more_pic_target"] . (substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') . basename($_SERVER['PHP_SELF']) . "?pid=$CURRENT_PIC_DATA[pid]" . '</a>';
+    $info[$lang_picinfo['URL']] = '<a href="' . $CONFIG["ecards_more_pic_target"] . (substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') .basename($CPG_PHP_SELF) . "?pid=$CURRENT_PIC_DATA[pid]" . '" >' . $CONFIG["ecards_more_pic_target"] . (substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') . basename($CPG_PHP_SELF) . "?pid=$CURRENT_PIC_DATA[pid]" . '</a>';
     // with subdomains the variable is $_SERVER["SERVER_NAME"] does not return the right value instead of using a new config variable I reused $CONFIG["ecards_more_pic_target"] no trailing slash in the configure
     // Create the add to fav link
         $ref = $REFERER ? "&amp;ref=$REFERER" : '';
@@ -262,16 +244,27 @@ function get_subcat_data($parent, $level)
  * Main code
  */
 
-$pos = $CLEAN['pos'];
+$pos = $superCage->get->getInt('pos');
 
 /**
  * Hack added by tarique to prevent incorrect picture being seen on last view or last uploaded
  */
 
-$pid = $CLEAN['pid'];
+$pid = $superCage->get->getInt('pid');
 
-$cat = $CLEAN['cat'];
-$album = $CLEAN['album'];
+$cat = $superCage->get->getInt('cat');
+/**
+ * TODO: Add the code to handle date parameter
+ */
+//$date = $superCage->get->getInt('cat');
+
+if ($superCage->get->testAlpha('album')) {
+    $album = $superCage->get->getAlpha('album');
+} else {
+	$album = $superCage->get->getInt('album');
+}
+
+
 // Build the album set if required
 /*
 //disabled by donnoman
@@ -344,8 +337,10 @@ if ($pos < 0 || $pid > 0) {
     $CURRENT_PIC_DATA = $pic_data[$pos];
     reset($pic_data);
     ########################################################
-} elseif (isset($CLEAN['pos'])) {
-    $pic_data = get_pic_data($album, $pic_count, $album_name, $pos, 1, false);
+} elseif ($pos) {
+    //$pic_data = get_pic_data($album, $pic_count, $album_name, $pos, 1, false);
+    //We must get all the data here as well, otherwise the prev/next breaks.
+    $pic_data = get_pic_data($album, $pic_count, $album_name, -1, -1, false);
     if ($pic_count == 0) {
         cpg_die(INFORMATION, $lang_errors['no_img_to_display'], __FILE__, __LINE__);
     } elseif (count($pic_data) == 0 && $pos >= $pic_count) {
@@ -353,7 +348,7 @@ if ($pos < 0 || $pid > 0) {
         $human_pos = $pos + 1;
         $pic_data = get_pic_data($album, $pic_count, $album_name, $pos, 1, false);
     }
-    $CURRENT_PIC_DATA = $pic_data[0];
+    $CURRENT_PIC_DATA = $pic_data[$pos];
 }
 
 if (!count($CURRENT_PIC_DATA)) {
@@ -379,15 +374,15 @@ if (isset($CURRENT_PIC_DATA)) {
     }
 }
 
-if (isset($CLEAN['fullsize'])) {
+if ($superCage->get->keyExists('fullsize')) {
     theme_display_fullsize_pic();
     ob_end_flush();
-} elseif (isset($CLEAN['slideshow'])) {
+} elseif ($superCage->get->keyExists('slideshow')) {
+    $slideshow = $superCage->get->getInt('slideshow');
     theme_slideshow();
     ob_end_flush();
 } else {
-    //if (!isset($_GET['pos'])) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__); //Commented by Abbas
-    if (!$CLEAN['pos'] && !$CLEAN['pid']) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
+    if (!$pos && !$pid) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
 
     $picture_title = $CURRENT_PIC_DATA['title'] ? $CURRENT_PIC_DATA['title'] : strtr(preg_replace("/(.+)\..*?\Z/", "\\1", htmlspecialchars($CURRENT_PIC_DATA['filename'])), "_", " ");
 
@@ -402,7 +397,7 @@ if (isset($CLEAN['fullsize'])) {
     //$meta_nav .= "<link rel=\"alternate\" type=\"text/xml\" title=\"RSS feed\" href=\"rss.php\" />
     // ";
     $meta_keywords .= $meta_nav;
-    if($_GET['album'] == 'lastup' || $_GET['album'] == 'lastcom' || $_GET['album'] == 'topn' || $_GET['album'] == 'toprated' || $_GET['album'] == 'favpics' || $_GET['album'] == 'random') {
+    if($album == 'lastup' || $album == 'lastcom' || $album == 'topn' || $album == 'toprated' || $album == 'favpics' || $album == 'random') {
         $meta_keywords .= '<meta name="robots" content="noindex, nofollow" />';
     }
     pageheader($album_name . '/' . $picture_title, $meta_keywords, false);
