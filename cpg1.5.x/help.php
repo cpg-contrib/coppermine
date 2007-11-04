@@ -26,22 +26,32 @@ $meta_charset = '<meta http-equiv="Content-Type" content="text/html; charset=iso
 
 // Get the vars from the url
 if ($superCage->get->keyExists('as')) {
-    $anchor_start = $superCage->get->getEscaped('as');
+    if ($matched = $superCage->get->getMatched('as', "/^[a-zA-Z0-9_\-]*$/")) {
+      $anchor_start = $matched[0];
+    } else {
+      $anchor_start = '';
+    }
 } else {
     $anchor_start = '';
 }
+unset($matched);
 if ($superCage->get->keyExists('ae')) {
-    $anchor_end = $superCage->get->getEscaped('ae');
+    if ($matched = $superCage->get->getMatched('ae', "/^[a-zA-Z0-9_\-]*$/")) {
+      $anchor_end = $matched[0];
+    } else {
+      $anchor_end = '';
+    }
 } else {
     $anchor_end = '';
 }
+unset($matched);
 if ($superCage->get->keyExists('close')) {
-    $close = $superCage->get->getEscaped('close');
+    $close = $superCage->get->getInt('close');
 } else {
     $close = '0';
 }
 if ($superCage->get->keyExists('base')) {
-    $base = $superCage->get->getEscaped('base');
+    $base = $superCage->get->getInt('base');
     if ($CONFIG['charset'] == 'language file') {
         $meta_charset = '<meta http-equiv="Content-Type" content="text/html; charset='.$lang_charset.'" />';
     } else {
@@ -62,15 +72,25 @@ if ($superCage->get->keyExists('t')) {
 }
 
 if ($superCage->get->keyExists('style')) {
-    $style = $superCage->get->getEscaped('style');
+    if ($matched = $superCage->get->getMatched('style', "/^[a-zA-Z0-9_\-]*$/")) {
+      $style = $matched[0];
+    } else {
+      $style = '';
+    }
 } else {
     $style = '';
 }
+unset($matched);
 if ($superCage->get->keyExists('f')) {
-    $file = $superCage->get->getEscaped('f');
+    if ($matched = $superCage->get->getMatched('f', "/^([a-zA-Z0-9_\-]){1,}(\.){0,1}([a-zA-Z0-9]){0,}$/")) {
+      $file = $matched[0];
+    } else {
+      $file = 'index.htm';
+    }
 } else {
     $file = 'index.htm';
 }
+unset($matched);
 // sanitize the file name
 if (strrpos($file, '.') != FALSE) {
   $file = substr($file, 0, strrpos($file, '.'));
