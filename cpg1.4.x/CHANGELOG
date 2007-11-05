@@ -9,7 +9,7 @@ it under the terms of the GNU General Public License as published by
 the Free Software Foundation; either version 2 of the License, or
 (at your option) any later version.
 ********************************************
-Coppermine version: 1.4.13
+Coppermine version: 1.4.14
 $Source$
 $Revision$
 $Author$
@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-11-07 [M] Release of cpg1.4.14 {GauGau}
 2007-10-31 [S] Removed html_entity_decode causing potential XSS vulnerability as discussed in http://coppermine-gallery.net/forum/index.php?topic=47390.0 {Aditya}
 2007-09-17 [M] Updated version count from cpg1.4.13 to cpg1.4.14 in subversion repository as a preparation for a possible future release {GauGau}
 2007-09-17 [B] Fixed usergroups-bug in bridge file for SMF2.0 (user contribution) {GauGau}
