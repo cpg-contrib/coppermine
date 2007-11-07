@@ -44,11 +44,6 @@ if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) {
 }
 
 /**
- * Clean up GPC and other Globals here
- */
-$CLEAN['cat'] = isset($_GET['cat']) ? (int)($_GET['cat']) : 0;
-
-/**
  * alb_get_subcat_data()
  *
  * @param integer $parent
@@ -360,9 +355,15 @@ pageheader($lang_albmgr_php['alb_mrg']);
 </noscript>
 <tr>
 <?php
-$cat = $CLEAN['cat'];
+if ($superCage->get->keyExists('cat')) {
+    $cat = $superCage->get->getInt('cat');
+} else {
+	$cat = 0;
+}
 
-if ($cat == 1) $cat = 0;
+if ($cat == 1) {
+    $cat = 0;
+}
 
 if (GALLERY_ADMIN_MODE) {
         $result = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = $cat ORDER BY pos ASC");
@@ -394,7 +395,7 @@ if (GALLERY_ADMIN_MODE) {
                                 <tr>
                                                 <td>
                                                                 <b>{$lang_albmgr_php['select_category']}</b>
-                                                                <select onChange="if(this.options[this.selectedIndex].value) window.location.href='{$_SERVER['PHP_SELF']}?cat='+this.options[this.selectedIndex].value;"  name="cat" class="listbox">
+                                                                <select onChange="if(this.options[this.selectedIndex].value) window.location.href='$CPG_PHP_SELF?cat='+this.options[this.selectedIndex].value;"  name="cat" class="listbox">
 EOT;
         foreach($CAT_LIST as $category) {
                 echo '                                <option value="' . $category[0] . '"' . ($cat == $category[0] ? ' selected': '') . ">" . $category[1] . "</option>\n";

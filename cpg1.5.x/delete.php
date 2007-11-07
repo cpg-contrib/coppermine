@@ -188,7 +188,11 @@ function parse_select_option($value)
         return false;
 
     return array('album_no' => (int)$matches[1],
-        'album_nm' => get_magic_quotes_gpc() ? strtr(stripslashes($matches[2]), $HTML_SUBST) : strtr($matches[2], $HTML_SUBST),
+        //'album_nm' => get_magic_quotes_gpc() ? strtr(stripslashes($matches[2]), $HTML_SUBST) : strtr($matches[2], $HTML_SUBST),
+        /**
+         * TODO: Album name - Ideal case for using KSES. For now doing complete strip_tags
+         */
+        'album_nm' => strip_tags($matches[2]),
         'album_sort' => (int)$matches[3],
         'action' => (int)$matches[4]
         );
@@ -250,11 +254,18 @@ function parse_list($value)
  * Main code starts here
  */
 
-if (!isset($_GET['what']) && !isset($_POST['what'])) {
+/*if (!isset($_GET['what']) && !isset($_POST['what'])) {
     cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
+}*/
+if ($superCage->get->keyExists('what')) {
+	$what = $superCage->get->getAlpha('what');
+} elseif ($superCage->post->keyExists('what')) {
+    $what = $superCage->post->getAlpha('what');
+} else {
+	cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
 }
 
-$what = isset($_GET['what']) ? $_GET['what'] : $_POST['what'];
+//$what = isset($_GET['what']) ? $_GET['what'] : $_POST['what'];
 switch ($what) {
 
     // Album manager (don't necessarily delete something ;-)
@@ -270,12 +281,10 @@ switch ($what) {
 
         $returnOutput = ''; // the var that will later be shown as a result of the action performed
         //pageheader($lang_delete_php['alb_mgr']);
-        $returnOutput .= <<< EOT
-        <table border="0" cellspacing="0" cellpadding="0" width="100%">
-EOT;
+        $returnOutput .= '<table border="0" cellspacing="0" cellpadding="0" width="100%">';
 
 
-        $orig_sort_order = parse_list($_POST['sort_order']);
+        $orig_sort_order = parse_list($superCage->post->getMatched('sort_order', '/^[0-9,]+$/'));
         foreach ($orig_sort_order as $album) {
             $op = parse_orig_sort_order($album);
             if (count ($op) == 2) {
@@ -286,38 +295,46 @@ EOT;
             }
         }
 
-        $to_delete = parse_list($_POST['delete_album']);
+        $matches = $superCage->post->getMatched('delete_album', '/^[0-9,@]+$/');
+        //print_r($superCage->post->getMatched('delete_album', '/^[0-9,@]+$/'));
+        $to_delete = parse_list($matches[0]);
+        //print_r($to_delete); exit;
         foreach ($to_delete as $album_id) {
             $returnOutput .= delete_album((int)$album_id);
         }
 
 
-        if (isset($_POST['to'])) foreach ($_POST['to'] as $option_value) {
+        if ($superCage->post->keyExists('to')) {
+            $to = $superCage->post->getEscaped('to');
 
-            $op = parse_select_option(stripslashes($option_value));
+            foreach ($to as $option_value) {
 
-            switch ($op['action']) {
-                case '0':
-                    break;
-                case '1':
-                    if (GALLERY_ADMIN_MODE) {
-                        $category = (int)$_POST['cat'];
-                    } else {
-                        $category = FIRST_USER_CAT + USER_ID;
-                    }
-                    $returnOutput .= "<tr><td colspan=\"6\" class=\"tableb\">" . sprintf($lang_delete_php['create_alb'], $op['album_nm']) . "</td></tr>\n";
-                    $query = "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (category, title, uploads, pos, description) VALUES ('$category', '" . addslashes($op['album_nm']) . "', 'NO',  '{$op['album_sort']}', '')";
-                    cpg_db_query($query);
-                    break;
-                case '2':
-                    $returnOutput .= "<tr><td colspan=\"6\" class=\"tableb\">" . sprintf($lang_delete_php['update_alb'], $op['album_no'], $op['album_nm'], $op['album_sort']) . "</td></tr>\n";
-                    $query = "UPDATE $CONFIG[TABLE_ALBUMS] SET title='" . addslashes($op['album_nm']) . "', pos='{$op['album_sort']}' WHERE aid='{$op['album_no']}' $restrict LIMIT 1";
-                    cpg_db_query($query);
-                    break;
-                default:
-                   // cpg_die (CRITICAL_ERROR, $lang_delete_php['err_invalid_data'], __FILE__, __LINE__);
+                $op = parse_select_option(stripslashes($option_value));
+
+                switch ($op['action']) {
+                    case '0':
+                        break;
+                    case '1':
+                        if (GALLERY_ADMIN_MODE) {
+                            $category = $superCage->post->getInt('cat');
+                        } else {
+                            $category = FIRST_USER_CAT + USER_ID;
+                        }
+                        $returnOutput .= "<tr><td colspan=\"6\" class=\"tableb\">" . sprintf($lang_delete_php['create_alb'], $op['album_nm']) . "</td></tr>\n";
+                        $query = "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (category, title, uploads, pos, description) VALUES ('$category', '" . addslashes($op['album_nm']) . "', 'NO',  '{$op['album_sort']}', '')";
+                        cpg_db_query($query);
+                        break;
+                    case '2':
+                        $returnOutput .= "<tr><td colspan=\"6\" class=\"tableb\">" . sprintf($lang_delete_php['update_alb'], $op['album_no'], $op['album_nm'], $op['album_sort']) . "</td></tr>\n";
+                        $query = "UPDATE $CONFIG[TABLE_ALBUMS] SET title='" . addslashes($op['album_nm']) . "', pos='{$op['album_sort']}' WHERE aid='{$op['album_no']}' $restrict LIMIT 1";
+                        cpg_db_query($query);
+                        break;
+                    default:
+                       // cpg_die (CRITICAL_ERROR, $lang_delete_php['err_invalid_data'], __FILE__, __LINE__);
+                }
             }
         }
+
         if ($need_caption) {
               ob_start();
               output_caption();
