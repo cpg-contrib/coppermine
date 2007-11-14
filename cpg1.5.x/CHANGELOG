@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-11-14 [O] Modified index, thumbnails, displayimage, login, albmgr, catmgr to reflect security improvements imposed by adding Inspekt {Aditya}
 2007-11-02 [O] Modified help popup to reflect security improvements imposed by adding Inspekt {GauGau}
 2007-11-02 [A] Added Inspekt, a tool to create secure PHP application {Aditya}
 2007-10-31 [S] Removed html_entity_decode causing potential XSS vulnerability as discussed in http://coppermine-gallery.net/forum/index.php?topic=47390.0 {Aditya}
