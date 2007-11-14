@@ -34,7 +34,6 @@ $login_failed = '';
 $cookie_warning = '';
 
 if ($superCage->post->keyExists('submitted')) {
-    echo "USERNAME: ".$superCage->post->getEscaped('username');
     if ( $USER_DATA = $cpg_udb->login( $superCage->post->getEscaped('username'), $superCage->post->getEscaped('password'), $superCage->post->getInt('remember_me') ) ) {
         $referer=preg_replace("'&amp;'","&",$referer);
         cpgRedirectPage($referer, $lang_login_php['login'], sprintf($lang_login_php['welcome'], $USER_DATA['user_name']),3);
