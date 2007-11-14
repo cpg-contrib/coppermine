@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
@@ -195,7 +195,7 @@ EOT;
 
 function display_cat_list()
 {
-    global $CAT_LIST, $CONFIG; //$PHP_SELF,
+    global $CAT_LIST, $CONFIG, $CPG_PHP_SELF; //$PHP_SELF,
     $CAT_LIST3 = $CAT_LIST;
 
     $loop_counter = 0;
@@ -214,24 +214,24 @@ function display_cat_list()
         echo '                <td class="'.$row_style_class.'" width="80%"><b>' . $category['name'] . '</b></td>' . "\n";
 
         if ($category['pos'] > 0 && $CONFIG['categories_alpha_sort'] != 1) {
-            echo '                <td class="'.$row_style_class.'" width="4%"><a href="' . $_SERVER['PHP_SELF'] . '?op=move&amp;cid1=' . $category['cid'] . '&amp;pos1=' . ($category['pos']-1) . '&amp;cid2=' . $category['prev'] . '&amp;pos2=' . ($category['pos']) . '">' . '<img src="images/up.gif"  border="0" alt="" />' . '</a></td>' . "\n";
+            echo '                <td class="'.$row_style_class.'" width="4%"><a href="' . $CPG_PHP_SELF . '?op=move&amp;cid1=' . $category['cid'] . '&amp;pos1=' . ($category['pos']-1) . '&amp;cid2=' . $category['prev'] . '&amp;pos2=' . ($category['pos']) . '">' . '<img src="images/up.gif"  border="0" alt="" />' . '</a></td>' . "\n";
         } else {
             echo '                <td class="'.$row_style_class.'" width="4%">' . '&nbsp;' . '</td>' . "\n";
         }
 
         if ($category['pos'] < $category['cat_count']-1  && $CONFIG['categories_alpha_sort'] != 1) {
-            echo '                <td class="'.$row_style_class.'" width="4%"><a href="' . $_SERVER['PHP_SELF'] . '?op=move&amp;cid1=' . $category['cid'] . '&amp;pos1=' . ($category['pos'] + 1) . '&amp;cid2=' . $category['next'] . '&amp;pos2=' . ($category['pos']) . '">' . '<img src="images/down.gif"  border="0" alt="" />' . '</a></td>' . "\n";
+            echo '                <td class="'.$row_style_class.'" width="4%"><a href="' . $CPG_PHP_SELF . '?op=move&amp;cid1=' . $category['cid'] . '&amp;pos1=' . ($category['pos'] + 1) . '&amp;cid2=' . $category['next'] . '&amp;pos2=' . ($category['pos']) . '">' . '<img src="images/down.gif"  border="0" alt="" />' . '</a></td>' . "\n";
         } else {
             echo '                <td class="'.$row_style_class.'" width="4%">' . '&nbsp;' . '</td>' . "\n";
         }
 
         if ($category['cid'] != 1) {
-            echo '                <td class="'.$row_style_class.'" width="4%"><a href="' . $_SERVER['PHP_SELF'] . '?op=deletecat&amp;cid=' . $category['cid'] . '" onClick="return confirmDel(\'' . addslashes(str_replace('&nbsp;', '', $category['name'])) . '\')">' . '<img src="images/delete.gif"  border="0" alt="" />' . '</a></td>' . "\n";
+            echo '                <td class="'.$row_style_class.'" width="4%"><a href="' . $CPG_PHP_SELF . '?op=deletecat&amp;cid=' . $category['cid'] . '" onClick="return confirmDel(\'' . addslashes(str_replace('&nbsp;', '', $category['name'])) . '\')">' . '<img src="images/delete.gif"  border="0" alt="" />' . '</a></td>' . "\n";
         } else {
             echo '                <td class="'.$row_style_class.'" width="4%">' . '&nbsp;' . '</td>' . "\n";
         }
 
-        echo '                <td class="'.$row_style_class.'" width="4%">' . '<a href="' . $_SERVER['PHP_SELF'] . '?op=editcat&amp;cid=' . $category['cid'] . '">' . '<img src="images/edit.gif" border="0" alt="" />' . '</a></td>' . "\n";
+        echo '                <td class="'.$row_style_class.'" width="4%">' . '<a href="' . $CPG_PHP_SELF . '?op=editcat&amp;cid=' . $category['cid'] . '">' . '<img src="images/edit.gif" border="0" alt="" />' . '</a></td>' . "\n";
         echo '                <td class="'.$row_style_class.'" width="4%">' . "\n" . cat_list_box($category['cid'], $CAT_LIST3[$category['parent']]) . "\n" . '</td>' . "\n";
         echo "        </tr>\n";
     }
@@ -255,9 +255,8 @@ function verify_children($parent, $cid)
         return false;
 }
 
-
-if (isset($_POST['update_config'])) {
-    $value = $_POST['categories_alpha_sort'];
+if ($superCage->post->keyExists('update_config')) {
+    $value = $superCage->post->getInt('update_config');
             cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = 'categories_alpha_sort'");
             $CONFIG['categories_alpha_sort'] = $value;
             if ($CONFIG['log_mode'] == CPG_LOG_ALL) {
@@ -272,91 +271,118 @@ if (isset($_POST['update_config'])) {
 }
 
 
-$op = isset($_GET['op']) ? $_GET['op'] : '';
+//$op = isset($_GET['op']) ? $_GET['op'] : '';
+if ($superCage->get->keyExists('op')) {
+	$op = $superCage->get->getAlpha('op');
+} else {
+	$op = '';
+}
 
 $current_category = array('cid' => '0', 'name' => '', 'parent' => '0', 'description' => '');
 
 switch ($op) {
     case 'move':
-        if (!isset($_GET['cid1']) || !isset($_GET['cid2']) || !isset($_GET['pos1']) || !isset($_GET['pos2'])) cpg_die(CRITICAL_ERROR, sprintf($lang_catmgr_php['miss_param'], 'move'), __FILE__, __LINE__);
+        if (!$superCage->get->keyExists('cid1') || !$superCage->get->keyExists('cid1')
+            || !$superCage->get->keyExists('pos1') || !$superCage->get->keyExists('pos2')
+            ) {
+            	cpg_die(CRITICAL_ERROR, sprintf($lang_catmgr_php['miss_param'], 'move'), __FILE__, __LINE__);
+            }
 
-        $cid1 = (int)$_GET['cid1'];
-        $cid2 = (int)$_GET['cid2'];
-        $pos1 = (int)$_GET['pos1'];
-        $pos2 = (int)$_GET['pos2'];
+        $cid1 = $superCage->get->getInt('cid1');
+        $cid2 = $superCage->get->getInt('cid2');
+        $pos1 = $superCage->get->getInt('pos1');
+        $pos2 = $superCage->get->getInt('pos2');
 
         cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET pos='$pos1' WHERE cid = '$cid1' LIMIT 1");
         cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET pos='$pos2' WHERE cid = '$cid2' LIMIT 1");
         break;
 
     case 'setparent':
-        if (!isset($_GET['cid']) || !isset($_GET['parent'])) cpg_die(CRITICAL_ERROR, sprintf($lang_catmgr_php['miss_param'], 'setparent'), __FILE__, __LINE__);
+        if (!$superCage->get->keyExists('cid') || !$superCage->get->keyExists('parent')) {
+            cpg_die(CRITICAL_ERROR, sprintf($lang_catmgr_php['miss_param'], 'setparent'), __FILE__, __LINE__);
+        }
 
-        $cid = (int)$_GET['cid'];
-        $parent = (int)$_GET['parent'];
-                $children=array();
-                verify_children($cid, $cid);
-                if (!in_array($parent, $children)){
-                cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET parent='$parent', pos='-1' WHERE cid = '$cid' LIMIT 1");
-                }else{
-                        cpg_die(ERROR, "You cannot move a category into its own child", __FILE__, __LINE__);
-                }
-                break;
+        $cid = $superCage->get->getInt('cid');
+        $parent = $superCage->get->getInt('parent');
+        $children = array();
+        verify_children($cid, $cid);
+
+        if (!in_array($parent, $children)) {
+            cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET parent='$parent', pos='-1' WHERE cid = '$cid' LIMIT 1");
+        } else {
+            cpg_die(ERROR, "You cannot move a category into its own child", __FILE__, __LINE__);
+        }
+        break;
 
     case 'editcat':
-        if (!isset($_GET['cid'])) cpg_die(CRITICAL_ERROR, sprintf($lang_catmgr_php['miss_param'], 'editcat'), __FILE__, __LINE__);
+        if (!$superCage->get->keyExists('cid')) {
+            cpg_die(CRITICAL_ERROR, sprintf($lang_catmgr_php['miss_param'], 'editcat'), __FILE__, __LINE__);
+        }
 
-        $cid = (int)$_GET['cid'];
+        $cid = $superCage->get->getInt('cid');
         $result = cpg_db_query("SELECT cid, name, parent, description, thumb FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '$cid' LIMIT 1");
 
-        if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_catmgr_php['unknown_cat'], __FILE__, __LINE__);
+        if (!mysql_num_rows($result)) {
+            cpg_die(ERROR, $lang_catmgr_php['unknown_cat'], __FILE__, __LINE__);
+        }
         $current_category = mysql_fetch_array($result);
         break;
 
     case 'updatecat':
-        if (!isset($_POST['cid']) || !isset($_POST['parent']) || !isset($_POST['name']) || !isset($_POST['description'])) cpg_die(CRITICAL_ERROR, sprintf($lang_catmgr_php['miss_param'], 'updatecat'), __FILE__, __LINE__);
+        if (!$superCage->post->keyExists('cid') || !$superCage->post->keyExists('parent') || !$superCage->post->keyExists('name') || !$superCage->post->keyExists('description')) {
+            cpg_die(CRITICAL_ERROR, sprintf($lang_catmgr_php['miss_param'], 'updatecat'), __FILE__, __LINE__);
+        }
 
-                $name = trim($_POST['name']);
-                if (empty($name)){
-                        break;
-                }
+        if ($superCage->post->keyExists('name')) {
+            $name = $superCage->post->getEscaped('name');
+        } else {
+            $name = '&lt;???&gt;';
+        	break;
+        }
+        /*if (empty($name)){
+                break;
+        }*/
 
-
-        $cid = (int)$_POST['cid'];
-        $parent = (int)$_POST['parent'];
-        $thumb = (int)$_POST['thumb'];
-        $name = trim($_POST['name']) ? addslashes($_POST['name']) : '&lt;???&gt;';
-        $description = addslashes($_POST['description']);
-                $children=array();
-                verify_children($cid, $cid);
-                if (!in_array($parent, $children)){
-                cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET parent='$parent', name='$name', description='$description', thumb='$thumb' WHERE cid = '$cid' LIMIT 1");
-                }else{
-                        cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET name='$name', description='$description', thumb='$thumb' WHERE cid = '$cid' LIMIT 1");
-                }
+        $cid = $superCage->post->getInt('cid');
+        $parent = $superCage->post->getInt('parent');
+        $thumb = $superCage->post->getInt('thumb');
+        //$name = trim($_POST['name']) ? addslashes($_POST['name']) : '&lt;???&gt;';
+        $description = $superCage->post->getEscaped('description');
+        $children=array();
+        verify_children($cid, $cid);
+        if (!in_array($parent, $children)){
+        cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET parent='$parent', name='$name', description='$description', thumb='$thumb' WHERE cid = '$cid' LIMIT 1");
+        }else{
+                cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET name='$name', description='$description', thumb='$thumb' WHERE cid = '$cid' LIMIT 1");
+        }
         break;
 
     case 'createcat':
-        if (!isset($_POST['parent']) || !isset($_POST['name']) || !isset($_POST['description'])) cpg_die(CRITICAL_ERROR, sprintf($lang_catmgr_php['miss_param'], 'createcat'), __FILE__, __LINE__);
+        if (!$superCage->post->keyExists('parent') || !$superCage->post->keyExists('name')
+            || !$superCage->post->keyExists('description')) {
+                cpg_die(CRITICAL_ERROR, sprintf($lang_catmgr_php['miss_param'], 'createcat'), __FILE__, __LINE__);
+            }
 
-                $name = trim($_POST['name']);
+        if ($superCage->post->keyExists('name')) {
+            $name = $superCage->post->getEscaped('name');
+        } else {
+            $name = '&lt;???&gt;';
+            break;
+        }
 
-                if (empty($name)){
-                        break;
-                }
-
-
-                $parent = (int)$_POST['parent'];
-        $name = trim($_POST['name']) ? addslashes($_POST['name']) : '&lt;???&gt;';
-        $description = addslashes($_POST['description']);
+        $parent = $superCage->post->getInt('parent');
+        //$name = trim($_POST['name']) ? addslashes($_POST['name']) : '&lt;???&gt;';
+        $description = $superCage->post->getEscaped('description');
 
         cpg_db_query("INSERT INTO {$CONFIG['TABLE_CATEGORIES']} (pos, parent, name, description) VALUES ('10000', '$parent', '$name', '$description')");
         break;
 
     case 'deletecat':
-        if (!isset($_GET['cid'])) cpg_die(CRITICAL_ERROR, sprintf($lang_catmgr_php['miss_param'], 'deletecat'), __FILE__, __LINE__);
+        if (!$superCage->post->keyExists('cid')) {
+            cpg_die(CRITICAL_ERROR, sprintf($lang_catmgr_php['miss_param'], 'deletecat'), __FILE__, __LINE__);
+        }
 
-        $cid = (int)$_GET['cid'];
+        $cid = $superCage->get->getInt('cid');
 
         $result = cpg_db_query("SELECT parent FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '$cid' LIMIT 1");
         if ($cid == 1) cpg_die(ERROR, $lang_catmgr_php['usergal_cat_ro'], __FILE__, __LINE__);
@@ -450,7 +476,7 @@ echo <<<EOT
                 <td colspan="4" class="tableh1" align="center"><b><span class="statlink">{$lang_catmgr_php['operations']}</span></b></td>
                 <td class="tableh1" align="center"><b><span class="statlink">{$lang_catmgr_php['move_into']}</span></b></td>
         </tr>
-        <form method="get" action="{$_SERVER['PHP_SELF']}" name="cpgform" id="cpgform">
+        <form method="get" action="$CPG_PHP_SELF" name="cpgform" id="cpgform">
 
 EOT;
 
@@ -478,7 +504,7 @@ echo <<<EOT
         -->
         </script>
 
-<form name="catsortconfig" action="{$_SERVER['PHP_SELF']}" method="post" name="cpgform2" id="cpgform2">
+<form name="catsortconfig" action="$CPG_PHP_SELF" method="post" name="cpgform2" id="cpgform2">
         <tr>
             <td class="tablef" colspan="6">
                         {$lang_catmgr_php['categories_alpha_sort']}
@@ -502,7 +528,7 @@ $lb = cat_list_box($current_category['parent'], $current_category['cid'], false)
 $op = $current_category['cid'] ? 'updatecat' : 'createcat';
 if ($CONFIG['show_bbcode_help']) {$description_help .= '&nbsp;'. cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
 echo <<<EOT
-        <form method="post" action="{$_SERVER['PHP_SELF']}?op=$op" name="cpgform3" id="cpgform3">
+        <form method="post" action="$CPG_PHP_SELF?op=$op" name="cpgform3" id="cpgform3">
         <input type="hidden" name="cid" value ="{$current_category['cid']}" />
         <tr>
             <td width="40%" class="tableb">
@@ -530,7 +556,10 @@ echo <<<EOT
         </tr>
 EOT;
 
-if ($_GET['op'] == 'editcat') form_alb_thumb();
+$op = $superCage->get->getAlpha('op');
+if ($op == 'editcat') {
+    form_alb_thumb();
+}
 
 echo <<<EOT
         <tr>
