@@ -171,7 +171,7 @@ class cpg_udb extends core_udb {
 	// Logout
 	function logout_page()
 	{
-		$this->redirect('/member.php?action=logout&uid=' . USER_ID);
+		$this->redirect('/member.php?action=logout&uid=' . USER_ID . '&sid=' . $this->sid);
 	}
 	
 	function view_users()
