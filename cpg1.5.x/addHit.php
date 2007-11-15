@@ -24,15 +24,16 @@ require('include/init.inc.php');
 /**
  * Clean up GPC and other Globals here
  */
- $CLEAN['pid'] = (int)$_GET['pid'];
+ $pid = $superCage->get->getInt('pid');
 
-if ($CLEAN['pid'] && !GALLERY_ADMIN_MODE && $CONFIG['slideshow_hits'] != 0) {
-  // Add 1 to hit counter
-  if (!in_array($CLEAN['pid'], $USER['liv']) && isset($HTTP_COOKIE_VARS[$CONFIG['cookie_name'] . '_data'])) {
-	  add_hit($pid);
-	  if (count($USER['liv']) > 4) array_shift($USER['liv']);
-	  array_push($USER['liv'], $pid);
-	  user_save_profile();
-  }
+if ($pid && !GALLERY_ADMIN_MODE && $CONFIG['slideshow_hits'] != 0) {
+    // Add 1 to hit counter
+    if (!in_array($pid, $USER['liv']) && $superCage->cookie->keyExists($CONFIG['cookie_name'] . '_data')) {
+        add_hit($pid);
+        if (count($USER['liv']) > 4) array_shift($USER['liv']);
+        array_push($USER['liv'], $pid);
+        user_save_profile();
+    }
 }
+
 ?>
