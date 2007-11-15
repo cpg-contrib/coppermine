@@ -24,7 +24,7 @@ require('include/init.inc.php');
 include("include/smilies.inc.php");
 
 //if (defined('UDB_INTEGRATION')){
-  $cpg_udb->view_profile($_GET['uid']);
+  $cpg_udb->view_profile($superCage->get->getInt('uid'));
 //}
 
 function cpgUserPicCount($username) {
@@ -268,29 +268,44 @@ EOT;
 function get_post_var($var)
 {
     global $lang_errors;
+    $superCage = Inspekt::makeSuperCage();
 
-    if (!isset($_POST[$var])) cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'] . " ($var)", __FILE__, __LINE__);
-    return addslashes(trim($_POST[$var]));
+    if (!$superCage->post->keyExists($var)) {
+    	cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'] . " ($var)", __FILE__, __LINE__);
+    }
+    return $superCage->post->getEscaped($var);
 }
 
-$op = isset($_GET['op']) ? $_GET['op'] : '';
-$uid = isset($_GET['uid']) ? (int)$_GET['uid'] : -1;
-if (isset($_POST['change_pass'])) $op = 'change_pass';
+if ($superCage->get->keyExists('op') && ($matches = $superCage->get->getMatched('op', '/^[a-z_]+$/'))) {
+    $sort = $matches[0];
+} else {
+	$op = '';
+}
 
-if (isset($_POST['change_profile']) && USER_ID && UDB_INTEGRATION == 'coppermine') { //!defined('UDB_INTEGRATION')) {
+if ($superCage->get->keyExists('uid')) {
+	$uid = $superCage->get->getInt('uid');
+} else {
+	$uid = -1;
+}
 
-        $profile1 = addslashes($_POST['user_profile1']);
-        $profile2 = addslashes($_POST['user_profile2']);
-        $profile3 = addslashes($_POST['user_profile3']);
-        $profile4 = addslashes($_POST['user_profile4']);
-        $profile5 = addslashes($_POST['user_profile5']);
-        $profile6 = addslashes($_POST['user_profile6']);
+if ($superCage->post->keyExists('change_pass')) {
+	$op = 'change_pass';
+}
+
+if ($superCage->post->keyExists('change_profile') && USER_ID && UDB_INTEGRATION == 'coppermine') { //!defined('UDB_INTEGRATION')) {
+
+        $profile1 = $superCage->post->getEscaped('user_profile1');
+        $profile2 = $superCage->post->getEscaped('user_profile2');
+        $profile3 = $superCage->post->getEscaped('user_profile3');
+        $profile4 = $superCage->post->getEscaped('user_profile4');
+        $profile5 = $superCage->post->getEscaped('user_profile5');
+        $profile6 = $superCage->post->getEscaped('user_profile6');
 
         $error = false;
 
         if ($CONFIG['allow_email_change']){
 
-                $email = addslashes($_POST['email']);
+                $email = $superCage->post->getEscaped('email');
 
                 if (!eregi("^[_\.0-9a-z\-]+@([0-9a-z][0-9a-z-]+\.)+[a-z]{2,6}$", $email)){
                         $error = $lang_register_php['err_invalid_email'];
@@ -327,7 +342,7 @@ if (isset($_POST['change_profile']) && USER_ID && UDB_INTEGRATION == 'coppermine
     exit;
 }
 
-if (isset($_POST['change_password']) && USER_ID && UDB_INTEGRATION == 'coppermine') { //!defined('UDB_INTEGRATION')) {
+if ($superCage->post->keyExists('change_password') && USER_ID && UDB_INTEGRATION == 'coppermine') { //!defined('UDB_INTEGRATION')) {
     $current_pass = get_post_var('current_pass');
     $new_pass = get_post_var('new_pass');
     $new_pass_again = get_post_var('new_pass_again');
@@ -347,21 +362,13 @@ if (isset($_POST['change_password']) && USER_ID && UDB_INTEGRATION == 'coppermin
     $result = cpg_db_query($sql);
     if (!mysql_affected_rows()) cpg_die(ERROR, $lang_register_php['pass_chg_error'], __FILE__, __LINE__);
 
-
-/**
-
-    TODO:
-
-    add setcookie function to udb objects (omni)
-
-*/
-
-
-
-    setcookie($CONFIG['cookie_name'] . '_pass', md5($_POST['new_pass']), time() + 86400, $CONFIG['cookie_path']);
+    /**
+     * TODO: add setcookie function to udb objects (omni)
+     */
+    setcookie($CONFIG['cookie_name'] . '_pass', md5($new_pass), time() + 86400, $CONFIG['cookie_path']);
 
     $title = sprintf($lang_register_php['x_s_profile'], stripslashes(USER_NAME));
-    $redirect = $_SERVER['PHP_SELF'] . "?op=edit_profile";
+    $redirect = $CPG_PHP_SELF . "?op=edit_profile";
     pageheader($title, "<META http-equiv=\"refresh\" content=\"3;url=$redirect\">");
     msg_box($lang_common['information'], $lang_register_php['pass_chg_success'], $lang_common['continue'], $redirect);
     pagefooter();
@@ -428,7 +435,7 @@ switch ($op) {
         pageheader($title);
 
         echo <<<EOT
-    <form name="cpgform" id="cpgform" method="post" action="{$_SERVER['PHP_SELF']}">
+    <form name="cpgform" id="cpgform" method="post" action="{$CPG_PHP_SELF}">
 
 EOT;
         starttable(-1, $title, 2);
@@ -587,7 +594,7 @@ EOT;
         $title = $lang_register_php['change_pass'];
         pageheader($title);
         echo <<<EOT
-         <form name="cpgform" id="cpgform" method="post" action="{$_SERVER['PHP_SELF']}">
+         <form name="cpgform" id="cpgform" method="post" action="{$CPG_PHP_SELF}">
 EOT;
         starttable(-1, $title, 2);
         make_form($change_password_form_param, '');
