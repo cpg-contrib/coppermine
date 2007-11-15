@@ -44,27 +44,26 @@ require('include/init.inc.php');
 /**
  * Clean up GPC and other Globals here
  */
- $CLEAN['pid'] = (int)$_GET['pid'];
- $CLEAN['ref'] = htmlspecialchars($_GET['ref']);
-
+ $pid = $superCage->get->getInt('pid');
+ // Used getRaw() method but sanitize immediately
+ $ref = htmlspecialchars($superCage->get->getRaw('ref'));
 
 // Check if required parameters are present
-if (empty($CLEAN['pid'])) cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
+if (empty($pid)) cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
 
-$ref = $CONFIG['site_url'] . (!empty($CLEAN['ref']) ? $CLEAN['ref'] : "displayimage.php?pid={$CLEAN['pid']}");
+$ref = $CONFIG['site_url'] . (!empty($ref) ? $ref : "displayimage.php?pid={$pid}");
 $ref = str_replace('&amp;', '&', $ref);
-
 // If user does not accept script's cookies, we don't accept the vote
-if (!isset($_COOKIE[$CONFIG['cookie_name'] . '_data'])) {
-        header("Location: $ref");
-        exit;
+if (!$superCage->cookie->keyExists($CONFIG['cookie_name'] . '_data')) {
+    header("Location: $ref");
+    exit;
 }
 // See if this picture is already present in the array
-if (!in_array($CLEAN['pid'], $FAVPICS)) {
-        $FAVPICS[] = $CLEAN['pid'];
+if (!in_array($pid, $FAVPICS)) {
+    $FAVPICS[] = $pid;
 } else {
-        $key = array_search($CLEAN['pid'], $FAVPICS);
-        unset ($FAVPICS[$key]);
+    $key = array_search($pid, $FAVPICS);
+    unset ($FAVPICS[$key]);
 }
 
 $data = base64_encode(serialize($FAVPICS));
