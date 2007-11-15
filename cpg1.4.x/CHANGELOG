@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-11-15 [B] British English now recognised correctly {Nibbler}
 2007-11-15 [B] Compatibility fix for MyBB 1.2.9 {Nibbler}
 2007-11-07 [M] Release of cpg1.4.14 {GauGau}
 2007-10-31 [S] Removed html_entity_decode causing potential XSS vulnerability as discussed in http://coppermine-gallery.net/forum/index.php?topic=47390.0 {Aditya}
