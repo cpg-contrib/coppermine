@@ -132,10 +132,12 @@ function list_groups_alb_access() //shows a list of albums each group can see. C
 
 function list_users($search = '')
 {
-    global $CONFIG, $cpg_udb; //, $PHP_SELF;
+    global $CONFIG, $cpg_udb, $CPG_PHP_SELF; //, $PHP_SELF;
     global $lang_usermgr_php, $lang_byte_units, $register_date_fmt, $lang_common;
     global $lim_user,$number_of_columns;
     global $USER_DATA;
+
+    $superCage = Inspekt::makeSuperCage();
 
     $number_of_columns_minus_one = $number_of_columns - 1;
 
@@ -153,13 +155,18 @@ function list_users($search = '')
         'lv_d' => 'user_lastvisit DESC',
         );
 
-    $sort = (!isset($_GET['sort']) || !isset($sort_codes[$_GET['sort']])) ? 'reg_d' : $_GET['sort'];
+    $sort = 'reg_d';
+    if ($superCage->get->keyExists('sort') && ($matches = $superCage->get->getMatched('sort', '/^[a-z_]+$/'))) {
+    	if ($sort_codes[$matches[0]]) {
+    		$sort = $matches[0];
+    	}
+    }
 
     $tab_tmpl = array('left_text' => '<td width="100%" align="left" valign="middle" class="tableh1_compact" style="white-space: nowrap"><b>' . $lang_usermgr_php['u_user_on_p_pages'] . '</b></td>' . "\n",
         'tab_header' => '',
         'tab_trailer' => '',
         'active_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="tableb_compact"><b>%d</b></td>',
-        'inactive_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="' . $_SERVER['PHP_SELF'] . '?page=%d&amp;sort=' . $sort . '"<b>%d</b></a></td>' . "\n"
+        'inactive_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="' . $CPG_PHP_SELF . '?page=%d&amp;sort=' . $sort . '"<b>%d</b></a></td>' . "\n"
         );
 
     $makereadonly = ($CONFIG['bridge_enable']) ? 'style="display:none;" disabled="disabled" ':'';
@@ -169,7 +176,11 @@ function list_users($search = '')
     if (!$user_count) cpg_die(CRITICAL_ERROR, $lang_usermgr_php['err_no_users'], __FILE__, __LINE__);
 
     $user_per_page = 25;
-    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    if ($superCage->get->keyExists('page')) {
+    	$page = $superCage->get->getInt('page');
+    } else {
+    	$page = 1;
+    }
     $lower_limit = ($page-1) * $user_per_page;
     $total_pages = ceil($user_count / $user_per_page);
 
@@ -189,7 +200,7 @@ function list_users($search = '')
 
     $lb = '<span id="album_listbox_wrapper" style="display:none">';
     $lb .= $lang_usermgr_php['sort_by'].': ';
-    $lb .= "<select name=\"album_listbox\" id=\"album_listbox\" class=\"listbox\" onChange=\"if(this.options[this.selectedIndex].value) window.location.href='{$_SERVER['PHP_SELF']}?page=$page&amp;sort='+this.options[this.selectedIndex].value;\">\n";
+    $lb .= "<select name=\"album_listbox\" id=\"album_listbox\" class=\"listbox\" onChange=\"if(this.options[this.selectedIndex].value) window.location.href='{$CPG_PHP_SELF}?page=$page&amp;sort='+this.options[this.selectedIndex].value;\">\n";
     foreach($sort_codes as $key => $value) {
         $selected = ($key == $sort) ? "SELECTED" : "";
         $lb .= "        <option value=\"" . $key . "\" $selected>" . $lang_usermgr_php[$key] . "</option>\n";
@@ -291,8 +302,8 @@ addonload("show_section('action')");
 EOT;
 
     starttable('100%');
-        if (isset($_POST['username'])){
-            $search_filter = '<td class="tableh1" align="center">'.$lang_usermgr_php['search_result'].'&laquo;'.$_POST['username'].'&raquo;</td>';
+        if ($superCage->post->keyExists('username')) {
+            $search_filter = '<td class="tableh1" align="center">'.$lang_usermgr_php['search_result'].'&laquo;'.htmlentities($superCage->post->getRaw('username')).'&raquo;</td>';
         } else {
             $search_filter = '';
         }
@@ -332,28 +343,28 @@ EOT;
         <tr>
                 <td class="tableh1" align="center"><input type="checkbox" {$makereadonly}name="checkAll" id="checkAll" onClick="selectAll(this,'u');" class="checkbox" title="{$lang_common['check_uncheck_all']}" style="display:none" /></td>
                 <td class="tableh1" colspan="2"><b><span class="statlink">{$lang_usermgr_php['name']}</span></b>
-                <a href="{$_SERVER['PHP_SELF']}?page=$page&amp;sort=name_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['name_a']}" /></a>
-                <a href="{$_SERVER['PHP_SELF']}?page=$page&amp;sort=name_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['name_d']}" /></a>
+                <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=name_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['name_a']}" /></a>
+                <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=name_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['name_d']}" /></a>
                 </td>
                 <td class="tableh1"><b><a href="groupmgr.php" class="statlink">{$lang_usermgr_php['group']}</a></b>
-                <a href="{$_SERVER['PHP_SELF']}?page=$page&amp;sort=group_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['group_a']}" /></a>
-                <a href="{$_SERVER['PHP_SELF']}?page=$page&amp;sort=group_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['group_d']}" /></a>
+                <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=group_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['group_a']}" /></a>
+                <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=group_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['group_d']}" /></a>
                 </td>
                 <td class="tableh1"><b><span class="statlink">{$lang_usermgr_php['registered_on']}</span></b>
-                <a href="{$_SERVER['PHP_SELF']}?page=$page&amp;sort=reg_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['reg_a']}" /></a>
-                <a href="{$_SERVER['PHP_SELF']}?page=$page&amp;sort=reg_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['reg_d']}" /></a>
+                <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=reg_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['reg_a']}" /></a>
+                <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=reg_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['reg_d']}" /></a>
                 </td>
                 <td class="tableh1"><b><span class="statlink">{$lang_usermgr_php['last_visit']}</span></b>
-                <a href="{$_SERVER['PHP_SELF']}?page=$page&amp;sort=lv_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['lv_a']}" /></a>
-                <a href="{$_SERVER['PHP_SELF']}?page=$page&amp;sort=lv_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['lv_d']}" /></a>
+                <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=lv_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['lv_a']}" /></a>
+                <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=lv_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['lv_d']}" /></a>
                 </td>
                 <td class="tableh1" align="center"><b><span class="statlink">{$lang_usermgr_php['pictures']}</span></b>
-                <a href="{$_SERVER['PHP_SELF']}?page=$page&amp;sort=pic_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['pic_a']}" /></a>
-                <a href="{$_SERVER['PHP_SELF']}?page=$page&amp;sort=pic_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['pic_d']}" /></a>
+                <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=pic_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['pic_a']}" /></a>
+                <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=pic_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['pic_d']}" /></a>
                 </td>
                 <td class="tableh1" align="center"><b><span class="statlink">{$lang_usermgr_php['disk_space_used']}</span></b>
-                <a href="{$_SERVER['PHP_SELF']}?page=$page&amp;sort=disku_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['disku_a']}" /></a>
-                <a href="{$_SERVER['PHP_SELF']}?page=$page&amp;sort=disku_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['disku_d']}" /></a>
+                <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=disku_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['disku_a']}" /></a>
+                <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=disku_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['disku_d']}" /></a>
                 </td>
                 <td class="tableh1" align="center"><b><span class="statlink">{$lang_usermgr_php['disk_space_quota']}</span></b>
                 </td>
@@ -414,7 +425,7 @@ EOT;
                     $profile_link = 'profile.php?op=edit_profile';
                     $checkbox_html = '';
                 } else {
-                    $profile_link = $_SERVER['PHP_SELF'].'?op=edit&user_id='.$user['user_id'];
+                    $profile_link = $CPG_PHP_SELF.'?op=edit&user_id='.$user['user_id'];
                     $checkbox_html = '<input name="u'.$user['user_id'].'" '.$makereadonly.'type="checkbox" value="" class="checkbox" />';
                 }
                 echo <<< EOT
@@ -461,8 +472,8 @@ EOT;
 
 
     if (!$lim_user) {
-        if (isset($_POST['username'])){
-            $search_string_default = 'value="'.$_POST['username'].'"';
+        if ($superCage->post->keyExists('username')) {
+            $search_string_default = 'value="'.$superCage->post->getEscaped('username').'"';
         } else {
             $search_string_default = 'value="'.$lang_usermgr_php['search'].'" onfocus="this.value=\'\'"';
         }
@@ -521,7 +532,7 @@ EOT;
                             <input type="submit" name="go" value="{$lang_usermgr_php['submit']}" class="button" style="display:none" />
                         </td>
                         <td align="center">
-                        <a href="{$_SERVER['PHP_SELF']}?op=new_user" {$makereadonly}class="admin_menu">{$lang_usermgr_php['create_new_user']}</a>
+                        <a href="{$CPG_PHP_SELF}?op=new_user" {$makereadonly}class="admin_menu">{$lang_usermgr_php['create_new_user']}</a>
                         {$help_create}
                         </td>
                         </form>
@@ -531,7 +542,7 @@ EOT;
         </tr>
         <tr>
             <td colspan="$number_of_columns"  class="tablef" align="center" valign="middle">
-                <form method="post" action="{$_SERVER['PHP_SELF']}" name="searchUser" id="cpgform2">
+                <form method="post" action="{$CPG_PHP_SELF}" name="searchUser" id="cpgform2">
                 <input type="text" name="username" class="textinput" $search_string_default />
                 <input type="submit" name="user_search" value="{$lang_usermgr_php['search_submit']}" class="button" />
                 $help
@@ -563,7 +574,7 @@ EOT;
 
 function edit_user($user_id)
 {
-    global $CONFIG; //, $PHP_SELF;
+    global $CONFIG, $CPG_PHP_SELF; //, $PHP_SELF;
     global $lang_usermgr_php, $lang_common;
 
     $form_data = array(
@@ -593,7 +604,7 @@ function edit_user($user_id)
 
     starttable(500, $lang_usermgr_php['modify_user'], 2);
     echo <<<EOT
-        <form name="cpgform3" id="cpgform3" method="post" action="{$_SERVER['PHP_SELF']}?op=update&user_id=$user_id">
+        <form name="cpgform3" id="cpgform3" method="post" action="{$CPG_PHP_SELF}?op=update&user_id=$user_id">
 
 EOT;
 
@@ -759,20 +770,22 @@ function update_user($user_id)
     global $CONFIG; //, $PHP_SELF;
     global $lang_usermgr_php, $lang_register_php, $lang_send_login_data_email;
 
-    $user_name = addslashes(trim($_POST['user_name']));
-    $user_password = addslashes(trim($_POST['user_password']));
-    $user_email = addslashes(trim($_POST['user_email']));
-    $profile1 = addslashes($_POST['user_profile1']);
-    $profile2 = addslashes($_POST['user_profile2']);
-    $profile3 = addslashes($_POST['user_profile3']);
-    $profile4 = addslashes($_POST['user_profile4']);
-    $profile5 = addslashes($_POST['user_profile5']);
-    $profile6 = addslashes($_POST['user_profile6']);
-    $user_active = $_POST['user_active'];
-    $user_group = $_POST['user_group'];
-    $group_list = isset($_POST['group_list']) ? $_POST['group_list'] : '';
+    $superCage = Inspekt::makeSuperCage();
 
-    $sql = "SELECT user_id " . "FROM {$CONFIG['TABLE_USERS']} " . "WHERE user_name = '" . addslashes($user_name) . "' AND user_id != $user_id";
+    $user_name = $superCage->post->getEscaped('user_name');
+    $user_password = $superCage->post->getEscaped('user_password');
+    $user_email = $superCage->post->getEscaped('user_email');
+    $profile1 = $superCage->post->getEscaped('user_profile1');
+    $profile2 = $superCage->post->getEscaped('user_profile2');
+    $profile3 = $superCage->post->getEscaped('user_profile3');
+    $profile4 = $superCage->post->getEscaped('user_profile4');
+    $profile5 = $superCage->post->getEscaped('user_profile5');
+    $profile6 = $superCage->post->getEscaped('user_profile6');
+    $user_active = $superCage->post->getAlpha('user_active');
+    $user_group = $superCage->post->getInt('user_group');
+    $group_list = $superCage->post->keyExists('group_list') ? $superCage->post->getInt('group_list') : '';
+
+    $sql = "SELECT user_id FROM {$CONFIG['TABLE_USERS']} WHERE user_name = '$user_name' AND user_id != $user_id";
     $result = cpg_db_query($sql);
 
     if (mysql_num_rows($result)) {
@@ -811,29 +824,29 @@ function update_user($user_id)
     cpg_db_query($sql_update);
 
     // If send login data checkbox is checked then send the username and password to the user in an email
-    if (isset($_POST['send_login_data']) && trim($_POST['user_email'])) {
+    if ($superCage->post->keyExists('send_login_data') && trim($user_email)) {
         require('include/mailer.inc.php');
         $template_vars = array(
                               '{SITE_NAME}' => $CONFIG['gallery_name'],
                               '{SITE_LINK}' => $CONFIG['site_url'],
-                              '{USER_NAME}' => trim($_POST['user_name']),
-                              '{USER_PASS}' => trim($_POST['user_password']),
+                              '{USER_NAME}' => trim($user_name),
+                              '{USER_PASS}' => trim($user_password),
                               );
 
-        if (!cpg_mail(trim($_POST['user_email']), $lang_usermgr_php['send_login_email_subject'], nl2br(strtr($lang_send_login_data_email, $template_vars)))) {
+        if (!cpg_mail(trim($user_email), $lang_usermgr_php['send_login_email_subject'], nl2br(strtr($lang_send_login_data_email, $template_vars)))) {
             cpg_die(CRITICAL_ERROR, $lang_usermgr_php['failed_sending_email'], __FILE__, __LINE__);
         }
     }
 }
 
-$op = (GALLERY_ADMIN_MODE && isset($_GET['op'])) ? $_GET['op'] : '';
+$op = (GALLERY_ADMIN_MODE && ($matches = $superCage->get->getMatched('op', '/^[a-z_]+$/'))) ? $matches[0] : '';
 
 switch ($op) {
     case 'edit' :
-        $user_id = isset($_GET['user_id']) ? (int)$_GET['user_id'] : -1;
+        $user_id = $superCage->get->keyExists('user_id') ? $superCage->get->getInt('user_id') : -1;
 
         if (USER_ID == $user_id) cpg_die(ERROR, $lang_usermgr_php['err_edit_self'], __FILE__, __LINE__);
-    $cpg_udb->edit_users($user_id);
+        $cpg_udb->edit_users($user_id);
 
         pageheader($lang_usermgr_php['title']);
         edit_user($user_id);
@@ -842,8 +855,8 @@ switch ($op) {
         break;
 
     case 'update' :
-        $user_id = isset($_GET['user_id']) ? (int)$_GET['user_id'] : -1;
-    $cpg_udb->edit_users($user_id);
+        $user_id = $superCage->get->keyExists('user_id') ? $superCage->get->getInt('user_id') : -1;
+        $cpg_udb->edit_users($user_id);
 
         update_user($user_id);
 
@@ -875,9 +888,7 @@ switch ($op) {
         break;
 
     case 'group_alb_access' : //show what albums specific group can see
-        if (isset($_GET['gid'])) {
-          $group_id = $_GET['gid'];
-        }
+        $group_id = $superCage->get->getInt('gid');
         $sql = "
           SELECT group_name
           FROM {$CONFIG['TABLE_USERGROUPS']} AS groups, {$CONFIG['TABLE_ALBUMS']} AS albums
@@ -911,8 +922,8 @@ switch ($op) {
         cpg_db_query("DELETE FROM {$CONFIG['TABLE_USERS']} WHERE user_name = '' LIMIT 1");
 
         pageheader($lang_usermgr_php['title']);
-        if (isset($_POST['username'])){
-                $name = addslashes($_POST['username']);
+        if ($superCage->post->keyExists('username')) {
+                $name = $superCage->post->getEscaped('username');
                 $wildcards = array("*" => "%", "?" => "_");
                 $search = strtr($name, $wildcards);
         }

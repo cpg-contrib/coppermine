@@ -487,7 +487,8 @@ switch ($what) {
     // User
 
     case 'user':
-        $user_id = str_replace('u', '', $_GET['id']);
+        $matches = $superCage->get->getMatched('id', '/^[u0-9,]+$/');
+        $user_id = str_replace('u', '', $matches[0]);
         $users_scheduled_for_action = explode(',', $user_id);
         //if (!(GALLERY_ADMIN_MODE) || ($user_id == USER_ID) || UDB_INTEGRATION != 'coppermine') cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
         if (UDB_INTEGRATION != 'coppermine') {
@@ -498,12 +499,20 @@ switch ($what) {
             if ($user_id == USER_ID) { // make sure that the admin doesn't delete his own account
                 cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
             }
-            switch ($_REQUEST['action']) {
+
+            if ($superCage->get->keyExists('action') && ($matches = $superCage->get->getMatched('action', '/^[a-z_]+$/'))) {
+                $user_action = $matches[0];
+            } elseif ($superCage->post->keyExists('action') && ($matches = $superCage->post->getMatched('action', '/^[a-z_]+$/'))) {
+                $user_action = $matches[0];
+            } else {
+            	$user_action = '';
+            }
+            switch ($user_action) {
                     case 'delete':
                         pageheader($lang_delete_php['del_user']);
                         starttable("100%", $lang_delete_php['del_user'], 6);
                         foreach($users_scheduled_for_action as $key) {
-                            $result = cpg_db_query("SELECT user_name FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '$key'");
+                            $result = cpg_db_query("SELECT user_name FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '".(int)$key."'");
                             print '<tr>';
                             if (!mysql_num_rows($result)) {
                                 print '<td class="tableb">'.$lang_delete_php['err_unknown_user'].'</td>';
@@ -527,7 +536,14 @@ switch ($what) {
                                 $comment_counter = mysql_fetch_array($comment_result);
                                 mysql_free_result($comment_result);
                                 print '<td class="tableb" width="25%">';
-                                if ($_REQUEST['delete_comments'] == 'yes') {
+
+                                if ($superCage->get->keyExists('delete_comments')) {
+                                	$delete_comments_choice = $superCage->get->getAlpha('delete_comments');
+                                } elseif ($superCage->post->keyExists('delete_comments')) {
+                                    $delete_comments_choice = $superCage->post->getAlpha('delete_comments');
+                                }
+
+                                if ($delete_comments_choice == 'yes') {
                                     cpg_db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE author_id = '$key'");
                                     if ($comment_counter[0] > 0) {
                                         print '<img src="images/green.gif" width="12" height="12" border="0" alt="" /> ';
@@ -541,12 +557,20 @@ switch ($what) {
                                     printf($lang_delete_php['anonymized_comments'], $comment_counter[0]);
                                 }
                                 print '</td>';
+
                                 // Do the same for pictures uploaded in public albums
                                 $publ_upload_result = cpg_db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE owner_id = '$key'");
                                 $publ_upload_counter = mysql_fetch_array($publ_upload_result);
                                 mysql_free_result($publ_upload_result);
                                 print '<td class="tableb" width="25%">';
-                                if ($_REQUEST['delete_files'] == 'yes') {
+
+                                if ($superCage->get->keyExists('delete_files')) {
+                                    $delete_files_choice = $superCage->get->getAlpha('delete_files');
+                                } elseif ($superCage->post->keyExists('delete_files')) {
+                                    $delete_files_choice = $superCage->post->getAlpha('delete_files');
+                                }
+
+                                if ($delete_files_choice == 'yes') {
                                     cpg_db_query("DELETE FROM {$CONFIG['TABLE_PICTURES']} WHERE  owner_id = '$key'");
                                     if ($publ_upload_counter[0] > 0) {
                                         print '<img src="images/green.gif" width="12" height="12" border="0" alt="" /> ';
@@ -675,9 +699,9 @@ switch ($what) {
                                 print '</b></td>';
                                 print '<td class="tableb">';
                                 // set this user's password
-                                $new_password = $CONFIG['enable_encrypted_passwords'] ? md5(addslashes($_REQUEST['new_password'])) : addslashes($_REQUEST['new_password']);
+                                $new_password = $CONFIG['enable_encrypted_passwords'] ? md5($superCage->get->getEscaped('new_password')) : $superCage->get->getEscaped('new_password');
                                 cpg_db_query("UPDATE {$CONFIG['TABLE_USERS']} SET user_password = '$new_password' WHERE  user_id = '$key'");
-                                printf($lang_delete_php['password_reset'], '&laquo;'.$_REQUEST['new_password'].'&raquo;');
+                                printf($lang_delete_php['password_reset'], '&laquo;'.$superCage->get->getEscaped('new_password').'&raquo;');
                                 print '</b></td>';
                             }
                             mysql_free_result($result);
@@ -714,9 +738,10 @@ switch ($what) {
                                 print '</b></td>';
                                 print '<td class="tableb">';
                                 // set this user's group
-                                $group=addslashes($_REQUEST['group']);
+                                //$group=addslashes($_REQUEST['group']);
+                                $group = $superCage->get->getInt('group');
                                 cpg_db_query("UPDATE {$CONFIG['TABLE_USERS']} SET user_group = '$group' WHERE  user_id = '$key'");
-                                printf($lang_delete_php['change_group_to_group'], '&laquo;'.$group_label[$user_data['user_group']].'&raquo;', '&laquo;'.$group_label[$_REQUEST['group']].'&raquo;');
+                                printf($lang_delete_php['change_group_to_group'], '&laquo;'.$group_label[$user_data['user_group']].'&raquo;', '&laquo;'.$group_label[$group].'&raquo;');
                                 print '</b></td>';
                             }
                             mysql_free_result($result);
@@ -760,8 +785,9 @@ switch ($what) {
                                 mysql_free_result($result_user);
                                 $user_group = explode(',', $user_data['user_group_list']);
                                 natcasesort($user_group);
-                                if (!in_array($_REQUEST['group'], $user_group)){
-                                    $user_group[] =  addslashes($_REQUEST['group']);
+                                $new_group = $superCage->get->getInt('group');
+                                if (!in_array($new_group, $user_group)){
+                                    $user_group[] =  $new_group;
                                 }
                                 $group_output = '';
                                 $new_group_query = '';
@@ -775,7 +801,7 @@ switch ($what) {
                                 $new_group_query = trim($new_group_query, ',');
                                 // set this user's group
                                 cpg_db_query("UPDATE {$CONFIG['TABLE_USERS']} SET user_group_list = '$new_group_query' WHERE  user_id = '$key'");
-                                printf($lang_delete_php['add_group_to_group'], '&laquo;'.$user_data['user_name'].'&raquo;', '&laquo;'.$group_label[$_REQUEST['group']].'&raquo;', '&laquo;'.$group_label[$user_data['user_group']].'&raquo;', $group_output);
+                                printf($lang_delete_php['add_group_to_group'], '&laquo;'.$user_data['user_name'].'&raquo;', '&laquo;'.$group_label[$new_group].'&raquo;', '&laquo;'.$group_label[$user_data['user_group']].'&raquo;', $group_output);
                                 print '</b></td>';
                             }
                             mysql_free_result($result);
@@ -791,7 +817,14 @@ switch ($what) {
                         break;
             }
         } else { // admin mode end, user mode start
-            switch ($_REQUEST['action']) {
+            if ($superCage->get->keyExists('action') && ($matches = $superCage->get->getMatched('action', '/^[a-z_]+$/'))) {
+                $user_action = $matches[0];
+            } elseif ($superCage->post->keyExists('action') && ($matches = $superCage->post->getMatched('action', '/^[a-z_]+$/'))) {
+                $user_action = $matches[0];
+            } else {
+                $user_action = '';
+            }
+            switch ($user_action) {
                     case 'delete':
                         pageheader($lang_delete_php['del_user']);
                         starttable("100%", $lang_delete_php['del_user'], 6);
@@ -823,7 +856,14 @@ switch ($what) {
                                 $comment_counter = mysql_fetch_array($comment_result);
                                 mysql_free_result($comment_result);
                                 print '<td class="tableb" width="25%">';
-                                if ($_REQUEST['delete_comments'] == 'yes') {
+
+                                if ($superCage->get->keyExists('delete_comments')) {
+                                    $delete_comments_choice = $superCage->get->getAlpha('delete_comments');
+                                } elseif ($superCage->post->keyExists('delete_comments')) {
+                                    $delete_comments_choice = $superCage->post->getAlpha('delete_comments');
+                                }
+
+                                if ($delete_comments_choice == 'yes') {
                                     cpg_db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE author_id = '$key'");
                                     if ($comment_counter[0] > 0) {
                                         print '<img src="images/green.gif" width="12" height="12" border="0" alt="" /> ';
@@ -842,7 +882,14 @@ switch ($what) {
                                 $publ_upload_counter = mysql_fetch_array($publ_upload_result);
                                 mysql_free_result($publ_upload_result);
                                 print '<td class="tableb" width="25%">';
-                                if ($_REQUEST['delete_files'] == 'yes') {
+
+                                if ($superCage->get->keyExists('delete_files')) {
+                                    $delete_files_choice = $superCage->get->getAlpha('delete_files');
+                                } elseif ($superCage->post->keyExists('delete_files')) {
+                                    $delete_files_choice = $superCage->post->getAlpha('delete_files');
+                                }
+
+                                if ($delete_files_choice == 'yes') {
                                     cpg_db_query("DELETE FROM {$CONFIG['TABLE_PICTURES']} WHERE  owner_id = '$key'");
                                     if ($publ_upload_counter[0] > 0) {
                                         print '<img src="images/green.gif" width="12" height="12" border="0" alt="" /> ';
