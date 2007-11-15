@@ -235,47 +235,58 @@ EOT;
 function get_post_var($var)
 {
     global $lang_errors;
+    $superCage = Inspekt::makeSuperCage();
 
-    if (!isset($_POST[$var])) cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'] . " ($var)", __FILE__, __LINE__);
-    return $_POST[$var];
+    if (!$superCage->post->keyExists($var)) {
+        cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'] . " ($var)", __FILE__, __LINE__);
+    }
+    return $superCage->post->getInt($var);
 }
 
 function process_post_data()
 {
     global $CONFIG;
+    $superCage = Inspekt::makeSuperCage();
 
     $field_list = array('group_name', 'group_quota', 'can_rate_pictures', 'can_send_ecards', 'can_post_comments', 'can_upload_pictures', 'pub_upl_need_approval', 'can_create_albums', 'priv_upl_need_approval', 'upload_form_config', 'custom_user_upload', 'num_file_upload', 'num_URI_upload');
 
     $group_id_array = get_post_var('group_id');
+    $upload_form_config = 0;
     foreach ($group_id_array as $key => $group_id) {
         $set_statment = '';
         foreach ($field_list as $field) {
             //if (!isset($_POST[$field . '_' . $group_id])) cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'] . " ({$field}_{$group_id})", __FILE__, __LINE__);
             //set the 'upload_form_config' entry
+            $numFile = $superCage->post->getInt('num_file_upload_' . $group_id);
+            $numURI  = $superCage->post->getInt('num_URI_upload_' . $group_id);
             // case File upload boxes=1 and URI upload boxes=0 => single uploads (0)
-            if ($_POST['num_file_upload_' . $group_id] == 1 && $_POST['num_URI_upload_' . $group_id] == 0) {
-                $_POST['upload_form_config_' . $group_id] = 0;
+            if ($numFile == 1 && $numURI == 0) {
+                $upload_form_config = 0;
             }
             // case File upload boxes>1 and URI upload boxes=0 => multi file uploads (1)
-            if ($_POST['num_file_upload_' . $group_id] > 1 && $_POST['num_URI_upload_' . $group_id] == 0) {
-                $_POST['upload_form_config_' . $group_id] = 1;
+            if ($numFile > 1 && $numURI == 0) {
+                $upload_form_config = 1;
             }
             // case File upload boxes=0 and URI upload boxes>0 => multi uri uploads (2)
-            if ($_POST['num_file_upload_' . $group_id] == 0 && $_POST['num_URI_upload_' . $group_id] > 0) {
-                $_POST['upload_form_config_' . $group_id] = 2;
+            if ($numFile == 0 && $numURI > 0) {
+                $upload_form_config = 2;
             }
             // case File upload boxes>0 and URI upload boxes>0 => File and URI uploads (3)
-            if ($_POST['num_file_upload_' . $group_id] > 0 && $_POST['num_URI_upload_' . $group_id] > 0) {
-                $_POST['upload_form_config_' . $group_id] = 3;
+            if ($numFile > 0 && $numURI > 0) {
+                $upload_form_config = 3;
             }
             // case File upload boxes=0 and URI upload boxes=0 => input error, default to single uploads (0)
-            if ($_POST['num_file_upload_' . $group_id] == 0 && $_POST['num_URI_upload_' . $group_id] == 0) {
-                $_POST['upload_form_config_' . $group_id] = 0;
+            if ($numFile == 0 && $numURI == 0) {
+                $upload_form_config = 0;
             }
             if ($field == 'group_name') {
-                $set_statment .= $field . "='" . addslashes($_POST[$field . '_' . $group_id]) . "',";
+                $set_statment .= $field . "='" . $superCage->post->getEscaped($field . '_' . $group_id) . "',";
             } else {
-                $set_statment .= $field . "='" . (int)$_POST[$field . '_' . $group_id] . "',";
+                if ($field == 'upload_form_config') {
+                    $set_statment .= $field . "='" . $upload_form_config . "',";
+                } else {
+                    $set_statment .= $field . "='" . $superCage->post->getInt($field . '_' . $group_id) . "',";
+                }
             }
         }
         $set_statment = substr($set_statment, 0, -1);
@@ -283,17 +294,18 @@ function process_post_data()
     }
 }
 
-if (isset($_POST) && count($_POST)) {
-    if (isset($_POST['del_sel']) && isset($_POST['delete_group']) && is_array($_POST['delete_group'])) {
-        foreach($_POST['delete_group'] as $group_id) {
+if ($superCage->post->keyExists('del_sel') && $superCage->post->keyExists('delete_group')) {
+    $delete_group_arr = $superCage->post->getInt('delete_group');
+    if (is_array($delete_group_arr)) {
+        foreach($delete_group_arr as $group_id) {
             cpg_db_query("DELETE FROM {$CONFIG['TABLE_USERGROUPS']} WHERE group_id = '" . (int)$group_id . "' LIMIT 1");
             cpg_db_query("UPDATE {$CONFIG['TABLE_USERS']} SET user_group = '2' WHERE user_group = '" . (int)$group_id . "'");
         }
-    } elseif (isset($_POST['new_group'])) {
-        cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']} (group_name) VALUES ('')");
-    } elseif (isset($_POST['apply_modifs'])) {
-        process_post_data();
     }
+} elseif ($superCage->post->keyExists('new_group')) {
+    cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']} (group_name) VALUES ('')");
+} elseif ($superCage->post->keyExists('apply_modifs')) {
+    process_post_data();
 }
 
 pageheader($lang_groupmgr_php['title']);
@@ -345,7 +357,7 @@ addonload("show_section('checkAll2')");
 //]]>-->
 </script>
 
-<form method="post" action="{$_SERVER['PHP_SELF']}" name="groupmanager" id="cpgform">
+<form method="post" action="$CPG_PHP_SELF" name="groupmanager" id="cpgform">
 EOT;
 
 starttable('100%');
