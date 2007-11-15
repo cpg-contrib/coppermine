@@ -26,7 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
-2007-11-15 [B] Compatibility fix for MyBB 1.2.9
+2007-11-15 [B] Compatibility fix for MyBB 1.2.9 {Nibbler}
 2007-11-15 [O] Modified util.php to reflect security improvements imposed by adding Inspekt {Frantz}
 2007-11-15 [O] Modified groupmgr to reflect security improvements imposed by adding Inspekt {Aditya}
 2007-11-14 [O] Modified index, thumbnails, displayimage, login, albmgr, catmgr to reflect security improvements imposed by adding Inspekt {Aditya}
