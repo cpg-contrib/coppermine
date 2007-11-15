@@ -1531,106 +1531,107 @@ function cpg_determine_client($pid)
          */
         // Get the details of user browser, IP, OS, etc
         $os = "Unknown";
-        if(eregi("Linux",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
+        $server_agent = $superCage->server->getRaw('HTTP_USER_AGENT');
+        if(eregi("Linux",$server_agent)) {
             $os = "Linux";
-        } else if(eregi("Ubuntu",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
+        } else if(eregi("Ubuntu",$server_agent)) {
             $os = "Linux Ubuntu";
-        } else if(eregi("Debian",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
+        } else if(eregi("Debian",$server_agent)) {
             $os = "Linux Debian";
-        } else if(eregi("Windows NT 5.0",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
+        } else if(eregi("Windows NT 5.0",$server_agent)) {
             $os = "Windows 2000";
-        } else if(eregi("win98|Windows 98",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
+        } else if(eregi("win98|Windows 98",$server_agent)) {
             $os = "Windows 98";
-        } else if(eregi("Windows NT 5.1",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
+        } else if(eregi("Windows NT 5.1",$server_agent)) {
             $os = "Windows XP";
-        } else if(eregi("Windows NT 5.2",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
+        } else if(eregi("Windows NT 5.2",$server_agent)) {
             $os = "Windows 2003 Server";
-        } else if(eregi("Windows NT 6.0",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
+        } else if(eregi("Windows NT 6.0",$server_agent)) {
             $os = "Windows Vista";
-        } else if(eregi("Windows CE",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
+        } else if(eregi("Windows CE",$server_agent)) {
             $os = "Windows CE";
-        } else if(eregi("Windows",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
+        } else if(eregi("Windows",$server_agent)) {
             $os = "Windows";
-        } else if(eregi("SunOS",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
+        } else if(eregi("SunOS",$server_agent)) {
             $os = "Sun OS";
-        } else if(eregi("Macintosh",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
+        } else if(eregi("Macintosh",$server_agent)) {
             $os = "Macintosh";
-        } else if(eregi("Mac_PowerPC",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
+        } else if(eregi("Mac_PowerPC",$server_agent)) {
             $os = "Mac OS";
-        } else if(eregi("Mac_PPC",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
+        } else if(eregi("Mac_PPC",$server_agent)) {
             $os = "Macintosh";
-        } else if(eregi("OS/2",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
+        } else if(eregi("OS/2",$server_agent)) {
             $os = "OS/2";
         }
 
         $browser = 'Unknown';
-        if(eregi("MSIE",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
-            if(eregi("MSIE 5.5",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
+        if(eregi("MSIE",$server_agent)) {
+            if(eregi("MSIE 5.5",$server_agent)) {
                 $browser = "IE5.5";
-            } else if(eregi("MSIE 6.0",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
+            } else if(eregi("MSIE 6.0",$server_agent)) {
                 $browser = "IE6";
-            } else if(eregi("MSIE 7.0",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
+            } else if(eregi("MSIE 7.0",$server_agent)) {
                 $browser = "IE7";
-            } else if(eregi("MSIE 3.0",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
+            } else if(eregi("MSIE 3.0",$server_agent)) {
                 $browser = "IE3";
-            } else if(eregi("MSIE 4.0",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
+            } else if(eregi("MSIE 4.0",$server_agent)) {
                 $browser = "IE4";
-            } else if(eregi("MSIE 5.0",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
+            } else if(eregi("MSIE 5.0",$server_agent)) {
                 $browser = "IE5.0";
             }
-        } else if(eregi("Firebird",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
+        } else if(eregi("Firebird",$server_agent)) {
             $browser = "Mozilla Firebird";
-        } else if(eregi("netscape",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
+        } else if(eregi("netscape",$server_agent)) {
             $browser = "Netscape";
-        } else if(eregi("Firefox",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
+        } else if(eregi("Firefox",$server_agent)) {
             $browser = "Firefox";
-        } else if(eregi("Galeon",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
+        } else if(eregi("Galeon",$server_agent)) {
             $browser = "Galeon";
-        } else if(eregi("Camino/",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
+        } else if(eregi("Camino/",$server_agent)) {
             $browser = "Camino/";
-        } else if(eregi("Konqueror",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
+        } else if(eregi("Konqueror",$server_agent)) {
             $browser = "Konqueror";
-        } else if(eregi("Safari",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
+        } else if(eregi("Safari",$server_agent)) {
             $browser = "Safari";
-        } else if(eregi("OmniWeb",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
+        } else if(eregi("OmniWeb",$server_agent)) {
             $browser = "OmniWeb";
-        } else if(eregi("Opera",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
+        } else if(eregi("Opera",$server_agent)) {
             $browser = "Opera";
-        } else if(eregi("amaya",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
+        } else if(eregi("amaya",$server_agent)) {
             $browser = "Amaya";
-        } else if(eregi("iCab",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
+        } else if(eregi("iCab",$server_agent)) {
             $browser = "iCab";
-        } else if(eregi("Lynx",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
+        } else if(eregi("Lynx",$server_agent)) {
             $browser = "Lynx";
-        } else if(eregi("Googlebot",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
+        } else if(eregi("Googlebot",$server_agent)) {
             $browser = "Googlebot";
-        } else if(eregi("Lycos_Spider",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
+        } else if(eregi("Lycos_Spider",$server_agent)) {
             $browser = "Lycos Spider";
-        } else if(eregi("Firefly",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
+        } else if(eregi("Firefly",$server_agent)) {
             $browser = "Fireball Spider";
-        } else if(eregi("Advanced Browser",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
+        } else if(eregi("Advanced Browser",$server_agent)) {
             $browser = "Avant";
-        } else if(eregi("Amiga-AWeb",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
+        } else if(eregi("Amiga-AWeb",$server_agent)) {
             $browser = "AWeb";
-        } else if(eregi("Cyberdog",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
+        } else if(eregi("Cyberdog",$server_agent)) {
             $browser = "Cyberdog";
-        } else if(eregi("Dillo",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
+        } else if(eregi("Dillo",$server_agent)) {
             $browser = "Dillo";
-        } else if(eregi("DreamPassport",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
+        } else if(eregi("DreamPassport",$server_agent)) {
             $browser = "DreamCast";
-        } else if(eregi("eCatch",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
+        } else if(eregi("eCatch",$server_agent)) {
             $browser = "eCatch";
-        } else if(eregi("ANTFresco",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
+        } else if(eregi("ANTFresco",$server_agent)) {
             $browser = "Fresco";
-        } else if(eregi("RSS",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
+        } else if(eregi("RSS",$server_agent)) {
             $browser = "RSS";
-        } else if(eregi("Avant",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
+        } else if(eregi("Avant",$server_agent)) {
             $browser = "Avant";
-        } else if(eregi("HotJava",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
+        } else if(eregi("HotJava",$server_agent)) {
             $browser = "HotJava";
-        } else if(eregi("W3C-checklink|W3C_Validator|Jigsaw",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
+        } else if(eregi("W3C-checklink|W3C_Validator|Jigsaw",$server_agent)) {
             $browser = "W3C";
-        } else if(eregi("K-Meleon",$superCage->server->getRaw('HTTP_USER_AGENT'))) {
+        } else if(eregi("K-Meleon",$server_agent)) {
             $browser = "K-Meleon";
         }
 
@@ -1677,7 +1678,11 @@ function add_hit($pid)
 
         //Sanitize the referer
         //Used getRaw() method but sanitized immediately
-        $referer = urlencode(addslashes($superCage->server->getRaw('HTTP_REFERER')));
+        if ($superCage->server->isUri('HTTP_REFERER')) {
+            $referer = urlencode(addslashes(htmlentities($superCage->server->getRaw('HTTP_REFERER'))));
+        } else {
+        	$referer= '';
+        }
 
         // Insert the record in database
         $query = "INSERT INTO {$CONFIG['TABLE_HIT_STATS']}
