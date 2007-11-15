@@ -84,8 +84,14 @@ $tasks =  array(
         'reset_views' => array('reset_views', $lang_util_php['reset_views'], $lang_util_php['reset_views_explanation']),
         );
 
-$action = (isset($_REQUEST['action'])) ? $_REQUEST['action'] : '';
-
+//$action = (isset($_REQUEST['action'])) ? $_REQUEST['action'] : '';
+if ($superCage->post->keyExists('action')) {
+    $action = $superCage->post->getInt('action');
+} elseif ($superCage->get->keyExists('action')) {
+    $action = $superCage->get->getInt('action');
+} else {
+	$action = '';
+}
 if (array_key_exists($action, $tasks)){
         call_user_func($action);
         echo "<br /><a href=\"util.php\">{$lang_util_php['back']}</a>";
@@ -150,12 +156,18 @@ function del_titles()
 {
         global $CONFIG, $lang_util_php;
 
-        $albumid = (isset($_POST['albumid'])) ? $_POST['albumid'] : 0;
+        $superCage = Inspekt::makeSuperCage();
+        //$albumid = (isset($_POST['albumid'])) ? $_POST['albumid'] : 0;
+        if ($superCage->post->keyExists('albumid')) {
+	       	$albumid = $superCage->post->getInt('albumid');
+		} else {
+			$albumid = 0;
+		}
         $albstr = ($albumid) ? "WHERE aid = $albumid" : '';
         echo "<h2>{$lang_util_php['delete_wait']}</h2>";
         $query = cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET title = '' $albstr");
         if ($query) {
-                echo $lang_util_php['titles_deleted']."<br />";
+            echo $lang_util_php['titles_deleted']."<br />";
         }
 }
 
@@ -163,7 +175,13 @@ function filename_to_title()
 {
         global $CONFIG, $lang_util_php;
 
-        $albumid = (isset($_POST['albumid'])) ? $_POST['albumid'] : 0;
+		$superCage = Inspekt::makeSuperCage();
+        //$albumid = (isset($_POST['albumid'])) ? $_POST['albumid'] : 0;
+        if ($superCage->post->keyExists('albumid')) {
+            $albumid = $superCage->post->getInt('albumid');
+		} else {
+            $albumid = 0;
+		}
         $albstr = ($albumid) ? " WHERE aid = $albumid" : '';
         $parsemode = $_POST['parsemode'];
 
@@ -234,13 +252,42 @@ function update_thumbs()
 {
         global $CONFIG, $lang_util_php;
 
-        $albumid = (isset($_REQUEST['albumid'])) ? $_REQUEST['albumid'] : 0;
+        $superCage = Inspekt::makeSuperCage();
+        //$albumid = (isset($_REQUEST['albumid'])) ? $_REQUEST['albumid'] : 0;
+        if ($superCage->post->keyExists('albumid')) {
+		 	$albumid = $superCage->post->getInt('albumid');
+		} elseif ($superCage->get->keyExists('albumid')) {
+			$albumid = $superCage->get->getInt('albumid');
+		} else {
+			$albumid = 0;
+		}
         $albstr = ($albumid) ? "WHERE aid = $albumid" : '';
-        $autorefresh = $_REQUEST['autorefresh'];
-        $updatetype = $_REQUEST['updatetype'];
-        $numpics = $_REQUEST['numpics'];
-        $startpic = (isset($_REQUEST['startpic'])) ? $_REQUEST['startpic'] : 0;
-
+        //$autorefresh = $_REQUEST['autorefresh'];
+        if ($superCage->post->keyExists('autorefresh')) {
+		 	$autorefresh = $superCage->post->getInt('autorefresh');
+		} elseif ($superCage->get->keyExists('autorefresh')) {
+			$autorefresh = $superCage->get->getInt('autorefresh');
+		}
+        //$updatetype = $_REQUEST['updatetype'];
+        if ($superCage->post->keyExists('updatetype')) {
+		 	$updatetype = $superCage->post->getInt('updatetype');
+		} elseif ($superCage->get->keyExists('updatetype')) {
+			$updatetype = $superCage->get->getInt('updatetype');
+		}
+        //$numpics = $_REQUEST['numpics'];
+        if ($superCage->post->keyExists('numpics')) {
+		 	$numpics = $superCage->post->getInt('numpics');
+		} elseif ($superCage->get->keyExists('numpics')) {
+			$numpics = $superCage->get->getInt('numpics');
+		}
+        //$startpic = (isset($_REQUEST['startpic'])) ? $_REQUEST['startpic'] : 0;
+		if ($superCage->post->keyExists('startpic')) {
+		 	$startpic = $superCage->post->getInt('startpic');
+		} elseif ($superCage->get->keyExists('startpic')) {
+			$startpic = $superCage->get->getInt('startpic');
+		} else {
+			$albumid = 0;
+		}
         echo "<h2>{$lang_util_php['thumbs_wait']}</h2>";
 
         $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} $albstr LIMIT $startpic, $numpics");
@@ -368,8 +415,13 @@ EOT;
 function deletbackup_img()
 {
         global $CONFIG, $lang_util_php;
-
-        $albumid = (isset($_POST['albumid'])) ? $_POST['albumid'] : 0;
+				$superCage = Inspekt::makeSuperCage();
+        //$albumid = (isset($_POST['albumid'])) ? $_POST['albumid'] : 0;
+        if ($superCage->post->keyExists('albumid')) {
+    			$albumid = $superCage->post->getInt('albumid');
+				} else {
+						$albumid = 0;
+				}
         $albstr = ($albumid) ? "WHERE aid = $albumid" : '';
 
         $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} $albstr");
@@ -395,7 +447,13 @@ function del_orig()
 {
         global $CONFIG, $lang_util_php;
 
-        $albumid = (isset($_POST['albumid'])) ? $_POST['albumid'] : 0;
+        $superCage = Inspekt::makeSuperCage();
+        //$albumid = (isset($_POST['albumid'])) ? $_POST['albumid'] : 0;
+        if ($superCage->post->keyExists('albumid')) {
+		$albumid = $superCage->post->getInt('albumid');
+		} else {
+				$albumid = 0;
+		}
         $albstr = ($albumid) ? "WHERE aid = $albumid" : '';
 
         $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} $albstr");
@@ -432,7 +490,13 @@ function del_norm()
 {
         global $CONFIG, $lang_util_php;
 
-        $albumid = (isset($_POST['albumid'])) ? $_POST['albumid'] : 0;
+		$superCage = Inspekt::makeSuperCage();
+        //$albumid = (isset($_POST['albumid'])) ? $_POST['albumid'] : 0;
+        if ($superCage->post->keyExists('albumid')) {
+            $albumid = $superCage->post->getInt('albumid');
+		} else {
+			$albumid = 0;
+		}
         $albstr = ($albumid) ? "WHERE aid = $albumid" : '';
         $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} $albstr");
         $num = mysql_num_rows($result);
@@ -464,57 +528,69 @@ function del_norm()
 
 function del_orphans()
 {
-        global $CONFIG, $lang_util_php;
+    global $CONFIG, $lang_util_php;
 
-        $count = 0;
-        echo "<h2>".$lang_util_php['searching_orphans']."</h2><br />";
-        my_flush();
+    $superCage = Inspekt::makeSuperCage();
+    $count = 0;
+    echo "<h2>".$lang_util_php['searching_orphans']."</h2><br />";
+    my_flush();
 
-        if (isset($_GET['single'])){
-                $delone = cpg_db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id= '{$_GET['single']}' LIMIT 1");
+    //if (isset($_GET['single'])){
+    if ($superCage->get->keyExists('single')) {
+		$single = $superCage->get->getInt('single');
+        $delone = cpg_db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id= '{$single}' LIMIT 1");
+    }
+
+    $result = cpg_db_query("SELECT pid FROM {$CONFIG['TABLE_PICTURES']}");
+
+    while ($row = mysql_fetch_assoc($result)){
+        $ok_array[] = $row['pid'];
+    }
+
+    $check_str = '(' . implode(',',$ok_array) . ')';
+    $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid NOT IN $check_str");
+
+    while ($row = mysql_fetch_array($result)){
+        $pid = $row['pid'];
+        $msg_id = $row['msg_id'];
+        $msg_body = $row['msg_body'];
+
+        //if (isset($_POST['del'])){
+        if ($superCage->post->keyExists('del')) {
+            cpg_db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id= $msg_id");
+            echo "{$lang_util_php['comment']} $msg_body {$lang_util_php['nonexist']} $pid - <a href=\"util.php?action=del_orphans&amp;single=$msg_id\">{$lang_util_php['delete']}</a><br />";
         }
 
-        $result = cpg_db_query("SELECT pid FROM {$CONFIG['TABLE_PICTURES']}");
-
-        while ($row = mysql_fetch_assoc($result)){
-                $ok_array[] = $row['pid'];
-        }
-
-        $check_str = '(' . implode(',',$ok_array) . ')';
-        $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid NOT IN $check_str");
-
-        while ($row = mysql_fetch_array($result)){
-
-                $pid = $row['pid'];
-                $msg_id = $row['msg_id'];
-                $msg_body = $row['msg_body'];
-
-                if (isset($_POST['del'])){
-                        cpg_db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id= $msg_id");
-                        echo "{$lang_util_php['comment']} $msg_body {$lang_util_php['nonexist']} $pid - <a href=\"util.php?action=del_orphans&amp;single=$msg_id\">{$lang_util_php['delete']}</a><br />";
-        }
-
-                $count = mysql_num_rows($result);
+        $count = mysql_num_rows($result);
         echo "<br /><br />$count {$lang_util_php['orphan_comment']}<br /><br />";
         if ($count > 1){
-                        echo <<< EOT
-                        <form name="cpgform3" id="cpgform3" action="util.php" method="post">
-                                <input type="hidden" name="action" value="del_orphans" />
-                                <input type="hidden" name="del" value="all" />
-                                {$lang_util_php['delete_all_orphans']}
-                                <input type="submit" value="{$lang_util_php['delete_all']}" class="button" />
-                        </form>
+            echo <<< EOT
+            <form name="cpgform3" id="cpgform3" action="util.php" method="post">
+                    <input type="hidden" name="action" value="del_orphans" />
+                    <input type="hidden" name="del" value="all" />
+                    {$lang_util_php['delete_all_orphans']}
+                    <input type="submit" value="{$lang_util_php['delete_all']}" class="button" />
+            </form>
 EOT;
         }
-        }
+    }
 }
 
 function del_old() {
   global $CONFIG, $lang_util_php;
-  $d = $_POST['day_number']*60*60*24;
+
+  $superCage = Inspekt::makeSuperCage();
+  //$d = $_POST['day_number']*60*60*24;
+  $day_number = $superCage->post->getInt('day_number');
+  $d = $day_number*60*60*24;
   $start = strtotime(date("Ymd")) - $d;
   $delete_counter = 0;
-  $albumid = (isset($_POST['albumid'])) ? $_POST['albumid'] : 0;
+  //$albumid = (isset($_POST['albumid'])) ? $_POST['albumid'] : 0;
+    if ($superCage->post->keyExists('albumid')) {
+	   $albumid = $superCage->post->getInt('albumid');
+    } else {
+    	$albumid = 0;
+	}
   $albstr = ($albumid) ? "WHERE ctime <= $start AND aid = $albumid " : "WHERE ctime <= $start";
   $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} $albstr");
   $num = mysql_num_rows($result);
@@ -578,21 +654,40 @@ function reset_views()
 {
         global $CONFIG, $lang_util_php;
 
-        $albumid = (isset($_POST['albumid'])) ? $_POST['albumid'] : 0;
+        $superCage = Inspekt::makeSuperCage();
+        //$albumid = (isset($_POST['albumid'])) ? $_POST['albumid'] : 0;
+        if ($superCage->post->keyExists('albumid')) {
+            $albumid = $superCage->post->getInt('albumid');
+		} else {
+			$albumid = 0;
+		}
         $albstr = ($albumid) ? "WHERE aid = $albumid" : '';
 
         if (cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET hits ='0' $albstr")) echo $lang_util_pgp['reset_succes'];
-
 }
+
 function refresh_db()
 {
         global $CONFIG, $lang_util_php;
 
-        $albumid = (isset($_POST['albumid'])) ? $_POST['albumid'] : 0;
-        $albstr = ($albumid) ? "WHERE aid = $albumid" : '';
-        $numpics = $_POST['refresh_numpics'];
-        $startpic = (isset($_POST['refresh_startpic'])) ? $_POST['refresh_startpic'] : 0;
+		$superCage = Inspekt::makeSuperCage();
+        //$albumid = (isset($_POST['albumid'])) ? $_POST['albumid'] : 0;
+        if ($superCage->post->keyExists('albumid')) {
+            $albumid = $superCage->post->getInt('albumid');
+		} else {
+			$albumid = 0;
+		}
 
+        $albstr = ($albumid) ? "WHERE aid = $albumid" : '';
+        //$numpics = $_POST['refresh_numpics'];
+        $numpics = $superCage->post->getInt('refresh_numpics');
+        //$startpic = (isset($_POST['refresh_startpic'])) ? $_POST['refresh_startpic'] : 0;
+
+        if ($superCage->post->keyExists('refresh_startpic')) {
+            $startpic = $superCage->post->getInt('refresh_startpic');
+		} else {
+			$startpic = 0;
+		}
         starttable('100%', $lang_util_php['update_result'], 3);
 
         echo "<tr><th class=\"tableh2\">{$lang_util_php['file']}</th><th class=\"tableh2\">{$lang_util_php['problem']}</th><th class=\"tableh2\">{$lang_util_php['status']}</th></tr>";
