@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
@@ -27,19 +27,41 @@ require('include/init.inc.php');
 
 class MyCalendar extends Calendar {
     function getCalendarLink($month, $year) {
+        global $CPG_PHP_SELF;
+
+        $superCage = Inspekt::makeSuperCage();
         // Redisplay the current page, but with some parameters to set the new month and year
         // Fixed possible security hole
-        $s = $_SERVER['PHP_SELF']; //getenv('SCRIPT_NAME');
-        return "$s?action=".$_REQUEST['action']."&amp;month=$month&amp;year=$year";
+        //$s = $_SERVER['PHP_SELF']; //getenv('SCRIPT_NAME');
+        if ($matches = $superCage->get->getMatched('action', '/^[a-z]+$/')) {
+        	$action = $matches[0];
+        } elseif ($matches = $superCage->post->getMatched('action', '/^[a-z]+$/')) {
+            $action = $matches[0];
+        } else {
+        	$action = '';
+        }
+        return "$CPG_PHP_SELF?action=$action&amp;month=$month&amp;year=$year";
     }
 
     function getDateLink($day, $month, $year) {
       global $CONFIG, $lang_calendar_php;
+
+      $superCage = Inspekt::makeSuperCage();
+
       $date=sprintf('%s-%02s-%02s',$year,$month,$day);
       $query = "SELECT COUNT(pid) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND substring(from_unixtime(ctime),1,10) = '".substr($date,0,10)."' $META_ALBUM_SET";
       $result = cpg_db_query($query);
       $nb_pics = mysql_result($result, 0, 0);
-      if ($_REQUEST['action'] == 'browsebydate') {
+
+      if ($matches = $superCage->get->getMatched('action', '/^[a-z]+$/')) {
+          $action = $matches[0];
+      } elseif ($matches = $superCage->post->getMatched('action', '/^[a-z]+$/')) {
+          $action = $matches[0];
+      } else {
+          $action = '';
+      }
+
+      if ($action == 'browsebydate') {
         if ($nb_pics) {
           $link = '<a href="#" onclick="sendDate(\''.$month.'\', \''.$day.'\', \''.$year.'\');" class="user_thumb_infobox"  title="'. $nb_pics .' '.$lang_calendar_php['files'].'">';
         } else {
@@ -52,8 +74,15 @@ class MyCalendar extends Calendar {
     }
 }
 
+if ($matches = $superCage->get->getMatched('action', '/^[a-z]+$/')) {
+    $action = $matches[0];
+} elseif ($matches = $superCage->post->getMatched('action', '/^[a-z]+$/')) {
+    $action = $matches[0];
+} else {
+    $action = '';
+}
 
-if ($_REQUEST['action'] == 'banning' || $_REQUEST['action'] == 'browsebydate')  {
+if ($action == 'banning' || $action == 'browsebydate')  {
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
@@ -79,7 +108,7 @@ function sendDate(month, day, year) {
     selectedDate = selectedDate.replace(/y/, year);
 
 <?php
-if ($_REQUEST['action'] == 'banning'){
+if ($action == 'banning'){
 ?>
 
     if (selectedDate == '-0-0') {
@@ -102,8 +131,21 @@ else {
 
 $today = getdate();
 
-$month = (int) $_REQUEST['month'];
-$year = (int) $_REQUEST['year'];
+if ($superCage->get->testInt('month')) {
+	$month = $superCage->get->getInt('month');
+} elseif ($superCage->post->testInt('month')) {
+    $month = $superCage->post->getInt('month');
+} else {
+	$month = 0;
+}
+
+if ($superCage->get->testInt('year')) {
+    $year = $superCage->get->getInt('year');
+} elseif ($superCage->post->testInt('year')) {
+    $year = $superCage->post->getInt('year');
+} else {
+    $year = 0;
+}
 
 if ($year == 0) {
     $year = $today['year'];
@@ -122,7 +164,7 @@ echo $cal->getMonthView($month, $year);
 ?>
 <div align="center"><a href="javascript:window.close()" class="admin_menu"><?php print $lang_common['close']; ?></a>
 <?php
-  if ($_REQUEST['action'] == 'banning') {
+  if ($action == 'banning') {
       print '<a href="#" onclick="sendDate(\'\', \'\', \'\');" class="admin_menu">'.$lang_calendar_php['clear_date'].'</a></div>';
   }
 ?>

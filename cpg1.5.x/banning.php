@@ -45,7 +45,7 @@ if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__,
  **/
 function create_banlist()
 {
-    global $CONFIG, $lang_banning_php, $lang_common, $album_date_fmt; //$PHP_SELF,
+    global $CONFIG, $lang_banning_php, $lang_common, $album_date_fmt, $CPG_PHP_SELF; //$PHP_SELF,
 
     $result = cpg_db_query ("SELECT *, UNIX_TIMESTAMP(expiry) AS expiry FROM {$CONFIG['TABLE_BANNED']} WHERE brute_force=0");
     $count = mysql_num_rows($result);
@@ -77,14 +77,14 @@ EOHEAD;
                 $username = '';
             }
 
-            if ($row['expiry']) {;
+            if ($row['expiry']) {
                 $expiry = localised_date($row['expiry'], '%Y-%m-%d');
             } else {
                 $expiry = '';
             }
             echo <<<EOROW
                                         <tr>
-                                               <form action="{$_SERVER['PHP_SELF']}" method="post" name="banlist$row_counter" id="banlist$row_counter">
+                                               <form action="{$CPG_PHP_SELF}" method="post" name="banlist$row_counter" id="banlist$row_counter">
                                                      <td width="20%" class="{$row_style_class}" valign="middle">
                                                              <input type="hidden" name="ban_id" value="{$row['ban_id']}" />
                                                 <input type="text" class="textinput" style="width: 100%" name="edit_ban_user_name" value="$username" />
@@ -112,32 +112,35 @@ EOROW;
     mysql_free_result($result);
 }
 
-if (count($_POST) > 0) {
-    if (isset($_POST['add_ban'])) {
-        if ($_POST['add_ban_user_name']) {
-            if (!($ban_uid = get_userid($_POST['add_ban_user_name']))) {
-                cpg_die(CRITICAL_ERROR, $lang_banning_php['error_user']. ' '. $_POST['add_ban_user_name'], __FILE__, __LINE__);
+    if ($superCage->post->keyExists('add_ban')) {
+        if ($superCage->post->getEscaped('add_ban_user_name')) {
+            $ban_username = $superCage->post->getEscaped('add_ban_user_name');
+            if (!($ban_uid = get_userid($ban_username))) {
+                cpg_die(CRITICAL_ERROR, $lang_banning_php['error_user']. ' '. $superCage->post->getEscaped('add_ban_user_name'), __FILE__, __LINE__);
             }
             // check that admin doesn't ban himself
-            if ($_POST['add_ban_user_name'] == USER_NAME) {
+            //Using getRaw() for comparison
+            if ($superCage->post->getRaw('add_ban_user_name') == USER_NAME) {
                cpg_die(ERROR, $lang_banning_php['error_admin_ban'], __FILE__, __LINE__);
                }
         } else {
             $ban_uid = 'NULL';
         }
 
-        if ($_POST['add_ban_ip_addr']) {
-            $ban_ip_addr = "'" . addslashes($_POST['add_ban_ip_addr']) . "'";
+        if ($superCage->post->testIp('add_ban_ip_addr')) {
+            //Using getRaw() since we have already tested the IP.
+            $ban_ip_addr = "'" . $superCage->post->getRaw('add_ban_ip_addr') . "'";
+            $ip_addr = $superCage->post->getRaw('add_ban_ip_addr');
             //check admin ip address
-            if ($_POST['add_ban_ip_addr'] == $REMOTE_ADDR || $_POST['add_ban_ip_addr'] == $_SERVER["REMOTE_ADDR"] || ($_POST['add_ban_ip_addr'] == $_ENV["REMOTE_ADDR"] && $_ENV["REMOTE_ADDR"])) {
+            if ($ip_addr == $REMOTE_ADDR || $ip_addr == $superCage->server->getRaw("REMOTE_ADDR") || ($superCage->env->getRaw("REMOTE_ADDR") && $ip_addr == $superCage->post->getRaw("REMOTE_ADDR"))) {
                cpg_die(ERROR, $lang_banning_php['error_admin_ban'], __FILE__, __LINE__);
-               }
+            }
             //check server ip adress
-            if ($_POST['add_ban_ip_addr'] == $SERVER_ADDR || $_POST['add_ban_ip_addr'] == $_SERVER["SERVER_ADDR"] || $_POST['add_ban_ip_addr'] == $_ENV["SERVER_ADDR"]) {
+            if ($ip_addr == $SERVER_ADDR || $ip_addr == $superCage->server->getRaw("SERVER_ADDR") || $ip_addr == $superCage->env->getRaw("SERVER_ADDR")) {
                cpg_die(ERROR, $lang_banning_php['error_server_ban'], __FILE__, __LINE__);
-               }
+            }
             //check illegal ip addresses
-            $ip_to_check = 'ip'.$_POST['add_ban_ip_addr'];
+            $ip_to_check = 'ip'.$ip_addr;
             $ip_is_illegal = 0;
             $illegal_ip = array('192.168.','10.','172.16.','172.17.','172.18.','172.19.','172.20.','172.21.','172.22.','172.23.','172.24.','172.25.','172.26.','172.27.','172.28.','172.29.','172.30.','172.31.','169.254.','127.', '192.0.','1.0.0.0','204.152.64.','204.152.65.');
             foreach ($illegal_ip as $not_allowed_ip) {
@@ -167,7 +170,8 @@ if (count($_POST) > 0) {
             $ban_expires = 'NULL';
         }
 */
-$ban_expires = $_POST['add_ban_expires'];
+$matches = $superCage->post->getMatched('add_ban_expires', '/^[0-9-]+$/');
+$ban_expires = $matches[0];
 if ($ban_expires == '') {
     $ban_expires = 'NULL';
 } else {
@@ -179,57 +183,48 @@ if ($ban_expires == '\' 00:00:00\'') {
 
 //print 'expiry date|'.$ban_expires.'|'; //added for debugging
 
-        if ($ban_expires < 0) { $ban_expires = 'NULL';}
-        // check if anything has been submit at all
-        if (!$_POST['add_ban_user_name'] && !$_POST['add_ban_ip_addr']) {
-          cpg_die(CRITICAL_ERROR, $lang_banning_php['error_specify'], __FILE__, __LINE__);
-          }
-        if ($ban_uid || $ban_ip_addr) {
-            cpg_db_query("INSERT INTO {$CONFIG['TABLE_BANNED']} (user_id, ip_addr, expiry) VALUES ($ban_uid, $ban_ip_addr, $ban_expires)");
-        } else {
-            cpg_die(CRITICAL_ERROR, $lang_banning_php['error_specify'], __FILE__, __LINE__);
-        }
-    } elseif (isset($_POST['delete_ban'])) {
-        if (isset($_POST['ban_id'])) {
-            $ban_id = (int)$_POST['ban_id'];
+if ($ban_expires < 0) {
+    $ban_expires = 'NULL';
+}
+    // check if anything has been submit at all
+    if (!$ban_username && !$ip_addr) {
+        cpg_die(CRITICAL_ERROR, $lang_banning_php['error_specify'], __FILE__, __LINE__);
+    }
+    if ($ban_uid || $ban_ip_addr) {
+        cpg_db_query("INSERT INTO {$CONFIG['TABLE_BANNED']} (user_id, ip_addr, expiry) VALUES ($ban_uid, $ban_ip_addr, $ban_expires)");
+    } else {
+        cpg_die(CRITICAL_ERROR, $lang_banning_php['error_specify'], __FILE__, __LINE__);
+    }
+    } elseif ($superCage->post->keyExists('delete_ban')) {
+        if ($superCage->post->keyExists('ban_id')) {
+            $ban_id = $superCage->post->getInt('ban_id');
             if ($ban_id) {
                 cpg_db_query("DELETE FROM {$CONFIG['TABLE_BANNED']} WHERE ban_id=$ban_id");
             } else {
                 cpg_die(CRITICAL_ERROR, $lang_banning_php['error_ban_id'], __FILE__, __LINE__);
             }
         }
-    } elseif (isset($_POST['edit_ban'])) {
-        if (isset($_POST['ban_id'])) {
-            $ban_id = (int)$_POST['ban_id'];
+    } elseif ($superCage->post->keyExists('edit_ban')) {
+        if ($superCage->post->keyExists('ban_id')) {
+            $ban_id = $superCage->post->getInt('ban_id');
             if ($ban_id) {
-                if ($_POST['edit_ban_user_name']) {
-                    if (!($ban_uid = get_userid($_POST['edit_ban_user_name']))) {
-                        cpg_die(CRITICAL_ERROR, $lang_banning_php['error_user'] . ' ' . $_POST['edit_ban_user_name'], __FILE__, __LINE__);
+                if ($superCage->post->getEscaped('edit_ban_user_name')) {
+                    if (!($ban_uid = get_userid($superCage->post->getEscaped('edit_ban_user_name')))) {
+                        cpg_die(CRITICAL_ERROR, $lang_banning_php['error_user'] . ' ' . $superCage->post->getEscaped('edit_ban_user_name'), __FILE__, __LINE__);
                     }
                 } else {
                     $ban_uid = 'NULL';
                 }
 
-                if (isset($_POST['edit_ban_ip_addr'])) {
-                    $ban_ip_addr = "'" . addslashes($_POST['edit_ban_ip_addr']) . "'";
+                if ($superCage->post->testIp('edit_ban_ip_addr')) {
+                    //Using getRaw() as we have already tested for IP
+                    $ban_ip_addr = "'" . $superCage->post->getRaw('edit_ban_ip_addr') . "'";
                 } else {
                     $ban_ip_addr = 'NULL';
                 }
 
-                /*
-                if (isset($_POST['edit_ban_expires'])) {
-                    if (($_POST['edit_ban_expires']) && ($_POST['edit_ban_expires'] != 'never')) {
-                        if (!($ban_expires = strtotime($_POST['edit_ban_expires']))) {
-                            $ban_expires = 'NULL';
-                        }
-                    } else {
-                        $ban_expires = 'NULL';
-                    }
-                } else {
-                    $ban_expires = 'NULL';
-                }
-                */
-                $ban_expires = $_POST['edit_ban_expires'];
+                $matches = $superCage->post->getMatched('edit_ban_expires', '/^[0-9-]+$/');
+                $ban_expires = $matches[0];
                 if ($ban_expires == '') {
                       $ban_expires = 'NULL';
                 } else {
@@ -248,7 +243,6 @@ if ($ban_expires == '\' 00:00:00\'') {
             }
         }
     }
-}
 
 pageheader($lang_banning_php['title']);
 
@@ -308,7 +302,7 @@ echo <<<EOT
                                         </tr>
 
                                         <tr>
-                                               <form action="{$_SERVER['PHP_SELF']}" method="post" name="list" id="cpgform">
+                                               <form action="{$CPG_PHP_SELF}" method="post" name="list" id="cpgform">
                                                      <td class="tableb" valign="middle">
                                                 <input type="text" class="textinput" style="width: 100%" name="add_ban_user_name" value="" />
                                         </td>
