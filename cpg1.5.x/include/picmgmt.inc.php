@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
@@ -204,6 +204,9 @@ function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use, $wa
     global $CONFIG, $ERROR;
     global $lang_errors;
 
+    //Make Cage
+    $superCage = Inspekt::makeSuperCage();
+
     $imginfo = getimagesize($src_file);
     if ($imginfo == null)
         return false;
@@ -325,7 +328,8 @@ function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use, $wa
                          }
                         else $unsharp_mask = "";
 
-            if (eregi("win",$_ENV['OS'])) {
+            //getRaw() used for comparison only
+            if (eregi("win", $superCage->env->getRaw('OS'))) {
                 $cmd = "\"".str_replace("\\","/", $CONFIG['impath'])."convert\" -quality {$CONFIG['jpeg_qual']} {$CONFIG['im_options']} ".$resize_commands." ".$unsharp_mask." ".str_replace("\\","/" ,$src_file )." ".str_replace("\\","/" ,$im_dest_file );
                 exec ("\"$cmd\"", $output, $retval);
             } else {
@@ -350,7 +354,8 @@ function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use, $wa
                     //temp path for small wm
                     $path_to_tmp_wm = './'.$CONFIG['fullpath'].'edit/temp_wm.png';
 
-                    if (eregi("win",$_ENV['OS'])) {
+                    //getRaw() used for comparison only
+                    if (eregi("win",$superCage->env->getRaw('OS'))) {
                         $cmd = "\"".str_replace("\\","/", $CONFIG['impath'])."convert\" -resize ".$wm_resize."% ".str_replace("\\","/" ,$CONFIG['watermark_file'] )." ".str_replace("\\","/" ,$path_to_tmp_wm );
                         exec ("\"$cmd\"", $output, $retval);
                     } else {
@@ -361,8 +366,10 @@ function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use, $wa
                 } else {
                     $wm_file = $CONFIG['watermark_file']; //if no downsize... we take the orig watermark
                 }
+
                 // now we apply the watermark
-                if (eregi("win",$_ENV['OS'])) {
+                //getRaw() used for comparison only
+                if (eregi("win",$superCage->env->getRaw('OS'))) {
                     $cmd = "\"".str_replace("\\","/", $CONFIG['impath'])."composite\" -dissolve {$CONFIG['watermark_transparency']} -gravity {$CONFIG['where_put_watermark']} \"$wm_file\" ".str_replace("\\","/" ,$im_dest_file )." ".str_replace("\\","/" ,$im_dest_file );
                     exec ("\"$cmd\"", $output, $retval);
                 } else {
@@ -448,7 +455,7 @@ function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use, $wa
             }
 
             if ($watermark == "true" || $media_type != "false") {
-                //shrink watermark on intermediate images -> If I had known that this is that §%&# with the transparency preserve... grrr
+                //shrink watermark on intermediate images -> If I had known that this is that ï¿½%&# with the transparency preserve... grrr
                 $wm_normal = (int)$CONFIG['reduce_watermark'];
                 if ($wm_normal > $destWidth ) {
                     $wm_resize = $destWidth / $wm_normal;
@@ -528,7 +535,7 @@ function UnsharpMask($img, $amount, $radius, $threshold)        {
 ////
 ////                  p h p U n s h a r p M a s k
 ////
-////        Unsharp mask algorithm by Torstein Hønsi 2003.
+////        Unsharp mask algorithm by Torstein Hï¿½nsi 2003.
 ////                 thoensi_at_netcom_dot_no.
 ////                   Please leave this notice.
 ////
