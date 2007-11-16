@@ -217,46 +217,48 @@ function parse_list($value)
 * Picture manager functions
 **************************************************************************/
 
-               function parse_pic_select_option($value)
-               {
-                       global $HTML_SUBST;
+function parse_pic_select_option($value)
+{
+   global $HTML_SUBST;
 
-                       if (!preg_match("/.+?no=(\d+),picture_nm='(.+?)',picture_sort=(\d+),action=(\d)/", $value, $matches))
-                               return false;
+    if (!preg_match("/.+?no=(\d+),picture_nm='(.+?)',picture_sort=(\d+),action=(\d)/", $value, $matches)) {
+        return false;
+    }
 
-                       return array(
-                               'picture_no'   => (int)$matches[1],
-                               'picture_nm'   => get_magic_quotes_gpc() ? strtr(stripslashes($matches[2]), $HTML_SUBST) : strtr($matches[2], $HTML_SUBST),
-                               'picture_sort' => (int)$matches[3],
-                               'action'     => (int)$matches[4]
-                       );
-               }
+   return array(
+           'picture_no'   => (int)$matches[1],
+           //'picture_nm'   => get_magic_quotes_gpc() ? strtr(stripslashes($matches[2]), $HTML_SUBST) : strtr($matches[2], $HTML_SUBST),
+           /**
+            * TODO: Picture name - Ideal case for using KSES. For now doing complete strip_tags
+            */
+           'picture_nm' => strip_tags($matches[2]),
+           'picture_sort' => (int)$matches[3],
+           'action'     => (int)$matches[4]
+               );
+}
 
-               function parse_pic_orig_sort_order($value)
-               {
-                       if (!preg_match("/(\d+)@(\d+)/", $value, $matches))
-                               return false;
+function parse_pic_orig_sort_order($value)
+{
+    if (!preg_match("/(\d+)@(\d+)/", $value, $matches)) {
+        return false;
+    }
 
-                       return array(
-                               'aid'   => (int)$matches[1],
-                               'pos'   => (int)$matches[2],
-                       );
-               }
+    return array(
+        'aid'   => (int)$matches[1],
+        'pos'   => (int)$matches[2],
+    );
+}
 
-
-               function parse_pic_list($value)
-               {
-                       return preg_split("/,/", $value, -1, PREG_SPLIT_NO_EMPTY);
-               }
-
+function parse_pic_list($value)
+{
+    return preg_split("/,/", $value, -1, PREG_SPLIT_NO_EMPTY);
+}
 
 /**
  * Main code starts here
  */
 
-/*if (!isset($_GET['what']) && !isset($_POST['what'])) {
-    cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
-}*/
+
 if ($superCage->get->keyExists('what')) {
 	$what = $superCage->get->getAlpha('what');
 } elseif ($superCage->post->keyExists('what')) {
@@ -265,11 +267,9 @@ if ($superCage->get->keyExists('what')) {
 	cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
 }
 
-//$what = isset($_GET['what']) ? $_GET['what'] : $_POST['what'];
+
 switch ($what) {
-
     // Album manager (don't necessarily delete something ;-)
-
     case 'albmgr':
         if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
@@ -283,26 +283,23 @@ switch ($what) {
         //pageheader($lang_delete_php['alb_mgr']);
         $returnOutput .= '<table border="0" cellspacing="0" cellpadding="0" width="100%">';
 
-
-        $orig_sort_order = parse_list($superCage->post->getMatched('sort_order', '/^[0-9,]+$/'));
+        $sort_list_matched = $superCage->post->getMatched('sort_order', '/^[0-9@,]+$/');
+        $orig_sort_order = parse_list($sort_list_matched[0]);
         foreach ($orig_sort_order as $album) {
             $op = parse_orig_sort_order($album);
             if (count ($op) == 2) {
                 $query = "UPDATE $CONFIG[TABLE_ALBUMS] SET pos='{$op['pos']}' WHERE aid='{$op['aid']}' $restrict LIMIT 1";
                 cpg_db_query($query);
             } else {
-                cpg_die (sprintf(CRITICAL_ERROR, $lang_delete_php['err_invalid_data'], $_POST['sort_order']), __FILE__, __LINE__);
+                cpg_die (sprintf(CRITICAL_ERROR, $lang_delete_php['err_invalid_data'], $sort_list_matched), __FILE__, __LINE__);
             }
         }
 
         $matches = $superCage->post->getMatched('delete_album', '/^[0-9,@]+$/');
-        //print_r($superCage->post->getMatched('delete_album', '/^[0-9,@]+$/'));
         $to_delete = parse_list($matches[0]);
-        //print_r($to_delete); exit;
         foreach ($to_delete as $album_id) {
             $returnOutput .= delete_album((int)$album_id);
         }
-
 
         if ($superCage->post->keyExists('to')) {
             $to = $superCage->post->getEscaped('to');
@@ -352,7 +349,9 @@ switch ($what) {
 // Picture manager (don't necessarily delete something ;-)
 //
    case 'picmgr':
-      if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+      if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)){
+        cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+      }
 
       if(!GALLERY_ADMIN_MODE){
          //$restrict = "AND category = '".(FIRST_USER_CAT + USER_ID)."'";
@@ -364,45 +363,51 @@ switch ($what) {
       pageheader($lang_delete_php['pic_mgr']);
       starttable("100%", $lang_delete_php['pic_mgr'], 6);
 
-      $orig_sort_order = parse_pic_list($_POST['sort_order']);
+      $sort_order_matched = $superCage->post->getMatched('sort_order', '/^[0-9@,]+$/');
+      $orig_sort_order = parse_pic_list($sort_order_matched[0]);
       foreach ($orig_sort_order as $picture){
          $op = parse_pic_orig_sort_order($picture);
          if (count ($op) == 2){
             $query = "UPDATE $CONFIG[TABLE_PICTURES] SET position='{$op['pos']}' WHERE pid='{$op['aid']}' $restrict LIMIT 1";
             cpg_db_query($query);
          } else {
-            cpg_die (sprintf(CRITICAL_ERROR, $lang_delete_php['err_invalid_data'], $_POST['sort_order']), __FILE__, __LINE__);
+            cpg_die (sprintf(CRITICAL_ERROR, $lang_delete_php['err_invalid_data'], $sort_order_matched[0]), __FILE__, __LINE__);
          }
       }
 
-      $to_delete = parse_pic_list($_POST['delete_picture']);
+      //Using getRaw(). The data is sanitized in foreach
+      $to_delete = parse_pic_list($superCage->post->getRaw('delete_picture'));
       foreach ($to_delete as $picture_id){
          delete_picture((int)$picture_id);
       }
 
-      if (isset($_POST['to'])) foreach ($_POST['to'] as $option_value){
-         $op = parse_pic_select_option(stripslashes($option_value));
-         switch ($op['action']){
-            case '0':
-               break;
-            case '1':
-               if(GALLERY_ADMIN_MODE){
-                  $category = (int)$_POST['cat'];
-               } else {
-                  $category = FIRST_USER_CAT + USER_ID;
-               }
-               echo "<tr><td colspan=\"6\" class=\"tableb\">".sprintf($lang_delete_php['create_alb'], $op['album_nm'])."</td></tr>\n";
-               $query = "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (category, title, uploads, pos, description) VALUES ('$category', '".addslashes($op['album_nm'])."', 'NO',  '{$op['album_sort']}', '')";
-               cpg_db_query($query);
-               break;
-            case '2':
-               echo "<tr><td colspan=\"6\" class=\"tableb\">".sprintf($lang_delete_php['update_pic'], $op['picture_no'], $op['picture_nm'], $op['picture_sort'])."</td></tr>\n";
-               $query = "UPDATE $CONFIG[TABLE_PICTURES] SET position='{$op['picture_sort']}' WHERE pid='{$op['picture_no']}' $restrict LIMIT 1";
-               cpg_db_query($query);
-               break;
-            default:
-               cpg_die (CRITICAL_ERROR, $lang_delete_php['err_invalid_data'], __FILE__, __LINE__);
-         }
+      if ($superCage->post->keyExists('to')) {
+          //Using getRaw(). The data is sanitized in parse_pic_select_option() function
+          $to_arr = $superCage->post->getRaw('to');
+          foreach ($to_arr as $option_value){
+             $op = parse_pic_select_option(stripslashes($option_value));
+             switch ($op['action']){
+                case '0':
+                   break;
+                case '1':
+                   if(GALLERY_ADMIN_MODE){
+                      $category = $superCage->post->getInt('cat');
+                   } else {
+                      $category = FIRST_USER_CAT + USER_ID;
+                   }
+                   echo "<tr><td colspan=\"6\" class=\"tableb\">".sprintf($lang_delete_php['create_alb'], $op['album_nm'])."</td></tr>\n";
+                   $query = "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (category, title, uploads, pos, description) VALUES ('$category', '".addslashes($op['album_nm'])."', 'NO',  '{$op['album_sort']}', '')";
+                   cpg_db_query($query);
+                   break;
+                case '2':
+                   echo "<tr><td colspan=\"6\" class=\"tableb\">".sprintf($lang_delete_php['update_pic'], $op['picture_no'], $op['picture_nm'], $op['picture_sort'])."</td></tr>\n";
+                   $query = "UPDATE $CONFIG[TABLE_PICTURES] SET position='{$op['picture_sort']}' WHERE pid='{$op['picture_no']}' $restrict LIMIT 1";
+                   cpg_db_query($query);
+                   break;
+                default:
+                   cpg_die (CRITICAL_ERROR, $lang_delete_php['err_invalid_data'], __FILE__, __LINE__);
+             }
+          }
       }
       if ($need_caption) output_caption();
       echo "<tr><td colspan=\"6\" class=\"tablef\" align=\"center\">\n";
@@ -413,12 +418,9 @@ switch ($what) {
       ob_end_flush();
       break;
 
-
-
     // Comment
-
     case 'comment':
-        $msg_id = (int)$_GET['msg_id'];
+        $msg_id = $superCage->get->getInt('msg_id');
 
         $result = cpg_db_query("SELECT pid FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id='$msg_id'");
         if (!mysql_num_rows($result)) {
@@ -437,7 +439,7 @@ switch ($what) {
         $result = cpg_db_query($query);
 
         $header_location = (@preg_match('/Microsoft|WebSTAR|Xitami/', getenv('SERVER_SOFTWARE'))) ? 'Refresh: 0; URL=' : 'Location: ';
-        $redirect = "displayimage.php?pos=" . (- $comment_data['pid']);
+        $redirect = "displayimage.php?pid=" . $comment_data['pid'];
         header($header_location . $redirect);
         pageheader($lang_common['information'], "<META http-equiv=\"refresh\" content=\"1;url=$redirect\">");
         msg_box($lang_common['information'], $lang_delete_php['comment_deleted'], $lang_common['continue'], $redirect);
@@ -448,7 +450,7 @@ switch ($what) {
     // Picture
 
     case 'picture':
-        $pid = (int)$_GET['id'];
+        $pid = $superCage->get->getInt('id');
 
         pageheader($lang_delete_php['del_pic']);
         starttable("100%", $lang_delete_php['del_pic'], 7);
@@ -466,15 +468,19 @@ switch ($what) {
     // Album
 
     case 'album':
-        if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+        if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) {
+            cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+        }
 
-        $aid = (int)$_GET['id'];
+        $aid = $superCage->get->getInt('id');
 
         pageheader($lang_delete_php['del_alb']);
         starttable("100%", $lang_delete_php['del_alb'], 7);
 
         print delete_album($aid);
-        if ($need_caption) output_caption();
+        if ($need_caption) {
+            output_caption();
+        }
 
         echo "<tr><td colspan=\"7\" class=\"tablef\" align=\"center\">\n";
         echo "<div class=\"admin_menu_thumb\"><a href=\"index.php\"  class=\"adm_menu\">".$lang_common['continue']."</a></div>\n";
@@ -738,7 +744,6 @@ switch ($what) {
                                 print '</b></td>';
                                 print '<td class="tableb">';
                                 // set this user's group
-                                //$group=addslashes($_REQUEST['group']);
                                 $group = $superCage->get->getInt('group');
                                 cpg_db_query("UPDATE {$CONFIG['TABLE_USERS']} SET user_group = '$group' WHERE  user_id = '$key'");
                                 printf($lang_delete_php['change_group_to_group'], '&laquo;'.$group_label[$user_data['user_group']].'&raquo;', '&laquo;'.$group_label[$group].'&raquo;');
@@ -930,16 +935,10 @@ switch ($what) {
             }
         } // user mode end
 
-
-
-
-
         ob_end_flush();
         break;
 
-
     // Unknow command
-
     default:
         cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
 }
