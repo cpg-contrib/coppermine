@@ -83,9 +83,7 @@ switch ($event) {
          * function they are calling.
          */
         check_comment($superCage->post->getRaw('msg_body'));
-        check_comment($superCage->post->getRaw('msg_author'));
         $msg_body = $superCage->post->getEscaped('msg_body');
-        $msg_author = $superCage->post->getEscaped('msg_author');
         $msg_id = $superCage->post->getInt('msg_id');
 
         if (empty($msg_body)) {
@@ -100,7 +98,7 @@ switch ($event) {
         }
 
         if (GALLERY_ADMIN_MODE) {
-            $update = cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET msg_body='$msg_body', msg_author='$msg_author' WHERE msg_id='$msg_id'");
+            $update = cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET msg_body='$msg_body' WHERE msg_id='$msg_id'");
         } elseif (USER_ID) {
             if ($CONFIG['comment_approval'] == 2) {
                 $update = cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET msg_body='$msg_body', approval='NO' WHERE msg_id='$msg_id' AND author_id ='" . USER_ID . "' LIMIT 1");
