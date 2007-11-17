@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
@@ -164,7 +164,7 @@ EOT;
 
 // The function to create the album list drop down.
 function form_alb_list_box($text, $name) {
-
+    $superCage = Inspekt::makeSuperCage();
     // Pull the $CONFIG array and the GET array into the function
     global $CONFIG, $lang_upload_php;
 
@@ -172,10 +172,10 @@ function form_alb_list_box($text, $name) {
     global $user_albums_list, $public_albums_list;
 
     // Check to see if an album has been preselected by URL addition or the last selected album. If so, make $sel_album the album number. Otherwise, make $sel_album 0.
-    if (isset($_GET['album'])) {
-      $sel_album = $_GET['album'];
-    } elseif (isset($_POST['album'])) {
-      $sel_album = $_POST['album'];
+    if ($superCage->get->keyExists('album')) {
+      $sel_album = $superCage->get->getInt('album');
+    } elseif ($superCage->post->keyExists('album')) {
+      $sel_album = $superCage->post->getInt('album');
     } else {
       $sel_album = 0;
     }
@@ -760,17 +760,17 @@ function check_status($URI) {
 //################################# MAIN CODE BLOCK ##################################################
 
 //Check whether we are getting album id through _GET or _POST
-if (isset($_GET['album'])) {
-  $sel_album = $_GET['album'];
-} elseif (isset($_POST['album'])) {
-  $sel_album = $_POST['album'];
+if ($superCage->get->keyExists('album')) {
+    $sel_album = $superCage->get->getInt('album');
+} elseif ($superCage->post->keyExists('album')) {
+    $sel_album = $superCage->post->getInt('album');
 } else {
-  $sel_album = 0;
+    $sel_album = 0;
 }
 
 // Check to see if user customizations are allowed and if one the request has been made yet.
 
-if ((CUSTOMIZE_UPLOAD_FORM) and (!isset($_REQUEST['file_upload_request'])) and (!isset($_REQUEST['URI_upload_request'])) and (!isset($_POST['control']))) {
+if ((CUSTOMIZE_UPLOAD_FORM) and (!$superCage->post->keyExists('file_upload_request')) and (!$superCage->post->keyExists('URI_upload_request')) and (!$superCage->post->keyExists('control'))) {
 
     // Check to see if the form type is configurable.  If it is, produce the configuration form. Otherwise, generate a warning.
 
@@ -818,7 +818,7 @@ if ((CUSTOMIZE_UPLOAD_FORM) and (!isset($_REQUEST['file_upload_request'])) and (
 
         echo "{$lang_upload_php['cust_instr_7']}<br /><br />";
         echo "</td></tr>";
-        open_form($_SERVER['PHP_SELF']);
+        open_form($CPG_PHP_SELF);
         create_form($data);
         close_form($lang_common['continue']);
         endtable();
@@ -842,10 +842,10 @@ if ((CUSTOMIZE_UPLOAD_FORM) and (!isset($_REQUEST['file_upload_request'])) and (
 
     //Check for the number of file upload boxes.
 
-    if (isset($_REQUEST['file_upload_request'])) {
+    if ($superCage->post->keyExists('file_upload_request')) {
 
         // Do some validation.
-        $filtered_request = max(0, intval($_REQUEST['file_upload_request']));
+        $filtered_request = max(0, $superCage->post->getInt('file_upload_request'));
 
         if ($filtered_request > NUM_FILE_BOXES) {
             $num_file_boxes = NUM_FILE_BOXES;
@@ -857,10 +857,10 @@ if ((CUSTOMIZE_UPLOAD_FORM) and (!isset($_REQUEST['file_upload_request'])) and (
 
     //Check for the number of requested URI upload boxes.
 
-    if (isset($_REQUEST['URI_upload_request'])) {
+    if ($superCage->post->keyExists('URI_upload_request')) {
 
         // Do some validation.
-        $filtered_request = max(0, intval($_REQUEST['URI_upload_request']));
+        $filtered_request = max(0, $superCage->post->getInt('URI_upload_request'));
 
         if ($filtered_request > NUM_URI_BOXES) {
             $num_URI_boxes = NUM_URI_BOXES;
@@ -916,7 +916,7 @@ $max_file_size = $CONFIG['max_upl_size'] << 10;
 
 // Create the upload forms using the upload congfiguration.
 
-if (!isset($_REQUEST['control'])) {
+if (!$superCage->post->keyExists('control')) {
 
     // Do some cleanup in the edit directory.
     spring_cleaning('./'.$CONFIG['fullpath'].'edit',CPG_HOUR);
@@ -938,7 +938,7 @@ if (!isset($_REQUEST['control'])) {
     } else {
 
         // Direct the request to this script and print the form instructions.
-        open_form($_SERVER['PHP_SELF']);
+        open_form($CPG_PHP_SELF);
         // Open the form table.
         starttable("100%", $lang_upload_php['title'], 2);
         form_instructions();
@@ -1072,9 +1072,8 @@ if (!isset($_REQUEST['control'])) {
 }
 
 // Recieve incoming file uploads for phase I.
-
-if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
-
+//Using getRaw() for comparison only
+if ($superCage->post->keyExists('control') && $superCage->post->getRaw('control') == 'phase_1') {
     // $_FILES['file_upload_array']['name'][$counter]
     // $_FILES['file_upload_array']['size'][$counter]
     // $_FILES['file_upload_array']['tmp_name'][$counter]
@@ -1088,14 +1087,15 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
     // 3 - Only a partial upload
     // 4 - No upload occurred.
 
-    $file_upload_count = count($_FILES['file_upload_array']['name']);
+    //$file_upload_count = count($_FILES['file_upload_array']['name']);
+    $file_upload_count = count($superCage->files->getRaw('/file_upload_array/name'));
 
     if ($file_upload_count > 0) {
 
 
         // Check for error code support. Set the error code.
 
-        if (count($_FILES['file_upload_array']['error']) == 0) {
+        if (count($superCage->files->getRaw('/file_upload_array/error')) == 0) {
 
             // This version of PHP does not support error codes (PHP < 4.2.0).  Create our own error code.
 
@@ -1114,7 +1114,8 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
 
             if ($error_support) {
 
-                $error_code = $_FILES['file_upload_array']['error'][$counter];
+                //$error_code = $_FILES['file_upload_array']['error'][$counter];
+                $error_code = $superCage->files->getInt("/file_upload_array/error/$counter");
 
             }
 
@@ -1126,27 +1127,27 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
 
             // If there is no file name, make a dummy name for the error reporting system.
 
-            if (($_FILES['file_upload_array']['name'][$counter] == '')) {
-
+            //if (($_FILES['file_upload_array']['name'][$counter] == '')) {
+            if ($superCage->files->getRaw("/file_upload_array/name/$counter") == '') {
                 $file_name = 'filename_unavailable';
-
             } else {
-
-                $file_name = $_FILES['file_upload_array']['name'][$counter];
-
+                //$file_name = $_FILES['file_upload_array']['name'][$counter];
+                //Using getRaw() as we will sanitizing the filename later
+                $file_name = $superCage->files->getRaw("/file_upload_array/name/$counter");
             }
 
             // Test for a blank file upload box.
-            if (empty($_FILES['file_upload_array']['tmp_name'][$counter])) {
-
+            //if (empty($_FILES['file_upload_array']['tmp_name'][$counter])) {
+            $tmp_filename = $superCage->files->getRaw("/file_upload_array/tmp_name/$counter");
+            if (empty($tmp_filename)) {
                 // There is no need for further tests or action as there was no uploaded file, so skip the remainder of the iteration.
                 continue;
-
             }
 
             // Check to make sure the file was uploaded via POST.
 
-            if (!is_uploaded_file($_FILES['file_upload_array']['tmp_name'][$counter])) {
+            //if (!is_uploaded_file($_FILES['file_upload_array']['tmp_name'][$counter])) {
+            if (!is_uploaded_file($superCage->files->getRaw("/file_upload_array/tmp_name/$counter"))) {
 
                 // We reject the file, and make a note of the error.
                 $file_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'file_name'=> $file_name, 'error_code'=>$lang_upload_php['no_post']);
@@ -1159,35 +1160,42 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
 
             // Check that the file uploaded has a valid name and extension, and replace forbidden chars with underscores.
 
-                    // Initialise the $matches array.
-                    $matches = array();
+            // Initialise the $matches array.
+            $matches = array();
 
-                    // If magic quotes is on, remove the slashes it added to the file name.
-                    if (get_magic_quotes_gpc()) $_FILES['file_upload_array']['name'][$counter] = stripslashes($_FILES['file_upload_array']['name'][$counter]);
+            // If magic quotes is on, remove the slashes it added to the file name.
+            //if (get_magic_quotes_gpc()) $_FILES['file_upload_array']['name'][$counter] = stripslashes($_FILES['file_upload_array']['name'][$counter]);
+            if (get_magic_quotes_gpc()) {
+                //Using getRaw() as we have custom sanitization code below
+            	$picture_name = stripslashes($superCage->files->getRaw("/file_upload_array/name/$counter"));
+            } else {
+            	$picture_name = $superCage->files->getRaw("/file_upload_array/name/$counter");
+            }
 
-                    // Create the holder $picture_name by translating the file name. Translate any forbidden character into an underscore.
-                    $picture_name = replace_forbidden($_FILES['file_upload_array']['name'][$counter]);
+            // Create the holder $picture_name by translating the file name. Translate any forbidden character into an underscore.
+            //$picture_name = replace_forbidden($_FILES['file_upload_array']['name'][$counter]);
+            $picture_name = replace_forbidden($picture_name);
 
-                    // Analyze the file extension using regular expressions.
-                    if (!preg_match("/(.+)\.(.*?)\Z/", $picture_name, $matches)) {
+            // Analyze the file extension using regular expressions.
+            if (!preg_match("/(.+)\.(.*?)\Z/", $picture_name, $matches)) {
 
-                        // The file name is invalid.
-                        $matches[1] = 'invalid_fname';
+                // The file name is invalid.
+                $matches[1] = 'invalid_fname';
 
-                        // Make a bogus file extension to trigger Coppermine's defenses.
-                        $matches[2] = 'xxx';
-                    }
+                // Make a bogus file extension to trigger Coppermine's defenses.
+                $matches[2] = 'xxx';
+            }
 
-                    // If there is no extension, or if the extension is unknown/not permitted by Coppermine, zap the intruder.
-                    if ($matches[2] == '' || !is_known_filetype($matches)) {
+            // If there is no extension, or if the extension is unknown/not permitted by Coppermine, zap the intruder.
+            if ($matches[2] == '' || !is_known_filetype($matches)) {
 
-                        // We reject the file, and make a note of the error.
-                        $file_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'file_name'=> $file_name, 'error_code'=>$lang_upload_php['forb_ext']);
+                // We reject the file, and make a note of the error.
+                $file_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'file_name'=> $file_name, 'error_code'=>$lang_upload_php['forb_ext']);
 
-                        // There is no need for further tests or action, so skip the remainder of the iteration.
-                        continue;
+                // There is no need for further tests or action, so skip the remainder of the iteration.
+                continue;
 
-                    }
+            }
 
             // Check for upload errors.
 
@@ -1212,7 +1220,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
                 // There is no need for further tests or action, so skip the remainder of the iteration.
                 continue;
 
-            } elseif ($_FILES['file_upload_array']['tmp_name'][$counter] == '') {
+            } elseif ($superCage->files->getRaw("/file_upload_array/tmp_name/$counter") == '') {
 
                 // There is no temporary file, so the file did not upload. Make a note of it in the file_failure_arrray and flip the failure switch to generate the ordinal. .
 
@@ -1221,7 +1229,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
                 // There is no need for further tests or action, so skip the remainder of the iteration.
                 continue;
 
-            } elseif ($_FILES['file_upload_array']['size'][$counter] <= 0) {
+            } elseif ($superCage->files->getInt("/file_upload_array/size/$counter") <= 0) {
 
                 // The file contains no data or was corrupted. Make a note of it in the error array.
 
@@ -1230,7 +1238,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
                 // There is no need for further tests or action, so skip the remainder of the iteration.
                 continue;
 
-            } elseif ($_FILES['file_upload_array']['size'][$counter] > $max_file_size) {
+            } elseif ($superCage->files->getDigits("/file_upload_array/size/$counter") > $max_file_size) {
 
                 // The file exceeds the amount specified by the max upload directive. Either the browser is stupid, or somebody isn't playing nice. (Ancient browser - MAX_UPLOAD forgery)
 
@@ -1268,7 +1276,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
             $tempname = $prefix . $seed . '.' . $suffix;
 
             //Now we upload the file.
-            if (!(move_uploaded_file($_FILES['file_upload_array']['tmp_name'][$counter], $path_to_image))) {
+            if (!(move_uploaded_file($superCage->files->getRaw("/file_upload_array/tmp_name/$counter"), $path_to_image))) {
 
                 // The file upload has failed.
 
@@ -1341,7 +1349,8 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
     } // end if statement
 
     // Count the number of items in the URI array.
-    $URI_upload_count = count($_POST['URI_array']);
+    //Using getRaw() for counting purpose only.
+    $URI_upload_count = count($superCage->post->getRaw('URI_array'));
 
     if ($URI_upload_count > 0) {
 
@@ -1357,7 +1366,8 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
             $URI_MIME_type = "0";
 
             // Check to make sure the URI box was not blank.
-            if (empty($_POST['URI_array'][$counter])) {
+            //if (empty($_POST['URI_array'][$counter])) {
+            if (!$superCage->post->getRaw("/URI_array/$counter")) {
 
                 // The box was empty.
                 // There is no need for further tests or action, so skip the remainder of the iteration.
@@ -1367,22 +1377,21 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
 
             // Check for magic quotes and remove slashes if necessary.
             if (get_magic_quotes_gpc()) {
-
-                $_POST['URI_array'][$counter] = stripslashes($_POST['URI_array'][$counter]);
-
+                //$_POST['URI_array'][$counter] = stripslashes($_POST['URI_array'][$counter]);
+                $URI_name = stripslashes($superCage->post->getRaw("/URI_array/$counter"));
             }
 
             // Remove excess whitespace.
-            $_POST['URI_array'][$counter] = trim($_POST['URI_array'][$counter]);
+            $URI_name = trim($URI_name);
 
             // Translate any interior spaces into hex replacements.
-            $_POST['URI_array'][$counter] = strtr($_POST['URI_array'][$counter], array(" "=>"%20"));
+            $URI_name = strtr($URI_name, array(" "=>"%20"));
 
             // We do some validation for the URI. First we check for http:// or ftp:// at the start of the URI.
-            if(!ereg('^http://|^ftp://',$_POST['URI_array'][$counter])) {
+            if(!ereg('^http://|^ftp://',$URI_name)) {
 
                 // The URL is malformed or not allowed in Coppermine. Note an error.
-                $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$lang_upload_php['incorrect_prefix']);
+                $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$lang_upload_php['incorrect_prefix']);
 
                 // There is no need for further tests or action, so skip the remainder of the iteration.
                 continue;
@@ -1390,7 +1399,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
             }
 
             // To obtain the file name, we explode the URI into $pieces.
-            $pieces = explode('/',$_POST['URI_array'][$counter]);
+            $pieces = explode('/',$URI_name);
 
             // We pop off the end of the $pieces array to obtain the possible file name.
             $possible_file_name = array_pop($pieces);
@@ -1428,7 +1437,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
                 if (!function_exists('stream_get_meta_data')) {
 
                     // We cannot get the header information for the file, so we reject the URI as unsafe.
-                    $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$lang_upload_php['unsafe_URI']);
+                    $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$lang_upload_php['unsafe_URI']);
 
                     // There is no need for further tests or action, so skip the remainder of the iteration.
                     continue;
@@ -1436,13 +1445,13 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
                 }
 
                 // Open a stream to the resource.
-                $fp = fopen($_POST['URI_array'][$counter],"rb");
+                $fp = fopen($URI_name,"rb");
 
                 // Check to see if the resource was opened.
                 if (!$fp) {
 
                     // Attempt to get the status of the resource.
-                    $response = check_status($_POST['URI_array'][$counter]);
+                    $response = check_status($URI_name);
 
                     // Try to parse header if we were able to get a response.
                     if ($response) {
@@ -1450,37 +1459,37 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
                         if(strstr($response, '401')) {
 
                             // 401 Unauthorized - Authorization needed to obtain resource. Note an error.
-                            $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$lang_upload_php['http_401']);
+                            $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$lang_upload_php['http_401']);
 
                         } elseif(strstr($response, '402')) {
 
                             // 402 Payment Required -  Where's the cash? :-) Note an error.
-                            $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$lang_upload_php['http_402']);
+                            $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$lang_upload_php['http_402']);
 
                         } elseif(strstr($response, '403')) {
 
                             // 403 Forbidden - No permission to access the resource. Note an error.
-                            $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$lang_upload_php['http_403']);
+                            $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$lang_upload_php['http_403']);
 
                         } elseif(strstr($response, '404')) {
 
                             // 404 Not Found - The resource is missing. Note an error.
-                            $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$lang_upload_php['http_404']);
+                            $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$lang_upload_php['http_404']);
 
                         } elseif(strstr($response, '500')) {
 
                             // 500 Internal Server Error - The server has failed.  Note an error.
-                            $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$lang_upload_php['http_500']);
+                            $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$lang_upload_php['http_500']);
 
                         } elseif(strstr($response, '503')) {
 
                             // 503 Service Unavailable - The server is busy.  Note an error.
-                            $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$lang_upload_php['http_503']);
+                            $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$lang_upload_php['http_503']);
 
                         } else {
 
                             // Undocumented error. Note an error. Return status code.
-                            $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$response);
+                            $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$response);
 
                         }
 
@@ -1491,7 +1500,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
 
 
                         // The resource could not be opened.
-                        $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$lang_upload_php['could_not_open_URI']);
+                        $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$lang_upload_php['could_not_open_URI']);
 
                         // There is no need for further tests or action, so skip the remainder of the iteration.
                         continue;
@@ -1505,7 +1514,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
                     if($header === 'FALSE') {
 
                         // We could not get the meta data from the header. We must reject the URI as unsafe.
-                        $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$lang_upload_php['meta_data_failure']);
+                        $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$lang_upload_php['meta_data_failure']);
 
                         // There is no need for further tests or action, so skip the remainder of the iteration.
                         continue;
@@ -1521,37 +1530,37 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
                         if(strstr($header['wrapper_data'][0], '401')) {
 
                             // 401 Unauthorized - Authorization needed to obtain resource. Note an error.
-                            $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$lang_upload_php['http_401']);
+                            $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$lang_upload_php['http_401']);
 
                         } elseif(strstr($header['wrapper_data'][0], '402')) {
 
                             // 402 Payment Required -  Where's the cash? :-) Note an error.
-                            $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$lang_upload_php['http_402']);
+                            $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$lang_upload_php['http_402']);
 
                         } elseif(strstr($header['wrapper_data'][0], '403')) {
 
                             // 403 Forbidden - No permission to access the resource. Note an error.
-                            $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$lang_upload_php['http_403']);
+                            $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$lang_upload_php['http_403']);
 
                         } elseif(strstr($header['wrapper_data'][0], '404')) {
 
                             // 404 Not Found - The resource is missing. Note an error.
-                            $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$lang_upload_php['http_404']);
+                            $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$lang_upload_php['http_404']);
 
                         } elseif(strstr($header['wrapper_data'][0], '500')) {
 
                             // 500 Internal Server Error - The server has failed.  Note an error.
-                            $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$lang_upload_php['http_500']);
+                            $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$lang_upload_php['http_500']);
 
                         } elseif(strstr($header['wrapper_data'][0], '503')) {
 
                             // 503 Service Unavailable - The server is busy.  Note an error.
-                            $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$lang_upload_php['http_503']);
+                            $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$lang_upload_php['http_503']);
 
                         } else {
 
                             // Undocumented error. Note an error. Return status code.
-                            $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$header['wrapper_data'][0]);
+                            $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$header['wrapper_data'][0]);
 
                         }
 
@@ -1565,7 +1574,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
                     if (count($header['wrapper_data']) < 2) {
 
                         // We could not get the meta data from the header. We must reject the URI as unsafe.
-                        $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$lang_upload_php['meta_data_failure']);
+                        $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$lang_upload_php['meta_data_failure']);
 
                         // There is no need for further tests or action, so skip the remainder of the iteration.
                         continue;
@@ -1582,7 +1591,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
                                 if(!(eregi('^content-type: ([[:graph:]]+)', $header['wrapper_data'][$i], $MIME_extraction_array))) {
 
                                     // We could not find a MIME type. Note an error and reject the URI as unsafe.
-                                    $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$lang_upload_php['MIME_extraction_failure']);
+                                    $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$lang_upload_php['MIME_extraction_failure']);
 
                                     // There is no need for further tests or action, so skip the remainder of the iteration.
                                     continue 2;
@@ -1604,7 +1613,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
                                     if ($length_extraction_array[1] > $max_file_size) {
 
                                         // The content is too large. Reject it with an error.
-                                        $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$lang_upload_php['exc_file_size']);
+                                        $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$lang_upload_php['exc_file_size']);
 
                                         // There is no need for further tests or action, so skip the remainder of the iteration.
                                         continue 2;
@@ -1657,7 +1666,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
                         mysql_free_result($MIME_result);
 
                         // We cannot determine an extension from the MIME type provided, so note an error. Reject the file as unsafe.
-                        $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$lang_upload_php['MIME_type_unknown']);
+                        $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$lang_upload_php['MIME_type_unknown']);
 
                         // There is no need for further tests or action, so skip the remainder of the iteration.
                         continue;
@@ -1705,13 +1714,13 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
             // The file name $path_to_image has been created. We must prepare to download the resource. First, we will attemt to detect the status code for the resource.
 
             // Open a stream to the resource.
-            $fp = fopen($_POST['URI_array'][$counter],"rb");
+            $fp = fopen($URI_name,"rb");
 
             // Check to see if the resource was opened.
             if (!$fp) {
 
                 // Attempt to get the status of the resource.
-                $response = check_status($_POST['URI_array'][$counter]);
+                $response = check_status($URI_name);
 
                 // Try to parse header if we were able to get a response.
                 if ($response) {
@@ -1719,37 +1728,37 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
                     if(strstr($response, '401')) {
 
                         // 401 Unauthorized - Authorization needed to obtain resource. Note an error.
-                        $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$lang_upload_php['http_401']);
+                        $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$lang_upload_php['http_401']);
 
                     } elseif(strstr($response, '402')) {
 
                         // 402 Payment Required -  Where's the cash? :-) Note an error.
-                        $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$lang_upload_php['http_402']);
+                        $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$lang_upload_php['http_402']);
 
                     } elseif(strstr($response, '403')) {
 
                         // 403 Forbidden - No permission to access the resource. Note an error.
-                        $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$lang_upload_php['http_403']);
+                        $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$lang_upload_php['http_403']);
 
                     } elseif(strstr($response, '404')) {
 
                         // 404 Not Found - The resource is missing. Note an error.
-                        $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$lang_upload_php['http_404']);
+                        $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$lang_upload_php['http_404']);
 
                     } elseif(strstr($response, '500')) {
 
                         // 500 Internal Server Error - The server has failed.  Note an error.
-                        $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$lang_upload_php['http_500']);
+                        $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$lang_upload_php['http_500']);
 
                     } elseif(strstr($response, '503')) {
 
                         // 503 Service Unavailable - The server is busy.  Note an error.
-                        $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$lang_upload_php['http_503']);
+                        $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$lang_upload_php['http_503']);
 
                     } else {
 
                         // Undocumented error. Note an error. Return status code.
-                        $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$response);
+                        $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$response);
 
                     }
 
@@ -1760,7 +1769,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
 
 
                     // The resource could not be opened.
-                    $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$lang_upload_php['could_not_open_URI']);
+                    $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$lang_upload_php['could_not_open_URI']);
 
                     // There is no need for further tests or action, so skip the remainder of the iteration.
                     continue;
@@ -1787,37 +1796,37 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
                             if(strstr($header['wrapper_data'][0], '401')) {
 
                                 // 401 Unauthorized - Authorization needed to obtain resource. Note an error.
-                                $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$lang_upload_php['http_401']);
+                                $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$lang_upload_php['http_401']);
 
                             } elseif(strstr($header['wrapper_data'][0], '402')) {
 
                                 // 402 Payment Required -  Where's the cash? :-) Note an error.
-                                $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$lang_upload_php['http_402']);
+                                $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$lang_upload_php['http_402']);
 
                             } elseif(strstr($header['wrapper_data'][0], '403')) {
 
                                 // 403 Forbidden - No permission to access the resource. Note an error.
-                                $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$lang_upload_php['http_403']);
+                                $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$lang_upload_php['http_403']);
 
                             } elseif(strstr($header['wrapper_data'][0], '404')) {
 
                                 // 404 Not Found - The resource is missing. Note an error.
-                                $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$lang_upload_php['http_404']);
+                                $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$lang_upload_php['http_404']);
 
                             } elseif(strstr($header['wrapper_data'][0], '500')) {
 
                                 // 500 Internal Server Error - The server has failed.  Note an error.
-                                $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$lang_upload_php['http_500']);
+                                $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$lang_upload_php['http_500']);
 
                             } elseif(strstr($header['wrapper_data'][0], '503')) {
 
                                 // 503 Service Unavailable - The server is busy.  Note an error.
-                                $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$lang_upload_php['http_503']);
+                                $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$lang_upload_php['http_503']);
 
                             } else {
 
                                 // Undocumented error. Note an error. Return status code.
-                                $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$header['wrapper_data'][0]);
+                                $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$header['wrapper_data'][0]);
 
                             }
 
@@ -1843,7 +1852,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
                                         if ($length_extraction_array[1] > $max_file_size) {
 
                                             // The content is too large. Reject it with an error.
-                                            $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$lang_upload_php['exc_file_size']);
+                                            $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$lang_upload_php['exc_file_size']);
 
                                             // There is no need for further tests or action, so skip the remainder of the iteration.
                                             continue 2;
@@ -1871,7 +1880,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
                 if (!is_file($path_to_image)) {
 
                     // The file was not created. Note an error.
-                    $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$lang_upload_php['cant_create_write']);
+                    $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$lang_upload_php['cant_create_write']);
 
                     // There is no need for further tests or action, so skip the remainder of the iteration.
                     continue;
@@ -1880,7 +1889,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
                 } elseif (!is_writable($path_to_image)) {
 
                     // The file is not writeable. Note an error.
-                    $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$lang_upload_php['not_writable']);
+                    $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$lang_upload_php['not_writable']);
 
                     // There is no need for further tests or action, so skip the remainder of the iteration.
                     continue;
@@ -1908,7 +1917,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
                     if (!$fpw) {
 
                         // The file did not open. Make a note of the error.
-                        $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$lang_upload_php['cant_open_write_file']);
+                        $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$lang_upload_php['cant_open_write_file']);
 
                         // There is no need for further tests or action, so skip the remainder of the iteration.
                         continue;
@@ -1919,7 +1928,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
                     if (fwrite($fpw, $content, strlen($content)) === 'FALSE') {
 
                         // We could not write the data to the file. Note an error.
-                        $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$lang_upload_php['cant_write_write_file']);
+                        $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$lang_upload_php['cant_write_write_file']);
 
                         // There is no need for further tests or action, so skip the remainder of the iteration.
                         continue;
@@ -1957,7 +1966,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
                 @unlink($uploaded_pic);
 
                 // The file upload has failed -- the file is too large. make a note of the error.
-                $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$lang_upload_php['exc_file_size']);
+                $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$lang_upload_php['exc_file_size']);
 
                 // There is no need for further tests or action, so skip the remainder of the iteration.
                 continue;
@@ -1974,7 +1983,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
                     @unlink($path_to_image);
 
                     // The file upload has failed -- the image is not an image or it is corrupt.
-                    $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$lang_upload_php['not_image']);
+                    $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$lang_upload_php['not_image']);
 
                     // There is no need for further tests or action, so skip the remainder of the iteration.
                     continue;
@@ -1985,7 +1994,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
                     @unlink($path_to_image);
 
                     // The file upload has failed -- the image is not allowed with GD.
-                    $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$lang_upload_php['not_GD']);
+                    $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$lang_upload_php['not_GD']);
 
                     // There is no need for further tests or action, so skip the remainder of the iteration.
                     continue;
@@ -1995,7 +2004,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
                     @unlink($path_to_image);
 
                     // The file upload has failed -- the image dimensions exceed the allowed amount.
-                    $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$lang_upload_php['pixel_allowance']);
+                    $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$lang_upload_php['pixel_allowance']);
 
                     // There is no need for further tests or action, so skip the remainder of the iteration.
                     continue;
@@ -2050,7 +2059,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
         echo "</td></tr>";
 
         // Set the form action to this script.
-        open_form($_SERVER['PHP_SELF']);
+        open_form($CPG_PHP_SELF);
 
         $form_array = array(
              array('unique_ID', $unique_ID, 4),
@@ -2151,35 +2160,32 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
 }
 
 // Recieve incoming post information for phase II.
-if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
+//if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
+if ($superCage->post->keyExists('control') && $superCage->post->getRaw('control') == 'phase_2') {
 
     // Check for incoming album placement data.
-    if ((isset($_POST['album'])) and (isset($_POST['unique_ID']))) {
+    //if ((isset($_POST['album'])) and (isset($_POST['unique_ID']))) {
+    if ($superCage->post->keyExists('album') && $superCage->post->keyExists('unique_ID')) {
 
             // Check if user selected an album to upload picture to. If not, die with error.
         // added by frogfoot
-        $album = (int)$_POST['album'];
-        if (!$album){
-                        cpg_die(ERROR, $lang_db_input_php['album_not_selected'], __FILE__, __LINE__);
-                }
+        $album = $superCage->post->getInt('album');
+        if (!$album) {
+            cpg_die(ERROR, $lang_db_input_php['album_not_selected'], __FILE__, __LINE__);
+        }
 
-        if (isset($_POST['unique_ID'])) {
+        if ($superCage->post->keyExists('unique_ID')) {
 
             // The unique ID is set, so let us retrieve the record.
-            $cayman_string = retrieve_record($_POST['unique_ID']);
+            $cayman_string = retrieve_record($superCage->post->getAlnum('unique_ID'));
 
             // Verify record was retrieved.
             if (!$cayman_string) {
-
                 cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
-
             }
-
         } else {
-
             // The $_POST['unique_ID'] value is not present.  Die with an error.
             cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
-
         }
 
         // Now we decode the string.
@@ -2190,10 +2196,8 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
 
         // First, we test to make sure $escrow_array is an array.
         if (!(is_array($escrow_array))) {
-
             // The decoded information is not an array. Die with an error.
             cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
-
         }
 
         // Initialize $file_set as an array.
@@ -2219,7 +2223,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
         $cayman_escrow = base64_encode(serialize($escrow_array));
 
         // Update the record.
-        $update = update_record($_POST['unique_ID'], $cayman_escrow);
+        $update = update_record($superCage->post->getAlnum('unique_ID'), $cayman_escrow);
 
         // Verify that the update occurred.
         if (!$update) {
@@ -2231,34 +2235,26 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
 
         // We have incoming placement data. Let's capture it.
 
-        $album = (int)$_POST['album'];
-        $title = addslashes($_POST['title']);
-        $caption = addslashes($_POST['caption']);
-        $keywords = addslashes($_POST['keywords']);
-        $user1 = addslashes($_POST['user1']);
-        $user2 = addslashes($_POST['user2']);
-        $user3 = addslashes($_POST['user3']);
-        $user4 = addslashes($_POST['user4']);
+        $album = $superCage->post->getInt('album');
+        $title = $superCage->post->getEscaped('title');
+        $caption = $superCage->post->getEscaped('caption');
+        $keywords = $superCage->post->getEscaped('keywords');
+        $user1 = $superCage->post->getEscaped('user1');
+        $user2 = $superCage->post->getEscaped('user2');
+        $user3 = $superCage->post->getEscaped('user3');
+        $user4 = $superCage->post->getEscaped('user4');
 
         // Capture movie or audio width and height if sent.
-        if(isset($_POST['movie_wd'])) {
-
-            $movie_wd = (int)$_POST['movie_wd'];
-
+        if($superCage->post->keyExists('movie_wd')) {
+            $movie_wd = $superCage->post->getInt('movie_wd');
         } else {
-
             $movie_wd = 320;
-
         }
 
-        if(isset($_POST['movie_ht'])) {
-
-            $movie_ht = (int)$_POST['movie_ht'];
-
+        if($superCage->post->keyExists('movie_ht')) {
+            $movie_ht = $superCage->post->getInt('movie_wd');
         } else {
-
             $movie_ht = 240;
-
         }
 
         // Check if the album id provided is valid
@@ -2385,7 +2381,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
             }
 
             // Delete the temporary data file.
-            delete_record($_POST['unique_ID']);
+            delete_record($superCage->post->getAlnum('unique_ID'));
 
             // Send e-mail notification to the admin if requested (added by gaugau: 03-11-09).
             if (($CONFIG['upl_notify_admin_email']) and ($PIC_NEED_APPROVAL)) {
@@ -2418,23 +2414,18 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
     // We must pull that information from the temporary data file
     // whose ID is in $_POST['unique_ID'].
 
-    if (isset($_POST['unique_ID'])) {
+    if ($superCage->post->keyExists('unique_ID')) {
 
             // The unique ID is set, so let us retrieve the record.
-            $cayman_string = retrieve_record($_POST['unique_ID']);
+            $cayman_string = retrieve_record($superCage->post->getAlnum('unique_ID'));
 
             // Verify record was retrieved.
             if (!$cayman_string) {
-
                 cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
-
             }
-
     } else {
-
         // The $_POST['cayman'] path is not present.  Die with an error.
         cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
-
     }
 
     // Now we decode the string.
@@ -2518,14 +2509,12 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
     $cayman_escrow = base64_encode(serialize($escrow_array));
 
     // Update the record.
-    $update = update_record($_POST['unique_ID'], $cayman_escrow);
+    $update = update_record($superCage->post->getAlnum('unique_ID'), $cayman_escrow);
 
     // Verify that the update occurred.
     if (!$update) {
-
         // We cannot write to the temporary data file. Note a fatal error.
         cpg_die(CRITICAL_ERROR, $lang_upload_php['not_writable'], __FILE__, __LINE__);
-
     }
 
     // Create upload form headers.
@@ -2535,7 +2524,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
     starttable("100%", $lang_upload_php['title'], 2);
 
     // Direct the request to this script.
-    open_form($_SERVER['PHP_SELF']);
+    open_form($CPG_PHP_SELF);
 
     // Create image tag and echo it to the output buffer.
     echo "<tr><td class=\"tableh2\"><img class=\"image\" src=\"".$path_to_preview."\"  /></td>";
@@ -2583,7 +2572,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
     array($captionLabel, 'caption', 3, $CONFIG['max_img_desc_length'], (isset($iptc['Caption'])) ? $iptc['Caption'] : ''),
     array($keywordLabel, 'keywords', 0, 255, 1,(isset($iptc['Keywords'])) ? implode(' ',$iptc['Keywords']): ''),
     array('control', 'phase_2', 4),
-    array('unique_ID', $_POST['unique_ID'], 4),
+    array('unique_ID', $superCage->post->getAlnum('unique_ID'), 4),
     );
 
     // Check for user defined fields.
