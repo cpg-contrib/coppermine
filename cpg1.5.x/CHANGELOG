@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-11-17 [O] Modified usermgr, banning, upload to reflect security improvements imposed by adding Inspekt {Aditya}
 2007-11-16 [B] Fixed the problem of message author getting blank on comment update {Aditya}
 2007-11-15 [B] British English now recognised correctly {Nibbler}
 2007-11-15 [B] Compatibility fix for MyBB 1.2.9 {Nibbler}
