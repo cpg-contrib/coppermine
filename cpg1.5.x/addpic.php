@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
@@ -42,14 +42,14 @@ require('include/picmgmt.inc.php');
 /**
  * Clean up GPC and other Globals here
  */
-$CLEAN['aid'] = (int)$_GET['aid'];
+$aid = $superCage->get->getInt('aid');
 
 if (!GALLERY_ADMIN_MODE) die('Access denied');
 
 /**
  * TODO: $_GET['pic_file'] cannot be cleaned sensibly with current methods available. Refactor.
  */
-$pic_file = base64_decode($_GET['pic_file']);
+$pic_file = base64_decode($superCage->get->getMatched('pic_file','/^[0-9A-Za-z=\+\/]+$/'));
 $dir_name = dirname($pic_file) . '/';
 $file_name = basename($pic_file);
 
@@ -63,7 +63,7 @@ $result = cpg_db_query($sql);
 
 if (mysql_num_rows($result)) {
     $file_name = 'images/up_dup.gif';
-} elseif (add_picture($CLEAN['aid'], $dir_name, $sane_name)) {
+} elseif (add_picture($aid, $dir_name, $sane_name)) {
     $file_name = 'images/up_ok.gif';
 } else {
     $file_name = 'images/up_pb.gif';
