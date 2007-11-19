@@ -55,12 +55,10 @@ if (utf_strlen($word) > $CONFIG['max_com_wlength'] ) {
     $str=str_replace($replacements,'(...)',$str);
 }
 
-//if (!isset($_GET['event']) && !isset($_POST['event'])) {
 if (!$superCage->get->keyExists('event') && !$superCage->post->keyExists('event')) {
     cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
 }
 
-$event = isset($_POST['event']) ? $_POST['event'] : $_GET['event'];
 if ($matches = $superCage->post->getMatched('event', '/^[a-z_]+$/')) {
 	$event = $matches[0];
 } elseif ($matches = $superCage->get->getMatched('event', '/^[a-z_]+$/')) {
@@ -135,7 +133,8 @@ switch ($event) {
         }
         if (($CONFIG['comment_captcha'] > 0 && !USER_ID) || ($CONFIG['comment_captcha'] == 2 && USER_ID)) {
             require("include/captcha.inc.php");
-            if (!PhpCaptcha::Validate($_POST['confirmCode'])) {
+            $matches = $superCage->post->getMatched('confirmCode', '/^[a-zA-Z0-9]+$/');
+            if ($matches[0] && !PhpCaptcha::Validate($matches[0])) {
               //msg_box($lang_common['error'], $lang_errors['captcha_error'], $lang_common['back'], 'javascript:history.back()');
               cpg_die(ERROR, $lang_errors['captcha_error'], __FILE__, __LINE__);
             }
@@ -378,7 +377,7 @@ switch ($event) {
         }
 
         // Test if the filename of the temporary uploaded picture is empty
-        if ($_FILES['userpicture']['tmp_name'] == '') {
+        if ($superCage->files->getRaw("/userpicture/tmp_name") == '') {
             cpg_die(ERROR, $lang_db_input_php['no_pic_uploaded'], __FILE__, __LINE__);
         }
 
@@ -409,11 +408,14 @@ switch ($event) {
         }
 
         if (get_magic_quotes_gpc()) {
-            $_FILES['userpicture']['name'] = stripslashes($_FILES['userpicture']['name']);
+            //Using getRaw() as we have custom sanitization code below
+            $picture_name = stripslashes($superCage->files->getRaw("/userpicture/name"));
+        } else {
+            $picture_name = $superCage->files->getRaw("/userpicture/name");
         }
 
         // Replace forbidden chars with underscores
-        $picture_name = replace_forbidden($_FILES['userpicture']['name']);
+        $picture_name = replace_forbidden($picture_name);
 
         // Check that the file uploaded has a valid extension
         $matches = array();
@@ -435,7 +437,7 @@ switch ($event) {
         $uploaded_pic = $dest_dir . $picture_name;
 
         // Move the picture into its final location
-        if (!move_uploaded_file($_FILES['userpicture']['tmp_name'], $uploaded_pic)) {
+        if (!move_uploaded_file($superCage->files->getRaw("/userpicture/tmp_name"), $uploaded_pic)) {
             cpg_die(CRITICAL_ERROR, sprintf($lang_db_input_php['err_move'], $picture_name, $dest_dir), __FILE__, __LINE__, true);
         }
 
@@ -472,7 +474,7 @@ switch ($event) {
 
         // Upload is ok
         // Create thumbnail and internediate image and add the image into the DB
-        $result = add_picture($album, $filepath, $picture_name, 0, $title, $caption, $keywords, $user1, $user2, $user3, $user4, $category, $raw_ip, $hdr_ip,(int) $_POST['width'],(int) $_POST['height']);
+        $result = add_picture($album, $filepath, $picture_name, 0, $title, $caption, $keywords, $user1, $user2, $user3, $user4, $category, $raw_ip, $hdr_ip, $superCage->post->getInt('width'), $superCage->post->getInt('height'));
 
         if (!$result) {
             @unlink($uploaded_pic);
