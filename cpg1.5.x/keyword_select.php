@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
@@ -16,17 +16,6 @@
   $LastChangedBy$
   $Date$
 **********************************************/
-
-// +----------------------------------------------------------------------+
-// | Filename: keyword_select.php                                         |
-// +----------------------------------------------------------------------+
-// | Copyright (c) http://www.sanisoft.com                                |
-// +----------------------------------------------------------------------+
-// | Description:                                                         |
-// +----------------------------------------------------------------------+
-// | Authors: Original Author                                             |
-// |          SANIsoft Developement Team                                  |
-// +----------------------------------------------------------------------+
 
 define('IN_COPPERMINE', true);
 define('UPLOAD_PHP', true);
@@ -46,7 +35,6 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
 
 $total = mysql_num_rows($result);
 
-
 mysql_free_result($result);
 
 $charset = $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'];
@@ -63,8 +51,11 @@ $html_header = <<<EOT
 EOT;
 
 print $html_header;
-if (ISSET($_GET['id'])) {
+/*if (ISSET($_GET['id'])) {
   $formFieldId = (int)$_GET['id'];
+}*/
+if ($superCage->get->keyExists('id')) {
+	$formFieldId = $superCage->get->getInt('id');
 }
 print '    <form name="form" name="keywordform" id="cpgform2">'."\n";
 starttable("100%",$lang_upload_php['keywords_sel'], 3);
