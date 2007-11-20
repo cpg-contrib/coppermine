@@ -296,7 +296,7 @@ function getfoldercontent($folder, &$dir_array, &$pic_array, &$expic_array)
 
 function display_dir_tree($folder, $ident)
 {
-    global $CONFIG, $lang_search_new_php; //$PHP_SELF,
+    global $CONFIG, $lang_search_new_php, $CPG_PHP_SELF; //$PHP_SELF,
     $dir_path = $CONFIG['fullpath'] . $folder;
 
     if (!is_readable($dir_path)) return;
@@ -322,7 +322,7 @@ function display_dir_tree($folder, $ident)
                 echo <<<EOT
                             <tr>
                                     <td class="tableb">
-                                            $ident<img src="images/folder.gif" border="0" alt="" />&nbsp;<a href= "{$_SERVER['PHP_SELF']}?startdir=$start_target">$file</a>$warnings
+                                            $ident<img src="images/folder.gif" border="0" alt="" />&nbsp;<a href= "{$CPG_PHP_SELF']}?startdir=$start_target">$file</a>$warnings
                                     </td>
                             </tr>
 EOT;
@@ -449,9 +449,14 @@ if (!count($album_array)) {
     cpg_die(ERROR, $lang_search_new_php['need_one_album'], __FILE__, __LINE__);
 }
 
-if (isset($_POST['insert'])) {
-    if (!isset($_POST['pics'])) cpg_die(ERROR, $lang_search_new_php['no_pic_to_add'], __FILE__, __LINE__);
-
+//if (isset($_POST['insert'])) {
+if ($superCage->post->keyExists('insert')) {
+    //if (!isset($_POST['pics'])) cpg_die(ERROR, $lang_search_new_php['no_pic_to_add'], __FILE__, __LINE__);
+		if ($superCage->post->keyExists('pics')){
+				$pics = $superCage->post->getInt('pics');
+		}else{
+				cpg_die(ERROR, $lang_search_new_php['no_pic_to_add'], __FILE__, __LINE__);
+		}
     pageheader($lang_search_new_php['page_title']);
     $help = '&nbsp;'.cpg_display_help('f=uploading.htm&amp;as=ftp&amp;ae=ftp_end&amp;top=1#ftp_show_result', '600', '400');
     starttable("100%");
@@ -468,20 +473,23 @@ if (isset($_POST['insert'])) {
 EOT;
 
     $count = 0;
-    foreach ($_POST['pics'] as $pic_id) {
-        $album_lb_id = $_POST['album_lb_id_' . $pic_id];
-        $album_id = $_POST[$album_lb_id];
+    foreach ($pics as $pic_id) {
+        //$album_lb_id = $_POST['album_lb_id_' . $pic_id];
+        $album_lb_id = $superCage->post->getInt('album_lb_id_'.$pic_id);
+        //$album_id = $_POST[$album_lb_id];
+        $album_id = $superCage->post->getInt('album_id');
 
         $edit_album_array[] = $album_id; //Load the album number into an array for later
-
-        $pic_file = base64_decode($_POST['picfile_' . $pic_id]);
+				$picfile = $superCage->post->getAlnum('picfile_'.$pic_id);
+        //$pic_file = base64_decode($_POST['picfile_' . $pic_id]);
+        $pic_file = base64_decode($picfile);
         $dir_name = dirname($pic_file) . "/";
         $file_name = basename($pic_file);
 
         if ($album_id) {
             // To avoid problems with PHP scripts max execution time limit, each picture is
             // added individually using a separate script that returns an image
-            $status = "<a href=\"addpic.php?aid=$album_id&pic_file=" . ($_POST['picfile_' . $pic_id]) . "&amp;reload=" . uniqid('') . "\"><img src=\"addpic.php?aid=$album_id&amp;pic_file=" . ($_POST['picfile_' . $pic_id]) . "&amp;reload=" . uniqid('') . "\" class=\"thumbnail\" border=\"0\" width=\"24\" height=\"24\" alt=\"{$lang_search_new_php['result_icon']}\" /><br /></a>";
+            $status = "<a href=\"addpic.php?aid=$album_id&pic_file=" . ($picfile) . "&amp;reload=" . uniqid('') . "\"><img src=\"addpic.php?aid=$album_id&amp;pic_file=" . ($picfile) . "&amp;reload=" . uniqid('') . "\" class=\"thumbnail\" border=\"0\" width=\"24\" height=\"24\" alt=\"{$lang_search_new_php['result_icon']}\" /><br /></a>";
             $album_name = $album_array[$album_id];
             //$edit_pics_content .= '<a href="editpics.php?album='.$album_id. '">' . $lang_search_new_php['edit_pics'] . ' : ' . $album_name . '</a><br />';
         } else {
@@ -514,7 +522,7 @@ EOT;
       $edit_pics_content .= '<a href="thumbnails.php?album='.$edit_album. '" class="admin_menu">' . $lang_search_new_php['view_thumbs'] . '</a> ';
       $edit_pics_content .= '<br />';
     }
-    $add_more_folder = '<a href="'.$_SERVER['PHP_SELF'].'?startdir='.rtrim($dir_name, '/').'" class="admin_menu">'.sprintf($lang_search_new_php['add_more_folder'], '&laquo;'.rtrim($dir_name, '/').'&raquo;').'</a>';
+    $add_more_folder = '<a href="'.$CPG_PHP_SELF.'?startdir='.rtrim($dir_name, '/').'" class="admin_menu">'.sprintf($lang_search_new_php['add_more_folder'], '&laquo;'.rtrim($dir_name, '/').'&raquo;').'</a>';
 
     echo <<<EOT
         <tr>
@@ -541,7 +549,10 @@ EOT;
     endtable();
     pagefooter();
     ob_end_flush();
-} elseif (isset($_GET['startdir'])) {
+//} elseif (isset($_GET['startdir'])) {
+} elseif ($superCage->get->keyExists('startdir')) {
+	$matches = $superCage->get->getMatched('startdir', '/^[0-9A-Za-z\/_]+$/') ? $matches[0] : '';
+	$startdir = $matches;
     pageheader($lang_search_new_php['page_title']);
     $help = '&nbsp;'.cpg_display_help('f=uploading.htm&amp;as=ftp&amp;ae=ftp_end&amp;top=1#ftp_select_file', '550', '400');
     echo <<<EOT
@@ -567,7 +578,7 @@ EOT;
         }
         -->
         </script>
-        <form method="post" action="{$_SERVER['PHP_SELF']}?insert=1" name="selectPics" id="cpgform" style="margin:0px;padding:0px">
+        <form method="post" action="{$CPG_PHP_SELF}?insert=1" name="selectPics" id="cpgform" style="margin:0px;padding:0px">
 EOT;
     starttable("100%");
     echo <<<EOT
@@ -577,8 +588,8 @@ EOT;
 
 EOT;
     $expic_array = array();
-    getallpicindb($expic_array, $_GET['startdir']);
-    if (CPGscandir($_GET['startdir'] . '/', $expic_array)) {
+    getallpicindb($expic_array, $startdir);
+    if (CPGscandir($startdir . '/', $expic_array)) {
         echo <<<EOT
         <tr>
                 <td class="tablef">
@@ -609,12 +620,14 @@ EOT;
 } else {
     pageheader($lang_search_new_php['page_title']);
     $help = '&nbsp;'.cpg_display_help('f=uploading.htm&amp;as=ftp&amp;ae=ftp_end&amp;top=1', '600', '450');
-    print '<form name="interfaceconfig" id="cpgform" action="'.$_SERVER['PHP_SELF'].'" method="post" style="margin:0px;padding:0px">';
+    print '<form name="interfaceconfig" id="cpgform" action="'.$CPG_PHP_SELF.'" method="post" style="margin:0px;padding:0px">';
     starttable(-1, $lang_search_new_php['select_dir'].$help);
 
     // write the interface change to the db
-    if (isset($_POST['update_config'])) {
-        $browse_batch_add = (int)$_POST['browse_batch_add'];
+    //if (isset($_POST['update_config'])) {
+    if ($superCage->post->keyExists('update_config')){
+        //$browse_batch_add = (int)$_POST['browse_batch_add'];
+        $browse_batch_add = $superCage->post->getInt('browse_batch_add');
         if ($browse_batch_add != $CONFIG['browse_batch_add']) {
           cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$browse_batch_add' WHERE name = 'browse_batch_add'");
           $CONFIG['browse_batch_add'] = $browse_batch_add;
@@ -627,7 +640,8 @@ EOT;
                 );
           }
         }
-        $display_thumbs_batch_add = (int)$_POST['display_thumbs_batch_add'];
+        //$display_thumbs_batch_add = (int)$_POST['display_thumbs_batch_add'];
+        $display_thumbs_batch_add = $superCage->post->getInt('display_thumbs_batch_add');
         if ($display_thumbs_batch_add != $CONFIG['display_thumbs_batch_add']) {
           cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$display_thumbs_batch_add' WHERE name = 'display_thumbs_batch_add'");
           $CONFIG['display_thumbs_batch_add'] = $display_thumbs_batch_add;
@@ -648,7 +662,7 @@ EOT;
     print '    <tr>'."\n";
     print '        <td class="tableb" align="center">'."\n";
     if ($CONFIG['browse_batch_add'] == 1) {
-        print '            <iframe src="minibrowser.php?startfolder='.$iframe_startfolder.'&amp;parentform=choosefolder&amp;formelementname=startdir&amp;no_popup=1&amp;limitfolder='.$iframe_startfolder.'&amp;hidefolders='.$iframe_hide.'&amp;linktarget='.$_SERVER['PHP_SELF'].'&amp;searchnew_php=1&amp;radio=0" width="95%" height="400" name="popup_in_a_box">'."\n";
+        print '            <iframe src="minibrowser.php?startfolder='.$iframe_startfolder.'&amp;parentform=choosefolder&amp;formelementname=startdir&amp;no_popup=1&amp;limitfolder='.$iframe_startfolder.'&amp;hidefolders='.$iframe_hide.'&amp;linktarget='.$CPG_PHP_SELF.'&amp;searchnew_php=1&amp;radio=0" width="95%" height="400" name="popup_in_a_box">'."\n";
     }
     display_dir_tree('', '');
     if ($CONFIG['browse_batch_add'] == 1) {

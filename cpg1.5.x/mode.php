@@ -33,7 +33,8 @@ define('MODE_PHP', true);
 
 require('include/init.inc.php');
 
-if ($_GET['what'] == 'news') {
+//if ($_GET['what'] == 'news') {
+if (($superCage->get->getAlpha('wat')) == 'news'){
   if (!GALLERY_ADMIN_MODE) {
     cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
   }
@@ -55,7 +56,8 @@ if ($_GET['what'] == 'news') {
         CPG_DATABASE_LOG
         );
   }
-  $referer = $_GET['referer'] ? $_GET['referer'] : 'index.php';
+  //$referer = $_GET['referer'] ? $_GET['referer'] : 'index.php';
+  $referer = $superCage->get->keyExists('referer') ? $superCage->get->getRaw('referer') : 'index.php';
   $referer = rawurldecode($referer);
   $referer = str_replace('&amp;', '&', $referer);
   $referer = str_replace('&amp;', '&', $referer);
@@ -67,12 +69,15 @@ if ($_GET['what'] == 'news') {
       cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
   }
 
-  if (!isset($_GET['admin_mode']) || !isset($_GET['referer'])) {
+  //if (!isset($_GET['admin_mode']) || !isset($_GET['referer'])) {
+  if (!$superCage->get->keyExists('admin_mode') || !$superCage->get->keyExists('referer')){
       cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
   }
 
-  $admin_mode = (int)$_GET['admin_mode'] ? 1 : 0;
-  $referer = $_GET['referer'] ? $_GET['referer'] : 'index.php';
+ // $admin_mode = (int)$_GET['admin_mode'] ? 1 : 0;
+ $admin_mode = $superCage->get->getInt('admin_mode')? 1 : 0;
+  //$referer = $_GET['referer'] ? $_GET['referer'] : 'index.php';
+  $referer = $superCage->get->keyExists('referer') ? $superCage->get->getRaw('referer') : 'index.php';
   $USER['am'] = $admin_mode;
   if (!$admin_mode) {
       $referer = 'index.php';

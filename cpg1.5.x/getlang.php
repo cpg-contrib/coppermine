@@ -34,8 +34,10 @@ while ($file = readdir($dir)) {
 closedir($dir);
 asort($lang_files);
 
-if (isset($_GET['get'])) {
-    $file_index = (int)$_GET['get'];
+/*if (isset($_GET['get'])) {
+    $file_index = (int)$_GET['get'];*/
+if ($superCage->get->keyExists('get')) {
+		$file_index = $superCage->get->getInt('get') ;   
     if ((isset($lang_files[$file_index]))) {
         header("Content-type: application/php");
         header("Content-Disposition: attachment; filename={$lang_files[$file_index]}");
@@ -50,7 +52,7 @@ foreach($lang_files as $index => $file) {
     echo <<<EOT
                 <tr>
                         <td class="tableb">
-                                <img src="images/folder.gif" alt="">&nbsp;<a href="{$_SERVER['PHP_SELF']}?get=$index">$file</a>
+                                <img src="images/folder.gif" alt="">&nbsp;<a href="{$CPG_PHP_SELF}?get=$index">$file</a>
                         </td>
                 </tr>
 EOT;
