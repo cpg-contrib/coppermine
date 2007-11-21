@@ -49,7 +49,8 @@ if (!GALLERY_ADMIN_MODE) die('Access denied');
 /**
  * TODO: $_GET['pic_file'] cannot be cleaned sensibly with current methods available. Refactor.
  */
-$pic_file = base64_decode($superCage->get->getMatched('pic_file','/^[0-9A-Za-z=\+\/]+$/'));
+$matches = $superCage->get->getMatched('pic_file','/^[0-9A-Za-z=\+\/]+$/');
+$pic_file = base64_decode($matches[0]);
 $dir_name = dirname($pic_file) . '/';
 $file_name = basename($pic_file);
 

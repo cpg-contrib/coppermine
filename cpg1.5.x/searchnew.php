@@ -322,7 +322,7 @@ function display_dir_tree($folder, $ident)
                 echo <<<EOT
                             <tr>
                                     <td class="tableb">
-                                            $ident<img src="images/folder.gif" border="0" alt="" />&nbsp;<a href= "{$CPG_PHP_SELF']}?startdir=$start_target">$file</a>$warnings
+                                            $ident<img src="images/folder.gif" border="0" alt="" />&nbsp;<a href= "{$CPG_PHP_SELF}?startdir=$start_target">$file</a>$warnings
                                     </td>
                             </tr>
 EOT;
@@ -453,7 +453,7 @@ if (!count($album_array)) {
 if ($superCage->post->keyExists('insert')) {
     //if (!isset($_POST['pics'])) cpg_die(ERROR, $lang_search_new_php['no_pic_to_add'], __FILE__, __LINE__);
 		if ($superCage->post->keyExists('pics')){
-				$pics = $superCage->post->getInt('pics');
+				$pics = $superCage->post->getAlnum('pics');
 		}else{
 				cpg_die(ERROR, $lang_search_new_php['no_pic_to_add'], __FILE__, __LINE__);
 		}
@@ -475,12 +475,13 @@ EOT;
     $count = 0;
     foreach ($pics as $pic_id) {
         //$album_lb_id = $_POST['album_lb_id_' . $pic_id];
-        $album_lb_id = $superCage->post->getInt('album_lb_id_'.$pic_id);
+        $album_lb_id = $superCage->post->getAlnum('album_lb_id_'.$pic_id);
         //$album_id = $_POST[$album_lb_id];
-        $album_id = $superCage->post->getInt('album_id');
+        $album_id = $superCage->post->getInt($album_lb_id);
 
         $edit_album_array[] = $album_id; //Load the album number into an array for later
-				$picfile = $superCage->post->getAlnum('picfile_'.$pic_id);
+        $matches = $superCage->post->getMatched('picfile_'.$pic_id, '/^[a-zA-A0-9=]+$/');
+		$picfile = $superCage->post->getAlnum('picfile_'.$pic_id);
         //$pic_file = base64_decode($_POST['picfile_' . $pic_id]);
         $pic_file = base64_decode($picfile);
         $dir_name = dirname($pic_file) . "/";
@@ -550,9 +551,8 @@ EOT;
     pagefooter();
     ob_end_flush();
 //} elseif (isset($_GET['startdir'])) {
-} elseif ($superCage->get->keyExists('startdir')) {
-	$matches = $superCage->get->getMatched('startdir', '/^[0-9A-Za-z\/_]+$/') ? $matches[0] : '';
-	$startdir = $matches;
+} elseif ($superCage->get->keyExists('startdir') && $matches = $superCage->get->getMatched('startdir', '/^[0-9A-Za-z\/_-]+$/')) {
+	$startdir = $matches[0];
     pageheader($lang_search_new_php['page_title']);
     $help = '&nbsp;'.cpg_display_help('f=uploading.htm&amp;as=ftp&amp;ae=ftp_end&amp;top=1#ftp_select_file', '550', '400');
     echo <<<EOT

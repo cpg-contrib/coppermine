@@ -3213,15 +3213,23 @@ return $BRIDGE;
 }
 
 function cpg_get_webroot_path() {
-    //global $PHP_SELF;
+    global $CPG_PHP_SELF;
+
+    $superCage = Inspekt::makeSuperCage();
     // get the webroot folder out of a given PHP_SELF of any coppermine page
 
     // what we have: we can say for sure where we are right now: $PHP_SELF (if the server doesn't even have it, there will be problems everywhere anyway)
 
     // let's make those into an array:
-    $path_from_serverroot[] = $_SERVER["SCRIPT_FILENAME"];
-    if (isset($_SERVER["PATH_TRANSLATED"])) {
+    if ($matches = $superCage->server->getMatched('SCRIPT_FILENAME', '/^[a-z,A-Z0-9_-\/\\:.]+$/')) {
+    	$path_from_serverroot[] = $matches[0];
+    }
+    //$path_from_serverroot[] = $_SERVER["SCRIPT_FILENAME"];
+    /*if (isset($_SERVER["PATH_TRANSLATED"])) {
        $path_from_serverroot[] = $_SERVER["PATH_TRANSLATED"];
+    }*/
+    if ($matches = $superCage->server->getMatched('PATH_TRANSLATED', '/^[a-z,A-Z0-9_-\/\\:.]+$/')) {
+        $path_from_serverroot[] = $matches[0];
     }
     //$path_from_serverroot[] = $HTTP_SERVER_VARS["SCRIPT_FILENAME"];
     //$path_from_serverroot[] = $HTTP_SERVER_VARS["PATH_TRANSLATED"];
@@ -3246,7 +3254,7 @@ function cpg_get_webroot_path() {
         $counter = 0;
         foreach($path_from_serverroot3 as $key) {
             // easiest possible solution: $PHP_SELF is contained in the array - if yes, we're lucky (in fact we could have done this before, but I was going to leave room for other checks to be inserted before this one)
-            if(strstr($key, $_SERVER['PHP_SELF']) != FALSE) { // eliminate all that don't contain $PHP_SELF
+            if(strstr($key, $CPG_PHP_SELF) != FALSE) { // eliminate all that don't contain $PHP_SELF
                 $path_from_serverroot4[] = $key;
                 $counter++;
             }
@@ -3265,7 +3273,7 @@ function cpg_get_webroot_path() {
     }
 
     // strip the content from $PHP_SELF from the $return var and we should (hopefully) have the absolute path to the webroot
-    $return = str_replace($_SERVER['PHP_SELF'], '', $return);
+    $return = str_replace($CPG_PHP_SELF, '', $return);
 
     // the return var should at least contain a slash - if it doesn't, add it (although this is more or less wishfull thinking)
     if ($return == '') {
