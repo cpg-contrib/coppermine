@@ -255,15 +255,12 @@ function cpg_db_error($the_error)
 {
         global $CONFIG,$lang_errors;
 
-        if ($CONFIG['debug_mode'] === '0' || ($CONFIG['debug_mode'] === '2' && !GALLERY_ADMIN_MODE)) {
+        if ($CONFIG['debug_mode'] === '0' || (!GALLERY_ADMIN_MODE) {
             cpg_die(CRITICAL_ERROR, $lang_errors['database_query'], __FILE__, __LINE__);
         } else {
-
                 $the_error .= "\n\nmySQL error: ".mysql_error()."\n";
-
                 $out = "<br />".$lang_errors['database_query'].".<br /><br/>
                     <form name=\"mysql\" id=\"mysql\"><textarea rows=\"8\" cols=\"60\">".htmlspecialchars($the_error)."</textarea></form>";
-
             cpg_die(CRITICAL_ERROR, $out, __FILE__, __LINE__);
         }
 }
@@ -1681,7 +1678,7 @@ function add_hit($pid)
         if ($superCage->server->isUri('HTTP_REFERER')) {
             $referer = urlencode(addslashes(htmlentities($superCage->server->getRaw('HTTP_REFERER'))));
         } else {
-        	$referer= '';
+                $referer= '';
         }
 
         // Insert the record in database
@@ -3222,7 +3219,7 @@ function cpg_get_webroot_path() {
 
     // let's make those into an array:
     if ($matches = $superCage->server->getMatched('SCRIPT_FILENAME', '/^[a-z,A-Z0-9_-\/\\:.]+$/')) {
-    	$path_from_serverroot[] = $matches[0];
+            $path_from_serverroot[] = $matches[0];
     }
     //$path_from_serverroot[] = $_SERVER["SCRIPT_FILENAME"];
     /*if (isset($_SERVER["PATH_TRANSLATED"])) {

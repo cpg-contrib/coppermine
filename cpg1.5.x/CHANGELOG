@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-11-22 [O] Display database errors for the admin no matter if debug_mode is enabled or not {GauGau}
 2007-11-21 [O] Modified files related to batch add functionality to reflect security improvements imposed by adding Inspekt {Aditya/Frantz}
 2007-11-17 [O] Modified usermgr, banning, upload to reflect security improvements imposed by adding Inspekt {Aditya}
 2007-11-16 [B] Fixed the problem of message author getting blank on comment update {Aditya}
