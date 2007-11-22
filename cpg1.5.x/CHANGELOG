@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-11-22 [D] Added (preliminary) Inspekt documentation {GauGau}
 2007-11-22 [D] Added lib.xml.php to the credits section {GauGau}
 2007-11-22 [O] Display database errors for the admin no matter if debug_mode is enabled or not {GauGau}
 2007-11-21 [O] Modified files related to batch add functionality to reflect security improvements imposed by adding Inspekt {Aditya/Frantz}

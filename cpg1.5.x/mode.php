@@ -34,7 +34,7 @@ define('MODE_PHP', true);
 require('include/init.inc.php');
 
 //if ($_GET['what'] == 'news') {
-if (($superCage->get->getAlpha('wat')) == 'news'){
+if (($superCage->get->getAlpha('what')) == 'news'){
   if (!GALLERY_ADMIN_MODE) {
     cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
   }

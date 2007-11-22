@@ -568,6 +568,7 @@ d.add(1540,1520,'Editing the documentation','dev_documentation.htm');
 d.add(1550,1520,'Subversion','dev_subversion.htm');
 d.add(1560,1520,'Adding config options','dev_config.htm');
 d.add(1570,1520,'Versioncheck','dev_versioncheck.htm');
+d.add(1580,1520,'Sanitization Superglobals (Inspekt)','dev_superglobals.htm');
 
 function cpgDocToc() {
   document.write(d); // write the navigation
