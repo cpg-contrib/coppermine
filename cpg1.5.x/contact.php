@@ -40,14 +40,20 @@ if (!USER_ID) { // visitor is guest
 }
 //print_r($USER_DATA);
 // do the stuff here when the form has been submit
-if ($_POST['submit'] != '') {
+//if ($_POST['submit'] != '') {
+if ($superCage->post->keyExists('submit')) {
   // perform validity checks
   $error = 0;
-  $user_name = $_POST['sender_name'];
-  $email_address = $_POST['sender_email'];
-  $subject =  $_POST['subject'];
-  $message =  $_POST['message'];
-  $captcha = $_POST['captcha'];
+
+  /**
+   * Using getRaw() for most of the following statements
+   */
+  $user_name = $superCage->post->getRaw('sender_name');
+  $email_address = $superCage->post->getRaw('sender_email');
+  $subject =  $superCage->post->getRaw('subject');
+  $message =  $superCage->post->getRaw('message');
+  $captcha = ($matches = $superCage->post->getMatched('captcha', '/^[a-zA-Z0-9]+$/')) ? $matches[0] : '';
+
   // sanitize user-input
   $html_message = str_replace('<', '&lt;', $message);
   $expand_array = array();
@@ -81,7 +87,7 @@ if ($_POST['submit'] != '') {
   if ($error == 0) {
     // compose the email
     $subject = $CONFIG['contact_form_subject_content'] . ': '. $subject;
-    $message_header = sprintf($lang_contact_php['email_headline'], localised_date(time(),$scientific_date_fmt), $CONFIG['ecards_more_pic_target'].$_SERVER['PHP_SELF'], $raw_ip);
+    $message_header = sprintf($lang_contact_php['email_headline'], localised_date(time(),$scientific_date_fmt), $CONFIG['ecards_more_pic_target'].$CPG_PHP_SELF, $raw_ip);
     if ($CONFIG['contact_form_sender_email'] == 0) {
       $sender_email = $CONFIG['gallery_admin_email'];
       $sender_name = $CONFIG['gallery_admin_email'];
@@ -135,7 +141,11 @@ if ($_POST['submit'] != '') {
     if (!cpg_mail($CONFIG['gallery_admin_email'], $subject, $html_message, 'text/html', $sender_name, $sender_email, $message)) {
       cpg_die($lang_cpg_die['CRITICAL_ERROR'], $lang_contact_php['failed_sending_email'], __FILE__, __LINE__);
     } else { // sending the email has been successfull, redirect the user
-      $referer = $_GET['referer'] ? $_GET['referer'] : 'index.php';
+      //$referer = $_GET['referer'] ? $_GET['referer'] : 'index.php';
+      $referer = $superCage->get->keyExists('referer') ? $superCage->get->getRaw('referer') : 'index.php';
+      if (strpos($referer, "http") !== false || strpos($referer, "logout.php") !== false) {
+        $referer = "index.php";
+      }
       cpgRedirectPage($CONFIG['ecards_more_pic_target'].$referer, $lang_common['information'], $lang_contact_php['email_sent']);
     }
     //print '<div style="border: 1px solid blue">'.$html_message.'</div>';
@@ -154,7 +164,7 @@ if ($_POST['submit'] != '') {
 
 
 // the form has not been submit yet, so let's display it
-  print '<form method="post" action="'.$_SERVER['PHP_SELF'].'" name="contactForm" id="contactForm" onsubmit="return validateContactFormFields();">'."\n";
+  print '<form method="post" action="'.$CPG_PHP_SELF.'" name="contactForm" id="contactForm" onsubmit="return validateContactFormFields();">'."\n";
   starttable('100%', $lang_contact_php['title'], 3);
   // name field
   if (!USER_ID && $CONFIG['contact_form_guest_name_field'] != 0) {
