@@ -16,7 +16,7 @@
   $LastChangedBy$
   $Date$
 **********************************************/
-
+error_reporting(E_ALL);
 define('COPPERMINE_VERSION', '1.5.0');
 define('COPPERMINE_VERSION_STATUS', 'alpha');
 
@@ -25,11 +25,6 @@ if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 set_include_path(get_include_path().PATH_SEPARATOR.dirname(__FILE__).PATH_SEPARATOR.dirname(__FILE__).DIRECTORY_SEPARATOR.'Inspekt');
 
 require_once "Inspekt.php";
-
-//Workaround for notice given by Inspekt when _SESSION is not set.
-if (!isset($_SESSION)) {
-    $_SESSION = array();
-}
 
 $superCage = Inspekt::makeSuperCage();
 
@@ -233,7 +228,7 @@ define('USER_ADMIN_MODE', USER_ID && USER_CAN_CREATE_ALBUMS && $USER['am'] && !G
 // Maze's new error report system
 if (!USER_IS_ADMIN) {
 	if (!$CONFIG['debug_mode']) $cpgdebugger->stop(); // useless to run debugger cos there's no output
-	error_reporting(0); // hide all errors for visitors
+	//error_reporting(0); // hide all errors for visitors
 }
 
 if (!GALLERY_ADMIN_MODE) {
