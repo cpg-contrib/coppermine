@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $Source: /cvsroot/coppermine/devel/admin.php,v $
@@ -27,6 +27,7 @@
 
    // start a PHP session - this class uses sessions to store the generated
    // code. Comment out if you are calling already from your application
+   session_id($superCage->cookie->Alnum('PHPSESSID'));
    session_start();
 
    class PhpCaptcha {
@@ -210,6 +211,9 @@
 
       // call this method statically
       function Validate($sUserCode) {
+         print_r($_SESSION);
+         echo md5(strtoupper($sUserCode)) .' == ' . $_SESSION['php_captcha'];
+
          if (md5(strtoupper($sUserCode)) == $_SESSION['php_captcha']) {
             // clear to prevent re-use
             $_SESSION['php_captcha'] = '';
