@@ -108,7 +108,11 @@ Class Inspekt_Supercage {
 		$this->cookie	= Inspekt::makeCookieCage($strict);
 		$this->env	= Inspekt::makeEnvCage($strict);
 		$this->files	= Inspekt::makeFilesCage($strict);
-		$this->session= Inspekt::makeSessionCage($strict);
+        /**
+         * Don't put session in cage as it will nullify $_SESSION and we will loose the session completely.
+         * TODO: Find a way to put the session data in cage and still retain the session correctly
+         */
+		//$this->session= Inspekt::makeSessionCage($strict);
 		$this->server	= Inspekt::makeServerCage($strict);
 	}
 
