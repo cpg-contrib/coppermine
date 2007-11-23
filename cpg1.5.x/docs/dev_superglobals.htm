@@ -48,7 +48,7 @@
 
 <a name="superglobals_sanitization_reason"></a><h2>Reason<a href="#superglobals_sanitization_reason" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Everyone knows that you should filter your inputs - most of the good programmers do it, but when you are working with a large team of programmers on an open source project things slip up, errors do creep in, at times like this you wish for a mechanism which would prevent your team from making such mistakes, some thing which forces them to declare their intent.</p>
-<p>Most of the vulnerabilities that have been discovered in cpg1.4.x where caused by user input not properly sanitized, which led to <acronym title="Cross Site Scripting">XSS</acronym> attacks becoming possible. In an effort to improve the security behind coppermine thoroughly the dev team has decided to sanitize all superglobals using the tool &quot;<a href="http://code.google.com/p/inspekt/" rel="external" class="external">Inspekt</a>&quot; (which is being released under the <a href="http://www.opensource.org/licenses/bsd-license.php" rel="external" class="external">BSD license</a> and can therefor be included without issues into the coppermine core code (license-wise).</p>
+<p>Most of the vulnerabilities that have been discovered in cpg1.4.x where caused by user input not properly sanitized, which led to <acronym title="Cross Site Scripting">XSS</acronym> attacks becoming possible. In an effort to improve the security behind coppermine thoroughly the dev team has decided to sanitize all superglobals using the tool &quot;<a href="http://code.google.com/p/inspekt/" rel="external" class="external">Inspekt</a>&quot; (which is being released under the <a href="http://www.opensource.org/licenses/bsd-license.php" rel="external" class="external">BSD license</a> and can therefor be included without issues into the coppermine core code license-wise).</p>
 <p>The idea to use Inspekt has been brought up by Coppermine lead developer Dr. Tarique Sani in his blog article &quot;<a href="http://www.sanisoft.com/blog/2007/10/15/inspekt-put-a-firewall-in-your-php-applications/" rel="external" class="external">Inspekt - put a firewall in your PHP applications</a>&quot;, where he discusses the reasons to use Inspekt in detail.</p>
 
 <a name="superglobals_sanitization_about_inspekt"></a><h2>What Inspekt does<a href="#superglobals_sanitization_about_inspekt" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
@@ -88,7 +88,7 @@ $userid = $cage_POST->getInt('userid');
 if ( !isset($_POST['userid']) ) {
     echo 'Cannot access input via $_POST -- use the cage object';
 }</pre>
-<p>We can see from the above example that after making a cage for _POST, it is not accessible directly. One must use the methods provided by Inspekt to get the data in correct data type and format.</p>
+<p>We can see from the above example that after making a cage for <tt class="code">$_POST</tt>, it is not accessible directly. One must use the methods provided by Inspekt to get the data in correct data type and format.</p>
 
 <a name="superglobals_sanitization_howto_inspekt_in_coppermine"></a><h3>Inspekt in Coppermine<a href="#superglobals_sanitization_howto_inspekt_in_coppermine" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Inspekt has been used in CPG by including it in init.inc.php file at the very beginning and creating a <strong>supercage</strong> immediately after its inclusion.</p>
@@ -97,16 +97,16 @@ echo dirname(__FILE__);
 require_once "Inspekt.php";
 
 $superCage = Inspekt::makeSuperCage();</pre>
-<p>Supercage is an aggregation of all the cages, i.e EGPCS. Once the supercage is created none of the EGPCS variables are available.</p>
+<p>Supercage is an aggregation of all the cages, i.e <acronym title="Environment, Get, Post, Cookie, Server">EGPCS</acronym> (the order of variable parsing). Once the supercage is created none of the EGPCS variables are available.</p>
 <p>To access a variable within a supercage we have to use the following format:</p>
-<pre class="quote">$qs = $superCage->server->getDigits('QUERY_STRING');
-$album = $superCage->get->getInt('album');
-$title = $superCage->post->getAlpha('title');</pre>
-<p>To get an instance of $superCage inside a function use $superCage = Inspekt::makeSuperCage(); again. Do not use the global directive. It may be noted here that makeSuperCage() creates a singleton pattern object. So calling it multiple times does not have any overheads and you can be assured of getting the very same object every time.</p>
+<pre class="quote">$qs = $superCage-&gt;server-&gt;getDigits('QUERY_STRING');
+$album = $superCage-&gt;get-&gt;getInt('album');
+$title = $superCage-&gt;post-&gt;getAlpha('title');</pre>
+<p>To get an instance of <tt class="code">$superCage</tt> inside a function use <tt class="code">$superCage = Inspekt::makeSuperCage();</tt> again. Do not use the global directive. It may be noted here that <tt class="code">makeSuperCage()</tt> creates a singleton pattern object. So calling it multiple times does not have any overheads and you can be assured of getting the very same object every time.</p>
 <p>Every dev is encouraged to download the latest tarball of Inspekt and checkout the API documentation for the list of <a href="#superglobals_sanitization_inspekt_accessor_methods">available methods for accessing data from cages</a>. In addition to this, there is a bunch of test functions which will test a value of a given key against a pre-determined datatype or format.</p>
 
 <a name="superglobals_sanitization_howto_consider_methods"></a><h3>Consider the methods to use<a href="#superglobals_sanitization_howto_consider_methods" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Before using a particular method, make up your mind what kind of data you expect to retrieve: is the data you expect just an integer (e.g. &quot;0&quot; or &quot;1&quot; used in a parameter to toggle an option on or off) - then use getInt. Do you expect an alphanumeric string (with only alphanumeric data, no spaces, no special chars nor non-latin characters), like the parameter of a pre-determined action (e.g. &quot;delete&quot;, &quot;update&quot; or &quot;add&quot;), then use getAlnum or getAlpha. If the parameter you're trying to fetch <em>may</em> contain something else (e.g. a filename that may only contain latin characters, but that may as well contain utf-8 encoded non-latin characters like Umlauts), then use getMatched and perform a match against a regular expression - you may even have to sanitize the value even more after fetching it.</p>
+<p>Before using a particular method, make up your mind what kind of data you expect to retrieve: is the data you expect just an integer (e.g. &quot;0&quot; or &quot;1&quot; used in a parameter to toggle an option on or off) - then use <tt class="code">getInt</tt>. Do you expect an alphanumeric string (with only alphanumeric data, no spaces, no special chars nor non-latin characters), like the parameter of a pre-determined action (e.g. &quot;delete&quot;, &quot;update&quot; or &quot;add&quot;), then use <tt class="code">getAlnum</tt> or <tt class="code">getAlpha</tt>. If the parameter you're trying to fetch <em>may</em> contain something else (e.g. a filename that may only contain latin characters, but that may as well contain utf-8 encoded non-latin characters like Umlauts), then use getMatched and perform a match against a regular expression - you may even have to sanitize the value even more after fetching it.</p>
 
 <a name="superglobals_sanitization_howto_examples"></a><h3>Examples<a href="#superglobals_sanitization_howto_examples" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Here are some real-world examples of how code used to look initially (before Inspekt was introduced) and what was changed to make it work with Inspekt.</p>
@@ -210,7 +210,7 @@ if ($superCage-&gt;get-&gt;testInt('year')) {
 </table>
 
 <a name="superglobals_sanitization_howto_regex"></a><h3>Regular Expressions<a href="#superglobals_sanitization_howto_regex" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>The method <tt class="code">getMatched</tt> makes use of regular expressions that can be tricky for beginners. It would be beyond the scope of this documentation to explain how regular expressions work in detail - we just added some &quote;typical&quote; regular expressions that you can use in your own code:</p>
+<p>The method <tt class="code">getMatched</tt> makes use of regular expressions that can be tricky for beginners. It would be beyond the scope of this documentation to explain how regular expressions work in detail - we just added some &quot;typical&quot; regular expressions that you can use in your own code:</p>
 <table border="0" cellspacing="0" cellpadding="0" class="maintable">
   <tr>
     <th valign="top" align="left" class="tableh1">Regex</th>
@@ -220,7 +220,27 @@ if ($superCage-&gt;get-&gt;testInt('year')) {
   <tr>
     <td valign="top" class="tableb"><tt class="code">/^[0-9A-Za-z\/_]+$/</tt></td>
     <td valign="top" class="tableb">Alphanumerals (numbers and latin characters) both in lower as well as upper case and the special char &quot;underscore&quot; (<tt class="code">_</tt>) will match (i.e. return TRUE)</td>
-    <td valign="top" class="tableb">'<tt class="code">foobar</tt>', '<tt class="code">fooBar</tt>', '<tt class="code">foo_bar</tt>', '<tt class="code">foobar_</tt>', '<tt class="code">1foo2bar</tt>' will match (true). '<tt class="code">f&uuml;bar</tt>', '<tt class="code">foo-bar</tt>', '<tt class="code">foo bar</tt>' will not match (false)</td>
+    <td valign="top" class="tableb">'<tt class="code">foobar</tt>', '<tt class="code">fooBar</tt>', '<tt class="code">foo_bar</tt>', '<tt class="code">foobar_</tt>', '<tt class="code">2foo3bar</tt>' will match (true).<br />'<tt class="code">f&uuml;bar</tt>', '<tt class="code">foo-bar</tt>', '<tt class="code">foo bar</tt>' will not match (false)</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><tt class="code">/^[a-zA-Z0-9_\-]*$/</tt></td>
+    <td valign="top" class="tableb tableb_alternate">Alphanumerals (numbers and latin characters) both in lower as well as upper case and the special char &quot;underscore&quot; (<tt class="code">_</tt>) and the dash (<tt class="code">-</tt>) will match (i.e. return TRUE)</td>
+    <td valign="top" class="tableb tableb_alternate">'<tt class="code">foobar</tt>', '<tt class="code">fooBar</tt>', '<tt class="code">foo_bar</tt>', '<tt class="code">foobar_</tt>', '<tt class="code">2foo3bar</tt>', '<tt class="code">foo-bar</tt>' will match (true).</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><tt class="code">/^[a-z]*$/</tt></td>
+    <td valign="top" class="tableb">Only latin character in lowercase will match.</td>
+    <td valign="top" class="tableb">'<tt class="code">foobar</tt>' will match (true).<br />'<tt class="code">fooBar</tt>', '<tt class="code">foo5bar</tt>', '<tt class="code">foo-bar</tt>', '<tt class="code">foo bar</tt>' will not match (false)</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><tt class="code">/^[a-zA-Z0-9]*$/</tt></td>
+    <td valign="top" class="tableb tableb_alternate">Alphanumerals (numbers and latin characters) both in lower as well as upper case will match (i.e. return TRUE). However, you could use the method <tt class="code">getAlnum</tt> just as well - it will make the code more readable and easier to understand for others.</td>
+    <td valign="top" class="tableb tableb_alternate">'<tt class="code">foobar</tt>', '<tt class="code">fooBar</tt>', '<tt class="code">2foo3bar</tt>' will match (true).<br />'<tt class="code">f&uuml;bar</tt>', '<tt class="code">foo_bar</tt>', '<tt class="code">foo-bar</tt>', '<tt class="code">foo bar</tt>', '<tt class="code">foobar_</tt>' will not match (false)</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><tt class="code"></tt></td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
   </tr>
 </table>
 

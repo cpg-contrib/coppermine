@@ -562,13 +562,14 @@ d.add(1490,1350,'Recover from failed bridging','bridging.htm#bridge_manager_reco
 d.add(1500,1350,'Synchronising the bbs groups with Coppermine\'s groups','bridging.htm#integrating_steps_sync_start');
 d.add(1510,1350,'Bridging support','bridging.htm#integrating_support_start');
 d.add(1520,0,'Developer documentation','dev.htm');
-d.add(1530,1520,'Plugin Writing','plugin_writing.htm');
-d.add(1535,1520,'Plugin hooks','plugin_hooks.htm');
-d.add(1540,1520,'Editing the documentation','dev_documentation.htm');
-d.add(1550,1520,'Subversion','dev_subversion.htm');
-d.add(1560,1520,'Adding config options','dev_config.htm');
-d.add(1570,1520,'Versioncheck','dev_versioncheck.htm');
-d.add(1580,1520,'Sanitization Superglobals (Inspekt)','dev_superglobals.htm');
+d.add(1530,1520,'Sanitization Superglobals (Inspekt)','dev_superglobals.htm');
+d.add(1540,1520,'Plugin Writing','plugin_writing.htm');
+d.add(1550,1520,'Plugin hooks','plugin_hooks.htm');
+d.add(1560,1520,'Editing the documentation','dev_documentation.htm');
+d.add(1570,1520,'Subversion','dev_subversion.htm');
+d.add(1580,1520,'Adding config options','dev_config.htm');
+d.add(1590,1520,'Versioncheck','dev_versioncheck.htm');
+
 
 function cpgDocToc() {
   document.write(d); // write the navigation
