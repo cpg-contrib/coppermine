@@ -255,7 +255,7 @@ function cpg_db_error($the_error)
 {
         global $CONFIG,$lang_errors;
 
-        if ($CONFIG['debug_mode'] === '0' || (!GALLERY_ADMIN_MODE) {
+        if ($CONFIG['debug_mode'] === '0' || (!GALLERY_ADMIN_MODE)) {
             cpg_die(CRITICAL_ERROR, $lang_errors['database_query'], __FILE__, __LINE__);
         } else {
                 $the_error .= "\n\nmySQL error: ".mysql_error()."\n";
@@ -793,14 +793,17 @@ function get_private_album_set($aid_str="")
         if (GALLERY_ADMIN_MODE) return;
 
         global $CONFIG, $ALBUM_SET, $USER_DATA, $FORBIDDEN_SET, $FORBIDDEN_SET_DATA;
+        $superCage = Inspekt::makeSuperCage();
 
         $FORBIDDEN_SET_DATA = array();
 
         if ($USER_DATA['can_see_all_albums']) return;
 
-                //Stuff for Album level passwords
-        if (isset($_COOKIE[$CONFIG['cookie_name']."_albpw"]) && empty($aid_str)) {
-          $alb_pw = unserialize($_COOKIE[$CONFIG['cookie_name']."_albpw"]);
+        //Stuff for Album level passwords
+        if ($superCage->cookie->keyExists($CONFIG['cookie_name']."_albpw") && empty($aid_str)) {
+
+          //Using getRaw(). The data is sanitized in the foreach running just below
+          $alb_pw = unserialize($superCage->cookie->getRaw($CONFIG['cookie_name']."_albpw"));
 
           foreach($alb_pw as $aid => $value) {
             $aid_str .= (int)$aid . ",";
