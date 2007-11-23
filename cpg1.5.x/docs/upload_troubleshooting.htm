@@ -37,7 +37,20 @@
 
 
 <a name="upload_trouble"></a><h1>Upload troubleshooting<a href="#upload_trouble" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
-<p>If you are experiencing issues with coppermine's upload process, temporarily change your coppermine settings as suggested below to get more detailed error messages. This applies to all upload methods, not only <a href="uploading.htm#upload_http">HTTP uploads</a>.</p>
+<p>If you have upload issues, read this page - entirely!</p>
+
+<a name="upload_trouble_permission"></a><h2>Permissions<a href="#upload_trouble_permission" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<fieldset><legend class="important"><strong>First and foremost:</strong></legend>Check your folder and file permission settings on the <tt class="code">/albums</tt>, <tt class="code">/albums/userpics</tt>, and <tt class="code">/albums/edit</tt> directories. All should usually be 777 or 755 (depending on your webserver configuration).</span><br /><br />If you don't know what we mean by <em>777</em> or <em>755</em>, you need to read up the <a href="install_permissions.htm#permissions">permission section</a> (if this doesn't help, do a Google search on <em>UNIX file permissions</em>). Windows has a similar set of file permissions. You can usually set these permissions using an <em>FTP client</em> (If you don't know what an <em>FTP client</em> is, Google for <em>FTP client</em>).<br />
+For those of you who skim over statements written in red letters, we will repeat to try to get your attention:
+<span class="important"><strong>Yes, we are writing about something that could easily apply to you</strong></span>
+<br />
+We repeat - check your permissions on the <tt class="code">/albums</tt>, <tt class="code">/albums/userpics</tt>, and <tt class="code">/albums/edit</tt> directories.  All should usually be 777 or 755 (depending on your webserver configuration).
+<br />&nbsp;<br />
+Yes, we do want you to set the permissions of each folder even if you think you have already done this. Yes, we mean it.<br /></fieldset>
+
+<a name="upload_trouble_enable_settings"></a><h2>Enable troubleshooting settings<a href="#upload_trouble_enable_settings" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>If you are experiencing issues with coppermine's upload process, temporarily change your coppermine settings as suggested below to get more detailed error messages. This applies to <strong>all</strong> upload methods, not only <a href="uploading.htm#upload_http">HTTP uploads</a>.</p>
+<p>When troubleshooting uploads in CPG 1.5, you are advised to change the upload settings in the Groups console to 'Single uploads only' and to activate 'Debug mode' in the config console. Changing this setting negates some of the error masking done in the multiple upload setting. This will allow you to access more detailed error messages.</p>
 <ul>
 <li><strong>Log in as admin</strong><br />
 Go to your coppermine page and log in as admin</li>
@@ -211,7 +224,7 @@ Replace it with<br />
   </tr>
   <tr>
     <td valign="top" class="tableb">
-      <a name=""></a><tt class="code">The file '<em>albums/userpics/10001/somepic.jpg</em>' can't be inserted in the album. Error executing ImageMagick - Return value <strong>127</strong></tt><a href="#" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+      <a name="imagemagick127"></a><tt class="code">The file '<em>albums/userpics/10001/somepic.jpg</em>' can't be inserted in the album. Error executing ImageMagick - Return value <strong>127</strong></tt><a href="#imagemagick127" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
     <td valign="top" class="tableb">
       You haven't specified the correct <a href="configuration.htm#admin_picture_thumb_advanced_im_path">path to ImageMagick</a>, or you don't have ImageMagic at all.
@@ -222,7 +235,7 @@ Replace it with<br />
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate">
-      <a name=""></a><tt class="code">PHP running on your server does not support the GD image library, check with your webhost if ImageMagick is installed.</tt><a href="#" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+      <a name="no_gd_support"></a><tt class="code">PHP running on your server does not support the GD image library, check with your webhost if ImageMagick is installed.</tt><a href="#no_gd_support" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
     <td valign="top" class="tableb tableb_alternate">
       Your webserver doesn't come with support for the GD image library.
@@ -232,14 +245,48 @@ Replace it with<br />
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate">
-      <a name=""></a><tt class="code"></tt><a href="#" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+    <td valign="top" class="tableb">
+      <a name="allow_file_uploads"></a><tt class="code">No picture was uploaded. If you have really selected a picture to upload, check that the server allows file uploads</tt><a href="#" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
-    <td valign="top" class="tableb tableb_alternate"></td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb">File uploads are disabled in php.ini or there is a permissions issue.</td>
+    <td valign="top" class="tableb">Check if there's a problem with HTTP uploads on your server - this feature may have been disabled or improperly configured. In <a href="faq.htm#VersionPHP">phpinfo()</a>, check that "file_uploads" is ON, "upload_max_filesize" is something like 2M and "upload_tmp_dir" is a valid directory! Make sure to review your <a href="install_permissions.htm#permissions">file/folder permissions</a> as well.</td>
   </tr>
 </table>
 <a name="upload_error_messages_end"></a>
+
+<a name="upload_trouble_server-sided_restrictions"></a><h2>Server-sided restrictions<a href="#upload_trouble_server-sided_restrictions" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>All upload methods, but particularly HTTP uploads are limited by the restrictions placed upon them in PHP's configuration.</p>
+<p class="important">Please understand that the settings in php.ini can only be changed if the server is yours to administer (i.e. if you run a webserver of your own). If you are webhosted, you will have to ask your webhost if he's willing to change those settings for you, which usually equals allowing you to use more resources on the server. Usually, your webhost will not accept this for sheer economical reasons: granting you to use more resources will mean that he can host less presences on one shared server.</p>
+<p>Please don't ask questions on the coppermine support board what the actual settings are suppossed to be or how you can change them - as suggested above: you usually won't be able to change them at all when you're webhosted.<br />If you're actually self-hosted (which is something we can not recommend at all as running and maintaining a webserver requires constant monitoring and maintenance as well as a huge amount of experience and a high skill level), don't bother to ask trivial questions like &quot;Where can I find my php.ini file&quot; - if you don't know the answer to this question, you fall into the category &quot;self-hosting not recommended due to lack of experience&quot; and will be ignored on the coppermine support board.</p>
+
+<a name="upload_trouble_server-sided_restrictions_check"></a><h3>Things to check<a href="#upload_trouble_server-sided_restrictions_check" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>If you are webhosted, you will need to consult with your webhost regarding the following settings. You can review (although not change) those settings on your <a href="admin_menu.htm#phpinfo">phpinfo page</a>.</p>
+<ol>
+  <li><strong>max_input_time</strong><br />
+  60 seconds is the default time limit for uploading files.<br />This time limit includes the time it takes for the files to upload, so if you exceed this limit, the file will not even parse, and the browser will not get a response. You can workaround this by trying to upload smaller or fewer files, or you can try uploading over broadband. The best solution, of course, is to increase the time limit to something more in line with your needs.</li>
+  <li><strong>upload_max_filesize</strong><br />
+  2MB is the default limit for individual files.</li>
+  <li><strong>post_max_size</strong><br />
+  8MB is the default limit for post requests.</li>
+  <li><strong>memory_limit</strong><br />
+  8MB is the default size.</li>
+  <li>PHP's <strong>LimitRequestBody</strong><br />
+  512KB default limit. (mainly an issue on Redhat/Apache systems.  Found in /etc/http/conf.d)<br />In general, upload_max_filesize &lt; post_max_size &lt; memory_limit in order for uploads to function properly. Coppermine may warn you if a file exceeds upload_max_filesize, but it cannot warn you if the total size of all the files exceeds the post limit or the memory limit.</li>
+  <li><strong>file_uploads</strong><br />
+  This determines whether or not PHP will allow file uploads. It must be set to &quot;On&quot;.</li>
+  <li><strong>upload_tmp_dir</strong><br />
+  This specifies the temporary directory where PHP stores uploaded files.<br />
+  The most common issue caused by this setting is an open_basedir warning.  In this situation, your server administrator has restricted the files that PHP can work with to a certain directory.  If he does not create and specify a temporary directory within the open_basedir restriction, PHP will attempt to use the OS temporary directory, and it will be rebuffed by the open_basedir restriction.</li>
+</ol>
+
+
+
+<p><strong>Some notes about the different types of upload mechanisms available since cpg1.3.x (or better):</strong><br />
+Multiple HTTP uploads are designed to handle a small number of files, and have an upper limit of 10 files at a time.  Therefore, they are not well suited for the uploading of large numbers of files unless you are running your own webserver or have control over the php.ini configuration.
+<br />
+If you are looking to upload more than 15 or 20 files at a time, you should consider the <a href="uploading.htm#batch_add_pics">batch add</a> process or the <a href="uploading.htm#xp_publish_upload">XP Publisher</a> utility.  Each has its own drawbacks and advantages.
+<br />
+The batch add process is fast, but it creates quite a load on the server and, as a result, you may experience timeouts causing your uploads to terminate prematurely.  XP Publisher, on the otherhand, is considerably slower, but it limits the load on the server.  It also circumvents many of the pitfalls caused by limitations set in the php.ini configuration by uploading each file in the batch being uploaded as an individual post request.</p>
 
 
 <a name="upload_trouble_end"></a>

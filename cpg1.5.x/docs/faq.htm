@@ -43,12 +43,6 @@
 
 <a name="faq_toc"></a><h2>Table of contents:<a href="#faq_toc" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <ul class="nomargin">
-<li><strong>Upload</strong></li>
-<ul class="nomargin">
-<li><a class="content" href="#uploadGeneralTroubleshooting">General Upload Troubleshooting</a></li>
-<li><a class="content" href="#httpUpload">I <strong>can't upload</strong> with the upload feature. What's wrong?</a></li>
-</ul>
-
 <li><strong>Error messages</strong></li>
 <ul class="nomargin">
 <li><a class="content" href="#EmptyDelimiter">I get the <strong>error</strong> &quot;<tt class="code">Warning: Empty Delimiter in search.inc.php line 33&quot;</tt>. What can I do?</a></li>
@@ -60,8 +54,6 @@
 <li><strong>Setup / Configuration</strong></li>
 <ul class="nomargin">
 <li><a class="content" href="#NoLastUploads">I don't want to show the <strong>last uploads</strong> and/or <strong>random pictures</strong> on the start page. How do I edit what's shown on the start page of coppermine?</a></li>
-<li><a class="content" href="#removeFeature">I don't want to use the feature XYZ of Coppermine. How can I <strong>remove</strong> it?</a></li>
-<li><a class="content" href="#customHeader">How do I add a <strong>custom header/footer</strong> to Coppermine?</a></li>
 <li><a class="content" href="#createPublicAlbum">How do I create an <strong>album</strong> that <strong>anyone</strong> can add photos to?</a></li>
 <li><a class="content" href="#BackupDatabase">How can I <strong>backup</strong> my coppermine database?</a></li>
 <li><a class="content" href="#noFullsizePopup">The <strong>fullsize-pic doesn't pop up</strong> when clicking on the intermediate size pic. What's wrong?</a></li>
@@ -112,47 +104,6 @@
 
 
 
-<a name="upload"></a><h2>Upload<a href="#upload" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-
-<a name="uploadGeneralTroubleshooting"></a>
-<h3>General Upload Troubleshooting<a href="#uploadGeneralTroubleshooting" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>When troubleshooting uploads in CPG 1.5, you are advised to change the upload settings in the Groups console to 'Single uploads only' and to activate 'Debug mode' in the config console.  Changing this setting negates some of the error masking done in the multiple upload setting.  This will allow you to access more detailed error messages.</p>
-<p><span class="important"><fieldset><legend><strong>First and foremost:</strong></legend>Check your folder and file permission settings on the /albums, /albums/userpics, and /albums/edit directories.  All should be 777 or 755.</span><br /><br />If you don't know what we mean by <em>777</em> or <em>755</em>,  you need to do a Google search on <em>UNIX file permissions</em>. Windows has a similar set of file permissions. You can usually set these permissions using an <em>FTP client</em> (If you don't know what an <em>FTP client</em> is, Google for <em>FTP client</em>).<br /> </fieldset> <br />
-For those of you who skim over statements written in red letters, I will repeat to try to get your attention:
-<br />  <br />
-<span class="important"><fieldset><legend><strong>Yes, we are writing about something that could easily apply to YOU.</strong></legend>
-<br />&nbsp;<br />
-We repeat -- check your permissions on the <tt class="code">/albums</tt>, <tt class="code">/albums/userpics</tt>, and <tt class="code">/albums/edit</tt> directories.  All should be 777 or 755.
-<br />&nbsp;<br />
-Yes, we do want you to check the permissions of each folder even if you think you have already done this. Yes, we mean it.<br /></fieldset></span>
-</p>
-<p><strong>NOTE:</strong> HTTP uploads are limited by the restrictions placed upon them in PHP's configuration.</p>
-<br />&nbsp;<br />
-<strong>Things to check:</strong> <font size="-2">(if you are webhosted, you will need to consult with your webhost regarding the following settings.)</font>
-<ol>
-<li><strong>max_input_time</strong>- 60 seconds is the default time limit for uploading files.<br />This time limit includes the time it takes for the files to upload, so if you exceed this limit, the file will not even parse, and the browser will not get a response. You can workaround this by trying to upload smaller or fewer files, or you can try uploading over broadband. The best solution, of course, is to increase the time limit to something more in line with your needs.</li>
-<li><strong>upload_max_filesize</strong> - 2MB is the default limit for individual files.</li>
-<li><strong>post_max_size</strong> - 8MB is the default limit for post requests.</li>
-<li><strong>memory_limit</strong> - 8MB is the default size.</li>
-<li>PHP's <strong>LimitRequestBody</strong> - 512KB default limit. (mainly an issue on Redhat/Apache systems.  Found in /etc/http/conf.d)<br />In general, upload_max_filesize &lt; post_max_size &lt; memory_limit in order for uploads to function properly. Coppermine may warn you if a file exceeds upload_max_filesize, but it cannot warn you if the total size of all the files exceeds the post limit or the memory limit.</li>
-<li><strong>file_uploads</strong> - This determines whether or not PHP will allow file uploads. It must be set to &quot;On&quot;.</li>
-<li><strong>upload_tmp_dir</strong> - This specifies the temporary directory where PHP stores uploaded files.</li>
-</ol>
-
-<p>The most common issue caused by this setting is an open_basedir warning.  In this situation, your server administrator has restricted the files that PHP can work with to a certain directory.  If he does not create and specify a temporary directory within the open_basedir restriction, PHP will attempt to use the OS temporary directory, and it will be rebuffed by the open_basedir restriction.</p>
-
-<p><strong>Some notes about the different types of upload mechanisms available in CPG 1.3 (or better):</strong><br />
-Multiple HTTP uploads are designed to handle a small number of files, and have an upper limit of 10 files at a time.  Therefore, they are not well suited for the uploading of large numbers of files unless you are running your own webserver or have control over the php.ini configuration.
-<br />
-If you are looking to upload more than 15 or 20 files at a time, you should consider the batch add process or the XP_Publisher utility.  Each has its own drawbacks and advantages.
-<br />
-The batch add process is fast, but it creates quite a load on the server and, as a result, you may experience timeouts causing your uploads to terminate prematurely.  XP Publisher, on the otherhand, is considerably slower, but it limits the load on the server.  It also circumvents many of the pitfalls caused by limitations set in the php.ini configuration by uploading each file in the batch being uploaded as an individual post request.</p>
-
-<br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
-
-<a name="httpUpload"></a>
-<h3>I <strong>can't upload</strong> with the upload feature. What's wrong?<a href="#httpUpload" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>If you experience the error message: <tt class="code">No picture was uploaded. If you have really selected a picture to upload, check that the server allows file uploads...</tt>, check if there's a problem with HTTP uploads on your server - this feature may have been disabled or improperly configured. In <a href="#VersionPHP">phpinfo()</a>, check that "file_uploads" is ON, "upload_max_filesize" is something like 2M and "upload_tmp_dir" is a valid directory!</p><hr />
 
 <a name="error_essages"></a><h2>Error Messages<a href="#error_essages" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 
@@ -201,37 +152,7 @@ Use your website's Control Panel to repair the table, or use phpMyAdmin to execu
 <a name="NoLastUploads"></a>
 <h3>I don't want to show the <strong>last uploads</strong> and/or <strong>random pictures</strong>on the start page. How do I edit what's shown on the start page of coppermine?<a href="#NoLastUploads" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Refer to the configuration section <a href="configuration.htm#admin_album_list_content">The content of the main page</a></p><hr />
-<a name="removeFeature"></a>
-<h3>I don't want to use the feature XYZ of Coppermine. How can I <strong>remove</strong> it?<a href="#removeFeature" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Just remove the link; edit /themes/yourtheme/theme.php, look for the feature you want to remove and comment out the HTML code.<br />Example: if you want to remove the ecard-feature, just look for
-<pre>&lt;td align=&quot;center&quot; valign=&quot;middle&quot; class=&quot;navmenu&quot; width=&quot;48&quot;&gt;
-&lt;a href=&quot;{ECARD_TGT}&quot; title=&quot;{ECARD_TITLE}&quot;&gt;
-&lt;img src=&quot;images/ecard.gif&quot; width=&quot;16&quot; height=&quot;16&quot; border=&quot;0&quot; align=&quot;absmiddle&quot; alt=&quot;{ECARD_TITLE}&quot;&gt;&lt;/a&gt;
-&lt;/td&gt;</pre>
-and replace it with<br />
-<pre>&lt;!--&lt;td align=&quot;center&quot; valign=&quot;middle&quot; class=&quot;navmenu&quot; width=&quot;48&quot;&gt;
-&lt;a href=&quot;{ECARD_TGT}&quot; title=&quot;{ECARD_TITLE}&quot;&gt;
-&lt;img src=&quot;images/ecard.gif&quot; width=&quot;16&quot; height=&quot;16&quot; border=&quot;0&quot; align=&quot;absmiddle&quot; alt=&quot;{ECARD_TITLE}&quot;&gt;&lt;/a&gt;
-&lt;/td&gt;--&gt;</pre></p><hr />
-<a name="customHeader"></a>
-<h3>How do I add a <strong>custom header/footer</strong> to Coppermine?<a href="#customHeader" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>There are these files to look for:
-<ul>
 
-<li>if you want to add static html-content (for example your site logo), edit <tt class="code">/themes/yourtheme/template.html</tt> - add/remove anything you want, but be sure to leave everything in that is in brackets.</li>
-<li>if you want dynamic content (or want to add PHP-code), edit the file <tt class="code">/themes/yourtheme/theme.php</tt></li>
-<li>if you want the edit the color scheme of a theme to match the &quot;look-and-feel&quot; of your site, edit <tt class="code">/themes/yourtheme/style.css</tt></li>
-<li>for experienced php users, cpg 1.5.x introduces an alternative method of adding intricate custom headers or footers. Create a php file for your header and one for your footer using a format similar to the following: <br />
-<pre><blockquote>&lt;?php <br />
-echo &lt;&lt;&lt;EOT  <br /><br />
-Enter your header/footer content here.  What you enter here will be displayed<br />at the top of my page if it is a header and at the bottom of my page if it is a footer. <br /> <br />
-EOT; <br />
-?></blockquote></pre>
-
-<p>Name them myheader.php and myfooter.php, or any other original name that doesn't already exist in the cpg folder and save them into the Coppermine root folder. Then (with admin controls enabled), click on the CONFIG tab, scroll to <strong><em>Themes settings</em></strong> and  enter the name of your header and footer files in the appropriate include fields at the bottom of this section. (NOTE: You will still need to edit the template.html file of your theme to remove any unwanted logos and entries above the menu sections.)</li> </p>
-
-
-</ul></p><hr />
 <a name="createPublicAlbum"></a>
 <h3>How do I create an <strong>album</strong> that <strong>all users</strong> can add photos to?<a href="#createPublicAlbum" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>(Assuming that you have already created at least one category and/or one album where the uploaded photos should go to):
