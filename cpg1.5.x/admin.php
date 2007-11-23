@@ -79,20 +79,22 @@ foreach ($config_data as $key => $value) {
   $collapseSections_array[] = $key;
 }
 
-$postCount = count($_POST);
+//$postCount = count($_POST);
 
-if ($postCount > 0) {
+//if ($postCount > 0) {
+/*if ($superCage->post->keyExists('update_config')) {
   $evaluation_array = $_POST;
   //print_r($evaluation_array);
   //die();
 } else {
   $evaluation_array = $CONFIG;
-}
+}*/
 
 $userMessage = ''; //The message that the will be displayed if something went wrong or to tell the user that we had success
 $problemFields_array = array(); // we'll add field-wrapper-IDs to this array to visualize that something went wrong. Onload we'll assign the class "important" to the boxes that correspond to the array data
 
-if (isset($_POST['restore_config'])) { // user has chosen to factory-reset the config --- start
+//if (isset($_POST['restore_config'])) {
+if ($superCage->post->keyExists('restore_config')) { // user has chosen to factory-reset the config --- start
   // Get an array of settings that mustn't be reset
   $doNotReset_array = array();
   foreach ($config_data as $config_section_key => $config_section_value) { // loop through the array of config sections --- start
@@ -119,34 +121,47 @@ if (isset($_POST['restore_config'])) { // user has chosen to factory-reset the c
   foreach ($doNotReset_array as $key) {
     $f= cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '{$CONFIG[$key]}' WHERE name = '$key'");
   }
-  cpgRedirectPage($_SERVER['PHP_SELF'], $lang_common['information'], $lang_admin_php['restore_success']);
+  cpgRedirectPage($CPG_PHP_SELF, $lang_common['information'], $lang_admin_php['restore_success']);
 }  // user has chosen to factory-reset the config --- end
 
 
   foreach ($config_data as $config_section_key => $config_section_value) { // Loop through the config fields to check posted values for validity -- start
     foreach ($config_section_value as $adminDataKey => $adminDataValue) {
+      if ($superCage->post->keyExists('update_config')) {
+        /**
+         * Using getRaw() as each value is checked below. Also at this stage we don't know what kind of value
+         * we are going to get.
+         */
+        $evaluate_value = $superCage->post->getRaw($adminDataKey);
+      } else {
+      	$evaluate_value = $CONFIG[$adminDataKey];
+      }
       // We need to catter for the fact that checkboxes that haven't been ticked are not being submit
-      if ($adminDataValue['type'] == 'checkbox' && !$evaluation_array[$adminDataKey]) {
-        $evaluation_array[$adminDataKey] = '0';
+      //if ($adminDataValue['type'] == 'checkbox' && !$evaluation_array[$adminDataKey]) {
+      if ($adminDataValue['type'] == 'checkbox' && !$evaluate_value) {
+        $evaluate_value = '0';
       }
       if ($adminDataValue['type'] == 'checkbox' && !$CONFIG[$adminDataKey]) {
         $CONFIG[$adminDataKey] = '0';
       }
       // the data for 'select_multiple' is an array. Let's concatenate it into a single value
       if ($adminDataValue['type'] == 'select_multiple') {
-        if (is_array($evaluation_array[$adminDataKey]) == TRUE) {
-          $temp = array_sum($evaluation_array[$adminDataKey]);
-          unset($evaluation_array[$adminDataKey]);
-          $evaluation_array[$adminDataKey] = $temp;
+        //if (is_array($evaluation_array[$adminDataKey]) == TRUE) {
+        if (is_array($evaluate_value)) {
+          $temp = array_sum($evaluate_value);
+          //unset($evaluation_array[$adminDataKey]);
+          //$evaluation_array[$adminDataKey] = $temp;
+          $evaluate_value = $temp;
           unset($temp);
         }
       }
       // regex check
       if ((isset($adminDataValue['regex']) && $adminDataValue['regex'] != '') || (isset($adminDataValue['regex_not']) && $adminDataValue['regex_not'] != '')) {
-        if ((isset($adminDataValue['regex']) && $adminDataValue['regex'] != '' && eregi($adminDataValue['regex'],$evaluation_array[$adminDataKey]) == FALSE) || (isset($adminDataValue['regex_not']) && $adminDataValue['regex_not'] != '' && eregi($adminDataValue['regex_not'],$evaluation_array[$adminDataKey]) == TRUE)) {
+        if ((isset($adminDataValue['regex']) && $adminDataValue['regex'] != '' && eregi($adminDataValue['regex'],$evaluate_value) == FALSE) || (isset($adminDataValue['regex_not']) && $adminDataValue['regex_not'] != '' && eregi($adminDataValue['regex_not'],$evaluate_value) == TRUE)) {
           $userMessage .= '<li style="list-style-image:url(images/red.gif)">'.sprintf($lang_admin_php['config_setting_invalid'], '<a href="#'.$adminDataKey.'">'.$lang_admin_php[$adminDataKey].'</a>').'</li>'.$lineBreak;
           $regexValidation = '0';
-          $admin_data_array[$adminDataKey] = $evaluation_array[$adminDataKey]; // replace the stuff in the form field with the improper input, so the user can see and correct his error
+          //$admin_data_array[$adminDataKey] = $evaluation_array[$adminDataKey]; // replace the stuff in the form field with the improper input, so the user can see and correct his error
+          $admin_data_array[$adminDataKey] = $evaluate_value; // replace the stuff in the form field with the improper input, so the user can see and correct his error
           if (in_array($adminDataKey,$problemFields_array) != TRUE) {
             $problemFields_array[] = $adminDataKey;
           }
@@ -159,16 +174,16 @@ if (isset($_POST['restore_config'])) { // user has chosen to factory-reset the c
       } else { // no regex settings available - set validation var to successfull anyway
         $regexValidation = '1';
       }
-      if ($postCount > 0 && $regexValidation == '1' && $evaluation_array[$adminDataKey] != $CONFIG[$adminDataKey] && $CONFIG[$adminDataKey] !== stripslashes(addslashes($evaluation_array[$adminDataKey])) ) {
+      if ($superCage->post->keyExists('update_config') && $regexValidation == '1' && $evaluate_value != $CONFIG[$adminDataKey] && $CONFIG[$adminDataKey] !== stripslashes($evaluate_value) ) {
         //  finally, all criteria have been met - let's write the updated data to the database
-        cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '{$evaluation_array[$adminDataKey]}' WHERE name = '$adminDataKey'");
+        cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$evaluate_value' WHERE name = '$adminDataKey'");
         // perform special tasks -- start
-        if ($adminDataKey == 'enable_encrypted_passwords' && $_POST['enable_encrypted_passwords'] == 1 && $CONFIG['enable_encrypted_passwords'] == 0) { // encrypt the passwords -- start
+        if ($adminDataKey == 'enable_encrypted_passwords' && $superCage->post->getInt('enable_encrypted_passwords') == 1 && $CONFIG['enable_encrypted_passwords'] == 0) { // encrypt the passwords -- start
           cpg_db_query("update {$CONFIG['TABLE_USERS']} set user_password=md5(user_password);");
         } // encrypt the passwords -- end
         if ($CONFIG['log_mode'] == CPG_LOG_ALL) { // write log -- start
                 log_write('CONFIG UPDATE SQL: '.
-                          "UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '{$evaluation_array[$adminDataKey]}' WHERE name = '$adminDataKey'\n".
+                          "UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$evaluate_value' WHERE name = '$adminDataKey'\n".
                           'TIME: '.date("F j, Y, g:i a")."\n".
                           'USER: '.$USER_DATA['user_name'],
                           CPG_DATABASE_LOG
@@ -176,19 +191,22 @@ if (isset($_POST['restore_config'])) { // user has chosen to factory-reset the c
         } // write log -- end
         // Code to rename system thumbs in images folder
         $old_thumb_pfx =& $CONFIG['thumb_pfx'];
-        if ($old_thumb_pfx != $_POST['thumb_pfx']) {
+        //if ($old_thumb_pfx != $_POST['thumb_pfx']) {
+        $matches = $superCage->post->getMatched('thumb_pfx','/^[0-9A-Za-z_-]+$/');
+        $thumb_pfx = $matches[0];
+        if ($old_thumb_pfx != $thumb_pfx) {
             $folders = array('images/', $THEME_DIR.'images/');
             foreach ($folders as $folder) {
                 $thumbs = cpg_get_system_thumb_list($folder);
                 foreach ($thumbs as $thumb) {
                     @rename($folder.$thumb['filename'],
-                            $folder.str_replace($old_thumb_pfx,$_POST['thumb_pfx'],$thumb['filename']));
+                            $folder.str_replace($old_thumb_pfx,$thumb_pfx,$thumb['filename']));
                 }
             }
         }
         // perform special tasks -- end
-        $admin_data_array[$adminDataKey] = $evaluation_array[$adminDataKey];
-        $CONFIG[$adminDataKey] = $evaluation_array[$adminDataKey];
+        $admin_data_array[$adminDataKey] = stripslashes($evaluate_value);
+        $CONFIG[$adminDataKey] = stripslashes($evaluate_value);
         $userMessage .= '<li style="list-style-image:url(images/green.gif)">'.sprintf($lang_admin_php['config_setting_ok'], $lang_admin_php[$adminDataKey]).'</li>'.$lineBreak;
       }
     } // inner foreach loop -- end
@@ -197,7 +215,7 @@ if (isset($_POST['restore_config'])) { // user has chosen to factory-reset the c
     $userMessage = '<ul>'.$lineBreak.$userMessage.'</ul>'.$lineBreak;
   }
 //print_r($evaluation_array);
-if ($postCount > 0 && $userMessage == '') {
+if ($superCage->post->keyExists('update_config') > 0 && $userMessage == '') {
   $userMessage = $lang_admin_php['upd_not_needed'];
 }
 
@@ -251,7 +269,7 @@ $signature = 'Coppermine Photo Gallery ' . COPPERMINE_VERSION . ' ('. COPPERMINE
 $tabindexCounter = 1;
 $numberOfConfigFields = count($CONFIG);
 
-print '<form action="'.$_SERVER['PHP_SELF'].'" method="post" name="cpgform" id="cpgform">';
+print '<form action="'.$CPG_PHP_SELF.'" method="post" name="cpgform" id="cpgform">';
 starttable('100%', "{$lang_admin_php['title']} - $signature", 2);
 print <<< EOT
     <tr>
