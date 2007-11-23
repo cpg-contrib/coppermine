@@ -313,11 +313,11 @@ if (USER_ID > 0){
 /**
  * Use $CPG_REFERER wherever $_GET['referer'] is used
  */
-if ($matches = $superCage->get->getMatched('referer', '/((\%3C)|<)[^\n]+((\%3E)|>)|(.*http.*)|(.*script.*)/i')) {
-    $CPG_REFERER = $matches[0];
-} else {
+/*if ($matches = $superCage->get->getMatched('referer', '/((\%3C)|<)[^\n]+((\%3E)|>)|(.*http.*)|(.*script.*)/i')) {
     $CPG_REFERER = 'index.php';
-}
+} else {
+    $CPG_REFERER = $superCage->get->getRaw('referer');
+}*/
 
 /**
  * CPGPluginAPI::action('page_start',null)
