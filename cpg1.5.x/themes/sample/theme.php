@@ -2784,7 +2784,7 @@ function theme_html_img_nav_menu() {
     if ($pos > 0) {
         $prev = $pos - 1;
         //$prev_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$prev$uid_link";// Abbas - added pid in URL instead of pos
-        $prev_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link$date_link&amp;pid={$pic_data[$prev]['pid']}$uid_link";
+        $prev_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link$date_link&amp;pid={$pic_data[$prev]['pid']}$uid_link#top_display_media";
         $prev_title = $lang_img_nav_bar['prev_title'];
         $meta_nav .= "<link rel=\"prev\" href=\"$prev_tgt\" title=\"$prev_title\" />\n";
     } else {
@@ -2795,7 +2795,7 @@ function theme_html_img_nav_menu() {
     if ($pos < ($pic_count -1)) {
         $next = $pos + 1;
         //$next_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$next$uid_link";// Abbas - added pid in URL instead of pos
-        $next_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link$date_link&amp;pid={$pic_data[$next]['pid']}$uid_link";
+        $next_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link$date_link&amp;pid={$pic_data[$next]['pid']}$uid_link#top_display_media";
         $next_title = $lang_img_nav_bar['next_title'];
         $meta_nav .= "<link rel=\"next\" href=\"$next_tgt\" title=\"$next_title\"/>\n";
     } else {
@@ -2820,7 +2820,7 @@ function theme_html_img_nav_menu() {
 
     }
 
-                              $thumb_tgt = "thumbnails.php?album=$album$cat_link$date_link&amp;page=$page$uid_link";
+        $thumb_tgt = "thumbnails.php?album=$album$cat_link$date_link&amp;page=$page$uid_link";
         $meta_nav .= "<link rel=\"up\" href=\"$thumb_tgt\" title=\"".$lang_img_nav_bar['thumb_title']."\"/>\n";
 
     $slideshow_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link$date_link$uid_link&amp;pid=$pid&amp;slideshow=".$CONFIG['slideshow_interval'].'#top_display_media';
