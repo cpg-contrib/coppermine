@@ -27,7 +27,7 @@
 
    // start a PHP session - this class uses sessions to store the generated
    // code. Comment out if you are calling already from your application
-   session_id($superCage->cookie->Alnum('PHPSESSID'));
+   session_id($superCage->cookie->getAlnum('PHPSESSID'));
    session_start();
 
    class PhpCaptcha {
@@ -211,9 +211,6 @@
 
       // call this method statically
       function Validate($sUserCode) {
-         print_r($_SESSION);
-         echo md5(strtoupper($sUserCode)) .' == ' . $_SESSION['php_captcha'];
-
          if (md5(strtoupper($sUserCode)) == $_SESSION['php_captcha']) {
             // clear to prevent re-use
             $_SESSION['php_captcha'] = '';

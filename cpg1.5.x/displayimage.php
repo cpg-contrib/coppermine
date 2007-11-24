@@ -207,7 +207,7 @@ EOT;
     $info[$lang_picinfo['URL']] = '<a href="' . $CONFIG["ecards_more_pic_target"] . (substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') .basename($CPG_PHP_SELF) . "?pid=$CURRENT_PIC_DATA[pid]" . '" >' . $CONFIG["ecards_more_pic_target"] . (substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') . basename($CPG_PHP_SELF) . "?pid=$CURRENT_PIC_DATA[pid]" . '</a>';
     // with subdomains the variable is $_SERVER["SERVER_NAME"] does not return the right value instead of using a new config variable I reused $CONFIG["ecards_more_pic_target"] no trailing slash in the configure
     // Create the add to fav link
-        $ref = $REFERER ? "&amp;ref=$REFERER" : '';
+        $ref = $REFERER ? "&amp;referer=$REFERER" : '';
     if (!in_array($CURRENT_PIC_DATA['pid'], $FAVPICS)) {
         $info[$lang_picinfo['addFavPhrase']] = "<a href=\"addfav.php?pid=" . $CURRENT_PIC_DATA['pid'] . $ref . "\" >" . $lang_picinfo['addFav'] . '</a>';
     } else {

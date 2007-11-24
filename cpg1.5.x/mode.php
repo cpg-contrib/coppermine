@@ -57,11 +57,11 @@ if (($superCage->get->getAlpha('what')) == 'news'){
         );
   }
   //$referer = $_GET['referer'] ? $_GET['referer'] : 'index.php';
-  $referer = $superCage->get->keyExists('referer') ? $superCage->get->getRaw('referer') : 'index.php';
+  /*$referer = $superCage->get->keyExists('referer') ? $superCage->get->getRaw('referer') : 'index.php';
   $referer = rawurldecode($referer);
   $referer = str_replace('&amp;', '&', $referer);
-  $referer = str_replace('&amp;', '&', $referer);
-  cpgRedirectPage($referer, $lang_common['information'], $message,3);
+  $referer = str_replace('&amp;', '&', $referer);*/
+  cpgRedirectPage($CPG_REFERER, $lang_common['information'], $message,3);
 
 } else {
 
@@ -70,19 +70,19 @@ if (($superCage->get->getAlpha('what')) == 'news'){
   }
 
   //if (!isset($_GET['admin_mode']) || !isset($_GET['referer'])) {
-  if (!$superCage->get->keyExists('admin_mode') || !$superCage->get->keyExists('referer')){
+  if (!$superCage->get->keyExists('admin_mode') || !$CPG_REFERER){
       cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
   }
 
  // $admin_mode = (int)$_GET['admin_mode'] ? 1 : 0;
- $admin_mode = $superCage->get->getInt('admin_mode')? 1 : 0;
+  $admin_mode = $superCage->get->getInt('admin_mode')? 1 : 0;
   //$referer = $_GET['referer'] ? $_GET['referer'] : 'index.php';
-  $referer = $superCage->get->keyExists('referer') ? $superCage->get->getRaw('referer') : 'index.php';
+  //$referer = $superCage->get->keyExists('referer') ? $superCage->get->getRaw('referer') : 'index.php';
   $USER['am'] = $admin_mode;
   if (!$admin_mode) {
-      $referer = 'index.php';
+      $CPG_REFERER = 'index.php';
   }
 
-  cpgRedirectPage($CONFIG['ecards_more_pic_target'].$referer, $lang_common['information'], $lang_mode_php[$admin_mode],3);
+  cpgRedirectPage($CONFIG['ecards_more_pic_target'].$CPG_REFERER, $lang_common['information'], $lang_mode_php[$admin_mode],3);
 }
 ?>

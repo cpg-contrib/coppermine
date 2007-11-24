@@ -16,7 +16,7 @@
   $LastChangedBy$
   $Date$
 **********************************************/
-error_reporting(E_ALL);
+
 define('COPPERMINE_VERSION', '1.5.0');
 define('COPPERMINE_VERSION_STATUS', 'alpha');
 
@@ -228,7 +228,7 @@ define('USER_ADMIN_MODE', USER_ID && USER_CAN_CREATE_ALBUMS && $USER['am'] && !G
 // Maze's new error report system
 if (!USER_IS_ADMIN) {
 	if (!$CONFIG['debug_mode']) $cpgdebugger->stop(); // useless to run debugger cos there's no output
-	//error_reporting(0); // hide all errors for visitors
+	error_reporting(0); // hide all errors for visitors
 }
 
 if (!GALLERY_ADMIN_MODE) {
@@ -313,11 +313,14 @@ if (USER_ID > 0){
 /**
  * Use $CPG_REFERER wherever $_GET['referer'] is used
  */
-/*if ($matches = $superCage->get->getMatched('referer', '/((\%3C)|<)[^\n]+((\%3E)|>)|(.*http.*)|(.*script.*)/i')) {
+if ($matches = $superCage->get->getMatched('referer', '/((\%3C)|<)[^\n]+((\%3E)|>)|(.*http.*)|(.*script.*)/i')) {
     $CPG_REFERER = 'index.php';
 } else {
+    /**
+     * Using getRaw() since we are checking the referer in the above if condition.
+     */
     $CPG_REFERER = $superCage->get->getRaw('referer');
-}*/
+}
 
 /**
  * CPGPluginAPI::action('page_start',null)

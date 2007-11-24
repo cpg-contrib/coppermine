@@ -142,11 +142,11 @@ if ($superCage->post->keyExists('submit')) {
       cpg_die($lang_cpg_die['CRITICAL_ERROR'], $lang_contact_php['failed_sending_email'], __FILE__, __LINE__);
     } else { // sending the email has been successfull, redirect the user
       //$referer = $_GET['referer'] ? $_GET['referer'] : 'index.php';
-      $referer = $superCage->get->keyExists('referer') ? $superCage->get->getRaw('referer') : 'index.php';
+      /*$referer = $superCage->get->keyExists('referer') ? $superCage->get->getRaw('referer') : 'index.php';
       if (strpos($referer, "http") !== false || strpos($referer, "logout.php") !== false) {
         $referer = "index.php";
-      }
-      cpgRedirectPage($CONFIG['ecards_more_pic_target'].$referer, $lang_common['information'], $lang_contact_php['email_sent']);
+      }*/
+      cpgRedirectPage($CONFIG['ecards_more_pic_target'].$CPG_REFERER, $lang_common['information'], $lang_contact_php['email_sent']);
     }
     //print '<div style="border: 1px solid blue">'.$html_message.'</div>';
   } // beyond this point an error must have happened - let the visitor review his input

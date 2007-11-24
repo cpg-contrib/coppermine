@@ -26,17 +26,17 @@ if (USER_ID) cpg_die(ERROR, $lang_login_php['err_already_logged_in'], __FILE__, 
 
 if (defined('UDB_INTEGRATION')) $cpg_udb->login_page();
 
-$referer = $superCage->get->keyExists('referer') ? $superCage->get->getRaw('referer') : 'index.php';
+/*$referer = $superCage->get->keyExists('referer') ? $superCage->get->getRaw('referer') : 'index.php';
 if (strpos($referer, "http") !== false || strpos($referer, "logout.php") !== false) {
   $referer = "index.php";
-}
+}*/
 $login_failed = '';
 $cookie_warning = '';
 
 if ($superCage->post->keyExists('submitted')) {
     if ( $USER_DATA = $cpg_udb->login( $superCage->post->getEscaped('username'), $superCage->post->getEscaped('password'), $superCage->post->getInt('remember_me') ) ) {
-        $referer=preg_replace("'&amp;'","&",$referer);
-        cpgRedirectPage($referer, $lang_login_php['login'], sprintf($lang_login_php['welcome'], $USER_DATA['user_name']),3);
+        //$referer=preg_replace("'&amp;'","&",$referer);
+        cpgRedirectPage($CPG_REFERER, $lang_login_php['login'], sprintf($lang_login_php['welcome'], $USER_DATA['user_name']),3);
         exit;
     } else {
         if ($superCage->server->testip('REMOTE_ADDR')) {
@@ -91,7 +91,7 @@ if ($CONFIG['reg_requires_valid_email'] == 1) {
 
 pageheader($lang_login_php['login']);
 $referer = urlencode($referer);
-echo '<form action="login.php?referer='.$referer.'" method="post" name="loginbox" id="cpgform">';
+echo '<form action="login.php?referer='.urlencode($CPG_REFERER).'" method="post" name="loginbox" id="cpgform">';
 
 starttable('-1', $lang_login_php['enter_login_pswd'], 2);
 echo <<< EOT

@@ -31,11 +31,11 @@ setcookie($CONFIG['cookie_name'] . '_pass', '', time()-86400, $CONFIG['cookie_pa
 setcookie($CONFIG['cookie_name'] . '_uid', '', time()-86400, $CONFIG['cookie_path']);
 */
 //$referer = $_GET['referer'] ? $_GET['referer'] : 'index.php';
-$referer = $superCage->get->keyExists('referer') ? $superCage->get->getRaw('referer') : 'index.php';
+/*$referer = $superCage->get->keyExists('referer') ? $superCage->get->getRaw('referer') : 'index.php';
 if (strpos($referer, "http") !== false) {
   $referer = "index.php";
-}
-cpgRedirectPage($referer, $lang_logout_php['logout'], sprintf($lang_logout_php['bye'], stripslashes(USER_NAME)),3);
+}*/
+cpgRedirectPage($CPG_REFERER, $lang_logout_php['logout'], sprintf($lang_logout_php['bye'], stripslashes(USER_NAME)),3);
 
 
 ?>
