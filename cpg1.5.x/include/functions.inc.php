@@ -3711,4 +3711,82 @@ function cpgValidateDate($date) {
 }
 
 
+/**
+* cpgGetRemoteFileByURL()
+*
+* Returns array that contains content of a file (URL) retrieved by curl, fsockopen or fopen (fallback). Array consists of:
+* $return['headers'] = header array,
+* $return['error'] = error number and messages array (if error)
+* $return['body'] = actual content of the fetched file as string
+*
+* @param mixed $url, $method, $data, $redirect
+* @return array
+**/
+function cpgGetRemoteFileByURL($remoteURL, $method = "GET", $data = "", $redirect = 10, $minLength = '0') {
+    global $lang_get_remote_File_by_url;
+    // FSOCK code snippets taken from http://jeenaparadies.net/weblog/2007/jan/get_remote_file
+    $url = parse_url($remoteURL); // chop the URL into protocol, domain, port, folder, file, parameter
+    $error = '';
+    // Let's try CURL first
+    if (function_exists('curl_init') == TRUE) { // don't bother to try curl if it isn't there in the first place
+    	$curl = curl_init();
+    	curl_setopt($curl, CURLOPT_URL, $remoteURL);
+    	curl_setopt($curl, CURLOPT_HEADER, 0);
+    	ob_start();
+    	curl_exec($curl);
+    	$data = ob_get_contents();
+    	ob_end_clean();
+    	ob_end_flush();
+    	$headers = curl_getinfo($curl);
+    	curl_close($curl);
+    	if (strlen($data) < $minLength ) {
+    		// Fetching the data by CURL obviously failed
+    		$error .= sprintf($lang_get_remote_File_by_url['no_data_returned'], $lang_get_remote_File_by_url['no_data_returned']);
+    	} else {
+    		// Fetching the data by CURL was successfull. Let's return the data
+    		return array("headers" => $headers, "body" => $data);
+    	}
+    } else {
+    	// Curl is not available
+    	$error .= $lang_get_remote_File_by_url['curl_not_available'];
+    }
+    // Now let's try FSOCKOPEN
+    $fp = @fsockopen ($url['host'], (!empty($url['port']) ? (int)$url['port'] : 80), $errno, $errstr, 30);
+    if ($fp) { // file handle success - start
+    	$path = (!empty($url['path']) ? $url['path'] : "/").(!empty($url['query']) ? "?".$url['query'] : "");
+    	$header = "\r\nHost: ".$url['host'];
+    	if("post" == strtolower($method)) {
+    		$header .= "\r\nContent-Length: ".mb_strlen($data);
+    	}
+    	fputs ($fp, $method." ".$path." HTTP/1.0".$header."\r\n\r\n".("post" == strtolower($method) ? $data : ""));
+    	if(!feof($fp)) {
+    		$scheme = fgets($fp);
+    		list(, $code ) = explode(" ", $scheme);
+    		$headers = array("Scheme" => $scheme);
+    	}
+    	while ( !feof($fp) ) {
+			$h = fgets($fp);
+			if($h == "\r\n" OR $h == "\n") {
+				break;
+			}
+			list($key, $value) = explode(":", $h, 2);
+			$key = strtolower($key);
+			$value = trim($value);
+			if(isset($headers[$key])) {
+				$headers[$key] .= ','.trim($value);
+			} else {
+				$headers[$key] = trim($value);
+			}
+        }
+        $body = '';
+        while ( !feof($fp) ) {
+        	$body .= fgets($fp);
+        }
+        fclose($fp);
+	} else {  // file handle failure - start
+		return (array("error" => array("errno" => $errno, "errstr" => $errstr)));
+	}
+	return array("headers" => $headers, "body" => $body);
+}
+
 ?>
