@@ -26,10 +26,10 @@ if (USER_ID) cpg_die(ERROR, $lang_login_php['err_already_logged_in'], __FILE__, 
 
 if (defined('UDB_INTEGRATION')) $cpg_udb->login_page();
 
-/*$referer = $superCage->get->keyExists('referer') ? $superCage->get->getRaw('referer') : 'index.php';
-if (strpos($referer, "http") !== false || strpos($referer, "logout.php") !== false) {
-  $referer = "index.php";
-}*/
+//$referer = $superCage->get->keyExists('referer') ? $superCage->get->getRaw('referer') : 'index.php';
+if (strpos($CPG_REFERER, "logout.php") !== false) {
+  $CPG_REFERER = "index.php";
+}
 $login_failed = '';
 $cookie_warning = '';
 
