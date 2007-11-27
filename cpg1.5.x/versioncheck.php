@@ -23,7 +23,7 @@ define('VERSIONCHECK_PHP', true);
 require_once('include/init.inc.php');
 
 if (!GALLERY_ADMIN_MODE) {
-  cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+  cpg_die($lang_common['error'], $lang_errors['access_denied'], __FILE__, __LINE__);
 }
 
 // define some vars
@@ -72,17 +72,23 @@ $optionDisplayOutput_array = array();
 
 // Sanitize the GET vars
 // possible values: screen, embedded, download, textarea, create, options
-if ($_GET['output'] == 'textarea') {
+$actionGet = $superCage->get->getMatched('output','/^[a-z]+$/');
+if (in_array ($actionGet[0], array('screen', 'enbedded', 'download', 'textarea', 'create', 'options')) == TRUE) {
+  $action = $actionGet[0];
+} else {
+  $action = 'options';
+}
+if ($action == 'textarea') {
   $displayOption_array['output'] = 'textarea';
   $optionDisplayOutput_array['screen'] = '';
   $optionDisplayOutput_array['textarea'] = 'checked="checked"';
-} elseif ($_GET['output'] == 'download') {
+} elseif ($action == 'download') {
   $displayOption_array['output'] = 'download';
-} elseif ($_GET['output'] == 'embedded') {
+} elseif ($action == 'embedded') {
   $displayOption_array['output'] = 'embedded';
-} elseif ($_GET['output'] == 'create') {
+} elseif ($action == 'create') {
   $displayOption_array['output'] = 'create';
-} elseif ($_GET['output'] == 'screen') {
+} elseif ($action == 'screen') {
   $displayOption_array['output'] = 'screen';
   $optionDisplayOutput_array['screen'] = 'checked="checked"';
   $optionDisplayOutput_array['textarea'] = '';
@@ -92,28 +98,21 @@ if ($_GET['output'] == 'textarea') {
   $optionDisplayOutput_array['textarea'] = '';
 }
 
-if ($_GET['image'] == '0') {
+if ($superCage->get->getInt('image') == '0') {
   $displayOption_array['display_images'] = 0;
 } else {
   $displayOption_array['display_images'] = 1;
   $optionDisplayOutput_array['display_images'] = 'checked="checked"';
 }
 
-if ($_GET['errors_only'] == '1') {
+if ($superCage->get->getInt('errors_only') == '1') {
   $displayOption_array['errors_only'] = 1;
   $optionDisplayOutput_array['errors_only'] = 'checked="checked"';
 } else {
   $displayOption_array['errors_only'] = 0;
 }
 
-if ($_GET['errors_only'] == '1') {
-  $displayOption_array['errors_only'] = 1;
-  $optionDisplayOutput_array['errors_only'] = 'checked="checked"';
-} else {
-  $displayOption_array['errors_only'] = 0;
-}
-
-if ($_GET['do_not_connect_to_online_repository'] == '1') {
+if ($superCage->get->getInt('do_not_connect_to_online_repository') == '1') {
   $displayOption_array['do_not_connect_to_online_repository'] = 1;
   $optionDisplayOutput_array['do_not_connect_to_online_repository'] = 'checked="checked"';
 } else {
@@ -124,7 +123,7 @@ if ($displayOption_array['do_not_connect_to_online_repository'] != 1) { // conne
 
 } // connect to the online repository at sourceforge.net --- end
 
-require_once('include/files.inc.php');
+
 
 $textSeparator = '|';
 $output = '';
@@ -132,9 +131,55 @@ $caption = '';
 $underline = '';
 $newLine = "\r\n";
 $subversionRepository = 'http://coppermine.svn.sourceforge.net/viewvc/coppermine/trunk/';
+$localFolder = 'include/files.xml';
+$remoteURL = 'http://coppermine-gallery.net/';
 $majorVersion = 'cpg'.str_replace('.' . ltrim(substr(COPPERMINE_VERSION,strrpos(COPPERMINE_VERSION,'.')),'.'), '', COPPERMINE_VERSION).'.x';
+$remoteURL .= str_replace('.', '', $majorVersion) . '.files.xml';
+//$result = cpgGetRemoteFileByURL($remoteURL, 'GET','','','100');
+//print_r($result);
+//print $url;
+//die();
+
+include_once('include/lib.xml.php');
+$xml = new Xml;
+//$out = $xml->parse($result['body'], 'FILE');
+$file_data_array = $xml->parse($remoteURL, $localFolder);
+//$file_data_array = $out['element'];
+//unset($out);
+$file_data_array = array_shift($file_data_array);
+//print_r($file_data_array);
+//die;
+
 
 // define some functions
+function cpgGetRemoteUrl($remoteHost = '', $remoteFile = '', $remoteProtocol = 'http://') {
+  if ($remoteHost != '' && $remoteProtocol != '') {
+    $separator = '/';
+  }
+  //$filename = $remoteProtocol.$remoteHost.$separator.$remoteFile;
+  if (function_exists('curl_init') == TRUE) {
+    return 'CURL';
+  }
+  $handle = fsockopen($remoteHost, 80, $errno, $errstr, 10);
+  if ($handle) {
+    $path = $separator.$remoteFile;
+    $header = '\r\nHost: '.$remoteHost;
+    fputs ($handle, 'GET '.$separator.$remoteFile.' HTTP/1.0'.$header."\r\n\r\n");
+    fclose($handle);
+    return 'FSOCK';
+  }
+  @ini_set('allow_url_fopen','1');
+  $handle  = fopen($remoteProtocol.$remoteHost.$separator.$remoteFile, 'r');
+  if ($handle) {
+    $sampleData = fread($handle, 1024);
+    if ($sampleData) {
+      fclose($handle);
+      return 'FOPEN';
+    }
+    fclose($handle);
+  }
+}
+
 function cpg_get_path_and_file($string) {
     // check if $string contains delimiter that triggers replacement
     $return['path'] = str_replace(str_replace('/', '', strrchr($string, '/')), '', $string);
@@ -184,12 +229,13 @@ function cpg_fillArrayFieldWithSpaces($text, $maxchars, $fillUpOn = 'right') {
 // display page header if applicable
 if ($displayOption_array['output'] != 'download' && $displayOption_array['output'] != 'embedded') {
   pageheader($lang_versioncheck_php['title']);
+  print '<h1>Under construction</h1>';
+  print 'Please do not file bug reports yet - versioncheck.php and the files it uses (xml.lib.php, cpg15x.files.xml) are not done yet';
 }
 
 // Print options if applicable
 if ($displayOption_array['output'] == 'options' || $displayOption_array['output'] == 'screen' || $displayOption_array['output'] == 'textarea') {
-  print '<h1>work in progress - GauGau</h1>';
-  print '<form name="options" action="'.$_SERVER['PHP_SELF'].'" method="get">';
+  print '<form name="options" action="'.$CPG_PHP_SELF.'" method="get">';
   starttable(-1, $lang_versioncheck_php['options'],2);
   print <<< EOT
   <tr>
@@ -199,7 +245,7 @@ if ($displayOption_array['output'] == 'options' || $displayOption_array['output'
     <td class="tableb" valign="top">
       <input type="radio" name="output" id="output_screen" value="screen" class="radio" {$optionDisplayOutput_array['screen']} /><label for="output_screen" class="clickable_option">{$lang_versioncheck_php['on_screen']}</label>&nbsp;&nbsp;
       <input type="radio" name="output" id="output_textarea" value="textarea" class="radio" {$optionDisplayOutput_array['textarea']} /><label for="output_textarea" class="clickable_option">{$lang_versioncheck_php['text_only']}</label>&nbsp;&nbsp;
-      <a href="{$_SERVER['PHP_SELF']}?output=download" class="admin_menu">{$lang_versioncheck_php['download']}</a>
+      <a href="{$CPG_PHP_SELF}?output=download" class="admin_menu">{$lang_versioncheck_php['download']}</a>
     </td>
   </tr>
   <tr>
@@ -225,11 +271,11 @@ if ($displayOption_array['output'] == 'options' || $displayOption_array['output'
   <tr>
     <td class="tableb tableb_alternate" valign="top">
       <label for="do_not_connect_to_online_repository">
-        <s title="(not implemented yet)">{$lang_versioncheck_php['do_not_connect_to_online_repository']}</s>
+        {$lang_versioncheck_php['do_not_connect_to_online_repository']}
       </label>
     </td>
     <td class="tableb tableb_alternate" valign="top">
-      <input type="checkbox" name="do_not_connect_to_online_repository" id="do_not_connect_to_online_repository" value="1" class="checkbox" {$optionDisplayOutput_array['do_not_connect_to_online_repository']} checked="checked" disabled="disabled" />
+      <input type="checkbox" name="do_not_connect_to_online_repository" id="do_not_connect_to_online_repository" value="1" class="checkbox" {$optionDisplayOutput_array['do_not_connect_to_online_repository']} checked="checked" />
     </td>
   </tr>
   <tr>
@@ -246,6 +292,8 @@ EOT;
 if ($displayOption_array['output'] != 'create') {
   $loopCounter = 0;
   foreach ($file_data_array as $file_data_key => $file_data_values) {
+    //print_r($file_data_array[$file_data_key]);
+    //print '<hr />';
     $file_data_array[$file_data_key]['comment'] = '';
     // Replace the placeholders with actual content --- start
     $file_data_array[$file_data_key]['fullpath'] = str_replace('**fullpath**', rtrim($CONFIG['fullpath'], '/'), $file_data_array[$file_data_key]['fullpath']);
@@ -255,7 +303,9 @@ if ($displayOption_array['output'] != 'create') {
       $maxLength_array['fullpath'] = strlen($file_data_array[$file_data_key]['fullpath']);
     }
     // populate the path and file from the fullpath
-    $tempArray = cpg_get_path_and_file($file_data_values['fullpath']);
+    $tempArray = cpg_get_path_and_file($file_data_array[$file_data_key]['fullpath']);
+    //print_r($tempArray);
+    //print '<hr />';
     $file_data_array[$file_data_key]['folder'] = $tempArray['path'];
     //$file_data_array[$file_data_key]['pathBits'] = explode('/', $tempArray['path']);
     if (strlen($file_data_array[$file_data_key]['folder']) > $maxLength_array['folder']) {
@@ -320,9 +370,9 @@ if ($displayOption_array['output'] != 'create') {
             if (strlen($file_data_array[$file_data_key]['version']) > 5) {
               $file_data_array[$file_data_key]['version']='n/a';
             }
-            if ($file_data_array[$file_data_key]['expected_release'] != '' && $file_data_array[$file_data_key]['exists'] == 1) {
+            if ($file_data_array[$file_data_key]['release'] != '' && $file_data_array[$file_data_key]['exists'] == 1) {
               $file_data_array[$file_data_key]['txt_version'] = $file_data_array[$file_data_key]['version'] . '(';
-              $versionCompare = version_compare($file_data_array[$file_data_key]['version'],$file_data_array[$file_data_key]['expected_release']);
+              $versionCompare = version_compare($file_data_array[$file_data_key]['version'],$file_data_array[$file_data_key]['release']);
               if ($versionCompare == 0) {
                 $file_data_array[$file_data_key]['txt_version'] .= $lang_versioncheck_php['ok'];
               } elseif($versionCompare == -1) {
@@ -346,17 +396,17 @@ if ($displayOption_array['output'] != 'create') {
             if (strlen($file_data_array[$file_data_key]['revision']) > 5) {
               $file_data_array[$file_data_key]['revision']='n/a';
             }
-            if ($file_data_array[$file_data_key]['expected_revision'] != '' && $file_data_array[$file_data_key]['exists'] == 1) {
+            if ($file_data_array[$file_data_key]['revision'] != '' && $file_data_array[$file_data_key]['exists'] == 1) {
               $file_data_array[$file_data_key]['txt_revision'] = $file_data_array[$file_data_key]['revision'];
-              if ($file_data_array[$file_data_key]['revision'] == $file_data_array[$file_data_key]['expected_revision']) {
+              if ($file_data_array[$file_data_key]['revision'] == $file_data_array[$file_data_key]['revision']) {
                 $file_data_array[$file_data_key]['txt_revision'] .= '('.$lang_versioncheck_php['ok'];
-              } elseif($file_data_array[$file_data_key]['revision'] < $file_data_array[$file_data_key]['expected_revision']) {
-                $file_data_array[$file_data_key]['txt_revision'] .= '/'.$file_data_array[$file_data_key]['expected_revision'].'('. $lang_versioncheck_php['outdated'];
+              } elseif($file_data_array[$file_data_key]['revision'] < $file_data_array[$file_data_key]['revision']) {
+                $file_data_array[$file_data_key]['txt_revision'] .= '/'.$file_data_array[$file_data_key]['revision'].'('. $lang_versioncheck_php['outdated'];
                 if ($versionCompare == 0) {
                   $file_data_array[$file_data_key]['comment'] .= $lang_versioncheck_php['review_version'].'. ';
                 }
               } else {
-                $file_data_array[$file_data_key]['txt_revision'] .= '/'.$file_data_array[$file_data_key]['expected_revision'].'('. $lang_versioncheck_php['newer'];
+                $file_data_array[$file_data_key]['txt_revision'] .= '/'.$file_data_array[$file_data_key]['revision'].'('. $lang_versioncheck_php['newer'];
                 if ($versionCompare == 0) {
                   $file_data_array[$file_data_key]['comment'] .= $lang_versioncheck_php['review_version'].'. ';
                 }
@@ -370,9 +420,9 @@ if ($displayOption_array['output'] != 'create') {
             }
 
           } // the file is not binary --- end
-          if (function_exists('md5')) { // check the md5 hashes --- start
+          if (function_exists('md5') && $file_data_array[$file_data_key]['hash'] != '') { // check the md5 hashes --- start
             $file_data_array[$file_data_key]['md5hash'] = md5($file_data_values['fullpath']);
-            if ($file_data_array[$file_data_key]['md5hash'] == $file_data_array[$file_data_key]['expected_hash']) {
+            if ($file_data_array[$file_data_key]['md5hash'] == $file_data_array[$file_data_key]['hash']) {
               $file_data_array[$file_data_key]['unmodified'] = 1;
             } else {
               $file_data_array[$file_data_key]['unmodified'] = 0;
@@ -391,9 +441,9 @@ if ($displayOption_array['output'] != 'create') {
     }
     if ($file_data_array[$file_data_key]['readwrite'] == 'read') {
       $file_data_array[$file_data_key]['txt_readwrite'] = 'r ';
-      if ($file_data_array[$file_data_key]['expected_permission'] == 'read') {
+      if ($file_data_array[$file_data_key]['permission'] == 'read') {
         $file_data_array[$file_data_key]['txt_readwrite'] .= '('.$lang_versioncheck_php['ok'].')';
-      } elseif ($file_data_array[$file_data_key]['expected_permission'] == 'write') {
+      } elseif ($file_data_array[$file_data_key]['permission'] == 'write') {
         $file_data_array[$file_data_key]['txt_readwrite'] .= '('.$lang_versioncheck_php['needs_change'].')';
         $file_data_array[$file_data_key]['comment'] .= $lang_versioncheck_php['review_permissions'].'. ';
       }
@@ -413,16 +463,24 @@ if ($displayOption_array['output'] != 'create') {
 } else { // create data --- start
   // loop through all folders
   $loopCounter = 0;
+  print <<< EOT
+  <script type="text/javascript">
+            document.write('<a href="javascript:HighlightAll(\'versioncheckdisplay.versioncheck_text\')" class="admin_menu">');
+            document.write("Select All");
+            document.write('</a>');
+            document.write('<br />');
+  </script>
+EOT;
   print '<form name="versioncheckdisplay"><textarea name="versioncheck_text" rows="10000" class="textinput" style="width:98%;font-family:\'Courier New\',Courier,monospace;font-size:9px;">';
-  print '$file_data_array = array('.$newLine;
+  print '<file_data>'.$newLine;
   foreach ($file_data_array as $file_data_key => $file_data_values) {
-    print '  array('.$newLine;
+    print '  <element>'.$newLine;
     // populate the path and file from the fullpath
     $tempArray = cpg_get_path_and_file($file_data_values['fullpath']);
     $file_data_array[$file_data_key]['folder'] = $tempArray['path'];
     $file_data_array[$file_data_key]['file'] = $tempArray['file'];
     $file_data_array[$file_data_key]['extension'] = ltrim(substr($file_data_array[$file_data_key]['file'],strrpos($file_data_array[$file_data_key]['file'],'.')),'.');
-    print "  'fullpath' => '".$file_data_values['fullpath']."',".$newLine;
+    print "    <fullpath>".$file_data_values['fullpath']."</fullpath>".$newLine;
     if (in_array($file_data_array[$file_data_key]['extension'],$textFileExtensions_array) == TRUE) { // the file is not binary --- start
       $handle = @fopen($file_data_values['fullpath'], 'r');
       $blob = '';
@@ -451,35 +509,43 @@ if ($displayOption_array['output'] != 'create') {
         $file_data_array[$file_data_key]['revision']='n/a';
       }
     } // the file is not binary --- end
-    print "  'expected_release' => '".$file_data_array[$file_data_key]['version']."',".$newLine;
-    print "  'expected_revision' => '".$file_data_array[$file_data_key]['revision']."',".$newLine;
+    print "    <release>".$file_data_array[$file_data_key]['version']."</release>".$newLine;
+    print "    <revision>".$file_data_array[$file_data_key]['revision']."</revision>".$newLine;
     if ($file_data_array[$file_data_key]['status'] != '') {
       $status = $file_data_array[$file_data_key]['status'];
     } else {
       $status = 'mandatory';
     }
-    print "  'status' => '".$status."',".$newLine;
-    if ($file_data_array[$file_data_key]['expected_permission'] != '') {
-      $expected_permission = $file_data_array[$file_data_key]['expected_permission'];
+    print "    <status>".$status."</status>".$newLine;
+    if ($file_data_array[$file_data_key]['permission'] != '') {
+      $permission = $file_data_array[$file_data_key]['permission'];
     } else {
-      $expected_permission = 'read';
+      $permission = 'read';
     }
-    print "  'expected_permission' => '".$expected_permission."',".$newLine;
+    print "    <permission>".$permission."</permission>".$newLine;
     if ($file_data_array[$file_data_key]['file'] != '') {
       $hash = md5($file_data_values['fullpath']);
     } else {
       $hash = '';
     }
-    print "  'expected_hash' => '".$hash."',".$newLine;
-    print "  ),".$newLine;
+    print "    <hash>".$hash."</hash>".$newLine;
+    print "  </element>".$newLine;
   }
-  print ');'.$newLine;
+  print '</file_data>'.$newLine;
 }
 
 $file_data_count = count($file_data_array);
 
 // display formatted header data
 if ($displayOption_array['output'] == 'textarea') {
+  print <<< EOT
+  <script type="text/javascript">
+            document.write('<a href="javascript:HighlightAll(\'versioncheckdisplay.versioncheck_text\')" class="admin_menu">');
+            document.write("Select All");
+            document.write('</a>');
+            document.write('<br />');
+  </script>
+EOT;
   print '<form name="versioncheckdisplay"><textarea name="versioncheck_text" rows="'.($file_data_count + 5).'" class="textinput" style="width:98%;font-family:\'Courier New\',Courier,monospace;font-size:9px;">';
 }
 

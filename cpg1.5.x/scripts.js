@@ -171,6 +171,12 @@ function notDefaultUsername(f, defaultUsername, defaultUsernameMessage)
     return true;
 }
 
+function HighlightAll(theField) {
+	var tempval=eval("document."+theField);
+	tempval.focus();
+	tempval.select();
+}
+
 var onloads = new Array()
 
 function addonload(func){

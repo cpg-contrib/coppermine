@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-11-27 [O] Added new versioncheck scheme based on XML files (work in progress) {GauGau}
 2007-11-22 [D] Added (preliminary) Inspekt documentation {GauGau}
 2007-11-22 [D] Added lib.xml.php to the credits section {GauGau}
 2007-11-22 [O] Display database errors for the admin no matter if debug_mode is enabled or not {GauGau}

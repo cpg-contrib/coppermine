@@ -375,6 +375,14 @@ $lang_create_tabs = array(
   'next' => 'next',
 );
 
+$lang_get_remote_File_by_url = array(
+	'no_data_returned' => 'No data returned using %s',
+	'curl' => 'CURL',
+	'fsockopen' => 'Socket connection (FSOCKOPEN)',
+	'fopen' => 'fopen',
+	'curl_not_available' => 'Curl is not available on your server',
+);
+
 // ------------------------------------------------------------------------- //
 // File include/init.inc.php
 // ------------------------------------------------------------------------- //
