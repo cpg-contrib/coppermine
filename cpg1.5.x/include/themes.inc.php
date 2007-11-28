@@ -2528,7 +2528,7 @@ if (!function_exists('theme_display_film_strip')) {  //{THEMES}
 /******************************************************************************
 ** Section <<<theme_display_film_strip>>> - START
 ******************************************************************************/
-// Added to display flim_strip
+// Function to display the film strip
 function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $pos, $sort_options, $mode = 'thumb', $date='') {
     global $CONFIG, $THEME_DIR;
     global $template_film_strip, $lang_film_strip;

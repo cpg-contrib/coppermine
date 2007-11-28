@@ -328,7 +328,7 @@ $template_cat_list = <<<EOT
                 <td class="catrow" align="center">{PIC_COUNT}</td>
         </tr>
         <tr>
-            <td class="tableb" colspan="3">{CAT_ALBUMS}</td>
+            <td class="tableb tableb_alternate tableb tableb_alternate_alternate" colspan="3">{CAT_ALBUMS}</td>
         </tr>
 <!-- END catrow -->
 <!-- BEGIN footer -->
@@ -385,7 +385,7 @@ $template_album_list = <<<EOT
         </tr>
 <!-- END stat_row -->
 <!-- BEGIN header -->
-        <tr class="tableb_compact">
+        <tr class="tableb tableb_alternate tableb tableb_alternate_alternate_compact">
 <!-- END header -->
 <!-- BEGIN album_cell -->
         <td width="{COL_WIDTH}%" valign="top">
@@ -408,7 +408,7 @@ $template_album_list = <<<EOT
                 <td>
                         <img src="images/spacer.gif" width="1" height="1" border="0" alt="" />
                 </td>
-                <td width="100%" valign="top" align="left" class="tableb_compact">
+                <td width="100%" valign="top" align="left" class="tableb tableb_alternate tableb tableb_alternate_alternate_compact">
                         {ADMIN_MENU}
                         <p>{ALB_DESC}</p>
                         <p class="album_stat">{ALB_INFOS}<br />{ALB_HITS}</p>
@@ -431,7 +431,7 @@ $template_album_list = <<<EOT
                 </td>
         </tr>
         <tr>
-                <td width="100%" valign="top" class="tableb_compact">
+                <td width="100%" valign="top" class="tableb tableb_alternate tableb tableb_alternate_alternate_compact">
                     <div class="thumbnails" style="background-color:transparent"><img src="images/spacer.gif" width="1" height="{SPACER}" border="0" class="image" style="border:0;margin-top:1px;margin-bottom:0" alt="" /></div>
                 </td>
         </tr>
@@ -440,7 +440,7 @@ $template_album_list = <<<EOT
 <!-- END empty_cell -->
 <!-- BEGIN row_separator -->
         </tr>
-        <tr class="tableb_compact">
+        <tr class="tableb tableb_alternate tableb tableb_alternate_alternate_compact">
 <!-- END row_separator -->
 <!-- BEGIN footer -->
         </tr>
@@ -516,7 +516,7 @@ $template_album_list_cat = <<<EOT
         </tr>
 <!-- END c_stat_row -->
 <!-- BEGIN c_header -->
-        <tr class="tableb_compact">
+        <tr class="tableb tableb_alternate tableb tableb_alternate_alternate_compact">
 <!-- END c_header -->
 <!-- BEGIN c_album_cell -->
         <td width="{COL_WIDTH}%" valign="top">
@@ -539,7 +539,7 @@ $template_album_list_cat = <<<EOT
                 <td>
                         <img src="images/spacer.gif" width="1" height="1" border="0" alt="" />
                 </td>
-                <td width="100%" valign="top" class="tableb_compact">
+                <td width="100%" valign="top" class="tableb tableb_alternate tableb tableb_alternate_alternate_compact">
                         {ADMIN_MENU}
                         <p>{ALB_DESC}</p>
                         <p class="album_stat">{ALB_INFOS}<br />{ALB_HITS}</p>
@@ -562,7 +562,7 @@ $template_album_list_cat = <<<EOT
                 </td>
         </tr>
         <tr>
-                <td width="100%" valign="top" class="tableb_compact" >
+                <td width="100%" valign="top" class="tableb tableb_alternate tableb tableb_alternate_alternate_compact" >
                       <div class="thumbnails" style="background-color:transparent"><img src="images/spacer.gif" width="1" height="{SPACER}" border="0" class="image" style="border:0;margin-top:1px;margin-bottom:0" alt="" /></div>
                 </td>
         </tr>
@@ -571,7 +571,7 @@ $template_album_list_cat = <<<EOT
 <!-- END c_empty_cell -->
 <!-- BEGIN c_row_separator -->
         </tr>
-        <tr class="tableb_compact">
+        <tr class="tableb tableb_alternate tableb tableb_alternate_alternate_compact">
 <!-- END c_row_separator -->
 <!-- BEGIN c_footer -->
         </tr>
@@ -745,7 +745,7 @@ EOT;
 // HTML template for the thumbnail view when there is no picture to show
 $template_no_img_to_display = <<<EOT
         <tr>
-                <td class="tableb" height="200" align="center">
+                <td class="tableb tableb_alternate tableb tableb_alternate_alternate" height="200" align="center">
                         <span class="cpg_user_message">{TEXT}</span>
                 </td>
         </tr>
@@ -848,7 +848,7 @@ $template_display_media = <<<EOT
                         </table>
                 </td></tr>
                 <tr><td>
-                                                <table width="100%" cellspacing="2" cellpadding="0" class="tableb">
+                                                <table width="100%" cellspacing="2" cellpadding="0" class="tableb tableb_alternate tableb tableb_alternate_alternate">
                                 <tr>
                                         <td align="center">
 
@@ -862,17 +862,17 @@ $template_display_media = <<<EOT
 
 
 <!-- BEGIN img_desc -->
-                        <table cellpadding="0" cellspacing="0" class="tableb" width="100%">
+                        <table cellpadding="0" cellspacing="0" class="tableb tableb_alternate tableb tableb_alternate_alternate" width="100%">
 <!-- BEGIN title -->
                                 <tr>
-                                        <td class="tableb""><h1 class="pic_title">
+                                        <td class="tableb tableb_alternate tableb tableb_alternate_alternate""><h1 class="pic_title">
                                                 {TITLE}
                                         </h1></td>
                                 </tr>
 <!-- END title -->
 <!-- BEGIN caption -->
                                 <tr>
-                                        <td class="tableb"><h2 class="pic_caption">
+                                        <td class="tableb tableb_alternate tableb tableb_alternate_alternate"><h2 class="pic_caption">
                                                 {CAPTION}
                                         </h2></td>
                                 </tr>
@@ -897,16 +897,16 @@ $template_image_rating = <<<EOT
                 <td colspan="6" class="tableh2_compact">{TITLE} {VOTES}</td>
         </tr>
         <tr>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE0}" title="{RUBBISH}" rel="nofollow"><img src="{LOCATION}images/rating0.gif" border="0" alt="{RUBBISH}" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE1}" title="{POOR}" rel="nofollow"><img src="{LOCATION}images/rating1.gif" border="0" alt="{POOR}" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE2}" title="{FAIR}" rel="nofollow"><img src="{LOCATION}images/rating2.gif" border="0" alt="{FAIR}" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE3}" title="{GOOD}" rel="nofollow"><img src="{LOCATION}images/rating3.gif" border="0" alt="{GOOD}" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE4}" title="{EXCELLENT}" rel="nofollow"><img src="{LOCATION}images/rating4.gif" border="0" alt="{EXCELLENT}" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE5}" title="{GREAT}" rel="nofollow"><img src="{LOCATION}images/rating5.gif" border="0" alt="{GREAT}" /><br /></a></td>
+                <td class="tableb tableb_alternate tableb tableb_alternate_alternate_compact" width="17%" align="center"><a href="{RATE0}" title="{RUBBISH}" rel="nofollow"><img src="{LOCATION}images/rating0.gif" border="0" alt="{RUBBISH}" /><br /></a></td>
+                <td class="tableb tableb_alternate tableb tableb_alternate_alternate_compact" width="17%" align="center"><a href="{RATE1}" title="{POOR}" rel="nofollow"><img src="{LOCATION}images/rating1.gif" border="0" alt="{POOR}" /><br /></a></td>
+                <td class="tableb tableb_alternate tableb tableb_alternate_alternate_compact" width="17%" align="center"><a href="{RATE2}" title="{FAIR}" rel="nofollow"><img src="{LOCATION}images/rating2.gif" border="0" alt="{FAIR}" /><br /></a></td>
+                <td class="tableb tableb_alternate tableb tableb_alternate_alternate_compact" width="17%" align="center"><a href="{RATE3}" title="{GOOD}" rel="nofollow"><img src="{LOCATION}images/rating3.gif" border="0" alt="{GOOD}" /><br /></a></td>
+                <td class="tableb tableb_alternate tableb tableb_alternate_alternate_compact" width="17%" align="center"><a href="{RATE4}" title="{EXCELLENT}" rel="nofollow"><img src="{LOCATION}images/rating4.gif" border="0" alt="{EXCELLENT}" /><br /></a></td>
+                <td class="tableb tableb_alternate tableb tableb_alternate_alternate_compact" width="17%" align="center"><a href="{RATE5}" title="{GREAT}" rel="nofollow"><img src="{LOCATION}images/rating5.gif" border="0" alt="{GREAT}" /><br /></a></td>
         </tr>
         <noscript>
         <tr>
-          <td class="tableb_compact" colspan="6" align="center">{JS_WARNING}</td>
+          <td class="tableb tableb_alternate tableb tableb_alternate_alternate_compact" colspan="6" align="center">{JS_WARNING}</td>
         </tr>
         </noscript>
 </table>
@@ -956,7 +956,7 @@ $template_image_comments = <<<EOT
                 </td>
         </tr>
         <tr>
-                <td class="tableb_compact">
+                <td class="tableb tableb_alternate tableb tableb_alternate_alternate_compact">
                         <div id="cbody{MSG_ID}" style="display:block">
                                 {MSG_BODY}
                         </div>
@@ -975,7 +975,7 @@ $template_image_comments = <<<EOT
                                                 <td width="80%">
                                                         <textarea cols="40" rows="2" class="textinput" name="msg_body" onselect="storeCaret_f{MSG_ID}(this);" onclick="storeCaret_f{MSG_ID}(this);" onkeyup="storeCaret_f{MSG_ID}(this);" style="width: 100%;">{MSG_BODY_RAW}</textarea>
                                                 </td>
-                                                <td class="tableb_compact">
+                                                <td class="tableb tableb_alternate tableb tableb_alternate_alternate_compact">
                                                 </td>
                                                 <td>
                                                         <input type="submit" class="comment_button" name="submit" value="{OK}" />
@@ -1005,7 +1005,7 @@ $template_image_comments = <<<EOT
                                                 <td width="100%">
                                                         <textarea cols="40" rows="2" class="textinput" name="msg_body" style="width: 100%;">{MSG_BODY_RAW}</textarea>
                                                 </td>
-                                                <td class="tableb_compact">
+                                                <td class="tableb tableb_alternate tableb tableb_alternate_alternate_compact">
                                                 </td>
                                                 <td>
                                                         <input type="submit" class="comment_button" name="submit" value="{OK}" />
@@ -1042,31 +1042,31 @@ $template_add_your_comment = <<<EOT
 
 <!-- BEGIN user_name_input -->
                                                         <tr>
-                               <td class="tableb_compact">
+                               <td class="tableb tableb_alternate tableb tableb_alternate_alternate_compact">
                                         {NAME}
                                 </td>
-                                <td class="tableb_compact">
+                                <td class="tableb tableb_alternate tableb tableb_alternate_alternate_compact">
                                         <input type="text" class="textinput" name="msg_author" size="10" maxlength="20" value="{USER_NAME}" />
                                 </td>
 <!-- END user_name_input -->
 <!-- BEGIN input_box_smilies -->
-                                <td class="tableb_compact">
+                                <td class="tableb tableb_alternate tableb tableb_alternate_alternate_compact">
                                 {COMMENT}
                                                                 </td>
-                                <td width="100%" class="tableb_compact">
+                                <td width="100%" class="tableb tableb_alternate tableb tableb_alternate_alternate_compact">
                                 <input type="text" class="textinput" id="message" name="msg_body" onselect="storeCaret_post(this);" onclick="storeCaret_post(this);" onkeyup="storeCaret_post(this);" maxlength="{MAX_COM_LENGTH}" style="width: 100%;" />
                                                                 </td>
 <!-- END input_box_smilies -->
 <!-- BEGIN input_box_no_smilies -->
-                                <td class="tableb_compact">
+                                <td class="tableb tableb_alternate tableb tableb_alternate_alternate_compact">
                                 {COMMENT}
                                                                 </td>
-                                <td width="100%" class="tableb_compact">
+                                <td width="100%" class="tableb tableb_alternate tableb tableb_alternate_alternate_compact">
                                 <input type="text" class="textinput" id="message" name="msg_body"  maxlength="{MAX_COM_LENGTH}" style="width: 100%;" />
                                 </td>
 <!-- END input_box_no_smilies -->
 <!-- BEGIN submit -->
-                                <td class="tableb_compact">
+                                <td class="tableb tableb_alternate tableb tableb_alternate_alternate_compact">
                                 <input type="hidden" name="event" value="comment" />
                                 <input type="hidden" name="pid" value="{PIC_ID}" />
                                 <input type="submit" class="comment_button" name="submit" value="{OK}" onclick="return notDefaultUsername(this.form, '{DEFAULT_USERNAME}', '{DEFAULT_USERNAME_MESSAGE}');" />
@@ -1075,10 +1075,10 @@ $template_add_your_comment = <<<EOT
                                                         </tr>
 <!-- BEGIN comment_captcha -->
                                                         <tr>
-                                <td class="tableb_compact" colspan="2">
+                                <td class="tableb tableb_alternate tableb tableb_alternate_alternate_compact" colspan="2">
                                   {CONFIRM}
                                 </td>
-                                <td class="tableb_compact" colspan="2">
+                                <td class="tableb tableb_alternate tableb tableb_alternate_alternate_compact" colspan="2">
                                   <input type="text" name="confirmCode" size="5" maxlength="5" class="textinput" />
                                   <img src="captcha.php" align="middle" border="0" alt="" />
                                 </td>
@@ -1089,14 +1089,14 @@ $template_add_your_comment = <<<EOT
         </tr>
 <!-- BEGIN smilies -->
         <tr>
-                <td width="100%" class="tableb_compact">
+                <td width="100%" class="tableb tableb_alternate tableb tableb_alternate_alternate_compact">
                         {SMILIES}
                 </td>
         </tr>
 <!-- END smilies -->
 <!-- BEGIN login_to_comment -->
         <tr>
-                                <td class="tableb_compact" colspan="2">
+                                <td class="tableb tableb_alternate tableb tableb_alternate_alternate_compact" colspan="2">
                                   {LOGIN_TO_COMMENT}
                                 </td>
         </tr>
@@ -1115,7 +1115,7 @@ EOT;
 $template_cpg_die = <<<EOT
 
         <tr>
-                <td class="tableb" align="center">
+                <td class="tableb tableb_alternate tableb tableb_alternate_alternate" align="center">
                         <span class="cpg_user_message">{MESSAGE}</span>
 <!-- BEGIN file_line -->
                         <br />
@@ -1146,7 +1146,7 @@ EOT;
 $template_msg_box = <<<EOT
 
         <tr>
-                <td class="tableb" align="center">
+                <td class="tableb tableb_alternate tableb tableb_alternate_alternate" align="center">
                         <span class="cpg_user_message">{MESSAGE}</span>
                 </td>
         </tr>
@@ -1410,7 +1410,7 @@ EOT;
 $template_tab_display = array('left_text' => '<td width="100%%" align="left" valign="middle" class="tableh1_compact" style="white-space: nowrap">{LEFT_TEXT}</td>' . "\n",
     'tab_header' => '',
     'tab_trailer' => '',
-    'active_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="tableb_compact">%d</td>',
+    'active_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="tableb tableb_alternate tableb tableb_alternate_alternate_compact">%d</td>',
     'inactive_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}">%d</a></td>' . "\n",
     'inactive_prev_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}">{PREV}</a></td>' . "\n",
     'inactive_next_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}">{NEXT}</a></td>' . "\n",
@@ -1943,7 +1943,7 @@ function theme_display_message_block() {
             ob_end_clean();
             $return .= <<< EOT
             <tr>
-              <td class="tableb" align="center">
+              <td class="tableb tableb_alternate tableb tableb_alternate_alternate" align="center">
                 <div id="cpgMessage" class="cpg_user_message">
                   {$tempMessage}
                 </div>
@@ -2395,7 +2395,7 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
 /******************************************************************************
 ** Section <<<theme_display_film_strip>>> - START
 ******************************************************************************/
-// Added to display flim_strip
+// Function to display the film strip
 function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $pos, $sort_options, $mode = 'thumb', $date='') {
     global $CONFIG, $THEME_DIR;
     global $template_film_strip, $lang_film_strip;
@@ -2557,7 +2557,7 @@ function theme_html_picinfo(&$info)
     $html = '';
 
     $html .= "        <tr><td colspan=\"2\" class=\"tableh2_compact\">{$lang_picinfo['title']}</td></tr>\n";
-    $template = "        <tr><td class=\"tableb_compact\" valign=\"top\" >%s:</td><td class=\"tableb_compact\">%s</td></tr>\n";
+    $template = "        <tr><td class=\"tableb tableb_alternate tableb tableb_alternate_alternate_compact\" valign=\"top\" >%s:</td><td class=\"tableb tableb_alternate tableb tableb_alternate_alternate_compact\">%s</td></tr>\n";
     foreach ($info as $key => $value) $html .= sprintf($template, $key, $value);
 
     return $html;
