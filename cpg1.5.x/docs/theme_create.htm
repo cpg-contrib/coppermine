@@ -20,6 +20,7 @@
 <link rel="stylesheet" type="text/css" href="style.css" media="all" />
 <link rel="stylesheet" type="text/css" href="screen.css" media="screen" />
 <link rel="stylesheet" type="text/css" href="print.css" media="print" />
+<link rel="shortcut icon" href="favicon.ico" />
 <script src="script.js" type="text/javascript"></script>
 </head>
 <body>
@@ -355,104 +356,434 @@ EOT;<br />
 <table border="0" cellspacing="0" cellpadding="0" class="maintable">
   <tr>
     <th valign="top" align="left" class="tableh1">Item</th>
-    <th valign="top" align="left" class="tableh1">Description</th>
     <th valign="top" align="left" class="tableh1">Type</th>
+    <th valign="top" align="left" class="tableh1">Description</th>
     <th valign="top" align="left" class="tableh1">Dependancies</th>
   </tr>
   <tr>
-    <td valign="top" class="tableb">define('THEME_IS_XHTML10_TRANSITIONAL',1);</td>
+    <td valign="top" class="tableb">define('<strong>THEME_HAS_SIDEBAR_GRAPHICS</strong>',1);</td>
+    <td valign="top" class="tableb">constant</td>
+    <td valign="top" class="tableb">The location for the sidebar graphics that compose the tree menu. When the constant is set, the script will be directed to the theme's images folder, subfolder 'sidebar', i.e. themes/yourtheme/images/sidebar/ and look for the sidebar images there. If not defined (default), the sidebar images will be taken from images/sidebar/</td>
     <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">define('<strong>THEME_IS_XHTML10_TRANSITIONAL</strong>',1);</td>
+    <td valign="top" class="tableb tableb_alternate">constant</td>
+    <td valign="top" class="tableb tableb_alternate">If theme is defined as XHTML10_TRANSITIONAL the VANITY footer will be enabled if the theme has a {VANITY} token in its template.html. Don't enable this if you have modified the code! By setting this constant you claim that your custom theme is valid. To actually enable or disable the display of the vanity footer, enable or disable &quot;<a href="configuration.htm#vanity_block">Display the vanity block on themes that are defined as XHTML and CSS compliant</a>&quot; in Coppermine's config.</td>
+    <td valign="top" class="tableb tableb_alternate">-</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">define('<strong>THEME_HAS_RATING_GRAPHICS</strong>',1);</td>
+    <td valign="top" class="tableb">constant</td>
+    <td valign="top" class="tableb">The location for the ratings graphics. When the constant is set, the script will be directed to the theme's images folder, i.e. themes/yourtheme/images/ and look for the rating images there. If not defined (default), the rating images will be taken from the images-folder that resides in Coppermine's root folder.</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">define('<strong>THEME_HAS_NAVBAR_GRAPHICS</strong>',1);</td>
+    <td valign="top" class="tableb tableb_alternate">constant</td>
+    <td valign="top" class="tableb tableb_alternate">The location for the navbar graphics (&quot;ecard&quot;, &quot;slideshow&quot;, &quot;previous&quot;/&quot;next&quot;). When the constant is set, the script will be directed to the theme's images folder, i.e. themes/yourtheme/images/ and look for the navbar images there. If not defined (default), the navbar images will be taken from the images-folder that resides in Coppermine's root folder.</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">define('<strong>THEME_HAS_FILM_STRIP_GRAPHIC</strong>',1);</td>
+    <td valign="top" class="tableb">constant</td>
+    <td valign="top" class="tableb">The location for the film strip graphics. When the constant is set, the script will be directed to the theme's images folder, i.e. themes/yourtheme/images/ and look for the film strip images (tile.gif) there. If not defined (default), the film strip images will be taken from the images-folder that resides in Coppermine's root folder.</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">define('<strong>THEME_HAS_NO_SYS_MENU_BUTTONS</strong>',1);</td>
+    <td valign="top" class="tableb tableb_alternate">constant</td>
+    <td valign="top" class="tableb tableb_alternate">When present the system won't attempt to replace {BUTTONS} in the SYS_MENU template</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">define('<strong>THEME_HAS_NO_SUB_MENU_BUTTONS</strong>',1);</td>
+    <td valign="top" class="tableb">constant</td>
+    <td valign="top" class="tableb">When present the system won't attempt to replace {BUTTONS} in the SUB_MENU template</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">function <strong>assemble_template_buttons</strong>($template_buttons,$buttons)</td>
+    <td valign="top" class="tableb tableb_alternate">function</td>
+    <td valign="top" class="tableb tableb_alternate">Creates buttons from a template using an array of tokens this function is used in this file it needs to be declared before being called.</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">function <strong>addbutton</strong>(&$menu,$href_lnk,$href_title,$href_tgt,$block_id,$spacer)</td>
+    <td valign="top" class="tableb">function</td>
+    <td valign="top" class="tableb">Creates an array of tokens to be used with function assemble_template_buttons this function is used in this file it needs to be declared before being called.</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">function <strong>pageheader</strong>($section, $meta = '')</td>
+    <td valign="top" class="tableb tableb_alternate">function</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">function <strong>pagefooter</strong>()</td>
+    <td valign="top" class="tableb">function</td>
+    <td valign="top" class="tableb">Function for writing a pagefooter</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">function <strong>theme_javascript_head</strong>()</td>
+    <td valign="top" class="tableb tableb_alternate">function</td>
+    <td valign="top" class="tableb tableb_alternate">Function for the JavaScript inside the <tt class="code">&lt;head&gt;</tt>-section</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">function <strong>theme_credits</strong>()</td>
+    <td valign="top" class="tableb">function</td>
+    <td valign="top" class="tableb">Function for the <a href="theme_copyright.htm#theme_copyright">credits-section</a></td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">function <strong>starttable</strong>($width = '-1', $title = '', $title_colspan = '1')</td>
+    <td valign="top" class="tableb tableb_alternate">function</td>
+    <td valign="top" class="tableb tableb_alternate">Function to start a 'standard' table</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">function <strong>endtable</strong>()</td>
+    <td valign="top" class="tableb">function</td>
+    <td valign="top" class="tableb">End standard table</td>
+    <td valign="top" class="tableb">function starttable()</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">function <strong>theme_main_menu</strong>($which)</td>
+    <td valign="top" class="tableb tableb_alternate">function</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">function <strong>theme_admin_mode_menu</strong>()</td>
+    <td valign="top" class="tableb">function</td>
     <td valign="top" class="tableb"></td>
     <td valign="top" class="tableb"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb">define('THEME_HAS_RATING_GRAPHICS',1);</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb tableb_alternate">function <strong>theme_display_message_block</strong>()</td>
+    <td valign="top" class="tableb tableb_alternate">function</td>
+    <td valign="top" class="tableb tableb_alternate">Function for the theme_display_message_block. The message block (not to be confused with the admin menu) will display message carried over from one page to the other and an RSS feed from the coppermine project page for the admin. It's advisable not to change it unless you really know what you're doing. This function composes the individual sections of the block.</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">function <strong>theme_display_cat_list</strong>($breadcrumb, &$cat_data, $statistics)</td>
+    <td valign="top" class="tableb">function</td>
     <td valign="top" class="tableb"></td>
     <td valign="top" class="tableb"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb">define('THEME_HAS_NAVBAR_GRAPHICS',1);</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb tableb_alternate">function <strong>theme_display_breadcrumb</strong>($breadcrumb, &$cat_data)</td>
+    <td valign="top" class="tableb tableb_alternate">function</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">function <strong>theme_display_album_list</strong>(&$alb_list, $nbAlb, $cat, $page, $total_pages)</td>
+    <td valign="top" class="tableb">function</td>
     <td valign="top" class="tableb"></td>
     <td valign="top" class="tableb"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb">define('THEME_HAS_FILM_STRIP_GRAPHIC',1);</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb tableb_alternate">function <strong>theme_display_album_list_cat</strong>(&$alb_list, $nbAlb, $cat, $page, $total_pages)</td>
+    <td valign="top" class="tableb tableb_alternate">function</td>
+    <td valign="top" class="tableb tableb_alternate">Function to display first level Albums of a category</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">function <strong>theme_display_thumbnails</strong>(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $page, $total_pages, $sort_options, $display_tabs, $mode = 'thumb', $date='')</td>
+    <td valign="top" class="tableb">function</td>
     <td valign="top" class="tableb"></td>
     <td valign="top" class="tableb"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb">define('THEME_HAS_FILM_STRIP_GRAPHICS',1);</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb tableb_alternate">function <strong>theme_display_film_strip</strong>(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $pos, $sort_options, $mode = 'thumb', $date='')</td>
+    <td valign="top" class="tableb tableb_alternate">function</td>
+    <td valign="top" class="tableb tableb_alternate">Display film strip</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">function <strong>theme_no_img_to_display</strong>($album_name)</td>
+    <td valign="top" class="tableb">function</td>
     <td valign="top" class="tableb"></td>
     <td valign="top" class="tableb"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb">define('THEME_HAS_NO_SYS_MENU_BUTTONS',1);</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb tableb_alternate">function <strong>theme_display_image</strong>($nav_menu, $picture, $votes, $pic_info, $comments, $film_strip)</td>
+    <td valign="top" class="tableb tableb_alternate">function</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">function <strong>theme_html_picinfo</strong>(&$info)</td>
+    <td valign="top" class="tableb">function</td>
     <td valign="top" class="tableb"></td>
     <td valign="top" class="tableb"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb">define('THEME_HAS_NO_SUB_MENU_BUTTONS',1);</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb tableb_alternate">function <strong>theme_html_picture</strong>()</td>
+    <td valign="top" class="tableb tableb_alternate">function</td>
+    <td valign="top" class="tableb tableb_alternate">Displays a picture</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">function <strong>theme_html_img_nav_menu</strong>()</td>
+    <td valign="top" class="tableb">function</td>
     <td valign="top" class="tableb"></td>
     <td valign="top" class="tableb"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb">function assemble_template_buttons($template_buttons,$buttons)</td>
+    <td valign="top" class="tableb tableb_alternate">function <strong>theme_html_rating_box</strong>()</td>
+    <td valign="top" class="tableb tableb_alternate">function</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">function <strong>theme_html_comments</strong>($pid)</td>
+    <td valign="top" class="tableb">function</td>
+    <td valign="top" class="tableb">Displays comments for a specific picture</td>
     <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">function <strong>theme_slideshow</strong>()</td>
+    <td valign="top" class="tableb tableb_alternate">function</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">function <strong>theme_display_fullsize_pic</strong>()</td>
+    <td valign="top" class="tableb">function</td>
+    <td valign="top" class="tableb">Display the full size image</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">function <strong>theme_vanity</strong>()</td>
+    <td valign="top" class="tableb tableb_alternate">function</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">function <strong>theme_display_bar</strong>($actualValue = 0, maxValue = '100', maxBarSizeInPixels = '400', textColor = 'black', textShadowColor = '', textUnit = '', leftBar = 'red', rightBar = '')</td>
+    <td valign="top" class="tableb">function</td>
+    <td valign="top" class="tableb">Display a bar graph</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">function <strong>theme_page_title</strong>($section)</td>
+    <td valign="top" class="tableb tableb_alternate">function</td>
+    <td valign="top" class="tableb tableb_alternate">Creates the title tag for each page. For the sake of search engine friendliness, the dynamic part $section should come first</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>$template_sys_menu</strong></td>
+    <td valign="top" class="tableb">function</td>
     <td valign="top" class="tableb"></td>
     <td valign="top" class="tableb"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb">function addbutton(&$menu,$href_lnk,$href_title,$href_tgt,$block_id,$spacer)</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb tableb_alternate"><strong>$template_sub_menu</strong></td>
+    <td valign="top" class="tableb tableb_alternate">variable</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>$template_sys_menu_spacer</strong></td>
+    <td valign="top" class="tableb">variable</td>
     <td valign="top" class="tableb"></td>
     <td valign="top" class="tableb"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb">$template_sys_menu</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb tableb_alternate"><strong>$template_sys_menu_button</strong></td>
+    <td valign="top" class="tableb tableb_alternate">variable</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>$template_sub_menu_spacer</strong></td>
+    <td valign="top" class="tableb">variable</td>
     <td valign="top" class="tableb"></td>
     <td valign="top" class="tableb"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb">$template_sub_menu</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb tableb_alternate"><strong>$template_sub_menu_button</strong></td>
+    <td valign="top" class="tableb tableb_alternate">variable</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>$template_gallery_admin_menu</strong></td>
+    <td valign="top" class="tableb">variable</td>
     <td valign="top" class="tableb"></td>
     <td valign="top" class="tableb"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb">$template_sys_menu_spacer</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb tableb_alternate"><strong>$template_user_admin_menu</strong></td>
+    <td valign="top" class="tableb tableb_alternate">variable</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>$template_cat_list</strong></td>
+    <td valign="top" class="tableb">variable</td>
     <td valign="top" class="tableb"></td>
     <td valign="top" class="tableb"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb">$template_sys_menu_button</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb tableb_alternate"><strong>$template_breadcrumb</strong></td>
+    <td valign="top" class="tableb tableb_alternate">variable</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>$template_album_list</strong></td>
+    <td valign="top" class="tableb">variable</td>
     <td valign="top" class="tableb"></td>
     <td valign="top" class="tableb"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb">$template_sub_menu_spacer</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb tableb_alternate"><strong>$template_film_strip</strong></td>
+    <td valign="top" class="tableb tableb_alternate">variable</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>$template_album_list_cat</strong></td>
+    <td valign="top" class="tableb">variable</td>
     <td valign="top" class="tableb"></td>
     <td valign="top" class="tableb"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb">$template_sub_menu_button</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb tableb_alternate"><strong>$template_album_admin_menu</strong></td>
+    <td valign="top" class="tableb tableb_alternate">variable</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>$template_thumb_view_title_row</strong></td>
+    <td valign="top" class="tableb">variable</td>
     <td valign="top" class="tableb"></td>
     <td valign="top" class="tableb"></td>
   </tr>
   <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>$template_fav_thumb_view_title_row</strong></td>
+    <td valign="top" class="tableb tableb_alternate">variable</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>$template_thumbnail_view</strong></td>
+    <td valign="top" class="tableb">variable</td>
     <td valign="top" class="tableb"></td>
     <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>$template_no_img_to_display</strong></td>
+    <td valign="top" class="tableb tableb_alternate">variable</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>$template_user_list_info_box</strong></td>
+    <td valign="top" class="tableb">variable</td>
     <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>$template_img_navbar</strong></td>
+    <td valign="top" class="tableb tableb_alternate">variable</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>$template_display_media</strong></td>
+    <td valign="top" class="tableb">variable</td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>$template_image_rating</strong></td>
+    <td valign="top" class="tableb tableb_alternate">variable</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>$template_image_comments</strong></td>
+    <td valign="top" class="tableb">variable</td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>$template_add_your_comment</strong></td>
+    <td valign="top" class="tableb tableb_alternate">variable</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>$template_cpg_die</strong></td>
+    <td valign="top" class="tableb">variable</td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>$template_msg_box</strong></td>
+    <td valign="top" class="tableb tableb_alternate">variable</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>$template_ecard</strong></td>
+    <td valign="top" class="tableb">variable</td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>$template_ecard_plaintext</strong></td>
+    <td valign="top" class="tableb tableb_alternate">variable</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>$template_report</strong></td>
+    <td valign="top" class="tableb">variable</td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>$template_report_plaintext</strong></td>
+    <td valign="top" class="tableb tableb_alternate">variable</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>$template_report_comment</strong></td>
+    <td valign="top" class="tableb">variable</td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>$template_report_comment_email</strong></td>
+    <td valign="top" class="tableb tableb_alternate">variable</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>$template_tab_display</strong></td>
+    <td valign="top" class="tableb">variable</td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>$template_vanity</strong></td>
+    <td valign="top" class="tableb tableb_alternate">variable</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>$template_sidebar</strong></td>
+    <td valign="top" class="tableb">variable</td>
+    <td valign="top" class="tableb">HTML template for sidebar</td>
     <td valign="top" class="tableb"></td>
   </tr>
 </table>
