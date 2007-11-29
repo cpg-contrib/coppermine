@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-11-29 [O] Hiding empty IPTC fields as suggested in thread 48672 {GauGau}
 2007-11-22 [A] Added Serbian language file (user contribution) {GauGau}
 2007-11-15 [B] Corrected spelling of 'Favourites' in British English lang file {Nibbler}
 2007-11-15 [B] British English now recognised correctly {Nibbler}

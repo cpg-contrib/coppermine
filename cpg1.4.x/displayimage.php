@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.4.14
   $Source$
@@ -51,12 +51,12 @@ if($CONFIG['read_iptc_data'] ){
 # Sanitize the data - to fix the XSS vulnerability - Aditya
 function sanitize_data(&$value, $key)
 {
-	if (is_array($value)) {
-		array_walk($value, 'sanitize_data');
-	} else {
-		# sanitize against sql/html injection; trim any nongraphical non-ASCII character:
-		$value = trim(htmlentities(strip_tags(trim($value,"\x7f..\xff\x0..\x1f")),ENT_QUOTES));
-	}
+        if (is_array($value)) {
+                array_walk($value, 'sanitize_data');
+        } else {
+                # sanitize against sql/html injection; trim any nongraphical non-ASCII character:
+                $value = trim(htmlentities(strip_tags(trim($value,"\x7f..\xff\x0..\x1f")),ENT_QUOTES));
+        }
 }
 function html_picture_menu()
 {
@@ -152,25 +152,25 @@ function html_picinfo()
     if ($CONFIG['read_exif_data']) $exif = exif_parse_file($path_to_pic);
 
     if (isset($exif) && is_array($exif)) {
-		array_walk($exif, 'sanitize_data');
+                array_walk($exif, 'sanitize_data');
         $info = array_merge($info,$exif);
     }
 
     if ($CONFIG['read_iptc_data']) $iptc = get_IPTC($path_to_pic);
 
     if (isset($iptc) && is_array($iptc)) {
-		array_walk($iptc, 'sanitize_data');
-        if (isset($iptc['Title'])) $info[$lang_picinfo['iptcTitle']] = $iptc['Title'];
-        if (isset($iptc['Copyright'])) $info[$lang_picinfo['iptcCopyright']] = $iptc['Copyright'];
+        array_walk($iptc, 'sanitize_data');
+        if (!empty($iptc['Title'])) $info[$lang_picinfo['iptcTitle']] = $iptc['Title'];
+        if (!empty($iptc['Copyright'])) $info[$lang_picinfo['iptcCopyright']] = $iptc['Copyright'];
         if (!empty($iptc['Keywords'])) $info[$lang_picinfo['iptcKeywords']] = implode(' ',$iptc['Keywords']);
-        if (isset($iptc['Category'])) $info[$lang_picinfo['iptcCategory']] = $iptc['Category'];
+        if (!empty($iptc['Category'])) $info[$lang_picinfo['iptcCategory']] = $iptc['Category'];
         if (!empty($iptc['SubCategories'])) $info[$lang_picinfo['iptcSubCategories']] = implode(' ',$iptc['SubCategories']);
     }
     // Create the absolute URL for display in info
     $info[$lang_picinfo['URL']] = '<a href="' . $CONFIG["ecards_more_pic_target"] . (substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') .basename($_SERVER['PHP_SELF']) . "?pos=-$CURRENT_PIC_DATA[pid]" . '" >' . $CONFIG["ecards_more_pic_target"] . (substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') . basename($_SERVER['PHP_SELF']) . "?pos=-$CURRENT_PIC_DATA[pid]" . '</a>';
     // with subdomains the variable is $_SERVER["SERVER_NAME"] does not return the right value instead of using a new config variable I reused $CONFIG["ecards_more_pic_target"] no trailing slash in the configure
     // Create the add to fav link
-	$ref = $REFERER ? "&amp;ref=$REFERER" : '';
+        $ref = $REFERER ? "&amp;ref=$REFERER" : '';
     if (!in_array($CURRENT_PIC_DATA['pid'], $FAVPICS)) {
         $info[$lang_picinfo['addFavPhrase']] = "<a href=\"addfav.php?pid=" . $CURRENT_PIC_DATA['pid'] . $ref . "\" >" . $lang_picinfo['addFav'] . '</a>';
     } else {
