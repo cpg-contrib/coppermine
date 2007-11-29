@@ -10,11 +10,11 @@
   as published by the Free Software Foundation.
   
   ********************************************
-  Coppermine version: 1.4.14
-  $Source$
-  $Revision: 3654 $
-  $Author: gaugau $
-  $Date: 2007-07-02 14:49:45 +0200 (Mo, 02 Jul 2007) $
+  Coppermine version: 1.4.15
+  $HeadURL$
+  $Revision$
+  $Author$
+  $Date$
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}

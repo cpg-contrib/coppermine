@@ -10,14 +10,14 @@
   as published by the Free Software Foundation.
   
   ********************************************
-  Coppermine version: 1.4.14
-  $Source$
-  $Revision: 3918 $
+  Coppermine version: 1.4.15
+  $HeadURL$
+  $Revision$
   $Author:$
-  $Date: 2007/08/14 09:30:48 $
+  $Date$
 **********************************************/
 // ------------------------------------------------------------------------- //
-// $Id: catalan.php,v 1.1 2007/08/14 09:30:48 aginard Exp $
+// $Id$
 // ------------------------------------------------------------------------- //
 
 if (!defined('IN_COPPERMINE')) { die('No s\'ha pogut trobar el Coppermine ...');}

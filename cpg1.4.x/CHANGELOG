@@ -5,9 +5,9 @@ Copyright (c) 2003-2007 Coppermine Dev Team
 v1.1 originally written by Gregory DEMAR
 
 This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 2 of the License, or
-(at your option) any later version.
+it under the terms of the GNU General Public License version 3
+as published by the Free Software Foundation.
+
 ********************************************
 Coppermine version: 1.4.14
 $Source$
@@ -26,6 +26,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-11-29 [M] Populated SVN-property "HeadURL" {GauGau}
+2007-11-29 [M] Updated version count from cpg1.4.14 to cpg1.4.15 in subversion repository as a preparation for a possible future release {GauGau}
 2007-11-29 [O] Hiding empty IPTC fields as suggested in thread 48672 {GauGau}
 2007-11-22 [A] Added Serbian language file (user contribution) {GauGau}
 2007-11-15 [B] Corrected spelling of 'Favourites' in British English lang file {Nibbler}

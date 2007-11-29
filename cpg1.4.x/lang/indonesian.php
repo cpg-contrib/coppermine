@@ -10,11 +10,11 @@
   as published by the Free Software Foundation.
   
   ********************************************
-  Coppermine version: 1.4.14
+  Coppermine version: 1.4.15
   $Source: /cvsroot/coppermine/stable/lang/indonesian.php,v $
-  $Revision: 3125 $
-  $Author: gaugau $
-  $Date: 2006-06-16 08:48:03 +0200 (Fr, 16 Jun 2006) $
+  $Revision$
+  $Author$
+  $Date$
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}

@@ -10,11 +10,11 @@
   as published by the Free Software Foundation.
   
   ********************************************
-  Coppermine version: 1.4.14
-  $Source$
-  $Revision: 3660 $
-  $Author: gaugau $
-  $Date: 2006/03/06 06:52:32 $
+  Coppermine version: 1.4.15
+  $HeadURL$
+  $Revision$
+  $Author$
+  $Date$
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) { die('Не в Coppermine...');}

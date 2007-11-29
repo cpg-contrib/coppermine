@@ -11,9 +11,9 @@
   
 ********************************************
 
-Coppermine version: 1.4.14
+Coppermine version: 1.4.15
 
-  $Source$
+  $HeadURL$
   $Revision$
   $Author$
   $Date$

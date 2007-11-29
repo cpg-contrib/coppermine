@@ -10,11 +10,11 @@
   as published by the Free Software Foundation.
   
   ********************************************
-  Coppermine version: 1.4.14
+  Coppermine version: 1.4.15
   $Source: /cvsroot/coppermine/stable/lang/english.php,v $
-  $Revision: 3918 $
-  $Author: gaugau $
-  $Date: 2006/03/02 08:23:48 $
+  $Revision$
+  $Author$
+  $Date$
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
