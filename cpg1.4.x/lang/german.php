@@ -1786,7 +1786,7 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'picture' => 'Datei',
   'pic_title' => 'Datei-Titel',
   'description' => 'Datei-Beschreibung',
-  'keywords' => 'Stichworte (Trennung mit Komma)<br /><a href="#" onClick="return MM_openBrWindow(\'keyword_select.php\',\'selectKey\',\'width=250, height=400, scrollbars=yes,toolbar=no,status=yes,resizable=yes\')">von Liste einfügen</a>', //cpg1.4
+  'keywords' => 'Stichworte (Trennung mit Leerzeichen)<br /><a href="#" onClick="return MM_openBrWindow(\'keyword_select.php\',\'selectKey\',\'width=250, height=400, scrollbars=yes,toolbar=no,status=yes,resizable=yes\')">von Liste einfügen</a>', //cpg1.4
   'keywords_sel' =>'Wähle Schlagwort', //cpg1.4
   'err_no_alb_uploadables' => 'Leider gibt es kein Album, in das Du Bilder hochladen darfst',
   'place_instr_1' => 'Bitte Dateien jetzt den Alben zuordnen.  Es können jetzt zusätzliche Angaben zu den Dateien gemacht werden.',
