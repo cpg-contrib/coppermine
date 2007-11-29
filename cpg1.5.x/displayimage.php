@@ -196,11 +196,11 @@ EOT;
     }
 
     if (isset($iptc) && is_array($iptc)) {
-                array_walk($iptc, 'sanitize_data');
-        if (isset($iptc['Title'])) $info[$lang_picinfo['iptcTitle']] = $iptc['Title'];
-        if (isset($iptc['Copyright'])) $info[$lang_picinfo['iptcCopyright']] = $iptc['Copyright'];
+        array_walk($iptc, 'sanitize_data');
+        if (!empty($iptc['Title'])) $info[$lang_picinfo['iptcTitle']] = $iptc['Title'];
+        if (!empty($iptc['Copyright'])) $info[$lang_picinfo['iptcCopyright']] = $iptc['Copyright'];
         if (!empty($iptc['Keywords'])) $info[$lang_picinfo['iptcKeywords']] = implode(' ',$iptc['Keywords']);
-        if (isset($iptc['Category'])) $info[$lang_picinfo['iptcCategory']] = $iptc['Category'];
+        if (!empty($iptc['Category'])) $info[$lang_picinfo['iptcCategory']] = $iptc['Category'];
         if (!empty($iptc['SubCategories'])) $info[$lang_picinfo['iptcSubCategories']] = implode(' ',$iptc['SubCategories']);
     }
     // Create the absolute URL for display in info
@@ -261,7 +261,7 @@ $cat = $superCage->get->getInt('cat');
 if ($superCage->get->testAlpha('album')) {
     $album = $superCage->get->getAlpha('album');
 } else {
-	$album = $superCage->get->getInt('album');
+        $album = $superCage->get->getInt('album');
 }
 
 

@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-11-29 [O] Hiding empty IPTC fields as suggested in thread 48672 {GauGau}
 2007-11-28 [D] Added list of configurable items in theme.php to documentation {GauGau}
 2007-11-28 [O] Added default favicon (can of course be removed at will) {GauGau}
 2007-11-27 [O] Added new versioncheck scheme based on XML files (work in progress) {GauGau}
