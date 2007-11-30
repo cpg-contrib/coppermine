@@ -85,13 +85,14 @@ $tasks =  array(
         );
 
 //$action = (isset($_REQUEST['action'])) ? $_REQUEST['action'] : '';
-if ($superCage->post->keyExists('action')) {
-    $action = $superCage->post->getInt('action');
-} elseif ($superCage->get->keyExists('action')) {
-    $action = $superCage->get->getInt('action');
+if ($superCage->post->keyExists('action') && $matches = $superCage->post->getMatched('action','/^[A-Za-z_]+$/')) {
+    $action = $matches[0];
+} elseif ($superCage->get->keyExists('action')&& $matches = $superCage->get->getMatched('action','/^[A-Za-z_]+$/')) {
+    $action = $matches[0];
 } else {
 	$action = '';
 }
+
 if (array_key_exists($action, $tasks)){
         call_user_func($action);
         echo "<br /><a href=\"util.php\">{$lang_util_php['back']}</a>";
