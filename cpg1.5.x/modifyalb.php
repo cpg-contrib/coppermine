@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
@@ -26,13 +26,10 @@ if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) {
     cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 }
 
-/**
- * Clean up GPC and other Globals here
- */
-if (isset($_GET['album'])) {
-  $CLEAN['album'] = (int)$_GET['album'];
+if ($superCage->get->keyExists('album')){
+    $CLEAN['album'] = $superCage->get->getInt('album');
 } else {
-  $CLEAN['album'] = 0;
+    $CLEAN['album'] = 0;
 }
 
 // Type 0 => input
@@ -468,7 +465,7 @@ function create_form(&$data)
 
 function alb_list_box()
 {
-    global $CONFIG, $CLEAN, $cpg_udb; //, $PHP_SELF;
+    global $CONFIG, $CLEAN, $cpg_udb, $CPG_PHP_SELF; //, $PHP_SELF;
 
     if (GALLERY_ADMIN_MODE) {
         $result = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < '" . FIRST_USER_CAT . "' ORDER BY title");
@@ -490,7 +487,7 @@ function alb_list_box()
     }
 
     if (count($rowset)) {
-        $lb = "<select name=\"album_listbox\" class=\"listbox\" onChange=\"if(this.options[this.selectedIndex].value) window.location.href='{$_SERVER['PHP_SELF']}?album='+this.options[this.selectedIndex].value;\">\n";
+        $lb = "<select name=\"album_listbox\" class=\"listbox\" onChange=\"if(this.options[this.selectedIndex].value) window.location.href='{$CPG_PHP_SELF}?album='+this.options[this.selectedIndex].value;\">\n";
         foreach ($rowset as $row) {
             $selected = ($row['aid'] == $CLEAN['album']) ? "SELECTED" : "";
             $lb .= "        <option value=\"" . $row['aid'] . "\" $selected>" . $row['title'] . "</option>\n";
