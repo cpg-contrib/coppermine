@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.4.15
   $HeadURL$
-  $Revision: 4090 $
-  $Author: gaugau $
-  $Date:  2007-11-29 12:56:01 UTC (Thu, Nov 29 2007) $
+  $Revision$
+  $Author$
+  $Date$
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) { die('Pole Coppermine\'is...');}
