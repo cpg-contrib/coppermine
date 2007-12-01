@@ -944,6 +944,8 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
         global $album_date_fmt, $lastcom_date_fmt, $lastup_date_fmt, $lasthit_date_fmt, $cat;
         global $lang_get_pic_data, $lang_meta_album_names, $lang_errors;
 
+        $superCage = Inspekt::makeSuperCage();
+
         $sort_array = array(
           'na' => 'filename ASC',
           'nd' => 'filename DESC',
@@ -1376,7 +1378,8 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 break;
 
         case 'datebrowse': // Browsing by uploading date
-            $date = isset($_GET['date']) ? cpgValidateDate($_GET['date']) : null;
+            //Using getRaw(). The date is sanitized in the called function
+            $date = $superCage->get->keyExists('date') ? cpgValidateDate($superCage->get->getRaw('date')) : null;
             $album_name = $lang_common['date'] . ': '. $date;
             $rowset = array();
             $query = "SELECT COUNT(pid) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND substring(from_unixtime(ctime),1,10) = '".substr($date,0,10)."' $META_ALBUM_SET";
@@ -1896,6 +1899,8 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
         global $CONFIG, $AUTHORIZED, $USER;
         global $album_date_fmt, $lang_display_thumbnails, $lang_errors, $lang_byte_units, $lang_common;
 
+        $superCage = Inspekt::makeSuperCage();
+
         $thumb_per_page = $thumbcols * $thumbrows;
         $lower_limit = ($page-1) * $thumb_per_page;
 
@@ -1942,7 +1947,7 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
                                 $USER['liv_a'] = array();
                         }
                         // Add 1 to album hit counter
-                        if (!USER_IS_ADMIN && !in_array($album, $USER['liv_a']) && isset($_COOKIE[$CONFIG['cookie_name'] . '_data'])) {
+                        if (!USER_IS_ADMIN && !in_array($album, $USER['liv_a']) && $superCage->cookie->keyExists($CONFIG['cookie_name'] . '_data')) {
                                 add_album_hit($album);
                                 if (count($USER['liv_a']) > 4) array_shift($USER['liv_a']);
                                 array_push($USER['liv_a'], $album);
@@ -1950,7 +1955,8 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
                         }
                 }
 
-                $date = isset($_GET['date']) ? cpgValidateDate($_GET['date']) : null;
+                //Using getRaw(). The date is sanitized in the called function.
+                $date = $superCage->get->keyExists('date') ? cpgValidateDate($superCage->get->getRaw('date')) : null;
                 theme_display_thumbnails($thumb_list, $thumb_count, $album_name, $album, $cat, $page, $total_pages, is_numeric($album), $display_tabs, 'thumb', $date);
         } else {
                 theme_no_img_to_display($album_name);
@@ -2054,6 +2060,9 @@ function display_film_strip($album, $cat, $pos)
 {
         global $CONFIG, $AUTHORIZED;
         global $album_date_fmt, $lang_display_thumbnails, $lang_errors, $lang_byte_units, $lang_common;
+
+        $superCage = Inspekt::makeSuperCage();
+
         $max_item=$CONFIG['max_film_strip_items'];
         //$thumb_per_page = $pos+$CONFIG['max_film_strip_items'];
         $thumb_per_page = $max_item*2;
@@ -2124,7 +2133,9 @@ function display_film_strip($album, $cat, $pos)
                         ######################################
 
                 }
-                $date = isset($_GET['date']) ? cpgValidateDate($_GET['date']) : null;
+
+                //Using getRaw(). The date is sanitized in the called function.
+                $date = $superCage->get->keyExists('date') ? cpgValidateDate($superCage->get->getRaw('date')) : null;
                 return theme_display_film_strip($thumb_list, $thumb_count, $album_name, $album, $cat, $pos, is_numeric($album), 'thumb', $date);
         } else {
                 theme_no_img_to_display($album_name);
@@ -2335,7 +2346,8 @@ function& cpg_lang_var($varname,$index=null) {
 
 function cpg_debug_output()
 {
-    global $USER, $USER_DATA, $META_ALBUM_SET, $ALBUM_SET, $CONFIG, $cpg_time_start, $query_stats, $queries, $lang_cpg_debug_output;
+    global $USER, $USER_DATA, $META_ALBUM_SET, $ALBUM_SET, $CONFIG, $cpg_time_start, $query_stats, $queries, $lang_cpg_debug_output, $CPG_PHP_SELF;
+
         $time_end = cpgGetMicroTime();
         $time = round($time_end - $cpg_time_start, 3);
 
@@ -2345,7 +2357,7 @@ function cpg_debug_output()
         $debug_underline = '&#0010;------------------&#0010;';
         $debug_separate = '&#0010;==========================&#0010;';
         $debug_toggle_link = ' <a href="javascript:;" onclick="show_section(\'debug_output_rows\');" class="admin_menu" id="debug_output_toggle" style="display:none;">'.$lang_cpg_debug_output['show_hide'].'</a>';
-        echo '<form name="debug" action="'.$_SERVER['PHP_SELF'].'" id="debug">';
+        echo '<form name="debug" action="'.$CPG_PHP_SELF.'" id="debug">';
         starttable('100%', $lang_cpg_debug_output['debug_info']. $debug_toggle_link,2);
         //echo '<div name="debug_output_rows" id="debug_output_rows" style="display:block;">';
         echo '<tr><td align="center" valign="top" width="100%" colspan="2">';
@@ -2671,9 +2683,9 @@ function languageSelect($parameter) {
      //   $cpgCurrentLanguage = $USER['lang'];
      //   }
      //has the language been set to something else on the previous page?
-     if (isset($_GET['lang'])){
+     /*if (isset($_GET['lang'])){
         $cpgCurrentLanguage = $_GET['lang'];
-        }
+        }*/
      //get the url and all vars except $lang
      $matches = $superCage->server->getMatched('SCRIPT_NAME', '/^[a-zA-Z0-9_\/.]+$/');
 
@@ -3282,7 +3294,7 @@ function cpg_get_webroot_path() {
     //$path_from_serverroot[] = $HTTP_SERVER_VARS["PATH_TRANSLATED"];
 
     // we should be able to tell the current script's filename by removing everything before and including the last slash in $PHP_SELF
-    $filename = ltrim(strrchr($_SERVER['PHP_SELF'], '/'), '/');
+    $filename = ltrim(strrchr($CPG_PHP_SELF, '/'), '/');
 
     // let's eliminate all those vars that don't contain the filename (and replace the funny notation from windows machines)
     foreach($path_from_serverroot as $key) {
@@ -3336,7 +3348,11 @@ function cpg_get_webroot_path() {
 
 function get_search_query_terms($engine = 'google') {
   global $s, $s_array;
-  $referer = urldecode($_SERVER[HTTP_REFERER]);
+
+  $superCage = Inspekt::makeSuperCage();
+
+  //Using getRaw(). $referer is sanitized below wherever needed
+  $referer = urldecode($superCage->server->getRaw('HTTP_REFERER'));
   $query_array = array();
   switch ($engine) {
     case 'google':
@@ -3365,7 +3381,10 @@ function get_search_query_terms($engine = 'google') {
 
 function is_referer_search_engine($engine = 'google') {
   //$siteurl = get_settings('home');
-  $referer = urldecode($_SERVER['HTTP_REFERER']);
+  $superCage = Inspekt::makeSuperCage();
+
+  //Using getRaw(). $referer is sanitized below wherever needed
+  $referer = urldecode($superCage->server->getRaw('HTTP_REFERER'));
     //echo "referer is: $referer<br />";
   if ( ! $engine ) {
     return 0;
@@ -3727,15 +3746,41 @@ function cpgRedirectPage($targetAddress = '', $caption = '', $message = '', $cou
 * @return $return
 **/
 function cpgGetScriptNameParams($exception = '') {
+    $superCage = Inspekt::makeSuperCage();
+
     if(!is_array($exception)) {
         $exception = array(0 => $exception);
     }
-    $return = $_SERVER["SCRIPT_NAME"]."?";
+
+    /*$return = $_SERVER["SCRIPT_NAME"]."?";
     foreach ($_GET as $key => $value) {
        if (!in_array($key,$exception)) {
            $return .= $key . "=" . $value . "&amp;";
        }
-    }
+    }*/
+
+    $matches = $superCage->server->getMatched('SCRIPT_NAME', '/^[a-zA-Z0-9_\/.]+$/');
+
+     if ($matches) {
+        $return = $matches[0] . '?';
+     } else {
+        $return = 'index.php';
+     }
+
+     $matches = $superCage->server->getMatched('QUERY_STRING', '/^[a-zA-Z0-9&=_\/.]+$/');
+     if ($matches) {
+        $queryString = explode('&', $matches[0]);
+     } else {
+        $queryString = array();
+     }
+
+     foreach ($queryString as $val) {
+        list($key, $value) = explode('=', $val);
+        if (!in_array($key,$exception)) {
+            $return .= $key . "=" . $value . "&";
+        }
+     }
+
     return $return;
 }
 
