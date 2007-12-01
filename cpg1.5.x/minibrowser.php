@@ -63,7 +63,7 @@ if ($folder == '' && $startfolder != '') {
 }*/
 if ($superCage->get->keyExists('parentform') && $matches = $superCage->get->getMatched('parentform','/^[0-9A-Za-z\/_.-]+$/')) {
 		$parentform = rawurldecode($matches[0]);
-} elseif ($superCage->post->keyExists('parentform') && $matches = $superCage->post->getMatched('folder','/^[0-9A-Za-z\/_.-]+$/')) {
+} elseif ($superCage->post->keyExists('parentform') && $matches = $superCage->post->getMatched('parentform','/^[0-9A-Za-z\/_.-]+$/')) {
 		$parentform = rawurldecode($matches[0]);
 } else {
 		$parentform = '';
