@@ -243,8 +243,14 @@ if (!GALLERY_ADMIN_MODE) {
 // Process theme selection if present in URI or in user profile
 if ($matches = $superCage->get->getMatched('theme', '/^[A-Za-z0-9_]+$/')) {
     $USER['theme'] = $CONFIG['theme'] = $matches[0];
-} else {
+}/* else {
 	unset($USER['theme']);
+}*/
+
+if (isset($USER['theme']) && !strstr($USER['theme'], '/') && is_dir('themes/' . $USER['theme'])) {
+    $CONFIG['theme'] = strtr($USER['theme'], '$/\\:*?"\'<>|`', '____________');
+} else {
+    unset($USER['theme']);
 }
 
 if (!file_exists("themes/{$CONFIG['theme']}/theme.php")) {
@@ -252,22 +258,37 @@ if (!file_exists("themes/{$CONFIG['theme']}/theme.php")) {
 }
 
 require "themes/{$CONFIG['theme']}/theme.php";
-require "include/themes.inc.php";  //All Fallback Theme Templates and Functions
-$THEME_DIR = "themes/{$CONFIG['theme']}/";
 
+require "include/themes.inc.php";  //All Fallback Theme Templates and Functions
+
+$THEME_DIR = "themes/{$CONFIG['theme']}/";
 
 // Process language selection if present in URI or in user profile or try
 // autodetection if default charset is utf-8
 $CONFIG['default_lang'] = $CONFIG['lang'];      // Save default language
-if ($matches = $superCage->get->getMatched('lang', '/^[a-z0-9_-]+$/')) {
+if ($superCage->get->getRaw('lang') && $matches = $superCage->get->getMatched('lang', '/^[a-z0-9_-]+$/')) {
     $USER['lang'] = $CONFIG['lang'] = $matches[0];
-} else {
+}/* else {
 	unset($USER['lang']);
-}
+}*/
 
-if ($CONFIG['charset'] == 'utf-8')
+if (isset($USER['lang']) && !strstr($USER['lang'], '/') && file_exists('lang/' . $USER['lang'] . '.php'))
+{
+    $CONFIG['default_lang'] = $CONFIG['lang'];          // Save default language
+    $CONFIG['lang'] = strtr($USER['lang'], '$/\\:*?"\'<>|`', '____________');
+}
+elseif ($CONFIG['charset'] == 'utf-8')
 {
     include('include/select_lang.inc.php');
+    if (file_exists('lang/' . $USER['lang'] . '.php'))
+    {
+        $CONFIG['default_lang'] = $CONFIG['lang'];      // Save default language
+        $CONFIG['lang'] = $USER['lang'];
+    }
+}
+else
+{
+    unset($USER['lang']);
 }
 
 if (isset($CONFIG['default_lang']) && ($CONFIG['default_lang']==$CONFIG['lang']))

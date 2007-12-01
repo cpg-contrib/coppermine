@@ -803,7 +803,8 @@ function get_private_album_set($aid_str="")
         if ($superCage->cookie->keyExists($CONFIG['cookie_name']."_albpw") && empty($aid_str)) {
 
           //Using getRaw(). The data is sanitized in the foreach running just below
-          $alb_pw = unserialize($superCage->cookie->getRaw($CONFIG['cookie_name']."_albpw"));
+          $tmpStr = $superCage->cookie->getRaw($CONFIG['cookie_name']."_albpw");
+          $alb_pw = unserialize(stripslashes($tmpStr));
 
           foreach($alb_pw as $aid => $value) {
             $aid_str .= (int)$aid . ",";
@@ -2647,7 +2648,8 @@ $pieces = cpg_phpinfo_conf($search);
  **/
 
 function languageSelect($parameter) {
-    global $CONFIG, $lang_language_selection, $lang_common;
+    global $CONFIG, $lang_language_selection, $lang_common, $CPG_PHP_SELF;
+    $superCage = Inspekt::makeSuperCage();
     $return= '';
     $lineBreak = "\n";
 
@@ -2673,11 +2675,34 @@ function languageSelect($parameter) {
         $cpgCurrentLanguage = $_GET['lang'];
         }
      //get the url and all vars except $lang
-     $cpgChangeUrl = $_SERVER["SCRIPT_NAME"]."?";
-     foreach ($_GET as $key => $value) {
-        if ($key!="lang"){$cpgChangeUrl.= $key . "=" . $value . "&amp;";}
+     $matches = $superCage->server->getMatched('SCRIPT_NAME', '/^[a-zA-Z0-9_\/.]+$/');
+
+     if ($matches) {
+        //$cpgChangeUrl =  _SERVER["SCRIPT_NAME"]."?";
+        $cpgChangeUrl = $matches[0] . '?';
+     } else {
+        $cpgChangeUrl = 'index.php';
      }
-     $cpgChangeUrl.= 'lang=';
+
+     $matches = $superCage->server->getMatched('QUERY_STRING', '/^[a-zA-Z0-9&=_\/.]+$/');
+     if ($matches) {
+        $queryString = explode('&', $matches[0]);
+     } else {
+     	$queryString = array();
+     }
+
+     foreach ($queryString as $val) {
+        list($key, $value) = explode('=', $val);
+        if ($key != "lang") {
+            $cpgChangeUrl .= $key . "=" . $value . "&";
+        }
+     }
+
+     /*foreach ($_GET as $key => $value) {
+        if ($key!="lang"){$cpgChangeUrl.= $key . "=" . $value . "&amp;";}
+     }*/
+
+     $cpgChangeUrl .= 'lang=';
 
 
     // get an array of english and native language names and flags
@@ -2791,7 +2816,7 @@ function languageSelect($parameter) {
            $return = 'not yet implemented';
            break;
        default:
-           $return.= $lineBreak . '<div id="cpgChooseLanguageWrapper">' . $lineBreak . '<form name="cpgChooseLanguage" id="cpgChooseLanguage" action="' . $_SERVER['PHP_SELF'] . '" method="get" class="inline">' . $lineBreak;
+           $return.= $lineBreak . '<div id="cpgChooseLanguageWrapper">' . $lineBreak . '<form name="cpgChooseLanguage" id="cpgChooseLanguage" action="' . $CPG_PHP_SELF . '" method="get" class="inline">' . $lineBreak;
            $return.= '<select name="lang" class="listbox_lang" onchange="if (this.options[this.selectedIndex].value) window.location.href=\'' . $cpgChangeUrl . '\' + this.options[this.selectedIndex].value;">' . $lineBreak;
            $return.='<option selected="selected">' . $lang_language_selection['choose_language'] . '</option>' . $lineBreak;
            foreach ($lang_array as $language) {
@@ -2832,60 +2857,87 @@ function languageSelect($parameter) {
 
 function themeSelect($parameter)
 {
-global $CONFIG,$lang_theme_selection, $lang_common;
-$return= '';
-$lineBreak = "\n";
+    global $CONFIG,$lang_theme_selection, $lang_common, $CPG_PHP_SELF;
 
-if ($CONFIG['theme_list'] == 0){
-    return;
-}
+    $superCage = Inspekt::makeSuperCage();
 
-// get the current theme
-//get the url and all vars except $theme
-$cpgCurrentTheme = $_SERVER["SCRIPT_NAME"]."?";
-foreach ($_GET as $key => $value) {
-    if ($key!="theme"){$cpgCurrentTheme.= $key . "=" . $value . "&amp;";}
-}
-$cpgCurrentTheme.="theme=";
+    $return= '';
+    $lineBreak = "\n";
 
-// get list of available languages
-    $value = $CONFIG['theme'];
-    $theme_dir = 'themes/';
-
-    $dir = opendir($theme_dir);
-    while ($file = readdir($dir)) {
-        if (is_dir($theme_dir . $file) && $file != "." && $file != ".." && $file != '.svn' && $file != 'sample') {
-            $theme_array[] = $file;
-        }
+    if ($CONFIG['theme_list'] == 0){
+        return;
     }
-    closedir($dir);
 
-    natcasesort($theme_array);
+    // get the current theme
+    //get the url and all vars except $theme
+    /*$cpgCurrentTheme = $_SERVER["SCRIPT_NAME"]."?";
+    foreach ($_GET as $key => $value) {
+        if ($key!="theme"){$cpgCurrentTheme.= $key . "=" . $value . "&amp;";}
+    }*/
 
-//start the output
-switch ($parameter) {
-   case 'table':
-       $return = 'not yet implemented';
-       break;
-   default:
-       $return.= $lineBreak . '<div id="cpgChooseThemeWrapper">' . $lineBreak . '<form name="cpgChooseTheme" id="cpgChooseTheme" action="' . $_SERVER['PHP_SELF'] . '" method="get" class="inline">' . $lineBreak;
-       $return.= '<select name="theme" class="listbox_lang" onchange="if (this.options[this.selectedIndex].value) window.location.href=\'' . $cpgCurrentTheme . '\' + this.options[this.selectedIndex].value;">' . $lineBreak;
-       $return.='<option selected="selected">' . $lang_theme_selection['choose_theme'] . '</option>';
-       foreach ($theme_array as $theme) {
-           $return.= '<option value="' . $theme . '">' . strtr(ucfirst($theme), '_', ' ') . ($value == $theme ? '*' : ''). '</option>' . $lineBreak;
+    $matches = $superCage->server->getMatched('SCRIPT_NAME', '/^[a-zA-Z0-9_\/.]+$/');
+
+     if ($matches) {
+        //$cpgChangeUrl =  _SERVER["SCRIPT_NAME"]."?";
+        $cpgCurrentTheme = $matches[0] . '?';
+     } else {
+        $cpgCurrentTheme = 'index.php';
+     }
+
+     $matches = $superCage->server->getMatched('QUERY_STRING', '/^[a-zA-Z0-9&=_\/.]+$/');
+     if ($matches) {
+        $queryString = explode('&', $matches[0]);
+     } else {
+        $queryString = array();
+     }
+
+     foreach ($queryString as $val) {
+        list($key, $value) = explode('=', $val);
+        if ($key != "theme") {
+            $cpgCurrentTheme .= $key . "=" . $value . "&";
+        }
+     }
+
+    $cpgCurrentTheme .= "theme=";
+
+    // get list of available languages
+        $value = $CONFIG['theme'];
+        $theme_dir = 'themes/';
+
+        $dir = opendir($theme_dir);
+        while ($file = readdir($dir)) {
+            if (is_dir($theme_dir . $file) && $file != "." && $file != ".." && $file != '.svn' && $file != 'sample') {
+                $theme_array[] = $file;
+            }
+        }
+        closedir($dir);
+
+        natcasesort($theme_array);
+
+    //start the output
+    switch ($parameter) {
+       case 'table':
+           $return = 'not yet implemented';
+           break;
+       default:
+           $return.= $lineBreak . '<div id="cpgChooseThemeWrapper">' . $lineBreak . '<form name="cpgChooseTheme" id="cpgChooseTheme" action="' . $CPG_PHP_SELF . '" method="get" class="inline">' . $lineBreak;
+           $return.= '<select name="theme" class="listbox_lang" onchange="if (this.options[this.selectedIndex].value) window.location.href=\'' . $cpgCurrentTheme . '\' + this.options[this.selectedIndex].value;">' . $lineBreak;
+           $return.='<option selected="selected">' . $lang_theme_selection['choose_theme'] . '</option>';
+           foreach ($theme_array as $theme) {
+               $return.= '<option value="' . $theme . '">' . strtr(ucfirst($theme), '_', ' ') . ($value == $theme ? '*' : ''). '</option>' . $lineBreak;
+           }
+              if ($CONFIG['theme_reset'] == 1){
+                  $return.=  '<option value="xxx">' . $lang_theme_selection['reset_theme'] . '</option>' . $lineBreak;
+              }
+              $return.=  '</select>' . $lineBreak;
+              $return.=  '<noscript>'. $lineBreak;
+              $return.=  '<input type="submit" name="theme_submit" value="'.$lang_common['go'].'" class="listbox_lang" />&nbsp;'. $lineBreak;
+              $return.=  '</noscript>'. $lineBreak;
+              $return.=  '</form>' . $lineBreak;
+              $return.=  '</div>' . $lineBreak;
        }
-          if ($CONFIG['theme_reset'] == 1){
-              $return.=  '<option value="xxx">' . $lang_theme_selection['reset_theme'] . '</option>' . $lineBreak;
-          }
-          $return.=  '</select>' . $lineBreak;
-          $return.=  '<noscript>'. $lineBreak;
-          $return.=  '<input type="submit" name="theme_submit" value="'.$lang_common['go'].'" class="listbox_lang" />&nbsp;'. $lineBreak;
-          $return.=  '</noscript>'. $lineBreak;
-          $return.=  '</form>' . $lineBreak;
-          $return.=  '</div>' . $lineBreak;
-   }
 
-return $return;
+    return $return;
 }
 
 /**
