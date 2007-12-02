@@ -54,7 +54,7 @@ if (!USER_ID && $CONFIG['allow_unlogged_access'] == 0) {
 
 if ($CONFIG['enable_smilies']) include("include/smilies.inc.php");
 
-function thumb_get_subcat_data($parent, &$album_set_array, $level)
+function thumb_get_subcat_data($parent, &$album_set_array)
 {
     global $CONFIG;
 
@@ -67,8 +67,8 @@ function thumb_get_subcat_data($parent, &$album_set_array, $level)
             while ($row = mysql_fetch_array($result)) {
                 $album_set_array[] = $row['aid'];
             } // while
-        }
-        if ($level > 1) thumb_get_subcat_data($subcat['cid'], $album_set_array, $level -1);
+            thumb_get_subcat_data($subcat['cid'], $album_set_array);
+        }   
     }
 }
 
