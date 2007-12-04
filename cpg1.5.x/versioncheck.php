@@ -307,7 +307,8 @@ if ($displayOption_array['output'] != 'create') {
     //print_r($tempArray);
     //print '<hr />';
     $file_data_array[$file_data_key]['folder'] = $tempArray['path'];
-    //$file_data_array[$file_data_key]['pathBits'] = explode('/', $tempArray['path']);
+    //determine the number of parent folders
+    $file_data_array[$file_data_key]['folderDepth'] = count(explode('/', rtrim($tempArray['path'], '/')));
     if (strlen($file_data_array[$file_data_key]['folder']) > $maxLength_array['folder']) {
       $maxLength_array['folder'] = strlen($file_data_array[$file_data_key]['folder']);
     }
@@ -326,21 +327,21 @@ if ($displayOption_array['output'] != 'create') {
     if ($file_data_array[$file_data_key]['file'] == '') { // we have a folder here
       $file_data_array[$file_data_key]['readwrite'] = cpg_is_writable($file_data_array[$file_data_key]['path']);
       $file_data_array[$file_data_key]['txt_folderfile'] = $lang_versioncheck_php['folder'];
-      $file_data_array[$file_data_key]['icon'] = '<img src="'.$extensionMatrix_array['folder'].'" border="0" width="16" height="16" alt="" />';
+      $file_data_array[$file_data_key]['icon'] = '<img src="'.$extensionMatrix_array['folder'].'" border="0" width="16" height="16" alt="" style="margin-left:'. (16 * ($file_data_array[$file_data_key]['folderDepth'] - 1)) . 'px" />';
     } else { // we have a file here --- start
       // determine the extension
       $file_data_array[$file_data_key]['extension'] = ltrim(substr($file_data_array[$file_data_key]['file'],strrpos($file_data_array[$file_data_key]['file'],'.')),'.');
       if (array_key_exists($file_data_array[$file_data_key]['extension'],$extensionMatrix_array) == TRUE) {
-        $file_data_array[$file_data_key]['icon'] = '<img src="'.$extensionMatrix_array[$file_data_array[$file_data_key]['extension']].'" border="0" width="16" height="16" alt="'.$file_data_array[$file_data_key]['extension'].'" />';
+        $file_data_array[$file_data_key]['icon'] = '<img src="'.$extensionMatrix_array[$file_data_array[$file_data_key]['extension']].'" border="0" width="16" height="16" alt="'.$file_data_array[$file_data_key]['extension'].'" style="margin-left:'. (16 * $file_data_array[$file_data_key]['folderDepth']) . 'px" />';
       } else {
         if (in_array($file_data_array[$file_data_key]['extension'],$imageFileExtensions_array)) {
           if ($displayOption_array['display_images'] == 1) {
             $file_data_array[$file_data_key]['icon'] = '1';
           } else {
-            $file_data_array[$file_data_key]['icon'] = '<img src="images/extensions/'.$file_data_array[$file_data_key]['extension'].'.gif" border="0" width="16" height="16" alt="'.$file_data_array[$file_data_key]['extension'].'" />';
+            $file_data_array[$file_data_key]['icon'] = '<img src="images/extensions/'.$file_data_array[$file_data_key]['extension'].'.gif" border="0" width="16" height="16" alt="'.$file_data_array[$file_data_key]['extension'].'" style="margin-left:'. (16 * $file_data_array[$file_data_key]['folderDepth']) . 'px" />';
           }
         } else {
-          $file_data_array[$file_data_key]['icon'] = '<img src="'.$extensionMatrix_array['unknown'].'" border="0" width="16" height="16" alt="'.$file_data_array[$file_data_key]['extension'].'" />';
+          $file_data_array[$file_data_key]['icon'] = '<img src="'.$extensionMatrix_array['unknown'].'" border="0" width="16" height="16" alt="'.$file_data_array[$file_data_key]['extension'].'" style="margin-left:'. (16 * $file_data_array[$file_data_key]['folderDepth']) . 'px" />';
         }
       }
       if (is_readable($file_data_values['fullpath']) == TRUE) { // check if the file is readable/writable --- start
@@ -650,7 +651,7 @@ EOT;
       $file_data_values['link_end'] = '</a>';
     }
     if ($file_data_values['icon'] == 1) {
-      $file_data_values['icon'] = '<a href="javascript:;" onclick="MM_openBrWindow(\''.$file_data_values['fullpath'].'\',\''.uniqid(rand()).'\',\'scrollbars=yes,toolbar=no,status=no,resizable=yes,width=200,height=100\')"><img src="'.$file_data_values['fullpath'].'" border="0" width="16" height="16" alt="" /></a>';
+      $file_data_values['icon'] = '<a href="javascript:;" onclick="MM_openBrWindow(\''.$file_data_values['fullpath'].'\',\''.uniqid(rand()).'\',\'scrollbars=yes,toolbar=no,status=no,resizable=yes,width=200,height=100\')"><img src="'.$file_data_values['fullpath'].'" border="0" width="16" height="16" alt="" style="margin-left:'. (16 * $file_data_array[$file_data_key]['folderDepth']) . 'px" /></a>';
     }
     $important['path'] = '';
     $important['missing'] = '';
