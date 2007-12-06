@@ -2423,6 +2423,9 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
     foreach($thumb_list as $thumb) {
         $i++;
         if ($mode == 'thumb') {
+            if ($thumb['pos'] == $pos) {
+            	$thumb['image'] = str_replace('class="image"', 'class="image middlethumb"', $thumb['image']);
+            }
             // determine if thumbnail link targets should open in a pop-up
             if ($CONFIG['thumbnail_to_fullsize'] == 1) { // code for full-size pop-up
                 $target = 'javascript:;" onClick="MM_openBrWindow(\'displayimage.php?pid=' . $thumb['pid'] . '&fullsize=1\',\'' . uniqid(rand()) . '\',\'scrollbars=yes,toolbar=no,status=no,resizable=yes,width=' . ((int)$thumb['pwidth']+(int)$CONFIG['fullsize_padding_x']) .  ',height=' .   ((int)$thumb['pheight']+(int)$CONFIG['fullsize_padding_y']). '\');';

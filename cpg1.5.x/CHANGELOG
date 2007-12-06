@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-12-06 [A] Added separate CSS class for filmstrip thumb that represents actual image (thread id 48803) {GauGau}
 2007-12-02 [B] Adding xmlns to html tag to fix XHTML compliance {Nibbler}
 2007-12-02 [B] Fixed subcategory depth issue {Nibbler}
 2007-11-29 [O] Hiding empty IPTC fields as suggested in thread 48672 {GauGau}

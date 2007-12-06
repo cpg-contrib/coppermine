@@ -491,6 +491,10 @@ a:hover {
         margin: 2px;
 }
 
+img.middlethumb {
+    border: 5px solid blue;
+}
+
 /* pseudo-classes for image links */
 a:link .image{
         border-style: solid;

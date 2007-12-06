@@ -595,6 +595,10 @@ a:hover {
         margin: 2px;
 }
 
+img.middlethumb {
+    border: 5px solid blue;
+}
+
 .display_media {
         padding-top: 3px;
         padding-right: 10px;
