@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
@@ -131,16 +131,22 @@ function set_config($name, $value)
 function register_changes()
 {
     global $CONFIG;
-    if (count($_POST) > 0) {
+    $superCage = Inspekt::makeSuperCage();
 
-        if (isset($_POST['check']))
+    //if (count($_POST) > 0) {
+		if ($superCage->post->keyExists('check') ||$superCage->post->keyExists('convert')) {
+        if ($superCage->post->keyExists('check')) {
             $doconvert = 0;
-        else if (isset($_POST['convert']))
+        } else if ($superCage->post->keyExists('convert')) {
             $doconvert = 1;
+        }
+
         if (isset($doconvert)) // ambiguous! it means: if a button has been pushed!
         {
-            $charsetin = $_POST['charset_in'];
-            $charsetout = $_POST['charset_out'];
+            //$charsetin = $_POST['charset_in'];
+            $charsetin = $superCage->post->getEscaped('charset_in');
+            //$charsetout = $_POST['charset_out'];
+            $charsetout = $superCage->post->getEscaped('charset_out');
 
             // elements of the database that need converting
             // the first element in the array is the id name of the table
@@ -191,7 +197,7 @@ function register_changes()
                 echo '</table>';
             if (!$doconvert)
             {
-                echo  '<form action="'.$_SERVER['PHP_SELF'].'" method="post" name="cpgform" id="cpgform">';
+                echo  '<form action="'.$CPG_PHP_SELF.'" method="post" name="cpgform" id="cpgform">';
                 echo '<input type="hidden" name="charset_in" value="'.$charsetin."\" />\n";
 echo '<input type="hidden" name="charset_out" value="'.$charsetout."\" />\n";
 echo <<<EOT
@@ -299,7 +305,7 @@ echo <<<EOT
 EOT;
 
 echo "<fieldset><legend>Charset Converter</legend>";
-echo '<form action="'.$_SERVER['PHP_SELF'].'" method="post" name="cpgform" id="cpgform">';
+echo '<form action="'.$CPG_PHP_SELF.'" method="post" name="cpgform" id="cpgform">';
 echo "Convert from ";
 form_charset('charset_in', $thecharset);
 echo " to ";
