@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
@@ -21,10 +21,13 @@ define('IN_COPPERMINE', true);
 define('EDITPICS_PHP', true);
 require('include/init.inc.php');
 
-if (isset($_REQUEST['id'])) {
-        $pid = (int)$_REQUEST['id'];
+
+if ($superCage->get->keyExists('id')) {
+    $pid = $superCage->get->getInt('id');
+} elseif ($superCage->post->keyExists('id')){
+	$pid = $superCage->post->getInt('id');
 } else {
-        $pid = -1;
+	$pid = -1;
 }
 
 function process_post_data()
@@ -32,25 +35,38 @@ function process_post_data()
     global $CONFIG, $mb_utf8_regex;
     global $lang_errors, $lang_editpics_php;
 
-    $pid          = (int)$_POST['id'];
-    $aid          = (int)$_POST['aid'];
-    $pwidth       = (int)$_POST['pwidth'];
-    $pheight      = (int)$_POST['pheight'];
-    $title        = $_POST['title'];
-    $caption      = $_POST['caption'];
-    $keywords     = utf_replace($_POST['keywords']);
-    $user1        = $_POST['user1'];
-    $user2        = $_POST['user2'];
-    $user3        = $_POST['user3'];
-    $user4        = $_POST['user4'];
+    $superCage = Inspekt::makeSuperCage();
 
-    $galleryicon = (int) $_POST['galleryicon'];
+    $pid = $superCage->post->getInt('id');
+    $aid = $superCage->post->getInt('aid');
+    $pwight = $superCage->post->getInt('pwidth');
+    $pheight = $superCage->post->getInt('pheight');
+    $title = cpgSanitizeUserTextInput($superCage->post->getEscaped('title'));
+    $caption = cpgSanitizeUserTextInput($superCage->post->getEscaped('caption'));
+    $keywords = cpgSanitizeUserTextInput(utf_replace($superCage->post->getEscaped('keywords')));
+    $user1 = cpgSanitizeUserTextInput($superCage->post->getEscaped('user1'));
+    $user2 = cpgSanitizeUserTextInput($superCage->post->getEscaped('user2'));
+    $user3 = cpgSanitizeUserTextInput($superCage->post->getEscaped('user3'));
+    $user4 = cpgSanitizeUserTextInput($superCage->post->getEscaped('user4'));
+
+    $galleryicon = $superCage->post->getInt('galleryicon');
     $isgalleryicon = ($galleryicon===$pid);
 
-    $read_exif    = isset($_POST['read_exif']);
-    $reset_vcount = isset($_POST['reset_vcount']);
-    $reset_votes  = isset($_POST['reset_votes']);
-    $del_comments = isset($_POST['del_comments']) || $delete;
+    if ($superCage->post->keyExists('read_exif')){
+    	$read_exif = $superCage->post->getInt('read_exif');
+    }
+
+    if ($superCage->post->keyExists('reset_vcount')){
+		$reset_vcount = $superCage->post->getInt('reset_vcount');
+    }
+
+    if ($superCage->post->keyExists('reset_votes')){
+		$reset_votes = $superCage->post->getInt('reset_votes');
+    }
+
+    if ($superCage->post->keyExists('del_comments')){
+		$del_comments = $superCage->post->getInt('del_comments') || $delete;
+    }
 
     $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} AS p, {$CONFIG['TABLE_ALBUMS']} AS a WHERE a.aid = p.aid AND pid = '$pid'");
     if (!mysql_num_rows($result)) cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
@@ -64,24 +80,24 @@ function process_post_data()
         $update .= ", pwidth = ".$pwidth;
         $update .= ", pheight = ".$pheight;
     }
-    $update .= ", title = '".addslashes($title)."'";
-    $update .= ", caption = '".addslashes($caption)."'";
-    $update .= ", keywords = '".addslashes($keywords)."'";
+    $update .= ", title = '".$title."'";
+    $update .= ", caption = '".$caption."'";
+    $update .= ", keywords = '".$keywords."'";
 
     if (GALLERY_ADMIN_MODE) {
-      $approved = $_POST['approved'];
-      $update .= ", approved = '".addslashes($approved)."'";
+      $approved = $superCage->post->getAlpha('approved');
+      $update .= ", approved = '".$approved."'";
     }
 
-    $update .= ", user1 = '".addslashes($user1)."'";
-    $update .= ", user2 = '".addslashes($user2)."'";
-    $update .= ", user3 = '".addslashes($user3)."'";
-    $update .= ", user4 = '".addslashes($user4)."'";
+    $update .= ", user1 = '".$user1."'";
+    $update .= ", user2 = '".$user2."'";
+    $update .= ", user3 = '".$user3."'";
+    $update .= ", user4 = '".$user4."'";
 
     if ($isgalleryicon && $pic['category']>FIRST_USER_CAT) {
             $sql = 'update '.$CONFIG['TABLE_PICTURES'].' set galleryicon=0 where owner_id='.$pic['owner_id'].';';
             cpg_db_query($sql);
-            $update .= ", galleryicon = ".addslashes($galleryicon);
+            $update .= ", galleryicon = ".$galleryicon;
     }
 
     if ($reset_vcount) {
@@ -94,6 +110,7 @@ function process_post_data()
     }
     if ($read_exif) {
         $filepath = urldecode(get_pic_url($pic, 'fullsize'));
+
         // If read exif info again is checked then we will just delete the entry from exif table. The new exif information will automatically be read when someone views the image.
         $query = "DELETE FROM {$CONFIG['TABLE_EXIF']} WHERE filename = '$filepath'";
         cpg_db_query($query);
@@ -109,8 +126,11 @@ function process_post_data()
     }
 
     // rename a file
-    if ($_POST['filename'] != $pic['filename'])
-    {
+    if ($superCage->post->keyExists('filename') && $matches = $superCage->post->getMatched('filename','/^[0-9A-Za-z\/_.-]+$/')){
+    		$post_filename = $matches[0];
+    }
+
+    if ($post_filename != $pic['filename']) {
         if($CONFIG['thumb_use']=='ht' && $pic['pheight'] > $CONFIG['picture_width']) {
             $condition = true;
         } elseif ($CONFIG['thumb_use']=='wd' && $pic['pwidth'] > $CONFIG['picture_width']){
@@ -138,7 +158,7 @@ function process_post_data()
         foreach ($prefices as $prefix)
         {
             $oldname = urldecode(get_pic_url($pic, $prefix));
-            $filename = replace_forbidden($_POST['filename']);
+            $filename = replace_forbidden($post_filename);
             $newname = str_replace($pic['filename'], $filename, $oldname);
 
             $old_mime = cpg_get_type($oldname);
@@ -215,8 +235,7 @@ EOT;
 EOT;
 }
 
-if (isset($_POST['submitDescription'])) process_post_data();
-
+if ($superCage->post->keyExists('submitDescription')) process_post_data();
 $result = cpg_db_query("SELECT *, p.title AS title, p.votes AS votes FROM {$CONFIG['TABLE_PICTURES']} AS p, {$CONFIG['TABLE_ALBUMS']} AS a WHERE a.aid = p.aid AND pid = '$pid'");
 $CURRENT_PIC = mysql_fetch_array($result);
 mysql_free_result($result);
