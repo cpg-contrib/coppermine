@@ -303,6 +303,24 @@ function cpg_db_fetch_row($result)
 }
 
 /**************************************************************************
+   Sanitization functions
+ **************************************************************************/
+
+/**
+ * cpgSanitizeUserTextInput()
+ *
+ * Function to sanitize the data which cannot be directly sanitized with Inspekt
+ *
+ * @param string $string
+ * @return string Return sanitized data
+ */
+function cpgSanitizeUserTextInput($string)
+{
+	//TODO: Add some sanitization code
+    return $string;
+}
+
+/**************************************************************************
    Utilities functions
  **************************************************************************/
 
