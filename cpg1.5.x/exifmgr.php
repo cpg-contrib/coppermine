@@ -32,10 +32,13 @@ $exifRawData = explode ("|",$exif_info);
 $exifCurrentData = explode ("|",$CONFIG['show_which_exif']);
 
 //If the form is submitted to save the data
-if (isset($_POST['save'])) {
+//if (isset($_POST['save'])) {
+if ($superCage->post->keyExists('save')){
   $str = "";
   foreach ($exifRawData as $val) {
-    if (in_array($val, $_POST['exif_tags'])) {
+    //if (in_array($val, $_POST['exif_tags'])) {
+    $exif_tags = $superCage->post->getEscaped('exif_tags');
+    if (in_array($val, $exif_tags )){
       $str .= "1|";
     } else {
       $str .= "0|";
