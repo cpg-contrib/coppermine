@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-12-08 [B] The CSS used for middlethumb class for filmstrip was not working. Fixed it (related to thread 48803) {Abbas}
 2007-12-06 [A] Added separate CSS class for filmstrip thumb that represents actual image (thread id 48803) {GauGau}
 2007-12-02 [B] Adding xmlns to html tag to fix XHTML compliance {Nibbler}
 2007-12-02 [B] Fixed subcategory depth issue {Nibbler}

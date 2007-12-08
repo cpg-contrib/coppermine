@@ -467,10 +467,6 @@ a:hover {
         margin: 2px;
 }
 
-img.middlethumb {
-    border: 5px solid blue;
-}
-
 /* pseudo-classes for image links */
 a:link .image{
         border-style: solid;
@@ -505,6 +501,11 @@ a:active .image{
         border-width:1px;
         border-color: #000000;
         margin: 2px;
+}
+
+/* pseudo-classes for middlethumb links */
+a:link .middlethumb,a:visited .middlethumb,a:focus .middlethumb,a:hover .middlethumb,a:active .middlethumb{
+		border: 5px solid blue;
 }
 
 .imageborder {
