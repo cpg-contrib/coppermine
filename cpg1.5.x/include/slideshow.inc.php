@@ -16,6 +16,8 @@
   $LastChangedBy$
   $Date$
 **********************************************/
+
+if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 ?>
 
 <script language="JavaScript" type="text/JavaScript">
