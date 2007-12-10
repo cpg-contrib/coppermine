@@ -128,11 +128,7 @@ if ($superCage->post->keyExists('restore_config')) { // user has chosen to facto
   foreach ($config_data as $config_section_key => $config_section_value) { // Loop through the config fields to check posted values for validity -- start
     foreach ($config_section_value as $adminDataKey => $adminDataValue) {
       if ($superCage->post->keyExists('update_config')) {
-        /**
-         * Using getRaw() as each value is checked below. Also at this stage we don't know what kind of value
-         * we are going to get.
-         */
-        $evaluate_value = $superCage->post->getRaw($adminDataKey);
+        $evaluate_value = $superCage->post->getEscaped($adminDataKey);
       } else {
       	$evaluate_value = $CONFIG[$adminDataKey];
       }
