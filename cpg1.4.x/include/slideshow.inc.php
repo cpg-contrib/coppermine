@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.4.15
   $HeadURL$
@@ -16,6 +16,8 @@
   $Author$
   $Date$
 **********************************************/
+
+if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 ?>
 
 <script language="JavaScript" type="text/JavaScript">

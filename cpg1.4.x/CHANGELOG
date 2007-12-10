@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-12-02 [S] Added code to remove 2 security issues reported by Janek Vind via email and discussed in topic 48890 {Aditya}
 2007-12-02 [B] Adding xmlns to html tag to fix XHTML compliance {Nibbler}
 2007-12-02 [B] Fixed subcategory depth issue {Nibbler}
 2007-11-30 [A] Added Estonian language file (user contribution) {GauGau}

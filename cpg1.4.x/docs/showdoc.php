@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.4.15
   $HeadURL$
@@ -36,6 +36,12 @@ if ($base != '') {
 $header = @unserialize(@base64_decode($header));
 $text = @unserialize(@base64_decode($text));
 }
+
+// Do some cleanup. Taken from init
+$HTML_SUBST = array('&' => '&amp;', '"' => '&quot;', '<' => '&lt;', '>' => '&gt;', '%26' => '&amp;', '%22' => '&quot;', '%3C' => '&lt;', '%3E' => '&gt;','%27' => '&#39;', "'" => '&#39;');
+
+$text = strtr(stripslashes($text), $HTML_SUBST);
+$header = strtr(stripslashes($header), $HTML_SUBST);
 
 if ($close != 1) {
 $close_link = '<br />&nbsp;<br /><div align="center"><a href="#" class="admin_menu" onclick="window.close();">Close</a><br />&nbsp;</div>';
