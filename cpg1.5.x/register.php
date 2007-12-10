@@ -134,12 +134,18 @@ EOT;
             break;
 
           case 'input' :
-              if (isset($_POST[$element[1]])) {
+              /*if (isset($_POST[$element[1]])) {
                   $value = $_POST[$element[1]];
               } else {
                   $value = '';
+              }*/
+              if ($superCage->post->keyExists($element[1])) {
+                  $value = $superCage->post->getEscaped($element[1]);
+              } else {
+                  $value = '';
               }
-              if ($element[2]) echo <<<EOT
+              if ($element[2]) {
+                echo <<<EOT
           <tr>
               <td width="40%" class="tableb"  height="25">
                           {$element[2]}
@@ -150,6 +156,7 @@ EOT;
           </tr>
 
 EOT;
+              }
             break;
 
           case 'radio' :
@@ -198,12 +205,18 @@ EOT;
             break;
 
           case 'textarea' :
-              if (isset($_POST[$element[1]])) {
+              /*if (isset($_POST[$element[1]])) {
                   $value = $_POST[$element[1]];
               } else {
                   $value = '';
+              }*/
+              if ($superCage->post->keyExists($element[1])) {
+                  $value = $superCage->post->getEscaped($element[1]);
+              } else {
+                  $value = '';
               }
-            if ($element[2]) echo <<<EOT
+            if ($element[2]) {
+                echo <<<EOT
           <tr>
               <td width="40%" class="tableb"  height="25">
                           {$element[2]}
@@ -215,6 +228,7 @@ EOT;
 
 
 EOT;
+              }
             break;
 
           case 'password' :
