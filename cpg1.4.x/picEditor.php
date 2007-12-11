@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.4.15
   $HeadURL$
@@ -125,8 +125,8 @@ if ($_GET['id']){
 
    if ($newimage){
       $imgObj = new imageObject($img_dir,$newimage);
-      if ($_POST['quality']){
-                      $imgObj->quality = $_POST['quality'];
+      if ((int)$_POST['quality']){
+                      $imgObj->quality = (int)$_POST['quality'];
         }
 
       if ($imgObj->imgRes){
@@ -134,8 +134,8 @@ if ($_GET['id']){
                   $imgObj = $imgObj->cropImage($_POST['clipval']);
           }
 
-          if ($_POST['angle']<>0){
-                  $imgObj = $imgObj->rotateImage($_POST['angle']);
+          if ((int)$_POST['angle']<>0){
+                  $imgObj = $imgObj->rotateImage((int)$_POST['angle']);
           }
 
 

@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.4.15
   $HeadURL$
@@ -76,25 +76,27 @@ class imageObject{
 
              $output = array();
 
-                                 /*
-                                * Hack for working with ImageMagick on WIndows even if IM is installed in C:\Program Files.
-                                * Also the options for -crop should not have space in between them.
-                                * By Aditya Mooley <aditya@sanisoft.com>
-                                */
-                                if (eregi("win",getenv('OS'))) {
-                                    $imgFile = str_replace("'","\"" ,$imgFile );
-                                         $cmd = "\"".str_replace("\\","/", $CONFIG['impath'])."convert\" -quality {$this->quality} {$CONFIG['im_options']} -crop {$new_w}x{$new_h}+{$clip_left}+{$clip_top} ".str_replace("\\","/" ,$imgFile )." ".str_replace("\\","/" ,$imgFile );
-                                         exec ("\"$cmd\"", $output, $retval);
-                                } else {
-                                    $cmd = "{$CONFIG['impath']}convert -quality {$this->quality} {$CONFIG['im_options']} -crop {$new_w}x{$new_h}+{$clip_left}+{$clip_top} $imgFile $imgFile";
-                                         exec ($cmd, $output, $retval);
-                                }
-                                 //$cmd = "{$CONFIG['impath']}convert -quality {$this->quality} {$CONFIG['im_options']} -crop '{$new_w}x{$new_h} +{$clip_left} +{$clip_top}' $imgFile $imgFile";
+            /*
+            * Hack for working with ImageMagick on WIndows even if IM is installed in C:\Program Files.
+            * Also the options for -crop should not have space in between them.
+            * By Aditya Mooley <aditya@sanisoft.com>
+            */
+            if (eregi("win",getenv('OS'))) {
+                $imgFile = str_replace("'","\"" ,$imgFile );
+                $cmd = "\"".str_replace("\\","/", $CONFIG['impath'])."convert\" -quality {$this->quality} {$CONFIG['im_options']} -crop {$new_w}x{$new_h}+{$clip_left}+{$clip_top} ".str_replace("\\","/" ,$imgFile )." ".str_replace("\\","/" ,$imgFile );
+                $cmd = escapeshellarg($cmd);
+                exec ("\"$cmd\"", $output, $retval);
+            } else {
+                $cmd = "{$CONFIG['impath']}convert -quality {$this->quality} {$CONFIG['im_options']} -crop {$new_w}x{$new_h}+{$clip_left}+{$clip_top} $imgFile $imgFile";
+                $cmd = escapeshellarg($cmd);
+                exec ($cmd, $output, $retval);
+            }
+                //$cmd = "{$CONFIG['impath']}convert -quality {$this->quality} {$CONFIG['im_options']} -crop '{$new_w}x{$new_h} +{$clip_left} +{$clip_top}' $imgFile $imgFile";
              //exec ($cmd, $output, $retval);
 
              //To Do check for errors in execution etc
 
-                 // Call the constructor again to repopulate the dimensions etc
+             // Call the constructor again to repopulate the dimensions etc
              $this->imageObject($this->directory,$this->filename);
 
              return $this;
@@ -104,23 +106,26 @@ class imageObject{
          function rotateImage(&$angle){
 
              global $CONFIG;
-                                 $imgFile = escapeshellarg("$this->directory$this->filename");
+
+             $imgFile = escapeshellarg("$this->directory$this->filename");
 
              $output = array();
 
-                                 /*
-                                * Hack for working with ImageMagick on WIndows even if IM is installed in C:\Program Files.
-                                * By Aditya Mooley <aditya@sanisoft.com>
-                                */
+           /*
+            * Hack for working with ImageMagick on WIndows even if IM is installed in C:\Program Files.
+            * By Aditya Mooley <aditya@sanisoft.com>
+            */
 
-                                if (eregi("win",getenv('OS'))) {
-                                    $imgFile = str_replace("'","\"" ,$imgFile );
-                                         $cmd = "\"".str_replace("\\","/", $CONFIG['impath'])."convert\" -quality {$this->quality} {$CONFIG['im_options']} -rotate $angle ".str_replace("\\","/" ,$imgFile )." ".str_replace("\\","/" ,$imgFile );
-                                         exec ("\"$cmd\"", $output, $retval);
-                                } else {
-                                    $cmd = "{$CONFIG['impath']}convert -quality {$this->quality} {$CONFIG['im_options']} -rotate $angle $imgFile $imgFile";
-                                         exec ($cmd, $output, $retval);
-                                }
+            if (eregi("win",getenv('OS'))) {
+                $imgFile = str_replace("'","\"" ,$imgFile );
+                $cmd = "\"".str_replace("\\","/", $CONFIG['impath'])."convert\" -quality {$this->quality} {$CONFIG['im_options']} -rotate $angle ".str_replace("\\","/" ,$imgFile )." ".str_replace("\\","/" ,$imgFile );
+                $cmd = escapeshellarg($cmd);
+                exec ("\"$cmd\"", $output, $retval);
+            } else {
+                $cmd = "{$CONFIG['impath']}convert -quality {$this->quality} {$CONFIG['im_options']} -rotate $angle $imgFile $imgFile";
+                $cmd = escapeshellarg($cmd);
+                exec ($cmd, $output, $retval);
+            }
              //$cmd = "{$CONFIG['impath']}convert -quality {$this->quality} {$CONFIG['im_options']} -rotate '$angle' $imgFile $imgFile";
              //exec ($cmd, $output, $retval);
 
@@ -129,29 +134,30 @@ class imageObject{
              // Call the constructor again to repopulate the dimensions etc
              $this->imageObject($this->directory,$this->filename);
              return $this;
-
          }
-
 
          function resizeImage($new_w=0,$new_h=0){
 
              global $CONFIG;
-                                 $imgFile = escapeshellarg("$this->directory$this->filename");
+
+             $imgFile = escapeshellarg("$this->directory$this->filename");
 
              $output = array();
 
-                                 /*
-                                * Hack for working with ImageMagick on WIndows even if IM is installed in C:\Program Files.
-                                * By Aditya Mooley <aditya@sanisoft.com>
-                                */
-                                if (eregi("win",getenv('OS'))) {
-                                    $imgFile = str_replace("'","\"" ,$imgFile );
-                                         $cmd = "\"".str_replace("\\","/", $CONFIG['impath'])."convert\" -quality {$this->quality} {$CONFIG['im_options']} -geometry {$new_w}x{$new_h} ".str_replace("\\","/" ,$imgFile )." ".str_replace("\\","/" ,$imgFile );
-                                         exec ("\"$cmd\"", $output, $retval);
-                                } else {
-                                    $cmd = "{$CONFIG['impath']}convert -quality {$this->quality} {$CONFIG['im_options']} -geometry {$new_w}x{$new_h} $imgFile $imgFile";
-                                         exec ($cmd, $output, $retval);
-                                }
+           /*
+            * Hack for working with ImageMagick on WIndows even if IM is installed in C:\Program Files.
+            * By Aditya Mooley <aditya@sanisoft.com>
+            */
+            if (eregi("win",getenv('OS'))) {
+                $imgFile = str_replace("'","\"" ,$imgFile );
+                $cmd = "\"".str_replace("\\","/", $CONFIG['impath'])."convert\" -quality {$this->quality} {$CONFIG['im_options']} -geometry {$new_w}x{$new_h} ".str_replace("\\","/" ,$imgFile )." ".str_replace("\\","/" ,$imgFile );
+                $cmd = escapeshellarg($cmd);
+                exec ("\"$cmd\"", $output, $retval);
+            } else {
+                $cmd = "{$CONFIG['impath']}convert -quality {$this->quality} {$CONFIG['im_options']} -geometry {$new_w}x{$new_h} $imgFile $imgFile";
+                $cmd = escapeshellarg($cmd);
+                exec ($cmd, $output, $retval);
+            }
 
             //$cmd = "{$CONFIG['impath']}convert -quality {$this->quality} {$CONFIG['im_options']} -geometry '{$new_w}x{$new_h}' $imgFile $imgFile";
             //exec ($cmd, $output, $retval);
@@ -161,9 +167,6 @@ class imageObject{
              // Call the constructor again to repopulate the dimensions etc
              $this->imageObject($this->directory,$this->filename);
              return $this;
-
          }
-
-
    }
  ?>

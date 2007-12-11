@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-12-11 [S] Added code to fix the shell injection security issue reported by Janek Vind via email and discussed in topic 48930 {Aditya}
 2007-12-11 [B] Fixed broken functionality of search engine query strings not being recorded because of typo (thread id 48934) {GauGau}
 2007-12-10 [S] Added code to remove 2 security issues reported by Janek Vind via email and discussed in topic 48890 {Aditya}
 2007-12-02 [B] Adding xmlns to html tag to fix XHTML compliance {Nibbler}

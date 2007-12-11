@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.4.15
   $HeadURL$
@@ -108,6 +108,7 @@ switch ($method) {
 
                 }
 
+                $cmd = escapeshellarg($cmd);
                 exec ($cmd, $output, $retval);
 
                 if ($retval) {
@@ -543,6 +544,7 @@ imagedestroy($destination_image_handle); */
 
         $cmd = "{$CONFIG['impath']}".$trailing_slash."convert -geometry {$new_width}x{$new_height} \"$real_path_to_primary_image\" \"$real_path_to_preview_image\"";
 
+        $cmd = escapeshellarg($cmd);
         exec ($cmd, $output, $retval);
 
         // Restore the user abort setting.
@@ -560,9 +562,7 @@ imagedestroy($destination_image_handle); */
                         $ERROR .= "</span></div>";
                 }
                 die($ERROR);
-
         }
-
 }
 
 return $path_to_preview_image;
