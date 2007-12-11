@@ -1502,7 +1502,7 @@ function add_hit($pid)
         $query = "INSERT INTO {$CONFIG['TABLE_HIT_STATS']}
                           SET
                             pid = $pid,
-                            search_phrase = '$query_term',
+                            search_phrase = '$query_terms',
                             Ip   = '$raw_ip',
                             sdate = '$time',
                             referer='$referer',
