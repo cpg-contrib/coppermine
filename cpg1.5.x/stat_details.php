@@ -33,12 +33,19 @@ require_once('include/init.inc.php');
 // initialize the vars - end
 
 // sanitize the GET parameters - start
-    $pid = $_GET['pid'] ? (int)$_GET['pid'] : 0;
+    //$pid = $_GET['pid'] ? (int)$_GET['pid'] : 0;
+    if ($superCage->get->keyExists('pid')){
+    	$pid = $superCage->get->getInt('pid');
+    } else {
+    	$pid = 0;
+    }
     $type_allowed = array('vote','hits','total','blank','users');
     $amount_allowed = array(20,50,100,200);
-
-    if (in_array($_GET['type'],$type_allowed) == TRUE) {
-      $type = $_GET['type'];
+		$get_type = $superCage->get->getAlpha('type');
+    //if (in_array($_GET['type'],$type_allowed) == TRUE) {
+    if (in_array($get_type,$type_allowed) == TRUE) {
+      //$type = $_GET['type'];
+      $type = $get_type;
     } else {
       $type = 'blank';
     }
@@ -53,12 +60,21 @@ require_once('include/init.inc.php');
     }
 
     foreach($db_fields as $value) {
-        $$value = $_GET[$value] ? (int)$_GET[$value] : 0;
+        //$$value = $_GET[$value] ? (int)$_GET[$value] : 0;
+        if ($superCage->get->keyExists($value)){
+        	$$value = $superCage->get->getInt($value);
+        } else {
+        	$$value = 0;
+        }
     }
 
-    if (isset($_GET['sort'])) {
+    /*if (isset($_GET['sort'])) {
         if (in_array($_GET['sort'],$db_fields) == TRUE || $_GET['sort'] == 'file') {
-            $sort = $_GET['sort'];
+            $sort = $_GET['sort'];*/
+    if ($superCage->get->keyExists('sort')){
+    		$get_sort = $superCage->get->getAlpha('sort');
+    		if (in_array($get_sort,$db_fields) == TRUE || $get_sort == 'file') {
+    				$sort = $get_sort;
         } else {
             $sort = 'sdate';
         }
@@ -66,16 +82,20 @@ require_once('include/init.inc.php');
         $sort = 'sdate';
     }
 
-    if (isset($_GET['dir'])) {
-        if ($_GET['dir'] == 'asc') {
+    /*if (isset($_GET['dir'])) {
+        if ($_GET['dir'] == 'asc') {*/
+    if ($superCage->get->keyExists('dir')){
+    		if ($superCage->get->getAlpha('dir') == 'asc') {
             $dir = 'asc';
         } else {
             $dir = 'desc';
         }
     }
 
-    if (isset($_GET['hide_internal'])) {
-        if ($_GET['hide_internal'] == '0') {
+    /*if (isset($_GET['hide_internal'])) {
+        if ($_GET['hide_internal'] == '0') {*/
+    if ($superCage->get->keyExists('hide_internal')) {
+    		if ($superCage->get->getInt('hide_internal') == 0) {
             $hide_internal = 0;
         } else {
             $hide_internal = 1;
@@ -84,17 +104,19 @@ require_once('include/init.inc.php');
         $hide_internal = 0;
     }
 
-    if (isset($_GET['date_display'])) {
-        if ($_GET['date_display'] == '0') {
+    //if (isset($_GET['date_display'])) {
+    if ($superCage->get->keyExists('date_display')) {
+    		$get_date_display = $superCage->get->getInt('date_display');
+        if ($get_date_display == 0) {
             $date_display = 0;
             $date_display_fmt = $album_date_fmt;
-        } elseif($_GET['date_display'] == '1') {
+        } elseif($get_date_display == 1) {
             $date_display = 1;
             $date_display_fmt = $lastcom_date_fmt;
-        } elseif($_GET['date_display'] == '2') {
+        } elseif($get_date_display == 2) {
             $date_display = 2;
             $date_display_fmt = $log_date_fmt;
-        } elseif($_GET['date_display'] == '3') {
+        } elseif($get_date_display == 3) {
             $date_display = 3;
             $date_display_fmt = '%Y-%m-%d %H:%M:%S';;
         } else {
@@ -106,26 +128,34 @@ require_once('include/init.inc.php');
         $date_display_fmt = '%Y-%m-%d';
     }
 
-    if ($_GET['mode'] == 'fullscreen') {
+    //if ($_GET['mode'] == 'fullscreen') {
+    if ($superCage->get->getAlpha('mode') == 'fullscreen'){
         $mode = 'fullscreen';
     } else {
         $mode = 'embedded';
     }
 
-    if ($_GET['file'] == '1') {
+    //if ($_GET['file'] == '1') {
+    if ($superCage->get->getInt('file') == 1){
         $file = '1';
     } else {
         $file = '0';
     }
 
-    if ($_GET['amount'] == (int)$_GET['amount'] && in_array($_GET['amount'],$amount_allowed) == TRUE) {
-        $amount = $_GET['amount'];
+    /*if ($_GET['amount'] == (int)$_GET['amount'] && in_array($_GET['amount'],$amount_allowed) == TRUE) {
+        $amount = $_GET['amount'];*/
+    $get_amount = $superCage->get->getInt('amount');
+    if (in_array($get_amount,$amount_allowed)) {
+    		$amount = $get_amount;
     } else {
         $amount = 50; // default value for amount of records
     }
 
-    if ($_GET['page'] == (int)$_GET['page'] && $_GET['page'] != '') {
-        $page = $_GET['page'];
+    /*if ($_GET['page'] == (int)$_GET['page'] && $_GET['page'] != '') {
+        $page = $_GET['page'];*/
+    $get_page = $superCage->get->getInt('page');
+    if ($get_page) {
+        $page = $get_page;
     } else {
         $page = 1;
     }
@@ -133,25 +163,28 @@ require_once('include/init.inc.php');
 // sanitize the GET parameters - end
 
 // end the script if we just need a blank page
-    if ($type=='blank') {
+    if ($type == 'blank') {
         die();
     }
 
 // perform database write queries if needed - start
   if (GALLERY_ADMIN_MODE) {
       $configChangesApplied = '';
-      if ($_GET['hit_details'] != $CONFIG['hit_details'] && $_GET['go'] != '') {
-          cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '{$_GET['hit_details']}' WHERE name = 'hit_details'");
-          $CONFIG['hit_details'] = $_GET['hit_details'];
+      $get_hit_details = $superCage->get->getInt('hit_details');
+      if ($get_hit_details != $CONFIG['hit_details'] && $superCage->get->getEscaped('go') != '') {
+          cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '{$get_hit_details}' WHERE name = 'hit_details'");
+          $CONFIG['hit_details'] = $get_hit_details;
           $configChangesApplied = $lang_stat_details_php['upd_success'];
       }
-      if ($_GET['vote_details'] != $CONFIG['vote_details'] && $_GET['go'] != '') {
-          cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '{$_GET['vote_details']}' WHERE name = 'vote_details'");
-          $CONFIG['vote_details'] = $_GET['vote_details'];
+      $get_vote_details = $superCage->get->getInt('vote_details');
+      if ($get_vote_details != $CONFIG['vote_details'] && $superCage->get->getEscaped('go') != '') {
+          cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '{$get_vote_details}' WHERE name = 'vote_details'");
+          $CONFIG['vote_details'] = $get_vote_details;
           $configChangesApplied = $lang_stat_details_php['upd_success'];
       }
-      if ($_GET['emptyhitstats'] == TRUE || $_GET['emptyvotestats'] == TRUE) {
-          $configChangesApplied = 'not implemented yet';
+      //if ($_GET['emptyhitstats'] == TRUE || $_GET['emptyvotestats'] == TRUE) {
+      if ($superCage->get->getEscaped('emptyhitstats') == TRUE || $superCage->get->getEscaped('emptyvotestats') == TRUE) {
+          $configChangesApplied = $lang_stat_details_php['not_implemented'];
       }
   }
 // perform database write queries if needed - end
@@ -279,7 +312,7 @@ EOT;
 // output the admin-only stuff - start
 if (GALLERY_ADMIN_MODE) { // admin is logged in - start
       print <<< EOT
-      <form method="get" action="{$_SERVER['PHP_SELF']}#details" name="editForm" id="cpgform">
+      <form method="get" action="{$CPG_PHP_SELF}#details" name="editForm" id="cpgform">
       <input type="hidden" name="type" value="{$type}" />
       <input type="hidden" name="pid" value="{$pid}" />
       <input type="hidden" name="sort" value="{$sort}" />
@@ -607,7 +640,7 @@ EOT;
       $help_hit = '&nbsp;'.cpg_display_help('f=configuration.htm&amp;as=admin_logging_hitdetails&amp;ae=admin_logging_hitdetails_end&amp;top=1', '600', '400');
       $help_vote = '&nbsp;'.cpg_display_help('f=configuration.htm&amp;as=admin_logging_votedetails&amp;ae=admin_logging_votedetails_end&amp;top=1', '600', '400');
       print <<< EOT
-      <form method="get" name="changestats" id="cpgform" action="{$_SERVER['PHP_SELF']}" onsubmit="return defaultagree(this)">
+      <form method="get" name="changestats" id="cpgform" action="{$CPG_PHP_SELF}" onsubmit="return defaultagree(this)">
       <input type="hidden" name="type" value="{$type}" />
       <input type="hidden" name="pid" value="{$pid}" />
       <input type="hidden" name="sort" value="{$sort}" />

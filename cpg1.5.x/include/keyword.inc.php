@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
@@ -69,7 +69,7 @@ if (mysql_num_rows($result)) {
     if ($keywords_array[$i]) {     // Eliminates Null Keywords
 
       $fontSize = (10 + ($keyword_count[$keywords_array[$i]] - $minQuantity) * $step);
-      
+
       echo "<a href=\"thumbnails.php?album=search&amp;search=".$keywords_array[$i]."\" style=\"font-size: {$fontSize}px;\">$keywords_array[$i]</a>";
       if ($i<$count-1) {                     // Don't keep space after last keyword
         echo " ";
@@ -77,8 +77,8 @@ if (mysql_num_rows($result)) {
     }
   }
   echo "</td></tr>" ;
-  if (GALLERY_ADMIN_MODE == true){
-    $url = basename($_SERVER['PHP_SELF']);
+  if (GALLERY_ADMIN_MODE == true) {
+    $url = basename($CPG_PHP_SELF);
     if ($url != "keywordmgr.php"){
     echo '<tr><td class="tableb" align="center">';
     echo '<a href="keywordmgr.php" class="admin_menu">Edit Keywords</a>';
