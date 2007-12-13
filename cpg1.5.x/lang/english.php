@@ -2008,6 +2008,7 @@ if (defined('STAT_DETAILS_PHP')) $lang_stat_details_php = array(
   'back_to_intermediate' => 'Back to intermediate file view', //cpg1.5
   'records_on_page' => '%s records on %s page(s)', //cpg1.5
   'guest' => 'Guest', //cpg1.5
+  'not_implemented' => 'not implemented yet', //cpg1.5
 );
 
 // ------------------------------------------------------------------------- //
