@@ -45,6 +45,7 @@ $extensionMatrix_array = array(
   'htm' => 'images/extensions/htm.gif',
   'html' => 'images/extensions/htm.gif',
   'sql' => 'images/extensions/sql.gif',
+  'ttf' => 'images/extensions/ttf.gif',
 );
 
 $textFileExtensions_array = array(
