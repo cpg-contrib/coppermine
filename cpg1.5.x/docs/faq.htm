@@ -46,8 +46,6 @@
 <ul class="nomargin">
 <li><strong>Error messages</strong></li>
 <ul class="nomargin">
-<li><a class="content" href="#EmptyDelimiter">I get the <strong>error</strong> &quot;<tt class="code">Warning: Empty Delimiter in search.inc.php line 33&quot;</tt>. What can I do?</a></li>
-<li><a class="content" href="#ErrorUndefinedIndex">I have the error message <tt class="code">Warning: Undefined index: SCRIPT_NAME in /www.your-domain.com/include/init.inc.php on line 90</tt>. What can I do?</a></li>
 <li><a class="content" href="#createWriteMYI">I get the error message <tt class="code">Can't create/write to file '/tmp/#sql_45d5_0.MYI'</tt>. What's wrong?</a></li>
 <li><a class="content" href="#cantOpenMYI">I get the error message <tt class="code">Can't open file: 'yourPrefix_tableName.MYI'</tt> or similar. What's wrong?</a></li>
 </ul>
@@ -107,25 +105,6 @@
 
 
 <a name="error_essages"></a><h2>Error Messages<a href="#error_essages" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-
-<a name="EmptyDelimiter"></a>
-<h3>I get the <strong>error</strong> &quot;<tt class="code">Warning: Empty Delimiter in search.inc.php line 33&quot;</tt>. What can I do?<a href="#EmptyDelimiter" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Edit the file include/search.inc.php<br />
-Look for the line with<br /><tt class="code">$charset = $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'];</tt><br />
-Replace it with :<br />
-<tt class="code">$charset = $CONFIG['charset'] == 'language file' ? $GLOBALS['lang_charset'] : $CONFIG['charset'];</tt></p><hr />
-
-
-
-<a name="ErrorUndefinedIndex"></a>
-<h3>I have the error message <tt class="code">Warning: Undefined index: SCRIPT_NAME in /www.your-domain.com/include/init.inc.php on line 90</tt>. What can I do?<a href="#ErrorUndefinedIndex" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Try to edit the file include/init.inc.php:<br />
-change<br />
-<pre>$PHP_SELF = isset($_SERVER['REDIRECT_URL']) ? $_SERVER['REDIRECT_URL'] : $_SERVER['SCRIPT_NAME'];</pre>
-to<br />
-<pre>$PHP_SELF = $_SERVER['PHP_SELF'];</pre>
-</p><hr />
-
 
 
 <a name="createWriteMYI"></a>
@@ -690,7 +669,8 @@ These are (alas) not-so-frequently-asked-questions on the <a href="http://copper
 
 
 <script type="text/javascript">
-  cpgDocFooter(thisPage);
+  cpgDocFooter();
+  dateRevision(' $LastChangedDate$ ', ' $Revision$ ');
 </script>
 
 </body>

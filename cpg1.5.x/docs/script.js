@@ -659,6 +659,7 @@ function dateRevision(lastChangeDate, revisionNumber) {
   // strip the unneeded data from last_changed and revision fields
   var lastChangeDate = lastChangeDate.replace('$', '');
   var lastChangeDate = lastChangeDate.replace('$', '');
+  var lastChangeDate = lastChangeDate.replace('LastChangedDate: ', '');
   var lastChangeDate = lastChangeDate.replace(/Date: /g, '');
 
   var revisionNumber = revisionNumber.replace('$', '');
@@ -673,3 +674,4 @@ function dateRevision(lastChangeDate, revisionNumber) {
   document.write(revisionNumber);
   document.write('</div>');
 }
+
