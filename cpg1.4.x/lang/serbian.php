@@ -11,7 +11,7 @@
 
   ********************************************
   Coppermine version: 1.4.15
-  $HeadURL$
+  $Source$
   $Revision$
   $Author$
   $Date$
@@ -188,9 +188,9 @@ $lang_user_admin_menu = array(
 );
 
 $lang_cat_list = array(
-  'category' => 'Kategorija',
-  'albums' => 'Albumi',
-  'pictures' => 'Slike',
+  'category' => 'Kategorije',
+  'albums' => 'Albuma',
+  'pictures' => 'Slika',
 );
 
 $lang_album_list = array(
@@ -212,7 +212,7 @@ $lang_thumb_view = array(
   'sort_pa' => 'Poredaj po poziciji uzlazno', //cpg1.4
   'sort_pd' => 'Poredaj po poziciji silazno', //cpg1.4
   'download_zip' => 'Preuzmi kao Zip datoteku',
-  'pic_on_page' => '%d slika na %d stranici',
+  'pic_on_page' => 'Slika: %d | Stranica: %d',
   'user_on_page' => '%d korisnika na %d stranici',
   'enter_alb_pass' => 'Unesite lozinku za taj album', //cpg1.4
   'invalid_pass' => 'Neispravna lozinka', //cpg1.4
@@ -240,7 +240,7 @@ $lang_img_nav_bar = array(
 $lang_rate_pic = array(
   'rate_this_pic' => 'Ocijenite ovu sliku ',
   'no_votes' => '(Nije još ocijenjena)',
-  'rating' => '(Trenutna ocjena : %s / 5 s %s glasova)',
+  'rating' => '(Trenutna ocjena : %s/5 | Glasanja: %s)',
   'rubbish' => 'Loše',
   'poor' => 'Slabo',
   'fair' => 'Pristojno',
@@ -276,8 +276,8 @@ $lang_display_thumbnails = array(
 
 $lang_get_pic_data = array(
   'n_comments' => '%s komentara',
-  'n_views' => '%s pogleda',
-  'n_votes' => '(%s glasova)',
+  'n_views' => 'Pogledana %s puta',
+  'n_votes' => '(br. glasova: %s)',
 );
 
 $lang_cpg_debug_output = array(
@@ -1283,7 +1283,7 @@ $lang_list_categories = array(
   'home' => 'Početna',
   'stat1' => 'Br. slika:<b>[pictures]</b> - br. albuma:<b>[albums]</b> - br. kategorija:<b>[cat]</b>  - br. komentara:<b>[comments]</b> - br. viđenja:<b>[views]</b>',
         'stat2' => 'Br. slika:<b>[pictures]</b> - br. albuma:<b>[albums]</b> - br. viđenja<b>[views]</b>',
-        'xx_s_gallery' => 'Galerija od %s',
+        'xx_s_gallery' => 'Galerija - %s',
         'stat3' => 'Br. slika:<b>[pictures]</b> - br. albuma:<b>[albums]</b> - br. komentara:<b>[comments]</b>  - br. viđenja:<b>[views]</b>'
 );
 
@@ -1633,7 +1633,7 @@ $lang_search_php = array(
 $lang_adv_opts = array(
   'title' => 'Naslov', //cpg1.4
   'caption' => 'Opis', //cpg1.4
-  'keywords' => 'Kljče riječi', //cpg1.4
+  'keywords' => 'Kljčne riječi', //cpg1.4
   'owner_name' => 'Ime vlasnika', //cpg1.4
   'filename' => 'Ime datoteke', //cpg1.4
 );
