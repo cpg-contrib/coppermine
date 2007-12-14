@@ -928,6 +928,7 @@ if (!$superCage->post->keyExists('control')) {
     pageheader($lang_upload_php['title']);
 
 
+
     // Select the form action.
     if (USER_UPLOAD_FORM == '0') {
 
@@ -1379,6 +1380,8 @@ if ($superCage->post->keyExists('control') && $superCage->post->getRaw('control'
             if (get_magic_quotes_gpc()) {
                 //$_POST['URI_array'][$counter] = stripslashes($_POST['URI_array'][$counter]);
                 $URI_name = stripslashes($superCage->post->getRaw("/URI_array/$counter"));
+            } else {
+            	$URI_name = $superCage->post->getRaw("/URI_array/$counter");
             }
 
             // Remove excess whitespace.
