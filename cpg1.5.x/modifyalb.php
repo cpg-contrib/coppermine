@@ -22,14 +22,44 @@ define('MODIFYALB_PHP', true);
 
 include("include/init.inc.php");
 
-if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) {
-    cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
-}
-
 if ($superCage->get->keyExists('album')){
     $CLEAN['album'] = $superCage->get->getInt('album');
 } else {
     $CLEAN['album'] = 0;
+}
+
+//check if user is allowed to edit this album
+$check_approved = false;
+if(USER_ADMIN_MODE){
+	global $USER_DATA, $CONFIG;
+	//get albums this user can edit
+	$album_id = $CLEAN['album'];
+	
+	$result = cpg_db_query("SELECT DISTINCT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE owner = '" . $USER_DATA['user_id'] . "' AND aid='$album_id'");
+	$allowed_albums = cpg_db_fetch_rowset($result);
+	if($allowed_albums!=''){
+		$check_approve = true;
+	}
+	
+	//check if admin allows editing	after closing category
+	if($CONFIG['allow_user_edit_after_cat_close'] == 0){
+		//Disallowed -> Check if album is in such a category
+		$result = cpg_db_query("SELECT DISTINCT aid FROM {$CONFIG['TABLE_ALBUMS']} AS alb INNER JOIN {$CONFIG['TABLE_CATMAP']} AS catm ON alb.category=catm.cid WHERE alb.owner = '" . $USER_DATA['user_id'] . "' AND alb.aid='$album_id' AND catm.group_id='" . $USER_DATA['group_id'] . "'");
+		$allowed_albums = cpg_db_fetch_rowset($result);
+		if($allowed_albums!='' && $cat != (FIRST_USER_CAT + USER_ID)){
+			$check_approve = false;
+		}
+		$result = cpg_db_query("SELECT DISTINCT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE owner = '" . $USER_DATA['user_id'] . "' AND aid='$album_id'");
+		$allowed_albums = cpg_db_fetch_rowset($result);
+		if($allowed_albums[0]['category']==(FIRST_USER_CAT + USER_ID)){
+			$check_approve = true;
+		}
+	}
+
+}
+
+if (!(GALLERY_ADMIN_MODE || $check_approve)) {
+    cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 }
 
 // Type 0 => input
@@ -65,18 +95,31 @@ if (GALLERY_ADMIN_MODE) {
   $data[] = array($lang_modifyalb_php['can_moderate'], 'moderator_group', 8);
 }
 
+/**
+ * get_subcat_data()
+ *
+ * @param integer $parent
+ * @param string $ident
+ **/
 function get_subcat_data($parent, $ident = '')
 {
-    global $CONFIG, $CAT_LIST;
-
+	global $CONFIG, $CAT_LIST, $USER_DATA;
+		
+    //select cats where the users can change the albums
+    $group_id = $USER_DATA['group_id'];
     $result = cpg_db_query("SELECT cid, name, description FROM {$CONFIG['TABLE_CATEGORIES']} WHERE parent = '$parent' AND cid != 1 ORDER BY pos");
-    if (mysql_num_rows($result) > 0) {
-        $rowset = cpg_db_fetch_rowset($result);
-        foreach ($rowset as $subcat) {
-            $CAT_LIST[] = array($subcat['cid'], $ident . $subcat['name']);
-            get_subcat_data($subcat['cid'], $ident . '&nbsp;&nbsp;&nbsp;');
-        }
-    }
+
+	if (mysql_num_rows($result) > 0) {
+		$rowset = cpg_db_fetch_rowset($result);
+		foreach ($rowset as $subcat) {
+			$check_group = cpg_db_query("SELECT group_id FROM {$CONFIG['TABLE_CATMAP']} WHERE group_id = '$group_id' AND cid=".$subcat['cid']);
+			$check_group_rowset = cpg_db_fetch_rowset($check_group);
+			if($check_group_rowset){
+				$CAT_LIST[] = array($subcat['cid'], $ident . $subcat['name']);
+			}
+			get_subcat_data($subcat['cid'], $ident . '&nbsp;&nbsp;&nbsp;');
+		}
+	}
 }
 
 function form_label($text)
@@ -140,25 +183,35 @@ EOT;
 
 function form_category($text, $name)
 {
-    global $ALBUM_DATA, $CAT_LIST, $USER_DATA, $lang_modifyalb_php;
+    global $ALBUM_DATA, $CAT_LIST, $USER_DATA, $lang_modifyalb_php, $CONFIG;
 
-    if (!GALLERY_ADMIN_MODE || $ALBUM_DATA['category'] > FIRST_USER_CAT) {
+	//check if users are allowed to move their albums
+    if ($CONFIG['allow_user_move_album'] == 0) {
+		//get category name
+		$cat_name = $lang_modifyalb_php['user_gal'];
+		if($ALBUM_DATA['category'] != (FIRST_USER_CAT + USER_ID)){
+			$result = cpg_db_query("SELECT name FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '" . $ALBUM_DATA['category'] . "' LIMIT 1");
+			$cat_name = cpg_db_fetch_row($result);
+			$cat_name = $cat_name['name'];
+		}
         echo <<<EOT
         <tr>
             <td class="tableb">
                         $text
         </td>
         <td class="tableb" valign="top">
-                        <i>{$lang_modifyalb_php['user_gal']}</i>
+                        <i>{$cat_name}</i>
                         <input type="hidden" name="$name" value="{$ALBUM_DATA['category']}" />
                 </td>
-
 EOT;
         return;
     }
 
     $CAT_LIST = array();
-    $CAT_LIST[] = array(0, $lang_modifyalb_php['no_cat']);
+	//only add 'no category' when user is admin
+	if (GALLERY_ADMIN_MODE){$CAT_LIST[] = array(0, $lang_modifyalb_php['no_cat']);}
+	//add user catergorie 
+	$CAT_LIST[] = array((FIRST_USER_CAT + USER_ID), $lang_modifyalb_php['my_gal']);
     get_subcat_data(0, '');
 
     echo <<<EOT
@@ -481,9 +534,22 @@ function alb_list_box()
         while ($row = mysql_fetch_array($result)) $rowset[] = $row;
         mysql_free_result($result);
     } else {
-        $result = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = '" . (FIRST_USER_CAT + USER_ID) . "' ORDER BY title");
-        $rowset = cpg_db_fetch_rowset($result);
-        mysql_free_result($result);
+		//Only list the albums owned by the user
+		$cat = USER_ID + FIRST_USER_CAT;
+		$user_id = USER_ID;
+		
+		//get albums in "my albums"
+		$result1 = cpg_db_query("SELECT aid , title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = $cat");
+		$rowset1 = cpg_db_fetch_rowset($result1);
+		mysql_free_result($result1);
+		
+		//get public albums
+		$result2 = cpg_db_query("SELECT alb.aid AS aid, CONCAT_WS('', '(', cat.name, ') ', alb.title) AS title FROM {$CONFIG['TABLE_ALBUMS']} AS alb INNER JOIN {$CONFIG['TABLE_CATEGORIES']} AS cat ON alb.owner = '$user_id' AND alb.category = cat.cid ORDER BY alb.category DESC, alb.pos ASC");
+		$rowset2 = cpg_db_fetch_rowset($result2);
+        mysql_free_result($result2);
+		
+		//merge rowsets
+		$rowset = array_merge($rowset1, $rowset2);
     }
 
     if (count($rowset)) {
@@ -516,9 +582,9 @@ if (!$CLEAN['album']) {
 $cat = $ALBUM_DATA['category'];
 $actual_cat = $cat;
 
-if (!GALLERY_ADMIN_MODE && $ALBUM_DATA['category'] != FIRST_USER_CAT + USER_ID) {
-    cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
-}
+//if (!GALLERY_ADMIN_MODE && $ALBUM_DATA['category'] != FIRST_USER_CAT + USER_ID) {
+//    cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
+//}
 
 
 //////////// main code start ///////////////////

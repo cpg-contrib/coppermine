@@ -51,16 +51,23 @@ if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) {
  **/
 function alb_get_subcat_data($parent, $ident = '')
 {
-        global $CONFIG, $CAT_LIST;
-
-        $result = cpg_db_query("SELECT cid, name, description FROM {$CONFIG['TABLE_CATEGORIES']} WHERE parent = '$parent' AND cid != 1 ORDER BY pos");
-        if (mysql_num_rows($result) > 0) {
-                $rowset = cpg_db_fetch_rowset($result);
-                foreach ($rowset as $subcat) {
-                        $CAT_LIST[] = array($subcat['cid'], $ident . $subcat['name']);
-                        alb_get_subcat_data($subcat['cid'], $ident . '&nbsp;&nbsp;&nbsp;');
-                }
-        }
+        global $CONFIG, $CAT_LIST, $USER_DATA;
+			
+		//select cats where the users can change the albums
+		$group_id = $USER_DATA['group_id'];
+		$result = cpg_db_query("SELECT cid, name, description FROM {$CONFIG['TABLE_CATEGORIES']} WHERE parent = '$parent' AND cid != 1 ORDER BY pos");
+	
+		if (mysql_num_rows($result) > 0) {
+			$rowset = cpg_db_fetch_rowset($result);
+			foreach ($rowset as $subcat) {
+				$check_group = cpg_db_query("SELECT group_id FROM {$CONFIG['TABLE_CATMAP']} WHERE group_id = '$group_id' AND cid=".$subcat['cid']);
+				$check_group_rowset = cpg_db_fetch_rowset($check_group);
+				if($check_group_rowset){
+					$CAT_LIST[] = array($subcat['cid'], $ident . $subcat['name']);
+				}
+				alb_get_subcat_data($subcat['cid'], $ident . '&nbsp;&nbsp;&nbsp;');
+			}
+		}
 }
 
 pageheader($lang_albmgr_php['alb_mrg']);
@@ -368,7 +375,11 @@ if ($cat == 1) {
 if (GALLERY_ADMIN_MODE) {
         $result = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = $cat ORDER BY pos ASC");
 } elseif (USER_ADMIN_MODE) {
-        $result = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = " . (USER_ID + FIRST_USER_CAT) . " ORDER BY pos ASC");
+		//Only list the albums owned by the user
+		if ($cat == 0) $cat = USER_ID + FIRST_USER_CAT;
+		$user_id = USER_ID;
+		$result = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = $cat AND owner = $user_id ORDER BY pos ASC");
+
 } else cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
 $rowset = cpg_db_fetch_rowset($result);
 $i = 100;
@@ -385,11 +396,12 @@ if (count ($rowset) > 0) foreach ($rowset as $album) {
                                 <br />
                                 <table width="300" border="0" cellspacing="0" cellpadding="0">
 <?php
-if (GALLERY_ADMIN_MODE) {
-        $CAT_LIST = array();
-        $CAT_LIST[] = array(FIRST_USER_CAT + USER_ID, $lang_albmgr_php['my_gallery']);
-        $CAT_LIST[] = array(0, $lang_albmgr_php['no_category']);
-        alb_get_subcat_data(0, '');
+if (GALLERY_ADMIN_MODE||USER_ADMIN_MODE) {
+	$CAT_LIST = array();
+	$CAT_LIST[] = array(FIRST_USER_CAT + USER_ID, $lang_albmgr_php['my_gallery']);
+	//only add 'no category' when user is admin
+	if (GALLERY_ADMIN_MODE){$CAT_LIST[] = array(0, $lang_albmgr_php['no_category']);}
+	alb_get_subcat_data(0, '');
 
         echo <<<EOT
                                 <tr>
@@ -429,8 +441,16 @@ echo $lb;
                                                 <td>
                                                                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                 <tr>
-                                                                                <td><a href="javascript:Moveup_Option();"><img src="images/move_up.gif" width="26" height="21" border="0" alt="" /></a><a href="javascript:Movedown_Option();"><img src="images/move_down.gif" width="26" height="21" border="0" alt="" /></a>
-                                                                                </td>
+<?php
+// Only show move-buttons when admin or in user's private categorie
+// sorting is also prevented in delete.php when user doesn't have the rights.
+if(GALLERY_ADMIN_MODE||($cat == USER_ID + FIRST_USER_CAT)){
+echo '										<td><a href="javascript:Moveup_Option();"><img src="images/move_up.gif" width="26" height="21" border="0" alt="" /></a><a href="javascript:Movedown_Option();"><img src="images/move_down.gif" width="26" height="21" border="0" alt="" /></a>
+										</td>';
+}else{
+echo '										<td></td>';
+}
+?>
                                                                                 <td align="center" style="background-color: #D4D0C8; width: 80px; height: 21px; border-top: 1px solid White; border-left: 1px solid White; border-right: 1px solid #808080; border-bottom: 1px solid #808080;"><a href="javascript:Album_Delete();" style="color: Black; font-weight: bold;"><?php echo $lang_albmgr_php['delete'] ?></a>
                                                                                 </td>
                                                                                 <td align="center" style="width: 1px;"><img src="images/spacer.gif" width="1" alt=""><br />

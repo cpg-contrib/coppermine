@@ -651,6 +651,7 @@ if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
   'categories_alpha_sort' => 'Sort categories alphabetically (instead of custom sort order)',
   'save_cfg' => 'Save configuration',
   'no_category' => '* No category *', // cpg1.5
+  'group_create_alb' => 'Allow group to create Album', // cpg1.5
 );
 
 // ------------------------------------------------------------------------- //
@@ -919,6 +920,8 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'allow_email_change' =>   'Allow users to change their email address in profile', // cpg1.5
   'allow_user_account_delete' =>   'Allow users to delete their own user account', // cpg1.5
   'users_can_edit_pics' =>   'Allow users to retain control over their pics in public galleries', // cpg1.5
+  'allow_user_move_album' =>	'Allow users to move their albums from/to allowed categories', // cpg1.5
+  'allow_user_edit_after_cat_close' =>	'Allow users to edit their albums when it is in a locked category', // cpg1.5
   'login_threshold' =>   'Number of failed login attempts until temporary ban', // cpg1.5
   'login_threshold_detail' =>   '(to avoid brute force attacks)', // cpg1.5
   'login_expiry' =>   'Duration of a temporary ban after failed logins', // cpg1.5
@@ -997,6 +1000,7 @@ if (defined('DB_ECARD_PHP')) $lang_db_ecard_php = array(
   'ecard_records_per_page' => 'Records per page',
   'check_all' => 'Check All',
   'uncheck_all' => 'Uncheck All',
+
   'ecards_delete_selected' => 'Delete selected ecards',
   'ecards_delete_confirm' => 'Are you sure you want to delete the records? Tick the checkbox!',
   'ecards_delete_sure' => 'I\'m sure',
@@ -1323,6 +1327,7 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
   'del_all_comm' => 'Delete ALL comments',
   'upl_approval' => 'Upload approval',
   'edit_pics' => 'Edit files',
+  'cat_locked' => 'This album has been locked for editing', // cpg 1.5.x
   'see_next' => 'See next files',
   'see_prev' => 'See previous files',
   'n_pic' => '%s files',
@@ -1499,6 +1504,7 @@ $lang_list_albums = array(
   'n_link_pictures' => '%s linked files',
   'total_pictures' => '%s files total',
   'alb_hits' => 'Album viewed %s times', // cpg1.5.x
+  'from_categorie' => ' - From Categorie: ', // cpg1.5.x
 );
 
 }
@@ -1576,6 +1582,7 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
   'can_post_comments' => 'Visitors can post comments',
   'can_rate' => 'Visitors can rate files',
   'user_gal' => 'User Gallery',
+  'my_gal' => '* My Gallery *', //cpg 1.5
   'no_cat' => '* No category *',
   'alb_empty' => 'Album is empty',
   'last_uploaded' => 'Last uploaded',
@@ -2102,6 +2109,7 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
 // ------------------------------------------------------------------------- //
 // File usermgr.php
 // ------------------------------------------------------------------------- //
+
 
 if (defined('USERMGR_PHP')) {
 $lang_usermgr_php = array(

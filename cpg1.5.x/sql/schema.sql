@@ -29,6 +29,21 @@ CREATE TABLE CPG_sessions (
 ) TYPE=MyISAM COMMENT='Used to store sessions';
 # --------------------------------------------------------
 
+
+
+#
+# Table structure for table `CPG_categorymap`
+#
+
+CREATE TABLE IF NOT EXISTS `CPG_categorymap` (
+  cid int(11) NOT NULL COMMENT 'Id of the category',
+  group_id int(11) NOT NULL COMMENT 'Id of the group',
+  PRIMARY KEY  (cid,group_id)
+) ENGINE=MyISAM COMMENT='Holds the categories where groups can create albums';
+# --------------------------------------------------------
+
+
+
 #
 # Table structure for table `CPG_albums`
 #
@@ -43,6 +58,7 @@ CREATE TABLE CPG_albums (
   votes enum('YES','NO') NOT NULL default 'YES',
   pos int(11) NOT NULL default '0',
   category int(11) NOT NULL default '0',
+  owner int(11) NOT NULL DEFAULT '1',
   thumb int(11) NOT NULL default '0',
   keyword VARCHAR( 50 ),
   alb_password VARCHAR( 32 ),

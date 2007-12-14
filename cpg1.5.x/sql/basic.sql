@@ -54,6 +54,7 @@ INSERT INTO CPG_config VALUES ('display_social_bookmarks','0');
 INSERT INTO CPG_config VALUES ('custom_header_path', '');
 INSERT INTO CPG_config VALUES ('custom_footer_path', '');
 INSERT INTO CPG_config VALUES ('browse_by_date', '0');
+INSERT INTO CPG_config VALUES ('allow_user_edit_after_cat_close', '1');
 INSERT INTO CPG_config VALUES ('display_redirection_page', '0');
 INSERT INTO CPG_config VALUES ('main_table_width', '100%');
 INSERT INTO CPG_config VALUES ('subcat_level', '2');

@@ -94,9 +94,9 @@ function cat_list_box($cid, &$parent, $on_change_refresh = true)
 
         if ($on_change_refresh){
 
-                $lb = '<select name="parent" onmouseover="setbuild(this, '. (int) $parent['cid'].')" onchange="updateParent(this, ' . $cid . ')" class="listbox">';
+             $lb = '<select name="parent" onmouseover="setbuild(this, '. (int) $parent['cid'].')" onchange="updateParent(this, ' . $cid . ')" class="listbox">';
 
-                if ($parent['cid'] == 0){
+             if ($parent['cid'] == 0){
                     $lb .= '<option value="0" selected="selected">' . $lang_catmgr_php['no_category'] . '</option>';
             } else {
                      $lb .= '<option value="' . $parent['cid'] .  ' selected="selected">' . $parent['name'] . '</option>';
@@ -104,21 +104,60 @@ function cat_list_box($cid, &$parent, $on_change_refresh = true)
 
             $lb .= '</select>';
 
-    } else {
+        } else {
 
-                   $lb = '<select name="parent" id="build_source" class="listbox">';
+            $lb = '<select name="parent" id="build_source" class="listbox">';
 
             $lb .= '                        <option value="0"' . ($parent == 0 ? ' selected': '') . '>' . $lang_catmgr_php['no_category'] . "</option>\n";
             foreach($CAT_LIST as $category) {
                 if ($category['cid'] != 1) {
-                    $lb .= '                        <option value="' . $category['cid'] . '"' . ($parent == $category['cid'] ? ' selected': '') . ">" . $category['name'] . "</option>\n";
+                    $lb .= '                <option value="' . $category['cid'] . '"' . ($parent == $category['cid'] ? ' selected': '') . ">" . $category['name'] . "</option>\n";
                 }
             }
+
 
             $lb .= '</select>';
     }
 
     return $lb;
+}
+
+/**
+ * usergroup_list_box()
+ *
+ * @param integer $cid
+ * @return string $usergroup_listbox
+ **/
+function usergroup_list_box($cid){
+	global $CONFIG;
+	
+	//get the category info from the db
+	$sql = "SELECT  ug.group_name AS name, ug.group_id AS id, catm.group_id AS catm_gid FROM {$CONFIG['TABLE_USERGROUPS']} AS ug LEFT JOIN {$CONFIG['TABLE_CATMAP']} AS catm ON catm.group_id=ug.group_id AND catm.cid=" . $cid;
+	$result = cpg_db_query($sql);
+	$rowset = cpg_db_fetch_rowset($result);
+	
+	//put the values in an array for ease of use and clean code for now
+	foreach ($rowset as $row) {
+		$groups[$row['id']]['name'] = $row['name'];
+		if($row['catm_gid'] != null) {
+			$groups[$row['id']]['selected'] = 'true';
+		}else {
+			$groups[$row['id']]['selected'] = 'false';
+		}
+	}
+	
+	//create listbox
+	$usergroup_listbox = '<select name="user_groups[]" class="listbox" multiple>';
+	
+	//loop through all groups
+	foreach ($groups as $id => $values) {
+		$usergroup_listbox .= '		<option value="' . $id . '"' . ($values['selected']=='true'? 'selected="selected"':'') . ' >' . $values['name'] . '</option>\n';
+	}
+	
+	$usergroup_listbox .= '</select>';
+	
+	//return listbox
+	return $usergroup_listbox;
 }
 
 function form_alb_thumb()
@@ -355,6 +394,17 @@ switch ($op) {
         }else{
                 cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET name='$name', description='$description', thumb='$thumb' WHERE cid = '$cid' LIMIT 1");
         }
+				
+		//insert in categorymap
+		//first delete all of this category in categorymap
+		cpg_db_query("DELETE FROM {$CONFIG['TABLE_CATMAP']} WHERE cid='$cid'");
+		
+		//then add the new ones
+		if ($superCage->post->keyExists('user_groups')) {
+			foreach ($superCage->post->getInt('user_groups') as $key) {
+				cpg_db_query("INSERT INTO {$CONFIG['TABLE_CATMAP']} (cid, group_id) VALUES('$cid', '$key')");
+			}
+		}
         break;
 
     case 'createcat':
@@ -375,10 +425,17 @@ switch ($op) {
         $description = $superCage->post->getEscaped('description');
 
         cpg_db_query("INSERT INTO {$CONFIG['TABLE_CATEGORIES']} (pos, parent, name, description) VALUES ('10000', '$parent', '$name', '$description')");
-        break;
+		
+		//insert in categorymap
+		if ($superCage->post->keyExists('user_groups')) {
+			foreach ($superCage->post->getInt('user_groups') as $key) {
+				cpg_db_query("INSERT INTO {$CONFIG['TABLE_CATMAP']} (cid, group_id) VALUES('$cid', '$key')");
+			}
+		}
+		break;
 
     case 'deletecat':
-        if (!$superCage->post->keyExists('cid')) {
+        if (!$superCage->get->keyExists('cid')) {
             cpg_die(CRITICAL_ERROR, sprintf($lang_catmgr_php['miss_param'], 'deletecat'), __FILE__, __LINE__);
         }
 
@@ -392,6 +449,9 @@ switch ($op) {
         $result = cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET parent='$parent' WHERE parent = '$cid'");
         $result = cpg_db_query("UPDATE {$CONFIG['TABLE_ALBUMS']} SET category='$parent' WHERE category = '$cid'");
         $result = cpg_db_query("DELETE FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid='$cid' LIMIT 1");
+		
+		//delete from categorymap
+		cpg_db_query("DELETE FROM {$CONFIG['TABLE_CATMAP']} WHERE cid='$cid'");
         break;
 }
 
@@ -525,6 +585,7 @@ echo "<br />\n";
 
 starttable('100%', $lang_catmgr_php['update_create'], 2);
 $lb = cat_list_box($current_category['cid'], $current_category['parent'], false);
+$ug_lb = usergroup_list_box($current_category['cid']);
 $op = $current_category['cid'] ? 'updatecat' : 'createcat';
 if ($CONFIG['show_bbcode_help']) {$description_help .= '&nbsp;'. cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
 echo <<<EOT
@@ -538,6 +599,14 @@ echo <<<EOT
                 $lb
                 </td>
         </tr>
+		<tr>
+			<td width="40%" class="tableb">
+						{$lang_catmgr_php['group_create_alb']}
+		</td>
+		<td width="60%" class="tableb" valign="top">
+				$ug_lb
+				</td>
+		</tr>
         <tr>
             <td width="40%" class="tableb">
                         {$lang_catmgr_php['cat_title']}

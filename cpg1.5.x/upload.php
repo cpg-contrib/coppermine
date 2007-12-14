@@ -884,7 +884,7 @@ if ((CUSTOMIZE_UPLOAD_FORM) and (!$superCage->post->keyExists('file_upload_reque
 if (GALLERY_ADMIN_MODE) {
     $public_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " ORDER BY title");
 } else {
-        $public_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " AND uploads='YES' AND (visibility = '0' OR visibility IN ".USER_GROUP_SET.") ORDER BY title");
+        $public_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " AND ((uploads='YES' AND (visibility = '0' OR visibility IN ".USER_GROUP_SET.")) OR (owner=".USER_ID.")) ORDER BY title");
 }
 if (mysql_num_rows($public_albums)) {
     $public_albums_list = cpg_db_fetch_rowset($public_albums);
@@ -1379,8 +1379,6 @@ if ($superCage->post->keyExists('control') && $superCage->post->getRaw('control'
             if (get_magic_quotes_gpc()) {
                 //$_POST['URI_array'][$counter] = stripslashes($_POST['URI_array'][$counter]);
                 $URI_name = stripslashes($superCage->post->getRaw("/URI_array/$counter"));
-            } else {
-            	$URI_name = $superCage->post->getRaw("/URI_array/$counter");
             }
 
             // Remove excess whitespace.

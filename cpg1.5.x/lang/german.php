@@ -1605,6 +1605,8 @@ $lang_list_albums = array(
   'last_added' => ', letzte Aktualisierung am %s',
   'n_link_pictures' => '%s verknüpfte Dateien',
   'total_pictures' => '%s Dateien insgesamt',
+  'alb_hits' => 'Album gesehene %s Zeiten', // cpg1.5.x
+  'from_categorie' => ' - von der Kategorie: ', // cpg1.5.x
 );
 
 }
@@ -1682,6 +1684,7 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
   'can_post_comments' => 'Besucher können Kommentare abgeben',
   'can_rate' => 'Besucher können Dateien bewerten',
   'user_gal' => 'Benutzer-Galerie',
+  'my_gal' => '* meine Galerie *', // cpg 1.5
   'no_cat' => '* keine Kategorie *',
   'alb_empty' => 'Album ist leer',
   'last_uploaded' => 'Letzte Datei, die hochgeladen wurde',

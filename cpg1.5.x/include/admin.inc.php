@@ -75,7 +75,7 @@ $config_data = array(
                   .'(:[0-9]{1,4}){0,1}' // port number- :80
                   .'[/]{1,1}' // trailing slash after domain-part of URL
                   .'('
-                  .'([0-9a-zA-Z_!~.()-])+/{1}'
+                  .'([0-9a-zA-Z _!~.()-])+/{1}'
                   .'){0,}'
                   .'$',
       'regex_not' => '^http://yoursite.tld/your_coppermine_folder/$',
@@ -968,6 +968,14 @@ $config_data = array(
     'users_can_edit_pics' => array(
       'type' => 'checkbox',
       'help_link' => 'f=configuration.htm&amp;as=admin_user_editpics_public_start&amp;ae=admin_user_editpics_public_end',
+    ),
+	'allow_user_move_album' => array(
+      'type' => 'checkbox',
+      'help_link' => 'f=configuration.htm&amp;as=admin_user_editpics_public_start&amp;ae=admin_user_editpics_public_end',
+    ),
+	'allow_user_edit_after_cat_close' => array(
+      'type' => 'checkbox',
+      'help_link' => 'f=configuration.htm&amp;as=admin_user_edit_after_cat_close_start&amp;ae=admin_user_edit_after_cat_close_end',
     ),
     'login_threshold' => array(
       'type' => 'textfield',

@@ -43,7 +43,7 @@
 
 <a name="dev_config_history"></a><h2>History<a href="#dev_config_history" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>In versions prior to cpg1.5.x, the language file contained part of the logic how the config page looked and worked (section separation, help-icon links, input field type). This caused confusion for translators and kept the language fallback function from fully working as expected.</p>
-<p>Additionally, every new config option that displayed a link to another page or that was suppossed to offer different text for radio buttons required devs to come up with a separate function that made the code of the config file become more and more bloated.</p>
+<p>Additionally, every new config option that displayed a link to another page or that was supposed to offer different text for radio buttons required devs to come up with a separate function that made the code of the config file become more and more bloated.</p>
 <p>In an effort to clean up the config screen and allow future enhancements, the config page (admin.php) has been re-coded.</p>
 
 <a name="dev_config_new_features"></a><h2>New features<a href="#dev_config_new_features" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
@@ -61,10 +61,10 @@ If you want your new config option to be displayed beneath the &quot;Enable plug
 </div>
 
 <a name="dev_config_step_update_sql"></a><h3>Update.sql<a href="#dev_config_step_update_sql" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>To make sure your new config option is not only taken into account for fresh installs, but for updates as well, you will have to add your new query line that you already added to basic.sql to update.sql as well. The only difference is that you don't sort the entries in the same way they are suppossed to appear on the config screen, but add them at the very bottom of update.sql</p>
+<p>To make sure your new config option is not only taken into account for fresh installs, but for updates as well, you will have to add your new query line that you already added to basic.sql to update.sql as well. The only difference is that you don't sort the entries in the same way they are supposed to appear on the config screen, but add them at the very bottom of update.sql</p>
 
 <a name="dev_config_step_array"></a><h3>Admin.inc.php<a href="#dev_config_step_array" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>As suggested above, the logic of the config entry has been moved from the language file to a separate, language-independant include file. Edit include/admin.inc.php and add a new line to the array defintion there are suggested below.</p>
+<p>As suggested above, the logic of the config entry has been moved from the language file to a separate, language-independent include file. Edit include/admin.inc.php and add a new line to the array definition there are suggested below.</p>
 <div class="quote">
 <strong>Example:</strong><br />
 If you want your new config option to be displayed beneath the &quot;Enable plugins&quot; entry, find <pre class="code">    'enable_plugins' => array(
@@ -128,7 +128,7 @@ If you want your new config option to be displayed beneath the &quot;Enable plug
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate">regex</td>
-    <td valign="top" class="tableb tableb_alternate">Regular expression that the value entered will be checked against (using PHP's ereg-command) when the form is being submit. If the regular expression returns false, the conif field change will be rejected</td>
+    <td valign="top" class="tableb tableb_alternate">Regular expression that the value entered will be checked against (using PHP's ereg-command) when the form is being submit. If the regular expression returns false, the config field change will be rejected</td>
     <td valign="top" class="tableb tableb_alternate">optional</td>
     <td valign="top" class="tableb tableb_alternate"></td>
     <td valign="top" class="tableb tableb_alternate">maxlength-field</td>

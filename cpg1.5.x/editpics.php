@@ -81,7 +81,28 @@ if (EDIT_PICTURES_MODE) {
         mysql_free_result($result);
         $cat = $ALBUM_DATA['category'];
         $actual_cat = $cat;
-        if ($cat != FIRST_USER_CAT + USER_ID && !GALLERY_ADMIN_MODE && !MODERATOR_EDIT_MODE) cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
+        
+		//get albums this user can edit
+		$check_approved = false;
+		if($cat == (FIRST_USER_CAT + USER_ID)){
+			$check_approve = true;
+		}else{
+			$result = cpg_db_query("SELECT DISTINCT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE owner = '" . $USER_DATA['user_id'] . "' AND aid='$album_id'");
+			$allowed_albums = cpg_db_fetch_rowset($result);
+			if($allowed_albums!=''){
+				$check_approve = true;
+			}
+		}
+		//check if admin allows editing	after closing category
+		if($CONFIG['allow_user_edit_after_cat_close'] == 0){
+			//Disallowed -> Check if album is in such a category
+			$result = cpg_db_query("SELECT DISTINCT aid FROM {$CONFIG['TABLE_ALBUMS']} AS alb INNER JOIN {$CONFIG['TABLE_CATMAP']} AS catm ON alb.category=catm.cid WHERE alb.owner = '" . $USER_DATA['user_id'] . "' AND alb.aid='$album_id' AND catm.group_id='" . $USER_DATA['group_id'] . "'");
+			$allowed_albums = cpg_db_fetch_rowset($result);
+			if($allowed_albums!='' && $cat != (FIRST_USER_CAT + USER_ID)){
+				$check_approve = false;
+			}
+		}	
+        if (!$check_approve && !GALLERY_ADMIN_MODE && !MODERATOR_EDIT_MODE) cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
 } else {
         $ALBUM_DATA = array();
 }
@@ -562,17 +583,32 @@ function get_user_albums($user_id = '')
         if (!isset($USER_ALBUMS_ARRAY[USER_ID])) {
                 if (MODERATOR_MODE && UPLOAD_APPROVAL_MODE || MODERATOR_EDIT_MODE) {
                     $user_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid IN $albStr AND category > '".FIRST_USER_CAT."' OR category='".(FIRST_USER_CAT + USER_ID)."' ORDER BY title");
-                } else {
-                    $user_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='".(FIRST_USER_CAT + USER_ID)."' $or ORDER BY title");
+                
+					if (mysql_num_rows($user_albums)) {
+                    	$user_albums_list=cpg_db_fetch_rowset($user_albums);
+					} else {
+							$user_albums_list = array();
+					}
+					mysql_free_result($user_albums);
+			    } else {
+                    //Only list the albums owned by the user
+					$cat = USER_ID + FIRST_USER_CAT;
+					$user_id = USER_ID;
+					
+					//get albums in "my albums"
+					$result1 = cpg_db_query("SELECT aid , title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = $cat");
+					$rowset1 = cpg_db_fetch_rowset($result1);
+					mysql_free_result($result1);
+					
+					//get public albums
+					$result2 = cpg_db_query("SELECT alb.aid AS aid, CONCAT_WS('', '(', cat.name, ') ', alb.title) AS title FROM {$CONFIG['TABLE_ALBUMS']} AS alb INNER JOIN {$CONFIG['TABLE_CATEGORIES']} AS cat ON alb.owner = '$user_id' AND alb.category = cat.cid ORDER BY alb.category DESC, alb.pos ASC");
+					$rowset2 = cpg_db_fetch_rowset($result2);
+					mysql_free_result($result2);
+					
+					//merge rowsets
+					$user_albums_list = array_merge($rowset1, $rowset2);
                 }
 
-
-                if (mysql_num_rows($user_albums)) {
-                    $user_albums_list=cpg_db_fetch_rowset($user_albums);
-                } else {
-                        $user_albums_list = array();
-                }
-                mysql_free_result($user_albums);
                 $USER_ALBUMS_ARRAY[USER_ID] = $user_albums_list;
         } else {
                 $user_albums_list = &$USER_ALBUMS_ARRAY[USER_ID];

@@ -32,6 +32,18 @@ CREATE TABLE CPG_sessions (
 
 
 #
+# Table structure for table `CPG_categorymap`
+#
+
+CREATE TABLE IF NOT EXISTS `CPG_categorymap` (
+  cid int(11) NOT NULL COMMENT 'Id of the category',
+  group_id int(11) NOT NULL COMMENT 'Id of the group',
+  PRIMARY KEY  (cid,group_id)
+) ENGINE=MyISAM COMMENT='Holds the categories where groups can create albums';
+
+
+
+#
 # Table structure for table `CPG_filetypes`
 #
 
@@ -231,6 +243,7 @@ ALTER TABLE `CPG_categories` ADD `thumb` INT NOT NULL AFTER `parent` ;
 
 # Modify structure for multi album pictures
 ALTER TABLE `CPG_albums` ADD `keyword` VARCHAR( 50 ) NOT NULL ;
+ALTER TABLE `CPG_albums` ADD `owner` int(11)  NOT NULL DEFAULT '1' AFTER `category`;
 
 
 #
@@ -617,6 +630,12 @@ INSERT INTO CPG_config VALUES ('display_stats_on_index', '1');
 
 # Enable "browse by date" meta album
 INSERT INTO CPG_config VALUES ('browse_by_date', '0');
+
+# Allow users to move their albums from/to categories
+INSERT INTO CPG_config VALUES ('allow_user_move_album', '0');
+
+# Allow users to edit pics after admin closed category
+INSERT INTO CPG_config VALUES ('allow_user_edit_after_cat_close', '1');
 
 # Display redirection pages
 INSERT INTO CPG_config VALUES ('display_redirection_page', '0');

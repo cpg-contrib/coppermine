@@ -274,8 +274,22 @@ switch ($what) {
         if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
         if (!GALLERY_ADMIN_MODE) {
-            $restrict = "AND category = '" . (FIRST_USER_CAT + USER_ID) . "'";
-        } else {
+			//restrict to allowed categories of user
+			//first get allowed categories
+			global $USER_DATA;
+			
+			$group_id = $USER_DATA['group_id'];
+			$result = cpg_db_query("SELECT DISTINCT cid FROM {$CONFIG[TABLE_CATMAP]} WHERE group_id = $group_id");
+			$rowset = cpg_db_fetch_rowset($result);
+			
+			//add allowed categories to the restriction		
+            $restrict = "AND (category = '" . (FIRST_USER_CAT + USER_ID) . "'";
+			
+			foreach($rowset as $key => $value){
+				$restrict .= " OR category = '" . $value['cid'] . "'";
+			}
+			$restrict .= ")";        
+		} else {
             $restrict = '';
         }
 
@@ -283,17 +297,20 @@ switch ($what) {
         //pageheader($lang_delete_php['alb_mgr']);
         $returnOutput .= '<table border="0" cellspacing="0" cellpadding="0" width="100%">';
 
-        $sort_list_matched = $superCage->post->getMatched('sort_order', '/^[0-9@,]+$/');
-        $orig_sort_order = parse_list($sort_list_matched[0]);
-        foreach ($orig_sort_order as $album) {
-            $op = parse_orig_sort_order($album);
-            if (count ($op) == 2) {
-                $query = "UPDATE $CONFIG[TABLE_ALBUMS] SET pos='{$op['pos']}' WHERE aid='{$op['aid']}' $restrict LIMIT 1";
-                cpg_db_query($query);
-            } else {
-                cpg_die (sprintf(CRITICAL_ERROR, $lang_delete_php['err_invalid_data'], $sort_list_matched), __FILE__, __LINE__);
-            }
-        }
+		//prevent sorting of the albums if not admin or in own album
+		$sort_list_matched = $superCage->post->getMatched('sort_order', '/^[0-9@,]+$/');
+		if(GALLERY_ADMIN_MODE || $superCage->post->getInt('cat') == FIRST_USER_CAT + USER_ID){
+			$orig_sort_order = parse_list($sort_list_matched[0]);
+			foreach ($orig_sort_order as $album) {
+				$op = parse_orig_sort_order($album);
+				if (count ($op) == 2) {
+					$query = "UPDATE {$CONFIG[TABLE_ALBUMS]} SET pos='{$op['pos']}' WHERE aid='{$op['aid']}' $restrict LIMIT 1";
+					cpg_db_query($query);
+				} else {
+					cpg_die (sprintf(CRITICAL_ERROR, $lang_delete_php['err_invalid_data'], $sort_list_matched), __FILE__, __LINE__);
+				}
+			}
+		}
 
         $matches = $superCage->post->getMatched('delete_album', '/^[0-9,@]+$/');
         $to_delete = parse_list($matches[0]);
@@ -312,13 +329,11 @@ switch ($what) {
                     case '0':
                         break;
                     case '1':
-                        if (GALLERY_ADMIN_MODE) {
-                            $category = $superCage->post->getInt('cat');
-                        } else {
-                            $category = FIRST_USER_CAT + USER_ID;
-                        }
+                    $category = $superCage->post->getInt('cat');
+					$user_id = USER_ID;
+					
                         $returnOutput .= "<tr><td colspan=\"6\" class=\"tableb\">" . sprintf($lang_delete_php['create_alb'], $op['album_nm']) . "</td></tr>\n";
-                        $query = "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (category, title, uploads, pos, description) VALUES ('$category', '" . addslashes($op['album_nm']) . "', 'NO',  '{$op['album_sort']}', '')";
+                        $query = "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (category, title, uploads, pos, description, owner) VALUES ('$category', '" . addslashes($op['album_nm']) . "', 'NO',  '{$op['album_sort']}', '', '$user_id')";
                         cpg_db_query($query);
                         break;
                     case '2':
