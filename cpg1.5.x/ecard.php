@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
@@ -29,13 +29,19 @@ if (!USER_CAN_SEND_ECARDS) cpg_die(ERROR, $lang_errors['access_denied'], __FILE_
 
 function get_post_var($name, $default = '')
 {
+    $superCage = Inspekt::makeSuperCage();
 
-    return isset($_POST[$name]) ? $_POST[$name] : $default;
+    if ($superCage->post->keyExists($name)) {
+    	return get_magic_quotes_gpc() ? stripslashes($superCage->post->noTags($name)) : $superCage->post->noTags($name);
+    } else {
+    	return $default;
+    }
+    //return isset($_POST[$name]) ? $_POST[$name] : $default;
 }
 
-$pid = (int)$_GET['pid'];
-$album = $_GET['album'];
-$pos = (int)$_GET['pos'];
+$pid = $superCage->get->getInt('pid');
+$album = $superCage->get->getInt('album');
+$pos = $superCage->get->getInt('pos');
 
 $sender_name = get_post_var('sender_name', USER_NAME ? USER_NAME : (isset($USER['name']) ? $USER['name'] : ''));
 if (defined('UDB_INTEGRATION')AND USER_ID) $USER_DATA = array_merge($USER_DATA,$cpg_udb->get_user_infos(USER_ID));
@@ -50,6 +56,7 @@ $recipient_name = get_post_var('recipient_name');
 $recipient_email = get_post_var('recipient_email');
 $greetings = get_post_var('greetings');
 $message = get_post_var('message');
+
 $sender_email_warning = '';
 $recipient_email_warning = '';
 // Get picture thumbnail url
@@ -105,15 +112,21 @@ $valid_email_pattern = "^[_\.0-9a-z\-]+@([0-9a-z][0-9a-z-]*\.)+[a-z]{2,6}$";
 $valid_sender_email = eregi($valid_email_pattern, $sender_email);
 $valid_recipient_email = eregi($valid_email_pattern, $recipient_email);
 $invalid_email = '<font size="1" color="red">' . $lang_ecard_php['invalid_email'] . ' (' . $recipient_email . ')</font>';
-if (!$valid_sender_email && count($_POST) > 0) $sender_email_warning = $invalid_email;
-if (!$valid_recipient_email && count($_POST) > 0) $recipient_email_warning = $invalid_email;
+
+if (!$valid_sender_email && $superCage->post->keyExists('sender_name')) {
+    $sender_email_warning = $invalid_email;
+}
+
+if (!$valid_recipient_email && $superCage->post->keyExists('sender_name')) {
+    $recipient_email_warning = $invalid_email;
+}
 
 pageheader($lang_ecard_php['title']);
 
-if (isset($_POST['submit'])) {
+if ($superCage->post->keyExists('submit')) {
 
 // Create and send the e-card
-if (count($_POST) > 0 && $valid_sender_email && $valid_recipient_email) {
+if ($superCage->post->keyExists('sender_name') && $valid_sender_email && $valid_recipient_email) {
 
     if ($CONFIG['make_intermediate'] && max($row['pwidth'], $row['pheight']) > $CONFIG['picture_width']) {
         $n_picname = get_pic_url($row, 'normal');
@@ -125,8 +138,8 @@ if (count($_POST) > 0 && $valid_sender_email && $valid_recipient_email) {
 
     $msg_content = process_smilies($message, $gallery_url_prefix);
 
-    $data = array('rn' => $_POST['recipient_name'],
-        'sn' => $_POST['sender_name'],
+    $data = array('rn' => $superCage->post->noTags('recipient_name'),
+        'sn' => $superCage->post->noTags('sender_name'),
         'se' => $sender_email,
         'p' => $n_picname,
         'g' => $greetings,
@@ -163,13 +176,13 @@ if (count($_POST) > 0 && $valid_sender_email && $valid_recipient_email) {
                                 $plaintext_message = template_eval($template_ecard_plaintext, $params);
 
         $tempTime = time();
-        $message .= sprintf($lang_ecard_php['ecards_footer'], $sender_name, $_SERVER['REMOTE_ADDR'], localised_date(-1,$comment_date_fmt));
+        $message .= sprintf($lang_ecard_php['ecards_footer'], $sender_name, $raw_ip, localised_date(-1,$comment_date_fmt));
                                 $subject = sprintf($lang_ecard_php['ecard_title'], $sender_name);
 
                                 $result = cpg_mail($recipient_email, $subject, $message, 'text/html', $sender_name, $sender_email, $plaintext_message);
         //write ecard log
         if ($CONFIG['log_ecards'] == 1) {
-          $result_log = cpg_db_query("INSERT INTO {$CONFIG['TABLE_ECARDS']} (sender_name, sender_email, recipient_name, recipient_email, link, date, sender_ip) VALUES ('$sender_name', '$sender_email', '$recipient_name', '$recipient_email',   '$encoded_data', '$tempTime', '{$_SERVER["REMOTE_ADDR"]}')");
+          $result_log = cpg_db_query("INSERT INTO {$CONFIG['TABLE_ECARDS']} (sender_name, sender_email, recipient_name, recipient_email, link, date, sender_ip) VALUES ('$sender_name', '$sender_email', '$recipient_name', '$recipient_email',   '$encoded_data', '$tempTime', '$raw_ip')");
           }
 
     if (!USER_ID) {
@@ -195,7 +208,7 @@ if (count($_POST) > 0 && $valid_sender_email && $valid_recipient_email) {
         }
 }//submit
 
-elseif (isset($_POST['preview'])) {
+elseif ($superCage->post->keyExists('preview')) {
 
     if ($CONFIG['make_intermediate'] && max($row['pwidth'], $row['pheight']) > $CONFIG['picture_width']) {
         $n_picname = get_pic_url($row, 'normal');
@@ -205,7 +218,7 @@ elseif (isset($_POST['preview'])) {
     if (!stristr($n_picname, 'http:')) $n_picname = $gallery_url_prefix . $n_picname;
     $msg_content = process_smilies($message, $gallery_url_prefix);
     $data = array(
-        'sn' => $_POST['sender_name'],
+        'sn' => $superCage->post->noTags('sender_name'),
         'se' => $sender_email,
         'p' => $n_picname,
         'g' => $greetings,
@@ -214,6 +227,8 @@ elseif (isset($_POST['preview'])) {
         'pt' => $pic_title,
         'pc' => $pic_caption,
         );
+
+    $encoded_data = urlencode(base64_encode(serialize($data)));
 
     $params = array('{LANG_DIR}' => $lang_text_dir,
         '{TITLE}' => sprintf($lang_ecard_php['ecard_title'], $sender_name),
@@ -279,7 +294,7 @@ echo <<<EOT
         </tr>
         <tr>
                 <td class="tableb" valign="top" width="40%">
-                        <form method="post" name="post" id="cpgform" action="{$_SERVER['PHP_SELF']}?album=$album&amp;pid=$pid">
+                        <form method="post" name="post" id="cpgform" action="{$CPG_PHP_SELF}?album=$album&amp;pid=$pid">
                         {$lang_ecard_php['your_name']}<br />
                 </td>
                 <td valign="top" class="tableb" width="60%">

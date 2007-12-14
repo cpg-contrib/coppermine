@@ -23,28 +23,26 @@ define('DISPLAYECARD_PHP', true);
 require('include/init.inc.php');
 require('include/smilies.inc.php');
 
-if (!isset($_GET['data'])) cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
+if (!$superCage->get->keyExists('data')) {
+    cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
+}
 
 /**
  * Clean up GPC and other Globals here
  */
-$tmpData['data'] = @unserialize(@base64_decode($_GET['data']));
+$tmpData['data'] = @unserialize(@base64_decode($superCage->get->getRaw('data')));
 
 if (!is_array($tmpData['data'])) {
   $CLEAN['data'] = mysql_real_escape_string($tmpData['data']);
 } else {
   // Remove HTML tags as we can't trust what we receive
   foreach($tmpData['data'] as $key => $value) {
-    $CLEAN['data'][$key] = strtr($value, $HTML_SUBST);
+    $CLEAN['data'][$key] = $value;
     if ($key == 'pid') {
       $CLEAN['data'][$key] = (int)$CLEAN['data'][$key];
     }
   }
 }
-print_r($CLEAN);
-
-/*$data = array();
-$data = @unserialize(@base64_decode($_GET['data']));*/
 
 // attempt to obtain full link from db if ecard logging enabled and min 12 chars of data is provided and only 1 match
 if ((!is_array($CLEAN['data'])) && $CONFIG['log_ecards'] && (strlen($CLEAN['data']) > 12)) {
@@ -104,6 +102,6 @@ $params = array('{LANG_DIR}' => $lang_text_dir,
 echo template_eval($template_ecard, $params);
 
 } else {
-        cpg_die(CRITICAL_ERROR, $lang_displayecard_php['invalid_data'], __FILE__, __LINE__);
+    cpg_die(CRITICAL_ERROR, $lang_displayecard_php['invalid_data'], __FILE__, __LINE__);
 }
 ?>
