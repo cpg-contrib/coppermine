@@ -108,11 +108,11 @@ function cat_list_box($cid, &$parent, $on_change_refresh = true)
 
                    $lb = '<select name="parent" id="build_source" class="listbox">';
 
-            $lb .= '                        <option value="0"' . ($parent['cid'] == 0 ? ' selected': '') . '>' . $lang_catmgr_php['no_category'] . "</option>\n";
-            foreach($CAT_LIST as $category) if ($category['cid'] != 1 && $category['cid'] != $cid) {
-                $lb .= '                        <option value="' . $category['cid'] . '"' . ($parent['cid'] == $category['cid'] ? ' selected': '') . ">" . $category['name'] . "</option>\n";
-            } elseif ($category['cid'] != 1 && $category['cid'] == $cid) {
-                $lb .= '                        <option value="' . $category['parent'] . '"' . ($parent['cid'] == $category['cid'] ? ' selected': '') . ">" . $category['name'] . "</option>\n";
+            $lb .= '                        <option value="0"' . ($parent == 0 ? ' selected': '') . '>' . $lang_catmgr_php['no_category'] . "</option>\n";
+            foreach($CAT_LIST as $category) {
+                if ($category['cid'] != 1) {
+                    $lb .= '                        <option value="' . $category['cid'] . '"' . ($parent == $category['cid'] ? ' selected': '') . ">" . $category['name'] . "</option>\n";
+                }
             }
 
             $lb .= '</select>';
@@ -524,7 +524,7 @@ endtable();
 echo "<br />\n";
 
 starttable('100%', $lang_catmgr_php['update_create'], 2);
-$lb = cat_list_box($current_category['parent'], $current_category['cid'], false);
+$lb = cat_list_box($current_category['cid'], $current_category['parent'], false);
 $op = $current_category['cid'] ? 'updatecat' : 'createcat';
 if ($CONFIG['show_bbcode_help']) {$description_help .= '&nbsp;'. cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
 echo <<<EOT
