@@ -44,12 +44,6 @@
 
 <a name="faq_toc"></a><h2>Table of contents:<a href="#faq_toc" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <ul class="nomargin">
-<li><strong>Error messages</strong></li>
-<ul class="nomargin">
-<li><a class="content" href="#createWriteMYI">I get the error message <tt class="code">Can't create/write to file '/tmp/#sql_45d5_0.MYI'</tt>. What's wrong?</a></li>
-<li><a class="content" href="#cantOpenMYI">I get the error message <tt class="code">Can't open file: 'yourPrefix_tableName.MYI'</tt> or similar. What's wrong?</a></li>
-</ul>
-
 <li><strong>Setup / Configuration</strong></li>
 <ul class="nomargin">
 <li><a class="content" href="#NoLastUploads">I don't want to show the <strong>last uploads</strong> and/or <strong>random pictures</strong> on the start page. How do I edit what's shown on the start page of coppermine?</a></li>
@@ -99,33 +93,6 @@
 <li><a class="content" href="#aboutTeam"><strong>Who</strong> are you anyway?</a></li>
 </ul>
 </ul>
-
-
-
-
-
-<a name="error_essages"></a><h2>Error Messages<a href="#error_essages" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-
-
-<a name="createWriteMYI"></a>
-<h3>I get the error message <tt class="code">Can't create/write to file '/tmp/#sql_45d5_0.MYI'</tt>. What's wrong?<a href="#createWriteMYI" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p><strong>The problem:</strong><br />
-MySQL can't create a temporary file for the result set in the given temporary directory.</p>
-<p><strong>The solution:</strong><br />
-Alter the tmpdir variable to point to a writable directory.  It requires changing the tmpdir line in the my.cnf file, usually in the [mysqld] section (tmpdir = /writable/dir, where /writable/dir is a directory to which you can write).</p>
-<p><strong>Ask your webhost to make the above changes.</strong></p>
-<br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
-
-<a name="cantOpenMYI"></a>
-<h3>I get the error message <tt class="code">Can't open file: 'yourPrefix_tableName.MYI'</tt> or similar. What's wrong?<a href="#cantOpenMYI" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p><strong>The problem:</strong><br />
-Your table is corrupted.</p>
-<p><strong>The solution:</strong><br />
-This is not a coppermine issue, but a mySQL issue. It just may affect a database table used by Coppermine.<br />
-Use your website's Control Panel to repair the table, or use phpMyAdmin to execute this sql query: <tt class="code">REPAIR TABLE yourPrefix_tableName</tt><br />
-(Replace yourPrefix_tableName with your table name, e.g. cpg145_pictures)</p>
-<p><strong>If you don't understand the solution, ask your webhost to make the above changes.</strong></p>
-<br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
 
 
 

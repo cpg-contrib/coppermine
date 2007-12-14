@@ -89,6 +89,46 @@
     <li>With debug_mode enabled, reproduce the error message: this time, you should not only get the generic &quot;Fatal error&quot;-message, but an explanation as well what actually went wrong.</li>
 </ul>
 
+<a name="errors_messages"></a><h2>Common error messages<a href="#errors_messages" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>There are some error messages that are often being encountered. Although they are more or less self-explanatory, some users appear not to be able to make heads or tails out of them, so here is an incomplete list with suggested fixes.</p>
+
+<a name="errors_messages_database"></a><h3>Database-related error messages<a href="#errors_messages_database" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+  <tr>
+    <th align="left" class="tableh1">Error message</th>
+    <th align="left" class="tableh1">Possible cause</th>
+    <th align="left" class="tableh1">Suggested fix</th>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">
+      <a name="createWriteMYI"></a><tt class="code">Can't create/write to file '/tmp/#sql_45d5_0.MYI'</tt><a href="#createWriteMYI" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+    </td>
+    <td valign="top" class="tableb">
+      MySQL can't create a temporary file for the result set in the given temporary directory.
+    </td>
+    <td valign="top" class="tableb">
+      Alter the tmpdir variable to point to a writable directory.  It requires changing the tmpdir line in the my.cnf file, usually in the [mysqld] section (tmpdir = /writable/dir, where /writable/dir is a directory to which you can write).<br />Ask your webhost to make the above changes.
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">
+      <a name="cantOpenMYI"></a><tt class="code">Can't open file: 'yourPrefix_tableName.MYI'</tt><a href="#cantOpenMYI" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+    </td>
+    <td valign="top" class="tableb tableb_alternate">
+      Your database table is corrupted.
+    </td>
+    <td valign="top" class="tableb tableb_alternate">
+      This is not a coppermine issue, but a mySQL issue. It just may affect a database table used by Coppermine.<br />
+      Use your website's Control Panel to repair the table, or use phpMyAdmin to execute this sql query: <tt class="code">REPAIR TABLE yourPrefix_tableName</tt><br />
+      (Replace yourPrefix_tableName with your table name, e.g. cpg145_pictures)<br />
+      <strong>If you don't understand the solution, ask your webhost to make the above changes.</strong>
+    </td>
+  </tr>
+</table>
+
+<a name="errors_messages_upload"></a><h3>Upload-related error messages<a href="#errors_messages_upload" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>There is an entire sub-section dedicated to <a href="upload_troubleshooting.htm#upload_error_messages">upload-related error messages</a> on the <a href="upload_troubleshooting.htm#upload_trouble">upload troubleshooting</a> page.</p>
+
 
 <script type="text/javascript">
   cpgDocFooter();
