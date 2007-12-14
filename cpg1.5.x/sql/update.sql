@@ -521,7 +521,7 @@ INSERT INTO CPG_config VALUES ('report_post', '0');
 
 INSERT INTO CPG_config VALUES ('users_can_edit_pics', '0');
 
-INSERT INTO CPG_config VALUES ('allow_unlogged_access', '1');
+INSERT INTO CPG_config VALUES ('allow_unlogged_access', '3');
 
 INSERT INTO CPG_config VALUES ('home_target', 'index.php');
 

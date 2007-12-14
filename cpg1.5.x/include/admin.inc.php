@@ -939,8 +939,13 @@ $config_data = array(
   ),
   'user_settings' => array(
     'allow_unlogged_access' => array(
-      'type' => 'checkbox',
+      'type' => 'radio',
       'help_link' => 'f=configuration.htm&amp;as=admin_allow_unlogged_access&amp;ae=admin_allow_unlogged_access_end',
+      'options' => array($lang_common['no'],
+                         $lang_common['yes'].': '.$lang_admin_php['thumbnail_only'],
+                         $lang_common['yes'].': '.$lang_admin_php['thumbnail_intermediate'],
+                         $lang_common['yes'].': '.$lang_admin_php['thumbnail_intermediate_full']
+                         )
     ),
     'allow_duplicate_emails_addr' => array(
       'type' => 'checkbox',
@@ -969,11 +974,11 @@ $config_data = array(
       'type' => 'checkbox',
       'help_link' => 'f=configuration.htm&amp;as=admin_user_editpics_public_start&amp;ae=admin_user_editpics_public_end',
     ),
-	'allow_user_move_album' => array(
+        'allow_user_move_album' => array(
       'type' => 'checkbox',
       'help_link' => 'f=configuration.htm&amp;as=admin_user_editpics_public_start&amp;ae=admin_user_editpics_public_end',
     ),
-	'allow_user_edit_after_cat_close' => array(
+        'allow_user_edit_after_cat_close' => array(
       'type' => 'checkbox',
       'help_link' => 'f=configuration.htm&amp;as=admin_user_edit_after_cat_close_start&amp;ae=admin_user_edit_after_cat_close_end',
     ),

@@ -1091,6 +1091,18 @@ This setting only applies if coppermine is not bridged.</p>
 <a name="admin_user"></a><h2>User settings<a href="#admin_user" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <a name="admin_allow_unlogged_access"></a><h3>Allow unlogged users (guest or anonymous) access<a href="#admin_allow_unlogged_access" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>When set to &quot;No&quot;, unlogged users (i.e. guests or anonymous users) can not access anything in your gallery except the login screen (and the registration screen, if you allow registrations). Completely disabling anonymous access will probably decrease your site's popularity. Use this option only if you need your gallery to be absolutely private. The recommended setting is to leave anonymous access enabled and use the more specific permissions by groups and albums settings instead.</p>
+<p>This option actually can be set to 4 different levels of access for anonymous users:</p>
+<ul>
+  <li><strong>No</strong><br />
+  Non-registered users can not access at all - they will be sent to the login screen</li>
+  <li><strong>Yes: thumbnail only</strong><br />
+  Non-registered users can view the thumbnails only. If they click on them, they will be shown a little dialog box that they need to register/login to see more.</li>
+  <li><strong>Yes: thumbnail and intermediate image</strong><br />
+  Non-registered users can see everything but the full-sized image pop-ups (if you have any)</li>
+  <li><strong>Yes: thumbnail, intermediate and full-size image</strong><br />
+  Default value: non-registered users can access all sizes of images. It's recommended to leave this option enabled.</li>
+</ul>
+<p>Keep in mind that search engine spiders will be treated as non-registered guests as well, so if you restrict the accessibility for guests, search engine spiders will not index whatever you hide from your guests.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; User settings &rarr; Allow unlogged users (guest or anonymous) access</p>
 
 <a name="admin_allow_unlogged_access_end"></a>

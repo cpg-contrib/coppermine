@@ -165,7 +165,7 @@ INSERT INTO CPG_config VALUES ('reg_requires_valid_email', '1');
 INSERT INTO CPG_config VALUES ('reg_notify_admin_email', '0');
 INSERT INTO CPG_config VALUES ('admin_activation', '0');
 INSERT INTO CPG_config VALUES ('personal_album_on_registration', '0');
-INSERT INTO CPG_config VALUES ('allow_unlogged_access', '1');
+INSERT INTO CPG_config VALUES ('allow_unlogged_access', '3');
 INSERT INTO CPG_config VALUES ('allow_duplicate_emails_addr', '0');
 INSERT INTO CPG_config VALUES ('upl_notify_admin_email', '0');
 INSERT INTO CPG_config VALUES ('allow_memberlist', '0');

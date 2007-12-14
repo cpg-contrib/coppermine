@@ -42,7 +42,7 @@ require('include/init.inc.php');
  * Clean up GPC and other Globals here
  */
 if ($superCage->get->keyExists('page')) {
-	$page = $superCage->get->getInt('page');
+        $page = $superCage->get->getInt('page');
 }
 
 if ($superCage->get->keyExists('cat')) {
@@ -62,7 +62,7 @@ if ($superCage->get->keyExists('file')) {
     if ($matched = $superCage->get->getMatched('page', "/^([a-zA-Z0-9_\-]+)(\/{0,1}?)([a-zA-Z0-9_\-]+)$/")) {
         $tmpFile = $matched[0];
     } else {
-    	$tmpFile = '';
+            $tmpFile = '';
     }
 }
 
@@ -512,11 +512,11 @@ function list_albums()
     }
 
     $result;
-	if(USER_ADMIN_MODE && $cat == (USER_ID + FIRST_USER_CAT)){
-		$result = cpg_db_query("SELECT count(aid) FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE owner = '" . $USER_DATA['user_id'] . "'" . $album_filter);
-	}else{
-		$result = cpg_db_query("SELECT count(aid) FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE category = '$cat'" . $album_filter);
-	}
+        if(USER_ADMIN_MODE && $cat == (USER_ID + FIRST_USER_CAT)){
+                $result = cpg_db_query("SELECT count(aid) FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE owner = '" . $USER_DATA['user_id'] . "'" . $album_filter);
+        }else{
+                $result = cpg_db_query("SELECT count(aid) FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE category = '$cat'" . $album_filter);
+        }
     $nbEnr = mysql_fetch_array($result);
     $nbAlb = $nbEnr[0];
     mysql_free_result($result);
@@ -531,30 +531,30 @@ function list_albums()
     $limit = "LIMIT " . $lower_limit . "," . ($upper_limit - $lower_limit);
 
     $sql;
-	if(USER_ADMIN_MODE && $cat == (USER_ID + FIRST_USER_CAT)){
-    	$sql = 'SELECT a.aid, a.title, a.description, a.thumb, category, visibility, filepath, ' . 'filename, url_prefix, pwidth, pheight ' . 'FROM ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' . 'LEFT JOIN ' . $CONFIG['TABLE_PICTURES'] . ' as p ' . 'ON a.thumb=p.pid ' . 'WHERE a.owner=' . $USER_DATA['user_id'] . $album_filter . ' ORDER BY a.category DESC , a.pos ' . $limit;
-		$alb_thumbs_q = cpg_db_query($sql);
-		$alb_thumbs = cpg_db_fetch_rowset($alb_thumbs_q);
-		mysql_free_result($alb_thumbs_q);
-		
-		//query for the category names
-		$cat_name_sql = "SELECT CONCAT(a.title, '" . $lang_list_albums['from_categorie'] . "<i>', c.name, '</i>') FROM " . $CONFIG['TABLE_ALBUMS'] . " AS a LEFT JOIN " . $CONFIG['TABLE_CATEGORIES'] . " AS c ON a.category=c.cid WHERE a.owner=" . $USER_DATA['user_id'] . " ORDER BY a.category DESC , a.pos " . $limit;
-		$cat_name_q = cpg_db_query($cat_name_sql);
-		$cat_names = cpg_db_fetch_rowset($cat_name_q);
-		mysql_free_result($cat_name_q);
-		
-		//replace names in $alb_thumbs array
-		foreach($alb_thumbs as $key => $value){
-			if($cat_names[$key][0]!=""){
-				$alb_thumbs[$key]['title'] = $cat_names[$key][0];
-			}
-		}
-	}else{
-    	$sql = 'SELECT a.aid, a.title, a.description, a.thumb, category, visibility, filepath, ' . 'filename, url_prefix, pwidth, pheight ' . 'FROM ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' . 'LEFT JOIN ' . $CONFIG['TABLE_PICTURES'] . ' as p ' . 'ON a.thumb=p.pid ' . 'WHERE a.category=' . $cat . $album_filter . ' ORDER BY a.pos ' . $limit;
-		$alb_thumbs_q = cpg_db_query($sql);
-		$alb_thumbs = cpg_db_fetch_rowset($alb_thumbs_q);
-		mysql_free_result($alb_thumbs_q);
-	}
+        if(USER_ADMIN_MODE && $cat == (USER_ID + FIRST_USER_CAT)){
+            $sql = 'SELECT a.aid, a.title, a.description, a.thumb, category, visibility, filepath, ' . 'filename, url_prefix, pwidth, pheight ' . 'FROM ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' . 'LEFT JOIN ' . $CONFIG['TABLE_PICTURES'] . ' as p ' . 'ON a.thumb=p.pid ' . 'WHERE a.owner=' . $USER_DATA['user_id'] . $album_filter . ' ORDER BY a.category DESC , a.pos ' . $limit;
+                $alb_thumbs_q = cpg_db_query($sql);
+                $alb_thumbs = cpg_db_fetch_rowset($alb_thumbs_q);
+                mysql_free_result($alb_thumbs_q);
+
+                //query for the category names
+                $cat_name_sql = "SELECT CONCAT(a.title, '" . $lang_list_albums['from_categorie'] . "<i>', c.name, '</i>') FROM " . $CONFIG['TABLE_ALBUMS'] . " AS a LEFT JOIN " . $CONFIG['TABLE_CATEGORIES'] . " AS c ON a.category=c.cid WHERE a.owner=" . $USER_DATA['user_id'] . " ORDER BY a.category DESC , a.pos " . $limit;
+                $cat_name_q = cpg_db_query($cat_name_sql);
+                $cat_names = cpg_db_fetch_rowset($cat_name_q);
+                mysql_free_result($cat_name_q);
+
+                //replace names in $alb_thumbs array
+                foreach($alb_thumbs as $key => $value){
+                        if($cat_names[$key][0]!=""){
+                                $alb_thumbs[$key]['title'] = $cat_names[$key][0];
+                        }
+                }
+        }else{
+            $sql = 'SELECT a.aid, a.title, a.description, a.thumb, category, visibility, filepath, ' . 'filename, url_prefix, pwidth, pheight ' . 'FROM ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' . 'LEFT JOIN ' . $CONFIG['TABLE_PICTURES'] . ' as p ' . 'ON a.thumb=p.pid ' . 'WHERE a.category=' . $cat . $album_filter . ' ORDER BY a.pos ' . $limit;
+                $alb_thumbs_q = cpg_db_query($sql);
+                $alb_thumbs = cpg_db_fetch_rowset($alb_thumbs_q);
+                mysql_free_result($alb_thumbs_q);
+        }
 
     $disp_album_count = count($alb_thumbs);
     $album_set = '';
@@ -691,39 +691,39 @@ function list_albums()
 */
 function album_adm_menu($aid, $cat)
 {
-	global $CONFIG, $USER_DATA, $lang_album_admin_menu;
-	
-	//check if user is allowed to edit album
-	if(USER_ADMIN_MODE){
+        global $CONFIG, $USER_DATA, $lang_album_admin_menu;
 
-		//check if it is the user's gallery
-		if($cat == USER_ID + FIRST_USER_CAT){			
-			return html_albummenu($aid);
-		}
-		//check if admin allows editing	after closing category
-		if($CONFIG['allow_user_edit_after_cat_close'] == 0){
-			//Disallowed -> Check if albums is in such a category
-			$result = cpg_db_query("SELECT DISTINCT alb.category FROM {$CONFIG['TABLE_ALBUMS']} AS alb INNER JOIN {$CONFIG['TABLE_CATMAP']} AS catm ON alb.category=catm.cid WHERE alb.owner = '" . $USER_DATA['user_id'] . "' AND alb.aid='$aid' AND catm.group_id='" . $USER_DATA['group_id'] . "'");
-			$allowed_albums = cpg_db_fetch_rowset($result);
-			if($allowed_albums[0]['category']!=''){
-				return "<b>" . $lang_album_admin_menu['cat_locked'] . "</b>";
-			}
-		}
-		//get list of allowed albums
-		$sql = "SELECT * FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$aid' AND owner='" . $USER_DATA['user_id'] . "'";
-		$result = cpg_db_query($sql);
-		$check = cpg_db_fetch_rowset($result);
-		if($check[0] != ""){
-			return html_albummenu($aid);
-		}		
-	}else if(GALLERY_ADMIN_MODE){
-		return html_albummenu($aid);
-	}else if(in_array($alb_thumb['aid'], $USER_DATA['allowed_albums'])){
-		//check for moderator rights
-		return html_albummenu2($aid);
-	}else{
-		return '';
-	}	
+        //check if user is allowed to edit album
+        if(USER_ADMIN_MODE){
+
+                //check if it is the user's gallery
+                if($cat == USER_ID + FIRST_USER_CAT){
+                        return html_albummenu($aid);
+                }
+                //check if admin allows editing        after closing category
+                if($CONFIG['allow_user_edit_after_cat_close'] == 0){
+                        //Disallowed -> Check if albums is in such a category
+                        $result = cpg_db_query("SELECT DISTINCT alb.category FROM {$CONFIG['TABLE_ALBUMS']} AS alb INNER JOIN {$CONFIG['TABLE_CATMAP']} AS catm ON alb.category=catm.cid WHERE alb.owner = '" . $USER_DATA['user_id'] . "' AND alb.aid='$aid' AND catm.group_id='" . $USER_DATA['group_id'] . "'");
+                        $allowed_albums = cpg_db_fetch_rowset($result);
+                        if($allowed_albums[0]['category']!=''){
+                                return "<b>" . $lang_album_admin_menu['cat_locked'] . "</b>";
+                        }
+                }
+                //get list of allowed albums
+                $sql = "SELECT * FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$aid' AND owner='" . $USER_DATA['user_id'] . "'";
+                $result = cpg_db_query($sql);
+                $check = cpg_db_fetch_rowset($result);
+                if($check[0] != ""){
+                        return html_albummenu($aid);
+                }
+        }else if(GALLERY_ADMIN_MODE){
+                return html_albummenu($aid);
+        }else if(in_array($alb_thumb['aid'], $USER_DATA['allowed_albums'])){
+                //check for moderator rights
+                return html_albummenu2($aid);
+        }else{
+                return '';
+        }
 }
 
 

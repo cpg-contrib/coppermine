@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-12-14 [A] Added two more levels of access for guests: no access, thumbs only, thumbs + intermediate only, thumbs + intermediate + full-size {GauGau}
 2007-12-14 [O] Modified ecard and displayecard to reflect security improments imposed by Inspekt {Aditya}
 2007-12-14 [B] Fixed parent category on category-edit {SaWey}
 2007-12-14 [A] Added posibility for users to create albums in admin allowed categories {SaWey}

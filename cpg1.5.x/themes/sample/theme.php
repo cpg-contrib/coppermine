@@ -2242,7 +2242,7 @@ function theme_display_album_list_cat(&$alb_list, $nbAlb, $cat, $page, $total_pa
 function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $page, $total_pages, $sort_options, $display_tabs, $mode = 'thumb', $date='')
 {
     global $CONFIG;
-    global $template_thumb_view_title_row,$template_fav_thumb_view_title_row, $lang_thumb_view,$lang_common, $template_tab_display, $template_thumbnail_view, $lang_album_list;
+    global $template_thumb_view_title_row,$template_fav_thumb_view_title_row, $lang_thumb_view,$lang_common, $template_tab_display, $template_thumbnail_view, $lang_album_list, $lang_errors;
 
     static $header = '';
     static $thumb_cell = '';
@@ -2332,10 +2332,29 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
                     '{CAPTION}' => $thumb['caption'],
                     '{ADMIN_MENU}' => $thumb['admin_menu']
                     );
+            ########## Commented by Abbas for new URL ###############
+            // Can be removed after testing
+            /*
+            } else {
+                $params = array('{CELL_WIDTH}' => $cell_width,
+                    '{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&amp;pos={$thumb['pos']}$uid_link",
+                    '{THUMB}' => $thumb['image'],
+                    '{CAPTION}' => $thumb['caption'],
+                    '{ADMIN_MENU}' => $thumb['admin_menu']
+                    );
+            }
+            */
+            ########################################################
+
+            ######### Added by Abbas for new URL #################
             } elseif ($aid == 'random'){
                 // determine if thumbnail link targets should open in a pop-up
                 if ($CONFIG['thumbnail_to_fullsize'] == 1) { // code for full-size pop-up
-                    $target = 'javascript:;" onClick="MM_openBrWindow(\'displayimage.php?pid=' . $thumb['pid'] . '&fullsize=1\',\'' . uniqid(rand()) . '\',\'scrollbars=yes,toolbar=no,status=no,resizable=yes,width=' . ((int)$thumb['pwidth']+(int)$CONFIG['fullsize_padding_x']) .  ',height=' .   ((int)$thumb['pheight']+(int)$CONFIG['fullsize_padding_y']). '\');';
+                    if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 2) {
+                       $target = 'javascript:;" onClick="alert(\''.sprintf($lang_errors['login_needed'],'','','','').'\');';
+                    } else {
+                      $target = 'javascript:;" onClick="MM_openBrWindow(\'displayimage.php?pid=' . $thumb['pid'] . '&fullsize=1\',\'' . uniqid(rand()) . '\',\'scrollbars=yes,toolbar=no,status=no,resizable=yes,width=' . ((int)$thumb['pwidth']+(int)$CONFIG['fullsize_padding_x']) .  ',height=' .   ((int)$thumb['pheight']+(int)$CONFIG['fullsize_padding_y']). '\');';
+                    }
                 } else {
                     $target = "displayimage.php?pid={$thumb['pid']}$uid_link";
                 }
@@ -2345,20 +2364,27 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
                     '{CAPTION}' => $thumb['caption'],
                     '{ADMIN_MENU}' => $thumb['admin_menu']
                     );
+            ######################################################
             } else {
                 // determine if thumbnail link targets should open in a pop-up
                 if ($CONFIG['thumbnail_to_fullsize'] == 1) { // code for full-size pop-up
-                    $target = 'javascript:;" onClick="MM_openBrWindow(\'displayimage.php?pid=' . $thumb['pid'] . '&fullsize=1\',\'' . uniqid(rand()) . '\',\'scrollbars=yes,toolbar=no,status=no,resizable=yes,width=' . ((int)$thumb['pwidth']+(int)$CONFIG['fullsize_padding_x']) .  ',height=' .   ((int)$thumb['pheight']+(int)$CONFIG['fullsize_padding_y']). '\');';
+                    if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 2) {
+                       $target = 'javascript:;" onClick="alert(\''.sprintf($lang_errors['login_needed'],'','','','').'\');';
+                    } else {
+                       $target = 'javascript:;" onClick="MM_openBrWindow(\'displayimage.php?pid=' . $thumb['pid'] . '&fullsize=1\',\'' . uniqid(rand()) . '\',\'scrollbars=yes,toolbar=no,status=no,resizable=yes,width=' . ((int)$thumb['pwidth']+(int)$CONFIG['fullsize_padding_x']) .  ',height=' .   ((int)$thumb['pheight']+(int)$CONFIG['fullsize_padding_y']). '\');';
+                    }
                 } else {
                     $target = "displayimage.php?album=$aid$cat_link$date_link&amp;pid={$thumb['pid']}$uid_link";
                 }
                 $params = array('{CELL_WIDTH}' => $cell_width,
+                    //'{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&amp;pos={$thumb['pos']}",
                     '{LINK_TGT}' => $target,
                     '{THUMB}' => $thumb['image'],
                     '{CAPTION}' => $thumb['caption'],
                     '{ADMIN_MENU}' => $thumb['admin_menu']
                     );
             }
+
         } else {
             $params = array('{CELL_WIDTH}' => $cell_width,
                 '{LINK_TGT}' => "index.php?cat={$thumb['cat']}",
@@ -2396,6 +2422,7 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
 ** Section <<<theme_display_film_strip>>> - START
 ******************************************************************************/
 // Function to display the film strip
+// Function to display the film strip
 function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $pos, $sort_options, $mode = 'thumb', $date='') {
     global $CONFIG, $THEME_DIR;
     global $template_film_strip, $lang_film_strip;
@@ -2424,11 +2451,15 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
         $i++;
         if ($mode == 'thumb') {
             if ($thumb['pos'] == $pos) {
-            	$thumb['image'] = str_replace('class="image"', 'class="image middlethumb"', $thumb['image']);
+                    $thumb['image'] = str_replace('class="image"', 'class="image middlethumb"', $thumb['image']);
             }
             // determine if thumbnail link targets should open in a pop-up
             if ($CONFIG['thumbnail_to_fullsize'] == 1) { // code for full-size pop-up
-                $target = 'javascript:;" onClick="MM_openBrWindow(\'displayimage.php?pid=' . $thumb['pid'] . '&fullsize=1\',\'' . uniqid(rand()) . '\',\'scrollbars=yes,toolbar=no,status=no,resizable=yes,width=' . ((int)$thumb['pwidth']+(int)$CONFIG['fullsize_padding_x']) .  ',height=' .   ((int)$thumb['pheight']+(int)$CONFIG['fullsize_padding_y']). '\');';
+                if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 2) {
+                       $target = 'javascript:;" onClick="alert(\''.sprintf($lang_errors['login_needed'],'','','','').'\');';
+                } else {
+                    $target = 'javascript:;" onClick="MM_openBrWindow(\'displayimage.php?pid=' . $thumb['pid'] . '&fullsize=1\',\'' . uniqid(rand()) . '\',\'scrollbars=yes,toolbar=no,status=no,resizable=yes,width=' . ((int)$thumb['pwidth']+(int)$CONFIG['fullsize_padding_x']) .  ',height=' .   ((int)$thumb['pheight']+(int)$CONFIG['fullsize_padding_y']). '\');';
+                }
             } else {
                 $target = "displayimage.php?album=$aid$cat_link$date_link&amp;pid={$thumb['pid']}$uid_link";
             }
@@ -2577,7 +2608,7 @@ function theme_html_picture()
 {
     global $CONFIG, $CURRENT_PIC_DATA, $CURRENT_ALBUM_DATA, $USER;
     global $album, $comment_date_fmt, $template_display_media;
-    global $lang_display_image_php, $lang_picinfo;
+    global $lang_display_image_php, $lang_picinfo, $lang_errors;
 
     $pid = $CURRENT_PIC_DATA['pid'];
     $pic_title = '';
@@ -2668,12 +2699,20 @@ function theme_html_picture()
             $winsizeY = $CURRENT_PIC_DATA['pheight']+$CONFIG['fullsize_padding_y']; //the +'s are the mysterious FF and IE paddings
             if ($CONFIG['transparent_overlay'] == 1) {
                 $pic_html = "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td background=\"" . $picture_url . "\" width=\"{$imginfo[0]}\" height=\"{$imginfo[1]}\" class=\"image\">";
-                $pic_html .= "<a href=\"javascript:;\" onclick=\"MM_openBrWindow('displayimage.php?pid=$pid&amp;fullsize=1','" . uniqid(rand()) . "','scrollbars=yes,toolbar=no,status=no,resizable=yes,width=$winsizeX,height=$winsizeY')\">";
+                if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 2) {
+                   $pic_html .= '<a href="javascript:;" onClick="alert(\''.sprintf($lang_errors['login_needed'],'','','','').'\');">';
+                } else {
+                  $pic_html .= "<a href=\"javascript:;\" onclick=\"MM_openBrWindow('displayimage.php?pid=$pid&amp;fullsize=1','" . uniqid(rand()) . "','scrollbars=yes,toolbar=no,status=no,resizable=yes,width=$winsizeX,height=$winsizeY')\">";
+                }
                 $pic_title = $lang_display_image_php['view_fs'] . "\n==============\n" . $pic_title;
                 $pic_html .= "<img src=\"images/image.gif?id=".floor(rand()*1000+rand())."\" width={$imginfo[0]} height={$imginfo[1]}  border=\"0\" alt=\"{$lang_display_image_php['view_fs']}\" /><br />";
                 $pic_html .= "</a>\n </td></tr></table>";
             } else {
-                $pic_html = "<a href=\"javascript:;\" onclick=\"MM_openBrWindow('displayimage.php?pid=$pid&amp;fullsize=1','" . uniqid(rand()) . "','scrollbars=yes,toolbar=no,status=no,resizable=yes,width=$winsizeX,height=$winsizeY')\">";
+                if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 2) {
+                   $pic_html = '<a href="javascript:;" onClick="alert(\''.sprintf($lang_errors['login_needed'],'','','','').'\');">';
+                } else {
+                  $pic_html = "<a href=\"javascript:;\" onclick=\"MM_openBrWindow('displayimage.php?pid=$pid&amp;fullsize=1','" . uniqid(rand()) . "','scrollbars=yes,toolbar=no,status=no,resizable=yes,width=$winsizeX,height=$winsizeY')\">";
+                }
                 $pic_title = $lang_display_image_php['view_fs'] . "\n==============\n" . $pic_title;
                 $pic_html .= "<img src=\"" . $picture_url . "\" class=\"image\" border=\"0\" alt=\"{$lang_display_image_php['view_fs']}\" /><br />";
                 $pic_html .= "</a>\n";
@@ -3155,30 +3194,36 @@ EOT;
 // Display the full size image
 function theme_display_fullsize_pic()
 {
-    global $CONFIG, $THEME_DIR, $ALBUM_SET;
+    global $CONFIG, $THEME_DIR, $ALBUM_SET, $pid;
     global $lang_errors, $lang_fullsize_popup, $lang_charset;
 
-    if (isset($_GET['picfile']))
-    {
-        if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
-
-    $picfile = $_GET['picfile'];
-    $picname = $CONFIG['fullpath'] . $picfile;
-    $imagesize = @getimagesize($picname);
-    $imagedata = array('name' => $picfile, 'path' => path2url($picname), 'geometry' => $imagesize[3]);
+    if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 2) {
+      printf($lang_errors['login_needed'],'','','','');
+      die();
     }
-    elseif (isset($_GET['pid']))
-    {
-    $pid = (int)$_GET['pid'];
-    $sql = "SELECT * " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='$pid' $ALBUM_SET";
-    $result = cpg_db_query($sql);
-
-    if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
-
-    $row = mysql_fetch_array($result);
-    $pic_url = get_pic_url($row, 'fullsize');
-    $geom = 'width="' . $row['pwidth'] . '" height="' . $row['pheight'] . '"';
-    $imagedata = array('name' => $row['filename'], 'path' => $pic_url, 'geometry' => $geom);
+    if (isset($_GET['picfile'])){
+        if (!GALLERY_ADMIN_MODE) {
+          cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+        }
+      $picfile = $_GET['picfile'];
+      $picname = $CONFIG['fullpath'] . $picfile;
+      $imagesize = @getimagesize($picname);
+      $imagedata = array('name' => $picfile, 'path' => path2url($picname), 'geometry' => $imagesize[3]);
+    } elseif (pid) {
+      //$pid = (int)$_GET['pid'];
+      $sql = "SELECT * " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='$pid' $ALBUM_SET";
+      $result = cpg_db_query($sql);
+      if (!mysql_num_rows($result)) {
+        cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
+      }
+      $row = mysql_fetch_array($result);
+      $pic_url = get_pic_url($row, 'fullsize');
+      $geom = 'width="' . $row['pwidth'] . '" height="' . $row['pheight'] . '"';
+      $imagedata = array('name' => $row['filename'], 'path' => $pic_url, 'geometry' => $geom);
+    }
+    if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 2) { // adjust the size of the window if we don't have to catter for a full-size pop-up, but only a text message
+       $row['pwidth'] = 200;
+       $row['pheight'] = 100;
     }
 
 ?>
@@ -3193,8 +3238,9 @@ function theme_display_fullsize_pic()
     img { margin:0; padding:0; border:0; }
     #content { margin:0 auto; padding:0; border:0; }
     table { border:0; width:<?php echo $row['pwidth'] ?>px; height:<?php echo $row['pheight'] ?>px; border-collapse:collapse}
-    td {         vertical-align: middle; text-align:center; }
+    td { vertical-align: middle; text-align:center; }
   </style>
+
   <script type="text/javascript" src="scripts.js"></script>
   </head>
   <body style="margin:0px; padding:0px; background-color: gray;">
@@ -3202,11 +3248,11 @@ function theme_display_fullsize_pic()
       adjust_popup();
     </script>
 <?php
-if ($CONFIG['transparent_overlay'] == 1) {
+  if ($CONFIG['transparent_overlay'] == 1) {
 ?>
     <table cellpadding="0" cellspacing="0" align="center" style="padding:0px;">
       <tr>
-              <?php
+<?php
         echo '<td align="center" valign="middle" background="' . htmlspecialchars($imagedata['path']) . '" ' . $imagedata['geometry'] . ' class="image">';
         echo '<div id="content">';
         echo  '<a href="javascript: window.close()" style="border:none"><img src="images/image.gif?id='
@@ -3219,13 +3265,13 @@ if ($CONFIG['transparent_overlay'] == 1) {
                 . htmlspecialchars($imagedata['name'])
                 . "\n" . $lang_fullsize_popup['click_to_close']
                 . '" /></a><br />' ."\n";
-               ?>
+?>
           </div>
         </td>
       </tr>
     </table>
 <?php
-} else {
+  } else {
 ?>
     <table class="fullsize">
       <tr>
@@ -3246,7 +3292,8 @@ if ($CONFIG['transparent_overlay'] == 1) {
       </tr>
     </table>
 <?php
-}
+  }
+
 ?>
   </body>
 </html>

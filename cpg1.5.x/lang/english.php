@@ -104,6 +104,8 @@ $lang_errors = array(
   'captcha_error' => 'The confirmation code didn\'t match', //cpg1.5
   'no_data' => 'No data returned', //cpg1.5
   'no_connection' => 'No connection to %s established.', //cpg1.5
+  'login_needed' => 'You need to %sregister%s/%slogin%s to access this page', //cpg1.5
+   'error' => 'Error', //cpg1.5
 );
 
 $lang_bbcode_help_title = 'bbcode help';
@@ -376,11 +378,11 @@ $lang_create_tabs = array(
 );
 
 $lang_get_remote_File_by_url = array(
-	'no_data_returned' => 'No data returned using %s',
-	'curl' => 'CURL',
-	'fsockopen' => 'Socket connection (FSOCKOPEN)',
-	'fopen' => 'fopen',
-	'curl_not_available' => 'Curl is not available on your server',
+        'no_data_returned' => 'No data returned using %s',
+        'curl' => 'CURL',
+        'fsockopen' => 'Socket connection (FSOCKOPEN)',
+        'fopen' => 'fopen',
+        'curl_not_available' => 'Curl is not available on your server',
 );
 
 // ------------------------------------------------------------------------- //
@@ -914,14 +916,17 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'admin_activation' =>   'Admin activation of registrations', // cpg1.5
   'personal_album_on_registration' =>   'Create user album in personal gallery on registration', // cpg1.5
   'allow_unlogged_access' =>   'Allow unlogged users (guest or anonymous) access', // cpg1.5
+  'thumbnail_intermediate_full' =>   'thumbnail, intermediate and full-size image', // cpg1.5
+  'thumbnail_intermediate' =>   'thumbnail and intermediate image', // cpg1.5
+  'thumbnail_only' =>   'thumbnail only', // cpg1.5
   'allow_duplicate_emails_addr' =>   'Allow two users to have the same email address', // cpg1.5
   'upl_notify_admin_email' =>   'Notify admin of user upload awaiting approval', // cpg1.5
   'allow_memberlist' =>   'Allow logged in users to view memberlist', // cpg1.5
   'allow_email_change' =>   'Allow users to change their email address in profile', // cpg1.5
   'allow_user_account_delete' =>   'Allow users to delete their own user account', // cpg1.5
   'users_can_edit_pics' =>   'Allow users to retain control over their pics in public galleries', // cpg1.5
-  'allow_user_move_album' =>	'Allow users to move their albums from/to allowed categories', // cpg1.5
-  'allow_user_edit_after_cat_close' =>	'Allow users to edit their albums when it is in a locked category', // cpg1.5
+  'allow_user_move_album' =>        'Allow users to move their albums from/to allowed categories', // cpg1.5
+  'allow_user_edit_after_cat_close' =>        'Allow users to edit their albums when it is in a locked category', // cpg1.5
   'login_threshold' =>   'Number of failed login attempts until temporary ban', // cpg1.5
   'login_threshold_detail' =>   '(to avoid brute force attacks)', // cpg1.5
   'login_expiry' =>   'Duration of a temporary ban after failed logins', // cpg1.5
@@ -1227,6 +1232,7 @@ $lang_display_comments = array(
 
 $lang_fullsize_popup = array(
   'click_to_close' => 'Click image to close this window',
+  'close_window' => 'close window', // cpg1.5.x
 );
 
 }
