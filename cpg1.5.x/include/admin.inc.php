@@ -75,7 +75,7 @@ $config_data = array(
                   .'(:[0-9]{1,4}){0,1}' // port number- :80
                   .'[/]{1,1}' // trailing slash after domain-part of URL
                   .'('
-                  .'([0-9a-zA-Z _!~.()-])+/{1}'
+                  .'([0-9a-zA-Z_!~.()-])+/{1}'
                   .'){0,}'
                   .'$',
       'regex_not' => '^http://yoursite.tld/your_coppermine_folder/$',
