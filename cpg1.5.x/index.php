@@ -184,6 +184,52 @@ function html_albummenu($id)
 }
 
 /**
+ * html_albummenu3()
+ *
+ * This function draws the links for admin menu of Albums when pics can't be edited
+ *
+ * @param integer $id ID of the album for which the links are being drawn
+ * @return string The evaluated template block with links
+ **/
+function html_albummenu3($id)
+{
+    global $lang_album_admin_menu;
+	
+	 /**
+     * This template variable can be defined in theme.php of respective theme.
+     * This is done here for simplicity.
+     */
+    $template_album_admin_no_pic_edit_menu = <<<EOT
+        <table border="0" cellpadding="0" cellspacing="1">
+                <tr>
+                        <td align="center" valign="middle" class="admin_menu">
+                                <a href="delete.php?id={ALBUM_ID}&amp;what=album"  class="adm_menu" onclick="return confirm('{CONFIRM_DELETE}');">{DELETE}</a>
+                        </td>
+                        <td align="center" valign="middle" class="admin_menu">
+                                <a href="modifyalb.php?album={ALBUM_ID}"  class="adm_menu">{MODIFY}</a>
+                        </td>
+                </tr>
+        </table>
+EOT;
+	
+    static $template = '';
+
+    if ($template == '') {
+        $params = array('{CONFIRM_DELETE}' => $lang_album_admin_menu['confirm_delete'],
+            '{DELETE}' => $lang_album_admin_menu['delete'],
+            '{MODIFY}' => $lang_album_admin_menu['modify'],
+            );
+
+        $template = template_eval($template_album_admin_no_pic_edit_menu, $params);
+    }
+
+    $params = array('{ALBUM_ID}' => $id,
+        );
+
+    return template_eval($template, $params);
+}
+
+/**
  * get_subcat_data()
  *
  * Get the data about the sub categories which are going to be shown on the index page, this function is called recursively
@@ -695,34 +741,42 @@ function album_adm_menu($aid, $cat)
 
         //check if user is allowed to edit album
         if(USER_ADMIN_MODE){
-
                 //check if it is the user's gallery
                 if($cat == USER_ID + FIRST_USER_CAT){
-                        return html_albummenu($aid);
+                    return html_albummenu($aid);
                 }
-                //check if admin allows editing        after closing category
-                if($CONFIG['allow_user_edit_after_cat_close'] == 0){
-                        //Disallowed -> Check if albums is in such a category
-                        $result = cpg_db_query("SELECT DISTINCT alb.category FROM {$CONFIG['TABLE_ALBUMS']} AS alb INNER JOIN {$CONFIG['TABLE_CATMAP']} AS catm ON alb.category=catm.cid WHERE alb.owner = '" . $USER_DATA['user_id'] . "' AND alb.aid='$aid' AND catm.group_id='" . $USER_DATA['group_id'] . "'");
-                        $allowed_albums = cpg_db_fetch_rowset($result);
-                        if($allowed_albums[0]['category']!=''){
-                                return "<b>" . $lang_album_admin_menu['cat_locked'] . "</b>";
-                        }
-                }
-                //get list of allowed albums
+				
+                //check if the user is the owner of the album
                 $sql = "SELECT * FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$aid' AND owner='" . $USER_DATA['user_id'] . "'";
                 $result = cpg_db_query($sql);
                 $check = cpg_db_fetch_rowset($result);
-                if($check[0] != ""){
-                        return html_albummenu($aid);
-                }
+                if($check[0] != ''){
+					//check if admin allows editing after closing category
+					if($CONFIG['allow_user_edit_after_cat_close'] == 0){
+						//Disallowed -> Check if albums is in such a category
+						$result = cpg_db_query("SELECT DISTINCT alb.category FROM {$CONFIG['TABLE_ALBUMS']} AS alb INNER JOIN {$CONFIG['TABLE_CATMAP']} AS catm ON alb.category=catm.cid WHERE alb.owner = '" . $USER_DATA['user_id'] . "' AND alb.aid='$aid' AND catm.group_id='" . $USER_DATA['group_id'] . "'");
+						$allowed_albums = cpg_db_fetch_rowset($result);
+						if($allowed_albums[0]['category'] == ''){
+							return "<b>" . $lang_album_admin_menu['cat_locked'] . "</b>";
+						}
+					}
+					if(!$CONFIG['users_can_edit_pics']) {
+						//return menu without edit pics button
+						return html_albummenu3($aid);
+					} else {
+						//return whole menu
+						return html_albummenu($aid);
+					}  
+                } else {
+					return '';
+				}
         }else if(GALLERY_ADMIN_MODE){
-                return html_albummenu($aid);
+            return html_albummenu($aid);
         }else if(in_array($alb_thumb['aid'], $USER_DATA['allowed_albums'])){
-                //check for moderator rights
-                return html_albummenu2($aid);
+            //check for moderator rights
+            return html_albummenu2($aid);
         }else{
-                return '';
+            return '';
         }
 }
 

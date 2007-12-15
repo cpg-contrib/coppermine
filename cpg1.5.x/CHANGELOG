@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-12-15 [B] Fixed some permissions on user creatable albums {SaWey}
 2007-12-15 [O] Modified forgot_passwd to reflect security improvents imposed by Inspekt {Aditya}
 2007-12-15 [A] Added auto check of internal/external links in bbcode + add rel="external nofolow" accordingly and removed [iurl] option {SaWey}
 2007-12-15 [A] Added bbcode help icon on comments {SaWey}

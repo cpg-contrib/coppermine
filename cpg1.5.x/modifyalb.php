@@ -28,37 +28,7 @@ if ($superCage->get->keyExists('album')){
     $CLEAN['album'] = 0;
 }
 
-//check if user is allowed to edit this album
-$check_approved = false;
-if(USER_ADMIN_MODE){
-	global $USER_DATA, $CONFIG;
-	//get albums this user can edit
-	$album_id = $CLEAN['album'];
-	
-	$result = cpg_db_query("SELECT DISTINCT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE owner = '" . $USER_DATA['user_id'] . "' AND aid='$album_id'");
-	$allowed_albums = cpg_db_fetch_rowset($result);
-	if($allowed_albums!=''){
-		$check_approve = true;
-	}
-	
-	//check if admin allows editing	after closing category
-	if($CONFIG['allow_user_edit_after_cat_close'] == 0){
-		//Disallowed -> Check if album is in such a category
-		$result = cpg_db_query("SELECT DISTINCT aid FROM {$CONFIG['TABLE_ALBUMS']} AS alb INNER JOIN {$CONFIG['TABLE_CATMAP']} AS catm ON alb.category=catm.cid WHERE alb.owner = '" . $USER_DATA['user_id'] . "' AND alb.aid='$album_id' AND catm.group_id='" . $USER_DATA['group_id'] . "'");
-		$allowed_albums = cpg_db_fetch_rowset($result);
-		if($allowed_albums!='' && $cat != (FIRST_USER_CAT + USER_ID)){
-			$check_approve = false;
-		}
-		$result = cpg_db_query("SELECT DISTINCT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE owner = '" . $USER_DATA['user_id'] . "' AND aid='$album_id'");
-		$allowed_albums = cpg_db_fetch_rowset($result);
-		if($allowed_albums[0]['category']==(FIRST_USER_CAT + USER_ID)){
-			$check_approve = true;
-		}
-	}
-
-}
-
-if (!(GALLERY_ADMIN_MODE || $check_approve)) {
+if (!(GALLERY_ADMIN_MODE || (USER_ADMIN_MODE && user_is_allowed()))) {
     cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 }
 

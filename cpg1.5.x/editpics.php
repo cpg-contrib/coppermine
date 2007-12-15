@@ -81,28 +81,7 @@ if (EDIT_PICTURES_MODE) {
         mysql_free_result($result);
         $cat = $ALBUM_DATA['category'];
         $actual_cat = $cat;
-        
-		//get albums this user can edit
-		$check_approved = false;
-		if($cat == (FIRST_USER_CAT + USER_ID)){
-			$check_approve = true;
-		}else{
-			$result = cpg_db_query("SELECT DISTINCT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE owner = '" . $USER_DATA['user_id'] . "' AND aid='$album_id'");
-			$allowed_albums = cpg_db_fetch_rowset($result);
-			if($allowed_albums[0] != ''){
-				$check_approve = true;
-			}
-		}
-		//check if admin allows editing	after closing category
-		if($CONFIG['allow_user_edit_after_cat_close'] == 0){
-			//Disallowed -> Check if album is in such a category
-			$result = cpg_db_query("SELECT DISTINCT aid FROM {$CONFIG['TABLE_ALBUMS']} AS alb INNER JOIN {$CONFIG['TABLE_CATMAP']} AS catm ON alb.category=catm.cid WHERE alb.owner = '" . $USER_DATA['user_id'] . "' AND alb.aid='$album_id' AND catm.group_id='" . $USER_DATA['group_id'] . "'");
-			$allowed_albums = cpg_db_fetch_rowset($result);
-			if($allowed_albums[0] != '' && $cat != (FIRST_USER_CAT + USER_ID)){
-				$check_approve = false;
-			}
-		}	
-        if (!$check_approve && !GALLERY_ADMIN_MODE && !MODERATOR_EDIT_MODE) cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
+        if ((!user_is_allowed() && !GALLERY_ADMIN_MODE && !MODERATOR_EDIT_MODE) || (!$CONFIG['users_can_edit_pics'] && !GALLERY_ADMIN_MODE && !MODERATOR_EDIT_MODE)) cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
 } else {
         $ALBUM_DATA = array();
 }
@@ -229,7 +208,7 @@ function process_post_data()
         $pic = mysql_fetch_array($result);
         mysql_free_result($result);
 
-        if (!GALLERY_ADMIN_MODE && !MODERATOR_MODE) {
+        if (!GALLERY_ADMIN_MODE && !MODERATOR_MODE && !USER_ADMIN_MODE && !user_is_allowed() && !$CONFIG['users_can_edit_pics'] ) {
             if ($pic['category'] != FIRST_USER_CAT + USER_ID) {
                 cpg_die(ERROR, $lang_errors['perm_denied']."<br />(picture category = {$pic['category']}/ $pid)", __FILE__, __LINE__);
             }

@@ -1333,7 +1333,6 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
   'del_all_comm' => 'Delete ALL comments',
   'upl_approval' => 'Upload approval',
   'edit_pics' => 'Edit files',
-  'cat_locked' => 'This album has been locked for editing', // cpg 1.5.x
   'see_next' => 'See next files',
   'see_prev' => 'See previous files',
   'n_pic' => '%s files',
@@ -1487,6 +1486,7 @@ $lang_album_admin_menu = array(
   'delete' => 'DELETE',
   'modify' => 'PROPERTIES',
   'edit_pics' => 'EDIT FILES',
+  'cat_locked' => 'This album has been locked for editing', // cpg 1.5.x
 );
 
 $lang_list_categories = array(
