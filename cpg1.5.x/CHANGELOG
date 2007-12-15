@@ -26,8 +26,12 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-12-15 [A] Added auto check of internal/external links in bbcode + add rel="external nofolow" accordingly and removed [iurl] option {SaWey}
+2007-12-15 [A] Added bbcode help icon on comments {SaWey}
+2007-12-15 [B] Fixed users not able modify albums when they don't have one in the 'My gallery' cat {SaWey}
+2007-12-15 [B] Fixed users not able to upload pics in there albums other then 'My gallery' {SaWey}
 2007-12-14 [A] Added two more levels of access for guests: no access, thumbs only, thumbs + intermediate only, thumbs + intermediate + full-size {GauGau}
-2007-12-14 [O] Modified ecard and displayecard to reflect security improments imposed by Inspekt {Aditya}
+2007-12-14 [O] Modified ecard and displayecard to reflect security improvents imposed by Inspekt {Aditya}
 2007-12-14 [B] Fixed parent category on category-edit {SaWey}
 2007-12-14 [A] Added posibility for users to create albums in admin allowed categories {SaWey}
 2007-12-02 [S] Added code to avoid the direct execution of slideshow.inc.php {Aditya}

@@ -567,7 +567,7 @@ if (!$CLEAN['album']) {
     if (GALLERY_ADMIN_MODE) {
         $results = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_ALBUMS']} WHERE 1 LIMIT 1");
     } else {
-        $results = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = " . (FIRST_USER_CAT + USER_ID) . " LIMIT 1");
+        $results = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = " . (FIRST_USER_CAT + USER_ID) . " OR owner = '" . USER_ID . "' LIMIT 1");
     }
     if (mysql_num_rows($results) == 0) cpg_die(ERROR, $lang_modifyalb_php['err_no_alb_to_modify'], __FILE__, __LINE__);
     $ALBUM_DATA = mysql_fetch_array($results);

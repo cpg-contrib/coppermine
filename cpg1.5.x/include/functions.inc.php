@@ -617,87 +617,166 @@ function bb_decode($text)
         //$text = str_replace("[/i:$uid]", $bbcode_tpl['i_close'], $text);
 
         if (!count($bbcode_tpl)) {
-                // We do URLs in several different ways..
-                $bbcode_tpl['url']  = '<span class="bblink"><a href="{URL}" rel="external">{DESCRIPTION}</a></span>';
-                $bbcode_tpl['iurl']  = '<span class="bblink"><a href="{URL}">{DESCRIPTION}</a></span>';
-                $bbcode_tpl['email']= '<span class="bblink"><a href="mailto:{EMAIL}">{EMAIL}</a></span>';
+				// We do URLs in several different ways..
+                $bbcode_tpl['url']  = '<span class="bblink"><a href="{URL}" %s>{DESCRIPTION}</a></span>';
 
                 $bbcode_tpl['url1'] = str_replace('{URL}', '\\1\\2', $bbcode_tpl['url']);
                 $bbcode_tpl['url1'] = str_replace('{DESCRIPTION}', '\\1\\2', $bbcode_tpl['url1']);
+	
+				// [url]xxxx://www.phpbb.com[/url] code..
+                $patterns['link'][1] = "#\[url\]([a-z]+?://){1}([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\[/url\]#si";
+                $replacements['link'][1] = $bbcode_tpl['url1'];
+				$text = check_link_type_and_replace($patterns['link'][1], $replacements['link'][1], $text, 1);
 
                 $bbcode_tpl['url2'] = str_replace('{URL}', 'http://\\1', $bbcode_tpl['url']);
                 $bbcode_tpl['url2'] = str_replace('{DESCRIPTION}', '\\1', $bbcode_tpl['url2']);
 
+				// [url]www.phpbb.com[/url] code.. (no xxxx:// prefix).
+                $patterns['link'][2] = "#\[url\]([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\[/url\]#si";
+                $replacements['link'][2] = $bbcode_tpl['url2'];
+				$text = check_link_type_and_replace($patterns['link'][2], $replacements['link'][2], $text, 2);
+
                 $bbcode_tpl['url3'] = str_replace('{URL}', '\\1\\2', $bbcode_tpl['url']);
                 $bbcode_tpl['url3'] = str_replace('{DESCRIPTION}', '\\3', $bbcode_tpl['url3']);
+
+				// [url=xxxx://www.phpbb.com]phpBB[/url] code..
+                $patterns['link'][3] = "#\[url=([a-z]+?://){1}([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\](.*?)\[/url\]#si";
+                $replacements['link'][3] = $bbcode_tpl['url3'];
+				$text = check_link_type_and_replace($patterns['link'][3], $replacements['link'][3], $text, 3);
 
                 $bbcode_tpl['url4'] = str_replace('{URL}', 'http://\\1', $bbcode_tpl['url']);
                 $bbcode_tpl['url4'] = str_replace('{DESCRIPTION}', '\\2', $bbcode_tpl['url4']);
 
+				// [url=www.phpbb.com]phpBB[/url] code.. (no xxxx:// prefix).
+                $patterns['link'][4] = "#\[url=([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\](.*?)\[/url\]#si";
+                $replacements['link'][4] = $bbcode_tpl['url4'];
+				$text = check_link_type_and_replace($patterns['link'][4], $replacements['link'][4], $text, 4);
+
+
+				$bbcode_tpl['email']= '<span class="bblink"><a href="mailto:{EMAIL}">{EMAIL}</a></span>';
                 $bbcode_tpl['email'] = str_replace('{EMAIL}', '\\1', $bbcode_tpl['email']);
 
-                // [url]xxxx://www.phpbb.com[/url] code..
-                $patterns[1] = "#\[url\]([a-z]+?://){1}([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\[/url\]#si";
-                $replacements[1] = $bbcode_tpl['url1'];
-
-                // [url]www.phpbb.com[/url] code.. (no xxxx:// prefix).
-                $patterns[2] = "#\[url\]([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\[/url\]#si";
-                $replacements[2] = $bbcode_tpl['url2'];
-
-                // [url=xxxx://www.phpbb.com]phpBB[/url] code..
-                $patterns[3] = "#\[url=([a-z]+?://){1}([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\](.*?)\[/url\]#si";
-                $replacements[3] = $bbcode_tpl['url3'];
-
-                // [url=www.phpbb.com]phpBB[/url] code.. (no xxxx:// prefix).
-                $patterns[4] = "#\[url=([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\](.*?)\[/url\]#si";
-                $replacements[4] = $bbcode_tpl['url4'];
-
-                // [email]user@domain.tld[/email] code..
-                $patterns[5] = "#\[email\]([a-z0-9\-_.]+?@[\w\-]+\.([\w\-\.]+\.)?[\w]+)\[/email\]#si";
-                $replacements[5] = $bbcode_tpl['email'];
+				// [email]user@domain.tld[/email] code..
+                $patterns['other'][1] = "#\[email\]([a-z0-9\-_.]+?@[\w\-]+\.([\w\-\.]+\.)?[\w]+)\[/email\]#si";
+                $replacements['other'][1] = $bbcode_tpl['email'];
 
                 // [img]xxxx://www.phpbb.com[/img] code..
                 $bbcode_tpl['img']  = '<img src="{URL}" alt="" />';
                 $bbcode_tpl['img']  = str_replace('{URL}', '\\1\\2', $bbcode_tpl['img']);
 
-                $patterns[6] = "#\[img\]([a-z]+?://){1}([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\[/img\]#si";
-                $replacements[6] = $bbcode_tpl['img'];
-
-                $bbcode_tpl['iurl1'] = str_replace('{URL}', '\\1\\2', $bbcode_tpl['iurl']);
-                $bbcode_tpl['iurl1'] = str_replace('{DESCRIPTION}', '\\1\\2', $bbcode_tpl['iurl1']);
-
-                $bbcode_tpl['iurl2'] = str_replace('{URL}', 'http://\\1', $bbcode_tpl['iurl']);
-                $bbcode_tpl['iurl2'] = str_replace('{DESCRIPTION}', '\\1', $bbcode_tpl['iurl2']);
-
-                $bbcode_tpl['iurl3'] = str_replace('{URL}', '\\1\\2', $bbcode_tpl['iurl']);
-                $bbcode_tpl['iurl3'] = str_replace('{DESCRIPTION}', '\\3', $bbcode_tpl['iurl3']);
-
-                $bbcode_tpl['iurl4'] = str_replace('{URL}', 'http://\\1', $bbcode_tpl['iurl']);
-                $bbcode_tpl['iurl4'] = str_replace('{DESCRIPTION}', '\\2', $bbcode_tpl['iurl4']);
-
-                $bbcode_tpl['email'] = str_replace('{EMAIL}', '\\1', $bbcode_tpl['email']);
-
-                // [iurl]xxxx://www.phpbb.com[/iurl] code..
-                $patterns[7] = "#\[iurl\]([a-z]+?://){1}([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\[/iurl\]#si";
-                $replacements[7] = $bbcode_tpl['iurl1'];
-
-                // [iurl]www.phpbb.com[/iurl] code.. (no xxxx:// prefix).
-                $patterns[8] = "#\[iurl\]([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\[/iurl\]#si";
-                $replacements[8] = $bbcode_tpl['iurl2'];
-
-                // [iurl=xxxx://www.phpbb.com]phpBB[/iurl] code..
-                $patterns[9] = "#\[iurl=([a-z]+?://){1}([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\](.*?)\[/iurl\]#si";
-                $replacements[9] = $bbcode_tpl['iurl3'];
-
-                // [iurl=www.phpbb.com]phpBB[/iurl] code.. (no xxxx:// prefix).
-                $patterns[10] = "#\[iurl=([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\](.*?)\[/iurl\]#si";
-                $replacements[10] = $bbcode_tpl['iurl4'];
+                $patterns['other'][2] = "#\[img\]([a-z]+?://){1}([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\[/img\]#si";
+                $replacements['other'][2] = $bbcode_tpl['img'];
 
         }
 
-        $text = preg_replace($patterns, $replacements, $text);
+        $text = preg_replace($patterns['other'], $replacements['other'], $text);
 
         return $text;
+}
+
+/**
+* check_link_type_and_replace()
+*
+* Checks if the text contains this pattern and replace it accordingly
+*
+* @param string $pattern
+* @param string $replacement
+* @param string $text
+* @param integer $stage
+*
+* @return string $text
+*/
+function check_link_type_and_replace ($pattern, $replacement, $text, $stage) {
+	$ext_rel = 'rel="external nofolow" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;"';
+	$int_rel = '';
+
+	if (preg_match($pattern, $text, $url) != 0) {
+		switch ($stage) {
+			case 1:
+			case 3:
+				$url = $url[1] . $url[2];
+				break;
+			case 2:
+				$url = $url[1];
+				break;
+			case 4:
+				$url = 'http://' . $url[1];
+		}		
+		if (is_link_local($url)) {
+			//apply regular formatting
+			$replacement_sprintfed = sprintf($replacement, $int_rel);
+		} else {
+			//add rel attribute to link
+			$replacement_sprintfed = sprintf($replacement, $ext_rel);
+		}
+
+		$text = preg_replace($pattern, $replacement_sprintfed, $text, 1);
+		$text = check_link_type_and_replace ($pattern, $replacement, $text, $stage);
+	}
+	
+	return $text;
+}
+
+/**
+* is_link_local()
+*
+* Determines if a URL is local or external. FROM phpBB MOD: prime links (by Ken F. Innes IV)
+*
+* @param string $url
+* @param boolean $cpg_url
+*
+* @return boolean $is_local
+*/
+function is_link_local($url, $cpg_url = false)
+{
+	if ($cpg_url === false)
+	{
+		$cpg_url = generate_cpg_url();
+	}
+	$subdomain_remove_regex = '#^(http|https)://[^/]+?\.((?:[a-z0-9-]+\.[a-z]+)|localhost/)#i';
+	$cpg_url = preg_replace($subdomain_remove_regex, '$1://$2', $cpg_url);
+	$url 	 = preg_replace($subdomain_remove_regex, '$1://$2', $url);
+	
+	$is_local = (strpos($url, $cpg_url) === 0);
+	if (!$is_local)
+	{
+		$protocol = substr($url, 0, strpos($url, ':'));
+		$is_local = !$protocol || ($protocol && !in_array($protocol, array('http', 'https', 'mailto', 'ftp', 'gopher')));
+	}
+	return($is_local);
+}
+
+
+/**
+* generate_cpg_url()
+*
+* Generate board url (example: http://www.foo.bar/cpg) FROM PHPBB 3.0.0
+*
+* @return string $cpg_url
+*/
+function generate_cpg_url()
+{
+	#########################################change to use inspect#########################################
+	$server_name = (!empty($_SERVER['SERVER_NAME'])) ? $_SERVER['SERVER_NAME'] : getenv('SERVER_NAME');
+	$server_port = (!empty($_SERVER['SERVER_PORT'])) ? (int) $_SERVER['SERVER_PORT'] : (int) getenv('SERVER_PORT');
+
+	// Do not rely on cookie_secure, users seem to think that it means a secured cookie instead of an encrypted connection
+	$cookie_secure = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 1 : 0;
+	$cpg_url = (($cookie_secure) ? 'https://' : 'http://') . $server_name;
+
+
+	if ($server_port && $cookie_secure)
+	{
+		$cpg_url .= ':' . $server_port;
+	}
+	
+	// Strip / from the end
+	if (substr($cpg_url, -1, 1) == '/')
+	{
+		$cpg_url = substr($cpg_url, 0, -1);
+	}
+
+	return $cpg_url;
 }
 
 /**************************************************************************

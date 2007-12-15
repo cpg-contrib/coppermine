@@ -1034,7 +1034,7 @@ $template_add_your_comment = <<<EOT
         <form method="post" name="post" id="post" action="db_input.php">
                 <table align="center" width="{WIDTH}" cellspacing="1" cellpadding="0" class="maintable">
                         <tr>
-                                        <td width="100%" class="tableh2_compact">{ADD_YOUR_COMMENT}</td>
+                                        <td width="100%" class="tableh2_compact">{ADD_YOUR_COMMENT}{HELP_ICON}</td>
                         </tr>
                         <tr>
                 <td colspan="1">

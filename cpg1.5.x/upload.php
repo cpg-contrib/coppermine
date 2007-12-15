@@ -2262,7 +2262,7 @@ if ($superCage->post->keyExists('control') && $superCage->post->getRaw('control'
 
         // Check if the album id provided is valid
         if (!GALLERY_ADMIN_MODE) {
-            $result = cpg_db_query("SELECT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album' and (uploads = 'YES' OR category = '" . (USER_ID + FIRST_USER_CAT) . "')");
+            $result = cpg_db_query("SELECT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album' and (uploads = 'YES' OR category = '" . (USER_ID + FIRST_USER_CAT) . "' OR owner = '" . USER_ID . "')");
             if (mysql_num_rows($result) == 0)cpg_die(ERROR, $lang_db_input_php['unknown_album'], __FILE__, __LINE__);
             $row = mysql_fetch_array($result);
             mysql_free_result($result);

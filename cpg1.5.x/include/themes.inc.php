@@ -1096,7 +1096,7 @@ $template_add_your_comment = <<<EOT
         <form method="post" name="post" id="post" action="db_input.php">
                 <table align="center" width="{WIDTH}" cellspacing="1" cellpadding="0" class="maintable">
                         <tr>
-                                        <td width="100%" class="tableh2_compact">{ADD_YOUR_COMMENT}</td>
+                                        <td width="100%" class="tableh2_compact">{ADD_YOUR_COMMENT}{HELP_ICON}</td>
                         </tr>
                         <tr>
                 <td colspan="1">
@@ -3079,7 +3079,7 @@ if (!function_exists('theme_html_comments')) {  //{THEMES}
 function theme_html_comments($pid)
 {
     global $CONFIG, $USER, $CURRENT_ALBUM_DATA, $comment_date_fmt, $HTML_SUBST;
-    global $template_image_comments, $template_add_your_comment, $lang_display_comments, $lang_common, $REFERER;
+    global $template_image_comments, $template_add_your_comment, $lang_display_comments, $lang_common, $REFERER, $lang_bbcode_help_title, $lang_bbcode_help;
 
     $html = '';
 
@@ -3097,6 +3097,7 @@ function theme_html_comments($pid)
         template_extract_block($template_image_comments, 'edit_box_no_smilies');
         template_extract_block($template_add_your_comment, 'input_box_no_smilies');
     }
+		
 
     $tmpl_comments_buttons = template_extract_block($template_image_comments, 'buttons', '{BUTTONS}');
     $tmpl_comments_ipinfo = template_extract_block($template_image_comments, 'ipinfo', '{IPINFO}');
@@ -3192,7 +3193,7 @@ function theme_html_comments($pid)
             '{SMILIES}' => $smilies,
             '{IP}' => $ip,
             '{REPORT_COMMENT_TITLE}' => &$lang_display_comments['report_comment_title'],
-            '{WIDTH}' => $CONFIG['picture_table_width']
+            '{WIDTH}' => $CONFIG['picture_table_width'],
             );
 
         if ($hide_comment != 1) {
@@ -3216,6 +3217,8 @@ function theme_html_comments($pid)
         if (($CONFIG['comment_captcha'] == 0) || ($CONFIG['comment_captcha'] == 1 && USER_ID)) {
             template_extract_block($template_add_your_comment, 'comment_captcha');
         }
+				
+		if ($CONFIG['show_bbcode_help']) {$captionLabel = '&nbsp;'. cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
 
         $params = array('{ADD_YOUR_COMMENT}' => $lang_display_comments['add_your_comment'],
             // Modified Name and comment field
@@ -3230,6 +3233,7 @@ function theme_html_comments($pid)
             '{DEFAULT_USERNAME_MESSAGE}' => $lang_display_comments['default_username_message'],
             '{SMILIES}' => '',
             '{WIDTH}' => $CONFIG['picture_table_width'],
+			'{HELP_ICON}' => $captionLabel,
             );
 
         if ($CONFIG['enable_smilies']){
