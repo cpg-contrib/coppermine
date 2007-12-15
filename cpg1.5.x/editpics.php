@@ -89,7 +89,7 @@ if (EDIT_PICTURES_MODE) {
 		}else{
 			$result = cpg_db_query("SELECT DISTINCT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE owner = '" . $USER_DATA['user_id'] . "' AND aid='$album_id'");
 			$allowed_albums = cpg_db_fetch_rowset($result);
-			if($allowed_albums!=''){
+			if($allowed_albums[0] != ''){
 				$check_approve = true;
 			}
 		}
@@ -98,7 +98,7 @@ if (EDIT_PICTURES_MODE) {
 			//Disallowed -> Check if album is in such a category
 			$result = cpg_db_query("SELECT DISTINCT aid FROM {$CONFIG['TABLE_ALBUMS']} AS alb INNER JOIN {$CONFIG['TABLE_CATMAP']} AS catm ON alb.category=catm.cid WHERE alb.owner = '" . $USER_DATA['user_id'] . "' AND alb.aid='$album_id' AND catm.group_id='" . $USER_DATA['group_id'] . "'");
 			$allowed_albums = cpg_db_fetch_rowset($result);
-			if($allowed_albums!='' && $cat != (FIRST_USER_CAT + USER_ID)){
+			if($allowed_albums[0] != '' && $cat != (FIRST_USER_CAT + USER_ID)){
 				$check_approve = false;
 			}
 		}	
