@@ -687,7 +687,7 @@ function bb_decode($text)
 * @return string $text
 */
 function check_link_type_and_replace ($pattern, $replacement, $text, $stage) {
-	$ext_rel = 'rel="external nofolow" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;"';
+	$ext_rel = 'rel="external nofollow" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;"';
 	$int_rel = '';
 
 	if (preg_match($pattern, $text, $url) != 0) {
