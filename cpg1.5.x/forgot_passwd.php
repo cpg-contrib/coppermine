@@ -25,23 +25,25 @@ global $CONFIG;
 require('include/init.inc.php');
 include_once('include/mailer.inc.php');
 
-if (USER_ID) cpg_die(ERROR, $lang_forgot_passwd_php['err_already_logged_in'], __FILE__, __LINE__);
+if (USER_ID) {
+    cpg_die(ERROR, $lang_forgot_passwd_php['err_already_logged_in'], __FILE__, __LINE__);
+}
 
 $lookup_failed = '';
 
 /**
  * Clean up GPC and other Globals here
  */
-if (!empty($_POST['email']) && eregi("^[_\.0-9a-z\-]+@([0-9a-z][0-9a-z-]+\.)+[a-z]{2,6}$", $_POST['email'])) {
-  $CLEAN['email'] = addslashes($_POST['email']);
+if ($superCage->post->keyExists('email') && $superCage->post->testEmail('email')) {
+	$CLEAN['email'] = $superCage->post->testEmail('email');
 }
 
-if (isset($_GET['key'])) {
-  $CLEAN['key'] = addslashes($_GET['key']);
+if ($superCage->get->keyExists('key')) {
+	$CLEAN['key'] = $superCage->get->getEscaped('key');
 }
 
-if (isset($_GET['id'])) {
-  $CLEAN['id'] = addslashes($_GET['id']);
+if ($superCage->get->keyExists('id')) {
+	$CLEAN['id'] = $superCage->get->getEscaped('id');
 }
 
 //END CLEANUP
@@ -102,7 +104,6 @@ if (isset($CLEAN['email'])) {
 EOT;
     }
 } elseif (isset($CLEAN['key']) && isset($CLEAN['id'])) {
-
     /*$randkey = addslashes($_GET['key']);
     $user_id = addslashes($_GET['id']);*/
 
