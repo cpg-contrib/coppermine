@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-12-17 [O] Modified pluginmgr, plugin_api and sample plugin to reflect security improvents imposed by Inspekt {Abbas}
 2007-12-17 [A] Switched from sprintf() to using a template for forgot password emails (thread id 25669) {Abbas}
 2007-12-17 [B] Corrected the bug reported in 49059 regarding display of dialog box for unlogged users {Aditya}
 2007-12-17 [O] Modified report_file to reflect security improvents imposed by Inspekt {Aditya}
