@@ -68,7 +68,7 @@ class MyCalendar extends Calendar {
           $link='';
         }
       } else {
-        $link = "<a href=\"#\" onclick=\"sendDate('".$month."', '".$day."', '".$year."');\" class=\"user_thumb_infobox\" \">";
+        $link = "<a href=\"#\" onclick=\"sendDate('".$month."', '".$day."', '".$year."');\" class=\"user_thumb_infobox\" >";
       }
         return $link;
     }
@@ -159,7 +159,12 @@ $cal = new MyCalendar;
 $cal->setMonthNames($lang_month);
 $cal->setDayNames($lang_day_of_week);
 $cal->setStartDay(1);
-echo $cal->getMonthView($month, $year);
+if($action == 'banning') {
+	echo $cal->getMonthView($month, $year, true);
+} else {
+	echo $cal->getMonthView($month, $year, false);
+}
+
 
 ?>
 <div align="center"><a href="javascript:window.close()" class="admin_menu"><?php print $lang_common['close']; ?></a>
@@ -276,8 +281,8 @@ class Calendar
 
 
     /* Return the HTML for a specified month */
-    function getMonthView($month, $year) {
-        return $this->getMonthHTML($month, $year);
+    function getMonthView($month, $year, $only_future_dates) {
+        return $this->getMonthHTML($month, $year, 0, $only_future_dates);
     }
 
 
@@ -329,7 +334,7 @@ class Calendar
 
 
     /* Generate the HTML for a given month */
-    function getMonthHTML($m, $y, $showYear = 1) {
+    function getMonthHTML($m, $y, $showYear = 1, $only_future_dates) {
         $s = "";
 
         $a = $this->adjustDate($m, $y);
@@ -395,8 +400,12 @@ class Calendar
               $s .= "<td class=\"$class\" align=\"right\" valign=\"top\">";
               if ($d > 0 && $d <= $daysInMonth)
               {
-                  $link = $this->getDateLink($d, $month, $year);
-                  $s .= (($link == "") ? $d : $link.$d."</a>");
+			      if($this->needs_link($year, $month, $d, $today, $only_future_dates)) {
+                      $link = $this->getDateLink($d, $month, $year);
+				  } else {
+				      $link = '';
+				  }
+				  $s .= (($link == "") ? $d : $link.$d."</a>");
               }
               else
               {
@@ -413,6 +422,32 @@ class Calendar
       return $s;
     }
 
+
+	/* needs_link()
+	*
+	* @param int $year
+	* @param int $month
+	* @param int $day
+	* @param array $today
+	* @param bool $only_future_dates
+	*
+	* @return bool $needs_link
+	*/
+	function needs_link($year, $month, $day, $today, $only_future_dates) {
+		if($only_future_dates) {
+			if($year >= $today['year']) {
+				if($month >= $today['mon']) {
+					if($day >= $today['mday']) {
+						return true;
+					}
+				}
+			} else {
+				return false;
+			}
+		} else {
+			return true;
+		}
+	}
 
     /* Generate the HTML for a given year */
     function getYearHTML($year) {
