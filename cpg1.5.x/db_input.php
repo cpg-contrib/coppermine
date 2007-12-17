@@ -331,9 +331,7 @@ switch ($event) {
             cpg_die(INFORMATION, $lang_db_input_php['no_udp_needed'], __FILE__, __LINE__);
         }
 
-        if ($CONFIG['debug_mode'] == 0) {
-            pageheader($lang_db_input_php['alb_updated'], "<meta http-equiv=\"refresh\" content=\"1;url=modifyalb.php?album=$aid\" />");
-        }
+        pageheader($lang_db_input_php['alb_updated'], "<meta http-equiv=\"refresh\" content=\"1;url=modifyalb.php?album=$aid\" />");
         msg_box($lang_db_input_php['info'], $lang_db_input_php['alb_updated'], $lang_common['continue'], "modifyalb.php?album=$aid");
         pagefooter();
         ob_end_flush();
