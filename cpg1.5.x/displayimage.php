@@ -83,7 +83,7 @@ EOT;
 // Display picture information
 function html_picinfo()
 {
-    global $CONFIG, $CURRENT_PIC_DATA, $CURRENT_ALBUM_DATA, $THEME_DIR, $FAVPICS, $REFERER;
+    global $CONFIG, $CURRENT_PIC_DATA, $CURRENT_ALBUM_DATA, $THEME_DIR, $FAVPICS, $REFERER, $CPG_PHP_SELF;
     global $album, $lang_picinfo, $lang_display_image_php, $lang_byte_units, $lang_common, $lastup_date_fmt;
 
     if ($CURRENT_PIC_DATA['owner_id'] && $CURRENT_PIC_DATA['owner_name']) {
