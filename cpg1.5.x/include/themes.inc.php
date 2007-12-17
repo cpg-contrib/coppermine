@@ -2740,6 +2740,8 @@ function theme_html_picture()
     global $album, $comment_date_fmt, $template_display_media;
     global $lang_display_image_php, $lang_picinfo, $lang_errors;
 
+    $superCage = Inspekt::makeSuperCage();
+
     $pid = $CURRENT_PIC_DATA['pid'];
     $pic_title = '';
 
@@ -2747,7 +2749,7 @@ function theme_html_picture()
         $USER['liv'] = array();
     }
     // Add 1 to hit counter
-    if (!USER_IS_ADMIN && !in_array($pid, $USER['liv']) && isset($_COOKIE[$CONFIG['cookie_name'] . '_data'])) {
+    if (!USER_IS_ADMIN && !in_array($pid, $USER['liv']) && $superCage->cookie->keyExists($CONFIG['cookie_name'] . '_data')) {
         add_hit($pid);
         if (count($USER['liv']) > 4) array_shift($USER['liv']);
         array_push($USER['liv'], $pid);

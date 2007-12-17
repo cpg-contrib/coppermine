@@ -622,7 +622,7 @@ function bb_decode($text)
 
                 $bbcode_tpl['url1'] = str_replace('{URL}', '\\1\\2', $bbcode_tpl['url']);
                 $bbcode_tpl['url1'] = str_replace('{DESCRIPTION}', '\\1\\2', $bbcode_tpl['url1']);
-	
+
 				// [url]xxxx://www.phpbb.com[/url] code..
                 $patterns['link'][1] = "#\[url\]([a-z]+?://){1}([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\[/url\]#si";
                 $replacements['link'][1] = $bbcode_tpl['url1'];
@@ -701,7 +701,7 @@ function check_link_type_and_replace ($pattern, $replacement, $text, $stage) {
 				break;
 			case 4:
 				$url = 'http://' . $url[1];
-		}		
+		}
 		if (is_link_local($url)) {
 			//apply regular formatting
 			$replacement_sprintfed = sprintf($replacement, $int_rel);
@@ -713,7 +713,7 @@ function check_link_type_and_replace ($pattern, $replacement, $text, $stage) {
 		$text = preg_replace($pattern, $replacement_sprintfed, $text, 1);
 		$text = check_link_type_and_replace ($pattern, $replacement, $text, $stage);
 	}
-	
+
 	return $text;
 }
 
@@ -736,7 +736,7 @@ function is_link_local($url, $cpg_url = false)
 	$subdomain_remove_regex = '#^(http|https)://[^/]+?\.((?:[a-z0-9-]+\.[a-z]+)|localhost/)#i';
 	$cpg_url = preg_replace($subdomain_remove_regex, '$1://$2', $cpg_url);
 	$url 	 = preg_replace($subdomain_remove_regex, '$1://$2', $url);
-	
+
 	$is_local = (strpos($url, $cpg_url) === 0);
 	if (!$is_local)
 	{
@@ -769,7 +769,7 @@ function generate_cpg_url()
 	{
 		$cpg_url .= ':' . $server_port;
 	}
-	
+
 	// Strip / from the end
 	if (substr($cpg_url, -1, 1) == '/')
 	{
@@ -1779,7 +1779,7 @@ function add_hit($pid)
 
         //Sanitize the referer
         //Used getRaw() method but sanitized immediately
-        if ($superCage->server->isUri('HTTP_REFERER')) {
+        if ($superCage->server->keyExists('HTTP_REFERER')) {
             $referer = urlencode(addslashes(htmlentities($superCage->server->getRaw('HTTP_REFERER'))));
         } else {
                 $referer= '';
@@ -3988,8 +3988,8 @@ function cpgGetRemoteFileByURL($remoteURL, $method = "GET", $data = "", $redirec
 function user_is_allowed () {
 	$check_approve = false;
 	global $USER_DATA, $CONFIG;
-	$superCage = Inspekt::makeSuperCage(); 
-	
+	$superCage = Inspekt::makeSuperCage();
+
 	//get albums this user can edit
 	if ($superCage->get->keyExists('album')){
     	$album_id = $superCage->get->getInt('album');
@@ -3998,15 +3998,15 @@ function user_is_allowed () {
 	} else {
 		$album_id = 0;
 	}
-	
-	
+
+
 	$result = cpg_db_query("SELECT DISTINCT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE owner = '" . $USER_DATA['user_id'] . "' AND aid='$album_id'");
 	$allowed_albums = cpg_db_fetch_rowset($result);
 	$cat = $allowed_albums[0]['category'];
 	if($cat != ''){
 		$check_approve = true;
 	}
-	
+
 	//check if admin allows editing	after closing category
 	if($CONFIG['allow_user_edit_after_cat_close'] == 0){
 		//Disallowed -> Check if album is in such a category
@@ -4017,7 +4017,7 @@ function user_is_allowed () {
 		} elseif ($cat == (FIRST_USER_CAT + USER_ID)) {
 			$check_approve = true;
 		}
-	}	
+	}
 	return $check_approve;
 }
 ?>
