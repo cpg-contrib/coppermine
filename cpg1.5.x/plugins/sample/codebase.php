@@ -47,8 +47,10 @@ function sample_block_mgr($block) {
 // Checks if uid is 'foo' and pwd is 'bar'; If so, then install the plugin
 function sample_install() {
 
+	// Create the super cage
+	$superCage = Inspekt::makeSuperCage();
     // Install
-    if ($_POST['uid']=='foo' && $_POST['pwd']=='bar') {
+    if ($superCage->post->getAlpha('uid')=='foo' && $superCage->post->getAlpha('pwd') == 'bar') {
 
         return true;
 
@@ -62,8 +64,11 @@ function sample_install() {
 // Configure function
 // Displays the form
 function sample_configure() {
+	// Create the super cage
+	$superCage = Inspekt::makeSuperCage();
+
     echo <<< EOT
-    <form name="cpgform" id="cpgform" action="{$_SERVER['REQUEST_URI']}" method="post">
+    <form name="cpgform" id="cpgform" action="{$superCage->server->getEscaped('REQUEST_URI')}" method="post">
             <table border="0" cellspacing="0" cellpadding="0" width="100%">
               <tr>
                 <td class="tableh2" colspan="2">

@@ -32,8 +32,8 @@ require('include/init.inc.php');
 if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
 // write the plugin enable/disable change to the db
-    if (isset($_POST['update_config'])) {
-        $value = $_POST['enable_plugins'];
+    if ($superCage->post->keyExists('update_config')) {
+        $value = $superCage->post->getInt('enable_plugins');
         cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = 'enable_plugins'");
         $CONFIG['enable_plugins'] = $value;
         if ($CONFIG['log_mode'] == CPG_LOG_ALL) {
@@ -334,26 +334,27 @@ function deldir($dir) {
  * Executes manager events
  */
 
-$op = @$_GET['op'];
+$op = @$superCage->get->getAlpha('op');
+$p = @$superCage->get->getEscaped('p');
 switch ($op) {
     case 'uninstall':
-        $plugin_id = $_GET['p'];
-        if (!is_numeric($_GET['p'])) {
+        $plugin_id = $p;
+        if (!is_numeric($p)) {
             $plugin_id = CPGPluginAPI::installed($plugin_id);
         }
         $uninstalled = CPGPluginAPI::uninstall($plugin_id);
         break;
     case 'install':
-        $installed = CPGPluginAPI::install($_GET['p']);
+        $installed = CPGPluginAPI::install($p);
         break;
     case 'delete':
-        $path = $_GET['p'];
+        $path = $p;
         if (is_bool(strpos('/',$path))) {
             deldir('./plugins/'.$path);
         }
         break;
     case 'moveu':
-        $thisplugin = @$CPG_PLUGINS[$_GET['p']];
+        $thisplugin = @$CPG_PLUGINS[$p];
         if (isset($thisplugin) && ($priority = $thisplugin->priority) > 0) {
 
             // Move the plugin above down
@@ -367,7 +368,7 @@ switch ($op) {
         }
         break;
     case 'moved':
-        $thisplugin = @$CPG_PLUGINS[$_GET['p']];
+        $thisplugin = @$CPG_PLUGINS[$p];
         if (isset($thisplugin) && ($priority = $thisplugin->priority) < (count($CPG_PLUGINS)-1)) {
 
             // Move the plugin below up
@@ -434,7 +435,7 @@ EOT;
 if ((($op != 'install') && ($op != 'uninstall')) || (is_bool($installed) && $installed) || (is_bool($uninstalled) && $uninstalled)) {
 
     // Refresh the page; An operation was just performed
-    if  (isset($op)) {
+    if  ($superCage->get->keyExists('op')) {
         header('Location: pluginmgr.php');
     }
     display_plugin_list();

@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
@@ -631,10 +631,13 @@ class CPGPlugin {
 function& cpg_get_scope( $plugin_id = null ) {
     global $CPG_PLUGINS,$thisplugin;
 
+	// Create the super cage
+	$superCage = Inspekt::makeSuperCage();
+
     if (!is_null($plugin_id)) {
         return $CPG_PLUGINS[$plugin_id];
     } else {
-        $plugin_id = (int) $_GET['scope'];
+        $plugin_id = $superCage->get->getInt('scope');
         $thisplugin =& $CPG_PLUGINS[$plugin_id];
         return $CPG_PLUGINS[$plugin_id];
     }
