@@ -160,7 +160,7 @@ if ($superCage->post->keyExists('subject') && $valid_sender_email) {
         '{VIEW_REPORT_LNK_PLAINTEXT}' => $lang_report_php['view_report_plaintext'],
         '{PIC_URL}' => $n_picname,
         '{URL_PREFIX}' => $gallery_url_prefix,
-        '{PIC_TGT}' => "{$CONFIG['ecards_more_pic_target']}displayimage.php?pos=-" . $pid,
+        '{PIC_TGT}' => "{$CONFIG['ecards_more_pic_target']}displayimage.php?pid=" . $pid,
         '{SUBJECT}' => $subject,
         '{MESSAGE}' => $msg_content,
         '{PLAINTEXT_MESSAGE}' => $message,
@@ -172,7 +172,7 @@ if ($superCage->post->keyExists('subject') && $valid_sender_email) {
         '{COMMENT}' => $comment,
         '{COMMENT_ID}' => $cid,
         '{VIEW_COMMENT_LNK}' => $lang_report_php['view_comment'],
-        '{COMMENT_TGT}' => "{$CONFIG['ecards_more_pic_target']}displayimage.php?pos=-$pid#comment$cid",
+        '{COMMENT_TGT}' => "{$CONFIG['ecards_more_pic_target']}displayimage.php?pid=$pid#comment$cid",
         '{PID}' => $pid,
         );
 
@@ -196,8 +196,8 @@ if ($superCage->post->keyExists('subject') && $valid_sender_email) {
     }
 
     if ($result) {
-        pageheader($lang_report_php['title'], "<meta http-equiv=\"refresh\" content=\"3;url=displayimage.php?pos=-{$pid}\" />");
-        msg_box($lang_cpg_die[INFORMATION], $lang_report_php['send_success'], $lang_common['continue'], "displayimage.php?pos=-{$pid}");
+        pageheader($lang_report_php['title'], "<meta http-equiv=\"refresh\" content=\"3;url=displayimage.php?pid={$pid}\" />");
+        msg_box($lang_cpg_die[INFORMATION], $lang_report_php['send_success'], $lang_common['continue'], "displayimage.php?pid={$pid}");
         pagefooter();
         ob_end_flush();
         exit;
@@ -250,8 +250,8 @@ echo <<<EOT
         </tr>
         <tr>
                 <td class="tableb" colspan="3">
-                                                                                <a href="{$CONFIG['ecards_more_pic_target']}displayimage.php?pos=-{$pid}">
-                                                                                {$CONFIG['ecards_more_pic_target']}displayimage.php?pos=-{$pid}</a> <br />
+                    <a href="{$CONFIG['ecards_more_pic_target']}displayimage.php?pid={$pid}">
+                    {$CONFIG['ecards_more_pic_target']}displayimage.php?pid={$pid}</a> <br />
                 </td>
         </tr>
 <!-- BEGIN display_comment -->
