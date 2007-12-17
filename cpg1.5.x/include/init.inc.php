@@ -68,21 +68,6 @@ $FORBIDDEN_SET = '';
 $FORBIDDEN_SET_DATA = array();
 $CURRENT_CAT_NAME = '';
 $CAT_LIST = '';
-// Record User's IP address
-$raw_ip = $superCage->server->testIp('REMOTE_ADDR') ? $superCage->server->getEscaped('REMOTE_ADDR') : '0.0.0.0';
-
-if ($superCage->server->testIp('HTTP_CLIENT_IP')) {
-	$hdr_ip = $superCage->server->getEscaped('HTTP_CLIENT_IP');
-} else {
-	if ($superCage->server->testIp('HTTP_X_FORWARDED_FOR')) {
-		$hdr_ip = $superCage->server->getEscaped('X_FORWARDED_FOR');
-	} else {
-		$hdr_ip = $raw_ip;
-	}
-}
-
-/*if (!preg_match('/^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$/', $raw_ip)) $raw_ip = '0.0.0.0';
-if (!preg_match('/^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$/', $hdr_ip)) $hdr_ip = '0.0.0.0';*/
 
 // Define some constants
 define('USER_GAL_CAT', 1);
@@ -149,6 +134,22 @@ while ($row = mysql_fetch_array($results)) {
 	$CONFIG[$row['name']] = $row['value'];
 } // while
 mysql_free_result($results);
+
+// Record User's IP address
+$raw_ip = $superCage->server->testIp('REMOTE_ADDR') ? $superCage->server->getEscaped('REMOTE_ADDR') : '0.0.0.0';
+
+if ($superCage->server->testIp('HTTP_CLIENT_IP')) {
+	$hdr_ip = $superCage->server->getEscaped('HTTP_CLIENT_IP');
+} else {
+	if ($superCage->server->testIp('HTTP_X_FORWARDED_FOR')) {
+		$hdr_ip = $superCage->server->getEscaped('X_FORWARDED_FOR');
+	} else {
+		$hdr_ip = $raw_ip;
+	}
+}
+
+/*if (!preg_match('/^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$/', $raw_ip)) $raw_ip = '0.0.0.0';
+if (!preg_match('/^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$/', $hdr_ip)) $hdr_ip = '0.0.0.0';*/
 
 // Reference 'site_url' to 'ecards_more_pic_target'
 $CONFIG['site_url'] =& $CONFIG['ecards_more_pic_target'];
