@@ -2469,7 +2469,11 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
                       $target = 'javascript:;" onClick="MM_openBrWindow(\'displayimage.php?pid=' . $thumb['pid'] . '&fullsize=1\',\'' . uniqid(rand()) . '\',\'scrollbars=yes,toolbar=no,status=no,resizable=yes,width=' . ((int)$thumb['pwidth']+(int)$CONFIG['fullsize_padding_x']) .  ',height=' .   ((int)$thumb['pheight']+(int)$CONFIG['fullsize_padding_y']). '\');';
                     }
                 } else {
-                    $target = "displayimage.php?pid={$thumb['pid']}$uid_link";
+                    if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 2) {
+                        $target = 'displayimage.php?pid='.$thumb['pid'].$uid_link.'" onClick="alert(\''.sprintf($lang_errors['login_needed'],'','','','').'\');';
+                    } else {
+                        $target = "displayimage.php?pid={$thumb['pid']}$uid_link";
+                    }
                 }
                 $params = array('{CELL_WIDTH}' => $cell_width,
                     '{LINK_TGT}' => $target,
@@ -2487,7 +2491,11 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
                        $target = 'javascript:;" onClick="MM_openBrWindow(\'displayimage.php?pid=' . $thumb['pid'] . '&fullsize=1\',\'' . uniqid(rand()) . '\',\'scrollbars=yes,toolbar=no,status=no,resizable=yes,width=' . ((int)$thumb['pwidth']+(int)$CONFIG['fullsize_padding_x']) .  ',height=' .   ((int)$thumb['pheight']+(int)$CONFIG['fullsize_padding_y']). '\');';
                     }
                 } else {
-                    $target = "displayimage.php?album=$aid$cat_link$date_link&amp;pid={$thumb['pid']}$uid_link";
+                    if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 2) {
+                        $target = 'displayimage.php?album='.$aid.$cat_link.$date_link.'&amp;pid='.$thumb['pid'].$uid_link.'" onClick="alert(\''.sprintf($lang_errors['login_needed'],'','','','').'\');';
+                    } else {
+                        $target = "displayimage.php?album=$aid$cat_link$date_link&amp;pid={$thumb['pid']}$uid_link";
+                    }
                 }
                 $params = array('{CELL_WIDTH}' => $cell_width,
                     //'{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&amp;pos={$thumb['pos']}",
@@ -3097,7 +3105,7 @@ function theme_html_comments($pid)
         template_extract_block($template_image_comments, 'edit_box_no_smilies');
         template_extract_block($template_add_your_comment, 'input_box_no_smilies');
     }
-		
+
 
     $tmpl_comments_buttons = template_extract_block($template_image_comments, 'buttons', '{BUTTONS}');
     $tmpl_comments_ipinfo = template_extract_block($template_image_comments, 'ipinfo', '{IPINFO}');
@@ -3217,7 +3225,7 @@ function theme_html_comments($pid)
         if (($CONFIG['comment_captcha'] == 0) || ($CONFIG['comment_captcha'] == 1 && USER_ID)) {
             template_extract_block($template_add_your_comment, 'comment_captcha');
         }
-				
+
 		if ($CONFIG['show_bbcode_help']) {$captionLabel = '&nbsp;'. cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
 
         $params = array('{ADD_YOUR_COMMENT}' => $lang_display_comments['add_your_comment'],

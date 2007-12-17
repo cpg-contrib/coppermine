@@ -2356,7 +2356,11 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
                       $target = 'javascript:;" onClick="MM_openBrWindow(\'displayimage.php?pid=' . $thumb['pid'] . '&fullsize=1\',\'' . uniqid(rand()) . '\',\'scrollbars=yes,toolbar=no,status=no,resizable=yes,width=' . ((int)$thumb['pwidth']+(int)$CONFIG['fullsize_padding_x']) .  ',height=' .   ((int)$thumb['pheight']+(int)$CONFIG['fullsize_padding_y']). '\');';
                     }
                 } else {
-                    $target = "displayimage.php?pid={$thumb['pid']}$uid_link";
+                    if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 2) {
+                        $target = 'displayimage.php?pid='.$thumb['pid'].$uid_link.'" onClick="alert(\''.sprintf($lang_errors['login_needed'],'','','','').'\');';
+                    } else {
+                        $target = "displayimage.php?pid={$thumb['pid']}$uid_link";
+                    }
                 }
                 $params = array('{CELL_WIDTH}' => $cell_width,
                     '{LINK_TGT}' => $target,
@@ -2374,7 +2378,11 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
                        $target = 'javascript:;" onClick="MM_openBrWindow(\'displayimage.php?pid=' . $thumb['pid'] . '&fullsize=1\',\'' . uniqid(rand()) . '\',\'scrollbars=yes,toolbar=no,status=no,resizable=yes,width=' . ((int)$thumb['pwidth']+(int)$CONFIG['fullsize_padding_x']) .  ',height=' .   ((int)$thumb['pheight']+(int)$CONFIG['fullsize_padding_y']). '\');';
                     }
                 } else {
-                    $target = "displayimage.php?album=$aid$cat_link$date_link&amp;pid={$thumb['pid']}$uid_link";
+                    if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 2) {
+                        $target = 'displayimage.php?album='.$aid.$cat_link.$date_link.'&amp;pid='.$thumb['pid'].$uid_link.'" onClick="alert(\''.sprintf($lang_errors['login_needed'],'','','','').'\');';
+                    } else {
+                        $target = "displayimage.php?album=$aid$cat_link$date_link&amp;pid={$thumb['pid']}$uid_link";
+                    }
                 }
                 $params = array('{CELL_WIDTH}' => $cell_width,
                     //'{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&amp;pos={$thumb['pos']}",
