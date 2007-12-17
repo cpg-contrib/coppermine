@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
@@ -23,67 +23,95 @@ define('REPORT_FILE_PHP', true);
 require('include/init.inc.php');
 require('include/mailer.inc.php');
 
-if ((!$CONFIG['report_post']==1) || (!USER_CAN_SEND_ECARDS)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+if ((!$CONFIG['report_post']==1) || (!USER_CAN_SEND_ECARDS)) {
+    cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+}
+
 //print_r(get_defined_constants());
-if ($CONFIG['enable_smilies']) include("include/smilies.inc.php");
+if ($CONFIG['enable_smilies']) {
+    include("include/smilies.inc.php");
+}
 
 function get_post_var($name, $default = '')
 {
-    return isset($_POST[$name]) ? $_POST[$name] : $default;
+    $superCage = Inspekt::makeSuperCage();
+    if ($superCage->post->keyExists($name)) {
+        return get_magic_quotes_gpc() ? stripslashes($superCage->post->noTags($name)) : $superCage->post->noTags($name);
+    } else {
+    	return $default;
+    }
 }
 
-$pid = (int)$_GET['pid'];
-$cid = (int)$_GET['msg_id']; //comment id
-$what = $_GET['what'];
+$pid = $superCage->get->getInt('pid');
+$cid = $superCage->get->getInt('msg_id');
+$what = $superCage->get->getAlpha('what');
+
 $type = $lang_report_php['type_file'];
 $template = $template_report;
 
 $sender_name = get_post_var('sender_name', USER_NAME ? USER_NAME : (isset($USER['name']) ? $USER['name'] : ''));
-if (defined('UDB_INTEGRATION')AND USER_ID) $USER_DATA = array_merge($USER_DATA,$cpg_udb->get_user_infos(USER_ID));
-if ($USER_DATA['user_email']){
-        $sender_email = $USER_DATA['user_email'];
-        $sender_box = $sender_email;
-} else {
-        $sender_email = get_post_var('sender_email',$USER['email'] ? $USER['email'] : '');
-        $sender_box = "<input type=\"text\" class=\"textinput\" value=\"$sender_email\" name=\"sender_email\" style=\"width: 100%;\" />";
-                $sender_name = get_post_var('sender_name',$USER['name'] ? $USER['name'] : '');
-        $sender_name_box = "<input type=\"text\" class=\"textinput\" value=\"$sender_name\" name=\"sender_name\" style=\"width: 100%;\" />";
+if (defined('UDB_INTEGRATION')AND USER_ID) {
+    $USER_DATA = array_merge($USER_DATA,$cpg_udb->get_user_infos(USER_ID));
 }
+
+if ($USER_DATA['user_email']) {
+    $sender_email = $USER_DATA['user_email'];
+    $sender_box = $sender_email;
+} else {
+    $sender_email = get_post_var('sender_email',$USER['email'] ? $USER['email'] : '');
+    $sender_box = "<input type=\"text\" class=\"textinput\" value=\"$sender_email\" name=\"sender_email\" style=\"width: 100%;\" />";
+    $sender_name = get_post_var('sender_name',$USER['name'] ? $USER['name'] : '');
+    $sender_name_box = "<input type=\"text\" class=\"textinput\" value=\"$sender_name\" name=\"sender_name\" style=\"width: 100%;\" />";
+}
+
 $subject = get_post_var('subject');
 $message = get_post_var('message');
 $sender_email_warning = '';
-$form_action="{$_SERVER['PHP_SELF']}?pid=$pid";
+$form_action="$CPG_PHP_SELF?pid=$pid";
 
 // Get picture thumbnail url
 $result = cpg_db_query("SELECT * from {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid' $ALBUM_SET");
-if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
+if (!mysql_num_rows($result)) {
+    cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
+}
+
 $row = mysql_fetch_array($result);
 $thumb_pic_url = get_pic_url($row, 'thumb');
 
 if ($what == 'comment') {
-        $result = cpg_db_query("SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date) AS msg_date, author_id, author_md5_id, msg_raw_ip, msg_hdr_ip, approval FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id='$cid' AND approval = 'YES' AND pid='$pid'");
-        if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['non_exist_comment'], __FILE__, __LINE__);
-        $row = mysql_fetch_array($result);
-        $comment = bb_decode($row['msg_body']);
-        if ($CONFIG['enable_smilies']) $comment = process_smilies($comment);
-        $msg_author = $row['msg_author'];
-        $comment_field_name = sprintf($lang_report_php['comment_field_name'], $msg_author);
-        $type = $lang_report_php['type_comment'];
-        $template = $template_report_comment_email;
-        $form_action ="{$_SERVER['PHP_SELF']}?pid=$pid&amp;msg_id=$cid&amp;what=comment";
+    $result = cpg_db_query("SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date) AS msg_date, author_id, author_md5_id, msg_raw_ip, msg_hdr_ip, approval FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id='$cid' AND approval = 'YES' AND pid='$pid'");
+    if (!mysql_num_rows($result)) {
+        cpg_die(ERROR, $lang_errors['non_exist_comment'], __FILE__, __LINE__);
+    }
 
-        //template_extract_block($template_report_form, 'reason_missing'); //need help to toggle off reason(missing) since doesn't apply to comments
+    $row = mysql_fetch_array($result);
+    $comment = bb_decode($row['msg_body']);
+    if ($CONFIG['enable_smilies']) {
+        $comment = process_smilies($comment);
+    }
+
+    $msg_author = $row['msg_author'];
+    $comment_field_name = sprintf($lang_report_php['comment_field_name'], $msg_author);
+    $type = $lang_report_php['type_comment'];
+    $template = $template_report_comment_email;
+    $form_action ="$CPG_PHP_SELF?pid=$pid&amp;msg_id=$cid&amp;what=comment";
+
+    //template_extract_block($template_report_form, 'reason_missing'); //need help to toggle off reason(missing) since doesn't apply to comments
 } else {
-        //template_extract_block($template_report_form, 'display_comment'); //need help remove comment preview when reporting picture
+    //template_extract_block($template_report_form, 'display_comment'); //need help remove comment preview when reporting picture
 }
 
 // Check supplied email address
 $valid_email_pattern = "^[_\.0-9a-z\-]+@([0-9a-z][0-9a-z-]+\.)+[a-z]{2,6}$";
 $valid_sender_email = eregi($valid_email_pattern, $sender_email);
 $invalid_email = '<font size="1">' . $lang_report_php['invalid_email'] . '</font>';
-if (!$valid_sender_email && count($_POST) > 0) $sender_email_warning = $invalid_email;
+
+if (!$valid_sender_email && $superCage->post->keyExists('subject')) {
+	$sender_email_warning = $invalid_email;
+}
+
 // Create and send the e-card
-if (count($_POST) > 0 && $valid_sender_email) {
+if ($superCage->post->keyExists('subject') && $valid_sender_email) {
     $gallery_url_prefix = $CONFIG['ecards_more_pic_target']. (substr($CONFIG['ecards_more_pic_target'], -1) == '/' ? '' : '/');
     if ($CONFIG['make_intermediate'] && max($row['pwidth'], $row['pheight']) > $CONFIG['picture_width']) {
         $n_picname = get_pic_url($row, 'normal');
@@ -91,22 +119,23 @@ if (count($_POST) > 0 && $valid_sender_email) {
         $n_picname = get_pic_url($row, 'fullsize');
     }
 
-    if (!stristr($n_picname, 'http:')) $n_picname = $gallery_url_prefix . $n_picname;
+    if (!stristr($n_picname, 'http:')) {
+        $n_picname = $gallery_url_prefix . $n_picname;
+    }
+    //output list of reasons checkmarked
+    $reasons = $lang_report_php['reasons_list_heading'] . "\n";
+    if ($superCage->post->keyExists('reason')) {
+        foreach(get_post_var('reason') as $value) {
+            $value = $lang_report_php["$value"];
+            $reason_list .= "$value, ";
+        }
+    } else {
+        $reasons .= "{$lang_report_php['no_reason_given']}";
+    }
 
-                //output list of reasons checkmarked
-                $reasons = $lang_report_php['reasons_list_heading'] . "\n";
-                if (isset($_POST['reason'])) {
-                        foreach(get_post_var('reason') as $value) {
-                                $value = $lang_report_php["$value"];
-                                $reason_list .= "$value, ";
-                        }
-                } else {
-                                $reasons .= "{$lang_report_php['no_reason_given']}";
-                }
-
-                $reason_list = substr($reason_list, 0, -2); //remove trailing comma and space
-                $reasons .= $reason_list;
-                $msg_content = nl2br(strip_tags($message));
+    $reason_list = substr($reason_list, 0, -2); //remove trailing comma and space
+    $reasons .= $reason_list;
+    $msg_content = nl2br(strip_tags($message));
 
     $data = array(
         'sn' => $sender_name,
@@ -131,7 +160,7 @@ if (count($_POST) > 0 && $valid_sender_email) {
         '{VIEW_REPORT_LNK_PLAINTEXT}' => $lang_report_php['view_report_plaintext'],
         '{PIC_URL}' => $n_picname,
         '{URL_PREFIX}' => $gallery_url_prefix,
-                '{PIC_TGT}' => "{$CONFIG['ecards_more_pic_target']}displayimage.php?pos=-" . $pid,
+        '{PIC_TGT}' => "{$CONFIG['ecards_more_pic_target']}displayimage.php?pos=-" . $pid,
         '{SUBJECT}' => $subject,
         '{MESSAGE}' => $msg_content,
         '{PLAINTEXT_MESSAGE}' => $message,
@@ -147,19 +176,19 @@ if (count($_POST) > 0 && $valid_sender_email) {
         '{PID}' => $pid,
         );
 
-                $message = template_eval($template, $params);
-        $plaintext_message = template_eval($template_report_plaintext, $params);
+    $message = template_eval($template, $params);
+    $plaintext_message = template_eval($template_report_plaintext, $params);
 
-        $tempTime = time();
-        $message .= sprintf($lang_report_php['report_footer'], $sender_name, $_SERVER['REMOTE_ADDR'], localised_date(-1,$comment_date_fmt));
-                $subject = sprintf($lang_report_php['report_subject'], $sender_name, $type);
+    $tempTime = time();
+    $message .= sprintf($lang_report_php['report_footer'], $sender_name, $raw_ip, localised_date(-1,$comment_date_fmt));
+    $subject = sprintf($lang_report_php['report_subject'], $sender_name, $type);
 
-        $result = cpg_mail('admin', $subject, $message, 'text/html', $sender_name, $sender_email, $plaintext_message);
+    $result = cpg_mail('admin', $subject, $message, 'text/html', $sender_name, $sender_email, $plaintext_message);
 
-        /*//write log
-        if ($CONFIG['log_ecards'] == 1) {
-          $result_log = cpg_db_query("INSERT INTO {$CONFIG['TABLE_ECARDS']} (sender_name, sender_email, recipient_name, recipient_email, link, date, sender_ip) VALUES ('$sender_name', '$sender_email', '$recipient_name', '$recipient_email',   '$encoded_data', '$tempTime', '{$_SERVER["REMOTE_ADDR"]}')");
-          }*/
+    /*//write log
+    if ($CONFIG['log_ecards'] == 1) {
+        $result_log = cpg_db_query("INSERT INTO {$CONFIG['TABLE_ECARDS']} (sender_name, sender_email, recipient_name, recipient_email, link, date, sender_ip) VALUES ('$sender_name', '$sender_email', '$recipient_name', '$recipient_email',   '$encoded_data', '$tempTime', '$raw_ip')");
+    }*/
 
     if (!USER_ID) {
         $USER['name'] = $sender_name;
@@ -249,54 +278,55 @@ echo <<<EOT
         <tr>
                 <td class="tableb" colspan="3">
                     <table border="0" cellspacing="0" cellpadding="0" width="100%">
-                        <tr>
+        </tr>
+        <tr>
 <!-- BEGIN reason_obscene -->
-                            <td>
-                                <input value="obscene" type="checkbox" name="reason[]" id="obscene" />
-                                <label for="obscene" class="clickable_option">{$lang_report_php['obscene']}</label>
-                            </td>
+            <td>
+                <input value="obscene" type="checkbox" name="reason[]" id="obscene" />
+                <label for="obscene" class="clickable_option">{$lang_report_php['obscene']}</label>
+            </td>
 <!-- END reason_obscene -->
 <!-- BEGIN reason_offensive -->
-                            <td>
-                                <input value="offensive" type="checkbox" name="reason[]" id="offensive" />
-                                <label for="offensive" class="clickable_option">{$lang_report_php['offensive']}</label>
-                            </td>
+            <td>
+                <input value="offensive" type="checkbox" name="reason[]" id="offensive" />
+                <label for="offensive" class="clickable_option">{$lang_report_php['offensive']}</label>
+            </td>
 <!-- END reason_offensive -->
 
 <!-- BEGIN reason_misplaced -->
-                            <td>
-                                <input value="misplaced" type="checkbox" name="reason[]" id="misplaced" />
-                                <label for="misplaced" class="clickable_option">{$lang_report_php['misplaced']}</label>
-                            </td>
+            <td>
+                <input value="misplaced" type="checkbox" name="reason[]" id="misplaced" />
+                <label for="misplaced" class="clickable_option">{$lang_report_php['misplaced']}</label>
+            </td>
 <!-- END reason_misplaced -->
 <!-- BEGIN reason_missing -->
-                            <td>
-                                <input value="missing" type="checkbox" name="reason[]" id="missing" />
-                                <label for="missing" class="clickable_option">{$lang_report_php['missing']}</label>
-                            </td>
+            <td>
+                <input value="missing" type="checkbox" name="reason[]" id="missing" />
+                <label for="missing" class="clickable_option">{$lang_report_php['missing']}</label>
+            </td>
 <!-- END reason_missing -->
 <!-- BEGIN reason_issue -->
-                            <td>
-                                <input value="issue" type="checkbox" name="reason[]" id="issue" />
-                                <label for="issue" class="clickable_option">{$lang_report_php['issue']}</label>
-                            </td>
+            <td>
+                <input value="issue" type="checkbox" name="reason[]" id="issue" />
+                <label for="issue" class="clickable_option">{$lang_report_php['issue']}</label>
+            </td>
 <!-- END reason_issue -->
 <!-- BEGIN reason_other -->
-                            <td>
-                                <input value="other" type="checkbox" name="reason[]" id="other" />
-                                <label for="other" class="clickable_option">{$lang_report_php['other']}</label>
-                            </td>
+            <td>
+                <input value="other" type="checkbox" name="reason[]" id="other" />
+                <label for="other" class="clickable_option">{$lang_report_php['other']}</label>
+            </td>
 <!-- END reason_other -->
-                        </tr>
-                    </table>
-                </td>
+        </tr>
+    </table>
+    </td>
         </tr>
         <tr>
                 <td class="tableh2" colspan="3"><b>{$lang_report_php['message']}</b></td>
         </tr>
         <tr>
                 <td class="tableb" colspan="3" valign="top">
-                                                                                        <textarea name="message" class="textinput" rows="8" cols="40" onselect="storeCaret_post(this);" onclick="storeCaret_post(this);" onkeyup="storeCaret_post(this);" style="width: 100%;">$message</textarea><br /><br />
+                    <textarea name="message" class="textinput" rows="8" cols="40" onselect="storeCaret_post(this);" onclick="storeCaret_post(this);" onkeyup="storeCaret_post(this);" style="width: 100%;">$message</textarea><br /><br />
                 </td>
         </tr>
         <tr>
