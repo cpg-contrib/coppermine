@@ -1416,7 +1416,8 @@ if (defined('FAQ_PHP')) $lang_faq_data = array(
 // File forgot_passwd.php
 // ------------------------------------------------------------------------- //
 
-if (defined('FORGOT_PASSWD_PHP')) $lang_forgot_passwd_php = array(
+if (defined('FORGOT_PASSWD_PHP')) {
+$lang_forgot_passwd_php = array(
   'forgot_passwd' => 'Password reminder',
   'err_already_logged_in' => 'You are already logged in !',
   'enter_email' => 'Enter your email address',
@@ -1427,16 +1428,36 @@ if (defined('FORGOT_PASSWD_PHP')) $lang_forgot_passwd_php = array(
   'verify_email_sent' => 'An email has been sent to %s. Please check your email to complete the process.',
   'err_unk_user' => 'Selected user does not exist!',
   'account_verify_subject' => '%s - New password request',
-  'account_verify_body' => 'You have requested a new password. If you would like to proceed with having a new password sent to you, click on the following link:
-
-%s',
   'passwd_reset_subject' => '%s - Your New Password',
-  'passwd_reset_body' => 'Here is the new password you requested:
-Username: %s
-Password: %s
-Click %s to log in.',
 );
 
+$lang_forgot_passwd_account_verify_email = <<<EOT
+You have requested a new password. If you would like to proceed with having a new password sent to you, click on the following link:
+
+<a href="{VERIFY_LINK}">{VERIFY_LINK}</a>
+
+
+Regards,
+
+The management of {SITE_NAME}
+
+EOT;
+
+$lang_forgot_passwd_reset_email = <<<EOT
+Here is the new password you requested:
+
+Username:{USER_NAME}
+Password:{PASSWORD}
+
+Go to  <a href="{SITE_LINK}">{SITE_LINK}</a> to log in.
+
+
+Regards,
+
+The management of {SITE_NAME}
+
+EOT;
+}
 // ------------------------------------------------------------------------- //
 // File groupmgr.php
 // ------------------------------------------------------------------------- //

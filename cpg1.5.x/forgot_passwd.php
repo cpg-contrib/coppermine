@@ -77,10 +77,13 @@ if (isset($CLEAN['email'])) {
 
         cpg_db_query($sql);
 
+		$template_vars = array(
+			'{VERIFY_LINK}' => $CONFIG['ecards_more_pic_target'].(substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') .'forgot_passwd.php?key='.$randkey.'&id='.$USER_DATA['user_id'],
+			'{SITE_NAME}' => $CONFIG['gallery_name'],
+		);
 
         // send the email
-        if (!cpg_mail($USER_DATA['user_email'], sprintf($lang_forgot_passwd_php['account_verify_subject'], $CONFIG['gallery_name']), sprintf($lang_forgot_passwd_php['account_verify_body'],
-            $CONFIG['ecards_more_pic_target'].(substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') .'forgot_passwd.php?key='.$randkey.'&id='.$USER_DATA['user_id']))){
+        if (!cpg_mail($USER_DATA['user_email'], sprintf($lang_forgot_passwd_php['account_verify_subject'], $CONFIG['gallery_name']),nl2br(strtr($lang_forgot_passwd_account_verify_email, $template_vars)))) {
 
             cpg_die(CRITICAL_ERROR, $lang_forgot_passwd_php['failed_sending_email'], __FILE__, __LINE__);
         }
@@ -142,11 +145,15 @@ EOT;
     $sql .= "where {$cpg_udb->field['email']}='{$row['user_email']}'";
     cpg_db_query($sql);
 
+	$template_vars = array(
+		'{USER_NAME}' => $row['user_name'],
+		'{PASSWORD}' => $new_password,
+		'{SITE_LINK}' => $CONFIG['ecards_more_pic_target'].(substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') .'login.php',
+		'{SITE_NAME}' => $CONFIG['gallery_name'],
+	);
     // send the password
     if (!cpg_mail($row['user_email'],
-        sprintf($lang_forgot_passwd_php['passwd_reset_subject'], $CONFIG['gallery_name']),
-        sprintf($lang_forgot_passwd_php['passwd_reset_body'], $row['user_name'], $new_password,
-        $CONFIG['ecards_more_pic_target'].(substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') .'login.php'))){
+        sprintf($lang_forgot_passwd_php['passwd_reset_subject'], $CONFIG['gallery_name']), nl2br(strtr($lang_forgot_passwd_reset_email, $template_vars)))) {
 
         cpg_die(CRITICAL_ERROR, $lang_forgot_passwd_php['failed_sending_email'], __FILE__, __LINE__);
     }
