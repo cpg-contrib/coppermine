@@ -287,7 +287,7 @@ function update_thumbs()
 		} elseif ($superCage->get->keyExists('startpic')) {
 			$startpic = $superCage->get->getInt('startpic');
 		} else {
-			$albumid = 0;
+			$startpic = 0;
 		}
         echo "<h2>{$lang_util_php['thumbs_wait']}</h2>";
 
