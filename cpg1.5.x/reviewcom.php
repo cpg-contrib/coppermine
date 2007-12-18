@@ -31,7 +31,7 @@ if (!GALLERY_ADMIN_MODE) {
 
 // we have made sure that an admin is logged in - let's check for GET parameters if the admin is trying to approve things from the intermediate image view
 $get_data_rejected = 0;
-$single_approval_array = array('pos' => $_GET['pos'], 'msg_id' => $_GET['msg_id'], 'what' => $_GET['what']);
+$single_approval_array = array('pos' => $superCage->get->getInt('pos'), 'msg_id' => $superCage->get->getInt('msg_id'), 'what' => $superCage->get->getAlpha('what'));
 
 foreach ($single_approval_array as $value) {
     if (!$value) {
@@ -139,8 +139,10 @@ EOT;
 } else { // individual approval end, mass-approval start
 
 // Change config options if applicable
-if (isset($_POST) == TRUE && count($_POST)) {
-        if ($_POST['approval_only'] != '') {
+//if (isset($_POST) == TRUE && count($_POST)) {
+if ($superCage->post->keyExists('approval_only')) {
+        //if ($_POST['approval_only'] != '') {
+        if ($superCage->post->getInt('approval_only') != '') {
            $approval_only = 1;
         } else {
            $approval_only = 0;
@@ -161,8 +163,11 @@ if ($CONFIG['display_comment_approval_only'] == 1) {
 }
 
 // Change approval=yes status if form is posted
-if (isset($_POST['status_approved_yes']) == TRUE) {
-    $approved_yes_array = $_POST['status_approved_yes'];
+//if (isset($_POST['status_approved_yes']) == TRUE) {
+if ($superCage->post->keyExists('status_approved_yes')) {
+		if ($superCage->post->getAlpha('status_approved_yes') == TRUE) {
+    	$approved_yes_array = $superCage->post->getAlpha('status_approved_yes');
+    }
 
     foreach($approved_yes_array as $approved_yes) {
         if ($approved_yes != '') {
@@ -179,8 +184,11 @@ if (isset($_POST['status_approved_yes']) == TRUE) {
 }
 
 // Change approval=no status if form is posted
-if (isset($_POST['status_approved_no']) == TRUE) {
-    $approved_no_array = $_POST['status_approved_no'];
+//if (isset($_POST['status_approved_no']) == TRUE) {
+if ($superCage->post->keyExists('status_approved_no')) {
+		if ($superCage->post->getAlpha('status_approved_no') == TRUE) {	
+    	$approved_no_array = $superCage->post->getAlpha('status_approved_no');
+    }
     foreach($approved_no_array as $approved_no) {
         if ($approved_no != '') {
             $approved_no_set .= $approved_no . ',';
@@ -197,21 +205,23 @@ if (isset($_POST['status_approved_no']) == TRUE) {
 
 
 $nb_com_del = 0;
-if (isset($_POST['cid_array'])) { // have any checkboxes been ticked?
-    $cid_array = $_POST['cid_array'];
+//if (isset($_POST['cid_array'])) { // have any checkboxes been ticked?
+if ($superCage->post->keyExists('cid_array')) {
+    $cid_array = $superCage->post->getEscaped('cid_array');
     $cid_set = '';
     foreach ($cid_array as $cid) {
             $cid_set .= ($cid_set == '') ? '(' . $cid : ', ' . $cid;
     }
     $cid_set .= ')';
-    if($_POST['with_selected'] == 'delete') {
+    if($superCage->post->getAlpha('with_selected') == 'delete') {
+    
             // Delete selected comments if form is posted
             cpg_db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id IN $cid_set");
             $nb_com_del = mysql_affected_rows();
-    } elseif($_POST['with_selected'] == 'approve') {
+    } elseif($superCage->post->getAlpha('with_selected') == 'approve') {
         cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET `approval` = 'YES' WHERE msg_id IN $cid_set");
         $nb_com_yes = mysql_affected_rows();
-    } elseif($_POST['with_selected'] == 'disapprove') {
+    } elseif($superCage->post->getAlpha('with_selected') == 'disapprove') {
         cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET `approval` = 'NO' WHERE msg_id IN $cid_set");
         $nb_com_no = mysql_affected_rows();
     }
@@ -223,14 +233,29 @@ $comment_count = $nbEnr[0];
 
 if (!$comment_count) cpg_die(INFORMATION , $lang_reviewcom_php['no_comment'], __FILE__, __LINE__);
 
-$start = isset($_GET['start']) ? (int)$_GET['start'] : 0;
-$count = isset($_GET['count']) ? $_GET['count'] : 25;
-$next_target = $_SERVER['PHP_SELF'] . '?start=' . ($start + $count) . '&amp;count=' . $count;
-$prev_target = $_SERVER['PHP_SELF'] . '?start=' . max(0, $start - $count) . '&amp;count=' . $count;
+//$start = isset($_GET['start']) ? (int)$_GET['start'] : 0;
+if ($superCage->get->keyExists('start')) {
+	$start = $superCage->get->getInt('start');
+} else {
+	$start = 0;
+}
+//$count = isset($_GET['count']) ? $_GET['count'] : 25;
+if ($superCage->get->keyExists('count')) {
+	$count = $superCage->get->getInt('count');
+} else {
+	$count = 25;
+}
+$next_target = $CPG_PHP_SELF . '?start=' . ($start + $count) . '&amp;count=' . $count;
+$prev_target = $CPG_PHP_SELF . '?start=' . max(0, $start - $count) . '&amp;count=' . $count;
 $s50 = $count == 50 ? 'selected' : '';
 $s75 = $count == 75 ? 'selected' : '';
 $s100 = $count == 100 ? 'selected' : '';
-$single_picture = isset($_GET['pid']) ? (int)$_GET['pid'] : '';
+//$single_picture = isset($_GET['pid']) ? (int)$_GET['pid'] : '';
+if ($superCage->get->keyExists('pid')) {
+	$single_picture = $superCage->get->getInt('pid');
+} else {
+	$single_picture = '';
+}
 
 if ($start + $count < $comment_count) {
     $next_link = "<a href=\"$next_target\" class=\"admin_menu\">{$lang_reviewcom_php['see_next']}&raquo;</a>";
@@ -307,7 +332,7 @@ function checkBeforeSubmit() {
 -->
 </script>
 
-    <form action="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count&amp;sort=$sort&amp;pid=$single_picture" method="post" name="editForm" id="cpgform2">
+    <form action="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=$sort&amp;pid=$single_picture" method="post" name="editForm" id="cpgform2">
 
 EOT;
 
@@ -366,7 +391,7 @@ echo <<<EOT
                             </td>
                             <td class="tableh1" align="right">
                                 {$lang_reviewcom_php['n_comm_disp']}
-                                <select onChange="if(this.options[this.selectedIndex].value) window.location.href='{$_SERVER['PHP_SELF']}?start=$start&amp;count='+this.options[this.selectedIndex].value;"  name="count" class="listbox">
+                                <select onChange="if(this.options[this.selectedIndex].value) window.location.href='{$CPG_PHP_SELF}?start=$start&amp;count='+this.options[this.selectedIndex].value;"  name="count" class="listbox">
                                         <option value="25">25</option>
                                         <option value="50" $s50>50</option>
                                         <option value="75" $s75>75</option>
@@ -394,24 +419,24 @@ EOT;
           </td>
           <td class="tableh2" valign="top">
             {$lang_reviewcom_php['approval']}
-            <a href="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count&amp;sort=approval_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['approval_a']}" /></a>
-            <a href="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count&amp;sort=approval_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['approval_d']}" /></a>
+            <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=approval_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['approval_a']}" /></a>
+            <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=approval_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['approval_d']}" /></a>
           </td>
           <td class="tableh2" valign="top">{$lang_reviewcom_php['user_name']}
-            <a href="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count&amp;sort=name_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['name_a']}" /></a>
-            <a href="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count&amp;sort=name_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['name_d']}" /></a>
+            <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=name_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['name_a']}" /></a>
+            <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=name_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['name_d']}" /></a>
           </td>
           <td class="tableh2" valign="top">{$lang_reviewcom_php['date']}
-            <a href="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count&amp;sort=date_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['date_a']}" /></a>
-            <a href="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count&amp;sort=date_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['date_d']}" /></a>
+            <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=date_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['date_a']}" /></a>
+            <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=date_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['date_d']}" /></a>
           </td>
           <td class="tableh2" valign="top">{$lang_reviewcom_php['comment']}
-            <a href="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count&amp;sort=comment_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['comment_a']}" /></a>
-            <a href="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count&amp;sort=comment_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['comment_d']}" /></a>
+            <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=comment_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['comment_a']}" /></a>
+            <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=comment_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['comment_d']}" /></a>
           </td>
           <td class="tableh2" valign="top">{$lang_reviewcom_php['file']}
-            <a href="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count&amp;sort=file_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['file_a']}" /></a>
-            <a href="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count&amp;sort=file_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['file_d']}" /></a>
+            <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=file_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['file_a']}" /></a>
+            <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=file_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['file_d']}" /></a>
           </td>
         </tr>
 
@@ -429,7 +454,15 @@ $sort_codes = array('name_a' => 'msg_author ASC',
     'approval_d' => 'approval DESC',
 );
 // sort by date descending if no other sorting order is given
-$sort = (!isset($_GET['sort']) || !isset($sort_codes[$_GET['sort']])) ? 'date_d' : $_GET['sort'];
+//$sort = (!isset($_GET['sort']) || !isset($sort_codes[$_GET['sort']])) ? 'date_d' : $_GET['sort'];
+if ($superCage->get->keyExists('sort')) {
+	$get_sort = $superCage->get->getEscaped('sort');
+}
+if (!isset($get_sort) || !isset($sort_codes[$get_sort])) {
+	$sort = 'date_d';
+} else {
+	$sort = $get_sort;
+}
 if ($CONFIG['display_comment_approval_only'] == 1) {
     $only_comments_needing_approval = "AND approval='NO'";
 }
