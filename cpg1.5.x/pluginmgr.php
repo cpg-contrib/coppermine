@@ -47,13 +47,14 @@ if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__,
     }
 
 function display_plugin_list() {
-    global $CPG_PLUGINS,$lang_pluginmgr_php,$lang_common,$CONFIG;
+    global $CPG_PLUGINS, $lang_pluginmgr_php, $lang_common, $CONFIG, $CPG_PHP_SELF;
+
     $help = '&nbsp;'.cpg_display_help('f=plugins.htm&amp;as=plugin_manager&amp;ae=plugin_manager_end&amp;top=1', '800', '600');
     $help_plugin_enable = cpg_display_help('f=configuration.htm&amp;as=admin_general_enable-plugins&amp;ae=admin_general_enable-plugins_end', 400, 300);
     // configure plugin api (enabled or disabled)
     $yes_selected = $CONFIG['enable_plugins'] ? 'checked="checked"' : '';
     $no_selected = !$CONFIG['enable_plugins'] ? 'checked="checked"' : '';
-    print '<form name="pluginenableconfig" id="cpgform2" action="'.$_SERVER['PHP_SELF'].'" method="post" style="margin:0px;padding:0px">';
+    print '<form name="pluginenableconfig" id="cpgform2" action="'.$CPG_PHP_SELF.'" method="post" style="margin:0px;padding:0px">';
     starttable('-1', $lang_pluginmgr_php['pmgr'].$help,3);
 echo <<< EOT
         <tr>
@@ -382,8 +383,10 @@ switch ($op) {
         }
         break;
     case 'upload':
-        if (is_uploaded_file($_FILES['plugin']['tmp_name'])) {
-            $file =& $_FILES['plugin'];
+        //Using getRaw() since we need the actual name of the file uploaded by the user
+        if (is_uploaded_file($superCage->files->getRaw('plugin/tmp_name'))) {
+            //$file =& $_FILES['plugin'];
+            $file = $superCage->files->getRaw('plugin');
             $info = pathinfo($file['name']);
 
             if (strtolower($info['extension'] != 'zip')) {
