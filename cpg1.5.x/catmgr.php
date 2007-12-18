@@ -126,6 +126,7 @@ function cat_list_box($cid, &$parent, $on_change_refresh = true)
  * usergroup_list_box()
  *
  * @param integer $cid
+ *
  * @return string $usergroup_listbox
  **/
 function usergroup_list_box($cid){
@@ -151,7 +152,9 @@ function usergroup_list_box($cid){
 	
 	//loop through all groups
 	foreach ($groups as $id => $values) {
-		$usergroup_listbox .= '		<option value="' . $id . '"' . ($values['selected']=='true'? 'selected="selected"':'') . ' >' . $values['name'] . '</option>\n';
+		if($id != 1) {
+			$usergroup_listbox .= '		<option value="' . $id . '"' . ($values['selected']=='true'? 'selected="selected"':'') . ' >' . $values['name'] . '</option>\n';
+		}
 	}
 	
 	$usergroup_listbox .= '</select>';
@@ -427,6 +430,7 @@ switch ($op) {
         cpg_db_query("INSERT INTO {$CONFIG['TABLE_CATEGORIES']} (pos, parent, name, description) VALUES ('10000', '$parent', '$name', '$description')");
 		
 		//insert in categorymap
+		$cid = cpg_db_last_insert_id();
 		if ($superCage->post->keyExists('user_groups')) {
 			foreach ($superCage->post->getInt('user_groups') as $key) {
 				cpg_db_query("INSERT INTO {$CONFIG['TABLE_CATMAP']} (cid, group_id) VALUES('$cid', '$key')");

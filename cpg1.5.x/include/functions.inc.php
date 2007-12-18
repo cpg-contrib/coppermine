@@ -302,6 +302,19 @@ function cpg_db_fetch_row($result)
         return $row;
 }
 
+/**
+ * cpg_db_last_insert_id()
+ *
+ * Get the last inserted id of a query
+ *
+ * @return integer $id
+ **/
+
+function cpg_db_last_insert_id()
+{
+        return mysql_insert_id();
+}
+
 /**************************************************************************
    Sanitization functions
  **************************************************************************/
@@ -3986,6 +3999,9 @@ function cpgGetRemoteFileByURL($remoteURL, $method = "GET", $data = "", $redirec
 * @return boolean $check_approve
 */
 function user_is_allowed () {
+	if(GALLERY_ADMIN_MODE) {
+		return true;
+	}
 	$check_approve = false;
 	global $USER_DATA, $CONFIG;
 	$superCage = Inspekt::makeSuperCage();
