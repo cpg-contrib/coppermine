@@ -282,7 +282,7 @@ class Calendar
 
     /* Return the HTML for a specified month */
     function getMonthView($month, $year, $only_future_dates) {
-        return $this->getMonthHTML($month, $year, 0, $only_future_dates);
+        return $this->getMonthHTML($month, $year, 1, $only_future_dates);
     }
 
 
