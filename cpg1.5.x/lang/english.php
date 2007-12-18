@@ -502,6 +502,7 @@ if (defined('BANNING_PHP')) $lang_banning_php = array(
   'lookup_ip' => 'Lookup an IP address',
   'submit' => 'go!',
   'select_date' => 'select date',
+  'del_all_comments' => 'Delete all comments by this user? (blank is only current)', //cpg1.5
 );
 
 // ------------------------------------------------------------------------- //
@@ -1875,6 +1876,7 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
   'disapprove' => 'disapprove', // cpg1.5.x
   'comment_approved' => 'Comment approved', // cpg1.5.x
   'comment_disapproved' => 'Comment disapproved', // cpg1.5.x
+  'ban_and_delete' => 'Ban user and delete comment(s)', //cpg1.5
 );
 
 // ------------------------------------------------------------------------- //

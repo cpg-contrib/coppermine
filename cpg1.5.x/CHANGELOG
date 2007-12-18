@@ -26,8 +26,9 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
-2007-12-17 [B] Fixed admin always allowed to use all categories {SaWey}
-2007-12-17 [A] Fixed calendar only showing dates in the future when usng it for banning {SaWey}
+2007-12-18 [A] Added ability to ban and delete comment(s) in reviewcom {SaWey}
+2007-12-18 [B] Fixed admin always allowed to use all categories {SaWey}
+2007-12-18 [B] Fixed calendar only showing dates in the future when usng it for banning {SaWey}
 2007-12-17 [B] Fixed calendar not showing in IE {SaWey}
 2007-12-17 [B] Fixed user ip not retrieved {SaWey}
 2007-12-17 [O] Modified pluginmgr, plugin_api and sample plugin to reflect security improvents imposed by Inspekt {Abbas}

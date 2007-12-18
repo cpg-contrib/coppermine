@@ -192,6 +192,18 @@ if ($ban_expires < 0) {
     }
     if ($ban_uid || $ban_ip_addr) {
         cpg_db_query("INSERT INTO {$CONFIG['TABLE_BANNED']} (user_id, ip_addr, expiry) VALUES ($ban_uid, $ban_ip_addr, $ban_expires)");
+		//check if we have to delete comments to
+		if($superCage->post->keyExists('comment_id')) {
+			//check if we have to delte all or one comment
+			if($superCage->post->keyExists('delete_all_comments')) {
+				//delete all comments by this author
+				cpg_db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE author_id = $ban_uid");
+			} else {
+				//only delete current comment
+				$comm_id = $superCage->post->getInt('comment_id');
+				cpg_db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id = $comm_id");
+			}
+		}
     } else {
         cpg_die(CRITICAL_ERROR, $lang_banning_php['error_specify'], __FILE__, __LINE__);
     }
@@ -244,6 +256,18 @@ if ($ban_expires < 0) {
         }
     }
 
+//check if there is a comment who's creator we have to ban
+if($superCage->get->keyExists('ban_comment_author') && $superCage->get->getInt('ban_comment_author') != "")	{
+	//get info of comment
+	$comm_id = $superCage->get->getInt('ban_comment_author');
+	$comm_info = mysql_fetch_array(cpg_db_query("SELECT msg_author, msg_hdr_ip, msg_raw_ip FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id = $comm_id"));
+	($comm_info['msg_hdr_ip'] == '') ? $comm_info['msg_ip'] = $comm_info['msg_hdr_ip'] : $comm_info['msg_ip'] = $comm_info['msg_raw_ip'];
+	$comm_info['extra_form'] = '        <td class="tableb" valign="middle">
+                                                <input type="checkbox" class="checkbox" name="delete_all_comments"/><input type="hidden" name="comment_id" value="' . $comm_id . '"/>
+                                        </td>';
+	$comm_info['extra_form_title'] = '<th class="tableh2">' . $lang_banning_php['del_all_comments'] . '</th>';
+}
+
 pageheader($lang_banning_php['title']);
 
 $signature = 'Coppermine Photo Gallery ' . COPPERMINE_VERSION . ' (' . COPPERMINE_VERSION_STATUS . ')';
@@ -292,11 +316,11 @@ function killCalendar()
 </script>
 EOT;
 print "<br />\n";
-starttable('100%', $lang_banning_php['add_new'], 4);
+starttable('100%', $lang_banning_php['add_new'], isset($comm_info) ? 5 : 4);
 echo <<<EOT
                                         <tr>
                                                 <th class="tableh2">{$lang_banning_php['user_name']}</th>
-                                                <th class="tableh2">{$lang_banning_php['ip_address']}</th>
+                                                <th class="tableh2">{$lang_banning_php['ip_address']}</th>{$comm_info['extra_form_title']}
                                                 <th class="tableh2">{$lang_banning_php['expiry']}</th>
                                                 <th class="tableh2"></th>
                                         </tr>
@@ -304,11 +328,11 @@ echo <<<EOT
                                         <tr>
                                                <form action="{$CPG_PHP_SELF}" method="post" name="list" id="cpgform">
                                                      <td class="tableb" valign="middle">
-                                                <input type="text" class="textinput" style="width: 100%" name="add_ban_user_name" value="" />
+                                                <input type="text" class="textinput" style="width: 100%" name="add_ban_user_name" value="{$comm_info['msg_author']}" />
                                         </td>
                                                 <td class="tableb" valign="middle">
-                                                <input type="text" class="textinput" name="add_ban_ip_addr" value="" size="15" maxlength="15" />
-                                        </td>
+                                                <input type="text" class="textinput" name="add_ban_ip_addr" value="{$comm_info['msg_ip']}" size="15" maxlength="15" />
+                                        </td>{$comm_info['extra_form']}
                                                 <td class="tableb" valign="middle">
                                                 <input type="text" class="listbox_lang"  name="add_ban_expires" value="" size="20" readonly="readonly" title="{$lang_banning_php['select_date']}" />
                                                 <script type="text/javascript">

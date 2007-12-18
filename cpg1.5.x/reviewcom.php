@@ -467,6 +467,8 @@ while ($row = mysql_fetch_array($result)) {
     }
     $comment_approval_status .= '<input type="hidden" name="status_approved_yes[]" id="status_approved_yes'.$row['msg_id'].'" value="" />';
     $comment_approval_status .= '<input type="hidden" name="status_approved_no[]" id="status_approved_no'.$row['msg_id'].'" value="" />';
+	//get link to ban and delete
+	$ban_and_delete = '<a href="banning.php?ban_comment_author=' . $row['msg_id'] . '">' . $lang_reviewcom_php['ban_and_delete'] . '</a>';
     $rowcounter++;
     if ($rowcounter >=2 ) { //let the row colors alternate, for now they are the same
         $rowcounter = 0;
@@ -491,7 +493,7 @@ while ($row = mysql_fetch_array($result)) {
         <td class="$tableclass" align="left">
             {$comment_approval_status}
         </td>
-        <td class="$tableclass" valign="top">$profile_link_start{$row['msg_author']}$profile_link_end</td>
+        <td class="$tableclass" valign="top">$profile_link_start{$row['msg_author']}$profile_link_end <br />$ban_and_delete</td>
         <td class="$tableclass" valign="top">{$msg_date}</td>
         <td class="$tableclass" valign="top">
             {$msg_body}
