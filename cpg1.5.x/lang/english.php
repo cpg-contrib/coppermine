@@ -1567,6 +1567,8 @@ if (defined('LOGIN_PHP')) $lang_login_php = array(
   'forgot_password_link' => 'I forgot my password',
   'cookie_warning' => 'Warning your browser does not accept script\'s cookies',
   'send_activation_link' => 'Missed activation link?',
+  'force_login' => 'You must login to view this page', //cpg1.5.x
+  'force_login_title' => 'Login to continue', //cpg1.5.x
 );
 
 // ------------------------------------------------------------------------- //

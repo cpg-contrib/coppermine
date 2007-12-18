@@ -90,7 +90,10 @@ if ($CONFIG['reg_requires_valid_email'] == 1) {
 }
 
 pageheader($lang_login_php['login']);
-$referer = urlencode($referer);
+if ($superCage->get->getInt('force_login')) {
+    msg_box($lang_login_php['force_login_title'], $lang_login_php['force_login']);
+}
+//$referer = urlencode($referer);
 echo '<form action="login.php?referer='.urlencode($CPG_REFERER).'" method="post" name="loginbox" id="cpgform">';
 
 starttable('-1', $lang_login_php['enter_login_pswd'], 2);
