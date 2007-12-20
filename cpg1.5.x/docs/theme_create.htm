@@ -97,7 +97,7 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
     <th valign="top" align="left" class="tableh1">Dependancies</th>
   </tr>
   <tr>
-    <td valign="top" class="tableb">{LANG_DIR}</td>
+    <td valign="top" class="tableb"><a name="theme_create_template_lang_dir"></a>{LANG_DIR}<a href="#theme_create_template_lang_dir" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">
       <strong>Language direction</strong><br />
       Possible values are <abbr title="left-to-right">LTR</abbr> and <abbr title="right-to-left">RTL</abbr>. Should not be changed or modified at all.
@@ -107,17 +107,17 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
     <td valign="top" class="tableb">Filled by Coppermine, depending on the orientation of the language the end user has chosen</td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate">{CHARSET}</td>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_template_charset"></a>{CHARSET}<a href="#theme_create_template_charset" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">
       <strong>Character set</strong><br />
-      Determines the character set used - filling the HTML tag <tt class="code"><meta http-equiv="Content-Type" content="text/html; charset={CHARSET}" /></tt>. Do not change unless you <em>really</em> know what you're doing.
+      Determines the character set used - filling the HTML tag <tt class="code">&lt;meta http-equiv="Content-Type" content="text/html; charset={CHARSET}" /&gt;</tt>. Do not change unless you <em>really</em> know what you're doing.
     </td>
     <td valign="top" class="tableb tableb_alternate">pageheader</td>
     <td valign="top" class="tableb tableb_alternate">mandatory</td>
     <td valign="top" class="tableb tableb_alternate">Filled by Coppermine, depending on the <a href="configuration.htm#admin_language_charset">encoding</a> the admin has chosen in config.</td>
   </tr>
   <tr>
-    <td valign="top" class="tableb">{TITLE}</td>
+    <td valign="top" class="tableb"><a name="theme_create_template_title"></a>{TITLE}<a href="#theme_create_template_title" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">
       <strong>Page Title</strong><br />
       The page title that is mainly taken into account by search engines. The human visitor sees the title tag in the browser window.
@@ -127,7 +127,7 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
     <td valign="top" class="tableb">Title tag is being composed in the individual coppermine core file (e.g. displayimage.php, thumbnails.php etc.), handed over to the pageheader function.</td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate">{META}</td>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_template_meta"></a>{META}<a href="#theme_create_template_meta" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">
       <strong>Meta tags</strong><br />
       Meta tags that depend on the dynamic content of a page are being inserted here. Currently, Coppermine uses the keywords meta tag (<tt class="code">&lt;meta name="keywords" content="DYNAMIC CONTENT HERE" /&gt;</tt>) and the refresh meta tag (<tt class="code">&lt;meta http-equiv="refresh" content="5; URL=REDIRECTION_PAGE" /&gt;</tt>).<br />
@@ -138,7 +138,7 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
     <td valign="top" class="tableb tableb_alternate">Populated dynamically by the script, e.g. for meta keywords based on file keywords or for redirection for status change screens.</td>
   </tr>
   <tr>
-    <td valign="top" class="tableb">{JAVASCRIPT}</td>
+    <td valign="top" class="tableb"><a name="theme_create_template_javascript"></a>{JAVASCRIPT}<a href="#theme_create_template_javascript" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">
       <strong>JavaScript</strong><br />
       This token has been added in cpg1.5.x It will be replaced with <tt class="code">&lt;script type="text/javascript" src="scripts.js"&gt;&lt;/script&gt;</tt> (which is mandatory to have for Coppermine to work properly). You mustn't remove this tag, but you can add your custom JavaScript code beneath it (in a new line).
@@ -148,7 +148,7 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
     <td valign="top" class="tableb"><abbr title="not applicable">n/a</abbr></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate">{CUSTOM_HEADER}</td>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_template_custom_header"></a>{CUSTOM_HEADER}<a href="#theme_create_template_custom_header" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">
       <strong>Custom Header</strong><br />
       If the corresponding option has been set in config, this token will be replaced with the output that your <a href="php-content.htm#php-content_header_footer">custom header</a> generates. If you don't use the custom header feature, you can remove the {CUSTOM_HEADER}-token from your template, but it's advisable to leave it in place if you decide to use the feature later.
@@ -158,7 +158,7 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
     <td valign="top" class="tableb tableb_alternate"><a href="configuration.htm#admin_theme_custom_header_path_start">Path to custom header include</a> set up in config</td>
   </tr>
   <tr>
-    <td valign="top" class="tableb">{GAL_NAME}</td>
+    <td valign="top" class="tableb"><a name="theme_create_template_gal_name"></a>{GAL_NAME}<a href="#theme_create_template_gal_name" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">
       <strong>Gallery name</strong><br />
       Will be replaced with the gallery name you set up in config when the template is being parsed. You might want to remove this token, especially if you already have a banner in your theme that displays your gallery name.
@@ -168,7 +168,7 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
     <td valign="top" class="tableb"><a href="configuration.htm#admin_general_name">Gallery name</a> set in config</td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate">{GAL_DESCRIPTION}</td>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_template_gal_description"></a>{GAL_DESCRIPTION}<a href="#theme_create_template_gal_description" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">
       <strong>Gallery description</strong><br />
       Will be replaced with the gallery description you set up in config when the template is being parsed. You might want to remove this token, especially if you already have a banner in your theme that displays your gallery name.
@@ -178,7 +178,7 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
     <td valign="top" class="tableb tableb_alternate"><a href="configuration.htm#admin_general_description">Gallery description</a> set in config</td>
   </tr>
   <tr>
-    <td valign="top" class="tableb">{SYS_MENU}</td>
+    <td valign="top" class="tableb"><a name="theme_create_template_sys_menu"></a>{SYS_MENU}<a href="#theme_create_template_sys_menu" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">
       <strong>System menu</strong><br />
       Determines the position of the first level menu the end user will see on your page (the one that contains the login/logout link). Even if you want to get rid of the menu or parts of it, do not remove the {SYS_MENU} token itself, but remove the menu items you don't want displayed by editing theme.php instead.
@@ -195,7 +195,7 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate">{SUB_MENU}</td>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_template_sub_menu"></a>{SUB_MENU}<a href="#theme_create_template_sub_menu" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">
       <strong>Sub menu</strong><br />
       Determines the position of the second level menu the end user will see on your page (the one that contains the links &quot;Album list&quot; / &quot;Last uploads&quot; / &quot;Last comments&quot; / &quot;Most viewed&quot; / &quot;Top rated&quot; / &quot;My Favorites&quot; / &quot;By Date&quot; / &quot;Search&quot;). Even if you want to get rid of the menu or parts of it, do not remove the {SUB_MENU} token itself, but remove the menu items you don't want displayed by editing theme.php instead.
@@ -205,7 +205,7 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
     <td valign="top" class="tableb tableb_alternate"><abbr title="not applicable">n/a</abbr></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb">{LANGUAGE_SELECT_FLAGS}</td>
+    <td valign="top" class="tableb"><a name="theme_create_template_language_select_flags"></a>{LANGUAGE_SELECT_FLAGS}<a href="#theme_create_template_language_select_flags" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">
       <strong>Language selector (flags)</strong><br />
       Will display a row of flags representing the <a href="languages.htm">languages</a> available for the end user to choose if corresponding config setting is enabled.
@@ -215,7 +215,7 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
     <td valign="top" class="tableb"><a href="configuration.htm#admin_language_flags">Display language flags</a> enabled/disabled in config.</td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate">{LANGUAGE_SELECT_LIST}</td>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_template_language_select_list"></a>{LANGUAGE_SELECT_LIST}<a href="#theme_create_template_language_select_list" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">
       <strong>Language selector (list)</strong><br />
       Will display a dropdown list of <a href="languages.htm">languages</a> available for the end user to choose if corresponding config setting is enabled.
@@ -225,7 +225,7 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
     <td valign="top" class="tableb tableb_alternate"><a href="configuration.htm#admin_language_list">Display language list</a> enabled/disabled in config.</td>
   </tr>
   <tr>
-    <td valign="top" class="tableb">{THEME_SELECT_LIST}</td>
+    <td valign="top" class="tableb"><a name="theme_create_template_theme_select_list"></a>{THEME_SELECT_LIST}<a href="#theme_create_template_theme_select_list" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">
       <strong>Theme selector (list)</strong><br />
       Will display a dropdown list of themes available for the end user to choose if corresponding config setting is enabled.
@@ -235,7 +235,7 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
     <td valign="top" class="tableb"><a href="configuration.htm#admin_theme_theme_list">Display theme list</a> enabled/disabled in config.</td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate">{ADMIN_MENU}</td>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_template_admin_menu"></a>{ADMIN_MENU}<a href="#theme_create_template_admin_menu" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">
       <strong>Admin menu</strong><br />
       Displays the <a href="admin_menu.htm">admin menu</a>.
@@ -245,7 +245,7 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
     <td valign="top" class="tableb tableb_alternate">Admin must be logged in. <a href="admin_menu.htm#admin_user_mode">Admin controls</a> mustn't be hidden.</td>
   </tr>
   <tr>
-    <td valign="top" class="tableb">{MESSAGE_BLOCK}</td>
+    <td valign="top" class="tableb"><a name="theme_create_template_message_block"></a>{MESSAGE_BLOCK}<a href="#theme_create_template_message_block" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">
       <strong>Message block</strong><br />
     </td>
@@ -254,7 +254,7 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
     <td valign="top" class="tableb"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate">{GALLERY}</td>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_template_gallery"></a>{GALLERY}<a href="#theme_create_template_gallery" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">
       <strong>Gallery</strong><br />
     </td>
@@ -263,7 +263,7 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
     <td valign="top" class="tableb tableb_alternate"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb">{CUSTOM_FOOTER}</td>
+    <td valign="top" class="tableb"><a name="theme_create_template_custom_footer"></a>{CUSTOM_FOOTER}<a href="#theme_create_template_custom_footer" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">
       <strong>Custom Footer</strong><br />
       If the corresponding option has been set in config, this token will be replaced with the output that your <a href="php-content.htm#php-content_header_footer">custom footer</a> generates. If you don't use the custom footer feature, you can remove the {CUSTOM_FOOTER}-token from your template, but it's advisable to leave it in place if you decide to use the feature later.
@@ -273,7 +273,7 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
     <td valign="top" class="tableb"><a href="configuration.htm#admin_theme_custom_footer_path_start">Path to custom footer include</a> set up in config</td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate">{VANITY}</td>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_template_vanity"></a>{VANITY}<a href="#theme_create_template_vanity" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">
       <strong>Vanity block</strong><br />
       If your custom theme is defined as valid theme and you have enabled the corresponding option in config, the {VANITY}-placeholder will be replaced with mini-banners that link to PHP.net, mysql.com and the HTML and CSS validators of the W3C.<br />
@@ -287,7 +287,7 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb">{CREDITS}</td>
+    <td valign="top" class="tableb"><a name="theme_create_template_credits"></a>{CREDITS}<a href="#theme_create_template_credits" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">
       <strong>Credits</strong><br />
       Will display the &quot;Powered by Coppermine&quot; tag on your page. If the token is being removed, the copyright-disclaimer will be displayed as part of the {GALLERY}-block. If you want to edit (or even delete) the &quot;Powered by Coppermine&quot; tag, read <a href="theme_copyright.htm">Copyright-disclaimer in footer</a>
@@ -297,7 +297,7 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
     <td valign="top" class="tableb">Credits section defined in theme.php</td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate">{SOCIAL_BOOKMARKS}</td>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_template_social_bookmarks"></a>{SOCIAL_BOOKMARKS}<a href="#theme_create_template_social_bookmarks" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">
       <a name="social_bookmarks_token"></a><strong>Social bookmarks<a href="#social_bookmarks_token" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></strong><br />
       Will display the social bookmark icons if <a href="configuration.htm#social_bookmarks">the correspdonding option</a> in the config is enabled for at least one social bookmark service.

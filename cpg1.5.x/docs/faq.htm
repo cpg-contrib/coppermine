@@ -50,7 +50,6 @@
 <li><a class="content" href="#createPublicAlbum">How do I create an <strong>album</strong> that <strong>anyone</strong> can add photos to?</a></li>
 <li><a class="content" href="#BackupDatabase">How can I <strong>backup</strong> my coppermine database?</a></li>
 <li><a class="content" href="#noFullsizePopup">The <strong>fullsize-pic doesn't pop up</strong> when clicking on the intermediate size pic. What's wrong?</a></li>
-<li><a class="content" href="#viewThumbnailsOnly">How can I let unregistered users see the <strong>thumbnails only</strong>, but not the actual pictures?</a></li>
 <li><a class="content" href="#preventHotlinks">How can I prevent other sites linking directly to the pictures in my gallery instead of the gallery page?</a></li>
 <li><a class="content" href="#changeLanguage">I tried to change the <strong>language</strong> on the config page, but it doesn't work. What's wrong?</a></li>
 <li><a class="content" href="#onlyregisteredcomments">How do I let guests, not only registered users to put <strong>comments</strong> on pictures?</a></li>
@@ -142,12 +141,6 @@ The &lt;head&gt;-part of your template file should look like this:<br />
 {JAVASCRIPT}
 &lt;/head&gt;</pre>
 - If you're still unsure about this, just compare your theme's template.html with the default theme that comes with coppermine .</p><hr />
-<a name="viewThumbnailsOnly"></a>
-<h3>How can I let unregistered users see the <strong>thumbnails only</strong>, but not the actual pictures?<a href="#viewThumbnailsOnly" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Edit displayimage.php and add<br /><tt class="code">if (!USER_ID) cpg_die(ERROR, 'You need to register to access this page', __FILE__, __LINE__);</tt><br />just before<br />
-<pre>/**************************************************************************
-* Local functions definition
-**************************************************************************/</pre></p><hr />
 <a name="preventHotlinks"></a>
 <h3>How can I prevent other sites from linking directly to the pictures in my gallery instead of the gallery page?<a href="#preventHotlinks" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>IF your webhost supports the use of .htaccess files (you will need to ask them), you can prevent &quot;hotlinking&quot; by creating an .htaccess file in the albums folder.<br />
@@ -615,7 +608,7 @@ These are (alas) not-so-frequently-asked-questions on the <a href="http://copper
 </ul></p><hr />
 <a name="nonEnglishPosting"></a>
 <h3>Hey, by looking at your profile I can see you're German/French/Whatever. Can I post a question in that <strong>language</strong>?<a href="#nonEnglishPosting" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>If you are posting in the English support boards, pPlease do not post in some other language - in this way, others may benefit from your question (and the answers you receive ), too. Don't be afraid to write &quot;poor english&quot; - no one will laugh at you, and most of our visitor's first language isn't english to begin with! There's a german support board available at <a href="http://forum.the-service.de/" class="external">http://forum.the-service.de/</a> - use it if you are more comfortable with German and you' not able to write in English!<br /></p>
+<p>If you are posting in the English support boards, please do not post in some other language - in this way, others may benefit from your question (and the answers you receive ), too. Don't be afraid to write &quot;poor english&quot; - no one will laugh at you, and most of our visitor's first language isn't english to begin with!</p>
 <p>We have <a href="http://coppermine-gallery.net/forum/index.php?board=37.0">language-specific support boards</a> for Chinese, French, German, Italian and Persian.</p><hr />
 <a name="emailSupport"></a>
 <h3>May I email/<acronym title="private message" class="tool">pm</acronym>/<acronym title="instant message" class="tool">im</acronym> you for <strong>support</strong>?<a href="#emailSupport" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -629,7 +622,7 @@ These are (alas) not-so-frequently-asked-questions on the <a href="http://copper
 
 <br />&nbsp;<br />
 
-<p>This FAQ is a work in progress, please contribute in the <a href="http://coppermine-gallery.net/forum/">Coppermine Photo Gallery Support Board</a> (don't contact me to ask for fixes of your Coppermine install). Please report any bugs, typos etc.<br />Check the online-version of this document for updates!<br />Have fun!</p>
+<p>This FAQ is a work in progress, please contribute in the <a href="http://coppermine-gallery.net/forum/">Coppermine Photo Gallery Support Board</a> (don't contact dev team members or supporters to ask for fixes of your Coppermine install). Please report any bugs, typos etc.<br />Check the online-version of this document for updates!<br />Have fun!</p>
 
 
 
