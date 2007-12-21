@@ -229,16 +229,10 @@ EOT;
         // Set $album_id to the actual album ID
         $album_id = $album['aid'];
 
-        // Get the category name
-        $vQuery = "SELECT cat.name, cat.cid FROM " . $CONFIG['TABLE_CATEGORIES'] . " cat, " . $CONFIG['TABLE_ALBUMS'] . " alb WHERE alb.aid='" . $album_id . "' AND cat.cid=alb.category";
-        $vResult = cpg_db_query($vQuery);
-        $vRes = cpg_db_fetch_row($vResult);
-        mysql_free_result($vResult);
-
         // Add to multi-dim array for sorting later
-        if ($vRes['name']) {
-            $listArray[$list_count]['cat'] = $catAnces[$vRes['cid']] . ($catAnces[$vRes['cid']]?' - ':'') . $vRes['name'];
-            $listArray[$list_count]['cid'] = $vRes['cid'];
+        if ($album['name']) {
+            $listArray[$list_count]['cat'] = $catAnces[$album['cid']] . ($catAnces[$album['cid']]?' - ':'') . $album['name'];
+            $listArray[$list_count]['cid'] = $album['cid'];
         } else {
             $listArray[$list_count]['cat'] = $lang_upload_php['albums_no_category'];
             $listArray[$list_count]['cid'] = 0;
@@ -882,9 +876,9 @@ if ((CUSTOMIZE_UPLOAD_FORM) and (!$superCage->post->keyExists('file_upload_reque
 // Get public and private albums, and set maximum individual file size.
 
 if (GALLERY_ADMIN_MODE) {
-    $public_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " ORDER BY title");
+    $public_albums = cpg_db_query("SELECT aid, title, cid, name FROM {$CONFIG['TABLE_ALBUMS']} INNER JOIN {$CONFIG['TABLE_CATEGORIES']} ON cid = category WHERE category < " . FIRST_USER_CAT);
 } else {
-        $public_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " AND ((uploads='YES' AND (visibility = '0' OR visibility IN ".USER_GROUP_SET.")) OR (owner=".USER_ID.")) ORDER BY title");
+        $public_albums = cpg_db_query("SELECT aid, title, cid, name FROM {$CONFIG['TABLE_ALBUMS']} INNER JOIN {$CONFIG['TABLE_CATEGORIES']} ON cid = category WHERE category < " . FIRST_USER_CAT . " AND ((uploads='YES' AND (visibility = '0' OR visibility IN ".USER_GROUP_SET.")) OR (owner=".USER_ID."))");
 }
 if (mysql_num_rows($public_albums)) {
     $public_albums_list = cpg_db_fetch_rowset($public_albums);
