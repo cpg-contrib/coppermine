@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-12-21 [O] Should have indexes for the moderator group and visibility fields {Nibbler}
 2007-12-18 [A] Added ability to ban and delete comment(s) in reviewcom {SaWey}
 2007-12-18 [B] Fixed admin always allowed to use all categories {SaWey}
 2007-12-18 [B] Fixed calendar only showing dates in the future when usng it for banning {SaWey}

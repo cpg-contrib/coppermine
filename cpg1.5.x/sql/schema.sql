@@ -66,7 +66,9 @@ CREATE TABLE CPG_albums (
   moderator_group INT NOT NULL default 0,
   alb_hits INT( 10 ) NOT NULL default 0,
   PRIMARY KEY  (aid),
-  KEY alb_category (category)
+  KEY alb_category (category),
+  KEY `moderator_group` (`moderator_group`),
+  KEY `visibility` (`visibility`)
 ) TYPE=MyISAM COMMENT='Used to store albums';
 # --------------------------------------------------------
 
