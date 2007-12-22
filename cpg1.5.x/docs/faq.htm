@@ -39,14 +39,14 @@
 <h1>Frequently Asked Questions (FAQ)</h1>
 <p>With thousands of users, it's not surprising that so many of the same questions are asked on the <a href="http://coppermine-gallery.net/forum/">support forums for Coppermine Photo Gallery</a>. So, to help facilitate your website development, we've  included this basic <acronym class="tool" title="FAQ=Frequently Asked Questions">FAQ</acronym> file on common issues. Please be sure to refer to this FAQ first before posting questions on the forum. Failure to do so will, could, well ... , reflect unkindly on you and could result in some negative "<em>karma</em>."</p>
 <p>This document is the <em>second best</em> resource to understand Coppermine - it's mandatory that you read the <a href="index.htm">documentation</a> first that comes with your Coppermine package.</p>
-<p>The <a href="faq_fr.htm">FAQ are available in French</a> as well.</p>
+<p>The <a href="faq_fr.htm">FAQ are available in French</a> as well, although the French FAQ are currently based on cpg1.4.x, so not everything in it will be correct for cpg1.5.x.</p>
 
 
 <a name="faq_toc"></a><h2>Table of contents:<a href="#faq_toc" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <ul class="nomargin">
 <li><strong>Setup / Configuration</strong></li>
 <ul class="nomargin">
-<li><a class="content" href="#NoLastUploads">I don't want to show the <strong>last uploads</strong> and/or <strong>random pictures</strong> on the start page. How do I edit what's shown on the start page of coppermine?</a></li>
+<li><a class="content" href="configuration.htm#admin_album_list_content">I don't want to show the <strong>last uploads</strong> and/or <strong>random pictures</strong> on the start page. How do I edit what's shown on the start page of coppermine?</a></li>
 <li><a class="content" href="#createPublicAlbum">How do I create an <strong>album</strong> that <strong>anyone</strong> can add photos to?</a></li>
 <li><a class="content" href="#BackupDatabase">How can I <strong>backup</strong> my coppermine database?</a></li>
 <li><a class="content" href="#noFullsizePopup">The <strong>fullsize-pic doesn't pop up</strong> when clicking on the intermediate size pic. What's wrong?</a></li>
@@ -70,8 +70,6 @@
 <li><a class="content" href="#changeOrderEdit">How can I change the order of the pics when <strong>editing</strong> them?</a></li>
 <li><a class="content" href="#rightHandMenu">How can I create a menu that's shown on the <strong>right side</strong> of the gallery?</a></li>
 <li><a class="content" href="#jumpToPrivateAlbum">How can I send a user <strong>directly to his private album</strong> once he logs in?</a></li>
-<li><a class="content" href="#registeredUsersOnly">How can I <strong>prevent unregistered user</strong> from viewing the gallery?</a></li>
-<li><a class="content" href="#displayUploaderName">How can I <strong>display the name of the uploader</strong> with the picture info?</a></li>
 <li><a class="content" href="#linksInCustomFields">How do I enable clickable <strong>links in custom user fields</strong>?</a></li>
 <li><a class="content" href="#sortThumbsByCustomField">How can I <strong>sort the thumbnails by user defined (custom) fields</strong>?</a></li>
 <li><a class="content" href="#iptcSupport">How do I <strong>enable IPTC support</strong>?</a></li>
@@ -94,10 +92,6 @@
 </ul>
 
 
-
-<a name="NoLastUploads"></a>
-<h3>I don't want to show the <strong>last uploads</strong> and/or <strong>random pictures</strong>on the start page. How do I edit what's shown on the start page of coppermine?<a href="#NoLastUploads" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Refer to the configuration section <a href="configuration.htm#admin_album_list_content">The content of the main page</a></p><hr />
 
 <a name="createPublicAlbum"></a>
 <h3>How do I create an <strong>album</strong> that <strong>all users</strong> can add photos to?<a href="#createPublicAlbum" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -342,32 +336,6 @@ will become<br />
 <tt class="code">pageheader($lang_login_php['login'],&quot;&lt;META http-equiv=\&quot;refresh\&quot; content=\&quot;3;url=$referer\&quot;&gt;&quot;);</tt><br />
 <br />and add <strong>before</strong> it<br />
 <tt class="code">$referer = 'index.php?cat='.(FIRST_USER_CAT+$USER_DATA['user_id']); </tt><br /></p><hr />
-<a name="registeredUsersOnly"></a>
-<h3>How can I <strong>prevent unregistered users</strong> from viewing the gallery?<a href="#registeredUsersOnly" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>edit<br /><tt class="code">displayimage.php</tt><br />and search for<br />
-<pre>/**************************************************************************
-* Local functions definition
-**************************************************************************/</pre>
-<br />and add <strong>before</strong> it<br />
-<tt class="code">if (!USER_ID) cpg_die(ERROR, 'You need to register to access this page', __FILE__, __LINE__);</tt><br /></p><hr />
-<a name="displayUploaderName"></a>
-<h3>How can I <strong>display the name of the uploader</strong> with the picture info?<a href="#displayUploaderName" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p><strong>Warning</strong>: this is quite a complicated hack for a newbie to perform! Make sure to back up your original files before attempting this.<br />Edit displayimage.php and search for:<br />
-<tt class="code">   $info[$lang_picinfo['Filename']]   = htmlspecialchars($CURRENT_PIC_DATA['filename']);</tt><br />add after it:<br />
-<tt class="code">   $info[$lang_picinfo['Username']]   = htmlspecialchars($CURRENT_PIC_DATA['user_name']);</tt>.<br />
-Then open /include/functions.inc.php and search for following in function get_pic_data():<br />
-<tt class="code">      if($select_columns != '*') $select_columns .= ', title, caption';</tt><br />and replace it with:<br />
-<tt class="code">      if($select_columns != '*') $select_columns .= ', title, caption, user_name';</tt>.<br />
-After that search for:<br />
-<tt class="code">      $result = cpg_db_query("SELECT $select_columns from {$CONFIG['TABLE_PICTURES']} WHERE aid='$album' $approved $ALBUM_SET ORDER BY $sort_order $limit");</tt><br />
-and replace it with:<br />
-<tt class="code">      $result = cpg_db_query("SELECT $select_columns from {$CONFIG['TABLE_PICTURES']} AS p LEFT JOIN {$CONFIG['TABLE_USERS']} AS u ON u.user_id = p.owner_id WHERE p.aid='$album' $approved $ALBUM_SET ORDER BY $sort_order $limit");</tt><br />Then you have to add the language string for the username. Open /lang/yourlang.php and search for:<br />
-<tt class="code">$lang_picinfo = array(</tt><br />
-and add after that:<br />
-<tt class="code">        'Username' => 'Username',</tt><br />
-Also you need to execute this query in MySQL (with a tool like <a href="http://www.phpmyadmin.net">phpMyAdmin</a>):<br />
-<tt class="code">ALTER TABLE `cpg11d_pictures` ADD INDEX ( `owner_id` );</tt><br />
-(<strong>NOTE:</strong> If your database table_prefix is not &quot;cpg11d_&quot;, you will need to change it in the query)<br /></p><hr />
 <a name="linksInCustomFields"></a>
 <h3>How do I enable clickable <strong>links in custom user fields</strong>?<a href="#linksInCustomFields" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Edit displayimage.php and change<br />
