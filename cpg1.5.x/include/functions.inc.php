@@ -2456,7 +2456,7 @@ function& cpg_lang_var($varname,$index=null) {
 
 function cpg_debug_output()
 {
-    global $USER, $USER_DATA, $META_ALBUM_SET, $ALBUM_SET, $CONFIG, $cpg_time_start, $query_stats, $queries, $lang_cpg_debug_output, $CPG_PHP_SELF;
+    global $USER, $USER_DATA, $META_ALBUM_SET, $ALBUM_SET, $CONFIG, $cpg_time_start, $query_stats, $queries, $lang_cpg_debug_output, $CPG_PHP_SELF, $superCage, $CPG_PLUGINS;
 
         $time_end = cpgGetMicroTime();
         $time = round($time_end - $cpg_time_start, 3);
@@ -2507,26 +2507,39 @@ EOT;
         echo $debug_separate;
         echo "GET :";
         echo $debug_underline;
-        print_r($_GET);
+        print_r($superCage->get->_source);
         echo $debug_separate;
         echo "POST :";
         echo $debug_underline;
-        print_r($_POST);
+        print_r($superCage->post->_source);
         echo $debug_separate;
+        echo "COOKIE :";
+        echo $debug_underline;
+        print_r($superCage->cookie->_source);
+        echo $debug_separate;
+        if ($superCage->cookie->keyExists('PHPSESSID')){
+	        echo "SESSION :";
+	        echo $debug_underline;
+	        session_id($superCage->cookie->getAlnum('PHPSESSID'));
+   		  session_start();
+	        print_r($_SESSION);
+	        echo $debug_separate;
+        }
         if (GALLERY_ADMIN_MODE){
         echo "VERSION INFO :";
         echo $debug_underline;
         $version_comment = ' - OK';
-        if (strcmp('4.0.0', phpversion()) == 1) {$version_comment = ' - your PHP version isn\'t good enough! Minimum requirements: 4.x';}
+        if (strcmp('4.2.0', phpversion()) == 1) {$version_comment = ' - your PHP version isn\'t good enough! Minimum requirements: 4.2.0';}
         echo 'PHP version: ' . phpversion().$version_comment;
-        echo $debug_underline;
-        $version_comment = '';
+        echo "\n";
+        $version_comment = ' - OK';
         $mySqlVersion = cpg_phpinfo_mysql_version();
-        if (strcmp('3.23.23', $mySqlVersion) == 1) {$version_comment = ' - your mySQL version isn\'t good enough! Minimum requirements: 3.23.23';}
-        echo 'mySQL version: ' . $mySqlVersion . $version_comment;
-        echo $debug_underline;
+        if (strcmp('3.23.23', $mySqlVersion) == 1) {$version_comment = ' - your MySQL version isn\'t good enough! Minimum requirements: 3.23.23';}
+        echo 'MySQL version: ' . $mySqlVersion . $version_comment;
+        echo "\n";
         echo 'Coppermine version: ';
         echo COPPERMINE_VERSION . '(' . COPPERMINE_VERSION_STATUS . ')';
+        echo "\n";
         echo $debug_separate;
 //        error_reporting  (E_ERROR | E_WARNING | E_PARSE); // New maze's error report system
         if (function_exists('gd_info') == true) {
@@ -2540,9 +2553,33 @@ EOT;
         } else {
             echo cpg_phpinfo_mod_output('gd','text');
         }
-        echo cpg_phpinfo_mod_output('mysql','text');
-        echo cpg_phpinfo_mod_output('zlib','text');
-        echo 'Server restrictions (safe mode)?';
+        echo 'Key config settings';
+        echo $debug_underline;
+        echo cpg_config_output("allow_private_albums");
+        echo cpg_config_output("cookie_name");
+        echo cpg_config_output("cookie_path");
+        echo cpg_config_output("ecards_more_pic_target");
+        echo cpg_config_output("impath");
+        echo cpg_config_output("lang");
+        echo cpg_config_output("language_fallback");
+        echo cpg_config_output("main_page_layout");
+        echo cpg_config_output("silly_safe_mode");
+        echo cpg_config_output("smtp_host");
+        echo cpg_config_output("theme");
+        echo cpg_config_output("thumb_method");
+		  echo $debug_separate;
+		  echo 'Plugins';
+		  echo $debug_underline;
+		 
+		 	foreach ($CPG_PLUGINS as $plugin){
+		 		echo 'Plugin: ' . $plugin->name . "\n";
+		 		echo 'Actions: ' . implode(', ', array_keys($plugin->actions)) . "\n";
+		 		echo 'Filters: ' . implode(', ', array_keys($plugin->filters));
+		 		echo $debug_underline;
+		 	}
+		 	
+		  echo $debug_separate;
+        echo 'Server restrictions';
         echo $debug_underline;
         echo 'Directive | Local Value | Master Value';
         echo cpg_phpinfo_conf_output("safe_mode");
@@ -2555,23 +2592,17 @@ EOT;
         echo cpg_phpinfo_conf_output("file_uploads");
         echo cpg_phpinfo_conf_output("include_path");
         echo cpg_phpinfo_conf_output("open_basedir");
-        echo $debug_separate;
-        echo 'email';
-        echo $debug_underline;
-        echo 'Directive | Local Value | Master Value';
-        echo cpg_phpinfo_conf_output("sendmail_from");
-        echo cpg_phpinfo_conf_output("sendmail_path");
-        echo cpg_phpinfo_conf_output("SMTP");
-        echo cpg_phpinfo_conf_output("smtp_port");
-        echo $debug_separate;
-        echo 'Size and Time';
+        echo cpg_phpinfo_conf_output("allow_url_fopen");
+        echo "\n$debug_separate";
+        echo 'Resource limits';
         echo $debug_underline;
         echo 'Directive | Local Value | Master Value';
         echo cpg_phpinfo_conf_output("max_execution_time");
         echo cpg_phpinfo_conf_output("max_input_time");
         echo cpg_phpinfo_conf_output("upload_max_filesize");
         echo cpg_phpinfo_conf_output("post_max_size");
-        echo $debug_separate;
+        echo cpg_phpinfo_conf_output("memory_limit");
+        echo "\n$debug_separate";
         }
 
         echo <<<EOT
@@ -2757,6 +2788,13 @@ function cpg_phpinfo_conf_output($search)
 $pieces = cpg_phpinfo_conf($search);
         $return= $pieces[0] . ' | ' . $pieces[1] . ' | ' . $pieces[2];
         return $return;
+}
+
+function cpg_config_output($key)
+{
+	global $CONFIG;
+
+	return "$key: {$CONFIG[$key]}\n";
 }
 
 // theme and language selection
