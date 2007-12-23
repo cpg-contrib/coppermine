@@ -74,7 +74,7 @@
 <li><a class="content" href="#sortThumbsByCustomField">How can I <strong>sort the thumbnails by user defined (custom) fields</strong>?</a></li>
 <li><a class="content" href="#iptcSupport">How do I <strong>enable IPTC support</strong>?</a></li>
 <li><a class="content" href="#addFooterBeforePoweredBy">How can I <strong>add</strong> some output <strong>directly before</strong> the line &quot;Powered by Coppermine&quot;?</a></li>
-<li><a class="content" href="#commonPHPerrors">Common PHP errors and how to get rid of them...</a></li>
+<li><a class="content" href="errors.htm#common_php_errors">Common PHP errors (and how to get rid of them...)</a></li>
 <li><a class="content" href="#renameTemplateHtml">Can I <strong>rename template.html to template.php</strong> to include <strong>PHP code</strong> in my template?</a></li>
 <li><a class="content" href="#preventPictureStealing">How can I prevent users from saving (stealing) my pictures?</a></li>
 </ul>
@@ -137,7 +137,7 @@ The &lt;head&gt;-part of your template file should look like this:<br />
 - If you're still unsure about this, just compare your theme's template.html with the default theme that comes with coppermine .</p><hr />
 <a name="preventHotlinks"></a>
 <h3>How can I prevent other sites from linking directly to the pictures in my gallery instead of the gallery page?<a href="#preventHotlinks" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>IF your webhost supports the use of .htaccess files (you will need to ask them), you can prevent &quot;hotlinking&quot; by creating an .htaccess file in the albums folder.<br />
+<p>If your webhost supports the use of .htaccess files (you will need to ask them), you can prevent &quot;hotlinking&quot; by creating an .htaccess file in the albums folder.<br />
 Open your text editor and add the following lines, then save the file as .htaccess :
 <pre>SetEnvIfNoCase Referer &quot;^http://www.yourdomian.com/&quot; locally_linked=1
 SetEnvIfNoCase Referer &quot;^http://yourdomain.com/&quot; locally_linked=1
@@ -501,20 +501,6 @@ NOTE: This hack hasn't been thoroughly tested, use at your own risk...!</p><hr /
 <a name="addFooterBeforePoweredBy"></a>
 <h3>How can I <strong>add</strong> some output <strong>directly before</strong> the line &quot;Powered by Coppermine&quot;?<a href="#addFooterBeforePoweredBy" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Edit /themes/yourtheme/theme.php, look for <tt class="code">echo $template_footer</tt> and add the stuff you want to output in a line <strong>before</strong> it, like <tt class="code">print '&lt;span class=&quot;footer&quot;&gt;&lt;a href=&quot;http://www.mylink.com/foo.htm&quot;&gt;My Link&lt;/a&gt;&lt;/span&gt;';</tt></p><hr />
-<a name="commonPHPerrors"></a>
-<h3>Common PHP errors and how to get rid of them...<a href="#commonPHPerrors" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>There are a lot of people (especially PHP newbies) that post questions like <tt class="code">I get the error &quot;Parse error: parse error in XXX&quot;</tt> and don't know what to do about it. That's why I translated this list of common errors (and a solution how to fix them) from the original german article in <a href="http://www.drweb.de" class="external">Dr. Web</a> :<br />
-<ul>
-<li><tt class="code">Parse error: parse error in C:\Apache\htdocs\read.php on line 8</tt> - This error message refers to an error in the PHP syntax. You probably forgot to end a line with <tt class="code">;</tt> or you have too many brackets opened or closed (<tt class="code">{</tt>).</li>
-<li><tt class="code">Fatal error: Call to unsupported/undefined function ... in C:\Apache\htdocs\read.php on line 8</tt> - This error means that the function your script was going to use isn't defined in the current PHP version with modules, or if you're using user-defined functions that your function hasn't been defined yet (this is usually caused if you forgot to include the function definition).</li>
-<li><tt class="code">Warning: Wrong parameter ... for ... in C:\Apache\htdocs\read.php on line 8</tt> - you have handed over too many (or the wrong) parameters to the function. If it's a built-in php-function, check the <a href="http://www.php.net/manual/en/funcref.php" class="external"> manual; </a> to see if it's a user-defined function, then recheck your code.</li>
-<li><tt class="code">Warning: Cannot add header information - header was already sent ... in C:\Apache\htdocs\read.php on line 4</tt> - you had some text output first (e.g. the doctype declaration or <tt class="code">&lt;html&gt;</tt>) and called the function header() afterwards. This is most often the case when using cookie stuff. Remember you can not use header() twice!</li>
-<li><tt class="code">Parse error: parser stack overflow in C:\Apache\htdocs\read.php</tt> - PHP is out of memory - this usually happens if you built an eternal loop, especially when using include statements.</li>
-<li><tt class="code">Warning: fopen("file.txt","r+") - No such file or directory</tt> - the requested file or directory doesn't exist. Check the spelling (accuracy counts here).</li>
-<li><tt class="code">SAFE MODE Restriction in effect. The script whose uid is 531 is not allowed to access...</tt> - The safe mode is switched on. Some functions in the upload systems can't be used. Usually your webhost has put safe mode in place (often not correctly configured). Try switching silly_safe_mode on.</li>
-</ul>
-</p><hr />
-
 
 <a name="renameTemplateHtml"></a>
 <h3>Can I rename template.html to template.php to include PHP code in my template?<a href="#renameTemplateHtml" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -534,9 +520,6 @@ NOTE: This hack hasn't been thoroughly tested, use at your own risk...!</p><hr /
 <div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
 
 
-
-<br />&nbsp;<br />
-<a name="own_server"></a><h2>I'm running my own server<a href="#own_server" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 
 <br />&nbsp;<br />
 <a name="support_board"></a><h2>Coppermine Support board<a href="#support_board" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>

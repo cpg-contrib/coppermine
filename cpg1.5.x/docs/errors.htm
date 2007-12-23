@@ -101,7 +101,7 @@
   </tr>
   <tr>
     <td valign="top" class="tableb">
-      <a name="createWriteMYI"></a><tt class="code">Can't create/write to file '/tmp/#sql_45d5_0.MYI'</tt><a href="#createWriteMYI" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+      <a name=""></a><tt class="code">Can't create/write to file '/tmp/#sql_45d5_0.MYI'</tt><a href="#" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
     <td valign="top" class="tableb">
       MySQL can't create a temporary file for the result set in the given temporary directory.
@@ -125,6 +125,93 @@
     </td>
   </tr>
 </table>
+
+<a name="common_php_errors"></a><h3>Common PHP errors<a href="#commonPHPerrors" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>There are a lot of people (especially PHP newbies) that post questions like <tt class="code">I get the error &quot;Parse error: parse error in XXX&quot;</tt> and don't know what to do about it. That's why I translated this list of common errors (and a solution how to fix them) from the original german article in <a href="http://www.drweb.de/" rel="external" class="external">Dr. Web</a></p>
+<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+  <tr>
+    <th align="left" class="tableh1">Error message</th>
+    <th align="left" class="tableh1">Possible cause</th>
+    <th align="left" class="tableh1">Suggested fix</th>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">
+      <a name="common_php_errors_parse"></a><tt class="code">Parse error: parse error in C:\Apache\htdocs\read.php on line 8</tt><a href="#common_php_errors_parse" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+    </td>
+    <td valign="top" class="tableb">
+      This error message refers to an error in the PHP syntax.
+    </td>
+    <td valign="top" class="tableb">
+      You probably forgot to end a line with <tt class="code">;</tt> or you have too many brackets opened or closed (<tt class="code">{</tt>).
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">
+      <a name="common_php_errors_unsupported_function"></a><tt class="code">Fatal error: Call to unsupported/undefined function ... in C:\Apache\htdocs\read.php on line 8</tt><a href="#common_php_errors_unsupported_function" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+    </td>
+    <td valign="top" class="tableb tableb_alternate">
+      This error means that the function your script was going to use isn't defined in the current PHP version with modules, or if you're using user-defined functions that your function hasn't been defined yet.
+    </td>
+    <td valign="top" class="tableb tableb_alternate">
+      This is usually caused if you forgot to include the function definition.
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">
+      <a name="common_php_errors_wrong_parameter"></a><tt class="code">Warning: Wrong parameter ... for ... in C:\Apache\htdocs\read.php on line 8</tt><a href="#common_php_errors_wrong_parameter" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+    </td>
+    <td valign="top" class="tableb">
+      You have handed over too many (or the wrong) parameters to the function.
+    </td>
+    <td valign="top" class="tableb">
+      If it's a built-in php-function, check the <a href="http://www.php.net/manual/en/funcref.php" rel="external" class="external"> manual; </a> to see if it's a user-defined function, then recheck your code.
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">
+      <a name="common_php_errors_header"></a><tt class="code">Warning: Cannot add header information - header was already sent ... in C:\Apache\htdocs\read.php on line 4</tt><a href="#common_php_errors_header" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+    </td>
+    <td valign="top" class="tableb tableb_alternate">
+      You had some text output first (e.g. the doctype declaration or <tt class="code">&lt;html&gt;</tt>) and called the function header() afterwards.
+    </td>
+    <td valign="top" class="tableb tableb_alternate">
+      This is most often the case when using cookie stuff. Remember you can not use header() twice!
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">
+      <a name="common_php_errors_overflow"></a><tt class="code">Parse error: parser stack overflow in C:\Apache\htdocs\read.php</tt><a href="#common_php_errors_overflow" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+    </td>
+    <td valign="top" class="tableb">
+      PHP is out of memory.
+    </td>
+    <td valign="top" class="tableb">
+      This usually happens if you built an eternal loop, especially when using include statements.
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">
+      <a name="common_php_errors_no_such_file"></a><tt class="code">Warning: fopen("file.txt","r+") - No such file or directory</tt><a href="#common_php_errors_no_such_file" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+    </td>
+    <td valign="top" class="tableb tableb_alternate">
+      The requested file or directory doesn't exist.
+    </td>
+    <td valign="top" class="tableb tableb_alternate">
+      Check the spelling (accuracy counts here).
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">
+      <a name="common_php_errors_safe_mode"></a><tt class="code">SAFE MODE Restriction in effect. The script whose uid is XXX is not allowed to access...</tt><a href="#common_php_errors_safe_mode" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+    </td>
+    <td valign="top" class="tableb">
+      The safe mode is switched on. Some functions in the upload systems can't be used.
+    </td>
+    <td valign="top" class="tableb">
+      Usually your webhost has put safe mode in place (often not correctly configured). Try switching <a href="configuration.htm#admin_picture_thumb_advanced_silly_safe_mode_start">silly_safe_mode</a> on.
+    </td>
+  </tr>
+ </table>
 
 <a name="errors_messages_upload"></a><h3>Upload-related error messages<a href="#errors_messages_upload" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>There is an entire sub-section dedicated to <a href="upload_troubleshooting.htm#upload_error_messages">upload-related error messages</a> on the <a href="upload_troubleshooting.htm#upload_trouble">upload troubleshooting</a> page.</p>
