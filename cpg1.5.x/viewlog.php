@@ -90,7 +90,7 @@ pageheader('Logs :: '.$log);
 if (!$USER_DATA['has_admin_access']) {
 		// Write access attempt to 'security' log file
 		if ($CONFIG['log_mode']) {
-				log_write('Denied privileged access to viewlog.php from user '.$USER_DATA['user_name'].' at ' . $superCage->server->getAlnum('REMOTE_HOST').' on '.date("F j, Y, g:i a"),CPG_SECURITY_LOG);
+				log_write('Denied privileged access to viewlog.php from user '.$USER_DATA['user_name'].' at ' . $hdr_ip .' on '.date("F j, Y, g:i a"),CPG_SECURITY_LOG);
 		}
 		cpg_die(CRITICAL_ERROR,$lang_errors['access_denied'], __FILE__,1);
 }
