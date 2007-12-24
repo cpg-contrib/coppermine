@@ -50,12 +50,13 @@ function cornerright()
 }
 
 // image calls
-if (isset($_GET['img'])) {
+/*if (isset($_GET['img'])) {
   if ($_GET['img']=="left") {cornerleft();exit;}
 }
 if (isset($_GET['img'])) {
   if ($_GET['img']=="right") {cornerright();exit;}
-}
+}*/
+
 
 
 define('IN_COPPERMINE', true);
@@ -65,13 +66,28 @@ require('include/init.inc.php');
 require('include/picmgmt.inc.php');
 
 define('IMG_DIR', $CONFIG['fullpath'].'edit/');
-
-if (isset($_GET['id'])) {
+if ($superCage->get->keyExists('img')) {
+	if ($superCage->get->getAlpha('img') == "left") {
+		cornerleft();
+		exit;
+	} elseif ($SuperCage->get->getAlpha('img') == "right") {
+		cornerright();
+		exit;
+	}
+}
+/*if (isset($_GET['id'])) {
         $pid = (int)$_GET['id'];
 } elseif (isset($_POST['id'])) {
         $pid = (int)$_POST['id'];
 } else {
         $pid = -1;
+}*/
+if ($superCage->get->keyExists('id')) {
+		$pid = $superCage->get->getInt('id');
+} elseif ($superCage->post->keyExists('id')) {
+		$pid = $superCage->post->getInt('id');
+} else {
+		$pid = -1;
 }
 if ($pid > 0){
 
@@ -115,27 +131,40 @@ header("Pragma: no-cache");                          // HTTP/1.0
 if (!$img_dir) $img_dir = IMG_DIR;
 
 
-if ($_GET['id']){
+//if ($_GET['id']){
+if ($superCage->get->getInt('id')) {
+	
    //Copy the Image file to the editing directory
    if (copy($CONFIG['fullpath'].$CURRENT_PIC['filepath'].$CURRENT_PIC['filename'],$img_dir.$CURRENT_PIC['filename']))
    $newimage = $CURRENT_PIC['filename'];
 }else if(!isset($newimage)){
-   $newimage = $_POST['newimage'];
+   //$newimage = $_POST['newimage'];
+   $matches = $superCage->post->getMatched('newimage','/^[0-9A-Za-z\/_.-]+$/');
+   $newimage = $matches[0];
 }
 
    if ($newimage){
       $imgObj = new imageObject($img_dir,$newimage);
-      if ($_POST['quality']){
+      /*if ($_POST['quality']){
                       $imgObj->quality = $_POST['quality'];
-        }
+        }*/
+      if ($superCage->post->keyExists('quality')) {
+      		$imgObj->quality = $superCage->post->getInt('quality');
+      }  
 
       if ($imgObj->imgRes){
-          if ($_POST['clipval'] && $_POST['cropping']==true){
+          /*if ($_POST['clipval'] && $_POST['cropping']==true){
                   $imgObj = $imgObj->cropImage($_POST['clipval']);
+          }*/
+          if ($superCage->post->getEscaped('clipval') && $superCage->post->getInt('cropping') == true) {
+          				$imgObj = $imgObj->cropImage($superCage->post->getEscaped('clipval'));
           }
 
-          if ($_POST['angle']<>0){
+          /*if ($_POST['angle']<>0){
                   $imgObj = $imgObj->rotateImage($_POST['angle']);
+          }*/
+          if ($superCage->post->getInt('angle') <> 0) {
+          				$imgObj = $imgObj->rotateImage($superCage->post->getInt('angle'));
           }
 
 
@@ -143,7 +172,8 @@ if ($_GET['id']){
       $newimage = $imgObj->filename;
    }//   newimage
 
-   if(isset($_POST["save"])) {
+   //if(isset($_POST["save"])) {
+   if ($superCage->post->keyExists('save')) {
 
                 $width=$imgObj->width;
         $height=$imgObj->height;
@@ -179,8 +209,8 @@ if ($_GET['id']){
 
    }
 
-   if(isset($_POST["save_thumb"])) {
-
+   //if(isset($_POST["save_thumb"])) {
+	 if ($superCage->post->keyExists('save_thumb')) {
         $width=$imgObj->width;
         $height=$imgObj->height;
                 $normal = $CONFIG['fullpath'] . $CURRENT_PIC['filepath'] . $CONFIG['normal_pfx'] . $CURRENT_PIC['filename'];
@@ -198,7 +228,8 @@ if ($_GET['id']){
         $ratio = max($ratio, 1.0);
         $dstWidth = (int)($width / $ratio);
         $dstHeight = (int)($height / $ratio);
-        $imgObj->quality = (int)($_POST['quality']);
+        //$imgObj->quality = (int)($_POST['quality']);
+        $imgObj->quality = $superCage->post->getInt('quality');
         $imgObj = $imgObj->resizeImage($dstWidth,$dstHeight);
         $newimage = $imgObj->filename;
 
@@ -511,7 +542,7 @@ if ($_GET['id']){
     <style type="text/css">
     #lefttopdiv{
     position:absolute;
-    background-image:url(<?php echo $_SERVER['PHP_SELF']?>?img=left);
+    background-image:url(<?php echo $CPG_PHP_SELF ?>?img=left);
     left:0px;
     top:100px;
     height:25px;
@@ -522,7 +553,7 @@ if ($_GET['id']){
     }
     #rightbottomdiv{
     position:absolute;
-    background-image:url(<?php echo $_SERVER['PHP_SELF']?>?img=right);
+    background-image:url(<?php echo $CPG_PHP_SELF ?>?img=right);
     left:0px;
     top:225px;
     height:25px;
@@ -554,9 +585,16 @@ if ($_GET['id']){
 <input type="hidden" name="clipval" value="" />
 <input type="hidden" name="newimage" value="<?php print $newimage ; ?>" />
 <input type="hidden" name="img_dir" value="<?php print $img_dir ; ?>" />
-<input type="hidden" name="id" value="<?php print (isset($_GET['id']))?$_GET['id']:$_POST['id']; ?>" />
+<?php
+if ($superCage->get->keyExists('id')) {
+		$get_id = $superCage->get->getInt('id');
+	} else {
+		$get_int = $superCage->post->getInt('id');
+	}
+?>
+<input type="hidden" name="id" value="<?php print ($get_id); ?>" />
 
-<? starttable("100%", $lang_editpics_php['crop_title'], 3); ?>
+<?php starttable("100%", $lang_editpics_php['crop_title'], 3); ?>
 <tr>
 <td>
 <table border="0" cellspacing="2" cellpadding="2" class="maintableb" width="100%" >

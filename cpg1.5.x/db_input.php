@@ -80,10 +80,10 @@ switch ($event) {
          * Using getRaw() for the following two statements since the data is sanitized/filtered in the
          * function they are calling.
          */
-        check_comment($superCage->post->getRaw('msg_body'));
-        $msg_body = $superCage->post->getEscaped('msg_body');
+        
+        $msg_body = $superCage->post->getRaw('msg_body');
         $msg_id = $superCage->post->getInt('msg_id');
-
+				check_comment($msg_body);
         if (empty($msg_body)) {
             cpg_die(ERROR, $lang_db_input_php['err_comment_empty'], __FILE__, __LINE__);
         }
@@ -140,12 +140,12 @@ switch ($event) {
             }
         }
 
-        check_comment($superCage->post->getRaw('msg_body'));
-        check_comment($superCage->post->getRaw('msg_author'));
+        
         $msg_author = $superCage->post->getEscaped('msg_author');
         $msg_body = $superCage->post->getEscaped('msg_body');
         $pid = $superCage->post->getInt('pid');
-
+				check_comment($msg_body);
+        check_comment($msg_author);
         if (empty($msg_author) || empty($msg_body)) {
             cpg_die(ERROR, $lang_db_input_php['empty_name_or_com'], __FILE__, __LINE__);
         }

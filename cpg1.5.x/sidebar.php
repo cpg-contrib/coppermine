@@ -39,7 +39,8 @@ if (USER_ID) {
 }
 
 
-if ($_GET['action'] == 'install') {
+//if ($_GET['action'] == 'install') {
+if ($superCage->get->getAlpha('action') == 'install') {
 //////// install --- start
 pageheader($lang_sidebar_php['sidebar'] . ' - ' . $lang_sidebar_php['install']);
 ?>
