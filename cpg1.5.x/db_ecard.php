@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
@@ -19,27 +19,63 @@
 
 define('IN_COPPERMINE', true);
 define('DB_ECARD_PHP', true);
-global $CONFIG;
+global $CONFIG,$CPG_PHP_SELF;
 
 require('include/init.inc.php');
 if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__, 'false');
 
-$sort = isset($_REQUEST['sort']) ? $_REQUEST['sort'] : '';
-$start = isset($_REQUEST['start']) ? $_REQUEST['start'] : '';
-$count = isset($_REQUEST['count']) ? $_REQUEST['count'] : '';
+//$sort = isset($_REQUEST['sort']) ? $_REQUEST['sort'] : '';
+if ($superCage->get->keyExists('sort')) {
+	$sort = $superCage->get->getAlpha('sort');
+} elseif ($superCage->post->keyExists('sort')) {
+	$sort = $superCage->post->getAlpha('sort');
+} else {
+	$sort = '';
+}
+
+//$start = isset($_REQUEST['start']) ? $_REQUEST['start'] : '';
+if ($superCage->get->keyExists('start')) {
+	$start = $superCage->get->getInt('start');
+}elseif ($superCage->post->KeyExists('start')) {
+	$start = $superCage->post->getInt('start');
+} else {
+	$start= '';
+}
+
+//$count = isset($_REQUEST['count']) ? $_REQUEST['count'] : '';
+if ($superCage->get->keyExists('count')) {
+	$count = $superCage->get->getInt('count');
+} elseif ($superCage->post->keyExists('count')) {
+	$count = $superCage->post->getInt('count');
+} else {
+	$count = '';
+}
+
 //set default values
 $selectOptions = array(25,50,75,100);
 $sortBy = 'date';
 $sortDirection = 'DESC';
 $sortText = $lang_db_ecard_php['ecard_by_date'];
 $sortDirectionText = $lang_db_ecard_php['ecard_descending'];
-if (!$start) {$startFrom = '0';}else{$startFrom=$start;}
-if (!$count) {$countTo = $selectOptions[0];}else{$countTo=$count;}
+if (!$start) {
+    $startFrom = '0';}else{$startFrom=$start;
+}
+
+if (!$count) {
+    $countTo = $selectOptions[0];}else{$countTo=$count;
+}
 $tabOutput = '';
 
 //delete selected ecards
-if (isset($_REQUEST['eid'])) {
-  foreach ($_REQUEST['eid'] as $key) {
+if ($superCage->get->keyExists($eid)) {
+	$eid = $superCage->get->getInt($eid);
+} elseif ($superCage->post->keyExists($eid)) {
+	$eid = $superCage->post->getInt($eid);
+}
+
+
+if (isset ($eid)) {
+  foreach ($eid as $key) {
     //print $key;
     //print "<br>";
     $query = "DELETE FROM {$CONFIG['TABLE_ECARDS']} WHERE eid='$key'";
@@ -104,15 +140,22 @@ switch ($sort) {
     break;
 }
 
-if ($sortDirection == 'ASC'){$sortDirectionText = $lang_db_ecard_php['ecard_ascending'];}
+if ($sortDirection == 'ASC') {
+    $sortDirectionText = $lang_db_ecard_php['ecard_ascending'];
+}
 
 // determine the total number of entries
 $result = cpg_db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_ECARDS']}");
-if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['ecards_empty'], __FILE__, __LINE__, false);
+if (!mysql_num_rows($result)) {
+    cpg_die(ERROR, $lang_errors['ecards_empty'], __FILE__, __LINE__, false);
+}
+
 $totalEcards = mysql_fetch_array($result);
 $totalEcards = $totalEcards[0];
 $result = cpg_db_query("SELECT eid, sender_name, sender_email, recipient_name, recipient_email, link, date, sender_ip FROM {$CONFIG['TABLE_ECARDS']} ORDER BY $sortBy $sortDirection LIMIT $startFrom,$countTo");
-if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['ecards_empty'], __FILE__, __LINE__, false);
+if (!mysql_num_rows($result)) {
+    cpg_die(ERROR, $lang_errors['ecards_empty'], __FILE__, __LINE__, false);
+}
 
 pageheader($lang_db_ecard_php['title']);
 
@@ -165,28 +208,32 @@ return false
 // step 1: calculate the number of pages
 $pageTotal = ceil($totalEcards/$countTo);
 // step 2: get the current url without 'start' and 'count'
-$urlWithoutStart = $_SERVER["SCRIPT_NAME"]."?";
-foreach ($_GET as $key => $value) {
-  if ($key!='start' && $key!='count'){$urlWithoutStart.= $key . "=" . $value . "&";}
+$urlWithoutStart = $CPG_PHP_SELF."?";
+
+foreach ($eid as $key => $value) {
+    if ($key!='start' && $key!='count') {
+        $urlWithoutStart.= $key . "=" . $value . "&";
+    }
 }
 //print $pageTotal;
 //step 3: loop through the pages & create the links
 for ($page = 1 ; $page <= $pageTotal; $page++) {
-if ($page != $startFrom/$countTo+1) {
-  $tabOutput .= '<a href="'.$urlWithoutStart.'start='.($page-1)*$countTo.'&amp;count='.$countTo.'">';
-  }
-else {
-  $currentPage = $page;
-  $currentStart = ($page-1)*$countTo+1;
-  $currentEnd = $currentStart+$countTo-1;
-  if ($currentEnd > $totalEcards) {$currentEnd =$totalEcards;}
-  }
-$tabOutput .= $page;
-//$tabOutput .= '('.$page.'/'.$startFrom/$countTo.') ';
-if ($page != $startFrom/$countTo+1) {
-  $tabOutput .= '</a>';
-  }
-$tabOutput .= '&nbsp;';
+    if ($page != $startFrom/$countTo+1) {
+        $tabOutput .= '<a href="'.$urlWithoutStart.'start='.($page-1)*$countTo.'&amp;count='.$countTo.'">';
+    } else {
+        $currentPage = $page;
+        $currentStart = ($page-1)*$countTo+1;
+        $currentEnd = $currentStart+$countTo-1;
+        if ($currentEnd > $totalEcards) {
+            $currentEnd = $totalEcards;
+        }
+    }
+    $tabOutput .= $page;
+    //$tabOutput .= '('.$page.'/'.$startFrom/$countTo.') ';
+    if ($page != $startFrom/$countTo+1) {
+        $tabOutput .= '</a>';
+    }
+    $tabOutput .= '&nbsp;';
 }
 $maxPage =  $page-1;
 
@@ -196,24 +243,29 @@ starttable('100%',$tableHeader1,3);
 print '<tr><td class="tableb_compact">';
 printf($lang_db_ecard_php['ecard_number'], $currentStart, $currentEnd, $totalEcards);
 print '</td><td class="tableb_compact">';
+
 if ($maxPage > 1) {
-  print $lang_db_ecard_php['ecard_goto_page'].' ';
-  print $tabOutput;
+    print $lang_db_ecard_php['ecard_goto_page'].' ';
+    print $tabOutput;
 }
+
 print '</td><td align="right" class="tableb_compact">';
 print $lang_db_ecard_php['ecard_records_per_page'];
 print '  <select onChange="if(this.options[this.selectedIndex].value) window.location.href=\''.$formTarget.'count=\'+this.options[this.selectedIndex].value;"  name="count" class="listbox">';
+
 foreach ($selectOptions as $key ) {
-  print '   <option value="'.$key.'" ';
-  if ($key == $countTo) {print 'selected="selected"';}
-  print '>'.$key.'</option>';
+    print '   <option value="'.$key.'" ';
+    if ($key == $countTo) {
+        print 'selected="selected"';
+    }
+    print '>'.$key.'</option>';
 }
+
 print '  </select>';
 print '</td></tr>';
 endtable();
 
 print '<br />';
-
 
 $urlWithoutSort = cpgGetUrlVars('sort');
 starttable('100%');
@@ -233,18 +285,21 @@ print "<tr>
 <th class=\"tableh1_compact\" align=\"left\" valign=\"bottom\">".$lang_db_ecard_php['ecard_email']." <a href=\"".$urlWithoutSort."sort=rea\"><img src=\"images/ascending.gif\" width=\"9\" height=\"9\" border=\"0\" alt=\"\" title=\"".$lang_db_ecard_php['ecard_ascending']."\" /></a>&nbsp;<a href=\"".$urlWithoutSort."sort=red\"><img src=\"images/descending.gif\" width=\"9\" height=\"9\" border=\"0\" alt=\"\" title=\"".$lang_db_ecard_php['ecard_descending']."\" /></a></th>
 </tr>";
 $tempClass = ' class="tableb"';
+
 while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
-   print "\t<tr>\n";
-   print "<td".$tempClass." align=\"center\"><input type=\"Checkbox\" name=\"eid[]\" value=\"".$line['eid']."\" id=\"eidselector\" class=\"checkbox\" /></td>\n";
-   print "<td".$tempClass."><b class=\"thumb_caption\">".$line['sender_name']."</b></td>\n";
-   print "<td".$tempClass."><span class=\"thumb_caption\"><a href=\"mailto:".$line['sender_email']."\">".$line['sender_email']."</a></span></td>\n";
-   print "<td".$tempClass."><span class=\"thumb_caption\"><a href=\"http://ws.arin.net/cgi-bin/whois.pl?queryinput=".$line['sender_ip']."\">".$line['sender_ip']."</a></span></td>\n";
-   print "<td".$tempClass."><b class=\"thumb_caption\">".$line['recipient_name']."</b></td>\n";
-   print "<td".$tempClass."><span class=\"thumb_caption\"><a href=\"mailto:".$line['recipient_email']."\">".$line['recipient_email']."</a></span></td>\n";
-   print "<td".$tempClass."><span class=\"thumb_caption\">".strftime($lastcom_date_fmt,$line['date'])."</span></td>\n";
-   print "<td align=\"center\"".$tempClass."><span class=\"thumb_caption\"><a href=\"displayecard.php?data=".$line['link']."\"><img src=\"images/ecard.gif\" width=\"16\" height=\"16\" border=\"0\" alt=\"\" title=\"".$lang_db_ecard_php['ecard_display']."\" /></a></span></td>\n";
-   print "\t</tr>\n";
-   if ($tempClass == ' class="tableb"'){$tempClass = ' class="tableh2"';}else{$tempClass = ' class="tableb"';}
+    print "\t<tr>\n";
+    print "<td".$tempClass." align=\"center\"><input type=\"Checkbox\" name=\"eid[]\" value=\"".$line['eid']."\" id=\"eidselector\" class=\"checkbox\" /></td>\n";
+    print "<td".$tempClass."><b class=\"thumb_caption\">".$line['sender_name']."</b></td>\n";
+    print "<td".$tempClass."><span class=\"thumb_caption\"><a href=\"mailto:".$line['sender_email']."\">".$line['sender_email']."</a></span></td>\n";
+    print "<td".$tempClass."><span class=\"thumb_caption\"><a href=\"http://ws.arin.net/cgi-bin/whois.pl?queryinput=".$line['sender_ip']."\">".$line['sender_ip']."</a></span></td>\n";
+    print "<td".$tempClass."><b class=\"thumb_caption\">".$line['recipient_name']."</b></td>\n";
+    print "<td".$tempClass."><span class=\"thumb_caption\"><a href=\"mailto:".$line['recipient_email']."\">".$line['recipient_email']."</a></span></td>\n";
+    print "<td".$tempClass."><span class=\"thumb_caption\">".strftime($lastcom_date_fmt,$line['date'])."</span></td>\n";
+    print "<td align=\"center\"".$tempClass."><span class=\"thumb_caption\"><a href=\"displayecard.php?data=".$line['link']."\"><img src=\"images/ecard.gif\" width=\"16\" height=\"16\" border=\"0\" alt=\"\" title=\"".$lang_db_ecard_php['ecard_display']."\" /></a></span></td>\n";
+    print "\t</tr>\n";
+    if ($tempClass == ' class="tableb"') {
+    $tempClass = ' class="tableh2"';}else{$tempClass = ' class="tableb"';
+    }
 }
 
 print '<tr><td class="tableh1_compact" align="center"><img src="images/arrow_upleft.gif" width="31" height="22" border="0" alt="" /></td>';
@@ -263,16 +318,17 @@ print "</form>\n";
 
 pagefooter();
 
-
-
-function cpgGetUrlVars($exception)
 // get the url vars
+function cpgGetUrlVars($exception)
 {
- $cpgGetUrl = $_SERVER["SCRIPT_NAME"]."?";
- foreach ($_GET as $key => $value) {
-    if ($key!=$exception){$cpgGetUrl.= $key . "=" . $value . "&";}
- }
-return $cpgGetUrl;
+    global $CPG_PHP_SELF,$eid;
+    $cpgGetUrl = $CPG_PHP_SELF."?";
+    foreach ($eid as $key => $value) {
+        if ($key!=$exception) {
+            $cpgGetUrl.= $key . "=" . $value . "&";
+        }
+    }
+    return $cpgGetUrl;
 }
 
 ?>
