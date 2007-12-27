@@ -120,9 +120,6 @@ if ($superCage->get->getInt('do_not_connect_to_online_repository') == '1') {
   $displayOption_array['do_not_connect_to_online_repository'] = 0;
 }
 
-if ($displayOption_array['do_not_connect_to_online_repository'] != 1) { // connect to the online repository at sourceforge.net --- start
-
-} // connect to the online repository at sourceforge.net --- end
 
 
 
@@ -132,54 +129,48 @@ $caption = '';
 $underline = '';
 $newLine = "\r\n";
 $subversionRepository = 'http://coppermine.svn.sourceforge.net/viewvc/coppermine/trunk/';
-$localFolder = 'include/files.xml';
-$remoteURL = 'http://coppermine-gallery.net/';
 $majorVersion = 'cpg'.str_replace('.' . ltrim(substr(COPPERMINE_VERSION,strrpos(COPPERMINE_VERSION,'.')),'.'), '', COPPERMINE_VERSION).'.x';
-$remoteURL .= str_replace('.', '', $majorVersion) . '.files.xml';
-//$result = cpgGetRemoteFileByURL($remoteURL, 'GET','','','100');
-//print_r($result);
-//print $url;
+//$remoteURL = 'http://intranet_old.eu.hilite-ind.net/test/' . str_replace('.', '', $majorVersion) . '.files.xml';
+$remoteURL = 'http://coppermine-gallery.net/' . str_replace('.', '', $majorVersion) . '.files.xml';
+$localFile = 'include/' . str_replace('.', '', $majorVersion) . '.files.xml';
+$remoteConnectionFailed = '';
+if ($displayOption_array['do_not_connect_to_online_repository'] == 0) { // connect to the online repository --- start
+  $result = cpgGetRemoteFileByURL($remoteURL, 'GET','','200');
+  // check if connecting worked as expected
+  /* //Needs to be coded
+  if (strlen($result['body']) < 200) {
+    $remoteConnectionFailed = 1;
+    $error = $result['error'];
+    print_r($error);
+    print '<hr />';
+  }
+  */
+} // connect to the online repository --- end
+if ($displayOption_array['do_not_connect_to_online_repository'] == 1 || $remoteConnectionFailed == 1) {
+  $result = cpgGetRemoteFileByURL($localFile, 'GET','','200');
+}
+
+
+
+
+//print_r($result['headers']);
+//print '<hr />';
+//print_r($result['error']);
+unset($result['headers']);
+unset($result['error']);
+//print '<hr />';
+//print_r($result['body']);
 //die();
+$result = array_shift($result);
+
 
 include_once('include/lib.xml.php');
 $xml = new Xml;
-//$out = $xml->parse($result['body'], 'FILE');
-$file_data_array = $xml->parse($remoteURL, $localFolder);
-//$file_data_array = $out['element'];
-//unset($out);
+$file_data_array = $xml->parse($result);
 $file_data_array = array_shift($file_data_array);
-//print_r($file_data_array);
-//die;
 
 
 // define some functions
-function cpgGetRemoteUrl($remoteHost = '', $remoteFile = '', $remoteProtocol = 'http://') {
-  if ($remoteHost != '' && $remoteProtocol != '') {
-    $separator = '/';
-  }
-  //$filename = $remoteProtocol.$remoteHost.$separator.$remoteFile;
-  if (function_exists('curl_init') == TRUE) {
-    return 'CURL';
-  }
-  $handle = fsockopen($remoteHost, 80, $errno, $errstr, 10);
-  if ($handle) {
-    $path = $separator.$remoteFile;
-    $header = '\r\nHost: '.$remoteHost;
-    fputs ($handle, 'GET '.$separator.$remoteFile.' HTTP/1.0'.$header."\r\n\r\n");
-    fclose($handle);
-    return 'FSOCK';
-  }
-  @ini_set('allow_url_fopen','1');
-  $handle  = fopen($remoteProtocol.$remoteHost.$separator.$remoteFile, 'r');
-  if ($handle) {
-    $sampleData = fread($handle, 1024);
-    if ($sampleData) {
-      fclose($handle);
-      return 'FOPEN';
-    }
-    fclose($handle);
-  }
-}
 
 function cpg_get_path_and_file($string) {
     // check if $string contains delimiter that triggers replacement
@@ -227,6 +218,10 @@ function cpg_fillArrayFieldWithSpaces($text, $maxchars, $fillUpOn = 'right') {
 
 // main code starts here
 
+// Enable outbut buffering when in embedded mode
+if ($displayOption_array['output'] == 'embedded') {
+  ob_start();
+}
 // display page header if applicable
 if ($displayOption_array['output'] != 'download' && $displayOption_array['output'] != 'embedded') {
   pageheader($lang_versioncheck_php['title']);
@@ -276,7 +271,7 @@ if ($displayOption_array['output'] == 'options' || $displayOption_array['output'
       </label>
     </td>
     <td class="tableb tableb_alternate" valign="top">
-      <input type="checkbox" name="do_not_connect_to_online_repository" id="do_not_connect_to_online_repository" value="1" class="checkbox" {$optionDisplayOutput_array['do_not_connect_to_online_repository']} checked="checked" />
+      <input type="checkbox" name="do_not_connect_to_online_repository" id="do_not_connect_to_online_repository" value="1" class="checkbox" {$optionDisplayOutput_array['do_not_connect_to_online_repository']} />({$lang_versioncheck_php['online_repository_explain']})
     </td>
   </tr>
   <tr>
@@ -473,7 +468,7 @@ if ($displayOption_array['output'] != 'create') {
             document.write('<br />');
   </script>
 EOT;
-  print '<form name="versioncheckdisplay"><textarea name="versioncheck_text" rows="10000" class="textinput" style="width:98%;font-family:\'Courier New\',Courier,monospace;font-size:9px;">';
+  print '<form name="versioncheckdisplay"><textarea name="versioncheck_text" rows="10000" class="textinput debug_text" style="width:98%;font-family:\'Courier New\',Courier,monospace;font-size:9px;">';
   print '<file_data>'.$newLine;
   foreach ($file_data_array as $file_data_key => $file_data_values) {
     print '  <element>'.$newLine;
@@ -548,7 +543,7 @@ if ($displayOption_array['output'] == 'textarea') {
             document.write('<br />');
   </script>
 EOT;
-  print '<form name="versioncheckdisplay"><textarea name="versioncheck_text" rows="'.($file_data_count + 5).'" class="textinput" style="width:98%;font-family:\'Courier New\',Courier,monospace;font-size:9px;">';
+  print '<form name="versioncheckdisplay"><textarea name="versioncheck_text" rows="'.($file_data_count + 5).'" class="textinput debug_text" style="width:98%;font-family:\'Courier New\',Courier,monospace;font-size:9px;">';
 }
 
 
@@ -699,11 +694,15 @@ if ($displayOption_array['output'] == 'textarea' || $displayOption_array['output
 }
 
 
-// display page header if applicable
+// display page footer if applicable
 if ($displayOption_array['output'] != 'download' && $displayOption_array['output'] != 'embedded') {
   pagefooter();
 }
 
-
+// Disable outbut buffering when in embedded mode and assign variable for output buffer content
+if ($displayOption_array['output'] == 'embedded') {
+  $embeddedTableOutput = ob_get_contents();
+  ob_end_clean();
+}
 
 ?>

@@ -378,11 +378,13 @@ $lang_create_tabs = array(
 );
 
 $lang_get_remote_File_by_url = array(
-        'no_data_returned' => 'No data returned using %s',
-        'curl' => 'CURL',
-        'fsockopen' => 'Socket connection (FSOCKOPEN)',
-        'fopen' => 'fopen',
-        'curl_not_available' => 'Curl is not available on your server',
+        'no_data_returned' => 'No data returned using %s', //cpg1.5
+        'curl' => 'CURL', //cpg1.5
+        'fsockopen' => 'Socket connection (FSOCKOPEN)', //cpg1.5
+        'fopen' => 'fopen', //cpg1.5
+        'curl_not_available' => 'Curl is not available on your server', //cpg1.5
+        'error_number' => 'Error number: %s', //cpg1.5
+        'error_message' => 'Error message: %s', //cpg1.5
 );
 
 // ------------------------------------------------------------------------- //
@@ -2391,6 +2393,7 @@ if (defined('VERSIONCHECK_PHP')) $lang_versioncheck_php = array(
   'errors_only' => 'Only show potential errors',
   'display_images' => 'Display images',
   'do_not_connect_to_online_repository' => 'Do not connect to the online repository',
+  'online_repository_explain' => 'Only recommended if connection fails',
   'submit' => 'submit / refresh',
 );
 

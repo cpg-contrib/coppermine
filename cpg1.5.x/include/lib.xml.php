@@ -109,14 +109,13 @@ class Xml {
    * and return the result in an array.
    *
    * @access  public
-   * @param   url       string    Source
-   * @param   typeof    string    Source type : NULL, FILE, CURL.
-   * @param   encoding  string    Encoding type.
+   * @param   data      string    Source
    * @return  array
    */
-  function parse ( $url, $local_file, $encoding = 'UTF-8' ) {
+  function parse ($data) {
 
     // ini;
+    $encoding = 'UTF-8';
     // (re)set array;
     $this->pOut = array();
     $this->parser = xml_parser_create();
@@ -128,21 +127,13 @@ class Xml {
     xml_set_element_handler($this->parser, 'startHandler', 'endHandler');
     xml_set_character_data_handler($this->parser, 'contentHandler');
 
+    // format source;
+    if($data == '') {
+      return trigger_error('Xml parser need data.', E_USER_ERROR);
+    }
 
-    // return trigger_error('Xml parser need data.', E_USER_ERROR);
-    $data_array = cpgGetRemoteFileByURL($url, 'GET','','','100');
-    // Error checking
-    // Drop the unneeded data
-    unset($data_array['headers']);
-    unset($data_array['error']);
-    //print_r($data_array);
-    //print '<hr />';
-    $data_array = array_shift($data_array);
-    //print_r($data_array);
-    //die;
-    
-    // parse $data_array;
-    $parse = xml_parse($this->parser, $data_array);
+    // parse $data;
+    $parse = xml_parse($this->parser, $data);
     if(!$parse)
       return trigger_error('XML Error : %s at line %d.', E_USER_ERROR,
         array(xml_error_string(xml_get_error_code($this->parser)),
@@ -152,7 +143,7 @@ class Xml {
     xml_parser_free($this->parser);
 
     // unset extra vars;
-    unset($data_array,
+    unset($data,
         $this->track,
         $this->tmpLevel);
 
@@ -353,5 +344,4 @@ class Xml {
     return true;
   }
 }
-
 ?>

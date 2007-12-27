@@ -329,7 +329,7 @@ function cpg_db_last_insert_id()
  */
 function cpgSanitizeUserTextInput($string)
 {
-	//TODO: Add some sanitization code
+        //TODO: Add some sanitization code
     return $string;
 }
 
@@ -630,46 +630,46 @@ function bb_decode($text)
         //$text = str_replace("[/i:$uid]", $bbcode_tpl['i_close'], $text);
 
         if (!count($bbcode_tpl)) {
-				// We do URLs in several different ways..
+                                // We do URLs in several different ways..
                 $bbcode_tpl['url']  = '<span class="bblink"><a href="{URL}" %s>{DESCRIPTION}</a></span>';
 
                 $bbcode_tpl['url1'] = str_replace('{URL}', '\\1\\2', $bbcode_tpl['url']);
                 $bbcode_tpl['url1'] = str_replace('{DESCRIPTION}', '\\1\\2', $bbcode_tpl['url1']);
 
-				// [url]xxxx://www.phpbb.com[/url] code..
+                                // [url]xxxx://www.phpbb.com[/url] code..
                 $patterns['link'][1] = "#\[url\]([a-z]+?://){1}([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\[/url\]#si";
                 $replacements['link'][1] = $bbcode_tpl['url1'];
-				$text = check_link_type_and_replace($patterns['link'][1], $replacements['link'][1], $text, 1);
+                                $text = check_link_type_and_replace($patterns['link'][1], $replacements['link'][1], $text, 1);
 
                 $bbcode_tpl['url2'] = str_replace('{URL}', 'http://\\1', $bbcode_tpl['url']);
                 $bbcode_tpl['url2'] = str_replace('{DESCRIPTION}', '\\1', $bbcode_tpl['url2']);
 
-				// [url]www.phpbb.com[/url] code.. (no xxxx:// prefix).
+                                // [url]www.phpbb.com[/url] code.. (no xxxx:// prefix).
                 $patterns['link'][2] = "#\[url\]([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\[/url\]#si";
                 $replacements['link'][2] = $bbcode_tpl['url2'];
-				$text = check_link_type_and_replace($patterns['link'][2], $replacements['link'][2], $text, 2);
+                                $text = check_link_type_and_replace($patterns['link'][2], $replacements['link'][2], $text, 2);
 
                 $bbcode_tpl['url3'] = str_replace('{URL}', '\\1\\2', $bbcode_tpl['url']);
                 $bbcode_tpl['url3'] = str_replace('{DESCRIPTION}', '\\3', $bbcode_tpl['url3']);
 
-				// [url=xxxx://www.phpbb.com]phpBB[/url] code..
+                                // [url=xxxx://www.phpbb.com]phpBB[/url] code..
                 $patterns['link'][3] = "#\[url=([a-z]+?://){1}([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\](.*?)\[/url\]#si";
                 $replacements['link'][3] = $bbcode_tpl['url3'];
-				$text = check_link_type_and_replace($patterns['link'][3], $replacements['link'][3], $text, 3);
+                                $text = check_link_type_and_replace($patterns['link'][3], $replacements['link'][3], $text, 3);
 
                 $bbcode_tpl['url4'] = str_replace('{URL}', 'http://\\1', $bbcode_tpl['url']);
                 $bbcode_tpl['url4'] = str_replace('{DESCRIPTION}', '\\2', $bbcode_tpl['url4']);
 
-				// [url=www.phpbb.com]phpBB[/url] code.. (no xxxx:// prefix).
+                                // [url=www.phpbb.com]phpBB[/url] code.. (no xxxx:// prefix).
                 $patterns['link'][4] = "#\[url=([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\](.*?)\[/url\]#si";
                 $replacements['link'][4] = $bbcode_tpl['url4'];
-				$text = check_link_type_and_replace($patterns['link'][4], $replacements['link'][4], $text, 4);
+                                $text = check_link_type_and_replace($patterns['link'][4], $replacements['link'][4], $text, 4);
 
 
-				$bbcode_tpl['email']= '<span class="bblink"><a href="mailto:{EMAIL}">{EMAIL}</a></span>';
+                                $bbcode_tpl['email']= '<span class="bblink"><a href="mailto:{EMAIL}">{EMAIL}</a></span>';
                 $bbcode_tpl['email'] = str_replace('{EMAIL}', '\\1', $bbcode_tpl['email']);
 
-				// [email]user@domain.tld[/email] code..
+                                // [email]user@domain.tld[/email] code..
                 $patterns['other'][1] = "#\[email\]([a-z0-9\-_.]+?@[\w\-]+\.([\w\-\.]+\.)?[\w]+)\[/email\]#si";
                 $replacements['other'][1] = $bbcode_tpl['email'];
 
@@ -700,34 +700,34 @@ function bb_decode($text)
 * @return string $text
 */
 function check_link_type_and_replace ($pattern, $replacement, $text, $stage) {
-	$ext_rel = 'rel="external nofollow" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;"';
-	$int_rel = '';
+        $ext_rel = 'rel="external nofollow" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;"';
+        $int_rel = '';
 
-	if (preg_match($pattern, $text, $url) != 0) {
-		switch ($stage) {
-			case 1:
-			case 3:
-				$url = $url[1] . $url[2];
-				break;
-			case 2:
-				$url = $url[1];
-				break;
-			case 4:
-				$url = 'http://' . $url[1];
-		}
-		if (is_link_local($url)) {
-			//apply regular formatting
-			$replacement_sprintfed = sprintf($replacement, $int_rel);
-		} else {
-			//add rel attribute to link
-			$replacement_sprintfed = sprintf($replacement, $ext_rel);
-		}
+        if (preg_match($pattern, $text, $url) != 0) {
+                switch ($stage) {
+                        case 1:
+                        case 3:
+                                $url = $url[1] . $url[2];
+                                break;
+                        case 2:
+                                $url = $url[1];
+                                break;
+                        case 4:
+                                $url = 'http://' . $url[1];
+                }
+                if (is_link_local($url)) {
+                        //apply regular formatting
+                        $replacement_sprintfed = sprintf($replacement, $int_rel);
+                } else {
+                        //add rel attribute to link
+                        $replacement_sprintfed = sprintf($replacement, $ext_rel);
+                }
 
-		$text = preg_replace($pattern, $replacement_sprintfed, $text, 1);
-		$text = check_link_type_and_replace ($pattern, $replacement, $text, $stage);
-	}
+                $text = preg_replace($pattern, $replacement_sprintfed, $text, 1);
+                $text = check_link_type_and_replace ($pattern, $replacement, $text, $stage);
+        }
 
-	return $text;
+        return $text;
 }
 
 /**
@@ -742,21 +742,21 @@ function check_link_type_and_replace ($pattern, $replacement, $text, $stage) {
 */
 function is_link_local($url, $cpg_url = false)
 {
-	if ($cpg_url === false)
-	{
-		$cpg_url = generate_cpg_url();
-	}
-	$subdomain_remove_regex = '#^(http|https)://[^/]+?\.((?:[a-z0-9-]+\.[a-z]+)|localhost/)#i';
-	$cpg_url = preg_replace($subdomain_remove_regex, '$1://$2', $cpg_url);
-	$url 	 = preg_replace($subdomain_remove_regex, '$1://$2', $url);
+        if ($cpg_url === false)
+        {
+                $cpg_url = generate_cpg_url();
+        }
+        $subdomain_remove_regex = '#^(http|https)://[^/]+?\.((?:[a-z0-9-]+\.[a-z]+)|localhost/)#i';
+        $cpg_url = preg_replace($subdomain_remove_regex, '$1://$2', $cpg_url);
+        $url          = preg_replace($subdomain_remove_regex, '$1://$2', $url);
 
-	$is_local = (strpos($url, $cpg_url) === 0);
-	if (!$is_local)
-	{
-		$protocol = substr($url, 0, strpos($url, ':'));
-		$is_local = !$protocol || ($protocol && !in_array($protocol, array('http', 'https', 'mailto', 'ftp', 'gopher')));
-	}
-	return($is_local);
+        $is_local = (strpos($url, $cpg_url) === 0);
+        if (!$is_local)
+        {
+                $protocol = substr($url, 0, strpos($url, ':'));
+                $is_local = !$protocol || ($protocol && !in_array($protocol, array('http', 'https', 'mailto', 'ftp', 'gopher')));
+        }
+        return($is_local);
 }
 
 
@@ -769,27 +769,27 @@ function is_link_local($url, $cpg_url = false)
 */
 function generate_cpg_url()
 {
-	#########################################change to use inspect#########################################
-	$server_name = (!empty($_SERVER['SERVER_NAME'])) ? $_SERVER['SERVER_NAME'] : getenv('SERVER_NAME');
-	$server_port = (!empty($_SERVER['SERVER_PORT'])) ? (int) $_SERVER['SERVER_PORT'] : (int) getenv('SERVER_PORT');
+        #########################################change to use inspect#########################################
+        $server_name = (!empty($_SERVER['SERVER_NAME'])) ? $_SERVER['SERVER_NAME'] : getenv('SERVER_NAME');
+        $server_port = (!empty($_SERVER['SERVER_PORT'])) ? (int) $_SERVER['SERVER_PORT'] : (int) getenv('SERVER_PORT');
 
-	// Do not rely on cookie_secure, users seem to think that it means a secured cookie instead of an encrypted connection
-	$cookie_secure = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 1 : 0;
-	$cpg_url = (($cookie_secure) ? 'https://' : 'http://') . $server_name;
+        // Do not rely on cookie_secure, users seem to think that it means a secured cookie instead of an encrypted connection
+        $cookie_secure = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 1 : 0;
+        $cpg_url = (($cookie_secure) ? 'https://' : 'http://') . $server_name;
 
 
-	if ($server_port && $cookie_secure)
-	{
-		$cpg_url .= ':' . $server_port;
-	}
+        if ($server_port && $cookie_secure)
+        {
+                $cpg_url .= ':' . $server_port;
+        }
 
-	// Strip / from the end
-	if (substr($cpg_url, -1, 1) == '/')
-	{
-		$cpg_url = substr($cpg_url, 0, -1);
-	}
+        // Strip / from the end
+        if (substr($cpg_url, -1, 1) == '/')
+        {
+                $cpg_url = substr($cpg_url, 0, -1);
+        }
 
-	return $cpg_url;
+        return $cpg_url;
 }
 
 /**************************************************************************
@@ -2518,12 +2518,12 @@ EOT;
         print_r($superCage->cookie->_source);
         echo $debug_separate;
         if ($superCage->cookie->keyExists('PHPSESSID')){
-	        echo "SESSION :";
-	        echo $debug_underline;
-	        session_id($superCage->cookie->getAlnum('PHPSESSID'));
-   		  session_start();
-	        print_r($_SESSION);
-	        echo $debug_separate;
+                echo "SESSION :";
+                echo $debug_underline;
+                session_id($superCage->cookie->getAlnum('PHPSESSID'));
+                     session_start();
+                print_r($_SESSION);
+                echo $debug_separate;
         }
         if (GALLERY_ADMIN_MODE){
         echo "VERSION INFO :";
@@ -2567,18 +2567,18 @@ EOT;
         echo cpg_config_output("smtp_host");
         echo cpg_config_output("theme");
         echo cpg_config_output("thumb_method");
-		  echo $debug_separate;
-		  echo 'Plugins';
-		  echo $debug_underline;
-		 
-		 	foreach ($CPG_PLUGINS as $plugin){
-		 		echo 'Plugin: ' . $plugin->name . "\n";
-		 		echo 'Actions: ' . implode(', ', array_keys($plugin->actions)) . "\n";
-		 		echo 'Filters: ' . implode(', ', array_keys($plugin->filters));
-		 		echo $debug_underline;
-		 	}
-		 	
-		  echo $debug_separate;
+                  echo $debug_separate;
+                  echo 'Plugins';
+                  echo $debug_underline;
+
+                         foreach ($CPG_PLUGINS as $plugin){
+                                 echo 'Plugin: ' . $plugin->name . "\n";
+                                 echo 'Actions: ' . implode(', ', array_keys($plugin->actions)) . "\n";
+                                 echo 'Filters: ' . implode(', ', array_keys($plugin->filters));
+                                 echo $debug_underline;
+                         }
+
+                  echo $debug_separate;
         echo 'Server restrictions';
         echo $debug_underline;
         echo 'Directive | Local Value | Master Value';
@@ -2792,9 +2792,9 @@ $pieces = cpg_phpinfo_conf($search);
 
 function cpg_config_output($key)
 {
-	global $CONFIG;
+        global $CONFIG;
 
-	return "$key: {$CONFIG[$key]}\n";
+        return "$key: {$CONFIG[$key]}\n";
 }
 
 // theme and language selection
@@ -2848,7 +2848,7 @@ function languageSelect($parameter) {
      if ($matches) {
         $queryString = explode('&', $matches[0]);
      } else {
-     	$queryString = array();
+             $queryString = array();
      }
 
      foreach ($queryString as $val) {
@@ -3962,71 +3962,115 @@ function cpgValidateDate($date) {
 * @param mixed $url, $method, $data, $redirect
 * @return array
 **/
-function cpgGetRemoteFileByURL($remoteURL, $method = "GET", $data = "", $redirect = 10, $minLength = '0') {
+function cpgGetRemoteFileByURL($remoteURL, $method = "GET", $redirect = 10, $minLength = '0') {
     global $lang_get_remote_File_by_url;
     // FSOCK code snippets taken from http://jeenaparadies.net/weblog/2007/jan/get_remote_file
     $url = parse_url($remoteURL); // chop the URL into protocol, domain, port, folder, file, parameter
     $error = '';
+    $lineBreak = "<br />\r\n";
     // Let's try CURL first
     if (function_exists('curl_init') == TRUE) { // don't bother to try curl if it isn't there in the first place
-    	$curl = curl_init();
-    	curl_setopt($curl, CURLOPT_URL, $remoteURL);
-    	curl_setopt($curl, CURLOPT_HEADER, 0);
-    	ob_start();
-    	curl_exec($curl);
-    	$data = ob_get_contents();
-    	ob_end_clean();
-    	ob_end_flush();
-    	$headers = curl_getinfo($curl);
-    	curl_close($curl);
-    	if (strlen($data) < $minLength ) {
-    		// Fetching the data by CURL obviously failed
-    		$error .= sprintf($lang_get_remote_File_by_url['no_data_returned'], $lang_get_remote_File_by_url['no_data_returned']);
-    	} else {
-    		// Fetching the data by CURL was successfull. Let's return the data
-    		return array("headers" => $headers, "body" => $data);
-    	}
+      $curl = curl_init();
+      curl_setopt($curl, CURLOPT_URL, $remoteURL);
+      curl_setopt($curl, CURLOPT_HEADER, 0);
+      ob_start();
+      curl_exec($curl);
+      $body = ob_get_contents();
+      ob_end_clean();
+      ob_end_flush();
+      $headers = curl_getinfo($curl);
+      curl_close($curl);
+      if (strlen($body) < $minLength ) {
+              // Fetching the data by CURL obviously failed
+              $error .= sprintf($lang_get_remote_File_by_url['no_data_returned'], $lang_get_remote_File_by_url['curl']) . $lineBreak;
+      } else {
+              // Fetching the data by CURL was successfull. Let's return the data
+              return array("headers" => $headers, "body" => $body);
+      }
     } else {
-    	// Curl is not available
-    	$error .= $lang_get_remote_File_by_url['curl_not_available'];
+      // Curl is not available
+      $error .= $lang_get_remote_File_by_url['curl_not_available'] . $lineBreak;
     }
     // Now let's try FSOCKOPEN
-    $fp = @fsockopen ($url['host'], (!empty($url['port']) ? (int)$url['port'] : 80), $errno, $errstr, 30);
-    if ($fp) { // file handle success - start
-    	$path = (!empty($url['path']) ? $url['path'] : "/").(!empty($url['query']) ? "?".$url['query'] : "");
-    	$header = "\r\nHost: ".$url['host'];
-    	if("post" == strtolower($method)) {
-    		$header .= "\r\nContent-Length: ".mb_strlen($data);
-    	}
-    	fputs ($fp, $method." ".$path." HTTP/1.0".$header."\r\n\r\n".("post" == strtolower($method) ? $data : ""));
-    	if(!feof($fp)) {
-    		$scheme = fgets($fp);
-    		list(, $code ) = explode(" ", $scheme);
-    		$headers = array("Scheme" => $scheme);
-    	}
-    	while ( !feof($fp) ) {
-			$h = fgets($fp);
-			if($h == "\r\n" OR $h == "\n") {
-				break;
-			}
-			list($key, $value) = explode(":", $h, 2);
-			$key = strtolower($key);
-			$value = trim($value);
-			if(isset($headers[$key])) {
-				$headers[$key] .= ','.trim($value);
-			} else {
-				$headers[$key] = trim($value);
-			}
-        }
-        $body = '';
-        while ( !feof($fp) ) {
-        	$body .= fgets($fp);
-        }
-        fclose($fp);
-	} else {  // file handle failure - start
-		return (array("error" => array("errno" => $errno, "errstr" => $errstr)));
-	}
-	return array("headers" => $headers, "body" => $body);
+    if ($url['host'] != ''){
+      $fp = @fsockopen ($url['host'], (!empty($url['port']) ? (int)$url['port'] : 80), $errno, $errstr, 30);
+      if ($fp) { // fsockopen file handle success - start
+          $path = (!empty($url['path']) ? $url['path'] : "/").(!empty($url['query']) ? "?".$url['query'] : "");
+          $header = "\r\nHost: ".$url['host'];
+          fputs ($fp, $method." ".$path." HTTP/1.0".$header."\r\n\r\n".("post" == strtolower($method) ? $data : ""));
+          if(!feof($fp)) {
+            $scheme = fgets($fp);
+            //list(, $code ) = explode(" ", $scheme);
+            $headers = explode(" ", $scheme);
+            //$headers = array("Scheme" => $scheme);
+          }
+          while ( !feof($fp) ) {
+              $h = fgets($fp);
+              if($h == "\r\n" OR $h == "\n") {
+                break;
+              }
+              list($key, $value) = explode(":", $h, 2);
+              $key = strtolower($key);
+              $value = trim($value);
+              if(isset($headers[$key])) {
+                $headers[$key] .= ','.trim($value);
+              } else {
+                $headers[$key] = trim($value);
+              }
+          }
+          $body = '';
+          while ( !feof($fp) ) {
+            $body .= fgets($fp);
+          }
+          fclose($fp);
+          if (strlen($body) < $minLength) {
+                // Fetching the data by FSOCKOPEN obviously failed
+                $error .= sprintf($lang_get_remote_File_by_url['no_data_returned'], $lang_get_remote_File_by_url['fsockopen']) . $lineBreak;
+          } elseif (in_array('404', $headers) == TRUE) {
+                // We got a 404 error
+                $error .= sprintf($lang_get_remote_File_by_url['error_number'], '404') . $lineBreak;
+          } else {
+                // Fetching the data by FSOCKOPEN was successfull. Let's return the data
+                return array("headers" => $headers, "body" => $body, "error" => $error);
+          }
+      } else {  // fsockopen file handle failure - start
+              $error .= $lang_get_remote_File_by_url['fsockopen'] . ': ';
+              $error .= sprintf($lang_get_remote_File_by_url['error_number'], $errno);
+              $error .= sprintf($lang_get_remote_File_by_url['error_message'], $errstr);
+      }
+    } else {
+      //$error .= 'No Hostname set. In other words: we\'re trying to retrieve a local file';
+    }
+    // Finally, try FOPEN
+    @ini_set('allow_url_fopen','1'); // Try to override the existing policy
+    if ($url['scheme'] != '') {
+      $protocol = $url['scheme'].'://';
+    }  else {
+      $protocol = '';
+    }
+    if ($url['port'] != '') {
+      $port = ':'.(int)$url['port'];
+    }  elseif($url['host'] != '') {
+      $port = ':80';
+    } else {
+      $port = '';
+    }
+    $handle  = @fopen($protocol.$url['host'].$port.$url['path'], 'r');
+    if ($handle) {
+      while(!feof($handle)) {
+        $body .= fread($handle, 1024);
+      }
+      fclose($handle);
+      if (strlen($body) < $minLength) {
+        $error .= sprintf($lang_get_remote_File_by_url['no_data_returned'], $lang_get_remote_File_by_url['fopen']) . $lineBreak;
+      } else {
+        // Fetching the data by FOPEN was successfull. Let's return the data
+        return array("headers" => $headers, "body" => $body, "error" => $error);
+      }
+    } else { // opening the fopen handle failed as well
+      // if the script reaches this stage, all available methods failed, so let's return the error messages and give up
+      return array("headers" => $headers, "body" => $body, "error" => $error);
+    }
 }
 
 /**
@@ -4037,41 +4081,41 @@ function cpgGetRemoteFileByURL($remoteURL, $method = "GET", $data = "", $redirec
 * @return boolean $check_approve
 */
 function user_is_allowed () {
-	if(GALLERY_ADMIN_MODE) {
-		return true;
-	}
-	$check_approve = false;
-	global $USER_DATA, $CONFIG;
-	$superCage = Inspekt::makeSuperCage();
+        if(GALLERY_ADMIN_MODE) {
+                return true;
+        }
+        $check_approve = false;
+        global $USER_DATA, $CONFIG;
+        $superCage = Inspekt::makeSuperCage();
 
-	//get albums this user can edit
-	if ($superCage->get->keyExists('album')){
-    	$album_id = $superCage->get->getInt('album');
-	} elseif ($superCage->post->keyExists('aid')){
-		$album_id = $superCage->post->getInt('aid');
-	} else {
-		$album_id = 0;
-	}
+        //get albums this user can edit
+        if ($superCage->get->keyExists('album')){
+            $album_id = $superCage->get->getInt('album');
+        } elseif ($superCage->post->keyExists('aid')){
+                $album_id = $superCage->post->getInt('aid');
+        } else {
+                $album_id = 0;
+        }
 
 
-	$result = cpg_db_query("SELECT DISTINCT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE owner = '" . $USER_DATA['user_id'] . "' AND aid='$album_id'");
-	$allowed_albums = cpg_db_fetch_rowset($result);
-	$cat = $allowed_albums[0]['category'];
-	if($cat != ''){
-		$check_approve = true;
-	}
+        $result = cpg_db_query("SELECT DISTINCT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE owner = '" . $USER_DATA['user_id'] . "' AND aid='$album_id'");
+        $allowed_albums = cpg_db_fetch_rowset($result);
+        $cat = $allowed_albums[0]['category'];
+        if($cat != ''){
+                $check_approve = true;
+        }
 
-	//check if admin allows editing	after closing category
-	if($CONFIG['allow_user_edit_after_cat_close'] == 0){
-		//Disallowed -> Check if album is in such a category
-		$result = cpg_db_query("SELECT DISTINCT aid FROM {$CONFIG['TABLE_ALBUMS']} AS alb INNER JOIN {$CONFIG['TABLE_CATMAP']} AS catm ON alb.category=catm.cid WHERE alb.owner = '" . $USER_DATA['user_id'] . "' AND alb.aid='$album_id' AND catm.group_id='" . $USER_DATA['group_id'] . "'");
-		$allowed_albums = cpg_db_fetch_rowset($result);
-		if($allowed_albums[0]['aid'] == '' && $cat != (FIRST_USER_CAT + USER_ID)){
-			$check_approve = false;
-		} elseif ($cat == (FIRST_USER_CAT + USER_ID)) {
-			$check_approve = true;
-		}
-	}
-	return $check_approve;
+        //check if admin allows editing        after closing category
+        if($CONFIG['allow_user_edit_after_cat_close'] == 0){
+                //Disallowed -> Check if album is in such a category
+                $result = cpg_db_query("SELECT DISTINCT aid FROM {$CONFIG['TABLE_ALBUMS']} AS alb INNER JOIN {$CONFIG['TABLE_CATMAP']} AS catm ON alb.category=catm.cid WHERE alb.owner = '" . $USER_DATA['user_id'] . "' AND alb.aid='$album_id' AND catm.group_id='" . $USER_DATA['group_id'] . "'");
+                $allowed_albums = cpg_db_fetch_rowset($result);
+                if($allowed_albums[0]['aid'] == '' && $cat != (FIRST_USER_CAT + USER_ID)){
+                        $check_approve = false;
+                } elseif ($cat == (FIRST_USER_CAT + USER_ID)) {
+                        $check_approve = true;
+                }
+        }
+        return $check_approve;
 }
 ?>

@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-12-27 [B] Improved versioncheck functionality for offline use (work in progress) {GauGau}
 2007-12-27 [O] Modified the code in send_activation.php to reflect security improvents imposed by Inspekt {Frantz}
 2007-12-21 [A] Improved debug output {Nibbler}
 2007-12-21 [O] Performance improvement for album dropdown code {Nibbler}
