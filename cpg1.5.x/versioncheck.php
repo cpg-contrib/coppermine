@@ -74,7 +74,7 @@ $optionDisplayOutput_array = array();
 // Sanitize the GET vars
 // possible values: screen, embedded, download, textarea, create, options
 $actionGet = $superCage->get->getMatched('output','/^[a-z]+$/');
-if (in_array ($actionGet[0], array('screen', 'enbedded', 'download', 'textarea', 'create', 'options')) == TRUE) {
+if (in_array ($actionGet[0], array('screen', 'embedded', 'download', 'textarea', 'create', 'options')) == TRUE) {
   $action = $actionGet[0];
 } else {
   $action = 'options';

@@ -28,6 +28,9 @@ $thisplugin->add_action('plugin_uninstall','visiblehookpoints_uninstall');
 // Add a configure action
 $thisplugin->add_action('plugin_configure','visiblehookpoints_configure');
 
+$hookpoints_parameter_set = $superCage->get->getInt('hookpoints');
+print $hookpoints_parameter_set;
+die;
 if (isset($_GET['hookpoints']) || $CONFIG['plugin_visiblehookpoints_display'] == 1) {
 
 $thisplugin->add_filter('anycontent','vhp_anycontent'); // ( anycontent page + plugin accessible content )

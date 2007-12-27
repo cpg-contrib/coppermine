@@ -30,6 +30,7 @@ if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 
 //Initialize local parameters.
 $action = isset($_POST['action']) ? $_POST['action']: $_GET['action'];
+//$superCage->get->getInt('hookpoints')
 
 
 
