@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
@@ -32,8 +32,10 @@ if ($CONFIG['reg_requires_valid_email'] == 0) {
 
 $lookup_failed = '';
 
-if (!empty($_POST['email'])) {
-    $emailaddress = addslashes($_POST['email']);
+/*if (!empty($_POST['email'])) {
+    $emailaddress = addslashes($_POST['email']);*/
+if ($superCage->post->KeyExists('email') && $superCage->post->testEmail('email')) {
+		$emailaddress = $superCage->post->testEmail('email');
 
     $sql = "SELECT user_id, user_group,user_active,user_name, user_email, user_actkey FROM {$CONFIG['TABLE_USERS']} WHERE user_email = '$emailaddress' AND user_active = 'NO'";
 
