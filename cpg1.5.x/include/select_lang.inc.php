@@ -95,16 +95,18 @@ $available_languages = array('ar' => array('ar([-_][[:alpha:]]{2})?|arabic', 'ar
  * Analyzes some PHP environment variables to find the most probable language
  * that should be used
  *
+ * @param array $ language (added bacause the globalisation won't work in the installer)
+ * @param array $ available languages (added bacause the globalisation won't work in the installer)
  * @param string $ string to analyze
  * @param integer $ type of the PHP environment variable which value is $str
  * @global array    the list of available translations
  * @global string   the retained translation keyword
  * @access private
  */
-function lang_detect($str = '', $envType = '')
+function lang_detect(&$lang, &$available_languages, $str = '', $envType = '')
 {
-    global $available_languages;
-    global $lang;
+	//global $available_languages;
+	//global $lang;
 
     reset($available_languages);
     while (list($key, $value) = each($available_languages)) {
@@ -121,12 +123,12 @@ function lang_detect($str = '', $envType = '')
  * Get some global variables if 'register_globals' is set to 'off'
  * loic1 - 2001/25/11: use the new globals arrays defined with php 4.1+
  */
-if ($superCage->server->keyExists('HTTP_ACCEPT_LANGUAGE');) {
+if ($superCage->server->keyExists('HTTP_ACCEPT_LANGUAGE')) {
 	//We can use the getRaw method here because the data will be sanitized in the lang_detect function
     $HTTP_ACCEPT_LANGUAGE = $superCage->server->getRaw('HTTP_ACCEPT_LANGUAGE');
 }
 
-if ($superCage->server->keyExists('HTTP_USER_AGENT');) {
+if ($superCage->server->keyExists('HTTP_USER_AGENT')) {
 	//We can use the getRaw method here because the data will be sanitized in the lang_detect function
     $HTTP_USER_AGENT = $superCage->server->getRaw('HTTP_USER_AGENT');
 }
@@ -143,12 +145,12 @@ if (empty($lang) && !empty($HTTP_ACCEPT_LANGUAGE)) {
     $acceptedCnt = count($accepted);
     reset($accepted);
     for ($i = 0; $i < $acceptedCnt && empty($lang); $i++) {
-        lang_detect($accepted[$i], 1);
+        lang_detect($lang, $available_languages, $accepted[$i], 1);
     }
 }
 // 2. try to findout user's language by checking its HTTP_USER_AGENT variable
 if (empty($lang) && !empty($HTTP_USER_AGENT)) {
-    lang_detect($HTTP_USER_AGENT, 2);
+    lang_detect($lang, $available_languages, $HTTP_USER_AGENT, 2);
 }
 // 3. If we catch a valid language, configure it
 if (!empty($lang)) {
