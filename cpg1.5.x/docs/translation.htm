@@ -144,7 +144,7 @@ You can post the attachment as a txt file or you can put it inside of a .zip arc
 <pre>array('Target address for the 'See more pictures' link in e-cards', 'ecards_more_pic_target', 0),</pre> <p>but, to do this, instead: </p>
 <pre>array('Target address for the \'See more pictures\' link in e-cards', 'ecards_more_pic_target', 0),</pre></p>
 <a name="translation_quotes_javascript"></a><h3>Single quotes in JavaScript (//js-alert)<a href="#translation_quotes_javascript" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Things are a bit more complicated if the output is to be used not only in plain HTML, but in JavaScript, as well.  Single quotes that appear in the HTML output of the language file must also be escaped for use in any JavaScript routine with a backslash as well.  That's why specific lines in the language file that will be used as JavaScript in Coppermine's output have been tagged with a comment at the end of the line, which reads: <tt class="code">//js-alert</tt>. If you intend to have a single quote in the final output, you'll have to add 3 backslashes in front of the single quote, as in this example: <pre>'no_change' => 'Vous n\\\'avez effectué aucun changement !', //js-alert</pre></p>
+<p>Things are a bit more complicated if the output is to be used not only in plain HTML, but in JavaScript, as well.  Single quotes that appear in the HTML output of the language file must also be escaped for use in any JavaScript routine with a backslash as well.  That's why specific lines in the language file that will be used as JavaScript in Coppermine's output have been tagged with a comment at the end of the line, which reads: <tt class="code">//js-alert</tt>. If you intend to have a single quote in the final output, you'll have to add 3 backslashes in front of the single quote, as in this example: <pre>'no_change' => 'Vous n\\\'avez effectu&eacute; aucun changement !', //js-alert</pre></p>
 <a name="translation_placeholders"></a><h3>Placeholders with " % "<a href="#translation_placeholders" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>You'll also notice that in several places of the language file, there are text that contain a percent-sign (<span class="example">%</span>), followed immediately by a letter. Those combinations must not be translated or separated - they are there intentionally and are used later as specifier arguments, or calls, for variable replacement and/or formating that needs to take place.</p>
 <p><strong>Example</strong>:<br />
@@ -168,9 +168,6 @@ Please do not flame (berate) the original translator on the board, but provide a
 <a name="translation_initial_translation"></a><h2>Initial translation for release<a href="#translation_initial_translation" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>When preparing for a release, the dev team sets up a feature freeze to allow the translators to submit their translations, halting the coppermine development during that period. If you're willing to translate, do so as soon as possible and send your translation back immediately to ensure that the new version of coppermine can be released <b>with</b> your language file.</p>
 <br />&nbsp;<br />&nbsp;<br />
-
-GauGau (aka Joachim M&uuml;ller)<br />
-- Coppermine dev team -
 
 
 <script type="text/javascript">
