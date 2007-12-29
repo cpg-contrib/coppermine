@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2007-12-29 [A] Added new installer, renamed old one untill this one is stable {SaWey}
 2007-12-29 [D] Fixed documentation that explains admin passwords (thread ID 49304) {GauGau}
 2007-12-27 [B] Improved versioncheck functionality for offline use (work in progress) {GauGau}
 2007-12-27 [O] Modified the code in send_activation.php to reflect security improvents imposed by Inspekt {Frantz}

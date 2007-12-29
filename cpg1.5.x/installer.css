@@ -229,3 +229,62 @@ fieldset form
 {
     margin: auto 10px;
 }
+
+/*stepper*/
+.stepper_table
+{
+	width:100%;
+	margin-top:-30px;
+}
+
+.stepper_c, .stepper_d, .stepper_do, .stepper_n
+{
+	height:21px; 
+	width:17px; 
+	margin:2px; 
+	text-align:center; 
+}
+
+.stepper_c
+{
+	background:url(images/install/current.gif);
+	background-repeat:no-repeat;
+}
+
+.stepper_n
+{
+	background:url(images/install/notyet.gif);
+	background-repeat:no-repeat;
+}
+
+.stepper_d, .stepper_do
+{
+	background:url(images/install/done.gif);
+	background-repeat:no-repeat;
+	cursor:pointer;
+}
+
+.stepper_d
+{
+	background-position: top left;
+}
+
+.stepper_do
+{
+	background-position: 0 -21px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
