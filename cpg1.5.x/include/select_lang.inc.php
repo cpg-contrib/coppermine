@@ -121,12 +121,14 @@ function lang_detect($str = '', $envType = '')
  * Get some global variables if 'register_globals' is set to 'off'
  * loic1 - 2001/25/11: use the new globals arrays defined with php 4.1+
  */
-if (!empty($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
-    $HTTP_ACCEPT_LANGUAGE = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
+if ($superCage->server->keyExists('HTTP_ACCEPT_LANGUAGE');) {
+	//We can use the getRaw method here because the data will be sanitized in the lang_detect function
+    $HTTP_ACCEPT_LANGUAGE = $superCage->server->getRaw('HTTP_ACCEPT_LANGUAGE');
 }
 
-if (!empty($_SERVER['HTTP_USER_AGENT'])) {
-    $HTTP_USER_AGENT = $_SERVER['HTTP_USER_AGENT'];
+if ($superCage->server->keyExists('HTTP_USER_AGENT');) {
+	//We can use the getRaw method here because the data will be sanitized in the lang_detect function
+    $HTTP_USER_AGENT = $superCage->server->getRaw('HTTP_USER_AGENT');
 }
 
 /**
