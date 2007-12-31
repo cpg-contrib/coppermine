@@ -56,6 +56,7 @@
 <ul>
   <li>Free SVN client for Windows: <a href="http://tortoisesvn.net/" rel="external" class="external">TortoiseSVN</a></li>
   <li>Official SVN client for Linux and BSD: <a href="http://subversion.tigris.org/" rel="external" class="external">subversion.tigris.org</a></li>
+  <li>Recommended GUI client for Linux: <a href="http://rapidsvn.tigris.org/" rel="external" class="external">RapidSVN</a> (available as a pre-made package for many Linux distributions)</li>
 </ul>
 
 <a name="dev_subversion_repository_structure"></a><h2>Repository structure<a href="#dev_subversion_repository_structure" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
@@ -106,9 +107,10 @@ Within this section you will find several folders: the "trunk" folder contains t
   <li>Leave all other settings as they are (<tt class="code">Only check out the top folder</tt> = off; <tt class="code">Omit externals</tt> = off; <tt class="code">Revision</tt> = <tt class="code">HEAD revision</tt>)</li>
   <li>Click &quot;OK&quot;</li>
   <li><img src="pics/subversion_checkout_success.jpg" width="400" height="211" border="0" alt="" title="Checkout progress" align="right" />A dialog will pop up that shows the progress of the initial check out. Depending on your connection speed, this will take some time - during the initial check out, all files within the repository are being downloaded.<br />As long as the download continues, the OK button will be greyed out (you could cancel at any time though). Once the checkout is finished, the OK button will get clickable.</li>
+  <li>Now the full source code should reside as a working copy on your hard drive. You can now just go ahead and upload all of the files to your testbed or even set up your testbed up to just use the folder you checked out to. If you're going to upload the files to your testbed, you might want to get rid of all the extra subversion files first though (they won't hurt, but there is a lot of those small subversion files that will just take longer to transfer to your testbed using FTP). To get rid of the surplus subversion files (i.e. the files and folders that are used by the sbuversion client to keep track of changes), just copy the entire folder where you have checked out to to a temporary folder, then perform a search for files/folders named &quot;<tt class="code">.svn</tt>&quot; and then delete all those files (i.e. the files that turn up as a search result) from the temporary folder. The files that remain will be the actual coppermine source code without the surplus SVN files. In fact, you can use the files and perform a regular install as if it was an actual coppermine package, so in fact the <a href="install.htm">install instructions from this documentation</a> apply.</li>
 </ul>
 
-<p>tbc</p>
+
 
 <script type="text/javascript">
   cpgDocFooter();
