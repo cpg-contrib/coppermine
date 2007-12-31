@@ -40,13 +40,13 @@
 <p>Dev-only issues related to versioncheck.</p>
 
 <a name="dev_versioncheck_hidden_features"></a><h2>Hidden features<a href="#dev_versioncheck_hidden_features" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>In versioncheck versions prior to cpg1.5.x it has been comparatively hard to update the version information when a new package was going to be released, as the packager had to go through all changes manually. In cpg1.5.x (revision 3977 and later), the packager can simply add the parameter <tt class="code">?output=create</tt> to the URL to force the script loop through the existing entries and update the version / revision / MD5 hashes. You only have to copy the output of the screen and paste it into include/files.inc.php</p>
-<p>Another &quot;hidden&quot; feature is the option to embedd the output into another coppermine-driven page (using the parameter <tt class="code">?output=embedded</tt>) to allow an initial check to be performed during first install.</p>
+<p>In versioncheck versions prior to cpg1.5.x it has been comparatively hard to update the version information when a new package was going to be released, as the packager had to go through all changes manually. In cpg1.5.x (revision 3977 and later), the packager can simply add the parameter <tt class="code">?output=create</tt> to the URL to force the script loop through the existing entries and update the version / revision / MD5 hashes. You only have to copy the output of the screen and paste it into include/cpg15x.files.xml</p>
+<p><s>Another &quot;hidden&quot; feature is the option to embedd the output into another coppermine-driven page (using the parameter <tt class="code">?output=embedded</tt>) to allow an initial check to be performed during first install.</s></p>
 
 <a name="dev_versioncheck_todo"></a><h2>To do list<a href="#dev_versioncheck_todo" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <ul>
   <li>Overhaul end user <a href="upgrading.htm#versioncheck">documentation for versioncheck</a></li>
-  <li>Create a &quot;real&quot; repository on the server coppermine.sf.net (either RSS or XML) that can be accessed even with URL_fopen off. Integrate the repository as a default into versioncheck.php.</li>
+  <li><s>Create a &quot;real&quot; repository on the server coppermine-gallery.net (either RSS or XML) that can be accessed even with URL_fopen off. Integrate the repository as a default into versioncheck.php.</s> - done</li>
   <li>Add help icons and corresponding explanations.</li>
 </ul>
 
