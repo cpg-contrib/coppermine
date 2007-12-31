@@ -446,7 +446,7 @@ $album_array = array();
 getallalbumsindb($album_array);
 // We need at least one album
 if (!count($album_array)) {
-    cpg_die(ERROR, $lang_search_new_php['need_one_album'], __FILE__, __LINE__);
+    cpg_die(ERROR, $lang_search_new_php['need_one_album'].'<br />&nbsp;<br /><a href="albmgr.php" title="'.$lang_gallery_admin_menu['albums_title'].'" class="admin_menu">'.$lang_gallery_admin_menu['albums_lnk'].'</a>', __FILE__, __LINE__);
 }
 
 //if (isset($_POST['insert'])) {
