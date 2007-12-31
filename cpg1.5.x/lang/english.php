@@ -2475,7 +2475,7 @@ if (defined('INSTALLER')) $lang_install = array(
   'dir_ok' => 'Directory found',
   'directory' => 'Directory',
   'email' => 'Email address',
-  'email_no_match' => 'Email adresses don\'t match or arn\'t valid.',
+  'email_no_match' => 'Email adresses don\'t match or aren\'t valid.',
   'email_verif' => 'Verify Email',
   'err_cpgnuke' => '<h1>ERROR</h1>You seem to be trying to install the standalone Coppermine into your Nuke portal.<br />This version can only be used as standalone!<br />Some server setups might display this warning even though you don\'t have a nuke portal installed - if this is the case for you, <a href="%s?continue_anyway=1">continue</a> with the install. If you are using a nuke portal, you might want to take a look into <a href=\"http://www.cpgnuke.com/\">CpgNuke</a> or use one of the (unsupported)<a href=\"http://sourceforge.net/project/showfiles.php?group_id=89658&amp;package_id=95984\">coppermine ports</a> - do not continue!',
   'error' => 'ERROR',
