@@ -459,7 +459,7 @@ a:active {
         margin-bottom: 1px;
         max-height:1.5em;
         overflow:hidden;
-        width:100px;
+        /*width:100px;*/
 }
 
 .admin_menu_wrapper {
