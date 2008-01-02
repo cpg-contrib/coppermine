@@ -520,7 +520,7 @@
     <hash>b2706639188303cd82881d9b6bad1863</hash>
   </element>
   <element>
-    <fullpath>**fullpath**</fullpath>
+    <fullpath>**fullpath**/</fullpath>
     <release></release>
     <revision></revision>
     <status>mandatory</status>
@@ -544,7 +544,7 @@
     <hash></hash>
   </element>
   <element>
-    <fullpath>**fullpath**/edit/index.html</fullpath>
+    <fullpath>**fullpath**/edit/index.htm</fullpath>
     <release></release>
     <revision></revision>
     <status>optional</status>
@@ -953,7 +953,7 @@
   </element>
   <element>
     <fullpath>docs/faq_fr.htm</fullpath>
-    <release></release>
+    <release>1.5.0</release>
     <revision></revision>
     <status>mandatory</status>
     <permission>read</permission>
@@ -985,7 +985,7 @@
   </element>
   <element>
     <fullpath>docs/index_fr.htm</fullpath>
-    <release></release>
+    <release>1.5.0</release>
     <revision></revision>
     <status>mandatory</status>
     <permission>read</permission>
@@ -5358,14 +5358,6 @@
     <status>mandatory</status>
     <permission>read</permission>
     <hash>645dc773ee8817137387bf49a0290822</hash>
-  </element>
-  <element>
-    <fullpath>include/config.inc.php</fullpath>
-    <release></release>
-    <revision></revision>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>c05995b3268b1ac7bef718280b3a9bf0</hash>
   </element>
   <element>
     <fullpath>include/config.inc.php.sample</fullpath>

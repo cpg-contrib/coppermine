@@ -27,15 +27,6 @@ if (!GALLERY_ADMIN_MODE) {
 }
 
 // define some vars
-$maxLength_array = array();
-$maxLength_array['counter'] = strlen($lang_versioncheck_php['counter']);
-$maxLength_array['folderfile'] = strlen($lang_versioncheck_php['type']);
-$maxLength_array['exist'] = strlen($lang_versioncheck_php['missing']);
-$maxLength_array['readwrite'] = strlen($lang_versioncheck_php['permissions']);
-$maxLength_array['version'] = strlen($lang_versioncheck_php['version']);
-$maxLength_array['revision'] = strlen($lang_versioncheck_php['revision']);
-$maxLength_array['modified'] = strlen($lang_versioncheck_php['modified']);
-
 $extensionMatrix_array = array(
   'unknown' => 'images/extensions/unknown.gif',
   'folder' => 'images/extensions/folder.gif',
@@ -72,9 +63,9 @@ if (function_exists('md5')) {
 $optionDisplayOutput_array = array();
 
 // Sanitize the GET vars
-// possible values: screen, embedded, download, textarea, create, options
+// possible values: screen, download, textarea, create, options
 $actionGet = $superCage->get->getMatched('output','/^[a-z]+$/');
-if (in_array ($actionGet[0], array('screen', 'embedded', 'download', 'textarea', 'create', 'options')) == TRUE) {
+if (in_array ($actionGet[0], array('screen', 'download', 'textarea', 'create', 'options')) == TRUE) {
   $action = $actionGet[0];
 } else {
   $action = 'options';
@@ -85,8 +76,6 @@ if ($action == 'textarea') {
   $optionDisplayOutput_array['textarea'] = 'checked="checked"';
 } elseif ($action == 'download') {
   $displayOption_array['output'] = 'download';
-} elseif ($action == 'embedded') {
-  $displayOption_array['output'] = 'embedded';
 } elseif ($action == 'create') {
   $displayOption_array['output'] = 'create';
 } elseif ($action == 'screen') {
@@ -130,37 +119,24 @@ $underline = '';
 $newLine = "\r\n";
 $subversionRepository = 'http://coppermine.svn.sourceforge.net/viewvc/coppermine/trunk/';
 $majorVersion = 'cpg'.str_replace('.' . ltrim(substr(COPPERMINE_VERSION,strrpos(COPPERMINE_VERSION,'.')),'.'), '', COPPERMINE_VERSION).'.x';
-//$remoteURL = 'http://intranet_old.eu.hilite-ind.net/test/' . str_replace('.', '', $majorVersion) . '.files.xml';
 $remoteURL = 'http://coppermine-gallery.net/' . str_replace('.', '', $majorVersion) . '.files.xml';
 $localFile = 'include/' . str_replace('.', '', $majorVersion) . '.files.xml';
 $remoteConnectionFailed = '';
 if ($displayOption_array['do_not_connect_to_online_repository'] == 0) { // connect to the online repository --- start
   $result = cpgGetRemoteFileByURL($remoteURL, 'GET','','200');
-  // check if connecting worked as expected
-  /* //Needs to be coded
   if (strlen($result['body']) < 200) {
     $remoteConnectionFailed = 1;
     $error = $result['error'];
     print_r($error);
     print '<hr />';
   }
-  */
 } // connect to the online repository --- end
 if ($displayOption_array['do_not_connect_to_online_repository'] == 1 || $remoteConnectionFailed == 1) {
   $result = cpgGetRemoteFileByURL($localFile, 'GET','','200');
 }
 
-
-
-
-//print_r($result['headers']);
-//print '<hr />';
-//print_r($result['error']);
 unset($result['headers']);
 unset($result['error']);
-//print '<hr />';
-//print_r($result['body']);
-//die();
 $result = array_shift($result);
 
 
@@ -216,21 +192,8 @@ function cpg_fillArrayFieldWithSpaces($text, $maxchars, $fillUpOn = 'right') {
   return $text;
 }
 
-// main code starts here
-
-// Enable outbut buffering when in embedded mode
-if ($displayOption_array['output'] == 'embedded') {
-  ob_start();
-}
-// display page header if applicable
-if ($displayOption_array['output'] != 'download' && $displayOption_array['output'] != 'embedded') {
-  pageheader($lang_versioncheck_php['title']);
-  print '<h1>Under construction</h1>';
-  print 'Please do not file bug reports yet - versioncheck.php and the files it uses (xml.lib.php, cpg15x.files.xml) are not done yet';
-}
-
-// Print options if applicable
-if ($displayOption_array['output'] == 'options' || $displayOption_array['output'] == 'screen' || $displayOption_array['output'] == 'textarea') {
+function cpg_versioncheckDisplayOptions() {
+  global $CPG_PHP_SELF, $lang_versioncheck_php, $optionDisplayOutput_array;
   print '<form name="options" action="'.$CPG_PHP_SELF.'" method="get">';
   starttable(-1, $lang_versioncheck_php['options'],2);
   print <<< EOT
@@ -285,9 +248,18 @@ EOT;
   print '<br />';
 }
 
-if ($displayOption_array['output'] != 'create') {
-  $loopCounter = 0;
-  foreach ($file_data_array as $file_data_key => $file_data_values) {
+function cpg_versioncheckPopulateArray($file_data_array) {
+    global $displayOption_array, $extensionMatrix_array, $textFileExtensions_array, $imageFileExtensions_array, $CONFIG, $maxLength_array, $lang_versioncheck_php;
+    $maxLength_array = array();
+    $maxLength_array['counter'] = strlen($lang_versioncheck_php['counter']);
+    $maxLength_array['folderfile'] = strlen($lang_versioncheck_php['type']);
+    $maxLength_array['exist'] = strlen($lang_versioncheck_php['missing']);
+    $maxLength_array['readwrite'] = strlen($lang_versioncheck_php['permissions']);
+    $maxLength_array['version'] = strlen($lang_versioncheck_php['version']);
+    $maxLength_array['revision'] = strlen($lang_versioncheck_php['revision']);
+    $maxLength_array['modified'] = strlen($lang_versioncheck_php['modified']);  
+    $loopCounter = 0;
+    foreach ($file_data_array as $file_data_key => $file_data_values) {
     //print_r($file_data_array[$file_data_key]);
     //print '<hr />';
     $file_data_array[$file_data_key]['comment'] = '';
@@ -309,7 +281,7 @@ if ($displayOption_array['output'] != 'create') {
       $maxLength_array['folder'] = strlen($file_data_array[$file_data_key]['folder']);
     }
     $file_data_array[$file_data_key]['file'] = $tempArray['file'];
-    $file_data_array[$file_data_key]['exists'] = file_exists($file_data_values['fullpath']);
+    $file_data_array[$file_data_key]['exists'] = file_exists($file_data_array[$file_data_key]['fullpath']);
     if ($file_data_array[$file_data_key]['exists'] != 1) {
         if ($file_data_array[$file_data_key]['status'] == 'mandatory') {
           $file_data_array[$file_data_key]['txt_missing'] = $lang_versioncheck_php['mandatory'];
@@ -386,7 +358,6 @@ if ($displayOption_array['output'] != 'create') {
             if (strlen($file_data_array[$file_data_key]['txt_version']) > $maxLength_array['version']) {
               $maxLength_array['version'] = strlen($file_data_array[$file_data_key]['txt_version']);
             }
-
             // Determine file revision
             $file_data_array[$file_data_key]['revision'] = str_replace($revision_string, '', substr($blob,strpos($blob, $revision_string),25));
             $file_data_array[$file_data_key]['revision'] = trim(substr($file_data_array[$file_data_key]['revision'], 0, strpos($file_data_array[$file_data_key]['revision'], '$')));
@@ -454,9 +425,31 @@ if ($displayOption_array['output'] != 'create') {
     }
     if ($file_data_array[$file_data_key]['exists'] != 1) {
       $file_data_array[$file_data_key]['comment'] = sprintf($lang_versioncheck_php['review_missing'],ucfirst($file_data_array[$file_data_key]['txt_folderfile'])).'. ';
-    }
+    } // end the foreach loop
     $loopCounter++;
-  }
+    }
+    return $file_data_array;
+} // end function definition "cpg_versioncheckPopulateArray()"
+
+// main code starts here
+
+// display page header if applicable
+if ($displayOption_array['output'] != 'download') {
+  pageheader($lang_versioncheck_php['title']);
+  print '<h1>'.$lang_versioncheck_php['title'].'</h1>';
+}
+
+// Print options if applicable
+if ($displayOption_array['output'] == 'options' || $displayOption_array['output'] == 'screen' || $displayOption_array['output'] == 'textarea') {
+    cpg_versioncheckDisplayOptions();
+}
+
+if ($displayOption_array['output'] != 'create') {
+    //print_r($file_data_array);
+    //print '<hr />';
+    $file_data_array = cpg_versioncheckPopulateArray($file_data_array);
+    //print_r($file_data_array);
+    //die;
 } else { // create data --- start
   // loop through all folders
   $loopCounter = 0;
@@ -616,7 +609,7 @@ if ($displayOption_array['output'] == 'textarea' || $displayOption_array['output
   print $string;
 } // display the output in a textarea field --- end
 
-if ($displayOption_array['output'] == 'screen' || $displayOption_array['output'] == 'embedded') { // display the output in HTML --- start
+if ($displayOption_array['output'] == 'screen') { // display the output in HTML --- start
   $loopCounter = 1;
   if (strlen($file_data_count) > $maxLength_array['counter']) {
     $maxLength_array['counter'] = strlen($file_data_count);
@@ -695,14 +688,8 @@ if ($displayOption_array['output'] == 'textarea' || $displayOption_array['output
 
 
 // display page footer if applicable
-if ($displayOption_array['output'] != 'download' && $displayOption_array['output'] != 'embedded') {
+if ($displayOption_array['output'] != 'download') {
   pagefooter();
-}
-
-// Disable outbut buffering when in embedded mode and assign variable for output buffer content
-if ($displayOption_array['output'] == 'embedded') {
-  $embeddedTableOutput = ob_get_contents();
-  ob_end_clean();
 }
 
 ?>
