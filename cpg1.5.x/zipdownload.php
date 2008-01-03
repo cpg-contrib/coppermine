@@ -60,6 +60,7 @@ $zip = new zip_file('pictures.zip');
 $zip->set_options(array('basedir' => $cwd, 'inmemory' => 1, 'recurse' => 0, 'storepaths' => 0));
 $zip->add_files($filelist);
 $zip->create_archive();
+ob_end_clean();
 $zip->download_file();
 }
 ?>

@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-01-04 [B] Avoid possible corrupt zip files by cleaning output buffer {Nibbler}
 2007-12-29 [D] Fixed documentation that explains admin passwords (thread ID 49304) {GauGau}
 2007-12-20 [A] Added Serbian (Cyrillic) language file (user contribution) {GauGau}
 2007-12-11 [S] Added code to fix the shell injection security issue reported by Janek Vind via email and discussed in topic 48930 {Aditya}
