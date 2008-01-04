@@ -257,7 +257,7 @@ function cpg_versioncheckPopulateArray($file_data_array) {
     $maxLength_array['readwrite'] = strlen($lang_versioncheck_php['permissions']);
     $maxLength_array['version'] = strlen($lang_versioncheck_php['version']);
     $maxLength_array['revision'] = strlen($lang_versioncheck_php['revision']);
-    $maxLength_array['modified'] = strlen($lang_versioncheck_php['modified']);  
+    $maxLength_array['modified'] = strlen($lang_versioncheck_php['modified']);
     $loopCounter = 0;
     foreach ($file_data_array as $file_data_key => $file_data_values) {
     //print_r($file_data_array[$file_data_key]);
@@ -296,13 +296,19 @@ function cpg_versioncheckPopulateArray($file_data_array) {
       $file_data_array[$file_data_key]['readwrite'] = cpg_is_writable($file_data_array[$file_data_key]['path']);
       $file_data_array[$file_data_key]['txt_folderfile'] = $lang_versioncheck_php['folder'];
       $file_data_array[$file_data_key]['icon'] = '<img src="'.$extensionMatrix_array['folder'].'" border="0" width="16" height="16" alt="" style="margin-left:'. (16 * ($file_data_array[$file_data_key]['folderDepth'] - 1)) . 'px" />';
+      // no version or revision number for folder names
+      $file_data_array[$file_data_key]['txt_version'] = 'n/a('.$lang_versioncheck_php['ok'].')';
+      $file_data_array[$file_data_key]['txt_revision'] = 'n/a('.$lang_versioncheck_php['ok'].')';
     } else { // we have a file here --- start
       // determine the extension
       $file_data_array[$file_data_key]['extension'] = ltrim(substr($file_data_array[$file_data_key]['file'],strrpos($file_data_array[$file_data_key]['file'],'.')),'.');
       if (array_key_exists($file_data_array[$file_data_key]['extension'],$extensionMatrix_array) == TRUE) {
         $file_data_array[$file_data_key]['icon'] = '<img src="'.$extensionMatrix_array[$file_data_array[$file_data_key]['extension']].'" border="0" width="16" height="16" alt="'.$file_data_array[$file_data_key]['extension'].'" style="margin-left:'. (16 * $file_data_array[$file_data_key]['folderDepth']) . 'px" />';
       } else {
-        if (in_array($file_data_array[$file_data_key]['extension'],$imageFileExtensions_array)) {
+        if (in_array($file_data_array[$file_data_key]['extension'],$imageFileExtensions_array)) { // we have an image
+          // no version or revision number for folder names
+          $file_data_array[$file_data_key]['txt_version'] = 'n/a('.$lang_versioncheck_php['ok'].')';
+          $file_data_array[$file_data_key]['txt_revision'] = 'n/a('.$lang_versioncheck_php['ok'].')';
           if ($displayOption_array['display_images'] == 1) {
             $file_data_array[$file_data_key]['icon'] = '1';
           } else {
@@ -337,7 +343,7 @@ function cpg_versioncheckPopulateArray($file_data_array) {
             $file_data_array[$file_data_key]['version'] = trim(str_replace('#', '', $file_data_array[$file_data_key]['version']));
             $file_data_array[$file_data_key]['version'] = trim(substr($file_data_array[$file_data_key]['version'], 0, strpos($file_data_array[$file_data_key]['version'], '$')));
             if (strlen($file_data_array[$file_data_key]['version']) > 5) {
-              $file_data_array[$file_data_key]['version']='n/a';
+              $file_data_array[$file_data_key]['version'] = 'n/a';
             }
             if ($file_data_array[$file_data_key]['release'] != '' && $file_data_array[$file_data_key]['exists'] == 1) {
               $file_data_array[$file_data_key]['txt_version'] = $file_data_array[$file_data_key]['version'] . '(';
@@ -358,7 +364,7 @@ function cpg_versioncheckPopulateArray($file_data_array) {
             if (strlen($file_data_array[$file_data_key]['txt_version']) > $maxLength_array['version']) {
               $maxLength_array['version'] = strlen($file_data_array[$file_data_key]['txt_version']);
             }
-            // Determine file revision
+            // Determine file revision (only for files containing text)
             $file_data_array[$file_data_key]['revision'] = str_replace($revision_string, '', substr($blob,strpos($blob, $revision_string),25));
             $file_data_array[$file_data_key]['revision'] = trim(substr($file_data_array[$file_data_key]['revision'], 0, strpos($file_data_array[$file_data_key]['revision'], '$')));
             if (strlen($file_data_array[$file_data_key]['revision']) > 5) {
@@ -386,7 +392,6 @@ function cpg_versioncheckPopulateArray($file_data_array) {
             if (strlen($file_data_array[$file_data_key]['txt_revision']) > $maxLength_array['revision']) {
               $maxLength_array['revision'] = strlen($file_data_array[$file_data_key]['txt_revision']);
             }
-
           } // the file is not binary --- end
           if (function_exists('md5') && $file_data_array[$file_data_key]['hash'] != '') { // check the md5 hashes --- start
             $file_data_array[$file_data_key]['md5hash'] = md5($file_data_values['fullpath']);
@@ -431,46 +436,30 @@ function cpg_versioncheckPopulateArray($file_data_array) {
     return $file_data_array;
 } // end function definition "cpg_versioncheckPopulateArray()"
 
-// main code starts here
-
-// display page header if applicable
-if ($displayOption_array['output'] != 'download') {
-  pageheader($lang_versioncheck_php['title']);
-  print '<h1>'.$lang_versioncheck_php['title'].'</h1>';
-}
-
-// Print options if applicable
-if ($displayOption_array['output'] == 'options' || $displayOption_array['output'] == 'screen' || $displayOption_array['output'] == 'textarea') {
-    cpg_versioncheckDisplayOptions();
-}
-
-if ($displayOption_array['output'] != 'create') {
-    //print_r($file_data_array);
-    //print '<hr />';
-    $file_data_array = cpg_versioncheckPopulateArray($file_data_array);
-    //print_r($file_data_array);
-    //die;
-} else { // create data --- start
-  // loop through all folders
+function cpg_versioncheckCreateXml($file_data_array) {
+  global $newLine, $textFileExtensions_array, $lang_versioncheck_php;
   $loopCounter = 0;
   print <<< EOT
   <script type="text/javascript">
             document.write('<a href="javascript:HighlightAll(\'versioncheckdisplay.versioncheck_text\')" class="admin_menu">');
-            document.write("Select All");
+            document.write("{$lang_versioncheck_php['select_all']}");
             document.write('</a>');
             document.write('<br />');
   </script>
 EOT;
-  print '<form name="versioncheckdisplay"><textarea name="versioncheck_text" rows="10000" class="textinput debug_text" style="width:98%;font-family:\'Courier New\',Courier,monospace;font-size:9px;">';
+  print '<form name="versioncheckdisplay"><textarea name="versioncheck_text" rows="20" class="textinput debug_text" style="width:98%;font-family:\'Courier New\',Courier,monospace;font-size:9px;height:auto;overflow:auto;">';
   print '<file_data>'.$newLine;
+  $loopCounter++;
   foreach ($file_data_array as $file_data_key => $file_data_values) {
     print '  <element>'.$newLine;
+    $loopCounter++;
     // populate the path and file from the fullpath
     $tempArray = cpg_get_path_and_file($file_data_values['fullpath']);
     $file_data_array[$file_data_key]['folder'] = $tempArray['path'];
     $file_data_array[$file_data_key]['file'] = $tempArray['file'];
     $file_data_array[$file_data_key]['extension'] = ltrim(substr($file_data_array[$file_data_key]['file'],strrpos($file_data_array[$file_data_key]['file'],'.')),'.');
     print "    <fullpath>".$file_data_values['fullpath']."</fullpath>".$newLine;
+    $loopCounter++;
     if (in_array($file_data_array[$file_data_key]['extension'],$textFileExtensions_array) == TRUE) { // the file is not binary --- start
       $handle = @fopen($file_data_values['fullpath'], 'r');
       $blob = '';
@@ -491,47 +480,81 @@ EOT;
       if (strlen($file_data_array[$file_data_key]['version']) > 5) {
         $file_data_array[$file_data_key]['version']='n/a';
       }
-
       // Determine file revision
       $file_data_array[$file_data_key]['revision'] = str_replace($revision_string, '', substr($blob,strpos($blob, $revision_string),25));
       $file_data_array[$file_data_key]['revision'] = trim(substr($file_data_array[$file_data_key]['revision'], 0, strpos($file_data_array[$file_data_key]['revision'], '$')));
       if (strlen($file_data_array[$file_data_key]['revision']) > 5) {
-        $file_data_array[$file_data_key]['revision']='n/a';
+        $file_data_array[$file_data_key]['revision'] = 'n/a';
       }
-    } // the file is not binary --- end
-    print "    <release>".$file_data_array[$file_data_key]['version']."</release>".$newLine;
-    print "    <revision>".$file_data_array[$file_data_key]['revision']."</revision>".$newLine;
+    } else { // the file is not binary --- end
+        $file_data_array[$file_data_key]['version'] = '';
+        $file_data_array[$file_data_key]['revision'] = '';
+    }
+    if ($file_data_array[$file_data_key]['version'] != '') {
+        print "    <release>".$file_data_array[$file_data_key]['version']."</release>".$newLine;
+        $loopCounter++;
+    }
+    if ($file_data_array[$file_data_key]['revision'] != '') {
+        print "    <revision>".$file_data_array[$file_data_key]['revision']."</revision>".$newLine;
+        $loopCounter++;
+    }
     if ($file_data_array[$file_data_key]['status'] != '') {
       $status = $file_data_array[$file_data_key]['status'];
     } else {
       $status = 'mandatory';
     }
     print "    <status>".$status."</status>".$newLine;
+    $loopCounter++;
     if ($file_data_array[$file_data_key]['permission'] != '') {
       $permission = $file_data_array[$file_data_key]['permission'];
     } else {
       $permission = 'read';
     }
     print "    <permission>".$permission."</permission>".$newLine;
+    $loopCounter++;
     if ($file_data_array[$file_data_key]['file'] != '') {
       $hash = md5($file_data_values['fullpath']);
     } else {
       $hash = '';
     }
-    print "    <hash>".$hash."</hash>".$newLine;
+    if ($hash != '') {
+        print "    <hash>".$hash."</hash>".$newLine;
+        $loopCounter++;
+    }
     print "  </element>".$newLine;
+    $loopCounter++;
   }
   print '</file_data>'.$newLine;
+  $loopCounter++;
+  return $loopCounter;
+} // end function definition "cpg_versioncheckCreateXml()"
+
+// main code starts here
+
+// display page header if applicable
+if ($displayOption_array['output'] != 'download') {
+  pageheader($lang_versioncheck_php['title']);
+  print '<h1>'.$lang_versioncheck_php['title'].'</h1>';
 }
 
-$file_data_count = count($file_data_array);
+// Print options if applicable
+if ($displayOption_array['output'] == 'options' || $displayOption_array['output'] == 'screen' || $displayOption_array['output'] == 'textarea') {
+    cpg_versioncheckDisplayOptions();
+}
+
+if ($displayOption_array['output'] != 'create') {
+    $file_data_array = cpg_versioncheckPopulateArray($file_data_array);
+    $file_data_count = count($file_data_array);
+} else { // create data --- start
+    $file_data_count = cpg_versioncheckCreateXml($file_data_array);
+}
 
 // display formatted header data
 if ($displayOption_array['output'] == 'textarea') {
   print <<< EOT
   <script type="text/javascript">
             document.write('<a href="javascript:HighlightAll(\'versioncheckdisplay.versioncheck_text\')" class="admin_menu">');
-            document.write("Select All");
+            document.write("{$lang_versioncheck_php['select_all']}");
             document.write('</a>');
             document.write('<br />');
   </script>
@@ -566,6 +589,7 @@ if ($displayOption_array['output'] == 'textarea' || $displayOption_array['output
     $underline .= '-';
   }
   $underline .= $newLine;
+  // loop through all the elements in $file_data_array (which equals looping thorugh all folders and files) once more and create the textual output
   foreach ($file_data_array as $file_data_values) {
     if (($displayOption_array['errors_only'] == 0) || ($displayOption_array['errors_only'] == 1 && $file_data_values['comment'] != '')) { // only display if corrsponding option is not disabled --- start
       $output .= cpg_fillArrayFieldWithSpaces(ltrim($loopCounter), $maxLength_array['counter'],'left');
@@ -683,7 +707,10 @@ EOT;
 
 // display formatted footer data
 if ($displayOption_array['output'] == 'textarea' || $displayOption_array['output'] == 'create') {
-  print '</textarea></form>';
+  print <<< EOT
+  </textarea>
+  </form>
+EOT;
 }
 
 
