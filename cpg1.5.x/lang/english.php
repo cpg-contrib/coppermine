@@ -2395,6 +2395,7 @@ if (defined('VERSIONCHECK_PHP')) $lang_versioncheck_php = array(
   'do_not_connect_to_online_repository' => 'Do not connect to the online repository',
   'online_repository_explain' => 'Only recommended if connection fails',
   'submit' => 'submit / refresh',
+  'select_all' => 'Select All', //js-alert
 );
 
 // ------------------------------------------------------------------------- //
