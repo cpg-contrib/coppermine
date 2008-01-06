@@ -180,7 +180,6 @@ For credits and copyrights, see <a href="index.htm#credits">Coppermine documenta
 <li><a class="content" href="#linksInCustomFields">How do I enable clickable <b>links in custom user fields</b>?</a></li>
 <li><a class="content" href="#sortThumbsByCustomField">How can I <b>sort the thumbnails by user defined (custom) fields</b>?</a></li>
 <li><a class="content" href="#iptcSupport">How do I <b>enable IPTC support</b>?</a></li>
-<li><a class="content" href="#addFooterBeforePoweredBy">How can I <b>add</b> some output <b>directly before</b> the line &quot;Powered by Coppermine&quot;?</a></li>
 <li><a class="content" href="#commonPHPerrors">Common PHP errors and how to get rid of them...</a></li>
 <li><a class="content" href="#renameTemplateHtml">Can I <b>rename template.html to template.php</b> to include <b>PHP code</b> in my template?</a></li>
 <li><a class="content" href="#preventPictureStealing">How can I prevent users from saving (stealing) my pictures?</a></li>
@@ -921,9 +920,7 @@ $title.=$iptc[&#39;2#105&#39;][0];
 NOTE: This hack hasn&#39;t been thoroughly tested, use at your own risk...!<br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
 
 
-<a name="addFooterBeforePoweredBy"></a>
-<h3>How can I <b>add</b> some output <b>directly before</b> the line &quot;Powered by Coppermine&quot;?</h3>
-<p>Edit /themes/yourtheme/theme.php, look for <tt class="code">echo $template_footer</tt> and add the stuff you want to output in a line <b>before</b> it, like <tt class="code">print &#39;&lt;span class=&quot;footer&quot;&gt;&lt;a href=&quot;http://www.mylink.com/foo.htm&quot;&gt;My Link&lt;/a&gt;&lt;/span&gt;&#39;;</tt><br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr /><a name="commonPHPerrors"></a>
+<a name="commonPHPerrors"></a>
 <h3>Common PHP errors and how to get rid of them...</h3>
 <p>There are a lot of people (especially PHP newbies) that post questions like <tt class="code">I get the error &quot;Parse error: parse error in XXX&quot;</tt> and don&#39;t know what to do about it. That&#39;s why I translated this list of common errors (and a solution how to fix them) from the original german article in <a href="http://www.drweb.de" class="external">Dr. Web</a> :<br />
 <ul>
