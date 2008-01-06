@@ -877,14 +877,31 @@ if ((CUSTOMIZE_UPLOAD_FORM) and (!$superCage->post->keyExists('file_upload_reque
 
 if (GALLERY_ADMIN_MODE) {
     $public_albums = cpg_db_query("SELECT aid, title, cid, name FROM {$CONFIG['TABLE_ALBUMS']} INNER JOIN {$CONFIG['TABLE_CATEGORIES']} ON cid = category WHERE category < " . FIRST_USER_CAT);
+    //select albums that don't belong to a category
+    $public_albums_no_cat = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = 0");
 } else {
         $public_albums = cpg_db_query("SELECT aid, title, cid, name FROM {$CONFIG['TABLE_ALBUMS']} INNER JOIN {$CONFIG['TABLE_CATEGORIES']} ON cid = category WHERE category < " . FIRST_USER_CAT . " AND ((uploads='YES' AND (visibility = '0' OR visibility IN ".USER_GROUP_SET.")) OR (owner=".USER_ID."))");
+        //select albums that don't belong to a category
+        $public_albums_no_cat = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = 0 AND ((uploads='YES' AND (visibility = '0' OR visibility IN ".USER_GROUP_SET.")) OR (owner=".USER_ID."))");   
 }
+
+
 if (mysql_num_rows($public_albums)) {
     $public_albums_list = cpg_db_fetch_rowset($public_albums);
 } else {
     $public_albums_list = array();
 }
+
+//do the same for non categorized albums
+if (mysql_num_rows($public_albums_no_cat)) {
+    $public_albums_list_no_cat = cpg_db_fetch_rowset($public_albums_no_cat);
+} else {
+    $public_albums_list_no_cat = array();
+}
+
+//merge the 2 album arrays
+$public_albums_list = array_merge($public_albums_list, $public_albums_list_no_cat);
+
 
 if (USER_ID) {
     $user_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='" . (FIRST_USER_CAT + USER_ID) . "' ORDER BY title");
@@ -899,7 +916,7 @@ if (USER_ID) {
 
 if (!count($public_albums_list) && !count($user_albums_list)) {  // there's no album where the user is allowed to upload to
     if (USER_CAN_CREATE_ALBUMS) {
-        cpg_die (ERROR, $lang_upload_php['err_no_alb_uploadables'].'<br />&nbsp;<br /><a href="albmgr.php" title="'.$lang_user_admin_menu['albmgr_title'].'" class="admin_menu">'.$lang_user_admin_menu['albmgr_lnk'].'</a>', __FILE__, __LINE__);
+       // cpg_die (ERROR, $lang_upload_php['err_no_alb_uploadables'].'<br />&nbsp;<br /><a href="albmgr.php" title="'.$lang_user_admin_menu['albmgr_title'].'" class="admin_menu">'.$lang_user_admin_menu['albmgr_lnk'].'</a>', __FILE__, __LINE__);
     } else {
         cpg_die (ERROR, $lang_upload_php['err_no_alb_uploadables'], __FILE__, __LINE__);
     }

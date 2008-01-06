@@ -152,7 +152,8 @@ function usergroup_list_box($cid){
 	
 	//loop through all groups
 	foreach ($groups as $id => $values) {
-		if($id != 1) {
+		//make sure the administrator- and banned group aren't listed here.
+		if($id != 1 && $id != 4) {
 			$usergroup_listbox .= '		<option value="' . $id . '"' . ($values['selected']=='true'? 'selected="selected"':'') . ' >' . $values['name'] . '</option>\n';
 		}
 	}

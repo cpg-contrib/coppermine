@@ -26,6 +26,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-01-06 [B] Removed 'banned' group from selection of user creatable albums {SaWey}
+2008-01-06 [B] Not able to upload to albums that aren't in any category {SaWey}
 2008-01-04 [A] Retrieve the news by URI if possible and fall back to iframe only if retrieval does not work as expected {GauGau}
 2008-01-04 [B] Avoid possible corrupt zip files by cleaning output buffer {Nibbler}
 2007-12-29 [A] Added new installer, renamed old one untill this one is stable {SaWey}
