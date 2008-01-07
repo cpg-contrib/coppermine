@@ -4138,4 +4138,108 @@ function user_is_allowed () {
         }
         return $check_approve;
 }
+
+/**
+ * Function to set/output js files to be included.
+ *
+ * This function sets a js file to be included in the head section of the html (in theme_javascript_head() function).
+ * This function should be called before pageheader function since the js files are included in pageheader.
+ * If the optional second paramter is passed as true then instead of setting it for later use the html for
+ * js file inclusion is returned right away
+ *
+ * @param string $filename Relative path, from the root of cpg, to the js file
+ * @param boolean $inline If true then the html is returned
+ * @return mixed Returns the html for js inclusion or null if inline is false
+ */
+function js_include($filename, $inline = false) {
+	global $JS;
+
+	// Proceed with inclusion only if the file exists
+	if (!file_exists($filename)) {
+		return;
+	}
+
+	// If we need to show the html inline then return the required html
+	if ($inline) {
+		return '<script type="text/javascript" src="' . $filename . '"></script>';
+	} else {
+		// Else add the file to js includes array which will later be used in head section
+		$JS['includes'][] = $filename;
+	}
+}
+
+/**
+ * Function to set a js var from php
+ *
+ * This function sets a js var in an array. This array is later converted to json string and outputted
+ * in the head section of html (in theme_javascript_head function).
+ * All variables which are set using this function can be accessed in js using the json object named js_vars.
+ *
+ * Ex: If you set a variable: set_js_var('myvar', 'myvalue')
+ * then you can access it in js using : js_vars.myvar
+ *
+ * @param string $var Name of the variable by which the value will be accessed in js
+ * @param mixed $val Value which can be string, int, array or boolean
+ */
+function set_js_var($var, $val) {
+	global $JS;
+
+	// Add the variable to global array which will be used in theme_javascript_head() function
+	$JS['vars'][$var] = $val;
+}
+
+/**
+ * Function to convert php array to json
+ *
+ * This function is equivalent to PHP 5.2 's json_encode. PHP's native function will be used if the version
+ * is greater than equal to 5.2
+ *
+ * Function taken from http://www.bin-co.com/php/scripts/array2json/
+ * @author Binny V A <binnyva@gmail.com>
+ *
+ * @param array $arr Array which is to be converted to json string
+ * @return string json string
+ */
+if (!function_exists('json_encode')) {
+	function json_encode($arr) {
+		$parts = array();
+		$is_list = false;
+
+		//Find out if the given array is a numerical array
+		$keys = array_keys($arr);
+		$max_length = count($arr)-1;
+		if(($keys[0] == 0) and ($keys[$max_length] == $max_length)) {//See if the first key is 0 and last key is length - 1
+			$is_list = true;
+			for($i=0; $i<count($keys); $i++) { //See if each key correspondes to its position
+				if($i != $keys[$i]) { //A key fails at position check.
+					$is_list = false; //It is an associative array.
+					break;
+				}
+			}
+		}
+
+		foreach($arr as $key=>$value) {
+			if(is_array($value)) { //Custom handling for arrays
+				if($is_list) $parts[] = array2json($value); /* :RECURSION: */
+				else $parts[] = '"' . $key . '":' . array2json($value); /* :RECURSION: */
+			} else {
+				$str = '';
+				if(!$is_list) $str = '"' . $key . '":';
+
+				//Custom handling for multiple data types
+				if(is_numeric($value)) $str .= $value; //Numbers
+				elseif($value === false) $str .= 'false'; //The booleans
+				elseif($value === true) $str .= 'true';
+				else $str .= '"' . addslashes($value) . '"'; //All other things
+				// :TODO: Is there any more datatype we should be in the lookout for? (Object?)
+
+				$parts[] = $str;
+			}
+		}
+		$json = implode(',',$parts);
+
+		if($is_list) return '[' . $json . ']';//Return numerical JSON
+		return '{' . $json . '}';//Return associative JSON
+	}
+}
 ?>
