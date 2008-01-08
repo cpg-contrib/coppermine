@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-01-08 [D] Added (preliminary) JavaScript documentation {Abbas}
 2008-01-07 [O] Added two new functions js_include and set_js_vars which can be used in php to include js files and set js variables. {Abbas}
 2008-01-06 [B] Removed 'banned' group from selection of user creatable albums {SaWey}
 2008-01-06 [B] Not able to upload to albums that aren't in any category {SaWey}
