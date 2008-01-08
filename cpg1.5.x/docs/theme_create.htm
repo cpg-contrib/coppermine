@@ -322,7 +322,7 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
 
 
 
-<a name="theme_create_colors"></a><h2>Modifying colors<a href="#theme_create_colors" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<a name="theme_create_colors"></a><h2>Modifying colors &amp; design<a href="#theme_create_colors" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>To modify the colors, fonts, font sizes, etc... used by the script, you should edit the &quot;<strong>style.css</strong>&quot; stylesheet whenever possible. For example, if you want to increase or decrease the size of the fonts you can simply modify the line with : <tt class="code">table { font-size: 12px; }</tt>. Most of the font sizes used by the script are defined as a percentage of this size.</p>
 
 <a name="theme_create_theme_php"></a><h2>Editing theme.php<a href="#theme_create_theme_php" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
@@ -505,7 +505,7 @@ EOT;<br />
     <td valign="top" class="tableb tableb_alternate"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><a name="theme_create_theme_no_img_to_display"></a>function <strong>theme_no_img_to_display</strong>(<em>$album_name</em>)<a href="#theme_create_theme_no_img_to_display" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb"><a name="theme_create_theme_function_no_img_to_display"></a>function <strong>theme_no_img_to_display</strong>(<em>$album_name</em>)<a href="#theme_create_theme_function_no_img_to_display" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">function</td>
     <td valign="top" class="tableb"></td>
     <td valign="top" class="tableb"></td>
@@ -578,206 +578,209 @@ EOT;<br />
   </tr>
   <tr>
     <td valign="top" class="tableb"><a name="theme_create_theme_var_sys_menu"></a><strong>$template_sys_menu</strong><a href="#theme_create_theme_var_sys_menu" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
-    <td valign="top" class="tableb">function</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb">variable</td>
+    <td valign="top" class="tableb">Template for sys_menu</td>
     <td valign="top" class="tableb"></td>
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_var_sub_menu"></a><strong>$template_sub_menu</strong><a href="#theme_create_theme_var_sub_menu" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">variable</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb tableb_alternate">Template for sub_menu</td>
     <td valign="top" class="tableb tableb_alternate"></td>
   </tr>
   <tr>
     <td valign="top" class="tableb"><a name="theme_create_theme_sys_menu_spacer"></a><strong>$template_sys_menu_spacer</strong><a href="#theme_create_theme_sys_menu_spacer" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">variable</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb">Delimiter between sys menu items (in many themes, <tt class="code">::</tt> is being used)</td>
     <td valign="top" class="tableb"></td>
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_sys_menu_button"></a><strong>$template_sys_menu_button</strong><a href="#theme_create_theme_sys_menu_button" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">variable</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb tableb_alternate">Edit this to add/change CSS classes for the sys-menu links.<br />
+    Default content is<pre class="quote">  &lt;!-- BEGIN {BLOCK_ID} --&gt;
+        &lt;a href=&quot;{HREF_TGT}&quot; title=&quot;{HREF_TITLE}&quot;&gt;{HREF_LNK}&lt;/a&gt; {SPACER}
+  &lt;!-- END {BLOCK_ID} --&gt;</pre></td>
     <td valign="top" class="tableb tableb_alternate"></td>
   </tr>
   <tr>
     <td valign="top" class="tableb"><a name="theme_create_theme_sub_menu_spacer"></a><strong>$template_sub_menu_spacer</strong><a href="#theme_create_theme_sub_menu_spacer" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">variable</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb">Delimiter between sub menu items. By default, it's the same delimiter that is being used for the sys menu.</td>
     <td valign="top" class="tableb"></td>
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_sub_menu_button"></a><strong>$template_sub_menu_button</strong><a href="#theme_create_theme_sub_menu_button" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">variable</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb tableb_alternate">Edit this to add/change CSS classes for the menu-menu links. By default, the definition for the sys-menu is being taken into account.</td>
     <td valign="top" class="tableb tableb_alternate"></td>
   </tr>
   <tr>
     <td valign="top" class="tableb"><a name="theme_create_theme_gallery_admin_menu"></a><strong>$template_gallery_admin_menu</strong><a href="#theme_create_theme_gallery_admin_menu" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">variable</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb">HTML template for gallery admin menu</td>
     <td valign="top" class="tableb"></td>
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_user_admin_menu"></a><strong>$template_user_admin_menu</strong><a href="#theme_create_theme_user_admin_menu" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">variable</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb tableb_alternate">HTML template for user admin menu, i.e. the additional menu the non-admin user sees if he is logged in and allowed to have a personal gallery (permission for this is being assigned on the <a href="groups.htm#group_cp">groups control panel</a>).</td>
     <td valign="top" class="tableb tableb_alternate"></td>
   </tr>
   <tr>
     <td valign="top" class="tableb"><a name="theme_create_theme_var_cat_list"></a><strong>$template_cat_list</strong><a href="#theme_create_theme_var_cat_list" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">variable</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb">HTML template for the category list</td>
     <td valign="top" class="tableb"></td>
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_breadcrumb"></a><strong>$template_breadcrumb</strong><a href="#theme_create_theme_breadcrumb" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">variable</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb tableb_alternate">HTML template for the breadcrumb (i.e. the path that indicates where the visitor actually is in terms of the logical category/album structure)</td>
     <td valign="top" class="tableb tableb_alternate"></td>
   </tr>
   <tr>
     <td valign="top" class="tableb"><a name="theme_create_theme_var_album_list"></a><strong>$template_album_list</strong><a href="#theme_create_theme_var_album_list" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">variable</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb">HTML template for the album list</td>
     <td valign="top" class="tableb"></td>
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_var_film_strip"></a><strong>$template_film_strip</strong><a href="#theme_create_theme_var_film_strip" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">variable</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb tableb_alternate">HTML template for filmstrip display on the intermediate image page (displayimage.php)</td>
     <td valign="top" class="tableb tableb_alternate"></td>
   </tr>
   <tr>
     <td valign="top" class="tableb"><a name="theme_create_theme_var_album_list_cat"></a><strong>$template_album_list_cat</strong><a href="#theme_create_theme_var_album_list_cat" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">variable</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb">HTML template for the album list</td>
     <td valign="top" class="tableb"></td>
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_album_admin_menu"></a><strong>$template_album_admin_menu</strong><a href="#theme_create_theme_album_admin_menu" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">variable</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb tableb_alternate">HTML template for the ALBUM admin menu displayed in the album list, i.e. the menu items (buttons) that are being displayed next to each album thumbnail if the logged in user is the owner of that album. Usually, this is the case for the admin.</td>
     <td valign="top" class="tableb tableb_alternate"></td>
   </tr>
   <tr>
     <td valign="top" class="tableb"><a name="theme_create_theme_thumb_view_title_row"></a><strong>$template_thumb_view_title_row</strong><a href="#theme_create_theme_thumb_view_title_row" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">variable</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb">HTML template for title row of the thumbnail view (album title + sort options). This is the place to remove the sort options if you don't want them displayed.</td>
     <td valign="top" class="tableb"></td>
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_fav_thumb_view_title_row"></a><strong>$template_fav_thumb_view_title_row</strong><a href="#theme_create_theme_fav_thumb_view_title_row" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">variable</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb tableb_alternate">HTML template for title row of the fav thumbnail view (album title + download).</td>
     <td valign="top" class="tableb tableb_alternate"></td>
   </tr>
   <tr>
     <td valign="top" class="tableb"><a name="theme_create_theme_thumbnail_view"></a><strong>$template_thumbnail_view</strong><a href="#theme_create_theme_thumbnail_view" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">variable</td>
-    <td valign="top" class="tableb"></td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb">HTML template for thumbnails display</td>
+    <td valign="top" class="tableb">function <a href="#theme_create_theme_display_thumbnails">theme_display_thumbnails</a> uses variable and defines placeholder tokens <tt class="code">{THUMB}</tt>, <tt class="code">{CAPTION}</tt>, <tt class="code">{ADMIN_MENU}</tt> and <tt class="code">{TABS}</tt></td>
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_var_no_img_to_display"></a><strong>$template_no_img_to_display</strong><a href="#theme_create_theme_var_no_img_to_display" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">variable</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb tableb_alternate">HTML template for the thumbnail view when there is no picture to show. If your gallery <a href="configuration.htm#admin_allow_unlogged_access">requires visitors to log in</a> to actually view the pictures, you may encourage them to do so by coming up with custom content within this theme section.</td>
+    <td valign="top" class="tableb tableb_alternate">Placeholder token <tt class="code">{TEXT}</tt> being populated and variable used in function <a href="#theme_create_theme_function_no_img_to_display">theme_no_img_to_display</a></td>
   </tr>
   <tr>
     <td valign="top" class="tableb"><a name="theme_create_theme_user_list_info_box"></a><strong>$template_user_list_info_box</strong><a href="#theme_create_theme_user_list_info_box" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">variable</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb">HTML template for the USER info box in the user list view</td>
     <td valign="top" class="tableb"></td>
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_var_img_navbar"></a><strong>$template_img_navbar</strong><a href="#theme_create_theme_var_img_navbar" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">variable</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb tableb_alternate">HTML template for the image navigation bar: the navigation at the top of the intermediate image view that let's you go to the thumbnail view, expands/collapses the pic info section, starts the slideshow, contains links to ecard, allows you to report a file to the admin and displays the link to the previous and next image in the album the visitor is currently in.</td>
     <td valign="top" class="tableb tableb_alternate"></td>
   </tr>
   <tr>
     <td valign="top" class="tableb"><a name="theme_create_theme_var_display_media"></a><strong>$template_display_media</strong><a href="#theme_create_theme_var_display_media" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">variable</td>
-    <td valign="top" class="tableb"></td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb">HTML template for intermediate image display. This is the place where layout changes of the intermediate image in relation to the title and description should be added.</td>
+    <td valign="top" class="tableb">function theme_html_picture populates the placeholder tokens <tt class="code">{IMAGE}</tt>, <tt class="code">{ADMIN_MENU}</tt>, <tt class="code">{TITLE}</tt> and <tt class="code">{CAPTION}</tt> and uses the variable</td>
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_var_image_rating"></a><strong>$template_image_rating</strong><a href="#theme_create_theme_var_image_rating" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">variable</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb tableb_alternate">HTML template for the image rating box</td>
     <td valign="top" class="tableb tableb_alternate"></td>
   </tr>
   <tr>
     <td valign="top" class="tableb"><a name="theme_create_theme_var_image_comments"></a><strong>$template_image_comments</strong><a href="#theme_create_theme_var_image_comments" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">variable</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb">HTML template for the display of comments</td>
     <td valign="top" class="tableb"></td>
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_add_your_comment"></a><strong>$template_add_your_comment</strong><a href="#theme_create_theme_add_your_comment" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">variable</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb tableb_alternate">HTML template for the input form for comments</td>
     <td valign="top" class="tableb tableb_alternate"></td>
   </tr>
   <tr>
     <td valign="top" class="tableb"><a name="theme_create_theme_var_cpg_die"></a><strong>$template_cpg_die</strong><a href="#theme_create_theme_var_cpg_die" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">variable</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb">HTML template used by the cpg_die function, used to display error messages of any kind to the visitor</td>
     <td valign="top" class="tableb"></td>
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_var_msg_box"></a><strong>$template_msg_box</strong><a href="#theme_create_theme_var_msg_box" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">variable</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb tableb_alternate">HTML template used by the msg_box function that displays messages to the visitor at the top of the screen (usually giving feedback for actions that the visitor has made on a previous screen).</td>
     <td valign="top" class="tableb tableb_alternate"></td>
   </tr>
   <tr>
     <td valign="top" class="tableb"><a name="theme_create_theme_var_ecard"></a><strong>$template_ecard</strong><a href="#theme_create_theme_var_ecard" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">variable</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb">HTML template for e-cards</td>
     <td valign="top" class="tableb"></td>
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_var_ecard_plaintext"></a><strong>$template_ecard_plaintext</strong><a href="#theme_create_theme_var_ecard_plaintext" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">variable</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb tableb_alternate">plain-text template for e-cards (as fallback for clients that can't display html-formatted mails)</td>
     <td valign="top" class="tableb tableb_alternate"></td>
   </tr>
   <tr>
     <td valign="top" class="tableb"><a name="theme_create_theme_var_report"></a><strong>$template_report</strong><a href="#theme_create_theme_var_report" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">variable</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb">HTML template for report</td>
     <td valign="top" class="tableb"></td>
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_var_report_plaintext"></a><strong>$template_report_plaintext</strong><a href="#theme_create_theme_var_report_plaintext" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">variable</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb tableb_alternate">plain-text template for reports (as fallback for clients that can't display html-formatted mails)</td>
     <td valign="top" class="tableb tableb_alternate"></td>
   </tr>
   <tr>
     <td valign="top" class="tableb"><a name="theme_create_theme_var_report_comment"></a><strong>$template_report_comment</strong><a href="#theme_create_theme_var_report_comment" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">variable</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb">HTML template for displaying a reported comment</td>
     <td valign="top" class="tableb"></td>
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_var_report_comment_email"></a><strong>$template_report_comment_email</strong><a href="#theme_create_theme_var_report_comment_email" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">variable</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb tableb_alternate">plain-text template for reports (as fallback for clients that can't display html-formatted mails)</td>
     <td valign="top" class="tableb tableb_alternate"></td>
   </tr>
   <tr>
     <td valign="top" class="tableb"><a name="theme_create_theme_tab_display"></a><strong>$template_tab_display</strong><a href="#theme_create_theme_tab_display" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">variable</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb">Template used for tabbed display</td>
     <td valign="top" class="tableb"></td>
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_var_vanity"></a><strong>$template_vanity</strong><a href="#theme_create_theme_var_vanity" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">variable</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb tableb_alternate">Template used for <a href="configuration.htm#vanity_block">Vanity Footer</a></td>
     <td valign="top" class="tableb tableb_alternate"></td>
   </tr>
   <tr>
