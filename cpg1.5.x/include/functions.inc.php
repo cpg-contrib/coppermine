@@ -2169,7 +2169,7 @@ function& cpg_get_system_thumb($filename,$user=10001)
 function display_film_strip($album, $cat, $pos)
 {
         global $CONFIG, $AUTHORIZED;
-        global $album_date_fmt, $lang_display_thumbnails, $lang_errors, $lang_byte_units, $lang_common;
+        global $album_date_fmt, $lang_display_thumbnails, $lang_errors, $lang_byte_units, $lang_common, $pic_count;
 
         $superCage = Inspekt::makeSuperCage();
 
@@ -2244,9 +2244,17 @@ function display_film_strip($album, $cat, $pos)
 
                 }
 
+				// Get the pos for next and prev links in filmstrip navigation
+				$filmstrip_next_pos = $pos + $CONFIG['max_film_strip_items'];
+				$filmstrip_prev_pos = $pos - $CONFIG['max_film_strip_items'];
+				// If next pos is greater then total pics then make it pic_count - 1
+				$filmstrip_next_pos = $filmstrip_next_pos >= $pic_count ? $pic_count - 1 : $filmstrip_next_pos;
+				// If prev pos is less than 0 then make it 0
+				$filmstrip_prev_pos = $filmstrip_prev_pos < 0 ? 0 : $filmstrip_prev_pos;
+
                 //Using getRaw(). The date is sanitized in the called function.
                 $date = $superCage->get->keyExists('date') ? cpgValidateDate($superCage->get->getRaw('date')) : null;
-                return theme_display_film_strip($thumb_list, $thumb_count, $album_name, $album, $cat, $pos, is_numeric($album), 'thumb', $date);
+                return theme_display_film_strip($thumb_list, $thumb_count, $album_name, $album, $cat, $pos, is_numeric($album), 'thumb', $date, $filmstrip_prev_pos, $filmstrip_next_pos);
         } else {
                 theme_no_img_to_display($album_name);
         }

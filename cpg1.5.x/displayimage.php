@@ -32,6 +32,9 @@ if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 1) {
     exit();
 }
 
+js_include('js/jquery.js');
+js_include('js/displayimage.js');
+
 if ($CONFIG['enable_smilies']) include("include/smilies.inc.php");
 
 $breadcrumb = '';
@@ -44,7 +47,6 @@ if($CONFIG['read_exif_data'] ){
 if($CONFIG['read_iptc_data'] ){
         include("include/iptc.inc.php");
 }
-
 
 /**
  * Local functions definition
@@ -339,7 +341,7 @@ if ($pos < 0 || $pid > 0) {
     $CURRENT_PIC_DATA = $pic_data[$pos];
     reset($pic_data);
     ########################################################
-} elseif ($pos) {
+} elseif (isset($pos)) {
     //$pic_data = get_pic_data($album, $pic_count, $album_name, $pos, 1, false);
     //We must get all the data here as well, otherwise the prev/next breaks.
     $pic_data = get_pic_data($album, $pic_count, $album_name, -1, -1, false);
@@ -357,6 +359,14 @@ if (!count($CURRENT_PIC_DATA)) {
   cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
 }
 ######################################
+
+// If we have film_strip key in GET then it means this is an ajax call for filmstrip
+if ($superCage->get->keyExists('film_strip')) {
+	// Get the filmstrip, display it and exit.
+	$film_strip = display_film_strip($album, (isset($cat) ? $cat : 0), $pos, true);
+	echo $film_strip;
+	exit;
+}
 
 // Retrieve data for the current album
 if (isset($CURRENT_PIC_DATA)) {
@@ -402,15 +412,18 @@ if ($superCage->get->keyExists('fullsize')) {
     if($album == 'lastup' || $album == 'lastcom' || $album == 'topn' || $album == 'toprated' || $album == 'favpics' || $album == 'random') {
         $meta_keywords .= '<meta name="robots" content="noindex, nofollow" />';
     }
+
+    // Display Filmstrip if the album is not search
+    if ($album != 'search') {
+        $film_strip = display_film_strip($album, (isset($cat) ? $cat : 0), $pos, true);
+    }
+
     pageheader($album_name . '/' . $picture_title, $meta_keywords, false);
     // Display Breadcrumbs
     if ($breadcrumb && !(strpos($CONFIG['main_page_layout'],"breadcrumb")===false)) {
         theme_display_breadcrumb($breadcrumb, $cat_data);
     }
-    // Display Filmstrip if the album is not search
-    if ($album != 'search') {
-        $film_strip = display_film_strip($album, (isset($cat) ? $cat : 0), $pos, true);
-    }
+
     CPGPluginAPI::filter('post_breadcrumb',null);
     theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments, $film_strip);
     pagefooter();

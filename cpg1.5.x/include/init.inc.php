@@ -154,6 +154,9 @@ if (!preg_match('/^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$/', $hdr_ip)) 
 // Reference 'site_url' to 'ecards_more_pic_target'
 $CONFIG['site_url'] =& $CONFIG['ecards_more_pic_target'];
 
+// Set the site_url in js_vars so that it can be used in js
+set_js_var('site_url', rtrim($CONFIG['site_url'], '/'));
+
 // Set default language (set up by the admin) as a constant, since it might get replaced during runtime
 define('DEFAULT_LANGUAGE', $CONFIG['lang']);
 

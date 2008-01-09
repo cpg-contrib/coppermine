@@ -475,12 +475,12 @@ $template_film_strip = <<<EOT
          <td valign="top" style="background-image: url({TILE1});"><img src="{TILE1}" alt="" border="0" /></td>
         </tr>
         <tr>
-        <td valign="bottom" class="thumbnails" align="center">
+        <td valign="bottom" class="thumbnails" align="center" style="{THUMB_TD_STYLE}">
           <table width="100%" cellspacing="0" cellpadding="3" border="0">
               <tr>
-                 <td width="50%"></td>
+                 <td width="50%"><span id="filmstrip_prev_link" style="display: none;">{PREV_LINK}</span></td>
                  {THUMB_STRIP}
-                 <td width="50%"></td>
+                 <td width="50%" align="right"><span id="filmstrip_next_link" style="display: none;">{NEXT_LINK}</a></span></td>
               </tr>
           </table>
         </td>
@@ -2431,9 +2431,9 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
 ******************************************************************************/
 // Function to display the film strip
 // Function to display the film strip
-function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $pos, $sort_options, $mode = 'thumb', $date='') {
+function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $pos, $sort_options, $mode = 'thumb', $date='', $filmstrip_prev_pos, $filmstrip_next_pos) {
     global $CONFIG, $THEME_DIR;
-    global $template_film_strip, $lang_film_strip;
+    global $template_film_strip, $lang_film_strip, $pic_count;
 
     static $template = '';
     static $thumb_cell = '';
@@ -2458,7 +2458,7 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
     foreach($thumb_list as $thumb) {
         $i++;
         if ($mode == 'thumb') {
-            if ($thumb['pos'] == $pos) {
+            if ($thumb['pos'] == $pos && !$superCage->get->keyExists('film_strip')) {
                     $thumb['image'] = str_replace('class="image"', 'class="image middlethumb"', $thumb['image']);
             }
             // determine if thumbnail link targets should open in a pop-up
@@ -2497,16 +2497,28 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
         $tile1=$tile2= 'images/tile.gif';
     }
 
+    if (defined('THEME_HAS_NAVBAR_GRAPHICS')) {
+		$location = $THEME_DIR;
+	} else {
+		$location= '';
+	}
+	$prev_tgt = "displayimage.php?film_strip=1&amp;pos=$filmstrip_prev_pos&amp;album=$aid&amp;cat=$cat";
+	$next_tgt = "displayimage.php?film_strip=1&amp;pos=$filmstrip_next_pos&amp;album=$aid&amp;cat=$cat";
     $params = array('{THUMB_STRIP}' => $thumb_strip,
         '{COLS}' => $i,
         '{TILE1}' => $tile1,
         '{TILE2}' => $tile2,
+        '{PREV_LINK}' => $pos > 0 ? "<a href=\"$prev_tgt\" id=\"filmstrip_prev\" rel=\"nofollow\"><img src=\"{$location}images/prev.gif\" border=\"0\" /></a>" : ' ',
+        '{NEXT_LINK}' => $pos < $pic_count - 1 ? "<a href=\"$next_tgt\" id=\"filmstrip_next\" rel=\"nofollow\"><img src=\"{$location}images/next.gif\" border=\"0\" /></a>" : ' ',
+        '{THUMB_TD_STYLE}' => $superCage->get->keyExists('film_strip') ? 'display: none;' : '',
         );
 
     ob_start();
+    echo '<div id="filmstrip">';
     starttable($CONFIG['picture_table_width']);
     echo template_eval($template, $params);
     endtable();
+    echo '</div>';
     $film_strip = ob_get_contents();
     ob_end_clean();
 
