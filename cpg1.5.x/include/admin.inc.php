@@ -111,7 +111,8 @@ $config_data = array(
       'options' => array($lang_common['no'],
                          $lang_common['yes'].': '.$lang_admin_php['debug_everyone'],
                          $lang_common['yes'].': '.$lang_admin_php['debug_admin']
-                         )
+                         ),
+      'additional_description' => ' (' . $lang_admin_php['enable_help_description'] .')',
     ),
     'clickable_keyword_search' => array(
       'type' => 'radio',
