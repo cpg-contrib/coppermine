@@ -49,6 +49,7 @@
 <p>Coppermine can be integrated with the following bulletin boards (eg. Coppermine
   and your bulletin board will share the same user database).</p>
 <ul>
+  <li>Eblah</li>
   <li>Invision Power Board</li>
   <li>Mambo</li>
   <li>MyBB</li>
@@ -86,6 +87,8 @@ Coppermine: http://yourseconddomain.com/gallery/</td>
 </table>
 <p>The cookie path in the forum's configuration should be set to '/' where this option is available.</p>
 <p><span class="important">Important</span>: the cookie names of your bbs and coppermine must <strong>not</strong> be the same - they <strong>must</strong> differ!</p>
+<p>Some bridging apps have an option to enable sub-domain independant cookies that you should enable if you own the entire domain.</p>
+<p>In many recent BBS apps you can specify wether you want to handle authentification of users by cookie or by session. If you want to bridge, you have to make sure that the app you bridge with is using cookies as authentification method - coppermine doesn't work with session-driven authentification!</p>
 <a name="integrating_cookie_end"></a>
 
 <a name="integrating_standalone_start"></a><h3>Standalone version first<a href="#integrating_standalone_start" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -110,6 +113,7 @@ Correlation between the actions that the unbridged coppermine users have perform
 <a name="integrating_backup_start"></a><h3>Backup<a href="#integrating_backup_start" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p><span class="important">Backup</span>: it is very advisable to backup both your coppermine database and your files before enabling bbs integration, so you can safely go back if the integration fails.</p>
 <p>In fact you're encouraged to backup your database on a regular base, and especially before applying code changes.</p>
+<p>However, don't be afraid that bridging might cause your BBS to malfunction: coppermine doesn't harm your forum (or the app you bridge with) at all. When enabling bridging, coppermine doesn't run write/alter queries against the BBS's database tables nor does coppermine modify any of the files of the bridging app. The worst thing that may happen if something goes wrong is your coppermine gallery becoming inaccessible. It is completely impossible that coppermine bridging will do harm to your bridging application.</p>
 <a name="integrating_backup_end"></a>
 
 
@@ -133,6 +137,7 @@ Click &quot;next&quot;</p>
 <a name="bridge_manager_app_start"></a><h4>Choose application to bridge coppermine with<a href="#bridge_manager_app_start" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 <ul>
 <ul>
+  <li>Eblah</li>
   <li>Invision Power Board</li>
   <li>Mambo</li>
   <li>MyBB</li>
@@ -176,6 +181,7 @@ Should Coppermine import the special groups that exist in the forum ? If you sel
 
 <a name="bridge_manager_recover_start"></a><h2>Recover from failed bridging<a href="#bridge_manager_recover_start" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>If you have provided improper settings using the bridge manager, your integration might fail, resulting (in the worst case) in a stituation where bridging is enabled, but you can not log in as admin to switch it off again (e.g. if you provided improper cookie settings that stops authentication from working). For this situation a recovery setting was built into the bridge manager: if you are not logged in as coppermine admin (in fact: not logged in at all) and you access the URL of your bridge manager (http://yourdomain.tld/your_coppermine_folder/bridgemgr.php) by entering it manually into the address bar of your browser, you are prompted to enter your admin account details - use the admin account you used to install coppermine with in the first place (the standalone admin account). This will not log you in, but switch integration off, so you can fix improper bridging settings then. To avoid others trying to guess your admin account details, there's a login treshold that rises every time you enter wrong credentials, so enter your admin account details with care.</p>
+<p>If you prefer disabling bridging manually, use a third-party tool like phpMyAdmin, browse coppermine's config table and set 'bridge_enable' to '0' ('1' means "enabled", '0' means "disabled").</p>
 
 <a name="bridge_manager_recover_end"></a>
 
@@ -217,6 +223,21 @@ Use post-based groups?:  <span class="important">1</span>  </pre></li>
 <li>The test user account you're suppossed to post must not be an admin account, but a regular user account. The test user account needs of course to be created in the application you bridge with</li>
 </ul>
 <a name="integrating_support_end"></a>
+
+<a name="integrating_config_options_start"></a><h2>Some config options get disabled<a href="#integrating_config_options_start" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>As explained on this page, coppermine will drop the user management it comes with in favor of the user management of the bridging app if you enable bridging. Subsequently, coppermine config options that apply to coppermine's user management will no longer apply (e.g. the user profile fields). Therefor, the config options that apply only to a standalone, unbridged coppermine will be disabled on the config screen if bridging is enabled.</p>
+<a name="integrating_config_options_end"></a>
+
+<a name="integrating_files_start"></a><h2>Bridging files<a href="#integrating_files_start" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>In coppermine's root folder, you will find a subfolder named "bridge" - this is where the bridge files reside in. When coppermine is run (i.e. a visitor browses a coppermine-driven page), coppermine includes the bridge file that relates to the app you have bridged with. Using this file, coppermine does what is needed to authenticate the visitor. Even if coppermine is not bridged at all, there is still a file that is being included from the bridge folder (&quot;coppermine.inc.php&quot;) that determines what tables to use.</p>
+<p>Usually, you should not edit the files within the bridge folder - in fact the only important thing that you have to remember is that coppermine needs the bridge folder and the contents even if you haven't enabled the bridging feature. Just leave the files as they are. Power users who really know their way around are of course welcome to edit the bridge files and adjust them to their needs.</p>
+<a name="integrating_files_end"></a>
+
+<a name="integrating_bridge_file_creating_start"></a><h2>Creating a custom bridge file<a href="#integrating_bridge_file_creating_start"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>In theory, coppermine could be bridged with all forms of third party applications that have a user management/authentification. There are thousands of applications available that could be potential candidates. Just because of the sheer number of possible bridges, but as well because of other restrictions (non-free software, lack of time, lack of need), the coppermine devs can not come up with a huge number of bridge files. That's why there is only a comparatively small number of bridge files available. If you are looking for a bridge file for another application that is not being covered by the bridge files that come with coppermine out-of-the-box, you're welcome to search the coppermine support board if there already is an existing user-contributed bridge, or (even better) you're encouraged to come up with a bridge file of your own and publish it on the board. We (the coppermine dev team) have to rely on user contributions for most potential bridge candidates.</p>
+<p>Sadly, there is no particular piece of documentation available that explains how to create a custom bridge file, so the best method to create your custom bridge file is to look at texisting bridge files and modify one to fit your needs.</p>
+<a name="integrating_files_end"></a>
+
 <a name="integrating_end"></a>
 
 <script type="text/javascript">
