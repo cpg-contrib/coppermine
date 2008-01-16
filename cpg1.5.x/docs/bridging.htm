@@ -111,9 +111,9 @@ Correlation between the actions that the unbridged coppermine users have perform
 <a name="integrating_users_end"></a>
 
 <a name="integrating_backup_start"></a><h3>Backup<a href="#integrating_backup_start" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p><span class="important">Backup</span>: it is very advisable to backup both your coppermine database and your files before enabling bbs integration, so you can safely go back if the integration fails.</p>
+<p><span class="important">Backup</span>: it is very advisable to backup both your coppermine database and your files before enabling bridging, so you can safely go back if the integration fails.</p>
 <p>In fact you're encouraged to backup your database on a regular base, and especially before applying code changes.</p>
-<p>However, don't be afraid that bridging might cause your BBS to malfunction: coppermine doesn't harm your forum (or the app you bridge with) at all. When enabling bridging, coppermine doesn't run write/alter queries against the BBS's database tables nor does coppermine modify any of the files of the bridging app. The worst thing that may happen if something goes wrong is your coppermine gallery becoming inaccessible. It is completely impossible that coppermine bridging will do harm to your bridging application.</p>
+<p>However, don't be afraid that bridging might cause your bridging app to malfunction: coppermine doesn't harm your forum (or the app you bridge with) at all. When enabling bridging, coppermine doesn't run write/alter queries against the bridging app's database tables nor does coppermine modify any of the files of the bridging app. The worst thing that may happen if something goes wrong is your coppermine gallery becoming inaccessible. It is completely impossible that coppermine bridging will do harm to your bridging application.</p>
 <a name="integrating_backup_end"></a>
 
 
@@ -152,7 +152,7 @@ Click &quot;next&quot;</p>
 </ul>
 </ul>
 <a name="bridge_manager_app_end"></a>
-<a name="bridge_manager_path_start"></a><h4>Path(s) used by your BBS app<a href="#bridge_manager_path_start" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+<a name="bridge_manager_path_start"></a><h4>Path(s) used by your bridge app<a href="#bridge_manager_path_start" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 <ul>
 <li><strong>Bridge app URL</strong><br />
 Full URL of your bridge app (including the leading http:// bit, e.g. http://www.yourdomain.tld/forum/)</li>
@@ -231,6 +231,7 @@ Use post-based groups?:  <span class="important">1</span>  </pre></li>
 <a name="integrating_files_start"></a><h2>Bridging files<a href="#integrating_files_start" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>In coppermine's root folder, you will find a subfolder named "bridge" - this is where the bridge files reside in. When coppermine is run (i.e. a visitor browses a coppermine-driven page), coppermine includes the bridge file that relates to the app you have bridged with. Using this file, coppermine does what is needed to authenticate the visitor. Even if coppermine is not bridged at all, there is still a file that is being included from the bridge folder (&quot;coppermine.inc.php&quot;) that determines what tables to use.</p>
 <p>Usually, you should not edit the files within the bridge folder - in fact the only important thing that you have to remember is that coppermine needs the bridge folder and the contents even if you haven't enabled the bridging feature. Just leave the files as they are. Power users who really know their way around are of course welcome to edit the bridge files and adjust them to their needs.</p>
+<p>There have been users who tried to &quot;run&quot; the bridge files themselves directly in your browser - this will not work and do nothing but result in an error message. The bridge files are not meant to be run standalone - they get included by coppermine during runtime. If you have no idea what this means, just ignore those files and leave all in place. It won't hurt to have bridge files reside on your webspace even if you don't use the bridge that corresponds to a particular bridge file.</p>
 <a name="integrating_files_end"></a>
 
 <a name="integrating_bridge_file_creating_start"></a><h2>Creating a custom bridge file<a href="#integrating_bridge_file_creating_start"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
