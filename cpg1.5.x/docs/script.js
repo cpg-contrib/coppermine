@@ -434,7 +434,7 @@ d.add(443,440,'Edit style.css','theme_upgrade_13x-14x.htm#style');
 d.add(444,440,'Edit theme.php','theme_upgrade_13x-14x.htm#template');
 d.add(445,440,'Edit template.html','theme_upgrade_13x-14x.htm#theme');
 d.add(446,440,'Validation Methodology','theme_upgrade_13x-14x.htm#validation');
-d.add(447,420,'Converting cpg1.4.x themes to cpg1.5.x','theme_upgrade_14x-15x.htm');
+d.add(447,430,'Converting cpg1.4.x themes to cpg1.5.x','theme_upgrade_14x-15x.htm');
 d.add(448,447,'Edit style.css','theme_upgrade_14x-15x.htm#style');
 d.add(449,447,'Edit theme.php','theme_upgrade_14x-15x.htm#template');
 d.add(450,447,'Edit template.html','theme_upgrade_14x-15x.htm#theme');
