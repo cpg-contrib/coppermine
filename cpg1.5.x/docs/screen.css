@@ -201,7 +201,7 @@ ul {
         float:left;
         width:350px;
         margin-right:30px;
-        margin-top:5xp;
+        margin-top:5px;
         margin-bottom:30px;
         padding:2px;
         position:static;
@@ -399,7 +399,7 @@ dt {
         margin-left:20px;
 }
 
-. navlocator {
+.navlocator {
         font-size:0.8em;
         color: #0E72A4;
         font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
