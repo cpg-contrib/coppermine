@@ -126,9 +126,33 @@
 <a name="album_prop_end"></a>
 
 <a name="album_admin_user"></a><h2>Admin vs. user<a href="#album_admin_user" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>Non-admin users can not create albums in public categories. Only the admin can create albums there. There is no hack, mod or workaround available to circumvent this.</p>
+<p>Non-admin users can not create albums in public categories by default. Only the admin can create albums there. Starting with cpg1.5.x, there is an option to allow non-admin users to create albums in categories created by the admin. To accomplish this, go to the <a href="categories.htm#cat_cp">category control panel</a> and use the &quot;Allow group to create Album&quot; dropdown to specify what user group is allowed to create albums within that specific category.</p>
 <p>If a non-admin user belongs to a group that is allowed to have <a href="groups.htm#group_cp_personal">personal galleries</a> (configurable on the groups manager), he will have a reduced album manager page as well (named &quot;Create / order my albums&quot;) where he can create albums within his personal gallery (<acronym title="also known as">aka</acronym> &quot;user gallery&quot;).</p>
 <p>The admin can create albums within all categories. If you want to create a personal album as admin, choose &quot;<tt class="code">* My Gallery *</tt>&quot; as parent category for your personal album.</p>
+
+<a name="album_faq"></a><h2>Album <acronym title="Frequently Asked Questions">FAQ</acronym><a href="#album_faq" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+
+<a name="album_howAlbumsFolderWork"></a>
+<h3>How do <strong>albums and folders</strong> work in coppermine?<a href="#album_howAlbumsFolderWork" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<ol>
+<li>When you create an album, it is a dynamic 'virtual' album.  Coppermine doesn't create a physical folder for this album on the server's hard drive, it leaves the pictures where you put them on the server, and uses the database to know which pic belongs in which album. You can move pics from album to album in Coppermine, but it's all done in the database, the pics are never moved on the server.</li>
+<li>When you upload by html, using the 'upload' link, coppermine places the pic (and the thumb and normal size copies) in the 'userpics' directory.</li>
+<li>When you upload by ftp, you should place the pics into folders that you create within the 'albums' folder, but never in the 'userpics' folder. The 'userpics' folder is reserved for html uploads only.  You can create as many folders/sub-folders for FTP uploads as you want. (Many webhosting services will recommend that you keep the number of files per folder under 500 in order to maximize speed and certain functions. This means you can upload up to 500/3 files in each folder.) You can name these folders anything you want, but we do recommend mirroring the category/album structures that you have created, whenever possible, to facilitate ease of use and site management.</li>
+<li>When you <a href="uploading.htm#batch_add_pics">batch-add</a> files that you have already FTP'd to your site, coppermine asks you what album you want to put the pics in, but it leaves the pics where they are on the server.</li>
+</ol>
+
+<a name="album_howMoveAlbum"></a>
+<h3>How can I <strong>move albums from one category to another</strong>?<a href="#album_howMoveAlbum" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<ul>
+<li>log in as admin</li>
+<li>create categories (using <a href="categories.htm#cat_cp">category manager</a> from admin menu)</li>
+<li>go to the index page of your gallery</li>
+<li>click "Properties" next to the album thumbnail that represents the album you want to see moved</li>
+<li>From the dropdown list &quot;Album category&quot;, choose the category the album should go to</li>
+<li>Click &quot;Update Album&quot;</li>
+</ul>
+
+
 
 <script type="text/javascript">
   cpgDocFooter();

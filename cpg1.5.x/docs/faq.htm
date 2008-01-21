@@ -56,8 +56,8 @@
 <li><a class="content" href="#cookie">I can't <strong>login</strong> to Coppermine. What's wrong?</a></li>
 <li><a class="content" href="#sortAlbum">How can I change the <strong>sorting order of the albums</strong>?</a></li>
 <li><a class="content" href="#deleteIntermediates">I don't use the <strong>intermediate pictures</strong> anymore. How can I <strong>delete</strong> them to gain disk space?</a></li>
-<li><a class="content" href="#howAlbumsFolderWork">How do <strong>albums and folders</strong> work in coppermine?</a></li>
-<li><a class="content" href="#howMoveAlbum">How can I <strong>move albums from one category to another</strong>?</a></li>
+<li><a class="content" href="albums#album_howAlbumsFolderWork">How do <strong>albums and folders</strong> work in coppermine?</a></li>
+<li><a class="content" href="albums.htm#album_howMoveAlbum">How can I <strong>move albums from one category to another</strong>?</a></li>
 <li><a class="content" href="#moveGallery">How do I <strong>move a gallery</strong>?</a></li>
 <li><a class="content" href="#oneFileMultipleAlbums">How do I <strong>show the same file in multiple albums</strong>?</a></li>
 
@@ -202,27 +202,6 @@ To change the settings on a per album basis, first, complete the above steps, th
 <p>Why would you want to do that? Deleting the intermediate pics would disable many of the great features that make coppermine what is today. The option to send ecards, to add comments to pics, to rate pics, to display exif information, just to name a few. If you really want to save space, opt to delete your original files using the Admin Tools menu option.  Doing this will allow your users to enjoy all of coppermine's features with the exception of viewing full-sized images.  In the end, it will probably save you more space as well.  Just be sure to set your intermediate sized picture settings in CONFIG to a size that you can live with.</p>
 <p>If you really must remove the intermediate sized pics, search the mods and hacks board in the coppermine forum to learn how.</p><hr />
 
-<a name="howAlbumsFolderWork"></a>
-<h3>How do <strong>albums and folders</strong> work in coppermine?<a href="#howAlbumsFolderWork" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<ol>
-<li>When you create an album, it is a dynamic 'virtual' album.  Coppermine doesn't create a physical folder for this album on the server's hard drive, it leaves the pictures where you put them on the server, and uses the database to know which pic belongs in which album. You can move pics from album to album in Coppermine, but it's all done in the database, the pics are never moved on the server.</li>
-<li>When you upload by html, using the 'upload' link, coppermine places the pic (and the thumb and normal size copies) in the 'userpics' directory.</li>
-<li>When you upload by ftp, you should place the pics into folders that you create within the 'albums' folder, but never in the 'userpics' folder. The 'userpics' folder is reserved for html uploads only.  You can create as many folders/sub-folders for FTP uploads as you want. (Many webhosting services will recommend that you keep the number of files per folder under 500 in order to maximize speed and certain functions. This means you can upload up to 500/3 files in each folder.) You can name these folders anything you want, but we do recommend mirroring the category/album structures that you have created, whenever possible, to facilitate ease of use and site management.</li>
-<li>When you batch add files that you have already FTP'd to your site, coppermine asks you what album you want to put the pics in, but it leaves the pics where they are on the server.</li>
-</ol>
-<br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
-
-<a name="howMoveAlbum"></a>
-<h3>How can I <strong>move albums from one category to another</strong>?<a href="#howMoveAlbum" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<ul>
-<li>log in as admin</li>
-<li>create categories (using category manager from admin menu)</li>
-<li>go to the index page of your gallery</li>
-<li>click "Properties" next to the album thumbnail</li>
-<li>From the dropdown list &quot;Album category&quot;, choose the category the album should go to</li>
-<li>Click &quot;Update Album&quot;</li>
-</ul>
-<br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
 
 <a name="moveGallery"></a>
 <h3>How can I <strong>move my gallery to another host</strong>?<a href="#moveGallery" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
