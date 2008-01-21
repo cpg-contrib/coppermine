@@ -51,10 +51,7 @@
 <li><a class="content" href="#BackupDatabase">How can I <strong>backup</strong> my coppermine database?</a></li>
 <li><a class="content" href="#noFullsizePopup">The <strong>fullsize-pic doesn't pop up</strong> when clicking on the intermediate size pic. What's wrong?</a></li>
 <li><a class="content" href="#preventHotlinks">How can I prevent other sites linking directly to the pictures in my gallery instead of the gallery page?</a></li>
-<li><a class="content" href="#changeLanguage">I tried to change the <strong>language</strong> on the config page, but it doesn't work. What's wrong?</a></li>
 <li><a class="content" href="#onlyregisteredcomments">How do I let guests, not only registered users to put <strong>comments</strong> on pictures?</a></li>
-<li><a class="content" href="#ordercategories">How do I change the <strong>order of categories</strong>?</a></li>
-<li><a class="content" href="#cantDeletePic">I <strong>can't delete a certain picture</strong> with ftp. What can I do?</a></li>
 <li><a class="content" href="#cantUploadBigPics">I <strong>can't upload big pics</strong>. What's wrong?</a></li>
 <li><a class="content" href="#cookie">I can't <strong>login</strong> to Coppermine. What's wrong?</a></li>
 <li><a class="content" href="#sortAlbum">How can I change the <strong>sorting order of the albums</strong>?</a></li>
@@ -148,15 +145,6 @@ SetEnvIf Referer &quot;^$&quot; locally_linked=1
 &lt;/FilesMatch&gt;</pre>
 This will only work on linux/unix and apache servers AND only if you're allowed to use /htaccess files by your webhost or if you run your own server and &quot;mod_rewrite&quot; is enabled on your server . </p><hr />
 
-<a name="changeLanguage"></a>
-<h3>I tried to change the <strong>language</strong> on the config page, but it doesn't work. What's wrong?<a href="#changeLanguage" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>&quot;Character encoding&quot; is probably set (or has been set sometime ago) to UTF-8 on your config page.<br />
-When UTF-8 is selected, Coppermine chooses your language file based on your browser configuration and stores the value in a cookie. This overrides the value stored in the CONFIG.<br />
-<strong>To fix that:</strong><br />
-<ul>
-<li>Set &quot;Character encoding&quot; to Default (language file)</li>
-<li>Then call the script with <tt class="code">http://yoursite.com/coppermine_dir/index.php?lang=xxx</tt> (this will reset the cookie)
-</ul></p><hr />
 <a name="onlyregisteredcomments"></a>
 <h3>How do I allow all guests, not just registered users, to add <strong>comments</strong> to pictures?<a href="#onlyregisteredcomments" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p><ul>
@@ -176,27 +164,6 @@ To change the settings on a per album basis, first, complete the above steps, th
 <li>&quot;Update album&quot;</li>
 </ul></p><hr />
 
-<a name="ordercategories"></a>
-<h3>How do I change the <strong>order of categories</strong>?<a href="#ordercategories" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p><ul>
-<li>Log in as admin</li>
-<li>from the admin mode menu strip</li>
-<li>select the categories menu button</li>
-<li>use the &quot;arrow up&quot;- and &quot;arrow down&quot;-buttons to change the order of categories</li>
-</ul></p><hr />
-<a name="cantDeletePic"></a>
-<h3>I <strong>can't delete a certain picture</strong> with ftp. What can I do?<a href="#cantDeletePic" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>If you can't delete a file or picture with your FTP software, it is not Coppermine that won't allow you to delete the picture; it is your FTP server. The problem is in the configuration of your server. Try to delete your picture from within the script.</p>
-<p>If PHP on your server is running under user "nobody," then all files created by any PHP script (this is not specific to Coppermine) will be owned by "nobody". There is no way to change that.</p>
-<table border="0" cellspacing="2" cellpadding="2" class="bordl"><tr><td valign="top" align="left"><p class="fliess"> <strong>IMPORTANT:</strong>  0777 (CHMOD 777) should not be the default mode for directories because it may present a security risk, if your gallery is running on a shared server and PHP safe mode is not enabled, anyone with an account on the same server could possibly delete your pictures. There have been several threads on this issue on the Menalto Gallery forum and several users have seen their gallery hacked and destoyed because of this. This issue is not specific to Photo galleries, it applies to all PHP scripts that create directories. As long as someone has <em>write</em> access to a directory, s/he could conceiveably delete any file it contains, even if that person doesn't have write access to the file itself.<br />&nbsp;<br />
-We would prefer to have users complaining LOUDLY and REPEATEDLY that they have to constantly contact their sysadmin to set this or reset that or even uninstall Coppermine, and have THIS as an issue and electing to switch to another gallery script because of this inconvenience, rather than learn of one person devastated in finding that all his/her pictures have been erased by a hacker.<br />&nbsp;<br />
-Don't agree? Read this:<br />
-<a href="http://www.zend.com/manual/function.mkdir.php" class="external">http://www.zend.com/manual/function.mkdir.php</a><br />
-<a href="http://www.zend.com/manual/function.chmod.php" class="external">http://www.zend.com/manual/function.chmod.php</a><br />
-before thinking of posting an argument in this forum.<br />&nbsp;
-<br />Ultimately it is the decision of the sysadmin on how s/he will elect to run PHP as an Apache module and if all files/dir created by PHP are to be owned by &quot;nobodyquot;. So sysadmins who have set up their servers as such, are in no position to complain when asked to remove certain files or directories.<br />&nbsp;<br />
-<blockquote><em>On the webhost this site is running on, everything works fine when directory are created with mode 755 and all files/dir created by PHP are owned by the chezgreg user which is the user I use when connecting by FTP. Also if one of the file/directory on my site has a mode of 777, the server will shutdown my site and send me an email warning me that this is unsafe.</em><br />&nbsp;<br />
-Greg</blockquote></p></td></tr></table></p><hr />
 <a name="cantUploadBigPics"></a>
 <h3>I <strong>can't upload big pics or files</strong>. What's wrong?<a href="#cantUploadBigPics" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>The max. size of uploadable pics and/or files is limited by various settings - to find out why you can't upload big picks, check the following:
