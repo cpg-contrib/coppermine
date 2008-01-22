@@ -1929,10 +1929,14 @@ This function composes the individual sections of the block.
 ******************************************************************************/
 function theme_display_message_block() {
     global $lang_gallery_admin_menu, $lang_info, $CONFIG, $message_id;
+
+    $superCage = Inspekt::makeSuperCage();
     $return = '';
-    if ($_GET['message_id'] != '') {
-      $message_id = $_GET['message_id'];
+
+    if ($superCage->get->keyExists('message_id')) {
+    	$message_id = $superCage->get->getEscaped('message_id');
     }
+
     if ($message_id != '') {
         $tempMessage = cpgFetchTempMessage($message_id);
         if ($tempMessage != '') {
@@ -1943,7 +1947,7 @@ function theme_display_message_block() {
             ob_end_clean();
             $return .= <<< EOT
             <tr>
-              <td class="tableb tableb_alternate tableb tableb_alternate_alternate" align="center">
+              <td class="tableb" align="center">
                 <div id="cpgMessage" class="cpg_user_message">
                   {$tempMessage}
                 </div>
@@ -2244,6 +2248,8 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
     global $CONFIG;
     global $template_thumb_view_title_row,$template_fav_thumb_view_title_row, $lang_thumb_view,$lang_common, $template_tab_display, $template_thumbnail_view, $lang_album_list, $lang_errors;
 
+    $superCage = Inspekt::makeSuperCage();
+
     static $header = '';
     static $thumb_cell = '';
     static $empty_cell = '';
@@ -2264,7 +2270,11 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
 
     $cat_link = is_numeric($aid) ? '' : '&amp;cat=' . $cat;
     $date_link = $date=='' ? '' : '&amp;date=' . $date;
-    $uid_link = (isset($_GET['uid']) && is_numeric($_GET['uid'])) ? '&amp;uid=' . $_GET['uid'] : '';
+    if ($superCage->get->getInt('uid')) {
+    	$uid_link = '&amp;uid=' . $superCage->get->getInt('uid');
+    } else {
+    	$uid_link = '';
+    }
 
     $theme_thumb_tab_tmpl = $template_tab_display;
 
@@ -2356,11 +2366,7 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
                       $target = 'javascript:;" onClick="MM_openBrWindow(\'displayimage.php?pid=' . $thumb['pid'] . '&fullsize=1\',\'' . uniqid(rand()) . '\',\'scrollbars=yes,toolbar=no,status=no,resizable=yes,width=' . ((int)$thumb['pwidth']+(int)$CONFIG['fullsize_padding_x']) .  ',height=' .   ((int)$thumb['pheight']+(int)$CONFIG['fullsize_padding_y']). '\');';
                     }
                 } else {
-                    if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 2) {
-                        $target = 'displayimage.php?pid='.$thumb['pid'].$uid_link.'" onClick="alert(\''.sprintf($lang_errors['login_needed'],'','','','').'\');';
-                    } else {
-                        $target = "displayimage.php?pid={$thumb['pid']}$uid_link";
-                    }
+                    $target = "displayimage.php?pid={$thumb['pid']}$uid_link";
                 }
                 $params = array('{CELL_WIDTH}' => $cell_width,
                     '{LINK_TGT}' => $target,
@@ -2378,11 +2384,7 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
                        $target = 'javascript:;" onClick="MM_openBrWindow(\'displayimage.php?pid=' . $thumb['pid'] . '&fullsize=1\',\'' . uniqid(rand()) . '\',\'scrollbars=yes,toolbar=no,status=no,resizable=yes,width=' . ((int)$thumb['pwidth']+(int)$CONFIG['fullsize_padding_x']) .  ',height=' .   ((int)$thumb['pheight']+(int)$CONFIG['fullsize_padding_y']). '\');';
                     }
                 } else {
-                    if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 2) {
-                        $target = 'displayimage.php?album='.$aid.$cat_link.$date_link.'&amp;pid='.$thumb['pid'].$uid_link.'" onClick="alert(\''.sprintf($lang_errors['login_needed'],'','','','').'\');';
-                    } else {
-                        $target = "displayimage.php?album=$aid$cat_link$date_link&amp;pid={$thumb['pid']}$uid_link";
-                    }
+                    $target = "displayimage.php?album=$aid$cat_link$date_link&amp;pid={$thumb['pid']}$uid_link";
                 }
                 $params = array('{CELL_WIDTH}' => $cell_width,
                     //'{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&amp;pos={$thumb['pos']}",
@@ -2430,10 +2432,11 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
 ** Section <<<theme_display_film_strip>>> - START
 ******************************************************************************/
 // Function to display the film strip
-// Function to display the film strip
 function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $pos, $sort_options, $mode = 'thumb', $date='', $filmstrip_prev_pos, $filmstrip_next_pos) {
     global $CONFIG, $THEME_DIR;
     global $template_film_strip, $lang_film_strip, $pic_count;
+
+    $superCage = Inspekt::makeSuperCage();
 
     static $template = '';
     static $thumb_cell = '';
@@ -2448,7 +2451,12 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
 
     $cat_link = is_numeric($aid) ? '' : '&amp;cat=' . $cat;
     $date_link = $date=='' ? '' : '&amp;date=' . $date;
-    $uid_link = is_numeric($_GET['uid']) ? '&amp;uid=' . $_GET['uid'] : '';
+
+    if ($superCage->get->getInt('uid')) {
+        $uid_link = '&amp;uid=' . $superCage->get->getInt('uid');
+    } else {
+        $uid_link = '';
+    }
 
     $thumbcols = $CONFIG['thumbcols'];
     $cell_width = ceil(100 / $CONFIG['max_film_strip_items']) . '%';
@@ -2577,7 +2585,7 @@ function theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments, 
 
 
 
-    $picinfo = isset($_COOKIE['picinfo']) ? $_COOKIE['picinfo'] : ($CONFIG['display_pic_info'] ? 'block' : 'none');
+    $picinfo = $superCage->cookie->keyExists('picinfo') ? $superCage->cookie->getAlpha('picinfo') : ($CONFIG['display_pic_info'] ? 'block' : 'none');
     echo "\n\r<div id=\"picinfo\" style=\"display: $picinfo;\">\n";
     starttable();
     echo $pic_info;
@@ -2637,7 +2645,7 @@ function theme_html_picture()
         $USER['liv'] = array();
     }
     // Add 1 to hit counter
-    if (!USER_IS_ADMIN && !in_array($pid, $USER['liv']) && isset($_COOKIE[$CONFIG['cookie_name'] . '_data'])) {
+    if (!USER_IS_ADMIN && !in_array($pid, $USER['liv']) && $superCage->cookie->keyExists($CONFIG['cookie_name'] . '_data')) {
         add_hit($pid);
         if (count($USER['liv']) > 4) array_shift($USER['liv']);
         array_push($USER['liv'], $pid);
@@ -2778,8 +2786,10 @@ function theme_html_picture()
                                 'mime' => ''
                                );
 
-        if (isset($_COOKIE[$CONFIG['cookie_name'].'_'.$mime_content['extension'].'player'])) {
-            $user_player = $_COOKIE[$CONFIG['cookie_name'].'_'.$mime_content['extension'].'player'];
+        //if (isset($_COOKIE[$CONFIG['cookie_name'].'_'.$mime_content['extension'].'player'])) {
+        if ($superCage->cookie->keyExists($CONFIG['cookie_name'].'_'.$mime_content['extension'].'player')) {
+            //$user_player = $_COOKIE[$CONFIG['cookie_name'].'_'.$mime_content['extension'].'player'];
+            $user_player = $superCage->cookie->noTags($CONFIG['cookie_name'].'_'.$mime_content['extension'].'player');
         } else {
             $user_player = $mime_content['player'];
         }
@@ -2820,12 +2830,26 @@ function theme_html_picture()
 ** Section <<<theme_html_img_nav_menu>>> - START
 ******************************************************************************/
 function theme_html_img_nav_menu() {
-    global $CONFIG, $CURRENT_PIC_DATA, $meta_nav, $THEME_DIR ; //$PHP_SELF,
+    global $CONFIG, $CURRENT_PIC_DATA, $meta_nav, $THEME_DIR, $CPG_PHP_SELF; //$PHP_SELF,
     global $album, $cat, $pos, $pic_count, $pic_data, $lang_img_nav_bar, $lang_text_dir, $template_img_navbar;
 
+    $superCage = Inspekt::makeSuperCage();
+
     $cat_link = is_numeric($album) ? '' : '&amp;cat=' . $cat;
-    $date_link = $_GET['date']=='' ? '' : '&date=' . cpgValidateDate($_GET['date']);
-    $uid_link = is_numeric($_GET['uid']) ? '&amp;uid=' . $_GET['uid'] : '';
+    //$date_link = $_GET['date']=='' ? '' : '&date=' . cpgValidateDate($_GET['date']);
+
+    if ($superCage->get->keyExists('date')) {
+    	$date_link = '&date=' . cpgValidateDate($_GET['date']);
+    } else {
+    	$date_link = '';
+    }
+
+    //$uid_link = is_numeric($_GET['uid']) ? '&amp;uid=' . $_GET['uid'] : '';
+    if ($superCage->get->getInt('uid')) {
+        $uid_link = '&amp;uid=' . $superCage->get->getInt('uid');
+    } else {
+        $uid_link = '';
+    }
 
     $human_pos = $pos + 1;
     $page = ceil(($pos + 1) / ($CONFIG['thumbrows'] * $CONFIG['thumbcols']));
@@ -2834,19 +2858,19 @@ function theme_html_img_nav_menu() {
     $start = 0;
 
         //$start_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$start"; // Abbas - added pid in URL instead of pos
-        $start_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link$date_link&amp;pid={$pic_data[$start]['pid']}";
+        $start_tgt = "$CPG_PHP_SELF?album=$album$cat_link$date_link&amp;pid={$pic_data[$start]['pid']}";
         $start_title = $lang_img_nav_bar['go_album_start'];
         $meta_nav .= "<link rel=\"start\" href=\"$start_tgt\" title=\"$start_title\" />\n";
         $end = $pic_count - 1;
         //$end_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$end";// Abbas - added pid in URL instead of pos
-        $end_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link$date_link&amp;pid={$pic_data[$end]['pid']}";
+        $end_tgt = "$CPG_PHP_SELF?album=$album$cat_link$date_link&amp;pid={$pic_data[$end]['pid']}";
         $end_title = $lang_img_nav_bar['go_album_end'];
         $meta_nav .= "<link rel=\"last\" href=\"$end_tgt\" title=\"$end_title\" />\n";
 
     if ($pos > 0) {
         $prev = $pos - 1;
         //$prev_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$prev$uid_link";// Abbas - added pid in URL instead of pos
-        $prev_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link$date_link&amp;pid={$pic_data[$prev]['pid']}$uid_link#top_display_media";
+        $prev_tgt = "$CPG_PHP_SELF?album=$album$cat_link$date_link&amp;pid={$pic_data[$prev]['pid']}$uid_link#top_display_media";
         $prev_title = $lang_img_nav_bar['prev_title'];
         $meta_nav .= "<link rel=\"prev\" href=\"$prev_tgt\" title=\"$prev_title\" />\n";
     } else {
@@ -2857,7 +2881,7 @@ function theme_html_img_nav_menu() {
     if ($pos < ($pic_count -1)) {
         $next = $pos + 1;
         //$next_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$next$uid_link";// Abbas - added pid in URL instead of pos
-        $next_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link$date_link&amp;pid={$pic_data[$next]['pid']}$uid_link#top_display_media";
+        $next_tgt = "$CPG_PHP_SELF?album=$album$cat_link$date_link&amp;pid={$pic_data[$next]['pid']}$uid_link#top_display_media";
         $next_title = $lang_img_nav_bar['next_title'];
         $meta_nav .= "<link rel=\"next\" href=\"$next_tgt\" title=\"$next_title\"/>\n";
     } else {
@@ -2882,10 +2906,10 @@ function theme_html_img_nav_menu() {
 
     }
 
-        $thumb_tgt = "thumbnails.php?album=$album$cat_link$date_link&amp;page=$page$uid_link";
+                              $thumb_tgt = "thumbnails.php?album=$album$cat_link$date_link&amp;page=$page$uid_link";
         $meta_nav .= "<link rel=\"up\" href=\"$thumb_tgt\" title=\"".$lang_img_nav_bar['thumb_title']."\"/>\n";
 
-    $slideshow_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link$date_link$uid_link&amp;pid=$pid&amp;slideshow=".$CONFIG['slideshow_interval'].'#top_display_media';
+    $slideshow_tgt = "$CPG_PHP_SELF?album=$album$cat_link$date_link$uid_link&amp;pid=$pid&amp;slideshow=".$CONFIG['slideshow_interval'].'#top_display_media';
 
     $pic_pos = sprintf($lang_img_nav_bar['pic_pos'], $human_pos, $pic_count);
 
@@ -3217,11 +3241,14 @@ function theme_display_fullsize_pic()
     global $CONFIG, $THEME_DIR, $ALBUM_SET, $pid;
     global $lang_errors, $lang_fullsize_popup, $lang_charset;
 
+    $superCage = Inspekt::makeSuperCage();
+
     if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 2) {
       printf($lang_errors['login_needed'],'','','','');
       die();
     }
-    if (isset($_GET['picfile'])){
+    //if (isset($_GET['picfile'])){
+    if ($superCage->get->keyExists('picfile')) {
         if (!GALLERY_ADMIN_MODE) {
           cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
         }

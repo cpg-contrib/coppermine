@@ -250,7 +250,7 @@ EOT;
 
     }
 
-    $picinfo = isset($_COOKIE['picinfo']) ? $_COOKIE['picinfo'] : ($CONFIG['display_pic_info'] ? 'block' : 'none');
+    $picinfo = $superCage->cookie->keyExists('picinfo') ? $superCage->cookie->getAlpha('picinfo') : ($CONFIG['display_pic_info'] ? 'block' : 'none');
     echo "<div id=\"picinfo\" style=\"display: $picinfo;\">\n";
     starttable();
     echo $spacer;
