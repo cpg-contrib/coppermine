@@ -514,15 +514,16 @@ function window.onload() {
 // Send the file needed to register the service under Windows XP
 function send_reg_file()
 {
-    global $CONFIG; //, $PHP_SELF;
-
+    global $CONFIG, $CPG_PHP_SELF; //, $PHP_SELF;
+	$superCage = Inspekt::makeSuperCage();
+	
     header("Content-Type: application/octet-stream");
     $time_stamp = time();
-        header("Content-Disposition: attachment; filename=cpg_".$time_stamp.".reg");
+    header("Content-Disposition: attachment; filename=cpg_".$time_stamp.".reg");
 
     $lines[] = 'Windows Registry Editor Version 5.00';
     //$lines[] = '[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\PublishingWizard\PublishingWizard\Providers\CopperminePhotoGallery]';
-        $lines[] = '[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\PublishingWizard\PublishingWizard\Providers\\'. $CONFIG['gallery_name'] .']';
+    $lines[] = '[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\PublishingWizard\PublishingWizard\Providers\\'. $CONFIG['gallery_name'] .']';
     $lines[] = '"displayname"="' . $CONFIG['gallery_name'] . '"';
     $lines[] = '"description"="' . $CONFIG['gallery_description'] . '"';
     $lines[] = '"href"="' . trim($CONFIG['site_url'], '/') . '/' . $CPG_PHP_SELF . '?cmd=publish"';
@@ -539,7 +540,7 @@ function form_login()
     global $ONNEXT_SCRIPT, $ONBACK_SCRIPT, $WIZARD_BUTTONS;
     global $template_login;
     global $lang_login_php, $lang_xp_publish_php, $cpg_udb;
-        global $CONFIG;
+    global $CONFIG, $CPG_PHP_SELF;
 
 
     if (!method_exists($cpg_udb,'login')) {
@@ -566,11 +567,12 @@ function form_login()
 // Process login information
 function process_login()
 {
-    global $CONFIG, $USER; //$PHP_SELF,
+    global $CONFIG, $USER, $CPG_PHP_SELF; //$PHP_SELF,
     global $ONNEXT_SCRIPT, $ONBACK_SCRIPT, $WIZARD_BUTTONS;
     global $template_login_success, $template_login_failure,$template_login;
     global $lang_login_php, $cpg_udb;
-
+	$superCage = Inspekt::makeSuperCage();
+	
     $tt = 'worked';
 
 	//sanitizing the login/pass
@@ -675,6 +677,7 @@ function create_album()
     global $ONNEXT_SCRIPT, $ONBACK_SCRIPT, $WIZARD_BUTTONS;
     global $template_create_album;
     global $lang_errors, $lang_xp_publish_php;
+	$superCage = Inspekt::makeSuperCage();
 
     if (!(USER_CAN_CREATE_ALBUMS || USER_IS_ADMIN)) simple_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
 
