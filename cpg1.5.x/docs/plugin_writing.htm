@@ -125,7 +125,15 @@ EOT;</div>
   It's a good idea (not mandatory though) to provide a plain-text file within your plugin's folder as well (readme.txt or similar) that contains copyright and support information and basic instructions what your plugin does and how the end user can install it.</li>
 </ul>
 
-<a name="plugin_writing_types"></a><h2>Plugin Types<a href="#plugin_writing" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<a name="plugin_writing_globals"></a><h2>Use of Superglobals<a href="#plugin_writing_globals" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+If you are going to use superglobals in your plugin, you will have to take notice of the Coppermine <a href="dev_superglobals.htm">code sanitization</a>.<br>
+You will also have to include the following line to make sure you can use these superglobals:
+<div class="quote">
+$superCage = Inspekt::makeSuperCage(); 
+</div><br />
+Double check this if you're getting a 500 error.
+
+<a name="plugin_writing_types"></a><h2>Plugin Types<a href="#plugin_writing_types" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 Plugins (or rather individual pages of a plugin) can roughly fall into two categories: they can reside on a page of their own (a good example would be the plugin config screen some plugins come with or a plugin that adds a contact form) or they can reside within each or some coppermine-driven pages, modifying the output or functionality of the pages they reside on (a good example would be plugins that add menu items).<br />
 It is comparatively easy to come up with plugins that fall into the first category (creating additional pages). The second option is the more advanced and powerfull option that plugins authors can use. For this purpose, there are &quot;anchors&quot; all over coppermine's core code that allow plugin interaction with the code, the so-called &quot;<a href="plugin_hooks.htm">plugin hooks</a>&quot;.
 

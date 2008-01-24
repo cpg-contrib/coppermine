@@ -324,10 +324,10 @@ li {
 <body>
 <?php echo $lang_xp_publish_client ?> Sebastian Delmont <a href="http://www.zonageek.com/code/misc/wizards/">Creating your own XP Publishing Wizard</a>.</p>
 
-<?php echo $lang_xp_publish_required ?> <a href="<?php echo $_SERVER['PHP_SELF'] ?>?cmd=send_reg"><?php echo $lang_xp_publish_php['link'] ?></a>. <?php echo $lang_xp_publish_select,
+<?php echo $lang_xp_publish_required ?> <a href="<?php echo $CPG_PHP_SELF ?>?cmd=send_reg"><?php echo $lang_xp_publish_php['link'] ?></a>. <?php echo $lang_xp_publish_select,
 $lang_xp_publish_testing,
 $lang_xp_publish_notes; ?>
-  <a href="<?php echo dirname($_SERVER['PHP_SELF']) . '/' . LOGFILE ?>"><?php echo LOGFILE ?></a>
+  <a href="<?php echo dirname($CPG_PHP_SELF) . '/' . LOGFILE ?>"><?php echo LOGFILE ?></a>
 <?php echo $lang_xp_publish_flood ?>
 </body>
 </html>
@@ -461,7 +461,7 @@ function startUpload() {
 
         for (i = 0; i < files.length; i++) {
                 var postTag = xml.createNode(1, 'post', '');
-                postTag.setAttribute('href', '<?php echo trim($CONFIG['site_url'], '/') . '/' . $_SERVER['PHP_SELF'] . '?cmd=add_picture'?>&album=' + selform.album.value);
+                postTag.setAttribute('href', '<?php echo trim($CONFIG['site_url'], '/') . '/' . $CPG_PHP_SELF . '?cmd=add_picture'?>&album=' + selform.album.value);
                 postTag.setAttribute('name', 'userpicture');
 
                 var dataTag = xml.createNode(1, 'formdata', '');
@@ -525,8 +525,8 @@ function send_reg_file()
         $lines[] = '[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\PublishingWizard\PublishingWizard\Providers\\'. $CONFIG['gallery_name'] .']';
     $lines[] = '"displayname"="' . $CONFIG['gallery_name'] . '"';
     $lines[] = '"description"="' . $CONFIG['gallery_description'] . '"';
-    $lines[] = '"href"="' . trim($CONFIG['site_url'], '/') . '/' . $_SERVER['PHP_SELF'] . '?cmd=publish"';
-    $lines[] = '"icon"="' . "http://" . $_SERVER['HTTP_HOST'] . '/favicon.ico"';
+    $lines[] = '"href"="' . trim($CONFIG['site_url'], '/') . '/' . $CPG_PHP_SELF . '?cmd=publish"';
+    $lines[] = '"icon"="' . "http://" . $superCage->server->getEscaped('HTTP_HOST') . '/favicon.ico"';
     print join("\r\n", $lines);
     print "\r\n";
     exit;
@@ -550,7 +550,7 @@ function form_login()
         return;
     }
 
-    $params = array('{POST_ACTION}' => trim($CONFIG['site_url'], '/') . '/' . $_SERVER['PHP_SELF'] . '?cmd=publish',
+    $params = array('{POST_ACTION}' => trim($CONFIG['site_url'], '/') . '/' . $CPG_PHP_SELF . '?cmd=publish',
         '{ENTER_LOGIN_PSWD}' => $lang_login_php['enter_login_pswd'],
         '{USERNAME}' => $lang_login_php['username'],
         '{PASSWORD}' => $lang_login_php['password'],
@@ -573,18 +573,25 @@ function process_login()
 
     $tt = 'worked';
 
-    if ( $USER_DATA = $cpg_udb->login(addslashes($_POST['username']), addslashes($_POST['password'])) ) {
+	//sanitizing the login/pass
+	$username = $superCage->post->getMatched('username', '/^[0-9A-Za-z\/_]+$/');
+	$username = $username[1];
+	$password = $superCage->post->getMatched('password', '/^[0-9A-Za-z\/_]+$/');
+	$password = $password[1];
+//  if ( $USER_DATA = $cpg_udb->login(addslashes($_POST['username']), addslashes($_POST['password'])) ) {
+    if ( $USER_DATA = $cpg_udb->login(addslashes($username), addslashes($password)) ) {
+
         $USER['am'] = 1;
         user_save_profile();
 
         $params = array('{WELCOME}' => sprintf($lang_login_php['welcome'], USER_NAME),
-            '{POST_ACTION}' => trim($CONFIG['site_url'], '/') . '/' . $_SERVER['PHP_SELF'] . '?cmd=publish',
+            '{POST_ACTION}' => trim($CONFIG['site_url'], '/') . '/' . $CPG_PHP_SELF . '?cmd=publish',
             );
 
         echo template_eval($template_login_success, $params);
     } else {
         $params = array('{ERROR}' => $lang_login_php['err_login'],
-            '{POST_ACTION}' => trim($CONFIG['site_url'], '/') . '/' . $_SERVER['PHP_SELF'] . '?cmd=publish',
+            '{POST_ACTION}' => trim($CONFIG['site_url'], '/') . '/' . $CPG_PHP_SELF . '?cmd=publish',
             );
 
 
@@ -630,7 +637,7 @@ function form_publish()
             '{ALBUM}' => $lang_common['album'],
             '{CATEGORY}' => $lang_xp_publish_php['category'],
             '{SELECT_CATEGORY}' => $html_cat_list,
-            '{POST_ACTION}' => trim($CONFIG['site_url'], '/') . '/' . $_SERVER['PHP_SELF'] . '?cmd=create_album',
+            '{POST_ACTION}' => trim($CONFIG['site_url'], '/') . '/' . $CPG_PHP_SELF . '?cmd=create_album',
             );
 
         echo template_eval($template_select_album, $params);
@@ -650,7 +657,7 @@ function form_publish()
             '{CATEGORY}' => $lang_xp_publish_php['category'],
             '{SELECT_CATEGORY}' => $html_cat_list,
             '{CREATE_NEW}' => $lang_xp_publish_php['create_new'],
-            '{POST_ACTION}' => trim($CONFIG['site_url'], '/') . '/' . $_SERVER['PHP_SELF'] . '?cmd=create_album',
+            '{POST_ACTION}' => trim($CONFIG['site_url'], '/') . '/' . $CPG_PHP_SELF . '?cmd=create_album',
             );
 
         echo template_eval($template_select_album, $params);
@@ -672,15 +679,20 @@ function create_album()
     if (!(USER_CAN_CREATE_ALBUMS || USER_IS_ADMIN)) simple_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
 
     if (USER_IS_ADMIN) {
-        $category = (int)$_POST['cat'];
+	//  $category = (int)$_POST['cat'];
+        $category = $superCage->post->getInt('cat');
     } else {
         $category = FIRST_USER_CAT + USER_ID;
     }
 
-    $query = "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (category, title, uploads, pos) VALUES ('$category', '" . addslashes($_POST['new_alb_name']) . "', 'NO',  '0')";
+//  $query = "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (category, title, uploads, pos) VALUES ('$category', '" . addslashes($_POST['new_alb_name']) . "', 'NO',  '0')";
+    $query = "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (category, title, uploads, pos) VALUES ('$category', '" . $superCage->post->getEscaped('new_alb_name') . "', 'NO',  '0')";
     cpg_db_query($query);
 
-    $params = array('{NEW_ALB_CREATED}' => sprintf($lang_xp_publish_php['new_alb_created'], $_POST['new_alb_name']),
+	$new_alb_name = $superCage->post->getMatched('new_alb_name', '/^[0-9A-Za-z\/_]+$/');
+	$new_alb_name = $new_alb_name[1];
+//  $params = array('{NEW_ALB_CREATED}' => sprintf($lang_xp_publish_php['new_alb_created'], $_POST['new_alb_name']),
+    $params = array('{NEW_ALB_CREATED}' => sprintf($lang_xp_publish_php['new_alb_created'], $new_alb_name),
         '{CONTINUE}' => $lang_xp_publish_php['continue'],
         '{ALBUM_ID}' => mysql_insert_id(),
         );
@@ -741,7 +753,8 @@ function process_picture()
 
 
     // Test if the filename of the temporary uploaded picture is empty
-    if ($_FILES['userpicture']['tmp_name'] == '') simple_die(ERROR, $lang_db_input_php['no_pic_uploaded'], __FILE__, __LINE__);
+//  if ($_FILES['userpicture']['tmp_name'] == '') simple_die(ERROR, $lang_db_input_php['no_pic_uploaded'], __FILE__, __LINE__);
+	if ($superCage->files->getRaw('/userpicture/tmp_name') == '') simple_die(ERROR, $lang_db_input_php['no_pic_uploaded'], __FILE__, __LINE__);
     // Create destination directory for pictures
     if (USER_ID && $CONFIG['silly_safe_mode'] != 1) {
         if (USER_IS_ADMIN && ($category != (USER_ID + FIRST_USER_CAT))) {
@@ -769,9 +782,15 @@ function process_picture()
 
     $matches = array();
 
-    if (get_magic_quotes_gpc()) $_FILES['userpicture']['name'] = stripslashes($_FILES['userpicture']['name']);
+    //if (get_magic_quotes_gpc()) $_FILES['userpicture']['name'] = stripslashes($_FILES['userpicture']['name']);
+	//using getRaw as it will be sanitized in the code below in the preg_match. {SaWey}
+	$filename = $superCage->files->getRaw('/userpicture/name');
+	if (get_magic_quotes_gpc()){ 
+		$filename = stripslashes($filename);
+	}
     // Replace forbidden chars with underscores
-    $picture_name = replace_forbidden($_FILES['userpicture']['name']);
+    //$picture_name = replace_forbidden($_FILES['userpicture']['name']);
+	$picture_name = replace_forbidden($filename);
     // Check that the file uploaded has a valid extension
     if (!preg_match("/(.+)\.(.*?)\Z/", $picture_name, $matches)) {
         $matches[1] = 'invalid_fname';
@@ -790,7 +809,7 @@ function process_picture()
     }
     $uploaded_pic = $dest_dir . $picture_name;
     // Move the picture into its final location
-    if (!move_uploaded_file($_FILES['userpicture']['tmp_name'], $uploaded_pic))
+    if (!move_uploaded_file($superCage->files->getRaw('/userpicture/tmp_name'), $uploaded_pic))
         simple_die(CRITICAL_ERROR, sprintf($lang_db_input_php['err_move'], $picture_name, $dest_dir), __FILE__, __LINE__, true);
     // Change file permission
     chmod($uploaded_pic, octdec($CONFIG['default_file_mode']));
@@ -851,10 +870,18 @@ if (USER_IS_ADMIN && !GALLERY_ADMIN_MODE) {
     user_save_profile();
 }
 
-$cmd = empty($_GET['cmd']) ? '' : $_GET['cmd'];
+//$cmd = empty($_GET['cmd']) ? '' : $_GET['cmd'];
+if ($superCage->get->keyExists('cmd')){
+	//no need to do a sanitization here, as this var is only used in the switch statement,
+	//and it has a default operation if no match is found. {SaWey}
+	$cmd = $superCage->get->getRaw('cmd');
+} else{
+	$cmd = '';
+} 
 
 if (!USER_ID && $cmd && $cmd != 'send_reg') $cmd = 'login';
-if (!empty($_POST['username'])) $cmd = 'process_login';
+//if (!empty($_POST['username'])) $cmd = 'process_login';
+if ($superCage->post->keyExists('username')) $cmd = 'process_login';
 
 switch ($cmd) {
     case 'login' :

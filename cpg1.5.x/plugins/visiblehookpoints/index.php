@@ -29,9 +29,13 @@ if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 //####################################################################################################
 
 //Initialize local parameters.
-$action = isset($_POST['action']) ? $_POST['action']: $_GET['action'];
-//$superCage->get->getInt('hookpoints')
-
+//$action = isset($_POST['action']) ? $_POST['action']: $_GET['action'];
+//$superCage->get->getInt('hookpoints'){gaugau}
+if($superCage->post->keyExists('action')){
+	$action = $superCage->post->getAlpha('action');
+}else{
+	$action = $superCage->get->getAlpha('action');
+}
 
 
 //####################################################################################################
@@ -50,8 +54,10 @@ if (!GALLERY_ADMIN_MODE) {
 
 switch ($action) {
   case 'config':
-    if (isset($_POST['visiblehookpoints_display']) == TRUE) {
-      if ($_POST['visiblehookpoints_display'] == 1) {
+    //if (isset($_POST['visiblehookpoints_display']) == TRUE) {
+	if ($superCage->post->keyExists('visiblehookpoints_display')) {
+      //if ($_POST['visiblehookpoints_display'] == 1) {µ
+	  if ($superCage->post->getInt('visiblehookpoints_display') == 1) {
         $value = 1;
       } else {
         $value = 0;

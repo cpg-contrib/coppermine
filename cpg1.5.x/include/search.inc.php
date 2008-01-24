@@ -35,22 +35,31 @@ $mb_charset = stristr($multibyte_charset, $charset);
 
 $search_string = preg_replace('/&.*;/i', '', $search_string);
 
-if (!$mb_charset)
-        $search_string = preg_replace('/[^0-9a-z %]/i', '', $search_string);
+if (!$mb_charset){
+	$search_string = preg_replace('/[^0-9a-z %]/i', '', $search_string);
+}
 
 if (!isset($USER['search']['params'])){
         $USER['search']['params']['title'] = $USER['search']['params']['caption'] = $USER['search']['params']['keywords'] = $USER['search']['params']['filename'] = 1;
 }
 
-if (isset($_GET['album']) && $_GET['album'] == 'search')
-        $_POST = $USER['search'];
+//if (isset($_GET['album']) && $_GET['album'] == 'search'){
+//	$_POST = $USER['search'];
+//}
+if ($superCage->get->keyExists('album') && $superCage->get->getAlpha('album') == 'search'){
+	$search_params = $USER['search'];
+	$search_params['type'] = $superCage->get->getAlpha('type');
+}else{
+	//put all original $_POST vars in $search_params, don't know if this could be used???
+	$search_params = $superCage->post->_source;
+}
 
 
-$type = $_POST['type'] == 'AND' ? " AND " : " OR ";
+$type = $search_params['type'] == 'AND' ? " AND " : " OR ";
 
-if (isset($_POST['params']['pic_raw_ip'])) $_POST['params']['pic_hdr_ip']  = $_POST['params']['pic_raw_ip'];
+if (isset($search_params['params']['pic_raw_ip'])) $search_params['params']['pic_hdr_ip']  = $search_params['params']['pic_raw_ip'];
 
-if ($search_string && isset($_POST['params'])) {
+if ($search_string && isset($search_params['params'])) {
         $sql = "SELECT * FROM {$CONFIG['TABLE_PICTURES']} WHERE ";
         $search_string = strtr($search_string, array('_' => '\_', '%' => '\%', '*' => '%'));
         $split_search = explode(' ', $search_string);
@@ -60,7 +69,7 @@ if ($search_string && isset($_POST['params'])) {
           $word = addslashes($word);
           $fields = array();
 
-          foreach ($_POST['params'] as $param => $value){
+          foreach ($search_params['params'] as $param => $value){
             if (in_array($param, $allowed))$fields[] = "$param LIKE '%$word%'";
           }
           $sections[] = '(' . implode(' OR ', $fields) . ')';
@@ -68,8 +77,8 @@ if ($search_string && isset($_POST['params'])) {
 
         $sql .= '(' . implode($type, $sections) . ')';
 
-        $sql .= $_POST['newer_than'] ? ' AND ctime > UNIX_TIMESTAMP() - '.( (int) $_POST['newer_than'] * 60*60*24) : '';
-        $sql .= $_POST['older_than'] ? ' AND ctime < UNIX_TIMESTAMP() - '.( (int) $_POST['older_than'] * 60*60*24) : '';
+        $sql .= $search_params['newer_than'] ? ' AND ctime > UNIX_TIMESTAMP() - '.( (int) $search_params['newer_than'] * 60*60*24) : '';
+        $sql .= $search_params['older_than'] ? ' AND ctime < UNIX_TIMESTAMP() - '.( (int) $search_params['older_than'] * 60*60*24) : '';
        $sql .=  " $ALBUM_SET AND approved = 'YES'";
 
         $temp = str_replace('SELECT *', 'SELECT COUNT(*)', $sql);

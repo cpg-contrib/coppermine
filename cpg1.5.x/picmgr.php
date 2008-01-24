@@ -120,7 +120,7 @@ function albumselect($id = "album") {
         if ($alb_cat) $select .= "</optgroup>\n";
     }
 
-    return "\n<select name=\"$id\" class=\"listbox\"  onChange=\"if(this.options[this.selectedIndex].value) window.location.href='{$_SERVER['PHP_SELF']}?aid='+this.options[this.selectedIndex].value;\" >\n$select</select>\n";
+    return "\n<select name=\"$id\" class=\"listbox\"  onChange=\"if(this.options[this.selectedIndex].value) window.location.href='{$CPG_PHP_SELF}?aid='+this.options[this.selectedIndex].value;\" >\n$select</select>\n";
 }
 
 pageheader($lang_picmgr_php['pic_mgr']);

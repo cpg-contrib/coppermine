@@ -59,7 +59,8 @@ if ($superCage->get->keyExists('file')) {
      * from the php-extension
      * Same restrictions apply as for the folder name (only alphanumerals, hyphen and underscore)
      */
-    if ($matched = $superCage->get->getMatched('page', "/^([a-zA-Z0-9_\-]+)(\/{0,1}?)([a-zA-Z0-9_\-]+)$/")) {
+
+    if ($matched = $superCage->get->getMatched('file', "/^([a-zA-Z0-9_\-]+)(\/{0,1}?)([a-zA-Z0-9_\-]+)$/")) {
         $tmpFile = $matched[0];
     } else {
             $tmpFile = '';

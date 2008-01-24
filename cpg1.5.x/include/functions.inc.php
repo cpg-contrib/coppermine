@@ -1412,11 +1412,11 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 break;
 
         case 'search': // Search results
-                                if (isset($USER['search']['search'])) {
-                                        $search_string = $USER['search']['search'];
+				if (isset($USER['search']['search'])) {
+					$search_string = $USER['search']['search'];
                 } else {
-                                        $search_string = '';
-                }
+					$search_string = '';
+				}
 
                 if ($META_ALBUM_SET && $CURRENT_CAT_NAME) {
                         $album_name = $lang_meta_album_names['search'].' - '. $CURRENT_CAT_NAME;

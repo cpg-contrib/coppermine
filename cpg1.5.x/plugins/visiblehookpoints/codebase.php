@@ -18,7 +18,7 @@
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
-
+$superCage = Inspekt::makeSuperCage();
 // Add an install action
 $thisplugin->add_action('plugin_install','visiblehookpoints_install');
 
@@ -28,43 +28,44 @@ $thisplugin->add_action('plugin_uninstall','visiblehookpoints_uninstall');
 // Add a configure action
 $thisplugin->add_action('plugin_configure','visiblehookpoints_configure');
 
-$hookpoints_parameter_set = $superCage->get->getInt('hookpoints');
-print $hookpoints_parameter_set;
-die;
-if (isset($_GET['hookpoints']) || $CONFIG['plugin_visiblehookpoints_display'] == 1) {
+//$hookpoints_parameter_set = $superCage->get->getInt('hookpoints');
+//print $hookpoints_parameter_set;
+//die;
+//if (isset($_GET['hookpoints']) || $CONFIG['plugin_visiblehookpoints_display'] == 1) {
+if ($superCage->get->keyExists('hookpoints') || $CONFIG['plugin_visiblehookpoints_display'] == 1) {
 
-$thisplugin->add_filter('anycontent','vhp_anycontent'); // ( anycontent page + plugin accessible content )
-$thisplugin->add_filter('gallery_header','vhp_gallery_header'); // (shows just above the gallery)
-$thisplugin->add_filter('gallery_footer','vhp_gallery_footer'); // (allows data just above the &quot;powered by coppermine&quot; notice)
-$thisplugin->add_filter('file_header','vhp_file_header'); // (displays above file on displayimage page)
-$thisplugin->add_filter('file_footer','vhp_file_footer'); // (displays below file on displayimage page)
-$thisplugin->add_filter('thumb_header','vhp_thumb_header'); // (displays above thumbs on index, thumbnails, and displayimage pages) ?
-$thisplugin->add_filter('thumb_footer','vhp_thumb_footer'); // (displays below thumbs on index, thumbnails, and displayimage pages) ?
-$thisplugin->add_filter('plugin_block','vhp_plugin_block'); // (filters main page blocks) //output one for each block
-$thisplugin->add_filter('thumb_caption','vhp_thumb_caption'); // (executed before the more specific &quot;thumb_caption_*&quot; plugins.)
-$thisplugin->add_filter('thumb_caption_regular','vhp_thumb_caption_regular'); //
-$thisplugin->add_filter('thumb_caption_lastcom','vhp_thumb_caption_lastcom'); //
-$thisplugin->add_filter('thumb_caption_lastcomby','vhp_thumb_caption_lastcomby'); //
-$thisplugin->add_filter('thumb_caption_lastup','vhp_thumb_caption_lastup'); //
-$thisplugin->add_filter('thumb_caption_topn','vhp_thumb_caption_topn'); //
-$thisplugin->add_filter('thumb_caption_toprated','vhp_thumb_caption_toprated'); //
-$thisplugin->add_filter('thumb_caption_lasthits','vhp_thumb_caption_lasthits'); //
-$thisplugin->add_filter('thumb_caption_random','vhp_thumb_caption_random'); //
-$thisplugin->add_filter('thumb_caption_search','vhp_thumb_caption_search'); //
-$thisplugin->add_filter('thumb_caption_lastalb','vhp_thumb_caption_lastalb'); //
-$thisplugin->add_filter('thumb_caption_favpics','vhp_thumb_caption_favpics'); //
-$thisplugin->add_filter('post_breadcrumb','vhp_post_breadcrumb'); //(only on thumbnails.php and displayimage.php)
-$thisplugin->add_filter('user_caption_params','vhp_user_caption_params');
-$thisplugin->add_filter('thumb_data','vhp_thumb_data');
-$thisplugin->add_filter('file_data','vhp_file_data');
-$thisplugin->add_filter('usermgr_header','vhp_usermgr_header');
-$thisplugin->add_filter('usermgr_footer','vhp_usermgr_footer');
-$thisplugin->add_filter('page_html','vhp_page_html');
-$thisplugin->add_filter('page_meta','vhp_page_meta');
-$thisplugin->add_action('page_start','vhp_page_start');
-$thisplugin->add_action('page_end','vhp_page_end');
-$thisplugin->add_action('plugin_wakeup','vhp_plugin_wakeup'); // ( ...when initialized )
-$thisplugin->add_action('plugin_sleep','vhp_plugin_sleep'); // ( ...when shutdown )
+	$thisplugin->add_filter('anycontent','vhp_anycontent'); // ( anycontent page + plugin accessible content )
+	$thisplugin->add_filter('gallery_header','vhp_gallery_header'); // (shows just above the gallery)
+	$thisplugin->add_filter('gallery_footer','vhp_gallery_footer'); // (allows data just above the &quot;powered by coppermine&quot; notice)
+	$thisplugin->add_filter('file_header','vhp_file_header'); // (displays above file on displayimage page)
+	$thisplugin->add_filter('file_footer','vhp_file_footer'); // (displays below file on displayimage page)
+	$thisplugin->add_filter('thumb_header','vhp_thumb_header'); // (displays above thumbs on index, thumbnails, and displayimage pages) ?
+	$thisplugin->add_filter('thumb_footer','vhp_thumb_footer'); // (displays below thumbs on index, thumbnails, and displayimage pages) ?
+	$thisplugin->add_filter('plugin_block','vhp_plugin_block'); // (filters main page blocks) //output one for each block
+	$thisplugin->add_filter('thumb_caption','vhp_thumb_caption'); // (executed before the more specific &quot;thumb_caption_*&quot; plugins.)
+	$thisplugin->add_filter('thumb_caption_regular','vhp_thumb_caption_regular'); //
+	$thisplugin->add_filter('thumb_caption_lastcom','vhp_thumb_caption_lastcom'); //
+	$thisplugin->add_filter('thumb_caption_lastcomby','vhp_thumb_caption_lastcomby'); //
+	$thisplugin->add_filter('thumb_caption_lastup','vhp_thumb_caption_lastup'); //
+	$thisplugin->add_filter('thumb_caption_topn','vhp_thumb_caption_topn'); //
+	$thisplugin->add_filter('thumb_caption_toprated','vhp_thumb_caption_toprated'); //
+	$thisplugin->add_filter('thumb_caption_lasthits','vhp_thumb_caption_lasthits'); //
+	$thisplugin->add_filter('thumb_caption_random','vhp_thumb_caption_random'); //
+	$thisplugin->add_filter('thumb_caption_search','vhp_thumb_caption_search'); //
+	$thisplugin->add_filter('thumb_caption_lastalb','vhp_thumb_caption_lastalb'); //
+	$thisplugin->add_filter('thumb_caption_favpics','vhp_thumb_caption_favpics'); //
+	$thisplugin->add_filter('post_breadcrumb','vhp_post_breadcrumb'); //(only on thumbnails.php and displayimage.php)
+	$thisplugin->add_filter('user_caption_params','vhp_user_caption_params');
+	$thisplugin->add_filter('thumb_data','vhp_thumb_data');
+	$thisplugin->add_filter('file_data','vhp_file_data');
+	$thisplugin->add_filter('usermgr_header','vhp_usermgr_header');
+	$thisplugin->add_filter('usermgr_footer','vhp_usermgr_footer');
+	$thisplugin->add_filter('page_html','vhp_page_html');
+	$thisplugin->add_filter('page_meta','vhp_page_meta');
+	$thisplugin->add_action('page_start','vhp_page_start');
+	$thisplugin->add_action('page_end','vhp_page_end');
+	$thisplugin->add_action('plugin_wakeup','vhp_plugin_wakeup'); // ( ...when initialized )
+	$thisplugin->add_action('plugin_sleep','vhp_plugin_sleep'); // ( ...when shutdown )
 }
 
 function vhp_plugin_wakeup()
@@ -686,11 +687,15 @@ if (!class_exists('dBug')) {
 // Install function
 function visiblehookpoints_install() {
     global $CONFIG;
-    if (isset($_POST['visiblehookpoints_display']) == TRUE) {
+	$superCage = Inspekt::makeSuperCage();
+    //if (isset($_POST['visiblehookpoints_display']) == TRUE) {
+	if ($superCage->post->keyExists('visiblehookpoints_display')) {
         // Perform database queries
-        if ($_POST['visiblehookpoints_display'] == 1) {
+        //if ($_POST['visiblehookpoints_display'] == 1) {
+		if ($superCage->post->getInt('visiblehookpoints_display') == 1) {
           $value = 1;
-        } elseif ($_POST['visiblehookpoints_display'] == 0) {
+        //} elseif ($_POST['visiblehookpoints_display'] == 0) {
+		} elseif ($superCage->post->getInt('visiblehookpoints_display') == 0) {
           $value = 0;
         } elseif (array_key_exists('plugin_visiblehookpoints_display', $CONFIG) == TRUE) {
           $value = $CONFIG['plugin_visiblehookpoints_display'];
@@ -721,6 +726,9 @@ function visiblehookpoints_uninstall() {
 // Displays the form
 function visiblehookpoints_configure() {
     global $CONFIG;
+	$superCage = Inspekt::makeSuperCage();
+	$req_uri = $superCage->server->getMatched('REQUEST_URI', '/([^\/]+\.php)$/');
+	$req_uri = $req_uri[1];
     if ($CONFIG['plugin_visiblehookpoints_display'] == 1) {
       $invisible = '';
       $visible = 'checked="checked"';
@@ -731,7 +739,7 @@ function visiblehookpoints_configure() {
     $help_invisible = '&nbsp;'.cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize('Adding the hookpoint parameter manually'))).'&amp;t='.urlencode(base64_encode(serialize('Manually add the parameter &quot;hookpoint&quot; to the URL in the address bar of your browser (e.g. <tt class="code">'.$CONFIG['ecards_more_pic_target'].'index.php?hookpoint</tt>) to see the hookpoints. This option is meant for live, production galleries, where you wouldn\'t want to display the hookpoints to every site visitor.'))),470,245);
     $help_visible = '&nbsp;'.cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize('Displaying the hookpoints for everyone'))).'&amp;t='.urlencode(base64_encode(serialize('Only choose this option on your testbed server, i.e. for galleries that don\'t run in a production environment, as the hookpoints will be displayed for all gallery visitors.'))),470,245);
     echo <<< EOT
-    <form name="cpgform" id="cpgform" action="{$_SERVER['REQUEST_URI']}" method="post">
+    <form name="cpgform" id="cpgform" action="{$req_uri}" method="post">
 EOT;
     starttable('100%', 'Configuration of plugin &quot;Visible HookPoints&quot;', 1);
     echo <<< EOT

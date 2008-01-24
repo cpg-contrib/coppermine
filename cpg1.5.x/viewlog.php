@@ -32,7 +32,7 @@ function display_log_list()
 					echo <<<EOT
 								<tr>
 										<td class="tableb">
-												<img src="images/folder.gif" alt="" />&nbsp;<a href= "{$_SERVER['PHP_SELF']}?log={$log['logname']}">{$log['logname']}</a>
+												<img src="images/folder.gif" alt="" />&nbsp;<a href= "{$CPG_PHP_SELF}?log={$log['logname']}">{$log['logname']}</a>
 												&nbsp;&nbsp;&nbsp; ( <i>{$log['filesize']} KB</i> )
 										</td>
 								</tr>

@@ -100,16 +100,24 @@ if ($superCage->get->keyExists('search')) {
     foreach ($allowed as $key) {
         //if (isset($_GET[$key]) == TRUE) {
         if ($superCage->get->keyExists($key)) {
-            $_GET['params'][$key] = $_GET[$key];
+			//can't work like this, have to remove the $_GET
+            //$_GET['params'][$key] = $_GET[$key];
+			#####################################################################
+			##We use the raw again, have to look into this a little more later.##
+			#####################################################################
+			$temp_GET['params'][$key] = $superCage->get->getRaw($key);
         }
     }
-        $USER['search'] = $_GET;
-        $USER['search']['search'] = utf_replace($USER['search']['search']);
+        //$USER['search'] = $_GET;
+		$USER['search'] = $temp_GET;
+		//here again the use of getRaw, but it will be sanitized in search.inc.php
+        $USER['search']['search'] = utf_replace($superCage->get->getRaw('search'));
         $album = 'search';
 }
-if (isset($_GET['search'])) {
-    $USER['search'] = array('search' => $_GET['search']);
-}
+//no need for this anymore
+//if (isset($_GET['search'])) {
+//    $USER['search'] = array('search' => $_GET['search']);
+//}
 
 //if (isset($_GET['page'])) {
 if ($superCage->get->keyExists('page')) {
