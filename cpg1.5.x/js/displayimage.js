@@ -1,3 +1,21 @@
+/*************************
+  Coppermine Photo Gallery
+  ************************
+  Copyright (c) 2003-2008 Dev Team
+  v1.1 originally written by Gregory DEMAR
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License version 3
+  as published by the Free Software Foundation.
+
+  ********************************************
+  Coppermine version: 1.5.0
+  $HeadURL$
+  $Revision: 4220 $
+  $LastChangedBy: saweyyy $
+  $Date: 2008-01-24 23:08:30 +0100 (Do, 24 Jan 2008) $
+**********************************************/
+
 /**
  * This file contains displayimage.php specific javascript
  */
