@@ -535,4 +535,11 @@ if (defined('XP_PUBLISH_PHP')) {
         if (!isset($lang_xp_publish_flood)) $lang_xp_publish_flood =  $lang_xp_publish_flood_en;
 }
 
+// ------------------------------------------------------------------------- //
+// Core plugins
+// ------------------------------------------------------------------------- //
+if (defined('CORE_PLUGIN')) {
+        $lang_plugin_php_en = cpg_get_default_lang_var('lang_plugin_php','english');
+        $lang_plugin_php = array_merge($lang_plugin_php_en, $lang_plugin);
+}
 ?>
