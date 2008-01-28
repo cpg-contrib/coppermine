@@ -2557,4 +2557,11 @@ if (defined('INSTALLER')) $lang_install = array(
   'your_admin_account' => 'Your admin account',
 );
 
+
+// ------------------------------------------------------------------------- //
+// Core plugins
+// ------------------------------------------------------------------------- //
+if (defined('CORE_PLUGIN')) $lang_plugin_php = array(
+  'jump_by_username' => 'Jump by username', // cpg1.5
+);
 ?>
