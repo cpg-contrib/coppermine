@@ -1228,6 +1228,21 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
     </td>
     <td class="tableb" valign="top" align="right">2007-11-07</td>
   </tr>
+  <tr>
+    <td class="tableb tableb_alternate" valign="top">cpg1.4.15</td>
+    <td class="tableb tableb_alternate" valign="top">
+      <ul>
+        <li>Fixed potential XSS vulnerabilities in docs/showdoc.php</li>
+        <li>Fixed path diclosure in include/slideshow.inc.php</li>
+        <li>Fixed possible shell injection in include/imageObjectIM.class.php</li>
+        <li>Fixed low-impact sql injection vulnerabilities in util.php and reviewcom.php</li>
+        <li>Fixed typo in include/functions.inc.php that stopped search engine access rcording for stats</li>
+      </ul>
+      Thanks to Janek Vind for reporting those issues.
+      <div class="small" align="right">[<a href="http://coppermine-gallery.net/forum/index.php?topic=50103.0">more</a>]</div>
+    </td>
+    <td class="tableb tableb_alternate" valign="top" align="right">2008-01-30</td>
+  </tr>
 </table>
 <p>As you can see, the coppermine dev team is constantly fixing and improving coppermine. Every non-trivial piece of software contains bugs, so there is no guarantee that the version that currently is the most recent one will be the final, ultimately bug-free version to be released in the cpg1.4.x series. It is absolutely vital that you perform regular updates as soon as new packages are being released.</p>
 <a name="upgrade_why_reasons_end"></a>

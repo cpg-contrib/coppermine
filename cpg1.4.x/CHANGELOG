@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-01-30 [M] Release of cpg1.4.15 {GauGau}
 2008-01-26 [M] Updated file header to reflect the new year 2008 {GauGau}
 2008-01-26 [O] Updated Danish language file (user contribution) {GauGau}
 2008-01-04 [B] Avoid possible corrupt zip files by cleaning output buffer {Nibbler}
