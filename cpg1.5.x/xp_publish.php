@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
@@ -252,7 +252,7 @@ function display_instructions()
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Coppermine Photo Gallery - XP Publish README</title>
+<title><?php print $CONFIG['gallery_name']; ?> - XP Publish README</title>
 <meta http-equiv="Content-Type" content="text/html; charset=<?php echo $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset']; ?>" />
 <style type="text/css">
 <!--
@@ -318,7 +318,6 @@ li {
 }
 -->
 </style>
-<!-- $Id$ -->
 </head>
 
 <body>
@@ -515,19 +514,27 @@ function window.onload() {
 function send_reg_file()
 {
     global $CONFIG, $CPG_PHP_SELF; //, $PHP_SELF;
-	$superCage = Inspekt::makeSuperCage();
-	
+  $superCage = Inspekt::makeSuperCage();
+
     header("Content-Type: application/octet-stream");
     $time_stamp = time();
     header("Content-Disposition: attachment; filename=cpg_".$time_stamp.".reg");
+    // Come up with gallery name and description in iso8859-1 and utf-8
+    if ($CONFIG['charset'] == 'utf-8') {
+    } else {
+    }
+    $name_iso = '';
+    description_iso = '';
+    $name_utf = '';
+    $description_utf = '';
 
     $lines[] = 'Windows Registry Editor Version 5.00';
-    //$lines[] = '[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\PublishingWizard\PublishingWizard\Providers\CopperminePhotoGallery]';
-    $lines[] = '[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\PublishingWizard\PublishingWizard\Providers\\'. $CONFIG['gallery_name'] .']';
+    $lines[] = '[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\PublishingWizard\PublishingWizard\Providers\\'. utf8_decode($CONFIG['gallery_name']) .']';
     $lines[] = '"displayname"="' . $CONFIG['gallery_name'] . '"';
     $lines[] = '"description"="' . $CONFIG['gallery_description'] . '"';
     $lines[] = '"href"="' . trim($CONFIG['site_url'], '/') . '/' . $CPG_PHP_SELF . '?cmd=publish"';
     $lines[] = '"icon"="' . "http://" . $superCage->server->getEscaped('HTTP_HOST') . '/favicon.ico"';
+    $lines[] = '[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\PublishingWizard\InternetPhotoprinting\providers\\' . utf8_decode($CONFIG['gallery_name'] .']');
     print join("\r\n", $lines);
     print "\r\n";
     exit;
@@ -571,15 +578,15 @@ function process_login()
     global $ONNEXT_SCRIPT, $ONBACK_SCRIPT, $WIZARD_BUTTONS;
     global $template_login_success, $template_login_failure,$template_login;
     global $lang_login_php, $cpg_udb;
-	$superCage = Inspekt::makeSuperCage();
-	
+  $superCage = Inspekt::makeSuperCage();
+
     $tt = 'worked';
 
-	//sanitizing the login/pass
-	$username = $superCage->post->getMatched('username', '/^[0-9A-Za-z\/_]+$/');
-	$username = $username[1];
-	$password = $superCage->post->getMatched('password', '/^[0-9A-Za-z\/_]+$/');
-	$password = $password[1];
+  //sanitizing the login/pass
+  $username = $superCage->post->getMatched('username', '/^[0-9A-Za-z\/_]+$/');
+  $username = $username[1];
+  $password = $superCage->post->getMatched('password', '/^[0-9A-Za-z\/_]+$/');
+  $password = $password[1];
 //  if ( $USER_DATA = $cpg_udb->login(addslashes($_POST['username']), addslashes($_POST['password'])) ) {
     if ( $USER_DATA = $cpg_udb->login(addslashes($username), addslashes($password)) ) {
 
@@ -677,12 +684,12 @@ function create_album()
     global $ONNEXT_SCRIPT, $ONBACK_SCRIPT, $WIZARD_BUTTONS;
     global $template_create_album;
     global $lang_errors, $lang_xp_publish_php;
-	$superCage = Inspekt::makeSuperCage();
+  $superCage = Inspekt::makeSuperCage();
 
     if (!(USER_CAN_CREATE_ALBUMS || USER_IS_ADMIN)) simple_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
 
     if (USER_IS_ADMIN) {
-	//  $category = (int)$_POST['cat'];
+  //  $category = (int)$_POST['cat'];
         $category = $superCage->post->getInt('cat');
     } else {
         $category = FIRST_USER_CAT + USER_ID;
@@ -692,8 +699,8 @@ function create_album()
     $query = "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (category, title, uploads, pos) VALUES ('$category', '" . $superCage->post->getEscaped('new_alb_name') . "', 'NO',  '0')";
     cpg_db_query($query);
 
-	$new_alb_name = $superCage->post->getMatched('new_alb_name', '/^[0-9A-Za-z\/_]+$/');
-	$new_alb_name = $new_alb_name[1];
+  $new_alb_name = $superCage->post->getMatched('new_alb_name', '/^[0-9A-Za-z\/_]+$/');
+  $new_alb_name = $new_alb_name[1];
 //  $params = array('{NEW_ALB_CREATED}' => sprintf($lang_xp_publish_php['new_alb_created'], $_POST['new_alb_name']),
     $params = array('{NEW_ALB_CREATED}' => sprintf($lang_xp_publish_php['new_alb_created'], $new_alb_name),
         '{CONTINUE}' => $lang_xp_publish_php['continue'],
@@ -757,7 +764,7 @@ function process_picture()
 
     // Test if the filename of the temporary uploaded picture is empty
 //  if ($_FILES['userpicture']['tmp_name'] == '') simple_die(ERROR, $lang_db_input_php['no_pic_uploaded'], __FILE__, __LINE__);
-	if ($superCage->files->getRaw('/userpicture/tmp_name') == '') simple_die(ERROR, $lang_db_input_php['no_pic_uploaded'], __FILE__, __LINE__);
+  if ($superCage->files->getRaw('/userpicture/tmp_name') == '') simple_die(ERROR, $lang_db_input_php['no_pic_uploaded'], __FILE__, __LINE__);
     // Create destination directory for pictures
     if (USER_ID && $CONFIG['silly_safe_mode'] != 1) {
         if (USER_IS_ADMIN && ($category != (USER_ID + FIRST_USER_CAT))) {
@@ -786,14 +793,14 @@ function process_picture()
     $matches = array();
 
     //if (get_magic_quotes_gpc()) $_FILES['userpicture']['name'] = stripslashes($_FILES['userpicture']['name']);
-	//using getRaw as it will be sanitized in the code below in the preg_match. {SaWey}
-	$filename = $superCage->files->getRaw('/userpicture/name');
-	if (get_magic_quotes_gpc()){ 
-		$filename = stripslashes($filename);
-	}
+  //using getRaw as it will be sanitized in the code below in the preg_match. {SaWey}
+  $filename = $superCage->files->getRaw('/userpicture/name');
+  if (get_magic_quotes_gpc()){
+    $filename = stripslashes($filename);
+  }
     // Replace forbidden chars with underscores
     //$picture_name = replace_forbidden($_FILES['userpicture']['name']);
-	$picture_name = replace_forbidden($filename);
+  $picture_name = replace_forbidden($filename);
     // Check that the file uploaded has a valid extension
     if (!preg_match("/(.+)\.(.*?)\Z/", $picture_name, $matches)) {
         $matches[1] = 'invalid_fname';
@@ -875,12 +882,12 @@ if (USER_IS_ADMIN && !GALLERY_ADMIN_MODE) {
 
 //$cmd = empty($_GET['cmd']) ? '' : $_GET['cmd'];
 if ($superCage->get->keyExists('cmd')){
-	//no need to do a sanitization here, as this var is only used in the switch statement,
-	//and it has a default operation if no match is found. {SaWey}
-	$cmd = $superCage->get->getRaw('cmd');
+  //no need to do a sanitization here, as this var is only used in the switch statement,
+  //and it has a default operation if no match is found. {SaWey}
+  $cmd = $superCage->get->getRaw('cmd');
 } else{
-	$cmd = '';
-} 
+  $cmd = '';
+}
 
 if (!USER_ID && $cmd && $cmd != 'send_reg') $cmd = 'login';
 //if (!empty($_POST['username'])) $cmd = 'process_login';
