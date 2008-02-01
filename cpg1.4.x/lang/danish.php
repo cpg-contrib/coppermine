@@ -2,7 +2,7 @@
 /*************************
   Coppermine Photo Gallery
   ************************
-  Copyright (c) 2003-2008 Coppermine Dev Team
+  Copyright (c) 2003-2008 Dev Team
   v1.1 originally written by Gregory DEMAR
 
   This program is free software; you can redistribute it and/or modify
@@ -27,7 +27,7 @@ $lang_translation_info = array(
   'trans_name'=> 'Biskop + Mimer',
   'trans_email' => '',
   'trans_website' => '',
-  'trans_date' => '2008-01-25',
+  'trans_date' => '2008-01-31',
 );
 
 $lang_charset = 'utf-8';
@@ -264,7 +264,7 @@ $lang_cpg_die = array(
   ERROR => $lang_error,
   CRITICAL_ERROR => 'Kritisk fejl',
   'file' => 'Fil: ',
-  'line' => 'Linje: ',
+  'line' => 'Linie: ',
 );
 
 $lang_display_thumbnails = array(
@@ -377,7 +377,7 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('MODE_PHP')) $lang_mode_php = array(
-  0 => 'Forlader admin mode...',
+  0 => 'Forlader admin tilstand...',
   1 => 'Logger ind som admin...',
 );
 
@@ -464,13 +464,13 @@ if (defined('BRIDGEMGR_PHP')) $lang_bridgemgr_php = array(
   'relative_path_of_forum_from_webroot_explanation' => 'Relativ sti til dit BBSprogram fra din webrod (Eksempel: hvis dit BBS ligger på http://www.yourdomain.tld/forum/, skriv ";/forum/"; i dette felt)',
   'relative_path_to_config_file' => 'Relativ sti til din BBS\'s konfigurationfil',
   'relative_path_to_config_file_explanation' => 'Relativ sti til din BBS, set fra din Copperminemappe (f.eks. ";../forum/"; hvis dit BBS ligger på http://www.yourdomain.tld/forum/ op Coppermine er på http://www.yourdomain.tld/gallery/)',
-  'cookie_prefix' => 'Cookie prefix',
+  'cookie_prefix' => 'Cookie præfiks',
   'cookie_prefix_explanation' => 'dette skal være navnet på cookien til din BBS',
-  'table_prefix' => 'Table prefix',
+  'table_prefix' => 'Table præfiks',
   'table_prefix_explanation' => 'Skal være prefixet du valgte for din BBS da du installerede det.',
   'user_table' => 'Brugertabel',
   'user_table_explanation' => '(som regel standardværdi, hvis du ikke har lavet ændringer fra standard på din BBSinstallation)',
-  'session_table' => 'Session table',
+  'session_table' => 'Sessiontabel',
   'session_table_explanation' => '(som regel standardværdi, hvis du ikke har lavet ændringer fra standard på din BBSinstallation)',
   'group_table' => 'Gruppetabel',
   'group_table_explanation' => '(som regel standardværdi, hvis du ikke har lavet ændringer fra standard på din BBSinstallation)',
@@ -645,8 +645,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Vis sprogliste', 'language_list', 1, 'f=index.htm&amp;as=admin_language_list&amp;ae=admin_language_list_end'), //cpg1.4
   array('Vis sprogflag', 'language_flags', 8, 'f=index.htm&amp;as=admin_language_flags&amp;ae=admin_language_flags_end&amp;top=1'), //cpg1.4
   array('Vis \'Standard Sprog\' i sprogvalg', 'language_reset', 1, 'f=index.htm&amp;as=admin_language_reset&amp;ae=admin_language_reset_end&amp;top=1'), //cpg1.4
-  array('Slå automatisk valg af sprog til', 'lang_autodetect', 1), //cpg1.4
-  array('Vis \'Forrige/Næste\' på sider med faneblade', 'previous_next_tab', 1), //cpg1.4
+  //array('Vis \'Forrige/Næste\' på sider med faneblade', 'previous_next_tab', 1), //cpg1.4
 
   'Tema indstilling',
   array('Tema', 'theme', 6, 'f=index.htm&amp;as=admin_theme_theme&amp;ae=admin_theme_theme_end'), //cpg1.4
@@ -679,7 +678,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Vis antal visninger under minibillede', 'views_in_thumbview', 1, 'f=index.htm&amp;as=admin_thumbnail_display_views&amp;ae=admin_thumbnail_display_views_end'), //cpg1.4
   array('Vis antal af kommentarer under minibilledet', 'display_comment_count', 1, 'f=index.htm&amp;as=admin_thumbnail_display_comments&amp;ae=admin_thumbnail_display_comments_end'), //cpg1.4
   array('Vis navn på person der har uploadet filen under minibillede', 'display_uploader', 1, 'f=index.htm&amp;as=admin_thumbnail_display_uploader&amp;ae=admin_thumbnail_display_uploader_end'), //cpg1.4
-  //array('Display name of admin uploaders below the thumbnail', 'display_admin_uploader', 1, 'f=index.htm&amp;as=admin_thumbnail_display_admin_uploader&amp;ae=admin_thumbnail_display_admin_uploader_end'), //cpg1.4
+  //array('Vis navn på admin uploader under minibilledet', 'display_admin_uploader', 1, 'f=index.htm&amp;as=admin_thumbnail_display_admin_uploader&amp;ae=admin_thumbnail_display_admin_uploader_end'), //cpg1.4
   array('Vis fil navn under minibillede', 'display_filename', 1, 'f=index.htm&amp;as=admin_thumbnail_display_filename&amp;ae=admin_thumbnail_display_filename_end'), //cpg1.4
   //array('Vis albumbeskrivelse', 'alb_desc_thumb', 1, 'f=index.htm&amp;as=admin_thumbnail_display_description&amp;ae=admin_thumbnail_display_description_end'), //cpg1.4
   array('Standard sortering af filer', 'default_sort_order', 3, 'f=index.htm&amp;as=admin_thumbnail_default_sortorder&amp;ae=admin_thumbnail_default_sortorder_end'), //cpg1.4
@@ -950,7 +949,7 @@ $lang_picinfo = array(
   'Dimensions' => 'Dimensioner',
   'Displayed' => 'Vist',
   'URL' => 'URL', //cpg1.4
-  'Make' => 'Make', //cpg1.4
+  'Make' => 'Lav', //cpg1.4
   'Model' => 'Model', //cpg1.4
   'DateTime' => 'Dato tid', //cpg1.4
   'ISOSpeedRatings'=>'ISO', //cpg1.4
@@ -968,7 +967,7 @@ $lang_picinfo = array(
   'ColorSpace' => 'Farverum', //cpg1.4
   'ExposureProgram' => 'Eksponeringsprogram', //cpg1.4
   'Flash' => 'Blitz', //cpg1.4
-  'MeteringMode' => 'Metering Mode', //cpg1.4
+  'MeteringMode' => 'Måletilstand', //cpg1.4
   'ExposureTime' => 'Eksponering tid', //cpg1.4
   'ExposureBiasValue' => 'Eksponering Bias', //cpg1.4
   'ImageDescription' => ' Billdebeskrivelse', //cpg1.4
@@ -988,10 +987,10 @@ $lang_picinfo = array(
   'CompressedBitsPerPixel' => 'Komprimeret Bits Pr Pixel', //cpg1.4
   'LightSource' => 'Lyskilde', //cpg1.4
   'ISOSetting' => 'ISO Indstillinger', //cpg1.4
-  'ColorMode' => 'Farve Mode', //cpg1.4
+  'ColorMode' => 'Farve Tilstand', //cpg1.4
   'Quality' => 'Kvalitet', //cpg1.4
   'ImageSharpening' => 'Billedskarphed', //cpg1.4
-  'FocusMode' => 'Fokus Mode', //cpg1.4
+  'FocusMode' => 'Fokus Tilstand', //cpg1.4
   'FlashSetting' => 'Blitz indstilling', //cpg1.4
   'ISOSelection' => 'ISO Valg', //cpg1.4
   'ImageAdjustment' => 'Billedindstilling', //cpg1.4
@@ -1004,14 +1003,14 @@ $lang_picinfo = array(
   'FlashPixVersion' => 'Blitz Pix Version', //cpg1.4
   'ExifImageWidth' => 'Exif Billedbrede', //cpg1.4
   'ExifImageHeight' => 'Exif Billedhøjde', //cpg1.4
-  'ExifInteroperabilityOffset' => 'Exif Interoperability Offset', //cpg1.4
+  'ExifInteroperabilityOffset' => 'Exif Interoperabilitets Offset', //cpg1.4
   'FileSource' => 'Fil Kilde', //cpg1.4
-  'SceneType' => 'Scene Type', //cpg1.4
-  'CustomerRender' => 'Customer Render', //cpg1.4
-  'ExposureMode' => 'Eksponering Mode', //cpg1.4
-  'WhiteBalance' => 'Hvid Balance', //cpg1.4
-  'DigitalZoomRatio' => 'Digital Zoom Forhold', //cpg1.4
-  'SceneCaptureMode' => 'Scene Capture Mode', //cpg1.4
+  'SceneType' => 'Scenetype', //cpg1.4
+  'CustomerRender' => 'Kunde Rendering', //cpg1.4
+  'ExposureMode' => 'Eksponering Tilstand', //cpg1.4
+  'WhiteBalance' => 'Hvidbalance', //cpg1.4
+  'DigitalZoomRatio' => 'Digitalt Zoom Forhold', //cpg1.4
+  'SceneCaptureMode' => 'Scene Capture Tilstand', //cpg1.4
   'GainControl' => 'Gain Kontrol', //cpg1.4
   'Contrast' => 'Kontrast', //cpg1.4
   'Sharpness' => 'Skarphed', //cpg1.4
@@ -1103,6 +1102,8 @@ if (defined('REPORT_FILE_PHP') || defined('DISPLAYREPORT_PHP')) $lang_report_php
   'view_comment' => 'Vis fuld rapport med kommentar', //cpg1.4
   'type_file' => 'fil', //cpg1.4
   'type_comment' => 'Kommentar', //cpg1.4
+  'invalid_data' => 'Dataen i den rapport du prøver at få adgang til er blevet ødelagt af din e-mail klient. Tjek om link link er fuldstændig.', //cpg1.4
+
 );
 
 // ------------------------------------------------------------------------- //
@@ -1189,6 +1190,7 @@ if (defined('FAQ_PHP')) $lang_faq_data = array(
   'Navigering på siden',
   array('Hvad er ";Albumliste";?', 'Dette vil vise dig hele galleriet med et link til hver kategori. Minibilleder kan være et link til en kategori.', 'offline', 0),
   array('Hvad er ";Mit Galleri";?', 'Denne funktion tillader at hver bruger laver sit eget galleri, som brugeren kan tilføje, slette og redigere albums i, samt uploade billeder til dem.', 'allow_private_albums', 1), //cpg1.4
+  array('Hvad er forskellen mellem &quot;Admin Tilstand&quot; og &quot;Bruger Tilstand&quot;?', 'I Admin Tilstand kan brugere ændre deres galleri (såvel som andres hvis tilladelse er givet af administrator).', 'allow_private_albums', 0),
   array('Hvad er ";Upload Billeder";?', 'Denne funktion giver brugeren mulighed for at uploade et billede (størrelse og type er valgt af administratoren) til et galleri som du eller administratoren har valgt.', 'allow_private_albums', 0),
   array('Hvad er ";Nyeste uploads";?', 'Denne funktion viser de nyeste filer som er uploadet til siden.', 'offline', 0),
   array('Hvad er ";Nyeste kommentar";?', 'Denne funktion viser de nyeste kommentarer med de tilhørende billeder.', 'offline', 0),
@@ -1240,8 +1242,8 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
   'allowed' => 'Tilladt', //cpg1.4
   'approval' => 'Godkendelse', //cpg1.4
   'boxes_number' => 'Antal bokse', //cpg1.4
-  'variable' => 'variable', //cpg1.4
-  'fixed' => 'fixed', //cpg1.4
+  'variable' => 'variabel', //cpg1.4
+  'fixed' => 'låst', //cpg1.4
   'apply' => 'Anvend rettelser',
   'create_new_group' => 'Opret ny gruppe',
   'del_groups' => 'Slet valgte Gruppe(r)',
@@ -1478,7 +1480,6 @@ Du accepterer hermed ikke at indsende anstødelige, vulgære, usmagelige, hadefu
 <br />
 Denne side bruger cookies til at gemme informationer på din private computer. Disse cookies tjener kun det formål, at forbedre billedkvaliteten. Den tilsendte e-mail bekræfter din registrering, detaljer og adgangskode.<br>
 <br />
-<br />
 Ved at klikke på 'Jeg accepterer' nedenfor accepterer du disse betingelser.
 EOT;
 
@@ -1613,7 +1614,7 @@ $lang_search_php = array(
   'title' => 'Søg i filer', //cpg1.4
   'submit_search' => 'Søg', //cpg1.4
   'keyword_list_title' => 'Nøgleords liste', //cpg1.4
-  'keyword_msg' => 'Listen ovenover inkluderer ikka alt. Odr fra billedtitler og beskrivelser er ikke medtaget. Prøv en fuld-tekst søgning.',  //cpg1.4
+  'keyword_msg' => 'Listen her over inkluderer ikka alt. Ord fra billedtitler og beskrivelser er ikke medtaget. Prøv en fuld-tekst søgning.',  //cpg1.4
   'edit_keywords' => 'Ret nøgleord', //cpg1.4
   'search in' => 'Søg i::', //cpg1.4
   'ip_address' => 'IP adresse', //cpg1.4
@@ -1689,21 +1690,21 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 if (defined('STAT_DETAILS_PHP')) $lang_stat_details_php = array(
   'show_hide' => 'vis/gem denne kolonnen', //cpg1.4
   'vote' => 'Stemmedetaljer', //cpg1.4
-  'hits' => 'Hit Details', //cpg1.4
+  'hits' => 'Hit Detaljer', //cpg1.4
   'stats' => 'Stemme statistikk', //cpg1.4
   'sdate' => 'Dato', //cpg1.4
-  'rating' => 'Rating', //cpg1.4
+  'rating' => 'Vurdering', //cpg1.4
   'search_phrase' => 'Søge sætning', //cpg1.4
   'referer' => 'Henvisnings-', //cpg1.4
   'browser' => 'Browser', //cpg1.4
-  'os' => 'Operating System', //cpg1.4
+  'os' => 'Operativsystem', //cpg1.4
   'ip' => 'IP', //cpg1.4
   'sort_by_xxx' => 'Sorter på %s', //cpg1.4
   'ascending' => 'i stigende rækkefølge', //cpg1.4
   'descending' => 'i faldende rækkefølge', //cpg1.4
   'internal' => 'int', //cpg1.4
   'close' => 'luk', //cpg1.4
-  'hide_internal_referers' => 'hide internal referers', //cpg1.4
+  'hide_internal_referers' => 'skjul interne referencer', //cpg1.4
   'date_display' => 'Dato visning', //cpg1.4
   'submit' => 'send / genindlæs', //cpg1.4
 );
@@ -1785,7 +1786,7 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'pic_title' => 'Billedtitel',
   'description' => 'Billedbeskrivelse',
   'keywords' => 'Nøgleord (Adskil med mellemrum)<br /><a href="#" onClick="return MM_openBrWindow(\'keyword_select.php\',\'selectKey\',\'width=250, height=400, scrollbars=yes,toolbar=no,status=yes,resizable=yes\')">Indsæt fra listen</a>', //cpg1.4
-  'keywords_sel' =>'Select a Keyword', //cpg1.4
+  'keywords_sel' =>'Vælg et nøgleord', //cpg1.4
   'err_no_alb_uploadables' => 'Beklager der er intet album, som du har tilladelse til at uploade billeder til',
   'place_instr_1' => 'Vælg venligst album til filerne nu. Du kan ogsÃ¥ indtaste relevante oplysninger om hver fil nu.',
   'place_instr_2' => 'Flere filer skal placeres. Tryk venligst på \'Fortsæt\'.',
@@ -1878,7 +1879,7 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
   'category' => 'Kategori', //cpg1.4
   'modify' => 'Ændre?', //cpg1.4
   'group_no_access' => 'Denne gruppe har ingen special adgang', //cpg1.4
-  'notice' => 'Notice', //cpg1.4
+  'notice' => 'Notits', //cpg1.4
   'group_can_access' => 'Album(s) der kun "%s" har adgang', //cpg1.4
 );
 
@@ -2019,7 +2020,7 @@ if (defined('VERSIONCHECK_PHP')) $lang_versioncheck_php = array(
   'help_writable2' => 'Mappen %s er skrivbar. Dette er en unødig sikkerheds risiko, Coppermine behøver kun læse/køre rettigheder.', //cpg1.4
   'help_writable_undetermined' => 'Coppermine kunne ikke afgøre om mappen er skrivbar.', //cpg1.4
   'your_file' => 'din fil', //cpg1.4
-  'reference_file' => 'reference file', //cpg1.4
+  'reference_file' => 'reference fil', //cpg1.4
   'summary' => 'sammendrag', //cpg1.4
   'total' => 'Total antal filer/mapper tjekket', //cpg1.4
   'mandatory_files_missing' => 'Påkrævet filer som mangler', //cpg1.4
@@ -2065,7 +2066,7 @@ if (defined('VIEWLOG_PHP')) $lang_viewlog_php = array(
 if (defined('XP_PUBLISH_PHP')) {
 
 $lang_xp_publish_client = <<<EOT
-<h1>Guidet Webudgivelse klient</h1><p>Dette module give mulighed for at bruge <b>Windows XP</b> guiden Webudgivelse med Coppermine.</p><p>Koden er berseret på en artikel postet af
+<h1>XP Web Publishing Wizard klient</h1><p>Dette module give mulighed for at bruge <b>Windows XP</b> guiden Webudgivelse med Coppermine.</p><p>Koden er berseret på en artikel postet af
 EOT;
 
 $lang_xp_publish_required = <<<EOT
