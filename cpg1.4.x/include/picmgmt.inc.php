@@ -204,11 +204,9 @@ function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use)
              */
             if (eregi("win",$_ENV['OS'])) {
                 $cmd = "\"".str_replace("\\","/", $CONFIG['impath'])."convert\" -quality {$CONFIG['jpeg_qual']} {$CONFIG['im_options']} -geometry {$destWidth}x{$destHeight} ".str_replace("\\","/" ,$src_file )." ".str_replace("\\","/" ,$im_dest_file );
-                $cmd = escapeshellarg($cmd);
                 exec ("\"$cmd\"", $output, $retval);
             } else {
                 $cmd = "{$CONFIG['impath']}convert -quality {$CONFIG['jpeg_qual']} {$CONFIG['im_options']} -geometry {$destWidth}x{$destHeight} $src_file $im_dest_file";
-                $cmd = escapeshellarg($cmd);
                 exec ($cmd, $output, $retval);
             }
 

@@ -84,11 +84,9 @@ class imageObject{
             if (eregi("win",getenv('OS'))) {
                 $imgFile = str_replace("'","\"" ,$imgFile );
                 $cmd = "\"".str_replace("\\","/", $CONFIG['impath'])."convert\" -quality {$this->quality} {$CONFIG['im_options']} -crop {$new_w}x{$new_h}+{$clip_left}+{$clip_top} ".str_replace("\\","/" ,$imgFile )." ".str_replace("\\","/" ,$imgFile );
-                $cmd = escapeshellarg($cmd);
                 exec ("\"$cmd\"", $output, $retval);
             } else {
                 $cmd = "{$CONFIG['impath']}convert -quality {$this->quality} {$CONFIG['im_options']} -crop {$new_w}x{$new_h}+{$clip_left}+{$clip_top} $imgFile $imgFile";
-                $cmd = escapeshellarg($cmd);
                 exec ($cmd, $output, $retval);
             }
                 //$cmd = "{$CONFIG['impath']}convert -quality {$this->quality} {$CONFIG['im_options']} -crop '{$new_w}x{$new_h} +{$clip_left} +{$clip_top}' $imgFile $imgFile";
@@ -119,11 +117,9 @@ class imageObject{
             if (eregi("win",getenv('OS'))) {
                 $imgFile = str_replace("'","\"" ,$imgFile );
                 $cmd = "\"".str_replace("\\","/", $CONFIG['impath'])."convert\" -quality {$this->quality} {$CONFIG['im_options']} -rotate $angle ".str_replace("\\","/" ,$imgFile )." ".str_replace("\\","/" ,$imgFile );
-                $cmd = escapeshellarg($cmd);
                 exec ("\"$cmd\"", $output, $retval);
             } else {
                 $cmd = "{$CONFIG['impath']}convert -quality {$this->quality} {$CONFIG['im_options']} -rotate $angle $imgFile $imgFile";
-                $cmd = escapeshellarg($cmd);
                 exec ($cmd, $output, $retval);
             }
              //$cmd = "{$CONFIG['impath']}convert -quality {$this->quality} {$CONFIG['im_options']} -rotate '$angle' $imgFile $imgFile";
@@ -151,11 +147,9 @@ class imageObject{
             if (eregi("win",getenv('OS'))) {
                 $imgFile = str_replace("'","\"" ,$imgFile );
                 $cmd = "\"".str_replace("\\","/", $CONFIG['impath'])."convert\" -quality {$this->quality} {$CONFIG['im_options']} -geometry {$new_w}x{$new_h} ".str_replace("\\","/" ,$imgFile )." ".str_replace("\\","/" ,$imgFile );
-                $cmd = escapeshellarg($cmd);
                 exec ("\"$cmd\"", $output, $retval);
             } else {
                 $cmd = "{$CONFIG['impath']}convert -quality {$this->quality} {$CONFIG['im_options']} -geometry {$new_w}x{$new_h} $imgFile $imgFile";
-                $cmd = escapeshellarg($cmd);
                 exec ($cmd, $output, $retval);
             }
 
