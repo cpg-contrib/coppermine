@@ -26,6 +26,7 @@
 
 define('IN_COPPERMINE', true);
 define('PLUGINMGR_PHP', true);
+define('CORE_PLUGIN', true);
 
 require('include/init.inc.php');
 
@@ -47,7 +48,7 @@ if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__,
     }
 
 function display_plugin_list() {
-    global $CPG_PLUGINS, $lang_pluginmgr_php, $lang_common, $CONFIG, $CPG_PHP_SELF;
+    global $CPG_PLUGINS, $lang_pluginmgr_php, $lang_plugin_php, $lang_common, $CONFIG, $CPG_PHP_SELF;
 
     $help = '&nbsp;'.cpg_display_help('f=plugins.htm&amp;as=plugin_manager&amp;ae=plugin_manager_end&amp;top=1', '800', '600');
     $help_plugin_enable = cpg_display_help('f=configuration.htm&amp;as=admin_general_enable-plugins&amp;ae=admin_general_enable-plugins_end', 400, 300);
@@ -102,6 +103,7 @@ EOT;
         unset($extra_info);
         unset($install_info);
         include('./plugins/'.$thisplugin->path.'/configuration.php');
+        $pluginPath = $thisplugin->path;
 
         $safename = addslashes(str_replace('&nbsp;', '', $name));
         if (isset($extra_info) == TRUE) {
@@ -132,7 +134,7 @@ EOT;
             <td width="90%" class="{$row_style_class}">
                 <table border="0" width="100%" cellspacing="0" cellpadding="0" class="maintable">
                     <tr>
-                        <td colspan="2" class="tableh1">{$name}: {$lang_pluginmgr_php['vers']}$version</td>
+                        <td colspan="2" class="tableh1">{$name} ({$pluginPath}): {$lang_pluginmgr_php['vers']}$version</td>
                     </tr>
                     <tr>
                         <td class="tableb" width="20%" valign="top">{$lang_pluginmgr_php['extra']}:</td>
@@ -230,6 +232,7 @@ EOT;
             unset($extra_info);
             unset($install_info);
             include('./plugins/'.$path.'/configuration.php');
+            $pluginPath = $path;
 
             $safename = addslashes(str_replace('&nbsp;', '', $name));
             if (isset($install_info) == TRUE) {
@@ -253,7 +256,7 @@ EOT;
             <td width="90%" class="{$row_style_class}">
                 <table border="0" width="100%" cellspacing="0" cellpadding="0" class="maintable">
                     <tr>
-                        <td colspan="2" class="tableh1">{$name}: {$lang_pluginmgr_php['vers']}$version</td>
+                        <td colspan="2" class="tableh1">{$name} ({$pluginPath}): {$lang_pluginmgr_php['vers']}$version</td>
                     </tr>
                     <tr>
                         <td class="tableb tableb_alternate" width="20%" valign="top">{$lang_pluginmgr_php['author']}:</td>

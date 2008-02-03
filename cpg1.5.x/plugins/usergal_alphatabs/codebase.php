@@ -29,7 +29,7 @@ if ($superCage->get->keyExists('cat') && $superCage->get->getInt('cat') == USER_
 
 	function makejumpbox(){
 		global $lang_plugin_php;
-		starttable('100%', $lang_plugin_php['jump_by_username'], 26);
+		starttable('100%', $lang_plugin_php['usergal_alphatabs_jump_by_username'], 26);
 		echo '<tr>';
 		foreach (range('A', 'Z') as $letter){
 			echo '<td width="'.(100/26).'%" align="center"><a href="index.php?cat=1&letter='.$letter.'"> '.$letter.' </a></td>';

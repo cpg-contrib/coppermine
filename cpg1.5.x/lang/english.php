@@ -2583,6 +2583,8 @@ if (defined('INSTALLER')) $lang_install = array(
 // Core plugins
 // ------------------------------------------------------------------------- //
 if (defined('CORE_PLUGIN')) $lang_plugin_php = array(
-  'jump_by_username' => 'Jump by username', // cpg1.5
+  'usergal_alphatabs_jump_by_username' => 'Jump by username', // cpg1.5
+  'usergal_alphatabs_config_description' => 'What it does: displays tabs from A to Z at the top of user galleries that visitors can click on to directly jump to a page that displays all user galleries of the users who\'s username starts with that letter. Plugin only recommended to be used if you have a really large number of user galleries.', // cpg1.5
+  'usergal_alphatabs_config_name' => 'User Gallery Alphabetic Tabbing', // cpg1.5
 );
 ?>
