@@ -432,9 +432,9 @@ EOT;</pre>
 <a name="iptcSupport"></a>
 <h3>How do I <strong>enable IPTC support</strong>?<a href="#iptcSupport" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Edit <tt class="code">/includes/picmgmt.inc.php</tt> and search for<br />
-<tt class="code">        $imagesize = getimagesize($image);</tt><br />
+<tt class="code">        $imagesize = cpg_getimagesize($image);</tt><br />
 replace this with:<br />
-<pre>$imagesize = getimagesize($image,&$info);
+<pre>$imagesize = cpg_getimagesize($image,&$info);
 $iptc = iptcparse($info["APP13"]);
 if (is_array($iptc)) {
 $caption.=$iptc['2#120'][0];

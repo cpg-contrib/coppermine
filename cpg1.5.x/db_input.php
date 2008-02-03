@@ -448,7 +448,7 @@ switch ($event) {
             @unlink($uploaded_pic);
             cpg_die(ERROR, sprintf($lang_db_input_php['err_imgsize_too_large'], $CONFIG['max_upl_size']), __FILE__, __LINE__);
         } elseif (is_image($picture_name)) {
-            $imginfo = getimagesize($uploaded_pic);
+            $imginfo = cpg_getimagesize($uploaded_pic);
             // getimagesize does not recognize the file as a picture
             if ($imginfo == null) {
                 @unlink($uploaded_pic);

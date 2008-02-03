@@ -833,7 +833,7 @@ function process_picture()
         // Get picture information
         $imginfo = getimagesize($uploaded_pic);
 
-        // getimagesize does not recognize the file as a picture
+        // cpg_getimagesize does not recognize the file as a picture
         if ($imginfo == null) {
             @unlink($uploaded_pic);
             simple_die(ERROR, $lang_db_input_php['err_invalid_img'], __FILE__, __LINE__, true);

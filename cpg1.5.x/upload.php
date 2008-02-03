@@ -1309,9 +1309,9 @@ if ($superCage->post->keyExists('control') && $superCage->post->getRaw('control'
             if (is_image($picture_alias)) {
 
                 // If it is, get the picture information
-                $imginfo = getimagesize($path_to_image);
+                $imginfo = cpg_getimagesize($path_to_image);
 
-                // If getimagesize does not recognize the file as a picture, delete the picture.
+                // If cpg_getimagesize does not recognize the file as a picture, delete the picture.
                 if ($imginfo === 'FALSE') {
                     @unlink($path_to_image);
 
@@ -1990,9 +1990,9 @@ if ($superCage->post->keyExists('control') && $superCage->post->getRaw('control'
             if (is_image($picture_alias)) {
 
                 // If it is, get the picture information
-                $imginfo = getimagesize($path_to_image);
+                $imginfo = cpg_getimagesize($path_to_image);
 
-                // If getimagesize does not recognize the file as a picture, delete the picture.
+                // If cpg_getimagesize does not recognize the file as a picture, delete the picture.
                 if ($imginfo === 'FALSE') {
                     @unlink($path_to_image);
 

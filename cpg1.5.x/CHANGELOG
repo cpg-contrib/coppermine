@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-02-03 [O] Added custom cpg_getimagesize function. {SaWey}
 2008-01-28 [A] Added plugin "User Gallery Alphabetic Tabbing" to core {GauGau}
 2008-01-26 [M] Updated year info in header (copyright line) {GauGau}
 2008-01-24 [D] Added section of how to use superglobals in plugin_writing.htm {SaWey}

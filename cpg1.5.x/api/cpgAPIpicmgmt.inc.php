@@ -43,7 +43,7 @@ function add_picture($aid, $filepath, $filename, $position = 0, $title = '', $ca
     if (!is_known_filetype($image)) {
         return false;
     } elseif (is_image($filename)) {
-        $imagesize = getimagesize($image);
+        $imagesize = cpg_getimagesize($image);
 
         if ($CONFIG['read_iptc_data']) {
            $iptc = get_IPTC($image);
@@ -57,7 +57,7 @@ function add_picture($aid, $filepath, $filename, $position = 0, $title = '', $ca
         if (((USER_IS_ADMIN && $CONFIG['auto_resize'] == 1) || (!USER_IS_ADMIN && $CONFIG['auto_resize'] > 0)) && max($imagesize[0], $imagesize[1]) > $CONFIG['max_upl_width_height']) //$CONFIG['auto_resize']==1
         {
           resize_image($image, $image, $CONFIG['max_upl_width_height'], $CONFIG['thumb_method'], $CONFIG['thumb_use']);
-          $imagesize = getimagesize($image);
+          $imagesize = cpg_getimagesize($image);
         }
         if (!file_exists($thumb)) {
             if (!resize_image($image, $thumb, $CONFIG['thumb_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use'])) {
@@ -139,7 +139,7 @@ function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use)
     global $CONFIG, $ERROR;
     global $lang_errors;
 
-    $imginfo = getimagesize($src_file);
+    $imginfo = cpg_getimagesize($src_file);
     if ($imginfo == null)
         return false;
         // GD can only handle JPG & PNG images
@@ -253,7 +253,7 @@ function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use)
     // Set mode of uploaded picture
     @chmod($dest_file, octdec($CONFIG['default_file_mode'])); //silence the output in case chmod is disabled
     // We check that the image is valid
-    $imginfo = getimagesize($dest_file);
+    $imginfo = cpg_getimagesize($dest_file);
     if ($imginfo == null) {
         $ERROR = $lang_errors['resize_failed'];
         @unlink($dest_file);

@@ -1192,7 +1192,7 @@ class CPGInstall{
 			$im = imagecreate(1, 1);
 			$tst_image = "albums/gd1.jpg";
 			imagejpeg($im, $tst_image);
-			$size = @getimagesize($tst_image);
+			$size = $this->cpgGetimagesize($tst_image);
 			@unlink($tst_image);
 			if($size[2] == 2) {
 				return true;
@@ -1203,7 +1203,7 @@ class CPGInstall{
 			$im = imagecreatetruecolor(1, 1);
 			$tst_image = "albums/gd2.jpg";
 			imagejpeg($im, $tst_image);
-			$size = @getimagesize($tst_image);
+			$size = $this->cpgGetimagesize($tst_image);
 			@unlink($tst_image);
 			if($size[2] == 2) {
 				return true;
@@ -1276,7 +1276,7 @@ class CPGInstall{
 				// do a real image conversion check
 				$tst_image = "albums/userpics/im.gif";
 				exec ("$path images/coppermine-logo.png $tst_image", $output, $result);
-				$size = @getimagesize($tst_image);
+				$size = $this->cpgGetimagesize($tst_image);
 				@unlink($tst_image);
 				$im_installed = ($size[2] == 1);
 				// convert tool found, but did not work as expected

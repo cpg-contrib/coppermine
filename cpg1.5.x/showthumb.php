@@ -48,7 +48,7 @@ function makethumbnail($src_file, $newSize, $method)
         exit;
     }
     // find the image size, no size => unknow type
-    $imginfo = getimagesize($src_file);
+    $imginfo = cpg_getimagesize($src_file);
     if ($imginfo == null) {
         header("Content-type: image/gif");
         fpassthru(fopen(UNKNOW_ICON, 'rb'));

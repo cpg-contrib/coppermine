@@ -157,7 +157,7 @@ function picrow($picfile, $picid, $albid)
 
     $thumb_file = dirname($picname) . '/' . $CONFIG['thumb_pfx'] . $pic_fname;
     if (file_exists($thumb_file)) {
-        $thumb_info = getimagesize($picname);
+        $thumb_info = cpg_getimagesize($picname);
         $thumb_size = compute_img_size($thumb_info[0], $thumb_info[1], 48);
         if ($CONFIG['display_thumbs_batch_add'] == 1) {
           $img = '<img src="' . path2url($thumb_file) . '" ' . $thumb_size['geom'] . ' class="thumbnail" border="0" alt="" />';
@@ -179,7 +179,7 @@ function picrow($picfile, $picid, $albid)
     }
 
     if (filesize($picname) && is_readable($picname)) {
-        //$fullimagesize = getimagesize($picname); COMMENTED OUT FOR VIDEO SUPPORT
+        //$fullimagesize = cpg_getimagesize($picname); COMMENTED OUT FOR VIDEO SUPPORT
         $winsizeX = ($fullimagesize[0] + 16);
         $winsizeY = ($fullimagesize[1] + 16);
 

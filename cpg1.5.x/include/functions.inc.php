@@ -2030,7 +2030,7 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
 
                         $pic_url =  get_pic_url($row, 'thumb');
                         if (!is_image($row['filename'])) {
-                                $image_info = getimagesize(urldecode($pic_url));
+                                $image_info = cpg_getimagesize(urldecode($pic_url));
                                 $row['pwidth'] = $image_info[0];
                                 $row['pheight'] = $image_info[1];
                         }
@@ -2146,7 +2146,7 @@ function& cpg_get_system_thumb($filename,$user=10001)
                          'url_prefix'=>0);
         $pic_url = get_pic_url($picdata,'thumb',true);
         $picdata['thumb'] = $pic_url;
-        $image_info = getimagesize(urldecode($pic_url));
+        $image_info = cpg_getimagesize(urldecode($pic_url));
         $picdata['pwidth'] = $image_info[0];
         $picdata['pheight'] = $image_info[1];
         $image_size = compute_img_size($picdata['pwidth'], $picdata['pheight'], $CONFIG['alb_list_thumb_size']);
@@ -2220,7 +2220,7 @@ function display_film_strip($album, $cat, $pos)
 
                         $pic_url =  get_pic_url($row, 'thumb');
                         if (!is_image($row['filename'])) {
-                                $image_info = getimagesize(urldecode($pic_url));
+                                $image_info = cpg_getimagesize(urldecode($pic_url));
                                 $row['pwidth'] = $image_info[0];
                                 $row['pheight'] = $image_info[1];
                         }
@@ -4248,6 +4248,90 @@ if (!function_exists('json_encode')) {
 
 		if($is_list) return '[' . $json . ']';//Return numerical JSON
 		return '{' . $json . '}';//Return associative JSON
+	}
+}
+
+/**
+ * function cpg_getimagesize()
+ *
+ * Try to get the size of an image, this is custom built as some webhosts disable this function or do weird things with it
+ *
+ * @param string $image
+ * @param boolean $force_cpg_function
+ * @return array $size
+ */
+function cpg_getimagesize($image, $force_cpg_function = false){
+	if (!function_exists('getimagesize') || $force_cpg_function){  
+		//custom function borrowed from http://www.wischik.com/lu/programmer/get-image-size.html
+		$f = @fopen($image, 'rb'); 
+		if($f === false){
+			return false;
+		} 
+		fseek($f, 0, SEEK_END); 
+		$len = ftell($f);
+		if ($len < 24) {
+			fclose($f); 
+			return false;
+		}
+		fseek($f, 0); 
+		$buf = fread($f, 24);
+		if($buf === false){
+			fclose($f); 
+			return false;
+		}
+		if(ord($buf[0]) == 255 && ord($buf[1]) == 216 && ord($buf[2]) == 255 && ord($buf[3]) == 224 && $buf[6] == 'J' && $buf[7] == 'F' && $buf[8] == 'I' && $buf[9] == 'F'){ 
+			$pos=2; 
+			while (ord($buf[2]) == 255){
+				if (ord($buf[3]) == 192 || ord($buf[3]) == 193 || ord($buf[3]) == 194 || ord($buf[3]) == 195 || ord($buf[3]) == 201 || ord($buf[3]) == 202 || ord($buf[3]) == 203){
+					break; // we've found the image frame
+				}
+				$pos += 2 + (ord($buf[4]) << 8) + ord($buf[5]);
+				if ($pos+12>$len){
+					break; // too far
+				}
+				fseek($f,$pos); 
+				$buf = $buf[0] . $buf[1] . fread($f,12);
+			}
+		}
+		fclose($f);
+	
+		// GIF:
+		if($buf[0] == 'G' && $buf[1] == 'I' && $buf[2] == 'F'){
+			$x = ord($buf[6]) + (ord($buf[7])<<8);
+			$y = ord($buf[8]) + (ord($buf[9])<<8);
+			$type = 1;
+		}
+	
+		// JPEG:
+		if(ord($buf[0]) == 255 && ord($buf[1]) == 216 && ord($buf[2]) == 255){ 
+			$y = (ord($buf[7])<<8) + ord($buf[8]);
+			$x = (ord($buf[9])<<8) + ord($buf[10]);
+			$type = 2;
+		}
+	
+		// PNG:
+		if(ord($buf[0]) == 0x89 && $buf[1] == 'P' && $buf[2] == 'N' && $buf[3] == 'G' && ord($buf[4]) == 0x0D && ord($buf[5]) == 0x0A && ord($buf[6]) == 0x1A && ord($buf[7]) == 0x0A && $buf[12] == 'I' && $buf[13] == 'H' && $buf[14] == 'D' && $buf[15] == 'R'){
+			$x = (ord($buf[16])<<24) + (ord($buf[17])<<16) + (ord($buf[18])<<8) + (ord($buf[19])<<0);
+			$y = (ord($buf[20])<<24) + (ord($buf[21])<<16) + (ord($buf[22])<<8) + (ord($buf[23])<<0);
+			$type = 3;
+		}
+	
+		if (isset($x, $y, $type)){
+			return false;
+		}
+		return array($x, $y, $type, 'height="' . $x . '" width="' . $y . '"');
+	}else{
+		$size = getimagesize($image);
+		if(!$size){
+			//false was returned
+			return cpg_getimagesize($image, true/*force the use of custom function*/);
+		}else if(!isset($size[0]) || !isset($size[1])){
+			//webhost possibly changed getimagesize functionality
+			return cpg_getimagesize($image, true/*force the use of custom function*/);
+		}else {
+			//function worked as expected, return the results
+			return $size;
+		}
 	}
 }
 ?>

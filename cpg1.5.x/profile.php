@@ -59,7 +59,7 @@ function cpgUserThumb($uid) {
                 mysql_free_result($result);
                 $pic_url =  get_pic_url($picture, 'thumb');
                 if (!is_image($picture['filename'])) {
-                        $image_info = getimagesize(urldecode($pic_url));
+                        $image_info = cpg_getimagesize(urldecode($pic_url));
                         $picture['pwidth'] = $image_info[0];
                         $picture['pheight'] = $image_info[1];
                 }
@@ -90,7 +90,7 @@ function cpgUserLastComment($uid) {
                 mysql_free_result($result);
                 $pic_url =  get_pic_url($row, 'thumb');
                 if (!is_image($row['filename'])) {
-                        $image_info = getimagesize(urldecode($pic_url));
+                        $image_info = cpg_getimagesize(urldecode($pic_url));
                         $row['pwidth'] = $image_info[0];
                         $row['pheight'] = $image_info[1];
                 }

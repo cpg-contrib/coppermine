@@ -1401,9 +1401,9 @@ EOT;</pre>
 </ol><br /><p></p><br /><div class="back">[<a href="#top">Haut de page</a>]</div><hr /><a name="iptcSupport"></a>
 <h3>Comment peut-on activer le support IPTC ?</h3>
 <p>ouvrez <tt class="code">/includes/picmgmt.inc.php</tt> et cherchez<br />
-<tt class="code">        $imagesize = getimagesize($image);</tt><br />
+<tt class="code">        $imagesize = cpg_getimagesize($image);</tt><br />
 remplacez par:<br />
-</p><pre>$imagesize = getimagesize($image,&amp;$info);
+</p><pre>$imagesize = cpg_getimagesize($image,&amp;$info);
 $iptc = iptcparse($info["APP13"]);
 if (is_array($iptc)) {
 $caption.=$iptc['2#120'][0];

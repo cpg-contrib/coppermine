@@ -162,7 +162,7 @@ function true_color_rotate($path_to_primary_image, $degrees) {
 global $lang_image_processor_php;
 
 // Get image info.
-$source_image_size_and_type = getimagesize($path_to_primary_image) or die($lang_image_processor_php['file_corrupt']);
+$source_image_size_and_type = cpg_getimagesize($path_to_primary_image) or die($lang_image_processor_php['file_corrupt']);
 $source_image_width = $source_image_size_and_type[0];
 $source_image_height = $source_image_size_and_type[1];
 $source_image_type = $source_image_size_and_type[2];
@@ -249,7 +249,7 @@ function palette_rotate($path_to_primary_image, $degrees) {
 global $lang_image_processor_php;
 
 // Get image info.
-$source_image_size_and_type = getimagesize($path_to_primary_image) or die($lang_image_processor_php['file_corrupt']);
+$source_image_size_and_type = cpg_getimagesize($path_to_primary_image) or die($lang_image_processor_php['file_corrupt']);
 $source_image_width = $source_image_size_and_type[0];
 $source_image_height = $source_image_size_and_type[1];
 $source_image_type = $source_image_size_and_type[2];
@@ -342,7 +342,7 @@ global $lang_image_processor_php, $CONFIG;
 // them at php.net in the function library. Look under image functions. If you
 // desire, you could add these types to the following if-then-else statements.
 
-$source_image_size_and_type = getimagesize ($path_to_primary_image) or die($lang_image_processor_php['file_corrupt']);
+$source_image_size_and_type = cpg_getimagesize ($path_to_primary_image) or die($lang_image_processor_php['file_corrupt']);
 $source_image_width = $source_image_size_and_type[0];
 $source_image_height = $source_image_size_and_type[1];
 $source_image_type = $source_image_size_and_type[2];
@@ -404,7 +404,7 @@ if (($method == 'gd2') and (!function_exists('imageistruecolor'))) {
 }
 
 // Get image info.
-$source_image_size_and_type = getimagesize($path_to_primary_image) or die($lang_image_processor_php['file_corrupt']);
+$source_image_size_and_type = cpg_getimagesize($path_to_primary_image) or die($lang_image_processor_php['file_corrupt']);
 $source_image_width = $source_image_size_and_type[0];
 $source_image_height = $source_image_size_and_type[1];
 $source_image_type = $source_image_size_and_type[2];
@@ -791,7 +791,7 @@ if (!isset($_POST['degrees'])) {
 		}
 
 		// Now we can extract other information into the array $source_image_size_and_type.
-		// getimagesize returns an array with 4 elements. Index 0 contains the width of
+		// cpg_getimagesize returns an array with 4 elements. Index 0 contains the width of
 		// the image in pixels. Index 1 contains the height. Index 2 is a flag indicating
 		// the type of the image: 1 = GIF, 2 = JPG, 3 = PNG, 4 = SWF, 5 = PSD, 6 = BMP,
 		// 7 = TIFF(intel byte order), 8 = TIFF(motorola byte order), 9 = JPC, 10 = JP2,
@@ -799,12 +799,12 @@ if (!isset($_POST['degrees'])) {
 		// string for use in HTML img tags. The funtion returns FALSE if it totally fails,
 		// so we may use a die statement to generate the error message.
 
-		$source_image_size_and_type = getimagesize($temporary_name) or die($lang_image_processor_php['file_corrupt']);
+		$source_image_size_and_type = cpg_getimagesize($temporary_name) or die($lang_image_processor_php['file_corrupt']);
 		$source_image_width = $source_image_size_and_type[0];
 		$source_image_height = $source_image_size_and_type[1];
 		$source_image_type = $source_image_size_and_type[2];
 
-		// getimagesize returns a width or height of zero if there is no image in the file
+		// cpg_getimagesize returns a width or height of zero if there is no image in the file
 		// or if it cannot tell what it is looking at.  Let's check the width and height.
 
 		if (($source_image_width <= 0) or ($source_image_height <= 0)) {
@@ -992,7 +992,7 @@ if (!isset($_POST['degrees'])) {
 
 				// Get width and height here.
 
-				$source_image_size_and_type = getimagesize($path_to_primary_image) or die($lang_image_processor_php['file_corrupt']);
+				$source_image_size_and_type = cpg_getimagesize($path_to_primary_image) or die($lang_image_processor_php['file_corrupt']);
 				$source_image_width = $source_image_size_and_type[0];
 				$source_image_height = $source_image_size_and_type[1];
 				$source_image_type = $source_image_size_and_type[2];

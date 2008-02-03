@@ -309,7 +309,7 @@ function update_thumbs()
                         $orig_true='false';
                 }
 
-                $imagesize = getimagesize($work_image);
+                $imagesize = cpg_getimagesize($work_image);
                 if ($updatetype == 0 || $updatetype == 2 || $updatetype == 5)  {
                     if (resize_image($work_image, $thumb, $CONFIG['thumb_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use'], "false", 1)) {
                         echo $thumb .' '. $lang_util_php['updated_succesfully'] . '!<br />';
@@ -384,7 +384,7 @@ function update_thumbs()
                     }
                 }
 
-                $imagesize = getimagesize($image);
+                $imagesize = cpg_getimagesize($image);
                 $query_up = "UPDATE {$CONFIG['TABLE_PICTURES']} SET pwidth='$imagesize[0]' , pheight='$imagesize[1]' WHERE pid='".$row['pid']."' ";
                 cpg_db_query($query_up);
         }
@@ -472,7 +472,7 @@ function del_orig()
                         $deleted = unlink($image);
                         $renamed = rename($normal, $image);
                         if ($deleted AND $renamed){
-                                $imagesize = getimagesize($image); // dimensions
+                                $imagesize = cpg_getimagesize($image); // dimensions
                                 $image_filesize = filesize($image); // bytes
                                 $total_filesize = $image_filesize + filesize($thumb);
                                 cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET filesize='$image_filesize', total_filesize='$total_filesize', pwidth='{$imagesize[0]}', pheight='{$imagesize[1]}' WHERE pid='$pid' ");
@@ -711,7 +711,7 @@ function refresh_db()
                 if (@file_exists($full_pic_url)){
 
                         $filesize = @filesize($full_pic_url);
-                        $dimensions = @getimagesize($full_pic_url);
+                        $dimensions = cpg_getimagesize($full_pic_url);
 
                         if ($filesize){
 

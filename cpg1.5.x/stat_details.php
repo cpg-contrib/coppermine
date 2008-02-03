@@ -490,7 +490,7 @@ EOT;
                   if ($file == 1) {
                       $thumb_url =  get_pic_url($row, 'thumb');
                       if (!is_image($row['filename'])) {
-                          $image_info = getimagesize($thumb_url);
+                          $image_info = cpg_getimagesize($thumb_url);
                           $row['pwidth'] = $image_info[0];
                           $row['pheight'] = $image_info[1];
                       }

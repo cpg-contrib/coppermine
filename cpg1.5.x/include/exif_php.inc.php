@@ -33,7 +33,7 @@ function exif_parse_file($filename)
 
         if (!is_readable($filename)) return false;
 
-        $size = @getimagesize($filename);
+        $size = cpg_getimagesize($filename);
         if ($size[2] != 2) return false; // Not a JPEG file
 
         $exifRawData = explode ("|",$exif_info);
