@@ -373,10 +373,27 @@ switch($step) {
 		}
 		html_finish();
 		html_footer();
-		// delete temp config!!
+		
+		// delete temp config + created test images!!
+		$files_to_remove = array(
+			'albums/combined_generated.jpg',
+			'albums/giftest_generated.gif',
+			'albums/giftest_generated.jpg',
+			'albums/jpgtest_generated.jpg',
+			'albums/pngtest_generated.jpg',
+			'albums/pngtest_generated.png',
+			'albums/scaled_generated.jpg',
+			'albums/texttest_generated.jpg',
+			'include/config.tmp',			
+		);
+		foreach($files_to_remove as $file){
+			if(is_file($file)){
+				unlink($file);
+			}
+		}
+		
 		break;	
 }
-
 
 ########################
 ####Install Templates###
@@ -1923,7 +1940,7 @@ class IMtest{
 	 * @param string $image_path
 	 */
 	function IMtest($IMpath, $image_path = ''){
-		$this->IMpath = $IMpath;
+		$this->IMpath = $IMpath . 'convert';
 		if($image_path != ''){
 			$this->image_path = $image_path;
 		}
@@ -1979,7 +1996,7 @@ class IMtest{
 		}
 		
 		//create png test image
-		$png_command = '"' . $this->IMpath . '" ' . $this->createImagePath('images/install/pngtest.png') . ' ' . $this->createImagePath('pngtest_generated.jpg', true);
+		$png_command = $this->IMpath . ' ' . $this->createImagePath('images/install/pngtest.png') . ' ' . $this->createImagePath('pngtest_generated.jpg', true);
 		exec($png_command, $output, $retval);
 		
 		if($retval){
@@ -1996,7 +2013,7 @@ class IMtest{
 		}
 		
 		//create jpg test image
-		$jpg_command = '"' . $this->IMpath . '" ' . $this->createImagePath('images/install/jpgtest.jpg') . ' ' . $this->createImagePath('jpgtest_generated.jpg', true);
+		$jpg_command = $this->IMpath . ' ' . $this->createImagePath('images/install/jpgtest.jpg') . ' ' . $this->createImagePath('jpgtest_generated.jpg', true);
 		exec($jpg_command, $output, $retval);
 		
 		if($retval){
@@ -2026,7 +2043,7 @@ class IMtest{
 		$source_a = 'images/install/jpgtest.jpg';
 		$source_b = 'images/install/combine_b.gif';
 		
-		$combine_command = '"' . $this->IMpath . '" ' . $this->createImagePath($source_a) . ' ' . $this->createImagePath($source_b) . ' -geometry +66+1   -composite   ' . $this->createImagePath('combined_generated.jpg', true);
+		$combine_command = $this->IMpath . ' ' . $this->createImagePath($source_a) . ' ' . $this->createImagePath($source_b) . ' -geometry +66+1   -composite   ' . $this->createImagePath('combined_generated.jpg', true);
 		
 		exec($combine_command, $output, $retval);	
 		if($retval){
@@ -2053,17 +2070,13 @@ class IMtest{
 	 * @return array $results
 	 */
 	function testTextOnImage(){
-		$text = '2008 &copy; Susanna Thornton';
-		$font = 'C:/wamp/www/CPG/CPG1_5DevLive/images/install/LiberationSans-Regular.ttf';
+		$text = '2008 © Susanna Thornton';
+		$font = 'images/install/LiberationSans-Regular.ttf';
 		$source = 'images/install/jpgtest.jpg';
 		
-		$text_command = '"' . $this->IMpath . '" ' . $this->createImagePath($source) . ' -fill white -font ' . $font . ' -pointsize 12 -draw "text  5,110 \'' . $text . '\'" ' . $this->createImagePath('texttest_generated.jpg', true);  
+		$text_command = '' . $this->IMpath . ' ' . $this->createImagePath($source) . ' -fill white -font ' . $font . ' -pointsize 12 -draw "text  50,110 \'' . $text . '\'" ' . $this->createImagePath('texttest_generated.jpg', true);  
 		
 		exec($text_command, $output, $retval);
-		/*print("<pre>");
-		print_r( $output);
-		print("</pre>");
-		echo $text_command;*/
 		if($retval){
 			//an error occured, add to array
 			$results['text'] = array(
@@ -2088,7 +2101,7 @@ class IMtest{
 	 * @return array $results
 	 */
 	 function testScale(){ 	
-		$scale_command = '"' . $this->IMpath . '" -geometry 100x57 ' . $this->createImagePath('images/install/jpgtest.jpg') . ' ' . $this->createImagePath('scaled_generated.jpg', true);
+		$scale_command = $this->IMpath . ' -geometry 100x57 ' . $this->createImagePath('images/install/jpgtest.jpg') . ' ' . $this->createImagePath('scaled_generated.jpg', true);
 		exec($scale_command, $output, $retval);
 		
 		if($retval){
