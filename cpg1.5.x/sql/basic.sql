@@ -130,7 +130,7 @@ INSERT INTO CPG_config VALUES ('fullsize_padding_x', '5');
 INSERT INTO CPG_config VALUES ('fullsize_padding_y', '3');
 INSERT INTO CPG_config VALUES ('allow_private_albums', '1');
 INSERT INTO CPG_config VALUES ('show_private', '0');
-INSERT INTO CPG_config VALUES ('forbiden_fname_char', '$/\\\\:*?&quot;\'&lt;&gt;|` &amp;#');
+INSERT INTO CPG_config VALUES ('forbiden_fname_char', '$/\\\\:*?&quot;\'&lt;&gt;|` &amp;#@');
 INSERT INTO CPG_config VALUES ('silly_safe_mode', '0');
 INSERT INTO CPG_config VALUES ('allowed_img_types', 'jpeg/jpg/png/gif');
 INSERT INTO CPG_config VALUES ('allowed_mov_types', 'asf/asx/mpg/mpeg/wmv/swf/avi/mov');
