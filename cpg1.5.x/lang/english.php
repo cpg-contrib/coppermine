@@ -2555,6 +2555,27 @@ if (defined('INSTALLER')) $lang_install = array(
   'username' => 'Username',
   'version_check' => 'The installation files have been checked and are ok, <br />please proceed to the next step.',
   'your_admin_account' => 'Your admin account',
+  'no_cookie' => 'Your browser did not accept our cookie (although it was a sweet one). It is recommended to accept cookies.',
+  'no_javascript' => 'Your browser doesn\'t seem to have javascript enabled, it is highly recommended to enable it.',
+  'register_globals_detected' => 'It seems your php configuration has \'register_globals\' enabled, you should disable this for security reasons.',
+  'version_undetected' => 'The script could not determine the version of %s your server is using. Be sure it is at least version %s',
+  'version_incompatible' => 'The script detected an incompatible version (%s) of %s on your server.<br />Make sure to use a compatible version (%s or better) before continuing!',
+  'read_gif' => 'Read/write .gif file',
+  'read_png' => 'Read/write .png file',
+  'read_jpg' => 'Read/write .jpg file',
+  'write_error' => 'Could not write generated image to disk.',
+  'read_error' => 'Could not read the source image.',
+  'combine_error' => 'Could not combine the source images',
+  'text_error' => 'Could not add text to the source image',
+  'scale_error' => 'Could not scale the source image',
+  'pixels' => 'pixels',
+  'combine' => 'Combine 2 images',
+  'text' => 'Write text on image',
+  'scale' => 'Scale an image',
+  'generated_image' => 'Generated image',
+  'reference_image' => 'Reference image',
+  'imp_test_error' => 'There was an error in one or more of the test, please make sure you selected the apropriate Image Processing Package and it is configured correctly!',
+  
 );
 
 
