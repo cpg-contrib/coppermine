@@ -15,7 +15,7 @@
   $Revision$
   $Author$
   $Date$
-  **********************************************/
+**********************************************/
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 
@@ -27,7 +27,7 @@ $lang_translation_info = array(
   'trans_name'=> 'Biskop + Mimer',
   'trans_email' => '',
   'trans_website' => '',
-  'trans_date' => '2008-01-31',
+  'trans_date' => '2008-02-02',
 );
 
 $lang_charset = 'utf-8';
@@ -66,7 +66,7 @@ $lang_meta_album_names = array(
   'random' => 'Tilfældige filer',
   'lastup' => 'Nyeste filer',
   'lastalb'=> 'Sidst opdaterede albums',
-  'lastcom' => 'Nyeste kommentarer',
+  'lastcom' => 'Nyeste kommentare',
   'topn' => 'Mest viste',
   'toprated' => 'Mest populære',
   'lasthits' => 'Sidst viste',
@@ -102,7 +102,7 @@ $lang_errors = array(
 );
 
 $lang_bbcode_help_title = 'Hjælp til bbkode '; //cpg1.4
-$lang_bbcode_help = 'Følgende koder kan være nyttige: <li>[b]Fed[/b] =&gt; <b>Fed</b></li><li>[i]Kursiv[/i] =&gt; <i>Kursiv</i></li><li>[url=http://dinside.dk/]Url Tekst[/url] =&gt; <a href="http://dinside.dk">Url Tekst</a></li><li>[email]bruger@domain.dk[/email] =&gt; <a href="mailto:bruger@domain.dk">bruger@domain.dk</a></li><li>[color=red]Tekst[/color] =&gt; <span style="color:red">Tekst</span></li><li>[img]http://coppermine-gallery.net/demo/cpg14x/images/red.gif[/img] => <img src="../images/red.gif" border="0" alt="" /></li>'; //cpg1.4
+$lang_bbcode_help = 'Følgende koder kan være nyttige: <li>[b]Fed[/b] =&gt; <b>Fed</b></li><li>[i]Kursiv[/i] =&gt; <i>Kursiv</i></li><li>[url=http://dinside.dk/]Url Tekst[/url] =&gt; <a href="http://dinside.dk">Url Tekst</a></li><li>[email]bruger@domain.dk[/email] =&gt; <a href="mailto:bruger@domain.dk">bruger@domain.dk</a></li><li>[color=red]Tekst[/color] =&gt; <span style="color:red">Tekst</span></li><li>[img]http://Coppermine-gallery.net/demo/cpg14x/images/red.gif[/img] => <img src="../images/red.gif" border="0" alt="" /></li>'; //cpg1.4
 
 // ------------------------------------------------------------------------- //
 // File theme.php
@@ -143,7 +143,7 @@ $lang_main_menu = array(
   'fav_lnk' => 'Mine Favoritter',
   'memberlist_title' => 'Vis medlemsliste',
   'memberlist_lnk' => 'Medlemsliste',
-  'faq_title' => 'Ofte Stillede Spørgsmål (FAQ) om galleriet ";Coppermine";',
+  'faq_title' => 'Ofte Stillede Spørgsmål (FAQ) om galleriet "Coppermine"',
   'faq_lnk' => 'OSS (FAQ)',
 );
 
@@ -160,15 +160,15 @@ $lang_gallery_admin_menu = array(
   'users_lnk' => 'Brugere',
   'groups_title' => 'Gå til gruppe administration', //cpg1.4
   'groups_lnk' => 'Grupper',
-  'comments_title' => 'Godkend kommentarer', //cpg1.4
-  'comments_lnk' => 'Kommentarer',
+  'comments_title' => 'Godkend kommentare', //cpg1.4
+  'comments_lnk' => 'Kommentare',
   'searchnew_title' => 'Gå til massetilføjelse af filer', //cpg1.4
   'searchnew_lnk' => 'Massetilføjelse',
   'util_title' => 'Gå til admin værktøjer', //cpg1.4
   'util_lnk' => 'Admin værktøjer',
   'key_title' => 'Gå til Nøgleord', //cpg1.4
   'key_lnk' => 'Nøgleord', //cpg1.4
-  'ban_title' => 'Gå til Blokerede brugere', //cpg1.4
+  'ban_title' => 'Gå til blokerede brugere', //cpg1.4
   'ban_lnk' => 'Blokerede brugere',
   'db_ecard_title' => 'Gå til administration af e-postkort', //cpg1.4
   'db_ecard_lnk' => 'Vis e-postkort',
@@ -275,7 +275,7 @@ $lang_display_thumbnails = array(
 );
 
 $lang_get_pic_data = array(
-  'n_comments' => '%s kommentarer',
+  'n_comments' => '%s kommentare',
   'n_views' => '%s visninger',
   'n_votes' => '(%s stemmer)',
 );
@@ -391,7 +391,7 @@ if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
   'no_change' => 'Du lavede ingen ændringer!', //js-alert
   'new_album' => 'Nyt album',
   'confirm_delete1' => 'Er du sikker på du vil slette dette album?', //js-alert
-  'confirm_delete2' => '\nAlle filer og kommentarer forsvinder!', //js-alert
+  'confirm_delete2' => '\nAlle filer og kommentare forsvinder!', //js-alert
   'select_first' => 'Vælg først et album', //js-alert
   'alb_mrg' => 'Album administration',
   'my_gallery' => '* Mit galleri *',
@@ -407,20 +407,20 @@ if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('BANNING_PHP')) $lang_banning_php = array(
-  'title' => 'Udvis brugere', //cpg1.4
+  'title' => 'Bloker brugere', //cpg1.4
   'user_name' => 'Brugernavn', //cpg1.4
   'ip_address' => 'IP-adresse', //cpg1.4
   'expiry' => 'Udløber (blank er permanent)', //cpg1.4
   'edit_ban' => 'Gem ændringer', //cpg1.4
   'delete_ban' => 'Slet', //cpg1.4
-  'add_new' => 'Ny udvisning', //cpg1.4
-  'add_ban' => 'Udvis bruger', //cpg1.4
+  'add_new' => 'Ny blokering', //cpg1.4
+  'add_ban' => 'Bloker bruger', //cpg1.4
   'error_user' => 'Bruger findes ikke', //cpg1.4
   'error_specify' => 'Du må specificere enten et brugernavn eller en IP-adresse', //cpg1.4
-  'error_ban_id' => 'Ugyldig udvisnings ID!', //cpg1.4
-  'error_admin_ban' => 'Du kan ikke udvise dig selv!', //cpg1.4
-  'error_server_ban' => 'Du var ved at udvise din egen server? Tsk. tsk...', //cpg1.4
-  'error_ip_forbidden' => 'Du kan ikke udvise denne IP - den er ikkerutbar (privat)!<br />Hvis du vil tillade udvisning af private adresser, kan det gøres i <a href="admin.php">opsætning</a> (dette er kun aktuelt hvis Coppermine kører i et LAN).', //cpg1.4
+  'error_ban_id' => 'Ugyldig blokerings ID!', //cpg1.4
+  'error_admin_ban' => 'Du kan ikke blokere dig selv!', //cpg1.4
+  'error_server_ban' => 'Du var ved at blokere din egen server? Tsk. tsk...', //cpg1.4
+  'error_ip_forbidden' => 'Du kan ikke blokere denne IP - den er ikkerutbar (privat)!<br />Hvis du vil tillade blokering af private adresser, kan det gøres i <a href="admin.php">opsætning</a> (dette er kun aktuelt hvis Coppermine kører i et LAN).', //cpg1.4
   'lookup_ip' => 'Slå en IP-adresse op', //cpg1.4
   'submit' => 'Ok!', //cpg1.4
   'select_date' => 'vælg dato', //cpg1.4
@@ -442,7 +442,7 @@ if (defined('BRIDGEMGR_PHP')) $lang_bridgemgr_php = array(
   'custom_bridge_file' => 'navnet på din specialtilpassede brofil (hvis navnet er <i>myfile.inc.php</i>, skriv <i>myfile</i> i dette felt)',
   'no_action_needed' => 'Ingen handling er påkrævet på dette trin. Klik \'næste\' for at fortsætte.',
   'reset_to_default' => 'Gendan standardværdi',
-  'choose_bbs_app' => 'vælg det program som coppermine skal linkes til',
+  'choose_bbs_app' => 'vælg det program som Coppermine skal linkes til',
   'support_url' => 'Her kan findes hjælp til dette program',
   'settings_path' => 'filsti(er) som bruges af dit BBSprogram',
   'database_connection' => 'databasekobling',
@@ -453,7 +453,7 @@ if (defined('BRIDGEMGR_PHP')) $lang_bridgemgr_php = array(
   'db_database_name' => 'Databasenavn',
   'db_database_name_explanation' => 'Skriv navnet på database din BBS bruger',
   'db_hostname' => 'Databasemaskin',
-  'db_hostname_explanation' => 'Maskinnavn der din mySQLdatabase kører, som regel ";localhost";',
+  'db_hostname_explanation' => 'Maskinnavn hvor din mySQLdatabase kører, som regel "localhost"',
   'db_username' => 'Databasebrugernavn',
   'db_username_explanation' => 'mySQLbrugernavn til brug for kommunikation med BBS',
   'db_password' => 'Database adgangskode',
@@ -461,9 +461,9 @@ if (defined('BRIDGEMGR_PHP')) $lang_bridgemgr_php = array(
   'full_forum_url' => 'Forum URL',
   'full_forum_url_explanation' => 'Fuld URL til dit BBSprogram (inkluder http://, f.eks. http://www.yourdomain.tld/forum)',
   'relative_path_of_forum_from_webroot' => 'Relativ forumsti',
-  'relative_path_of_forum_from_webroot_explanation' => 'Relativ sti til dit BBSprogram fra din webrod (Eksempel: hvis dit BBS ligger på http://www.yourdomain.tld/forum/, skriv ";/forum/"; i dette felt)',
+  'relative_path_of_forum_from_webroot_explanation' => 'Relativ sti til dit BBSprogram fra din webrod (Eksempel: hvis dit BBS ligger på http://www.yourdomain.tld/forum/, skriv "/forum/" i dette felt)',
   'relative_path_to_config_file' => 'Relativ sti til din BBS\'s konfigurationfil',
-  'relative_path_to_config_file_explanation' => 'Relativ sti til din BBS, set fra din Copperminemappe (f.eks. ";../forum/"; hvis dit BBS ligger på http://www.yourdomain.tld/forum/ op Coppermine er på http://www.yourdomain.tld/gallery/)',
+  'relative_path_to_config_file_explanation' => 'Relativ sti til din BBS, set fra din Copperminemappe (f.eks. "../forum/" hvis dit BBS ligger på http://www.yourdomain.tld/forum/ op Coppermine er på http://www.yourdomain.tld/gallery/)',
   'cookie_prefix' => 'Cookie præfiks',
   'cookie_prefix_explanation' => 'dette skal være navnet på cookien til din BBS',
   'table_prefix' => 'Table præfiks',
@@ -485,7 +485,7 @@ if (defined('BRIDGEMGR_PHP')) $lang_bridgemgr_php = array(
   'guest_group' => 'Gæstegruppe',
   'guest_group_explanation' => 'GruppeID fra din BBS for gæster (anonyme brugere) (som regel standardværdi, lav kun ændringer hvis du ved hvad du laver)',
   'member_group' => 'Medlemsgruppe',
-  'member_group_explanation' => 'GruppeID fra din BBS for ";vanlige"; brugerkontoer (som regel standardværdi, lav kun ændringer hvis du ved hvad du laver)',
+  'member_group_explanation' => 'GruppeID fra din BBS for "almindelige" brugerkontoer (som regel standardværdi, lav kun ændringer hvis du ved hvad du laver)',
   'admin_group' => 'Admingruppe',
   'admin_group_explanation' => 'GruppeID fra din BBS for administratorer (som regel standardværdi, lav kun ændringer hvis du ved hvad du laver)',
   'banned_group' => 'Blokeret gruppe',
@@ -502,12 +502,12 @@ if (defined('BRIDGEMGR_PHP')) $lang_bridgemgr_php = array(
   'use_post_based_groups_yes' => 'ja',
   'use_post_based_groups_no' => 'nej',
   'error_title' => 'Du skal rette disse fejl før du kan fortsætte. Gå tilbage til forrige side.',
-  'error_specify_bbs' => 'Du skal specificere hvilket program du vil linke din Coppermineinstallation med.',
+  'error_specify_bbs' => 'Du skal specificere hvilket program du vil linke din Coppermine installation med.',
   'error_no_blank_name' => 'Du skal navngive din brofil.',
   'error_no_special_chars' => 'Navnet på brofilen må ikke indeholde specialtegn med undtagelse af understrege (_) og streg (-)!',
   'error_bridge_file_not_exist' => 'Brofilen %s findes ikke på serveren. Tjek om du har uploaded brofilen.',
   'finalize' => 'Slå integrationen med BBS programmet til/fra ',
-  'finalize_explanation' => 'Ind til nu er dine indstillinger blevet gemt i databasen, men integrationen med BBS programmet er ikke blevet slået til. Du kan slå integrationen til/fra senere. Husk adminbruger og password fra Coppermineinstallationen, du kan få brug for dem senere for at lave ændringer. Hvis noget går galt, gå til %s og slå integrationen med BBS programmet fra der, med din Coppermineinstallations adminbruger (som regel den du brugte under installationen af Coppermine).',
+  'finalize_explanation' => 'Ind til nu er dine indstillinger blevet gemt i databasen, men integrationen med BBS programmet er ikke blevet slået til. Du kan slå integrationen til/fra senere. Husk adminbruger og password fra Coppermine installationen, du kan få brug for dem senere for at lave ændringer. Hvis noget går galt, gå til %s og slå integrationen med BBS programmet fra der, med din Coppermine installations adminbruger (som regel den du brugte under installationen af Coppermine).',
   'your_bridge_settings' => 'Dine integration indstillinger',
   'title_enable' => 'Slår integration/bridging med %s til',
   'bridge_enable_yes' => 'slå til',
@@ -515,7 +515,7 @@ if (defined('BRIDGEMGR_PHP')) $lang_bridgemgr_php = array(
   'error_must_not_be_empty' => 'skal være tom',
   'error_either_be' => 'skal være %s eller %s',
   'error_folder_not_exist' => '%s findes ikke. Ret værdierne du har skrevet %s',
-  'error_cookie_not_readible' => 'Coppermine kan ikke læse en cookie med navnet %s. Ret værdierne du har skrevet %s, eller gå til BBS administrations panelet og tjek at stien til cookie kan læses af coppermine.',
+  'error_cookie_not_readible' => 'Coppermine kan ikke læse en cookie med navnet %s. Ret værdierne du har skrevet %s, eller gå til BBS administrations panelet og tjek at stien til cookie kan læses af Coppermine.',
   'error_mandatory_field_empty' => 'Du kan ikke lade dette felt %s være blank - udfylde med de rette værdier.',
   'error_no_trailing_slash' => 'Der må ikke være en "skråstreg" i enden af dette felt %s.',
   'error_trailing_slash' => 'Der skal være en "skråstreg" i enden af dette felt %s.',
@@ -529,7 +529,7 @@ if (defined('BRIDGEMGR_PHP')) $lang_bridgemgr_php = array(
   'password' => 'Adgangskode',
   'disable_submit' => 'Send',
   'recovery_success_title' => 'autorisere lykkedes',
-  'recovery_success_content' => 'Du har slået integrationen mellem Coppermineinstallationen og dit BBS program fra. Din Coppermineinstallation kører nu alene.',
+  'recovery_success_content' => 'Du har slået integrationen mellem Coppermine installationen og dit BBS program fra. Din Coppermine installation kører nu alene.',
   'recovery_success_advice_login' => 'Log ind som admin for at ændre dine bridge indstillinger og/eller slå BBS integrationen fra/til.',
   'goto_login' => 'Gå til log ind siden',
   'goto_bridgemgr' => 'Gå til bridge manager',
@@ -613,7 +613,7 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'click_expand' => 'klik på sektionsnavnet for at folde ud', //cpg1.4
   'expand_all' => 'Fold ud', //cpg1.4
   'notice1' => '(*) Disse indstillinger må ikke ændres hvis du allerede har filer i din database.', //cpg1.4 - (relocated)
-  'notice2' => '(**) Ændring af denne indstilling vil kun have betydning for billeder tilføjet efter ændring, derfor er det ikke tilrådeligt at ændre denne indstilling når der allerede er billeder i galleriet. Du kan dog ændre de eksisterende billeder ved at bruge ";<a href="util.php">administrator værktøjer </a> (ændre billedstørrelse )"; fra administrator menuen.', //cpg1.4 - (relocated)
+  'notice2' => '(**) Ændring af denne indstilling vil kun have betydning for billeder tilføjet efter ændring, derfor er det ikke tilrådeligt at ændre denne indstilling når der allerede er billeder i galleriet. Du kan dog ændre de eksisterende billeder ved at bruge "<a href="util.php">administrator værktøjer </a>" (ændre billedstørrelse ) fra administrator menuen.', //cpg1.4 - (relocated)
   'notice3' => '(***) Alle logfiler bliver skrevet på engelsk.', //cpg1.4 - (relocated)
   'bbs_disabled' => 'Denne funktion er ikke aktiv ved integration med BBS', //cpg1.4
   'auto_resize_everyone' => 'Alle', //cpg1.4
@@ -635,7 +635,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Slå hjælpeikon til (Denne hjælp er kun tilgængelig på engelsk)','enable_help',9, 'f=index.htm&amp;as=admin_general_help&amp;ae=admin_general_help_end'), //cpg1.4
   array('Slå klikbare nøgleord til i søg','clickable_keyword_search',14, 'f=index.htm&amp;as=admin_general_keywords_start&amp;ae=admin_general_keywords_end'), //cpg1.4
   array('Slå plugins til', 'enable_plugins', 12, 'f=index.htm&amp;as=admin_general_enable-plugins&amp;ae=admin_general_enable-plugins_end'),  //cpg1.4
-  array('Tillad udvisning af ikke rutbare (private) IP adresser', 'ban_private_ip', 1,  'f=index.htm&amp;as=admin_general_private-ip&amp;ae=admin_general_private-ip_end'), //cpg1.4
+  array('Tillad blokering af ikke rutbare (private) IP adresser', 'ban_private_ip', 1,  'f=index.htm&amp;as=admin_general_private-ip&amp;ae=admin_general_private-ip_end'), //cpg1.4
   array('Brug mappestrukturmenu ved massetilføjelser', 'browse_batch_add', 1, 'f=index.htm&amp;as=admin_general_browsable_batch_add&amp;ae=admin_general_browsable_batch_add_end'), //cpg1.4
 
   'Sprog, Tema og Tegnsæt indstillinger',
@@ -676,7 +676,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Antal sidehenvisninger', 'max_tabs', 10, 'f=index.htm&amp;as=admin_thumbnail_tabs&amp;ae=admin_thumbnail_tabs_end'), //cpg1.4
   array('Vis billedeoverskriften (i tilføjelse til titel) under minibillede', 'caption_in_thumbview', 1, 'f=index.htm&amp;as=admin_thumbnail_display_caption&amp;ae=admin_thumbnail_display_caption_end'), //cpg1.4
   array('Vis antal visninger under minibillede', 'views_in_thumbview', 1, 'f=index.htm&amp;as=admin_thumbnail_display_views&amp;ae=admin_thumbnail_display_views_end'), //cpg1.4
-  array('Vis antal af kommentarer under minibilledet', 'display_comment_count', 1, 'f=index.htm&amp;as=admin_thumbnail_display_comments&amp;ae=admin_thumbnail_display_comments_end'), //cpg1.4
+  array('Vis antal af kommentare under minibilledet', 'display_comment_count', 1, 'f=index.htm&amp;as=admin_thumbnail_display_comments&amp;ae=admin_thumbnail_display_comments_end'), //cpg1.4
   array('Vis navn på person der har uploadet filen under minibillede', 'display_uploader', 1, 'f=index.htm&amp;as=admin_thumbnail_display_uploader&amp;ae=admin_thumbnail_display_uploader_end'), //cpg1.4
   //array('Vis navn på admin uploader under minibilledet', 'display_admin_uploader', 1, 'f=index.htm&amp;as=admin_thumbnail_display_admin_uploader&amp;ae=admin_thumbnail_display_admin_uploader_end'), //cpg1.4
   array('Vis fil navn under minibillede', 'display_filename', 1, 'f=index.htm&amp;as=admin_thumbnail_display_filename&amp;ae=admin_thumbnail_display_filename_end'), //cpg1.4
@@ -695,13 +695,13 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Diasshow interval i millisekunder (1 sekund = 1000 millisekunder)', 'slideshow_interval', 0, 'f=index.htm&amp;as=admin_image_comment_slideshow_interval&amp;ae=admin_image_comment_slideshow_interval_end'), //cpg1.4
 
   'Kommentar indstillinger', //cpg1.4
-  array('Filtrer bandeord i kommentarer', 'filter_bad_words', 1, 'f=index.htm&amp;as=admin_image_comment_bad_words&amp;ae=admin_image_comment_bad_words_end'), //cpg1.4
-  array('Tillad smilies i kommentarer', 'enable_smilies', 1, 'f=index.htm&amp;as=admin_image_comment_smilies&amp;ae=admin_image_comment_smilies_end'), //cpg1.4
-  array('Tillad flere kommentarer om samme fil fra samme bruger (slår flood beskyttelse fra)', 'disable_comment_flood_protect', 1, 'f=index.htm&amp;as=admin_image_comment_flood&amp;ae=admin_image_comment_flood_end'), //cpg1.4
+  array('Filtrer bandeord i kommentare', 'filter_bad_words', 1, 'f=index.htm&amp;as=admin_image_comment_bad_words&amp;ae=admin_image_comment_bad_words_end'), //cpg1.4
+  array('Tillad smilies i kommentare', 'enable_smilies', 1, 'f=index.htm&amp;as=admin_image_comment_smilies&amp;ae=admin_image_comment_smilies_end'), //cpg1.4
+  array('Tillad flere kommentare om samme fil fra samme bruger (slår flood beskyttelse fra)', 'disable_comment_flood_protect', 1, 'f=index.htm&amp;as=admin_image_comment_flood&amp;ae=admin_image_comment_flood_end'), //cpg1.4
   array('Max antal linjer i en kommentar', 'max_com_lines', 0, 'f=index.htm&amp;as=admin_image_comment_lines&amp;ae=admin_image_comment_lines_end'), //cpg1.4
   array('Maksimum længde på en kommentar', 'max_com_size', 0, 'f=index.htm&amp;as=admin_image_comment_length&amp;ae=admin_image_comment_length_end'), //cpg1.4
-  array('Informer administrator om nye kommentarer via mail', 'email_comment_notification', 1, 'f=index.htm&amp;as=admin_image_comment_admin_notify&amp;ae=admin_image_comment_admin_notify_end'), //cpg1.4
-  array('Sortering rækkefølge af kommentarer', 'comments_sort_descending', 17, 'f=index.htm&amp;as=admin_comment_sort_start&amp;ae=admin_comment_sort_end'), //cpg1.4
+  array('Informer administrator om nye kommentare via mail', 'email_comment_notification', 1, 'f=index.htm&amp;as=admin_image_comment_admin_notify&amp;ae=admin_image_comment_admin_notify_end'), //cpg1.4
+  array('Sortering rækkefølge af kommentare', 'comments_sort_descending', 17, 'f=index.htm&amp;as=admin_comment_sort_start&amp;ae=admin_comment_sort_end'), //cpg1.4
   array('Foranstillet navn på anonyme forfatteres kommentare', 'comments_anon_pfx', 0, 'f=index.htm&amp;as=comments_anon_pfx&amp;ae=comments_anon_pfx_end'), //cpg1.4
 
   'Fil og minibillede indstillinger ',
@@ -888,7 +888,7 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
   'pic_mgr' => 'Billed Manager', //cpg1.4
   'update_pic' => 'Opdatere billede \'%s\' med filnavnet \'%s\' og index \'%s\'', //cpg1.4
   'username' => 'Brugernavn', //cpg1.4
-  'anonymized_comments' => '%s kommentarer anonymiseret ', //cpg1.4
+  'anonymized_comments' => '%s kommentare anonymiseret ', //cpg1.4
   'anonymized_uploads' => '%s offentlig upload(s) anonymiseret', //cpg1.4
   'deleted_comments' => '%s kommentar slettet', //cpg1.4
   'deleted_uploads' => '%s offentlig upload(s) slettet', //cpg1.4
@@ -926,7 +926,7 @@ $lang_displayecard_php = array(
 if (defined('DISPLAYIMAGE_PHP')){
 
 $lang_display_image_php = array(
-  'confirm_del' => 'Er du sikker på du ønsker at SLETTE denne fil? \\nKommentarer bliver også slettet.', //js-alert
+  'confirm_del' => 'Er du sikker på du ønsker at SLETTE denne fil? \\nKommentare bliver også slettet.', //js-alert
   'del_pic' => 'SLET DENNE FIL',
   'size' => '%s x %s pixels',
   'views' => '%s gange',
@@ -1102,7 +1102,7 @@ if (defined('REPORT_FILE_PHP') || defined('DISPLAYREPORT_PHP')) $lang_report_php
   'view_comment' => 'Vis fuld rapport med kommentar', //cpg1.4
   'type_file' => 'fil', //cpg1.4
   'type_comment' => 'Kommentar', //cpg1.4
-  'invalid_data' => 'Dataen i den rapport du prøver at få adgang til er blevet ødelagt af din e-mail klient. Tjek om link link er fuldstændig.', //cpg1.4
+  'invalid_data' => 'Data i den rapport du prøver at få adgang til er blevet ødelagt af din e-mail klient. Tjek om link link er fuldstændig.', //cpg1.4
 
 );
 
@@ -1130,8 +1130,8 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
   'reset_all_view_count' => 'Nulstil ALLE visnings tællere', //cpg1.4
   'reset_votes' => 'Nulstil afstemning',
   'reset_all_votes' => 'Nulstil ALLE stemmer', //cpg1.4
-  'del_comm' => 'Slet kommentarer',
-  'del_all_comm' => 'Slet ALLE kommentarer', //cpg1.4
+  'del_comm' => 'Slet kommentare',
+  'del_all_comm' => 'Slet ALLE kommentare', //cpg1.4
   'upl_approval' => 'Upload godkendelse', //cpg1.4
   'edit_pics' => 'Rediger filer',
   'see_next' => 'Se næste filer',
@@ -1169,34 +1169,34 @@ if (defined('FAQ_PHP')) $lang_faq_php = array(
 
 if (defined('FAQ_PHP')) $lang_faq_data = array(
   'Generelle Spørgsmål og Svar',
-  array('Hvorfor skal jeg registreres?', 'Registrering kan eller kan ikke være krævet af administratoren. Registrering giver ekstra muligheder som at uploade filer, have en liste over foretrukne, give billeder kommentarer osv.', 'allow_user_registration', '1'),
-  array('Hvordan bliver jeg registreret?', 'Gå til ";Register"; og udfyld de krævede felter (og de frivillige hvis du har lyst).<br />Hvis administratoren har slået E-mail aktivering til, vil du efter registrering modtage en e-mail på den adresse du har skrevet, som vil give dig information om hvordan du aktiverer din konto. Din konto skal aktiveres før du kan logge ind.', 'allow_user_registration', '1'), //cpg1.4
-  array('Hvordan logger jeg ind?', 'Gå til ";Registre";, skriv dit brugernavn og og adgangskode og marker ";Husk mig"; så vil du være logget ind næste gang du besøger siden.<br /><b>VIGTIGT: Cookies skal være aktiveret og cookie fra denne side må ikke slettes hvis du vil bruge ";Husk mig"; funktionen.</b>', 'offline', 0),
+  array('Hvorfor skal jeg registreres?', 'Registrering kan eller kan ikke være krævet af administratoren. Registrering giver ekstra muligheder som at uploade filer, have en liste over foretrukne, give billeder kommentare osv.', 'allow_user_registration', '1'),
+  array('Hvordan bliver jeg registreret?', 'Gå til "Registrer" og udfyld de krævede felter (og de frivillige hvis du har lyst).<br />Hvis administratoren har slået E-mail aktivering til, vil du efter registrering modtage en e-mail på den adresse du har skrevet, som vil give dig information om hvordan du aktiverer din konto. Din konto skal aktiveres før du kan logge ind.', 'allow_user_registration', '1'), //cpg1.4
+  array('Hvordan logger jeg ind?', 'Gå til "Registre", skriv dit brugernavn og og adgangskode og marker "Husk mig" så vil du være logget ind næste gang du besøger siden.<br /><b>VIGTIGT: Cookies skal være aktiveret og cookie fra denne side må ikke slettes hvis du vil bruge "Husk mig" funktionen.</b>', 'offline', 0),
   array('Hvorfor kan jeg ikke logge ind?', 'Registrerede du dig og trykkede på linket i den mail du fik tilsendt?. Linket vil aktivere din konto. For andre login problemer, kontakt administratoren.', 'offline', 0),
-  array('Hvad hvis jeg glemmer min adgangskode?', 'Hvis siden har et ";Glemt adgangskode"; link så brug det. Ellers kontakt administratoren for at få en ny kode.', 'offline', 0),
-  //array('Hvad hvis jeg har fået ny e-mail adresse?', 'Så log ind og ret din e-mail adresse via ";Profile";', 'offline', 0),
-  array('Hvordan tilføjer jeg billeder til ";Foretrukne";?', 'Vælg et billede og tryk på ";billedinfo"; linket (<img src="images/info.gif" width="16" height="16" border="0" alt="Picture information" />); scroll ned til billedinformationerne og tryk på ";Føj til foretrukne;.<br />Administratoren kan have sat ";billedeinformation"; på som standard.<br />VIGTIGT:Cookies skal være aktiveret og cookien fra denne side må ikke slettes.', 'offline', 0),
+  array('Hvad hvis jeg glemmer min adgangskode?', 'Hvis siden har et "Glemt adgangskode" link så brug det. Ellers kontakt administratoren for at få en ny kode.', 'offline', 0),
+  //array('Hvad hvis jeg har fået ny e-mail adresse?', 'Så log ind og ret din e-mail adresse via "Profile"', 'offline', 0),
+  array('Hvordan tilføjer jeg billeder til "Foretrukne"?', 'Vælg et billede og tryk på "Billedinfo" linket (<img src="images/info.gif" width="16" height="16" border="0" alt="Picture information" />); scroll ned til billedinformationerne og tryk på "Føj til foretrukne".<br />Administratoren kan have sat "Billedeinformation" på som standard.<br />VIGTIGT:Cookies skal være aktiveret og cookien fra denne side må ikke slettes.', 'offline', 0),
   array('Hvordan giver jeg et billede karakter?', 'Klik på et minibillede, scroll til bunden, og vælg en karakter.', 'offline', 0),
   array('Hvordan kommenterer jeg et billede?', 'Klik på et minibillede, scroll til bunden, og skriv en kommentar.', 'offline', 0),
-  array('Hvordan uploader jeg et billede?', 'Gå til ";Upload billede";vælg et album, tryk ";Gennemse,"; find det billede du vil upload, og tryk på ";åben."; skriv titel og beskrivelse hvis du har lyst. Tryk så på ";Send";.<br /><br />Et alternativ for dem der bruger <b>Windows XP</b>, du kan upload flere filer direkte til dit private album ved at bruge XP guided web udgivelse.<br />For instrukser om hvordan, og for at få den nødvendige registry file, klik <a href="xp_publish.php">her.</a>', 'allow_private_albums', 1), //cpg1.4
-  array('Hvor kan jeg uploade billeder til?', 'Du kan uploade billeder til en af dine albums i ";Mit Galleri";. Adminstratoren kan også give tilladelse til at du kan uploade til et eller flere albums i hoved galleriet.', 'allow_private_albums', 0),
+  array('Hvordan uploader jeg et billede?', 'Gå til "Upload billede" vælg et album, tryk "Gennemse" find det billede du vil upload, og tryk på "åben" skriv titel og beskrivelse hvis du har lyst. Tryk så på "Send".<br />Et alternativ for dem der bruger <b>Windows XP</b>, du kan upload flere filer direkte til dit private album ved at bruge XP guiden Webudgivelse.<br />For instrukser om hvordan, og for at få den nødvendige registry file, klik <a href="xp_publish.php">her.</a>', 'allow_private_albums', 1), //cpg1.4
+  array('Hvor kan jeg uploade billeder til?', 'Du kan uploade billeder til en af dine albums i "Mit Galleri". Adminstratoren kan også give tilladelse til at du kan uploade til et eller flere albums i hoved galleriet.', 'allow_private_albums', 0),
   array('Hvilken størrelse og type af billeder kan jeg uploade?', 'Størrelsen og typen (jpg, png, osv.) er valgt af administratoren.', 'offline', 0),
-  array('Hvordan opretter, omdøber eller sletter jeg et album i ";Mit Galleri";?', 'Du burde allerede være i ";Administrator-Tilstand";<br />Gå til ";Opret/rediger Mine Albums";og tryk på ";New";. Ænder ";Nyt Album"; til det ønskede navn.<br />Du kan også omdøbe et eksisterende album.<br />Tryk på ";Godkend rettelser";.', 'allow_private_albums', 0),
-  array('Hvordan kan jeg vælge hvem der kan se mine albums?', 'Du burde allerede være i ";Admin. tilstand";<br />Gå til ";Rediger Mine Albums. På ";Opdater album"; baren, og vælg det album du vil redigere.<br />Her kan du ændre navn, beskrivelse, minibillede, og begrænse visning og kommentar tilladelser.<br />Tryk på ";Opdater album";.', 'allow_private_albums', 0),
-  array('Hvordan kan jeg se andre brugeres gallerier?', 'Gå til ";Album Liste"; og vælg ";Bruger gallerier";.', 'allow_private_albums', 0),
+  array('Hvordan opretter, omdøber eller sletter jeg et album i "Mit Galleri"?', 'Du burde allerede være i "Administrator-Tilstand"<br />Gå til "Opret/rediger Mine Albums" og tryk på "Ny". Ret "Nyt Album" til det ønskede navn.<br />Du kan også omdøbe et eksisterende album.<br />Tryk på "Godkend rettelser".', 'allow_private_albums', 0),
+  array('Hvordan kan jeg vælge hvem der kan se mine albums?', 'Du burde allerede være i "Admin. tilstand"<br />Gå til "Rediger Mine Albums" på "Opdater album" baren, og vælg det album du vil redigere.<br />Her kan du ændre navn, beskrivelse, minibillede, og begrænse visning og kommentar tilladelser.<br />Tryk på "Opdater album".', 'allow_private_albums', 0),
+  array('Hvordan kan jeg se andre brugeres gallerier?', 'Gå til "Album Liste" og vælg "Bruger gallerier".', 'allow_private_albums', 0),
   array('Hvad er cookies?', 'Cookies er en tekst fil som sendes fra en hjemmesside og gemmes på din computer.<br />Cookies tillader brugeren at forlade en side og komme tilbage uden at logge ind igen og at tilpasse siden på forskellige måder.', 'offline', 0),
-  array('Hvor kan jeg hente dette program til min side?', 'Coppermine er et gratis Multimedia Galleri, udgiver under GNU licens. Det er fuld af funktioner og findes til forskellige platforme. Besøg <a href="http://coppermine.sf.net/">Coppermine hjemmesiden</a> for at læse mere eller at hente det.', 'offline', 0),
+  array('Hvor kan jeg hente dette program til min side?', 'Coppermine er et gratis Multimedia Galleri, udgiver under GNU licens. Det er fuld af funktioner og findes til forskellige platforme. Besøg <a href="http://Coppermine.sf.net/">Coppermine hjemmesiden</a> for at læse mere eller at hente det.', 'offline', 0),
 
   'Navigering på siden',
-  array('Hvad er ";Albumliste";?', 'Dette vil vise dig hele galleriet med et link til hver kategori. Minibilleder kan være et link til en kategori.', 'offline', 0),
-  array('Hvad er ";Mit Galleri";?', 'Denne funktion tillader at hver bruger laver sit eget galleri, som brugeren kan tilføje, slette og redigere albums i, samt uploade billeder til dem.', 'allow_private_albums', 1), //cpg1.4
+  array('Hvad er "Albumliste"?', 'Dette vil vise dig hele galleriet med et link til hver kategori. Minibilleder kan være et link til en kategori.', 'offline', 0),
+  array('Hvad er "Mit Galleri"?', 'Denne funktion tillader at hver bruger laver sit eget galleri, som brugeren kan tilføje, slette og redigere albums i, samt uploade billeder til dem.', 'allow_private_albums', 1), //cpg1.4
   array('Hvad er forskellen mellem &quot;Admin Tilstand&quot; og &quot;Bruger Tilstand&quot;?', 'I Admin Tilstand kan brugere ændre deres galleri (såvel som andres hvis tilladelse er givet af administrator).', 'allow_private_albums', 0),
-  array('Hvad er ";Upload Billeder";?', 'Denne funktion giver brugeren mulighed for at uploade et billede (størrelse og type er valgt af administratoren) til et galleri som du eller administratoren har valgt.', 'allow_private_albums', 0),
-  array('Hvad er ";Nyeste uploads";?', 'Denne funktion viser de nyeste filer som er uploadet til siden.', 'offline', 0),
-  array('Hvad er ";Nyeste kommentar";?', 'Denne funktion viser de nyeste kommentarer med de tilhørende billeder.', 'offline', 0),
-  array('Hvad er ";Mest viste";?', 'Denne funktion viser de billeder som er vist flest gange af alle brugere (uanser om de er logget ind eller ej).', 'offline', 0),
-  array('Hvad er ";Topkarakter";?', 'Denne funktion har opnået højest karakter fra brugererne, og viser den gennemsnitlige karakter (f.eks.: hvis fem brugere gav <img src="images/rating3.gif" width="65" height="14" border="0" alt="" />: ville billedet have et gennemsnit på <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> ;Fem brugere gav billedet fra 1-5 (1,2,3,4,5) ville resuletere i et snit på <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> .)<br />Karakteren går fra <img src="images/rating5.gif" width="65" height="14" border="0" alt="best" /> (bedst) til <img src="images/rating0.gif" width="65" height="14" border="0" alt="worst" /> (værst).', 'offline', 0),
-  array('Hvad er ";Mine Foretrukne";?', 'Denne funktion lader brugeren gemme sine foretrukne billeder i en cookie som gemmes på vedkommendes computer.', 'offline', 0),
+  array('Hvad er "Upload Billeder"?', 'Denne funktion giver brugeren mulighed for at uploade et billede (størrelse og type er valgt af administratoren) til et galleri som du eller administratoren har valgt.', 'allow_private_albums', 0),
+  array('Hvad er "Nyeste uploads"?', 'Denne funktion viser de nyeste filer som er uploadet til siden.', 'offline', 0),
+  array('Hvad er "Nyeste kommentar"?', 'Denne funktion viser de nyeste kommentare med de tilhørende billeder.', 'offline', 0),
+  array('Hvad er "Mest viste"?', 'Denne funktion viser de billeder som er vist flest gange af alle brugere (uanset om de er logget ind eller ej).', 'offline', 0),
+  array('Hvad er "Topkarakter"?', 'Denne funktion viser hvilket billede der har opnået højest karakter fra brugererne, og viser den gennemsnitlige karakter.<br />Hvis f.eks. fem brugere gav <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> ville billedet have et gennemsnit på <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> .<br />Hvis fem brugere gav billedet fra 1-5 (1,2,3,4,5) ville resuletere give et snit på <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> .<br />Karakteren går fra <img src="images/rating5.gif" width="65" height="14" border="0" alt="best" /> (bedst) til <img src="images/rating0.gif" width="65" height="14" border="0" alt="worst" /> (værst).', 'offline', 0),
+  array('Hvad er "Mine Foretrukne"?', 'Denne funktion lader brugeren gemme sine foretrukne billeder i en cookie som gemmes på vedkommendes computer.', 'offline', 0),
 );
 
 
@@ -1254,7 +1254,7 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
   'reset_to_default' => 'Gendan til standardværdi (%s) - anbefalet!', //cpg1.4
   'error_group_empty' => 'Gruppe tabel var tom!<br /><br />Standart gruppen blev lavet, venligst genindlæs siden', //cpg1.4
   'explain_greyed_out_title' => 'Hvorfor er denne række markeret grå?', //cpg1.4
-  'explain_guests_greyed_out_text' => 'Du kan ikke ændre denne gruppes egenskaber fordi du har valgt"; Tillad anonyme brugere (gæster or anonym) adgang"; til ";No"; på opsætningssiden. Alle gøstert (medlemmer af gruppen %s) kan ikke gøre andet end logge ind; derfor gælder gruppeindstillinger ikke for dem.', //cpg1.4
+  'explain_guests_greyed_out_text' => 'Du kan ikke ændre denne gruppes egenskaber fordi du har valgt "Tillad anonyme brugere (gæster eller anonym) adgang" til "Nej" på opsætningssiden. Alle gæster (medlemmer af gruppen %s) kan ikke gøre andet end logge ind derfor gælder gruppeindstillinger ikke for dem.', //cpg1.4
   'explain_banned_greyed_out_text' => 'Du kan ikke ændre egenskaber for gruppen %s fordi dens medlemmer kan gøre noget alligevel.', //cpg1.4
   'group_assigned_album' => 'Tildelt album(s)', //cpg1.4
 );
@@ -1270,7 +1270,7 @@ $lang_index_php = array(
 );
 
 $lang_album_admin_menu = array(
-  'confirm_delete' => 'Er du sikker på du vil SLETTE dette album? \\nAlle filer og kommentarer vil også blive slettet.', //js-alert
+  'confirm_delete' => 'Er du sikker på du vil SLETTE dette album? \\nAlle filer og kommentare vil også blive slettet.', //js-alert
   'delete' => 'SLET',
   'modify' => 'EGENSKABER',
   'edit_pics' => 'REDIGER FILER',
@@ -1278,10 +1278,10 @@ $lang_album_admin_menu = array(
 
 $lang_list_categories = array(
   'home' => 'Hjem',
-  'stat1' => '<b>[pictures]</b> filer i <b>[albums]</b> albums og <b>[cat]</b> kategorier med <b>[comments]</b> kommentarer vist <b>[views]</b> gange',
+  'stat1' => '<b>[pictures]</b> filer i <b>[albums]</b> albums og <b>[cat]</b> kategorier med <b>[comments]</b> kommentare vist <b>[views]</b> gange',
   'stat2' => '<b>[pictures]</b> filer i <b>[albums]</b> albums vist <b>[views]</b> gange',
   'xx_s_gallery' => '%s\'s Galleri',
-  'stat3' => '<b>[pictures]</b> filer i <b>[albums]</b> albums med <b>[comments]</b> kommentarer vist <b>[views]</b> gange',
+  'stat3' => '<b>[pictures]</b> filer i <b>[albums]</b> albums med <b>[comments]</b> kommentare vist <b>[views]</b> gange',
 );
 
 $lang_list_users = array(
@@ -1351,7 +1351,7 @@ if (defined('MINIBROWSER_PHP')) $lang_minibrowser_php = array(
   'submit' => 'OK', //cpg1.4
   'up' => 'op et niveau', //cpg1.4
   'current_path' => 'nuværende sti', //cpg1.4
-  'select_directory' => 'vælg venligst en mappe', //cpg1.4
+  'select_directory' => 'Vælg venligst en mappe', //cpg1.4
   'click_to_close' => 'Klik på billedet for at lukke vinduet',
 );
 
@@ -1370,7 +1370,7 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
   'alb_perm' => 'Tilladelser for dette album',
   'can_view' => 'Album kan vises af',
   'can_upload' => 'Gæster kan oploade billeder',
-  'can_post_comments' => 'Gæster kan skrive kommentarer',
+  'can_post_comments' => 'Gæster kan skrive kommentare',
   'can_rate' => 'Gæster kan stemme på billeder',
   'user_gal' => 'Bruger Galleri',
   'no_cat' => '* Ingen kategori *',
@@ -1383,7 +1383,7 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
   'err_no_alb_to_modify' => 'Intet album at korrigerer i databasen.',
   'update' => 'Opdater album',
   'reset_album' => 'Nulstil album', //cpg1.4
-  'reset_views' => 'Nulstil tæller til visning til ";0"; i %s', //cpg1.4
+  'reset_views' => 'Nulstil tæller til visning til "0" i %s', //cpg1.4
   'reset_rating' => 'Nulstil karaktere på alle filer i %s', //cpg1.4
   'delete_comments' => 'Slet alle kommenterer i %s', //cpg1.4
   'delete_files' => '%sIrreversibly%s slet alle filer i %s', //cpg1.4
@@ -1426,8 +1426,8 @@ if (defined('PICMGR_PHP')) $lang_picmgr_php = array(
   'no_change' => 'Du lavede ingen ændringer!', //cpg1.4
   'no_album' => '* Intet album *', //cpg1.4
   'explanation_header' => 'Den brugerdefineret sorteringsrækkefølge som du kan specificere på denne side vil kun have betydning hvis:', //cpg1.4
-  'explanation1' => 'administratoren har sat "Standard sortering af filer" i opsætningen til "Position faldende rækkefølge" eller "Position stigende rækkefølge" (global indstilling for alle brugere som ikke har valgt egen sorteringsrækkefølge)', //cpg1.4
-  'explanation2' => 'brugeren har valgt "Position faldende rækkefølge" eller "Position stigende rækkefølge" på minibillede siden (individuelle bruger indstillinger)', //cpg1.4
+  'explanation1' => 'administratoren har sat "Standard sortering af filer" i opsætningen til "Position i faldende rækkefølge" eller "Position i stigende rækkefølge" (global indstilling for alle brugere som ikke har valgt egen sorteringsrækkefølge)', //cpg1.4
+  'explanation2' => 'brugeren har valgt "Position i faldende rækkefølge" eller "Position i stigende rækkefølge" på minibillede siden (individuelle bruger indstillinger)', //cpg1.4
 );
 
 
@@ -1532,7 +1532,7 @@ $lang_register_php = array(
   'pass_chg_error' => 'Din adgangskode blev ikke ændret',
   'notify_admin_email_subject' => '%s - Information om registrering',
   'last_uploads' => 'Sidst uploadet fil.<br />Klik for at se alle fil der er uploaded af', //cpg1.4
-  'last_comments' => 'Seneste kommentar.<br />Klik for at se alle kommentarer lavet af', //cpg1.4
+  'last_comments' => 'Seneste kommentar.<br />Klik for at se alle kommentare lavet af', //cpg1.4
   'notify_admin_email_body' => 'En ny bruger med brugernavnet "%s" har registreret sig i dit galleri',
   'pic_count' => 'Uploadede filer', //cpg1.4
   'notify_admin_request_email_subject' => '%s - Registrerings anmodning', //cpg1.4
@@ -1584,10 +1584,10 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
   'title' => 'Kommentar overblik',
   'no_comment' => 'Der er ingen kommentar at vise',
   'n_comm_del' => '%s kommentar(er) slettet',
-  'n_comm_disp' => 'Antal af kommentarer at vise',
+  'n_comm_disp' => 'Antal af kommentare at vise',
   'see_prev' => 'Se foregående',
   'see_next' => 'Se næste',
-  'del_comm' => 'Slet valgte kommentarer',
+  'del_comm' => 'Slet valgte kommentare',
   'user_name' => 'Navn', //cpg1.4
   'date' => 'Dato', //cpg1.4
   'comment' => 'Kommentar', //cpg1.4
@@ -1596,8 +1596,8 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
   'name_d' => 'Bruger navn i faldende rækkefølge', //cpg1.4
   'date_a' => 'Dato i stigende rækkefølge', //cpg1.4
   'date_d' => 'Dato i faldende rækkefølge', //cpg1.4
-  'comment_a' => 'Kommentarer i stigende rækkefølge', //cpg1.4
-  'comment_d' => 'Kommentarer i faldende rækkefølge', //cpg1.4
+  'comment_a' => 'Kommentare i stigende rækkefølge', //cpg1.4
+  'comment_d' => 'Kommentare i faldende rækkefølge', //cpg1.4
   'file_a' => 'Fil i stigende rækkefølge', //cpg1.4
   'file_d' => 'Fil i faldende rækkefølge', //cpg1.4
 );
@@ -1673,7 +1673,7 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
                           '</ul>',
   'select_album' => 'Vælg album',
   'check_all' => 'Marker Alle',
-  'uncheck_all' => 'Fjern markering',
+  'uncheck_all' => 'Fjern markeringer',
   'no_folders' => 'Der findes endnu ingen mapper i "albums". Opret mindst en egendifineret mappe i "albums" mappen og ftp-upload dine filer heri. Du må ikke upload til "userpics" eller "edit" mapperne, de er reseveret til http uploads og intern formål.', //cpg1.4
    'albums_no_category' => 'Albums uden kategori', //cpg1.4 // album pulldown mod, added by frogfoot
   'personal_albums' => '* Personlig album', //cpg1.4 // album pulldown mod, added by frogfoot
@@ -1788,7 +1788,7 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'keywords' => 'Nøgleord (Adskil med mellemrum)<br /><a href="#" onClick="return MM_openBrWindow(\'keyword_select.php\',\'selectKey\',\'width=250, height=400, scrollbars=yes,toolbar=no,status=yes,resizable=yes\')">Indsæt fra listen</a>', //cpg1.4
   'keywords_sel' =>'Vælg et nøgleord', //cpg1.4
   'err_no_alb_uploadables' => 'Beklager der er intet album, som du har tilladelse til at uploade billeder til',
-  'place_instr_1' => 'Vælg venligst album til filerne nu. Du kan ogsÃ¥ indtaste relevante oplysninger om hver fil nu.',
+  'place_instr_1' => 'Vælg venligst album til filerne nu. Du kan også indtaste relevante oplysninger om hver fil nu.',
   'place_instr_2' => 'Flere filer skal placeres. Tryk venligst på \'Fortsæt\'.',
   'process_complete' => 'Alle filer er blevet placeret med succes.',
    'albums_no_category' => 'Albums uden kategori', //cpg1.4. //album pulldown mod, added by frogfoot
@@ -1827,8 +1827,8 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
   'delete' => 'Slet', //cpg1.4
   'delete_files_no' => 'behold offentlige filer (men anonymiser)', //cpg1.4
   'delete_files_yes' => 'slet også offentlige filer', //cpg1.4
-  'delete_comments_no' => 'behold kommentarer (men anonymisere)', //cpg1.4
-  'delete_comments_yes' => 'slet også kommentarer', //cpg1.4
+  'delete_comments_no' => 'behold kommentare (men anonymisere)', //cpg1.4
+  'delete_comments_yes' => 'slet også kommentare', //cpg1.4
   'activate' => 'Aktiver', //cpg1.4
   'deactivate' => 'Deaktiver', //cpg1.4
   'reset_password' => 'Nulstil Adgangskode', //cpg1.4
@@ -1840,7 +1840,7 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
   'operations' => 'Handlinger',
   'pictures' => 'Filer',
   'disk_space_used' => 'Plads brugt', //cpg1.4
-  'disk_space_quota' => 'Plads brugt / Kvote', //cpg1.4
+  'disk_space_quota' => 'Plads Kvote', //cpg1.4
   'registered_on' => 'Registreret den', //cpg1.4
   'last_visit' => 'Sidste besøg',
   'u_user_on_p_pages' => '%d bruger på %d side(r)',
@@ -1894,7 +1894,7 @@ $lang_util_desc_php = array(
 'Genskab minibilleder og mellemstore billeder', //cpg1.4
 'Sletter originale billeder og erstatter dem med mellemstor version', //cpg1.4
 'Sletter original eller mellemstore billeder for at frigøre diskplads', //cpg1.4
-'Sletter kommentarer ikke tilknyttet billede', //cpg1.4
+'Sletter kommentare ikke tilknyttet billede', //cpg1.4
 'Genindlæs fil størrelse og dimensioner (hvis du manuelt ændre billederne)', //cpg1.4
 'Nulstil tæller', //cpg1.4
 'Vis phpinfo', //cpg1.4
@@ -1951,13 +1951,13 @@ $lang_util_php = array(
   'deleting_intermediates' => 'Sletter mellemstore billeder, vent venligst...', //cpg1.4
   'searching_orphans' => 'Søger efter forældreløse billeder, vent venligst...', //cpg1.4
   'select_album' => 'Vælg album',
-  'delete_orphans' => 'Slet kommentarer som ikke har et album (virker på alle albums)', //cpg1.4
+  'delete_orphans' => 'Slet kommentare som ikke har et album (virker på alle albums)', //cpg1.4
   'delete_orphans_explanation' => 'Dette vil finde og lade dig slette alle kommentare som knytter sig til filer som ikke længere findes i galleriet.<br />Tjekker alle albums.', //cpg1.4
   'refresh_db' => 'Genindlæser informationer om fil dimensioner og størrelse', //cpg1.4
   'refresh_db_explanation' => 'Dette vil genindlæse fil dimensioner og størrelse. Brug denne hvis Diskkvoter viser forkert eller hvis du har ændret filerne manuelt.', //cpg1.4
   'reset_views' => 'Nulstil tæller til visning', //cpg1.4
   'reset_views_explanation' => 'Stiller tæller til nul på filer i valgte album.', //cpg1.4
-  'orphan_comment' => 'kommentarer uden album fundet',
+  'orphan_comment' => 'kommentare uden album fundet',
   'delete' => 'Slet',
   'delete_all' => 'Slet alle',
   'delete_all_orphans' => 'Slet alle forældreløse?', //cpg1.4
@@ -1966,11 +1966,11 @@ $lang_util_php = array(
   'phpinfo' => 'Vis phpinfo',
   'phpinfo_explanation' => 'Indeholder tekniske informationer om din server.<br /> - Du kan blive bedt om at oplyse information her fra når du ønsker support.', //cpg1.4
   'update_db' => 'Opdater database',
-  'update_db_explanation' => 'Hvis du har udskiftet coppermine filer, tilføjet en modifikation eller opgraderet fra en tidligere version af coppermine, vær sikker på at kører database opdatering en gang. Dette vil oprette de nødvendige  tabeller og/eller Konfigurations værdier i din coppermine database.',
+  'update_db_explanation' => 'Hvis du har udskiftet Coppermine filer, tilføjet en modifikation eller opgraderet fra en tidligere version af Coppermine, vær sikker på at kører database opdatering en gang. Dette vil oprette de nødvendige  tabeller og/eller Konfigurations værdier i din Coppermine database.',
   'view_log' => 'Se log filer', //cpg1.4
-  'view_log_explanation' => 'Coppermine kan logføre forskellige handlinger som brugerne udfører. Du kan gennemse disse logs hvis du har slået logføring til i <a href="admin.php">coppermine opsætning</a>.', //cpg1.4
+  'view_log_explanation' => 'Coppermine kan logføre forskellige handlinger som brugerne udfører. Du kan gennemse disse logs hvis du har slået logføring til i <a href="admin.php">Coppermine opsætning</a>.', //cpg1.4
   'versioncheck' => 'Tjek version', //cpg1.4
-  'versioncheck_explanation' => 'Tjek versionen af dine filer for at finde ud af om du har erstatte alle filer efter en opgradering, eller om coppermine kildefiler er blevet opdateret efter udgivelsen af en ny version.', //cpg1.4
+  'versioncheck_explanation' => 'Tjek versionen af dine filer for at finde ud af om du har erstatte alle filer efter en opgradering, eller om Coppermine kildefiler er blevet opdateret efter udgivelsen af en ny version.', //cpg1.4
   'bridgemanager' => 'Bridge Manager', //cpg1.4
   'bridgemanager_explanation' => 'Slå integration Til/Fra (bridging) mellem Coppermine og et andet program (f.eks. dit BBS).', //cpg1.4
 );
@@ -1982,18 +1982,18 @@ $lang_util_php = array(
 
 if (defined('VERSIONCHECK_PHP')) $lang_versioncheck_php = array(
   'title' => 'versiontjek', //cpg1.4
-  'what_it_does' => 'Denne side er til brugere som har opdateret deres coppermine installation. Dette script gennemgår filerne på din server og forsøger at bestemme om dine filer på serveren er de samme version som ligger på http://coppermine.sourceforge.net, dett vil også vise de filer du kan opgradere.<br />Dette vil vise alt der behøver opgradering med rødt. Entries med gult skal der studeres nærmere. Entries med grøn (eller din standart tekst farve) er OK.<br />Klik på hjælpe ikonen  for at få mere hjælp.', //cpg1.4
-  'online_repository_unable' => 'Kunne ikke få forbindelse til http://coppermine.sourceforge.net', //cpg1.4
-  'online_repository_noconnect' => 'Coppermine kunne ikke få forbindelse til http://coppermine.sourceforge.net. Dette kan være på grund af en af grunde:', //cpg1.4
-  'online_repository_reason1' => 'http://coppermine.sourceforge.net er ude af drift for øjeblikket - tjek om du kan se denne side: %s - hvis du ikke kan se denne side, prøv igen senere.', //cpg1.4
+  'what_it_does' => 'Denne side er til brugere som har opdateret deres Coppermine installation. Dette script gennemgår filerne på din server og forsøger at bestemme om dine filer på serveren er de samme version som ligger på http://Coppermine.sourceforge.net, dett vil også vise de filer du kan opgradere.<br />Dette vil vise alt der behøver opgradering med rødt. Entries med gult skal der studeres nærmere. Entries med grøn (eller din standart tekst farve) er OK.<br />Klik på hjælpe ikonen  for at få mere hjælp.', //cpg1.4
+  'online_repository_unable' => 'Kunne ikke få forbindelse til http://Coppermine.sourceforge.net', //cpg1.4
+  'online_repository_noconnect' => 'Coppermine kunne ikke få forbindelse til http://Coppermine.sourceforge.net. Dette kan være på grund af en af grunde:', //cpg1.4
+  'online_repository_reason1' => 'http://Coppermine.sourceforge.net er ude af drift for øjeblikket - tjek om du kan se denne side: %s - hvis du ikke kan se denne side, prøv igen senere.', //cpg1.4
   'online_repository_reason2' => 'PHP på din webserver har %s slået fra (´som standart, er den slået til). Hvis du administrere serveren, slå det til igen i <i>php.ini</i> (tillad i det mindste at det bliver overskrevet med %s). Hvis du har et webhotel, må du finde dig i at du ikke kan sammenligne dine filer med sidst nye version. Denne side vil kun vise fil versioner af filer der kom med din Coppermine - opdateringer vil ikke blive vist.', //cpg1.4
-  'online_repository_skipped' => 'Forbindelsen til http://coppermine.sourceforge.net er undladt', //cpg1.4
+  'online_repository_skipped' => 'Forbindelsen til http://Coppermine.sourceforge.net er undladt', //cpg1.4
   'online_repository_to_local' => 'Scriptet skifter nu til standartindstillinger for den lokale kopi af filens version. Dataene kan vær unøjagtige hvis du har opgraderet Coppermine og du ikke har  uploaded alle filer. Ændringer af filer efter frigivelsen vil heller ikke blive taget med.', //cpg1.4
   'local_repository_unable' => 'Kan ikke få forbindelse til din webserver', //cpg1.4
   'local_repository_explanation' => 'Coppermine kunne ikke få forbindelse til filen %s på din webserver. Det betyder sansynligvis at du ikke har uploaded filen til din webserver. Går dette og prøv at kører denne side igen (tryk opdater).<br />If the script still fails, your webhost might have disabled parts of <a href="http://www.php.net/manual/en/ref.filesystem.php">PHP\'s filesystem functions</a> completely. In this case, you simply won\'t be able to use this tool at all, sorry.', //cpg1.4
-  'coppermine_version_header' => 'Installeret Coppermine version', //cpg1.4
-  'coppermine_version_info' => 'Du har installeret: %s', //cpg1.4
-  'coppermine_version_explanation' => 'Hvis du tror dette er helt galt og du skulle kører en nyere version af Coppermine, har du sansynlivis ikke uploaded den sidste nye version af filen <i>include/init.inc.php</i>', //cpg1.4
+  'Coppermine_version_header' => 'Installeret Coppermine version', //cpg1.4
+  'Coppermine_version_info' => 'Du har installeret: %s', //cpg1.4
+  'Coppermine_version_explanation' => 'Hvis du tror dette er helt galt og du skulle kører en nyere version af Coppermine, har du sansynlivis ikke uploaded den sidste nye version af filen <i>include/init.inc.php</i>', //cpg1.4
   'version_comparison' => 'Version sammenligning', //cpg1.4
   'folder_file' => 'mappe/fil', //cpg1.4
   'coppermine_version' => 'cpg version', //cpg1.4
@@ -2036,8 +2036,8 @@ if (defined('VERSIONCHECK_PHP')) $lang_versioncheck_php = array(
   'show_errors_only' => 'vis kun mapper/filer med fejl', //cpg1.4
   'show_permissions' => 'vis mappe tilladelse', //cpg1.4
   'show_condensed_output' => 'Vis kortfattet ouput (for enklere skærmdump)', //cpg1.4
-  'coppermine_in_webroot' => 'coppermine er installeret som webroot', //cpg1.4
-  'connect_online_repository' => 'prøv at få forbindelse til http://coppermine.sourceforge.net', //cpg1.4
+  'coppermine_in_webroot' => 'Coppermine er installeret som webroot', //cpg1.4
+  'connect_online_repository' => 'prøv at få forbindelse til http://Coppermine.sourceforge.net', //cpg1.4
   'show_additional_information' => 'vis uderlige informationer', //cpg1.4
   'no_webcvs_link' => 'vis ikke web svn link', //cpg1.4
   'stable_webcvs_link' => 'vis web svn link til stabil version', //cpg1.4
@@ -2066,33 +2066,33 @@ if (defined('VIEWLOG_PHP')) $lang_viewlog_php = array(
 if (defined('XP_PUBLISH_PHP')) {
 
 $lang_xp_publish_client = <<<EOT
-<h1>XP Web Publishing Wizard klient</h1><p>Dette module give mulighed for at bruge <b>Windows XP</b> guiden Webudgivelse med Coppermine.</p><p>Koden er berseret på en artikel postet af
+<h1>XP guiden Webudgivelses klient</h1><p>Dette module give mulighed for at bruge <b>Windows XP</b> guiden Webudgivelse med Coppermine.</p><p>Koden er baseret på en artikel postet af
 EOT;
 
 $lang_xp_publish_required = <<<EOT
-<h2>Hvad er påkrævet</h2><ul><li></li><li>En fungerende installation af Coppermine hvor.<b>en web upload funktionen der virker.</b></li></ul><h2>Hvordan installer man på klient siden</h2><ul><li>Høkreklik på
+<h2>Hvad er påkrævet</h2><ul><li>En fungerende installation af Coppermine hvor <b>web upload funktionen virker.</b></li></ul><h2>Hvordan installer man på klient siden</h2><ul><li>Klik på
 EOT;
 
 $lang_xp_publish_select = <<<EOT
-Select ";og vælg gem som. ..";. Gem filen på din harddisk. Når du gemmer filen, tjek at filnanet er <b>cpg_###.reg</b> (the ### repræsenterer en numerisk tidskode). Ændre den til nanet hvis nødvendigt (lad tallene stå). Når filen er hentet, dobbeltklik på filen for at registere din server med "guidet Webudgivelse".</li></ul>
+og vælg "Gem som...". Gem filen på din harddisk. Når du gemmer filen, tjek at filnavnet er <b>cpg_###.reg</b> (### repræsenterer en numerisk tidskode). Ændre den til navnet hvis nødvendigt (lad tallene stå). Når filen er hentet, dobbeltklik på filen for at registere din server med "XP guiden Webudgivelse".</li></ul>
 EOT;
 
 $lang_xp_publish_testing = <<<EOT
-<h2>Test</h2><ul><li>I Windows Explorer, vølg nogle filer og klip på <b>Udgiv denne fil på world wide web</b> i venstre side.</li><li>Bekræft dit fil valg. Klik på <b>Næste</b>.</li><li>I listen med tjenesteudbydere kommer frem, vølg dit fotoalbum (det har samme navn som dit galleri). Hvis den ikke kommer frem på listen, tjek om du har installeret <b>cpg_pub_wizard.reg</b> som beskrevet ovenover.</li><li>Skriv dine login informationer hvis påkrævet.</li><li>Vælg et album til dine billeder eller opret et nyt.</li><li>Klik på <b>næste</b>. Upload af dine billeder starter.</li><li>Når den er færdig, tjek dit galleri for at se om billederne er korekt tilføjet.</li></ul>
+<h2>Test</h2><ul><li>I Windows Explorer, vælg nogle filer og klik på <b>Udgiv denne fil på world wide web</b> i venstre side.</li><li>Bekræft dit fil valg. Klik på <b>Næste</b>.</li><li>Når listen med tjenesteudbydere kommer frem, vælg dit fotoalbum (det har samme navn som dit galleri). Hvis det ikke kommer frem på listen, tjek om du har installeret <b>cpg_pub_wizard.reg</b> som beskrevet ovenover.</li><li>Skriv dine login informationer hvis påkrævet.</li><li>Vælg et album til dine billeder eller opret et nyt.</li><li>Klik på <b>næste</b>. Upload af dine billeder starter.</li><li>Når den er færdig, tjek dit galleri for at se om billederne er korekt tilføjet.</li></ul>
 EOT;
 
 $lang_xp_publish_notes = <<<EOT
-<h2>Notes :</h2><ul><li>Når upload er startet, kan guiden ikke vise fejlmeddelser fra script, så du ved ikke om upload fejlede eller lykkedesfør du har tjekket dit galleri.</li><li>Hvis upload fejlede, slå ";Fejlfindings tilstand "; til i Coppermine opsætnings side, prøv med et enkelt billede og tjek fejlmeddelelser i
+<h2>Notes :</h2><ul><li>Når upload er startet, kan guiden ikke vise fejlmeddelser fra script, så du ved ikke om upload fejlede eller lykkedes før du har tjekket dit galleri.</li><li>Hvis upload fejlede, slå "Fejlfindings tilstand " til i Coppermine opsætnings side, prøv med et enkelt billede og tjek fejlmeddelelser i
 EOT;
 
 $lang_xp_publish_flood = <<<EOT
-filen som ligger i Coppermine mappen på din server server.</li><li>For at forhindre at dit galleri bliver <i>oversvømmet</i> af billed uploaded med guiden, kun <b>galleri administrator</b> og <b>brugere som ahr eget album</b> kan bruge dette.</li>
+filen som ligger i Coppermine mappen på din server server.</li><li>For at forhindre at dit galleri bliver <i>oversvømmet</i> af billed uploaded med guiden, kun <b>galleri administrator</b> og <b>brugere som har eget album</b> kan bruge denne.</li>
 EOT;
 
 
 
 $lang_xp_publish_php = array(
-  'title' => 'Coppermine - XP Web Publishing Wizard', //cpg1.4
+  'title' => 'Coppermine - XP guiden Webudgivelse', //cpg1.4
   'welcome' => 'Velkommen <b>%s</b>,', //cpg1.4
   'need_login' => 'Du skal logge ind på galleriet med din web browser før du kan bruge giden.<p/><p>Når du logger ind, vælg <b>husk mig</b> hvis den er tilgængelig', //cpg1.4
   'no_alb' => 'Beklager, men der findes ingen album som du har tilladelse til at upload billeder med denne guide.', //cpg1.4
@@ -2101,7 +2101,7 @@ $lang_xp_publish_php = array(
   'album' => 'Album', //cpg1.4
   'category' => 'Kategori', //cpg1.4
   'new_alb_created' => 'Dit nye album ";<b>%s</b>"; er oprettet.', //cpg1.4
-  'continue' => 'Tryk ";Næste"; for at uploade dine billeder', //cpg1.4
+  'continue' => 'Tryk "Næste" for at uploade dine billeder', //cpg1.4
   'link' => 'dette link', //cpg1.4
 );
 }
