@@ -193,8 +193,9 @@ function filename_to_title()
         }
 
         $albstr = ($albumid) ? " WHERE aid = $albumid" : '';
-        $parsemode = $_POST['parsemode'];
-
+        //$parsemode = $_POST['parsemode'];
+		$parsemode = $superCage->post->getInt('parsemode');
+		
         $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} $albstr");
 
         echo "<h2>{$lang_util_php['titles_wait']}</h2>";
