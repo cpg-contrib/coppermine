@@ -101,7 +101,7 @@ class imageObject{
 
          }
 
-         function rotateImage(&$angle){
+         function rotateImage($angle){
 
              global $CONFIG;
 
