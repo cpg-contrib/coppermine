@@ -378,6 +378,13 @@ function form_instructions() {
     echo "<tr><td colspan=\"2\">";
 
     printf ($lang_upload_php['reg_instr_2'], $CONFIG['max_upl_size']);
+	
+	//show allowed filetypes (Frantz)
+    echo "<br /><br />{$lang_upload_php['allowed_types']}";
+    printf ($lang_upload_php['allowed_img_types'], $CONFIG['allowed_img_types']);
+    printf ($lang_upload_php['allowed_mov_types'], $CONFIG['allowed_mov_types']);
+    printf ($lang_upload_php['allowed_snd_types'], $CONFIG['allowed_snd_types']);
+    printf ($lang_upload_php['allowed_doc_types'], $CONFIG['allowed_doc_types']);
 
     if ($user_form > '3') {
 

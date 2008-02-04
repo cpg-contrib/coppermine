@@ -2138,6 +2138,11 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'close' => 'Close',
   'no_keywords' => 'Sorry, no keywords available!',
   'regenerate_dictionary' => 'Regenerate Dictionary',
+  'allowed_types' => 'You are allowed to upload files with the following extensions:', //cpg1.5 Frantz
+  'allowed_img_types' => '<br /><b>Images extensions:</b> %s', //cpg1.5 Frantz
+  'allowed_mov_types' => '<br /><b>Videos extensions:</b> %s', //cpg1.5 Frantz
+  'allowed_doc_types' => '<br /><b>Docs extentions:</b> %s', //cpg1.5 Frantz
+  'allowed_snd_types' => '<br /><b>Audios extentions:</b> %s', //cpg1.5 Frantz
 );
 
 // ------------------------------------------------------------------------- //
@@ -2352,6 +2357,7 @@ $lang_util_php = array(
   'fullpic_error' => 'File %s does not exist!', // cpg1.5
   'no_prob_detect' => 'No problems detected', // cpg1.5
   'no_prob_found' => 'No problems were found.', // cpg1.5
+  'notitle' => 'Apply only for empty filename fieldsfiles', //cpg1.5 Frantz
 );
 }
 

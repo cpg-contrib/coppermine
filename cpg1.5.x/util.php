@@ -45,7 +45,7 @@ $tasks =  array(
                 <input type="radio" name="updatetype" id="updatetype6" value="5" class="nobg" /><label for="updatetype6" class="clickable_option">'.$lang_util_php['update_full_normal_thumb'].'</label><br />
                 '.$lang_util_php['update_number'].'
                 <input type="text" name="numpics" value="'.$defpicnum.'" size="5" class="textinput" /><br />'.$lang_util_php['update_option'].'<br /><br />
-                <input type="Checkbox" name="autorefresh" checked value="1" class="nobg" />'.$lang_util_php['autorefresh']
+                <input type="checkbox" name="autorefresh" checked="checked" value="1" class="nobg" />'.$lang_util_php['autorefresh']
                 ),
 
         'filename_to_title' => array('filename_to_title', $lang_util_php['filename_title'],'
@@ -54,7 +54,9 @@ $tasks =  array(
         <input type="radio" name="parsemode" id="parsemode1" value="0" checked="checked" class="nobg" /><label for="parsemode1" class="clickable_option">' . $lang_util_php['filename_remove'] . '</label><br />
                 <input type="radio" name="parsemode" id="parsemode2" value="1" class="nobg" /><label for="parsemode2" class="clickable_option">'.$lang_util_php['filename_euro'].'</label><br />
                 <input type="radio" name="parsemode" id="parsemode3" value="2" class="nobg" /><label for="parsemode3" class="clickable_option">'.$lang_util_php['filename_us'].'</label><br />
-                <input type="radio" name="parsemode" id="parsemode4" value="3" class="nobg" /><label for="parsemode4" class="clickable_option">'.$lang_util_php['filename_time'].'</label><br /><br />'),
+                <input type="radio" name="parsemode" id="parsemode4" value="3" class="nobg" /><label for="parsemode4" class="clickable_option">'.$lang_util_php['filename_time'].'</label><br /><br />
+                <input type="checkbox" name="notitle" checked="checked" value="1" class="nobg" />'.$lang_util_php['notitle']
+                ),
 
         'del_titles' => array('del_titles', $lang_util_php['delete_title'], $lang_util_php['delete_title_explanation']),
 
@@ -183,6 +185,13 @@ function filename_to_title()
 		} else {
             $albumid = 0;
 		}
+		//only apply for empty filename fields (Frantz)
+		if ($superCage->post->getInt('notitle') == 1){	//$_POST['notitle'];
+        	$albstr = ($albumid) ? " WHERE aid = $albumid AND title = ''" : "WHERE title = ''";
+        }else{
+        	$albstr = ($albumid) ? " WHERE aid = $albumid " : '';	
+        }
+
         $albstr = ($albumid) ? " WHERE aid = $albumid" : '';
         $parsemode = $_POST['parsemode'];
 
@@ -224,7 +233,7 @@ function filename_to_title()
 
         $query = cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET title = '$newtitle' WHERE pid = '$pid'");
         if ($query){
-                echo "{$lang_util_php['file']} : $filename {$lang_util_php['title_set_to']} : $newtitle<br />";
+                echo "{$lang_util_php['file']} : <b>$filename</b> {$lang_util_php['title_set_to']} : <b>$newtitle</b><br />";
         }
 
         my_flush();
