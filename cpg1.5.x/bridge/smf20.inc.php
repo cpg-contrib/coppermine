@@ -73,7 +73,7 @@ class cpg_udb extends core_udb {
                         'user_id' => 'id_member', // name of 'id' field in users table
                         'password' => 'passwd', // name of the password field in the users table
                         'email' => 'email_address', // name of 'email' field in users table
-                        'regdate' => 'ddate_registered', // name of 'registered' field in users table
+                        'regdate' => 'date_registered', // name of 'registered' field in users table
                         'lastvisit' => 'UNIX_TIMESTAMP(last_login)', // last time user logged in
                         'active' => 'is_activated', // is user account active?
                         'location' => 'location', // name of 'location' field in users table

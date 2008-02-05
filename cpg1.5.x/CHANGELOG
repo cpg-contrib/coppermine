@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-02-05 [B] Fixed typo in SMF 2 bridge file {Nibbler}
 2008-02-04 [A] Added "Filename => Filetitle" only apply for empty filename fields in util.php. {Frantz}
 2008-02-04 [A] Added allowed filetypes message on upload. {Frantz}
 2008-02-03 [O] Added custom cpg_getimagesize function. {SaWey}
