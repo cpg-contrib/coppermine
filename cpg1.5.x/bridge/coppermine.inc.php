@@ -119,7 +119,20 @@ class coppermine_udb extends core_udb {
 
                 // Check for user in users table
                 $sql =  "SELECT user_id, user_name, user_password FROM {$this->usertable} WHERE ";
-                $sql .= "user_name = '$username' AND BINARY user_password = '$encpassword' AND user_active = 'YES'";
+				//Check the login method (username, email address or both)
+				switch($CONFIG['login_method']){
+					case 'both':
+						$sql .= "(user_name = '$username' OR user_email = '$username') AND BINARY user_password = '$encpassword' AND user_active = 'YES'";
+						break;
+					case 'email':
+						$sql .= "user_email = '$username' AND BINARY user_password = '$encpassword' AND user_active = 'YES'";
+						break;
+					case 'username':
+					default:
+						$sql .= "user_name = '$username' AND BINARY user_password = '$encpassword' AND user_active = 'YES'";
+						break;
+				}
+               
                 $results = cpg_db_query($sql);
 
                 // If exists update lastvisit value, session, and login
@@ -127,7 +140,19 @@ class coppermine_udb extends core_udb {
 
                         // Update lastvisit value
                         $sql =  "UPDATE {$this->usertable} SET user_lastvisit = NOW() ";
-                        $sql .= "WHERE user_name = '$username' AND BINARY user_password = '$encpassword' AND user_active = 'YES'";
+						//Check the login method (username, email address or both)
+						switch($CONFIG['login_method']){
+							case 'both':
+								$sql .= "WHERE (user_name = '$username' OR user_email = '$username') AND BINARY user_password = '$encpassword' AND user_active = 'YES'";
+								break;
+							case 'email':
+								$sql .= "WHERE user_email = '$username' AND BINARY user_password = '$encpassword' AND user_active = 'YES'";
+								break;
+							case 'username':
+							default:
+								$sql .= "WHERE user_name = '$username' AND BINARY user_password = '$encpassword' AND user_active = 'YES'";
+								break;
+						}
                         cpg_db_query($sql, $this->link_id);
 
                         $USER_DATA = mysql_fetch_assoc($results);

@@ -172,6 +172,7 @@ INSERT INTO CPG_config VALUES ('allow_memberlist', '0');
 INSERT INTO CPG_config VALUES ('allow_email_change', '0');
 INSERT INTO CPG_config VALUES ('allow_user_account_delete', '0');
 INSERT INTO CPG_config VALUES ('users_can_edit_pics', '0');
+INSERT INTO CPG_config VALUES ('login_method', 'username');
 INSERT INTO CPG_config VALUES ('login_threshold', '5');
 INSERT INTO CPG_config VALUES ('login_expiry', '10');
 INSERT INTO CPG_config VALUES ('report_post', '0');

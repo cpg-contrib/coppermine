@@ -97,11 +97,14 @@ if ($superCage->get->getInt('force_login')) {
 echo '<form action="login.php?referer='.urlencode($CPG_REFERER).'" method="post" name="loginbox" id="cpgform">';
 
 starttable('-1', $lang_login_php['enter_login_pswd'], 2);
+
+//see how users are allowed to login, can be username, email address or both
+$login_method = $lang_login_php[$CONFIG['login_method']];
 echo <<< EOT
                   $login_failed
                   $cookie_warning
                   <tr>
-                        <td class="tableb" width="40%">{$lang_login_php['username']}</td>
+                        <td class="tableb" width="40%">{$login_method}</td>
                         <td class="tableb" width="60%"><input type="text" class="textinput" name="username" style="width: 100%" tabindex="1" /></td>
                   </tr>
                   <tr>

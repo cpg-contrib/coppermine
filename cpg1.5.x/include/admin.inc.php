@@ -975,14 +975,26 @@ $config_data = array(
       'type' => 'checkbox',
       'help_link' => 'f=configuration.htm&amp;as=admin_user_editpics_public_start&amp;ae=admin_user_editpics_public_end',
     ),
-        'allow_user_move_album' => array(
+    'allow_user_move_album' => array(
       'type' => 'checkbox',
       'help_link' => 'f=configuration.htm&amp;as=admin_user_editpics_public_start&amp;ae=admin_user_editpics_public_end',
     ),
-        'allow_user_edit_after_cat_close' => array(
+    'allow_user_edit_after_cat_close' => array(
       'type' => 'checkbox',
       'help_link' => 'f=configuration.htm&amp;as=admin_user_edit_after_cat_close_start&amp;ae=admin_user_edit_after_cat_close_end',
     ),
+	//login_method gives you the choise of logging in with username, email or both
+	'login_method' => array(
+      'type' => 'select',
+	  'default_value' => 'username',
+      'bridged' => 'hide',
+      'help_link' => 'f=configuration.htm&amp;as=admin_user_login_start&amp;ae=admin_user_login_end',
+      'options' => array(
+	  		$lang_admin_php['login_method_username'] => 'username',
+			$lang_admin_php['login_method_email'] => 'email',
+			$lang_admin_php['login_method_both'] => 'both' 
+	 		),
+	),
     'login_threshold' => array(
       'type' => 'textfield',
       'bridged' => 'hide',
