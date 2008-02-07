@@ -111,9 +111,9 @@ if (rand(1,100) < 25){
 
 //Include the proper class for image Object
 if ($CONFIG['thumb_method']=="gd2"){
-           require("include/imageObjectGD.class.php");
+           require("include/imageobject_gd.class.php");
 }elseif ($CONFIG['thumb_method']=="im"){
-        require("include/imageObjectIM.class.php");
+        require("include/imageobject_im.class.php");
 }else{
         die ($lang_editpics_php['error_editor_class']);
 }
@@ -580,7 +580,7 @@ if ($superCage->get->getInt('id')) {
 <body>
 <?php if ($imgObj) print "<script type=\"text/javascript\">addonload('libinit()');</script>";?>
 
-<form name="mainform" id="cpgform" method="post" enctype="multipart/form-data" action="picEditor.php">
+<form name="mainform" id="cpgform" method="post" enctype="multipart/form-data" action="pic_editor.php">
 
 <input type="hidden" name="clipval" value="" />
 <input type="hidden" name="newimage" value="<?php print $newimage ; ?>" />

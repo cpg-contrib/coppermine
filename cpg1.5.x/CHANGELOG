@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-02-07 [C] Changed all needed files to lowercase {Frantz & SaWey}
 2008-02-06 [A] Added login method to config, possible to set it to username, email address or both. {SaWey}
 2008-02-05 [B] Fixed typo in SMF 2 bridge file {Nibbler}
 2008-02-04 [A] Added "Filename => Filetitle" only apply for empty filename fields in util.php. {Frantz}

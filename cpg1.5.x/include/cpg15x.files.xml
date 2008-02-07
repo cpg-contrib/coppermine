@@ -168,7 +168,7 @@
     <hash>8b06098733bfe6fede3bf27437796490</hash>
   </element>
   <element>
-    <fullpath>editOnePic.php</fullpath>
+    <fullpath>edit_one_pic.php</fullpath>
     <release>1.5.0</release>
     <revision>4104</revision>
     <status>mandatory</status>
@@ -334,7 +334,7 @@
     <hash>85045e319309968c6b040fc7c18a1ae8</hash>
   </element>
   <element>
-    <fullpath>picEditor.php</fullpath>
+    <fullpath>pic_editor.php</fullpath>
     <release>1.5.0</release>
     <revision>4167</revision>
     <status>mandatory</status>
@@ -4503,7 +4503,7 @@
     <hash>07902f45a5fbe8106dbce4528fe74be9</hash>
   </element>
   <element>
-    <fullpath>include/imageObjectGD.class.php</fullpath>
+    <fullpath>include/imageobject_gd.class.php</fullpath>
     <release>1.5.0</release>
     <revision>3786</revision>
     <status>mandatory</status>
@@ -4511,7 +4511,7 @@
     <hash>0cd8e4669995465cc4ff590b7bed2a26</hash>
   </element>
   <element>
-    <fullpath>include/imageObjectIM.class.php</fullpath>
+    <fullpath>include/imageobject_im.class.php</fullpath>
     <release>1.5.0</release>
     <revision>3786</revision>
     <status>mandatory</status>

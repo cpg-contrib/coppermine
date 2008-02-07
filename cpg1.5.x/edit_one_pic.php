@@ -283,7 +283,7 @@ function textCounter(field, maxlimit) {
         field.value = field.value.substring(0, maxlimit);
 }
 </script>
-<form name="editonepicform" id="cpgform" method="post" action="editOnePic.php">
+<form name="editonepicform" id="cpgform" method="post" action="edit_one_pic.php">
 <input type="hidden" name="id" value="{$CURRENT_PIC['pid']}" />
 EOT;
 
