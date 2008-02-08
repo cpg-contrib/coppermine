@@ -1857,8 +1857,9 @@ function breadcrumb($cat, &$breadcrumb, &$BREADCRUMB_TEXT)
                 else
                 {
                     $result = cpg_db_query("SELECT name, parent FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '$cat'");
-                    if (mysql_num_rows($result) == 0)
+                    if (mysql_num_rows($result) == 0){
                         cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_cat'], __FILE__, __LINE__);
+					}
                     $row = mysql_fetch_array($result);
 
                     $category_array[] = array($cat, $row['name']);
@@ -1869,8 +1870,9 @@ function breadcrumb($cat, &$breadcrumb, &$BREADCRUMB_TEXT)
                 while($row['parent'] != 0)
                 {
                     $result = cpg_db_query("SELECT cid, name, parent FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '{$row['parent']}'");
-                    if (mysql_num_rows($result) == 0)
-                        cpg_die(CRITICAL_ERROR, $lang_errors['orphan_cat'], __FILE__, __LINE__);
+                    if (mysql_num_rows($result) == 0){
+                        //cpg_die(CRITICAL_ERROR, $lang_errors['orphan_cat'], __FILE__, __LINE__);
+					}
                     $row = mysql_fetch_array($result);
 
                     $category_array[] = array($row['cid'], $row['name']);
@@ -4122,27 +4124,35 @@ function user_is_allowed () {
         } elseif ($superCage->post->keyExists('aid')){
                 $album_id = $superCage->post->getInt('aid');
         } else {
-                $album_id = 0;
+			//workaround when going straight to modifyalb.php and no album is set in superglobals
+			if(defined('MODIFYALB_PHP')){
+				//check if the user has any album available
+				$result = cpg_db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE owner = " . $USER_DATA['user_id'] . " LIMIT 1");
+				$temp_album_id = cpg_db_fetch_row($result);
+				$album_id = $temp_album_id['aid'];
+			}else{
+			    $album_id = 0;
+			}
+            
         }
-
 
         $result = cpg_db_query("SELECT DISTINCT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE owner = '" . $USER_DATA['user_id'] . "' AND aid='$album_id'");
         $allowed_albums = cpg_db_fetch_rowset($result);
         $cat = $allowed_albums[0]['category'];
         if($cat != ''){
-                $check_approve = true;
+			$check_approve = true;
         }
 
-        //check if admin allows editing        after closing category
+        //check if admin allows editing after closing category
         if($CONFIG['allow_user_edit_after_cat_close'] == 0){
-                //Disallowed -> Check if album is in such a category
-                $result = cpg_db_query("SELECT DISTINCT aid FROM {$CONFIG['TABLE_ALBUMS']} AS alb INNER JOIN {$CONFIG['TABLE_CATMAP']} AS catm ON alb.category=catm.cid WHERE alb.owner = '" . $USER_DATA['user_id'] . "' AND alb.aid='$album_id' AND catm.group_id='" . $USER_DATA['group_id'] . "'");
-                $allowed_albums = cpg_db_fetch_rowset($result);
-                if($allowed_albums[0]['aid'] == '' && $cat != (FIRST_USER_CAT + USER_ID)){
-                        $check_approve = false;
-                } elseif ($cat == (FIRST_USER_CAT + USER_ID)) {
-                        $check_approve = true;
-                }
+			//Disallowed -> Check if album is in such a category
+			$result = cpg_db_query("SELECT DISTINCT aid FROM {$CONFIG['TABLE_ALBUMS']} AS alb INNER JOIN {$CONFIG['TABLE_CATMAP']} AS catm ON alb.category=catm.cid WHERE alb.owner = '" . $USER_DATA['user_id'] . "' AND alb.aid='$album_id' AND catm.group_id='" . $USER_DATA['group_id'] . "'");
+			$allowed_albums = cpg_db_fetch_rowset($result);
+			if($allowed_albums[0]['aid'] == '' && $cat != (FIRST_USER_CAT + USER_ID)){
+				$check_approve = false;
+			} elseif ($cat == (FIRST_USER_CAT + USER_ID)) {
+				$check_approve = true;
+			}
         }
         return $check_approve;
 }

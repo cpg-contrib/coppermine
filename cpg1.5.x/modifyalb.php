@@ -62,7 +62,7 @@ $data = array($lang_modifyalb_php['general_settings'],
     );
 
 if (GALLERY_ADMIN_MODE) {
-  $data[] = array($lang_modifyalb_php['can_moderate'], 'moderator_group', 8);
+	$data[] = array($lang_modifyalb_php['can_moderate'], 'moderator_group', 8);
 }
 
 /**
@@ -488,20 +488,51 @@ function create_form(&$data)
 
 function alb_list_box()
 {
-    global $CONFIG, $CLEAN, $cpg_udb, $CPG_PHP_SELF; //, $PHP_SELF;
-
+    global $CONFIG, $CLEAN, $cpg_udb, $CPG_PHP_SELF, $lang_modifyalb_php; //, $PHP_SELF;
+	
+	$rowset = array();
     if (GALLERY_ADMIN_MODE) {
-        $result = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < '" . FIRST_USER_CAT . "' ORDER BY title");
-        $rowset = cpg_db_fetch_rowset($result);
+        //$result = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < '" . FIRST_USER_CAT . "' ORDER BY title");
+        //$rowset = cpg_db_fetch_rowset($result);
+        //mysql_free_result($result);
+		$result = cpg_db_query("SELECT DISTINCT a.aid as aid, a.title as title, c.name as cname FROM {$CONFIG['TABLE_ALBUMS']} as a, {$CONFIG['TABLE_CATEGORIES']} as c WHERE a.category = c.cid AND a.category < '" . FIRST_USER_CAT . "'");
+        while ($row = mysql_fetch_array($result)) {
+            // Add to multi-dim array for later sorting
+            $rowset[] = array(
+				'cat'   => $row['cname'],
+				'aid'   => $row['aid'],
+				'title' => $row['title'],
+			);
+        }
         mysql_free_result($result);
-
+		
+		//now we need to select the albupms without a category
+		$result = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = 0 ORDER BY title");
+		while ($row = mysql_fetch_array($result)) {
+            // Add to multi-dim array for later sorting
+            $rowset[] = array(
+				'cat'   => $lang_modifyalb_php['no_cat'],
+				'aid'   => $row['aid'],
+				'title' => $row['title'],
+			);
+        }
+        mysql_free_result($result);
+		
         //if (defined('UDB_INTEGRATION')) {
             $sql = $cpg_udb->get_admin_album_list();
         /*} else {
             $sql = "SELECT aid, CONCAT('(', user_name, ') ', title) AS title " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "INNER JOIN {$CONFIG['TABLE_USERS']} AS u ON category = (" . FIRST_USER_CAT . " + user_id) " . "ORDER BY title";
         }*/
         $result = cpg_db_query($sql);
-        while ($row = mysql_fetch_array($result)) $rowset[] = $row;
+        while ($row = mysql_fetch_array($result)){
+			//$rowset[] = $row;
+			// Add to multi-dim array for later sorting
+            $rowset[] = array(
+				'cat'   => $lang_modifyalb_php['user_gal'],
+				'aid'   => $row['aid'],
+				'title' => $row['title'],
+			);	
+		}
         mysql_free_result($result);
     } else {
 		//Only list the albums owned by the user
@@ -509,28 +540,61 @@ function alb_list_box()
 		$user_id = USER_ID;
 		
 		//get albums in "my albums"
-		$result1 = cpg_db_query("SELECT aid , title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = $cat");
-		$rowset1 = cpg_db_fetch_rowset($result1);
-		mysql_free_result($result1);
-		
-		//get public albums
-		$result2 = cpg_db_query("SELECT alb.aid AS aid, CONCAT_WS('', '(', cat.name, ') ', alb.title) AS title FROM {$CONFIG['TABLE_ALBUMS']} AS alb INNER JOIN {$CONFIG['TABLE_CATEGORIES']} AS cat ON alb.owner = '$user_id' AND alb.category = cat.cid ORDER BY alb.category DESC, alb.pos ASC");
-		$rowset2 = cpg_db_fetch_rowset($result2);
-        mysql_free_result($result2);
-		
-		//merge rowsets
-		$rowset = array_merge($rowset1, $rowset2);
-    }
+		$result = cpg_db_query("SELECT aid , title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = $cat");
+		//$rowset_my_albums = cpg_db_fetch_rowset($result_my_albums);
+		while ($row = mysql_fetch_array($result)){
+			// Add to multi-dim array for later sorting
+            $rowset[] = array(
+				'cat'   => $lang_modifyalb_php['my_gal'],
+				'aid'   => $row['aid'],
+				'title' => $row['title'],
+			);	
+		}
+		mysql_free_result($result);
 
+		//get public albums
+		$result = cpg_db_query("SELECT a.aid, a.title, c.name AS cname FROM {$CONFIG['TABLE_ALBUMS']} AS a INNER JOIN {$CONFIG['TABLE_CATEGORIES']} AS c ON a.owner = '$user_id' AND a.category = c.cid ORDER BY a.category");
+		//$rowset_public_albums = cpg_db_fetch_rowset($result_public_albums);
+		while ($row = mysql_fetch_array($result)){
+			// Add to multi-dim array for later sorting
+            $rowset[] = array(
+				'cat'   => $row['cname'],
+				'aid'   => $row['aid'],
+				'title' => $row['title'],
+			);	
+		}
+        mysql_free_result($result);
+    }
+	
+	// Sort by category and album title
+	$rowset = array_csort($rowset,'cat','title');
+	
+	if(count($rowset)){
+		 // Create the nicely sorted and formatted drop down list
+        $alb_cat = '';
+		$select = "<select name=\"album_listbox\" class=\"listbox\" onChange=\"if(this.options[this.selectedIndex].value) window.location.href='{$CPG_PHP_SELF}?album='+this.options[this.selectedIndex].value;\">\n";
+        foreach ($rowset as $val) {
+            if ($val['cat'] != $alb_cat) {
+          		if ($alb_cat) $select .= "</optgroup>\n";
+                $select .= '<optgroup label="' . $val['cat'] . '">' . "\n";
+                $alb_cat = $val['cat'];
+            }
+            $select .= '<option value="' . $val['aid'] . '"' . ($val['aid'] == $CLEAN['album'] ? ' selected="selected"' : '') . '>   ' . $val['title'] . "</option>\n";
+        }
+        if ($alb_cat) $select .= "</optgroup>\n";
+		$select .= "</select>\n";
+		return $select;
+	}
+	/*
     if (count($rowset)) {
         $lb = "<select name=\"album_listbox\" class=\"listbox\" onChange=\"if(this.options[this.selectedIndex].value) window.location.href='{$CPG_PHP_SELF}?album='+this.options[this.selectedIndex].value;\">\n";
         foreach ($rowset as $row) {
-            $selected = ($row['aid'] == $CLEAN['album']) ? "SELECTED" : "";
+            $selected = ($row['aid'] == $CLEAN['album']) ? 'selected="selected"' : "";
             $lb .= "        <option value=\"" . $row['aid'] . "\" $selected>" . $row['title'] . "</option>\n";
         }
         $lb .= "</select>\n";
         return $lb;
-    }
+    }*/
 }
 
 if (!$CLEAN['album']) {

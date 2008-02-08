@@ -111,7 +111,7 @@ function albumselect($id = "album") {
 
         foreach ($listArray as $val) {
             if ($val['cat'] != $alb_cat) {
-          if ($alb_cat) $select .= "</optgroup>\n";
+         		if ($alb_cat) $select .= "</optgroup>\n";
                 $select .= '<optgroup label="' . $val['cat'] . '">' . "\n";
                 $alb_cat = $val['cat'];
             }
