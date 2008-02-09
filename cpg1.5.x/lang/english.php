@@ -2595,8 +2595,16 @@ if (defined('INSTALLER')) $lang_install = array(
 // Core plugins
 // ------------------------------------------------------------------------- //
 if (defined('CORE_PLUGIN')) $lang_plugin_php = array(
-  'usergal_alphatabs_jump_by_username' => 'Jump by username', // cpg1.5
-  'usergal_alphatabs_config_description' => 'What it does: displays tabs from A to Z at the top of user galleries that visitors can click on to directly jump to a page that displays all user galleries of the users who\'s username starts with that letter. Plugin only recommended to be used if you have a really large number of user galleries.', // cpg1.5
   'usergal_alphatabs_config_name' => 'User Gallery Alphabetic Tabbing', // cpg1.5
+  'usergal_alphatabs_config_description' => 'What it does: displays tabs from A to Z at the top of user galleries that visitors can click on to directly jump to a page that displays all user galleries of the users who\'s username starts with that letter. Plugin only recommended to be used if you have a really large number of user galleries.', // cpg1.5
+  'usergal_alphatabs_jump_by_username' => 'Jump by username', // cpg1.5
+  'sample_config_name' => 'Sample Plugin', // cpg1.5
+  'sample_config_description' => 'This is a sample plugin. It will not do anything particular usefull - it is just meant to demonstrate what plugins can do and how to code them. When enabled, it will display some sample text in red.', // cpg1.5
+  'sample_plugin_documentation' => 'Plugin Documentation', // cpg1.5
+  'sample_plugin_support' => 'Plugin Support', // cpg1.5
+  'sample_install_explain' => 'Enter the username (\'foo\') and password (\'bar\') to install', // cpg1.5
+  'sample_install_username' => 'Username', // cpg1.5
+  'sample_install_password' => 'Password', // cpg1.5
+  'sample_output' => 'This is sample data returned from the sample plugin', // cpg1.5
 );
 ?>
