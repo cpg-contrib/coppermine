@@ -18,7 +18,9 @@
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
-define('CORE_PLUGIN', true);
+if (!defined('CORE_PLUGIN')) {
+	define('CORE_PLUGIN', true);
+}
 
 // Add an install action
 $thisplugin->add_action('plugin_install','sample_install');

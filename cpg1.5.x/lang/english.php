@@ -2606,5 +2606,16 @@ if (defined('CORE_PLUGIN')) $lang_plugin_php = array(
   'sample_install_username' => 'Username', // cpg1.5
   'sample_install_password' => 'Password', // cpg1.5
   'sample_output' => 'This is sample data returned from the sample plugin', // cpg1.5
+  'opensearch_config_name' => 'OpenSearch', // cpg1.5
+  'opensearch_config_description' => 'An implementation of <a href="http://www.opensearch.org/" rel="external" class="external">OpenSearch</a> for Coppermine.<br />When enabled, visitors can add your gallery to their browser\'s search bar.', // cpg1.5
+  'opensearch_search' => 'Search %s', // cpg1.5
+  'opensearch_extra' => 'You may want to add some text to your site that explains what this plugin does', // cpg1.5
+  'opensearch_failed_to_open_file' => 'Failed to open file %s - check permissions', // cpg1.5
+  'opensearch_failed_to_write_file' => 'Failed to write to file %s - check permissions', // cpg1.5
+  'opensearch_form_header' => 'Enter the details to be used for the description file', // cpg1.5
+  'opensearch_gallery_url' => 'Gallery URL (must be correct)', // cpg1.5
+  'opensearch_display_name' => 'Name as displayed in browser', // cpg1.5
+  'opensearch_description' => 'Description', // cpg1.5
+  'opensearch_character_limit' => '%s character limit', // cpg1.5
 );
 ?>
