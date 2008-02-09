@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-02-09 [O] Modified the code in picmgr.php to reflect security improvents imposed by Inspekt {SaWey}
 2008-02-07 [C] Added nicer album drop down in modifyalb.php {SaWey}
 2008-02-07 [B] Fixed users not able to go to modifyalb.php when no album is set in super globals {SaWey}
 2008-02-07 [C] Changed all needed files to lowercase {Frantz & SaWey}
