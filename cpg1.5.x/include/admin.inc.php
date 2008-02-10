@@ -425,7 +425,7 @@ $config_data = array(
     ),
     'picinfo_movie_download_link' => array(
       'type' => 'checkbox',
-      'help_link' => '',
+      'help_link' => 'f=configuration.htm&amp;as=admin_image_movie_download_link_visible&amp;ae=admin_image_movie_download_link_visible_end',
     ),
     'max_img_desc_length' => array(
       'type' => 'textfield',
@@ -466,7 +466,7 @@ $config_data = array(
     ),
     'slideshow_hits' => array(
       'type' => 'checkbox',
-      'help_link' => 'f=configuration.htm&amp;as=adin_image_slideshow_hits&amp;ae=admin_image_slideshow_hits_end',
+      'help_link' => 'f=configuration.htm&amp;as=admin_image_slideshow_hits&amp;ae=admin_image_slideshow_hits_end',
     ),
     'ecard_flash' => array(
       'type' => 'checkbox',
@@ -977,18 +977,18 @@ $config_data = array(
     ),
     'allow_user_move_album' => array(
       'type' => 'checkbox',
-      'help_link' => 'f=configuration.htm&amp;as=admin_user_editpics_public_start&amp;ae=admin_user_editpics_public_end',
+      'help_link' => 'f=configuration.htm&amp;as=admin_user_allow_album_move&amp;ae=admin_user_allow_album_move_end',
     ),
     'allow_user_edit_after_cat_close' => array(
       'type' => 'checkbox',
-      'help_link' => 'f=configuration.htm&amp;as=admin_user_edit_after_cat_close_start&amp;ae=admin_user_edit_after_cat_close_end',
+      'help_link' => '',
     ),
-	//login_method gives you the choise of logging in with username, email or both
+	//login_method gives you the choice of logging in with username, email or both
 	'login_method' => array(
       'type' => 'select',
 	  'default_value' => 'username',
       'bridged' => 'hide',
-      'help_link' => 'f=configuration.htm&amp;as=admin_user_login_start&amp;ae=admin_user_login_end',
+      'help_link' => 'f=configuration.htm&amp;as=admin_user_login_start&amp;ae=admin_user_login_method_end',
       'options' => array(
 	  		$lang_admin_php['login_method_username'] => 'username',
 			$lang_admin_php['login_method_email'] => 'email',
@@ -998,7 +998,7 @@ $config_data = array(
     'login_threshold' => array(
       'type' => 'textfield',
       'bridged' => 'hide',
-      'help_link' => 'f=configuration.htm&amp;as=admin_user_login_start&amp;ae=admin_user_login_end',
+      'help_link' => 'f=configuration.htm&amp;as=admin_user_login_threshold_start&amp;ae=admin_user_login_threshold_end',
       'regex' => '^[0-9]{1,4}$',
       'size' => '4',
       'width' => '4',
@@ -1007,7 +1007,7 @@ $config_data = array(
     'login_expiry' => array(
       'type' => 'textfield',
       'bridged' => 'hide',
-      'help_link' => 'f=configuration.htm&amp;as=admin_user_login_start&amp;ae=admin_user_login_end',
+      'help_link' => 'f=configuration.htm&amp;as=admin_user_login_expiry_start&amp;ae=admin_user_login_expiry_end',
       'regex' => '^[0-9]{1,7}$',
       'size' => '7',
       'width' => '7',
