@@ -36,8 +36,8 @@ CREATE TABLE CPG_sessions (
 #
 
 CREATE TABLE IF NOT EXISTS `CPG_categorymap` (
-  cid int(11) NOT NULL COMMENT 'Id of the category',
-  group_id int(11) NOT NULL COMMENT 'Id of the group',
+  cid int(11) NOT NULL,
+  group_id int(11) NOT NULL,
   PRIMARY KEY  (cid,group_id)
 ) ENGINE=MyISAM COMMENT='Holds the categories where groups can create albums';
 
