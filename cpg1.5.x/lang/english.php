@@ -2617,5 +2617,24 @@ if (defined('CORE_PLUGIN')) $lang_plugin_php = array(
   'opensearch_display_name' => 'Name as displayed in browser', // cpg1.5
   'opensearch_description' => 'Description', // cpg1.5
   'opensearch_character_limit' => '%s character limit', // cpg1.5
+  'onlinestats_description' => 'Display a block on each gallery page that shows users and guests actually online.',
+  'onlinestats_name' => 'Who is online?',
+  'onlinestats_config_extra' => 'To enable this plugin (make it actually display the onlinestats block), the string "onlinestats" (separated with a slash) has been added to "<a href="configuration.htm#admin_album_list_content">the content of the main page</a>" in <a href="admin.php">coppermine\'s config</a> in the section "Album list view". The setting should now look like "breadcrumb/catlist/alblist/onlinestats" or similar. To change the position of the block, move the string "onlinestats" around inside that config field.',
+  'onlinestats_config_install' => 'The plugin runs additional queries on the database each time it is being executed, burning cpu cycles and using resources. If your coppermine gallery is slow or has got a lot of users, you shouldn\'t use it.',
+  'onlinestats_we_have_reg_member' => 'There is %s registered user',
+  'onlinestats_we_have_reg_members' => ' There are %s registered users',
+  'onlinestats_most_recent' => 'The newest registered user is %s',
+  'onlinestats_is' => 'In total there is %s visitor online',
+  'onlinestats_are' => 'In total there are %s visitors online',
+  'onlinestats_and' => 'and',
+  'onlinestats_reg_member' => '%s registered user',
+  'onlinestats_reg_members' => '%s registered users',
+  'onlinestats_guest' => '%s guest',
+  'onlinestats_guests' => '%s guests',
+  'onlinestats_record' => 'Most users ever online: %s on %s',
+  'onlinestats_since' => ' Registered users who have been online in the past %s minutes: %s',
+  'onlinestats_config_text' => 'How long do you want to keep users listed as online for before they are assumed to have gone?',
+  'onlinestats_minute' => 'minutes',
+  'onlinestats_remove' => 'Remove the table that was used to store online data?',
 );
 ?>

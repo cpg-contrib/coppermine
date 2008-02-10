@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-02-10 [A] Added onlinestats plugin {GauGau}
 2008-02-09 [A] Added OpenSearch plugin {GauGau}
 2008-02-09 [O] Modified the code in picmgr.php to reflect security improvents imposed by Inspekt {SaWey}
 2008-02-07 [C] Added nicer album drop down in modifyalb.php {SaWey}
