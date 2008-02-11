@@ -180,6 +180,11 @@ function process_post_data()
         $user3       = get_post_var('user3', $pid);
         $user4       = get_post_var('user4', $pid);
 
+        $delete = false;
+        $reset_vcount = false;
+        $reset_votes = false;
+        $del_comments = false;
+        		
         $isgalleryicon = ($galleryicon === $pid);
 
         if ($superCage->post->keyExists('delete'.$pid)) {
