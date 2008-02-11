@@ -2363,7 +2363,7 @@ $lang_util_php = array(
   'fullpic_error' => 'File %s does not exist!', // cpg1.5
   'no_prob_detect' => 'No problems detected', // cpg1.5
   'no_prob_found' => 'No problems were found.', // cpg1.5
-  'notitle' => 'Apply only for empty filename fieldsfiles', //cpg1.5 Frantz
+  'notitle' => 'Apply only for empty filename fieldsfiles', //cpg1.5
 );
 }
 
@@ -2400,9 +2400,8 @@ if (defined('VERSIONCHECK_PHP')) $lang_versioncheck_php = array(
   'optional' => 'optional',
   'options' => 'Options',
   'display_output' => 'Display output',
-  'on_screen' => 'On Screen',
+  'on_screen' => 'Full Screen',
   'text_only' => 'Text-only',
-  'download' => 'Download',
   'errors_only' => 'Only show potential errors',
   'display_images' => 'Display images',
   'do_not_connect_to_online_repository' => 'Do not connect to the online repository',
