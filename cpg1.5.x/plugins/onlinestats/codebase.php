@@ -44,9 +44,10 @@ $thisplugin->add_action('plugin_configure','online_configure');
 function online_configure() {
         global $lang_plugin_php, $CONFIG, $lang_common;
         $superCage = Inspekt::makeSuperCage();
+        $action = $superCage->server->getEscaped('REQUEST_URI');
         print <<< EOT
     
-    <form action="{$superCage->server->getEscaped('REQUEST_URI')}" method="post">
+    <form action="{$action}" method="post">
 	    <table border="0" cellspacing="0" cellpadding="0" width="100%">
 	        <tr>
 		        <td class="tableb">
@@ -189,7 +190,8 @@ function online_install() {
         $superCage = Inspekt::makeSuperCage();
 
         if ($superCage->post->keyExists('duration')) {
-                 require 'include/sql_parse.php';
+                require 'include/sql_parse.php';
+                $duration = $superCage->post->getInt('duration');
 
                 // create table
                 $db_schema = $thisplugin->fullpath . '/schema.sql';
@@ -198,7 +200,7 @@ function online_install() {
 
                 $sql_query = remove_remarks($sql_query);
                 $sql_query = split_sql_file($sql_query, ';');
-                $sql_query[] = "INSERT IGNORE INTO {$CONFIG['TABLE_CONFIG']} (name, value) VALUES ('mod_updates_duration', '{$superCage->post->getInt('duration')}')";
+                $sql_query[] = "INSERT IGNORE INTO {$CONFIG['TABLE_CONFIG']} (name, value) VALUES ('mod_updates_duration', '{$duration}')";
 
                 foreach($sql_query as $q) cpg_db_query($q);
                 
@@ -245,9 +247,10 @@ function online_uninstall() {
 function online_cleanup($action) {
 	global $lang_plugin_php, $CONFIG, $lang_common;
 	$superCage = Inspekt::makeSuperCage();
+	$cleanup = $superCage->server->getEscaped('REQUEST_URI');
     if ($action===1) {
     print <<< EOT
-    <form action="{$superCage->server->getEscaped('REQUEST_URI')}" method="post">
+    <form action="{$cleanup}" method="post">
 	    <table border="0" cellspacing="0" cellpadding="0">
 	        <tr>
 	            <td class="tableb">

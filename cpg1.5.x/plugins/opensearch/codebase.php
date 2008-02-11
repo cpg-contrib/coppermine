@@ -116,11 +116,12 @@ function opensearch_configure() {
 
 	global $CONFIG, $lang_plugin_php, $lang_common;
 	$superCage = Inspekt::makeSuperCage();
+	$action = $superCage->server->getEscaped('REQUEST_URI');
 	
     $nameLimit = sprintf($lang_plugin_php['opensearch_character_limit'], '16');
     $descriptionLimit = sprintf($lang_plugin_php['opensearch_character_limit'], '1024');
     echo <<< EOT
-    <form name="cpgform" id="cpgform" action="{$superCage->server->getEscaped('REQUEST_URI')}" method="post">
+    <form name="cpgform" id="cpgform" action="{$action}" method="post">
             <table border="0" cellspacing="0" cellpadding="0" width="100%">
               <tr>
                 <td class="tableh2" colspan="2">
