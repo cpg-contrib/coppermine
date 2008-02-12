@@ -217,6 +217,8 @@ INSERT INTO CPG_config VALUES ('media_autostart', '1');
 
 INSERT INTO CPG_config VALUES ('enable_encrypted_passwords','0');
 
+INSERT INTO CPG_config VALUES ('rating_stars_amount', '5');
+
 ###### watermark ########
 INSERT INTO CPG_config VALUES ('enable_watermark', '0');
 INSERT INTO CPG_config VALUES ('where_put_watermark', 'southeast');
@@ -324,8 +326,8 @@ ALTER TABLE `CPG_users` CHANGE user_lang user_group_list varchar(255) NOT NULL d
 # Fix usermgr timing out with 1k+ users -Omni
 #
 ## Disabled dropping the index 'owner_id' since it gets recreated.
-## ALTER TABLE CPG_pictures DROP INDEX `owner_id`;
-ALTER TABLE CPG_pictures DROP INDEX `owner_id_2`;
+## ALTER TABLE CPG_pictures DROP INDEX ( `owner_id` );
+ALTER TABLE CPG_pictures DROP INDEX ( `owner_id_2` );
 ALTER TABLE CPG_pictures ADD INDEX owner_id( `owner_id` );
 
 
@@ -365,7 +367,7 @@ CREATE TABLE CPG_dict (
 # Add config profile rows
 #
 
-ALTER TABLE `CPG_users` CHANGE `user_location`  `user_profile1` VARCHAR(255);
+ALTER TABLE `CPG_users` CHANGE `user_location` `user_profile1` VARCHAR(255);
 ALTER TABLE `CPG_users` CHANGE `user_interests` `user_profile2` VARCHAR(255);
 ALTER TABLE `CPG_users` CHANGE `user_website` `user_profile3` VARCHAR(255);
 ALTER TABLE `CPG_users` CHANGE `user_occupation` `user_profile4` VARCHAR(255);
@@ -605,8 +607,8 @@ UPDATE CPG_vote_stats SET `browser` = 'IE7' WHERE `browser` ='MSIE 7.0';
 
 # Add album moderator entry
 ALTER TABLE `CPG_albums` ADD `moderator_group` INT NOT NULL default 0;
-ALTER TABLE `CPG_albums` DROP INDEX `moderator_group`;
-ALTER TABLE `CPG_albums` ADD INDEX ( `moderator_group` ); 
+ALTER TABLE `CPG_albums` DROP INDEX ( `moderator_group` );
+ALTER TABLE `CPG_albums` ADD INDEX ( `moderator_group` );
 
 # Add album hits field
 ALTER TABLE `CPG_albums` ADD `alb_hits` INT( 10 ) NOT NULL default 0;
@@ -619,7 +621,7 @@ INSERT INTO CPG_config VALUES ('transparent_overlay', '0');
 INSERT INTO CPG_config VALUES ('comment_promote_registration', '0');
 
 # Add uid column to vote stats
-ALTER TABLE `CPG_vote_stats` ADD `uid` INT(11)  NOT NULL default '0';
+ALTER TABLE `CPG_vote_stats` ADD `uid` INT(11) NOT NULL default '0';
 
 # Allow users to delete their own user account
 INSERT INTO CPG_config VALUES ('allow_user_account_delete', '0');
