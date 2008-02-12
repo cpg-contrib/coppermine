@@ -277,7 +277,7 @@ function get_post_var($var)
 }
 
 if ($superCage->get->keyExists('op') && ($matches = $superCage->get->getMatched('op', '/^[a-z_]+$/'))) {
-    $sort = $matches[0];
+    $op = $matches[0];
 } else {
 	$op = '';
 }

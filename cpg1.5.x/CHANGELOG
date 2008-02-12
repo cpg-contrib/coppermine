@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-02-12 [B] Fixed not able to go to 'My Profile' {SaWey}
 2008-01-11 [B] Fixing 'edipic.php problem for approval' issue {Nibbler}
 2008-02-11 [B] Removing column comments for compatibility {Nibbler}
 2008-02-10 [A] Added onlinestats plugin {GauGau}
