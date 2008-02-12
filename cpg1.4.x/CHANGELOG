@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-02-12 [O] Updated Romanian language file (user contribution) {GauGau}
 2008-02-07 [A] Added Latvian language file (user contribution) {GauGau}
 2008-02-04 [B] ImageMagick rotate bug fix {Nibbler}
 2008-02-02 [M] Release of cpg1.4.16 {GauGau}

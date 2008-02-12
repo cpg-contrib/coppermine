@@ -34,9 +34,9 @@ $lang_translation_info = array(
   'lang_name_english' => 'Romanian', //cpg1.4
   'lang_name_native' => 'Românã', //cpg1.4
   'lang_country_code' => 'ro', //cpg1.4
-  'trans_name'=> 'Rubeluţă Iulian-Valetin',
+  'trans_name'=> 'Rubeluţă Iulian-Valentin',
   'trans_email' => 'nkvader@gmail.com',
-  'trans_website' => 'http://www.2eme-rep.com',
+  'trans_website' => '',
   'trans_date' => '2007-08-16',
 );
 
@@ -48,7 +48,7 @@ $lang_byte_units = array('Bytes', 'KB', 'MB');
 
 // Day of weeks and months
 $lang_day_of_week = array('Duminică', 'Luni', 'Marţi', 'Miercuri', 'Joi', 'Vineri', 'Sâmbată');
-$lang_month = array('Ianuarie', 'Februarie', 'Martie', 'Aprilie', 'Mai', 'Iunie', 'Julie', 'August', 'Septembrie', 'Octombrie', 'Noiembrie', 'Decembrie');
+$lang_month = array('Ianuarie', 'Februarie', 'Martie', 'Aprilie', 'Mai', 'Iunie', 'Iulie', 'August', 'Septembrie', 'Octombrie', 'Noiembrie', 'Decembrie');
 
 // Some common strings
 $lang_yes = 'Da';
@@ -86,7 +86,7 @@ $lang_meta_album_names = array(
 
 $lang_errors = array(
   'access_denied' => 'Nu aveţi permisiunea de a vizualiza această pagină.',
-  'perm_denied' => 'Nu aveţi permisiunea de a efectua aceasta operatie.',
+  'perm_denied' => 'Nu aveţi permisiunea de a efectua aceasta operaţie.',
   'param_missing' => 'Script-ul a fost apelat fară unul sau mai mulţi parametri necesari.',
   'non_exist_ap' => 'Albumul/Fişierul selectat nu există !',
   'quota_exceeded' => 'Spaţiu stocare depasit.<br /><br />Aveţi un spaţiu de stocare de [quota]K, şi fişierele dumneavoastră însumează un total de  [space]K, adaugand acest fişier veti depasi spatiul de stocare.',
@@ -107,7 +107,7 @@ $lang_errors = array(
   'action_failed' => 'Acţiune eşuată.  Coppermine nu poate procesa cererea dumneavoastră.',
   'no_zip' => 'Librariile necesare procesarii fişierelor arhiva ZIP nu sunt disponibile. Vă rugăm să contactaţi administratorul galeriei.',
   'zip_type' => 'Nu aveţi permisiunea de a încarca fişiere arhivă ZIP.',
-  'database_query' => 'S-a înregistrat o eroare în timpul procesarii bazei de date', //cpg1.4
+  'database_query' => 'S-a înregistrat o eroare în timpul procesării bazei de date', //cpg1.4
   'non_exist_comment' => 'Comentariul selecţionat nu există', //cpg1.4
 );
 
@@ -152,13 +152,13 @@ $lang_main_menu = array(
   'fav_title' => 'Spre Favorite', //cpg1.4
   'fav_lnk' => 'Favorite',
   'memberlist_title' => 'Arată lista de membri',
-  'memberlist_lnk' => 'Lista de memntri',
+  'memberlist_lnk' => 'Lista de membri',
   'faq_title' => 'Întrebări frecvente despre &quot;Coppermine&quot;',
   'faq_lnk' => 'FAQ',
 );
 
 $lang_gallery_admin_menu = array(
-  'upl_app_title' => 'Aproba noi încărcări', //cpg1.4
+  'upl_app_title' => 'Aprobă noi încărcări', //cpg1.4
   'upl_app_lnk' => 'Acord pentru încărcări',
   'admin_title' => 'Spre configurare', //cpg1.4
   'admin_lnk' => 'Configurare', //cpg1.4
@@ -172,7 +172,7 @@ $lang_gallery_admin_menu = array(
   'groups_lnk' => 'Grupuri',
   'comments_title' => 'Verifică comentariile', //cpg1.4
   'comments_lnk' => 'Verificare comentarii',
-  'searchnew_title' => 'Spre adaugare fişire multiple', //cpg1.4
+  'searchnew_title' => 'Spre adăugare fişire multiple', //cpg1.4
   'searchnew_lnk' => 'Adăugare fişiere multiple',
   'util_title' => 'Spre unelte administrare', //cpg1.4
   'util_lnk' => 'Unelte administrator',
@@ -240,11 +240,11 @@ $lang_img_nav_bar = array(
   'prev_title' => 'Vizualizează precedenta',
   'next_title' => 'Vizualizează următoarea',
   'pic_pos' => 'IMAGINE %s/%s',
-  'report_title' => 'Raportează aceastea imagine administratorului', //cpg1.4
-  'go_album_end' => 'Sari spre sfârşit', //cpg1.4
-  'go_album_start' => 'Sari la început', //cpg1.4
-  'go_back_x_items' => 'Sari înapoi %s obiecte', //cpg1.4
-  'go_forward_x_items' => 'Sari înainte %s obiecte', //cpg1.4
+  'report_title' => 'Raportează această imagine administratorului', //cpg1.4
+  'go_album_end' => 'Sări spre sfârşit', //cpg1.4
+  'go_album_start' => 'Sări la început', //cpg1.4
+  'go_back_x_items' => 'Sări înapoi %s obiecte', //cpg1.4
+  'go_forward_x_items' => 'Sări înainte %s obiecte', //cpg1.4
 );
 
 $lang_rate_pic = array(
@@ -281,7 +281,7 @@ $lang_display_thumbnails = array(
   'filename' => 'Nume fişier=', //cpg1.4
   'filesize' => 'Mărime fişier=', //cpg1.4
   'dimensions' => 'Dimensiuni=', //cpg1.4
-  'date_added' => 'Data adaugării=', //cpg1.4
+  'date_added' => 'Data adăugării=', //cpg1.4
 );
 
 $lang_get_pic_data = array(
@@ -398,7 +398,7 @@ if (defined('MODE_PHP')) $lang_mode_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
-  'alb_need_name' => 'Albumul trebuie să aiba un nume !', //js-alert
+  'alb_need_name' => 'Albumul trebuie să aibă un nume !', //js-alert
   'confirm_modifs' => 'Sunteţi sigur că doriţi să efectuaţi aceste modificari ?', //js-alert
   'no_change' => 'Nu aţi facut nici o modificare !', //js-alert
   'new_album' => 'Album nou',
@@ -572,8 +572,8 @@ if (defined('CALENDAR_PHP')) $lang_calendar_php = array(
 
 if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
   'miss_param' => 'Parametrii necesari pentru operaţia \'%s\' nu au fost specificaţi !',
-  'unknown_cat' => 'categoria selectionata nu există în baza de date',
-  'usergal_cat_ro' => 'categoria din Galeria utilizatorilor nu poate fi stearsă !',
+  'unknown_cat' => 'Categoria selectionata nu există în baza de date',
+  'usergal_cat_ro' => 'Categoria din Galeria utilizatorilor nu poate fi stearsă !',
   'manage_cat' => 'Gestionează categoriile',
   'confirm_delete' => 'Sunteţi sigur că doriţi să ştergeţi această categorie?', //js-alert
   'category' => 'Categorie',
@@ -613,8 +613,8 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'pos_d' => 'POZIŢIE Descrescător', //cpg1.4
   'th_any' => 'Aspect Maxim',
   'th_ht' => 'Înălţime',
-  'th_wd' => 'Latime',
-  'label' => 'Eticheta',
+  'th_wd' => 'Lătime',
+  'label' => 'Etichetă',
   'item' => 'Obiect',
   'debug_everyone' => 'Oricine',
   'debug_admin' => 'Doar Administratorul',
@@ -755,7 +755,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Inscrierea utilizatorilor necesită un email de verificare', 'reg_requires_valid_email', 1, 'f=index.htm&amp;as=admin_registration_verify&amp;ae=admin_registration_verify_end'), //cpg1.4
   array('Notifică prin email Administratorul , despre inscrierea utilizatorilor', 'reg_notify_admin_email', 1, 'f=index.htm&amp;as=admin_registration_notify&amp;ae=admin_registration_notify_end'), //cpg1.4
   array('Validarea înscrierilor de către Administrator', 'admin_activation', 1, 'f=index.htm&amp;as=admin_activation&amp;ae=admin_activation_end'),  //cpg1.4
-  array('Permite a doi utilizatori diferiţi să aiba aceeaşi adresă email', 'allow_duplicate_emails_addr', 1, 'f=index.htm&amp;as=admin_allow_duplicate_emails_addr&amp;ae=admin_allow_duplicate_emails_addr_end'), //cpg1.4
+  array('Permite a doi utilizatori diferiţi să aibă aceeaşi adresă email', 'allow_duplicate_emails_addr', 1, 'f=index.htm&amp;as=admin_allow_duplicate_emails_addr&amp;ae=admin_allow_duplicate_emails_addr_end'), //cpg1.4
   array('Notifică Administratorul despre cererea de aprobare imagini încărcate care sunt în asteptare', 'upl_notify_admin_email', 1, 'f=index.htm&amp;as=admin_approval_notify&amp;ae=admin_approval_notify_end'), //cpg1.4
   array('Permite utilizatorilor autentificaţi să vizualizeze lista de membri', 'allow_memberlist', 1, 'f=index.htm&amp;as=admin_user_memberlist&amp;ae=admin_user_memberlist_end'), //cpg1.4
   array('Permite utilizatorilor autentificaţi să-şi schimbe adresă email în profilul personal', 'allow_email_change', 1, 'f=index.htm&amp;as=admin_user_allow_email_change&amp;ae=admin_user_allow_email_change_end'), //cpg1.4
@@ -1060,7 +1060,7 @@ if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array
   'error_not_image' => 'Doar imaginile pot fi trimise în format Carte Poştală.',
   'view_ecard' => 'Link-ul alternativ pentru Cartea Poştală în cazul în care acesta nu se afişează corect.', //cpg1.4
   'view_ecard_plaintext' => 'Pentru a vizualiza aceasta Carte Poştală , copiaţi aceasta adresa în navigatorul dumneavoastră: ', //cpg1.4
-  'view_more_pics' => 'Vizualitati mai multe imagini!', //cpg1.4
+  'view_more_pics' => 'Vizualizaţi mai multe imagini!', //cpg1.4
   'send_success' => 'Cartea Poştală Electronica a fost trimisă',
   'send_failed' => 'Îmi pare rău , serverul nu poate trimite Cartea voastră Poştală...',
   'from' => 'De la ',
@@ -1432,7 +1432,7 @@ if (defined('PICMGR_PHP')) $lang_picmgr_php = array(
   'confirm_delete2' => '\nImaginea va fi ştearsă definitiv.', //cpg1.4
   'apply_modifs' => 'Aplică modificările', //cpg1.4
   'confirm_modifs' => 'Confirmaţi modificările', //cpg1.4
-  'pic_need_name' => 'Imaginea trebuie să aiba un nume !', //cpg1.4
+  'pic_need_name' => 'Imaginea trebuie să aibă un nume !', //cpg1.4
   'no_change' => 'Nu aţi facut nici o modificare !', //cpg1.4
   'no_album' => '* Nici un album *', //cpg1.4
   'explanation_header' => 'Ordinea sortării pe care o specificaţi în această pagină,va fi activă doar dacă', //cpg1.4
@@ -1448,22 +1448,22 @@ if (defined('PICMGR_PHP')) $lang_picmgr_php = array(
 if (defined('PLUGINMGR_PHP')){
 
 $lang_pluginmgr_php = array(
-  'confirm_uninstall' => 'Sunteţi sigur ca doriţi să dezinstalaţi acest plug-in', //cpg1.4
-  'confirm_delete' => 'Sunteţi sigur ca doriţi să ştergeţi acest plug-in', //cpg1.4
+  'confirm_uninstall' => 'Sunteţi sigur că doriţi să dezinstalaţi acest plug-in', //cpg1.4
+  'confirm_delete' => 'Sunteţi sigur că doriţi să ştergeţi acest plug-in', //cpg1.4
   'pmgr' => 'Gestionar de Plug-in-uri', //cpg1.4
   'name' => 'Nume', //cpg1.4
   'author' => 'Autor', //cpg1.4
   'desc' => 'Descriere', //cpg1.4
   'vers' => 'v', //cpg1.4
-  'i_plugins' => 'Plugin-uri Instalate', //cpg1.4
+  'i_plugins' => 'Plugin-uri instalate', //cpg1.4
   'n_plugins' => 'Plugin-uri neinstalate', //cpg1.4
   'none_installed' => 'Nici unul instalat', //cpg1.4
-  'operation' => 'Operatie', //cpg1.4
+  'operation' => 'Operaţie', //cpg1.4
   'not_plugin_package' => 'Fişierul încărcat nu este un pachet plug-in.', //cpg1.4
   'copy_error' => 'O eroare a fost semnalată la copierea pachetului plug-in în dosarul plug-in.', //cpg1.4
   'upload' => 'Încarcă', //cpg1.4
   'configure_plugin' => 'Configurare plug-in', //cpg1.4
-  'cleanup_plugin' => 'Curaţă plug-in', //cpg1.4
+  'cleanup_plugin' => 'Curăţă plug-in', //cpg1.4
 );
 }
 
@@ -1484,25 +1484,25 @@ if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
 if (defined('REGISTER_PHP') || defined('PROFILE_PHP')) {
 
 $lang_register_disclamer = <<<EOT
-Administratorul paginii {SITE_NAME} va încerca,în general, să înlăture sau să editeze orice material indecent sau imoral cât mai repede cu putinţă. Totodată, este imposibil ca acesta să verifice fiecare mesaj/imagine noua. În acelaşi timp, sunteţi de acord ca tot materialul acestei pagini reflecta punctul de vedere şi opinia autorului mesajului/imaginii şi nu a administratorului sau a webmaster-ului, (cu excepţia mesajelor/imaginilor care le aparţin) din acest motiv,aceştia nu pot fi raspunzatori pentru acest material.<br />
+Administratorul paginii {SITE_NAME} va încerca,în general, să înlăture sau să editeze orice material indecent sau imoral cât mai repede cu putinţă. Totodată, este imposibil ca acesta să verifice fiecare mesaj/imagine nouă. În acelaşi timp, sunteţi de acord ca tot materialul acestei pagini reflectă punctul de vedere şi opinia autorului mesajului/imaginii şi nu a administratorului sau a webmaster-ului, (cu excepţia mesajelor/imaginilor care le aparţin) din acest motiv,aceştia nu pot fi raspunzători pentru acest material.<br />
 <br />
-Sunteţi de acord să nu postaţi material cu caracter abuziv, obscen, vulgar, calomnios, cu instigare la ură, ameninţări, harţuire sau orientare sexuală sau orice alt material care poate încălca orice alte legi aplicabile. În aceeaşi ordine de idei, sunteţi de acord ca administratorul sau webmaster-ul paginii {SITE_NAME} are,în orice moment,dreptul de a şterge sau edita orice material. În calitate de utilizator, suteti de acord ca informaţiile trimise anterior să fie stocate într-o baza de date. Aceste informaţii nu vor fi divulgate către terţe persoane fară acordul dumneavoastră. Administratorul sau webmaster-ul nu pot fi trasi la raspundere pentru eventualele date compromise în urma unuei accesari neautorizate şi/sau a unui atac tip "hacker" ale serveului şi/sau bazei de date.<br />
+Sunteţi de acord să nu postaţi material cu caracter abuziv, obscen, vulgar, calomnios, cu instigare la ură, ameninţări, harţuire sau orientare sexuală sau orice alt material care poate încălca orice alte legi aplicabile. În aceeaşi ordine de idei, sunteţi de acord ca administratorul sau webmaster-ul paginii {SITE_NAME} are,în orice moment,dreptul de a şterge sau edita orice material. În calitate de utilizator, suteti de acord ca informaţiile trimise anterior să fie stocate într-o baza de date. Aceste informaţii nu vor fi divulgate către terţe persoane fară acordul dumneavoastră. Administratorul sau webmaster-ul nu pot fi trasi la raspundere pentru eventualele date compromise în urma unuei accesări neautorizate şi/sau a unui atac tip "hacker" ale serveului şi/sau bazei de date.<br />
 <br />
 Această pagină utilizează cookie pentru a stoca informaţii în calculatorul dumneavoastră. Acestea servesc doar pentru a imbunătăţi procedura de vizualizare. Adresa electronică (e-mail) este utilizată doar pentru a connfirma înregistrarea dumneavoastră sau pentru parola (parola uitată) .<br />
 <br />
-În momentul în care faceţi clic pe butonul 'Sunt de acord' de mai jos, confirmaţi ca sunteţi de acord să vă supuneţi respectării condiţiilor mai sus amintite.
+În momentul în care faceţi clic pe butonul 'Sunt de acord' de mai jos, confirmaţi că sunteţi de acord să vă supuneţi respectării condiţiilor mai sus amintite.
 EOT;
 
 $lang_register_php = array(
   'page_title' => 'Înregistrare utilizator',
-  'term_cond' => 'Termeni şi condiţi',
+  'term_cond' => 'Termeni şi condiţii',
   'i_agree' => 'Sunt de acord',
   'submit' => 'Trimite înregistrarea',
   'err_user_exists' => 'Numele de utilizator introdus a fost ales deja de către altă persoană.Vă rugăm alegeţi alt nume',
   'err_password_mismatch' => 'Cele 2 parole nu corespund,va rugăm să le introduceţi din nou.',
-  'err_uname_short' => 'Numele de utilizator trebuie să aiba minim 2 caractere',
-  'err_password_short' => 'Parola trebuie să aiba minim 2 caractere',
-  'err_uname_pass_diff' => 'Numele de utilizator şi parola trebuie să fie diferite una de altă.',
+  'err_uname_short' => 'Numele de utilizator trebuie să aibă minim 2 caractere',
+  'err_password_short' => 'Parola trebuie să aibă minim 2 caractere',
+  'err_uname_pass_diff' => 'Numele de utilizator şi parola trebuie să fie diferite.',
   'err_invalid_email' => 'Adresa de email nu este corectă.',
   'err_duplicate_email' => 'Un alt utilizator este înregistrat cu această adresă de email.',
   'enter_info' => 'Introduceţi informaţiile necesare înregistrării',
@@ -1814,7 +1814,7 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
-  'memberlist' => 'Listq de membri', //cpg1.4
+  'memberlist' => 'Lista de membri', //cpg1.4
   'user_manager' => 'Gestionar de utilizatori', //cpg1.4
   'title' => 'Gestionează utilizatori',
   'name_a' => 'Nume crescător',
