@@ -110,10 +110,11 @@ EOT;
                 print '<img src="images/flags/reset.gif" width="16" height="11" border="0" alt="" title="'.sprintf($lang_groupmgr_php['reset_to_default'], $default_group_names[$group['group_id']]).'" style="cursor:pointer" onclick="document.groupmanager.group_name_'.$group['group_id'].'.value=\''.$default_group_names[$group['group_id']].'\'" />';
             }
         }
+        $assignedGroupsHelp = cpg_display_help('f=groups.htm&amp;as=group_cp_assigned&amp;ae=group_cp_assigned_end', '450', '300');
         echo <<< EOT
                         <br />
                         {$lang_groupmgr_php['disk_quota']}: <input type="text" name="group_quota_{$group['group_id']}" value="{$group['group_quota']}" size="5" class="textinput" $disabled /> {$lang_byte_units[1]}
-                <br /><br /><a href="usermgr.php?op=group_alb_access&amp;gid={$group['group_id']}" class="admin_menu">{$lang_groupmgr_php['group_assigned_album']}</a>
+                <br /><br /><a href="usermgr.php?op=group_alb_access&amp;gid={$group['group_id']}" class="admin_menu">{$lang_groupmgr_php['group_assigned_album']}</a> {$assignedGroupsHelp}
                                                                 </td>
                 <td class="$table_background" align="left" valign="top">
 EOT;

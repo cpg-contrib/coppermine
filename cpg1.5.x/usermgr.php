@@ -899,12 +899,12 @@ switch ($op) {
 
         if (!mysql_num_rows($result)) {
           pageheader($lang_usermgr_php['group_no_access']);
-          msg_box($lang_usermgr_php['notice'], $lang_usermgr_php['group_no_access']);
+          msg_box($lang_usermgr_php['notice'].'&nbsp;'.cpg_display_help('f=groups.htm&amp;as=group_cp_assigned&amp;ae=group_cp_assigned_end', '450', '300'), $lang_usermgr_php['group_no_access']);
         } else {
             mysql_free_result($result);
             $group_name = $group['group_name'];
             pageheader(sprintf($lang_usermgr_php['group_can_access'], $group_name));
-            starttable(500, sprintf($lang_usermgr_php['group_can_access'], $group_name), 3);
+            starttable(500, sprintf($lang_usermgr_php['group_can_access'], $group_name).'&nbsp;'.cpg_display_help('f=groups.htm&amp;as=group_cp_assigned&amp;ae=group_cp_assigned_end', '450', '300'), 3);
             echo "
             <td>{$lang_usermgr_php['category']}</td>
             <td>{$lang_common['album']}</td>
