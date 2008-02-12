@@ -19,6 +19,8 @@
 ########################
 ####Install Main Code###
 ########################
+define('IN_COPPERMINE', true);
+define('INSTALL_PHP', true);
 // include Inspekt for sanitization
 $incp = get_include_path().PATH_SEPARATOR.dirname(__FILE__).PATH_SEPARATOR.dirname(__FILE__).DIRECTORY_SEPARATOR.'include';
 set_include_path($incp);
@@ -121,7 +123,7 @@ switch($step) {
 		}
 		//REGISTER_GLOBALS CHECK
 		if(ini_get(register_globals)){
-			//register_globals is turned on, pleeease turn it of.
+			//register_globals is turned on, please turn it of.
 			$install->error .= $install->language['register_globals_detected'] . '<br /><br />';
 		}
 		
@@ -847,7 +849,7 @@ class CPGInstall{
 	function loadTempConfig($rp=0) {
 		if (file_exists('include/config.inc.php')) {
 			$this->getLanguage();
-			$this->error = $this->language['already_succ'];
+			$this->error = '<h3>'.$this->language['already_succ'].'</h3>'.$this->language['already_succ_explain'];
 			return false;
 		} else {
 			// read the temporary file
@@ -866,7 +868,7 @@ class CPGInstall{
 					fclose($handle);
 				} else {
 					// could not read tmp config, add error
-					$this->error = $this->language['cant_read_tmp_conf'];
+					$this->error = sprintf($this->language['cant_read_tmp_conf'], $tmp_config);
 				}
 			} else {
 				$this->config = array();
@@ -914,7 +916,7 @@ class CPGInstall{
 			$success = true;
 		} else {
 			// could not write tmp config, add error
-			$this->error = $this->language['cant_write_tmp_conf'];
+			$this->error = sprintf($this->language['cant_write_tmp_conf'], $tmp_config);
 			$success = false;
 		}
 		return $success;
@@ -928,8 +930,6 @@ class CPGInstall{
 	* @return array $language
 	*/
 	function getLanguage() {
-		define('IN_COPPERMINE', true);
-		define('INSTALLER', true);
 		$superCage = Inspekt::makeSuperCage();
 		
 		// try to find the users language if we don't have one defined yet

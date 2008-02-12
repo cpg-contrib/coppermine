@@ -2472,11 +2472,12 @@ $lang_xp_publish_php = array(
 // File installer.inc.php
 // ------------------------------------------------------------------------- //
 
-if (defined('INSTALLER')) $lang_install = array(
-  'already_succ' => 'The installer has already been run successfuly once and is now locked.<br /><br />If you want to run the installer again, you first need to delete the \'include/config.inc.php\' file that was created in the directory where you put Coppermine. You can do this with any FTP program',
+if (defined('INSTALL_PHP')) $lang_install = array(
+  'already_succ' => 'The installer has already been run successfuly once and is now locked.',
+  'already_succ_explain' => 'If you want to run the installer again, you first need to delete the \'include/config.inc.php\' file that was created in the directory where you put Coppermine. You can do this with any FTP program',
   'c_mode' => 'Current mode',
-  'cant_read_tmp_conf' => 'The installer can\'t read the temporary config file \'include/config.tmp\', please check your directory permissions',
-  'cant_write_tmp_conf' => 'The installer can\'t write the temporary config file \'include/config.tmp\', please check your directory permissions',
+  'cant_read_tmp_conf' => 'The installer can\'t read the temporary config file %s, please check your directory permissions',
+  'cant_write_tmp_conf' => 'The installer can\'t write the temporary config file %s, please check your directory permissions',
   'change_lang' => 'Change Language',
   'check_path' => 'Check path',
   'continue' => 'Next step',
@@ -2488,7 +2489,7 @@ if (defined('INSTALLER')) $lang_install = array(
   'dir_ok' => 'Directory found',
   'directory' => 'Directory',
   'email' => 'Email address',
-  'email_no_match' => 'Email adresses don\'t match or aren\'t valid.',
+  'email_no_match' => 'Email adresses do not match or are invalid.',
   'email_verif' => 'Verify Email',
   'err_cpgnuke' => '<h1>ERROR</h1>You seem to be trying to install the standalone Coppermine into your Nuke portal.<br />This version can only be used as standalone!<br />Some server setups might display this warning even though you don\'t have a nuke portal installed - if this is the case for you, <a href="%s?continue_anyway=1">continue</a> with the install. If you are using a nuke portal, you might want to take a look into <a href=\"http://www.cpgnuke.com/\">CpgNuke</a> or use one of the (unsupported)<a href=\"http://sourceforge.net/project/showfiles.php?group_id=89658&amp;package_id=95984\">coppermine ports</a> - do not continue!',
   'error' => 'ERROR',
@@ -2543,7 +2544,7 @@ if (defined('INSTALLER')) $lang_install = array(
   'ready_to_roll' => '<a href="index.php">Coppermine</a> is now properly configured and ready to roll.<br /><br /><a href="login.php">Login</a> using the information you provided for your admin account.',
   'sect_create_adm' => 'This section requires information to create your coppermine administration account. Use only alphanumeric characters. Enter the data carefully!',
   'sect_mysql_info' => 'This section requires information on how to access your MySQL database.<br />If you don\'t know how to fill them, check with your webhost support.',
-  'sect_mysql_sel_db' => 'Here you have to choose which database you want to use for Coppermine. <br />If you have the right privileges for the MySql account, you are able to create a new database from within the installer. <br />If not, you will have to create a database first, and then select it in the dropdown box below.<br /><br />If you want, you can also change the table prefix. <br />The default value is ok, but if you change it, do not use dots.',
+  'sect_mysql_sel_db' => 'Here you have to choose which database you want to use for Coppermine. <br />If your mysql account has the needed privileges, you can create a new database from within the installer or you can use an existing database. If you don\'t like both options, you will have to create a database first outside the coppermine installer, then return here then select the new database from the dropdown box below. You can also change the table prefix (Don\'t use dots though), but keeping the default prefix is recommended.',
   'select_lang' => 'Select default language: ',
   'sql_file_not_found' => 'The file \'%s\' could not be found. Check that you have uploaded all Coppermine files to your server',
   'status' => 'Status',
