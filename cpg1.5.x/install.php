@@ -139,7 +139,7 @@ switch($step) {
 		
 	case 3:		// Check if the folder permissions are set up properlyµ
 		$install->page_title = $install->language['title_dir_check'];
-		if(!$install->checkPermissionAndExist()) {
+		if(!$install->checkPermissions()) {
 			// not all permissions were set right, or folder doesn't exist
 			html_header();
 			html_error();
@@ -935,7 +935,6 @@ class CPGInstall{
 		// try to find the users language if we don't have one defined yet
 		if(!isset($this->config['lang'])) {
 			include_once('include/select_lang.inc.php');
-			$this->available_languages = $available_languages;
 			$this->setTmpConfig('lang', $USER['lang']);
 			$this->loadTempConfig();
 		}
@@ -1005,13 +1004,13 @@ class CPGInstall{
 	}
 	
 	/*
-	* checkPermissionAndExist()
+	* checkPermissions()
 	*
 	* Checks if all folders have the right permissions and exist
 	*
 	* @return bool $peCheck
 	*/
-	function checkPermissionAndExist() {
+	function checkPermissions() {
 		$peCheck = true;
 		// If another dir has to be added, you can define as many possible permissions as you want, 
 		// but if it only has to be a derictory, the use the $only_folders array (will only be checked on existance)
@@ -1022,51 +1021,70 @@ class CPGInstall{
 			'./albums/userpics'	=> array('777', '755'),
 			'./albums/edit'		=> array('777', '755'),
 		);
+		// No longer needed, will be checked in versioncheck.
 		// This array is here to allow a simple check on dir existance. If it was in the other array, 
 		// we should have to add all possible permissions an that would be stupid ;-)
-		$only_folders = array(
+		/*$only_folders = array(
 			'./sql',
-		);
+		);*/
 		// clear the file status cache to make sure we are reading the most recent info of the file.
-		clearstatcache(); 
+		clearstatcache();
 		
 		// start creating table with results
 		$this->temp_data = "<tr><td align=\"center\"><table><tr><td><b>{$this->language['directory']}</b></td><td width=\"25%\"><b>{$this->language['c_mode']}</b></td><td width=\"25%\"><b>{$this->language['r_mode']}</b></td><td width=\"10%\"><b>{$this->language['status']}</b></td></tr>";
-		foreach($files_to_check as $file => $perm) {
-			$or = '';
+		foreach($files_to_check as $folder => $perm) {
+			$possible_modes = '';
 			// create a string of all allowed permissions
 			foreach($perm as $p){
-				$or .= " '" . $p . "' " . $this->language['or'];
+				$possible_modes .= " '" . $p . "' " . $this->language['or'];
 			}
 			// remove the last 'or ' of the string
-			$or = substr($or, 0, (strlen($or) - 3));
+			$possible_modes = substr($possible_modes, 0, (strlen($possible_modes) - 3));
+			
 			// check folder existance
-			if(!is_dir($file)) {
+			if(!is_dir($folder)) {
 				$peCheck = false;
-				$this->error .= sprintf($this->language['subdir_called'], $file) . '<br />';
-				$this->temp_data .= "<tr><td>$file</td><td>{$this->language['n_a']}</td><td>$or</td><td>{$this->language['nok']}</td></tr>";
+				$this->error .= sprintf($this->language['subdir_called'], $folder) . '<br />';
+				$this->temp_data .= "<tr><td>$folder</td><td>{$this->language['n_a']}</td><td>$possible_modes</td><td>{$this->language['nok']}</td></tr>";
 			} else {
-				// check permissions
-				$mode = substr(sprintf('%o', fileperms($file)), -3);  
-				if(!in_array($mode, $perm)) {
-					// try to change the mode 
-					if(@chmod($file, (int)("0" . $perm[0]))) {
+				// try to create a file in the folder
+				$test_file = $folder . '/' . 'testwritability';
+				$file_handle = @fopen($test_file, 'w');
+				$mode = substr(sprintf('%o', fileperms($folder)), -3);
+				if(!$file_handle){
+					//file could not be created, try to modify the mode
+					if(@chmod($folder, (int)("0" . $perm[0]))) {
 						// we have changed the mode, jippie :)
-						$this->temp_data .= "<tr><td>$file</td><td>'$mode'</td><td>$or</td><td>{$this->language['ok']}</td></tr>";
+						clearstatcache();
+						$mode = substr(sprintf('%o', fileperms($folder)), -3);
+						// again try to write a file to the folder
+						$file_handle2 = @fopen($test_file, 'w');
+						if(!$file_handle2){
+							//not working, admin will have to check this by hand, add error
+							$peCheck = false;
+							$this->error .= sprintf($this->language['perm_error'], $folder, $possible_modes) . " '" . $perm . "'.<br />";
+							$this->temp_data .= "<tr><td>$folder</td><td>'$mode'</td><td>$possible_modes</td><td>{$this->language['nok']}</td></tr>";
+						}else{
+							//close handle and remove file
+							fclose($file_handle2);
+							unlink($test_file);
+							$this->temp_data .= "<tr><td>$folder</td><td>'$mode'</td><td>$possible_modes</td><td>{$this->language['ok']}</td></tr>";
+						}
 					} else {
 						// could not change mode, add error.
 						$peCheck = false;
-						$this->error .= sprintf($this->language['perm_error'], $file, $or) . " '" . $perm . "'.<br />";
-						$this->temp_data .= "<tr><td>$file</td><td>'$mode'</td><td>$or</td><td>{$this->language['nok']}</td></tr>";
+						$this->error .= sprintf($this->language['perm_error'], $folder, $possible_modes) . " '" . $perm . "'.<br />";
+						$this->temp_data .= "<tr><td>$folder</td><td>'$mode'</td><td>$possible_modes</td><td>{$this->language['nok']}</td></tr>";
 					}
-					
-				} else {
-					// mode is set fine
-					$this->temp_data .= "<tr><td>$file</td><td>'$mode'</td><td>$or</td><td>{$this->language['ok']}</td></tr>";
+				}else{
+					//close file handle and remove file
+					fclose($file_handle);
+					unlink($test_file);
+					$this->temp_data .= "<tr><td>$folder</td><td>'$mode'</td><td>$possible_modes</td><td>{$this->language['ok']}</td></tr>";
 				}
-			}
-			
+			}	
 		}
+		/*we don't need to check the sql dir, as those files will be checked in versioncheck.
 		foreach($only_folders as $folder) {
 			// check folder existance
 			if(!is_dir($folder)) {
@@ -1078,7 +1096,7 @@ class CPGInstall{
 				// folder exists
 				$this->temp_data .= "<tr><td>$folder</td><td colspan=\"2\">{$this->language['dir_ok']}</td><td>{$this->language['ok']}</td></tr>";
 			}
-		}
+		}*/
 		$this->temp_data .= '</table></td></tr>';
 		return $peCheck;
 	}
