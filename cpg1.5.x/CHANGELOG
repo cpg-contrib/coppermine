@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-02-13 [O] Added help icons for "permission by group" {GauGau}
 2008-02-12 [B] Fixed language drop down bug and changed folder permission check in new installer {SaWey}
 2008-02-12 [B] Fixed mysql warning in update.php {SaWey}
 2008-02-12 [B] Fixed not able to go to 'My Profile' {SaWey}

@@ -92,7 +92,7 @@ function list_groups_alb_access() //shows a list of albums each group can see. C
     global $CONFIG;
     global $lang_usermgr_php, $lang_common, $group_id;
 
-    starttable(500, $lang_usermgr_php['groups_alb_access'], 3);
+    starttable(500, $lang_usermgr_php['groups_alb_access'].'&nbsp;'.cpg_display_help('f=users.htm&amp;as=user_cp_edit_permission_by_group&amp;ae=user_cp_edit_permission_by_group_end', '450', '300'), 3);
 
     $sql = "
       SELECT
@@ -710,11 +710,13 @@ EOT;
                   $group_cb .= '<input name="group_list[]" type="checkbox" value="' . $group['group_id'] . '" ' . $checked . ' />' . $group['group_name'] . "<br />\n";
                 }
             }
+            $assignedGroupsHelp = cpg_display_help('f=users.htm&amp;as=user_cp_edit_permission_by_group&amp;ae=user_cp_edit_permission_by_group_end', '450', '300');
             echo <<<EOT
                         </select><br />
                         $group_cb
                         <br />
                         <a href="usermgr.php?op=groups_alb_access" class="admin_menu">{$lang_usermgr_php['groups_alb_access']}</a>
+                        {$assignedGroupsHelp}
 
           </td>
         </tr>
