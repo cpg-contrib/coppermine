@@ -4238,8 +4238,8 @@ if (!function_exists('json_encode')) {
 
 		foreach($arr as $key=>$value) {
 			if(is_array($value)) { //Custom handling for arrays
-				if($is_list) $parts[] = array2json($value); /* :RECURSION: */
-				else $parts[] = '"' . $key . '":' . array2json($value); /* :RECURSION: */
+				if($is_list) $parts[] = json_encode($value); /* :RECURSION: */
+				else $parts[] = '"' . $key . '":' . json_encode($value); /* :RECURSION: */
 			} else {
 				$str = '';
 				if(!$is_list) $str = '"' . $key . '":';
