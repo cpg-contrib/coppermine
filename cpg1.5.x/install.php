@@ -253,7 +253,7 @@ switch($step) {
 			$install->config['db_user'] = $superCage->post->getRaw('db_user');
 			$install->setTmpConfig('db_password', $superCage->post->getRaw('db_password'));
 			if($install->error != '') {
-				$install->error .= '<br /><br />' . sprintf($install->language['please_go_back'], ($step - 1));
+				$install->error .= '<br /><br />' . sprintf($install->language['please_go_back'], '<a href="install.php?step=' . ($step - 1) . '">', '</a>');
 			}
 		} elseif($superCage->post->keyExists('update_create_db') && trim($superCage->post->getRaw('new_db_name')) != '') {
 			// try to create a new database.
@@ -287,7 +287,7 @@ switch($step) {
 				$set_populated = true;
 			}
 		} elseif(!isset($install->config['db_populated']) && !isset($install->config['db_name'])) {
-			$msg = sprintf($install->language['not_here_yet'], 7);
+			$msg = sprintf($install->language['not_here_yet'], '<b><a href="install.php?step=7">', '</a></b>');
 		}
 
 		if(isset($install->config['db_populated']))	{
@@ -712,7 +712,7 @@ function html_mysql_select_db() {
          </tr>
 		 <tr>
           <td align="right"><?php echo $install->language['mysql_db_name']; ?></td>
-		  <td><?php echo $install->getMysqlDbs(); ?></td>
+		  <td><?php echo ($dbs = $install->getMysqlDbs()) ? $dbs : '<input type="text" name="db_name" value="' . $install->config['db_name'] . '" />'; ?></td>
          </tr>
 		 <tr>
           <td align="right"><?php echo $install->language['mysql_create_db']; ?></td>
@@ -820,7 +820,7 @@ class CPGInstall{
 	var $language;	// (array) holds the language
 	var $config;	// (array) temp configuration and checks
 	var $error;		// (string) holds errors
-	var $tmp_config = 'include/config.tmp'; // (string) temporary config file
+	var $tmp_config = 'include/config.tmp.php'; // (string) temporary config file
 	var $mysql_connection; 			// (mysql_connection) connection to the db
 	var $mysql_connected = false;	// (bool) connected to the db?
 	var $page_title; // (string) holds the title of the current installation step
@@ -854,22 +854,8 @@ class CPGInstall{
 		} else {
 			// read the temporary file
 			if(file_exists($this->tmp_config)) {
-				if($handle = fopen($this->tmp_config, 'r')) {
-					$conf = fgets($handle);
-					if(!$uns_conf = unserialize($conf)) {
-						if($rp < 10) {
-							$this->loadTempConfig($rp + 1);
-						} else {
-							die($this->language['tmp_conf_ser_err']);
-						}
-					} else {
-						$this->config = $uns_conf;
-					}
-					fclose($handle);
-				} else {
-					// could not read tmp config, add error
-					$this->error = sprintf($this->language['cant_read_tmp_conf'], $tmp_config);
-				}
+				include($this->tmp_config);
+				$this->config = $install_config;
 			} else {
 				$this->config = array();
 			}
@@ -910,8 +896,10 @@ class CPGInstall{
 	*/
 	function createTempConfig() {
 		if($handle = @fopen($this->tmp_config, 'w')) {
-			$conf = serialize($this->config);			
-			fwrite($handle, $conf);
+			//$config = serialize($this->config);
+			//create php array in config
+			$config = '<?php' . "\n" . $this->arrayToString($this->config, '$install_config') . "\n" . '?>';
+			fwrite($handle, $config);
 			fclose($handle);
 			$success = true;
 		} else {
@@ -920,6 +908,44 @@ class CPGInstall{
 			$success = false;
 		}
 		return $success;
+	}
+	
+	/*
+	* arrayToString()
+	*
+	* Creates a text version of an array
+	*
+	* @param array $array
+	* @param string $array_name
+	* @param string $indent
+	*
+	* @return string $array_string
+	*/
+	function arrayToString($array, $array_name, $indent = '') {
+		if(is_array($array)){
+			if($indent == ''){
+				$array_string = $indent . $array_name . " = array(" . "\n";
+			}else{
+				$array_string = $indent . "'" .  $array_name . "' => array(" . "\n";
+			}
+			
+			foreach($array as $key => $value){
+				if(is_array($value)){
+					$array_string .= $this->arrayToString($value, $key, $indent . '		');
+				}else{
+					$array_string .= $indent . "		'$key' => '$value'," . "\n";
+				}
+			}
+			if($indent == ''){
+				$array_string .= ');' . "\n";
+			}else{
+				$array_string .= $indent . '),' . "\n";
+			}
+		}else{
+			return $array;
+		}
+		
+		return $array_string;
 	}
 	
 	/*
@@ -1040,12 +1066,14 @@ class CPGInstall{
 			}
 			// remove the last 'or ' of the string
 			$possible_modes = substr($possible_modes, 0, (strlen($possible_modes) - 3));
+			$not_ok = '<font color="red">' . $this->language['nok'] . '</font>';
+			$_ok = '<font color="green">' . $this->language['ok'] . '</font>';
 			
 			// check folder existance
 			if(!is_dir($folder)) {
 				$peCheck = false;
 				$this->error .= sprintf($this->language['subdir_called'], $folder) . '<br />';
-				$this->temp_data .= "<tr><td>$folder</td><td>{$this->language['n_a']}</td><td>$possible_modes</td><td>{$this->language['nok']}</td></tr>";
+				$this->temp_data .= "<tr><td>$folder</td><td>{$this->language['n_a']}</td><td>$possible_modes</td><td>{$not_ok}</td></tr>";
 			} else {
 				// try to create a file in the folder
 				$test_file = $folder . '/' . 'testwritability';
@@ -1063,24 +1091,24 @@ class CPGInstall{
 							//not working, admin will have to check this by hand, add error
 							$peCheck = false;
 							$this->error .= sprintf($this->language['perm_error'], $folder, $possible_modes) . " '" . $perm . "'.<br />";
-							$this->temp_data .= "<tr><td>$folder</td><td>'$mode'</td><td>$possible_modes</td><td>{$this->language['nok']}</td></tr>";
+							$this->temp_data .= "<tr><td>$folder</td><td>'$mode'</td><td>$possible_modes</td><td>{$not_ok}</td></tr>";
 						}else{
 							//close handle and remove file
 							fclose($file_handle2);
 							unlink($test_file);
-							$this->temp_data .= "<tr><td>$folder</td><td>'$mode'</td><td>$possible_modes</td><td>{$this->language['ok']}</td></tr>";
+							$this->temp_data .= "<tr><td>$folder</td><td>'$mode'</td><td>$possible_modes</td><td>{$_ok}</td></tr>";
 						}
 					} else {
 						// could not change mode, add error.
 						$peCheck = false;
 						$this->error .= sprintf($this->language['perm_error'], $folder, $possible_modes) . " '" . $perm . "'.<br />";
-						$this->temp_data .= "<tr><td>$folder</td><td>'$mode'</td><td>$possible_modes</td><td>{$this->language['nok']}</td></tr>";
+						$this->temp_data .= "<tr><td>$folder</td><td>'$mode'</td><td>$possible_modes</td><td>{$not_ok}</td></tr>";
 					}
 				}else{
 					//close file handle and remove file
 					fclose($file_handle);
 					unlink($test_file);
-					$this->temp_data .= "<tr><td>$folder</td><td>'$mode'</td><td>$possible_modes</td><td>{$this->language['ok']}</td></tr>";
+					$this->temp_data .= "<tr><td>$folder</td><td>'$mode'</td><td>$possible_modes</td><td>{$_ok}</td></tr>";
 				}
 			}	
 		}
@@ -1372,7 +1400,7 @@ class CPGInstall{
 			return false;
 		}
 		// get a list of db's
-		if($db_list = mysql_list_dbs($this->mysql_connection)) {
+		if($db_list = @mysql_list_dbs($this->mysql_connection)) {
 			// create dropdown box
 			$db_select = '<select name="db_name">';
 			while ($row = mysql_fetch_object($db_list)) {
@@ -1384,7 +1412,7 @@ class CPGInstall{
 			return $db_select;
 		} else {
 			// probably no permission to do this.
-			$this->error = $this->language['mysql_no_sel_dbs'] . '<br />' . $this->language['mysql_error'] . '<br />' . mysql_error($this->mysql_connection);
+			//$this->error = $this->language['mysql_no_sel_dbs'] . '<br />' . $this->language['mysql_error'] . '<br />' . mysql_error($this->mysql_connection);
 			return false;
 		}
 	}
