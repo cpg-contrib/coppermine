@@ -2984,7 +2984,8 @@ function theme_html_img_nav_menu() {
     //$date_link = $_GET['date']=='' ? '' : '&date=' . cpgValidateDate($_GET['date']);
 
     if ($superCage->get->keyExists('date')) {
-    	$date_link = '&date=' . cpgValidateDate($_GET['date']);
+    	//date will be validated
+    	$date_link = '&date=' . cpgValidateDate($superCage->get->getRaw('date'));
     } else {
     	$date_link = '';
     }
@@ -3410,7 +3411,8 @@ function theme_display_fullsize_pic()
         if (!GALLERY_ADMIN_MODE) {
           cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
         }
-      $picfile = $_GET['picfile'];
+      //$picfile = $_GET['picfile'];
+      $picfile = $superCage->get->getPath('picfile');
       $picname = $CONFIG['fullpath'] . $picfile;
       $imagesize = @getimagesize($picname);
       $imagedata = array('name' => $picfile, 'path' => path2url($picname), 'geometry' => $imagesize[3]);

@@ -191,7 +191,10 @@ if (isset($CURRENT_ALBUM_DATA)) {
     $section = $lang_meta_album_names[$album];
 }
 $meta_keywords = '';
-if($_GET['album'] == 'lastup' || $_GET['album'] == 'lastcom' || $_GET['album'] == 'topn' || $_GET['album'] == 'toprated' || $_GET['album'] == 'favpics' || $_GET['album'] == 'random') {  // keep the search engine spiders from indexing meta albums that are subject to constant changes
+// keep the search engine spiders from indexing meta albums that are subject to constant changes
+// if($_GET['album'] == 'lastup' || $_GET['album'] == 'lastcom' || $_GET['album'] == 'topn' || $_GET['album'] == 'toprated' || $_GET['album'] == 'favpics' || $_GET['album'] == 'random') {  
+$meta_albums_array = array('lastup', 'lastcom', 'topn', 'toprated', 'favpics', 'random');
+if(in_array($superCage->get->getAlpha('album'), $meta_albums_array)) {
     $meta_keywords .= '<meta name="robots" content="noindex, nofollow" />';
 }
 pageheader($section, $meta_keywords);

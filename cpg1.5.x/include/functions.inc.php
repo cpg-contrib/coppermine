@@ -769,12 +769,12 @@ function is_link_local($url, $cpg_url = false)
 */
 function generate_cpg_url()
 {
-        #########################################change to use inspect#########################################
-        $server_name = (!empty($_SERVER['SERVER_NAME'])) ? $_SERVER['SERVER_NAME'] : getenv('SERVER_NAME');
-        $server_port = (!empty($_SERVER['SERVER_PORT'])) ? (int) $_SERVER['SERVER_PORT'] : (int) getenv('SERVER_PORT');
+		$superCage = Inspekt::makeSuperCage();
+		$server_name = $superCage->server->keyExists('server_name') ? $superCage->server->getRaw('server_name') : getenv('SERVER_NAME');
+		$server_port = $superCage->server->keyExists('server_port') ? $superCage->server->getRaw('server_port') : getenv('SERVER_PORT');
 
         // Do not rely on cookie_secure, users seem to think that it means a secured cookie instead of an encrypted connection
-        $cookie_secure = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 1 : 0;
+        $cookie_secure = ($superCage->server->keyExists('HTTPS')) && $superCage->server->getAlpha('HTTPS') == 'on') ? 1 : 0;
         $cpg_url = (($cookie_secure) ? 'https://' : 'http://') . $server_name;
 
 

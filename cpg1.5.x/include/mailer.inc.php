@@ -1510,9 +1510,9 @@ class PHPMailer
      * @return mixed
      */
     function ServerVar($varName) {
-        global $HTTP_SERVER_VARS;
+        /*global $HTTP_SERVER_VARS;
         global $HTTP_ENV_VARS;
-
+		
         if(!isset($_SERVER))
         {
             $_SERVER = $HTTP_SERVER_VARS;
@@ -1524,6 +1524,14 @@ class PHPMailer
             return $_SERVER[$varName];
         else
             return "";
+		*/
+		$superCage = Inspekt::makeSuperCage();
+		if($superCage->server->keyExists($varName)){
+			//raw is used as this is only used to get the server_name.
+			return $superCage->server->getRaw($varName);
+		}else{
+			return '';
+		}
     }
 
     /**
