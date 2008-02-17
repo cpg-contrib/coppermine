@@ -774,7 +774,7 @@ function generate_cpg_url()
 		$server_port = $superCage->server->keyExists('server_port') ? $superCage->server->getRaw('server_port') : getenv('SERVER_PORT');
 
         // Do not rely on cookie_secure, users seem to think that it means a secured cookie instead of an encrypted connection
-        $cookie_secure = ($superCage->server->keyExists('HTTPS')) && $superCage->server->getAlpha('HTTPS') == 'on') ? 1 : 0;
+        $cookie_secure = ($superCage->server->keyExists('HTTPS') && $superCage->server->getAlpha('HTTPS') == 'on') ? 1 : 0;
         $cpg_url = (($cookie_secure) ? 'https://' : 'http://') . $server_name;
 
 
