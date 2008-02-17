@@ -684,7 +684,7 @@ function create_album()
     global $ONNEXT_SCRIPT, $ONBACK_SCRIPT, $WIZARD_BUTTONS;
     global $template_create_album;
     global $lang_errors, $lang_xp_publish_php;
-  $superCage = Inspekt::makeSuperCage();
+  	$superCage = Inspekt::makeSuperCage();
 
     if (!(USER_CAN_CREATE_ALBUMS || USER_IS_ADMIN)) simple_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
 
@@ -719,12 +719,14 @@ function process_picture()
 {
     global $CONFIG, $IMG_TYPES;
     global $lang_db_input_php, $lang_errors;
+	$superCage = Inspekt::makeSuperCage();
 
     @unlink(LOGFILE);
 
     if (!USER_ID || !USER_CAN_UPLOAD_PICTURES) simple_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
 
-    $album = (int)$_GET['album'];
+    //$album = (int)$_GET['album'];
+	$album = $superCage->get->getInt('album');
     $title = '';
     $caption = '';
     $keywords = '';
@@ -793,14 +795,14 @@ function process_picture()
     $matches = array();
 
     //if (get_magic_quotes_gpc()) $_FILES['userpicture']['name'] = stripslashes($_FILES['userpicture']['name']);
-  //using getRaw as it will be sanitized in the code below in the preg_match. {SaWey}
-  $filename = $superCage->files->getRaw('/userpicture/name');
-  if (get_magic_quotes_gpc()){
-    $filename = stripslashes($filename);
-  }
+  	//using getRaw as it will be sanitized in the code below in the preg_match. {SaWey}
+ 	 $filename = $superCage->files->getRaw('/userpicture/name');
+	 if (get_magic_quotes_gpc()){
+		$filename = stripslashes($filename);
+	 }
     // Replace forbidden chars with underscores
     //$picture_name = replace_forbidden($_FILES['userpicture']['name']);
-  $picture_name = replace_forbidden($filename);
+	$picture_name = replace_forbidden($filename);
     // Check that the file uploaded has a valid extension
     if (!preg_match("/(.+)\.(.*?)\Z/", $picture_name, $matches)) {
         $matches[1] = 'invalid_fname';

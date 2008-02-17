@@ -135,8 +135,8 @@ function update_tables()
 {
     global $errors, $CONFIG;
 
-    //$PHP_SELF = $_SERVER['PHP_SELF'];
-    $gallery_dir = strtr(dirname($CPG_PHP_SELF), '\\', '/');
+    $PHP_SELF = $_SERVER['PHP_SELF'];
+    $gallery_dir = strtr(dirname($PHP_SELF), '\\', '/');
     $gallery_url_prefix = 'http://' . $_SERVER['HTTP_HOST'] . $gallery_dir . (substr($gallery_dir, -1) == '/' ? '' : '/');
 
     $db_update = 'sql/update.sql';
