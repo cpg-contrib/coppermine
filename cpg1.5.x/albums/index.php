@@ -1,9 +1,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
 <head>
 <title>Coppermine Photo Gallery - Albums Folder</title>
 <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
 <meta http-equiv="refresh" content="0; url=../index.php">
+<!--
+  SVN version info:
+  Coppermine version: 1.5.0
+  $Revision$
+  $LastChangedBy$
+  $Date$
+-->
 <style type="text/css">
 <!--
 body {
@@ -34,7 +41,7 @@ p {
 </head>
 <body>
 <h1><img src="../images/coppermine_logo.png" width="300" height="75" /></h1>
-<h1>Coppermine Photo Gallery - Albums Folder</h1>
+<h2>Coppermine Photo Gallery - Albums Folder</h2>
 <p align="center">The contents of this folder aren't meant to be browsed. Visit the Coppermine Photo Gallery instead - you'll be redirected.
 If you don't want to wait (or your browser doesn't support redirect), click <a href="../index.php">here</a>.</p>
 
