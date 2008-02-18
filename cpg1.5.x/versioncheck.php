@@ -52,13 +52,6 @@ if ($action == 'textarea') {
   $optionDisplayOutput_array['textarea'] = '';
 }
 
-if ($superCage->get->getInt('image') == '0') {
-  $displayOption_array['display_images'] = 0;
-} else {
-  $displayOption_array['display_images'] = 1;
-  $optionDisplayOutput_array['display_images'] = 'checked="checked"';
-}
-
 if ($superCage->get->getInt('errors_only') == '1') {
   $displayOption_array['errors_only'] = 1;
   $optionDisplayOutput_array['errors_only'] = 'checked="checked"';
@@ -73,7 +66,7 @@ if ($superCage->get->getInt('do_not_connect_to_online_repository') == '1') {
   $displayOption_array['do_not_connect_to_online_repository'] = 0;
 }
 // Sanitize the GET vars and populate the optionsArray --- end
-
+  
 
 // Perform the repository lookup and xml creation --- start
 $displayOption_array['do_not_connect_to_online_repository'] = 1;
@@ -130,7 +123,9 @@ if ($displayOption_array['output'] == 'textarea') { // display the output in a t
 } // display the output in a textarea field --- end
 
 if ($displayOption_array['output'] == 'screen') { // display the output in HTML --- start
-    cpg_versioncheckCreateHTMLOutput($file_data_array);
+    $outputResult = cpg_versioncheckCreateHTMLOutput($file_data_array);
+    printf($lang_versioncheck_php['files_folder_processed'], $outputResult['display'], $outputResult['total'], $outputResult['error']);
+    
 } // display the output in HTML --- end
 
 
@@ -138,5 +133,5 @@ if ($displayOption_array['output'] == 'screen') { // display the output in HTML 
 // display page footer if applicable
   pagefooter();
 
-
+// end
 ?>

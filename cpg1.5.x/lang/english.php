@@ -2376,12 +2376,14 @@ if (defined('VERSIONCHECK_PHP')) $lang_versioncheck_php = array(
   'file' => 'file',
   'folder' => 'folder',
   'ok' => 'OK',
-  'outdated' => 'outdated',
-  'newer' => 'newer',
+  'outdated' => 'older than %s',
+  'newer' => 'newer than %s',
   'modified' => 'modified',
   'needs_change' => 'needs change',
   'review_permissions' => 'Review Permissions',
-  'review_version' => 'File may be outdated',
+  'inaccessible' => 'File is inaccessible',
+  'review_version' => 'Your file is outdated',
+  'review_dev_version' => 'Your file is newer than anticipated',
   'review_modified' => 'File may be corrupt (or you have deliberately edited it)',
   'review_missing' => '%s missing or inaccessible',
   'counter' => 'Counter',
@@ -2405,9 +2407,10 @@ if (defined('VERSIONCHECK_PHP')) $lang_versioncheck_php = array(
   'errors_only' => 'Only show potential errors',
   'display_images' => 'Display images',
   'do_not_connect_to_online_repository' => 'Do not connect to the online repository',
-  'online_repository_explain' => 'Only recommended if connection fails',
+  'online_repository_explain' => 'only recommended if connection fails',
   'submit' => 'submit / refresh',
   'select_all' => 'Select All', //js-alert
+  'files_folder_processed' => 'Displaying %s items of %s folders/files processed with %s potential issues',
 );
 
 // ------------------------------------------------------------------------- //
