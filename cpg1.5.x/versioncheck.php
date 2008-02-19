@@ -68,32 +68,8 @@ if ($superCage->get->getInt('do_not_connect_to_online_repository') == '1') {
 // Sanitize the GET vars and populate the optionsArray --- end
   
 
-// Perform the repository lookup and xml creation --- start
-$displayOption_array['do_not_connect_to_online_repository'] = 1;
-$majorVersion = 'cpg'.str_replace('.' . ltrim(substr(COPPERMINE_VERSION,strrpos(COPPERMINE_VERSION,'.')),'.'), '', COPPERMINE_VERSION).'.x';
-$remoteURL = 'http://coppermine-gallery.net/' . str_replace('.', '', $majorVersion) . '.files.xml';
-$localFile = 'include/' . str_replace('.', '', $majorVersion) . '.files.xml';
-$remoteConnectionFailed = '';
-if ($displayOption_array['do_not_connect_to_online_repository'] == 0) { // connect to the online repository --- start
-  $result = cpgGetRemoteFileByURL($remoteURL, 'GET','','200');
-  if (strlen($result['body']) < 200) {
-    $remoteConnectionFailed = 1;
-    $error = $result['error'];
-    print_r($error);
-    print '<hr />';
-  }
-} // connect to the online repository --- end
-if ($displayOption_array['do_not_connect_to_online_repository'] == 1 || $remoteConnectionFailed == 1) {
-  $result = cpgGetRemoteFileByURL($localFile, 'GET','','200');
-}
-unset($result['headers']); // we should take a look the header data and error messages before dropping them. Well, later maybe ;-)
-unset($result['error']);
-$result = array_shift($result);
-include_once('include/lib.xml.php');
-$xml = new Xml;
-$file_data_array = $xml->parse($result);
-$file_data_array = array_shift($file_data_array);
-// Perform the repository lookup and xml creation --- end
+// Connect to the repository
+$file_data_array = cpgVersioncheckConnectRepository();
 
 
 // main code starts here

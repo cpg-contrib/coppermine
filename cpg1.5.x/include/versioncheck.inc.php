@@ -591,6 +591,37 @@ EOT;
     return $loopCounter_array;
 }
 
+function cpgVersioncheckConnectRepository() {
+    global $displayOption_array;
+    // Perform the repository lookup and xml creation --- start
+    $displayOption_array['do_not_connect_to_online_repository'] = 1;
+    $majorVersion = 'cpg'.str_replace('.' . ltrim(substr(COPPERMINE_VERSION,strrpos(COPPERMINE_VERSION,'.')),'.'), '', COPPERMINE_VERSION).'.x';
+    $remoteURL = 'http://coppermine-gallery.enet/' . str_replace('.', '', $majorVersion) . '.files.xml';
+    $localFile = 'include/' . str_replace('.', '', $majorVersion) . '.files.xml';
+    $remoteConnectionFailed = '';
+    if ($displayOption_array['do_not_connect_to_online_repository'] == 0) { // connect to the online repository --- start
+      $result = cpgGetRemoteFileByURL($remoteURL, 'GET','','200');
+      if (strlen($result['body']) < 200) {
+        $remoteConnectionFailed = 1;
+        $error = $result['error'];
+        print_r($error);
+        print '<hr />';
+      }
+    } // connect to the online repository --- end
+    if ($displayOption_array['do_not_connect_to_online_repository'] == 1 || $remoteConnectionFailed == 1) {
+      $result = cpgGetRemoteFileByURL($localFile, 'GET','','200');
+    }
+    unset($result['headers']); // we should take a look the header data and error messages before dropping them. Well, later maybe ;-)
+    unset($result['error']);
+    $result = array_shift($result);
+    include_once('include/lib.xml.php');
+    $xml = new Xml;
+    $file_data_array = $xml->parse($result);
+    $file_data_array = array_shift($file_data_array);
+    // Perform the repository lookup and xml creation --- end
+    return $file_data_array;
+}
+
 if (!function_exists('cpgGetRemoteFileByURL')) {  // This function is normally being populated in include/functions.inc.php - let's define it in case it doesn't exist
 function cpgGetRemoteFileByURL($remoteURL, $method = "GET", $redirect = 10, $minLength = '0') {
     global $lang_get_remote_File_by_url;
