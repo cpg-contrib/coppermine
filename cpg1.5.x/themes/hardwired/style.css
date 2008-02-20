@@ -446,8 +446,6 @@ a:hover {
 .admin_menu a {
         color: #AEAEAE;
         text-decoration: none;
-        display: block;
-        position: relative;
         padding-top: 1px;
         padding-bottom: 1px;
         padding-left: 2px;
@@ -466,7 +464,9 @@ a:hover {
         margin-top: 1px;
         margin-bottom: 1px;
         max-height:1.5em;
-        overflow:hidden;
+        display: block;
+        position: relative;
+        white-space:nowrap;
         /*width:100px;*/
 }
 

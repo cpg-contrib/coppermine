@@ -438,8 +438,6 @@ a:active {
 .admin_menu a {
         color: #000000;
         text-decoration: none;
-        display: block;
-        position: relative;
         padding-top: 1px;
         padding-bottom: 1px;
         padding-left: 2px;
@@ -458,12 +456,15 @@ a:active {
         margin-top: 1px;
         margin-bottom: 1px;
         max-height:1.5em;
-        overflow:hidden;
+        white-space:nowrap;
+        display: block;
+        position: relative;
         /*width:100px;*/
 }
 
 .admin_menu_wrapper {
         width:100%;
+        white-space:normal;
 }
 
 #admin_menu_anim {
