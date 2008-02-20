@@ -3102,7 +3102,7 @@ function themeSelect($parameter)
               $return.=  '</noscript>'. $lineBreak;
               $return.=  '</form>' . $lineBreak;
               $return.=  '</div>' . $lineBreak;
-              $return.= '|'.cpgGetScriptNameParams('theme').'|';
+              //$return.= '|'.cpgGetScriptNameParams('theme').'|';
        }
 
     return $return;
@@ -3939,7 +3939,8 @@ function cpgGetScriptNameParams($exception = '') {
     $match = $superCage->server->getRaw('SCRIPT_NAME');
     //$match = $superCage->get->getDir('foo');// ((\.){0,1}[a-zA-Z0-9]){0,}
     //$match = $superCage->get->getMatched('foo', '/^[a-zA-Z0-9_\-]((\.){0,1}[a-zA-Z0-9]){0,}+$/');// ((\.){0,1}[a-zA-Z0-9]){0,}
-    $return = $match.'|';
+    //$return = $match.'|';
+    // This function needs change. Work in progress. {GauGau}
 
      if ($matches) {
         $return .= $matches[0] . '?';

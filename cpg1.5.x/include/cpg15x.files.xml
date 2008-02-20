@@ -548,7 +548,7 @@
     <hash>29e85eab6b6c8d86fffab312c4649c5a</hash>
   </element>
   <element>
-    <fullpath>**fullpath**/edit/no_FTP-uploads_into_this_folder!</fullpath>
+    <fullpath>**fullpath**/edit/no_FTP-uploads_into_this_folder!.txt</fullpath>
     <status>optional</status>
     <permission>write</permission>
   </element>
@@ -564,7 +564,7 @@
     <hash>2c07ab6f04cb10807eaf229c2ee4bc5a</hash>
   </element>
   <element>
-    <fullpath>**fullpath**/**userpics**/no_FTP-uploads_into_this_folder!</fullpath>
+    <fullpath>**fullpath**/**userpics**/no_FTP-uploads_into_this_folder!.txt</fullpath>
     <status>optional</status>
     <permission>write</permission>
   </element>
@@ -4714,14 +4714,14 @@
   <element>
     <fullpath>include/Inspekt/</fullpath>
     <status>mandatory</status>
-    <permission>write</permission>
+    <permission>read</permission>
   </element>
   <element>
     <fullpath>include/Inspekt/Cage.php</fullpath>
     <version>1.5.0</version>
     <revision>4112</revision>
     <status>mandatory</status>
-    <permission>write</permission>
+    <permission>read</permission>
     <hash>94346702f94d553e386181d15f04878d</hash>
   </element>
   <element>
@@ -4729,7 +4729,7 @@
     <version>1.5.0</version>
     <revision>4112</revision>
     <status>mandatory</status>
-    <permission>write</permission>
+    <permission>read</permission>
     <hash>a16bca95c88fe7a459f0df89b4310a6e</hash>
   </element>
   <element>
@@ -4737,7 +4737,7 @@
     <version>1.5.0</version>
     <revision>4112</revision>
     <status>mandatory</status>
-    <permission>write</permission>
+    <permission>read</permission>
     <hash>6e25069409f986e597a8e8c80b9f6f33</hash>
   </element>
   <element>
@@ -4745,7 +4745,7 @@
     <version>1.5.0</version>
     <revision>4112</revision>
     <status>mandatory</status>
-    <permission>write</permission>
+    <permission>read</permission>
     <hash>1a261a122117d244602284f10d9b2631</hash>
   </element>
   <element>
@@ -4753,13 +4753,13 @@
     <version>1.5.0</version>
     <revision>4112</revision>
     <status>mandatory</status>
-    <permission>write</permission>
+    <permission>read</permission>
     <hash>69fa7752270bb386f7471e086200f5ab</hash>
   </element>
   <element>
     <fullpath>include/makers/</fullpath>
     <status>mandatory</status>
-    <permission>write</permission>
+    <permission>read</permission>
   </element>
   <element>
     <fullpath>include/makers/canon.php</fullpath>

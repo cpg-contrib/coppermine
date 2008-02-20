@@ -26,6 +26,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-02-20 [M] Renamed plain text files in root folder to enable Windows-users to read it easily {GauGau}
+2008-02-20 [M] Renamed warning files within edit and userpics folder to make sure that operating systems don't confuse those files with folders {GauGau}
 2008-02-16 [O] Inspektified thumbnails.php, functions.inc.php, mailer.inc.php, themes.inc.php, sample/theme.php {SaWey}
 2008-02-15 [O] Improved installer {SaWey}
 2008-02-13 [O] Added help icons for "permission by group" {GauGau}

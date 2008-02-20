@@ -307,7 +307,7 @@ function cpg_versioncheckPopulateArray($file_data_array) {
       if ($file_data_array[$file_data_key]['permission'] == 'read') {
         $file_data_array[$file_data_key]['txt_readwrite'] .= ' ('.$lang_versioncheck_php['ok'].')';
       } elseif ($file_data_array[$file_data_key]['permission'] == 'write') {
-        $file_data_array[$file_data_key]['txt_readwrite'] .= '('.$lang_versioncheck_php['needs_change'].')';
+        $file_data_array[$file_data_key]['txt_readwrite'] .= ' ('.$lang_versioncheck_php['needs_change'].')';
         $file_data_array[$file_data_key]['comment'] .= $lang_versioncheck_php['review_permissions'].'. ';
       }
     } elseif ($file_data_array[$file_data_key]['local_readwrite'] == 'write') {
@@ -594,7 +594,7 @@ EOT;
 function cpgVersioncheckConnectRepository() {
     global $displayOption_array;
     // Perform the repository lookup and xml creation --- start
-    $displayOption_array['do_not_connect_to_online_repository'] = 1;
+    //$displayOption_array['do_not_connect_to_online_repository'] = 1;
     $majorVersion = 'cpg'.str_replace('.' . ltrim(substr(COPPERMINE_VERSION,strrpos(COPPERMINE_VERSION,'.')),'.'), '', COPPERMINE_VERSION).'.x';
     $remoteURL = 'http://coppermine-gallery.enet/' . str_replace('.', '', $majorVersion) . '.files.xml';
     $localFile = 'include/' . str_replace('.', '', $majorVersion) . '.files.xml';
@@ -604,8 +604,8 @@ function cpgVersioncheckConnectRepository() {
       if (strlen($result['body']) < 200) {
         $remoteConnectionFailed = 1;
         $error = $result['error'];
-        print_r($error);
-        print '<hr />';
+        //print_r($error);
+        //print '<hr />';
       }
     } // connect to the online repository --- end
     if ($displayOption_array['do_not_connect_to_online_repository'] == 1 || $remoteConnectionFailed == 1) {
