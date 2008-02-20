@@ -75,8 +75,11 @@ function cpg_fillArrayFieldWithSpaces($text, $maxchars, $fillUpOn = 'right') {
 function cpg_versioncheckDisplayOptions() {
   global $CPG_PHP_SELF, $lang_versioncheck_php, $optionDisplayOutput_array;
   print '<form name="options" action="'.$CPG_PHP_SELF.'" method="get">';
-  starttable(-1, $lang_versioncheck_php['options'],2);
   print <<< EOT
+<table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+  <tr>
+          <td class="tableh1" colspan="2">{$lang_versioncheck_php['options']}</td>
+  </tr>
   <tr>
     <td class="tableb" valign="top">
       {$lang_versioncheck_php['display_output']}
@@ -111,8 +114,8 @@ function cpg_versioncheckDisplayOptions() {
       <input type="submit" name="submit" value="{$lang_versioncheck_php['submit']}" class="button" />
     </td>
   </tr>
+</table>
 EOT;
-  endtable();
   print '</form>';
   print '<br />';
 }
@@ -130,7 +133,7 @@ function cpg_versioncheckPopulateArray($file_data_array) {
       'sql' => 'images/extensions/sql.gif',
       'ttf' => 'images/extensions/ttf.gif',
       'ico' => 'images/extensions/unknown.gif',
-    );    
+    );
     $maxLength_array = array();
     $maxLength_array['counter'] = strlen($lang_versioncheck_php['counter']);
     $maxLength_array['folderfile'] = strlen($lang_versioncheck_php['type']);
@@ -425,7 +428,7 @@ EOT;
     </textarea>
     </form>
 EOT;
-  }  
+  }
   $loopCounter++;
   return $loopCounter;
 } // end function definition "cpg_versioncheckCreateXml()"
@@ -433,7 +436,7 @@ EOT;
 function cpg_versioncheckCreateTextOnlyOutput($file_data_array) {
   global $displayOption_array, $file_data_count, $lang_versioncheck_php, $maxLength_array;
   $newLine = "\r\n";
-  
+
     // display formatted header data
     if ($displayOption_array['output'] == 'textarea') {
       print <<< EOT
@@ -445,8 +448,8 @@ function cpg_versioncheckCreateTextOnlyOutput($file_data_array) {
       </script>
 EOT;
       print '<form name="versioncheckdisplay"><textarea name="versioncheck_text" rows="'.($file_data_count + 5).'" class="textinput debug_text" style="width:98%;font-family:\'Courier New\',Courier,monospace;font-size:9px;">';
-    }  
-  
+    }
+
   $loopCounter = 1;
   $textSeparator = '|';
   $caption = '';
@@ -510,7 +513,7 @@ EOT;
       </textarea>
       </form>
 EOT;
-    }  
+    }
   $string = ob_get_contents();
   ob_end_clean();
   return $string;
@@ -524,8 +527,11 @@ function cpg_versioncheckCreateHTMLOutput($file_data_array) {
     $maxLength_array['counter'] = strlen($file_data_count);
   }
   // the caption for the table
-  starttable('100%', $lang_versioncheck_php['title'], 9);
   print <<< EOT
+<table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+  <tr>
+          <td class="tableh1" colspan="9">{$lang_versioncheck_php['title']}</td>
+  </tr>
   <tr>
     <th class="tableh2" style="font-size:8px">{$lang_versioncheck_php['path']}</th>
     <th class="tableh2" style="font-size:8px">{$lang_versioncheck_php['missing']}</th>
@@ -587,7 +593,7 @@ EOT;
       $loopCounter_array['display']++;
     } // only display if corrsponding option is not disabled --- end
   }
-    endtable();
+    print "\r\n".'</table>';
     return $loopCounter_array;
 }
 
@@ -734,4 +740,5 @@ function cpgGetRemoteFileByURL($remoteURL, $method = "GET", $redirect = 10, $min
     }
 }
 }
+
 ?>
