@@ -3086,9 +3086,6 @@ function themeSelect($parameter)
 
     //start the output
     switch ($parameter) {
-       case 'table':
-           $return = 'not yet implemented';
-           break;
        default:
            $return.= $lineBreak . '<div id="cpgChooseThemeWrapper">' . $lineBreak . '<form name="cpgChooseTheme" id="cpgChooseTheme" action="' . $CPG_PHP_SELF . '" method="get" class="inline">' . $lineBreak;
            $return.= '<select name="theme" class="listbox_lang" onchange="if (this.options[this.selectedIndex].value) window.location.href=\'' . $cpgCurrentTheme . '\' + this.options[this.selectedIndex].value;">' . $lineBreak;
@@ -3105,6 +3102,7 @@ function themeSelect($parameter)
               $return.=  '</noscript>'. $lineBreak;
               $return.=  '</form>' . $lineBreak;
               $return.=  '</div>' . $lineBreak;
+              $return.= '|'.cpgGetScriptNameParams('theme').'|';
        }
 
     return $return;
@@ -3937,12 +3935,16 @@ function cpgGetScriptNameParams($exception = '') {
        }
     }*/
 
-    $matches = $superCage->server->getMatched('SCRIPT_NAME', '/^[a-zA-Z0-9_\/.]+$/');
+    $matches = $superCage->server->getMatched('SCRIPT_NAME', '/^[a-zA-Z0-9_\-]((\.){0,1}[a-zA-Z0-9]){0,}+$/');
+    $match = $superCage->server->getRaw('SCRIPT_NAME');
+    //$match = $superCage->get->getDir('foo');// ((\.){0,1}[a-zA-Z0-9]){0,}
+    //$match = $superCage->get->getMatched('foo', '/^[a-zA-Z0-9_\-]((\.){0,1}[a-zA-Z0-9]){0,}+$/');// ((\.){0,1}[a-zA-Z0-9]){0,}
+    $return = $match.'|';
 
      if ($matches) {
-        $return = $matches[0] . '?';
+        $return .= $matches[0] . '?';
      } else {
-        $return = 'index.php';
+        $return .= 'index.php';
      }
 
      $matches = $superCage->server->getMatched('QUERY_STRING', '/^[a-zA-Z0-9&=_\/.]+$/');
