@@ -23,6 +23,9 @@ session_start();
 error_reporting (E_ALL ^ E_NOTICE);
 set_magic_quotes_runtime(0);
 
+$incp = get_include_path().PATH_SEPARATOR.dirname(__FILE__).PATH_SEPARATOR.dirname(__FILE__).DIRECTORY_SEPARATOR.'include';
+set_include_path($incp);
+require ('include/Inspekt.php');
 require ('include/sql_parse.php');
 require ('include/config.inc.php');
 require ('include/update.inc.php');
@@ -35,13 +38,14 @@ $DFLT = array('cfg_d' => 'include', // The config file dir
 	'alb_d' => 'albums', // The album dir
 	'upl_d' => 'userpics' // The uploaded pic dir
 	);
+$superCage = Inspekt::makeSuperCage();
 
 // ---------------------------- AUTHENTICATION --------------------------- //
 //ADMIN_ACCESS is a constant that can be defined for users who can't retrieve any kind of password
 if(!defined(ADMIN_ACCESS) && !$_SESSION['auth']){
 	html_header("Coppermine - Upgrade");
 	html_logo();
-	if(!isset($_POST['method'])){
+	if(!$superCage->post->keyExists('method')){
 		//first try to connect to the db to see if we can authenticate the admin
 		test_sql_connection();
 		if($errors != ''){
@@ -51,10 +55,13 @@ if(!defined(ADMIN_ACCESS) && !$_SESSION['auth']){
 			//print a box for admin autentication
 			html_auth_box('admin');
 		}
-	}elseif($_POST['method'] == 'admin'){
+	}elseif($superCage->post->getAlpha('method') == 'admin'){
 		//try to autenticate the admin
 		test_sql_connection();
-		$sql = "SELECT user_active FROM {$CONFIG['TABLE_PREFIX']}users WHERE user_group = 1 AND user_name = '{$_POST['user']}' AND (user_password = '{$_POST['pass']}' OR user_password = '" . md5($_POST['pass']) . "')";
+		$user = $superCage->post->getEscaped('user');
+		$pass = $superCage->post->getEscaped('pass');
+		$pass2 = md5($pass);
+		$sql = "SELECT user_active FROM {$CONFIG['TABLE_PREFIX']}users WHERE user_group = 1 AND user_name = '$user' AND (user_password = '$pass' OR user_password = '$pass2')";
 		$result = @mysql_query($sql);
 		if(!@mysql_num_rows($result)){
 			//not authenticated, try mysql account details
@@ -66,10 +73,13 @@ if(!defined(ADMIN_ACCESS) && !$_SESSION['auth']){
 		}
 	}else{
 		//try to autenticate via MySQL details (in configuration)
-		if($_POST['user'] == $CONFIG['dbuser'] && $_POST['pass'] == $CONFIG['dbpass']){
+		if($superCage->post->getEscaped('user')  == $CONFIG['dbuser'] && $superCage->post->getEscaped('pass') == $CONFIG['dbpass']){
 			//authenticated, do the update
 			$_SESSION['auth'] = true;
 			start_update();
+		}else{
+			//no go, try again
+			html_error('Could not authenticate you, click <a href="update.php">here</a> to try again');
 		}
 	}
 	html_footer();
@@ -214,10 +224,19 @@ function test_sql_connection()
 function update_tables()
 {
     global $errors, $CONFIG;
-
-    $PHP_SELF = $_SERVER['PHP_SELF'];
-    $gallery_dir = strtr(dirname($PHP_SELF), '\\', '/');
-    $gallery_url_prefix = 'http://' . $_SERVER['HTTP_HOST'] . $gallery_dir . (substr($gallery_dir, -1) == '/' ? '' : '/');
+	
+	$superCage = Inspekt::makeSuperCage();
+	$possibilities = array('REDIRECT_URL', 'PHP_SELF', 'SCRIPT_URL', 'SCRIPT_NAME','SCRIPT_FILENAME');
+	foreach ($possibilities as $test){
+		if ($matches = $superCage->server->getMatched($test, '/([^\/]+\.php)$/')) {
+			$CPG_PHP_SELF = $matches[1];
+			break;
+		}
+	}
+    //$CPG_PHP_SELF = $_SERVER['PHP_SELF'];
+    $gallery_dir = strtr(dirname($CPG_PHP_SELF), '\\', '/');
+    //$gallery_url_prefix = 'http://' . $_SERVER['HTTP_HOST'] . $gallery_dir . (substr($gallery_dir, -1) == '/' ? '' : '/');
+	$gallery_url_prefix = 'http://' . $superCage->server->getRaw('HTTP_HOST') . $gallery_dir . (substr($gallery_dir, -1) == '/' ? '' : '/');
 
     $db_update = 'sql/update.sql';
     $sql_query = fread(fopen($db_update, 'r'), filesize($db_update));
@@ -270,7 +289,8 @@ function update_tables()
         } else {
             echo "<td class='updatesFail'>Already Done</td>";
         }
-        if (isset($_REQUEST['debug'])) {
+        //if (isset($_REQUEST['debug'])) {
+		if ($superCage->get->keyExists('debug')) {
             echo "<tr><td class='tablef'>";
             if ($affected > -1) {
                 echo "Rows Affected: ".$affected."<br />";
