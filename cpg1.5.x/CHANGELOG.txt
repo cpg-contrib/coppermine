@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-02-21 [B] Fixed function cpgGetScriptNameParams that has been Inspektified improperly (did not return file names at all) {GauGau}
 2008-02-21 [A] Added basic authentication to update script {SaWey}
 2008-02-20 [M] Renamed plain text files in root folder to enable Windows-users to read it easily {GauGau}
 2008-02-20 [M] Renamed warning files within edit and userpics folder to make sure that operating systems don't confuse those files with folders {GauGau}

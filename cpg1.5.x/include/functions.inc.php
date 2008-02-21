@@ -769,9 +769,9 @@ function is_link_local($url, $cpg_url = false)
 */
 function generate_cpg_url()
 {
-		$superCage = Inspekt::makeSuperCage();
-		$server_name = $superCage->server->keyExists('server_name') ? $superCage->server->getRaw('server_name') : getenv('SERVER_NAME');
-		$server_port = $superCage->server->keyExists('server_port') ? $superCage->server->getRaw('server_port') : getenv('SERVER_PORT');
+                $superCage = Inspekt::makeSuperCage();
+                $server_name = $superCage->server->keyExists('server_name') ? $superCage->server->getRaw('server_name') : getenv('SERVER_NAME');
+                $server_port = $superCage->server->keyExists('server_port') ? $superCage->server->getRaw('server_port') : getenv('SERVER_PORT');
 
         // Do not rely on cookie_secure, users seem to think that it means a secured cookie instead of an encrypted connection
         $cookie_secure = ($superCage->server->keyExists('HTTPS') && $superCage->server->getAlpha('HTTPS') == 'on') ? 1 : 0;
@@ -1412,11 +1412,11 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 break;
 
         case 'search': // Search results
-				if (isset($USER['search']['search'])) {
-					$search_string = $USER['search']['search'];
+                                if (isset($USER['search']['search'])) {
+                                        $search_string = $USER['search']['search'];
                 } else {
-					$search_string = '';
-				}
+                                        $search_string = '';
+                                }
 
                 if ($META_ALBUM_SET && $CURRENT_CAT_NAME) {
                         $album_name = $lang_meta_album_names['search'].' - '. $CURRENT_CAT_NAME;
@@ -1859,7 +1859,7 @@ function breadcrumb($cat, &$breadcrumb, &$BREADCRUMB_TEXT)
                     $result = cpg_db_query("SELECT name, parent FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '$cat'");
                     if (mysql_num_rows($result) == 0){
                         cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_cat'], __FILE__, __LINE__);
-					}
+                                        }
                     $row = mysql_fetch_array($result);
 
                     $category_array[] = array($cat, $row['name']);
@@ -1872,7 +1872,7 @@ function breadcrumb($cat, &$breadcrumb, &$BREADCRUMB_TEXT)
                     $result = cpg_db_query("SELECT cid, name, parent FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '{$row['parent']}'");
                     if (mysql_num_rows($result) == 0){
                         //cpg_die(CRITICAL_ERROR, $lang_errors['orphan_cat'], __FILE__, __LINE__);
-					}
+                                        }
                     $row = mysql_fetch_array($result);
 
                     $category_array[] = array($row['cid'], $row['name']);
@@ -2246,13 +2246,13 @@ function display_film_strip($album, $cat, $pos)
 
                 }
 
-				// Get the pos for next and prev links in filmstrip navigation
-				$filmstrip_next_pos = $pos + $CONFIG['max_film_strip_items'];
-				$filmstrip_prev_pos = $pos - $CONFIG['max_film_strip_items'];
-				// If next pos is greater then total pics then make it pic_count - 1
-				$filmstrip_next_pos = $filmstrip_next_pos >= $pic_count ? $pic_count - 1 : $filmstrip_next_pos;
-				// If prev pos is less than 0 then make it 0
-				$filmstrip_prev_pos = $filmstrip_prev_pos < 0 ? 0 : $filmstrip_prev_pos;
+                                // Get the pos for next and prev links in filmstrip navigation
+                                $filmstrip_next_pos = $pos + $CONFIG['max_film_strip_items'];
+                                $filmstrip_prev_pos = $pos - $CONFIG['max_film_strip_items'];
+                                // If next pos is greater then total pics then make it pic_count - 1
+                                $filmstrip_next_pos = $filmstrip_next_pos >= $pic_count ? $pic_count - 1 : $filmstrip_next_pos;
+                                // If prev pos is less than 0 then make it 0
+                                $filmstrip_prev_pos = $filmstrip_prev_pos < 0 ? 0 : $filmstrip_prev_pos;
 
                 //Using getRaw(). The date is sanitized in the called function.
                 $date = $superCage->get->keyExists('date') ? cpgValidateDate($superCage->get->getRaw('date')) : null;
@@ -3102,7 +3102,6 @@ function themeSelect($parameter)
               $return.=  '</noscript>'. $lineBreak;
               $return.=  '</form>' . $lineBreak;
               $return.=  '</div>' . $lineBreak;
-              //$return.= '|'.cpgGetScriptNameParams('theme').'|';
        }
 
     return $return;
@@ -3353,23 +3352,23 @@ EOT;
             // Try to retrieve the news directly
             $result = cpgGetRemoteFileByURL('http://coppermine-gallery.net/cpg15x_news.htm', 'GET','','200');
             if (strlen($result['body']) < 200) { // retrieving the file failed - let's display it in an iframe then
-	            print <<< EOT
+                    print <<< EOT
                       <iframe src="http://coppermine-gallery.net/cpg15x_news.htm" align="left" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" width="100%" height="100" name="coppermine_news" id="coppermine_news" class="textinput">
                         {$lang_version_alert['no_iframe']}
                       </iframe>
 EOT;
             } else { // we have been able to retrieve the remote URL, let's chop the unneeded data and then display it
-	            unset($result['headers']);
-	            unset($result['error']);
-	            // drop everything before the starting body-tag
-	            //$result['body'] = substr($result['body'], strpos($result['body'], '<body>'));
-	            $result['body'] = strstr($result['body'], '<body>');
-	            // drop the starting body tag itself
-	            $result['body'] = str_replace('<body>', '', $result['body']);
-	            // drop the ending body tag and everything after it
-	            $result['body'] = str_replace(strstr($result['body'], '</body>'), '', $result['body']);
-	            // The result should now contain everything between the body tags - let's print it
-	            print $result['body'];
+                    unset($result['headers']);
+                    unset($result['error']);
+                    // drop everything before the starting body-tag
+                    //$result['body'] = substr($result['body'], strpos($result['body'], '<body>'));
+                    $result['body'] = strstr($result['body'], '<body>');
+                    // drop the starting body tag itself
+                    $result['body'] = str_replace('<body>', '', $result['body']);
+                    // drop the ending body tag and everything after it
+                    $result['body'] = str_replace(strstr($result['body'], '</body>'), '', $result['body']);
+                    // The result should now contain everything between the body tags - let's print it
+                    print $result['body'];
             }
             print <<< EOT
                     </td>
@@ -3928,26 +3927,23 @@ function cpgGetScriptNameParams($exception = '') {
         $exception = array(0 => $exception);
     }
 
-    /*$return = $_SERVER["SCRIPT_NAME"]."?";
-    foreach ($_GET as $key => $value) {
-       if (!in_array($key,$exception)) {
-           $return .= $key . "=" . $value . "&amp;";
-       }
-    }*/
+    // get the file name first
+    $match = $superCage->server->getRaw('SCRIPT_NAME'); // We'll sanitize the script path later
+    $filename = ltrim(strrchr($match,'/'), '/'); // Drop everything untill (and including) the last slash, this results in the file name only
+    if (!preg_match('/^(([a-zA-Z0-9_\-]){1,})((\.){1,1})(([a-zA-Z]){2,6})+$/', $filename)) { // the naming pattern we check against: an infinite number of lower and upper case alphanumerals plus allowed special chars dash and underscore, then one (and only one!) dot, then between two and 6 alphanumerals in lower or upper case
+       $filename = 'index.php'; // If this doesn't match, default to the index page
+    }
+    $return = $filename . '?';
 
-    $matches = $superCage->server->getMatched('SCRIPT_NAME', '/^[a-zA-Z0-9_\-]((\.){0,1}[a-zA-Z0-9]){0,}+$/');
-    $match = $superCage->server->getRaw('SCRIPT_NAME');
-    //$match = $superCage->get->getDir('foo');// ((\.){0,1}[a-zA-Z0-9]){0,}
-    //$match = $superCage->get->getMatched('foo', '/^[a-zA-Z0-9_\-]((\.){0,1}[a-zA-Z0-9]){0,}+$/');// ((\.){0,1}[a-zA-Z0-9]){0,}
-    //$return = $match.'|';
-    // This function needs change. Work in progress. {GauGau}
-
-     if ($matches) {
-        $return .= $matches[0] . '?';
-     } else {
-        $return .= 'index.php';
-     }
-
+    // Now get the parameters.
+    // WARNING: as this function is meant to just return the URL parameters (minus the one mentioned in $exception),
+    // neither the parameter names nor the the values should be sanitized, as we simply don't know here against what
+    // we're suppossed to sanitize.
+    // For now, I have chosen the safe method, sanitizing the parameters. Not sure if this is a bright idea for the
+    // future.
+    // So, use the parameters returned from this function here with the same caution that applies to anything the
+    // user could tamper with. The function is meant to help you generate links (in other words: something the user could
+    // come up with by typing them just as well), so don't abuse this function for anything else.
      $matches = $superCage->server->getMatched('QUERY_STRING', '/^[a-zA-Z0-9&=_\/.]+$/');
      if ($matches) {
         $queryString = explode('&', $matches[0]);
@@ -4127,35 +4123,35 @@ function user_is_allowed () {
         } elseif ($superCage->post->keyExists('aid')){
                 $album_id = $superCage->post->getInt('aid');
         } else {
-			//workaround when going straight to modifyalb.php and no album is set in superglobals
-			if(defined('MODIFYALB_PHP')){
-				//check if the user has any album available
-				$result = cpg_db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE owner = " . $USER_DATA['user_id'] . " LIMIT 1");
-				$temp_album_id = cpg_db_fetch_row($result);
-				$album_id = $temp_album_id['aid'];
-			}else{
-			    $album_id = 0;
-			}
-            
+                        //workaround when going straight to modifyalb.php and no album is set in superglobals
+                        if(defined('MODIFYALB_PHP')){
+                                //check if the user has any album available
+                                $result = cpg_db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE owner = " . $USER_DATA['user_id'] . " LIMIT 1");
+                                $temp_album_id = cpg_db_fetch_row($result);
+                                $album_id = $temp_album_id['aid'];
+                        }else{
+                            $album_id = 0;
+                        }
+
         }
 
         $result = cpg_db_query("SELECT DISTINCT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE owner = '" . $USER_DATA['user_id'] . "' AND aid='$album_id'");
         $allowed_albums = cpg_db_fetch_rowset($result);
         $cat = $allowed_albums[0]['category'];
         if($cat != ''){
-			$check_approve = true;
+                        $check_approve = true;
         }
 
         //check if admin allows editing after closing category
         if($CONFIG['allow_user_edit_after_cat_close'] == 0){
-			//Disallowed -> Check if album is in such a category
-			$result = cpg_db_query("SELECT DISTINCT aid FROM {$CONFIG['TABLE_ALBUMS']} AS alb INNER JOIN {$CONFIG['TABLE_CATMAP']} AS catm ON alb.category=catm.cid WHERE alb.owner = '" . $USER_DATA['user_id'] . "' AND alb.aid='$album_id' AND catm.group_id='" . $USER_DATA['group_id'] . "'");
-			$allowed_albums = cpg_db_fetch_rowset($result);
-			if($allowed_albums[0]['aid'] == '' && $cat != (FIRST_USER_CAT + USER_ID)){
-				$check_approve = false;
-			} elseif ($cat == (FIRST_USER_CAT + USER_ID)) {
-				$check_approve = true;
-			}
+                        //Disallowed -> Check if album is in such a category
+                        $result = cpg_db_query("SELECT DISTINCT aid FROM {$CONFIG['TABLE_ALBUMS']} AS alb INNER JOIN {$CONFIG['TABLE_CATMAP']} AS catm ON alb.category=catm.cid WHERE alb.owner = '" . $USER_DATA['user_id'] . "' AND alb.aid='$album_id' AND catm.group_id='" . $USER_DATA['group_id'] . "'");
+                        $allowed_albums = cpg_db_fetch_rowset($result);
+                        if($allowed_albums[0]['aid'] == '' && $cat != (FIRST_USER_CAT + USER_ID)){
+                                $check_approve = false;
+                        } elseif ($cat == (FIRST_USER_CAT + USER_ID)) {
+                                $check_approve = true;
+                        }
         }
         return $check_approve;
 }
@@ -4173,20 +4169,20 @@ function user_is_allowed () {
  * @return mixed Returns the html for js inclusion or null if inline is false
  */
 function js_include($filename, $inline = false) {
-	global $JS;
+        global $JS;
 
-	// Proceed with inclusion only if the file exists
-	if (!file_exists($filename)) {
-		return;
-	}
+        // Proceed with inclusion only if the file exists
+        if (!file_exists($filename)) {
+                return;
+        }
 
-	// If we need to show the html inline then return the required html
-	if ($inline) {
-		return '<script type="text/javascript" src="' . $filename . '"></script>';
-	} else {
-		// Else add the file to js includes array which will later be used in head section
-		$JS['includes'][] = $filename;
-	}
+        // If we need to show the html inline then return the required html
+        if ($inline) {
+                return '<script type="text/javascript" src="' . $filename . '"></script>';
+        } else {
+                // Else add the file to js includes array which will later be used in head section
+                $JS['includes'][] = $filename;
+        }
 }
 
 /**
@@ -4203,10 +4199,10 @@ function js_include($filename, $inline = false) {
  * @param mixed $val Value which can be string, int, array or boolean
  */
 function set_js_var($var, $val) {
-	global $JS;
+        global $JS;
 
-	// Add the variable to global array which will be used in theme_javascript_head() function
-	$JS['vars'][$var] = $val;
+        // Add the variable to global array which will be used in theme_javascript_head() function
+        $JS['vars'][$var] = $val;
 }
 
 /**
@@ -4222,46 +4218,46 @@ function set_js_var($var, $val) {
  * @return string json string
  */
 if (!function_exists('json_encode')) {
-	function json_encode($arr) {
-		$parts = array();
-		$is_list = false;
+        function json_encode($arr) {
+                $parts = array();
+                $is_list = false;
 
-		//Find out if the given array is a numerical array
-		$keys = array_keys($arr);
-		$max_length = count($arr)-1;
-		if(($keys[0] == 0) and ($keys[$max_length] == $max_length)) {//See if the first key is 0 and last key is length - 1
-			$is_list = true;
-			for($i=0; $i<count($keys); $i++) { //See if each key correspondes to its position
-				if($i != $keys[$i]) { //A key fails at position check.
-					$is_list = false; //It is an associative array.
-					break;
-				}
-			}
-		}
+                //Find out if the given array is a numerical array
+                $keys = array_keys($arr);
+                $max_length = count($arr)-1;
+                if(($keys[0] == 0) and ($keys[$max_length] == $max_length)) {//See if the first key is 0 and last key is length - 1
+                        $is_list = true;
+                        for($i=0; $i<count($keys); $i++) { //See if each key correspondes to its position
+                                if($i != $keys[$i]) { //A key fails at position check.
+                                        $is_list = false; //It is an associative array.
+                                        break;
+                                }
+                        }
+                }
 
-		foreach($arr as $key=>$value) {
-			if(is_array($value)) { //Custom handling for arrays
-				if($is_list) $parts[] = json_encode($value); /* :RECURSION: */
-				else $parts[] = '"' . $key . '":' . json_encode($value); /* :RECURSION: */
-			} else {
-				$str = '';
-				if(!$is_list) $str = '"' . $key . '":';
+                foreach($arr as $key=>$value) {
+                        if(is_array($value)) { //Custom handling for arrays
+                                if($is_list) $parts[] = json_encode($value); /* :RECURSION: */
+                                else $parts[] = '"' . $key . '":' . json_encode($value); /* :RECURSION: */
+                        } else {
+                                $str = '';
+                                if(!$is_list) $str = '"' . $key . '":';
 
-				//Custom handling for multiple data types
-				if(is_numeric($value)) $str .= $value; //Numbers
-				elseif($value === false) $str .= 'false'; //The booleans
-				elseif($value === true) $str .= 'true';
-				else $str .= '"' . addslashes($value) . '"'; //All other things
-				// :TODO: Is there any more datatype we should be in the lookout for? (Object?)
+                                //Custom handling for multiple data types
+                                if(is_numeric($value)) $str .= $value; //Numbers
+                                elseif($value === false) $str .= 'false'; //The booleans
+                                elseif($value === true) $str .= 'true';
+                                else $str .= '"' . addslashes($value) . '"'; //All other things
+                                // :TODO: Is there any more datatype we should be in the lookout for? (Object?)
 
-				$parts[] = $str;
-			}
-		}
-		$json = implode(',',$parts);
+                                $parts[] = $str;
+                        }
+                }
+                $json = implode(',',$parts);
 
-		if($is_list) return '[' . $json . ']';//Return numerical JSON
-		return '{' . $json . '}';//Return associative JSON
-	}
+                if($is_list) return '[' . $json . ']';//Return numerical JSON
+                return '{' . $json . '}';//Return associative JSON
+        }
 }
 
 /**
@@ -4274,77 +4270,77 @@ if (!function_exists('json_encode')) {
  * @return array $size
  */
 function cpg_getimagesize($image, $force_cpg_function = false){
-	if (!function_exists('getimagesize') || $force_cpg_function){  
-		//custom function borrowed from http://www.wischik.com/lu/programmer/get-image-size.html
-		$f = @fopen($image, 'rb'); 
-		if($f === false){
-			return false;
-		} 
-		fseek($f, 0, SEEK_END); 
-		$len = ftell($f);
-		if ($len < 24) {
-			fclose($f); 
-			return false;
-		}
-		fseek($f, 0); 
-		$buf = fread($f, 24);
-		if($buf === false){
-			fclose($f); 
-			return false;
-		}
-		if(ord($buf[0]) == 255 && ord($buf[1]) == 216 && ord($buf[2]) == 255 && ord($buf[3]) == 224 && $buf[6] == 'J' && $buf[7] == 'F' && $buf[8] == 'I' && $buf[9] == 'F'){ 
-			$pos=2; 
-			while (ord($buf[2]) == 255){
-				if (ord($buf[3]) == 192 || ord($buf[3]) == 193 || ord($buf[3]) == 194 || ord($buf[3]) == 195 || ord($buf[3]) == 201 || ord($buf[3]) == 202 || ord($buf[3]) == 203){
-					break; // we've found the image frame
-				}
-				$pos += 2 + (ord($buf[4]) << 8) + ord($buf[5]);
-				if ($pos+12>$len){
-					break; // too far
-				}
-				fseek($f,$pos); 
-				$buf = $buf[0] . $buf[1] . fread($f,12);
-			}
-		}
-		fclose($f);
-	
-		// GIF:
-		if($buf[0] == 'G' && $buf[1] == 'I' && $buf[2] == 'F'){
-			$x = ord($buf[6]) + (ord($buf[7])<<8);
-			$y = ord($buf[8]) + (ord($buf[9])<<8);
-			$type = 1;
-		}
-	
-		// JPEG:
-		if(ord($buf[0]) == 255 && ord($buf[1]) == 216 && ord($buf[2]) == 255){ 
-			$y = (ord($buf[7])<<8) + ord($buf[8]);
-			$x = (ord($buf[9])<<8) + ord($buf[10]);
-			$type = 2;
-		}
-	
-		// PNG:
-		if(ord($buf[0]) == 0x89 && $buf[1] == 'P' && $buf[2] == 'N' && $buf[3] == 'G' && ord($buf[4]) == 0x0D && ord($buf[5]) == 0x0A && ord($buf[6]) == 0x1A && ord($buf[7]) == 0x0A && $buf[12] == 'I' && $buf[13] == 'H' && $buf[14] == 'D' && $buf[15] == 'R'){
-			$x = (ord($buf[16])<<24) + (ord($buf[17])<<16) + (ord($buf[18])<<8) + (ord($buf[19])<<0);
-			$y = (ord($buf[20])<<24) + (ord($buf[21])<<16) + (ord($buf[22])<<8) + (ord($buf[23])<<0);
-			$type = 3;
-		}
-	
-		if (isset($x, $y, $type)){
-			return false;
-		}
-		return array($x, $y, $type, 'height="' . $x . '" width="' . $y . '"');
-	}else{
-		$size = getimagesize($image);
-		if(!$size){
-			//false was returned
-			return cpg_getimagesize($image, true/*force the use of custom function*/);
-		}else if(!isset($size[0]) || !isset($size[1])){
-			//webhost possibly changed getimagesize functionality
-			return cpg_getimagesize($image, true/*force the use of custom function*/);
-		}else {
-			//function worked as expected, return the results
-			return $size;
-		}
-	}
+        if (!function_exists('getimagesize') || $force_cpg_function){
+                //custom function borrowed from http://www.wischik.com/lu/programmer/get-image-size.html
+                $f = @fopen($image, 'rb');
+                if($f === false){
+                        return false;
+                }
+                fseek($f, 0, SEEK_END);
+                $len = ftell($f);
+                if ($len < 24) {
+                        fclose($f);
+                        return false;
+                }
+                fseek($f, 0);
+                $buf = fread($f, 24);
+                if($buf === false){
+                        fclose($f);
+                        return false;
+                }
+                if(ord($buf[0]) == 255 && ord($buf[1]) == 216 && ord($buf[2]) == 255 && ord($buf[3]) == 224 && $buf[6] == 'J' && $buf[7] == 'F' && $buf[8] == 'I' && $buf[9] == 'F'){
+                        $pos=2;
+                        while (ord($buf[2]) == 255){
+                                if (ord($buf[3]) == 192 || ord($buf[3]) == 193 || ord($buf[3]) == 194 || ord($buf[3]) == 195 || ord($buf[3]) == 201 || ord($buf[3]) == 202 || ord($buf[3]) == 203){
+                                        break; // we've found the image frame
+                                }
+                                $pos += 2 + (ord($buf[4]) << 8) + ord($buf[5]);
+                                if ($pos+12>$len){
+                                        break; // too far
+                                }
+                                fseek($f,$pos);
+                                $buf = $buf[0] . $buf[1] . fread($f,12);
+                        }
+                }
+                fclose($f);
+
+                // GIF:
+                if($buf[0] == 'G' && $buf[1] == 'I' && $buf[2] == 'F'){
+                        $x = ord($buf[6]) + (ord($buf[7])<<8);
+                        $y = ord($buf[8]) + (ord($buf[9])<<8);
+                        $type = 1;
+                }
+
+                // JPEG:
+                if(ord($buf[0]) == 255 && ord($buf[1]) == 216 && ord($buf[2]) == 255){
+                        $y = (ord($buf[7])<<8) + ord($buf[8]);
+                        $x = (ord($buf[9])<<8) + ord($buf[10]);
+                        $type = 2;
+                }
+
+                // PNG:
+                if(ord($buf[0]) == 0x89 && $buf[1] == 'P' && $buf[2] == 'N' && $buf[3] == 'G' && ord($buf[4]) == 0x0D && ord($buf[5]) == 0x0A && ord($buf[6]) == 0x1A && ord($buf[7]) == 0x0A && $buf[12] == 'I' && $buf[13] == 'H' && $buf[14] == 'D' && $buf[15] == 'R'){
+                        $x = (ord($buf[16])<<24) + (ord($buf[17])<<16) + (ord($buf[18])<<8) + (ord($buf[19])<<0);
+                        $y = (ord($buf[20])<<24) + (ord($buf[21])<<16) + (ord($buf[22])<<8) + (ord($buf[23])<<0);
+                        $type = 3;
+                }
+
+                if (isset($x, $y, $type)){
+                        return false;
+                }
+                return array($x, $y, $type, 'height="' . $x . '" width="' . $y . '"');
+        }else{
+                $size = getimagesize($image);
+                if(!$size){
+                        //false was returned
+                        return cpg_getimagesize($image, true/*force the use of custom function*/);
+                }else if(!isset($size[0]) || !isset($size[1])){
+                        //webhost possibly changed getimagesize functionality
+                        return cpg_getimagesize($image, true/*force the use of custom function*/);
+                }else {
+                        //function worked as expected, return the results
+                        return $size;
+                }
+        }
 }
 ?>
