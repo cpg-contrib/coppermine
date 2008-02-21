@@ -19,12 +19,92 @@
 
 // Report all errors except E_NOTICE
 // This is the default value set in php.ini
+session_start();
 error_reporting (E_ALL ^ E_NOTICE);
 set_magic_quotes_runtime(0);
 
 require ('include/sql_parse.php');
 require ('include/config.inc.php');
 require ('include/update.inc.php');
+
+// The defaults values
+$errors = '';
+$notes = '';
+$DFLT = array('cfg_d' => 'include', // The config file dir
+	'cfg_f' => 'include/config.inc.php', // The config file name
+	'alb_d' => 'albums', // The album dir
+	'upl_d' => 'userpics' // The uploaded pic dir
+	);
+
+// ---------------------------- AUTHENTICATION --------------------------- //
+//ADMIN_ACCESS is a constant that can be defined for users who can't retrieve any kind of password
+if(!defined(ADMIN_ACCESS) && !$_SESSION['auth']){
+	html_header("Coppermine - Upgrade");
+	html_logo();
+	if(!isset($_POST['method'])){
+		//first try to connect to the db to see if we can authenticate the admin
+		test_sql_connection();
+		if($errors != ''){
+			//we could not establish an sql connection, so update can't be done (and user can't be autenticated)
+			html_error($errors);
+		}else{
+			//print a box for admin autentication
+			html_auth_box('admin');
+		}
+	}elseif($_POST['method'] == 'admin'){
+		//try to autenticate the admin
+		test_sql_connection();
+		$sql = "SELECT user_active FROM {$CONFIG['TABLE_PREFIX']}users WHERE user_group = 1 AND user_name = '{$_POST['user']}' AND (user_password = '{$_POST['pass']}' OR user_password = '" . md5($_POST['pass']) . "')";
+		$result = @mysql_query($sql);
+		if(!@mysql_num_rows($result)){
+			//not authenticated, try mysql account details
+			html_auth_box('MySQL');
+		}else{
+			//authenticated, do the update
+			$_SESSION['auth'] = true;
+			start_update();
+		}
+	}else{
+		//try to autenticate via MySQL details (in configuration)
+		if($_POST['user'] == $CONFIG['dbuser'] && $_POST['pass'] == $CONFIG['dbpass']){
+			//authenticated, do the update
+			$_SESSION['auth'] = true;
+			start_update();
+		}
+	}
+	html_footer();
+}else{
+	$_SESSION['auth'] = true;
+	start_update();
+}
+
+// --------------------------------- MAIN CODE ----------------------------- //
+function start_update(){
+	// The updater
+	html_header("Coppermine - Upgrade");
+	html_logo();
+	
+	test_fs();
+	if ($errors != '')
+		html_prereq_errors($errors);
+	else {
+		test_sql_connection();
+		if ($errors == '') {
+			update_tables();
+			update_system_thumbs();
+		} else {
+			html_error($errors);
+		}
+		if ($errors == '') {
+			html_install_success($notes);
+			session_destroy();
+		} else {
+			html_error($errors);
+		}
+	}
+	
+	html_footer();
+}
 
 // ---------------------------- TEST PREREQUIRED --------------------------- //
 function test_fs()
@@ -205,39 +285,4 @@ function update_tables()
     }
     echo "</table>";
 }
-
-// --------------------------------- MAIN CODE ----------------------------- //
-// The defaults values
-$table_prefix = $_POST['table_prefix'];
-$DFLT = array('cfg_d' => 'include', // The config file dir
-    'cfg_f' => 'include/config.inc.php', // The config file name
-    'alb_d' => 'albums', // The album dir
-    'upl_d' => 'userpics' // The uploaded pic dir
-    );
-
-$errors = '';
-$notes = '';
-// The installer
-html_header("Coppermine - Upgrade");
-html_logo();
-
-test_fs();
-if ($errors != '')
-    html_prereq_errors($errors);
-else {
-    test_sql_connection();
-    if ($errors == '') {
-        update_tables();
-        update_system_thumbs();
-    } else {
-        html_error($errors);
-    }
-    if ($errors == '') {
-        html_install_success($notes);
-    } else {
-        html_error($errors);
-    }
-}
-
-html_footer();
 ?>

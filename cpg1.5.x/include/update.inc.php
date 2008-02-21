@@ -122,5 +122,33 @@ function html_footer()
 <?php
 }
 
+function html_auth_box($method){
+?>
+    <h2>Welcome to Coppermine update</h2>
+
+    <form name="cpgform" id="cpgform" method="post" action="update.php">
+    <h2 class="error">Authentication</h2>
+
+        <p class="tableb" align="center">
+		<?php if($method=='MySQL'){
+			echo 'Could not authenticate you via your admin details, if you think you entered the wrong details, click <a href=\'update.php\'>here</a> and try again.<br />Else, you can try to login with you MySQL account:';
+		}else{
+			echo 'Please provide your <b>admin</b> account details:';
+		}
+        ?>
+        </p>
+
+        <div class="input">
+        Username: <input type="text" name="user" /><br />
+        Password: <input type="password" name="pass" /><br />
+        <input type="hidden" name="method" value="<?php echo $method; ?>" /><br />
+        <input type="submit" value="Login" /><br /><br />
+        </div>
+
+        </form>
+
+<?php
+}
+
 
 ?>
