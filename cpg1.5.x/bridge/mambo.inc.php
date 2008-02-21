@@ -134,7 +134,8 @@ class cpg_udb extends core_udb {
 	// definition of how to extract an id and password hash from a cookie
 	function cookie_extraction()
 	{
-	    global $CONFIG;
+	    global $CONFIG, $raw_ip;
+		$superCage = Inspekt::makeSuperCage();
 
 		// Default anonymous values
 		$id = 0;
@@ -142,14 +143,17 @@ class cpg_udb extends core_udb {
 		$f = $this->field;
 		$mambo_version =& $this->mambo_version;
 
-		$sessioncookie = $_COOKIE['sessioncookie'];
+		//$sessioncookie = $_COOKIE['sessioncookie'];
+		$sessioncookie = $superCage->cookie->getRaw('sessioncookie');
 		
         // 4.5.1 and 4.5.2 compatibility
         if (($mambo_version->RELEASE == '4.5' && $mambo_version->DEV_LEVEL != '1.0.9') && $sessioncookie) {
-		    $sessioncookie .= $_SERVER['REMOTE_ADDR'];
+		    //$sessioncookie .= $_SERVER['REMOTE_ADDR'];
+			$sessioncookie .= $raw_ip];
 		}
 
-		$usercookie = $_COOKIE['usercookie'];
+		//$usercookie = $_COOKIE['usercookie'];
+		$usercookie = $superCage->cookie->getRaw('usercookie');
         $result = false;
 
         // Query database for session, if cookie exists
@@ -311,6 +315,7 @@ class cpg_udb extends core_udb {
 
 	/** create a guest session */
 	function create_session() {
+		global $raw_ip;
 	    // alias the Mambo version object
 	    $mambo_version =& $this->mambo_version;
 
@@ -320,7 +325,8 @@ class cpg_udb extends core_udb {
 
         // 4.5.1 and 4.5.2 compatibility
         if ($mambo_version->RELEASE == '4.5' && $mambo_version->DEV_LEVEL != '1.0.9') {
-		    $this->session_id .= $_SERVER['REMOTE_ADDR'];
+		    //$this->session_id .= $_SERVER['REMOTE_ADDR'];
+			$this->session_id .= $raw_ip;
 		}
 
         $sql =  'insert into '.$this->sessionstable.' (session_id, username, guest, time, gid) values ';

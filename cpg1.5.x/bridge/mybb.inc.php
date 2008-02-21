@@ -102,9 +102,12 @@ class cpg_udb extends core_udb {
 	// definition of how to extract id, name, group from a session cookie
 	function session_extraction()
 	{
-		if (!isset($_COOKIE['sid'])) return false;
+		$superCage = Inspekt::makeSuperCage();
+		//if (!isset($_COOKIE['sid'])) return false;
+		if (!$superCage->cookie->keyExists('sid')) return false;
 	
-		$this->sid = addslashes($_COOKIE['sid']);
+		//$this->sid = addslashes($_COOKIE['sid']);
+		$this->sid = $superCage->cookie->getEscaped('sid');
 		
 		if (!$this->sid) return false;
 		
@@ -122,13 +125,15 @@ class cpg_udb extends core_udb {
 	// definition of how to extract an id and password hash from a cookie
 	function cookie_extraction()
 	{
-		return  isset($_COOKIE['mybbuser']) ? array_map('addslashes', explode("_", $_COOKIE['mybbuser'], 2)) : false;
+		$superCage = Inspekt::makeSuperCage();
+		//return  isset($_COOKIE['mybbuser']) ? array_map('addslashes', explode("_", $_COOKIE['mybbuser'], 2)) : false;
+		return  $superCage->cookie->keyExists('mybbuser') ? array_map('addslashes', explode("_", $superCage->cookie->getRaw('mybbuser'), 2)) : false;
 	}
 	
 	// imported function
 	function getip() {
-
-		if($_SERVER['HTTP_X_FORWARDED_FOR'])
+		global $hdr_ip;
+		/*if($_SERVER['HTTP_X_FORWARDED_FOR'])
 		{
 			if(preg_match_all("#[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}#s", $_SERVER['HTTP_X_FORWARDED_FOR'], $addresses))
 			{
@@ -152,8 +157,8 @@ class cpg_udb extends core_udb {
 			{
 				$ip = $_SERVER['REMOTE_ADDR'];
 			}
-		}
-		return $ip;
+		}*/
+		return $hdr_ip;
 	}
 
 	// definition of actions required to convert a password from user database form to cookie form

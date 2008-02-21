@@ -115,10 +115,13 @@ class cpg_udb extends core_udb {
 	// definition of how to extract id, name, group from a session cookie
 	function session_extraction()
 	{
+		$superCage = Inspekt::makeSuperCage();
 		$row = false; //array('id' => 0, 'username' => 'Guest', 'status' => -1);
 		
-        if (isset($_COOKIE[$this->cookie_name])) {
-			list($username, $pass_hash) = unserialize($_COOKIE[$this->cookie_name]);
+        //if (isset($_COOKIE[$this->cookie_name])) {
+		//	list($username, $pass_hash) = unserialize($_COOKIE[$this->cookie_name]);
+		if ($superCage->cookie->keyExists($this->cookie_name)) {
+			list($username, $pass_hash) = unserialize($superCage->cookie->getRaw($this->cookie_name));
 			if (strcasecmp($username, 'Guest'))
 			{
 				$result = cpg_db_query("SELECT id, username, status+100 AS status FROM {$this->usertable} WHERE username = '$username' AND password = '$pass_hash'", $this->link_id);

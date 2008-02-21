@@ -94,8 +94,11 @@ class cpg_udb extends core_udb {
 	// definition of how to extract id, pass from session cookie
 	function session_extraction()
 	{
-		if (isset($_COOKIE['session_id'])) {
-			$session_id = addslashes($_COOKIE['session_id']);
+		$superCage = Inspekt::makeSuperCage();
+		//if (isset($_COOKIE['session_id'])) {
+		if ($superCage->cookie->keyExists('session_id')) {
+			//$session_id = addslashes($_COOKIE['session_id']);
+			$session_id = $superCage->cookie->getEscaped('session_id');
 
 			$sql = "SELECT member_id , member_login_key FROM {$this->sessionstable} AS s INNER JOIN {$this->usertable} AS u ON s.member_id = u.id WHERE s.id = '$session_id'";
 			
@@ -113,12 +116,16 @@ class cpg_udb extends core_udb {
 	// definition of how to extract an id and password hash from a cookie
 	function cookie_extraction()
 	{
+		$superCage = Inspekt::makeSuperCage();
 	    $id = 0;
 		$pass = '';
 		
-		if (isset($_COOKIE['member_id']) && isset($_COOKIE['pass_hash'])) {
-			$id = (int)$_COOKIE['member_id'];
-			$pass = substr(addslashes($_COOKIE['pass_hash']), 0, 32);
+		//if (isset($_COOKIE['member_id']) && isset($_COOKIE['pass_hash'])) {
+			//$id = (int)$_COOKIE['member_id'];
+			//$pass = substr(addslashes($_COOKIE['pass_hash']), 0, 32);
+		if ($superCage->cookie->keyExists('member_id') && $superCage->cookie->keyExists('pass_hash')) {
+			$id = $superCage->cookie->getInt('member_id');
+			$pass = substr($superCage->cookie->getEscaped('pass_hash'), 0, 32);
 		}
 
 		return ($id) ? array($id, $pass) : false;

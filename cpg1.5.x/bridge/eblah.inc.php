@@ -97,8 +97,12 @@ class cpg_udb extends core_udb {
 	// definition of how to extract an id and password hash from a cookie
 	function cookie_extraction()
 	{
-		if (isset($_COOKIE[$this->cookie_name . '_un']) && isset($_COOKIE[$this->cookie_name . '_pw'])){
-			return array($this->get_user_id($_COOKIE[$this->cookie_name . '_un']), $_COOKIE[$this->cookie_name . '_pw']);
+		$superCage = Inspekt::makeSuperCage();
+		//if (isset($_COOKIE[$this->cookie_name . '_un']) && isset($_COOKIE[$this->cookie_name . '_pw'])){
+		//	return array($this->get_user_id($_COOKIE[$this->cookie_name . '_un']), $_COOKIE[$this->cookie_name . '_pw']);
+		//}
+		if ($superCage->cookie->keyExists($this->cookie_name . '_un') && $superCage->cookie->keyExists($this->cookie_name . '_pw')){
+			return array($this->get_user_id($superCage->cookie->getRaw($this->cookie_name . '_un')), $superCage->cookie->getRaw($this->cookie_name . '_pw'));
 		}
 		
 		return false;

@@ -121,8 +121,11 @@ class cpg_udb extends core_udb {
 	// definition of how to extract id, name, group from a session cookie
 	function session_extraction()
 	{
-		if (isset($_COOKIE[$this->cookie_name . '_sid'])) {
-			$session_id = addslashes($_COOKIE[$this->cookie_name . '_sid']);
+		$superCage = Inspekt::makeSuperCage();
+		//if (isset($_COOKIE[$this->cookie_name . '_sid'])) {
+		//	$session_id = addslashes($_COOKIE[$this->cookie_name . '_sid']);
+		if ($superCage->cookie->keyExists($this->cookie_name . '_sid')) {
+			$session_id = $superCage->cookie->getEscaped($this->cookie_name . '_sid');
 			
 			$sql = "SELECT user_id, username, group_id FROM {$this->sessionstable} INNER JOIN {$this->usertable} ON session_user_id = user_id WHERE session_id='$session_id';"; // AND session_user_id ='$cookie_id'"; (Maybe session_id is unique enough?)
 			
@@ -140,11 +143,14 @@ class cpg_udb extends core_udb {
 	// definition of how to extract an id and password hash from a cookie
 	function cookie_extraction()
 	{
+		$superCage = Inspekt::makeSuperCage();
 	    $id = 0;
 		$pass = '';
 
-        if (isset($_COOKIE[$this->cookie_name.'_data'])){
-			$sessiondata = unserialize($_COOKIE[$this->cookie_name.'_data']);
+        //if (isset($_COOKIE[$this->cookie_name.'_data'])){
+		//	$sessiondata = unserialize($_COOKIE[$this->cookie_name.'_data']);
+		if ($superCage->cookie->keyExists($this->cookie_name.'_data')){
+			$sessiondata = unserialize($superCage->cookie->getRaw($this->cookie_name.'_data'));
 			$id = $sessiondata['userid'] > 1 ? intval($sessiondata['userid']) : 0;
             $pass = (isset($sessiondata['autologinid'])) ? addslashes($sessiondata['autologinid']) : '';
 		}
