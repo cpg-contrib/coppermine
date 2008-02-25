@@ -90,7 +90,7 @@
 
 
 <a name="versioncheck"></a><h2>The version check tool<a href="#versioncheck" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>Since the release of cpg1.3.2 Coppermine comes with an additional version checking tool to help you resolve issues with upgrades and updates easily. Except for specific files of coppermine that will only work for the version that it had been originally designed for, the versioncheck tool can be used with all versions starting from cpg1.2.1. To launch the versioncheck, simply add <tt>versioncheck.php</tt> to your browser's address bar after being logged into coppermine as admin (example: <tt>http://yourdomain.tld/your_coppermine_folder/versioncheck.php</tt>).  With version 1.5.x, you can run the versioncheck utility from the Admin Tools menu.</p>
+<p>Since the release of cpg1.3.2 Coppermine comes with an additional version checking tool to help you resolve issues with upgrades and updates easily. Except for specific files of coppermine that will only work for the version that it had been originally designed for, the versioncheck tool can be used with all versions starting from cpg1.2.1. To launch the versioncheck, simply add <tt>versioncheck.php</tt> to your browser's address bar after being logged into coppermine as admin (example: <tt>http://yourdomain.tld/your_coppermine_folder/versioncheck.php</tt>).  With version 1.5.x, you can run the versioncheck utility from the <a href="admin_menu.htm#admin_menu">Admin menu</a>.</p>
 
 
 <a name="versioncheck_description_start"></a><h3>What it does<a href="#versioncheck_description_start" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -102,66 +102,64 @@
 <p>This script goes through the files on your webserver and tries to determine if the local file versions on your webserver are the identical to the ones at the repository of http://coppermine-gallery.net. Files that do not match are displayed and are the files you should update as well.</p>
 <p>Compared to previous versions, the versioncheck page has been re-designed for cpg1.5.x both in terms of visuals as well as functionality.</p>
 
- 
-<p>It will show everything in <span style="color:red;font-weight:bold">red</span> that needs to be fixed. Entries in <span style="color:#FFBE00;font-weight:bold">yellow</span> need looking into. Entries in <span style="color:green;font-weight:bold">green</span> (or your theme's default font color) are OK and should be left alone. When an entry is <span style="color:red;font-weight:bold">red</span> or <span style="color:#FFBE00;font-weight:bold">yellow</span>, a help icon will appear next to it. Click it to find out more. Hovering with your mouse over an item will display additional information as well (tooltip).</p>
-<p>The versioncheck screen has several sections:</p>
-<ul>
-<li>Section 1 explains what the versioncheck tool can be used for</li>
-<li>Section 2 (&quot;<a href="#versioncheck_options_start">Options</a>&quot;) displays the options you can chose</li>
-<li>Section 3 will display a warning if coppermine was not able to connect to the online repository (where the most recent version data is being stored). The script will default to a local copy of the repository file. If connection to the online repository was succesfull, there will of course be no error message (no section 3).</li>
-<li>Section 4 will show what version of coppermine you actually use. The versioncheck script draws this piece of information from the file <em>include/init.inc.php</em> - if you haven't replaced your copy of this file with the new version during upgrade, your old (outdated) version will appear in this section.</li>
-<li>Section 5 will show the core of versioncheck's file: the version comparison. The script will loop through all files that are suppossed to exist (based on repository data) and compare them to the files you actually have on your webserver.</li>
-<li>Section 6 will display a summary of the files and folders checked</li>
-</ul>
+<h3>First run</h3>
+<p>When run for the first time, you will see the <a href"versioncheck_options_start">option</a> screen first. For a start, default options should be OK, so just submit the form. The script will then determine the coppermine version you're currently running, an try to look up the XML file on the coppermine repository that corresponds to your version. If successfull, it will compare all files that exist on your server against the most recent files that are recommended to use (trying to obtain that data from the repository). Subsequently, you should see a list of folders and files that are suppossed to exist on your server and an explanation if the file versions you have are the most recent. For details how to interpret the output, read on.</p>
 <a name="versioncheck_description_end"></a>
 
+
+
 <a name="versioncheck_options_start"></a><h3>Options<a href="#versioncheck_options_start" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>The options screen lets you configure the versioncheck, or rather what is being displayed. The options aren't saved anywhere, so you will have to adjust them each time you run versioncheck. The default options should be OK for most users - only change them if you have good reasons to do so.</p>
-<img src="pics/versioncheck_options.gif" width="600" height="113" border="0" alt="" title="" />
+<p>There is a small number of options available on the versioncheck page that should be pretty self-explanatory:</p>
 <ul>
-<li><em>show optional folders/files</em><br />Uncheck this to hide files that are tagged as &quot;optional&quot; (display mandatory files only)</li>
-<li><em>show mandatory files</em><br />Uncheck this to hide files that are tagged as &quot;mandatory&quot; (Note disabling both optional and mandatory files will of course result in no files being displayed at all)</li>
-<li><em>show additional information</em><br />Toggles whether informaton about the installed coppermine version and the repository connection status are being displayed. Uncheck if your're making screenshots to save space and reduce dimensions.</li>
-<li><em>show file versions</em><br />Toggles wether additional version information of a file that belongs to the release version you're using should be displayed. When viewing the source code of a coppermine file, the file version is the number that looks like this: <tt>Id: index.htm,v 1.66 2004/08/26 04:42:19 gaugau Exp</tt> (in this example the file version is 1.66)</li>
-<li><em>show folders/files with errors only</em><br />Toggles display of files that don't have errors. Enable this option if you want to make a screenshot and ask for support on the coppermine forum.</li>
-<li><em>coppermine is installed in the webroot</em><br />Experimental: if all your files are being displayed as &quot;non-existant&quot;, you probably have installed coppermine in your webroot, or you are using subdomains. Check this option only if you are experiencing problems. This option hasn't been tested thoroughly yet, there's no guarantee it will work on your setup.</li>
-<li><em>try connecting to the online repository</em><br />Toggles wether versioncheck should try to connect to the online repository (checked by default). Only uncheck this option if you're sure you can not access the online repository because of your server setup and you want to reduce the time the script needs to execute a bit.</li>
-<li><em>show folder permissions</em><br />Toggles the option to show/hide the read/write permissions of a folder.</li>
-<li><em>don't display web svn link</em> / <em>display web svn link to stable branch</em> / <em>display web svn link to devel branch</em><br />Toggles wether to show an additional column that contains a link to the web svn. Only recommended if your cpg version is OK (<span style="color:green;font-weight:bold">green</span>), but your file version appears to be outdated. You can then connect to the web svn to get a more recent version of your file. Only recommended if you know what you're doing (or you have been told to do so from a supporter from the coppermine support board).</li>
-<li><em>show condensed ouput (for easier screenshots)</em><br />When checked, this options reduces the width of the version comparison columns. This will allow you to create screenshots with reduced dimensions and size.</li>
+    <li><strong>Display output</strong><br />
+    Determines wether the full output with formatting is used, or only a reduced palin-text output
+    <ul>
+        <li><em>Full-screen</em><br />
+        Use this by default. It will display as much detail as possible and has a nicer layout</li>
+        <li><em>Text-only</em><br />
+        If a supporter asks you to post your versioncheck-output, switch to this options, so you can easily copy the output and paste it into your posting on the coppermine support board. Only do so if a supporter explicitely asks for it! Another potential use for the text-only output is resources-consumption: if you suffer from time-outs, try using the plain-text option, as it consumes slightly less resources.</li>
+    </ul>
+    </li>
+    <li><strong>Only show potential errors</strong><br />
+    If you have no idea what all the output is suppossed to mean or if a supporter asks for it, you might want to tick this option to only display the folders/files that have issues.</li>
+    <li><strong>Do not connect to the online repository</strong><br />
+    If you check this option, the versioncheck script will not attempt to connect to the online repository and use the local XML file instead. Only use this option if connecting to the online repository doesn't work for you (e.g. if you're on an intranet and your server doesn't have internet access). The main drawback of not connecting to the online repository is the fact that you won't know about possible updates and most recent releases, so you better find the cause for your inability to connect to the online repository.</li>
 </ul>
+<p>The options screen lets you configure the versioncheck, or rather what is being displayed. The options aren't saved anywhere, so you will have to adjust them each time you run versioncheck. The default options should be OK for most users - only change them if you have good reasons to do so.</p>
 <a name="versioncheck_options_end"></a>
 
+<h3>Things that could go wrong</h3>
+
+ 
 <a name="versioncheck_comparison_start"></a><h3>Version comparison<a href="#versioncheck_comparison_start" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>There is a lot of information packed into a small space. Here's an example of a possible output and what the output means:</p>  <br />
-<img src="pics/versioncheck_comparison.gif" width="411" height="279" border="0" alt="" title="version comparison" />
+<p>There is a lot of information packed into a small space. Here's an example of a possible output and what the output means:</p>
 <ul>
-<li>The column &quot;icon&quot; shows if the entry is a folder or a file. Clicking on the icon takes you to the page, e.g. clicking on util.php will take you to the &quot;admin tools page&quot; (although not all coppermine files can be opened directly by running them in the browser).<p>In above example, rows &quot;A&quot; to &quot;E&quot; are folders, rows &quot;F&quot; to &quot;K&quot; are files.</p></li>
-<li>The column &quot;folder/file&quot; holds the relative path from your coppermine root to the folder/file in question.<br />
-<p>If an entry is in your default font color, it exists (in above example, all rows but &quot;G&quot; and &quot;H&quot;).<br />
-<p>If the entry is in <span style="color:#FFBE00;font-weight:bold">yellow</span> (row &quot;G&quot;), the corresponding folder/file doesn't exist on your webserver, but it is only considered to be optional (e.g. a language file that comes with the coppermine package that you don't want to use can be deleted from the webserver. It will then be shown in <span style="color:#FFBE00;font-weight:bold">yellow</span>, as it's only optional to have it). It's up to you if you need it.</p>
-<p>If the entry is in <span style="color:red;font-weight:bold">red</span> (row &quot;H&quot;), the folder/file in question doesn't exist on your webserver, but it is mandatory to have it. You should upload the file from your coppermine package to your webserver. Only leave it as-is if you really know what you're doing.</p></li>
-<li>The column &quot;writable&quot; shows information if the folder in question is writable, and whether this is correct or not. The write permissions for files are not being displayed, as this would slow down the script considerably. Usually, there are icons that show the writable status of your folder (if you have the icon resources on your webspace). Optionally, a plain text message in brackets might be visible (if you don't have the icon resources).
-<ul>
-<li>A white pencil with a <span style="color:green;font-weight:bold">green</span> &quot;x&quot; indicates that the folder is not writable and is isn't suppossed to be writable - everything is OK then (row &quot;A&quot;)</li>
-<li>A <span style="color:green;font-weight:bold">green</span> pencil indicates that the folder is writable and it is suppossed to be writable as well - everything is OK then (row &quot;D&quot;</li>
-<li>A white pencil with a <span style="color:red;font-weight:bold">red</span> &quot;x&quot; indicates that the folder is not writable, although it should be (row &quot;C&quot;). You should change write permissions (CHMOD) for this folder and everything within it, usually using your <acronym title="File Transfer Protocol">FTP</acronym> software.</li>
-<li>A <span style="color:red;font-weight:bold">red</span> pencil indicates that the folder is writable, but it shouldn't be (row &quot;E&quot;). Unless absolutely necessary, leaving files writable could be a security risk. Where possible, you should change permissions for this folder and everything within it to read/execute only.</li>
+    <li><strong>Path</strong><br />
+    The folder- and file name</li>
+    <li><strong>Missing</strong><br />
+    If nothing is being displayed in this column, the folder/file exists on your server. If this is not the case (i.e. the folder/file does not exist on your server or is inaccessible), the column &quot;Missng&quot; will be populated with the result of this first, basic check.<br />
+    Note: there are some folders/files that are mandatory to have; others are optional. Anyway, if you perform a fresh install or upgrade, you should make sure to upload all folders/files. You can then later delete some of the optional files if you want, although this doesn't save much webspace.<br />
+    If a file is missing, all other steps that are next in the loop will not be performed - a missing file can't have a version number or similar. If versioncheck complains about missing files, use your FTP app to review if they are actually missing or inaccessible. If they are missing, re-upload them. If they are inaccessible, you will have to <a href="install_permissions.htm#permissions">assign the needed permissions</a>.</li>
+    <li><strong>Permissions</strong><br />
+    Displays the permissions assigned to the folder/file. For some folders, write permissions are needed, while for others read permissions are enough. If the permission level of a folder is good, the result will be displayed together with a remark (in brackets) like &quot;OK&quot; (may differ in your language). Using a script like versioncheck to actually check permissions on folders works OK, while it may or may not work very well on files. This being said, you should mostly be concerned about folders that don't have sufficient permissions. If files are being reported to have an improper set of permissions assigned, don't be to alarmed if the rest of your gallery is working just fine.<br />
+    If permissions on folders need reviewing, read up the <a href="install_permissions.htm#permissions">permissions section of the docs</a> and do as suggested there.</li>
+    <li><strong>Version</strong><br />
+    The version of the file on your server. If it is identical to the version indicated in the repository, you should see an &quot;OK&quot;. If you're running an oudated version on your server you should get a fresh package and perform an upgrade.<br />
+    Note: folders don't have version numbers, nor do binary files (like graphics) have one, that's why the column &quot;Version&quot; displays <tt class="code" title="not applicable">n/a</tt> for folders and binary files. Only files that contain textual content can have a version number, so don't be alarmed by the many &quot;n/a (OK)&quot;-messages.</li>
+    <li><strong>Revision</strong><br />
+    The revision of the file on your server. If it is identical to the revision indicated in the repository, you should see an &quot;OK&quot;. If you're running an oudated revision on your server you should get a fresh package and perform an upgrade.<br />
+    Revisions are related to the versions - usually, if your version is OK, your revision should be OK as well. Only if you perform checkouts from the subversion repository, the revisions may &quot;act up&quot;.<br />
+    The same thing that applies to version numbers applies to revisions as well: only textual files can have revision numbers - folders and binary files don't have a revision number.</li>
+    <li><strong>Modified</strong><br />
+    tbc</li>
+    <li><strong>Comment</strong><br />
+    tbc</li>
+    <li><strong>Repository link</strong><br />
+    tbc</li>
+    <li><strong>Help</strong><br />Feature not done yet - there currently is no help available. Will be added later (hopefully).</li>
 </ul>
-</li>
-<li>A question mark in a yellow box (help icon) indicates that there is additional information available. Click on the icon to display the pop-up window with this information.</li>
-<li>The column &quot;cpg version&quot; displays what coppermine package your file on your webserver is from, and what version it should be from. The data is being extracted from the header of the file, that's why folders are shown as &quot;n/a&quot; - they have no header information containing their coppermine version (rows &quot;A&quot; to &quot;E&quot;).
-<p>Files that contain header information are being displayed with your file version and the cpg version of the file in the repository, separated with a slash. It is possible that a file version may differ from the version of your whole package - this doesn't matter as long as both your version and the repository versions match (the are displayed in <span style="color:green;font-weight:bold">green</span>) - in above example: rows &quot;F&quot;, &quot;J&quot; and &quot;K&quot;.</p>
-<p>Of course, version numbers from files that don't exist can't be extracted, that's why rows &quot;G&quot; and &quot;H&quot; have a dash as cpg version. If your cpg version is lower than the repository version, your version is  being displayed in <span style="color:red;font-weight:bold">red</span>: if this is the case, you probably haven't successfully uploaded the proper file of files from the coppermine package to your webserver (replacing files that may have already existed on your webserver) - you should do so now (row &quot;I&quot;).</p>
-<p>If your local version is being displayed in <span style="color:#FFBE00;font-weight:bold">yellow</span>, you are using a file that belongs to a higher coppermine version than the rest of your files - you probably downloaded a file from the devel branch: remember that using devel files go unsupported, do so on your own risk (if you know what you're doing). If most or all of your files are being displayed in <span style="color:#FFBE00;font-weight:bold">yellow</span>, you probably have upgraded some files, but you forgot to upgrade the file &quot;include/init.inc.php&quot; (that holds the version info for your install). Make sure to upload <strong>all</strong> files  from the package to your server.</p>
-</li>
-<li>
-<p>The column &quot;file version&quot; holds the individual file's version that get's increased during development of a new coppermine version (each time a developer modifies a certain file, the version number increases by one). As folders can't contain such version numbers, they are again labelled as &quot;n/a&quot; (rows &quot;A&quot; to &quot;E&quot;); the same applies to files that don't exist, that's why their file version is displayed as dash (rows &quot;G&quot; and &quot;H&quot;). Also the file version is irrelevant when comparing files from different coppermine packages, that's why row &quot;I&quot; has a dash as well.</p>
-<p>The coloring scheme is similar to the cpg version system: <span style="color:green;font-weight:bold">green</span> means &quot;everything is OK&quot;, <span style="color:red;font-weight:bold">red</span> means &quot;you're using an outdated version&quot; and <span style="color:#FFBE00;font-weight:bold">yellow</span> means &quot;you're using a newer version than you're actually suppossed to.</p>
-<p>The difference between the cpg version and the file version columns is indicative of the way you should obtain the file that you need to replace the existing one on your server: a <span style="color:red;font-weight:bold">red</span> entry in the cpg version column means the file on your server hasn't been replaced with the file from the coppermine package; a <span style="color:red;font-weight:bold">red</span> entry in the file version column (row &quot;J&quot;) usually means that there have been updates to a certain file after the release of the package - you should either check if there is a newer package available or get the most recent file from the <acronym title="Subversion">SVN</acronym> (enable the web svn link column in the versioncheck <a href="#versioncheck_options_start">options</a>).</p>
-</li>
-<li>The column &quot;web svn&quot; (off by default) links to the corresponding file in the <acronym title="Subversion">SVN</acronym>. You're recommended to use this only if there appears to be a newer version in the svn than your coppermine package has and you know what you're doing.</li>
-</ul>
+
+
 <a name="versioncheck_comparison_end"></a>
 <a name="versioncheck_end"></a>
 
