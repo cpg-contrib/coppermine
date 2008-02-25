@@ -79,6 +79,8 @@ INSERT INTO CPG_config VALUES ('alb_desc_thumb', '1');
 INSERT INTO CPG_config VALUES ('thumbnail_to_fullsize', '0');
 INSERT INTO CPG_config VALUES ('default_sort_order', 'na');
 INSERT INTO CPG_config VALUES ('min_votes_for_rating', '1');
+INSERT INTO CPG_config VALUES ('rating_stars_amount', '5');
+INSERT INTO CPG_config VALUES ('old_style_rating', '0');
 INSERT INTO CPG_config VALUES ('picture_table_width', '600');
 INSERT INTO CPG_config VALUES ('display_pic_info', '0');
 INSERT INTO CPG_config VALUES ('picinfo_movie_download_link', '1');

@@ -477,6 +477,20 @@ $config_data = array(
       'type' => 'checkbox',
       'help_link' => 'f=configuration.htm&amp;as=admin_image_transparent_overlay_start&amp;ae=admin_image_transparent_overlay_end',
     ),
+	'old_style_rating' => array(
+	  'type' => 'checkbox',
+	  'help_link' => 'f=configuration.htm&amp;as=admin_image_old_style_rating_start&amp;ae=admin_image_old_style_rating_end',
+	  'end_description' => '('.$lang_admin_php['old_style_rating_extra'].')',
+	),
+	'rating_stars_amount' => array(
+      'type' => 'textfield',
+      'help_link' => 'f=configuration.htm&amp;as=admin_image_rating_stars_amount_start&amp;ae=admin_image_rating_stars_amount_end',
+      'regex' => '^[0-9]{0,2}',
+      'size' => '3',
+      'width' => '3',
+	  'maxlength' => '2',
+	  'default_value' => '5',
+    ),
   ),
   'comment_settings' => array(
     'filter_bad_words' => array(

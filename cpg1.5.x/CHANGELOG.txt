@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-02-25 [A] Voting is now customizable in max- and min rate + ajax enabled {SaWey}
 2008-02-21 [O] Inspektified all bridge files {SaWey}
 2008-02-21 [B] Fixed function cpgGetScriptNameParams that has been Inspektified improperly (did not return file names at all) {GauGau}
 2008-02-21 [A] Added basic authentication to update script {SaWey}

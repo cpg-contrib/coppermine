@@ -38,12 +38,6 @@
 // The following terms can be defined in theme.php
 // ('THEME_HAS_RATING_GRAPHICS', 1) : The location for the ratings graphics will
 //    be directed to the themes images folder.
-//    RUBBISH   : images/rating0.gif
-//    POOR      : images/rating1.gif
-//    FAIR      : images/rating2.gif
-//    GOOD      : images/rating3.gif
-//    EXCELLENT : images/rating4.gif
-//    GREAT     : images/rating5.gif
 //('THEME_HAS_NAVBAR_GRAPHICS', 1); : The location for the navbar graphics will
 //    be directed to the themes images folder.
 //    Back to thumbnails   : images/thumbnails.gif
@@ -894,19 +888,14 @@ EOT;
 $template_image_rating = <<<EOT
 <table align="center" width="{WIDTH}" cellspacing="1" cellpadding="0" class="maintable">
         <tr>
-                <td colspan="6" class="tableh2_compact">{TITLE} {VOTES}</td>
+                <td colspan="6" class="tableh2_compact" id="voting_title"><b>{TITLE}</b> {VOTES}</td>
         </tr>
-        <tr>
-                <td class="tableb tableb_alternate tableb tableb_alternate_alternate_compact" width="17%" align="center"><a href="{RATE0}" title="{RUBBISH}" rel="nofollow"><img src="{LOCATION}images/rating0.gif" border="0" alt="{RUBBISH}" /><br /></a></td>
-                <td class="tableb tableb_alternate tableb tableb_alternate_alternate_compact" width="17%" align="center"><a href="{RATE1}" title="{POOR}" rel="nofollow"><img src="{LOCATION}images/rating1.gif" border="0" alt="{POOR}" /><br /></a></td>
-                <td class="tableb tableb_alternate tableb tableb_alternate_alternate_compact" width="17%" align="center"><a href="{RATE2}" title="{FAIR}" rel="nofollow"><img src="{LOCATION}images/rating2.gif" border="0" alt="{FAIR}" /><br /></a></td>
-                <td class="tableb tableb_alternate tableb tableb_alternate_alternate_compact" width="17%" align="center"><a href="{RATE3}" title="{GOOD}" rel="nofollow"><img src="{LOCATION}images/rating3.gif" border="0" alt="{GOOD}" /><br /></a></td>
-                <td class="tableb tableb_alternate tableb tableb_alternate_alternate_compact" width="17%" align="center"><a href="{RATE4}" title="{EXCELLENT}" rel="nofollow"><img src="{LOCATION}images/rating4.gif" border="0" alt="{EXCELLENT}" /><br /></a></td>
-                <td class="tableb tableb_alternate tableb tableb_alternate_alternate_compact" width="17%" align="center"><a href="{RATE5}" title="{GREAT}" rel="nofollow"><img src="{LOCATION}images/rating5.gif" border="0" alt="{GREAT}" /><br /></a></td>
+        <tr  id="rating_stars">
+				{RATING}
         </tr>
-        <noscript>
+		<noscript>
         <tr>
-          <td class="tableb tableb_alternate tableb tableb_alternate_alternate_compact" colspan="6" align="center">{JS_WARNING}</td>
+          <td class="tableb_compact" colspan="6" align="center">{JS_WARNING}</td>
         </tr>
         </noscript>
 </table>
@@ -2950,41 +2939,84 @@ function theme_html_img_nav_menu() {
 ******************************************************************************/
 function theme_html_rating_box()
 {
-    global $CONFIG, $CURRENT_PIC_DATA, $CURRENT_ALBUM_DATA, $THEME_DIR;
+    global $CONFIG, $CURRENT_PIC_DATA, $CURRENT_ALBUM_DATA, $THEME_DIR, $USER_DATA, $USER;
     global $template_image_rating, $lang_rate_pic;
 
-    if (!(USER_CAN_RATE_PICTURES && $CURRENT_ALBUM_DATA['votes'] == 'YES')) return '';
+    if (!(USER_CAN_RATE_PICTURES && $CURRENT_ALBUM_DATA['votes'] == 'YES')){
+		return '';
+	}else{
+		//check if the users already voted or if this user is the owner
+		$user_md5_id = USER_ID ? md5(USER_ID) : $USER['ID'];
+		$result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_VOTES']} WHERE pic_id={$CURRENT_PIC_DATA['pid']} AND user_md5_id='$user_md5_id'");
+		$user_can_vote = 'false';
+		if($CURRENT_PIC_DATA['owner_id'] == $USER_DATA['user_id'] && $USER_DATA['user_id'] != 0){
+			//user is owner
+			$rate_title = $lang_rate_pic['forbidden'];
+		}elseif(!mysql_num_rows($result)){
+			//user hasn't voted yet, show voting things
+			$rate_title = $lang_rate_pic['rate_this_pic'];
+			$user_can_vote = 'true';	
+		}else{
+			//user has voted
+			$rate_title = $lang_rate_pic['already_voted'];
+		}
+		$rating_stars_amount = ($CONFIG['old_style_rating']) ? 5 : $CONFIG['rating_stars_amount'];
+		$votes = $CURRENT_PIC_DATA['votes'] ? sprintf($lang_rate_pic['rating'], round(($CURRENT_PIC_DATA['pic_rating'] / 2000) / (5/$rating_stars_amount), 1), $rating_stars_amount, $CURRENT_PIC_DATA['votes']) : $lang_rate_pic['no_votes'];
+		$pid = $CURRENT_PIC_DATA['pid'];
+	
+		if (defined('THEME_HAS_RATING_GRAPHICS')) {
+			$location= $THEME_DIR;
+		} else {
+			$location= '';
+		}
+		
+		$superCage = Inspekt::makeSuperCage();
+		$client_id = md5($superCage->server->getRaw('HTTP_USER_AGENT').$superCage->server->getRaw('SERVER_PROTOCOL').$CONFIG['site_url']);
+		$vote_id = base64_encode(md5($superCage->cookie->getRaw($client_id) . $client_id). '-|-' . $USER_DATA['user_id']);
+		$extra_info = '<span style="display:none" id="stars_amount">' . $rating_stars_amount . '</span>';
+		$extra_info .= '<span style="display:none" id="vote_id">' . $vote_id . '</span>';
+		
+		if($CONFIG['old_style_rating']){
+			//use old style rating
+			$start_td = '<td class="tableb_compact" width="17%" align="center">';
+			$end_td = '</td>';
+			$empty_star = '<img style="cursor:pointer" id="' . $pid . '_0" title="0" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['rubbish'] . '" onclick="rate(this, 0, \'' . $location . '\')" />';
+			$rating_images = $start_td . $empty_star . $empty_star . $empty_star . $empty_star . $empty_star . $end_td . "\n";
+			
+			$empty_star = '<img style="cursor:pointer" id="' . $pid . '_1" title="1" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['poor'] . '" onclick="rate(this, 1, \'' . $location . '\')" />';
+			$full_star = '<img style="cursor:pointer" id="' . $pid . '_1" title="1" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['poor'] . '" onclick="rate(this, 1, \'' . $location . '\')" />';
+			$rating_images .= $start_td . $full_star . $empty_star . $empty_star . $empty_star . $empty_star . $end_td . "\n";
+			
+			$empty_star = '<img style="cursor:pointer" id="' . $pid . '_2" title="2" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['fair'] . '" onclick="rate(this, 2, \'' . $location . '\')" />';
+			$full_star = '<img style="cursor:pointer" id="' . $pid . '_2" title="2" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['fair'] . '" onclick="rate(this, 2, \'' . $location . '\')" />';
+			$rating_images .= $start_td . $full_star . $full_star . $empty_star . $empty_star . $empty_star . $end_td . "\n";
+			
+			$empty_star = '<img style="cursor:pointer" id="' . $pid . '_3" title="3" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['good'] . '" onclick="rate(this, 3, \'' . $location . '\')" />';
+			$full_star = '<img style="cursor:pointer" id="' . $pid . '_3" title="3" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['good'] . '" onclick="rate(this, 3, \'' . $location . '\')" />';
+			$rating_images .= $start_td . $full_star . $full_star . $full_star . $empty_star . $empty_star . $end_td . "\n";
+			
+			$empty_star = '<img style="cursor:pointer" id="' . $pid . '_4" title="4" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['excellent'] . '" onclick="rate(this, 4, \'' . $location . '\')" />';
+			$full_star = '<img style="cursor:pointer" id="' . $pid . '_4" title="4" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['excellent'] . '" onclick="rate(this, 4, \'' . $location . '\')" />';
+			$rating_images .= $start_td . $full_star . $full_star . $full_star . $full_star . $empty_star . $end_td . "\n";
+			
+			$full_star = '<img style="cursor:pointer" id="' . $pid . '_5" title="5" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['great'] . '" onclick="rate(this, 5, \'' . $location . '\')" />';
+			$rating_images .= $start_td . $full_star . $full_star . $full_star . $full_star . $full_star . $end_td . "\n";
+		}else{
+			//use new rating
+			$rating_images = '<td class="tableb_compact"><script type="text/javascript" language="javascript">displayStars(' . round(($CURRENT_PIC_DATA['pic_rating'] / 2000) / (5/$rating_stars_amount), 0) . ', ' . $pid . ', "' . $location . '", ' . $user_can_vote . ', "' . $lang_rate_pic['rollover_to_rate'] . '");</script></td>';
+		}
 
-    $votes = $CURRENT_PIC_DATA['votes'] ? sprintf($lang_rate_pic['rating'], round($CURRENT_PIC_DATA['pic_rating'] / 2000, 1), $CURRENT_PIC_DATA['votes']) : $lang_rate_pic['no_votes'];
-    $pid = $CURRENT_PIC_DATA['pid'];
-
-    if (defined('THEME_HAS_RATING_GRAPHICS')) {
-        $location= $THEME_DIR;
-    } else {
-        $location= '';
-    }
-
-    $params = array('{TITLE}' => $lang_rate_pic['rate_this_pic'],
-        '{VOTES}' => $votes,
-        '{RATE0}' => "javascript:redirect('ratepic.php?pic=$pid&amp;rate=0');",
-        '{RATE1}' => "javascript:redirect('ratepic.php?pic=$pid&amp;rate=1')",
-        '{RATE2}' => "javascript:redirect('ratepic.php?pic=$pid&amp;rate=2')",
-        '{RATE3}' => "javascript:redirect('ratepic.php?pic=$pid&amp;rate=3')",
-        '{RATE4}' => "javascript:redirect('ratepic.php?pic=$pid&amp;rate=4')",
-        '{RATE5}' => "javascript:redirect('ratepic.php?pic=$pid&amp;rate=5')",
-        '{RUBBISH}' => $lang_rate_pic['rubbish'],
-        '{POOR}' => $lang_rate_pic['poor'],
-        '{FAIR}' => $lang_rate_pic['fair'],
-        '{GOOD}' => $lang_rate_pic['good'],
-        '{EXCELLENT}' => $lang_rate_pic['excellent'],
-        '{GREAT}' => $lang_rate_pic['great'],
-        '{WIDTH}' => $CONFIG['picture_table_width'],
-        '{LOCATION}' => $location,        //theme dir or default images directory
-        '{JS_WARNING}' => $lang_rate_pic['js_warning'],
-        );
-
-    return template_eval($template_image_rating, $params);
-}
+		$params = array(
+			'{TITLE}' => $rate_title,
+			'{RATING}' => $extra_info . $rating_images,
+			'{VOTES}' => $votes,
+			'{WIDTH}' => $CONFIG['picture_table_width'],
+			'{JS_WARNING}' => $lang_rate_pic['js_warning'],
+			);
+			
+		return template_eval($template_image_rating, $params);
+	}
+} 
 /******************************************************************************
 ** Section <<<theme_html_rating_box>>> - END
 ******************************************************************************/

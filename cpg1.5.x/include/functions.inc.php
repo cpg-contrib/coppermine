@@ -1020,7 +1020,19 @@ function build_caption(&$rowset,$must_have=array())
             } else {
                 $prefix= '';
             }
-            $caption .= "<span class=\"thumb_caption\">".'<img src="'.$prefix.'images/rating'.round($row['pic_rating']/2000).'.gif" alt=""/>'.'<br />'.sprintf($lang_get_pic_data['n_votes'], $row['votes']).'</span>';
+			//calculate required amount of stars in picinfo
+			$i = 1;
+			$rating = round(($row['pic_rating'] / 2000) / (5/$CONFIG['rating_stars_amount']));
+			$rating_images = '';
+			while($i <= $CONFIG['rating_stars_amount']){
+				$i++;
+				if($i <= $rating){
+					$rating_images .= '<img src="' . $prefix . 'images/rate_full.gif" alt="' . $rating . '"/>';
+				}else{
+					$rating_images .= '<img src="' . $prefix . 'images/rate_empty.gif" alt="' . $rating . '"/>';
+				}
+			}
+            $caption .= "<span class=\"thumb_caption\">". $rating_images .'<br />'.sprintf($lang_get_pic_data['n_votes'], $row['votes']).'</span>';
         }
         if (in_array('mtime',$must_have)) {
                 $caption .= "<span class=\"thumb_caption\">".localised_date($row['mtime'], $lasthit_date_fmt);

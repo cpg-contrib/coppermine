@@ -300,7 +300,7 @@ $lang_img_nav_bar = array(
 $lang_rate_pic = array(
   'rate_this_pic' => 'Rate this file ',
   'no_votes' => '(No vote yet)',
-  'rating' => '(current rating : %s / 5 with %s votes)',
+  'rating' => '(current rating : %s / %s with %s votes)',
   'rubbish' => 'Rubbish',
   'poor' => 'Poor',
   'fair' => 'Fair',
@@ -308,6 +308,9 @@ $lang_rate_pic = array(
   'excellent' => 'Excellent',
   'great' => 'Great',
   'js_warning' => 'Javascript must be enabled in order to vote', // cpg1.5.x
+  'already_voted' => 'You already voted for this pic.', // cpg1.5.x
+  'forbidden' => 'You can not rate your own files.', // cpg1.5.x
+  'rollover_to_rate' => 'Rollover to rate this picture', // cpg1.5.x
 );
 
 // ------------------------------------------------------------------------- //
@@ -840,6 +843,9 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'not_recommended' =>   'not recommended', // cpg1.5
   'recommended' =>   'recommended', // cpg1.5
   'transparent_overlay' =>   'Insert a transparent overlay to minimize image theft', // cpg1.5
+  'old_style_rating' => 'Go back to old rating system', // cpg1.5
+  'old_style_rating_extra' => 'This will disable the amount of rating stars to be used', //cpg1.5
+  'rating_stars_amount' => 'Amount of rating stars to be used to vote', // cpg1.5
   'filter_bad_words' =>   'Filter bad words in comments', // cpg1.5
   'enable_smilies' =>   'Allow smiles in comments', // cpg1.5
   'disable_comment_flood_protect' =>   'Allow several consecutive comments on one file from the same user', // cpg1.5
@@ -2568,7 +2574,6 @@ if (defined('INSTALL_PHP')) $lang_install = array(
   'unable_write_config' => 'Unable to write config file',
   'user_err' => 'Admin username must only contain alphanumeric characters and can\'t be empty.',
   'username' => 'Username',
-  'version_check' => 'The installation files have been checked and are ok, <br />please proceed to the next step.',
   'your_admin_account' => 'Your admin account',
   'no_cookie' => 'Your browser did not accept our cookie (although it was a sweet one). It is recommended to accept cookies.',
   'no_javascript' => 'Your browser doesn\'t seem to have javascript enabled, it is highly recommended to enable it.',

@@ -273,7 +273,14 @@ if ($type == 'vote' && $pid != '') { // type == vote start
           $totalVotesSum = $totalVotesSum + $row['totalVotes'];
           $loopCounter = 0;
     }
-    for ($i=0; $i<6;$i++){
+	
+	if (defined('THEME_HAS_RATING_GRAPHICS')) {
+		$prefix = $THEME_DIR;
+	} else {
+		$prefix = '';
+	}
+
+    for ($i = 1; $i <= $CONFIG['rating_stars_amount']; $i++){
         $voteArr[$i] = isset($voteArr[$i]) ? $voteArr[$i] : 0;
         if ($loop_counter == 0) {
             $row_style_class = 'tableb';
@@ -284,10 +291,19 @@ if ($type == 'vote' && $pid != '') { // type == vote start
         if ($loop_counter > 1) {
             $loop_counter = 0;
         }
+		//build the rating stars
+		$rating_images = '';
+		for($i2 = 1; $i2 <= $CONFIG['rating_stars_amount']; $i2++){
+			if($i2 <= $i){
+				$rating_images .= '<img src="' . $prefix . 'images/rate_full.gif" align="left" alt="' . $rating . '"/>';
+			}else{
+				$rating_images .= '<img src="' . $prefix . 'images/rate_empty.gif" align="left" alt="' . $rating . '"/>';
+			}
+		}
         echo <<<EOT
         <tr>
             <td class="{$row_style_class}">
-                <img src="images/rating$i.gif" />
+                $rating_images
             </td>
             <td class="{$row_style_class}">
 EOT;
