@@ -333,7 +333,7 @@ function cpg_versioncheckPopulateArray($file_data_array) {
 
 
 function cpg_versioncheckCreateXml($file_data_array) {
-  global $textFileExtensions_array, $lang_versioncheck_php;
+  global $textFileExtensions_array, $lang_versioncheck_php, $displayOption_array;
   $newLine = "\r\n";
   $loopCounter = 0;
   print <<< EOT

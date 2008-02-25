@@ -336,7 +336,7 @@
   <element>
     <fullpath>pic_editor.php</fullpath>
     <version>1.5.0</version>
-    <revision>4251</revision>
+    <revision>4284</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>74b0017332127cd257c75d1886b5baa0</hash>
@@ -464,7 +464,7 @@
   <element>
     <fullpath>update.php</fullpath>
     <version>1.5.0</version>
-    <revision>4277</revision>
+    <revision>4289</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>857ce7bc510e10e2c73cde7d31d12fbc</hash>
@@ -496,7 +496,7 @@
   <element>
     <fullpath>versioncheck.php</fullpath>
     <version>1.5.0</version>
-    <revision>4264</revision>
+    <revision>4281</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>ae687854eb6ac93b0d71a4353d15a154</hash>
@@ -551,6 +551,7 @@
     <fullpath>**fullpath**/edit/no_FTP-uploads_into_this_folder!.txt</fullpath>
     <status>optional</status>
     <permission>write</permission>
+    <hash>58ee19f6c41b2ef9d24b6c8331c29732</hash>
   </element>
   <element>
     <fullpath>**fullpath**/**userpics**</fullpath>
@@ -567,6 +568,7 @@
     <fullpath>**fullpath**/**userpics**/no_FTP-uploads_into_this_folder!.txt</fullpath>
     <status>optional</status>
     <permission>write</permission>
+    <hash>143e24ec7d3543e4d2969f1acb64808b</hash>
   </element>
   <element>
     <fullpath>api/</fullpath>
@@ -653,7 +655,7 @@
   <element>
     <fullpath>bridge/eblah.inc.php</fullpath>
     <version>1.5.0</version>
-    <revision>4224</revision>
+    <revision>4291</revision>
     <status>optional</status>
     <permission>read</permission>
     <hash>59f6baa01797badb6866fa76b1d6dcc7</hash>
@@ -661,7 +663,7 @@
   <element>
     <fullpath>bridge/invisionboard20.inc.php</fullpath>
     <version>1.5.0</version>
-    <revision>4224</revision>
+    <revision>4291</revision>
     <status>optional</status>
     <permission>read</permission>
     <hash>0d8e4c9d33138d68160e6b4c9cd98b49</hash>
@@ -669,7 +671,7 @@
   <element>
     <fullpath>bridge/mambo.inc.php</fullpath>
     <version>1.5.0</version>
-    <revision>4224</revision>
+    <revision>4291</revision>
     <status>optional</status>
     <permission>read</permission>
     <hash>214f4d62db6466f7e1534f47131e57fd</hash>
@@ -677,7 +679,7 @@
   <element>
     <fullpath>bridge/mybb.inc.php</fullpath>
     <version>1.5.0</version>
-    <revision>4224</revision>
+    <revision>4291</revision>
     <status>optional</status>
     <permission>read</permission>
     <hash>bf196923e2d47e17a6b0c341ff6a8d40</hash>
@@ -693,7 +695,7 @@
   <element>
     <fullpath>bridge/phpbb.inc.php</fullpath>
     <version>1.5.0</version>
-    <revision>4224</revision>
+    <revision>4291</revision>
     <status>optional</status>
     <permission>read</permission>
     <hash>8b6a3553a39de9e5a27a3e57221ccc0d</hash>
@@ -701,7 +703,7 @@
   <element>
     <fullpath>bridge/phpbb2018.inc.php</fullpath>
     <version>1.5.0</version>
-    <revision>4224</revision>
+    <revision>4291</revision>
     <status>optional</status>
     <permission>read</permission>
     <hash>5e38c7635db1d4a3da95f7ef9b151933</hash>
@@ -709,7 +711,7 @@
   <element>
     <fullpath>bridge/phpbb22.inc.php</fullpath>
     <version>1.5.0</version>
-    <revision>4224</revision>
+    <revision>4291</revision>
     <status>optional</status>
     <permission>read</permission>
     <hash>a1c6076fb76b90f99ad7d32fbd2a8f12</hash>
@@ -717,7 +719,7 @@
   <element>
     <fullpath>bridge/punbb115.inc.php</fullpath>
     <version>1.5.0</version>
-    <revision>4224</revision>
+    <revision>4291</revision>
     <status>optional</status>
     <permission>read</permission>
     <hash>671ef78f18f2dadb2f8bd32f304de7f1</hash>
@@ -725,7 +727,7 @@
   <element>
     <fullpath>bridge/punbb12.inc.php</fullpath>
     <version>1.5.0</version>
-    <revision>4224</revision>
+    <revision>4291</revision>
     <status>optional</status>
     <permission>read</permission>
     <hash>aa88b728e1ce71bd8b871662cd81c36d</hash>
@@ -757,7 +759,7 @@
   <element>
     <fullpath>bridge/vbulletin30.inc.php</fullpath>
     <version>1.4.3</version>
-    <revision>4224</revision>
+    <revision>4291</revision>
     <status>optional</status>
     <permission>read</permission>
     <hash>0bc212fbcdffef3307d9fbb0b7e2cfd0</hash>
@@ -765,7 +767,7 @@
   <element>
     <fullpath>bridge/xmb.inc.php</fullpath>
     <version>1.5.0</version>
-    <revision>4224</revision>
+    <revision>4291</revision>
     <status>optional</status>
     <permission>read</permission>
     <hash>556758c9cd1d4724ddc808e8a10152cd</hash>
@@ -834,7 +836,7 @@
   <element>
     <fullpath>docs/bridging.htm</fullpath>
     <version>1.5.0</version>
-    <revision>4213</revision>
+    <revision>4282</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>9aa38ea89aed4df37f7a2ae56718836b</hash>
@@ -4498,7 +4500,7 @@
   <element>
     <fullpath>include/functions.inc.php</fullpath>
     <version>1.5.0</version>
-    <revision>4276</revision>
+    <revision>4290</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>07902f45a5fbe8106dbce4528fe74be9</hash>
@@ -4698,7 +4700,7 @@
   <element>
     <fullpath>include/update.inc.php</fullpath>
     <version>1.5.0</version>
-    <revision>4224</revision>
+    <revision>4288</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>e5d78bce53c151d0f1ea693283c9082b</hash>
@@ -4838,7 +4840,7 @@
   <element>
     <fullpath>lang/english.php</fullpath>
     <version>1.5.0</version>
-    <revision>4274</revision>
+    <revision>4280</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>374847306febeff71bc2c816d2a2edf6</hash>
@@ -4961,7 +4963,7 @@
   <element>
     <fullpath>themes/classic/style.css</fullpath>
     <version>1.5.0</version>
-    <revision>4224</revision>
+    <revision>4286</revision>
     <status>optional</status>
     <permission>read</permission>
     <hash>2145c18a83b5b6c522f8afd8d72a4675</hash>
@@ -5025,7 +5027,7 @@
   <element>
     <fullpath>themes/eyeball/style.css</fullpath>
     <version>1.5.0</version>
-    <revision>4224</revision>
+    <revision>4286</revision>
     <status>optional</status>
     <permission>read</permission>
     <hash>49e2ebcba31ad30fcd840cf3a263708c</hash>
@@ -5329,7 +5331,7 @@
   <element>
     <fullpath>themes/fruity/style.css</fullpath>
     <version>1.5.0</version>
-    <revision>4224</revision>
+    <revision>4286</revision>
     <status>optional</status>
     <permission>read</permission>
     <hash>eb784e71400fe6cc0789cdf3c457f6cc</hash>
@@ -5579,7 +5581,7 @@
   <element>
     <fullpath>themes/hardwired/style.css</fullpath>
     <version>1.5.0</version>
-    <revision>4224</revision>
+    <revision>4286</revision>
     <status>optional</status>
     <permission>read</permission>
     <hash>d8bed509bf1959681c82d2c64f59a1b6</hash>
@@ -5907,7 +5909,7 @@
   <element>
     <fullpath>themes/igames/style.css</fullpath>
     <version>1.5.0</version>
-    <revision>4224</revision>
+    <revision>4286</revision>
     <status>optional</status>
     <permission>read</permission>
     <hash>8192dc5b860ffef7080b6c8aef7b34b6</hash>
@@ -6127,7 +6129,7 @@
   <element>
     <fullpath>themes/mac_ox_x/style.css</fullpath>
     <version>1.5.0</version>
-    <revision>4224</revision>
+    <revision>4286</revision>
     <status>optional</status>
     <permission>read</permission>
     <hash>ce8680dbaaf86a2054c11aab97ff03e6</hash>
@@ -6365,7 +6367,7 @@
   <element>
     <fullpath>themes/project_vii/style.css</fullpath>
     <version>1.5.0</version>
-    <revision>4224</revision>
+    <revision>4286</revision>
     <status>optional</status>
     <permission>read</permission>
     <hash>5a35713a9ef9ef22395fea918b2802a7</hash>
@@ -6507,7 +6509,7 @@
   <element>
     <fullpath>themes/rainy_day/style.css</fullpath>
     <version>1.5.0</version>
-    <revision>4224</revision>
+    <revision>4286</revision>
     <status>optional</status>
     <permission>read</permission>
     <hash>3a4fd920cf76c2e99df9be54bbcdf190</hash>
@@ -6769,7 +6771,7 @@
   <element>
     <fullpath>themes/sample/style.css</fullpath>
     <version>1.5.0</version>
-    <revision>4224</revision>
+    <revision>4286</revision>
     <status>optional</status>
     <permission>read</permission>
     <hash>af5770c305016c2699656ca7305079a4</hash>
@@ -6833,7 +6835,7 @@
   <element>
     <fullpath>themes/water_drop/style.css</fullpath>
     <version>1.5.0</version>
-    <revision>4224</revision>
+    <revision>4286</revision>
     <status>optional</status>
     <permission>read</permission>
     <hash>a3f6f3faac385fd3331efd6047145995</hash>
