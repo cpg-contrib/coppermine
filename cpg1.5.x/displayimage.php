@@ -127,26 +127,12 @@ function html_picinfo()
           $width = 400;
           $height = 250;
         }
-
-        if ($CONFIG['vote_details'] == 1) {
-			$votedetailsunhidetoggle_onload_added = true;
-            $detailsLink_votes = <<< EOT
-            <div id="votedetailsunhidetoggle" style="display:none">&nbsp;(<a href="javascript:;" onclick="voteDetailsDisplay();">{$lang_picinfo['show_details']}</a>)</div>
-            <div id="votedetailshidetoggle" style="display:none">&nbsp;(<a href="javascript:;" onclick="voteDetailsDisplay();">{$lang_picinfo['hide_details']}</a>)</div>
-            <iframe src="stat_details?type=blank" width="100%" height="0" name="votedetails" id="votedetails" frameborder="0" style="display:none;border;none;"></iframe>
-            <script type="text/javascript">
-                addonload("show_section('votedetailsunhidetoggle')");
-                function voteDetailsDisplay() {
-                    show_section('votedetailsunhidetoggle');
-                    show_section('votedetailshidetoggle');
-                    show_section('votedetails');
-					var iframe_details = document.getElementById('votedetails');
-                    iframe_details.height = 800;
-                    iframe_details.src = "stat_details.php?type=vote&pid={$CURRENT_PIC_DATA['pid']}&sort=sdate&dir=&sdate=1&ip=1&rating=1&referer=0&browser=0&os=0&uid=1";
-                }
-            </script>
-EOT;
+		
+		if ($CONFIG['vote_details'] == 1) {
+			$stat_link = "stat_details.php?type=vote&pid={$CURRENT_PIC_DATA['pid']}&sort=sdate&dir=&sdate=1&ip=1&rating=1&referer=0&browser=0&os=0&uid=1";
+            $detailsLink_votes = '<div>(<a href="javascript:;" onclick="MM_openBrWindow(\'' . $stat_link . '\', \'stat_detail\', \'width=650,height=800,scrollbars=yes,resizable=yes\');">' . $lang_picinfo['show_details'] . '</a>)</div>';
         }
+		
 		//calculate required amount of stars in picinfo
 		$i = 1;
 		$rating = round(($CURRENT_PIC_DATA['pic_rating'] / 2000) / (5/$CONFIG['rating_stars_amount']));
@@ -179,23 +165,9 @@ EOT;
     $info[$lang_picinfo['Date Added']] = localised_date($CURRENT_PIC_DATA['ctime'],$lastup_date_fmt);
     $info[$lang_picinfo['Dimensions']] = sprintf($lang_display_image_php['size'], $CURRENT_PIC_DATA['pwidth'], $CURRENT_PIC_DATA['pheight']);
     if ($CURRENT_PIC_DATA['hits'] && $CONFIG['hit_details'] && GALLERY_ADMIN_MODE) {
-            $detailsLink_hits = <<< EOT
-            <div id="hitdetailsunhidetoggle" style="display:none">&nbsp;(<a href="javascript:;" onclick="hitDetailsDisplay();">{$lang_picinfo['show_details']}</a>)</div>
-            <div id="hitdetailshidetoggle" style="display:none">&nbsp;(<a href="javascript:;" onclick="hitDetailsDisplay();">{$lang_picinfo['hide_details']}</a>)</div>
-            <iframe src="stat_details.?type=blank" width="100%" height="0" name="hitdetails" id="hitdetails" frameborder="0" style="display:none;border;none;"></iframe>
-            <script type="text/javascript">
-                addonload("show_section('hitdetailsunhidetoggle')");
-                function hitDetailsDisplay() {
-                    show_section('hitdetailsunhidetoggle');
-                    show_section('hitdetailshidetoggle');
-                    show_section('hitdetails');
-                    var iframe_details = document.getElementById('votedetails');
-                    iframe_details.height = 800;
-                    iframe_details.src = "stat_details.php?type=hits&pid={$CURRENT_PIC_DATA['pid']}&sort=sdate&dir=&sdate=1&ip=1&search_phrase=0&referer=0&browser=1&os=1";
-                }
-            </script>
-EOT;
-        }
+			$stat_link = "stat_details.php?type=hits&pid={$CURRENT_PIC_DATA['pid']}&sort=sdate&dir=&sdate=1&ip=1&search_phrase=0&referer=0&browser=1&os=1";
+            $detailsLink_hits = '<div>(<a href="javascript:;" onclick="MM_openBrWindow(\'' . $stat_link . '\', \'stat_detail\', \'width=650,height=800,scrollbars=yes,resizable=yes\');">' . $lang_picinfo['show_details'] . '</a>)</div>';
+    }
     $info[$lang_picinfo['Displayed']] = sprintf($lang_display_image_php['views'], $CURRENT_PIC_DATA['hits']);
     $info[$lang_picinfo['Displayed']] .= $detailsLink_hits;
 
@@ -205,7 +177,7 @@ EOT;
     if ($CONFIG['read_exif_data']) $exif = exif_parse_file($path_to_pic);
 
     if (isset($exif) && is_array($exif)) {
-                array_walk($exif, 'sanitize_data');
+        array_walk($exif, 'sanitize_data');
         $info = array_merge($info,$exif);
     }
 

@@ -245,7 +245,17 @@ EOT;
 </div>
 EOT;
         if ($pid != '') { // individual stat - start
-            print '<div class="admin_menu admin_float"><a href="'.cpgGetScriptNameParams('mode').'mode=fullscreen" target="_parent">'.$lang_stat_details_php['fullscreen'].'</a></div>';
+			$fullscreen_link = cpgGetScriptNameParams('mode') . 'mode=fullscreen';
+			print <<<EOT
+			<script type="text/javascript" language="javascript">
+				function doFullScreen(fullscreen_link){
+					window.moveTo(0,0); 
+					window.resizeTo(screen.availWidth,screen.availHeight)
+					window.location = fullscreen_link;
+				}
+			</script>
+            <div class="admin_menu admin_float"><a href="javascript:;" onClick="doFullScreen('$fullscreen_link')">{$lang_stat_details_php['fullscreen']}</a></div>
+EOT;
         } // individual stat - end
     print '<div style="clear:left;"></div>'.$line_break.'</div>';
     } // mode=embedded ends
