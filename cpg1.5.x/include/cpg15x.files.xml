@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <file_data>
   <element>
     <fullpath>addfav.php</fullpath>
@@ -146,7 +147,7 @@
   <element>
     <fullpath>displayimage.php</fullpath>
     <version>1.5.0</version>
-    <revision>4251</revision>
+    <revision>4296</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>40f96056c2017e243a9b4eab69ce224f</hash>
@@ -368,7 +369,7 @@
   <element>
     <fullpath>ratepic.php</fullpath>
     <version>1.5.0</version>
-    <revision>4224</revision>
+    <revision>4294</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>2870a4c7b5b91a8f12184489763d1e6b</hash>
@@ -448,7 +449,7 @@
   <element>
     <fullpath>stat_details.php</fullpath>
     <version>1.5.0</version>
-    <revision>4245</revision>
+    <revision>4296</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>c8517e85e637632b48272d626e0473a5</hash>
@@ -860,7 +861,7 @@
   <element>
     <fullpath>docs/configuration.htm</fullpath>
     <version>1.5.0</version>
-    <revision>4259</revision>
+    <revision>4294</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>a5fa9c3dec4bd89cec86c77a50b3da80</hash>
@@ -908,7 +909,7 @@
   <element>
     <fullpath>docs/dev_subversion.htm</fullpath>
     <version>1.5.0</version>
-    <revision>4209</revision>
+    <revision>4298</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>f6443889338cd0ef2e2495c1d11ae07e</hash>
@@ -924,7 +925,7 @@
   <element>
     <fullpath>docs/dev_versioncheck.htm</fullpath>
     <version>1.5.0</version>
-    <revision>4209</revision>
+    <revision>4298</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>9bfbad1d92e1ca60deddd6b646ae3dc4</hash>
@@ -1226,7 +1227,7 @@
   <element>
     <fullpath>docs/upgrading.htm</fullpath>
     <version>1.5.0</version>
-    <revision>4209</revision>
+    <revision>4298</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>5cfab6328b5cb2e2319d60cf9962da23</hash>
@@ -2097,19 +2098,19 @@
     <fullpath>images/rate_empty.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>7b97ae9ba43d32d43f667c5d7c055bae</hash>
+    <hash>952722d194f73108d8c982abc2f03038</hash>
   </element>
   <element>
     <fullpath>images/rate_full.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>44489b93749954ac10bb46e366a5a101</hash>
+    <hash>beedf44ba728dd2cb2b569b1dae7a3fc</hash>
   </element>
   <element>
     <fullpath>images/rate_new.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>6a5a83cd0ed4bbcc096270835dbc54e7</hash>
+    <hash>c53d39c70fa0324726c96b7b2fbc98a5</hash>
   </element>
   <element>
     <fullpath>images/read_error48x48.gif</fullpath>
@@ -4464,7 +4465,7 @@
   <element>
     <fullpath>include/functions.inc.php</fullpath>
     <version>1.5.0</version>
-    <revision>4290</revision>
+    <revision>4294</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>07902f45a5fbe8106dbce4528fe74be9</hash>
@@ -4656,7 +4657,7 @@
   <element>
     <fullpath>include/themes.inc.php</fullpath>
     <version>1.5.0</version>
-    <revision>4275</revision>
+    <revision>4294</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>f0c25fd6c6479950a52c08f4f21cd37b</hash>
@@ -4788,7 +4789,7 @@
   <element>
     <fullpath>js/displayimage.js</fullpath>
     <version>1.5.0</version>
-    <revision>4264</revision>
+    <revision>4220</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>6093d380d1909a27ceeba2c522093408</hash>
@@ -4796,7 +4797,7 @@
   <element>
     <fullpath>js/jquery.js</fullpath>
     <version>1.5.0</version>
-    <revision>4264</revision>
+    <revision>4220</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>0460ffbade5ffe1d20b48e6087f08830</hash>
@@ -4804,7 +4805,7 @@
   <element>
     <fullpath>lang/english.php</fullpath>
     <version>1.5.0</version>
-    <revision>4280</revision>
+    <revision>4294</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>374847306febeff71bc2c816d2a2edf6</hash>
@@ -4893,7 +4894,7 @@
   <element>
     <fullpath>sql/basic.sql</fullpath>
     <version>1.5.0</version>
-    <revision>4250</revision>
+    <revision>4294</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>a762a9391454425944b63f8086e2348e</hash>
@@ -4909,7 +4910,7 @@
   <element>
     <fullpath>sql/update.sql</fullpath>
     <version>1.5.0</version>
-    <revision>4270</revision>
+    <revision>4294</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>373b3e1507214c2f8fd57d985e4056a7</hash>
@@ -5141,19 +5142,19 @@
     <fullpath>themes/eyeball/images/rate_empty.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>7b97ae9ba43d32d43f667c5d7c055bae</hash>
+    <hash>eb0033f6a2c54efb55b28bd42feb6391</hash>
   </element>
   <element>
     <fullpath>themes/eyeball/images/rate_full.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>44489b93749954ac10bb46e366a5a101</hash>
+    <hash>e4d13edce9c8c3be37ad40d66383215c</hash>
   </element>
   <element>
     <fullpath>themes/eyeball/images/rate_new.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>6a5a83cd0ed4bbcc096270835dbc54e7</hash>
+    <hash>7578e978345975d8593e3a8e8b5ad804</hash>
   </element>
   <element>
     <fullpath>themes/eyeball/images/report.gif</fullpath>
@@ -5439,19 +5440,19 @@
     <fullpath>themes/fruity/images/rate_empty.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>7b97ae9ba43d32d43f667c5d7c055bae</hash>
+    <hash>56c078223dffc06ddea0a8c349c1402f</hash>
   </element>
   <element>
     <fullpath>themes/fruity/images/rate_full.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>44489b93749954ac10bb46e366a5a101</hash>
+    <hash>950857855dcfc2fc857198015717eac7</hash>
   </element>
   <element>
     <fullpath>themes/fruity/images/rate_new.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>6a5a83cd0ed4bbcc096270835dbc54e7</hash>
+    <hash>8af32ff84410bc3a455c3b72bde7db10</hash>
   </element>
   <element>
     <fullpath>themes/fruity/images/report.gif</fullpath>
@@ -5749,19 +5750,19 @@
     <fullpath>themes/hardwired/images/rate_empty.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>7b97ae9ba43d32d43f667c5d7c055bae</hash>
+    <hash>830b0b787d3b97ff7ddfcba3c45c5626</hash>
   </element>
   <element>
     <fullpath>themes/hardwired/images/rate_full.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>44489b93749954ac10bb46e366a5a101</hash>
+    <hash>5e35384c8648dda3b68b04d37fe1ad7b</hash>
   </element>
   <element>
     <fullpath>themes/hardwired/images/rate_new.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>6a5a83cd0ed4bbcc096270835dbc54e7</hash>
+    <hash>70c2dce15784f49c5ec339fcef64cf97</hash>
   </element>
   <element>
     <fullpath>themes/hardwired/images/report.gif</fullpath>
@@ -5903,19 +5904,19 @@
     <fullpath>themes/igames/images/rate_empty.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>7b97ae9ba43d32d43f667c5d7c055bae</hash>
+    <hash>e95227e4f815db916270726157b06718</hash>
   </element>
   <element>
     <fullpath>themes/igames/images/rate_full.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>44489b93749954ac10bb46e366a5a101</hash>
+    <hash>15d03b701b5b15860a1ae550fd50f16b</hash>
   </element>
   <element>
     <fullpath>themes/igames/images/rate_new.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>6a5a83cd0ed4bbcc096270835dbc54e7</hash>
+    <hash>fc44bac4ed479b4cd1632e4bcd5d0988</hash>
   </element>
   <element>
     <fullpath>themes/igames/images/right_menu_button.gif</fullpath>
@@ -6153,19 +6154,19 @@
     <fullpath>themes/mac_ox_x/images/rate_empty.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>7b97ae9ba43d32d43f667c5d7c055bae</hash>
+    <hash>de36be1d0a212f5d45a41ec91adc2914</hash>
   </element>
   <element>
     <fullpath>themes/mac_ox_x/images/rate_full.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>44489b93749954ac10bb46e366a5a101</hash>
+    <hash>f0746207b3c239006e1742227f661200</hash>
   </element>
   <element>
     <fullpath>themes/mac_ox_x/images/rate_new.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>6a5a83cd0ed4bbcc096270835dbc54e7</hash>
+    <hash>70ff83d7e4a3c853e87952d002e2e4fc</hash>
   </element>
   <element>
     <fullpath>themes/mac_ox_x/images/tableh1_bg.gif</fullpath>
@@ -6449,19 +6450,19 @@
     <fullpath>themes/rainy_day/images/rate_empty.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>7b97ae9ba43d32d43f667c5d7c055bae</hash>
+    <hash>246be474639e464a8a194510a9df6a47</hash>
   </element>
   <element>
     <fullpath>themes/rainy_day/images/rate_full.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>44489b93749954ac10bb46e366a5a101</hash>
+    <hash>0d9d876d8447f2c0204f086810980ac0</hash>
   </element>
   <element>
     <fullpath>themes/rainy_day/images/rate_new.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>6a5a83cd0ed4bbcc096270835dbc54e7</hash>
+    <hash>a4f7732384a6033ee91a2cf0ecf8c615</hash>
   </element>
   <element>
     <fullpath>themes/rainy_day/images/template_r1_c1.gif</fullpath>
@@ -6643,7 +6644,7 @@
   <element>
     <fullpath>themes/sample/theme.php</fullpath>
     <version>1.5.0</version>
-    <revision>4275</revision>
+    <revision>4294</revision>
     <status>optional</status>
     <permission>read</permission>
     <hash>a691a22e1ddc22aebfc76d3909d04ee8</hash>
