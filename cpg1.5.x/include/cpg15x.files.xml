@@ -1909,18 +1909,6 @@
     <hash>616386da733c7b7230ba6ea1b065d0d9</hash>
   </element>
   <element>
-    <fullpath>docs/pics/versioncheck_comparison.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>9ce5ffbd283149b42f70977621cad2ce</hash>
-  </element>
-  <element>
-    <fullpath>docs/pics/versioncheck_options.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>3db32bdf2e0bb6de60920f14af7372b1</hash>
-  </element>
-  <element>
     <fullpath>docs/pics/views.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
@@ -2106,46 +2094,22 @@
     <hash>087398edfc623df6736c55010a1d8ed8</hash>
   </element>
   <element>
-    <fullpath>images/rating.gif</fullpath>
+    <fullpath>images/rate_empty.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>7b97ae9ba43d32d43f667c5d7c055bae</hash>
   </element>
   <element>
-    <fullpath>images/rating0.gif</fullpath>
+    <fullpath>images/rate_full.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>44489b93749954ac10bb46e366a5a101</hash>
   </element>
   <element>
-    <fullpath>images/rating1.gif</fullpath>
+    <fullpath>images/rate_new.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>6a5a83cd0ed4bbcc096270835dbc54e7</hash>
-  </element>
-  <element>
-    <fullpath>images/rating2.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>827b59343de4e3f8a2fb247f1a4b8ed0</hash>
-  </element>
-  <element>
-    <fullpath>images/rating3.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>f58ee231f34eb293194f0409614573a0</hash>
-  </element>
-  <element>
-    <fullpath>images/rating4.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>0037fac55b0b1680885c7e22d802788c</hash>
-  </element>
-  <element>
-    <fullpath>images/rating5.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>736e52e42260cd8341339e744c89eee5</hash>
   </element>
   <element>
     <fullpath>images/read_error48x48.gif</fullpath>
@@ -5174,40 +5138,22 @@
     <hash>5655773dd73a8fa9835b42faa2a6023c</hash>
   </element>
   <element>
-    <fullpath>themes/eyeball/images/rating0.gif</fullpath>
+    <fullpath>themes/eyeball/images/rate_empty.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>2ba585a40419738d38cd7991c677cdae</hash>
+    <hash>7b97ae9ba43d32d43f667c5d7c055bae</hash>
   </element>
   <element>
-    <fullpath>themes/eyeball/images/rating1.gif</fullpath>
+    <fullpath>themes/eyeball/images/rate_full.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>f8230264bf277d40d432f89cf17787bf</hash>
+    <hash>44489b93749954ac10bb46e366a5a101</hash>
   </element>
   <element>
-    <fullpath>themes/eyeball/images/rating2.gif</fullpath>
+    <fullpath>themes/eyeball/images/rate_new.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>24729749200273f0684cf20aaa97998d</hash>
-  </element>
-  <element>
-    <fullpath>themes/eyeball/images/rating3.gif</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-    <hash>8a2b179664ab639ffd7cc39fee2dca6b</hash>
-  </element>
-  <element>
-    <fullpath>themes/eyeball/images/rating4.gif</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-    <hash>e52400326496f5fa449f87a787cd976a</hash>
-  </element>
-  <element>
-    <fullpath>themes/eyeball/images/rating5.gif</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-    <hash>74afe677169e280b4705437571387be1</hash>
+    <hash>6a5a83cd0ed4bbcc096270835dbc54e7</hash>
   </element>
   <element>
     <fullpath>themes/eyeball/images/report.gif</fullpath>
@@ -5490,40 +5436,22 @@
     <hash>4d0ce89246e645b0c3984c5815d6c56b</hash>
   </element>
   <element>
-    <fullpath>themes/fruity/images/rating0.gif</fullpath>
+    <fullpath>themes/fruity/images/rate_empty.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>feb99308fb4ed7637c64be38329df9f0</hash>
+    <hash>7b97ae9ba43d32d43f667c5d7c055bae</hash>
   </element>
   <element>
-    <fullpath>themes/fruity/images/rating1.gif</fullpath>
+    <fullpath>themes/fruity/images/rate_full.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>8e03c597e424c2f53b7d5deeb4820be0</hash>
+    <hash>44489b93749954ac10bb46e366a5a101</hash>
   </element>
   <element>
-    <fullpath>themes/fruity/images/rating2.gif</fullpath>
+    <fullpath>themes/fruity/images/rate_new.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>fbafe5d31af3bf0f6d30c7bed56a39d9</hash>
-  </element>
-  <element>
-    <fullpath>themes/fruity/images/rating3.gif</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-    <hash>7242a78b895c4a1bb018e096938fe88a</hash>
-  </element>
-  <element>
-    <fullpath>themes/fruity/images/rating4.gif</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-    <hash>ddf2ef0e2d9712fc94f538c67ec86d40</hash>
-  </element>
-  <element>
-    <fullpath>themes/fruity/images/rating5.gif</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-    <hash>57b0d069c110ec3b59cac4d9e7627458</hash>
+    <hash>6a5a83cd0ed4bbcc096270835dbc54e7</hash>
   </element>
   <element>
     <fullpath>themes/fruity/images/report.gif</fullpath>
@@ -5818,40 +5746,22 @@
     <hash>4ab864f0c4a07f18469998f5e8c74ccc</hash>
   </element>
   <element>
-    <fullpath>themes/hardwired/images/rating0.gif</fullpath>
+    <fullpath>themes/hardwired/images/rate_empty.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>4818cfb1fcb086768588adf6fefb654a</hash>
+    <hash>7b97ae9ba43d32d43f667c5d7c055bae</hash>
   </element>
   <element>
-    <fullpath>themes/hardwired/images/rating1.gif</fullpath>
+    <fullpath>themes/hardwired/images/rate_full.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>5a72e1a0d1c2d9d5eda7bd7799a5816c</hash>
+    <hash>44489b93749954ac10bb46e366a5a101</hash>
   </element>
   <element>
-    <fullpath>themes/hardwired/images/rating2.gif</fullpath>
+    <fullpath>themes/hardwired/images/rate_new.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>16589a91c4747a70562e4ec8bad1fb18</hash>
-  </element>
-  <element>
-    <fullpath>themes/hardwired/images/rating3.gif</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-    <hash>02f1fa634be4a4c465fcc6f054fd242f</hash>
-  </element>
-  <element>
-    <fullpath>themes/hardwired/images/rating4.gif</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-    <hash>7feb34fb3f9402cc158eee71c0204be6</hash>
-  </element>
-  <element>
-    <fullpath>themes/hardwired/images/rating5.gif</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-    <hash>823ad683b818abbb156b3999f2f9f564</hash>
+    <hash>6a5a83cd0ed4bbcc096270835dbc54e7</hash>
   </element>
   <element>
     <fullpath>themes/hardwired/images/report.gif</fullpath>
@@ -5990,40 +5900,22 @@
     <hash>89ceb8c3814f01638daa9d9f8b0550be</hash>
   </element>
   <element>
-    <fullpath>themes/igames/images/rating0.gif</fullpath>
+    <fullpath>themes/igames/images/rate_empty.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>96cfc9beaac4171f39089fc8f80aebba</hash>
+    <hash>7b97ae9ba43d32d43f667c5d7c055bae</hash>
   </element>
   <element>
-    <fullpath>themes/igames/images/rating1.gif</fullpath>
+    <fullpath>themes/igames/images/rate_full.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>086c0a12d1913fdba83ba0a248716d3b</hash>
+    <hash>44489b93749954ac10bb46e366a5a101</hash>
   </element>
   <element>
-    <fullpath>themes/igames/images/rating2.gif</fullpath>
+    <fullpath>themes/igames/images/rate_new.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>f8cda77b3e44317e771d101060cb2871</hash>
-  </element>
-  <element>
-    <fullpath>themes/igames/images/rating3.gif</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-    <hash>89f9fe762f2352f9dfb11ed5f379ad0e</hash>
-  </element>
-  <element>
-    <fullpath>themes/igames/images/rating4.gif</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-    <hash>21ab6eaa8d9660253ff614c66bae1f3c</hash>
-  </element>
-  <element>
-    <fullpath>themes/igames/images/rating5.gif</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-    <hash>6c561c786ade1fc902010e99c1e3abe8</hash>
+    <hash>6a5a83cd0ed4bbcc096270835dbc54e7</hash>
   </element>
   <element>
     <fullpath>themes/igames/images/right_menu_button.gif</fullpath>
@@ -6258,40 +6150,22 @@
     <hash>5ea77055af08efbe1ed0b8a8f6974d69</hash>
   </element>
   <element>
-    <fullpath>themes/mac_ox_x/images/rating0.gif</fullpath>
+    <fullpath>themes/mac_ox_x/images/rate_empty.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>216602284c2131698709e34159a24e85</hash>
+    <hash>7b97ae9ba43d32d43f667c5d7c055bae</hash>
   </element>
   <element>
-    <fullpath>themes/mac_ox_x/images/rating1.gif</fullpath>
+    <fullpath>themes/mac_ox_x/images/rate_full.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>050325c9c59369a737d39ea5c0bc6ff3</hash>
+    <hash>44489b93749954ac10bb46e366a5a101</hash>
   </element>
   <element>
-    <fullpath>themes/mac_ox_x/images/rating2.gif</fullpath>
+    <fullpath>themes/mac_ox_x/images/rate_new.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>dcc5fcd78e10e95bcca7a526e1affd15</hash>
-  </element>
-  <element>
-    <fullpath>themes/mac_ox_x/images/rating3.gif</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-    <hash>13a12a2b7093aaf097b2460e53172539</hash>
-  </element>
-  <element>
-    <fullpath>themes/mac_ox_x/images/rating4.gif</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-    <hash>d39d98677e8c9eab96d4f50f095d5ce8</hash>
-  </element>
-  <element>
-    <fullpath>themes/mac_ox_x/images/rating5.gif</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-    <hash>ad4fea789ec4e8dffd84afc0ead360b2</hash>
+    <hash>6a5a83cd0ed4bbcc096270835dbc54e7</hash>
   </element>
   <element>
     <fullpath>themes/mac_ox_x/images/tableh1_bg.gif</fullpath>
@@ -6572,40 +6446,22 @@
     <hash>97561627d6389575c6788131a6d20325</hash>
   </element>
   <element>
-    <fullpath>themes/rainy_day/images/rating0.gif</fullpath>
+    <fullpath>themes/rainy_day/images/rate_empty.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>8b8f55fb55dda77b7e76fe1800b6e6b8</hash>
+    <hash>7b97ae9ba43d32d43f667c5d7c055bae</hash>
   </element>
   <element>
-    <fullpath>themes/rainy_day/images/rating1.gif</fullpath>
+    <fullpath>themes/rainy_day/images/rate_full.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>cab383e0cdbafced3abab94639928ff7</hash>
+    <hash>44489b93749954ac10bb46e366a5a101</hash>
   </element>
   <element>
-    <fullpath>themes/rainy_day/images/rating2.gif</fullpath>
+    <fullpath>themes/rainy_day/images/rate_new.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>6419e7e99665cc1d5afb2c9505d07aa8</hash>
-  </element>
-  <element>
-    <fullpath>themes/rainy_day/images/rating3.gif</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-    <hash>772a3ead71379d84fbc2b3290dc14abe</hash>
-  </element>
-  <element>
-    <fullpath>themes/rainy_day/images/rating4.gif</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-    <hash>4f72d7142c265022da73789862556218</hash>
-  </element>
-  <element>
-    <fullpath>themes/rainy_day/images/rating5.gif</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-    <hash>d22b5c802e7cdecbe7bf270dd2bab6a5</hash>
+    <hash>6a5a83cd0ed4bbcc096270835dbc54e7</hash>
   </element>
   <element>
     <fullpath>themes/rainy_day/images/template_r1_c1.gif</fullpath>
