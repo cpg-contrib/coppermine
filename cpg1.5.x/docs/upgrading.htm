@@ -135,7 +135,7 @@
     <li><strong>Path</strong><br />
     The folder- and file name</li>
     <li><strong>Missing</strong><br />
-    If nothing is being displayed in this column, the folder/file exists on your server. If this is not the case (i.e. the folder/file does not exist on your server or is inaccessible), the column &quot;Missng&quot; will be populated with the result of this first, basic check.<br />
+    If nothing is being displayed in this column, the folder/file exists on your server. If this is not the case (i.e. the folder/file does not exist on your server or is inaccessible), the column &quot;Missing&quot; will be populated with the result of this first, basic check.<br />
     Note: there are some folders/files that are mandatory to have; others are optional. Anyway, if you perform a fresh install or upgrade, you should make sure to upload all folders/files. You can then later delete some of the optional files if you want, although this doesn't save much webspace.<br />
     If a file is missing, all other steps that are next in the loop will not be performed - a missing file can't have a version number or similar. If versioncheck complains about missing files, use your FTP app to review if they are actually missing or inaccessible. If they are missing, re-upload them. If they are inaccessible, you will have to <a href="install_permissions.htm#permissions">assign the needed permissions</a>.</li>
     <li><strong>Permissions</strong><br />
@@ -143,7 +143,7 @@
     If permissions on folders need reviewing, read up the <a href="install_permissions.htm#permissions">permissions section of the docs</a> and do as suggested there.</li>
     <li><strong>Version</strong><br />
     The version of the file on your server. If it is identical to the version indicated in the repository, you should see an &quot;OK&quot;. If you're running an oudated version on your server you should get a fresh package and perform an upgrade.<br />
-    Note: folders don't have version numbers, nor do binary files (like graphics) have one, that's why the column &quot;Version&quot; displays <tt class="code" title="not applicable">n/a</tt> for folders and binary files. Only files that contain textual content can have a version number, so don't be alarmed by the many &quot;n/a (OK)&quot;-messages.</li>
+    Note: folders don't have version numbers, nor do binary files (like graphics) have one, that's why the column &quot;Version&quot; displays &quot;<acronym title="not applicable">n/a</acronym>&quot; for folders and binary files. Only files that contain textual content can have a version number, so don't be alarmed by the many &quot;n/a (OK)&quot;-messages.</li>
     <li><strong>Revision</strong><br />
     The revision of the file on your server. If it is identical to the revision indicated in the XML repository, you should see an &quot;OK&quot;. If you're running an oudated revision on your server you should get a fresh package and perform an upgrade.<br />
     Revisions are related to the versions - usually, if your version is OK, your revision should be OK as well. Only if you perform checkouts from the <a href="dev_subversion.htm#subversion">subversion repository</a>, the revisions may &quot;act up&quot;.<br />
@@ -154,8 +154,8 @@
     <ul>
         <li>You <strong>deliberately</strong> modified the file (e.g. by applying a custom modification to it). In this case, it's OK to ignore the warning in the &quot;Modified&quot;-column and continue</li>
         <li>Your file has not been transfered fully to the webserver. If this is the case, try to re-upload the file from your client to the server. If this doesn't help, your package might have gotten corrupt. Re-download a fresh one from the coppermine download section, un-archive it and re-upload the file. Make sure that your FTP app is configured to actually overwrite existing files</li>
-        <li>You have used an improper FTP-mode to transfer the file to your webserver. Using FTP apps, you can transfer files in binary or ASCII-mode. Most up-to-date FTP clients have a feature that will automaically select the proper FTP-mode for each file. If this is not the case, try the manual appoach and explicitely specify the FTP-mode for your file uploads.</li>
-        <li>Your webhost is injecting code into each file. Many free webspace providers (so-called &quot;freehosts&quot;) do this to inject advertisments into your files. There's little you can do then except signing up with paid webhosting or ignoring the &quot;Modified&quot;-warning and hoping gthat things will work anyway.
+        <li>You have used an improper FTP-mode to transfer the file to your webserver. Using FTP apps, you can transfer files in binary or ASCII-mode. Most up-to-date FTP clients have a feature that will automatically select the proper FTP-mode for each file. If this is not the case, try the manual appoach and explicitely specify the FTP-mode for your file uploads.</li>
+        <li>Your webhost is injecting code into each file. Many free webspace providers (so-called &quot;freehosts&quot;) do this to inject advertisments into your files. There's little you can do then except signing up with paid webhosting or ignoring the &quot;Modified&quot;-warning and hoping that things will work anyway.
     </ul>
     </li>
     <li><strong>Comment</strong><br />
@@ -166,7 +166,7 @@
 </ul>
 <a name="versioncheck_comparison_end"></a>
 
-<a name="versioncheck_problems"></a><h3>Things that could go wrong<a href="#versioncheck_problems" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<a name="versioncheck_problems"></a><h3>Things that could go wrong using versioncheck<a href="#versioncheck_problems" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>As the actions performed by the versioncheck script are complex, there are several things that can go wrong, depending on your webserver setup:</p>
 <ul>
     <li><strong>No connection to the online XML repository</strong><br />
