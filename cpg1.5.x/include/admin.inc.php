@@ -995,7 +995,11 @@ $config_data = array(
     ),
     'allow_user_edit_after_cat_close' => array(
       'type' => 'checkbox',
-      'help_link' => '',
+      'help_link' => 'f=configuration.htm&amp;as=admin_allow_user_edit_after_cat_close&amp;ae=admin_allow_user_edit_after_cat_close_end',
+    ),
+    'allow_user_album_keyword' => array(
+      'type' => 'checkbox',
+      'help_link' => 'f=configuration.htm&amp;as=admin_allow_user_album_keyword&amp;ae=admin_allow_user_album_keyword_end',
     ),
 	//login_method gives you the choice of logging in with username, email or both
 	'login_method' => array(
