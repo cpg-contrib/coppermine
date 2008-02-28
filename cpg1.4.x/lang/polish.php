@@ -74,13 +74,13 @@ $lang_check_uncheck_all = 'Zaznacz/Odznacz wszystko'; //cpg1.4
 
 // The various date formats
 // See http://www.php.net/manual/en/function.strftime.php to define the variable below
-$album_date_fmt =    '%e %B %Y';
-$lastcom_date_fmt =  '%e/%m/%y,  %H:%M';
-$lastup_date_fmt = '%e %B %Y';
-$register_date_fmt = '%e %B %Y';
-$lasthit_date_fmt = '%e %B %Y, %H:%M';
-$comment_date_fmt =  '%e %B %Y, %H:%M';
-$log_date_fmt = '%e %B %Y, %H:%M'; //cpg1.4
+$album_date_fmt =    '%d %B %Y';
+$lastcom_date_fmt =  '%d/%m/%y,  %H:%M';
+$lastup_date_fmt = '%d %B %Y';
+$register_date_fmt = '%d %B %Y';
+$lasthit_date_fmt = '%d %B %Y, %H:%M';
+$comment_date_fmt =  '%d %B %Y, %H:%M';
+$log_date_fmt = '%d %B %Y, %H:%M'; //cpg1.4
 
 // For the word censor
 $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 

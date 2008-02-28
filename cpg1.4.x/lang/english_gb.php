@@ -51,13 +51,13 @@ $lang_check_uncheck_all = 'check/uncheck all'; //cpg1.4
 
 // The various date formats
 // See http://www.php.net/manual/en/function.strftime.php to define the variable below
-$album_date_fmt =    '%e.%B %Y';
-$lastcom_date_fmt =  '%e.%m.%y at %H:%M';
-$lastup_date_fmt = '%e %B %Y';
-$register_date_fmt = '%e %B %Y';
-$lasthit_date_fmt = '%e %B %Y at %H:%M';
-$comment_date_fmt =  '%e %B %Y at %H:%M';
-$log_date_fmt = '%e %B, %Y at %I:%M %p'; //cpg1.4
+$album_date_fmt =    '%d.%B %Y';
+$lastcom_date_fmt =  '%d.%m.%y at %H:%M';
+$lastup_date_fmt = '%d %B %Y';
+$register_date_fmt = '%d %B %Y';
+$lasthit_date_fmt = '%d %B %Y at %H:%M';
+$comment_date_fmt =  '%d %B %Y at %H:%M';
+$log_date_fmt = '%d %B, %Y at %I:%M %p'; //cpg1.4
 
 // For the word censor
 $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*');

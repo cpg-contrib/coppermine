@@ -51,9 +51,9 @@ $lang_check_uncheck_all = 'Markera/avmarkera alla'; //cpg1.4
 
 // The various date formats
 // See http://www.php.net/manual/en/function.strftime.php to define the variable below
-$album_date_fmt =    '%e %B %Y';
+$album_date_fmt =    '%d %B %Y';
 $lastcom_date_fmt =  '%Y-%m-%d kl. %H.%M';
-$lastup_date_fmt =   '%e %B %Y';
+$lastup_date_fmt =   '%d %B %Y';
 $register_date_fmt = '%Y-%m-%d kl. %H:%M';
 $lasthit_date_fmt =  '%Y-%m-%d kl. %H:%M';
 $comment_date_fmt =  '%Y-%m-%d kl. %H:%M';

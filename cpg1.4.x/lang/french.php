@@ -51,12 +51,12 @@ $lang_check_uncheck_all = 'tout sélectionner/désélectionner'; //cpg1.4
 
 // The various date formats
 // See http://www.php.net/manual/en/function.strftime.php to define the variable below
-$album_date_fmt =  '%e %B %Y';
+$album_date_fmt =  '%d %B %Y';
 $lastcom_date_fmt =  '%d/%m/%y à %H:%M';
-$lastup_date_fmt = '%e %B %Y';
-$register_date_fmt = '%e %B %Y';
-$lasthit_date_fmt = ' %a %e %B %Y à %H:%M';
-$comment_date_fmt =  '%a %e %B %Y à %H:%M';
+$lastup_date_fmt = '%d %B %Y';
+$register_date_fmt = '%d %B %Y';
+$lasthit_date_fmt = ' %a %d %B %Y à %H:%M';
+$comment_date_fmt =  '%a %d %B %Y à %H:%M';
 $log_date_fmt = '%B %d, %Y at %I:%M %p'; //cpg1.4
 
 // For the word censor
