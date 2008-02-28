@@ -641,7 +641,7 @@ INSERT INTO CPG_config VALUES ('browse_by_date', '0');
 INSERT INTO CPG_config VALUES ('allow_user_move_album', '0');
 
 # Allow users to edit pics after admin closed category
-INSERT INTO CPG_config VALUES ('allow_user_edit_after_cat_close', '1');
+INSERT INTO CPG_config VALUES ('allow_user_edit_after_cat_close', '0');
 
 # Display redirection pages
 INSERT INTO CPG_config VALUES ('display_redirection_page', '0');
@@ -673,3 +673,6 @@ INSERT INTO CPG_config VALUES ('display_social_bookmarks','0');
 # Sidebar settings
 INSERT INTO CPG_config VALUES ('display_sidebar_user', '0');
 INSERT INTO CPG_config VALUES ('display_sidebar_guest', '0');
+
+# Allow non-admin users to assign album keywords
+INSERT INTO CPG_config VALUES ('allow_user_album_keyword', '1');
