@@ -2058,7 +2058,6 @@ if (defined('STAT_DETAILS_PHP')) $lang_stat_details_php = array(
   'votes' => 'votes', //cpg1.5
   'reset_votes_individual' => 'Reset selected vote(s)', //cpg1.5
   'reset_votes_individual_confirm' => 'Are you sure that you want to delete the selected votes? This can not be undone!', //cpg1.5
-  'fullscreen' => 'Display this page in fullscreen mode', //cpg1.5
   'back_to_intermediate' => 'Back to intermediate file view', //cpg1.5
   'records_on_page' => '%s records on %s page(s)', //cpg1.5
   'guest' => 'Guest', //cpg1.5

@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-02-21 [O] Voting now shows result back after vote {SaWey}
 2008-02-28 [A] Added feature "allow user to assign album keyword" {GauGau}
 2008-02-26 [D] Updated versioncheck documentation to reflect changes in the core file behaviour {GauGau}
 2008-02-26 [C] Replaced inline stat_details with popup {SaWey}

@@ -142,7 +142,10 @@ function changeout(obj, rating, theme_dir){
 function displayStars(rating, idName, theme_dir, allow_vote, help_line){
 	var fallback = document.getElementById("stars_amount").innerHTML;
 	if(fallback != 'fallback'){
-		document.write('<center>' + help_line + '<br />');
+		document.write('<center>');
+		if(allow_vote){
+			document.write(help_line + '<br />');
+		}
 		document.write(buildRating(rating, idName, theme_dir, allow_vote));
 		document.write('</center>');
 	}
