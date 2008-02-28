@@ -106,20 +106,24 @@ EOT;
 
 function form_input($text, $name)
 {
-    global $ALBUM_DATA;
-
+    global $ALBUM_DATA, $CONFIG;
     $value = $ALBUM_DATA[$name];
+    $disabled = '';
+    
+    if ($name=='keyword' && !GALLERY_ADMIN_MODE && $CONFIG['allow_user_album_keyword'] != 1) {
+	    $disabled = 'disabled="disabled" style="background-color:InactiveCaptionText;color:GrayText"';
+	}
+	echo <<< EOT
 
-    echo <<<EOT
         <tr>
             <td width="40%" class="tableb">
                         $text
         </td>
         <td width="60%" class="tableb" valign="top">
-                <input type="text" style="width: 100%" name="$name" value="$value" class="textinput" />
+                <input type="text" style="width: 100%" name="$name" value="$value" class="textinput" $disabled />
                 </td>
-        </tr>
-
+        </tr>	
+	
 EOT;
 }
 
