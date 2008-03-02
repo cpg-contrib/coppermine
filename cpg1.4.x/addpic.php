@@ -10,7 +10,7 @@
   as published by the Free Software Foundation.
   
   ********************************************
-  Coppermine version: 1.4.16
+  Coppermine version: 1.4.17
   $HeadURL$
   $Revision$
   $Author$
@@ -18,7 +18,7 @@
 **********************************************/
 
 /**
-* Coppermine Photo Gallery 1.4.14 addpic.php
+* Coppermine Photo Gallery addpic.php
 *
 * This file file gets called in the img src when you do batch add, there is nothing
 * much to look here the grunt work is done by the function add_picture

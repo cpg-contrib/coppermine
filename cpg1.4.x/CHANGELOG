@@ -9,7 +9,7 @@ it under the terms of the GNU General Public License version 3
 as published by the Free Software Foundation.
 
 ********************************************
-Coppermine version: 1.4.16
+Coppermine version: 1.4.17
 $Source$
 $Revision$
 $Author$
@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-03-02 [M] Updated version count from cpg1.4.16 to cpg1.4.17 in subversion repository as a preparation for a possible future release {GauGau}
 2008-02-29 [B] Changed date formats in lang files for better windows compatibility {Nibbler}
 2008-02-12 [O] Updated Romanian language file (user contribution) {GauGau}
 2008-02-07 [A] Added Latvian language file (user contribution) {GauGau}

@@ -10,7 +10,7 @@
   as published by the Free Software Foundation.
 
   ********************************************
-  Coppermine version: 1.4.16
+  Coppermine version: 1.4.17
   $HeadURL$
   $Revision$
   $Author$
@@ -18,7 +18,7 @@
 **********************************************/
 
 /**
-* Coppermine Photo Gallery 1.4.14 addfav.php
+* Coppermine Photo Gallery addfav.php
 *
 * This file does the needful when add to fav links are clicked, if the user is logged in then
 * the favs are stored in the database else the favs are stored in a local cookie, the favs in
