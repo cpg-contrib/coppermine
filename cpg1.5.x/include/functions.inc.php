@@ -3291,8 +3291,9 @@ function cpgSocialBookmark() {
     $return = '<div id="social_bookmarks_wrapper">';
     $return .= '<div class="social_bookmarks" id="social_bookmarks_text">' . $lang_social_bookmarks['add_this_page_to'].': </div>';
     $countLoop = 0;
+    $social_bookmarks_config_array = explode ("|",$CONFIG['display_social_bookmarks']);
     foreach ($socialBookmarks_array as $key) {
-      if (($CONFIG['display_social_bookmarks'] & pow(2,$countLoop)) == TRUE) {
+      if ($social_bookmarks_config_array[$countLoop] == 1) {
         $key['url'] = str_replace('{URL}', $url, $key['url']);
         $key['url'] = str_replace('{TITLE}', $title, $key['url']);
         $key['url'] = str_replace('{DESCRIPTION}', $description, $key['url']);
