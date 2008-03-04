@@ -73,6 +73,7 @@ if (!function_exists('array_is_associative')) { // make sure that this will not 
 
 require_once('include/admin.inc.php'); // populate the array for the admin data (could later be done using an XML file)
 
+
 // loop through the config sections and populate the array that determines what sections to expand/collapse
 $collapseSections_array = array(); // By default, all sections should be hidden. Let's populate the array first with all existing sections and then later remove the ones that are suppossed to be expanded by default
 foreach ($config_data as $key => $value) {
@@ -142,12 +143,20 @@ if ($superCage->post->keyExists('restore_config')) { // user has chosen to facto
       }
       // the data for 'select_multiple' is an array. Let's concatenate it into a single value
       if ($adminDataValue['type'] == 'select_multiple') {
-        //if (is_array($evaluation_array[$adminDataKey]) == TRUE) {
         if (is_array($evaluate_value)) {
-          $temp = array_sum($evaluate_value);
-          //unset($evaluation_array[$adminDataKey]);
-          //$evaluation_array[$adminDataKey] = $temp;
-          $evaluate_value = $temp;
+          //print_r($evaluate_value);
+          //foreach($evaluate_value as $value) {
+          for ($i = 0; $i <= end($evaluate_value); $i++) {
+	          //$temp = array_sum($evaluate_value);
+	          if (in_array($i, $evaluate_value) == TRUE) {
+		          $temp .= '1';
+	          } else {
+		          $temp .= '0';
+	          }
+	          $temp .= '|';
+          }
+          unset($evaluate_value);
+          $evaluate_value = rtrim($temp, '|');
           unset($temp);
         }
       }
@@ -385,18 +394,21 @@ EOT;
     } elseif ($value['type'] == 'select_function') {
     } elseif ($value['type'] == 'select_multiple') {
       $optionLoopCounter = 0;
-      //print '<input type="hidden" name="'.$key.'" id="'.$key.'" value="'.$admin_data_array[$key].'" />'.$lineBreak;
-      print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><select name="'.$key.'[]" id="'.$key.'" class="listbox" size="'.count($value['options']).'" '.$readonly_radio.' tabindex="'.$tabindexCounter.'" multiple="multiple">'.$lineBreak;
+      $option_value_array = explode ("|",$admin_data_array[$key]);
+      if (count($value['options']) > 10) {
+	      $maxSize = 10;
+      } else {
+	      $maxSize = count($value['options']);
+      }
+      print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><select name="'.$key.'[]" id="'.$key.'" class="listbox" size="'.$maxSize.'" '.$readonly_radio.' tabindex="'.$tabindexCounter.'" multiple="multiple">'.$lineBreak;
       foreach ($value['options'] as $option_value) { // loop through the options array
         $admin_data_array[$key] = (int)$admin_data_array[$key];
-        if (($admin_data_array[$key] & pow(2,$optionLoopCounter)) == TRUE) {
+        if ($option_value_array[$optionLoopCounter] == 1) {
           $selected = ' selected="selected"';
-          //print $admin_data_array[$key].'|'.pow(2,$optionLoopCounter).'|'.'true<br />';
         } else {
           $selected = '';
-          //print $admin_data_array[$key].'|'.pow(2,$optionLoopCounter).'|'.'false<br />';
         }
-        print '<option value="'.pow(2,$optionLoopCounter).'"'.$selected.'>'.ucfirst($option_value);
+        print '                      <option value="'.$optionLoopCounter.'"'.$selected.'>'.ucfirst($option_value);
         print '</option>'.$lineBreak;
         $optionLoopCounter++;
       }
