@@ -143,6 +143,93 @@ function cpg_versioncheckPopulateArray($file_data_array) {
     $maxLength_array['revision'] = strlen($lang_versioncheck_php['revision']);
     $maxLength_array['modified'] = strlen($lang_versioncheck_php['modified']);
     $loopCounter = 0;
+    foreach ($file_data_array as $file_data_key => $file_data_values) { // start the foreach loop
+	    $file_data_array[$file_data_key]['comment'] = '';
+	    // Replace the placeholders with actual content --- start	    $file_data_array[$file_data_key]['fullpath'] = str_replace('**fullpath**', rtrim($CONFIG['fullpath'], '/'), $file_data_array[$file_data_key]['fullpath']);
+	    $file_data_array[$file_data_key]['fullpath'] = str_replace('**userpics**', rtrim($CONFIG['userpics'], '/'), $file_data_array[$file_data_key]['fullpath']);
+	    // Replace the placeholders with actual content --- end
+	    // populate the path and file from the fullpath --- start
+	    $tempArray = cpg_get_path_and_file($file_data_array[$file_data_key]['fullpath']);
+	    $file_data_array[$file_data_key]['folder'] = $tempArray['path'];
+	    $file_data_array[$file_data_key]['file'] = $tempArray['file'];
+	    // populate the path and file from the fullpath --- end
+	    // determine the number of parent folders --- start	    $file_data_array[$file_data_key]['folderDepth'] = count(explode('/', rtrim($tempArray['path'], '/')));
+	    if (strlen($file_data_array[$file_data_key]['folder']) > $maxLength_array['folder']) {
+	      $maxLength_array['folder'] = strlen($file_data_array[$file_data_key]['folder']);
+	    }
+	    // determine the number of parent folders --- end
+	    // Is the folder/file actually there --- start
+	    $file_data_array[$file_data_key]['exists'] = file_exists($file_data_array[$file_data_key]['fullpath']);
+	    // Is the folder/file actually there --- end
+	    if ($file_data_array[$file_data_key]['exists'] != 1) { 
+		    // The folder/file is missing --- start
+	        if ($file_data_array[$file_data_key]['status'] == 'mandatory') {
+	          $file_data_array[$file_data_key]['txt_missing'] = $lang_versioncheck_php['mandatory'];
+	          $file_data_array[$file_data_key]['comment'] .= $lang_versioncheck_php['mandatory'];
+	        } else {
+	          $file_data_array[$file_data_key]['txt_missing'] = $lang_versioncheck_php['optional'];
+	        }
+	        if (strlen($file_data_array[$file_data_key]['txt_missing']) > $maxLength_array['exist']) {
+	          $maxLength_array['exist'] = strlen($file_data_array[$file_data_key]['txt_missing']);
+	        }
+	         // The folder/file is missing --- end
+	    } else {
+		    // The folder/file exists --- start
+		    if ($file_data_array[$file_data_key]['file'] == '') { 
+			  // we have a folder here --- start
+		      $file_data_array[$file_data_key]['txt_folderfile'] = $lang_versioncheck_php['folder'];
+		      $file_data_array[$file_data_key]['icon'] = '<img src="'.$extensionMatrix_array['folder'].'" border="0" width="16" height="16" alt="" style="margin-left:'. (16 * ($file_data_array[$file_data_key]['folderDepth'] - 1)) . 'px" />';
+		      // no version or revision number for folder names		      $file_data_array[$file_data_key]['txt_version'] = 'n/a ('.$lang_versioncheck_php['ok'].')';
+		      $file_data_array[$file_data_key]['txt_revision'] = 'n/a ('.$lang_versioncheck_php['ok'].')';
+		      $file_data_array[$file_data_key]['local_version'] = '';
+		      $file_data_array[$file_data_key]['local_revision'] = '';
+		      if (is_readable($file_data_values['fullpath']) == TRUE) { // check if the folder is readable/writable --- start		        // Sadly, is_readable doesn't really work on all server setups		        $file_data_array[$file_data_key]['local_readwrite'] = 'read';
+		        $file_data_array[$file_data_key]['local_readwrite'] = cpg_is_writable($file_data_array[$file_data_key]['path']);
+		        if (is_writable($file_data_values['fullpath']) == TRUE) {
+		          $file_data_array[$file_data_key]['local_readwrite'] = 'write';
+		        }
+		      } // check if the folder is readable/writable --- end
+			  // we have a folder here --- end
+		    } else {
+			  // we have a file here --- start
+			  // we have a file here --- end
+		    }
+		    // The folder/file exists --- end
+	    }
+	    	    
+	    
+	    
+	    
+	    
+	    
+	    $loopCounter++;
+    } // end the foreach loop
+    return $file_data_array;
+} // end function definition "cpg_versioncheckPopulateArray()"
+
+function cpg_versioncheckPopulateArray2($file_data_array) {
+    global $displayOption_array, $textFileExtensions_array, $imageFileExtensions_array, $CONFIG, $maxLength_array, $lang_versioncheck_php;
+    $extensionMatrix_array = array(
+      'unknown' => 'images/extensions/unknown.gif',
+      'folder' => 'images/extensions/folder.gif',
+      'php' => 'images/extensions/php.gif',
+      'js' => 'images/extensions/js.gif',
+      'css' => 'images/extensions/css.gif',
+      'htm' => 'images/extensions/htm.gif',
+      'html' => 'images/extensions/htm.gif',
+      'sql' => 'images/extensions/sql.gif',
+      'ttf' => 'images/extensions/ttf.gif',
+      'ico' => 'images/extensions/unknown.gif',
+    );
+    $maxLength_array = array();
+    $maxLength_array['counter'] = strlen($lang_versioncheck_php['counter']);
+    $maxLength_array['folderfile'] = strlen($lang_versioncheck_php['type']);
+    $maxLength_array['exist'] = strlen($lang_versioncheck_php['missing']);
+    $maxLength_array['readwrite'] = strlen($lang_versioncheck_php['permissions']);
+    $maxLength_array['version'] = strlen($lang_versioncheck_php['version']);
+    $maxLength_array['revision'] = strlen($lang_versioncheck_php['revision']);
+    $maxLength_array['modified'] = strlen($lang_versioncheck_php['modified']);
+    $loopCounter = 0;
     foreach ($file_data_array as $file_data_key => $file_data_values) {
     $file_data_array[$file_data_key]['comment'] = '';
     // Replace the placeholders with actual content --- start

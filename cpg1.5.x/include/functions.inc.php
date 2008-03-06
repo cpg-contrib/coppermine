@@ -814,7 +814,7 @@ function load_template()
             $template_file = TEMPLATE_FILE;
         } elseif (file_exists($THEME_DIR . TEMPLATE_FILE)) {
             $template_file = $THEME_DIR . TEMPLATE_FILE;
-        } else die("<b>Coppermine critical error</b>:<br />Unable to load template file ".TEMPLATE_FILE."!</b>");
+        } else die("Coppermine critical error:<br />Unable to load template file ".TEMPLATE_FILE."!");
 
         $template = fread(fopen($template_file, 'r'), filesize($template_file));
 

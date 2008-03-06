@@ -718,7 +718,7 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'manage_plugins' => 'Manage plugins',
   'manage_keyword' => 'Manage keywords',
   'restore_cfg' => 'Restore factory defaults',
-  'restore_cfg_confirm' => 'Do you really want to restore the entire configuration to factory defaults? This can not be undone!', // cpg1.5 //js-alert
+  'restore_cfg_confirm' => 'Do you really want to restore the entire configuration to factory defaults? This can not be undone! You will loose absolutely everything!', // cpg1.5 //js-alert
   'save_cfg' => 'Save new configuration',
   'notes' => 'Notes',
   'info' => 'Information',
@@ -992,6 +992,12 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'allow_show_link' => 'allow and promote it by displaying a link', // cpg1.5
   'display_sidebar_user' => 'Sidebar for registered users', // cpg1.5
   'display_sidebar_guest' => 'Sidebar for guests', // cpg1.5
+  'do_not_change' => 'Don\'t change this unless you REALLY know what you\'re doing!', // cpg1.5
+  'reset_to_default' => 'Reset to default', // cpg1.5
+  'no_change_needed' => 'No change needed, config option already is set to default', // cpg1.5
+  'enabled' => 'enabled', // cpg1.5
+  'disabled' => 'disabled', // cpg1.5
+  'none' => 'none', // cpg1.5
 );
 
 
