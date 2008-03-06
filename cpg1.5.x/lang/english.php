@@ -71,7 +71,9 @@ $lang_meta_album_names = array(
   'topn' => 'Most viewed',
   'toprated' => 'Top rated',
   'lasthits' => 'Last viewed',
-  'search' => 'Search results',
+  'search' => 'Image search results',
+  'album_search' => 'Album search results',
+  'category_search' => 'Category search results',
   'favpics'=> 'Favorite files',
 );
 
@@ -1931,20 +1933,24 @@ if (defined('SIDEBAR_PHP')) $lang_sidebar_php = array(
 if (defined('SEARCH_PHP')){
 
 $lang_search_php = array(
-  'title' => 'Search the file collection',
+  'title' => 'Search',
   'submit_search' => 'search',
   'keyword_list_title' => 'Keyword list',
   'keyword_msg' => 'The above list is not all inclusive. It does not include words from photo titles or descriptions. Try a full-text search.',
   'edit_keywords' => 'Edit keywords',
   'search in' => 'Search in:',
   'ip_address' => 'IP address',
-  'fields' => 'Search in',
+  'imgfields' => 'Search images',
+  'albcatfields' => 'Search Albums and Categories',  
   'age' => 'Age',
   'newer_than' => 'Newer than',
   'older_than' => 'Older than',
   'days' => 'days',
   'all_words' => 'Match all words (AND)',
   'any_words' => 'Match any words (OR)',
+  'regex' => 'Match regular expressions',
+  'album_title' => 'Album Titles',
+  'category_title' => 'Category Titles',
 );
 
 }
