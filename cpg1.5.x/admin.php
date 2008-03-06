@@ -326,6 +326,13 @@ EOT;
       $labelWrapperStart = '';
       $labelWrapperEnd = '';
     }
+    
+    if (empty($value['additional_description']))
+    	$value['additional_description'] = '';
+    
+    if (empty($value['end_description']))
+    	$value['end_description'] = '';
+    	
     print <<< EOT
 
                 <tr{$visibility}>
@@ -343,17 +350,17 @@ EOT;
       $readonly_text = '';
       $readonly_radio = '';
     }
-    if ($value['width'] != '') { // set width if option is set in array
+    if (!empty($value['width'])) { // set width if option is set in array
       $widthOption = ' style="width:'.$value['width'].'"';
     } else {
       $widthOption = ' style="width:90%"';
     }
-    if ($value['size'] != '') { // set width if option is set in array
+    if (!empty($value['size'])) { // set width if option is set in array
       $sizeOption = ' size="'.$value['size'].'"';
     } else {
       $sizeOption = '';
     }
-    if ($value['maxlength'] != '') { // set width if option is set in array
+    if (!empty($value['maxlength'])) { // set width if option is set in array
       $maxlengthOption = ' maxlength="'.$value['maxlength'].'"';
     } else {
       $maxlengthOption = '';
@@ -382,7 +389,7 @@ EOT;
           $checked = ' checked="checked"';
         }
         print '<input type="radio" name="'.$key.'" id="'.$key.$optionLoopCounter.'" value="'.$optionLoopCounter.'" class="radio"'.$checked.$readonly_radio.' tabindex="'.$tabindexCounter.'" /><label for="'.$key.$optionLoopCounter.'" class="clickable_option">'.$option.'</label>&nbsp;';
-        if ($value['linebreak'] != '') {
+        if (!empty($value['linebreak'])) {
           print $value['linebreak'];
         }
         $optionLoopCounter++;
