@@ -71,7 +71,7 @@ echo <<< EOT
                         <td class="tableb">
                                 <table align="center" width="60%">
                                         <tr>
-                                                <td>{$lang_search_php['fields']}:</td>
+                                                <td>{$lang_search_php['imgfields']}:</td>
                                                 <td align="center">{$lang_search_php['age']}:</td>
                                         </tr>
                                         <tr>
@@ -89,16 +89,37 @@ echo <<< EOT
                                         </tr>
                                         <tr>
                                                 <td><input type="checkbox" name="owner_name" id="owner_name" class="checkbox" /><label for="owner_name" class="clickable_option">{$lang_common['owner_name']}</label></td>
-                                                <td align="right"><select name="type" class="listbox">
-                                                        <option value="AND" selected="selected">{$lang_search_php['all_words']}</option>
-                                                        <option value="OR">{$lang_search_php['any_words']}</option></select>
+                                                <td align="right">
+																	<select name="type" class="listbox">
+																		<option value="AND" selected="selected">{$lang_search_php['all_words']}</option>
+																		<option value="OR">{$lang_search_php['any_words']}</option>
+																		<option value="regex">{$lang_search_php['regex']}</option>
+																	</select>
                                                 </td>
                                         </tr>
                                         <tr>
                                                 <td><input type="checkbox" name="filename" id="filename" class="checkbox" /><label for="filename" class="clickable_option">{$lang_common['filename']}</label></td>
                                                 <td>&nbsp;</td>
                                         </tr>
-                                                $customs
+                                        <tr>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                        </tr>
+
+                                        <tr>
+                                                <td>{$lang_search_php['albcatfields']}:</td>
+                                                <td>&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                                <td><input type="checkbox" name="album_title" id="album_title" class="checkbox" /><label for="album_title" class="clickable_option">{$lang_search_php['album_title']}</label></td>
+                                                <td>&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                                <td><input type="checkbox" name="category_title" id="category_title" class="checkbox" /><label for="category_title" class="clickable_option">{$lang_search_php['category_title']}</label></td>
+                                                <td>&nbsp;</td>
+                                        </tr>
+                                        
+											              $customs
                                                 $ip
                                 </table>
                         </td>

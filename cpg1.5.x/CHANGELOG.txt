@@ -26,6 +26,10 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-03-06 [A] Added Album and Category Title Search (gsoc2007 - drhammond) {Nibbler}
+2008-03-06 [A] Added phrase searching by double quotes (gsoc2007 - drhammond) {Nibbler}
+2008-03-06 [A] Added regular expressions to search (gsoc2007 - drhammond) {Nibbler}
+2008-03-06 [B] Fixed search parameters being ignored (gsoc2007 - drhammond) {Nibbler}
 2008-03-06 [C] Cleaned up notices in admin.php {Nibbler}
 2008-03-04 [O] Re-did the select_multiple option in config to allow a larger number of entries {GauGau}
 2008-02-21 [O] Voting now shows result back after vote {SaWey}

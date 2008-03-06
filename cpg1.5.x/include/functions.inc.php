@@ -1433,7 +1433,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 if ($META_ALBUM_SET && $CURRENT_CAT_NAME) {
                         $album_name = $lang_meta_album_names['search'].' - '. $CURRENT_CAT_NAME;
                 } else {
-                        $album_name = $lang_meta_album_names['search'].' - "'. strtr($search_string, $HTML_SUBST) . '"';
+                        $album_name = $lang_meta_album_names['search'].' - "'. strip_tags($search_string) . '"';
                 }
 
                 include 'include/search.inc.php';
