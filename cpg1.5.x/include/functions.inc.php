@@ -3126,6 +3126,9 @@ function themeSelect($parameter)
  **/
 function cpgSocialBookmark() {
   global $CONFIG, $lang_social_bookmarks;
+  
+  $return = '';
+  
   if ($CONFIG['display_social_bookmarks'] != 0) {
     $addressParamsToRemove_array = array('message_id', 'theme');
     $url = $CONFIG['ecards_more_pic_target'] . rawurlencode(str_replace('&amp;', '&', rtrim(cpgGetScriptNameParams($addressParamsToRemove_array), '&amp;')));
