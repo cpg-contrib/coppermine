@@ -316,12 +316,6 @@ $lang_rate_pic = array(
 );
 
 // ------------------------------------------------------------------------- //
-// File include/exif.inc.php
-// ------------------------------------------------------------------------- //
-
-// void
-
-// ------------------------------------------------------------------------- //
 // File include/functions.inc.php
 // ------------------------------------------------------------------------- //
 
@@ -393,24 +387,6 @@ $lang_get_remote_File_by_url = array(
 );
 
 // ------------------------------------------------------------------------- //
-// File include/init.inc.php
-// ------------------------------------------------------------------------- //
-
-// void
-
-// ------------------------------------------------------------------------- //
-// File keyword.inc.php                                                      //
-// ------------------------------------------------------------------------- //
-
-// void
-
-// ------------------------------------------------------------------------- //
-// File include/picmgmt.inc.php
-// ------------------------------------------------------------------------- //
-
-// void
-
-// ------------------------------------------------------------------------- //
 // File include/plugin_api.inc.php
 // ------------------------------------------------------------------------- //
 $lang_plugin_api = array(
@@ -447,23 +423,6 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
   'Arrow' => 'Arrow',
   'Neutral' => 'Neutral',
   'Mr. Green' => 'Mr. Green',
-);
-
-// ------------------------------------------------------------------------- //
-// File addpic.php
-// ------------------------------------------------------------------------- //
-
-// void
-
-// ------------------------------------------------------------------------- //
-// File mode.php
-// ------------------------------------------------------------------------- //
-
-if (defined('MODE_PHP')) $lang_mode_php = array(
-  0 => 'Turning display of admin controls off...', // cpg1.5.x
-  1 => 'Turning display of admin controls on...', // cpg1.5.x
-  'news_hide' => 'Hiding news...', // cpg1.5.x
-  'news_show' => 'Showing news...', // cpg1.5.x
 );
 
 // ------------------------------------------------------------------------- //
@@ -1481,6 +1440,7 @@ The management of {SITE_NAME}
 
 EOT;
 }
+
 // ------------------------------------------------------------------------- //
 // File groupmgr.php
 // ------------------------------------------------------------------------- //
@@ -1554,10 +1514,129 @@ $lang_list_albums = array(
   'n_link_pictures' => '%s linked files',
   'total_pictures' => '%s files total',
   'alb_hits' => 'Album viewed %s times', // cpg1.5.x
-  'from_categorie' => ' - From Categorie: ', // cpg1.5.x
+  'from_categorie' => ' - From Category: ', // cpg1.5.x
 );
-
 }
+
+// ------------------------------------------------------------------------- //
+// File install.php
+// ------------------------------------------------------------------------- //
+
+if (defined('INSTALL_PHP')) $lang_install = array(
+  'already_succ' => 'The installer has already been run successfuly once and is now locked.',
+  'already_succ_explain' => 'If you want to run the installer again, you first need to delete the \'include/config.inc.php\' file that was created in the directory where you put Coppermine. You can do this with any FTP program',
+  'c_mode' => 'Current mode',
+  'cant_read_tmp_conf' => 'The installer can\'t read the temporary config file %s, please check your directory permissions',
+  'cant_write_tmp_conf' => 'The installer can\'t write the temporary config file %s, please check your directory permissions',
+  'change_lang' => 'Change Language',
+  'check_path' => 'Check path',
+  'continue' => 'Next step',
+  'conv_said' => 'The convert program said:',
+  'cpg_info' => 'Coppermine is a picture/multimedia gallery script that is being released under GNU GPL v3. Please review the documentation for <a href="docs/copyrights.htm">license details',
+  'create_table' => 'Creating table \'%s\'',
+  'db_populating' => 'Trying to insert data in the database.',
+  'db_alr_populated' => 'Already inserted required data in the database.',
+  'dir_ok' => 'Directory found',
+  'directory' => 'Directory',
+  'email' => 'Email address',
+  'email_no_match' => 'Email adresses do not match or are invalid.',
+  'email_verif' => 'Verify Email',
+  'err_cpgnuke' => '<h1>ERROR</h1>You seem to be trying to install the standalone Coppermine into your Nuke portal.<br />This version can only be used as standalone!<br />Some server setups might display this warning even though you don\'t have a nuke portal installed - if this is the case for you, <a href="%s?continue_anyway=1">continue</a> with the install. If you are using a nuke portal, you might want to take a look into <a href=\"http://www.cpgnuke.com/\">CpgNuke</a> or use one of the (unsupported)<a href=\"http://sourceforge.net/project/showfiles.php?group_id=89658&amp;package_id=95984\">coppermine ports</a> - do not continue!',
+  'error' => 'ERROR',
+  'error_need_corr' => 'The following errors were encountered and need to be corrected first:',
+  'finish' => 'Finish Installation',
+  'gd_note' => '<b>Important :</b> older versions of the GD graphic library support only JPEG and PNG images. If this is the case for you, then the script will not be able to create thumbnails for GIF images.',
+  'go_to_main' => 'Go to the main page',
+  'im_no_convert_ex' => 'The installer found the ImageMagick \'convert\' program in \'%s\', however it can\'t be executed by the script.<br /><br />You may consider using GD instead of ImageMagick.',
+  'im_not_found' => 'The installer tried to find ImageMagick, but could not determine it\'s existance or there was an error. <br />Coppermine can use the <a href="http://www.imagemagick.org/" target="_blank">ImageMagick</a> 	\'convert\' program to create thumbnails. Quality of images produced by ImageMagick is superior to GD1 but equivalent to GD2.<br /><br />If ImageMagick is installed on your system and you want to use it, <br />you need to input the full path to the \'convert\' program below. <br />On Windows the path should look like \'c:/ImageMagick/\' and should not contain any space, on Unix is it something like \'/usr/bin/X11/\'.<br /><br />If you have no idea wether you have ImageMagick or not, leave this field empty - the installer will try to use GD2 then by default (which is what most users have). <br />You can change this later as well (in Coppermine\'s config screen), so don\'t be afraid if you\'re not sure what to enter here - leave it blank.',
+  'im_packages' => 'Your server supports the following image package(s)',
+  'im_path' => 'Path to ImageMagick:',
+  'im_path_space' => 'The path to ImageMagick (\'%s\') contains at least one space. This will cause problems in the script.<br /><br />You must move ImageMagick to another directory.',
+  'installation' => 'installation',
+  'installer_locked' => 'The installer is locked',
+  'installer_selected' => 'The installer selected',
+  'inv_im_path' => 'The installer can not find the \'%s\' directory you have specified for ImageMagick or it does not have permission to access it. Check that your typing is correct and that you have access to the specified directory.',
+  'last_step' => 'Last Step...',
+  'lets_go' => 'Let\'s Go !',
+  'mysql_create_btn' => 'Create',
+  'mysql_create_db' => 'Create new MySql Database',
+  'mysql_db_name' => 'MySQL Database Name',
+  'mysql_error' => 'MySQL error: ',
+  'mysql_host' => 'MySQL Host<br />(localhost is usually OK)',
+  'mysql_no_create_db' => 'Could not create MySql database.',
+  'mysql_no_sel_dbs' => 'Could not retrieve available MySql databases',
+  'mysql_succ' => 'Successfull connection with database',
+  'mysql_tbl_pref' => 'MySQL table prefix',
+  'mysql_test_connection' => 'Test connection',
+  'mysql_wrong_db' => 'mySQL could not locate a database called \'%s\' please check the value entered for this',
+  'n_a' => 'N/A',
+  'no_admin_email' => 'You have to enter an admin email address',
+  'no_admin_password' => 'You have to enter an admin password',
+  'no_admin_username' => 'You have to enter an admin username',
+  'no_dir' => 'Directory not available',
+  'no_gd' => 'Your installation of PHP does not seem to include the \'GD\' graphic library extension and you have not indicated that you want to use ImageMagick. Coppermine has been configured to use GD2 because the automatic GD detection sometimes fails. If GD is installed on your system, the script should work else you will need to install ImageMagick.',
+  'no_mysql_conn' => 'Could not create a mySQL connection, please check the SQL values entered',
+  'no_mysql_support' => 'PHP does not have MySQL support enabled.',
+  'no_thumb_method' => 'You have choose an image manipulation application (GD/IM)',
+  'nok' => 'Not OK',
+  'not_here_yet' => 'Nothing here yet, please click %shere%s to go back.',
+  'ok' => 'OK',
+  'on_q' => 'on query',
+  'or' => 'or',
+  'pass_err' => 'Passwords don\'t match, you used illegal characters or didn\'t provide one.',
+  'password' => 'Password',
+  'password_verif' => 'Verify Password',
+  'perm_error' => 'The permissions of \'%s\' are set to %s, please set them to',
+  'perm_ok' => 'The permissions on certain directories have been checked, and seem to be ok. <br />Please proceed to the next step.',
+  'please_go_back' => 'Please %sclick here%s to go back and fix this problem before proceeding.',
+  'populate_db' => 'Populate Database',
+  'r_mode' => 'Required mode',
+  'ready_to_roll' => '<a href="index.php">Coppermine</a> is now properly configured and ready to roll.<br /><br /><a href="login.php">Login</a> using the information you provided for your admin account.',
+  'sect_create_adm' => 'This section requires information to create your coppermine administration account. Use only alphanumeric characters. Enter the data carefully!',
+  'sect_mysql_info' => 'This section requires information on how to access your MySQL database.<br />If you don\'t know how to fill them, check with your webhost support.',
+  'sect_mysql_sel_db' => 'Here you have to choose which database you want to use for Coppermine. <br />If your mysql account has the needed privileges, you can create a new database from within the installer or you can use an existing database. If you don\'t like both options, you will have to create a database first outside the coppermine installer, then return here then select the new database from the dropdown box below. You can also change the table prefix (Don\'t use dots though), but keeping the default prefix is recommended.',
+  'select_lang' => 'Select default language: ',
+  'sql_file_not_found' => 'The file \'%s\' could not be found. Check that you have uploaded all Coppermine files to your server',
+  'status' => 'Status',
+  'subdir_called' => 'A subdirectory called \'%s\' should normally exist in the directory where you uploaded Coppermine. <br />The installer can\'t find this directory. Check that you have uploaded all Coppermine files to your server.',
+  'title_admin' => 'Create Coppermine Administrator',
+  'title_dir_check' => 'Checking Directory Permissions',
+  'title_file_check' => 'Checking Installation Files',
+  'title_finished' => 'Installation Completed',
+  'title_imp' => 'Image Package Selection',
+  'title_imp_test' => 'Testing Image Package',
+  'title_mysql_db_sel' => 'MySql Database Selection',
+  'title_mysql_pop' => 'Creating Database Structure',
+  'title_mysql_user' => 'MySql User Authentication',
+  'title_welcome' => 'Welcome to Coppermine installation',
+  'tmp_conf_error' => 'Unable to write the temporary config file, <br />make sure the \'include\' folder has write permissions set (777)',
+  'tmp_conf_ser_err' => 'A serious error occurred in the installer, try reloading your page or start over by removing the \'include/config.tmp\' file.',
+  'try_again' => 'Try again !',
+  'unable_write_config' => 'Unable to write config file',
+  'user_err' => 'Admin username must only contain alphanumeric characters and can\'t be empty.',
+  'username' => 'Username',
+  'your_admin_account' => 'Your admin account',
+  'no_cookie' => 'Your browser did not accept our cookie (although it was a sweet one). It is recommended to accept cookies.',
+  'no_javascript' => 'Your browser doesn\'t seem to have javascript enabled, it is highly recommended to enable it.',
+  'register_globals_detected' => 'It seems your php configuration has \'register_globals\' enabled, you should disable this for security reasons.',
+  'version_undetected' => 'The script could not determine the version of %s your server is using. Be sure it is at least version %s',
+  'version_incompatible' => 'The script detected an incompatible version (%s) of %s on your server.<br />Make sure to use a compatible version (%s or better) before continuing!',
+  'read_gif' => 'Read/write .gif file',
+  'read_png' => 'Read/write .png file',
+  'read_jpg' => 'Read/write .jpg file',
+  'write_error' => 'Could not write generated image to disk.',
+  'read_error' => 'Could not read the source image.',
+  'combine_error' => 'Could not combine the source images',
+  'text_error' => 'Could not add text to the source image',
+  'scale_error' => 'Could not scale the source image',
+  'pixels' => 'pixels',
+  'combine' => 'Combine 2 images',
+  'text' => 'Write text on image',
+  'scale' => 'Scale an image',
+  'generated_image' => 'Generated image',
+  'reference_image' => 'Reference image',
+  'imp_test_error' => 'There was an error in one or more of the test, please make sure you selected the apropriate Image Processing Package and it is configured correctly!',
+);
 
 // ------------------------------------------------------------------------- //
 // File keywordmgr.php
@@ -1582,8 +1661,8 @@ if (defined('LOGIN_PHP')) $lang_login_php = array(
   'login' => 'Login',
   'enter_login_pswd' => 'Enter your username and password to login',
   'username' => 'Username',
-  'email' => 'Email Address',
-  'both' => 'Username / Email Address',
+  'email' => 'Email Address', //cpg1.5.x
+  'both' => 'Username / Email Address', //cpg1.5.x
   'password' => 'Password',
   'remember_me' => 'Remember me',
   'welcome' => 'Welcome %s ...',
@@ -1616,6 +1695,17 @@ if (defined('MINIBROWSER_PHP')) $lang_minibrowser_php = array(
   'current_path' => 'current path',
   'select_directory' => 'please select a directory',
   'click_to_close' => 'Click image to close this window',
+);
+
+// ------------------------------------------------------------------------- //
+// File mode.php
+// ------------------------------------------------------------------------- //
+
+if (defined('MODE_PHP')) $lang_mode_php = array(
+  0 => 'Turning display of admin controls off...', // cpg1.5.x
+  1 => 'Turning display of admin controls on...', // cpg1.5.x
+  'news_hide' => 'Hiding news...', // cpg1.5.x
+  'news_show' => 'Showing news...', // cpg1.5.x
 );
 
 // ------------------------------------------------------------------------- //
@@ -2077,12 +2167,6 @@ if (defined('STAT_DETAILS_PHP')) $lang_stat_details_php = array(
 );
 
 // ------------------------------------------------------------------------- //
-// File thumbnails.php
-// ------------------------------------------------------------------------- //
-
-// Void
-
-// ------------------------------------------------------------------------- //
 // File upload.php
 // ------------------------------------------------------------------------- //
 
@@ -2162,11 +2246,11 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'close' => 'Close',
   'no_keywords' => 'Sorry, no keywords available!',
   'regenerate_dictionary' => 'Regenerate Dictionary',
-  'allowed_types' => 'You are allowed to upload files with the following extensions:', //cpg1.5 Frantz
-  'allowed_img_types' => '<br /><b>Images extensions:</b> %s', //cpg1.5 Frantz
-  'allowed_mov_types' => '<br /><b>Videos extensions:</b> %s', //cpg1.5 Frantz
-  'allowed_doc_types' => '<br /><b>Docs extentions:</b> %s', //cpg1.5 Frantz
-  'allowed_snd_types' => '<br /><b>Audios extentions:</b> %s', //cpg1.5 Frantz
+  'allowed_types' => 'You are allowed to upload files with the following extensions:', //cpg1.5
+  'allowed_img_types' => 'Images extensions: %s', //cpg1.5
+  'allowed_mov_types' => 'Videos extensions: %s', //cpg1.5
+  'allowed_doc_types' => 'Docs extentions: %s', //cpg1.5
+  'allowed_snd_types' => 'Audios extentions: %s', //cpg1.5
 );
 
 // ------------------------------------------------------------------------- //
@@ -2429,6 +2513,8 @@ if (defined('VERSIONCHECK_PHP')) $lang_versioncheck_php = array(
   'submit' => 'submit / refresh',
   'select_all' => 'Select All', //js-alert
   'files_folder_processed' => 'Displaying %s items of %s folders/files processed with %s potential issues',
+  'read' => 'Read', // cpg1.5
+  'write' => 'Write', // cpg1.5
 );
 
 // ------------------------------------------------------------------------- //
@@ -2488,128 +2574,6 @@ $lang_xp_publish_php = array(
   'link' => 'this link',
 );
 }
-
-// ------------------------------------------------------------------------- //
-// File installer.inc.php
-// ------------------------------------------------------------------------- //
-
-if (defined('INSTALL_PHP')) $lang_install = array(
-  'already_succ' => 'The installer has already been run successfuly once and is now locked.',
-  'already_succ_explain' => 'If you want to run the installer again, you first need to delete the \'include/config.inc.php\' file that was created in the directory where you put Coppermine. You can do this with any FTP program',
-  'c_mode' => 'Current mode',
-  'cant_read_tmp_conf' => 'The installer can\'t read the temporary config file %s, please check your directory permissions',
-  'cant_write_tmp_conf' => 'The installer can\'t write the temporary config file %s, please check your directory permissions',
-  'change_lang' => 'Change Language',
-  'check_path' => 'Check path',
-  'continue' => 'Next step',
-  'conv_said' => 'The convert program said:',
-  'cpg_info' => 'Coppermine is a picture/multimedia gallery script that is being released under GNU GPL v3. Please review the documentation for <a href="docs/copyrights.htm">license details',
-  'create_table' => 'Creating table \'%s\'',
-  'db_populating' => 'Trying to insert data in the database.',
-  'db_alr_populated' => 'Already inserted required data in the database.',
-  'dir_ok' => 'Directory found',
-  'directory' => 'Directory',
-  'email' => 'Email address',
-  'email_no_match' => 'Email adresses do not match or are invalid.',
-  'email_verif' => 'Verify Email',
-  'err_cpgnuke' => '<h1>ERROR</h1>You seem to be trying to install the standalone Coppermine into your Nuke portal.<br />This version can only be used as standalone!<br />Some server setups might display this warning even though you don\'t have a nuke portal installed - if this is the case for you, <a href="%s?continue_anyway=1">continue</a> with the install. If you are using a nuke portal, you might want to take a look into <a href=\"http://www.cpgnuke.com/\">CpgNuke</a> or use one of the (unsupported)<a href=\"http://sourceforge.net/project/showfiles.php?group_id=89658&amp;package_id=95984\">coppermine ports</a> - do not continue!',
-  'error' => 'ERROR',
-  'error_need_corr' => 'The following errors were encountered and need to be corrected first:',
-  'finish' => 'Finish Installation',
-  'gd_note' => '<b>Important :</b> older versions of the GD graphic library support only JPEG and PNG images. If this is the case for you, then the script will not be able to create thumbnails for GIF images.',
-  'go_to_main' => 'Go to the main page',
-  'im_no_convert_ex' => 'The installer found the ImageMagick \'convert\' program in \'%s\', however it can\'t be executed by the script.<br /><br />You may consider using GD instead of ImageMagick.',
-  'im_not_found' => 'The installer tried to find ImageMagick, but could not determine it\'s existance or there was an error. <br />Coppermine can use the <a href="http://www.imagemagick.org/" target="_blank">ImageMagick</a> 	\'convert\' program to create thumbnails. Quality of images produced by ImageMagick is superior to GD1 but equivalent to GD2.<br /><br />If ImageMagick is installed on your system and you want to use it, <br />you need to input the full path to the \'convert\' program below. <br />On Windows the path should look like \'c:/ImageMagick/\' and should not contain any space, on Unix is it something like \'/usr/bin/X11/\'.<br /><br />If you have no idea wether you have ImageMagick or not, leave this field empty - the installer will try to use GD2 then by default (which is what most users have). <br />You can change this later as well (in Coppermine\'s config screen), so don\'t be afraid if you\'re not sure what to enter here - leave it blank.',
-  'im_packages' => 'Your server supports the following image package(s)',
-  'im_path' => 'Path to ImageMagick:',
-  'im_path_space' => 'The path to ImageMagick (\'%s\') contains at least one space. This will cause problems in the script.<br /><br />You must move ImageMagick to another directory.',
-  'installation' => 'installation',
-  'installer_locked' => 'The installer is locked',
-  'installer_selected' => 'The installer selected',
-  'inv_im_path' => 'The installer can not find the \'%s\' directory you have specified for ImageMagick or it does not have permission to access it. Check that your typing is correct and that you have access to the specified directory.',
-  'last_step' => 'Last Step...',
-  'lets_go' => 'Let\'s Go !',
-  'mysql_create_btn' => 'Create',
-  'mysql_create_db' => 'Create new MySql Database',
-  'mysql_db_name' => 'MySQL Database Name',
-  'mysql_error' => 'MySQL error: ',
-  'mysql_host' => 'MySQL Host<br />(localhost is usually OK)',
-  'mysql_no_create_db' => 'Could not create MySql database.',
-  'mysql_no_sel_dbs' => 'Could not retrieve available MySql databases',
-  'mysql_succ' => 'Successfull connection with database',
-  'mysql_tbl_pref' => 'MySQL table prefix',
-  'mysql_test_connection' => 'Test connection',
-  'mysql_wrong_db' => 'mySQL could not locate a database called \'%s\' please check the value entered for this',
-  'n_a' => 'N/A',
-  'no_admin_email' => 'You have to enter an admin email address',
-  'no_admin_password' => 'You have to enter an admin password',
-  'no_admin_username' => 'You have to enter an admin username',
-  'no_dir' => 'Directory not available',
-  'no_gd' => 'Your installation of PHP does not seem to include the \'GD\' graphic library extension and you have not indicated that you want to use ImageMagick. Coppermine has been configured to use GD2 because the automatic GD detection sometimes fails. If GD is installed on your system, the script should work else you will need to install ImageMagick.',
-  'no_mysql_conn' => 'Could not create a mySQL connection, please check the SQL values entered',
-  'no_mysql_support' => 'PHP does not have MySQL support enabled.',
-  'no_thumb_method' => 'You have choose an image manipulation application (GD/IM)',
-  'nok' => 'Not OK',
-  'not_here_yet' => 'Nothing here yet, please click %shere%s to go back.',
-  'ok' => 'OK',
-  'on_q' => 'on query',
-  'or' => 'or',
-  'pass_err' => 'Passwords don\'t match, you used illegal characters or didn\'t provide one.',
-  'password' => 'Password',
-  'password_verif' => 'Verify Password',
-  'perm_error' => 'The permissions of \'%s\' are set to %s, please set them to',
-  'perm_ok' => 'The permissions on certain directories have been checked, and seem to be ok. <br />Please proceed to the next step.',
-  'please_go_back' => 'Please %sclick here%s to go back and fix this problem before proceeding.',
-  'populate_db' => 'Populate Database',
-  'r_mode' => 'Required mode',
-  'ready_to_roll' => '<a href="index.php">Coppermine</a> is now properly configured and ready to roll.<br /><br /><a href="login.php">Login</a> using the information you provided for your admin account.',
-  'sect_create_adm' => 'This section requires information to create your coppermine administration account. Use only alphanumeric characters. Enter the data carefully!',
-  'sect_mysql_info' => 'This section requires information on how to access your MySQL database.<br />If you don\'t know how to fill them, check with your webhost support.',
-  'sect_mysql_sel_db' => 'Here you have to choose which database you want to use for Coppermine. <br />If your mysql account has the needed privileges, you can create a new database from within the installer or you can use an existing database. If you don\'t like both options, you will have to create a database first outside the coppermine installer, then return here then select the new database from the dropdown box below. You can also change the table prefix (Don\'t use dots though), but keeping the default prefix is recommended.',
-  'select_lang' => 'Select default language: ',
-  'sql_file_not_found' => 'The file \'%s\' could not be found. Check that you have uploaded all Coppermine files to your server',
-  'status' => 'Status',
-  'subdir_called' => 'A subdirectory called \'%s\' should normally exist in the directory where you uploaded Coppermine. <br />The installer can\'t find this directory. Check that you have uploaded all Coppermine files to your server.',
-  'title_admin' => 'Create Coppermine Administrator',
-  'title_dir_check' => 'Checking Directory Permissions',
-  'title_file_check' => 'Checking Installation Files',
-  'title_finished' => 'Installation Completed',
-  'title_imp' => 'Image Package Selection',
-  'title_imp_test' => 'Testing Image Package',
-  'title_mysql_db_sel' => 'MySql Database Selection',
-  'title_mysql_pop' => 'Creating Database Structure',
-  'title_mysql_user' => 'MySql User Authentication',
-  'title_welcome' => 'Welcome to Coppermine installation',
-  'tmp_conf_error' => 'Unable to write the temporary config file, <br />make sure the \'include\' folder has write permissions set (777)',
-  'tmp_conf_ser_err' => 'A serious error occurred in the installer, try reloading your page or start over by removing the \'include/config.tmp\' file.',
-  'try_again' => 'Try again !',
-  'unable_write_config' => 'Unable to write config file',
-  'user_err' => 'Admin username must only contain alphanumeric characters and can\'t be empty.',
-  'username' => 'Username',
-  'your_admin_account' => 'Your admin account',
-  'no_cookie' => 'Your browser did not accept our cookie (although it was a sweet one). It is recommended to accept cookies.',
-  'no_javascript' => 'Your browser doesn\'t seem to have javascript enabled, it is highly recommended to enable it.',
-  'register_globals_detected' => 'It seems your php configuration has \'register_globals\' enabled, you should disable this for security reasons.',
-  'version_undetected' => 'The script could not determine the version of %s your server is using. Be sure it is at least version %s',
-  'version_incompatible' => 'The script detected an incompatible version (%s) of %s on your server.<br />Make sure to use a compatible version (%s or better) before continuing!',
-  'read_gif' => 'Read/write .gif file',
-  'read_png' => 'Read/write .png file',
-  'read_jpg' => 'Read/write .jpg file',
-  'write_error' => 'Could not write generated image to disk.',
-  'read_error' => 'Could not read the source image.',
-  'combine_error' => 'Could not combine the source images',
-  'text_error' => 'Could not add text to the source image',
-  'scale_error' => 'Could not scale the source image',
-  'pixels' => 'pixels',
-  'combine' => 'Combine 2 images',
-  'text' => 'Write text on image',
-  'scale' => 'Scale an image',
-  'generated_image' => 'Generated image',
-  'reference_image' => 'Reference image',
-  'imp_test_error' => 'There was an error in one or more of the test, please make sure you selected the apropriate Image Processing Package and it is configured correctly!',
-  
-);
-
 
 // ------------------------------------------------------------------------- //
 // Core plugins
