@@ -268,6 +268,7 @@ $template_gallery_admin_menu = <<<EOT
                             <!-- BEGIN show_news -->
                                 <div class="admin_menu admin_float"><a href="mode.php?what=news&amp;referer=$REFERER" title="{SHOWNEWS_TITLE}">{SHOWNEWS_LNK}</a></div>
                             <!-- END show_news -->
+		                          <div class="admin_menu admin_float"><a href="export.php" title="{EXPORT_TITLE}">{EXPORT_LNK}</a></div>
                 <div style="clear:left;">
                 </div>
               </div>
@@ -1878,6 +1879,8 @@ function theme_admin_mode_menu()
                 '{EXIFMGR_LNK}' => $lang_gallery_admin_menu['exifmgr_lnk'],
                 '{SHOWNEWS_TITLE}' => $lang_gallery_admin_menu['shownews_title'],
                 '{SHOWNEWS_LNK}' => $lang_gallery_admin_menu['shownews_lnk'],
+                '{EXPORT_TITLE}' => $lang_gallery_admin_menu['export_title'],
+                '{EXPORT_LNK}' => $lang_gallery_admin_menu['export_lnk'],
                 );
 
             $html = template_eval($template_gallery_admin_menu, $param);

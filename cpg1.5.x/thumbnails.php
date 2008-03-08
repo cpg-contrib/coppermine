@@ -44,7 +44,7 @@ define('THUMBNAILS_PHP', true);
  */
 define('INDEX_PHP', true);
 
-require('include/init.inc.php');
+require_once ('include/init.inc.php');
 
 if (!USER_ID && $CONFIG['allow_unlogged_access'] == 0) {
     $redirect = $redirect . "login.php";

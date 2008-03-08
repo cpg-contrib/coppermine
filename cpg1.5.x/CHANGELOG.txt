@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-03-08 [A] Added export feature (gsoc2007 - drhammond) {Nibbler}
 2008-03-06 [C] Fixing notice in social bookmarking code {Nibbler}
 2008-03-06 [A] Added Album and Category Title Search (gsoc2007 - drhammond) {Nibbler}
 2008-03-06 [A] Added phrase searching by double quotes (gsoc2007 - drhammond) {Nibbler}
