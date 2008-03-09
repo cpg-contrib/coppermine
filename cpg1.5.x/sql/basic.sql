@@ -200,6 +200,8 @@ INSERT INTO CPG_config VALUES ('log_ecards', '0');
 INSERT INTO CPG_config VALUES ('vote_details', '0');
 INSERT INTO CPG_config VALUES ('hit_details', '0');
 INSERT INTO CPG_config VALUES ('display_stats_on_index', '1');
+INSERT INTO CPG_config VALUES ('count_file_hits', '1');
+INSERT INTO CPG_config VALUES ('count_album_hits', '1');
 INSERT INTO CPG_config VALUES ('debug_mode', '0');
 INSERT INTO CPG_config VALUES ('debug_notice', '0');
 INSERT INTO CPG_config VALUES ('offline', '0');

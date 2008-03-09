@@ -1292,6 +1292,16 @@ $config_data = array(
       'default_value' => '1',
       'help_link' => 'f=configuration.htm&amp;as=admin_logging_display_stats_on_index&amp;ae=admin_logging_display_stats_on_index_end',
     ),
+    'count_file_hits' => array(
+      'type' => 'checkbox',
+      'default_value' => '1',
+      'help_link' => 'f=configuration.htm&amp;as=admin_count_file_hits&amp;ae=admin_count_file_hits_end',
+    ),
+    'count_album_hits' => array(
+      'type' => 'checkbox',
+      'default_value' => '1',
+      'help_link' => 'f=configuration.htm&amp;as=admin_count_album_hits&amp;ae=admin_count_album_hits_end',
+    ),
   ),
   'maintenance_settings' => array(
     'debug_mode' => array(

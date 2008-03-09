@@ -1787,11 +1787,9 @@ function add_hit($pid)
 {
         global $CONFIG, $raw_ip, $HTML_SUBST;
 
-        //Making Cage
-        $superCage = Inspekt::makeSuperCage();
-
-        cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET hits=hits+1, lasthit_ip='$raw_ip', mtime=CURRENT_TIMESTAMP WHERE pid='$pid'");
-
+		  if ($CONFIG['count_file_hits']) {
+          cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET hits=hits+1, lasthit_ip='$raw_ip', mtime=CURRENT_TIMESTAMP WHERE pid='$pid'");
+		  }
         /**
          * Code to record the details of hits for the picture, if the option is set in CONFIG
          */
@@ -1800,6 +1798,9 @@ function add_hit($pid)
         $client_details = cpg_determine_client();
 
 
+        //Making Cage
+        $superCage = Inspekt::makeSuperCage();
+        
         $time = time();
 
         //Sanitize the referer
@@ -1833,8 +1834,11 @@ function add_hit($pid)
 function add_album_hit($aid)
 {
         global $CONFIG, $USER;
-        $aid = (int)$aid;
-        cpg_db_query("UPDATE {$CONFIG['TABLE_ALBUMS']} SET alb_hits=alb_hits+1 WHERE aid='$aid'");
+        
+        if ($CONFIG['count_album_hits']) {
+          $aid = (int)$aid;
+          cpg_db_query("UPDATE {$CONFIG['TABLE_ALBUMS']} SET alb_hits=alb_hits+1 WHERE aid='$aid'");
+        }
 }
 /**
  * breadcrumb()

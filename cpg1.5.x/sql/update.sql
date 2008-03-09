@@ -676,3 +676,6 @@ INSERT INTO CPG_config VALUES ('display_sidebar_guest', '0');
 
 # Allow non-admin users to assign album keywords
 INSERT INTO CPG_config VALUES ('allow_user_album_keyword', '1');
+
+INSERT INTO CPG_config VALUES ('count_file_hits', '1');
+INSERT INTO CPG_config VALUES ('count_album_hits', '1');
