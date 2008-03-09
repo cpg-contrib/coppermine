@@ -22,8 +22,9 @@ define('EXPORT_PHP', true);
 
 require('include/init.inc.php');
 
-if (!GALLERY_ADMIN_MODE)
+if (!GALLERY_ADMIN_MODE) {
 	cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+}
 
 pageheader($lang_export_php['export']);
 
@@ -282,7 +283,7 @@ function initPhotoCopy($album,$directory)
 		mkdir($directory);
 		chmod($directory, octdec($CONFIG['default_dir_mode']));
 	}
-	
+	// To-do: perform a check if the export directory has been created succsessfully and die if this has failed
   starttable('100%', 'ID',2);
   
   $pic_array = array();
