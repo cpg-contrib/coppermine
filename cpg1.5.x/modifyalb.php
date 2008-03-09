@@ -359,7 +359,7 @@ function form_password_hint($text, $name)
               $text
           </td>
           <td width="60%" class="tableb" valign="top">
-            <input type="text" name="$name" value="$value" class="textinput" maxlength="32" size="34" />
+            <input type="text" name="$name" value="$value" class="textinput" size="34" />
           </td>
         </tr>
 EOT;

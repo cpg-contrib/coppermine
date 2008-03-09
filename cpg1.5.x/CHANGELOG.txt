@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-03-09 [B] Removed length restriction for the album password hint {Nibbler}
 2008-03-09 [A] Added options to disable file and album hit counters {Nibbler}
 2008-03-08 [A] Added export feature (gsoc2007 - drhammond) {Nibbler}
 2008-03-06 [C] Fixing notice in social bookmarking code {Nibbler}
