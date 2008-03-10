@@ -375,7 +375,7 @@ EOT;
       print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><input type="text" class="textinput"'.$widthOption.$sizeOption.$maxlengthOption.'  name="'.$key.'" id="'.$key.'" value="'.$admin_data_array[$key].'"'.$readonly_text.' tabindex="'.$tabindexCounter.'" onblur="checkDefaultBox(\''.$key.'\');" /></span>';
       $defaultLabel = $value['default_value'];
     } elseif ($value['type'] == 'password') {
-      print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><input type="password" class="textinput" maxlength="255"'.$widthOption.$sizeOption.$maxlengthOption.' name="'.$key.'" id="'.$key.'" value="'.$admin_data_array[$key].'"'.$readonly_text.' tabindex="'.$tabindexCounter.'" /></span>';
+      print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><input type="password" class="textinput" maxlength="255"'.$widthOption.$sizeOption.$maxlengthOption.' name="'.$key.'" id="'.$key.'" value="'.$admin_data_array[$key].'"'.$readonly_text.' tabindex="'.$tabindexCounter.'" onblur="checkDefaultBox(\''.$key.'\');" /></span>';
     } elseif ($value['type'] == 'checkbox') {
       $checked = '';
       if ($admin_data_array[$key] == 1) {
@@ -386,7 +386,7 @@ EOT;
       } else {
         $defaultLabel = $lang_admin_php['enabled'];
       }      
-      print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><input type="checkbox" name="'.$key.'" id="'.$key.'" value="1" class="checkbox"'.$checked.$readonly_radio.' tabindex="'.$tabindexCounter.'" />';
+      print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><input type="checkbox" name="'.$key.'" id="'.$key.'" value="1" class="checkbox"'.$checked.$readonly_radio.' tabindex="'.$tabindexCounter.'" onchange="checkDefaultBox(\''.$key.'\');" />';
     } elseif ($value['type'] == 'radio') {
       $optionLoopCounter = 0;
       print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'">'; // wrap the radio-buttons set into a container box
@@ -546,14 +546,37 @@ echo <<< EOT
     }
     
     function checkDefaultBox(theFieldId) {
-        if (document.getElementById(theFieldId).value != document.getElementById('default_value_' + theFieldId).value) {
-            document.getElementById('reset_default_' + theFieldId).disabled = false;
-            document.getElementById('reset_default_' + theFieldId).checked = false;
-            document.getElementById('reset_default_' + theFieldId).title = '{$lang_admin_php['reset_to_default']}';
-        } else {
-            document.getElementById('reset_default_' + theFieldId).disabled = true;
-            document.getElementById('reset_default_' + theFieldId).checked = true;
-            document.getElementById('reset_default_' + theFieldId).title = '{$lang_admin_php['reset_to_default']}: {$lang_admin_php['no_change_needed']} (' + document.getElementById('default_value_' + theFieldId).value + ')';
+        // Each time a config field is being changed (onblur), this JS is being run to enable/disable the default checkbox
+        if(document.getElementById(theFieldId).type == 'text' || document.getElementById(theFieldId).type == 'password') {
+	        if (document.getElementById(theFieldId).value != document.getElementById('default_value_' + theFieldId).value) {
+	            document.getElementById('reset_default_' + theFieldId).disabled = false;
+	            document.getElementById('reset_default_' + theFieldId).checked = false;
+	            document.getElementById('reset_default_' + theFieldId).title = '{$lang_admin_php['reset_to_default']}';
+	        } else {
+	            document.getElementById('reset_default_' + theFieldId).disabled = true;
+	            document.getElementById('reset_default_' + theFieldId).checked = true;
+	            document.getElementById('reset_default_' + theFieldId).title = '{$lang_admin_php['reset_to_default']}: {$lang_admin_php['no_change_needed']} (' + document.getElementById('default_value_' + theFieldId).value + ')';
+	        }
+	        return;
+        }
+        if(document.getElementById(theFieldId).type == 'checkbox') {
+	        var checkboxNeedsChangeToChecked = 0;
+	        if (document.getElementById(theFieldId).checked == true && document.getElementById('default_value_' + theFieldId).value == 1) {
+		        checkboxNeedsChangeToChecked = 1;
+	        }
+	        if (document.getElementById(theFieldId).checked == false && document.getElementById('default_value_' + theFieldId).value == 0) {
+		        checkboxNeedsChangeToChecked = 1;
+	        }
+	        if (checkboxNeedsChangeToChecked == 0) {
+	            document.getElementById('reset_default_' + theFieldId).disabled = false;
+	            document.getElementById('reset_default_' + theFieldId).checked = false;
+	            document.getElementById('reset_default_' + theFieldId).title = '{$lang_admin_php['reset_to_default']}';
+	        } else {
+	            document.getElementById('reset_default_' + theFieldId).disabled = true;
+	            document.getElementById('reset_default_' + theFieldId).checked = true;
+	            document.getElementById('reset_default_' + theFieldId).title = '{$lang_admin_php['reset_to_default']}: {$lang_admin_php['no_change_needed']} (' + document.getElementById('default_value_' + theFieldId).value + ')';
+	        }
+	        return;
         }
     }
 </script>
