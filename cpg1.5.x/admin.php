@@ -395,7 +395,7 @@ EOT;
         if ($admin_data_array[$key] == $optionLoopCounter) {
           $checked = ' checked="checked"';
         }
-        print '<input type="radio" name="'.$key.'" id="'.$key.$optionLoopCounter.'" value="'.$optionLoopCounter.'" class="radio"'.$checked.$readonly_radio.' tabindex="'.$tabindexCounter.'" /><label for="'.$key.$optionLoopCounter.'" class="clickable_option">'.$option.'</label>&nbsp;';
+        print '<input type="radio" name="'.$key.'" id="'.$key.$optionLoopCounter.'" value="'.$optionLoopCounter.'" class="radio"'.$checked.$readonly_radio.' tabindex="'.$tabindexCounter.'" onfocus="checkDefaultBox(\''.$key.$optionLoopCounter.'\');" /><label for="'.$key.$optionLoopCounter.'" class="clickable_option">'.$option.'</label>&nbsp;';
         if (!empty($value['linebreak'])) {
           print $value['linebreak'];
         }
@@ -577,6 +577,21 @@ echo <<< EOT
 	            document.getElementById('reset_default_' + theFieldId).title = '{$lang_admin_php['reset_to_default']}: {$lang_admin_php['no_change_needed']} (' + document.getElementById('default_value_' + theFieldId).value + ')';
 	        }
 	        return;
+        }
+        if(document.getElementById(theFieldId).type == 'radio') {
+            // theFieldId has got a number appended to it - let's strip it
+            theLoopCounterIndex = theFieldId.slice((theFieldId.length - 1),theFieldId.length); 
+            theFieldId = theFieldId.slice(0,(theFieldId.length - 1));
+            if (theLoopCounterIndex != document.getElementById('default_value_' + theFieldId).value) {
+	            document.getElementById('reset_default_' + theFieldId).disabled = false;
+	            document.getElementById('reset_default_' + theFieldId).checked = false;
+	            document.getElementById('reset_default_' + theFieldId).title = '{$lang_admin_php['reset_to_default']}';
+	        } else {
+	            document.getElementById('reset_default_' + theFieldId).disabled = true;
+	            document.getElementById('reset_default_' + theFieldId).checked = true;
+	            document.getElementById('reset_default_' + theFieldId).title = '{$lang_admin_php['reset_to_default']}: {$lang_admin_php['no_change_needed']} (' + document.getElementById('default_value_' + theFieldId).value + ')';
+	        }
+            return;
         }
     }
 </script>
