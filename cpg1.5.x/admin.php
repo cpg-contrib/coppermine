@@ -467,14 +467,14 @@ EOT;
     $defaultValueField = '';
     if ($value['default_value'] != '') { // we have a default value
         if ($value['default_value'] == $admin_data_array[$key]) { // the default value equals the current config setting - grey out
-            $resetCheckbox = '<input type="checkbox" name="reset_default_'.$key.'" id="reset_default_'.$key.'" value="1" class="checkbox" checked="checked" disabled="disabled" title="'.$lang_admin_php['reset_to_default'].': '.$lang_admin_php['no_change_needed'].' ('.$defaultLabel.')" />';
+            $resetCheckbox = '<input type="checkbox" name="reset_default_'.$key.'" id="reset_default_'.$key.'" value="'.$value['default_value'].'" class="checkbox" checked="checked" title="'.$lang_admin_php['reset_to_default'].': '.$lang_admin_php['no_change_needed'].' ('.$defaultLabel.')" style="display:none;" />';
         } else {
-            $resetCheckbox = '<input type="checkbox" name="reset_default_'.$key.'" id="reset_default_'.$key.'" value="1" class="checkbox" title="'.$lang_admin_php['reset_to_default'].': '.$defaultLabel.'" />';
+            $resetCheckbox = '<input type="checkbox" name="reset_default_'.$key.'" id="reset_default_'.$key.'" value="'.$value['default_value'].'" class="checkbox" title="'.$lang_admin_php['reset_to_default'].': '.$defaultLabel.'" onclick="resetToDefault('.$key.');" />';
         }
     } else { // we don't have a default value
-        $resetCheckbox = '<input type="hidden" name="reset_default_'.$key.'" id="reset_default_'.$key.'" value=""  />';
+        $resetCheckbox = '<input type="hidden" name="reset_default_'.$key.'" id="reset_default_'.$key.'" value="'.$value['default_value'].'"  />';
     }
-    $defaultValueField = '<input type="hidden"  name="default_value_'.$key.'" id="default_value_'.$key.'" value="'.$value['default_value'].'" />';
+    //$defaultValueField = '<input type="hidden"  name="default_value_'.$key.'" id="default_value_'.$key.'" value="'.$value['default_value'].'" />';
     print <<< EOT
                   </td>
                   <td class="{$cellStyle}">
@@ -548,33 +548,33 @@ echo <<< EOT
     function checkDefaultBox(theFieldId) {
         // Each time a config field is being changed (onblur), this JS is being run to enable/disable the default checkbox
         if(document.getElementById(theFieldId).type == 'text' || document.getElementById(theFieldId).type == 'password') {
-	        if (document.getElementById(theFieldId).value != document.getElementById('default_value_' + theFieldId).value) {
-	            document.getElementById('reset_default_' + theFieldId).disabled = false;
+	        if (document.getElementById(theFieldId).value != document.getElementById('reset_default_' + theFieldId).value) {
+	            document.getElementById('reset_default_' + theFieldId).style.display = 'inline';
 	            document.getElementById('reset_default_' + theFieldId).checked = false;
 	            document.getElementById('reset_default_' + theFieldId).title = '{$lang_admin_php['reset_to_default']}';
 	        } else {
-	            document.getElementById('reset_default_' + theFieldId).disabled = true;
+	            document.getElementById('reset_default_' + theFieldId).style.display = 'none';
 	            document.getElementById('reset_default_' + theFieldId).checked = true;
-	            document.getElementById('reset_default_' + theFieldId).title = '{$lang_admin_php['reset_to_default']}: {$lang_admin_php['no_change_needed']} (' + document.getElementById('default_value_' + theFieldId).value + ')';
+	            document.getElementById('reset_default_' + theFieldId).title = '{$lang_admin_php['reset_to_default']}: {$lang_admin_php['no_change_needed']} (' + document.getElementById('reset_default_' + theFieldId).value + ')';
 	        }
 	        return;
         }
         if(document.getElementById(theFieldId).type == 'checkbox') {
 	        var checkboxNeedsChangeToChecked = 0;
-	        if (document.getElementById(theFieldId).checked == true && document.getElementById('default_value_' + theFieldId).value == 1) {
+	        if (document.getElementById(theFieldId).checked == true && document.getElementById('reset_default_' + theFieldId).value == 1) {
 		        checkboxNeedsChangeToChecked = 1;
 	        }
-	        if (document.getElementById(theFieldId).checked == false && document.getElementById('default_value_' + theFieldId).value == 0) {
+	        if (document.getElementById(theFieldId).checked == false && document.getElementById('reset_default_' + theFieldId).value == 0) {
 		        checkboxNeedsChangeToChecked = 1;
 	        }
 	        if (checkboxNeedsChangeToChecked == 0) {
-	            document.getElementById('reset_default_' + theFieldId).disabled = false;
+	            document.getElementById('reset_default_' + theFieldId).style.display = 'inline';
 	            document.getElementById('reset_default_' + theFieldId).checked = false;
 	            document.getElementById('reset_default_' + theFieldId).title = '{$lang_admin_php['reset_to_default']}';
 	        } else {
-	            document.getElementById('reset_default_' + theFieldId).disabled = true;
+	            document.getElementById('reset_default_' + theFieldId).style.display = 'none';
 	            document.getElementById('reset_default_' + theFieldId).checked = true;
-	            document.getElementById('reset_default_' + theFieldId).title = '{$lang_admin_php['reset_to_default']}: {$lang_admin_php['no_change_needed']} (' + document.getElementById('default_value_' + theFieldId).value + ')';
+	            document.getElementById('reset_default_' + theFieldId).title = '{$lang_admin_php['reset_to_default']}: {$lang_admin_php['no_change_needed']} (' + document.getElementById('reset_default_' + theFieldId).value + ')';
 	        }
 	        return;
         }
@@ -582,17 +582,20 @@ echo <<< EOT
             // theFieldId has got a number appended to it - let's strip it
             theLoopCounterIndex = theFieldId.slice((theFieldId.length - 1),theFieldId.length); 
             theFieldId = theFieldId.slice(0,(theFieldId.length - 1));
-            if (theLoopCounterIndex != document.getElementById('default_value_' + theFieldId).value) {
-	            document.getElementById('reset_default_' + theFieldId).disabled = false;
+            if (theLoopCounterIndex != document.getElementById('reset_default_' + theFieldId).value) {
+	            document.getElementById('reset_default_' + theFieldId).style.display = 'inline';
 	            document.getElementById('reset_default_' + theFieldId).checked = false;
 	            document.getElementById('reset_default_' + theFieldId).title = '{$lang_admin_php['reset_to_default']}';
 	        } else {
-	            document.getElementById('reset_default_' + theFieldId).disabled = true;
+	            document.getElementById('reset_default_' + theFieldId).style.display = 'none';
 	            document.getElementById('reset_default_' + theFieldId).checked = true;
-	            document.getElementById('reset_default_' + theFieldId).title = '{$lang_admin_php['reset_to_default']}: {$lang_admin_php['no_change_needed']} (' + document.getElementById('default_value_' + theFieldId).value + ')';
+	            document.getElementById('reset_default_' + theFieldId).title = '{$lang_admin_php['reset_to_default']}: {$lang_admin_php['no_change_needed']} (' + document.getElementById('reset_default_' + theFieldId).value + ')';
 	        }
             return;
         }
+    }
+    function resetToDefault(theFieldId) {
+	    alert(theFieldId);
     }
 </script>
 EOT;
