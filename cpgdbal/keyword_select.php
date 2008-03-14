@@ -1,0 +1,119 @@
+<?php
+/*************************
+  Coppermine Photo Gallery
+  ************************
+  Copyright (c) 2003-2008 Dev Team
+  v1.1 originally written by Gregory DEMAR
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License version 3
+  as published by the Free Software Foundation.
+
+  ********************************************
+  Coppermine version: 1.5.0
+  $HeadURL$
+  $Revision: 4224 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-01-26 17:12:00 +0530 (Sat, 26 Jan 2008) $
+**********************************************/
+
+define('IN_COPPERMINE', true);
+define('UPLOAD_PHP', true);
+
+require('include/init.inc.php');
+
+if (!USER_CAN_UPLOAD_PICTURES) {
+    cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
+}
+
+$query = "SELECT * FROM {$CONFIG['TABLE_PREFIX']}dict ORDER BY keyword";
+$result = cpg_db_query($query);
+while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+    $keywordIds[] = $row["keyId"];
+    $keywords[]   = $row["keyword"];
+}
+
+$total = mysql_num_rows($result);
+
+mysql_free_result($result);
+
+$charset = $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'];
+$html_header = <<<EOT
+<html dir="ltr">
+<head>
+<title>{$lang_upload_php['keywords_sel']}</title>
+<meta http-equiv="Content-Type" content="text/html; charset=$charset" />
+<meta http-equiv="Pragma" content="no-cache" />
+
+<link rel="stylesheet" href="themes/{$CONFIG['theme']}/style.css" />
+</head>
+<body>
+EOT;
+
+print $html_header;
+/*if (ISSET($_GET['id'])) {
+  $formFieldId = (int)$_GET['id'];
+}*/
+if ($superCage->get->keyExists('id')) {
+	$formFieldId = $superCage->get->getInt('id');
+}
+print '    <form name="form" name="keywordform" id="cpgform2">'."\n";
+starttable("100%",$lang_upload_php['keywords_sel'], 3);
+if ($total > 0) {
+
+    $form = '
+    <script type="text/javascript">
+    <!--
+    var str;
+
+    function CM_select(f)
+    {
+        str = window.document.form.elements[0].value;
+        var substrings = window.opener.document.getElementById(\'keywords' . $formFieldId . '\').value.split(str);
+        if (substrings.length <= 1){
+                window.opener.document.getElementById(\'keywords' . $formFieldId . '\').value += \' \' + str;
+        }
+
+
+        return false;
+
+    }
+
+    //-->
+    </script>
+
+
+    <tr>
+        <td class="tableb" align="center"><select name="keyword" size="15" onChange="CM_select(this)" class="listbox">';
+
+        foreach ($keywords as $keyword) {
+            $form.= '<option value="'.$keyword.'">'.$keyword.'</option>';
+        }
+    $form .= '
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td class="tablef" align="center"><a href="#" onClick="window.close()" class="admin_menu">'.$lang_upload_php['close'].'</a></td>
+    </tr>';
+} else {
+    $form .= <<< EOT
+    <tr>
+        <td class="tablef" align="center"><a href="#" onclick="window.close()" class="admin_menu">{$lang_upload_php['no_keywords']}</a></td>
+    </tr>
+EOT;
+}
+print($form);
+if (GALLERY_ADMIN_MODE) {
+        echo <<< EOT
+    <tr>
+        <td class="tablef" align="center"><a href="keyword_create_dict.php" class="admin_menu">{$lang_upload_php['regenerate_dictionary']}</a></td>
+    </tr>
+EOT;
+}
+endtable();
+print '    </form>'."\n";
+
+?>
+</body>
+</html>

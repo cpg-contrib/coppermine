@@ -1,0 +1,86 @@
+/*************************
+  Coppermine Photo Gallery
+  ************************
+  Copyright (c) 2003-2008 Dev Team
+  v1.1 originally written by Gregory DEMAR
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License version 3
+  as published by the Free Software Foundation.
+  
+  ********************************************
+  Coppermine version: 1.5.0
+  $Source$
+  $Revision: 3405 $
+  $LastChangedBy: gaugau $
+  $Date: 2006-12-27 10:06:19 +0100 (Mi, 27 Dez 2006) $
+**********************************************/
+
+body {
+        background: #FFFFFF;
+        margin: 0px 0px;
+}
+
+h1,h2,h3,h4,h5,h6 {
+        page-break-after:avoid;
+}
+
+h1 {
+        font-weight: bolder;
+        font-size: 16px;
+        padding-top:0px;
+        padding-bottom:0px;
+}
+
+h2 {
+        font-size: 14px;
+        padding-top:0px;
+        padding-bottom:0px;
+}
+
+h3 {
+        font-weight: bolder;
+        padding-top:0px;
+        padding-bottom:0px;
+}
+
+h4 {
+        font-weight: bold;
+        padding-top:0px;
+        padding-bottom:0px;
+}
+
+p,li,td {
+        font-size: 11px;
+}
+
+p {
+        margin: 0px 0px 0px 0px;
+}
+
+.back {
+        display:none;
+}
+
+a {
+        color: #000000;
+        text-decoration: none;
+}
+
+a.external {
+    margin:0px;
+    padding:0px;
+}
+
+em,strong {
+    margin:0px;
+    padding:0px;
+    font-weight:normal;
+    font-style:normal ;
+
+}
+
+.floatleft {
+        float:none;
+        margin-right:10px
+}
