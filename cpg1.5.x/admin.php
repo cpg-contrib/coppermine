@@ -469,7 +469,7 @@ EOT;
         if ($value['default_value'] == $admin_data_array[$key]) { // the default value equals the current config setting - grey out
             $resetCheckbox = '<input type="checkbox" name="reset_default_'.$key.'" id="reset_default_'.$key.'" value="'.$value['default_value'].'" class="checkbox" checked="checked" title="'.$lang_admin_php['reset_to_default'].': '.$lang_admin_php['no_change_needed'].' ('.$defaultLabel.')" style="display:none;" />';
         } else {
-            $resetCheckbox = '<input type="checkbox" name="reset_default_'.$key.'" id="reset_default_'.$key.'" value="'.$value['default_value'].'" class="checkbox" title="'.$lang_admin_php['reset_to_default'].': '.$defaultLabel.'" onclick="resetToDefault('.$key.');" />';
+            $resetCheckbox = '<input type="checkbox" name="reset_default_'.$key.'" id="reset_default_'.$key.'" value="'.$value['default_value'].'" class="checkbox" title="'.$lang_admin_php['reset_to_default'].': '.$defaultLabel.'" onclick="resetToDefault(\''.$key.'\');" />';
         }
     } else { // we don't have a default value
         $resetCheckbox = '<input type="hidden" name="reset_default_'.$key.'" id="reset_default_'.$key.'" value="'.$value['default_value'].'"  />';
@@ -595,7 +595,22 @@ echo <<< EOT
         }
     }
     function resetToDefault(theFieldId) {
-	    alert(theFieldId);
+	    if(document.getElementById(theFieldId).type == 'text' || document.getElementById(theFieldId).type == 'password') {
+		    document.getElementById(theFieldId).value = document.getElementById('reset_default_' + theFieldId).value;
+            document.getElementById('reset_default_' + theFieldId).style.display = 'none';
+            document.getElementById('reset_default_' + theFieldId).checked = true;
+		    return;
+	    }
+	    if(document.getElementById(theFieldId).type == 'checkbox') {
+		    if (document.getElementById('reset_default_' + theFieldId).value == 1) {
+			    document.getElementById(theFieldId).checked = true;
+		    } else {
+			    document.getElementById(theFieldId).checked = false;
+		    }
+            document.getElementById('reset_default_' + theFieldId).style.display = 'none';
+            document.getElementById('reset_default_' + theFieldId).checked = true;
+		    return;
+	    }
     }
 </script>
 EOT;
