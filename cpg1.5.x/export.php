@@ -45,26 +45,42 @@ if($superCage->post->keyExists('exportSubmit'))
   while($album = mysql_fetch_assoc($result))
     $options .= "<option value=\"{$album['aid']}\">{$album['title']}</option>";
 
-  starttable('60%', $lang_export_php['choose_album']);
+  starttable('-1', $lang_export_php['export'].'&nbsp;'.cpg_display_help('f=export.htm&amp;as=export&amp;ae=export_end', '600', '450'), 2);
 	
   echo <<< EOT
 
-<tr>
-	<td class="tableb">
-		{$lang_export_php['export_type']}<br/>
-    	<input type="radio" name="exportType" value="html">{$lang_export_php['html']}</input>
-    	<input type="radio" name="exportType" value="img">{$lang_export_php['images']}</input><br/><br/>
-    	{$lang_export_php['select_album']}
-    	<select name="album" class="listbox">
-			$options
-    	</select>
-    	<br/><br/>
-    	{$lang_export_php['export_directory']}<br/>
-    	<input type="text" value="export" name="directory" /><br/><br/>
-    	<input type="submit" name="exportSubmit" value="{$lang_common['continue']}" />
- 		<br/><br/>
-	</td>
-</tr>
+	<tr>
+		<td class="tableb">
+			{$lang_export_php['export_type']}
+		</td>
+		<td class="tableb">
+	    	<input type="radio" name="exportType" id="html" value="html" checked="checked" class="radio" /><label for="html">{$lang_export_php['html']}</label>
+	    	<input type="radio" name="exportType" id="img" value="img" class="radio" /><label for="img">{$lang_export_php['images']}</label>
+		</td>
+	</tr>
+	<tr>
+		<td class="tableb tableb_alternate">
+	    	{$lang_export_php['select_album']}
+		</td>
+		<td class="tableb tableb_alternate">
+	    	<select name="album" class="listbox">
+				$options
+	    	</select>
+		</td>
+	</tr>
+	<tr>
+		<td class="tableb">
+	    	{$lang_export_php['export_directory']}
+		</td>
+		<td class="tableb">
+	    	<input type="text" value="export" name="directory" class="textinput" />
+		</td>
+	</tr>
+	<tr>
+		<td class="tablef" colspan="2">
+	    	<input type="submit" name="exportSubmit" value="{$lang_common['go']}" class="button" />
+		</td>
+	</tr>
 
 EOT;
 
