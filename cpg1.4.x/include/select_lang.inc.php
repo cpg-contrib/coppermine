@@ -52,6 +52,7 @@ $available_languages = array('ar' => array('ar([-_][[:alpha:]]{2})?|arabic', 'ar
     'bg' => array('bg|bulgarian', 'bulgarian', 'bg'),
     'ca' => array('ca|catalan', 'catalan', 'ca'),
     'cs' => array('cs|czech', 'czech', 'cs'),
+    'cy' => array('cy|welsh', 'welsh', 'cy'),
     'da' => array('da|danish', 'danish', 'da'),
     'de' => array('de([-_][[:alpha:]]{2})?|german', 'german', 'de'),
     'el' => array('el|greek', 'greek', 'el'),
