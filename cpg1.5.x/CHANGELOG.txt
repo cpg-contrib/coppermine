@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-03-20 [A] Changed versioncheck to work with the installer-class + minor cosmetical fixes in source {SaWey}
 2008-03-20 [A] Fixed some typos I introduced {SaWey}
 2008-03-19 [A] Added versioncheck to the installer {SaWey}
 2008-03-16 [D] Added document about the export feature {GauGau}

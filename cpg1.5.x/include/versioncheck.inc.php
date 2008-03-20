@@ -120,8 +120,11 @@ EOT;
   print '<br />';
 }
 
-function cpg_versioncheckPopulateArray($file_data_array) {
-    global $displayOption_array, $textFileExtensions_array, $imageFileExtensions_array, $CONFIG, $maxLength_array, $lang_versioncheck_php;
+function cpg_versioncheckPopulateArray($file_data_array, $displayOption_array = '', $textFileExtensions_array = '', $imageFileExtensions_array = '', $CONFIG = '', $maxLength_array = '', $lang_versioncheck_php = '') {
+    if($textFileExtensions_array = ''){
+		global $displayOption_array, $textFileExtensions_array, $imageFileExtensions_array, $CONFIG, $maxLength_array, $lang_versioncheck_php;
+	}
+	
     $extensionMatrix_array = array(
       'unknown' => 'images/extensions/unknown.gif',
       'folder' => 'images/extensions/folder.gif',
@@ -145,7 +148,8 @@ function cpg_versioncheckPopulateArray($file_data_array) {
     $loopCounter = 0;
     foreach ($file_data_array as $file_data_key => $file_data_values) { // start the foreach loop
 	    $file_data_array[$file_data_key]['comment'] = '';
-	    // Replace the placeholders with actual content --- start	    $file_data_array[$file_data_key]['fullpath'] = str_replace('**fullpath**', rtrim($CONFIG['fullpath'], '/'), $file_data_array[$file_data_key]['fullpath']);
+	    // Replace the placeholders with actual content --- start
+	    $file_data_array[$file_data_key]['fullpath'] = str_replace('**fullpath**', rtrim($CONFIG['fullpath'], '/'), $file_data_array[$file_data_key]['fullpath']);
 	    $file_data_array[$file_data_key]['fullpath'] = str_replace('**userpics**', rtrim($CONFIG['userpics'], '/'), $file_data_array[$file_data_key]['fullpath']);
 	    // Replace the placeholders with actual content --- end
 	    // populate the path and file from the fullpath --- start
@@ -153,7 +157,8 @@ function cpg_versioncheckPopulateArray($file_data_array) {
 	    $file_data_array[$file_data_key]['folder'] = $tempArray['path'];
 	    $file_data_array[$file_data_key]['file'] = $tempArray['file'];
 	    // populate the path and file from the fullpath --- end
-	    // determine the number of parent folders --- start	    $file_data_array[$file_data_key]['folderDepth'] = count(explode('/', rtrim($tempArray['path'], '/')));
+	    // determine the number of parent folders --- start
+	    $file_data_array[$file_data_key]['folderDepth'] = count(explode('/', rtrim($tempArray['path'], '/')));
 	    if (strlen($file_data_array[$file_data_key]['folder']) > $maxLength_array['folder']) {
 	      $maxLength_array['folder'] = strlen($file_data_array[$file_data_key]['folder']);
 	    }
@@ -179,11 +184,14 @@ function cpg_versioncheckPopulateArray($file_data_array) {
 			  // we have a folder here --- start
 		      $file_data_array[$file_data_key]['txt_folderfile'] = $lang_versioncheck_php['folder'];
 		      $file_data_array[$file_data_key]['icon'] = '<img src="'.$extensionMatrix_array['folder'].'" border="0" width="16" height="16" alt="" style="margin-left:'. (16 * ($file_data_array[$file_data_key]['folderDepth'] - 1)) . 'px" />';
-		      // no version or revision number for folder names		      $file_data_array[$file_data_key]['txt_version'] = 'n/a ('.$lang_versioncheck_php['ok'].')';
+		      // no version or revision number for folder names
+		      $file_data_array[$file_data_key]['txt_version'] = 'n/a ('.$lang_versioncheck_php['ok'].')';
 		      $file_data_array[$file_data_key]['txt_revision'] = 'n/a ('.$lang_versioncheck_php['ok'].')';
 		      $file_data_array[$file_data_key]['local_version'] = '';
 		      $file_data_array[$file_data_key]['local_revision'] = '';
-		      if (is_readable($file_data_values['fullpath']) == TRUE) { // check if the folder is readable/writable --- start		        // Sadly, is_readable doesn't really work on all server setups		        $file_data_array[$file_data_key]['local_readwrite'] = 'read';
+		      if (is_readable($file_data_values['fullpath']) == TRUE) { // check if the folder is readable/writable --- start
+		        // Sadly, is_readable doesn't really work on all server setups
+		        $file_data_array[$file_data_key]['local_readwrite'] = 'read';
 		        $file_data_array[$file_data_key]['local_readwrite'] = cpg_is_writable($file_data_array[$file_data_key]['path']);
 		        if (is_writable($file_data_values['fullpath']) == TRUE) {
 		          $file_data_array[$file_data_key]['local_readwrite'] = 'write';
@@ -606,8 +614,10 @@ EOT;
   return $string;
 }
 
-function cpg_versioncheckCreateHTMLOutput($file_data_array) {
-  global $textFileExtensions_array, $lang_versioncheck_php, $majorVersion, $displayOption_array;
+function cpg_versioncheckCreateHTMLOutput($file_data_array, $textFileExtensions_array = '', $lang_versioncheck_php = '', $majorVersion = '', $displayOption_array = '') {
+  if($textFileExtensions_array = ''){
+	global $textFileExtensions_array, $lang_versioncheck_php, $majorVersion, $displayOption_array;
+  }
   $newLine = "\r\n";
   $loopCounter_array = array('total' => 0, 'error' => 0, 'display' => 0);
   if (strlen($file_data_count) > $maxLength_array['counter']) {
@@ -684,8 +694,10 @@ EOT;
     return $loopCounter_array;
 }
 
-function cpgVersioncheckConnectRepository() {
-    global $displayOption_array;
+function cpgVersioncheckConnectRepository($displayOption_array = '') {
+	if($displayOption_array = ''){
+		global $displayOption_array;
+	}
     // Perform the repository lookup and xml creation --- start
     //$displayOption_array['do_not_connect_to_online_repository'] = 1;
     $majorVersion = 'cpg'.str_replace('.' . ltrim(substr(COPPERMINE_VERSION,strrpos(COPPERMINE_VERSION,'.')),'.'), '', COPPERMINE_VERSION).'.x';

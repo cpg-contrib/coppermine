@@ -1037,12 +1037,14 @@ class CPGInstall{
 		require_once('include/versioncheck.inc.php');
 		
 		// Connect to the repository and populate the array with data from the XML file
-		$file_data_array = cpgVersioncheckConnectRepository();
+		$file_data_array = cpgVersioncheckConnectRepository($displayOption_array);
 		// Populate the array additionally with local data
-		$file_data_array = cpg_versioncheckPopulateArray($file_data_array);
+		//$CONFIG['full_path'] = '';
+		//$CONFIG['user_pics'] = '';
+		$file_data_array = cpg_versioncheckPopulateArray($file_data_array, $displayOption_array, $textFileExtensions_array, $imageFileExtensions_array, $CONFIG, $maxLength_array, $lang_versioncheck_php);
 		$file_data_count = count($file_data_array);
 		// Print the results
-		$outputResult = cpg_versioncheckCreateHTMLOutput($file_data_array);
+		$outputResult = cpg_versioncheckCreateHTMLOutput($file_data_array, $textFileExtensions_array, $lang_versioncheck_php, $majorVersion, $displayOption_array);
 		return sprintf($lang_versioncheck_php['files_folder_processed'], $outputResult['display'], $outputResult['total'], $outputResult['error']);
 	}
 	
