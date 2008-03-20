@@ -149,7 +149,7 @@ class cpg_udb extends core_udb {
         // 4.5.1 and 4.5.2 compatibility
         if (($mambo_version->RELEASE == '4.5' && $mambo_version->DEV_LEVEL != '1.0.9') && $sessioncookie) {
 		    //$sessioncookie .= $_SERVER['REMOTE_ADDR'];
-			$sessioncookie .= $raw_ip];
+			$sessioncookie .= $raw_ip;
 		}
 
 		//$usercookie = $_COOKIE['usercookie'];

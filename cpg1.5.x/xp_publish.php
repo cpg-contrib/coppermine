@@ -524,7 +524,7 @@ function send_reg_file()
     } else {
     }
     $name_iso = '';
-    description_iso = '';
+    $description_iso = '';
     $name_utf = '';
     $description_utf = '';
 

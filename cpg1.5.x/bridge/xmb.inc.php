@@ -221,7 +221,7 @@ class cpg_udb extends core_udb {
 		//if (isset($_COOKIE['xmbpw']) && isset($_COOKIE['xmbuser'])){
 		//	return array($this->get_user_id($_COOKIE['xmbuser']), $_COOKIE['xmbpw']);
 		if ($superCage->cookie->keyExists('xmbpw') && $superCage->cookie->keyExists('xmbuser')){
-			return array($this->get_user_id($superCage->cookie->getRaw('xmbuser'), $superCage->cookie->getRaw('xmbpw'));
+			return array($this->get_user_id($superCage->cookie->getRaw('xmbuser'), $superCage->cookie->getRaw('xmbpw')));
 		} else {
 		    return false;
 		}
