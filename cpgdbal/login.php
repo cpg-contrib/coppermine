@@ -54,7 +54,7 @@ if ($superCage->post->keyExists('submitted')) {
                   </tr>
 EOT;
 
-        // get IP address of the person who tried to log in, look it up on the banning table and increase the brute force counter. If the brute force counter has reached a critical limit, set a regular banning record
+    /*    // get IP address of the person who tried to log in, look it up on the banning table and increase the brute force counter. If the brute force counter has reached a critical limit, set a regular banning record
         $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_BANNED']} WHERE ip_addr='$raw_ip' OR ip_addr='$hdr_ip'");
         $failed_logon_counter = mysql_fetch_array($result);
         mysql_free_result($result);
@@ -69,7 +69,25 @@ EOT;
         }
 
         //write the logon counter to the database
-        cpg_db_query($query_string);
+        cpg_db_query($query_string);*/
+		##########################  DB  ###########################
+        // get IP address of the person who tried to log in, look it up on the banning table and increase the brute force counter. If the brute force counter has reached a critical limit, set a regular banning record
+        $cpgdb->query($cpg_db_login_php['get_all_banned'], $raw_ip, $hdr_ip);
+        $failed_logon_counter = $cpgdb->fetchRow();
+        $cpgdb->free();
+        $expiry_date = date("Y-m-d H:i:s", mktime(date('H'), date('i')+$CONFIG['login_expiry'], date('s'), date('m'), date('d'),date('Y')));
+
+        if ($failed_logon_counter['brute_force']) {
+            $failed_logon_counter['brute_force'] = $failed_logon_counter['brute_force'] - 1;
+            $cpgdb->query($cpg_db_login_php['update_banned'], $failed_logon_counter['brute_force'], $expiry_date, $failed_logon_counter['ban_id']);
+        }else{
+            $failed_logon_counter['brute_force'] = $CONFIG['login_threshold'];
+            $cpgdb->query($cpg_db_login_php['new_banned'], $raw_ip, $expiry_date, $failed_logon_counter['brute_force']);
+        }
+
+        //write the logon counter to the database
+        //cpg_db_query($query_string);
+		########################################################
     }
 }
 

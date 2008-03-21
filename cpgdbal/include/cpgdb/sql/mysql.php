@@ -2,46 +2,78 @@
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 ########################### DB  Note #################################
 //	The array names in this are given according to the files used.
-//	There are many syntax errors in this files which will be corrected alongwith the chan
+//	There are many  errors in this files which will be corrected with the changes in the related files.
 ##############################################################
 /******************************************************/
 //queries from index.php
 /***********************************************************/
 if (defined('INDEX_PHP')) $cpg_db_index_php = array(
-	'select_cid'				=> "SELECT cid, name, description, thumb FROM {$CONFIG['TABLE_CATEGORIES']} WHERE parent = '$parent'  ORDER BY $cat_sort_order",
-	'select_aid'				=> "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE category>=" . FIRST_USER_CAT . $album_filter,
-	'select_count'				=> "SELECT count(*) FROM {$CONFIG['TABLE_PICTURES']} as p, {$CONFIG['TABLE_ALBUMS']} as a WHERE p.aid = a.aid AND approved='YES' AND category >= " . FIRST_USER_CAT . $album_filter,
-	'select_aid_02'				=> "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = {$subcat['cid']}" . $unaliased_album_filter,
-	'select_count_02'			=> "SELECT count(*) FROM {$CONFIG['TABLE_PICTURES']} as p, {$CONFIG['TABLE_ALBUMS']} as a WHERE p.aid = a.aid AND approved='YES' AND category = {$subcat['cid']}" . $album_filter,
-	'select_filepath'			=> "SELECT filepath, filename, url_prefix, pwidth, pheight " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='{$subcat['thumb']}'" . $pic_filter,
-	'select_aid_03'				=> "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE category >= " . FIRST_USER_CAT . $album_filter,
-	'select_aid_04'				=> "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE category = '$cat'" . $album_filter,
-	'select_count_aid'			=> "SELECT count(aid) FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE 1" . $album_filter,
-	'select_count_pid'			=> "SELECT count(pid) FROM {$CONFIG['TABLE_PICTURES']} as p " . 'LEFT JOIN ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' . 'ON a.aid=p.aid ' . 'WHERE 1' . $pic_filter . ' AND approved=\'YES\'',
-	'select_count_msg_id'		=> "SELECT count(msg_id) FROM {$CONFIG['TABLE_COMMENTS']} as c " . 'LEFT JOIN ' . $CONFIG['TABLE_PICTURES'] . ' as p ' . 'ON c.pid=p.pid ' . 'LEFT JOIN ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' . 'ON a.aid=p.aid ' . 'WHERE 1' . $pic_filter. ' AND approval=\'YES\'',
-	'select_count_cid_02'		=> "SELECT count(cid) FROM {$CONFIG['TABLE_CATEGORIES']} WHERE 1",
-	'select_sum_hits'			=> "SELECT sum(hits) FROM {$CONFIG['TABLE_PICTURES']} as p " . 'LEFT JOIN ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' . 'ON p.aid=a.aid ' . 'WHERE 1' . $pic_filter,
-	'select_count_aid_02'		=> "SELECT count(aid) FROM {$CONFIG['TABLE_ALBUMS']} WHERE 1 $current_album_set",
-	'select_count_pid_02'		=> "SELECT count(pid) FROM {$CONFIG['TABLE_PICTURES']} WHERE 1 $current_album_set",
-	'select_sum_hits_02'		=> "SELECT sum(hits) FROM {$CONFIG['TABLE_PICTURES']} WHERE 1 $current_album_set AND approved='YES'",
-	'select_filepath'			=> "SELECT filepath, filename, url_prefix, pwidth, pheight " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='$user_thumb_pid' AND approved='YES'",
-	'select_count_aid_03'		=> "SELECT count(aid) FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE owner = '" . $USER_DATA['user_id'] . "'" . $album_filter,
-	'select_count_aid_04'		=> "SELECT count(aid) FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE category = '$cat'" . $album_filter,
-	'select_a.aid'				=> 'SELECT a.aid, a.title, a.description, a.thumb, category, visibility, filepath, ' . 'filename, url_prefix, pwidth, pheight ' . 'FROM ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' . 'LEFT JOIN ' . $CONFIG['TABLE_PICTURES'] . ' as p ' . 'ON a.thumb=p.pid ' . 'WHERE a.owner=' . $USER_DATA['user_id'] . $album_filter . ' ORDER BY a.category DESC , a.pos ' . $limit,
-	'select_concat_a.title'		=> "SELECT CONCAT(a.title, '" . $lang_list_albums['from_categorie'] . "<i>', c.name, '</i>') FROM " . $CONFIG['TABLE_ALBUMS'] . " AS a LEFT JOIN " . $CONFIG['TABLE_CATEGORIES'] . " AS c ON a.category=c.cid WHERE a.owner=" . $USER_DATA['user_id'] . " ORDER BY a.category DESC , a.pos " . $limit,
-	'select_a.aid_02'			=> 'SELECT a.aid, a.title, a.description, a.thumb, category, visibility, filepath, ' . 'filename, url_prefix, pwidth, pheight ' . 'FROM ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' . 'LEFT JOIN ' . $CONFIG['TABLE_PICTURES'] . ' as p ' . 'ON a.thumb=p.pid ' . 'WHERE a.category=' . $cat . $album_filter . ' ORDER BY a.pos ' . $limit,
-	'select_a.aid_03'			=> "SELECT a.aid, count( p.pid )  AS pic_count, max( p.pid )  AS last_pid, max( p.ctime )  AS last_upload, a.keyword, a.alb_hits FROM {$CONFIG['TABLE_ALBUMS']} AS a LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON a.aid = p.aid AND p.approved =  'YES' WHERE a.aid IN $album_set" . "GROUP BY a.aid",
-	'select_count_pid_02'		=> "SELECT count(pid) AS link_pic_count, max(pid) AS link_last_pid FROM {$CONFIG['TABLE_PICTURES']} WHERE aid != {$value['aid']} AND keywords LIKE '%{$value['keyword']}%' AND approved = 'YES'",
-	'select_filepath_02'		=> "SELECT filepath, filename, url_prefix, pwidth, pheight " . "FROM {$CONFIG['TABLE_PICTURES']} WHERE aid = '{$alb_thumb['aid']}' ORDER BY RAND() LIMIT 0,1",
-	'select_filepath_03'		=> "SELECT filepath, filename, url_prefix, pwidth, pheight " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='{$alb_stat['last_pid']}'",
-	'select_all_albums'			=> "SELECT * FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$aid' AND owner='" . $USER_DATA['user_id'] . "'",
-	'select_distinct_alb.cat'	=> "SELECT DISTINCT alb.category FROM {$CONFIG['TABLE_ALBUMS']} AS alb INNER JOIN {$CONFIG['TABLE_CATMAP']} AS catm ON alb.category=catm.cid WHERE alb.owner = '" . $USER_DATA['user_id'] . "' AND alb.aid='$aid' AND catm.group_id='" . $USER_DATA['group_id'] . "'",
-	'select_count_aid_05'		=> "SELECT count(aid) FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE category = '$cat'" . $album_filter,
-	'select_a.aid_04'			=> 'SELECT a.aid, a.title, a.description, a.thumb, visibility, filepath, ' . 'filename, url_prefix, pwidth, pheight ' . 'FROM ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' . 'LEFT JOIN ' . $CONFIG['TABLE_PICTURES'] . ' as p ' . 'ON a.thumb=p.pid ' . 'WHERE category=' . $cat . $album_filter . ' ORDER BY a.pos ' . $limit,
-	'select_a.aid_05'			=> "SELECT a.aid, count( p.pid )  AS pic_count, max( p.pid )  AS last_pid, max( p.ctime )  AS last_upload, a.keyword, a.alb_hits" . " FROM {$CONFIG['TABLE_ALBUMS']} AS a " . " LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON a.aid = p.aid AND p.approved =  'YES' ". "WHERE a.aid IN $album_set" . "GROUP BY a.aid",
-	'select_count_pid_03'		=> "SELECT count(pid) AS link_pic_count FROM {$CONFIG['TABLE_PICTURES']} WHERE aid != {$value['aid']} AND keywords LIKE '%{$value['keyword']}%' AND approved = 'YES'",
-	'select_filepath_04'		=> "SELECT filepath, filename, url_prefix, pwidth, pheight " . "FROM {$CONFIG['TABLE_PICTURES']} WHERE aid = '{$alb_thumb['aid']}' ORDER BY RAND() LIMIT 0,1",
-	'select_filepath_05'		=> "SELECT filepath, filename, url_prefix, pwidth, pheight " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='{$alb_stat['last_pid']}'"
+	'subcat_categories'				=> "SELECT cid, name, description, thumb FROM {$CONFIG['TABLE_CATEGORIES']} ".
+									   "WHERE parent = '%1\$s'  ORDER BY %2\$s",
+	'subcat_alb_filter'				=> "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE category>= %1\$s %2\$s",
+	'subcat_user_gal_cat'			=> "SELECT count(*) FROM {$CONFIG['TABLE_PICTURES']} as p, {$CONFIG['TABLE_ALBUMS']} as a ".
+									   "WHERE p.aid = a.aid AND approved='YES' AND category >= %1\$s %2\$s ",
+	'subcat_unaliased_alb_filter'	=> "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = '%1\$s' %2\$s",
+	'subcat_not_user_gal_cat'		=> "SELECT count(*) FROM {$CONFIG['TABLE_PICTURES']} as p, {$CONFIG['TABLE_ALBUMS']} as a ".
+									   "WHERE p.aid = a.aid AND approved='YES' AND category = '%1\$s' %2\$s",
+	'subcat_pic'					=> "SELECT filepath, filename, url_prefix, pwidth, pheight FROM {$CONFIG['TABLE_PICTURES']} ".
+									   "WHERE pid='%1\$s' %2\$s",
+	'cat_list_user_gal_cat'			=> "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE category >= %1\$s %2\$s",
+	'cat_list_not_user_gal_cat'		=> "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE category = '%1\$s' %2\$s",
+	'cat_list_count_alb'			=> "SELECT count(aid) FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE 1 %1\$s",
+	'cat_list_count_pic_alb'		=> "SELECT count(pid) FROM {$CONFIG['TABLE_PICTURES']} as p LEFT JOIN " . $CONFIG['TABLE_ALBUMS'] . 
+									   " as a ON a.aid=p.aid WHERE 1 %1\$s AND approved='YES'",
+	'cat_list_count_comm_pic'		=> "SELECT count(msg_id) FROM {$CONFIG['TABLE_COMMENTS']} as c LEFT JOIN " . $CONFIG['TABLE_PICTURES'] .
+									   " as p ON c.pid=p.pid  LEFT JOIN " . $CONFIG['TABLE_ALBUMS'] . " as a  ON a.aid=p.aid ".
+									   " WHERE 1  %1\$s AND approval='YES'",
+	'cat_list_count_cat'			=> "SELECT count(cid) FROM {$CONFIG['TABLE_CATEGORIES']} WHERE 1",
+	'cat_list_sum_pic_alb'			=> "SELECT sum(hits) FROM {$CONFIG['TABLE_PICTURES']} as p LEFT JOIN " . $CONFIG['TABLE_ALBUMS'] . 
+									   " as a  ON p.aid=a.aid  WHERE 1 %1\$s",
+	'cat_list_current_alb_set'		=> "SELECT count(aid) FROM {$CONFIG['TABLE_ALBUMS']}  WHERE 1 %1\$s",
+	'cat_list_count_pic'			=> "SELECT count(pid) FROM {$CONFIG['TABLE_PICTURES']} WHERE 1 %1\$s",
+	'cat_list_sum_pic'				=> "SELECT sum(hits) FROM {$CONFIG['TABLE_PICTURES']} WHERE 1 %1\$s AND approved='YES'",
+	'list_user_pic'					=> "SELECT filepath, filename, url_prefix, pwidth, pheight  FROM {$CONFIG['TABLE_PICTURES']} " . 
+									   "WHERE pid='%1\$s' AND approved='YES'",
+	'list_albums_alb_owner'			=> "SELECT count(aid) FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE owner = '%1\$s' %2\$s",
+	'list_albums_alb_cats'			=> "SELECT count(aid) FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE category = '%1\$s' %2\$s",
+	'list_albums_alb_pic_owner'		=> "SELECT a.aid, a.title, a.description, a.thumb, category, visibility, filepath, filename, url_prefix, pwidth, pheight " . 
+									   "FROM " . $CONFIG['TABLE_ALBUMS'] . " as a  'LEFT JOIN " . $CONFIG['TABLE_PICTURES'] . " as p " . 
+									   "ON a.thumb=p.pid  WHERE a.owner= %1\$s %2\$s  ORDER BY a.category DESC , a.pos LIMIT %3\$s, %4\$s",	###	cpgdb_AL
+	'list_albums_concat'			=> "SELECT CONCAT(a.title, ' %1\$s <i>', c.name, '</i>') FROM " . $CONFIG['TABLE_ALBUMS'] . 
+									   " AS a LEFT JOIN ". $CONFIG['TABLE_CATEGORIES'] ." AS c ON a.category=c.cid ".
+									   "WHERE a.owner = %2\$s  ORDER BY a.category DESC , a.pos  LIMIT  %3\$s, %4\$s",	###	cpgdb_AL
+	'list_albums_alb_pic_cat'		=> "SELECT a.aid, a.title, a.description, a.thumb, category, visibility, filepath, filename, ".
+									   "url_prefix, pwidth, pheight  FROM " . $CONFIG['TABLE_ALBUMS'] . 
+									   " as a  LEFT JOIN " . $CONFIG['TABLE_PICTURES'] . " as p  ON a.thumb=p.pid ".
+									   " WHERE a.category= %1\$s %2\$s  ORDER BY a.pos LIMIT %3\$s, %4\$s",	###	cpgdb_AL
+	'alb_stats_kwrd'				=> "SELECT a.aid, count( p.pid )  AS pic_count, max( p.pid )  AS last_pid, max( p.ctime ) ".
+									   " AS last_upload, a.keyword, a.alb_hits  FROM {$CONFIG['TABLE_ALBUMS']} AS a ".
+									   "LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON a.aid = p.aid AND p.approved =  'YES' ".
+									   "WHERE a.aid IN %1\$s" . "GROUP BY a.aid",
+	'list_albums_get_pic_kwrd'		=> "SELECT count(pid) AS link_pic_count, max(pid) AS link_last_pid FROM {$CONFIG['TABLE_PICTURES']} ".
+									   "WHERE aid != '%1\$s' AND keywords LIKE '%%2\$s%'  AND approved = 'YES'",
+	'random_pictures'				=> "SELECT filepath, filename, url_prefix, pwidth, pheight  FROM {$CONFIG['TABLE_PICTURES']} ".
+									   "WHERE aid = '%1\$s' ORDER BY RAND() LIMIT 0,1",
+	'get_pictures'					=> "SELECT filepath, filename, url_prefix, pwidth, pheight  FROM {$CONFIG['TABLE_PICTURES']} ".
+									   "WHERE pid='%1\$s'",
+	'album_adm_menu_get_alb'		=> "SELECT * FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='%1\$s' AND owner='%2\$s'",
+	'album_adm_menu_dist_alb_cat'	=> "SELECT DISTINCT alb.category FROM {$CONFIG['TABLE_ALBUMS']} AS alb ".
+									   "INNER JOIN {$CONFIG['TABLE_CATMAP']} AS catm ON alb.category=catm.cid ".
+									   "WHERE alb.owner = '%1\$s' AND alb.aid='%2\$s' AND catm.group_id='%3\$s'",
+	'list_cat_alb_count_alb'		=> "SELECT count(aid) FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE category = '%1\$s' %2\$s",
+	'list_cat_alb_join_pic'			=> "SELECT a.aid, a.title, a.description, a.thumb, visibility, filepath, filename, url_prefix, pwidth, pheight ".
+									   "FROM " . $CONFIG['TABLE_ALBUMS'] . " as a  LEFT JOIN " . $CONFIG['TABLE_PICTURES'] . " as p  ON a.thumb=p.pid " . 
+									   "WHERE category=%1\$s %2\$s ORDER BY a.pos LIMIT %3\$s, %4\$s", ### cpgdb_AL
+	//'list_cat_alb_count_alb_pic'	=> "SELECT a.aid, count( p.pid ) AS pic_count, max( p.pid )  AS last_pid, max( p.ctime ) ".
+									   //" AS last_upload, a.keyword, a.alb_hits   FROM {$CONFIG['TABLE_ALBUMS']} AS a ".
+									   //"LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON a.aid = p.aid AND p.approved =  'YES' ". 
+									   //"WHERE a.aid IN %1\$s" . "GROUP BY a.aid",
+	'list_cat_alb_kwrd_pic_srch'	=> "SELECT count(pid) AS link_pic_count FROM {$CONFIG['TABLE_PICTURES']} WHERE aid != '%1\$s' ".
+									   "AND keywords LIKE '%%2\$s%' AND approved = 'YES'",
+	//'list_cat_alb_vis_test_aid'		=> "SELECT filepath, filename, url_prefix, pwidth, pheight  FROM {$CONFIG['TABLE_PICTURES']} ".
+									   //"WHERE aid = '%1\$s' ORDER BY RAND() LIMIT 0,1",
+	//'list_cat_alb_vis_test_pid'		=> "SELECT filepath, filename, url_prefix, pwidth, pheight  FROM {$CONFIG['TABLE_PICTURES']} " . 
+									   //"WHERE pid='%1\$s'"
 );
 
 
@@ -459,9 +491,9 @@ if(defined('KEYWORDMGR_PHP') || defined('SEARCH_PHP')) $cpg_db_keywordmgr_php = 
 //queries from login.php
 /***********************************************************/
 if (defined('LOGIN_PHP')) $cpg_db_login_php = array(
-	'select_all_from_banned'	=> "SELECT * FROM {$CONFIG['TABLE_BANNED']} WHERE ip_addr='$raw_ip' OR ip_addr='$hdr_ip'",
-	'update_banned'				=> "UPDATE {$CONFIG['TABLE_BANNED']} SET brute_force='".$failed_logon_counter['brute_force']."',  expiry='".$expiry_date."' WHERE ban_id=".$failed_logon_counter['ban_id'],
-	'insert_into_banned'		=> "INSERT INTO {$CONFIG['TABLE_BANNED']} (ip_addr, expiry, brute_force) VALUES ('$raw_ip', '$expiry_date','".$failed_logon_counter['brute_force']."')"
+	'get_all_banned'		=> "SELECT * FROM {$CONFIG['TABLE_BANNED']} WHERE ip_addr='%1\$s' OR ip_addr='%2\$s'",
+	'update_banned'			=> "UPDATE {$CONFIG['TABLE_BANNED']} SET brute_force='%1\$s', expiry='%2\$s' WHERE ban_id='%3\$s'",
+	'new_banned'			=> "INSERT INTO {$CONFIG['TABLE_BANNED']} (ip_addr, expiry, brute_force) VALUES ('%1\$s', '%2\$s','%3\$s')"
 );
 
 
@@ -606,17 +638,17 @@ if (defined('REVIEWCOM_PHP')) $cpg_db_reviewcom_php = array(
 									   "AND {$CONFIG['TABLE_COMMENTS']}.msg_id = '%1\$s' LIMIT 1",
 	'comments_query_approval'		=> "UPDATE {$CONFIG['TABLE_COMMENTS']} SET `approval` = '%1\$s' WHERE msg_id = '%2\$s'",
 	'display_comment_approval_only'	=> "UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '%1\$s' WHERE name = 'display_comment_approval_only'",
-	'set_approval_yes'				=> "UPDATE {$CONFIG['TABLE_COMMENTS']} SET `approval` = 'YES' WHERE msg_id IN %1\$s",
-	'set_approval_no'				=> "UPDATE {$CONFIG['TABLE_COMMENTS']} SET `approval` = 'NO' WHERE msg_id IN %1\$s",
-	'delete_selected_comments'		=> "DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id IN '%1\$s'",
+	'set_approval_yes'				=> "UPDATE {$CONFIG['TABLE_COMMENTS']} SET `approval` = 'YES' WHERE msg_id IN (%1\$s)",
+	'set_approval_no'				=> "UPDATE {$CONFIG['TABLE_COMMENTS']} SET `approval` = 'NO' WHERE msg_id IN (%1\$s)",
+	'delete_selected_comments'		=> "DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id IN (%1\$s)",
 	//'update_comments_04'			=> "UPDATE {$CONFIG['TABLE_COMMENTS']} SET `approval` = 'YES' WHERE msg_id IN $cid_set",
 	//'update_comments_05'			=> "UPDATE {$CONFIG['TABLE_COMMENTS']} SET `approval` = 'NO' WHERE msg_id IN $cid_set",
 	'count_comments'				=> "SELECT count(*) FROM {$CONFIG['TABLE_COMMENTS']} WHERE 1",
 	'only_comments_needing_approval'=> "SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date)  AS msg_date, approval, author_id,".
 									   " {$CONFIG['TABLE_COMMENTS']}.pid  AS pid, aid, filepath, filename, url_prefix, pwidth, pheight ".
 									   " FROM {$CONFIG['TABLE_COMMENTS']}, {$CONFIG['TABLE_PICTURES']} ".
-									   " WHERE {$CONFIG['TABLE_COMMENTS']}.pid = {$CONFIG['TABLE_PICTURES']}.pid '%1\$s' ".
-									   "ORDER BY '%2\$s'  LIMIT '%3\$s', '%4\$s'"
+									   " WHERE {$CONFIG['TABLE_COMMENTS']}.pid = {$CONFIG['TABLE_PICTURES']}.pid %1\$s ".
+									   "ORDER BY %2\$s  LIMIT %3\$s, %4\$s"
 );
 
 
@@ -624,7 +656,7 @@ if (defined('REVIEWCOM_PHP')) $cpg_db_reviewcom_php = array(
 //queries from search.php
 /***********************************************************/
 if (defined('SEARCH_PHP')) $cpg_db_search_php = array(
-	'select_all_from_config'	=> "SELECT * FROM {$CONFIG['TABLE_CONFIG']} WHERE name LIKE 'user_field%_name' AND value <> '' ORDER BY name ASC"
+	'get_all_config'		=> "SELECT * FROM {$CONFIG['TABLE_CONFIG']} WHERE name LIKE '%1\$s' AND value <> '' ORDER BY name ASC"
 );
 
 
@@ -677,15 +709,18 @@ if (defined('STAT_DETAILS_PHP')) $cpg_db_stat_details_php = array(
 //queries from thumbnails.php
 /***********************************************************/
 if (defined('THUMBNAILS_PHP')) $cpg_db_thumbnails_php = array(
-	'select_cid'				=> "SELECT cid FROM {$CONFIG['TABLE_CATEGORIES']} WHERE parent = '$parent'",
-	'select_aid'				=> "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = {$subcat['cid']}",
-	'select_category'			=> "SELECT category, title, aid, keyword, description, alb_password_hint FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album'",
-	'select_category_02'		=> "SELECT category, title, aid, keyword, description, alb_password_hint FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='" . (- $cat) . "'",
-	'select_aid_02'				=> "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE $where",
-	'select_name'				=> "SELECT name FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '$cat'",
-	'select_aid_03'				=> "SELECT aid FROM " . $CONFIG['TABLE_ALBUMS'] . " WHERE alb_password='$password' AND aid='$album'",
-	'select_aid_04'				=> "SELECT aid FROM " . $CONFIG['TABLE_ALBUMS'] . " WHERE aid='$album' AND alb_password != ''",
-	'select_aid_05'				=> "SELECT aid FROM " . $CONFIG['TABLE_ALBUMS'] . " WHERE MD5(alb_password)='{$alb_pw[$album]}' AND aid='{$album}'"
+	'get_parent_cat_data'		=> "SELECT cid FROM {$CONFIG['TABLE_CATEGORIES']} WHERE parent = '%1\$s'",
+	'get_parent_subcat_data'	=> "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = '%1\$s'",
+	'get_alb_numeric_data'		=> "SELECT category, title, aid, keyword, description, alb_password_hint ".
+								   "FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='%1\$s'",
+	'get_alb_data'				=> "SELECT category, title, aid, keyword, description, alb_password_hint ".
+								   "FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='%1\$s'",
+	'get_alb_aid'				=> "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE %1\$s",
+	'get_cat_name'				=> "SELECT name FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '%1\$s'",
+	'get_validate_alb'			=> "SELECT aid FROM ". $CONFIG['TABLE_ALBUMS'] ." WHERE alb_password='%1\$s' AND aid='%2\$s'",
+	'get_alb_if_pwrd'			=> "SELECT aid FROM ". $CONFIG['TABLE_ALBUMS'] ." WHERE aid='%1\$s' AND alb_password != ''",
+	'get_alb_pwrd'				=> "SELECT aid FROM ". $CONFIG['TABLE_ALBUMS'] .
+								   " WHERE MD5(alb_password)='%1\$s' AND aid='%2\$s'"
 );
 
 
@@ -1284,8 +1319,8 @@ $cpg_db_mailer_inc_php = array(
 /**********************************************************************************************************/
 //	queries  from  include/ media.functions.inc.php
 /**********************************************************************************************************/
-$cpg_db_media_functions_inc_php = array(
-	'select_extension'			=> 'SELECT extension, mime, content, player FROM '.$CONFIG['TABLE_FILETYPES']
+$cpg_db_media_functions_inc = array(
+	'get_filetypes'			=> 'SELECT extension, mime, content, player FROM '.$CONFIG['TABLE_FILETYPES']
 );
 
 
@@ -1302,13 +1337,14 @@ $cpg_db_picmgmt_inc_php = array(
 /**********************************************************************************************************/
 //	queries  from  include/ plugin_api.inc.php
 /**********************************************************************************************************/
-$cpg_db_plugin_api_inc_php = array(
-	'select_all_from_plugins'	=> 'select * from '.$CONFIG['TABLE_PLUGINS'].' order by priority asc;',
-	'select_plugin_id'			=> 'select plugin_id from '.$CONFIG['TABLE_PLUGINS'].' where path="'.$plugin_folder.'";',
-	'select_priority'			=> 'select priority from '.$CONFIG['TABLE_PLUGINS'].' order by priority desc limit 1;',
-	'insert_into_plugins'		=> 'insert into '.$CONFIG['TABLE_PLUGINS'].' (name, path,priority)  values ("'.addslashes($name).'","'.addslashes($path).'",'.$priority.');',
-	'delete_from_plugins'		=>  'delete from '.$CONFIG['TABLE_PLUGINS'].' where plugin_id='.$plugin_id.';',
-	'update_plugins'			=> 'update '.$CONFIG['TABLE_PLUGINS'].' set priority=priority-1 where priority>'.$priority.';'
+$cpg_db_plugin_api_inc = array(
+	'load_plugins'			=> 'select * from '.$CONFIG['TABLE_PLUGINS'].' order by priority asc;',
+	'get_installed_plugin'	=> 'select plugin_id from '.$CONFIG['TABLE_PLUGINS'].' where path="%1\$s";',
+	'get_plugin_priority'	=> 'select priority from '.$CONFIG['TABLE_PLUGINS'].' order by priority desc limit 1;',
+	'install_plugin'		=> 'insert into '.$CONFIG['TABLE_PLUGINS'].' (name, path,priority)  '.
+							   'values ("%1\$s","%2\$s",%3\$s);',
+	'plugin_delete'			=>  'delete from '.$CONFIG['TABLE_PLUGINS'].' where plugin_id=%1\$s;',
+	'plugin_update'			=> 'update '.$CONFIG['TABLE_PLUGINS'].' set priority=priority-1 where priority> %1\$s;'
 );
 
 

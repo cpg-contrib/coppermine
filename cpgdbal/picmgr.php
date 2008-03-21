@@ -41,9 +41,9 @@ function get_album_data()
 	}	*/
    #######################  DB  ##########################
 	$cpgdb->query($cpg_db_picmgr_php['get_album_data']);
-	if ($cpgdb->nf() > 0){
-      $rowset = $cpgdb->fetchRowSet();
-      foreach ($rowset as $alb){
+	$rowset = $cpgdb->fetchRowSet();
+	if (count($rowset) > 0){
+         foreach ($rowset as $alb){
          $ALBUM_LIST[]=array($alb['aid'], $alb['title']);
       }
 	}
@@ -80,7 +80,7 @@ function albumselect($id = "album") {
                 $list_count++;
             }
             //mysql_free_result($result);
-			$cpgdb->free();
+			$cpgdb->free();	#########	cpgdb_AL
         }
 
         // albums in public categories
@@ -411,7 +411,7 @@ pageheader($lang_picmgr_php['pic_mgr']);
 //BM in case I have to fix an album      $result = cpg_db_query("SELECT aid, pid, filename FROM {$CONFIG['TABLE_PICTURES']} WHERE aid = $aid ORDER BY filename");
    } else cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
 
-   $rowset = $cpgdb->fetchRowSet();
+   $rowset = $cpgdb->fetchRowSet();		### cpgdb_AL
    $i=100;
    $sort_order = '';
 

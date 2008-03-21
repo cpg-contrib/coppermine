@@ -11,9 +11,9 @@ the Free Software Foundation; either version 2 of the License, or
 ********************************************
 Coppermine version: 1.5.0
 $Source$
-$Revision: 4327 $
-$Author: nibbler999 $
-$Date: 2008-03-09 23:47:50 +0530 (Sun, 09 Mar 2008) $
+$Revision: 4346 $
+$Author: gaugau $
+$Date: 2008-03-20 13:47:52 +0530 (Thu, 20 Mar 2008) $
 *********************************************
 Changelog
 =========
@@ -26,6 +26,10 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-03-20 [O] Changed versioncheck to work with the installer-class + minor cosmetical fixes in source {SaWey}
+2008-03-20 [B] Fixed some typos I introduced {SaWey}
+2008-03-19 [A] Added versioncheck to the installer {SaWey}
+2008-03-16 [D] Added document about the export feature {GauGau}
 2008-03-09 [B] Removed length restriction for the album password hint {Nibbler}
 2008-03-09 [A] Added options to disable file and album hit counters {Nibbler}
 2008-03-08 [A] Added export feature (gsoc2007 - drhammond) {Nibbler}

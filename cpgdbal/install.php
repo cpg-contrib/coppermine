@@ -21,6 +21,10 @@
 ########################
 define('IN_COPPERMINE', true);
 define('INSTALL_PHP', true);
+define('VERSIONCHECK_PHP', true);
+if (!defined('COPPERMINE_VERSION')) { // we need to define the constant COPPERMINE_VERSION that normally get's populated by include/init.inc.php, as we check the repository against that version number
+	define('COPPERMINE_VERSION', '1.5.0');
+}
 // include Inspekt for sanitization
 $incp = get_include_path().PATH_SEPARATOR.dirname(__FILE__).PATH_SEPARATOR.dirname(__FILE__).DIRECTORY_SEPARATOR.'include';
 set_include_path($incp);
@@ -76,7 +80,7 @@ switch($step) {
 		
 	case 2:		// Are all mandatory files there (versioncheck has to be completed first)
 		// Here we also do an extensive version check of php/mysql + check of javascript/cookies/register_globals
-		// the cookie for this check is inserted in the precious step!
+		// the cookie for this check is inserted in the previous step!
 		// javascript is tested by altering a hidden form element in the previous step.
 		
 		//PHP VERSION CHECK
@@ -132,7 +136,7 @@ switch($step) {
 		if($install->error != ''){
 			html_error(false /*false to not include a button*/);
 		}
-		html_content($install->language['version_check']); 
+		html_content($install->checkFiles()); 
 		html_footer();
 		$install->setTmpConfig('step', '3');
 		break;
@@ -973,13 +977,14 @@ class CPGInstall{
 		if($this->language == '') {
 			include('lang/english.php');
 			$lang_en = $lang_install;
+			$lang_en_versioncheck = $lang_versioncheck_php;
 			if (file_exists('lang/' . $this->config['lang'] . '.php')) {
 				// include this lang
 				include('lang/' . $this->config['lang'] . '.php');
 			}
 			// provide fallback
 			$this->language = array_merge($lang_en, $lang_install);
-			
+			$this->language['versioncheck'] = isset($lang_versioncheck_php) ? $lang_versioncheck_php : $lang_en_versioncheck;
 		}
 		return $this->language;
 	}
@@ -1021,12 +1026,26 @@ class CPGInstall{
 	* checkFiles()
 	*
 	* Checks if all mandatory files are available via versioncheck.php
-	* The returned array has an element 'status' to indicate if it went fine.
+	* The returned string is the result of the versioncheck in HTML
 	*
-	* @return array $fileCheck
+	* @return string
 	*/
 	function checkFiles() {
-		return $fileCheck;
+		// Set the parameters that normally get popualted by the option form
+		$displayOption_array['errors_only'] = 1;
+		$lang_versioncheck_php = $this->language['versioncheck'];
+		require_once('include/versioncheck.inc.php');
+		
+		// Connect to the repository and populate the array with data from the XML file
+		$file_data_array = cpgVersioncheckConnectRepository($displayOption_array);
+		// Populate the array additionally with local data
+		//$CONFIG['full_path'] = '';
+		//$CONFIG['user_pics'] = '';
+		$file_data_array = cpg_versioncheckPopulateArray($file_data_array, $displayOption_array, $textFileExtensions_array, $imageFileExtensions_array, $CONFIG, $maxLength_array, $lang_versioncheck_php);
+		$file_data_count = count($file_data_array);
+		// Print the results
+		$outputResult = cpg_versioncheckCreateHTMLOutput($file_data_array, $textFileExtensions_array, $lang_versioncheck_php, $majorVersion, $displayOption_array);
+		return sprintf($lang_versioncheck_php['files_folder_processed'], $outputResult['display'], $outputResult['total'], $outputResult['error']);
 	}
 	
 	/*
@@ -1076,7 +1095,7 @@ class CPGInstall{
 				$this->temp_data .= "<tr><td>$folder</td><td>{$this->language['n_a']}</td><td>$possible_modes</td><td>{$not_ok}</td></tr>";
 			} else {
 				// try to create a file in the folder
-				$test_file = $folder . '/' . 'testwritability';
+				$test_file = $folder . '/testwritability';
 				$file_handle = @fopen($test_file, 'w');
 				$mode = substr(sprintf('%o', fileperms($folder)), -3);
 				if(!$file_handle){

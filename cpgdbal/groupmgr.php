@@ -305,12 +305,12 @@ function process_post_data()
                 $upload_form_config = 0;
             }
             if ($field == 'group_name') {
-                $set_statment .= $field . "='" . $superCage->post->getEscaped($field . '_' . $group_id) . "',";
+                $set_statment .= $field . " = '" . $superCage->post->getEscaped($field . '_' . $group_id) . "',";
             } else {
                 if ($field == 'upload_form_config') {
-                    $set_statment .= $field . "='" . $upload_form_config . "',";
+                    $set_statment .= $field . " = '" . $upload_form_config . "',";
                 } else {
-                    $set_statment .= $field . "='" . $superCage->post->getInt($field . '_' . $group_id) . "',";
+                    $set_statment .= $field . " = '" . $superCage->post->getInt($field . '_' . $group_id) . "',";
                 }
             }
         }

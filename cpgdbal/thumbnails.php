@@ -54,7 +54,7 @@ if (!USER_ID && $CONFIG['allow_unlogged_access'] == 0) {
 
 if ($CONFIG['enable_smilies']) include("include/smilies.inc.php");
 
-function thumb_get_subcat_data($parent, &$album_set_array)
+/*function thumb_get_subcat_data($parent, &$album_set_array)
 {
     global $CONFIG;
 
@@ -70,7 +70,30 @@ function thumb_get_subcat_data($parent, &$album_set_array)
             thumb_get_subcat_data($subcat['cid'], $album_set_array);
         }   
     }
+}*/
+############################  DB  ###############################
+function thumb_get_subcat_data($parent, &$album_set_array)
+{
+    global $CONFIG;
+	global $cpg_db_thumbnails_php;
+	$cpgdb =& cpgDB::getInstance();
+	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+
+    $cpgdb->query($cpg_db_thumbnails_php['get_parent_cat_data'], $parent);
+	$rowset = $cpgdb->fetchRowSet();
+    if (count($rowset) > 0) {
+        foreach ($rowset as $subcat) {
+            $cpgdb->query($cpg_db_thumbnails_php['get_parent_subcat_data'], $subcat['cid']);
+			$rowset = $cpgdb->fetchRowSet();
+            $album_count = count($rowset);
+            foreach ($rowset as $row) {
+                $album_set_array[] = $row['aid'];
+            } // foreach
+            thumb_get_subcat_data($subcat['cid'], $album_set_array);
+        }   
+    }
 }
+##############################################################
 
 /**
  * Main code
@@ -134,9 +157,15 @@ $lang_meta_album_names['lastupby'] = $lang_meta_album_names['lastup'];
 $lang_meta_album_names['lastcomby'] = $lang_meta_album_names['lastcom'];
 
 if (is_numeric($album)) {
-    $result = cpg_db_query("SELECT category, title, aid, keyword, description, alb_password_hint FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album'");
+    /*$result = cpg_db_query("SELECT category, title, aid, keyword, description, alb_password_hint FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album'");
     if (mysql_num_rows($result) > 0) {
-        $CURRENT_ALBUM_DATA = mysql_fetch_array($result);
+        $CURRENT_ALBUM_DATA = mysql_fetch_array($result);*/
+	#########################  DB  ############################
+    $cpgdb->query($cpg_db_thumbnails_php['get_alb_numeric_data'], $album);
+	$rowset = $cpgdb->fetchRowSet();
+    if (count($rowset) > 0) {
+        $CURRENT_ALBUM_DATA = $rowset[0];
+	########################################################
         $actual_cat = $CURRENT_ALBUM_DATA['category'];
         $CURRENT_ALBUM_KEYWORD = $CURRENT_ALBUM_DATA['keyword'];
         breadcrumb($actual_cat, $breadcrumb, $breadcrumb_text);
@@ -144,9 +173,15 @@ if (is_numeric($album)) {
     }
 } elseif (isset($cat) && $cat) { // Meta albums, we need to restrict the albums to the current category
     if ($cat < 0) {
-        $result = cpg_db_query("SELECT category, title, aid, keyword, description, alb_password_hint FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='" . (- $cat) . "'");
+        /*$result = cpg_db_query("SELECT category, title, aid, keyword, description, alb_password_hint FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='" . (- $cat) . "'");
         if (mysql_num_rows($result) > 0) {
-            $CURRENT_ALBUM_DATA = mysql_fetch_array($result);
+            $CURRENT_ALBUM_DATA = mysql_fetch_array($result);*/
+	#########################  DB  ############################
+    $cpgdb->query($cpg_db_thumbnails_php['get_alb__data'], -$cat);
+	$rowset = $cpgdb->fetchRowSet();
+    if (count($rowset) > 0) {
+        $CURRENT_ALBUM_DATA = $rowset[0];
+	#########################################################
             $actual_cat = $CURRENT_ALBUM_DATA['category'];
             $CURRENT_ALBUM_KEYWORD = $CURRENT_ALBUM_DATA['keyword'];
         }
@@ -162,17 +197,29 @@ if (is_numeric($album)) {
         else
             $where = "category = '$cat'";
 
-        $result = cpg_db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE $where");
+        /*$result = cpg_db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE $where");
         while ($row = mysql_fetch_array($result)) {
             $album_set_array[] = $row['aid'];
+        } // while*/
+		#####################  DB  ##########################
+        $cpgdb->query($cpg_db_thumbnails_php['get_alb_aid'], $where);
+        while ($row = $cpgdb->fetchRow()) {
+            $album_set_array[] = $row['aid'];
         } // while
+		###################################################
         if ($cat >= FIRST_USER_CAT) {
             $user_name = get_username($cat - FIRST_USER_CAT);
             $CURRENT_CAT_NAME = sprintf($lang_list_categories['xx_s_gallery'], $user_name);
         } else {
-            $result = cpg_db_query("SELECT name FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '$cat'");
+            /*$result = cpg_db_query("SELECT name FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '$cat'");
             if (mysql_num_rows($result) == 0) cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_cat'], __FILE__, __LINE__);
-            $row = mysql_fetch_array($result);
+            $row = mysql_fetch_array($result);*/
+			######################  DB  ########################
+            $cpgdb->query($cpg_db_thumbnails_php['get_cat_name'], $cat);
+			$rowset = $cpgdb->fetchRowSet();
+            if (count($rowset) == 0) cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_cat'], __FILE__, __LINE__);
+            $row = $rowset[0];
+			##################################################
             $CURRENT_CAT_NAME = $row['name'];
         }
         thumb_get_subcat_data($cat, $album_set_array, $CONFIG['subcat_level']);
@@ -249,9 +296,14 @@ if ($CONFIG['allow_private_albums'] == 0 || !in_array($album, $FORBIDDEN_SET_DAT
     $valid = true;
 } elseif ($superCage->post->keyExists('validate_album')) {
     $password = $superCage->post->getEscaped('password');
-    $sql = "SELECT aid FROM " . $CONFIG['TABLE_ALBUMS'] . " WHERE alb_password='$password' AND aid='$album'";
+    /*$sql = "SELECT aid FROM " . $CONFIG['TABLE_ALBUMS'] . " WHERE alb_password='$password' AND aid='$album'";
     $result = cpg_db_query($sql);
-    if (mysql_num_rows($result)) {
+    if (mysql_num_rows($result)) {*/
+	######################  DB  ########################
+    $cpgdb->query($cpg_db_thumbnails_php['get_validate_alb'], $password, $album);
+	$rowset = $cpgdb->fetchRowSet();
+    if (count($rowset)) {
+	##################################################
         $albpw = $superCage->cookie->getEscaped($CONFIG['cookie_name'] . '_albpw');
         if (!empty($albpw)) {
             $albpw = unserialize($albpw);
@@ -267,9 +319,14 @@ if ($CONFIG['allow_private_albums'] == 0 || !in_array($album, $FORBIDDEN_SET_DAT
         $valid = false;
     }
 } else {
-    $sql = "SELECT aid FROM " . $CONFIG['TABLE_ALBUMS'] . " WHERE aid='$album' AND alb_password != ''";
+    /*$sql = "SELECT aid FROM " . $CONFIG['TABLE_ALBUMS'] . " WHERE aid='$album' AND alb_password != ''";
     $result = cpg_db_query($sql);
-    if (mysql_num_rows($result)) {
+    if (mysql_num_rows($result)) {*/
+	######################  DB  ########################
+    $cpgdb->query($cpg_db_thumbnails_php['get_alb_if_pwrd'], $album);
+	$rowset = $cpgdb->fetchRowSet();
+    if (count($rowset)) {
+	##################################################
         // This album has a password.
         // Check whether the cookie is set for the current albums password
         $albpw = $superCage->cookie->getEscaped($CONFIG['cookie_name'] . '_albpw');
@@ -277,9 +334,14 @@ if ($CONFIG['allow_private_albums'] == 0 || !in_array($album, $FORBIDDEN_SET_DAT
             $alb_pw = unserialize($albpw);
             // Check whether the alubm id in the cookie is same as that of the album id send by get
             if (isset($alb_pw[$album])) {
-                $sql = "SELECT aid FROM " . $CONFIG['TABLE_ALBUMS'] . " WHERE MD5(alb_password)='{$alb_pw[$album]}' AND aid='{$album}'";
+                /*$sql = "SELECT aid FROM " . $CONFIG['TABLE_ALBUMS'] . " WHERE MD5(alb_password)='{$alb_pw[$album]}' AND aid='{$album}'";
                 $result = cpg_db_query($sql);
-                if (mysql_num_rows($result)) {
+                if (mysql_num_rows($result)) {*/
+	######################  DB  ########################
+				$cpgdb->query($cpg_db_thumbnails_php['get_alb_pwrd'], $alb_pw[$album], $album);
+				$rowset = $cpgdb->fetchRowSet();
+				if (count($rowset)) {
+	##################################################
                     $valid = true; //The album password is correct. Show the album details.
                     get_private_album_set();
                 }

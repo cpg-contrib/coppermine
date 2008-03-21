@@ -48,16 +48,26 @@ class CPGPluginAPI {
 
     function load() {
         global $CONFIG,$thisplugin,$USER_DATA,$CPG_PLUGINS,$lang_plugin_api;
-
+		global $cpg_db_plugin_api_inc;
+		####################### DB #########################	
+		$cpgdb =& cpgDB::getInstance();
+		$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+		##################################################	
         // Get the installed plugins from the database and sort them by execution priority
-        $sql = 'select * from '.$CONFIG['TABLE_PLUGINS'].' order by priority asc;';
+        /*$sql = 'select * from '.$CONFIG['TABLE_PLUGINS'].' order by priority asc;';
         $result = cpg_db_query($sql);
-
         // Exit if no plugins are installed
         if (mysql_num_rows($result) == 0) {
             return;
+        }*/
+		#####################  DB  #######################
+        $cpgdb->query($cpg_db_plugin_api_inc['load_plugins']);
+        $rowset = $cpgdb->fetchRowSet();
+		// Exit if no plugins are installed
+        if (count($rowset) == 0) {
+            return;
         }
-
+		################################################
         // Register page_end action for shutdown
         register_shutdown_function('cpg_action_page_end');
 
@@ -68,7 +78,8 @@ class CPGPluginAPI {
         $index = 0;
 
         // Get the plugin properties from the database
-        while ($plugin = mysql_fetch_assoc($result)) {
+        //while ($plugin = mysql_fetch_assoc($result)) {
+		foreach($rowset as $plugin){	########	cpgdb_AL
 
             // If configuration and codebase files aren't present, skip this plugin.
             if (!file_exists('./plugins/'.$plugin['path'].'/codebase.php') &&
@@ -101,7 +112,8 @@ class CPGPluginAPI {
 
             $index++;
         }
-        mysql_free_result($result);
+        //mysql_free_result($result);
+		$cpgdb->free();	#####	cpgdb_AL
     }
 
 
@@ -116,26 +128,41 @@ class CPGPluginAPI {
 
     function installed( $plugin_folder ) {
         global $CONFIG;
+		global $cpg_db_plugin_api_inc;
+		####################### DB #########################	
+		$cpgdb =& cpgDB::getInstance();
+		$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+		##################################################	
 
         // Stores if a given plugin is installed or not
         static $installed_array = array();
 
         // If the plugin doesn't exist in the array get its information from the database
         if (!isset($installed_array[$plugin_folder])) {
-            $sql = 'select plugin_id from '.$CONFIG['TABLE_PLUGINS'].' where '.
+            /*$sql = 'select plugin_id from '.$CONFIG['TABLE_PLUGINS'].' where '.
                    'path="'.$plugin_folder.'";';
 
             $result = cpg_db_query($sql);
 
             // If the plugin isn't in the database store a false value in the array
-            if (mysql_num_rows($result) == 0) {
-                $installed_array[$plugin_folder] = false;
+            if (mysql_num_rows($result) == 0) {*/
+            #######################  DB  ##########################
+            $cpgdb->query($cpg_db_plugin_api_inc['get_installed_plugin'], $plugin_folder);
+			$cpgdb->fetchRowSet();
+            // If the plugin isn't in the database store a false value in the array
+            if (count($rowset) == 0) {
+			#####################################################
+				$installed_array[$plugin_folder] = false;
                 return false;
             }
 
             // It's installed! Get the plugin_id
-            $plugin = mysql_fetch_assoc($result);
-            mysql_free_result($result);
+            /*$plugin = mysql_fetch_assoc($result);
+            mysql_free_result($result);*/
+			################  DB  #################
+			$plugin = $rowset[0];
+			$cpgdb->free();
+			####################################
 
             // Store the plugin_id in the database
             $installed_array[$plugin_folder] = $plugin['plugin_id'];
@@ -394,6 +421,11 @@ class CPGPluginAPI {
 
     function install($path) {
         global $CONFIG,$thisplugin,$CPG_PLUGINS,$lang_plugin_api;
+		global $cpg_db_plugin_api_inc;
+		####################### DB #########################	
+		$cpgdb =& cpgDB::getInstance();
+		$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+		##################################################	
 
         // If this plugin is already installed return true
         if (CPGPluginAPI::installed($path)) {
@@ -407,11 +439,16 @@ class CPGPluginAPI {
         }
 
         // Get the lowest priority level (highest number) from the database
-        $sql = 'select priority from '.$CONFIG['TABLE_PLUGINS'].' order by priority desc limit 1;';
+        /*$sql = 'select priority from '.$CONFIG['TABLE_PLUGINS'].' order by priority desc limit 1;';
         $result = cpg_db_query($sql);
 
         $data = mysql_fetch_assoc($result);
-        mysql_free_result($result);
+        mysql_free_result($result);*/
+		####################  DB  #######################
+		$cpgdb->query($cpg_db_plugin_api_inc['get_plugin_priority']);
+		$data = $cpgdb->fetchRow();
+		$cpgdb->free();
+		###############################################
 
         // Set the execution priority to last
         $priority = (is_null($data['priority'])) ? (0) : ($data['priority']+1);
@@ -441,13 +478,16 @@ class CPGPluginAPI {
 
         // If $installed is boolean then plugin was installed; Return true
         if (is_bool($installed) && $installed) {
-            $sql = 'insert into '.$CONFIG['TABLE_PLUGINS'].' '.
+            /*$sql = 'insert into '.$CONFIG['TABLE_PLUGINS'].' '.
                    '(name, path,priority) '.
                    ' values '.
                    '("'.addslashes($name).'",'.
                    '"'.addslashes($path).'",'.
                    $priority.');';
-            $result = cpg_db_query($sql);
+            $result = cpg_db_query($sql);*/
+			##################################  DB  #################################
+			$cpgdb->query($cpg_db_plugin_api_inc['install_plugin'], addslashes($name), addslashes($path), $priority);
+			#######################################################################
 
             if ($CONFIG['log_mode']) {
                 log_write("Plugin '".$name."' installed at ".date("F j, Y, g:i a"),CPG_GLOBAL_LOG);
@@ -479,6 +519,11 @@ class CPGPluginAPI {
 
     function uninstall($plugin_id) {
         global $CONFIG,$USER_DATA,$CPG_PLUGINS,$thisplugin,$lang_plugin_api;
+		global $cpg_db_plugin_api_inc;
+		####################### DB #########################	
+		$cpgdb =& cpgDB::getInstance();
+		$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+		##################################################	
 
         if (!isset($CPG_PLUGINS[$plugin_id])) {
             return true;
@@ -495,13 +540,18 @@ class CPGPluginAPI {
 
         if (is_bool($uninstalled) && $uninstalled) {
 
-            $sql = 'delete from '.$CONFIG['TABLE_PLUGINS'].' '.
+            /*$sql = 'delete from '.$CONFIG['TABLE_PLUGINS'].' '.
                    'where plugin_id='.$plugin_id.';';
             $result = cpg_db_query($sql);
 
             // Shift the plugins up
             $sql = 'update '.$CONFIG['TABLE_PLUGINS'].' set priority=priority-1 where priority>'.$priority.';';
-            $result = cpg_db_query($sql);
+            $result = cpg_db_query($sql);*/
+			#########################  DB  ###########################
+			$cpgdb->query($cpg_db_plugin_api_inc['plugin_delete'], $plugin_id);
+			// Shift the plugins up
+			$cpgdb->query($cpg_db_plugin_api_inc['plugin_update'], $priority);
+			########################################################
 
             unset($CPG_PLUGINS[$plugin_id]);
 

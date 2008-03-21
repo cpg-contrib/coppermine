@@ -63,6 +63,7 @@ class cpgDB {
      * @param string $query 
      * @return 
      */
+	 
     function cpgDB($query = "")
     {
 
@@ -117,7 +118,11 @@ class cpgDB {
      */
     function connect($Database = '', $Host = '', $User = '', $Password = '')
     {
-        /* Handle defaults */
+        sqlsrv_set_error_handling(0);
+		sqlsrv_log_set_severity(0);
+		sqlsrv_log_set_subsystems(0);
+		sqlsrv_configure('warnings_return_as_errors', 0);
+		/* Handle defaults */
 		$connect_info = array();
 		
 		if ('' == $Host)
@@ -137,27 +142,17 @@ class cpgDB {
 			$Password = $this->Password;
 		}
 		$connect_info['Database'] = $Database;
-		//$connect_info['UID'] = $User;
+		//$connect_info['UID'] = $User;	// these two are not required for  windows authentication mode.
 		//$connect_info['PWD'] = $Password;
 				
-
-		//echo $Host." host<br />";
-		//print_r($connect_info);	
         /* establish connection, select database */
         if (0 == $this->Link_ID) {
             $this->Link_ID = sqlsrv_connect($Host, $connect_info);
             if (!$this->Link_ID) {
-                //$this->halt("connect($Host,  \$Password) failed.");
-				echo "<br />";
-				 die( print_r( sqlsrv_errors(), true));
+                $this->halt("connect($Host) failed.");
 
                 return 0;
             } 
-
-            /*if (!@mssql_select_db($Database, $this->Link_ID)) {
-				$this->halt("cannot use database " . $this->Database);
-				return 0;
-		    } */
         } 
 
         return $this->Link_ID;
@@ -204,34 +199,21 @@ class cpgDB {
         if ($this->Query_ID) {
             $this->free();
         } 
-        //$query_start = cpgGetMicroTime();
+        $query_start = cpgGetMicroTime();
 
  
         $this->Query_ID = @sqlsrv_query($this->Link_ID, $Query_String );	#
- ############################
- /*$tmp_ID = $this->Query_ID;
-		$counter = 0;
-		while (sqlsrv_fetch_array( $tmp_ID, SQLSRV_FETCH_ASSOC ) )
-		{
-			$counter += 1;
-		}
-		//echo "$Query_String   counter".$counter;
-		$this->count = $counter;
-		//$this->Query_ID = $tmp_ID;
-		$this->Query_ID = @sqlsrv_query($this->Link_ID, $Query_String );*/
- ##############################
-		//echo $Query_String;
-        //$query_end = cpgGetMicroTime();
+
+        $query_end = cpgGetMicroTime();
         $this->Row = 0;
         //$this->Errno = mysql_errno();
-        //$this->Error = mysql_error();
+        $this->Error =  @sqlsrv_errors();
         if (!$this->Query_ID) {
             $this->halt("Invalid SQL: " . $Query_String);
         } 
 
-        //if ($this->nf() > 0) {
             $this->nextRecord();
-        //} 
+        
         $duration = round($query_end - $query_start, 3);
         $this->query_stats[] = $duration;
         $this->queries[] = $Query_String . " ({$duration}s)"; 
@@ -257,8 +239,6 @@ class cpgDB {
 
         $this->Record = @sqlsrv_fetch_array($this->Query_ID, SQLSRV_FETCH_ASSOC); 	#
         $this->Row += 1;
-        //$this->Errno = mysql_errno();
-        //$this->Error = mysql_error();
 
         $stat = is_array($this->Record);
         if (!$stat && $this->Auto_Free) {
@@ -298,33 +278,6 @@ class cpgDB {
         return ($rowset);
     } 
 
-    /* public: position in result set */
-    /**
-     * cpgDB::seek()
-     * 
-     * @param integer $pos 
-     * @return 
-     */
-    function seek($pos = 0)		##############################
-    {
-        $status = @mysql_data_seek($this->Query_ID, $pos);
-        if ($status) {
-            $this->Row = $pos;
-            $this->nextRecord();
-        } else {
-            $this->halt("seek($pos) failed: result has " . $this->numRows() . " rows");
-
-            /* half assed attempt to save the day,
-       * but do not consider this documented or even
-       * desireable behaviour.
-       */
-            @mysql_data_seek($this->Query_ID, $this->numRows());
-            $this->Row = $this->numRows;
-            return 0;
-        } 
-
-        return 1;
-    } 							#############################
 
     /* public: table locking */
     /**
@@ -387,16 +340,6 @@ class cpgDB {
         return @sqlsrv_rows_affected($this->Link_ID);
     } 
 
-    /**
-     * cpgDB::numRows()
-     * 
-     * @return 
-     */
-    function numRows()
-    {
-       //return @mysql_num_rows($this->Query_ID);
-	   	return $this->count;
-    } 
 
     /**
      * cpgDB::numFields()
@@ -410,25 +353,6 @@ class cpgDB {
     } 
 
     /* public: shorthand notation */
-    /**
-     * cpgDB::nf()
-     * 
-     * @return 
-     */
-    function nf()
-    {
-        return $this->numRows();
-    } 
-
-    /**
-     * cpgDB::np()
-     * 
-     * @return 
-     */
-    function np()
-    {
-        print $this->numRows();
-    } 
 
     /**
      * cpgDB::f()
@@ -506,16 +430,12 @@ class cpgDB {
      */
     function halt($msg)
     {
-        //$this->Error = @mysql_error($this->Link_ID);
-        //$this->Errno = @mysql_errno($this->Link_ID);
-		
-        if ($this->Halt_On_Error == 'no')
+         if ($this->Halt_On_Error == 'no')
             return;
 
-        //$this->haltmsg($msg);
+        $this->haltmsg($msg);
 
         if ($this->Halt_On_Error != 'report')
-            //die('Session halted.');								#
 			die( 'Session Halted' );		#
     }
 
@@ -528,9 +448,14 @@ class cpgDB {
     function haltmsg($msg)
     {
         printf("</td></tr></table><b>Database error:</b> %s<br>\n", $msg);
-        printf("<b>SQLSRV Error</b>: %s (%s)<br>\n",
-            $this->Errno,
-            $this->Error);
+	    /* Display errors. */
+	    echo "Error information: <br/>";
+	    foreach ( sqlsrv_errors() as $error )
+	    {
+	          echo "SQLSTATE: ".$error['SQLSTATE']."<br/>";
+	          echo "Code: ".$error['code']."<br/>";
+	          echo "Message: ".($error['message'])."<br/>";
+	    }
     }
 
     /**
@@ -566,6 +491,7 @@ class cpgDB {
 	   
     }
 }
+
 
 
 

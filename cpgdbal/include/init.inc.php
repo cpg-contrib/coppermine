@@ -103,6 +103,7 @@ if(file_exists('include/config.inc.php')){
 }
 $mb_utf8_regex = '[\xE1-\xEF][\x80-\xBF][\x80-\xBF]|\xE0[\xA0-\xBF][\x80-\xBF]|[\xC2-\xDF][\x80-\xBF]';
 require 'include/functions.inc.php';
+require 'include/dbfunctions.php';	#########   cpgdb_AL
 # see http://php.net/mbstring for details
 if (function_exists('mb_internal_encoding')) { mb_internal_encoding('UTF-8'); }
 
@@ -127,6 +128,14 @@ $CONFIG['TABLE_TEMP_MESSAGES'] = $CONFIG['TABLE_PREFIX'].'temp_messages';
 $CONFIG['TABLE_CATMAP']        = $CONFIG['TABLE_PREFIX'].'categorymap';
 // Connect to database
 ($CONFIG['LINK_ID'] = cpg_db_connect()) || die('<b>Coppermine critical error</b>:<br />Unable to connect to database !<br /><br />MySQL said: <b>' . mysql_error() . '</b>');
+//($CONFIG['LINK_ID'] = cpgdbal_connect()) || die( print_r( sqlsrv_errors(), true));
+
+// Include plugin API
+require('include/plugin_api.inc.php');
+if ($CONFIG['enable_plugins'] == 1) {
+	CPGPluginAPI::load();
+}
+
 ####################DB#######################
 require "include/cpgdb/drivers/mysql_driver.php";
 require "include/cpgdb/sql/mysql.php";
@@ -197,12 +206,6 @@ if ($CONFIG['thumb_method'] == 'im' || function_exists('imagecreatefromgif'))
   $CONFIG['GIF_support'] = 1;
 else
   $CONFIG['GIF_support'] = 0;
-
-// Include plugin API
-require('include/plugin_api.inc.php');
-if ($CONFIG['enable_plugins'] == 1) {
-	CPGPluginAPI::load();
-}
 
 // Set UDB_INTEGRATION if enabled in admin
 if ($CONFIG['bridge_enable'] == 1 && !defined('BRIDGEMGR_PHP')) {

@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4291 $
+  $Revision: 4344 $
   $LastChangedBy: saweyyy $
-  $Date: 2008-02-22 01:04:28 +0530 (Fri, 22 Feb 2008) $
+  $Date: 2008-03-20 06:51:20 +0530 (Thu, 20 Mar 2008) $
 **********************************************/
 
 /*
@@ -221,7 +221,7 @@ class cpg_udb extends core_udb {
 		//if (isset($_COOKIE['xmbpw']) && isset($_COOKIE['xmbuser'])){
 		//	return array($this->get_user_id($_COOKIE['xmbuser']), $_COOKIE['xmbpw']);
 		if ($superCage->cookie->keyExists('xmbpw') && $superCage->cookie->keyExists('xmbuser')){
-			return array($this->get_user_id($superCage->cookie->getRaw('xmbuser'), $superCage->cookie->getRaw('xmbpw'));
+			return array($this->get_user_id($superCage->cookie->getRaw('xmbuser'), $superCage->cookie->getRaw('xmbpw')));
 		} else {
 		    return false;
 		}

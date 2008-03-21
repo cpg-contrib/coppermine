@@ -49,9 +49,14 @@ $ip = GALLERY_ADMIN_MODE ? '
 
 $customs = '';
 
-$result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_CONFIG']} WHERE name LIKE 'user_field%_name' AND value <> '' ORDER BY name ASC");
+/*$result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_CONFIG']} WHERE name LIKE 'user_field%_name' AND value <> '' ORDER BY name ASC");
 
-while ($row = mysql_fetch_assoc($result)){
+while ($row = mysql_fetch_assoc($result)){*/
+###########################  DB  ##############################
+$user_field_name = 'user_field%_name';
+$result = $cpgdb->query($cpg_db_search_php['get_all_config'], $user_field_name);
+while ($row = $cpgdb->fetchRow()){
+#############################################################
         $name = str_replace(array('_field', '_name'), '', $row['name']);
         $customs .= <<< EOT
                 <tr>

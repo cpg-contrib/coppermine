@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4246 $
-  $LastChangedBy: saweyyy $
-  $Date: 2008-02-04 05:40:35 +0530 (Mon, 04 Feb 2008) $
+  $Revision: 4338 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-03-16 15:49:42 +0530 (Sun, 16 Mar 2008) $
 **********************************************/
 
 // Confirm we are in Coppermine and set the language blocks.
@@ -379,16 +379,19 @@ function form_instructions() {
 
     printf ($lang_upload_php['reg_instr_2'], $CONFIG['max_upl_size']);
 	
-	//show allowed filetypes (Frantz)
-    echo "<br /><br />{$lang_upload_php['allowed_types']}";
+	//show allowed filetypes
+    echo "<br />{$lang_upload_php['allowed_types']}";
     printf ($lang_upload_php['allowed_img_types'], $CONFIG['allowed_img_types']);
+    print "<br />\r\n";
     printf ($lang_upload_php['allowed_mov_types'], $CONFIG['allowed_mov_types']);
+    print "<br />\r\n";
     printf ($lang_upload_php['allowed_snd_types'], $CONFIG['allowed_snd_types']);
+    print "<br />\r\n";
     printf ($lang_upload_php['allowed_doc_types'], $CONFIG['allowed_doc_types']);
 
     if ($user_form > '3') {
 
-        echo "<br /><br />{$lang_upload_php['reg_instr_3']}";
+        echo "<br />{$lang_upload_php['reg_instr_3']}";
 
     }
 

@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4277 $
+  $Revision: 4344 $
   $LastChangedBy: saweyyy $
-  $Date: 2008-02-18 02:35:47 +0530 (Mon, 18 Feb 2008) $
+  $Date: 2008-03-20 06:51:20 +0530 (Thu, 20 Mar 2008) $
 **********************************************/
 
 // ------------------------------------------------------------------------- //
@@ -524,7 +524,7 @@ function send_reg_file()
     } else {
     }
     $name_iso = '';
-    description_iso = '';
+    $description_iso = '';
     $name_utf = '';
     $description_utf = '';
 

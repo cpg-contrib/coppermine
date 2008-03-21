@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4291 $
+  $Revision: 4344 $
   $LastChangedBy: saweyyy $
-  $Date: 2008-02-22 01:04:28 +0530 (Fri, 22 Feb 2008) $
+  $Date: 2008-03-20 06:51:20 +0530 (Thu, 20 Mar 2008) $
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
@@ -149,7 +149,7 @@ class cpg_udb extends core_udb {
         // 4.5.1 and 4.5.2 compatibility
         if (($mambo_version->RELEASE == '4.5' && $mambo_version->DEV_LEVEL != '1.0.9') && $sessioncookie) {
 		    //$sessioncookie .= $_SERVER['REMOTE_ADDR'];
-			$sessioncookie .= $raw_ip];
+			$sessioncookie .= $raw_ip;
 		}
 
 		//$usercookie = $_COOKIE['usercookie'];

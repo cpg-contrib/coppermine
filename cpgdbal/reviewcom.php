@@ -215,7 +215,7 @@ if ($superCage->post->keyExists('status_approved_no')) {
         //cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET `approval` = 'NO' WHERE msg_id IN ($approved_no_set)");
         //$nb_com_no = mysql_affected_rows();
 		#######################  DB  ##########################
-		$cpgdb->query($cpg_db_reviewcom_php['set_approval_no'], ($approved_no_set));
+		$cpgdb->query($cpg_db_reviewcom_php['set_approval_no'], $approved_no_set);
 		$nb_com_no = $cpgdb->affectedRows();
 		#####################################################
     }
@@ -228,9 +228,9 @@ if ($superCage->post->keyExists('cid_array')) {
     $cid_array = $superCage->post->getEscaped('cid_array');
     $cid_set = '';
     foreach ($cid_array as $cid) {
-            $cid_set .= ($cid_set == '') ? '(' . $cid : ', ' . $cid;
+            $cid_set .= ($cid_set == '') ? $cid : ', ' . $cid; //'(' . $cid : ', ' . $cid;
     }
-    $cid_set .= ')';
+    //$cid_set .= ')';
     /*if($superCage->post->getAlpha('with_selected') == 'delete') {
     
             // Delete selected comments if form is posted
