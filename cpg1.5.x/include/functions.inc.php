@@ -810,9 +810,7 @@ function load_template()
 {
         global $THEME_DIR, $CONFIG, $template_header, $template_footer;
 
-        if (file_exists(TEMPLATE_FILE)) {
-            $template_file = TEMPLATE_FILE;
-        } elseif (file_exists($THEME_DIR . TEMPLATE_FILE)) {
+        if (file_exists($THEME_DIR . TEMPLATE_FILE)) {
             $template_file = $THEME_DIR . TEMPLATE_FILE;
         } else die("Coppermine critical error:<br />Unable to load template file ".TEMPLATE_FILE."!");
 
