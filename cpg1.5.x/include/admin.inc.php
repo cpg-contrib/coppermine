@@ -155,7 +155,7 @@ $config_data = array(
   'language_charset_settings' => array(
     'lang' => array(
       'type' => 'select',
-      'default_value' => 'English',
+      'default_value' => 'english',
       'help_link' => 'f=configuration.htm&amp;as=admin_language_language&amp;ae=admin_language_language_end',
       'options' => form_get_foldercontent('lang/','file', 'php')
     ),
@@ -261,7 +261,6 @@ $config_data = array(
     ),
     'display_social_bookmarks' => array(
       'type' => 'select_multiple',
-      'default_value' => '0|0|0|0',
       'help_link' => 'f=configuration.htm&amp;as=admin_social_bookmarks&amp;ae=admin_social_bookmarks_end',
       'options' => array('Digg.com', 'del.icio.us', 'Yahoo MyWeb', 'Technorati', 'Spurl', 'Furl', 'Blinklist', 'Fark', 'Blogmarks', 'Simpy', 'Reddit', 'StumbleUpon', 'Slashdot', 'Netscape', 'diigo', 'NewsVine', 'ma.gnolia', 'Google', 'Mister-Wong.de', 'Linkarena', 'Newskick.de', 'Weblinkr.com', 'Alltagz.de', 'Webbrille.de', 'Newstube.de', 'Webnews.de', 'Readster.de', 'oneview.de', 'Maodi.de', 'tausendreporter.stern.de', 'Linksilo.de'),
       'end_description' => '('.$lang_admin_php['highlight_multiple'].')',
