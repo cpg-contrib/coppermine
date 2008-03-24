@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+ 
   ********************************************
   Coppermine version: 1.4.17
   $HeadURL$
@@ -24,18 +24,18 @@ if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 //                +-----------------------------------------------------------------+                   
 //                +                                                                 +                
 //                +                    Tradus de Rubeluţă Iulian                    +         
-//                +        Traducerea Coppermine în româneşte cu diactritice        + 
-//                +               email:  nkvader at gmail dot com                  + 
-//                +   creat cu programul gratuit PSPad de Jan Fiala www.pspad.com   + 
-//                +                                                                 + 
+//                +        Traducerea Coppermine în româneşte cu diacritice        +
+//                +               email:  rubeluta at Gmail dot com                  +
+//                +   creat cu programul gratuit PSPad de Jan Fiala www.pspad.com   +
+//                +                                                                 +
 //                +-----------------------------------------------------------------+
 //
 $lang_translation_info = array(
   'lang_name_english' => 'Romanian', //cpg1.4
   'lang_name_native' => 'Românã', //cpg1.4
   'lang_country_code' => 'ro', //cpg1.4
-  'trans_name'=> 'Rubeluţă Iulian-Valentin',
-  'trans_email' => 'nkvader@gmail.com',
+  'trans_name'=> 'Rubeluţă Iulian',
+  'trans_email' => 'rubeluta@gmail.com',
   'trans_website' => '',
   'trans_date' => '2007-08-16',
 );
@@ -47,7 +47,7 @@ $lang_text_dir = 'ltr'; // ('ltr' for left to right, 'rtl' for right to left)
 $lang_byte_units = array('Bytes', 'KB', 'MB');
 
 // Day of weeks and months
-$lang_day_of_week = array('Duminică', 'Luni', 'Marţi', 'Miercuri', 'Joi', 'Vineri', 'Sâmbată');
+$lang_day_of_week = array('Duminică', 'Luni', 'Marţi', 'Miercuri', 'Joi', 'Vineri', 'Sâmbătă');
 $lang_month = array('Ianuarie', 'Februarie', 'Martie', 'Aprilie', 'Mai', 'Iunie', 'Iulie', 'August', 'Septembrie', 'Octombrie', 'Noiembrie', 'Decembrie');
 
 // Some common strings
@@ -87,16 +87,16 @@ $lang_meta_album_names = array(
 $lang_errors = array(
   'access_denied' => 'Nu aveţi permisiunea de a vizualiza această pagină.',
   'perm_denied' => 'Nu aveţi permisiunea de a efectua aceasta operaţie.',
-  'param_missing' => 'Script-ul a fost apelat fară unul sau mai mulţi parametri necesari.',
+  'param_missing' => 'Script-ul a fost apelat fără unul sau mai mulţi parametri necesari.',
   'non_exist_ap' => 'Albumul/Fişierul selectat nu există !',
-  'quota_exceeded' => 'Spaţiu stocare depasit.<br /><br />Aveţi un spaţiu de stocare de [quota]K, şi fişierele dumneavoastră însumează un total de  [space]K, adaugand acest fişier veti depasi spatiul de stocare.',
+  'quota_exceeded' => 'Spaţiu stocare depăşit.<br /><br />Aveţi un spaţiu de stocare de [quota]K, şi fişierele dumneavoastră însumează un total de  [space]K, adăugând acest fişier veţi depăşi spaţiul de stocare.',
   'gd_file_type_err' => 'Când se utilizează biblioteca GD , tipurile de imagini permise sunt JPEG şi/sau PNG.',
-  'invalid_image' => 'Imaginea trimisă este \(digital\) coruptă-malformată sau nu poate fi prelucrată de libraria GD',
+  'invalid_image' => 'Imaginea trimisă este \(digital\) coruptă-malformată sau nu poate fi prelucrată de librăria GD',
   'resize_failed' => 'Crearea miniaturii imaginii a eşuat sau imaginea este prea mică.',
   'no_img_to_display' => 'Nici o imagine de afişat',
   'non_exist_cat' => 'Categoria selecţionată nu există',
   'orphan_cat' => 'O categorie nu are o rădăcină. Utilizaţi Manager de categorii pentru a corecta aceasta problemă!',
-  'directory_ro' => 'Dosarul \'%s\' nu este inscriptionabil, fişierele nu pot fi şterse',
+  'directory_ro' => 'Dosarul \'%s\' nu este inscriptibil, fişierele nu pot fi şterse',
   'non_exist_comment' => 'Comentariul selecţionat nu există.',
   'pic_in_invalid_album' => 'Fişierul se află într-un album inexistent - (%s)!?',
   'banned' => 'Sunteţi în lista neagră, nu puteţi utiliza acest site.',
@@ -105,14 +105,14 @@ $lang_errors = array(
   'offline_text' => 'Galeria este momentan în construcţie - Vă rugăm reveniţi.',
   'ecards_empty' => 'În momentul de faţă nu sunt înregistrări ecard-uri pentru afişare.',
   'action_failed' => 'Acţiune eşuată.  Coppermine nu poate procesa cererea dumneavoastră.',
-  'no_zip' => 'Librariile necesare procesarii fişierelor arhiva ZIP nu sunt disponibile. Vă rugăm să contactaţi administratorul galeriei.',
-  'zip_type' => 'Nu aveţi permisiunea de a încarca fişiere arhivă ZIP.',
+  'no_zip' => 'Librăriile necesare procesării fişierelor arhiva ZIP nu sunt disponibile. Vă rugăm să contactaţi administratorul galeriei.',
+  'zip_type' => 'Nu aveţi permisiunea de a încărca fişiere arhivă ZIP.',
   'database_query' => 'S-a înregistrat o eroare în timpul procesării bazei de date', //cpg1.4
   'non_exist_comment' => 'Comentariul selecţionat nu există', //cpg1.4
 );
 
 $lang_bbcode_help_title = 'Ajutor coduri bbcode'; //cpg1.4
-$lang_bbcode_help = 'Puteţi adăuga adrese de pagini web şi\/sau paginare  pentru acest câmp  utilizând următoarele coduri bbcode : <li>[b]Text Bold (Ingrosat)[/b] =&gt; <b>Text Bold (Ingrosat)</b></li><li>[i]Text Italic (Inclinat)[/i] =&gt; <i>Text Italic</i></li><li>[url=http://nume-de-pagină.com/]Url Text[/url] =&gt; <a href="http://nume-de-pagină.com">Text pentru adresa </a></li><li>[email]utilizator@serviciu-de-email.com[/email] =&gt; <a href="mailto:nume@serviciu-de-email.com">nume@serviciu-de-email.com</a></li><li>[color=red]Exemplu de text[/color] =&gt; <span style="color:red">Exemplu de text</span></li><li>[img]http://coppermine-gallery.net/demo/cpg14x/images/red.gif[/img] => <img src="../images/red.gif" border="0" alt="" /></li>'; //cpg1.4
+$lang_bbcode_help = 'Puteţi adăuga adrese de pagini web şi\/sau paginare  pentru acest câmp  utilizând următoarele coduri bbcode : <li>[b]Text Bold (Îngroşat)[/b] =&gt; <b>Text Bold (Îngroşat)</b></li><li>[i]Text Italic (înclinat)[/i] =&gt; <i>Text Italic</i></li><li>[url=http://nume-de-pagină.com/]Url Text[/url] =&gt; <a href="http://nume-de-pagină.com">Text pentru adresa </a></li><li>[email]utilizator@serviciu-de-email.com[/email] =&gt; <a href="mailto:nume@serviciu-de-email.com">nume@serviciu-de-email.com</a></li><li>[color=red]Exemplu de text[/color] =&gt; <span style="color:red">Exemplu de text</span></li><li>[img]http://coppermine-gallery.net/demo/cpg14x/images/red.gif[/img] => <img src="../images/red.gif" border="0" alt="" /></li>'; //cpg1.4
 
 // ------------------------------------------------------------------------- //
 // File theme.php
@@ -172,7 +172,7 @@ $lang_gallery_admin_menu = array(
   'groups_lnk' => 'Grupuri',
   'comments_title' => 'Verifică comentariile', //cpg1.4
   'comments_lnk' => 'Verificare comentarii',
-  'searchnew_title' => 'Spre adăugare fişire multiple', //cpg1.4
+  'searchnew_title' => 'Spre adăugare fişiere multiple', //cpg1.4
   'searchnew_lnk' => 'Adăugare fişiere multiple',
   'util_title' => 'Spre unelte administrare', //cpg1.4
   'util_lnk' => 'Unelte administrator',
@@ -189,8 +189,8 @@ $lang_gallery_admin_menu = array(
 );
 
 $lang_user_admin_menu = array(
-  'albmgr_title' => 'Crează şi ordoneaza albumele mele', //cpg1.4
-  'albmgr_lnk' => 'Crează / Ordonează albumele mele',
+  'albmgr_title' => 'Creează şi ordonează albumele mele', //cpg1.4
+  'albmgr_lnk' => 'Creează / Ordonează albumele mele',
   'modifyalb_title' => 'Spre modificare albume',  //cpg1.4
   'modifyalb_lnk' => 'Modifică albumele mele',
   'my_prof_title' => 'Spre profilul meu personal', //cpg1.4
@@ -221,7 +221,7 @@ $lang_thumb_view = array(
   'position' => 'POZIŢIE', //cpg1.4
   'sort_pa' => 'Sortează crescător după POZIŢIE', //cpg1.4
   'sort_pd' => 'Sortează descrescător după POZIŢIE', //cpg1.4
-  'download_zip' => 'Descarcă într-un fişier arhivă ZIP',
+  'download_zip' => 'Descărcare într-un fişier arhivă ZIP',
   'pic_on_page' => '%d imagine(i) în %d pagină(i)',
   'user_on_page' => '%d utilizator(i) în  %d pagină(i)',
   'enter_alb_pass' => 'Parola pentru album', //cpg1.4
@@ -231,11 +231,11 @@ $lang_thumb_view = array(
 );
 
 $lang_img_nav_bar = array(
-  'thumb_title' => 'Inapoi în pagina de miniaturi imagini',
+  'thumb_title' => 'Înapoi în pagina de miniaturi imagini',
   'pic_info_title' => 'Arată/Ascunde informaţii imagine',
   'slideshow_title' => 'prezentare automată imagine după imagine',
   'ecard_title' => 'Trimite aceasta imagine ca un e-card (Carte Poştală Electronică)',
-  'ecard_disabled' => 'e-card-urile (Cartile Postale Electronice) sunt dezactivate',
+  'ecard_disabled' => 'e-card-urile (Cărţile poştale Electronice) sunt dezactivate',
   'ecard_disabled_msg' => 'Nu aveţi permisiunea de a trimite e-card-uri (Cărţi Poştale Electronice)', //js-alert
   'prev_title' => 'Vizualizează precedenta',
   'next_title' => 'Vizualizează următoarea',
@@ -285,7 +285,7 @@ $lang_display_thumbnails = array(
 );
 
 $lang_get_pic_data = array(
-  'n_comments' => '%s commentariu(ii)',
+  'n_comments' => '%s comentariu(ii)',
   'n_views' => '%s vizionări',
   'n_votes' => '(%s vot(uri) )',
 );
@@ -293,7 +293,7 @@ $lang_get_pic_data = array(
 $lang_cpg_debug_output = array(
   'debug_info' => 'Informaţii descoperire erori',
   'select_all' => 'Selecţionează tot',
-  'copy_and_paste_instructions' => 'dacă doriţi să cereţi ajutor în listele de discuţie pentru ajutor Coppermine, copiaţi acest raport împreună cu mesajul de eroare (dacă există). Asigurati-va că aţi ÎNLOCUIT parola cu ***  înainte de a trimite mesajul. <br />Nota: Acest mesaj este doar pentru informare,acesta nu inseamnă că aveţi intradevar o eroare în galeria dumneavoastră.', //cpg1.4
+  'copy_and_paste_instructions' => 'dacă doriţi să cereţi ajutor în listele de discuţie pentru ajutor Coppermine, copiaţi acest raport împreună cu mesajul de eroare (dacă există). Asigurati-va că aţi ÎNLOCUIT parola cu ***  înainte de a trimite mesajul. <br />Nota: Acest mesaj este doar pentru informare,acesta nu înseamnă că aveţi intradevăr o eroare în galeria dumneavoastră.', //cpg1.4
   'phpinfo' => 'Afişează detalii PHP',
   'notices' => 'Indicaţii/Note', //cpg1.4
 );
@@ -311,8 +311,8 @@ $lang_theme_selection = array(
 $lang_version_alert = array(
   'version_alert' => 'Versiune nesuportată !', //cpg1.4
   'security_alert' => 'Alertă SECURITATE !', //cpg1.4.3
-  'relocate_exists' => 'Inlăturaţi <a href="http://coppermine-gallery.net/forum/index.php?topic=24217.0" target=_blank>fişierul  relocate_server.php</a> din pagina dumneavoastră!',
-  'no_stable_version' => 'Rulaţi Coppermine %s (%s) care este destinat utilizatorilor foarte experimentaţi - această versiune este difuzată fară suport tehnic sau garantţi. Utilizarea ei presupune asumarea eventualelor riscuri. Puteţi de asemenea reveni la o versiune stabila inferioară, în cazul în care doriţi suport tehnic.', //cpg1.4
+  'relocate_exists' => 'înlăturaţi <a href="http://coppermine-gallery.net/forum/index.php?topic=24217.0" target=_blank>fişierul  relocate_server.php</a> din pagina dumneavoastră!',
+  'no_stable_version' => 'Rulaţi Coppermine %s (%s) care este destinat utilizatorilor foarte experimentaţi - această versiune este difuzată fară suport tehnic sau garanţii. Utilizarea ei presupune asumarea eventualelor riscuri. Puteţi de asemenea reveni la o versiune stabila inferioară, în cazul în care doriţi suport tehnic.', //cpg1.4
   'gallery_offline' => 'Galeria este momentan în mod întreţinere (lucru), şi este vizibilă doar pentru dumneavoastră ca Administrator. Nu uitaţi să schimbaţi în modul normal după ce terminaţi lucrările de întreţinere.', //cpg1.4
 );
 
@@ -369,11 +369,11 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
   'Embarassed' => 'Intimidat',
   'Crying or Very sad' => 'Plânset sau Foarte trist',
   'Evil or Very Mad' => 'Diabolic sau Nebun-de-legat',
-  'Twisted Evil' => 'Dracuşor',
+  'Twisted Evil' => 'Drăcuşor',
   'Rolling Eyes' => 'Ochi peste cap',
-  'Wink' => 'Facut cu ochiul',
+  'Wink' => 'făcut cu ochiul',
   'Idea' => 'Idee',
-  'Arrow' => 'Sageata',
+  'Arrow' => 'Săgeată',
   'Neutral' => 'Neutru',
   'Mr. Green' => 'Domnul Verde',
 );
@@ -399,13 +399,13 @@ if (defined('MODE_PHP')) $lang_mode_php = array(
 
 if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
   'alb_need_name' => 'Albumul trebuie să aibă un nume !', //js-alert
-  'confirm_modifs' => 'Sunteţi sigur că doriţi să efectuaţi aceste modificari ?', //js-alert
-  'no_change' => 'Nu aţi facut nici o modificare !', //js-alert
+  'confirm_modifs' => 'Sunteţi sigur că doriţi să efectuaţi aceste modificări ?', //js-alert
+  'no_change' => 'Nu aţi făcut nici o modificare !', //js-alert
   'new_album' => 'Album nou',
   'confirm_delete1' => 'Sunteţi sigur că doriţi să ştergeţi acest album ?', //js-alert
   'confirm_delete2' => '\nToate imaginile şi comentariile conţinute în el vor fi pierdute definitiv !', //js-alert
   'select_first' => 'Selecţionaţi întâi un album', //js-alert
-  'alb_mrg' => 'Managment Album',
+  'alb_mrg' => 'Management Album',
   'my_gallery' => '* Galeria mea *',
   'no_category' => '* Nici o categorie *',
   'delete' => 'Şterge',
@@ -425,14 +425,14 @@ if (defined('BANNING_PHP')) $lang_banning_php = array(
   'expiry' => 'Expiră (Niciodată în cazul în care nu se completează)', //cpg1.4
   'edit_ban' => 'Salvaţi schimbările', //cpg1.4
   'delete_ban' => 'Ştergere', //cpg1.4
-  'add_new' => 'Adăugare restrictie', //cpg1.4
+  'add_new' => 'Adăugare restricţie', //cpg1.4
   'add_ban' => 'Adăugare', //cpg1.4
   'error_user' => 'Nu găsesc utilizatorul', //cpg1.4
   'error_specify' => 'Trebuie specificat ori un nume de utilizator ori o adresă IP', //cpg1.4
   'error_ban_id' => 'ID Restricţie este incorect!', //cpg1.4
   'error_admin_ban' => 'Nu vă puteţi auto restricţiona!', //cpg1.4
   'error_server_ban' => 'Sunteţi pe cale să restricţionaţi propriul server? Acţiune imposibilă ...', //cpg1.4
-  'error_ip_forbidden' => 'Nu puteţi restricţiona această adresă IP de mascaradă (adresă locală ). <br />Dacă doriţi să permiteţi interzicerea adreselor locale, schimbaţi acest lucru în <a href="admin.php">Configuraţie</a> (Are sens doar dacă Coppermine rulează într-o retea locală gen Local Area Network - LAN).', //cpg1.4
+  'error_ip_forbidden' => 'Nu puteţi restricţiona această adresă IP de mascaradă (adresă locală ). <br />Dacă doriţi să permiteţi interzicerea adreselor locale, schimbaţi acest lucru în <a href="admin.php">Configuraţie</a> (Are sens doar dacă Coppermine rulează într-o reţea locală gen Local Area Network - LAN).', //cpg1.4
   'lookup_ip' => 'Caută o adresă IP', //cpg1.4
   'submit' => 'Trimite!', //cpg1.4
   'select_date' => 'Selecţionaţi data', //cpg1.4
@@ -444,19 +444,19 @@ if (defined('BANNING_PHP')) $lang_banning_php = array(
 
 if (defined('BRIDGEMGR_PHP')) $lang_bridgemgr_php = array(
   'title' => 'Asistent Pasarelă (Coopermine Bridge)',
-  'warning' => 'Avertisment: Utilizând acest asistent sunteţi constient că date importante vor fi trimise utilizând formulare html. Executaţi acest asistent pe computerul personal (nu pe un computer public, hot spot wifi sau un internet cafe), şi asiguraţi-vă că aţi şters fişirele temporare din navigator după ce aţi terminat.Nerespectarea acestora poate duce la interpelarea datelor dumneavoastră de către terţe persoane !',
+  'warning' => 'Avertisment: Utilizând acest asistent sunteţi conştient că date importante vor fi trimise utilizând formulare html. Executaţi acest asistent pe computerul personal (nu pe un computer public, hot spot wifi sau un internet cafe), şi asiguraţi-vă că aţi şters fişierele temporare din navigator după ce aţi terminat.Nerespectarea acestora poate duce la interpelarea datelor dumneavoastră de către terţe persoane !',
   'back' => ' Precedent',
   'next' => 'Următor ',
   'start_wizard' => 'Porneşte asistentul de pasarelă',
   'finish' => 'Terminare',
   'hide_unused_fields' => 'Ascunde câmpurile neutilizate (recomandat)',
-  'clear_unused_db_fields' => 'Curaţă  înregistrari invalide din baza de date (recomandat)',
+  'clear_unused_db_fields' => 'Curăţă  înregistrări invalide din baza de date (recomandat)',
   'custom_bridge_file' => 'Fişierul pasarelă personalizat (dacă numele fişierului pasarelă este <i>nume-fişier-pasarelă.inc.php</i>, introduceţi <i>nume-fişier-pasarelă</i> în acest câmp)',
   'no_action_needed' => 'Nici o acţiune necesară în această etapă. Clic pe butonul "Următor" pentru continuare.',
   'reset_to_default' => 'Reiniţializare valoare standard.',
   'choose_bbs_app' => 'Alegeţi aplicaţia cu care Coopermine va face o pasarelă',
-  'support_url' => 'Vizitaţi aici pentru suport în legatura cu această aplicaţie',
-  'settings_path' => 'Calea (caile) utilizate de aplicaţia BBS',
+  'support_url' => 'Vizitaţi aici pentru suport în legătură cu această aplicaţie',
+  'settings_path' => 'Calea (căile) utilizate de aplicaţia BBS',
   'database_connection' => 'Conexiune baza de date',
   'database_tables' => 'Tablou(uri) baza date',
   'bbs_groups' => 'Grupuri BBS (Bulletin Board System)',
@@ -466,44 +466,44 @@ if (defined('BRIDGEMGR_PHP')) $lang_bridgemgr_php = array(
   'db_database_name_explanation' => 'Introduceţi numele bazei de date pe care BBS-ul dumneavoastră o utilizează',
   'db_hostname' => 'Gazda bazei de date',
   'db_hostname_explanation' => 'Numele gazdei unde baza de date mySQL este localizată, în mod curent această valoare este &quot;localhost&quot;',
-  'db_username' => 'Cont utilizator baza de date',
+  'db_username' => 'Cont utilizator bază de date',
   'db_username_explanation' => 'Utilizatorul mySQL pentru conexiune cu BBS-ul',
   'db_password' => 'Parola bazei de date',
   'db_password_explanation' => 'Parola acestui cont utilizator mySQL',
   'full_forum_url' => 'Adresa URL a Forum-ului ',
-  'full_forum_url_explanation' => 'Adresa web completa a BBS-ului (includeti http:// , exemplu:    http://www.adresa-forumului-dumneavoastră.com/forum)',
+  'full_forum_url_explanation' => 'Adresa web completa a BBS-ului (includeţi http:// , exemplu:    http://www.adresa-forumului-dumneavoastră.com/forum)',
   'relative_path_of_forum_from_webroot' => 'Calea relativă a forumului ',
   'relative_path_of_forum_from_webroot_explanation' => 'Calea relativă spre BBS-ul dumneavoastră începând cu dosarul rădăcină (Exemplu: Dacă BBS-ul se află la aceasta adresă: http://www.adresa-forumului-dumneavoastră.com/forum/ , atunci introduceţi  &quot;/forum/&quot; în acest câmp)',
   'relative_path_to_config_file' => 'Calea relativă spre fişierul configuraţie al BBS-ului dumneavoastră ',
-  'relative_path_to_config_file_explanation' => 'Calea relativă spre BBS, vazuta din perspectiva dosarului Coppermine. (Exemplu  &quot;../forum/&quot; dacă BBS-ul se află la această adresă  http://www.adresa-forumului-dumneavoastră.com/forum/ şi  Coppermine se află la această adresă http://www.adresa-forumului-dumneavoastră.com/galerie/  În acest exemplu , &quot; .. &quot; semnifică un dosar înainte (spre a ajunge în rădăcină / ).)',
+  'relative_path_to_config_file_explanation' => 'Calea relativă spre BBS, văzută din perspectiva dosarului Coppermine. (Exemplu  &quot;../forum/&quot; dacă BBS-ul se află la această adresă  http://www.adresa-forumului-dumneavoastră.com/forum/ şi  Coppermine se află la această adresă http://www.adresa-forumului-dumneavoastră.com/galerie/  În acest exemplu , &quot; .. &quot; semnifică un dosar înainte (spre a ajunge în rădăcină / ).)',
   'cookie_prefix' => 'Prefix Cookie',
   'cookie_prefix_explanation' => 'Prefixul trebuie să fie prefixul utilizat de cookie-urile BBS-ului (pentru PhpBB standard este phpbb2mysql )',
   'table_prefix' => 'Prefixul Tablourilor',
   'table_prefix_explanation' => 'Trebuie să fie acelaşi prefix ca cel utilizat de BBS (pentru phpBB standard este phpbb_ ). ',
-  'user_table' => 'Tabou utilizator',
+  'user_table' => 'Tablou utilizator',
   'user_table_explanation' => '(În mod normal, valoarea standard ar trebui să fie OK.În mod contrar BBS-ul dumneavoastră a avut o instalare personalizată.)',
   'session_table' => 'Sesiune Tablou',
   'session_table_explanation' => '(În mod normal, valoarea standard ar trebui să fie OK.În mod contrar BBS-ul dumneavoastră a avut o instalare personalizată.)',
-  'group_table' => 'Grupur Tablou',
+  'group_table' => 'Grupul Tablou',
   'group_table_explanation' => '(În mod normal, valoarea standard ar trebui să fie OK.În mod contrar BBS-ul dumneavoastră a avut o instalare personalizată.)',
-  'group_relation_table' => 'Relatia grup tablou',
+  'group_relation_table' => 'Relaţia grup tablou',
   'group_relation_table_explanation' => 'În mod normal, valoarea standard ar trebui să fie OK.În mod contrar BBS-ul dumneavoastră a avut o instalare personalizată.',
   'group_mapping_table' => 'Maparea tabelului grup',
   'group_mapping_table_explanation' => '(În mod normal, valoarea standard ar trebui să fie OK.În mod contrar BBS-ul dumneavoastră a avut o instalare personalizată.)',
   'use_standard_groups' => 'Utilizează grupuri utilizator BBS standard',
-  'use_standard_groups_explanation' => 'Utilizarea grupuri de utilizatori standard (conţinute deja) (valoare recomandată). Aceasta va face ca toate grupurile de utilizatori personalizate să devina nule. Dezactivati aceasta opţiune doar dacă sunteţi SIGUR de ceea ce faceţi !',
+  'use_standard_groups_explanation' => 'Utilizarea grupuri de utilizatori standard (conţinute deja) (valoare recomandată). Aceasta va face ca toate grupurile de utilizatori personalizate să devină nule. Dezactivaţi aceasta opţiune doar dacă sunteţi SIGUR de ceea ce faceţi !',
   'validating_group' => 'Grupul Validare',
-  'validating_group_explanation' => 'ID-ul grupului unde conturile utilizatorilor care asteapta validarea administratorului se află . (În mod normal, valoarea standard ar trebui să fie OK.În mod contrar BBS-ul dumneavoastră a avut o instalare personalizată.)',
+  'validating_group_explanation' => 'ID-ul grupului unde conturile utilizatorilor care aşteaptă validarea administratorului se află . (În mod normal, valoarea standard ar trebui să fie OK.În mod contrar BBS-ul dumneavoastră a avut o instalare personalizată.)',
   'guest_group' => 'Grupul Anonimilor',
-  'guest_group_explanation' => 'ID-ul grupului unde utilizatorii anonimi se află. (Valoarea standard ar trebui să fie OK. Editaţi doar dacă suneti SIGUR de ceea ce faceţi)',
-  'member_group' => 'Grup Memnri',
-  'member_group_explanation' => 'ID-ul grupului unde se află membrii &quot;generali&quot; (Valoarea standard ar trebui să fie OK. Editaţi doar dacă suneti SIGUR de ceea ce faceţi)',
+  'guest_group_explanation' => 'ID-ul grupului unde utilizatorii anonimi se află. (Valoarea standard ar trebui să fie OK. Editaţi doar dacă sunteţi SIGUR de ceea ce faceţi)',
+  'member_group' => 'Grup Membri',
+  'member_group_explanation' => 'ID-ul grupului unde se află membrii &quot;generali&quot; (Valoarea standard ar trebui să fie OK. Editaţi doar dacă sunteţi SIGUR de ceea ce faceţi)',
   'admin_group' => 'Grup Admin',
-  'admin_group_explanation' => 'ID-ul grupului unde se află administratorul(ii) (Valoarea standard ar trebui să fie OK. Editaţi doar dacă suneti SIGUR de ceea ce faceţi)',
-  'banned_group' => 'Banned group',
-  'banned_group_explanation' => 'ID-ul grupului unde se află utilizatorii blocaţi (Valoarea standard ar trebui să fie OK. Editaţi doar dacă suneti SIGUR de ceea ce faceţi)',
+  'admin_group_explanation' => 'ID-ul grupului unde se află administratorul(ii) (Valoarea standard ar trebui să fie OK. Editaţi doar dacă sunteţi SIGUR de ceea ce faceţi)',
+  'banned_group' => 'Grupul utilizatori blocaţi',
+  'banned_group_explanation' => 'ID-ul grupului unde se află utilizatorii blocaţi (Valoarea standard ar trebui să fie OK. Editaţi doar dacă sunteţi SIGUR de ceea ce faceţi)',
   'global_moderators_group' => 'Grupul normal al moderatorilor',
-  'global_moderators_group_explanation' => 'ID-ul grupului unde se află moderatorii normali (Valoarea standard ar trebui să fie OK. Editaţi doar dacă suneti SIGUR de ceea ce faceţi)',
+  'global_moderators_group_explanation' => 'ID-ul grupului unde se află moderatorii normali (Valoarea standard ar trebui să fie OK. Editaţi doar dacă sunteţi SIGUR de ceea ce faceţi)',
   'special_settings' => 'Setări specifice BBS',
   'logout_flag' => 'Versiunea phpBB',
   'logout_flag_explanation' => 'Care este versiunea BBS-lui dumneavoastră (aceasta valoare specifica modul în care se realizează dezautentificarea )',
@@ -516,10 +516,10 @@ if (defined('BRIDGEMGR_PHP')) $lang_bridgemgr_php = array(
   'error_title' => 'Aceste erori trebuie corectate înainte de a continua. Reveniţi la pagina anterioară.',
   'error_specify_bbs' => 'Trebuie să specificaţi ce aplicaţie doriţi să fie integrată cu Coppermine.',
   'error_no_blank_name' => 'Numele pentru fişierul pasarelă personalizat nu poate fi vid.',
-  'error_no_special_chars' => 'Fişierul pasarelă nu poate contine caractere speciale, cu excepţia underscore (_) şi dash (-)!',
-  'error_bridge_file_not_exist' => 'Fişierul pasarelă nu există pe server. Verificăţi dacă l-ai încărcat.',
+  'error_no_special_chars' => 'Fişierul pasarelă nu poate conţine caractere speciale, cu excepţia underscore (_) şi dash (-)!',
+  'error_bridge_file_not_exist' => 'Fişierul pasarelă nu există pe server. Verificaţi dacă l-ai încărcat.',
   'finalize' => 'Activează/Dezactivează integrarea cu BBS',
-  'finalize_explanation' => ' Pâna în momentul de faţă ,setările specificate au fost scrise în baza de date dar integrarea cu BBS nu a fost activată . Puteţi activa / dezactiva oricând, mai târziu. Asigurati-va că retineti numele de administrator şi parola pentru Coppermine versiunea de sine statatoare , în cazul în care doriţi să faceţi alte schimbari. Dacă ceva nu funcţionează mergeţi la %s şi dezactivaţi integrarea BBS utilizând versiunea de sine statatoare.',
+  'finalize_explanation' => ' Până în momentul de faţă ,setările specificate au fost scrise în baza de date dar integrarea cu BBS nu a fost activată . Puteţi activa / dezactiva oricând, mai târziu. Asigurati-va că reţineţi numele de administrator şi parola pentru Coppermine versiunea de sine stătătoare , în cazul în care doriţi să faceţi alte schimbări. Dacă ceva nu funcţionează mergeţi la %s şi dezactivaţi integrarea BBS utilizând versiunea de sine stătătoare.',
   'your_bridge_settings' => 'Setările pasarelei dumneavoastră',
   'title_enable' => 'Activează integrare/pasarelă cu %s',
   'bridge_enable_yes' => 'Activează',
@@ -528,20 +528,20 @@ if (defined('BRIDGEMGR_PHP')) $lang_bridgemgr_php = array(
   'error_either_be' => 'Trebuie să fie ori %s ori %s',
   'error_folder_not_exist' => '%s nu există. Corectaţi valoarea introdusă pentru %s',
   'error_cookie_not_readible' => 'Coppermine nu poate citi un cookie cu numele %s. Corectaţi valoarea introdusă pentru %s, sau mergeţi în panoul de administrare al BBS şi asiguraţi-vă în legătură cu căminul de acces. ( lizibilitatea de către Coppermine) .',
-  'error_mandatory_field_empty' => 'Nu puteţi lasa vid câmpul %s  -  Introduceţi o valoare corectă.',
+  'error_mandatory_field_empty' => 'Nu puteţi lăsa vid câmpul %s  -  Introduceţi o valoare corectă.',
   'error_no_trailing_slash' => 'Trebuie să existe un caracter slash în câmpul %s.',
   'error_trailing_slash' => 'Trebuie să existe un caracter slash în câmpul %s.',
   'error_db_connect' => 'Conexiunea cu baza de date mySQL este imposibilă. Mesajul trimis de baza de date este: ',
-  'error_db_name' => 'Deoarece Coppermine nu a reuşit să stabileasca o conexiune, nu a fost capabil să găsească baza de date %s. Verificăţi vă rog că aţi specificat %s corespunzător. Mesajul trimis de mySQL este:',
+  'error_db_name' => 'Deoarece Coppermine nu a reuşit să stabilească o conexiune, nu a fost capabil să găsească baza de date %s. Verificaţi vă rog că aţi specificat %s corespunzător. Mesajul trimis de mySQL este:',
   'error_prefix_and_table' => '%s şi ',
-  'error_db_table' => 'Nu a fost găsit tabloul %s. Verificăţi dacă aţi specificat %s corespunzător.',
+  'error_db_table' => 'Nu a fost găsit tabloul %s. Verificaţi dacă aţi specificat %s corespunzător.',
   'recovery_title' => 'Manager Pasarelă: Recuperare de Urgenţă',
-  'recovery_explanation' => 'Dacă aţi ajuns aici pentru a administra integrarea BBS cu galeria Coppermine , trebuie să vă autentificaţi întâi ca Administrator . Dacă nu reusiţi acest lucru deoarece pasarela nu funcţionează,puteţi dezactiva integrarea BBS cu ajutorul aceste pagini. Introducând numele de utilizator şi parola nu va va autentifica, ci va dezactiva doar integrarea BBS. Consultaţi Documentatia aferenta pentru detalii.',
+  'recovery_explanation' => 'Dacă aţi ajuns aici pentru a administra integrarea BBS cu galeria Coppermine , trebuie să vă autentificaţi întâi ca Administrator . Dacă nu reuşiţi acest lucru deoarece pasarela nu funcţionează,puteţi dezactiva integrarea BBS cu ajutorul aceste pagini. Introducând numele de utilizator şi parola nu va va autentifica, ci va dezactiva doar integrarea BBS. Consultaţi Documentaţia aferenta pentru detalii.',
   'username' => 'Utilizator',
   'password' => 'Parola',
   'disable_submit' => 'Trimite',
-  'recovery_success_title' => 'Autentificare reusita',
-  'recovery_success_content' => 'Aţi reuşit să dezactivaţi pasarelă BBS .  Instalarea Coppermine rulează în acest moment în modul de sine statator.',
+  'recovery_success_title' => 'Autentificare reuşită',
+  'recovery_success_content' => 'Aţi reuşit să dezactivaţi pasarelă BBS .  Instalarea Coppermine rulează în acest moment în modul de sine stătător.',
   'recovery_success_advice_login' => 'Autentificaţi-vă ca administrator pentru editare setări pasarelă şi/sau să activaţi din nou integrarea cu BBS.',
   'goto_login' => 'Spre pagina de autentificare',
   'goto_bridgemgr' => 'Spre manager de pasarelă',
@@ -549,7 +549,7 @@ if (defined('BRIDGEMGR_PHP')) $lang_bridgemgr_php = array(
   'recovery_failure_content' => 'Aţi furnizat date greşite. Datele utilizate trebuie să fie aceleaşi cu ale contului Administrator folosite la instalarea Coppermine.',
   'try_again' => 'Încercaţi din nou',
   'recovery_wait_title' => 'Timpul de aşteptare încă nu s-a scurs',
-  'recovery_wait_content' => 'Din motive de securitate acest script nu permite autentificari eşuate în perioade scurte de timp , deci trebuie să aşteptaţi câteva minute până veti avea acces la autentificare.',
+  'recovery_wait_content' => 'Din motive de securitate acest script nu permite autentificări eşuate în perioade scurte de timp , deci trebuie să aşteptaţi câteva minute până veţi avea acces la autentificare.',
   'wait' => 'wait',
   'create_redir_file' => 'Creare fişier redirecţionare (recomandat)',
   'create_redir_file_explanation' => 'Pentru redirecţionare utilizatori înapoi la galeria Coppermine odată ce ei s-au autentificat în BBS , aveţi nevoie ca un fişier de redirecţionare să fie creat în dosarul unde se află BBS-ul. Când aceasta opţiune este activată, managerul de pasarelă va încerca să creeze acest fişier pentru dumneavoastră, sau să vă furnizeze liniile de cod pentru a crea fişierul manual.',
@@ -572,14 +572,14 @@ if (defined('CALENDAR_PHP')) $lang_calendar_php = array(
 
 if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
   'miss_param' => 'Parametrii necesari pentru operaţia \'%s\' nu au fost specificaţi !',
-  'unknown_cat' => 'Categoria selectionata nu există în baza de date',
-  'usergal_cat_ro' => 'Categoria din Galeria utilizatorilor nu poate fi stearsă !',
+  'unknown_cat' => 'Categoria selecţionată nu există în baza de date',
+  'usergal_cat_ro' => 'Categoria din Galeria utilizatorilor nu poate fi ştearsă !',
   'manage_cat' => 'Gestionează categoriile',
   'confirm_delete' => 'Sunteţi sigur că doriţi să ştergeţi această categorie?', //js-alert
   'category' => 'Categorie',
   'operations' => 'Operaţii',
   'move_into' => 'Mută în',
-  'update_create' => 'Actualizează/Crează categorie',
+  'update_create' => 'Actualizează/Creează categorie',
   'parent_cat' => 'Categoria mamă',
   'cat_title' => 'Titlu categorie',
   'cat_thumb' => 'Miniatură categorie',
@@ -594,7 +594,7 @@ if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
 
 if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'title' => 'Configuraţie Galerie', //cpg1.4
-  'manage_exif' => 'Gestionează afişarea informatiilor EXIF', //cpg1.4
+  'manage_exif' => 'Gestionează afişarea informaţiilor EXIF', //cpg1.4
   'manage_plugins' => 'Gestionar de plugin-uri', //cpg1.4
   'manage_keyword' => 'Gestionar de cuvinte-cheie', //cpg1.4
   'restore_cfg' => 'Restaurare valori standard',
@@ -613,7 +613,7 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'pos_d' => 'POZIŢIE Descrescător', //cpg1.4
   'th_any' => 'Aspect Maxim',
   'th_ht' => 'Înălţime',
-  'th_wd' => 'Lătime',
+  'th_wd' => 'Lăţime',
   'label' => 'Etichetă',
   'item' => 'Obiect',
   'debug_everyone' => 'Oricine',
@@ -626,7 +626,7 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'expand_all' => 'Extinde tot', //cpg1.4
   'notice1' => '(*) Aceste setări nu ar trebui să fie schimbate dacă aveţi deja imagini în baza de date.', //cpg1.4 - (relocated)
   'notice2' => '(**) Când se schimba aceasta valoare,doar imaginile adăugate de acum înainte vor fi afectate de această setare , deci este indicat ca aceasta să nu fie schimbată dacă există deja imagini în galerie. Puteţi totuşi să  aplicaţi schimbările pentru imaginile existente cu ajutorul &quot;<a href="util.php"> uneltelor de administrator</a> (Redimensionare imagini)&quot; - Utilitarul din meniul administrator.', //cpg1.4 - (relocated)
-  'notice3' => '(***) Toate fişierele înregistrări (log) sunt scrire în limba engleză.', //cpg1.4 - (relocated)
+  'notice3' => '(***) Toate fişierele înregistrări (log) sunt scrise în limba engleză.', //cpg1.4 - (relocated)
   'bbs_disabled' => 'Funcţie dezactivată când se utilizează integrarea BBS', //cpg1.4
   'auto_resize_everyone' => 'Tot', //cpg1.4
   'auto_resize_user' => 'Doar utilizatorul', //cpg1.4
@@ -649,7 +649,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Activează plugins-uri', 'enable_plugins', 12, 'f=index.htm&amp;as=admin_general_enable-plugins&amp;ae=admin_general_enable-plugins_end'),  //cpg1.4
   array('Activează interzicerea IP-urilor private (Exemple: 192.168.0.10 ; 10.0.0.2)', 'ban_private_ip', 1,  'f=index.htm&amp;as=admin_general_private-ip&amp;ae=admin_general_private-ip_end'), //cpg1.4
   array('Interfaţă Adăugare multiplă de fişiere cu răsfoire', 'browse_batch_add', 1, 'f=index.htm&amp;as=admin_general_browsable_batch_add&amp;ae=admin_general_browsable_batch_add_end'), //cpg1.4
-  
+ 
   'Limbaj &amp; Setările seturilor de caractere',
   array('Limba', 'lang', 5, 'f=index.htm&amp;as=admin_language_language&amp;ae=admin_language_language_end'), //cpg1.4
   array('Revenire spre limba Engleza dacă fraza tradusă nu a fost găsită?', 'language_fallback', 1, 'f=index.htm&amp;as=admin_language_fallback&amp;ae=admin_language_fallback_end'), //cpg1.4
@@ -657,7 +657,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Afişează lista de limbi', 'language_list', 1, 'f=index.htm&amp;as=admin_language_list&amp;ae=admin_language_list_end'), //cpg1.4
   array('Afişează steagurile specifice ţărilor limbilor', 'language_flags', 8, 'f=index.htm&amp;as=admin_language_flags&amp;ae=admin_language_flags_end&amp;top=1'), //cpg1.4
   array('Afişează &quot;reiniţializare&quot; în selecţia de limbi', 'language_reset', 1, 'f=index.htm&amp;as=admin_language_reset&amp;ae=admin_language_reset_end&amp;top=1'), //cpg1.4
-  //array('Afişează precedent/urmator în pagini', 'previous_next_tab', 1), //cpg1.4
+  //array('Afişează precedent/următor în pagini', 'previous_next_tab', 1), //cpg1.4
 
   'Setări teme grafice',
   array('Teme grafice', 'theme', 6, 'f=index.htm&amp;as=admin_theme_theme&amp;ae=admin_theme_theme_end'), //cpg1.4
@@ -667,7 +667,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Nume link meniu personalizat', 'custom_lnk_name', 0,'f=index.htm&amp;as=admin_theme_custom_lnk_name&amp;ae=admin_theme_custom_lnk_name_end'), //cpg1.4
   array('Adresa URL link meniu personalizat', 'custom_lnk_url', 0,'f=index.htm&amp;as=admin_language_custom_lnk_url&amp;ae=admin_language_custom_lnk_url_end'), //cpg1.4
   array('Afişează ajutor pentru coduri bbcode', 'show_bbcode_help', 1, 'f=index.htm&amp;as=admin_theme_bbcode&amp;ae=admin_theme_bbcode_end&amp;top=1'), //cpg1.4
-  array('Arată sigla de compatibilitate în temele grafice care sunt clasate ca find compatibile XHTML şi CSS','vanity_block',1, 'f=index.htm&amp;as=vanity_block&amp;ae=vanity_block_end'), //cpg1.4
+  array('Arată sigla de compatibilitate în temele grafice care sunt clasate ca fiind compatibile XHTML şi CSS','vanity_block',1, 'f=index.htm&amp;as=vanity_block&amp;ae=vanity_block_end'), //cpg1.4
   array('Calea spre Antet (Header) personalizat', 'custom_header_path', 0, 'f=index.htm&amp;as=admin_theme_include_path_start&amp;ae=admin_theme_include_path_end'), //cpg1.4
   array('Calea spre partea de jos (footer)', 'custom_footer_path', 0, 'f=index.htm&amp;as=admin_theme_include_path_start&amp;ae=admin_theme_include_path_end'), //cpg1.4
 
@@ -686,11 +686,11 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Numărul de coloane pe pagina de miniaturi', 'thumbcols', 0, 'f=index.htm&amp;as=admin_thumbnail_columns&amp;ae=admin_thumbnail_columns_end'), //cpg1.4
   array('Numărul de rânduri pe pagina de miniaturi', 'thumbrows', 0, 'f=index.htm&amp;as=admin_thumbnail_rows&amp;ae=admin_thumbnail_rows_end'), //cpg1.4
   array('Numărul maxim de miniaturi de afişat', 'max_tabs', 10, 'f=index.htm&amp;as=admin_thumbnail_tabs&amp;ae=admin_thumbnail_tabs_end'), //cpg1.4
-  array('Afişează descrierea (pe lânga titlu) la baza miniaturii', 'caption_in_thumbview', 1, 'f=index.htm&amp;as=admin_thumbnail_display_caption&amp;ae=admin_thumbnail_display_caption_end'), //cpg1.4
-  array('Afişează numărul de vizualizari la baza miniaturii', 'views_in_thumbview', 1, 'f=index.htm&amp;as=admin_thumbnail_display_views&amp;ae=admin_thumbnail_display_views_end'), //cpg1.4
+  array('Afişează descrierea (pe lângă titlu) la baza miniaturii', 'caption_in_thumbview', 1, 'f=index.htm&amp;as=admin_thumbnail_display_caption&amp;ae=admin_thumbnail_display_caption_end'), //cpg1.4
+  array('Afişează numărul de vizualizări la baza miniaturii', 'views_in_thumbview', 1, 'f=index.htm&amp;as=admin_thumbnail_display_views&amp;ae=admin_thumbnail_display_views_end'), //cpg1.4
   array('Afişează numărul de comentarii la baza miniaturii', 'display_comment_count', 1, 'f=index.htm&amp;as=admin_thumbnail_display_comments&amp;ae=admin_thumbnail_display_comments_end'), //cpg1.4
   array('Afişează numele celui care a trimis la baza miniaturii', 'display_uploader', 1, 'f=index.htm&amp;as=admin_thumbnail_display_uploader&amp;ae=admin_thumbnail_display_uploader_end'), //cpg1.4
-  //array('Afişează numele administratorului care a incarcat,la baza miniaturii', 'display_admin_uploader', 1, 'f=index.htm&amp;as=admin_thumbnail_display_admin_uploader&amp;ae=admin_thumbnail_display_admin_uploader_end'), //cpg1.4
+  //array('Afişează numele administratorului care a încărcat,la baza miniaturii', 'display_admin_uploader', 1, 'f=index.htm&amp;as=admin_thumbnail_display_admin_uploader&amp;ae=admin_thumbnail_display_admin_uploader_end'), //cpg1.4
   array('Afişează numele de fişier la baza miniaturii', 'display_filename', 1, 'f=index.htm&amp;as=admin_thumbnail_display_filename&amp;ae=admin_thumbnail_display_filename_end'), //cpg1.4
   //array('Afişează descrierea albumului', 'alb_desc_thumb', 1, 'f=index.htm&amp;as=admin_thumbnail_display_description&amp;ae=admin_thumbnail_display_description_end'), //cpg1.4
   array('Modul implicit de sortare', 'default_sort_order', 3, 'f=index.htm&amp;as=admin_thumbnail_default_sortorder&amp;ae=admin_thumbnail_default_sortorder_end'), //cpg1.4
@@ -702,14 +702,14 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Lungimea maximă pentru descriere imagine', 'max_img_desc_length', 0, 'f=index.htm&amp;as=admin_image_comment_descr_length&amp;ae=admin_image_comment_descr_length_end'), //cpg1.4
   array('Numărul maxim de caractere pe care un cuvânt îl poate avea', 'max_com_wlength', 0, 'f=index.htm&amp;as=admin_image_comment_chars_per_word&amp;ae=admin_image_comment_chars_per_word_end'), //cpg1.4
   array('Arată Film Foto', 'display_film_strip', 1, 'f=index.htm&amp;as=admin_image_comment_filmstrip_toggle&amp;ae=admin_image_comment_filmstrip_toggle_end'), //cpg1.4
-  array('Afişează numele imaginii dedesuptul miniaturii filmului foto', 'display_film_strip_filename', 1, 'f=index.htm&amp;as=admin_image_comment_display_film_strip_filename&amp;ae=admin_image_comment_display_film_strip_filename_end'), //cpg1.4
+  array('Afişează numele imaginii dedesubtul miniaturii filmului foto', 'display_film_strip_filename', 1, 'f=index.htm&amp;as=admin_image_comment_display_film_strip_filename&amp;ae=admin_image_comment_display_film_strip_filename_end'), //cpg1.4
   array('Numărul de imagini într-un film foto', 'max_film_strip_items', 0, 'f=index.htm&amp;as=admin_image_comment_filmstrip_number&amp;ae=admin_image_comment_filmstrip_number_end'), //cpg1.4
   array('Intervalul în milisecunde (1 secundă are 1000 de milisecunde) între imaginile prezentate automat', 'slideshow_interval', 0, 'f=index.htm&amp;as=admin_image_comment_slideshow_interval&amp;ae=admin_image_comment_slideshow_interval_end'), //cpg1.4
 
   'Setări Comentarii', //cpg1.4
   array('Filtrează insulte/cuvinte murdare în comentarii', 'filter_bad_words', 1, 'f=index.htm&amp;as=admin_image_comment_bad_words&amp;ae=admin_image_comment_bad_words_end'), //cpg1.4
   array('Permite pictograme sugestive (smiles) în comentarii', 'enable_smilies', 1, 'f=index.htm&amp;as=admin_image_comment_smilies&amp;ae=admin_image_comment_smilies_end'), //cpg1.4
-  array('Permite mai multe comentarii consecutive pentru o imagine, provenind de la acelaşi utilizator (dezactivaţi protecţia impotriva bombardării cu mesaje)', 'disable_comment_flood_protect', 1, 'f=index.htm&amp;as=admin_image_comment_flood&amp;ae=admin_image_comment_flood_end'), //cpg1.4
+  array('Permite mai multe comentarii consecutive pentru o imagine, provenind de la acelaşi utilizator (dezactivaţi protecţia împotriva bombardării cu mesaje)', 'disable_comment_flood_protect', 1, 'f=index.htm&amp;as=admin_image_comment_flood&amp;ae=admin_image_comment_flood_end'), //cpg1.4
   array('Numărul maxim de linii într-un comentariu', 'max_com_lines', 0, 'f=index.htm&amp;as=admin_image_comment_lines&amp;ae=admin_image_comment_lines_end'), //cpg1.4
   array('Lungimea maximă a unui comentariu', 'max_com_size', 0, 'f=index.htm&amp;as=admin_image_comment_length&amp;ae=admin_image_comment_length_end'), //cpg1.4
   array('Notifică cu un email Administratorul, despre postarea comentariilor', 'email_comment_notification', 1, 'f=index.htm&amp;as=admin_image_comment_admin_notify&amp;ae=admin_image_comment_admin_notify_end'), //cpg1.4
@@ -720,8 +720,8 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Calitatea imaginilor JPEG', 'jpeg_qual', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_jpeg_quality&amp;ae=admin_picture_thumbnail_jpeg_quality_end'), //cpg1.4
   array('Dimensiunea maximă a unei miniaturi <a href="#notice2" class="clickable_option">**</a>', 'thumb_width', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_max-dimension&amp;ae=admin_picture_thumbnail_max-dimension_end'), //cpg1.4
   array('Utilizează dimensionare ( lăţime , înălţime sau aspectul maxim al miniaturii ) <a href="#notice2" class="clickable_option">**</a>', 'thumb_use', 7, 'f=index.htm&amp;as=admin_picture_thumbnail_use-dimension&amp;ae=admin_picture_thumbnail_use-dimension_end'), //cpg1.4
-  array('Crează imagini intermediare','make_intermediate',1, 'f=index.htm&amp;as=admin_picture_thumbnail_intermediate_toggle&amp;ae=admin_picture_thumbnail_intermediate_toggle_end'), //cpg1.4
-  array('Lărgimea sau Înălţimea maximă a imaginei/filmului video<a href="#notice2" class="clickable_option">**</a>', 'picture_width', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_intermediate_dimension&amp;ae=admin_picture_thumbnail_intermediate_dimension_end'), //cpg1.4
+  array('Creează imagini intermediare','make_intermediate',1, 'f=index.htm&amp;as=admin_picture_thumbnail_intermediate_toggle&amp;ae=admin_picture_thumbnail_intermediate_toggle_end'), //cpg1.4
+  array('Lărgimea sau Înălţimea maximă a imaginii/filmului video<a href="#notice2" class="clickable_option">**</a>', 'picture_width', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_intermediate_dimension&amp;ae=admin_picture_thumbnail_intermediate_dimension_end'), //cpg1.4
   array('Mărimea maximă în KB pentru imaginile încărcate', 'max_upl_size', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_max_upload_size&amp;ae=admin_picture_thumbnail_max_upload_size_end'), //cpg1.4
   array('Lărgimea sau Înălţimea maximă în pixeli pentru imaginile/filmele încărcate', 'max_upl_width_height', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_max_upload_dimension&amp;ae=admin_picture_thumbnail_max_upload_dimension_end'), //cpg1.4
   array('Auto redimensionare imagini care sunt mai mari decât lărgimea sau înălţimea maximă', 'auto_resize', 16, 'f=index.htm&amp;as=admin_picture_thumbnail_auto-resize&amp;ae=admin_picture_thumbnail_auto-resize_end'), //cpg1.4
@@ -752,11 +752,11 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   'Setări utilizator',
   array('Permite înregistrări de noi utilizatori', 'allow_user_registration', 1, 'f=index.htm&amp;as=admin_allow_registration&amp;ae=admin_allow_registration_end'), //cpg1.4
   array('Permite accesul utilizatorilor neautentificaţi (Oaspeţi sau Anonimi) access', 'allow_unlogged_access', 1, 'f=index.htm&amp;as=admin_allow_unlogged_access&amp;ae=admin_allow_unlogged_access_end'), //cpg1.4
-  array('Inscrierea utilizatorilor necesită un email de verificare', 'reg_requires_valid_email', 1, 'f=index.htm&amp;as=admin_registration_verify&amp;ae=admin_registration_verify_end'), //cpg1.4
-  array('Notifică prin email Administratorul , despre inscrierea utilizatorilor', 'reg_notify_admin_email', 1, 'f=index.htm&amp;as=admin_registration_notify&amp;ae=admin_registration_notify_end'), //cpg1.4
+  array('Înscrierea utilizatorilor necesită un email de verificare', 'reg_requires_valid_email', 1, 'f=index.htm&amp;as=admin_registration_verify&amp;ae=admin_registration_verify_end'), //cpg1.4
+  array('Notifică prin email Administratorul , despre înscrierea utilizatorilor', 'reg_notify_admin_email', 1, 'f=index.htm&amp;as=admin_registration_notify&amp;ae=admin_registration_notify_end'), //cpg1.4
   array('Validarea înscrierilor de către Administrator', 'admin_activation', 1, 'f=index.htm&amp;as=admin_activation&amp;ae=admin_activation_end'),  //cpg1.4
   array('Permite a doi utilizatori diferiţi să aibă aceeaşi adresă email', 'allow_duplicate_emails_addr', 1, 'f=index.htm&amp;as=admin_allow_duplicate_emails_addr&amp;ae=admin_allow_duplicate_emails_addr_end'), //cpg1.4
-  array('Notifică Administratorul despre cererea de aprobare imagini încărcate care sunt în asteptare', 'upl_notify_admin_email', 1, 'f=index.htm&amp;as=admin_approval_notify&amp;ae=admin_approval_notify_end'), //cpg1.4
+  array('Notifică Administratorul despre cererea de aprobare imagini încărcate care sunt în aşteptare', 'upl_notify_admin_email', 1, 'f=index.htm&amp;as=admin_approval_notify&amp;ae=admin_approval_notify_end'), //cpg1.4
   array('Permite utilizatorilor autentificaţi să vizualizeze lista de membri', 'allow_memberlist', 1, 'f=index.htm&amp;as=admin_user_memberlist&amp;ae=admin_user_memberlist_end'), //cpg1.4
   array('Permite utilizatorilor autentificaţi să-şi schimbe adresă email în profilul personal', 'allow_email_change', 1, 'f=index.htm&amp;as=admin_user_allow_email_change&amp;ae=admin_user_allow_email_change_end'), //cpg1.4
   array('Permite utilizatorilor să reţină controlul asupra imaginilor din galeriile lor personale', 'users_can_edit_pics', 1, 'f=index.htm&amp;as=admin_user_editpics_public_start&amp;ae=admin_user_editpics_public_end'), //cpg1.4
@@ -766,7 +766,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
 
 // Câmpuri personalizate în profil,  //cpg1.4
   'Câmpuri personalizate pentru profil utilizator (lăsaţi vid dacă nu sunt utilizate).
-  Utilizaţi Profil 6 for pentru intrari lungi ca biografiile de exemplu', //cpg1.4
+  Utilizaţi Profil 6 for pentru intrări lungi ca biografiile de exemplu', //cpg1.4
   array('Nume Profil 1 ', 'user_profile1_name', 0, 'f=index.htm&amp;as=admin_custom&amp;ae=admin_custom_end'), //cpg1.4
   array('Nume Profil 2 ', 'user_profile2_name', 0), //cpg1.4
   array('Nume Profil 3 ', 'user_profile3_name', 0), //cpg1.4
@@ -792,8 +792,8 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   'Statistici şi Rapoarte', //cpg1.4
   array('Mod Raportare <a href="#notice3" class="clickable_option">***</a>', 'log_mode', 11, 'f=index.htm&amp;as=admin_logging_log_mode&amp;ae=admin_logging_log_mode_end'), //cpg1.4
   array('Rapoarte ecards', 'log_ecards', 1, 'f=index.htm&amp;as=admin_general_log_ecards&amp;ae=admin_general_log_ecards_end'), //cpg1.4
-  array('Păstrează statistici detailiate despre voturi','vote_details',1, 'f=index.htm&amp;as=admin_logging_votedetails&amp;ae=admin_logging_votedetails_end'), //cpg1.4
-  array('Păstrează statistici detailiate despre clic-uri','hit_details',1, 'f=index.htm&amp;as=admin_logging_hitdetails&amp;ae=admin_logging_hitdetails_end'), //cpg1.4
+  array('Păstrează statistici detaliate despre voturi','vote_details',1, 'f=index.htm&amp;as=admin_logging_votedetails&amp;ae=admin_logging_votedetails_end'), //cpg1.4
+  array('Păstrează statistici detaliate despre clic-uri','hit_details',1, 'f=index.htm&amp;as=admin_logging_hitdetails&amp;ae=admin_logging_hitdetails_end'), //cpg1.4
 
   'Setări Întreţinere', //cpg1.4
   array('Activează modul Identificare erori', 'debug_mode', 9, 'f=index.htm&amp;as=debug_mode&amp;ae=debug_mode_end'), //cpg1.4
@@ -807,7 +807,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('DB_ECARD_PHP')) $lang_db_ecard_php = array(
-  'title' => 'Carti poştale electronice trimise',
+  'title' => 'Cărţi poştale electronice trimise',
   'ecard_sender' => 'Expeditor',
   'ecard_recipient' => 'Destinatar',
   'ecard_date' => 'Data',
@@ -820,17 +820,17 @@ if (defined('DB_ECARD_PHP')) $lang_db_ecard_php = array(
   'ecard_sorted' => 'Sortate',
   'ecard_by_date' => 'după dată',
   'ecard_by_sender_name' => 'după numele expeditorului',
-  'ecard_by_sender_email' => 'după adresa de email a expeditorolui',
+  'ecard_by_sender_email' => 'după adresa de email a expeditorului',
   'ecard_by_sender_ip' => 'după adresa IP a expeditorului',
   'ecard_by_recipient_name' => 'după numele destinatarului',
   'ecard_by_recipient_email' => 'după adresa de email a destinatarului',
   'ecard_number' => 'Afişare înregistrare %s spre %s din %s',
   'ecard_goto_page' => 'Spre pagina',
   'ecard_records_per_page' => 'Înregistrări pe pagină',
-  'check_all' => 'Bifeaza tot',
-  'uncheck_all' => 'Debifeaza tot',
-  'ecards_delete_selected' => 'Şterge carţile poştale selecţionate',
-  'ecards_delete_confirm' => 'Sunteţi sigur că doriţi să ştergeţi înregistrările? Bifaţi în casuţă !',
+  'check_all' => 'Bifează tot',
+  'uncheck_all' => 'Debifează tot',
+  'ecards_delete_selected' => 'Şterge cărţile poştale selecţionate',
+  'ecards_delete_confirm' => 'Sunteţi sigur că doriţi să ştergeţi înregistrările? Bifaţi în căsuţă !',
   'ecards_delete_sure' => 'Sunt sigur,continuă.',
 );
 
@@ -846,14 +846,14 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
   'no_udp_needed' => 'Nu este necesară actualizarea.',
   'alb_updated' => 'Albumul a fost actualizat.',
   'unknown_album' => 'Albumul selecţionat nu există sau nu aveţi permisiunea să încărcaţi nimic în acest album.',
-  'no_pic_uploaded' => 'Nici o imagine nu a fost încărcată !<br /><br />If you have really selected a file to upload, check that the server allows file uploads...',
+  'no_pic_uploaded' => 'Nici o imagine nu a fost încărcată !<br /><br />Dacă totuşi aţi ales,verificaţi dacă serverul permite încărcări ...',
   'err_mkdir' => 'Crearea dosarului %s a eşuat!',
   'dest_dir_ro' => 'Dosarul destinaţie %s nu poate fi scris/creat de către program !',
   'err_move' => 'Imposibilitate de a muta %s în %s !',
   'err_fsize_too_large' => 'Dimensiunea fişierelor trimise este prea mare (Maximul permis este %s pe %s) !', //obsolete since cpg1.3 - consider removal in cpg1.4 once upload.php has been overhauled
   'err_imgsize_too_large' => 'Mărimea fişierului trimis este prea mare (Maximul permis este de %s KB) !', //obsolete since cpg1.3 - consider removal in cpg1.4 once upload.php has been overhauled
   'err_invalid_img' => 'Fişierul trimis nu este o imagine validă !',
-  'allowed_img_types' => 'Nu puteţi încarca decât %s imagini.',
+  'allowed_img_types' => 'Nu puteţi încărca decât %s imagini.',
   'err_insert_pic' => 'Imaginea \'%s\' nu poate fi introdusă în album ',
   'upload_success' => 'Fişierul a fost încărcat.<br /><br />Vă fi vizibil imediat ce Administratorul îl va aproba.',
   'notify_admin_email_subject' => '%s - Notificare de încărcare fişier',
@@ -864,12 +864,12 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
   'err_comment_empty' => 'Comentariul dumneavoastră este vid !',
   'err_invalid_fext' => 'Doar fişierele cu extensia următoare sunt acceptate : <br /><br />%s .',
   'no_flood' => 'Îmi pare rău, dar sunteţi deja ultimul autorul ultimului comentariu trimis pentru acest fişier.<br /><br /> Vă puteţi edita comentariul, pentru a adăuga comentarii suplimentare.',
-  'redirect_msg' => 'You are being redirected.<br /><br /><br />Click \'CONTINUE\' if the page does not refresh automatically',
+  'redirect_msg' => 'Redirecţionare automată .<br /><br /><br />Clic pe  \'CONTINUĂ\'dacă pagina nu se încarcă automat',
   'upl_success' => 'Fişierul a fost adăugat cu succes.',
   'email_comment_subject' => 'Un comentariu a fost adăugat în galeria de imagini Coppermine',
   'email_comment_body' => 'Cineva a adăugat un comentariu în galerie.Pentru vizualizare mergeţi la ',
-  'album_not_selected' => 'Albumul nu este selctionat', //cpg1.4
-  'com_author_error' => 'Un utilizator utilizează aceast nume. Autentificaţi-vă sau utilizaţi un alt nume.', //cpg1.4
+  'album_not_selected' => 'Albumul nu este selecţionat', //cpg1.4
+  'com_author_error' => 'Un utilizator utilizează acest nume. Autentificaţi-vă sau utilizaţi un alt nume.', //cpg1.4
 );
 
 // ------------------------------------------------------------------------- //
@@ -883,7 +883,7 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
   'ns_pic' => 'Imagine în mărime normală',
   'err_del' => 'Nu poate fi şters(a)',
   'thumb_pic' => 'Miniatură Imagine',
-  'comment' => 'Coomentariu',
+  'comment' => 'Comentariu',
   'im_in_alb' => 'Imagine în Album',
   'alb_del_success' => 'Albumul &laquo;%s&raquo; a fost şters', //cpg1.4
   'alb_mgr' => 'Gestionar Albume',
@@ -900,7 +900,7 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
   'pic_mgr' => 'Gestionar de Imagini', //cpg1.4
   'update_pic' => 'Actualizarea imaginii \'%s\' cu numele \'%s\' şi index \'%s\'', //cpg1.4
   'username' => 'Utilizator', //cpg1.4
-  'anonymized_comments' => '%s comentriu(ii) anonime', //cpg1.4
+  'anonymized_comments' => '%s comentariu(ii) anonime', //cpg1.4
   'anonymized_uploads' => '%s încărcare(i) publica(e) anonime', //cpg1.4
   'deleted_comments' => '%s comentariu(ii) şters(e)', //cpg1.4
   'deleted_uploads' => '%s încărcare(i) publică(e) şters(e)', //cpg1.4
@@ -910,7 +910,7 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
   'activated' => 'Activat', //cpg1.4
   'deactivate_user' => 'Dezactivează utilizatorul', //cpg1.4
   'user_already_inactive' => 'Contul este deja dezactivat', //cpg1.4
-  'deactivated' => 'Deazactivat', //cpg1.4
+  'deactivated' => 'Dezactivat', //cpg1.4
   'reset_password' => 'Resetează parola(ele)', //cpg1.4
   'password_reset' => 'Parola resetată în %s', //cpg1.4
   'change_group' => 'Schimbă grupul principal', //cpg1.4
@@ -957,7 +957,7 @@ $lang_picinfo = array(
   'Rating' => 'Cotare (%s vot(uri))',
   'Keywords' => 'Cuvinte-cheie',
   'File Size' => 'Mărime Fişier',
-  'Date Added' => 'Data adaugării', //cpg1.4
+  'Date Added' => 'Data adăugării', //cpg1.4
   'Dimensions' => 'Dimensiuni',
   'Displayed' => 'Afişată',
   'URL' => 'URL', //cpg1.4
@@ -970,7 +970,7 @@ $lang_picinfo = array(
   'Comment' => 'Comentariu',
   'addFav'=>'Adaugă la favorite',
   'addFavPhrase'=>'Favorite',
-  'remFav'=>'Înlatură din Favorite',
+  'remFav'=>'Înlătură din Favorite',
   'iptcTitle'=>'Titlu IPTC',
   'iptcCopyright'=>'Drept de autor IPTC',
   'iptcKeywords'=>'Cuvinte-cheie IPTC',
@@ -978,15 +978,15 @@ $lang_picinfo = array(
   'iptcSubcategories'=>'Sub-categoria IPTC',
   'ColorSpace' => 'Spaţiu Culoare', //cpg1.4
   'ExposureProgram' => 'Program de exPOZIŢIE', //cpg1.4
-  'Flash' => 'Blit', //cpg1.4
-  'MeteringMode' => 'Mod masură', //cpg1.4
+  'Flash' => 'Bliţ', //cpg1.4
+  'MeteringMode' => 'Mod măsură', //cpg1.4
   'ExposureTime' => 'Timp de expoziţie', //cpg1.4
   'ExposureBiasValue' => 'Oblicitate expoziţie', //cpg1.4
   'ImageDescription' => ' Descriere Imagine', //cpg1.4
   'Orientation' => 'Orientare', //cpg1.4
   'xResolution' => 'Rezoluţia X ', //cpg1.4
   'yResolution' => 'Rezoluţia Y ', //cpg1.4
-  'ResolutionUnit' => 'Unitatea de masura a Rezoluţiei', //cpg1.4
+  'ResolutionUnit' => 'Unitatea de măsură a Rezoluţiei', //cpg1.4
   'Software' => 'Software', //cpg1.4
   'YCbCrPositioning' => 'YCbCrPositioning', //cpg1.4
   'ExifOffset' => 'Exif Offset', //cpg1.4
@@ -996,26 +996,26 @@ $lang_picinfo = array(
   'DateTimeOriginal' => 'DataTimpul Original', //cpg1.4
   'DateTimedigitized' => 'DataTimpul digitilizat', //cpg1.4
   'ComponentsConfiguration' => 'Configuraţia Componentelor', //cpg1.4
-  'CompressedBitsPerPixel' => 'Biţi Compresati Per Pixel', //cpg1.4
+  'CompressedBitsPerPixel' => 'Biţi Compresaţi Per Pixel', //cpg1.4
   'LightSource' => 'Sursa de lumină', //cpg1.4
   'ISOSetting' => 'Setarea ISO', //cpg1.4
   'ColorMode' => 'Mod color', //cpg1.4
   'Quality' => 'Calitate', //cpg1.4
   'ImageSharpening' => 'Sharpening (ascuţime) Imagine', //cpg1.4
   'FocusMode' => 'Mod Focus', //cpg1.4
-  'FlashSetting' => 'Setare Blit', //cpg1.4
+  'FlashSetting' => 'Setare bliţ', //cpg1.4
   'ISOSelection' => 'selecţia ISO', //cpg1.4
   'ImageAdjustment' => 'Ajustare Imagine', //cpg1.4
   'Adapter' => 'Adaptor', //cpg1.4
-  'ManualFocusDistance' => 'Distanta focală manuală', //cpg1.4
+  'ManualFocusDistance' => 'Distanţa focală manuală', //cpg1.4
   'DigitalZoom' => 'Marire Digitala', //cpg1.4
-  'AFFocusPosition' => 'Pozitia AF (Auto Finder)', //cpg1.4
+  'AFFocusPosition' => 'Poziţia AF (Auto Finder)', //cpg1.4
   'Saturation' => 'Saturaţie', //cpg1.4
   'NoiseReduction' => 'Reducţie de Zgomot', //cpg1.4
   'FlashPixVersion' => 'Versiunea Flash Pix', //cpg1.4
   'ExifImageWidth' => 'Lărgime imagine Exif', //cpg1.4
   'ExifImageHeight' => 'Înălţime imagine Exif', //cpg1.4
-  'ExifInteroperabilityOffset' => 'Offse de inoperabilitate Exif', //cpg1.4
+  'ExifInteroperabilityOffset' => 'Offse de interoperabilitate Exif', //cpg1.4
   'FileSource' => 'Sursa fişier', //cpg1.4
   'SceneType' => 'Tipul de scenă', //cpg1.4
   'CustomerRender' => 'Redare personalizată', //cpg1.4
@@ -1023,7 +1023,7 @@ $lang_picinfo = array(
   'WhiteBalance' => 'Balansul de alb WB', //cpg1.4
   'DigitalZoomRatio' => 'Rata mărire digitală', //cpg1.4
   'SceneCaptureMode' => 'Mod captură scenă', //cpg1.4
-  'GainControl' => 'Control câstig (Gain Contro)', //cpg1.4
+  'GainControl' => 'Control câştig (Gain Contro)', //cpg1.4
   'Contrast' => 'Contrast', //cpg1.4
   'Sharpness' => 'Ascuţime (Sharpness)', //cpg1.4
   'ManageExifDisplay' => 'Gestionează afişaj Exif', //cpg1.4
@@ -1075,7 +1075,7 @@ if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array
   'preview' => 'Previzualizare Carte Poştală Electronică', //cpg1.4
   'preview_button' => 'Previzualizare', //cpg1.4
   'submit_button' => 'Trimite Cartea Poştală', //cpg1.4
-  'preview_view_ecard' => 'Acest link va fi alternativa de acces spre Cartea Postală odată ce aceasta este generată. Nu va funcţiona pentru previzualizari.', //cpg1.4
+  'preview_view_ecard' => 'Acest link va fi alternativa de acces spre Cartea poştală odată ce aceasta este generată. Nu va funcţiona pentru previzualizări.', //cpg1.4
 );
 
 // ------------------------------------------------------------------------- //
@@ -1107,7 +1107,7 @@ if (defined('REPORT_FILE_PHP') || defined('DISPLAYREPORT_PHP')) $lang_report_php
   'missing' => 'Lipsă', //cpg1.4
   'issue' => 'Eroare/Nu pot vizualiza', //cpg1.4
   'other' => 'Altceva', //cpg1.4
-  'refers_to' => 'Raportul fişier este în legatură cu  ', //cpg1.4
+  'refers_to' => 'Raportul fişier este în legătură cu  ', //cpg1.4
   'reasons_list_heading' => 'Motivul(ele) pentru raport:', //cpg1.4
   'no_reason_given' => 'Nici nu motiv nu a fost specificat ', //cpg1.4
   'go_comment' => 'Salt la comentariu', //cpg1.4
@@ -1131,15 +1131,15 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
   'keywords' => 'Cuvinte-cheie',
   'new_keyword' => 'Nou cuvânt-cheie', //cpg1.4
   'new_keywords' => 'Nou cuvânt-cheie găsit', //cpg1.4
-  'existing_keyword' => 'Cuvant-cheie existent', //cpg1.4
+  'existing_keyword' => 'Cuvânt-cheie existent', //cpg1.4
   'pic_info_str' => '%s &times; %s - %s KB - %s vizualizări - %s voturi',
-  'approve' => 'Aproba fişier',
+  'approve' => 'Aprobă fişier',
   'postpone_app' => 'Amână aprobarea',
   'del_pic' => 'Şterge fişier',
   'del_all' => 'Şterge TOATE fişierele', //cpg1.4
-  'read_exif' => 'Re-citeste informaţia Exif',
+  'read_exif' => 'Re-citeşte informaţia Exif',
   'reset_view_count' => 'Resetează numărătoarea de vizualizări',
-  'reset_all_view_count' => 'Resetează TOATE numarătoarele de vizualizări', //cpg1.4
+  'reset_all_view_count' => 'Resetează TOATE numărătoarele de vizualizări', //cpg1.4
   'reset_votes' => 'Resetează voturi',
   'reset_all_votes' => 'Resetează TOATE voturile', //cpg1.4
   'del_comm' => 'Şterge comentarii',
@@ -1181,32 +1181,32 @@ if (defined('FAQ_PHP')) $lang_faq_php = array(
 
 if (defined('FAQ_PHP')) $lang_faq_data = array(
   'Întrebări generale',
-  array('De ce este necesar să mă întregistrez ? ', 'Înregistrarea poate sau nu să fie necesară, în funcţie de preferinţele Administratorului. Înregistrarea acorda utilizatorului drepturi suplimentare ca trimitere fişire, crearea unei liste de favorite, cotarea de imagini şi postarea de comentarii etc.', 'allow_user_registration', '1'),
-  array('Cum să ma inregistrez ? ', 'Mergeti la &quot;Înregistrare&quot; şi completati campurile necesare (eventual şi cele opţionale, dacă doriţi).<br />Dacă Administratorul a ales Activarea prin Email, atunci, după trimiterea formularului, în mod normal, în câteva minute ar trebui să receptionati la adresa specificată în formular un email care conţine informaţiile necesare activării contului dumneavoastră. Acest lucru trebuie realizat pentru că contul dumneavoastră să devină activ şi să vă puteţi autentifica şi utiliza.În unele cazuri, Administratorul poate decide activarea/dezactivarea contului dumneavoatră.', 'allow_user_registration', '1'), //cpg1.4
-  array('De ce nu pot să ma autentific ?', 'Verificăţi dacă aţi vizitat adresa de verificare care v-a fost trimisă în email-ul de activare. Verificăţi dacă navigatorul dumneavoastră accepta cookies, ştergeţi fişierele temporare şi cookie-urile şi încercaţi din nou.Dacă nu reusiţi, contactaţi Administratorul.', 'offline', 0),
+  array('De ce este necesar să mă înregistrez ? ', 'Înregistrarea poate sau nu să fie necesară, în funcţie de preferinţele Administratorului. Înregistrarea acorda utilizatorului drepturi suplimentare ca trimitere fişiere, crearea unei liste de favorite, cotarea de imagini şi postarea de comentarii etc.', 'allow_user_registration', '1'),
+  array('Cum să mă înregistrez ? ', 'Mergeţi la &quot;Înregistrare&quot; şi completaţi câmpurile necesare (eventual şi cele opţionale, dacă doriţi).<br />Dacă Administratorul a ales Activarea prin Email, atunci, după trimiterea formularului, în mod normal, în câteva minute ar trebui să recepţionaţi la adresa specificată în formular un email care conţine informaţiile necesare activării contului dumneavoastră. Acest lucru trebuie realizat pentru că contul dumneavoastră să devină activ şi să vă puteţi autentifica şi utiliza.În unele cazuri, Administratorul poate decide activarea/dezactivarea contului dumneavoastră.', 'allow_user_registration', '1'), //cpg1.4
+  array('De ce nu pot să mă autentific ?', 'Verificaţi dacă mesajul de verificare care v-a fost trimis în email-ul de activare. Verificaţi dacă navigatorul dumneavoastră accepta cookies, ştergeţi fişierele temporare şi cookie-urile şi încercaţi din nou.Dacă nu reusiţi, contactaţi Administratorul.', 'offline', 0),
   //array('Dacă am schimbat adresa mea de email ? ', 'Autentificaţi-vă şi schimbaţi adresa de email ataşată profilului dumneavoastră personal', 'offline', 0),
   array('Cum să salvez o imagine în &quot;Favorite&quot;?', 'Clic pe o imagine şi apoi clic pe &quot;informaţii imagine&quot; link (<img src="images/info.gif" width="16" height="16" border="0" alt="Picture information" />); derulaţi în jos în informaţiile imaginii şi selectaţi &quot;Adăugare la favorite&quot;.<br />Administratorul poate lasa &quot;Informaţii imagine &quot; activate în mod normal.<br />IMPORTANT: Acceptare de Cookie trebuie să fie activate în navigatorul dumneavoastră şi trebuie să nu fie şterse.', 'offline', 0),
   array('Cum să cotez o imagine ?', ' Clic pe miniatura de imagine şi navigaţi spre josul paginii şi alegeţi o cotare.', 'offline', 0),
   array('Cum să comentez o imagine ? ', ' Clic pe miniatura de imagine şi navigaţi în josul paginii până la sfârşitul comentariilor (dacă există) şi faceţi clic pe Adăugare comentariu.', 'offline', 0),
-  array('Cum sa încarc o imagine ?', 'Mergeţi la &quot;Încărcaţi fişier&quot; şi selectaţi albumul în care doriţi să încărcaţi. Apăsaţi pe &quot;Rasfoieşte (Browse) &quot; găsiţi şi selectaţi fişierele care se doresc a fi încărcate şi apoi faceţi clic pe &quot;Deschide (Open).&quot; Adăugaţi un titlu şi o descriere dacă doriţi. Clic pe &quot;Trimite&quot;.<br /><br />Ca metodă alternativă, pentru cei care folosesc <b>Windows XP</b>, se pot încărca multiple fişiere direct din computer spre albumele online,cu ajutorul utilitarului "XP Publishing wizard".<br />Pentru instrucţiuni detailiate vizitaţi:  <a href="xp_publish.php">aici.</a>', 'allow_private_albums', 1), //cpg1.4
-  array('Unde sa incarc o imagine ?', 'Puteţi încărca imagini în unul din albumele dumneavoastră din &quot;Galeria mea&quot;. Administratorul vă poate acorda dreptul de a încarca fişiere în unul sau mai multe albume în galeria principală.', 'allow_private_albums', 0),
-  array('Ce tip şi mărime de imagine pot încarca ?', 'Mărimea şi tipul (jpg, png, etc.) sunt caracteristici care rămân la decizia administratorului.Eventual,un mesaj de eroare va specifica tipul şi mărimea acceptate în galerie.', 'offline', 0),
-  array('Cum să creez , redenumensc sau sterg un album în &quot;Galeriile Mele&quot;?', 'Pentru acest lucru, treubuie să fiţi deja în &quot;modul Adminstrare&quot;<br />Navigaţi spre &quot;Crează/Ordonează Albumele mele&quot; şi faceţi clic pe &quot;Nou&quot;. Schimbaţi &quot;Nou Album&quot; în numele preferat.<br />Puteţi de asemenea redenumi orice alt ablum din galeria dumneavoastră.<br />Clic pe &quot;Aplică Modificarile&quot; pentru aplicarea modificarilor efectuate.', 'allow_private_albums', 0),
-  array('Cum să modific şi să restrictionez restrictia ca alti utilzatori să nu vizualizeze albumele mele? ', 'Pentru acest lucru, treubuie să fiţi deja în &quot;modul Adminstrare&quot;<br />Navigaţi spre &quot;Modifică Albumele mele&quot;. În bara &quot;Actualizează Album&quot; , selectaţi albumul pe care doriţi să îl modificaţi.<br />Aici, puteţi schimna numele, descrierea , imaginea miniatură, restricţiile pentru vizualizare şi permisiunea pentru comentarii sau cotare.<br />Clic pe &quot;Actualizează Album&quot; şi reglajele vor deveni active.', 'allow_private_albums', 0),
+  array('Cum sa încarc o imagine ?', 'Mergeţi la &quot;Încărcaţi fişier&quot; şi selectaţi albumul în care doriţi să încărcaţi. Apăsaţi pe &quot;Răsfoieşte (Browse) &quot; găsiţi şi selectaţi fişierele care se doresc a fi încărcate şi apoi faceţi clic pe &quot;Deschide (Open).&quot; Adăugaţi un titlu şi o descriere dacă doriţi. Clic pe &quot;Trimite&quot;.<br /><br />Ca metodă alternativă, pentru cei care folosesc <b>Windows XP</b>, se pot încărca multiple fişiere direct din computer spre albumele online,cu ajutorul utilitarului "XP Publishing wizard".<br />Pentru instrucţiuni detaliate vizitaţi:  <a href="xp_publish.php">aici.</a>', 'allow_private_albums', 1), //cpg1.4
+  array('Unde sa încarc o imagine ?', 'Puteţi încărca imagini în unul din albumele dumneavoastră din &quot;Galeria mea&quot;. Administratorul vă poate acorda dreptul de a încărca fişiere în unul sau mai multe albume în galeria principală.', 'allow_private_albums', 0),
+  array('Ce tip şi mărime de imagine pot încărca ?', 'Mărimea şi tipul (jpg, png, etc.) sunt caracteristici care rămân la decizia administratorului.Eventual,un mesaj de eroare va specifica tipul şi mărimea acceptate în galerie.', 'offline', 0),
+  array('Cum să creez , redenumesc sau şterg un album în &quot;Galeriile Mele&quot;?', 'Pentru acest lucru, trebuie să fiţi deja în &quot;modul Administrare&quot;<br />Navigaţi spre &quot;Crează/Ordonează Albumele mele&quot; şi faceţi clic pe &quot;Nou&quot;. Schimbaţi &quot;Nou Album&quot; în numele preferat.<br />Puteţi de asemenea redenumi orice alt album din galeria dumneavoastră.<br />Clic pe &quot;Aplică Modificările&quot; pentru aplicarea modificărilor efectuate.', 'allow_private_albums', 0),
+  array('Cum să modific restricţia ca alţi utilizatori să nu vizualizeze albumele mele? ', 'Pentru acest lucru, trebuie să fiţi deja în &quot;modul Administrare&quot;<br />Navigaţi spre &quot;Modifică Albumele mele&quot;. În bara &quot;Actualizează Album&quot; , selectaţi albumul pe care doriţi să îl modificaţi.<br />Aici, puteţi schimba numele, descrierea , imaginea miniatură, restricţiile pentru vizualizare şi permisiunea pentru comentarii sau cotare.<br />Clic pe &quot;Actualizează Album&quot; şi reglajele vor deveni active.', 'allow_private_albums', 0),
   array('Cum să vizualizez alte galerii ale utilizatorilor ?', 'Navigaţi spre &quot;Lista Albume&quot; şi selectaţi &quot;Galerii Utilizatori&quot;.Albumele confidenţiale nu vor fi afişate.', 'allow_private_albums', 0),
-  array('Ce sunt cookie-urile?', 'Cookie-urile sunt mici fişiere text care conţin date (criptate sau nu) care sunt trimise de către o pagină internet navigatorului dumneavoastră care le stocheaza pe discul local.Acestea pot fi folosite de exemplu pentru ca navigatorul să "îşi amintească" de autentificarea dumneavoastră pe pagină, <br />astfel incât, selectând opţiunea aferentă la procesul de autentificare, la următoarea vizită, cu ajutorul acestui cookie nu veţi fi nevoit să vă reautentificaţi.Alte setări pot fi de asemenea stocate într-un cokie.', 'offline', 0),
-  array('Cum să procur acest software pentru situl meu ? ', 'Coppermine este o galerie gratuită, livrată sub o licenţă GNU GPL. Este plină de functionalităţi şi a fost adaptată pentru diverse platforme. Vizitaţi adresa <a href="http://coppermine.sf.net/">Pagina Oficială Coppermine</a> pentru a găsi informaţii suplimentare sau pentru descărcare.', 'offline', 0),
+  array('Ce sunt cookie-urile?', 'Cookie-urile sunt mici fişiere text care conţin date (criptate sau nu) care sunt trimise de către o pagină internet navigatorului dumneavoastră care le stochează pe discul local.Acestea pot fi folosite de exemplu pentru ca navigatorul să "îşi amintească" de autentificarea dumneavoastră pe pagină, <br />astfel încât, selectând opţiunea aferentă la procesul de autentificare, la următoarea vizită, cu ajutorul acestui cookie nu veţi fi nevoit să vă reautentificaţi.Alte setări pot fi de asemenea stocate într-un cokie.', 'offline', 0),
+  array('Cum să procur acest software pentru situl meu ? ', 'Coppermine este o galerie gratuită, livrată sub o licenţă GNU GPL. Este plină de funcţionalităţi şi a fost adaptată pentru diverse platforme. Vizitaţi adresa <a href="http://coppermine.sf.net/">Pagina Oficială Coppermine</a> pentru a găsi informaţii suplimentare sau pentru descărcare.', 'offline', 0),
 
   'Navigare în Pagină',
   array('Ce este &quot;Lista Albume&quot; ? ', 'Acesta vă va arată întreaga categorie în care vă aflaţi cu un link spre fiecare album. Dacă nu vă situaţi într-o categorie , ca va afişa totalitatea galeriei cu un link spre fiecare categorie. O imagine miniatură poate fi în acelaşi timp şi un link/trimitere spre o categorie.', 'offline', 0),
-  array('Ce este &quot;Galeria mea&quot;? ', 'Aceasta permite utilizatorilir să îşi creeze peopriile galerii şi să îşi adauge, şterge sau modifica Albume de imagini.', 'allow_private_albums', 1), //cpg1.4
+  array('Ce este &quot;Galeria mea&quot;? ', 'Aceasta permite utilizatorilor să îşi creeze propriile galerii şi să îşi adauge, şterge sau modifica Albume de imagini.', 'allow_private_albums', 1), //cpg1.4
   array('Care este diferenţa între &quot;Modul Admin &quot; şi  &quot;Modul Utilizator&quot;?', 'Acesta permite,când va aflaţi în Mod Administrare,modificare galeriilor dumneavoastră (de asemenea a altor utilizatori dacă Administratorul a permis acest lucru).', 'allow_private_albums', 0),
-  array('Ce este &quot;Trimitere Imagini&quot;? ', 'Aceasta permite utilizatorilor să trimita imagini spre stocare,(marimea şi tipul imaginilor sunt alese de către administratorul paginii) într-o galerie aleasă de dumneavoastră sau de către Administrator.', 'allow_private_albums', 0),
+  array('Ce este &quot;Trimitere Imagini&quot;? ', 'Aceasta permite utilizatorilor să trimită imagini spre stocare,(mărimea şi tipul imaginilor sunt alese de către administratorul paginii) într-o galerie aleasă de dumneavoastră sau de către Administrator.', 'allow_private_albums', 0),
   array('Ce este &quot;Încărcare Recentă&quot;? ', 'Acesta va afişa ultima imagina trimisă şi încărcată pe pagină.', 'offline', 0),
   array('Ce sunt &quot;Comentarii Recente&quot;? ', 'Aceasta va afişa ultimele comentarii adăugate împreună cu fişierele trimise.', 'offline', 0),
   array('Ce este &quot;Cea mai vizionată&quot;? ', 'Aceasta va afişa cea mai vizionată imagine de către toţi utilizatorii ( Indiferent dacă aceştia sunt autentificaţi sau nu).', 'offline', 0),
-  array('Ce este &quot;Cea mai cotată&quot;?', 'Aceasta va afişa cea mai bine cotată imagine de către utilizatori,aratând media cotării (Exemplu: Cinci utilizatori care au acordat fiecare  <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> . Imaginea va avea o cotare medie de <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> . Dacă cinci utilizatori au cotat această imagine cu 3 pe o scară de la 1 la 5 (1,2,3,4,5) va avea ca rezultat o medie de  <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> .)<br />Cotările fluctuează între <img src="images/rating5.gif" width="65" height="14" border="0" alt="best" /> (Extraordinar) şi  <img src="images/rating0.gif" width="65" height="14" border="0" alt="worst" /> (De aruncat).', 'offline', 0),
-  array('Ce sunt&quot;Favoritele mele&quot;?', 'Aceasta va pemite utilizatorului să stocheze imaginile favorite într-un fişier cookie care a fost trimis computerului dumneavoastră.', 'offline', 0),
+  array('Ce este &quot;Cea mai cotată&quot;?', 'Aceasta va afişa cea mai bine cotată imagine de către utilizatori,arătând media cotării (Exemplu: Cinci utilizatori care au acordat fiecare  <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> . Imaginea va avea o cotare medie de <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> . Dacă cinci utilizatori au cotat această imagine cu 3 pe o scară de la 1 la 5 (1,2,3,4,5) va avea ca rezultat o medie de  <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> .)<br />Cotările fluctuează între <img src="images/rating5.gif" width="65" height="14" border="0" alt="best" /> (Extraordinar) şi  <img src="images/rating0.gif" width="65" height="14" border="0" alt="worst" /> (De aruncat).', 'offline', 0),
+  array('Ce sunt&quot;Favoritele mele&quot;?', 'Aceasta va permite utilizatorului să stocheze imaginile favorite într-un fişier cookie care a fost trimis computerului dumneavoastră.', 'offline', 0),
 );
 
 
@@ -1221,7 +1221,7 @@ if (defined('FORGOT_PASSWD_PHP')) $lang_forgot_passwd_php = array(
   'submit' => 'Trimite',
   'illegal_session' => 'Sesiune parolă uitată este invalidă sau a expirat.', //cpg1.4
   'failed_sending_email' => 'Reamintirea parolei nu a putut fi trimisă !',
-  'email_sent' => 'Un mesaj email conţinand numele de utilizator şi parola au fost trimise la %s', //cpg1.4
+  'email_sent' => 'Un mesaj email conţinând numele de utilizator şi parola au fost trimise la %s', //cpg1.4
   'verify_email_sent' => 'Un mesaj email a fost trimis la %s. Verificaţi adresa dumneavoastră de email pentru a completa acest proces.', //cpg1.4
   'err_unk_user' => 'Utilizatorul selectat nu există!',
   'account_verify_subject' => '%s - Cerere noua parolă', //cpg1.4
@@ -1256,16 +1256,16 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
   'fixed' => 'fix', //cpg1.4
   'apply' => 'Aplică modificările',
   'create_new_group' => 'Crează un grup nou',
-  'del_groups' => 'Şterge grupul(urile) seletionat(e)',
+  'del_groups' => 'Şterge grupul(urile) selecţionat(e)',
   'confirm_del' => 'Atenţie,când ştergeţi un grup,utilizatorii care aparţin acestui grup vor fi transferaţi automat spre grupul utilizatorilor înregistraţi !\n\nDoriţi să continuaţi ?', //js-alert
   'title' => 'Gestionează grupurile de utilizatori',
   'num_file_upload' => 'Căsuţe pentru upload', //cpg1.4
   'num_URI_upload' => 'Adresa URI a căsuţelor', //cpg1.4
   'reset_to_default' => 'Resetare spre numele standard. Număr Prestabilit (%s) - recomandabil!', //cpg1.4
   'error_group_empty' => 'Tablou grup este gol !<br /><br />Grupuri standard au fost create, reactualizaţi această pagină', //cpg1.4
-  'explain_greyed_out_title' => 'De ce această coloana este marcată gri? ', //cpg1.4
-  'explain_guests_greyed_out_text' => 'Proprietăţile nu pot di schimbate deoarace aţi ales &quot; Accesul utilizatorilor neautentificaţi (Oaspeţi sau Anonimi) access&quot; în &quot;Nu&quot; pe pagina de configurare  (membrii grupului %s) nu pot face altceva decât autentificare ; în acelaşi timp setările de grup nu se aplică pentru ei.', //cpg1.4
-  'explain_banned_greyed_out_text' => 'Nu puteţi schimba proprietăţile grupului deoarcec membrii grupului %s deja nu au acces .', //cpg1.4
+  'explain_greyed_out_title' => 'De ce această coloană este marcată gri? ', //cpg1.4
+  'explain_guests_greyed_out_text' => 'Proprietăţile nu pot fi schimbate deoarece aţi ales &quot; Accesul utilizatorilor neautentificaţi (Oaspeţi sau Anonimi) access&quot; în &quot;Nu&quot; pe pagina de configurare  (membrii grupului %s) nu pot face altceva decât autentificare ; în acelaşi timp setările de grup nu se aplică pentru ei.', //cpg1.4
+  'explain_banned_greyed_out_text' => 'Nu puteţi schimba proprietăţile grupului deoarece membrii grupului %s deja nu au acces .', //cpg1.4
   'group_assigned_album' => 'assigned album(s)', //cpg1.4
 );
 
@@ -1303,7 +1303,7 @@ $lang_list_users = array(
 
 $lang_list_albums = array(
   'n_pictures' => '%s Imagine(i)',
-  'last_added' => ', Ultima adaugată în %s',
+  'last_added' => ', Ultima adăugată în %s',
   'n_link_pictures' => '%s Imagine(i) cu adresa', //cpg1.4
   'total_pictures' => '%s Imagine(i) în total', //cpg1.4
 );
@@ -1320,8 +1320,8 @@ if (defined('KEYWORDMGR_PHP')) $lang_keywordmgr_php = array(
   'delete' => 'şterge', //cpg1.4
   'search' => 'cauta', //cpg1.4
   'keyword_test_search' => 'căutare %s într-o fereastră nouă', //cpg1.4
-  'keyword_del' => 'şterge cuvantul-cheie %s', //cpg1.4
-  'confirm_delete' => 'Sunteţi sigur ca doriţi să ştergeţi cuvantul-cheie  %s din totalitatea galeriei ?', //cpg1.4  // js-alert
+  'keyword_del' => 'şterge cuvântul-cheie %s', //cpg1.4
+  'confirm_delete' => 'Sunteţi sigur ca doriţi să ştergeţi cuvântul-cheie  %s din totalitatea galeriei ?', //cpg1.4  // js-alert
   'change_keyword' => 'Schimbă cuvânt-cheie', //cpg1.4
 );
 
@@ -1347,7 +1347,7 @@ if (defined('LOGIN_PHP')) $lang_login_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('LOGOUT_PHP')) $lang_logout_php = array(
-  'logout' => 'Dezauntentificare',
+  'logout' => 'Dezautentificare',
   'bye' => 'La revedere %s ...',
   'err_not_loged_in' => 'Nu sunteţi autentificat !',
 );
@@ -1379,14 +1379,14 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
   'alb_thumb' => 'Miniatura album',
   'alb_perm' => 'Permisiunile pentru acest album',
   'can_view' => 'Albumul poate fi vizualizat de către',
-  'can_upload' => 'Vizitatorii pot încarca imagini',
+  'can_upload' => 'Vizitatorii pot încărca imagini',
   'can_post_comments' => 'Vizitatorii pot trimite comentarii',
   'can_rate' => 'Vizitatorii pot cota imaginile',
   'user_gal' => 'Galeriile utilizatorilor',
   'no_cat' => '* Nici o categorie *',
   'alb_empty' => 'Albumul este gol',
   'last_uploaded' => 'Ultima încărcată',
-  'public_alb' => 'Toata lumea (album public)',
+  'public_alb' => 'Toată lumea (album public)',
   'me_only' => 'Doar eu',
   'owner_only' => 'Doar proprietarul albumului (%s)',
   'groupp_only' => 'Membrii grupului \'%s\'',
@@ -1418,7 +1418,7 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
 if (defined('PHPINFO_PHP')) $lang_phpinfo_php = array(
   'php_info' => 'Informaţii despre PHP',
   'explanation' => 'Acesta este rezultatul funcţiei PHP <a href="http://www.php.net/phpinfo">phpinfo()</a>, afişat în Coppermine.',
-  'no_link' => 'Accesul altor persoane la informaţiile despre php poate fi considerată o slăbiciune în securitatea sistemului, de accea această pagină este vizibilă doar atunci când sunteţi autentificat ca administrator. Nu puteţi trimite adresa acestei pagini altora,accesul acestora va fi restricţionat.',
+  'no_link' => 'Accesul altor persoane la informaţiile despre php poate fi considerată o slăbiciune în securitatea sistemului, de aceea această pagină este vizibilă doar atunci când sunteţi autentificat ca administrator. Nu puteţi trimite adresa acestei pagini altora,accesul acestora va fi restricţionat.',
 );
 
 // ------------------------------------------------------------------------- //
@@ -1433,7 +1433,7 @@ if (defined('PICMGR_PHP')) $lang_picmgr_php = array(
   'apply_modifs' => 'Aplică modificările', //cpg1.4
   'confirm_modifs' => 'Confirmaţi modificările', //cpg1.4
   'pic_need_name' => 'Imaginea trebuie să aibă un nume !', //cpg1.4
-  'no_change' => 'Nu aţi facut nici o modificare !', //cpg1.4
+  'no_change' => 'Nu aţi făcut nici o modificare !', //cpg1.4
   'no_album' => '* Nici un album *', //cpg1.4
   'explanation_header' => 'Ordinea sortării pe care o specificaţi în această pagină,va fi activă doar dacă', //cpg1.4
   'explanation1' => ' administratorul a setat "Sortarea implicită a imaginilor" din configuraţie în "Ordine descrescătoare" sau "Ordine crescătoare" (reglaj general pentru toţi utilizatorii care nu au ales o altă metoda individuală de sortare)', //cpg1.4
@@ -1484,11 +1484,11 @@ if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
 if (defined('REGISTER_PHP') || defined('PROFILE_PHP')) {
 
 $lang_register_disclamer = <<<EOT
-Administratorul paginii {SITE_NAME} va încerca,în general, să înlăture sau să editeze orice material indecent sau imoral cât mai repede cu putinţă. Totodată, este imposibil ca acesta să verifice fiecare mesaj/imagine nouă. În acelaşi timp, sunteţi de acord ca tot materialul acestei pagini reflectă punctul de vedere şi opinia autorului mesajului/imaginii şi nu a administratorului sau a webmaster-ului, (cu excepţia mesajelor/imaginilor care le aparţin) din acest motiv,aceştia nu pot fi raspunzători pentru acest material.<br />
+Administratorul paginii {SITE_NAME} va încerca,în general, să înlăture sau să editeze orice material indecent sau imoral cât mai repede cu putinţă. Totodată, este imposibil ca acesta să verifice fiecare mesaj/imagine nouă. În acelaşi timp, sunteţi de acord ca tot materialul acestei pagini reflectă punctul de vedere şi opinia autorului mesajului/imaginii şi nu a administratorului sau a webmaster-ului, (cu excepţia mesajelor/imaginilor care le aparţin) din acest motiv,aceştia nu pot fi răspunzători pentru acest material.<br />
 <br />
-Sunteţi de acord să nu postaţi material cu caracter abuziv, obscen, vulgar, calomnios, cu instigare la ură, ameninţări, harţuire sau orientare sexuală sau orice alt material care poate încălca orice alte legi aplicabile. În aceeaşi ordine de idei, sunteţi de acord ca administratorul sau webmaster-ul paginii {SITE_NAME} are,în orice moment,dreptul de a şterge sau edita orice material. În calitate de utilizator, suteti de acord ca informaţiile trimise anterior să fie stocate într-o baza de date. Aceste informaţii nu vor fi divulgate către terţe persoane fară acordul dumneavoastră. Administratorul sau webmaster-ul nu pot fi trasi la raspundere pentru eventualele date compromise în urma unuei accesări neautorizate şi/sau a unui atac tip "hacker" ale serveului şi/sau bazei de date.<br />
+Sunteţi de acord să nu postaţi material cu caracter abuziv, obscen, vulgar, calomnios, cu instigare la ură, ameninţări, hărţuire sau orientare sexuală sau orice alt material care poate încălca orice alte legi aplicabile. În aceeaşi ordine de idei, sunteţi de acord ca administratorul sau webmaster-ul paginii {SITE_NAME} are,în orice moment,dreptul de a şterge sau edita orice material. În calitate de utilizator, sunteţi de acord ca informaţiile trimise anterior să fie stocate într-o baza de date. Aceste informaţii nu vor fi divulgate către terţe persoane fară acordul dumneavoastră. Administratorul sau webmaster-ul nu pot fi traşi la răspundere pentru eventualele date compromise în urma unei accesări neautorizate şi/sau a unui atac tip "hacker" ale serverului şi/sau bazei de date.<br />
 <br />
-Această pagină utilizează cookie pentru a stoca informaţii în calculatorul dumneavoastră. Acestea servesc doar pentru a imbunătăţi procedura de vizualizare. Adresa electronică (e-mail) este utilizată doar pentru a connfirma înregistrarea dumneavoastră sau pentru parola (parola uitată) .<br />
+Această pagină utilizează cookie pentru a stoca informaţii în calculatorul dumneavoastră. Acestea servesc doar pentru a îmbunătăţi procedura de vizualizare. Adresa electronică (e-mail) este utilizată doar pentru a confirma înregistrarea dumneavoastră sau pentru parola (parola uitată) .<br />
 <br />
 În momentul în care faceţi clic pe butonul 'Sunt de acord' de mai jos, confirmaţi că sunteţi de acord să vă supuneţi respectării condiţiilor mai sus amintite.
 EOT;
@@ -1520,7 +1520,7 @@ $lang_register_php = array(
   'confirm_email_subject' => '%s - Confirmare înregistrare',
   'information' => 'Informaţie',
   'failed_sending_email' => 'Mesajul e-mail de confirmare nu poate fi trimis !',
-  'thank_you' => 'Vă mulţumim pentru înregistrare.<br /><br />Un mesaj e-mail care contine informaţiile necesare activatii contului dumneavoastră a fost timis la adresa de e-mail specificată.',
+  'thank_you' => 'Vă mulţumim pentru înregistrare.<br /><br />Un mesaj e-mail care conţine informaţiile necesare activării contului dumneavoastră a fost trimis la adresa de e-mail specificată.',
   'acct_created' => 'Contul dumneavoastră a fost creat şi va puteţi autentifica cu ajutorul numelui de utilizator şi a parolei.',
   'acct_active' => 'Contul dumneavoastră a fost activat.Vă puteţi autentifica cu ajutorul numelui de utilizator şi a parolei',
   'acct_already_act' => 'Contul dumneavoastră a fost deja activat!', //cpg1.4
@@ -1546,13 +1546,13 @@ $lang_register_php = array(
   'notify_admin_email_body' => 'Un nou utilizator cu numele "%s" s-a înregistrat în galeria dumneavoastră.',
   'pic_count' => 'Imagini încărcate', //cpg1.4
   'notify_admin_request_email_subject' => '%s - Cerere de înregistrare', //cpg1.4
-  'thank_you_admin_activation' => 'Vă mulţumim.<br /><br />Cererea dumneavoastră de înregistrare a fost transmisă administratorului.Veţi fi inştiinţat în adresa dumneavoastră de e-mail imediat ce va fi aprobată.', //cpg1.4
+  'thank_you_admin_activation' => 'Vă mulţumim.<br /><br />Cererea dumneavoastră de înregistrare a fost transmisă administratorului.Veţi fi înştiinţat în adresa dumneavoastră de e-mail imediat ce va fi aprobată.', //cpg1.4
   'acct_active_admin_activation' => 'Contul este activ.Un email a fost trimis utilizatorului pentru a-i confirma acest lucru.', //cpg1.4
   'notify_user_email_subject' => '%s - Contul dumneavoastră a fost activat', //cpg1.4
 );
 
 $lang_register_confirm_email = <<<EOT
-Vă mulţumim pentru inregistrarea făcută la {SITE_NAME}
+Vă mulţumim pentru înregistrarea făcută la {SITE_NAME}
 
 Pentru a confirma şi activa contul dumneavoastră cu numele "{USER_NAME}",trebuie să vizitaţi adresa de mai jos.În cazul în care nu reusiţi să faceţi clic, copiaţi adresa în navigatorul dumneavoastră.
 
@@ -1596,7 +1596,7 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
   'n_comm_del' => '%s comentariu(ii) a(u) fost şters(e)',
   'n_comm_disp' => 'Numărul de comentarii pentru afişare',
   'see_prev' => 'Vezi anteriorul',
-  'see_next' => 'Vezi urmatorul',
+  'see_next' => 'Vezi următorul',
   'del_comm' => 'Şterge comentariile selecţionate',
   'user_name' => 'Nume', //cpg1.4
   'date' => 'Data', //cpg1.4
@@ -1624,7 +1624,7 @@ $lang_search_php = array(
   'title' => 'Căutare în colecţia de imagini', //cpg1.4
   'submit_search' => 'Caută', //cpg1.4
   'keyword_list_title' => 'Lista cuvinte-cheie', //cpg1.4
-  'keyword_msg' => 'List de mai sus nu include cuvinte conţinute în titlul sau descrierea imaginilor. Încercaţi o căutare text completă.',  //cpg1.4
+  'keyword_msg' => 'Lista de mai sus nu include cuvinte conţinute în titlul sau descrierea imaginilor. Încercaţi o căutare text completă.',  //cpg1.4
   'edit_keywords' => 'Editează cuvinte-cheie', //cpg1.4
   'search in' => 'Căutare în:', //cpg1.4
   'ip_address' => 'Adresa IP', //cpg1.4
@@ -1654,7 +1654,7 @@ $lang_adv_opts = array(
 if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
   'page_title' => 'Caută fişiere noi',
   'select_dir' => 'Selecţionează dosarul',
-  'select_dir_msg' => 'Acesta funcţie va permite să adaugati o lista de fişiere pe care le-aţi încărcat cu ajutorul protocolului FTP.<br /><br />Selecţionaţi dosarul unde aţi încărcat fişierele.', //cpg1.4
+  'select_dir_msg' => 'Acesta funcţie va permite să adăugaţi o lista de fişiere pe care le-aţi încărcat cu ajutorul protocolului FTP.<br /><br />Selecţionaţi dosarul unde aţi încărcat fişierele.', //cpg1.4
   'no_pic_to_add' => 'Nu există nici un fişier de încărcat',
   'need_one_album' => 'Aveţi nevoie de cel puţin un album pentru a utiliza aceasta funcţie.',
   'warning' => 'Avertisment',
@@ -1663,7 +1663,7 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
   'folder' => 'Dosar',
   'image' => 'imagine',
   'album' => 'Album',
-  'result' => 'Resultat',
+  'result' => 'Rezultat',
   'dir_ro' => 'Neinscriptibil. ',
   'dir_cant_read' => 'Ilizibil. ',
   'insert' => 'Adăugare noi fişiere în galerie.',
@@ -1677,13 +1677,13 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
                           '<li><b>OK</b> : Fişierul a fost adăugat'.
                           '<li><b>DP</b> : Fişierul este un duplicat şi există deja în baza de date'.
                           '<li><b>PB</b> : Fişierul nu poate fi adăugat, Verificaţi configuraţia şi permisiunile pentru dosarele unde fişierele sunt localizate'.
-                          '<li><b>NA</b> : Nu aţi selectat un album destinaţie pentru fişiere.Clic \'<a href="javascript:history.back(1)">inapoib</a>\' şi selectaţi un album. Dacă nu aveţi unul,<a href="albmgr.php">creati întâi un album</a></li>'.
+                          '<li><b>NA</b> : Nu aţi selectat un album destinaţie pentru fişiere.Clic \'<a href="javascript:history.back(1)">înapoi</a>\' şi selectaţi un album. Dacă nu aveţi unul,<a href="albmgr.php">creaţi întâi un album</a></li>'.
                           '<li>Dacă simbolurile OK, DP, PB nu se afişează, faceţi clic pe fişierul problemă pentru a vizualiza eventualele mesaje de eroare produse de PHP'.
                           '<li>Dacă pagina expiră, reactualizaţi'.
                           '</ul>',
   'select_album' => 'selectaţi album',
-  'check_all' => 'bifeaza tot',
-  'uncheck_all' => 'Debifeaza tot',
+  'check_all' => 'bifează tot',
+  'uncheck_all' => 'Debifează tot',
   'no_folders' => 'Nu există dosare în dosarul "albume". Verificaţi existenţa a cel puţin unui dosar în dosarul "albums" şi prezenţa fişierelor în acest dosar. Nu încărcaţi nimic în dosarele "userpics" nici în "edit" , acestea fiind rezervate pentru încărcări din navigator şi pentru scopuri cu caracter intern.', //cpg1.4
    'albums_no_category' => 'Albume fară nic o categorie', //cpg1.4 // album pulldown mod, added by frogfoot
   'personal_albums' => '* Albume personale', //cpg1.4 // album pulldown mod, added by frogfoot
@@ -1732,15 +1732,15 @@ if (defined('STAT_DETAILS_PHP')) $lang_stat_details_php = array(
 if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'title' => 'Trimitere fişiere',
   'custom_title' => 'Formular personalizat',
-  'cust_instr_1' => 'Puteţi slecţiona un număr personalizat de câmpuri trimitere. Totodata, nu puteţi selecţiona mai multe decât limita specificată mai jos.',
+  'cust_instr_1' => 'Puteţi selecţiona un număr personalizat de câmpuri trimitere. Totodată, nu puteţi selecţiona mai multe decât limita specificată mai jos.',
   'cust_instr_2' => 'Număr de câmpuri cerere',
   'cust_instr_3' => 'Câmpuri trimitere fişier: %s',
   'cust_instr_4' => 'Câmpuri încărcare URI/URL : %s',
   'cust_instr_5' => 'Câmpuri încărcare URI/URL :',
   'cust_instr_6' => 'Câmpuri trimitere fişiere:',
-  'cust_instr_7' => 'Vă rugăm introduceţi numărul fiecarui câmp de încărcare dorit.  Faceţi clic pe \'Continuă\'. ',
+  'cust_instr_7' => 'Vă rugăm introduceţi numărul fiecărui câmp de încărcare dorit.  Faceţi clic pe \'Continuă\'. ',
   'reg_instr_1' => 'Acţiune invalidă în crearea formularului.',
-  'reg_instr_2' => 'Acum puteţi încarca fişierele dumneavoastră utilizând următoarele câmpuri de încărcare. Mărimea fişierelor trimise nu trebuie să depăşească  %s KB fiecare. Arhivele ZIP încărcate în sectiunile \'Încărcări fişiere\' şi \'Încărcări adrese URI/URL\' vor rămâne comprimate.',
+  'reg_instr_2' => 'Acum puteţi încărca fişierele dumneavoastră utilizând următoarele câmpuri de încărcare. Mărimea fişierelor trimise nu trebuie să depăşească  %s KB fiecare. Arhivele ZIP încărcate în secţiunile \'Încărcări fişiere\' şi \'Încărcări adrese URI/URL\' vor rămâne comprimate.',
   'reg_instr_3' => 'Dacă doriţi decompresarea arhivelor, folosiţi câmpul de încărcare furnizat în secţiunea \'Încărcare arhiva ZIP spre decompresare\' .',
   'reg_instr_4' => 'Când utilizaţi secţiunea încărcare URI/URL, vă rugăm să introduceţi calea spre fişierul care se doreşte a fi încărcat. Exemplu: http://www.pagina-sursă-fişiere.com/imagini/fişier-de-încărcat.jpg',
   'reg_instr_5' => 'Când aţi completat formularul, faceţi clic pe \'Continuă\'.',
@@ -1749,17 +1749,17 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'reg_instr_8' => 'Încărcări adrese URI/URL:',
   'error_report' => 'Raport de erori',
   'error_instr' => 'Următoarele trimiteri au întâmpinat probleme:',
-  'file_name_url' => 'Nume/Adresa fişierL',
+  'file_name_url' => 'Nume/Adresa fişier',
   'error_message' => 'Mesaj de eroare',
-  'no_post' => 'Fişier neâncărcat prin comanda POST.',
+  'no_post' => 'Fişier neîncărcat prin comanda POST.',
   'forb_ext' => 'Extensie de fişier interzisă.',
-  'exc_php_ini' => 'Mărimea fişierelor permise în php.ini a fost depaşită.',
-  'exc_file_size' => 'Mărimea fişierelor permise de CPG a fost depaşită.',
+  'exc_php_ini' => 'Mărimea fişierelor permise în php.ini a fost depăşită.',
+  'exc_file_size' => 'Mărimea fişierelor permise de CPG a fost depăşită.',
   'partial_upload' => 'Doar o încărcare parţială.',
   'no_upload' => 'Nici i încărcare nu s-a realizat.',
   'unknown_code' => 'Eroare de încărcare PHP necunoscută.',
   'no_temp_name' => 'Nici o încărcare - Nici un nume temporar.',
-  'no_file_size' => 'Nu contine date / Defect',
+  'no_file_size' => 'Nu conţine date / Defect',
   'impossible' => 'Deplasare imposibilă.',
   'not_image' => 'Nu este imagine / Defect',
   'not_GD' => 'Nu este o extensie a GD.',
@@ -1779,7 +1779,7 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'cant_create_write' => 'Nu pot să scriu fişierul.',
   'not_writable' => 'Fişierul nu est inscriptibil.',
   'cant_read_URI' => 'Nu se poate citi adresa URI/URL',
-  'cant_open_write_file' => 'Nu se poate deshide adresa URI pentru scriere fişier.',
+  'cant_open_write_file' => 'Nu se poate deschide adresa URI pentru scriere fişier.',
   'cant_write_write_file' => 'Nu se poate scrie adresa URI pentru scriere  fişier.',
   'cant_unzip' => 'Nu se poate decompresa.',
   'unknown' => 'Eroare necunoscută',
@@ -1794,12 +1794,12 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'album' => 'Album',
   'picture' => 'Fişier',
   'pic_title' => 'Titlu fişier',
-  'description' => 'Descrirere fişier',
+  'description' => 'Descriere fişier',
   'keywords' => 'Cuvinte-cheie (separate cu un spaţiu)<br /><a href="#" onClick="return MM_openBrWindow(\'keyword_select.php\',\'selectare\',\'width=250, height=400, scrollbars=yes,toolbar=no,status=yes,resizable=yes\')">Introduceţi din lista</a>', //cpg1.4
   'keywords_sel' =>'Selectaţi un cuvânt-cheie', //cpg1.4
   'err_no_alb_uploadables' => 'Îmi pare rău, nu există nici un album unde vă este permisă încărcarea fişierelor.',
   'place_instr_1' => 'Vă rugăm să introduceţi fişierele în album,în aceasta etapa.Puteţi introduce de asemenea informaţii relevante despre fiecare fişier.',
-  'place_instr_2' => 'Mai multe fişiere necesită aplasarea. Faceţi clic pe \'Continuă\'.',
+  'place_instr_2' => 'Mai multe fişiere necesită amplasarea. Faceţi clic pe \'Continuă\'.',
   'process_complete' => 'Aţi plasat toate fişierele.',
    'albums_no_category' => 'Albume fară categorie', //cpg1.4. //album pulldown mod, added by frogfoot
   'personal_albums' => '* Albume personale', //cpg1.4 //album pulldown mod, added by frogfoot
@@ -1820,7 +1820,7 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
   'name_a' => 'Nume crescător',
   'name_d' => 'Nume descrescător',
   'group_a' => 'Grup crescător',
-  'group_d' => 'Group descrescător',
+  'group_d' => 'Grup descrescător',
   'reg_a' => 'Data înregistrării crescător',
   'reg_d' => 'Data înregistrării descrescător',
   'pic_a' => 'Număr fişiere crescător',
@@ -1845,7 +1845,7 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
   'change_primary_membergroup' => 'Schimbă grupul de membri principal', //cpg1.4
   'add_secondary_membergroup' => 'Schimbă grupul de membri secundar', //cpg1.4
   'name' => 'Nume utilizator',
-  'group' => 'Group',
+  'group' => 'Grup',
   'inactive' => 'Inactiv',
   'operations' => 'Operaţii',
   'pictures' => 'Fişiere',
@@ -1881,7 +1881,7 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
   'submit' => 'Trimite', //cpg1.4
   'search_submit' => 'Trimite!', //cpg1.4
   'search_result' => 'Rezultat căutare pentru: ', //cpg1.4
-  'alert_no_selection' => 'Trebuie să selectaţi cel puţin un utlizator întâi!', //cpg1.4 //js-alert
+  'alert_no_selection' => 'Trebuie să selectaţi cel puţin un utilizator întâi!', //cpg1.4 //js-alert
   'password' => 'parola', //cpg1.4
   'select_group' => 'Selectare grup', //cpg1.4
   'groups_alb_access' => 'Permisiuni Album după grup', //cpg1.4
@@ -1906,7 +1906,7 @@ $lang_util_desc_php = array(
 'Şterge imaginile originale sau intermediare pentru a câştiga spaţiu', //cpg1.4
 'Şterge comentarii inutile', //cpg1.4
 'Reciteşte mărimea fişierelor şi dimensiunile (dacă aţi editat imagini manual)', //cpg1.4
-'Resetează numătaroarea de vizualizări', //cpg1.4
+'Resetează numerotarea de vizualizări', //cpg1.4
 'Afişează informaţii PHP', //cpg1.4
 'Actualizează baza de date', //cpg1.4
 'Afişează fişiere raport', //cpg1.4
@@ -1931,9 +1931,9 @@ $lang_util_php = array(
   'titles_wait' => 'Actualizare titluri, aşteptaţi va rog...',
   'delete_wait' => 'Ştergere titluri, aşteptaţi va rog...',
   'replace_wait' => 'Ştergere originale şi înlocuirea lor cu imaginile redimensionate, aşteptaţi va rog..',
-  'instruction' => 'Instructiuni rapide',
+  'instruction' => 'Instrucţiuni rapide',
   'instruction_action' => 'Selectaţi acţiunea',
-  'instruction_parameter' => 'Setare parameteri',
+  'instruction_parameter' => 'Setare parametri',
   'instruction_album' => 'Selectare album',
   'instruction_press' => 'Apăsaţi %s',
   'update' => 'Actualizare miniaturi şi/sau imagini redimensionate',
@@ -1945,19 +1945,19 @@ $lang_util_php = array(
   'update_option' => '(Încercaţi reglarea acestui parametru cu o valoare inferioară,în cazul în care pagina expiră)',
   'filename_title' => 'Filename &rArr; Nume fişier',
   'filename_how' => 'Cum ar trebui ca numele fişierului să fie modificat',
-  'filename_remove' => 'Inlatura extensia .jpg de la sfârşit şi înlocuieşte " _ " (underscore) cu spaţii',
+  'filename_remove' => 'Înlătură extensia .jpg de la sfârşit şi înlocuieşte " _ " (underscore) cu spaţii',
   'filename_euro' => 'Schimbă 2006_11_23_13_20_20.jpg în, 23/11/2006 13:20',
   'filename_us' => 'Schimbă 2006_11_23_13_20_20.jpg în 11/23/2006 13:20',
   'filename_time' => 'Schimbă 2006_11_23_13_20_20.jpg în 13:20',
   'delete' => 'Şterge titlul fişierelor sau imaginile în dimensiune originală',
   'delete_title' => 'Şterge titlul fişierelor',
-  'delete_title_explanation' => 'Acesta va şterge toate tilurile fişierelor în albumul specificat.', //cpg1.4
+  'delete_title_explanation' => 'Acesta va şterge toate titlurile fişierelor în albumul specificat.', //cpg1.4
   'delete_original' => 'Şterge imaginile în dimensiunea originală',
   'delete_original_explanation' => 'Aceasta va şterge imaginile care sunt în dimensiunea originală.', //cpg1.4
   'delete_intermediate' => 'Şterge imagini intermediare', //cpg1.4
   'delete_intermediate_explanation' => 'Acesta va şterge imaginile intermediare (normale).<br />Utilizaţi această comandă pentru a elibera spaţiu,dacă aţi dezactivat \'Creare imagini intermediare\' în configurare,după adăugarea imaginilor.', //cpg1.4
   'delete_replace' => 'Şterge imaginile originale şi înlocuieşte-le versiunea dimensionată',
-  'titles_deleted' => 'Toate titlurile în albumul specificat vor fi inlaturate', //cpg1.4
+  'titles_deleted' => 'Toate titlurile în albumul specificat vor fi înlăturate', //cpg1.4
   'deleting_intermediates' => 'Ştergere imagini intermediare, va rugăm aşteptaţi...', //cpg1.4
   'searching_orphans' => 'căutare imagini pierdute, va rugăm aşteptaţi...', //cpg1.4
   'select_album' => 'Selectare album',
@@ -1966,7 +1966,7 @@ $lang_util_php = array(
   'refresh_db' => 'Reactualizează informaţiile despre dimensiune şi mărime', //cpg1.4
   'refresh_db_explanation' => 'Acesta va reactualiza informaţiile despre mărime şi dimensiune ale imaginilor. Utilizaţi aceasta dacă limita de spaţiu este raportată incorect sau dacă aţi schimbat fişiere manual.', //cpg1.4
   'reset_views' => 'Resetează numerotarea vizualizărilor', //cpg1.4
-  'reset_views_explanation' => 'Setează toate numerotările de vizualizări în zero pentru toate imaginile din albumul specifict.', //cpg1.4
+  'reset_views_explanation' => 'Setează toate numerotările de vizualizări în zero pentru toate imaginile din albumul specificat.', //cpg1.4
   'orphan_comment' => 'Comentarii pentru imagini inexistente au fost descoperite',
   'delete' => 'Şterge',
   'delete_all' => 'Şterge toate',
@@ -1976,9 +1976,9 @@ $lang_util_php = array(
   'phpinfo' => 'Afişează informaţii PHP',
   'phpinfo_explanation' => 'Conţine informaţii cu caracter tehnic despre server-ul dumneavoastră.<br /> - E posibil să fiţi întrebat despre aceste informaţii în cazul în care solicitaţi suport.', //cpg1.4
   'update_db' => 'Actualizează baza de date',
-  'update_db_explanation' => 'Dacă aţi înlocuit fişire Coppermine , adăugat o modificare sau aţi actualizat o versiune precedentă a Coppermine, asiguraţi-vă ca actualizaţi baza de date. Acesta va crea tabelele necesare şi/sau configura valorile acestora în baza de date.',
-  'view_log' => 'Afişează fişirele raport', //cpg1.4
-  'view_log_explanation' => 'Coppermine poate pastra înregistrări ale diferitelor acţiuni pe care utilizatorii le execută.Puteţi vizualiza aceste înregistrări dacă acestea sunt activate în <a href="admin.php">Configuraţia Coppermine </a>.', //cpg1.4
+  'update_db_explanation' => 'Dacă aţi înlocuit fişiere Coppermine , adăugat o modificare sau aţi actualizat o versiune precedentă a Coppermine, asiguraţi-vă ca actualizaţi baza de date. Acesta va crea tabelele necesare şi/sau configura valorile acestora în baza de date.',
+  'view_log' => 'Afişează fişierele raport', //cpg1.4
+  'view_log_explanation' => 'Coppermine poate păstra înregistrări ale diferitelor acţiuni pe care utilizatorii le execută.Puteţi vizualiza aceste înregistrări dacă acestea sunt activate în <a href="admin.php">Configuraţia Coppermine </a>.', //cpg1.4
   'versioncheck' => 'Verifică versiuni', //cpg1.4
   'versioncheck_explanation' => 'Verifică versiunea fişierelor pentru a descoperi dacă aţi înlocuit toate fişierele după o actualizare sau dacă fişierele sursă ale Coppermine au fost actualizate după lansarea unei versiuni.', //cpg1.4
   'bridgemanager' => 'Manager pasarelă', //cpg1.4
@@ -1992,15 +1992,15 @@ $lang_util_php = array(
 
 if (defined('VERSIONCHECK_PHP')) $lang_versioncheck_php = array(
   'title' => 'Verificare Versiune', //cpg1.4
-  'what_it_does' => 'Această pagină este destinată utilizatorilor care şi-au actualizat instalarea Coppermine. Acestă pagină verifică fişierele de pe server şi încearcă să determine dacă versiunile fişierelor locale sunt aceleaşi cu cele de pe pagina sursă http://coppermine.sourceforge.net. De asemenea sunt afişate fişierele care nu sunt actualizate şi pe care doriţi în prealabil să le actualizaţi.<br />Vă va afişa în roşu tot ceea ce trebuie reparat/actualizat. Informaţiile în galben necesită atenţia dumneavoastră. Informaţiile în verde (sau culoarea normală a textului) sunt  OK.<br />Faceţi clic pe pictogramele ajutor pentru informaţii suplimentare.', //cpg1.4
+  'what_it_does' => 'Această pagină este destinată utilizatorilor care şi-au actualizat instalarea Coppermine. Această pagină verifică fişierele de pe server şi încearcă să determine dacă versiunile fişierelor locale sunt aceleaşi cu cele de pe pagina sursă http://coppermine.sourceforge.net. De asemenea sunt afişate fişierele care nu sunt actualizate şi pe care doriţi în prealabil să le actualizaţi.<br />Vă va afişa în roşu tot ceea ce trebuie reparat/actualizat. Informaţiile în galben necesită atenţia dumneavoastră. Informaţiile în verde (sau culoarea normală a textului) sunt  OK.<br />Faceţi clic pe pictogramele ajutor pentru informaţii suplimentare.', //cpg1.4
   'online_repository_unable' => 'Conectarea cu pagina sursă este imposibilă', //cpg1.4
-  'online_repository_noconnect' => 'Coppermine nu a reuşit să se conecteze cu pagina sursă.Aceast problemă poate avea două cauze:', //cpg1.4
+  'online_repository_noconnect' => 'Coppermine nu a reuşit să se conecteze cu pagina sursă.Această problemă poate avea două cauze:', //cpg1.4
   'online_repository_reason1' => 'Pagina sursă coppermine este momentan indisponibila - Verificaţi dacă puteţi accesa pagina : %s - Dacă nu reusiţi, încercaţi mai târziu.', //cpg1.4
-  'online_repository_reason2' => 'PHP pe serverul dumneavoastră este configurat cu %s dezactivat (implicit, aceasta valoare este activată). Dacă serverul este personal, şi aveţi acces la <i>php.ini</i> ,activaţi aceasta opţiune (sau cel puţin permiteţi suprascrierea cu %s). Dacă aveţi pagina gazduită, obişnuiţi-vă cu ideea ca nu puteţi compara fişierele dumneavoastră cu cele de pe pagina sursă. Acestă pagină va afişa în acest caz,doar versiunile fişierelor care conţin aceasta distribuţie. Actualizarile nu vor fi afişate.', //cpg1.4
+  'online_repository_reason2' => 'PHP pe serverul dumneavoastră este configurat cu %s dezactivat (implicit, aceasta valoare este activată). Dacă serverul este personal, şi aveţi acces la <i>php.ini</i> ,activaţi aceasta opţiune (sau cel puţin permiteţi suprascrierea cu %s). Dacă aveţi pagina găzduită, obişnuiţi-vă cu ideea ca nu puteţi compara fişierele dumneavoastră cu cele de pe pagina sursă. Această pagină va afişa în acest caz,doar versiunile fişierelor care conţin aceasta distribuţie. Actualizările nu vor fi afişate.', //cpg1.4
   'online_repository_skipped' => 'Conexiunea cu pagina sursă a fost anulată', //cpg1.4
   'online_repository_to_local' => 'Pagina va actualiza acum fişierele sursă cu cele locale. Datele pot fi inexacte dacă aţi actualizat Coppermine dar nu aţi încărcat toate fişierele actualizate.', //cpg1.4
   'local_repository_unable' => 'Conectarea cu sursa locală este imposibilă', //cpg1.4
-  'local_repository_explanation' => 'Coppermine nu a reuşit să se conecteze cu sursa locală  %s în serverul dumneavoastră. Aceasta inseamnă, probabil, ca nu aţi încărcat fişierul sursă pe server. Faceţi acest lucru şi încercaţi apoi să reactualizaţi aceasta pagină (apăsaţi reactualizare).<br />Dacă pagina eşuează din nou, este posibil ca gazda paginii dumneavoastră să fi dezactivat complet parţi din <a href="http://www.php.net/manual/en/ref.filesystem.php">functiile sistemului de fişiere PHP</a> . În acest caz, nu puteţi utiliza acest utilitar.Ne pare rău.', //cpg1.4
+  'local_repository_explanation' => 'Coppermine nu a reuşit să se conecteze cu sursa locală  %s în serverul dumneavoastră. Aceasta înseamnă, probabil, ca nu aţi încărcat fişierul sursă pe server. Faceţi acest lucru şi încercaţi apoi să reactualizaţi aceasta pagină (apăsaţi reactualizare).<br />Dacă pagina eşuează din nou, este posibil ca gazda paginii dumneavoastră să fi dezactivat complet parţi din <a href="http://www.php.net/manual/en/ref.filesystem.php">funcţiile sistemului de fişiere PHP</a> . În acest caz, nu puteţi utiliza acest utilitar.Ne pare rău.', //cpg1.4
   'coppermine_version_header' => 'Versiunea instalată Coppermine', //cpg1.4
   'coppermine_version_info' => 'În acest moment aveţi instalată versiunea:  %s', //cpg1.4
   'coppermine_version_explanation' => 'Dacă sunteţi de părere ca acesta Informaţie este complet greşită şi ar fi trebuit să utilizaţi o versiune mai recentă a Coppermine, e posibil să nu fi încărcat cea mai recentă versiune a fişierului <i>include/init.inc.php</i>', //cpg1.4
@@ -2013,14 +2013,14 @@ if (defined('VERSIONCHECK_PHP')) $lang_versioncheck_php = array(
   'not_writable' => 'Neinscriptibil', //cpg1.4
   'help' => 'Ajutor', //cpg1.4
   'help_file_not_exist_optional1' => 'Fişierul/Dosarul nu există', //cpg1.4
-  'help_file_not_exist_optional2' => 'Fişierul/Dosarul %s nu a fost găsit pe server. Deşi este opţional, îl puteţi încărca cu ajutorul unui client FTP pe serverul dumneavoastră în cazul în care intampinati probleme.', //cpg1.4
+  'help_file_not_exist_optional2' => 'Fişierul/Dosarul %s nu a fost găsit pe server. Deşi este opţional, îl puteţi încărca cu ajutorul unui client FTP pe serverul dumneavoastră în cazul în care întâmpinaţi probleme.', //cpg1.4
   'help_file_not_exist_mandatory1' => 'Fişierul/Dosarul nu există', //cpg1.4
   'help_file_not_exist_mandatory2' => 'Fişierul/Dosarul %s nu a fost găsit pe server.Deoarece este un fişier obligatoriu va rugăm să îl încărcaţi pe serverul dumneavoastră utilizând un client FTP.', //cpg1.4
   'help_no_local_version1' => 'Nici o versiune de fişier local', //cpg1.4
   'help_no_local_version2' => 'Pagina nu a reuşit să extragă versiunea fişierului local.Fişierul este ori vechi ori este modificat sau şters. Actualizarea acestuia este recomandată.', //cpg1.4
   'help_local_version_outdated1' => 'Versiune locală învechită.', //cpg1.4
   'help_local_version_outdated2' => 'Versiunea fişierului pare să fie cea a unuia dintr-o versiune mai veche Coppermine (probabil aţi reactualizat). Asigurati-va ca actualizaţi şi acesti fişier.', //cpg1.4  
-'help_local_version_na1' => 'Extragerea informatiilor despre subversiune a eşuat', //cpg1.4
+'help_local_version_na1' => 'Extragerea informaţiilor despre subversiune a eşuat', //cpg1.4
   'help_local_version_na2' => 'Pagina nu a reuşit să determine care este versiunea subversiunii (SVN) fişierului din serverul dumneavoastră. Ar trebui să actualizaţi fişierul cu cel din pachetul de distribuţie.', //cpg1.4
   'help_local_version_dev1' => 'Versiune de Dezvoltare', //cpg1.4
   'help_local_version_dev2' => 'Fişierul de pe serverul dumneavoastră pare să fie mai nou decât versiunea Coppermine. Ori utilizaţi un fişier de dezvoltare (ar trebui să îl utilizaţi doar în cazul în care sunteţi sigur de ceea ce faceţi), sau aţi actualizat instalarea Coppermine dar nu şi fişierul include/init.inc.php', //cpg1.4
@@ -2045,7 +2045,7 @@ if (defined('VERSIONCHECK_PHP')) $lang_versioncheck_php = array(
   'show_file_versions' => 'Arată versiuni fişiere', //cpg1.4
   'show_errors_only' => 'Arată doar dosare/Fişiere cu erori', //cpg1.4
   'show_permissions' => 'Arată permisiunile pentru dosar', //cpg1.4
-  'show_condensed_output' => 'Arată rezultate minime (pentru facilizarea capturilor de ecran)', //cpg1.4
+  'show_condensed_output' => 'Arată rezultate minime (pentru facilitarea capturilor de ecran)', //cpg1.4
   'coppermine_in_webroot' => 'Coppermine este instalat în directorul rădăcină', //cpg1.4
   'connect_online_repository' => 'Încearcă conexiunea cu pagina sursă', //cpg1.4
   'show_additional_information' => 'Arată informaţii suplimentare', //cpg1.4
@@ -2079,20 +2079,20 @@ $lang_xp_publish_client = <<<EOT
 EOT;
 
 $lang_xp_publish_required = <<<EOT
-<h2>Ce este necesar</h2><ul><li>Windows XP, pentru a avea acces la acest asistent.</li><li>O versiune funcţionabilă de Coppermine în care funcţia <b>încărcare de pe internet, funcţionează perfect.</b></li></ul><h2>Cum se instalează în partea utilizatorului</h2><ul><li>În Internet Explorer,clic dreapta, 
+<h2>Ce este necesar</h2><ul><li>Windows XP, pentru a avea acces la acest asistent.</li><li>O versiune funcţionabilă de Coppermine în care funcţia <b>încărcare de pe internet, funcţionează perfect.</b></li></ul><h2>Cum se instalează în partea utilizatorului</h2><ul><li>În Internet Explorer,clic dreapta,
 EOT;
 
 $lang_xp_publish_select = <<<EOT
-Selectaţi &quot;save target as..&quot;. Salvaţi  fişierul pe calculatorul dumneavoastră. Când salvati, verificaţi dacă numele fişierului propus este <b>cpg_###.reg</b> (### reprezintă un număr). Redenumiţi acest fişier dacă este necesar, lasând neschimbat numărul. Odată descarcat, faceţi dublu-clic pe acest fişier pentru a inregistra severul dumneavoastră în asistentul "web publishing wizard".Un mesaj de confirmare a introducerii cheii de registri Windows va apărea.</li></ul>
+Selectaţi &quot;save target as..&quot;. Salvaţi  fişierul pe calculatorul dumneavoastră. Când salvaţi, verificaţi dacă numele fişierului propus este <b>cpg_###.reg</b> (### reprezintă un număr). Redenumiţi acest fişier dacă este necesar, lăsând neschimbat numărul. Odată descărcat, faceţi dublu-clic pe acest fişier pentru a înregistra severul dumneavoastră în asistentul "web publishing wizard".Un mesaj de confirmare a introducerii cheii de registre Windows va apărea.</li></ul>
 EOT;
 
 $lang_xp_publish_testing = <<<EOT
-<h2>Test</h2><ul><li>În Windows Explorer, selectaţi nişte fişiere şi apoi faceţi clic pe <b>Publish xxx on the web</b> din panoul din stânga.</li><li>Confirmaţi selecţia fişierelor. Faceţi clic pe <b>Next</b>.</li><li>În lista de servicii care va apărea, selectaţi-l pe cel al galeriei dumneavoastră (are numele galeriei). Dacă acest serviciu nu este prezent, verificaţi corecta instalare a fişierului <b>cpg_pub_wizard.reg</b> ca în descrierea de mai sus.</li><li>Introduceţi informaţiile de autentificare dacă este necesar.</li><li>Selecţionaţi albumul sursă pentru imagini sau creati un nou album.</li><li>Faceţi clic pe <b>next</b>. Procedura de încărcare a imaginilor va începe.</li><li>Când aceasta se va termina, verificaţi în galerie dacă imaginile au fost adăugate corect.</li></ul>
+<h2>Test</h2><ul><li>În Windows Explorer, selectaţi nişte fişiere şi apoi faceţi clic pe <b>Publish xxx on the web</b> din panoul din stânga.</li><li>Confirmaţi selecţia fişierelor. Faceţi clic pe <b>Next</b>.</li><li>În lista de servicii care va apărea, selectaţi-l pe cel al galeriei dumneavoastră (are numele galeriei). Dacă acest serviciu nu este prezent, verificaţi corecta instalare a fişierului <b>cpg_pub_wizard.reg</b> ca în descrierea de mai sus.</li><li>Introduceţi informaţiile de autentificare dacă este necesar.</li><li>Selecţionaţi albumul sursă pentru imagini sau creaţi un nou album.</li><li>Faceţi clic pe <b>next</b>. Procedura de încărcare a imaginilor va începe.</li><li>Când aceasta se va termina, verificaţi în galerie dacă imaginile au fost adăugate corect.</li></ul>
 EOT;
 
 $lang_xp_publish_notes = <<<EOT
-<h2>Note :</h2><ul><li>Odată ce procedura de încărcare începe, asistentul nu poate afişa nici un mesaj de eroare generat de galerie, motiv pentru care nu puteţi confirma succesul sau eşecul operatiunii, decât în momentul în care Verificaţi galeria.</li>
-<li> Dacă procedura de încărcare eşuează , activaţi modul &quot;Identificare erori&quot; în pagina de administrare Coppermine, încercaţi cu o singura imagine şi apoi Verificaţi mesajul de eroare în fişierul 
+<h2>Note :</h2><ul><li>Odată ce procedura de încărcare începe, asistentul nu poate afişa nici un mesaj de eroare generat de galerie, motiv pentru care nu puteţi confirma succesul sau eşecul operaţiunii, decât în momentul în care Verificaţi galeria.</li>
+<li> Dacă procedura de încărcare eşuează , activaţi modul &quot;Identificare erori&quot; în pagina de administrare Coppermine, încercaţi cu o singura imagine şi apoi Verificaţi mesajul de eroare în fişierul
 EOT;
 
 $lang_xp_publish_flood = <<<EOT
@@ -2115,3 +2115,4 @@ $lang_xp_publish_php = array(
 );
 }
 ?>
+
