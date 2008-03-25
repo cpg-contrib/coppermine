@@ -1584,14 +1584,15 @@ if (!function_exists('theme_javascript_head')) {  //{THEMES}
 // Function for the JavaScript inside the <head>-section
 function theme_javascript_head() {
     global $CONFIG, $JS;
-
+$JS['vars']['test'] = array(1,2,3);
+$JS['vars'][] = array(1,2,'key' => 3);
 	$return = '';
 	// Check if we have any variables being set using set_js_vars function
 	if (isset($JS['vars']) && count($JS['vars'])) {
 		// Convert the $JS['vars'] array to json object string
 		$json_vars = json_encode($JS['vars']);
 		// Output the json object
-		$return .= '<script type="text/javascript">var js_vars = ' . $json_vars . ";</script>\n";
+		$return .= "<script type=\"text/javascript\">var js_vars = eval('($json_vars)');</script>\n";
 	}
 
 	// Check if we have any js includes
