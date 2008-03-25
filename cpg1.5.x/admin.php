@@ -366,18 +366,24 @@ EOT;
     } else {
       $highlightFieldCSS = '';
     }
+    if (!empty($value['warning'])) { // set warning text
+      $warningText = $value['warning'];
+    } else {
+      $warningText = '';
+    }
+    
     
     // Different types of fields --- start
     if ($value['type'] == 'textfield') { // TEXTFIELD
-      print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><input type="text" class="textinput"'.$widthOption.$sizeOption.$maxlengthOption.'  name="'.$key.'" id="'.$key.'" value="'.htmlspecialchars($admin_data_array[$key]).'"'.$readonly_text.' tabindex="'.$tabindexCounter.'" onblur="checkDefaultBox(\''.$key.'\', \'textfield\', \'\');" /></span>';
+      print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><input type="text" class="textinput"'.$widthOption.$sizeOption.$maxlengthOption.'  name="'.$key.'" id="'.$key.'" value="'.htmlspecialchars($admin_data_array[$key]).'"'.$readonly_text.' tabindex="'.$tabindexCounter.'" title="'.str_replace("'", "\'", htmlspecialchars($warningText)).'" onblur="checkDefaultBox(\''.$key.'\', \'textfield\', \'\', \''.str_replace("'", "\'", htmlspecialchars($warningText)).'\');" /></span>';
     } elseif ($value['type'] == 'password') { // PASSWORD
-      print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><input type="password" class="textinput" maxlength="255"'.$widthOption.$sizeOption.$maxlengthOption.' name="'.$key.'" id="'.$key.'" value="'.$admin_data_array[$key].'"'.$readonly_text.' tabindex="'.$tabindexCounter.'" onblur="checkDefaultBox(\''.$key.'\', \'password\', \'\');" /></span>';
+      print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><input type="password" class="textinput" maxlength="255"'.$widthOption.$sizeOption.$maxlengthOption.' name="'.$key.'" id="'.$key.'" value="'.$admin_data_array[$key].'"'.$readonly_text.' tabindex="'.$tabindexCounter.'" title="'.str_replace("'", "\'", htmlspecialchars($warningText)).'" onblur="checkDefaultBox(\''.$key.'\', \'password\', \'\', \''.str_replace("'", "\'", htmlspecialchars($warningText)).'\', \''.str_replace("'", "\'", htmlspecialchars($warningText)).'\');" /></span>';
     } elseif ($value['type'] == 'checkbox') { // CHECKBOX
       $checked = '';
       if ($admin_data_array[$key] == 1) {
         $checked = ' checked="checked"';
       }
-      print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><input type="checkbox" name="'.$key.'" id="'.$key.'" value="1" class="checkbox"'.$checked.$readonly_radio.' tabindex="'.$tabindexCounter.'" onchange="checkDefaultBox(\''.$key.'\', \'checkbox\', \'\');" />';
+      print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><input type="checkbox" name="'.$key.'" id="'.$key.'" value="1" class="checkbox"'.$checked.$readonly_radio.' tabindex="'.$tabindexCounter.'" title="'.str_replace("'", "\'", htmlspecialchars($warningText)).'" onchange="checkDefaultBox(\''.$key.'\', \'checkbox\', \'\', \''.str_replace("'", "\'", htmlspecialchars($warningText)).'\');" />';
     } elseif ($value['type'] == 'radio') { //RADIO
       $optionLoopCounter = 0;
       print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'">'; // wrap the radio-buttons set into a container box
@@ -386,7 +392,7 @@ EOT;
         if ($admin_data_array[$key] == $optionLoopCounter) {
           $checked = ' checked="checked"';
         }
-        print '<input type="radio" name="'.$key.'" id="'.$key.$optionLoopCounter.'" value="'.$optionLoopCounter.'" class="radio"'.$checked.$readonly_radio.' tabindex="'.$tabindexCounter.'" onfocus="checkDefaultBox(\''.$key.$optionLoopCounter.'\', \'radio\', \'\');" /><label for="'.$key.$optionLoopCounter.'" class="clickable_option">'.$option.'</label>&nbsp;';
+        print '<input type="radio" name="'.$key.'" id="'.$key.$optionLoopCounter.'" value="'.$optionLoopCounter.'" class="radio"'.$checked.$readonly_radio.' tabindex="'.$tabindexCounter.'" title="'.str_replace("'", "\'", htmlspecialchars($warningText)).'" onfocus="checkDefaultBox(\''.$key.$optionLoopCounter.'\', \'radio\', \'\', \''.str_replace("'", "\'", htmlspecialchars($warningText)).'\');" /><label for="'.$key.$optionLoopCounter.'" class="clickable_option">'.$option.'</label>&nbsp;';
         if (!empty($value['linebreak'])) {
           print $value['linebreak'];
         }
@@ -397,6 +403,7 @@ EOT;
     } elseif ($value['type'] == 'hidden') { //HIDDEN
       print '<input type="hidden"  name="'.$key.'" value="'.$admin_data_array[$key].'"'.$readonly.' />';
     } elseif ($value['type'] == 'select_function') { //SELECT_FUNCTION
+	    // not implemented (yet)
     } elseif ($value['type'] == 'select_multiple') { //SELECT_MULTIPLE
       $optionLoopCounter = 0;
       $option_value_array = explode ("|",$admin_data_array[$key]);
@@ -405,7 +412,7 @@ EOT;
       } else {
 	      $maxSize = count($value['options']);
       }
-      print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><select name="'.$key.'[]" id="'.$key.'" class="listbox" size="'.$maxSize.'" '.$readonly_radio.' tabindex="'.$tabindexCounter.'" multiple="multiple">'.$lineBreak;
+      print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><select name="'.$key.'[]" id="'.$key.'" class="listbox" size="'.$maxSize.'" '.$readonly_radio.' tabindex="'.$tabindexCounter.'" multiple="multiple" title="'.str_replace("'", "\'", htmlspecialchars($warningText)).'">'.$lineBreak;
       foreach ($value['options'] as $option_value) { // loop through the options array
         $admin_data_array[$key] = (int)$admin_data_array[$key];
         if ($option_value_array[$optionLoopCounter] == 1) {
@@ -421,7 +428,7 @@ EOT;
     } elseif ($value['type'] == 'select') {//SELECT
       $optionLoopCounter = 0;
       $associativeArray = array_is_associative($value['options']);
-      print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><select name="'.$key.'" id="'.$key.'" class="listbox" size="1" '.$readonly_radio.' tabindex="'.$tabindexCounter.'" onchange="checkDefaultBox(\''.$key.'\', \'select\', \''.count($value['options']).'\');">';
+      print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><select name="'.$key.'" id="'.$key.'" class="listbox" size="1" '.$readonly_radio.' tabindex="'.$tabindexCounter.'" onchange="checkDefaultBox(\''.$key.'\', \'select\', \''.count($value['options']).'\', \''.str_replace("'", "\'", htmlspecialchars($warningText)).'\');" title="'.str_replace("'", "\'", htmlspecialchars($warningText)).'">';
       foreach ($value['options'] as $option_key => $option_value) { // loop through the options array
         if ($admin_data_array[$key] == $option_value) {
           $selected = ' selected="selected"';
@@ -567,8 +574,11 @@ echo <<< EOT
 	    }
     }
     
-    function checkDefaultBox(theFieldId, fieldType, numberOfItems) {
+    function checkDefaultBox(theFieldId, fieldType, numberOfItems, warning) {
         // Each time a config field is being changed (onblur/onchange), this JS is being run to enable/disable the default checkbox
+        if(warning != '') {
+	        alert(warning + ' ' + '{$lang_admin_php['warning_dont_submit']}');
+        }
         if(fieldType == 'textfield' || fieldType == 'password') {
 	        if (document.getElementById(theFieldId).value != document.getElementById('reset_default_' + theFieldId).value) {
 	            document.getElementById('reset_default_' + theFieldId).style.display = 'inline';
@@ -616,10 +626,7 @@ echo <<< EOT
             return;
         }
         if(fieldType == 'select') {
-	        //alert(theFieldId);
 			for (var i = 0; i < numberOfItems; i++) {
-                //alert(document.getElementById(theFieldId).options[i].value);
-                //if (document.getElementById(theFieldId).options[i].value == document.getElementById('reset_default_' + theFieldId).value) {
                 if (document.getElementById(theFieldId).options[i].selected == true) {
                     if (document.getElementById(theFieldId).options[i].value == document.getElementById('reset_default_' + theFieldId).value) {
 	                    document.getElementById('reset_default_' + theFieldId).style.display = 'none';
