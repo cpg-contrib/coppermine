@@ -705,6 +705,7 @@ $config_data = array(
       'regex' => '^[0-9]{1,5}$',
       'size' => '5',
       'width' => '5',
+      'warning' => $lang_admin_php['warning_change'],
     ),
     'thumb_use' => array(
       'type' => 'select',
@@ -716,6 +717,7 @@ $config_data = array(
                          $lang_admin_php['th_ex'] => 'ex',
                          ),
       'additional_description' => $lang_admin_php['thumb_use_detail'],
+      'warning' => $lang_admin_php['warning_change'],
     ),
     'thumb_height' => array(
       'type' => 'textfield',
@@ -725,6 +727,7 @@ $config_data = array(
       'size' => '5',
       'width' => '5',
       'additional_description' => $lang_admin_php['thumb_height_detail'],
+      'warning' => $lang_admin_php['warning_change'],
     ),
     'enable_custom_thumbs' => array(
       'type' => 'checkbox',
@@ -737,6 +740,7 @@ $config_data = array(
       'type' => 'textfield',
       'default_value' => 'thumb_',
       'help_link' => 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_thumbs_prefix&amp;ae=admin_picture_thumb_advanced_thumbs_prefix_end',
+      'warning' => $lang_admin_php['warning_change'],
     ),
     'enable_unsharp' => array(
       'type' => 'checkbox',
@@ -789,6 +793,7 @@ $config_data = array(
       'regex' => '^[0-9]{1,5}$',
       'size' => '5',
       'width' => '5',
+      'warning' => $lang_admin_php['warning_change'],
     ),
     'max_upl_size' => array(
       'type' => 'textfield',
@@ -929,16 +934,22 @@ $config_data = array(
       'type' => 'textfield',
       'default_value' => 'albums/',
       'help_link' => 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_albums_dir&amp;ae=admin_picture_thumb_advanced_albums_dir_end',
+      'warning' => $lang_admin_php['warning_exist'],
+      'additional_description' => '<br />('.$lang_admin_php['warning_exist'].')',
     ),
     'userpics' => array(
       'type' => 'textfield',
       'default_value' => 'userpics/',
       'help_link' => 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_userpics_dir&amp;ae=admin_picture_thumb_advanced_userpics_dir_end',
+      'warning' => $lang_admin_php['warning_exist'],
+      'additional_description' => '<br />('.$lang_admin_php['warning_exist'].')',
     ),
     'normal_pfx' => array(
       'type' => 'textfield',
       'default_value' => 'normal_',
       'help_link' => 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_intermediate_prefix&amp;ae=admin_picture_thumb_advanced_intermediate_prefix_end',
+      'warning' => $lang_admin_php['warning_exist'],
+      'additional_description' => '<br />('.$lang_admin_php['warning_exist'].')',
     ),
     'default_dir_mode' => array(
       'type' => 'textfield',
@@ -1269,6 +1280,7 @@ $config_data = array(
                          $lang_admin_php['log_all']
                          ),
       'end_description' => '&nbsp;&nbsp;(<a href="viewlog.php">'.$lang_admin_php['view_logs'].'</a>)',
+      'additional_description' => '<br />('.$lang_admin_php['log_mode_details'].')',
     ),
     'log_ecards' => array(
       'type' => 'checkbox',
