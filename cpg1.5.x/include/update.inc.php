@@ -58,7 +58,7 @@ function html_header($title, $charset = '')
 
 function html_logo()
 {
-    echo '<img class="logo" src="images/logo.gif">';
+    echo '<img class="logo" src="images/coppermine-logo.png" border="0" alt="" />';
 }
 
 
