@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-03-25 [A] Added favicon tag to all themes that come with coppermine {GauGau}
 2008-03-25 [B] Rewrote json_encode function as the old one was not working correctly {Abbas}
 2008-03-24 [A] Added "reset to default" feature for config {GauGau}
 2008-03-21 [O] Removed 'root template' feature {Nibbler}
