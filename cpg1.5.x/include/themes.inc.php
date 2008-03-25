@@ -1584,8 +1584,7 @@ if (!function_exists('theme_javascript_head')) {  //{THEMES}
 // Function for the JavaScript inside the <head>-section
 function theme_javascript_head() {
     global $CONFIG, $JS;
-$JS['vars']['test'] = array(1,2,3);
-$JS['vars'][] = array(1,2,'key' => 3);
+    
 	$return = '';
 	// Check if we have any variables being set using set_js_vars function
 	if (isset($JS['vars']) && count($JS['vars'])) {
