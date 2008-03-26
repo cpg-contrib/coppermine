@@ -111,10 +111,12 @@ Ocassionally, you will also need to edit your php.ini file (located in windows d
 <tt class="code">extension=php_gd2.dll</tt> (at the end of the file). This will cause PHP to load the GD2 extension.<br />
 Whenever you make changes to php.ini, remember that you will need to restart your webserver before changes become effective.<br />
 ImageMagick it quite complicated to use under Windows<br />
-Greg<br /></p><hr />
+Greg<br /></p>
+<p>Side-note: the coppermine dev team does not recommend self-hosting. We are not trying to encourage you to run a webserver on your own if you don't know your way around. We left this paragraph in the FAQ section for reference. Please understand that we can not advise on webserver setup issues.</p><hr />
 <a name="enableIMonWindows"></a>
 <h3>How do I <strong>enable ImageMagick</strong> on my Windows server?<a href="#enableIMonWindows" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>ImageMagick is quite complicated to set up on Windows. There are several things to be taken into account. The Coppermine support board is <strong>not</strong> the right place to ask for help on installing it, as it deals with Coppermine, not &quot;How to set up a server&quot; (most people on the Coppermine boards don't run their own webserver, but they have webspace by a webhost). Instead, try to find support boards on the internet that deal with this special topic.</p>
+<p>The path to ImageMagick mustn't contain spaces or special characters. You have to make sure that the user the webserver runs under actually has the needed permissions to run the ImageMagick executables.</p>
 <hr />
 
 

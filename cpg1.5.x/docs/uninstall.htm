@@ -38,14 +38,18 @@
 <p>If you no longer need your coppermine gallery and want to get rid of it, you need to perform two actions:</p>
 <ul>
   <li><strong>Remove the database tables</strong><br />
-  <img src="pics/phpmyadmin_tables.png" border="0" width="582" height="271" alt="" align="right" />Use a third-party tool like <a href="http://phpmyadmin.net/" rel="external" class="external">phpMyAdmin</a> to delete all coppermine tables (see screenshot). You can determine what tables need to be deleted by looking at the table prefixes: all coppermine-tables use the table prefix that you chose when you first run the coppermine installer. If you're not sure what you're doing, perform a backup (database dump) before ultimately deleting the tables. By default, the table prefix is <tt class="code">cpg15x_</tt> (but it may be different if you chose another prefix during install). When using phpMyAdmin, tick all coppermine-tables, then scroll down to the bottom of the page and choose "drop" from the dropdown labelled "with selected". Confirm the security-dialog with "yes".<br />
+  <img src="pics/phpmyadmin_tables.png" border="0" width="500" height="233" alt="" /><br />
+  Use a third-party tool like <a href="http://phpmyadmin.net/" rel="external" class="external">phpMyAdmin</a> to delete all coppermine tables (see screenshot). You can determine what tables need to be deleted by looking at the table prefixes: all coppermine-tables use the table prefix that you chose when you first run the coppermine installer. If you're not sure what you're doing, perform a backup (database dump) before ultimately deleting the tables. By default, the table prefix is <tt class="code">cpg15x_</tt> (but it may be different if you chose another prefix during install). When using phpMyAdmin, tick all coppermine-tables, then scroll down to the bottom of the page and choose "drop" from the dropdown labelled "with selected". Confirm the security-dialog with "yes".<br />
 Alternatively (if you don't have phpMyAdmin available), create a PHP file (using a plain-text editor like notepad.exe) with this content:
 <pre>&lt;?php
 // add the mysql connection stuff here
 
-DROP TABLE `cpg15x_albums`, `cpg15x_banned`, `cpg15x_bridge`, `cpg15x_categories`, `cpg15x_comments`, `cpg15x_config`, `cpg15x_dict`, `cpg15x_ecards`, `cpg15x_exif`, `cpg15x_favpics`, `cpg15x_filetypes`, `cpg15x_hit_stats`, `cpg15x_pictures`, `cpg15x_plugins`, `cpg15x_sessions`, `cpg15x_temp_data`, `cpg15x_temp_messages`, `cpg15x_usergroups`, `cpg15x_users`, `cpg15x_votes`, `cpg15x_vote_stats`;
-?&gt;
-</pre>
+DROP TABLE `cpg15x_albums`, `cpg15x_banned`, `cpg15x_bridge`, `cpg15x_categories`, 
+`cpg15x_comments`, `cpg15x_config`, `cpg15x_dict`, `cpg15x_ecards`, `cpg15x_exif`, 
+`cpg15x_favpics`, `cpg15x_filetypes`, `cpg15x_hit_stats`, `cpg15x_pictures`, `cpg15x_plugins`, 
+`cpg15x_sessions`, `cpg15x_temp_data`, `cpg15x_temp_messages`, `cpg15x_usergroups`, 
+`cpg15x_users`, `cpg15x_votes`, `cpg15x_vote_stats`;
+?&gt;</pre>
 safe the file as "droptables.php" and upload that file (using your FTP app) to the folder your coppermine gallery resides in. Then run the file you just uploaded in your browser by going to the URL <tt class="code">http://yourdomain.tld/your_coppermine_folder/droptables.php</tt>
   </li>
   <li><strong>Remove the files</strong><br />
