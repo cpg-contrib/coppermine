@@ -20,14 +20,15 @@
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 
 // info about translators and translated language
+
 $lang_translation_info = array(
   'lang_name_english' => 'Finnish', //cpg1.4
   'lang_name_native' => 'Suomi', //cpg1.4
   'lang_country_code' => 'fi', //cpg1.4
-  'trans_name'=> 'Kati',
-  'trans_email' => 'kati@tiuhti.net',
+  'trans_name'=> 'Kati and Paavo N', // slightly modified for my own needs, a few minor translation errors corrected
+  'trans_email' => 'kati@tiuhti.net', // 'paavo.nikkila@gmail.com',
   'trans_website' => 'http://kati.tiuhti.net/',
-  'trans_date' => '2006-05-17',
+  'trans_date' => '2008-03-28',
 );
 
 $lang_charset = 'utf-8';
@@ -60,7 +61,7 @@ $comment_date_fmt =  '%d.%m.%Y klo %H:%M';
 $log_date_fmt = '%d.%m.%Y klo %H:%M'; //cpg1.4
 
 // For the word censor
-$lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*', 'vittu', 'saatana');
+$lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*', 'vittu', 'saatana', 'huora', 'runkku', 'nekru', 'neekeri', 'pillu');
 
 $lang_meta_album_names = array(
   'random' => 'Satunnaiset kuvat',
@@ -805,8 +806,8 @@ if (defined('DB_ECARD_PHP')) $lang_db_ecard_php = array(
   'ecard_name' => 'Name',
   'ecard_email' => 'Email',
   'ecard_ip' => 'IP #',
-  'ecard_ascending' => 'ascending',
-  'ecard_descending' => 'descending',
+  'ecard_ascending' => 'nouseva',
+  'ecard_descending' => 'laskeva',
   'ecard_sorted' => 'Sorted',
   'ecard_by_date' => 'by date',
   'ecard_by_sender_name' => 'by sender\'s name',
@@ -956,7 +957,7 @@ $lang_picinfo = array(
   'DateTime' => 'Aika', //cpg1.4
   'ISOSpeedRatings'=>'ISO', //cpg1.4
   'MaxApertureValue' => 'Suurin aukonkoko', //cpg1.4
-  'FocalLength' => 'Polttov�li', //cpg1.4
+  'FocalLength' => 'Polttoväli', //cpg1.4
   'Comment' => 'Kommentti',
   'addFav'=>'Lisää suosikkeihin',
   'addFavPhrase'=>'Suosikit',
@@ -991,10 +992,10 @@ $lang_picinfo = array(
   'ISOSetting' => 'ISO-asetus', //cpg1.4
   'ColorMode' => 'Väritila', //cpg1.4
   'Quality' => 'Laatu', //cpg1.4
-  'ImageSharpening' => 'Kuvan tarkennus', //cpg1.4
-  'FocusMode' => 'Kohdistustila', //cpg1.4
+  'ImageSharpening' => 'Kuvan terävöinti', //cpg1.4
+  'FocusMode' => 'Tarkennustila', //cpg1.4
   'FlashSetting' => 'Salama-asetus', //cpg1.4
-  'ISOSelection' => 'ISO-valikoima', //cpg1.4
+  'ISOSelection' => 'ISO-valinta', //cpg1.4
   'ImageAdjustment' => 'Kuvan säätö', //cpg1.4
   'Adapter' => 'Adapteri', //cpg1.4
   'ManualFocusDistance' => 'Manuaalinen tarkennusetäisyys', //cpg1.4
@@ -1080,7 +1081,7 @@ if (defined('REPORT_FILE_PHP') || defined('DISPLAYREPORT_PHP')) $lang_report_php
   'view_report_plaintext' => 'Katsoaksesi ilmoituksen, kopioi ja liitä tämä osoite selaimeesi:', //cpg1.4
   'view_more_pics' => 'Galleria', //cpg1.4
   'send_success' => 'Ilmoituksesi lähetettiin', //cpg1.4
-  'send_failed' => 'Valitettavasti palveli ei voinut lähettää ilmoitustasi...', //cpg1.4
+  'send_failed' => 'Valitettavasti palvelin ei voinut lähettää ilmoitustasi...', //cpg1.4
   'from' => 'Lähettäjä', //cpg1.4
   'your_name' => 'Nimesi', //cpg1.4
   'your_email' => 'Sähköpostiosoitteesi', //cpg1.4
@@ -1178,7 +1179,7 @@ if (defined('FAQ_PHP')) $lang_faq_data = array(
   array('Miten tallennan kuvan &quot;suosikkeihin&quot;?', 'Klikkaa kuvaa ja &quot;kuvan tiedot&quot; -linkkiä (<img src="images/info.gif" width="16" height="16" border="0" alt="Kuvan tiedot" />); selaa kuvan tietoja ja klikkaa &quot;Lisää suosikkeihin&quot;.<br />Ylläpito on voinut asettaa &quot;kuvan tiedot&quot; näkyviin oletuksena.<br />TÄRKEÄÄ: Evästeet täytyy olla sallittu, että evästettä saa poistaa, jotta tämä toiminto toimisi.', 'offline', 0),
   array('Miten arvosten kuvaa?', 'Klikkaa thumbnailia ja klikkaa haluamaasi äänestä -nappia kuvan alla.', 'offline', 0),
   array('Miten annan kuvalle kommentteja?', 'Klikkaa thumbnailia ja selaa sivun loppuun, jossa voit antaa kommentin.', 'offline', 0),
-  array('Miten lisään kuvan?', 'Mene &quot;Lisää kuva&quot; -sivulle. Klikkaa &quot;Browse,&quot; löytääksesi lisättävän kuvan koneeltasi ja klikkaa &quot;avaa.&quot; Lisää otsikko ja kuvaus. Klikkaa  &quot;Lähetä&quot;.<br /><br />Vaihtoehtoisesti, jos sinulla on <b>Windows XP</b>, voit lisätä useita kuvia kerralla omaan yksityiseen albumiisi XP-julkaisuohjelmalla.<br />Saadaksesi ohjeita tästä, klikkaa <a href="xp_publish.php">tätä.</a>', 'allow_private_albums', 1), //cpg1.4
+  array('Miten lisään kuvan?', 'Sinulla täytyy olla oikeus kuvien lisäämiseen(ei tule oletuksena). Mene &quot;Lisää kuva&quot; -sivulle. Klikkaa &quot;Browse,&quot; löytääksesi lisättävän kuvan koneeltasi ja klikkaa &quot;avaa.&quot; Lisää otsikko ja kuvaus. Klikkaa  &quot;Lähetä&quot;.<br /><br />Vaihtoehtoisesti, jos sinulla on <b>Windows XP</b>, voit lisätä useita kuvia kerralla omaan yksityiseen albumiisi XP-julkaisuohjelmalla.<br />Saadaksesi ohjeita tästä, klikkaa <a href="xp_publish.php">tätä.</a>', 'allow_private_albums', 1), //cpg1.4
   array('Mihin lisään kuvan?', 'Voit lisätä kuvasi johonkin omaan albumiisi &quot;Oma Galleria&quot; -sivulla. Ylläpito saattaa sallia kuvien lisäämisen myös joihinkin päägallerioista.', 'allow_private_albums', 0),
   array('Millaisia ja minkä kokoisia tiedostoja voin lisätä?', 'Koko ja tyyppi (jpg, png, etc.) riippuu ylläpidon asettamista asetuksista.', 'offline', 0),
   array('Miten luon, uudelleen nimeän tai poistan albumeita &quot;Omaan galleriaan&quot;?', 'Sinun pitäisi jo olla &quot;ylläpitotilassa&quot;<br />Mene sivulle &quot;Luo/järjestä albumeita&quot; ja klikkaa &quot;Uusi&quot;. Vaihda nimi &quot;Uusi albumi&quot; mieleiseksesi.<br />Voit myös uudelleennimetä muita albumeitasi.<br />Klikkaa &quot;Hyväksy muutokset&quot;.', 'allow_private_albums', 0),
@@ -1476,9 +1477,16 @@ if (defined('REGISTER_PHP') || defined('PROFILE_PHP')) {
 $lang_register_disclamer = <<<EOT
 Sivuston {SITE_NAME} ylläpito poistaa kaiken sopimattoman materiaalin sivustolta niin nopeasti kuin mahdollista, mutta ei ole mahdollista tarkistaa aina jokaista lisäystä. Ymmärrät siis, että sivuston viestit ja kuvat ovat käyttäjien mielipiteitä ja näkemyksiä, eikä ylläpitoa voida asettaa niistä vastuuseen.<br />
 <br />
-Hyväksymällä tämän sopimuksen sitoudut olemaan lähettämättä laitonta, seksuaalista tai muuten sopimatonta materiaalia. Hyväksyt, että ylläpidolla ja moderaattoreilla on oikeus poistaa tai muuttaa mitä tahansa materiaalia miten parhaaksi näkevät. Käyttäjänä hyväksyt, että lähettämäsi tieto tallennetaan tietokantaan. Tietoa ei lähetetä kolmansille osapuolille ilman lupaasi, mutta ylläpito ei ole vastuussa mahdollisista tietomurroista.<br />
+Sinulla ei oletuksena ole oikeutta lisätä kuvia galleriaan vaan sinun on pyydettävä sitä <a href="">ylläpidolta</a>. Ainakin ensimmäiset kuvasi ylläpito tarkistaa ennen julkaisemista. Lähetä siis mieluummin paras kuvasi kuin kymmenen huonompaa. Liitä kuviin ainakin yhtyeen/tapahtuman ja kuvaajan nimi, kuvausaika ja -paikka. <br />
 <br />
-Tämä sivusto käyttää evästeitä tallentaakseen tietoa koneellesi. Evästeiden tarkoitus on ainoastaan helpottaa sivuston köyttöä. Sähköpostiosoitetta käytetään vain rekisteröintitietojen varmistamiseen.<br />
+Tekijänoikeusrikkomusten ehkäisemiseksi voit julkaista vain itse ottamiasi kuvia. Mikäli havaitset sivustolla sopimatonta tai <a href="http://www.finlex.fi/fi/laki/ajantasa/1961/19610404?search%5Btype%5D=pika&search%5Bpika%5D=tekij%C3%A4noikeuslaki"><b>tekijänoikeuttasi</b></a> rikkovaa materiaalia, ilmoita siitä välittömästi ylläpidolle. <br />
+<br />
+Hyväksymällä tämän sopimuksen sitoudut olemaan lähettämättä laitonta, sopimatonta tai toisten tekijänoikeuksia rikkovaa materiaalia. Hyväksyt, että ylläpidolla ja moderaattoreilla on oikeus poistaa tai muuttaa mitä tahansa materiaalia miten parhaaksi näkevät. Käyttäjänä hyväksyt, että lähettämäsi tieto tallennetaan tietokantaan. Tietoa ei lähetetä kolmansille osapuolille ilman lupaasi, mutta ylläpito ei ole vastuussa mahdollisista tietomurroista.
+{SITE_NAME} on ei-kaupallinen sivusto ja ylläpito ei vastaa tietojen säilymisestä, kuvien varmuuskopioinnista eikä palvelun toimivuudesta.
+<br /><br />
+Tämä sivusto käyttää evästeitä tallentaakseen tietoa koneellesi. Evästeiden tarkoitus on ainoastaan helpottaa sivuston käyttöä. Sähköpostiosoitetta käytetään vain rekisteröintitietojen varmistamiseen.<br />
+<br />
+
 <br />
 Klikkaamalla 'Hyväksyn' hyväksyt nämä ehdot.
 EOT;
@@ -1542,7 +1550,7 @@ $lang_register_php = array(
 );
 
 $lang_register_confirm_email = <<<EOT
-Kiitos rekisteröitymisestä {SITE_NAME} sivustolle.
+Kiitos rekisteröitymisestä keikkakuvat.net - sivustolle.
 
 Aktivoidaksesi tilisi käyttäjätunnuksella "{USER_NAME}", klikkaa alla olevaa linkkiä tai kopioi ja liitä se selaimeesi.
 
