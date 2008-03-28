@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $Source$
-  $Revision: 4326 $
-  $LastChangedBy: nibbler999 $
-  $Date: 2008-03-09 23:25:42 +0530 (Sun, 09 Mar 2008) $
+  $Revision: 4361 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-03-25 13:32:27 +0530 (Tue, 25 Mar 2008) $
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
@@ -925,6 +925,7 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'smtp_username' =>   'SMTP Username', // cpg1.5
   'smtp_password' =>   'SMTP Password', // cpg1.5
   'log_mode' =>   'Logging mode', // cpg1.5
+  'log_mode_details' =>   'All log files are written in english.', // cpg1.5
   'log_ecards' =>   'Log ecards', // cpg1.5
   'log_ecards_detail' =>   'Note: logging can have legal impacts. The user should be imformed on registration that ecards are being logged. It is recommended to provide a separate page with a privacy policy as well.', // cpg1.5
   'vote_details' =>   'Keep detailed vote statistics', // cpg1.5
@@ -961,6 +962,9 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'enabled' => 'enabled', // cpg1.5
   'disabled' => 'disabled', // cpg1.5
   'none' => 'none', // cpg1.5
+  'warning_change' => 'When changing this setting, only the files that are added from that point on are affected, so it\'s advisable that this setting must not be changed if there are already files in the gallery. You can, however, apply the changes to the existing files with the "admin tools (resize pictures)" utility from the admin menu.', // cpg1.5
+  'warning_exist' => 'These settings mustn\'t be changed if you already have files in your database.', // cpg1.5
+  'warning_dont_submit' => 'If you\\\'re not sure about the impact that changing this setting will have, don\\\'t submit the form and review the documentation first.', // cpg1.5 //js-alert
 );
 
 

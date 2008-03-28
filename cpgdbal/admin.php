@@ -12,11 +12,11 @@
   ********************************************
   Coppermine version: 1.5.0
   $Source: /cvsroot/coppermine/devel/admin.php,v $
-  $Revision: 4332 $
+  $Revision: 4360 $
   $LastChangedBy: gaugau $
-  $Date: 2008-03-14 13:57:56 +0530 (Fri, 14 Mar 2008) $
+  $Date: 2008-03-25 13:32:11 +0530 (Tue, 25 Mar 2008) $
 **********************************************/
-
+ 
 define('IN_COPPERMINE', true);
 define('ADMIN_PHP', true);
 define('CONFIG_PHP', true); // added for backwards compatibility (language fallback)
@@ -24,6 +24,7 @@ define('CONFIG_PHP', true); // added for backwards compatibility (language fallb
 require_once('include/init.inc.php');
 require_once('include/sql_parse.php');
 
+js_include('js/jquery.js');
 
 $admin_data_array = $CONFIG;
 
@@ -134,7 +135,6 @@ if ($superCage->post->keyExists('restore_config')) { // user has chosen to facto
       	$evaluate_value = $CONFIG[$adminDataKey];
       }
       // We need to catter for the fact that checkboxes that haven't been ticked are not being submit
-      //if ($adminDataValue['type'] == 'checkbox' && !$evaluation_array[$adminDataKey]) {
       if ($adminDataValue['type'] == 'checkbox' && !$evaluate_value) {
         $evaluate_value = '0';
       }
@@ -144,10 +144,7 @@ if ($superCage->post->keyExists('restore_config')) { // user has chosen to facto
       // the data for 'select_multiple' is an array. Let's concatenate it into a single value
       if ($adminDataValue['type'] == 'select_multiple') {
         if (is_array($evaluate_value)) {
-          //print_r($evaluate_value);
-          //foreach($evaluate_value as $value) {
           for ($i = 0; $i <= end($evaluate_value); $i++) {
-	          //$temp = array_sum($evaluate_value);
 	          if (in_array($i, $evaluate_value) == TRUE) {
 		          $temp .= '1';
 	          } else {
@@ -196,7 +193,6 @@ if ($superCage->post->keyExists('restore_config')) { // user has chosen to facto
         } // write log -- end
         // Code to rename system thumbs in images folder
         $old_thumb_pfx =& $CONFIG['thumb_pfx'];
-        //if ($old_thumb_pfx != $_POST['thumb_pfx']) {
         $matches = $superCage->post->getMatched('thumb_pfx','/^[0-9A-Za-z_-]+$/');
         $thumb_pfx = $matches[0];
         if ($old_thumb_pfx != $thumb_pfx) {
@@ -273,8 +269,8 @@ $signature = 'Coppermine Photo Gallery ' . COPPERMINE_VERSION . ' ('. COPPERMINE
 
 $tabindexCounter = 1;
 $numberOfConfigFields = count($CONFIG);
-print '<em>Dev note: this is work in progress - the "reset to default" checkboxes don\'t actually do anything yet - I am working on this feature. Therefor, please don\'t file bug reports (yet).<br />The rest of the config screen should be usable as usual - {GauGau}</em>';
-print '<form action="'.$CPG_PHP_SELF.'" method="post" name="cpgform" id="cpgform">';
+
+print '<form action="'.$CPG_PHP_SELF.'" method="post" name="cpgform" id="cpgform" onSubmit="return deleteUnneededFields();">';
 starttable('100%', "{$lang_admin_php['title']} - $signature", 2);
 print <<< EOT
     <tr>
@@ -309,7 +305,6 @@ EOT;
     } else {
       $cellStyle = 'tableb tableb_alternate '.$withinSectionLoopCounter;
     }
-    $defaultLabel = '';
     // hide entries labelled as "hidden" completely
     if (isset($value['only_display_if']) && $value['only_display_if'] != $CONFIG[$key]) {  // change the type if a "one-way-setting" is in place
       $value['type'] = 'hidden';
@@ -371,23 +366,25 @@ EOT;
     } else {
       $highlightFieldCSS = '';
     }
-    if ($value['type'] == 'textfield') {
-      print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><input type="text" class="textinput"'.$widthOption.$sizeOption.$maxlengthOption.'  name="'.$key.'" id="'.$key.'" value="'.$admin_data_array[$key].'"'.$readonly_text.' tabindex="'.$tabindexCounter.'" onblur="checkDefaultBox(\''.$key.'\');" /></span>';
-      $defaultLabel = $value['default_value'];
-    } elseif ($value['type'] == 'password') {
-      print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><input type="password" class="textinput" maxlength="255"'.$widthOption.$sizeOption.$maxlengthOption.' name="'.$key.'" id="'.$key.'" value="'.$admin_data_array[$key].'"'.$readonly_text.' tabindex="'.$tabindexCounter.'" onblur="checkDefaultBox(\''.$key.'\');" /></span>';
-    } elseif ($value['type'] == 'checkbox') {
+    if (!empty($value['warning'])) { // set warning text
+      $warningText = $value['warning'];
+    } else {
+      $warningText = '';
+    }
+    
+    
+    // Different types of fields --- start
+    if ($value['type'] == 'textfield') { // TEXTFIELD
+      print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><input type="text" class="textinput"'.$widthOption.$sizeOption.$maxlengthOption.'  name="'.$key.'" id="'.$key.'" value="'.htmlspecialchars($admin_data_array[$key]).'"'.$readonly_text.' tabindex="'.$tabindexCounter.'" title="'.str_replace("'", "\'", htmlspecialchars($warningText)).'" onblur="checkDefaultBox(\''.$key.'\', \'textfield\', \'\', \''.str_replace("'", "\'", htmlspecialchars($warningText)).'\');" /></span>';
+    } elseif ($value['type'] == 'password') { // PASSWORD
+      print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><input type="password" class="textinput" maxlength="255"'.$widthOption.$sizeOption.$maxlengthOption.' name="'.$key.'" id="'.$key.'" value="'.$admin_data_array[$key].'"'.$readonly_text.' tabindex="'.$tabindexCounter.'" title="'.str_replace("'", "\'", htmlspecialchars($warningText)).'" onblur="checkDefaultBox(\''.$key.'\', \'password\', \'\', \''.str_replace("'", "\'", htmlspecialchars($warningText)).'\', \''.str_replace("'", "\'", htmlspecialchars($warningText)).'\');" /></span>';
+    } elseif ($value['type'] == 'checkbox') { // CHECKBOX
       $checked = '';
       if ($admin_data_array[$key] == 1) {
         $checked = ' checked="checked"';
       }
-      if ($value['default_value'] == '0') {
-        $defaultLabel = $lang_admin_php['disabled'];
-      } else {
-        $defaultLabel = $lang_admin_php['enabled'];
-      }      
-      print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><input type="checkbox" name="'.$key.'" id="'.$key.'" value="1" class="checkbox"'.$checked.$readonly_radio.' tabindex="'.$tabindexCounter.'" onchange="checkDefaultBox(\''.$key.'\');" />';
-    } elseif ($value['type'] == 'radio') {
+      print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><input type="checkbox" name="'.$key.'" id="'.$key.'" value="1" class="checkbox"'.$checked.$readonly_radio.' tabindex="'.$tabindexCounter.'" title="'.str_replace("'", "\'", htmlspecialchars($warningText)).'" onchange="checkDefaultBox(\''.$key.'\', \'checkbox\', \'\', \''.str_replace("'", "\'", htmlspecialchars($warningText)).'\');" />';
+    } elseif ($value['type'] == 'radio') { //RADIO
       $optionLoopCounter = 0;
       print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'">'; // wrap the radio-buttons set into a container box
       foreach ($value['options'] as $option) { // loop through the options array
@@ -395,30 +392,27 @@ EOT;
         if ($admin_data_array[$key] == $optionLoopCounter) {
           $checked = ' checked="checked"';
         }
-        print '<input type="radio" name="'.$key.'" id="'.$key.$optionLoopCounter.'" value="'.$optionLoopCounter.'" class="radio"'.$checked.$readonly_radio.' tabindex="'.$tabindexCounter.'" onfocus="checkDefaultBox(\''.$key.$optionLoopCounter.'\');" /><label for="'.$key.$optionLoopCounter.'" class="clickable_option">'.$option.'</label>&nbsp;';
+        print '<input type="radio" name="'.$key.'" id="'.$key.$optionLoopCounter.'" value="'.$optionLoopCounter.'" class="radio"'.$checked.$readonly_radio.' tabindex="'.$tabindexCounter.'" title="'.str_replace("'", "\'", htmlspecialchars($warningText)).'" onfocus="checkDefaultBox(\''.$key.$optionLoopCounter.'\', \'radio\', \'\', \''.str_replace("'", "\'", htmlspecialchars($warningText)).'\');" /><label for="'.$key.$optionLoopCounter.'" class="clickable_option">'.$option.'</label>&nbsp;';
         if (!empty($value['linebreak'])) {
           print $value['linebreak'];
-        }
-        if ($value['default_value'] == $optionLoopCounter) {
-          $defaultLabel = $option;
         }
         $optionLoopCounter++;
         $tabindexCounter++;
       }
       print '</span>';
-    } elseif ($value['type'] == 'hidden') {
+    } elseif ($value['type'] == 'hidden') { //HIDDEN
       print '<input type="hidden"  name="'.$key.'" value="'.$admin_data_array[$key].'"'.$readonly.' />';
-    } elseif ($value['type'] == 'select_function') {
-    } elseif ($value['type'] == 'select_multiple') {
+    } elseif ($value['type'] == 'select_function') { //SELECT_FUNCTION
+	    // not implemented (yet)
+    } elseif ($value['type'] == 'select_multiple') { //SELECT_MULTIPLE
       $optionLoopCounter = 0;
       $option_value_array = explode ("|",$admin_data_array[$key]);
-      $default_value_array = explode ("|",$value['default_value']);
       if (count($value['options']) > 10) {
 	      $maxSize = 10;
       } else {
 	      $maxSize = count($value['options']);
       }
-      print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><select name="'.$key.'[]" id="'.$key.'" class="listbox" size="'.$maxSize.'" '.$readonly_radio.' tabindex="'.$tabindexCounter.'" multiple="multiple">'.$lineBreak;
+      print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><select name="'.$key.'[]" id="'.$key.'" class="listbox" size="'.$maxSize.'" '.$readonly_radio.' tabindex="'.$tabindexCounter.'" multiple="multiple" title="'.str_replace("'", "\'", htmlspecialchars($warningText)).'">'.$lineBreak;
       foreach ($value['options'] as $option_value) { // loop through the options array
         $admin_data_array[$key] = (int)$admin_data_array[$key];
         if ($option_value_array[$optionLoopCounter] == 1) {
@@ -426,22 +420,15 @@ EOT;
         } else {
           $selected = '';
         }
-        if ($default_value_array[$optionLoopCounter] == 1) {
-          $defaultLabel .= ucfirst($option_value).',';
-        }
         print '                      <option value="'.$optionLoopCounter.'"'.$selected.'>'.ucfirst($option_value);
         print '</option>'.$lineBreak;
         $optionLoopCounter++;
       }
       print '</select></span><br />'.$lineBreak;
-      $defaultLabel = rtrim($defaultLabel, ',');
-      if ($defaultLabel == '') {
-        $defaultLabel = $lang_admin_php['none'];
-      }
-    } elseif ($value['type'] == 'select') {
+    } elseif ($value['type'] == 'select') {//SELECT
       $optionLoopCounter = 0;
       $associativeArray = array_is_associative($value['options']);
-      print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><select name="'.$key.'" id="'.$key.'" class="listbox" size="1" '.$readonly_radio.' tabindex="'.$tabindexCounter.'">';
+      print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><select name="'.$key.'" id="'.$key.'" class="listbox" size="1" '.$readonly_radio.' tabindex="'.$tabindexCounter.'" onchange="checkDefaultBox(\''.$key.'\', \'select\', \''.count($value['options']).'\', \''.str_replace("'", "\'", htmlspecialchars($warningText)).'\');" title="'.str_replace("'", "\'", htmlspecialchars($warningText)).'">';
       foreach ($value['options'] as $option_key => $option_value) { // loop through the options array
         if ($admin_data_array[$key] == $option_value) {
           $selected = ' selected="selected"';
@@ -459,6 +446,7 @@ EOT;
       print '</select></span>';
     }
     print '&nbsp;'.$value['end_description'];
+    // Different types of fields --- end
     $helpIcon = '';
     if ($value['help_link'] != '' && $admin_data_array['enable_help'] != 0) {
       $helpIcon = cpg_display_help($value['help_link']);
@@ -467,21 +455,24 @@ EOT;
     $defaultValueField = '';
     if ($value['default_value'] != '') { // we have a default value
         if ($value['default_value'] == $admin_data_array[$key]) { // the default value equals the current config setting - grey out
-            $resetCheckbox = '<input type="checkbox" name="reset_default_'.$key.'" id="reset_default_'.$key.'" value="'.$value['default_value'].'" class="checkbox" checked="checked" title="'.$lang_admin_php['reset_to_default'].': '.$lang_admin_php['no_change_needed'].' ('.$defaultLabel.')" style="display:none;" />';
+            $resetCheckbox = '<input type="checkbox" name="reset_default_'.$key.'" id="reset_default_'.$key.'" value="'.$value['default_value'].'" class="checkbox" checked="checked" title="'.$lang_admin_php['reset_to_default'].'" onclick="resetToDefault(\''.$key.'\', \''.$value['type'].'\', \''.($optionLoopCounter - 1).'\');" style="display:none;" />';
         } else {
-            $resetCheckbox = '<input type="checkbox" name="reset_default_'.$key.'" id="reset_default_'.$key.'" value="'.$value['default_value'].'" class="checkbox" title="'.$lang_admin_php['reset_to_default'].': '.$defaultLabel.'" onclick="resetToDefault(\''.$key.'\');" />';
+            $resetCheckbox = '<input type="checkbox" name="reset_default_'.$key.'" id="reset_default_'.$key.'" value="'.$value['default_value'].'" class="checkbox" title="'.$lang_admin_php['reset_to_default'].'" onclick="resetToDefault(\''.$key.'\', \''.$value['type'].'\', \''.($optionLoopCounter - 1).'\');" />';
         }
     } else { // we don't have a default value
-        $resetCheckbox = '<input type="hidden" name="reset_default_'.$key.'" id="reset_default_'.$key.'" value="'.$value['default_value'].'"  />';
+        $resetCheckbox = '<input type="hidden" name="reset_default_'.$key.'" id="reset_default_'.$key.'" value="'.$admin_data_array[$key].'"  />';
     }
-    //$defaultValueField = '<input type="hidden"  name="default_value_'.$key.'" id="default_value_'.$key.'" value="'.$value['default_value'].'" />';
+    $resetCheckbox = '<span class="deleteOnSubmit">' . $resetCheckbox . '</span>';
+    $resetCheckbox = str_replace("'", "\'", $resetCheckbox);
     print <<< EOT
                   </td>
                   <td class="{$cellStyle}">
-                    {$helpIcon}
+                    <script type="text/javascript">
+	                    document.write('{$resetCheckbox}');
+                    </script>
                   </td>
                   <td class="{$cellStyle}">
-                    {$resetCheckbox}{$defaultValueField}
+                    {$helpIcon}
                   </td>
                 </tr>
 EOT;
@@ -544,10 +535,51 @@ echo <<< EOT
         }
       }
     }
+    function resetToDefault(theFieldId, fieldType, numberOfItems) {
+	    //var foo = theFieldId + fieldType + numberOfItems;
+	    //alert(numberOfItems);
+	    //alert(fieldType);
+	    if(fieldType == 'textfield' || fieldType == 'password') {
+		    document.getElementById(theFieldId).value = document.getElementById('reset_default_' + theFieldId).value;
+            document.getElementById('reset_default_' + theFieldId).style.display = 'none';
+            document.getElementById('reset_default_' + theFieldId).checked = true;
+		    return;
+	    }
+	    if(fieldType == 'checkbox') {
+		    if (document.getElementById('reset_default_' + theFieldId).value == 1) {
+			    document.getElementById(theFieldId).checked = true;
+		    } else {
+			    document.getElementById(theFieldId).checked = false;
+		    }
+            document.getElementById('reset_default_' + theFieldId).style.display = 'none';
+            document.getElementById('reset_default_' + theFieldId).checked = true;
+		    return;
+	    }
+	    if(fieldType == 'radio') {
+		    document.getElementById(theFieldId + document.getElementById('reset_default_' + theFieldId).value).checked = true;
+            document.getElementById('reset_default_' + theFieldId).style.display = 'none';
+            document.getElementById('reset_default_' + theFieldId).checked = true;
+            return;
+	    }
+	    if(fieldType == 'select') {
+		    for (var i = 0; i < numberOfItems; i++) {
+                //alert(document.getElementById(theFieldId).options[i].value);
+                if (document.getElementById(theFieldId).options[i].value == document.getElementById('reset_default_' + theFieldId).value) {
+                    document.getElementById(theFieldId).options[i].selected = true;
+                    document.getElementById('reset_default_' + theFieldId).style.display = 'none';
+                    document.getElementById('reset_default_' + theFieldId).checked = true;
+                    return; 
+                }
+            }
+	    }
+    }
     
-    function checkDefaultBox(theFieldId) {
-        // Each time a config field is being changed (onblur), this JS is being run to enable/disable the default checkbox
-        if(document.getElementById(theFieldId).type == 'text' || document.getElementById(theFieldId).type == 'password') {
+    function checkDefaultBox(theFieldId, fieldType, numberOfItems, warning) {
+        // Each time a config field is being changed (onblur/onchange), this JS is being run to enable/disable the default checkbox
+        if(warning != '') {
+	        alert(warning + ' ' + '{$lang_admin_php['warning_dont_submit']}');
+        }
+        if(fieldType == 'textfield' || fieldType == 'password') {
 	        if (document.getElementById(theFieldId).value != document.getElementById('reset_default_' + theFieldId).value) {
 	            document.getElementById('reset_default_' + theFieldId).style.display = 'inline';
 	            document.getElementById('reset_default_' + theFieldId).checked = false;
@@ -559,7 +591,7 @@ echo <<< EOT
 	        }
 	        return;
         }
-        if(document.getElementById(theFieldId).type == 'checkbox') {
+        if(fieldType == 'checkbox') {
 	        var checkboxNeedsChangeToChecked = 0;
 	        if (document.getElementById(theFieldId).checked == true && document.getElementById('reset_default_' + theFieldId).value == 1) {
 		        checkboxNeedsChangeToChecked = 1;
@@ -578,7 +610,7 @@ echo <<< EOT
 	        }
 	        return;
         }
-        if(document.getElementById(theFieldId).type == 'radio') {
+        if(fieldType == 'radio') {
             // theFieldId has got a number appended to it - let's strip it
             theLoopCounterIndex = theFieldId.slice((theFieldId.length - 1),theFieldId.length); 
             theFieldId = theFieldId.slice(0,(theFieldId.length - 1));
@@ -593,24 +625,28 @@ echo <<< EOT
 	        }
             return;
         }
+        if(fieldType == 'select') {
+			for (var i = 0; i < numberOfItems; i++) {
+                if (document.getElementById(theFieldId).options[i].selected == true) {
+                    if (document.getElementById(theFieldId).options[i].value == document.getElementById('reset_default_' + theFieldId).value) {
+	                    document.getElementById('reset_default_' + theFieldId).style.display = 'none';
+			            document.getElementById('reset_default_' + theFieldId).checked = true;
+			            document.getElementById('reset_default_' + theFieldId).title = '{$lang_admin_php['reset_to_default']}: {$lang_admin_php['no_change_needed']} (' + document.getElementById('reset_default_' + theFieldId).value + ')';
+	                    return;
+                    } else {
+	                    document.getElementById('reset_default_' + theFieldId).style.display = 'inline';
+			            document.getElementById('reset_default_' + theFieldId).checked = false;
+			            document.getElementById('reset_default_' + theFieldId).title = '{$lang_admin_php['reset_to_default']}';
+			            return;
+                    }
+                }
+            }
+        }
     }
-    function resetToDefault(theFieldId) {
-	    if(document.getElementById(theFieldId).type == 'text' || document.getElementById(theFieldId).type == 'password') {
-		    document.getElementById(theFieldId).value = document.getElementById('reset_default_' + theFieldId).value;
-            document.getElementById('reset_default_' + theFieldId).style.display = 'none';
-            document.getElementById('reset_default_' + theFieldId).checked = true;
-		    return;
-	    }
-	    if(document.getElementById(theFieldId).type == 'checkbox') {
-		    if (document.getElementById('reset_default_' + theFieldId).value == 1) {
-			    document.getElementById(theFieldId).checked = true;
-		    } else {
-			    document.getElementById(theFieldId).checked = false;
-		    }
-            document.getElementById('reset_default_' + theFieldId).style.display = 'none';
-            document.getElementById('reset_default_' + theFieldId).checked = true;
-		    return;
-	    }
+    
+    function deleteUnneededFields() {
+	    $('.deleteOnSubmit').remove();
+	    return true;
     }
 </script>
 EOT;

@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4288 $
-  $LastChangedBy: saweyyy $
-  $Date: 2008-02-21 21:16:42 +0530 (Thu, 21 Feb 2008) $
+  $Revision: 4364 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-03-25 14:40:48 +0530 (Tue, 25 Mar 2008) $
 **********************************************/
 
 
@@ -58,7 +58,7 @@ function html_header($title, $charset = '')
 
 function html_logo()
 {
-    echo '<img class="logo" src="images/logo.gif">';
+    echo '<img class="logo" src="images/coppermine-logo.png" border="0" alt="" />';
 }
 
 

@@ -13,9 +13,9 @@
   SVN version info:
 
   Coppermine version: 1.5.0
-  $Revision: 4209 $
+  $Revision: 4365 $
   $LastChangedBy: gaugau $
-  $Date: 2008-01-14 14:28:42 +0530 (Mon, 14 Jan 2008) $
+  $Date: 2008-03-26 14:27:33 +0530 (Wed, 26 Mar 2008) $
 -->
 <link rel="stylesheet" type="text/css" href="style.css" media="all" />
 <link rel="stylesheet" type="text/css" href="screen.css" media="screen" />
@@ -65,13 +65,15 @@
 
 <a name="how_language_fallback"></a><h3>Language fallback<a href="#how_language_fallback" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Starting in cpg1.3.x there is a config option named &quot;<a href="configuration.htm#admin_language_fallback">Fallback to English if translated phrase not found?</a>&quot; that is helpfull if a language file for the current coppermine version is not available: you can then use a language file from an older version of coppermine. New strings (that have been introduced in the new coppermine version) that didn't exist in the old language file will then be displayed in English. This way, end users can see your gallery in their prefered version mostly.</p>
+<p>The language fallback option burns additional resources on the server and may slow down coppermine significantly, so only enable the language fallback feature if you actually have language files from older versions of coppermine (i.e. from cpg1.4.x).</p>
+<p>Please note that you (as coppermine admin) can not use language fallback for administration purposes - admin-only options will not be translated by that feature. Therefor, you need to use a genuine full translation file to administer your gallery. To accomplish this, temporarily switch to English for administration purposes; after finishing your admin tasks, you can savely switch back to your prefered language.</p>
 
 <a name="how_scope"></a><h3>Scope of internationalization<a href="#how_scope" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>The language files Coppermine comes with can only contain pre-defined strings that compose the controls of your gallery (i.e. the menus). Switching your gallery to another language will have no impact on the custom content that resides in the database (i.e. the category names you have set up or the picture captions). In this aspect, Coppermine is not truely multilingual: there is currently no option available to have the content of coppermine available in more than one language.</p>
 
 <script type="text/javascript">
   cpgDocFooter();
-  dateRevision(' $LastChangedDate: 2008-01-14 14:28:42 +0530 (Mon, 14 Jan 2008) $ ', ' $Revision: 4209 $ ');
+  dateRevision(' $LastChangedDate: 2008-03-26 14:27:33 +0530 (Wed, 26 Mar 2008) $ ', ' $Revision: 4365 $ ');
 </script>
 
 </body>

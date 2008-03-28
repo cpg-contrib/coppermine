@@ -11,9 +11,9 @@ the Free Software Foundation; either version 2 of the License, or
 ********************************************
 Coppermine version: 1.5.0
 $Source$
-$Revision: 4346 $
+$Revision: 4360 $
 $Author: gaugau $
-$Date: 2008-03-20 13:47:52 +0530 (Thu, 20 Mar 2008) $
+$Date: 2008-03-25 13:32:11 +0530 (Tue, 25 Mar 2008) $
 *********************************************
 Changelog
 =========
@@ -26,6 +26,11 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-03-25 [A] Added warning on the config page for settings that mustn't be changed lightheartedly {GauGau}
+2008-03-25 [A] Added favicon tag to all themes that come with coppermine {GauGau}
+2008-03-25 [B] Rewrote json_encode function as the old one was not working correctly {Abbas}
+2008-03-24 [A] Added "reset to default" feature for config {GauGau}
+2008-03-21 [O] Removed 'root template' feature {Nibbler}
 2008-03-20 [O] Changed versioncheck to work with the installer-class + minor cosmetical fixes in source {SaWey}
 2008-03-20 [B] Fixed some typos I introduced {SaWey}
 2008-03-19 [A] Added versioncheck to the installer {SaWey}

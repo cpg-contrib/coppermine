@@ -103,7 +103,7 @@ if(file_exists('include/config.inc.php')){
 }
 $mb_utf8_regex = '[\xE1-\xEF][\x80-\xBF][\x80-\xBF]|\xE0[\xA0-\xBF][\x80-\xBF]|[\xC2-\xDF][\x80-\xBF]';
 require 'include/functions.inc.php';
-require 'include/dbfunctions.php';	#########   cpgdb_AL
+//require 'include/dbfunctions.php';	#########   cpgdb_AL
 # see http://php.net/mbstring for details
 if (function_exists('mb_internal_encoding')) { mb_internal_encoding('UTF-8'); }
 

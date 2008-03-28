@@ -13,9 +13,9 @@
   SVN version info:
 
   Coppermine version: 1.5.0
-  $Revision: 4209 $
+  $Revision: 4365 $
   $LastChangedBy: gaugau $
-  $Date: 2008-01-14 14:28:42 +0530 (Mon, 14 Jan 2008) $
+  $Date: 2008-03-26 14:27:33 +0530 (Wed, 26 Mar 2008) $
 -->
 <link rel="stylesheet" type="text/css" href="style.css" media="all" />
 <link rel="stylesheet" type="text/css" href="screen.css" media="screen" />
@@ -111,10 +111,12 @@ Ocassionally, you will also need to edit your php.ini file (located in windows d
 <tt class="code">extension=php_gd2.dll</tt> (at the end of the file). This will cause PHP to load the GD2 extension.<br />
 Whenever you make changes to php.ini, remember that you will need to restart your webserver before changes become effective.<br />
 ImageMagick it quite complicated to use under Windows<br />
-Greg<br /></p><hr />
+Greg<br /></p>
+<p>Side-note: the coppermine dev team does not recommend self-hosting. We are not trying to encourage you to run a webserver on your own if you don't know your way around. We left this paragraph in the FAQ section for reference. Please understand that we can not advise on webserver setup issues.</p><hr />
 <a name="enableIMonWindows"></a>
 <h3>How do I <strong>enable ImageMagick</strong> on my Windows server?<a href="#enableIMonWindows" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>ImageMagick is quite complicated to set up on Windows. There are several things to be taken into account. The Coppermine support board is <strong>not</strong> the right place to ask for help on installing it, as it deals with Coppermine, not &quot;How to set up a server&quot; (most people on the Coppermine boards don't run their own webserver, but they have webspace by a webhost). Instead, try to find support boards on the internet that deal with this special topic.</p>
+<p>The path to ImageMagick mustn't contain spaces or special characters. You have to make sure that the user the webserver runs under actually has the needed permissions to run the ImageMagick executables.</p>
 <hr />
 
 
@@ -218,7 +220,7 @@ Unfortunately, we still do not know why this happens - those who get this error 
 
 <script type="text/javascript">
   cpgDocFooter();
-  dateRevision(' $LastChangedDate: 2008-01-14 14:28:42 +0530 (Mon, 14 Jan 2008) $ ', ' $Revision: 4209 $ ');
+  dateRevision(' $LastChangedDate: 2008-03-26 14:27:33 +0530 (Wed, 26 Mar 2008) $ ', ' $Revision: 4365 $ ');
 </script>
 
 </body>

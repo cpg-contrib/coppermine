@@ -665,8 +665,10 @@ if (defined('SEARCH_PHP')) $cpg_db_search_php = array(
 /***********************************************************/
 if (defined('SEARCHNEW_PHP') || defined('DB_INPUT_PHP')) $cpg_db_searchnew_php = array(
 	'select_aid'				=> "SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = 0",
-	'select_distinct_a.aid'		=> "SELECT DISTINCT a.aid as aid, a.title as title, c.name as cname FROM {$CONFIG['TABLE_ALBUMS']} as a, {$CONFIG['TABLE_CATEGORIES']} as c WHERE a.category = c.cid AND a.category < '" . FIRST_USER_CAT . "'",
-	'select_filepath'			=> "SELECT filepath, filename " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE filepath LIKE '$startdir%'",
+	'select_distinct_a.aid'		=> "SELECT DISTINCT a.aid as aid, a.title as title, c.name as cname FROM ".
+								   "{$CONFIG['TABLE_ALBUMS']} as a, {$CONFIG['TABLE_CATEGORIES']} as c ".
+								   "WHERE a.category = c.cid AND a.category < '" . FIRST_USER_CAT . "'",
+	'select_filepath'			=> "SELECT filepath, filename  FROM {$CONFIG['TABLE_PICTURES']}  WHERE filepath LIKE '$startdir%'",
 	'select_aid'				=> "SELECT aid, title " . "FROM {$CONFIG['TABLE_ALBUMS']} " . "WHERE 1",
 	'update_config'				=> "UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$browse_batch_add' WHERE name = 'browse_batch_add'",
 	'update_config_02'			=> "UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$display_thumbs_batch_add' WHERE name = 'display_thumbs_batch_add'"
@@ -904,50 +906,27 @@ $cpg_db_cpgAPIupload_php = array(
 /**********************************************************************************************************/
 //	queries  from  bridge/ coppermine.inc.php
 /**********************************************************************************************************/
-$cpg_db_coppermine_inc_php = array(
-	'select_user_id'			=> "SELECT user_id, user_name, user_password FROM {$thisusertable} WHERE ",
-									//Check the login method (username, email address or both)
-									/*switch($CONFIG['login_method']){
-										case 'both':
-											$sql .= "(user_name = '$username' OR user_email = '$username') AND BINARY user_password = '$encpassword' AND user_active = 'YES'";
-											break;
-										case 'email':
-											$sql .= "user_email = '$username' AND BINARY user_password = '$encpassword' AND user_active = 'YES'";
-											break;
-										case 'username':
-										default:
-											$sql .= "user_name = '$username' AND BINARY user_password = '$encpassword' AND user_active = 'YES'";
-											break;	*/
-	'update_usertable'			=> "UPDATE {$thisusertable} SET user_lastvisit = NOW() ",
-									//Check the login method (username, email address or both)
-									/*switch($CONFIG['login_method']){
-										case 'both':
-											$sql .= "WHERE (user_name = '$username' OR user_email = '$username') AND BINARY user_password = '$encpassword' AND user_active = 'YES'";
-											break;
-										case 'email':
-											$sql .= "WHERE user_email = '$username' AND BINARY user_password = '$encpassword' AND user_active = 'YES'";
-											break;
-										case 'username':
-										default:
-											$sql .= "WHERE user_name = '$username' AND BINARY user_password = '$encpassword' AND user_active = 'YES'";
-											break;	*/
-	'update_sessiontable'			=> "update {$thissessionstable} set user_id={$USER_DATA['user_id']} $remember_sql where session_id=md5('$session_id');",
-	'update_sessiontable_02'		=> "update {$thissessionstable} set user_id = 0, remember=0 where session_id=md5('$session_id');",
-	'select_user_group_list'		=> "SELECT user_group_list FROM {$thisusertable} AS u WHERE {$thisfield['user_id']}='{$user['id']}' and user_group_list <> '';",
-	'delete_from_sessiontable'		=> "delete from {$thissessionstable} where time<$session_life_time and remember=0;",
-	'delete_from_sessiontable_02'	=> "delete from {$thissessionstable} where time<$rememberme_life_time;",
-	'select_user_id'				=> 'select user_id from '.$thissessionstable.' where session_id=md5("'.$session_id.'");',
-	'select_uaer_id_02'				=> 'select user_id as id, user_password as password from '.$thisusertable.' where user_id='.$row['user_id'],
-	'update_sessiontable_03'		=> "update {$thissessionstable} set time='".time()."' where session_id=md5('$session_id');",
-	'insert_into_sessiontable'		=> 'insert into '.$thissessionstable.' (session_id, user_id, time, remember) values ("'.md5($session_id).'", 0, "'.time().'", 0);',
-	'select_session_id'				=> "SELECT session_id FROM {$thissessionstable} WHERE session_id=MD5('$session_id')",
-	'select_count_user_id'			=> "select count(user_id) as num_guests from {$thissessionstable} where user_id=0;",
-	'select_count_user_id_02'		=> "select count(user_id) as num_users from {$thissessionstable} where user_id>0;",
-	'select_all_from_groupstable'	=> "SELECT * FROM {$thisgroupstable} WHERE {$thisfield['grouptbl_group_name']} <> ''",
-	'select_group_id'				=> "SELECT group_id, group_name FROM {$CONFIG['TABLE_USERGROUPS']} WHERE 1",
-	'insert_into_usergroups'		=> "INSERT INTO {$CONFIG['TABLE_USERGROUPS']} (group_id, group_name, has_admin_access) VALUES ('$i_group_id', '" . addslashes($i_group_name) . "', '$admin_access')",
-	'update_usergroups'				=> "UPDATE {$CONFIG['TABLE_USERGROUPS']} SET group_name = '" . addslashes($i_group_name) . "' WHERE group_id = '$i_group_id' LIMIT 1",
-	'update_usergroups_02'			=> "UPDATE {$CONFIG['TABLE_USERGROUPS']} SET has_admin_access = '1' WHERE group_id = '1' LIMIT 1"
+$cpg_db_coppermine_inc = array(
+	'login_get_user_info'		=> "SELECT user_id, user_name, user_password FROM %1\$s WHERE %2\$s",
+	'login_set_user_lastvisit'	=> "UPDATE %1\$s SET user_lastvisit = NOW() WHERE %2\$s",
+	'update_guestsession'		=> "update %1\$s set user_id=%2\$s %3\$s where session_id='%4\$s';",
+	'logout_session'			=> "update %1\$s set user_id = 0, remember=0 where session_id='%2\$s';",
+	'get_user_group'			=> "SELECT user_group_list FROM %1\$s AS u WHERE %2\$s='%3\$s' and user_group_list <> '';",
+	'delete_old_sessions'		=> "delete from %1\$s where time<%2\$s and remember=0;",
+	'delete_remember_sessions'	=> "delete from %1\$s where time<%2\$s;",
+	'check_valid_session'		=> "select user_id from %1\$s where session_id='%2\$s';",
+	'check_session_user'		=> "select user_id as id, user_password as password from %1\$s where user_id=%2\$s",
+	'session_update'			=> "update %1\$s set time='%2\$s' where session_id='%3\$s';",
+	'create_session'			=> "insert into %1\$s (session_id, user_id, time, remember) values ('%2\$s', 0, '%3\$s', 0);",
+	'generate_session_id'		=> "SELECT session_id FROM %1\$s WHERE session_id='%2\$s'",
+	'get_guest_count'			=> "select count(user_id) as num_guests from %1\$s where user_id=0;",
+	'get_auth_user_count'		=> "select count(user_id) as num_users from %1\$s where user_id>0;",
+	'get_group_no_override'		=> "SELECT * FROM %1\$s WHERE $2\$s <> ''",
+	'get_group_data'			=> "SELECT group_id, group_name FROM {$CONFIG['TABLE_USERGROUPS']} WHERE 1",
+	'add_admin_info'			=> "INSERT INTO {$CONFIG['TABLE_USERGROUPS']} (group_id, group_name, has_admin_access) ".
+								   "VALUES ('%1\$s', '%2\$s', '%3\$s')",
+	'update_group_names'		=> "UPDATE {$CONFIG['TABLE_USERGROUPS']} SET group_name = '%1\$s' WHERE group_id = '%2\$s' LIMIT 1",
+	'fix_admin_group'			=> "UPDATE {$CONFIG['TABLE_USERGROUPS']} SET has_admin_access = '1' WHERE group_id = '1' LIMIT 1"
 );
 
 
@@ -1099,25 +1078,22 @@ $cpg_db_smf20_inc_php = array(
 /**********************************************************************************************************/
 //	queries  from  bridge/ udb_base.inc.php
 /**********************************************************************************************************/
-$cpg_db_udb_base_inc_php = array(
-	'select_u.user_id'				=> "SELECT u.{$f['user_id']} AS id, u.{$f['username']} AS username, u.{$f['password']} AS password, ug.{$f['usertbl_group_id']} AS group_id ".
-	                                   "FROM {$thisusertable} AS u, {$thisusergroupstable} AS ug ".
-	                                   "WHERE u.{$f['user_id']}=ug.{$f['user_id']} AND u.{$f['user_id']}='$id'",
-	'select_u.user_id_02'			=> "SELECT u.{$f['user_id']} AS id, u.{$f['username']} AS username, u.{$f['password']} AS password, u.{$f['usertbl_group_id']}+100 AS group_id ".
-	                                   "FROM {$thisusertable} AS u INNER JOIN {$thisgroupstable} AS g ON u.{$f['usertbl_group_id']}=g.{$f['grouptbl_group_id']} ".
-	                                   "WHERE u.{$f['user_id']}='$id'",
-	'select_count_all'				=> "SELECT count(*) FROM {$thisusertable} WHERE 1", $thislink_id,
-	'select_user_id'				=> "SELECT {$f['user_id']} as user_id, {$f['username']} as user_name, {$f['email']} as user_email, {$f['regdate']} as user_regdate, {$f['lastvisit']} as user_lastvisit, {$f['active']} as user_active, ".
+$cpg_db_udb_base_inc = array(
+	'auth_set_usergrptbl'			=> "SELECT u.%1\$s AS id, u.%2\$s AS username, u.%3\$s AS password, ug.%4\$s AS group_id ".
+									   "FROM %5\$s AS u, %6\$s AS ug  WHERE u.%1\$s =ug.%1\$s AND u.%1\$s ='%7\$s'",
+	'auth_notset_usergrptbl'		=> "SELECT u.%1\$s AS id, u.%2\$s AS username, u.%3\$s AS password, ".
+									   "u.%4\$s+100 AS group_id  FROM %5\$s AS u INNER JOIN %6\$s AS g ".
+									   "ON u.%4\$s=g.%7\$s  WHERE u.%1\$s ='%8\$s'",
+	'get_user_count'				=> "SELECT count(*) FROM %1\$s WHERE 1",
+	'get_users'						=> "SELECT %1\$s as user_id, %2\$s as user_name, %3\$s as user_email, ".
+									   "UNIX_TIMESTAMP(%4\$s) as user_regdate, UNIX_TIMESTAMP(%5\$s) as user_lastvisit, %6\$s as user_active, ".
 						               "COUNT(pid) as pic_count, ROUND(SUM(total_filesize)/1024) as disk_usage, group_name, group_quota ".
-						               "FROM {$thisusertable} AS u ".
-						               "INNER JOIN {$C['TABLE_USERGROUPS']} AS g ON u.{$f['usertbl_group_id']} = g.group_id ".
-						               "LEFT JOIN {$C['TABLE_PICTURES']} AS p ON p.owner_id = u.{$f['user_id']} ".
-						               $options['search'].
-						               "GROUP BY user_id " . "ORDER BY " . $sort_codes[$options['sort']] . " ".
-						               "LIMIT {$options['lower_limit']}, {$options['users_per_page']};",
-	'select_username'				=> "SELECT {$thisfield['username']} as user_name FROM {$thisusertable} WHERE {$thisfield['user_id']} = '$uid'",
-	'select_user_id_02'				=> "SELECT {$thisfield['user_id']} AS user_id FROM {$thisusertable} WHERE {$thisfield['username']}  = '$username'",
-	'select_max_group_quota'		=> "SELECT MAX(group_quota) as disk_max, MIN(group_quota) as disk_min, " .
+						               "FROM %7\$s AS u  INNER JOIN %8\$s AS g ON u.%9\$s = g.group_id ".
+						               "LEFT JOIN %10\$s AS p ON p.owner_id = u.%1\$s  %11\$s".
+						               "GROUP BY user_id  ORDER BY %12\%s  LIMIT %13\$s, %14\$s;",
+	'get_username'					=> "SELECT %1\$s as user_name FROM %2\$s WHERE %3\$s = '%4\$s'",
+	'get_user_id'					=> "SELECT %1\$s AS user_id FROM %2\$s WHERE %3\$s  = '%4\$s'",
+	'get_user_data'					=> "SELECT MAX(group_quota) as disk_max, MIN(group_quota) as disk_min, " .
 			                           "MAX(can_rate_pictures) as can_rate_pictures, MAX(can_send_ecards) as can_send_ecards, " .
 			                           "MAX(upload_form_config) as ufc_max, MIN(upload_form_config) as ufc_min, " .
 			                           "MAX(custom_user_upload) as custom_user_upload, MAX(num_file_upload) as num_file_upload, " .
@@ -1125,62 +1101,63 @@ $cpg_db_udb_base_inc_php = array(
 			                           "MAX(can_post_comments) as can_post_comments, MAX(can_upload_pictures) as can_upload_pictures, " .
 			                           "MAX(can_create_albums) as can_create_albums, " .
 			                           "MAX(has_admin_access) as has_admin_access, " .
-			                           "MIN(pub_upl_need_approval) as pub_upl_need_approval, MIN( priv_upl_need_approval) as  priv_upl_need_approval ".
-			                           "FROM {$CONFIG['TABLE_USERGROUPS']} WHERE group_id in (" .  implode(",", $groups). ")",
-	'select_group_name'				=> "SELECT group_name FROM  {$CONFIG['TABLE_USERGROUPS']} WHERE group_id= " . $pri_group,
-	'select_all_from_usergroups'	=> "SELECT * FROM {$CONFIG['TABLE_USERGROUPS']} WHERE group_id = $default_group_id",
-	'select_all_from_usertable'		=> "SELECT *, {$thisfield['username']} AS user_name,
-                                       {$thisfield['email']} AS user_email,
-                                       {$thisfield['regdate']} AS user_regdate,
-                                       {$thisfield['location']} AS user_location,
-                                       {$thisfield['website']} AS user_website
-                                       FROM  {$thisusertable} WHERE {$thisfield['user_id']} = '$uid'",
-	'select_null_from_albums'		=> "select null from {$CONFIG['TABLE_ALBUMS']} as p  INNER JOIN {$CONFIG['TABLE_PICTURES']} AS pics ON pics.aid = p.aid where ( category>".FIRST_USER_CAT." $forbidden) group by category;",
-	'select_user_id_03'				=> "SELECT {$f['user_id']} as user_id,{$f['username']} as user_name,COUNT(DISTINCT a.aid) as alb_count,COUNT(DISTINCT pid) as pic_count,MAX(pid) as thumb_pid, MAX(galleryicon) as gallery_pid ".
+			                           "MIN(pub_upl_need_approval) as pub_upl_need_approval, MIN( priv_upl_need_approval) ".
+			                           "as  priv_upl_need_approval FROM {$CONFIG['TABLE_USERGROUPS']} WHERE group_id in ( %1\$s )",
+	'get_user_data_group_name'		=> "SELECT group_name FROM  {$CONFIG['TABLE_USERGROUPS']} WHERE group_id= %1\$s",
+	'get_user_data_all_usergroups'	=> "SELECT * FROM {$CONFIG['TABLE_USERGROUPS']} WHERE group_id = %1\$s",
+	'get_user_info'					=> "SELECT *, %1\$s AS user_name, %2\$s AS user_email, UNIX_TIMESTAMP(%3\$s)  AS user_regdate, %4\$s AS user_location,".
+                                       "%5\$s AS user_website  FROM  %6\$s WHERE %7\$s = '%8\$s'",
+	'list_users_with_alb'			=> "select null from {$CONFIG['TABLE_ALBUMS']} as p  INNER JOIN {$CONFIG['TABLE_PICTURES']} AS pics ".
+									   "ON pics.aid = p.aid where ( category>%1\$s %2\$s) group by category;",
+	'list_users_can_join_tables'	=> "SELECT %1\$s as user_id,%2\$s as user_name,COUNT(DISTINCT a.aid) as alb_count,".
+									   "COUNT(DISTINCT pid) as pic_count,MAX(pid) as thumb_pid, MAX(galleryicon) as gallery_pid ".
 									   "FROM {$CONFIG['TABLE_ALBUMS']} AS a ".
-									   "INNER JOIN {$thisusertable} as u on u.{$f['user_id']} = a.category - " . FIRST_USER_CAT . " ".
+									   "INNER JOIN %3\$s as u on u.%1\$s = a.category - %4\$s ".
 									   "INNER JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.aid = a.aid ".
-									   "WHERE ((isnull(approved) or approved='YES') AND category > " . FIRST_USER_CAT . ") $forbidden_with_icon GROUP BY user_id ".
-									   "ORDER BY category "."LIMIT $lower_limit, $users_per_page ",
-	'select_category'				=> "SELECT category - 10000 as user_id ".
+									   "WHERE ((isnull(approved) or approved='YES') AND category > %4\$s ) %5\$s ".
+									   "GROUP BY user_id  ORDER BY category "."LIMIT %6\$s, %7\$s ",
+	'list_users_cannot_join_tables'	=> "SELECT category - 10000 as user_id ".
 									   "FROM {$CONFIG['TABLE_ALBUMS']} AS a ".
 									   "INNER JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.aid = a.aid ".
 									   "WHERE ((isnull(approved) or approved='YES') ".
-									   "AND category > " . FIRST_USER_CAT . ") $forbidden_with_icon GROUP BY category ".
-									   "LIMIT $lower_limit, $users_per_page ",
-	'select_user_id_04'				=> "SELECT {$thisfield['user_id']} AS user_id, {$thisfield['username']} AS user_name FROM {$thisusertable} WHERE {$thisfield['user_id']} IN ($userlist)", $thislink_id,
-	'select_owner_id'				=> "SELECT owner_id as user_id, COUNT(DISTINCT a.aid) as alb_count, COUNT(DISTINCT pid) as pic_count, MAX(pid) as thumb_pid, MAX(galleryicon) as gallery_pid ".
-									   "FROM {$CONFIG['TABLE_ALBUMS']} AS a INNER JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.aid = a.aid ".
-									   "WHERE ((isnull(approved) or approved='YES') AND category > " . FIRST_USER_CAT . ") $forbidden_with_icon GROUP BY user_id ".
-									   "ORDER BY category LIMIT $lower_limit, $users_per_page ",
-	'select_all_from_groupstable'	=> "SELECT * FROM {$thisgroupstable} WHERE {$thisfield['grouptbl_group_name']} <> ''",
-	'select_group_id'				=> "SELECT group_id, group_name FROM {$CONFIG['TABLE_USERGROUPS']} WHERE 1",
-	'delete_from_usergroups'		=> "DELETE FROM {$CONFIG['TABLE_USERGROUPS']} WHERE group_id = '" . $c_group_id . "' LIMIT 1",
-	'insert_into_usergroups'		=> "INSERT INTO {$CONFIG['TABLE_USERGROUPS']} (group_id, group_name, has_admin_access) VALUES ('$i_group_id', '" . addslashes($i_group_name) . "', '$admin_access')",
-	'update_usergroups'				=> "UPDATE {$CONFIG['TABLE_USERGROUPS']} SET group_name = '" . addslashes($i_group_name) . "' WHERE group_id = '$i_group_id' LIMIT 1",
-	'update_usergroups_02'			=> "UPDATE {$CONFIG['TABLE_USERGROUPS']} SET has_admin_access = '1' WHERE group_id = '1' LIMIT 1",
-	'select_aid'					=> "SELECT aid, CONCAT('(', {$thisfield['username']}, ') ', a.title) AS title
-                                        FROM {$CONFIG['TABLE_ALBUMS']} AS a
-                                        INNER JOIN {$thisusertable} AS u  ON category = (" . FIRST_USER_CAT . " + {$thisfield['user_id']})
-                                        ORDER BY title",
-	'select_aid_02'					=> "SELECT aid, IF(category > " . FIRST_USER_CAT . ", CONCAT('* ', title), CONCAT(' ', title)) AS title " . "FROM {$CONFIG['TABLE_ALBUMS']} " . "ORDER BY title",
-	'select_aid_03'					=> "SELECT aid, CONCAT('(', {$thisfield['username']}, ') ', a.title) AS title
-                                       FROM {$CONFIG['TABLE_ALBUMS']} AS a  INNER JOIN {$thisusertable} AS u
-                                       ON category = (" . FIRST_USER_CAT . " + ".USER_ID.") AND {$thisfield['user_id']} = ".USER_ID." ORDER BY title",
-	'select_aid_04'					=> "SELECT aid, IF(category > " . FIRST_USER_CAT . ", CONCAT('* ', title), CONCAT(' ', title)) AS title " . "FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = ".(FIRST_USER_CAT+USER_ID)." ORDER BY title",
-	'select_aid_05'					=> "SELECT aid, IF({$thisfield['username']} IS NOT NULL,
-                                       CONCAT('(', {$thisfield['username']}, ') ', a.title), CONCAT(' - ', a.title)) AS title
-                                       FROM {$CONFIG['TABLE_ALBUMS']} AS a INNER JOIN {$thisusertable} AS u
-                                       ON category = (" . FIRST_USER_CAT . " + {$thisfield['user_id']}) ORDER BY a.title",
-	'select_aid_06'					=> "SELECT aid, title, name FROM {$CONFIG['TABLE_ALBUMS']} LEFT JOIN {$CONFIG['TABLE_CATEGORIES']} ON cid = category WHERE category < " . FIRST_USER_CAT . " ORDER BY title",
-	'select_aid_07'					=> "SELECT aid, title, category FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " ORDER BY title",
-	'select_name'					=> "SELECT name, parent FROM " . $CONFIG['TABLE_CATEGORIES'] . " WHERE cid='" . $public_result[$i]['category'] . "'",
-	'select_aid'					=> "SELECT aid, title, category FROM {$CONFIG['TABLE_ALBUMS']} WHERE category >= " . FIRST_USER_CAT . " ORDER BY aid",
-	'select_user_id_05'				=> "SELECT ({$thisfield['user_id']} + ".FIRST_USER_CAT.") AS id, CONCAT('(', {$thisfield['username']}, ') ') as name
-										FROM {$thisusertable}
-										ORDER BY name ASC",$thislink_id,
-	'select_user_id_06'				=> "SELECT {$thisfield['user_id']} AS user_id, {$thisfield['username']} AS user_name FROM {$thisusertable}".
-									   " WHERE {$thisfield['username']} = '$username' AND BINARY {$thisfield['password']} = '$encpassword'"
+									   "AND category > %1\$s) %2\$s GROUP BY category ".
+									   "LIMIT %3\$s, %4\$s ",
+	'list_users_mappings'			=> "SELECT %1\$s AS user_id, %2\$s AS user_name ".
+									   "FROM %3\$s WHERE %1\$s IN (%4\$s)",
+	'list_users_main_query'			=> "SELECT owner_id as user_id, COUNT(DISTINCT a.aid) as alb_count, COUNT(DISTINCT pid) ".
+									   "as pic_count, MAX(pid) as thumb_pid, MAX(galleryicon) as gallery_pid FROM {$CONFIG['TABLE_ALBUMS']} ".
+									   "AS a INNER JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.aid = a.aid ".
+									   "WHERE ((isnull(approved) or approved='YES') AND category > %1\$s) %2\$s ".
+									   "GROUP BY user_id  ORDER BY category LIMIT %3\$s, %4\$s ",
+	'sync_use_post_based_grp'		=> "SELECT * FROM %1\$s WHERE %2\$s <> ''",
+	'sync_not_use_post_based_grp'	=> "SELECT group_id, group_name FROM {$CONFIG['TABLE_USERGROUPS']} WHERE 1",
+	'sync_delete_usergroups'		=> "DELETE FROM {$CONFIG['TABLE_USERGROUPS']} WHERE group_id = '%1\$s' LIMIT 1",
+	'sync_insert_usergroups'		=> "INSERT INTO {$CONFIG['TABLE_USERGROUPS']} (group_id, group_name, has_admin_access) ".
+									   "VALUES ('%1\$s', '%2\$s', '%3\$s')",
+	'sync_update_usergroups'		=> "UPDATE {$CONFIG['TABLE_USERGROUPS']} SET group_name = '%1\$s' ".
+									   "WHERE group_id = '%2\$s' LIMIT 1",
+	'sync_fix_admin_grp'			=> "UPDATE {$CONFIG['TABLE_USERGROUPS']} SET has_admin_access = '1' WHERE group_id = '1' LIMIT 1",
+	'admin_alb_can_join_tbl'		=> "SELECT aid, CONCAT('(', %1\$s, ') ', a.title) AS title   FROM {$CONFIG['TABLE_ALBUMS']} ".
+										"AS a  INNER JOIN %2\$s AS u  ON category = ( %3\$s + %4\$s)  ORDER BY title",
+	'admin_alb_cannot_join_tbl'		=> "SELECT aid, IF(category > %1\$s, CONCAT('* ', title), CONCAT(' ', title)) ".
+									   "AS title  FROM {$CONFIG['TABLE_ALBUMS']}  ORDER BY title",
+	'batch_add_can_join_tbl'		=> "SELECT aid, CONCAT('(', %1\$s, ') ', a.title) AS title  FROM {$CONFIG['TABLE_ALBUMS']} AS a  ".
+									   "INNER JOIN %2\$s AS u  ON category = (%3\$s + %4\$s) ".
+									   "AND %5\$s = %4\$s ORDER BY title",
+	'batch_add_cannot_join_tbl'		=> "SELECT aid, IF(category > %1\$s, CONCAT('* ', title), CONCAT(' ', title)) AS title ".
+									   "FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = '(%1\$s + %2\$s)' ORDER BY title",
+	'user_alb_can_join_tbl'			=> "SELECT aid, IF(%1\$s IS NOT NULL, CONCAT('(', %1\$s, ') ', a.title), CONCAT(' - ', a.title)) AS title".
+                                       "FROM {$CONFIG['TABLE_ALBUMS']} AS a INNER JOIN %2\$s AS u
+                                       ON category = ( %3\$s + %4\$s ) ORDER BY a.title",
+	'public_alb_can_join_tbl'		=> "SELECT aid, title, name FROM {$CONFIG['TABLE_ALBUMS']} LEFT JOIN {$CONFIG['TABLE_CATEGORIES']} ".
+									   "ON cid = category WHERE category < %1\$s ORDER BY title",
+	'public_alb_cannot_join_tbl'	=> "SELECT aid, title, category FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < %1\$s ORDER BY title",
+	'get_cat_name'					=> "SELECT name, parent FROM " . $CONFIG['TABLE_CATEGORIES'] . " WHERE cid='%1\$s'",
+	'user_alb_cannot_join_tbl'		=> "SELECT aid, title, category FROM {$CONFIG['TABLE_ALBUMS']} WHERE category >= %1\$s ORDER BY aid",
+	'user_alb_ids_and_names'		=> "SELECT (%1\$s + %2\$s) AS id, CONCAT('(', %3\$s, ') ') as name ".
+										"FROM %4\$s ORDER BY name ASC",
+	'get_login_data'				=> "SELECT %1\$s AS user_id, %2\$s AS user_name FROM %3\$s".
+									   " WHERE %2\$s = '%4\$s' AND BINARY %5\$s = '%6\$s'"
 );
 
 
@@ -1376,11 +1353,16 @@ $cpg_db_stats_inc_php = array(
 /**********************************************************************************************************/
 //	queries  from  include/ themes.inc.php
 /**********************************************************************************************************/
-$cpg_db_themes_inc_php = array(
-	'select_aid'				=> "SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='" . (FIRST_USER_CAT + USER_ID) . "' AND aid = '$album' ORDER BY title",
-	'select_aid_02'				=> "SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " AND uploads='YES' AND (visibility = '0' OR visibility IN ".USER_GROUP_SET.") AND aid = '$album' ORDER BY title",
-	'select_msg_id'				=> "SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date) AS msg_date, author_id, author_md5_id, msg_raw_ip, msg_hdr_ip, pid, approval FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid='$pid' ORDER BY msg_id $comment_sort_order",
-	'select_all_from_pictures'	=> "SELECT * " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='$pid' $ALBUM_SET"
+$cpg_db_themes_inc = array(
+	'check_upload_permission'	=> "SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='%1\$s' AND aid = '%2\$s' ORDER BY title",
+	'upload_not_allowed'		=> "SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < %1\$s AND uploads='YES' ".
+								   "AND (visibility = '0' OR visibility IN %2\$s) AND aid = '%3\$s' ORDER BY title",
+	'html_rating_box'			=> "SELECT * FROM {$CONFIG['TABLE_VOTES']} WHERE pic_id=%1\$s AND user_md5_id='%2\$s'",
+	'html_comments'				=> "SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date) AS msg_date, author_id, ".
+								   "author_md5_id, msg_raw_ip, msg_hdr_ip, pid, approval FROM {$CONFIG['TABLE_COMMENTS']} ".
+								   "WHERE pid='%1\$s' ORDER BY msg_id %2\$s",
+	'display_fullsize_pic'		=> "SELECT * " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='%1\$s' %2\$s"
+
 );
 
 

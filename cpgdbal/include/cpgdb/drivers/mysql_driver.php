@@ -171,8 +171,10 @@ class cpgDB {
        * when calling the class without a query, e.g. in situations
        * like these: '$db = new DB_Sql_Subclass;'
        */
-            return 0;
-	$Query_String = vsprintf($Query_String, $args);
+        return 0;
+		if	(count($args)) {
+			$Query_String = vsprintf($Query_String, $args);
+		}
 		
         if (!$this->connect()) {
             return 0;

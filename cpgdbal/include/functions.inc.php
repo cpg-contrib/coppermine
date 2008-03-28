@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4326 $
-  $LastChangedBy: nibbler999 $
-  $Date: 2008-03-09 23:25:42 +0530 (Sun, 09 Mar 2008) $
+  $Revision: 4353 $
+  $LastChangedBy: abbas-ali $
+  $Date: 2008-03-25 11:02:32 +0530 (Tue, 25 Mar 2008) $
 **********************************************/
 
 /**
@@ -25,7 +25,7 @@
 * @copyright 2002-2007 Gregory DEMAR, Coppermine Dev Team
 * @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
 * @package Coppermine
-* @version  $Id: functions.inc.php 4326 2008-03-09 17:55:42Z nibbler999 $
+* @version  $Id: functions.inc.php 4353 2008-03-25 05:32:32Z abbas-ali $
 */
 
 /**
@@ -810,9 +810,7 @@ function load_template()
 {
         global $THEME_DIR, $CONFIG, $template_header, $template_footer;
 
-        if (file_exists(TEMPLATE_FILE)) {
-            $template_file = TEMPLATE_FILE;
-        } elseif (file_exists($THEME_DIR . TEMPLATE_FILE)) {
+        if (file_exists($THEME_DIR . TEMPLATE_FILE)) {
             $template_file = $THEME_DIR . TEMPLATE_FILE;
         } else die("Coppermine critical error:<br />Unable to load template file ".TEMPLATE_FILE."!");
 
@@ -4231,53 +4229,63 @@ function set_js_var($var, $val) {
  * This function is equivalent to PHP 5.2 's json_encode. PHP's native function will be used if the version
  * is greater than equal to 5.2
  *
- * Function taken from http://www.bin-co.com/php/scripts/array2json/
- * @author Binny V A <binnyva@gmail.com>
- *
  * @param array $arr Array which is to be converted to json string
  * @return string json string
  */
 if (!function_exists('json_encode')) {
-        function json_encode($arr) {
-                $parts = array();
-                $is_list = false;
-
-                //Find out if the given array is a numerical array
-                $keys = array_keys($arr);
-                $max_length = count($arr)-1;
-                if(($keys[0] == 0) and ($keys[$max_length] == $max_length)) {//See if the first key is 0 and last key is length - 1
-                        $is_list = true;
-                        for($i=0; $i<count($keys); $i++) { //See if each key correspondes to its position
-                                if($i != $keys[$i]) { //A key fails at position check.
-                                        $is_list = false; //It is an associative array.
-                                        break;
-                                }
-                        }
-                }
-
-                foreach($arr as $key=>$value) {
-                        if(is_array($value)) { //Custom handling for arrays
-                                if($is_list) $parts[] = json_encode($value); /* :RECURSION: */
-                                else $parts[] = '"' . $key . '":' . json_encode($value); /* :RECURSION: */
-                        } else {
-                                $str = '';
-                                if(!$is_list) $str = '"' . $key . '":';
-
-                                //Custom handling for multiple data types
-                                if(is_numeric($value)) $str .= $value; //Numbers
-                                elseif($value === false) $str .= 'false'; //The booleans
-                                elseif($value === true) $str .= 'true';
-                                else $str .= '"' . addslashes($value) . '"'; //All other things
-                                // :TODO: Is there any more datatype we should be in the lookout for? (Object?)
-
-                                $parts[] = $str;
-                        }
-                }
-                $json = implode(',',$parts);
-
-                if($is_list) return '[' . $json . ']';//Return numerical JSON
-                return '{' . $json . '}';//Return associative JSON
-        }
+	function json_encode($arr) {
+		// If the arr is object then gets its variables
+		if (is_object($arr)) {
+			$arr = get_object_vars($arr);
+		}
+	
+		$out = array();
+		$keys = array();
+		// If arr is array then get its keys
+		if (is_array($arr)) {
+			$keys = array_keys($arr);
+		}
+	
+		$numeric = true;
+		// Find whether the keys are numeric or not
+		if (!empty($keys)) {
+			$numeric = (array_values($keys) === array_keys(array_values($keys)));
+		}
+	
+		foreach ($arr as $key => $val) {
+			// If the value is array or object then call json_encode recursively
+			if (is_array($val) || is_object($val)) {
+				$val = json_encode($val);
+			} else {
+				// If the value is not numeric and boolean then escape and quote it
+				if ((!is_numeric($val) && !is_bool($val))) {
+					$escape = array("\r\n" => '\n', "\r" => '\n', "\n" => '\n', '"' => '\"', "'" => "\\'");
+					$val = str_replace(array_keys($escape), array_values($escape), $val);
+					$val = '"' . $val . '"';
+				}
+				if ($val === null) {
+					$val = 'null';
+				}
+				if (is_bool($val)) {
+					$val = $val ? 'true' : 'false';
+				}
+			}
+			// If key is not numeric then quote it
+			if (!$numeric) {
+				$val = '"' . $key . '"' . ':' . $val;
+			}
+	
+			$out[] = $val;
+		}
+	
+		if (!$numeric) {
+			$return = '{' . implode(', ', $out) . '}';
+		} else {
+			$return = '[' . implode(', ', $out) . ']';
+		}
+	
+		return $return;
+	}
 }
 
 /**

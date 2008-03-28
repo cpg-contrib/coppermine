@@ -77,8 +77,8 @@ class coppermine_udb extends core_udb {
                         'user_id' => 'user_id', // name of 'id' field in users table
                         'password' => 'user_password', // name of 'password' field in users table
                         'email' => 'user_email', // name of 'email' field in users table
-                        'regdate' => 'UNIX_TIMESTAMP(user_regdate)', // name of 'registered' field in users table
-                        'lastvisit' => 'UNIX_TIMESTAMP(user_lastvisit)', // last time user logged in
+                        'regdate' => 'user_regdate', // name of 'registered' field in users table
+                        'lastvisit' => 'user_lastvisit', // last time user logged in
                         'active' => 'user_active', // is user account active?
                         'location' => "''", // name of 'location' field in users table
                         'website' => "''", // name of 'website' field in users table
@@ -103,10 +103,14 @@ class coppermine_udb extends core_udb {
         }
 
 
-        // Login function
+       // Login function
         function login( $username = null, $password = null, $remember = false ) {
                 global $CONFIG;
-
+				#################  DB  #################
+				global $cpg_db_coppermine_inc;	
+				$cpgdb =& cpgDB::getInstance();
+				$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+				#####################################
                 // Create the session_id from concat(cookievalue,client_id)
                 $session_id = $this->session_id.$this->client_id;
 
@@ -117,7 +121,7 @@ class coppermine_udb extends core_udb {
                         $encpassword = $password;
                 }
 
-                // Check for user in users table
+                /*// Check for user in users table
                 $sql =  "SELECT user_id, user_name, user_password FROM {$this->usertable} WHERE ";
 				//Check the login method (username, email address or both)
 				switch($CONFIG['login_method']){
@@ -157,7 +161,6 @@ class coppermine_udb extends core_udb {
 
                         $USER_DATA = mysql_fetch_assoc($results);
                         mysql_free_result($results);
-
                         // If this is a 'remember me' login set the remember field to true
                         if ($remember) {
                                 $remember_sql = ",remember = '1' ";
@@ -170,26 +173,67 @@ class coppermine_udb extends core_udb {
                         $sql .= "user_id={$USER_DATA['user_id']} ";
                         $sql .= $remember_sql;
                         $sql .= "where session_id=md5('$session_id');";
-                        cpg_db_query($sql, $this->link_id);
+                        cpg_db_query($sql, $this->link_id);	*/
+				##########################################  DB   ##########################################
+				//Check the login method (username, email address or both)
+				switch($CONFIG['login_method']){
+					case 'both':
+						$where= "(user_name = '$username' OR user_email = '$username') AND BINARY user_password = '$encpassword' AND user_active = 'YES'";
+						break;
+					case 'email':
+						$where= "user_email = '$username' AND BINARY user_password = '$encpassword' AND user_active = 'YES'";
+						break;
+					case 'username':
+					default:
+						$where= "user_name = '$username' AND BINARY user_password = '$encpassword' AND user_active = 'YES'";
+						break;
+				}
+                // Check for user in users table
+				$cpgdb->query($cpg_db_coppermine_inc['login_get_user_info'],$this->usertable, $where);
+				$rowset = $cpgdb->fetchRowSet();
+
+                // If exists update lastvisit value, session, and login
+				if (count($rowset)) {
+
+                        // Update lastvisit value
+						$this->cpg_udb->query($cpg_db_coppermine_inc['login_set_user_lastvisit'], $this->usertable, $where);
+
+						$USER_DATA = $rowset[0];
+						$cpgdb->free();
+                        // If this is a 'remember me' login set the remember field to true
+                        if ($remember) {
+                                $remember_sql = ",remember = '1' ";
+                        } else {
+                                $remember_sql = '';
+                        }
+
+						$this->cpg_udb->query($cpg_db_coppermine_inc['update_guestsession'], $this->sessionstable, $USER_DATA['user_id'], $remember_sql, md5($session_id));
+				
+				########################################################################################
 
                         return $USER_DATA;
                 } else {
 
                         return false;
                 }
-        }
+        }	
 
-
+		
         // Logout function
         function logout() {
+		
+			global $cpg_db_coppermine_inc;	#####	cpgdb_AL
 
-                // Revert authenticated session to a guest session
-                $session_id = $this->session_id.$this->client_id;
-                $sql  = "update {$this->sessionstable} set user_id = 0, remember=0 where session_id=md5('$session_id');";
-                cpg_db_query($sql, $this->link_id);
+			// Revert authenticated session to a guest session
+			$session_id = $this->session_id.$this->client_id;
+			/*$sql  = "update {$this->sessionstable} set user_id = 0, remember=0 where session_id=md5('$session_id');";
+			cpg_db_query($sql, $this->link_id);	*/
+			#############################   DB   ################################
+			$this->cpg_udb->query($cpg_db_coppermine_inc['logout_session'], $this->sessionstable, md5($session_id));
+			####################################################################
         }
 
-        // Get groups of which user is member
+        /*// Get groups of which user is member
         function get_groups( $user )
         {
 			$groups = array($user['group_id'] - 100);
@@ -205,7 +249,25 @@ class coppermine_udb extends core_udb {
 			mysql_free_result($result);
 
 			return $groups;
+        }	*/
+		
+		###########################   DB   ##############################
+		// Get groups of which user is member
+        function get_groups( $user )
+        {
+			global $cpg_db_coppermine_inc;
+			$groups = array($user['group_id'] - 100);
+
+			$this->cpg_udb->query($cpg_db_coppermine_inc['get_user_group'], $this->usertable, $this->field['user_id'], $user['id']);
+
+			if ($row = $this->cpg_udb->fetchRow()){
+				$groups = array_merge($groups, explode(',', $row['user_group_list']));
+			}
+
+			$this->cpg_udb->free();
+			return $groups;
         }
+		###############################################################
 
         // definition of actions required to convert a password from user database form to cookie form
         function udb_hash_db($password)
@@ -218,6 +280,11 @@ class coppermine_udb extends core_udb {
         function session_extraction()
         {
             global $CONFIG;
+				####################### DB #########################	
+				global $cpg_db_coppermine_inc;
+				$cpgdb =& cpgDB::getInstance();
+				$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+				##################################################	
 
             $superCage = Inspekt::makeSuperCage();
 
@@ -238,19 +305,24 @@ class coppermine_udb extends core_udb {
             $session_life_time = time()-CPG_HOUR;
 
             // Delete old sessions
-			$sql = "delete from {$this->sessionstable} where time<$session_life_time and remember=0;";
-			cpg_db_query($sql, $this->link_id);
+			/*$sql = "delete from {$this->sessionstable} where time<$session_life_time and remember=0;";
+			cpg_db_query($sql, $this->link_id);	*/
+			##################################    DB     ####################################
+			$this->cpg_udb->query($cpg_db_coppermine_inc['delete_old_sessions'], $this->sessionstable, $session_life_time);
+			###########################################################################
 
             // Delete stale 'remember me' sessions
-            $sql = "delete from {$this->sessionstable} where time<$rememberme_life_time;";
-            cpg_db_query($sql, $this->link_id);
-
-            // Check for valid session if session_cookie_value exists
+            /*$sql = "delete from {$this->sessionstable} where time<$rememberme_life_time;";
+            cpg_db_query($sql, $this->link_id);	*/
+			##################################    DB     ####################################
+			$this->cpg_udb->query($cpg_db_coppermine_inc['delete_remember_sessions'], $this->sessionstable, $rememberme_life_time);
+			###########################################################################
+            /*// Check for valid session if session_cookie_value exists
             if ($sessioncookie) {
 
                 // Check for valid session
                 $sql =  'select user_id from '.$this->sessionstable.' where session_id=md5("'.$session_id.'");';
-                $result = cpg_db_query($sql);
+                $result = cpg_db_query($sql);	
 
                 // If session exists...
                 if (mysql_num_rows($result)) {
@@ -263,7 +335,7 @@ class coppermine_udb extends core_udb {
                     $sql =  'select user_id as id, user_password as password ';
                     $sql .= 'from '.$this->usertable.' ';
                     $sql .= 'where user_id='.$row['user_id'];
-                    $result = cpg_db_query($sql, $this->link_id);
+                    $result = cpg_db_query($sql, $this->link_id);	
 
                     // If user exists, use the current session
                     if ($result) {
@@ -281,8 +353,39 @@ class coppermine_udb extends core_udb {
                 } else {
 
                     $this->create_session();
-                }
+                }		*/
+			##################################    DB     ####################################
+            // Check for valid session if session_cookie_value exists
+            if ($sessioncookie) {
 
+			$cpgdb->query($cpg_db_coppermine_inc['check_valid_session'], $this->sessionstable, md5($session_id));
+			$rowset = $cpgdb->fetchRowSet();
+                // If session exists...
+                if (count($rowset)) {
+                    $row = $rowset[0];
+                    $cpgdb->free();
+
+                    $row['user_id'] = (int) $row['user_id'];
+
+                    // Check if there's a user for this session
+					$result = $this->cpg_udb->query($cpg_db_coppermine_inc['check_session_user'], $this->usertable, $row['user_id']);
+                    // If user exists, use the current session
+                   if ($result) {
+                        $row = $this->cpg_udb->fetchRow();
+                        $this->cpg_udb->free();
+
+                        $pass = $row['password'];
+                        $id = (int) $row['id'];
+                        $this->session_id = $sessioncookie;
+
+                    // If the user doesn't exist, use default guest credentials
+                    }
+
+                // If not a valid session exists, create a new session
+                } else {
+						$this->create_session();
+                }
+			###########################################################################
             // No session exists; create one
             } else {
 
@@ -293,28 +396,43 @@ class coppermine_udb extends core_udb {
         }
 
 
-        // Function used to keep the session alive
+        /*// Function used to keep the session alive
         function session_update()
         {
-                $session_id = $this->session_id.$this->client_id;
-                $sql = "update {$this->sessionstable} set time='".time()."' where session_id=md5('$session_id');";
-                cpg_db_query($sql);
-        }
+			$session_id = $this->session_id.$this->client_id;
+			$sql = "update {$this->sessionstable} set time='".time()."' where session_id=md5('$session_id');";
+			cpg_db_query($sql);
+        }	*/
 
 
+		####################### DB #########################	
+        // Function used to keep the session alive
+        function session_update() {
+			global $CONFIG, $cpg_db_coppermine_inc;
+			$cpgdb =& cpgDB::getInstance();
+			$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+			$session_id = $this->session_id.$this->client_id;
+			$cpgdb->query($cpg_db_coppermine_inc['session_update'], $this->sessionstable, time(), md5($session_id));
+		}
+		##################################################	
+
+			
         // Create a new session with the cookie lifetime set to 2 weeks
         function create_session() {
                 global $CONFIG;
-                // start session
+				global $cpg_db_coppermine_inc;
+               // start session
                 $this->session_id = $this->generateId();
                 $session_id = $this->session_id.$this->client_id;
 
-                $sql =  'insert into '.$this->sessionstable.' (session_id, user_id, time, remember) values ';
+                /*$sql =  'insert into '.$this->sessionstable.' (session_id, user_id, time, remember) values ';
                 $sql .= '("'.md5($session_id).'", 0, "'.time().'", 0);';
-
                 // insert the guest session
-                cpg_db_query($sql, $this->link_id);
-
+               cpg_db_query($sql, $this->link_id);*/
+				########################     DB     ##########################
+				// insert the guest session
+				$this->cpg_udb->query($cpg_db_coppermine_inc['create_session'], $this->sessionstable, md5(session_id), time());
+				#########################################################
                 // set the session cookie
                 setcookie( $this->client_id, $this->session_id, time() + (CPG_WEEK*2), $CONFIG['cookie_path'] );
         }
@@ -322,17 +440,24 @@ class coppermine_udb extends core_udb {
 
         // Modified function taken from Mambo session class
         function generateId() {
+				global $cpg_db_coppermine_inc;
                 $failsafe = 20;
                 $randnum = 0;
                 while ($failsafe--) {
                         $randnum = md5( uniqid( microtime(), 1 ));
                         $session_id = $randnum.$this->client_id;
                         if ($randnum != "") {
-                                $sql = "SELECT session_id FROM {$this->sessionstable} WHERE session_id=MD5('$session_id')";
+                                /*$sql = "SELECT session_id FROM {$this->sessionstable} WHERE session_id=MD5('$session_id')";
                                 if (!$result = cpg_db_query($sql, $this->link_id)) {
                                         break;
                                 }
-                                mysql_free_result($result);
+                                mysql_free_result($result);	*/
+								#################################   DB   ####################################
+								if (!$result = $this->cpg_udb->query($cpg_db_coppermine['generate_session_id'], $this->sessionstable, MD5($session_id))) {
+										break;
+								}
+								$this->cpg_udb->free();
+								##########################################################################
                         }
                 }
                 return $randnum;
@@ -341,23 +466,34 @@ class coppermine_udb extends core_udb {
 
         // Gets user/guest count
         function get_session_users() {
-                static $count = array();
+			global $cpg_db_coppermine_inc;
+			static $count = array();
 
-                if (!$count) {
-                        // Get guest count
-                        $sql = "select count(user_id) as num_guests from {$this->sessionstable} where user_id=0;";
-                        $result = cpg_db_query($sql, $this->link_id);
-                        $count = mysql_fetch_assoc($result);
+			/*if (!$count) {
+					// Get guest count
+					$sql = "select count(user_id) as num_guests from {$this->sessionstable} where user_id=0;";
+					$result = cpg_db_query($sql, $this->link_id);
+					$count = mysql_fetch_assoc($result);
 
-                        // Get authenticated user count
-                        $sql = "select count(user_id) as num_users from {$this->sessionstable} where user_id>0;";
-                        $result = cpg_db_query($sql, $this->link_id);
-                        $count = array_merge(mysql_fetch_assoc($result), $count);
-                }
+					// Get authenticated user count
+					$sql = "select count(user_id) as num_users from {$this->sessionstable} where user_id>0;";
+					$result = cpg_db_query($sql, $this->link_id);
+					$count = array_merge(mysql_fetch_assoc($result), $count);
+			}	*/
+		################################    DB    #################################
+			if (!$count) {
+					// Get guest count
+					$this->cpg_udb->query($cpg_db_coppermine_inc['get_guest_count'], $this->sessionstable);
+					$count = $this->cpg_udb->fetchRow();
 
-                return $count;
+					// Get authenticated user count
+					$this->cpg_udb->query($cpg_db_coppermine_inc['get_auth_user_count'], $this->sessionstable);
+					$count = array_merge($this->cpg_udb->fetchRow(), $count);
+			}
+		######################################################################
+
+			return $count;
         }
-
 
         /*
          * Overidden functions !!DO NOT REMOVE OR CPG WILL NOT WORK CORRECTLY!!
@@ -401,18 +537,27 @@ class coppermine_udb extends core_udb {
     	function synchronize_groups()
     	{
     		global $CONFIG ;
+			####################### DB #########################
+			global $cpg_db_coppermine_inc;
+			$cpgdb =& cpgDB::getInstance();
+			$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+			##################################################	
 
     		if ($this->use_post_based_groups){
     			if ($this->group_overrride){
     				$udb_groups = $this->collect_groups();
     			} else {
-    				$sql = "SELECT * FROM {$this->groupstable} WHERE {$this->field['grouptbl_group_name']} <> ''";
+    				/*$sql = "SELECT * FROM {$this->groupstable} WHERE {$this->field['grouptbl_group_name']} <> ''";
 
-    				$result = cpg_db_query($sql, $this->link_id);
+    				$result = cpg_db_query($sql, $this->link_id);	*/
+					###################    DB    ######################
+					$this->cpg_udb->query($cpg_db_coppermine_inc['get_group_no_override'], $this->groupstable, $this->field['grouptbl_group_name']);
+					###############################################
 
     				$udb_groups = array();
 
-    				while ($row = mysql_fetch_assoc($result))
+    				//while ($row = mysql_fetch_assoc($result))
+					while ($row = $this->cpg_udb->fetchRow())
     				{
     					$udb_groups[$row[$this->field['grouptbl_group_id']]+100] = utf_ucfirst(utf_strtolower($row[$this->field['grouptbl_group_name']]));
     				}
@@ -421,13 +566,21 @@ class coppermine_udb extends core_udb {
     			$udb_groups = array(1 =>'Administrators', 2=> 'Registered', 3=>'Guests', 4=> 'Banned');
     		}
 
-    		$result = cpg_db_query("SELECT group_id, group_name FROM {$CONFIG['TABLE_USERGROUPS']} WHERE 1");
+    		/*$result = cpg_db_query("SELECT group_id, group_name FROM {$CONFIG['TABLE_USERGROUPS']} WHERE 1");
 
     		while ($row = mysql_fetch_array($result)) {
     			$cpg_groups[$row['group_id']] = $row['group_name'];
     		}
 
-    		mysql_free_result($result);
+    		mysql_free_result($result);	*/
+			############################    DB    ###############################
+    		$cpgdb->query($cpg_db_coppermine_inc['get_group_data']);
+
+    		while ($row = $cpgdb->fetchRow()) {
+    			$cpg_groups[$row['group_id']] = $row['group_name'];
+    		}
+    		$cpgdb->free();
+			#################################################################
             /* Must be removed to allow new groups to be created in an unbridged install.
     		// Scan Coppermine groups that need to be deleted
     		foreach($cpg_groups as $c_group_id => $c_group_name) {
@@ -443,7 +596,10 @@ class coppermine_udb extends core_udb {
     			if ((!isset($cpg_groups[$i_group_id]))) {
     				// add admin info
     				$admin_access = in_array($i_group_id-100, $this->admingroups) ? '1' : '0';
-    				cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']} (group_id, group_name, has_admin_access) VALUES ('$i_group_id', '" . addslashes($i_group_name) . "', '$admin_access')");
+    				//cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']} (group_id, group_name, has_admin_access) VALUES ('$i_group_id', '" . addslashes($i_group_name) . "', '$admin_access')");
+					#########################    DB   #############################
+					$cpgdb->query($cpg_db_coppermine_inc['add_admin_info'], $i_group_id, addslashes($i_group_name), $admin_access);
+					###########################################################
     				$cpg_groups[$i_group_id] = $i_group_name;
     			}
     		}
@@ -451,11 +607,15 @@ class coppermine_udb extends core_udb {
     		// Update Group names
     		foreach($udb_groups as $i_group_id => $i_group_name) {
     			if ($cpg_groups[$i_group_id] != $i_group_name) {
-    				cpg_db_query("UPDATE {$CONFIG['TABLE_USERGROUPS']} SET group_name = '" . addslashes($i_group_name) . "' WHERE group_id = '$i_group_id' LIMIT 1");
+    				//cpg_db_query("UPDATE {$CONFIG['TABLE_USERGROUPS']} SET group_name = '" . addslashes($i_group_name) . "' WHERE group_id = '$i_group_id' LIMIT 1");
+					#########################    DB   #############################
+					$cpgdb->query($cpg_db_coppermine_inc['update_group_names'], addslashes($i_group_name), $i_group_id);
+					###########################################################
     			}
     		}
     		// fix admin grp
-    		if (!$this->use_post_based_groups) cpg_db_query("UPDATE {$CONFIG['TABLE_USERGROUPS']} SET has_admin_access = '1' WHERE group_id = '1' LIMIT 1");
+    		//if (!$this->use_post_based_groups) cpg_db_query("UPDATE {$CONFIG['TABLE_USERGROUPS']} SET has_admin_access = '1' WHERE group_id = '1' LIMIT 1");
+			if (!$this->use_post_based_groups) $cpgdb->query($cpg_db_coppermine_inc['fix_admin_group']);
 
     	}
 

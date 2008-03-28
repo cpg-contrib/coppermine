@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4323 $
-  $LastChangedBy: nibbler999 $
-  $Date: 2008-03-09 03:00:26 +0530 (Sun, 09 Mar 2008) $
+  $Revision: 4354 $
+  $LastChangedBy: abbas-ali $
+  $Date: 2008-03-25 11:11:20 +0530 (Tue, 25 Mar 2008) $
 **********************************************/
 
 /////////////////////////////////////////////////////////////////
@@ -1584,14 +1584,14 @@ if (!function_exists('theme_javascript_head')) {  //{THEMES}
 // Function for the JavaScript inside the <head>-section
 function theme_javascript_head() {
     global $CONFIG, $JS;
-
+    
 	$return = '';
 	// Check if we have any variables being set using set_js_vars function
 	if (isset($JS['vars']) && count($JS['vars'])) {
 		// Convert the $JS['vars'] array to json object string
 		$json_vars = json_encode($JS['vars']);
 		// Output the json object
-		$return .= '<script type="text/javascript">var js_vars = ' . $json_vars . ";</script>\n";
+		$return .= "<script type=\"text/javascript\">var js_vars = eval('($json_vars)');</script>\n";
 	}
 
 	// Check if we have any js includes
@@ -1704,7 +1704,11 @@ function theme_main_menu($which)
 {
     global $AUTHORIZED, $CONFIG, $album, $actual_cat, $cat, $REFERER;
     global $lang_main_menu, $template_sys_menu, $template_sub_menu, $lang_gallery_admin_menu;
-
+	#####################    DB     #####################
+	global $cpg_db_themes_inc;
+	$cpgdb =& cpgDB::getInstance();
+	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+	################################################
     static $sys_menu = '', $sub_menu = '';
     if ($$which != '') {
         return $$which;
@@ -1717,9 +1721,14 @@ function theme_main_menu($which)
             $upload_allowed = true;
         } else {
             if (USER_ID) {
-                $query = "SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='" . (FIRST_USER_CAT + USER_ID) . "' AND aid = '$album' ORDER BY title";
+                /*$query = "SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='" . (FIRST_USER_CAT + USER_ID) . "' AND aid = '$album' ORDER BY title";
                 $user_albums = cpg_db_query($query);
-                if (mysql_num_rows($user_albums)) {
+                if (mysql_num_rows($user_albums)) {	*/
+				#########################    DB    ###########################
+				$user_albums = $cpgdb->query($cpg_db_themes_inc['check_upload_permission'], (FIRST_USER_CAT + USER_ID), $album);
+				$rowset = $cpgdb->fetchRowSet();
+				if (count($rowset)) {
+				#########################################################
                     $upload_allowed = true;
                 } else {
                     $upload_allowed = false;
@@ -1727,10 +1736,15 @@ function theme_main_menu($which)
             }
 
             if (!$upload_allowed) {
-                $query = "SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " AND uploads='YES' AND (visibility = '0' OR visibility IN ".USER_GROUP_SET.") AND aid = '$album' ORDER BY title";
+                /*$query = "SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " AND uploads='YES' AND (visibility = '0' OR visibility IN ".USER_GROUP_SET.") AND aid = '$album' ORDER BY title";
                 $public_albums = cpg_db_query($query);
 
-                if (mysql_num_rows($public_albums)) {
+                if (mysql_num_rows($public_albums)) {	*/
+				#########################    DB    ###########################
+				$public_albums = $cpgdb->query($cpg_db_themes_inc['upload_not_allowed'], FIRST_USER_CAT, USER_GROUP_SET, $album);
+				$rowset = $cpgdb->fetchRowSet();
+				if (count($rowset)) {
+				#########################################################
                     $upload_allowed = true;
                 } else {
                     $upload_allowed = false;
@@ -3091,18 +3105,28 @@ function theme_html_rating_box()
 {
     global $CONFIG, $CURRENT_PIC_DATA, $CURRENT_ALBUM_DATA, $THEME_DIR, $USER_DATA, $USER;
     global $template_image_rating, $lang_rate_pic;
+	#####################    DB     #####################
+	global $cpg_db_themes_inc;
+	$cpgdb =& cpgDB::getInstance();
+	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+	################################################
 
     if (!(USER_CAN_RATE_PICTURES && $CURRENT_ALBUM_DATA['votes'] == 'YES')){
 		return '';
 	}else{
 		//check if the users already voted or if this user is the owner
 		$user_md5_id = USER_ID ? md5(USER_ID) : $USER['ID'];
-		$result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_VOTES']} WHERE pic_id={$CURRENT_PIC_DATA['pid']} AND user_md5_id='$user_md5_id'");
+		//$result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_VOTES']} WHERE pic_id={$CURRENT_PIC_DATA['pid']} AND user_md5_id='$user_md5_id'");
+		##########  DB  ###########
+		$cpgdb->query($cpg_db_themes_inc['html_rating_box'], $CURRENT_PIC_DATA['pid'], $user_md5_id);
+		$rowset = $cpgdb->fetchRowSet();
+		########################
 		$user_can_vote = 'false';
 		if($CURRENT_PIC_DATA['owner_id'] == $USER_DATA['user_id'] && $USER_DATA['user_id'] != 0){
 			//user is owner
 			$rate_title = $lang_rate_pic['forbidden'];
-		}elseif(!mysql_num_rows($result)){
+		//}elseif(!mysql_num_rows($result)){
+		}elseif (!count($rowset)) {		#######	cpgdb_AL
 			//user hasn't voted yet, show voting things
 			$rate_title = $lang_rate_pic['rate_this_pic'];
 			$user_can_vote = 'true';	
@@ -3181,6 +3205,11 @@ function theme_html_comments($pid)
 {
     global $CONFIG, $USER, $CURRENT_ALBUM_DATA, $comment_date_fmt, $HTML_SUBST;
     global $template_image_comments, $template_add_your_comment, $lang_display_comments, $lang_common, $REFERER, $lang_bbcode_help_title, $lang_bbcode_help;
+	#####################    DB     #####################
+	global $cpg_db_themes_inc;
+	$cpgdb =& cpgDB::getInstance();
+	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+	################################################
 
     $html = '';
 
@@ -3208,9 +3237,13 @@ function theme_html_comments($pid)
     } else {
         $comment_sort_order = 'ASC';
     }
-    $result = cpg_db_query("SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date) AS msg_date, author_id, author_md5_id, msg_raw_ip, msg_hdr_ip, pid, approval FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid='$pid' ORDER BY msg_id $comment_sort_order");
+    /*$result = cpg_db_query("SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date) AS msg_date, author_id, author_md5_id, msg_raw_ip, msg_hdr_ip, pid, approval FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid='$pid' ORDER BY msg_id $comment_sort_order");
 
-    while ($row = mysql_fetch_array($result)) { // while-loop start
+    while ($row = mysql_fetch_array($result)) { // while-loop start*/
+	########################   DB   ##########################
+	$cpgdb->query($cpg_db_themes_inc['html_comments'], $pid, $comment_sort_order);
+	while ($row = $cpgdb->fetchRow()) { //while-loop start
+	######################################################
         $user_can_edit = (GALLERY_ADMIN_MODE) || (USER_ID && USER_ID == $row['author_id'] && USER_CAN_POST_COMMENTS) || (!USER_ID && USER_CAN_POST_COMMENTS && ($USER['ID'] == $row['author_md5_id']));
         if (($user_can_edit != '' && $CONFIG['comment_user_edit'] != 0) || (GALLERY_ADMIN_MODE)) {
             $comment_buttons = $tmpl_comments_buttons;
@@ -3434,6 +3467,11 @@ function theme_display_fullsize_pic()
 {
     global $CONFIG, $THEME_DIR, $ALBUM_SET, $pid;
     global $lang_errors, $lang_fullsize_popup, $lang_charset;
+	#####################    DB     #####################
+	global $cpg_db_themes_inc;
+	$cpgdb =& cpgDB::getInstance();
+	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+	################################################
 
     $superCage = Inspekt::makeSuperCage();
 
@@ -3453,12 +3491,20 @@ function theme_display_fullsize_pic()
       $imagedata = array('name' => $picfile, 'path' => path2url($picname), 'geometry' => $imagesize[3]);
     } elseif (pid) {
       //$pid = (int)$_GET['pid'];
-      $sql = "SELECT * " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='$pid' $ALBUM_SET";
+      /*$sql = "SELECT * " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='$pid' $ALBUM_SET";
       $result = cpg_db_query($sql);
       if (!mysql_num_rows($result)) {
         cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
       }
-      $row = mysql_fetch_array($result);
+      $row = mysql_fetch_array($result);	*/
+	  ###########################   DB   ##############################
+      $cpgdb->query($cpg_db_themes_inc['display_fullsize_pic'], $pid, $ALBUM_SET);
+	  $rowset = $cpgdb->fetchRowSet();
+      if (!count($rowset)) {
+        cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
+      }
+      $row = $rowset[0];	  
+	  ###############################################################
       $pic_url = get_pic_url($row, 'fullsize');
       $geom = 'width="' . $row['pwidth'] . '" height="' . $row['pheight'] . '"';
       $imagedata = array('name' => $row['filename'], 'path' => $pic_url, 'geometry' => $geom);
