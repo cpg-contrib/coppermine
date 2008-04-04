@@ -26,28 +26,30 @@ global $FILE_TYPES;
 
 // Map content types to corresponding user parameters
 $content_types_to_vars = array('image'=>'allowed_img_types','audio'=>'allowed_snd_types','movie'=>'allowed_mov_types','document'=>'allowed_doc_types');
-$CONFIG['allowed_file_extensions'] = '';
+$CONFIG['allowed_file_extensions'] = '';//print($content_types_to_vars['image']);
 
-if (count($FILE_TYPES)==0) {
+if (count($FILE_TYPES)==0) { 
          /*$result = cpg_db_query('SELECT extension, mime, content, player FROM '.$CONFIG['TABLE_FILETYPES']);
          while ($row = mysql_fetch_array($result)) {*/
 		 #######################  DB  ##########################
-         $cpgdb->query($cpg_db_media_functions_inc['get_filetypes']);('SELECT extension, mime, content, player FROM '.$CONFIG['TABLE_FILETYPES']);
+         $cpgdb->query($cpg_db_media_functions_inc['get_filetypes']);
          while ($row = $cpgdb->fetchRow()) {
 		 ####################################################
              // Only add types that are in both the database and user defined parameter
-        if ($CONFIG[$content_types_to_vars[$row['content']]]=='ALL' || is_int(strpos('/'.$CONFIG[$content_types_to_vars[$row['content']]].'/','/'.$row['extension'].'/')))
-        {
-            $FILE_TYPES[$row['extension']] = $row;
-            $CONFIG['allowed_file_extensions'].= '/'.$row['extension'];
-    }   }
-    mysql_free_result($result);
+			if ($CONFIG[$content_types_to_vars[$row['content']]]=='ALL' || is_int(strpos('/'.$CONFIG[$content_types_to_vars[$row['content']]].'/','/'.trim($row['extension']).'/')))
+			{
+				$FILE_TYPES[$row['extension']] = $row;
+				$CONFIG['allowed_file_extensions'].= '/'.$row['extension'];
+			}   
+		}
+    //mysql_free_result($result);
+	$cpgdb->free(); #####  cpgdb_AL
 }
 
 $CONFIG['allowed_file_extensions'] = substr($CONFIG['allowed_file_extensions'],1);
 
-function cpg_get_type($filename,$filter=null) {
-    global $FILE_TYPES;
+function cpg_get_type($filename,$filter=null) { 
+    global $FILE_TYPES;//print_r($FILE_TYPES);exit;
     if (!is_array($filename))
         $filename = explode('.',$filename);
     $EOA = count($filename)-1;

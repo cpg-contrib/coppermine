@@ -141,7 +141,7 @@ class cpgDB {
         {    
 			$Password = $this->Password;
 		}
-		$connect_info['Database'] = $Database;
+		$connect_info['Database'] = $Database;//'testdb';
 		//$connect_info['UID'] = $User;	// these two are not required for  windows authentication mode.
 		//$connect_info['PWD'] = $Password;
 				
@@ -492,9 +492,14 @@ class cpgDB {
 	 return sqlsrv_get_field($this->Query_ID, 1);
 	   
     }
+
+
+//  function to return datetime in UNIX_TIMESTAMP
+	function timestamp ($datetime_var)
+	{
+		return "DATEDIFF(s, '19700101', $datetime_var)";
+	}
+
 }
-
-
-
 
 ?>

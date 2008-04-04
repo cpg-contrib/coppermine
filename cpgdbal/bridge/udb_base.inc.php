@@ -25,23 +25,23 @@ class core_udb {
         {
                 global $CONFIG;
 				global $cpg_db_udb_base_inc;
-				$this->cpg_udb =new cpgDB;	
+				$this->cpgudb =new cpgDB;	
                 // Define wheter we can join tables or not in SQL queries (same host & same db or user)
                 $this->can_join_tables = ($this->db['host'] == $CONFIG['dbserver'] && ($this->db['name'] == $CONFIG['dbname'] || $this->db['user'] == $CONFIG['dbuser']));
 
                 if ($id){
                         //$this->link_id = $id;
-						$this->cpg_udb->Link_ID = $id;
+						$this->cpgudb->Link_ID = $id;
                 } else {
                         // Connect to udb database if necessary
                         if (!$this->can_join_tables) {
                                 /*$this->link_id = mysql_connect($this->db['host'], $this->db['user'], $this->db['password']);
                                 if (!$this->link_id) die("<b>Coppermine critical error</b>:<br />Unable to connect to UDB database !<br /><br />MySQL said: <b>" . mysql_error() . "</b>");
                                 mysql_select_db ($this->db['name'], $this->link_id);	*/
-					$this->cpg_udb->Link_ID = $cpg_udb->connect($this->db['name'], $this->db['host'], $this->db['user'], $this->db['password']);	####	cpgdb_AL			
+					$this->cpgudb->Link_ID = $this->cpgudb->connect($this->db['name'], $this->db['host'], $this->db['user'], $this->db['password']);	####	cpgdb_AL			
                         } else {
                                 //$this->link_id = 0;
-								$this->cpg_udb->Link_ID = 0;
+								$this->cpgudb->Link_ID = 0;
                         }
                     
                 }
@@ -51,7 +51,6 @@ class core_udb {
         {
             global $USER_DATA;
 			global $cpg_db_udb_base_inc;	#####	cpgdb_AL
-			$cpg_udb = new cpgDB;			#####	cpgdb_AL
 
 			if (!($auth = $this->session_extraction()) && !($auth = $this->cookie_extraction())) {
                         $this->load_guest_data();
@@ -76,15 +75,15 @@ class core_udb {
                                 mysql_free_result($result);	*/
 						##########################  DB  ############################
                         if (isset($this->usergroupstable)){
- 								$this->cpg_udb->query($cpg_db_udb_base_inc['auth_set_usergrptbl'], $f['user_id'], $f['username'], $f['password'], $f['usertbl_group_id'], $this->usertable, $this->usergroupstable, $id);
+ 								$this->cpgudb->query($cpg_db_udb_base_inc['auth_set_usergrptbl'], $f['user_id'], $f['username'], $f['password'], $f['usertbl_group_id'], $this->usertable, $this->usergroupstable, $id);
                         } else {
-								$this->cpg_udb->query($cpg_db_udb_base_inc['auth_notset_usergrptbl'], $f['user_id'], $f['username'], $f['password'], $f['usertbl_group_id'], $this->usertable, $this->groupstable, $f['grouptbl_group_id'], $id);
+								$this->cpgudb->query($cpg_db_udb_base_inc['auth_notset_usergrptbl'], $f['user_id'], $f['username'], $f['password'], $f['usertbl_group_id'], $this->usertable, $this->groupstable, $f['grouptbl_group_id'], $id);
                         }
 
-                        $rowset = $this->cpg_udb->fetchRowSet();
+                        $rowset = $this->cpgudb->fetchRowSet();
 						if (count($rowset)){
                                 $row = $rowset[0];
-                                $this->cpg_udb->free();
+                                $this->cpgudb->free();
 						##########################################################
 
                                 $db_pass = $this->udb_hash_db($row['password']);
@@ -195,10 +194,10 @@ class core_udb {
         }	*/
 		########################  DB  ##########################
                 if (!$user_count) {
-            $this->cpg_udb->query($cpg_db_udb_base_inc['get_user_count'], $this->usertable);
-            $nbEnr = $this->cpg_udb->fetchRow();
+            $this->cpgudb->query($cpg_db_udb_base_inc['get_user_count'], $this->usertable);
+            $nbEnr = $this->cpgudb->fetchRow();
             $user_count = $nbEnr[0];
-            $this->cpg_udb->free();
+            $this->cpgudb->free();
         }
 		######################################################
         return $user_count;
@@ -252,7 +251,7 @@ class core_udb {
 
                 $result = cpg_db_query($sql, $this->link_id);*/
 				###########################################  DB  ############################################
-				$result = $this->cpg_udb->query($cpg_db_udb_base_inc['get_users'], $f['user_id'], $f['username'], $f['email'], $f['regdate'], 
+				$result = $this->cpgudb->query($cpg_db_udb_base_inc['get_users'], $f['user_id'], $f['username'], $f['email'], $f['regdate'], 
 						$f['lastvisit'], $f['active'], 	$this->usertable, $C['TABLE_USERGROUPS'], $f['usertbl_group_id'], 
 						$C['TABLE_PICTURES'], $options['search'], $sort_codes[$options['sort']], $options['lower_limit'], $options['users_per_page']);
 				###########################################################################################
@@ -263,7 +262,7 @@ class core_udb {
 				
                 // Extract user list to an array
                 //while ($user = mysql_fetch_assoc($result)) {
-				while ($user = $this->cpg_udb->fetchRow()) {	#####	cpgdb_AL
+				while ($user = $this->cpgudb->fetchRow()) {	#####	cpgdb_AL
                         $userlist[] = $user;
                 }
 
@@ -286,11 +285,11 @@ class core_udb {
                         $row = mysql_fetch_array($result);
                         mysql_free_result($result);	*/
 				################################  DB  #####################################
-				$this->cpg_udb->query($cpg_db_udb_base_inc['get_username'], $this->field['username'], $this->usertable, $this->field['user_id'], $uid);
-				$rowset = $this->cpg_udb->fetchRowSet();
+				$this->cpgudb->query($cpg_db_udb_base_inc['get_username'], $this->field['username'], $this->usertable, $this->field['user_id'], $uid);
+				$rowset = $this->cpgudb->fetchRowSet();
 				if(count($rowset)){
 					$row = $rowset[0];
-					$this->cpg_udb->free();
+					$this->cpgudb->free();
 				########################################################################
                         return $row['user_name'];
                 } else {
@@ -312,11 +311,11 @@ class core_udb {
                         $row = mysql_fetch_array($result);
                         mysql_free_result($result);	*/
 				################################  DB  #####################################
-				$this->cpg_udb->query($cpg_db_udb_base_inc['get_user_id'], $this->field['user_id'], $this->usertable, $this->field['username'], $uid);
-				$rowset = $this->cpg_udb->fetchRowSet();
+				$this->cpgudb->query($cpg_db_udb_base_inc['get_user_id'], $this->field['user_id'], $this->usertable, $this->field['username'], $uid);
+				$rowset = $this->cpgudb->fetchRowSet();
 				if(count($rowset)){
 					$row = $rowset[0];
-					$this->cpg_udb->free();
+					$this->cpgudb->free();
 				########################################################################
                         return $row['user_id'];
                 } else {
@@ -472,9 +471,9 @@ class core_udb {
 
                 $user_data = mysql_fetch_array($result);	*/
 				##########################  DB  ############################
-				$this->cpg_udb->query($cpg_db_udb_base_inc['get_user_info'], $this->field['username'], $this->field['email'], $this->field['regdate'], 
+				$this->cpgudb->query($cpg_db_udb_base_inc['get_user_info'], $this->field['username'], $this->field['email'], $this->field['regdate'], 
 				$this->field['location'], $this->field['website'], $this->usertable, $this->field['user_id'], $uid);
-				$rowset = $this->cpg_udb->fetchRowSet();
+				$rowset = $this->cpgudb->fetchRowSet();
 				if (!count($rowset)) cpg_die(ERROR, $lang_register_php['err_unk_user'], __FILE__, __LINE__);
 				$user_data = $rowset[0];
 				#########################################################
@@ -486,7 +485,7 @@ class core_udb {
                 if (!isset($user_data['user_profile5'])) $user_data['user_profile5'] = '';
                 if (!isset($user_data['user_profile6'])) $user_data['user_profile6'] = '';
                 //mysql_free_result($result);
-				$this->cpg_udb->free();	######	cpgdb_AL
+				$this->cpgudb->free();	######	cpgdb_AL
 
                 return $user_data;
         }
@@ -609,13 +608,13 @@ class core_udb {
 
                         mysql_free_result($result);	*/
 						#############################  DB  ################################
-						$this->cpg_udb->query($cpg_db_udb_base_inc['list_users_mappings'], $this->field['user_id'], 
+						$this->cpgudb->query($cpg_db_udb_base_inc['list_users_mappings'], $this->field['user_id'], 
 										$this->field['username'], $this->usertable, $userlist);
 						$userdata = array();
-						while ($row = $this->cpg_udb->fetchRow()) {
+						while ($row = $this->cpgudb->fetchRow()) {
 							$userdata[$row['user_id']] = $row['user_name'];
 						}
-						$this->cpg_udb->free();
+						$this->cpgudb->free();
 						#################################################################
 
                         // This is the main query, similar to the one in the join implementation above but without the join to the user table
@@ -680,9 +679,9 @@ class core_udb {
                                         $udb_groups[$row[$this->field['grouptbl_group_id']]+100] = $row[$this->field['grouptbl_group_name']];
                                 }	*/
 								###############################  DB  ################################
-								$this->cpg_udb->query($cpg_db_udb_base_inc['sync_use_post_based_grp'], $this->groupstable, $this->field['grouptbl_group_name']);
+								$this->cpgudb->query($cpg_db_udb_base_inc['sync_use_post_based_grp'], $this->groupstable, $this->field['grouptbl_group_name']);
 								$udb_groups = array();
-								while ($row = $this->cpg_udb->fetchRow()) {
+								while ($row = $this->cpgudb->fetchRow()) {
                                     $udb_groups[$row[$this->field['grouptbl_group_id']]+100] = $row[$this->field['grouptbl_group_name']];
 								}
 								##################################################################
@@ -955,8 +954,8 @@ if ($alb_cat) echo "                </optgroup>\n";
                                 $user_album_ids_and_names_list = array();
                         }		*/
 						#########################  DB  ###########################
-						$user_albums = $this->cpg_udb->query($cpg_db_udb_base_inc['user_alb_ids_and_names'], $this->field['user_id'], FIRST_USER_CAT, $this->field['username'], $this->usertable);
-						$user_album_ids_and_names_list = $this->cpg_udb->fetchRowSet();
+						$user_albums = $this->cpgudb->query($cpg_db_udb_base_inc['user_alb_ids_and_names'], $this->field['user_id'], FIRST_USER_CAT, $this->field['username'], $this->usertable);
+						$user_album_ids_and_names_list = $this->cpgudb->fetchRowSet();
 						if (!count($user_album_ids_and_names_list)){
 							$user_album_ids_and_names_list = array();
 						}

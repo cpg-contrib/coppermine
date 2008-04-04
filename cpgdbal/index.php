@@ -1109,7 +1109,7 @@ function list_cat_albums($cat = 0)
                     $picture = mysql_fetch_array($result);
                     mysql_free_result($result);*/
 					################  DB  ##################
-                    $cpg_db_query($cpg_db_index_php['list_cat_alb_vis_test_aid'], $alb_thumb['aid']);
+                    $cpg_db_query($cpg_db_index_php['random_pictures'], $alb_thumb['aid']);
                     $picture = $cpgdb->fetchRow();
                     $cpgdb->free();
 					#####################################

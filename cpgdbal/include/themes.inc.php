@@ -1741,6 +1741,7 @@ function theme_main_menu($which)
 
                 if (mysql_num_rows($public_albums)) {	*/
 				#########################    DB    ###########################
+				//print($album);exit;
 				$public_albums = $cpgdb->query($cpg_db_themes_inc['upload_not_allowed'], FIRST_USER_CAT, USER_GROUP_SET, $album);
 				$rowset = $cpgdb->fetchRowSet();
 				if (count($rowset)) {

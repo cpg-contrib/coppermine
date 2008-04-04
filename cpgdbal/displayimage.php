@@ -214,7 +214,7 @@ function html_picinfo()
     return theme_html_picinfo($info);
 }
 
-function get_subcat_data($parent, $level)
+/*function get_subcat_data($parent, $level)
 {
     global $CONFIG, $ALBUM_SET_ARRAY;
 
@@ -230,8 +230,29 @@ function get_subcat_data($parent, $level)
         }
         if ($level > 1) get_subcat_data($subcat['cid'], $level -1);
     }
-}
+}	*/
+###################################		DB		#####################################
+function get_subcat_data($parent, $level)
+{
+    global $CONFIG, $ALBUM_SET_ARRAY, $cpg_db_displayimage_php;
+	$cpgdb =& cpgDB::getInstance();
+	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
 
+	$cpgdb->query($cpg_db_displayimage_php['get_subcat_data'], $parent);
+	$rowset = $cpgdb->fetchRowSet();
+    if (count($rowset) > 0) {
+        foreach ($rowset as $subcat) {
+            $cpgdb->query($cpg_db_displayimage_php['alb_set_array'], $subcat['cid']);
+			$rowset = $cpgdb->fetchRowSet();
+            $album_count = count($rowset);
+            foreach ($rowset as $row) {
+                $ALBUM_SET_ARRAY[] = $row['aid'];
+            } // foreach
+        }
+        if ($level > 1) get_subcat_data($subcat['cid'], $level -1);
+    }
+}
+######################################################################################
 /**
  * Main code
  */
@@ -291,11 +312,19 @@ $META_ALBUM_SET = $ALBUM_SET; //displayimage uses $ALBUM_SET but get_pic_data in
 
 //attempt to fix topn images for keyworded albums
 if ($cat < 0) {
-    $result = cpg_db_query("SELECT category, title, aid, keyword, description, alb_password_hint FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='" . (- $cat) . "'");
-    if (mysql_num_rows($result) > 0) {
+    /*$result = cpg_db_query("SELECT category, title, aid, keyword, description, alb_password_hint FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='" . (- $cat) . "'");
+	if (mysql_num_rows($result) > 0) {
         $CURRENT_ALBUM_DATA = mysql_fetch_array($result);
         $CURRENT_ALBUM_KEYWORD = $CURRENT_ALBUM_DATA['keyword'];
+	} 	*/
+	#######################        DB        #######################
+	$cpgdb->query($cpg_db_displayimage_php['fix_topn_images'], (- $cat));
+	$rowset = $cpgdb->fetchRowSet();
+	if (count($rowset) > 0)	{
+        $CURRENT_ALBUM_DATA = $rowset[0];
+        $CURRENT_ALBUM_KEYWORD = $CURRENT_ALBUM_DATA['keyword'];
     }
+	#######################################################
 }
 // Retrieve data for the current picture
 ######## Commented by Abbas for new URL ###########
@@ -318,9 +347,15 @@ if ($pos < 0 || $pid > 0) {
     ########## Modified by Abbas for new URL feature #########
     $pid = ($pos < 0) ? -$pos : $pid;
     if (!$album) {
-      $result = cpg_db_query("SELECT aid from {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid' $ALBUM_SET LIMIT 1");
+      /*$result = cpg_db_query("SELECT aid from {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid' $ALBUM_SET LIMIT 1");
       if (mysql_num_rows($result) == 0) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
-      $row = mysql_fetch_array($result);
+      $row = mysql_fetch_array($result);	*///print(sprintf($cpg_db_displayimage_php['get_current_pic_data'], $pid, $ALBUM_SET));exit;
+	  ################     DB     ##################
+	  $cpgdb->query($cpg_db_displayimage_php['get_current_pic_data'], $pid, $ALBUM_SET);
+	  $rowset = $cpgdb->fetchRowSet();
+	  if(count($rowset) == 0) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
+	  $row = $rowset[0];
+	  ########################################
     }
     $album = (!$album) ? $row['aid'] : $album;
     $pic_data = get_pic_data($album, $pic_count, $album_name, -1, -1, false);
@@ -359,9 +394,15 @@ if ($superCage->get->keyExists('film_strip')) {
 // Retrieve data for the current album
 if (isset($CURRENT_PIC_DATA)) {
     $ref_album = (is_numeric($album) ? $album : $CURRENT_PIC_DATA['aid']);
-    $result = cpg_db_query("SELECT title, comments, votes, category, aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='{$ref_album}' LIMIT 1");
+    /*$result = cpg_db_query("SELECT title, comments, votes, category, aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='{$ref_album}' LIMIT 1");
     if (!mysql_num_rows($result)) cpg_die(CRITICAL_ERROR, sprintf($lang_errors['pic_in_invalid_album'], $CURRENT_PIC_DATA['aid']), __FILE__, __LINE__);
-    $CURRENT_ALBUM_DATA = mysql_fetch_array($result);
+    $CURRENT_ALBUM_DATA = mysql_fetch_array($result);	*/
+	########################################		DB		###########################################
+	$cpgdb->query($cpg_db_displayimage_php['get_current_alb_data'], $ref_album);
+	$rowset = $cpgdb->fetchRowSet();
+	if(!count($rowset)) cpg_die(CRITICAL_ERROR, sprintf($lang_errors['pic_in_invalid_album'], $CURRENT_PIC_DATA['aid']), __FILE__, __LINE__);
+	$CURRENT_ALBUM_DATA = $rowset[0];
+	#################################################################################################
 
     if (is_numeric($album)) {
         $cat = - $album;

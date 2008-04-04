@@ -527,6 +527,15 @@ class cpgDB {
     {
       return (int)mysql_insert_id($this->Link_ID);
     }
+	
+//  function to return datetime in UNIX_TIMESTAMP
+	function timestamp($datetime_var)
+	{
+		return "UNIX_TIMESTAMP($datetime_var)";
+	}
+
+
 }
+
 
 ?>

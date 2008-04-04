@@ -336,15 +336,18 @@ if ($CONFIG['allow_private_albums'] == 0 || !in_array($album, $FORBIDDEN_SET_DAT
             if (isset($alb_pw[$album])) {
                 /*$sql = "SELECT aid FROM " . $CONFIG['TABLE_ALBUMS'] . " WHERE MD5(alb_password)='{$alb_pw[$album]}' AND aid='{$album}'";
                 $result = cpg_db_query($sql);
-                if (mysql_num_rows($result)) {*/
-	######################  DB  ########################
-				$cpgdb->query($cpg_db_thumbnails_php['get_alb_pwrd'], $alb_pw[$album], $album);
-				$rowset = $cpgdb->fetchRowSet();
-				if (count($rowset)) {
-	##################################################
-                    $valid = true; //The album password is correct. Show the album details.
+                if (mysql_num_rows($result)) {
+				    $valid = true; //The album password is correct. Show the album details.
                     get_private_album_set();
-                }
+                }		*/
+	######################  DB  ########################
+				$cpgdb->query($cpg_db_thumbnails_php['get_alb_pwrd'], $album);
+				$row = $cpgdb->fetchRow();
+				if (MD5($row['alb_password']) == $alb_pw[$album]) {
+						$valid = true; //The album password is correct. Show the album details.
+						get_private_album_set();
+				}
+	##################################################
             }
         }
     } else {

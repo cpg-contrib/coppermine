@@ -94,20 +94,31 @@ class cpg_udb extends core_udb {
 	// definition of how to extract id, pass from session cookie
 	function session_extraction()
 	{
+		##############     DB     ###############
+		global $cpg_db_invisionboard20_inc;
+		###################################
 		$superCage = Inspekt::makeSuperCage();
 		//if (isset($_COOKIE['session_id'])) {
 		if ($superCage->cookie->keyExists('session_id')) {
 			//$session_id = addslashes($_COOKIE['session_id']);
 			$session_id = $superCage->cookie->getEscaped('session_id');
 
-			$sql = "SELECT member_id , member_login_key FROM {$this->sessionstable} AS s INNER JOIN {$this->usertable} AS u ON s.member_id = u.id WHERE s.id = '$session_id'";
+			/*$sql = "SELECT member_id , member_login_key FROM {$this->sessionstable} AS s INNER JOIN {$this->usertable} AS u ON s.member_id = u.id WHERE s.id = '$session_id'";
 			
 			$result = cpg_db_query($sql, $this->link_id);
 			
 			if (mysql_num_rows($result)){
 				$row = mysql_fetch_array($result);
 				return $row;
+			}	*/
+			#########################################      DB      #########################################
+			$this->cpgudb->query($cpg_db_invisionboard20_inc['session_extract'], $this->sessionstable, $this->usertable, $session_id);
+			$rowset = $this->cpgudb->fetchRowSet();
+			if(count($rowset)) {
+				$row = $rowset[0];
+				return $row;
 			}
+			#########################################################################################
 		} else {
 			return false;
 		}

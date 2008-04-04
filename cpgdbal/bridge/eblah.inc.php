@@ -59,7 +59,11 @@ class cpg_udb extends core_udb {
 		// Derived full table names
 		$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
 		$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
-		
+		####################    FOR MSSQL ONLY   ####################
+//               $this->usertable = $this->db['name'] ."." .dbo ."." .$this->db['prefix'] . $this->table['users'];
+//               $this->groupstable =   $this->db['name'] . "." .dbo ."." .$this->db['prefix'] . $this->table['groups'];
+		#######################################################
+
 		// Table field names
 		$this->field = array(
 			'username' => 'user_name', // name of 'username' field in users table
@@ -141,11 +145,14 @@ class cpg_udb extends core_udb {
 	
 	function get_user_id($username)
 	{
+		########   DB   ########
+		global $cpg_db_eblah_inc;
+		####################
 		static $x = false;
 		
 		$username = addslashes($username);
 
-		$sql = "SELECT {$this->field['user_id']} AS user_id FROM {$this->usertable} WHERE {$this->field['username']}  = '$username'";
+		/*$sql = "SELECT {$this->field['user_id']} AS user_id FROM {$this->usertable} WHERE {$this->field['username']}  = '$username'";
 
 		$result = cpg_db_query($sql, $this->link_id);
 
@@ -153,7 +160,17 @@ class cpg_udb extends core_udb {
 			$row = mysql_fetch_array($result);
 			mysql_free_result($result);
 			return $row['user_id'];
-		} else {
+		}	*/
+		####################################       DB       ####################################
+		$this->cpgudb->query($cpg_db_eblah_inc['get_user_id'], $this->field['user_id'], $this->usertable, $this->field['username'], $username);
+		$rowset = $this->cpgudb->fetchRowSet();
+		if(count($rowset)) {
+			$row = $rowset[0];
+			$this->cpgudb->free();
+			return $row['$user_id'];
+		}
+		################################################################################
+		else {
 			if (!$x){
 				$x =  true;
 				$this->sync_users();
@@ -173,6 +190,10 @@ class cpg_udb extends core_udb {
 	
 	function sync_users()
 	{
+		################     DB    ##################
+		global $cpg_db_eblah_inc, $CONFIG;
+		$cpg_tempdb = cpgDB::getInstance();
+		########################################
 		$data = array();
 		
 		if ($dh = opendir($this->datapath)) {
@@ -193,7 +214,17 @@ class cpg_udb extends core_udb {
 			
 			list($password, $username, $email,,$rank) = $info;
 			$user_group = in_array($username, $adminusernames) ? 1 : 2;
-			cpg_db_query("INSERT IGNORE INTO {$this->usertable} (`user_name`, `user_password`, `user_email`, `user_active`, `user_group`) VALUES ( '$username', '$password', '$email', 'YES', $user_group)");
+			//cpg_db_query("INSERT IGNORE INTO {$this->usertable} (`user_name`, `user_password`, `user_email`, `user_active`, `user_group`) VALUES ( '$username', '$password', '$email', 'YES', $user_group)");
+			###################################           DB          ###################################
+			$cpg_tempdb->query($cpg_db_eblah_inc['get_username']);
+			$allusers = array();
+			while($row = $cpg_tempdb->fetchRow()){
+				$allusers[] = $row['user_name'];
+			}
+			if in_array($username, $allusers) {
+				$this->cpgudb->query($cpg_db_eblah_inc['sync_users'], $this->usertable, $username, $password, $email, $user_group);
+			}
+			#################################################################################
 		}
 	}
 }
