@@ -26,6 +26,7 @@ require('include/picmgmt.inc.php');
 
 $defpicnum = 25; // Default number of pictures to process at a time when rebuilding thumbs or normals:
 $dayolder = 365; // Default number of days for deleting files older than xxx days {Frantz}
+$lineBreak = "\r\n";
 if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
 pageheader($lang_util_php['title']);
@@ -123,20 +124,55 @@ if (array_key_exists($action, $tasks)){
         endtable();
 
         echo '<br /><form name="cpgform" id="cpgform" action="util.php" method="post">';
+        starttable('100%', 'What do you want to do?',1);
 
+        $loopCounter = 0;
         foreach ($tasks as $task){
 
             list($name, $title, $options) = $task;
 
+                print '  <tr>'.$lineBreak;
+                print '    <td class="tableh2">'.$lineBreak;
                 if ($name){
-                    starttable('100%', "<input type=\"radio\" name=\"action\" value=\"$name\" id=\"$name\" class=\"nobg\" /><label for=\"$name\" class=\"clickable_option\" >$title</label> (1)");
+                    print '      <input type="radio" name="action" value="'.$name.'" id="'.$name.'" class="nobg" onchange="cpgAdminToolsToggleRadioButton(\''.$name.'\');" /><label for="'.$name.'" class="clickable_option">'.$title.'</label>'.$lineBreak;
                 } else {
-                          starttable('100%', $title);
+                    print '      '.$title;
                 }
-                echo "<tr><td class=\"tablef\">$options</td></tr>";
+                print '    </td>'.$lineBreak;
+                print '  </tr>'.$lineBreak;
+                print '  <tr>'.$lineBreak;
+                print '    <td>'.$lineBreak;
+                print '      <span id="'.$name.'_wrapper">'.$lineBreak;
+                print '        '.$lineBreak;
+                starttable('100%','',2);
+                print '          <tr>'.$lineBreak;
+                print '            <td class="tableb">'.$lineBreak;
+                print '            </td>'.$lineBreak;
+                print '            <td class="tableb">'.$lineBreak;
+                print $options;
+                print '            </td>'.$lineBreak;
+                print '          </tr>'.$lineBreak;
+                print '        '.$lineBreak;
                 endtable();
-            echo '<br />';
+                print '      </span>'.$lineBreak;
+                print '                      <script type="text/javascript">'.$lineBreak;
+                print '        addonload("show_section(\''.$name.'_wrapper\')");'.$lineBreak;
+                print '      </script>'.$lineBreak;
+                print '    </td>'.$lineBreak;
+                print '  </tr>'.$lineBreak;
+                $loopCounter++;
         }
+        print <<< EOT
+    <script type="text/javascript">
+	function cpgAdminToolsToggleRadioButton(wrapper_name) {
+		if (document.getElementById(wrapper_name).checked == true) {
+			document.getElementById(wrapper_name + '_wrapper').style.display = 'block';
+		}
+		return;
+	}
+	</script>
+EOT;
+        endtable();
 
         starttable('100%', $lang_util_php['select_album']);
         echo '<tr><td class="tablef"><br />';
