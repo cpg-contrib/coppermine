@@ -1680,32 +1680,28 @@ if ($superCage->post->keyExists('control') && $superCage->post->getRaw('control'
                     $extension = 'gif';
 
                 } else {
-                    // We will try to get the extension from the database.
-                    $MIME_result = cpg_db_query("SELECT extension FROM {$CONFIG['TABLE_FILETYPES']} WHERE mime='$URI_MIME_type'");
-
-                    // Check to see if any results were returned.
-                    if (!mysql_num_rows($MIME_result)) {
-
-                        // No results, so free up the resources.
-                        mysql_free_result($MIME_result);
-
-                        // We cannot determine an extension from the MIME type provided, so note an error. Reject the file as unsafe.
-                        $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$lang_upload_php['MIME_type_unknown']);
-
-                        // There is no need for further tests or action, so skip the remainder of the iteration.
-                        continue;
-
-                    } else {
-
-                        // The was a result. Fetch it.
-                        $extension_data = mysql_fetch_array($MIME_result);
-
-                        // Release the resources.
-                        mysql_free_result($MIME_result);
-
-                        // Store the extension in $extension.
-                        $extension = $extension_data['extension'];
-                    }
+                
+                		$extension = '';
+                		
+                		foreach ($FILE_TYPES as $ext => $typedata){
+                		
+                			if ($typedata['mime'] == $URI_MIME_type){
+                			 	// Store the extension in $extension.
+                				$extension = $ext;
+                				break;
+                			}
+                			
+                		}
+                		
+                		if (!$extension){
+                		
+                    	// We cannot determine an extension from the MIME type provided, so note an error. Reject the file as unsafe.
+                    	$URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$lang_upload_php['MIME_type_unknown']);
+  
+                    	// There is no need for further tests or action, so skip the remainder of the iteration.
+                      continue;
+             		
+                		}
 
                 }
 
