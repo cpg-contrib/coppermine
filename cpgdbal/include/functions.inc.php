@@ -303,7 +303,7 @@ function cpg_db_query($query, $link_id = 0)
 function cpg_db_error($the_error)
 {
         global $CONFIG,$lang_errors;
-
+print($the_error);
         if ($CONFIG['debug_mode'] === '0' || (!GALLERY_ADMIN_MODE)) {
             cpg_die(CRITICAL_ERROR, $lang_errors['database_query'], __FILE__, __LINE__);
         } else {
@@ -1233,7 +1233,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 				##############################################################
 				$cpgdb->query($cpg_db_functions_inc['count_get_pic_data'], $album, $forbidden_set_string, $keyword, $approved, $ALBUM_SET);
 				$nbEnr = $cpgdb->fetchRow();
-				$count = $nbEnr[0];
+				$count = $nbEnr['count'];
 				$cpgdb->free();
 				
                 if($select_columns != '*') $select_columns .= ', title, caption,hits,owner_id,owner_name,pic_rating,votes';
@@ -1270,7 +1270,8 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 if($META_ALBUM_SET){
                         $TMP_SET = "AND (" . substr($META_ALBUM_SET, 3);
                 }else{
-                        $TMP_SET = "AND (1";
+                        //$TMP_SET = "AND (1";
+						$TMP_SET = "AND (1=1";	#####	cpgdb_AL
                 }
 
                 /*$query = "SELECT COUNT({$CONFIG['TABLE_PICTURES']}.pid) from {$CONFIG['TABLE_COMMENTS']}, {$CONFIG['TABLE_PICTURES']}  WHERE {$CONFIG['TABLE_PICTURES']}.approved = 'YES' AND {$CONFIG['TABLE_COMMENTS']}.pid = {$CONFIG['TABLE_PICTURES']}.pid AND {$CONFIG['TABLE_COMMENTS']}.approval = 'YES' $TMP_SET $keyword)";
@@ -1293,9 +1294,10 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 $rowset = cpg_db_fetch_rowset($result);
                 mysql_free_result($result);	*/
 				####################################      DB     ######################################
+				//print(sprintf($cpg_db_functions_inc['count_get_pic_data_lastcom'], $TMP_SET, $keyword));exit;
 				$cpgdb->query($cpg_db_functions_inc['count_get_pic_data_lastcom'], $TMP_SET, $keyword);
 				$nbEnr = $cpgdb->fetchRow();
-				$count = $nbEnr[0];
+				$count = $nbEnr['count'];
 				$cpgdb->free();
 
                 $select_columns = '*'; //allows building any data into any thumbnail caption
@@ -1348,7 +1350,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 				##################################      DB     ###################################
 				$cpgdb->query($cpg_db_functions_inc['count_get_pic_data_lastcomby'], $uid, $META_ALBUM_SET);
 				$nbEnr = $cpgdb->fetchRow();
-				$count = $nbEnr[0];
+				$count = $nbEnr['count'];
 				$cpgdb->free();
                 
 				$select_columns = '*, '.$cpgdb->timestamp('msg_date').' AS msg_date'; //allows building any data into any thumbnail caption
@@ -1389,7 +1391,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 				################################            DB           ###################################
 				$cpgdb->query($cpg_db_functions_inc['count_get_pic_data_lastup'], $META_ALBUM_SET);
 				$nbEnr = $cpgdb->fetchRow();
-				$count = $nbEnr[0];
+				$count = $nbEnr['count'];
 				$cpgdb->free();
 				
 				$select_columns = '*'; //allows building any data into any thumbnail caption
@@ -1436,7 +1438,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 				#####################################         DB        #####################################
 				$cpgdb->query($cpg_db_functions_inc['count_get_pic_data_lastupby'], $uid, $META_ALBUM_SET);
 				$nbEnr = $cpgdb->fetchRow();
-				$count = $nbEnr[0];
+				$count = $nbEnr['count'];
 				$cpgdb->free();
 				
 				$select_columns = '*'; //allows building any data into any thumbnail caption
@@ -1478,7 +1480,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 				######################################        DB        #####################################
 				$cpgdb->query($cpg_db_functions_inc['count_get_pic_data_topn'], $META_ALBUM_SET, $keyword);
 				$nbEnr = $cpgdb->fetchRow();
-				$count = $nbEnr[0];
+				$count = $nbEnr['count'];
 				$cpgdb->free();
 				
 				$select_columns = '*'; //allows building any data into any thumbnail caption
@@ -1517,7 +1519,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 				######################################        DB        #####################################
 				$cpgdb->query($cpg_db_functions_inc['count_get_pic_data_toprated'], $CONFIG['min_votes_for_rating'], $META_ALBUM_SET);
 				$nbEnr = $cpgdb->fetchRow();
-				$count = $nbEnr[0];
+				$count = $nbEnr['count'];
 				$cpgdb->free();
 				
 				$select_columns = '*'; //allows building any data into any thumbnail caption
@@ -1556,7 +1558,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 				#######################################        DB       ######################################
 				$cpgdb->query($cpg_db_functions_inc['count_get_pic_data_lasthits'], $META_ALBUM_SET);
 				$nbEnr = $cpgdb->fetchRow();
-				$count = $nbEnr[0];
+				$count = $nbEnr['count'];
 				$cpgdb->free();
 				
 				$select_columns = '*, '.$cpgdb->timestamp('mtime').' as mtime'; //allows building any data into any thumbnail caption
@@ -1616,7 +1618,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 				#####################################         DB         #######################################
 				$cpgdb->query($cpg_db_functions_inc['count_get_pic_data_random'], $META_ALBUM_SET);
 				$nbEnr = $cpgdb->fetchRow();
-				$count = $nbEnr[0];
+				$count = $nbEnr['count'];
 				$cpgdb->free();
 				
 				$select_columns = '*'; //allows building any data into any thumbnail caption
@@ -1715,7 +1717,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 						####################################       DB       ######################################
 						$cpgdb->query($cpg_db_functions_inc['count_get_pic_data_favpics'], $favs, $META_ALBUM_SET);
 						$nbEnr = $cpgdb->fetchRow();
-						$count = $nbEnr[0];
+						$count = $nbEnr['count'];
 						$cpgdb->free();
 						
 						$select_columns = '*';
@@ -1750,7 +1752,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 			####################################       DB       ######################################
 			$cpgdb->query($cpg_db_functions_inc['count_get_pic_data_datebrowse'], substr($date,0,10), $META_ALBUM_SET);
 			$nbEnr = $cpgdb->fetchRow();
-			$count = $nbEnr[0];
+			$count = $nbEnr['count'];
 			$cpgdb->free();
 			$select_columns = '*';
 			$cpgdb->query($cpg_db_functions_inc['get_pic_data_datebrowse'],$select_columns, substr($date,0,10), $META_ALBUM_SET, $limit, $first_record, $records_per_page);
@@ -1895,7 +1897,7 @@ function cpg_get_pending_approvals()
     if (count($rowset) == 0) return 0;
     $row = $rowset[0];
     $cpgdb->free();
-    return $row[0];
+    return $row['count'];
 }
 ##############################################################################
 // Return the total number of comments for a certain picture
@@ -1926,7 +1928,7 @@ function count_pic_comments($pid, $skip=0)
 		$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
         $cpgdb->query($cpg_db_functions_inc['count_pic_comments'], $pid, $skip);
         $nbEnr = $cpgdb->fetchRow();
-        $count = $nbEnr[0];
+        $count = $nbEnr['count'];
         $cpgdb->free();
         return $count;
 }

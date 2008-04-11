@@ -33,7 +33,7 @@ if (strpos($CPG_REFERER, "logout.php") !== false) {
 $login_failed = '';
 $cookie_warning = '';
 
-if ($superCage->post->keyExists('submitted')) {
+if ($superCage->post->keyExists('submitted')) {//print($superCage->post->getEscaped('username')."<br>");print('supercage');exit;
     if ( $USER_DATA = $cpg_udb->login( $superCage->post->getEscaped('username'), $superCage->post->getEscaped('password'), $superCage->post->getInt('remember_me') ) ) {
         //$referer=preg_replace("'&amp;'","&",$referer);
         cpgRedirectPage($CPG_REFERER, $lang_login_php['login'], sprintf($lang_login_php['welcome'], $USER_DATA['user_name']),3);

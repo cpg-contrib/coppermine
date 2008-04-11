@@ -11,9 +11,9 @@ the Free Software Foundation; either version 2 of the License, or
 ********************************************
 Coppermine version: 1.5.0
 $Source$
-$Revision: 4360 $
-$Author: gaugau $
-$Date: 2008-03-25 13:32:11 +0530 (Tue, 25 Mar 2008) $
+$Revision: 4372 $
+$Author: nibbler999 $
+$Date: 2008-04-10 18:36:57 +0530 (Thu, 10 Apr 2008) $
 *********************************************
 Changelog
 =========
@@ -26,6 +26,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-04-10 [S] Corrected an SQL injection vulnerability in URI upload code {Nibbler}
+2008-04-07 [O] Added expandable admin tools sections {GauGau}
 2008-03-25 [A] Added warning on the config page for settings that mustn't be changed lightheartedly {GauGau}
 2008-03-25 [A] Added favicon tag to all themes that come with coppermine {GauGau}
 2008-03-25 [B] Rewrote json_encode function as the old one was not working correctly {Abbas}

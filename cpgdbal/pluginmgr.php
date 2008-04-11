@@ -35,7 +35,10 @@ if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__,
 // write the plugin enable/disable change to the db
     if ($superCage->post->keyExists('update_config')) {
         $value = $superCage->post->getInt('enable_plugins');
-        cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = 'enable_plugins'");
+        //cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = 'enable_plugins'");
+		############################       DB     #############################
+		$cpgdb->query($cpg_db_pluginmgr_php['update_config'], $value);
+		################################################################
         $CONFIG['enable_plugins'] = $value;
         if ($CONFIG['log_mode'] == CPG_LOG_ALL) {
             log_write('CONFIG UPDATE SQL: '.
@@ -361,28 +364,42 @@ switch ($op) {
         $thisplugin = @$CPG_PLUGINS[$p];
         if (isset($thisplugin) && ($priority = $thisplugin->priority) > 0) {
 
-            // Move the plugin above down
-            $sql = 'update '.$CONFIG['TABLE_PLUGINS'].' set priority='.$priority.' where priority='.($priority-1).';';
-            cpg_db_query($sql);
+            /*// Move the plugin above down
+			$sql = 'update '.$CONFIG['TABLE_PLUGINS'].' set priority='.$priority.' where priority='.($priority-1).';';
+			cpg_db_query($sql);
 
-            // Move this plugin up
-            $sql = 'update '.$CONFIG['TABLE_PLUGINS'].' '.
-                   'set priority='.($priority-1).' where plugin_id='.$thisplugin->plugin_id.';';
-            cpg_db_query($sql);
+			// Move this plugin up
+			$sql = 'update '.$CONFIG['TABLE_PLUGINS'].' '.
+			'set priority='.($priority-1).' where plugin_id='.$thisplugin->plugin_id.';';
+			cpg_db_query($sql);	*/
+			############################       DB     #############################
+			// Move the plugin above down
+			$cpgdb->query($cpg_db_pluginmgr_php['set_priority'], $priority, ($priority-1));
+			
+			// Move the plugin up
+			$cpgdb->query($cpg_db_pluginmgr_php['set_priority_plugin'], ($priority-1), $thisplugin->plugin_id);
+			################################################################
         }
         break;
     case 'moved':
         $thisplugin = @$CPG_PLUGINS[$p];
         if (isset($thisplugin) && ($priority = $thisplugin->priority) < (count($CPG_PLUGINS)-1)) {
 
-            // Move the plugin below up
-            $sql = 'update '.$CONFIG['TABLE_PLUGINS'].' set priority='.($priority).' where priority='.($priority+1).';';
-            cpg_db_query($sql);
+            /*// Move the plugin below up
+			$sql = 'update '.$CONFIG['TABLE_PLUGINS'].' set priority='.($priority).' where priority='.($priority+1).';';
+			cpg_db_query($sql);
 
-            // Move this plugin down
-            $sql = 'update '.$CONFIG['TABLE_PLUGINS'].' '.
-                   'set priority='.($priority+1).' where plugin_id='.$thisplugin->plugin_id.';';
-            cpg_db_query($sql);
+			// Move this plugin down
+			$sql = 'update '.$CONFIG['TABLE_PLUGINS'].' '.
+			'set priority='.($priority+1).' where plugin_id='.$thisplugin->plugin_id.';';
+			cpg_db_query($sql);	*/
+			############################       DB     #############################
+			// Move the plugin above down
+			$cpgdb->query($cpg_db_pluginmgr_php['set_priority'], $priority, ($priority+1));
+			
+			// Move the plugin up
+			$cpgdb->query($cpg_db_pluginmgr_php['set_priority_plugin'], ($priority+1), $thisplugin->plugin_id);
+			################################################################
         }
         break;
     case 'upload':

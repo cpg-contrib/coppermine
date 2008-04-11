@@ -31,7 +31,12 @@ class cpgAPIAuth {
 
   function authenticate ()
   {
-    global $FORBIDDEN_SET, $ALBUM_SET, $CONFIG, $USER_DATA;
+    global $FORBIDDEN_SET, $ALBUM_SET, $CONFIG, $USER_DATA, $cpg_db_api_auth_php;
+	####################### DB #########################	
+	$cpgdb =& cpgDB::getInstance();
+	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+	##################################################	
+
     $username = addslashes($_POST['username']);
     $password = addslashes($_POST['password']);
 
@@ -64,36 +69,55 @@ class cpgAPIAuth {
       }
 
       // Check for user in users table
-      $sql =  "SELECT user_id, user_name, user_password FROM {$CONFIG['TABLE_USERS']} WHERE ";
-      $sql .= "user_name = '$username' AND BINARY user_password = '$encpassword' AND user_active = 'YES'";
-      $result = cpg_db_query($sql);
+      /*$sql =  "SELECT user_id, user_name, user_password FROM {$CONFIG['TABLE_USERS']} WHERE ";
+	    $sql .= "user_name = '$username' AND BINARY user_password = '$encpassword' AND user_active = 'YES'";
+	    $result = cpg_db_query($sql);
 
-      if (!mysql_num_rows($result)) {
-        return false;
-      }
+	    if (!mysql_num_rows($result)) {
+		return false;
+	    }
 
-      $row = mysql_fetch_array($result);
-      $id = $row['user_id'];
+	    $row = mysql_fetch_array($result);
+	    $id = $row['user_id'];	*/
+	  ################################		DB		################################
+	  $cpgdb->query($cpg_db_api_auth_php['check_in_users_table'], $username, $encpassword);
+	  $rowset = $cpgdb->fetchRowSet();
+	  if (!count($rowset)) {
+		return false;
+	  }
+	  $row = $rowset[0];
+	  $id = $row['user_id'];
+	  #############################################################################
 
       /**
        * Let's authenticate the user first
        */
-      $query = "SELECT u.user_id AS id, u.user_name AS username, u.user_password AS password,
+      /*$query = "SELECT u.user_id AS id, u.user_name AS username, u.user_password AS password,
                 u.user_group+100 AS group_id ".
               "FROM
                 {$CONFIG['TABLE_USERS']} AS u INNER JOIN {$CONFIG['TABLE_USERGROUPS']} AS g ON u.user_group = g.group_id ".
               "WHERE
                 u.user_id = '$id'";
 
-      $results = cpg_db_query($query);
+		$results = cpg_db_query($query);
 
-      if (!mysql_num_rows($results)) {
-        return false;
-      }
+		if (!mysql_num_rows($results)) {
+			return false;
+		}
 
-      $row = mysql_fetch_assoc($results);
-      $this->load_user_data($row);
-      mysql_free_result($results);
+		$row = mysql_fetch_assoc($results);
+		$this->load_user_data($row);
+		mysql_free_result($results);	*/
+		#############################      DB      ##############################
+		$cpgdb->query($cpg_db_api_auth['authenticate_user'], $id);
+		$rowset = $cpgdb->fetchRowSet();
+		if (!count($rowset)) {
+			return false;
+		}
+		$row = $rowset[0];
+		$this->load_user_data($row);
+		$cpgdb->free();
+		##################################################################
     }
 
     /**
@@ -119,7 +143,7 @@ class cpgAPIAuth {
     define('NUM_FILE_BOXES', (int)$USER_DATA['num_file_upload']);
     define('NUM_URI_BOXES', (int)$USER_DATA['num_URI_upload']);
 
-    $query = "SELECT aid
+    /*$query = "SELECT aid
               FROM
                 {$CONFIG['TABLE_ALBUMS']}
               WHERE
@@ -127,22 +151,37 @@ class cpgAPIAuth {
                 visibility !='".(FIRST_USER_CAT + USER_ID)."' AND
                 visibility NOT IN ".USER_GROUP_SET;
 
-    $result = cpg_db_query($query);
+	$result = cpg_db_query($query);
 
-    if ((mysql_num_rows($result))) {
+	if ((mysql_num_rows($result))) 	*/
+	#####################################		DB		####################################
+	$cpgdb->query($cpg_db_api_auth_php['get_forbidden_set'], (FIRST_USER_CAT + USER_ID), USER_GROUP_SET);
+	$rowset = $cpgdb->fetchRowSet();
+	if (count($rowset)) 
+	######################################################################################
+	{
       $set ='';
-      while($album=mysql_fetch_array($result)) {
-        $set .= $album['aid'].',';
-        $FORBIDDEN_SET_DATA[] = $album['aid'];
-      } // while
-      $FORBIDDEN_SET = "p.aid NOT IN (".substr($set, 0, -1).') ';
-      $ALBUM_SET = 'AND aid NOT IN ('.substr($set, 0, -1).') ';
+		/*while($album=mysql_fetch_array($result)) {
+			$set .= $album['aid'].',';
+		$FORBIDDEN_SET_DATA[] = $album['aid'];
+		} // while	*/
+		#############       DB        #############
+		foreach ($rowset as $album) {
+			$set .= $album['aid'].',';
+			$FORBIDDEN_SET_DATA[] = $album['aid'];
+		} //foreach 
+		##################################
+		$FORBIDDEN_SET = "p.aid NOT IN (".substr($set, 0, -1).') ';
+		$ALBUM_SET = 'AND aid NOT IN ('.substr($set, 0, -1).') ';
     } else {
       $FORBIDDEN_SET_DATA = array();
       $FORBIDDEN_SET = "";
       $ALBUM_SET = "";
     }
-    mysql_free_result($result);
+    //mysql_free_result($result);
+	########    DB  #########
+	$cpgdb->free();
+	#####################
 
     return true;
   }
@@ -160,23 +199,36 @@ class cpgAPIAuth {
   // Get groups of which user is member
   function get_groups(&$user)
   {
-    global $CONFIG;
+    global $CONFIG, $cpg_db_api_auth_php;
+	####################### DB #########################	
+	$cpgdb =& cpgDB::getInstance();
+	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+	##################################################	
     $group_list = in_array($user['group_id'] - 100, array(1)) ? 1 : 2;
-    $sql = "SELECT
+    /*$sql = "SELECT
               user_group_list
             FROM
               {$CONFIG['TABLE_USERS']} AS u
             WHERE
               user_id = '{$user['id']}' AND
             user_group_list <> '';";
-    $result = cpg_db_query($sql, $this->link_id);
+	$result = cpg_db_query($sql, $this->link_id);
 
-    if ( $row = mysql_fetch_array($result) ) {
-      if ($row['user_group_list']) {
-        $group_list .= ','.$row['user_group_list'];
-      }
-      mysql_free_result($result);
-    }
+	if ( $row = mysql_fetch_array($result) ) {
+		if ($row['user_group_list']) {
+		$group_list .= ','.$row['user_group_list'];
+		}
+		mysql_free_result($result);
+	}	*/
+	##################      DB      #################
+	$cpgdb->query($cpg_db_api_auth['get_user_groups'], $user['id']);
+	if ($row = $cpgdb->fetchRow()) {
+		if ($row['user_group_list']) {
+			$group_list .= ','.$row['user_group_list'];
+		}
+		$cpgdb->free();
+	}
+	##########################################
     $all_groups = explode(',',$group_list);
     if ( $admin_groups = array_intersect(array(1), $all_groups) ) {
       $all_groups[0] = 1;
@@ -190,7 +242,11 @@ class cpgAPIAuth {
   // Perform database queries to calculate user's privileges based on group membership
   function get_user_data($pri_group, $groups, $default_group_id = 3)
   {
-    global $CONFIG;
+    global $CONFIG, $cpg_db_api_auth_php;
+	####################### DB #########################	
+	$cpgdb =& cpgDB::getInstance();
+	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+	##################################################	
 
     foreach ($groups as $key => $val) {
       if (!is_numeric($val)) {
@@ -201,7 +257,7 @@ class cpgAPIAuth {
       array_push($groups, $pri_group);
     }
 
-    $query = "SELECT
+    /*$query = "SELECT
                  MAX(group_quota) as disk_max, MIN(group_quota) as disk_min, " .
                 "MAX(can_rate_pictures) as can_rate_pictures, MAX(can_send_ecards) as can_send_ecards, " .
                 "MAX(upload_form_config) as ufc_max, MIN(upload_form_config) as ufc_min, " .
@@ -213,21 +269,39 @@ class cpgAPIAuth {
                 "MIN(pub_upl_need_approval) as pub_upl_need_approval, MIN( priv_upl_need_approval) as  priv_upl_need_approval ".
                 "FROM {$CONFIG['TABLE_USERGROUPS']} WHERE group_id in (" .  implode(",", $groups). ")";
 
-    $result = cpg_db_query($query);
+	$result = cpg_db_query($query);
 
-    if (mysql_num_rows($result)) {
-      $USER_DATA = mysql_fetch_assoc($result);
-      $result = cpg_db_query("SELECT group_name FROM  {$CONFIG['TABLE_USERGROUPS']} WHERE group_id= " . $pri_group);
-      $temp_arr = mysql_fetch_assoc($result);
-      $USER_DATA["group_name"] = $temp_arr["group_name"];
-    } else {
-      $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_USERGROUPS']} WHERE group_id = $default_group_id");
-      if (!mysql_num_rows($result)) {
-        cpg_die(21);
-      }
-      $USER_DATA = mysql_fetch_assoc($result);
-    }
-    mysql_free_result($result);
+	if (mysql_num_rows($result)) {
+		$USER_DATA = mysql_fetch_assoc($result);
+		$result = cpg_db_query("SELECT group_name FROM  {$CONFIG['TABLE_USERGROUPS']} WHERE group_id= " . $pri_group);
+		$temp_arr = mysql_fetch_assoc($result);
+		$USER_DATA["group_name"] = $temp_arr["group_name"];
+	} else {
+		$result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_USERGROUPS']} WHERE group_id = $default_group_id");
+		if (!mysql_num_rows($result)) {
+			cpg_die(21);
+		}
+		$USER_DATA = mysql_fetch_assoc($result);
+	}
+	mysql_free_result($result);	*/
+	#####################################		DB		######################################
+	$cpgdb->query($cpg_db_api_auth_php['user_privilages'], implode(",", $groups));
+	$rowset = $cpgdb->fetchRowSet();
+	if (count($rowset)) {
+		$USER_DATA = $rowset[0];
+		$cpgdb->query($cpg_db_api_auth_php['get_privilaged_group'], $pri_group);
+		$temp_arr = $cpgdb->fetchRow();
+		$USER_DATA['group_name'] = $temp_arr['group_name'];
+	} else {
+		$cpgdb->query($cpg_db_api_auth['get_default_group'], $default_group_id);
+		$rowset = $cpgdb->fetchRowSet();
+		if (count($rowset)) {
+			cpg_die(21);
+		}
+		$USER_DATA = $rowset[0];
+	}
+	$cpgdb->free();
+	#########################################################################################
 
     if ( $USER_DATA['ufc_max'] == $USER_DATA['ufc_min'] ) {
       $USER_DATA["upload_form_config"] = $USER_DATA['ufc_min'];

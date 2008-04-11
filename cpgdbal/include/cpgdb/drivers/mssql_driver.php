@@ -203,7 +203,7 @@ class cpgDB {
         } 
         $query_start = cpgGetMicroTime();
 
- 
+ //print($Query_String."<br>");
         $this->Query_ID = @sqlsrv_query($this->Link_ID, $Query_String );	#
 
         $query_end = cpgGetMicroTime();
@@ -241,6 +241,9 @@ class cpgDB {
 
         $this->Record = @sqlsrv_fetch_array($this->Query_ID, SQLSRV_FETCH_ASSOC); 	#
         $this->Row += 1;
+	/*	if ($this->Debug == 1) {
+			print($this->Record);
+		}*/
 
         $stat = is_array($this->Record);
         if (!$stat && $this->Auto_Free) {
@@ -495,11 +498,17 @@ class cpgDB {
 
 
 //  function to return datetime in UNIX_TIMESTAMP
-	function timestamp ($datetime_var)
+	function timestamp ($datetime_var = 'getdate()')
 	{
 		return "DATEDIFF(s, '19700101', $datetime_var)";
 	}
 
+	//returns the first value of the Array returned by fetchRow 
+	/*function firstkey() {
+		return 1;
+	}*/
+
+	
 }
 
 ?>

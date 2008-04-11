@@ -53,7 +53,9 @@ function show_memberlist()
 		$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
 	##################################################			
 		//cpg_db_query("DELETE FROM {$CONFIG['TABLE_USERS']} WHERE user_name = '' LIMIT 1");
-		$cpgdb->query($cpg_db_usermgr_php['delete_user']);	###########	cpgdb_AL
+		####################     DB     #####################
+		$cpgdb->query($cpg_db_usermgr_php['delete_user']);
+		##############################################
         pageheader($lang_usermgr_php['title']);
         list_users();
         pagefooter();
@@ -935,8 +937,9 @@ switch ($op) {
         update_user($user_id);
 
         //cpg_db_query("DELETE FROM {$CONFIG['TABLE_USERS']} WHERE user_name = '' LIMIT 1");
-		
-		$cpgdb->query($cpg_db_usermgr_php['delete_user']);	####################	cpgdb_AL
+		#################    DB        ###################
+		$cpgdb->query($cpg_db_usermgr_php['delete_user']);	
+		###########################################
 
         pageheader($lang_usermgr_php['title']);
         list_users();
@@ -1005,7 +1008,9 @@ switch ($op) {
 
     default :
         //cpg_db_query("DELETE FROM {$CONFIG['TABLE_USERS']} WHERE user_name = '' LIMIT 1");
-		$cpgdb->query($cpg_db_usermgr_php['delete_user']);	#######################	cpgdb_AL
+		#################          DB         #################
+		$cpgdb->query($cpg_db_usermgr_php['delete_user']);
+		############################################
 
         pageheader($lang_usermgr_php['title']);
         if ($superCage->post->keyExists('username')) {

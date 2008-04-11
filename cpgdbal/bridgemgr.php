@@ -26,7 +26,11 @@ require('include/init.inc.php');
 ///////////// function defintions start /////////////////////////////
 
 function write_to_db($step) {
-    global $BRIDGE,$CONFIG,$default_bridge_data,$lang_bridgemgr_php, $previous_step, $next_step;
+    global $BRIDGE,$CONFIG,$default_bridge_data,$lang_bridgemgr_php, $previous_step, $next_step, $cpg_db_bridgemgr_php;
+	################            DB           #################	
+	$cpgdb =& cpgDB::getInstance();
+	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+	############################################	
     $error = 0;
     // do the check for plausibility of posted data
     foreach($_POST as $key => $value) { // loop through the posted data -- start
@@ -149,11 +153,18 @@ function write_to_db($step) {
         foreach ($loop_table_names as $key) { // loop through the possible tables --- start
             if ($default_bridge_data[$BRIDGE['short_name']][$key.'_used'] != '') { // check if table exists --- start
                 $temp_tablename = $_POST['table_prefix'].$_POST[$key];
-                $result = mysql_query('SELECT * FROM '.$temp_tablename);
+                //$result = mysql_query('SELECT * FROM '.$temp_tablename);
+				##################      DB      #################
+				$cpgsql = new cpgDB;
+				$result = $cpgsql->query($cpg_db_bridgemgr_php['get_db_tables']);
+				##########################################
                 if (!$result) {
                     $return['db_'.$key] = sprintf($lang_bridgemgr_php['error_db_table'], '<i>'.$temp_tablename.'</i>', $prefix_and_table.'<i>'.$lang_bridgemgr_php[$key].'</i>'). ' <tt>'.$mysql_error_output.'</tt>';
                 }
-                @mysql_free_result($result);
+                //@mysql_free_result($result);
+				########     DB    #########
+				@$cpgsql->free();
+				#######################
             } // check if table exists --- end
         } // loop through the possible tables --- end
         @mysql_close($link);
@@ -176,7 +187,10 @@ function write_to_db($step) {
             if ($return[$key] != '') {
                 //print '|Error in this key';
             } else {
-                cpg_db_query("UPDATE {$CONFIG['TABLE_BRIDGE']} SET value = '$value' WHERE name = '$key'");
+                //cpg_db_query("UPDATE {$CONFIG['TABLE_BRIDGE']} SET value = '$value' WHERE name = '$key'");
+				############################      DB     ##########################
+				$cpgdb->query($cpg_db_bridgemgr_php['update_bridge'], $value, $key);
+				###########################################################
             }
             //print '<br />';
         }
@@ -185,7 +199,10 @@ function write_to_db($step) {
     if ($value != '0' && $value != '1') {
         $value = $CONFIG['bridge_enable'];
     }
-    cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = 'bridge_enable'");
+    //cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = 'bridge_enable'");
+	#########################         DB        #########################
+	$cpgdb->query($cpg_db_bridgemgr_php['enable_disable_bridge'], $value);
+	##########################################################
     if ($_POST['clear_unused_db_fields'] == 1) {
         // clear all database entries that aren't actually used with the current bridge file
         // not implemented yet (not sure if necessary after all)
@@ -327,7 +344,7 @@ function remote_file_exists ($url)
    return $return;
 }
 
-function cpg_refresh_config_db_values() {
+/*function cpg_refresh_config_db_values() {
 global $CONFIG;
 // Retrieve DB stored configuration
 $results = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_CONFIG']}");
@@ -336,7 +353,21 @@ while ($row = mysql_fetch_array($results)) {
 } // while
 mysql_free_result($results);
 return $CONFIG;
+}	*/
+##################		DB		##################
+function cpg_refresh_config_db_values() {
+	global $CONFIG, $cpg_db_bridgemgr_php;
+	$cpgdb =& cpgDB::getInstance();
+	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+	// Retrieve DB stored configuration
+	$cpgdb->query($cpg_db_bridgemgr_php['get_all_config']);
+	while ($row = $cpgdb->fetchRow()) {
+		$CONFIG[$row['name']] = $row['value'];
+	} // while
+	$cpgdb->free();
+	return $CONFIG;
 }
+###################################################
 
 function cpg_is_writable($folder)
 {
@@ -1091,15 +1122,22 @@ case "finalize":
                         $cpg_udb->synchronize_groups();
                 } else {
                         // ok, then restore group table
-                        cpg_db_query("DELETE FROM {$CONFIG['TABLE_USERGROUPS']} WHERE 1");
-                        cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
-                        VALUES (1, 'Administrators', 0, 1, 1, 1, 1, 1, 1, 0, 0, 3, 0, 5, 3)");
-                        cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
-                        VALUES (2, 'Registered', 1024, 0, 1, 1, 1, 1, 1, 1, 0, 3, 0, 5, 3)");
-                        cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
-                        VALUES (3, 'Anonymous', 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 5, 3)");
-                        cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
-                        VALUES (4, 'Banned', 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 5, 3)");
+                        /*cpg_db_query("DELETE FROM {$CONFIG['TABLE_USERGROUPS']} WHERE 1");
+						cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
+						VALUES (1, 'Administrators', 0, 1, 1, 1, 1, 1, 1, 0, 0, 3, 0, 5, 3)");
+						cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
+						VALUES (2, 'Registered', 1024, 0, 1, 1, 1, 1, 1, 1, 0, 3, 0, 5, 3)");
+						cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
+						VALUES (3, 'Anonymous', 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 5, 3)");
+						cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
+						VALUES (4, 'Banned', 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 5, 3)");	*/
+						#########################		DB		#######################
+						$cpgdb->query($cpg_db_bridgemgr_php['usergroup_delete']);
+						$cpgdb->query($cpg_db_bridgemgr_php['insert_admin']);
+						$cpgdb->query($cpg_db_bridgemgr_php['insert_registered']);
+						$cpgdb->query($cpg_db_bridgemgr_php['insert_anonymous']);
+						$cpgdb->query($cpg_db_bridgemgr_php['insert_banned']);
+						###############################################################
                 }
         print '<form name="'.$step.'" id="cpgform" action="'.$CPG_PHP_SELF.'" method="post">';
         echo <<<EOT
@@ -1264,16 +1302,30 @@ else { // not in gallery admin mode --- start
     switch ($step) {
     case "attempt_to_disable":
     // check if the wait time is over; if it isn't, send them back
-    $results = cpg_db_query("SELECT value FROM {$CONFIG['TABLE_BRIDGE']} WHERE name = 'recovery_logon_timestamp'");
-    if (mysql_num_rows($results)) {
-        $row = mysql_fetch_array($results);
-    }
+    /*$results = cpg_db_query("SELECT value FROM {$CONFIG['TABLE_BRIDGE']} WHERE name = 'recovery_logon_timestamp'");
+	if (mysql_num_rows($results)) {
+		$row = mysql_fetch_array($results);
+	}	*/
+	################       DB       ################
+	$cpgdb->query($cpg_db_bridgemgr_php['get_recovery_logon_timestamp']);
+	$rowset = $cpgdb->fetchRowSet();
+	if (count($rowset)) {
+		$row = $rowset[0];
+	}
+	########################################
     $recovery_logon_timestamp = $row['value'];
     //print $recovery_logon_timestamp;
-    $results = cpg_db_query("SELECT value FROM {$CONFIG['TABLE_BRIDGE']} WHERE name = 'recovery_logon_failures'");
-    if (mysql_num_rows($results)) {
-        $row = mysql_fetch_array($results);
-    }
+    /*$results = cpg_db_query("SELECT value FROM {$CONFIG['TABLE_BRIDGE']} WHERE name = 'recovery_logon_failures'");
+	if (mysql_num_rows($results)) {
+		$row = mysql_fetch_array($results);
+	}	*/
+	################       DB       ################
+	$cpgdb->query($cpg_db_bridgemgr_php['get_recovery_logon_failures']);
+	$rowset = $cpgdb->fetchRowSet();
+	if (count($rowset)) {
+		$row = $rowset[0];
+	}
+	########################################
     $recovery_logon_failures = $row['value'];
     $logon_allowed = cpg_check_allowed_emergency_logon($recovery_logon_timestamp,$recovery_logon_failures);
     if ($logon_allowed > 0) {
@@ -1290,26 +1342,45 @@ else { // not in gallery admin mode --- start
                 $encpassword = addslashes($_POST['password']);
         }
 
-        $results = cpg_db_query("SELECT user_id, user_name, user_password FROM $temp_user_table WHERE user_name = '" . addslashes($_POST['username']) . "' AND BINARY user_password = '" . $encpassword . "' AND user_active = 'YES' AND user_group = '1'");
-        if (mysql_num_rows($results)) {
-            $retrieved_data = mysql_fetch_array($results);
-        }
+        /*$results = cpg_db_query("SELECT user_id, user_name, user_password FROM $temp_user_table WHERE user_name = '" . addslashes($_POST['username']) . "' AND BINARY user_password = '" . $encpassword . "' AND user_active = 'YES' AND user_group = '1'");
+		if (mysql_num_rows($results)) {
+			$retrieved_data = mysql_fetch_array($results);
+		}	*/
+		########################         DB        ########################
+		$cpgdb->query($cpg_db_bridgemgr_php['get_user_data'], $temp_user_table, addslashes($_POST['username']), $encpassword);
+		$rowset = $cpgdb->fetchRowSet();
+		if (count($rowset)) {
+			$retrived_data = $rowset[0];
+		}
+		#########################################################
         if ($retrieved_data['user_name'] == $_POST['username'] && $retrieved_data['user_password'] == $encpassword && $retrieved_data['user_name'] != '' ) {
             // authentification successfull
-            cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '0' WHERE name = 'bridge_enable'");
-            cpg_db_query("UPDATE {$CONFIG['TABLE_BRIDGE']} SET value = '0' WHERE name = 'recovery_logon_failures'");
-            cpg_db_query("UPDATE {$CONFIG['TABLE_BRIDGE']} SET value = NOW() WHERE name = 'recovery_logon_timestamp'");
+            /*cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '0' WHERE name = 'bridge_enable'");
+			cpg_db_query("UPDATE {$CONFIG['TABLE_BRIDGE']} SET value = '0' WHERE name = 'recovery_logon_failures'");
+			cpg_db_query("UPDATE {$CONFIG['TABLE_BRIDGE']} SET value = NOW() WHERE name = 'recovery_logon_timestamp'");	*/
+			########################      DB      ######################
+			$cpgdb->query($cpg_db_bridgemgr_php['unset_bridge_enable']);
+			$cpgdb->query($cpg_db_bridgemgr_php['reset_recovery_logon_failures']);
+			$cpgdb->query($cpg_db_bridgemgr_php['set_recovery_logon_timestamp']);
+			#####################################################
 
                         // ok, then restore group table
-                        cpg_db_query("DELETE FROM {$CONFIG['TABLE_USERGROUPS']} WHERE 1");
-                        cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
-                        VALUES (1, 'Administrators', 0, 1, 1, 1, 1, 1, 1, 0, 0, 3, 0, 5, 3)");
-                        cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
-                        VALUES (2, 'Registered', 1024, 0, 1, 1, 1, 1, 1, 1, 0, 3, 0, 5, 3)");
-                        cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
-                        VALUES (3, 'Anonymous', 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 5, 3)");
-                        cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
-                        VALUES (4, 'Banned', 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 5, 3)");
+                        /*cpg_db_query("DELETE FROM {$CONFIG['TABLE_USERGROUPS']} WHERE 1");
+						cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
+						VALUES (1, 'Administrators', 0, 1, 1, 1, 1, 1, 1, 0, 0, 3, 0, 5, 3)");
+						cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
+						VALUES (2, 'Registered', 1024, 0, 1, 1, 1, 1, 1, 1, 0, 3, 0, 5, 3)");
+						cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
+						VALUES (3, 'Anonymous', 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 5, 3)");
+						cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
+						VALUES (4, 'Banned', 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 5, 3)");	*/
+						#########################		DB		#######################
+						$cpgdb->query($cpg_db_bridgemgr_php['usergroup_delete']);
+						$cpgdb->query($cpg_db_bridgemgr_php['insert_admin']);
+						$cpgdb->query($cpg_db_bridgemgr_php['insert_registered']);
+						$cpgdb->query($cpg_db_bridgemgr_php['insert_anonymous']);
+						$cpgdb->query($cpg_db_bridgemgr_php['insert_banned']);
+						###############################################################
 
             if (USER_ID) { //user already logged in
                 msg_box($lang_bridgemgr_php['recovery_success_title'], $lang_bridgemgr_php['recovery_success_content'], $lang_bridgemgr_php['goto_bridgemgr'], $CPG_PHP_SELF, "-1");
@@ -1318,29 +1389,55 @@ else { // not in gallery admin mode --- start
             }
         } else {
             // authentification failed
-            cpg_db_query("UPDATE {$CONFIG['TABLE_BRIDGE']} SET value = NOW() WHERE name = 'recovery_logon_timestamp'");
-            $results = cpg_db_query("SELECT value FROM {$CONFIG['TABLE_BRIDGE']} WHERE name = 'recovery_logon_failures'");
-            if (mysql_num_rows($results)) {
-                $row = mysql_fetch_array($results);
-            }
+            /*cpg_db_query("UPDATE {$CONFIG['TABLE_BRIDGE']} SET value = NOW() WHERE name = 'recovery_logon_timestamp'");
+			$results = cpg_db_query("SELECT value FROM {$CONFIG['TABLE_BRIDGE']} WHERE name = 'recovery_logon_failures'");
+			if (mysql_num_rows($results)) {
+				$row = mysql_fetch_array($results);
+			}	*/
+			############################         DB         #############################
+			$cpgdb->query($cpg_db_bridgemgr_php['set_recovery_logon_timestamp']);
+			$cpgdb->query($cpg_db_bridgemgr_php['get_recovery_logon_failures']);
+			$rowset = $cpgdb->fetchRowSet();
+			if (count($rowset)) {
+				$row = $rowset[0];
+			}
+			##################################################################
             $number_of_failed_attempts = $row['value'] + 1;
-            cpg_db_query("UPDATE {$CONFIG['TABLE_BRIDGE']} SET value = '$number_of_failed_attempts' WHERE name = 'recovery_logon_failures'");
+            //cpg_db_query("UPDATE {$CONFIG['TABLE_BRIDGE']} SET value = '$number_of_failed_attempts' WHERE name = 'recovery_logon_failures'");
+			##########################       DB       ##########################
+			$cpgdb->query($cpg_db_bridgemgr_php['set_recovery_logon_failures'], $number_of_failed_attempts);
+			###########################################################
             msg_box($lang_bridgemgr_php['recovery_failure_title'], $lang_bridgemgr_php['recovery_failure_content'], $lang_bridgemgr_php['try_again'], $CPG_PHP_SELF, "-1");
         }
     }
     break;
     default:
     // check if the wait time is over; if it isn't, disable the submit button
-    $results = cpg_db_query("SELECT value FROM {$CONFIG['TABLE_BRIDGE']} WHERE name = 'recovery_logon_timestamp'");
-    if (mysql_num_rows($results)) {
-        $row = mysql_fetch_array($results);
-    }
+    /*$results = cpg_db_query("SELECT value FROM {$CONFIG['TABLE_BRIDGE']} WHERE name = 'recovery_logon_timestamp'");
+	if (mysql_num_rows($results)) {
+		$row = mysql_fetch_array($results);
+	}	*/
+	################       DB       ################
+	$cpgdb->query($cpg_db_bridgemgr_php['get_recovery_logon_timestamp']);
+	$rowset = $cpgdb->fetchRowSet();
+	if (count($rowset)) {
+		$row = $rowset[0];
+	}
+	########################################
+	
     $recovery_logon_timestamp = $row['value'];
     //print $recovery_logon_timestamp;
-    $results = cpg_db_query("SELECT value FROM {$CONFIG['TABLE_BRIDGE']} WHERE name = 'recovery_logon_failures'");
-    if (mysql_num_rows($results)) {
-        $row = mysql_fetch_array($results);
-    }
+    /*$results = cpg_db_query("SELECT value FROM {$CONFIG['TABLE_BRIDGE']} WHERE name = 'recovery_logon_failures'");
+	if (mysql_num_rows($results)) {
+		$row = mysql_fetch_array($results);
+	}	*/
+	################       DB       ################
+	$cpgdb->query($cpg_db_bridgemgr_php['get_recovery_logon_failures']);
+	$rowset = $cpgdb->fetchRowSet();
+	if (count($rowset)) {
+		$row = $rowset[0];
+	}
+	########################################
     $recovery_logon_failures = $row['value'];
     $logon_allowed = cpg_check_allowed_emergency_logon($recovery_logon_timestamp,$recovery_logon_failures);
     if ($logon_allowed < 0) {$logon_allowed = 0;}

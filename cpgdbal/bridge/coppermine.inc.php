@@ -65,17 +65,16 @@ class coppermine_udb extends core_udb {
                         'groups' => 'usergroups',
                         'sessions' => 'sessions'
                 );
-
                 // Derived full table names
-                $this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
-                $this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
-                $this->sessionstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['sessions'];
-				################################		FOR MSSQL DB		###############################
-                // Derived full table names
-				//$this->usertable = $this->db['name'] ."." .dbo ."." .$this->db['prefix'] . $this->table['users'];
-				//$this->groupstable =   $this->db['name'] . "." .dbo ."." .$this->db['prefix'] . $this->table['groups'];
-				//$this->sessionstable =   $this->db['name'] ."." .dbo .".". $this->db['prefix'] . $this->table['sessions'];
-				#################################################################################
+                if ($CONFIG['dbservername'] == 'mssql') {
+					$this->usertable = $this->db['name'] ."." .dbo ."." .$this->db['prefix'] . $this->table['users'];
+					$this->groupstable =   $this->db['name'] . "." .dbo ."." .$this->db['prefix'] . $this->table['groups'];
+					$this->sessionstable =   $this->db['name'] ."." .dbo .".". $this->db['prefix'] . $this->table['sessions'];
+				} else {
+					$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
+					$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
+					$this->sessionstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['sessions'];
+				}
 
                 // Table field names
                 $this->field = array(
@@ -83,10 +82,8 @@ class coppermine_udb extends core_udb {
                         'user_id' => 'user_id', // name of 'id' field in users table
                         'password' => 'user_password', // name of 'password' field in users table
                         'email' => 'user_email', // name of 'email' field in users table
-						######################  FOR MSSQL  #######################
                         //'regdate' => 'UNIX_TIMESTAMP(user_regdate)', // name of 'registered' field in users table
                         //'lastvisit' => 'UNIX_TIMESTAMP(user_lastvisit)', // last time user logged in
-						#####################################################
                         'regdate' => 'user_regdate', // name of 'registered' field in users table
                         'lastvisit' => 'user_lastvisit', // last time user logged in
                         'active' => 'user_active', // is user account active?
@@ -130,7 +127,7 @@ class coppermine_udb extends core_udb {
                 } else {
                         $encpassword = $password;
                 }
-
+//print($username."username<br>");print(md5($password)."md5pass<br>");print($password."<br>");print($encpassword."encpass");exit;
                 /*// Check for user in users table
                 $sql =  "SELECT user_id, user_name, user_password FROM {$this->usertable} WHERE ";
 				//Check the login method (username, email address or both)
@@ -199,6 +196,7 @@ class coppermine_udb extends core_udb {
 						break;
 				}
                 // Check for user in users table
+				//print("username ".$username);exit;
 				$cpgdb->query($cpg_db_coppermine_inc['login_get_user_info'],$this->usertable, $where);
 				$rowset = $cpgdb->fetchRowSet();
 

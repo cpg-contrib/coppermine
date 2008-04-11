@@ -21,21 +21,26 @@ if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 
 // ADDED QUICK KEYWORDS FUNCTIONALITY 8/6/2004
 
-$result = cpg_db_query("select keywords FROM {$CONFIG['TABLE_PICTURES']} WHERE keywords <> '' $ALBUM_SET");
-if (mysql_num_rows($result)) {
-
+/*$result = cpg_db_query("select keywords FROM {$CONFIG['TABLE_PICTURES']} WHERE keywords <> '' $ALBUM_SET");
+if (mysql_num_rows($result)) {	*/
+########################		DB		##########################
+$cpgdb->query($cpg_db_keyword_inc['get_pic_keywords'], $ALBUM_SET);
+$rowset = $cpgdb->fetchRowSet();
+if (count($rowset)) {
+##############################################################
   // Grab all keywords
   print '<br />';
-  starttable("100%", $lang_search_php['keyword_list_title']);
+  starttable("100%", $lang_search_php['keyword_list_title']);//print_r($rowset);exit;
 
 
   // Find unique keywords
   $keywords_array = array();
   $keyword_count = array();
 
-  while (list($keywords) = mysql_fetch_row($result)) {
+  //while (list($keywords) = mysql_fetch_row($result)) {
+  foreach ($rowset as $row) {	#########	cpgdb_AL
+	  list($keywords) = $row;	#########	cpgdb_AL
       $array = explode(" ",$keywords);
-
       foreach($array as $word)
       {
        if (!in_array($word = utf_strtolower($word),$keywords_array)) {

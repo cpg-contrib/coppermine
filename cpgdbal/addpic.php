@@ -59,10 +59,14 @@ $file_name = basename($pic_file);
 $sane_name = replace_forbidden($file_name);
 $source = './'.$CONFIG['fullpath'].$dir_name.$file_name;
 rename($source, './' . $CONFIG['fullpath'] . $dir_name . $sane_name);
-$sql = "SELECT pid FROM {$CONFIG['TABLE_PICTURES']} WHERE filepath='" . addslashes($dir_name) . "' AND filename='" . addslashes($file_name) . "' LIMIT 1";
+/*$sql = "SELECT pid FROM {$CONFIG['TABLE_PICTURES']} WHERE filepath='" . addslashes($dir_name) . "' AND filename='" . addslashes($file_name) . "' LIMIT 1";
 $result = cpg_db_query($sql);
-
-if (mysql_num_rows($result)) {
+if (mysql_num_rows($result)) {	*/
+####################          DB        ####################
+$cpgdb->query($cpg_db_addpic_php['addpic_get_pid'], addslashes($dir_name), addslashes($file_name));
+$rowset = $cpgdb->fetchRowSet();
+if (count($rowset)) {
+#################################################
     $file_name = 'images/up_dup.gif';
 } elseif (add_picture($aid, $dir_name, $sane_name)) {
     $file_name = 'images/up_ok.gif';

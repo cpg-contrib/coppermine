@@ -21,6 +21,11 @@
 function cpg_mail($to, $subject, $msg_body = '', $type = 'text/plain', $sender_name = '', $sender_email = '', $msg_body_plaintext = '')
 {
 	global $CONFIG, $lang_charset, $HTML_SUBST;
+	####################		DB		#####################
+	global $cpg_db_mailer_inc;
+	$cpgdb =& cpgDB::getInstance();
+	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+	######################################################
 
         // makeshift plaintext if not set
         if (!$msg_body_plaintext){
@@ -35,10 +40,16 @@ function cpg_mail($to, $subject, $msg_body = '', $type = 'text/plain', $sender_n
     if ($to == 'admin'){
             if (UDB_INTEGRATION == 'coppermine') {
                     $to = array($CONFIG['gallery_admin_email']);
-                    $result = cpg_db_query("SELECT user_email FROM {$CONFIG['TABLE_USERS']} WHERE user_group = 1");
+                    /*$result = cpg_db_query("SELECT user_email FROM {$CONFIG['TABLE_USERS']} WHERE user_group = 1");
                     while($row = mysql_fetch_assoc($result)) {
                             if (!empty($row['user_email'])) $to[] = $row['user_email'];
-                    }
+                    }	*/
+					##########################           DB          ##########################
+					$cpgdb->query($cpg_db_mailer_inc['get_admin_email']);
+					while($row = $cpgdb->fetchRowSet()) {
+					        if (!empty($row['user_email'])) $to[] = $row['user_email'];
+					}
+					##############################################################
                     $to = array_unique($to);
             } else {
                     $to = array($CONFIG['gallery_admin_email']);

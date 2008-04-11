@@ -1735,13 +1735,14 @@ function theme_main_menu($which)
                 }
             }
 
-            if (!$upload_allowed) {
+            if (!$upload_allowed) { //print($album);exit;
                 /*$query = "SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " AND uploads='YES' AND (visibility = '0' OR visibility IN ".USER_GROUP_SET.") AND aid = '$album' ORDER BY title";
                 $public_albums = cpg_db_query($query);
 
                 if (mysql_num_rows($public_albums)) {	*/
 				#########################    DB    ###########################
 				//print($album);exit;
+				//print(sprintf($cpg_db_themes_inc['upload_not_allowed'], FIRST_USER_CAT, USER_GROUP_SET, $album));exit;
 				$public_albums = $cpgdb->query($cpg_db_themes_inc['upload_not_allowed'], FIRST_USER_CAT, USER_GROUP_SET, $album);
 				$rowset = $cpgdb->fetchRowSet();
 				if (count($rowset)) {

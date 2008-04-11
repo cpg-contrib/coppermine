@@ -316,9 +316,9 @@ function process_post_data()
         }
         $set_statment = substr($set_statment, 0, -1);
     //    cpg_db_query("UPDATE {$CONFIG['TABLE_USERGROUPS']} SET $set_statment WHERE group_id = '$group_id' LIMIT 1");
-	################  DB #################
-		$cpgdb->query($cpg_db_groupmgr_php['process_post_data'], $set_statment, $group_id);	########	cpgdb_AL
-	##################################
+	#############################		DB		############################
+		$cpgdb->query($cpg_db_groupmgr_php['process_post_data'], $set_statment, $group_id);	
+	########################################################################
     }
 }
 

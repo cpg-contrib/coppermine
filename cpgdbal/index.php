@@ -270,27 +270,29 @@ function get_subcat_data($parent, &$cat_data, &$album_set_array, $level, $ident 
         foreach ($rowset as $subcat) {
             if ($subcat['cid'] == USER_GAL_CAT) {
                 /*$sql = "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE category>=" . FIRST_USER_CAT . $album_filter;
-                $result = cpg_db_query($sql);
-                $album_count = mysql_num_rows($result);
-                while ($row = mysql_fetch_array($result)) {
-                    $album_set_array[] = $row['aid'];
-                } // while
-                mysql_free_result($result);
+				$result = cpg_db_query($sql);
+				$album_count = mysql_num_rows($result);
+				while ($row = mysql_fetch_array($result)) {
+					$album_set_array[] = $row['aid'];
+				} // while
+				mysql_free_result($result);
 
-                $result = cpg_db_query("SELECT count(*) FROM {$CONFIG['TABLE_PICTURES']} as p, {$CONFIG['TABLE_ALBUMS']} as a WHERE p.aid = a.aid AND approved='YES' AND category >= " . FIRST_USER_CAT . $album_filter);
-                $nbEnr = mysql_fetch_array($result);*/
+				$result = cpg_db_query("SELECT count(*) FROM {$CONFIG['TABLE_PICTURES']} as p, {$CONFIG['TABLE_ALBUMS']} as a WHERE p.aid = a.aid AND approved='YES' AND category >= " . FIRST_USER_CAT . $album_filter);
+				$nbEnr = mysql_fetch_array($result);
+				$pic_count = $nbEnr[0];	*/
 				#################################  DB  ####################################
 				$cpgdb->query($cpg_db_index_php['subcat_alb_filter'], FIRST_USER_CAT, $album_filter);
 				$rowset = $cpgdb->fetchRowSet();
                 $album_count = count($rowset);
                 foreach ($rowset as $row) {
                     $album_set_array[] = $row['aid'];
-                } // foreach
+                }	
                 $cpgdb->free();
                 $cpgdb->query($cpg_db_index_php['subcat_user_gal_cat'], FIRST_USER_CAT, $album_filter);
-                $nbEnr = $cpgdb->fetchRow();				
+                $nbEnr = $cpgdb->fetchRow();	//$pic_count = $nbEnr['count'];
+				$pic_count = $nbEnr['count'];
 				#########################################################################
-                $pic_count = $nbEnr[0];
+                
                 $subcat['description'] = preg_replace("/<br.*?>[\r\n]*/i", '<br />' . $ident , bb_decode($subcat['description']));
 
                 $link = $ident . "<a href=\"index.php?cat={$subcat['cid']}\">{$subcat['name']}</a>";
@@ -331,8 +333,8 @@ function get_subcat_data($parent, &$cat_data, &$album_set_array, $level, $ident 
 
                 $cpgdb->query($cpg_db_index_php['subcat_not_user_gal_cat'], $subcat['cid'], $album_filter);
                 $nbEnr = $cpgdb->fetch_Row();
-                $cpgdb->free();
-                $pic_count = $nbEnr[0];
+                $cpgdb->free();//$pic_count = $nbEnr['count'];
+                $pic_count = $nbEnr['count'];
                 if ($subcat['thumb'] > 0) {
                     $cpgdb->query($cpg_db_index_php['subcat_pic'], $subcat['thumb'], $pic_filter);
                     $rowset = $cpgdb->fetchRowSet();
@@ -432,7 +434,7 @@ function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
     if ($cat == USER_GAL_CAT) {
         $cpgdb->query($cpg_db_index_php['cat_list_user_gal_cat'], FIRST_USER_CAT, $album_filter);
     } else {
-        $cpgdb->query($cpg_db_index_php['cat)_list_not_user_gal_cat'], $cat, $album_filter);
+        $cpgdb->query($cpg_db_index_php['cat_list_not_user_gal_cat'], $cat, $album_filter);
     } while ($row = $cpgdb->fetchRow()) {
         $album_set_array[] = $row['aid'];
     } // while
@@ -482,27 +484,27 @@ function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
 			#########################  DB  ############################
             $cpgdb->query($cpg_db_index_php['cat_list_count_alb'], $album_filter);
             $nbEnr = $cpgdb->fetchRow();
-            $album_count = $nbEnr[0];
+            $album_count = $nbEnr['count'];
             $cpgdb->free();
 
             $cpgdb->query($cpg_db_index_php['cat_list_count_pic_alb'], $pic_filter);
             $nbEnr = $cpgdb->fetchRow();
-            $picture_count = $nbEnr[0];
+            $picture_count = $nbEnr['count'];
             $cpgdb->free();
 
             $cpgdb->query($cpg_db_index_php['cat_list_count_comm_pic'], $pic_filter);
             $nbEnr = $cpgdb->fetchRow();
-            $comment_count = $nbEnr[0];
+            $comment_count = $nbEnr['count'];
             $cpgdb->free();
 
             $cpgdb->query($cpg_db_index_php['cat_list_count_cat']);
             $nbEnr = $cpgdb->fetchRow();
-            $cat_count = $nbEnr[0] - $HIDE_USER_CAT;
+            $cat_count = $nbEnr['count'] - $HIDE_USER_CAT;
             $cpgdb->free();
 
             $cpgdb->query($cpg_db_index_php['cat_list_sum_pic_alb'], $pic_filter);
             $nbEnr = $cpgdb->fetchRow();
-            $hit_count = (int)$nbEnr[0];
+            $hit_count = (int)$nbEnr['sum_count'];
             $cpgdb->free();
 			#########################################################
 
@@ -537,17 +539,17 @@ function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
 			########################  DB  ###########################
             $cpgdb->query($cpg_db_index_php['cat_list_current_alb_set'], $current_album_set);
             $nbEnr = $cpgdb->fetchRow();
-            $album_count = $nbEnr[0];
+            $album_count = $nbEnr['count'];
             $cpgdb->free();
 
             $cpgdb->query($cpg_db_index_php['cat_list_count_pic'], $current_album_set);
 			$nbEnr = $cpgdb->fetchRow();
-            $album_count = $nbEnr[0];
+            $album_count = $nbEnr['count'];
             $cpgdb->free();
 
-            $cpgdb->query($cpg_db_index_php['cat_list_sum_pic'], $current_album_set);$result = cpg_db_query("SELECT sum(hits) FROM {$CONFIG['TABLE_PICTURES']} WHERE 1 $current_album_set AND approved='YES'");
+            $cpgdb->query($cpg_db_index_php['cat_list_sum_pic'], $current_album_set);
             $nbEnr = $cpgdb->fetchRow();
-            $hit_count = (int)$nbEnr[0];
+            $hit_count = (int)$nbEnr['sum_count'];
             $cpgdb->free();
 			#######################################################
 
@@ -577,7 +579,7 @@ function list_users()
 		$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
 	##################################################	
 
-    $rowset = $cpg_udb->list_users_query($user_count);
+    $rowset = $cpg_udb->list_users_query($user_count);//print($user_count);exit;
 
     if (!$rowset) {
         msg_box($lang_list_users['user_list'], $lang_list_users['no_user_gal'], '', '', '100%');
@@ -691,7 +693,7 @@ function list_albums()
                 $cpgdb->query($cpg_db_index_php['list_albums_alb_cats'], $cat, $album_filter);
         }
     $nbEnr = $cpgdb->fetchRow();
-    $nbAlb = $nbEnr[0];
+    $nbAlb = $nbEnr['count'];
     $cpgdb->free();
 	############################################
 	
@@ -709,7 +711,7 @@ function list_albums()
 	#############################################
 
     $sql;
-        if(USER_ADMIN_MODE && $cat == (USER_ID + FIRST_USER_CAT)){
+        if(USER_ADMIN_MODE && $cat == (USER_ID + FIRST_USER_CAT)){ 
             /*$sql = 'SELECT a.aid, a.title, a.description, a.thumb, category, visibility, filepath, ' . 'filename, url_prefix, pwidth, pheight ' . 'FROM ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' . 'LEFT JOIN ' . $CONFIG['TABLE_PICTURES'] . ' as p ' . 'ON a.thumb=p.pid ' . 'WHERE a.owner=' . $USER_DATA['user_id'] . $album_filter . ' ORDER BY a.category DESC , a.pos ' . $limit;
                 $alb_thumbs_q = cpg_db_query($sql);
                 $alb_thumbs = cpg_db_fetch_rowset($alb_thumbs_q);
@@ -719,7 +721,13 @@ function list_albums()
                 $cat_name_sql = "SELECT CONCAT(a.title, '" . $lang_list_albums['from_categorie'] . "<i>', c.name, '</i>') FROM " . $CONFIG['TABLE_ALBUMS'] . " AS a LEFT JOIN " . $CONFIG['TABLE_CATEGORIES'] . " AS c ON a.category=c.cid WHERE a.owner=" . $USER_DATA['user_id'] . " ORDER BY a.category DESC , a.pos " . $limit;
                 $cat_name_q = cpg_db_query($cat_name_sql);
                 $cat_names = cpg_db_fetch_rowset($cat_name_q);
-                mysql_free_result($cat_name_q);*/
+                mysql_free_result($cat_name_q);
+                //replace names in $alb_thumbs array
+                foreach($alb_thumbs as $key => $value){
+                        if($cat_names[$key][0]!=""){
+                                $alb_thumbs[$key]['title'] = $cat_names[$key][0];
+                        }
+                }	*/
 			##########################  DB  ##############################
                 $cpgdb->query($cpg_db_index_php['list_albums_alb_pic_owner'], $USER_DATA['user_id'], $album_filter, $first_record, $records_per_page);
                 $alb_thumbs = $cpgdb->fetchRowSet();
@@ -729,15 +737,17 @@ function list_albums()
                 $cpgdb->query($cpg_db_index_php['list_albums_concat'], $lang_list_albums['from_categorie'], $USER_DATA['user_id'], $first_record, $records_per_page);
                 $cat_names = $cpgdb->fetchRowSet();
                 $cpgdb->free();
-			############################################################
 
                 //replace names in $alb_thumbs array
                 foreach($alb_thumbs as $key => $value){
-                        if($cat_names[$key][0]!=""){
-                                $alb_thumbs[$key]['title'] = $cat_names[$key][0];
+                        if($cat_names[$key]['concat']!=""){
+                                $alb_thumbs[$key]['title'] = $cat_names[$key]['concat'];
                         }
                 }
-        }else{
+			############################################################
+
+
+        }else{ 
             /*$sql = 'SELECT a.aid, a.title, a.description, a.thumb, category, visibility, filepath, ' . 'filename, url_prefix, pwidth, pheight ' . 'FROM ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' . 'LEFT JOIN ' . $CONFIG['TABLE_PICTURES'] . ' as p ' . 'ON a.thumb=p.pid ' . 'WHERE a.category=' . $cat . $album_filter . ' ORDER BY a.pos ' . $limit;
                 $alb_thumbs_q = cpg_db_query($sql);
                 $alb_thumbs = cpg_db_fetch_rowset($alb_thumbs_q);
@@ -770,7 +780,6 @@ function list_albums()
     $alb_stats = $cpgdb->fetchRowSet();
     $cpgdb->free();	
 	###############################################################
-
     foreach($alb_stats as $key => $value) {
         $cross_ref[$value['aid']] = &$alb_stats[$key];
 
@@ -786,7 +795,7 @@ function list_albums()
             $link_stat = mysql_fetch_array ($result);
             mysql_free_result($result);*/
 		###########################  DB  ##############################
-            $cpgdb->query($cpg_db_index_php['list_albums_get_pic_kwrd'], $value['aid'], $value['keyword']);
+            $cpgdb->query($cpg_db_index_php['list_albums_get_pic_kwrd'], $value['aid'], "%".$value['keyword']."%");
             $link_stat = $cpgdb->fetchRow();
             $cpgdb->free();		
 		#############################################################
@@ -1006,7 +1015,7 @@ function list_cat_albums($cat = 0)
 	##################  DB  ####################
     $cpgdb->query($cpg_db_index_php['list_cat_alb_count_alb'], $cat, $album_filter);
     $nbEnr = $cpgdb->fetchRow();
-    $nbAlb = $nbEnr[0];
+    $nbAlb = $nbEnr['count'];
     $cpgdb->free();
 	###########################################
 
@@ -1075,7 +1084,7 @@ function list_cat_albums($cat = 0)
             $link_stat = mysql_fetch_array ($result);
             mysql_free_result($result);*/
 			###################  DB  #####################
-            $cpgdb->query($cpg_db_index_php['list_cat_alb_kwrd_pic_srch'], $value['aid'], $value['keyword']);
+            $cpgdb->query($cpg_db_index_php['list_cat_alb_kwrd_pic_srch'], $value['aid'], "%".$value['keyword']."%");
             $link_stat = $cpgdb->fetchRow();
             $cpgdb->free();
 			############################################

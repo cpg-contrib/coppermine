@@ -109,8 +109,12 @@ if ($superCage->post->keyExists('restore_config')) { // user has chosen to facto
   $default_config = 'sql/basic.sql';
   $sql_query = fread(fopen($default_config, 'r'), filesize($default_config));
   $sql_query = preg_replace('/CPG_/', $CONFIG['TABLE_PREFIX'], $sql_query);
-  cpg_db_query("TRUNCATE TABLE {$CONFIG['TABLE_CONFIG']}");
-  cpg_db_query("TRUNCATE TABLE {$CONFIG['TABLE_FILETYPES']}");
+  /*cpg_db_query("TRUNCATE TABLE {$CONFIG['TABLE_CONFIG']}");
+  cpg_db_query("TRUNCATE TABLE {$CONFIG['TABLE_FILETYPES']}");	*/
+  ######################      DB      #######################
+  $cpgdb->query($cpg_db_admin_php['truncate_config']);
+  $cpgdb->query($cpg_db_admin_php['truncate_filetypes']);
+  ####################################################
   $sql_query = remove_remarks($sql_query);
   $sql_query = split_sql_file($sql_query, ';');
   $sql_count = count($sql_query);
@@ -121,7 +125,10 @@ if ($superCage->post->keyExists('restore_config')) { // user has chosen to facto
   }
   // undo the reset for config fields specified in $doNotReset_array
   foreach ($doNotReset_array as $key) {
-    $f= cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '{$CONFIG[$key]}' WHERE name = '$key'");
+    //$f= cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '{$CONFIG[$key]}' WHERE name = '$key'");
+	#############################        DB         ############################
+	$cpgdb->query($cpg_db_admin_php['update_config_data'], $CONFIG[$key], $key);
+	#################################################################
   }
   cpgRedirectPage($CPG_PHP_SELF, $lang_common['information'], $lang_admin_php['restore_success']);
 }  // user has chosen to factory-reset the config --- end
@@ -178,11 +185,25 @@ if ($superCage->post->keyExists('restore_config')) { // user has chosen to facto
       }
       if ($superCage->post->keyExists('update_config') && $regexValidation == '1' && $evaluate_value != $CONFIG[$adminDataKey] && $CONFIG[$adminDataKey] !== stripslashes($evaluate_value) ) {
         //  finally, all criteria have been met - let's write the updated data to the database
-        cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$evaluate_value' WHERE name = '$adminDataKey'");
+        /*cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$evaluate_value' WHERE name = '$adminDataKey'");
+		// perform special tasks -- start
+		if ($adminDataKey == 'enable_encrypted_passwords' && $superCage->post->getInt('enable_encrypted_passwords') == 1 && $CONFIG['enable_encrypted_passwords'] == 0) { // encrypt the passwords -- start
+			cpg_db_query("update {$CONFIG['TABLE_USERS']} set user_password=md5(user_password);");
+		} // encrypt the passwords -- end	*/
+		########################################		DB		########################################
+        //  finally, all criteria have been met - let's write the updated data to the database
+		$cpgdb->query($cpg_db_admin_php['update_config_data'], $evaluate_value, $adminDatakey);
         // perform special tasks -- start
         if ($adminDataKey == 'enable_encrypted_passwords' && $superCage->post->getInt('enable_encrypted_passwords') == 1 && $CONFIG['enable_encrypted_passwords'] == 0) { // encrypt the passwords -- start
-          cpg_db_query("update {$CONFIG['TABLE_USERS']} set user_password=md5(user_password);");
+			//get user_passwords
+			$cpgdb->query($cpg_db_admin_php['get_user_passwords']);
+			$rowset = $cpgdb->fetchRowSet();
+			foreach ($rowset as $row) {
+				$md5_user_password = md5($row['user_password']);
+				$cpgdb->query($cpg_db_admin_php['encrypt_passwords'], $md5_user_password, $row['user_password']);
+			}
         } // encrypt the passwords -- end
+		###############################################################################################
         if ($CONFIG['log_mode'] == CPG_LOG_ALL) { // write log -- start
                 log_write('CONFIG UPDATE SQL: '.
                           "UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$evaluate_value' WHERE name = '$adminDataKey'\n".

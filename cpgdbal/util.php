@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4247 $
-  $LastChangedBy: saweyyy $
-  $Date: 2008-02-04 14:51:08 +0530 (Mon, 04 Feb 2008) $
+  $Revision: 4371 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-04-07 13:55:03 +0530 (Mon, 07 Apr 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -26,6 +26,7 @@ require('include/picmgmt.inc.php');
 
 $defpicnum = 25; // Default number of pictures to process at a time when rebuilding thumbs or normals:
 $dayolder = 365; // Default number of days for deleting files older than xxx days {Frantz}
+$lineBreak = "\r\n";
 if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
 pageheader($lang_util_php['title']);
@@ -123,20 +124,55 @@ if (array_key_exists($action, $tasks)){
         endtable();
 
         echo '<br /><form name="cpgform" id="cpgform" action="util.php" method="post">';
+        starttable('100%', 'What do you want to do?',1);
 
+        $loopCounter = 0;
         foreach ($tasks as $task){
 
             list($name, $title, $options) = $task;
 
+                print '  <tr>'.$lineBreak;
+                print '    <td class="tableh2">'.$lineBreak;
                 if ($name){
-                    starttable('100%', "<input type=\"radio\" name=\"action\" value=\"$name\" id=\"$name\" class=\"nobg\" /><label for=\"$name\" class=\"clickable_option\" >$title</label> (1)");
+                    print '      <input type="radio" name="action" value="'.$name.'" id="'.$name.'" class="nobg" onchange="cpgAdminToolsToggleRadioButton(\''.$name.'\');" /><label for="'.$name.'" class="clickable_option">'.$title.'</label>'.$lineBreak;
                 } else {
-                          starttable('100%', $title);
+                    print '      '.$title;
                 }
-                echo "<tr><td class=\"tablef\">$options</td></tr>";
+                print '    </td>'.$lineBreak;
+                print '  </tr>'.$lineBreak;
+                print '  <tr>'.$lineBreak;
+                print '    <td>'.$lineBreak;
+                print '      <span id="'.$name.'_wrapper">'.$lineBreak;
+                print '        '.$lineBreak;
+                starttable('100%','',2);
+                print '          <tr>'.$lineBreak;
+                print '            <td class="tableb">'.$lineBreak;
+                print '            </td>'.$lineBreak;
+                print '            <td class="tableb">'.$lineBreak;
+                print $options;
+                print '            </td>'.$lineBreak;
+                print '          </tr>'.$lineBreak;
+                print '        '.$lineBreak;
                 endtable();
-            echo '<br />';
+                print '      </span>'.$lineBreak;
+                print '                      <script type="text/javascript">'.$lineBreak;
+                print '        addonload("show_section(\''.$name.'_wrapper\')");'.$lineBreak;
+                print '      </script>'.$lineBreak;
+                print '    </td>'.$lineBreak;
+                print '  </tr>'.$lineBreak;
+                $loopCounter++;
         }
+        print <<< EOT
+    <script type="text/javascript">
+	function cpgAdminToolsToggleRadioButton(wrapper_name) {
+		if (document.getElementById(wrapper_name).checked == true) {
+			document.getElementById(wrapper_name + '_wrapper').style.display = 'block';
+		}
+		return;
+	}
+	</script>
+EOT;
+        endtable();
 
         starttable('100%', $lang_util_php['select_album']);
         echo '<tr><td class="tablef"><br />';
@@ -157,7 +193,11 @@ function my_flush()
 
 function del_titles()
 {
-        global $CONFIG, $lang_util_php;
+        global $CONFIG, $lang_util_php, $cpg_db_util_php;
+		################            DB           #################	
+		$cpgdb =& cpgDB::getInstance();
+		$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+		#############################################	
 
         $superCage = Inspekt::makeSuperCage();
         //$albumid = (isset($_POST['albumid'])) ? $_POST['albumid'] : 0;
@@ -168,7 +208,10 @@ function del_titles()
 		}
         $albstr = ($albumid) ? "WHERE aid = $albumid" : '';
         echo "<h2>{$lang_util_php['delete_wait']}</h2>";
-        $query = cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET title = '' $albstr");
+        //$query = cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET title = '' $albstr");
+		####################      DB      #####################
+		$query = $cpgdb->query($cpg_db_util_php['del_titles_update'], $albstr);
+		###############################################
         if ($query) {
             echo $lang_util_php['titles_deleted']."<br />";
         }
@@ -176,7 +219,11 @@ function del_titles()
 
 function filename_to_title()
 {
-        global $CONFIG, $lang_util_php;
+        global $CONFIG, $lang_util_php,$cpg_db_util_php;
+		################            DB           #################	
+		$cpgdb =& cpgDB::getInstance();
+		$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+		#############################################	
 
 		$superCage = Inspekt::makeSuperCage();
         //$albumid = (isset($_POST['albumid'])) ? $_POST['albumid'] : 0;
@@ -196,12 +243,17 @@ function filename_to_title()
         //$parsemode = $_POST['parsemode'];
 		$parsemode = $superCage->post->getInt('parsemode');
 		
-        $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} $albstr");
+        /*$result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} $albstr");
 
-        echo "<h2>{$lang_util_php['titles_wait']}</h2>";
+		echo "<h2>{$lang_util_php['titles_wait']}</h2>";
 
-        while ($row = mysql_fetch_assoc($result)){
-
+		while ($row = mysql_fetch_assoc($result))	*/
+		####################      DB     ####################
+		$cpgdb->query($cpg_db_util_php['get_all_pics'], $albstr);
+		echo "<h2>{$lang_util_php['titles_wait']}</h2>";
+		while($row = $cpgdb->fetchRow())
+		##############################################
+		{
         $filename = $row['filename'];
         $pid = $row['pid'];
         // //////////////////////////////////////////
@@ -232,7 +284,10 @@ function filename_to_title()
                         break;
         }
 
-        $query = cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET title = '$newtitle' WHERE pid = '$pid'");
+        //$query = cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET title = '$newtitle' WHERE pid = '$pid'");
+		##########################		DB		#########################
+		$query = $cpgdb->query($cpg_db_util_php['filename_to_title_update'], $newtitle, $pid);
+		#################################################################
         if ($query){
                 echo "{$lang_util_php['file']} : <b>$filename</b> {$lang_util_php['title_set_to']} : <b>$newtitle</b><br />";
         }
@@ -242,9 +297,9 @@ function filename_to_title()
         }
 }
 
-function filloptions()
+/*function filloptions()
 {
-        global $CONFIG, $lang_util_php;
+        global $CONFIG, $lang_util_php, $cpg_db_util_php;
 
         $result = cpg_db_query("SELECT aid, category, IF(user_name IS NOT NULL, CONCAT('(', user_name, ') ',title), CONCAT(' - ', title)) AS title " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "LEFT JOIN {$CONFIG['TABLE_USERS']} AS u ON category = (" . FIRST_USER_CAT . " + user_id) " . "ORDER BY category, title");
 
@@ -257,11 +312,36 @@ function filloptions()
         }
 
         echo '</select> (3)&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="'.$lang_util_php['submit_form'].'" class="button" /> (4)';
+}	*/
+#########################################		DB		############################################
+function filloptions()
+{
+        global $CONFIG, $lang_util_php, $cpg_db_util_php;
+		$cpgdb =& cpgDB::getInstance();
+		$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+
+		$cpgdb->query($cpg_db_util_php['filloptions'], FIRST_USER_CAT );
+		$rowset = $cpgdb->fetchRowSet();
+
+        echo "&nbsp;&nbsp;&nbsp;&nbsp;<select size='1' name='albumid' class='listbox'><option value='0'>{$lang_util_php['all_albums']}</option>";
+
+        foreach ($rowset as $row){
+				$cpgdb->query($cpg_db_util_php['filloptions_get_name'], $row['category']);
+                $row2 = $cpgdb->fetchRow();
+                echo "<option value=\"{$row['aid']}\">{$row2['name']} {$row['title']}</option>";
+        }
+
+        echo '</select> (3)&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="'.$lang_util_php['submit_form'].'" class="button" /> (4)';
 }
+##################################################################################################
 
 function update_thumbs()
 {
-        global $CONFIG, $lang_util_php;
+        global $CONFIG, $lang_util_php, $cpg_db_util_php;
+		################            DB           #################	
+		$cpgdb =& cpgDB::getInstance();
+		$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+		#############################################	
 
         $superCage = Inspekt::makeSuperCage();
         //$albumid = (isset($_REQUEST['albumid'])) ? $_REQUEST['albumid'] : 0;
@@ -272,7 +352,7 @@ function update_thumbs()
 		} else {
 			$albumid = 0;
 		}
-        $albstr = ($albumid) ? "WHERE aid = $albumid" : '';
+        $albstr = ($albumid) ? "WHERE aid = $albumid" : 'WHERE 1=1';	######## cpgdb_AL
         //$autorefresh = $_REQUEST['autorefresh'];
         if ($superCage->post->keyExists('autorefresh')) {
 		 	$autorefresh = $superCage->post->getInt('autorefresh');
@@ -301,11 +381,17 @@ function update_thumbs()
 		}
         echo "<h2>{$lang_util_php['thumbs_wait']}</h2>";
 
-        $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} $albstr LIMIT $startpic, $numpics");
-        $count = mysql_num_rows($result);
+        /*$result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} $albstr LIMIT $startpic, $numpics");
+		$count = mysql_num_rows($result);
 
-        while ($row = mysql_fetch_assoc($result)) {
-
+		while ($row = mysql_fetch_assoc($result)) 	*/
+		###################################		DB		######################################
+		$cpgdb->query($cpg_db_util_php['update_thumbs_get_pics'], $albstr, $startpic, $numpics);
+		$rowset = $cpgdb->fetchRowSet();
+		$count = count($rowset);
+		foreach ($rowset as $row)
+		######################################################################################
+		{
                 $image = $CONFIG['fullpath'] . $row['filepath'] . $row['filename'];
                 $normal = $CONFIG['fullpath'] . $row['filepath'] . $CONFIG['normal_pfx'] . $row['filename'];
                 $thumb = $CONFIG['fullpath'] . $row['filepath'] . $CONFIG['thumb_pfx'] . $row['filename'];
@@ -395,8 +481,11 @@ function update_thumbs()
                 }
 
                 $imagesize = cpg_getimagesize($image);
-                $query_up = "UPDATE {$CONFIG['TABLE_PICTURES']} SET pwidth='$imagesize[0]' , pheight='$imagesize[1]' WHERE pid='".$row['pid']."' ";
-                cpg_db_query($query_up);
+                /*$query_up = "UPDATE {$CONFIG['TABLE_PICTURES']} SET pwidth='$imagesize[0]' , pheight='$imagesize[1]' WHERE pid='".$row['pid']."' ";
+				cpg_db_query($query_up);	*/
+				#################################		DB		##################################
+				$cpgdb->query($cpg_db_util_php['update_thumbs_update_pic'], $imagesize[0], $imagesize[1], $row['pid']);
+				#################################################################################
         }
 
         if ($count == $numpics) {
@@ -425,7 +514,11 @@ EOT;
 
 function deletbackup_img()
 {
-        global $CONFIG, $lang_util_php;
+        global $CONFIG, $lang_util_php, $cpg_db_util_php;
+		################            DB           #################	
+		$cpgdb =& cpgDB::getInstance();
+		$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+		#############################################	
 				$superCage = Inspekt::makeSuperCage();
         //$albumid = (isset($_POST['albumid'])) ? $_POST['albumid'] : 0;
         if ($superCage->post->keyExists('albumid')) {
@@ -435,8 +528,13 @@ function deletbackup_img()
 				}
         $albstr = ($albumid) ? "WHERE aid = $albumid" : '';
 
-        $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} $albstr");
-        $num = mysql_num_rows($result);
+        /*$result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} $albstr");
+		$num = mysql_num_rows($result);	*/
+		########################         DB        ###########################
+		$cpgdb->query($cpg_db_util_php['get_all_pics'], $albstr);
+		$rowset = $cpgdb->fetchRowSet();
+		$num = count($rowset);
+		############################################################
         $i = 0;
         while ($i < $num) {
             $pid = mysql_result($result, $i, "pid");
@@ -456,7 +554,11 @@ function deletbackup_img()
 
 function del_orig()
 {
-        global $CONFIG, $lang_util_php;
+        global $CONFIG, $lang_util_php, $cpg_db_util_php;
+		################            DB           #################	
+		$cpgdb =& cpgDB::getInstance();
+		$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+		#############################################	
 
         $superCage = Inspekt::makeSuperCage();
         //$albumid = (isset($_POST['albumid'])) ? $_POST['albumid'] : 0;
@@ -467,39 +569,54 @@ function del_orig()
 		}
         $albstr = ($albumid) ? "WHERE aid = $albumid" : '';
 
-        $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} $albstr");
-        $num = mysql_num_rows($result);
-        echo "<h2>{$lang_util_php['replace_wait']}</h2>";
+        /*$result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} $albstr");
+		$num = mysql_num_rows($result);
+		echo "<h2>{$lang_util_php['replace_wait']}</h2>";
 
-        while ($row = mysql_fetch_assoc($result)) {
+		while ($row = mysql_fetch_assoc($result)) 	*/
+		##########################           DB        ##########################
+		$cpgdb->query($cpg_db_util_php['get_all_pics']);
+		$rowset = $cpgdb->fetchRowSet();
+		$num = count($rowset);
+		echo "<h2>{$lang_util_php['replace_wait']}</h2>";
+		foreach ($rowset as $row) 
+		##############################################################
+		{
+			$pid = $row['pid'];
+			$image = $CONFIG['fullpath'] . $row['filepath'] . $row['filename'];
+			$normal = $CONFIG['fullpath'] . $row['filepath'] . $CONFIG['normal_pfx'] . $row['filename'];
+			$thumb = $CONFIG['fullpath'] . $row['filepath'] . $CONFIG['thumb_pfx'] . $row['filename'];
 
-                $pid = $row['pid'];
-                $image = $CONFIG['fullpath'] . $row['filepath'] . $row['filename'];
-                $normal = $CONFIG['fullpath'] . $row['filepath'] . $CONFIG['normal_pfx'] . $row['filename'];
-                $thumb = $CONFIG['fullpath'] . $row['filepath'] . $CONFIG['thumb_pfx'] . $row['filename'];
-
-                if (file_exists($normal)) {
-                        $deleted = unlink($image);
-                        $renamed = rename($normal, $image);
-                        if ($deleted AND $renamed){
-                                $imagesize = cpg_getimagesize($image); // dimensions
-                                $image_filesize = filesize($image); // bytes
-                                $total_filesize = $image_filesize + filesize($thumb);
-                                cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET filesize='$image_filesize', total_filesize='$total_filesize', pwidth='{$imagesize[0]}', pheight='{$imagesize[1]}' WHERE pid='$pid' ");
-                                printf($lang_util_php['main_success'], $normal);
-                        } else {
-                                echo (!$renamed) ? sprintf($lang_util_php['error_rename'], $normal, $image) : sprintf($lang_util_php['error_deleting'], $image);;
-                        }
-                } else {
-                        printf($lang_util_php['error_not_found'], $normal);
-                }
-                echo '<br />';
-           }
+			if (file_exists($normal)) {
+					$deleted = unlink($image);
+					$renamed = rename($normal, $image);
+					if ($deleted AND $renamed){
+						$imagesize = cpg_getimagesize($image); // dimensions
+						$image_filesize = filesize($image); // bytes
+						$total_filesize = $image_filesize + filesize($thumb);
+						//cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET filesize='$image_filesize', total_filesize='$total_filesize', pwidth='{$imagesize[0]}', pheight='{$imagesize[1]}' WHERE pid='$pid' ");
+						############################		DB		##############################
+						$cpgdb->query($cpg_db_util_php['del_orig_update_pic'], $image_filesize, $total_filesize, 
+									$imagesize[0], $imagesize[1], $pid);
+						######################################################################
+						printf($lang_util_php['main_success'], $normal);
+					} else {
+							echo (!$renamed) ? sprintf($lang_util_php['error_rename'], $normal, $image) : sprintf($lang_util_php['error_deleting'], $image);;
+					}
+			} else {
+					printf($lang_util_php['error_not_found'], $normal);
+			}
+			echo '<br />';
+	   }
 }
 
 function del_norm()
 {
-        global $CONFIG, $lang_util_php;
+        global $CONFIG, $lang_util_php, $cpg_db_util_php;
+		################            DB           #################	
+		$cpgdb =& cpgDB::getInstance();
+		$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+		#############################################	
 
 		$superCage = Inspekt::makeSuperCage();
         //$albumid = (isset($_POST['albumid'])) ? $_POST['albumid'] : 0;
@@ -509,12 +626,19 @@ function del_norm()
 			$albumid = 0;
 		}
         $albstr = ($albumid) ? "WHERE aid = $albumid" : '';
-        $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} $albstr");
-        $num = mysql_num_rows($result);
-        echo "<h2>".$lang_util_php['deleting_intermediates']."</h2>";
+        /*$result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} $albstr");
+		$num = mysql_num_rows($result);
+		echo "<h2>".$lang_util_php['deleting_intermediates']."</h2>";
 
-        while ($row = mysql_fetch_assoc($result)){
-
+		while ($row = mysql_fetch_assoc($result))	*/
+		###########################		DB		###########################
+		$cpgdb->query($cpg_db_util_php['get_all_pics'], $albstr);
+		$rowset = $cpgdb->fetchRowSet();
+		$num = count($rowset);
+		echo "<h2>".$lang_util_php['deleting_intermediates']."</h2>";
+		foreach ($rowset as $row)
+		###################################################################
+		{
                 $pid = $row['pid'];
                 $image = $CONFIG['fullpath'] . $row['filepath'] . $row['filename'];
                 $normal = $CONFIG['fullpath'] . $row['filepath'] . $CONFIG['normal_pfx'] . $row['filename'];
@@ -524,7 +648,10 @@ function del_norm()
                         $test = unlink($normal);
                         if ($test){
                                 $total_filesize = filesize($image) + filesize($thumb);
-                                cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET total_filesize='$total_filesize' WHERE pid='$pid'");
+                                //cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET total_filesize='$total_filesize' WHERE pid='$pid'");
+								############################		DB		#############################
+								$cpgdb->query($cpg_db_util_php['del_norm_update_pic'], $total_filesize, $pid);
+								#####################################################################
                                 printf('The intermediate pic %s was successfully deleted', $normal);
                                 print '<br />';
                         } else {
@@ -539,7 +666,11 @@ function del_norm()
 
 function del_orphans()
 {
-    global $CONFIG, $lang_util_php;
+    global $CONFIG, $lang_util_php, $cpg_db_util_php;
+	################            DB           #################	
+	$cpgdb =& cpgDB::getInstance();
+	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+	#############################################	
 
     $superCage = Inspekt::makeSuperCage();
     $count = 0;
@@ -549,30 +680,47 @@ function del_orphans()
     //if (isset($_GET['single'])){
     if ($superCage->get->keyExists('single')) {
 		$single = $superCage->get->getInt('single');
-        $delone = cpg_db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id= '{$single}' LIMIT 1");
+        //$delone = cpg_db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id= '{$single}' LIMIT 1");
+		#####################        DB       #######################
+		$cpgdb->query($cpg_db_util_php['del_orphans_single_comment'], $single);
+		####################################################
     }
 
-    $result = cpg_db_query("SELECT pid FROM {$CONFIG['TABLE_PICTURES']}");
+    /*$result = cpg_db_query("SELECT pid FROM {$CONFIG['TABLE_PICTURES']}");
 
-    while ($row = mysql_fetch_assoc($result)){
-        $ok_array[] = $row['pid'];
-    }
+	while ($row = mysql_fetch_assoc($result)){
+		$ok_array[] = $row['pid'];
+	}	*/
+	######################       DB     #######################
+	$cpgdb->query($cpg_db_util_php['del_orphans_get_pic_id']);
+	while ($row = $cpgdb->fetchRow()) {
+		$ok_array[] = $row['pid'];
+	}
+	####################################################
 
     $check_str = '(' . implode(',',$ok_array) . ')';
-    $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid NOT IN $check_str");
+    /*$result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid NOT IN $check_str");
 
-    while ($row = mysql_fetch_array($result)){
+	while ($row = mysql_fetch_array($result))	*/
+	#######################        DB      ########################
+	$cpgdb->query($cpg_db_util_php['del_orphans_get_all_comment'], $check_str);
+	$rowset = $cpgdb->fetchRowSet();
+	$count = count($rowset);
+	foreach ($rowset as $row)
+	#######################################################
+	{
         $pid = $row['pid'];
         $msg_id = $row['msg_id'];
         $msg_body = $row['msg_body'];
 
         //if (isset($_POST['del'])){
         if ($superCage->post->keyExists('del')) {
-            cpg_db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id= $msg_id");
+            //cpg_db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id= $msg_id");
+			$cpgdb->query($cpg_db_util_php['del_orphans_comment'], $msg_id);
             echo "{$lang_util_php['comment']} $msg_body {$lang_util_php['nonexist']} $pid - <a href=\"util.php?action=del_orphans&amp;single=$msg_id\">{$lang_util_php['delete']}</a><br />";
         }
 
-        $count = mysql_num_rows($result);
+        //$count = mysql_num_rows($result);
         echo "<br /><br />$count {$lang_util_php['orphan_comment']}<br /><br />";
         if ($count > 1){
             echo <<< EOT
@@ -588,98 +736,129 @@ EOT;
 }
 
 function del_old() {
-  global $CONFIG, $lang_util_php;
+	global $CONFIG, $lang_util_php, $cpg_db_util_php;
+	################            DB           #################	
+	$cpgdb =& cpgDB::getInstance();
+	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+	#############################################	
 
-  $superCage = Inspekt::makeSuperCage();
-  //$d = $_POST['day_number']*60*60*24;
-  $day_number = $superCage->post->getInt('day_number');
-  $d = $day_number*60*60*24;
-  $start = strtotime(date("Ymd")) - $d;
-  $delete_counter = 0;
-  //$albumid = (isset($_POST['albumid'])) ? $_POST['albumid'] : 0;
+	$superCage = Inspekt::makeSuperCage();
+	//$d = $_POST['day_number']*60*60*24;
+	$day_number = $superCage->post->getInt('day_number');
+	$d = $day_number*60*60*24;
+	$start = strtotime(date("Ymd")) - $d;
+	$delete_counter = 0;
+	//$albumid = (isset($_POST['albumid'])) ? $_POST['albumid'] : 0;
     if ($superCage->post->keyExists('albumid')) {
 	   $albumid = $superCage->post->getInt('albumid');
     } else {
     	$albumid = 0;
 	}
-  $albstr = ($albumid) ? "WHERE ctime <= $start AND aid = $albumid " : "WHERE ctime <= $start";
-  $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} $albstr");
-  $num = mysql_num_rows($result);
-  echo "<h2>".$lang_util_php['deleting_old']."</h2>";
-  while ($row = mysql_fetch_assoc($result)){
-    $pid = $row['pid'];
-    $image = $CONFIG['fullpath'] . $row['filepath'] . $row['filename'];
-    $normal = $CONFIG['fullpath'] . $row['filepath'] . $CONFIG['normal_pfx'] . $row['filename'];
-    $thumb = $CONFIG['fullpath'] . $row['filepath'] . $CONFIG['thumb_pfx'] . $row['filename'];
+	$albstr = ($albumid) ? "WHERE ctime <= $start AND aid = $albumid " : "WHERE ctime <= $start";
+	/*$result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} $albstr");
+	$num = mysql_num_rows($result);
+	echo "<h2>".$lang_util_php['deleting_old']."</h2>";
+	while ($row = mysql_fetch_assoc($result))	*/
+	#########################           DB        #########################
+	$cpgdb->query($cpg_db_util_php['get_all_pics'], $albstr);
+	$rowset = $cpgdb->fetchRowSet();
+	$num = count($rowset);
+	echo "<h2>".$lang_util_php['deleting_old']."</h2>";
+	foreach ($rowset as $row)
+	###########################################################
+	{
+	    $pid = $row['pid'];
+	    $image = $CONFIG['fullpath'] . $row['filepath'] . $row['filename'];
+	    $normal = $CONFIG['fullpath'] . $row['filepath'] . $CONFIG['normal_pfx'] . $row['filename'];
+	    $thumb = $CONFIG['fullpath'] . $row['filepath'] . $CONFIG['thumb_pfx'] . $row['filename'];
 
-    if (file_exists($normal)){
-      $test = unlink($normal);
-      if ($test){
-              printf($lang_util_php['del_intermediate'], '&laquo;'.$normal.'&raquo;');
-              print '<br />';
-      } else {
-              printf($lang_util_php['del_error'], '&laquo;'.$normal.'&raquo;');
-      }
+	    if (file_exists($normal)){
+	      $test = unlink($normal);
+	      if ($test){
+	              printf($lang_util_php['del_intermediate'], '&laquo;'.$normal.'&raquo;');
+	              print '<br />';
+	      } else {
+	              printf($lang_util_php['del_error'], '&laquo;'.$normal.'&raquo;');
+	      }
 
-    } else {
-      printf($lang_util_php['error_not_found'], '&laquo;'.$normal.'&raquo;');
-      print '<br />';
-    }
-    if (file_exists($image)){
-      $test = unlink($image);
-      if ($test){
-              printf($lang_util_php['del_orig'], '&laquo;'.$image.'&raquo;');
-              print '<br />';
-      } else {
-              printf($lang_util_php['del_error'], '&laquo;'.$image.'&raquo;');
-      }
+	    } else {
+	      printf($lang_util_php['error_not_found'], '&laquo;'.$normal.'&raquo;');
+	      print '<br />';
+	    }
+	    if (file_exists($image)){
+	      $test = unlink($image);
+	      if ($test){
+	              printf($lang_util_php['del_orig'], '&laquo;'.$image.'&raquo;');
+	              print '<br />';
+	      } else {
+	              printf($lang_util_php['del_error'], '&laquo;'.$image.'&raquo;');
+	      }
 
-    } else {
-      printf($lang_util_php['error_not_found'], '&laquo;'.$image.'&raquo;');
-      print '<br />';
-    }
-    if (file_exists($thumb)){
-      $test = unlink($thumb);
-      if ($test){
-              printf($lang_util_php['del_thumb'], '&laquo;'.$thumb.'&raquo;');
-              print '<br />';
-      } else {
-              printf($lang_util_php['del_error'], '&laquo;'.$thumb.'&raquo;');
-      }
+	    } else {
+	      printf($lang_util_php['error_not_found'], '&laquo;'.$image.'&raquo;');
+	      print '<br />';
+	    }
+	    if (file_exists($thumb)){
+	      $test = unlink($thumb);
+	      if ($test){
+	              printf($lang_util_php['del_thumb'], '&laquo;'.$thumb.'&raquo;');
+	              print '<br />';
+	      } else {
+	              printf($lang_util_php['del_error'], '&laquo;'.$thumb.'&raquo;');
+	      }
 
-    } else {
-      printf($lang_util_php['error_not_found'], '&laquo;'.$thumb.'&raquo;');
-      print '<br />';
-    }
-    cpg_db_query("DELETE FROM {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid' LIMIT 1");
-    if (mysql_affected_rows()>0){
-      $delete_counter++;
-    }
-    cpg_db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid='$pid' LIMIT 1");
-    cpg_db_query("DELETE FROM {$CONFIG['TABLE_EXIF']} WHERE filename='".addslashes($image)."' LIMIT 1");
-  }
+	    } else {
+	      printf($lang_util_php['error_not_found'], '&laquo;'.$thumb.'&raquo;');
+	      print '<br />';
+	    }
+	    /*cpg_db_query("DELETE FROM {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid' LIMIT 1");
+		if (mysql_affected_rows()>0){
+			$delete_counter++;
+		}
+		cpg_db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid='$pid' LIMIT 1");
+		cpg_db_query("DELETE FROM {$CONFIG['TABLE_EXIF']} WHERE filename='".addslashes($image)."' LIMIT 1");	*/
+		###########################		DB		###########################
+		$cpgdb->query($cpg_db_util_php['del_old_pics'], $pid);
+		if ($cpgdb->affectedRows()>0) {
+			$delete_counter++;
+		}
+		$cpgdb->query($cpg_db_util_php['del_old_comment'], $pid);
+		$cpgdb->query($cpg_db_util_php['del_old_exif'], addslashes($image));
+		###################################################################
+	}
   printf($lang_util_php['affected_records'], $delete_counter);
 }
 
 function reset_views()
 {
-        global $CONFIG, $lang_util_php;
+		global $CONFIG, $lang_util_php, $cpg_db_util_php;
+		################            DB           #################	
+		$cpgdb =& cpgDB::getInstance();
+		$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+		#############################################	
 
-        $superCage = Inspekt::makeSuperCage();
-        //$albumid = (isset($_POST['albumid'])) ? $_POST['albumid'] : 0;
-        if ($superCage->post->keyExists('albumid')) {
-            $albumid = $superCage->post->getInt('albumid');
+		$superCage = Inspekt::makeSuperCage();
+		//$albumid = (isset($_POST['albumid'])) ? $_POST['albumid'] : 0;
+		if ($superCage->post->keyExists('albumid')) {
+			$albumid = $superCage->post->getInt('albumid');
 		} else {
 			$albumid = 0;
 		}
-        $albstr = ($albumid) ? "WHERE aid = $albumid" : '';
+		$albstr = ($albumid) ? "WHERE aid = $albumid" : '';
 
-        if (cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET hits ='0' $albstr")) echo $lang_util_pgp['reset_succes'];
+		//if (cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET hits ='0' $albstr")) echo $lang_util_pgp['reset_succes'];
+		#######################################		DB		####################################
+		if ($cpgdb->query($cpg_db_util_php['reset_views_update_pics'], $albstr)) echo $lang_util_pgp['reset_succes'];
+		##########################################################################################
 }
 
 function refresh_db()
 {
-        global $CONFIG, $lang_util_php;
+        global $CONFIG, $lang_util_php, $cpg_db_util_php;
+		################            DB           #################	
+		$cpgdb =& cpgDB::getInstance();
+		$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+		############################################	
 
 		$superCage = Inspekt::makeSuperCage();
         //$albumid = (isset($_POST['albumid'])) ? $_POST['albumid'] : 0;
@@ -689,7 +868,7 @@ function refresh_db()
 			$albumid = 0;
 		}
 
-        $albstr = ($albumid) ? "WHERE aid = $albumid" : '';
+        $albstr = ($albumid) ? "WHERE aid = $albumid" : 'WHERE 1=1';	######	cpgdb_AL
         //$numpics = $_POST['refresh_numpics'];
         $numpics = $superCage->post->getInt('refresh_numpics');
         //$startpic = (isset($_POST['refresh_startpic'])) ? $_POST['refresh_startpic'] : 0;
@@ -704,12 +883,19 @@ function refresh_db()
         echo "<tr><th class=\"tableh2\">{$lang_util_php['file']}</th><th class=\"tableh2\">{$lang_util_php['problem']}</th><th class=\"tableh2\">{$lang_util_php['status']}</th></tr>";
 
         $outcome = 'none';
-        $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} $albstr ORDER BY pid ASC LIMIT $startpic, $numpics");
-        $count = mysql_num_rows($result);
-        $found = 0;
+        /*$result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} $albstr ORDER BY pid ASC LIMIT $startpic, $numpics");
+		$count = mysql_num_rows($result);
+		$found = 0;
 
-        while ($row = mysql_fetch_assoc($result)){
-
+		while ($row = mysql_fetch_assoc($result))	*/
+		################################		DB		#############################
+		$cpgdb->query($cpg_db_util_php['refresh_db_get_all_pics'], $albstr, $startpic, $numpics);
+		$rowset = $cpgdb->fetchRowSet();
+		$count = count($rowset);
+		$found = 0;
+		foreach ($rowset as $row) 
+		########################################################################
+		{
                 extract($row, EXTR_PREFIX_ALL, "db");
                 unset($prob);
 
@@ -718,46 +904,52 @@ function refresh_db()
                 $normal_url = $CONFIG['fullpath'] . $db_filepath . $CONFIG['normal_pfx'] . $db_filename;
                 $url = '<a href="' . $CONFIG["ecards_more_pic_target"] . (substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') ."displayimage.php?pos=-$db_pid" . '" target="_blank">' . "$db_title ($db_pid)" . '</a>';
 
-                if (@file_exists($full_pic_url)){
+                if (@file_exists($full_pic_url))
+				{
+					$filesize = @filesize($full_pic_url);
+					$dimensions = cpg_getimagesize($full_pic_url);
 
-                        $filesize = @filesize($full_pic_url);
-                        $dimensions = cpg_getimagesize($full_pic_url);
+					if ($filesize){
+						$thumb_filesize = @filesize($thumb_url);
+						$normal_filesize = @filesize($normal_url);
+						$total_filesize = $filesize + $thumb_filesize + $normal_filesize;
 
-                        if ($filesize){
+						if ($total_filesize <> $db_total_filesize){
+							$prob .= "{$lang_util_php['incorrect_filesize']}<br />{$lang_util_php['database']}{$db_total_filesize}{$lang_util_php['bytes']}<br />{$lang_util_php['actual']}{$total_filesize}{$lang_util_php['bytes']}<br />";
+							$fs1_upd = @cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET total_filesize = '$total_filesize' WHERE pid = '$db_pid' LIMIT 1");
+							#############################          DB       ##############################
+							$fsl_upd = @$cpgdb->query($cpg_db_util_php['refresh_db_set_total_filesize'], $total_filesize, $db_pid);
+							####################################################################
+							$outcome = ($fs1_upd) ? $lang_util_php['updated'] : $lang_util_php['update_failled'];
+						}
 
-                                $thumb_filesize = @filesize($thumb_url);
-                                $normal_filesize = @filesize($normal_url);
-                                $total_filesize = $filesize + $thumb_filesize + $normal_filesize;
+						if ($filesize <> $db_filesize){
+							$prob .= "{$lang_util_php['incorrect_filesize']}<br />{$lang_util_php['database']}{$db_filesize}{$lang_util_php['bytes']}<br />{$lang_util_php['actual']}{$filesize}{$lang_util_php['bytes']}<br />";
+							//$fs2_upd = @cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET filesize = '$filesize' WHERE pid = '$db_pid' LIMIT 1");
+							##############################         DB        ##############################
+							$fs2_upd = @$cpgdb->query($cpg_db_util_php['refresh_db_set_filesize'], $filesize, $db_pid);
+							#####################################################################
+							$outcome = ($fs2_upd) ? $lang_util_php['updated'] : $lang_util_php['update_failled'];
+						}
+					} else {
+							$prob .= $lang_util_php['filesize_error'].'<br />';
+							$outcome = $lang_util_php['skipped'];
+					}
 
-                                if ($total_filesize <> $db_total_filesize){
-
-                                        $prob .= "{$lang_util_php['incorrect_filesize']}<br />{$lang_util_php['database']}{$db_total_filesize}{$lang_util_php['bytes']}<br />{$lang_util_php['actual']}{$total_filesize}{$lang_util_php['bytes']}<br />";
-                                        $fs1_upd = @cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET total_filesize = '$total_filesize' WHERE pid = '$db_pid' LIMIT 1");
-                                        $outcome = ($fs1_upd) ? $lang_util_php['updated'] : $lang_util_php['update_failled'];
-                                }
-
-                                if ($filesize <> $db_filesize){
-
-                                        $prob .= "{$lang_util_php['incorrect_filesize']}<br />{$lang_util_php['database']}{$db_filesize}{$lang_util_php['bytes']}<br />{$lang_util_php['actual']}{$filesize}{$lang_util_php['bytes']}<br />";
-                                        $fs2_upd = @cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET filesize = '$filesize' WHERE pid = '$db_pid' LIMIT 1");
-                                        $outcome = ($fs2_upd) ? $lang_util_php['updated'] : $lang_util_php['update_failled'];
-                                }
-                        } else {
-                                $prob .= $lang_util_php['filesize_error'].'<br />';
-                                $outcome = $lang_util_php['skipped'];
-                        }
-
-                        if ($dimensions){
-                                if (($dimensions[0] <> $db_pwidth) ||  ($dimensions[1] <> $db_pheight)){
-
-                                        $prob .= "{$lang_util_php['incorect_dimension']}<br />{$lang_util_php['database']}{$db_pwidth}x{$db_pheight}<br />{$lang_util_php['actual']}{$dimensions[0]}x{$dimensions[1]}<br />";
-                                        $dim_upd = @cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET `pwidth` = '{$dimensions[0]}', `pheight` = '{$dimensions[1]}' WHERE `pid` = '$db_pid' LIMIT 1");
-                                        $outcome = ($dim_upd) ? $lang_util_php['updated'] : $lang_util_php['update_failled'].mysql_error();
-                                }
-                        } else {
-                                $prob .= $lang_util_php['dimension_error'].'<br />';
-                                $outcome = $lang_util_php['skipped'];
-                        }
+					if ($dimensions){
+							if (($dimensions[0] <> $db_pwidth) ||  ($dimensions[1] <> $db_pheight)){
+								$prob .= "{$lang_util_php['incorect_dimension']}<br />{$lang_util_php['database']}{$db_pwidth}x{$db_pheight}<br />{$lang_util_php['actual']}{$dimensions[0]}x{$dimensions[1]}<br />";
+								//$dim_upd = @cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET `pwidth` = '{$dimensions[0]}', `pheight` = '{$dimensions[1]}' WHERE `pid` = '$db_pid' LIMIT 1");
+								#############################      DB     ##############################
+								$dim_upd = @$cpgdb->query($cpg_db_util_php['refresh_db_set_dimensions'], $dimensions[0], 
+											$dimensions[1], $db_pid);
+								##################################################################
+								$outcome = ($dim_upd) ? $lang_util_php['updated'] : $lang_util_php['update_failled'].mysql_error();
+							}
+					} else {
+							$prob .= $lang_util_php['dimension_error'].'<br />';
+							$outcome = $lang_util_php['skipped'];
+					}
                 } else {
                         $prob .= sprintf($lang_util_php['fullpic_error'], $full_pic_url).'<br />';
                         $outcome = $lang_util_php['cannot_fix'];

@@ -69,7 +69,7 @@ if (!in_array($pid, $FAVPICS)) {
 $data = base64_encode(serialize($FAVPICS));
 setcookie($CONFIG['cookie_name'] . '_fav', $data, time() + 86400 * 30, $CONFIG['cookie_path']);
 // If the user is logged in then put it in the DB
-if (USER_ID > 0) {
+/*if (USER_ID > 0) {
         $sql = "UPDATE {$CONFIG['TABLE_FAVPICS']} SET user_favpics = '$data' WHERE user_id = " . USER_ID;
         cpg_db_query($sql);
         // User never stored a fav... so insert new row
@@ -77,8 +77,17 @@ if (USER_ID > 0) {
                 $sql = "INSERT INTO {$CONFIG['TABLE_FAVPICS']} ( user_id, user_favpics) VALUES (" . USER_ID . ", '$data')";
                 cpg_db_query($sql);
         }
+}	*/
+##################################		DB		###################################
+// If the user is logged in then put it in the DB
+if (USER_ID > 0) {
+		$cpgdb->query($cpg_db_addfav_php['user_new_favpics'], $data, USER_ID);
+        // User never stored a fav... so insert new row
+        if (!$cpgdb->affectedRows()) {
+				$cpgdb->query($cpg_db_addfav_php['user_first_favpics'], USER_ID, $data);
+        }
 }
-
+###################################################################################
 
 $header_location = (@preg_match('/Microsoft|WebSTAR|Xitami/', getenv('SERVER_SOFTWARE'))) ? 'Refresh: 0; URL=' : 'Location: ';
 header($header_location . $ref);

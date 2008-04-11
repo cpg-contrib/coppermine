@@ -49,7 +49,7 @@ if (count($FILE_TYPES)==0) {
 $CONFIG['allowed_file_extensions'] = substr($CONFIG['allowed_file_extensions'],1);
 
 function cpg_get_type($filename,$filter=null) { 
-    global $FILE_TYPES;//print_r($FILE_TYPES);exit;
+    global $FILE_TYPES;
     if (!is_array($filename))
         $filename = explode('.',$filename);
     $EOA = count($filename)-1;

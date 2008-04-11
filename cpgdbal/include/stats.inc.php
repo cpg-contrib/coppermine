@@ -192,25 +192,50 @@ $osArray = array(
  */
 function individualStatsByOS($pid='',$type='hits', $tableWidth='100%') {
       global $osArray, $CONFIG, $lang_stat_details_php;
+	  ######################        DB      #####################
+	  global $cpg_db_stats_inc;
+	  $cpgdb =& cpgDB::getInstance();
+	  $cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+	  ###################################################
       if (GALLERY_ADMIN_MODE == true){
+        /*foreach ($osArray as $key => $value) {
+			$query = "SELECT COUNT(*) FROM ";
+			if ($type=='vote') {
+				$query .= $CONFIG['TABLE_VOTE_STATS'];
+			} else {
+				$query .= $CONFIG['TABLE_HIT_STATS'];
+			}
+			$query .= " WHERE os = '$key'";
+			if ($pid!='') {
+				$query .= " AND pid='$pid'";
+			}
+			// Now this is a very crude way to query the database which is bound to overload larger galleries. Should be reviewed!
+			$result = cpg_db_query($query);
+			$row = mysql_fetch_array($result);
+			if ($row[0] != 0) {
+				$osResultArray[$key] = $row[0];
+			}
+		}	*/
+		###################		DB		####################
         foreach ($osArray as $key => $value) {
-                $query = "SELECT COUNT(*) FROM ";
                 if ($type=='vote') {
-                    $query .= $CONFIG['TABLE_VOTE_STATS'];
+                    $query_tbl = $CONFIG['TABLE_VOTE_STATS'];
                 } else {
-                    $query .= $CONFIG['TABLE_HIT_STATS'];
+                    $query_tbl = $CONFIG['TABLE_HIT_STATS'];
                 }
-                $query .= " WHERE os = '$key'";
                 if ($pid!='') {
-                    $query .= " AND pid='$pid'";
-                }
+                    $query_pid= " AND pid='$pid'";
+                } else {
+					$query_pid = '';
+				}
                 // Now this is a very crude way to query the database which is bound to overload larger galleries. Should be reviewed!
-                $result = cpg_db_query($query);
-                $row = mysql_fetch_array($result);
-                if ($row[0] != 0) {
-                    $osResultArray[$key] = $row[0];
+				$cpgdb->query($cpg_db_stats_inc['individual_stats_by_os'], $query_tbl, $key, $query_pid);
+                $row = $cpgdb->fetchRow();
+                if ($row['count'] != 0) {
+                    $osResultArray[$key] = $row['count'];
                 }
         }
+		####################################################
         array_multisort($osResultArray,SORT_DESC);
         $osTotal = array_sum($osResultArray);
         print '<a name="os"></a>';
@@ -261,25 +286,51 @@ EOT;
 
 function individualStatsByBrowser($pid='',$type='hits', $tableWidth='100%') {
       global $browserArray, $CONFIG, $lang_stat_details_php;
+	  ######################        DB      #####################
+	  global $cpg_db_stats_inc;
+	  $cpgdb =& cpgDB::getInstance();
+	  $cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+	  ###################################################
       if (GALLERY_ADMIN_MODE == true){
+        /*foreach ($browserArray as $key => $value) {
+			$query = "SELECT COUNT(*) FROM ";
+			if ($type=='vote') {
+				$query .= $CONFIG['TABLE_VOTE_STATS'];
+			} else {
+				$query .= $CONFIG['TABLE_HIT_STATS'];
+			}
+			$query .= " WHERE browser = '$key'";
+			if ($pid!='') {
+				$query .= " AND pid='$pid'";
+			}
+			// Now this is a very crude way to query the database which is bound to overload larger galleries. Should be reviewed!
+			$result = cpg_db_query($query);
+			$row = mysql_fetch_array($result);
+			if ($row[0] != 0) {
+				$browserResultArray[$key] = $row[0];
+			}
+		}	*/
+		###################		DB		####################
         foreach ($browserArray as $key => $value) {
-                $query = "SELECT COUNT(*) FROM ";
                 if ($type=='vote') {
-                    $query .= $CONFIG['TABLE_VOTE_STATS'];
+                    $query_tbl = $CONFIG['TABLE_VOTE_STATS'];
                 } else {
-                    $query .= $CONFIG['TABLE_HIT_STATS'];
+                    $query_tbl = $CONFIG['TABLE_HIT_STATS'];
                 }
-                $query .= " WHERE browser = '$key'";
                 if ($pid!='') {
-                    $query .= " AND pid='$pid'";
-                }
+                    $query_pid= " AND pid='$pid'";
+                } else {
+					$query_pid = '';
+				}
                 // Now this is a very crude way to query the database which is bound to overload larger galleries. Should be reviewed!
-                $result = cpg_db_query($query);
-                $row = mysql_fetch_array($result);
-                if ($row[0] != 0) {
-                    $browserResultArray[$key] = $row[0];
+				$cpgdb->query($cpg_db_stats_inc[individual_stats_by_browser], $query_tbl, $key, $query_pid);
+                $row = $cpgdb->fetchRow();
+                if ($row['count'] != 0) {
+                    $browserResultArray[$key] = $row['count'];
                 }
         }
+		####################################################
+
         array_multisort($browserResultArray,SORT_DESC);
         $browserTotal = array_sum($browserResultArray);
         print '<a name="browser"></a>';

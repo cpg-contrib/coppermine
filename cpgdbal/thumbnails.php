@@ -84,13 +84,13 @@ function thumb_get_subcat_data($parent, &$album_set_array)
     if (count($rowset) > 0) {
         foreach ($rowset as $subcat) {
             $cpgdb->query($cpg_db_thumbnails_php['get_parent_subcat_data'], $subcat['cid']);
-			$rowset = $cpgdb->fetchRowSet();
-            $album_count = count($rowset);
-            foreach ($rowset as $row) {
+			$rowsubset = $cpgdb->fetchRowSet();
+            $album_count = count($rowsubset);
+            foreach ($rowsubset as $row) {
                 $album_set_array[] = $row['aid'];
             } // foreach
             thumb_get_subcat_data($subcat['cid'], $album_set_array);
-        }   
+        }
     }
 }
 ##############################################################

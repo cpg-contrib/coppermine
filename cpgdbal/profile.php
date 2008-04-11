@@ -27,36 +27,74 @@ include("include/smilies.inc.php");
   $cpg_udb->view_profile($superCage->get->getInt('uid'));
 //}
 
-function cpgUserPicCount($username) {
+/*function cpgUserPicCount($username) {
         global $CONFIG;
         $result = cpg_db_query("SELECT pid FROM {$CONFIG['TABLE_PICTURES']} WHERE owner_name = '".addslashes($username)."'");
         $pic_count = mysql_num_rows($result);
         mysql_free_result($result);
         return $pic_count;
+}	*/
+#######################		DB		########################
+function cpgUserPicCount($username) {
+        global $CONFIG, $cpg_db_profile_php;
+		$cpgdb =& cpgDB::getInstance();
+		$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+		$cpgdb->query($cpg_db_profile_php['cpg_user_pic_count'], addslashes($username));
+		$rowset = $cpgdb->fetchRowSet();
+        $pic_count = count($rowset);
+        $cpgdb->free();
+        return $pic_count;
 }
+############################################################
 
 function cpgUserThumb($uid) {
-        global $CONFIG, $FORBIDDEN_SET;
+        global $CONFIG, $FORBIDDEN_SET, $cpg_db_profile_php;
+		################            DB           #################	
+		$cpgdb =& cpgDB::getInstance();
+		$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+		#############################################	
         if ($FORBIDDEN_SET != "") $FORBIDDEN_SET = "AND $FORBIDDEN_SET";
-        $query = "SELECT count(*), MAX(pid) FROM {$CONFIG['TABLE_PICTURES']} AS p WHERE owner_id = '$uid' AND approved = 'YES' $FORBIDDEN_SET";
-        $result = cpg_db_query($query);
-        $nbEnr = mysql_fetch_array($result);
-        $picture_count = $nbEnr[0];
-        $thumb_pid = $nbEnr[1];
-        mysql_free_result($result);
+        /*$query = "SELECT count(*), MAX(pid) FROM {$CONFIG['TABLE_PICTURES']} AS p WHERE owner_id = '$uid' AND approved = 'YES' $FORBIDDEN_SET";
+		$result = cpg_db_query($query);
+		$nbEnr = mysql_fetch_array($result);
+		$picture_count = $nbEnr[0];
+		$thumb_pid = $nbEnr[1];
+		mysql_free_result($result);
 
-        $result = cpg_db_query("SELECT count(*) FROM {$CONFIG['TABLE_ALBUMS']} AS p WHERE category = '" . (FIRST_USER_CAT + $uid) . "' $FORBIDDEN_SET");
-        $nbEnr = mysql_fetch_array($result);
-        $album_count = $nbEnr[0];
-        mysql_free_result($result);
+		$result = cpg_db_query("SELECT count(*) FROM {$CONFIG['TABLE_ALBUMS']} AS p WHERE category = '" . (FIRST_USER_CAT + $uid) . "' $FORBIDDEN_SET");
+		$nbEnr = mysql_fetch_array($result);
+		$album_count = $nbEnr[0];
+		mysql_free_result($result);	*/
+		##################################		DB		##################################
+        $cpgdb->query($cpg_db_profile_php['count_owner_approved_pics'], $uid, $FORBIDDEN_SET);
+        $nbEnr = $cpgdb->fetchRow();
+        $picture_count = $nbEnr['count'];
+        $thumb_pid = $nbEnr['max'];
+        $cpgdb->free();
+
+		$cpgdb->query($cpg_db_profile_php['count_owner_albums'], (FIRST_USER_CAT + $uid), $FORBIDDEN_SET);
+        $nbEnr = $cpgdb->fetchRow();
+        $album_count = $nbEnr['count'];
+        $cpgdb->free();
+		#################################################################################
 
         $user_thumb = '';
         if ($picture_count) {
-            $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='" . $thumb_pid . "'";
-            $result = cpg_db_query($sql);
-            if (mysql_num_rows($result)) {
-                $picture = mysql_fetch_array($result);
-                mysql_free_result($result);
+            /*$sql = "SELECT filepath, filename, url_prefix, pwidth, pheight " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='" . $thumb_pid . "'";
+			$result = cpg_db_query($sql);
+			if (mysql_num_rows($result))	*/
+			######################          DB         #######################
+			$cpgdb->query($cpg_db_profile_php['cpg_user_thumb'], $thumb_pid);
+			$rowset = $cpgdb->fetchRowSet();
+			if (count($rowset))
+			#######################################################
+			{
+                /*$picture = mysql_fetch_array($result);
+				mysql_free_result($result);	*/
+				###############    DB    ##############
+				$picture = $rowset[0];
+				$cpgdb->free();
+				##################################
                 $pic_url =  get_pic_url($picture, 'thumb');
                 if (!is_image($picture['filename'])) {
                         $image_info = cpg_getimagesize(urldecode($pic_url));
@@ -73,21 +111,39 @@ function cpgUserThumb($uid) {
 }
 
 function cpgUserLastComment($uid) {
-        global $CONFIG;
+        global $CONFIG, $cpg_db_profile_php;
+		################            DB           #################	
+		$cpgdb =& cpgDB::getInstance();
+		$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+		#############################################	
 
-        $result = cpg_db_query("SELECT count(*), MAX(msg_id) FROM {$CONFIG['TABLE_COMMENTS']} as c, {$CONFIG['TABLE_PICTURES']} as p WHERE c.pid = p.pid AND approval='YES' AND author_id = '$uid' $FORBIDDEN_SET");
-        $nbEnr = mysql_fetch_array($result);
-        $comment_count = $nbEnr[0];
-        $lastcom_id = $nbEnr[1];
-        mysql_free_result($result);
+        /*$result = cpg_db_query("SELECT count(*), MAX(msg_id) FROM {$CONFIG['TABLE_COMMENTS']} as c, {$CONFIG['TABLE_PICTURES']} as p WHERE c.pid = p.pid AND approval='YES' AND author_id = '$uid' $FORBIDDEN_SET");
+		$nbEnr = mysql_fetch_array($result);
+		$comment_count = $nbEnr[0];
+		$lastcom_id = $nbEnr[1];
+		mysql_free_result($result);	*/
+		#########################		DB		##########################
+        $cpgdb->query($cpg_db_profile_php['count_approved_comments'], $uid, $FORBIDDEN_SET);
+		$nbEnr = $cpgdb->fetchRow();
+        $comment_count = $nbEnr['count'];
+        $lastcom_id = $nbEnr['max'];
+        $cpgdb->free();
+		##################################################################
 
         $lastcom = '';
         if ($comment_count) {
-            $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight, msg_author, UNIX_TIMESTAMP(msg_date) as msg_date, msg_body, approval " . "FROM {$CONFIG['TABLE_COMMENTS']} AS c, {$CONFIG['TABLE_PICTURES']} AS p " . "WHERE msg_id='" . $lastcom_id . "' AND approval = 'YES' AND c.pid = p.pid";
-            $result = cpg_db_query($sql);
-            if (mysql_num_rows($result)) {
-                $row = mysql_fetch_array($result);
-                mysql_free_result($result);
+            /*$sql = "SELECT filepath, filename, url_prefix, pwidth, pheight, msg_author, UNIX_TIMESTAMP(msg_date) as msg_date, msg_body, approval " . "FROM {$CONFIG['TABLE_COMMENTS']} AS c, {$CONFIG['TABLE_PICTURES']} AS p " . "WHERE msg_id='" . $lastcom_id . "' AND approval = 'YES' AND c.pid = p.pid";
+			$result = cpg_db_query($sql);
+			if (mysql_num_rows($result)) {
+				$row = mysql_fetch_array($result);
+				mysql_free_result($result);	*/
+			#############################        DB        ##############################
+			$cpgdb->query($cpg_db_profile_php['cpg_user_last_comment'], $lastcom_id);
+			$rowset = $cpgdb->fetchRowSet();
+			if (count($rowset)) {
+				$row = $rowset[0];
+				$cpgdb->free();
+			####################################################################
                 $pic_url =  get_pic_url($row, 'thumb');
                 if (!is_image($row['filename'])) {
                         $image_info = cpg_getimagesize(urldecode($pic_url));
@@ -312,18 +368,29 @@ if ($superCage->post->keyExists('change_profile') && USER_ID && UDB_INTEGRATION 
 
                 } elseif (!$CONFIG['allow_duplicate_emails_addr']) {
 
-                        $sql = "SELECT user_id " . "FROM {$CONFIG['TABLE_USERS']} " . "WHERE user_email = '" . $email . "'";
-                        $result = cpg_db_query($sql);
+                        /*$sql = "SELECT user_id " . "FROM {$CONFIG['TABLE_USERS']} " . "WHERE user_email = '" . $email . "'";
+						$result = cpg_db_query($sql);
 
-                        if (mysql_num_rows($result)) {
-                                $error = $lang_register_php['err_duplicate_email'];
-                        }
+						if (mysql_num_rows($result)) {
+							$error = $lang_register_php['err_duplicate_email'];
+						}	*/
+						#########################             DB         #########################
+						$cpgdb->query($cpg_db_profile_php['get_user_id_verify_email'], $email);
+						$rowset = $cpgdb->fetchRowSet();
+						if (count($rowset)) {
+								$error = $lang_register_php['err_duplicate_email'];
+						}
+						#############################################################
                 }
     }
 
-    $sql = "UPDATE {$CONFIG['TABLE_USERS']} SET " . "user_profile1 = '$profile1', " . "user_profile2 = '$profile2', " . "user_profile3 = '$profile3', " . "user_profile4 = '$profile4', " . "user_profile5 = '$profile5', " . "user_profile6 = '$profile6'" . ($CONFIG['allow_email_change'] && !$error ? ", user_email = '$email'" : "") . " WHERE user_id = '" . USER_ID . "'";
+    /*$sql = "UPDATE {$CONFIG['TABLE_USERS']} SET " . "user_profile1 = '$profile1', " . "user_profile2 = '$profile2', " . "user_profile3 = '$profile3', " . "user_profile4 = '$profile4', " . "user_profile5 = '$profile5', " . "user_profile6 = '$profile6'" . ($CONFIG['allow_email_change'] && !$error ? ", user_email = '$email'" : "") . " WHERE user_id = '" . USER_ID . "'";
 
-    $result = cpg_db_query($sql);
+	$result = cpg_db_query($sql);	*/
+	###########################################		DB		###########################################
+	$cpgdb->query($cpg_db_profile_php['update_user_profile'], $profile1, $profile2, $profile3, $profile4, $profile5, $profile6,
+					($CONFIG['allow_email_change'] && !$error ? ", user_email = '$email'" : ""), USER_ID);
+	#####################################################################################################
 
     $title = sprintf($lang_register_php['x_s_profile'], stripslashes(USER_NAME));
 
@@ -355,12 +422,17 @@ if ($superCage->post->keyExists('change_password') && USER_ID && UDB_INTEGRATION
     $current_pass = md5($current_pass);
   }
 
-    $sql = "UPDATE {$cpg_udb->usertable} SET " .
+    /*$sql = "UPDATE {$cpg_udb->usertable} SET " .
            $cpg_udb->field['password']." = '$new_pass' " .
            "WHERE {$cpg_udb->field['user_id']} = '" . USER_ID . "' AND BINARY {$cpg_udb->field['password']} = '$current_pass'";
 
-    $result = cpg_db_query($sql);
-    if (!mysql_affected_rows()) cpg_die(ERROR, $lang_register_php['pass_chg_error'], __FILE__, __LINE__);
+	$result = cpg_db_query($sql);
+	if (!mysql_affected_rows()) cpg_die(ERROR, $lang_register_php['pass_chg_error'], __FILE__, __LINE__);	*/
+	#######################################		DB		########################################
+	$cpgdb->query($cpg_db_profile_php['update_user_password'], $cpg_udb->usertable, $cpg_udb->field['password'], $new_pass, 
+				$cpg_udb->field['user_id'], USER_ID, $cpg_udb->field['password'], $current_pass);
+	if (!$cpgdb->affectedRows()) cpg_die(ERROR, $lang_register_php['pass_chg_error'], __FILE__, __LINE__);
+	############################################################################################
 
     /**
      * TODO: add setcookie function to udb objects (omni)
@@ -383,22 +455,36 @@ switch ($op) {
 
         if (defined('UDB_INTEGRATION')) $cpg_udb->edit_profile(USER_ID);
 
-        $sql = "SELECT user_name, user_email, user_group, UNIX_TIMESTAMP(user_regdate) as user_regdate, group_name, " . "user_profile1, user_profile2, user_profile3, user_profile4, user_profile5, user_profile6, user_group_list, " . "COUNT(pid) as pic_count, ROUND(SUM(total_filesize)/1024) as disk_usage, group_quota " . "FROM {$CONFIG['TABLE_USERS']} AS u " . "INNER JOIN {$CONFIG['TABLE_USERGROUPS']} AS g ON user_group = group_id " . "LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.owner_id = u.user_id " . "WHERE user_id ='" . USER_ID . "' " . "GROUP BY user_id ";
+        /*$sql = "SELECT user_name, user_email, user_group, UNIX_TIMESTAMP(user_regdate) as user_regdate, group_name, " . "user_profile1, user_profile2, user_profile3, user_profile4, user_profile5, user_profile6, user_group_list, " . "COUNT(pid) as pic_count, ROUND(SUM(total_filesize)/1024) as disk_usage, group_quota " . "FROM {$CONFIG['TABLE_USERS']} AS u " . "INNER JOIN {$CONFIG['TABLE_USERGROUPS']} AS g ON user_group = group_id " . "LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.owner_id = u.user_id " . "WHERE user_id ='" . USER_ID . "' " . "GROUP BY user_id ";
 
-        $result = cpg_db_query($sql);
+		$result = cpg_db_query($sql);
 
-        if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_register_php['err_unk_user'], __FILE__, __LINE__);
-        $user_data = mysql_fetch_array($result);
-        mysql_free_result($result);
+		if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_register_php['err_unk_user'], __FILE__, __LINE__);
+		$user_data = mysql_fetch_array($result);
+		mysql_free_result($result);	*/
+		#######################################		DB		####################################
+		$cpgdb->query($cpg_db_profile_php['get_user_profile'], USER_ID);
+		$rowset = $cpgdb->fetchRowSet();
+		if (!count($rowset)) cpg_die(ERROR, $lang_register_php['err_unk_user'], __FILE__, __LINE__);
+		$user_data = $rowset[0];
+		$cpgdb->free();
+		#######################################################################################
 
         $group_list = '';
         if ($user_data['user_group_list'] != '') {
-            $sql = "SELECT group_name " . "FROM {$CONFIG['TABLE_USERGROUPS']} " . "WHERE group_id IN ({$user_data['user_group_list']}) AND group_id != {$user_data['user_group']} " . "ORDER BY group_name";
-            $result = cpg_db_query($sql);
-            while ($row = mysql_fetch_array($result)) {
-                $group_list .= $row['group_name'] . ', ';
-            }
-            mysql_free_result($result);
+            /*$sql = "SELECT group_name " . "FROM {$CONFIG['TABLE_USERGROUPS']} " . "WHERE group_id IN ({$user_data['user_group_list']}) AND group_id != {$user_data['user_group']} " . "ORDER BY group_name";
+			$result = cpg_db_query($sql);
+			while ($row = mysql_fetch_array($result)) {
+				$group_list .= $row['group_name'] . ', ';
+			}
+			mysql_free_result($result);	*/
+			#####################################		DB		######################################
+			$cpgdb->query($cpg_db_profile_php['get_group_name'], $user_data['user_group_list'], $user_data['user_group']);
+			while ($row = $cpgdb->fetchRow()) {
+				$group_list .= $row['group_name'] . ', ';
+			}
+			$cpgdb->free();
+			#########################################################################################
             $group_list = '<br /><i>(' . substr($group_list, 0, -2) . ')</i>';
         }
 

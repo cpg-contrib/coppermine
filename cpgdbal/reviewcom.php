@@ -258,13 +258,15 @@ if ($superCage->post->keyExists('cid_array')) {
 	###################################################################
 }
 
-//$result = cpg_db_query("SELECT count(*) FROM {$CONFIG['TABLE_COMMENTS']} WHERE 1");
-//$nbEnr = mysql_fetch_array($result);
+/*$result = cpg_db_query("SELECT count(*) FROM {$CONFIG['TABLE_COMMENTS']} WHERE 1");
+$nbEnr = mysql_fetch_array($result);
+$comment_count = $nbEnr[0];	*/
 #####################  DB  ########################
 $cpgdb->query($cpg_db_reviewcom_php['count_comments']);
 $nbEnr = $cpgdb->fetchRow();
+$comment_count = $nbEnr['count'];
 ###############################################
-$comment_count = $nbEnr[0];
+
 
 if (!$comment_count) cpg_die(INFORMATION , $lang_reviewcom_php['no_comment'], __FILE__, __LINE__);
 

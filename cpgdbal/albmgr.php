@@ -69,8 +69,8 @@ function alb_get_subcat_data($parent, $ident = '')
 		//select cats where the users can change the albums
 		$group_id = $USER_DATA['group_id'];
 		$cpgdb->query($cpg_db_albmgr_php['get_cat_to_change_albums'], $parent);
-		//if ($cpgdb->nf() > 0)	{
-			$rowset = $cpgdb->fetchRowSet();
+		$rowset = $cpgdb->fetchRowSet();
+			if (count($rowset) > 0)	{
 			foreach ($rowset as $subcat) {
 				if(!GALLERY_ADMIN_MODE) {
 					$cpgdb->query($cpg_db_albmgr_php['get_user_group'], $group_id, $subcat['cid']);
@@ -84,7 +84,7 @@ function alb_get_subcat_data($parent, $ident = '')
 				}
 				alb_get_subcat_data($subcat['cid'], $ident . '&nbsp;&nbsp;&nbsp;');
 			}
-		//}
+		}
 }
 
 pageheader($lang_albmgr_php['alb_mrg']);

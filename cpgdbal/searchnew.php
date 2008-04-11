@@ -45,32 +45,48 @@ $rowCounter = 0;
  function albumselect($id = "album") {
 // frogfoot re-wrote this function to present the list in categorized, sorted and nicely formatted order
 
-    global $CONFIG, $lang_search_new_php, $cpg_udb;
+    global $CONFIG, $lang_search_new_php, $cpg_udb, $cpg_db_searchnew_php;
     static $select = "";
+	####################### DB #########################	
+	$cpgdb =& cpgDB::getInstance();
+	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+	##################################################	
 
     // Reset counter
     $list_count = 0;
 
     if ($select == "") {
-        $result = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = 0");
-        while ($row = mysql_fetch_array($result)) {
+        /*$result = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = 0");
+		while ($row = mysql_fetch_array($result)) 	*/
+		###############################		DB		################################
+		$cpgdb->query($cpg_db_searchnew_php['get_alb_def_cat']);
+		while ($row = $cpgdb->fetchRow())
+		############################################################################
+		{
             // Add to multi-dim array for later sorting
             $listArray[$list_count]['cat'] = $lang_search_new_php['albums_no_category'];
             $listArray[$list_count]['aid'] = $row['aid'];
             $listArray[$list_count]['title'] = $row['title'];
             $list_count++;
         }
-        mysql_free_result($result);
+        //mysql_free_result($result);
+		$cpgdb->free();	#######	cpgdb_AL
 
-        $result = cpg_db_query("SELECT DISTINCT a.aid as aid, a.title as title, c.name as cname FROM {$CONFIG['TABLE_ALBUMS']} as a, {$CONFIG['TABLE_CATEGORIES']} as c WHERE a.category = c.cid AND a.category < '" . FIRST_USER_CAT . "'");
-        while ($row = mysql_fetch_array($result)) {
+        /*$result = cpg_db_query("SELECT DISTINCT a.aid as aid, a.title as title, c.name as cname FROM {$CONFIG['TABLE_ALBUMS']} as a, {$CONFIG['TABLE_CATEGORIES']} as c WHERE a.category = c.cid AND a.category < '" . FIRST_USER_CAT . "'");
+		while ($row = mysql_fetch_array($result)) 	*/
+		###############################		DB		################################
+		$cpgdb->query($cpg_db_searchnew_php['get_alb_cat'], FIRST_USER_CAT);
+		while ($row = $cpgdb->fetchRow())
+		############################################################################
+		{
             // Add to multi-dim array for later sorting
             $listArray[$list_count]['cat'] = $row['cname'];
             $listArray[$list_count]['aid'] = $row['aid'];
             $listArray[$list_count]['title'] = $row['title'];
             $list_count++;
         }
-        mysql_free_result($result);
+        //mysql_free_result($result);
+		$cpgdb->free();	#######	cpgdb_AL
 
         //if (defined('UDB_INTEGRATION')) {
             $sql = $cpg_udb->get_batch_add_album_list();
@@ -351,7 +367,7 @@ EOT;
  * @param  $pic_array the array to be filled
  * @return
  */
-function getallpicindb(&$pic_array, $startdir)
+/*function getallpicindb(&$pic_array, $startdir)
 {
     global $CONFIG;
 
@@ -362,8 +378,22 @@ function getallpicindb(&$pic_array, $startdir)
         $pic_array[$pic_file] = 1;
     }
     mysql_free_result($result);
-}
+}	*/
+##########################		DB		#############################
+function getallpicindb(&$pic_array, $startdir)
+{
+    global $CONFIG, $cpg_db_searchnew_php;
+	$cpgdb =& cpgDB::getInstance();
+	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
 
+	$cpgdb->query($cpg_db_searchnew_php['get_all_pic_in_db'], $startdir."%");
+    while ($row = $cpgdb->fetchRow()) {
+        $pic_file = $row['filepath'] . $row['filename'];
+        $pic_array[$pic_file] = 1;
+    }
+    $cpgdb->free();
+}
+####################################################################
 /**
  * getallalbumsindb()
  *
@@ -373,7 +403,7 @@ function getallpicindb(&$pic_array, $startdir)
  * @param  $album_array the array to be filled
  * @return
  */
-function getallalbumsindb(&$album_array)
+/*function getallalbumsindb(&$album_array)
 {
     global $CONFIG;
 
@@ -384,7 +414,22 @@ function getallalbumsindb(&$album_array)
         $album_array[$row['aid']] = $row['title'];
     }
     mysql_free_result($result);
+}	*/
+########################		DB		##########################
+function getallalbumsindb(&$album_array)
+{
+    global $CONFIG, $cpg_db_searchnew_php;
+	$cpgdb =& cpgDB::getInstance();
+	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+
+	$cpgdb->query($cpg_db_searchnew_php['get_all_alb_in_db']);
+
+    while ($row = $cpgdb->fetchRow()) {
+        $album_array[$row['aid']] = $row['title'];
+    }
+    $cpgdb->free();
 }
+##############################################################
 
 /**
  * CPGscandir() //renamed because php5 has same function as scandir()
@@ -629,7 +674,10 @@ EOT;
         //$browse_batch_add = (int)$_POST['browse_batch_add'];
         $browse_batch_add = $superCage->post->getInt('browse_batch_add');
         if ($browse_batch_add != $CONFIG['browse_batch_add']) {
-          cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$browse_batch_add' WHERE name = 'browse_batch_add'");
+          //cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$browse_batch_add' WHERE name = 'browse_batch_add'");
+		  ###########################		DB		##############################
+		  $cpgdb->query($cpg_db_searchnew_php['browse_batch_add_edit'], $browse_batch_add);
+		  ########################################################################
           $CONFIG['browse_batch_add'] = $browse_batch_add;
           if ($CONFIG['log_mode'] == CPG_LOG_ALL) {
               log_write('CONFIG UPDATE SQL: '.
@@ -643,7 +691,10 @@ EOT;
         //$display_thumbs_batch_add = (int)$_POST['display_thumbs_batch_add'];
         $display_thumbs_batch_add = $superCage->post->getInt('display_thumbs_batch_add');
         if ($display_thumbs_batch_add != $CONFIG['display_thumbs_batch_add']) {
-          cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$display_thumbs_batch_add' WHERE name = 'display_thumbs_batch_add'");
+          //cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$display_thumbs_batch_add' WHERE name = 'display_thumbs_batch_add'");
+		  ###########################		DB		##############################
+		  $cpgdb->query($cpg_db_searchnew_php['display_thumbs_batch_add_edit'], display_thumbs_batch_add);
+		  ########################################################################
           $CONFIG['display_thumbs_batch_add'] = $display_thumbs_batch_add;
           if ($CONFIG['log_mode'] == CPG_LOG_ALL) {
               log_write('CONFIG UPDATE SQL: '.

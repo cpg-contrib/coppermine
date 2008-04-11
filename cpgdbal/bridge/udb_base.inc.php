@@ -38,10 +38,12 @@ class core_udb {
                                 /*$this->link_id = mysql_connect($this->db['host'], $this->db['user'], $this->db['password']);
                                 if (!$this->link_id) die("<b>Coppermine critical error</b>:<br />Unable to connect to UDB database !<br /><br />MySQL said: <b>" . mysql_error() . "</b>");
                                 mysql_select_db ($this->db['name'], $this->link_id);	*/
-					$this->cpgudb->Link_ID = $this->cpgudb->connect($this->db['name'], $this->db['host'], $this->db['user'], $this->db['password']);	####	cpgdb_AL			
+					#################################		DB		######################################
+					$this->cpgudb->Link_ID = $this->cpgudb->connect($this->db['name'], $this->db['host'], $this->db['user'], $this->db['password']); 
+					#####################################################################################
                         } else {
                                 //$this->link_id = 0;
-								$this->cpgudb->Link_ID = 0;
+								$this->cpgudb->Link_ID = 0;	#########	cpgdb_AL
                         }
                     
                 }
@@ -196,7 +198,7 @@ class core_udb {
                 if (!$user_count) {
             $this->cpgudb->query($cpg_db_udb_base_inc['get_user_count'], $this->usertable);
             $nbEnr = $this->cpgudb->fetchRow();
-            $user_count = $nbEnr[0];
+            $user_count = $nbEnr['count'];
             $this->cpgudb->free();
         }
 		######################################################
@@ -522,13 +524,13 @@ class core_udb {
 		#######################  DB  ########################
 		$cpgdb->query($cpg_db_udb_base_inc['list_users_with_alb'], FIRST_USER_CAT, $forbidden);
 		$rowset = $cpgdb->fetchRowSet();
-		$user_count = count($rowset);
+		$user_count = count($rowset);//print($user_count);exit;
 		###################################################
         if ($user_count == 0) {
             return false;
         }
         //mysql_free_result($result);
-		$cpgdb->free();
+		$cpgdb->free();	###### cpgdb_AL
 
         $users_per_page = $CONFIG['thumbcols'] * $CONFIG['thumbrows'];
         $totalPages = ceil($user_count / $users_per_page);

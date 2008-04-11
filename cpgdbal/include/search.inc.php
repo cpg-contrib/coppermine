@@ -18,7 +18,9 @@
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
-
+##########  DB   ##########
+global $cpg_db_search_inc;
+########################
 // encoding match for workaround
 
 $multibyte_charset = 'utf-8, big5, shift_jis, euc-kr, gb2312';
@@ -64,7 +66,7 @@ if (isset($search_params['params']['pic_raw_ip'])) $search_params['params']['pic
 $sql = '';
 
 if ($search_string && isset($search_params['params'])) {
-         $sections = array();
+        $sections = array();
         $albcat_terms = array(); // For Album & Category Title Search: populated as needed
         if($search_params['type'] == 'regex') {
                 $fields = array();
@@ -74,7 +76,10 @@ if ($search_string && isset($search_params['params'])) {
                 foreach($search_params['params'] as $param => $value) {
                         if (in_array($param, $allowed)) $fields[] = "$param REGEXP '$search_string'";
                 }
-                $sql .= count($fields) ? ('((' . implode(' OR ', $fields) . '))') : '';
+                //$sql .= count($fields) ? ('((' . implode(' OR ', $fields) . '))') : '';
+				########################		DB		#######################
+				$sql_search_params = count($fields) ? ('((' . implode(' OR ', $fields) . '))') : '';
+				#############################################################
          } else {
                 $search_string = strtr($search_string, array('_' => '\_', '%' => '\%', '*' => '%'));
 
@@ -103,23 +108,42 @@ if ($search_string && isset($search_params['params'])) {
                         }
                 }
                 
-                $sql .= count($sections) ? '(' . implode($type, $sections) . ')' : '0';
+                //$sql .= count($sections) ? '(' . implode($type, $sections) . ')' : '0';
+				############################		DB		###########################
+				$sql_search_params = count($sections) ? '(' . implode($type, $sections) . ')' : '0';
+				####################################################################
         }
 
-        $sql .= $superCage->get->getInt('newer_than') ? ' AND ( ctime > UNIX_TIMESTAMP() - '.( $superCage->get->getInt('newer_than') * 60*60*24).')' : '';
-        $sql .= $superCage->get->getInt('older_than') ? ' AND ( ctime < UNIX_TIMESTAMP() - '.( $superCage->get->getInt('older_than') * 60*60*24).')' : '';
-        $sql .=  " $ALBUM_SET AND approved = 'YES'";
+        /*$sql .= $superCage->get->getInt('newer_than') ? ' AND ( ctime > UNIX_TIMESTAMP() - '.( $superCage->get->getInt('newer_than') * 60*60*24).')' : '';
+		$sql .= $superCage->get->getInt('older_than') ? ' AND ( ctime < UNIX_TIMESTAMP() - '.( $superCage->get->getInt('older_than') * 60*60*24).')' : '';
+		$sql .=  " $ALBUM_SET AND approved = 'YES'";	*/
+		############################################		DB		###############################################
+		$sql_newer_than = $superCage->get->getInt('newer_than') ? ' AND ( ctime > '.$cpgdb->timestamp().' - '.( $superCage->get->getInt('newer_than') * 60*60*24).')' : '';
+		$sql_older_than = $superCage->get->getInt('older_than') ? ' AND ( ctime < '.$cpgdb->timestamp().' - '.( $superCage->get->getInt('older_than') * 60*60*24).')' : '';
+		$sql .= "$sql_search_params  $sql_newer_than  $sql_older_than $ALBUM_SET AND approved = 'YES'";
+		##########################################################################################################
 
         if($superCage->get->keyExists('album_title')) {
-                $album_query = "SELECT * FROM `{$CONFIG['TABLE_ALBUMS']}` WHERE (`title` " . implode(" $type `title` ",$albcat_terms) . ')';
-                $result = cpg_db_query($album_query);
-                if(mysql_num_rows($result) > 0) {
+                /*$album_query = "SELECT * FROM `{$CONFIG['TABLE_ALBUMS']}` WHERE (`title` " . implode(" $type `title` ",$albcat_terms) . ')';
+				$result = cpg_db_query($album_query);
+				if(mysql_num_rows($result) > 0)	*/
+				#################################		DB		##################################
+				$cpgdb->query($cpg_db_search_inc['alb_title_album_query'], implode(" $type title ",$albcat_terms));
+				$rowset = $cpgdb->fetchRowSet();
+				if(count($rowset) > 0)
+				#################################################################################
+				{
                         starttable('100%', $lang_meta_album_names['album_search'],2);
-                        while($alb = mysql_fetch_assoc($result))
+                        //while($alb = mysql_fetch_assoc($result))
+						foreach ($rowset as $alb)	########	cpgdb_AL
                         {
-                                $thumb_query = "SELECT filename, url_prefix, pwidth, pheight FROM `{$CONFIG['TABLE_PICTURES']}` WHERE (`aid` = '{$alb['aid']}') ORDER BY `pid` DESC";
-                                $thumb_result = cpg_db_query($thumb_query);
-                                $thumb = mysql_fetch_assoc($thumb_result);
+                                /*$thumb_query = "SELECT filename, url_prefix, pwidth, pheight FROM `{$CONFIG['TABLE_PICTURES']}` WHERE (`aid` = '{$alb['aid']}') ORDER BY `pid` DESC";
+								$thumb_result = cpg_db_query($thumb_query);
+								$thumb = mysql_fetch_assoc($thumb_result);	*/
+								#################################		DB		#################################
+								$cpgdb->query($cpg_db_search_inc['alb_title_thumb_query'], $alb['aid']);
+								$thumb = $cpgdb->fetchRow();
+								################################################################################
                                 $thumb_url = get_pic_url($thumb, 'thumb');
                                 $thumb_size = compute_img_size($thumb['pwidth'], $thumb['pheight'], $CONFIG['alb_list_thumb_size'], true, 'cat_thumb');
                                 ?>
@@ -144,26 +168,40 @@ if ($search_string && isset($search_params['params'])) {
                                   </td>
                                 </tr>
                                 <?php
-                        }
+                        }	//foreach
                         endtable();
                         echo '<br/>';                        
                 }
         }
                                               
         if($superCage->get->keyExists('category_title')) {
-                $category_query = "SELECT * FROM `{$CONFIG['TABLE_CATEGORIES']}` WHERE (`name` " . implode(" $type `name` ",$albcat_terms) . ')';
-                $result = cpg_db_query($category_query);
-                if(mysql_num_rows($result) > 0) {
+                /*$category_query = "SELECT * FROM `{$CONFIG['TABLE_CATEGORIES']}` WHERE (`name` " . implode(" $type `name` ",$albcat_terms) . ')';
+				$result = cpg_db_query($category_query);
+				if(mysql_num_rows($result) > 0) */
+				##################################		DB		##################################
+				$cpgdb->query($cpg_db_search_inc['cat_title_category_query'], implode(" $type name ",$albcat_terms));
+				$rowset = $cpgdb->fetchRowSet();
+				if (count($rowset) > 0) 
+				#################################################################################
+				{
                         starttable('100%', $lang_meta_album_names['category_search'],2);
-                        while($cat = mysql_fetch_array($result,MYSQL_ASSOC))
+                        //while($cat = mysql_fetch_array($result,MYSQL_ASSOC))
+						foreach ($rowset as $cat)	########	cpgdb_AL
                         {
-                                $album_q = "SELECT * FROM `{$CONFIG['TABLE_ALBUMS']}` WHERE (`category` = '{$cat['cid']}') ORDER BY `aid` DESC LIMIT 1";
-                                $album_r = cpg_db_query($album_q);
-                                $album = mysql_fetch_array($album_r);
+                                /*$album_q = "SELECT * FROM `{$CONFIG['TABLE_ALBUMS']}` WHERE (`category` = '{$cat['cid']}') ORDER BY `aid` DESC LIMIT 1";
+								$album_r = cpg_db_query($album_q);
+								$album = mysql_fetch_array($album_r);
                                 
-                                $thumb_query = "SELECT filename, url_prefix, pwidth, pheight FROM `{$CONFIG['TABLE_PICTURES']}` WHERE (`aid` = '{$album['aid']}') ORDER BY `pid` DESC";
-                                $thumb_result = cpg_db_query($thumb_query);
-                                $thumb = mysql_fetch_assoc($thumb_result);
+								$thumb_query = "SELECT filename, url_prefix, pwidth, pheight FROM `{$CONFIG['TABLE_PICTURES']}` WHERE (`aid` = '{$album['aid']}') ORDER BY `pid` DESC";
+								$thumb_result = cpg_db_query($thumb_query);
+								$thumb = mysql_fetch_assoc($thumb_result);	*/
+								##################################		DB		#####################################
+								$cpgdb->query($cpg_db_search_inc['cat_title_album_q'], $cat['cid']);
+								$album = $cpgdb->fetchRow();
+								
+								$cpgdb->query($cpg_db_search_inc['cat_title_thumb_query'], $album['aid']);
+								$cpgdb->fetchRow();
+								####################################################################################
                                 $thumb_url = get_pic_url($thumb, 'thumb');
                                 $thumb_size = compute_img_size($thumb['pwidth'], $thumb['pheight'], $CONFIG['alb_list_thumb_size'], true, 'cat_thumb');
 
@@ -200,21 +238,29 @@ if ($search_string && isset($search_params['params'])) {
                 if (in_array($param, $allowed)) $other=1;
         }
         
-        
-        if(!$other) $sql = '0';
-                                              
-                                              
+        /*if(!$other) $sql = '0';
+
         $sql = "SELECT * FROM {$CONFIG['TABLE_PICTURES']} WHERE " . $sql;
 
         $temp = str_replace('SELECT *', 'SELECT COUNT(*)', $sql);
-        $result = cpg_db_query($temp);
+        $result = cpg_db_query($temp);	
         $row = mysql_fetch_row($result);
         $count = $row[0];
 
         $sql .= " ORDER BY $sort_order $limit";
         $result = cpg_db_query($sql);
         $rowset = cpg_db_fetch_rowset($result);
-        mysql_free_result($result);
+        mysql_free_result($result);	*/
+		####################################		DB		###################################
+		if(!$other) $sql = '1!=1';
+		$cpgdb->query($cpg_db_search_inc['temp_search_string'], $sql);
+		$row = $cpgdb->fetchRow();
+		$count = $row['count'];
+
+		$cpgdb->query($cpg_db_search_inc['final_search_string'], $sql, $sort_order, $limit, $first_record, $records_per_page);
+		$rowset = $cpgdb->fetchRowSet();
+		$cpgdb->free();
+		###################################################################################### 
 
         if ($set_caption) build_caption($rowset);
 

@@ -27,6 +27,11 @@ require("include/exif.php");
 function exif_parse_file($filename)
 {
         global $CONFIG, $lang_picinfo;
+		#################        DB        ##################
+		global $cpg_db_exif_php_inc;
+		$cpgdb =& cpgDB::getInstance();
+		$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+		############################################
 
         //String containing all the available exif tags.
         $exif_info = "AFFocusPosition|Adapter|ColorMode|ColorSpace|ComponentsConfiguration|CompressedBitsPerPixel|Contrast|CustomerRender|DateTimeOriginal|DateTimedigitized|DigitalZoom|DigitalZoomRatio|ExifImageHeight|ExifImageWidth|ExifInteroperabilityOffset|ExifOffset|ExifVersion|ExposureBiasValue|ExposureMode|ExposureProgram|ExposureTime|FNumber|FileSource|Flash|FlashPixVersion|FlashSetting|FocalLength|FocusMode|GainControl|IFD1Offset|ISOSelection|ISOSetting|ISOSpeedRatings|ImageAdjustment|ImageDescription|ImageSharpening|LightSource|Make|ManualFocusDistance|MaxApertureValue|MeteringMode|Model|NoiseReduction|Orientation|Quality|ResolutionUnit|Saturation|SceneCaptureMode|SceneType|Sharpness|Software|WhiteBalance|YCbCrPositioning|xResolution|yResolution";
@@ -48,7 +53,7 @@ function exif_parse_file($filename)
         }
 
         //Check if we have the data of the said file in the table
-        $sql = "SELECT * FROM {$CONFIG['TABLE_EXIF']} ".
+        /*$sql = "SELECT * FROM {$CONFIG['TABLE_EXIF']} ".
                   "WHERE filename = '".addslashes($filename)."'";
 
         $result = cpg_db_query($sql);
@@ -57,7 +62,18 @@ function exif_parse_file($filename)
                 $row = mysql_fetch_array($result);
                 mysql_free_result($result);
                 $exifRawData = unserialize($row["exifData"]);
-        } else { // No data in the table - read it from the image file
+	}	*/
+		########################		DB		########################
+		$cpgdb->query($cpg_db_exif_php_inc['check_exif_data'], addslashes($filename));
+		$rowset = $cpgdb->fetchRowSet();
+		if (count($rowset) > 0) {
+			$row = $rowset[0];
+			$cpgdb->free();
+			$exifRawData = unserialize($row["exifData"]);
+		}	
+		############################################################
+		else 
+		{ // No data in the table - read it from the image file
           // Get the file name
           $file = basename($filename);
           // Get the path
@@ -74,10 +90,13 @@ function exif_parse_file($filename)
           }
 
           // Insert it into table for future reference
-          $sql = "INSERT INTO {$CONFIG['TABLE_EXIF']} ".
+          /*$sql = "INSERT INTO {$CONFIG['TABLE_EXIF']} ".
                     "VALUES ('".addslashes($filename)."', '".addslashes(serialize($exifRawData))."')";
 
-          $result = cpg_db_query($sql);
+          $result = cpg_db_query($sql);	*/
+		  ##################################################################
+		  $cpgdb->query($cpg_db_exif_php_inc['add_exif_data'], addslashes($filename), addslashes(serialize($exifRawData)));
+		  ##################################################################################
         }
 
         $exif = array();

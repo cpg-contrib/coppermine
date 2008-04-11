@@ -529,10 +529,15 @@ class cpgDB {
     }
 	
 //  function to return datetime in UNIX_TIMESTAMP
-	function timestamp($datetime_var)
+	function timestamp($datetime_var ='')
 	{
 		return "UNIX_TIMESTAMP($datetime_var)";
 	}
+
+	//returns the first value of the Array returned by fetchRow 
+	/*function firstkey() {
+		return 0;
+	}*/
 
 
 }

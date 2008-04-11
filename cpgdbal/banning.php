@@ -242,7 +242,9 @@ if ($ban_expires < 0) {
             $ban_id = $superCage->post->getInt('ban_id');
             if ($ban_id) {
                 //cpg_db_query("DELETE FROM {$CONFIG['TABLE_BANNED']} WHERE ban_id=$ban_id");
-				$cpgdb->query($cpg_db_banning_php['delete_banned'], $ban_id);	#################	cpgdb_AL
+				######################		DB		#####################
+				$cpgdb->query($cpg_db_banning_php['delete_banned'], $ban_id);	
+				###########################################################
             } else {
                 cpg_die(CRITICAL_ERROR, $lang_banning_php['error_ban_id'], __FILE__, __LINE__);
             }
@@ -278,7 +280,9 @@ if ($ban_expires < 0) {
 
                 if ($ban_uid || $ban_ip_addr) {
                     //cpg_db_query("UPDATE {$CONFIG['TABLE_BANNED']} SET user_id=$ban_uid, ip_addr=$ban_ip_addr, expiry=$ban_expires where ban_id=$ban_id");
-					$cpgdb->query($cpg_db_banning_php['update_banned_data'], $ban_uid, $ban_ip_addr, $ban_expires, $ban_id);	###########	cpgdb_AL
+					###################################		DB		##################################
+					$cpgdb->query($cpg_db_banning_php['update_banned_data'], $ban_uid, $ban_ip_addr, $ban_expires, $ban_id);	
+					###################################################################################
                 } else {
                     cpg_die(CRITICAL_ERROR, $lang_banning_php['error_specify'], __FILE__, __LINE__);
                 }
@@ -293,7 +297,9 @@ if($superCage->get->keyExists('ban_comment_author') && $superCage->get->getInt('
 	//get info of comment
 	$comm_id = $superCage->get->getInt('ban_comment_author');
 	//$comm_info = mysql_fetch_array(cpg_db_query("SELECT msg_author, msg_hdr_ip, msg_raw_ip FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id = $comm_id"));
-	$comm_info = $cpgdb->fetchRow($cpgdb->query($cpg_db_banning_php['get_comment_info'], $comm_id));	################	cpgdb_AL
+	##############################		DB		#################################
+	$comm_info = $cpgdb->fetchRow($cpgdb->query($cpg_db_banning_php['get_comment_info'], $comm_id));
+	###############################################################################
 	($comm_info['msg_hdr_ip'] == '') ? $comm_info['msg_ip'] = $comm_info['msg_hdr_ip'] : $comm_info['msg_ip'] = $comm_info['msg_raw_ip'];
 	$comm_info['extra_form'] = '        <td class="tableb" valign="middle">
                                                 <input type="checkbox" class="checkbox" name="delete_all_comments"/><input type="hidden" name="comment_id" value="' . $comm_id . '"/>

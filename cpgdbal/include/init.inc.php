@@ -102,8 +102,16 @@ if(file_exists('include/config.inc.php')){
 </html>');
 }
 $mb_utf8_regex = '[\xE1-\xEF][\x80-\xBF][\x80-\xBF]|\xE0[\xA0-\xBF][\x80-\xBF]|[\xC2-\xDF][\x80-\xBF]';
+##############       DB       ################
+$CONFIG['dbservername'] = 'mysql';
+//$CONFIG['dbservername'] = 'mssql';
+######################################
 require 'include/functions.inc.php';
-//require 'include/dbfunctions.php';	#########   cpgdb_AL
+#############      DB     #############
+if ($CONFIG['dbservername'] == 'mssql') {
+	require 'include/dbfunctions.php';	
+}
+#################################
 # see http://php.net/mbstring for details
 if (function_exists('mb_internal_encoding')) { mb_internal_encoding('UTF-8'); }
 
@@ -127,8 +135,11 @@ $CONFIG['TABLE_HIT_STATS']     = $CONFIG['TABLE_PREFIX'].'hit_stats';
 $CONFIG['TABLE_TEMP_MESSAGES'] = $CONFIG['TABLE_PREFIX'].'temp_messages';
 $CONFIG['TABLE_CATMAP']        = $CONFIG['TABLE_PREFIX'].'categorymap';
 // Connect to database
-($CONFIG['LINK_ID'] = cpg_db_connect()) || die('<b>Coppermine critical error</b>:<br />Unable to connect to database !<br /><br />MySQL said: <b>' . mysql_error() . '</b>');
-//($CONFIG['LINK_ID'] = cpgdbal_connect()) || die( print_r( sqlsrv_errors(), true));
+if ($CONFIG['dbservername'] == 'mysql') {
+	($CONFIG['LINK_ID'] = cpg_db_connect()) || die('<b>Coppermine critical error</b>:<br />Unable to connect to database !<br /><br />MySQL said: <b>' . mysql_error() . '</b>');
+} else {
+	($CONFIG['LINK_ID'] = cpgdbal_connect()) || die( print_r( sqlsrv_errors(), true));
+}
 
 // Include plugin API
 require('include/plugin_api.inc.php');
@@ -136,11 +147,14 @@ if ($CONFIG['enable_plugins'] == 1) {
 	CPGPluginAPI::load();
 }
 
-####################DB#######################
-require "include/cpgdb/drivers/mysql_driver.php";
-require "include/cpgdb/sql/mysql.php";
-//require "include/cpgdb/drivers/mssql_driver.php";
-//require "include/cpgdb/sql/mssql.php";
+####################    DB    #######################
+if ($CONFIG['dbservername'] == 'mssql') {
+	require "include/cpgdb/drivers/mssql_driver.php";
+	require "include/cpgdb/sql/mssql.php";
+} else {
+	require "include/cpgdb/drivers/mysql_driver.php";
+	require "include/cpgdb/sql/mysql.php";
+}
 $cpgdb =& cpgDB::getInstance();
 $cpgdb->connect_to_existing($CONFIG['LINK_ID']);
 
@@ -256,7 +270,6 @@ $cpg_udb->authenticate();
 $USER['am'] = isset($USER['am']) ? (int)$USER['am'] : 0;
 define('GALLERY_ADMIN_MODE', USER_IS_ADMIN && $USER['am']);
 define('USER_ADMIN_MODE', USER_ID && USER_CAN_CREATE_ALBUMS && $USER['am'] && !GALLERY_ADMIN_MODE);
-
 
 // Set error logging level
 // Maze's new error report system

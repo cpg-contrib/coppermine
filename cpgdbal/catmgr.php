@@ -46,7 +46,7 @@ function fix_cat_table()
     }*/
 	#######################  DB  ###########################
 	$cpgdb->query($cpg_db_catmgr_php['get_cid_fixed_cat_table']);
-    $rowset = $cpgdb->fetchRowSet();//print_r($rowset);echo count($rowset);exit;
+    $rowset = $cpgdb->fetchRowSet();
 	if (count($rowset) > 0) {
         $set = '';
         foreach ($rowset as $row) $set .= $row['cid'] . ',';
@@ -76,7 +76,7 @@ function get_subcat_data($parent, $ident = '')
     if (($cat_count = mysql_num_rows($result)) > 0) {
         $rowset = cpg_db_fetch_rowset($result);
         $pos = 0;*/
-	###################################################
+	######################    DB   #########################
     $cpgdb->query($cpg_db_catmgr_php['get_subcat_data'], $parent, $sort_query);
     //if (($cat_count = $cpgdb->nf()) > 0) {
         $rowset = $cpgdb->fetchRowSet();
@@ -116,7 +116,7 @@ function update_cat_order()
 
     foreach ($CAT_LIST as $category)
     //cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET pos='{$category['pos']}' WHERE cid = '{$category['cid']}' LIMIT 1");
-	########################################################
+	##########################   DB  ############################
 	$cpgdb->query($cpg_db_catmgr_php['update_cat_order'], $category['pos'], $category['cid']);
 	###########################################################
 }
@@ -565,7 +565,7 @@ switch ($op) {
         if ($cid == 1) cpg_die(ERROR, $lang_catmgr_php['usergal_cat_ro'], __FILE__, __LINE__);
 		$rowset = $cpgdb->fetchRowSet();
         if (!count($rowset)) cpg_die(ERROR, $lang_catmgr_php['unknown_cat'], __FILE__, __LINE__);
-        $del_category = $cpgdb->fetchRow();
+        $del_category = $rowset[0];
         $parent = $del_category['parent'];
         $cpgdb->query($cpg_db_catmgr_php['deletecat_edit_cats'], $parent, $cid);
         $cpgdb->query($cpg_db_catmgr_php['deletecat_edit_albums'], $parent, $cid);

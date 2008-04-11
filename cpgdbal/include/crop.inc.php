@@ -27,9 +27,14 @@ $txt['down'] = "v";
 $txt['closewindow'] = "Close window";
 
 
-$result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} WHERE pid = '$pid'");
+/*$result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} WHERE pid = '$pid'");
 $CURRENT_PIC = mysql_fetch_array($result);
-mysql_free_result($result);
+mysql_free_result($result);*/
+############################		DB		#############################
+$cpgdb->query->($cpg_db_crop_inc['get_pic_to_crop'], $pid);
+$CURRENT_PIC = $cpgdb->fetchRow();
+$cpgdb->free();
+######################################################################
 $pic_url = get_pic_url($CURRENT_PIC,'fullsize');
 
 
