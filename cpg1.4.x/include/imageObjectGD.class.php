@@ -119,7 +119,7 @@ class imageObject{
 
          }
 
-         function rotateImage(&$angle){
+         function rotateImage($angle){
 
           if ($angle == 180){
               $dst_img = @imagerotate($this->imgRes, $angle, 0);
