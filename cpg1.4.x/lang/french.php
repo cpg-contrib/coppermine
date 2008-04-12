@@ -10,7 +10,7 @@
   as published by the Free Software Foundation.
   
   ********************************************
-  Coppermine version: 1.4.17
+  Coppermine version: 1.4.18
   $Source: /cvsroot/coppermine/stable/lang/french.php,v $
   $Revision$
   $Author$

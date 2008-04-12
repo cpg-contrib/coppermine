@@ -8,7 +8,7 @@
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
    ********************************************
-  Coppermine version: 1.4.16
+  Coppermine version: 1.4.18
   $Revision: 1 $
   $Author: diafol $
   $Date: 2008-02-14 09:23:58 (Th, 14 Feb 2008) $
