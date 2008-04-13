@@ -169,7 +169,7 @@ class coppermine_udb extends core_udb {
                         $sql  = "update {$this->sessionstable} set ";
                         $sql .= "user_id={$USER_DATA['user_id']} ";
                         $sql .= $remember_sql;
-                        $sql .= "where session_id=md5('$session_id');";
+                        $sql .= "where session_id = '" . md5($session_id) . "'";
                         cpg_db_query($sql, $this->link_id);
 
                         return $USER_DATA;
@@ -185,7 +185,7 @@ class coppermine_udb extends core_udb {
 
                 // Revert authenticated session to a guest session
                 $session_id = $this->session_id.$this->client_id;
-                $sql  = "update {$this->sessionstable} set user_id = 0, remember=0 where session_id=md5('$session_id');";
+                $sql  = "update {$this->sessionstable} set user_id = 0, remember=0 where session_id = '" . md5($session_id) . "'";
                 cpg_db_query($sql, $this->link_id);
         }
 
@@ -249,7 +249,7 @@ class coppermine_udb extends core_udb {
             if ($sessioncookie) {
 
                 // Check for valid session
-                $sql =  'select user_id from '.$this->sessionstable.' where session_id=md5("'.$session_id.'");';
+                $sql =  'select user_id from '.$this->sessionstable." where session_id = '" . md5($session_id) . "'";
                 $result = cpg_db_query($sql);
 
                 // If session exists...
@@ -297,7 +297,7 @@ class coppermine_udb extends core_udb {
         function session_update()
         {
                 $session_id = $this->session_id.$this->client_id;
-                $sql = "update {$this->sessionstable} set time='".time()."' where session_id=md5('$session_id');";
+                $sql = "update {$this->sessionstable} set time='".time()."' where session_id = '" . md5($session_id) . "'";
                 cpg_db_query($sql);
         }
 
@@ -328,7 +328,7 @@ class coppermine_udb extends core_udb {
                         $randnum = md5( uniqid( microtime(), 1 ));
                         $session_id = $randnum.$this->client_id;
                         if ($randnum != "") {
-                                $sql = "SELECT session_id FROM {$this->sessionstable} WHERE session_id=MD5('$session_id')";
+                                $sql = "SELECT session_id FROM {$this->sessionstable} WHERE session_id = '" . md5($session_id) . "'";
                                 if (!$result = cpg_db_query($sql, $this->link_id)) {
                                         break;
                                 }

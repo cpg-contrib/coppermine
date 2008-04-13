@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-04-13 [S] Corrected SQL injection vulnerabilities in session handling code {Nibbler}
 2008-04-12 [M] Updated version count from cpg1.4.17 to cpg1.4.18 in subversion repository as a preparation for the next release {GauGau}
 2008-04-10 [M] Release of cpg1.4.17 {GauGau}
 2008-04-10 [S] Corrected an SQL injection vulnerability in URI upload code {Nibbler}
