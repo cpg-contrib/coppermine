@@ -6698,7 +6698,7 @@ $return = '
 1.4.18|upload.php|1.4.18|4380|mandatory|r@
 1.4.18|usermgr.php|1.4.18|4380|mandatory|r@
 1.4.18|util.php|1.4.18|4380|mandatory|r@
-1.4.18|versioncheck.php|1.4.18|4385|mandatory|r@
+1.4.18|versioncheck.php|1.4.18|4388|mandatory|r@
 1.4.18|viewlog.php|1.4.18|4380|mandatory|r@
 1.4.18|xp_publish.php|1.4.18|4380|mandatory|r@
 1.4.18|zipdownload.php|1.4.18|4380|mandatory|r@
@@ -6732,7 +6732,7 @@ $return = '
 1.4.18|docs/faq.htm|||optional|r@
 1.4.18|docs/faq_de.htm|||optional|r@
 1.4.18|docs/faq_fr.htm|||optional|r@
-1.4.18|docs/index.htm|1.4.18|4380|mandatory|r@
+1.4.18|docs/index.htm|1.4.18|4387|mandatory|r@
 1.4.18|docs/index_fr.htm||4380|mandatory|r@
 1.4.18|docs/README.html||4380|optional|r@
 1.4.18|docs/showdoc.php|1.4.18|4380|mandatory|r@
