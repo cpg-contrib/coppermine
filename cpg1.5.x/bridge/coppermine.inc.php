@@ -237,19 +237,23 @@ class coppermine_udb extends core_udb {
             // Lifetime of normal session is 1 hour
             $session_life_time = time()-CPG_HOUR;
 
-            // Delete old sessions
-			$sql = "delete from {$this->sessionstable} where time<$session_life_time and remember=0;";
-			cpg_db_query($sql, $this->link_id);
+			// only clean up old sessions sometimes
+			if (rand(0, 100) == 42){
+            
+            	// Delete old sessions
+				$sql = "delete from {$this->sessionstable} where time<$session_life_time and remember=0;";
+				cpg_db_query($sql, $this->link_id);
 
-            // Delete stale 'remember me' sessions
-            $sql = "delete from {$this->sessionstable} where time<$rememberme_life_time;";
-            cpg_db_query($sql, $this->link_id);
-
+            	// Delete stale 'remember me' sessions
+            	$sql = "delete from {$this->sessionstable} where time<$rememberme_life_time;";
+            	cpg_db_query($sql, $this->link_id);
+			}
+				
             // Check for valid session if session_cookie_value exists
             if ($sessioncookie) {
 
                 // Check for valid session
-                $sql =  'select user_id from '.$this->sessionstable." where session_id = '" . md5($session_id) . "'";
+                $sql =  'select user_id, time from '.$this->sessionstable." where session_id = '" . md5($session_id) . "'";
                 $result = cpg_db_query($sql);
 
                 // If session exists...
@@ -258,6 +262,7 @@ class coppermine_udb extends core_udb {
                     mysql_free_result($result);
 
                     $row['user_id'] = (int) $row['user_id'];
+					$this->sessiontime = $row['time'];
 
                     // Check if there's a user for this session
                     $sql =  'select user_id as id, user_password as password ';
@@ -296,6 +301,12 @@ class coppermine_udb extends core_udb {
         // Function used to keep the session alive
         function session_update()
         {
+        		// don't update null sessions
+ 		       	if (!$this->session_id) return false;
+ 		       	
+ 		       	// only update session time once per minute at maximum
+ 		       	if (time() - $this->sessiontime < 60) return false;
+        	
                 $session_id = $this->session_id.$this->client_id;
                 $sql = "update {$this->sessionstable} set time='".time()."' where session_id = '" . md5($session_id) . "'";
                 cpg_db_query($sql);
@@ -305,6 +316,12 @@ class coppermine_udb extends core_udb {
         // Create a new session with the cookie lifetime set to 2 weeks
         function create_session() {
                 global $CONFIG;
+                
+                $superCage = Inspekt::makeSuperCage();
+                
+     			// don't create sessions for people that don't accept cookies anyway
+     			if (!$superCage->cookie->keyExists($CONFIG['cookie_name'].'_data')) return false;   
+				
                 // start session
                 $this->session_id = $this->generateId();
                 $session_id = $this->session_id.$this->client_id;
@@ -329,7 +346,8 @@ class coppermine_udb extends core_udb {
                         $session_id = $randnum.$this->client_id;
                         if ($randnum != "") {
                                 $sql = "SELECT session_id FROM {$this->sessionstable} WHERE session_id = '" . md5($session_id) . "'";
-                                if (!$result = cpg_db_query($sql, $this->link_id)) {
+								$result = cpg_db_query($sql, $this->link_id);
+                                if (!mysql_num_rows($result)) {
                                         break;
                                 }
                                 mysql_free_result($result);
