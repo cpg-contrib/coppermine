@@ -9,9 +9,10 @@
   as published by the Free Software Foundation.
    ********************************************
   Coppermine version: 1.4.18
-  $Revision: 1 $
-  $Author: diafol $
-  $Date: 2008-02-14 09:23:58 (Th, 14 Feb 2008) $
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.4.x/lang/spanish.php $
+  $Revision: 4380 $
+  $Author: gaugau $
+  $Date: 2008-04-12 12:00:19 +0200 (Sa, 12 Apr 2008) $
 **********************************************/
 /*********************************************
 GEIRIAU TGCh CYMRAEG
