@@ -226,7 +226,7 @@ class coppermine_udb extends core_udb {
             $pass = '';
 
             // Get the session cookie value
-            $sessioncookie = $superCage->cookie->getRaw($this->client_id);
+            $sessioncookie = $superCage->cookie->getEscaped($this->client_id);
 
             // Create the session id by concat(session_cookie_value, client_id)
             $session_id = $sessioncookie.$this->client_id;
