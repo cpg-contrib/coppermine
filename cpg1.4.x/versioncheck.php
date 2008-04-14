@@ -6698,7 +6698,7 @@ $return = '
 1.4.18|upload.php|1.4.18|4380|mandatory|r@
 1.4.18|usermgr.php|1.4.18|4380|mandatory|r@
 1.4.18|util.php|1.4.18|4380|mandatory|r@
-1.4.18|versioncheck.php|1.4.18|4380|mandatory|r@
+1.4.18|versioncheck.php|1.4.18|4385|mandatory|r@
 1.4.18|viewlog.php|1.4.18|4380|mandatory|r@
 1.4.18|xp_publish.php|1.4.18|4380|mandatory|r@
 1.4.18|zipdownload.php|1.4.18|4380|mandatory|r@
@@ -6759,7 +6759,7 @@ $return = '
 1.4.18|include/imageObjectGD.class.php|1.4.18|4380|mandatory|r@
 1.4.18|include/imageObjectIM.class.php|1.4.18|4380|mandatory|r@
 1.4.18|include/index.html|1.4.18|4380|mandatory|r@
-1.4.18|include/init.inc.php|1.4.18|4382|mandatory|r@
+1.4.18|include/init.inc.php|1.4.18|4384|mandatory|r@
 1.4.18|include/iptc.inc.php|1.4.18|4380|mandatory|r@
 1.4.18|include/keyword.inc.php|1.4.18|4380|mandatory|r@
 1.4.18|include/langfallback.inc.php|1.4.18|4380|mandatory|r@
@@ -6815,14 +6815,14 @@ $return = '
 1.4.18|lang/italian.php|1.4.18|4380|optional|r@
 1.4.18|lang/japanese.php|1.4.18|4380|optional|r@
 1.4.18|lang/korean.php|1.4.18|4380|optional|r@
-1.4.18|lang/latvian.php|1.4.18|4380|optional|r@
+1.4.18|lang/latvian.php|1.4.18|3966|optional|r@
 1.4.18|lang/lithuanian.php|1.4.18|4380|optional|r@
 1.4.18|lang/macedonian.php|1.4.18|4380|optional|r@
 1.4.18|lang/norwegian.php|1.4.18|4380|optional|r@
 1.4.18|lang/persian.php|1.4.18|4380|optional|r@
 1.4.18|lang/polish.php|1.4.18|4380|optional|r@
 1.4.18|lang/portuguese.php|1.4.18|4380|optional|r@
-1.4.18|lang/romanian.php|1.4.18|4349|optional|r@
+1.4.18|lang/romanian.php|1.4.18|4380|optional|r@
 1.4.18|lang/russian.php|1.4.18|4380|optional|r@
 1.4.18|lang/serbian.php|1.4.18|4380|optional|r@
 1.4.18|lang/serbian_cy.php|1.4.18|3966|optional|r@
