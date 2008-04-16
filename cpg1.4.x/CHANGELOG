@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-04-16 [O] Applied suggested Olympus Exif improvements (thread ID 45445) {GauGau}
 2008-04-14 [M] Release of cpg1.4.18 {GauGau}
 2008-04-13 [S] Corrected SQL injection vulnerabilities in session handling code {Nibbler}
 2008-04-12 [M] Updated version count from cpg1.4.17 to cpg1.4.18 in subversion repository as a preparation for the next release {GauGau}
