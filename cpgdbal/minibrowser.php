@@ -218,16 +218,23 @@ print '</td>'.$newline;
 print '<td class="tableh2">'.$newline;
 print '<input type="text" name="cf2" size="50" value="/'.ltrim($folder, '/').'" disabled="disabled" class="tableh2_compact" />&nbsp;'.$newline;
 if ($linktarget != '') {
-    // determine if we should display a submit button start
-    // get the allowed extensions
-    $filetypes = array();
-    $result = cpg_db_query("SELECT extension FROM {$CONFIG['TABLE_FILETYPES']}");
-    //print mysql_num_rows($result);
-    while($row = mysql_fetch_row($result)) {
-        $filetypes[] = $row[0];
-    }
-    mysql_free_result($result);
-    $filetypes = array_unique($filetypes);
+	// determine if we should display a submit button start
+	// get the allowed extensions
+	$filetypes = array();
+	/*$result = cpg_db_query("SELECT extension FROM {$CONFIG['TABLE_FILETYPES']}");
+	//print mysql_num_rows($result);
+	while($row = mysql_fetch_row($result)) {
+		$filetypes[] = $row[0];
+	}
+	mysql_free_result($result);	*/
+	##################       DB     #################
+	$cpgdb->query($cpg_db_minibrowser_php['get_allowed_extensions']);
+	while ($row = $cpgdb->fetchRow()) {
+		$filetypes[] = $row[0];
+	}
+	$cpgdb->free();
+	##########################################
+	$filetypes = array_unique($filetypes);
     // loop through the $filename array, get the extensions and check if at least one allowed ending is there
     $allowed_file_counter = 0;
     if (is_array($filename)) {

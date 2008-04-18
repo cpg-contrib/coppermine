@@ -19,7 +19,7 @@
 
 define('IN_COPPERMINE', true);
 define('DB_ECARD_PHP', true);
-global $CONFIG,$CPG_PHP_SELF;
+global $CONFIG,$CPG_PHP_SELF, $cpg_db_dbecard_php;
 
 require('include/init.inc.php');
 if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__, 'false');
@@ -78,8 +78,11 @@ if (isset ($eid)) {
   foreach ($eid as $key) {
     //print $key;
     //print "<br>";
-    $query = "DELETE FROM {$CONFIG['TABLE_ECARDS']} WHERE eid='$key'";
-    $result = cpg_db_query($query);
+    /*$query = "DELETE FROM {$CONFIG['TABLE_ECARDS']} WHERE eid='$key'";
+	$result = cpg_db_query($query);	*/
+	########################       DB        ######################
+	$cpgdb->query($cpg_db_dbecard_php['delete_ecards'], $key);
+	######################################################
     }
 }
 
@@ -145,7 +148,7 @@ if ($sortDirection == 'ASC') {
 }
 
 // determine the total number of entries
-$result = cpg_db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_ECARDS']}");
+/*$result = cpg_db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_ECARDS']}");
 if (!mysql_num_rows($result)) {
     cpg_die(ERROR, $lang_errors['ecards_empty'], __FILE__, __LINE__, false);
 }
@@ -155,7 +158,21 @@ $totalEcards = $totalEcards[0];
 $result = cpg_db_query("SELECT eid, sender_name, sender_email, recipient_name, recipient_email, link, date, sender_ip FROM {$CONFIG['TABLE_ECARDS']} ORDER BY $sortBy $sortDirection LIMIT $startFrom,$countTo");
 if (!mysql_num_rows($result)) {
     cpg_die(ERROR, $lang_errors['ecards_empty'], __FILE__, __LINE__, false);
+}	*/
+###################################           DB        ####################################
+$cpgdb->query($cpg_db_dbecard_php['count_ecards']);
+$rowset = $cpgdb->fetchRowSet();
+if (!count($rowset)) {
+	cpg_die(ERROR, $lang_errors['ecards_empty'], __FILE__, __LINE__, false);
 }
+
+$totalEcards = $rowset[0]['count'];
+$cpgdb->query($cpg_db_dbecard_php['get_ecards'], $sortBy, $sortDirection, $startFrom, $countTo);
+$rowset = $cpgdb->fetchRowSet();
+if (!count($rowset)) {
+	cpg_die(ERROR, $lang_errors['ecards_empty'], __FILE__, __LINE__, false);
+}
+#################################################################################
 
 pageheader($lang_db_ecard_php['title']);
 

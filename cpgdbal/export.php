@@ -40,10 +40,16 @@ if($superCage->post->keyExists('exportSubmit'))
   
   $options = '';
   
-  $result = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} ORDER BY `title`");
+  /*$result = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} ORDER BY `title`");
         
   while($album = mysql_fetch_assoc($result))
-    $options .= "<option value=\"{$album['aid']}\">{$album['title']}</option>";
+    $options .= "<option value=\"{$album['aid']}\">{$album['title']}</option>";	*/
+  ###################################          DB         #####################################
+  $cpgdb->query($cpg_db_export_php['get_albums']);
+  while ($album = $cpgdb->fetchRow()) {
+		$options .= "<option value=\"{$album['aid']}\">{$album['title']}</option>";
+  }
+  ##################################################################################
 
   starttable('-1', $lang_export_php['export'].'&nbsp;'.cpg_display_help('f=export.htm&amp;as=export&amp;ae=export_end', '600', '450'), 2);
 	
@@ -93,228 +99,265 @@ pagefooter();
 // Based on code by Rob Williams
 //Convert a PHP array to a JavaScript one (rev. 4)
 function phpArrayToJS($array, $baseName) {
-  
 	$return = '';
-  
-  //Write out the initial array definition
-  $return .= ($baseName . " = new Array(); \r\n ");    
-  
-  //Reset the array loop pointer
-  reset ($array);
-  
-  //Use list() and each() to loop over each key/value
-  //pair of the array
-  while (list($key, $value) = each($array)) {
-    if (is_numeric($key)) {
-      //A numeric key, so output as usual
-      $outKey = "[" . $key . "]";
-    } else {
-      //A string key, so output as a string
-      $outKey = "['" . $key . "']";
-    }
-    
-    if (is_array($value)) {
-      //The value is another array, so simply call
-      //another instance of this function to handle it
-      $return .= phpArrayToJS($value, $baseName . $outKey);
-    } else {
-      
-      //Output the key declaration
-      $return .= ($baseName . $outKey . " = ");      
-      
-      //Now output the value
-      if (is_numeric($value)){
-        $return .= ($value . "; \r\n ");
-      } else if (is_string($value)) {
-        //Output as a string, as we did before       
-        $return .= ("'" . $value . "'; \r\n ");
-      } else if ($value === false) {
-        //Explicitly output false
-        $return .= ("false; \r\n ");
-      } else if ($value === NULL) {
-        //Explicitly output null
-        $return .= ("null; \r\n ");
-      } else if ($value === true) {
-        //Explicitly output true
-        $return .= ("true; \r\n ");
-      } else {
-        //Output the value directly otherwise
-        $return .= ($value . "; \r\n ");
-      }
-    }
-  }
-  
-  return $return;
+
+	//Write out the initial array definition
+	$return .= ($baseName . " = new Array(); \r\n ");    
+
+	//Reset the array loop pointer
+	reset ($array);
+
+	//Use list() and each() to loop over each key/value
+	//pair of the array
+	while (list($key, $value) = each($array)) {
+		if (is_numeric($key)) {
+			//A numeric key, so output as usual
+			$outKey = "[" . $key . "]";
+		} else {
+			//A string key, so output as a string
+			$outKey = "['" . $key . "']";
+		}
+
+		if (is_array($value)) {
+			//The value is another array, so simply call
+			//another instance of this function to handle it
+			$return .= phpArrayToJS($value, $baseName . $outKey);
+		} else {
+
+			//Output the key declaration
+			$return .= ($baseName . $outKey . " = ");      
+
+			//Now output the value
+			if (is_numeric($value)){
+				$return .= ($value . "; \r\n ");
+			} else if (is_string($value)) {
+				//Output as a string, as we did before       
+				$return .= ("'" . $value . "'; \r\n ");
+			} else if ($value === false) {
+				//Explicitly output false
+				$return .= ("false; \r\n ");
+			} else if ($value === NULL) {
+				//Explicitly output null
+				$return .= ("null; \r\n ");
+			} else if ($value === true) {
+				//Explicitly output true
+				$return .= ("true; \r\n ");
+			} else {
+				//Output the value directly otherwise
+				$return .= ($value . "; \r\n ");
+			}
+		}
+	}
+	
+	return $return;
 }
 
 function initHTMLExport($album,$path)
 {
-  global $CONFIG, $lang_export_php;
+	global $CONFIG, $lang_export_php, $cpg_db_export_php;
+	#####################      DB      ######################	
+	$cpgdb =& cpgDB::getInstance();
+	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+	##################################################	
 
-  $pictures = cpg_db_query("SELECT pid,title,filename,filepath, url_prefix FROM {$CONFIG['TABLE_PICTURES']} WHERE `aid` = '$album'");
-  $picture_r = array();
-  // Copy pictures to export directory
-  while($picture = mysql_fetch_array($pictures))
-  {
-    $picture_r[$picture['pid']] = $picture['filepath'].$picture['filename'];
-    if(!is_dir("$path/{$CONFIG['fullpath']}{$picture['filepath']}")) {
-      recursive_mkdir("$path/{$CONFIG['fullpath']}{$picture['filepath']}");
-    }
-    copy(get_pic_url($picture, 'fullsize'), $dest = "$path/" . get_pic_url($picture, 'fullsize'));
-    chmod($dest, octdec($CONFIG['default_file_mode']));
-    copy(get_pic_url($picture, 'normal'), $dest = "$path/" . get_pic_url($picture, 'normal'));
-    chmod($dest, octdec($CONFIG['default_file_mode']));
-    copy(get_pic_url($picture, 'thumb'), $dest = "$path/" . get_pic_url($picture, 'thumb'));
-    chmod($dest, octdec($CONFIG['default_file_mode']));
-  }
+	/*$pictures = cpg_db_query("SELECT pid,title,filename,filepath, url_prefix FROM {$CONFIG['TABLE_PICTURES']} WHERE `aid` = '$album'");
+	$picture_r = array();
+	// Copy pictures to export directory
+	while($picture = mysql_fetch_array($pictures))	*/
+	##########################             DB           #########################
+	$pictures = $cpgdb->query($cpg_db_export_php['init_html_export'], $album);
+	$picture_r = array();
+	// Copy pictures to export directory
+	while ($picture = $cpgdb->fetchRow())
+	###############################################################
+	{
+		$picture_r[$picture['pid']] = $picture['filepath'].$picture['filename'];
+		if(!is_dir("$path/{$CONFIG['fullpath']}{$picture['filepath']}")) {
+			recursive_mkdir("$path/{$CONFIG['fullpath']}{$picture['filepath']}");
+		}
+		copy(get_pic_url($picture, 'fullsize'), $dest = "$path/" . get_pic_url($picture, 'fullsize'));
+		chmod($dest, octdec($CONFIG['default_file_mode']));
+		copy(get_pic_url($picture, 'normal'), $dest = "$path/" . get_pic_url($picture, 'normal'));
+		chmod($dest, octdec($CONFIG['default_file_mode']));
+		copy(get_pic_url($picture, 'thumb'), $dest = "$path/" . get_pic_url($picture, 'thumb'));
+		chmod($dest, octdec($CONFIG['default_file_mode']));
+	}
 
-  $pages = ceil(count($picture_r)/($CONFIG['thumbrows']*$CONFIG['thumbcols'])); // Calculate number of thumnail pages necessary 
+	$pages = ceil(count($picture_r)/($CONFIG['thumbrows']*$CONFIG['thumbcols'])); // Calculate number of thumnail pages necessary 
 
-  echo "<p align=\"center\">{$lang_export_php['processing']}</p>";
+	echo "<p align=\"center\">{$lang_export_php['processing']}</p>";
   
-  echo<<<EOT
+	echo<<<EOT
     
-    <script type="text/javascript">
-      var album = "{$album}";
-      var path = "{$path}";
-      var pages = "{$pages}";
-      getPage(1);
-      function getPage(page)
-      {
-        if(page<=pages) {
-            // Create an xmlHttp Object (Tries Activex object then xmlHttp request)
-            try {
-              ajxobj = new ActiveXObject('Msxml2.XMLHTTP');
-            } catch (e) {
-              try {
-                ajxobj = new ActiveXObject('Microsoft.XMLHTTP');
-                  } catch (E) {
-                   ajxobj = false;
-                }
-            }
-              if (!ajxobj && typeof XMLHttpRequest!='undefined') {
-                ajxobj = new XMLHttpRequest(); //If we were able to get a working active x object, start an XMLHttpRequest
-              } 
-              ajxobj.onreadystatechange=function() {	//Handle successful xmlHttp transfer
-                if(ajxobj.readyState==4) {
-                  getPage(page+1);
-                }
-              };
-              
-              // Generate and do xmlHttp call
-            ajxobj.open('GET',"export.php?album="+album+"&path="+path+"&page="+page, true);
-            ajxobj.send(null);
-        } else {
-          window.location = path;
-        }
-      }
-
-    </script>
+	<script type="text/javascript">
+		var album = "{$album}";
+		var path = "{$path}";
+		var pages = "{$pages}";
+		getPage(1);
+		function getPage(page)
+		{
+			if(page<=pages) {
+				// Create an xmlHttp Object (Tries Activex object then xmlHttp request)
+				try {
+					ajxobj = new ActiveXObject('Msxml2.XMLHTTP');
+				} catch (e) {
+					try {
+						ajxobj = new ActiveXObject('Microsoft.XMLHTTP');
+					} catch (E) {
+						ajxobj = false;
+					}
+				}
+				if (!ajxobj && typeof XMLHttpRequest!='undefined') {
+					ajxobj = new XMLHttpRequest(); //If we were able to get a working active x object, start an XMLHttpRequest
+				} 
+				ajxobj.onreadystatechange=function() {	//Handle successful xmlHttp transfer
+					if(ajxobj.readyState==4) {
+						getPage(page+1);
+					}
+				};
+			  
+				// Generate and do xmlHttp call
+				ajxobj.open('GET',"export.php?album="+album+"&path="+path+"&page="+page, true);
+				ajxobj.send(null);
+			} else {
+				window.location = path;
+			}
+		}
+	</script>
 EOT;
 }
 
 function exportThumbnailPage($album, $page, $path)
 {
-    global $CONFIG;
+	global $CONFIG, $cpg_db_export_php;
+	#####################      DB      ######################	
+	$cpgdb =& cpgDB::getInstance();
+	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+	##################################################	
      
-    $superCage = Inspekt::makeSuperCage();
-     
-    $filename = "thumbnails.php";
-    ob_clean();
-    ob_start();
-    include $filename;
-    $contents = ob_get_clean();
+	$superCage = Inspekt::makeSuperCage();
+	
+	$filename = "thumbnails.php";
+	ob_clean();
+	ob_start();
+	include $filename;
+	$contents = ob_get_clean();
 
-    $pictures = cpg_db_query("SELECT pid,title,filename,filepath FROM {$CONFIG['TABLE_PICTURES']} WHERE `aid` = '$album'");
-    $picture_r = array();
-    while($picture = mysql_fetch_array($pictures))
-    {
-      $picture_r[$picture['pid']] = $picture['filepath'].$picture['filename'];
-    }
-  
-    // Create a DOM Object to parse the html (Removing links to dynamic content/functions that require php)
-    $doc = new DomDocument();
-    $doc->loadHtml($contents);
-    $divs = $doc->getElementsByTagName('div');
-    foreach($divs as $div)
-    {
-      if($div->getAttribute('id') == 'MENUS' || $div->getAttribute('class') == 'admin_menu_wrapper') {
-        $div->setAttribute('style','display:none');
-      }
-    }
-    $tds = $doc->getElementsByTagName('td');
-    foreach($tds as $td)
-    {
-      if($td->getAttribute('class') == 'sortorder_options') {
-        $td->setAttribute('style','display:none');
-      }
-    }
-    
-    $contents = $doc->saveHTML();
+	/*$pictures = cpg_db_query("SELECT pid,title,filename,filepath FROM {$CONFIG['TABLE_PICTURES']} WHERE `aid` = '$album'");
+	$picture_r = array();
+	while($picture = mysql_fetch_array($pictures))	*/
+	############################         DB        ###########################
+	$pictures = $cpgdb->query($cpg_db_export_php['export_thumb_page'], $album);
+	$picture_r = array();
+	while ($picture = $cpgdb->fetchRow())
+	################################################################
+	{
+		$picture_r[$picture['pid']] = $picture['filepath'].$picture['filename'];
+	}
 
-    foreach($picture_r as $id => $filename)
-    {
-      $contents = preg_replace("/displayimage.php\?album=$album&amp;pid=$id/","{$CONFIG['fullpath']}$filename",$contents);    
-    }
-    $contents = preg_replace("/thumbnails.php\?album=$album&amp;page=([\d]+)/",'thumbnails_$1.html',$contents);
+	// Create a DOM Object to parse the html (Removing links to dynamic content/functions that require php)
+	$doc = new DomDocument();
+	$doc->loadHtml($contents);
+	$divs = $doc->getElementsByTagName('div');
+	foreach($divs as $div)
+	{
+		if($div->getAttribute('id') == 'MENUS' || $div->getAttribute('class') == 'admin_menu_wrapper') {
+			$div->setAttribute('style','display:none');
+		}
+	}
+	$tds = $doc->getElementsByTagName('td');
+	foreach($tds as $td)
+	{
+		if($td->getAttribute('class') == 'sortorder_options') {
+			$td->setAttribute('style','display:none');
+		}
+	}
 
-    // Find out the theme currently used and copy over necessary files to replicate this
-    $result = cpg_db_query("SELECT value FROM {$CONFIG['TABLE_CONFIG']} WHERE `name` = 'theme'");
-    $theme  = mysql_fetch_array($result);
+	$contents = $doc->saveHTML();
 
-    recursive_copy("themes/{$theme['value']}","$path/themes/{$theme['value']}");
+	foreach($picture_r as $id => $filename)
+	{
+		$contents = preg_replace("/displayimage.php\?album=$album&amp;pid=$id/","{$CONFIG['fullpath']}$filename",$contents);    
+	}
+	$contents = preg_replace("/thumbnails.php\?album=$album&amp;page=([\d]+)/",'thumbnails_$1.html',$contents);
 
-    file_put_contents("$path/thumbnails_$page.html",$contents);
-    chmod("$path/thumbnails_$page.html", octdec($CONFIG['default_file_mode']));
-    
-    if($page==1){
-      copy("$path/thumbnails_$page.html","$path/index.html");
-      chmod("$path/index.html", octdec($CONFIG['default_file_mode']));
-    }
+	// Find out the theme currently used and copy over necessary files to replicate this
+	/*$result = cpg_db_query("SELECT value FROM {$CONFIG['TABLE_CONFIG']} WHERE `name` = 'theme'");
+	$theme  = mysql_fetch_array($result);	*/
+	#######################         DB        #######################
+	$cpgdb->query($cpg_db_export_php['get_config_theme']);
+	$theme = $cpgdb->fetchRow();
+	#######################################################
+
+	recursive_copy("themes/{$theme['value']}","$path/themes/{$theme['value']}");
+
+	file_put_contents("$path/thumbnails_$page.html",$contents);
+	chmod("$path/thumbnails_$page.html", octdec($CONFIG['default_file_mode']));
+
+	if($page==1){
+		copy("$path/thumbnails_$page.html","$path/index.html");
+		chmod("$path/index.html", octdec($CONFIG['default_file_mode']));
+	}
 }
 
 function copyPhoto($id,$dir)
 {
-  global $CONFIG;
-  $result = cpg_db_query("SELECT filename,filepath,title FROM {$CONFIG['TABLE_PICTURES']} WHERE `pid` = '$id' LIMIT 1");
-  $picture = mysql_fetch_assoc($result);
+	global $CONFIG, $cpg_db_export_php;
+	#####################      DB      ######################	
+	$cpgdb =& cpgDB::getInstance();
+	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+	##################################################	
+	/*$result = cpg_db_query("SELECT filename,filepath,title FROM {$CONFIG['TABLE_PICTURES']} WHERE `pid` = '$id' LIMIT 1");
+	$picture = mysql_fetch_assoc($result);	*/
+	####################          DB         ####################
+	$cpgdb->query($cpg_db_export_php['copy_photo'], $id);
+	$picture = $cpgdb->fetchRow();
+	##################################################
 
-  $safename  = preg_replace('[\s]','_',$picture['title']);
-  $safename  = preg_replace('[\W]','',$safename);
-  
-  $extension = preg_replace('[^\.]','',$picture['filename']); // Extract file extension
-  $filename  = $safename . $extension;
-  
-  copy($CONFIG['fullpath'].$picture['filepath'].$picture['filename'],$dir.'/'.$filename);
-  chmod($dir.'/'.$filename, octdec($CONFIG['default_file_mode']));
+	$safename  = preg_replace('[\s]','_',$picture['title']);
+	$safename  = preg_replace('[\W]','',$safename);
+
+	$extension = preg_replace('[^\.]','',$picture['filename']); // Extract file extension
+	$filename  = $safename . $extension;
+
+	copy($CONFIG['fullpath'].$picture['filepath'].$picture['filename'],$dir.'/'.$filename);
+	chmod($dir.'/'.$filename, octdec($CONFIG['default_file_mode']));
 }
 
 function initPhotoCopy($album,$directory)
 {
-  global $CONFIG;
-  
-  $superCage = Inspekt::makeSuperCage();
-  
+	global $CONFIG, $cpg_db_export_php;
+	#####################      DB      ######################	
+	$cpgdb =& cpgDB::getInstance();
+	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+	##################################################	
+
+	$superCage = Inspekt::makeSuperCage();
+
 	if (!is_dir($directory)){
 		mkdir($directory);
 		chmod($directory, octdec($CONFIG['default_dir_mode']));
 	}
 	// To-do: perform a check if the export directory has been created succsessfully and die if this has failed
-  starttable('100%', 'ID',2);
-  
-  $pic_array = array();
-  $pictures = cpg_db_query("SELECT pid,title,filename,filepath FROM {$CONFIG['TABLE_PICTURES']} WHERE `aid` = '$album'");
-  while($picture = mysql_fetch_assoc($pictures))
-  {
-    echo "<tr><td class='tableb'><span id='id_{$picture['pid']}'>{$picture['pid']}</span></td><td><span id='path_{$picture['pid']}'>{$picture['filepath']}{$picture['filename']}</span></td></tr>\n";
-    $pic_array[] = $picture;
-  }
-  
-   endtable();
-   
-  $js_pictures = phpArrayToJS($pic_array,'pictures');
-  
-  ?>
+	starttable('100%', 'ID',2);
+
+	$pic_array = array();
+	/*$pictures = cpg_db_query("SELECT pid,title,filename,filepath FROM {$CONFIG['TABLE_PICTURES']} WHERE `aid` = '$album'");
+	while($picture = mysql_fetch_assoc($pictures))	*/
+	####################            DB         ####################
+	$pictures = $cpgdb->query($cpg_db_export_php['init_photocopy'], $album);
+	while ($picture = $cpgdb->fetchRow())
+	###################################################
+	{
+		echo "<tr><td class='tableb'><span id='id_{$picture['pid']}'>{$picture['pid']}</span></td><td><span id='path_{$picture['pid']}'>{$picture['filepath']}{$picture['filename']}</span></td></tr>\n";
+		$pic_array[] = $picture;
+	}
+
+	endtable();
+
+	$js_pictures = phpArrayToJS($pic_array,'pictures');
+
+?>
     
     <script type="text/javascript">
       var <?php echo $js_pictures ?>;

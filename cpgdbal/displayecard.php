@@ -46,11 +46,19 @@ if (!is_array($tmpData['data'])) {
 
 // attempt to obtain full link from db if ecard logging enabled and min 12 chars of data is provided and only 1 match
 if ((!is_array($CLEAN['data'])) && $CONFIG['log_ecards'] && (strlen($CLEAN['data']) > 12)) {
-        $result = cpg_db_query("SELECT link FROM {$CONFIG['TABLE_ECARDS']} WHERE link LIKE '{$CLEAN['data']}%'");
-        if (mysql_num_rows($result) === 1) {
-                $row = mysql_fetch_assoc($result);
-                $CLEAN['data']= @unserialize(@base64_decode($row['link']));
-        }
+		/*$result = cpg_db_query("SELECT link FROM {$CONFIG['TABLE_ECARDS']} WHERE link LIKE '{$CLEAN['data']}%'");
+		if (mysql_num_rows($result) === 1) {
+				$row = mysql_fetch_assoc($result);
+				$CLEAN['data']= @unserialize(@base64_decode($row['link']));
+		}	*/
+		#################################       DB     ##################################
+		$cpgdb->query($cpg_db_displayecard_php['get_ecard_link'], $CLEAN['data']."%");
+		$rowset = $cpgdb->fetchRowSet();
+		if (count($rowset) == 1) {
+			$row = $rowset[0];
+			$CLEAN['data']= @unserialize(@base64_decode($row['link']));
+		}
+		##########################################################################
 }
 
 if (is_array($CLEAN['data'])) {
@@ -58,9 +66,15 @@ if (is_array($CLEAN['data'])) {
 // Remove HTML tags as we can't trust what we receive
 //foreach($CLEAN['data'] as $key => $value) $CLEAN['data'][$key] = html_entity_decode(strtr($value, $HTML_SUBST));
 // get the dimensions
-$result = cpg_db_query("SELECT pwidth, pheight from {$CONFIG['TABLE_PICTURES']} WHERE pid='{$CLEAN['data']['pid']}'");
+/*$result = cpg_db_query("SELECT pwidth, pheight from {$CONFIG['TABLE_PICTURES']} WHERE pid='{$CLEAN['data']['pid']}'");
 if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
-$row = mysql_fetch_array($result);
+$row = mysql_fetch_array($result);	*/
+############################         DB        #############################
+$cpgdb->query($cpg_db_displayecard_php['get_pic_dimensions'], $CLEAN['data']['pid']);
+$rowset = $cpgdb->fetchRowSet();
+if (count($rowset)) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
+$row = $rowset[0];
+##################################################################
 if ($row['pwidth'] != 0 && $row['pheight'] != 0) {
     $dimensions = 'width="'.$row['pwidth'].'" height="'.$row['pheight'].'"';
 } else {

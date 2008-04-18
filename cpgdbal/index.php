@@ -246,9 +246,9 @@ function get_subcat_data($parent, &$cat_data, &$album_set_array, $level, $ident 
 {
     global $CONFIG, $HIDE_USER_CAT, $FORBIDDEN_SET, $cpg_show_private_album;
 	global $cpg_db_index_php;
-	####################### DB #########################	
-		$cpgdb =& cpgDB::getInstance();
-		$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+	#####################      DB      ######################	
+	$cpgdb =& cpgDB::getInstance();
+	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
 	##################################################	
 
     $album_filter = '';

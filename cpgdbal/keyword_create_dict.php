@@ -29,36 +29,59 @@
 // |          SANIsoft Developement Team                                  |
 // +----------------------------------------------------------------------+
 
-
 define('IN_COPPERMINE', true);
 define('EDITPICS_PHP', true);
 require('include/init.inc.php');
 if (!(GALLERY_ADMIN_MODE)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
-$query  = "SELECT keywords from {$CONFIG['TABLE_PREFIX']}pictures";
+/*$query  = "SELECT keywords from {$CONFIG['TABLE_PREFIX']}pictures";
 $result = cpg_db_query($query);
 $i=0;
-   while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+	while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
 
-    $keywords = $row["keywords"];
-    $keyArr   = explode(" ",$keywords);
-        foreach ($keyArr as $keyword) {
-            $query = "SELECT keyword from {$CONFIG['TABLE_PREFIX']}dict WHERE keyword = '$keyword'";
-            $result2 = cpg_db_query($query);
+	$keywords = $row["keywords"];
+	$keyArr   = explode(" ",$keywords);
+		foreach ($keyArr as $keyword) {
+			$query = "SELECT keyword from {$CONFIG['TABLE_PREFIX']}dict WHERE keyword = '$keyword'";
+			$result2 = cpg_db_query($query);
 
-            if (mysql_num_rows($result2) == 0 && $keyword != "" && $keyword != " ") {
-                $query = "INSERT INTO {$CONFIG['TABLE_PREFIX']}dict SET keyword = '$keyword'";
-                cpg_db_query($query);
-                echo "* ";
-                                $i++ ;
-            } else {
-                echo "% ";
-            }
-        }
-        mysql_free_result($result2);
-        flush();
-    }
+			if (mysql_num_rows($result2) == 0 && $keyword != "" && $keyword != " ") {
+				$query = "INSERT INTO {$CONFIG['TABLE_PREFIX']}dict SET keyword = '$keyword'";
+				cpg_db_query($query);
+				echo "* ";
+								$i++ ;
+			} else {
+				echo "% ";
+			}
+		}
+		mysql_free_result($result2);
+		flush();
+	}	*/
+##############################         DB        ##############################
+$cpgdb->query($cpg_db_keyword_create_dict_php['get_pic_keywords']);
+$rowset1 = $cpgdb->fetchRowSet();
+$cpgdb->free();
+$i=0;
+	foreach ($rowset1 as $row) {
+		$keywords = $row["keywords"];
+		$keyArr   = explode(" ",$keywords);
+		foreach ($keyArr as $keyword) {
+			$cpgdb->query($cpg_db_keyword_create_dict_php['get_dict_keyword'], $keyword);
+			$rowset2 = $cpgdb->fetchRow();
+			$cpgdb->free();
+
+			if (count($rowset2) == 0 && $keyword != "" && $keyword != " ") {
+				$cpgdb->query($cpg_db_keyword__create_dict_php['set_dict_keyword'], $keyword);
+				echo "* ";
+				$i++ ;
+			} else {
+					echo "% ";
+			}
+		}
+		flush();
+	}
+#####################################################################	
 echo "<p>{$lang_editpics_php['new_keywords']} = ".$i;
 echo "<br/>* = {$lang_editpics_php['new_keyword']}";
 echo "<br/>% = {$lang_editpics_php['existing_keyword']}</p>";
-mysql_free_result($result);
+//mysql_free_result($result);	####	cpgdb_AL
 ?>

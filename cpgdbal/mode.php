@@ -46,7 +46,10 @@ if (($superCage->get->getAlpha('what')) == 'news'){
     $message = $lang_mode_php['news_hide'];
   }
 
-  cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = 'display_coppermine_news'");
+  //cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = 'display_coppermine_news'");
+  ######################        DB       ########################
+  $cpgdb->query($cpg_db_mode_php['coppermine_news'], $value);
+  #####################################################
   $CONFIG['display_coppermine_news'] = $value;
   if ($CONFIG['log_mode'] == CPG_LOG_ALL) {
       log_write('CONFIG UPDATE SQL: '.

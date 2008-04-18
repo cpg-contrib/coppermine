@@ -28,6 +28,7 @@
 **********************************************/
 require ('../include/config.inc.php');
 require ('cpgAPIfunctions.inc.php');
+global $cpg_db_api_init_php;
 
 // Do some cleanup in GET, POST and cookie data and un-register global vars
 $HTML_SUBST = array('&' => '&amp;', '"' => '&quot;', '<' => '&lt;', '>' => '&gt;', '%26' => '&amp;', '%22' => '&quot;', '%3C' => '&lt;', '%3E' => '&gt;','%27' => '&#39;', "'" => '&#39;');
@@ -133,13 +134,20 @@ $CONFIG['TABLE_HIT_STATS']  = $CONFIG['TABLE_PREFIX']."hit_stats";
 ($CONFIG['LINK_ID'] = cpg_db_connect()) || die("<b>Coppermine critical error</b>:<br />Unable to connect to database !<br /><br />MySQL said: <b>" . mysql_error() . "</b>");
 
 // Retrieve DB stored configuration
-$results = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_CONFIG']}");
+/*$results = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_CONFIG']}");
 
 while ($row = mysql_fetch_array($results)) {
     $CONFIG[$row['name']] = $row['value'];
 } // while
 
-mysql_free_result($results);
+mysql_free_result($results);	*/
+#################         DB        ################
+$cpgdb->query($cpg_db_api_init_php['get_all_config']);
+while ($row = $cpgdb->fetchRow()) {
+	$CONFIG[$row['name']] = $row['value'];
+} //while
+$cpgdb->free();
+##########################################
 
 define('USER_GAL_CAT', 1);
 define('FIRST_USER_CAT', 10000);

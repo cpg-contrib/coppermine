@@ -1009,7 +1009,7 @@ class Inspekt
      */
     function getEscaped($value)
     {
-        if (is_array($value)) {
+        /*if (is_array($value)) {
             return Inspekt::_walkArray($value, 'getEscaped');
         } elseif (!empty($value)) {
             if (get_magic_quotes_gpc()) {
@@ -1018,7 +1018,8 @@ class Inspekt
             return mysql_real_escape_string($value);
         } else {
         	return $value;
-        }
+        }*/
+		return $value;
     }
 }
 

@@ -60,9 +60,15 @@ $message = get_post_var('message');
 $sender_email_warning = '';
 $recipient_email_warning = '';
 // Get picture thumbnail url
-$result = cpg_db_query("SELECT * from {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid' $ALBUM_SET");
+/*$result = cpg_db_query("SELECT * from {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid' $ALBUM_SET");
 if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
-$row = mysql_fetch_array($result);
+$row = mysql_fetch_array($result);	*/
+############################         DB        ###########################
+$cpgdb->query($cpg_db_ecard_php['get_pic_thumbnail_url'], $pid, $ALBUM_SET);
+$rowset = $cpgdb->fetchRowSet();
+if (!count($rowset)) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
+$row = $rowset[0];
+################################################################
 $thumb_pic_url = get_pic_url($row, 'thumb');
 $normal_pic_url = get_pic_url($row, 'normal');
 // print $normal_pic_url;
@@ -181,9 +187,13 @@ if ($superCage->post->keyExists('sender_name') && $valid_sender_email && $valid_
 
                                 $result = cpg_mail($recipient_email, $subject, $message, 'text/html', $sender_name, $sender_email, $plaintext_message);
         //write ecard log
-        if ($CONFIG['log_ecards'] == 1) {
-          $result_log = cpg_db_query("INSERT INTO {$CONFIG['TABLE_ECARDS']} (sender_name, sender_email, recipient_name, recipient_email, link, date, sender_ip) VALUES ('$sender_name', '$sender_email', '$recipient_name', '$recipient_email',   '$encoded_data', '$tempTime', '$raw_ip')");
-          }
+		if ($CONFIG['log_ecards'] == 1) {
+			//$result_log = cpg_db_query("INSERT INTO {$CONFIG['TABLE_ECARDS']} (sender_name, sender_email, recipient_name, recipient_email, link, date, sender_ip) VALUES ('$sender_name', '$sender_email', '$recipient_name', '$recipient_email',   '$encoded_data', '$tempTime', '$raw_ip')");
+			####################################		DB		####################################
+			$result_log = $cpgdb->query($cpg_db_displayecard_php['write_ecard_log'], $sender_name, $sender_email, 
+								$recipient_name, $recipient_email, $encoded_data, $tempTime, $raw_ip);
+			#######################################################################################
+		}
 
     if (!USER_ID) {
         $USER['name'] = $sender_name;

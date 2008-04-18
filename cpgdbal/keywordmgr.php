@@ -48,12 +48,21 @@ switch ($page) {
 default :
 case 'display':
 
-$result = cpg_db_query("select keywords from {$CONFIG['TABLE_PICTURES']}");
+/*$result = cpg_db_query("select keywords from {$CONFIG['TABLE_PICTURES']}");
 if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['non_exist_ap']);
-  // Find unique keywords
-   $total_array = array();
+// Find unique keywords
+	$total_array = array();
 
-   while (list($keywords) = mysql_fetch_row($result)) {
+	while (list($keywords) = mysql_fetch_row($result))  {*/
+##########################         DB       ###########################
+$cpgdb->query($cpg_db_keywordmgr_php['display_get_keywords']);
+$rowset = $cpgdb->fetchRowSet();
+if (!count($rowset)) cpg_die(ERROR, $lang_errors['non_exist_ap']);
+// Find unique keywords
+	$total_array = array();
+	foreach ($rowset as $row) {
+		list($keywords) = $row;
+##############################################################
        $array = explode(' ',$keywords);
 
        foreach($array as $word)
@@ -121,75 +130,101 @@ case 'changeword':
         $request_newword = $superCage->post->getEscaped('newword');
     }
 
-   if ($request_keywordEdit && $request_newword) {
-       $keywordEdit = addslashes($request_keywordEdit);
+	if ($request_keywordEdit && $request_newword) {
+		$keywordEdit = addslashes($request_keywordEdit);
 
-       $query = "SELECT `pid`,`keywords` FROM {$CONFIG['TABLE_PICTURES']} WHERE CONCAT(' ',`keywords`,' ') LIKE '% {$keywordEdit} %'";
-       $result = cpg_db_query($query) or die(mysql_error());
+		/*$query = "SELECT `pid`,`keywords` FROM {$CONFIG['TABLE_PICTURES']} WHERE CONCAT(' ',`keywords`,' ') LIKE '% {$keywordEdit} %'";
+		$result = cpg_db_query($query) or die(mysql_error());
 
-       while (list($id,$keywords) = mysql_fetch_row($result))
-       {
-           $array_new = array();
-           $array_old = explode(" ", addslashes(trim($keywords)));
+		while (list($id,$keywords) = mysql_fetch_row($result))	*/
+		##############################           DB          ###############################
+		$cpgdb->query($cpg_db_keywordmgr_php['get_pic_keywords'], "%".$keywordEdit."%");
+		while (list($id, $keywords) = $cpgdb->fetchRow())
+		########################################################################
+		{
+			$array_new = array();
+			$array_old = explode(" ", addslashes(trim($keywords)));
 
-           foreach($array_old as $word)
-           {
-               // convert old to new if its the same word
-               if (utf_strtolower($word) == $keywordEdit) $word = addslashes($request_newword);
+			foreach($array_old as $word)
+			{
+				// convert old to new if its the same word
+				if (utf_strtolower($word) == $keywordEdit) $word = addslashes($request_newword);
 
-               // rebuild array to reprocess it
-               $array_new[] = $word;
-           }
+				// rebuild array to reprocess it
+				$array_new[] = $word;
+			}
 
-           $keywords = implode(" ", $array_new);
-           $newquerys[] = "UPDATE {$CONFIG['TABLE_PICTURES']} SET `keywords` = '$keywords' WHERE `pid` = '$id'";
-       }
-   }
-   $newquerys[] = "UPDATE {$CONFIG['TABLE_PICTURES']} SET `keywords` = TRIM(REPLACE(`keywords`,'  ',' '))";
+			$keywords = implode(" ", $array_new);
+			//$newquerys[] = "UPDATE {$CONFIG['TABLE_PICTURES']} SET `keywords` = '$keywords' WHERE `pid` = '$id'";
+			###############################           DB        ###############################
+			$newquerys[] = sprintf($cpg_db_keywordmgr_php['set_pic_keywords'], $keywords, $id);
+			########################################################################
+		}
+	}
+	//$newquerys[] = "UPDATE {$CONFIG['TABLE_PICTURES']} SET `keywords` = TRIM(REPLACE(`keywords`,'  ',' '))";
+	##########################         DB       #########################
+	$newquerys[] = sprintf($cpg_db_keywordmgr_php['set_pic_trim_keywords']);
+	###########################################################
 
-    foreach ($newquerys as $query) {
-        $result = cpg_db_query($query) or die($query."<br />".mysql_error());
-    }
+	foreach ($newquerys as $query) {
+		//$result = cpg_db_query($query) or die($query."<br />".mysql_error());
+		##########################       DB     ##########################
+		$result = $cpgdb->query($query);
+		###########################################################
+	}
 
-   header("Location: keywordmgr.php?page=display");
+	header("Location: keywordmgr.php?page=display");
 
 break;
 
 case 'delete':
-        if ($superCage->get->keyExists('remov')) {
-            $remov = $superCage->get->getEscaped('remov');
-        } elseif ($superCage->post->keyExists('remov')) {
-            $remov = $superCage->post->getEscaped('remov');
-        }
+		if ($superCage->get->keyExists('remov')) {
+			$remov = $superCage->get->getEscaped('remov');
+		} elseif ($superCage->post->keyExists('remov')) {
+			$remov = $superCage->post->getEscaped('remov');
+		}
 
-       $query = "SELECT `pid`,`keywords` FROM {$CONFIG['TABLE_PICTURES']} WHERE CONCAT(' ',`keywords`,' ') LIKE '% {$remov} %'";
-       $result = cpg_db_query($query) or die(mysql_error());
+		/*$query = "SELECT `pid`,`keywords` FROM {$CONFIG['TABLE_PICTURES']} WHERE CONCAT(' ',`keywords`,' ') LIKE '% {$remov} %'";
+		$result = cpg_db_query($query) or die(mysql_error());
 
-       while (list($id,$keywords) = mysql_fetch_row($result))
-       {
-           $array_new = array();
-           $array_old = explode(" ", addslashes(trim($keywords)));
+		while (list($id,$keywords) = mysql_fetch_row($result))	*/
+		##############################           DB          ###############################
+		$cpgdb->query($cpg_db_keywordmgr_php['get_pic_keywords'], "%".$remov."%");
+		while (list($id, $keywords) = $cpgdb->fetchRow())
+		########################################################################
+		{
+			$array_new = array();
+			$array_old = explode(" ", addslashes(trim($keywords)));
 
-           foreach($array_old as $word)
-           {
-               // convert old to new if its the same word
-               if (utf_strtolower($word) == $remov) $word = '';
+			foreach($array_old as $word)
+			{
+				// convert old to new if its the same word
+				if (utf_strtolower($word) == $remov) $word = '';
 
-               // rebuild array to reprocess it
-               $array_new[] = $word;
-           }
+				// rebuild array to reprocess it
+				$array_new[] = $word;
+			}
 
-           $keywords = implode(" ", $array_new);
-           $newquerys[] = "UPDATE {$CONFIG['TABLE_PICTURES']} SET `keywords` = '$keywords' WHERE `pid` = '$id'";
-       }
+			$keywords = implode(" ", $array_new);
+			//$newquerys[] = "UPDATE {$CONFIG['TABLE_PICTURES']} SET `keywords` = '$keywords' WHERE `pid` = '$id'";
+			###############################           DB        ###############################
+			$newquerys[] = sprintf($cpg_db_keywordmgr_php['set_pic_keywords'], $keywords, $id);
+			########################################################################
+		}
 
-    $newquerys[] = "UPDATE {$CONFIG['TABLE_PICTURES']} SET `keywords` = TRIM(REPLACE(`keywords`,'  ',' '))";
+		//$newquerys[] = "UPDATE {$CONFIG['TABLE_PICTURES']} SET `keywords` = TRIM(REPLACE(`keywords`,'  ',' '))";
+		##########################         DB       #########################
+		$newquerys[] = sprintf($cpg_db_keywordmgr_php['set_pic_trim_keywords']);
+		###########################################################
 
-    foreach ($newquerys as $query) {
-        $result = cpg_db_query($query) or die($query."<br />".mysql_error());
-    }
+		foreach ($newquerys as $query) {
+			//$result = cpg_db_query($query) or die($query."<br />".mysql_error());
+			###############        DB      ###############
+			$result = $cpgdb->query($query);
+			######################################
+		}
 
-   header("Location: ?page=display");
+		header("Location: ?page=display");
 
 break;
 

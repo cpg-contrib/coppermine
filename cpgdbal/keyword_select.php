@@ -26,16 +26,26 @@ if (!USER_CAN_UPLOAD_PICTURES) {
     cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
 }
 
-$query = "SELECT * FROM {$CONFIG['TABLE_PREFIX']}dict ORDER BY keyword";
+/*$query = "SELECT * FROM {$CONFIG['TABLE_PREFIX']}dict ORDER BY keyword";
 $result = cpg_db_query($query);
 while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
-    $keywordIds[] = $row["keyId"];
-    $keywords[]   = $row["keyword"];
+	$keywordIds[] = $row["keyId"];
+	$keywords[]   = $row["keyword"];
 }
 
 $total = mysql_num_rows($result);
 
-mysql_free_result($result);
+mysql_free_result($result);	*/
+#########################         DB        ########################
+$cpgdb->query($cpg_db_keyword_select_php['get_all_dict']);
+$rowset = $cpgdb->fetchRowSet();
+foreach ($rowset as $row) {
+	$keywordIds[] = $row["keyId"];
+	$keywords[]   = $row["keyword"];
+}
+$total = count($rowset);
+$cpgdb->free();
+##########################################################
 
 $charset = $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'];
 $html_header = <<<EOT

@@ -11,9 +11,9 @@ the Free Software Foundation; either version 2 of the License, or
 ********************************************
 Coppermine version: 1.5.0
 $Source$
-$Revision: 4372 $
+$Revision: 4390 $
 $Author: nibbler999 $
-$Date: 2008-04-10 18:36:57 +0530 (Thu, 10 Apr 2008) $
+$Date: 2008-04-15 01:51:19 +0530 (Tue, 15 Apr 2008) $
 *********************************************
 Changelog
 =========
@@ -26,6 +26,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-04-14 [O] Numerous session handling optimizations {Nibbler}
+2008-04-13 [S] Corrected SQL injection vulnerabilities in session handling code {Nibbler}
 2008-04-10 [S] Corrected an SQL injection vulnerability in URI upload code {Nibbler}
 2008-04-07 [O] Added expandable admin tools sections {GauGau}
 2008-03-25 [A] Added warning on the config page for settings that mustn't be changed lightheartedly {GauGau}

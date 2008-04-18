@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4250 $
-  $LastChangedBy: saweyyy $
-  $Date: 2008-02-06 19:20:07 +0530 (Wed, 06 Feb 2008) $
+  $Revision: 4390 $
+  $LastChangedBy: nibbler999 $
+  $Date: 2008-04-15 01:51:19 +0530 (Tue, 15 Apr 2008) $
 **********************************************/
 
 
@@ -179,22 +179,22 @@ class coppermine_udb extends core_udb {
                         $sql  = "update {$this->sessionstable} set ";
                         $sql .= "user_id={$USER_DATA['user_id']} ";
                         $sql .= $remember_sql;
-                        $sql .= "where session_id=md5('$session_id');";
+                        $sql .= "where session_id = '" . md5($session_id) . "'";
                         cpg_db_query($sql, $this->link_id);	*/
 				##########################################  DB   ##########################################
 				//Check the login method (username, email address or both)
 				switch($CONFIG['login_method']){
 					case 'both':
-						$where= "(user_name = '$username' OR user_email = '$username') AND BINARY user_password = '$encpassword' AND user_active = 'YES'";
+						$where= "(user_name = '$username' OR user_email = '$username') AND  user_password = '$encpassword' AND user_active = 'YES'";
 						break;
 					case 'email':
-						$where= "user_email = '$username' AND BINARY user_password = '$encpassword' AND user_active = 'YES'";
+						$where= "user_email = '$username' AND  user_password = '$encpassword' AND user_active = 'YES'";
 						break;
 					case 'username':
 					default:
-						$where= "user_name = '$username' AND BINARY user_password = '$encpassword' AND user_active = 'YES'";
+						$where= "user_name = '$username' AND  user_password = '$encpassword' AND user_active = 'YES'";
 						break;
-				}
+				}	// 'BINARY' removed for mssql
                 // Check for user in users table
 				//print("username ".$username);exit;
 				$cpgdb->query($cpg_db_coppermine_inc['login_get_user_info'],$this->usertable, $where);
@@ -239,6 +239,7 @@ class coppermine_udb extends core_udb {
 			#############################   DB   ################################
 			$this->cpgudb->query($cpg_db_coppermine_inc['logout_session'], $this->sessionstable, md5($session_id));
 			####################################################################
+
         }
 
         /*// Get groups of which user is member
@@ -301,7 +302,7 @@ class coppermine_udb extends core_udb {
             $pass = '';
 
             // Get the session cookie value
-            $sessioncookie = $superCage->cookie->getRaw($this->client_id);
+            $sessioncookie = $superCage->cookie->getEscaped($this->client_id);
 
             // Create the session id by concat(session_cookie_value, client_id)
             $session_id = $sessioncookie.$this->client_id;
@@ -312,24 +313,28 @@ class coppermine_udb extends core_udb {
             // Lifetime of normal session is 1 hour
             $session_life_time = time()-CPG_HOUR;
 
-            // Delete old sessions
-			/*$sql = "delete from {$this->sessionstable} where time<$session_life_time and remember=0;";
-			cpg_db_query($sql, $this->link_id);	*/
-			##################################    DB     ####################################
-			$this->cpgudb->query($cpg_db_coppermine_inc['delete_old_sessions'], $this->sessionstable, $session_life_time);
-			###########################################################################
+			// only clean up old sessions sometimes
+			if (rand(0, 100) == 42){
+				// Delete old sessions
+				/*$sql = "delete from {$this->sessionstable} where time<$session_life_time and remember=0;";
+				cpg_db_query($sql, $this->link_id);	*/
+				##################################    DB     ####################################
+				$this->cpgudb->query($cpg_db_coppermine_inc['delete_old_sessions'], $this->sessionstable, $session_life_time);
+				###########################################################################
 
-            // Delete stale 'remember me' sessions
-            /*$sql = "delete from {$this->sessionstable} where time<$rememberme_life_time;";
-            cpg_db_query($sql, $this->link_id);	*/
-			##################################    DB     ####################################
-			$this->cpgudb->query($cpg_db_coppermine_inc['delete_remember_sessions'], $this->sessionstable, $rememberme_life_time);
-			###########################################################################
-           /*// Check for valid session if session_cookie_value exists
+				// Delete stale 'remember me' sessions
+				/*$sql = "delete from {$this->sessionstable} where time<$rememberme_life_time;";
+				cpg_db_query($sql, $this->link_id);	*/
+				##################################    DB     ####################################
+				$this->cpgudb->query($cpg_db_coppermine_inc['delete_remember_sessions'], $this->sessionstable, $rememberme_life_time);
+				###########################################################################
+			}
+
+			/*// Check for valid session if session_cookie_value exists
             if ($sessioncookie) {
 
                 // Check for valid session
-                $sql =  'select user_id from '.$this->sessionstable.' where session_id=md5("'.$session_id.'");';
+                $sql =  'select user_id, time from '.$this->sessionstable." where session_id = '" . md5($session_id) . "'";
                 $result = cpg_db_query($sql);	
 
                 // If session exists...
@@ -338,6 +343,7 @@ class coppermine_udb extends core_udb {
                     mysql_free_result($result);
 
                     $row['user_id'] = (int) $row['user_id'];
+					$this->sessiontime = $row['time'];
 
                     // Check if there's a user for this session
                     $sql =  'select user_id as id, user_password as password ';
@@ -407,11 +413,16 @@ class coppermine_udb extends core_udb {
         /*// Function used to keep the session alive
         function session_update()
         {
-			$session_id = $this->session_id.$this->client_id;
-			$sql = "update {$this->sessionstable} set time='".time()."' where session_id=md5('$session_id');";
+        		// don't update null sessions
+ 		       	if (!$this->session_id) return false;
+ 		       	
+ 		       	// only update session time once per minute at maximum
+ 		       	if (time() - $this->sessiontime < 60) return false;
+
+				$session_id = $this->session_id.$this->client_id;
+			$sql = "update {$this->sessionstable} set time='".time()."' where session_id='" . md5('$session_id') ."';";
 			cpg_db_query($sql);
         }	*/
-
 
 		####################### DB #########################	
         // Function used to keep the session alive
@@ -419,6 +430,13 @@ class coppermine_udb extends core_udb {
 			global $CONFIG, $cpg_db_coppermine_inc;
 			$cpgdb =& cpgDB::getInstance();
 			$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+        	
+			// don't update null sessions
+ 		    if (!$this->session_id) return false;
+ 		       	
+ 		    // only update session time once per minute at maximum
+ 		    if (time() - $this->sessiontime < 60) return false;
+			
 			$session_id = $this->session_id.$this->client_id;
 			$cpgdb->query($cpg_db_coppermine_inc['session_update'], $this->sessionstable, time(), md5($session_id));
 		}
@@ -429,7 +447,12 @@ class coppermine_udb extends core_udb {
         function create_session() {
                 global $CONFIG;
 				global $cpg_db_coppermine_inc;
-               // start session
+                $superCage = Inspekt::makeSuperCage();
+                
+     			// don't create sessions for people that don't accept cookies anyway
+     			if (!$superCage->cookie->keyExists($CONFIG['cookie_name'].'_data')) return false;   
+				
+                // start session
                 $this->session_id = $this->generateId();
                 $session_id = $this->session_id.$this->client_id;
 
@@ -455,8 +478,10 @@ class coppermine_udb extends core_udb {
                         $randnum = md5( uniqid( microtime(), 1 ));
                         $session_id = $randnum.$this->client_id;
                         if ($randnum != "") {
+
                                 /*$sql = "SELECT session_id FROM {$this->sessionstable} WHERE session_id=MD5('$session_id')";
-                                if (!$result = cpg_db_query($sql, $this->link_id)) {
+								$result = cpg_db_query($sql, $this->link_id);
+                                if (!mysql_num_rows($result)) {
                                         break;
                                 }
                                 mysql_free_result($result);	*/

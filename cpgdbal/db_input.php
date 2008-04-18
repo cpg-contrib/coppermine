@@ -95,34 +95,64 @@ switch ($event) {
         } else {
         }
 
+        /*if (GALLERY_ADMIN_MODE) {
+			$update = cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET msg_body='$msg_body' WHERE msg_id='$msg_id'");
+		} elseif (USER_ID) {
+			if ($CONFIG['comment_approval'] == 2) {
+				$update = cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET msg_body='$msg_body', approval='NO' WHERE msg_id='$msg_id' AND author_id ='" . USER_ID . "' LIMIT 1");
+			} else {
+				$update = cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET msg_body='$msg_body' WHERE msg_id='$msg_id' AND author_id ='" . USER_ID . "' LIMIT 1");
+			}
+		} else {
+			if ($CONFIG['comment_approval'] != 0) {
+				$update = cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET msg_body='$msg_body', approval='NO' WHERE msg_id='$msg_id' AND author_md5_id ='{$USER['ID']}' AND author_id = '0' LIMIT 1");
+			} else {
+				$update = cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET msg_body='$msg_body' WHERE msg_id='$msg_id' AND author_md5_id ='{$USER['ID']}' AND author_id = '0' LIMIT 1");
+			}
+		}	*/
+		#######################################		DB		######################################
         if (GALLERY_ADMIN_MODE) {
-            $update = cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET msg_body='$msg_body' WHERE msg_id='$msg_id'");
+            $update = $cpgdb->query()($cpg_db_dbinput_php['user_admin_update'], $msg_body, $msg_id);
         } elseif (USER_ID) {
             if ($CONFIG['comment_approval'] == 2) {
-                $update = cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET msg_body='$msg_body', approval='NO' WHERE msg_id='$msg_id' AND author_id ='" . USER_ID . "' LIMIT 1");
+                $update = $cpgdb->query($cpg_db_dbinput['user_admin_approval_2'], $msg_body, $msg_id, USER_ID);
             } else {
-                $update = cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET msg_body='$msg_body' WHERE msg_id='$msg_id' AND author_id ='" . USER_ID . "' LIMIT 1");
+                $update = $cpgdb->query($cpg_db_dbinput_php['user_admin_approval'], $msg_body, $msg_id, USER_ID);
             }
         } else {
             if ($CONFIG['comment_approval'] != 0) {
-                $update = cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET msg_body='$msg_body', approval='NO' WHERE msg_id='$msg_id' AND author_md5_id ='{$USER['ID']}' AND author_id = '0' LIMIT 1");
+                $update = $cpgdb->query($cpg_db_dbinput_php['update_approval_non_zero'], $msg_body, $msg_id, $USER['ID']);
             } else {
-                $update = cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET msg_body='$msg_body' WHERE msg_id='$msg_id' AND author_md5_id ='{$USER['ID']}' AND author_id = '0' LIMIT 1");
+                $update = $cpgdb->query($cpg_db_dbinput_php['update_approval_zero'], $msg_body, $msg_id, $USER['ID']);
             }
         }
+		#########################################################################################
 
         $header_location = (@preg_match('/Microsoft|WebSTAR|Xitami/', getenv('SERVER_SOFTWARE'))) ? 'Refresh: 0; URL=' : 'Location: ';
 
-        $result = cpg_db_query("SELECT pid FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id='$msg_id'");
-        if (!mysql_num_rows($result)) {
-            mysql_free_result($result);
+        /*$result = cpg_db_query("SELECT pid FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id='$msg_id'");
+		if (!mysql_num_rows($result)) {
+			mysql_free_result($result);
+			cpgRedirectPage('index.php', $lang_common['information'], $lang_db_input_php['com_updated'], 1);
+		} else {
+			$comment_data = mysql_fetch_array($result);
+			mysql_free_result($result);
+			$redirect = "displayimage.php?pid=" . $comment_data['pid'];
+			cpgRedirectPage($redirect, $lang_common['information'], $lang_db_input_php['com_updated'], 1);
+		}	*/
+		####################################		DB		####################################
+        $cpgdb->query($cpg_db_dbinput_php['get_comments_pic_id'], $msg_id);
+		$rowset = $cpgdb->fetchRowSet();
+        if (!count($rowset)) {
+            $cpgdb->free();
             cpgRedirectPage('index.php', $lang_common['information'], $lang_db_input_php['com_updated'], 1);
         } else {
-            $comment_data = mysql_fetch_array($result);
-            mysql_free_result($result);
+            $comment_data = $rowset[0];
+            $cpgdb->free();
             $redirect = "displayimage.php?pid=" . $comment_data['pid'];
             cpgRedirectPage($redirect, $lang_common['information'], $lang_db_input_php['com_updated'], 1);
         }
+		#######################################################################################
         break;
 
     // Comment
@@ -150,31 +180,55 @@ switch ($event) {
             cpg_die(ERROR, $lang_db_input_php['empty_name_or_com'], __FILE__, __LINE__);
         }
 
-        $result = cpg_db_query("SELECT comments FROM {$CONFIG['TABLE_PICTURES']}, {$CONFIG['TABLE_ALBUMS']} WHERE {$CONFIG['TABLE_PICTURES']}.aid = {$CONFIG['TABLE_ALBUMS']}.aid AND pid='$pid'");
+        /*$result = cpg_db_query("SELECT comments FROM {$CONFIG['TABLE_PICTURES']}, {$CONFIG['TABLE_ALBUMS']} WHERE {$CONFIG['TABLE_PICTURES']}.aid = {$CONFIG['TABLE_ALBUMS']}.aid AND pid='$pid'");
 
-        if (!mysql_num_rows($result)) {
-            cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
-        }
+		if (!mysql_num_rows($result)) {
+			cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
+		}
 
-        $album_data = mysql_fetch_array($result);
-        mysql_free_result($result);
+		$album_data = mysql_fetch_array($result);
+		mysql_free_result($result);	*/
+		##################################		DB		##################################
+		$cpgdb->query($cpg_db_dbinput_php['get_pic_comments'], $pid);
+		$rowset = $cpgdb->fetchRowSet();
+		if (!count($rowset)) {
+			cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
+		}
+		$album_data = $rowset[0];
+		$cpgdb->free();
+		#################################################################################
 
         if ($album_data['comments'] != 'YES') {
             cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
         }
 
         if (!$CONFIG['disable_comment_flood_protect']) {
-          $result = cpg_db_query("SELECT author_md5_id, author_id FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid = '$pid' ORDER BY msg_id DESC LIMIT 1");
-          if (mysql_num_rows($result)) {
-              $last_com_data = mysql_fetch_array($result);
-              if ((USER_ID && $last_com_data['author_id'] == USER_ID) || (!USER_ID && $last_com_data['author_md5_id'] == $USER['ID'])) {
-                  cpg_die(ERROR, $lang_db_input_php['no_flood'], __FILE__, __LINE__);
-              }
-          }
+			/*$result = cpg_db_query("SELECT author_md5_id, author_id FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid = '$pid' ORDER BY msg_id DESC LIMIT 1");
+			if (mysql_num_rows($result)) {
+				$last_com_data = mysql_fetch_array($result);
+				if ((USER_ID && $last_com_data['author_id'] == USER_ID) || (!USER_ID && $last_com_data['author_md5_id'] == $USER['ID'])) {
+					cpg_die(ERROR, $lang_db_input_php['no_flood'], __FILE__, __LINE__);
+				}
+			}	*/
+			##################################		DB		###################################
+			$cpgdb->query($cpg_db_dbinput_php['get_last_commment_data'], $pid);
+			$rowset =$cpgdb->fetchRowSet();
+			if (count($rowset)) {
+				$last_com_data = $rowset[0];
+				if ((USER_ID && $last_com_data['author_id'] == USER_ID) || (!USER_ID && $last_com_data['author_md5_id'] == $USER['ID'])) {
+					cpg_die(ERROR, $lang_db_input_php['no_flood'], __FILE__, __LINE__);
+				}
+			}
+			####################################################################################
         }
 
         if (!USER_ID) { // Anonymous users, we need to use META refresh to save the cookie
-            if (mysql_result(cpg_db_query("select count(user_id) from {$CONFIG['TABLE_USERS']} where UPPER(user_name) = UPPER('$msg_author')"),0,0))
+            //if (mysql_result(cpg_db_query("select count(user_id) from {$CONFIG['TABLE_USERS']} where UPPER(user_name) = UPPER('$msg_author')"),0,0))
+			################################		DB		################################
+			$cpgdb->query($cpgdb->query['get_anonymous_user_count'], $msg_author);
+			$row = $cpgdb->fetchRow();
+			if ($row['count'])
+			#############################################################################
             {
               cpg_die($lang_common['error'], $lang_db_input_php['com_author_error'],__FILE__,__LINE__);
             }
@@ -184,11 +238,20 @@ switch ($event) {
                 cpg_die(ERROR, $lang_display_comments['default_username_message'], __FILE__, __LINE__);
             }
 
-            if ($CONFIG['comment_approval'] != 0) { // comments need approval, set approval status to "no"
-                $insert = cpg_db_query("INSERT INTO {$CONFIG['TABLE_COMMENTS']} (pid, msg_author, msg_body, msg_date, author_md5_id, author_id, msg_raw_ip, msg_hdr_ip, approval) VALUES ('$pid', '{$CONFIG['comments_anon_pfx']}$msg_author', '$msg_body', NOW(), '{$USER['ID']}', '0', '$raw_ip', '$hdr_ip', 'NO')");
-            } else { //comments do not need approval, we can set approval status to "yes"
-                $insert = cpg_db_query("INSERT INTO {$CONFIG['TABLE_COMMENTS']} (pid, msg_author, msg_body, msg_date, author_md5_id, author_id, msg_raw_ip, msg_hdr_ip, approval) VALUES ('$pid', '{$CONFIG['comments_anon_pfx']}$msg_author', '$msg_body', NOW(), '{$USER['ID']}', '0', '$raw_ip', '$hdr_ip', 'YES')");
-            }
+			/*if ($CONFIG['comment_approval'] != 0) { // comments need approval, set approval status to "no"
+				$insert = cpg_db_query("INSERT INTO {$CONFIG['TABLE_COMMENTS']} (pid, msg_author, msg_body, msg_date, author_md5_id, author_id, msg_raw_ip, msg_hdr_ip, approval) VALUES ('$pid', '{$CONFIG['comments_anon_pfx']}$msg_author', '$msg_body', NOW(), '{$USER['ID']}', '0', '$raw_ip', '$hdr_ip', 'NO')");
+			} else { //comments do not need approval, we can set approval status to "yes"
+				$insert = cpg_db_query("INSERT INTO {$CONFIG['TABLE_COMMENTS']} (pid, msg_author, msg_body, msg_date, author_md5_id, author_id, msg_raw_ip, msg_hdr_ip, approval) VALUES ('$pid', '{$CONFIG['comments_anon_pfx']}$msg_author', '$msg_body', NOW(), '{$USER['ID']}', '0', '$raw_ip', '$hdr_ip', 'YES')");
+			}	*/
+			###########################################		DB		########################################
+			if ($CONFIG['comment_approval'] != 0) { // comments need approval, set approval status to "no"
+				$insert = $cpgdb->query($cpg_db_dbinput_php['anonymous_user_comment'], $pid, 
+								$CONFIG['comments_anon_pfx']$msg_author, $msg_body, $USER['ID'], $raw_ip, $hdr_ip, 'NO');
+			} else { //comments do not need approval, we can set approval status to "yes"
+				$insert = $cpgdb->query($cpg_db_dbinput_php['anonymous_user_comment'], $pid, 
+								$CONFIG['comments_anon_pfx']$msg_author, $msg_body, $USER['ID'], $raw_ip, $hdr_ip, 'YES');
+			}
+			##################################################################################################
 
             $USER['name'] = $msg_author;
             $redirect = "displayimage.php?pid=$pid";
@@ -202,11 +265,20 @@ switch ($event) {
             ob_end_flush();
             exit;
         } else { // Registered users, we can use Location to redirect
-            if ($CONFIG['comment_approval'] == 2 && !USER_IS_ADMIN) { // comments need approval, set approval status to "no"
-                $insert = cpg_db_query("INSERT INTO {$CONFIG['TABLE_COMMENTS']} (pid, msg_author, msg_body, msg_date, author_md5_id, author_id, msg_raw_ip, msg_hdr_ip, approval) VALUES ('$pid', '" . addslashes(USER_NAME) . "', '$msg_body', NOW(), '', '" . USER_ID . "', '$raw_ip', '$hdr_ip', 'NO')");
-            } else { //comments do not need approval, we can set approval status to "yes"
-                $insert = cpg_db_query("INSERT INTO {$CONFIG['TABLE_COMMENTS']} (pid, msg_author, msg_body, msg_date, author_md5_id, author_id, msg_raw_ip, msg_hdr_ip, approval) VALUES ('$pid', '" . addslashes(USER_NAME) . "', '$msg_body', NOW(), '', '" . USER_ID . "', '$raw_ip', '$hdr_ip', 'YES')");
-            }
+			/*if ($CONFIG['comment_approval'] == 2 && !USER_IS_ADMIN) { // comments need approval, set approval status to "no"
+				$insert = cpg_db_query("INSERT INTO {$CONFIG['TABLE_COMMENTS']} (pid, msg_author, msg_body, msg_date, author_md5_id, author_id, msg_raw_ip, msg_hdr_ip, approval) VALUES ('$pid', '" . addslashes(USER_NAME) . "', '$msg_body', NOW(), '', '" . USER_ID . "', '$raw_ip', '$hdr_ip', 'NO')");
+			} else { //comments do not need approval, we can set approval status to "yes"
+				$insert = cpg_db_query("INSERT INTO {$CONFIG['TABLE_COMMENTS']} (pid, msg_author, msg_body, msg_date, author_md5_id, author_id, msg_raw_ip, msg_hdr_ip, approval) VALUES ('$pid', '" . addslashes(USER_NAME) . "', '$msg_body', NOW(), '', '" . USER_ID . "', '$raw_ip', '$hdr_ip', 'YES')");
+			}	*/
+			###########################################		DB		##########################################
+			if ($CONFIG['comment_approval'] == 2 && !USER_IS_ADMIN) { // comments need approval, set approval status to "no"
+				$insert = $cpgdb->query($cpg_db_dbinput_php['registered_user_comment'], $pid, addslashes(USER_NAME), 
+								$msg_body, USER_ID, $raw_ip, $hdr_ip, 'NO');
+			} else { //comments do not need approval, we can set approval status to "yes"
+				$insert = $cpgdb->query($cpg_db_dbinput_php['registered_user_comment'], $pid, addslashes(USER_NAME), 
+								$msg_body, USER_ID, $raw_ip, $hdr_ip, 'YES');
+			}
+			###################################################################################################
             $redirect = "displayimage.php?pid=$pid";
             if ($CONFIG['email_comment_notification'] && !USER_IS_ADMIN ) {
                 $mail_body = "<p>" . bb_decode(process_smilies($msg_body, $CONFIG['ecards_more_pic_target'])) . "</p>\n\r ".$lang_db_input_php['email_comment_body'] . " " . $CONFIG['ecards_more_pic_target'] . (substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') . $redirect;
@@ -247,17 +319,28 @@ switch ($event) {
             cpg_die(ERROR, $lang_db_input_php['alb_need_title'], __FILE__, __LINE__);
         }
 
-        if (GALLERY_ADMIN_MODE) {
-            $moderator_group = $superCage->post->getInt('moderator_group');
-            $query = "UPDATE {$CONFIG['TABLE_ALBUMS']} SET title='$title', description='$description', category='$category', thumb='$thumb', uploads='$uploads', comments='$comments', votes='$votes', visibility='$visibility', alb_password='$password', alb_password_hint='$password_hint', keyword='$keyword', moderator_group='$moderator_group' WHERE aid='$aid' LIMIT 1";
-        } else {
-            $query = "UPDATE {$CONFIG['TABLE_ALBUMS']} SET title='$title', description='$description', category='$category', thumb='$thumb',  comments='$comments', votes='$votes', visibility='$visibility', alb_password='$password', alb_password_hint='$password_hint',keyword='$keyword' WHERE aid='$aid' LIMIT 1";
-
+		/*if (GALLERY_ADMIN_MODE) {
+			$moderator_group = $superCage->post->getInt('moderator_group');
+			$query = "UPDATE {$CONFIG['TABLE_ALBUMS']} SET title='$title', description='$description', category='$category', thumb='$thumb', uploads='$uploads', comments='$comments', votes='$votes', visibility='$visibility', alb_password='$password', alb_password_hint='$password_hint', keyword='$keyword', moderator_group='$moderator_group' WHERE aid='$aid' LIMIT 1";
+		} else {
+			$query = "UPDATE {$CONFIG['TABLE_ALBUMS']} SET title='$title', description='$description', category='$category', thumb='$thumb',  comments='$comments', votes='$votes', visibility='$visibility', alb_password='$password', alb_password_hint='$password_hint',keyword='$keyword' WHERE aid='$aid' LIMIT 1";
 		}
 
-        $update = cpg_db_query($query);
-
-        if (!mysql_affected_rows()) {
+		$update = cpg_db_query($query);
+		if (!mysql_affected_rows())	*/
+		######################################		DB		######################################
+		if (GALLERY_ADMIN_MODE) {
+			$moderator_group = $superCage->post->getInt('moderator_group');
+			$cpgdb->query($cpg_db_dbinput_php['gal_admin_update_albums'], $title, $description, $category, $thumb, $uploads
+							$comments, $votes, $visibility, $password, $password_hint, $keyword, $moderator_group, $aid);
+		} else {
+			$cpgdb->query($cpg_db_dbinput_php['user_admin_update_albums'], $title, $description, $category, $thumb, $comments
+							$votes, $visibility, $password, $password_hint, $keyword, $aid);
+		}
+		
+		if ($cpgdb->affectedRows())
+		#########################################################################################
+		{
           cpgRedirectPage('modifyalb.php?album='.$aid, $lang_db_input_php['info'], $lang_db_input_php['no_udp_needed'], 0);
           //$target_url = 'modifyalb.php?album='.$aid.'&message_id='.cpgStoreTempMessage($lang_db_input_php['no_udp_needed']);
         } else {
@@ -282,49 +365,93 @@ switch ($event) {
         $delete_comments = $superCage->post->getInt('delete_comments');
         $delete_files = $superCage->post->getInt('delete_files');
 
-        if ($reset_views || $reset_rating) {
-            // Get all pids for this album to reset their detail hits/vote stats
-            $query = "SELECT pid FROM {$CONFIG['TABLE_PICTURES']} WHERE aid = '$aid'";
-            $result = cpg_db_query($query);
-            while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
-              $pid[] = $row['pid'];
-            }
-        }
+		/*if ($reset_views || $reset_rating) {
+			// Get all pids for this album to reset their detail hits/vote stats
+			$query = "SELECT pid FROM {$CONFIG['TABLE_PICTURES']} WHERE aid = '$aid'";
+			$result = cpg_db_query($query);
+			while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+				$pid[] = $row['pid'];
+			}
+		}
 
-        if ($reset_views) { // if reset_views start
-            $query = "UPDATE {$CONFIG['TABLE_PICTURES']} SET hits='0' WHERE aid='$aid'";
-                $update = cpg_db_query($query);
-            if (isset($CONFIG['debug_mode']) && ($CONFIG['debug_mode'] == 1)) {
-                $queries[] = $query;
-            }
-            if (mysql_affected_rows()) {
-                $counter_affected_rows++;
-            }
-            resetDetailHits($pid);
-        } // if reset_views end
+		if ($reset_views) { // if reset_views start
+			$query = "UPDATE {$CONFIG['TABLE_PICTURES']} SET hits='0' WHERE aid='$aid'";
+			$update = cpg_db_query($query);
+			if (isset($CONFIG['debug_mode']) && ($CONFIG['debug_mode'] == 1)) {
+				$queries[] = $query;
+			}
+			if (mysql_affected_rows()) {
+				$counter_affected_rows++;
+			}
+			resetDetailHits($pid);
+		} // if reset_views end
 
-        if ($reset_rating) { // if reset_rating start
-            $query = "UPDATE {$CONFIG['TABLE_PICTURES']} SET  pic_rating='0',  votes='0' WHERE aid='$aid'";
-                $update = cpg_db_query($query);
-            if (isset($CONFIG['debug_mode']) && ($CONFIG['debug_mode'] == 1)) {
-                $queries[] = $query;
-            }
-            if (mysql_affected_rows()) {
-                $counter_affected_rows++;
-            }
-            resetDetailVotes($pid);
-        } // if reset_rating end
+		if ($reset_rating) { // if reset_rating start
+			$query = "UPDATE {$CONFIG['TABLE_PICTURES']} SET  pic_rating='0',  votes='0' WHERE aid='$aid'";
+				$update = cpg_db_query($query);
+			if (isset($CONFIG['debug_mode']) && ($CONFIG['debug_mode'] == 1)) {
+				$queries[] = $query;
+			}
+			if (mysql_affected_rows()) {
+				$counter_affected_rows++;
+			}
+			resetDetailVotes($pid);
+		} // if reset_rating end
 
-        if ($delete_files) { // if delete_files start
-            $query = "DELETE FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='$aid'";
-                $update = cpg_db_query($query);
-            if (isset($CONFIG['debug_mode']) && ($CONFIG['debug_mode'] == 1)) {
-                $queries[] = $query;
-            }
-            if (mysql_affected_rows()) {
-                $counter_affected_rows++;
-            }
-        } // if delete_files end
+		if ($delete_files) { // if delete_files start
+			$query = "DELETE FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='$aid'";
+			$update = cpg_db_query($query);
+			if (isset($CONFIG['debug_mode']) && ($CONFIG['debug_mode'] == 1)) {
+				$queries[] = $query;
+			}
+			if (mysql_affected_rows()) {
+				$counter_affected_rows++;
+			}
+		} // if delete_files end	*/
+		#################################		DB		################################
+		if ($reset_views || $reset_rating) {
+			// Get all pids for this album to reset their detail hits/vote stats
+			$cpgdb->query($cpg_db_dbinput_php['get_pic_id'], $aid);
+			while ($row = $cpgdb->fetchRow()) {
+				$pid[] = $row['pid'];
+			}
+		}
+
+		if ($reset_views) { // if reset_views start
+			$query = sprintf($cpg_db_dbinput_php['update_pic_reset_views'], $aid);
+			$update = $cpgdb->query($query);
+			if (isset($CONFIG['debug_mode']) && ($CONFIG['debug_mode'] == 1)) {
+				$queries[] = $query;
+			}
+			if ($cpgdb->affectedRows()) {
+				$counter_affected_rows++;
+			}
+			resetDetailHits($pid);
+		} // if reset_views end
+
+		if ($reset_rating) { // if reset_rating start
+			$query = sprintf($cpg_db_dbinput_php['update_pic_reset_rating'], $aid);
+				$update = $cpgdb->query($query);
+			if (isset($CONFIG['debug_mode']) && ($CONFIG['debug_mode'] == 1)) {
+				$queries[] = $query;
+			}
+			if ($cpgdb->affectedRows()) {
+				$counter_affected_rows++;
+			}
+			resetDetailVotes($pid);
+		} // if reset_rating end
+
+		if ($delete_files) { // if delete_files start
+			$query = sprintf($cpg_db_dbinput_php['delete_pic'], $aid);
+			$update = $cpgdb->query($query);
+			if (isset($CONFIG['debug_mode']) && ($CONFIG['debug_mode'] == 1)) {
+				$queries[] = $query;
+			}
+			if ($cpgdb->affectedRows()) {
+				$counter_affected_rows++;
+			}
+		} // if delete_files end
+		###############################################################################
 
 
         if ($counter_affected_rows == 0) {
@@ -355,24 +482,46 @@ switch ($event) {
         $user3 = $superCage->post->getEscaped('user3');
         $user4 = $superCage->post->getEscaped('user4');
 
+        /*// Check if the album id provided is valid
+		if (!(GALLERY_ADMIN_MODE || user_is_allowed())) {
+			$result = cpg_db_query("SELECT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album' and (uploads = 'YES' OR category = '" . (USER_ID + FIRST_USER_CAT) . "')");
+			if (mysql_num_rows($result) == 0) {
+				cpg_die(ERROR, $lang_db_input_php['unknown_album'], __FILE__, __LINE__);
+			}
+			$row = mysql_fetch_array($result);
+			mysql_free_result($result);
+			$category = $row['category'];
+		} else {
+			$result = cpg_db_query("SELECT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album'");
+			if (mysql_num_rows($result) == 0) {
+				cpg_die(ERROR, $lang_db_input_php['unknown_album'], __FILE__, __LINE__);
+			}
+			$row = mysql_fetch_array($result);
+			mysql_free_result($result);
+			$category = $row['category'];
+		}	*/
+		###############################		DB		#################################
         // Check if the album id provided is valid
-        if (!(GALLERY_ADMIN_MODE || user_is_allowed())) {
-            $result = cpg_db_query("SELECT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album' and (uploads = 'YES' OR category = '" . (USER_ID + FIRST_USER_CAT) . "')");
-            if (mysql_num_rows($result) == 0) {
-                cpg_die(ERROR, $lang_db_input_php['unknown_album'], __FILE__, __LINE__);
-            }
-            $row = mysql_fetch_array($result);
-            mysql_free_result($result);
-            $category = $row['category'];
-        } else {
-            $result = cpg_db_query("SELECT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album'");
-            if (mysql_num_rows($result) == 0) {
-                cpg_die(ERROR, $lang_db_input_php['unknown_album'], __FILE__, __LINE__);
-            }
-            $row = mysql_fetch_array($result);
-            mysql_free_result($result);
-            $category = $row['category'];
-        }
+		if (!(GALLERY_ADMIN_MODE || user_is_allowed())) {
+			$cpgdb->query($cpg_db_dbinput_php['check_valid_alb_id'], $album, (USER_ID + FIRST_USER_CAT));
+			$rowset = $cpgdb->fetchRowSet();
+			if (count($rowset) == 0) {
+				cpg_die(ERROR, $lang_db_input_php['unknown_album'], __FILE__, __LINE__);
+			}
+			$row = $rowset[0];
+			$cpgdb->free();
+			$category = $row['category'];
+		} else {
+			$cpgdb_query($cpg_db_dbinput_php['get_valid_alb_id'], $album);
+			$rowset = $cpgdb->fetchRowSet();
+			if (count($rowset) == 0) {
+				cpg_die(ERROR, $lang_db_input_php['unknown_album'], __FILE__, __LINE__);
+			}
+			$row = $rowset[0];
+			$cpgdb->free();
+			$category = $row['category'];
+		}
+		#############################################################################
 
         // Test if the filename of the temporary uploaded picture is empty
         if ($superCage->files->getRaw("/userpicture/tmp_name") == '') {

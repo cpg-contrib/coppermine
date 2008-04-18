@@ -32,179 +32,224 @@ if ($superCage->get->keyExists('id')) {
 
 function process_post_data()
 {
-    global $CONFIG, $mb_utf8_regex;
-    global $lang_errors, $lang_editpics_php;
+	global $CONFIG, $mb_utf8_regex;
+	global $lang_errors, $lang_editpics_php;
+	#####################      DB      ######################	
+	global $cpg_db_edit_one_pic_php;
+	$cpgdb =& cpgDB::getInstance();
+	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+	##################################################	
 
-    $superCage = Inspekt::makeSuperCage();
+	$superCage = Inspekt::makeSuperCage();
 
-    $pid = $superCage->post->getInt('id');
-    $aid = $superCage->post->getInt('aid');
-    $pwight = $superCage->post->getInt('pwidth');
-    $pheight = $superCage->post->getInt('pheight');
-    $title = cpgSanitizeUserTextInput($superCage->post->getEscaped('title'));
-    $caption = cpgSanitizeUserTextInput($superCage->post->getEscaped('caption'));
-    $keywords = cpgSanitizeUserTextInput(utf_replace($superCage->post->getEscaped('keywords')));
-    $user1 = cpgSanitizeUserTextInput($superCage->post->getEscaped('user1'));
-    $user2 = cpgSanitizeUserTextInput($superCage->post->getEscaped('user2'));
-    $user3 = cpgSanitizeUserTextInput($superCage->post->getEscaped('user3'));
-    $user4 = cpgSanitizeUserTextInput($superCage->post->getEscaped('user4'));
+	$pid = $superCage->post->getInt('id');
+	$aid = $superCage->post->getInt('aid');
+	$pwight = $superCage->post->getInt('pwidth');
+	$pheight = $superCage->post->getInt('pheight');
+	$title = cpgSanitizeUserTextInput($superCage->post->getEscaped('title'));
+	$caption = cpgSanitizeUserTextInput($superCage->post->getEscaped('caption'));
+	$keywords = cpgSanitizeUserTextInput(utf_replace($superCage->post->getEscaped('keywords')));
+	$user1 = cpgSanitizeUserTextInput($superCage->post->getEscaped('user1'));
+	$user2 = cpgSanitizeUserTextInput($superCage->post->getEscaped('user2'));
+	$user3 = cpgSanitizeUserTextInput($superCage->post->getEscaped('user3'));
+	$user4 = cpgSanitizeUserTextInput($superCage->post->getEscaped('user4'));
 
-    $galleryicon = $superCage->post->getInt('galleryicon');
-    $isgalleryicon = ($galleryicon===$pid);
+	$galleryicon = $superCage->post->getInt('galleryicon');
+	$isgalleryicon = ($galleryicon===$pid);
 
-    if ($superCage->post->keyExists('read_exif')){
-    	$read_exif = $superCage->post->getInt('read_exif');
-    }
+	if ($superCage->post->keyExists('read_exif')){
+		$read_exif = $superCage->post->getInt('read_exif');
+	}
 
-    if ($superCage->post->keyExists('reset_vcount')){
+	if ($superCage->post->keyExists('reset_vcount')){
 		$reset_vcount = $superCage->post->getInt('reset_vcount');
-    }
+	}
 
-    if ($superCage->post->keyExists('reset_votes')){
+	if ($superCage->post->keyExists('reset_votes')){
 		$reset_votes = $superCage->post->getInt('reset_votes');
-    }
+	}
 
-    if ($superCage->post->keyExists('del_comments')){
+	if ($superCage->post->keyExists('del_comments')){
 		$del_comments = $superCage->post->getInt('del_comments') || $delete;
-    }
+	}
 
-    $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} AS p, {$CONFIG['TABLE_ALBUMS']} AS a WHERE a.aid = p.aid AND pid = '$pid'");
-    if (!mysql_num_rows($result)) cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
-    $pic = mysql_fetch_array($result);
-    mysql_free_result($result);
+	/*$result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} AS p, {$CONFIG['TABLE_ALBUMS']} AS a WHERE a.aid = p.aid AND pid = '$pid'");
+	if (!mysql_num_rows($result)) cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
+	$pic = mysql_fetch_array($result);
+	mysql_free_result($result);	*/
+	######################################              DB          ####################################
+	$cpgdb->query($cpg_db_edit_one_pic_php['process_data_get_pic_album'], $pid);
+	$rowset = $cpgdb->fetchRowSet();
+	if (!count($rowset)) cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
+	$pic = $rowset[0];
+	$cpgdb->free();
+	######################################################################################
 
-    if (!(GALLERY_ADMIN_MODE || $pic['category'] == FIRST_USER_CAT + USER_ID || ($CONFIG['users_can_edit_pics'] && $pic['owner_id'] == USER_ID)) || !USER_ID) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+	if (!(GALLERY_ADMIN_MODE || $pic['category'] == FIRST_USER_CAT + USER_ID || ($CONFIG['users_can_edit_pics'] && $pic['owner_id'] == USER_ID)) || !USER_ID) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
-    $update  = "aid = '".$aid."'";
-    if (is_movie($pic['filename'])) {
-        $update .= ", pwidth = ".$pwidth;
-        $update .= ", pheight = ".$pheight;
-    }
-    $update .= ", title = '".$title."'";
-    $update .= ", caption = '".$caption."'";
-    $update .= ", keywords = '".$keywords."'";
+	$update  = "aid = '".$aid."'";
+	if (is_movie($pic['filename'])) {
+		$update .= ", pwidth = ".$pwidth;
+		$update .= ", pheight = ".$pheight;
+	}
+	$update .= ", title = '".$title."'";
+	$update .= ", caption = '".$caption."'";
+	$update .= ", keywords = '".$keywords."'";
 
-    if (GALLERY_ADMIN_MODE) {
-      $approved = $superCage->post->getAlpha('approved');
-      $update .= ", approved = '".$approved."'";
-    }
+	if (GALLERY_ADMIN_MODE) {
+	  $approved = $superCage->post->getAlpha('approved');
+	  $update .= ", approved = '".$approved."'";
+	}
 
-    $update .= ", user1 = '".$user1."'";
-    $update .= ", user2 = '".$user2."'";
-    $update .= ", user3 = '".$user3."'";
-    $update .= ", user4 = '".$user4."'";
+	$update .= ", user1 = '".$user1."'";
+	$update .= ", user2 = '".$user2."'";
+	$update .= ", user3 = '".$user3."'";
+	$update .= ", user4 = '".$user4."'";
 
-    if ($isgalleryicon && $pic['category']>FIRST_USER_CAT) {
-            $sql = 'update '.$CONFIG['TABLE_PICTURES'].' set galleryicon=0 where owner_id='.$pic['owner_id'].';';
-            cpg_db_query($sql);
-            $update .= ", galleryicon = ".$galleryicon;
-    }
+	if ($isgalleryicon && $pic['category']>FIRST_USER_CAT) {
+			/*$sql = 'update '.$CONFIG['TABLE_PICTURES'].' set galleryicon=0 where owner_id='.$pic['owner_id'].';';
+			cpg_db_query($sql);	*/
+			#############################         DB      #############################
+			$cpgdb->query($cpg_db_edit_one_pic_php['process_data_set_gal_icon'], $pic['owner_id']);
+			##################################################################
+			$update .= ", galleryicon = ".$galleryicon;
+	}
 
-    if ($reset_vcount) {
-        $update .= ", hits = '0'";
-        resetDetailHits($pid);
-    }
-    if ($reset_votes) {
-        $update .= ", pic_rating = '0', votes = '0'";
-        resetDetailVotes($pid);
-    }
-    if ($read_exif) {
-        $filepath = urldecode(get_pic_url($pic, 'fullsize'));
+	if ($reset_vcount) {
+		$update .= ", hits = '0'";
+		resetDetailHits($pid);
+	}
+	if ($reset_votes) {
+		$update .= ", pic_rating = '0', votes = '0'";
+		resetDetailVotes($pid);
+	}
+	/*if ($read_exif) {
+		$filepath = urldecode(get_pic_url($pic, 'fullsize'));
 
-        // If read exif info again is checked then we will just delete the entry from exif table. The new exif information will automatically be read when someone views the image.
-        $query = "DELETE FROM {$CONFIG['TABLE_EXIF']} WHERE filename = '$filepath'";
-        cpg_db_query($query);
-    }
+		// If read exif info again is checked then we will just delete the entry from exif table. The new exif information will automatically be read when someone views the image.
+		$query = "DELETE FROM {$CONFIG['TABLE_EXIF']} WHERE filename = '$filepath'";
+		cpg_db_query($query);
+	}
 
-    if ($del_comments) {
-        $query = "DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid='$pid'";
-        $result =cpg_db_query($query);
+	if ($del_comments) {
+		$query = "DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid='$pid'";
+		$result =cpg_db_query($query);
 
-    } else {
-        $query = "UPDATE {$CONFIG['TABLE_PICTURES']} SET $update WHERE pid='$pid' LIMIT 1";
-        $result = cpg_db_query($query);
-    }
+	} else {
+		$query = "UPDATE {$CONFIG['TABLE_PICTURES']} SET $update WHERE pid='$pid' LIMIT 1";
+		$result = cpg_db_query($query);
+	}	*/
+	######################################            DB          ######################################
+	if ($read_exif) {
+		$filepath = urldecode(get_pic_url($pic, 'fullsize'));
 
-    // rename a file
-    if ($superCage->post->keyExists('filename') && $matches = $superCage->post->getMatched('filename','/^[0-9A-Za-z\/_.-]+$/')){
-    		$post_filename = $matches[0];
-    }
+		// If read exif info again is checked then we will just delete the entry from exif table. The new exif information will automatically be read when someone views the image.
+		$cpgdb->query($cpg_db_edit_one_pic_php['process_data_delete_exif'], $filepath);
+	}
 
-    if ($post_filename != $pic['filename']) {
-        if($CONFIG['thumb_use']=='ht' && $pic['pheight'] > $CONFIG['picture_width']) {
-            $condition = true;
-        } elseif ($CONFIG['thumb_use']=='wd' && $pic['pwidth'] > $CONFIG['picture_width']){
-            $condition = true;
-        } elseif ($CONFIG['thumb_use']=='any' && max($pic['pwidth'], $pic['pheight']) > $CONFIG['picture_width']){
-            $condition = true;
-        } else {
-            $condition = false;
-        }
+	if ($del_comments) {
+		$cpgdb->query($cpg_db_edit_one_pic_php['process_data_delete_comments'], $pid);
+	} else {
+		$cpgdb->query($cpg_db_edit_one_pic_php['process_data_set_hits_ratings'], $update, $pid);
+	}
+	#######################################################################################
 
-        if ($CONFIG['make_intermediate'] && $condition ) {
-            $prefices = array('fullsize', 'normal', 'thumb');
-        } else {
-            $prefices = array('fullsize', 'thumb');
-        }
+	// rename a file
+	if ($superCage->post->keyExists('filename') && $matches = $superCage->post->getMatched('filename','/^[0-9A-Za-z\/_.-]+$/')){
+			$post_filename = $matches[0];
+	}
 
-        if ($CONFIG['enable_watermark'] == '1' && ($CONFIG['which_files_to_watermark'] == 'both' || $CONFIG['which_files_to_watermark'] == 'original')) {
-            $prefices[] = 'orig';
-        }
+	if ($post_filename != $pic['filename']) {
+		if($CONFIG['thumb_use']=='ht' && $pic['pheight'] > $CONFIG['picture_width']) {
+			$condition = true;
+		} elseif ($CONFIG['thumb_use']=='wd' && $pic['pwidth'] > $CONFIG['picture_width']){
+			$condition = true;
+		} elseif ($CONFIG['thumb_use']=='any' && max($pic['pwidth'], $pic['pheight']) > $CONFIG['picture_width']){
+			$condition = true;
+		} else {
+			$condition = false;
+		}
 
-        if (!is_image($pic['filename'])){
-            $prefices = array('fullsize');
-        }
+		if ($CONFIG['make_intermediate'] && $condition ) {
+			$prefices = array('fullsize', 'normal', 'thumb');
+		} else {
+			$prefices = array('fullsize', 'thumb');
+		}
 
-        foreach ($prefices as $prefix)
-        {
-            $oldname = urldecode(get_pic_url($pic, $prefix));
-            $filename = replace_forbidden($post_filename);
-            $newname = str_replace($pic['filename'], $filename, $oldname);
+		if ($CONFIG['enable_watermark'] == '1' && ($CONFIG['which_files_to_watermark'] == 'both' || $CONFIG['which_files_to_watermark'] == 'original')) {
+			$prefices[] = 'orig';
+		}
 
-            $old_mime = cpg_get_type($oldname);
-            $new_mime = cpg_get_type($newname);
+		if (!is_image($pic['filename'])){
+			$prefices = array('fullsize');
+		}
 
-            if (($old_mime['mime'] != $new_mime['mime']) && isset($new_mime['mime']))
-                cpg_die(CRITICAL_ERROR, sprintf($lang_editpics_php['mime_conv'], $old_mime['mime'], $new_mime['mime']), __FILE__, __LINE__);
+		foreach ($prefices as $prefix)
+		{
+			$oldname = urldecode(get_pic_url($pic, $prefix));
+			$filename = replace_forbidden($post_filename);
+			$newname = str_replace($pic['filename'], $filename, $oldname);
 
-            if (!is_known_filetype($newname))
-                cpg_die(CRITICAL_ERROR, $lang_editpics_php['forb_ext'], __FILE__, __LINE__);
+			$old_mime = cpg_get_type($oldname);
+			$new_mime = cpg_get_type($newname);
 
-            if (file_exists($newname))
-                cpg_die(CRITICAL_ERROR, sprintf($lang_editpics_php['file_exists'], $newname), __FILE__, __LINE__);
+			if (($old_mime['mime'] != $new_mime['mime']) && isset($new_mime['mime']))
+				cpg_die(CRITICAL_ERROR, sprintf($lang_editpics_php['mime_conv'], $old_mime['mime'], $new_mime['mime']), __FILE__, __LINE__);
 
-            if (!file_exists($oldname))
-                cpg_die(CRITICAL_ERROR, sprintf($lang_editpics_php['src_file_missing'], $oldname), __FILE__, __LINE__);
+			if (!is_known_filetype($newname))
+				cpg_die(CRITICAL_ERROR, $lang_editpics_php['forb_ext'], __FILE__, __LINE__);
 
-            if (rename($oldname, $newname))
-            {
-                cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET filename = '$filename' WHERE pid = '$pid' LIMIT 1");
-            } else cpg_die(CRITICAL_ERROR, sprintf($lang_editpics_php['rename_failed'], $oldname, $newname), __FILE__, __LINE__);
-        }
-    }
+			if (file_exists($newname))
+				cpg_die(CRITICAL_ERROR, sprintf($lang_editpics_php['file_exists'], $newname), __FILE__, __LINE__);
+
+			if (!file_exists($oldname))
+				cpg_die(CRITICAL_ERROR, sprintf($lang_editpics_php['src_file_missing'], $oldname), __FILE__, __LINE__);
+
+			if (rename($oldname, $newname))
+			{
+				//cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET filename = '$filename' WHERE pid = '$pid' LIMIT 1");
+				#####################################               DB           ###################################
+				$cpgdb->query($cpg_db_edit_one_pic['process_data_set_filename'], $filename, $pid);
+				#####################################################################################
+			} else cpg_die(CRITICAL_ERROR, sprintf($lang_editpics_php['rename_failed'], $oldname, $newname), __FILE__, __LINE__);
+		}
+	}
 }
 
 function get_user_albums($user_id = '')
 {
         global $CONFIG, $USER_ALBUMS_ARRAY, $user_albums_list;
+	#####################      DB      ######################	
+	global $cpg_db_edit_one_pic_php;
+	$cpgdb =& cpgDB::getInstance();
+	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+	##################################################	
 
-        if ($user_id != '') {
-                $or = " OR category='" . (FIRST_USER_CAT + $user_id) . "'";
-        }
+	if ($user_id != '') {
+		$or = " OR category='" . (FIRST_USER_CAT + $user_id) . "'";
+	}
 
-        if (!isset($USER_ALBUMS_ARRAY[USER_ID])) {
-                $user_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='".(FIRST_USER_CAT + USER_ID)."' $or ORDER BY title");
+	if (!isset($USER_ALBUMS_ARRAY[USER_ID])) {
+		/*$user_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='".(FIRST_USER_CAT + USER_ID)."' $or ORDER BY title");
 
-                if (mysql_num_rows($user_albums)) {
-                    $user_albums_list=cpg_db_fetch_rowset($user_albums);
-                } else {
-                        $user_albums_list = array();
-                }
-                mysql_free_result($user_albums);
-                $USER_ALBUMS_ARRAY[USER_ID] = $user_albums_list;
-        } else {
-                $user_albums_list = &$USER_ALBUMS_ARRAY[USER_ID];
-        }
+		if (mysql_num_rows($user_albums)) {
+			$user_albums_list=cpg_db_fetch_rowset($user_albums);
+		} else {
+				$user_albums_list = array();
+		}
+		mysql_free_result($user_albums);	*/
+		#######################################           DB          ###################################
+		$user_albums = $cpgdb->query($cpg_db_edit_one_pic_php['get_user_album'], (FIRST_USER_CAT + USER_ID), $or);
+		$user_albums_list = $cpgdb->fetchRowSet();
+		if (!count($user_albums_list)) {
+			$user_albums_list = array();
+		}
+		$cpgdb->free();
+		#####################################################################################
+		$USER_ALBUMS_ARRAY[USER_ID] = $user_albums_list;
+	} else {
+			$user_albums_list = &$USER_ALBUMS_ARRAY[USER_ID];
+	}
 }
 
 function form_alb_list_box()
@@ -236,9 +281,14 @@ EOT;
 }
 
 if ($superCage->post->keyExists('submitDescription')) process_post_data();
-$result = cpg_db_query("SELECT *, p.title AS title, p.votes AS votes FROM {$CONFIG['TABLE_PICTURES']} AS p, {$CONFIG['TABLE_ALBUMS']} AS a WHERE a.aid = p.aid AND pid = '$pid'");
+/*$result = cpg_db_query("SELECT *, p.title AS title, p.votes AS votes FROM {$CONFIG['TABLE_PICTURES']} AS p, {$CONFIG['TABLE_ALBUMS']} AS a WHERE a.aid = p.aid AND pid = '$pid'");
 $CURRENT_PIC = mysql_fetch_array($result);
-mysql_free_result($result);
+mysql_free_result($result);	*/
+####################################           DB         ##################################
+$cpgdb->query($cpg_db_edit_one_pic_php['get_pictures_albums'], $pid);
+$CURENT_PIC = $cpgdb->fetchRow();
+$cpgdb->free();
+################################################################################
 
 if (!(GALLERY_ADMIN_MODE || $CURRENT_PIC['category'] == FIRST_USER_CAT + USER_ID || ($CONFIG['users_can_edit_pics'] && $CURRENT_PIC['owner_id'] == USER_ID)) || !USER_ID) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
@@ -255,20 +305,33 @@ if ($CONFIG['user_field3_name'] != '') $THUMB_ROWSPAN++;
 if ($CONFIG['user_field4_name'] != '') $THUMB_ROWSPAN++;
 
 
-if (GALLERY_ADMIN_MODE) {
+/*if (GALLERY_ADMIN_MODE) {
 //    $public_albums = cpg_db_query("SELECT DISTINCT aid, title, IF(category = 0, CONCAT('&gt; ', title), CONCAT(name,' &lt; ',title)) AS cat_title FROM {$CONFIG['TABLE_ALBUMS']}, {$CONFIG['TABLE_CATEGORIES']} WHERE category < '" . FIRST_USER_CAT . "' AND (category = 0 OR category = cid) ORDER BY cat_title");  // albums weren't coming up in the list when there were no cats
-    $public_albums = cpg_db_query("SELECT DISTINCT aid, title, IF(category = 0, CONCAT('&gt; ', title), CONCAT(name,' &lt; ',title)) AS cat_title FROM {$CONFIG['TABLE_ALBUMS']} LEFT JOIN {$CONFIG['TABLE_CATEGORIES']} ON category = cid WHERE category < '" . FIRST_USER_CAT . "' ORDER BY cat_title");
+	$public_albums = cpg_db_query("SELECT DISTINCT aid, title, IF(category = 0, CONCAT('&gt; ', title), CONCAT(name,' &lt; ',title)) AS cat_title FROM {$CONFIG['TABLE_ALBUMS']} LEFT JOIN {$CONFIG['TABLE_CATEGORIES']} ON category = cid WHERE category < '" . FIRST_USER_CAT . "' ORDER BY cat_title");
 } else {
-        $forbidden_set_alt = $FORBIDDEN_SET ? 'AND ' . str_replace('p.', '', $FORBIDDEN_SET) : '';
+		$forbidden_set_alt = $FORBIDDEN_SET ? 'AND ' . str_replace('p.', '', $FORBIDDEN_SET) : '';
 //    $public_albums = cpg_db_query("SELECT DISTINCT aid, title, IF(category = 0, CONCAT('&gt; ', title), CONCAT(name,' &lt; ',title)) AS cat_title FROM {$CONFIG['TABLE_ALBUMS']} LEFT JOIN {$CONFIG['TABLE_CATEGORIES']} ON category = cid WHERE category < '" . FIRST_USER_CAT . "' AND uploads = 'YES' $forbidden_set_alt ORDER BY cat_title"); //when user edited own image and no album was uploadable album list was empty
-        $public_albums = cpg_db_query("SELECT DISTINCT aid, title, IF(category = 0, CONCAT('&gt; ', title), CONCAT(name,' &lt; ',title)) AS cat_title FROM {$CONFIG['TABLE_ALBUMS']} LEFT JOIN {$CONFIG['TABLE_CATEGORIES']} ON category = cid WHERE (category < '" . FIRST_USER_CAT . "' AND uploads = 'YES' $forbidden_set_alt) OR aid='{$CURRENT_PIC['aid']}' ORDER BY cat_title");
+		$public_albums = cpg_db_query("SELECT DISTINCT aid, title, IF(category = 0, CONCAT('&gt; ', title), CONCAT(name,' &lt; ',title)) AS cat_title FROM {$CONFIG['TABLE_ALBUMS']} LEFT JOIN {$CONFIG['TABLE_CATEGORIES']} ON category = cid WHERE (category < '" . FIRST_USER_CAT . "' AND uploads = 'YES' $forbidden_set_alt) OR aid='{$CURRENT_PIC['aid']}' ORDER BY cat_title");
 }
 
 if (mysql_num_rows($public_albums)) {
-        $public_albums_list=cpg_db_fetch_rowset($public_albums);
+	$public_albums_list=cpg_db_fetch_rowset($public_albums);
 } else {
-        $public_albums_list = array();
+		$public_albums_list = array();
+}	*/
+#################################          DB        ###################################
+if (GALLERY_ADMIN_MODE) {
+	$public_albums = $cpgdb->query($cpg_db_edit_one_pic_php['get_gal_admin_public_alb'], FIRST_USER_CAT);
+} else {
+		$forbidden_set_alt = $FORBIDDEN_SET ? 'AND ' . str_replace('p.', '', $FORBIDDEN_SET) : '';
+		$public_albums = $cpgdb->query($cpg_db_edit_one_pic_php['get_user_admin_public_alb'], FIRST_USER_CAT, 
+							$forbidden_set_alt, $CURRENT_PIC['aid']);
 }
+$public_albums_list = $cpgdb->fetchRowSet();
+if (!count($public_albums_list)) {
+	$public_albums_list = array();
+}
+#############################################################################
 
 if (GALLERY_ADMIN_MODE && $CURRENT_PIC['owner_id'] != USER_ID) {
   get_user_albums($CURRENT_PIC['owner_id']);

@@ -44,34 +44,43 @@ class MyCalendar extends Calendar {
     }
 
     function getDateLink($day, $month, $year) {
-      global $CONFIG, $lang_calendar_php;
+		global $CONFIG, $lang_calendar_php, $cpg_db_calender_php;
+		####################### DB #########################	
+		$cpgdb =& cpgDB::getInstance();
+		$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+		##################################################	
 
-      $superCage = Inspekt::makeSuperCage();
+		$superCage = Inspekt::makeSuperCage();
 
-      $date=sprintf('%s-%02s-%02s',$year,$month,$day);
-      $query = "SELECT COUNT(pid) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND substring(from_unixtime(ctime),1,10) = '".substr($date,0,10)."' $META_ALBUM_SET";
-      $result = cpg_db_query($query);
-      $nb_pics = mysql_result($result, 0, 0);
+		$date=sprintf('%s-%02s-%02s',$year,$month,$day);
+		/*$query = "SELECT COUNT(pid) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND substring(from_unixtime(ctime),1,10) = '".substr($date,0,10)."' $META_ALBUM_SET";
+		$result = cpg_db_query($query);
+		$nb_pics = mysql_result($result, 0, 0);	*/
+		#################################         DB      ###################################
+		$cpgdb->query($cpg_db_calender_php['get_date_link'], substr($date,0,10), $META_ALBUM_SET);
+		$row = $cpgdb->fetchRow();
+		$nb_pics = $row['count'];
+		############################################################################
 
-      if ($matches = $superCage->get->getMatched('action', '/^[a-z]+$/')) {
-          $action = $matches[0];
-      } elseif ($matches = $superCage->post->getMatched('action', '/^[a-z]+$/')) {
-          $action = $matches[0];
-      } else {
-          $action = '';
-      }
+		if ($matches = $superCage->get->getMatched('action', '/^[a-z]+$/')) {
+			$action = $matches[0];
+		} elseif ($matches = $superCage->post->getMatched('action', '/^[a-z]+$/')) {
+			$action = $matches[0];
+		} else {
+			$action = '';
+		}
 
-      if ($action == 'browsebydate') {
-        if ($nb_pics) {
-          $link = '<a href="#" onclick="sendDate(\''.$month.'\', \''.$day.'\', \''.$year.'\');" class="user_thumb_infobox"  title="'. $nb_pics .' '.$lang_calendar_php['files'].'">';
-        } else {
-          $link='';
-        }
-      } else {
-        $link = "<a href=\"#\" onclick=\"sendDate('".$month."', '".$day."', '".$year."');\" class=\"user_thumb_infobox\" >";
-      }
-        return $link;
-    }
+		if ($action == 'browsebydate') {
+			if ($nb_pics) {
+				$link = '<a href="#" onclick="sendDate(\''.$month.'\', \''.$day.'\', \''.$year.'\');" class="user_thumb_infobox"  title="'. $nb_pics .' '.$lang_calendar_php['files'].'">';
+			} else {
+				$link='';
+			}
+		} else {
+			$link = "<a href=\"#\" onclick=\"sendDate('".$month."', '".$day."', '".$year."');\" class=\"user_thumb_infobox\" >";
+		}
+		return $link;
+	}
 }
 
 if ($matches = $superCage->get->getMatched('action', '/^[a-z]+$/')) {

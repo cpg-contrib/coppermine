@@ -537,8 +537,12 @@ function deletbackup_img()
 		############################################################
         $i = 0;
         while ($i < $num) {
-            $pid = mysql_result($result, $i, "pid");
-            $back = $CONFIG['fullpath'] . mysql_result($result, $i, "filepath") . $CONFIG['orig_pfx'] . mysql_result($result, $i, "filename");
+			/*$pid = mysql_result($result, $i, "pid");
+			$back = $CONFIG['fullpath'] . mysql_result($result, $i, "filepath") . $CONFIG['orig_pfx'] . mysql_result($result, $i, "filename");	*/
+			########################################		DB		#########################################
+			$pid = $rowset[$i]['pid'];
+			$back = $CONFIG['fullpath'] . $rowset[$i]['filepath'] .$CONFIG['orig_pfx'] . $rowset[$i]['filename'];
+			#################################################################################################
 
             if (file_exists($back)) {
                             if(unlink($back)){
@@ -916,7 +920,7 @@ function refresh_db()
 
 						if ($total_filesize <> $db_total_filesize){
 							$prob .= "{$lang_util_php['incorrect_filesize']}<br />{$lang_util_php['database']}{$db_total_filesize}{$lang_util_php['bytes']}<br />{$lang_util_php['actual']}{$total_filesize}{$lang_util_php['bytes']}<br />";
-							$fs1_upd = @cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET total_filesize = '$total_filesize' WHERE pid = '$db_pid' LIMIT 1");
+							//$fs1_upd = @cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET total_filesize = '$total_filesize' WHERE pid = '$db_pid' LIMIT 1");
 							#############################          DB       ##############################
 							$fsl_upd = @$cpgdb->query($cpg_db_util_php['refresh_db_set_total_filesize'], $total_filesize, $db_pid);
 							####################################################################

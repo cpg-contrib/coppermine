@@ -38,22 +38,31 @@ require ('cpgAPIinit.inc.php');
  */
 function get_subcat_data($parent, $ident='')
 {
-  global $CONFIG, $catStr, $parentAlubm;
+  global $CONFIG, $catStr, $parentAlubm, $cpg_db_api_catlist_php;
+	####################### DB #########################	
+	$cpgdb =& cpgDB::getInstance();
+	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+	##################################################	
 
   if ($parentAlubm != 1) {
     $parentAlubm = 1;
     if ($parent == 0) {
-          $catStr .= "\n$ident<cat>
-  $ident<id>$parent</id>
-  $ident<name>Parent</name>";
+		$catStr .= "\n$ident<cat>
+		$ident<id>$parent</id>
+		$ident<name>Parent</name>";
     } else {
-    $sql = "SELECT cid, name, description " . "FROM {$CONFIG['TABLE_CATEGORIES']} " . "WHERE cid = '$parent' " . "ORDER BY pos";
-    $result = cpg_db_query($sql);
-    $row = cpg_db_fetch_row($result);
-    mysql_free_result($results);
-    $catStr .= "\n$ident<cat>
-  $ident<id>{$row['cid']}</id>
-  $ident<name>{$row['name']}</name>";
+		/*$sql = "SELECT cid, name, description " . "FROM {$CONFIG['TABLE_CATEGORIES']} " . "WHERE cid = '$parent' " . "ORDER BY pos";
+		$result = cpg_db_query($sql);
+		$row = cpg_db_fetch_row($result);
+		mysql_free_result($results);	*/
+		###########################      DB      ##########################
+		$cpgdb->query($cpg_db_api_catlist_php['subcat_data_check_cid'], $parent);
+		$row = $cpgdb->fetchRow();
+		$cpgdb->free();
+		############################################################
+		$catStr .= "\n$ident<cat>
+		$ident<id>{$row['cid']}</id>
+		$ident<name>{$row['name']}</name>";
     }
     get_album_data($parent, "  ");
   }
@@ -65,18 +74,23 @@ function get_subcat_data($parent, $ident='')
      */
     if (USER_IS_ADMIN) {
       //Get all user albums
-      $sql = "SELECT user_name, user_id FROM {$CONFIG['TABLE_USERS']}";
-      $result = cpg_db_query($sql);
-      if (($cat_count = mysql_num_rows($result)) > 0) {
-        $rowset = cpg_db_fetch_rowset($result);
-        foreach ($rowset as $cat) {
-          $catStr .= "\n  $ident<cat>
-            $ident<id>".(FIRST_USER_CAT + $cat['user_id'])."</id>
-          $ident<name>{$cat['user_name']}</name>";
-          get_album_data(FIRST_USER_CAT+$cat['user_id'], $ident."  ");
-          $catStr .= "\n  $ident</cat>";
-        }
-      }
+		/*$sql = "SELECT user_name, user_id FROM {$CONFIG['TABLE_USERS']}";
+		$result = cpg_db_query($sql);
+		if (($cat_count = mysql_num_rows($result)) > 0) {
+			$rowset = cpg_db_fetch_rowset($result);	*/
+		########################       DB      ########################
+		$cpgdb->query($cpg_db_api_catlist_php['subcat_data_user_is_admin']);
+		$rowset = $cpgdb->fetchRowSet();
+		if ($cat_count = count($rowset)) {
+		########################################################
+			foreach ($rowset as $cat) {
+				$catStr .= "\n  $ident<cat>
+				$ident<id>".(FIRST_USER_CAT + $cat['user_id'])."</id>
+				$ident<name>{$cat['user_name']}</name>";
+				get_album_data(FIRST_USER_CAT+$cat['user_id'], $ident."  ");
+				$catStr .= "\n  $ident</cat>";
+			}
+		}
     } elseif (USER_ID) {
       //Get only current users albums
       $catStr .= "\n  $ident<cat>
@@ -86,40 +100,54 @@ function get_subcat_data($parent, $ident='')
       $catStr .= "\n  $ident</cat>";
     }
   } else {
-    $sql = "SELECT cid, name, description " . "FROM {$CONFIG['TABLE_CATEGORIES']} " . "WHERE parent = '$parent' " . "ORDER BY pos";
-    $result = cpg_db_query($sql);
+		/*$sql = "SELECT cid, name, description " . "FROM {$CONFIG['TABLE_CATEGORIES']} " . "WHERE parent = '$parent' " . "ORDER BY pos";
+		$result = cpg_db_query($sql);
 
-    if (($cat_count = mysql_num_rows($result)) > 0) {
-      $rowset = cpg_db_fetch_rowset($result);
-      $pos = 0;
-      foreach ($rowset as $subcat) {
-        $catStr .= "\n  $ident<cat>
-      $ident<id>{$subcat['cid']}</id>
-      $ident<name>{$subcat['name']}</name>";
-        get_album_data($subcat['cid'], $ident."  ");
-        get_subcat_data($subcat['cid'], $ident."  ");
-        $catStr .= "\n  $ident</cat>";
-      }
-    }
-  }
+		if (($cat_count = mysql_num_rows($result)) > 0) {
+			$rowset = cpg_db_fetch_rowset($result);	*/
+		########################       DB      ########################
+		$cpgdb->query($cpg_db_api_catlist_php['subcat_data_check_parent'], $parent);
+		$rowset = $cpgdb->fetchRowSet();
+		if ($cat_count = count($rowset)) {
+		########################################################
+			$pos = 0;
+			foreach ($rowset as $subcat) {
+				$catStr .= "\n  $ident<cat>
+				$ident<id>{$subcat['cid']}</id>
+				$ident<name>{$subcat['name']}</name>";
+				get_album_data($subcat['cid'], $ident."  ");
+				get_subcat_data($subcat['cid'], $ident."  ");
+				$catStr .= "\n  $ident</cat>";
+			}
+		}
+	}
 }
 
 function get_album_data($category, $ident)
 {
-  global $CONFIG, $catStr, $ALBUM_SET;
+  global $CONFIG, $catStr, $ALBUM_SET, $cpg_db_api_catlist_php;
+	####################### DB #########################	
+	$cpgdb =& cpgDB::getInstance();
+	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+	##################################################	
 
-  $sql = "SELECT aid,title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = $category ".$ALBUM_SET;
-  $result = cpg_db_query($sql);
+	/*$sql = "SELECT aid,title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = $category ".$ALBUM_SET;
+	$result = cpg_db_query($sql);
 
-  if (($cat_count = mysql_num_rows($result)) > 0) {
-    $rowset = cpg_db_fetch_rowset($result);
-    foreach ($rowset as $subcat) {
-      $catStr .= "\n  $ident<album>
-    $ident<id>{$subcat['aid']}</id>
-    $ident<name>{$subcat['title']}</name>
-  $ident</album>";
-    }
-  }
+	if (($cat_count = mysql_num_rows($result)) > 0) {
+		$rowset = cpg_db_fetch_rowset($result);	*/
+	########################       DB      ########################
+	$cpgdb->query($cpg_db_api_catlist_php['get_album_data'], $category, $ALBUM_SET);
+	$rowset = $cpgdb->fetchRowSet();
+	if ($cat_count = count($rowset)) {
+	########################################################
+		foreach ($rowset as $subcat) {
+			$catStr .= "\n  $ident<album>
+			$ident<id>{$subcat['aid']}</id>
+			$ident<name>{$subcat['title']}</name>
+			$ident</album>";
+		}
+	}
 }
 
 $xml = "<?xml version=\"1.0\" encoding=\"{$CONFIG['charset']}\" ?>\n<cpg>";

@@ -65,10 +65,18 @@ function form_charset($optionvalue, $selected)
 // Converts a given column of a given table from one charset to another
 function charset_convert($table_name, $column_name, $index_name, $charsetin, $charsetout, $doit = 0)
 {
-    global $CONFIG;
-     $result = cpg_db_query("SELECT * FROM $table_name");
+    global $CONFIG, $cpg_db_charsetmgr_php;
+	##################      DB      ##################
+	$cpgdb =& cpgDB::getInstance();
+	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+	###########################################
 
-    while ($row = mysql_fetch_array($result))
+    /*$result = cpg_db_query("SELECT * FROM $table_name");
+	while ($row = mysql_fetch_array($result))	*/
+	#########################      DB      ##########################
+	$cpgdb->query($cpg_db_charsetmgr_php['get_charset_convert_data'], $table_name);
+	while ($row = $cpgdb->fetchRow())
+	##########################################################
     {
         if ($element = $row["$column_name"])
         {
@@ -76,7 +84,11 @@ function charset_convert($table_name, $column_name, $index_name, $charsetin, $ch
             if ($convstr = iconv($charsetin,$charsetout,$element))
             {
 
-                $query = "UPDATE $table_name SET $column_name='".addslashes($convstr)."' WHERE $index_name=$elementid";
+                //$query = "UPDATE $table_name SET $column_name='".addslashes($convstr)."' WHERE $index_name=$elementid";
+				#############################                DB             #############################
+				$query = sprintf($cpg_db_charsetmgr_php['charset_convert'], $table_name, $column_name, 
+							addslashes($convstr), $index_name, $elementid);
+				########################################################################
                 $status = "<td>$query</td>";
                 $conversion_possible = 1;
             }
@@ -91,7 +103,10 @@ function charset_convert($table_name, $column_name, $index_name, $charsetin, $ch
 
                 if ($conversion_possible)
                 {
-                    $updateresult = cpg_db_query($query);
+                    //$updateresult = cpg_db_query($query);
+					##############     DB    ##############
+					$updateresult = $cpgdb->query($query);
+					##################################
                     if ($updateresult )// check that the conversion was performed
                         $status = '<td class="done">DONE</td>';
                     else
@@ -121,11 +136,20 @@ function charset_convert($table_name, $column_name, $index_name, $charsetin, $ch
 
 }
 
-function set_config($name, $value)
+/*function set_config($name, $value)
 {
     global $CONFIG;
     cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value='$value' WHERE name='$name'");
+}	*/
+##############################            DB         ###############################
+function set_config($name, $value)
+{
+    global $CONFIG, $cpg_db_charsetmgr_php;
+	$cpgdb =& cpgDB::getInstance();
+	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+    $cpgdb->query($cpg_db_charsetmgr_php['set_config'], $value, $name);
 }
+########################################################################
 
 // Either checks or carries out the conversion in all the necessary fields
 function register_changes()

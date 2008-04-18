@@ -48,8 +48,11 @@ if ($superCage->post->keyExists('save')){
   //Remove the last pipe from the string.
   $selectedExifTags = substr ($str,0,strlen($str)-1);
   $selectedExifTags = $str;
-  $sql = "UPDATE ".$CONFIG['TABLE_CONFIG']." SET value = '".$selectedExifTags."' WHERE name = 'show_which_exif'";
-  cpg_db_query($sql);
+  /*$sql = "UPDATE ".$CONFIG['TABLE_CONFIG']." SET value = '".$selectedExifTags."' WHERE name = 'show_which_exif'";
+     cpg_db_query($sql);	*/
+  ################################          DB         ##################################
+  $cpgdb->query($cpg_db_exifmgr_php['config_set_show_which_exif'], $selectedExifTags);
+  ############################################################################
   msg_box($lang_picinfo['ManageExifDisplay'], $lang_picinfo['success'], $lang_common['continue'], "admin.php");
 } else {
   echo <<< EOT
