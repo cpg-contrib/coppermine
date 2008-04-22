@@ -343,7 +343,7 @@ if (!$superCage->get->keyExists('fullsize') && ($pos < 0 || $pid > 0)) {
     $CURRENT_PIC_DATA = $pic_data[$pos];
 }
 
-if (!count($CURRENT_PIC_DATA)) {
+if (!$superCage->get->keyExists('fullsize') && !count($CURRENT_PIC_DATA)) {
   cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
 }
 ######################################
