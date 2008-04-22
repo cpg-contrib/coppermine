@@ -314,7 +314,7 @@ if ($pos < 0 || $pid > 0) {
 */
 ###################################################
 
-if ($pos < 0 || $pid > 0) {
+if (!$superCage->get->keyExists('fullsize') && ($pos < 0 || $pid > 0)) {
     ########## Modified by Abbas for new URL feature #########
     $pid = ($pos < 0) ? -$pos : $pid;
     if (!$album) {
