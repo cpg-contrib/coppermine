@@ -329,7 +329,7 @@ if (!$superCage->get->keyExists('fullsize') && ($pos < 0 || $pid > 0)) {
     $CURRENT_PIC_DATA = $pic_data[$pos];
     reset($pic_data);
     ########################################################
-} elseif (isset($pos)) {
+} elseif (isset($pos) && is_numeric($pos)) {
     //$pic_data = get_pic_data($album, $pic_count, $album_name, $pos, 1, false);
     //We must get all the data here as well, otherwise the prev/next breaks.
     $pic_data = get_pic_data($album, $pic_count, $album_name, -1, -1, false);
