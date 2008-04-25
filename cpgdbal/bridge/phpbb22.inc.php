@@ -47,7 +47,7 @@ class cpg_udb extends core_udb {
 
 	function cpg_udb()
 	{
-		global $BRIDGE;
+		global $BRIDGE, $CONFIG;
 		
 		if (!USE_BRIDGEMGR) { // the vars that are used when bridgemgr is disabled
 
@@ -77,11 +77,18 @@ class cpg_udb extends core_udb {
 			'groups' => 'groups',
 			'sessions' => 'sessions'
 		);
-
+		##################################            DB          ###################################
 		// Derived full table names
+		if ($CONFIG['dbservername'] == 'mysql') {
 		$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
 		$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
 		$this->sessionstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['sessions'];
+		} else {
+			$this->usertable = $this->db['name'] ."." .dbo ."." .$this->db['prefix'] . $this->table['users'];
+			$this->groupstable =   $this->db['name'] . "." .dbo ."." .$this->db['prefix'] . $this->table['groups'];
+			$this->sessionstable =   $this->db['name'] ."." .dbo .".". $this->db['prefix'] . $this->table['sessions'];
+		}
+		#################################################################################
 		
 		// Table field names
 		$this->field = array(
@@ -121,13 +128,14 @@ class cpg_udb extends core_udb {
 	// definition of how to extract id, name, group from a session cookie
 	function session_extraction()
 	{
+		global $cpg_db_phpbb22_inc;
 		$superCage = Inspekt::makeSuperCage();
 		//if (isset($_COOKIE[$this->cookie_name . '_sid'])) {
 		//	$session_id = addslashes($_COOKIE[$this->cookie_name . '_sid']);
 		if ($superCage->cookie->keyExists($this->cookie_name . '_sid')) {
 			$session_id = $superCage->cookie->getEscaped($this->cookie_name . '_sid');
 			
-			$sql = "SELECT user_id, username, group_id FROM {$this->sessionstable} INNER JOIN {$this->usertable} ON session_user_id = user_id WHERE session_id='$session_id';"; // AND session_user_id ='$cookie_id'"; (Maybe session_id is unique enough?)
+			/*$sql = "SELECT user_id, username, group_id FROM {$this->sessionstable} INNER JOIN {$this->usertable} ON session_user_id = user_id WHERE session_id='$session_id';"; // AND session_user_id ='$cookie_id'"; (Maybe session_id is unique enough?)
 			
 			$result = cpg_db_query($sql, $this->link_id);
 			
@@ -136,7 +144,17 @@ class cpg_udb extends core_udb {
 				return $row;
 			} else {
 			    return false;
+			}	*/
+			##############################################     DB     ###########################################
+			$this->cpgudb->query($cpg_db_phpbb22_inc['session_extraction'], $this->sessionstable, $this->usertable, $session_id);
+			$rowset = $this->cpgudb->fetchRowSet();
+			if (count($rowset)) {
+				$row = $rowset[0];
+				return $row;
+			} else {
+				return false;
 			}
+			###############################################################################################
 		}
 	}
 	

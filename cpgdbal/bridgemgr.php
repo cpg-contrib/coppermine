@@ -118,59 +118,98 @@ function write_to_db($step) {
     //}
        break;
 
-    case "db_connect":
-        if ($default_bridge_data[$BRIDGE['short_name']]['db_hostname_used'] != '') { // check the db connection --- start
-            @mysql_close(); //temporarily disconnect from the coppermine database
-            ob_start();
-            $link = mysql_connect($_POST['db_hostname'], $_POST['db_username'], $_POST['db_password']);
-            $mysql_error_output = ob_get_contents();
-            ob_end_clean();
-            if (!$link) {
-                $return[$step] = $lang_bridgemgr_php['error_db_connect'].'<tt>'.$mysql_error_output.'</tt>';
-            } elseif ($default_bridge_data[$BRIDGE['short_name']]['db_database_name_used'] != '') { // check the database
-                ob_start();
-                $db_selected = mysql_select_db($_POST['db_database_name'], $link);
-                print mysql_error();
-                $mysql_error_output = ob_get_contents();
-                ob_end_clean();
-                if (!$db_selected) {
-                   $return['db_database_name'] = sprintf($lang_bridgemgr_php['error_db_name'], '<i>'.$_POST['db_database_name'].'</i>', '<i>'.$lang_bridgemgr_php['db_database_name'].'</i>'). ' <tt>'.$mysql_error_output.'</tt>';
-                }
-            }
-            @mysql_close($link);
-            cpg_db_connect(); // connect back to coppermine db
-        } // check the db connection --- end
-       break;
+	/*case "db_connect":
+		if ($default_bridge_data[$BRIDGE['short_name']]['db_hostname_used'] != '') { // check the db connection --- start
+			@mysql_close(); //temporarily disconnect from the coppermine database
+			ob_start();
+			$link = mysql_connect($_POST['db_hostname'], $_POST['db_username'], $_POST['db_password']);
+			$mysql_error_output = ob_get_contents();
+			ob_end_clean();
+			if (!$link) {
+				$return[$step] = $lang_bridgemgr_php['error_db_connect'].'<tt>'.$mysql_error_output.'</tt>';
+			} elseif ($default_bridge_data[$BRIDGE['short_name']]['db_database_name_used'] != '') { // check the database
+				ob_start();
+				$db_selected = mysql_select_db($_POST['db_database_name'], $link);
+				print mysql_error();
+				$mysql_error_output = ob_get_contents();
+				ob_end_clean();
+				if (!$db_selected) {
+				   $return['db_database_name'] = sprintf($lang_bridgemgr_php['error_db_name'], '<i>'.$_POST['db_database_name'].'</i>', '<i>'.$lang_bridgemgr_php['db_database_name'].'</i>'). ' <tt>'.$mysql_error_output.'</tt>';
+				}
+			}
+			@mysql_close($link);
+			cpg_db_connect(); // connect back to coppermine db
+		} // check the db connection --- end
+		break;	*/
+	################################################          DB       ###############################################
+	case "db_connect":
+		if ($default_bridge_data[$BRIDGE['short_name']]['db_hostname_used'] != '') { // check the db connection --- start
+			@$cpgdb->close(); //temporarily disconnect from the coppermine database
+			ob_start();
+			$link = $cpgdb->connect($_POST['db_database_name'], $_POST['db_hostname'], $_POST['db_username'], $_POST['db_password']);
+			$sql_error_output = ob_get_contents();
+			ob_end_clean();
+			if (!$link) {
+				$return[$step] = $lang_bridgemgr_php['error_db_connect'].'<tt>'.$sql_error_output.'</tt>';
+			} 
+			@$cpgdb->close($link);
+			@$cpgdb->connect($CONFIG['dbname'], $CONFIG['dbserver'], $CONFIG['dbuser'], $CONFIG['dbpass']); // connect back to coppermine db
+		} // check the db connection --- end
+		break;	
+	########################################################################################################
 
-    case "db_tables":
-        if ($default_bridge_data[$BRIDGE['short_name']]['table_prefix_used'] != '') {
-            $prefix_and_table = sprintf($lang_bridgemgr_php['error_prefix_and_table'], '<i>'.$lang_bridgemgr_php['table_prefix'].'</i>');
-        }
-        @mysql_close(); //temporarily disconnect from the coppermine database
-        $link = @mysql_connect($BRIDGE['db_hostname'], $BRIDGE['db_username'], $BRIDGE['db_password']);
-        $db_selected = @mysql_select_db($BRIDGE['db_database_name'], $link);
-        $loop_table_names = array ('user_table', 'session_table', 'group_table', 'group_table', 'group_relation_table', 'group_mapping_table');
-        foreach ($loop_table_names as $key) { // loop through the possible tables --- start
-            if ($default_bridge_data[$BRIDGE['short_name']][$key.'_used'] != '') { // check if table exists --- start
-                $temp_tablename = $_POST['table_prefix'].$_POST[$key];
-                //$result = mysql_query('SELECT * FROM '.$temp_tablename);
+	/*case "db_tables":
+		if ($default_bridge_data[$BRIDGE['short_name']]['table_prefix_used'] != '') {
+			$prefix_and_table = sprintf($lang_bridgemgr_php['error_prefix_and_table'], '<i>'.$lang_bridgemgr_php['table_prefix'].'</i>');
+		}
+		@mysql_close(); //temporarily disconnect from the coppermine database
+		$link = @mysql_connect($BRIDGE['db_hostname'], $BRIDGE['db_username'], $BRIDGE['db_password']);
+		$db_selected = @mysql_select_db($BRIDGE['db_database_name'], $link);
+		$loop_table_names = array ('user_table', 'session_table', 'group_table', 'group_table', 'group_relation_table', 'group_mapping_table');
+		foreach ($loop_table_names as $key) { // loop through the possible tables --- start
+			if ($default_bridge_data[$BRIDGE['short_name']][$key.'_used'] != '') { // check if table exists --- start
+				$temp_tablename = $_POST['table_prefix'].$_POST[$key];
+				//$result = mysql_query('SELECT * FROM '.$temp_tablename);
 				##################      DB      #################
 				$cpgsql = new cpgDB;
 				$result = $cpgsql->query($cpg_db_bridgemgr_php['get_db_tables']);
 				##########################################
-                if (!$result) {
-                    $return['db_'.$key] = sprintf($lang_bridgemgr_php['error_db_table'], '<i>'.$temp_tablename.'</i>', $prefix_and_table.'<i>'.$lang_bridgemgr_php[$key].'</i>'). ' <tt>'.$mysql_error_output.'</tt>';
-                }
-                //@mysql_free_result($result);
+				if (!$result) {
+					$return['db_'.$key] = sprintf($lang_bridgemgr_php['error_db_table'], '<i>'.$temp_tablename.'</i>', $prefix_and_table.'<i>'.$lang_bridgemgr_php[$key].'</i>'). ' <tt>'.$mysql_error_output.'</tt>';
+				}
+				//@mysql_free_result($result);
 				########     DB    #########
 				@$cpgsql->free();
 				#######################
-            } // check if table exists --- end
-        } // loop through the possible tables --- end
-        @mysql_close($link);
-        cpg_db_connect(); // connect back to coppermine db
-       break;
+			} // check if table exists --- end
+		} // loop through the possible tables --- end
+		@mysql_close($link);
+		cpg_db_connect(); // connect back to coppermine db
+		break;	*/
+	#####################################################        DB        #################################################
+	case "db_tables":
+		if ($default_bridge_data[$BRIDGE['short_name']]['table_prefix_used'] != '') {
+			$prefix_and_table = sprintf($lang_bridgemgr_php['error_prefix_and_table'], '<i>'.$lang_bridgemgr_php['table_prefix'].'</i>');
+		}
+		@$cpgdb->close(); //temporarily disconnect from the coppermine database
+		$link = @$cpgdb->connect($BRIDGE['db_database_name'], $BRIDGE['db_hostname'], $BRIDGE['db_username'], $BRIDGE['db_password']);
 
+		$loop_table_names = array ('user_table', 'session_table', 'group_table', 'group_table', 'group_relation_table', 'group_mapping_table');
+		foreach ($loop_table_names as $key) { // loop through the possible tables --- start
+			if ($default_bridge_data[$BRIDGE['short_name']][$key.'_used'] != '') { // check if table exists --- start
+				$temp_tablename = $_POST['table_prefix'].$_POST[$key];
+				$cpgsql = new cpgDB;
+				$result = $cpgsql->query($cpg_db_bridgemgr_php['get_db_tables']);
+				if (!$result) {
+					$return['db_'.$key] = sprintf($lang_bridgemgr_php['error_db_table'], '<i>'.$temp_tablename.'</i>', $prefix_and_table.'<i>'.$lang_bridgemgr_php[$key].'</i>'). ' <tt>'.$sql_error_output.'</tt>';
+				}
+				@$cpgsql->free();
+			} // check if table exists --- end
+		} // loop through the possible tables --- end
+		@$cpgdb->close($link);
+		@$cpgdb->connect($CONFIG['dbname'], $CONFIG['dbserver'], $CONFIG['dbuser'], $CONFIG['dbpass']); // connect back to coppermine db
+		break;	
+	##############################################################################################################
 
     } // end switch
 
@@ -1432,7 +1471,7 @@ else { // not in gallery admin mode --- start
 		$row = mysql_fetch_array($results);
 	}	*/
 	################       DB       ################
-	$cpgdb->query($cpg_db_bridgemgr_php['get_recovery_logon_failures']);
+	$cpgdb->query($cpg_db_bridgemgr_php['get_recovery_logon_failures'], $number_of_failed_attempts);
 	$rowset = $cpgdb->fetchRowSet();
 	if (count($rowset)) {
 		$row = $rowset[0];

@@ -28,7 +28,7 @@ class phpbb2018_udb extends core_udb {
 
 	function phpbb2018_udb()
 	{
-		global $BRIDGE;
+		global $BRIDGE, $CONFIG;
 		
 		if (!USE_BRIDGEMGR) {
 			$this->boardurl = 'http://www.yousite.com/phpBB2';
@@ -59,13 +59,22 @@ class phpbb2018_udb extends core_udb {
 			'usergroups' => 'user_group',
 			'sessionskeys' => 'sessions_keys'
 		);
-
+		##########################################            DB          #######################################
 		// Derived full table names
-		$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
-		$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
-		$this->sessionstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['sessions'];
-		$this->usergroupstable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['usergroups'];
-		$this->sessionskeystable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['sessionskeys'];
+		if ($CONFIG['dbservername'] == 'mysql') {
+			$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
+			$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
+			$this->sessionstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['sessions'];
+			$this->usergroupstable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['usergroups'];
+			$this->sessionskeystable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['sessionskeys'];
+		} else {	//////	for MSSQL	//////
+			$this->usertable = $this->db['name'] ."." .dbo ."." .$this->db['prefix'] . $this->table['users'];
+			$this->groupstable =   $this->db['name'] . "." .dbo ."." .$this->db['prefix'] . $this->table['groups'];
+			$this->sessionstable =   $this->db['name'] ."." .dbo .".". $this->db['prefix'] . $this->table['sessions'];
+			$this->usergroupstable =   $this->db['name'] ."." .dbo .".". $this->db['prefix'] . $this->table['usergroups'];
+			$this->sessionkeystable =   $this->db['name'] ."." .dbo .".". $this->db['prefix'] . $this->table['sessionkeys'];
+		}
+		#############################################################################################
 		
 		// Table field names
 		$this->field = array(
@@ -106,7 +115,8 @@ class phpbb2018_udb extends core_udb {
 
 	function collect_groups()
 	{
-		$sql ="SELECT * FROM {$this->groupstable} WHERE group_single_user = 0";
+		global $cpg_db_phpbb2018_inc;	######	cpgdb_AL
+		/*$sql ="SELECT * FROM {$this->groupstable} WHERE group_single_user = 0";
 	
 		$result = cpg_db_query($sql, $this->link_id);
 		
@@ -115,7 +125,14 @@ class phpbb2018_udb extends core_udb {
 		while ($row = mysql_fetch_assoc($result))
 		{
 			$udb_groups[$row[$this->field['grouptbl_group_id']]+100] = utf_ucfirst(utf_strtolower($row[$this->field['grouptbl_group_name']]));
+		}	*/
+		#######################################               DB            ######################################
+		$this->cpgudb->query($cpg_db_phpbb2018_inc['collect_groups'], $this->groupstable);
+		$udb_groups = array(102 =>'Administrators', 2=> 'Registered', 3=>'Guests', 4=> 'Banned');
+		while ($row = $this->cpgudb->fetchRow()) {
+			$udb_groups[$row[$this->field['grouptbl_group_id']]+100] = utf_ucfirst(utf_strtolower($row[$this->field['grouptbl_group_name']]));
 		}
+		##########################################################################################
 
 		return $udb_groups;
 		
@@ -123,13 +140,14 @@ class phpbb2018_udb extends core_udb {
 	// definition of how to extract id, name, group from a session cookie
 	function session_extraction()
 	{
+		global $cpg_db_phpbb2018_inc;	######	cpgdb_AL
 		$superCage = Inspekt::makeSuperCage();
 		//if (isset($_COOKIE[$this->cookie_name . '_sid'])) {
 		//	$this->sid = addslashes($_COOKIE[$this->cookie_name . '_sid']);
 		if ($superCage->cookie->keyExists($this->cookie_name . '_sid')) {
 			$this->sid = addslashes($superCage->cookie->getRaw($this->cookie_name . '_sid'));
 
-			$sql = "SELECT u.{$this->field['user_id']} AS user_id, u.{$this->field['password']} AS password, u.user_level FROM {$this->usertable} AS u, {$this->sessionstable} AS s WHERE u.{$this->field['user_id']}=s.session_user_id AND s.session_id = '{$this->sid}' AND u.user_id > 0";
+			/*$sql = "SELECT u.{$this->field['user_id']} AS user_id, u.{$this->field['password']} AS password, u.user_level FROM {$this->usertable} AS u, {$this->sessionstable} AS s WHERE u.{$this->field['user_id']}=s.session_user_id AND s.session_id = '{$this->sid}' AND u.user_id > 0";
 			$result = cpg_db_query($sql, $this->link_id);
 
 			if (mysql_num_rows($result)){
@@ -138,24 +156,47 @@ class phpbb2018_udb extends core_udb {
 				return $row;
 			} else {
 			    return false;
+			}	*/
+			###########################################         DB        #########################################
+			$this->cpgudb->query($cpg_db_phpbb2018_inc['session_extraction'], $this->field['user_id'], $this->field['password'], 
+								$this->usertable, $this->sessionstable, $this->sid);
+								
+			$rowset = $this->cpgudb->fetchRowSet();
+			if (count($rowset)) {
+				$row = $rowset[0];
+				$this->userlevel = $row['user_level'];
+				return $row;
+			} else {
+				return false;
 			}
+			#############################################################################################
 		}
 	}
 	
 	// Get groups of which user is member
 	function get_groups($row)
 	{
+		global $cpg_db_phpbb2018_inc;	#####	cpgdb_AL
 		$data = array();
 		
 		if ($this->use_post_based_groups){
 
-			$sql = "SELECT ug.{$this->field['usertbl_group_id']}+100 AS group_id FROM {$this->usertable} AS u, {$this->usergroupstable} AS ug, {$this->groupstable} as g WHERE u.{$this->field['user_id']}=ug.{$this->field['user_id']} AND u.{$this->field['user_id']}='{$row['id']}' AND g.{$this->field['grouptbl_group_id']} = ug.{$this->field['grouptbl_group_id']}";
+			/*$sql = "SELECT ug.{$this->field['usertbl_group_id']}+100 AS group_id FROM {$this->usertable} AS u, {$this->usergroupstable} AS ug, {$this->groupstable} as g WHERE u.{$this->field['user_id']}=ug.{$this->field['user_id']} AND u.{$this->field['user_id']}='{$row['id']}' AND g.{$this->field['grouptbl_group_id']} = ug.{$this->field['grouptbl_group_id']}";
 
 			$result = cpg_db_query($sql, $this->link_id);
 
 			while ($row2 = mysql_fetch_array($result)) {
 				$data[] = $row2['group_id'];
+			}	*/
+			##########################################            DB           ######################################
+			$this->cpgudb->query($cpg_db_phpbb2018_inc['get_groups'], $this->field['usertbl_group_id'], $this->usertable, 
+							$this->usergroupstable, $this->groupstable, $this->field['user_id'], 
+							$row['id'], $this->field['grouptbl_group_id']);
+			
+			while ($row2 = $this->cpgudb->fetchRow()) {
+				$data[] = $row2['group_id'];
 			}
+			############################################################################################
 
 			if ($this->userlevel == 1 || in_array($row[$this->field['usertbl_group_id']] , $this->admingroups)) array_unshift($data, 102);
 			if ($this->userlevel == 0) array_unshift($data, 2);
@@ -169,6 +210,7 @@ class phpbb2018_udb extends core_udb {
 	// definition of how to extract an id and password hash from a cookie
 	function cookie_extraction()
 	{
+		global $cpg_db_phpbb2018_inc;	######	cpgdb_AL
 		$superCage = Inspekt::makeSuperCage();
 	    $id = 0;
 		$pass = '';
@@ -179,10 +221,16 @@ class phpbb2018_udb extends core_udb {
 			$sessiondata = unserialize($superCage->cookie->getRaw($this->cookie_name.'_data'));
 			$cookieid = $sessiondata['userid'] > 1 ? intval($sessiondata['userid']) : 0;
 			$cookiepass = (isset($sessiondata['autologinid'])) ? addslashes($sessiondata['autologinid']) : '';
-			$sql = "SELECT u.user_id, u.user_password FROM {$this->sessionskeystable} AS s 
+			/*$sql = "SELECT u.user_id, u.user_password FROM {$this->sessionskeystable} AS s 
 							INNER JOIN {$this->usertable} AS u ON s.user_id = u.user_id WHERE u.user_id = '$cookieid' AND u.user_active = 1 AND s.key_id = MD5('$cookiepass')";
 			$result = cpg_db_query($sql, $this->link_id);
-			list($id, $pass) = mysql_fetch_row($result);
+			list($id, $pass) = mysql_fetch_row($result);	*/
+			#######################################          DB        #####################################
+			$this->cpgudb->query($cpg_db_phpbb2018_inc['cookie_extraction'], $this->sessionskeystable, $thisusertable, 
+								$cookieid, MD5($cookiepass));
+								
+			list($id, $pass) = $this->cpgudb->fetchRow();
+			######################################################################################
 			$this->sid = 0;
 		}
 		
@@ -225,9 +273,12 @@ class phpbb2018_udb extends core_udb {
 	
 	function get_users($options = array())
     {
-    	global $CONFIG;
+    	global $CONFIG, $cpg_db_phpbb2018_inc;
+		#####################      DB      ######################	
+		$cpgdb =& cpgDB::getInstance();
+		$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+		##################################################	
 		
-
 		// Copy UDB fields and config variables (just to make it easier to read)
     	$f =& $this->field;
 		$C =& $CONFIG;
@@ -264,7 +315,7 @@ class phpbb2018_udb extends core_udb {
             $options['search'] = 'AND u.'.$f['username'].' LIKE "'.$options['search'].'" ';
         }
 
-        $sql = "SELECT group_id, group_name, group_quota FROM {$C['TABLE_USERGROUPS']}";
+        /*$sql = "SELECT group_id, group_name, group_quota FROM {$C['TABLE_USERGROUPS']}";
 
 		$result = cpg_db_query($sql);
 		
@@ -272,24 +323,37 @@ class phpbb2018_udb extends core_udb {
 	
 		while ($row = mysql_fetch_assoc($result)) {
 			$groups[$row['group_id']] = $row;
+		}	*/
+		###############################            DB         ##############################
+		$cpgdb->query($cpg_db_phpbb2018_inc['get_usergroups'], $C['TABLE_USERGROUPS']);
+		$groups = array();
+		while ($row = $cpgdb->fetchRow()) {
+			$groups[$row['group_id']] = $row;
 		}
+		########################################################################
 		
-		$sql ="SELECT group_id FROM {$this->groupstable} WHERE group_single_user = 0";
+		/*$sql ="SELECT group_id FROM {$this->groupstable} WHERE group_single_user = 0";
 	
 		$result = cpg_db_query($sql, $this->link_id);
 		$udb_groups = array();
 		
 		while ($row = mysql_fetch_assoc($result)) {
 			$udb_groups[] = $row['group_id'];
+		}	*/
+		###############################           DB        ###############################
+		$this->cpgudb->query($cpg_db_phpbb2018_inc['get_group_id'], $this->groupstable);
+		$udb_groups = array();
+		while ($row = $this->cpgudb->fetchRow()) {
+			$udb_groups[] = $row['group_id'];
 		}
+		########################################################################
 
-
-        $sql = "SELECT u.{$f['user_id']} as user_id, MIN(ug.{$f['grouptbl_group_id']}) AS user_group, {$f['username']} as user_name, {$f['email']} as user_email, {$f['regdate']} as user_regdate, {$f['lastvisit']} as user_lastvisit, '' as user_active, 0 as pic_count, 0 as disk_usage ".
-               "FROM {$this->usertable} AS u ".
+        /*$sql = "SELECT u.{$f['user_id']} as user_id, MIN(ug.{$f['grouptbl_group_id']}) AS user_group, {$f['username']} as user_name, {$f['email']} as user_email, {$f['regdate']} as user_regdate, {$f['lastvisit']} as user_lastvisit, '' as user_active, 0 as pic_count, 0 as disk_usage ".
+		"FROM {$this->usertable} AS u ".
 			   "INNER JOIN {$this->usergroupstable} AS ug ON u.{$this->field['user_id']}=ug.{$this->field['user_id']}    ".   
-               "WHERE u.{$f['user_id']} > 0 " . $options['search'].
-               "GROUP BY ug.{$f['user_id']} " . $sort .
-               " LIMIT {$options['lower_limit']}, {$options['users_per_page']};";
+		"WHERE u.{$f['user_id']} > 0 " . $options['search'].
+		"GROUP BY ug.{$f['user_id']} " . $sort .
+		" LIMIT {$options['lower_limit']}, {$options['users_per_page']};";
 
 		$result = cpg_db_query($sql, $this->link_id);
 		
@@ -299,8 +363,21 @@ class phpbb2018_udb extends core_udb {
 		}
 
 		// Extract user list to an array
-		while ($user = mysql_fetch_assoc($result)) {
-			
+		while ($user = mysql_fetch_assoc($result)) {	*/
+		#############################################        DB        #########################################
+		$this->cpgudb->query($cpg_db_phpbb2018_inc['get_user_usergroups'], $f['user_id'], $f['grouptbl_group_id'], $f['username'], 
+					$f['email'], $f['regdate'], $f['lastvisit'], $this->usertable, $this->usergroupstable,
+					$this->field['user_id'], $options['search'], $sort, $options['lower_limit'], $options['users_per_page']);
+		
+		$rowset = $this->cpgudb->fetchRow();
+		// If no records, return empty value
+		if (!count($rowset)) {
+			return array();
+		}
+		
+		//Extract user list to an array
+		foreach($rowset as $user) {
+		###############################################################################################
 			$gid = 2;
 
 			if ($this->use_post_based_groups){
@@ -322,14 +399,20 @@ class phpbb2018_udb extends core_udb {
 		
 		$user_list_string = implode(', ', $users);
 		
-		$sql = "SELECT owner_id, COUNT(pid) as pic_count, ROUND(SUM(total_filesize)/1024) as disk_usage FROM {$C['TABLE_PICTURES']} WHERE owner_id IN ($user_list_string) GROUP BY owner_id";
+		/*$sql = "SELECT owner_id, COUNT(pid) as pic_count, ROUND(SUM(total_filesize)/1024) as disk_usage FROM {$C['TABLE_PICTURES']} WHERE owner_id IN ($user_list_string) GROUP BY owner_id";
 
 		$result = cpg_db_query($sql);
 
 
 		while ($owner = mysql_fetch_assoc($result)) {
 			$userlist[$owner['owner_id']] = array_merge($userlist[$owner['owner_id']], $owner);
+		}	*/
+		#######################################            DB          #####################################
+		$cpgdb->query($cpg_db_phpbb2018_inc['get_user_pic_data'], $C['TABLE_PICTURES'], $user_list_string);
+		while ($owner = $cpgdb->fetchRow()) {
+			$userlist[$owner['owner_id']] = array_merge($userlist[$owner['owner_id']], $owner);
 		}
+		######################################################################################
 
 		if ($this->adv_sort) usort($userlist, array('cpg_udb', 'adv_sort'));
 

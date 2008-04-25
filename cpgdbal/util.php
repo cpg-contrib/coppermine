@@ -948,7 +948,7 @@ function refresh_db()
 								$dim_upd = @$cpgdb->query($cpg_db_util_php['refresh_db_set_dimensions'], $dimensions[0], 
 											$dimensions[1], $db_pid);
 								##################################################################
-								$outcome = ($dim_upd) ? $lang_util_php['updated'] : $lang_util_php['update_failled'].mysql_error();
+								$outcome = ($dim_upd) ? $lang_util_php['updated'] : $lang_util_php['update_failled'];//.mysql_error();
 							}
 					} else {
 							$prob .= $lang_util_php['dimension_error'].'<br />';

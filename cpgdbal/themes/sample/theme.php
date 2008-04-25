@@ -1585,192 +1585,213 @@ EOT;
 ******************************************************************************/
 function theme_main_menu($which)
 {
-    global $AUTHORIZED, $CONFIG, $album, $actual_cat, $cat, $REFERER;
-    global $lang_main_menu, $template_sys_menu, $template_sub_menu, $lang_gallery_admin_menu;
+	global $AUTHORIZED, $CONFIG, $album, $actual_cat, $cat, $REFERER;
+	global $lang_main_menu, $template_sys_menu, $template_sub_menu, $lang_gallery_admin_menu;
+	#####################      DB      ######################	
+	$global $cpg_db_sample_theme_php;
+	$cpgdb =& cpgDB::getInstance();
+	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+	##################################################	
 
-    static $sys_menu = '', $sub_menu = '';
-    if ($$which != '') {
-        return $$which;
-    }
+	static $sys_menu = '', $sub_menu = '';
+	if ($$which != '') {
+		return $$which;
+	}
 
-    //Check whether user has permission to upload file to the current album if any
-    $upload_allowed = false;
-    if (isset($album)) {
-        if (GALLERY_ADMIN_MODE) {
-            $upload_allowed = true;
-        } else {
-            if (USER_ID) {
-                $query = "SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='" . (FIRST_USER_CAT + USER_ID) . "' AND aid = '$album' ORDER BY title";
-                $user_albums = cpg_db_query($query);
-                if (mysql_num_rows($user_albums)) {
-                    $upload_allowed = true;
-                } else {
-                    $upload_allowed = false;
-                }
-            }
+	//Check whether user has permission to upload file to the current album if any
+	$upload_allowed = false;
+	if (isset($album)) {
+		if (GALLERY_ADMIN_MODE) {
+			$upload_allowed = true;
+		} else {
+			if (USER_ID) {
+				/*$query = "SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='" . (FIRST_USER_CAT + USER_ID) . "' AND aid = '$album' ORDER BY title";
+				$user_albums = cpg_db_query($query);
+				if (mysql_num_rows($user_albums)) {
+					$upload_allowed = true;
+				} else {
+					$upload_allowed = false;
+				}	*/
+				#####################################         DB       #################################
+				$user_albums = $cpgdb->query($cpg_db_sample_php['user_admin_get_alb'], (FIRST_USER_CAT + USER_ID), $album);
+				if (count($cpgdb->fetchRowSet())) {
+					$upload_allowed = true;
+				} else {
+					$upload_allowed = false;
+				}
+				###############################################################################
+			}
 
-            if (!$upload_allowed) {
-                $query = "SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " AND uploads='YES' AND (visibility = '0' OR visibility IN ".USER_GROUP_SET.") AND aid = '$album' ORDER BY title";
-                $public_albums = cpg_db_query($query);
+			if (!$upload_allowed) {
+				/*$query = "SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " AND uploads='YES' AND (visibility = '0' OR visibility IN ".USER_GROUP_SET.") AND aid = '$album' ORDER BY title";
+				$public_albums = cpg_db_query($query);
 
-                if (mysql_num_rows($public_albums)) {
-                    $upload_allowed = true;
-                } else {
-                    $upload_allowed = false;
-                }
-            }
-        }
-    }
+				if (mysql_num_rows($public_albums)) {
+					$upload_allowed = true;
+				} else {
+					$upload_allowed = false;
+				}	*/
+				#####################################         DB       #################################
+				$public_albums = $cpgdb->query($cpg_db_sample_php['alb_upload_not_allowed'], FIRST_USER_CAT, USER_GROUP_SET, $album);
+				if (count($cpgdb->fetchRowSet())) {
+					$upload_allowed = true;
+				} else {
+					$upload_allowed = false;
+				}
+				###############################################################################
+			}
+		}
+	}
 
-    $album_l = isset($album) ? "?album=$album" : '';
-    $album_12 = ($upload_allowed) ? "?album=$album" : '';
-    $cat_l = (isset($actual_cat))? "?cat=$actual_cat" : (isset($cat) ? "?cat=$cat" : '');
-    $cat_l2 = isset($cat) ? "&amp;cat=$cat" : '';
-    $my_gallery_id = FIRST_USER_CAT + USER_ID;
+	$album_l = isset($album) ? "?album=$album" : '';
+	$album_12 = ($upload_allowed) ? "?album=$album" : '';
+	$cat_l = (isset($actual_cat))? "?cat=$actual_cat" : (isset($cat) ? "?cat=$cat" : '');
+	$cat_l2 = isset($cat) ? "&amp;cat=$cat" : '';
+	$my_gallery_id = FIRST_USER_CAT + USER_ID;
 
-  if ($which == 'sys_menu' ) {
-    if (USER_ID) { // visitor is logged in
-        template_extract_block($template_sys_menu, 'login');
-        if ($CONFIG['contact_form_registered_enable'] == 0) {
-          template_extract_block($template_sys_menu, 'contact');
-        }
-        if ($CONFIG['display_sidebar_user'] != 2) {
-          template_extract_block($template_sys_menu, 'sidebar');
-        }
-    } else { // visitor is not logged in
-        if ($CONFIG['contact_form_guest_enable'] == 0) {
-          template_extract_block($template_sys_menu, 'contact');
-        }
-        if ($CONFIG['display_sidebar_guest'] != 2) {
-          template_extract_block($template_sys_menu, 'sidebar');
-        }
-        template_extract_block($template_sys_menu, 'logout');
-        template_extract_block($template_sys_menu, 'my_profile');
-    }
+	if ($which == 'sys_menu' ) {
+		if (USER_ID) { // visitor is logged in
+			template_extract_block($template_sys_menu, 'login');
+			if ($CONFIG['contact_form_registered_enable'] == 0) {
+			  template_extract_block($template_sys_menu, 'contact');
+			}
+			if ($CONFIG['display_sidebar_user'] != 2) {
+			  template_extract_block($template_sys_menu, 'sidebar');
+			}
+		} else { // visitor is not logged in
+			if ($CONFIG['contact_form_guest_enable'] == 0) {
+			  template_extract_block($template_sys_menu, 'contact');
+			}
+			if ($CONFIG['display_sidebar_guest'] != 2) {
+			  template_extract_block($template_sys_menu, 'sidebar');
+			}
+			template_extract_block($template_sys_menu, 'logout');
+			template_extract_block($template_sys_menu, 'my_profile');
+		}
 
-    if (!USER_IS_ADMIN) {
-        template_extract_block($template_sys_menu, 'enter_admin_mode');
-        template_extract_block($template_sys_menu, 'leave_admin_mode');
-    } else {
-        if (GALLERY_ADMIN_MODE) {
-            template_extract_block($template_sys_menu, 'enter_admin_mode');
-        } else {
-            template_extract_block($template_sys_menu, 'leave_admin_mode');
-        }
-    }
+		if (!USER_IS_ADMIN) {
+			template_extract_block($template_sys_menu, 'enter_admin_mode');
+			template_extract_block($template_sys_menu, 'leave_admin_mode');
+		} else {
+			if (GALLERY_ADMIN_MODE) {
+				template_extract_block($template_sys_menu, 'enter_admin_mode');
+			} else {
+				template_extract_block($template_sys_menu, 'leave_admin_mode');
+			}
+		}
 
-    if (!USER_CAN_CREATE_ALBUMS) {
-        template_extract_block($template_sys_menu, 'my_gallery');
-    }
+		if (!USER_CAN_CREATE_ALBUMS) {
+			template_extract_block($template_sys_menu, 'my_gallery');
+		}
 
-    if (USER_CAN_CREATE_ALBUMS) {
-        template_extract_block($template_sys_menu, 'my_profile');
-    }
+		if (USER_CAN_CREATE_ALBUMS) {
+			template_extract_block($template_sys_menu, 'my_profile');
+		}
 
-    if (!USER_CAN_UPLOAD_PICTURES && !USER_CAN_CREATE_ALBUMS) {
-        template_extract_block($template_sys_menu, 'upload_pic');
-    }
+		if (!USER_CAN_UPLOAD_PICTURES && !USER_CAN_CREATE_ALBUMS) {
+			template_extract_block($template_sys_menu, 'upload_pic');
+		}
 
-    if (USER_ID || !$CONFIG['allow_user_registration']) {
-        template_extract_block($template_sys_menu, 'register');
-    }
+		if (USER_ID || !$CONFIG['allow_user_registration']) {
+			template_extract_block($template_sys_menu, 'register');
+		}
 
-    if (!USER_ID || !$CONFIG['allow_memberlist']) {
-        template_extract_block($template_sys_menu, 'allow_memberlist');
-    }
+		if (!USER_ID || !$CONFIG['allow_memberlist']) {
+			template_extract_block($template_sys_menu, 'allow_memberlist');
+		}
 
-    if (!$CONFIG['display_faq']) {
-        template_extract_block($template_sys_menu, 'faq');
-    }
+		if (!$CONFIG['display_faq']) {
+			template_extract_block($template_sys_menu, 'faq');
+		}
 
-    $param = array(
-        '{HOME_TGT}' => $CONFIG['home_target'],
-        '{HOME_TITLE}' => $lang_main_menu['home_title'],
-        '{HOME_LNK}' => $lang_main_menu['home_lnk'],
-        '{CONTACT_TGT}' => "contact.php?referer=$REFERER",
-        '{CONTACT_TITLE}' => sprintf($lang_main_menu['contact_title'], $CONFIG['gallery_name']),
-        '{CONTACT_LNK}' => $lang_main_menu['contact_lnk'],
-        '{MY_GAL_TGT}' => "index.php?cat=$my_gallery_id",
-        '{MY_GAL_TITLE}' => $lang_main_menu['my_gal_title'],
-        '{MY_GAL_LNK}' => $lang_main_menu['my_gal_lnk'],
-        '{MEMBERLIST_TGT}' => "usermgr.php",
-        '{MEMBERLIST_TITLE}' => $lang_main_menu['memberlist_title'],
-        '{MEMBERLIST_LNK}' => $lang_main_menu['memberlist_lnk'],
-        '{MY_PROF_TGT}' => "profile.php?op=edit_profile",
-        '{MY_PROF_TITLE}' => $lang_main_menu['my_prof_title'],
-        '{MY_PROF_LNK}' => $lang_main_menu['my_prof_lnk'],
-        '{ADM_MODE_TGT}' => "mode.php?admin_mode=1&amp;referer=$REFERER",
-        '{ADM_MODE_TITLE}' => $lang_main_menu['adm_mode_title'],
-        '{ADM_MODE_LNK}' => $lang_main_menu['adm_mode_lnk'],
-        '{USR_MODE_TGT}' => "mode.php?admin_mode=0&amp;referer=$REFERER",
-        '{USR_MODE_TITLE}' => $lang_main_menu['usr_mode_title'],
-        '{USR_MODE_LNK}' => $lang_main_menu['usr_mode_lnk'],
-        '{SIDEBAR_TGT}' => "sidebar.php?action=install",
-        '{SIDEBAR_TITLE}' => $lang_main_menu['sidebar_title'],
-        '{SIDEBAR_LNK}' => $lang_main_menu['sidebar_lnk'],
-        '{UPL_PIC_TGT}' => "upload.php$album_12",
-        '{UPL_PIC_TITLE}' => $lang_main_menu['upload_pic_title'],
-        '{UPL_PIC_LNK}' => $lang_main_menu['upload_pic_lnk'],
-        '{REGISTER_TGT}' => "register.php",
-        '{REGISTER_TITLE}' => $lang_main_menu['register_title'],
-        '{REGISTER_LNK}' => $lang_main_menu['register_lnk'],
-        '{LOGIN_TGT}' => "login.php?referer=$REFERER",
-        '{LOGIN_TITLE}' => $lang_main_menu['login_title'],
-        '{LOGIN_LNK}' => $lang_main_menu['login_lnk'],
-        '{LOGOUT_TGT}' => "logout.php?referer=$REFERER",
-        '{LOGOUT_TITLE}' => $lang_main_menu['logout_title'],
-        '{LOGOUT_LNK}' => $lang_main_menu['logout_lnk'] . " [" . stripslashes(USER_NAME) . "]",
-        '{FAQ_TGT}' => "faq.php",
-        '{FAQ_TITLE}' => $lang_main_menu['faq_title'],
-        '{FAQ_LNK}' => $lang_main_menu['faq_lnk'],
-        '{UPL_APP_LNK}' => $lang_gallery_admin_menu['upl_app_lnk'],
-        '{UPL_APP_TGT}' => "editpics.php?mode=upload_approval",
-        '{UPL_APP_TITLE}' => $lang_gallery_admin_menu['upl_app_lnk'],
-        );
+		$param = array(
+			'{HOME_TGT}' => $CONFIG['home_target'],
+			'{HOME_TITLE}' => $lang_main_menu['home_title'],
+			'{HOME_LNK}' => $lang_main_menu['home_lnk'],
+			'{CONTACT_TGT}' => "contact.php?referer=$REFERER",
+			'{CONTACT_TITLE}' => sprintf($lang_main_menu['contact_title'], $CONFIG['gallery_name']),
+			'{CONTACT_LNK}' => $lang_main_menu['contact_lnk'],
+			'{MY_GAL_TGT}' => "index.php?cat=$my_gallery_id",
+			'{MY_GAL_TITLE}' => $lang_main_menu['my_gal_title'],
+			'{MY_GAL_LNK}' => $lang_main_menu['my_gal_lnk'],
+			'{MEMBERLIST_TGT}' => "usermgr.php",
+			'{MEMBERLIST_TITLE}' => $lang_main_menu['memberlist_title'],
+			'{MEMBERLIST_LNK}' => $lang_main_menu['memberlist_lnk'],
+			'{MY_PROF_TGT}' => "profile.php?op=edit_profile",
+			'{MY_PROF_TITLE}' => $lang_main_menu['my_prof_title'],
+			'{MY_PROF_LNK}' => $lang_main_menu['my_prof_lnk'],
+			'{ADM_MODE_TGT}' => "mode.php?admin_mode=1&amp;referer=$REFERER",
+			'{ADM_MODE_TITLE}' => $lang_main_menu['adm_mode_title'],
+			'{ADM_MODE_LNK}' => $lang_main_menu['adm_mode_lnk'],
+			'{USR_MODE_TGT}' => "mode.php?admin_mode=0&amp;referer=$REFERER",
+			'{USR_MODE_TITLE}' => $lang_main_menu['usr_mode_title'],
+			'{USR_MODE_LNK}' => $lang_main_menu['usr_mode_lnk'],
+			'{SIDEBAR_TGT}' => "sidebar.php?action=install",
+			'{SIDEBAR_TITLE}' => $lang_main_menu['sidebar_title'],
+			'{SIDEBAR_LNK}' => $lang_main_menu['sidebar_lnk'],
+			'{UPL_PIC_TGT}' => "upload.php$album_12",
+			'{UPL_PIC_TITLE}' => $lang_main_menu['upload_pic_title'],
+			'{UPL_PIC_LNK}' => $lang_main_menu['upload_pic_lnk'],
+			'{REGISTER_TGT}' => "register.php",
+			'{REGISTER_TITLE}' => $lang_main_menu['register_title'],
+			'{REGISTER_LNK}' => $lang_main_menu['register_lnk'],
+			'{LOGIN_TGT}' => "login.php?referer=$REFERER",
+			'{LOGIN_TITLE}' => $lang_main_menu['login_title'],
+			'{LOGIN_LNK}' => $lang_main_menu['login_lnk'],
+			'{LOGOUT_TGT}' => "logout.php?referer=$REFERER",
+			'{LOGOUT_TITLE}' => $lang_main_menu['logout_title'],
+			'{LOGOUT_LNK}' => $lang_main_menu['logout_lnk'] . " [" . stripslashes(USER_NAME) . "]",
+			'{FAQ_TGT}' => "faq.php",
+			'{FAQ_TITLE}' => $lang_main_menu['faq_title'],
+			'{FAQ_LNK}' => $lang_main_menu['faq_lnk'],
+			'{UPL_APP_LNK}' => $lang_gallery_admin_menu['upl_app_lnk'],
+			'{UPL_APP_TGT}' => "editpics.php?mode=upload_approval",
+			'{UPL_APP_TITLE}' => $lang_gallery_admin_menu['upl_app_lnk'],
+			);
 
-        $sys_menu = template_eval($template_sys_menu, $param);
-  } else {
+		$sys_menu = template_eval($template_sys_menu, $param);
+	} else {
 
-    if (!$CONFIG['custom_lnk_url']) {
-        template_extract_block($template_sub_menu, 'custom_link');
-    }
+		if (!$CONFIG['custom_lnk_url']) {
+			template_extract_block($template_sub_menu, 'custom_link');
+		}
 
-    $param = array(
-        '{ALB_LIST_TGT}' => "index.php$cat_l",
-        '{ALB_LIST_TITLE}' => $lang_main_menu['alb_list_title'],
-        '{ALB_LIST_LNK}' => $lang_main_menu['alb_list_lnk'],
-        '{CUSTOM_LNK_TGT}' => $CONFIG['custom_lnk_url'],
-        '{CUSTOM_LNK_TITLE}' => $CONFIG['custom_lnk_name'],
-        '{CUSTOM_LNK_LNK}' => $CONFIG['custom_lnk_name'],
-        '{LASTUP_TGT}' => "thumbnails.php?album=lastup$cat_l2",
-        '{LASTUP_TITLE}' => $lang_main_menu['lastup_title'],
-        '{LASTUP_LNK}' => $lang_main_menu['lastup_lnk'],
-        '{LASTCOM_TGT}' => "thumbnails.php?album=lastcom$cat_l2",
-        '{LASTCOM_TITLE}' => $lang_main_menu['lastcom_title'],
-        '{LASTCOM_LNK}' => $lang_main_menu['lastcom_lnk'],
-        '{TOPN_TGT}' => "thumbnails.php?album=topn$cat_l2",
-        '{TOPN_TITLE}' => $lang_main_menu['topn_title'],
-        '{TOPN_LNK}' => $lang_main_menu['topn_lnk'],
-        '{TOPRATED_TGT}' => "thumbnails.php?album=toprated$cat_l2",
-        '{TOPRATED_TITLE}' => $lang_main_menu['toprated_title'],
-        '{TOPRATED_LNK}' => $lang_main_menu['toprated_lnk'],
-        '{FAV_TGT}' => "thumbnails.php?album=favpics",
-        '{FAV_TITLE}' => $lang_main_menu['fav_title'],
-        '{FAV_LNK}' => $lang_main_menu['fav_lnk'],
-        '{BROWSEBYDATE_TGT}' => '"#" onclick="MM_openBrWindow(\'calendar.php?action=browsebydate&month='.ltrim(strftime('%m'),'0').'&year='.strftime('%Y').'\', \'Calendar\', \'width=300, height=200, scrollbars=no, toolbar=no, status=no, resizable=no\'); return false;',
-        '{BROWSEBYDATE_LNK}' => $lang_main_menu['browse_by_date_lnk'],
-        '{BROWSEBYDATE_TITLE}' => $lang_main_menu['browse_by_date_title'],
-        '{SEARCH_TGT}' => "search.php",
-        '{SEARCH_TITLE}' => $lang_main_menu['search_title'],
-        '{SEARCH_LNK}' => $lang_main_menu['search_lnk'],
-        '{UPL_APP_LNK}' => $lang_gallery_admin_menu['upl_app_lnk'],
-        '{UPL_APP_TGT}' => "editpics.php?mode=upload_approval",
-        '{UPL_APP_TITLE}' => $lang_gallery_admin_menu['upl_app_lnk'],
-        );
-    $sub_menu = template_eval($template_sub_menu, $param);
-  }
+		$param = array(
+			'{ALB_LIST_TGT}' => "index.php$cat_l",
+			'{ALB_LIST_TITLE}' => $lang_main_menu['alb_list_title'],
+			'{ALB_LIST_LNK}' => $lang_main_menu['alb_list_lnk'],
+			'{CUSTOM_LNK_TGT}' => $CONFIG['custom_lnk_url'],
+			'{CUSTOM_LNK_TITLE}' => $CONFIG['custom_lnk_name'],
+			'{CUSTOM_LNK_LNK}' => $CONFIG['custom_lnk_name'],
+			'{LASTUP_TGT}' => "thumbnails.php?album=lastup$cat_l2",
+			'{LASTUP_TITLE}' => $lang_main_menu['lastup_title'],
+			'{LASTUP_LNK}' => $lang_main_menu['lastup_lnk'],
+			'{LASTCOM_TGT}' => "thumbnails.php?album=lastcom$cat_l2",
+			'{LASTCOM_TITLE}' => $lang_main_menu['lastcom_title'],
+			'{LASTCOM_LNK}' => $lang_main_menu['lastcom_lnk'],
+			'{TOPN_TGT}' => "thumbnails.php?album=topn$cat_l2",
+			'{TOPN_TITLE}' => $lang_main_menu['topn_title'],
+			'{TOPN_LNK}' => $lang_main_menu['topn_lnk'],
+			'{TOPRATED_TGT}' => "thumbnails.php?album=toprated$cat_l2",
+			'{TOPRATED_TITLE}' => $lang_main_menu['toprated_title'],
+			'{TOPRATED_LNK}' => $lang_main_menu['toprated_lnk'],
+			'{FAV_TGT}' => "thumbnails.php?album=favpics",
+			'{FAV_TITLE}' => $lang_main_menu['fav_title'],
+			'{FAV_LNK}' => $lang_main_menu['fav_lnk'],
+			'{BROWSEBYDATE_TGT}' => '"#" onclick="MM_openBrWindow(\'calendar.php?action=browsebydate&month='.ltrim(strftime('%m'),'0').'&year='.strftime('%Y').'\', \'Calendar\', \'width=300, height=200, scrollbars=no, toolbar=no, status=no, resizable=no\'); return false;',
+			'{BROWSEBYDATE_LNK}' => $lang_main_menu['browse_by_date_lnk'],
+			'{BROWSEBYDATE_TITLE}' => $lang_main_menu['browse_by_date_title'],
+			'{SEARCH_TGT}' => "search.php",
+			'{SEARCH_TITLE}' => $lang_main_menu['search_title'],
+			'{SEARCH_LNK}' => $lang_main_menu['search_lnk'],
+			'{UPL_APP_LNK}' => $lang_gallery_admin_menu['upl_app_lnk'],
+			'{UPL_APP_TGT}' => "editpics.php?mode=upload_approval",
+			'{UPL_APP_TITLE}' => $lang_gallery_admin_menu['upl_app_lnk'],
+			);
+		$sub_menu = template_eval($template_sub_menu, $param);
+	}
 
-    return $$which;
+	return $$which;
 }
 /******************************************************************************
 ** Section <<<theme_main_menu>>> - END
@@ -2942,20 +2963,30 @@ function theme_html_img_nav_menu() {
 ******************************************************************************/
 function theme_html_rating_box()
 {
-    global $CONFIG, $CURRENT_PIC_DATA, $CURRENT_ALBUM_DATA, $THEME_DIR, $USER_DATA, $USER;
-    global $template_image_rating, $lang_rate_pic;
+	global $CONFIG, $CURRENT_PIC_DATA, $CURRENT_ALBUM_DATA, $THEME_DIR, $USER_DATA, $USER;
+	global $template_image_rating, $lang_rate_pic;
+	#####################      DB      ######################	
+	$global $cpg_db_sample_theme_php;
+	$cpgdb =& cpgDB::getInstance();
+	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+	##################################################	
 
-    if (!(USER_CAN_RATE_PICTURES && $CURRENT_ALBUM_DATA['votes'] == 'YES')){
+	if (!(USER_CAN_RATE_PICTURES && $CURRENT_ALBUM_DATA['votes'] == 'YES')){
 		return '';
 	}else{
 		//check if the users already voted or if this user is the owner
 		$user_md5_id = USER_ID ? md5(USER_ID) : $USER['ID'];
-		$result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_VOTES']} WHERE pic_id={$CURRENT_PIC_DATA['pid']} AND user_md5_id='$user_md5_id'");
+		//$result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_VOTES']} WHERE pic_id={$CURRENT_PIC_DATA['pid']} AND user_md5_id='$user_md5_id'");
+		########################################        DB       ####################################
+		$cpgdb->query($cpg_db_sample_theme_php['get_pic_ratings'], $CURRENT_PIC_DATA['pid'], $user_md5_id);
+		$rowset = $cpgdb->fetchRowSet();
+		####################################################################################
 		$user_can_vote = 'false';
 		if($CURRENT_PIC_DATA['owner_id'] == $USER_DATA['user_id'] && $USER_DATA['user_id'] != 0){
 			//user is owner
 			$rate_title = $lang_rate_pic['forbidden'];
-		}elseif(!mysql_num_rows($result)){
+		//}elseif(!mysql_num_rows($result)){
+		}elseif(!count($rowset)){	########	cpgdb_AL
 			//user hasn't voted yet, show voting things
 			$rate_title = $lang_rate_pic['rate_this_pic'];
 			$user_can_vote = 'true';	
@@ -3030,184 +3061,194 @@ function theme_html_rating_box()
 // Displays comments for a specific picture
 function theme_html_comments($pid)
 {
-    global $CONFIG, $USER, $CURRENT_ALBUM_DATA, $comment_date_fmt, $HTML_SUBST;
-    global $template_image_comments, $template_add_your_comment, $lang_display_comments, $lang_common, $REFERER;
+	global $CONFIG, $USER, $CURRENT_ALBUM_DATA, $comment_date_fmt, $HTML_SUBST;
+	global $template_image_comments, $template_add_your_comment, $lang_display_comments, $lang_common, $REFERER;
+	#####################      DB      ######################	
+	$global $cpg_db_sample_theme_php;
+	$cpgdb =& cpgDB::getInstance();
+	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+	##################################################	
 
-    $html = '';
+	$html = '';
 
-//report to moderator buttons
-    if (!(($CONFIG['report_post']==1) && (USER_CAN_SEND_ECARDS))) {
-        template_extract_block($template_image_comments, 'report_comment_button');
-    }
+	//report to moderator buttons
+	if (!(($CONFIG['report_post']==1) && (USER_CAN_SEND_ECARDS))) {
+		template_extract_block($template_image_comments, 'report_comment_button');
+	}
 
-    if (!$CONFIG['enable_smilies']) {
-        $tmpl_comment_edit_box = template_extract_block($template_image_comments, 'edit_box_no_smilies', '{EDIT}');
-        template_extract_block($template_image_comments, 'edit_box_smilies');
-        template_extract_block($template_add_your_comment, 'input_box_smilies');
-    } else {
-        $tmpl_comment_edit_box = template_extract_block($template_image_comments, 'edit_box_smilies', '{EDIT}');
-        template_extract_block($template_image_comments, 'edit_box_no_smilies');
-        template_extract_block($template_add_your_comment, 'input_box_no_smilies');
-    }
+	if (!$CONFIG['enable_smilies']) {
+		$tmpl_comment_edit_box = template_extract_block($template_image_comments, 'edit_box_no_smilies', '{EDIT}');
+		template_extract_block($template_image_comments, 'edit_box_smilies');
+		template_extract_block($template_add_your_comment, 'input_box_smilies');
+	} else {
+		$tmpl_comment_edit_box = template_extract_block($template_image_comments, 'edit_box_smilies', '{EDIT}');
+		template_extract_block($template_image_comments, 'edit_box_no_smilies');
+		template_extract_block($template_add_your_comment, 'input_box_no_smilies');
+	}
 
-    $tmpl_comments_buttons = template_extract_block($template_image_comments, 'buttons', '{BUTTONS}');
-    $tmpl_comments_ipinfo = template_extract_block($template_image_comments, 'ipinfo', '{IPINFO}');
+	$tmpl_comments_buttons = template_extract_block($template_image_comments, 'buttons', '{BUTTONS}');
+	$tmpl_comments_ipinfo = template_extract_block($template_image_comments, 'ipinfo', '{IPINFO}');
 
-    if ($CONFIG['comments_sort_descending'] == 1) {
-        $comment_sort_order = 'DESC';
-    } else {
-        $comment_sort_order = 'ASC';
-    }
-    $result = cpg_db_query("SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date) AS msg_date, author_id, author_md5_id, msg_raw_ip, msg_hdr_ip, pid, approval FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid='$pid' ORDER BY msg_id $comment_sort_order");
+	if ($CONFIG['comments_sort_descending'] == 1) {
+		$comment_sort_order = 'DESC';
+	} else {
+		$comment_sort_order = 'ASC';
+	}
+	/*$result = cpg_db_query("SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date) AS msg_date, author_id, author_md5_id, msg_raw_ip, msg_hdr_ip, pid, approval FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid='$pid' ORDER BY msg_id $comment_sort_order");
 
-    while ($row = mysql_fetch_array($result)) { // while-loop start
-        $user_can_edit = (GALLERY_ADMIN_MODE) || (USER_ID && USER_ID == $row['author_id'] && USER_CAN_POST_COMMENTS) || (!USER_ID && USER_CAN_POST_COMMENTS && ($USER['ID'] == $row['author_md5_id']));
-        if (($user_can_edit != '' && $CONFIG['comment_user_edit'] != 0) || (GALLERY_ADMIN_MODE)) {
-            $comment_buttons = $tmpl_comments_buttons;
-            $comment_edit_box = $tmpl_comment_edit_box;
-        } else {
-            $comment_buttons = '';
-            $comment_edit_box = '';
-        }
-        $comment_ipinfo = ($row['msg_raw_ip'] && GALLERY_ADMIN_MODE)?$tmpl_comments_ipinfo : '';
-        $hide_comment = 0;
+	while ($row = mysql_fetch_array($result)) { // while-loop start	*/
+	############################        DB       ###########################
+	$cpgdb->query($cpg_db_sample_theme_php['get_comments'], $pid, $comment_sort_order);
+	
+	while ($row = $cpgdb->fechRow()) { // while-loop starts
+	###############################################################
+		$user_can_edit = (GALLERY_ADMIN_MODE) || (USER_ID && USER_ID == $row['author_id'] && USER_CAN_POST_COMMENTS) || (!USER_ID && USER_CAN_POST_COMMENTS && ($USER['ID'] == $row['author_md5_id']));
+		if (($user_can_edit != '' && $CONFIG['comment_user_edit'] != 0) || (GALLERY_ADMIN_MODE)) {
+			$comment_buttons = $tmpl_comments_buttons;
+			$comment_edit_box = $tmpl_comment_edit_box;
+		} else {
+			$comment_buttons = '';
+			$comment_edit_box = '';
+		}
+		$comment_ipinfo = ($row['msg_raw_ip'] && GALLERY_ADMIN_MODE)?$tmpl_comments_ipinfo : '';
+		$hide_comment = 0;
 
-        // comment approval
-        $pending_approval = '';
-        if (USER_IS_ADMIN) {
-            //display the selector approve/disapprove
-            if ($row['approval'] == 'NO') {
-                $pending_approval = '<a href="reviewcom.php?pos=-{PID}&amp;msg_id={MSG_ID}&amp;what=approve" title="' . $lang_display_comments['approve'] . '"><img src="images/approve.gif" border="0" alt="" align="middle" /></a>';
-            } else {
-                $pending_approval = '<a href="reviewcom.php?pos=-{PID}&amp;msg_id={MSG_ID}&amp;what=disapprove" title="' . $lang_display_comments['disapprove'] . '"><img src="images/disapprove.gif" border="0" alt="" align="middle" /></a>';
-            }
-        } else { // user or guest is logged in - start
-            if ($row['approval'] == 'NO') { // the comment is not approved - start
-                if ($user_can_edit) { // the comment comes from the current visitor, display it with a warning that it needs admin approval
-                    $pending_approval = '<img src="images/approve.gif" border="0" alt="" title="' . $lang_display_comments['pending_approval'] . '" align="middle" />';
-                } else { // the comment comes from someone else - don't display it at all
-                    if ($CONFIG['comment_placeholder'] == 0) {
-                        $hide_comment = 1;
-                    } else {
-                        $row['msg_author'] = $lang_display_comments['unapproved_comment'];
-                        $row['msg_body'] = $lang_display_comments['pending_approval_message'];
-                        $row['author_id'] = 0;
-                    }
-                }
-            } // the comment is not approved - end
-        } // user or guest is logged in - end
+		// comment approval
+		$pending_approval = '';
+		if (USER_IS_ADMIN) {
+			//display the selector approve/disapprove
+			if ($row['approval'] == 'NO') {
+				$pending_approval = '<a href="reviewcom.php?pos=-{PID}&amp;msg_id={MSG_ID}&amp;what=approve" title="' . $lang_display_comments['approve'] . '"><img src="images/approve.gif" border="0" alt="" align="middle" /></a>';
+			} else {
+				$pending_approval = '<a href="reviewcom.php?pos=-{PID}&amp;msg_id={MSG_ID}&amp;what=disapprove" title="' . $lang_display_comments['disapprove'] . '"><img src="images/disapprove.gif" border="0" alt="" align="middle" /></a>';
+			}
+		} else { // user or guest is logged in - start
+			if ($row['approval'] == 'NO') { // the comment is not approved - start
+				if ($user_can_edit) { // the comment comes from the current visitor, display it with a warning that it needs admin approval
+					$pending_approval = '<img src="images/approve.gif" border="0" alt="" title="' . $lang_display_comments['pending_approval'] . '" align="middle" />';
+				} else { // the comment comes from someone else - don't display it at all
+					if ($CONFIG['comment_placeholder'] == 0) {
+						$hide_comment = 1;
+					} else {
+						$row['msg_author'] = $lang_display_comments['unapproved_comment'];
+						$row['msg_body'] = $lang_display_comments['pending_approval_message'];
+						$row['author_id'] = 0;
+					}
+				}
+			} // the comment is not approved - end
+		} // user or guest is logged in - end
 
-        if ($CONFIG['enable_smilies']) {
-            $comment_body = process_smilies(make_clickable($row['msg_body']));
-            $smilies = generate_smilies("f{$row['msg_id']}", 'msg_body');
-        } else {
-            $comment_body = make_clickable($row['msg_body']);
-            $smilies = '';
-        }
+		if ($CONFIG['enable_smilies']) {
+			$comment_body = process_smilies(make_clickable($row['msg_body']));
+			$smilies = generate_smilies("f{$row['msg_id']}", 'msg_body');
+		} else {
+			$comment_body = make_clickable($row['msg_body']);
+			$smilies = '';
+		}
 
-        // wrap the comment into italics if it isn't approved
-        if ($row['approval'] == 'NO') {
-            $comment_body = '<em>'.$comment_body.'</em>';
-            $row['msg_author'] = $row['msg_author'];
-        }
+		// wrap the comment into italics if it isn't approved
+		if ($row['approval'] == 'NO') {
+			$comment_body = '<em>'.$comment_body.'</em>';
+			$row['msg_author'] = $row['msg_author'];
+		}
 
-        $ip = $row['msg_hdr_ip'];
-        if ($row['msg_hdr_ip'] != $row['msg_raw_ip']) {
-            $ip .= ' [' . $row['msg_raw_ip'] . ']';
-        }
+		$ip = $row['msg_hdr_ip'];
+		if ($row['msg_hdr_ip'] != $row['msg_raw_ip']) {
+			$ip .= ' [' . $row['msg_raw_ip'] . ']';
+		}
 
-        $params = array('{EDIT}' => &$comment_edit_box,
-            '{BUTTONS}' => &$comment_buttons,
-            '{IPINFO}' => &$comment_ipinfo,
-            '{PENDING_APPROVAL}' => &$pending_approval
-            );
+		$params = array('{EDIT}' => &$comment_edit_box,
+			'{BUTTONS}' => &$comment_buttons,
+			'{IPINFO}' => &$comment_ipinfo,
+			'{PENDING_APPROVAL}' => &$pending_approval
+			);
 
-        $template = template_eval($template_image_comments, $params);
+		$template = template_eval($template_image_comments, $params);
 
-        if ($row['author_id'] == 0) {
-            $profile_lnk = stripslashes($row['msg_author']);
-        } else {
-            $profile_lnk = '<a href="profile.php?uid='.$row['author_id'].'">'.stripslashes($row['msg_author']).'</a>';
-        }
+		if ($row['author_id'] == 0) {
+			$profile_lnk = stripslashes($row['msg_author']);
+		} else {
+			$profile_lnk = '<a href="profile.php?uid='.$row['author_id'].'">'.stripslashes($row['msg_author']).'</a>';
+		}
 
-        $params = array('{MSG_AUTHOR_LNK}' => $profile_lnk,
-            '{MSG_AUTHOR}' => $row['msg_author'],
-            '{MSG_ID}' => $row['msg_id'],
-            '{PID}' => $row['pid'],
-            '{EDIT_TITLE}' => &$lang_display_comments['edit_title'],
-            '{DELETE_TITLE}' => &$lang_display_comments['delete_title'],
-            '{CONFIRM_DELETE}' => &$lang_display_comments['confirm_delete'],
-            '{MSG_DATE}' => localised_date($row['msg_date'], $comment_date_fmt),
-            '{MSG_BODY}' => bb_decode($comment_body),
-            '{MSG_BODY_RAW}' => $row['msg_body'],
-            '{OK}' => &$lang_display_comments['OK'],
-            '{SMILIES}' => $smilies,
-            '{IP}' => $ip,
-            '{REPORT_COMMENT_TITLE}' => &$lang_display_comments['report_comment_title'],
-            '{WIDTH}' => $CONFIG['picture_table_width']
-            );
+		$params = array('{MSG_AUTHOR_LNK}' => $profile_lnk,
+			'{MSG_AUTHOR}' => $row['msg_author'],
+			'{MSG_ID}' => $row['msg_id'],
+			'{PID}' => $row['pid'],
+			'{EDIT_TITLE}' => &$lang_display_comments['edit_title'],
+			'{DELETE_TITLE}' => &$lang_display_comments['delete_title'],
+			'{CONFIRM_DELETE}' => &$lang_display_comments['confirm_delete'],
+			'{MSG_DATE}' => localised_date($row['msg_date'], $comment_date_fmt),
+			'{MSG_BODY}' => bb_decode($comment_body),
+			'{MSG_BODY_RAW}' => $row['msg_body'],
+			'{OK}' => &$lang_display_comments['OK'],
+			'{SMILIES}' => $smilies,
+			'{IP}' => $ip,
+			'{REPORT_COMMENT_TITLE}' => &$lang_display_comments['report_comment_title'],
+			'{WIDTH}' => $CONFIG['picture_table_width']
+			);
 
-        if ($hide_comment != 1) {
-            $html .= template_eval($template, $params);
-        }
-    } // while-loop end
+		if ($hide_comment != 1) {
+			$html .= template_eval($template, $params);
+		}
+	} // while-loop end
 
-    if (USER_CAN_POST_COMMENTS && $CURRENT_ALBUM_DATA['comments'] == 'YES') {
-        if (USER_ID) {
-            $user_name_input = '<tr><td><input type="hidden" name="msg_author" value="' . stripslashes(USER_NAME) . '" /></td>';
-            template_extract_block($template_add_your_comment, 'user_name_input', $user_name_input);
-            $user_name = '';
-        } else {
-            if (isset($USER['name'])) {
-              $user_name = strtr($USER['name'], $HTML_SUBST);
-            } else {
-              $user_name = $lang_display_comments['your_name'];
-            }
-        }
+	if (USER_CAN_POST_COMMENTS && $CURRENT_ALBUM_DATA['comments'] == 'YES') {
+		if (USER_ID) {
+			$user_name_input = '<tr><td><input type="hidden" name="msg_author" value="' . stripslashes(USER_NAME) . '" /></td>';
+			template_extract_block($template_add_your_comment, 'user_name_input', $user_name_input);
+			$user_name = '';
+		} else {
+			if (isset($USER['name'])) {
+			  $user_name = strtr($USER['name'], $HTML_SUBST);
+			} else {
+			  $user_name = $lang_display_comments['your_name'];
+			}
+		}
 
-        if (($CONFIG['comment_captcha'] == 0) || ($CONFIG['comment_captcha'] == 1 && USER_ID)) {
-            template_extract_block($template_add_your_comment, 'comment_captcha');
-        }
+		if (($CONFIG['comment_captcha'] == 0) || ($CONFIG['comment_captcha'] == 1 && USER_ID)) {
+			template_extract_block($template_add_your_comment, 'comment_captcha');
+		}
 
-        $params = array('{ADD_YOUR_COMMENT}' => $lang_display_comments['add_your_comment'],
-            // Modified Name and comment field
-            '{NAME}' => $lang_display_comments['name'],
-            '{COMMENT}' => $lang_display_comments['comment'],
-            '{CONFIRM}' => $lang_common['confirm'].'&nbsp;'. cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_common['captcha_help_title']))).'&amp;t='.urlencode(base64_encode(serialize($lang_common['captcha_help']))),470,245),
-            '{PIC_ID}' => $pid,
-            '{USER_NAME}' => $user_name,
-            '{MAX_COM_LENGTH}' => $CONFIG['max_com_size'],
-            '{OK}' => $lang_display_comments['OK'],
-            '{DEFAULT_USERNAME}' => $lang_display_comments['your_name'],
-            '{DEFAULT_USERNAME_MESSAGE}' => $lang_display_comments['default_username_message'],
-            '{SMILIES}' => '',
-            '{WIDTH}' => $CONFIG['picture_table_width'],
-            );
+		$params = array('{ADD_YOUR_COMMENT}' => $lang_display_comments['add_your_comment'],
+			// Modified Name and comment field
+			'{NAME}' => $lang_display_comments['name'],
+			'{COMMENT}' => $lang_display_comments['comment'],
+			'{CONFIRM}' => $lang_common['confirm'].'&nbsp;'. cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_common['captcha_help_title']))).'&amp;t='.urlencode(base64_encode(serialize($lang_common['captcha_help']))),470,245),
+			'{PIC_ID}' => $pid,
+			'{USER_NAME}' => $user_name,
+			'{MAX_COM_LENGTH}' => $CONFIG['max_com_size'],
+			'{OK}' => $lang_display_comments['OK'],
+			'{DEFAULT_USERNAME}' => $lang_display_comments['your_name'],
+			'{DEFAULT_USERNAME_MESSAGE}' => $lang_display_comments['default_username_message'],
+			'{SMILIES}' => '',
+			'{WIDTH}' => $CONFIG['picture_table_width'],
+			);
 
-        if ($CONFIG['enable_smilies']){
-                        $params['{SMILIES}'] = generate_smilies();
-                } else {
-                        template_extract_block($template_add_your_comment, 'smilies');
-                }
+		if ($CONFIG['enable_smilies']){
+						$params['{SMILIES}'] = generate_smilies();
+				} else {
+						template_extract_block($template_add_your_comment, 'smilies');
+				}
 
-        template_extract_block($template_add_your_comment, 'login_to_comment');
-        $html .= template_eval($template_add_your_comment, $params);
-    } else { // user can not post comments
-        if ($CONFIG['comment_promote_registration'] == 1 && $CURRENT_ALBUM_DATA['comments'] == 'YES') {
-          template_extract_block($template_add_your_comment, 'user_name_input');
-          template_extract_block($template_add_your_comment, 'input_box_smilies');
-          template_extract_block($template_add_your_comment, 'comment_captcha');
-          template_extract_block($template_add_your_comment, 'smilies');
-          template_extract_block($template_add_your_comment, 'submit');
-          $params = array('{ADD_YOUR_COMMENT}' => $lang_display_comments['add_your_comment'],
-              '{WIDTH}' => $CONFIG['picture_table_width'],
-              '{LOGIN_TO_COMMENT}' => sprintf($lang_display_comments['log_in_to_comment'], '<a href="login.php?referer='.$REFERER.'">', '</a>'),
-              );
-          $html .= template_eval($template_add_your_comment, $params);
-        }
-    }
+		template_extract_block($template_add_your_comment, 'login_to_comment');
+		$html .= template_eval($template_add_your_comment, $params);
+	} else { // user can not post comments
+		if ($CONFIG['comment_promote_registration'] == 1 && $CURRENT_ALBUM_DATA['comments'] == 'YES') {
+		  template_extract_block($template_add_your_comment, 'user_name_input');
+		  template_extract_block($template_add_your_comment, 'input_box_smilies');
+		  template_extract_block($template_add_your_comment, 'comment_captcha');
+		  template_extract_block($template_add_your_comment, 'smilies');
+		  template_extract_block($template_add_your_comment, 'submit');
+		  $params = array('{ADD_YOUR_COMMENT}' => $lang_display_comments['add_your_comment'],
+			  '{WIDTH}' => $CONFIG['picture_table_width'],
+			  '{LOGIN_TO_COMMENT}' => sprintf($lang_display_comments['log_in_to_comment'], '<a href="login.php?referer='.$REFERER.'">', '</a>'),
+			  );
+		  $html .= template_eval($template_add_your_comment, $params);
+		}
+	}
 
-    return $html;
+	return $html;
 }
 /******************************************************************************
 ** Section <<<theme_html_comments>>> - END
@@ -3274,40 +3315,53 @@ EOT;
 // Display the full size image
 function theme_display_fullsize_pic()
 {
-    global $CONFIG, $THEME_DIR, $ALBUM_SET, $pid;
-    global $lang_errors, $lang_fullsize_popup, $lang_charset;
+	global $CONFIG, $THEME_DIR, $ALBUM_SET, $pid;
+	global $lang_errors, $lang_fullsize_popup, $lang_charset;
+	#####################      DB      ######################	
+	$global $cpg_db_sample_theme_php;
+	$cpgdb =& cpgDB::getInstance();
+	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+	##################################################	
 
-    $superCage = Inspekt::makeSuperCage();
+	$superCage = Inspekt::makeSuperCage();
 
-    if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 2) {
-      printf($lang_errors['login_needed'],'','','','');
-      die();
-    }
+	if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 2) {
+		printf($lang_errors['login_needed'],'','','','');
+		die();
+	}
     //if (isset($_GET['picfile'])){
-    if ($superCage->get->keyExists('picfile')) {
-        if (!GALLERY_ADMIN_MODE) {
-          cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
-        }
-      //$picfile = $_GET['picfile'];
-      $picfile = $superCage->get->getPath('picfile');
-      $picname = $CONFIG['fullpath'] . $picfile;
-      $imagesize = @getimagesize($picname);
-      $imagedata = array('name' => $picfile, 'path' => path2url($picname), 'geometry' => $imagesize[3]);
-    } elseif (pid) {
-      //$pid = (int)$_GET['pid'];
-      $sql = "SELECT * " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='$pid' $ALBUM_SET";
-      $result = cpg_db_query($sql);
-      if (!mysql_num_rows($result)) {
-        cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
-      }
-      $row = mysql_fetch_array($result);
-      $pic_url = get_pic_url($row, 'fullsize');
-      $geom = 'width="' . $row['pwidth'] . '" height="' . $row['pheight'] . '"';
-      $imagedata = array('name' => $row['filename'], 'path' => $pic_url, 'geometry' => $geom);
+	if ($superCage->get->keyExists('picfile')) {
+		if (!GALLERY_ADMIN_MODE) {
+			cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+		}
+		//$picfile = $_GET['picfile'];
+		$picfile = $superCage->get->getPath('picfile');
+		$picname = $CONFIG['fullpath'] . $picfile;
+		$imagesize = @getimagesize($picname);
+		$imagedata = array('name' => $picfile, 'path' => path2url($picname), 'geometry' => $imagesize[3]);
+	} elseif (pid) {
+		//$pid = (int)$_GET['pid'];
+		/*$sql = "SELECT * " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='$pid' $ALBUM_SET";
+		$result = cpg_db_query($sql);
+		if (!mysql_num_rows($result)) {
+			cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
+		}
+		$row = mysql_fetch_array($result);	*/
+		############################           DB          ############################
+		$cpgdb->query($cpg_db_sample_theme_php['display_fullsize_pic'], $pid, $ALBUM_SET);
+		$rowset = $cpgdb->fetchRowSet();
+		if (!count($rowset)) {
+			cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
+		}
+		$row = $rowet[0];
+		###################################################################
+		$pic_url = get_pic_url($row, 'fullsize');
+		$geom = 'width="' . $row['pwidth'] . '" height="' . $row['pheight'] . '"';
+		$imagedata = array('name' => $row['filename'], 'path' => $pic_url, 'geometry' => $geom);
     }
     if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 2) { // adjust the size of the window if we don't have to catter for a full-size pop-up, but only a text message
-       $row['pwidth'] = 200;
-       $row['pheight'] = 100;
+		$row['pwidth'] = 200;
+		$row['pheight'] = 100;
     }
 
 ?>

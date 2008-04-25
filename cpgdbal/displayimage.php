@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4296 $
-  $LastChangedBy: saweyyy $
-  $Date: 2008-02-26 14:49:49 +0530 (Tue, 26 Feb 2008) $
+  $Revision: 4400 $
+  $LastChangedBy: abbas-ali $
+  $Date: 2008-04-23 17:37:29 +0530 (Wed, 23 Apr 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -343,7 +343,7 @@ if ($pos < 0 || $pid > 0) {
 */
 ###################################################
 
-if ($pos < 0 || $pid > 0) {
+if (!$superCage->get->keyExists('fullsize') && ($pos < 0 || $pid > 0)) {
     ########## Modified by Abbas for new URL feature #########
     $pid = ($pos < 0) ? -$pos : $pid;
     if (!$album) {
@@ -364,7 +364,7 @@ if ($pos < 0 || $pid > 0) {
     $CURRENT_PIC_DATA = $pic_data[$pos];
     reset($pic_data);
     ########################################################
-} elseif (isset($pos)) {
+} elseif (isset($pos) && is_numeric($pos)) {
     //$pic_data = get_pic_data($album, $pic_count, $album_name, $pos, 1, false);
     //We must get all the data here as well, otherwise the prev/next breaks.
     $pic_data = get_pic_data($album, $pic_count, $album_name, -1, -1, false);
@@ -378,7 +378,7 @@ if ($pos < 0 || $pid > 0) {
     $CURRENT_PIC_DATA = $pic_data[$pos];
 }
 
-if (!count($CURRENT_PIC_DATA)) {
+if (!$superCage->get->keyExists('fullsize') && !count($CURRENT_PIC_DATA)) {
   cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
 }
 ######################################

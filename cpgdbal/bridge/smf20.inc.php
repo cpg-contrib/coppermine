@@ -60,8 +60,15 @@ class cpg_udb extends core_udb {
 
         // Derived full table names
         if (strpos($db_prefix, '.') === false) {
-            $this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
-            $this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
+			##########################################            DB          #######################################
+			if ($CONFIG['dbservername'] == 'mysql') {
+				$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
+				$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
+			} else {	///////	for MSSQL		///////
+				$this->usertable = $this->db['name'] ."." .dbo ."." .$this->db['prefix'] . $this->table['users'];
+				$this->groupstable =   $this->db['name'] . "." .dbo ."." .$this->db['prefix'] . $this->table['groups'];
+			}
+			############################################################################################
         } else {
             $this->usertable = $this->db['prefix'] . $this->table['users'];
             $this->groupstable = $this->db['prefix'] . $this->table['groups'];
@@ -74,7 +81,8 @@ class cpg_udb extends core_udb {
                         'password' => 'passwd', // name of the password field in the users table
                         'email' => 'email_address', // name of 'email' field in users table
                         'regdate' => 'date_registered', // name of 'registered' field in users table
-                        'lastvisit' => 'UNIX_TIMESTAMP(last_login)', // last time user logged in
+                        //'lastvisit' => 'UNIX_TIMESTAMP(last_login)', // last time user logged in
+						'lastvisit' => 'last_login', // last time user logged in	#####	cpgdb_AL
                         'active' => 'is_activated', // is user account active?
                         'location' => 'location', // name of 'location' field in users table
                         'website' => 'website_url', // name of 'website' field in users table
@@ -177,20 +185,28 @@ class cpg_udb extends core_udb {
 
         function collect_groups()
         {
-                // Use this version to exclude true post based groups
-                //$sql ="SELECT * FROM {$this->groupstable} WHERE minposts=-1";
+				global $cpg_db_smf20_inc;
+				// Use this version to exclude true post based groups
+				//$sql ="SELECT * FROM {$this->groupstable} WHERE minposts=-1";
 
-                // Use this version to include all SMF groups
-                $sql ="SELECT * FROM {$this->groupstable}";
+				// Use this version to include all SMF groups
+				/*$sql ="SELECT * FROM {$this->groupstable}";
 
-                $result = cpg_db_query($sql, $this->link_id);
+				$result = cpg_db_query($sql, $this->link_id);
 
-                $udb_groups = array(1=>'Guests', 2=>'Registered');
+				$udb_groups = array(1=>'Guests', 2=>'Registered');
 
-                while ($row = mysql_fetch_assoc($result))
-                {
-                        $udb_groups[$row[$this->field['grouptbl_group_id']]+100] = utf_ucfirst(utf_strtolower($row[$this->field['grouptbl_group_name']]));
-                }
+				while ($row = mysql_fetch_assoc($result))
+				{
+						$udb_groups[$row[$this->field['grouptbl_group_id']]+100] = utf_ucfirst(utf_strtolower($row[$this->field['grouptbl_group_name']]));
+				}	*/
+				####################################            DB          #####################################
+				$this->cpgudb->query($cpg_db_smf20_inc['get_all_groups'], $this->groupstable);
+				$udb_groups = array(1=>'Guests', 2=>'Registered');
+				while ($row = $this->cpgudb->fetchRow()) {
+					$udb_groups[$row[$this->field['grouptbl_group_id']]+100] = utf_ucfirst(utf_strtolower($row[$this->field['grouptbl_group_name']]));
+				}
+				####################################################################################
 
                 return $udb_groups;
         }

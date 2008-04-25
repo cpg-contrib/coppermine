@@ -63,7 +63,10 @@ switch ($action) {
         $value = 0;
       }
       if ($value != $CONFIG['plugin_visiblehookpoints_display']) {
-        $f= cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '{$value}' WHERE name = 'plugin_visiblehookpoints_display'");
+        //$f= cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '{$value}' WHERE name = 'plugin_visiblehookpoints_display'");
+		##################################            DB         #################################
+		$f = $cpgdb->query($cpg_db_visualhookpoints_index_php['set_visualhookpoints'], $value);
+		#############################################################################
         if (version_compare(COPPERMINE_VERSION, '1.5.0') == -1) {
             $header_location = (@preg_match('/Microsoft|WebSTAR|Xitami/', getenv('SERVER_SOFTWARE'))) ? 'Refresh: 0; URL=' : 'Location: ';
             $redirect = "index.php?file=visiblehookpoints/index&action=config";

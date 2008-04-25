@@ -55,14 +55,16 @@ class cpg_udb extends core_udb {
 			'users' => 'users',
 			'groups' => 'usergroups'
 		);
-
+		######################################              DB          ####################################
 		// Derived full table names
-		$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
-		$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
-		####################    FOR MSSQL ONLY   ####################
-//               $this->usertable = $this->db['name'] ."." .dbo ."." .$this->db['prefix'] . $this->table['users'];
-//               $this->groupstable =   $this->db['name'] . "." .dbo ."." .$this->db['prefix'] . $this->table['groups'];
-		#######################################################
+		if ($CONFIG['dbservername'] == 'mysql') {
+			$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
+			$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
+		} else {	///////       for mssql      ////////
+			$this->usertable = $this->db['name'] ."." .dbo ."." .$this->db['prefix'] . $this->table['users'];
+			$this->groupstable =   $this->db['name'] . "." .dbo ."." .$this->db['prefix'] . $this->table['groups'];
+		}
+		#######################################################################################
 
 		// Table field names
 		$this->field = array(

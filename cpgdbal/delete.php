@@ -417,7 +417,7 @@ switch ($what) {
 						/*$query = "UPDATE $CONFIG[TABLE_ALBUMS] SET title='" . addslashes($op['album_nm']) . "', pos='{$op['album_sort']}' WHERE aid='{$op['album_no']}' $restrict LIMIT 1";
 						cpg_db_query($query);	*/
 						################################          DB       #################################
-						$cpgdb->query($cpg_db_delete_php['albmgr_update_album'], addslashes($op['album_nm']), $op['album_sort']
+						$cpgdb->query($cpg_db_delete_php['albmgr_update_album'], addslashes($op['album_nm']), $op['album_sort'],
 									$op['album_no'], $restrict);
 						##########################################################################
 						break;
@@ -549,7 +549,7 @@ switch ($what) {
 		if (!count($rowset)) {
 			cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_comment'], __FILE__, __LINE__);
 		} else {
-			comment_data = $rowset[0];
+			$comment_data = $rowset[0];
 		}
 		
 		if (GALLERY_ADMIN_MODE) {
@@ -557,7 +557,7 @@ switch ($what) {
 		} elseif (USER_ID) {
 				$cpgdb->query($cpg_db_delete_php['comment_del_user_admin'], $msg_id, USER_ID);
 		} else {
-			$cpgdb->query($cpg_db_delete_php['comment_del_not_admin'], $msg_id, $USER['ID'], );
+			$cpgdb->query($cpg_db_delete_php['comment_del_not_admin'], $msg_id, $USER['ID']);
 		}
 		#################################################################################
 

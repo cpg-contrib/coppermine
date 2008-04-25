@@ -39,8 +39,12 @@ $session_id = $info[0];
 $verified = false;
 //first, we will check if this user is actually a regular user not trying to cheat
 if(is_numeric($user_id)){
-	$result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PREFIX']}sessions WHERE session_id='$session_id' AND user_id=$user_id");
-	$verified = mysql_num_rows($result) ? true : false;
+	/*$result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PREFIX']}sessions WHERE session_id='$session_id' AND user_id=$user_id");
+	$verified = mysql_num_rows($result) ? true : false;	*/
+	#################################         DB      ##################################
+	$cpgdb->query($cpg_db_ratepic_php['verify_user'], $session_id, $user_id);
+	$verified = count($cpgdb->fetchRowSet())? true : false;
+	###########################################################################
 }else {
 	$verified = false;
 }
@@ -58,17 +62,26 @@ $rate = max($rate, 0);
 
 
 // Retrieve picture/album information & check if user can rate picture
-$sql = "SELECT a.votes as votes_allowed, p.votes as votes, pic_rating, owner_id " . "FROM {$CONFIG['TABLE_PICTURES']} AS p, {$CONFIG['TABLE_ALBUMS']} AS a " . "WHERE p.aid = a.aid AND pid = '$pic' LIMIT 1";
+/*$sql = "SELECT a.votes as votes_allowed, p.votes as votes, pic_rating, owner_id " . "FROM {$CONFIG['TABLE_PICTURES']} AS p, {$CONFIG['TABLE_ALBUMS']} AS a " . "WHERE p.aid = a.aid AND pid = '$pic' LIMIT 1";
 $result = cpg_db_query($sql);
 
-if (!mysql_num_rows($result)) {
+if (!mysql_num_rows($result)) {	*/
+#####################################          DB       ######################################
+$cpgdb->query($cpg_db_ratepic_php['get_pic_info'], $pic);
+$rowset = $cpgdb->fetchRowSet();
+if (!count($rowset)) {
+####################################################################################
 	//send back voting failure to ajax request
 	$send_back = array('status' => 'error', 'msg' => $lang_errors['non_exist_ap']);
 	echo json_encode($send_back);
 	exit;
 }
-$row = mysql_fetch_array($result);
-mysql_free_result($result);
+/*$row = mysql_fetch_array($result);
+mysql_free_result($result);	*/
+################     DB     ################
+$row = $rowset[0];
+$cpgdb->free();
+######################################
 
 if (!USER_CAN_RATE_PICTURES || $row['votes_allowed'] == 'NO') {
     //send back voting failure to ajax request
@@ -80,15 +93,22 @@ if (!USER_CAN_RATE_PICTURES || $row['votes_allowed'] == 'NO') {
 // Clean votes older votes
 $curr_time = time();
 $clean_before = $curr_time - $CONFIG['keep_votes_time'] * 86400;
-$sql = "DELETE " . "FROM {$CONFIG['TABLE_VOTES']} " . "WHERE vote_time < $clean_before";
-$result = cpg_db_query($sql);
+/*$sql = "DELETE " . "FROM {$CONFIG['TABLE_VOTES']} " . "WHERE vote_time < $clean_before";
+$result = cpg_db_query($sql);	*/
+###########################        DB      ##########################
+$cpgdb->query($cpg_db_ratepic_php['clean_older_votes'], $clean_before);
+############################################################
 
 // Check if user already rated this picture
 $user_md5_id = USER_ID ? md5(USER_ID) : md5($user_id);
-$sql = "SELECT * " . "FROM {$CONFIG['TABLE_VOTES']} " . "WHERE pic_id = '$pic' AND user_md5_id = '$user_md5_id'";
+/*$sql = "SELECT * " . "FROM {$CONFIG['TABLE_VOTES']} " . "WHERE pic_id = '$pic' AND user_md5_id = '$user_md5_id'";
 $result = cpg_db_query($sql);
 
-if (mysql_num_rows($result)) { 
+if (mysql_num_rows($result)) { */
+##############################         DB        ##############################
+$cpgdb->query($cpg_db_ratepic_php['check_already_rated'], $pic, $user_md5_id);
+if (count($cpgdb->fetchRowSet())) {
+#####################################################################
 	// user has already rated this file
 	$send_back = array('status' => 'error', 'msg' => $lang_rate_pic_php['already_rated']);
 	echo json_encode($send_back);
@@ -106,39 +126,49 @@ if (!empty($user_id) && $user_id == $row['owner_id'] && !USER_IS_ADMIN) {
 
 // Update picture rating
 $new_rating = round(($row['votes'] * $row['pic_rating'] + ($rate * (5/$rating_stars_amount)) * 2000) / ($row['votes'] + 1));
-$sql = "UPDATE {$CONFIG['TABLE_PICTURES']} " . "SET pic_rating = '$new_rating', votes = votes + 1 " . "WHERE pid = '$pic' LIMIT 1";
+/*$sql = "UPDATE {$CONFIG['TABLE_PICTURES']} " . "SET pic_rating = '$new_rating', votes = votes + 1 " . "WHERE pid = '$pic' LIMIT 1";
 $result = cpg_db_query($sql);
 
 // Update the votes table
 $sql = "INSERT INTO {$CONFIG['TABLE_VOTES']} " . "VALUES ('$pic', '$user_md5_id', '$curr_time')";
-$result = cpg_db_query($sql);
+$result = cpg_db_query($sql);	*/
+################################           DB          ###############################
+$cpgdb->query($cpg_db_ratepic_php['update_pic_rating'], $new_rating, $pic);
+
+// Update the votes table
+$cpgdb->query($cpg_db_ratepic_php['update_pic_votes'], $pic, $user_md5_id, $curr_time);
+##########################################################################
 
 //
 // Code to record the details of votes for the picture if the option is set in CONFIG
 //
 if ($CONFIG['vote_details']) {
-    // Get the details of user browser, IP, OS, etc
-    $client_details = cpg_determine_client();
+	// Get the details of user browser, IP, OS, etc
+	$client_details = cpg_determine_client();
 
-    // Code to write the user id if a user is logged in
-    $voteUserId = USER_ID;
+	// Code to write the user id if a user is logged in
+	$voteUserId = USER_ID;
 
-    $time = time();
+	$time = time();
 
-    $referer = urlencode($superCage->post->getEscaped('HTTP_REFERER'));
+	$referer = urlencode($superCage->post->getEscaped('HTTP_REFERER'));
 
-    // Insert the record in database
-    $query = "INSERT INTO {$CONFIG['TABLE_VOTE_STATS']}
-                      SET
-                        pid = $pic,
-                        rating = $rate,
-                        Ip   = '$raw_ip',
-                        sdate = '$time',
-                        referer = '$referer',
-                        browser = '{$client_details['browser']}',
-                        os = '{$client_details['os']}',
-                        uid = '$voteUserId'";
-    cpg_db_query($query);
+	// Insert the record in database
+	/*$query = "INSERT INTO {$CONFIG['TABLE_VOTE_STATS']}
+					SET
+						pid = $pic,
+						rating = $rate,
+						Ip   = '$raw_ip',
+						sdate = '$time',
+						referer = '$referer',
+						browser = '{$client_details['browser']}',
+						os = '{$client_details['os']}',
+						uid = '$voteUserId'";
+	cpg_db_query($query);	*/
+	#####################################          DB         ###################################
+	$cpgdb->query($cpg_db_ratepic_php['add_votes_stats'], $pic, $rate, $raw_ip, $time, $referer, 
+					$client_details['browser'], $client_details['os'], $voteUserId);
+	##################################################################################
 }
 $new_rating = round(($new_rating / 2000) / (5/$rating_stars_amount), 1);
 $new_rating_text = $lang_rate_pic['already_voted'] . ' ' . sprintf($lang_rate_pic['rating'], $new_rating, $rating_stars_amount, $row['votes'] + 1);

@@ -46,7 +46,7 @@ class cpg_udb extends core_udb {
 
 	function cpg_udb()
 	{
-		global $BRIDGE;
+		global $BRIDGE, $CONFIG;
 		
 		if (!USE_BRIDGEMGR) { // the vars that are used when bridgemgr is disabled
 
@@ -78,9 +78,14 @@ class cpg_udb extends core_udb {
 		$this->table = array(
 			'users' => 'users',
 		);
-
+		##########################################            DB          #######################################
 		// Derived full table names
-		$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
+		if ($CONFIG['dbservername'] == 'mysql') {
+			$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
+		} else {	//////	for MSSQL	//////
+			$this->usertable = $this->db['name'] ."." .dbo ."." .$this->db['prefix'] . $this->table['users'];
+		}
+		#############################################################################################
 		
 		// Table field names
 		$this->field = array(
@@ -115,6 +120,7 @@ class cpg_udb extends core_udb {
 	// definition of how to extract id, name, group from a session cookie
 	function session_extraction()
 	{
+		global $cpg_db_punbb115_inc	######	cpgdb_AL
 		$superCage = Inspekt::makeSuperCage();
 		$row = false; //array('id' => 0, 'username' => 'Guest', 'status' => -1);
 		
@@ -124,8 +130,12 @@ class cpg_udb extends core_udb {
 			list($username, $pass_hash) = unserialize($superCage->cookie->getRaw($this->cookie_name));
 			if (strcasecmp($username, 'Guest'))
 			{
-				$result = cpg_db_query("SELECT id, username, status+100 AS status FROM {$this->usertable} WHERE username = '$username' AND password = '$pass_hash'", $this->link_id);
-				$row = mysql_fetch_assoc($result);
+				/*$result = cpg_db_query("SELECT id, username, status+100 AS status FROM {$this->usertable} WHERE username = '$username' AND password = '$pass_hash'", $this->link_id);
+				$row = mysql_fetch_assoc($result);	*/
+				########################################          DB        ####################################
+				$this->cpgudb->query($cpg_db_punbb115_inc['session_extraction'], $this->usertable, $username, $pass_hash);
+				$row = $this->cpgudb->fetchRow();
+				#####################################################################################
 			}
 		}
 		

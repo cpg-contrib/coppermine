@@ -82,6 +82,7 @@ if (EDIT_PICTURES_MODE) {
 	############################           DB        ############################
 	$cpgdb->query($cpg_db_editpics_php['edit_pic_mode_get_alb'], $album_id);
 	$rowset = $cpgdb->fetchRowSet();
+	if (!count($rowset)) cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
 	$ALBUM_DATA = $rowset[0];
 	$cpgdb->free();
 	#################################################################
@@ -764,7 +765,9 @@ if (UPLOAD_APPROVAL_MODE) {
 	
 	// Update user names for pictures
 	$cpgdb->query($cpg_db_editpics_php['get_pic_owner']);
-	while ($row = $cpgdb->fetchRow()) {
+	$editpics_rowset = $cpgdb->fetchRowSet();
+	$cpgdb->free();
+	foreach ($editpics_rowset as $row) {
 		$owner_name = $cpg_udb->get_user_name($row['owner_id']);
 		if ($owner_name) {
 				$cpgdb->query($cpg_db_editpics_php['set_pic_owner_name'], $owner_name, $row['pid']);
@@ -772,7 +775,6 @@ if (UPLOAD_APPROVAL_MODE) {
 				$cpgdb->query($cpg_db_editpics_php['set_pic_owner_id'], $row['pid']);
 		}
 	}
-	$cpgdb->free();
 	#########################################################################################
 
 	/*if (MODERATOR_MODE) {
@@ -815,8 +817,7 @@ if (UPLOAD_APPROVAL_MODE) {
 		$nbEnr = $cpgdb->fetchRow();
 		$pic_count = $nbEnr['count'];
 		$cpgdb->free();
-		$cpgdb->query($cpg_db_editpics_php['get_album_pics'], $album_id, $start, $count);
-		$rowset = $cpgdb->fetchRowSet();
+		$result = $cpgdb->query($cpg_db_editpics_php['get_album_pics'], $album_id, $start, $count);
 		########################################################################
 		$form_target = $CPG_PHP_SELF.'?album='.$album_id.'&amp;start='.$start.'&amp;count='.$count;
 		$title = $lang_editpics_php['edit_pics'];
@@ -825,6 +826,7 @@ if (UPLOAD_APPROVAL_MODE) {
 
 //if (!mysql_num_rows($result)) cpg_die(INFORMATION, $lang_errors['no_img_to_display'], __FILE__, __LINE__);
 ############################################              DB            ############################################
+$rowset = $cpgdb->fetchRowSet();
 if (!count($rowset)) cpg_die(INFORMATION, $lang_errors['no_img_to_display'], __FILE__, __LINE__);
 #####################################################################################################
 
@@ -933,29 +935,52 @@ echo <<<EOT
         </tr>
 EOT;
 
-while($CURRENT_PIC = mysql_fetch_array($result)){
+/*while($CURRENT_PIC = mysql_fetch_array($result)){
 
-        if (GALLERY_ADMIN_MODE && $CURRENT_PIC['owner_id'] != USER_ID) {
-              get_user_albums($CURRENT_PIC['owner_id']);
-        } else {
-              get_user_albums();
-        }
-        // wrap the actual block into another table
-        print <<< EOT
+		if (GALLERY_ADMIN_MODE && $CURRENT_PIC['owner_id'] != USER_ID) {
+			  get_user_albums($CURRENT_PIC['owner_id']);
+		} else {
+			  get_user_albums();
+		}
+		// wrap the actual block into another table
+		print <<< EOT
 
-        <!-- individual file start -->
+		<!-- individual file start -->
 
 EOT;
-        create_form($data);
-        print <<< EOT
+		create_form($data);
+		print <<< EOT
 
-        <!-- individual file end -->
+		<!-- individual file end -->
 
 EOT;
         flush();
 } // while
-mysql_free_result($result);
+mysql_free_result($result);	*/
+##########################               DB          ###########################
+foreach ($rowset as $CURRENT_PIC){
 
+		if (GALLERY_ADMIN_MODE && $CURRENT_PIC['owner_id'] != USER_ID) {
+			  get_user_albums($CURRENT_PIC['owner_id']);
+		} else {
+			  get_user_albums();
+		}
+		// wrap the actual block into another table
+		print <<< EOT
+
+		<!-- individual file start -->
+
+EOT;
+		create_form($data);
+		print <<< EOT
+
+		<!-- individual file end -->
+
+EOT;
+        flush();
+} // foreach
+$cpgdb->free();
+#################################################################
 echo <<<EOT
         <tr>
                 <td colspan="3" align="center" class="tablef">

@@ -262,11 +262,15 @@ ob_end_flush();
 
 global $CONFIG, $HIDE_USER_CAT, $FORBIDDEN_SET,$cpg_show_private_album;
 if (!empty($FORBIDDEN_SET) && !$cpg_show_private_album) {
-        $album_filter = ' and ' . str_replace('p.', 'a.', $FORBIDDEN_SET);
+		$album_filter = ' and ' . str_replace('p.', 'a.', $FORBIDDEN_SET);
 }
-$sql = "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE category>=" . FIRST_USER_CAT . $album_filter;
+/*$sql = "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE category>=" . FIRST_USER_CAT . $album_filter;
 $result = cpg_db_query($sql);
-$album_count = mysql_num_rows($result);
+$album_count = mysql_num_rows($result);	*/
+############################              DB            ###############################
+$cpgdb->query($cpg_db_sidebar_php['get_alb_id'], FIRST_USER_CAT . $album_filter);
+$album_count = count($cpgdb->fetchRowSet());
+#######################################################################
 if (!$album_count) {
         $HIDE_USER_CAT = 1;
 }
@@ -275,70 +279,99 @@ if (!$album_count) {
 $dtree_counter=0;
 
 function get_tree_subcat_data($parent, $dtree_parent = 0) {
-        global $CONFIG, $HIDE_USER_CAT, $catStr, $dtree_counter;
-        if ($CONFIG['categories_alpha_sort'] == 1) {
-                $cat_sort_order = 'name';
-        }else{
-                $cat_sort_order = 'pos';
-        }
-        $sql = "SELECT cid, name " . "FROM {$CONFIG['TABLE_CATEGORIES']} " . "WHERE parent = '$parent' " . "ORDER BY ". $cat_sort_order;
-        $result = cpg_db_query($sql);
-        if (($cat_count = mysql_num_rows($result)) > 0) {
-                $rowset = cpg_db_fetch_rowset($result);
-                $pos = 0;
-                foreach ($rowset as $subcat) {
-                        if ($subcat['cid'] == USER_GAL_CAT && $HIDE_USER_CAT == 1) {
+		global $CONFIG, $HIDE_USER_CAT, $catStr, $dtree_counter;
+		#####################      DB      ######################	
+		global $cpg_db_sidebar_php;
+		$cpgdb =& cpgDB::getInstance();
+		$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+		##################################################	
+		if ($CONFIG['categories_alpha_sort'] == 1) {
+				$cat_sort_order = 'name';
+		}else{
+				$cat_sort_order = 'pos';
+		}
+		/*$sql = "SELECT cid, name " . "FROM {$CONFIG['TABLE_CATEGORIES']} " . "WHERE parent = '$parent' " . "ORDER BY ". $cat_sort_order;
+		$result = cpg_db_query($sql);
+		if (($cat_count = mysql_num_rows($result)) > 0) {
+				$rowset = cpg_db_fetch_rowset($result);	*/
+		##############################         DB        ############################
+		$cpgdb->query($cpg_db_sidebar_php['get_cat'], $parent, $cat_sort_order);
+		$rowset = $cpgdb->fetchRowSet();
+		if (($cat_count = count($rowset)) > 0) {
+		###################################################################
+				$pos = 0;
+				foreach ($rowset as $subcat) {
+						if ($subcat['cid'] == USER_GAL_CAT && $HIDE_USER_CAT == 1) {
 
-                        } else {
-                                $dtree_counter++;
-                                $catStr .= "d.add(".$dtree_counter.",".$dtree_parent.",'".addslashes($subcat['name'])."','index.php?cat=".$subcat['cid']."','');\n";
-                                $dtree_temp=$dtree_counter;
-                                get_tree_subcat_data($subcat['cid'], $dtree_temp);
-                                get_tree_album_data($subcat['cid'], $dtree_temp);
-                        }
-                }
-                if ($parent == 0) {
-                        get_tree_album_data($parent,0);
-                }
-        }
+						} else {
+								$dtree_counter++;
+								$catStr .= "d.add(".$dtree_counter.",".$dtree_parent.",'".addslashes($subcat['name'])."','index.php?cat=".$subcat['cid']."','');\n";
+								$dtree_temp=$dtree_counter;
+								get_tree_subcat_data($subcat['cid'], $dtree_temp);
+								get_tree_album_data($subcat['cid'], $dtree_temp);
+						}
+				}
+				if ($parent == 0) {
+						get_tree_album_data($parent,0);
+				}
+		}
 }
 
 function get_tree_album_data($category,$dtree_parent) {
-        global $catStr,$ALBUM_SET, $dtree_counter;
-        global $CONFIG, $HIDE_USER_CAT, $FORBIDDEN_SET,$cpg_show_private_album;
-        $album_filter='';
-        $pic_filter='';
-        if (!empty($FORBIDDEN_SET) && !$cpg_show_private_album) {
-                $album_filter = ' and '.str_replace('p.','a.',$FORBIDDEN_SET);
-                $pic_filter = ' and '.str_replace('p.',$CONFIG['TABLE_PICTURES'].'.',$FORBIDDEN_SET);
-        }
-        if ($category == USER_GAL_CAT) {
-                $sql = "SELECT DISTINCT user_id, user_name FROM {$CONFIG['TABLE_USERS']}, {$CONFIG['TABLE_ALBUMS']} WHERE  10000 + {$CONFIG['TABLE_USERS']}.user_id = {$CONFIG['TABLE_ALBUMS']}.category ORDER BY user_name ASC";
-                $result = cpg_db_query($sql);
-                if (($cat_count = mysql_num_rows($result)) > 0) {
-                        $rowset = cpg_db_fetch_rowset($result);
-                        foreach ($rowset as $subcat) {
-                                $dtree_counter++;
-                                $catStr .= "d.add(".$dtree_counter.",".$dtree_parent.",'".addslashes($subcat['user_name'])."','index.php?cat=". (FIRST_USER_CAT + (int) $subcat['user_id']) ."');\n";
-                                get_tree_album_data(FIRST_USER_CAT + (int) $subcat['user_id'], $dtree_counter);
-                        }
-                }
-        } else {
-                if ($category == USER_GAL_CAT) {
-                        $sql = "SELECT aid,title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = $category ".$ALBUM_SET .$album_filter . " ORDER BY pos";
-                } else {
-                        $unaliased_album_filter = str_replace('a.','',$album_filter);
-                        $sql = "SELECT aid,title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = $category ".$ALBUM_SET .$unaliased_album_filter . " ORDER BY pos";
-                }
-                $result = cpg_db_query($sql);
-                if (($cat_count = mysql_num_rows($result)) > 0) {
-                        $rowset = cpg_db_fetch_rowset($result);
-                        foreach ($rowset as $subcat) {
-                                $dtree_counter++;
-                                $catStr .= "d.add(".$dtree_counter.",".$dtree_parent.",'".addslashes($subcat['title'])."','thumbnails.php?album=".$subcat['aid']."','');\n";
-                        }
-                }
-        }
+		global $catStr,$ALBUM_SET, $dtree_counter;
+		global $CONFIG, $HIDE_USER_CAT, $FORBIDDEN_SET,$cpg_show_private_album;
+		#####################      DB      ######################	
+		global $cpg_db_sidebar_php;
+		$cpgdb =& cpgDB::getInstance();
+		$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+		##################################################	
+		$album_filter='';
+		$pic_filter='';
+		if (!empty($FORBIDDEN_SET) && !$cpg_show_private_album) {
+				$album_filter = ' and '.str_replace('p.','a.',$FORBIDDEN_SET);
+				$pic_filter = ' and '.str_replace('p.',$CONFIG['TABLE_PICTURES'].'.',$FORBIDDEN_SET);
+		}
+		if ($category == USER_GAL_CAT) {
+				/*$sql = "SELECT DISTINCT user_id, user_name FROM {$CONFIG['TABLE_USERS']}, {$CONFIG['TABLE_ALBUMS']} WHERE  10000 + {$CONFIG['TABLE_USERS']}.user_id = {$CONFIG['TABLE_ALBUMS']}.category ORDER BY user_name ASC";
+				$result = cpg_db_query($sql);
+				if (($cat_count = mysql_num_rows($result)) > 0) {
+						$rowset = cpg_db_fetch_rowset($result);	*/
+				#############################          DB        ##############################
+				$cpgb->query($cpg_db_sidebar_php['get_distinct_user']);
+				$rowset = $cpgdb->fetchRowSet();
+				if (($cat_count = count($rowset)) > 0) {
+				#####################################################################
+						foreach ($rowset as $subcat) {
+								$dtree_counter++;
+								$catStr .= "d.add(".$dtree_counter.",".$dtree_parent.",'".addslashes($subcat['user_name'])."','index.php?cat=". (FIRST_USER_CAT + (int) $subcat['user_id']) ."');\n";
+								get_tree_album_data(FIRST_USER_CAT + (int) $subcat['user_id'], $dtree_counter);
+						}
+				}
+		} else {
+				/*if ($category == USER_GAL_CAT) {
+						$sql = "SELECT aid,title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = $category ".$ALBUM_SET .$album_filter . " ORDER BY pos";
+				} else {
+						$unaliased_album_filter = str_replace('a.','',$album_filter);
+						$sql = "SELECT aid,title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = $category ".$ALBUM_SET .$unaliased_album_filter . " ORDER BY pos";
+				}
+				$result = cpg_db_query($sql);
+				if (($cat_count = mysql_num_rows($result)) > 0) {
+						$rowset = cpg_db_fetch_rowset($result);	*/
+				#################################       DB        ###############################
+				if ($category == USER_GAL_CAT) {
+						$cpgdb->query($cpg_db_sidebar_php['get_alb_title'], $category, $ALBUM_SET .$album_filter );
+				} else {
+						$cpgdb->query($cpg_db_sidebar_php['get_alb_title'], $category, $ALBUM_SET .$unaliased_album_filter );
+				}
+				$rowset = $cpgdb->fetchRowSet();
+				if (($cat_count = count($rowset)) > 0) {
+				########################################################################
+						foreach ($rowset as $subcat) {
+								$dtree_counter++;
+								$catStr .= "d.add(".$dtree_counter.",".$dtree_parent.",'".addslashes($subcat['title'])."','thumbnails.php?album=".$subcat['aid']."','');\n";
+						}
+				}
+		}
 }
 
 get_tree_subcat_data(0,0);

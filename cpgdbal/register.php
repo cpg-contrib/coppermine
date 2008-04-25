@@ -324,6 +324,11 @@ function check_user_info(&$error) { // function check_user_info - start
     global $CONFIG; //, $PHP_SELF;
     global $lang_register_php, $lang_register_confirm_email, $lang_common, $lang_register_approve_email;
     global $lang_register_activated_email, $lang_register_user_login, $lang_errors;
+	#####################      DB      ######################	
+	global $cpg_db_register_php;
+	$cpgdb =& cpgDB::getInstance();
+	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+	##################################################	
 
     $superCage = Inspekt::makeSuperCage();
     //$CONFIG['admin_activation'] = FALSE;
@@ -342,14 +347,22 @@ function check_user_info(&$error) { // function check_user_info - start
     $agree_disclaimer = $superCage->post->getEscaped('agree');
     $captcha_confirmation = $superCage->post->getEscaped('confirmCode');
 
-    $sql = "SELECT user_id " . "FROM {$CONFIG['TABLE_USERS']} " . "WHERE user_name = '" . $user_name . "'";
-    $result = cpg_db_query($sql);
+	/*$sql = "SELECT user_id " . "FROM {$CONFIG['TABLE_USERS']} " . "WHERE user_name = '" . $user_name . "'";
+	$result = cpg_db_query($sql);
 
-    if (mysql_num_rows($result)) {
-        $error = '<li>' . $lang_register_php['err_user_exists'] . '</li>';
-        return false;
-    }
-    mysql_free_result($result);
+	if (mysql_num_rows($result)) {
+		$error = '<li>' . $lang_register_php['err_user_exists'] . '</li>';
+		return false;
+	}
+	mysql_free_result($result);	*/
+	#######################      DB      ########################
+	$cpgdb->query($cpg_db_register_php['get_user_id_by_name'], $user_name);
+	if (count($cpgdb->fetchRowSet())) {
+		$error = '<li>' . $lang_register_php['err_user_exists'] . '</li>';
+		return false;
+	}
+	$cpgdb->free();
+	######################################################
 
     if (utf_strlen($user_name) < 2) $error .= '<li>' . $lang_register_php['err_uname_short'] . '</li>';
     if (!empty($CONFIG['global_registration_pw'])) {
@@ -379,17 +392,24 @@ function check_user_info(&$error) { // function check_user_info - start
 
     if ($error != '') return false;
 
-    if (!$CONFIG['allow_duplicate_emails_addr']) {
-        $sql = "SELECT user_id " . "FROM {$CONFIG['TABLE_USERS']} " . "WHERE user_email = '" . addslashes($email) . "'";
-        $result = cpg_db_query($sql);
+	if (!$CONFIG['allow_duplicate_emails_addr']) {
+		/*$sql = "SELECT user_id " . "FROM {$CONFIG['TABLE_USERS']} " . "WHERE user_email = '" . addslashes($email) . "'";
+		$result = cpg_db_query($sql);
 
-        if (mysql_num_rows($result)) {
-            $error = '<li>' . $lang_register_php['err_duplicate_email'] . '</li>';
-            return false;
-        }
-
-        mysql_free_result($result);
-    }
+		if (mysql_num_rows($result)) {
+			$error = '<li>' . $lang_register_php['err_duplicate_email'] . '</li>';
+			return false;
+		}
+		mysql_free_result($result);	*/
+		#################################       DB       ##############################
+		$cpgdb->query($cpg_db_register_php['get_user_id_by_email'], addslashes($email));
+		if (count($cpgdb->fetchRowSet())) {
+			$error = '<li>' . $lang_register_php['err_duplicate_email'] . '</li>';
+			return false;
+		}
+		$cpgdb->free();
+		######################################################################
+	}
 
     if ($CONFIG['reg_requires_valid_email'] || $CONFIG['admin_activation']) {
         $active = 'NO';
@@ -408,22 +428,29 @@ function check_user_info(&$error) { // function check_user_info - start
                         $encpassword = $password;
                 }
 
-    $sql = "INSERT INTO {$CONFIG['TABLE_USERS']} ".
-           "(user_regdate, user_active, user_actkey, user_name, user_password, user_email, user_profile1, user_profile2, user_profile3, user_profile4, user_profile5, user_profile6) ".
-           "VALUES (NOW(), '$active', '$act_key', '$user_name', '$encpassword', '$email', '$profile1', '$profile2', '$profile3', '$profile4', '$profile5', '$profile6')";
-    if ($CONFIG['log_mode']) {
-        log_write('New user "$user_name" created on '.date("F j, Y, g:i a"),CPG_ACCESS_LOG);
-    }
-    $result = cpg_db_query($sql);
+	/*$sql = "INSERT INTO {$CONFIG['TABLE_USERS']} ".
+			"(user_regdate, user_active, user_actkey, user_name, user_password, user_email, user_profile1, user_profile2, user_profile3, user_profile4, user_profile5, user_profile6) ".
+			"VALUES (NOW(), '$active', '$act_key', '$user_name', '$encpassword', '$email', '$profile1', '$profile2', '$profile3', '$profile4', '$profile5', '$profile6')";	*/
+	if ($CONFIG['log_mode']) {
+		log_write('New user "$user_name" created on '.date("F j, Y, g:i a"),CPG_ACCESS_LOG);
+	}
+	//$result = cpg_db_query($sql);
+	########################################           DB         #########################################
+	$cpgdb->query($cpg_db_register_php['add_user'], $active, $act_key, $user_name, $encpassword, $email, 
+					$profile1, $profile2, $profile3, $profile4, $profile5, $profile6);
+	############################################################################################
 
-    // Create a personal album if corresponding option is enabled
-    if ($CONFIG['personal_album_on_registration'] == 1) {
-        print 'sub<br />';
-        $catid = mysql_insert_id() + FIRST_USER_CAT;
-        print $catid;
-        cpg_db_query("INSERT INTO {$CONFIG['TABLE_ALBUMS']} (`title`, `category`) VALUES ('$user_name', $catid)");
-        print "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (`title`, `category`) VALUES ('$user_name', $catid)";
-    }
+	// Create a personal album if corresponding option is enabled
+	if ($CONFIG['personal_album_on_registration'] == 1) {
+		print 'sub<br />';
+		$catid = mysql_insert_id() + FIRST_USER_CAT;
+		print $catid;
+		//cpg_db_query("INSERT INTO {$CONFIG['TABLE_ALBUMS']} (`title`, `category`) VALUES ('$user_name', $catid)");
+		############################         DB       #############################
+		$cpgdb->query($cpg_db_register_php['add_user_album'], $user_name, $catid);
+		#################################################################
+		print "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (`title`, `category`) VALUES ('$user_name', $catid)";
+	}
 
     if ($CONFIG['reg_requires_valid_email']) {
         if (!$CONFIG['admin_activation']==1) { //user gets activation email
@@ -488,12 +515,20 @@ if ($superCage->get->keyExists('activate')) {
     $act_key = mysql_real_escape_string($superCage->get->getAlnum('activate'));
     if (strlen($act_key) != 32) cpg_die(ERROR, $lang_register_php['acct_act_failed'], __FILE__, __LINE__);
 
-    $sql = "SELECT user_active user_active, user_email, user_name, user_password " . "FROM {$CONFIG['TABLE_USERS']} " . "WHERE user_actkey = '$act_key' " . "LIMIT 1";
-    $result = cpg_db_query($sql);
-    if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_register_php['acct_act_failed'], __FILE__, __LINE__);
+	/*$sql = "SELECT  user_active, user_email, user_name, user_password " . "FROM {$CONFIG['TABLE_USERS']} " . "WHERE user_actkey = '$act_key' " . "LIMIT 1";
+	$result = cpg_db_query($sql);
+	if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_register_php['acct_act_failed'], __FILE__, __LINE__);
 
-    $row = mysql_fetch_array($result);
-    mysql_free_result($result);
+	$row = mysql_fetch_array($result);
+	mysql_free_result($result);	*/
+	######################################          DB        ####################################
+	$cpgdb->query($cpg_db_register_php['get_user_data'], $act_key);
+	$rowset = $cpgdb->fetchRowSet();
+	if (!count($rowset)) cpg_die(ERROR, $lang_register_php['acct_act_failed'], __FILE__, __LINE__);
+	
+	$row = $rowset[0];
+	$cpgdb->free();
+	####################################################################################
 
     if ($row['user_active'] == 'YES') cpg_die(ERROR, $lang_register_php['acct_already_act'], __FILE__, __LINE__);
 
@@ -502,8 +537,11 @@ if ($superCage->get->keyExists('activate')) {
     $user_name = $row['user_name'];
     $password = $row['user_password'];
 
-    $sql = "UPDATE {$CONFIG['TABLE_USERS']} SET user_active = 'YES' WHERE user_actkey = '$act_key' LIMIT 1";
-    $result = cpg_db_query($sql);
+	/*$sql = "UPDATE {$CONFIG['TABLE_USERS']} SET user_active = 'YES' WHERE user_actkey = '$act_key' LIMIT 1";
+	$result = cpg_db_query($sql);	*/
+	##########################          DB         ##########################
+	$cpgdb->query($cpg_db_register_php['set_user_active'], $act_key);
+	##############################################################
 
                 if ($CONFIG['admin_activation']==1) { //after admin approves, user receives email notification
                         msg_box($lang_register_php['information'], $lang_register_php['acct_active_admin_activation'], $lang_common['continue'], 'index.php');

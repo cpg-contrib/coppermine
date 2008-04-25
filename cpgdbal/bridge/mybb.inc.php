@@ -28,7 +28,7 @@ class cpg_udb extends core_udb {
 
 	function cpg_udb()
 	{
-		global $BRIDGE;
+		global $BRIDGE, $CONFIG;
 		
 		if (!USE_BRIDGEMGR) { // the vars that are used when bridgemgr is disabled
 
@@ -64,11 +64,18 @@ class cpg_udb extends core_udb {
 			'groups' => 'usergroups',
 			'sessions' => 'sessions',
 		);
-
+		######################################              DB          ####################################
 		// Derived full table names
-		$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
-		$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
-		$this->sessionstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['sessions'];
+		if ($CONFIG['dbservername'] == 'mysql') {
+			$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
+			$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
+			$this->sessionstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['sessions'];
+		} else {	////////     for mssql    //////
+			$this->usertable = $this->db['name'] ."." .dbo ."." .$this->db['prefix'] . $this->table['users'];
+			$this->groupstable =   $this->db['name'] . "." .dbo ."." .$this->db['prefix'] . $this->table['groups'];
+			$this->sessionstable =   $this->db['name'] ."." .dbo .".". $this->db['prefix'] . $this->table['sessions'];
+		}
+		######################################################################################
 		
 		// Table field names
 		$this->field = array(
@@ -102,6 +109,9 @@ class cpg_udb extends core_udb {
 	// definition of how to extract id, name, group from a session cookie
 	function session_extraction()
 	{
+		##########     DB    ###########
+		$cpg_db_mybb_inc;
+		##########################
 		$superCage = Inspekt::makeSuperCage();
 		//if (!isset($_COOKIE['sid'])) return false;
 		if (!$superCage->cookie->keyExists('sid')) return false;
@@ -113,11 +123,20 @@ class cpg_udb extends core_udb {
 		
 		$this->ipaddress = $this->getip();
 		
-		$result = cpg_db_query("SELECT u.{$this->field['user_id']}, u.{$this->field['password']} FROM {$this->sessionstable} AS s INNER JOIN {$this->usertable} AS u ON u.uid = s.uid WHERE sid='".$this->sid."' AND ip='".$this->ipaddress."'", $this->link_id);
+		/*$result = cpg_db_query("SELECT u.{$this->field['user_id']}, u.{$this->field['password']} FROM {$this->sessionstable} AS s INNER JOIN {$this->usertable} AS u ON u.uid = s.uid WHERE sid='".$this->sid."' AND ip='".$this->ipaddress."'", $this->link_id);
 		
 		if (!mysql_num_rows($result)) return false;
 		
-		$row = mysql_fetch_row($result);
+		$row = mysql_fetch_row($result);	*/
+		########################################          DB         #######################################
+		$this->cpgudb->query($cpg_db_mybb_inc['session_extract'], $this->field['user_id'], $this->field['password'], 
+					$this->sessionstable, $this->usertable, $this->sid, $this->ipaddress);
+		
+		$rowset = $this->cpgudb->fetchRowSet();
+		if (!count($rowset)) return false;
+		
+		$row = $rowset[0];
+		########################################################################################
 
 		return $row; 
 	}

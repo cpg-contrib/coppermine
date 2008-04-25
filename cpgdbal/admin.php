@@ -119,9 +119,12 @@ if ($superCage->post->keyExists('restore_config')) { // user has chosen to facto
   $sql_query = split_sql_file($sql_query, ';');
   $sql_count = count($sql_query);
   for($i = 0; $i < $sql_count; $i++) {
-    if (strpos($sql_query[$i],'config VALUES') || strpos($sql_query[$i],'filetypes VALUES')) {
-      cpg_db_query($sql_query[$i]);
-    }
+	if (strpos($sql_query[$i],'config VALUES') || strpos($sql_query[$i],'filetypes VALUES')) {
+		//cpg_db_query($sql_query[$i]);
+		###########      DB       #########
+		$cpgdb->query($sql_query[$i]);
+		###########################
+	}
   }
   // undo the reset for config fields specified in $doNotReset_array
   foreach ($doNotReset_array as $key) {
@@ -184,25 +187,25 @@ if ($superCage->post->keyExists('restore_config')) { // user has chosen to facto
         $regexValidation = '1';
       }
       if ($superCage->post->keyExists('update_config') && $regexValidation == '1' && $evaluate_value != $CONFIG[$adminDataKey] && $CONFIG[$adminDataKey] !== stripslashes($evaluate_value) ) {
-        //  finally, all criteria have been met - let's write the updated data to the database
-        /*cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$evaluate_value' WHERE name = '$adminDataKey'");
+        /*//  finally, all criteria have been met - let's write the updated data to the database
+		cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$evaluate_value' WHERE name = '$adminDataKey'");
 		// perform special tasks -- start
 		if ($adminDataKey == 'enable_encrypted_passwords' && $superCage->post->getInt('enable_encrypted_passwords') == 1 && $CONFIG['enable_encrypted_passwords'] == 0) { // encrypt the passwords -- start
 			cpg_db_query("update {$CONFIG['TABLE_USERS']} set user_password=md5(user_password);");
 		} // encrypt the passwords -- end	*/
 		########################################		DB		########################################
-        //  finally, all criteria have been met - let's write the updated data to the database
-		$cpgdb->query($cpg_db_admin_php['update_config_data'], $evaluate_value, $adminDatakey);
-        // perform special tasks -- start
-        if ($adminDataKey == 'enable_encrypted_passwords' && $superCage->post->getInt('enable_encrypted_passwords') == 1 && $CONFIG['enable_encrypted_passwords'] == 0) { // encrypt the passwords -- start
+		//  finally, all criteria have been met - let's write the updated data to the database
+		$cpgdb->query($cpg_db_admin_php['update_config_data'], $evaluate_value, $adminDataKey);
+		// perform special tasks -- start
+		if ($adminDataKey == 'enable_encrypted_passwords' && $superCage->post->getInt('enable_encrypted_passwords') == 1 && $CONFIG['enable_encrypted_passwords'] == 0) { // encrypt the passwords -- start
 			//get user_passwords
 			$cpgdb->query($cpg_db_admin_php['get_user_passwords']);
-			$rowset = $cpgdb->fetchRowSet();
+			$rowset = $cpgdb->fetchRowSet();//print_r($rowset);exit;
 			foreach ($rowset as $row) {
-				$md5_user_password = md5($row['user_password']);
-				$cpgdb->query($cpg_db_admin_php['encrypt_passwords'], $md5_user_password, $row['user_password']);
+				$md5_user_pswd = md5($row['user_password']);
+				$cpgdb->query($cpg_db_admin_php['encrypt_passwords'], $md5_user_pswd, $row['user_id']);
 			}
-        } // encrypt the passwords -- end
+		} // encrypt the passwords -- end
 		###############################################################################################
         if ($CONFIG['log_mode'] == CPG_LOG_ALL) { // write log -- start
                 log_write('CONFIG UPDATE SQL: '.

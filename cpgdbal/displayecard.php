@@ -33,7 +33,10 @@ if (!$superCage->get->keyExists('data')) {
 $tmpData['data'] = @unserialize(@base64_decode($superCage->get->getRaw('data')));
 
 if (!is_array($tmpData['data'])) {
-  $CLEAN['data'] = mysql_real_escape_string($tmpData['data']);
+	//$CLEAN['data'] = mysql_real_escape_string($tmpData['data']);
+	######################   DB   ####################
+	$CLEAN['data'] = $cpgdb->escape($tmpData['data']);
+	##################################################
 } else {
   // Remove HTML tags as we can't trust what we receive
   foreach($tmpData['data'] as $key => $value) {
@@ -58,7 +61,7 @@ if ((!is_array($CLEAN['data'])) && $CONFIG['log_ecards'] && (strlen($CLEAN['data
 			$row = $rowset[0];
 			$CLEAN['data']= @unserialize(@base64_decode($row['link']));
 		}
-		##########################################################################
+		##################################################################################
 }
 
 if (is_array($CLEAN['data'])) {

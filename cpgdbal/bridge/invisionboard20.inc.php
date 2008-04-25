@@ -28,7 +28,7 @@ class cpg_udb extends core_udb {
 
 	function cpg_udb()
 	{
-		global $BRIDGE;
+		global $BRIDGE, $CONFIG;
 		
 		if (!USE_BRIDGEMGR) {
 			$this->boardurl = 'http://localhost/ipb';
@@ -55,11 +55,18 @@ class cpg_udb extends core_udb {
 			'groups' => 'groups',
 			'sessions' => 'sessions'
 		);
-
+		##########################################            DB          #######################################
 		// Derived full table names
-		$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
-		$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
-		$this->sessionstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['sessions'];
+		if ($CONFIG['dbservername'] == 'mysql') {
+			$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
+			$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
+			$this->sessionstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['sessions'];
+		} else {
+			$this->usertable = $this->db['name'] ."." .dbo ."." .$this->db['prefix'] . $this->table['users'];
+			$this->groupstable =   $this->db['name'] . "." .dbo ."." .$this->db['prefix'] . $this->table['groups'];
+			$this->sessionstable =   $this->db['name'] ."." .dbo .".". $this->db['prefix'] . $this->table['sessions'];
+		}
+		############################################################################################
 		
 		// Table field names
 		$this->field = array(

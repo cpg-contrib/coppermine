@@ -40,7 +40,7 @@ class cpg_udb extends core_udb {
 
 	function cpg_udb()
 	{
-		global $BRIDGE, $xoopsDB;
+		global $BRIDGE, $xoopsDB, $CONFIG;
 
 		$this->use_post_based_groups = $BRIDGE['use_post_based_groups'];
 		
@@ -154,7 +154,11 @@ class cpg_udb extends core_udb {
 	
 	function get_users($options = array())
     {
-    	global $CONFIG;
+    	global $CONFIG, $cpg_db_xoops_inc;
+		#####################      DB      ######################	
+		$cpgdb =& cpgDB::getInstance();
+		$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+		##################################################	
 
 		// Copy UDB fields and config variables (just to make it easier to read)
     	$f =& $this->field;
@@ -183,18 +187,20 @@ class cpg_udb extends core_udb {
 		// Build WHERE clause, if this is a username search
         if ($options['search']) {
             $options['search'] = 'WHERE u.'.$f['username'].' LIKE "'.$options['search'].'" ';
-        }
+        } else {
+			$options['search'] = 'WHERE 1=1';
+		}
 
 		// Build SQL table, should work with all bridges
-        $sql = "SELECT u.{$f['user_id']} as user_id, {$f['username']} as user_name, {$f['email']} as user_email, {$f['regdate']} as user_regdate, {$f['lastvisit']} as user_lastvisit, '' as user_active, ".
-               "COUNT(pid) as pic_count, ROUND(SUM(total_filesize)/1024) as disk_usage, group_name, group_quota ".
-               "FROM {$this->usertable} AS u ".
+		/*$sql = "SELECT u.{$f['user_id']} as user_id, {$f['username']} as user_name, {$f['email']} as user_email, {$f['regdate']} as user_regdate, {$f['lastvisit']} as user_lastvisit, '' as user_active, ".
+			   "COUNT(pid) as pic_count, ROUND(SUM(total_filesize)/1024) as disk_usage, group_name, group_quota ".
+			   "FROM {$this->usertable} AS u ".
 			   "INNER JOIN {$this->usergroupstable} AS ug ON u.uid = ug.uid ".   
-               " INNER JOIN {$C['TABLE_USERGROUPS']} AS g ".
+			   " INNER JOIN {$C['TABLE_USERGROUPS']} AS g ".
 			   "ON  g.group_id = ug.{$f['grouptbl_group_id']} LEFT JOIN {$C['TABLE_PICTURES']} AS p ON p.owner_id = u.{$f['user_id']} ".
-               $options['search'].
-               "GROUP BY user_id " . "ORDER BY " . $sort_codes[$options['sort']] . " ".
-               "LIMIT {$options['lower_limit']}, {$options['users_per_page']};";
+			   $options['search'].
+			   "GROUP BY user_id " . "ORDER BY " . $sort_codes[$options['sort']] . " ".
+			   "LIMIT {$options['lower_limit']}, {$options['users_per_page']};";
 
 		$result = cpg_db_query($sql);
 		
@@ -206,7 +212,23 @@ class cpg_udb extends core_udb {
 		// Extract user list to an array
 		while ($user = mysql_fetch_assoc($result)) {
 			$userlist[] = $user;
-		}	
+		}	*/
+		############################################           DB        #############################################
+		$result = $cpgdb->query($cpg_db_xoops_inc['get_users'], $f['user_id'], $f['username'], $f['email'], $f['regdate'], 
+						$f['lastvisit'], $this->usertable, $this->usergroupstable, $C['TABLE_USERGROUPS'], 
+						$f['grouptbl_group_id'], $C['TABLE_PICTURES'], $options['search'], $sort_codes[$options['sort']], 
+						$options['lower_limit'], $options['users_per_page']);
+						
+		// If no records, return empty value
+		if (!result) {
+			return array();
+		}
+		
+		//Extract user list to an array
+		while ($user = $cpgdb->fetchRow()) {
+			$userlist[] = $user;
+		}
+		##################################################################################################
 
         return $userlist;
     }

@@ -19,7 +19,7 @@
 
 define('IN_COPPERMINE', true);
 define('FORGOT_PASSWD_PHP', true);
-global $CONFIG, $cpg_db_forgot_passwd_php;
+global $CONFIG;// $cpg_db_forgot_passwd_php;
 
 require('include/init.inc.php');
 include_once('include/mailer.inc.php');
@@ -138,14 +138,14 @@ EOT;
 	$row = mysql_fetch_assoc($result);
 	mysql_free_result($sql);	*/
 	#######################################         DB      ######################################
-	$cpgdb->query($cpg_db_forgot_passwd_php['get_null_sessions'], $cpg_udb->sessionstable, md5($CLEAN['key']$CLEAN['id']));
-	$rowset = $cpgdb->fetchRow();
+	$cpgdb->query($cpg_db_forgot_passwd_php['get_null_sessions'], $cpg_udb->sessionstable, md5("{$CLEAN['key']}{$CLEAN['id']}"));
+	$rowset = $cpgdb->fetchRowSet();
 	if (!count($rowset)) {
 		cpg_die($lang_forgot_passwd_php['forgot_passwd'], $lang_forgot_passwd_php['illegal_session']);
 	}
 	$cpgdb->free();
 	
-	$cpgdb->query($cpg_db_forgot_passwd['get_field_user_data'], $cpg_udb->field['username'], $cpg_udb->field['email'], 
+	$cpgdb->query($cpg_db_forgot_passwd_php['get_field_user_data'], $cpg_udb->field['username'], $cpg_udb->field['email'], 
 					$cpg_udb->usertable, $cpg_udb->field['user_id'], $CLEAN['id']);
 	$rowset = $cpgdb->fetchRowSet();
 	if (count($rowset)) {
@@ -188,9 +188,9 @@ EOT;
 
 	/*$sql = "delete from {$cpg_udb->sessionstable} where session_id=md5('{$CLEAN['key']}{$CLEAN['id']}');";
 	cpg_db_query($sql);	*/
-	################################        DB        #####################################
-	$cpgdb->query($cpg_db_forgot_passwd_php['delete_sessions'], $cpg_udb->sessionstable, md5($CLEAN['key']$CLEAN['id']));
-	##############################################################################
+	################################################        DB        ##############################################
+	$cpgdb->query($cpg_db_forgot_passwd_php['delete_session'], $cpg_udb->sessionstable, md5("{$CLEAN['key']}{$CLEAN['id']}"));
+	######################################################################################################
 
     // output the message
     pageheader($lang_forgot_passwd_php['forgot_passwd'], "<META http-equiv=\"refresh\" content=\"3;url=login.php\">");

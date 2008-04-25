@@ -70,25 +70,41 @@ $sender_email_warning = '';
 $form_action="$CPG_PHP_SELF?pid=$pid";
 
 // Get picture thumbnail url
-$result = cpg_db_query("SELECT * from {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid' $ALBUM_SET");
+/*$result = cpg_db_query("SELECT * from {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid' $ALBUM_SET");
 if (!mysql_num_rows($result)) {
-    cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
+	cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
 }
 
-$row = mysql_fetch_array($result);
+$row = mysql_fetch_array($result);	*/
+#################################       DB       #################################
+$cpgdb->query($cpg_db_report_file_php['get_pic_thumb_url'], $pid, $ALBUM_SET);
+$rowset = $cpgdb->fetchRowSet();
+if (!count($rowset)) {
+	cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
+}
+$row =$rowset[0];
+##########################################################################
 $thumb_pic_url = get_pic_url($row, 'thumb');
 
 if ($what == 'comment') {
-    $result = cpg_db_query("SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date) AS msg_date, author_id, author_md5_id, msg_raw_ip, msg_hdr_ip, approval FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id='$cid' AND approval = 'YES' AND pid='$pid'");
-    if (!mysql_num_rows($result)) {
-        cpg_die(ERROR, $lang_errors['non_exist_comment'], __FILE__, __LINE__);
-    }
+	/*$result = cpg_db_query("SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date) AS msg_date, author_id, author_md5_id, msg_raw_ip, msg_hdr_ip, approval FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id='$cid' AND approval = 'YES' AND pid='$pid'");
+	if (!mysql_num_rows($result)) {
+		cpg_die(ERROR, $lang_errors['non_exist_comment'], __FILE__, __LINE__);
+	}
 
-    $row = mysql_fetch_array($result);
-    $comment = bb_decode($row['msg_body']);
-    if ($CONFIG['enable_smilies']) {
-        $comment = process_smilies($comment);
-    }
+	$row = mysql_fetch_array($result);	*/
+	#################################        DB       #################################
+	$cpgdb->query($cpg_db_report_file_php['get_comment_info'], $cid, $pid);
+	$rowset = $cpgdb->fetRowSet();
+	if (count($rowset)) {
+		cpg_die(ERROR, $lang_errors['non_exist_comment'], __FILE__, __LINE__);
+	}
+	$row = $rowset[0];
+	##########################################################################
+	$comment = bb_decode($row['msg_body']);
+	if ($CONFIG['enable_smilies']) {
+		$comment = process_smilies($comment);
+	}
 
     $msg_author = $row['msg_author'];
     $comment_field_name = sprintf($lang_report_php['comment_field_name'], $msg_author);

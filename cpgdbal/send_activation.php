@@ -37,12 +37,18 @@ $lookup_failed = '';
 if ($superCage->post->KeyExists('email') && $superCage->post->testEmail('email')) {
 		$emailaddress = $superCage->post->testEmail('email');
 
-    $sql = "SELECT user_id, user_group,user_active,user_name, user_email, user_actkey FROM {$CONFIG['TABLE_USERS']} WHERE user_email = '$emailaddress' AND user_active = 'NO'";
+	/*$sql = "SELECT user_id, user_group,user_active,user_name, user_email, user_actkey FROM {$CONFIG['TABLE_USERS']} WHERE user_email = '$emailaddress' AND user_active = 'NO'";
 
-    $results = cpg_db_query($sql);
-    if (mysql_num_rows($results))
-        { // something has been found start
-        $USER_DATA = mysql_fetch_array($results);
+	$results = cpg_db_query($sql);
+	if (mysql_num_rows($results))
+		{ // something has been found start
+		$USER_DATA = mysql_fetch_array($results);	*/
+	#################################           DB         ################################
+	$cpgdb->query($cpg_db_send_activation_php['get_user_inactive'], $emailaddress);
+	$rowset = $cpgdb->fetchRowSet();
+	if (count($rowset)) {// something has been found start
+		$USER_DATA = $rowset[0];
+	###########################################################################
 
         $act_link = rtrim($CONFIG['site_url'], '/') . '/register.php?activate=' . $USER_DATA['user_actkey'];
         $template_vars = array(

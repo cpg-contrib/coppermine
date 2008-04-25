@@ -534,10 +534,27 @@ class cpgDB {
 		return "UNIX_TIMESTAMP($datetime_var)";
 	}
 
-	//returns the first value of the Array returned by fetchRow 
-	/*function firstkey() {
-		return 0;
-	}*/
+	/**
+	//closes the non-persistent connection 
+	*cpgDB :: close () 
+	*/
+	function close($link='')
+	{
+		if ($link == '') {
+			$link = $this->Link_ID;
+		}
+		mysql_close($link);
+	}
+
+
+	/**
+	//closes the non-persistent connection 
+	*cpgDB :: close () 
+	*/
+	function escape($str_to_escape)
+	{
+		return mysql_real_escape_string($str_to_escape);
+	}
 
 
 }

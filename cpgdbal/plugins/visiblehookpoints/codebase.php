@@ -686,40 +686,60 @@ if (!class_exists('dBug')) {
 
 // Install function
 function visiblehookpoints_install() {
-    global $CONFIG;
+	global $CONFIG, $cpg_db_visiblehookpoints;
+	#####################      DB      ######################	
+	$cpgdb =& cpgDB::getInstance();
+	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+	##################################################	
 	$superCage = Inspekt::makeSuperCage();
-    //if (isset($_POST['visiblehookpoints_display']) == TRUE) {
+	//if (isset($_POST['visiblehookpoints_display']) == TRUE) {
 	if ($superCage->post->keyExists('visiblehookpoints_display')) {
-        // Perform database queries
-        //if ($_POST['visiblehookpoints_display'] == 1) {
+		// Perform database queries
+		//if ($_POST['visiblehookpoints_display'] == 1) {
 		if ($superCage->post->getInt('visiblehookpoints_display') == 1) {
-          $value = 1;
-        //} elseif ($_POST['visiblehookpoints_display'] == 0) {
+		  $value = 1;
+		//} elseif ($_POST['visiblehookpoints_display'] == 0) {
 		} elseif ($superCage->post->getInt('visiblehookpoints_display') == 0) {
-          $value = 0;
-        } elseif (array_key_exists('plugin_visiblehookpoints_display', $CONFIG) == TRUE) {
-          $value = $CONFIG['plugin_visiblehookpoints_display'];
-        } else {
-          $value = 0;
-        }
-        if (array_key_exists('plugin_visiblehookpoints_display', $CONFIG) == FALSE) {
-            $f= cpg_db_query("INSERT INTO {$CONFIG['TABLE_CONFIG']} VALUES ('plugin_visiblehookpoints_display', '{$value}')");
-        } else {
-            $f= cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '{$value}' WHERE name = 'plugin_visiblehookpoints_display'");
-        }
-        return true;
-    // Loop again
-    } else {
-        return 1;
-    }
+		  $value = 0;
+		} elseif (array_key_exists('plugin_visiblehookpoints_display', $CONFIG) == TRUE) {
+		  $value = $CONFIG['plugin_visiblehookpoints_display'];
+		} else {
+		  $value = 0;
+		}
+		/*if (array_key_exists('plugin_visiblehookpoints_display', $CONFIG) == FALSE) {
+			$f= cpg_db_query("INSERT INTO {$CONFIG['TABLE_CONFIG']} VALUES ('plugin_visiblehookpoints_display', '{$value}')");
+		} else {
+			$f= cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '{$value}' WHERE name = 'plugin_visiblehookpoints_display'");
+		}	*/
+		##############################        DB      ###############################
+		if (array_key_exists('plugin_visiblehookpoints_display', $CONFIG) == FALSE) {
+			$f = $cpgdb->query($cpg_db_visiblehookpoints['add_visiblehookpoints'], $value);
+		} else {
+			$f = $cpgdb->query($cpg_db_visiblehookpoints['set_visiblehookpoints'], $value);
+		}
+		#####################################################################
+		return true;
+	// Loop again
+	} else {
+		return 1;
+	}
 }
 
 // Uninstall function
+/*function visiblehookpoints_uninstall() {
+	global $CONFIG;
+	$f= cpg_db_query("DELETE FROM {$CONFIG['TABLE_CONFIG']} WHERE `name` = 'plugin_visiblehookpoints_display'");
+	return true;
+}	*/
+#####################      DB      ######################	
 function visiblehookpoints_uninstall() {
-    global $CONFIG;
-    $f= cpg_db_query("DELETE FROM {$CONFIG['TABLE_CONFIG']} WHERE `name` = 'plugin_visiblehookpoints_display'");
-    return true;
+	global $CONFIG, $cpg_db_visiblehookpoints;
+	$cpgdb =& cpgDB::getInstance();
+	$f = $cpgdb->query($cpg_db_visiblehookpoints['del_visiblehookpoints']);
+	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+	return true;
 }
+##################################################	
 
 
 // Configure function

@@ -62,12 +62,18 @@ class cpg_udb extends core_udb {
 			'password' => $PHORUM['DBCONFIG']['password'],
 			'prefix' =>$PHORUM['DBCONFIG']['table_prefix'] . '_'
 		);
-		
+		##################################            DB          ###################################
 		// Derived full table names
-		$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
-		$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
-		$this->usergroupstable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['usergroups'];
-		
+		if ($CONFIG['dbservername'] == 'mysql') {
+			$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
+			$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
+			$this->usergroupstable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['usergroups'];
+		} else {
+			$this->usertable = $this->db['name'] ."." .dbo ."." .$this->db['prefix'] . $this->table['users'];
+			$this->groupstable =   $this->db['name'] . "." .dbo ."." .$this->db['prefix'] . $this->table['groups'];
+			$this->usergroupstable =   $this->db['name'] ."." .dbo .".". $this->db['prefix'] . $this->table['usergroups'];
+		}
+		#################################################################################
 		// Table field names
 		$this->field = array(
 			'username' => 'username', // name of 'username' field in users table
@@ -156,7 +162,7 @@ class cpg_udb extends core_udb {
 		$this->session_update();
 	}
 	
-	function collect_groups()
+	/*function collect_groups()
 	{
 		$sql ="SELECT * FROM {$this->groupstable}";
 	
@@ -170,7 +176,22 @@ class cpg_udb extends core_udb {
 		}
 
 		return $udb_groups;
+	}	*/
+	#######################################          DB         #####################################
+	function collect_groups()
+	{
+		global $cpg_db_phorum_inc;
+		$this->cpgudb->query($cpg_db_phorum_inc['collect_groups'], $this->groupstable);
+		
+		$udb_groups = array(1=>'Administrators', 2=>'Registered', 3 => 'Guests', 4 => 'Banned');
+			
+		while ($row = $this->cpgudb->fetchRow())
+		{
+			$udb_groups[$row[$this->field['grouptbl_group_id']]+100] = utf_ucfirst(utf_strtolower($row[$this->field['grouptbl_group_name']]));
+		}
+		return $udb_groups;
 	}
+	######################################################################################
 	
 	function login_page()
 	{

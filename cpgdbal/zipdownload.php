@@ -44,10 +44,14 @@ $filelist= array();
 if (count($FAVPICS)>0){
         $favs = implode(",",$FAVPICS);
 
-        $select_columns = 'filepath,filename';
+        $select_columns = 'filepath, filename';
 
-        $result = cpg_db_query("SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES'AND pid IN ($favs)");
-        $rowset = cpg_db_fetch_rowset($result);
+		/*$result = cpg_db_query("SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND pid IN ($favs)");
+		$rowset = cpg_db_fetch_rowset($result);	*/
+		##############################            DB          #############################
+		$cpgdb->query($cpg_db_zipdownload_php['get_favpics'], $select_columns, $favs);
+		$rowset =$cpgdb->fetrchRowSet();
+		######################################################################
         foreach ($rowset as $key => $row){
 
                 $filelist[] = $rowset[$key]['filepath'].$rowset[$key]['filename'];

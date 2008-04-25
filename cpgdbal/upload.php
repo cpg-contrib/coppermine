@@ -164,12 +164,17 @@ EOT;
 
 // The function to create the album list drop down.
 function form_alb_list_box($text, $name) {
-    $superCage = Inspekt::makeSuperCage();
-    // Pull the $CONFIG array and the GET array into the function
-    global $CONFIG, $lang_upload_php;
+	$superCage = Inspekt::makeSuperCage();
+	// Pull the $CONFIG array and the GET array into the function
+	global $CONFIG, $lang_upload_php;
 
-    // Also pull the album lists into the function
-    global $user_albums_list, $public_albums_list;
+	// Also pull the album lists into the function
+	global $user_albums_list, $public_albums_list;
+	#####################      DB      ######################	
+	global $cpg_db_upload_php;
+	$cpgdb =& cpgDB::getInstance();
+	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+	##################################################	
 
     // Check to see if an album has been preselected by URL addition or the last selected album. If so, make $sel_album the album number. Otherwise, make $sel_album 0.
     if ($superCage->get->keyExists('album')) {
@@ -192,10 +197,15 @@ function form_alb_list_box($text, $name) {
 EOT;
 
     // Get the ancestry of the categories
-    $vQuery = "SELECT cid, parent, name FROM " . $CONFIG['TABLE_CATEGORIES'] . " WHERE 1";
-    $vResult = cpg_db_query($vQuery);
-    $vRes = cpg_db_fetch_rowset($vResult);
-    mysql_free_result($vResult);
+	/*$vQuery = "SELECT cid, parent, name FROM " . $CONFIG['TABLE_CATEGORIES'] . " WHERE 1";
+	$vResult = cpg_db_query($vQuery);
+	$vRes = cpg_db_fetch_rowset($vResult);
+	mysql_free_result($vResult);	*/
+	####################          DB         #####################
+	$vResult = $cpgdb->query($cpg_db_upload_php['get_cat_ancestry']);
+	$vRes = $cpgdb->fetchRowSet();
+	$cpgdb->free();
+	###################################################
     foreach ($vRes as $vResI => $vResV) {
         $vResRow = $vRes[$vResI];
         $catParent[$vResRow['cid']] = $vResRow['parent'];
@@ -514,167 +524,243 @@ function spring_cleaning($directory_path, $cache_time = 86400, $exclusion_list =
 }
 // The create_record function. Takes the encoded string. Returns the unique record ID.
 function create_record($encoded_string) {
-
-    // Globalize $CONFIG
-    global $CONFIG;
+	// Globalize $CONFIG
+	global $CONFIG;
+	#####################      DB      ######################	
+	global $cpg_db_upload_php;
+	$cpgdb =& cpgDB::getInstance();
+	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+	##################################################	
 
     // Declare and initialize variables.
     $unique_ID_array = array();
     $generic_array = array();
 
-    // Get all IDs from the table.
-    $result = cpg_db_query("SELECT unique_ID FROM {$CONFIG['TABLE_TEMPDATA']}");
+	/*// Get all IDs from the table.
+	$result = cpg_db_query("SELECT unique_ID FROM {$CONFIG['TABLE_TEMPDATA']}");
 
-    // Create unique ID array.
-    if (mysql_num_rows($result)) {
+	// Create unique ID array.
+	if (mysql_num_rows($result)) {
 
-        // Move all values into $unique_ID_array.
-        while ($generic_array = mysql_fetch_array($result)) {
+		// Move all values into $unique_ID_array.
+		while ($generic_array = mysql_fetch_array($result)) {
 
-            // Store the values.
-            $unique_ID_array[] = $generic_array['unique_ID'];
+			// Store the values.
+			$unique_ID_array[] = $generic_array['unique_ID'];
 
-        }
+		}
 
-    } else {
+	} else {
 
-        // The table may be empty. Give it a value.
-        $unique_ID_array[] = 0;
+		// The table may be empty. Give it a value.
+		$unique_ID_array[] = 0;
 
-    }
+	}
 
-    // Free resources.
-    mysql_free_result($result);
+	// Free resources.
+	mysql_free_result($result);	*/
+	######################          DB         ######################
+	// Get all IDs from the table.
+	$cpgdb->query($cpg_db_upload_php['get_all_tempdata_id']);
+	$rowset = $cpgdb->fetchRowSet();
+	// Create unique ID array.
+	if (count($rowset)) {
+		// Move all values into $unique_ID_array.
+		foreach ($rowset as $generic_array) {
+			// Store the values.
+			$unique_ID_array[] = $generic_array['unique_ID'];
+		}
+	} else {
+		// The table may be empty. Give it a value.
+		$unique_ID_array[] = 0;
+	}
+	// Free resources.
+	$cpgdb->free();
+	######################################################
 
-    // Generate the unique ID. Keep generating new IDs until one that is not in use is found.
-    do {
+	// Generate the unique ID. Keep generating new IDs until one that is not in use is found.
+	do {
 
-        // Create a random string by taking the first 8 characters of an MD5 hash of a concatenation of the current UNIX epoch time and the current server process ID.
-        $unique_ID = substr(md5(uniqid("")), 0, 8);
+		// Create a random string by taking the first 8 characters of an MD5 hash of a concatenation of the current UNIX epoch time and the current server process ID.
+		$unique_ID = substr(md5(uniqid("")), 0, 8);
 
-    } while (in_array($unique_ID, $unique_ID_array));
+	} while (in_array($unique_ID, $unique_ID_array));
 
-    // Create a timestamp to track the record.
-    $timestamp = time();
+	// Create a timestamp to track the record.
+	$timestamp = time();
 
-    // Insert the new record.
-    $result = cpg_db_query("INSERT INTO {$CONFIG['TABLE_TEMPDATA']} VALUES ('$unique_ID', '$encoded_string', '$timestamp')");
+	// Insert the new record.
+	//$result = cpg_db_query("INSERT INTO {$CONFIG['TABLE_TEMPDATA']} VALUES ('$unique_ID', '$encoded_string', '$timestamp')");
+	#######################################           DB          ####################################
+	 $result = $cpgdb->query($cpg_db_upload_php['add_tempdata'], $unique_ID, $encoded_string, $timestamp);
+	#####################################################################################
 
-    // Return the unique ID if insertion was successful. Otherwise, return false.
-    if ($result) {
+	// Return the unique ID if insertion was successful. Otherwise, return false.
+	if ($result) {
 
-        return $unique_ID;
+		return $unique_ID;
 
-    } else {
+	} else {
 
-        return FALSE;
+		return FALSE;
 
-    }
+	}
 
 }
 
 // The update_record function. Takes the $unique_ID and $encoded_string.
 function update_record($unique_ID, $encoded_string) {
+	// Globalize $CONFIG
+	global $CONFIG;
+	#####################      DB      ######################	
+	global $cpg_db_upload_php;
+	$cpgdb =& cpgDB::getInstance();
+	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+	##################################################	
 
-    // Globalize $CONFIG
-    global $CONFIG;
+	// Update record.
+	//$result = cpg_db_query("UPDATE {$CONFIG['TABLE_TEMPDATA']} SET encoded_string = '$encoded_string' WHERE unique_ID = '$unique_ID'");
+	#####################################          DB         ###################################
+	$result = $cpgdb->query($cpg_db_upload_php['update_record_tempdata'], $encoded_string, $unique_ID);
+	##################################################################################
 
-    // Update record.
-    $result = cpg_db_query("UPDATE {$CONFIG['TABLE_TEMPDATA']} SET encoded_string = '$encoded_string' WHERE unique_ID = '$unique_ID'");
+	// Return true if successful.
+	if ($result) {
 
-    // Return true if successful.
-    if ($result) {
+		return TRUE;
 
-        return TRUE;
+	} else {
 
-    } else {
+		return FALSE;
 
-        return FALSE;
-
-    }
+	}
 
 }
 
 // The delete_record function. Takes the $unique_ID.
 function delete_record($unique_ID) {
+	// Globalize $CONFIG
+	global $CONFIG;
+	#####################      DB      ######################	
+	global $cpg_db_upload_php;
+	$cpgdb =& cpgDB::getInstance();
+	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+	##################################################	
 
-    // Globalize $CONFIG
-    global $CONFIG;
+	// Delete record.
+	//$result = cpg_db_query("DELETE FROM {$CONFIG['TABLE_TEMPDATA']} WHERE unique_ID = '$unique_ID'");
+	#################################       DB     #################################
+	$result = $cpgdb->query($cpg_db_upload_php['delete_record_tempdata'], $unique_ID);
+	########################################################################
 
-    // Delete record.
-    $result = cpg_db_query("DELETE FROM {$CONFIG['TABLE_TEMPDATA']} WHERE unique_ID = '$unique_ID'");
+	// Return true if successful.
+	if ($result) {
 
-    // Return true if successful.
-    if ($result) {
+		return TRUE;
 
-        return TRUE;
+	} else {
 
-    } else {
+		return FALSE;
 
-        return FALSE;
-
-    }
+	}
 
 }
 
 // The retrieve_record function. Takes the $unique_ID.
+/*function retrieve_record($unique_ID) {
+
+	// Globalize $CONFIG
+	global $CONFIG;
+
+	// Retrieve record.
+	$result = cpg_db_query("SELECT encoded_string FROM {$CONFIG['TABLE_TEMPDATA']} WHERE unique_ID = '$unique_ID'");
+
+	// Return string if successful.
+	if (mysql_num_rows($result)) {
+
+		// Move value into $encoded_string.
+		while ($generic_array = mysql_fetch_array($result)) {
+
+			// Store the value.
+			$encoded_string = $generic_array['encoded_string'];
+
+		}
+
+		// Free resources.
+		mysql_free_result($result);
+
+		return $encoded_string;
+
+	} else {
+
+		// Free resources.
+		mysql_free_result($result);
+
+		return FALSE;
+
+	}
+
+}	*/
+#######################         DB          #####################
 function retrieve_record($unique_ID) {
+	// Globalize $CONFIG
+	global $CONFIG;
+	global $cpg_db_upload_php;
+	$cpgdb =& cpgDB::getInstance();
+	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
 
-    // Globalize $CONFIG
-    global $CONFIG;
+	// Retrieve record.
+	$cpgdb->query($cpg_db_upload_php['retrieve_record_tempdata'], $unique_ID);
+	$rowset =$cpgdb->fetchRowSet();
 
-    // Retrieve record.
-    $result = cpg_db_query("SELECT encoded_string FROM {$CONFIG['TABLE_TEMPDATA']} WHERE unique_ID = '$unique_ID'");
-
-    // Return string if successful.
-    if (mysql_num_rows($result)) {
-
-        // Move value into $encoded_string.
-        while ($generic_array = mysql_fetch_array($result)) {
-
-            // Store the value.
-            $encoded_string = $generic_array['encoded_string'];
-
-        }
-
-        // Free resources.
-        mysql_free_result($result);
-
-        return $encoded_string;
-
-    } else {
-
-        // Free resources.
-        mysql_free_result($result);
-
-        return FALSE;
-
-    }
+	// Return string if successful.
+	if (count($rowset)) {
+		// Move value into $encoded_string.
+		foreach ($rowset as $generic_array) {
+			// Store the value.
+			$encoded_string = $generic_array['encoded_string'];
+		}
+		// Free resources.
+		$cpgdb->free();
+		return $encoded_string;
+	} else {
+		// Free resources.
+		$cpgdb->free();
+		return FALSE;
+	}
 
 }
+######################################################
 
 // The clean_table function.
 function clean_table() {
+	// Globalize $CONFIG
+	global $CONFIG;
+	#####################      DB      ######################	
+	global $cpg_db_upload_php;
+	$cpgdb =& cpgDB::getInstance();
+	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+	##################################################	
 
-    // Globalize $CONFIG
-    global $CONFIG;
+	// Create a timestamp from an hour ago.
+	$comparative_timestamp = time() - 3600;
 
-    // Create a timestamp from an hour ago.
-    $comparative_timestamp = time() - 3600;
+	// Delete record.
+	//$result = cpg_db_query("DELETE FROM {$CONFIG['TABLE_TEMPDATA']} WHERE timestamp < $comparative_timestamp");
+	#########################         DB        #########################
+	$result = $cpgdb->query($cpg_db_upload_php['clean_table_tempdata'], $comparative_timestamp);
+	###########################################################
 
-    // Delete record.
-    $result = cpg_db_query("DELETE FROM {$CONFIG['TABLE_TEMPDATA']} WHERE timestamp < $comparative_timestamp");
+	// Return true if successful.
+	if ($result) {
 
-    // Return true if successful.
-    if ($result) {
+		return TRUE;
 
-        return TRUE;
+	} else {
 
-    } else {
+		return FALSE;
 
-        return FALSE;
-
-    }
+	}
 
 }
 
@@ -885,41 +971,72 @@ if ((CUSTOMIZE_UPLOAD_FORM) and (!$superCage->post->keyExists('file_upload_reque
 
 // Get public and private albums, and set maximum individual file size.
 
-if (GALLERY_ADMIN_MODE) {
-    $public_albums = cpg_db_query("SELECT aid, title, cid, name FROM {$CONFIG['TABLE_ALBUMS']} INNER JOIN {$CONFIG['TABLE_CATEGORIES']} ON cid = category WHERE category < " . FIRST_USER_CAT);
-    //select albums that don't belong to a category
-    $public_albums_no_cat = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = 0");
+/*if (GALLERY_ADMIN_MODE) {
+	$public_albums = cpg_db_query("SELECT aid, title, cid, name FROM {$CONFIG['TABLE_ALBUMS']} INNER JOIN {$CONFIG['TABLE_CATEGORIES']} ON cid = category WHERE category < " . FIRST_USER_CAT);
+	//select albums that don't belong to a category
+	$public_albums_no_cat = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = 0");
 } else {
-        $public_albums = cpg_db_query("SELECT aid, title, cid, name FROM {$CONFIG['TABLE_ALBUMS']} INNER JOIN {$CONFIG['TABLE_CATEGORIES']} ON cid = category WHERE category < " . FIRST_USER_CAT . " AND ((uploads='YES' AND (visibility = '0' OR visibility IN ".USER_GROUP_SET.")) OR (owner=".USER_ID."))");
-        //select albums that don't belong to a category
-        $public_albums_no_cat = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = 0 AND ((uploads='YES' AND (visibility = '0' OR visibility IN ".USER_GROUP_SET.")) OR (owner=".USER_ID."))");   
+		$public_albums = cpg_db_query("SELECT aid, title, cid, name FROM {$CONFIG['TABLE_ALBUMS']} INNER JOIN {$CONFIG['TABLE_CATEGORIES']} ON cid = category WHERE category < " . FIRST_USER_CAT . " AND ((uploads='YES' AND (visibility = '0' OR visibility IN ".USER_GROUP_SET.")) OR (owner=".USER_ID."))");
+		//select albums that don't belong to a category
+		$public_albums_no_cat = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = 0 AND ((uploads='YES' AND (visibility = '0' OR visibility IN ".USER_GROUP_SET.")) OR (owner=".USER_ID."))");   
 }
 
 
 if (mysql_num_rows($public_albums)) {
-    $public_albums_list = cpg_db_fetch_rowset($public_albums);
+	$public_albums_list = cpg_db_fetch_rowset($public_albums);
 } else {
-    $public_albums_list = array();
+	$public_albums_list = array();
 }
 
 //do the same for non categorized albums
 if (mysql_num_rows($public_albums_no_cat)) {
-    $public_albums_list_no_cat = cpg_db_fetch_rowset($public_albums_no_cat);
+	$public_albums_list_no_cat = cpg_db_fetch_rowset($public_albums_no_cat);
 } else {
-    $public_albums_list_no_cat = array();
+	$public_albums_list_no_cat = array();
+}	*/
+################################          DB        ##############################
+if (GALLERY_ADMIN_MODE) {
+	$public_albums = $cpgdb->query($cpg_db_upload_php['gal_admin_public_alb'], FIRST_USER_CAT);
+	$public_albums_list = $cpgdb->fetchRowSet();
+	//select albums that don't belong to a category
+	$public_albums_no_cat = $cpgdb->query($cpg_db_upload_php['gal_admin_public_alb_no_cat']);
+	$public_albums_list_no_cat = $cpgdb->fetchRowSet();
+} else {
+		$public_albums = $cpgdb->query($cpg_db_upload_php['public_alb'], FIRST_USER_CAT, USER_GROUP_SET, USER_ID);
+		$public_albums_list = $cpgdb->fetchRowSet();
+		//select albums that don't belong to a category
+		$public_albums_no_cat = $cpgdb->query($cpg_db_upload_php['public_alb_no_cat'], USER_GROUP_SET, USER_ID);
+		$public_albums_list_no_cat = $cpgdb->fetchRowSet();
 }
+
+if (!count($public_albums_list)) {
+		$public_albums_list = array();
+}
+
+//do the same for non categorized albums
+if (!count($public_albums_list_no_cat)) {
+		$public_albums_list_no_cat = array();
+}
+#######################################################################
 
 //merge the 2 album arrays
 $public_albums_list = array_merge($public_albums_list, $public_albums_list_no_cat);
 
 
 if (USER_ID) {
-    $user_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='" . (FIRST_USER_CAT + USER_ID) . "' ORDER BY title");
-    if (mysql_num_rows($user_albums)) {
-        $user_albums_list = cpg_db_fetch_rowset($user_albums);
-    } else {
-        $user_albums_list = array();
-    }
+	/*$user_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='" . (FIRST_USER_CAT + USER_ID) . "' ORDER BY title");
+	if (mysql_num_rows($user_albums)) {
+		$user_albums_list = cpg_db_fetch_rowset($user_albums);
+	} else {
+		$user_albums_list = array();
+	}	*/
+	################################          DB        ################################
+	$user_albums = $cpgdb->query($cpg_db_upload_php['user_alb'], (FIRST_USER_CAT + USER_ID));
+	$user_albums_list = $cpgdb->fetchRowSet();
+	if (!count($user_albums_list)) {
+		$user_albums_list = array();
+	}
+	##########################################################################
 } else {
     $user_albums_list = array();
 }
@@ -2277,20 +2394,38 @@ if ($superCage->post->keyExists('control') && $superCage->post->getRaw('control'
             $movie_ht = 240;
         }
 
-        // Check if the album id provided is valid
-        if (!GALLERY_ADMIN_MODE) {
-            $result = cpg_db_query("SELECT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album' and (uploads = 'YES' OR category = '" . (USER_ID + FIRST_USER_CAT) . "' OR owner = '" . USER_ID . "')");
-            if (mysql_num_rows($result) == 0)cpg_die(ERROR, $lang_db_input_php['unknown_album'], __FILE__, __LINE__);
-            $row = mysql_fetch_array($result);
-            mysql_free_result($result);
-            $category = $row['category'];
-        } else {
-            $result = cpg_db_query("SELECT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album'");
-            if (mysql_num_rows($result) == 0)cpg_die(ERROR, $lang_db_input_php['unknown_album'], __FILE__, __LINE__);
-            $row = mysql_fetch_array($result);
-            mysql_free_result($result);
-            $category = $row['category'];
-        }
+		// Check if the album id provided is valid
+		/*if (!GALLERY_ADMIN_MODE) {
+			$result = cpg_db_query("SELECT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album' and (uploads = 'YES' OR category = '" . (USER_ID + FIRST_USER_CAT) . "' OR owner = '" . USER_ID . "')");
+			if (mysql_num_rows($result) == 0)cpg_die(ERROR, $lang_db_input_php['unknown_album'], __FILE__, __LINE__);
+			$row = mysql_fetch_array($result);
+			mysql_free_result($result);
+			$category = $row['category'];
+		} else {
+			$result = cpg_db_query("SELECT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album'");
+			if (mysql_num_rows($result) == 0)cpg_die(ERROR, $lang_db_input_php['unknown_album'], __FILE__, __LINE__);
+			$row = mysql_fetch_array($result);
+			mysql_free_result($result);
+			$category = $row['category'];
+		}	*/
+		#########################################            DB           ##########################################
+		if (!GALLERY_ADMIN_MODE) {
+			$cpgdb->query($cpg_db_upload_php['check_valid_alb'], $album, (USER_ID + FIRST_USER_CAT), USER_ID);
+			$rowset = $cpgdb->fetchRowSet();
+			if (count($rowset)) cpg_die(ERROR, $lang_db_input_php['unknown_album'], __FILE__, __LINE__);
+			$row = $rowset[0];
+			$cpgdb->free();
+			$category = $row['category'];
+			
+		} else {
+			$cpgdb->query($cpg_db_upload_php['check_gal_admin_valid_alb'], $album);
+			$rowset = $cpgdb->fetchRowSet();
+			if (count($rowset) == 0) cpg_die(ERROR, $lang_db_input_php['unknown_album'], __FILE__, __LINE__);
+			$row = $rowset[0];
+			$cpgdb->free();
+			$category = $row['category'];
+		}
+		###############################################################################################
 
         // Pictures are moved in a directory named 10000 + USER_ID
         if (USER_ID && $CONFIG['silly_safe_mode'] != 1) {

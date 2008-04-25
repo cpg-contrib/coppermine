@@ -171,56 +171,83 @@ function javascript_string($str)
 // Retrieve the category list
 function get_subcat_data($parent, $ident = '')
 {
-    global $CONFIG, $CAT_LIST;
+	global $CONFIG, $CAT_LIST, cpg_db_xp_publish_php;
+	#####################      DB      ######################	
+	$cpgdb =& cpgDB::getInstance();
+	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+	##################################################	
 
-    $result = cpg_db_query("SELECT cid, name, description FROM {$CONFIG['TABLE_CATEGORIES']} WHERE parent = '$parent' AND cid != 1 ORDER BY pos");
-    if (mysql_num_rows($result) > 0) {
-        $rowset = cpg_db_fetch_rowset($result);
-        foreach ($rowset as $subcat) {
-            $CAT_LIST[] = array($subcat['cid'], $ident . $subcat['name']);
-            get_subcat_data($subcat['cid'], $ident . '&nbsp;&nbsp;&nbsp;');
-        }
-    }
+	/*$result = cpg_db_query("SELECT cid, name, description FROM {$CONFIG['TABLE_CATEGORIES']} WHERE parent = '$parent' AND cid != 1 ORDER BY pos");
+	if (mysql_num_rows($result) > 0) {
+		$rowset = cpg_db_fetch_rowset($result);	*/
+	############################        DB        ############################
+	$cpgdb->query($cpg_db_xp_publish_php['get_subcat_data'], $parent);
+	$rowset = $cpgdb->fetchRowSet();
+	if (count($rowset)) {
+	#################################################################
+		foreach ($rowset as $subcat) {
+			$CAT_LIST[] = array($subcat['cid'], $ident . $subcat['name']);
+			get_subcat_data($subcat['cid'], $ident . '&nbsp;&nbsp;&nbsp;');
+		}
+	}
 }
 
 // Return the HTML code for the album list select box
 function html_album_list(&$alb_count)
 {
-    global $CONFIG;
+	global $CONFIG, $cpg_db_xp_publish_php;
+	#####################      DB      ######################	
+	$cpgdb =& cpgDB::getInstance();
+	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+	##################################################	
 
-    if (USER_IS_ADMIN) {
-        $public_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " ORDER BY title");
-        if (mysql_num_rows($public_albums)) {
-            $public_albums_list = cpg_db_fetch_rowset($public_albums);
-        } else {
-            $public_albums_list = array();
-        }
-    } else {
-        $public_albums_list = array();
-    }
+	if (USER_IS_ADMIN) {
+		/*$public_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " ORDER BY title");
+		if (mysql_num_rows($public_albums)) {
+			$public_albums_list = cpg_db_fetch_rowset($public_albums);
+		} else {
+			$public_albums_list = array();
+		}	*/
+		###################################           DB          #################################
+		$public_albums = $cpgdb->query($cpg_db_xp_publish_php['get_public_albums'], FIRST_USER_CAT);
+		$public_albums_list = $cpgdb->fetchRowSet();
+		if (!count($public_albums_list)) {
+			$public_albums_list = array();
+		}
+		###############################################################################
+	} else {
+		$public_albums_list = array();
+	}
 
-    if (USER_ID) {
-        $user_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='" . (FIRST_USER_CAT + USER_ID) . "' ORDER BY title");
-        if (mysql_num_rows($user_albums)) {
-            $user_albums_list = cpg_db_fetch_rowset($user_albums);
-        } else {
-            $user_albums_list = array();
-        }
-    } else {
-        $user_albums_list = array();
-    }
+	if (USER_ID) {
+		/*$user_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='" . (FIRST_USER_CAT + USER_ID) . "' ORDER BY title");
+		if (mysql_num_rows($user_albums)) {
+			$user_albums_list = cpg_db_fetch_rowset($user_albums);
+		} else {
+			$user_albums_list = array();
+		}	*/
+		####################################         DB           ####################################
+		$user_albums = $cpgdb->query($cpg_db_xp_publish_php['get_user_albums'], (FIRST_USER_CAT + USER_ID));
+		$user_albums_list = $cpgdb->fetchRowSet();
+		if (!count($user_albums_list)) {
+			$user_albums_list = array();
+		}
+		##################################################################################
+	} else {
+		$user_albums_list = array();
+	}
 
-    $alb_count = count($public_albums_list) + count($user_albums_list);
+	$alb_count = count($public_albums_list) + count($user_albums_list);
 
-    $html = "\n";
-    foreach($user_albums_list as $album) {
-        $html .= '                        <option value="' . $album['aid'] . '">* ' . $album['title'] . "</option>\n";
-    }
-    foreach($public_albums_list as $album) {
-        $html .= '                        <option value="' . $album['aid'] . '">' . $album['title'] . "</option>\n";
-    }
+	$html = "\n";
+	foreach($user_albums_list as $album) {
+		$html .= '                        <option value="' . $album['aid'] . '">* ' . $album['title'] . "</option>\n";
+	}
+	foreach($public_albums_list as $album) {
+		$html .= '                        <option value="' . $album['aid'] . '">' . $album['title'] . "</option>\n";
+	}
 
-    return $html;
+	return $html;
 }
 // Return the HTML code for the category list select box
 function html_cat_list()
@@ -696,8 +723,11 @@ function create_album()
     }
 
 //  $query = "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (category, title, uploads, pos) VALUES ('$category', '" . addslashes($_POST['new_alb_name']) . "', 'NO',  '0')";
-    $query = "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (category, title, uploads, pos) VALUES ('$category', '" . $superCage->post->getEscaped('new_alb_name') . "', 'NO',  '0')";
-    cpg_db_query($query);
+	/*$query = "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (category, title, uploads, pos) VALUES ('$category', '" . $superCage->post->getEscaped('new_alb_name') . "', 'NO',  '0')";
+	cpg_db_query($query);	*/
+	#######################################          DB          ########################################
+	$cpgdb->query($cpg_db_xp_publish_php['create_album'], $category, $superCage->post->getEscaped('new_alb_name'));
+	#########################################################################################
 
   $new_alb_name = $superCage->post->getMatched('new_alb_name', '/^[0-9A-Za-z\/_]+$/');
   $new_alb_name = $new_alb_name[1];
@@ -735,34 +765,63 @@ function process_picture()
     $user3 = '';
     $user4 = '';
     $position = 0;
-    // Check if the album id provided is valid
-    if (!USER_IS_ADMIN) {
-        $result = cpg_db_query("SELECT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album' and category = '" . (USER_ID + FIRST_USER_CAT) . "'");
-        if (mysql_num_rows($result) == 0) simple_die(ERROR, $lang_db_input_php['unknown_album'], __FILE__, __LINE__);
-        $row = mysql_fetch_array($result);
-        mysql_free_result($result);
-        $category = $row['category'];
-    } else {
-        $result = cpg_db_query("SELECT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album'");
-        if (mysql_num_rows($result) == 0) simple_die(ERROR, $lang_db_input_php['unknown_album'], __FILE__, __LINE__);
-        $row = mysql_fetch_array($result);
-        mysql_free_result($result);
-        $category = $row['category'];
-    }
+	// Check if the album id provided is valid
+	/*if (!USER_IS_ADMIN) {
+		$result = cpg_db_query("SELECT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album' and category = '" . (USER_ID + FIRST_USER_CAT) . "'");
+		if (mysql_num_rows($result) == 0) simple_die(ERROR, $lang_db_input_php['unknown_album'], __FILE__, __LINE__);
+		$row = mysql_fetch_array($result);
+		mysql_free_result($result);
+		$category = $row['category'];
+	} else {
+		$result = cpg_db_query("SELECT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album'");
+		if (mysql_num_rows($result) == 0) simple_die(ERROR, $lang_db_input_php['unknown_album'], __FILE__, __LINE__);
+		$row = mysql_fetch_array($result);
+		mysql_free_result($result);
+		$category = $row['category'];
+	}
 
-    // Get position
-    $result = cpg_db_query("SELECT position FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='$album' order by position desc");
-    if (mysql_num_rows($result) == 0) {
-             $position = 100;
-    } else {
-             $row = mysql_fetch_array($result);
-             mysql_free_result($result);
-                     if ($row['position']) {
-                     $position = $row['position'];
-                             $position++;
-                                         }
-    }
-
+	// Get position
+	$result = cpg_db_query("SELECT position FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='$album' order by position desc");
+	if (mysql_num_rows($result) == 0) {
+			$position = 100;
+	} else {
+			$row = mysql_fetch_array($result);
+			mysql_free_result($result);
+			if ($row['position']) {
+				$position = $row['position'];
+				$position++;
+			}
+	}	*/
+	#############################################           DB          ###########################################
+	if (! USER_IS_ADMIN) {
+		$cpgdb->query($cpg_db_xp_publish_php['check_alb_user_not_admin'], $album, (USER_ID + FIRST_USER_CAT));
+		$rowset = $cpgdb->fetchRowSet();
+		if (count($rowset) == 0) simple_die(ERROR, $lang_db_input_php['unknown_album'], __FILE__, __LINE__);
+		$row = $rowset[0];
+		$cpgdb->free();
+		$category = $row['category'];
+	} else {
+		$cpgdb->query($cpg_db_xp_publish_php['check_alb_user_admin'], $album);
+		$rowset = $cpgdb->fetchRowSet();
+		if (count($rowset) == 0) simple_die(ERROR, $lang_db_input_php['unknown_album'], __FILE__, __LINE__);
+		$row = $rowset[0];
+		$cpgdb->free();
+		$category = $row['category'];
+	}
+	// Get position
+	$cpgdb->query($cpg_db_xp_publish_php['get_position'], $album);
+	$rowset = $cpgdb->fetchRowSet();
+	if (count($rowset) == 0) {
+			$position = 100;
+	} else {
+			$row = $rowset[0];
+			$cpgdb->free();
+			if ($row['position']) {
+				$position = $row['position'];
+				$position++;
+			}
+	}
+	###################################################################################################
 
     // Test if the filename of the temporary uploaded picture is empty
 //  if ($_FILES['userpicture']['tmp_name'] == '') simple_die(ERROR, $lang_db_input_php['no_pic_uploaded'], __FILE__, __LINE__);

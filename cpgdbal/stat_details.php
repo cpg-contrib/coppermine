@@ -168,25 +168,31 @@ require_once('include/init.inc.php');
     }
 
 // perform database write queries if needed - start
-  if (GALLERY_ADMIN_MODE) {
-      $configChangesApplied = '';
-      $get_hit_details = $superCage->get->getInt('hit_details');
-      if ($get_hit_details != $CONFIG['hit_details'] && $superCage->get->getEscaped('go') != '') {
-          cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '{$get_hit_details}' WHERE name = 'hit_details'");
-          $CONFIG['hit_details'] = $get_hit_details;
-          $configChangesApplied = $lang_stat_details_php['upd_success'];
-      }
-      $get_vote_details = $superCage->get->getInt('vote_details');
-      if ($get_vote_details != $CONFIG['vote_details'] && $superCage->get->getEscaped('go') != '') {
-          cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '{$get_vote_details}' WHERE name = 'vote_details'");
-          $CONFIG['vote_details'] = $get_vote_details;
-          $configChangesApplied = $lang_stat_details_php['upd_success'];
-      }
-      //if ($_GET['emptyhitstats'] == TRUE || $_GET['emptyvotestats'] == TRUE) {
-      if ($superCage->get->getEscaped('emptyhitstats') == TRUE || $superCage->get->getEscaped('emptyvotestats') == TRUE) {
-          $configChangesApplied = $lang_stat_details_php['not_implemented'];
-      }
-  }
+	if (GALLERY_ADMIN_MODE) {
+		$configChangesApplied = '';
+		$get_hit_details = $superCage->get->getInt('hit_details');
+		if ($get_hit_details != $CONFIG['hit_details'] && $superCage->get->getEscaped('go') != '') {
+			//cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '{$get_hit_details}' WHERE name = 'hit_details'");
+			##############################          DB        ############################
+			$cpgdb->query($cpg_db_stat_details_php['set_hit_details'], $get_hit_details);
+			###################################################################
+			$CONFIG['hit_details'] = $get_hit_details;
+			$configChangesApplied = $lang_stat_details_php['upd_success'];
+		}
+		$get_vote_details = $superCage->get->getInt('vote_details');
+		if ($get_vote_details != $CONFIG['vote_details'] && $superCage->get->getEscaped('go') != '') {
+			//cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '{$get_vote_details}' WHERE name = 'vote_details'");
+			#################################          DB        ##############################
+			$cpgdb->query($cpg_db_stat_details_php['set_vote_datails'], {$get_vote_details});
+			########################################################################
+			$CONFIG['vote_details'] = $get_vote_details;
+			$configChangesApplied = $lang_stat_details_php['upd_success'];
+		}
+		//if ($_GET['emptyhitstats'] == TRUE || $_GET['emptyvotestats'] == TRUE) {
+		if ($superCage->get->getEscaped('emptyhitstats') == TRUE || $superCage->get->getEscaped('emptyvotestats') == TRUE) {
+			$configChangesApplied = $lang_stat_details_php['not_implemented'];
+		}
+	}
 // perform database write queries if needed - end
 
 // output the header depending on the mode (fullscreen vs embedded) - start
@@ -260,8 +266,11 @@ require_once('include/stats.inc.php');
 // output the stuff the user can see - start
 if ($type == 'vote' && $pid != '') { // type == vote start
 
-    $query = "SELECT rating, count(rating) AS totalVotes FROM {$CONFIG['TABLE_VOTE_STATS']} WHERE pid=$pid GROUP BY rating";
-    $result = cpg_db_query($query);
+	/*$query = "SELECT rating, count(rating) AS totalVotes FROM {$CONFIG['TABLE_VOTE_STATS']} WHERE pid=$pid GROUP BY rating";
+	$result = cpg_db_query($query);	*/
+	########################          DB        ########################
+	$cpgdb->query($cpg_db_stats_details_php['get_pic_ratings'], $pid);
+	#########################################################
 
     $rateArr = array();
 
@@ -270,11 +279,12 @@ if ($type == 'vote' && $pid != '') { // type == vote start
 
     $totalVotesSum = 0;
 
-    while ($row = mysql_fetch_array($result)) {
-          $voteArr[$row['rating']] = $row['totalVotes'];
-          $totalVotesSum = $totalVotesSum + $row['totalVotes'];
-          $loopCounter = 0;
-    }
+	//while ($row = mysql_fetch_array($result)) {
+	while ($row = $cpgdb->fetchRow()) {		###########	cpgdb_AL
+		$voteArr[$row['rating']] = $row['totalVotes'];
+		$totalVotesSum = $totalVotesSum + $row['totalVotes'];
+		$loopCounter = 0;
+	}
 	
 	if (defined('THEME_HAS_RATING_GRAPHICS')) {
 		$prefix = $THEME_DIR;
@@ -362,165 +372,181 @@ if (GALLERY_ADMIN_MODE) { // admin is logged in - start
     //-->
   </script>
 EOT;
-      if ($sort == 'file') {
-          $sort = 'pid';
-      }
+	if ($sort == 'file') {
+	  $sort = 'pid';
+	}
 
-      if ($type == 'vote') {
-          $queryTable = $CONFIG['TABLE_VOTE_STATS'];
-      } elseif ($type == 'hits') {
-          $queryTable = $CONFIG['TABLE_HIT_STATS'];
-      }
-      if ($pid != '') {
-          $queryWhere = 'pid='.$pid;
-          $countWhere = 'WHERE pid='.$pid;
-      } else {
-          $queryWhere = $queryTable . '.pid = ' . $CONFIG['TABLE_PICTURES'] . '.pid';
-          $countWhere = '';
-          $querySelect = ','.$CONFIG['TABLE_PICTURES'].'.filepath,
-                           '.$CONFIG['TABLE_PICTURES'].'.filename,
-                           '.$CONFIG['TABLE_PICTURES'].'.pwidth,
-                           '.$CONFIG['TABLE_PICTURES'].'.pheight,
-                           '.$CONFIG['TABLE_PICTURES'].'.url_prefix';
-          $queryFrom = ','.$CONFIG['TABLE_PICTURES'];
-      }
-      $query = "SELECT COUNT(pid) FROM $queryTable $countWhere";
-      $result = cpg_db_query($query);
-      $nbEnr = mysql_fetch_array($result);
-      $count = $nbEnr[0];
-      mysql_free_result($result);
+	if ($type == 'vote') {
+	  $queryTable = $CONFIG['TABLE_VOTE_STATS'];
+	} elseif ($type == 'hits') {
+	  $queryTable = $CONFIG['TABLE_HIT_STATS'];
+	}
+	if ($pid != '') {
+	  $queryWhere = 'pid='.$pid;
+	  $countWhere = 'WHERE pid='.$pid;
+	} else {
+	  $queryWhere = $queryTable . '.pid = ' . $CONFIG['TABLE_PICTURES'] . '.pid';
+	  $countWhere = '';
+	  $querySelect = ','.$CONFIG['TABLE_PICTURES'].'.filepath,
+					   '.$CONFIG['TABLE_PICTURES'].'.filename,
+					   '.$CONFIG['TABLE_PICTURES'].'.pwidth,
+					   '.$CONFIG['TABLE_PICTURES'].'.pheight,
+					   '.$CONFIG['TABLE_PICTURES'].'.url_prefix';
+	  $queryFrom = ','.$CONFIG['TABLE_PICTURES'];
+	}
+		/*$query = "SELECT COUNT(pid) FROM $queryTable $countWhere";
+		$result = cpg_db_query($query);
+		$nbEnr = mysql_fetch_array($result);
+		$count = $nbEnr[0];
+		mysql_free_result($result);	*/
+		#################################          DB        ################################
+		$cpgdb->query($cpg_db_stat_details_php['count_pic_stats'], $queryTable, $countWhere);
+		$nbEnr = $cpgdb->fetchRow();
+		$count = $nbEnr['count'];
+		$cpgdb->free();
+		#########################################################################
 
-      // Calculation for pagination tabs and query limit
-      $numPages = ceil($count/$amount);
-      $start = ($page - 1) * $amount;
-      if ($start < 0) {
-          $start = 0;
-      }
+		// Calculation for pagination tabs and query limit
+		$numPages = ceil($count/$amount);
+		$start = ($page - 1) * $amount;
+		if ($start < 0) {
+		  $start = 0;
+		}
 
-      $query = $query = "SELECT {$queryTable}.* $querySelect
-                         FROM $queryTable $queryFrom
-                         WHERE $queryWhere
-                         ORDER BY $sort $dir
-                         LIMIT $start, $amount";
+		/*$query = $query = "SELECT {$queryTable}.* $querySelect
+						 FROM $queryTable $queryFrom
+						 WHERE $queryWhere
+						 ORDER BY $sort $dir
+						 LIMIT $start, $amount";
 
-      $result = cpg_db_query($query);
-      // display the table header - start
-      $tableColumns = count($db_fields);
-      if ($pid == '') {
-          $tableColumns++;
-      }
-      print '<a name="details"></a>';
-      starttable($statsTableWidth, $lang_stat_details_php[$type], $tableColumns + 1);
-      print '  <tr>'.$line_break;
-      print '    <td class="tableh2" align="center" valign="bottom">'.$line_break;
-      if ($type == 'vote') {
-          print '    <input type="checkbox" name="checkAll" onClick="selectAll(this,\'del\');" class="checkbox" title="'.$lang_common['check_uncheck_all'].'" />'.$line_break;
-      }
-      print '    </td>'.$line_break;
-      foreach ($db_fields as $value) {
-          $show_column_checked[$value] = ($$value == '1') ? 'checked="checked"' : '';
-          print '    <td class="tableh2" valign="top">'.$line_break;
-          print '      <input type="checkbox" name="'.$value.'" value="1" class="checkbox" title="'.$lang_stat_details_php['show_hide'].'" '.$show_column_checked[$value].' onclick="sendForm();" /><br />'.$line_break;
-          print '      <img src="images/'.$icon[$value].'" border="0" width="16" height="16" alt="" title="'.$lang_stat_details_php[$value].'" />';
-          if ($$value == 1) {
-              print '<a href="#" onclick="return sortthetable(\''.$value.'\',\'asc\');">';
-              print '<img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="'.sprintf($lang_stat_details_php['sort_by_xxx'], $value).', '.$lang_stat_details_php['ascending'].'" />';
-              print '</a>';
-              print '<a href="#" onclick="return sortthetable(\''.$value.'\',\'desc\');">';
-              print '<img src="images/descending.gif" width="9" height="9" border="0" alt="" title="'.sprintf($lang_stat_details_php['sort_by_xxx'], $lang_stat_details_php[$value]).', '.$lang_stat_details_php['descending'].'" />';
-              print '</a>';
-          }
-          print $line_break;
-          print '    </td>'.$line_break;
-      }
-      if ($pid == '') {
-          $show_file_column = ($file == '1') ? 'checked="checked"' : '';
-          print '    <td class="tableh2">'.$line_break;
-          print '      <input type="checkbox" name="file" value="1" class="checkbox" title="'.$lang_stat_details_php['show_hide'].'" '.$lang_common['file'].' onclick="sendForm();" '.$show_file_column.' /><br />'.$line_break;
-          print '      '.$lang_common['file'];
-          if ($file == 1) {
-              print '<a href="#" onclick="return sortthetable(\'file\',\'asc\');">';
-              print '<img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="'.sprintf($lang_stat_details_php['sort_by_xxx'], $lang_common['file']).', '.$lang_stat_details_php['ascending'].'" />';
-              print '</a>';
-              print '<a href="#" onclick="return sortthetable(\'file\',\'desc\');">';
-              print '<img src="images/descending.gif" width="9" height="9" border="0" alt="" title="'.sprintf($lang_stat_details_php['sort_by_xxx'], $lang_common['file']).', '.$lang_stat_details_php['descending'].'" />';
-              print '</a>';
-          }
-          print '    </td>'.$line_break;
-      }
-      print "  </tr>\n";
-      // display the table header - end
-      if (mysql_num_rows($result) > 0) {
-          $loop_counter = 0;
-          while ($row = mysql_fetch_array($result)) {
-              if ($loop_counter == 0) {
-                  $row_style_class = 'tableb';
-              } else {
-                  $row_style_class = 'tableb tableb_alternate';
-              }
-              $loop_counter++;
-              if ($loop_counter > 1) {
-                  $loop_counter = 0;
-              }
-              $row['sdate'] = strftime($date_display_fmt,localised_timestamp($row['sdate']));
-              $is_internal = '';
-              $row['referer'] = rawurldecode($row['referer']);
-              // is it an internal reference (most should be)?
-              $match_coppermine_url = strpos($row['referer'],$CONFIG['ecards_more_pic_target']);
-              if ($match_coppermine_url === FALSE) {
-                  // make the referer url clickable
-                  $row['referer'] = '<a href="'.$row['referer'].'">'.ltrim(ltrim($row['referer'],'http://'),'http%3A%2F%2F').'</a>';
-              } else {
-                  // make the referer url clickable
-                  $row['referer'] = $lang_stat_details_php['internal'].': <a href="'.$row['referer'].'">'.substr($row['referer'],strlen(rtrim($CONFIG['ecards_more_pic_target'],'/'))).'</a>';
-                  $is_internal = 1;
-              }
-              if ($hide_internal == 1 && $is_internal == 1) { // check internals start
-              } else {
-                  print '  <tr>'.$line_break;
-                  print '    <td class="'.$row_style_class.'" align="center">'.$line_break;
-                  if ($type == 'vote') {
-                      print '      <input name="del'.$row['sid'].'" type="checkbox" value="" class="checkbox" />'.$line_break;
-                  }
-                  print '    </td>'.$line_break;
-                  foreach($db_fields as $value) {
-                      print '    <td class="'.$row_style_class.'">'.$line_break;
-                      if ($$value == 1) {
-                          if ($value == 'browser' && array_key_exists($row[$value],$browserArray)) {
-                              print '      <img src="images/browser/'.$browserArray[$row[$value]].'" width="14" height="14" border="0" title="'.$row[$value].'" alt="" />'.$line_break;
-                          } elseif ($value == 'os' && array_key_exists($row[$value],$osArray)) {
-                              print '      <img src="images/os/'.$osArray[$row[$value]].'" width="14" height="14" border="0" title="'.$row[$value].'" alt="" />'.$line_break;
-                          } elseif ($value == 'uid') {
-                              if ($row[$value] != 0) {
-                                  $user_data = $cpg_udb->get_user_infos($row[$value]);
-                                  print '      <a href="profile.php?uid='.$row[$value].'">'.$user_data['user_name'].'</a>'.$line_break;
-                              }  else {
-                                  print '      <span title="'.$lang_stat_details_php['guest'].'">-</span>'.$line_break;
-                              }
-                          } else {
-                              print '      '.$row[$value].$line_break;
-                          }
-                      }
-                      print '    </td>'.$line_break;
-                  }
-              if ($pid == '') {
-                  print '    <td class="'.$row_style_class.'">'.$line_break;
-                  if ($file == 1) {
-                      $thumb_url =  get_pic_url($row, 'thumb');
-                      if (!is_image($row['filename'])) {
-                          $image_info = cpg_getimagesize($thumb_url);
-                          $row['pwidth'] = $image_info[0];
-                          $row['pheight'] = $image_info[1];
-                      }
-                      $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['alb_list_thumb_size']);
-                      print '      <a href="displayimage.php?pid='.$row['pid'].'"><img src="'.$thumb_url.'" '.$image_size['geom'].' class="image" border="0" alt="" /></a>';
-                  }
-                  print '    </td>'.$line_break;
-              }
-              print '  </tr>'.$line_break;
-              } // check internals end
-          }
-      }
+		$result = cpg_db_query($query);	*/
+		##########################################          DB        ##########################################
+		$cpgdb->query($cpg_db_stat_details_php['get_pic_stat_details'], $queryTable, $querySelect, $queryTable, 
+					$queryFrom, $queryWhere, $sort, $dir, $start, $amount);
+		$rowset = $cpgdb->fetchRowSet();
+		#############################################################################################
+		// display the table header - start
+		$tableColumns = count($db_fields);
+		if ($pid == '') {
+		  $tableColumns++;
+		}
+		print '<a name="details"></a>';
+		starttable($statsTableWidth, $lang_stat_details_php[$type], $tableColumns + 1);
+		print '  <tr>'.$line_break;
+		print '    <td class="tableh2" align="center" valign="bottom">'.$line_break;
+		if ($type == 'vote') {
+			print '    <input type="checkbox" name="checkAll" onClick="selectAll(this,\'del\');" class="checkbox" title="'.$lang_common['check_uncheck_all'].'" />'.$line_break;
+		}
+		print '    </td>'.$line_break;
+		foreach ($db_fields as $value) {
+			$show_column_checked[$value] = ($$value == '1') ? 'checked="checked"' : '';
+			print '    <td class="tableh2" valign="top">'.$line_break;
+			print '      <input type="checkbox" name="'.$value.'" value="1" class="checkbox" title="'.$lang_stat_details_php['show_hide'].'" '.$show_column_checked[$value].' onclick="sendForm();" /><br />'.$line_break;
+			print '      <img src="images/'.$icon[$value].'" border="0" width="16" height="16" alt="" title="'.$lang_stat_details_php[$value].'" />';
+			if ($$value == 1) {
+				print '<a href="#" onclick="return sortthetable(\''.$value.'\',\'asc\');">';
+				print '<img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="'.sprintf($lang_stat_details_php['sort_by_xxx'], $value).', '.$lang_stat_details_php['ascending'].'" />';
+				print '</a>';
+				print '<a href="#" onclick="return sortthetable(\''.$value.'\',\'desc\');">';
+				print '<img src="images/descending.gif" width="9" height="9" border="0" alt="" title="'.sprintf($lang_stat_details_php['sort_by_xxx'], $lang_stat_details_php[$value]).', '.$lang_stat_details_php['descending'].'" />';
+				print '</a>';
+			}
+			print $line_break;
+			print '    </td>'.$line_break;
+		}
+		if ($pid == '') {
+			$show_file_column = ($file == '1') ? 'checked="checked"' : '';
+			print '    <td class="tableh2">'.$line_break;
+			print '      <input type="checkbox" name="file" value="1" class="checkbox" title="'.$lang_stat_details_php['show_hide'].'" '.$lang_common['file'].' onclick="sendForm();" '.$show_file_column.' /><br />'.$line_break;
+			print '      '.$lang_common['file'];
+			if ($file == 1) {
+				print '<a href="#" onclick="return sortthetable(\'file\',\'asc\');">';
+				print '<img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="'.sprintf($lang_stat_details_php['sort_by_xxx'], $lang_common['file']).', '.$lang_stat_details_php['ascending'].'" />';
+				print '</a>';
+				print '<a href="#" onclick="return sortthetable(\'file\',\'desc\');">';
+				print '<img src="images/descending.gif" width="9" height="9" border="0" alt="" title="'.sprintf($lang_stat_details_php['sort_by_xxx'], $lang_common['file']).', '.$lang_stat_details_php['descending'].'" />';
+				print '</a>';
+			}
+			print '    </td>'.$line_break;
+		}
+		print "  </tr>\n";
+		// display the table header - end
+		/*if (mysql_num_rows($result) > 0) {
+			$loop_counter = 0;
+			while ($row = mysql_fetch_array($result)) {	*/
+		########################          DB        ########################
+		if (count($rowset) > 0) {
+			$loop_counter = 0;
+			foreach ($rowset as $row) {
+		#########################################################
+				if ($loop_counter == 0) {
+					$row_style_class = 'tableb';
+				} else {
+						$row_style_class = 'tableb tableb_alternate';
+				}
+				$loop_counter++;
+				if ($loop_counter > 1) {
+						$loop_counter = 0;
+				}
+				$row['sdate'] = strftime($date_display_fmt,localised_timestamp($row['sdate']));
+				$is_internal = '';
+				$row['referer'] = rawurldecode($row['referer']);
+				// is it an internal reference (most should be)?
+				$match_coppermine_url = strpos($row['referer'],$CONFIG['ecards_more_pic_target']);
+				if ($match_coppermine_url === FALSE) {
+					// make the referer url clickable
+					$row['referer'] = '<a href="'.$row['referer'].'">'.ltrim(ltrim($row['referer'],'http://'),'http%3A%2F%2F').'</a>';
+				} else {
+					// make the referer url clickable
+					$row['referer'] = $lang_stat_details_php['internal'].': <a href="'.$row['referer'].'">'.substr($row['referer'],strlen(rtrim($CONFIG['ecards_more_pic_target'],'/'))).'</a>';
+					$is_internal = 1;
+				}
+				if ($hide_internal == 1 && $is_internal == 1) { // check internals start
+				} else {
+					print '  <tr>'.$line_break;
+					print '    <td class="'.$row_style_class.'" align="center">'.$line_break;
+					if ($type == 'vote') {
+						print '      <input name="del'.$row['sid'].'" type="checkbox" value="" class="checkbox" />'.$line_break;
+					}
+					print '    </td>'.$line_break;
+					foreach($db_fields as $value) {
+						print '    <td class="'.$row_style_class.'">'.$line_break;
+						if ($$value == 1) {
+							if ($value == 'browser' && array_key_exists($row[$value],$browserArray)) {
+								print '      <img src="images/browser/'.$browserArray[$row[$value]].'" width="14" height="14" border="0" title="'.$row[$value].'" alt="" />'.$line_break;
+							} elseif ($value == 'os' && array_key_exists($row[$value],$osArray)) {
+									print '      <img src="images/os/'.$osArray[$row[$value]].'" width="14" height="14" border="0" title="'.$row[$value].'" alt="" />'.$line_break;
+							} elseif ($value == 'uid') {
+									if ($row[$value] != 0) {
+										$user_data = $cpg_udb->get_user_infos($row[$value]);
+										print '      <a href="profile.php?uid='.$row[$value].'">'.$user_data['user_name'].'</a>'.$line_break;
+									}  else {
+											print '      <span title="'.$lang_stat_details_php['guest'].'">-</span>'.$line_break;
+									}
+							} else {
+									print '      '.$row[$value].$line_break;
+							}
+						}
+						print '    </td>'.$line_break;
+					}
+					if ($pid == '') {
+						print '    <td class="'.$row_style_class.'">'.$line_break;
+						if ($file == 1) {
+							$thumb_url =  get_pic_url($row, 'thumb');
+							if (!is_image($row['filename'])) {
+								$image_info = cpg_getimagesize($thumb_url);
+								$row['pwidth'] = $image_info[0];
+								$row['pheight'] = $image_info[1];
+							}
+							$image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['alb_list_thumb_size']);
+							print '      <a href="displayimage.php?pid='.$row['pid'].'"><img src="'.$thumb_url.'" '.$image_size['geom'].' class="image" border="0" alt="" /></a>';
+						}
+						print '    </td>'.$line_break;
+					}
+					print '  </tr>'.$line_break;
+				} // check internals end
+			}
+		}
   // Display pagination
   $record_selector = '&nbsp;&nbsp;-&nbsp;&nbsp;<select name="amount" size="1" onchange="sendForm();" class="listbox">';
   foreach ($amount_allowed as $key) {

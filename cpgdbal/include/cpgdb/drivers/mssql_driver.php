@@ -503,10 +503,27 @@ class cpgDB {
 		return "DATEDIFF(s, '19700101', $datetime_var)";
 	}
 
-	//returns the first value of the Array returned by fetchRow 
-	/*function firstkey() {
-		return 1;
-	}*/
+	/**
+	//closes the non-persistent connection 
+	*cpgDB :: close () 
+	*/
+	function close($link='')
+	{
+		if ($link == ''){
+			$link = $this->Link_ID;
+		}
+		sqlsrv_close($link);
+	}
+
+	/**
+	//closes the non-persistent connection 
+	*cpgDB :: close () 
+	*/
+	function escape($str_to_escape)
+	{
+		$escape_str = stripslashes($str_to_escape);
+		return addslashes($escape_str);
+	}
 
 	
 }

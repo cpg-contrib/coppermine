@@ -28,7 +28,7 @@ class cpg_udb extends core_udb {
 
 	function cpg_udb()
 	{
-		global $BRIDGE;
+		global $BRIDGE, $CONFIG;
 		
 		if (!USE_BRIDGEMGR) {
 			$this->boardurl = 'http://www.yousite.com/vb3';
@@ -71,12 +71,19 @@ class cpg_udb extends core_udb {
 			'groups' => 'usergroup',
 			'sessions' => 'session'
 		);
-
+		##########################################            DB          #######################################
 		// Derived full table names
-		$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
-		$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
-		$this->sessionstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['sessions'];
-		
+		if ($CONFIG['dbservername'] == 'mysql') {
+			$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
+			$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
+			$this->sessionstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['sessions'];
+		} else {	//////	for MSSQL	//////
+			$this->usertable = $this->db['name'] ."." .dbo ."." .$this->db['prefix'] . $this->table['users'];
+			$this->groupstable =   $this->db['name'] . "." .dbo ."." .$this->db['prefix'] . $this->table['groups'];
+			$this->sessionstable =   $this->db['name'] ."." .dbo .".". $this->db['prefix'] . $this->table['sessions'];
+		}
+	#############################################################################################
+	
 		// Table field names
 		$this->field = array(
 			'username' => 'username', // name of 'username' field in users table
@@ -122,13 +129,14 @@ class cpg_udb extends core_udb {
 	// definition of how to extract id, name, group from a session cookie
 	function session_extraction()
 	{
+		global $cpg_db_vbulletin30_inc;	######	cpgdb_AL
 		$superCage = Inspekt::makeSuperCage();
 		//if (isset($_COOKIE[$this->cookie_name . 'sessionhash'])) {
 		//	$session_id = addslashes($_COOKIE[$this->cookie_name . 'sessionhash']);
 		if ($superCage->cookie->keyExists($this->cookie_name . 'sessionhash')) {
 			$session_id = $superCage->cookie->getEscaped($this->cookie_name . 'sessionhash');
 			
-			$sql = "SELECT u.{$this->field['user_id']}, u.{$this->field['password']}, u.{$this->field['grouptbl_group_id']}+100 AS usergroupid FROM {$this->usertable} AS u, {$this->sessionstable} AS s WHERE s.{$this->field['user_id']}=u.{$this->field['user_id']} AND s.sessionhash='$session_id'";
+			/*$sql = "SELECT u.{$this->field['user_id']}, u.{$this->field['password']}, u.{$this->field['grouptbl_group_id']}+100 AS usergroupid FROM {$this->usertable} AS u, {$this->sessionstable} AS s WHERE s.{$this->field['user_id']}=u.{$this->field['user_id']} AND s.sessionhash='$session_id'";
 			
 			$result = cpg_db_query($sql, $this->link_id);
 			
@@ -136,22 +144,40 @@ class cpg_udb extends core_udb {
 				$row = mysql_fetch_array($result);
 				return $row;
 			} else {
-			    return false;
+				return false;
+			}	*/
+			#######################################          DB         #######################################
+			$this->cpgudb->query($cpg_db_vbulletin30_inc['session_extraction'], $this->field['user_id'], $this->field['password'], 
+							$this->field['grouptbl_group_id'], $this->usertable, $this->sessionstable, $session_id);
+							
+			$rowset = $this->cpgudb->fetchRowSet();
+			if (count($rowset)) {
+				$row = $rowset[0];
+			} else {
+				return false;
 			}
+			#######################################################################################
 		}
 	}
 	
 	// Get groups of which user is member
 	function get_groups($row)
 	{
+		global $cpg_db_vbulletin30_inc;	######	cpgdb_AL
 		$data[0] = in_array($row['group_id'] - 100, $this->admingroups) ? 1 : 2;
 		
 		if ($this->use_post_based_groups){
-			$sql = "SELECT g.{$this->field['usertbl_group_id']}+100 AS group_id, u.* FROM {$this->usertable} AS u, {$this->groupstable} as g WHERE g.{$this->field['grouptbl_group_id']} = u.{$this->field['usertbl_group_id']} AND u.{$this->field['user_id']} = '{$row['id']}'";
+			/*$sql = "SELECT g.{$this->field['usertbl_group_id']}+100 AS group_id, u.* FROM {$this->usertable} AS u, {$this->groupstable} as g WHERE g.{$this->field['grouptbl_group_id']} = u.{$this->field['usertbl_group_id']} AND u.{$this->field['user_id']} = '{$row['id']}'";
 
 			$result = cpg_db_query($sql, $this->link_id);
         
-			$row = mysql_fetch_array($result);
+			$row = mysql_fetch_array($result);	*/
+			########################################           DB         ########################################
+			$this->cpgudb->query($cpg_db_vbulletin30_inc['get_groups'], $this->field['usertbl_group_id'], $this->usertable, 
+							$this->groupstable, $thisfield['grouptbl_group_id'], $this->field['user_id'], $row['id']);
+							
+			$row = $this->cpgudb->fetchRow();
+			##########################################################################################
 			
 			$data[0] = $row['group_id'];
 			

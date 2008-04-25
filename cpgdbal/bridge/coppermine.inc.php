@@ -65,16 +65,18 @@ class coppermine_udb extends core_udb {
                         'groups' => 'usergroups',
                         'sessions' => 'sessions'
                 );
-                // Derived full table names
-                if ($CONFIG['dbservername'] == 'mssql') {
-					$this->usertable = $this->db['name'] ."." .dbo ."." .$this->db['prefix'] . $this->table['users'];
-					$this->groupstable =   $this->db['name'] . "." .dbo ."." .$this->db['prefix'] . $this->table['groups'];
-					$this->sessionstable =   $this->db['name'] ."." .dbo .".". $this->db['prefix'] . $this->table['sessions'];
-				} else {
+				##################################            DB          ###################################
+                // Derived full table names	
+                if ($CONFIG['dbservername'] == 'mysql') {
 					$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
 					$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
 					$this->sessionstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['sessions'];
+				} else {
+					$this->usertable = $this->db['name'] ."." .dbo ."." .$this->db['prefix'] . $this->table['users'];
+					$this->groupstable =   $this->db['name'] . "." .dbo ."." .$this->db['prefix'] . $this->table['groups'];
+					$this->sessionstable =   $this->db['name'] ."." .dbo .".". $this->db['prefix'] . $this->table['sessions'];
 				}
+				####################################################################################
 
                 // Table field names
                 $this->field = array(

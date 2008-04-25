@@ -174,7 +174,11 @@ if ($superCage->get->keyExists('cat') && $superCage->get->getInt('cat') == USER_
 
 	function bridge_extender()
 	{
-		global $cpg_udb;
+		global $cpg_udb, $cpg_db_usergal_alphatabs;
+		#####################      DB      ######################	
+		$cpgdb =& cpgDB::getInstance();
+		$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+		##################################################	
 	
 		eval('
 		
@@ -198,12 +202,12 @@ if ($superCage->get->keyExists('cat') && $superCage->get->getInt('cat') == USER_
 			$forbidden = "";
 		}
 
-        $users_per_page = $CONFIG["thumbcols"] * $CONFIG["thumbrows"];
-        $lower_limit = ($PAGE-1) * $users_per_page;
+		$users_per_page = $CONFIG["thumbcols"] * $CONFIG["thumbrows"];
+		$lower_limit = ($PAGE-1) * $users_per_page;
 
 		if ($this->can_join_tables){
 			
-			$sql  = "SELECT {$f[\'user_id\']} as user_id,";
+		/*	$sql  = "SELECT {$f[\'user_id\']} as user_id,";
 			$sql .= "{$f[\'username\']} as user_name,";
 			$sql .= "COUNT(DISTINCT a.aid) as alb_count,";
 			$sql .= "COUNT(DISTINCT pid) as pic_count,";
@@ -224,14 +228,28 @@ if ($superCage->get->keyExists('cat') && $superCage->get->getInt('cat') == USER_
 			while ($row = mysql_fetch_array($result)) {
 				$users[] = $row;
 			}
-			mysql_free_result($result);
+			mysql_free_result($result);	*/
+			###################################     DB    ####################################
+			if ($l = $getLetter) {
+				$like = "AND {$f[\'username\']} LIKE \'$l%\' ";
+			} else {
+				$like = "";
+			}
+			$cpgdb->query($cpg_db_usergal_alphatabs[\'list_users_can_join_tables\'], $f[\'user_id\'], $this->usertable, 
+							FIRST_USER_CAT, $forbidden_with_icon, $like, $lower_limit, $users_per_page);
+							
+			while ($row = $cpgdb->fetchRow()) {
+				$users[] = $row;
+			}
+			$cpgdb->free();
+			###################################################################################
 			
 		} else {
 			// This is the way we collect the data without a direct join to the forums user table
 
 			// This query determines which users we need to collect usernames of - ie just those which have albums with pics
 			// and are on the page we are looking at
-			$sql  = "SELECT category - 10000 as user_id ";
+		/*	$sql  = "SELECT category - 10000 as user_id ";
 			$sql .= "FROM {$CONFIG[\'TABLE_ALBUMS\']} AS a ";
 			$sql .= "INNER JOIN {$CONFIG[\'TABLE_PICTURES\']} AS p ON p.aid = a.aid ";
 			$sql .= "WHERE ((isnull(approved) or approved=\"YES\") ";
@@ -245,12 +263,23 @@ if ($superCage->get->keyExists('cat') && $superCage->get->getInt('cat') == USER_
 			while ($row = mysql_fetch_array($result)) {
 				$user_ids[] = $row["user_id"];
 			}
-			mysql_free_result($result);
+			mysql_free_result($result);	*/
+			####################################     DB    ##################################
+			$cpgdb->query($cpg_db_usergal_alphatabs[\'user_have_alb_pics\'], FIRST_USER_CAT, $forbidden_with_icon
+							$lower_limit, $users_per_page);
+							
+			$user_ids = array();
+			
+			while ($row = $cpgdb->fetchRow()) {
+				$user_ids[] = $row["user_id"];
+			}
+			$cpgdb->free();
+			#################################################################################
 			
 			$userlist = implode(",", $user_ids);
 			
 			// This query collects an array of user_id -> username mappings for the user ids collected above 
-			$sql = "SELECT {$this->field[\'user_id\']} AS user_id, {$this->field[\'username\']} AS user_name FROM {$this->usertable} WHERE {$this->field[\'user_id\']} IN ($userlist)";
+		/*	$sql = "SELECT {$this->field[\'user_id\']} AS user_id, {$this->field[\'username\']} AS user_name FROM {$this->usertable} WHERE {$this->field[\'user_id\']} IN ($userlist)";
 			if ($l = $getLetter) $sql .= " AND {$f[\'username\']} LIKE \'$l%\' ";			
 			$result = cpg_db_query($sql, $this->link_id);
 		
@@ -260,11 +289,25 @@ if ($superCage->get->keyExists('cat') && $superCage->get->getInt('cat') == USER_
 				$userdata[$row["user_id"]] = $row["user_name"];
 			}
 			
-			mysql_free_result($result);
+			mysql_free_result($result);	*/
+			######################################    DB   #####################################
+			if ($l = $getLetter) {
+				$like = " AND {$f[\'username\']} LIKE \'$l%\' ";
+			} else {
+				$like = "";
+			}
+			$this->cpgudb->query($cpg_db_usergal_alphatabs[\'$get_user_data\'], $this->field[\'user_id\'], 
+							$this->field[\'username\'], $this->usertable, $userlist, $like);
+							
+			while ($row = $this->cpgudb->fetchRow()) {
+				$userdata[$row["user_id"]] = $row["user_name"];
+			}
+			$this->cpgudb->free();
+			#####################################################################################
 			
 			// This is the main query, similar to the one in the join implementation above but without the join to the user table
 			// We use the pics owner_id field as the user_id instead of using category - 10000 as the user_id
-			$sql  = "SELECT owner_id as user_id,";
+		/*	$sql  = "SELECT owner_id as user_id,";
 			$sql .= "COUNT(DISTINCT a.aid) as alb_count,";
 			$sql .= "COUNT(DISTINCT pid) as pic_count,";
 			$sql .= "MAX(pid) as thumb_pid, ";
@@ -281,7 +324,15 @@ if ($superCage->get->keyExists('cat') && $superCage->get->getInt('cat') == USER_
 				if (strtolower($userdata[$row["user_id"]]{0}) == strtolower($getLetter)) $users[] = array_merge($row, array("user_name" => $userdata[$row["user_id"]]));
 			}
 			
-			mysql_free_result($result);
+			mysql_free_result($result);	*/
+			#####################################     DB     ####################################
+			$cpgdb->query($cpg_db_usergal_alphatabs[\'list_users_main_query\'], FIRST_USER_CAT, $forbidden_with_icon);
+			// Here we associate the username with the album details.
+			while ($row = $cpgdb->fetchRow()) {
+				if (strtolower($userdata[$row["user_id"]]{0}) == strtolower($getLetter)) $users[] = array_merge($row, array("user_name" => $userdata[$row["user_id"]]));
+			}
+			$cpgdb->free();
+			#####################################################################################
 		}
 		
 		$user_count = count($users);

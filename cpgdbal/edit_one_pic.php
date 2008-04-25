@@ -34,11 +34,11 @@ function process_post_data()
 {
 	global $CONFIG, $mb_utf8_regex;
 	global $lang_errors, $lang_editpics_php;
-	#####################      DB      ######################	
+	#####################      DB      ###################	
 	global $cpg_db_edit_one_pic_php;
 	$cpgdb =& cpgDB::getInstance();
 	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
-	##################################################	
+	######################################################	
 
 	$superCage = Inspekt::makeSuperCage();
 
@@ -73,7 +73,7 @@ function process_post_data()
 		$del_comments = $superCage->post->getInt('del_comments') || $delete;
 	}
 
-	/*$result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} AS p, {$CONFIG['TABLE_ALBUMS']} AS a WHERE a.aid = p.aid AND pid = '$pid'");
+	/*$result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} AS p, {$CONFIG['TABLE_ALBUMS']} AS a WHERE a.aid = p.aid AND pid = '$pid'");//print_r(cpg_db_fetch_rowset());exit;
 	if (!mysql_num_rows($result)) cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
 	$pic = mysql_fetch_array($result);
 	mysql_free_result($result);	*/
@@ -83,7 +83,7 @@ function process_post_data()
 	if (!count($rowset)) cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
 	$pic = $rowset[0];
 	$cpgdb->free();
-	######################################################################################
+	######################################################################################################
 
 	if (!(GALLERY_ADMIN_MODE || $pic['category'] == FIRST_USER_CAT + USER_ID || ($CONFIG['users_can_edit_pics'] && $pic['owner_id'] == USER_ID)) || !USER_ID) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 

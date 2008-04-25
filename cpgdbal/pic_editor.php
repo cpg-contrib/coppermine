@@ -91,11 +91,20 @@ if ($superCage->get->keyExists('id')) {
 }
 if ($pid > 0){
 
-        $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} WHERE pid = '$pid'");
-        $CURRENT_PIC = mysql_fetch_array($result);
-                if (!(GALLERY_ADMIN_MODE || ($CONFIG['users_can_edit_pics'] && $CURRENT_PIC['owner_id'] == USER_ID)) || !USER_ID) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
-        mysql_free_result($result);
-        $pic_url = get_pic_url($CURRENT_PIC,'fullsize');
+		/*$result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} WHERE pid = '$pid'");
+		$CURRENT_PIC = mysql_fetch_array($result);
+				if (!(GALLERY_ADMIN_MODE || ($CONFIG['users_can_edit_pics'] && $CURRENT_PIC['owner_id'] == USER_ID)) || !USER_ID) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+		mysql_free_result($result);
+		$pic_url = get_pic_url($CURRENT_PIC,'fullsize');	*/
+		######################################              DB            ######################################
+		$cpgdb->query($cpg_db_pic_editor_php['get_pic_data'], $pid);
+		$CURRENT_PIC = $cpgdb->fetchRow();
+		if (!(GALLERY_ADMIN_MODE || ($CONFIG['users_can_edit_pics'] && $CURRENT_PIC['owner_id'] == USER_ID)) || !USER_ID) {
+							cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+		}
+		$cpgdb->free();
+		$pic_url = get_pic_url($CURRENT_PIC, 'fullsize');
+		#########################################################################################
 }
 
 //Garbage collection run at an probability of 25% and delete all files older than one hour
@@ -197,15 +206,18 @@ if ($superCage->get->getInt('id')) {
                resize_image($img_dir.$newimage, $thumbnail, $CONFIG['thumb_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use']);
                        $total_filesize = $filesize + (file_exists($normal) ? filesize($normal) : 0) + filesize($thumbnail);
 
-          //Update the image size in the DB
-          cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']}
-                          SET pheight = $height,
-                            pwidth = $width,
-                                                        filesize = $filesize,
-                                                        total_filesize = $total_filesize
-                          WHERE pid = '$pid'");
+		//Update the image size in the DB
+		/*cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']}
+						SET pheight = $height,
+						pwidth = $width,
+						filesize = $filesize,
+						total_filesize = $total_filesize
+					WHERE pid = '$pid'");	*/
+		#######################################         DB       ####################################
+		$cpgdb->query($cpg_db_pic_editor_php['save_image'], $height, $width, $filesize, $total_filesize, $pid);
+		####################################################################################
 
-          $message = sprintf($lang_editpics_php['success_picture'], '<a href="#" onclick="self.close();">', '</a>');
+		$message = sprintf($lang_editpics_php['success_picture'], '<a href="#" onclick="self.close();">', '</a>');
 
    }
 
@@ -235,13 +247,15 @@ if ($superCage->get->getInt('id')) {
 
         copy($img_dir.$newimage,$CONFIG['fullpath'].$CURRENT_PIC['filepath'].$CONFIG['thumb_pfx'].$CURRENT_PIC['filename'])   ;
 
-        $total_filesize = filesize($currentPic) + (file_exists($normal) ? filesize($normal) : 0) + filesize($thumbnail);
+		$total_filesize = filesize($currentPic) + (file_exists($normal) ? filesize($normal) : 0) + filesize($thumbnail);
 
-          //Update the image size in the DB
-          cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET total_filesize = $total_filesize WHERE pid = '$pid'");
+		//Update the image size in the DB
+		/*cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET total_filesize = $total_filesize WHERE pid = '$pid'");	*/
+		#######################################           DB        #####################################
+		$cpgdb->query($cpg_db_pic_editor_php['save_thumb'], $total_filesize, $pid);
+		######################################################################################
 
-
-        $message = sprintf($lang_editpics_php['success_thumb'], '<a href="#" onclick="self.close();">', '</a>');
+		$message = sprintf($lang_editpics_php['success_thumb'], '<a href="#" onclick="self.close();">', '</a>');
 
    }
 

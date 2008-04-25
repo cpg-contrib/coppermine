@@ -46,7 +46,7 @@ class cpg_udb extends core_udb {
 
 	function cpg_udb()
 	{
-		global $BRIDGE;
+		global $BRIDGE, $CONFIG;
 		
 		if (!USE_BRIDGEMGR) { // the vars that are used when bridgemgr is disabled
 
@@ -79,10 +79,16 @@ class cpg_udb extends core_udb {
 			'users' => 'users',
 			'groups' => 'groups',
 		);
-
+		##########################################            DB          #######################################
 		// Derived full table names
-		$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
-		$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
+		if ($CONFIG['dbservername'] == 'mysql') {
+			$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
+			$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
+		} else {	////////	for MSSQL	///////
+			$this->usertable = $this->db['name'] ."." .dbo ."." .$this->db['prefix'] . $this->table['users'];
+			$this->groupstable =   $this->db['name'] . "." .dbo ."." .$this->db['prefix'] . $this->table['groups'];
+		}
+		#############################################################################################
 		
 		// Table field names
 		$this->field = array(
@@ -169,26 +175,30 @@ class cpg_udb extends core_udb {
 	
 	function get_users($options = array())
     {
-    	global $CONFIG;
+    	global $CONFIG, $cpg_db_punbb12_inc;
+		#####################      DB      ######################	
+		$cpgdb =& cpgDB::getInstance();
+		$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+		##################################################	
 		
 		// Copy UDB fields and config variables (just to make it easier to read)
     	$f =& $this->field;
 		$C =& $CONFIG;
 		
 		// Sort codes
-        $sort_codes = array('name_a' => 'user_name ASC',
-                            'name_d' => 'user_name DESC',
-                            'group_a' => 'group_name ASC',
-                            'group_d' => 'group_name DESC',
-                            'reg_a' => 'user_regdate ASC',
-                            'reg_d' => 'user_regdate DESC',
-                            'pic_a' => 'pic_count ASC',
-                            'pic_d' => 'pic_count DESC',
-                            'disku_a' => 'disk_usage ASC',
-                            'disku_d' => 'disk_usage DESC',
-                            'lv_a' => 'user_lastvisit ASC',
-                            'lv_d' => 'user_lastvisit DESC',
-                           );
+		$sort_codes = array('name_a' => 'user_name ASC',
+							'name_d' => 'user_name DESC',
+							'group_a' => 'group_name ASC',
+							'group_d' => 'group_name DESC',
+							'reg_a' => 'user_regdate ASC',
+							'reg_d' => 'user_regdate DESC',
+							'pic_a' => 'pic_count ASC',
+							'pic_d' => 'pic_count DESC',
+							'disku_a' => 'disk_usage ASC',
+							'disku_d' => 'disk_usage DESC',
+							'lv_a' => 'user_lastvisit ASC',
+							'lv_d' => 'user_lastvisit DESC',
+						   );
         
 		if (in_array($options['sort'], array('group_a', 'group_d', 'pic_a', 'pic_d', 'disku_a', 'disku_d'))){
 			
@@ -207,7 +217,7 @@ class cpg_udb extends core_udb {
             $options['search'] = 'AND u.'.$f['username'].' LIKE "'.$options['search'].'" ';
         }
 
-        $sql = "SELECT group_id, group_name, group_quota FROM {$C['TABLE_USERGROUPS']}";
+        /*$sql = "SELECT group_id, group_name, group_quota FROM {$C['TABLE_USERGROUPS']}";
 
 		$result = cpg_db_query($sql);
 		
@@ -215,23 +225,36 @@ class cpg_udb extends core_udb {
 	
 		while ($row = mysql_fetch_assoc($result)) {
 			$groups[$row['group_id']] = $row;
+		}	*/
+		#############################         DB       #############################
+		$cpgdb->query($cpg_db_punbb12_inc['get_usergroups'], $C['TABLE_USERGROUPS']);
+		$groups = $array();
+		while ($row = $cpgdb->fetchRow()) {
+			$groups[$row['group_id']] = $row;
 		}
+		##################################################################
 		
-		$sql ="SELECT {$f['grouptbl_group_id']} FROM {$this->groupstable}";
+		/*$sql ="SELECT {$f['grouptbl_group_id']} FROM {$this->groupstable}";
 	
 		$result = cpg_db_query($sql, $this->link_id);
 		$udb_groups = array();
 		
 		while ($row = mysql_fetch_assoc($result)) {
 			$udb_groups[] = $row['group_id'];
+		}	*/
+		###############################            DB           ###############################
+		$this->cpgudb->query($cpg_db_punbb12_inc['get_group_id'], $f['grouptbl_group_id'], $this->groupstable);
+		$udb_groups = array();
+		while ($row = $this->cpgudb->fetchRow()) {
+			$udb_groups[] = $row['group_id'];
 		}
+		#########################################################################
 
-
-        $sql = "SELECT u.{$f['user_id']} as user_id, u.{$f['usertbl_group_id']} AS user_group, {$f['username']} as user_name, {$f['email']} as user_email, {$f['regdate']} as user_regdate, {$f['lastvisit']} as user_lastvisit, '' as user_active, 0 AS pic_count ".
-               "FROM {$this->usertable} AS u ".
-               "WHERE u.{$f['user_id']} > 1 " . $options['search']
-                . $sort .
-               " LIMIT {$options['lower_limit']}, {$options['users_per_page']}";
+        /*$sql = "SELECT u.{$f['user_id']} as user_id, u.{$f['usertbl_group_id']} AS user_group, {$f['username']} as user_name, {$f['email']} as user_email, {$f['regdate']} as user_regdate, {$f['lastvisit']} as user_lastvisit, '' as user_active, 0 AS pic_count ".
+			"FROM {$this->usertable} AS u ".
+			"WHERE u.{$f['user_id']} > 1 " . $options['search']
+			. $sort .
+			" LIMIT {$options['lower_limit']}, {$options['users_per_page']}";
 
 		$result = cpg_db_query($sql, $this->link_id);
 		
@@ -241,7 +264,20 @@ class cpg_udb extends core_udb {
 		}
 
 		// Extract user list to an array
-		while ($user = mysql_fetch_assoc($result)) {
+		while ($user = mysql_fetch_assoc($result)) {	*/
+		###########################################          DB        ############################################
+		$this->cpgudb->query($cpg_db_punbb12_inc['get_user_usergroups'], $f['user_id'], $f['usertbl_group_id'], $f['username'], 
+							$f['email'], $f['regdate'], $f['lastvisit'], $this->usertable, $options['search'], $sort, 
+							$options['lower_limit'], $options['users_per_page']);
+							
+		$rowset =$this->cpgudb->fetchRowSet();
+		// If no records, return empty value
+		if (!count($rowset)) {
+			return array();
+		}
+		// Extract user list to an array
+		foreach ($rowset as $user) {
+		################################################################################################
 			if ($this->use_post_based_groups){
 				$gid = $user['user_group'] +100;
 			} else {
@@ -253,14 +289,20 @@ class cpg_udb extends core_udb {
 		
 		$user_list_string = implode(', ', $users);
 		
-		$sql = "SELECT owner_id, COUNT(pid) as pic_count, ROUND(SUM(total_filesize)/1024) as disk_usage FROM {$C['TABLE_PICTURES']} WHERE owner_id IN ($user_list_string) GROUP BY owner_id";
+		/*$sql = "SELECT owner_id, COUNT(pid) as pic_count, ROUND(SUM(total_filesize)/1024) as disk_usage FROM {$C['TABLE_PICTURES']} WHERE owner_id IN ($user_list_string) GROUP BY owner_id";
 
 		$result = cpg_db_query($sql);
 
 
 		while ($owner = mysql_fetch_assoc($result)) {
 			$userlist[$owner['owner_id']] = array_merge($userlist[$owner['owner_id']], $owner);
+		}	*/
+		##################################           DB          ##################################
+		$cpgdb->query($cpg_db_punbb12_inc['get_user_pic_data'], $C['TABLE_PICTURES'], $user_list_string);
+		while ($owner = $cpgdb->fetchRow()) {
+			$userlist[$owner['owner_id']] = array_merge($userlist[$owner['owner_id']], $owner);
 		}
+		##############################################################################
 
 		if ($this->adv_sort) usort($userlist, array('cpg_udb', 'adv_sort'));
 
