@@ -310,7 +310,7 @@ $template_album_list = <<<EOT
         </tr>
         <tr>
                 <td width="100%" valign="top" class="tableb_compact">
-                    <div class="thumbnails" style="background-color:transparent"><img src="images/spacer.gif" width="1" height="{SPACER}" border="0" class="image" style="border:0;margin-top:1px;margin-bottom:0" alt="" /></div>
+                    <div class="thumbnails" style="background-color:transparent"><img src="images/spacer.gif" width="1" height="1" border="0" class="image" style="border:0;margin-top:1px;margin-bottom:0" alt="" /></div>
                 </td>
         </tr>
         </table>
@@ -429,7 +429,7 @@ $template_album_list_cat = <<<EOT
         </tr>
         <tr>
                 <td width="100%" valign="top" class="tableb_compact" >
-                      <div class="thumbnails" style="background-color:transparent"><img src="images/spacer.gif" width="1" height="{SPACER}" border="0" class="image" style="border:0;margin-top:1px;margin-bottom:0" alt="" /></div>
+                      <div class="thumbnails" style="background-color:transparent"><img src="images/spacer.gif" width="1" height="1" border="0" class="image" style="border:0;margin-top:1px;margin-bottom:0" alt="" /></div>
                 </td>
         </tr>
         </table>
