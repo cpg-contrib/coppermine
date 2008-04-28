@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-04-28 [C] Fixing spacer for empty album list cells (thread ID 51414) {GauGau}
 2008-04-14 [O] Numerous session handling optimizations {Nibbler}
 2008-04-13 [S] Corrected SQL injection vulnerabilities in session handling code {Nibbler}
 2008-04-10 [S] Corrected an SQL injection vulnerability in URI upload code {Nibbler}
