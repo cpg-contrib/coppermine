@@ -388,7 +388,6 @@ if (UDB_INTEGRATION != 'coppermine') {
             <td colspan="14" align="center" class="tablef">
                         <input type="submit" name="apply_modifs" value="{$lang_groupmgr_php['apply']}" class="button" />&nbsp;&nbsp;&nbsp;
                 </td>
-        </form>
         </tr>
 
 EOT;
