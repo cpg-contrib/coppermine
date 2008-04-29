@@ -555,7 +555,7 @@ if ($_GET['id']){
 <input type="hidden" name="img_dir" value="<?php print $img_dir ; ?>" />
 <input type="hidden" name="id" value="<?php print (isset($_GET['id']))?$_GET['id']:$_POST['id']; ?>" />
 
-<? starttable("100%", $lang_editpics_php['crop_title'], 3); ?>
+<?php starttable("100%", $lang_editpics_php['crop_title'], 3); ?>
 <tr>
 <td>
 <table border="0" cellspacing="2" cellpadding="2" class="maintableb" width="100%" >
