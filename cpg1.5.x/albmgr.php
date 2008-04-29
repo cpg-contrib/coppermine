@@ -204,6 +204,8 @@ pageheader($lang_albmgr_php['alb_mrg']);
                 make_option("<?php echo $lang_albmgr_php['new_album'] ?>", make_value('0', "<?php echo $lang_albmgr_php['new_album'] ?>", album_sort, '1'), to, to_pos);
 
                 selected_option(to, to_pos);
+                document.album_menu.album_nm.focus();
+                document.album_menu.album_nm.select();
         }
 
         function Album_Delete()

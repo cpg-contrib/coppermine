@@ -533,6 +533,7 @@ function updateParent(obj, cid){
 
 EOT;
 
+
 starttable('100%');
 $help = '&nbsp;'.cpg_display_help('f=categories.htm&amp;as=cat_cp&amp;ae=cat_cp_end&amp;top=1', '800', '600');
 echo <<<EOT
@@ -592,7 +593,10 @@ starttable('100%', $lang_catmgr_php['update_create'], 2);
 $lb = cat_list_box($current_category['cid'], $current_category['parent'], false);
 $ug_lb = usergroup_list_box($current_category['cid']);
 $op = $current_category['cid'] ? 'updatecat' : 'createcat';
-if ($CONFIG['show_bbcode_help']) {$description_help .= '&nbsp;'. cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
+if ($CONFIG['show_bbcode_help']) {
+    $description_help .= '&nbsp;'. cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);
+}
+$albumCreateHelp = '&nbsp;'.cpg_display_help('f=categories.htm&amp;as=cat_album_create&amp;ae=cat_album_create_end&amp;top=1', '600', '250');
 echo <<<EOT
         <form method="post" action="$CPG_PHP_SELF?op=$op" name="cpgform3" id="cpgform3">
         <input type="hidden" name="cid" value ="{$current_category['cid']}" />
@@ -606,7 +610,7 @@ echo <<<EOT
         </tr>
 		<tr>
 			<td width="40%" class="tableb">
-						{$lang_catmgr_php['group_create_alb']}
+						{$lang_catmgr_php['group_create_alb']}{$albumCreateHelp}
 		</td>
 		<td width="60%" class="tableb" valign="top">
 				$ug_lb

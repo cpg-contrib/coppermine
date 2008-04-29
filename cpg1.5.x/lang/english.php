@@ -111,7 +111,7 @@ $lang_errors = array(
 );
 
 $lang_bbcode_help_title = 'bbcode help';
-$lang_bbcode_help = 'You can add clickable links and some formating to this field by using bbcode tags: <li>[b]Bold[/b] =&gt; <b>Bold</b></li><li>[i]Italic[/i] =&gt; <i>Italic</i></li><li>[url=http://yoursite.com/]Url Text[/url] =&gt; <a href="http://yoursite.com">Url Text</a></li><li>[email]user@domain.com[/email] =&gt; <a href="mailto:user@domain.com">user@domain.com</a></li><li>[color=red]some text[/color] =&gt; <span style="color:red">some text</span></li><li>[img]http://coppermine.sf.net/demo/images/red.gif[/img] => <img src="../images/red.gif" border="0" alt="" /></li>';
+$lang_bbcode_help = 'You can add clickable links and some formating to this field by using bbcode tags: <li>[b]Bold[/b] =&gt; <b>Bold</b></li><li>[i]Italic[/i] =&gt; <i>Italic</i></li><li>[url=http://yoursite.com/]Url Text[/url] =&gt; <a href="http://yoursite.com">Url Text</a></li><li>[email]user@domain.com[/email] =&gt; <a href="mailto:user@domain.com">user@domain.com</a></li><li>[color=red]some text[/color] =&gt; <span style="color:red">some text</span></li><li>[img]http://documentation.coppermine-gallery.net/pics/base.gif[/img] =&gt; <img src="docs/pics/base.gif" border="0" alt="" /></li>';
 
 $lang_common = array(
   'yes' => 'Yes', // cpg1.5.x
@@ -622,7 +622,7 @@ if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
   'categories_alpha_sort' => 'Sort categories alphabetically (instead of custom sort order)',
   'save_cfg' => 'Save configuration',
   'no_category' => '* No category *', // cpg1.5
-  'group_create_alb' => 'Allow group to create Album', // cpg1.5
+  'group_create_alb' => 'Group(s) allowed to create albums in this category', // cpg1.5
 );
 
 // ------------------------------------------------------------------------- //
