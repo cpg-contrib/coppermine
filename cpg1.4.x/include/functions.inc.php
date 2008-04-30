@@ -1201,11 +1201,13 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         $album_name = $lang_meta_album_names['random'];
                 }
 
+                /* Commented out due to image not found bug
                 $query = "SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' $META_ALBUM_SET";
                 $result = cpg_db_query($query);
                 $nbEnr = mysql_fetch_array($result);
                 $pic_count = $nbEnr[0];
                 mysql_free_result($result);
+                */
 
                 //if($select_columns != '*') $select_columns .= ', aid, owner_id, owner_name';
                 $select_columns = '*'; //allows building any data into any thumbnail caption
@@ -1918,7 +1920,10 @@ function& get_pic_url(&$pic_row, $mode,$system_pic = false)
         }
 
         $mime_content = cpg_get_type($pic_row['filename']);
-        $pic_row = array_merge($pic_row,$mime_content);
+        // If $mime_content is empty there will be errors, so only perform the array_merge if $mime_content is actually an array
+        if (is_array($mime_content)) {
+            $pic_row = array_merge($pic_row,$mime_content);
+        }
 
         $filepathname = null;
 
@@ -2597,7 +2602,7 @@ switch ($parameter) {
        $return.= '<select name="cpgThemeSelect" class="listbox_lang" onchange="if (this.options[this.selectedIndex].value) window.location.href=\'' . $cpgCurrentTheme . '\' + this.options[this.selectedIndex].value;">' . $lineBreak;
        $return.='<option selected="selected">' . $lang_theme_selection['choose_theme'] . '</option>';
        foreach ($theme_array as $theme) {
-           $return.= '<option value="' . $theme . '">' . strtr(ucfirst($theme), '_', ' ') . ($value == $theme ? '*' : ''). '</option>' . $lineBreak;
+           $return.= '<option value="' . $theme . '"'.($value == $theme ? '  selected="selected"' : '').'>' . strtr(ucfirst($theme), '_', ' ') . ($value == $theme ? '  *' : ''). '</option>' . $lineBreak;
        }
           if ($CONFIG['theme_reset'] == 1){
               $return.=  '<option value="xxx">' . $lang_theme_selection['reset_theme'] . '</option>' . $lineBreak;
