@@ -734,7 +734,7 @@ class core_udb {
 
                 print '</select> (3)';
                 print '&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="'.$lang_util_php['submit_form'].'" class="button" /> (4)';
-                print '</form>';
+                // print '</form>';
         }
 
         // Taken from Mambo (com_registration.php)
