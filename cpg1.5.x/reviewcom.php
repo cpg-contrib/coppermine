@@ -564,11 +564,11 @@ echo <<<EOT
             <td colspan="2" align="center" class="tablef">
                 <input type="submit" value="{$lang_reviewcom_php['save_changes']}" class="button" onclick="return checkBeforeSubmit();" />
                 </td>
-        </form>
         </tr>
 
 EOT;
 endtable();
+echo '</form>';
 pagefooter();
 ob_end_flush();
 } // mass approval end
