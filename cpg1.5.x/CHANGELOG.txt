@@ -26,6 +26,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-04-30 [C] Removed invalid <f>-tag in upload.php {GauGau}
+2008-04-30 [C] Fixing improper nesting of form-tag in various files {GauGau}
 2008-04-28 [C] Fixing spacer for empty album list cells (thread ID 51414) {GauGau}
 2008-04-14 [O] Numerous session handling optimizations {Nibbler}
 2008-04-13 [S] Corrected SQL injection vulnerabilities in session handling code {Nibbler}
