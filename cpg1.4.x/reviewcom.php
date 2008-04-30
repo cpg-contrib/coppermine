@@ -247,11 +247,11 @@ echo <<<EOT
             <td colspan="4" align="center" class="tablef">
                         <input type="submit" value="{$lang_reviewcom_php['del_comm']}" class="button" />
                 </td>
-        </form>
         </tr>
 
 EOT;
 endtable();
+echo '</form>';
 pagefooter();
 ob_end_flush();
 
