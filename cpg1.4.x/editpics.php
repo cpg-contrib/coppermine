@@ -62,7 +62,9 @@ if ($CONFIG['user_field4_name'] != '') $THUMB_ROWSPAN++;
 //      2 => text_area
 //      3 => picture information
 $captionLabel = $lang_editpics_php['desc'];
-if ($CONFIG['show_bbcode_help']) {$captionLabel .= '&nbsp;'. cpg_display_help('f=index.html&base=64&h='.urlencode(base64_encode(serialize($lang_bbcode_help_title.'&nbsp;'))).'&t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
+if ($CONFIG['show_bbcode_help']) {
+	$captionLabel .= '&nbsp;'. cpg_display_help('f=index.html&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title.'&nbsp;'))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);
+}
 $data = array(
         array($lang_editpics_php['pic_info'], '', 3),
         array($lang_editpics_php['album'], 'aid', 1),
