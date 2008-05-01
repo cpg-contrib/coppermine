@@ -332,7 +332,7 @@ pageheader($lang_albmgr_php['alb_mrg']);
     }
 -->
 </script>
-
+<form name="album_menu" method="post" action="delete.php?what=albmgr" onSubmit="return CheckAlbumForm(this);">
 <?php starttable("100%", $lang_albmgr_php['alb_mrg'].'&nbsp;'.cpg_display_help('f=index.htm&as=albmgr&ae=albmgr_end&top=1', '600', '400'), 1);
 ?>
 <tr>
@@ -353,7 +353,6 @@ if (count ($rowset) > 0) foreach ($rowset as $album) {
 }
 
 ?>
-        <form name="album_menu" method="post" action="delete.php?what=albmgr" onSubmit="return CheckAlbumForm(this);">
         <input type="hidden" name="delete_album" value="" />
         <input type="hidden" name="sort_order" value="<?php echo $sort_order ?>" />
         <td class="tableb" valign="top" align="center">
@@ -430,10 +429,10 @@ echo $lb;
         <td colspan="2" align="center" class="tablef">
         <input type="submit" class="button" value="<?php echo $lang_albmgr_php['apply_modifs'] ?>" />
         </td>
-        </form>
 </tr>
 <?php
 endtable();
+echo '</form>';
 pagefooter();
 ob_end_flush();
 
