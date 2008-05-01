@@ -100,7 +100,7 @@ if ($CONFIG['user_field4_name'] != '') $THUMB_ROWSPAN++;
 //      3 => picture information
 $captionLabel = $lang_editpics_php['desc'];
 $keywordLabel = $lang_common['keywords_insert1']. '<br /><a href="#" onClick="return MM_openBrWindow(\'keyword_select.php?id=%s\',\'selectKey\',\'width=250, height=400, scrollbars=yes,toolbar=no,status=yes,resizable=yes\')">' . $lang_common['keywords_insert2'] .'</a>';
-if ($CONFIG['show_bbcode_help']) {$captionLabel .= '&nbsp;'. cpg_display_help('f=index.html&base=64&h='.urlencode(base64_encode(serialize($lang_bbcode_help_title.'&nbsp;'))).'&t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
+if ($CONFIG['show_bbcode_help']) {$captionLabel .= '&nbsp;'. cpg_display_help('f=empty.html&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title.'&nbsp;'))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),500,300);}
 $data = array(
         array($lang_editpics_php['pic_info'], '', 3),
         array($lang_common['album'], 'aid', 1),
