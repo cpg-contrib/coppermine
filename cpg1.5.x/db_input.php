@@ -36,6 +36,13 @@ Formatted and unformatted words that are longer than the allowed setting do not 
 function check_comment(&$str)
 {
     global $CONFIG, $lang_bad_words, $queries;
+    // Added according to Andi's proposal: optimization of strip-Tags and max. comment length
+    // convert some entities
+    $str = str_replace(array('&amp;', '&quot;', '&lt;', '&gt;', '&nbsp;', '&#39;'), array('&', '"', '<', '>', ' ', "'"), $str);
+    // strip tags and cut to max allowed length
+    $str = trim(substr(strip_tags($str), 0, $CONFIG['max_com_size']));
+    // re convert some entities
+    $str = str_replace(array('"', '<', '>', "'"), array('&quot;', '&lt;', '&gt;', '&#39;'), $str);
 
     if ($CONFIG['filter_bad_words']) {
         $ercp = array();
