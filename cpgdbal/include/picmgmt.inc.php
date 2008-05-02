@@ -31,7 +31,7 @@ function add_picture($aid, $filepath, $filename, $position = 0, $title = '', $ca
 {
     global $CONFIG, $ERROR, $USER_DATA, $PIC_NEED_APPROVAL;
     global $lang_errors;
-	#####################          DB        ######################
+	#####################    DB   ######################
 	global $cpg_db_picmgmt_inc;
 	$cpgdb =& cpgDB::getInstance();
 	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);

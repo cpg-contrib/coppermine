@@ -1007,23 +1007,20 @@ class Inspekt
      *
      * @tag filter
      */
-    function getEscaped($value)
-    {
-		#####################      DB      ######################	
-		$db = new cpgDB;
-		//$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
-		#########################################################	
-        if (is_array($value)) {
-            return Inspekt::_walkArray($value, 'getEscaped');
-        } elseif (!empty($value)) {
-            if (get_magic_quotes_gpc()) {
-            	$value = stripslashes($value);
-            }
-            //return mysql_real_escape_string($value);
+	function getEscaped($value)
+	{
+		$db = new cpgDB;	#######	cpgdb_AL
+		if (is_array($value)) {
+			return Inspekt::_walkArray($value, 'getEscaped');
+		} elseif (!empty($value)) {
+			//if (get_magic_quotes_gpc()) {
+			//	$value = stripslashes($value);
+			//}
+	    	//return mysql_real_escape_string($value);
 			return $db->escape($value);
-        } else {
-        	return $value;
-        }
-    }
+		} else {
+			return $value;
+		}
+	}
 }
 

@@ -107,11 +107,7 @@ $CONFIG['dbservername'] = 'mysql';
 //$CONFIG['dbservername'] = 'mssql';
 ######################################
 require 'include/functions.inc.php';
-#############      DB     #############
-if ($CONFIG['dbservername'] == 'mssql') {
-	require 'include/dbfunctions.php';	
-}
-#################################
+
 # see http://php.net/mbstring for details
 if (function_exists('mb_internal_encoding')) { mb_internal_encoding('UTF-8'); }
 
@@ -136,7 +132,7 @@ $CONFIG['TABLE_TEMP_MESSAGES'] = $CONFIG['TABLE_PREFIX'].'temp_messages';
 $CONFIG['TABLE_CATMAP']        = $CONFIG['TABLE_PREFIX'].'categorymap';
 // Connect to database
 if ($CONFIG['dbservername'] == 'mysql') {
-	($CONFIG['LINK_ID'] = cpg_db_connect()) || die('<b>Coppermine critical error</b>:<br />Unable to connect to database !<br /><br />MySQL said: <b>' . mysql_error() . '</b>');
+	($CONFIG['LINK_ID'] = cpgdbal_connect()) || die('<b>Coppermine critical error</b>:<br />Unable to connect to database !<br /><br />MySQL said: <b>' . mysql_error() . '</b>');
 } else {
 	($CONFIG['LINK_ID'] = cpgdbal_connect()) || die( print_r( sqlsrv_errors(), true));
 }
@@ -161,12 +157,11 @@ $cpgdb->connect_to_existing($CONFIG['LINK_ID']);
 /*function cpg_initialize_db()
 {
 	global $CONFIG;
-	require "include/cpgdb/drivers/mysql_driver.php";	//{$CONFIG['DB_DRIVER']}
-	require "include/cpgdb/sql/mysql.php";
+	$cpgdb =& cpgDB::getInstance();
+$cpgdb->connect_to_existing($CONFIG['LINK_ID']);	
 }
-cpg_initialize_db();
-$cpgdb =& cpgDB::getInstance();
-$cpgdb->connect_to_existing($CONFIG['LINK_ID']);	*/
+cpg_initialize_db();*/
+
 #################################################
 
 // Retrieve DB stored configuration

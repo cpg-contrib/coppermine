@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4245 $
-  $LastChangedBy: saweyyy $
-  $Date: 2008-02-04 01:49:15 +0530 (Mon, 04 Feb 2008) $
+  $Revision: 4432 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-05-01 12:37:31 +0530 (Thu, 01 May 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -36,6 +36,13 @@ Formatted and unformatted words that are longer than the allowed setting do not 
 function check_comment(&$str)
 {
     global $CONFIG, $lang_bad_words, $queries;
+    // Added according to Andi's proposal: optimization of strip-Tags and max. comment length
+    // convert some entities
+    $str = str_replace(array('&amp;', '&quot;', '&lt;', '&gt;', '&nbsp;', '&#39;'), array('&', '"', '<', '>', ' ', "'"), $str);
+    // strip tags and cut to max allowed length
+    $str = trim(substr(strip_tags($str), 0, $CONFIG['max_com_size']));
+    // re convert some entities
+    $str = str_replace(array('"', '<', '>', "'"), array('&quot;', '&lt;', '&gt;', '&#39;'), $str);
 
     if ($CONFIG['filter_bad_words']) {
         $ercp = array();

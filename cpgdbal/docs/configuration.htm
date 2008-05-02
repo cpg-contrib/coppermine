@@ -13,9 +13,9 @@
   SVN version info:
 
   Coppermine version: 1.5.0
-  $Revision: 4362 $
+  $Revision: 4411 $
   $LastChangedBy: gaugau $
-  $Date: 2008-03-25 13:32:51 +0530 (Tue, 25 Mar 2008) $
+  $Date: 2008-04-29 19:58:34 +0530 (Tue, 29 Apr 2008) $
 -->
 <link rel="stylesheet" type="text/css" href="style.css" media="all" />
 <link rel="stylesheet" type="text/css" href="screen.css" media="screen" />
@@ -248,6 +248,7 @@ You can toggle between these options (enabled or disabled) on the <a href="uploa
 <hr />
 <a name="vanity_block"></a><h3>Display the vanity block on themes that are defined as XHTML and CSS compliant<a href="#vanity_block" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>When enabled and using a theme that has been defined as XHTML and CSS compliant, the vanity block will be shown. The vanity block contains the logos and links for HTML and CSS compliance at w3.org, as well as pointers to the PHP, and MySQL projects.</p>
+<p>Some designers (particularly those who try to come up with standards-compliant code) have been fond to display this type of &quot;advertisment&quot; for the free resources mentioned. However, end users (i.e. the visitors of your site) probably don't care at all for the logos. Default (and recommended) setting is &quot;off&quot;.
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Themes settings &rarr; Display the vanity block on themes that are defined as XHTML and CSS compliant</p>
 <a name="vanity_block_end"></a>
 <hr />
@@ -1247,7 +1248,7 @@ address. Recommended setting is NO. As most internet users today have more than 
 <a name="admin_cookie"></a><h3>Cookie settings<a href="#admin_cookie" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <a name="admin_cookie_name"></a><h3>Name of the cookie used by coppermine<a href="#admin_cookie_name" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Default value is something like &quot;cpg15x&quot;. Even if you have multiple instances of the script running on the same server you can keep the default value.</p><p><span class="important">When using <a href="bridging.htm">bridging</a>, make sure it <strong>differs</strong> from the bbs's cookie name</span></p>
-<p>This has to be a valid cookie name (no special chars, particularly no dots!) - this setting should best be left alone unless you really know your way around. After all, the cookie name doesn't matter and doesn't mean anything to the end user anyway.</p>
+<p>This has to be a valid cookie name (no special chars, particularly no dots!) - this setting should best be left alone unless you really know your way around. After all, the cookie name doesn't matter and doesn't mean anything to the end user anyway. Let me repeat: there are many users who blindly change the cookie name to something that just doesn't make sense at all and then complain on the coppermine support board that things are not working as expected. Do <strong>not</strong> use special chars in the cookie name! In fact, don't change it at all unless you must.</p>
 <p>If you change the cookie name, everybody will have to log in on the next visit of your gallery. As a result, changing the cookie name would be the same as if you were deleting the cookies on all your visitor's machines - this can be helpful if you experience issues with authentification.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Cookie settings &rarr; Name of the cookie used by coppermine</p>
 <a name="admin_cookie_name_end"></a>
@@ -1380,7 +1381,7 @@ All log files are written in english</p>
 
 <script type="text/javascript">
   cpgDocFooter();
-  dateRevision(' $LastChangedDate: 2008-03-25 13:32:51 +0530 (Tue, 25 Mar 2008) $ ', ' $Revision: 4362 $ ');
+  dateRevision(' $LastChangedDate: 2008-04-29 19:58:34 +0530 (Tue, 29 Apr 2008) $ ', ' $Revision: 4411 $ ');
 </script>
 
 </body>

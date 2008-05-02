@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4224 $
+  $Revision: 4427 $
   $LastChangedBy: gaugau $
-  $Date: 2008-01-26 17:12:00 +0530 (Sat, 26 Jan 2008) $
+  $Date: 2008-04-30 11:17:18 +0530 (Wed, 30 Apr 2008) $
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
@@ -995,7 +995,7 @@ if ($alb_cat) echo "                </optgroup>\n";
                         // Close list, etc.
                         print '</select> (3)';
                         print '&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="'.$lang_util_php['submit_form'].'" class="button" /> (4)';
-                        print '</form>';
+                        // print '</form>';
                 }
         }
 

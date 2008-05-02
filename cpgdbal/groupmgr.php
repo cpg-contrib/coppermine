@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4267 $
+  $Revision: 4418 $
   $LastChangedBy: gaugau $
-  $Date: 2008-02-12 14:02:50 +0530 (Tue, 12 Feb 2008) $
+  $Date: 2008-04-30 03:30:28 +0530 (Wed, 30 Apr 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -420,7 +420,6 @@ if (UDB_INTEGRATION != 'coppermine') {
             <td colspan="14" align="center" class="tablef">
                         <input type="submit" name="apply_modifs" value="{$lang_groupmgr_php['apply']}" class="button" />&nbsp;&nbsp;&nbsp;
                 </td>
-        </form>
         </tr>
 
 EOT;

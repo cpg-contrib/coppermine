@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4323 $
-  $LastChangedBy: nibbler999 $
-  $Date: 2008-03-09 03:00:26 +0530 (Sun, 09 Mar 2008) $
+  $Revision: 4410 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-04-28 11:25:50 +0530 (Mon, 28 Apr 2008) $
 **********************************************/
 
 // ------------------------------------------------------------------------- //
@@ -427,7 +427,7 @@ $template_album_list = <<<EOT
         </tr>
         <tr>
                 <td width="100%" valign="top" class="tableb tableb_alternate tableb tableb_alternate_alternate_compact">
-                    <div class="thumbnails" style="background-color:transparent"><img src="images/spacer.gif" width="1" height="{SPACER}" border="0" class="image" style="border:0;margin-top:1px;margin-bottom:0" alt="" /></div>
+                    <div class="thumbnails" style="background-color:transparent"><img src="images/spacer.gif" width="1" height="1" border="0" class="image" style="border:0;margin-top:1px;margin-bottom:0" alt="" /></div>
                 </td>
         </tr>
         </table>
@@ -558,7 +558,7 @@ $template_album_list_cat = <<<EOT
         </tr>
         <tr>
                 <td width="100%" valign="top" class="tableb tableb_alternate tableb tableb_alternate_alternate_compact" >
-                      <div class="thumbnails" style="background-color:transparent"><img src="images/spacer.gif" width="1" height="{SPACER}" border="0" class="image" style="border:0;margin-top:1px;margin-bottom:0" alt="" /></div>
+                      <div class="thumbnails" style="background-color:transparent"><img src="images/spacer.gif" width="1" height="1" border="0" class="image" style="border:0;margin-top:1px;margin-bottom:0" alt="" /></div>
                 </td>
         </tr>
         </table>

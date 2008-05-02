@@ -61,7 +61,7 @@ if (!count($rowset)) cpg_die(ERROR, $lang_errors['non_exist_ap']);
 // Find unique keywords
 	$total_array = array();
 	foreach ($rowset as $row) {
-		list($keywords) = $row;
+		$keywords = $row['keywords'];//array_shift($row);
 ##############################################################
        $array = explode(' ',$keywords);
 
@@ -136,12 +136,13 @@ case 'changeword':
 		/*$query = "SELECT `pid`,`keywords` FROM {$CONFIG['TABLE_PICTURES']} WHERE CONCAT(' ',`keywords`,' ') LIKE '% {$keywordEdit} %'";
 		$result = cpg_db_query($query) or die(mysql_error());
 
-		while (list($id,$keywords) = mysql_fetch_row($result))	*/
+		while (list($id,$keywords) = mysql_fetch_row($result)) {	*/
 		##############################           DB          ###############################
 		$cpgdb->query($cpg_db_keywordmgr_php['get_pic_keywords'], "%".$keywordEdit."%");
-		while (list($id, $keywords) = $cpgdb->fetchRow())
+		while ($row = $cpgdb->fetchRow()) {
+			$id = $row['pid'];
+			$keywords = $row['keywords'];
 		########################################################################
-		{
 			$array_new = array();
 			$array_old = explode(" ", addslashes(trim($keywords)));
 
@@ -187,12 +188,14 @@ case 'delete':
 		/*$query = "SELECT `pid`,`keywords` FROM {$CONFIG['TABLE_PICTURES']} WHERE CONCAT(' ',`keywords`,' ') LIKE '% {$remov} %'";
 		$result = cpg_db_query($query) or die(mysql_error());
 
-		while (list($id,$keywords) = mysql_fetch_row($result))	*/
+		while (list($id,$keywords) = mysql_fetch_row($result)) {	*/
 		##############################           DB          ###############################
 		$cpgdb->query($cpg_db_keywordmgr_php['get_pic_keywords'], "%".$remov."%");
-		while (list($id, $keywords) = $cpgdb->fetchRow())
+		while ($row = $cpgdb->fetchRow()) {
+			$id = $row['pid'];
+			$keywords = $row['keywords'];
 		########################################################################
-		{
+		
 			$array_new = array();
 			$array_old = explode(" ", addslashes(trim($keywords)));
 

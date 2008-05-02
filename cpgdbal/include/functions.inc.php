@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4353 $
-  $LastChangedBy: abbas-ali $
-  $Date: 2008-03-25 11:02:32 +0530 (Tue, 25 Mar 2008) $
+  $Revision: 4430 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-04-30 11:34:14 +0530 (Wed, 30 Apr 2008) $
 **********************************************/
 
 /**
@@ -25,7 +25,7 @@
 * @copyright 2002-2007 Gregory DEMAR, Coppermine Dev Team
 * @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
 * @package Coppermine
-* @version  $Id: functions.inc.php 4353 2008-03-25 05:32:32Z abbas-ali $
+* @version  $Id: functions.inc.php 4430 2008-04-30 06:04:14Z gaugau $
 */
 
 /**
@@ -233,7 +233,37 @@ function user_save_profile()
 /**************************************************************************
    Database functions
  **************************************************************************/
-
+####################        DB      ####################
+function cpgdbal_connect()
+{
+	global $CONFIG;
+	if ($CONFIG['dbservername'] == 'mysql') {
+		$result = @mysql_connect($CONFIG['dbserver'], $CONFIG['dbuser'], $CONFIG['dbpass']);
+		if (!$result) {
+				die("ERROR IN CONNECTION".mysql_error());
+		}
+		if (!mysql_select_db($CONFIG['dbname'])) {
+			exit("{$CONFIG['dbname']} not found, session halted");
+		}
+	} elseif ($CONFIG['dbservername'] == 'mssql') {
+		$connectioninfo = array();
+		//$connectioninfo['UID'] = $CONFIG['dbuser'];
+		//$connectioninfo['PWD'] = $CONFIG['dbpass'];
+		$connectioninfo['Database'] = 'coppermine_db';
+        $result = @sqlsrv_connect('PREM\\SQLEXPRESS', $connectioninfo);
+        if (!$result) {
+			$err = sqlsrv_errors();
+			 foreach ($err as $error){
+					echo "SQLSTATE: ".$error['SQLSTATE']."<br/>";
+					echo "Code: ".$error['code']."<br/>";
+					echo "Message: ".($error['message'])."<br/>";
+				}
+			die('error in connection');
+        }
+	}
+	return $result;
+}
+################################################
 // Connect to the database
 
 /**
@@ -244,14 +274,14 @@ function user_save_profile()
 
 function cpg_db_connect()
 {
-        global $CONFIG;
-        $result = @mysql_connect($CONFIG['dbserver'], $CONFIG['dbuser'], $CONFIG['dbpass']);
-        if (!$result) {
-                return false;
-        }
-        if (!mysql_select_db($CONFIG['dbname']))
-                return false;
-        return $result;
+		global $CONFIG;
+		$result = @mysql_connect($CONFIG['dbserver'], $CONFIG['dbuser'], $CONFIG['dbpass']);
+		if (!$result) {
+				return false;
+		}
+		if (!mysql_select_db($CONFIG['dbname']))
+				return false;
+		return $result;
 }
 
 // Perform a database query
@@ -1113,12 +1143,13 @@ function build_caption(&$rowset,$must_have=array())
 			$rating = round(($row['pic_rating'] / 2000) / (5/$CONFIG['rating_stars_amount']));
 			$rating_images = '';
 			while($i <= $CONFIG['rating_stars_amount']){
-				$i++;
+				//$i++;
 				if($i <= $rating){
 					$rating_images .= '<img src="' . $prefix . 'images/rate_full.gif" alt="' . $rating . '"/>';
 				}else{
 					$rating_images .= '<img src="' . $prefix . 'images/rate_empty.gif" alt="' . $rating . '"/>';
 				}
+				$i++;
 			}
             $caption .= "<span class=\"thumb_caption\">". $rating_images .'<br />'.sprintf($lang_get_pic_data['n_votes'], $row['votes']).'</span>';
         }
@@ -1582,14 +1613,16 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         $album_name = $lang_meta_album_names['random'];
                 }
 
-                /*$query = "SELECT COUNT(pid) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' $META_ALBUM_SET";
+                /* Commented out due to image not found bug
+                $query = "SELECT COUNT(pid) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' $META_ALBUM_SET";
                 $result = cpg_db_query($query);
                 $nbEnr = mysql_fetch_array($result);
                 $pic_count = $nbEnr[0];
                 mysql_free_result($result);
+                */
 
                 //if($select_columns != '*') $select_columns .= ', aid, owner_id, owner_name';
-                $select_columns = '*'; //allows building any data into any thumbnail caption
+            //    $select_columns = '*'; //allows building any data into any thumbnail caption	####	cpgdb_AL
                 // if we have more than 1000 pictures, we limit the number of picture returned
                 // by the SELECT statement as ORDER BY RAND() is time consuming	*/	//cpgdb_AL
                                 /* Commented out due to image not found bug
@@ -1616,10 +1649,11 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 }
                 mysql_free_result($result);	*/		//cpgdb
 				#####################################         DB         #######################################
+				/* Commented out due to image not found bug
 				$cpgdb->query($cpg_db_functions_inc['count_get_pic_data_random'], $META_ALBUM_SET);
 				$nbEnr = $cpgdb->fetchRow();
 				$count = $nbEnr['count'];
-				$cpgdb->free();
+				$cpgdb->free(); */
 				
 				$select_columns = '*'; //allows building any data into any thumbnail caption
 				
@@ -2652,7 +2686,10 @@ function& get_pic_url(&$pic_row, $mode,$system_pic = false)
         }
 
         $mime_content = cpg_get_type($pic_row['filename']);
-        $pic_row = array_merge($pic_row,$mime_content);
+        // If $mime_content is empty there will be errors, so only perform the array_merge if $mime_content is actually an array
+        if (is_array($mime_content)) {
+            $pic_row = array_merge($pic_row,$mime_content);
+        }
 
         $filepathname = null;
 
@@ -2891,22 +2928,36 @@ EOT;
                 print_r($_SESSION);
                 echo $debug_separate;
         }
-        if (GALLERY_ADMIN_MODE){
-        echo "VERSION INFO :";
-        echo $debug_underline;
-        $version_comment = ' - OK';
-        if (strcmp('4.2.0', phpversion()) == 1) {$version_comment = ' - your PHP version isn\'t good enough! Minimum requirements: 4.2.0';}
-        echo 'PHP version: ' . phpversion().$version_comment;
-        echo "\n";
-        $version_comment = ' - OK';
-        $mySqlVersion = cpg_phpinfo_mysql_version();
-        if (strcmp('3.23.23', $mySqlVersion) == 1) {$version_comment = ' - your MySQL version isn\'t good enough! Minimum requirements: 3.23.23';}
-        echo 'MySQL version: ' . $mySqlVersion . $version_comment;
-        echo "\n";
-        echo 'Coppermine version: ';
-        echo COPPERMINE_VERSION . '(' . COPPERMINE_VERSION_STATUS . ')';
-        echo "\n";
-        echo $debug_separate;
+		if (GALLERY_ADMIN_MODE){
+		echo "VERSION INFO :";
+		echo $debug_underline;
+		$version_comment = ' - OK';
+		if (strcmp('4.2.0', phpversion()) == 1) {$version_comment = ' - your PHP version isn\'t good enough! Minimum requirements: 4.2.0';}
+		echo 'PHP version: ' . phpversion().$version_comment;
+		echo "\n";
+		$version_comment = ' - OK';
+		/*$mySqlVersion = cpg_phpinfo_mysql_version();
+		if (strcmp('3.23.23', $mySqlVersion) == 1) {$version_comment = ' - your MySQL version isn\'t good enough! Minimum requirements: 3.23.23';}
+		echo 'MySQL version: ' . $mySqlVersion . $version_comment;	*/
+		#####################################         DB        #####################################
+		$dbversion = cpg_phpinfo_dbserver_version();
+		if ($CONFIG['dbservername'] == 'mysql') {
+			if (strcmp('3.23.23', $dbversion) == 1) {
+				$version_comment = ' - your MySQL version isn\'t good enough! Minimum requirements: 3.23.23';
+			}
+			echo 'MySQL version: '. $dbversion . $version_comment;
+		} elseif ($CONFIG['dbservername'] == 'mssql') {
+			if (strcmp('9.00.1399.06', $dbversion) == 1) {
+				$version_comment = ' - your MSSQL version isn\'t good enough! Minimum requirements: 9.00.1399.06';
+			}
+			echo 'MSSQL version: '. $dbversion . $version_comment;
+		}
+		####################################################################################
+		echo "\n";
+		echo 'Coppermine version: ';
+		echo COPPERMINE_VERSION . '(' . COPPERMINE_VERSION_STATUS . ')';
+		echo "\n";
+		echo $debug_separate;
 //        error_reporting  (E_ERROR | E_WARNING | E_PARSE); // New maze's error report system
         if (function_exists('gd_info') == true) {
             echo 'Module: GD';
@@ -3109,14 +3160,14 @@ function cpg_phpinfo_mod_output($search,$output_type)
     return $row[0];
 }	*/
 ########################     DB     #########################
-function cpg_phpinfo_mysql_version()
+function cpg_phpinfo_dbserver_version()
 {
 	global $cpg_db_functions_inc, $CONFIG;
 	$cpgdb =& cpgDB::getInstance();
 	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
     $cpgdb->query($cpg_db_functions_inc['get_dbversion']);
     $row = $cpgdb->fetchRow();
-    return $row[0];
+    return $row['version'];
 }
 #######################################################
 
@@ -3458,7 +3509,7 @@ function themeSelect($parameter)
            $return.= '<select name="theme" class="listbox_lang" onchange="if (this.options[this.selectedIndex].value) window.location.href=\'' . $cpgCurrentTheme . '\' + this.options[this.selectedIndex].value;">' . $lineBreak;
            $return.='<option selected="selected">' . $lang_theme_selection['choose_theme'] . '</option>';
            foreach ($theme_array as $theme) {
-               $return.= '<option value="' . $theme . '">' . strtr(ucfirst($theme), '_', ' ') . ($value == $theme ? '*' : ''). '</option>' . $lineBreak;
+               $return.= '<option value="' . $theme . '"'.($value == $theme ? '  selected="selected"' : '').'>' . strtr(ucfirst($theme), '_', ' ') . ($value == $theme ? '  *' : ''). '</option>' . $lineBreak;
            }
               if ($CONFIG['theme_reset'] == 1){
                   $return.=  '<option value="xxx">' . $lang_theme_selection['reset_theme'] . '</option>' . $lineBreak;
@@ -4276,7 +4327,7 @@ function cpgFetchTempMessage($message_id) {
 	$rowset = $cpgdb->fetchRowSet();
 	if (count($rowset) > 0) {
 	    $row = $rowset[0];
-	    $message = urldecode($row[0]);
+	    $message = urldecode($row['message']);
 	}
 	// delete the message once fetched
 	$cpgdb->query($cpg_db_functions_inc['delete_temp_message'], $message_id);

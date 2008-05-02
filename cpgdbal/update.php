@@ -29,7 +29,13 @@ require ('include/Inspekt.php');
 require ('include/sql_parse.php');
 require ('include/config.inc.php');
 require ('include/update.inc.php');
-
+##################      DB     ##################
+if ($CONFIG['dbservername'] == 'mysql') {
+	require 'cpgdb/drivers/mysql_driver.php';
+} else {
+	require 'cpgdb/drivers/mssql_driver.php';
+}
+##########################################
 // The defaults values
 $errors = '';
 $notes = '';
@@ -238,8 +244,11 @@ function update_tables()
     //$gallery_url_prefix = 'http://' . $_SERVER['HTTP_HOST'] . $gallery_dir . (substr($gallery_dir, -1) == '/' ? '' : '/');
 	$gallery_url_prefix = 'http://' . $superCage->server->getRaw('HTTP_HOST') . $gallery_dir . (substr($gallery_dir, -1) == '/' ? '' : '/');
 
-    $db_update = 'sql/update.sql';
-    $sql_query = fread(fopen($db_update, 'r'), filesize($db_update));
+	//$db_update = 'sql/update.sql';
+    #################      DB       ################
+	$db_update = 'sql/mysql/update.sql';
+	##########################################
+	$sql_query = fread(fopen($db_update, 'r'), filesize($db_update));
     // Update table prefix
     $sql_query = preg_replace('/CPG_/', $CONFIG['TABLE_PREFIX'], $sql_query);
 

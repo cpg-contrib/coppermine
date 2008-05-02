@@ -669,13 +669,22 @@ if (defined('PROFILE_PHP')) $cpg_db_profile_php = array(
 								   "user_profile3 = '%3\$s', user_profile4 = '%4\$s', user_profile5 = '%5\$s', ".
 								   "user_profile6 = '%6\$s' %7\$s WHERE user_id = '%8\$s'",
 	'update_user_password'		=> "UPDATE %1\$s SET %2\$s = '%3\$s' WHERE %4\$s = '%5\$s' AND BINARY %6\$s = '%7\$s'",
-	'get_user_profile'			=> "SELECT user_name, user_email, user_group, UNIX_TIMESTAMP(user_regdate) as user_regdate, ".
+	/*'get_user_profile'			=> "SELECT user_name, user_email, user_group, UNIX_TIMESTAMP(user_regdate) as user_regdate, ".
 								   "group_name, user_profile1, user_profile2, user_profile3, user_profile4, user_profile5, ".
 								   "user_profile6, user_group_list, COUNT(pid) as pic_count, ROUND(SUM(total_filesize)/1024) ".
 								   "as disk_usage, group_quota  FROM {$CONFIG['TABLE_USERS']} AS u ".
 								   "INNER JOIN {$CONFIG['TABLE_USERGROUPS']} AS g ON user_group = group_id  ".
 								   "LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.owner_id = u.user_id  ".
+								   "WHERE user_id ='%1\$s'  GROUP BY user_id ",*/
+	'get_usergroup_profile'		=> "SELECT  group_name, COUNT(pid) as pic_count,  ".
+								   "ROUND(SUM(total_filesize)/1024) as disk_usage, ".
+								   "group_quota  FROM {$CONFIG['TABLE_USERS']} AS u ".
+								   "INNER JOIN {$CONFIG['TABLE_USERGROUPS']} AS g ON user_group = group_id  ".
+								   "LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.owner_id = u.user_id  ".
 								   "WHERE user_id ='%1\$s'  GROUP BY user_id ",
+	'get_user_profile'			=> "SELECT user_name, user_email, user_group, UNIX_TIMESTAMP(user_regdate) as user_regdate, ".
+								   "user_profile1, user_profile2, user_profile3, user_profile4, user_profile5, user_profile6, ".
+								   "user_group_list FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '%1\$s'",
 	'get_group_name'			=> "SELECT group_name  FROM {$CONFIG['TABLE_USERGROUPS']}  WHERE group_id IN (%1\$s) ".
 								   "AND group_id != %2\$s  ORDER BY group_name"
 );

@@ -30,17 +30,18 @@ if (count($rowset)) {
 ##############################################################
   // Grab all keywords
   print '<br />';
-  starttable("100%", $lang_search_php['keyword_list_title']);//print_r($rowset);exit;
+  starttable("100%", $lang_search_php['keyword_list_title']);
 
 
   // Find unique keywords
   $keywords_array = array();
   $keyword_count = array();
 
-  //while (list($keywords) = mysql_fetch_row($result)) {
+  /*while (list($keywords) = mysql_fetch_row($result)) {
+    	list($keywords) = $row;*/
   foreach ($rowset as $row) {	#########	cpgdb_AL
-	  list($keywords) = $row;	#########	cpgdb_AL
-      $array = explode(" ",$keywords);
+	  $keywords = $row['keywords'];	#########	cpgdb_AL
+      $array = explode(" ",$keywords);//print($keywords);exit;
       foreach($array as $word)
       {
        if (!in_array($word = utf_strtolower($word),$keywords_array)) {

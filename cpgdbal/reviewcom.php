@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4245 $
-  $LastChangedBy: saweyyy $
-  $Date: 2008-02-04 01:49:15 +0530 (Mon, 04 Feb 2008) $
+  $Revision: 4422 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-04-30 10:40:08 +0530 (Wed, 30 Apr 2008) $
 **********************************************/
 
 // todo: search option.
@@ -607,11 +607,11 @@ echo <<<EOT
             <td colspan="2" align="center" class="tablef">
                 <input type="submit" value="{$lang_reviewcom_php['save_changes']}" class="button" onclick="return checkBeforeSubmit();" />
                 </td>
-        </form>
         </tr>
 
 EOT;
 endtable();
+echo '</form>';
 pagefooter();
 ob_end_flush();
 } // mass approval end

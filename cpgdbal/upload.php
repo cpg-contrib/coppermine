@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4372 $
-  $LastChangedBy: nibbler999 $
-  $Date: 2008-04-10 18:36:57 +0530 (Thu, 10 Apr 2008) $
+  $Revision: 4423 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-04-30 11:07:02 +0530 (Wed, 30 Apr 2008) $
 **********************************************/
 
 // Confirm we are in Coppermine and set the language blocks.
@@ -156,7 +156,7 @@ function text_area_input($text, $name, $max_length,$default='') {
                         $text
                 </td>
                 <td class="tableb" valign="top">
-<f></f>                        <textarea name="$name" rows="5" cols="40" class="textinput" style="width: 100%;" onKeyDown="textCounter(this, $max_length);" onKeyUp="textCounter(this, $max_length);">$default</textarea>
+                        <textarea name="$name" rows="5" cols="40" class="textinput" style="width: 100%;" onKeyDown="textCounter(this, $max_length);" onKeyUp="textCounter(this, $max_length);">$default</textarea>
                 </td>
         </tr>
 EOT;
@@ -297,6 +297,9 @@ function create_form(&$data) {
 
         // If the element is another array, parse the definition contained within the array.
         if ((is_array($element))) {
+			$element[2] = (isset($element[2])) ? $element[2] : '';
+			$element[3] = (isset($element[3])) ? $element[3] : '';
+			$element[4] = (isset($element[4])) ? $element[4] : '';
 
             // Based on the type declared in the data array's third position, create a different form input.
             switch ($element[2]) {
@@ -868,6 +871,7 @@ if ((CUSTOMIZE_UPLOAD_FORM) and (!$superCage->post->keyExists('file_upload_reque
 
         // Create the box request page.
         pageheader($lang_upload_php['custom_title']);
+        open_form($CPG_PHP_SELF);
         starttable("100%", $lang_upload_php['custom_title'], 2);
         echo "<tr><td colspan=\"2\">";
         echo "{$lang_upload_php['cust_instr_1']}<br /><br />";
@@ -908,10 +912,10 @@ if ((CUSTOMIZE_UPLOAD_FORM) and (!$superCage->post->keyExists('file_upload_reque
 
         echo "{$lang_upload_php['cust_instr_7']}<br /><br />";
         echo "</td></tr>";
-        open_form($CPG_PHP_SELF);
         create_form($data);
         close_form($lang_common['continue']);
         endtable();
+        echo "</form>";
         pagefooter();
 
         // Exit the script.
@@ -967,6 +971,10 @@ if ((CUSTOMIZE_UPLOAD_FORM) and (!$superCage->post->keyExists('file_upload_reque
     $num_URI_boxes = NUM_URI_BOXES;
     $num_file_boxes = NUM_FILE_BOXES;
 
+}
+if (empty($num_URI_boxes) && empty($num_file_boxes)) {
+    $num_URI_boxes = 0;
+    $num_file_boxes = 1;
 }
 
 // Get public and private albums, and set maximum individual file size.
@@ -2188,15 +2196,13 @@ if ($superCage->post->keyExists('control') && $superCage->post->getRaw('control'
         }
 
         // Prepare success data for user.
+        open_form($CPG_PHP_SELF); // Set the form action to this script.
         starttable("100%", $lang_upload_php['succ'], 2);
         echo "<tr><td colspan=\"2\">";
         printf ($lang_upload_php['success'], $escrow_array_count);
         echo "<br /><br />";
         echo $lang_upload_php['add'];
         echo "</td></tr>";
-
-        // Set the form action to this script.
-        open_form($CPG_PHP_SELF);
 
         $form_array = array(
              array('unique_ID', $unique_ID, 4),
@@ -2288,6 +2294,7 @@ if ($superCage->post->keyExists('control') && $superCage->post->getRaw('control'
     }
 
     // Create the footer and flush the output buffer.
+    echo "</form>";
     pagefooter();
     ob_end_flush();
 
@@ -2674,12 +2681,12 @@ if ($superCage->post->keyExists('control') && $superCage->post->getRaw('control'
 
     // Create upload form headers.
     pageheader($lang_upload_php['title']);
+    
+    // Direct the request to this script.
+    open_form($CPG_PHP_SELF);
 
     // Open the form table.
     starttable("100%", $lang_upload_php['title'], 2);
-
-    // Direct the request to this script.
-    open_form($CPG_PHP_SELF);
 
     // Create image tag and echo it to the output buffer.
     echo "<tr><td class=\"tableh2\"><img class=\"image\" src=\"".$path_to_preview."\"  /></td>";
@@ -2772,6 +2779,7 @@ if ($superCage->post->keyExists('control') && $superCage->post->getRaw('control'
 
     // Close the table, create footers, and flush the output buffer.
     endtable();
+    echo "</form>";
     pagefooter();
     ob_end_flush();
 

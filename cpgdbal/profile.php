@@ -463,11 +463,14 @@ switch ($op) {
 		$user_data = mysql_fetch_array($result);
 		mysql_free_result($result);	*/
 		#######################################		DB		####################################
-		$cpgdb->query($cpg_db_profile_php['get_user_profile'], USER_ID);
+		$cpgdb->query($cpg_db_profile_php['get_usergroup_profile'], USER_ID);
 		$rowset = $cpgdb->fetchRowSet();
 		if (!count($rowset)) cpg_die(ERROR, $lang_register_php['err_unk_user'], __FILE__, __LINE__);
-		$user_data = $rowset[0];
+		$user_group_data = $rowset[0];
 		$cpgdb->free();
+		$cpgdb->query($cpg_db_profile_php['get_user_profile'], USER_ID);
+		$user_profile = $cpgdb->fetchRow();
+		$user_data = array_merge($user_profile, $user_group_data);
 		#######################################################################################
 
         $group_list = '';

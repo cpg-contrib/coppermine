@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4224 $
+  $Revision: 4415 $
   $LastChangedBy: gaugau $
-  $Date: 2008-01-26 17:12:00 +0530 (Sat, 26 Jan 2008) $
+  $Date: 2008-04-29 22:23:40 +0530 (Tue, 29 Apr 2008) $
 **********************************************/
 
 /**
@@ -27,7 +27,7 @@
 * @copyright 2002-2006 Gregory DEMAR, Coppermine Dev Team
 * @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
 * @package Coppermine
-* @version $Id: albmgr.php 4224 2008-01-26 11:42:00Z gaugau $
+* @version $Id: albmgr.php 4415 2008-04-29 16:53:40Z gaugau $
 */
 
 /**
@@ -217,6 +217,8 @@ pageheader($lang_albmgr_php['alb_mrg']);
                 make_option("<?php echo $lang_albmgr_php['new_album'] ?>", make_value('0', "<?php echo $lang_albmgr_php['new_album'] ?>", album_sort, '1'), to, to_pos);
 
                 selected_option(to, to_pos);
+                document.album_menu.album_nm.focus();
+                document.album_menu.album_nm.select();
         }
 
         function Album_Delete()

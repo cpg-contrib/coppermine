@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4251 $
-  $LastChangedBy: saweyyy $
-  $Date: 2008-02-08 01:41:18 +0530 (Fri, 08 Feb 2008) $
+  $Revision: 4417 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-04-30 03:26:17 +0530 (Wed, 30 Apr 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -78,7 +78,7 @@ function process_post_data()
 	$pic = mysql_fetch_array($result);
 	mysql_free_result($result);	*/
 	######################################              DB          ####################################
-	$cpgdb->query($cpg_db_edit_one_pic_php['process_data_get_pic_album'], $pid);
+	$cpgdb->query($cpg_db_edit_one_pic_php['process_data_get_pic_alb'], $pid);
 	$rowset = $cpgdb->fetchRowSet();
 	if (!count($rowset)) cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
 	$pic = $rowset[0];
@@ -286,7 +286,7 @@ $CURRENT_PIC = mysql_fetch_array($result);
 mysql_free_result($result);	*/
 ####################################           DB         ##################################
 $cpgdb->query($cpg_db_edit_one_pic_php['get_pictures_albums'], $pid);
-$CURENT_PIC = $cpgdb->fetchRow();
+$CURRENT_PIC = $cpgdb->fetchRow();
 $cpgdb->free();
 ################################################################################
 
@@ -389,7 +389,7 @@ EOT;
 
 form_alb_list_box();
 
-if ($CONFIG['show_bbcode_help']) {$captionLabel = '&nbsp;'. cpg_display_help('f=index.html&base=64&h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
+if ($CONFIG['show_bbcode_help']) {$captionLabel = '&nbsp;'. cpg_display_help('f=index.html&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
 
 print <<<EOT
         <tr>

@@ -52,9 +52,9 @@ class cpgDB {
      * 
      * @var array $queries
      */
-    var $queries = array();
+    //var $queries = array();
 
-    var $query_stats = array();
+    //var $query_stats = array();
 
     /* public: constructor */
     /**
@@ -180,8 +180,9 @@ class cpgDB {
      */
     function query()
     {
-	$args = func_get_args();
-	$Query_String = array_shift($args);
+		global $CONFIG, $query_stats, $queries;
+		$args = func_get_args();
+		$Query_String = array_shift($args);
 	    /* No empty queries, please, since PHP4 chokes on them. */
         if ($Query_String == '')
             /* The empty query string is passed on from the constructor,
@@ -215,11 +216,11 @@ class cpgDB {
         } 
 
             $this->nextRecord();
-        
-        $duration = round($query_end - $query_start, 3);
-        $this->query_stats[] = $duration;
-        $this->queries[] = $Query_String . " ({$duration}s)"; 
-		
+        if (isset($CONFIG['debug_mode']) && (($CONFIG['debug_mode']==1) || ($CONFIG['debug_mode']==2) )) {
+			$duration = round($query_end - $query_start, 3);
+			$query_stats[] = $duration;
+			$queries[] = $Query_String . " ({$duration}s)"; 
+		}
 	//	print_r($this->queries);echo"<br /><br />";
 		
         // Will return nada if it fails. That's fine. // '
@@ -521,7 +522,9 @@ class cpgDB {
 	*/
 	function escape($str_to_escape)
 	{
-		$escape_str = stripslashes($str_to_escape);
+		if (get_magic_quotes_gpc()) {
+			$escape_str = stripslashes($str_to_escape);
+		}
 		return addslashes($escape_str);
 	}
 

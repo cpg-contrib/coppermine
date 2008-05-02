@@ -49,9 +49,9 @@ class cpgDB {
      * 
      * @var array $queries
      */
-    var $queries = array();
+    //var $queries = array();
 
-    var $query_stats = array();
+    //var $query_stats = array();
 
     /* public: constructor */
     /**
@@ -163,8 +163,9 @@ class cpgDB {
      */
     function query()
     {
-	$args = func_get_args();
-	$Query_String = array_shift($args);
+    	global $CONFIG, $query_stats, $queries;
+		$args = func_get_args();
+		$Query_String = array_shift($args);
 	    /* No empty queries, please, since PHP4 chokes on them. */
         if ($Query_String == '')
             /* The empty query string is passed on from the constructor,
@@ -192,7 +193,7 @@ class cpgDB {
 
         $query_end = cpgGetMicroTime();
         $this->Row = 0;
-        $this->Errno = mysql_errno();
+        //$this->Errno = mysql_errno();
         $this->Error = mysql_error();
         if (!$this->Query_ID) {
             $this->halt("Invalid SQL: " . $Query_String);
@@ -201,9 +202,12 @@ class cpgDB {
         if ($this->nf() > 0) {
             $this->nextRecord();
         } 
-        $duration = round($query_end - $query_start, 3);
-        $this->query_stats[] = $duration;
-        $this->queries[] = $Query_String . " ({$duration}s)"; 
+		if (isset($CONFIG['debug_mode']) && (($CONFIG['debug_mode']==1) || ($CONFIG['debug_mode']==2) )) {
+			$duration = round($query_end - $query_start, 3);
+			$query_stats[] = $duration;
+			$queries[] = $Query_String . " ({$duration}s)"; 
+		}
+
 		
 	//	print_r($this->queries);echo"<br /><br />";
 		
@@ -224,7 +228,7 @@ class cpgDB {
             return 0;
         } 
 
-        $this->Record = @mysql_fetch_array($this->Query_ID, MYSQL_BOTH);
+        $this->Record = @mysql_fetch_array($this->Query_ID, MYSQL_ASSOC);
         $this->Row += 1;
         $this->Errno = mysql_errno();
         $this->Error = mysql_error();
@@ -436,7 +440,7 @@ class cpgDB {
                 $this->Seq_Table,
                 $seq_name);
             $id = @mysql_query($q, $this->Link_ID);
-            $res = @mysql_fetch_array($id);
+            $res = @mysql_fetch_array($id, MYSQL_ASSOC);
 
             /* No current value, make one */
             if (!is_array($res)) {
@@ -553,6 +557,9 @@ class cpgDB {
 	*/
 	function escape($str_to_escape)
 	{
+		if (get_magic_quotes_gpc()) {
+			$escape_str = stripslashes($str_to_escape);
+		}
 		return mysql_real_escape_string($str_to_escape);
 	}
 
