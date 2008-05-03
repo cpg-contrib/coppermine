@@ -233,9 +233,9 @@ function form_pic_info($text)
         $filename = htmlspecialchars($CURRENT_PIC['filename']);
 
         echo <<<EOT
-        <input type="hidden" name="pid[]" value="{$CURRENT_PIC['pid']}" />
         <tr>
                 <td class="tableh2" colspan="3">
+                        <input type="hidden" name="pid[]" value="{$CURRENT_PIC['pid']}" />
                         <b>$filename</b>
                 </td>
         </tr>
@@ -396,11 +396,11 @@ function create_form(&$data)
         }
 }
 
-function get_user_albums($user_id = '')
-{
+function get_user_albums($user_id = '') {
         global $CONFIG, $user_albums_list;
 
         $USER_ALBUMS_ARRAY=array(0 => array());
+        $or = '';
 
         if ($user_id != '') {
                 $or = " OR category='" . (FIRST_USER_CAT + $user_id) . "'";
@@ -518,7 +518,6 @@ if ($start > 0) {
 $pic_count_text = sprintf($lang_editpics_php['n_pic'], $pic_count);
 
 pageheader($title);
-starttable("100%", $title.$help, 3);
 echo <<<EOT
 <script type="text/javascript" language="javascript">
 <!--
@@ -544,10 +543,13 @@ function selectAll(d,box) {
 EOT;
 $mode= (UPLOAD_APPROVAL_MODE==1) ? "&amp;mode=upload_approval":"";
 $cat_l = (isset($actual_cat))? "?cat=$actual_cat" : (isset($cat) ? "?cat=$cat" : '');
+echo <<< EOT
+<form method="post" name="editForm" action="$form_target$mode">
+EOT;
+starttable("100%", $title.$help, 3);
 echo <<<EOT
         <tr>
                 <td class="tableh2" colspan="3" align="center" valign="middle">
-                <form method="post" name="editForm" action="$form_target$mode">
                         <b>$pic_count_text</b>&nbsp;&nbsp;-&nbsp;&nbsp;
                         $prev_link
                         $next_link
@@ -599,7 +601,7 @@ echo <<<EOT
                         </td>
                         <td width="20%" align="center">
                             <span class="admin_menu">
-                                <input type="checkbox" name="del_commentsAll" onclick="selectAll(this,'del_comments');" class="checkbox"reset_votesAll" id="del_commentsAll" />
+                                <input type="checkbox" name="del_commentsAll" onclick="selectAll(this,'del_comments');" class="checkbox" id="del_commentsAll" />
                                 <label for="del_commentsAll" class="clickable_option">{$lang_editpics_php['del_all_comm']}</label>
                             </span>
                         </td>
@@ -626,11 +628,13 @@ echo <<<EOT
                 <td colspan="3" align="center" class="tablef">
                         <input type="submit" value="{$lang_editpics_php['apply']}" class="button" />
                 </td>
-                </form>
         </tr>
 
 EOT;
 endtable();
+echo <<<EOT
+        </form>
+EOT;
 pagefooter();
 ob_end_flush();
 ?>
