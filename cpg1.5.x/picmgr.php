@@ -373,9 +373,9 @@ pageheader($lang_picmgr_php['pic_mgr']);
    }
 ?>
 
-   <input type="hidden" name="delete_picture" value="" />
-   <input type="hidden" name="sort_order" value="<?php echo $sort_order ?>" />
    <td class="tableb" valign="top" align="center">
+	   <input type="hidden" name="delete_picture" value="" />
+	   <input type="hidden" name="sort_order" value="<?php echo $sort_order ?>" />   
       <br />
       <table width="300" border="0" cellspacing="0" cellpadding="0">
 <?php
