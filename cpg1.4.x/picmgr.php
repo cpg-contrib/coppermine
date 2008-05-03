@@ -347,6 +347,7 @@ pageheader($lang_picmgr_php['pic_mgr']);
 -->
 </script>
 
+<form name="picture_menu" method="post" action="delete.php?what=picmgr" onSubmit="return CheckPictureForm(this);">
 <?php starttable("100%", $lang_picmgr_php['pic_mgr'], 1); ?>
 <tr>
 <?php
@@ -365,10 +366,9 @@ pageheader($lang_picmgr_php['pic_mgr']);
       $sort_order .= $picture['pid'].'@'.($i++).',';
    }
 ?>
-   <form name="picture_menu" method="post" action="delete.php?what=picmgr" onSubmit="return CheckPictureForm(this);">
-   <input type="hidden" name="delete_picture" value="" />
-   <input type="hidden" name="sort_order" value="<?php echo $sort_order ?>" />
    <td class="tableb" valign="top" align="center">
+	   <input type="hidden" name="delete_picture" value="" />
+	   <input type="hidden" name="sort_order" value="<?php echo $sort_order ?>" />
       <br />
       <table width="300" border="0" cellspacing="0" cellpadding="0">
 <?php
@@ -445,10 +445,10 @@ EOT;
    <td colspan="2" align="center" class="tablef">
    <input type="submit" class="button" value="{$lang_picmgr_php['apply_modifs']}" />
    </td>
-   </form>
 </tr>
 EOT;
    endtable();
+   echo '</form>';
    pagefooter();
    ob_end_flush();
 ?>
