@@ -72,6 +72,8 @@ $invalid_email = '<font size="1">' . $lang_ecard_php['invalid_email'] . ' (' . $
 if (!$valid_sender_email && count($_POST) > 0) $sender_email_warning = $invalid_email;
 if (!$valid_recipient_email && count($_POST) > 0) $recipient_email_warning = $invalid_email;
 
+$gallery_url_prefix = $CONFIG['ecards_more_pic_target']. (substr($CONFIG['ecards_more_pic_target'], -1) == '/' ? '' : '/');
+
 pageheader($lang_ecard_php['title']);
 
 if (isset($_POST['submit'])) {
@@ -179,6 +181,8 @@ elseif (isset($_POST['preview'])) {
         'pc' => $pic_caption,
         );
 
+    $encoded_data = urlencode(base64_encode(serialize($data)));
+    
     $params = array('{LANG_DIR}' => $lang_text_dir,
         '{TITLE}' => sprintf($lang_ecard_php['ecard_title'], $sender_name),
         '{CHARSET}' => $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'],
@@ -197,18 +201,25 @@ elseif (isset($_POST['preview'])) {
         '{PIC_CAPTION}' => $pic_caption,
         );
 
-                                starttable('100%', $lang_ecard_php['preview']);
-                                echo '<tr><td>';
-                                echo template_eval($template_ecard, $params);
-                                echo '</td></tr>';
-                                endtable();
-                                echo '<br />';
+	    $eccontent = template_eval($template_ecard, $params);
+	    if (preg_match('#<body[^>]*>(.*)</body>#s', $eccontent, $matches)) {
+	        $eccontent = $matches[1];
+	    }
+	    starttable('100%', $lang_ecard_php['preview']);
+	    echo '<tr><td>';
+	    echo $eccontent;
+	    echo '</td></tr>';
+	    endtable();
+	    echo '<br />';
 }//preview
 
 //pageheader($lang_ecard_php['title']);
 
 //ecard form
 if ($CONFIG['show_bbcode_help']) {$captionLabel = '&nbsp;'. cpg_display_help('f=index.html&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
+echo <<< EOT
+<form method="post" name="post" action="{$_SERVER['PHP_SELF']}?album=$album&amp;pid=$pid&amp;pos=$pos">
+EOT;
 starttable("100%", $lang_ecard_php['title'], 3);
 
 echo <<<EOT
@@ -221,7 +232,6 @@ echo <<<EOT
         </tr>
         <tr>
                 <td class="tableb" valign="top" width="40%">
-                        <form method="post" name="post" action="{$_SERVER['PHP_SELF']}?album=$album&amp;pid=$pid&amp;pos=$pos">
                         {$lang_ecard_php['your_name']}<br />
                 </td>
                 <td valign="top" class="tableb" width="60%">
@@ -286,12 +296,12 @@ echo <<<EOT
                         <input type="submit" class="button" name="preview" title="{$lang_ecard_php['preview_button']}" value="{$lang_ecard_php['preview_button']}" />
                                                                                                 &nbsp;&nbsp;
                         <input type="submit" class="button" name="submit" title="{$lang_ecard_php['submit_button']}" value="{$lang_ecard_php['submit_button']}" />
-                        </form>
                 </td>
         </tr>
 EOT;
 
 endtable();
+echo '</form>';
 pagefooter();
 ob_end_flush();
 
