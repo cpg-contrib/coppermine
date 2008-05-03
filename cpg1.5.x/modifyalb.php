@@ -630,6 +630,11 @@ pageheader(sprintf($lang_modifyalb_php['upd_alb_n'], $ALBUM_DATA['title']));
 
 $album_lb = alb_list_box();
 $help = '&nbsp;'.cpg_display_help('f=albums.htm&amp;as=album_prop&amp;ae=album_prop_end&amp;top=1', '600', '400');
+echo <<< EOT
+    <form method="post" name="modifyalbum" id="cpgform" action="db_input.php">
+    <input type="hidden" name="event" value="album_update" />
+    <input type="hidden" name="aid" value="{$CLEAN['album']}" />
+EOT;
 starttable("100%",$lang_modifyalb_php['update'].$help, 2);
 echo <<<EOT
         <tr>
@@ -644,10 +649,6 @@ echo <<<EOT
             $album_lb
             </td>
         </tr>
-        <form method="post" name="modifyalbum" id="cpgform" action="db_input.php">
-        <input type="hidden" name="event" value="album_update" />
-        <input type="hidden" name="aid" value="{$CLEAN['album']}" />
-
 EOT;
 
 create_form($data);
@@ -669,11 +670,11 @@ echo <<<EOT
         <td colspan="2" align="center" class="tablef">
         <input type="submit" class="button" value="{$lang_modifyalb_php['update']}" />
         </td>
-        </form>
 </tr>
 EOT;
 
 endtable();
+echo '</form>';
 
 if (GALLERY_ADMIN_MODE) {
     // get the album stats
