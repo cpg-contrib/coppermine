@@ -553,8 +553,7 @@ function create_form(&$data)
         }
 }
 
-function get_user_albums($user_id = '')
-{
+function get_user_albums($user_id = '') {
         global $CONFIG, $user_albums_list, $albStr;
 
         $USER_ALBUMS_ARRAY=array(0 => array());
@@ -729,7 +728,6 @@ if ($start > 0) {
 $pic_count_text = sprintf($lang_editpics_php['n_pic'], $pic_count);
 
 pageheader($title);
-starttable("100%", $title.$help, 3);
 echo <<<EOT
 <script type="text/javascript" language="javascript">
 <!--
@@ -756,10 +754,13 @@ function selectAll(d,box) {
 EOT;
 $mode= (UPLOAD_APPROVAL_MODE==1) ? "&amp;mode=upload_approval":"";
 $cat_l = (isset($actual_cat))? "?cat=$actual_cat" : (isset($cat) ? "?cat=$cat" : '');
+echo <<< EOT
+<form method="post" name="editForm" id="cpgform" action="$form_target$mode">
+EOT;
+starttable("100%", $title.$help, 3);
 echo <<<EOT
         <tr>
                 <td class="tableh2" colspan="3" align="center" valign="middle">
-                <form method="post" name="editForm" id="cpgform" action="$form_target$mode">
                         <b>$pic_count_text</b>&nbsp;&nbsp;-&nbsp;&nbsp;
                         $prev_link
                         $next_link
@@ -847,11 +848,13 @@ echo <<<EOT
                 <td colspan="3" align="center" class="tablef">
                         <input type="submit" name="go" value="{$lang_editpics_php['apply']}" class="button" />
                 </td>
-                </form>
         </tr>
 
 EOT;
 endtable();
+echo <<<EOT
+        </form>
+EOT;
 pagefooter();
 ob_end_flush();
 ?>
