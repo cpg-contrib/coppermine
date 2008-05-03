@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-05-04 [B] Fixed resources consumption for slideshows in meta albums {GauGau}
 2008-05-03 [B] Fixing the type being translated in reports {GauGau}
 2008-05-01 [O] Optimization of sanitization of strip-Tags and max. length for comments {GauGau}
 2008-04-30 [C] Removed invalid <f>-tag in upload.php {GauGau}
