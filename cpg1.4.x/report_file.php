@@ -118,7 +118,7 @@ if (count($_POST) > 0 && $valid_sender_email) {
         'c' => $comment,
         'cid' => $cid,
         'pid' => $pid,
-        't' => $type,
+        't' => $what,
         );
 
     $encoded_data = urlencode(base64_encode(serialize($data)));
@@ -178,6 +178,9 @@ if (count($_POST) > 0 && $valid_sender_email) {
 }
 
 pageheader($lang_report_php['title']);
+echo <<< EOT
+<form method="post" name="post" action="$form_action">
+EOT;
 starttable("100%", $lang_report_php['title'], 3);
 
 echo <<<EOT
@@ -191,7 +194,6 @@ echo <<<EOT
         </tr>
         <tr>
                 <td class="tableb" valign="top" width="40%">
-                        <form method="post" name="post" action="$form_action">
                         {$lang_report_php['your_name']}<br />
                 </td>
                 <td valign="top" class="tableb" width="60%">
@@ -302,12 +304,12 @@ echo <<<EOT
         <tr>
                 <td colspan="3" align="center" class="tablef">
                         <input type="submit" class="button" value="{$lang_report_php['title']}" />
-                        </form>
                 </td>
         </tr>
 EOT;
 
 endtable();
+echo '</form>';
 pagefooter();
 ob_end_flush();
 
