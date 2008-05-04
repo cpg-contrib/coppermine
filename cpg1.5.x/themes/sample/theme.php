@@ -2891,7 +2891,8 @@ function theme_html_img_nav_menu() {
         $ecard_title = $lang_img_nav_bar['ecard_disabled'];*/
     }
 
-                //report to moderator buttons
+    //report to moderator buttons
+    $report_tgt = '';
     if (($CONFIG['report_post']==1) && (USER_CAN_SEND_ECARDS)) {
         $report_tgt = "report_file.php?album=$album$cat_link$date_link&amp;pid=$pid&amp;pos=$pos";
     } else { // remove button if report toggle is off
