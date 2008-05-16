@@ -22,6 +22,7 @@
 session_start();
 error_reporting (E_ALL ^ E_NOTICE);
 set_magic_quotes_runtime(0);
+//define('IN_COPPERMINE', true);
 
 $incp = get_include_path().PATH_SEPARATOR.dirname(__FILE__).PATH_SEPARATOR.dirname(__FILE__).DIRECTORY_SEPARATOR.'include';
 set_include_path($incp);
@@ -30,10 +31,13 @@ require ('include/sql_parse.php');
 require ('include/config.inc.php');
 require ('include/update.inc.php');
 ##################      DB     ##################
+//require ('include/init.inc.php');
 if ($CONFIG['dbservername'] == 'mysql') {
-	require 'cpgdb/drivers/mysql_driver.php';
-} else {
-	require 'cpgdb/drivers/mssql_driver.php';
+	require 'include/cpgdb/drivers/mysql_driver.php';
+	require 'include/cpgdb/sql/mysql.php';
+} elseif ($CONFIG['dbservername'] == 'mssql') {
+	require 'include/cpgdb/drivers/mssql_driver.php';
+	require 'include/cpgdb/sql/mssql.php';
 }
 ##########################################
 // The defaults values
@@ -45,6 +49,10 @@ $DFLT = array('cfg_d' => 'include', // The config file dir
 	'upl_d' => 'userpics' // The uploaded pic dir
 	);
 $superCage = Inspekt::makeSuperCage();
+	#############   cpgdbal   ###########
+	$cpgsql = @ cpgDB::getInstance(); 
+	$cpgsql->lock_querytime = TRUE;
+	##############################
 
 // ---------------------------- AUTHENTICATION --------------------------- //
 //ADMIN_ACCESS is a constant that can be defined for users who can't retrieve any kind of password
@@ -54,6 +62,7 @@ if(!defined(ADMIN_ACCESS) && !$_SESSION['auth']){
 	if(!$superCage->post->keyExists('method')){
 		//first try to connect to the db to see if we can authenticate the admin
 		test_sql_connection();
+
 		if($errors != ''){
 			//we could not establish an sql connection, so update can't be done (and user can't be autenticated)
 			html_error($errors);
@@ -67,11 +76,22 @@ if(!defined(ADMIN_ACCESS) && !$_SESSION['auth']){
 		$user = $superCage->post->getEscaped('user');
 		$pass = $superCage->post->getEscaped('pass');
 		$pass2 = md5($pass);
-		$sql = "SELECT user_active FROM {$CONFIG['TABLE_PREFIX']}users WHERE user_group = 1 AND user_name = '$user' AND (user_password = '$pass' OR user_password = '$pass2')";
+		/*$sql = "SELECT user_active FROM {$CONFIG['TABLE_PREFIX']}users WHERE user_group = 1 AND user_name = '$user' AND (user_password = '$pass' OR user_password = '$pass2')";
 		$result = @mysql_query($sql);
 		if(!@mysql_num_rows($result)){
 			//not authenticated, try mysql account details
-			html_auth_box('MySQL');
+			html_auth_box('MySQL');	*/
+		##################################   cpgdbal   ################################
+		$cpgsql->query($cpg_db_update_php['get_active_admin_user'], $user, $pass, $pass2);
+		$rowset = $cpgsql->fetchRowSet();
+		if (! count($rowset)) {
+			//not authenticated, try sql account datails
+			if ($CONFIG['dbservername'] == 'mysql'){
+				html_auth_box('MySQL');
+			} elseif ($CONFIG['dbservername'] == 'mssql') {
+				html_auth_box('MSSQL');
+			}
+		#########################################################################
 		}else{
 			//authenticated, do the update
 			$_SESSION['auth'] = true;
@@ -139,12 +159,23 @@ function test_fs()
 function update_system_thumbs()
 {
     global $CONFIG;
+	############  cpgdbal  ############
+	global $cpg_db_update_php;
+	$cpgsql = @ cpgDB::getInstance(); 
+	##############################
 
-    $results = mysql_query("SELECT * FROM ".$CONFIG['TABLE_PREFIX']."config;");
-    while ($row = mysql_fetch_array($results)) {
-        $CONFIG[$row['name']] = $row['value'];
-    } // while
-    mysql_free_result($results);
+	/*$results = mysql_query("SELECT * FROM ".$CONFIG['TABLE_PREFIX']."config;");
+	while ($row = mysql_fetch_array($results)) {
+		$CONFIG[$row['name']] = $row['value'];
+	} // while
+	mysql_free_result($results);	*/
+	###############    cpgdbal   ##############
+	$results = $cpgsql->query($cpg_db_update_php['get_all_config']);
+	while ($row = $cpgsql->fetchRow()) {
+		$CONFIG[$row['name']] = $row['value'];
+	}
+	$cpgsql->free();
+	#####################################
 
     // Code to rename system thumbs in images folder (except nopic.jpg and private.jpg)
     $old_thumb_pfx = 'thumb_';
@@ -215,13 +246,17 @@ function cpg_get_system_thumb_list($search_folder = 'images/')
 // ----------------------------- TEST FUNCTIONS ---------------------------- //
 function test_sql_connection()
 {
-    global $errors, $CONFIG;
-
-    if (! $connect_id = @mysql_connect($CONFIG['dbserver'], $CONFIG['dbuser'], $CONFIG['dbpass'])) {
-        $errors .= "<hr /><br />Could not create a mySQL connection, please check the SQL values in include/config.inc.php<br /><br />MySQL error was : " . mysql_error() . "<br /><br />";
-    } elseif (! mysql_select_db($CONFIG['dbname'], $connect_id)) {
-        $errors .= "<hr /><br />mySQL could not locate a database called '{$CONFIG['dbname']}' please check the value entered for this in include/config.inc.php<br /><br />";
-    }
+	global $errors, $CONFIG;
+	$cpgsql = @ cpgDB::getInstance(); 
+	/*if (! $connect_id = @mysql_connect($CONFIG['dbserver'], $CONFIG['dbuser'], $CONFIG['dbpass'])) {
+		$errors .= "<hr /><br />Could not create a mySQL connection, please check the SQL values in include/config.inc.php<br /><br />MySQL error was : " . mysql_error() . "<br /><br />";
+	} elseif (! mysql_select_db($CONFIG['dbname'], $connect_id)) {
+		$errors .= "<hr /><br />mySQL could not locate a database called '{$CONFIG['dbname']}' please check the value entered for this in include/config.inc.php<br /><br />";
+	}	*/
+	$connect_id = $cpgsql->connect($CONFIG['dbname'], $CONFIG['dbserver'], $CONFIG['dbuser'], $CONFIG['dbpass']);
+	if (!$connect_id || $connect_id == 0) {
+		$errors .= $cpgsql->Error;
+	}
 }
 // ------------------------- HTML OUTPUT FUNCTIONS ------------------------- //
 // Moved to include/update.inc.php -- chtito
@@ -230,6 +265,11 @@ function test_sql_connection()
 function update_tables()
 {
     global $errors, $CONFIG;
+	############  cpgdbal  ############
+	global $cpg_db_update_php;
+	$cpgsql = @ cpgDB::getInstance(); 
+	$cpgsql->update = TRUE;
+	##############################
 	
 	$superCage = Inspekt::makeSuperCage();
 	$possibilities = array('REDIRECT_URL', 'PHP_SELF', 'SCRIPT_URL', 'SCRIPT_NAME','SCRIPT_FILENAME');
@@ -245,9 +285,9 @@ function update_tables()
 	$gallery_url_prefix = 'http://' . $superCage->server->getRaw('HTTP_HOST') . $gallery_dir . (substr($gallery_dir, -1) == '/' ? '' : '/');
 
 	//$db_update = 'sql/update.sql';
-    #################      DB       ################
-	$db_update = 'sql/mysql/update.sql';
-	##########################################
+    ######################     DB     ####################
+	$db_update = "sql/{$CONFIG['dbservername']}/update.sql";
+	################################################
 	$sql_query = fread(fopen($db_update, 'r'), filesize($db_update));
     // Update table prefix
     $sql_query = preg_replace('/CPG_/', $CONFIG['TABLE_PREFIX'], $sql_query);
@@ -267,31 +307,63 @@ function update_tables()
          * Determining if the Alter Table actually made a change
          * to properly reflect it's status on the update page.
          */
-        if (strpos(strtolower($q),'alter table')!==false) {
-            $query=explode(" ",$q);
-            //var_dump($query);
-            $result=mysql_query("DESCRIBE ".$query[2]);
-            while ($row=mysql_fetch_row($result)) {
-                $description[]=$row;
-            }
+		/*if (strpos(strtolower($q),'alter table')!==false) {
+			$query=explode(" ",$q);
+			//var_dump($query);
+			$result=mysql_query("DESCRIBE ".$query[2]);
+			while ($row=mysql_fetch_row($result)) {
+				$description[]=$row;
+			}
 
-            $result = @mysql_query($q);
-            $affected = mysql_affected_rows();
-            $warnings=mysql_query('SHOW WARNINGS');
+			$result = @mysql_query($q);
+			$affected = mysql_affected_rows();
+			$warnings=mysql_query('SHOW WARNINGS');
 
-            $result=mysql_query("DESCRIBE ".$query[2]);
-            while ($row=mysql_fetch_row($result)) {
-                $description2[]=$row;
-            }
+			$result=mysql_query("DESCRIBE ".$query[2]);
+			while ($row=mysql_fetch_row($result)) {
+				$description2[]=$row;
+			}
 
-            if ($description == $description2) {
-               $affected = 0;
-            }
-        } else {
-            $result = @mysql_query($q);
-            $affected = mysql_affected_rows();
-            $warnings=mysql_query('SHOW WARNINGS;');
-        }
+			if ($description == $description2) {
+			   $affected = 0;
+			}
+		} else {
+			$result = @mysql_query($q);
+			$affected = mysql_affected_rows();
+			$warnings=mysql_query('SHOW WARNINGS;');
+		}	*/
+		###################   cpgdbal   #################
+		if (strpos(strtolower($q),'alter table')!==false) {
+			$query=explode(" ",$q);
+			$result=$cpgsql->query($cpg_db_update_php['get_table_structure'], $query[2]);
+			while ($row=$cpgsql->fetchRow()) {
+				$description[]=$row;
+			}
+
+			$result = @$cpgsql->query($q);
+			$affected = $cpgsql->affectedRows();
+			if ($CONFIG['dbservername'] != 'mssql') {
+				$warnings=$cpgsql->query($cpg_db_update_php['show_warnings']);
+				$warningset = $cpgsql->fetchRowSet();
+			}
+
+			$result=$cpgsql->query($cpg_db_update_php['get_table_structure'], $query[2]);
+			while ($row=$cpgsql->fetchRow()) {
+				$description2[]=$row;
+			}
+
+			if ($description == $description2) {
+			   $affected = 0;
+			}
+		} else {
+			$result = @$cpgsql->query($q);
+			$affected = $cpgsql->affectedRows();
+			if ($CONFIG['dbservername'] != 'mssql') {
+				$warnings=$cpgsql->query($cpg_db_update_php['show_warnings']);
+				$warningset = $cpgsql->fetchRowSet();
+			}
+		}
+		###########################################
 
         if ($result && $affected) {
             echo "<td class='updatesOK'>OK</td>";
@@ -304,12 +376,17 @@ function update_tables()
             if ($affected > -1) {
                 echo "Rows Affected: ".$affected."<br />";
             }
-            if ($warnings) {
-                while ($warning=mysql_fetch_row($warnings)) {
-                    echo "{$warning[0]} ({$warning[1]}) {$warning[2]}<br />";
-                }
-            }
-            echo "</td><td class='tableh2_compact'>MySQL Said</td></tr>";
+			if ($warnings && $CONFIG['dbservername'] !='mssql') {	#####	cpgdbal
+				/*while ($warning=mysql_fetch_row($warnings)) {
+					echo "{$warning[0]} ({$warning[1]}) {$warning[2]}<br />";
+				}	*/
+				####################   cpgdbal   ####################
+				foreach ($warningset as $warning) {
+					echo "{$warning['Level']} ({$warning['Code']}) {$warning['Message']}<br />";
+				}
+				################################################
+			}
+			echo "</td><td class='tableh2_compact'>MySQL Said</td></tr>";
         }
     }
     echo "</table>";

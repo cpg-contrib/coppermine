@@ -67,6 +67,21 @@ if($install->error != '') {
 if($superCage->post->keyExists('thumb_method')) $install->setTmpConfig('thumb_method', $superCage->post->getAlnum('thumb_method'));
 if($superCage->post->keyExists('im_path') && $superCage->post->getPath('im_path') != (dirname($superCage->server->getPath('SCRIPT_FILENAME') . DIRECTORY_SEPARATOR))) $install->setTmpConfig('im_path', $superCage->post->getPath('im_path'));
 
+######################  cpgdb install  ######################
+//  Get the database driver and the queries
+if (isset($install->config['dbservername'])) {
+	if ($install->config['dbservername'] == 'mysql') {
+		require 'include/cpgdb/drivers/mysql_driver.php';
+		require 'include/cpgdb/sql/mysql.php';
+	} elseif ($install->config['dbservername'] == 'mssql') {
+		require 'include/cpgdb/drivers/mssql_driver.php';
+		require 'include/cpgdb/sql/mssql.php';
+	}
+}
+		$cpginstall =@ cpgDB::getInstance();
+		$cpginstall->lock_querytime = TRUE;	###	locks the cpgGetMicroTime() function in the database driver file.
+#######################################################
+
 switch($step) {
 	case 1:		// Initialisation & natural language selection
 		//write a coockie to check in the next step
@@ -82,7 +97,6 @@ switch($step) {
 		// Here we also do an extensive version check of php/mysql + check of javascript/cookies/register_globals
 		// the cookie for this check is inserted in the previous step!
 		// javascript is tested by altering a hidden form element in the previous step.
-		
 		//PHP VERSION CHECK
 		$php_version = phpversion();
 		$required_php_version = '4.1.0';
@@ -96,23 +110,43 @@ switch($step) {
 				$install->error .= sprintf($install->language['version_incompatible'], $php_version, 'PHP', $required_php_version) . '<br /><br />';
 			}
 		}
-		//MySQL VERSION CHECK
+		//DATABASE SERVER VERSION CHECK
 		ob_start();
 		$coulwegettheinfoofphpinfo = phpinfo();
 		$php_info = ob_get_clean ();
-		preg_match('%<tr><td class="e">Client API version </td><td class="v">([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})%', $php_info, $temp_version);
-		$mysql_version = $temp_version[1];
-		$required_mysql_version = '3.23.23';
-		if(version_compare($required_mysql_version, $mysql_version, '>=')){
-			//check if php_version is actualy a version number
-			if($mysql_version == ''){
-				//version could not be detected, show corresponding error
-				$install->error .= sprintf($install->language['version_undetected'], $required_mysql_version, 'MySQL') . '<br /><br />';
-			}else{
-				//user is using incompatible php version
-				$install->error .= sprintf($install->language['version_incompatible'], $mysql_version, 'MySQL', $required_mysql_version) . '<br /><br />';
+		########################       DB      #######################
+		if ($install->config['dbservername'] == 'mysql') {	//MySQL VERSION CHECK
+		#######################################################
+			preg_match('%<tr><td class="e">Client API version </td><td class="v">([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})%', $php_info, $temp_version);
+			$mysql_version = $temp_version[1];
+			$required_mysql_version = '3.23.23';
+			if(version_compare($required_mysql_version, $mysql_version, '>=')){
+				//check if php_version is actualy a version number
+				if($mysql_version == ''){
+					//version could not be detected, show corresponding error
+					$install->error .= sprintf($install->language['version_undetected'], $required_mysql_version, 'MySQL') . '<br /><br />';
+				}else{
+					//user is using incompatible php version
+					$install->error .= sprintf($install->language['version_incompatible'], $mysql_version, 'MySQL', $required_mysql_version) . '<br /><br />';
+				}
+			}
+		##################################      DB       #################################
+		} elseif ($install->config['dbservername'] == 'mssql') {	//MSSQL VERSION CHECK
+			preg_match('%<tr><td class="e">Library version </td><td class="v">([0-9]{1,3}\.[0-9]{1,3})%', $php_info, $temp_version);
+			$mssql_version = $temp_version[1];
+			$required_mssql_version = '7.0';
+			if(version_compare($required_mssql_version, $mssql_version, '>=')){
+				//check if php_version is actualy a version number
+				if($mssql_version == ''){
+					//version could not be detected, show corresponding error
+					$install->error .= sprintf($install->language['version_undetected'], $required_mssql_version, 'MSSQL') . '<br /><br />';
+				}else{
+					//user is using incompatible php version
+					$install->error .= sprintf($install->language['version_incompatible'], $mssql_version, 'MSSQL', $required_mssql_version) . '<br /><br />';
+				}
 			}
 		}
+		############################################################################
 		//COOKIE CHECK
 		if($superCage->cookie->getAlpha('cpg_install_cookie_check') != 'passed'){
 			//no cookie found, you're in trouble now :)
@@ -224,16 +258,20 @@ switch($step) {
 		html_footer();
 		break;
 		
-	case 6:		// Ask user for mysql host, username and password, try to establish a connection using that info
-		$install->page_title = $install->language['title_mysql_user'];
+	case 6:		// Ask user for sql host, username and password, try to establish a connection using that info
+		$install->page_title = $install->language['title_sql_user'];
 		// check if we are trying to test the connection
 		if($superCage->post->keyExists('update_check_connection') || (isset($install->config['db_host']) && $superCage->post->keyExists('db_host'))) {
 			// here we do not use the setTmpConfig funtion, as this function always writes the new file
 			// and it will be written in the third step...
-			$install->config['db_host'] = $superCage->post->getRaw('db_host');
+			$install->config['db_host'] = stripslashes($superCage->post->getRaw('db_host'));
 			$install->config['db_user'] = $superCage->post->getRaw('db_user');
 			$install->setTmpConfig('db_password', $superCage->post->getRaw('db_password'));
-			
+			#############################    cpgdb install   ###########################
+			if ($install->config['dbservername'] == 'mssql') {
+				$install->setTmpConfig('auth_mode', $superCage->post->getRaw('auth_mode'));
+			}
+			#######################################################################
 			// test the connection
 			$install->checkSqlConnection();	
 		}
@@ -243,25 +281,33 @@ switch($step) {
 		} else {
 			if(isset($install->config['db_password'])) $install->setTmpConfig('step', '7');
 		}
-		html_mysql_start();
+		html_sql_start();	######	cpgdb install
 		html_footer();
 		break;
 		
 	case 7:		// Ask the user if he wants to use an existing db or if he wants the installer to create a new database. Try to perform the selected choice. Ask for the table prefix
-		$install->page_title = $install->language['title_mysql_db_sel'];
+		$install->page_title = $install->language['title_sql_db_sel'];//print($install->config['auth_mode']);exit;
 		// save the db data from previous step
 		if($superCage->post->keyExists('db_host')  && !isset($install->config['db_populated'])) {
 			// here we do not use the setTmpConfig funtion, as this function always writes the new file
 			// and it will be written in the third step...
-			$install->config['db_host'] = $superCage->post->getRaw('db_host');
+			$install->config['db_host'] = stripslashes($superCage->post->getRaw('db_host'));
 			$install->config['db_user'] = $superCage->post->getRaw('db_user');
 			$install->setTmpConfig('db_password', $superCage->post->getRaw('db_password'));
+			###########################   cpgdb install   ###########################
+			if ($install->config['dbservername'] == 'mssql') {
+				$install->setTmpConfig('auth_mode', $superCage->post->getRaw('auth_mode'));
+			}
+			#######################################################################
 			if($install->error != '') {
 				$install->error .= '<br /><br />' . sprintf($install->language['please_go_back'], '<a href="install.php?step=' . ($step - 1) . '">', '</a>');
 			}
 		} elseif($superCage->post->keyExists('update_create_db') && trim($superCage->post->getRaw('new_db_name')) != '') {
 			// try to create a new database.
-			$install->createMysqlDb(trim($superCage->post->getRaw('new_db_name')));
+			//$install->createMysqlDb(trim($superCage->post->getRaw('new_db_name')));
+			############################       DB      ############################
+			$install->createNewDb(trim($superCage->post->getRaw('new_db_name')));
+			#################################################################
 			// save table prefix
 			$install->setTmpConfig('db_prefix', $superCage->post->getRaw('db_prefix'));
 		}
@@ -270,14 +316,14 @@ switch($step) {
 		if($install->error != '') {
 			html_error();
 		} else {
-			html_mysql_select_db();
+			html_sql_select_db();	######	cpgdb install
 			$install->setTmpConfig('step', '8');
 		}
 		html_footer();
 		break;
 		
 	case 8:		// save db_prefix/_name and finally create the tables
-		$install->page_title = $install->language['title_mysql_pop'];
+		$install->page_title = $install->language['title_sql_pop'];		######	cpgdb install
 		// save the db data from previous step
 		if($superCage->post->keyExists('db_name') && !isset($install->config['db_populated'])) {
 			$install->setTmpConfig('db_name', $superCage->post->getRaw('db_name'));
@@ -287,10 +333,13 @@ switch($step) {
 		$set_populated = false;
 		if(!isset($install->config['db_populated']) && isset($install->config['db_name'])) {
 			$msg = $install->language['db_populating'];
-			if($install->populateMysqlDb()) {
+				/*if($install->populateMysqlDb()) {
+					$set_populated = true;
+				}*/
+			if ($install->populateDb()) {
 				$set_populated = true;
 			}
-		} elseif(!isset($install->config['db_populated']) && !isset($install->config['db_name'])) {
+		} elseif (!isset($install->config['db_populated']) && !isset($install->config['db_name'])) {
 			$msg = sprintf($install->language['not_here_yet'], '<b><a href="install.php?step=7">', '</a></b>');
 		}
 
@@ -414,7 +463,7 @@ function html_header() {
 <!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<title>Coppermine - <?php echo $install->language['installer']; ?></title><link type="text/css" rel="stylesheet" href="installer.css">
+<title>Coppermine - <?php echo $install->language['installation']; ?></title><link type="text/css" rel="stylesheet" href="installer.css">
 </head>
 <body>
  <div align="center">
@@ -474,7 +523,7 @@ function html_stepper() {
        </td>
       </tr>
        <tr>
-      <td valign="top" style="background-color:#FF0000; color:#FFFFFF;"><h5>Warning, this installer is still in alpha, you can use the old one by going <a href="install_old.php">here</a></h5><br />
+      <td valign="top" style="background-color:#FF0000; color:#FFFFFF;"><h5>Warning, this installer is still in alpha. </h5><br />
       </td>
     </tr>
 	</table>
@@ -553,6 +602,15 @@ function html_welcome() {
           <td class="tableb" align="center" colspan="2"><?php echo $install->getLangSelect(); ?><input type="submit" name="update_lang" value="<?php echo $install->language['change_lang']; ?>" />
           </td>
          </tr>
+		 <!-- dbserver select  -->
+		 <tr>
+		  <td class='tableh1' colspan="2"><b>Select Database Server:</b></td>
+		 </tr>
+		 <tr>
+		  <td class='tableb' align="center" colspan="2"><?php echo $install->getdbserverSelect(); ?><input type="submit" name="change_server" value="Change Database Server" />
+		  </td>
+		 </tr>
+		<!-- dbserver select  -->
 		<tr>
 		  <td colspan="2" align="center" class="tableh2"><br />
             <input type="submit" value="<?php echo $install->language['lets_go']; ?>" /><br /><br />
@@ -563,7 +621,7 @@ function html_welcome() {
   </form>
   <!-- This code will check if javascript is enabled -->
       <script type="text/javascript">
-		document.forms[0][3].value = "passed";
+		document.forms[0][5].value = "passed";
       </script>
 	<?php
 }
@@ -634,47 +692,61 @@ function html_error($button = true) {
  * 
  * prints page with basic MySql config
  */
-function html_mysql_start() {
+function html_sql_start() {		#######	cpgdb install
 	global $install, $step;
 ?>
       <form action="install.php?step=<?php echo ($step + 1); ?>" name="cpgform" id="cpgform" method="post" style="margin:0px;padding:0px">
         <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
          <tr>
           <td class="tableb" colspan="2">
-		  <?php echo $install->language['sect_mysql_info']; ?><br /><br />
+		  <?php sprintf( $install->language['sect_sql_info'], $install->config['dbservername']);	######	cpgdb install ?><br /><br />
 		  </td>
          </tr>
 		 <tr>
           <td colspan="2">&nbsp;</td>
          </tr>
 		 <?php 
-		 	if($install->mysql_connected) {
+		 	if($install->sql_connected) {	###### cpgdb install
 				?>
 		<tr>
-			<td colspan="2" align="center"><fieldset><?php echo $install->language['mysql_succ']; ?></fieldset></td>
+			<td colspan="2" align="center"><fieldset><?php echo $install->language['sql_succ']; ?></fieldset></td>
 		</tr>	
 				<?php 
 			}
 		 ?>
+		 <?php
+		 ###############################     cpgdb install    ##############################
+		 if ($install->config['dbservername'] == 'mssql') {
+		 ?>
 		 <tr>
-          <td align="right"><?php echo $install->language['mysql_host']; ?></td>
+			<td align="right">Windows Authentication mode</td><td><input type="radio" name="auth_mode" value="windows" <?php if (!isset($install->config['auth_mode']) || $install->config['auth_mode'] != 'sqlserver') { ?> checked="checked" <?php } ?> ></td>
+		 </tr>
+		 <tr>
+			<td align="right">SQL Server Authentication mode</td><td><input type="radio" name="auth_mode" value="sqlserver" <?php if (isset($install->config['auth_mode']) && $install->config['auth_mode'] == 'sqlserver') { ?> checked="checked" <?php } ?> ></td>
+		 </tr>
+		 <?php
+		 }
+		 #########################################################################
+		 ?>
+		 <tr>
+          <td align="right"><?php echo $install->language['sql_host']; ?></td>
 		  <td><input type="text" name="db_host" value="<?php echo (isset($install->config['db_host'])) ? $install->config['db_host'] : 'localhost'; ?>" /></td>
          </tr>
 		 <tr>
-          <td align="right">MySql <?php echo $install->language['username']; ?></td>
+          <td align="right"><?php echo $install->config['dbservername']." " ?> <?php echo $install->language['username']; ?></td>
 		  <td><input type="text" name="db_user" value="<?php echo $install->config['db_user']; ?>" /></td>
          </tr>
 		 <tr>
-          <td align="right">MySql <?php echo $install->language['password']; ?></td>
+          <td align="right"><?php echo $install->config['dbservername']." "?> <?php echo $install->language['password']; ?></td>
 		  <td><input type="password" name="db_password" value="<?php echo $install->config['db_password']; ?>" /></td>
          </tr>
 		 <tr>
 		 <td colspan="2" align="center">
-		  	<input type="submit" name="update_check_connection" value="<?php echo $install->language['mysql_test_connection']; ?>" /><br />
+		  	<input type="submit" name="update_check_connection" value="<?php echo $install->language['sql_test_connection']; ?>" /><br />
           </td>
          </tr>
          <?php 
-		 	if($install->mysql_connected) {
+		 	if($install->sql_connected) {	######## cpgdb install
 				?>
 		<tr>
 		  <td colspan="2" align="center" class="tableh2">
@@ -701,33 +773,33 @@ function html_mysql_start() {
  * 
  * prints page for db selection
  */
-function html_mysql_select_db() {
+function html_sql_select_db() {		######	cpgdb install
 	global $install, $step;
 ?>
       <form action="install.php?step=<?php echo ($step + 1); ?>" name="cpgform" id="cpgform" method="post" style="margin:0px;padding:0px">
         <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
          <tr>
           <td class="tableb" colspan="2">
-		  <?php echo $install->language['sect_mysql_sel_db']; ?><br /><br />
+		  <?php echo $install->language['sect_sql_sel_db']; ?><br /><br />
 		  </td>
          </tr>
 		 <tr>
           <td colspan="2">&nbsp;</td>
          </tr>
 		 <tr>
-          <td align="right"><?php echo $install->language['mysql_db_name']; ?></td>
-		  <td><?php echo ($dbs = $install->getMysqlDbs()) ? $dbs : '<input type="text" name="db_name" value="' . $install->config['db_name'] . '" />'; ?></td>
+          <td align="right"><?php echo $install->language['sql_db_name']; ?></td>
+		  <td><?php echo ($dbs = $install->getsqlDbs()) ? $dbs : '<input type="text" name="db_name" value="' . $install->config['db_name'] . '" />';	######	cpgdb install ?></td>
          </tr>
 		 <tr>
-          <td align="right"><?php echo $install->language['mysql_create_db']; ?></td>
-		  <td><input type="text" name="new_db_name" /><input type="submit" name="update_create_db" value="<?php echo $install->language['mysql_create_btn']; ?>" /></td>
+          <td align="right"><?php echo $install->language['sql_create_db']; ?></td>
+		  <td><input type="text" name="new_db_name" /><input type="submit" name="update_create_db" value="<?php echo $install->language['sql_create_btn'];	######	cpgdb install ?>" /></td>
          </tr>
 		 <tr>
 		 <td colspan="2">&nbsp;</td>
          </tr>
          <tr>
-          <td align="right"><?php echo $install->language['mysql_tbl_pref']; ?></td>
-		  <td><input type="text" name="db_prefix" value="<?php echo isset($install->config['db_prefix']) ? $install->config['db_prefix'] : 'cpg15x_'; ?>" /></td>
+          <td align="right"><?php echo $install->language['sql_tbl_pref']; ?></td>
+		  <td><input type="text" name="db_prefix" value="<?php echo isset($install->config['db_prefix']) ? $install->config['db_prefix'] : 'cpgdb_'; ?>" /></td>
          </tr>
 		 <tr>
 		  <td colspan="2" align="center" class="tableh2">
@@ -822,14 +894,16 @@ function html_finish() {
 ########################
 class CPGInstall{
 	var $language;	// (array) holds the language
+	var $server;	//(array) holds the dbservername	#####	cpgDB install
 	var $config;	// (array) temp configuration and checks
 	var $error;		// (string) holds errors
 	var $tmp_config = 'include/config.tmp.php'; // (string) temporary config file
-	var $mysql_connection; 			// (mysql_connection) connection to the db
-	var $mysql_connected = false;	// (bool) connected to the db?
+	var $sql_connection; 			// (sql_connection) connection to the db	######	cpgdb install
+	var $sql_connected = false;	// (bool) connected to the db?	###### cpgdb install
 	var $page_title; // (string) holds the title of the current installation step
 	var $temp_data;	// holds various data
 	var $available_languages; // (array) holds available langs in first step
+	var $available_dbservers; // (array) holds available database servers in first step	#### cpgDB install
 	
 	/*
 	* CPGInstall()
@@ -840,6 +914,7 @@ class CPGInstall{
 	function CPGInstall() {
 		$this->loadTempConfig();
 		$this->getLanguage();
+		$this->getdbservername();	######	cpgDB install
 	}
 	
 	/*
@@ -1013,7 +1088,7 @@ class CPGInstall{
 			$this->available_languages = $available_languages;
 		}
 		
-		$lang_select = '<select name="lang_list">' . "\n";
+		$lang_select = '<select name="lang_list">' . "\n";//print_r($this->config);
 		foreach($this->available_languages as $key => $language) {
 			$lang_select .= "				    	<option " . (($this->config['lang'] == $language) ? 'selected="selected"' : '') . " value=\"{$language}\">{$language}</option>" . "\n";
 		}
@@ -1021,7 +1096,54 @@ class CPGInstall{
 		
 		return $lang_select;
 	}
-	
+	##############################       cpgDB install     #############################
+	function getdbservername() {
+		$superCage = Inspekt::makeSuperCage();
+		
+		// try to find the users language if we don't have one defined yet
+		if(!isset($this->config['dbservername'])) {
+			$this->setTmpConfig('dbservername', 'mysql');
+			$this->loadTempConfig();
+		}
+
+		// change default database server
+		if($dbserver = $superCage->post->getMatched('server_list', '/^[a-z0-9_-]+$/')) {
+			$this->setTmpConfig('dbservername', $dbserver[0]);
+			$this->loadTempConfig();
+		} 
+		if ($this->server == '') {
+			$this->server = $config['dbservername'];
+		}
+		return $this->server;
+	}
+
+
+	function getdbserverSelect() {
+		$superCage = Inspekt::makeSuperCage();
+		
+		if(!is_array($this->available_dbservers)) {
+			$dir = opendir('include/cpgdb/sql/');
+			while ($file = readdir($dir)) {
+				$extension = ltrim(substr($file,strrpos($file,'.')),'.');
+				$filenameWithoutExtension = str_replace('.' . 'php', '', $file);
+				if (is_file('include/cpgdb/sql/' . $file) && $extension == 'php') {
+					$available_dbservers[] = $filenameWithoutExtension;
+				}
+			}
+			closedir($dir);
+			natcasesort($available_dbservers);
+			$this->available_dbservers = $available_dbservers;
+		}
+		
+		$dbserver_select = '<select name="server_list">' . "\n";
+		foreach($this->available_dbservers as $key => $dbserver) {
+			$dbserver_select .= "				    	<option " . (($this->config['dbservername'] == $dbserver) ? 'selected="selected"' : '') . " value=\"{$dbserver}\">{$dbserver}</option>" . "\n";
+		}
+		$dbserver_select .= '				</select>';
+		
+		return $dbserver_select;
+	}
+	#########################################################################
 	/*
 	* checkFiles()
 	*
@@ -1182,7 +1304,7 @@ class CPGInstall{
 	/*
 	* testImageProcessor()
 	*
-	* Extensive test on the image processor of choise
+	* Extensive test on the image processor of choice
 	*
 	* @return string $results
 	*/
@@ -1377,33 +1499,97 @@ class CPGInstall{
 	*
 	* @return bool
 	*/
-	function checkSqlConnection() {
+	/*function checkSqlConnection() {
 		// we only need 1 connection
-		if($this->mysql_connected) {
+		if($this->sql_connected) {	#######	cpgdb install
 			return true;
 		} else {
-			(isset($this->config['db_name'])) ? $db_name = $this->config['db_name'] : $db_name = '';
-			// check for MySql support of PHP
-			if (!function_exists('mysql_connect')){
-				$this->error = $this->language['no_mysql_support'];
-				return false;
-			// try to connect with given auth parameters
-			} elseif (! $connect_id = @mysql_connect($this->config['db_host'], $this->config['db_user'], $this->config['db_password'])) {
-				$this->error = $this->language['no_mysql_conn'] . '<br />' . $this->language['mysql_error'] . mysql_error();
-				return false;
-			// if a database is specified, try to select it.
-			} elseif ($db_name != '') {
-				if( !mysql_select_db($db_name, $connect_id)) {
-					$this->error = sprintf($this->language['mysql_wrong_db'], $db_name);
+			if ($this->config['dbservername'] == 'mysql') {		######	cpgdb install
+				(isset($this->config['db_name'])) ? $db_name = $this->config['db_name'] : $db_name = '';
+				// check for MySql support of PHP
+				if (!function_exists('mysql_connect')){
+					$this->error = $this->language['no_mysql_support'];
+					return false;
+				// try to connect with given auth parameters
+				} elseif (! $connect_id = @mysql_connect($this->config['db_host'], $this->config['db_user'], $this->config['db_password'])) {
+					$this->error = $this->language['no_mysql_conn'] . '<br />' . $this->language['sql_error'] . mysql_error();
+					return false;
+				// if a database is specified, try to select it.
+				} elseif ($db_name != '') {
+					if( !mysql_select_db($db_name, $connect_id)) {
+						$this->error = sprintf($this->language['mysql_wrong_db'], $db_name);
+						return false;
+					}
+				}
+			###################################    cpgdb install   ###################################
+			} elseif ($this->config['dbservername'] == 'mssql') {
+				// create the connection info array
+				$connect_info = array();
+				(isset($this->config['db_name'])) ? $db_name = $this->config['db_name'] : $db_name = 'master';
+				$connect_info['Database'] = $db_name;
+				if ($this->config['auth_mode'] == 'sqlserver') {
+					$connect_info['UID'] = $this->config['db_user'];
+					$connect_info['PWD'] = $this->config['db_password'];
+				}
+				// check for MSSQL support of PHP
+				//$ServerName = $this->config['db_host'];
+				if (!function_exists('sqlsrv_connect')) {
+					$this->error = $this->language['no_mssql_support'];
+					return false;
+				// try to connect with given auth parameters
+				} elseif (! $connect_id = @sqlsrv_connect($this->config['db_host'], $connect_info)) {
+					$this->error = $this->language['sql_error'];
+					//echo "<br />";
+					foreach (sqlsrv_errors() as $err) {
+						$this->error .= "SQLSTATE: ".$err['SQLSTATE']."<br/>";
+						$this->error .= "Code: ".$err['code']."<br/>";
+						$this->error .= "Message: ".($err['message'])."<br/>";
+					}
 					return false;
 				}
 			}
+			#################################################################################
+			
 			// set our connection id
-			$this->mysql_connection = $connect_id;
-			$this->mysql_connected = true;
+			$this->sql_connection = $connect_id;	#######	cpgdb install
+			$this->sql_connected = true;	######	cpgdb install
+			return true;
+		}
+	}*/
+	###########################################   cpgdbal sql connection  ############################################
+	function checkSqlConnection() {
+		$cpginstall =@ cpgDB::getInstance();
+		$cpginstall->install_auth_mode = $this->config['auth_mode'];
+		// we only need 1 connection
+		if($this->sql_connected) {	#######	cpgdb install
+			return true;
+		} else {
+			if (isset($this->config['db_name'])) {
+				$db_name = $this->config['db_name'];
+			} elseif ($this->config['dbservername'] == 'mssql') {
+				$db_name = 'cpg';	## database name is must for mssql for connection, if not available, select master as default just to check the connection
+			} else {
+				$cpginstall->nodb = TRUE;	//	for mysql when $db_name = ''
+				$db_name = '';
+			}
+			// check for MySql support of PHP
+			if ($this->config['dbservername'] == 'mysql' && !function_exists('mysql_connect')){
+				$this->error = $this->language['no_mysql_support'];
+				return false;
+			} elseif ($this->config['dbservername'] == 'mssql' && !function_exists('sqlsrv_connect')) {
+				$this->error = $this->language['no_mssql_support'];
+				return false;
+			} elseif (! $connect_id = @$cpginstall->connect($db_name, $this->config['db_host'], $this->config['db_user'], $this->config['db_password'])) {
+				$this->error = $cpginstall->Error;
+				return false;
+			}
+			// set our connection id
+			$this->sql_connection = $connect_id;	#######	cpgdb install
+			$this->sql_connected = true;	######	cpgdb install
 			return true;
 		}
 	}
+	########################################################################################################
 	
 	/*
 	* getMysqlDbs()
@@ -1413,13 +1599,13 @@ class CPGInstall{
 	*
 	* @return string $db_select
 	*/
-	function getMysqlDbs() {
+	/*function getsqlDbs() {
 		// Get a connection with the db
 		if(!$this->checkSqlConnection()) {
 			return false;
 		}
 		// get a list of db's
-		if($db_list = @mysql_list_dbs($this->mysql_connection)) {
+		if($db_list = @mysql_list_dbs($this->sql_connection)) {		########	cpgdb install
 			// create dropdown box
 			$db_select = '<select name="db_name">';
 			while ($row = mysql_fetch_object($db_list)) {
@@ -1434,7 +1620,31 @@ class CPGInstall{
 			//$this->error = $this->language['mysql_no_sel_dbs'] . '<br />' . $this->language['mysql_error'] . '<br />' . mysql_error($this->mysql_connection);
 			return false;
 		}
+	}*/
+	########################################  cpgdb install  ######################################
+	function getSqlDbs() {
+		$cpginstall = @cpgDB::getInstance();
+		// Get a connection with the db
+		if(!$this->checkSqlConnection()) {
+			return false;
+		}
+		// get a list of db's
+		$dblist = $cpginstall->ListDbs();
+		if (count($dblist) > 0) {
+			// create dropdown box
+			$db_select = '<select name="db_name">';
+			foreach ($dblist as $row) {
+				$db = $row;
+				($db == $this->config['db_name']) ? $sel = ' selected="selected"' : $sel = '';
+				$db_select .= '<option name="' . $db . '"' . $sel . ' >' . $db . '</option>';
+			}
+			$db_select .= '</select>';
+			return $db_select;
+		} else {
+				return false;
+		}
 	}
+	########################################################################################
 	
 	/*
 	* createMysqlDb()
@@ -1444,21 +1654,48 @@ class CPGInstall{
 	*
 	* @return bool
 	*/
-	function createMysqlDb($db_name) {
+	/*function createMysqlDb($db_name) {
 		// Get a connection with the db
 		if(!$this->checkSqlConnection()) {
 			return false;
 		}
 		$query = 'CREATE DATABASE ' . $db_name;
 		// try to create new db
-		if(!mysql_query($query, $this->mysql_connection)) {
-			$this->error = $this->language['mysql_no_create_db'] . '<br />' . $this->language['mysql_error'] . '<br />' . mysql_error($this->mysql_connection);
+		if(!mysql_query($query, $this->sql_connection)) { 		#######	cpgdb install
+			$this->error = $this->language['sql_no_create_db'] . '<br />' . $this->language['sql_error'] . '<br />' . mysql_error($this->sql_connection);	#######	cpgdb install
 			return false;
 		} else {
 			$this->setTmpConfig('db_name', $db_name);
 		}
 		return true;
+	}*/
+	
+	#########################################   cpgdb install  ##########################################
+	/*
+	* createDb()
+	*
+	* Tries to create CPG database.
+	* If users doesn't have permission, it returns false.
+	*
+	* @return bool
+	*/
+	function createNewDb($db_name) {
+		global $cpg_db_install_php;
+		$cpginstall = @ cpgDB::getInstance();
+		$cpginstall->nodb = TRUE;	//	for mysql when $db_name = ''
+		// Get a connection with the db
+		if (!$this->checkSqlConnection()) {
+			return false;
+		}
+		$result = $cpginstall->query($cpg_db_install_php['create_db'], $db_name);
+		if (!$result) {
+			$this->error = $this->language['sql_no_create_db'] . '<br />' . $this->language['sql_error'] . '<br />'.$cpginstall->Error;
+		} else {
+			$this->setTmpConfig('db_name', $db_name);
+		}
+		return true;
 	}
+	#############################################################################################
 	
 	/*
 	* populateMysqlDb()
@@ -1467,10 +1704,10 @@ class CPGInstall{
 	*
 	* @return bool
 	*/
-	function populateMysqlDb() {
+	/*function populateMysqlDb() {
 		// define some vars so we can easily find the at the top and change if needed.
-		$db_schema = "sql/schema.sql";
-		$db_basic = "sql/basic.sql";
+		$db_schema = "sql/mysql/schema.sql";
+		$db_basic = "sql/mysql/basic.sql";
 		
 		// check if all config values are present.
 		if(!isset($this->config['thumb_method'])) 	{ $this->error = $this->language['no_thumb_method']; 	return false;}
@@ -1536,8 +1773,98 @@ class CPGInstall{
 				$table = $table_match[2];
 				$is_table = true;
 			}
-			if (! mysql_query($q, $this->mysql_connection)) {
-				$this->error = $this->language['mysql_error'] . mysql_error($this->mysql_connection) . ' ' . $this->language['on_q'] . " '$q'";
+			if (! mysql_query($q, $this->sql_connection)) {		######	cpgdb install
+				$this->error = $this->language['sql_error'] . mysql_error($this->sql_connection) . ' ' . $this->language['on_q'] . " '$q'";	#####	cpgdb install
+				if($is_table) $this->temp_data .= "<br />" . sprintf($this->language['create_table'], $table) . '&nbsp;&nbsp;&nbsp;&nbsp;' . $this->language['status'] . ':... ' . $this->language['nok'];
+				return false;
+			} else {
+				if($is_table) $this->temp_data .= "<br />" . sprintf($this->language['create_table'], $table). '&nbsp;&nbsp;&nbsp;&nbsp;' . $this->language['status'] . ':... ' . $this->language['ok'];
+			}
+		}
+		$this->temp_data .= '<br /><br /><br /></td></tr>';
+		return true;
+	}*/
+	################################################   cpgdb install  ##############################################
+	function populateDb() {
+		global $cpg_db_install_php;
+		$cpginstall = @ cpgDB::getInstance();
+		$cpginstall->nodb = TRUE;	//	for mysql when $db_name = ''
+		
+		// define some vars so we can easily find the at the top and change if needed.
+		$db_schema = "sql/{$this->config['dbservername']}/schema.sql";
+		$db_basic = "sql/{$this->config['dbservername']}/basic.sql";
+		// check if all config values are present.
+		if(!isset($this->config['thumb_method'])) 	{ $this->error = $this->language['no_thumb_method']; 	return false;}
+		if (@get_magic_quotes_runtime()) set_magic_quotes_runtime(0);
+		// Get a connection with the db.
+		if(!$this->checkSqlConnection()) {
+			return false;
+		}
+		// Check if we can read the db_schema file
+		if (($sch_open = fopen($db_schema, 'r')) === FALSE){
+			$this->error = sprintf($this->language['sql_file_not_found'], $db_schema);
+			return false;
+		} else {
+			$sql_query = fread($sch_open, filesize($db_schema));
+			// Check if we can read the db_basic file
+			if (($bas_open = fopen($db_basic, 'r')) === FALSE){
+				$this->error = sprintf($this->language['sql_file_not_found'], $db_basic);
+				return false;
+			} else {
+				$sql_query .= fread($bas_open, filesize($db_basic));
+			}
+		}
+		// Create our fantastic cage object
+		$superCage = Inspekt::makeSuperCage();
+		require_once('include/sql_parse.php');
+		// Get gallery directory
+		$possibilities = array('REDIRECT_URL', 'PHP_SELF', 'SCRIPT_URL', 'SCRIPT_NAME','SCRIPT_FILENAME');
+		foreach ($possibilities as $test){
+			if ($matches = $superCage->server->getMatched($test, '/([^\/]+\.php)$/')) {
+				$CPG_PHP_SELF = $matches[1];
+				break;
+			}
+		}
+		
+		$gallery_dir = strtr(dirname($CPG_PHP_SELF), '\\', '/');
+		$gallery_url_prefix = 'http://' . $superCage->server->getEscaped('HTTP_HOST') . $gallery_dir . (substr($gallery_dir, -1) == '/' ? '' : '/');
+		// Set configuration values for image package
+		$sql_query .= sprintf($cpg_db_install_php['config_thumb_method'], $this->config['thumb_method']);
+		$sql_query .= sprintf($cpg_db_install_php['config_im_path'], $this->config['im_path']);
+		$sql_query .= sprintf($cpg_db_install_php['config_ecards_more_pic_target'], $gallery_url_prefix);
+		$sql_query .= sprintf($cpg_db_install_php['config_gallery_admin_email'], $this->config['admin_email']);
+		// Enable silly_safe_mode if test has shown it is not configured properly
+		if ($this->checkSillySafeMode()) {
+			$sql_query .= sprintf($cpg_db_install_php['config_silly_safe_mode']);
+		}
+		// Test write permissions for main dir
+		if (!is_writable('.')) {
+			$sql_query .= sprintf($cpg_db_install_php['config_default_dir_mode']);
+			$sql_query .= sprintf($cpg_db_install_php['config_default_file_mode']);
+		}
+		// Update table prefix
+		$sql_query = preg_replace('/CPG_/', $this->config['db_prefix'], $sql_query);
+	
+		$sql_query = remove_remarks($sql_query);
+		$sql_query = split_sql_file($sql_query, ';');
+		
+		$this->temp_data .= '<tr><td>';
+		foreach($sql_query as $q) {
+			$is_table = false;
+			//check if we are creating a table so we can add it to the output
+			if ($this->config['dbservername'] == 'mysql') {
+				if (preg_match('/(CREATE TABLE IF NOT EXISTS `?|CREATE TABLE `?)([\w]*)`?/i', $q, $table_match)) {
+					$table = $table_match[2];
+					$is_table = true;
+				}
+			} elseif ($this->config['dbservername'] == 'mssql') {
+				if (preg_match('/(IF NOT EXISTS `?|CREATE TABLE `?)([\w]*)`?/i', $q, $table_match)) {
+					$table = $table_match[2];
+					$is_table = true;
+				}
+			}
+			if (!$cpginstall->query($q)) {
+				$this->error = $this->language['sql_error'] . $cpginstall->Error. ' ' . $this->language['on_q'] . " '$q'";
 				if($is_table) $this->temp_data .= "<br />" . sprintf($this->language['create_table'], $table) . '&nbsp;&nbsp;&nbsp;&nbsp;' . $this->language['status'] . ':... ' . $this->language['nok'];
 				return false;
 			} else {
@@ -1547,7 +1874,7 @@ class CPGInstall{
 		$this->temp_data .= '<br /><br /><br /></td></tr>';
 		return true;
 	}
-	
+	########################################################################################################
 	/*
 	* createAdmin()
 	*
@@ -1555,7 +1882,7 @@ class CPGInstall{
 	*
 	* @return bool
 	*/
-	function createAdmin() {
+	/*function createAdmin() {
 		if(!isset($this->config['admin_username']) || $this->config['admin_username'] == '') { $this->error = $this->language['no_admin_username']; 	return false;}
 		if(!isset($this->config['admin_password']) || $this->config['admin_password'] == '') { $this->error = $this->language['no_admin_password']; 	return false;}
 		if(!isset($this->config['admin_email']) || $this->config['admin_email'] == '') 	{ $this->error = $this->language['no_admin_email']; 	return false;}
@@ -1566,12 +1893,41 @@ class CPGInstall{
 		if(!$this->checkSqlConnection()) {
 			return false;
 		}
-		if (! mysql_query($sql_query, $this->mysql_connection)) {
-			$this->error = $this->language['mysql_error'] . mysql_error($this->mysql_connection) . ' ' . $this->language['on_q'] . " '$sql_query'";
+		if (! mysql_query($sql_query, $this->sql_connection)) {		######	cpgdb install
+			$this->error = $this->language['sql_error'] . mysql_error($this->sql_connection) . ' ' . $this->language['on_q'] . " '$sql_query'";	#####	cpgdb install
+			return false;
+		}
+		return true;
+	}*/
+	###########################################    cpgdb install   ########################################
+	/*
+	* createAdmin()
+	*
+	* Creates the Coppermine admin.
+	*
+	* @return bool
+	*/
+	function createAdmin() {
+		global $cpg_db_install_php;
+		$cpginstall = @ cpgDB::getInstance();
+		if(!isset($this->config['admin_username']) || $this->config['admin_username'] == '') { $this->error = $this->language['no_admin_username']; 	return false;}
+		if(!isset($this->config['admin_password']) || $this->config['admin_password'] == '') { $this->error = $this->language['no_admin_password']; 	return false;}
+		if(!isset($this->config['admin_email']) || $this->config['admin_email'] == '') 	{ $this->error = $this->language['no_admin_email']; 	return false;}
+		
+		// Insert the admin account
+		$sql_query .= sprintf($cpg_db_install_php['add_admin_user'], $this->config['db_prefix'], $this->config['admin_username'], 
+								md5($this->config['admin_password']), $this->config['admin_email']);
+		// Get a connection with the db.
+		if(!$this->checkSqlConnection()) {
+			return false;
+		}
+		if (!$cpginstall->query($sql_query)) {
+			$this->error = $this->language['sql_error'] . $cpginstall->Error . ' ' . $this->language['on_q'] . " '$sql_query'";
 			return false;
 		}
 		return true;
 	}
+	##############################################################################################
 	
 	
 	/*
@@ -1603,19 +1959,28 @@ class CPGInstall{
 	* @return array $results
 	*/
 	function writeConfig() {
+		############################################    cpgdbal   #########################################
+		//	the auth mode is only for mssql
+		if ($this->config['dbservername'] == 'mssql') {
+			$authmode = "\$CONFIG['auth_mode'] =                      '{$this->config['auth_mode']}';		// Your mssql auth mode";
+		} else {
+			$authmode = '';
+		}
+		################################################################################################
 		// this is used to prevent sc#rwing up the color coding in my editor.
 		$end_php_tag = '?>';
 		$config = <<<EOT
 <?php
 // Coppermine configuration file
-// MySQL configuration
-\$CONFIG['dbserver'] =                         '{$this->config['db_host']}';        // Your database server
-\$CONFIG['dbuser'] =                         '{$this->config['db_user']}';        // Your mysql username
-\$CONFIG['dbpass'] =                         '{$this->config['db_password']}';                // Your mysql password
-\$CONFIG['dbname'] =                         '{$this->config['db_name']}';        // Your mysql database name
+// SQL configuration
+\$CONFIG['dbservername'] =					 '{$this->config['dbservername']}';	  // Your database servername
+\$CONFIG['dbserver'] =                       '{$this->config['db_host']}';        // Your database server
+\$CONFIG['dbuser'] =                         '{$this->config['db_user']}';        // Your sql username
+\$CONFIG['dbpass'] =                         '{$this->config['db_password']}';    // Your sql password
+\$CONFIG['dbname'] =                         '{$this->config['db_name']}';        // Your sql database name
+{$authmode}
 
-
-// MySQL TABLE NAMES PREFIX
+// SQL TABLE NAMES PREFIX
 \$CONFIG['TABLE_PREFIX'] =                '{$this->config['db_prefix']}';
 $end_php_tag
 EOT;

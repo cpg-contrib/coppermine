@@ -1,5 +1,5 @@
 <?php
-if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
+//if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 
 
 /******************************************************/
@@ -366,7 +366,7 @@ if (defined('EDITPICS_PHP')) $cpg_db_editpics_php = array(
 										   "AND aid IN %1\$s AND pid NOT IN (SELECT TOP %2\$s pid FROM {$CONFIG['TABLE_PICTURES']} ".
 										   "WHERE approved = 'NO' AND aid IN %1\$s ORDER BY pid) ORDER BY pid ",
 	'get_pic_not_approved'				=> "SELECT TOP %2\$s * FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'NO' ".
-										   "WHERE pid NOT IN (SELECT TOP %1\$s pid FROM {$CONFIG['TABLE_PICTURES']} ".
+										   "AND pid NOT IN (SELECT TOP %1\$s pid FROM {$CONFIG['TABLE_PICTURES']} ".
 										   "WHERE approved = 'NO' ORDER BY pid) ORDER BY pid ",
 	'count_album_pics'					=> "SELECT count(*) as count FROM {$CONFIG['TABLE_PICTURES']} WHERE aid = '%1\$s'",
 	'get_album_pics'					=> "SELECT TOP %3\$s p.*,a.category FROM {$CONFIG['TABLE_PICTURES']} as p ".
@@ -507,6 +507,39 @@ if (defined('INDEX_PHP')) $cpg_db_index_php = array(
 									   //"WHERE aid = '%1\$s' ORDER BY RAND() LIMIT 0,1",
 	//'list_cat_alb_vis_test_pid'		=> "SELECT filepath, filename, url_prefix, pwidth, pheight  FROM {$CONFIG['TABLE_PICTURES']} " . 
 									   //"WHERE pid='%1\$s'"
+);
+
+/******************************************************/
+//queries from install.php
+/***********************************************************/
+if (defined('INSTALL_PHP')) $cpg_db_install_php = array(
+	'create_db'						=> "CREATE DATABASE %1\$s",
+	'config_thumb_method'			=> "IF EXISTS (SELECT * FROM CPG_config WHERE name = 'thumb_method') ".
+									   "UPDATE CPG_config SET value ='%1\$s' WHERE name = 'thumb_method' ".
+									   "ELSE  INSERT INTO CPG_config VALUES ('thumb_method', '%1\$s');\n",
+	'config_im_path'				=> "IF EXISTS (SELECT * FROM CPG_config WHERE name = 'impath') ".
+									   "UPDATE CPG_config SET value ='%1\$s' WHERE name = 'impath' ".
+									   "ELSE  INSERT INTO CPG_config VALUES ('impath', '%1\$s');\n",
+	'config_ecards_more_pic_target'	=> "IF EXISTS (SELECT * FROM CPG_config WHERE name = 'ecards_more_pic_target') ".
+									   "UPDATE CPG_config SET value ='%1\$s' WHERE name = 'ecards_more_pic_target' ".
+									   "ELSE  INSERT INTO CPG_config VALUES ('ecards_more_pic_target', '%1\$s');\n",
+	'config_gallery_admin_email'	=> "IF EXISTS (SELECT * FROM CPG_config WHERE name = 'gallery_admin_email') ".
+									   "UPDATE CPG_config SET value ='%1\$s' WHERE name = 'gallery_admin_email' ".
+									   "ELSE  INSERT INTO CPG_config VALUES ('gallery_admin_email', '%1\$s');\n",
+	'config_silly_safe_mode'		=> "IF EXISTS (SELECT * FROM CPG_config WHERE name = 'silly_safe_mode') ".
+									   "UPDATE CPG_config SET value ='1' WHERE name = 'silly_safe_mode' ".
+									   "ELSE  INSERT INTO CPG_config VALUES ('silly_safe_mode', '1');\n",
+	'config_default_dir_mode'		=> "IF EXISTS (SELECT * FROM CPG_config WHERE name = 'default_dir_mode') ".
+									   "UPDATE CPG_config SET value ='0777' WHERE name = 'default_dir_mode' ".
+									   "ELSE  INSERT INTO CPG_config VALUES ('default_dir_mode', '0777');\n",
+	'config_default_file_mode'		=> "IF EXISTS (SELECT * FROM CPG_config WHERE name = 'default_file_mode') ".
+									   "UPDATE CPG_config SET value ='0666' WHERE name = 'default_file_mode' ".
+									   "ELSE  INSERT INTO CPG_config VALUES ('default_file_mode', '0666');\n",
+	'add_admin_user'				=> "INSERT INTO %1\$susers (user_group, user_active, user_name, user_password, ".
+									   "user_lastvisit, user_regdate, user_group_list, user_email, user_profile1, user_profile2, ".
+									   "user_profile3, user_profile4, user_profile5, user_profile6, user_actkey ) ".
+									   "VALUES (1, 'YES', '%2\$s', '%3\$s', GETDATE(), GETDATE(), '', '%4\$s', ".
+									   "'', '', '', '', '', '', '');\n"
 );
 
 
@@ -832,6 +865,20 @@ if (defined('THUMBNAILS_PHP')) $cpg_db_thumbnails_php = array(
 	'get_alb_if_pwrd'			=> "SELECT aid FROM ". $CONFIG['TABLE_ALBUMS'] ." WHERE aid='%1\$s' AND alb_password != ''",
 	'get_alb_pwrd'				=> "SELECT alb_password FROM ". $CONFIG['TABLE_ALBUMS'] ."where aid = '%1\$s'"
 								   //" WHERE MD5(alb_password)='%1\$s' AND aid='%2\$s'"
+);
+
+
+/**********************************************************/
+//queries from update.php
+/***********************************************************/
+ $cpg_db_update_php = array(
+	'get_active_admin_user'		=> "SELECT user_active FROM {$CONFIG['TABLE_PREFIX']}users WHERE user_group = 1 ".
+								   "AND user_name = '%1\$s' AND (user_password = '%2\$s' OR user_password = '%3\$s')",
+	'get_all_config'			=> "SELECT * FROM ".$CONFIG['TABLE_PREFIX']."config;",
+	'get_table_structure'		=> "SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = N'%1\$s' ",
+	//'show_warnings'				=> 'SHOW WARNINGS',
+	//'describe_02'				=> "DESCRIBE ".$query[2],
+	//'show_warnings'				=> 'SHOW WARNINGS;'
 );
 
 
@@ -1433,7 +1480,7 @@ $cpg_db_functions_inc = array(
 									   "WHERE message_id = '%1\$s'",
 	'delete_temp_message'			=> "DELETE FROM {$CONFIG['TABLE_TEMP_MESSAGES']} WHERE message_id = '%1\$s'",
 	'clean_temp_message'			=> "DELETE FROM {$CONFIG['TABLE_TEMP_MESSAGES']} WHERE time < '%1\$s'",
-	'check_alb_available'			=> "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE owner = %1\$s  LIMIT 1",
+	'check_alb_available'			=> "SELECT TOP 1 aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE owner = %1\$s",
 	'get_available_alb'				=> "SELECT DISTINCT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE owner = '%1\$s' ".
 									   "AND aid='%2\$s'",
 	'check_edit_allowed'			=> "SELECT DISTINCT aid FROM {$CONFIG['TABLE_ALBUMS']} AS alb ".

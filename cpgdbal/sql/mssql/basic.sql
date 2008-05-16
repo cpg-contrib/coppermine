@@ -1,4 +1,4 @@
------- Dumping data for table `CPG_config`
+#------ Dumping data for table `CPG_config`
 
 INSERT INTO CPG_config VALUES ('gallery_name', 'Your gallery name here');
 INSERT INTO CPG_config VALUES ('gallery_description', 'Your gallery description here');
@@ -54,7 +54,7 @@ INSERT INTO CPG_config VALUES ('caption_in_thumbview', '1');
 INSERT INTO CPG_config VALUES ('views_in_thumbview', '1');
 INSERT INTO CPG_config VALUES ('display_comment_count', '0');
 INSERT INTO CPG_config VALUES ('display_uploader', '0');
-------   INSERT INTO CPG_config VALUES ('display_admin_uploader','0');
+#------   INSERT INTO CPG_config VALUES ('display_admin_uploader','0');
 INSERT INTO CPG_config VALUES ('display_filename','0');
 INSERT INTO CPG_config VALUES ('display_thumbnail_rating', '0');
 INSERT INTO CPG_config VALUES ('alb_desc_thumb', '1');
@@ -187,15 +187,15 @@ INSERT INTO CPG_config VALUES ('debug_notice', '0');
 INSERT INTO CPG_config VALUES ('offline', '0');
 INSERT INTO CPG_config VALUES ('display_coppermine_news', '1');
 INSERT INTO CPG_config VALUES ('keep_votes_time', '30');
--- INSERT INTO CPG_config VALUES ('randpos_interval', '1063623637');
--- INSERT INTO CPG_config VALUES ('comment_email_notification', '0');
+#-- INSERT INTO CPG_config VALUES ('randpos_interval', '1063623637');
+#-- INSERT INTO CPG_config VALUES ('comment_email_notification', '0');
 INSERT INTO CPG_config VALUES ('show_which_exif', '|0|0|0|0|0|0|0|0|1|0|1|1|0|0|0|0|0|0|0|0|0|0|0|1|0|0|0|1|0|0|0|1|1|0|0|0|0|1|0|0|0|1|0|0|1|1|0|0|0|0|0|1|0|1|1');
 INSERT INTO CPG_config VALUES ('bridge_enable', '0');
 
 
 
 
---  Dumping data for table `CPG_filetypes`
+#--  Dumping data for table `CPG_filetypes`
 
 INSERT INTO CPG_filetypes VALUES ('jpg', 'image/jpg', 'image', '');
 INSERT INTO CPG_filetypes VALUES ('jpeg', 'image/jpeg', 'image', '');
@@ -271,7 +271,7 @@ INSERT INTO CPG_filetypes VALUES ('oth', 'application/vnd.oasis.opendocument.tex
 
 
 
---   Dumping data for table `CPG_usergroups`
+#--   Dumping data for table `CPG_usergroups`
 
 INSERT INTO CPG_usergroups VALUES ('Administrators', 0, 1, 1, 1, 1, 1, 1, 0, 0, 3, 0, 5, 3);
 INSERT INTO CPG_usergroups VALUES ('Registered', 1024, 0, 1, 1, 1, 1, 1, 1, 0, 3, 0, 5, 3);
@@ -280,14 +280,14 @@ INSERT INTO CPG_usergroups VALUES ('Banned', 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 5,
 
 
 
---   Dumping data for table `CPG_categories`
+#--   Dumping data for table `CPG_categories`
 
 INSERT INTO CPG_categories (name, description) VALUES ('User galleries', 'This category contains albums that belong to Coppermine users.');
 
 
 
---   Data for table `CPG_bridge`
--- Used for bridging by user interface
+#--   Data for table `CPG_bridge`
+#-- Used for bridging by user interface
 
 
 INSERT INTO CPG_bridge VALUES ('short_name', '');

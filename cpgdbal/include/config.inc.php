@@ -5,7 +5,7 @@ $CONFIG['dbserver'] =                         'localhost';        // Your databa
 $CONFIG['dbuser'] =                         'root';        // Your mysql username
 $CONFIG['dbpass'] =                         '';                // Your mysql password
 $CONFIG['dbname'] =                         'coppermine_db';        // Your mysql database name
-
+$CONFIG['dbservername'] =                   'mysql';
 
 // MySQL TABLE NAMES PREFIX
 $CONFIG['TABLE_PREFIX'] =                'cpg15x_';

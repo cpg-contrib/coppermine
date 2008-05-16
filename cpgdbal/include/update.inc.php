@@ -132,6 +132,8 @@ function html_auth_box($method){
         <p class="tableb" align="center">
 		<?php if($method=='MySQL'){
 			echo 'Could not authenticate you via your admin details, if you think you entered the wrong details, click <a href=\'update.php\'>here</a> and try again.<br />Else, you can try to login with you MySQL account:';
+		}elseif($method=='MSSQL'){
+			echo 'Could not authenticate you via your admin details, if you think you entered the wrong details, click <a href=\'update.php\'>here</a> and try again.<br />Else, you can try to login with you MSSQL account:';
 		}else{
 			echo 'Please provide your <b>admin</b> account details:';
 		}

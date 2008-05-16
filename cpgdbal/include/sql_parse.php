@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4224 $
+  $Revision: 4451 $
   $LastChangedBy: gaugau $
-  $Date: 2008-01-26 17:12:00 +0530 (Sat, 26 Jan 2008) $
+  $Date: 2008-05-04 04:18:54 +0530 (Sun, 04 May 2008) $
 **********************************************/
 
 /**
@@ -24,7 +24,7 @@
  *      copyright            : (C) 2001 The phpBB Group
  *      email                : support@phpbb.com
  *
- *      $Id: sql_parse.php 4224 2008-01-26 11:42:00Z gaugau $
+ *      $Id: sql_parse.php 4451 2008-05-03 22:48:54Z gaugau $
  */
 
 /**
@@ -85,7 +85,7 @@ function remove_remarks($sql)
 
     for ($i = 0; $i < $linecount; $i++) {
         if (($i != ($linecount - 1)) || (strlen($lines[$i]) > 0)) {
-            if ($lines[$i][0] != "#") {
+            if (isset($lines[$i][0]) && $lines[$i][0] != "#") {
                 $output .= $lines[$i] . "\n";
             } else {
                 $output .= "\n";

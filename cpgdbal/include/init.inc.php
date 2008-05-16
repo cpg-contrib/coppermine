@@ -103,7 +103,9 @@ if(file_exists('include/config.inc.php')){
 }
 $mb_utf8_regex = '[\xE1-\xEF][\x80-\xBF][\x80-\xBF]|\xE0[\xA0-\xBF][\x80-\xBF]|[\xC2-\xDF][\x80-\xBF]';
 ##############       DB       ################
-$CONFIG['dbservername'] = 'mysql';
+if (!isset($CONFIG['dbservername'])) {
+	$CONFIG['dbservername'] = 'mysql';
+}
 //$CONFIG['dbservername'] = 'mssql';
 ######################################
 require 'include/functions.inc.php';

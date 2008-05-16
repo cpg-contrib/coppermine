@@ -44,6 +44,11 @@ class cpgDB {
     /* private: link and query handles */
     var $Link_ID = 0;
     var $Query_ID = 0;
+	
+	/* */
+	var $lock_querytime = FALSE;	## when TRUE, cpggetmicrotime not available.
+	var $update = FALSE;	## when TRUE, failure of query return no errors;
+	var $nodb = FALSE;		## when TRUE, no database name is required in conect function (for install.php)
 
     /**
      * 
@@ -60,7 +65,8 @@ class cpgDB {
      * @param string $query 
      * @return 
      */
-    function cpgDB($query = "")
+
+	function cpgDB($query = "")
     {
 
     } 
@@ -114,7 +120,8 @@ class cpgDB {
      */
     function connect($Database = '', $Host = '', $User = '', $Password = '')
     {
-        /* Handle defaults */
+        global $CONFIG;
+		/* Handle defaults */
         if ('' == $Database)
             $Database = $this->Database;
         if ('' == $Host)
@@ -128,12 +135,14 @@ class cpgDB {
         if (0 == $this->Link_ID) {
             $this->Link_ID = mysql_connect($Host, $User, $Password);
             if (!$this->Link_ID) {
-                $this->halt("connect($Host, $User, \$Password) failed.");
+                //$this->halt("connect($Host, $User, \$Password) failed.");
+				$this->Error = "<hr /><br />Could not create a mySQL connection, please check the SQL values in include/config.inc.php<br /><br />MySQL error was : " . mysql_error() . "<br /><br />";
                 return 0;
             } 
 
-            if (!@mysql_select_db($Database, $this->Link_ID)) {
-                $this->halt("cannot use database " . $this->Database);
+            if (!@mysql_select_db($Database, $this->Link_ID) && $this->nodb != TRUE) {
+                //$this->halt("cannot use database " . $this->Database);
+				$this->Error .= "<hr /><br />mySQL could not locate a database called '{$CONFIG['dbname']}' please check the value entered for this in include/config.inc.php<br /><br />";
                 return 0;
             } 
         } 
@@ -167,17 +176,22 @@ class cpgDB {
 		$args = func_get_args();
 		$Query_String = array_shift($args);
 	    /* No empty queries, please, since PHP4 chokes on them. */
-        if ($Query_String == '')
-            /* The empty query string is passed on from the constructor,
-       * when calling the class without a query, e.g. in situations
-       * like these: '$db = new DB_Sql_Subclass;'
-       */
-        return 0;
-		if	(count($args)) {
+        if ($Query_String == '') {
+			/* The empty query string is passed on from the constructor,
+			* when calling the class without a query, e.g. in situations
+			* like these: '$db = new DB_Sql_Subclass;'
+			*/
+			$this->Error = "<br />There is no query to execute.<br />";
+			$this->Error .= mysql_error();
+			return 0;
+		}
+		if (count($args)) {
 			$Query_String = vsprintf($Query_String, $args);
 		}
 		
         if (!$this->connect()) {
+			$this->Error = "<br />Database connection not found.<br />";
+			$this->Error .= mysql_error();
             return 0;
             /* we already complained in connect() about that. */
         } ; 
@@ -185,29 +199,35 @@ class cpgDB {
         if ($this->Query_ID) {
             $this->free();
         } 
-        $query_start = cpgGetMicroTime();
-
+        
+		if ($this->lock_querytime != TRUE) {
+			$query_start = cpgGetMicroTime();
+		}
  
-        $this->Query_ID = @mysql_query($Query_String, $this->Link_ID);
+		$this->Query_ID = @mysql_query($Query_String, $this->Link_ID);
  
-
-        $query_end = cpgGetMicroTime();
-        $this->Row = 0;
+        if ($this->lock_querytime != TRUE) {
+			$query_end = cpgGetMicroTime();
+        }
+		
+		$this->Row = 0;
         //$this->Errno = mysql_errno();
-        $this->Error = mysql_error();
-        if (!$this->Query_ID) {
-            $this->halt("Invalid SQL: " . $Query_String);
+        //$this->Error = mysql_error();
+        if (!$this->Query_ID && $this->update != TRUE) {
+            //$this->halt("Invalid SQL: " . $Query_String);
+			$this->db_error("Invalid SQL:".$Query_String);
         } 
 
         if ($this->nf() > 0) {
             $this->nextRecord();
         } 
-		if (isset($CONFIG['debug_mode']) && (($CONFIG['debug_mode']==1) || ($CONFIG['debug_mode']==2) )) {
-			$duration = round($query_end - $query_start, 3);
-			$query_stats[] = $duration;
-			$queries[] = $Query_String . " ({$duration}s)"; 
+		if ($this->lock_querytime != TRUE) {
+			if (isset($CONFIG['debug_mode']) && (($CONFIG['debug_mode']==1) || ($CONFIG['debug_mode']==2) )) {
+				$duration = round($query_end - $query_start, 3);
+				$query_stats[] = $duration;
+				$queries[] = $Query_String . " ({$duration}s)"; 
+			}
 		}
-
 		
 	//	print_r($this->queries);echo"<br /><br />";
 		
@@ -467,7 +487,30 @@ class cpgDB {
         return $nextid;
     } 
 
- 
+ /**
+ * cpg_db_error()
+ *
+ * Error message if a query failed
+ *
+ * @param $the_error
+ * @return
+ **/
+
+	function db_error($the_error)
+	{
+		global $CONFIG,$lang_errors;
+		print($the_error);
+		if ($CONFIG['debug_mode'] === '0' || (!GALLERY_ADMIN_MODE)) {
+			cpg_die(CRITICAL_ERROR, $lang_errors['database_query'], __FILE__, __LINE__);
+		} else {
+				$the_error .= "\n\nMySQL error: ".mysql_error()."\n";
+				$out = "<br />".$lang_errors['database_query'].".<br /><br/>
+					<form name=\"mysql\" id=\"mysql\"><textarea rows=\"8\" cols=\"60\">".htmlspecialchars($the_error)."</textarea></form>";
+			cpg_die(CRITICAL_ERROR, $out, __FILE__, __LINE__);
+		}
+	}
+
+
     /* private: error handling */
     /**
      * cpgDB::halt()
@@ -561,6 +604,20 @@ class cpgDB {
 			$escape_str = stripslashes($str_to_escape);
 		}
 		return mysql_real_escape_string($str_to_escape);
+	}
+
+	/**
+	// returns the database list
+	*cpgDB :: ListDbs ()
+	*/
+	function ListDbs()
+	{
+		$db_list = array();
+		$list_query = mysql_list_dbs();
+		while ($row = mysql_fetch_object($list_query)) {
+			$db_list[] = $row->Database;
+		}
+		return $db_list;
 	}
 
 

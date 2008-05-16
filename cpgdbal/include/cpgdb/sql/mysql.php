@@ -1,8 +1,7 @@
 <?php
-if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
+//if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 ########################### DB  Note #################################
 //	The array names in this are given according to the files used.
-//	There are many  errors in this files which will be corrected with the changes in the related files.
 ##############################################################
 
 /******************************************************/
@@ -502,23 +501,31 @@ if (defined('INDEX_PHP')) $cpg_db_index_php = array(
 //queries from install.php
 /***********************************************************/
 if (defined('INSTALL_PHP')) $cpg_db_install_php = array(
-	'create_database'				=> 'CREATE DATABASE ' . $db_name,
-	'replace_into_config_values'	=> "REPLACE INTO CPG_config VALUES ('thumb_method', '{$thisconfig['thumb_method']}');\n REPLACE INTO CPG_config VALUES ('impath', '{$this->config['im_path']}');\n REPLACE INTO CPG_config VALUES ('ecards_more_pic_target', '$gallery_url_prefix');\n REPLACE INTO CPG_config VALUES ('gallery_admin_email', '{$this->config['admin_email']}');\n",
-	'replace_into_config_values_02'	=> "REPLACE INTO CPG_config VALUES ('silly_safe_mode', '1');\n",
-	'replace_into_config_values_03'	=> "REPLACE INTO CPG_config VALUES ('default_dir_mode', '0777');\n REPLACE INTO CPG_config VALUES ('default_file_mode', '0666');\n",
-	'insert_into_users'				=> "INSERT INTO {$this->config['db_prefix']}users (user_id, user_group, user_active, user_name, user_password, user_lastvisit, user_regdate, user_group_list, user_email, user_profile1, user_profile2, user_profile3, user_profile4, user_profile5, user_profile6, user_actkey ) VALUES (1, 1, 'YES', '{$this->config['admin_username']}', md5('{$this->config['admin_password']}'), NOW(), NOW(), '', '{$this->config['admin_email']}', '', '', '', '', '', '', '');\n"
-);
+	'create_db'						=> "CREATE DATABASE %1\$s",
+	'config_thumb_method'			=> "REPLACE INTO CPG_config VALUES ('thumb_method', '%1\$s');\n",
+	'config_im_path'				=> "REPLACE INTO CPG_config VALUES ('impath', '%1\$s');\n",
+	'config_ecards_more_pic_target'	=> "REPLACE INTO CPG_config VALUES ('ecards_more_pic_target', '%1\$s');\n",
+	'config_gallery_admin_email'	=> "REPLACE INTO CPG_config VALUES ('gallery_admin_email', '%1\$s');\n",
+	'config_silly_safe_mode'		=> "REPLACE INTO CPG_config VALUES ('silly_safe_mode', '1');\n",
+	'config_default_dir_mode'		=> "REPLACE INTO CPG_config VALUES ('default_dir_mode', '0777');\n",
+	'config_default_file_mode'		=> "REPLACE INTO CPG_config VALUES ('default_file_mode', '0666');\n",
+	'add_admin_user'				=> "INSERT INTO %1\$susers (user_id, user_group, user_active, user_name, user_password, ".
+									   "user_lastvisit, user_regdate, user_group_list, user_email, user_profile1, user_profile2, ".
+									   "user_profile3, user_profile4, user_profile5, user_profile6, user_actkey ) ".
+									   "VALUES (1, 1, 'YES', '%2\$s', '%3\$s', NOW(), NOW(), '', '%4\$s', ".
+									   "'', '', '', '', '', '', '');\n"
+);	
 
 
 /**********************************************************/
 //queries from install_old.php
 /***********************************************************/
-$cpg_db_install_old_php = array(
+/*$cpg_db_install_old_php = array(
 	'insert_into_users'				=> "INSERT INTO CPG_users (user_id, user_group, user_active, user_name, user_password, user_lastvisit, user_regdate, user_group_list, user_email, user_profile1, user_profile2, user_profile3, user_profile4, user_profile5, user_profile6, user_actkey ) VALUES (1, 1, 'YES', '{$_POST['admin_username']}', md5('{$_POST['admin_password']}'), NOW(), NOW(), '', '{$_POST['admin_email']}', '', '', '', '', '', '', '');\n",
 	'replace_into_config_values'	=> "REPLACE INTO CPG_config VALUES ('thumb_method', '{$_POST['thumb_method']}');\n REPLACE INTO CPG_config VALUES ('impath', '{$_POST['impath']}');\n REPLACE INTO CPG_config VALUES ('ecards_more_pic_target', '$gallery_url_prefix');\n REPLACE INTO CPG_config VALUES ('gallery_admin_email', '{$_POST['admin_email']}');\n",
 	'replace_into_config_values_02'	=> "REPLACE INTO CPG_config VALUES ('silly_safe_mode', '1');\n",
 	'replace_into_config_values_03'	=> "REPLACE INTO CPG_config VALUES ('default_dir_mode', '0777');\n REPLACE INTO CPG_config VALUES ('default_file_mode', '0666');\n"
-);
+);*/	######	The old installer will not be used now.
 
 
 /**********************************************************/
@@ -846,12 +853,12 @@ if (defined('THUMBNAILS_PHP')) $cpg_db_thumbnails_php = array(
 /***********************************************************/
  $cpg_db_update_php = array(
 	'get_active_admin_user'		=> "SELECT user_active FROM {$CONFIG['TABLE_PREFIX']}users WHERE user_group = 1 ".
-								   "AND user_name = '$user' AND (user_password = '$pass' OR user_password = '$pass2')",
+								   "AND user_name = '%1\$s' AND (user_password = '%2\$s' OR user_password = '%3\$s')",
 	'get_all_config'			=> "SELECT * FROM ".$CONFIG['TABLE_PREFIX']."config;",
-	'describe'					=> "DESCRIBE ".$query[2],
+	'get_table_structure'		=> "DESCRIBE %1\$s",
 	'show_warnings'				=> 'SHOW WARNINGS',
-	'describe_02'				=> "DESCRIBE ".$query[2],
-	'show_warnings'				=> 'SHOW WARNINGS;'
+	//'describe_02'				=> "DESCRIBE ".$query[2],
+	//'show_warnings'				=> 'SHOW WARNINGS;'
 );
 
 

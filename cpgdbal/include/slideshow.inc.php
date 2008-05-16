@@ -12,12 +12,22 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4224 $
+  $Revision: 4446 $
   $LastChangedBy: gaugau $
-  $Date: 2008-01-26 17:12:00 +0530 (Sat, 26 Jan 2008) $
+  $Date: 2008-05-04 04:08:23 +0530 (Sun, 04 May 2008) $
 **********************************************/
 
-if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
+if (!defined('IN_COPPERMINE')) { 
+	die('Not in Coppermine...');
+}
+// disallow direct opening without needed parameters
+function_exists('get_pic_data') OR die('Not in Coppermine...');
+// initialize vars
+$_GET['slideshow'] = isset($_GET['slideshow']) ? intval($_GET['slideshow']) : 0;
+$_GET['pid'] = isset($_GET['pid']) ? intval($_GET['pid']) : 0;
+$_GET['album'] = isset($_GET['album']) ? $_GET['album'] : 0;
+$pic_count = null;
+$album_name = null;
 ?>
 
 <script language="JavaScript" type="text/JavaScript">
@@ -89,6 +99,14 @@ $j = 0;
 //$pid = (int)$_GET['pid'];
 $start_img = '';
 $pic_data = get_pic_data($album, $pic_count, $album_name, -1, -1, false);
+if (is_numeric($_GET['album'])) {
+    $pic_data = get_pic_data($album, $pic_count, $album_name, -1, -1, false);
+} else { // fix memory consumption for meta albums (see http://coppermine-gallery.net/forum/index.php?topic=31945.0 and http://www.pragmamx.org/Forum-topic-23429.html
+    $col = (intval($CONFIG['thumbcols']) > 1) ? $CONFIG['thumbcols'] : 4;
+    $row = (intval($CONFIG['thumbrows']) > 1) ? $CONFIG['thumbrows'] : 4;
+    $limit = $col * $row * 10;
+    $pic_data = get_pic_data($album, $pic_count, $album_name, 0, $limit, false);
+}
 foreach ($pic_data as $picture) {
 
     if($CONFIG['thumb_use']=='ht' && $picture['pheight'] > $CONFIG['picture_width'] ){ // The wierd comparision is because only picture_width is stored

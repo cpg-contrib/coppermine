@@ -27,8 +27,6 @@ CREATE TABLE CPG_sessions (
   time INTEGER  NULL DEFAULT NULL ,
   remember INTEGER  NULL  DEFAULT 0  ,
 PRIMARY KEY(session_id));
-GO
-
 
 
 # ---------------------------------------------
@@ -41,7 +39,6 @@ CREATE TABLE CPG_categorymap (
   group_id INTEGER  NOT NULL  ,
 PRIMARY KEY(cid, group_id));
 END
-GO
 
 
 
@@ -53,10 +50,8 @@ CREATE TABLE CPG_filetypes (
   extension VARCHAR(7)  NOT NULL  ,
   mime VARCHAR(254)  NULL  ,
   content VARCHAR(15)  NULL );
-GO
 
 CREATE INDEX extension ON CPG_filetypes ( extension );
-GO
 
 
 # Create temporary table to store messages carried over from one page to the other
@@ -66,13 +61,11 @@ CREATE TABLE CPG_temp_messages (
   time INTEGER  NULL ,
   message TEXT  NOT NULL    ,
 PRIMARY KEY(message_id));
-GO
 ## ----------------------------------------------------------------------------------
 
 DROP INDEX CPG_filetypes.EXTENSION; ALTER TABLE CPG_filetypes  ADD PRIMARY KEY ( extension );
 ALTER TABLE CPG_filetypes ADD player VARCHAR( 5 ) NULL ;
-##  ALTER TABLE CPG_filetypes CHANGE `mime` `mime` CHAR(254) default NULL;	#########	cpgdb_AL
-
+ALTER TABLE CPG_filetypes ALTER COLUMN mime VARCHAR(254)  NULL ;
 
 INSERT INTO CPG_config VALUES ('allowed_img_types', 'jpeg/jpg/png/gif');
 
@@ -158,8 +151,7 @@ INSERT INTO CPG_config VALUES ('thumb_height', '140');
 ## ---------------------------------------------------------
 
 ## ----------      Modify structure for multi album pictures
-##  ALTER TABLE CPG_albums ADD owner integer  NOT NULL DEFAULT '1'; # AFTER category;	########	cpgdb_AL
-
+ALTER TABLE CPG_albums ADD owner INTEGER  NOT NULL DEFAULT 1;
 
 # ------------------------------------------------
 ##   Table structure for table `CPG_banned`
@@ -171,23 +163,23 @@ CREATE TABLE CPG_banned (
   ip_addr TEXT  NULL  ,
   expiry DATETIME  NULL  ,
 PRIMARY KEY(ban_id));
-GO
 
-## UPDATE CPG_config SET value='$/\\\\:*?&quot;\'&lt;&gt;|` &amp;' WHERE name='forbiden_fname_char';	########	cpgdb_AL
+ UPDATE CPG_config SET value='$/\\:*?&quot;''&lt;&gt;|` &amp;' WHERE name='forbiden_fname_char';
 
 # --------------------------------------------------------
 ##      Fix usermgr timing out with 1k+ users -Omni
 # ----------------------------------------------------------
 ## Disabled dropping the index 'owner_id' since it gets recreated.
-##	ALTER TABLE CPG_pictures DROP INDEX ( `owner_id` );
-##	ALTER TABLE CPG_pictures DROP INDEX ( `owner_id_2` );	###########	cpgdb_AL
-##	ALTER TABLE CPG_pictures ADD INDEX owner_id( `owner_id` );	###########	cpgdb_AL
+DROP INDEX CPG_pictures.owner_id;
+DROP INDEX CPG_pictures.owner_id_2;
+CREATE INDEX owner_id ON CPG_pictures (owner_id);
 
 
 # -----------------------------------------
 ##      Allows user gallery icons
 # -----------------------------------------
-ALTER TABLE CPG_pictures ADD galleryicon INTEGER  NOT NULL  DEFAULT 0 ;##     AFTER `approved`;	########   no AFTER column in mssql
+ALTER TABLE CPG_pictures ADD galleryicon INTEGER  NOT NULL  DEFAULT 0;    
+#AFTER `approved`;	   no AFTER column in mssql
 
 # -----------------------------------------
 ##     Record the last hit IP
@@ -203,7 +195,6 @@ CREATE TABLE CPG_favpics (
   user_id INTEGER  NOT NULL  ,
   user_favpics TEXT  NOT NULL    ,
 PRIMARY KEY(user_id));
-GO
 
 
 # -----------------------------------------------------
@@ -214,7 +205,6 @@ CREATE TABLE CPG_dict (
   keyId BIGINT  NOT NULL IDENTITY ,
   keyword VARCHAR(60)  NOT NULL    ,
 PRIMARY KEY(keyId));
-GO
 
 # ------------------------------------------
 ##       Add config profile rows
@@ -224,16 +214,22 @@ GO
 ##   ALTER TABLE `CPG_users` CHANGE `user_interests` `user_profile2` VARCHAR(255);	########	cpgdb_AL
 ##   ALTER TABLE `CPG_users` CHANGE `user_website` `user_profile3` VARCHAR(255);	########	cpgdb_AL
 ##   ALTER TABLE `CPG_users` CHANGE `user_occupation` `user_profile4` VARCHAR(255);	########	cpgdb_AL
-
-##   ALTER TABLE `CPG_users` ADD `user_profile5` varchar(255) default '' NOT NULL;	########	cpgdb_AL
+EXEC SP_RENAME 'CPG_users.user_location' , 'user_profile1' , 'COLUMN';
+ALTER TABLE CPG_users ALTER COLUMN user_profile1 VARCHAR(255) NOT NULL DEFAULT '';
+EXEC SP_RENAME 'CPG_users.user_interests' , 'user_profile2' , 'COLUMN';
+ALTER TABLE CPG_users ALTER COLUMN user_profile2 VARCHAR(255) NOT NULL DEFAULT '';
+EXEC SP_RENAME 'CPG_users.user_website' , 'user_profile3' , 'COLUMN';
+ALTER TABLE CPG_users ALTER COLUMN user_profile3 VARCHAR(255) NOT NULL DEFAULT '';
+EXEC SP_RENAME 'CPG_users.user_occupation' , 'user_profile4' , 'COLUMN';
+ALTER TABLE CPG_users ALTER COLUMN user_profile4 VARCHAR(255) NOT NULL DEFAULT '' ;
+ALTER TABLE CPG_users ADD user_profile5 varchar(255) NOT NULL default '';
 ##   ALTER TABLE `CPG_users` ADD `user_profile6` varchar(255) default '' NOT NULL;	########	cpgdb_AL
 
 # -----------------------------------------------------
 ##      Enlarge password field for MD5/SHA1 hash
 # ------------------------------------------------------
 
-##   ALTER TABLE `CPG_users` CHANGE `user_password` `user_password` VARCHAR( 40 ) NOT NULL default '';	########	cpgdb_AL
-
+ALTER TABLE CPG_users ALTER COLUMN user_password VARCHAR( 40 ) NOT NULL default '';
 
 
 INSERT INTO CPG_config VALUES ('user_profile1_name', 'Location');
@@ -267,7 +263,7 @@ CREATE TABLE CPG_plugins (
   priority INTEGER  NOT NULL DEFAULT 0  ,
   PRIMARY KEY(plugin_id),
   UNIQUE(name), UNIQUE(path));
-GO
+
 
 INSERT INTO CPG_config VALUES ('enable_help', '2');
 
@@ -296,7 +292,7 @@ CREATE TABLE CPG_bridge (
   name VARCHAR(40)  NOT NULL  DEFAULT 0 ,
   value VARCHAR(255)  NOT NULL,
   UNIQUE(name));
-GO
+
 
 # --------------------------------------------------------
 ##          Data for table `CPG_bridge`
@@ -347,7 +343,7 @@ CREATE TABLE CPG_vote_stats (
   browser VARCHAR(255)  NOT NULL  ,
   os VARCHAR(50)  NOT NULL  ,
   PRIMARY KEY(sid));
-GO
+
 
 INSERT INTO CPG_config VALUES ('vote_details', '0');
 
@@ -361,7 +357,7 @@ CREATE TABLE CPG_hit_stats (
   browser VARCHAR(255)  NOT NULL  ,
   os VARCHAR(50)  NOT NULL    ,
 PRIMARY KEY(sid));
-GO
+
 
 INSERT INTO CPG_config VALUES ('hit_details', '0');
 
@@ -401,8 +397,8 @@ DELETE FROM CPG_config WHERE name = 'randpos_interval';
 DROP INDEX CPG_pictures.randpos;
 ALTER TABLE CPG_pictures DROP COLUMN randpos;
 
-	MySQL 5 compat fixes
-## ALTER TABLE `CPG_pictures` CHANGE `mtime` `mtime` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00';
+##	MySQL 5 compat fixes
+ALTER TABLE CPG_pictures ALTER COLUMN mtime DATETIME DEFAULT NULL;
 ALTER TABLE CPG_albums ALTER COLUMN description TEXT NOT NULL;
 
 ##    Add display of rating on thumbnails page

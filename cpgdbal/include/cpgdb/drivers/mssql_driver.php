@@ -44,9 +44,11 @@ class cpgDB {
     /* private: link and query handles */
     var $Link_ID = 0;
     var $Query_ID = 0;
-	
-	/* public: this is used to get the number of rows in the result */
-	var $count = 0;
+
+	/* */
+	var $lock_querytime = FALSE;	## when TRUE, cpggetmicrotime not available.
+	var $update = FALSE;	## when TRUE, failure of query return no errors;
+	var $install_auth_mode = 'windows';		##  when 'sqlserver', sql server authentication mode will be used.
 
     /**
      * 
@@ -118,7 +120,8 @@ class cpgDB {
      */
     function connect($Database = '', $Host = '', $User = '', $Password = '')
     {
-        sqlsrv_set_error_handling(0);
+        global $CONFIG;
+		sqlsrv_set_error_handling(0);
 		sqlsrv_log_set_severity(0);
 		sqlsrv_log_set_subsystems(0);
 		sqlsrv_configure('warnings_return_as_errors', 0);
@@ -142,18 +145,24 @@ class cpgDB {
 			$Password = $this->Password;
 		}
 		$connect_info['Database'] = $Database;//'testdb';
-		//$connect_info['UID'] = $User;	// these two are not required for  windows authentication mode.
-		//$connect_info['PWD'] = $Password;
-				
+		if ($CONFIG[auth_mode] == 'sqlserver' || $this->install_auth_mode == 'sqlserver') {
+			$connect_info['UID'] = $User;	
+			$connect_info['PWD'] = $Password;
+		}
         /* establish connection, select database */
-        if (0 == $this->Link_ID) {
-            $this->Link_ID = sqlsrv_connect($Host, $connect_info);
-            if (!$this->Link_ID) {
-                $this->halt("connect($Host) failed.");
-
-                return 0;
-            } 
-        } 
+		if (0 == $this->Link_ID) {
+			$this->Link_ID = sqlsrv_connect($Host, $connect_info);
+			if (!$this->Link_ID) {
+				//$this->halt("connect($Host) failed.");
+				$this->Error = "<hr /><br />Could not create a MSSQL connection, please check the SQL values in include/config.inc.php<br />MSSQL error was : <br />";
+				foreach (sqlsrv_errors() as $err) {
+					$this->Error .= "SQLSTATE: ".$error['SQLSTATE']."<br/>";
+					$this->Error .= "Code: ".$error['code']."<br/>";
+					$this->Error .= "Message: ".($error['message'])."<br/><br />";
+				}
+				return 0;
+			} 
+		} 
 
         return $this->Link_ID;
     } 
@@ -184,17 +193,22 @@ class cpgDB {
 		$args = func_get_args();
 		$Query_String = array_shift($args);
 	    /* No empty queries, please, since PHP4 chokes on them. */
-        if ($Query_String == '')
-            /* The empty query string is passed on from the constructor,
-       * when calling the class without a query, e.g. in situations
-       * like these: '$db = new DB_Sql_Subclass;'
-       */
-        return 0;
+        if ($Query_String == '') {
+			/* The empty query string is passed on from the constructor,
+			* when calling the class without a query, e.g. in situations
+			* like these: '$db = new DB_Sql_Subclass;'
+			*/
+			$this->Error = "<br />There is no query to execute.<br />";
+			$this->Error .= $this->FormatErrors(sqlsrv_errors());
+			return 0;
+		}
 		if (count($args)) {
 			$Query_String = vsprintf($Query_String, $args);
 		}
 		
         if (!$this->connect()) {
+			$this->Error = "<br />Database connection not found.<br />";
+			$this->Error .= $this->FormatErrors(sqlsrv_errors());
             return 0;
             /* we already complained in connect() about that. */
         } ; 
@@ -202,25 +216,37 @@ class cpgDB {
         if ($this->Query_ID) {
             $this->free();
         } 
-        $query_start = cpgGetMicroTime();
 
- //print($Query_String."<br>");
-        $this->Query_ID = @sqlsrv_query($this->Link_ID, $Query_String );	#
+		if ($this->lock_querytime != TRUE) {
+			$query_start = cpgGetMicroTime();
+		}
 
-        $query_end = cpgGetMicroTime();
+		$this->Query_ID = @sqlsrv_query($this->Link_ID, $Query_String );
+
+        if ($this->lock_querytime != TRUE) {
+			$query_end = cpgGetMicroTime();
+		}
+		
         $this->Row = 0;
         //$this->Errno = mysql_errno();
-        $this->Error =  @sqlsrv_errors();
-        if (!$this->Query_ID) {
-            $this->halt("Invalid SQL: " . $Query_String);
+        //$this->Error =  @sqlsrv_errors();
+        if (!$this->Query_ID && $this->update != TRUE) {
+            //$this->halt("Invalid SQL: " . $Query_String);
+			$this->db_error("Invalid SQL:".$Query_String);
         } 
 
-            $this->nextRecord();
-        if (isset($CONFIG['debug_mode']) && (($CONFIG['debug_mode']==1) || ($CONFIG['debug_mode']==2) )) {
-			$duration = round($query_end - $query_start, 3);
-			$query_stats[] = $duration;
-			$queries[] = $Query_String . " ({$duration}s)"; 
+		if ($this->update != TRUE) {
+			$this->nextRecord();
+		}	
+		
+		if ($this->lock_querytime != TRUE) {
+			if (isset($CONFIG['debug_mode']) && (($CONFIG['debug_mode']==1) || ($CONFIG['debug_mode']==2) )) {
+				$duration = round($query_end - $query_start, 3);
+				$query_stats[] = $duration;
+				$queries[] = $Query_String . " ({$duration}s)"; 
+			}
 		}
+		
 	//	print_r($this->queries);echo"<br /><br />";
 		
         // Will return nada if it fails. That's fine. // '
@@ -242,10 +268,9 @@ class cpgDB {
 
         $this->Record = @sqlsrv_fetch_array($this->Query_ID, SQLSRV_FETCH_ASSOC); 	#
         $this->Row += 1;
-	/*	if ($this->Debug == 1) {
-			print($this->Record);
-		}*/
 
+		$this->Error = sqlsrv_errors();
+		
         $stat = is_array($this->Record);
         if (!$stat && $this->Auto_Free) {
             $this->free();
@@ -354,7 +379,6 @@ class cpgDB {
      */
     function numFields()
     {
-        //return @mysql_num_fields($this->Query_ID);
 		return count(sqlsrv_field_metadata($this->Query_ID));
     } 
 
@@ -426,6 +450,33 @@ class cpgDB {
         return $nextid;
     } 
 
+/**
+ * cpg_db_error()
+ *
+ * Error message if a query failed
+ *
+ * @param $the_error
+ * @return
+ **/
+
+	function db_error($the_error)
+	{
+		global $CONFIG,$lang_errors;
+		print($the_error);
+		if ($CONFIG['debug_mode'] === '0' || (!GALLERY_ADMIN_MODE)) {
+			cpg_die(CRITICAL_ERROR, $lang_errors['database_query'], __FILE__, __LINE__);
+		} else {
+				$the_error .= "\n\nMSSQL error: \n";
+				foreach (sqlsrv_errors() as $err) {
+					echo "SQLSTATE: ".$error['SQLSTATE']."<br/>";
+					echo "Code: ".$error['code']."<br/>";
+					echo "Message: ".($error['message'])."<br/>";
+				}
+				$out = "<br />".$lang_errors['database_query'].".<br /><br/>
+					<form name=\"mssql\" id=\"mssql\"><textarea rows=\"8\" cols=\"60\">".htmlspecialchars($the_error)."</textarea></form>";
+			cpg_die(CRITICAL_ERROR, $out, __FILE__, __LINE__);
+		}
+	}
  
     /* private: error handling */
     /**
@@ -436,7 +487,8 @@ class cpgDB {
      */
     function halt($msg)
     {
-         if ($this->Halt_On_Error == 'no')
+        $this->Error = @sqlsrv_errors();
+		if ($this->Halt_On_Error == 'no')
             return;
 
         $this->haltmsg($msg);
@@ -471,14 +523,12 @@ class cpgDB {
      */
     function tableNames()
     {
-        $this->query("SHOW TABLES");
-        $i = 0;
-        while ($info = sqlsrv_fetch($this->Query_ID)) {
-            $return[$i]['table_name'] = $info[0];
-            $return[$i]['tablespace_name'] = $this->Database;
-            $return[$i]['database'] = $this->Database;
-            $i++;
-        }
+        $this->query($this->Link_Id,"SELECT table_name, table_catalog FROM INFORMATION_SCHEMA.TABLES");
+		$i = 0;
+		while ($row = sqlsrv_fetch($this->Query_ID, SQLSRV_FETCH_ASSOC)) {
+			$return[$i]['table_name'] = $row['table_name'];
+			$return[$i]['database'] = $row['table_catalog'];
+		}
         return $return;
     }
 
@@ -526,6 +576,32 @@ class cpgDB {
 			$escape_str = stripslashes($str_to_escape);
 		}
 		return addslashes($escape_str);
+	}
+	
+	/**
+	// returns the database list
+	*cpgDB :: ListDbs ()
+	*/
+	function ListDbs()
+	{
+		$db_list = array();
+		$list_query = @sqlsrv_query($this->Link_ID, "SELECT name FROM sys.databases");
+		while ($row = sqlsrv_fetch_array($list_query, SQLSRV_FETCH_ASSOC)) {
+			$db_list[] = $row['name'];
+		}
+		return $db_list;
+	}
+
+	
+	function FormatErrors($errors)
+	{
+		/* Display errors. */
+		foreach ($errors as $err)
+		{
+			$this->Error .= "SQLSTATE: ".$err['SQLSTATE']."<br/>";
+			$this->Error .= "Code: ".$err['code']."<br/>";
+			$this->Error .= "Message: ".$err['message']."<br/>";
+		}
 	}
 
 	

@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4224 $
+  $Revision: 4440 $
   $LastChangedBy: gaugau $
-  $Date: 2008-01-26 17:12:00 +0530 (Sat, 26 Jan 2008) $
+  $Date: 2008-05-03 12:33:34 +0530 (Sat, 03 May 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -126,6 +126,8 @@ if (!$valid_sender_email && $superCage->post->keyExists('sender_name')) {
 if (!$valid_recipient_email && $superCage->post->keyExists('sender_name')) {
     $recipient_email_warning = $invalid_email;
 }
+
+$gallery_url_prefix = $CONFIG['ecards_more_pic_target']. (substr($CONFIG['ecards_more_pic_target'], -1) == '/' ? '' : '/');
 
 pageheader($lang_ecard_php['title']);
 
@@ -259,12 +261,16 @@ elseif ($superCage->post->keyExists('preview')) {
         '{PIC_MARKUP}' => $pic_markup,
         );
 
-                                starttable('100%', $lang_ecard_php['preview']);
-                                echo '<tr><td>';
-                                echo template_eval($template_ecard, $params);
-                                echo '</td></tr>';
-                                endtable();
-                                echo '<br />';
+	    $eccontent = template_eval($template_ecard, $params);
+	    if (preg_match('#<body[^>]*>(.*)</body>#s', $eccontent, $matches)) {
+	        $eccontent = $matches[1];
+	    }
+	    starttable('100%', $lang_ecard_php['preview']);
+	    echo '<tr><td>';
+	    echo $eccontent;
+	    echo '</td></tr>';
+	    endtable();
+	    echo '<br />';
 }//preview
 
 //pageheader($lang_ecard_php['title']);
@@ -277,6 +283,9 @@ if ($row['pwidth'] == 0 || $row['pheight'] == 0) {
 }
 $thumb_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['thumb_width']);
 
+echo <<< EOT
+<form method="post" name="post" id="cpgform" action="{$CPG_PHP_SELF}?album=$album&amp;pid=$pid">
+EOT;
 starttable("100%", $lang_ecard_php['title'], 3);
 
 echo <<<EOT
@@ -304,7 +313,6 @@ echo <<<EOT
         </tr>
         <tr>
                 <td class="tableb" valign="top" width="40%">
-                        <form method="post" name="post" id="cpgform" action="{$CPG_PHP_SELF}?album=$album&amp;pid=$pid">
                         {$lang_ecard_php['your_name']}<br />
                 </td>
                 <td valign="top" class="tableb" width="60%">
@@ -369,12 +377,12 @@ echo <<<EOT
                         <input type="submit" class="button" name="preview" title="{$lang_ecard_php['preview_button']}" value="{$lang_ecard_php['preview_button']}" />
                                                                                                 &nbsp;&nbsp;
                         <input type="submit" class="button" name="submit" title="{$lang_ecard_php['submit_button']}" value="{$lang_ecard_php['submit_button']}" />
-                        </form>
                 </td>
         </tr>
 EOT;
 
 endtable();
+echo '</form>';
 pagefooter();
 ob_end_flush();
 

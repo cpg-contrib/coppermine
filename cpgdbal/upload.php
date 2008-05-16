@@ -2419,7 +2419,7 @@ if ($superCage->post->keyExists('control') && $superCage->post->getRaw('control'
 		if (!GALLERY_ADMIN_MODE) {
 			$cpgdb->query($cpg_db_upload_php['check_valid_alb'], $album, (USER_ID + FIRST_USER_CAT), USER_ID);
 			$rowset = $cpgdb->fetchRowSet();
-			if (count($rowset)) cpg_die(ERROR, $lang_db_input_php['unknown_album'], __FILE__, __LINE__);
+			if (count($rowset) == 0) cpg_die(ERROR, $lang_db_input_php['unknown_album'], __FILE__, __LINE__);
 			$row = $rowset[0];
 			$cpgdb->free();
 			$category = $row['category'];

@@ -247,10 +247,12 @@ function cpgdbal_connect()
 		}
 	} elseif ($CONFIG['dbservername'] == 'mssql') {
 		$connectioninfo = array();
-		//$connectioninfo['UID'] = $CONFIG['dbuser'];
-		//$connectioninfo['PWD'] = $CONFIG['dbpass'];
-		$connectioninfo['Database'] = 'coppermine_db';
-        $result = @sqlsrv_connect('PREM\\SQLEXPRESS', $connectioninfo);
+		if ($CONFIG['auth_mode'] == 'sqlserver') {
+			$connectioninfo['UID'] = $CONFIG['dbuser'];
+			$connectioninfo['PWD'] = $CONFIG['dbpass'];
+		}
+		$connectioninfo['Database'] = $CONFIG['dbname'];
+        $result = @sqlsrv_connect($CONFIG['dbserver'], $connectioninfo);
         if (!$result) {
 			$err = sqlsrv_errors();
 			 foreach ($err as $error){
@@ -271,7 +273,7 @@ function cpgdbal_connect()
  *
  * Connect to the database
  **/
-
+/*##################    commented for cpgdbal ###################
 function cpg_db_connect()
 {
 		global $CONFIG;
@@ -283,7 +285,7 @@ function cpg_db_connect()
 				return false;
 		return $result;
 }
-
+#####################################################*/
 // Perform a database query
 
 /**
@@ -295,7 +297,7 @@ function cpg_db_connect()
  * @param integer $link_id
  * @return
  **/
-
+/*#############################     commented for cpgdbal    ##############################
 function cpg_db_query($query, $link_id = 0)
 {
         global $CONFIG, $query_stats, $queries;
@@ -317,7 +319,7 @@ function cpg_db_query($query, $link_id = 0)
 
         return $result;
 }
-
+################################################################################*/
 // Error message if a query failed
 
 
@@ -329,7 +331,7 @@ function cpg_db_query($query, $link_id = 0)
  * @param $the_error
  * @return
  **/
-
+/*##############################    commented for cpgdbal   #################################
 function cpg_db_error($the_error)
 {
         global $CONFIG,$lang_errors;
@@ -343,7 +345,7 @@ print($the_error);
             cpg_die(CRITICAL_ERROR, $out, __FILE__, __LINE__);
         }
 }
-
+###############################################################################*/
 // Fetch all rows in an array
 
 /**
@@ -354,7 +356,7 @@ print($the_error);
  * @param $result
  * @return
  **/
-
+/*################     commented for cpgdbal  ###############
 function cpg_db_fetch_rowset($result)
 {
         $rowset = array();
@@ -363,7 +365,7 @@ function cpg_db_fetch_rowset($result)
 
         return $rowset;
 }
-
+###############################################*/
 /**
  * cpg_db_fetch_row()
  *
@@ -372,7 +374,7 @@ function cpg_db_fetch_rowset($result)
  * @param $result
  * @return
  **/
-
+/*#########    comented for cpgdbal   ##########
 function cpg_db_fetch_row($result)
 {
 
@@ -380,7 +382,7 @@ function cpg_db_fetch_row($result)
 
         return $row;
 }
-
+#################################*/
 /**
  * cpg_db_last_insert_id()
  *
@@ -388,12 +390,12 @@ function cpg_db_fetch_row($result)
  *
  * @return integer $id
  **/
-
+/*######    commented for cpgdbal   ######
 function cpg_db_last_insert_id()
 {
         return mysql_insert_id();
 }
-
+############################*/
 /**************************************************************************
    Sanitization functions
  **************************************************************************/

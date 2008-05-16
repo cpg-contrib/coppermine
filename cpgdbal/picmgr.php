@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4255 $
-  $LastChangedBy: saweyyy $
-  $Date: 2008-02-09 18:18:55 +0530 (Sat, 09 Feb 2008) $
+  $Revision: 4443 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-05-03 12:56:53 +0530 (Sat, 03 May 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -420,9 +420,9 @@ pageheader($lang_picmgr_php['pic_mgr']);
    }
 ?>
 
-   <input type="hidden" name="delete_picture" value="" />
-   <input type="hidden" name="sort_order" value="<?php echo $sort_order ?>" />
    <td class="tableb" valign="top" align="center">
+	   <input type="hidden" name="delete_picture" value="" />
+	   <input type="hidden" name="sort_order" value="<?php echo $sort_order ?>" />   
       <br />
       <table width="300" border="0" cellspacing="0" cellpadding="0">
 <?php

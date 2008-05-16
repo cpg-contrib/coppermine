@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4409 $
+  $Revision: 4452 $
   $LastChangedBy: gaugau $
-  $Date: 2008-04-28 11:25:25 +0530 (Mon, 28 Apr 2008) $
+  $Date: 2008-05-04 12:41:10 +0530 (Sun, 04 May 2008) $
 **********************************************/
 
 /////////////////////////////////////////////////////////////////
@@ -3052,7 +3052,8 @@ function theme_html_img_nav_menu() {
         $ecard_title = $lang_img_nav_bar['ecard_disabled'];*/
     }
 
-                //report to moderator buttons
+    //report to moderator buttons
+    $report_tgt = '';
     if (($CONFIG['report_post']==1) && (USER_CAN_SEND_ECARDS)) {
         $report_tgt = "report_file.php?album=$album$cat_link$date_link&amp;pid=$pid&amp;pos=$pos";
     } else { // remove button if report toggle is off
