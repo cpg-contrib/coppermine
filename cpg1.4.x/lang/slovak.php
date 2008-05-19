@@ -1166,37 +1166,76 @@ if (defined('FAQ_PHP')) $lang_faq_php = array(
   'question' => 'Otázka: ',
   'answer' => 'Odpoveď: ',
 );
-
+// FAQ translation : Willant Zoltán - KONTACT : http://kontakt.sturovo.com
 if (defined('FAQ_PHP')) $lang_faq_data = array(
-  'General FAQ',
-  array('Why do I need to register?', 'Registration may or may not be required by the administrator. Registration gives a member additional features such as uploading, having a favorite list, rating pictures and posting comments etc.', 'allow_user_registration', '1'),
-  array('How do I register?', 'Go to &quot;Register&quot; and fill out the required fields (and the optional ones if you want to).<br />If the Administrator has Email Activation enabled, then after submitting your information you should recieve an email message at the address that you have submitted while registering, giving you instructions on how to activate your membership. Your membership must be activated in order for you to login.', 'allow_user_registration', '1'), //cpg1.4
-  array('How Do I login?', 'Go to &quot;Login&quot;, submit your username and password and check &quot;Remember Me&quot; so you will be logged in on the site if you should leave it.<br /><b>IMPORTANT:Cookies must be enabled and the cookie from this site must not be deleted in order to use &quot;Remember Me&quot;.</b>', 'offline', 0),
-  array('Why can I not login?', 'Did you register and click the link that was sent to you via email?. The link will activate your account. For other login problems contact the site administrator.', 'offline', 0),
-  array('What if I forgot my password?', 'If this site has a &quot;Forgot password&quot; link then use it. Other than that contact the site administrator for a new password.', 'offline', 0),
+  'Všeobecné otázky FAQ.',
+  array('Prečo by som sa mal registrovať?', 'Registrácie sú schvaľované mailom alebo samotným administrátorom. Registrácia dáva členovi rozšírené možnosti, ako pridávanie fotiek, obľúbený zoznam, hodnotenia a možnosť komentovať jednotlivé obrázky.', '1'),
+  array('Ako sa môžem registrovať?', 'Kliknite na hore na odkaz <B>"Registruj"</B>. Ak sa chcete registrovať musíte najprv súhlasiť s pravidlami fotofóra. <br /> Kliknite dole na odkaz "Súhlasím". Vyplňte požadované údaje. Povinné údaje musíte vyplniť. Musíte zadať platnú e-mail adresu na ktorú vám príde odkaz. Po kliknutí na tento odkaz aktivujete vašu registráciu. Ak sa takto nestane tak vašu registráciu musí schváliť administrátor tohto fotofóra.', 'allow_user_registration', '1'), //cpg1.4
+  array('Ako sa môžem prihlásiť do systému?', 'Kliknite na hore na odkaz <B>"Prihlásiť"</B>.<br /> Zadajte vaše meno a heslo. 
+Ak označíte " Pamätaj si ma" Tak ostanete prihlásený aj keď zatvoríte okno vášho prehliadača.<b><br /> Dôležité: pre správne fungovanie prihlásenia musíte mať povolené ukladanie  súborov COOKIES!
+</b>', 'offline', 0),
+  array('Prečo sa neviem prihlásiť ?', 'Vyplnili ste povinné údaje?  Zadali ste platnú e-mail adresu?<br /> Dostali ste mail? Klikli ste na odkaz aktivácie? Ak problém naďalej pretrváva napíšte administrátorovi.
+Možno vám poskytne vysvetlenie.
+', 'offline', 0),
+  array('Čo keď som zabudol heslo?', 'Po nesprávnom prihlásení sa zobrazí ponuka <B>"Pripomenutie hesla"</B>.<br /> Zadajte Vašu emailovú adresu a heslo vám bude automaticky odoslané a zároveň vám systém pridelí toto nové heslo. Administrátori nijako nevedia zmeniť vaše heslo. (heslo je zašifrované v MySQL databáze.)<br /> <FONT SIZE="" COLOR="#CC0000"><B>Administrátori alebo iný správcovia od vás NIKDY nebudú žiadať heslo!
+Ak ste dostali takýto list ignorujte ho!</B></FONT>
+', 'offline', 0),
   //array('What if I changed my email address?', 'Just simply login and change your email address through &quot;Profile&quot;', 'offline', 0),
-  array('How do I save a picture to &quot;My Favorites&quot;?', 'Click on a picture and click on the &quot;picture info&quot; link (<img src="images/info.gif" width="16" height="16" border="0" alt="Picture information" />); scroll down to the picture information set and click &quot;Add to fav&quot;.<br />The administrator may have the &quot;picture information&quot; on by default.<br />IMPORTANT:Cookies must be enabled and the cookie from this site must not be deleted.', 'offline', 0),
-  array('How do I rate a file?', 'Click on a thumbnail and go to the bottom and choose a rating.', 'offline', 0),
-  array('How do I post a comment for a picture?', 'Click on a thumbnail and go to the bottom and post a comment.', 'offline', 0),
-  array('How do I upload a file?', 'Go to &quot;Upload&quot;and select the album that you want to upload to. Click &quot;Browse,&quot; find the file to upload, and click &quot;open.&quot; Add a title and description if you want. Click &quot;Submit&quot;.<br /><br />Alternatively, for those users using <b>Windows XP</b>, you can upload multiple files directly to your own private albums using the XP Publishing wizard.<br />For instructions on how, and to get the required registry file, click <a href="xp_publish.php">here.</a>', 'allow_private_albums', 1), //cpg1.4
-  array('Where do I upload a picture to?', 'You will be able to upload a file to one of your albums in &quot;My Gallery&quot;. The Administrator may also allow you to upload a file to one or more of the albums in the Main Gallery.', 'allow_private_albums', 0),
-  array('What type and size of a file can I upload?', 'The size and type (jpg, png, etc.) is up to the administrator.', 'offline', 0),
-  array('How do I create, rename or delete an album in &quot;My Gallery&quot;?', 'You should already be in &quot;Admin-Mode&quot;<br />Go to &quot;Create/Order My Albums&quot;and click &quot;New&quot;. Change &quot;New Album&quot; to your desired name.<br />You can also rename any of the albums in your gallery.<br />Click &quot;Apply Modifications&quot;.', 'allow_private_albums', 0),
-  array('How can I modify and restrict users from viewing my albums?', 'You should already be in &quot;Admin Mode&quot;<br />Go to &quot;Modify My Albums. On the &quot;Update Album&quot; bar, select the album that you want to modify.<br />Here, you can change the name, description, thumbnail picture, restrict viewing and comment/rating permissions.<br />Click &quot;Update Album&quot;.', 'allow_private_albums', 0),
-  array('How can I view other users\' galleries?', 'Go to &quot;Album List&quot; and select &quot;User Galleries&quot;.', 'allow_private_albums', 0),
-  array('What are cookies?', 'Cookies are a plain text piece of data that is sent from a website and is put on to your computer.<br />Cookies usually allow a user to leave and return to the site without having to login again and other various chores.', 'offline', 0),
-  array('Where can I get this program for my site?', 'Coppermine is a free Multimedia Gallery, released under GNU GPL. It is full of features and has been ported to various platforms. Visit the <a href="http://coppermine.sf.net/">Coppermine Home Page</a> to find out more or download it.', 'offline', 0),
+  array('Ako môžem vytvárať "Moje obľúbené"?', 'Túto funkciu môžete použiť len keď ste prihlásený. Kliknite na hociktorí obrázok.
+Zobrazí sa vám tzv. stredný náhľad, ak sa presuniete na dolný koniec stránky nájdete tam časť Informácie o súbore. Ak táto informácia chýba najprv úplne hore kliknite na obrázok.<img src="images/info.gif" width="16" height="16" border="0" alt="Picture information" /><br />(podrobné info. zobraz/skryť)<br />V tejto sekcii je riadok : Obľúbené a za ním je odkaz <B>"Pridať k obľúbeným"</B> už stačí len kliknúť. Prehľad vašich obľúbených obrázkov nájdete ak si 
+zvolíte v hornom menu <B>"Moje obľúbené"</B>. Ak si potom na tu zobrazený obrázok kliknete, na tom istom mieste kde bol odkaz "Pridať k obľúbeným" nájdete teraz odkaz <B>"Odobrať z obľúbených"</B>.<br />Ak máte povolené cookies a po vypnutí vášho PC ich neodstránite alebo inak nevymažete táto funkcia je dostupná aj pre neregistrovaných užívateľov.
+', 'offline', 0),
+  array('Ako môžem hodnotiť jednotlivé obrázky?', 'Kliknite na miniatúru obrázku, zobrazí sa vám tzv. stredný náhľad. Tam nájdete
+<B>"Hodnotiť tento súbor"</B> Tam si zvoľte počet hviezdičiek a kliknutím na ne ohodnotíte obrázok.
+', 'offline', 0),
+  array('Ako môžem pridať komentár k obrázku?', 'Kliknite na miniatúru obrázku, zobrazí sa vám tzv. stredný náhľad, ak sa presuniete na dolný koniec stránky s obrázkom nájdete tam časť <B>"Pridať komentár"</B>
+Prosím uvedomte si že počet slov alebo dĺžka komentáru je závislá na administrátorských nastaveniach. Ak by sa stalo že váš komentár sa nedá odoslať je pravdepodobne príliš dlhý. 
+', 'offline', 0),
+  array('Ako môžem pridať obrázok do galérie?', 'Kliknite na hore na odkaz <B>"Pridať súbor"</B> Zobrazí sa vám stránka Pridanie súborov. Pomocou boxov dole môžete na server nahrať súbory. Veľkosť a druh jednotlivých povolených súborov k odosielaniu je závislá na administrátorských nastaveniach.
+Návod ako exportovať v systéme <B>Windows XP</B> hromadne do svojich albumov viac súborov na raz nájdete
+<a href="xp_publish.php">tu.(návod je po anglicky)</a>', 'allow_private_albums', 1), //cpg1.4
+  array('Kde budem odosielať obrázok?', 'V prvom rade do svojej galérie ktorú si musíte vytvoriť.
+Ak máte povolenie posielať do spoločných môžete aj tam.
+Kto, alebo kde sa dajú pridávať jednotlivé obrázky záleží na nastaveniach  jednotlivých albumov. Niektoré albumy môžu byť len pre registrovaných užívateľov, iné môžu byť chránené heslom len pre určitých návštevníkov.
+', 'allow_private_albums', 0),
+  array('Aký typ a veľkosť súboru môžem odoslať?', 'Veľkosť a typ povolených súborov je závislí na administrátorských nastaveniach.', 'offline', 0),
+  array('Ako môžem vytvárať premenovať a vymazať albumy?', 'Na toto slúži odkaz <B>"Albumy"</B> po kliknutí na tento odkaz uvidíte nadpis <B>"Vybrať kategóriu"</B> v rozbalovacom menu si zvoľte <B>"* Moja Galéria *"</B> kliknite na tlačítko NOVÝ.
+Potom pomenujte vašu novú galériu.
+Nakoniec použite tlačítko <B>"Vykonať zmeny"</B>
+Na tomto mieste môžete aj odstraňovať nepotrebné albumy.
+Zasahovať do úpravy spoločných albumov môže len administrátor alebo osoba tým poverená.
+', 'allow_private_albums', 0),
+  array('Ako upraviť prístupové práva a nastavenia albumov?', 'Musíte sa najprv prihlásiť.
+Môžete meniť len vlastné albumy, zasahovať do úpravy spoločných albumov môže len administrátor alebo osoba tým poverená.
+Po zobrazení albumov kliknite prosím na tlačítko <B>VLASTNOSTI</B>.
+V Základných nastaveniach môžete zmeniť nadpis, popis albumu a zobrazenie náhľadového obrázku.
+V Oprávneniach pre album môžete zmeniť kto môže vaše album vidieť, pridať vstup len na heslo, povoliť alebo zakázať hodnotenia a komentáre.
+<B>Nastavenie hodnotení a komentárov je závislé aj od globálnej konfigurácie fóra a a prístupových práv jednotlivých skupín (Administrators Registered Banned Guests) prípadne iné.</B>
+', 'allow_private_albums', 0),
+  array('Ako si viem pozrieť galérie ostatných užívateľov?', 'Kliknite na odkaz "Galérie užívateľov" Táto kategória obsahuje albumy užívateľov tejto fotogalérie.', 'allow_private_albums', 0),
+  array('Čo sú cookies?', 'Cookies sú malé kusy textových  údajov posielané na vaše PC do špecifického adresára.<br /> Tento súbor je odoslaný zo stránky ktorú prezeráte lebo nastavujete. Do tohto súboru sa ukladajú vaše nastavenia a pri ďalšom prezeraní alebo návšteve tejto stránky sú tieto údaje znova načítané z vášho PC.', 'offline', 0),
+  array('Kde môžem získať takúto vynikajúcu fotogalériu?', 'Coppermine je voľne šírená Multimediálna Galéria licencovaná pod GNU GPL. Je prispôsobená pre všetky platformy a operačné systémy.  Navštívte prosím <a href="http://coppermine-gallery.net/"><B>Coppermine hlavnú stránku</B></a> a zistite si viac podrobností a stiahnite si túto aplikáciu.', 'offline', 0),
 
-  'Navigating the Site',
-  array('What\'s &quot;Album List&quot;?', 'This will show you the entire category you are currently in, with a link to each album. If you are not in a category, it will show you the entire gallery with a link to each category. Thumbnails may be a link to the category.', 'offline', 0),
-  array('What\'s &quot;My Gallery&quot;?', 'This feature lets users create their own galleries and add, delete or modify albums as well as upload to them.', 'allow_private_albums', 1), //cpg1.4
-  array('What\'s the difference between &quot;Admin Mode&quot; and &quot;User Mode&quot;?', 'This feature, when in admin-mode, allows a user to modify their gallery (as well as others if allowed by the administrator).', 'allow_private_albums', 0),
-  array('What\'s &quot;Upload Picture&quot;?', 'This feature allows a user to upload a file (size and type is set by the site administrator) to a gallery selected by either you or the administrator.', 'allow_private_albums', 0),
-  array('What\'s &quot;Last Uploads&quot;?', 'This feature shows the last uploads to the site.', 'offline', 0),
-  array('What\'s &quot;Last Comments&quot;?', 'This feature shows the last comments along with the files posted by users.', 'offline', 0),
-  array('What\'s &quot;Most Viewed&quot;?', 'This feature shows the most viewed files by all users (whether logged in or not).', 'offline', 0),
-  array('What\'s &quot;Top Rated&quot;?', 'This feature shows the top rated files rated by the users, showing the average rating (e.g: five users each gave a <img src="images/rating3.gif" width="65" height="14" border="0" alt="" />: the file would have an average rating of <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> ;Five users rated the file from 1 to 5 (1,2,3,4,5) would result in an average <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> .)<br />The ratings go from <img src="images/rating5.gif" width="65" height="14" border="0" alt="best" /> (best) to <img src="images/rating0.gif" width="65" height="14" border="0" alt="worst" /> (worst).', 'offline', 0),
-  array('What\'s &quot;My Favorites&quot;?', 'This feature will let a user store a favorite file in the cookie that was sent to your computer.', 'offline', 0),
+  'Navigácia na týchto stránkach.',
+  array('Čo je Zoznam albumov?', 'Tento odkaz vám ukáže všetky kategórie. Je to vlastne hlavná stránka fotogalérie kde sú potom ďalej rozdelené jednotlivé albumy s ich zmenšenými úvodnými obrázkami.
+Najvyššie sú galérie jednotlivých užívateľov a nižšie sú spoločné hlavné kategórie.
+Kto, alebo kde sa dajú pridávať jednotlivé obrázky záleží na nastaveniach  jednotlivých albumov. Niektoré albumy môžu byť len pre registrovaných užívateľov, iné môžu byť chránené heslom a sú len pre určitých návštevníkov.
+', 'offline', 0),
+  array('Čo je Moja galéria?', 'To je vaša galéria do ktorej si môžete poslať obrázky alebo súbory. Môžete pridávať albumy mazať súbory modifikovať premenovať.<br /> Prosím uvedomte si že každý užívateľ má limitovanú kapacitu. Štandardne je to 20 MB. Toto nastavenie môže zmeniť administrátor fóra.', 'allow_private_albums', 1), //cpg1.4
+  array('Aký je rozdiel medzi administratívnym a užívateľským režimom?', 'Administrátor má takmer neobmedzené možnosti.
+Môže vytvárať upravovať mazať jednotlivé obrázky a galérie. Môže odstrániť hlasovania alebo komentáre. V prípade potreby zablokovať užívateľa alebo ho aj vyhodiť.
+Administrátor ale nemôže meniť vaše heslo a mailovú adresu. Taktiež nijakým spôsobom nevie zistiť vaše heslo. Nevie prebrať vlastníctvo vašich obrázkov alebo súborov.
+Užívateľ má obmedzené oprávnenia. Limitovaný priestor pre ukladanie, môže si vytvárať len svoje albumy. Pridávanie do spoločných albumov je riadené skupinovými oprávneniami.
+Môže komentovať a hlasovať. Všetko ale záleží na globálnych nastaveniach skupiny.   
+', 'allow_private_albums', 0),
+  array('Čo je to Pridať súbor?', 'Kliknite na hore na odkaz <B>"Pridať súbor"</B> Zobrazí sa vám stránka Pridanie súborov. Pomocou boxov dole môžete na server nahrať súbory.', 'allow_private_albums', 0),
+  array('Čo je to Najnovšie pridané?', 'Po kliknutí na tento odkaz sa vám zobrazia najnovšie poslané súbory a obrázky galérie.', 'offline', 0),
+  array('Čo sú Najnovšie komentáre?', 'Po kliknutí na tento odkaz sa vám zobrazia najnovšie komentáre spolu s obrázkami jednotlivých užívateľov.', 'offline', 0),
+  array('Čo je to Najprezeranejšie?', 'Po kliknutí na tento odkaz sa vám zobrazia najviac prezerané (najpopulárnejšie) obrázky s počtom pozretí, nezávisle na dátume odoslania.', 'offline', 0),
+  array('Čo je to Najvyššie hodnotené?', 'Po kliknutí na tento odkaz sa vám zobrazia najlepšie ohodnotené  obrázky jednotlivými užívateľmi. Toto hodnotenie je priemerné. To znamená že jednotlivé body hodnotiacich sa spočítavajú podľa toho koľko tzv. hviezdičiek <img src="images/rating5.gif" width="65" height="14" border="0" alt="best" /> udelili návštevníci týchto stránok fotografiám.<br /> Hodnoty sú od 1 do 5 jedna hviezdička až 5 hviezdičiek.
+<B>5 hviezdičiek zodpovedá najlepšiemu hodnoteniu.</B>', 'offline', 0),
+  array(' Čo je to Moje obľúbené?', 'Po kliknutí na tento odkaz sa vám zobrazia vaše uložené najobľúbenejšie obrázky.
+Táto funkcia je dostupná len po registrácii.<br />Ak máte povolené cookies a po vypnutí vášho PC ich neodstránite alebo inak nevymažete táto funkcia je dostupná aj pre neregistrovaných užívateľov.<br />FAQ  preložil 15.5.2008 : Willant Zoltán - <A HREF="http://kontakt.sturovo.com">http://kontakt.sturovo.com</A>', 'offline', 0),
 );
 
 
