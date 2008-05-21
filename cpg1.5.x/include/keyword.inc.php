@@ -81,7 +81,7 @@ if (mysql_num_rows($result)) {
     $url = basename($CPG_PHP_SELF);
     if ($url != "keywordmgr.php"){
     echo '<tr><td class="tableb" align="center">';
-    echo '<a href="keywordmgr.php" class="admin_menu">Edit Keywords</a>';
+    echo '<a href="keywordmgr.php" class="admin_menu">' . $lang_search_php['edit_keywords'] . '</a>';
     echo "</td></tr>" ;
     }
   } else {
