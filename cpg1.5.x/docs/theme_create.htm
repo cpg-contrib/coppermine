@@ -73,7 +73,6 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
 </div>
 
 <a name="theme_create_wysiwyg"></a><h2>Using WYSIWYG-editors<a href="#theme_create_wysiwyg" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>If you are using an HTML editor to design your template, the easist working solution might be to save the &quot;<strong>template.html</strong>&quot; file into the main directory of your coppermine installation and edit it there. Whenever you load Coppermine, if the script finds a file named &quot;<strong>template.html</strong>&quot; in the main directory it will load it instead of the default one that you assigned in the CONFIG menu. Once you have finished  editing your theme be sure to move the file back into the directory it belongs. Don't forget to remove the temporary template.html file from the Coppermine root folder once you are done editing!</p>
 <p class="important">It is strongly recommended <strong>not</strong> to use a <acronym title="What You See Is What You Get">WYSIWYG</acronym>-editor at all to edit Coppermine files. The coppermine dev team is aware that it might seem easier for beginners to use those graphical editors. However, they have some major drawbacks:</p>
 <ul>
   <li>Some editors (mostly MS Frontpage) are notorious for &quot;beautifying&quot; the code in a manner that renders embedded PHP code invalid. Subsequently, if you use a WYSIWYG-editor to edit theme.php, the file may get corrupt (i.e. un-usable)</li>
