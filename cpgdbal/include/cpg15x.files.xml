@@ -4891,7 +4891,7 @@
     <status>mandatory</status>
     <permission>read</permission>
   </element>
-  <element>
+<!--  <element>
     <fullpath>sql/basic.sql</fullpath>
     <version>1.5.0</version>
     <revision>4294</revision>
@@ -4914,7 +4914,57 @@
     <status>mandatory</status>
     <permission>read</permission>
     <hash>373b3e1507214c2f8fd57d985e4056a7</hash>
+  </element>	-->
+  <!--   Added for  cpgdbal      -->
+  <element>
+    <fullpath>sql/mssql/basic.sql</fullpath>
+    <version>1.5.0</version>
+    <revision>4294</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>a762a9391454425944b63f8086e2348e</hash>
   </element>
+  <element>
+    <fullpath>sql/mssql/schema.sql</fullpath>
+    <version>1.5.0</version>
+    <revision>4260</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>dcd5e8698b22886ee16ff011fb163fc4</hash>
+  </element>
+  <element>
+    <fullpath>sql/mssql/update.sql</fullpath>
+    <version>1.5.0</version>
+    <revision>4294</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>373b3e1507214c2f8fd57d985e4056a7</hash>
+  </element>
+  <element>
+    <fullpath>sql/mysql/basic.sql</fullpath>
+    <version>1.5.0</version>
+    <revision>4294</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>a762a9391454425944b63f8086e2348e</hash>
+  </element>
+  <element>
+    <fullpath>sql/mysql/schema.sql</fullpath>
+    <version>1.5.0</version>
+    <revision>4260</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>dcd5e8698b22886ee16ff011fb163fc4</hash>
+  </element>
+  <element>
+    <fullpath>sql/mysql/update.sql</fullpath>
+    <version>1.5.0</version>
+    <revision>4294</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>373b3e1507214c2f8fd57d985e4056a7</hash>
+  </element>
+  <!--      The above part is added for cpgdbal     -->
   <element>
     <fullpath>themes</fullpath>
     <status>optional</status>

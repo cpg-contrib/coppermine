@@ -78,9 +78,8 @@ function get_subcat_data($parent, $ident = '')
         $pos = 0;*/
 	######################    DB   #########################
     $cpgdb->query($cpg_db_catmgr_php['get_subcat_data'], $parent, $sort_query);
-    //if (($cat_count = $cpgdb->nf()) > 0) {
         $rowset = $cpgdb->fetchRowSet();
-		$cat_count = count($rowset);
+		if (($cat_count = count($rowset)) > 0) {
         $pos = 0;	
 	###################################################
         foreach ($rowset as $subcat) {
@@ -103,7 +102,7 @@ function get_subcat_data($parent, $ident = '')
            // $last_index = count($CAT_LIST) -1;
             get_subcat_data($subcat['cid'], $ident . '&nbsp;&nbsp;&nbsp;');
         }
-    //}
+	}
 }
 
 function update_cat_order()
@@ -338,23 +337,22 @@ function verify_children($parent, $cid)
 		$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
 	##################################################	
 
-    //$sql = "SELECT cid " . "FROM {$CONFIG['TABLE_CATEGORIES']} " . "WHERE parent = '$parent' ";
-    //$result = cpg_db_query($sql);
+	/*$sql = "SELECT cid " . "FROM {$CONFIG['TABLE_CATEGORIES']} " . "WHERE parent = '$parent' ";
+	$result = cpg_db_query($sql);
 
-    //if (($cat_count = mysql_num_rows($result)) > 0) {
-    //            while ($row = mysql_fetch_array($result)) {
+	if (($cat_count = mysql_num_rows($result)) > 0) {
+			while ($row = mysql_fetch_array($result)) {*/
     ###########################  DB ###############################
-	$cpgdb->query($cpg_db_catmgr_php['get_verify_child_cat']);
+	$cpgdb->query($cpg_db_catmgr_php['get_verify_child_cat'], $parent);
 	$rowset = $cpgdb->fetchRowSet();
-	if (count($rowset) > 0) {
-                foreach ($rowset as $row) 
+	if (($cat_count = count($rowset)) > 0) {
+		foreach ($rowset as $row)  {
 	#############################################################
-                {
-					$children[]=$row['cid'];
-       // call this function again to this this
-       // child's children
-                       verify_children($row['cid'], $cid);
-                }
+			$children[]=$row['cid'];
+			// call this function again to this this
+			// child's children
+			verify_children($row['cid'], $cid);
+		}
     }
         return false;
 }
@@ -368,9 +366,9 @@ if ($superCage->post->keyExists('update_config')) {
             $CONFIG['categories_alpha_sort'] = $value;
             if ($CONFIG['log_mode'] == CPG_LOG_ALL) {
                     log_write('CONFIG UPDATE SQL: '.
-                              //"UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = 'categories_alpha_sort'\n".
+                              "UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = 'categories_alpha_sort'\n".
 							  #########################  DB ###############################
-							  sprintf($cpg_db_catmgr_php['edit_cat_alpha_sort'], $value).'\n'.
+							  //sprintf($cpg_db_catmgr_php['edit_cat_alpha_sort'], $value).'\n'.
 							  ###########################################################
                               'TIME: '.date("F j, Y, g:i a")."\n".
                               'USER: '.$USER_DATA['user_name'],
@@ -403,8 +401,8 @@ switch ($op) {
         $pos1 = $superCage->get->getInt('pos1');
         $pos2 = $superCage->get->getInt('pos2');
 
-        //cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET pos='$pos1' WHERE cid = '$cid1' LIMIT 1");
-        //cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET pos='$pos2' WHERE cid = '$cid2' LIMIT 1");
+		/*cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET pos='$pos1' WHERE cid = '$cid1' LIMIT 1");
+		cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET pos='$pos2' WHERE cid = '$cid2' LIMIT 1");*/
         ################################# DB ######################################
 		$cpgdb->query($cpg_db_catmgr_php['getalpha_move'], $pos1, $cid1);
 		$cpgdb->query($cpg_db_catmgr_php['getalpha_move'], $pos2, $cid2);
@@ -422,7 +420,7 @@ switch ($op) {
         verify_children($cid, $cid);
 
         if (!in_array($parent, $children)) {
-        //    cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET parent='$parent', pos='-1' WHERE cid = '$cid' LIMIT 1");
+			//cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET parent='$parent', pos='-1' WHERE cid = '$cid' LIMIT 1");
 			########################  DB  ###########################
 			$cpgdb->query($cpg_db_catmgr_php['getalpha_setparent'], $parent, $cid);
 			######################################################
@@ -437,12 +435,12 @@ switch ($op) {
         }
 
         $cid = $superCage->get->getInt('cid');
-       /* $result = cpg_db_query("SELECT cid, name, parent, description, thumb FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '$cid' LIMIT 1");
+		/*$result = cpg_db_query("SELECT cid, name, parent, description, thumb FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '$cid' LIMIT 1");
 
-        if (!mysql_num_rows($result)) {
-            cpg_die(ERROR, $lang_catmgr_php['unknown_cat'], __FILE__, __LINE__);
-        }
-        $current_category = mysql_fetch_array($result);	*/
+		if (!mysql_num_rows($result)) {
+			cpg_die(ERROR, $lang_catmgr_php['unknown_cat'], __FILE__, __LINE__);
+		}
+		$current_category = mysql_fetch_array($result);	*/
 		######################### DB #############################
 		$cpgdb->query($cpg_db_catmgr_php['getalpha_editcat'], $cid);
         if (!$cpgdb->Record) {
@@ -474,11 +472,11 @@ switch ($op) {
         $description = $superCage->post->getEscaped('description');
         $children=array();
         verify_children($cid, $cid);
-       /* if (!in_array($parent, $children)){
-        cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET parent='$parent', name='$name', description='$description', thumb='$thumb' WHERE cid = '$cid' LIMIT 1");
-        }else{
-                cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET name='$name', description='$description', thumb='$thumb' WHERE cid = '$cid' LIMIT 1");
-        }
+		/*if (!in_array($parent, $children)){
+		cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET parent='$parent', name='$name', description='$description', thumb='$thumb' WHERE cid = '$cid' LIMIT 1");
+		}else{
+				cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET name='$name', description='$description', thumb='$thumb' WHERE cid = '$cid' LIMIT 1");
+		}
 				
 		//insert in categorymap
 		//first delete all of this category in categorymap
@@ -526,18 +524,20 @@ switch ($op) {
         //$name = trim($_POST['name']) ? addslashes($_POST['name']) : '&lt;???&gt;';
         $description = $superCage->post->getEscaped('description');
 
-        //cpg_db_query("INSERT INTO {$CONFIG['TABLE_CATEGORIES']} (pos, parent, name, description) VALUES ('10000', '$parent', '$name', '$description')");
+        /*cpg_db_query("INSERT INTO {$CONFIG['TABLE_CATEGORIES']} (pos, parent, name, description) VALUES ('10000', '$parent', '$name', '$description')");
+		//insert in categorymap
+		$cid = cpg_db_last_insert_id();*/
 		#############################  DB  ##################################
 		$cpgdb->query($cpg_db_catmgr_php['createcat_insert_cats'], $parent, $name, $description);
-		##################################################################
 		//insert in categorymap
-		$cid = cpg_db_last_insert_id();
+		$cid = $cpgdb->insertId();
+		##################################################################
 		if ($superCage->post->keyExists('user_groups')) {
 			foreach ($superCage->post->getInt('user_groups') as $key) {
-			//	cpg_db_query("INSERT INTO {$CONFIG['TABLE_CATMAP']} (cid, group_id) VALUES('$cid', '$key')");
-			##############################  DB  ###################################
-			$cpgdb->query($cpg_db_catmgr_php['createcat_insert_catmaps'], $cid, $key);
-			#####################################################################
+				//cpg_db_query("INSERT INTO {$CONFIG['TABLE_CATMAP']} (cid, group_id) VALUES('$cid', '$key')");
+				##############################  DB  ###################################
+				$cpgdb->query($cpg_db_catmgr_php['createcat_insert_catmaps'], $cid, $key);
+				#####################################################################
 			}
 		}
 		break;
@@ -549,18 +549,18 @@ switch ($op) {
 
         $cid = $superCage->get->getInt('cid');
 
-    /*    $result = cpg_db_query("SELECT parent FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '$cid' LIMIT 1");
-        if ($cid == 1) cpg_die(ERROR, $lang_catmgr_php['usergal_cat_ro'], __FILE__, __LINE__);
-        if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_catmgr_php['unknown_cat'], __FILE__, __LINE__);
-        $del_category = mysql_fetch_array($result);
-        $parent = $del_category['parent'];
-        $result = cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET parent='$parent' WHERE parent = '$cid'");
-        $result = cpg_db_query("UPDATE {$CONFIG['TABLE_ALBUMS']} SET category='$parent' WHERE category = '$cid'");
-        $result = cpg_db_query("DELETE FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid='$cid' LIMIT 1");
+		/*$result = cpg_db_query("SELECT parent FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '$cid' LIMIT 1");
+		if ($cid == 1) cpg_die(ERROR, $lang_catmgr_php['usergal_cat_ro'], __FILE__, __LINE__);
+		if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_catmgr_php['unknown_cat'], __FILE__, __LINE__);
+		$del_category = mysql_fetch_array($result);
+		$parent = $del_category['parent'];
+		$result = cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET parent='$parent' WHERE parent = '$cid'");
+		$result = cpg_db_query("UPDATE {$CONFIG['TABLE_ALBUMS']} SET category='$parent' WHERE category = '$cid'");
+		$result = cpg_db_query("DELETE FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid='$cid' LIMIT 1");
 		
 		//delete from categorymap
 		cpg_db_query("DELETE FROM {$CONFIG['TABLE_CATMAP']} WHERE cid='$cid'");	*/
-	######################################  DB  #########################################
+		######################################  DB  #########################################
 		$cpgdb->query($cpg_db_catmgr_php['deletecat_select_parent'], $cid);
         if ($cid == 1) cpg_die(ERROR, $lang_catmgr_php['usergal_cat_ro'], __FILE__, __LINE__);
 		$rowset = $cpgdb->fetchRowSet();
@@ -573,7 +573,7 @@ switch ($op) {
 		
 		//delete from categorymap
 		$cpgdb->query($cpg_db_catmgr_php['deletecat_delete_catmap'], $cid);
-	##################################################################################
+		##################################################################################
         break;
 }
 

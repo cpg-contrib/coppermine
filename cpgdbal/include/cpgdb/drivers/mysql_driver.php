@@ -132,11 +132,16 @@ class cpgDB {
             $Password = $this->Password;
 
         /* establish connection, select database */
+		if($this->nodb != TRUE) {
+			$check_sql_values = " please check the SQL values in include/config.inc.php";
+		} else {
+			$check_sql_values = '';
+		}
         if (0 == $this->Link_ID) {
             $this->Link_ID = mysql_connect($Host, $User, $Password);
             if (!$this->Link_ID) {
                 //$this->halt("connect($Host, $User, \$Password) failed.");
-				$this->Error = "<hr /><br />Could not create a mySQL connection, please check the SQL values in include/config.inc.php<br /><br />MySQL error was : " . mysql_error() . "<br /><br />";
+				$this->Error = "<hr /><br />Could not create a mySQL connection, $check_sql_values<br /><br />MySQL error was : " . mysql_error() . "<br /><br />";
                 return 0;
             } 
 

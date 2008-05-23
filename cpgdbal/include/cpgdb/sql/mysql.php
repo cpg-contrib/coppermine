@@ -63,7 +63,7 @@ if (defined('BANNING_PHP')) $cpg_db_banning_php = array(
 //queries from bridgemgr.php
 /***********************************************************/
 if (defined('BRIDGEMGR_PHP')) $cpg_db_bridgemgr_php = array(
-	'get_db_tables'					=> 'SELECT * FROM '.$temp_tablename,
+	'get_db_tables'					=> "SELECT * FROM %1\$s",
 	'update_bridge'					=> "UPDATE {$CONFIG['TABLE_BRIDGE']} SET value = '%1\$s' WHERE name = '%2\$s'",
 	'enable_disable_bridge'			=> "UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '%1\$s' WHERE name = 'bridge_enable'",
 	'get_all_config'				=> "SELECT * FROM {$CONFIG['TABLE_CONFIG']}",
@@ -99,7 +99,7 @@ if (defined('BRIDGEMGR_PHP')) $cpg_db_bridgemgr_php = array(
 /******************************************************/
 //queries from calender.php
 /***********************************************************/
-if (defined('CALENDER_PHP')) $cpg_db_calender_php = array(
+if (defined('CALENDAR_PHP')) $cpg_db_calender_php = array(
 	'get_date_link'			=> "SELECT COUNT(pid) as count from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' ".
 							   "AND substring(from_unixtime(ctime),1,10) = '%1\$s' %2\$s"
 );
@@ -122,7 +122,7 @@ if (defined('CATMGR_PHP'))	$cpg_db_catmgr_php = array(
 	'edit_cat_alpha_sort'		=> "UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '%1\$s' WHERE name = 'categories_alpha_sort'",
 	'getalpha_move'				=> "UPDATE {$CONFIG['TABLE_CATEGORIES']} SET pos='%1\$s' WHERE cid = '%2\$s' LIMIT 1",
 //	'update_categories_04'		=> "UPDATE {$CONFIG['TABLE_CATEGORIES']} SET pos='$pos2' WHERE cid = '$cid2' LIMIT 1",
-	'getalpha_setparent'		=> "UPDATE {$CONFIG['TABLE_CATEGORIES']} SET parent='%1\$s', pos='-1' WHERE cid = '%1\$s' LIMIT 1",
+	'getalpha_setparent'		=> "UPDATE {$CONFIG['TABLE_CATEGORIES']} SET parent='%1\$s', pos='-1' WHERE cid = '%2\$s' LIMIT 1",
 	'getalpha_editcat'			=> "SELECT cid, name, parent, description, thumb FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '%1\$s' LIMIT 1",
 	'updatecat_no_parent'		=> "UPDATE {$CONFIG['TABLE_CATEGORIES']} SET parent='%1\$s', name='%2\$s', description='%3\$s', thumb='%4\$s' WHERE cid = '%5\$s' LIMIT 1",
 	'updatecat_parent'			=> "UPDATE {$CONFIG['TABLE_CATEGORIES']} SET name='%1\$s', description='%2\$s', thumb='%3\$s' WHERE cid = '%4\$s' LIMIT 1",
@@ -162,7 +162,7 @@ if (defined('DB_ECARD')) $cpg_db_dbecard_php = array(
 /******************************************************/
 //queries from db_input.php
 /***********************************************************/
-if (defined('DB_INPUT_PHP')) $cpg_db_dbinput = array(
+if (defined('DB_INPUT_PHP')) $cpg_db_dbinput_php = array(
 	'gal_admin_update'			=> "UPDATE {$CONFIG['TABLE_COMMENTS']} SET msg_body='%1\$s' WHERE msg_id='%2\$s'",
 	'user_admin_approval_2'		=> "UPDATE {$CONFIG['TABLE_COMMENTS']} SET msg_body='%1\$s', approval='NO' ".
 								   "WHERE msg_id='%2\$s' AND author_id ='%3\$s' LIMIT 1",
@@ -612,7 +612,7 @@ if (defined('MODIFYALB_PHP')) $cpg_db_modifyalb_php = array(
 	'get_user_admin_alb'		=> "SELECT * FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = %1\$s OR owner = '%2\$s' LIMIT 1",
 	'get_clean_alb'				=> "SELECT * FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='%1\$s'",
 	'get_pic_sum_hits'			=> "SELECT SUM(hits) as sum FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='%1\$s'",
-	'get_pic_sum_sum_votes'		=> "SELECT SUM(votes) as sum FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='%1\$s' AND votes > 0",
+	'get_pic_sum_votes'			=> "SELECT SUM(votes) as sum FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='%1\$s' AND votes > 0",
 	'count_pic_clean_alb'		=> "SELECT COUNT(*) as count FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='%1\$s'"
 );
 
@@ -984,7 +984,7 @@ if (defined('THUMBNAILS_PHP') || defined('INDEX_PHP')) $cpg_db_zipdownload_php =
 /**********************************************************************************************************/
 //	queries  from api/ cpgAPIAuth.php
 /**********************************************************************************************************/
-$cpg_db_api_auth_php = array(
+/*$cpg_db_api_auth_php = array(
 	'check_in_users_table'			=> "SELECT user_id, user_name, user_password FROM {$CONFIG['TABLE_USERS']} ".
 									   "WHERE user_name = '%1\$s' AND BINARY user_password = '%2\$s' AND user_active = 'YES'",
 	'authenticate_user'				=> "SELECT u.user_id AS id, u.user_name AS username, u.user_password AS password, ".
@@ -1006,46 +1006,46 @@ $cpg_db_api_auth_php = array(
 						               "FROM {$CONFIG['TABLE_USERGROUPS']} WHERE group_id in (%1\$s)",
 	'get_privilaged_group'			=> "SELECT group_name FROM  {$CONFIG['TABLE_USERGROUPS']} WHERE group_id= %1\$s",
 	'get_default_group'				=> "SELECT * FROM {$CONFIG['TABLE_USERGROUPS']} WHERE group_id = %1\$s"
-);
+);*/
 
 
 /**********************************************************************************************************/
 //	queries  from api/ cpgAPIcatList.php
 /**********************************************************************************************************/
-$cpg_db_api_catlist_php = array(
+/*$cpg_db_api_catlist_php = array(
 	'subcat_data_check_cid'		=> "SELECT cid, name, description  FROM {$CONFIG['TABLE_CATEGORIES']} ".
 								   " WHERE cid = '%1\$s'  ORDER BY pos",
 	'subcat_data_user_is_admin'	=> "SELECT user_name, user_id FROM {$CONFIG['TABLE_USERS']}",
 	'subcat_data_check_parent'	=> "SELECT cid, name, description  FROM {$CONFIG['TABLE_CATEGORIES']} ".
 								   " WHERE parent = '%1\$s'  ORDER BY pos",
 	'get_album_data'			=> "SELECT aid,title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = %1\$s %2\$s"
-);
+);*/
 
 
 /**********************************************************************************************************/
 //	queries  from api/ cpgAPIinit.inc.php
 /**********************************************************************************************************/
-$cpg_db_api_init_inc = array(
+/*$cpg_db_api_init_inc = array(
 	'get_all_config'	=> "SELECT * FROM {$CONFIG['TABLE_CONFIG']}"
-);
+);*/
 
 
 /**********************************************************************************************************/
 //	queries  from api/ cpgAPIpicmgmt.inc.php
 /**********************************************************************************************************/
-$cpg_db_api_picmgmt_inc = array(
+/*$cpg_db_api_picmgmt_inc = array(
 	'select_sum_total_filesize'	=> "SELECT sum(total_filesize) FROM {$CONFIG['TABLE_PICTURES']}, {$CONFIG['TABLE_ALBUMS']} WHERE  {$CONFIG['TABLE_PICTURES']}.aid = {$CONFIG['TABLE_ALBUMS']}.aid AND category = '" . (FIRST_USER_CAT + USER_ID) . "'",
 	'insert_into_pictures'		=> "INSERT INTO {$CONFIG['TABLE_PICTURES']} (pid, aid, filepath, filename, filesize, total_filesize, pwidth, pheight, ctime, owner_id, owner_name, title, caption, keywords, approved, user1, user2, user3, user4, pic_raw_ip, pic_hdr_ip, position) VALUES ('', '$aid', '" . addslashes($filepath) . "', '" . addslashes($filename) . "', '$image_filesize', '$total_filesize', '{$imagesize[0]}', '{$imagesize[1]}', '" . time() . "', '$user_id', '$username','$title', '$caption', '$keywords', '$approved', '$user1', '$user2', '$user3', '$user4', '$raw_ip', '$hdr_ip', '$position')"
-);
+);*/
 
 
 /**********************************************************************************************************/
 //	queries  from api/ cpgAPIupload.php
 /**********************************************************************************************************/
-$cpg_db_api_upload_php = array(
+/*$cpg_db_api_upload_php = array(
 	'select_category'			=> "SELECT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='".(int)$_POST['aid']."' and (uploads = 'YES' OR category = '" . (USER_ID + FIRST_USER_CAT) . "')",
 	'select_category_02'		=> "SELECT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='".(int)$_POST['aid']."'"
-);
+);*/
 
 
 
@@ -1064,7 +1064,7 @@ $cpg_db_coppermine_inc = array(
 	'get_user_group'			=> "SELECT user_group_list FROM %1\$s AS u WHERE %2\$s='%3\$s' and user_group_list <> '';",
 	'delete_old_sessions'		=> "delete from %1\$s where time<%2\$s and remember=0;",
 	'delete_remember_sessions'	=> "delete from %1\$s where time<%2\$s;",
-	'check_valid_session'		=> "select user_id from %1\$s where session_id='%2\$s';",
+	'check_valid_session'		=> "select user_id, time from %1\$s where session_id='%2\$s';",
 	'check_session_user'		=> "select user_id as id, user_password as password from %1\$s where user_id=%2\$s",
 	'session_update'			=> "update %1\$s set time='%2\$s' where session_id='%3\$s';",
 	'create_session'			=> "insert into %1\$s (session_id, user_id, time, remember) values ('%2\$s', 0, '%3\$s', 0);",

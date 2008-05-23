@@ -270,7 +270,7 @@ function form_alb_thumb($text, $name)
 	#####################################        DB        ###################################
 	$cpgdb->query($cpg_db_modifyalb_php['form_alb_thumb_get_pic'], $CLEAN['album'], $keyword);
 	$rowset = $cpgdb->fetchRowSet();
-	if (count($rowset))
+	if (count($rowset) == 0)
 	################################################################################
 	{
         echo <<<EOT
@@ -300,12 +300,20 @@ Pic[0] = '$initial_thumb_url'
 EOT;
 
     $img_list = array(0 => $lang_modifyalb_php['last_uploaded'], -1 => $lang_modifyalb_php['random_image']);
-    while ($picture = mysql_fetch_array($results)) {
-        $thumb_url = get_pic_url($picture, 'thumb');
-        echo "Pic[{$picture['pid']}] = '" . $thumb_url . "'\n";
-        if ($picture['pid'] == $ALBUM_DATA[$name]) $initial_thumb_url = $thumb_url;
-        $img_list[$picture['pid']] = htmlspecialchars($picture['filename']);
-    } // while
+	/*while ($picture = mysql_fetch_array($results)) {
+		$thumb_url = get_pic_url($picture, 'thumb');
+		echo "Pic[{$picture['pid']}] = '" . $thumb_url . "'\n";
+		if ($picture['pid'] == $ALBUM_DATA[$name]) $initial_thumb_url = $thumb_url;
+		$img_list[$picture['pid']] = htmlspecialchars($picture['filename']);
+	} // while*/
+	#####################################      DB     #####################################
+	foreach ($rowset as $picture) {
+		$thumb_url = get_pic_url($picture, 'thumb');
+		echo "Pic[{$picture['pid']}] = '" . $thumb_url . "'\n";
+		if ($picture['pid'] == $ALBUM_DATA[$name]) $initial_thumb_url = $thumb_url;
+		$img_list[$picture['pid']] = htmlspecialchars($picture['filename']);
+	} // foreach
+	#####################################################################################
     echo <<<EOT
 
 function ChangeThumb(index)
@@ -818,17 +826,17 @@ if (GALLERY_ADMIN_MODE) {
 	if (!$files) { $files = 0; }
 	mysql_free_result($result);	*/
 	################################        DB      ##############################
-	$cpgb->query($cpg_db_modifyalb_php['get_pic_sum_hits'], $CLEAN['album']);
+	$cpgdb->query($cpg_db_modifyalb_php['get_pic_sum_hits'], $CLEAN['album']);
 	$nbEnr = $cpgdb->fetchRow();
 	$hits = $nbEnr['sum'];
 	if (!$hits) { $hits = 0; }
 	$cpgdb->free();
-	$cpgb->query($cpg_db_modifyalb_php['get_pic_sum_votes'], $CLEAN['album']);
+	$cpgdb->query($cpg_db_modifyalb_php['get_pic_sum_votes'], $CLEAN['album']);
 	$nbEnr = $cpgdb->fetchRow();
 	$votes = $nbEnr['sum'];
 	if (!$votes) { $votes = 0; }
 	$cpgdb->free();
-	$cpgb->query($cpg_db_modifyalb_php['count_pic_clean_alb'], $CLEAN['album']);
+	$cpgdb->query($cpg_db_modifyalb_php['count_pic_clean_alb'], $CLEAN['album']);
 	$nbEnr = $cpgdb->fetchRow();
 	$files = $nbEnr['count'];
 	if (!$files) { $files = 0; }

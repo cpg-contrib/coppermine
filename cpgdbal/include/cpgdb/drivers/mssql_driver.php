@@ -48,8 +48,8 @@ class cpgDB {
 	/* */
 	var $lock_querytime = FALSE;	## when TRUE, cpggetmicrotime not available.
 	var $update = FALSE;	## when TRUE, failure of query return no errors;
+	var $nodb = FALSE;		## when TRUE, no database name is required in conect function (for install.php)
 	var $install_auth_mode = 'windows';		##  when 'sqlserver', sql server authentication mode will be used.
-
     /**
      * 
      * @var array $queries
@@ -144,7 +144,12 @@ class cpgDB {
         {    
 			$Password = $this->Password;
 		}
-		$connect_info['Database'] = $Database;//'testdb';
+		if ($this->nodb != TRUE) {
+			$connect_info['Database'] = $Database;
+			$check_sql_values = " please check the SQL values in include/config.inc.php";
+		} else {
+			$check_sql_values = '';
+		}
 		if ($CONFIG[auth_mode] == 'sqlserver' || $this->install_auth_mode == 'sqlserver') {
 			$connect_info['UID'] = $User;	
 			$connect_info['PWD'] = $Password;
@@ -154,11 +159,11 @@ class cpgDB {
 			$this->Link_ID = sqlsrv_connect($Host, $connect_info);
 			if (!$this->Link_ID) {
 				//$this->halt("connect($Host) failed.");
-				$this->Error = "<hr /><br />Could not create a MSSQL connection, please check the SQL values in include/config.inc.php<br />MSSQL error was : <br />";
+				$this->Error = "<hr /><br />Could not create a MSSQL connection, $check_sql_values<br />MSSQL error was : <br />";
 				foreach (sqlsrv_errors() as $err) {
-					$this->Error .= "SQLSTATE: ".$error['SQLSTATE']."<br/>";
-					$this->Error .= "Code: ".$error['code']."<br/>";
-					$this->Error .= "Message: ".($error['message'])."<br/><br />";
+					$this->Error .= "<br />SQLSTATE: ".$err['SQLSTATE']."<br/>";
+					$this->Error .= "Code: ".$err['code']."<br/>";
+					$this->Error .= "Message: ".($err['message'])."<br/><br />";
 				}
 				return 0;
 			} 
@@ -232,6 +237,7 @@ class cpgDB {
         //$this->Error =  @sqlsrv_errors();
         if (!$this->Query_ID && $this->update != TRUE) {
             //$this->halt("Invalid SQL: " . $Query_String);
+			$this->Error = sqlsrv_errors();
 			$this->db_error("Invalid SQL:".$Query_String);
         } 
 
@@ -243,7 +249,7 @@ class cpgDB {
 			if (isset($CONFIG['debug_mode']) && (($CONFIG['debug_mode']==1) || ($CONFIG['debug_mode']==2) )) {
 				$duration = round($query_end - $query_start, 3);
 				$query_stats[] = $duration;
-				$queries[] = $Query_String . " ({$duration}s)"; 
+				$queries[] = $Query_String . " ({$duration}s)";// query_id=>".$this->Query_ID; 
 			}
 		}
 		
@@ -368,7 +374,7 @@ class cpgDB {
      */
     function affectedRows()
     {
-        return @sqlsrv_rows_affected($this->Link_ID);
+		return @sqlsrv_rows_affected($this->Query_ID);
     } 
 
 
@@ -467,10 +473,10 @@ class cpgDB {
 			cpg_die(CRITICAL_ERROR, $lang_errors['database_query'], __FILE__, __LINE__);
 		} else {
 				$the_error .= "\n\nMSSQL error: \n";
-				foreach (sqlsrv_errors() as $err) {
-					echo "SQLSTATE: ".$error['SQLSTATE']."<br/>";
-					echo "Code: ".$error['code']."<br/>";
-					echo "Message: ".($error['message'])."<br/>";
+				foreach ($this->Error as $err) {
+					echo "<br />SQLSTATE: ".$err['SQLSTATE']."<br/>";
+					echo "Code: ".$err['code']."<br/>";
+					echo "Message: ".($err['message'])."<br/>";
 				}
 				$out = "<br />".$lang_errors['database_query'].".<br /><br/>
 					<form name=\"mssql\" id=\"mssql\"><textarea rows=\"8\" cols=\"60\">".htmlspecialchars($the_error)."</textarea></form>";

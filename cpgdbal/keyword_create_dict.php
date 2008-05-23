@@ -70,7 +70,7 @@ $i=0;
 			$cpgdb->free();
 
 			if (count($rowset2) == 0 && $keyword != "" && $keyword != " ") {
-				$cpgdb->query($cpg_db_keyword__create_dict_php['set_dict_keyword'], $keyword);
+				$cpgdb->query($cpg_db_keyword_create_dict_php['set_dict_keyword'], $keyword);
 				echo "* ";
 				$i++ ;
 			} else {

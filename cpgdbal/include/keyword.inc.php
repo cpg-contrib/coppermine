@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4224 $
+  $Revision: 4459 $
   $LastChangedBy: gaugau $
-  $Date: 2008-01-26 17:12:00 +0530 (Sat, 26 Jan 2008) $
+  $Date: 2008-05-21 16:25:53 +0530 (Wed, 21 May 2008) $
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
@@ -87,7 +87,7 @@ if (count($rowset)) {
     $url = basename($CPG_PHP_SELF);
     if ($url != "keywordmgr.php"){
     echo '<tr><td class="tableb" align="center">';
-    echo '<a href="keywordmgr.php" class="admin_menu">Edit Keywords</a>';
+    echo '<a href="keywordmgr.php" class="admin_menu">' . $lang_search_php['edit_keywords'] . '</a>';
     echo "</td></tr>" ;
     }
   } else {

@@ -289,7 +289,7 @@
 	BEGIN
 		CREATE TABLE CPG_temp_data (
 			unique_ID VARCHAR(8)  NOT NULL  ,
-			encoded_string VARBINARY(255)  NOT NULL  ,
+			encoded_string VARBINARY(8000)  NOT NULL  ,
 			timestamp INTEGER  NOT NULL    ,
 			PRIMARY KEY(unique_ID))
 	END;

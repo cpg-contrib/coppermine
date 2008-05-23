@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4224 $
+  $Revision: 4463 $
   $LastChangedBy: gaugau $
-  $Date: 2008-01-26 17:12:00 +0530 (Sat, 26 Jan 2008) $
+  $Date: 2008-05-23 06:29:27 +0530 (Fri, 23 May 2008) $
 **********************************************/
 
 // ------------------------------------------------------------------------- //
@@ -107,26 +107,29 @@ EOT;
 // HTML template for title row of the thumbnail view (album title + sort options)
 $template_thumb_view_title_row = <<<EOT
 
-                        <table width="100%" cellpadding="0" cellspacing="0">
-                        <tr>
-                                <td width="100%" class="statlink">{ALBUM_NAME}</td>
-                                <td class="sortorder_options" style="font-size: 100%;">{TITLE}</td>
-                                <td class="sortorder_options" style="font-size: 100%;"><span class="statlink"><a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=ta" title="{SORT_TA}">&nbsp;+&nbsp;</a></span></td>
-                                <td class="sortorder_options" style="font-size: 100%;"><span class="statlink"><a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=td" title="{SORT_TD}">&nbsp;-&nbsp;</a></span></td>
-                                <td>&nbsp;&nbsp;</td>
-                                <td class="sortorder_options" style="font-size: 100%;">{NAME}</td>
-                                <td class="sortorder_options" style="font-size: 100%;"><span class="statlink"><a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=na" title="{SORT_NA}">&nbsp;+&nbsp;</a></span></td>
-                                <td class="sortorder_options" style="font-size: 100%;"><span class="statlink"><a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=nd" title="{SORT_ND}">&nbsp;-&nbsp;</a></span></td>
-                                <td>&nbsp;&nbsp;</td>
-                                <td class="sortorder_options" style="font-size: 100%;">{DATE}</td>
-                                <td class="sortorder_options" style="font-size: 100%;"><span class="statlink"><a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=da" title="{SORT_DA}">&nbsp;+&nbsp;</a></span></td>
-                                <td class="sortorder_options" style="font-size: 100%;"><span class="statlink"><a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=dd" title="{SORT_DD}">&nbsp;-&nbsp;</a></span></td>
-                                <td>&nbsp;&nbsp;</td>
-                                <td class="sortorder_options" style="font-size: 100%;">{POSITION}</td>
-                                <td class="sortorder_options" style="font-size: 100%;"><span class="statlink"><a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=pa" title="{SORT_PA}">&nbsp;+&nbsp;</a></span></td>
-                                <td class="sortorder_options" style="font-size: 100%;"><span class="statlink"><a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=pd" title="{SORT_PD}">&nbsp;-&nbsp;</a></span></td>
-                        </tr>
-                        </table>
+                    <!-- Use JavaScript to display the sorting options only to humans, but hide them from search engines to avoid double-content indexing -->
+                    <script type="text/javascript">
+                        document.write('<table width="100%" cellpadding="0" cellspacing="0">');
+	                    document.write('    <tr>');
+	                    document.write('            <td width="100%" class="statlink">{ALBUM_NAME}</td>');
+	                    document.write('            <td class="sortorder_options" style="font-size: 100%;">{TITLE}</td>');
+	                    document.write('            <td class="sortorder_options" style="font-size: 100%;"><span class="statlink">&nbsp;<a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=ta" title="{SORT_TA}">+</a>&nbsp;</span></td>');
+	                    document.write('            <td class="sortorder_options" style="font-size: 100%;"><span class="statlink">&nbsp;<a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=td" title="{SORT_TD}">-</a>&nbsp;</span></td>');
+	                    document.write('            <td></td>');
+	                    document.write('            <td class="sortorder_options" style="font-size: 100%;">{NAME}</td>');
+	                    document.write('            <td class="sortorder_options" style="font-size: 100%;"><span class="statlink">&nbsp;<a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=na" title="{SORT_NA}">+</a>&nbsp;</span></td>');
+	                    document.write('            <td class="sortorder_options" style="font-size: 100%;"><span class="statlink">&nbsp;<a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=nd" title="{SORT_ND}">-</a>&nbsp;</span></td>');
+	                    document.write('            <td></td>');
+	                    document.write('            <td class="sortorder_options" style="font-size: 100%;">{DATE}</td>');
+	                    document.write('            <td class="sortorder_options" style="font-size: 100%;"><span class="statlink">&nbsp;<a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=da" title="{SORT_DA}">+</a>&nbsp;</span></td>');
+	                    document.write('            <td class="sortorder_options" style="font-size: 100%;"><span class="statlink">&nbsp;<a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=dd" title="{SORT_DD}">-</a>&nbsp;</span></td>');
+	                    document.write('            <td></td>');
+	                    document.write('            <td class="sortorder_options" style="font-size: 100%;">{POSITION}</td>');
+	                    document.write('            <td class="sortorder_options" style="font-size: 100%;"><span class="statlink">&nbsp;<a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=pa" title="{SORT_PA}">+</a>&nbsp;</span></td>');
+	                    document.write('            <td class="sortorder_options" style="font-size: 100%;"><span class="statlink">&nbsp;<a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=pd" title="{SORT_PD}">-</a>&nbsp;</span></td>');
+	                    document.write('    </tr>');
+                        document.write('</table>');
+                    </script>
 
 EOT;
 

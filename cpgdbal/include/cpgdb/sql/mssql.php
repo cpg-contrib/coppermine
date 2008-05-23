@@ -15,7 +15,7 @@ if (defined('RATEPIC_PHP')) $cpg_db_addfav_php = array(
 //queries from addpic.php
 /***********************************************************/
 if(defined('ADDPIC_PHP')) $cpg_db_addpic_php = array(
-	'addpic_get_pid'			=> "SELECT pid FROM {$CONFIG['TABLE_PICTURES']} WHERE filepath='%1\$s' AND filename='%2\$s' LIMIT 1"
+	'addpic_get_pid'			=> "SELECT TOP 1 pid FROM {$CONFIG['TABLE_PICTURES']} WHERE filepath='%1\$s' AND filename='%2\$s'"
 );
 
 
@@ -61,11 +61,11 @@ if (defined('BANNING_PHP')) $cpg_db_banning_php = array(
 //queries from bridgemgr.php
 /***********************************************************/
 if (defined('BRIDGEMGR_PHP')) $cpg_db_bridgemgr_php = array(
-	'get_db_tables'					=> 'SELECT * FROM '.$temp_tablename,
+	'get_db_tables'					=> "SELECT * FROM %1\$s",
 	'update_bridge'					=> "UPDATE {$CONFIG['TABLE_BRIDGE']} SET value = '%1\$s' WHERE name = '%2\$s'",
 	'enable_disable_bridge'			=> "UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '%1\$s' WHERE name = 'bridge_enable'",
 	'get_all_config'				=> "SELECT * FROM {$CONFIG['TABLE_CONFIG']}",
-	'usergroup_delete'				=> "DELETE FROM {$CONFIG['TABLE_USERGROUPS']} WHERE 1=1",
+	'usergroup_delete'				=> "TRUNCATE TABLE {$CONFIG['TABLE_USERGROUPS']}",//"DELETE FROM {$CONFIG['TABLE_USERGROUPS']} WHERE 1=1",
 	'insert_admin'					=> "INSERT INTO {$CONFIG['TABLE_USERGROUPS']} ".
 									   "VALUES ('Administrators', 0, 1, 1, 1, 1, 1, 1, 0, 0, 3, 0, 5, 3)",
 	'insert_registered'				=> "INSERT INTO {$CONFIG['TABLE_USERGROUPS']} ".
@@ -97,9 +97,9 @@ if (defined('BRIDGEMGR_PHP')) $cpg_db_bridgemgr_php = array(
 /******************************************************/
 //queries from calender.php
 /***********************************************************/
-if (defined('CALENDER_PHP')) $cpg_db_calender_php = array(
-	'get_date_link'			=> "DECLARE @UNIX_TIMESTAMP int".
-							   "SELECT @UNIX_TIMESTAMP = ctime FROM {$CONFIG['TABLE_PICTURES']}".
+if (defined('CALENDAR_PHP')) $cpg_db_calender_php = array(
+	'get_date_link'			=> "DECLARE @UNIX_TIMESTAMP int  ".
+							   "SELECT @UNIX_TIMESTAMP = ctime FROM {$CONFIG['TABLE_PICTURES']}  ".
 							   "SELECT COUNT(pid) as count from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' ".
 							   "AND CONVERT(VARCHAR(10), DATEADD(s, @UNIX_TIMESTAMP, '01/01/1970'), 105) = '%1\$s' %2\$s"
 );
@@ -122,13 +122,14 @@ if (defined('CATMGR_PHP'))	$cpg_db_catmgr_php = array(
 	'edit_cat_alpha_sort'		=> "UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '%1\$s' WHERE name = 'categories_alpha_sort'",
 	'getalpha_move'				=> "UPDATE {$CONFIG['TABLE_CATEGORIES']} SET pos='%1\$s' WHERE cid = '%2\$s'",
 //	'update_categories_04'		=> "UPDATE {$CONFIG['TABLE_CATEGORIES']} SET pos='$pos2' WHERE cid = '$cid2' LIMIT 1",
-	'getalpha_setparent'		=> "UPDATE {$CONFIG['TABLE_CATEGORIES']} SET parent='%1\$s', pos='-1' WHERE cid = '%1\$s'",
+	'getalpha_setparent'		=> "UPDATE {$CONFIG['TABLE_CATEGORIES']} SET parent='%1\$s', pos='-1' WHERE cid = '%2\$s'",
 	'getalpha_editcat'			=> "SELECT TOP 1 cid, name, parent, description, thumb FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '%1\$s'",
 	'updatecat_no_parent'		=> "UPDATE {$CONFIG['TABLE_CATEGORIES']} SET parent='%1\$s', name='%2\$s', description='%3\$s', thumb='%4\$s' WHERE cid = '%5\$s'",
 	'updatecat_parent'			=> "UPDATE {$CONFIG['TABLE_CATEGORIES']} SET name='%1\$s', description='%2\$s', thumb='%3\$s' WHERE cid = '%4\$s'",
 	'updatecat_delete'			=> "DELETE FROM {$CONFIG['TABLE_CATMAP']} WHERE cid='%1\$s'",
 	'updatecat_insert'			=> "INSERT INTO {$CONFIG['TABLE_CATMAP']} (cid, group_id) VALUES('%1\$s', '%2\$s')",
-	'createcat_insert_cats'		=> "INSERT INTO {$CONFIG['TABLE_CATEGORIES']} (pos, parent, name, description) VALUES ('10000', '%1\$s', '%2\$s', '%3\$s')",
+	'createcat_insert_cats'		=> "INSERT INTO {$CONFIG['TABLE_CATEGORIES']} (pos, parent, name, description) ".
+								   "VALUES ('10000', '%1\$s', '%2\$s', '%3\$s'); SELECT SCOPE_IDENTITY() AS cid",
 	'createcat_insert_catmaps'	=> "INSERT INTO {$CONFIG['TABLE_CATMAP']} (cid, group_id) VALUES('%1\$s', '%2\$s')",
 	'deletecat_select_parent'	=> "SELECT TOP 1 parent FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '%1\$s'",
 	'deletecat_edit_cats'		=> "UPDATE {$CONFIG['TABLE_CATEGORIES']} SET parent='%1\$s' WHERE parent = '%2\$s'",
@@ -163,7 +164,7 @@ if (defined('DB_ECARD')) $cpg_db_dbecard_php = array(
 /******************************************************/
 //queries from db_input.php
 /***********************************************************/
-if (defined('DB_INPUT_PHP')) $cpg_db_dbinput = array(
+if (defined('DB_INPUT_PHP')) $cpg_db_dbinput_php = array(
 	'gal_admin_update'			=> "UPDATE {$CONFIG['TABLE_COMMENTS']} SET msg_body='%1\$s' WHERE msg_id='%2\$s'",
 	'user_admin_approval_2'		=> "UPDATE {$CONFIG['TABLE_COMMENTS']} SET msg_body='%1\$s', approval='NO' ".
 								   "WHERE msg_id='%2\$s' AND author_id ='%3\$s'",
@@ -627,7 +628,7 @@ if (defined('MODIFYALB_PHP')) $cpg_db_modifyalb_php = array(
 	'get_user_admin_alb'		=> "SELECT TOP 1 * FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = %1\$s OR owner = '%2\$s' ",
 	'get_clean_alb'				=> "SELECT * FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='%1\$s'",
 	'get_pic_sum_hits'			=> "SELECT SUM(hits) as sum FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='%1\$s'",
-	'get_pic_sum_sum_votes'		=> "SELECT SUM(votes) as sum FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='%1\$s' AND votes > 0",
+	'get_pic_sum_votes'			=> "SELECT SUM(votes) as sum FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='%1\$s' AND votes > 0",
 	'count_pic_clean_alb'		=> "SELECT COUNT(*) as count FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='%1\$s'"
 );
 
@@ -889,11 +890,11 @@ if (defined('UPLOAD_PHP') || defined('DB_INPUT_PHP') || defined('ADMIN_PHP')) $c
 	'get_cat_ancestry'				=> "SELECT cid, parent, name FROM " . $CONFIG['TABLE_CATEGORIES'] . " WHERE 1=1",
 	'get_all_tempdata_id'			=> "SELECT unique_ID FROM {$CONFIG['TABLE_TEMPDATA']}",
 	'add_tempdata'					=> "INSERT INTO {$CONFIG['TABLE_TEMPDATA']} ".
-									   "VALUES ('%1\$s', CONVERT(VARBINARY(254), '%2\$s'), '%3\$s')",
-	'update_record_tempdata'		=> "UPDATE {$CONFIG['TABLE_TEMPDATA']} SET encoded_string = CONVERT(VARBINARY(254), '%1\$s') ".
+									   "VALUES ('%1\$s', CONVERT(VARBINARY(8000), '%2\$s'), '%3\$s')",
+	'update_record_tempdata'		=> "UPDATE {$CONFIG['TABLE_TEMPDATA']} SET encoded_string = CONVERT(VARBINARY(8000), '%1\$s') ".
 									   "WHERE unique_ID = '%2\$s'",
 	'delete_record_tempdata'		=> "DELETE FROM {$CONFIG['TABLE_TEMPDATA']} WHERE unique_ID = '%1\$s'",
-	'retrieve_record_tempdata'		=> "SELECT CONVERT(VARCHAR(255), encoded_string) as encoded_string ".
+	'retrieve_record_tempdata'		=> "SELECT CONVERT(VARCHAR(8000), encoded_string) as encoded_string ".
 									   "FROM {$CONFIG['TABLE_TEMPDATA']}  WHERE unique_ID = '%1\$s'",
 	'clean_table_tempdata'			=> "DELETE FROM {$CONFIG['TABLE_TEMPDATA']} WHERE timestamp < %1\$s",
 	'gal_admin_public_alb'			=> "SELECT aid, title, cid, name FROM {$CONFIG['TABLE_ALBUMS']} ".
@@ -1023,7 +1024,7 @@ $cpg_db_coppermine_inc = array(
 	'get_user_group'			=> "SELECT user_group_list FROM %1\$s AS u WHERE %2\$s='%3\$s' and user_group_list <> '';",
 	'delete_old_sessions'		=> "delete from %1\$s where time<%2\$s and remember=0;",
 	'delete_remember_sessions'	=> "delete from %1\$s where time<%2\$s;",
-	'check_valid_session'		=> "select user_id from %1\$s where session_id='%2\$s';",
+	'check_valid_session'		=> "select user_id, time from %1\$s where session_id='%2\$s';",
 	'check_session_user'		=> "select user_id as id, user_password as password from %1\$s where user_id=%2\$s",
 	'session_update'			=> "update %1\$s set time='%2\$s' where session_id='%3\$s';",
 	'create_session'			=> "insert into %1\$s (session_id, user_id, time, remember) values ('%2\$s', 0, '%3\$s', 0);",
@@ -1546,7 +1547,7 @@ $cpg_db_picmgmt_inc = array(
 $cpg_db_plugin_api_inc = array(
 	'load_plugins'			=> "select * from ".$CONFIG['TABLE_PLUGINS']." order by priority asc;",
 	'get_installed_plugin'	=> "select plugin_id from ".$CONFIG['TABLE_PLUGINS']." where path='%1\$s';",
-	'get_plugin_priority'	=> "select priority from ".$CONFIG['TABLE_PLUGINS']." order by priority desc limit 1;",
+	'get_plugin_priority'	=> "select TOP 1 priority from ".$CONFIG['TABLE_PLUGINS']." order by priority desc;",
 	'install_plugin'		=> "insert into ".$CONFIG['TABLE_PLUGINS']." (name, path,priority)  ".
 							   "values ('%1\$s','%2\$s',%3\$s);",
 	'plugin_delete'			=> "delete from ".$CONFIG['TABLE_PLUGINS']." where plugin_id=%1\$s;",

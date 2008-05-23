@@ -50,7 +50,7 @@ if (count($FAVPICS)>0){
 		$rowset = cpg_db_fetch_rowset($result);	*/
 		##############################            DB          #############################
 		$cpgdb->query($cpg_db_zipdownload_php['get_favpics'], $select_columns, $favs);
-		$rowset =$cpgdb->fetrchRowSet();
+		$rowset =$cpgdb->fetchRowSet();
 		######################################################################
         foreach ($rowset as $key => $row){
 

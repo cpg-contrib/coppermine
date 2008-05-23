@@ -204,7 +204,7 @@ function process_post_data()
 		}
 
 		if ($superCage->post->keyExists('reset_vcount'.$pid)) {
-			$reset_vcount = $superCage->post-getInt('reset_vcount'.$pid);
+			$reset_vcount = $superCage->post->getInt('reset_vcount'.$pid);
 		}
 
 		if ($superCage->post->keyExists('reset_votes'.$pid)){

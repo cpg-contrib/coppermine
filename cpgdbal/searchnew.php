@@ -90,18 +90,23 @@ $rowCounter = 0;
 
         //if (defined('UDB_INTEGRATION')) {
             $sql = $cpg_udb->get_batch_add_album_list();
-        /*} else {
-            $sql = "SELECT aid, CONCAT('(', user_name, ') ', title) AS title " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "INNER JOIN {$CONFIG['TABLE_USERS']} AS u ON category = (" . FIRST_USER_CAT . " + user_id)";
-        }*/
-        $result = cpg_db_query($sql);
-        while ($row = mysql_fetch_array($result)) {
+		/*} else {
+			$sql = "SELECT aid, CONCAT('(', user_name, ') ', title) AS title " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "INNER JOIN {$CONFIG['TABLE_USERS']} AS u ON category = (" . FIRST_USER_CAT . " + user_id)";
+		}*/
+		/*$result = cpg_db_query($sql);
+		while ($row = mysql_fetch_array($result)) {*/
+		###################     DB      #################
+		$result = $cpgdb->query($sql);
+		while ($row = $cpgdb->fetchRow()) {
+		##############################################
             // Add to multi-dim array for later sorting
             $listArray[$list_count]['cat'] = $lang_search_new_php['personal_albums'];
             $listArray[$list_count]['aid'] = $row['aid'];
             $listArray[$list_count]['title'] = $row['title'];
             $list_count++;
         }
-        mysql_free_result($result);
+        //mysql_free_result($result);
+		$cpgdb->free();		########	cpgdb_AL
 
         $select = '<option value="0">' . $lang_search_new_php['select_album'] . "</option>\n";
 

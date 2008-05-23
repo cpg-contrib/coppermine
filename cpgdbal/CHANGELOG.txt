@@ -10,9 +10,9 @@ as published by the Free Software Foundation.
 ********************************************
 Coppermine version: 1.5.0
 $Source$
-$Revision: 4447 $
+$Revision: 4461 $
 $Author: gaugau $
-$Date: 2008-05-04 04:08:42 +0530 (Sun, 04 May 2008) $
+$Date: 2008-05-23 06:28:47 +0530 (Fri, 23 May 2008) $
 *********************************************
 Changelog
 =========
@@ -25,6 +25,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-05-23 [O] Use JavaScript to display the sorting options only to humans, but hide them from search engines to avoid double-content indexing {GauGau}
+2008-05-21 [B] Replaced hard-coded string "edit keywords" with translation (thread ID 52721) {GauGau}
 2008-05-04 [B] Fixed resources consumption for slideshows in meta albums {GauGau}
 2008-05-03 [B] Fixing the type being translated in reports {GauGau}
 2008-05-01 [O] Optimization of sanitization of strip-Tags and max. length for comments {GauGau}

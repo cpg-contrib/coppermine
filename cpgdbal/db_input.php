@@ -119,10 +119,10 @@ switch ($event) {
 		}	*/
 		#######################################		DB		######################################
         if (GALLERY_ADMIN_MODE) {
-            $update = $cpgdb->query()($cpg_db_dbinput_php['user_admin_update'], $msg_body, $msg_id);
+            $update = $cpgdb->query($cpg_db_dbinput_php['user_admin_update'], $msg_body, $msg_id);
         } elseif (USER_ID) {
             if ($CONFIG['comment_approval'] == 2) {
-                $update = $cpgdb->query($cpg_db_dbinput['user_admin_approval_2'], $msg_body, $msg_id, USER_ID);
+                $update = $cpgdb->query($cpg_db_dbinput_php['user_admin_approval_2'], $msg_body, $msg_id, USER_ID);
             } else {
                 $update = $cpgdb->query($cpg_db_dbinput_php['user_admin_approval'], $msg_body, $msg_id, USER_ID);
             }
@@ -253,10 +253,10 @@ switch ($event) {
 			###########################################		DB		########################################
 			if ($CONFIG['comment_approval'] != 0) { // comments need approval, set approval status to "no"
 				$insert = $cpgdb->query($cpg_db_dbinput_php['anonymous_user_comment'], $pid, 
-								$CONFIG['comments_anon_pfx']$msg_author, $msg_body, $USER['ID'], $raw_ip, $hdr_ip, 'NO');
+								$CONFIG['comments_anon_pfx'].''.$msg_author, $msg_body, $USER['ID'], $raw_ip, $hdr_ip, 'NO');
 			} else { //comments do not need approval, we can set approval status to "yes"
 				$insert = $cpgdb->query($cpg_db_dbinput_php['anonymous_user_comment'], $pid, 
-								$CONFIG['comments_anon_pfx']$msg_author, $msg_body, $USER['ID'], $raw_ip, $hdr_ip, 'YES');
+								$CONFIG['comments_anon_pfx'].''.$msg_author, $msg_body, $USER['ID'], $raw_ip, $hdr_ip, 'YES');
 			}
 			##################################################################################################
 
@@ -338,14 +338,14 @@ switch ($event) {
 		######################################		DB		######################################
 		if (GALLERY_ADMIN_MODE) {
 			$moderator_group = $superCage->post->getInt('moderator_group');
-			$cpgdb->query($cpg_db_dbinput_php['gal_admin_update_albums'], $title, $description, $category, $thumb, $uploads
+			$cpgdb->query($cpg_db_dbinput_php['gal_admin_update_albums'], $title, $description, $category, $thumb, $uploads, 
 							$comments, $votes, $visibility, $password, $password_hint, $keyword, $moderator_group, $aid);
 		} else {
-			$cpgdb->query($cpg_db_dbinput_php['user_admin_update_albums'], $title, $description, $category, $thumb, $comments
+			$cpgdb->query($cpg_db_dbinput_php['user_admin_update_albums'], $title, $description, $category, $thumb, $comments, 
 							$votes, $visibility, $password, $password_hint, $keyword, $aid);
 		}
 		
-		if ($cpgdb->affectedRows())
+		if (!$cpgdb->affectedRows())
 		#########################################################################################
 		{
           cpgRedirectPage('modifyalb.php?album='.$aid, $lang_db_input_php['info'], $lang_db_input_php['no_udp_needed'], 0);

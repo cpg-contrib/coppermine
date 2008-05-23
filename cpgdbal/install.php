@@ -747,7 +747,7 @@ function html_sql_start() {		#######	cpgdb install
          </tr>
          <?php 
 		 	if($install->sql_connected) {	######## cpgdb install
-				?>
+		 ?>
 		<tr>
 		  <td colspan="2" align="center" class="tableh2">
             <input type="submit" value="<?php echo $install->language['continue']; ?>" /><br /><br />
@@ -1566,8 +1566,8 @@ class CPGInstall{
 		} else {
 			if (isset($this->config['db_name'])) {
 				$db_name = $this->config['db_name'];
-			} elseif ($this->config['dbservername'] == 'mssql') {
-				$db_name = 'cpg';	## database name is must for mssql for connection, if not available, select master as default just to check the connection
+			//} elseif ($this->config['dbservername'] == 'mssql') {
+			//	$db_name = 'cpg';	## database name is must for mssql for connection, if not available, select master as default just to check the connection
 			} else {
 				$cpginstall->nodb = TRUE;	//	for mysql when $db_name = ''
 				$db_name = '';
@@ -1858,7 +1858,7 @@ class CPGInstall{
 					$is_table = true;
 				}
 			} elseif ($this->config['dbservername'] == 'mssql') {
-				if (preg_match('/(IF NOT EXISTS `?|CREATE TABLE `?)([\w]*)`?/i', $q, $table_match)) {
+				if (preg_match('/(CREATE TABLE `?)([\w]*)`?/i', $q, $table_match)) {
 					$table = $table_match[2];
 					$is_table = true;
 				}

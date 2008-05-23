@@ -247,7 +247,7 @@ function cpgdbal_connect()
 		}
 	} elseif ($CONFIG['dbservername'] == 'mssql') {
 		$connectioninfo = array();
-		if ($CONFIG['auth_mode'] == 'sqlserver') {
+		if ($CONFIG[auth_mode] == 'sqlserver') {
 			$connectioninfo['UID'] = $CONFIG['dbuser'];
 			$connectioninfo['PWD'] = $CONFIG['dbpass'];
 		}
@@ -256,7 +256,7 @@ function cpgdbal_connect()
         if (!$result) {
 			$err = sqlsrv_errors();
 			 foreach ($err as $error){
-					echo "SQLSTATE: ".$error['SQLSTATE']."<br/>";
+					echo "<br />SQLSTATE: ".$error['SQLSTATE']."<br/>";
 					echo "Code: ".$error['code']."<br/>";
 					echo "Message: ".($error['message'])."<br/>";
 				}
@@ -1269,8 +1269,8 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 				$count = $nbEnr['count'];
 				$cpgdb->free();
 				
-                if($select_columns != '*') $select_columns .= ', title, caption,hits,owner_id,owner_name,pic_rating,votes';
-				
+                if($select_columns != '*') $select_columns .= ', caption,hits,owner_id,owner_name,pic_rating,votes';	// 'title' removed
+
 				$cpgdb->query($cpg_db_functions_inc['get_pic_data'], $select_columns, $album, $forbidden_set_string, $keyword, 
 							$approved, $ALBUM_SET, $sort_order, $limit, $first_record, $records_per_page);
 				$rowset = $cpgdb->fetchRowSet();
@@ -2183,11 +2183,11 @@ function add_album_hit($aid)
 		$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
 		##################################################
         if ($CONFIG['count_album_hits']) {
-          $aid = (int)$aid;
-          cpg_db_query("UPDATE {$CONFIG['TABLE_ALBUMS']} SET alb_hits=alb_hits+1 WHERE aid='$aid'");
-		  #######################       DB      #######################
-		  $cpgdb->query($cpg_db_functions_inc['add_album_hit'], $aid);
-		  #####################################################
+			$aid = (int)$aid;
+			//cpg_db_query("UPDATE {$CONFIG['TABLE_ALBUMS']} SET alb_hits=alb_hits+1 WHERE aid='$aid'");
+			#######################       DB      #######################
+			$cpgdb->query($cpg_db_functions_inc['add_album_hit'], $aid);
+			#####################################################
         }
 }	
 
@@ -4384,7 +4384,7 @@ function cpgRedirectPage($targetAddress = '', $caption = '', $message = '', $cou
       $separator = '?';
     } else {
       $separator = '&';
-    }
+    }//print($header_location . $targetAddress.$separator.'message_id='.cpgStoreTempMessage($message).'#cpgMessageBlock');exit;
     header($header_location . $targetAddress.$separator.'message_id='.cpgStoreTempMessage($message).'#cpgMessageBlock');
     pageheader($caption, "<META http-equiv=\"refresh\" content=\"1;url=$targetAddress\">");
     msg_box($caption, $message, $lang_common['continue'], $location);
