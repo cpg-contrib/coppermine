@@ -60,7 +60,7 @@
 //    The entire block needs to be present like in Coppermine 1.3 themes
 //  ('THEME_IS_XHTML10_TRANSITIONAL',1) : If theme is defined as XHTML10_TRANSITIONAL the VANITY footer will be enabled
 //    if the theme has a {VANITY} token in its template.html. Don't enable this if you have modified the code! See the
-//    docs/theme.html documentation for validation methodology.
+//    docs/en/theme.html documentation for validation methodology.
 // ('THEME_HAS_SIDEBAR_GRAPHICS', 1) : The location for the sidebar graphics that compose the tree menu will
 //    be directed to the themes images folder, subfolder 'sidebar', i.e. themes/yourtheme/images/sidebar/.
 //    Gallery root                                                             : images/sidebar/base.gif

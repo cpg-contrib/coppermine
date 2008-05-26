@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<head>
+<title>Uploading - Coppermine Photo Gallery - Documentation &amp; Manual</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="language"    content="en">
+<meta name="copyright"   content="Coppermine dev team">
+<meta name="description" content="There are several methods to upload files within Coppermine. You (as gallery admin) should use FTP-upload plus batch-add (only the admin can do this). Regular users are supposed to use the regular http upload or (if they have Windows XP) the XP Publisher.">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta name="MSSmartTagsPreventParsing" content="true">
+<meta http-equiv="imagetoolbar" content="no">
+<!--
+  SVN version info:
+
+  Coppermine version: 1.5.0
+  $Revision: 4211 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-01-15 09:59:49 +0100 (Di, 15 Jan 2008) $
+-->
+<link rel="stylesheet" type="text/css" href="../style.css" media="all" />
+<link rel="stylesheet" type="text/css" href="../screen.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="../print.css" media="print" />
+<link rel="shortcut icon" href="../favicon.ico" />
+<script src="script.js" type="text/javascript"></script>
+</head>
+<body>
+<script type="text/javascript">
+  cpgDocHeader();
+</script>
+<div id="toc">
+<script type="text/javascript">
+  cpgDocToc();
+</script>
+<noscript>
+<a href="toc.htm">Table of Contents</a>
+</noscript>
+</div>
+
+<a name="uploading"></a><h1>Uploading pics/files<a href="#uploading" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<p>There are several methods to upload files within Coppermine. You (as gallery admin) should use <a href="#batch_add_pics">FTP-upload plus batch-add</a> (only the admin can do this). Regular users are supposed to use the "regular" <a href="#upload_http">http upload</a> or (if they have Windows XP) the <a href="#xp">XP Publisher</a>.</p>
+<p>An uploading client for Linux using the KDE desktop is available as well: Coppermine-developer Aditya Mooley has created &quot;<a href="http://koppermine.sourceforge.net/" rel="external" class="external">Koppermine</a>&quot; that is recommended for all Linux users.</p>
+<p class="important">If you have issues uploading, read the <a href="upload_troubleshooting.htm">upload troubleshooting section</a> extra carefully.</p>
+<a name="uploading_end"></a>
+
+
+
+<a name="ftp"></a>
+<a name="batch_add_pics"></a><h2>Uploading pics by FTP / Batch-Add Pictures<a href="#batch_add_pics" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<p>It is recommended that the coppermine admin use ftp to upload multiple pics/files at a time. Use your ftp software to create sub-folders within <em>your_coppermine_directory/albums/</em>, where your ftp uploads can be saved. Though not mandatory, it's always a good idea to have a folder structure within the <em>albums</em> folder that reflects or mirrors your coppermine categories and albums.</p><p><span class="important">Important</span>: do not create folders or ftp upload to the <em>userpics</em>- nor to the <em>edit</em>-folder by ftp: these folders are used by coppermine internally and must not be used for any other purpose! <strong><strong>Folder names must not contain dots</strong></strong>. We also highly recommend refraining from the use of any other special characters - use only a-z, numbers and <tt class="code">-</tt> (dashes) or <tt class="code">_</tt> (underscores) to fill blank spaces. Make sure to upload in binary or auto-mode.</p>
+<p>Once you have uploaded your photos by ftp, click on the &quot;Batch Add Pictures&quot; button. The batch-add is performed in three steps:</p>
+<ul>
+<li>find the directory under which you have uploaded your photos. Select this directory by clicking on it.
+<br /><img src="images/searchnew_1.gif" border="0" alt="" /><a name="ftp_select_dir_end"></a></li>
+<li><a name="ftp_select_file"></a>select the photos you wish to upload (by ticking them).  New pics are automatically pre-selected, those that already are in your coppermine database are not selected. Next select the album you wish to insert them into. Click &quot;Insert Selected Pictures&quot; to start the batch-add process.<br />
+<img src="images/searchnew_2.gif" border="0" alt="" /><a name="ftp_select_file_end"></a></li>
+<li><a name="ftp_show_result"></a>CPG will then display the results of the batch-add (allow some time for all results to display).<br />
+If the OK, DP, or PB 'signs' does not appear, click on the broken file image to see if any error message was produced by PHP.<br />
+Should your browser time out, hit the reload button.
+<ul>
+<li>OK : means that the file was succesfully added</li>
+<li>DP : means that the file is a duplicate and is already in the database</li>
+<li>PB : means that the file could not be added, check your configuration and the permission of directories where the files are located</li>
+<li>NA : means that you haven't selected an album the files should go to, hit 'back' and select an album. If you don't have an album create one first</li>
+</ul>
+<a name="ftp_show_result_end"></a>
+</li>
+</ul>
+<p>Giving FTP-access to other users can pose a serious security threat, this is why batch-add is only available for the coppermine gallery admin.</p>
+<p>Once files have been added to coppermine's database, make sure that you never rename or delete them via ftp - use coppermine's admin menu options to remove or rename files, instead.  Only in this way will these files be removed from both the file system <strong>and</strong> the database.</p>
+<a name="ftp_end"></a>
+
+
+<a name="upload_http"></a><h2>Uploading by HTTP<a href="#upload_http" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Regular HTTP uploads use the browser's built-in capabilities to upload files to a server. The maximum file size is determined by two basic factors: the speed and amount of data the web-browser can upload before timing out, and the allowed file size determined by server settings. Note that those settings are not determined by coppermine, but the server config (php.ini). Users who are webhosted usually can't edit php.ini, so they will have to live with the settings the webserver admin has set up. Those who actually run their own server and can edit php.ini should take a look at the settings if (large) http uploads fail:</p>
+<ol>
+<li><strong>max_input_time</strong>- 60 seconds is the default time limit for uploading files.<br />
+This time limit includes the time it takes for the files to upload, so if you exceed this limit, the file will not even parse, and the browser will not get a response. You can workaround this by trying to upload smaller or fewer files, or you can try uploading over broadband. The best solution, of course, is to increase the time limit to something more in line with your needs.</li>
+<li><strong>upload_max_filesize</strong> - 2MB is the default limit for individual files.</li>
+<li><strong>post_max_size</strong> - 8MB is the default limit for post requests.</li>
+<li><strong>memory_limit</strong> - 8MB is the default size.</li>
+<li>PHP's <strong>LimitRequestBody</strong> - 512KB default limit. (mainly an issue on Redhat/Apache systems.  Found in /etc/http/conf.d)<br />
+In general, upload_max_filesize &lt; post_max_size &lt; memory_limit in order for uploads to function properly. Coppermine may warn you if a file exceeds upload_max_filesize, but it cannot warn you if the total size of all the files exceeds the post limit or the memory limit.</li>
+<li><strong>file_uploads</strong> - This determines whether or not PHP will allow file uploads. It must be set to 'On'.</li>
+<li><strong>upload_tmp_dir</strong> - This specifies the temporary directory where PHP stores uploaded files.<br />
+The most common issue caused by this setting is an open_basedir warning.  In this situation, your server administrator has restricted the files that PHP can work with to a certain directory.  If he does not create and specify a temporary directory within the open_basedir restriction, PHP will attempt to use the OS temporary directory, and it will be rebuffed by the open_basedir restriction.</li>
+<li><strong>allow_fopen_url</strong> - This controls PHP's ability to read files using URL/URIs.  If it is disabled, Coppermine will not be able to upload from URLs.</li>
+</ol>
+<p>It should be obvious that the files have to be uploaded somewhere (into some folder) on your webserver - this is the albums folder within the folder you installed coppermine on your server. The HTTP uploads go into subfolders of the "userpics" folder (which resides within the "albums" folder). Obviously, the coppermine upload script needs write permissions to upload the files there. This is why you have to change <a href="install_permissions.htm#permissions">permissions</a> on the albums folder and everything within it during coppermine install - make it writable for the user the webserver runs under. This is done using the CHMOD command on Unix/Linux based servers. If you experience issues with uploading, make sure that you have set the permissions correctly.</p>
+<a name="upload_http_end"></a>
+
+
+<a name="xp"></a><h2>Using Windows XP Web Publishing Wizard with Coppermine<a href="#xp" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>If you are using Windows XP, you can use its built-in web publishing wizard to upload your photos to your gallery.</p>
+<p>Once you have properly installed the script on your server, call the xp_publish.php file from your web browser (http://your_site.com/coppermine_dir/xp_publish.php).</p>
+<p>The script displays some information on how to do the installation on the client side and how to use the Wizard. Basically you will need to download a small file created by the script that needs to be loaded into your Windows registry.</p>
+<p>If you want to allow your users to use the Windows XP Web Publishing Wizard, it's advisable to promote it by showing a link to the file somewhere on your page.</p>
+
+<a name="xp_publish_setup"></a><h3>XP Web Publishing Wizard: Setup<a href="#xp_publish_setup" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+Before you can use the XP Web Publishing Wizard, it needs to know the address of the your gallery.
+<ul>
+<li>Open your browser and type the following into the address box replacing "your_site.com" and "coppermine_dir" with your own Gallery address information : <tt class="code">http://your_site.com/coppermine_dir/xp_publish.php</tt></li>
+<li>On "File Download - Security Warning" click "Save" to save the cpg_###.reg file on your Desktop. (The ### represents a 10-digit numerical timestamp.)</li>
+<li>Open Windows Explorer</li>
+<li>Select Desktop from the left panel</li>
+<li>Double click on the file name that you just saved</li>
+<li>On Registry Editor's "Are you sure..." dialog click "Yes"</li>
+</ul>
+
+Above procedure needs to be done only once by users wishing to use the XP Publishing Wizard.
+
+<a name="xp_publish_upload"></a><h3>XP Web Publishing Wizard: Uploading pictures<a href="#xp_publish_upload" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+The process of uploading pictures is a matter of following a simple dialog. It takes much longer to describe the process than do it.
+<ul>
+<li>Start Windows Explorer and locate the directory with your photographs and select one or more pictures for upload.</li>
+<li>If the Windows Explorer left panel is not titled "Picture Tasks", click on the "X" in the top right corner of the panel to close it and to reveal the Picture Tasks panel.</li>
+<li>Select "Publish xxxx to the Web" from "File and Folder Tasks" on the left panel. "xxxx" could say "this file, these files or this folder" depending on what is highlighted on the right panel.</li>
+<li>On Web Publishing Wizard's Welcome screen click "Next".</li>
+<li>You can change your selection if necessary on the Thumbnail window showing up. Click "Next" when you are ready.</li>
+<li>From the service provider window highlight your Photo Gallery name and click "Next".</li>
+<li>Enter your Coppermine username and password to login to your gallery and click "Next".</li>
+<li>From the "Welcome username" window you have an option of uploading your picture(s) into one of the existing albums or starting a new album. Click "Next" when you are ready.</li>
+<li>Click "Next" in the upload starting confirmation window.</li>
+<li>Select the picture sizes for the uploaded pictures. If you are unsure about acceptable picture sizes, verify with your Gallery administrator. Click "Next" when you are ready.</li>
+<li>You are presented with the last window of the dialog and given a choice of opening the Gallery when the upload is complete.</li>
+<li>Click "Finish" to end the XP Web Publishing Wizard and to enter the Gallery to check the new album contents.</li>
+</ul>
+
+<a name="xp_publish_remove"></a><h3>XP Web Publishing Wizard: Removal/Uninstall<a href="#xp_publish_remove" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>If you want to remove the XP Web Publishing entry created from your gallery (e.g. because you have moved to a new domain), you have to edit the registry manually. Be carefull when doing so - messing with the registry without knowing what you do may damage your operating system.</p>
+<ul>
+  <li>Click &quot;Start&quot; - &quot;Run...&quot;</li>
+  <li>Type &quot;<tt class="code">regedit</tt>&quot; (without the quotes) and hit enter</li>
+  <li>Navigate to <tt class="code">HKEY_CURRENT_USER \ Software \ Microsoft \ Windows \ CurrentVersion \ Explorer \ PublishingWizard \ PublishingWizard \ Providers \</tt></li>
+  <li>Highlight the entry on the left side of the screen that corresponds to your coppermine install</li>
+  <li>Hit the &quot;delete&quot;-key on your keyboard</li>
+  <li>Click &quot;Yes&quot; on the confirmation dialog</li>
+  <li>Close the registry editor</li>
+</ul>
+
+<a name="xp_publish_requirements"></a><h3>XP Web Publishing Wizard: Requirements<a href="#xp_publish_requirements" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<ul>
+	<li>XP Publisher is a Microsoft product. It will only run on Windows XP/Vista. It will only work if the client is using the Microsoft browser &quot;Internet Explorer&quot;. Coppermine just provides a file to use the XP Publisher user interface. There is nothing that can be done to circumvent this. If you are not happy with the way the XP Publisher works or if you would like additional or different features, you will have to address Microsoft, not the Coppermine developers.</li>
+	<li>As suggested above, the registry file needs to create a key in the user's registry. There needs to be a name for that key. That's why you need to have specified a <a href="configuration.htm#admin_general_name">name for your gallery</a> and a <a href="configuration.htm#admin_general_description">gallery description</a> in Coppermine's config.</li>
+</ul>
+
+
+<script type="text/javascript">
+  cpgDocFooter();
+  dateRevision(' $LastChangedDate: 2008-01-15 09:59:49 +0100 (Di, 15 Jan 2008) $ ', ' $Revision: 4211 $ ');
+</script>
+
+</body>
+</html>

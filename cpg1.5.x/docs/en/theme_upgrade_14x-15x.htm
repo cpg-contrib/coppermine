@@ -1,0 +1,332 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<head>
+<title>Theme Upgrading from cpg1.4.x to cpg1.5.x - Coppermine Photo Gallery - Documentation &amp; Manual</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="language"    content="en">
+<meta name="copyright"   content="Coppermine dev team">
+<meta name="description" content="To make your custom made theme from cpg1.4.x work with cpg1.5.x, you will need to make some changes. Remember to back up your original files, so you can go back to a working version in case something goes wrong with the modifications.">
+
+
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta name="MSSmartTagsPreventParsing" content="true">
+<meta http-equiv="imagetoolbar" content="no">
+<!--
+  SVN version info:
+
+  Coppermine version: 1.5.0
+  $Revision: 4209 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-01-14 09:58:42 +0100 (Mo, 14 Jan 2008) $
+-->
+<link rel="stylesheet" type="text/css" href="../style.css" media="all" />
+<link rel="stylesheet" type="text/css" href="../screen.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="../print.css" media="print" />
+<link rel="shortcut icon" href="../favicon.ico" />
+<script src="script.js" type="text/javascript"></script>
+</head>
+<body>
+<script type="text/javascript">
+  cpgDocHeader();
+</script>
+<div id="toc">
+<script type="text/javascript">
+  cpgDocToc();
+</script>
+<noscript>
+<a href="toc.htm">Table of Contents</a>
+</noscript>
+</div>
+
+<h1>Converting cpg1.4.x themes to cpg1.5.x</h1>
+<p>To make your custom made theme from cpg1.4.x work with cpg1.5.x, you will need to make some changes. Remember to back up your original files, so you can go back to a working version in case something goes wrong with the modifications.</p>
+<p>The files to be edited would be in the particular folder of the theme in the themes folder. For example, the files for the "classic" theme could be found in themes/classic</p>
+<ul>
+  <li><a href="#style">Edit style.css</a></li>
+  <li><a href="#template">Edit template.html</a></li>
+  <li><a href="#theme">Edit theme.php</a></li>
+  <li><a href="#validation">Validation</a></li>
+</ul>
+
+<a name="style"></a><h2>Edit style.css<a href="#style" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>For all changes below, edit themes/your_custom_theme/style.css</p>
+<h3>Form-padding</h3>
+<p>By default, &lt;form&gt;-tags have a padding in most browsers that differs and is hard to control. This is of course silly, as it adds unnecessary whitespace, so let's fix it:</p>
+<div class="important">Find:</div>
+<pre>.textinput {</pre>
+<div class="important">Add before it (in a new line):</div>
+<pre>form {
+        margin-top:0px;
+        margin-bottom:0px;
+}
+</pre>
+
+<h3>New class &laquo;inline&raquo;</h3>
+<div class="important">Find:</div>
+<pre>.textinput {</pre>
+<div class="important">Add before it (in a new line):</div>
+<pre>.inline {
+        display:inline;
+}</pre>
+
+<h3>Define pseudo-classes :link, :visited, :focus, :active</h3>
+<p>Before applying this fix, make sure that your stylesheet doesn't contain definitions for the pseudo-classes already. If it doesn't contain those classes</p>
+<div class="important">Find:</div>
+<pre>a:hover {</pre>
+<div class="important">Add before it (in a new line):</div>
+<pre>a:link {
+        color: #0033CC;
+        text-decoration: none;
+}
+
+a:visited {
+        color: #0033CC;
+        text-decoration: none;
+}
+
+a:focus {
+        color: #0033CC;
+        text-decoration: none;
+}
+
+a:active {
+        color: #0033CC;
+        text-decoration: none;
+}</pre>
+and edit the colors and format as you see fit.
+
+<h3>Bold table headers</h3>
+<div class="important">Find:</div>
+<pre>.tableh1 {</pre>
+<div class="important">and add after it:</div>
+<pre>        font-weight:bold;</pre>
+<hr />
+<div class="important">Find:</div>
+<pre>.tableh1_compact {</pre>
+<div class="important">and add after it:</div>
+<pre>        font-weight:bold;</pre>
+<hr />
+<div class="important">Find:</div>
+<pre>.tableh2_compact {</pre>
+<div class="important">and add after it:</div>
+<pre>        font-weight:bold;</pre>
+<hr />
+<div class="important">Find:</div>
+<pre>.alblink a {</pre>
+<div class="important">and add before it (into a new line):</div>
+<pre>.alblink {
+        font-weight:bold;
+}</pre>
+<hr />
+<div class="important">Find:</div>
+<pre>.catlink {</pre>
+<div class="important">and add after it:</div>
+<pre>        font-weight:bold;</pre>
+
+<h3>Edit class &laquo;navmenu&raquo;</h3>
+<div class="important">Find:</div>
+<pre>.navmenu a {
+        position: relative;</pre>
+<div class="important">and replace with:</div>
+<pre>.navmenu a {</pre>
+
+<h3>Fix background repetition for &laquo;admin_menu&raquo;</h3>
+<div class="important">Find:</div>
+<pre>.admin_menu {</pre>
+<div class="important">and add after it:</div>
+<pre>background-repeat:repeat-x;</pre>
+
+<h3>Add classes &laquo;admin_float&raquo; &amp; &laquo;admin_menu_wrapper&raquo;</h3>
+<div class="important">Find:</div>
+<pre>#admin_menu_anim {</pre>
+<div class="important">and add before it (into a new line):</div>
+<pre>.admin_float {
+        float:left;
+        margin-left: 1px;
+        margin-right: 1px;
+        margin-top: 1px;
+        margin-bottom: 1px;
+}
+
+.admin_menu_wrapper {
+        width:100%;
+}</pre>
+
+<h3>Add pseudo-classes for image links</h3>
+<div class="important">Find:</div>
+<pre>.image {</pre>
+<div class="important">and add before it (into a new line):</div>
+<pre>/* pseudo-classes for image links */
+a:link .image{
+        border-style:solid;
+        border-width:1px;
+        border-color:#000000;
+        margin:2px;
+}
+
+a:visited .image{
+        border-style:solid;
+        border-width:1px;
+        border-color:#840084;
+        margin:2px;
+}
+
+a:focus .image{
+        border-style:solid;
+        border-width:1px;
+        border-color:#000000;
+        margin:2px;
+}
+
+a:hover .image{
+        border-style:solid;
+        border-width:1px;
+        border-color:#0033CC;
+        margin:2px;
+}
+
+a:active .image{
+        border-style:solid;
+        border-width:1px;
+        border-color:#000000;
+        margin:2px;
+}</pre>Edit the colors and attributes as you see fit. This is suppossed to show which thumbnails have already been clicked. The important bit being the attributes of the pseudo-class :visited; they have to differ from the other pseudo-classes.
+
+<h3>Add the classes &laquo;pic_title&raquo;, &laquo;pic_caption&raquo;, &laquo;cpg_user_message&raquo;</h3>
+<div class="important">Find:</div>
+<pre>#vanity a {</pre>
+<div class="important">and add before it (into a new line):</div>
+<pre>.pic_title {
+        color: #000000;
+        font-size: 120%;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight:bold;
+        text-align : center;
+        padding-top:0px;
+        padding-bottom:0px;
+        margin-top:0px;
+        margin-bottom:0px;
+        line-height:1.0em;
+}
+
+.pic_caption {
+        color: #000000;
+        font-size: 100%;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight:bold;
+        text-align : center;
+        padding-top:0px;
+        padding-bottom:0px;
+        margin-top:0px;
+        margin-bottom:0px;
+        line-height:1.0em;
+}
+
+.cpg_user_message {
+        font-size:1.4em;
+        font-weight:bold;
+}</pre>
+
+<a name="style_end"></a>
+
+<a name="template"></a><h2>Edit template.html<a href="#template" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>There have been only minor changes to this file. Open themes/your_theme/template.html with a plain text editor and edit as suggested below:</p>
+
+<h3>Replace the call for script.js</h3>
+<div class="important">Find:</div>
+<pre>&lt;script type="text/javascript" src="scripts.js"&gt;&lt;/script&gt;</pre>
+<div class="important">and replace with:</div>
+<pre>{JAVASCRIPT}</pre>
+
+<h3>Add {MESSAGE_BLOCK} token</h3>
+<div class="important">Insert</div>
+<pre>{MESSAGE_BLOCK}</pre>anywhere before the <tt class="code">{GALLERY}</tt>-token, preferably right after the menu section. This new placeholder will display messages both to the admin as well as the end user. It should be visible in the upper part of the screen without the need top scroll down.
+
+<h3>Add {CREDITS} token</h3>
+<div class="important">Insert</div>
+<pre>{CREDITS}</pre>anywhere after the <tt class="code">{GALLERY}</tt>-token, preferably at the very end of the file, above the <tt class="code">&lt;/body&gt;</tt>-tag. This new placeholder can display the copyright notice of your gallery and (ideally) the <a href="theme_copyright.htm#theme_copyright">Coppermine disclaimer</a>.
+
+<a name="template_end"></a>
+
+<a name="theme"></a><h2>Edit theme.php<a href="#theme" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+
+<p>Many notable things have happened that will influence your modifications to your theme.php.</p>
+<p>As this section is in progress most, we'll have to finish it later - TBC</p>
+<!--
+  <ol>
+
+  </ol>
+<a name="theme_end"></a>
+
+<a name="validation"></a><h2>Validation Methodology<a href="#validation" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+
+  <p>Now that you have a functioning "style.css", "template.html" and  "theme.php" you should verify that it is generating valid output.</p>
+
+  <ol>
+    <li>
+      Suggestions to help you bring the theme you are editing up to XHTML 1.0 Transitional HTML
+
+      <ul>
+        <li>All ampersands that form part of a <u><b>URL</b></u> are to be coded '&amp;amp;'. There are quite a few of these in the functions of theme.php.</li>
+
+        <li>All images to have the 'alt' attribute, and be closed ' /&gt;'.</li>
+
+        <li>All meta tags should be closed ' /&gt;'</li>
+
+        <li>All &lt;hr&gt; and &lt;br&gt; tags should be closed &lt;hr /&gt;&lt;br /&gt;</li>
+
+        <li>All background images/colors to be changed to CSS or style attributes. This depends on the layout.</li>
+
+        <li>Any existing tags or attributes in uppercase (such as onClick) to be changed to lowercase.</li>
+      </ul>
+    </li>
+
+    <li>Save all your open files and upload them to your webserver; test-drive both as admin and as "regular" user.</li>
+
+    <li>
+      Use the following methodology to confirm that your theme generates valid XHTML 1.0 Transitional HTML.
+
+      <p>Each of the following pages needs to be <a href="http://validator.w3.org/">validated</a> as an anonymous user, registered user, and in admin mode:</p>
+
+      <ul>
+        <li>index.php</li>
+
+        <li>thumbnails.php</li>
+
+        <li>displayimage.php</li>
+
+        <li>search.php</li>
+
+        <li>emailed HTML E-card.</li>
+      </ul>
+
+      <p>The following toolbars can assist you in validating the resulting output of your theme:</p>
+
+      <p>Internet Explorer:</p>
+
+      <ul>
+        <li><a href="http://www.nils.org.au/ais/web/resources/toolbar/index.html">Web Accessibility Toolbar</a> (Creative Commons License)</li>
+      </ul>
+
+      <p>Mozilla Firefox:</p>
+
+      <ul>
+        <li><a href="http://www.chrispederick.com/work/firefox/webdeveloper/">Web Developer Extension</a> (GPL)</li>
+      </ul>
+    </li>
+  </ol>
+
+  <h2>Congratulations</h2>
+
+  <p>Your theme should now be ready to use with Coppermine 1.5.x</p>
+
+<a name="validation_end"></a>
+
+-->
+<script type="text/javascript">
+  cpgDocFooter();
+  dateRevision(' $LastChangedDate: 2008-01-14 09:58:42 +0100 (Mo, 14 Jan 2008) $ ', ' $Revision: 4209 $ ');
+</script>
+
+</body>
+</html>

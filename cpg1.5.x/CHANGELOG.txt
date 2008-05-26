@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-05-26 [D] Created sub-folders in docs folder to prepare translation of documentation {GauGau}
 2008-05-23 [O] Use JavaScript to display the sorting options only to humans, but hide them from search engines to avoid double-content indexing {GauGau}
 2008-05-21 [B] Replaced hard-coded string "edit keywords" with translation (thread ID 52721) {GauGau}
 2008-05-04 [B] Fixed resources consumption for slideshows in meta albums {GauGau}

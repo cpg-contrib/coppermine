@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<head>
+<title>Languages - Coppermine Photo Gallery - Documentation &amp; Manual</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="language"    content="en">
+<meta name="copyright"   content="Coppermine dev team">
+<meta name="description" content="Coppermine has a separate language file that make the translation of the script much more easy.">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta name="MSSmartTagsPreventParsing" content="true">
+<meta http-equiv="imagetoolbar" content="no">
+<!--
+  SVN version info:
+
+  Coppermine version: 1.5.0
+  $Revision: 4365 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-03-26 09:57:33 +0100 (Mi, 26 Mrz 2008) $
+-->
+<link rel="stylesheet" type="text/css" href="../style.css" media="all" />
+<link rel="stylesheet" type="text/css" href="../screen.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="../print.css" media="print" />
+<link rel="shortcut icon" href="../favicon.ico" />
+<script src="script.js" type="text/javascript"></script>
+</head>
+<body>
+<script type="text/javascript">
+  cpgDocHeader();
+</script>
+<div id="toc">
+<script type="text/javascript">
+  cpgDocToc();
+</script>
+<noscript>
+<a href="toc.htm">Table of Contents</a>
+</noscript>
+</div>
+
+<a name="translating"></a><h1>Languages<a href="#translating" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<p>Coppermine has a separate language file that makes the translation of the script much more easy. The language files are stored in the <strong>lang </strong>directory. The files are unicode encoded (utf-8). They are automatically generated with the <a href="http://www.iconv.com/iconv.htm" class="external">iconv</a> program so there is no need for you to make an unicode version of your translation.</p>
+<p>If you select utf-8 to be the default encoding in coppermine's config, then the script will be able to automatically select a language file based on the visitor browser configuration.</p>
+<p> If you have translated Coppermine into a language not already supported, please read the <a href="translation.htm">translator's guide</a> and visit the <a href="http://coppermine-gallery.net/forum/index.php?topic=44308.0">Coppermine Web Site</a> and follow the instructions for submitting your language.</p>
+
+<a name="how"></a><h2>How languages work in Coppermine<a href="#how" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Here's how coppermine determines the language of a user: when accessed, coppermine checks if a user explicitely has set a language preference (which is stored in a cookie on the client). If one is set, coppermine is being displayed in that particular language.</p>
+
+<p>If no individual language preference has been set, coppermine detects the language preference of a user set up in his browser. If the browser language is (for example) English, then coppermine will display in English.</p>
+
+<p>If the browser language is set to hindi (as an example), while there is no Coppermine language file available for that particular language, then coppermine will fall back to the default language you have set up in Coppermine's config.</p>
+
+<p>As you can see, the determination of the actual language setting is a three step process:</p>
+<ul>
+<li>user preference (cookie)</li>
+<li>browser setting</li>
+<li>coppermine config setting</li>
+</ul>
+<p>This three-step-process is very helpful: in fact, you only set a default language in Coppermine's config (usually the language the majority of your visitors is speaking) and that's it: if a visitor who speaks another language visits your page, Coppermine's controls will display in his language. Usually, you don't have to provide a <a href="configuration.htm#admin_language_list">language selector</a> on your page (but it's an option in Coppermine's config to display one if you prefer so). The language selector in fact just adds a parameter to the URL, which then subsequently triggers a cookie to be set on the client. You (as Coppermine admin) can accomplish the same by manually adding the parameter to the URL in the address bar of your browser. Just observe how the URL changes on the your coppermine gallery if you have enabled the language selector in coppermine's config to get an idea how this works.</p>
+<div class="quote">
+<p><strong>Example:</strong></p>
+<p>If your browser is set to German and you have specified Spanish to be the default (fallback) language, your gallery will display for you in German. To see it in English, add the parameter <tt class="code">lang=english</tt> to the URL of your gallery in your browser's address bar, so that it looks like this: <tt class="code">http://yoursite.tld/your_coppermine_folder/?lang=english</tt>. If you do so, you have specified a language preference that is being stored in a cookie that will override the language detection of your prefered language in your browser. To go back to how things were before, simply unset the cookie that stores your preference by entering <tt class="code">http://yoursite.tld/your_coppermine_folder/?lang=xxx</tt>, where "xxx" is just a language name that doesn't exist (you can use the xxx literally).</p>
+</div>
+
+<a name="how_remove_language"></a><h3>Get rid of a particular language<a href="#how_remove_language" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>There are many languages available that Coppermine comes with, and the number of language files is increasing, because new language file contributions come in from the coppermine community constantly. As a result, Coppermine comes with a big amount of language files that you can use. Most users will not be aware of this, as their visitors only come from a certain region of country. As a result, you may not even need those many extra languages. If this is the case for you, you can use your FTP app and savely remove the unneeded language files from the "lang"-folder (<tt class="code">http://yoursite.tld/your_coppermine_folder/lang/</tt>). It is advisable though to keep the English language file under all circumstances.</p>
+
+<a name="how_language_fallback"></a><h3>Language fallback<a href="#how_language_fallback" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Starting in cpg1.3.x there is a config option named &quot;<a href="configuration.htm#admin_language_fallback">Fallback to English if translated phrase not found?</a>&quot; that is helpfull if a language file for the current coppermine version is not available: you can then use a language file from an older version of coppermine. New strings (that have been introduced in the new coppermine version) that didn't exist in the old language file will then be displayed in English. This way, end users can see your gallery in their prefered version mostly.</p>
+<p>The language fallback option burns additional resources on the server and may slow down coppermine significantly, so only enable the language fallback feature if you actually have language files from older versions of coppermine (i.e. from cpg1.4.x).</p>
+<p>Please note that you (as coppermine admin) can not use language fallback for administration purposes - admin-only options will not be translated by that feature. Therefor, you need to use a genuine full translation file to administer your gallery. To accomplish this, temporarily switch to English for administration purposes; after finishing your admin tasks, you can savely switch back to your prefered language.</p>
+
+<a name="how_scope"></a><h3>Scope of internationalization<a href="#how_scope" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>The language files Coppermine comes with can only contain pre-defined strings that compose the controls of your gallery (i.e. the menus). Switching your gallery to another language will have no impact on the custom content that resides in the database (i.e. the category names you have set up or the picture captions). In this aspect, Coppermine is not truely multilingual: there is currently no option available to have the content of coppermine available in more than one language.</p>
+
+<script type="text/javascript">
+  cpgDocFooter();
+  dateRevision(' $LastChangedDate: 2008-03-26 09:57:33 +0100 (Mi, 26 Mrz 2008) $ ', ' $Revision: 4365 $ ');
+</script>
+
+</body>
+</html>

@@ -1,0 +1,803 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<head>
+<title>Creating your custom theme - Coppermine Photo Gallery - Documentation &amp; Manual</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="language"    content="en">
+<meta name="copyright"   content="Coppermine dev team">
+<meta name="description" content="Coppermine comes with a powerful engine that allows you to create your own theme, giving your gallery a unique look that matches the overall layout of your entire site. To make sure your custom theme does not get overwritten when upgrading, you should start with a custom theme name.">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta name="MSSmartTagsPreventParsing" content="true">
+<meta http-equiv="imagetoolbar" content="no">
+<!--
+  SVN version info:
+
+  Coppermine version: 1.5.0
+  $Revision: 4460 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-05-23 02:12:57 +0200 (Fr, 23 Mai 2008) $
+-->
+<link rel="stylesheet" type="text/css" href="../style.css" media="all" />
+<link rel="stylesheet" type="text/css" href="../screen.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="../print.css" media="print" />
+<link rel="shortcut icon" href="../favicon.ico" />
+<script src="script.js" type="text/javascript"></script>
+</head>
+<body>
+<script type="text/javascript">
+  cpgDocHeader();
+</script>
+<div id="toc">
+<script type="text/javascript">
+  cpgDocToc();
+</script>
+<noscript>
+<a href="toc.htm">Table of Contents</a>
+</noscript>
+</div>
+
+
+
+
+<a name="theme_create"></a><h1>Creating your custom theme<a href="#theme_create" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<a name="theme_create_rename"></a><h2>Rename your theme first<a href="#theme_create_rename" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>To create a new theme, the best solution is to use an existing one as its copy template. To do that, make a copy of the folder of the theme you want to use as a basis. Then edit the &quot;<strong>template.html</strong>&quot;, &quot;style.css&quot; and &quot;<strong>theme.php</strong>&quot; files and replace all occurences of &quot;<strong>themes/old_theme_dir</strong>&quot; with &quot;<strong>themes/new_theme_dir</strong>&quot; in order for the links to point to the correct place.<br />
+Avoid using spaces and special chars in your custom theme name - only use alphanumerals and the underscore (_).</p>
+<p>Also keep in mind that despite this file being located in the &quot;<strong>themes/your_theme_dir</strong>&quot; directory, it must be coded as if it was in the main directory of the coppermine installation. For example, in order to display an image, you must use <tt class="code">&lt;img src=&quot;<strong>themes</strong>/theme_dir/images/image.gif&quot; alt=&quot;&quot;/&gt;</tt> and not just <tt class="code">&lt;img src=&quot;images/image.gif&quot; alt=&quot;&quot;/&gt;.</tt> The same principle applies for the &quot;<strong>theme.php</strong>&quot; file.</p>
+<div class="quote">
+<p><strong>Example:</strong></p>
+<ul>
+  <li><strong>Create a copy</strong><br />
+  Browse the local coppermine gallery copy on your client, navigate to the themes folder (<tt class="code">your_coppermine_folder/themes/</tt>), right-click on the folder name that represents the theme you want to base your custom theme on (in this example, we will use the classic theme, so we will use <tt class="code">your_coppermine_folder/themes/classic/</tt>), select &quot;copy&quot; from the context menu. Then paste the content of the clipboard into the themes folder; a folder (named &quot;Copy of classic&quot; or similar) will turn up.</li>
+  <li><strong>Rename the folder</strong><br />
+  Right-click on the newly created folder (<tt class="code">your_coppermine_folder/themes/Copy of classic/</tt>) and select &quot; rename&quot; from the context menu. Choose a unique theme name - in this example, we will use &quot;my_theme&quot; (resulting in the folder to be renamed to <tt class="code">your_coppermine_folder/themes/my_theme/</tt>).<br />
+  Keep in mind that we will upload the theme to your webserver later - you will have to make sure to properly use capitalization: on Windows-driven clients, capitalization does not matter, so there is no difference between &quot;<tt class="code">my_theme</tt>&quot; and &quot;<tt class="code">My_theme</tt>&quot;. Most webservers are Linux-driven though, where capitalization <em>does</em> matter (there <em>is</em> a difference between &quot;<tt class="code">my_theme</tt>&quot; and &quot;<tt class="code">My_theme</tt>&quot;). To be safe it is recommended to use lower case to stay out of harms way.</li>
+  <li><strong>Edit the files to reflect the theme name</strong><br />
+  Use a plain text editor (in this example, we will use notepad.exe), open <tt class="code">your_coppermine_folder/themes/my_theme/template.html</tt>. Find &quot;<tt class="code">themes/classic</tt>&quot; and replace with &quot;<tt class="code">themes/my_theme</tt>&quot; (may exist in the file several times, so make sure to replace <em>all</em> occurrences of &quot;<tt class="code">themes/classic</tt>&quot; with &quot;<tt class="code">themes/my_theme</tt>&quot;). Save your changes. Then do the same thing for the files <tt class="code">theme.php</tt> and <tt class="code">style.css</tt>.
+  </li>
+</ul>
+</div>
+<p>It is strongly recommended to rename your custom theme as suggested above, even if you only plan to accomplish minor changes to a default theme that coppermine comes with. The reason is quite simple: when upgrading at a later stage, you will not run into issues (e.g. accidentally overwrite your customized theme with an updated default theme).</p>
+
+<a name="theme_create_tipps"></a><h2>Tipps &amp; tricks<a href="#theme_create_tipps" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>If you're not sure how to go about creating your own theme, you could also have a look at the download section of the coppermine homepage: there are many <a href="theme_user-contributions.htm#theme_user-contributions">user-contributed themes</a> available for download that can be previewed on the <a href="http://coppermine-gallery.net/demo/">coppermine demo page</a>.</p>
+<p>While you're in the process of creating or testing a new theme, you might not want your theme to be displayed to visitors of your site, but you (as the coppermine admin) may want to still be able to preview your theme. To do that, simply add <tt class="code">theme=your_theme_name</tt> to the url in your browser.</p>
+<br />
+<div class="quote">
+<strong>Examples:</strong>
+<ul>
+<li><tt class="code">http://yoursite.tld/coppermine/index.php?theme=your_theme_name</tt> will show the coppermine index page, using your theme</li>
+<li><tt class="code">http://yoursite.tld/coppermine/thumbnails.php?album=1&amp;theme=your_theme_name</tt> will show the thumbnail view of album 1, using your theme</li>
+<li><tt class="code">http://yoursite.tld/coppermine/?theme=xxx</tt> will reset your view back to the theme you chose as your <a href="configuration.htm#admin_theme_theme">default theme</a> in coppermine config</li>
+</ul>
+</div>
+
+<a name="theme_create_wysiwyg"></a><h2>Using WYSIWYG-editors<a href="#theme_create_wysiwyg" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p class="important">It is strongly recommended <strong>not</strong> to use a <acronym title="What You See Is What You Get">WYSIWYG</acronym>-editor at all to edit Coppermine files. The coppermine dev team is aware that it might seem easier for beginners to use those graphical editors. However, they have some major drawbacks:</p>
+<ul>
+  <li>Some editors (mostly MS Frontpage) are notorious for &quot;beautifying&quot; the code in a manner that renders embedded PHP code invalid. Subsequently, if you use a WYSIWYG-editor to edit theme.php, the file may get corrupt (i.e. un-usable)</li>
+  <li>Graphical editors tend to create deprecated, invalid, proprietary HTML. You have more control if you use a plain text editor instead.</li>
+  <li>You don't learn anything. Sooner or later, you will want to do something your precious WYSIWYG-editor isn't capable to do. Now what? You have always used the editor to do your work - you don't understand HTML. When using a plain text editor, the learning curve may be steep, but it's much more entertaining.</li>
+</ul>
+
+<a name="theme_create_template_html"></a><h2>Editing template.html<a href="#theme_create_template_html" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>The file template.html is the core file of each theme: it can only contain HTML/CSS/JavaScript code (no PHP!) plus some placeholder tokens that will get replaced with content when the theme is being parsed (i.e. when the HTML output of a gallery page is being generated). Template.html determines the overall layout of your gallery pages. Use it to make your gallery match the overall look of your entire website.</p>
+
+<a name="theme_create_template_token"></a><h3>Template tokens<a href="#theme_create_template_token" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>When editing the &quot;<strong>template.html</strong>&quot; file do not remove the elements between <strong>{}</strong> - these are the placeholders used by the script. Think of those items in curly brackets as placeholders that will be replaced later with dynamic content when your template is being parsed. You can move the placeholder tokens around to obtain different layouts. However, you have to understand that the {GALLERY}-token is a special placeholder: think of it more as a separator than an actual placeholder token. When the template is being parsed, the {GALLERY}-token will be replaced with the actual core component of the gallery. Other placeholders tokens in curly braces that come <em>before</em> the {GALLERY} token are being handled by the pageheader function; placeholder tokens that come <em>after</em> the {GALLERY}-token are being handled by the pagefooter function. Therefor, you have to keep in mind that you can freely move tokens around in template.html as long as you don't reverse the position of the token you move and the {GALLERY}-token.</p>
+
+<a name="theme_create_template_token_list"></a><h4>List of tokens in template.html<a href="#theme_create_template_token_list" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+  <tr>
+    <th valign="top" align="left" class="tableh1">Token</th>
+    <th valign="top" align="left" class="tableh1">Description</th>
+    <th valign="top" align="left" class="tableh1">Default position</th>
+    <th valign="top" align="left" class="tableh1">Needed?</th>
+    <th valign="top" align="left" class="tableh1">Dependancies</th>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="theme_create_template_lang_dir"></a>{LANG_DIR}<a href="#theme_create_template_lang_dir" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">
+      <strong>Language direction</strong><br />
+      Possible values are <abbr title="left-to-right">LTR</abbr> and <abbr title="right-to-left">RTL</abbr>. Should not be changed or modified at all.
+    </td>
+    <td valign="top" class="tableb">pageheader</td>
+    <td valign="top" class="tableb">mandatory</td>
+    <td valign="top" class="tableb">Filled by Coppermine, depending on the orientation of the language the end user has chosen</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_template_charset"></a>{CHARSET}<a href="#theme_create_template_charset" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">
+      <strong>Character set</strong><br />
+      Determines the character set used - filling the HTML tag <tt class="code">&lt;meta http-equiv="Content-Type" content="text/html; charset={CHARSET}" /&gt;</tt>. Do not change unless you <em>really</em> know what you're doing.
+    </td>
+    <td valign="top" class="tableb tableb_alternate">pageheader</td>
+    <td valign="top" class="tableb tableb_alternate">mandatory</td>
+    <td valign="top" class="tableb tableb_alternate">Filled by Coppermine, depending on the <a href="configuration.htm#admin_language_charset">encoding</a> the admin has chosen in config.</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="theme_create_template_title"></a>{TITLE}<a href="#theme_create_template_title" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">
+      <strong>Page Title</strong><br />
+      The page title that is mainly taken into account by search engines. The human visitor sees the title tag in the browser window.
+    </td>
+    <td valign="top" class="tableb">pageheader</td>
+    <td valign="top" class="tableb">mandatory</td>
+    <td valign="top" class="tableb">Title tag is being composed in the individual coppermine core file (e.g. displayimage.php, thumbnails.php etc.), handed over to the pageheader function.</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_template_meta"></a>{META}<a href="#theme_create_template_meta" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">
+      <strong>Meta tags</strong><br />
+      Meta tags that depend on the dynamic content of a page are being inserted here. Currently, Coppermine uses the keywords meta tag (<tt class="code">&lt;meta name="keywords" content="DYNAMIC CONTENT HERE" /&gt;</tt>) and the refresh meta tag (<tt class="code">&lt;meta http-equiv="refresh" content="5; URL=REDIRECTION_PAGE" /&gt;</tt>).<br />
+      If you want to add other meta tags (e.g. author meta data like <tt class="code">&lt;meta name="author" content="Firstname Lastname" /&gt;</tt>), do not replace the token, but add your custom meta tags below the {META}-token.
+    </td>
+    <td valign="top" class="tableb tableb_alternate">pageheader</td>
+    <td valign="top" class="tableb tableb_alternate">mandatory</td>
+    <td valign="top" class="tableb tableb_alternate">Populated dynamically by the script, e.g. for meta keywords based on file keywords or for redirection for status change screens.</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="theme_create_template_javascript"></a>{JAVASCRIPT}<a href="#theme_create_template_javascript" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">
+      <strong>JavaScript</strong><br />
+      This token has been added in cpg1.5.x It will be replaced with <tt class="code">&lt;script type="text/javascript" src="scripts.js"&gt;&lt;/script&gt;</tt> (which is mandatory to have for Coppermine to work properly). You mustn't remove this tag, but you can add your custom JavaScript code beneath it (in a new line).
+    </td>
+    <td valign="top" class="tableb">pageheader</td>
+    <td valign="top" class="tableb">mandatory</td>
+    <td valign="top" class="tableb"><abbr title="not applicable">n/a</abbr></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_template_custom_header"></a>{CUSTOM_HEADER}<a href="#theme_create_template_custom_header" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">
+      <strong>Custom Header</strong><br />
+      If the corresponding option has been set in config, this token will be replaced with the output that your <a href="php-content.htm#php-content_header_footer">custom header</a> generates. If you don't use the custom header feature, you can remove the {CUSTOM_HEADER}-token from your template, but it's advisable to leave it in place if you decide to use the feature later.
+    </td>
+    <td valign="top" class="tableb tableb_alternate">pageheader</td>
+    <td valign="top" class="tableb tableb_alternate">optional</td>
+    <td valign="top" class="tableb tableb_alternate"><a href="configuration.htm#admin_theme_custom_header_path_start">Path to custom header include</a> set up in config</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="theme_create_template_gal_name"></a>{GAL_NAME}<a href="#theme_create_template_gal_name" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">
+      <strong>Gallery name</strong><br />
+      Will be replaced with the gallery name you set up in config when the template is being parsed. You might want to remove this token, especially if you already have a banner in your theme that displays your gallery name.
+    </td>
+    <td valign="top" class="tableb">pageheader</td>
+    <td valign="top" class="tableb">optional</td>
+    <td valign="top" class="tableb"><a href="configuration.htm#admin_general_name">Gallery name</a> set in config</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_template_gal_description"></a>{GAL_DESCRIPTION}<a href="#theme_create_template_gal_description" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">
+      <strong>Gallery description</strong><br />
+      Will be replaced with the gallery description you set up in config when the template is being parsed. You might want to remove this token, especially if you already have a banner in your theme that displays your gallery name.
+    </td>
+    <td valign="top" class="tableb tableb_alternate">pageheader</td>
+    <td valign="top" class="tableb tableb_alternate">optional</td>
+    <td valign="top" class="tableb tableb_alternate"><a href="configuration.htm#admin_general_description">Gallery description</a> set in config</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="theme_create_template_sys_menu"></a>{SYS_MENU}<a href="#theme_create_template_sys_menu" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">
+      <strong>System menu</strong><br />
+      Determines the position of the first level menu the end user will see on your page (the one that contains the login/logout link). Even if you want to get rid of the menu or parts of it, do not remove the {SYS_MENU} token itself, but remove the menu items you don't want displayed by editing theme.php instead.
+    </td>
+    <td valign="top" class="tableb">pageheader</td>
+    <td valign="top" class="tableb">mandatory</td>
+    <td valign="top" class="tableb">
+      <ul>
+        <li>Login/Logout link: Status of user (admin/registered user/guest).</li>
+        <li>Upload-link: Permission of current user to upload (determined in <a href="groups.htm#group_cp">groups panel</a>).</li>
+        <li>Register-link: <a href="configuration.htm#admin_allow_registration">Allow new user registrations</a> enabled/disabled in config.</li>
+        <li>FAQ-link: <a href="configuration.htm#admin_theme_faq">Display FAQ</a> enabled/disabled in config.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_template_sub_menu"></a>{SUB_MENU}<a href="#theme_create_template_sub_menu" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">
+      <strong>Sub menu</strong><br />
+      Determines the position of the second level menu the end user will see on your page (the one that contains the links &quot;Album list&quot; / &quot;Last uploads&quot; / &quot;Last comments&quot; / &quot;Most viewed&quot; / &quot;Top rated&quot; / &quot;My Favorites&quot; / &quot;By Date&quot; / &quot;Search&quot;). Even if you want to get rid of the menu or parts of it, do not remove the {SUB_MENU} token itself, but remove the menu items you don't want displayed by editing theme.php instead.
+    </td>
+    <td valign="top" class="tableb tableb_alternate">pageheader</td>
+    <td valign="top" class="tableb tableb_alternate">mandatory</td>
+    <td valign="top" class="tableb tableb_alternate"><abbr title="not applicable">n/a</abbr></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="theme_create_template_language_select_flags"></a>{LANGUAGE_SELECT_FLAGS}<a href="#theme_create_template_language_select_flags" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">
+      <strong>Language selector (flags)</strong><br />
+      Will display a row of flags representing the <a href="languages.htm">languages</a> available for the end user to choose if corresponding config setting is enabled.
+    </td>
+    <td valign="top" class="tableb">none</td>
+    <td valign="top" class="tableb">optional</td>
+    <td valign="top" class="tableb"><a href="configuration.htm#admin_language_flags">Display language flags</a> enabled/disabled in config.</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_template_language_select_list"></a>{LANGUAGE_SELECT_LIST}<a href="#theme_create_template_language_select_list" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">
+      <strong>Language selector (list)</strong><br />
+      Will display a dropdown list of <a href="languages.htm">languages</a> available for the end user to choose if corresponding config setting is enabled.
+    </td>
+    <td valign="top" class="tableb tableb_alternate">none</td>
+    <td valign="top" class="tableb tableb_alternate">optional</td>
+    <td valign="top" class="tableb tableb_alternate"><a href="configuration.htm#admin_language_list">Display language list</a> enabled/disabled in config.</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="theme_create_template_theme_select_list"></a>{THEME_SELECT_LIST}<a href="#theme_create_template_theme_select_list" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">
+      <strong>Theme selector (list)</strong><br />
+      Will display a dropdown list of themes available for the end user to choose if corresponding config setting is enabled.
+    </td>
+    <td valign="top" class="tableb">none</td>
+    <td valign="top" class="tableb">optional</td>
+    <td valign="top" class="tableb"><a href="configuration.htm#admin_theme_theme_list">Display theme list</a> enabled/disabled in config.</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_template_admin_menu"></a>{ADMIN_MENU}<a href="#theme_create_template_admin_menu" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">
+      <strong>Admin menu</strong><br />
+      Displays the <a href="admin_menu.htm">admin menu</a>.
+    </td>
+    <td valign="top" class="tableb tableb_alternate">pageheader</td>
+    <td valign="top" class="tableb tableb_alternate">mandatory</td>
+    <td valign="top" class="tableb tableb_alternate">Admin must be logged in. <a href="admin_menu.htm#admin_user_mode">Admin controls</a> mustn't be hidden.</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="theme_create_template_message_block"></a>{MESSAGE_BLOCK}<a href="#theme_create_template_message_block" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">
+      <strong>Message block</strong><br />
+    </td>
+    <td valign="top" class="tableb">pageheader</td>
+    <td valign="top" class="tableb">mandatory</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_template_gallery"></a>{GALLERY}<a href="#theme_create_template_gallery" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">
+      <strong>Gallery</strong><br />
+    </td>
+    <td valign="top" class="tableb tableb_alternate"><abbr title="not applicable">n/a</abbr></td>
+    <td valign="top" class="tableb tableb_alternate">mandatory</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="theme_create_template_custom_footer"></a>{CUSTOM_FOOTER}<a href="#theme_create_template_custom_footer" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">
+      <strong>Custom Footer</strong><br />
+      If the corresponding option has been set in config, this token will be replaced with the output that your <a href="php-content.htm#php-content_header_footer">custom footer</a> generates. If you don't use the custom footer feature, you can remove the {CUSTOM_FOOTER}-token from your template, but it's advisable to leave it in place if you decide to use the feature later.
+    </td>
+    <td valign="top" class="tableb">pagefooter</td>
+    <td valign="top" class="tableb">optional</td>
+    <td valign="top" class="tableb"><a href="configuration.htm#admin_theme_custom_footer_path_start">Path to custom footer include</a> set up in config</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_template_vanity"></a>{VANITY}<a href="#theme_create_template_vanity" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">
+      <strong>Vanity block</strong><br />
+      If your custom theme is defined as valid theme and you have enabled the corresponding option in config, the {VANITY}-placeholder will be replaced with mini-banners that link to PHP.net, mysql.com and the HTML and CSS validators of the W3C.<br />
+      <img src="images/vanity.png" width="351" height="26" border="0" alt="" title="vanity block" />
+    </td>
+    <td valign="top" class="tableb tableb_alternate">pagefooter</td>
+    <td valign="top" class="tableb tableb_alternate">optional</td>
+    <td valign="top" class="tableb tableb_alternate">
+      <a href="configuration.htm#vanity_block">Display the vanity block on themes that are defined as XHTML and CSS compliant</a> enabled in config.<br />
+      Theme defined XHTML and CSS compliant in theme.php
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="theme_create_template_credits"></a>{CREDITS}<a href="#theme_create_template_credits" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">
+      <strong>Credits</strong><br />
+      Will display the &quot;Powered by Coppermine&quot; tag on your page. If the token is being removed, the copyright-disclaimer will be displayed as part of the {GALLERY}-block. If you want to edit (or even delete) the &quot;Powered by Coppermine&quot; tag, read <a href="theme_copyright.htm">Copyright-disclaimer in footer</a>
+    </td>
+    <td valign="top" class="tableb">pagefooter</td>
+    <td valign="top" class="tableb">optional</td>
+    <td valign="top" class="tableb">Credits section defined in theme.php</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_template_social_bookmarks"></a>{SOCIAL_BOOKMARKS}<a href="#theme_create_template_social_bookmarks" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">
+      <a name="social_bookmarks_token"></a><strong>Social bookmarks<a href="#social_bookmarks_token" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></strong><br />
+      Will display the social bookmark icons if <a href="configuration.htm#social_bookmarks">the correspdonding option</a> in the config is enabled for at least one social bookmark service.
+    </td>
+    <td valign="top" class="tableb tableb_alternate">none</td>
+    <td valign="top" class="tableb tableb_alternate">optional</td>
+    <td valign="top" class="tableb tableb_alternate">Config page &gt; <a href="configuration.htm#social_bookmarks">Display social bookmarks icons</a></td>
+  </tr>
+</table>
+<p>Be careful not to delete the {JAVASCRIPT}-token - this javascript is necessary for the full-size pop-ups and other functions related to JavaScript.</p>
+
+<a name="theme_create_template_favicon"></a><h3>Favicon<a href="#theme_create_template_favicon" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Coppermine comes with a <a href="http://en.wikipedia.org/wiki/Favicon" rel="external" class="external">favicon</a> file that resides in the gallery root folder. There is reference to it in all themes that come with coppermine out of the box. You're welcome to use a favicon file of your own and change the reference to it in your custom theme. To accomplish this, edit themes/your_custom_theme/template.html, find <tt class="code">&lt;link rel=&quot;shortcut icon&quot; href=&quot;favicon.ico&quot; /&gt;</tt> and edit as you see fit.</p>
+
+
+
+<!--<div class="quote">
+<p><strong>Example:</strong></p>
+
+</div>
+-->
+
+
+
+<a name="theme_create_colors"></a><h2>Modifying colors &amp; design<a href="#theme_create_colors" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>To modify the colors, fonts, font sizes, etc... used by the script, you should edit the &quot;<strong>style.css</strong>&quot; stylesheet whenever possible. For example, if you want to increase or decrease the size of the fonts you can simply modify the line with : <tt class="code">table { font-size: 12px; }</tt>. Most of the font sizes used by the script are defined as a percentage of this size.</p>
+
+<a name="theme_create_theme_php"></a><h2>Editing theme.php<a href="#theme_create_theme_php" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>The &quot;<strong>theme.php</strong>&quot; file contains all the HTML templates used by the script. You can edit them, as well. When making modifications to these templates, be careful that you do not alter the lines that start with <tt class="code">&lt;!-- BEGIN xxx --&gt;</tt> and <tt class="code">&lt;!-- END xxx --&gt;</tt>. These lines are often used to identify the start and end of specific code blocks that the script will use to display your gallery.</p>
+
+<a name="theme_create_theme_php_types"></a><h3>Item types<a href="#theme_create_theme_php_types" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Basically, there can be three types of content in theme.php (from a PHP-coder's point of view). Don't worry though - you don't have to be a coder to be capable to change your theme</p>
+<ul>
+  <li><strong>Definitions of constants</strong><br />
+  Think of constants as general switches that can be set once while the script is run
+  <div class="quote"><p><strong>Example:</strong><br />
+  <tt class="code">define('THEME_IS_XHTML10_TRANSITIONAL',1);</tt></p></div></li>
+  <li><strong>Definition of variables</strong><br />
+  Variables can be manipulated (i.e. changed) during runtime. The vast majority of items that can reside in theme.php are variables. Variable names always start with a &dollar;-sign.
+  <div class="quote"><p><strong>Example:</strong><br />
+  <tt class="code">$template_sys_menu = &lt;&lt;&lt;EOT<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{BUTTONS}<br />EOT;</tt></p></div></li>
+  <li><strong>Definition of functions</strong><br />
+  Functions are the most powerfull mechanisms that can reside in theme.php, as they allow great flexibility and are re-usable. They start with the word <tt class="code">function</tt>, followed by the function name and the parameters in brackets and a curly bracket that actually determines the start of the function. The function definition usually contains several lines of code and ends with a closing curly bracket.
+  <div class="quote"><p><strong>Example:</strong><br />
+  <tt class="code">function endtable()<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;echo &lt;&lt;&lt;EOT<br />
+&lt;/table&gt;<br />
+&lt;!-- End standard table --&gt;<br />
+<br />
+EOT;<br />
+}</tt></p></div></li>
+</ul>
+
+<a name="theme_create_theme_php_list"></a><h3>List of items in theme.php<a href="#theme_create_theme_php_list" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+  <tr>
+    <th valign="top" align="left" class="tableh1">Item</th>
+    <th valign="top" align="left" class="tableh1">Type</th>
+    <th valign="top" align="left" class="tableh1">Description</th>
+    <th valign="top" align="left" class="tableh1">Dependancies</th>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="theme_create_theme_sidebar_graphic"></a>define('<strong>THEME_HAS_SIDEBAR_GRAPHICS</strong>',1);<a href="#theme_create_theme_sidebar_graphic" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">constant</td>
+    <td valign="top" class="tableb">The location for the sidebar graphics that compose the tree menu. When the constant is set, the script will be directed to the theme's images folder, subfolder 'sidebar', i.e. themes/yourtheme/images/sidebar/ and look for the sidebar images there. If not defined (default), the sidebar images will be taken from images/sidebar/</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_xhtml"></a>define('<strong>THEME_IS_XHTML10_TRANSITIONAL</strong>',1);<a href="#theme_create_theme_xhtml" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">constant</td>
+    <td valign="top" class="tableb tableb_alternate">If theme is defined as XHTML10_TRANSITIONAL the VANITY footer will be enabled if the theme has a <a href="#theme_create_template_vanity">{VANITY} token</a> in its template.html. Don't enable this if you have modified the code! By setting this constant you claim that your custom theme is valid. To actually enable or disable the display of the vanity footer, enable or disable &quot;<a href="configuration.htm#vanity_block">Display the vanity block on themes that are defined as XHTML and CSS compliant</a>&quot; in Coppermine's config.</td>
+    <td valign="top" class="tableb tableb_alternate">-</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="theme_create_theme_rating_graphic"></a>define('<strong>THEME_HAS_RATING_GRAPHICS</strong>',1);<a href="#theme_create_theme_rating_graphic" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">constant</td>
+    <td valign="top" class="tableb">The location for the ratings graphics. When the constant is set, the script will be directed to the theme's images folder, i.e. themes/yourtheme/images/ and look for the rating images there. If not defined (default), the rating images will be taken from the images-folder that resides in Coppermine's root folder.</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_navbar_graphic"></a>define('<strong>THEME_HAS_NAVBAR_GRAPHICS</strong>',1);<a href="#theme_create_theme_navbar_graphic" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">constant</td>
+    <td valign="top" class="tableb tableb_alternate">The location for the navbar graphics (&quot;ecard&quot;, &quot;slideshow&quot;, &quot;previous&quot;/&quot;next&quot;). When the constant is set, the script will be directed to the theme's images folder, i.e. themes/yourtheme/images/ and look for the navbar images there. If not defined (default), the navbar images will be taken from the images-folder that resides in Coppermine's root folder.</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="theme_create_theme_filmstrip_graphic"></a>define('<strong>THEME_HAS_FILM_STRIP_GRAPHIC</strong>',1);<a href="#theme_create_theme_filmstrip_graphic" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">constant</td>
+    <td valign="top" class="tableb">The location for the film strip graphics. When the constant is set, the script will be directed to the theme's images folder, i.e. themes/yourtheme/images/ and look for the film strip images (tile.gif) there. If not defined (default), the film strip images will be taken from the images-folder that resides in Coppermine's root folder.</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_no_sysmenu"></a>define('<strong>THEME_HAS_NO_SYS_MENU_BUTTONS</strong>',1);<a href="#theme_create_theme_no_sysmenu" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">constant</td>
+    <td valign="top" class="tableb tableb_alternate">When present the system won't attempt to replace {BUTTONS} in the SYS_MENU template</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="theme_create_theme_no_submenu"></a>define('<strong>THEME_HAS_NO_SUB_MENU_BUTTONS</strong>',1);<a href="#theme_create_theme_no_submenu" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">constant</td>
+    <td valign="top" class="tableb">When present the system won't attempt to replace {BUTTONS} in the SUB_MENU template</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_assemble_button"></a>function <strong>assemble_template_buttons</strong>(<em>$template_buttons,$buttons</em>)<a href="#theme_create_theme_assemble_button" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">function</td>
+    <td valign="top" class="tableb tableb_alternate">Creates buttons from a template using an array of tokens this function is used in this file it needs to be declared before being called.</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="theme_create_theme_addbutton"></a>function <strong>addbutton</strong>(<em>&$menu,$href_lnk,$href_title,$href_tgt,$block_id,$spacer</em>)<a href="#theme_create_theme_addbutton" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">function</td>
+    <td valign="top" class="tableb">Creates an array of tokens to be used with function assemble_template_buttons this function is used in this file it needs to be declared before being called.</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_pageheader"></a>function <strong>pageheader</strong>(<em>$section, $meta = ''</em>)<a href="#theme_create_theme_pageheader" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">function</td>
+    <td valign="top" class="tableb tableb_alternate">Function for writing a pageheader. The first parameter <em>$section</em> should not be touched. The second parameter <em>$meta</em> can be used to add your custom dynamic meta tags. To add static meta tags, edit <a href="#theme_create_template_html">template.html</a></td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="theme_create_theme_pagefooter"></a>function <strong>pagefooter</strong>()<a href="#theme_create_theme_pagefooter" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">function</td>
+    <td valign="top" class="tableb">Function for writing a pagefooter</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_javascript_head"></a>function <strong>theme_javascript_head</strong>()<a href="#theme_create_theme_javascript_head" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">function</td>
+    <td valign="top" class="tableb tableb_alternate">Function for the JavaScript inside the <tt class="code">&lt;head&gt;</tt>-section</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="theme_create_theme_credits"></a>function <strong>theme_credits</strong>()<a href="#theme_create_theme_credits" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">function</td>
+    <td valign="top" class="tableb">Function for the <a href="theme_copyright.htm#theme_copyright">credits-section</a></td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_starttable"></a>function <strong>starttable</strong>($width = '-1', $title = '', $title_colspan = '1')<a href="#theme_create_theme_starttable" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">function</td>
+    <td valign="top" class="tableb tableb_alternate">Function to start a 'standard' table</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="theme_create_theme_endtable"></a>function <strong>endtable</strong>()<a href="#theme_create_theme_endtable" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">function</td>
+    <td valign="top" class="tableb">End standard table</td>
+    <td valign="top" class="tableb"><a href="#theme_create_theme_starttable">function starttable()</a></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_mainmenu"></a>function <strong>theme_main_menu</strong>(<em>$which</em>)<a href="#theme_create_theme_mainmenu" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">function</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="theme_create_theme_admin_menu"></a>function <strong>theme_admin_mode_menu</strong>()<a href="#theme_create_theme_admin_menu" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">function</td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_display_message_block"></a>function <strong>theme_display_message_block</strong>()<a href="#theme_create_theme_display_message_block" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">function</td>
+    <td valign="top" class="tableb tableb_alternate">Function for the theme_display_message_block. The message block (not to be confused with the admin menu) will display message carried over from one page to the other and an RSS feed from the coppermine project page for the admin. It's advisable not to change it unless you really know what you're doing. This function composes the individual sections of the block.</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="theme_create_theme_display_cat_list"></a>function <strong>theme_display_cat_list</strong>(<em>$breadcrumb, &$cat_data, $statistics</em>)<a href="#theme_create_theme_display_cat_list" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">function</td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_display_breadcrumb"></a>function <strong>theme_display_breadcrumb</strong>(<em>$breadcrumb, &$cat_data</em>)<a href="#theme_create_theme_display_breadcrumb" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">function</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="theme_create_theme_display_album_list"></a>function <strong>theme_display_album_list</strong>(<em>&$alb_list, $nbAlb, $cat, $page, $total_pages</em>)<a href="#theme_create_theme_display_album_list" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">function</td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_display_album_list_cat"></a>function <strong>theme_display_album_list_cat</strong>(<em>&$alb_list, $nbAlb, $cat, $page, $total_pages</em>)<a href="#theme_create_theme_display_album_list_cat" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">function</td>
+    <td valign="top" class="tableb tableb_alternate">Function to display first level Albums of a category</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="theme_create_theme_display_thumbnails"></a>function <strong>theme_display_thumbnails</strong>(<em>&$thumb_list, $nbThumb, $album_name, $aid, $cat, $page, $total_pages, $sort_options, $display_tabs, $mode = 'thumb', $date=''</em>)<a href="#theme_create_theme_display_thumbnails" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">function</td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_display_film_strip"></a>function <strong>theme_display_film_strip</strong>(<em>&$thumb_list, $nbThumb, $album_name, $aid, $cat, $pos, $sort_options, $mode = 'thumb', $date=''</em>)<a href="#theme_create_theme_display_film_strip" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">function</td>
+    <td valign="top" class="tableb tableb_alternate">Display film strip</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="theme_create_theme_function_no_img_to_display"></a>function <strong>theme_no_img_to_display</strong>(<em>$album_name</em>)<a href="#theme_create_theme_function_no_img_to_display" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">function</td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_display_image"></a>function <strong>theme_display_image</strong>(<em>$nav_menu, $picture, $votes, $pic_info, $comments, $film_strip</em>)<a href="#theme_create_theme_display_image" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">function</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="theme_create_theme_html_picinfo"></a>function <strong>theme_html_picinfo</strong>(<em>&$info</em>)<a href="#theme_create_theme_html_picinfo" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">function</td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_html_picture"></a>function <strong>theme_html_picture</strong>()<a href="#theme_create_theme_html_picture" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">function</td>
+    <td valign="top" class="tableb tableb_alternate">Displays a picture</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="theme_create_theme_html_img_nav_menu"></a>function <strong>theme_html_img_nav_menu</strong>()<a href="#theme_create_theme_html_img_nav_menu" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">function</td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_html_rating_box"></a>function <strong>theme_html_rating_box</strong>()<a href="#theme_create_theme_html_rating_box" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">function</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="theme_create_theme_html_comments"></a>function <strong>theme_html_comments</strong>(<em>$pid</em>)<a href="#theme_create_theme_html_comments" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">function</td>
+    <td valign="top" class="tableb">Displays comments for a specific picture</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_slideshow"></a>function <strong>theme_slideshow</strong>()<a href="#theme_create_theme_slideshow" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">function</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="theme_create_theme_function_display_fullsize_pic"></a>function <strong>theme_display_fullsize_pic</strong>()<a href="#theme_create_theme_function_display_fullsize_pic" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">function</td>
+    <td valign="top" class="tableb">Display the full size image</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_vanity"></a>function <strong>theme_vanity</strong>()<a href="#theme_create_theme_vanity" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">function</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="theme_create_theme_display_bar"></a>function <strong>theme_display_bar</strong>(<em>$actualValue = 0, maxValue = '100', maxBarSizeInPixels = '400', textColor = 'black', textShadowColor = '', textUnit = '', leftBar = 'red', rightBar = ''</em>)<a href="#theme_create_theme_display_bar" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">function</td>
+    <td valign="top" class="tableb">Display a bar graph</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_page_title"></a>function <strong>theme_page_title</strong>(<em>$section</em>)<a href="#theme_create_theme_page_title" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">function</td>
+    <td valign="top" class="tableb tableb_alternate">Creates the title tag for each page. For the sake of search engine friendliness, the dynamic part $section should come first</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="theme_create_theme_var_sys_menu"></a><strong>$template_sys_menu</strong><a href="#theme_create_theme_var_sys_menu" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">variable</td>
+    <td valign="top" class="tableb">Template for sys_menu</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_var_sub_menu"></a><strong>$template_sub_menu</strong><a href="#theme_create_theme_var_sub_menu" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">variable</td>
+    <td valign="top" class="tableb tableb_alternate">Template for sub_menu</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="theme_create_theme_sys_menu_spacer"></a><strong>$template_sys_menu_spacer</strong><a href="#theme_create_theme_sys_menu_spacer" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">variable</td>
+    <td valign="top" class="tableb">Delimiter between sys menu items (in many themes, <tt class="code">::</tt> is being used)</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_sys_menu_button"></a><strong>$template_sys_menu_button</strong><a href="#theme_create_theme_sys_menu_button" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">variable</td>
+    <td valign="top" class="tableb tableb_alternate">Edit this to add/change CSS classes for the sys-menu links.<br />
+    Default content is<pre class="quote">  &lt;!-- BEGIN {BLOCK_ID} --&gt;
+        &lt;a href=&quot;{HREF_TGT}&quot; title=&quot;{HREF_TITLE}&quot;&gt;{HREF_LNK}&lt;/a&gt; {SPACER}
+  &lt;!-- END {BLOCK_ID} --&gt;</pre></td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="theme_create_theme_sub_menu_spacer"></a><strong>$template_sub_menu_spacer</strong><a href="#theme_create_theme_sub_menu_spacer" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">variable</td>
+    <td valign="top" class="tableb">Delimiter between sub menu items. By default, it's the same delimiter that is being used for the sys menu.</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_sub_menu_button"></a><strong>$template_sub_menu_button</strong><a href="#theme_create_theme_sub_menu_button" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">variable</td>
+    <td valign="top" class="tableb tableb_alternate">Edit this to add/change CSS classes for the menu-menu links. By default, the definition for the sys-menu is being taken into account.</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="theme_create_theme_gallery_admin_menu"></a><strong>$template_gallery_admin_menu</strong><a href="#theme_create_theme_gallery_admin_menu" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">variable</td>
+    <td valign="top" class="tableb">HTML template for gallery admin menu</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_user_admin_menu"></a><strong>$template_user_admin_menu</strong><a href="#theme_create_theme_user_admin_menu" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">variable</td>
+    <td valign="top" class="tableb tableb_alternate">HTML template for user admin menu, i.e. the additional menu the non-admin user sees if he is logged in and allowed to have a personal gallery (permission for this is being assigned on the <a href="groups.htm#group_cp">groups control panel</a>).</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="theme_create_theme_var_cat_list"></a><strong>$template_cat_list</strong><a href="#theme_create_theme_var_cat_list" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">variable</td>
+    <td valign="top" class="tableb">HTML template for the category list</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_breadcrumb"></a><strong>$template_breadcrumb</strong><a href="#theme_create_theme_breadcrumb" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">variable</td>
+    <td valign="top" class="tableb tableb_alternate">HTML template for the breadcrumb (i.e. the path that indicates where the visitor actually is in terms of the logical category/album structure)</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="theme_create_theme_var_album_list"></a><strong>$template_album_list</strong><a href="#theme_create_theme_var_album_list" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">variable</td>
+    <td valign="top" class="tableb">HTML template for the album list</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_var_film_strip"></a><strong>$template_film_strip</strong><a href="#theme_create_theme_var_film_strip" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">variable</td>
+    <td valign="top" class="tableb tableb_alternate">HTML template for filmstrip display on the intermediate image page (displayimage.php)</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="theme_create_theme_var_album_list_cat"></a><strong>$template_album_list_cat</strong><a href="#theme_create_theme_var_album_list_cat" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">variable</td>
+    <td valign="top" class="tableb">HTML template for the album list</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_album_admin_menu"></a><strong>$template_album_admin_menu</strong><a href="#theme_create_theme_album_admin_menu" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">variable</td>
+    <td valign="top" class="tableb tableb_alternate">HTML template for the ALBUM admin menu displayed in the album list, i.e. the menu items (buttons) that are being displayed next to each album thumbnail if the logged in user is the owner of that album. Usually, this is the case for the admin.</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="theme_create_theme_thumb_view_title_row"></a><strong>$template_thumb_view_title_row</strong><a href="#theme_create_theme_thumb_view_title_row" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">variable</td>
+    <td valign="top" class="tableb">HTML template for title row of the thumbnail view (album title + sort options). This is the place to remove the sort options if you don't want them displayed.</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_fav_thumb_view_title_row"></a><strong>$template_fav_thumb_view_title_row</strong><a href="#theme_create_theme_fav_thumb_view_title_row" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">variable</td>
+    <td valign="top" class="tableb tableb_alternate">HTML template for title row of the fav thumbnail view (album title + download).</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="theme_create_theme_thumbnail_view"></a><strong>$template_thumbnail_view</strong><a href="#theme_create_theme_thumbnail_view" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">variable</td>
+    <td valign="top" class="tableb">HTML template for thumbnails display</td>
+    <td valign="top" class="tableb">function <a href="#theme_create_theme_display_thumbnails">theme_display_thumbnails</a> uses variable and defines placeholder tokens <tt class="code">{THUMB}</tt>, <tt class="code">{CAPTION}</tt>, <tt class="code">{ADMIN_MENU}</tt> and <tt class="code">{TABS}</tt></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_var_no_img_to_display"></a><strong>$template_no_img_to_display</strong><a href="#theme_create_theme_var_no_img_to_display" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">variable</td>
+    <td valign="top" class="tableb tableb_alternate">HTML template for the thumbnail view when there is no picture to show. If your gallery <a href="configuration.htm#admin_allow_unlogged_access">requires visitors to log in</a> to actually view the pictures, you may encourage them to do so by coming up with custom content within this theme section.</td>
+    <td valign="top" class="tableb tableb_alternate">Placeholder token <tt class="code">{TEXT}</tt> being populated and variable used in function <a href="#theme_create_theme_function_no_img_to_display">theme_no_img_to_display</a></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="theme_create_theme_user_list_info_box"></a><strong>$template_user_list_info_box</strong><a href="#theme_create_theme_user_list_info_box" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">variable</td>
+    <td valign="top" class="tableb">HTML template for the USER info box in the user list view</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_var_img_navbar"></a><strong>$template_img_navbar</strong><a href="#theme_create_theme_var_img_navbar" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">variable</td>
+    <td valign="top" class="tableb tableb_alternate">HTML template for the image navigation bar: the navigation at the top of the intermediate image view that let's you go to the thumbnail view, expands/collapses the pic info section, starts the slideshow, contains links to ecard, allows you to report a file to the admin and displays the link to the previous and next image in the album the visitor is currently in.</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="theme_create_theme_var_display_media"></a><strong>$template_display_media</strong><a href="#theme_create_theme_var_display_media" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">variable</td>
+    <td valign="top" class="tableb">HTML template for intermediate image display. This is the place where layout changes of the intermediate image in relation to the title and description should be added.</td>
+    <td valign="top" class="tableb">function theme_html_picture populates the placeholder tokens <tt class="code">{IMAGE}</tt>, <tt class="code">{ADMIN_MENU}</tt>, <tt class="code">{TITLE}</tt> and <tt class="code">{CAPTION}</tt> and uses the variable</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_var_image_rating"></a><strong>$template_image_rating</strong><a href="#theme_create_theme_var_image_rating" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">variable</td>
+    <td valign="top" class="tableb tableb_alternate">HTML template for the image rating box</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="theme_create_theme_var_image_comments"></a><strong>$template_image_comments</strong><a href="#theme_create_theme_var_image_comments" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">variable</td>
+    <td valign="top" class="tableb">HTML template for the display of comments</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_add_your_comment"></a><strong>$template_add_your_comment</strong><a href="#theme_create_theme_add_your_comment" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">variable</td>
+    <td valign="top" class="tableb tableb_alternate">HTML template for the input form for comments</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="theme_create_theme_var_cpg_die"></a><strong>$template_cpg_die</strong><a href="#theme_create_theme_var_cpg_die" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">variable</td>
+    <td valign="top" class="tableb">HTML template used by the cpg_die function, used to display error messages of any kind to the visitor</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_var_msg_box"></a><strong>$template_msg_box</strong><a href="#theme_create_theme_var_msg_box" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">variable</td>
+    <td valign="top" class="tableb tableb_alternate">HTML template used by the msg_box function that displays messages to the visitor at the top of the screen (usually giving feedback for actions that the visitor has made on a previous screen).</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="theme_create_theme_var_ecard"></a><strong>$template_ecard</strong><a href="#theme_create_theme_var_ecard" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">variable</td>
+    <td valign="top" class="tableb">HTML template for e-cards</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_var_ecard_plaintext"></a><strong>$template_ecard_plaintext</strong><a href="#theme_create_theme_var_ecard_plaintext" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">variable</td>
+    <td valign="top" class="tableb tableb_alternate">plain-text template for e-cards (as fallback for clients that can't display html-formatted mails)</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="theme_create_theme_var_report"></a><strong>$template_report</strong><a href="#theme_create_theme_var_report" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">variable</td>
+    <td valign="top" class="tableb">HTML template for report</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_var_report_plaintext"></a><strong>$template_report_plaintext</strong><a href="#theme_create_theme_var_report_plaintext" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">variable</td>
+    <td valign="top" class="tableb tableb_alternate">plain-text template for reports (as fallback for clients that can't display html-formatted mails)</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="theme_create_theme_var_report_comment"></a><strong>$template_report_comment</strong><a href="#theme_create_theme_var_report_comment" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">variable</td>
+    <td valign="top" class="tableb">HTML template for displaying a reported comment</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_var_report_comment_email"></a><strong>$template_report_comment_email</strong><a href="#theme_create_theme_var_report_comment_email" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">variable</td>
+    <td valign="top" class="tableb tableb_alternate">plain-text template for reports (as fallback for clients that can't display html-formatted mails)</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="theme_create_theme_tab_display"></a><strong>$template_tab_display</strong><a href="#theme_create_theme_tab_display" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">variable</td>
+    <td valign="top" class="tableb">Template used for tabbed display</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_var_vanity"></a><strong>$template_vanity</strong><a href="#theme_create_theme_var_vanity" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">variable</td>
+    <td valign="top" class="tableb tableb_alternate">Template used for <a href="configuration.htm#vanity_block">Vanity Footer</a></td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="theme_create_theme_var_sidebar"></a><strong>$template_sidebar</strong><a href="#theme_create_theme_var_sidebar" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">variable</td>
+    <td valign="top" class="tableb">HTML template for sidebar</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+</table>
+
+<a name="theme_create_end"></a>
+
+
+
+<script type="text/javascript">
+  cpgDocFooter();
+  dateRevision(' $LastChangedDate: 2008-05-23 02:12:57 +0200 (Fr, 23 Mai 2008) $ ', ' $Revision: 4460 $ ');
+</script>
+
+</body>
+</html>

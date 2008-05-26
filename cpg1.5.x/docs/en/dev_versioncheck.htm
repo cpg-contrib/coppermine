@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<head>
+<title>Versioncheck - Coppermine Photo Gallery - Documentation &amp; Manual</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="language"    content="en">
+<meta name="copyright"   content="Coppermine dev team">
+<meta name="description" content="This part of the documentation is not meant for end users of Coppermine, but only for developers. There is no support for this section, it comes as-is.">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta name="MSSmartTagsPreventParsing" content="true">
+<meta http-equiv="imagetoolbar" content="no">
+<!--
+  SVN version info:
+
+  Coppermine version: 1.5.0
+  $Revision: 4298 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-02-26 13:30:16 +0100 (Di, 26 Feb 2008) $
+-->
+<link rel="stylesheet" type="text/css" href="../style.css" media="all" />
+<link rel="stylesheet" type="text/css" href="../screen.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="../print.css" media="print" />
+<link rel="shortcut icon" href="../favicon.ico" />
+<script src="script.js" type="text/javascript"></script>
+</head>
+<body>
+<script type="text/javascript">
+  cpgDocHeader();
+</script>
+<div id="toc">
+<script type="text/javascript">
+  cpgDocToc();
+</script>
+<noscript>
+<a href="toc.htm">Table of Contents</a>
+</noscript>
+</div>
+
+<a name="dev_versioncheck"></a><h1>Versioncheck<a href="#dev_versioncheck" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<p>Dev-only issues related to versioncheck.</p>
+
+<a name="dev_versioncheck_hidden_features"></a><h2>Hidden features<a href="#dev_versioncheck_hidden_features" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>In versioncheck versions prior to cpg1.5.x it has been comparatively hard to update the version information when a new package was going to be released, as the packager had to go through all changes manually. In cpg1.5.x (revision 3977 and later), the packager can simply add the parameter <tt class="code">?output=create</tt> to the URL to force the script loop through the existing entries and update the version / revision / MD5 hashes. You only have to copy the output of the screen and paste it into include/cpg15x.files.xml</p>
+<p>Another &quot;hidden&quot; feature is the option to embedd the output into another coppermine-driven page to allow an initial check to be performed during first install.</p>
+<p>However, something that needs to be done manually: if folders/files get added to the svn or are renamed, the change needs to be reflected in the XML file as well.</p>
+
+<a name="dev_versioncheck_todo"></a><h2>To do list<a href="#dev_versioncheck_todo" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<ul>
+  <li>Add help icons and corresponding explanations.</li>
+</ul>
+
+<br clear="all" />
+<script type="text/javascript">
+  cpgDocFooter();
+  dateRevision(' $LastChangedDate: 2008-02-26 13:30:16 +0100 (Di, 26 Feb 2008) $ ', ' $Revision: 4298 $ ');
+</script>
+
+</body>
+</html>
