@@ -64,12 +64,9 @@
 </ul>
 <li><strong>Add-ons / Modifications / Hacks</strong></li>
 <ul class="nomargin">
-<li><a class="content" href="#changeOrderEdit">How can I change the order of the pics when <strong>editing</strong> them?</a></li>
 <li><a class="content" href="#rightHandMenu">How can I create a menu that's shown on the <strong>right side</strong> of the gallery?</a></li>
 <li><a class="content" href="#jumpToPrivateAlbum">How can I send a user <strong>directly to his private album</strong> once he logs in?</a></li>
 <li><a class="content" href="#linksInCustomFields">How do I enable clickable <strong>links in custom user fields</strong>?</a></li>
-<li><a class="content" href="#sortThumbsByCustomField">How can I <strong>sort the thumbnails by user defined (custom) fields</strong>?</a></li>
-<li><a class="content" href="#iptcSupport">How do I <strong>enable IPTC support</strong>?</a></li>
 <li><a class="content" href="#addFooterBeforePoweredBy">How can I <strong>add</strong> some output <strong>directly before</strong> the line &quot;Powered by Coppermine&quot;?</a></li>
 <li><a class="content" href="errors.htm#common_php_errors">Common PHP errors (and how to get rid of them...)</a></li>
 <li><a class="content" href="#renameTemplateHtml">Can I <strong>rename template.html to template.php</strong> to include <strong>PHP code</strong> in my template?</a></li>
@@ -147,22 +144,23 @@ This will only work on linux/unix and apache servers AND only if you're allowed 
 
 <a name="onlyregisteredcomments"></a>
 <h3>How do I allow all guests, not just registered users, to add <strong>comments</strong> to pictures?<a href="#onlyregisteredcomments" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p><ul>
-<li>log in as admin</li>
-<li>admin controls enabled</li>
-<li>groups</li>
-<li>&quot;Anonymous&quot; - &quot;Can post comments&quot; - &quot;yes&quot;</li>
-<li>Apply modifications</li>
-</ul>
-To change the settings on a per album basis, first, complete the above steps, then):
 <ul>
-<li>Log in as admin</li>
-<li>Confirm that you have admin controls enabled</li>
-<li>In Category view, click on the album of choice</li>
-<li>Select &quot;Properties&quot;</li>
-<li>Set&quot;Permissions for this album&quot; - &quot;Visitors can post comments&quot; - &quot;Yes&quot;</li>
-<li>&quot;Update album&quot;</li>
-</ul></p><hr />
+    <li>log in as admin</li>
+    <li>admin controls enabled</li>
+    <li>groups</li>
+    <li>&quot;Anonymous&quot; - &quot;Can post comments&quot; - &quot;yes&quot;</li>
+    <li>Apply modifications</li>
+</ul>
+<p>To change the settings on a per album basis, first, complete the above steps, then:</p>
+<ul>
+    <li>Log in as admin</li>
+    <li>Confirm that you have admin controls enabled</li>
+    <li>In Category view, click on the album of choice</li>
+    <li>Select &quot;Properties&quot;</li>
+    <li>Set&quot;Permissions for this album&quot; - &quot;Visitors can post comments&quot; - &quot;Yes&quot;</li>
+    <li>&quot;Update album&quot;</li>
+</ul>
+<hr />
 
 <a name="cantUploadBigPics"></a>
 <h3>I <strong>can't upload big pics or files</strong>. What's wrong?<a href="#cantUploadBigPics" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -207,7 +205,7 @@ To change the settings on a per album basis, first, complete the above steps, th
 <h3>How can I <strong>move my gallery to another host</strong>?<a href="#moveGallery" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <ul>
 <li>Backup your files: FTP-download your complete coppermine-folder to your hard drive</li>
-<li>use a tool like phpMyAdmin to get a dump (backup) of your mySQL database entries. More info <a href="http://coppermine-gallery.net/faq.php?q=BackupDatabase#BackupDatabase">here</a></li>
+<li>use a tool like phpMyAdmin to get a dump (backup) of your mySQL database entries.</li>
 <li>verify your backup is working: check if the mySQL-dump contains all data (open the zipped dump file and use a text editor to view it)</li>
 <li>on the new server: FTP-upload your coppermine-folder to the new server</li>
 <li>CHMOD the folder /albums to 755 or 777 (depending on your server config]</li>
@@ -223,23 +221,7 @@ To change the settings on a per album basis, first, complete the above steps, th
 <br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
 
 <a name="hacks"></a><h2>Add-ons / Modifications / Hacks<a href="#hacks" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<a name="letUserSelectTheme"></a>
-<a name="changeOrderEdit"></a>
-<h3>How can I change the order of the pics <u>when <strong>editing</strong> them</u>?<a href="#letUserSelectTheme" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>By default, the pics are shown alphabetically when you edit them. To change the sorting order to &quot;by date&quot;, edit <tt class="code">editpics.php</tt> and change<br />
-<pre>$sql = &quot;SELECT p.*,a.category FROM {$CONFIG['TABLE_PICTURES']} as p &quot;.
-                           &quot;INNER JOIN {$CONFIG['TABLE_ALBUMS']} as a &quot;.
-                           &quot;ON a.aid=p.aid &quot;.
-                           &quot;WHERE p.aid = '$album_id' &quot;.
-                           &quot;ORDER BY p.filename LIMIT $start, $count&quot;;
-                $result = cpg_db_query($sql);</pre><br />to<br />
-<pre>$sql = &quot;SELECT p.*,a.category FROM {$CONFIG['TABLE_PICTURES']} as p &quot;.
-                           &quot;INNER JOIN {$CONFIG['TABLE_ALBUMS']} as a &quot;.
-                           &quot;ON a.aid=p.aid &quot;.
-                           &quot;WHERE p.aid = '$album_id' &quot;.
-                           &quot;ORDER BY pid LIMIT $start, $count&quot;;
-                $result = cpg_db_query($sql);</pre><br /></p><br />
-<div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
+
 <a name="rightHandMenu"></a>
 <h3>How can I create a menu that's shown on the <strong>right side</strong> of the gallery?<a href="#rightHandMenu" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>When the template.html is read, it is split in 2. What is before the {GALLERY} tag is output by the pageheader function, what is after by the pagefooter function.<br />
@@ -293,156 +275,6 @@ This will allow you to use BBCodes in the custom fields: you can then have somet
 or<br />
 <tt class="code">[url=http://www.somesite.com/foo/bar.php?whatever=42]link to some site![/url]</tt><br />in your custom user fields (the display of which, of course, has to be enabled in the config page, begin with).<br /></p><hr />
 
-<a name="sortThumbsByCustomField"></a>
-<h3>How can I <strong>sort the thumbnails by user defined (custom) fields</strong>?<a href="#sortThumbsByCustomField" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p><ol>
-<li>Edit /includes/functions.inc.php<br />
-change<br />
-<pre>$sort_array = array('na' => 'filename ASC', 'nd' => 'filename DESC', 'da' => 'pid ASC', 'dd' => 'pid DESC'); </pre>
-to<br />
-<pre>   $sort_array = array(
-      'na' => 'filename ASC',
-      'nd' => 'filename DESC',
-      'da' => 'pid ASC',
-      'dd' => 'pid DESC',
-      'f1a' => 'user1 ASC',
-      'f1d' => 'user1 DESC',
-      'f2a' => 'user2 ASC',
-      'f2d' => 'user2 DESC',
-      'f3a' => 'user3 ASC',
-      'f3d' => 'user3 DESC',
-      'f4a' => 'user1 ASC',
-      'f4d' => 'user1 DESC'
-   );
-</pre></li>
-<li>Edit /themes/yourtheme/theme.php<br />
-<ul>
-<li>change<br />
-<pre>   // The sort order options are not available for meta albums
-   if ($sort_options){
-
-      $param = array(
-         '{ALBUM_NAME}' => $album_name,
-         '{AID}' => $aid,
-         '{PAGE}' => $page,
-         '{NAME}' => $lang_thumb_view['name'],
-         '{DATE}' => $lang_thumb_view['date'],
-         '{SORT_NA}' => $lang_thumb_view['sort_na'],
-         '{SORT_ND}' => $lang_thumb_view['sort_nd'],
-         '{SORT_DA}' => $lang_thumb_view['sort_da'],
-         '{SORT_DD}' => $lang_thumb_view['sort_dd'],
-         );</pre>
-<br />
-to<br />
-<pre>   // The sort order options are not available for meta albums
-   if ($sort_options){
-
-      $param = array(
-         '{ALBUM_NAME}' => $album_name,
-         '{AID}' => $aid,
-         '{PAGE}' => $page,
-         '{NAME}' => $lang_thumb_view['name'],
-         '{DATE}' => $lang_thumb_view['date'],
-         '{SORT_NA}' => $lang_thumb_view['sort_na'],
-         '{SORT_ND}' => $lang_thumb_view['sort_nd'],
-         '{SORT_DA}' => $lang_thumb_view['sort_da'],
-         '{SORT_DD}' => $lang_thumb_view['sort_dd'],
-         // Exxodus Sorting
-         '{FIELD1}' => $CONFIG['user_field1_name'],
-         '{FIELD2}' => $CONFIG['user_field2_name'],
-         '{FIELD3}' => $CONFIG['user_field3_name'],
-         '{FIELD4}' => $CONFIG['user_field4_name'],
-         // Exxodus Sorting
-         );</pre>&nbsp;
-</li>
-<li>modify the lines after <tt class="code">$template_thumb_view_title_row </tt> like this:<br />
-<pre>// HTML template for title row of the thumbnail view (album title + sort options)
-// Exxodus (Adding Sorting by UserField)
-$template_thumb_view_title_row = &lt;&lt;&lt;EOT
-
-         &lt;table width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;
-         &lt;tr&gt;
-            &lt;td width=&quot;100%&quot; class=&quot;statlink&quot;&gt;&lt;h2&gt;{ALBUM_NAME}&lt;/h2&gt;&lt;/td&gt;
-            &lt;td&gt;&lt;img src=&quot;images/spacer.gif&quot; width=&quot;1&quot;&gt;&lt;/td&gt;
-            &lt;td class=&quot;sortorder_cell&quot;&gt;
-               &lt;table height=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;
-               &lt;tr&gt;
-                  &lt;td class=&quot;sortorder_options&quot;&gt;{NAME}&lt;/td&gt;
-                  &lt;td class=&quot;sortorder_options&quot;&gt;&lt;span class=&quot;statlink&quot;&gt;
-                  &lt;a href=&quot;thumbnails.php?album={AID}&page={PAGE}&sort=na&quot; title=&quot;{SORT_NA}&quot;&gt;&+&&lt;/a&gt;/&lt;/span&gt;&lt;/td&gt;
-                  &lt;td class=&quot;sortorder_options&quot;&gt;&lt;span class=&quot;statlink&quot;&gt;
-                  &lt;a href=&quot;thumbnails.php?album={AID}&page={PAGE}&sort=nd&quot; title=&quot;{SORT_ND}&quot;&gt;&-&&lt;/a&gt;&lt;/span&gt;&lt;/td&gt;
-               &lt;/tr&gt;
-               &lt;tr&gt;
-                  &lt;td class=&quot;sortorder_options&quot;&gt;{DATE}&lt;/td&gt;
-                  &lt;td class=&quot;sortorder_options&quot;&gt;&lt;span class=&quot;statlink&quot;&gt;
-                  &lt;a href=&quot;thumbnails.php?album={AID}&page={PAGE}&sort=da&quot; title=&quot;{SORT_DA}&quot;&gt;&+&&lt;/a&gt;/&lt;/span&gt;&lt;/td&gt;
-                  &lt;td class=&quot;sortorder_options&quot;&gt;&lt;span class=&quot;statlink&quot;&gt;
-                  &lt;a href=&quot;thumbnails.php?album={AID}&page={PAGE}&sort=dd&quot; title=&quot;{SORT_DD}&quot;&gt;&-&&lt;/a&gt;&lt;/span&gt;&lt;/td&gt;
-               &lt;/tr&gt;
-               &lt;/table&gt;
-            &lt;/td&gt;
-            &lt;td&gt;&lt;img src=&quot;images/spacer.gif&quot; width=&quot;10&quot;&gt;&lt;/td&gt;
-            &lt;td class=&quot;sortorder_cell&quot;&gt;
-               &lt;table height=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;
-               &lt;tr&gt;
-                  &lt;td class=&quot;sortorder_options&quot;&gt;{FIELD1}&lt;/td&gt;
-                  &lt;td class=&quot;sortorder_options&quot;&gt;&lt;span class=&quot;statlink&quot;&gt;
-                  &lt;a href=&quot;thumbnails.php?album={AID}&page={PAGE}&sort=f1a&quot;&gt;&+&&lt;/a&gt;/&lt;/span&gt;&lt;/td&gt;
-                  &lt;td class=&quot;sortorder_options&quot;&gt;&lt;span class=&quot;statlink&quot;&gt;
-                  &lt;a href=&quot;thumbnails.php?album={AID}&page={PAGE}&sort=f1d&quot;&gt;&-&&lt;/a&gt;&lt;/span&gt;&lt;/td&gt;
-               &lt;/tr&gt;
-               &lt;tr&gt;
-                  &lt;td class=&quot;sortorder_options&quot;&gt;{FIELD2}&lt;/td&gt;
-                  &lt;td class=&quot;sortorder_options&quot;&gt;&lt;span class=&quot;statlink&quot;&gt;
-                  &lt;a href=&quot;thumbnails.php?album={AID}&page={PAGE}&sort=f2a&quot;&gt;&+&&lt;/a&gt;/&lt;/span&gt;&lt;/td&gt;
-                  &lt;td class=&quot;sortorder_options&quot;&gt;&lt;span class=&quot;statlink&quot;&gt;
-                  &lt;a href=&quot;thumbnails.php?album={AID}&page={PAGE}&sort=f2d&quot;&gt;&-&&lt;/a&gt;&lt;/span&gt;&lt;/td&gt;
-               &lt;/tr&gt;
-               &lt;/table&gt;
-            &lt;/td&gt;
-            &lt;td&gt;&lt;img src=&quot;images/spacer.gif&quot; width=&quot;10&quot;&gt;&lt;/td&gt;
-            &lt;td class=&quot;sortorder_cell&quot;&gt;
-               &lt;table height=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;
-               &lt;tr&gt;
-                  &lt;td class=&quot;sortorder_options&quot;&gt;{FIELD3}&lt;/td&gt;
-                  &lt;td class=&quot;sortorder_options&quot;&gt;&lt;span class=&quot;statlink&quot;&gt;
-                  &lt;a href=&quot;thumbnails.php?album={AID}&page={PAGE}&sort=f3a&quot;&gt;&+&&lt;/a&gt;/&lt;/span&gt;&lt;/td&gt;
-                  &lt;td class=&quot;sortorder_options&quot;&gt;&lt;span class=&quot;statlink&quot;&gt;
-                  &lt;a href=&quot;thumbnails.php?album={AID}&page={PAGE}&sort=f3d&quot;&gt;&-&&lt;/a&gt;&lt;/span&gt;&lt;/td&gt;
-               &lt;/tr&gt;
-               &lt;tr&gt;
-                  &lt;td class=&quot;sortorder_options&quot;&gt;{FIELD4}&lt;/td&gt;
-                  &lt;td class=&quot;sortorder_options&quot;&gt;&lt;span class=&quot;statlink&quot;&gt;
-                  &lt;a href=&quot;thumbnails.php?album={AID}&page={PAGE}&sort=f4a&quot;&gt;&+&&lt;/a&gt;/&lt;/span&gt;&lt;/td&gt;
-                  &lt;td class=&quot;sortorder_options&quot;&gt;&lt;span class=&quot;statlink&quot;&gt;
-                  &lt;a href=&quot;thumbnails.php?album={AID}&page={PAGE}&sort=f4d&quot;&gt;&-&&lt;/a&gt;&lt;/span&gt;&lt;/td&gt;
-               &lt;/tr&gt;
-               &lt;/table&gt;
-            &lt;/td&gt;
-         &lt;/tr&gt;
-         &lt;/table&gt;
-
-EOT;</pre>
-
-</li>
-</ul>
-</li>
-</ol></p><hr />
-<a name="iptcSupport"></a>
-<h3>How do I <strong>enable IPTC support</strong>?<a href="#iptcSupport" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Edit <tt class="code">/includes/picmgmt.inc.php</tt> and search for<br />
-<tt class="code">        $imagesize = cpg_getimagesize($image);</tt><br />
-replace this with:<br />
-<pre>$imagesize = cpg_getimagesize($image,&$info);
-$iptc = iptcparse($info["APP13"]);
-if (is_array($iptc)) {
-$caption.=$iptc['2#120'][0];
-$title.=$iptc['2#105'][0];
-(is_array($iptc['2#025'])) && ($keywords.=implode(" ", $iptc['2#025']));
-}</pre>
-NOTE: This hack hasn't been thoroughly tested, use at your own risk...!</p><hr />
-
 
 <a name="addFooterBeforePoweredBy"></a>
 <h3>How can I <strong>add</strong> some output <strong>directly before</strong> the line &quot;Powered by Coppermine&quot;?<a href="#addFooterBeforePoweredBy" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -456,10 +288,10 @@ NOTE: This hack hasn't been thoroughly tested, use at your own risk...!</p><hr /
 <h3>How can I prevent users from saving (stealing) my pictures?<a href="#preventPictureStealing" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>You can not completely prevent users from stealing your pics - that's the way the www works: if a picture is being displayed in the browser, the user already has a copy of it on his hard drive. There are however some methods to make it harder for newbie users to steal your pics:
 <ul>
-<li>Add a watermark to your images before you upload them</li>
-<li>Apply the built-in <a href="configuration.htm#admin_watermarking">watermark</a>. Please note that applying online-watermarks will result in a high server load.</li>
-<li>Prevent Internet Explorer to show the image toolbar when a user hovers over a pic with the mouse. Edit themes/yourtheme/template.html, find <tt class="code">&lt;meta http-equiv="Pragma" content="no-cache" /&gt;</tt> and add after it <tt class="code">&lt;meta http-equiv="imagetoolbar" content="no" /&gt;</tt></li>
-<li>Use one of the many &quot;no right-click&quot; scripts that are available.</li>
+    <li>Add a watermark to your images before you upload them</li>
+    <li>Apply the built-in <a href="configuration.htm#admin_watermarking">watermark</a>. Please note that applying online-watermarks will result in a high server load.</li>
+    <li>Prevent Internet Explorer to show the image toolbar when a user hovers over a pic with the mouse. Edit themes/yourtheme/template.html, find <tt class="code">&lt;meta http-equiv="Pragma" content="no-cache" /&gt;</tt> and add after it <tt class="code">&lt;meta http-equiv="imagetoolbar" content="no" /&gt;</tt></li>
+    <li>Use one of the many &quot;no right-click&quot; scripts that are available. Be adviced though that those scripts are silly in the first place, as they will only keep unexperienced users away from stealing your pics. The dev team doesn't recommend applying no-right-click scripts.</li>
 </ul>
 <br /></p>
 <br />
