@@ -1348,7 +1348,7 @@ if (defined('MINIBROWSER_PHP')) $lang_minibrowser_php = array(
   'submit' => 'OK', //cpg1.4
   'up' => 'eine Ebene höher', //cpg1.4
   'current_path' => 'derzeitiger Pfad', //cpg1.4
-  'select_directory' => 'Wähle Sie ein Verzeichnis', //cpg1.4
+  'select_directory' => 'Wählen Sie ein Verzeichnis', //cpg1.4
   'click_to_close' => 'Bild klicken, um dieses Fenster zu schliessen',
 );
 
