@@ -56,6 +56,19 @@ If you are using a newly created database, there is no need for you to manually 
 <a name="what"></a><h2>What the installer does<a href="#what" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>After performing some basic checks, the installer creates the needed database tables for you and fills them with default values. It creates the file include/config.inc.php within the coppermine folder on your server that stores the database details you entered during install. If you should change your mysql database details later (i.e. if you change the password of your mysql user account or if you migrate your gallery to another server), you will need to edit include/config.inc.php manually to reflect the changes. The file include/config.inc.php also keeps the install script from being run twice: if the installer is run, a check is performed wether the config file exists - if yes, the installer will stop and redirect the user to the index page.</p>
 
+<a name="install_related"></a><h2>Related information<a href="#install_related" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>There are some additional pieces of information that are related to installing:</p>
+<ul>
+    <li><strong><a href="auto-installers.htm">Auto-Installers</a> (like Fantastico)</strong><br />
+    Find out what is wrong with them, why you should not use them and what you can do if you have used an auto-installer</li>
+    <li><strong><a href="install_faq.htm">Installation FAQ</a></strong><br />
+    Frequently asked questions related to installing coppermine. Read first before asking questions!</li>
+    <li><strong><a href="uninstall.htm">Uninstall</a></strong><br />
+    Although we're convinced that Coppermine is just right for everyone, you might want to get rid of it (for whatever reasons) - here are instructions how to accomplish this.</li>
+    <li><strong><a href="start.htm">Getting started</a> (first steps after install)</strong><br />
+    So you have successfully installed Coppermine? Way to go - here is another short page that should get your coppermine gallery configured and filled with content in no time.
+</ul>
+
 <script type="text/javascript">
   cpgDocFooter();
   dateRevision(' $LastChangedDate: 2008-01-14 09:58:42 +0100 (Mo, 14 Jan 2008) $ ', ' $Revision: 4209 $ ');
