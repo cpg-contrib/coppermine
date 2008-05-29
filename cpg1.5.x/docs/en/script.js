@@ -591,11 +591,14 @@ function cpgDocToc() {
     myCounter = myCounter + 1;
   }
   document.write('<br />&nbsp;<br />');
-  document.write('<form method="get" action="http://google.com/search" name="googlesearch" style="margin:0px">\n');
-  document.write('<input type="text" name="q" size="20" maxlength="255" value="" style="border:1px solid black" title="Enter your search phrase here" />\n');
-  document.write('<input type="hidden" value="documentation.coppermine-gallery.net" name="as_sitesearch" />\n');
-  document.write('<img src="images/views.gif" width="16" height="16" border="0" alt="" title="Search the Coppermine documentation online (using Google)" onclick="document.googlesearch.submit();" style="cursor:pointer" />\n');
-  document.write('</form>\n');
+  document.write('  <form action="http://www.google.com/cse" id="cse-search-box">');
+  document.write('    <div>');
+  document.write('      <input type="hidden" name="cx" value="009353514429642786404:1fg_c1k1td8" />');
+  document.write('      <input type="text" name="q" size="25" />');
+  document.write('      <input type="submit" name="sa" value="search documentation" style="font-size:9px;" />');
+  document.write('    </div>');
+  document.write('  </form>');
+  document.write('  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&lang=en"></script>');
 }
 
 function cpgDocBreadcrumb() {
