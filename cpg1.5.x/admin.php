@@ -322,6 +322,13 @@ EOT;
       $labelWrapperStart = '';
       $labelWrapperEnd = '';
     }
+    if (!empty($value['warning'])) { // set warning text
+      $warningText = $value['warning'];
+      $warningPopUp = cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_admin_php[$key]))).'&amp;t='.urlencode(base64_encode(serialize(htmlspecialchars($value['warning'])))),470,245);
+    } else {
+      $warningText = '';
+      $warningPopUp = '';
+    }
     
     if (empty($value['additional_description']))
     	$value['additional_description'] = '';
@@ -334,7 +341,7 @@ EOT;
                 <tr{$visibility}>
                   <td class="{$cellStyle}" width="60%">
                     <a name="{$key}"></a>
-                    {$labelWrapperStart}{$lang_admin_php[$key]} {$value['additional_description']}{$labelWrapperEnd}
+                    {$labelWrapperStart}{$lang_admin_php[$key]} {$value['additional_description']}{$warningPopUp}{$labelWrapperEnd}
                   </td>
                   <td class="{$cellStyle}" width="50%">
 EOT;
@@ -369,12 +376,6 @@ EOT;
     } else {
       $highlightFieldCSS = '';
     }
-    if (!empty($value['warning'])) { // set warning text
-      $warningText = $value['warning'];
-    } else {
-      $warningText = '';
-    }
-    
     
     // Different types of fields --- start
     if ($value['type'] == 'textfield') { // TEXTFIELD
