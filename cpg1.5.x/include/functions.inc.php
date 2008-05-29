@@ -3417,7 +3417,7 @@ EOT;
  * @return
  **/
 
-function cpg_display_help($reference = 'f=index.htm', $width = '600', $height = '350') {
+function cpg_display_help($reference = 'f=index.htm', $width = '600', $height = '350', $icon = 'help') {
 global $CONFIG, $USER;
 if ($reference == '' || $CONFIG['enable_help'] == '0') {return; }
 if ($CONFIG['enable_help'] == '2' && GALLERY_ADMIN_MODE == false) {return; }
@@ -3425,8 +3425,15 @@ $help_theme = $CONFIG['theme'];
 if (isset($USER['theme'])) {
     $help_theme = $USER['theme'];
 }
+if ($icon == '*') {
+    $icon == '*';
+} elseif ($icon == '?') {
+    $icon = '?';
+} else {
+    $icon = '<img src="images/help.gif" width="13" height="11" border="0" alt="" title="" />';
+}
 
-$help_html = "<a href=\"javascript:;\" onclick=\"coppermine_help_window=window.open('help.php?css=" . $help_theme . "&amp;" . $reference . "','coppermine_help','scrollbars=yes,toolbar=no,status=no,resizable=yes,width=" . $width . ",height=" . $height . "'); coppermine_help_window.focus()\" style=\"cursor:help\"><img src=\"images/help.gif\" width=\"13\" height=\"11\" border=\"0\" alt=\"\" title=\"\" /></a>";
+$help_html = "<a href=\"javascript:;\" onclick=\"coppermine_help_window=window.open('help.php?css=" . $help_theme . "&amp;" . $reference . "','coppermine_help','scrollbars=yes,toolbar=no,status=no,resizable=yes,width=" . $width . ",height=" . $height . "'); coppermine_help_window.focus()\" style=\"cursor:help\">" . $icon . "</a>";
 return $help_html;
 }
 
