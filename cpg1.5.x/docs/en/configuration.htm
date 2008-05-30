@@ -849,19 +849,19 @@ Of course this message will only be displayed if you have disallowed guests to p
 <p>If a user is a member of a group that can have its own gallery and this option is turned on then this user will have the permission to hide any of his/her albums from other users.</p>
 <p>This option does <strong>not</strong> determine whether users can have personal galleries at all, <strong>nor</strong> does it determine who is allowed to upload and who is not (these settings are accessible in the <a href="groups.htm#group_cp">groups manager</a>). You should only set this option to NO if you really know what you're doing (by default, it is set to YES).</p>
 <p class="important">Note: if you switch from 'yes' to 'no' all currently private albums will become public! Do not set this option to 'no' unless you understand what this option actually does!</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Files and thumbnails advanced settings &rarr; Albums can be private</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Albums can be private</p>
 <a name="admin_picture_thumb_advanced_private_toggle_end"></a>
 <hr />
 <a name="admin_picture_thumb_advanced_private_icon_show"></a><h3>Show private album Icon to unlogged user<a href="#admin_picture_thumb_advanced_private_icon_show" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Toggles the display of the private album icons to unlogged users.<br />Set to 'NO', the album is completely hidden from unauthorised users.<br />Set to 'YES', the album name, description and statistics are shown, but not the thumbnails or files contained within.</p>
 <p>It is recommended to enable this option especially if you want to encourage visitors to register (this does of course only make sense if you allow registered users to see albums that guests are not allowed to see).</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Files and thumbnails advanced settings &rarr; Show private album Icon to unlogged user</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Show private album Icon to unlogged user</p>
 <a name="admin_picture_thumb_advanced_private_icon_show_end"></a>
 <hr />
 <a name="admin_picture_thumb_advanced_filename_forbidden_chars"></a><h3>Characters forbidden in filenames<a href="#admin_picture_thumb_advanced_filename_forbidden_chars" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>When the filename of a file that is uploaded contains any one or more of these characters, the characters will be replaced with an underscore.</p>
 <p>Don't change this unless you know exactly what you are doing. Default value is <tt class="code">$/\:*?&quot;'&lt;&gt;|` &amp;#@</tt></p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Files and thumbnails advanced settings &rarr; Characters forbidden in filenames</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Characters forbidden in filenames</p>
 <a name="admin_picture_thumb_advanced_filename_forbidden_chars_end"></a>
 <hr />
 <a name="admin_picture_thumb_advanced_silly_safe_mode_start"></a><a name="safe"></a><h3>Enable "silly safe mode"<a href="#admin_picture_thumb_advanced_silly_safe_mode_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -870,7 +870,7 @@ If you have issues uploading pics, find out if safe_mode is enabled on your webs
 <p>What "silly safe mode" does: if you enable this option, Coppermine will not try to create sub-folders for each user, but upload all files into the root of the userpics folder. There might be a slight performance impact for larger galleries, but then you probably won't be running a large gallery on a "crippled" webserver that is not configured properly.</p>
 <p>Before playing with the silly safe mode option, make sure that you have <a href="install_permissions.htm#permissions">set permissions</a> on the albums folder and everything within it as suggested.</p>
 <p>Don't change this if uploading works just fine for you.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Files and thumbnails advanced settings &rarr; Enable "silly safe mode"</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Enable "silly safe mode"</p>
 <a name="admin_picture_thumb_advanced_silly_safe_mode_end"></a>
 <hr />
 <a name="admin_picture_thumb_advanced_pic_extensions"></a><h3>Allowed image types<a href="#admin_picture_thumb_advanced_pic_extensions" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -883,7 +883,7 @@ If you have issues uploading pics, find out if safe_mode is enabled on your webs
   jpeg/jpg/png/gif/bmp/jpc/jp2/jpx/jb2/swc/iff/psd</li>
 </ul>
 In Coppermine versions prior to cpg1.5.0, the option &quot;ALL&quot; used to be available as well for this field - it has been removed, as it caused users to think that this actually meant &quot;all image file types that exist&quot; - this is not the case: you can only specify the file types that the image library you use actually supports.
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Files and thumbnails advanced settings &rarr; Allowed image types</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Allowed image types</p>
 <a name="admin_picture_thumb_advanced_pic_extensions_end"></a>
 <hr />
 <a name="admin_thumbs_advanced_movie"></a><h3>Allowed movie types<a href="#admin_thumbs_advanced_movie" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -892,12 +892,12 @@ In Coppermine versions prior to cpg1.5.0, the option &quot;ALL&quot; used to be 
 <p><strong>File types supported by Coppermine:</strong><br />
 asf/asx/mpg/mpeg/wmv/swf/avi/mov</p>
 <p>In Coppermine versions prior to cpg1.5.0, the option &quot;ALL&quot; used to be available as well for this field - it has been removed, as it caused users to think that this actually meant &quot;all movie file types that exist&quot;.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Files and thumbnails advanced settings &rarr; Allowed movie types</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Allowed movie types</p>
 <a name="admin_thumbs_advanced_movie_end"></a>
 <hr />
 <a name="admin_movie_autoplay"></a><h3>Movie Playback Autostart<a href="#admin_movie_autoplay" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>If set to YES, movies will instantly start playing when loaded (has no affect on flash files, however).  Nothing will happen if the user does not have the necessary codecs installed on their computer. This option is browser-dependant, so there is no guarantee that it will work on all platforms.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Files and thumbnails advanced settings &rarr; Movie Playback Autostart</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Movie Playback Autostart</p>
 <a name="admin_movie_autoplay_end"></a>
 <hr />
 <a name="admin_picture_thumb_advanced_audio_extensions"></a><h3>Allowed audio types<a href="#admin_picture_thumb_advanced_audio_extensions" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -906,7 +906,7 @@ asf/asx/mpg/mpeg/wmv/swf/avi/mov</p>
 <p><strong>File types supported by Coppermine:</strong><br />
 mp3/midi/mid/wma/wav/ogg</p>
 <p>In Coppermine versions prior to cpg1.5.0, the option &quot;ALL&quot; used to be available as well for this field - it has been removed, as it caused users to think that this actually meant &quot;all sound file types that exist&quot;.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Files and thumbnails advanced settings &rarr; Allowed audio types</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Allowed audio types</p>
 
 <a name="admin_picture_thumb_advanced_audio_extensions_end"></a>
 <hr />
@@ -922,7 +922,7 @@ Archives: zip/rar/gz/001/7z/arj/bz2/cab/lzh/rpm/tar/z<br />
 OpenDocument: odt/ods/odp/odg/odc/odf/odi/odm/ott/ots/otp/otg/otc/otf/oti/oth</p>
 <p>For security reasons coppermine doesn't enable all document types by default. Before adding more file types, make sure that the file types are supported on your webserver.</p>
 <p>In Coppermine versions prior to cpg1.5.0, the option &quot;ALL&quot; used to be available as well for this field - it has been removed, as it caused users to think that this actually meant &quot;all document file types that exist&quot;.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Files and thumbnails advanced settings &rarr; Allowed document types</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Allowed document types</p>
 
 <a name="admin_picture_thumb_advanced_doc_extensions_end"></a>
 <hr />
@@ -930,39 +930,39 @@ OpenDocument: odt/ods/odp/odg/odc/odf/odi/odm/ott/ots/otp/otg/otc/otf/oti/oth</p
 <p>Set this to the type of image library you have on your server (must be either GD1, GD2 or ImageMagick). GD2 is the recommended setting.</p>
 <p>If you are using GD 1.x and the colors of your thumbnails or intermediate image do not display properly, then, chances are, you actually have GD2 on your server - switch this option to GD 2.x</p>
 <p>More recent distributions of PHP come pre-packaged with GD - if you're not sure what you have, set this option to GD2. You can also look at your PHP settings by pointing your browser to the phpinfo.php file in your gallery.  eg, <strong>http://www.yourgallery.com/your_cpg_folder/phpinfo.php</strong>. For more information on using PHP click on this link: <a href="http://www.php.net/phpinfo" rel="external" class="external">phpinfo</a>.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Files and thumbnails advanced settings &rarr; Method for resizing images</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Method for resizing images</p>
 <a name="admin_picture_thumb_advanced_resize_method_end"></a>
 <hr />
 <a name="admin_picture_thumb_advanced_im_path"></a><h3>Path to ImageMagick 'convert' utility (example /usr/bin/X11/)<a href="#admin_picture_thumb_advanced_im_path" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>If you intend using ImageMagick convert utility to resize you picture, you must enter the name of the <strong>directory</strong> where the convert program is located in this line. Don't forget the trailing &quot;<tt class="code">/</tt>&quot; to close the path. This path must only indicate the <strong>directory</strong> where the convert utility is located, it should not point directly to the convert utility.</p>
 <p>If your server is running under Windows, use / and not \ to separate components of the path (eg. use C:/ImageMagick/ and not C:\ImageMagick\). This path must not contain any spaces under Windows so that it will not put ImageMagick in the "Program files" directory.</p>
 <p><strong>ImageMagick will not work properly if PHP on your server is running in SAFE mode and it is a real challenge to get it running under Windows. Please consider using GD in these cases and don't waste your time asking for support in the forum with ImageMagick installation questions. There are just too many things that can prevent ImageMagick from work properly and without physical access to your server it is extremely difficult to guess what is wrong.</strong></p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Files and thumbnails advanced settings &rarr; Path to ImageMagick 'convert' utility</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Path to ImageMagick 'convert' utility</p>
 <a name="admin_picture_thumb_advanced_im_path_end"></a>
 <hr />
 <!--
 <a name="admin_picture_thumb_advanced_allowed_imagetypes"></a><h3>Allowed image types (only valid for ImageMagick)<a href="#admin_picture_thumb_advanced_allowed_imagetypes" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>This is the list of image types that the script will accept when using ImageMagick. Image type detection is performed by reading the header of the file and not by looking at its file extension.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Files and thumbnails advanced settings &rarr; Allowed image types</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Allowed image types</p>
 <a name="admin_picture_thumb_advanced_allowed_imagetypes_end"></a>
 <hr />
 -->
 <a name="admin_picture_thumb_advanced_im_commandline"></a><h3>Command line options for ImageMagick<a href="#admin_picture_thumb_advanced_im_commandline" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Here you can add options that will be appended to the command line when executing ImageMagick. Read the ImageMagick Convert manual to see what is available.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Files and thumbnails advanced settings &rarr; Command line options for ImageMagick</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Command line options for ImageMagick</p>
 <a name="admin_picture_thumb_advanced_im_commandline_end"></a>
 <hr />
 <a name="admin_picture_thumb_advanced_exif"></a><h3>Read EXIF data in JPEG files<a href="#admin_picture_thumb_advanced_exif" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>With this option turned on, the script will read the EXIF data stored by digicams in JPEG files. For cpg1.x to cpg1.2.1, this option will work only if PHP was compiled with the EXIF extension. Coppermine 1.3.0 (or better) comes with built-in EXIF support even if the webserver itself doesn't have EXIF support, as it uses a <a href="http://www.offsky.com/software/exif/index.php" class="external">separate EXIF class</a>.</p>
 <p>Since cpg1.4.x there is even an <a href="exif.htm">EXIF-manager</a> available that will allow you to determine what exif fields are suppossed to be displayed.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Files and thumbnails advanced settings &rarr; Read EXIF data in JPEG files</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Read EXIF data in JPEG files</p>
 
 <a name="admin_picture_thumb_advanced_exif_end"></a>
 <hr />
 <a name="admin_picture_thumb_advanced_iptc"></a><h3>Read IPTC data in JPEG files<a href="#admin_picture_thumb_advanced_iptc" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>With this option turned on, the script will read the <a href="http://www.iptc.org/" class="external" rel="external">IPTC</a> data stored by digicams in picture files.</p>
 <p>Please note: IPTC does not support unicode encoding. Therefor, it may collide with coppermine if you use special, non-latin characters in your IPTC tags.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Files and thumbnails advanced settings &rarr; Read IPTC data in JPEG files</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Read IPTC data in JPEG files</p>
 
 <a name="admin_picture_thumb_advanced_iptc_end"></a>
 <hr />
@@ -973,7 +973,7 @@ OpenDocument: odt/ods/odp/odg/odc/odf/odi/odm/ott/ots/otp/otg/otc/otf/oti/oth</p
 <p>This setting mustn't be changed if you already have files in your database. If you do so, all references to your existing files will break.</p>
 <p>Default value is <tt class="code">albums/</tt></p>
 <p>Unless you really know what you are doing, do not change this setting.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Files and thumbnails advanced settings &rarr; The album directory</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; The album directory</p>
 <a name="admin_picture_thumb_advanced_albums_dir_end"></a>
 <hr />
 <a name="admin_picture_thumb_advanced_userpics_dir"></a><h3>The directory for user files<a href="#admin_picture_thumb_advanced_userpics_dir" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -982,25 +982,25 @@ OpenDocument: odt/ods/odp/odg/odc/odf/odi/odm/ott/ots/otp/otg/otc/otf/oti/oth</p
 <p>When you upload files by FTP, store them in a subdirectory (folder) of the "album directory" and not inside the &quot;directory for user files&quot;. </p>
 <p>This setting mustn't be changed if you already have files in your database. If you do, all reference to previously existing files will no longer be valid.</p>
 <p>Default value is <tt class="code">userpics/</tt></p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Files and thumbnails advanced settings &rarr; The directory for user files</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; The directory for user files</p>
 <a name="admin_picture_thumb_advanced_userpics_dir_end"></a>
 <hr />
 <a name="admin_picture_thumb_advanced_intermediate_prefix"></a><h3>The prefix for intermediate pictures<a href="#admin_picture_thumb_advanced_intermediate_prefix" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>This prefix is added to the file name of created pictures.</p>
 <p>These setting mustn't be changed if you already have files in your database. If you do, all reference to your existing files will become invalid.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Files and thumbnails advanced settings &rarr; The prefix for intermediate pictures</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; The prefix for intermediate pictures</p>
 <a name="admin_picture_thumb_advanced_intermediate_prefix_end"></a>
 <hr />
 <a name="admin_picture_thumb_advanced_chmod_folder"></a><h3>Default mode for directories<a href="#admin_picture_thumb_advanced_chmod_folder" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>If, and only if, during the file upload or batch add process, the installer complains about the directory not having the right permissions, try setting this to <strong>0777</strong> . Failure to do so may prevent you from being able to delete directories created by the script with your FTP client should you ever decide it necessary to uninstall the coppermine script.</p>
 <p><span class="important">Note</span>: setting this option doesn't CHMOD the files or folders that are being uploaded. Instead, the setting is used when coppermine, itself, creates <strong>new</strong> folders for user uploads (within the userpics directory). If you experienced problems during the initial Coppermine setup related to permissions, this option is <strong>not</strong> what you have been looking for nor should it be changed (for more information regarding CHMOD, see the <a href="install_permissions.htm#permissions">permissions</a> section of this document and the <a href="faq.htm">FAQ</a> section).</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Files and thumbnails advanced settings &rarr; Default mode for directories</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Default mode for directories</p>
 <a name="admin_picture_thumb_advanced_chmod_folder_end"></a>
 <hr />
 <a name="admin_picture_thumb_advanced_chmod_files"></a><h3>Default mode for files<a href="#admin_picture_thumb_advanced_chmod_files" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>If, and only if, during the file upload or batch add process, the installer complains about the directory not having the right permissions, try setting this to <strong>0666</strong>.</p>
 <p><span class="important">Note</span>: setting this option doesn't CHMOD the files or folders that are being uploaded. Instead, the setting is used when coppermine, itself, creates <strong>new</strong> folders for user uploads (within the userpics directory). If you experienced problems during the initial Coppermine setup related to permissions, this option is <strong>not</strong> what you have been looking for nor should it be changed (for more information regarding CHMOD, see the <a href="#permissions">permissions</a> section of this document and the <a href="faq.htm">FAQ.htm</a> document located in the DOCS folder of this installation package).</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Files and thumbnails advanced settings &rarr; Default mode for files</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Default mode for files</p>
 <a name="admin_picture_thumb_advanced_chmod_files_end"></a>
 <a name="admin_picture_thumb_advanced_end"></a>
 
@@ -1235,14 +1235,16 @@ address. Recommended setting is NO. As most internet users today have more than 
 <a name="admin_user_enable_report_end"></a>
 
 
-<a name="admin_custom"></a><h3>Custom fields for user profile (leave blank if unused). Use Profile 6 for long entries, such as biographies<a href="#admin_custom" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<a name="admin_custom"></a><h3>Custom fields for user profile<a href="#admin_custom" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Leave blank if unused. Use Profile 6 for long entries, such as biographies</p>
 <p>These fields are displayed within the &quot;user profile&quot; area. They will appear only if you assign a name to the field. As instructed in the heading, use field 6 for long entries, such as biographies, or if you want to include the use of bb code.</p>
 <p>You can also use field 6 for avatars.  To show an avatar in the profile, it should be entered in bbcode, for example to show 'avatar.gif', which is located in your images folder, use the code <tt class="code">[img]http://www.yoursite.com/images/avatar.gif[/img]</tt></p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Custom fields for user profile</p>
 <a name="admin_custom_end"></a>
 
 
-<a name="admin_custom_image"></a><h3>Custom fields for image description (leave blank if unused)<a href="#admin_custom_image" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<a name="admin_custom_image"></a><h3>Custom fields for image description<a href="#admin_custom_image" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Leave blank if unused.</p>
 <p>These fields are displayed within the &quot;file information&quot; area. They will appear only if you give them a name.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Custom fields for image description</p>
 <a name="admin_custom_image_end"></a>
