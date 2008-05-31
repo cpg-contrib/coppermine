@@ -38,31 +38,32 @@
 </div>
 
 <a name="admin"></a><h1>Die Einstellungs-/Konfigurationsseite der Galerie<a href="#admin" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
-<p>This is where you will configure the most important parts of your coppermine gallery. Some settings have an impact on the files you upload - changing those options after you have alreaded added a large number of files in your gallery can be a difficult undertaking. For this reason, it is important that you spend time with your coppermine setup at the early stages of gallery development to get those settings exactly the way you want them, before actually uploading too many pics or listing the gallery to the general public.</p>
-<p>Most config option fields have a checkbox at the very right that allows you to reset that option to the default (or rather: recommended) option. This checkbox will only be displayed if your setting differs from the default or if there is no particular default setting (there can for example not be a default admin email address, as this entirely depends on your server setup).</p>
-<p>Please note that the config page does not contain all coppermine options - some options are being assigned per group, so you will find them on the <a href="groups.htm#group_cp">groups control panel</a>.</p>
+<p>Auf dieser Seite werden die wichtigsten Einstellungen an Deiner Coppermine-Galerie vorgenommen. Einige Einstellungen haben eine Auswirkung auf die Dateien, die hochgeladen werden - die Änderungen dieser Einstellungen, nachdem schon eine große Menge von Dateien in der Galerie existieren kann ein schwieriges Unternehmen werden. Daher ist es wichtig, dass Du schon frühzeitig mit den Einstellungs-Optionen auseinandersetzt, um diese Einstellungen genau so zu setzen, bevor Du tatsächlich größere Mengen von &quot;echten&quot; Dateien hochlädst oder die Galerie der Öffentlichkeit vorstellst.</p>
+<p>Die meisten Einstellungen haben eine Checkbox ganz rechts, mit denen Du die betreffende Konfigurations-Option auf den Standard oder die empfohlene Einstellung zurücksetzen kannst. Diese Checkbox wird nur angezeigt, wenn die von Dir getroffene Einstellung von der Standard-Einstellung (Werkseinstellung) abweicht oder wenn es für die betreffende Einstellung keinen Standard geben gibt (es kann beispielsweise keinen Standard für die Email-Adresse des Galerie-Admins geben, da dies vollständig von Deinen Wünschen abhängt).</p>
+<p>Die Einstellungs-Seite beherbergt <strong>nicht</strong> alle Coppermine-Einstellungen; einige Einstellungen werden individuell pro Benutzergruppe eingestellt, so dass die entsprechenden Einstellungen in den <a href="groups.htm#group_cp">Gruppen</a>-Einstellungen zu finden sind.</p>
 
 
 <a name="admin_general"></a><h2>Allgemeine Einstellungen<a href="#admin_general" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <a name="admin_general_name"></a><h3>Galerie-Name<a href="#admin_general_name" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Enter the name of your gallery in this text field. The name you enter will appear as the title that is displayed in the web browser's title bar and is also displayed in many of the different theme templates.</p>
+<p>Gib den Namen Deiner Galerie in dieses Feld ein. Der Name erscheint als Titel im Fenster des Browsers und an vielen anderen Stellen innerhalb der Galerie (in Abhängigkeit vom von Dir gewählten Thema/Design).</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Allgemeine Einstellungen &rarr; Galerie-Name</p>
 <a name="admin_general_name_end"></a>
 <hr />
 <a name="admin_general_description"></a><h3>Galerie-Beschreibung<a href="#admin_general_description" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Enter a short description of your gallery in this text field. This description is also displayed in some of the theme templates just below the name of your gallery.</p>
+<p>Gib eine kurze Beschreibung Deiner Galerie in dieses Textfeld ein. Die Beschreibung wird in einigen Themen unterhalb des Galerie-Namens angezeigt.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Allgemeine Einstellungen &rarr; Galerie-Beschreibung</p>
 <a name="admin_general_description_end"></a>
 <hr />
 <a name="admin_general_email"></a><h3>Galerie-Admin eMail<a href="#admin_general_email" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>All emails sent by the gallery will be sent using this email address. This must be a valid email address.</p>
-<p>Coppermine will use this address as "from"-address when sending emails (e.g. during registration). It's mandatory to have this email address populated properly. If you have your own domain, it might be a good idea to use an email account that correlates to your domain name.</br>
-    Example: if your domain name is &quot;example.com&quot;, you should create an email address named gallery@example.com and use that email address in coppermine's config. Coppermine does <strong>not</strong> create that email address for you!</p>
+<p>Alle Emails, die von der Galerie versendet werden benutzen diese Adresse. Es muss sich um eine gültige Adresse handeln.</p>
+<p>Coppermine benutzt diese Adress als Absender-Adresse beim Versenden von Emails (beispielsweise während der Registrierung). Es ist notwendig, dass dieses Feld richtig ausgefüllt wird. Wenn Du eine eigene Domäne hast kann es Sinn machen, eine Adresse von dieser Domäne zu verwenden.</br>
+Beispiel: wenn Deine Domäne &quot;example.com&quot; ist solltest Du eine Email-Adresse namens galerie@example.com erzeugen und diese Adresse im Coppermine-Einstellungsfeld "Galerie-Admin eMail" verwenden. Coppermine erzeugt diese Email-Adresse <strong>nicht</strong> von sich aus - Du musst sie selbst erzeugen!</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Allgemeine Einstellungen &rarr; Galerie-Admin eMail</p>
 <a name="admin_general_email_end"></a>
 <hr />
 <a name="admin_general_coppermine-url"></a><h3>URL Deines Coppermine-Galerie Verzeichnisses<a href="#admin_general_coppermine-url" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>This is the URL where a user will be directed to when s/he clicks on the &quot;See more pictures&quot; link in an e-card. This <em>must</em> be the URL to the root of your coppermine installation followed by a forward slash (just the path to your coppermine folder, e.g. <em>http://yourdomain.tld/coppermine/</em>). Do not specify a specific file (such as index.php) or subfolder within the coppermine gallery in this field.</p><p>In previous versions of Coppermine, this field was called &quot;Target address for the 'See more pictures' link in e-cards&quot;, but as this url is now being used for other functions in coppermine, it has been changed, appropriately.</p>
+<p>Zu dieser URL wird ein Benutzer weitergeleitet, wenn er/sie den Link &quot;Klicke auf diesen Link, um mehr Bilder ansehen zu können!&quot; in einer Ecard anklicken. Dies <em>muss</em> die URL zum Stammverzeichnis Deiner Coppermine-Installation sein, gefolgt von einem Schrägstrich (<strong>nur</strong> der Pfad zum Coppermine-Verzeichnis, also beisielsweise <em>http://deine_domain.de/coppermine/</em>). Gib keinen Dateinamen an (wie index.php) oder ein Unterverzeichnis von Coppermine in diesem Feld.</p>
+<p>In vorhergehenden Versionen von Coppermine hieß dieses Feld &quot;Ziel-Adresse für den 'mehr Bilder ansehen'-Link in eCards&quot;, da aber diese URL inzwischen für eine Menge anderer Funktionen benutzt wird als nur für die Ecard-Adresse wurde die Bezeichnung entsprechend geändert.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Allgemeine Einstellungen &rarr; URL Deines Coppermine-Galerie Verzeichnisses</p>
 <a name="admin_general_coppermine-url_end"></a>
 <hr />
