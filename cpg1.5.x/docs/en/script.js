@@ -30,7 +30,7 @@ thisPage = thisPage.substring(0, thisPage.indexOf('.htm'));
 /*--------------------------------------------------|
 | dTree 2.05 | www.destroydrop.com/javascript/tree/ |
 |---------------------------------------------------|
-| Copyright (c) 2002-2003 Geir Landr�              |
+| Copyright (c) 2002-2003 Geir Landr?              |
 |                                                   |
 | This script can be used freely as long as all     |
 | copyright messages are intact.                    |
@@ -572,8 +572,10 @@ d.add(15080,13500,'Creating a custom bridge file','bridging.htm#integrating_brid
 d.add(15200,0,'Developer documentation','dev.htm');
 d.add(15300,15200,'Sanitization Superglobals (Inspekt)','dev_superglobals.htm');
 d.add(15350,15200,'Javascript in Coppermine','dev_javascript.htm');
-d.add(15400,15200,'Plugin Writing','plugin_writing.htm');
-d.add(15500,15200,'Plugin hooks','plugin_hooks.htm');
+d.add(15400,15200,'Writing Plugins for Coppermine','dev_plugins.htm');
+d.add(15450,15400,'Quick Start Guide','dev_plugin_writing.htm');
+d.add(15500,15400,'Tutorial, API, Coppermine Globals','dev_plugin_api.htm');
+d.add(15550,15400,'Reference List of Plugin Hooks','dev_plugin_hooks.htm');
 d.add(15600,15200,'Editing the documentation','dev_documentation.htm');
 d.add(15700,15200,'Subversion','dev_subversion.htm');
 d.add(15800,15200,'Adding config options','dev_config.htm');

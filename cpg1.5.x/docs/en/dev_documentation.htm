@@ -44,7 +44,7 @@
 <a name="dev_documentation_add"></a><h2>Add new documents<a href="#dev_documentation_add" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>To add new documents, follow the steps below:
   <ul>
-    <li>just use an existing document as template to copy from. Save it within the docs folder (giving it a unique, web-save name that is meaningfull.</li>
+    <li>just use an existing document as template to copy from. Save it within the docs folder giving it a unique, web-safe name that is meaningful.</li>
     <li>Edit out the content of the new document after the header section, i.e. between
     <pre>&lt;body&gt;
 &lt;script type="text/javascript"&gt;
@@ -72,7 +72,7 @@
     You'll notice that the PageIDs don't have to increment by one - they can increment by any number. That's why I initially made them increase by 10, so you can easily add your new line (that corresponds to your new document) exactly at the place where it is suppossed to show up within the navigation without the need to review the PageID numbering scheme of the documents beneath your entry.<br />
     (Review the <a href="http://www.destroydrop.com/javascripts/tree/" rel="external" class="external">dtree documentation</a> for details)</li>
     <li>Edit toc.htm and add a link to the plain HTML table of contents. This is necessary to allow search engine spiders to crawl the documentation, so please do not skip this step. The structure should be pretty self-explanatory (as suggested: plain HTML).</li>
-    <li>After taking care of creating the file and displaying it in the navigation, it's time to come up with your content. Make sure to use meaningfull headlines (preserving the existing <tt class="code">&lt;h1&gt;</tt>, <tt class="code">&lt;h2&gt;</tt>, <tt class="code">&lt;h3&gt;</tt> ... structure). Preferably add anchors as well, making an icon (<img src="images/anchor.gif" width="15" height="9" border="0" alt="" title="anchor-icon for easy linking">) appear next to each headline that allows easy linking (this should be particularly helpfull on the support board - you can add references to particular documentation sections in no time). Take a look at the existing documents for an example</li>
+    <li>After taking care of creating the file and displaying it in the navigation, it's time to come up with your content. Make sure to use meaningful headlines (preserving the existing <tt class="code">&lt;h1&gt;</tt>, <tt class="code">&lt;h2&gt;</tt>, <tt class="code">&lt;h3&gt;</tt> ... structure). Preferably add anchors as well, making an icon (<img src="images/anchor.gif" width="15" height="9" border="0" alt="" title="anchor-icon for easy linking">) appear next to each headline that allows easy linking (this should be particularly helpfull on the support board - you can add references to particular documentation sections in no time). Take a look at the existing documents for an example</li>
     <li>Edit the description meta tag of the new page - come up with a short summary what the page is about. The description meta tag is taken into account by search engine spiders, especially when searching the entire site - see <a href="http://www.google.com/search?q=site%3Adocumentation.coppermine-gallery.net" rel="external" class="external">http://www.google.com/search?q=site%3Adocumentation.coppermine-gallery.net</a></li>
     <li>Finally, save your changes and add/commit your file(s) to the subversion repository.</li>
   </ul>
