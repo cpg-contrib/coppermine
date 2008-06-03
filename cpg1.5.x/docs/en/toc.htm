@@ -328,7 +328,121 @@
       <li><a href="dev_plugins.htm">Writing Plugins for Coppermine</a></li>
         <ul class="level3" id="dev_plugins">
           <li><a href="dev_plugin_writing.htm">Quick start guide for writing plugins</a></li>
-          <li><a href="dev_plugin_api.htm">Plugins tutorial, API description, Coppermine globals</a></li>
+          <li><a href="dev_plugin_api.htm">Plugins tutorial, API description, Coppermine globals</a>
+          	<ul class="level4" id="plugin_api">
+		        <li><a href="#plugin_api_overview">An Overview of the Coppermine Plugin API</a>
+		        	<ul class="level5">
+			            <li><a href="#plugin_api_overview_intro">Introduction</a></li>
+			            <li><a href="#plugin_api_overview_who">Intended Audience</a></li>
+			            <li><a href="#plugin_api_overview_skills">Required Skills & Knowledge</a></li>
+			            <li><a href="#plugin_api_overview_tools">Recommended Software & Support Forums</a></li>
+			            <li><a href="#plugin_api_overview_doc">Structure of this Document</a></li>
+	            	</ul>
+	            </li>
+		        <li><a href="#plugin_api_tutorial">"Hello, world" Plugin Tutorial</a>
+		        	<ul class="level5">
+		                <li><a href="#plugin_api_tutorial_first">My First Plugin</a></li>
+		                <li><a href="#plugin_api_tutorial_installconfig">Installation, Configuration, and Clean-Up</a>
+			                <ul class="level5">
+			                  <li><a href="#plugin_api_tutorial_installsimple">Installation with Simple Configuration</a></li>
+			                  <li><a href="#plugin_api_tutorial_install">Installation with Configuration Parameters</a></li>
+			                  <li><a href="#plugin_api_tutorial_config">Configuration during Operation</a></li>
+			                  <li><a href="#plugin_api_tutorial_cleanup">Uninstallation & Clean-Up</a></li>
+			                </ul>
+		                </li>  
+		                <li><a href="#plugin_api_tutorial_linking">Linking to Custom Plugin Scripts</a></li>
+		                <li><a href="#plugin_api_tutorial_button">Adding a Button to Coppermine</a></li>
+		                <li><a href="#plugin_api_tutorial_lang">Multi-language Support</a></li>
+		                <li><a href="#plugin_api_tutorial_distrib">Distributing Your Plugin</a></li>
+		                <li><a href="#plugin_api_tutorial_wherenext">Where to Go from Here</a></li>
+	                </ul>
+                </li>
+		        <li><a href="#plugin_api_hooks">Plugin Hooks Detailed</a>
+		        	<ul class="level5">
+		                <li><a href="#plugin_api_hooks_choosing">Choosing Plugin Hooks</a></li>
+		                <li><a href="#plugin_api_hooks_finding">Finding Plugin Hooks</a></li>
+		                <li><a href="#plugin_api_hooks_using">Using Plugin Hooks</a></li>
+		                <li><a href="#plugin_api_hooks_list">Plugin Hooks Listed</a>
+		                	<ul class="level6">
+								<li><a href="#plugin_api_hooks_ind_php">Script: index.php</a>
+									<ul class="level7">
+										<li><a href="#plugin_api_hooks_ind_anyc">Filter: 'anycontent'</a></li>
+										<li><a href="#plugin_api_hooks_ind_ucp">Filter: 'user_caption_params'</a></li>
+										<li><a href="#plugin_api_hooks_ind_pb">Filter: 'plugin_block'</a></li>
+									</ul>
+								</li>
+								<li><a href="#plugin_api_hooks_di_php">Script: displayimage.php</a>
+									<ul class="level7">
+										<li><a href="#plugin_api_hooks_di_fi">Filter: 'file_info'</a></li>
+										<li><a href="#plugin_api_hooks_di_pbc">Filter: 'post_breadcrumb'</a></li>
+									</ul>
+								</li>
+								<li><a href="#plugin_api_hooks_thumb_php">Script: thumbnails.php</a>
+									<ul class="level7">
+										<li><a href="#plugin_api_hooks_thumb_pbc">Filter: 'post_breadcrumb'</a></li>
+									</ul>
+								</li>
+								<li><a href="#plugin_api_hooks_func_php">Script: functions.inc.php</a>
+									<ul class="level7">
+										<li><a href="#plugin_api_hooks_func_ghgf">Filters: 'gallery_header' and 'gallery_footer'</a></li>
+										<li><a href="#plugin_api_hooks_func_td">Filter: 'thumb_data'</a></li>
+										<li><a href="#plugin_api_hooks_func_th">Filter: 'template_html'</a></li>
+										<li><a href="#plugin_api_hooks_func_pm">Filter: 'page_meta'</a></li>
+										<li><a href="#plugin_api_hooks_func_tc">Filters: 'thumb_caption' and all derivatives</a></li>
+									</ul>
+								</li>
+								<li><a href="#plugin_api_hooks_th_php">Script: themes.inc.php</a>
+									<ul class="level7">
+										<li><a href="#plugin_api_hooks_th_fd">Filter: 'file_data'</a></li>
+									</ul>
+								</li>
+								<li><a href="#plugin_api_hooks_um_php">Script: usermgr.php</a>
+									<ul class="level7">
+										<li><a href="#plugin_api_hooks_um_umh">Filter: 'usermgr_header'</a></li>
+										<li><a href="#plugin_api_hooks_um_umf">Filter: 'usermgr_footer'</a></li>
+									</ul>
+								</li>
+								<li><a href="#plugin_api_hooks_pm_php">Script: pluginmgr.php</a>
+									<ul class="level7">
+										<li><a href="#plugin_api_hooks_pm_pcon">Filter: 'plugin_configure'</a></li>
+										<li><a href="#plugin_api_hooks_pm_pcl">Filter: 'plugin_cleanup'</a></li>
+									</ul>
+								</li>
+								<li><a href="#plugin_api_hooks_papi_php">Script: plugin_api.inc.php</a>
+									<ul class="level7">
+										<li><a href="#plugin_api_hooks_papi_ph">Filter: 'page_html'</a></li>
+										<li><a href="#plugin_api_hooks_papi_pe">Filter: 'page_end'</a></li>
+										<li><a href="#plugin_api_hooks_papi_pi">Filter: 'plugin_install'</a></li>
+										<li><a href="#plugin_api_hooks_papi_pu">Filter: 'plugin_uninstall'</a></li>
+										<li><a href="#plugin_api_hooks_papi_pw">Filter: 'plugin_wakeup'</a></li>
+										<li><a href="#plugin_api_hooks_papi_ps">Filter: 'plugin_sleep'</a></li>
+									</ul>
+								</li>
+								<li><a href="#plugin_api_hooks_init_php">Script: init.inc.php</a>
+									<ul class="level9">
+										<li><a href="#plugin_api_hooks_init_ps">Filter: 'page_start'</a></li>
+									</ul>
+								</li>
+								<li><a href="#plugin_api_hooks_picm_php">Script: picmgmt.inc.php</a>
+									<ul class="level9">
+										<li><a href="#plugin_api_hooks_picm_afd">Filter: 'add_file_data'</a></li>
+									</ul>
+								</li>
+			                </ul>
+		                </li>
+		                <li><a href="#plugin_api_hooks_alpha">Plugin Hooks Alphabetically</a></li>
+			        </ul>
+		        </li>
+		        <li><a href="#plugin_api_plugin_class">Plugin Class Properties & Methods</a></li>
+		        <li><a href="#plugin_api_globals">Global Variables & Constants</a>
+		        	<ul class="level5">
+						<li><a href="#plugin_api_globals_system">System Global Variables</a></li>
+						<li><a href="#plugin_api_globals_cpg">Coppermine Constants</a></li>
+					</ul>
+		        </li>
+		        <li><a href="#plugin_api_credits">Credits & Copyright</a></li>
+          	</ul>
+          </li>
           <li><a href="dev_plugin_hooks.htm">Reference list of plugin hooks </a></li>
         </ul>
       <li><a href="dev_documentation.htm">Editing the documentation</a></li>
