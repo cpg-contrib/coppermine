@@ -74,6 +74,7 @@
 <hr />
 <a name="admin_general_zip-download"></a><h3>Allow ZIP-download of favorites<a href="#admin_general_zip-download" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>When enabled, users of your site may download files that they previously saved into their <em>favorites</em> collection. These files are dowloaded from the user's &quot;My favorites&quot; page and saved onto their computers in a zip-file format. This option requires zlib to be installed on your server (run <a href="http://www.php.net/phpinfo" class="external">phpinfo</a> to check if this php library file exists on your server).</p>
+<p>Warning: the creation of zip-archives on the server is a resources-intensive process that can overload your server pretty fast. In fact, the same server-sided limitations that apply to uploading (e.g. memory consumption) must be taken into account as well when enabling the zip download feature. It is very likely that this feature will stop working when trying to create a zip archive out of a larger number of entries in the visitor's "my favorites" meta album.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; General settings &rarr; Allow ZIP-download of favorites</p>
 <a name="admin_general_zip-download_end"></a>
 <hr />
@@ -81,13 +82,6 @@
 <p>Specify the time zone difference between your local time and the time zone your webserver is in. This value will be used to adjust time stamps in ecards and other places.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; General settings &rarr; Timezone difference relative to GMT</p>
 <a name="admin_general_time-offset_end"></a>
-<hr />
-<a name="admin_general_encrypt_password_start"></a><h3>Enable encrypted passwords<a href="#admin_general_encrypt_password_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>This option affects changes on user passwords that are stored as plain text in your database (this is the case if you have upgraded from previous versions of coppermine that did not have this feature). It will encrypt all passwords in the database, and all future passwords will be stored encypted as well. This process can not be reversed: once encryption is turned on, it can not be turned off, so use this option only after giving it some serious consideration.</p>
-<p>This option increases user security in coppermine, but comes with a drawback inherent to this method: even the admin will not be able to recover a lost password of a user (or his own password). The password can only be reset to another value using the "I forgot my password" option during login.</p>
-<p>This option is only available if you have upgraded your coppermine install from cpg1.0 to cpg1.3.x. More recent versions (cpg1.4.x or better) encrypt the passwords by default, so this option will not be shown.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; General settings &rarr; Enable encrypted passwords</p>
-<a name="admin_general_encrypt_password_end"></a>
 <hr />
 <a name="admin_general_help"></a><h3>Enable help-icons<a href="#admin_general_help" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Enables the display of help icons in various sections of the coppermine admin pages. When enabled, make sure you have also uploaded the "docs" folder into your coppermine folder on your webserver.</p>
