@@ -720,7 +720,7 @@ switch ($what) {
                                 print '</b></td>';
                                 print '<td class="tableb">';
                                 // set this user's password
-                                $new_password = $CONFIG['enable_encrypted_passwords'] ? md5($superCage->get->getEscaped('new_password')) : $superCage->get->getEscaped('new_password');
+                                $new_password = md5($superCage->get->getEscaped('new_password'));
                                 cpg_db_query("UPDATE {$CONFIG['TABLE_USERS']} SET user_password = '$new_password' WHERE  user_id = '$key'");
                                 printf($lang_delete_php['password_reset'], '&laquo;'.$superCage->get->getEscaped('new_password').'&raquo;');
                                 print '</b></td>';

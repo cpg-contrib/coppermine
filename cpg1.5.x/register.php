@@ -402,11 +402,7 @@ function check_user_info(&$error) { // function check_user_info - start
         $act_key = '';
     }
 
-                if ($CONFIG['enable_encrypted_passwords']) {
-                        $encpassword = md5($password);
-                } else {
-                        $encpassword = $password;
-                }
+    $encpassword = md5($password);
 
     $sql = "INSERT INTO {$CONFIG['TABLE_USERS']} ".
            "(user_regdate, user_active, user_actkey, user_name, user_password, user_email, user_profile1, user_profile2, user_profile3, user_profile4, user_profile5, user_profile6) ".

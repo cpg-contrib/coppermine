@@ -126,8 +126,6 @@ INSERT INTO CPG_config VALUES ('log_mode', '0');
 
 INSERT INTO CPG_config VALUES ('media_autostart', '1');
 
-INSERT INTO CPG_config VALUES ('enable_encrypted_passwords','0');
-
 INSERT INTO CPG_config VALUES ('rating_stars_amount', '5');
 INSERT INTO CPG_config VALUES ('old_style_rating', '0');
 

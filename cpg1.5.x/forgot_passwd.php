@@ -134,11 +134,7 @@ EOT;
     // Reset Password
     $new_password = $cpg_udb->make_password();
 
-    if ($CONFIG['enable_encrypted_passwords']) {
-        $password = md5($new_password);
-    } else {
-        $password = $new_password;
-    }
+    $password = md5($new_password);
 
     $sql =  "update {$cpg_udb->usertable} set ";
     $sql .= "{$cpg_udb->field['password']}='$password' ";

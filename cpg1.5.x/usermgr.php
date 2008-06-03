@@ -820,7 +820,7 @@ function update_user($user_id)
           "user_profile6 = '$profile6', " .
           "user_group_list = '$user_group_list'";
 
-    if (!empty($user_password)) $sql_update .= ", user_password = '".(($CONFIG['enable_encrypted_passwords'])?md5($user_password):$user_password)."'";
+    if (!empty($user_password)) $sql_update .= ", user_password = '".(md5($user_password))."'";
     $sql_update .= " WHERE user_id = '$user_id'";
 
     cpg_db_query($sql_update);

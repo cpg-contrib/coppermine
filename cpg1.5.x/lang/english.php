@@ -740,7 +740,6 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'enable_zipdownload' =>   'Allow ZIP-download of favorites', // cpg1.5
   'time_offset' =>   'Timezone difference relative to GMT', // cpg1.5
   'time_offset_detail' =>   '(current time: ' . localised_date(-1, $comment_date_fmt) . ')', // cpg1.5
-  'enable_encrypted_passwords' =>   'Enable encrypted passwords (can not be undone)', // cpg1.5
   'enable_help' =>   'Enable help-icons', // cpg1.5
   'enable_help_description' =>   'help available in English only', // cpg1.5
   'clickable_keyword_search' =>   'Enable clickable keywords in search', // cpg1.5

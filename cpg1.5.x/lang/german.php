@@ -905,7 +905,6 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'enable_zipdownload' =>   'ZIP-Download der Favoriten erlauben', // cpg1.5
   'time_offset' =>   'Zeitzonen-Differenz relative zur MEZ', // cpg1.5
   'time_offset_detail' =>   '(aktuelle Zeit: ' . localised_date(-1, $comment_date_fmt) . ')', // cpg1.5
-  'enable_encrypted_passwords' =>   'Verschlüsselte Passwörter aktivieren (kann nicht rückgängig gemacht werden)', // cpg1.5
   'enable_help' =>   'Hilfe-Icons aktivieren', // cpg1.5
   'enable_help_description' =>   'Hilfe nur in Englisch verfügbar', // cpg1.5
   'clickable_keyword_search' =>   'Anklickbare Stichwörter in Suche aktivieren', // cpg1.5

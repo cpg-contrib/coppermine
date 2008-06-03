@@ -350,10 +350,8 @@ if ($superCage->post->keyExists('change_password') && USER_ID && UDB_INTEGRATION
     if (utf_strlen($new_pass) < 2) cpg_die(ERROR, $lang_register_php['err_password_short'], __FILE__, __LINE__);
     if ($new_pass != $new_pass_again) cpg_die(ERROR, $lang_register_php['err_password_mismatch'], __FILE__, __LINE__);
 
-  if ($CONFIG['enable_encrypted_passwords']) {
     $new_pass = md5($new_pass);
     $current_pass = md5($current_pass);
-  }
 
     $sql = "UPDATE {$cpg_udb->usertable} SET " .
            $cpg_udb->field['password']." = '$new_pass' " .

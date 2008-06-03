@@ -100,14 +100,6 @@ $config_data = array(
       'maxlength' => '5',
       'end_description' => $lang_admin_php['time_offset_detail'],
     ),
-    'enable_encrypted_passwords' => array(
-      'type' => 'checkbox',
-      'default_value' => '1',
-      'only_display_if' => '0',
-      'bridged' => 'hide',
-      'help_link' => 'f=configuration.htm&amp;as=admin_general_encrypt_password_start&amp;ae=admin_general_encrypt_password_end&amp;top=1',
-      'preserve_when_resetting' => '1',
-    ),
     'enable_help' => array(
       'type' => 'radio',
       'default_value' => '1',

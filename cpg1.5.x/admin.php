@@ -180,9 +180,6 @@ if ($superCage->post->keyExists('restore_config')) { // user has chosen to facto
         //  finally, all criteria have been met - let's write the updated data to the database
         cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$evaluate_value' WHERE name = '$adminDataKey'");
         // perform special tasks -- start
-        if ($adminDataKey == 'enable_encrypted_passwords' && $superCage->post->getInt('enable_encrypted_passwords') == 1 && $CONFIG['enable_encrypted_passwords'] == 0) { // encrypt the passwords -- start
-          cpg_db_query("update {$CONFIG['TABLE_USERS']} set user_password=md5(user_password);");
-        } // encrypt the passwords -- end
         if ($CONFIG['log_mode'] == CPG_LOG_ALL) { // write log -- start
                 log_write('CONFIG UPDATE SQL: '.
                           "UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$evaluate_value' WHERE name = '$adminDataKey'\n".

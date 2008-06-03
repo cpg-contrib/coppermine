@@ -56,12 +56,8 @@ class cpgAPIAuth {
       $USER_DATA['num_URI_upload'] = 0;
       $USER_DATA['custom_user_upload'] = 0;
     } else {
-      // Check if encrypted passwords are enabled
-      if ($CONFIG['enable_encrypted_passwords']) {
-        $encpassword = md5($password);
-      } else {
-        $encpassword = $password;
-      }
+
+    $encpassword = md5($password);
 
       // Check for user in users table
       $sql =  "SELECT user_id, user_name, user_password FROM {$CONFIG['TABLE_USERS']} WHERE ";

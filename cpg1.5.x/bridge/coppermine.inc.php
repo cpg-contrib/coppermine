@@ -110,12 +110,8 @@ class coppermine_udb extends core_udb {
                 // Create the session_id from concat(cookievalue,client_id)
                 $session_id = $this->session_id.$this->client_id;
 
-                // Check if encrypted passwords are enabled
-                if ($CONFIG['enable_encrypted_passwords']) {
-                        $encpassword = md5($password);
-                } else {
-                        $encpassword = $password;
-                }
+                $encpassword = md5($password);
+
 
                 // Check for user in users table
                 $sql =  "SELECT user_id, user_name, user_password FROM {$this->usertable} WHERE ";
