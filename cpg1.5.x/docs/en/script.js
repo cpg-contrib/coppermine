@@ -10,9 +10,9 @@
 
   ********************************************
   Coppermine version: 1.5.0
-  $Revision: 3440 $
-  $LastChangedBy: nibbler999 $
-  $Date: 2007-01-27 22:50:27 +0100 (Sa, 27 Jan 2007) $
+  $Revision$
+  $LastChangedBy$
+  $Date$
 **********************************************/
 
 
