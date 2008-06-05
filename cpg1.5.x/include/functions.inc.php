@@ -2052,12 +2052,12 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
                                 $row['pwidth'] = $image_info[0];
                                 $row['pheight'] = $image_info[1];
                         }
-                                                //thumb cropping - if we display a system thumb we calculate the dimension by any and not ex
-                                                if($row['system_icon']=='true'){
-                                $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['thumb_width'], true);
-                                                } else {
-                                $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['thumb_width']);
-                                                }
+                        // thumb cropping - if we display a system thumb we calculate the dimension by any and not ex
+                        if($row['system_icon']=='true'){
+                          $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['thumb_width'], true);
+                        } else {
+                          $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['thumb_width']);
+                        }
                         $thumb_list[$i]['pos'] = $key < 0 ? $key : $i - 1 + $lower_limit;
                         $thumb_list[$i]['pid'] = $row['pid'];;
                         $thumb_list[$i]['image'] = "<img src=\"" . $pic_url . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$row['filename']}\" title=\"$pic_title\"/>";

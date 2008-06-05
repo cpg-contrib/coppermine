@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4256 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-02-09 18:00:53 +0100 (Sa, 09 Feb 2008) $
+  $Revision$
+  $LastChangedBy$
+  $Date$
 **********************************************/
 
 $name = $lang_plugin_php['onlinestats_name'];

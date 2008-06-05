@@ -11,9 +11,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4256 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-02-09 18:00:53 +0100 (Sa, 09 Feb 2008) $
+  $Revision$
+  $LastChangedBy$
+  $Date$
   **********************************************
   Plugin "Who is online" aka "onlinestats" for cpg1.5.x
   This plugin has been re-designed to work with cpg1.5.x only. Do not use it with cpg1.4.x

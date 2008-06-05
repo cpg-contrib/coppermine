@@ -22,9 +22,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 3513 $
-  $LastChangedBy: gaugau $
-  $Date: 2007-04-27 10:03:57 +0200 (Fr, 27 Apr 2007) $
+  $Revision$
+  $LastChangedBy$
+  $Date$
 **********************************************/
 $errArr = array(
                 1 => 'Album id not posted',

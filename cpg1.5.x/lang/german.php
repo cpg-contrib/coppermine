@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $Source$
-  $Revision: 3275 $
-  $Author: gaugau $
-  $Date: 2006-09-03 12:10:47 +0200 (So, 03 Sep 2006) $
+  $Revision$
+  $Author$
+  $Date$
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}

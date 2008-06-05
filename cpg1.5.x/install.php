@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4015 $
-  $LastChangedBy: SaWeyy $
-  $Date: 2007-10-31 10:23:22 +0100 (wo, 31 okt 2007) $
+  $Revision$
+  $LastChangedBy$
+  $Date$
 **********************************************/
 ########################
 ####Install Main Code###

@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 3405 $
-  $LastChangedBy: gaugau $
-  $Date: 2006-12-27 10:06:19 +0100 (Mi, 27 Dez 2006) $
+  $Revision$
+  $LastChangedBy$
+  $Date$
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
