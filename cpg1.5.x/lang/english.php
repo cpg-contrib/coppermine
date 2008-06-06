@@ -447,6 +447,10 @@ if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
   'no_category' => '* No category *',
   'delete' => 'Delete',
   'new' => 'New',
+  'move_up' => 'Move up', // cpg1.5
+  'move_down' => 'Move down', // cpg1.5
+  'move_top' => 'Move to top', // cpg1.5
+  'move_bottom' => 'Move to bottom', // cpg1.5
   'apply_modifs' => 'Apply modifications',
   'select_category' => 'Select category',
 );
@@ -616,7 +620,13 @@ if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
   'confirm_delete' => 'Are you sure you want to DELETE this category', //js-alert
   'category' => 'Category',
   'operations' => 'Operations',
-  'move_into' => 'Move into',
+  'move_into' => 'Move into', 
+  'move_up' => 'Move up', // cpg1.5
+  'move_down' => 'Move down', // cpg1.5
+  'move_top' => 'Move to top', // cpg1.5
+  'move_bottom' => 'Move to bottom', // cpg1.5
+  'delete' => 'Delete', // cpg1.5
+  'edit' => 'Edit', // cpg1.5
   'update_create' => 'Update/Create category',
   'parent_cat' => 'Parent category',
   'cat_title' => 'Category title',
@@ -2490,7 +2500,7 @@ $lang_util_php = array(
   'fullpic_error' => 'File %s does not exist!', // cpg1.5
   'no_prob_detect' => 'No problems detected', // cpg1.5
   'no_prob_found' => 'No problems were found.', // cpg1.5
-  'notitle' => 'Apply only for empty filename fieldsfiles', //cpg1.5
+  'notitle' => 'Apply only for empty filename fields files', //cpg1.5
 );
 }
 

@@ -153,6 +153,34 @@ pageheader($lang_albmgr_php['alb_mrg']);
                 album.changeFrm();
         }
 
+        function Movetop_Option()
+        {
+                var to = document.album_menu.to;
+                var pos = selectedOptIndex;
+                if (pos == 0) {
+                        return;
+                }
+
+                for (var i=pos; i>0; i--) {
+                        swap_option(to, i, i-1);
+                }
+                selected_option(to, 0);
+        }
+
+        function Movebottom_Option()
+        {
+                var to = document.album_menu.to;
+                var pos = selectedOptIndex;
+                if (pos == to.length-1) {
+                        return;
+                }
+
+                for (var i=pos; i<to.length-1; i++) {
+                        swap_option(to, i, i+1);
+                }
+                selected_option(to, to.length-1);
+        }
+
         function Moveup_Option()
         {
                 var to = document.album_menu.to;
@@ -448,10 +476,11 @@ echo $lb;
                                                                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                 <tr>
 <?php
-// Only show move-buttons when admin or in user's private categorie
-// sorting is also prevented in delete.php when user doesn't have the rights.
+// Only show move-buttons when admin or in user's private category.
+// Sorting is also prevented in delete.php when user doesn't have the rights.
 if(GALLERY_ADMIN_MODE||($cat == USER_ID + FIRST_USER_CAT)){
-echo '										<td><a href="javascript:Moveup_Option();"><img src="images/move_up.gif" width="26" height="21" border="0" alt="" /></a><a href="javascript:Movedown_Option();"><img src="images/move_down.gif" width="26" height="21" border="0" alt="" /></a>
+echo '										<td><a href="javascript:Moveup_Option();"><img src="images/move_up.gif" width="26" height="21" border="0" alt="" title="'.$lang_albmgr_php['move_up'].'" /></a><a href="javascript:Movedown_Option();"><img src="images/move_down.gif" width="26" height="21" border="0" alt="v" title="'.$lang_albmgr_php['move_down'].'"  /></a>
+											&nbsp; <a href="javascript:Movetop_Option();"><img src="images/move_top.gif" width="26" height="21" border="0" alt="^^" title="'.$lang_albmgr_php['move_top'].'" /></a><a href="javascript:Movebottom_Option();"><img src="images/move_bottom.gif" width="26" height="21" border="0" alt="vv" title="'.$lang_albmgr_php['move_bottom'].'" /></a>
 										</td>';
 }else{
 echo '										<td></td>';
