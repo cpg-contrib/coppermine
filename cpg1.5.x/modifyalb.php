@@ -231,6 +231,7 @@ function form_alb_thumb($text, $name)
 
     $cpg_nopic_data = cpg_get_system_thumb('nopic.jpg',$USER_DATA['user_id']);
 
+    $keyword = '';
     if ($ALBUM_DATA['keyword']) {
         $keyword = "OR (keywords like '%{$ALBUM_DATA['keyword']}%')";
     }
