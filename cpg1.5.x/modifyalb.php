@@ -233,9 +233,9 @@ function form_alb_thumb($text, $name)
 
     $keyword = '';
     if ($ALBUM_DATA['keyword']) {
-        $keyword = "OR (keywords like '%{$ALBUM_DATA['keyword']}%')";
+        $keyword = "OR (keywords LIKE '%{$ALBUM_DATA['keyword']}%')";
     }
-    $results = cpg_db_query("SELECT pid, filepath, filename, url_prefix FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='{$CLEAN['album']}' $keyword AND approved='YES' ORDER BY filename");
+    $results = cpg_db_query("SELECT pid, filepath, filename, url_prefix FROM {$CONFIG['TABLE_PICTURES']} WHERE approved='YES' AND ( aid='{$CLEAN['album']}' $keyword ) ORDER BY filename");
     if (mysql_num_rows($results) == 0) {
         echo <<<EOT
         <tr>
