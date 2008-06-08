@@ -361,7 +361,7 @@ function update_thumbs()
                 $imagesize = cpg_getimagesize($work_image);
                 if ($updatetype == 0 || $updatetype == 2 || $updatetype == 5)  {
                     if (resize_image($work_image, $thumb, $CONFIG['thumb_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use'], "false", 1)) {
-                        echo $thumb .' '. $lang_util_php['updated_succesfully'] . '!<br />';
+                        echo $thumb .' '. $lang_util_php['updated_successfully'] . '!<br />';
                         my_flush();
                     } else {
                         echo $lang_util_php['error_create'] . ':$thumb<br />';
@@ -373,7 +373,7 @@ function update_thumbs()
                     ($CONFIG['enable_watermark'] == '1' && $CONFIG['which_files_to_watermark'] == 'both' || $CONFIG['which_files_to_watermark'] == 'resized') ? $watermark="true" : $watermark="false";
                     if (max($imagesize[0], $imagesize[1]) > $CONFIG['picture_width'] && $CONFIG['make_intermediate']) {
                         if (resize_image($work_image, $normal, $CONFIG['picture_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use'], $watermark)) {
-                            echo $normal . " " . $lang_util_php['updated_succesfully'] . '!<br />';
+                            echo $normal . " " . $lang_util_php['updated_successfully'] . '!<br />';
                             my_flush();
                         } else {
                             echo $lang_util_php['error_create'] . ':$normal<br />';
@@ -396,7 +396,7 @@ function update_thumbs()
                         if (copy($image, $orig)) {
                             if ($CONFIG['enable_watermark'] == '1' && $CONFIG['which_files_to_watermark'] == 'both' || $CONFIG['which_files_to_watermark'] == 'original') {
                                 if (resize_image($work_image, $image, $max_size_size, $CONFIG['thumb_method'], $resize_method, 'true')) {
-                                    echo $image . " " . $lang_util_php['updated_succesfully'] . '!<br />';
+                                    echo $image . " " . $lang_util_php['updated_successfully'] . '!<br />';
                                     my_flush();
                                 } else {
                                     echo $lang_util_php['error_create'] . ':$image<br />';
@@ -407,7 +407,7 @@ function update_thumbs()
                     } else {
                         if ($CONFIG['enable_watermark'] == '1' && $CONFIG['which_files_to_watermark'] == 'both' || $CONFIG['which_files_to_watermark'] == 'original') {
                             if (resize_image($work_image, $image, $max_size_size, $CONFIG['thumb_method'], $resize_method, 'true')) {
-                                echo $image . " " . $lang_util_php['updated_succesfully'] . '!<br />';
+                                echo $image . " " . $lang_util_php['updated_successfully'] . '!<br />';
                                 my_flush();
                             } else {
                                 echo $lang_util_php['error_create'] . ':$image<br />';
@@ -416,14 +416,14 @@ function update_thumbs()
                         } else {
                             if (((USER_IS_ADMIN && $CONFIG['auto_resize'] == 1) || (!USER_IS_ADMIN && $CONFIG['auto_resize'] > 0)) && max($imagesize[0], $imagesize[1]) > $CONFIG['max_upl_width_height']) {
                                 if (resize_image($work_image, $image, $max_size_size, $CONFIG['thumb_method'], $resize_method, 'false')) {
-                                    echo $image . " " . $lang_util_php['updated_succesfully'] . '!<br />';
+                                    echo $image . " " . $lang_util_php['updated_successfully'] . '!<br />';
                                     my_flush();
                                 } else {
                                     echo $lang_util_php['error_create'] . ':$image<br />';
                                     my_flush();
                                 }
                             } elseif (copy($orig, $image)) {
-                                echo $orig . " " . $lang_util_php['updated_succesfully'] . '!<br />';
+                                echo $orig . " " . $lang_util_php['updated_successfully'] . '!<br />';
                                 my_flush();
                             } else {
                                 echo $lang_util_php['error_create'] . ':$image<br />';

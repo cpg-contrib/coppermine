@@ -61,7 +61,7 @@ $log_date_fmt = '%B %d, %Y at %I:%M %p';
 $scientific_date_fmt = '%Y-%m-%d %H:%M:%S'; // cpg1.5
 
 // For the word censor
-$lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*');
+$lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'assrammer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*');
 
 $lang_meta_album_names = array(
   'random' => 'Random files',
@@ -92,7 +92,7 @@ $lang_errors = array(
   'orphan_cat' => 'A category has a non-existing parent, run the category manager to correct the problem!',
   'directory_ro' => 'Directory \'%s\' is not writable, files can\'t be deleted',
   'non_exist_comment' => 'The selected comment does not exist.',
-  'pic_in_invalid_album' => 'File is in a non existant album (%s)!?',
+  'pic_in_invalid_album' => 'File is in a non-existent album (%s)!?',
   'banned' => 'You are currently banned from using this site.',
   'not_with_udb' => 'This function is disabled in Coppermine because it is integrated with forum software. Either what you are trying to do is not supported in this configuration, or the function should be handled by the forum software.',
   'offline_title' => 'Offline',
@@ -103,7 +103,7 @@ $lang_errors = array(
   'zip_type' => 'You do not have permission to upload ZIP files.',
   'database_query' => 'There was an error while processing a database query',
   'non_exist_comment' => 'The selected comment does not exist',
-  'page_removed_redirector' => 'You are trying to access a page that has been removed from the coppermine package.<br />Redirecting...', // cpg1.5
+  'page_removed_redirector' => 'You are trying to access a page that has been removed from the Coppermine package.<br />Redirecting...', // cpg1.5
   'captcha_error' => 'The confirmation code didn\'t match', // cpg1.5
   'no_data' => 'No data returned', // cpg1.5
   'no_connection' => 'No connection to %s established.', // cpg1.5
@@ -112,7 +112,7 @@ $lang_errors = array(
 );
 
 $lang_bbcode_help_title = 'bbcode help';
-$lang_bbcode_help = 'You can add clickable links and some formating to this field by using bbcode tags: <li>[b]Bold[/b] =&gt; <b>Bold</b></li><li>[i]Italic[/i] =&gt; <i>Italic</i></li><li>[url=http://yoursite.com/]Url Text[/url] =&gt; <a href="http://yoursite.com">Url Text</a></li><li>[email]user@domain.com[/email] =&gt; <a href="mailto:user@domain.com">user@domain.com</a></li><li>[color=red]some text[/color] =&gt; <span style="color:red">some text</span></li><li>[img]http://documentation.coppermine-gallery.net/en/images/base.gif[/img] =&gt; <img src="docs/en/images/base.gif" border="0" alt="" /></li>';
+$lang_bbcode_help = 'You can add clickable links and some formatting to this field by using bbcode tags: <li>[b]Bold[/b] =&gt; <b>Bold</b></li><li>[i]Italic[/i] =&gt; <i>Italic</i></li><li>[url=http://yoursite.com/]Url Text[/url] =&gt; <a href="http://yoursite.com">Url Text</a></li><li>[email]user@domain.com[/email] =&gt; <a href="mailto:user@domain.com">user@domain.com</a></li><li>[color=red]some text[/color] =&gt; <span style="color:red">some text</span></li><li>[img]http://documentation.coppermine-gallery.net/en/images/base.gif[/img] =&gt; <img src="docs/en/images/base.gif" border="0" alt="" /></li>';
 
 $lang_common = array(
   'yes' => 'Yes', // cpg1.5
@@ -124,7 +124,7 @@ $lang_common = array(
   'check_uncheck_all' => 'check/uncheck all', // cpg1.5
   'confirm' => 'Confirmation', // cpg1.5
   'captcha_help_title' => 'Visual confirmation (captcha)', // cpg1.5
-  'captcha_help' => 'To avoid spam, you have to confirm that you are an actual human being and not just a bot script  by entering the displayed text.<br />Capitalization does not matter, you can type in lowercase.', // cpg1.5
+  'captcha_help' => 'To avoid spam, you have to confirm that you are an actual human being and not just a bot script by entering the displayed text.<br />Capitalization does not matter, you can type in lowercase.', // cpg1.5
   'title' => 'Title', // cpg1.5
   'caption' => 'Caption', // cpg1.5
   'keywords' => 'Keywords', // cpg1.5
@@ -225,11 +225,11 @@ $lang_gallery_admin_menu = array(
   'phpinfo_lnk' => 'phpinfo', // cpg1.5
   'phpinfo_title' => 'Contains technical information about your server. You may be asked to provide information from this when requesting support.', // cpg1.5
   'update_database_lnk' => 'Update database', // cpg1.5
-  'update_database_title' => 'If you have replaced coppermine files, added a modification or upgraded from a previous version of coppermine, make sure to run the database update once. This will create the necessary tables and/or config values in your coppermine database.', // cpg1.5
+  'update_database_title' => 'If you have replaced Coppermine files, added a modification or upgraded from a previous version of Coppermine, make sure to run the database update once. This will create the necessary tables and/or config values in your Coppermine database.', // cpg1.5
   'view_log_files_lnk' => 'View log files', // cpg1.5
-  'view_log_files_title' => 'Coppermine can keep track of various actions users perform. You can browse those logs if you have enabled logging in coppermine config.', // cpg1.5
+  'view_log_files_title' => 'Coppermine can keep track of various actions users perform. You can browse those logs if you have enabled logging in Coppermine config.', // cpg1.5
   'check_versions_lnk' => 'Check versions', // cpg1.5
-  'check_versions_title' => 'Check your file versions to find out if you have replaced all files after an upgrade, or if coppermine source files have been updated after the release of a package.', // cpg1.5
+  'check_versions_title' => 'Check your file versions to find out if you have replaced all files after an upgrade, or if Coppermine source files have been updated after the release of a package.', // cpg1.5
   'bridgemgr_lnk' => 'Bridge Manager', // cpg1.5
   'bridgemgr_title' => 'Enable/disable integration (bridging) of Coppermine with another application (e.g. your BBS).', // cpg1.5
   'pluginmgr_lnk' => 'Plugin Manager', // cpg1.5
@@ -346,7 +346,7 @@ $lang_get_pic_data = array(
 $lang_cpg_debug_output = array(
   'debug_info' => 'Debug Info',
   'select_all' => 'Select All',
-  'copy_and_paste_instructions' => 'If you\'re going to request help on the coppermine support board, copy-and-paste this debug output into your posting when requested, along with the error message you get (if any). Only post the debug_output on the support board if a supporter definitely asks for it! Make sure to replace any passwords from the query with *** before posting. <br />Note: This is for information only and does not mean there is an error with your gallery.', // cpg1.5
+  'copy_and_paste_instructions' => 'If you\'re going to request help on the Coppermine support board, copy-and-paste this debug output into your posting when requested, along with the error message you get (if any). Only post the debug_output on the support board if a supporter definitely asks for it! Make sure to replace any passwords from the query with *** before posting. <br />Note: This is for information only and does not mean there is an error with your gallery.', // cpg1.5
   'phpinfo' => 'display phpinfo',
   'notices' => 'Notices',
   'show_hide' => 'show / hide', // cpg1.5
@@ -418,7 +418,7 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
   'Laughing' => 'Laughing',
   'Mad' => 'Mad',
   'Razz' => 'Razz',
-  'Embarassed' => 'Embarassed',
+  'Embarrassed' => 'Embarrassed',  // cpg1.5
   'Crying or Very sad' => 'Crying or Very sad',
   'Evil or Very Mad' => 'Evil or Very Mad',
   'Twisted Evil' => 'Twisted Evil',
@@ -469,11 +469,11 @@ if (defined('BANNING_PHP')) $lang_banning_php = array(
   'add_new' => 'Add New Ban',
   'add_ban' => 'Add',
   'error_user' => 'Cannot find user',
-  'error_specify' => 'You need to specifiy either a user name or an IP address',
+  'error_specify' => 'You need to specify either a user name or an IP address',
   'error_ban_id' => 'Invalid ban ID!',
-  'error_admin_ban' => 'You cannnot ban yourself!',
+  'error_admin_ban' => 'You cannot ban yourself!',
   'error_server_ban' => 'You were going to ban your own server? Tsk tsk, cannot do that...',
-  'error_ip_forbidden' => 'You cannnot ban this IP - it is non-routable (private) anyway!<br />If you want to allow banning for private IPs, change this in your %sConfig%s (only makes sense when Coppermine runs on a LAN).', // cpg1.5
+  'error_ip_forbidden' => 'You cannot ban this IP - it is non-routable (private) anyway!<br />If you want to allow banning for private IPs, change this in your %sConfig%s (only makes sense when Coppermine runs on a LAN).', // cpg1.5
   'lookup_ip' => 'Lookup an IP address',
   'submit' => 'go!',
   'select_date' => 'select date',
@@ -496,7 +496,7 @@ if (defined('BRIDGEMGR_PHP')) $lang_bridgemgr_php = array(
   'custom_bridge_file' => 'your custom bridge file\'s name (if the bridge file\'s name is <i>myfile.inc.php</i>, enter <i>myfile</i> into this field)',
   'no_action_needed' => 'No action needed in this step. Just click \'next\' to continue.',
   'reset_to_default' => 'Reset to default value',
-  'choose_bbs_app' => 'choose application to bridge coppermine with',
+  'choose_bbs_app' => 'choose application to bridge Coppermine with',
   'support_url' => 'Go here for support on this application',
   'settings_path' => 'path(s) used by your bridge app',
   'database_connection' => 'database connection',
@@ -507,11 +507,11 @@ if (defined('BRIDGEMGR_PHP')) $lang_bridgemgr_php = array(
   'db_database_name' => 'Database name',
   'db_database_name_explanation' => 'Enter the name of the database your bridge app uses',
   'db_hostname' => 'Database host',
-  'db_hostname_explanation' => 'Hostname where your mySQL database resides, usually &quot;localhost&quot;',
+  'db_hostname_explanation' => 'Hostname where your MySQL database resides, usually &quot;localhost&quot;',
   'db_username' => 'Database user account',
-  'db_username_explanation' => 'mySQL user account to use for connection with your bridge app',
+  'db_username_explanation' => 'MySQL user account to use for connection with your bridge app',
   'db_password' => 'Database passsword',
-  'db_password_explanation' => 'Passsword for this mySQL user account',
+  'db_password_explanation' => 'Password for this MySQL user account',
   'full_forum_url' => 'URL of the bridge app',
   'full_forum_url_explanation' => 'Full URL of the application you are going to bridge with (including the leading http:// bit, e.g. http://www.yourdomain.tld/forum)',
   'relative_path_of_forum_from_webroot' => 'Relative bridging app path',
@@ -569,12 +569,12 @@ if (defined('BRIDGEMGR_PHP')) $lang_bridgemgr_php = array(
   'error_must_not_be_empty' => 'must not be empty',
   'error_either_be' => 'must either be %s or %s',
   'error_folder_not_exist' => '%s doesn\'t exist. Correct the value you entered for %s',
-  'error_cookie_not_readible' => 'Coppermine can\'t read a cookie named %s. Correct the value you entered for %s, or go to your bridge app administration panel and make sure that the cookie path is readible for coppermine.',
+  'error_cookie_not_readible' => 'Coppermine can\'t read a cookie named %s. Correct the value you entered for %s, or go to your bridge app administration panel and make sure that the cookie path is readable for Coppermine.',
   'error_mandatory_field_empty' => 'You can not leave the field %s blank - fill in the proper value.',
   'error_no_trailing_slash' => 'There mustn\'t be a trailing slash in the field %s.',
   'error_trailing_slash' => 'There must be a trailing slash in the field %s.',
-  'error_db_connect' => 'Could not connect to the mySQL database with the data you specified. Here\'s what mySQL said:',
-  'error_db_name' => 'Although Coppermine could establish a connection, it wasn\'t able to find the database %s. Make sure you have specified %s properly. Here\'s what mySQL said:',
+  'error_db_connect' => 'Could not connect to the MySQL database with the data you specified. Here\'s what MySQL said:',
+  'error_db_name' => 'Although Coppermine could establish a connection, it wasn\'t able to find the database %s. Make sure you have specified %s properly. Here\'s what MySQL said:',
   'error_prefix_and_table' => '%s and ',
   'error_db_table' => 'Could not find the table %s. Make sure you have specified %s correctly.',
   'recovery_title' => 'Bridge Manager: emergency recovery',
@@ -591,7 +591,7 @@ if (defined('BRIDGEMGR_PHP')) $lang_bridgemgr_php = array(
   'recovery_failure_content' => 'You supplied the wrong credentials. You will have to supply the admin account data of the standalone version (usually the account you set up during Coppermine install).',
   'try_again' => 'try again',
   'recovery_wait_title' => 'Wait time has not elapsed',
-  'recovery_wait_content' => 'For security reasons this script does not allow failed logons in short succession, so you will have to wait a bit untill you\'re allowed to try to authenticate.',
+  'recovery_wait_content' => 'For security reasons this script does not allow failed logons in short succession, so you will have to wait a bit until you\'re allowed to try to authenticate.',
   'wait' => 'wait',
   'create_redir_file' => 'Create redirection file (recommended)',
   'create_redir_file_explanation' => 'To redirect users back to Coppermine once they logged into your bridge app, you need a redirection file to be created within your bridge app folder. When this option is checked, the bridge manager will attempt to create this file for you, or give you code ready to copy-and-paste to create the file manually.',
@@ -652,7 +652,7 @@ if (defined('CONTACT_PHP')) $lang_contact_php = array(
   'name_field_invalid' => 'Please enter your actual name', // cpg1.5 // js-alert
   'email_field_mandatory' => 'Please enter your email address', // cpg1.5 // js-alert
   'email_field_invalid' => 'Please enter a valid email address', // cpg1.5 // js-alert
-  'subject_field_mandatory' => 'Please enter a meaningfull subject', // cpg1.5 // js-alert
+  'subject_field_mandatory' => 'Please enter a meaningful subject', // cpg1.5 // js-alert
   'message_field_mandatory' => 'Please enter your message', // cpg1.5 // js-alert
   'confirmation' => 'Confirmation', // cpg1.5
   'email_headline' => 'On %s, this email has been sent using the contact form at %s from the IP address %s', // cpg1.5
@@ -688,7 +688,7 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'email_settings' => 'Email settings  (usually nothing has to be changed here; leave all fields blank when not sure)', // cpg1.5
   'logging_stats' => 'Logging and statistics', // cpg1.5
   'maintenance_settings' => 'Maintenance settings', // cpg1.5
-  'manage_exif' => 'Manage exif display',
+  'manage_exif' => 'Manage EXIF display',
   'manage_plugins' => 'Manage plugins',
   'manage_keyword' => 'Manage keywords',
   'restore_cfg' => 'Restore factory defaults',
@@ -744,7 +744,7 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'gallery_name' =>   'Gallery name', // cpg1.5
   'gallery_description' =>   'Gallery description', // cpg1.5
   'gallery_admin_email' =>   'Gallery administrator email', // cpg1.5
-  'ecards_more_pic_target' =>   'URL of your coppermine gallery folder', // cpg1.5
+  'ecards_more_pic_target' =>   'URL of your Coppermine gallery folder', // cpg1.5
   'ecards_more_pic_target_detail' =>   '(with a trailing slash, no \'index.php\' or similar at the end)', // cpg1.5
   'home_target' =>   'URL of your home page', // cpg1.5
   'enable_zipdownload' =>   'Allow ZIP-download of favorites', // cpg1.5
@@ -939,7 +939,7 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'log_mode' =>   'Logging mode', // cpg1.5
   'log_mode_details' =>   'All log files are written in english.', // cpg1.5
   'log_ecards' =>   'Log ecards', // cpg1.5
-  'log_ecards_detail' =>   'Note: logging can have legal impacts. The user should be imformed on registration that ecards are being logged. It is recommended to provide a separate page with a privacy policy as well.', // cpg1.5
+  'log_ecards_detail' =>   'Note: logging can have legal impacts. The user should be informed on registration that ecards are being logged. It is recommended to provide a separate page with a privacy policy as well.', // cpg1.5
   'vote_details' =>   'Keep detailed vote statistics', // cpg1.5
   'hit_details' =>   'Keep detailed hit statistics', // cpg1.5
   'display_stats_on_index' =>   'Display statistics on index page', // cpg1.5
@@ -1075,7 +1075,7 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
   'del_user' => 'Delete user',
   'err_unknown_user' => 'The selected user does not exist !',
   'err_empty_groups' => 'There\'s no group table, or the group table is empty!',
-  'comment_deleted' => 'Comment was succesfully deleted',
+  'comment_deleted' => 'Comment was successfully deleted',
   'npic' => 'Picture',
   'pic_mgr' => 'Picture Manager',
   'update_pic' => 'Updating picture \'%s\' with filename \'%s\' and index \'%s\'',
@@ -1166,10 +1166,10 @@ $lang_picinfo = array(
   'ResolutionUnit' => 'Resolution Unit',
   'Software' => 'Software',
   'YCbCrPositioning' => 'YCbCrPositioning',
-  'ExifOffset' => 'Exif Offset',
+  'ExifOffset' => 'EXIF Offset',
   'IFD1Offset' => 'IFD1 Offset',
   'FNumber' => 'FNumber',
-  'ExifVersion' => 'Exif Version',
+  'ExifVersion' => 'EXIF Version',
   'DateTimeOriginal' => 'DateTime Original',
   'DateTimedigitized' => 'DateTime digitized',
   'ComponentsConfiguration' => 'Components Configuration',
@@ -1190,9 +1190,9 @@ $lang_picinfo = array(
   'Saturation' => 'Saturation',
   'NoiseReduction' => 'Noise Reduction',
   'FlashPixVersion' => 'Flash Pix Version',
-  'ExifImageWidth' => 'Exif Image Width',
-  'ExifImageHeight' => 'Exif Image Height',
-  'ExifInteroperabilityOffset' => 'Exif Interoperability Offset',
+  'ExifImageWidth' => 'EXIF Image Width',
+  'ExifImageHeight' => 'EXIF Image Height',
+  'ExifInteroperabilityOffset' => 'EXIF Interoperability Offset',
   'FileSource' => 'File Source',
   'SceneType' => 'Scene Type',
   'CustomerRender' => 'Customer Render',
@@ -1203,7 +1203,7 @@ $lang_picinfo = array(
   'GainControl' => 'Gain Control',
   'Contrast' => 'Contrast',
   'Sharpness' => 'Sharpness',
-  'ManageExifDisplay' => 'Manage Exif Display',
+  'ManageExifDisplay' => 'Manage EXIF Display',
   'submit' => 'Submit',
   'success' => 'Information updated successfully.',
   'show_details' => 'Show details', // cpg1.5
@@ -1400,7 +1400,7 @@ if (defined('FAQ_PHP')) $lang_faq_php = array(
 if (defined('FAQ_PHP')) $lang_faq_data = array(
   'General FAQ',
   array('Why do I need to register?', 'Registration may or may not be required by the administrator. Registration gives a member additional features such as uploading, having a favorite list, rating pictures and posting comments etc.', 'allow_user_registration', '1'),
-  array('How do I register?', 'Go to &quot;Register&quot; and fill out the required fields (and the optional ones if you want to).<br />If the Administrator has Email Activation enabled, then after submitting your information you should recieve an email message at the address that you have submitted while registering, giving you instructions on how to activate your membership. Your membership must be activated in order for you to login.', 'allow_user_registration', '1'),
+  array('How do I register?', 'Go to &quot;Register&quot; and fill out the required fields (and the optional ones if you want to).<br />If the Administrator has Email Activation enabled, then after submitting your information you should receive an email message at the address that you have submitted while registering, giving you instructions on how to activate your membership. Your membership must be activated in order for you to login.', 'allow_user_registration', '1'),
   array('How Do I login?', 'Go to &quot;Login&quot;, submit your username and password and check &quot;Remember Me&quot; so you will be logged in on the site if you should leave it.<br /><b>IMPORTANT:Cookies must be enabled and the cookie from this site must not be deleted in order to use &quot;Remember Me&quot;.</b>', 'offline', 0),
   array('Why can I not login?', 'Did you register and click the link that was sent to you via email?. The link will activate your account. For other login problems contact the site administrator.', 'offline', 0),
   array('What if I forgot my password?', 'If this site has a &quot;Forgot password&quot; link then use it. Other than that contact the site administrator for a new password.', 'offline', 0),
@@ -1504,9 +1504,9 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
   'num_URI_upload' => 'URI upload boxes',
   'reset_to_default' => 'Reset to default name (%s) - recommended!',
   'error_group_empty' => 'Group table was empty !<br /><br />Default groups created, please reload this page',
-  'explain_greyed_out_title' => 'Why is this row greyed out?',
+  'explain_greyed_out_title' => 'Why is this row grayed out?',
   'explain_guests_greyed_out_text' => 'You can not change the properties of this group because you set the option &quot; Allow unlogged users (guest or anonymous) access&quot; to &quot;No&quot; on the config page. All guest (members of the group %s) can\'t do anything but login; therefor group settings don\'t apply for them.',
-  'explain_banned_greyed_out_text' => 'You can not change the properties of the group %s because it\'s members can\'t do anything anyway.',
+  'explain_banned_greyed_out_text' => 'You can not change the properties of the group %s because its members can\'t do anything anyway.',
   'group_assigned_album' => 'assigned album(s)',
 );
 
@@ -1558,7 +1558,7 @@ $lang_list_albums = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('INSTALL_PHP')) $lang_install = array(
-  'already_succ' => 'The installer has already been run successfuly once and is now locked.',
+  'already_succ' => 'The installer has already been run successfully once and is now locked.',
   'already_succ_explain' => 'If you want to run the installer again, you first need to delete the \'include/config.inc.php\' file that was created in the directory where you put Coppermine. You can do this with any FTP program',
   'c_mode' => 'Current mode',
   'cant_read_tmp_conf' => 'The installer can\'t read the temporary config file %s, please check your directory permissions',
@@ -1574,16 +1574,16 @@ if (defined('INSTALL_PHP')) $lang_install = array(
   'dir_ok' => 'Directory found',
   'directory' => 'Directory',
   'email' => 'Email address',
-  'email_no_match' => 'Email adresses do not match or are invalid.',
+  'email_no_match' => 'Email addresses do not match or are invalid.',
   'email_verif' => 'Verify Email',
-  'err_cpgnuke' => '<h1>ERROR</h1>You seem to be trying to install the standalone Coppermine into your Nuke portal.<br />This version can only be used as standalone!<br />Some server setups might display this warning even though you don\'t have a nuke portal installed - if this is the case for you, <a href="%s?continue_anyway=1">continue</a> with the install. If you are using a nuke portal, you might want to take a look into <a href=\"http://www.cpgnuke.com/\">CpgNuke</a> or use one of the (unsupported)<a href=\"http://sourceforge.net/project/showfiles.php?group_id=89658&amp;package_id=95984\">coppermine ports</a> - do not continue!',
+  'err_cpgnuke' => '<h1>ERROR</h1>You seem to be trying to install the standalone Coppermine into your Nuke portal.<br />This version can only be used as standalone!<br />Some server setups might display this warning even though you don\'t have a nuke portal installed - if this is the case for you, <a href="%s?continue_anyway=1">continue</a> with the install. If you are using a nuke portal, you might want to take a look into <a href=\"http://www.cpgnuke.com/\">CpgNuke</a> or use one of the (unsupported)<a href=\"http://sourceforge.net/project/showfiles.php?group_id=89658&amp;package_id=95984\">Coppermine ports</a> - do not continue!',
   'error' => 'ERROR',
   'error_need_corr' => 'The following errors were encountered and need to be corrected first:',
   'finish' => 'Finish Installation',
   'gd_note' => '<b>Important :</b> older versions of the GD graphic library support only JPEG and PNG images. If this is the case for you, then the script will not be able to create thumbnails for GIF images.',
   'go_to_main' => 'Go to the main page',
   'im_no_convert_ex' => 'The installer found the ImageMagick \'convert\' program in \'%s\', however it can\'t be executed by the script.<br /><br />You may consider using GD instead of ImageMagick.',
-  'im_not_found' => 'The installer tried to find ImageMagick, but could not determine it\'s existance or there was an error. <br />Coppermine can use the <a href="http://www.imagemagick.org/" target="_blank">ImageMagick</a> 	\'convert\' program to create thumbnails. Quality of images produced by ImageMagick is superior to GD1 but equivalent to GD2.<br /><br />If ImageMagick is installed on your system and you want to use it, <br />you need to input the full path to the \'convert\' program below. <br />On Windows the path should look like \'c:/ImageMagick/\' and should not contain any space, on Unix is it something like \'/usr/bin/X11/\'.<br /><br />If you have no idea wether you have ImageMagick or not, leave this field empty - the installer will try to use GD2 then by default (which is what most users have). <br />You can change this later as well (in Coppermine\'s config screen), so don\'t be afraid if you\'re not sure what to enter here - leave it blank.',
+  'im_not_found' => 'The installer tried to find ImageMagick, but could not determine it\'s existence or there was an error. <br />Coppermine can use the <a href="http://www.imagemagick.org/" target="_blank">ImageMagick</a> 	\'convert\' program to create thumbnails. Quality of images produced by ImageMagick is superior to GD1 but equivalent to GD2.<br /><br />If ImageMagick is installed on your system and you want to use it, <br />you need to input the full path to the \'convert\' program below. <br />On Windows the path should look like \'c:/ImageMagick/\' and should not contain any space, on Unix is it something like \'/usr/bin/X11/\'.<br /><br />If you have no idea wether you have ImageMagick or not, leave this field empty - the installer will try to use GD2 then by default (which is what most users have). <br />You can change this later as well (in Coppermine\'s config screen), so don\'t be afraid if you\'re not sure what to enter here - leave it blank.',
   'im_packages' => 'Your server supports the following image package(s)',
   'im_path' => 'Path to ImageMagick:',
   'im_path_space' => 'The path to ImageMagick (\'%s\') contains at least one space. This will cause problems in the script.<br /><br />You must move ImageMagick to another directory.',
@@ -1600,17 +1600,17 @@ if (defined('INSTALL_PHP')) $lang_install = array(
   'mysql_host' => 'MySQL Host<br />(localhost is usually OK)',
   'mysql_no_create_db' => 'Could not create MySql database.',
   'mysql_no_sel_dbs' => 'Could not retrieve available MySql databases',
-  'mysql_succ' => 'Successfull connection with database',
+  'mysql_succ' => 'Successful connection with database',
   'mysql_tbl_pref' => 'MySQL table prefix',
   'mysql_test_connection' => 'Test connection',
-  'mysql_wrong_db' => 'mySQL could not locate a database called \'%s\' please check the value entered for this',
+  'mysql_wrong_db' => 'MySQL could not locate a database called \'%s\' please check the value entered for this',
   'n_a' => 'N/A',
   'no_admin_email' => 'You have to enter an admin email address',
   'no_admin_password' => 'You have to enter an admin password',
   'no_admin_username' => 'You have to enter an admin username',
   'no_dir' => 'Directory not available',
   'no_gd' => 'Your installation of PHP does not seem to include the \'GD\' graphic library extension and you have not indicated that you want to use ImageMagick. Coppermine has been configured to use GD2 because the automatic GD detection sometimes fails. If GD is installed on your system, the script should work else you will need to install ImageMagick.',
-  'no_mysql_conn' => 'Could not create a mySQL connection, please check the SQL values entered',
+  'no_mysql_conn' => 'Could not create a MySQL connection, please check the SQL values entered',
   'no_mysql_support' => 'PHP does not have MySQL support enabled.',
   'no_thumb_method' => 'You have choose an image manipulation application (GD/IM)',
   'nok' => 'Not OK',
@@ -1627,9 +1627,9 @@ if (defined('INSTALL_PHP')) $lang_install = array(
   'populate_db' => 'Populate Database',
   'r_mode' => 'Required mode',
   'ready_to_roll' => '<a href="index.php">Coppermine</a> is now properly configured and ready to roll.<br /><br /><a href="login.php">Login</a> using the information you provided for your admin account.',
-  'sect_create_adm' => 'This section requires information to create your coppermine administration account. Use only alphanumeric characters. Enter the data carefully!',
+  'sect_create_adm' => 'This section requires information to create your Coppermine administration account. Use only alphanumeric characters. Enter the data carefully!',
   'sect_mysql_info' => 'This section requires information on how to access your MySQL database.<br />If you don\'t know how to fill them, check with your webhost support.',
-  'sect_mysql_sel_db' => 'Here you have to choose which database you want to use for Coppermine. <br />If your mysql account has the needed privileges, you can create a new database from within the installer or you can use an existing database. If you don\'t like both options, you will have to create a database first outside the coppermine installer, then return here then select the new database from the dropdown box below. You can also change the table prefix (Don\'t use dots though), but keeping the default prefix is recommended.',
+  'sect_mysql_sel_db' => 'Here you have to choose which database you want to use for Coppermine. <br />If your Mysql account has the needed privileges, you can create a new database from within the installer or you can use an existing database. If you don\'t like both options, you will have to create a database first outside the Coppermine installer, then return here then select the new database from the dropdown box below. You can also change the table prefix (Don\'t use dots though), but keeping the default prefix is recommended.',
   'select_lang' => 'Select default language: ',
   'sql_file_not_found' => 'The file \'%s\' could not be found. Check that you have uploaded all Coppermine files to your server',
   'status' => 'Status',
@@ -1652,7 +1652,7 @@ if (defined('INSTALL_PHP')) $lang_install = array(
   'username' => 'Username',
   'your_admin_account' => 'Your admin account',
   'no_cookie' => 'Your browser did not accept our cookie (although it was a sweet one). It is recommended to accept cookies.',
-  'no_javascript' => 'Your browser doesn\'t seem to have javascript enabled, it is highly recommended to enable it.',
+  'no_javascript' => 'Your browser doesn\'t seem to have Javascript enabled, it is highly recommended to enable it.',
   'register_globals_detected' => 'It seems your php configuration has \'register_globals\' enabled, you should disable this for security reasons.',
   'version_undetected' => 'The script could not determine the version of %s your server is using. Be sure it is at least version %s',
   'version_incompatible' => 'The script detected an incompatible version (%s) of %s on your server.<br />Make sure to use a compatible version (%s or better) before continuing!',
@@ -1670,7 +1670,7 @@ if (defined('INSTALL_PHP')) $lang_install = array(
   'scale' => 'Scale an image',
   'generated_image' => 'Generated image',
   'reference_image' => 'Reference image',
-  'imp_test_error' => 'There was an error in one or more of the test, please make sure you selected the apropriate Image Processing Package and it is configured correctly!',
+  'imp_test_error' => 'There was an error in one or more of the test, please make sure you selected the appropriate Image Processing Package and it is configured correctly!',
 );
 
 // ------------------------------------------------------------------------- //
@@ -1696,8 +1696,8 @@ if (defined('LOGIN_PHP')) $lang_login_php = array(
   'login' => 'Login',
   'enter_login_pswd' => 'Enter your username and password to login',
   'username' => 'Username',
-  'email' => 'Email Address', // cpg1.5.x
-  'both' => 'Username / Email Address', // cpg1.5.x
+  'email' => 'Email Address', // cpg1.5
+  'both' => 'Username / Email Address', // cpg1.5
   'password' => 'Password',
   'remember_me' => 'Remember me',
   'welcome' => 'Welcome %s ...',
@@ -1706,8 +1706,8 @@ if (defined('LOGIN_PHP')) $lang_login_php = array(
   'forgot_password_link' => 'I forgot my password',
   'cookie_warning' => 'Warning your browser does not accept script\'s cookies',
   'send_activation_link' => 'Missed activation link?',
-  'force_login' => 'You must login to view this page', // cpg1.5.x
-  'force_login_title' => 'Login to continue', // cpg1.5.x
+  'force_login' => 'You must login to view this page', // cpg1.5
+  'force_login_title' => 'Login to continue', // cpg1.5
 );
 
 // ------------------------------------------------------------------------- //
@@ -1717,7 +1717,7 @@ if (defined('LOGIN_PHP')) $lang_login_php = array(
 if (defined('LOGOUT_PHP')) $lang_logout_php = array(
   'logout' => 'Logout',
   'bye' => 'Bye bye %s ...',
-  'err_not_loged_in' => 'You are not logged in !',
+  'err_not_logged_in' => 'You are not logged in !',  // cpg1.5
 );
 
 // ------------------------------------------------------------------------- //
@@ -1819,7 +1819,7 @@ if (defined('PICMGR_PHP')) $lang_picmgr_php = array(
   'no_album' => '* No album *',
   'explanation_header' => 'The custom sort order you can specify on this page will only be taken into account if',
   'explanation1' => 'the admin has set the "Default sort order for files" in the config to "Position descending" or "Position ascending" (global setting for all users who haven\'t chosen another sort option individually)',
-  'explanation2' => 'the user has chosen "Position descending" or "Position ascending" on the thumbail page (per user setting)',
+  'explanation2' => 'the user has chosen "Position descending" or "Position ascending" on the thumbnail page (per user setting)',
 );
 
 
@@ -1872,7 +1872,7 @@ if (defined('REGISTER_PHP') || defined('PROFILE_PHP')) {
 $lang_register_disclamer = <<<EOT
 While the administrators of {SITE_NAME} will attempt to remove or edit any generally objectionable material as quickly as possible, it is impossible to review every post. Therefore you acknowledge that all posts made to this site express the views and opinions of the author and not the administrators or webmaster (except for posts by these people) and hence will not be held liable.<br />
 <br />
-You agree not to post any abusive, obscene, vulgar, slanderous, hateful, threatening, sexually-orientated or any other material that may violate any applicable laws. You agree that the webmaster, administrator and moderators of {SITE_NAME} have the right to remove or edit any content at any time should they see fit. As a user you agree to any information you have entered above being stored in a database. While this information will not be disclosed to any third party without your consent the webmaster and administrator cannot be held responsible for any hacking attempt that may lead to the data being compromised.<br />
+You agree not to post any abusive, obscene, vulgar, slanderous, hateful, threatening, sexually-oriented or any other material that may violate any applicable laws. You agree that the webmaster, administrator and moderators of {SITE_NAME} have the right to remove or edit any content at any time should they see fit. As a user you agree to any information you have entered above being stored in a database. While this information will not be disclosed to any third party without your consent the webmaster and administrator cannot be held responsible for any hacking attempt that may lead to the data being compromised.<br />
 <br />
 This site uses cookies to store information on your local computer. These cookies serve only to improve your viewing pleasure. The email address is used only for confirming your registration details and password.<br />
 <br />
@@ -2112,7 +2112,7 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
   'no_album' => 'no album selected',
   'result_icon' => 'click for details or to reload',
   'notes' =>  '<ul>'.
-				  '<li><b>OK</b>: means that the file was succesfully added'.
+				  '<li><b>OK</b>: means that the file was successfully added'.
 				  '<li><b>DP</b>: means that the file is a duplicate and is already in the database'.
 				  '<li><b>PB</b>: means that the file could not be added, check your configuration and the permission of directories where the files are located'.
 				  '<li><b>NA</b>: means that you haven\'t selected an album the files should go to, hit \'<a href="javascript:history.back(1)">back</a>\' and select an album. If you don\'t have an album <a href="albmgr.php">create one first</a></li>'.
@@ -2282,10 +2282,10 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'no_keywords' => 'Sorry, no keywords available!',
   'regenerate_dictionary' => 'Regenerate Dictionary',
   'allowed_types' => 'You are allowed to upload files with the following extensions:', // cpg1.5
-  'allowed_img_types' => 'Images extensions: %s', // cpg1.5
-  'allowed_mov_types' => 'Videos extensions: %s', // cpg1.5
-  'allowed_doc_types' => 'Docs extentions: %s', // cpg1.5
-  'allowed_snd_types' => 'Audios extentions: %s', // cpg1.5
+  'allowed_img_types' => 'Image extensions: %s', // cpg1.5
+  'allowed_mov_types' => 'Video extensions: %s', // cpg1.5
+  'allowed_doc_types' => 'Document extensions: %s', // cpg1.5
+  'allowed_snd_types' => 'Audio extensions: %s', // cpg1.5
 );
 
 // ------------------------------------------------------------------------- //
@@ -2335,7 +2335,7 @@ $lang_usermgr_php = array(
   'registered_on' => 'Registration',
   'last_visit' => 'Last Visit',
   'u_user_on_p_pages' => '%d users on %d page(s)',
-  'confirm_del' => 'Are you sure you want to DELETE this user ? \\nAll his files and albums will also be deleted.', // js-alert
+  'confirm_del' => 'Are you sure you want to DELETE this user ? \\nAll his/her files and albums will also be deleted.', // js-alert
   'mail' => 'MAIL',
   'err_unknown_user' => 'Selected user does not exist !',
   'modify_user' => 'Modify user',
@@ -2413,7 +2413,7 @@ $lang_util_php = array(
   'title_set_to' => 'title set to',
   'submit_form' => 'submit',
   'titles_updated' => '%s Titles Updated.', // cpg1.5
-  'updated_succesfully' => 'updated succesfully',
+  'updated_successfully' => 'updated successfully', // cpg1.5
   'error_create' => 'ERROR creating',
   'continue' => 'Process more images',
   'main_success' => 'The file %s was successfully used as main file',
@@ -2475,7 +2475,7 @@ $lang_util_php = array(
   'delete_all' => 'Delete all',
   'delete_all_orphans' => 'Delete all orphans?',
   'comment' => 'Comment: ',
-  'nonexist' => 'attached to non existant file # ',
+  'nonexist' => 'attached to non-existent file # ',
   'delete_old' => 'Delete files that are older than a set number of days',  // cpg1.5
   'delete_old_explanation' => 'This will delete files that are older than the number of days you specify (normal, intermediate, thumbnails). Use this feature to free up disk space.',  // cpg1.5
   'delete_old_warning' => 'Warning: the files you specify will be deleted for good without further warnings!',  // cpg1.5
@@ -2619,7 +2619,7 @@ if (defined('CORE_PLUGIN')) $lang_plugin_php = array(
   'usergal_alphatabs_config_description' => 'What it does: displays tabs from A to Z at the top of user galleries that visitors can click on to directly jump to a page that displays all user galleries of the users who\'s username starts with that letter. Plugin only recommended to be used if you have a really large number of user galleries.', // cpg1.5
   'usergal_alphatabs_jump_by_username' => 'Jump by username', // cpg1.5
   'sample_config_name' => 'Sample Plugin', // cpg1.5
-  'sample_config_description' => 'This is a sample plugin. It will not do anything particular usefull - it is just meant to demonstrate what plugins can do and how to code them. When enabled, it will display some sample text in red.', // cpg1.5
+  'sample_config_description' => 'This is a sample plugin. It will not do anything particular useful - it is just meant to demonstrate what plugins can do and how to code them. When enabled, it will display some sample text in red.', // cpg1.5
   'sample_plugin_documentation' => 'Plugin Documentation', // cpg1.5
   'sample_plugin_support' => 'Plugin Support', // cpg1.5
   'sample_install_explain' => 'Enter the username (\'foo\') and password (\'bar\') to install', // cpg1.5
@@ -2639,8 +2639,8 @@ if (defined('CORE_PLUGIN')) $lang_plugin_php = array(
   'opensearch_character_limit' => '%s character limit', // cpg1.5
   'onlinestats_description' => 'Display a block on each gallery page that shows users and guests actually online.',
   'onlinestats_name' => 'Who is online?',
-  'onlinestats_config_extra' => 'To enable this plugin (make it actually display the onlinestats block), the string "onlinestats" (separated with a slash) has been added to "<a href="configuration.htm#admin_album_list_content">the content of the main page</a>" in <a href="admin.php">coppermine\'s config</a> in the section "Album list view". The setting should now look like "breadcrumb/catlist/alblist/onlinestats" or similar. To change the position of the block, move the string "onlinestats" around inside that config field.',
-  'onlinestats_config_install' => 'The plugin runs additional queries on the database each time it is being executed, burning cpu cycles and using resources. If your coppermine gallery is slow or has got a lot of users, you shouldn\'t use it.',
+  'onlinestats_config_extra' => 'To enable this plugin (make it actually display the onlinestats block), the string "onlinestats" (separated with a slash) has been added to "<a href="configuration.htm#admin_album_list_content">the content of the main page</a>" in <a href="admin.php">Coppermine\'s config</a> in the section "Album list view". The setting should now look like "breadcrumb/catlist/alblist/onlinestats" or similar. To change the position of the block, move the string "onlinestats" around inside that config field.',
+  'onlinestats_config_install' => 'The plugin runs additional queries on the database each time it is being executed, burning cpu cycles and using resources. If your Coppermine gallery is slow or has got a lot of users, you shouldn\'t use it.',
   'onlinestats_we_have_reg_member' => 'There is %s registered user',
   'onlinestats_we_have_reg_members' => ' There are %s registered users',
   'onlinestats_most_recent' => 'The newest registered user is %s',

@@ -22,7 +22,7 @@ define('LOGOUT_PHP', true);
 
 require('include/init.inc.php');
 
-if (!USER_ID) cpg_die(ERROR, $lang_logout_php['err_not_loged_in'], __FILE__, __LINE__);
+if (!USER_ID) cpg_die(ERROR, $lang_logout_php['err_not_logged_in'], __FILE__, __LINE__);
 
 if (defined('UDB_INTEGRATION')) $cpg_udb->logout_page();
 
