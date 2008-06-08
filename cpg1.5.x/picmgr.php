@@ -196,6 +196,34 @@ pageheader($lang_picmgr_php['pic_mgr']);
         picture.changeFrm();
     }
 
+    function Movetop_Option()
+    {
+        var to = document.picture_menu.to;
+        var pos = selectedOptIndex;
+        if (pos == 0) {
+            return;
+        }
+
+        for (var i=pos; i>0; i--) {
+            swap_option(to, i, i-1);
+        }
+        selected_option(to, 0);
+    }
+
+    function Movebottom_Option()
+    {
+        var to = document.picture_menu.to;
+        var pos = selectedOptIndex;
+        if (pos == to.length-1) {
+            return;
+        }
+
+        for (var i=pos; i<to.length-1; i++) {
+            swap_option(to, i, i+1);
+        }
+        selected_option(to, to.length-1);
+    }
+
     function Moveup_Option()
     {
         var to = document.picture_menu.to;
@@ -416,7 +444,8 @@ EOT;
          <td>
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
-               <td><a href="javascript:Moveup_Option();"><img src="images/move_up.gif" width="26" height="21" border="0" alt="" /></a><a href="javascript:Movedown_Option();"><img src="images/move_down.gif" width="26" height="21" border="0" alt="" /></a>
+               <td><a href="javascript:Moveup_Option();"><img src="images/move_up.gif" width="26" height="21" border="0" alt="^" title="{$lang_picmgr_php['move_up']}"/></a><a href="javascript:Movedown_Option();"><img src="images/move_down.gif" width="26" height="21" border="0" alt="v" title="{$lang_picmgr_php['move_down']}" /></a>
+               &nbsp; <a href="javascript:Movetop_Option();"><img src="images/move_top.gif" width="26" height="21" border="0" alt="^^" title="{$lang_picmgr_php['move_top']}" /></a><a href="javascript:Movebottom_Option();"><img src="images/move_bottom.gif" width="26" height="21" border="0" alt="vv" title="{$lang_picmgr_php['move_bottom']}" /></a>
                </td>
 <!-- Joe Ernst: I commented this out because I can't get it to work. -->
                <td align="center" style="width: 1px;"><img src="images/spacer.gif" width="1" alt=""><br />

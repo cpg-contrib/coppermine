@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-06-08 [A] Added 'move to top/bottom' in picture manager {Paver for Frantz}
 2008-06-06 [B] Fixed selecting thumbnail from albums with only linked images showing un-approved images {Paver}
 2008-06-06 [B] Fixed/adjusted Admin Tools, Filename->Title, 4 options plus broken "only empty titles" {Paver}
 2008-06-06 [A] Added 'move to top/bottom' in category and album managers {Paver}
