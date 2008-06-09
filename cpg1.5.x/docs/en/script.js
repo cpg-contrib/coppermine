@@ -30,7 +30,7 @@ thisPage = thisPage.substring(0, thisPage.indexOf('.htm'));
 /*--------------------------------------------------|
 | dTree 2.05 | www.destroydrop.com/javascript/tree/ |
 |---------------------------------------------------|
-| Copyright (c) 2002-2003 Geir Landr?              |
+| Copyright (c) 2002-2003 Geir Landrö              |
 |                                                   |
 | This script can be used freely as long as all     |
 | copyright messages are intact.                    |
@@ -574,7 +574,14 @@ d.add(15350,15200,'Javascript in Coppermine','dev_javascript.htm');
 d.add(15400,15200,'Writing Plugins for Coppermine','dev_plugins.htm');
 d.add(15450,15400,'Quick Start Guide','dev_plugin_writing.htm');
 d.add(15500,15400,'Tutorial, API, Coppermine Globals','dev_plugin_api.htm');
-d.add(15550,15400,'Reference List of Plugin Hooks','dev_plugin_hooks.htm');
+d.add(15550,15400,'Reference List of Plugin Hooks','dev_plugin_hooks.htm#plugin_hooks');
+d.add(15555,15550,'Target audience','dev_plugin_hooks.htm#plugin_hooks_target_audience');
+d.add(15560,15550,'Choosing Plugin Hooks','dev_plugin_hooks.htm#plugin_hooks_choosing');
+d.add(15565,15550,'Finding Plugin Hooks','dev_plugin_hooks.htm#plugin_hooks_finding');
+d.add(15570,15550,'Using Plugin Hooks','dev_plugin_hooks.htm#plugin_hooks_using');
+d.add(15575,15550,'Plugin Hooks by File Name','dev_plugin_hooks.htm#plugin_hooks_filename');
+d.add(15580,15550,'Plugin Hooks Alphabetically','dev_plugin_hooks.htm#plugin_hooks_alphabetic');
+d.add(15585,15550,'Plugin Hooks by Hook Type','dev_plugin_hooks.htm#plugin_hooks_hooktype');
 d.add(15600,15200,'Editing the documentation','dev_documentation.htm');
 d.add(15700,15200,'Subversion','dev_subversion.htm');
 d.add(15800,15200,'Adding config options','dev_config.htm');

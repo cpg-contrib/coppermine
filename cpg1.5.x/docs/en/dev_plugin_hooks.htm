@@ -43,16 +43,219 @@
 <a name="plugin_hooks_target_audience"></a><h2>Target audience<a href="#plugin_hooks_target_audience" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>This part of the documentation is not meant for end users of Coppermine, but only for developers and skilled users who are familar with coding. There is no support for this section, it comes as-is.</p>
 
-<a name="plugin_hooks_action"></a><h2>Action<a href="#plugin_hooks_action" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>The first type of hook is an action hook.  Basically this allows for actions related to the plugin such as the following two hooks.</p>
+<a name="plugin_hooks_choosing"></a><h2>Choosing Plugin Hooks<a href="#plugin_hooks_choosing" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>This section is meant to contain an explanation how to choose the proper plugin hook for a particular purpose. Hopefully, it willl be filled with content later.</p>
+<p><a class="back" href="#top">Back to top</a></p><hr />
+
+<a name="plugin_hooks_finding"></a><h2>Finding Plugin Hooks<a href="#plugin_hooks_finding" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>To be continued...</p>
+<p><a class="back" href="#top">Back to top</a></p><hr />
+
+<a name="plugin_hooks_using"></a>
+<h2>Using Plugin Hooks<a href="#plugin_hooks_using" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Another placeholder text....</p>
+<p><a class="back" href="#top">Back to top</a></p><hr />
+
+<a name="plugin_hooks_filename"></a>
+<h2>Plugin Hooks by File Name<a href="#plugin_hooks_filename" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>In this section you will find a list of plugin hooks, sorted by files names where the hook will be called in.</p>
+
+<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+  <tr>
+    <th valign="top" align="left" class="tableh1">File</td>
+    <th valign="top" align="left" class="tableh1">hook name</td>
+    <th valign="top" align="left" class="tableh1">Explanation</td>
+    <th valign="top" align="left" class="tableh1">Sample</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">index.php</td>
+    <td valign="top" class="tableb tableb_alternate">Filter: 'anycontent'</td>
+    <td valign="top" class="tableb tableb_alternate">anycontent (anycontent page + plugin accessible content)</td>
+    <td valign="top" class="tableb tableb_alternate"><pre>$anycontent = CPGPluginAPI::filter('anycontent',ob_get_contents());</pre></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">index.php</td>
+    <td valign="top" class="tableb">Filter: 'user_caption_params'</td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"><pre>$params = CPGPluginAPI::filter('user_caption_params', 
+                               array('{USER_NAME}' => $user['user_name'],
+                                     '{USER_ID}' => $user['user_id'],
+                                     '{ALBUMS}' => $albums_txt,
+                                     '{PICTURES}' => $pictures_txt,
+                               )
+          );</pre></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">index.php</td>
+    <td valign="top" class="tableb tableb_alternate">Filter: 'plugin_block'</td>
+    <td valign="top" class="tableb tableb_alternate">filters main page blocks</td>
+    <td valign="top" class="tableb tableb_alternate"><pre>$matches = CPGPluginAPI::filter('plugin_block', $matches);</pre></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">displayimage.php</td>
+    <td valign="top" class="tableb">Filter: 'file_info'</td>
+    <td valign="top" class="tableb">filters file information array</td>
+    <td valign="top" class="tableb"><pre>$info = CPGPluginAPI::filter('file_info',$info);</pre></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">displayimage.php</td>
+    <td valign="top" class="tableb tableb_alternate">Filter: 'post_breadcrumb'</td>
+    <td valign="top" class="tableb tableb_alternate">only on thumbnails.php and displayimage.php</td>
+    <td valign="top" class="tableb tableb_alternate"><pre>CPGPluginAPI::filter('post_breadcrumb',null);</pre></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">thumbnails.php</td>
+    <td valign="top" class="tableb">Filter: 'post_breadcrumb'</td>
+    <td valign="top" class="tableb">only on thumbnails.php and displayimage.php</td>
+    <td valign="top" class="tableb"><pre>CPGPluginAPI::filter('post_breadcrumb',null);</pre></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">include/functions.inc.php</td>
+    <td valign="top" class="tableb tableb_alternate">Filters: 'gallery_header'</td>
+    <td valign="top" class="tableb tableb_alternate">shows just above the gallery, defined by {GALLERY} in template.html</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">include/functions.inc.php</td>
+    <td valign="top" class="tableb">Filters: 'gallery_footer'</td>
+    <td valign="top" class="tableb">shows just below the gallery, defined by {GALLERY} in template.html</td>
+    <td valign="top" class="tableb"><pre>$template_footer = CPGPluginAPI::filter('gallery_footer','').substr($template, $gallery_pos);</pre></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">include/functions.inc.php</td>
+    <td valign="top" class="tableb tableb_alternate">Filter: 'thumb_data'</td>
+    <td valign="top" class="tableb tableb_alternate">filters $pic_row when get_pic_url is called... usually this is called before any html output is created so you can use this to change a lot of data</td>
+    <td valign="top" class="tableb tableb_alternate"><pre>$pic_row = CPGPluginAPI::filter('thumb_data',$pic_row);</pre></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">include/functions.inc.php</td>
+    <td valign="top" class="tableb">Filter: 'template_html'</td>
+    <td valign="top" class="tableb">filters the template html</td>
+    <td valign="top" class="tableb"><pre>$template = CPGPluginAPI::filter('template_html',$template);</pre></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">include/functions.inc.php</td>
+    <td valign="top" class="tableb tableb_alternate">Filter: 'page_meta'</td>
+    <td valign="top" class="tableb tableb_alternate">filters header meta data for {META}</td>
+    <td valign="top" class="tableb tableb_alternate"><pre>$template_header = str_replace('{META}','{META}'.CPGPluginAPI::filter('page_meta',''),$template_header);</pre></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">include/functions.inc.php</td>
+    <td valign="top" class="tableb">Filters: 'thumb_caption' and all derivatives</td>
+    <td valign="top" class="tableb">executed before the more specific "thumb_caption_*" plugins</td>
+    <td valign="top" class="tableb">
+        <pre>$rowset = CPGPluginAPI::filter('thumb_caption',$rowset);</pre><br />
+        <pre>$rowset = CPGPluginAPI::filter('thumb_caption_regular',$rowset);</pre><br />
+        <pre>$rowset = CPGPluginAPI::filter('thumb_caption_lastcom',$rowset);</pre><br />
+        <pre>$rowset = CPGPluginAPI::filter('thumb_caption_lastcomby',$rowset);</pre><br />
+        <pre>$rowset = CPGPluginAPI::filter('thumb_caption_lastup',$rowset);</pre><br />
+        <pre>$rowset = CPGPluginAPI::filter('thumb_caption_lastupby',$rowset);</pre><br />
+        <pre>$rowset = CPGPluginAPI::filter('thumb_caption_topn',$rowset);</pre><br />
+        <pre>$rowset = CPGPluginAPI::filter('thumb_caption_toprated',$rowset);</pre><br />
+        <pre>$rowset = CPGPluginAPI::filter('thumb_caption_lasthits',$rowset);</pre><br />
+        <pre>$rowset = CPGPluginAPI::filter('thumb_caption_random',$rowset);</pre><br />
+        <pre>$rowset = CPGPluginAPI::filter('thumb_caption_search',$rowset);</pre><br />
+        <pre>$rowset = CPGPluginAPI::filter('thumb_caption_lastalb',$rowset);</pre><br />
+        <pre>$rowset = CPGPluginAPI::filter('thumb_caption_favpics',$rowset);</pre><br />
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">include/themes.inc.php</td>
+    <td valign="top" class="tableb tableb_alternate">Filter: 'file_data'</td>
+    <td valign="top" class="tableb tableb_alternate">filters $pic_row when get_pic_url is called... usually this is called before any html is created so you can use this to change a lot of data</td>
+    <td valign="top" class="tableb tableb_alternate"><pre>$CURRENT_PIC_DATA = CPGPluginAPI::filter('file_data',$CURRENT_PIC_DATA);</pre></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">usermgr.php</td>
+    <td valign="top" class="tableb">Filter: 'usermgr_header'</td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"><pre>echo CPGPluginAPI::filter('usermgr_header','');</pre></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">usermgr.php</td>
+    <td valign="top" class="tableb tableb_alternate">Filter: 'usermgr_footer'</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top" class="tableb tableb_alternate"><pre>echo CPGPluginAPI::filter('usermgr_footer','');</pre></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">pluginmgr.php</td>
+    <td valign="top" class="tableb">Action: 'plugin_configure'</td>
+    <td valign="top" class="tableb">executes when plugin_install returns an integer; returns bool/integer</td>
+    <td valign="top" class="tableb"><pre>CPGPluginAPI::action('plugin_configure',$installed,CPG_EXEC_NEW);</pre></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">pluginmgr.php</td>
+    <td valign="top" class="tableb tableb_alternate">Action: 'plugin_cleanup'</td>
+    <td valign="top" class="tableb tableb_alternate">executes when plugin_uninstall returns an integer; returns bool/integer</td>
+    <td valign="top" class="tableb tableb_alternate"><pre>CPGPluginAPI::action('plugin_cleanup',$uninstalled,$plugin_id);</pre></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">include/plugin_api.inc.php</td>
+    <td valign="top" class="tableb">Filter: 'page_html'</td>
+    <td valign="top" class="tableb">filters the final outputed html</td>
+    <td valign="top" class="tableb"><pre>function& cpg_filter_page_html( &$html ) {
+    return CPGPluginAPI::filter('page_html',$html);
+}</pre><br />from include/init.inc.php<br /><pre>// Start output buffering
+ob_start('cpg_filter_page_html');</pre></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">include/plugin_api.inc.php</td>
+    <td valign="top" class="tableb tableb_alternate">Filter: 'page_end'</td>
+    <td valign="top" class="tableb tableb_alternate">executes when the script has outputted the page to the browser</td>
+    <td valign="top" class="tableb tableb_alternate"><pre>register_shutdown_function('cpg_action_page_end');</pre></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">include/plugin_api.inc.php</td>
+    <td valign="top" class="tableb">Filter: 'plugin_install'</td>
+    <td valign="top" class="tableb">executes when the plugin is installed returns true/false/integer</td>
+    <td valign="top" class="tableb"><pre>$installed = CPGPluginAPI::action('plugin_install',true,CPG_EXEC_NEW);</pre></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">include/plugin_api.inc.php</td>
+    <td valign="top" class="tableb tableb_alternate">Filter: 'plugin_wakeup'</td>
+    <td valign="top" class="tableb tableb_alternate">when initialized </td>
+    <td valign="top" class="tableb tableb_alternate"><pre>if (!($thisplugin->awake = CPGPluginAPI::action('plugin_wakeup',true)))</pre></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">include/plugin_api.inc.php</td>
+    <td valign="top" class="tableb">Filter: 'plugin_sleep'</td>
+    <td valign="top" class="tableb">when shutdown</td>
+    <td valign="top" class="tableb"><pre>register_shutdown_function(array('CPGPluginAPI','sleep'));</pre></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">include/init.inc.php</td>
+    <td valign="top" class="tableb tableb_alternate">Action: 'page_start'</td>
+    <td valign="top" class="tableb tableb_alternate">add/modify/delete init settings before they get to the page</td>
+    <td valign="top" class="tableb tableb_alternate"><pre>CPGPluginAPI::action('page_start',null);</pre></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">include/picmgmt.inc.php</td>
+    <td valign="top" class="tableb">Filter: 'add_file_data'</td>
+    <td valign="top" class="tableb">available in picmgmt.php, called right before a new image's data is written to the database</td>
+    <td valign="top" class="tableb"><pre>$CURRENT_PIC_DATA = CPGPluginAPI::filter('add_file_data',$CURRENT_PIC_DATA);</pre></td>
+  </tr>
+</table>
+
+<a name="plugin_hooks_alphabetic"></a>
+<h2>Plugin Hooks Alphabetically<a href="#plugin_hooks_alphabetic" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>tbc</p>
+
+<a name="plugin_hooks_hooktype"></a>
+<h2>Plugin Hooks by Hook Type<a href="#plugin_hooks_hooktype" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>There currently are two different types of plugin hooks: <strong>actions</strong> and <strong>filters</strong>:</p>
+
+<a name="plugin_hooks_action"></a><h3>Action<a href="#plugin_hooks_action" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>The first type of hook is an action hook. Basically this allows for actions related to the plugin such as the following two hooks.</p>
 <div class="quote">CPGPluginAPI::action('plugin_configure',$installed,CPG_EXEC_NEW);<br />
 CPGPluginAPI::action('plugin_cleanup',$uninstalled,$plugin_id);</div>
 <p>These next two hooks are useful for running code that does not require anything to be exported.  These hooks have access to the global variables and functions inside of Coppermine.  These hooks will most likely be used to execute code that does not require an output.</p>
 <div class="quote">CPGPluginAPI::action('page_start',null)<br />
 CPGPluginAPI::action('page_end',null);</div>
 
-<a name="plugin_hooks_filter"></a><h2>Filter<a href="#plugin_hooks_filter" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>This group of plugins is designed to manipulate data that will be used.  Normally this involves adding or removing data from the variable submitted to the filter.  This data can also be simply read from the variable.</p>
+
+
+<a name="plugin_hooks_filter"></a><h3>Filter<a href="#plugin_hooks_filter" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>This group of plugin hooks is designed to manipulate data that will be used.  Normally this involves adding or removing data from the variable submitted to the filter.  This data can also be simply read from the variable.</p>
 <p>This first group of filters are used in a variety of places and are each unique.</p>
 <div class="quote">$info = CPGPluginAPI::filter('file_info',$info);<br />
 $params = CPGPluginAPI::filter('user_caption_params', array('{USER_NAME}' => $user['user_name'],<br />
@@ -88,8 +291,8 @@ $template_header .= CPGPluginAPI::filter('gallery_header','');</div>
 <p>These two filters relate to footers.</p>
 <div class="quote">echo CPGPluginAPI::filter('usermgr_footer','');<br />
 $template_footer = CPGPluginAPI::filter('gallery_footer','').substr($template, $gallery_pos);</div>
-<hr />
-<p>Above <a href="http://coppermine-gallery.net/forum/index.php?topic=32501.0" rel="external" class="external">list of plugin hooks</a> has originally been created by <a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=17122" rel="external" class="external">jjhat1</a></p>
+
+
 
 <script type="text/javascript">
   cpgDocFooter();
