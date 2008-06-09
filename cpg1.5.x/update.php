@@ -55,7 +55,7 @@ if(!defined(ADMIN_ACCESS) && !$_SESSION['auth']){
 			//print a box for admin autentication
 			html_auth_box('admin');
 		}
-	}elseif($superCage->post->getAlpha('method') == 'admin'){
+	} elseif ($superCage->post->getAlpha('method') == 'admin'){
 		//try to autenticate the admin
 		test_sql_connection();
 		$user = $superCage->post->getEscaped('user');
@@ -63,15 +63,15 @@ if(!defined(ADMIN_ACCESS) && !$_SESSION['auth']){
 		$pass2 = md5($pass);
 		$sql = "SELECT user_active FROM {$CONFIG['TABLE_PREFIX']}users WHERE user_group = 1 AND user_name = '$user' AND (user_password = '$pass' OR user_password = '$pass2')";
 		$result = @mysql_query($sql);
-		if(!@mysql_num_rows($result)){
+		if(!@mysql_num_rows($result)) {
 			//not authenticated, try mysql account details
 			html_auth_box('MySQL');
-		}else{
+		} else {
 			//authenticated, do the update
 			$_SESSION['auth'] = true;
 			start_update();
 		}
-	}else{
+	} else {
 		//try to autenticate via MySQL details (in configuration)
 		if($superCage->post->getEscaped('user')  == $CONFIG['dbuser'] && $superCage->post->getEscaped('pass') == $CONFIG['dbpass']){
 			//authenticated, do the update
@@ -83,7 +83,7 @@ if(!defined(ADMIN_ACCESS) && !$_SESSION['auth']){
 		}
 	}
 	html_footer();
-}else{
+} else {
 	$_SESSION['auth'] = true;
 	start_update();
 }
@@ -92,7 +92,7 @@ if(!defined(ADMIN_ACCESS) && !$_SESSION['auth']){
 function start_update(){
 	// The updater
 	html_header("Coppermine - Upgrade");
-	html_logo();
+	//html_logo();
 	
 	test_fs();
 	if ($errors != '')
