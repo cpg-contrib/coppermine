@@ -23,9 +23,13 @@ if (!defined('IN_COPPERMINE')) {
 // disallow direct opening without needed parameters
 function_exists('get_pic_data') OR die('Not in Coppermine...');
 // initialize vars
-$_GET['slideshow'] = isset($_GET['slideshow']) ? intval($_GET['slideshow']) : 0;
-$_GET['pid'] = isset($_GET['pid']) ? intval($_GET['pid']) : 0;
-$_GET['album'] = isset($_GET['album']) ? $_GET['album'] : 0;
+$superCage = Inspekt::makeSuperCage();
+if ($superCage->get->keyExists('slideshow')) {
+	$slideshow = $superCage->get->getInt('slideshow');
+} else {
+	$slideshow = $CONFIG['slideshow_interval'];
+}
+
 $pic_count = null;
 $album_name = null;
 ?>
@@ -99,7 +103,7 @@ $j = 0;
 //$pid = (int)$_GET['pid'];
 $start_img = '';
 $pic_data = get_pic_data($album, $pic_count, $album_name, -1, -1, false);
-if (is_numeric($_GET['album'])) {
+if (is_numeric($album)) {
     $pic_data = get_pic_data($album, $pic_count, $album_name, -1, -1, false);
 } else { // fix memory consumption for meta albums (see http://coppermine-gallery.net/forum/index.php?topic=31945.0 and http://www.pragmamx.org/Forum-topic-23429.html
     $col = (intval($CONFIG['thumbcols']) > 1) ? $CONFIG['thumbcols'] : 4;
