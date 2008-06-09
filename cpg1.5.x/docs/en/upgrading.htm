@@ -60,32 +60,25 @@
 <p>Depending on the version you're updating from, there are additional actions you need to perform:</p>
 
 
-<a name="upgrade_10"></a><h3>Upgrading from version cpg1.0 or cpg1.1<a href="#upgrade_10" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<a name="upgrade_10"></a><a name="upgrade_12"></a><h3>Upgrading from version cpg1.0, cpg1.1, cpg1.2.x or cpg1.3.x to cpg1.5.x<a href="#upgrade_10" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 
-<p>Support for a direct upgrade from cpg1.0 or cpg1.1 has been dropped - if you still have such an ancient version running, you will have to upgrade in a two-step-process (from your version to cpg1.4.x and then on to cpg1.5.x)</p>
+<p>Support for a direct upgrade from cpg1.0, cpg1.1, cpg1.2.x or cpg1.3.x to cpg1.5.x has been dropped - if you still have such an ancient version running, you will have to upgrade in a two-step-process (from your version to cpg1.4.x and then on to cpg1.5.x)</p>
 
 
-<a name="upgrade_12"></a><h3>Upgrading from cpg1.2.x or cpg1.3.x to version cpg1.5.x<a href="#upgrade_12" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+
+<a name="upgrade_14"></a><h3>Upgrading from cpg1.4.x to version cpg1.5.x<a href="#upgrade_14" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <ul>
-  <li>Delete all leftover, outdated language files in the lang folder that are named XXX-utf-8.php</li>
-  <li>If you have not already done so, create a folder called &quot;edit&quot; within your &quot;albums&quot; directory - this folder will be used by coppermine as a temporary folder, do not ftp-upload files there. Make sure the new &quot;edit&quot;-folder is CHMODed the same way your albums-directory is (755 or 777, depending on your server's config)</li>
-  <li>If you have made a custom theme, apply the changes that were introduced in the themes structure to your custom-made theme - refer to the <a href="theme_upgrade_13x-14x.htm">theme-upgrade guide</a>.</li>
+  <li>If you have made a custom theme, apply the changes that were introduced in the themes structure to your custom-made theme - refer to the <a href="theme_upgrade_14x-15x.htm">theme-upgrade guide</a>.</li>
   <li>You can not use language files from older versions of Coppermine as primary language (the language the admin will use) - make sure you only have the language files that come with this package inside of your lang folder (delete or rename all files from older versions within the lang folder).<br />
-        If you need to use a language that hasn't been translated for cpg1.5.x, you can try using the language file from cpg1.3.x or better, however there are certain caveats:
+        If you need to use a language that hasn't been translated for cpg1.5.x, you can try using the language file from cpg1.4.x, however there are certain caveats:
       <ul>
-        <li>You need to enable the <a href="configuration.htm#admin_language_fallback">language fallback</a> option in coppermine's config page if you want to use a language file from cpg1.3.x with cpg1.4.x</li>
+        <li>You need to enable the <a href="configuration.htm#admin_language_fallback">language fallback</a> option in coppermine's config page if you want to use a language file from cpg1.4.x with cpg1.5.x</li>
         <li>cpg1.5.x-phrases that don't exist in your old language file will go untranslated or show in english</li>
         <li>Coppermine can't be administered using an old language file - the admin needs to use a "true" cpg1.5.x language file</li>
         <li>You're free to try using old language files, however when running into issues or error messages, switch to US-English and see if the issue goes away then. Using outdated language files goes unsupported</li>
       </ul>
   </li>
-  <li>The bridging method has changed from cpg1.3.x to cpg1.4.x. When upgrading, your bridged coppermine install will be unbridged - you will have to re-apply the bridging using the <a href="bridging.htm">bridge-manager</a> (using your standalone admin account you initially used to set up coppermine). You will not lose anything though, don't worry.</li>
 </ul>
-
-
-
-<a name="upgrade_14"></a><h3>Upgrading from cpg1.4.x to version cpg1.5.x<a href="#upgrade_14" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>tbc</p>
 
 
 
