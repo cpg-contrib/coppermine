@@ -89,11 +89,11 @@
 
 <a name="plugin_api_overview"></a>
 <h1>1. An Overview of the Coppermine Plugin API<a href="#plugin_api_overview" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
-<p>Blah, blah</p>
+<p>Placeholder.  Content will be added.</p>
 
     <a name="plugin_api_overview_intro"></a>
     <h2>1.1 Introduction<a href="#plugin_api_overview_intro" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-    <p>Blah, blah</p>
+    <p>Placeholder.  Content will be added.</p>
     
 <p><a class="back" href="#top">Back to top</a></p><hr />
     <a name="plugin_api_overview_who"></a>
@@ -146,7 +146,7 @@
 <p><a class="back" href="#top">Back to top</a></p><hr />
     <a name="plugin_api_overview_doc"></a>
     <h2>1.5 Structure of this Documentation<a href="#plugin_api_overview_doc" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-    <p>Blah, blah</p>
+    <p>Placeholder.  Content will be added.</p>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
 <a name="plugin_api_tutorial"></a>
@@ -161,7 +161,7 @@
     <li><strong>codebase.php</strong> - holds the basic code to install, configure, uninstall, clean-up, and hook into the Coppermine system, along with any other custom functions you create; you may also use a separate file for functions that are not one of the basic plugin operations but this will be described later</li>
     <li><strong>configuration.php</strong> - holds the name, description, author (your name), and version for your plugin; even though the name is 'configuration', the intent of this file is to hold only the very basic configuration information for your plugin - this information shows up on the plugin manager page so people can see quickly your plugin's basic information; all operational configuration forms and parameters should go in codebase.php</li>
 </ul>
-<p>The 'sample' plugin that ships with Coppermine shows most of the features that will be described in this tutorial, but please do not copy the 'sample' plugin for this tutorial.  Please start from scratch so you know precisely how a plugin is written and developed.  You can download all the tutorial plugins using the links in each section.  If you do so, each section's plugin will install in a different folder with a name related to the relevant section.  Make sure you are using the correct plugin for the section you are reading.  For the first tutorial plugin below, it is strongly recommended that you do things manually so you understand the basics.  For the subsequent sections, you can then use the downloaded plugins knowing that you can create a plugin from scratch successfully.  Keeping this in mind, <a href="cpg1.4_plugin_hello_world_2-1.zip">click here</a> to download the plugin for this section.  Once again, it is recommended you only use these files if you have problems.  Create the folder and files from scratch so you understand how to do so.</p>
+<p>The 'sample' plugin that ships with Coppermine shows most of the features that will be described in this tutorial, but please do not copy the 'sample' plugin for this tutorial.  Please start from scratch so you know precisely how a plugin is written and developed.  You can download all the tutorial plugins using the links in each section.  If you do so, each section's plugin will install in a different folder with a name related to the relevant section.  Make sure you are using the correct plugin for the section you are reading.  For the first tutorial plugin below, it is strongly recommended that you do things manually so you understand the basics.  For the subsequent sections, you can then use the downloaded plugins knowing that you can create a plugin from scratch successfully.  Keeping this in mind, <a href="tutorial/cpg1.5_plugin_hello_world_2-1.zip">click here</a> to download the plugin for this section.  Once again, it is recommended you only use these files if you have problems.  Create the folder and files from scratch so you understand how to do so.</p>
 <p>Let's get started!</p>
 <p><strong>Create a folder named "hello_world" in the Coppermine plugins folder as shown:</strong></p>
 <pre>http://www.yourdomain.org/cpg/plugins/hello_world/</pre>
@@ -172,18 +172,18 @@
 /**************************************************
   Coppermine Plugin - Hello, World
   *************************************************
-  Copyright (c) 2006 <-InsertNameHere->
+  Copyright (c) 2008 &lt;-InsertNameHere-&gt;
   *************************************************
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
-  the Free Software Foundation; either version 2 of the License, or
+  the Free Software Foundation; either version 3 of the License, or
   (at your option) any later version.
 ***************************************************/
 
 $name='Hello, World';
-$description='My First Plugin - shows examples of many useful plugin features';
-$author='InsertNameHere';
-$version='1.0';
+$description='Plugin API Tutorial - 2.1 My First Plugin';
+$author='Tutorial';
+$version='2.1';
 ?&gt;</pre>
 <p>The beginning part is a comment block of course.  We suggest you use such a block at the beginning of each of your plugin files.  The first text line tells people this is a Coppermine Plugin and lists the name of your plugin.  The next text line has a copyright message with your name (real name or username used on the Coppermine forum).  The next text block  gives the GPL message that Coppermine uses and is recommended for your code as well.  This comment block is not strictly required for your plugin to work.  That being said, it is important for organization and clarity, so please make sure to add it to each of your plugin files.</p>
 <p>The parameters used by the Plugin API are the 4 variables shown.  These variables are shown on the plugin manager page to describe your plugin.</p>
@@ -199,22 +199,22 @@ $version='1.0';
 /**************************************************
   Coppermine Plugin - Hello, World
   *************************************************
-  Copyright (c) 2006 <-InsertNameHere->
+  Copyright (c) 2008 &lt;-InsertNameHere-&gt;
   *************************************************
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
-  the Free Software Foundation; either version 2 of the License, or
+  the Free Software Foundation; either version 3 of the License, or
   (at your option) any later version.
 ***************************************************/
 
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
 
 // Add a filter for the gallery header
-$thisplugin->add_filter('gallery_header','hello_world_header');
+$thisplugin->add_filter('gallery_header','helloworld_header');
 
-// Function to modify the gallery header
-function hello_world_header($html) {
-    $html = '&lt;p style="color:red"&gt;&lt;b&gt;Hello, world.&lt;/b&gt;&lt;/p&gt;'
+// Sample function to modify gallery header html
+function helloworld_header($html) {
+    $html = '&lt;p style="color:red"&gt;&lt;b&gt;Hello, world.&lt;/b&gt; (tutorial 2.1)&lt;/p&gt;'
             .$html;
     return $html;
 }
@@ -232,7 +232,7 @@ $thisplugin->add_filter('gallery_header','hello_world_header');</pre>
 <p>In this case, we are using the add_filter() function to add the filter hook we want to use to our plugin's list of registered plugin hooks.  The user-defined function we will use for each call of the hook is <tt class="code">hello_world_header</tt>, which is defined in the last section of code in our plugin, as shown:</p>
 <pre>// Function to modify the gallery header
 function hello_world_header($html) {
-    $html = '&lt;p style="color:red"&gt;&lt;b&gt;Hello, world.&lt;/b&gt;&lt;/p&gt;'
+    $html = '&lt;p style="color:red"&gt;&lt;b&gt;Hello, world.&lt;/b&gt;  (tutorial 2.1)&lt;/p&gt;'
             .$html;
     return $html;
 }</pre>
@@ -249,14 +249,14 @@ function hello_world_header($html) {
 <h3>2.2.1 Installation with Simple Configuration<a href="#plugin_api_tutorial_installsimple" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>First, we're going to add a very simple installation step, so you can see how the plugin installation can be customized to do whatever you like to do when the plugin is installed.  If your plugin needs to create a custom table that it will use during operation, this section will describe where to add such a installation step.  This simple installation is simple in that it can only be used for "hands-off" installation, where the user is not involved in customizing the installation.  In this section, the user will merely confirm the installation and that's it.  The next sections will expand on this to provide more complicated installation steps.  This section is important because you need to know exactly how the Coppermine Plugin API calls your installation and configuration functions and that is best described with a very simple installation procedure.</p>
 
-<p><a href="cpg1.4_plugin_hello_world_2-2-1.zip">Click here</a> to download the plugin for this section.</p>
+<p><a href="tutorial/cpg1.5_plugin_hello_world_2-2-1.zip">Click here</a> to download the plugin for this section.</p>
 
 <p>Here's the new <tt class="filename">codebase.php</tt> with the new sections highlighted in bold.</p>
 <pre>&lt;?php
 /**************************************************
   Coppermine Plugin - Hello, World
   *************************************************
-  Copyright (c) 2006 <-InsertNameHere->
+  Copyright (c) 2008 &lt;-InsertNameHere-&gt;
   *************************************************
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -266,30 +266,35 @@ function hello_world_header($html) {
 
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
 
-<b>// Add install & configure actions
-$thisplugin->add_action('plugin_install','hello_world_install');
-$thisplugin->add_action('plugin_configure','hello_world_configure');</b>
+// Add install & configure actions
+$thisplugin-&gt;add_action('plugin_install','hello_world_install');
+$thisplugin-&gt;add_action('plugin_configure','hello_world_configure');
 
 // Add a filter for the gallery header
-$thisplugin->add_filter('gallery_header','hello_world_header');
+$thisplugin-&gt;add_filter('gallery_header','hello_world_header');
 
 // Function to modify the gallery header
 function hello_world_header($html) {
-    $html = '&lt;p style="color:red"&gt;&lt;b&gt;Hello, world.&lt;/b&gt;&lt;/p&gt;'
+    $html = '&lt;p style="color:red"&gt;&lt;b&gt;Hello, world.&lt;/b&gt; (tutorial 2.2.1)&lt;/p&gt;'
             .$html;
     return $html;
 }
 
 <b>// Install the plugin
 function hello_world_install() {
-    if (!$_POST['submit']) {
+    $superCage = Inspekt::makeSuperCage();
+    $submit_code = '';
+    if ($superCage-&gt;post-&gt;keyExists('submit')) {
+      $submit_code = $superCage-&gt;post-&gt;getAlnum('submit');
+    }
+    if (!$submit_code) {
         return 1;  // configure function has not been called yet, so return error code '1'
-    } elseif ($_POST['submit'] == 'Yes') {
+    } elseif ($submit_code == 'Yes') {
         return true;  // configure function has been called, so install the plugin
-    } elseif ($_POST['submit'] == 'No')  {
+    } elseif ($submit_code == 'No')  {
         header("Location: pluginmgr.php\n\n");  // go back to plugin manager without installing the plugin
         exit(0);
-    } elseif ($_POST['submit'] == 'Simulate critical error') {
+    } elseif ($submit_code == 'Simulatecriticalerror') {
         return false;  // simulate a critical error by returning false
     } else {
         return 2;  // user is not sure whether to install yet, so return error code '2'
@@ -304,9 +309,9 @@ function hello_world_configure($action_code) {
         echo 'Ok, I hope you\'ve had enough time to decide now.&lt;br /&gt;';
         $still = 'still ';
     }
-    if (($action_code == 1) || ($action_code == 2)) {
+    if (($action_code === 1) || ($action_code == 2)) {
         echo &lt;&lt;&lt; EOT
-            &lt;h3&gt;Do you want to install plugin &lt;b&gt;{$thisplugin->name}&lt;/b&gt;?&lt;/h3&gt;
+            &lt;h3&gt;Do you want to install plugin &lt;b&gt;{$thisplugin-&gt;name}&lt;/b&gt;?&lt;/h3&gt;
             &lt;form action="{$_SERVER['REQUEST_URI']}" method="post"&gt;
             &lt;input type="submit" name="submit" value="Yes" /&gt;
             &lt;input type="submit" name="submit" value="No" /&gt;
@@ -378,22 +383,22 @@ exit(0);</pre>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 <a name="plugin_api_tutorial_install"></a>
 <h3>2.2.2 Installation with Configuration Parameters Saved<a href="#plugin_api_tutorial_install" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Blah, blah.</p>
+<p>Placeholder.  Content will be added.</p>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
 <a name="plugin_api_tutorial_config"></a>
 <h3>2.2.3 Configuration during Operation<a href="#plugin_api_tutorial_config" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Blah, blah.</p>
+<p>Placeholder.  Content will be added.</p>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
 <a name="plugin_api_tutorial_cleanup"></a>
 <h3>2.2.4 Uninstallation & Clean-Up<a href="#plugin_api_tutorial_cleanup" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Blah, blah.</p>
+<p>Placeholder.  Content will be added.</p>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
 <a name="plugin_api_tutorial_linking"></a>
 <h2>2.3 Linking to Custom Plugin Scripts<a href="#plugin_api_tutorial_linking" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>Blah, blah.</p>
+<p>Placeholder.  Content will be added.</p>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
 <a name="plugin_api_tutorial_button"></a>
@@ -402,17 +407,17 @@ exit(0);</pre>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 <a name="plugin_api_tutorial_lang"></a>
 <h2>2.5 Multi-language Support<a href="#plugin_api_tutorial_lang" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>Blah, blah.</p>
+<p>Placeholder.  Content will be added.</p>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
 <a name="plugin_api_tutorial_distrib"></a>
 <h2>2.6 Distributing Your Plugin<a href="#plugin_api_" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>Blah, blah.</p>
+<p>Placeholder.  Content will be added.</p>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
 <a name="plugin_api_tutorial_wherenext"></a>
 <h2>2.7 Where to Go from Here<a href="#plugin_api_tutorial_distrib" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>Blah, blah.</p>
+<p>Placeholder.  Content will be added.</p>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
 <a name="plugin_api_hooks"></a>
@@ -422,21 +427,21 @@ exit(0);</pre>
 
 <a name="plugin_api_plugin_class"></a>
 <h1>4. Plugin Class Properties & Methods<a href="#plugin_api_plugin_class" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
-<p>Blah, blah.</p>
+<p>Placeholder.  Content will be added.</p>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
 <a name="plugin_api_globals"></a>
 <h1>5. Global Variables & Constants<a href="#plugin_api_" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
-<p>Blah, blah.</p>
+<p>Placeholder.  Content will be added.</p>
 
 <a name="plugin_api_globals_system"></a>
 <h2>5.1 System Global Variables<a href="#plugin_api_globals" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>Blah, blah.</p>
+<p>Placeholder.  Content will be added.</p>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
 <a name="plugin_api_globals_cpg"></a>
 <h2>5.2 Coppermine Constants<a href="#plugin_api_globals_cpg" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>Blah, blah.</p>
+<p>Placeholder.  Content will be added.</p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 

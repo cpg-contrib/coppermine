@@ -338,6 +338,8 @@ function deldir($dir) {
  * Executes manager events
  */
 
+$uninstalled = false;  // initialize
+$installed = false;  // initialize
 $op = @$superCage->get->getAlpha('op');
 $p = @$superCage->get->getEscaped('p');
 switch ($op) {

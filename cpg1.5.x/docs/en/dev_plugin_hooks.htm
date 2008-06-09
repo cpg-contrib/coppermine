@@ -46,10 +46,12 @@
 <a name="plugin_hooks_choosing"></a><h2>Choosing Plugin Hooks<a href="#plugin_hooks_choosing" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>In order for your plugin to do anything in Coppermine, you need to register your plugin with the Coppermine plugin API and in so doing, tell Coppermine which hooks you will use to add or modify features of Coppermine.  A plugin hook is a place in a Coppermine script where Coppermine pauses what it is doing and checks to see if any plugins need to be called before Coppermine can continue.  Some hooks are unique and only occur one place in the Coppermine core code.  Others occur in multiple places.  Once a hook is reached, Coppermine checks to see if a plugin has registered to use that hook.  If so, Coppermine calls the plugin, lets the plugin execute its code and return, then Coppermine will continue where it left off.  Some plugin hooks pass data along to the plugin; others do not.</p>
 <p>So, in designing your plugin, you need to determine which plugin hook or hooks to use.  If you plugin adds text or images to a certain page (like displayimage.php), then look for the plugin hooks on that page (using the table below or by searching the script).  Decide which hook occurs at the place you want in Coppermine's order of execution and which hook provides the information you need.  In many cases, it's more important to choose the place in the code, and if the hook doesn't provide the data you need, you can pull in that data from Coppermine global variables, configuration settings, or from the database tables themselves.  In some cases, you may need to add your own database tables to store information that Coppermine does not keep or that only your plugin needs.  There are examples of many of these cases in the core plugins and in the contributed plugins.</p>
+<p>Included as a Coppermine core plugin is the plugin 'visiblehookpoints'.  This plugin places markers on pages and is a useful tool for determining where plugin hooks are called with respect to the HTML displayed by Coppermine.  Read the documentation for this plugin for more information.</p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="plugin_hooks_finding"></a><h2>Finding Plugin Hooks<a href="#plugin_hooks_finding" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>There are sections below that list the plugin hooks by script and alphabetically.  All plugin hooks should be listed in those 2 sections.  However, you can also search for hooks by searching for the text 'CPGPluginAPI' (in all scripts).  Action hook calls start with 'CPGPluginAPI::action' and filter hook calls start with 'CPGPluginAPI::filter'.  If you are looking for a particular page or place on a page to add text or images, you can look in the script and see where the closest plugin hook is located.  In some cases, you may find there is not a convenient hook available.  In that case, you can use the 'page_html' filter hook which is called just before the page is output to the web browser.  This is not ideal in some cases because the output HTML may change depending upon the theme or other plugin calls (before or after your plugin is called).  In some cases, it may be better to replace a Coppermine page entirely by using this call, either to deny access to a particular page (based upon permissions your plugin sets up) or using a new page your plugin provides.  Usually this is best for administration or configuration pages since pages your users see will use a particular theme and it can be tedious to write whole pages that are theme-compatible.  For user pages, you should try to use a specific plugin hook besides 'page_html'.</p>
+<p>See also the core plugin 'visiblehookpoints' for assistance in associating plugin hooks with Coppermine's output to the web browser.</p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="plugin_hooks_using"></a>
@@ -59,12 +61,12 @@
 
 <a name="plugin_hooks_filename"></a>
 <h2>Plugin Hooks by File Name<a href="#plugin_hooks_filename" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>In this section you will find a list of plugin hooks, sorted by files names where the hook will be called in.</p>
+<p>In this section you will find a list of plugin hooks, sorted by script filenames in which the hook is called.</p>
 
 <table border="0" cellspacing="0" cellpadding="0" class="maintable">
   <tr>
     <th valign="top" align="left" class="tableh1">File</td>
-    <th valign="top" align="left" class="tableh1">hook name</td>
+    <th valign="top" align="left" class="tableh1">Hook name</td>
     <th valign="top" align="left" class="tableh1">Explanation</td>
     <th valign="top" align="left" class="tableh1">Sample</td>
   </tr>

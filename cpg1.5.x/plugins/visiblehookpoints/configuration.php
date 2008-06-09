@@ -20,7 +20,7 @@
 $name = 'Visible HookPoints';
 $description =  <<< EOT
 Tool for plugin developers to locate plugin entry points (plugin hooks) and array information. Do not enable this plugin unless you want to start developing your own plugin.<hr />
-In some cases the output of a hookpoint is not the same as it's "echo" point.  A good example of this is the 'gallery_footer'; it is processed very early and it's echo point is above the doctype declaration, while the hookpoints actual  output is just above the "powered by" text at the bottom of the document.
+In some cases the output of a hookpoint is not the same as its "echo" point.  A good example of this is the 'gallery_footer'; it is processed very early and its echo point is above the doctype declaration, while the hookpoints actual  output is just above the "powered by" text at the bottom of the document.
 <ul>
     <li>The first marker is placed in the HTML at the hookpoints "echo" point.
     <li>If the hookpoint is an array then the marker has "_ARRAY" appended to it</li>
