@@ -22,7 +22,7 @@ define('HELP_PHP', true);
 require('include/init.inc.php');
 
 // set charset
-$meta_charset = '<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />';
+$meta_charset = '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />';
 
 // Get the vars from the url
 if ($superCage->get->keyExists('as')) {
