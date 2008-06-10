@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-06-11 [D] Added Spanish documentation (user contribution) {GauGau}
 2008-05-21 [B] Replaced hard-coded string "edit keywords" with translation (thread ID 52721) {GauGau}
 2008-05-04 [B] Fixed resources consumption for slideshows in meta albums {GauGau}
 2008-05-03 [B] Fixing the type being translated in reports {GauGau}
