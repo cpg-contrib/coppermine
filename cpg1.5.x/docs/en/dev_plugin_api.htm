@@ -285,7 +285,7 @@ function hello_world_install() {
     $superCage = Inspekt::makeSuperCage();
     $submit_code = '';
     if ($superCage-&gt;post-&gt;keyExists('submit')) {
-      $submit_code = $superCage-&gt;post-&gt;getAlnum('submit');
+      $submit_code = $superCage-&gt;post-&gt;getEscaped('submit');
     }
     if (!$submit_code) {
         return 1;  // configure function has not been called yet, so return error code '1'
@@ -294,7 +294,7 @@ function hello_world_install() {
     } elseif ($submit_code == 'No')  {
         header("Location: pluginmgr.php\n\n");  // go back to plugin manager without installing the plugin
         exit(0);
-    } elseif ($submit_code == 'Simulatecriticalerror') {
+    } elseif ($submit_code == 'Simulate critical error') {
         return false;  // simulate a critical error by returning false
     } else {
         return 2;  // user is not sure whether to install yet, so return error code '2'
