@@ -45,6 +45,7 @@ if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__,
               CPG_DATABASE_LOG
               );
         }
+        header('Location: pluginmgr.php');
     }
 
 function display_plugin_list() {
@@ -96,14 +97,45 @@ echo <<<EOT
         </tr>
 EOT;
 
+    unset($installed_plugins);
+    if ($CONFIG['enable_plugins'] == 1) {
+      $loop_counter = 0;
+      foreach ($CPG_PLUGINS as $thisplugin) {
+        $installed_plugins[$loop_counter] = array(
+          'index' => $thisplugin->index,
+          'plugin_id' => $thisplugin->plugin_id,
+          'path' => $thisplugin->path,
+          'priority' => $thisplugin->priority,
+          'error' => $thisplugin->error,
+        );
+        $loop_counter++;
+      }
+    } else {
+      // If plugin system is turned off, grab installed plugins from database table
+      $query = 'SELECT * FROM '.$CONFIG['TABLE_PLUGINS'].' ORDER BY priority ASC;';
+      $result = cpg_db_query($query);
+      $loop_counter = 0;
+      while ($installed_plugin = mysql_fetch_assoc($result)) {
+        $installed_plugins[$loop_counter] = array(
+          'index' => $loop_counter,
+          'plugin_id' => $installed_plugin['plugin_id'],
+          'path' => $installed_plugin['path'],
+          'priority' => $installed_plugin['priority'],
+          'error' => array(),
+        );
+        $loop_counter++;
+      }
+    }
+
+    $plugins_count = count($installed_plugins);
     $installed_count = 0;
     $loop_counter = 0;
-    foreach ($CPG_PLUGINS as $thisplugin) {
+    foreach ($installed_plugins as $thisplugin) {
         $installed_count++;
         unset($extra_info);
         unset($install_info);
-        include('./plugins/'.$thisplugin->path.'/configuration.php');
-        $pluginPath = $thisplugin->path;
+        include('./plugins/'.$thisplugin['path'].'/configuration.php');
+        $pluginPath = $thisplugin['path'];
 
         $safename = addslashes(str_replace('&nbsp;', '', $name));
         if (isset($extra_info) == TRUE) {
@@ -112,8 +144,8 @@ EOT;
               $extra = '';
             }
 
-        if (sizeof($thisplugin->error) > 0) {
-            $error = $thisplugin->error['desc'];
+        if (sizeof($thisplugin['error']) > 0) {
+            $error = $thisplugin['error']['desc'];
             $extra = '<tr><td class="tableb" width="100%" colspan="2">'.
                      '<strong>'.$lang_common['error'].':</strong> <span style="color:red;">'.$error.'</span>'.
                      '</td></tr>'.$extra;
@@ -154,29 +186,30 @@ EOT;
             <table border="0" width="100%" cellspacing="0" cellpadding="0">
             <tr>
 EOT;
-        if ($thisplugin->index > 0 && count($CPG_PLUGINS) > 1) {
+        if (($thisplugin['index'] > 0) && ($plugins_count > 1)) {
             echo <<<EOT
             <td width="3%" align="center" valign="middle">
-                <a href="pluginmgr.php?op=moveu&amp;p={$thisplugin->plugin_id}"><img src="images/up.gif"  border="0" alt="" /></a>
+                <a href="pluginmgr.php?op=moveu&amp;p={$thisplugin['plugin_id']}"><img src="images/up.gif"  border="0" alt="" /></a>
             </td>
 EOT;
         } else {
             echo '<td width="3%"><img src="images/spacer.gif" width="16" height="16" /></td>';
         }
 
-        if ($thisplugin->index < (count($CPG_PLUGINS)-1)) {
+        if ($thisplugin['index'] < ($plugins_count - 1)) {
             echo <<<EOT
             <td width="3%" align="center" valign="middle">
-                <a href="pluginmgr.php?op=moved&amp;p={$thisplugin->plugin_id}"><img src="images/down.gif"  border="0" alt="" /></a>
+                <a href="pluginmgr.php?op=moved&amp;p={$thisplugin['plugin_id']}"><img src="images/down.gif"  border="0" alt="" /></a>
             </td>
 EOT;
         } else {
             echo '<td width="3%"><img src="images/spacer.gif" width="16" height="16" /></td>';
         }
 
+        $confirm_function = ($CONFIG['enable_plugins'] == 1) ? 'confirmUninstall' : 'confirmRemove';
         echo <<<EOT
             <td width="3%" align="center" valign="middle">
-                <a href="pluginmgr.php?op=uninstall&amp;p={$thisplugin->plugin_id}" onClick="return confirmUninstall('$safename')">
+                <a href="pluginmgr.php?op=uninstall&amp;p={$thisplugin['plugin_id']}" onClick="return {$confirm_function}('$safename')">
                     <img src="images/delete.gif"  border="0" alt="" />
                 </a>
             </td>
@@ -221,6 +254,7 @@ EOT;
 
     $loop_counter = 0;
 
+    // Note: CPGPluginAPI::installed() works even if Plugin API is disabled.
     foreach ($available_plugins as $path) {
         if (($plugin_id = CPGPluginAPI::installed($path))===false) {
 
@@ -275,6 +309,9 @@ EOT;
                     </tr>
 EOT;
             }
+            $install_button = ($CONFIG['enable_plugins'] == 1) ? 
+                '<a href="pluginmgr.php?op=install&amp;p='.$path.'"><img src="images/info.gif"  border="0" alt="" /></a>' 
+                : '<img src="images/spacer.gif" width="16" height="16" />';
             echo <<<EOT
                 </table>
             </td>
@@ -285,7 +322,7 @@ EOT;
                         <img src="images/spacer.gif" width="16" height="16" />
                     </td>
                     <td width="5%" align="center" valign="top">
-                        <a href="pluginmgr.php?op=install&amp;p=$path"><img src="images/info.gif"  border="0" alt="" /></a>
+                        {$install_button}
                     </td>
                     <td width="5%" align="center" valign="top">
                         <a href="pluginmgr.php?op=delete&amp;p=$path" onClick="return confirmDel('$safename')">
@@ -345,13 +382,36 @@ $p = @$superCage->get->getEscaped('p');
 switch ($op) {
     case 'uninstall':
         $plugin_id = $p;
-        if (!is_numeric($p)) {
-            $plugin_id = CPGPluginAPI::installed($plugin_id);
+        if ($CONFIG['enable_plugins'] == 1) {
+          if (!is_numeric($p)) {
+              $plugin_id = CPGPluginAPI::installed($plugin_id);
+          }
+          $uninstalled = CPGPluginAPI::uninstall($plugin_id);
+        } else {
+          $query = 'SELECT * FROM '.$CONFIG['TABLE_PLUGINS'].' WHERE plugin_id='.$plugin_id.' LIMIT 1;';
+          $result = cpg_db_query($query);
+          $installed_plugin = mysql_fetch_assoc($result);
+          if ($installed_plugin) {
+            $priority = $installed_plugin['priority'];
+            $name = $installed_plugin['name'];
+            $sql = 'DELETE FROM '.$CONFIG['TABLE_PLUGINS'].' '.
+                'WHERE plugin_id='.$plugin_id.';';
+            $result = cpg_db_query($sql);
+            // Shift the plugins up
+            $sql = 'UPDATE '.$CONFIG['TABLE_PLUGINS'].' SET priority=priority-1 WHERE priority>'.$priority.';';
+            $result = cpg_db_query($sql);
+            if ($CONFIG['log_mode']) {
+              log_write("Plugin '".$name."' uninstalled at ".date("F j, Y, g:i a"),CPG_GLOBAL_LOG);
+            }
+          }
         }
-        $uninstalled = CPGPluginAPI::uninstall($plugin_id);
         break;
     case 'install':
-        $installed = CPGPluginAPI::install($p);
+        if ($CONFIG['enable_plugins']) {
+          $installed = CPGPluginAPI::install($p);
+        } else {
+          cpgRedirectPage('pluginmgr.php',$lang_pluginmgr_php['pmgr'],$lang_pluginmgr_php['plugin_disabled_note']);
+        }
         break;
     case 'delete':
         $path = $p;
@@ -360,30 +420,60 @@ switch ($op) {
         }
         break;
     case 'moveu':
-        $thisplugin = @$CPG_PLUGINS[$p];
-        if (isset($thisplugin) && ($priority = $thisplugin->priority) > 0) {
-
-            // Move the plugin above down
-            $sql = 'update '.$CONFIG['TABLE_PLUGINS'].' set priority='.$priority.' where priority='.($priority-1).';';
-            cpg_db_query($sql);
-
-            // Move this plugin up
-            $sql = 'update '.$CONFIG['TABLE_PLUGINS'].' '.
-                   'set priority='.($priority-1).' where plugin_id='.$thisplugin->plugin_id.';';
-            cpg_db_query($sql);
+        unset($installed_plugin);
+        unset($priority);
+        $plugin_id = $p;
+        if ($CONFIG['enable_plugins'] == 1) {
+          $thisplugin = @$CPG_PLUGINS[$plugin_id];
+          $installed_plugin = isset($thisplugin);
+          $priority = $thisplugin->priority;
+        } else {
+          $query = 'SELECT * FROM '.$CONFIG['TABLE_PLUGINS'].' WHERE plugin_id='.$plugin_id.' LIMIT 1;';
+          $result = cpg_db_query($query);
+          $installed_plugin = mysql_fetch_assoc($result);
+          if ($installed_plugin) {
+            $priority = $installed_plugin['priority'];
+          }
+        }
+        if ($installed_plugin && ($priority > 0)) {
+          // Move the plugin above down
+          $sql = 'UPDATE '.$CONFIG['TABLE_PLUGINS'].' SET priority='.$priority.' WHERE priority='.($priority-1).';';
+          cpg_db_query($sql);
+          // Move this plugin up
+          $sql = 'UPDATE '.$CONFIG['TABLE_PLUGINS'].' '.
+                 'SET priority='.($priority-1).' WHERE plugin_id='.$plugin_id.';';
+          cpg_db_query($sql);
         }
         break;
     case 'moved':
-        $thisplugin = @$CPG_PLUGINS[$p];
-        if (isset($thisplugin) && ($priority = $thisplugin->priority) < (count($CPG_PLUGINS)-1)) {
-
+        unset($installed_plugin);
+        unset($priority);
+        $installed_count = 0;
+        $plugin_id = $p;
+        if ($CONFIG['enable_plugins'] == 1) {
+          $thisplugin = @$CPG_PLUGINS[$plugin_id];
+          $installed_plugin = isset($thisplugin);
+          $priority = $thisplugin->priority;
+          $installed_count = count($CPG_PLUGINS);
+        } else {
+          $query = 'SELECT * FROM '.$CONFIG['TABLE_PLUGINS'].' WHERE plugin_id='.$plugin_id.' LIMIT 1;';
+          $result = cpg_db_query($query);
+          $installed_plugin = mysql_fetch_assoc($result);
+          if ($installed_plugin) {
+            $priority = $installed_plugin['priority'];
+          }
+          $query = 'SELECT * FROM '.$CONFIG['TABLE_PLUGINS'].' ORDER BY priority ASC;';
+          $result = cpg_db_query($query);
+          $installed_plugins = mysql_fetch_assoc($result);
+          $installed_count = count($installed_plugins);
+        }
+        if ($installed_plugin && ($priority < ($installed_count-1))) {
             // Move the plugin below up
-            $sql = 'update '.$CONFIG['TABLE_PLUGINS'].' set priority='.($priority).' where priority='.($priority+1).';';
+            $sql = 'UPDATE '.$CONFIG['TABLE_PLUGINS'].' SET priority='.($priority).' WHERE priority='.($priority+1).';';
             cpg_db_query($sql);
-
             // Move this plugin down
-            $sql = 'update '.$CONFIG['TABLE_PLUGINS'].' '.
-                   'set priority='.($priority+1).' where plugin_id='.$thisplugin->plugin_id.';';
+            $sql = 'UPDATE '.$CONFIG['TABLE_PLUGINS'].' '.
+                   'SET priority='.($priority+1).' WHERE plugin_id='.$plugin_id.';';
             cpg_db_query($sql);
         }
         break;
@@ -427,6 +517,11 @@ function confirmUninstall(text)
     return confirm("{$lang_pluginmgr_php['confirm_uninstall']} (" + text + ") ?");
 }
 
+function confirmRemove(text)
+{
+    return confirm("{$lang_pluginmgr_php['confirm_remove']} (" + text + ") ?");
+}
+
 function confirmDel(text)
 {
     return confirm("{$lang_pluginmgr_php['confirm_delete']} (" + text + ") ?");
@@ -440,7 +535,7 @@ EOT;
  */
 
 // Plugin isn't being configured; Display the plugin list
-if ((($op != 'install') && ($op != 'uninstall')) || (is_bool($installed) && $installed) || (is_bool($uninstalled) && $uninstalled)) {
+if (($CONFIG['enable_plugins'] != 1) || (($op != 'install') && ($op != 'uninstall')) || (is_bool($installed) && $installed) || (is_bool($uninstalled) && $uninstalled)) {
 
     // Refresh the page; An operation was just performed
     if  ($superCage->get->keyExists('op')) {

@@ -1835,6 +1835,7 @@ if (defined('PLUGINMGR_PHP')){
 
 $lang_pluginmgr_php = array(
   'confirm_uninstall' => 'Are you sure you want to UNINSTALL this plugin',
+  'confirm_remove' => 'NOTE: Plugin API is disabled.  Do you want to MANUALLY REMOVE this plugin, ignoring any cleanup actions', // cpg1.5
   'confirm_delete' => 'Are you sure you want to DELETE this plugin',
   'pmgr' => 'Plugin Manager',
   'explanation' => 'Install / uninstall / manage plugins using this page.', // cpg1.5
@@ -1854,6 +1855,7 @@ $lang_pluginmgr_php = array(
   'cleanup_plugin' => 'Cleanup plugin',
   'extra' => 'Extra', // cpg1.5
   'install_info' => 'Install information', // cpg1.5
+  'plugin_disabled_note' => 'Plugin API is disabled, so operation was ignored.', // cpg1.5
 );
 }
 
