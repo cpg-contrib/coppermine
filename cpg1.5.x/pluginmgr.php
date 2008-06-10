@@ -309,7 +309,8 @@ EOT;
                     </tr>
 EOT;
             }
-            $install_button = ($CONFIG['enable_plugins'] == 1) ? 
+            // remove 'true ||' below to remove install button when plugin API is disabled
+            $install_button = (true || ($CONFIG['enable_plugins'] == 1)) ? 
                 '<a href="pluginmgr.php?op=install&amp;p='.$path.'"><img src="images/info.gif"  border="0" alt="" /></a>' 
                 : '<img src="images/spacer.gif" width="16" height="16" />';
             echo <<<EOT
