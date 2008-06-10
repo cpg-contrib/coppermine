@@ -38,6 +38,10 @@ p {
         margin-bottom:0px;
 }
 
+.smallcode {
+        font-size: 0.9em;
+}
+
 .maintable {
         border: 1px solid #0E72A4;
         background-color: #efefef;

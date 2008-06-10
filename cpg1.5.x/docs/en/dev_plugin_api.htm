@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
 <head>
-<title>Plugin Tutorial & API - Coppermine Photo Gallery - Documentation &amp; Manual</title>
+<title>Plugin Tutorial &amp; API - Coppermine Photo Gallery - Documentation &amp; Manual</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="language"    content="en">
 <meta name="copyright"   content="Coppermine dev team">
@@ -36,68 +36,18 @@
 </noscript>
 </div>
 
-<a name="plugin_api_top"></a>
-<div id="dev_plugin_api_toc">
-      <h1>Table of contents<a href="#plugin_api_top" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
-<ul class="level1">
-        <li class="level1"><a href="#plugin_api_overview" class="menu1">1. An Overview of the Coppermine Plugin API</a></li>
-</ul>
-        <ul class="level2">
-                <li class="level2"><a href="#plugin_api_overview_intro" class="menu2">1.1 Introduction</a></li>
-                <li class="level2"><a href="#plugin_api_overview_who" class="menu2">1.2 Intended Audience</a></li>
-                <li class="level2"><a href="#plugin_api_overview_skills" class="menu2">1.3 Required Skills & Knowledge</a></li>
-                <li class="level2"><a href="#plugin_api_overview_tools" class="menu2">1.4 Recommended Software & Support Forums</a></li>
-                <li class="level2"><a href="#plugin_api_overview_doc" class="menu2">1.5 Structure of this Documentation</a></li>
-        </ul>
-<ul class="level1">
-        <li class="level1"><a href="#plugin_api_tutorial" class="menu1">2. "Hello, world" Plugin Tutorial</a></li>
-</ul>
-        <ul class="level2">
-                <li class="level2"><a href="#plugin_api_tutorial_first" class="menu2">2.1 My First Plugin</a></li>
-                <li class="level2"><a href="#plugin_api_tutorial_installconfig" class="menu2">2.2 Installation, Configuration, and Clean-Up</a></li>
-        </ul>
-                <ul class="level3">
-                  <li class="level3"><a href="#plugin_api_tutorial_installsimple">2.2.1 Installation with Simple Configuration</a></li>
-                  <li class="level3"><a href="#plugin_api_tutorial_install">2.2.1 Installation with Configuration Parameters</a></li>
-                  <li class="level3"><a href="#plugin_api_tutorial_config">2.2.3 Configuration during Operation</a></li>
-                  <li class="level3"><a href="#plugin_api_tutorial_cleanup">2.2.4 Uninstallation & Clean-Up</a></li>
-                </ul>
-        <ul class="level2">
-                <li class="level2"><a href="#plugin_api_tutorial_linking" class="menu2">2.3 Linking to Custom Plugin Scripts</a></li>
-                <li class="level2"><a href="#plugin_api_tutorial_button" class="menu2">2.4 Adding a Button to Coppermine</a></li>
-                <li class="level2"><a href="#plugin_api_tutorial_lang" class="menu2">2.5 Multi-language Support</a></li>
-                <li class="level2"><a href="#plugin_api_tutorial_distrib" class="menu2">2.6 Distributing Your Plugin</a></li>
-                <li class="level2"><a href="#plugin_api_tutorial_wherenext" class="menu2">2.7 Where to Go from Here</a></li>
-        </ul>
-<ul class="level1">
-        <li class="level1"><a href="#plugin_api_hooks" class="menu1">3. Plugin Hooks</a></li>
-</ul>
+<a name="plugin_api"></a><h1>Plugin Writing: Tutorial, API, Coppermine Globals<a href="#plugin_api" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
 
-<ul class="level1">
-        <li class="level1"><a href="#plugin_api_plugin_class" class="menu1">4. Plugin Class Properties & Methods</a></li>
-</ul>
-<ul class="level1">
-        <li class="level1"><a href="#plugin_api_globals" class="menu1">5. Global Variables & Constants</a></li>
-</ul>
-        <ul class="level2">
-                <li class="level2"><a href="#plugin_api_globals_system" class="menu2">5.1 System Global Variables</a></li>
-                <li class="level2"><a href="#plugin_api_globals_cpg" class="menu2">5.2 Coppermine Constants</a></li>
-        </ul>
-<br />
-</div><!-- end toc -->
-<hr />
-
-<a name="plugin_api_overview"></a>
-<h1>1. An Overview of the Coppermine Plugin API<a href="#plugin_api_overview" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<a name="plugin_api_overview"></a><h2>An Overview of the Coppermine Plugin API<a href="#plugin_api_overview" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Placeholder.  Content will be added.</p>
 
     <a name="plugin_api_overview_intro"></a>
-    <h2>1.1 Introduction<a href="#plugin_api_overview_intro" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+    <h3>Introduction<a href="#plugin_api_overview_intro" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
     <p>Placeholder.  Content will be added.</p>
     
 <p><a class="back" href="#top">Back to top</a></p><hr />
     <a name="plugin_api_overview_who"></a>
-    <h2>1.2 Intended Audience<a href="#plugin_api_overview_who" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+    <h3>Intended Audience<a href="#plugin_api_overview_who" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
     <p>Here's a list of who should and who should not (or doesn't need to) read this documentation.  The categories overlap in many places, so make sure to read the entire list.  Find yourself in the list and then decide whether you should read on.</p>
     <div id="ulgreen">
     <p><strong>People who should read this documentation:</strong></p>
@@ -119,7 +69,7 @@
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
     <a name="plugin_api_overview_skills"></a>
-    <h2>1.3 Required Skills & Knowledge<a href="#plugin_api_overview_skills" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+    <h3>Required Skills & Knowledge<a href="#plugin_api_overview_skills" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
     <p>This documentation assumes a few skills & knowledge you need to have before creating or modifying plugins.</p>
     <ul>
         <li><strong>Some PHP knowledge</strong><br />
@@ -132,7 +82,7 @@
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
     <a name="plugin_api_overview_tools"></a>
-    <h2>1.4 Recommended Software & Support Forums<a href="#plugin_api_overview_tools" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+    <h3>Recommended Software & Support Forums<a href="#plugin_api_overview_tools" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
     <p>You can easily write plugin code with simply a text editor and administrator-access to a Coppermine gallery, but here are a few more tools that are useful in one way or another.</p>
     <ul>
         <li><strong>grep</strong> - <span class="small">[<a href="http://en.wikipedia.org/wiki/Grep"  rel="external" class="external">definition</a>]</span><br />
@@ -145,16 +95,16 @@
     
 <p><a class="back" href="#top">Back to top</a></p><hr />
     <a name="plugin_api_overview_doc"></a>
-    <h2>1.5 Structure of this Documentation<a href="#plugin_api_overview_doc" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+    <h3>Structure of this Documentation<a href="#plugin_api_overview_doc" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
     <p>Placeholder.  Content will be added.</p>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
 <a name="plugin_api_tutorial"></a>
-<h1>2. "Hello, world" Plugin Tutorial<a href="#plugin_api_tutorial" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<h2>"Hello, world" Plugin Tutorial<a href="#plugin_api_tutorial" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Here we go.  We are going to write a simple plugin and learn how to implement a number of useful features.</p>
 
 <a name="plugin_api_tutorial_first"></a>
-<h2>2.1 My First Plugin<a href="#plugin_api_tutorial_first" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<h3>My First Plugin<a href="#plugin_api_tutorial_first" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>The first thing you need to do is come up with a short name for your plugin.  This short name must be unique enough so that it is different from other plugins currently available and be specific enough that it describes what your plugin does, compared to any plugins that are yet to be written.  For example, do not name your plugin "thumbnail" because that's way too general.  You need to come up with the name now because you need to use this name to create a folder to hold your plugin's files.  Since this short name is to be used as your folder name (and later for a prefix for your plugin's functions), use a valid folder name: no spaces, start with a letter, and use only alphanumeric characters and underscores (to separate words).  So take a moment and come up with a short name for your plugin.  The full name of your plugin can be decided later.</p>
 <p>Each and every Coppermine plugin requires its own folder and a minimum of two files.  The folder must be located under the Coppermine plugins folder.  So if your Coppermine is located in a folder named "cpg" on your domain, and the short name you chose for your plugin is "yellow_banana", the plugin folder would be: <tt class="code">http://www.yourdomain.org/cpg/plugins/yellow_banana/</tt> - put all plugin files in this folder.  The two files every plugin requires are:</p>
 <ul>
@@ -241,12 +191,12 @@ function hello_world_header($html) {
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
 <a name="plugin_api_tutorial_installconfig"></a>
-<h2>2.2 Installation, Configuration, and Clean-Up<a href="#plugin_api_tutorial_installconfig" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<h3>Installation, Configuration, and Clean-Up<a href="#plugin_api_tutorial_installconfig" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>The tutorial plugin so far merely outputs text via a particular hook.  During the installation of the plugin, nothing special is done besides registering the plugin with Coppermine.  The only configuration parameters are the identification ones in <tt class="filename">configuration.php</tt>.  It's fairly easy to imagine additional installation steps and configuration parameters that would be useful in a real-world plugin.  This section teaches you how to add such installation and configuration features to the tutorial plugin.</p>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
 <a name="plugin_api_tutorial_installsimple"></a>
-<h3>2.2.1 Installation with Simple Configuration<a href="#plugin_api_tutorial_installsimple" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<h4>Installation with Simple Configuration<a href="#plugin_api_tutorial_installsimple" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 <p>First, we're going to add a very simple installation step, so you can see how the plugin installation can be customized to do whatever you like to do when the plugin is installed.  If your plugin needs to create a custom table that it will use during operation, this section will describe where to add such a installation step.  This simple installation is simple in that it can only be used for "hands-off" installation, where the user is not involved in customizing the installation.  In this section, the user will merely confirm the installation and that's it.  The next sections will expand on this to provide more complicated installation steps.  This section is important because you need to know exactly how the Coppermine Plugin API calls your installation and configuration functions and that is best described with a very simple installation procedure.</p>
 
 <p><a href="tutorial/cpg1.5_plugin_hello_world_2-2-1.zip">Click here</a> to download the plugin for this section.</p>
@@ -382,65 +332,65 @@ exit(0);</pre>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
 <a name="plugin_api_tutorial_install"></a>
-<h3>2.2.2 Installation with Configuration Parameters Saved<a href="#plugin_api_tutorial_install" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<h4>Installation with Configuration Parameters Saved<a href="#plugin_api_tutorial_install" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 <p>Placeholder.  Content will be added.</p>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
 <a name="plugin_api_tutorial_config"></a>
-<h3>2.2.3 Configuration during Operation<a href="#plugin_api_tutorial_config" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<h4>Configuration during Operation<a href="#plugin_api_tutorial_config" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 <p>Placeholder.  Content will be added.</p>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
 <a name="plugin_api_tutorial_cleanup"></a>
-<h3>2.2.4 Uninstallation & Clean-Up<a href="#plugin_api_tutorial_cleanup" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<h4>Uninstallation & Clean-Up<a href="#plugin_api_tutorial_cleanup" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 <p>Placeholder.  Content will be added.</p>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
 <a name="plugin_api_tutorial_linking"></a>
-<h2>2.3 Linking to Custom Plugin Scripts<a href="#plugin_api_tutorial_linking" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<h3>Linking to Custom Plugin Scripts<a href="#plugin_api_tutorial_linking" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Placeholder.  Content will be added.</p>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
 <a name="plugin_api_tutorial_button"></a>
-<h2>2.4 Adding a Button to Coppermine<a href="#plugin_api_tutorial_button" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<h3>Adding a Button to Coppermine<a href="#plugin_api_tutorial_button" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
 <a name="plugin_api_tutorial_lang"></a>
-<h2>2.5 Multi-language Support<a href="#plugin_api_tutorial_lang" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<h3>Multi-language Support<a href="#plugin_api_tutorial_lang" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Placeholder.  Content will be added.</p>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
 <a name="plugin_api_tutorial_distrib"></a>
-<h2>2.6 Distributing Your Plugin<a href="#plugin_api_" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<h3>Distributing Your Plugin<a href="#plugin_api_" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Placeholder.  Content will be added.</p>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
 <a name="plugin_api_tutorial_wherenext"></a>
-<h2>2.7 Where to Go from Here<a href="#plugin_api_tutorial_distrib" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<h3>Where to Go from Here<a href="#plugin_api_tutorial_distrib" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Placeholder.  Content will be added.</p>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
 <a name="plugin_api_hooks"></a>
-<h1>3. Plugin Hooks<a href="#plugin_api_hooks" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<h2>Plugin Hooks<a href="#plugin_api_hooks" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>For a detailed list of plugin hooks that you can use for your own plugins, please refer to the page <a href="dev_plugin_hooks.htm">plugin hooks</a>.  You'll find information there on how to find and use all the hooks available in Coppermine.</p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="plugin_api_plugin_class"></a>
-<h1>4. Plugin Class Properties & Methods<a href="#plugin_api_plugin_class" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<h2>Plugin Class Properties & Methods<a href="#plugin_api_plugin_class" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Placeholder.  Content will be added.</p>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
 <a name="plugin_api_globals"></a>
-<h1>5. Global Variables & Constants<a href="#plugin_api_" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<h2>Global Variables & Constants<a href="#plugin_api_" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Placeholder.  Content will be added.</p>
 
 <a name="plugin_api_globals_system"></a>
-<h2>5.1 System Global Variables<a href="#plugin_api_globals" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<h3>System Global Variables<a href="#plugin_api_globals" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Placeholder.  Content will be added.</p>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
 <a name="plugin_api_globals_cpg"></a>
-<h2>5.2 Coppermine Constants<a href="#plugin_api_globals_cpg" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<h3>Coppermine Constants<a href="#plugin_api_globals_cpg" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Placeholder.  Content will be added.</p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
