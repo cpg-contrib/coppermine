@@ -390,6 +390,7 @@ d.add(600,500,'Translation guide','translation.htm');
 d.add(700,100,'Credits','credits.htm');
 d.add(800,700,'Coppermine team','credits.htm#developers');
 d.add(900,700,'Contributors','credits.htm#contributors');
+d.add(950,700,'Translators','credits.htm#translators');
 d.add(1000,700,'Free code used','credits.htm#codebase');
 d.add(1100,100,'Copyrights &amp; Disclaimer','copyrights.htm');
 d.add(1200,100,'Known issues','known_issues.htm');
