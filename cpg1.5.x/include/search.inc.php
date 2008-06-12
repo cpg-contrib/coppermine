@@ -136,7 +136,7 @@ if ($search_string && isset($search_params['params'])) {
                                 <tr>
                                   <td>
                                     <a href="<?php printf("thumbnails.php?album=%u", $alb['aid']); ?> "> 
-                                        <img src="<?php echo $thumb_url?>"  class="image" <?php echo $image_size['geom'] ?> border="0" alt="<?php echo $thumb['filename'] ?>">
+                                        <img src="<?php echo $thumb_url?>"  class="image" <?php echo $thumb_size['geom'] ?> border="0" alt="<?php echo $thumb['filename'] ?>">
                                     </a>
                                   </td>
                                   <td width=100% valign=top>
@@ -181,7 +181,7 @@ if ($search_string && isset($search_params['params'])) {
                                 <tr>
                                   <td>
                                     <a href="<?php printf("thumbnails.php?album=%u", $alb['aid']); ?> "> 
-                                        <img src="<?php echo $thumb_url?>"  class="image" <?php echo $image_size['geom'] ?> border="0" alt="<?php echo $thumb['filename'] ?>"><br/>
+                                        <img src="<?php echo $thumb_url?>"  class="image" <?php echo $thumb_size['geom'] ?> border="0" alt="<?php echo $thumb['filename'] ?>"><br/>
                                         <?php if ($album['title'] == "") { echo '&nbsp;'; } else { printf("<a href='thumbnails.php?album=%u'>{$album['title']}</a>", $alb['aid']); } ?>
                                     </a>
                                   </td>
