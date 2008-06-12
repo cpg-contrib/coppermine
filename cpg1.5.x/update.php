@@ -17,6 +17,9 @@
   $Date$
 **********************************************/
 
+// define('ADMIN_ACCESS', true);
+// If you don't remember the admin account data you're prompted for when running this file in your browser, umcomment the line above by removing the two slashes in front of it, upload that file to your webserver, run it in your browser. After usccessfully having run it, remember to restore the two slashes you removed and replace the "unsecure" version on your webserver with the "secure" version (the one that contains the double slashes).
+
 // Report all errors except E_NOTICE
 // This is the default value set in php.ini
 session_start();
@@ -79,7 +82,7 @@ if(!defined(ADMIN_ACCESS) && !$_SESSION['auth']){
 			start_update();
 		}else{
 			//no go, try again
-			html_error('Could not authenticate you, click <a href="update.php">here</a> to try again');
+			html_error('Could not authenticate you - <a href="update.php">try again</a>');
 		}
 	}
 	html_footer();
@@ -112,7 +115,6 @@ function start_update(){
 			html_error($errors);
 		}
 	}
-	
 	html_footer();
 }
 
@@ -225,7 +227,10 @@ function update_tables()
 {
     global $errors, $CONFIG;
 	
-	$superCage = Inspekt::makeSuperCage();
+	$lineBreak = "\n";
+    $loopCounter = 0;
+    $cellStyle = '';
+    $superCage = Inspekt::makeSuperCage();
 	$possibilities = array('REDIRECT_URL', 'PHP_SELF', 'SCRIPT_URL', 'SCRIPT_NAME','SCRIPT_FILENAME');
 	foreach ($possibilities as $test){
 		if ($matches = $superCage->server->getMatched($test, '/([^\/]+\.php)$/')) {
@@ -240,6 +245,10 @@ function update_tables()
 
     $db_update = 'sql/update.sql';
     $sql_query = fread(fopen($db_update, 'r'), filesize($db_update));
+    // convert the member table's passwords from unencrypted to encrypted if applicable
+    //print $CONFIG['enable_encrypted_passwords'];
+    //print '<hr />';
+    //die;
     // Update table prefix
     $sql_query = preg_replace('/CPG_/', $CONFIG['TABLE_PREFIX'], $sql_query);
 
@@ -247,13 +256,23 @@ function update_tables()
     $sql_query = split_sql_file($sql_query, ';');
 
     ?>
-        <h2>Performing Database Updates<h2>
-        <table class="maintable">
+        <table border="0" cellspacing="0" cellpadding="0" class="maintable">
+            <tr>
+                <td class="tableh1" colspan="2">
+                    Performing Database Updates
+                </td>
+            </tr>
 
     <?php
 
     foreach($sql_query as $q) {
-        echo "<tr><td class='tableb'>$q</td>";
+        if ($loopCounter/2 == floor($loopCounter/2)) {
+            $cellStyle = 'tableb';
+        } else {
+            $cellStyle = 'tableb tableb_alternate';
+        }
+        $loopCounter++;
+        echo '<tr><td width="80%" class="'.$cellStyle.'">'.$q;
         /**
          * Determining if the Alter Table actually made a change
          * to properly reflect it's status on the update page.
@@ -281,26 +300,29 @@ function update_tables()
         } else {
             $result = @mysql_query($q);
             $affected = mysql_affected_rows();
-            $warnings=mysql_query('SHOW WARNINGS;');
+            $warnings = mysql_query('SHOW WARNINGS;');
         }
-
-        if ($result && $affected) {
-            echo "<td class='updatesOK'>OK</td>";
-        } else {
-            echo "<td class='updatesFail'>Already Done</td>";
-        }
-        //if (isset($_REQUEST['debug'])) {
 		if ($superCage->get->keyExists('debug')) {
-            echo "<tr><td class='tablef'>";
+            echo '<hr />Debug output:<br />';
             if ($affected > -1) {
-                echo "Rows Affected: ".$affected."<br />";
+                echo "Rows Affected: ".$affected.". ";
             }
             if ($warnings) {
-                while ($warning=mysql_fetch_row($warnings)) {
-                    echo "{$warning[0]} ({$warning[1]}) {$warning[2]}<br />";
+                while ($warning = mysql_fetch_row($warnings)) {
+                    if ($warning[0] != '') {
+                        $warning_text = 'MySQL said: ';
+                    } else {
+                        $warning_text = '';
+                    }
+                    echo $warning_text.'<tt class="code">'.$warning[0]. ' ('.$warning[1].') '.$warning[2].'</tt><br />';
                 }
             }
-            echo "</td><td class='tableh2_compact'>MySQL Said</td></tr>";
+        }
+        print '</td>'.$lineBreak; // end the table cell that contains the output
+        if ($result && $affected) {
+            echo '<td width="20%" class="'.$cellStyle.' updatesOK">OK</td>'.$lineBreak;
+        } else {
+            echo '<td width="20%" class="'.$cellStyle.' updatesFail">Already Done</td>'.$lineBreak;
         }
     }
     echo "</table>";
