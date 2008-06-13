@@ -172,6 +172,16 @@ function update_system_thumbs()
 }
 
 /**
+ * Return an array containing config values specified in the array
+ */
+function cpg_get_config_value($config_name) {
+    global $CONFIG;
+    $result = mysql_query("SELECT value FROM ".$CONFIG['TABLE_PREFIX']."config WHERE name='".$config_name."' LIMIT 1");
+    $row = mysql_fetch_row($result);
+    return $row[0];
+}
+
+/**
  * Return an array containing the system thumbs in a directory
  */
 function cpg_get_system_thumb_list($search_folder = 'images/')
@@ -219,8 +229,8 @@ function test_sql_connection()
         $errors .= "<hr /><br />mySQL could not locate a database called '{$CONFIG['dbname']}' please check the value entered for this in include/config.inc.php<br /><br />";
     }
 }
-// ------------------------- HTML OUTPUT FUNCTIONS ------------------------- //
-// Moved to include/update.inc.php -- chtito
+
+
 
 // ------------------------- SQL QUERIES TO CREATE TABLES ------------------ //
 function update_tables()
@@ -245,17 +255,13 @@ function update_tables()
 
     $db_update = 'sql/update.sql';
     $sql_query = fread(fopen($db_update, 'r'), filesize($db_update));
-    // convert the member table's passwords from unencrypted to encrypted if applicable
-    //print $CONFIG['enable_encrypted_passwords'];
-    //print '<hr />';
-    //die;
     // Update table prefix
     $sql_query = preg_replace('/CPG_/', $CONFIG['TABLE_PREFIX'], $sql_query);
 
     $sql_query = remove_remarks($sql_query);
     $sql_query = split_sql_file($sql_query, ';');
 
-    ?>
+    print <<< EOT
         <table border="0" cellspacing="0" cellpadding="0" class="maintable">
             <tr>
                 <td class="tableh1" colspan="2">
@@ -263,7 +269,7 @@ function update_tables()
                 </td>
             </tr>
 
-    <?php
+EOT;
 
     foreach($sql_query as $q) {
         if ($loopCounter/2 == floor($loopCounter/2)) {
@@ -324,6 +330,34 @@ function update_tables()
         } else {
             echo '<td width="20%" class="'.$cellStyle.' updatesFail">Already Done</td>'.$lineBreak;
         }
+    }
+        print <<< EOT
+            <tr>
+                <td class="tablef">
+                    Encryption of passwords:
+                </td>
+EOT;
+    $CONFIG['enable_encrypted_passwords'] = cpg_get_config_value('enable_encrypted_passwords');
+    if ($CONFIG['enable_encrypted_passwords'] != 1) {
+        print <<< EOT
+                <td class="tablef updatesOK">
+                    OK
+                </td>
+            </tr>
+EOT;
+        $result = mysql_query("update {$CONFIG['TABLE_PREFIX']}users set user_password=md5(user_password);");
+        if ($CONFIG['enable_encrypted_passwords'] == 0) {
+            $result = mysql_query("update {$CONFIG['TABLE_PREFIX']}config set enable_encrypted_passwords=1;");
+        } else {
+            $result = mysql_query("INSERT INTO {$CONFIG['TABLE_PREFIX']}config ( `name` , `value` ) VALUES ('enable_encrypted_passwords', '1')");
+        }
+    } else {
+        print <<< EOT
+                <td class="tablef updatesFail">
+                    Already done
+                </td>
+            </tr>
+EOT;
     }
     echo "</table>";
 }
