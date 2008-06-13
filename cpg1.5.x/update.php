@@ -347,7 +347,7 @@ EOT;
 EOT;
         $result = mysql_query("update {$CONFIG['TABLE_PREFIX']}users set user_password=md5(user_password);");
         if ($CONFIG['enable_encrypted_passwords'] == 0) {
-            $result = mysql_query("update {$CONFIG['TABLE_PREFIX']}config set enable_encrypted_passwords=1;");
+            $result = mysql_query("update {$CONFIG['TABLE_PREFIX']}config set value = 1 WHERE name = 'enable_encrypted_passwords'");
         } else {
             $result = mysql_query("INSERT INTO {$CONFIG['TABLE_PREFIX']}config ( `name` , `value` ) VALUES ('enable_encrypted_passwords', '1')");
         }
