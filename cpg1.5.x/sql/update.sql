@@ -524,3 +524,11 @@ INSERT INTO CPG_config VALUES ('allow_user_album_keyword', '1');
 
 INSERT INTO CPG_config VALUES ('count_file_hits', '1');
 INSERT INTO CPG_config VALUES ('count_album_hits', '1');
+
+# Category system
+ALTER TABLE CPG_categories ADD `lft` mediumint( 8 ) unsigned NOT NULL default '0';
+ALTER TABLE CPG_categories ADD `rgt` mediumint( 8 ) unsigned NOT NULL default '0';
+ALTER TABLE CPG_categories ADD `depth` mediumint( 8 ) unsigned NOT NULL default '0';
+ALTER TABLE CPG_categories ADD INDEX `depth_cid` ( `depth` , `cid` );
+ALTER TABLE CPG_categories ADD INDEX `lft_depth` ( `lft` , `depth` );
+

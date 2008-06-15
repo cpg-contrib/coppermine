@@ -84,10 +84,15 @@ CREATE TABLE CPG_categories (
   pos int(11) NOT NULL default '0',
   parent int(11) NOT NULL default '0',
   thumb int(11) NOT NULL default '0',
+  lft mediumint(8) unsigned NOT NULL default '0',
+  rgt mediumint(8) unsigned NOT NULL default '0',
+  depth tinyint(3) unsigned NOT NULL default '0',
   PRIMARY KEY  (cid),
   KEY cat_parent (parent),
   KEY cat_pos (pos),
-  KEY cat_owner_id (owner_id)
+  KEY cat_owner_id (owner_id),
+  KEY `depth_cid` (`depth`,`cid`),
+  KEY `lft_depth` (`lft`,`depth`)
 ) TYPE=MyISAM COMMENT='Used to store categories';
 # --------------------------------------------------------
 
