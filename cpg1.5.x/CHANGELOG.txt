@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-06-15 [A] New category heirarchy system {Nibbler}
 2008-06-12 [B] Fixed bug in thumb size output for search results of categories & albums {Paver}
 2008-06-12 [C] Added alternating table rows to updater {GauGau}
 2008-06-12 [O] Fixed broken debug mode for updater due to Inspekt sanitization {GauGau}

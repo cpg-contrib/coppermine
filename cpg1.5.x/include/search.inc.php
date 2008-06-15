@@ -108,7 +108,7 @@ if ($search_string && isset($search_params['params'])) {
 
         $sql .= $superCage->get->getInt('newer_than') ? ' AND ( ctime > UNIX_TIMESTAMP() - '.( $superCage->get->getInt('newer_than') * 60*60*24).')' : '';
         $sql .= $superCage->get->getInt('older_than') ? ' AND ( ctime < UNIX_TIMESTAMP() - '.( $superCage->get->getInt('older_than') * 60*60*24).')' : '';
-        $sql .=  " $ALBUM_SET AND approved = 'YES'";
+        $sql .=  " AND approved = 'YES' $FORBIDDEN_SET";
 
         if($superCage->get->keyExists('album_title')) {
                 $album_query = "SELECT * FROM `{$CONFIG['TABLE_ALBUMS']}` WHERE (`title` " . implode(" $type `title` ",$albcat_terms) . ')';
@@ -204,7 +204,7 @@ if ($search_string && isset($search_params['params'])) {
         if(!$other) $sql = '0';
                                               
                                               
-        $sql = "SELECT * FROM {$CONFIG['TABLE_PICTURES']} WHERE " . $sql;
+        $sql = "SELECT * FROM {$CONFIG['TABLE_PICTURES']} AS p WHERE " . $sql;
 
         $temp = str_replace('SELECT *', 'SELECT COUNT(*)', $sql);
         $result = cpg_db_query($temp);

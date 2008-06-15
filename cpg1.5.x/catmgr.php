@@ -27,40 +27,35 @@ require('include/init.inc.php');
 //ob_end_flush(); //commented out, as it doesn't seem to do anything particularly helpful
 
 if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
-// Fix categories that have an invalid parent
-function fix_cat_table()
-{
-    global $CONFIG;
-
-    $result = cpg_db_query("SELECT cid FROM {$CONFIG['TABLE_CATEGORIES']} WHERE 1");
-    if (mysql_num_rows($result) > 0) {
-        $set = '';
-        while ($row = mysql_fetch_array($result)) $set .= $row['cid'] . ',';
-        $set = '(' . substr($set, 0, -1) . ')';
-        $sql = "UPDATE {$CONFIG['TABLE_CATEGORIES']} " . "SET parent = '0' " . "WHERE parent=cid OR parent NOT IN $set";
-        $result = cpg_db_query($sql);
-    }
-}
 
 function get_subcat_data($parent, $ident = '')
 {
     global $CONFIG, $CAT_LIST;
-    if ($CONFIG['categories_alpha_sort'] == 1) {
-    $sort_query = 'name';
-    } else {
-    $sort_query = 'pos';
-    }
 
-    $sql = "SELECT cid, name, description " . "FROM {$CONFIG['TABLE_CATEGORIES']} " . "WHERE parent = '$parent' " . "ORDER BY $sort_query";
+	 $sql = "SELECT rgt, cid, parent, name, description " . "FROM {$CONFIG['TABLE_CATEGORIES']} ORDER BY lft ASC"; 
     $result = cpg_db_query($sql);
 
     if (($cat_count = mysql_num_rows($result)) > 0) {
         $rowset = cpg_db_fetch_rowset($result);
         $pos = 0;
+        
+        $right = array(); 
+        
         foreach ($rowset as $subcat) {
+        
+				if (count($right)>0) {
+					// check if we should remove a node from the stack
+           		while ($right && $right[count($right)-1]<$subcat['rgt']) {
+               	array_pop($right);
+           		}
+       		}
+       		 
+       		$ident = str_repeat('&nbsp;&nbsp;&nbsp;',count($right));
+       		$right[] = $subcat['rgt']; 
+       		
             if ($pos > 0) {
                 $CAT_LIST[$subcat['cid']] = array('cid' => $subcat['cid'],
-                    'parent' => $parent,
+                    'parent' => $subcat['parent'],
                     'pos' => $pos++,
                     'prev' => $prev_cid,
                     'cat_count' => $cat_count,
@@ -68,24 +63,14 @@ function get_subcat_data($parent, $ident = '')
                 $CAT_LIST[$last_index]['next'] = $subcat['cid'];
             } else {
                 $CAT_LIST[$subcat['cid']] = array('cid' => $subcat['cid'],
-                    'parent' => $parent,
+                    'parent' => $subcat['parent'],
                     'pos' => $pos++,
                     'cat_count' => $cat_count,
                     'name' => $ident . $subcat['name']);
             }
             $last_index = $prev_cid = $subcat['cid'];
-           // $last_index = count($CAT_LIST) -1;
-            get_subcat_data($subcat['cid'], $ident . '&nbsp;&nbsp;&nbsp;');
         }
     }
-}
-
-function update_cat_order()
-{
-    global $CAT_LIST, $CONFIG;
-
-    foreach ($CAT_LIST as $category)
-    cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET pos='{$category['pos']}' WHERE cid = '{$category['cid']}' LIMIT 1");
 }
 
 function cat_list_box($cid, &$parent, $on_change_refresh = true)
@@ -340,8 +325,8 @@ switch ($op) {
         $pos1 = $superCage->get->getInt('pos1');
         $pos2 = $superCage->get->getInt('pos2');
 
-        cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET pos='$pos1' WHERE cid = '$cid1' LIMIT 1");
-        cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET pos='$pos2' WHERE cid = '$cid2' LIMIT 1");
+        cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET pos='$pos1', lft=0 WHERE cid = '$cid1' LIMIT 1");
+        cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET pos='$pos2', lft=0 WHERE cid = '$cid2' LIMIT 1");
         break;
 
     case 'movetop':
@@ -361,8 +346,8 @@ switch ($op) {
         while ($iPos > 0) {
           $jPos = $iPos - 1;
           $jCID = isset($cid_array[$iCID]) && array_key_exists('prev',$cid_array[$iCID]) ? $cid_array[$iCID]['prev'] : 0;
-          cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET pos='$jPos' WHERE cid = '$cid1' LIMIT 1");
-          cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET pos='$iPos' WHERE cid = '$jCID' LIMIT 1");
+          cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET pos='$jPos', lft=0 WHERE cid = '$cid1' LIMIT 1");
+          cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET pos='$iPos', lft=0 WHERE cid = '$jCID' LIMIT 1");
           $iCID = $jCID;
           $iPos = $jPos;
         }
@@ -386,8 +371,8 @@ switch ($op) {
         while ($iPos < $cat_count-1) {
           $jPos = $iPos + 1;
           $jCID = isset($cid_array[$iCID]) && array_key_exists('next',$cid_array[$iCID]) ? $cid_array[$iCID]['next'] : 0;
-          cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET pos='$jPos' WHERE cid = '$cid1' LIMIT 1");
-          cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET pos='$iPos' WHERE cid = '$jCID' LIMIT 1");
+          cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET pos='$jPos', lft=0 WHERE cid = '$cid1' LIMIT 1");
+          cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET pos='$iPos', lft=0 WHERE cid = '$jCID' LIMIT 1");
           $iCID = $jCID;
           $iPos = $jPos;
         }
@@ -404,7 +389,7 @@ switch ($op) {
         verify_children($cid, $cid);
 
         if (!in_array($parent, $children)) {
-            cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET parent='$parent', pos='-1' WHERE cid = '$cid' LIMIT 1");
+            cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET parent='$parent', pos='-1', lft=0 WHERE cid = '$cid' LIMIT 1");
         } else {
             cpg_die(ERROR, "You cannot move a category into its own child", __FILE__, __LINE__);
         }
@@ -447,9 +432,9 @@ switch ($op) {
         $children=array();
         verify_children($cid, $cid);
         if (!in_array($parent, $children)){
-        cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET parent='$parent', name='$name', description='$description', thumb='$thumb' WHERE cid = '$cid' LIMIT 1");
+        cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET parent='$parent', name='$name', description='$description', thumb='$thumb', lft=0 WHERE cid = '$cid' LIMIT 1");
         }else{
-                cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET name='$name', description='$description', thumb='$thumb' WHERE cid = '$cid' LIMIT 1");
+                cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET name='$name', description='$description', thumb='$thumb', lft=0 WHERE cid = '$cid' LIMIT 1");
         }
 				
 		//insert in categorymap
@@ -504,7 +489,7 @@ switch ($op) {
         if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_catmgr_php['unknown_cat'], __FILE__, __LINE__);
         $del_category = mysql_fetch_array($result);
         $parent = $del_category['parent'];
-        $result = cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET parent='$parent' WHERE parent = '$cid'");
+        $result = cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET parent='$parent', lft=0 WHERE parent = '$cid'");
         $result = cpg_db_query("UPDATE {$CONFIG['TABLE_ALBUMS']} SET category='$parent' WHERE category = '$cid'");
         $result = cpg_db_query("DELETE FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid='$cid' LIMIT 1");
 		
@@ -513,12 +498,11 @@ switch ($op) {
         break;
 }
 
-fix_cat_table();
-get_subcat_data(0);
-
-if ($CONFIG['categories_alpha_sort'] != 1) {
-    update_cat_order();
+if ($op){
+	check_rebuild_tree();
 }
+
+get_subcat_data(0);
 
 pageheader($lang_catmgr_php['manage_cat']);
 echo <<<EOT

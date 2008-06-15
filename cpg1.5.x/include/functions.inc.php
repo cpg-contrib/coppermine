@@ -29,92 +29,54 @@
 */
 
 /**
-* get_meta_album_set_data()
-*
-* Get the entire album set based on the current category, this function is called recursively.
-*
-* ** Experimental, may cause sql problems on galleries with large numbers of albums.
-*
-* @param integer $cid Parent Category
-* @param array $meta_album_set_array
-* @return void
-**/
-function get_meta_album_set_data($cid,&$meta_album_set_array) //adapted from index.php get_subcat_data()
-{
-    global $CONFIG, $cat;
-
-    if ($cid == USER_GAL_CAT) {
-       $sql = "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE category>=" . FIRST_USER_CAT;
-       $result = cpg_db_query($sql);
-       $album_count = mysql_num_rows($result);
-       while ($row = mysql_fetch_array($result)) {
-           $meta_album_set_array[] = $row['aid'];
-       } // while
-       mysql_free_result($result);
-    } else {
-       $result = cpg_db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = {$cid}");
-       $album_count = mysql_num_rows($result);
-       while ($row = mysql_fetch_array($result)) {
-           $meta_album_set_array[] = $row['aid'];
-       } // while
-
-       mysql_free_result($result);
-    }
-
-    $result = cpg_db_query("SELECT cid FROM {$CONFIG['TABLE_CATEGORIES']} WHERE parent = '$cid'");
-
-    if (mysql_num_rows($result) > 0) {
-        $rowset = cpg_db_fetch_rowset($result);
-        foreach ($rowset as $subcat) {
-            if ($subcat['cid']) {
-                get_meta_album_set_data($subcat['cid'], $meta_album_set_array);
-            }
-        }
-    }
-}
-
-/**
 * get_meta_album_set()
 *
-* Get the entire album set based on the current category.
+* Generates a WHERE statement that reflects the meta album
+* Incorporates restrictions based on visibility and album passwords
 *
 * @param integer $cat Category
-* @param array $meta_album_set_array
 * @return void
 **/
-function get_meta_album_set($cat, &$meta_album_set)
+
+// TODO: add in INNER JOIN {$CONFIG['TABLE_CATEGORIES']} ON cid = category 
+// only add when we are at the top level, cat == 0
+
+function get_meta_album_set($cat)
 {
-    global $USER_DATA, $FORBIDDEN_SET_DATA, $CONFIG;
+	global $CONFIG, $lft, $rgt, $RESTRICTEDWHERE, $FORBIDDEN_SET_DATA, $CURRENT_ALBUM_KEYWORD, $CURRENT_CAT_DEPTH;
+	
+ 	if ($cat == USER_GAL_CAT){
+ 	
+  		$RESTRICTEDWHERE = "WHERE (category > " . FIRST_USER_CAT;
+ 		$CURRENT_CAT_DEPTH = -1;
+ 			
+ 	} elseif ($cat > FIRST_USER_CAT){
+ 	
+ 		$RESTRICTEDWHERE = "WHERE (category = $cat";
+ 		$CURRENT_CAT_DEPTH = -1;
+ 	
+ 	} elseif ($cat > 0){
 
-    if ($USER_DATA['can_see_all_albums'] && $cat == 0) {
-        $meta_album_set ='';
-    } elseif ($cat < 0) {
-        $meta_album_set= 'AND aid IN (' . (- $cat) . ') ';
-    } elseif ($cat > 0) {
-       $meta_album_set_array=array();
-        get_meta_album_set_data($cat,$meta_album_set_array);
-        $meta_album_set_array = array_diff($meta_album_set_array,$FORBIDDEN_SET_DATA);
+		$sql = "SELECT rgt, lft, depth FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = $cat LIMIT 1";
+		$result = cpg_db_query($sql);
+		list($rgt, $lft, $CURRENT_CAT_DEPTH) = mysql_fetch_row($result);	
+		
+		$RESTRICTEDWHERE = "INNER JOIN {$CONFIG['TABLE_CATEGORIES']} AS c2 ON c2.cid = category
+									WHERE (c2.lft BETWEEN $lft AND $rgt";
+		
+	} else {
+		$RESTRICTEDWHERE = "WHERE (1";
+		$CURRENT_CAT_DEPTH = 0;
+	}
 
-        if (count($meta_album_set_array)) {
-            $meta_album_set = "AND aid IN (" . implode(',',$meta_album_set_array) . ") ";
-        } else {
-            $meta_album_set = "AND aid IN (-1) ";
-        }
-     } else {
-      $result = cpg_db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']}");
-        $album_count = mysql_num_rows($result);
-        while ($row = mysql_fetch_array($result)) {
-           $meta_album_set_array[] = $row['aid'];
-        }
-        mysql_free_result($result);
-        $meta_album_set_array = array_diff($meta_album_set_array,$FORBIDDEN_SET_DATA);
-
-        if (count($meta_album_set_array)) {
-            $meta_album_set = "AND aid IN (" . implode(',',$meta_album_set_array) . ") ";
-        } else {
-            $meta_album_set = "AND aid IN (-1) ";
-        }
-     }
+   if (!empty($CURRENT_ALBUM_KEYWORD)){
+   	$RESTRICTEDWHERE .= "OR keywords like '%$CURRENT_ALBUM_KEYWORD%'";
+   }
+       
+   $RESTRICTEDWHERE .= ')';
+      
+	if ($FORBIDDEN_SET_DATA)
+		$RESTRICTEDWHERE .= "\nAND r.aid NOT IN (" . implode(', ', $FORBIDDEN_SET_DATA) . ")";
 }
 
 
@@ -896,11 +858,13 @@ function template_extract_block(&$template, $block_name, $subst='')
  * @return
  **/
 
+//TODO: only load restricted albums in the currently viewed category filtering
+
 function get_private_album_set($aid_str="")
 {
         if (GALLERY_ADMIN_MODE) return;
 
-        global $CONFIG, $ALBUM_SET, $USER_DATA, $FORBIDDEN_SET, $FORBIDDEN_SET_DATA;
+        global $CONFIG, $USER_DATA, $FORBIDDEN_SET, $FORBIDDEN_SET_DATA;
         $superCage = Inspekt::makeSuperCage();
 
         $FORBIDDEN_SET_DATA = array();
@@ -936,7 +900,38 @@ function get_private_album_set($aid_str="")
           }
         }
 
-        $sql = "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE visibility != '0' AND visibility !='".(FIRST_USER_CAT + USER_ID)."' AND visibility NOT IN ".USER_GROUP_SET;
+			// restrict the private album set to only those in current cat tree branch
+			
+			$RESTRICTEDWHERE = "WHERE (1";
+			
+			if (defined('RESTRICTED_PRIV')){
+				
+				if ($superCage->get->keyExists('cat')) {
+		    		$cat = $superCage->get->getInt('cat');
+				} else {
+					$cat = 0;
+				}
+	
+			 	if ($cat == USER_GAL_CAT){
+			 	
+			  		$RESTRICTEDWHERE = "WHERE (category > " . FIRST_USER_CAT;
+			  		
+			 	} elseif ($cat > FIRST_USER_CAT){
+			 	
+			 		$RESTRICTEDWHERE = "WHERE (category = $cat";
+			 	
+			 	} elseif ($cat > 0){
+			
+					$sql = "SELECT rgt, lft, depth FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = $cat LIMIT 1";
+					$result = cpg_db_query($sql);
+					list($rgt, $lft, $CURRENT_CAT_DEPTH) = mysql_fetch_row($result);	
+					
+					$RESTRICTEDWHERE = "INNER JOIN {$CONFIG['TABLE_CATEGORIES']} AS c2 ON c2.cid = category
+												WHERE (c2.lft BETWEEN $lft AND $rgt";
+				}
+			}
+	
+        $sql = "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} $RESTRICTEDWHERE AND visibility != '0' AND visibility !='".(FIRST_USER_CAT + USER_ID)."' AND visibility NOT IN ".USER_GROUP_SET.')';
         if (!empty($aid_str)) {
           $sql .= " AND aid NOT IN ($aid_str)";
                 }
@@ -948,12 +943,10 @@ function get_private_album_set($aid_str="")
                     $set .= $album['aid'].',';
                     $FORBIDDEN_SET_DATA[] = $album['aid'];
             } // while
-                $FORBIDDEN_SET = "p.aid NOT IN (".substr($set, 0, -1).') ';
-                $ALBUM_SET = 'AND aid NOT IN ('.substr($set, 0, -1).') ';
+                $FORBIDDEN_SET = "AND p.aid NOT IN (".substr($set, 0, -1).') ';
         }else{
                   $FORBIDDEN_SET_DATA = array();
                   $FORBIDDEN_SET = "";
-                  $ALBUM_SET = "";
         }
         mysql_free_result($result);
 }
@@ -1060,9 +1053,10 @@ function build_caption(&$rowset,$must_have=array())
  **/
 
 function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $set_caption = true) {
-        global $USER, $CONFIG, $ALBUM_SET, $META_ALBUM_SET, $CURRENT_CAT_NAME, $CURRENT_ALBUM_KEYWORD, $HTML_SUBST, $THEME_DIR, $FAVPICS, $FORBIDDEN_SET_DATA, $USER_DATA, $lang_common;
+        global $USER, $CONFIG, $CURRENT_CAT_NAME, $CURRENT_ALBUM_KEYWORD, $HTML_SUBST, $THEME_DIR, $FAVPICS, $FORBIDDEN_SET_DATA, $USER_DATA, $lang_common;
         global $album_date_fmt, $lastcom_date_fmt, $lastup_date_fmt, $lasthit_date_fmt, $cat;
         global $lang_get_pic_data, $lang_meta_album_names, $lang_errors;
+        global $lft, $rgt, $RESTRICTEDWHERE,$FORBIDDEN_SET;
 
         $superCage = Inspekt::makeSuperCage();
 
@@ -1119,7 +1113,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
                 $approved = GALLERY_ADMIN_MODE ? '' : 'AND approved=\'YES\'';
 
-                $query = "SELECT COUNT(pid) from {$CONFIG['TABLE_PICTURES']} WHERE ((aid='$album' $forbidden_set_string ) $keyword) $approved $ALBUM_SET";
+                $query = "SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE ((aid='$album' $forbidden_set_string ) $keyword) $approved";
                 $result = cpg_db_query($query);
                 $nbEnr = mysql_fetch_array($result);
                 $count = $nbEnr[0];
@@ -1127,7 +1121,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
                 if($select_columns != '*') $select_columns .= ', title, caption,hits,owner_id,owner_name,pic_rating,votes';
 
-                $query = "SELECT $select_columns from {$CONFIG['TABLE_PICTURES']} WHERE ((aid='$album' $forbidden_set_string ) $keyword) $approved $ALBUM_SET ORDER BY $sort_order $limit";
+                $query = "SELECT $select_columns from {$CONFIG['TABLE_PICTURES']} WHERE ((aid='$album' $forbidden_set_string ) $keyword) $approved ORDER BY $sort_order $limit";
 
                 $result = cpg_db_query($query);
                 $rowset = cpg_db_fetch_rowset($result);
@@ -1149,20 +1143,20 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
         // Meta albums
         switch($album){
         case 'lastcom': // Last comments
-                if ($META_ALBUM_SET && $CURRENT_CAT_NAME) {
+                if ($cat && $CURRENT_CAT_NAME) {
                         $album_name = $album_name = $lang_meta_album_names['lastcom'].' - '. $CURRENT_CAT_NAME;
                 } else {
                         $album_name = $lang_meta_album_names['lastcom'];
                 }
-
-                // Replacing the AND in ALBUM_SET with AND (
-                if($META_ALBUM_SET){
-                        $TMP_SET = "AND (" . substr($META_ALBUM_SET, 3);
-                }else{
-                        $TMP_SET = "AND (1";
-                }
-
-                $query = "SELECT COUNT({$CONFIG['TABLE_PICTURES']}.pid) from {$CONFIG['TABLE_COMMENTS']}, {$CONFIG['TABLE_PICTURES']}  WHERE {$CONFIG['TABLE_PICTURES']}.approved = 'YES' AND {$CONFIG['TABLE_COMMENTS']}.pid = {$CONFIG['TABLE_PICTURES']}.pid AND {$CONFIG['TABLE_COMMENTS']}.approval = 'YES' $TMP_SET $keyword)";
+       				
+                $query = "SELECT COUNT(*)
+                	FROM {$CONFIG['TABLE_COMMENTS']} AS c
+                	INNER JOIN {$CONFIG['TABLE_PICTURES']} AS r ON r.pid = c.pid
+                	INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS a ON a.aid = r.aid
+                	$RESTRICTEDWHERE
+                	AND r.approved = 'YES'
+                	AND c.approval = 'YES'";
+                	
                 $result = cpg_db_query($query);
 
                 $nbEnr = mysql_fetch_array($result);
@@ -1170,13 +1164,21 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 mysql_free_result($result);
                 $select_columns = '*'; //allows building any data into any thumbnail caption
                 if($select_columns == '*'){
-                  $select_columns = 'p.*, msg_id, author_id, msg_author, UNIX_TIMESTAMP(msg_date) as msg_date, msg_body, aid';
+                  $select_columns = 'r.*, msg_id, author_id, msg_author, UNIX_TIMESTAMP(msg_date) as msg_date, msg_body, r.aid';
                 } else {
                   $select_columns = str_replace('pid', 'c.pid', $select_columns).', msg_id, author_id, msg_author, UNIX_TIMESTAMP(msg_date) as msg_date, msg_body, aid';
                 }
 
-                $TMP_SET = str_replace($CONFIG['TABLE_PICTURES'],'p',$TMP_SET);
-                $query = "SELECT $select_columns FROM {$CONFIG['TABLE_COMMENTS']} as c, {$CONFIG['TABLE_PICTURES']} as p WHERE approved = 'YES' AND c.pid = p.pid AND c.approval = 'YES' $TMP_SET $keyword) ORDER by msg_id DESC $limit";
+                $query = "SELECT $select_columns
+                	FROM {$CONFIG['TABLE_COMMENTS']} AS c
+                	INNER JOIN {$CONFIG['TABLE_PICTURES']} AS r ON r.pid = c.pid
+                	INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS a ON a.aid = r.aid
+                	$RESTRICTEDWHERE
+                	AND r.approved = 'YES'
+                	AND c.approval = 'YES'
+                	ORDER by msg_id DESC
+                	$limit";
+                	
                 $result = cpg_db_query($query);
 
 
@@ -1198,21 +1200,39 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 }
 
                 $user_name = get_username($uid);
-                if ($META_ALBUM_SET && $CURRENT_CAT_NAME) {
+                if ($cat && $CURRENT_CAT_NAME) {
                         $album_name = $album_name = $lang_meta_album_names['lastcom'].' - '. $CURRENT_CAT_NAME .' - '. $user_name;
                 } else {
                         $album_name = $lang_meta_album_names['lastcom'].' - '. $user_name;
                 }
 
-                $query = "SELECT COUNT({$CONFIG['TABLE_PICTURES']}.pid) from {$CONFIG['TABLE_COMMENTS']}, {$CONFIG['TABLE_PICTURES']}  WHERE approved = 'YES' AND author_id = '$uid' AND {$CONFIG['TABLE_COMMENTS']}.pid = {$CONFIG['TABLE_PICTURES']}.pid $META_ALBUM_SET";
+                $query = "SELECT COUNT(*)
+                	FROM {$CONFIG['TABLE_COMMENTS']} AS c
+                	INNER JOIN {$CONFIG['TABLE_PICTURES']} AS r ON r.pid = c.pid
+                	INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS a ON a.aid = r.aid
+                	$RESTRICTEDWHERE
+                	AND author_id = '$uid'
+                	AND r.approved = 'YES'
+                	AND c.approval = 'YES'";
+                	
                 $result = cpg_db_query($query);
                 $nbEnr = mysql_fetch_array($result);
                 $count = $nbEnr[0];
                 mysql_free_result($result);
 
-                $select_columns = '*, UNIX_TIMESTAMP(msg_date) AS msg_date'; //allows building any data into any thumbnail caption
+                $select_columns = 'r.*, c.*, UNIX_TIMESTAMP(msg_date) AS msg_date'; //allows building any data into any thumbnail caption
 
-                $query = "SELECT $select_columns FROM {$CONFIG['TABLE_COMMENTS']} as c, {$CONFIG['TABLE_PICTURES']} as p WHERE approved = 'YES' AND author_id = '$uid' AND c.pid = p.pid $META_ALBUM_SET ORDER by msg_id DESC $limit";
+                $query = "SELECT $select_columns
+                	FROM {$CONFIG['TABLE_COMMENTS']} AS c
+                	INNER JOIN {$CONFIG['TABLE_PICTURES']} AS r ON r.pid = c.pid
+                	INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS a ON a.aid = r.aid
+                	$RESTRICTEDWHERE
+                	AND author_id = '$uid'
+                	AND r.approved = 'YES'
+                	AND c.approval = 'YES'
+                	ORDER BY msg_id DESC
+                	$limit";
+                	
                 $result = cpg_db_query($query);
                 $rowset = cpg_db_fetch_rowset($result);
                 mysql_free_result($result);
@@ -1225,13 +1245,19 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 break;
 
         case 'lastup': // Last uploads
-                if ($META_ALBUM_SET && $CURRENT_CAT_NAME) {
+                if ($cat && $CURRENT_CAT_NAME) {
                         $album_name = $lang_meta_album_names['lastup'].' - '. $CURRENT_CAT_NAME;
                 } else {
                         $album_name = $lang_meta_album_names['lastup'];
                 }
 
-                $query = "SELECT COUNT(pid) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' $META_ALBUM_SET";
+                $query = "SELECT COUNT(*)
+                	FROM {$CONFIG['TABLE_PICTURES']} AS p
+                	INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
+       				$RESTRICTEDWHERE
+       				AND approved = 'YES'";
+       				
+                //$query = "SELECT COUNT(pid) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' $META_ALBUM_SET";
                 $result = cpg_db_query($query);
                 $nbEnr = mysql_fetch_array($result);
                 $count = $nbEnr[0];
@@ -1240,7 +1266,16 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
                 //if($select_columns != '*' ) $select_columns .= ',title, caption, owner_id, owner_name, aid';
                 $select_columns = '*'; //allows building any data into any thumbnail caption
-                $query = "SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' $META_ALBUM_SET ORDER BY pid DESC $limit";
+
+
+                $query = "SELECT $select_columns
+                	FROM {$CONFIG['TABLE_PICTURES']} AS p
+                	INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
+       				$RESTRICTEDWHERE
+       				AND approved = 'YES'
+       				ORDER BY p.pid DESC $limit";
+       				
+       				// $query = "SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' $META_ALBUM_SET ORDER BY pid DESC $limit";
                 $result = cpg_db_query($query);
 
                 $rowset = cpg_db_fetch_rowset($result);
@@ -1261,22 +1296,36 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 }
 
                 $user_name = get_username($uid);
-                if ($META_ALBUM_SET && $CURRENT_CAT_NAME) {
+                if ($cat && $CURRENT_CAT_NAME) {
                         $album_name = $lang_meta_album_names['lastup'].' - '. $CURRENT_CAT_NAME .' - '. $user_name;
                 } else {
                         $album_name = $lang_meta_album_names['lastup'] .' - '. $user_name;
                 }
 
-                $query = "SELECT COUNT(pid) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND owner_id = '$uid' $META_ALBUM_SET";
+                $query = "SELECT COUNT(*)
+                	FROM {$CONFIG['TABLE_PICTURES']} AS p
+                	INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
+       				$RESTRICTEDWHERE
+       				AND p.owner_id = '$uid'
+       				AND approved = 'YES'";
+
                 $result = cpg_db_query($query);
                 $nbEnr = mysql_fetch_array($result);
                 $count = $nbEnr[0];
                 mysql_free_result($result);
 
                 //if($select_columns != '*' ) $select_columns .= ', owner_id, owner_name, aid';
-                $select_columns = '*'; //allows building any data into any thumbnail caption
+                $select_columns = 'p.*'; //allows building any data into any thumbnail caption
 
-                $query = "SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND owner_id = '$uid' $META_ALBUM_SET ORDER BY pid DESC $limit";
+                $query = "SELECT $select_columns
+                	FROM {$CONFIG['TABLE_PICTURES']} AS p
+                	INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
+       				$RESTRICTEDWHERE
+       				AND p.owner_id = '$uid'
+       				AND approved = 'YES'
+       				ORDER BY pid DESC
+       				$limit";
+       				
                 $result = cpg_db_query($query);
 
                 $rowset = cpg_db_fetch_rowset($result);
@@ -1290,13 +1339,18 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 break;
 
         case 'topn': // Most viewed pictures
-                if ($META_ALBUM_SET && $CURRENT_CAT_NAME) {
+                if ($cat && $CURRENT_CAT_NAME) {
                         $album_name = $lang_meta_album_names['topn'].' - '. $CURRENT_CAT_NAME;
                 } else {
                         $album_name = $lang_meta_album_names['topn'];
                 }
 
-                $query ="SELECT COUNT(pid) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND hits > 0  $META_ALBUM_SET $keyword";
+                $query = "SELECT COUNT(*)
+                	FROM {$CONFIG['TABLE_PICTURES']} AS p
+                	INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
+       				$RESTRICTEDWHERE
+       				AND approved = 'YES'
+       				AND hits > 0";
 
                 $result = cpg_db_query($query);
                 $nbEnr = mysql_fetch_array($result);
@@ -1304,9 +1358,17 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 mysql_free_result($result);
 
                 //if($select_columns != '*') $select_columns .= ', hits, aid, filename, owner_id, owner_name';
-                $select_columns = '*'; //allows building any data into any thumbnail caption
+                $select_columns = 'p.*'; //allows building any data into any thumbnail caption
 
-                $query = "SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES'AND hits > 0 $META_ALBUM_SET $keyword ORDER BY hits DESC, filename  $limit";
+                $query = "SELECT $select_columns
+                	FROM {$CONFIG['TABLE_PICTURES']} AS p
+                	INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
+       				$RESTRICTEDWHERE
+       				AND approved = 'YES'
+       				AND hits > 0
+       				ORDER BY hits DESC, pid
+       				$limit";
+       				
                 $result = cpg_db_query($query);
 
                 $rowset = cpg_db_fetch_rowset($result);
@@ -1320,21 +1382,36 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 break;
 
         case 'toprated': // Top rated pictures
-                if ($META_ALBUM_SET && $CURRENT_CAT_NAME) {
+                if ($cat && $CURRENT_CAT_NAME) {
                         $album_name = $lang_meta_album_names['toprated'].' - '. $CURRENT_CAT_NAME;
                 } else {
                         $album_name = $lang_meta_album_names['toprated'];
                 }
-                $query = "SELECT COUNT(pid) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND votes >= '{$CONFIG['min_votes_for_rating']}' $META_ALBUM_SET";
+
+                $query = "SELECT COUNT(*)
+                	FROM {$CONFIG['TABLE_PICTURES']} AS p
+                	INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
+       				$RESTRICTEDWHERE
+       				AND approved = 'YES'
+       				AND p.votes > '{$CONFIG['min_votes_for_rating']}'";
+       				
                 $result = cpg_db_query($query);
                 $nbEnr = mysql_fetch_array($result);
                 $count = $nbEnr[0];
                 mysql_free_result($result);
 
                 //if($select_columns != '*') $select_columns .= ', pic_rating, votes, aid, owner_id, owner_name';
-                $select_columns = '*'; //allows building any data into any thumbnail caption
+                $select_columns = 'p.*'; //allows building any data into any thumbnail caption
 
-                $query = "SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND votes >= '{$CONFIG['min_votes_for_rating']}' $META_ALBUM_SET ORDER BY pic_rating DESC, votes DESC, pid DESC $limit";
+                $query = "SELECT $select_columns
+                	FROM {$CONFIG['TABLE_PICTURES']} AS p
+                	INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
+       				$RESTRICTEDWHERE
+       				AND approved = 'YES'
+       				AND p.votes > '{$CONFIG['min_votes_for_rating']}'
+       				ORDER BY pic_rating DESC, p.votes DESC, pid DESC
+       				$limit";
+       				
                 $result = cpg_db_query($query);
                 $rowset = cpg_db_fetch_rowset($result);
                 mysql_free_result($result);
@@ -1347,21 +1424,36 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 break;
 
         case 'lasthits': // Last viewed pictures
-                if ($META_ALBUM_SET && $CURRENT_CAT_NAME) {
+                if ($cat && $CURRENT_CAT_NAME) {
                         $album_name = $lang_meta_album_names['lasthits'].' - '. $CURRENT_CAT_NAME;
                 } else {
                         $album_name = $lang_meta_album_names['lasthits'];
                 }
-                $query = "SELECT COUNT(pid) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' and hits > 0 $META_ALBUM_SET";
+                
+                $query = "SELECT COUNT(*)
+                	FROM {$CONFIG['TABLE_PICTURES']} AS p
+                	INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
+       				$RESTRICTEDWHERE
+       				AND approved = 'YES'
+       				AND hits > 0";
+       				
                 $result = cpg_db_query($query);
                 $nbEnr = mysql_fetch_array($result);
                 $count = $nbEnr[0];
                 mysql_free_result($result);
 
                 //if($select_columns != '*') $select_columns .= ', UNIX_TIMESTAMP(mtime) as mtime, aid, hits, lasthit_ip, owner_id, owner_name';
-                $select_columns = '*, UNIX_TIMESTAMP(mtime) as mtime'; //allows building any data into any thumbnail caption
+                $select_columns = 'p.*, UNIX_TIMESTAMP(mtime) as mtime'; //allows building any data into any thumbnail caption
 
-                $query = "SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' and hits > 0 $META_ALBUM_SET ORDER BY mtime DESC $limit";
+                $query = "SELECT $select_columns
+                	FROM {$CONFIG['TABLE_PICTURES']} AS p
+                	INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
+       				$RESTRICTEDWHERE
+       				AND approved = 'YES'
+       				AND hits > 0
+       				ORDER BY mtime DESC
+       				$limit";
+       				
                 $result = cpg_db_query($query);
                 $rowset = cpg_db_fetch_rowset($result);
                 mysql_free_result($result);
@@ -1374,40 +1466,35 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 break;
 
         case 'random': // Random pictures
-                if ($META_ALBUM_SET && $CURRENT_CAT_NAME) {
+                if ($cat && $CURRENT_CAT_NAME) {
                         $album_name = $lang_meta_album_names['random'].' - '. $CURRENT_CAT_NAME;
                 } else {
                         $album_name = $lang_meta_album_names['random'];
                 }
+       
+                $query = "SELECT COUNT(*)
+                	FROM {$CONFIG['TABLE_PICTURES']} AS p
+                	INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
+       				$RESTRICTEDWHERE
+       				AND approved = 'YES'";
 
-                /* Commented out due to image not found bug
-                $query = "SELECT COUNT(pid) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' $META_ALBUM_SET";
                 $result = cpg_db_query($query);
                 $nbEnr = mysql_fetch_array($result);
                 $pic_count = $nbEnr[0];
                 mysql_free_result($result);
-                */
 
                 //if($select_columns != '*') $select_columns .= ', aid, owner_id, owner_name';
                 $select_columns = '*'; //allows building any data into any thumbnail caption
-                // if we have more than 1000 pictures, we limit the number of picture returned
-                // by the SELECT statement as ORDER BY RAND() is time consuming
-                                /* Commented out due to image not found bug
-                if ($pic_count > 1000) {
-                    $result = cpg_db_query("SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES'");
-                        $nbEnr = mysql_fetch_array($result);
-                        $total_count = $nbEnr[0];
-                        mysql_free_result($result);
 
-                        $granularity = floor($total_count / RANDPOS_MAX_PIC);
-                        $cor_gran = ceil($total_count / $pic_count);
-                        srand(time());
-                        for ($i=1; $i<= $cor_gran; $i++) $random_num_set =rand(0, $granularity).', ';
-                        $random_num_set = substr($random_num_set,0, -2);
-                        $result = cpg_db_query("SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE  randpos IN ($random_num_set) AND approved = 'YES' $ALBUM_SET ORDER BY RAND() LIMIT $limit2");
-                } else {
-                                */
-                $query = "SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' $META_ALBUM_SET ORDER BY RAND() LIMIT $limit2";
+                $query = "SELECT $select_columns
+                	FROM {$CONFIG['TABLE_PICTURES']} AS p
+                	INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
+       				$RESTRICTEDWHERE
+       				AND approved = 'YES'
+       				ORDER BY RAND()
+       				$limit";
+       				
+       			//$query = "SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' $META_ALBUM_SET ORDER BY RAND() LIMIT $limit2";
                 $result = cpg_db_query($query);
 
                 $rowset = array();
@@ -1430,7 +1517,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                                         $search_string = '';
                                 }
 
-                if ($META_ALBUM_SET && $CURRENT_CAT_NAME) {
+                if ($cat && $CURRENT_CAT_NAME) {
                         $album_name = $lang_meta_album_names['search'].' - '. $CURRENT_CAT_NAME;
                 } else {
                         $album_name = $lang_meta_album_names['search'].' - "'. strip_tags($search_string) . '"';
@@ -1444,22 +1531,33 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 break;
 
         case 'lastalb': // Last albums to which uploads
-                if ($META_ALBUM_SET && $CURRENT_CAT_NAME) {
+                if ($cat && $CURRENT_CAT_NAME) {
                         $album_name = $lang_meta_album_names['lastalb'].' - '. $CURRENT_CAT_NAME;
                 } else {
                         $album_name = $lang_meta_album_names['lastalb'];
                 }
 
 
-                $META_ALBUM_SET = str_replace( "aid", $CONFIG['TABLE_PICTURES'].".aid" , $META_ALBUM_SET );
-
-                $query = "SELECT count({$CONFIG['TABLE_ALBUMS']}.aid) FROM {$CONFIG['TABLE_PICTURES']},{$CONFIG['TABLE_ALBUMS']} WHERE {$CONFIG['TABLE_PICTURES']}.aid = {$CONFIG['TABLE_ALBUMS']}.aid AND approved = 'YES' $META_ALBUM_SET GROUP  BY {$CONFIG['TABLE_PICTURES']}.aid";
+                 $query = "SELECT COUNT(*)
+                	FROM {$CONFIG['TABLE_PICTURES']} AS p
+                	INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
+       				$RESTRICTEDWHERE
+       				AND approved = 'YES'
+       				GROUP BY p.aid";
 
                 $result = cpg_db_query($query);
                 $count = mysql_num_rows($result);
                 mysql_free_result($result);
 
-                $query = "SELECT *,{$CONFIG['TABLE_ALBUMS']}.title AS title,{$CONFIG['TABLE_ALBUMS']}.aid AS aid FROM {$CONFIG['TABLE_PICTURES']},{$CONFIG['TABLE_ALBUMS']} WHERE {$CONFIG['TABLE_PICTURES']}.aid = {$CONFIG['TABLE_ALBUMS']}.aid AND approved = 'YES' $META_ALBUM_SET GROUP BY {$CONFIG['TABLE_PICTURES']}.aid ORDER BY {$CONFIG['TABLE_PICTURES']}.ctime DESC $limit";
+                 $query = "SELECT *, r.title AS title, r.aid AS aid 
+                	FROM {$CONFIG['TABLE_PICTURES']} AS p
+                	INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
+       				$RESTRICTEDWHERE
+       				AND approved = 'YES'
+       				GROUP BY p.aid
+       				ORDER BY p.ctime DESC
+       				$limit";
+       				
                 $result = cpg_db_query($query);
                 $rowset = cpg_db_fetch_rowset($result);
                 mysql_free_result($result);
@@ -1477,7 +1575,14 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                                 $rowset = array();
                 if (count($FAVPICS)>0){
                         $favs = implode(",",$FAVPICS);
-                        $query = "SELECT COUNT(pid) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND pid IN ($favs) $META_ALBUM_SET";
+                        
+                        $query = "SELECT COUNT(*)
+                				FROM {$CONFIG['TABLE_PICTURES']} AS p
+                				INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
+       							$RESTRICTEDWHERE
+       							AND approved = 'YES'
+       							AND pid IN ($favs)";
+       							
                         $result = cpg_db_query($query);
                         $nbEnr = mysql_fetch_array($result);
                         $count = $nbEnr[0];
@@ -1485,7 +1590,14 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
                         $select_columns = '*';
 
-                        $query = "SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND pid IN ($favs) $META_ALBUM_SET $limit";
+                        $query = "SELECT $select_columns
+                				FROM {$CONFIG['TABLE_PICTURES']} AS p
+                				INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
+       							$RESTRICTEDWHERE
+       							AND approved = 'YES'
+       							AND pid IN ($favs)
+       							$limit";
+       							
                         $result = cpg_db_query($query);
                         $rowset = cpg_db_fetch_rowset($result);
 
@@ -1504,13 +1616,28 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
             $date = $superCage->get->keyExists('date') ? cpgValidateDate($superCage->get->getRaw('date')) : null;
             $album_name = $lang_common['date'] . ': '. $date;
             $rowset = array();
-            $query = "SELECT COUNT(pid) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND substring(from_unixtime(ctime),1,10) = '".substr($date,0,10)."' $META_ALBUM_SET";
+            
+            $query = "SELECT COUNT(*)
+ 					FROM {$CONFIG['TABLE_PICTURES']} AS p
+ 					INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
+ 					$RESTRICTEDWHERE
+ 					AND approved = 'YES'
+					AND substring(from_unixtime(ctime),1,10) = '".substr($date,0,10)."'";
+
             $result = cpg_db_query($query);
             $nbEnr = mysql_fetch_array($result);
             $count = $nbEnr[0];
             mysql_free_result($result);
             $select_columns = '*';
-            $query = "SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND substring(from_unixtime(ctime),1,10) = '".substr($date,0,10)."'  $META_ALBUM_SET $limit";
+            
+             $query = "SELECT $select_columns
+ 					FROM {$CONFIG['TABLE_PICTURES']} AS p
+ 					INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
+ 					$RESTRICTEDWHERE
+ 					AND approved = 'YES'
+					AND substring(from_unixtime(ctime),1,10) = '".substr($date,0,10)."'
+					$limit";
+
             $result = cpg_db_query($query);
             $rowset = cpg_db_fetch_rowset($result);
             mysql_free_result($result);
@@ -1853,94 +1980,89 @@ function add_album_hit($aid)
 
 function breadcrumb($cat, &$breadcrumb, &$BREADCRUMB_TEXT)
 {
-        global $album, $lang_errors, $lang_list_categories;
-        global $CONFIG,$CURRENT_ALBUM_DATA, $CURRENT_CAT_NAME;
+	global $album, $lang_errors, $lang_list_categories;
+	global $CONFIG,$CURRENT_ALBUM_DATA, $CURRENT_CAT_NAME;
 
-        $category_array = array();
+	$category_array = array();
+	
+	// first we build the category path: names and id
+	if ($cat != 0){ //Categories other than 0 need to be selected
 
-        // first we build the category path: names and id
-        if ($cat != 0)
-        { //Categories other than 0 need to be selected
-                if ($cat >= FIRST_USER_CAT)
-                {
-                    $user_name = get_username($cat - FIRST_USER_CAT);
-                    if (!$user_name) $user_name = 'Mr. X';
+		if ($cat >= FIRST_USER_CAT){
+		
+			$sql = "SELECT name FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = " . USER_GAL_CAT;
+    		$result = cpg_db_query($sql);
+	 		$row = mysql_fetch_assoc($result);
+	 
+			$category_array[] = array(USER_GAL_CAT, $row['name']);
+                           
+			$user_name = get_username($cat - FIRST_USER_CAT);
+			if (!$user_name) $user_name = 'Mr. X';
 
-                    $category_array[] = array($cat, $user_name);
-                    $CURRENT_CAT_NAME = sprintf($lang_list_categories['xx_s_gallery'], $user_name);
-                    $row['parent'] = 1;
-                }
-                else
-                {
-                    $result = cpg_db_query("SELECT name, parent FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '$cat'");
-                    if (mysql_num_rows($result) == 0){
-                        cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_cat'], __FILE__, __LINE__);
-                                        }
-                    $row = mysql_fetch_array($result);
+			$category_array[] = array($cat, $user_name);
+			$CURRENT_CAT_NAME = sprintf($lang_list_categories['xx_s_gallery'], $user_name);
+			$row['parent'] = 1;
+		
+		} else {
+                
+			$result = cpg_db_query("SELECT p.cid, p.name FROM {$CONFIG['TABLE_CATEGORIES']} AS c, 
+				{$CONFIG['TABLE_CATEGORIES']} AS p 
+				WHERE c.lft BETWEEN p.lft AND p.rgt
+				AND c.cid = $cat
+				ORDER BY p.lft");
+                   
+			while ($row = mysql_fetch_assoc($result)){
+				$category_array[] = array($row['cid'], $row['name']);
+				$CURRENT_CAT_NAME = $row['name'];
+			}
+			
+			mysql_free_result($result);
+		}
+	}
 
-                    $category_array[] = array($cat, $row['name']);
-                    $CURRENT_CAT_NAME = $row['name'];
-                    mysql_free_result($result);
-                }
+	$breadcrumb_links = array();
+	$BREADCRUMB_TEXTS = array();
 
-                while($row['parent'] != 0)
-                {
-                    $result = cpg_db_query("SELECT cid, name, parent FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '{$row['parent']}'");
-                    if (mysql_num_rows($result) == 0){
-                        //cpg_die(CRITICAL_ERROR, $lang_errors['orphan_cat'], __FILE__, __LINE__);
-                                        }
-                    $row = mysql_fetch_array($result);
+	// Add the Home link  to breadcrumb
+	$breadcrumb_links[0] = '<a href="index.php">'.$lang_list_categories['home'].'</a>';
+	$BREADCRUMB_TEXTS[0] = $lang_list_categories['home'];
 
-                    $category_array[] = array($row['cid'], $row['name']);
-                    mysql_free_result($result);
-                } // while
+	$cat_order = 1;
+	foreach ($category_array as $category)
+	{
+		$breadcrumb_links[$cat_order] = "<a href=\"index.php?cat={$category[0]}\">{$category[1]}</a>";
+		$BREADCRUMB_TEXTS[$cat_order] = $category[1];
+		$cat_order += 1;
+	}
 
-                $category_array = array_reverse($category_array);
-        }
+	//Add Link for album if aid is set
+	if (isset($CURRENT_ALBUM_DATA['aid']))
+	{
+		$breadcrumb_links[$cat_order] = "<a href=\"thumbnails.php?album=".$CURRENT_ALBUM_DATA['aid']."\">".$CURRENT_ALBUM_DATA['title']."</a>";
+		$BREADCRUMB_TEXTS[$cat_order] = $CURRENT_ALBUM_DATA['title'];
+	}
 
-        $breadcrumb_links = array();
-        $BREADCRUMB_TEXTS = array();
+	// we check if the theme_breadcrumb exists...
+	if (function_exists('theme_breadcrumb'))
+	{
+		theme_breadcrumb($breadcrumb_links, $BREADCRUMB_TEXTS, $breadcrumb, $BREADCRUMB_TEXT);
+		return;
+	}
 
-        // Add the Home link  to breadcrumb
-        $breadcrumb_links[0] = '<a href="index.php">'.$lang_list_categories['home'].'</a>';
-        $BREADCRUMB_TEXTS[0] = $lang_list_categories['home'];
-
-        $cat_order = 1;
-        foreach ($category_array as $category)
-        {
-            $breadcrumb_links[$cat_order] = "<a href=\"index.php?cat={$category[0]}\">{$category[1]}</a>";
-            $BREADCRUMB_TEXTS[$cat_order] = $category[1];
-            $cat_order += 1;
-        }
-
-        //Add Link for album if aid is set
-        if (isset($CURRENT_ALBUM_DATA['aid']))
-        {
-            $breadcrumb_links[$cat_order] = "<a href=\"thumbnails.php?album=".$CURRENT_ALBUM_DATA['aid']."\">".$CURRENT_ALBUM_DATA['title']."</a>";
-            $BREADCRUMB_TEXTS[$cat_order] = $CURRENT_ALBUM_DATA['title'];
-        }
-
-        // we check if the theme_breadcrumb exists...
-        if (function_exists('theme_breadcrumb'))
-        {
-            theme_breadcrumb($breadcrumb_links, $BREADCRUMB_TEXTS, $breadcrumb, $BREADCRUMB_TEXT);
-            return;
-        }
-        // otherwise we have a default breadcrumb builder:
-        $breadcrumb = '';
-        $BREADCRUMB_TEXT = '';
-        foreach ($breadcrumb_links as $breadcrumb_link)
-        {
-            $breadcrumb .= ' > ' . $breadcrumb_link;
-        }
-        foreach ($BREADCRUMB_TEXTS as $BREADCRUMB_TEXT_elt)
-        {
-            $BREADCRUMB_TEXT .= ' > ' . $BREADCRUMB_TEXT_elt;
-        }
-        // We remove the first ' > '
-        $breadcrumb = substr_replace($breadcrumb,'', 0, 3);
-        $BREADCRUMB_TEXT = substr_replace($BREADCRUMB_TEXT,'', 0, 3);
-        //echo $breadcrumb;
+	// otherwise we have a default breadcrumb builder:
+	$breadcrumb = '';
+	$BREADCRUMB_TEXT = '';
+	foreach ($breadcrumb_links as $breadcrumb_link)
+	{
+		$breadcrumb .= ' > ' . $breadcrumb_link;
+	}
+	foreach ($BREADCRUMB_TEXTS as $BREADCRUMB_TEXT_elt)
+	{
+		$BREADCRUMB_TEXT .= ' > ' . $BREADCRUMB_TEXT_elt;
+	}
+	// We remove the first ' > '
+	$breadcrumb = substr_replace($breadcrumb,'', 0, 3);
+	$BREADCRUMB_TEXT = substr_replace($BREADCRUMB_TEXT,'', 0, 3);
 }
 
 
@@ -2052,12 +2174,12 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
                                 $row['pwidth'] = $image_info[0];
                                 $row['pheight'] = $image_info[1];
                         }
-                        // thumb cropping - if we display a system thumb we calculate the dimension by any and not ex
-                        if($row['system_icon']=='true'){
-                          $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['thumb_width'], true);
-                        } else {
-                          $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['thumb_width']);
-                        }
+                                                //thumb cropping - if we display a system thumb we calculate the dimension by any and not ex
+                                                if($row['system_icon']=='true'){
+                                $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['thumb_width'], true);
+                                                } else {
+                                $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['thumb_width']);
+                                                }
                         $thumb_list[$i]['pos'] = $key < 0 ? $key : $i - 1 + $lower_limit;
                         $thumb_list[$i]['pid'] = $row['pid'];;
                         $thumb_list[$i]['image'] = "<img src=\"" . $pic_url . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$row['filename']}\" title=\"$pic_title\"/>";
@@ -2485,7 +2607,7 @@ function& cpg_lang_var($varname,$index=null) {
 
 function cpg_debug_output()
 {
-    global $USER, $USER_DATA, $META_ALBUM_SET, $ALBUM_SET, $CONFIG, $cpg_time_start, $query_stats, $queries, $lang_cpg_debug_output, $CPG_PHP_SELF, $superCage, $CPG_PLUGINS;
+    global $USER, $USER_DATA, $CONFIG, $cpg_time_start, $query_stats, $queries, $lang_cpg_debug_output, $CPG_PHP_SELF, $superCage, $CPG_PLUGINS;
 
         $time_end = cpgGetMicroTime();
         $time = round($time_end - $cpg_time_start, 3);
@@ -2635,7 +2757,7 @@ EOT;
         }
 
         echo <<<EOT
-Page generated in $time seconds - $query_count queries in $total_query_time seconds - Album set : $ALBUM_SET; Meta set: $META_ALBUM_SET;
+Page generated in $time seconds - $query_count queries in $total_query_time seconds;
 EOT;
         echo '</textarea>';
         echo '</td>';
@@ -4383,4 +4505,53 @@ function cpg_getimagesize($image, $force_cpg_function = false){
                 }
         }
 }
+
+function check_rebuild_tree(){
+
+	global $CONFIG;
+	
+	$sql = "SELECT COUNT(*) FROM {$CONFIG['TABLE_PREFIX']}categories WHERE lft = 0";
+	$result = cpg_db_query($sql);
+	list($count) = mysql_fetch_row($result);
+	
+	if ($count){
+		return rebuild_tree(0,0,0,0);
+	} else {
+		return false;
+	}
+}
+
+function rebuild_tree($parent, $left, $depth, $pos) {
+
+	global $CONFIG;
+	
+   // the right value of this node is the left value + 1
+   $right = $left+1;
+	
+	$thispos = $pos;
+	
+	if ($CONFIG['categories_alpha_sort'] == 1) {
+		$sort_query = 'name';
+	} else {
+		$sort_query = 'pos';
+	}
+    
+   // get all children of this node
+   $result = cpg_db_query("SELECT cid FROM {$CONFIG['TABLE_PREFIX']}categories WHERE parent = $parent ORDER BY $sort_query, cid");
+   while ($row = mysql_fetch_array($result)) {
+       // recursive execution of this function for each
+       // child of this node
+       // $right is the current right value, which is
+       // incremented by the rebuild_tree function
+       if ($row['cid']) $right = rebuild_tree($row['cid'], $right, $depth+1, $pos++);
+   }
+
+   // we've got the left value, and now that we've processed
+   // the children of this node we also know the right value
+   cpg_db_query("UPDATE {$CONFIG['TABLE_PREFIX']}categories SET lft = $left, rgt = $right, depth = $depth, pos = $thispos WHERE cid = $parent LIMIT 1");
+   
+   // return the right value of this node + 1
+   return $right+1;
+} 
+
 ?>

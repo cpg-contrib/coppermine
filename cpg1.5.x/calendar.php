@@ -49,7 +49,7 @@ class MyCalendar extends Calendar {
       $superCage = Inspekt::makeSuperCage();
 
       $date=sprintf('%s-%02s-%02s',$year,$month,$day);
-      $query = "SELECT COUNT(pid) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND substring(from_unixtime(ctime),1,10) = '".substr($date,0,10)."' $META_ALBUM_SET";
+      $query = "SELECT COUNT(pid) from {$CONFIG['TABLE_PICTURES']} AS p WHERE approved = 'YES' AND substring(from_unixtime(ctime),1,10) = '".substr($date,0,10)."' $FORBIDDEN_SET";
       $result = cpg_db_query($query);
       $nb_pics = mysql_result($result, 0, 0);
 

@@ -418,8 +418,9 @@ class core_udb {
         $f =& $this->field;
 
                 if ($FORBIDDEN_SET != "") {
-                        $forbidden_with_icon = "AND ($FORBIDDEN_SET or p.galleryicon=p.pid)";
-                        $forbidden = "AND ($FORBIDDEN_SET)";
+                       // $forbidden_with_icon = "$FORBIDDEN_SET or p.galleryicon=p.pid";
+                       $forbidden_with_icon = "$FORBIDDEN_SET";
+                        $forbidden = "$FORBIDDEN_SET";
                 } else {
                         $forbidden_with_icon = '';
                         $forbidden = '';

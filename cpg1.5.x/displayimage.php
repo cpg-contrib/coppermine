@@ -214,24 +214,6 @@ function html_picinfo()
     return theme_html_picinfo($info);
 }
 
-function get_subcat_data($parent, $level)
-{
-    global $CONFIG, $ALBUM_SET_ARRAY;
-
-    $result = cpg_db_query("SELECT cid, name, description FROM {$CONFIG['TABLE_CATEGORIES']} WHERE parent = '$parent'");
-    if (mysql_num_rows($result) > 0) {
-        $rowset = cpg_db_fetch_rowset($result);
-        foreach ($rowset as $subcat) {
-            $result = cpg_db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = {$subcat['cid']}");
-            $album_count = mysql_num_rows($result);
-            while ($row = mysql_fetch_array($result)) {
-                $ALBUM_SET_ARRAY[] = $row['aid'];
-            } // while
-        }
-        if ($level > 1) get_subcat_data($subcat['cid'], $level -1);
-    }
-}
-
 /**
  * Main code
  */
@@ -256,38 +238,7 @@ if ($superCage->get->testAlpha('album')) {
         $album = $superCage->get->getInt('album');
 }
 
-
-// Build the album set if required
-/*
-//disabled by donnoman
-if (!is_numeric($album) && $cat) { // Meta albums, we need to restrict the albums to the current category
-    if ($cat < 0) {
-        $ALBUM_SET .= 'AND aid IN (' . (- $cat) . ') ';
-    } else {
-        $ALBUM_SET_ARRAY = array();
-        if ($cat == USER_GAL_CAT)
-            $where = 'category > ' . FIRST_USER_CAT;
-        else
-            $where = "category = '$cat'";
-
-        $result = cpg_db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE $where");
-        while ($row = mysql_fetch_array($result)) {
-            $ALBUM_SET_ARRAY[] = $row['aid'];
-        } // while
-        get_subcat_data($cat, $CONFIG['subcat_level']);
-        // Treat the album set
-        if (count($ALBUM_SET_ARRAY)) {
-            $set = '';
-            foreach ($ALBUM_SET_ARRAY as $album_id) $set .= ($set == '') ? $album_id : ',' . $album_id;
-            $ALBUM_SET .= "AND aid IN ($set) ";
-        }
-    }
-}
-//disabled by donnoman
-*/
-//get_meta_album_set in functions.inc.php will populate the $ALBUM_SET instead; matches $META_ALBUM_SET.
-get_meta_album_set($cat,$ALBUM_SET);
-$META_ALBUM_SET = $ALBUM_SET; //displayimage uses $ALBUM_SET but get_pic_data in functions now uses $META_ALBUM_SET
+get_meta_album_set($cat);
 
 //attempt to fix topn images for keyworded albums
 if ($cat < 0) {
@@ -297,28 +248,12 @@ if ($cat < 0) {
         $CURRENT_ALBUM_KEYWORD = $CURRENT_ALBUM_DATA['keyword'];
     }
 }
-// Retrieve data for the current picture
-######## Commented by Abbas for new URL ###########
-// Can be removed after testing
-/*
-if ($pos < 0 || $pid > 0) {
-    $pid = ($pos < 0) ? -$pos : $pid;
-    $result = cpg_db_query("SELECT aid from {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid' $ALBUM_SET LIMIT 1");
-    if (mysql_num_rows($result) == 0) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
-    $row = mysql_fetch_array($result);
-    $album = $row['aid'];
-    $pic_data = get_pic_data($album, $pic_count, $album_name, -1, -1, false);
-    for($pos = 0; $pic_data[$pos]['pid'] != $pid && $pos < $pic_count; $pos++);
-    $pic_data = get_pic_data($album, $pic_count, $album_name, $pos, 1, false);
-    $CURRENT_PIC_DATA = $pic_data[0];
-*/
-###################################################
 
 if (!$superCage->get->keyExists('fullsize') && ($pos < 0 || $pid > 0)) {
     ########## Modified by Abbas for new URL feature #########
     $pid = ($pos < 0) ? -$pos : $pid;
     if (!$album) {
-      $result = cpg_db_query("SELECT aid from {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid' $ALBUM_SET LIMIT 1");
+      $result = cpg_db_query("SELECT aid from {$CONFIG['TABLE_PICTURES']} AS p WHERE pid='$pid' $FORBIDDEN_SET LIMIT 1");
       if (mysql_num_rows($result) == 0) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
       $row = mysql_fetch_array($result);
     }

@@ -1558,7 +1558,7 @@ if (!function_exists('pagefooter')) {  //{THEMES}
 function pagefooter()
 {
     //global $HTTP_GET_VARS, $HTTP_POST_VARS, $HTTP_SERVER_VARS;
-    global $USER, $USER_DATA, $ALBUM_SET, $CONFIG, $time_start, $query_stats, $queries;;
+    global $USER, $USER_DATA, $CONFIG, $time_start, $query_stats, $queries;;
     global $template_footer;
 
     $custom_footer = cpg_get_custom_include($CONFIG['custom_footer_path']);
@@ -3436,7 +3436,7 @@ if (!function_exists('theme_display_fullsize_pic')) {  //{THEMES}
 // Display the full size image
 function theme_display_fullsize_pic()
 {
-    global $CONFIG, $THEME_DIR, $ALBUM_SET, $pid;
+    global $CONFIG, $THEME_DIR, $FORBIDDEN_SET, $pid;
     global $lang_errors, $lang_fullsize_popup, $lang_charset;
 
     $superCage = Inspekt::makeSuperCage();
@@ -3457,7 +3457,7 @@ function theme_display_fullsize_pic()
       $imagedata = array('name' => $picfile, 'path' => path2url($picname), 'geometry' => $imagesize[3]);
     } elseif (pid) {
       //$pid = (int)$_GET['pid'];
-      $sql = "SELECT * " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='$pid' $ALBUM_SET";
+      $sql = "SELECT * " . "FROM {$CONFIG['TABLE_PICTURES']} AS p" . "WHERE pid='$pid' $FORBIDDEN_SET";
       $result = cpg_db_query($sql);
       if (!mysql_num_rows($result)) {
         cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);

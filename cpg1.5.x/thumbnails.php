@@ -54,24 +54,6 @@ if (!USER_ID && $CONFIG['allow_unlogged_access'] == 0) {
 
 if ($CONFIG['enable_smilies']) include("include/smilies.inc.php");
 
-function thumb_get_subcat_data($parent, &$album_set_array)
-{
-    global $CONFIG;
-
-    $result = cpg_db_query("SELECT cid FROM {$CONFIG['TABLE_CATEGORIES']} WHERE parent = '$parent'");
-    if (mysql_num_rows($result) > 0) {
-        $rowset = cpg_db_fetch_rowset($result);
-        foreach ($rowset as $subcat) {
-            $result = cpg_db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = {$subcat['cid']}");
-            $album_count = mysql_num_rows($result);
-            while ($row = mysql_fetch_array($result)) {
-                $album_set_array[] = $row['aid'];
-            } // while
-            thumb_get_subcat_data($subcat['cid'], $album_set_array);
-        }   
-    }
-}
-
 /**
  * Main code
  */
@@ -150,22 +132,12 @@ if (is_numeric($album)) {
             $actual_cat = $CURRENT_ALBUM_DATA['category'];
             $CURRENT_ALBUM_KEYWORD = $CURRENT_ALBUM_DATA['keyword'];
         }
-
-        $ALBUM_SET = 'AND aid IN (' . (- $cat) . ') ' . $ALBUM_SET;
+        
         breadcrumb($actual_cat, $breadcrumb, $breadcrumb_text);
         $CURRENT_CAT_NAME = $CURRENT_ALBUM_DATA['title'];
         $CURRENT_ALBUM_KEYWORD = $CURRENT_ALBUM_DATA['keyword'];
     } else {
-        $album_set_array = array();
-        if ($cat == USER_GAL_CAT)
-            $where = 'category > ' . FIRST_USER_CAT;
-        else
-            $where = "category = '$cat'";
 
-        $result = cpg_db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE $where");
-        while ($row = mysql_fetch_array($result)) {
-            $album_set_array[] = $row['aid'];
-        } // while
         if ($cat >= FIRST_USER_CAT) {
             $user_name = get_username($cat - FIRST_USER_CAT);
             $CURRENT_CAT_NAME = sprintf($lang_list_categories['xx_s_gallery'], $user_name);
@@ -175,15 +147,13 @@ if (is_numeric($album)) {
             $row = mysql_fetch_array($result);
             $CURRENT_CAT_NAME = $row['name'];
         }
-        thumb_get_subcat_data($cat, $album_set_array, $CONFIG['subcat_level']);
-        // Treat the album set
-        if (count($album_set_array)) {
-            $set = '';
-            foreach ($album_set_array as $album_id) $set .= ($set == '') ? $album_id : ',' . $album_id;
-            $ALBUM_SET .= "AND aid IN ($set) ";
-        }
+
+        get_meta_album_set($cat);
+
         breadcrumb($cat, $breadcrumb, $breadcrumb_text);
     }
+} else {
+	get_meta_album_set(0);
 }
 
 if (isset($CURRENT_ALBUM_DATA)) {
@@ -290,8 +260,9 @@ if ($CONFIG['allow_private_albums'] == 0 || !in_array($album, $FORBIDDEN_SET_DAT
         $valid = true;
     }
 }
-$META_ALBUM_SET = $ALBUM_SET; //temporary assignment until we are sure we are keeping the $META_ALBUM_SET functionality.
+
 CPGPluginAPI::filter('post_breadcrumb',null);
+
 if (!$valid) {
     form_albpw();
 } else {

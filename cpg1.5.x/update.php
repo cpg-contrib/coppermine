@@ -32,6 +32,7 @@ require ('include/Inspekt.php');
 require ('include/sql_parse.php');
 require ('include/config.inc.php');
 require ('include/update.inc.php');
+require ('include/functions.inc.php');
 
 // The defaults values
 $errors = '';
@@ -181,9 +182,16 @@ function cpg_get_config_value($config_name) {
     return $row[0];
 }
 
+function cpgGetMicroTime()
+{
+	list($usec, $sec) = explode(" ", microtime());
+	return ((float)$usec + (float)$sec);
+}
+
 /**
  * Return an array containing the system thumbs in a directory
  */
+ /*
 function cpg_get_system_thumb_list($search_folder = 'images/')
 {
         global $CONFIG;
@@ -217,7 +225,7 @@ function cpg_get_system_thumb_list($search_folder = 'images/')
                 return $results;
         }
 }
-
+*/
 // ----------------------------- TEST FUNCTIONS ---------------------------- //
 function test_sql_connection()
 {
@@ -227,6 +235,8 @@ function test_sql_connection()
         $errors .= "<hr /><br />Could not create a mySQL connection, please check the SQL values in include/config.inc.php<br /><br />MySQL error was : " . mysql_error() . "<br /><br />";
     } elseif (! mysql_select_db($CONFIG['dbname'], $connect_id)) {
         $errors .= "<hr /><br />mySQL could not locate a database called '{$CONFIG['dbname']}' please check the value entered for this in include/config.inc.php<br /><br />";
+    } else {
+    	$CONFIG['LINK_ID'] = $connect_id;
     }
 }
 
@@ -359,6 +369,31 @@ EOT;
             </tr>
 EOT;
     }
+    
+            print <<< EOT
+            <tr>
+                <td class="tablef">
+                    Category tree:
+                </td>
+EOT;
+    
+    if (check_rebuild_tree()) {
+    
+        print <<< EOT
+                <td class="tablef updatesOK">
+                    OK
+                </td>
+            </tr>
+EOT;
+    } else {
+        print <<< EOT
+                <td class="tablef updatesFail">
+                    Already done
+                </td>
+            </tr>
+EOT;
+    }
+    
     echo "</table>";
 }
 ?>
