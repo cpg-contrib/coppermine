@@ -3457,7 +3457,7 @@ function theme_display_fullsize_pic()
       $imagedata = array('name' => $picfile, 'path' => path2url($picname), 'geometry' => $imagesize[3]);
     } elseif (pid) {
       //$pid = (int)$_GET['pid'];
-      $sql = "SELECT * " . "FROM {$CONFIG['TABLE_PICTURES']} AS p" . "WHERE pid='$pid' $FORBIDDEN_SET";
+      $sql = "SELECT * " . "FROM {$CONFIG['TABLE_PICTURES']} AS p " . "WHERE pid='$pid' $FORBIDDEN_SET";
       $result = cpg_db_query($sql);
       if (!mysql_num_rows($result)) {
         cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
