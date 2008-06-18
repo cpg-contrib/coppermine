@@ -133,6 +133,10 @@ if ($superCage->get->keyExists('radio')){
 		$radio = '0';
 }
 
+if ($superCage->get->keyExists('limitfolder') && $matches = $superCage->get->getMatched('limitfolder','/^[0-9A-Za-z\/_-]+$/')) {
+	$limitfolder = $matches[0];
+}
+
 $newline = "\n";
 
 ?>
