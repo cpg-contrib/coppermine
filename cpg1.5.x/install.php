@@ -131,7 +131,7 @@ switch($step) {
 			$install->config['javascript_test_passed'] = true;
 		}
 		//REGISTER_GLOBALS CHECK
-		if(ini_get(register_globals)){
+		if(ini_get('register_globals')){
 			//register_globals is turned on, please turn it of.
 			$install->error .= $install->language['register_globals_detected'] . '<br /><br />';
 		}
@@ -193,8 +193,9 @@ switch($step) {
 			$imp_list .= '<option value="im">ImageMagick</option>';
 			$content .= '<b>ImageMagick</b> Version ' . substr($image_processors['im']['version'], 20, 7) . '(at: ' . $path .')';
 			$selected = 'im';
+			$im_not_found = '';
 		} else {
-			$im_not_found .= '<br /><br /><fieldset style="width:90%" title="ImageMagick">' . $install->language['im_not_found'] .'</fieldset>';
+			$im_not_found = '<br /><br /><fieldset style="width:90%" title="ImageMagick">' . $install->language['im_not_found'] .'</fieldset>';
 		}
 		// check configuration options
 		if(isset($install->config['thumb_method'])) $selected = $install->config['thumb_method'];
@@ -210,7 +211,7 @@ switch($step) {
 		
 		// add IM path box
 		(isset($install->config['im_path']) && $superCage->post->getPath('im_path') != (dirname($superCage->server->getPath('SCRIPT_FILENAME') . DIRECTORY_SEPARATOR))) ? $path = $install->config['im_path'] : $path = $path;
-		$content .= '<br /><br />' . $install->language['im_path'] . '<br /><input type="text" size="70" name="im_path" value="' . $path . '" /><input type="submit" name="update_im_path" value="' . $install->language['check_path'] . '" />';
+		$content .= '<br /><br />' . $install->language['im_path'] . '<br /><input type="text" name="im_path" value="' . $path . '" /><input type="submit" name="update_im_path" value="' . $install->language['check_path'] . '" />';
 		
 		html_content($content);
 		html_footer();
@@ -1294,7 +1295,6 @@ class CPGInstall{
 	*/
 	function getIM() {
 		$im_paths = array(
-			'convert',
 			'/imagemagick/convert',
 			'/imagemagick/bin/convert',
 			'/local/bin/convert',
@@ -1312,14 +1312,15 @@ class CPGInstall{
 			'/usr/sbin/convert',
 			'/bin/convert',
 			'/bin/imagemagick/convert',
-			'/bin/imagemagick/bin/convert'
+			'/bin/imagemagick/bin/convert',
+			'convert'
 			);
 		// add trailing slash if nececary
-		if (!preg_match('|[/\\\\]\Z|', $this->config['im_path']) && $this->config['im_path'] != '') {
+		if (!empty($this->config['im_path']) && !preg_match('|[/\\\\]\Z|', $this->config['im_path'])) {
             $this->config['im_path'] .= '/';
 		}
 		// add user defined path to paths array
-		if($this->config['im_path'] != '') {
+		if(!empty($this->config['im_path'])) {
 			// add unix version
 			$im_paths[] = $this->config['im_path'] . 'convert';
 			// add windows version
