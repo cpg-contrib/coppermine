@@ -22,6 +22,11 @@
 define('IN_COPPERMINE', true);
 define('INSTALL_PHP', true);
 define('VERSIONCHECK_PHP', true);
+
+define('INFORMATION', 1);
+define('ERROR', 2);
+define('CRITICAL_ERROR', 3);
+
 if (!defined('COPPERMINE_VERSION')) { // we need to define the constant COPPERMINE_VERSION that normally get's populated by include/init.inc.php, as we check the repository against that version number
 	define('COPPERMINE_VERSION', '1.5.0');
 }
@@ -908,7 +913,7 @@ class CPGInstall{
 			$success = true;
 		} else {
 			// could not write tmp config, add error
-			$this->error = sprintf($this->language['cant_write_tmp_conf'], $tmp_config);
+			$this->error = sprintf($this->language['cant_write_tmp_conf'], $this->tmp_config);
 			$success = false;
 		}
 		return $success;
@@ -978,7 +983,7 @@ class CPGInstall{
 			include('lang/english.php');
 			$lang_en = $lang_install;
 			$lang_en_versioncheck = $lang_versioncheck_php;
-			if (file_exists('lang/' . $this->config['lang'] . '.php')) {
+			if (isset($this->config['lang']) && file_exists('lang/' . $this->config['lang'] . '.php')) {
 				// include this lang
 				include('lang/' . $this->config['lang'] . '.php');
 			}
