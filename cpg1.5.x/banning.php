@@ -101,7 +101,7 @@ EOHEAD;
                                         <td class="{$row_style_class}" valign="middle">
                                                                 <input type="submit" class="button" name="edit_ban" value="{$lang_banning_php['edit_ban']}" />
                                         &nbsp;&nbsp;
-                                                                <input type="submit" class="button" name="delete_ban" value="{$lang_banning_php['delete_ban']}" />
+                                                                <input type="submit" class="button" name="delete_ban" value="{$lang_common['delete']}" />
                                         </td>
                                 </form>
                                 </tr>

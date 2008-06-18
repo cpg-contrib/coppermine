@@ -134,7 +134,7 @@ function list_users($search = '')
 {
     global $CONFIG, $cpg_udb, $CPG_PHP_SELF; //, $PHP_SELF;
     global $lang_usermgr_php, $lang_byte_units, $register_date_fmt, $lang_common;
-    global $lim_user,$number_of_columns;
+    global $lim_user, $number_of_columns;
     global $USER_DATA;
 
     $superCage = Inspekt::makeSuperCage();
@@ -435,11 +435,11 @@ EOT;
                 <td class="{$row_style_class}" align="center">
                     <script type="text/javascript">
                         document.write('<button type="button" class="button" {$makereadonly}onclick="window.location.href =\'$profile_link\';">');
-                        document.write('<img src="images/edit.gif" width="16" height="16" border="0" alt="" title="{$lang_usermgr_php['edit']}" />');
+                        document.write('<img src="images/edit.gif" width="16" height="16" border="0" alt="{$lang_common['edit']}" title="{$lang_common['edit']}" />');
                         document.write('</button>');
                     </script>
                     <noscript>
-                        <a href="$profile_link" class="admin_menu">{$lang_usermgr_php['edit']}</a>
+                        <a href="$profile_link" class="admin_menu">{$lang_common['edit']}</a>
                     </noscript>
                 </td>
                 <td class="{$row_style_class}">{$user['group_name']}</td>
@@ -487,7 +487,7 @@ EOT;
                         <td align="left">
                             <select name="action" id="action" size="1" class="listbox" {$makereadonly}onchange="return selectaction(this,'u');" style="display:none">
                                 <option value="" checked="checked">{$lang_usermgr_php['with_selected']}</option>
-                                <option value="delete">{$lang_usermgr_php['delete']}</option>
+                                <option value="delete">{$lang_common['delete']}</option>
                                 <option value="activate">{$lang_usermgr_php['activate']}</option>
                                 <option value="deactivate">{$lang_usermgr_php['deactivate']}</option>
                                 <option value="reset_password">{$lang_usermgr_php['reset_password']}</option>

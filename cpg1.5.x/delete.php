@@ -260,36 +260,38 @@ function parse_pic_list($value)
 
 
 if ($superCage->get->keyExists('what')) {
-	$what = $superCage->get->getAlpha('what');
+    $what = $superCage->get->getAlpha('what');
 } elseif ($superCage->post->keyExists('what')) {
     $what = $superCage->post->getAlpha('what');
 } else {
-	cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
+    cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
 }
 
 
 switch ($what) {
     // Album manager (don't necessarily delete something ;-)
     case 'albmgr':
-        if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+        if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) {
+            cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+        }
 
         if (!GALLERY_ADMIN_MODE) {
-			//restrict to allowed categories of user
-			//first get allowed categories
-			global $USER_DATA;
-			
-			$group_id = $USER_DATA['group_id'];
-			$result = cpg_db_query("SELECT DISTINCT cid FROM {$CONFIG[TABLE_CATMAP]} WHERE group_id = $group_id");
-			$rowset = cpg_db_fetch_rowset($result);
-			
-			//add allowed categories to the restriction		
+            //restrict to allowed categories of user
+            //first get allowed categories
+            global $USER_DATA;
+            
+            $group_id = $USER_DATA['group_id'];
+            $result = cpg_db_query("SELECT DISTINCT cid FROM {$CONFIG[TABLE_CATMAP]} WHERE group_id = $group_id");
+            $rowset = cpg_db_fetch_rowset($result);
+            
+            //add allowed categories to the restriction     
             $restrict = "AND (category = '" . (FIRST_USER_CAT + USER_ID) . "'";
-			
-			foreach($rowset as $key => $value){
-				$restrict .= " OR category = '" . $value['cid'] . "'";
-			}
-			$restrict .= ")";        
-		} else {
+            
+            foreach($rowset as $key => $value){
+                $restrict .= " OR category = '" . $value['cid'] . "'";
+            }
+            $restrict .= ")";        
+        } else {
             $restrict = '';
         }
 
@@ -297,20 +299,20 @@ switch ($what) {
         //pageheader($lang_delete_php['alb_mgr']);
         $returnOutput .= '<table border="0" cellspacing="0" cellpadding="0" width="100%">';
 
-		//prevent sorting of the albums if not admin or in own album
-		$sort_list_matched = $superCage->post->getMatched('sort_order', '/^[0-9@,]+$/');
-		if(GALLERY_ADMIN_MODE || $superCage->post->getInt('cat') == FIRST_USER_CAT + USER_ID){
-			$orig_sort_order = parse_list($sort_list_matched[0]);
-			foreach ($orig_sort_order as $album) {
-				$op = parse_orig_sort_order($album);
-				if (count ($op) == 2) {
-					$query = "UPDATE {$CONFIG[TABLE_ALBUMS]} SET pos='{$op['pos']}' WHERE aid='{$op['aid']}' $restrict LIMIT 1";
-					cpg_db_query($query);
-				} else {
-					cpg_die (sprintf(CRITICAL_ERROR, $lang_delete_php['err_invalid_data'], $sort_list_matched), __FILE__, __LINE__);
-				}
-			}
-		}
+        //prevent sorting of the albums if not admin or in own album
+        $sort_list_matched = $superCage->post->getMatched('sort_order', '/^[0-9@,]+$/');
+        if(GALLERY_ADMIN_MODE || $superCage->post->getInt('cat') == FIRST_USER_CAT + USER_ID){
+            $orig_sort_order = parse_list($sort_list_matched[0]);
+            foreach ($orig_sort_order as $album) {
+                $op = parse_orig_sort_order($album);
+                if (count ($op) == 2) {
+                    $query = "UPDATE {$CONFIG[TABLE_ALBUMS]} SET pos='{$op['pos']}' WHERE aid='{$op['aid']}' $restrict LIMIT 1";
+                    cpg_db_query($query);
+                } else {
+                    cpg_die (sprintf(CRITICAL_ERROR, $lang_delete_php['err_invalid_data'], $sort_list_matched), __FILE__, __LINE__);
+                }
+            }
+        }
 
         $matches = $superCage->post->getMatched('delete_album', '/^[0-9,@]+$/');
         $to_delete = parse_list($matches[0]);
@@ -329,9 +331,9 @@ switch ($what) {
                     case '0':
                         break;
                     case '1':
-                    $category = $superCage->post->getInt('cat');
-					$user_id = USER_ID;
-					
+                        $category = $superCage->post->getInt('cat');
+                        $user_id = USER_ID;
+
                         $returnOutput .= "<tr><td colspan=\"6\" class=\"tableb\">" . sprintf($lang_delete_php['create_alb'], $op['album_nm']) . "</td></tr>\n";
                         $query = "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (category, title, uploads, pos, description, owner) VALUES ('$category', '" . addslashes($op['album_nm']) . "', 'NO',  '{$op['album_sort']}', '', '$user_id')";
                         cpg_db_query($query);
@@ -342,7 +344,7 @@ switch ($what) {
                         cpg_db_query($query);
                         break;
                     default:
-                       // cpg_die (CRITICAL_ERROR, $lang_delete_php['err_invalid_data'], __FILE__, __LINE__);
+                        // cpg_die (CRITICAL_ERROR, $lang_delete_php['err_invalid_data'], __FILE__, __LINE__);
                 }
             }
         }
@@ -526,7 +528,7 @@ switch ($what) {
             } elseif ($superCage->post->keyExists('action') && ($matches = $superCage->post->getMatched('action', '/^[a-z_]+$/'))) {
                 $user_action = $matches[0];
             } else {
-            	$user_action = '';
+                $user_action = '';
             }
             switch ($user_action) {
                     case 'delete':
@@ -559,7 +561,7 @@ switch ($what) {
                                 print '<td class="tableb" width="25%">';
 
                                 if ($superCage->get->keyExists('delete_comments')) {
-                                	$delete_comments_choice = $superCage->get->getAlpha('delete_comments');
+                                    $delete_comments_choice = $superCage->get->getAlpha('delete_comments');
                                 } elseif ($superCage->post->keyExists('delete_comments')) {
                                     $delete_comments_choice = $superCage->post->getAlpha('delete_comments');
                                 }

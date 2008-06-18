@@ -150,7 +150,7 @@ INSERT INTO CPG_config VALUES ('userpics', 'userpics/');
 INSERT INTO CPG_config VALUES ('normal_pfx', 'normal_');
 INSERT INTO CPG_config VALUES ('default_dir_mode', '0755');
 INSERT INTO CPG_config VALUES ('default_file_mode', '0644');
-INSERT INTO CPG_config values ('enable_watermark', '0');
+INSERT INTO CPG_config VALUES ('enable_watermark', '0');
 INSERT INTO CPG_config VALUES ('where_put_watermark', 'southeast');
 INSERT INTO CPG_config VALUES ('watermark_file', 'images/watermark.png');
 INSERT INTO CPG_config VALUES ('which_files_to_watermark', 'both');

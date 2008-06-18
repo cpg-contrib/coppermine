@@ -139,7 +139,14 @@ $lang_common = array(
   'help' => 'Help', // cpg1.5
   'close' => 'Close', // cpg1.5
   'go' => 'go', // cpg1.5
-  'javascript_needed' => 'This pages requires JavaScript. Please turn it on in your browser.', // cpg1.5
+  'javascript_needed' => 'This page requires JavaScript. Please turn it on in your browser.', // cpg1.5
+  'move_up' => 'Move up', // cpg1.5
+  'move_down' => 'Move down', // cpg1.5
+  'move_top' => 'Move to top', // cpg1.5
+  'move_bottom' => 'Move to bottom', // cpg1.5
+  'delete' => 'Delete', // cpg1.5
+  'edit' => 'Edit', // cpg1.5
+  'username_if_blank' => 'Mr. X', // cpg1.5
 );
 
 // ------------------------------------------------------------------------- //
@@ -335,6 +342,7 @@ $lang_cpg_die = array(
 $lang_display_thumbnails = array(
   'dimensions' => 'Dimensions=',
   'date_added' => 'Date added=',
+  'unapproved' => 'Unapproved', // cpg1.5
 );
 
 $lang_get_pic_data = array(
@@ -435,6 +443,7 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
+  'title' => 'Album Manager', // cpg1.5
   'alb_need_name' => 'Albums need to have a name !', // js-alert
   'confirm_modifs' => 'Are you sure you want to make these modifications ?', // js-alert
   'no_change' => 'You did not make any change !', // js-alert
@@ -442,15 +451,9 @@ if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
   'confirm_delete1' => 'Are you sure you want to delete this album ?', // js-alert
   'confirm_delete2' => '\nAll files and comments it contains will be lost !', // js-alert
   'select_first' => 'Select an album first', // js-alert
-  'alb_mrg' => 'Album Manager',
   'my_gallery' => '* My gallery *',
   'no_category' => '* No category *',
-  'delete' => 'Delete',
   'new' => 'New',
-  'move_up' => 'Move up', // cpg1.5
-  'move_down' => 'Move down', // cpg1.5
-  'move_top' => 'Move to top', // cpg1.5
-  'move_bottom' => 'Move to bottom', // cpg1.5
   'apply_modifs' => 'Apply modifications',
   'select_category' => 'Select category',
 );
@@ -465,7 +468,6 @@ if (defined('BANNING_PHP')) $lang_banning_php = array(
   'ip_address' => 'IP Address',
   'expiry' => 'Expires (blank is permanent)',
   'edit_ban' => 'Save Changes',
-  'delete_ban' => 'Delete',
   'add_new' => 'Add New Ban',
   'add_ban' => 'Add',
   'error_user' => 'Cannot find user',
@@ -621,12 +623,6 @@ if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
   'category' => 'Category',
   'operations' => 'Operations',
   'move_into' => 'Move into', 
-  'move_up' => 'Move up', // cpg1.5
-  'move_down' => 'Move down', // cpg1.5
-  'move_top' => 'Move to top', // cpg1.5
-  'move_bottom' => 'Move to bottom', // cpg1.5
-  'delete' => 'Delete', // cpg1.5
-  'edit' => 'Edit', // cpg1.5
   'update_create' => 'Update/Create category',
   'parent_cat' => 'Parent category',
   'cat_title' => 'Category title',
@@ -1369,6 +1365,8 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
   'or' => 'OR', //cpg 1.5
   'approve_pic' => 'Approve file', //cpg 1.5
   'approve_all' => 'Approve ALL files', //cpg 1.5
+  'error_empty' => 'Album is empty', // cpg1.5
+  'error_linked_only' => 'Album only contains linked files, which you cannot edit here', // cpg1.5
 );
 
 // ------------------------------------------------------------------------- //
@@ -1549,7 +1547,7 @@ $lang_list_albums = array(
   'n_link_pictures' => '%s linked files',
   'total_pictures' => '%s files total',
   'alb_hits' => 'Album viewed %s times', // cpg1.5
-  'from_categorie' => ' - From Category: ', // cpg1.5
+  'from_category' => ' - From Category: ', // cpg1.5
 );
 }
 
@@ -1679,13 +1677,11 @@ if (defined('INSTALL_PHP')) $lang_install = array(
 
 if (defined('KEYWORDMGR_PHP')) $lang_keywordmgr_php = array(
   'title' => 'Manage keywords',
-  'edit' => 'edit',
-  'delete' => 'delete',
-  'search' => 'search',
-  'keyword_test_search' => 'search for %s in new window',
-  'keyword_del' => 'delete the keyword %s',
+  'search' => 'Search',
+  'keyword_test_search' => 'Search for %s in new window',
+  'keyword_del' => 'Delete the keyword %s',
   'confirm_delete' => 'Are you sure you want to delete the keyword %s from the whole gallery?',  // js-alert
-  'change_keyword' => 'change keyword',
+  'change_keyword' => 'Change keyword',
 );
 
 // ------------------------------------------------------------------------- //
@@ -1809,13 +1805,8 @@ if (defined('PHPINFO_PHP')) $lang_phpinfo_php = array(
 if (defined('PICMGR_PHP')) $lang_picmgr_php = array(
   'pic_mgr' => 'Picture Manager',
   'select_album' => 'Select Album',
-  'delete' => 'Delete',
   'confirm_delete1' => 'Are you sure you want to delete this picture ?',
   'confirm_delete2' => '\nPicture will be permanently deleted.',
-  'move_up' => 'Move up', // cpg1.5
-  'move_down' => 'Move down', // cpg1.5
-  'move_top' => 'Move to top', // cpg1.5
-  'move_bottom' => 'Move to bottom', // cpg1.5
   'apply_modifs' => 'Apply modifications',
   'confirm_modifs' => 'Confirm modifications',
   'pic_need_name' => 'Picture needs to have a name !',
@@ -2118,13 +2109,13 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
   'no_album' => 'no album selected',
   'result_icon' => 'click for details or to reload',
   'notes' =>  '<ul>'.
-				  '<li><b>OK</b>: means that the file was successfully added'.
-				  '<li><b>DP</b>: means that the file is a duplicate and is already in the database'.
-				  '<li><b>PB</b>: means that the file could not be added, check your configuration and the permission of directories where the files are located'.
-				  '<li><b>NA</b>: means that you haven\'t selected an album the files should go to, hit \'<a href="javascript:history.back(1)">back</a>\' and select an album. If you don\'t have an album <a href="albmgr.php">create one first</a></li>'.
-				  '<li>If the OK, DP, PB \'signs\' does not appear click on the broken file to see any error message produced by PHP'.
-				  '<li>If your browser timeouts, hit the reload button'.
-                          '</ul>',
+                '<li><b>OK</b>: means that the file was successfully added'.
+                '<li><b>DP</b>: means that the file is a duplicate and is already in the database'.
+                '<li><b>PB</b>: means that the file could not be added, check your configuration and the permission of directories where the files are located'.
+                '<li><b>NA</b>: means that you haven\'t selected an album the files should go to, hit \'<a href="javascript:history.back(1)">back</a>\' and select an album. If you don\'t have an album <a href="albmgr.php">create one first</a></li>'.
+                '<li>If the OK, DP, PB \'signs\' does not appear click on the broken file to see any error message produced by PHP'.
+                '<li>If your browser timeouts, hit the reload button'.
+            '</ul>',
   'select_album' => 'select album',
   'check_all' => 'Check All',
   'uncheck_all' => 'Uncheck All',
@@ -2281,7 +2272,7 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'place_instr_1' => 'Please place the files in albums at this time.  You may also enter relevant information about each file now.',
   'place_instr_2' => 'More files need placement. Please click \'Continue\'.',
   'process_complete' => 'You have successfully placed all the files.',
-   'albums_no_category' => 'Albums with no category',
+  'albums_no_category' => 'Albums with no category',
   'personal_albums' => '* Personal albums',
   'select_album' => 'Select album',
   'close' => 'Close',
@@ -2319,9 +2310,7 @@ $lang_usermgr_php = array(
   'sort_by' => 'Sort users by',
   'err_no_users' => 'User table is empty !',
   'err_edit_self' => 'You can\'t edit your own profile, use the \'My profile\' link for that',
-  'edit' => 'Edit',
   'with_selected' => 'With selected:',
-  'delete' => 'Delete',
   'delete_files_no' => 'keep public files (but anonymize)',
   'delete_files_yes' => 'delete public files as well',
   'delete_comments_no' => 'keep comments (but anonymize)',
@@ -2450,7 +2439,6 @@ $lang_util_php = array(
   'filename_us' => 'Change 2003_11_23_13_20_20.jpg to 11/23/2003 13:20',
   'filename_time' => 'Change 2003_11_23_13_20_20.jpg to 13:20',
   'notitle' => 'Apply only for files with empty titles', // cpg1.5
-  'delete' => 'Delete file titles or original size photos',
   'delete_title' => 'Delete file titles',
   'delete_title_explanation' => 'This will remove all titles on files in the album you specify.',
   'delete_original' => 'Delete original size photos',
@@ -2464,20 +2452,19 @@ $lang_util_php = array(
   'select_album' => 'Select album',
   'delete_orphans' => 'Delete comments on missing files',
   'delete_orphans_explanation' => 'This will identify and allow you to delete any comments associated with files no longer in the gallery.<br />Checks all albums.',
-  'update_full_normal_thumb' => 'Everything... full sized, resized and thumbs', // cpg1.5
-  'update_full_normal' => 'Both resized and full sized (if a orig copy is available)', // cpg1.5
-  'update_full' => 'Just full sized (if a orig copy is available)',// cpg1.5
-  'delete_back' => 'Delete original image backup (watermark mod)', // cpg1.5
-  'delete_back_explanation' => 'This will delete the backup image. You will save some disk space but not be able anymore to undo the watermark!!! After that the watermark will be permanent', // cpg1.5
+  'update_full_normal_thumb' => 'Everything: full-sized, resized and thumbs', // cpg1.5
+  'update_full_normal' => 'Both resized and full sized (if an original copy is available)', // cpg1.5
+  'update_full' => 'Just full sized (if an original copy is available)',// cpg1.5
+  'delete_back' => 'Delete original image backup for watermarked images', // cpg1.5
+  'delete_back_explanation' => 'This will delete the backup image. You will save some disk space but not be able anymore to undo the watermark!!! After that the watermark will be permanent.', // cpg1.5
   'finished' => '<br />Finished updating thumbs/ images!<br />', // cpg1.5
   'autorefresh' => ' Auto refresh (no need to click continue button anymore)<br /><br />', // cpg1.5
-  'refresh_db' => 'Reload file dimensions and size information',
+  'refresh_db' => 'Reload file dimensions and size information.',
   'refresh_db_explanation' => 'This will re-read file sizes and dimensions. Use this if quota\'s are incorrect or you have changed the files manually.',
   'reset_views' => 'Reset view counters',
   'reset_views_explanation' => 'Sets all file view counts to zero in the album specified.',
   'reset_succes' => 'Reset successful', // cpg1.5
   'orphan_comment' => 'orphan comments found',
-  'delete' => 'Delete',
   'delete_all' => 'Delete all',
   'delete_all_orphans' => 'Delete all orphans?',
   'comment' => 'Comment: ',

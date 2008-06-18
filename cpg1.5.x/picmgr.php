@@ -40,7 +40,7 @@ function get_album_data()
 function albumselect($id = "album") {
 // frogfoot re-wrote this function to present the list in categorized, sorted and nicely formatted order
 
-    global $CONFIG, $lang_picmgr_php, $aid, $lang_errors, $cpg_udb;
+    global $CONFIG, $lang_picmgr_php, $aid, $lang_errors, $cpg_udb, $CPG_PHP_SELF;
     static $select = "";
 
     // Reset counter
@@ -107,7 +107,6 @@ function albumselect($id = "album") {
 
         // Create the nicely sorted and formatted drop down list
         $alb_cat = '';
-
 
         foreach ($listArray as $val) {
             if ($val['cat'] != $alb_cat) {
@@ -444,8 +443,8 @@ EOT;
          <td>
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
-               <td><a href="javascript:Moveup_Option();"><img src="images/move_up.gif" width="26" height="21" border="0" alt="^" title="{$lang_picmgr_php['move_up']}"/></a><a href="javascript:Movedown_Option();"><img src="images/move_down.gif" width="26" height="21" border="0" alt="v" title="{$lang_picmgr_php['move_down']}" /></a>
-               &nbsp; <a href="javascript:Movetop_Option();"><img src="images/move_top.gif" width="26" height="21" border="0" alt="^^" title="{$lang_picmgr_php['move_top']}" /></a><a href="javascript:Movebottom_Option();"><img src="images/move_bottom.gif" width="26" height="21" border="0" alt="vv" title="{$lang_picmgr_php['move_bottom']}" /></a>
+               <td><a href="javascript:Moveup_Option();"><img src="images/move_up.gif" width="26" height="21" border="0" alt="^" title="{$lang_common['move_up']}"/></a><a href="javascript:Movedown_Option();"><img src="images/move_down.gif" width="26" height="21" border="0" alt="v" title="{$lang_common['move_down']}" /></a>
+               &nbsp; <a href="javascript:Movetop_Option();"><img src="images/move_top.gif" width="26" height="21" border="0" alt="^^" title="{$lang_common['move_top']}" /></a><a href="javascript:Movebottom_Option();"><img src="images/move_bottom.gif" width="26" height="21" border="0" alt="vv" title="{$lang_common['move_bottom']}" /></a>
                </td>
 <!-- Joe Ernst: I commented this out because I can't get it to work. -->
                <td align="center" style="width: 1px;"><img src="images/spacer.gif" width="1" alt=""><br />

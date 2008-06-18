@@ -25,6 +25,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-06-17 [C] Cleaned up code, indentation for multiple files {Paver}
+2008-06-17 [O] Consolidated and cleaned up language variables {Paver}
 2008-06-15 [A] New category heirarchy system {Nibbler}
 2008-06-12 [B] Fixed bug in thumb size output for search results of categories & albums {Paver}
 2008-06-12 [C] Added alternating table rows to updater {GauGau}

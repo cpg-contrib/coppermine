@@ -50,6 +50,7 @@ if ($superCage->get->keyExists('cat')) {
     $cat = $superCage->get->getInt('cat');
 }
 
+$tmpFile = ''; // initialize
 if ($superCage->get->keyExists('file')) {
     /**
      * There can be only alphanumerals in a plugin's folder name. There mustn't be any dots or other special
@@ -63,8 +64,6 @@ if ($superCage->get->keyExists('file')) {
 
     if ($matched = $superCage->get->getMatched('file', "/^([a-zA-Z0-9_\-]+)(\/{0,1}?)([a-zA-Z0-9_\-]+)$/")) {
         $tmpFile = $matched[0];
-    } else {
-            $tmpFile = '';
     }
 }
 
@@ -196,8 +195,8 @@ function html_albummenu($id)
 function html_albummenu3($id)
 {
     global $lang_album_admin_menu;
-    
-     /**
+  
+   /**
      * This template variable can be defined in theme.php of respective theme.
      * This is done here for simplicity.
      */
@@ -213,7 +212,7 @@ function html_albummenu3($id)
                 </tr>
         </table>
 EOT;
-    
+  
     static $template = '';
 
     if ($template == '') {
@@ -243,7 +242,6 @@ EOT;
  * @param string $ident String to use as indentation for Categories
  * @return void
  **/
-
 function get_subcat_data(&$cat_data, &$album_set_array)
 {
     global $CONFIG, $HIDE_USER_CAT, $cpg_show_private_album;
@@ -255,22 +253,24 @@ function get_subcat_data(&$cat_data, &$album_set_array)
     // just ignore the restriction and let the display code handle things
 
     // there can be no subcategories in user galleries, so don't even bother
-    if ($CURRENT_CAT_DEPTH == -1) return false;
-    
+    if ($CURRENT_CAT_DEPTH == -1) {
+        return false;
+    }
+
     $categories = array();
     
     // collect info about the albums in the user galleries category
-   $sql = "SELECT title, description, 
+    $sql = "SELECT title, description, 
         keyword, category, aid, alb_hits, visibility
         FROM {$CONFIG['TABLE_ALBUMS']} AS a
         WHERE category > " . FIRST_USER_CAT;
-        
-   $result = cpg_db_query($sql);
 
-    if (mysql_num_rows($result)){
-    
-    while ($row = mysql_fetch_assoc($result)){  
-    
+    $result = cpg_db_query($sql);
+
+    if (mysql_num_rows($result)) {
+
+        while ($row = mysql_fetch_assoc($result)) {
+
             $categories[USER_GAL_CAT]['subalbums'][$row['aid']] = array(
                 'aid' => $row['aid'],
                 'title' => $row['title'],
@@ -281,20 +281,20 @@ function get_subcat_data(&$cat_data, &$album_set_array)
                 'visibility' => $row['visibility'],
                 'pic_count' => 0,
             );
-        }
+        } // while
 
         // collect info about the user galleries category
         $sql = "SELECT name, description, thumb FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = " . USER_GAL_CAT;
         $result = cpg_db_query($sql);
         $row = mysql_fetch_assoc($result);
-         
+
         $categories[USER_GAL_CAT]['details'] = array(
             'name' => $row['name'],
             'description' => $row['description'],
             'thumb' => $row['thumb'],
             'level' => 1,
         );
-        
+
         // collect stats for albums in the user galleries category
         // all we need here is the total number of albums and pictures
         $sql = "SELECT COUNT(DISTINCT(p.aid)) AS alb_count, COUNT(*) AS pic_count
@@ -303,64 +303,67 @@ function get_subcat_data(&$cat_data, &$album_set_array)
             WHERE a.category > " . FIRST_USER_CAT . "
             AND approved = 'YES'";
             
-        if ($FORBIDDEN_SET_DATA){
+        if ($FORBIDDEN_SET_DATA) {
             $sql .= 'AND a.aid NOT IN (' . implode(', ', $FORBIDDEN_SET_DATA) . ')';
         }
-        
+
         $result = cpg_db_query($sql);
         $row = mysql_fetch_assoc($result);
         $categories[USER_GAL_CAT]['details']['alb_count'] = $row['alb_count'];
         $categories[USER_GAL_CAT]['subalbums'][0]['pic_count'] = $row['pic_count'];
-    }
-    
+
+    } // if mysql_num_rows($result)
+
     //TODO: optimize this for when first level album thumbs are disabled
     // all we need then is a count
-    
+
     // collect info about all normal categories
     // restrict to 'subcat_level' categories deeper than current depth
     $sql = "SELECT name, description, cid, thumb, depth, lft
         FROM {$CONFIG['TABLE_CATEGORIES']} AS c
         WHERE depth BETWEEN $CURRENT_CAT_DEPTH + 1 AND $CURRENT_CAT_DEPTH + {$CONFIG['subcat_level']}";
-    
+
     // if we are in a category, restrict info to children
-    if ($rgt){
+    if ($rgt) {
         $sql .= "\nAND lft BETWEEN $lft AND $rgt";
     }
 
     $sql .= "\nORDER BY c.lft";
-    
+
     $result = cpg_db_query($sql);
 
-   while ($row = mysql_fetch_assoc($result)){
+    while ($row = mysql_fetch_assoc($result)) {
 
-        if ($row['cid'] == 1) continue;
-        
-      $categories[$row['cid']]['details'] = array(
+        if ($row['cid'] == 1) {
+            continue;
+        }
+
+        $categories[$row['cid']]['details'] = array(
             'name' => $row['name'],
             'description' => $row['description'],
             'thumb' => $row['thumb'],
             'level' => $row['depth'],
             'alb_count' => 0,
         );
-    }
+    } // while
 
     // collect album counts for categories that are visible
     $sql = "SELECT category, COUNT(*) AS num
         FROM {$CONFIG['TABLE_ALBUMS']}
         INNER JOIN {$CONFIG['TABLE_CATEGORIES']} ON cid = category
         WHERE depth BETWEEN $CURRENT_CAT_DEPTH + 1 AND $CURRENT_CAT_DEPTH + {$CONFIG['subcat_level']}";
-    
+
     // if we are in a category, restrict info to children
-    if ($rgt){
+    if ($rgt) {
         $sql .= "\nAND lft BETWEEN $lft AND $rgt";
     }
 
     // we don't care about the order
     $sql .= "\nGROUP BY category ORDER BY NULL";
-        
-   $result = cpg_db_query($sql);
 
-   while ($row = mysql_fetch_assoc($result)){       
+    $result = cpg_db_query($sql);
+
+    while ($row = mysql_fetch_assoc($result)) {
         $categories[$row['category']]['details']['alb_count'] = $row['num'];
     }
 
@@ -370,15 +373,15 @@ function get_subcat_data(&$cat_data, &$album_set_array)
         INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.category = c.cid
         WHERE c.depth = $CURRENT_CAT_DEPTH + 1";
 
-   // if we are in a cat only get info for albums in that cat
-    if ($rgt){
+    // if we are in a cat only get info for albums in that cat
+    if ($rgt) {
         $sql .= "\nAND lft BETWEEN $lft AND $rgt";
     }
 
     $result = cpg_db_query($sql);
 
-    while ($row = mysql_fetch_assoc($result)){
-        
+    while ($row = mysql_fetch_assoc($result)) {
+
         $categories[$row['category']]['subalbums'][$row['aid']] = array(
             'aid' => $row['aid'],
             'title' => $row['title'],
@@ -390,8 +393,8 @@ function get_subcat_data(&$cat_data, &$album_set_array)
             'thumb' => $row['thumb'],
             'pic_count' => 0,
         );
-    }
-    
+    } // while
+
     mysql_free_result($result);
 
     // album stats for regular albums
@@ -404,44 +407,46 @@ function get_subcat_data(&$cat_data, &$album_set_array)
         AND c.depth = $CURRENT_CAT_DEPTH + 1
         GROUP BY r.aid
         ORDER BY NULL";
-     
+
     $result = cpg_db_query($sql);
 
-    while ($row = mysql_fetch_assoc($result)){
-      //if (in_array($row['aid'], $FORBIDDEN_SET_DATA)) continue; 
+    while ($row = mysql_fetch_assoc($result)) {
+        //if (in_array($row['aid'], $FORBIDDEN_SET_DATA)) continue; 
         $categories[$row['cid']]['subalbums'][$row['aid']]['pic_count'] = $row['pic_count'];
         $categories[$row['cid']]['subalbums'][$row['aid']]['last_pid'] = $row['last_pid'];
         $categories[$row['cid']]['subalbums'][$row['aid']]['last_upload'] = $row['last_upload'];
     }
-    
+
     mysql_free_result($result);
-    
-    foreach ($categories as $cid => $cat){
+
+    foreach ($categories as $cid => $cat) {
 
         $level = $cat['details']['level'] - $CURRENT_CAT_DEPTH;
-        
-        if ($level == 0) continue;
-        
+
+        if ($level == 0) { 
+            continue;
+        }
+
         $album_count = $cat['details']['alb_count'];
 
         $pic_count = 0;
-        
-        if (!empty($cat['subalbums'])){
-            foreach ($cat['subalbums'] as $alb){
+
+        if (!empty($cat['subalbums'])) {
+            foreach ($cat['subalbums'] as $alb) {
                 $pic_count += $alb['pic_count'];
             }
-        }
-        
-        if (!empty($cat['subalbums'])){
+        } // if
+
+        if (!empty($cat['subalbums'])) {
             $cat['subalbums'] = array_slice($cat['subalbums'], 0,$CONFIG['albums_per_page'], true);
         }
-        
+
         $cat['details']['description'] = preg_replace("/<br.*?>[\r\n]*/i", '<br />' . str_repeat($ident, $level-1) , bb_decode($cat['details']['description']));
-    
+
         if ($cid == USER_GAL_CAT) {
 
             $link = str_repeat($ident, $level-1) . "<a href=\"index.php?cat={$cid}\">{$cat['details']['name']}</a>";
-                
+
             if (!empty($categories[$cid]['subalbums'])) {
                 //ob_start();
                 //list_users(); 
@@ -452,46 +457,50 @@ function get_subcat_data(&$cat_data, &$album_set_array)
             } else {
                 $HIDE_USER_CAT = 1;
             }
-              
+
         } else {
 
-          if ($cat['details']['thumb'] > 0) {
-              $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='{$cat['details']['thumb']}'";
-              $result = cpg_db_query($sql);
-              if (mysql_num_rows($result)) {
-                  $picture = mysql_fetch_array($result);
-                  mysql_free_result($result);
-                  $pic_url = get_pic_url($picture, 'thumb');
-                  if (!is_image($picture['filename'])) {
-                      $image_info = getimagesize(urldecode($pic_url));
-                      $picture['pwidth'] = $image_info[0];
-                      $picture['pheight'] = $image_info[1];
-                  }
-                  $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size']);
-                  $user_thumb = "<img src=\"" . $pic_url . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"\" />";
-                  $user_thumb = "<a href=\"index.php?cat={$cid}\">" . $user_thumb . "</a>";
-              }
-          } else {
-              $user_thumb = "";
-          }
+            if ($cat['details']['thumb'] > 0) {
+                $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='{$cat['details']['thumb']}'";
+                $result = cpg_db_query($sql);
+                if (mysql_num_rows($result)) {
+                    $picture = mysql_fetch_array($result);
+                    mysql_free_result($result);
+                    $pic_url = get_pic_url($picture, 'thumb');
+                    if (!is_image($picture['filename'])) {
+                        $image_info = getimagesize(urldecode($pic_url));
+                        $picture['pwidth'] = $image_info[0];
+                        $picture['pheight'] = $image_info[1];
+                    }
+                    $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size']);
+                    $user_thumb = "<img src=\"" . $pic_url . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"\" />";
+                    $user_thumb = "<a href=\"index.php?cat={$cid}\">" . $user_thumb . "</a>";
+                }
+            } else {
+                $user_thumb = "";
+            }
 
-          $link = "<a href=\"index.php?cat={$cid}\">{$cat['details']['name']}</a>";
-          $user_thumb = str_repeat($ident, $level-1) . $user_thumb;
-          if ($pic_count == 0 && $album_count == 0) {
-              $user_thumb = str_repeat($ident, $level-1);
-              $cat_data[] = array($link, $cat['details']['description'], 'cat_thumb' => $user_thumb);
-          } else {
-              // Check if you need to show subcat_level
-              if ($level < $CONFIG['subcat_level']) {
-                  $cat_albums = list_cat_albums($cid, $cat);
-              } else {
-                  $cat_albums = '';
-              }
-              $cat_data[] = array($link, $cat['details']['description'], $album_count, $pic_count, 'cat_albums' => $cat_albums, 'cat_thumb' => $user_thumb);
-          }
-      }
-    }
-}
+            $link = "<a href=\"index.php?cat={$cid}\">{$cat['details']['name']}</a>";
+            $user_thumb = str_repeat($ident, $level-1) . $user_thumb;
+            if ($pic_count == 0 && $album_count == 0) {
+                $user_thumb = str_repeat($ident, $level-1);
+                $cat_data[] = array($link, $cat['details']['description'], 'cat_thumb' => $user_thumb);
+            } else {
+                // Check if you need to show subcat_level
+                if ($level < $CONFIG['subcat_level']) {
+                    $cat_albums = list_cat_albums($cid, $cat);
+                } else {
+                    $cat_albums = '';
+                }
+                $cat_data[] = array($link, $cat['details']['description'], $album_count, $pic_count, 'cat_albums' => $cat_albums, 'cat_thumb' => $user_thumb);
+            }
+
+        } // else CID != USER_GAL_CAT
+
+    } // foreach categories
+
+} // function get_subcat_data
+
 
 /**
  * get_cat_list()
@@ -639,14 +648,13 @@ function list_users()
                     $picture['pwidth'] = $image_info[0];
                     $picture['pheight'] = $image_info[1];
                 }
-                                //thumb cropping
+                //thumb cropping
                 //$image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size']);
-                                if($picture['system_icon']=='true'){
-                        $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size'], true, 'cat_thumb');
+                if (array_key_exists('system_icon',$picture) && ($picture['system_icon'] == true)) {
+                    $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size'], true, 'cat_thumb');
                 } else {
-                                    $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size'], false, 'cat_thumb');
-                                }
-
+                    $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size'], false, 'cat_thumb');
+                }
 
                 $user_thumb = "<img src=\"" . $pic_url . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"\" />";
             }
@@ -695,50 +703,56 @@ function list_albums()
         $pic_filter = ' ' . $FORBIDDEN_SET;
     }
 
-    $result;
-        if(USER_ADMIN_MODE && $cat == (USER_ID + FIRST_USER_CAT)){
-                $result = cpg_db_query("SELECT count(aid) FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE owner = '" . $USER_DATA['user_id'] . "' " . $album_filter);
-        }else{
-                $result = cpg_db_query("SELECT count(aid) FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE category = '$cat' " . $album_filter);
-        }
+    if (USER_ADMIN_MODE && $cat == (USER_ID + FIRST_USER_CAT)) {
+        $result = cpg_db_query("SELECT count(aid) FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE owner = '" . $USER_DATA['user_id'] . "' " . $album_filter);
+    } else {
+        $result = cpg_db_query("SELECT count(aid) FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE category = '$cat' " . $album_filter);
+    }
     $nbEnr = mysql_fetch_array($result);
     $nbAlb = $nbEnr[0];
     mysql_free_result($result);
 
-    if (!$nbAlb) return;
+    if (!$nbAlb) {
+        return;
+    }
 
     $totalPages = ceil($nbAlb / $alb_per_page);
 
-    if ($PAGE > $totalPages) $PAGE = 1;
+    if ($PAGE > $totalPages) { 
+        $PAGE = 1;
+    }
     $lower_limit = ($PAGE-1) * $alb_per_page;
     $upper_limit = min($nbAlb, $PAGE * $alb_per_page);
     $limit = "LIMIT " . $lower_limit . "," . ($upper_limit - $lower_limit);
 
-    $sql;
-        if(USER_ADMIN_MODE && $cat == (USER_ID + FIRST_USER_CAT)){
-            $sql = 'SELECT a.aid, a.title, a.description, a.thumb, category, visibility, filepath, ' . 'filename, url_prefix, pwidth, pheight ' . 'FROM ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' . 'LEFT JOIN ' . $CONFIG['TABLE_PICTURES'] . ' as p ' . 'ON a.thumb=p.pid ' . 'WHERE a.owner=' . $USER_DATA['user_id'] . $album_filter . ' ORDER BY a.category DESC , a.pos ' . $limit;
-                $alb_thumbs_q = cpg_db_query($sql);
-                $alb_thumbs = cpg_db_fetch_rowset($alb_thumbs_q);
-                mysql_free_result($alb_thumbs_q);
+    if (USER_ADMIN_MODE && $cat == (USER_ID + FIRST_USER_CAT)) {
+        $sql = 'SELECT a.aid, a.title, a.description, a.thumb, category, visibility, filepath, ' . 'filename, url_prefix, pwidth, pheight ' . 'FROM ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' . 'LEFT JOIN ' . $CONFIG['TABLE_PICTURES'] . ' as p ' . 'ON a.thumb=p.pid ' . 'WHERE a.owner=' . $USER_DATA['user_id'] . $album_filter . ' ORDER BY a.category DESC , a.pos ' . $limit;
+        $alb_thumbs_q = cpg_db_query($sql);
+        $alb_thumbs = cpg_db_fetch_rowset($alb_thumbs_q);
+        mysql_free_result($alb_thumbs_q);
 
-                //query for the category names
-                $cat_name_sql = "SELECT CONCAT(a.title, '" . $lang_list_albums['from_categorie'] . "<i>', c.name, '</i>') FROM " . $CONFIG['TABLE_ALBUMS'] . " AS a LEFT JOIN " . $CONFIG['TABLE_CATEGORIES'] . " AS c ON a.category=c.cid WHERE a.owner=" . $USER_DATA['user_id'] . " ORDER BY a.category DESC , a.pos " . $limit;
-                $cat_name_q = cpg_db_query($cat_name_sql);
-                $cat_names = cpg_db_fetch_rowset($cat_name_q);
-                mysql_free_result($cat_name_q);
+        //query for the category names
+        $cat_name_sql = "SELECT CONCAT(a.title, '" . $lang_list_albums['from_category'] . "<i>', c.name, '</i>') FROM " . $CONFIG['TABLE_ALBUMS'] . " AS a LEFT JOIN " . $CONFIG['TABLE_CATEGORIES'] . " AS c ON a.category=c.cid WHERE a.owner=" . $USER_DATA['user_id'] . " ORDER BY a.category DESC , a.pos " . $limit;
+        $cat_name_q = cpg_db_query($cat_name_sql);
+        $cat_names = cpg_db_fetch_rowset($cat_name_q);
+        mysql_free_result($cat_name_q);
 
-                //replace names in $alb_thumbs array
-                foreach($alb_thumbs as $key => $value){
-                        if($cat_names[$key][0]!=""){
-                                $alb_thumbs[$key]['title'] = $cat_names[$key][0];
-                        }
-                }
-        }else{
-            $sql = 'SELECT a.aid, a.title, a.description, a.thumb, category, visibility, filepath, ' . 'filename, url_prefix, pwidth, pheight ' . 'FROM ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' . 'LEFT JOIN ' . $CONFIG['TABLE_PICTURES'] . ' as p ' . 'ON a.thumb=p.pid ' . 'WHERE a.category=' . $cat . $album_filter . ' ORDER BY a.pos ' . $limit;
-                $alb_thumbs_q = cpg_db_query($sql);
-                $alb_thumbs = cpg_db_fetch_rowset($alb_thumbs_q);
-                mysql_free_result($alb_thumbs_q);
+        //replace names in $alb_thumbs array
+        foreach($alb_thumbs as $key => $value) {
+            if ($cat_names[$key][0] != '') {
+                $alb_thumbs[$key]['title'] = $cat_names[$key][0];
+            }
         }
+    } else {
+        $sql = 'SELECT a.aid, a.title, a.description, a.thumb, category, visibility, filepath, filename, url_prefix, pwidth, pheight ' 
+            . ' FROM ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' 
+            . ' LEFT JOIN ' . $CONFIG['TABLE_PICTURES'] . ' as p ' . 'ON a.thumb=p.pid ' 
+            . ' WHERE a.category=' . $cat . $album_filter 
+            . ' ORDER BY a.pos ' . $limit;
+        $alb_thumbs_q = cpg_db_query($sql);
+        $alb_thumbs = cpg_db_fetch_rowset($alb_thumbs_q);
+        mysql_free_result($alb_thumbs_q);
+    }
 
     $disp_album_count = count($alb_thumbs);
     $album_set = '';
@@ -747,12 +761,11 @@ function list_albums()
     }
     $album_set = '(' . substr($album_set, 0, -2) . ')';
 
-    //This query will fetch album stats and keyword for the albums
-    $sql = "SELECT a.aid, count( p.pid )  AS pic_count, max( p.pid )  AS last_pid, max( p.ctime )  AS last_upload, a.keyword, a.alb_hits" .
-            " FROM {$CONFIG['TABLE_ALBUMS']} AS a " .
-            " LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON a.aid = p.aid AND p.approved =  'YES' ".
-            "WHERE a.category = $cat GROUP BY a.aid $limit";
-
+    //This query will fetch album stats and keywords for the albums
+    $sql = "SELECT a.aid, count( p.pid ) AS pic_count, max( p.pid ) AS last_pid, max( p.ctime ) AS last_upload, a.keyword, a.alb_hits"
+            ." FROM {$CONFIG['TABLE_ALBUMS']} AS a "
+            ." LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON a.aid = p.aid AND p.approved =  'YES' "
+            ." WHERE a.category = $cat GROUP BY a.aid $limit";
     $alb_stats_q = cpg_db_query($sql);
     $alb_stats = cpg_db_fetch_rowset($alb_stats_q);
     mysql_free_result($alb_stats_q);
@@ -760,20 +773,20 @@ function list_albums()
     foreach($alb_stats as $key => $value) {
         $cross_ref[$value['aid']] = &$alb_stats[$key];
         if ($CONFIG['link_pic_count'] == 1) {
-          if (!empty($value['keyword'])) {
-            $value['keyword'] = addslashes($value['keyword']);
-            $query = "SELECT count(pid) AS link_pic_count, max(pid) AS link_last_pid "
-                    ." FROM {$CONFIG['TABLE_PICTURES']} "
-                    ." WHERE aid != {$value['aid']} AND "
-                    ." keywords LIKE '%{$value['keyword']}%' AND "
-                    ." approved = 'YES'";
-            $result = cpg_db_query($query);
-            $link_stat = mysql_fetch_array ($result);
-            mysql_free_result($result);
-            $alb_stats[$key]['link_pic_count'] = $link_stat['link_pic_count'];
-            $alb_stats[$key]['last_pid'] = ($alb_stats[$key]['last_pid'] > $link_stat['link_last_pid']) ? $alb_stats[$key]['last_pid'] : $link_stat['link_last_pid'];
-          }
-       }
+            if (!empty($value['keyword'])) {
+                $value['keyword'] = addslashes($value['keyword']);
+                $query = "SELECT count(pid) AS link_pic_count, max(pid) AS link_last_pid "
+                        ." FROM {$CONFIG['TABLE_PICTURES']} "
+                        ." WHERE aid != {$value['aid']} AND "
+                            ." keywords LIKE '%{$value['keyword']}%' AND "
+                            ." approved = 'YES'";
+                $result = cpg_db_query($query);
+                $link_stat = mysql_fetch_array ($result);
+                mysql_free_result($result);
+                $alb_stats[$key]['link_pic_count'] = $link_stat['link_pic_count'];
+                $alb_stats[$key]['last_pid'] = ($alb_stats[$key]['last_pid'] > $link_stat['link_last_pid']) ? $alb_stats[$key]['last_pid'] : $link_stat['link_last_pid'];
+            }
+        }
     }
 
     for ($alb_idx = 0; $alb_idx < $disp_album_count; $alb_idx++) {
@@ -792,9 +805,9 @@ function list_albums()
         // Inserts a thumbnail if the album contains 1 or more images
         $visibility = $alb_thumb['visibility'];
 
-                if (!in_array($aid,$FORBIDDEN_SET_DATA) || $CONFIG['allow_private_albums'] == 0) {
+        if (!in_array($aid,$FORBIDDEN_SET_DATA) || $CONFIG['allow_private_albums'] == 0) {
             if ($count > 0 || !empty($alb_stats[$alb_idx]['link_pic_count'])) {
-                if ($alb_thumb['filename']) {
+                if (!empty($alb_thumb['filename'])) {
                     $picture = &$alb_thumb;
                 } elseif ($alb_thumb['thumb'] < 0) {
                     $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight " . "FROM {$CONFIG['TABLE_PICTURES']} WHERE aid = '{$alb_thumb['aid']}' ORDER BY RAND() LIMIT 0,1";
@@ -807,6 +820,7 @@ function list_albums()
                     $picture = mysql_fetch_array($result);
                     mysql_free_result($result);
                 }
+
                 $pic_url = get_pic_url($picture, 'thumb');
                 if (!is_image($picture['filename'])) {
                     $image_info = cpg_getimagesize(urldecode($pic_url));
@@ -815,13 +829,13 @@ function list_albums()
                 }
                                 //thumb cropping
                 //$image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size']);
-                                if($picture['system_icon']=='true'){
-                        $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size'], true, 'cat_thumb');
+                if (array_key_exists('system_icon',$picture) && ($picture['system_icon'] == true)) {
+                    $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size'], true, 'cat_thumb');
                 } else {
-                                    $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size'], false, 'cat_thumb');
-                                }
+                    $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size'], false, 'cat_thumb');
+                }
 
-                                $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"" . $pic_url . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$picture['filename']}\" />";
+                $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"" . $pic_url . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$picture['filename']}\" />";
             } else { // Inserts an empty thumbnail if the album contains 0 images
                 // $image_size = compute_img_size(100, 75, $CONFIG['alb_list_thumb_size']);
                 $cpg_nopic_data = cpg_get_system_thumb('nopic.jpg', $alb_thumb['category']);
@@ -845,7 +859,7 @@ function list_albums()
             $alb_list[$alb_idx]['alb_hits'] = sprintf($lang_list_albums['alb_hits'], $alb_hits);
             $alb_list[$alb_idx]['album_info'] = sprintf($lang_list_albums['n_pictures'], $count) . ($count ? sprintf($lang_list_albums['last_added'], $last_upload_date) : "") . (($CONFIG['link_pic_count'] && $link_pic_count > 0 ) ? sprintf(", {$lang_list_albums['n_link_pictures']},  {$lang_list_albums['total_pictures']}", $link_pic_count, $count + $link_pic_count) : "");
             $alb_list[$alb_idx]['album_adm_menu'] = album_adm_menu($alb_thumb['aid'], $cat);
-} elseif ($CONFIG['show_private']) { // uncomment this else block to show private album description
+        } elseif ($CONFIG['show_private']) { // uncomment this else block to show private album description
             $last_upload_date = $count ? localised_date($alb_stat['last_upload'], $lastup_date_fmt) : '';
             $link_pic_count = !empty($alb_stat['link_pic_count']) ? $alb_stat['link_pic_count'] : 0;
             $alb_list[$alb_idx]['aid'] = $alb_thumb['aid'];
@@ -857,11 +871,12 @@ function list_albums()
             $alb_list[$alb_idx]['alb_hits'] = sprintf($lang_list_albums['alb_hits'], $alb_hits);
             $alb_list[$alb_idx]['album_info'] = sprintf($lang_list_albums['n_pictures'], $count) . ($count ? sprintf($lang_list_albums['last_added'], $last_upload_date) : "") . (($CONFIG['link_pic_count'] && $link_pic_count > 0 ) ? sprintf(", {$lang_list_albums['n_link_pictures']},   {$lang_list_albums['total_pictures']}", $link_pic_count, $count + $link_pic_count) : "");
             $alb_list[$alb_idx]['album_adm_menu'] = album_adm_menu($alb_thumb['aid'], $cat);
-}
+        }
     }
 
     theme_display_album_list($alb_list, $nbAlb, $cat, $PAGE, $totalPages);
 }
+
 
 /**
 * album_adm_menu()
@@ -875,48 +890,48 @@ function list_albums()
 */
 function album_adm_menu($aid, $cat)
 {
-        global $CONFIG, $USER_DATA, $lang_album_admin_menu;
+    global $CONFIG, $USER_DATA, $lang_album_admin_menu;
 
-        //check if user is allowed to edit album
-        if(USER_ADMIN_MODE){
-                //check if it is the user's gallery
-                if($cat == USER_ID + FIRST_USER_CAT){
-                    return html_albummenu($aid);
-                }
-                
-                //check if the user is the owner of the album
-                $sql = "SELECT * FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$aid' AND owner='" . $USER_DATA['user_id'] . "'";
-                $result = cpg_db_query($sql);
-                $check = cpg_db_fetch_rowset($result);
-                if($check[0] != ''){
-                    //check if admin allows editing after closing category
-                    if($CONFIG['allow_user_edit_after_cat_close'] == 0){
-                        //Disallowed -> Check if albums is in such a category
-                        $result = cpg_db_query("SELECT DISTINCT alb.category FROM {$CONFIG['TABLE_ALBUMS']} AS alb INNER JOIN {$CONFIG['TABLE_CATMAP']} AS catm ON alb.category=catm.cid WHERE alb.owner = '" . $USER_DATA['user_id'] . "' AND alb.aid='$aid' AND catm.group_id='" . $USER_DATA['group_id'] . "'");
-                        $allowed_albums = cpg_db_fetch_rowset($result);
-                        if($allowed_albums[0]['category'] == ''){
-                            return "<b>" . $lang_album_admin_menu['cat_locked'] . "</b>";
-                        }
-                    }
-                    if(!$CONFIG['users_can_edit_pics']) {
-                        //return menu without edit pics button
-                        return html_albummenu3($aid);
-                    } else {
-                        //return whole menu
-                        return html_albummenu($aid);
-                    }  
-                } else {
-                    return '';
-                }
-        }else if(GALLERY_ADMIN_MODE){
+    //check if user is allowed to edit album
+    if (USER_ADMIN_MODE) {
+        //check if it is the user's gallery
+        if ($cat == USER_ID + FIRST_USER_CAT) {
             return html_albummenu($aid);
-        }else if(in_array($aid, $USER_DATA['allowed_albums'])){
-            //check for moderator rights
-            return html_albummenu2($aid);
-        }else{
+        }
+
+        //check if the user is the owner of the album
+        $sql = "SELECT * FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$aid' AND owner='" . $USER_DATA['user_id'] . "'";
+        $result = cpg_db_query($sql);
+        $check = cpg_db_fetch_rowset($result);
+        if ($check[0] != '') {
+            //check if admin allows editing after closing category
+            if ($CONFIG['allow_user_edit_after_cat_close'] == 0) {
+                //Disallowed -> Check if albums is in such a category
+                $result = cpg_db_query("SELECT DISTINCT alb.category FROM {$CONFIG['TABLE_ALBUMS']} AS alb INNER JOIN {$CONFIG['TABLE_CATMAP']} AS catm ON alb.category=catm.cid WHERE alb.owner = '" . $USER_DATA['user_id'] . "' AND alb.aid='$aid' AND catm.group_id='" . $USER_DATA['group_id'] . "'");
+                $allowed_albums = cpg_db_fetch_rowset($result);
+                if ($allowed_albums[0]['category'] == '') {
+                    return "<b>" . $lang_album_admin_menu['cat_locked'] . "</b>";
+                }
+            }
+            if (!$CONFIG['users_can_edit_pics']) {
+                //return menu without edit pics button
+                return html_albummenu3($aid);
+            } else {
+                //return whole menu
+                return html_albummenu($aid);
+            }  
+        } else {
             return '';
         }
-}
+    } elseif (GALLERY_ADMIN_MODE) {
+        return html_albummenu($aid);
+    } elseif (in_array($aid, $USER_DATA['allowed_albums'])) {
+        //check for moderator rights
+        return html_albummenu2($aid);
+    } else {
+        return '';
+    }
+} // function album_adm_menu
 
 
 /**
@@ -946,7 +961,7 @@ function list_cat_albums($cat, $catdata)
 
     $album_filter = '';
     $pic_filter = '';
-    
+
     if (!empty($FORBIDDEN_SET) && !$cpg_show_private_album) {
         $album_filter = ' and ' . str_replace('p.', 'a.', $FORBIDDEN_SET);
         $pic_filter = ' and ' . $FORBIDDEN_SET;
@@ -959,9 +974,9 @@ function list_cat_albums($cat, $catdata)
     }
 
     $totalPages = ceil($nbAlb / $alb_per_page);
-    
+
     $alb_list = array();
-     
+
     foreach($catdata['subalbums'] as $aid => $album) {
 
         if ($CONFIG['link_pic_count'] == 1) {
@@ -982,30 +997,22 @@ function list_cat_albums($cat, $catdata)
 
         // Inserts a thumbnail if the album contains 1 or more images
         $visibility = $album['visibility'];
-        if (!in_array($aid,$FORBIDDEN_SET_DATA) || $CONFIG['allow_private_albums'] == 0) { //test for visibility
-            if (($album['pic_count'] > 0) || !empty($album['link_pic_count'])) { 
+        if (!in_array($aid, $FORBIDDEN_SET_DATA) || $CONFIG['allow_private_albums'] == 0) { //test for visibility
+            if ($album['pic_count'] > 0  || !empty($album['link_pic_count'])) { 
                 // Inserts a thumbnail if the album contains 1 or more images
                 if ($album['thumb'] > 0) {
-                    $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight FROM {$CONFIG['TABLE_PICTURES']} " 
-                            ." WHERE pid='{$album['thumb']}'";
+                    $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight " 
+                            ." FROM {$CONFIG['TABLE_PICTURES']} WHERE pid='{$album['thumb']}'";
                     $result = cpg_db_query($sql);
                     $picture = mysql_fetch_array($result);
                     mysql_free_result($result);
                 } elseif ($album['thumb'] < 0) {
-                    $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight " 
-                        ." FROM {$CONFIG['TABLE_PICTURES']} "
-                        ." WHERE (((aid = '$aid') "
-                            ." OR ((aid != '$aid') AND (keywords LIKE '%{$album['keyword']}%'))) "
-                            ." AND (approved = 'YES')) "
-                        ." ORDER BY RAND() "
-                        ." LIMIT 0,1";
+                    $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight " . "FROM {$CONFIG['TABLE_PICTURES']} WHERE aid = '$aid' ORDER BY RAND() LIMIT 0,1";
                     $result = cpg_db_query($sql);
                     $picture = mysql_fetch_array($result);
                     mysql_free_result($result);
                 } else {
-                    // thumb=0, so use last uploaded image
-                    $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight FROM {$CONFIG['TABLE_PICTURES']} " 
-                            ." WHERE pid='{$album['last_pid']}'";
+                    $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='{$album['last_pid']}'";
                     $result = cpg_db_query($sql);
                     $picture = mysql_fetch_array($result);
                     mysql_free_result($result);
@@ -1017,10 +1024,10 @@ function list_cat_albums($cat, $catdata)
                     $picture['pheight'] = $image_info[1];
                 }
                 //thumb cropping
-                if($picture['system_icon']=='true'){
-                        $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size'], true, 'cat_thumb');
+                if (array_key_exists('system_icon',$picture) && ($picture['system_icon'] == true)) {
+                    $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size'], true, 'cat_thumb');
                 } else {
-                        $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size'], false, 'cat_thumb');
+                    $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size'], false, 'cat_thumb');
                 }
 
                 $alb_list[$aid]['thumb_pic'] = "<img src=\"" . $pic_url . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$picture['filename']}\" />";
@@ -1044,7 +1051,7 @@ function list_cat_albums($cat, $catdata)
             $alb_list[$aid]['alb_hits'] = sprintf($lang_list_albums['alb_hits'], $album['alb_hits']);
             $alb_list[$aid]['album_info'] = sprintf($lang_list_albums['n_pictures'], $album['pic_count']) . ($album['pic_count'] ? sprintf($lang_list_albums['last_added'], $last_upload_date) : "") . (($CONFIG['link_pic_count'] && $link_pic_count > 0)  ? sprintf(", {$lang_list_albums['n_link_pictures']}, {$lang_list_albums['total_pictures']}", $link_pic_count, $album['pic_count'] + $link_pic_count) : "");
             $alb_list[$aid]['album_adm_menu'] = album_adm_menu($aid, $cat);
-} elseif ($CONFIG['show_private']) { // uncomment this else block to show private album description
+        } elseif ($CONFIG['show_private']) { // show private album description
             $last_upload_date = $album['pic_count'] ? localised_date($album['last_upload'], $lastup_date_fmt) : '';
             $link_pic_count = !empty($album['link_pic_count']) ? $album['link_pic_count'] : 0;
             $alb_list[$aid]['aid'] = $aid;
@@ -1055,14 +1062,16 @@ function list_cat_albums($cat, $catdata)
             $alb_list[$aid]['alb_hits'] = sprintf($lang_list_albums['alb_hits'], $album['alb_hits']);
             $alb_list[$aid]['album_info'] = sprintf($lang_list_albums['n_pictures'], $album['pic_count']) . ($album['pic_count'] ? sprintf($lang_list_albums['last_added'], $last_upload_date) : "") . (($CONFIG['link_pic_count'] && $link_pic_count > 0 )? sprintf(", {$lang_list_albums['n_link_pictures']}, {$lang_list_albums['total_pictures']}", $link_pic_count, $album['pic_count'] + $link_pic_count) : "");
             $alb_list[$aid]['album_adm_menu'] = album_adm_menu($aid, $cat);
-}
+        }
     }
     ob_start();
     theme_display_album_list_cat($alb_list, $nbAlb, $cat, $PAGE, $totalPages);
     $cat_albums = ob_get_contents();
     ob_end_clean();
     return $cat_albums;
-}
+
+} // function list_cat_albums
+
 
 //
 // Main code
@@ -1106,7 +1115,7 @@ if (!$file) {
      * set in the config
      */
     foreach ($elements as $element) {
-        if (preg_match("/(\w+),*(\d+)*/", $element, $matches)){
+        if (preg_match("/(\w+),*(\d+)*/", $element, $matches)) {
             if (!isset($matches[2])) { // added to fix notice about undefined index
                 $matches[2] = 0;
             }

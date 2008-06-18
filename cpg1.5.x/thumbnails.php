@@ -115,7 +115,7 @@ $cat_data = array();
 $lang_meta_album_names['lastupby'] = $lang_meta_album_names['lastup'];
 $lang_meta_album_names['lastcomby'] = $lang_meta_album_names['lastcom'];
 
-if (is_numeric($album)) {
+if (isset($album) && is_numeric($album)) {
     $result = cpg_db_query("SELECT category, title, aid, keyword, description, alb_password_hint FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album'");
     if (mysql_num_rows($result) > 0) {
         $CURRENT_ALBUM_DATA = mysql_fetch_array($result);
@@ -158,8 +158,10 @@ if (is_numeric($album)) {
 
 if (isset($CURRENT_ALBUM_DATA)) {
     $section = $CURRENT_ALBUM_DATA['title'];
-} else {
+} elseif (isset($album) && array_key_exists($album,$lang_meta_album_names)) {
     $section = $lang_meta_album_names[$album];
+} else {
+    $section = '';
 }
 $meta_keywords = '';
 // keep the search engine spiders from indexing meta albums that are subject to constant changes

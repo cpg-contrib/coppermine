@@ -227,7 +227,7 @@ EOT;
 
 function form_alb_thumb($text, $name)
 {
-    global $CONFIG, $ALBUM_DATA, $CLEAN, $lang_modifyalb_php,$USER_DATA;
+    global $CONFIG, $ALBUM_DATA, $CLEAN, $lang_modifyalb_php, $USER_DATA, $SKIP_NESTED_ALB;
 
     $cpg_nopic_data = cpg_get_system_thumb('nopic.jpg',$USER_DATA['user_id']);
 
@@ -235,7 +235,9 @@ function form_alb_thumb($text, $name)
     if ($ALBUM_DATA['keyword']) {
         $keyword = "OR (keywords LIKE '%{$ALBUM_DATA['keyword']}%')";
     }
-    $results = cpg_db_query("SELECT pid, filepath, filename, url_prefix FROM {$CONFIG['TABLE_PICTURES']} WHERE approved='YES' AND ( aid='{$CLEAN['album']}' $keyword ) ORDER BY filename");
+    $query = "SELECT pid, filepath, filename, url_prefix FROM {$CONFIG['TABLE_PICTURES']} WHERE approved='YES' AND ( aid='{$CLEAN['album']}' $keyword ) ORDER BY filename";
+
+    $results = cpg_db_query($query);
     if (mysql_num_rows($results) == 0) {
         echo <<<EOT
         <tr>
@@ -694,6 +696,9 @@ if (GALLERY_ADMIN_MODE) {
     $files = $nbEnr[0];
     if (!$files) { $files = 0; }
     mysql_free_result($result);
+
+    // missing $comments
+    $comments = '';
 
     echo <<<EOT
     <br />

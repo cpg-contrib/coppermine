@@ -578,7 +578,7 @@ function del_norm()
 
 function del_orphans()
 {
-    global $CONFIG, $lang_util_php;
+    global $CONFIG, $lang_util_php, $lang_common;
 
     $superCage = Inspekt::makeSuperCage();
     $count = 0;
@@ -608,7 +608,7 @@ function del_orphans()
         //if (isset($_POST['del'])){
         if ($superCage->post->keyExists('del')) {
             cpg_db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id= $msg_id");
-            echo "{$lang_util_php['comment']} $msg_body {$lang_util_php['nonexist']} $pid - <a href=\"util.php?action=del_orphans&amp;single=$msg_id\">{$lang_util_php['delete']}</a><br />";
+            echo "{$lang_util_php['comment']} $msg_body {$lang_util_php['nonexist']} $pid - <a href=\"util.php?action=del_orphans&amp;single=$msg_id\">{$lang_common['delete']}</a><br />";
         }
 
         $count = mysql_num_rows($result);

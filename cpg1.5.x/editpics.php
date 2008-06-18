@@ -23,14 +23,14 @@ define('EDITPICS_PHP', true);
 require('include/init.inc.php');
 
 if ($superCage->get->keyExists('album')) {
-            $album_id = $superCage->get->getInt('album');
-    } elseif ($superCage->post->keyExists('album')) {
-            $album_id = $superCage->post->getInt('album');
-    } else {
-            $album_id = -1;
+    $album_id = $superCage->get->getInt('album');
+} elseif ($superCage->post->keyExists('album')) {
+    $album_id = $superCage->post->getInt('album');
+} else {
+    $album_id = -1;
 }
 
-if (is_array($USER_DATA['allowed_albums']) && count($USER_DATA['allowed_albums'])) {
+if (array_key_exists('allowed_albums', $USER_DATA) && is_array($USER_DATA['allowed_albums']) && count($USER_DATA['allowed_albums'])) {
 
     define('MODERATOR_MODE', 1);
     $albStr = implode(",", $USER_DATA['allowed_albums']);
@@ -41,12 +41,13 @@ if (is_array($USER_DATA['allowed_albums']) && count($USER_DATA['allowed_albums']
       define('MODERATOR_EDIT_MODE', 1);
     } else {
       define('MODERATOR_EDIT_MODE', 0);
-    }*/
+    }
+*/
 
     if (isset($album_id) && in_array($album_id, $USER_DATA['allowed_albums'])) {
         define('MODERATOR_EDIT_MODE', 1);
     } else {
-      define('MODERATOR_EDIT_MODE', 0);
+        define('MODERATOR_EDIT_MODE', 0);
     }
 } else {
     define('MODERATOR_MODE', 0);
@@ -57,8 +58,10 @@ if (is_array($USER_DATA['allowed_albums']) && count($USER_DATA['allowed_albums']
 if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE || MODERATOR_MODE)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
 
-/*define('UPLOAD_APPROVAL_MODE', isset($_GET['mode']));
-define('EDIT_PICTURES_MODE', !isset($_GET['mode']));*/
+/*
+define('UPLOAD_APPROVAL_MODE', isset($_GET['mode']));
+define('EDIT_PICTURES_MODE', !isset($_GET['mode']));
+*/
 define('UPLOAD_APPROVAL_MODE', $superCage->get->keyExists('mode'));
 define('EDIT_PICTURES_MODE', !$superCage->get->keyExists('mode'));
 /*
@@ -68,22 +71,30 @@ if (isset($_GET['album'])) {
         $album_id = (int)$_POST['album'];
 } else {
         $album_id = -1;
-}*/
+}
+*/
 
 if (UPLOAD_APPROVAL_MODE && !GALLERY_ADMIN_MODE && !MODERATOR_MODE) {
     cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 }
 
 if (EDIT_PICTURES_MODE) {
-    $result = cpg_db_query("SELECT title, category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid = '$album_id'");
-        if (!mysql_num_rows($result)) cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
-        $ALBUM_DATA=mysql_fetch_array($result);
-        mysql_free_result($result);
-        $cat = $ALBUM_DATA['category'];
-        $actual_cat = $cat;
-        if ((!user_is_allowed() && !GALLERY_ADMIN_MODE && !MODERATOR_EDIT_MODE) || (!$CONFIG['users_can_edit_pics'] && !GALLERY_ADMIN_MODE && !MODERATOR_EDIT_MODE)) cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
+    $query = "SELECT title, category, keyword FROM {$CONFIG['TABLE_ALBUMS']} "
+            ." WHERE aid = '$album_id'";
+    $result = cpg_db_query($query);
+    if (!mysql_num_rows($result)) {
+        cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
+    }
+    $ALBUM_DATA = mysql_fetch_array($result);
+    mysql_free_result($result);
+    $cat = $ALBUM_DATA['category'];
+    $actual_cat = $cat;
+    if ((!user_is_allowed() && !GALLERY_ADMIN_MODE && !MODERATOR_EDIT_MODE) 
+            || (!$CONFIG['users_can_edit_pics'] && !GALLERY_ADMIN_MODE && !MODERATOR_EDIT_MODE)) {
+        cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
+    }
 } else {
-        $ALBUM_DATA = array();
+    $ALBUM_DATA = array();
 }
 
 $THUMB_ROWSPAN=5;
@@ -92,7 +103,7 @@ if ($CONFIG['user_field2_name'] != '') $THUMB_ROWSPAN++;
 if ($CONFIG['user_field3_name'] != '') $THUMB_ROWSPAN++;
 if ($CONFIG['user_field4_name'] != '') $THUMB_ROWSPAN++;
 
-// $USER_ALBUMS_ARRAY=array(0 => array());
+// $USER_ALBUMS_ARRAY = array(0 => array());
 
 // Type 0 => input
 //      1 => album list
@@ -107,13 +118,14 @@ $data = array(
         array($lang_common['title'], 'title', 0, 255),
         array($captionLabel, 'caption', 2, $CONFIG['max_img_desc_length']),
         array($keywordLabel, 'keywords', 0, 255),
-//        array($lang_editpics_php['approval'], 'approved', 5),
+        //array($lang_editpics_php['approval'], 'approved', 5),
         array($CONFIG['user_field1_name'], 'user1', 0, 255),
         array($CONFIG['user_field2_name'], 'user2', 0, 255),
         array($CONFIG['user_field3_name'], 'user3', 0, 255),
         array($CONFIG['user_field4_name'], 'user4', 0, 255),
-  //      array('', '', 4)
+        //array('', '', 4)
 );
+
 
 /**
  * get_post_var()
@@ -169,7 +181,7 @@ function process_post_data()
         $galleryicon = '';
     }
 
-    foreach($pid_array as $pid){
+    foreach ($pid_array as $pid) {
         $aid         = $superCage->post->getInt("aid$pid");
 
         $title       = get_post_var('title', $pid);
@@ -184,7 +196,7 @@ function process_post_data()
         $reset_vcount = false;
         $reset_votes = false;
         $del_comments = false;
-        		
+
         $isgalleryicon = ($galleryicon === $pid);
 
         if ($superCage->post->keyExists('delete'.$pid)) {
@@ -195,11 +207,11 @@ function process_post_data()
             $reset_vcount = $superCage->post-getInt('reset_vcount'.$pid);
         }
 
-        if ($superCage->post->keyExists('reset_votes'.$pid)){
+        if ($superCage->post->keyExists('reset_votes'.$pid)) {
             $reset_votes = $superCage->post->getInt('reset_votes'.$pid);
         }
 
-        if ($superCage->post->keyExists('del_comments'.$pid)){
+        if ($superCage->post->keyExists('del_comments'.$pid)) {
             $del_comments = $superCage->post->getInt('del_comments'.$pid) || $delete;
         }
 
@@ -279,7 +291,7 @@ function process_post_data()
             }
 
             $files = array ($dir . $file, $dir . $CONFIG['normal_pfx'] . $file, $dir . $CONFIG['orig_pfx'] . $file, $dir . $CONFIG['thumb_pfx'] . $file);
-            foreach ($files as $currFile){
+            foreach ($files as $currFile) {
                     if (is_file($currFile)) @unlink($currFile);
             }
 
@@ -308,18 +320,19 @@ EOT;
 
 function form_pic_info($text)
 {
-    global $CURRENT_PIC, $THUMB_ROWSPAN, $CONFIG, $lang_byte_units, $lang_editpics_php, $lang_common, $loop_counter, $row_style_class;
+    global $CURRENT_PIC, $THUMB_ROWSPAN, $CONFIG; 
+    global $lang_byte_units, $lang_editpics_php, $lang_common, $loop_counter, $row_style_class;
 
     if (!is_movie($CURRENT_PIC['filename'])) {
-            $pic_info = sprintf($lang_editpics_php['pic_info_str'], $CURRENT_PIC['pwidth'], $CURRENT_PIC['pheight'], ($CURRENT_PIC['filesize'] >> 10), $CURRENT_PIC['hits'], $CURRENT_PIC['votes']);
+        $pic_info = sprintf($lang_editpics_php['pic_info_str'], $CURRENT_PIC['pwidth'], $CURRENT_PIC['pheight'], ($CURRENT_PIC['filesize'] >> 10), $CURRENT_PIC['hits'], $CURRENT_PIC['votes']);
     } else {
-            $pic_info = sprintf($lang_editpics_php['pic_info_str'], '<input type="text" name="pwidth'.$CURRENT_PIC['pid'].'" value="'.$CURRENT_PIC['pwidth'].'" size="5" maxlength="5" class="textinput" />', '<input type="text" name="pheight'.$CURRENT_PIC['pid'].'" value="'.$CURRENT_PIC['pheight'].'" size="5" maxlength="5" class="textinput" />', ($CURRENT_PIC['filesize'] >> 10), $CURRENT_PIC['hits'], $CURRENT_PIC['votes']);
+        $pic_info = sprintf($lang_editpics_php['pic_info_str'], '<input type="text" name="pwidth'.$CURRENT_PIC['pid'].'" value="'.$CURRENT_PIC['pwidth'].'" size="5" maxlength="5" class="textinput" />', '<input type="text" name="pheight'.$CURRENT_PIC['pid'].'" value="'.$CURRENT_PIC['pheight'].'" size="5" maxlength="5" class="textinput" />', ($CURRENT_PIC['filesize'] >> 10), $CURRENT_PIC['hits'], $CURRENT_PIC['votes']);
     }
 
     if (UPLOAD_APPROVAL_MODE) {
-            if($CURRENT_PIC['owner_name']){
-                    $pic_info .= ' - <a href ="profile.php?uid='.$CURRENT_PIC['owner_id'].'" target="_blank">'.$CURRENT_PIC['owner_name'].'</a>';
-            }
+        if ($CURRENT_PIC['owner_name']) {
+            $pic_info .= ' - <a href ="profile.php?uid='.$CURRENT_PIC['owner_id'].'" target="_blank">'.$CURRENT_PIC['owner_name'].'</a>';
+        }
     }
 
     $thumb_url = get_pic_url($CURRENT_PIC, 'thumb');
@@ -336,8 +349,9 @@ function form_pic_info($text)
     if ($loop_counter > 1) {
         $loop_counter = 0;
     }
+    $pic_approval_checked = '';  // initialize
     if ($CURRENT_PIC['approved'] == 'YES') {
-            $pic_approval_checked = 'checked="checked"';
+        $pic_approval_checked = 'checked="checked"';
     }
 
     // The approve checkbox is shown only if the user is admin or moderator.
@@ -347,7 +361,7 @@ function form_pic_info($text)
                                   <input type="checkbox" name="approved{$CURRENT_PIC['pid']}" id="approve{$CURRENT_PIC['pid']}" value="YES" {$pic_approval_checked} class="checkbox" title="{$lang_editpics_php['approve_pic']}" /><label for="approve{$CURRENT_PIC['pid']}" class="clickable_option"><img src="images/approve.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['approve_pic']}" /></label>
                           </td>
 EOT;
-        }
+    }
 
     echo <<<EOT
     <tr>
@@ -393,10 +407,10 @@ EOT;
 
 function form_options()
 {
-        global $CURRENT_PIC, $lang_editpics_php, $row_style_class;
+    global $CURRENT_PIC, $lang_editpics_php, $row_style_class;
 
-        if (UPLOAD_APPROVAL_MODE) {
-                echo <<<EOT
+    if (UPLOAD_APPROVAL_MODE) {
+        echo <<<EOT
         <tr>
                 <td class="{$row_style_class}" colspan="3" align="center">
                         <input type="radio" name="approved{$CURRENT_PIC['pid']}" id="approved{$CURRENT_PIC['pid']}yes" value="YES" class="radio" /><label for="approved{$CURRENT_PIC['pid']}yes" class="clickable_option">{$lang_editpics_php['approve']}</label>&nbsp;
@@ -406,8 +420,8 @@ function form_options()
         </tr>
 
 EOT;
-        } else {
-                echo <<<EOT
+    } else {
+        echo <<<EOT
         <tr>
                 <td class="{$row_style_class}" colspan="3" align="center">
 <!-- removed options-->
@@ -415,14 +429,15 @@ EOT;
         </tr>
 
 EOT;
-        }
+    }
 }
+
 
 function form_input($text, $name, $max_length,$field_width=100)
 {
     global $CURRENT_PIC, $row_style_class;
 
-    $value = $CURRENT_PIC[$name];
+    $value = array_key_exists($name, $CURRENT_PIC) ? $CURRENT_PIC[$name] : '';
     $name .= $CURRENT_PIC['pid'];
     $text = sprintf($text,$CURRENT_PIC['pid']);
     if ($text == '') {
@@ -433,11 +448,11 @@ function form_input($text, $name, $max_length,$field_width=100)
     echo <<<EOT
         <tr>
             <td class="{$row_style_class}" style="white-space: nowrap;">
-                        $text
-        </td>
-        <td width="100%" class="{$row_style_class}" valign="top">
+                $text
+            </td>
+            <td width="100%" class="{$row_style_class}" valign="top">
                 <input type="text" style="width: {$field_width}%" name="$name" id="$name" maxlength="$max_length" value="$value" class="textinput" />
-                </td>
+            </td>
         </tr>
 
 EOT;
@@ -446,13 +461,13 @@ EOT;
 
 function form_alb_list_box($text, $name)
 {
-        global $CONFIG, $CURRENT_PIC;
-        global $user_albums_list, $public_albums_list, $row_style_class;
+    global $CONFIG, $CURRENT_PIC;
+    global $user_albums_list, $public_albums_list, $row_style_class;
 
-        $sel_album = $CURRENT_PIC['aid'];
+    $sel_album = $CURRENT_PIC['aid'];
 
-        $name .= $CURRENT_PIC['pid'];
-        echo <<<EOT
+    $name .= $CURRENT_PIC['pid'];
+    echo <<<EOT
         <tr>
             <td class="{$row_style_class}" style="white-space: nowrap;">
                         $text
@@ -461,13 +476,13 @@ function form_alb_list_box($text, $name)
                 <select name="$name" class="listbox">
 
 EOT;
-                foreach($public_albums_list as $album) {
+    foreach ($public_albums_list as $album) {
         echo '              <option value="' . $album['aid'] . '"' . ($album['aid'] == $sel_album ? ' selected' : '') . '>' . $album['cat_title'] . "</option>\n";
     }
-                foreach($user_albums_list as $album){
-                        echo '                        <option value="'.$album['aid'].'"'.($album['aid'] == $sel_album ? ' selected' : '').'>* '.$album['title'] . "</option>\n";
-                }
-        echo <<<EOT
+    foreach ($user_albums_list as $album) {
+        echo '                        <option value="'.$album['aid'].'"'.($album['aid'] == $sel_album ? ' selected' : '').'>* '.$album['title'] . "</option>\n";
+    }
+    echo <<<EOT
                         </select>
                 </td>
         </tr>
@@ -477,12 +492,12 @@ EOT;
 
 function form_textarea($text, $name, $max_length)
 {
-        global $ALBUM_DATA, $CURRENT_PIC, $row_style_class;
+    global $ALBUM_DATA, $CURRENT_PIC, $row_style_class;
 
-        $value = $CURRENT_PIC[$name];
+    $value = $CURRENT_PIC[$name];
 
-        $name .= $CURRENT_PIC['pid'];
-        echo <<<EOT
+    $name .= $CURRENT_PIC['pid'];
+    echo <<<EOT
         <tr>
                 <td class="{$row_style_class}" valign="top" style="white-space: nowrap;">
                         $text
@@ -496,15 +511,15 @@ EOT;
 
 function form_status($text, $name)
 {
-  global $CURRENT_PIC, $lang_editpics_php, $row_style_class;
+    global $CURRENT_PIC, $lang_editpics_php, $row_style_class;
 
-  $checkYes = ($CURRENT_PIC[$name] == 'YES') ? 'checked="checked"' : '';
-  $checkNo = ($CURRENT_PIC[$name] == 'NO') ? 'checked="checked"' : '';
+    $checkYes = ($CURRENT_PIC[$name] == 'YES') ? 'checked="checked"' : '';
+    $checkNo = ($CURRENT_PIC[$name] == 'NO') ? 'checked="checked"' : '';
 
-  $name .= $CURRENT_PIC['pid'];
+    $name .= $CURRENT_PIC['pid'];
 
-  if (!UPLOAD_APPROVAL_MODE && GALLERY_ADMIN_MODE) {
-  echo <<<EOT
+    if (!UPLOAD_APPROVAL_MODE && GALLERY_ADMIN_MODE) {
+    echo <<<EOT
         <tr>
             <td class="{$row_style_class}" style="white-space: nowrap;">
                         $text
@@ -516,126 +531,130 @@ function form_status($text, $name)
         </tr>
 
 EOT;
-  }
+    }
 }
 
 function create_form(&$data)
 {
-        foreach($data as $element){
-                if ((is_array($element))) {
-                    switch($element[2]){
-                            case 0 :
-                                    form_input($element[0], $element[1], $element[3]);
-                                    break;
-                            case 1 :
-                                    form_alb_list_box($element[0], $element[1]);
-                                    break;
-                            case 2 :
-                                    form_textarea($element[0], $element[1], $element[3]);
-                                    break;
-                            case 3 :
-                                    form_pic_info($element[0]);
-                                    break;
+    foreach ($data as $element) {
+        if ((is_array($element))) {
+            switch ($element[2]) {
+                case 0 :
+                    form_input($element[0], $element[1], $element[3]);
+                    break;
+                case 1 :
+                    form_alb_list_box($element[0], $element[1]);
+                    break;
+                case 2 :
+                    form_textarea($element[0], $element[1], $element[3]);
+                    break;
+                case 3 :
+                    form_pic_info($element[0]);
+                    break;
 /*
-                            case 4 :
-                                    form_options();
-                                    break;
-                            case 5:
-                                    form_status($element[0], $element[1]);
-                                    break;
+                case 4 :
+                    form_options();
+                    break;
+                case 5 :
+                    form_status($element[0], $element[1]);
+                    break;
 */
-                            default:
-                                        cpg_die(CRITICAL_ERROR, 'Invalid action for form creation', __FILE__, __LINE__);
-                    } // switch
-                } else {
-                        form_label($element);
-                }
-        }
-}
-
-function get_user_albums($user_id = '') {
-        global $CONFIG, $user_albums_list, $albStr;
-
-        $USER_ALBUMS_ARRAY=array(0 => array());
-
-        $or = '';
-        if ($user_id != '') {
-                $or = " OR category='" . (FIRST_USER_CAT + $user_id) . "'";
-        }
-
-        if (!isset($USER_ALBUMS_ARRAY[USER_ID])) {
-                if (MODERATOR_MODE && UPLOAD_APPROVAL_MODE || MODERATOR_EDIT_MODE) {
-                    $user_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid IN $albStr AND category > '".FIRST_USER_CAT."' OR category='".(FIRST_USER_CAT + USER_ID)."' ORDER BY title");
-                
-					if (mysql_num_rows($user_albums)) {
-                    	$user_albums_list=cpg_db_fetch_rowset($user_albums);
-					} else {
-							$user_albums_list = array();
-					}
-					mysql_free_result($user_albums);
-			    } else {
-                    //Only list the albums owned by the user
-					$cat = USER_ID + FIRST_USER_CAT;
-					$user_id = USER_ID;
-					
-					//get albums in "my albums"
-					$result1 = cpg_db_query("SELECT aid , title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = $cat");
-					$rowset1 = cpg_db_fetch_rowset($result1);
-					mysql_free_result($result1);
-					
-					//get public albums
-					$result2 = cpg_db_query("SELECT alb.aid AS aid, CONCAT_WS('', '(', cat.name, ') ', alb.title) AS title FROM {$CONFIG['TABLE_ALBUMS']} AS alb INNER JOIN {$CONFIG['TABLE_CATEGORIES']} AS cat ON alb.owner = '$user_id' AND alb.category = cat.cid ORDER BY alb.category DESC, alb.pos ASC");
-					$rowset2 = cpg_db_fetch_rowset($result2);
-					mysql_free_result($result2);
-					
-					//merge rowsets
-					$user_albums_list = array_merge($rowset1, $rowset2);
-                }
-
-                $USER_ALBUMS_ARRAY[USER_ID] = $user_albums_list;
+                default:
+                    cpg_die(CRITICAL_ERROR, 'Invalid action for form creation', __FILE__, __LINE__);
+            } // switch
         } else {
-                $user_albums_list = &$USER_ALBUMS_ARRAY[USER_ID];
+            form_label($element);
         }
+    } // foreach
 }
+
+function get_user_albums($user_id = '') 
+{
+    global $CONFIG, $user_albums_list, $albStr;
+
+    $USER_ALBUMS_ARRAY=array(0 => array());
+
+    $or = '';
+    if ($user_id != '') {
+        $or = " OR category='" . (FIRST_USER_CAT + $user_id) . "'";
+    }
+
+    if (!isset($USER_ALBUMS_ARRAY[USER_ID])) {
+        if (MODERATOR_MODE && UPLOAD_APPROVAL_MODE || MODERATOR_EDIT_MODE) {
+            $user_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid IN $albStr AND category > '".FIRST_USER_CAT."' OR category='".(FIRST_USER_CAT + USER_ID)."' ORDER BY title");
+                
+            if (mysql_num_rows($user_albums)) {
+                $user_albums_list=cpg_db_fetch_rowset($user_albums);
+            } else {
+                $user_albums_list = array();
+            }
+            mysql_free_result($user_albums);
+        } else {
+            // Only list the albums owned by the user
+            $cat = USER_ID + FIRST_USER_CAT;
+            $user_id = USER_ID;
+
+            // Get albums in "my albums"
+            $result1 = cpg_db_query("SELECT aid , title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = $cat");
+            $rowset1 = cpg_db_fetch_rowset($result1);
+            mysql_free_result($result1);
+
+            // Get public albums
+            $result2 = cpg_db_query("SELECT alb.aid AS aid, CONCAT_WS('', '(', cat.name, ') ', alb.title) AS title FROM {$CONFIG['TABLE_ALBUMS']} AS alb INNER JOIN {$CONFIG['TABLE_CATEGORIES']} AS cat ON alb.owner = '$user_id' AND alb.category = cat.cid ORDER BY alb.category DESC, alb.pos ASC");
+            $rowset2 = cpg_db_fetch_rowset($result2);
+            mysql_free_result($result2);
+
+            // Merge rowsets
+            $user_albums_list = array_merge($rowset1, $rowset2);
+        }
+
+        $USER_ALBUMS_ARRAY[USER_ID] = $user_albums_list;
+
+    } else {
+        $user_albums_list = &$USER_ALBUMS_ARRAY[USER_ID];
+    }
+} // function get_user_albums
 
 
 if (GALLERY_ADMIN_MODE) {
     $public_albums = cpg_db_query("SELECT DISTINCT aid, title, IF(category = 0, CONCAT('&gt; ', title), CONCAT(name,' &lt; ',title)) AS cat_title FROM {$CONFIG['TABLE_ALBUMS']}, {$CONFIG['TABLE_CATEGORIES']} WHERE category < '" . FIRST_USER_CAT . "' AND (category = 0 OR category = cid) ORDER BY cat_title");
-        if (mysql_num_rows($public_albums)) {
-            $public_albums_list=cpg_db_fetch_rowset($public_albums);
-        } else {
-                $public_albums_list = array();
-        }
-        mysql_free_result($public_albums);
-                                } elseif (MODERATOR_MODE) {
-                                    $public_albums = cpg_db_query("SELECT DISTINCT aid, title, IF(category = 0, CONCAT('&gt; ', title), CONCAT(name,' &lt; ',title)) AS cat_title FROM {$CONFIG['TABLE_ALBUMS']}, {$CONFIG['TABLE_CATEGORIES']} WHERE aid IN $albStr AND category < '" . FIRST_USER_CAT . "' AND (category = 0 OR category = cid) ORDER BY cat_title");
-                                    if (mysql_num_rows($public_albums)) {
-                                        $public_albums_list=cpg_db_fetch_rowset($public_albums);
-                                    } else {
-                                            $public_albums_list = array();
-                                    }
-                                    mysql_free_result($public_albums);
-} else {
+    if (mysql_num_rows($public_albums)) {
+        $public_albums_list=cpg_db_fetch_rowset($public_albums);
+    } else {
         $public_albums_list = array();
+    }
+    mysql_free_result($public_albums);
+} elseif (MODERATOR_MODE) {
+    $public_albums = cpg_db_query("SELECT DISTINCT aid, title, IF(category = 0, CONCAT('&gt; ', title), CONCAT(name,' &lt; ',title)) AS cat_title FROM {$CONFIG['TABLE_ALBUMS']}, {$CONFIG['TABLE_CATEGORIES']} WHERE aid IN $albStr AND category < '" . FIRST_USER_CAT . "' AND (category = 0 OR category = cid) ORDER BY cat_title");
+    if (mysql_num_rows($public_albums)) {
+        $public_albums_list=cpg_db_fetch_rowset($public_albums);
+    } else {
+        $public_albums_list = array();
+    }
+    mysql_free_result($public_albums);
+} else {
+    $public_albums_list = array();
 }
 
 get_user_albums(USER_ID);
 
 //if (count($_POST)) process_post_data();
-if ($superCage->post->keyExists('go')) process_post_data();
+if ($superCage->post->keyExists('go')) { 
+    process_post_data();
+}
 
 
 //$start = isset($_GET['start']) ? (int)$_GET['start'] : 0;
-if ($superCage->get->keyExists('start')){
-            $start = $superCage->get->getInt('start');
+if ($superCage->get->keyExists('start')) {
+    $start = $superCage->get->getInt('start');
 } else {
-            $start = 0;
+    $start = 0;
 }
 //$count = isset($_GET['count']) ? (int)$_GET['count'] : 25;
-if ($superCage->get->keyExists('count')){
-            $count = $superCage->get->getInt('count');
+if ($superCage->get->keyExists('count')) {
+    $count = $superCage->get->getInt('count');
 } else {
-            $count = 25;
+    $count = 25;
 }
 $next_target = $CPG_PHP_SELF.'?album='.$album_id.'&amp;start='.($start+$count).'&amp;count='.$count.((UPLOAD_APPROVAL_MODE==1)?"&amp;mode=upload_approval":"");
 $prev_target = $CPG_PHP_SELF.'?album='.$album_id.'&amp;start='.max(0,$start-$count).'&amp;count='.$count.((UPLOAD_APPROVAL_MODE==1)?"&amp;mode=upload_approval":"");
@@ -643,86 +662,99 @@ $s50 = $count == 50 ? 'selected' : '';
 $s75 = $count == 75 ? 'selected' : '';
 $s100 = $count == 100 ? 'selected' : '';
 
+$link_count = 0;  // initialize
 if (UPLOAD_APPROVAL_MODE) {
-        if (MODERATOR_MODE) {
-            $result=cpg_db_query("SELECT count(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'NO' AND aid IN $albStr");
+    if (MODERATOR_MODE) {
+        $result = cpg_db_query("SELECT count(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'NO' AND aid IN $albStr");
+    } else {
+        $result = cpg_db_query("SELECT count(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'NO'");
+    }
+
+    $nbEnr = mysql_fetch_array($result);
+    $pic_count = $nbEnr[0];
+
+    // Update user names for pictures
+    $sql = "SELECT pid, owner_id FROM {$CONFIG['TABLE_PICTURES']} WHERE owner_id != 0 AND owner_name = ''";
+    $result = cpg_db_query($sql);
+    while ($row = mysql_fetch_array($result)) {
+        //if (defined('UDB_INTEGRATION')) {
+            $owner_name = $cpg_udb->get_user_name($row['owner_id']);
+        /*
         } else {
-            $result=cpg_db_query("SELECT count(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'NO'");
+            $result2 = cpg_db_query("SELECT user_name FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '".$row['owner_id']."'");
+            if (mysql_num_rows($result2)) {
+                $row2 = mysql_fetch_array($result2);
+                mysql_free_result($result2);
+                $owner_name = $row2['user_name'];
+            } else {
+                $owner_name = '';
+            }
         }
+        */
 
-        $nbEnr = mysql_fetch_array($result);
-        $pic_count = $nbEnr[0];
-
-        // Update user names for pictures
-        $sql = "SELECT pid, owner_id FROM {$CONFIG['TABLE_PICTURES']} WHERE owner_id != 0 AND owner_name = ''";
-        $result = cpg_db_query($sql);
-        while($row = mysql_fetch_array($result)){
-                //if(defined('UDB_INTEGRATION')){
-                        $owner_name = $cpg_udb->get_user_name($row['owner_id']);
-                /*} else {
-                    $result2 = cpg_db_query("SELECT user_name FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '".$row['owner_id']."'");
-                        if (mysql_num_rows($result2)){
-                                $row2 = mysql_fetch_array($result2);
-                                mysql_free_result($result2);
-                                $owner_name = $row2['user_name'];
-                        } else {
-                                $owner_name = '';
-                        }*/
-                //}
-
-                if($owner_name){
-                        cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET owner_name = '$owner_name' WHERE pid = {$row['pid']} LIMIT 1");
-                } else {
-                        cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET owner_id = 0 WHERE pid = {$row['pid']} LIMIT 1");
-                }
-        }
-        mysql_free_result($result);
-
-        if (MODERATOR_MODE) {
-            $sql =  "SELECT * ".
-                                "FROM {$CONFIG['TABLE_PICTURES']} ".
-                                "WHERE approved = 'NO' AND aid IN $albStr".
-                                "ORDER BY pid ".
-                                "LIMIT $start, $count";
+        if ($owner_name) {
+            cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET owner_name = '$owner_name' WHERE pid = {$row['pid']} LIMIT 1");
         } else {
-            $sql =  "SELECT * ".
-                        "FROM {$CONFIG['TABLE_PICTURES']} ".
-                        "WHERE approved = 'NO' ".
-                        "ORDER BY pid ".
-                        "LIMIT $start, $count";
+            cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET owner_id = 0 WHERE pid = {$row['pid']} LIMIT 1");
         }
-        $result = cpg_db_query($sql);
-        $form_target = $CPG_PHP_SELF.'?mode=upload_approval&amp;start='.$start.'&amp;count='.$count;
-        $title = $lang_editpics_php['upl_approval'];
-        $help = '';
+    }
+    mysql_free_result($result);
+
+    if (MODERATOR_MODE) {
+        $sql =  "SELECT * " .
+                " FROM {$CONFIG['TABLE_PICTURES']} " .
+                " WHERE approved = 'NO' AND aid IN $albStr " .
+                " ORDER BY pid " .
+                " LIMIT $start, $count";
+    } else {
+        $sql =  "SELECT * " .
+                " FROM {$CONFIG['TABLE_PICTURES']} " .
+                " WHERE approved = 'NO' " .
+                " ORDER BY pid " .
+                " LIMIT $start, $count";
+    }
+    $result = cpg_db_query($sql);
+    $form_target = $CPG_PHP_SELF.'?mode=upload_approval&amp;start='.$start.'&amp;count='.$count;
+    $title = $lang_editpics_php['upl_approval'];
+    $help = '';
+
 } else {
-        $result=cpg_db_query("SELECT count(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE aid = '$album_id'");
-        $nbEnr = mysql_fetch_array($result);
-        $pic_count = $nbEnr[0];
-        mysql_free_result($result);
-                $sql = "SELECT p.*,a.category FROM {$CONFIG['TABLE_PICTURES']} as p ".
-                           "INNER JOIN {$CONFIG['TABLE_ALBUMS']} as a ".
-                           "ON a.aid=p.aid ".
-                           "WHERE p.aid = '$album_id' ".
-                           "ORDER BY p.filename LIMIT $start, $count";
-                $result = cpg_db_query($sql);
-        $form_target = $CPG_PHP_SELF.'?album='.$album_id.'&amp;start='.$start.'&amp;count='.$count;
-        $title = $lang_editpics_php['edit_pics'];
-        $help = '&nbsp;'.cpg_display_help('f=files.htm&amp;as=edit_pics&amp;ae=edit_pics_end&amp;top=1', '800', '500');
+    $sql = "SELECT count(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE aid = '$album_id'";
+    $result = cpg_db_query($sql);
+    $nbEnr = mysql_fetch_array($result);
+    $pic_count = $nbEnr[0];
+    mysql_free_result($result);
+
+    $sql = "SELECT p.*,a.category FROM {$CONFIG['TABLE_PICTURES']} as p " .
+            " INNER JOIN {$CONFIG['TABLE_ALBUMS']} as a " .
+            " ON a.aid=p.aid " .
+            " WHERE p.aid = '$album_id' " .
+            " ORDER BY p.filename LIMIT $start, $count";
+    $result = cpg_db_query($sql);
+    $form_target = $CPG_PHP_SELF.'?album='.$album_id.'&amp;start='.$start.'&amp;count='.$count;
+    $title = $lang_editpics_php['edit_pics'];
+    $help = '&nbsp;'.cpg_display_help('f=files.htm&amp;as=edit_pics&amp;ae=edit_pics_end&amp;top=1', '800', '500');
 }
 
-if (!mysql_num_rows($result)) cpg_die(INFORMATION, $lang_errors['no_img_to_display'], __FILE__, __LINE__);
+if (!mysql_num_rows($result)) { 
+    // TO DO: replace these raw error messages with a page showing link to 'album properties', 'parent category'
+    if ($link_count > 0) {
+        cpg_die(INFORMATION, $lang_editpics_php['error_linked_only'], __FILE__, __LINE__);
+    } else {
+        cpg_die(INFORMATION, $lang_editpics_php['error_empty'], __FILE__, __LINE__);
+    }
+}
 
 if ($start + $count < $pic_count) {
     $next_link = "<a href=\"$next_target\"><b>{$lang_editpics_php['see_next']}</b></a>&nbsp;&nbsp;-&nbsp;&nbsp;";
 } else {
-        $next_link = '';
+    $next_link = '';
 }
 
 if ($start > 0) {
     $prev_link = "<a href=\"$prev_target\"><b>{$lang_editpics_php['see_prev']}</b></a>&nbsp;&nbsp;-&nbsp;&nbsp;";
 } else {
-        $prev_link = '';
+    $prev_link = '';
 }
 
 $pic_count_text = sprintf($lang_editpics_php['n_pic'], $pic_count);
@@ -752,7 +784,7 @@ function selectAll(d,box) {
 -->
 </script>
 EOT;
-$mode= (UPLOAD_APPROVAL_MODE==1) ? "&amp;mode=upload_approval":"";
+$mode = (UPLOAD_APPROVAL_MODE==1) ? "&amp;mode=upload_approval":"";
 $cat_l = (isset($actual_cat))? "?cat=$actual_cat" : (isset($cat) ? "?cat=$cat" : '');
 echo <<< EOT
 <form method="post" name="editForm" id="cpgform" action="$form_target$mode">
@@ -773,7 +805,7 @@ echo <<<EOT
                         </select>
 EOT;
 if (UPLOAD_APPROVAL_MODE!=1) {
-echo <<<EOT
+    echo <<<EOT
                         &nbsp;&nbsp;-&nbsp;&nbsp;<a href="modifyalb.php?album=$album_id" class="admin_menu">{$lang_editpics_php['album_properties']}</a>&nbsp;&nbsp;-&nbsp;&nbsp;
                         <a href="index.php$cat_l" class="admin_menu">{$lang_editpics_php['parent_category']}</a>&nbsp;&nbsp;-&nbsp;&nbsp;
                         <a href="thumbnails.php?album=$album_id" class="admin_menu">{$lang_editpics_php['thumbnail_view']}</a>
@@ -796,50 +828,50 @@ EOT;
 echo <<<EOT
         <tr>
             <td colspan="3" align="center">
-                                                        <table border="0" cellspacing="0" cellpadding="0" width="100%">
-                                                                <tr>
-                                                                        <td class="tableh2" align="right">
-                                                                                {$lang_editpics_php['select_unselect']}:
-                                                                        </td>
-                                                                        <td class="tableh2" width="40" valign="top">
-                                                                                <input type="checkbox" name="deleteAll" onclick="selectAll(this,'delete');" class="checkbox" id="deleteAll" title="{$lang_editpics_php['del_all']}" /><label for="deleteAll" class="clickable_option"><img src="images/delete.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['del_all']}" /></label>
-                                                                        </td>
-                                                                        $approve_all_html
-                                                                        <td class="tableh2" width="40">
-                                                                                <input type="checkbox" name="reset_vcountAll" onclick="selectAll(this,'reset_vcount');" class="checkbox" id="reset_vcountAll" title="{$lang_editpics_php['reset_all_view_count']}" /><label for="reset_vcountAll" class="clickable_option"><img src="images/views.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['reset_all_view_count']}" /></label>
-                                                                        </td>
-                                                                        <td class="tableh2" width="40">
-                                                                                <input type="checkbox" name="reset_votesAll" onclick="selectAll(this,'reset_votes');" class="checkbox" id="reset_votesAll" title="{$lang_editpics_php['reset_all_votes']}" /><label for="reset_votesAll" class="clickable_option"><img src="images/rating.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['reset_all_votes']}" /></label>
-                                                                        </td>
-                                                                        <td class="tableh2" width="40">
-                                                                                <input type="checkbox" name="del_commentsAll" onclick="selectAll(this,'del_comments');" class="checkbox"reset_votesAll" id="del_commentsAll" title="{$lang_editpics_php['del_all_comm']}" /><label for="del_commentsAll" class="clickable_option"><img src="images/report.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['del_all_comm']}" /></label>
-                                                                        </td>
-                                                                </tr>
-                                                        </table>
+                <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                    <tr>
+                        <td class="tableh2" align="right">
+                            {$lang_editpics_php['select_unselect']}:
+                        </td>
+                        <td class="tableh2" width="40" valign="top">
+                            <input type="checkbox" name="deleteAll" onclick="selectAll(this,'delete');" class="checkbox" id="deleteAll" title="{$lang_editpics_php['del_all']}" /><label for="deleteAll" class="clickable_option"><img src="images/delete.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['del_all']}" /></label>
+                        </td>
+                        $approve_all_html
+                        <td class="tableh2" width="40">
+                            <input type="checkbox" name="reset_vcountAll" onclick="selectAll(this,'reset_vcount');" class="checkbox" id="reset_vcountAll" title="{$lang_editpics_php['reset_all_view_count']}" /><label for="reset_vcountAll" class="clickable_option"><img src="images/views.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['reset_all_view_count']}" /></label>
+                        </td>
+                        <td class="tableh2" width="40">
+                            <input type="checkbox" name="reset_votesAll" onclick="selectAll(this,'reset_votes');" class="checkbox" id="reset_votesAll" title="{$lang_editpics_php['reset_all_votes']}" /><label for="reset_votesAll" class="clickable_option"><img src="images/rating.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['reset_all_votes']}" /></label>
+                        </td>
+                        <td class="tableh2" width="40">
+                            <input type="checkbox" name="del_commentsAll" onclick="selectAll(this,'del_comments');" class="checkbox"reset_votesAll" id="del_commentsAll" title="{$lang_editpics_php['del_all_comm']}" /><label for="del_commentsAll" class="clickable_option"><img src="images/report.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['del_all_comm']}" /></label>
+                        </td>
+                    </tr>
+                </table>
             </td>
         </tr>
 EOT;
 
-while($CURRENT_PIC = mysql_fetch_array($result)){
+while ($CURRENT_PIC = mysql_fetch_array($result)) {
 
-        if (GALLERY_ADMIN_MODE && $CURRENT_PIC['owner_id'] != USER_ID) {
-              get_user_albums($CURRENT_PIC['owner_id']);
-        } else {
-              get_user_albums();
-        }
-        // wrap the actual block into another table
-        print <<< EOT
+    if (GALLERY_ADMIN_MODE && $CURRENT_PIC['owner_id'] != USER_ID) {
+        get_user_albums($CURRENT_PIC['owner_id']);
+    } else {
+        get_user_albums();
+    }
+    // wrap the actual block into another table
+    print <<< EOT
 
         <!-- individual file start -->
 
 EOT;
-        create_form($data);
-        print <<< EOT
+    create_form($data);
+    print <<< EOT
 
         <!-- individual file end -->
 
 EOT;
-        flush();
+    flush();
 } // while
 mysql_free_result($result);
 
