@@ -670,11 +670,11 @@ function html_mysql_start() {
          </tr>
 		 <tr>
           <td align="right">MySql <?php echo $install->language['username']; ?></td>
-		  <td><input type="text" name="db_user" value="<?php echo $install->config['db_user']; ?>" /></td>
+		  <td><input type="text" name="db_user" value="<?php echo isset($install->config['db_user']) ? $install->config['db_user'] : ''; ?>" /></td>
          </tr>
 		 <tr>
           <td align="right">MySql <?php echo $install->language['password']; ?></td>
-		  <td><input type="password" name="db_password" value="<?php echo $install->config['db_password']; ?>" /></td>
+		  <td><input type="password" name="db_password" value="<?php echo isset($install->config['db_password']) ? $install->config['db_password'] : ''; ?>" /></td>
          </tr>
 		 <tr>
 		 <td colspan="2" align="center">
@@ -1432,7 +1432,8 @@ class CPGInstall{
 			$db_select = '<select name="db_name">';
 			while ($row = mysql_fetch_object($db_list)) {
 				$db = $row->Database;
-				($db == $this->config['db_name']) ? $sel = ' selected="selected"' : $sel = '';
+				if (in_array($db, array('information_schema', 'mysql', 'test'))) continue;
+				(isset($this->config['db_name']) && $db == $this->config['db_name']) ? $sel = ' selected="selected"' : $sel = '';
 				$db_select .= '<option name="' . $db . '"' . $sel . ' >' . $db . '</option>';
 			}
 			$db_select .= '</select>';
@@ -1520,7 +1521,7 @@ class CPGInstall{
 		$sql_query .= "REPLACE INTO CPG_config VALUES ('thumb_method', '{$this->config['thumb_method']}');\n";
 		$sql_query .= "REPLACE INTO CPG_config VALUES ('impath', '{$this->config['im_path']}');\n";
 		$sql_query .= "REPLACE INTO CPG_config VALUES ('ecards_more_pic_target', '$gallery_url_prefix');\n";
-		$sql_query .= "REPLACE INTO CPG_config VALUES ('gallery_admin_email', '{$this->config['admin_email']}');\n";
+
 		// Enable silly_safe_mode if test has shown it is not configured properly
 		if ($this->checkSillySafeMode()) {
 			$sql_query .= "REPLACE INTO CPG_config VALUES ('silly_safe_mode', '1');\n";
