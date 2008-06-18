@@ -108,11 +108,12 @@ if ($close != 1) {
 $close_link = '<br />&nbsp;<br /><div align="center"><a href="#" class="admin_menu" onclick="window.close();">'.$lang_common['close'].'</a><br />&nbsp;</div>';
 }
 
-// Determine the language of the user and display the help file in his language if available. Fall back to English if the file is not available in his/her language
-// This should a later stage be done in a i18n table. For now, let's do a straightforward if/then
-if ($CONFIG['lang'] = 'german') {
+// Determine the language of the user and display the help file in his language if available. 
+// Fall back to English if the file is not available in his/her language.
+// This should be done at a later stage in an i18n table. For now, let's do a straightforward if/then.
+if ($CONFIG['lang'] == 'german') {
     $help_lang = 'de';
-} elseif ($CONFIG['lang'] = 'french') {
+} elseif ($CONFIG['lang'] == 'french') {
     $help_lang = 'fr';
 } else {
     $help_lang = 'en';
@@ -128,7 +129,6 @@ $string = ob_get_contents();
 ob_end_clean();
 
 // manipulate the string according to settings
-
 
 if ($anchor_start != '') {
     $pattern = '<a name="' . $anchor_start . '"></a>';
