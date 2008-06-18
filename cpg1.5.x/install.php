@@ -766,23 +766,23 @@ function html_admin() {
          </tr>
 		 <tr>
           <td align="right"><?php echo $install->language['username']; ?></td>
-		  <td><input type="text" name="admin_username" value="<?php echo $install->config['admin_username']; ?>"  /></td>
+		  <td><input type="text" name="admin_username" value="<?php echo isset($install->config['admin_username']) ? $install->config['admin_username'] : ''; ?>"  /></td>
          </tr>
          <tr>
           <td align="right"><?php echo $install->language['password']; ?></td>
-		  <td><input type="password" name="admin_password" value="<?php echo $install->config['admin_password']; ?>" /></td>
+		  <td><input type="password" name="admin_password" value="<?php echo isset($install->config['admin_password']) ? $install->config['admin_password'] : ''; ?>" /></td>
          </tr>
           <tr>
           <td align="right"><?php echo $install->language['password_verif']; ?></td>
-		  <td><input type="password" name="admin_password_verif" value="<?php echo $install->config['admin_password']; ?>" /></td>
+		  <td><input type="password" name="admin_password_verif" value="<?php echo isset($install->config['admin_password']) ? $install->config['admin_password'] : ''; ?>" /></td>
          </tr>
          <tr>
           <td align="right"><?php echo $install->language['email']; ?></td>
-		  <td><input type="text" name="admin_email" value="<?php echo $install->config['admin_email']; ?>" /></td>
+		  <td><input type="text" name="admin_email" value="<?php echo isset($install->config['admin_email']) ? $install->config['admin_email'] : ''; ?>" /></td>
          </tr>
           <tr>
           <td align="right"><?php echo $install->language['email_verif']; ?></td>
-		  <td><input type="text" name="admin_email_verif" value="<?php echo $install->config['admin_email']; ?>" /></td>
+		  <td><input type="text" name="admin_email_verif" value="<?php echo isset($install->config['admin_email']) ? $install->config['admin_email'] : ''; ?>" /></td>
          </tr>
 		 <tr>
 		 <td colspan="2">&nbsp;</td>
@@ -1571,6 +1571,10 @@ class CPGInstall{
 		
 		// Insert the admin account
 		$sql_query .= "INSERT INTO {$this->config['db_prefix']}users (user_id, user_group, user_active, user_name, user_password, user_lastvisit, user_regdate, user_group_list, user_email, user_profile1, user_profile2, user_profile3, user_profile4, user_profile5, user_profile6, user_actkey ) VALUES (1, 1, 'YES', '{$this->config['admin_username']}', md5('{$this->config['admin_password']}'), NOW(), NOW(), '', '{$this->config['admin_email']}', '', '', '', '', '', '', '');\n";
+
+		// Set gallery admin mail
+		$sql_query .= "REPLACE INTO CPG_config VALUES ('gallery_admin_email', '{$this->config['admin_email']}');\n";
+
 		// Get a connection with the db.
 		if(!$this->checkSqlConnection()) {
 			return false;
