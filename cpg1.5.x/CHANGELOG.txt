@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-06-19 [A] New javascript based multi-processing queue for batch add {Nibbler}
 2008-06-17 [C] Cleaned up code, indentation for multiple files {Paver}
 2008-06-17 [O] Consolidated and cleaned up language variables {Paver}
 2008-06-15 [A] New category heirarchy system {Nibbler}

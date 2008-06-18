@@ -63,20 +63,17 @@ $sql = "SELECT pid FROM {$CONFIG['TABLE_PICTURES']} WHERE filepath='" . addslash
 $result = cpg_db_query($sql);
 
 if (mysql_num_rows($result)) {
-    $file_name = 'images/up_dup.gif';
+	$status = 'DUPE';
 } elseif (add_picture($aid, $dir_name, $sane_name)) {
-    $file_name = 'images/up_ok.gif';
+	$status = 'OK';
 } else {
-    $file_name = 'images/up_pb.gif';
-    echo $ERROR;
+	$status = 'PB';
 }
 
 if (ob_get_length()) {
-    ob_end_flush();
-    exit;
+	ob_end_clean();
 }
 
-header('Content-type: image/gif');
-echo fread(fopen($file_name, 'rb'), filesize($file_name));
-ob_end_flush()
+echo $status;
+
 ?>
