@@ -1515,7 +1515,7 @@ class CPGInstall{
 		}
 		
 		$gallery_dir = strtr(dirname($CPG_PHP_SELF), '\\', '/');
-		if ($gallery_dir == '.') $gallery_dir = ''
+		if ($gallery_dir == '.') $gallery_dir = '';
 		
 		$gallery_url_prefix = 'http://' . $superCage->server->getEscaped('HTTP_HOST') . $gallery_dir . (substr($gallery_dir, -1) == '/' ? '' : '/');
 					
