@@ -1621,6 +1621,7 @@ if (defined('INSTALL_PHP')) $lang_install = array(
   'password_verif' => 'Verify Password',
   'perm_error' => 'The permissions of \'%s\' are set to %s, please set them to',
   'perm_ok' => 'The permissions on certain directories have been checked, and seem to be ok. <br />Please proceed to the next step.',
+  'perm_not_ok' => 'The permissions on certain directories are not set correctly.<br />Please change the permissions of the directories below that are marked "Not OK".', // cpg1.5
   'please_go_back' => 'Please %sclick here%s to go back and fix this problem before proceeding.',
   'populate_db' => 'Populate Database',
   'r_mode' => 'Required mode',

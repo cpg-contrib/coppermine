@@ -149,15 +149,15 @@ switch($step) {
 	case 3:		// Check if the folder permissions are set up properlyµ
 		$install->page_title = $install->language['title_dir_check'];
 		if(!$install->checkPermissions()) {
-			// not all permissions were set right, or folder doesn't exist
+			// not all permissions were set correctly, or folder doesn't exist
 			html_header();
 			html_error();
-			html_content();// show all checked folders?
+			html_content($install->language['perm_not_ok']);  // show all checked folders?
 			html_footer();
 		} else {
 			// permissions are set alright, continue
 			html_header();
-			html_content($install->language['perm_ok']);// show all checked folders?
+			html_content($install->language['perm_ok']);  // show all checked folders?
 			html_footer();
 			$install->setTmpConfig('step', '4');
 		}
@@ -1066,7 +1066,7 @@ class CPGInstall{
 	function checkPermissions() {
 		$peCheck = true;
 		// If another dir has to be added, you can define as many possible permissions as you want, 
-		// but if it only has to be a derictory, the use the $only_folders array (will only be checked on existance)
+		// but if it only has to be a directory, then use the $only_folders array (will only be checked on existence)
 		// Always add the maximum required permission as the first item as the installer will try to chmod the files to that value.
 		$files_to_check = array(
 			'./albums'	=> array('777', '755'),
@@ -1075,8 +1075,8 @@ class CPGInstall{
 			'./albums/edit'		=> array('777', '755'),
 		);
 		// No longer needed, will be checked in versioncheck.
-		// This array is here to allow a simple check on dir existance. If it was in the other array, 
-		// we should have to add all possible permissions an that would be stupid ;-)
+		// This array is here to allow a simple check on dir existence. If it was in the other array, 
+		// we should have to add all possible permissions and that would be stupid ;-)
 		/*$only_folders = array(
 			'./sql',
 		);*/
@@ -1086,17 +1086,12 @@ class CPGInstall{
 		// start creating table with results
 		$this->temp_data = "<tr><td align=\"center\"><table><tr><td><b>{$this->language['directory']}</b></td><td width=\"25%\"><b>{$this->language['c_mode']}</b></td><td width=\"25%\"><b>{$this->language['r_mode']}</b></td><td width=\"10%\"><b>{$this->language['status']}</b></td></tr>";
 		foreach($files_to_check as $folder => $perm) {
-			$possible_modes = '';
 			// create a string of all allowed permissions
-			foreach($perm as $p){
-				$possible_modes .= " '" . $p . "' " . $this->language['or'];
-			}
-			// remove the last 'or ' of the string
-			$possible_modes = substr($possible_modes, 0, (strlen($possible_modes) - 3));
-			$not_ok = '<font color="red">' . $this->language['nok'] . '</font>';
+			$possible_modes = implode(' '.$this->language['or'].' ',$perm);
+            $not_ok = '<font color="red">' . $this->language['nok'] . '</font>';
 			$_ok = '<font color="green">' . $this->language['ok'] . '</font>';
 			
-			// check folder existance
+			// check folder existence
 			if(!is_dir($folder)) {
 				$peCheck = false;
 				$this->error .= sprintf($this->language['subdir_called'], $folder) . '<br />';
@@ -1115,33 +1110,35 @@ class CPGInstall{
 						// again try to write a file to the folder
 						$file_handle2 = @fopen($test_file, 'w');
 						if(!$file_handle2){
-							//not working, admin will have to check this by hand, add error
+							// not working, admin will have to check this by hand, add error
 							$peCheck = false;
-							$this->error .= sprintf($this->language['perm_error'], $folder, $possible_modes) . " '" . $perm . "'.<br />";
-							$this->temp_data .= "<tr><td>$folder</td><td>'$mode'</td><td>$possible_modes</td><td>{$not_ok}</td></tr>";
+                            $possible_modes_left = implode(' '.$this->language['or'].' ',array_diff($perm,array($mode)));
+							$this->error .= sprintf($this->language['perm_error'], $folder, $mode) . ' ' . $possible_modes_left . '.<br />';
+							$this->temp_data .= "<tr><td>$folder</td><td>$mode</td><td>$possible_modes</td><td>{$not_ok}</td></tr>";
 						}else{
 							//close handle and remove file
 							fclose($file_handle2);
 							unlink($test_file);
-							$this->temp_data .= "<tr><td>$folder</td><td>'$mode'</td><td>$possible_modes</td><td>{$_ok}</td></tr>";
+							$this->temp_data .= "<tr><td>$folder</td><td>$mode</td><td>$possible_modes</td><td>{$_ok}</td></tr>";
 						}
 					} else {
 						// could not change mode, add error.
 						$peCheck = false;
-						$this->error .= sprintf($this->language['perm_error'], $folder, $possible_modes) . " '" . $perm . "'.<br />";
-						$this->temp_data .= "<tr><td>$folder</td><td>'$mode'</td><td>$possible_modes</td><td>{$not_ok}</td></tr>";
+                        $possible_modes_left = implode(' '.$this->language['or'].' ',array_diff($perm,array($mode)));
+						$this->error .= sprintf($this->language['perm_error'], $folder, $mode) . ' ' . $possible_modes_left . '.<br />';
+						$this->temp_data .= "<tr><td>$folder</td><td>$mode</td><td>$possible_modes</td><td>{$not_ok}</td></tr>";
 					}
 				}else{
 					//close file handle and remove file
 					fclose($file_handle);
 					unlink($test_file);
-					$this->temp_data .= "<tr><td>$folder</td><td>'$mode'</td><td>$possible_modes</td><td>{$_ok}</td></tr>";
+					$this->temp_data .= "<tr><td>$folder</td><td>$mode</td><td>$possible_modes</td><td>{$_ok}</td></tr>";
 				}
 			}	
 		}
 		/*we don't need to check the sql dir, as those files will be checked in versioncheck.
 		foreach($only_folders as $folder) {
-			// check folder existance
+			// check folder existence
 			if(!is_dir($folder)) {
 				// could not detect folder
 				$peCheck = false;
