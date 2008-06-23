@@ -257,7 +257,7 @@ switch($step) {
 		$install->page_title = $install->language['title_mysql_db_sel'];
 		// save the db data from previous step
 		if($superCage->post->keyExists('db_host')  && !isset($install->config['db_populated'])) {
-			// here we do not use the setTmpConfig funtion, as this function always writes the new file
+			// here we do not use the setTmpConfig function, as this function always writes the new file
 			// and it will be written in the third step...
 			$install->config['db_host'] = $superCage->post->getRaw('db_host');
 			$install->config['db_user'] = $superCage->post->getRaw('db_user');
@@ -1312,7 +1312,7 @@ class CPGInstall{
 			'/bin/imagemagick/bin/convert',
 			'convert'
 			);
-		// add trailing slash if nececary
+		// add trailing slash if necessary
 		if (!empty($this->config['im_path']) && !preg_match('|[/\\\\]\Z|', $this->config['im_path'])) {
             $this->config['im_path'] .= '/';
 		}
@@ -1574,14 +1574,22 @@ class CPGInstall{
 		// Set gallery admin mail
 		$sql_query .= "REPLACE INTO CPG_config VALUES ('gallery_admin_email', '{$this->config['admin_email']}');\n";
 
-		// Get a connection with the db.
+    // Update table prefix
+		$sql_query = preg_replace('/CPG_/', $this->config['db_prefix'], $sql_query);
+
+		require_once('include/sql_parse.php');
+		$sql_query = remove_remarks($sql_query);
+		$sql_query = split_sql_file($sql_query, ';');
+        // Get a connection with the db.
 		if(!$this->checkSqlConnection()) {
 			return false;
 		}
-		if (! mysql_query($sql_query, $this->mysql_connection)) {
-			$this->error = $this->language['mysql_error'] . mysql_error($this->mysql_connection) . ' ' . $this->language['on_q'] . " '$sql_query'";
-			return false;
-		}
+        foreach($sql_query as $q) {
+            if (! mysql_query($q, $this->mysql_connection)) {
+                $this->error = $this->language['mysql_error'] . mysql_error($this->mysql_connection) . ' ' . $this->language['on_q'] . " '$q'";
+                return false;
+            }
+        }
 		return true;
 	}
 	
@@ -2017,7 +2025,11 @@ class IMtest{
 	 * @param string $image_path
 	 */
 	function IMtest($IMpath, $image_path = ''){
-		$this->IMpath = $IMpath . 'convert';
+        // add trailing slash if necessary
+		if (!empty($IMpath) && !preg_match('|[/\\\\]\Z|', $IMpath)) {
+            $IMpath .= '/';
+		}
+        $this->IMpath = $IMpath . 'convert';
 		if($image_path != ''){
 			$this->image_path = $image_path;
 		}
@@ -2058,8 +2070,7 @@ class IMtest{
 		//create gif test image
 		$gif_command = '' . $this->IMpath . ' ' . $this->createImagePath('images/install/giftest.gif') . ' ' . $this->createImagePath('giftest_generated.jpg', true);
 		exec($gif_command, $output, $retval);
-		
-		if($retval){
+        if($retval){
 			//an error occured, add to array
 			$results['read_gif'] = array(
 					'error' 	=> 'read_error',
