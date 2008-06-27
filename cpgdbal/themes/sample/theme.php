@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4463 $
+  $Revision: 4467 $
   $LastChangedBy: gaugau $
-  $Date: 2008-05-23 06:29:27 +0530 (Fri, 23 May 2008) $
+  $Date: 2008-05-26 23:02:53 +0530 (Mon, 26 May 2008) $
 **********************************************/
 
 // ------------------------------------------------------------------------- //
@@ -60,7 +60,7 @@
 //    The entire block needs to be present like in Coppermine 1.3 themes
 //  ('THEME_IS_XHTML10_TRANSITIONAL',1) : If theme is defined as XHTML10_TRANSITIONAL the VANITY footer will be enabled
 //    if the theme has a {VANITY} token in its template.html. Don't enable this if you have modified the code! See the
-//    docs/theme.html documentation for validation methodology.
+//    docs/en/theme.html documentation for validation methodology.
 // ('THEME_HAS_SIDEBAR_GRAPHICS', 1) : The location for the sidebar graphics that compose the tree menu will
 //    be directed to the themes images folder, subfolder 'sidebar', i.e. themes/yourtheme/images/sidebar/.
 //    Gallery root                                                             : images/sidebar/base.gif
@@ -1591,7 +1591,7 @@ function theme_main_menu($which)
 	global $AUTHORIZED, $CONFIG, $album, $actual_cat, $cat, $REFERER;
 	global $lang_main_menu, $template_sys_menu, $template_sub_menu, $lang_gallery_admin_menu;
 	#####################      DB      ######################	
-	$global $cpg_db_sample_theme_php;
+	global $cpg_db_sample_theme_php;
 	$cpgdb =& cpgDB::getInstance();
 	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
 	##################################################	
@@ -1952,7 +1952,8 @@ function theme_display_message_block() {
     if ($superCage->get->keyExists('message_id')) {
     	$message_id = $superCage->get->getEscaped('message_id');
     }
-
+	$msg_array = array("#cpgMessageBlock"=>"", "cpgMessageBlock"=>"");
+	$message_id = strtr($message_id, $msg_array);
     if ($message_id != '') {
         $tempMessage = cpgFetchTempMessage($message_id);
         if ($tempMessage != '') {
@@ -2856,7 +2857,7 @@ function theme_html_img_nav_menu() {
 
     if ($superCage->get->keyExists('date')) {
     	//raw is used as it will be validated
-    	$date_link = '&date=' . cpgValidateDate($superCage->get->getRaw('date'));
+    	$date_link = '&date=' . cpgValidateDate($superCage->get->getEscaped('date'));
     } else {
     	$date_link = '';
     }
@@ -2970,7 +2971,7 @@ function theme_html_rating_box()
 	global $CONFIG, $CURRENT_PIC_DATA, $CURRENT_ALBUM_DATA, $THEME_DIR, $USER_DATA, $USER;
 	global $template_image_rating, $lang_rate_pic;
 	#####################      DB      ######################	
-	$global $cpg_db_sample_theme_php;
+	global $cpg_db_sample_theme_php;
 	$cpgdb =& cpgDB::getInstance();
 	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
 	##################################################	
@@ -3009,7 +3010,8 @@ function theme_html_rating_box()
 		}
 		
 		$superCage = Inspekt::makeSuperCage();
-		$client_id = md5($superCage->server->getRaw('HTTP_USER_AGENT').$superCage->server->getRaw('SERVER_PROTOCOL').$CONFIG['site_url']);
+		// Using md5 # of the raw data.
+		$client_id = md5($superCage->server->getEscaped('HTTP_USER_AGENT').$superCage->server->getEscaped('SERVER_PROTOCOL').$CONFIG['site_url']);
 		$vote_id = base64_encode(md5($superCage->cookie->getRaw($client_id) . $client_id). '-|-' . $USER_DATA['user_id']);
 		$extra_info = '<span style="display:none" id="stars_amount">' . $rating_stars_amount . '</span>';
 		$extra_info .= '<span style="display:none" id="vote_id">' . $vote_id . '</span>';
@@ -3068,7 +3070,7 @@ function theme_html_comments($pid)
 	global $CONFIG, $USER, $CURRENT_ALBUM_DATA, $comment_date_fmt, $HTML_SUBST;
 	global $template_image_comments, $template_add_your_comment, $lang_display_comments, $lang_common, $REFERER;
 	#####################      DB      ######################	
-	$global $cpg_db_sample_theme_php;
+	global $cpg_db_sample_theme_php;
 	$cpgdb =& cpgDB::getInstance();
 	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
 	##################################################	
@@ -3322,7 +3324,7 @@ function theme_display_fullsize_pic()
 	global $CONFIG, $THEME_DIR, $ALBUM_SET, $pid;
 	global $lang_errors, $lang_fullsize_popup, $lang_charset;
 	#####################      DB      ######################	
-	$global $cpg_db_sample_theme_php;
+	global $cpg_db_sample_theme_php;
 	$cpgdb =& cpgDB::getInstance();
 	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
 	##################################################	

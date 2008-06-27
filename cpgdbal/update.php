@@ -12,10 +12,13 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4289 $
-  $LastChangedBy: saweyyy $
-  $Date: 2008-02-21 21:47:44 +0530 (Thu, 21 Feb 2008) $
+  $Revision: 4578 $
+  $LastChangedBy: nibbler999 $
+  $Date: 2008-06-16 01:29:16 +0530 (Mon, 16 Jun 2008) $
 **********************************************/
+define('UPDATE_PHP', true);
+// define('ADMIN_ACCESS', true);
+// If you don't remember the admin account data you're prompted for when running this file in your browser, umcomment the line above by removing the two slashes in front of it, upload that file to your webserver, run it in your browser. After usccessfully having run it, remember to restore the two slashes you removed and replace the "unsecure" version on your webserver with the "secure" version (the one that contains the double slashes).
 
 // Report all errors except E_NOTICE
 // This is the default value set in php.ini
@@ -40,6 +43,8 @@ if ($CONFIG['dbservername'] == 'mysql') {
 	require 'include/cpgdb/sql/mssql.php';
 }
 ##########################################
+require ('include/functions.inc.php');
+
 // The defaults values
 $errors = '';
 $notes = '';
@@ -70,7 +75,7 @@ if(!defined(ADMIN_ACCESS) && !$_SESSION['auth']){
 			//print a box for admin autentication
 			html_auth_box('admin');
 		}
-	}elseif($superCage->post->getAlpha('method') == 'admin'){
+	} elseif ($superCage->post->getAlpha('method') == 'admin'){
 		//try to autenticate the admin
 		test_sql_connection();
 		$user = $superCage->post->getEscaped('user');
@@ -78,7 +83,7 @@ if(!defined(ADMIN_ACCESS) && !$_SESSION['auth']){
 		$pass2 = md5($pass);
 		/*$sql = "SELECT user_active FROM {$CONFIG['TABLE_PREFIX']}users WHERE user_group = 1 AND user_name = '$user' AND (user_password = '$pass' OR user_password = '$pass2')";
 		$result = @mysql_query($sql);
-		if(!@mysql_num_rows($result)){
+		if(!@mysql_num_rows($result)) {
 			//not authenticated, try mysql account details
 			html_auth_box('MySQL');	*/
 		##################################   cpgdbal   ################################
@@ -92,12 +97,12 @@ if(!defined(ADMIN_ACCESS) && !$_SESSION['auth']){
 				html_auth_box('MSSQL');
 			}
 		#########################################################################
-		}else{
+		} else {
 			//authenticated, do the update
 			$_SESSION['auth'] = true;
 			start_update();
 		}
-	}else{
+	} else {
 		//try to autenticate via MySQL details (in configuration)
 		if($superCage->post->getEscaped('user')  == $CONFIG['dbuser'] && $superCage->post->getEscaped('pass') == $CONFIG['dbpass']){
 			//authenticated, do the update
@@ -105,11 +110,11 @@ if(!defined(ADMIN_ACCESS) && !$_SESSION['auth']){
 			start_update();
 		}else{
 			//no go, try again
-			html_error('Could not authenticate you, click <a href="update.php">here</a> to try again');
+			html_error('Could not authenticate you - <a href="update.php">try again</a>');
 		}
 	}
 	html_footer();
-}else{
+} else {
 	$_SESSION['auth'] = true;
 	start_update();
 }
@@ -118,7 +123,7 @@ if(!defined(ADMIN_ACCESS) && !$_SESSION['auth']){
 function start_update(){
 	// The updater
 	html_header("Coppermine - Upgrade");
-	html_logo();
+	//html_logo();
 	
 	test_fs();
 	if ($errors != '')
@@ -138,7 +143,6 @@ function start_update(){
 			html_error($errors);
 		}
 	}
-	
 	html_footer();
 }
 
@@ -207,8 +211,35 @@ function update_system_thumbs()
 }
 
 /**
+ * Return an array containing config values specified in the array
+ */
+/*function cpg_get_config_value($config_name) {
+    global $CONFIG;
+    $result = mysql_query("SELECT value FROM ".$CONFIG['TABLE_PREFIX']."config WHERE name='".$config_name."' LIMIT 1");
+    $row = mysql_fetch_row($result);
+    return $row[0];
+}*/
+########################      DB      ########################
+function cpg_get_config_value($config_name) {
+    global $CONFIG;
+	global $cpg_db_update_php;
+	$cpgsql = @ cpgDB::getInstance(); 
+    $result = $cpgsql->query($cpg_db_update_php['get_config_value'], $config_name);
+    $row = $cpgsql->fetchRow();
+    return $row['value'];
+}
+######################################################
+
+function cpgGetMicroTime()
+{
+	list($usec, $sec) = explode(" ", microtime());
+	return ((float)$usec + (float)$sec);
+}
+
+/**
  * Return an array containing the system thumbs in a directory
  */
+ /*
 function cpg_get_system_thumb_list($search_folder = 'images/')
 {
         global $CONFIG;
@@ -242,7 +273,7 @@ function cpg_get_system_thumb_list($search_folder = 'images/')
                 return $results;
         }
 }
-
+*/
 // ----------------------------- TEST FUNCTIONS ---------------------------- //
 function test_sql_connection()
 {
@@ -252,14 +283,18 @@ function test_sql_connection()
 		$errors .= "<hr /><br />Could not create a mySQL connection, please check the SQL values in include/config.inc.php<br /><br />MySQL error was : " . mysql_error() . "<br /><br />";
 	} elseif (! mysql_select_db($CONFIG['dbname'], $connect_id)) {
 		$errors .= "<hr /><br />mySQL could not locate a database called '{$CONFIG['dbname']}' please check the value entered for this in include/config.inc.php<br /><br />";
+	} else {
+		$CONFIG['LINK_ID'] = $connect_id;
 	}	*/
 	$connect_id = $cpgsql->connect($CONFIG['dbname'], $CONFIG['dbserver'], $CONFIG['dbuser'], $CONFIG['dbpass']);
 	if (!$connect_id || $connect_id == 0) {
 		$errors .= $cpgsql->Error;
+	} else {
+		$CONFIG['LINK_ID'] = $connect_id;
 	}
 }
-// ------------------------- HTML OUTPUT FUNCTIONS ------------------------- //
-// Moved to include/update.inc.php -- chtito
+
+
 
 // ------------------------- SQL QUERIES TO CREATE TABLES ------------------ //
 function update_tables()
@@ -271,6 +306,9 @@ function update_tables()
 	$cpgsql->update = TRUE;
 	##############################
 	
+	$lineBreak = "\n";
+    $loopCounter = 0;
+    $cellStyle = '';
 	$superCage = Inspekt::makeSuperCage();
 	$possibilities = array('REDIRECT_URL', 'PHP_SELF', 'SCRIPT_URL', 'SCRIPT_NAME','SCRIPT_FILENAME');
 	foreach ($possibilities as $test){
@@ -282,7 +320,7 @@ function update_tables()
     //$CPG_PHP_SELF = $_SERVER['PHP_SELF'];
     $gallery_dir = strtr(dirname($CPG_PHP_SELF), '\\', '/');
     //$gallery_url_prefix = 'http://' . $_SERVER['HTTP_HOST'] . $gallery_dir . (substr($gallery_dir, -1) == '/' ? '' : '/');
-	$gallery_url_prefix = 'http://' . $superCage->server->getRaw('HTTP_HOST') . $gallery_dir . (substr($gallery_dir, -1) == '/' ? '' : '/');
+	$gallery_url_prefix = 'http://' . $superCage->server->getEscaped('HTTP_HOST') . $gallery_dir . (substr($gallery_dir, -1) == '/' ? '' : '/');
 
 	//$db_update = 'sql/update.sql';
     ######################     DB     ####################
@@ -295,14 +333,24 @@ function update_tables()
     $sql_query = remove_remarks($sql_query);
     $sql_query = split_sql_file($sql_query, ';');
 
-    ?>
-        <h2>Performing Database Updates<h2>
-        <table class="maintable">
+    print <<< EOT
+        <table border="0" cellspacing="0" cellpadding="0" class="maintable">
+            <tr>
+                <td class="tableh1" colspan="2">
+                    Performing Database Updates
+                </td>
+            </tr>
 
-    <?php
+EOT;
 
     foreach($sql_query as $q) {
-        echo "<tr><td class='tableb'>$q</td>";
+        if ($loopCounter/2 == floor($loopCounter/2)) {
+            $cellStyle = 'tableb';
+        } else {
+            $cellStyle = 'tableb tableb_alternate';
+        }
+        $loopCounter++;
+        echo '<tr><td width="80%" class="'.$cellStyle.'">'.$q;
         /**
          * Determining if the Alter Table actually made a change
          * to properly reflect it's status on the update page.
@@ -324,14 +372,14 @@ function update_tables()
 				$description2[]=$row;
 			}
 
-			if ($description == $description2) {
-			   $affected = 0;
-			}
-		} else {
-			$result = @mysql_query($q);
-			$affected = mysql_affected_rows();
-			$warnings=mysql_query('SHOW WARNINGS;');
-		}	*/
+				if ($description == $description2) {
+				   $affected = 0;
+				}
+			} else {
+				$result = @mysql_query($q);
+				$affected = mysql_affected_rows();
+				$warnings = mysql_query('SHOW WARNINGS;');
+			}	*/
 		###################   cpgdbal   #################
 		if (strpos(strtolower($q),'alter table')!==false) {
 			$query=explode(" ",$q);
@@ -364,31 +412,107 @@ function update_tables()
 			}
 		}
 		###########################################
-
-        if ($result && $affected) {
-            echo "<td class='updatesOK'>OK</td>";
-        } else {
-            echo "<td class='updatesFail'>Already Done</td>";
-        }
         //if (isset($_REQUEST['debug'])) {
 		if ($superCage->get->keyExists('debug')) {
-            echo "<tr><td class='tablef'>";
+            echo '<hr />Debug output:<br />';
             if ($affected > -1) {
-                echo "Rows Affected: ".$affected."<br />";
+                echo "Rows Affected: ".$affected.". ";
             }
 			if ($warnings && $CONFIG['dbservername'] !='mssql') {	#####	cpgdbal
-				/*while ($warning=mysql_fetch_row($warnings)) {
-					echo "{$warning[0]} ({$warning[1]}) {$warning[2]}<br />";
+				/*while ($warning = mysql_fetch_row($warnings)) {
+					if ($warning[0] != '') {
+						$warning_text = 'MySQL said: ';
+					} else {
+						$warning_text = '';
+					}
+					echo $warning_text.'<tt class="code">'.$warning[0]. ' ('.$warning[1].') '.$warning[2].'</tt><br />';
 				}	*/
 				####################   cpgdbal   ####################
 				foreach ($warningset as $warning) {
-					echo "{$warning['Level']} ({$warning['Code']}) {$warning['Message']}<br />";
+					if ($warning[0] != '') {
+						$warning_text = 'MySQL said: ';
+					} else {
+						$warning_text = '';
+					}
+					echo $warning_text.'<tt class="code">'.$warning['Level']. ' ('.$warning['Code'].') '.$warning['Message'].'</tt><br />';
 				}
 				################################################
 			}
-			echo "</td><td class='tableh2_compact'>MySQL Said</td></tr>";
+        }
+        print '</td>'.$lineBreak; // end the table cell that contains the output
+        if ($result && $affected) {
+            echo '<td width="20%" class="'.$cellStyle.' updatesOK">OK</td>'.$lineBreak;
+        } else {
+            echo '<td width="20%" class="'.$cellStyle.' updatesFail">Already Done</td>'.$lineBreak;
         }
     }
+        print <<< EOT
+            <tr>
+                <td class="tablef">
+                    Encryption of passwords:
+                </td>
+EOT;
+    $CONFIG['enable_encrypted_passwords'] = cpg_get_config_value('enable_encrypted_passwords');
+    if ($CONFIG['enable_encrypted_passwords'] != 1) {
+        print <<< EOT
+                <td class="tablef updatesOK">
+                    OK
+                </td>
+            </tr>
+EOT;
+		/*$result = mysql_query("update {$CONFIG['TABLE_PREFIX']}users set user_password=md5(user_password);");
+		if ($CONFIG['enable_encrypted_passwords'] == 0) {
+			$result = mysql_query("update {$CONFIG['TABLE_PREFIX']}config set value = 1 WHERE name = 'enable_encrypted_passwords'");
+		} else {
+			$result = mysql_query("INSERT INTO {$CONFIG['TABLE_PREFIX']}config ( `name` , `value` ) VALUES ('enable_encrypted_passwords', '1')");
+		}*/
+		##################################      DB      #################################
+		// get user passwords and encrypt them
+		$cpgsql->query($cpg_db_update_php['get_user_passwords']);
+		$rowset = $cpgsql->fetchRowSet();
+		foreach ($rowset as $row) {
+			$md5_user_pswd = md5($row['user_password']);
+			$cpgsql->query($cpg_db_update_php['encrypt_passwords'], $md5_user_pswd, $row['user_id']);
+		}
+		if ($CONFIG['enable_encrypted_passwords'] == 0) {
+			$result = $cpgsql->query($cpg_db_update_php['enable_encryption']);
+		} else {
+			$result = $cpgsql->query($cpg_db_update_php['add_encryption_switch']);
+		}
+		##########################################################################
+    } else {
+        print <<< EOT
+                <td class="tablef updatesFail">
+                    Already done
+                </td>
+            </tr>
+EOT;
+    }
+    
+            print <<< EOT
+            <tr>
+                <td class="tablef">
+                    Category tree:
+                </td>
+EOT;
+    
+    if (check_rebuild_tree()) {
+    
+        print <<< EOT
+                <td class="tablef updatesOK">
+                    OK
+                </td>
+            </tr>
+EOT;
+    } else {
+        print <<< EOT
+                <td class="tablef updatesFail">
+                    Already done
+                </td>
+            </tr>
+EOT;
+    }
+    
     echo "</table>";
 }
 ?>

@@ -246,7 +246,7 @@ EOT;
         </tr>
 
 EOT;
-    } // while
+    } // foreach
 //    mysql_free_result($result);
 	$cpgdb->free();		##################	cpgdb_AL
 }

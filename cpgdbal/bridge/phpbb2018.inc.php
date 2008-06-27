@@ -67,7 +67,7 @@ class phpbb2018_udb extends core_udb {
 			$this->sessionstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['sessions'];
 			$this->usergroupstable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['usergroups'];
 			$this->sessionskeystable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['sessionskeys'];
-		} else {	//////	for MSSQL	//////
+		} elseif($CONFIG['dbservername'] == 'mssql') {	//////	for MSSQL	//////
 			$this->usertable = $this->db['name'] ."." .dbo ."." .$this->db['prefix'] . $this->table['users'];
 			$this->groupstable =   $this->db['name'] . "." .dbo ."." .$this->db['prefix'] . $this->table['groups'];
 			$this->sessionstable =   $this->db['name'] ."." .dbo .".". $this->db['prefix'] . $this->table['sessions'];
@@ -144,6 +144,7 @@ class phpbb2018_udb extends core_udb {
 		$superCage = Inspekt::makeSuperCage();
 		//if (isset($_COOKIE[$this->cookie_name . '_sid'])) {
 		//	$this->sid = addslashes($_COOKIE[$this->cookie_name . '_sid']);
+		// Using getRaw() for cookie extraction
 		if ($superCage->cookie->keyExists($this->cookie_name . '_sid')) {
 			$this->sid = addslashes($superCage->cookie->getRaw($this->cookie_name . '_sid'));
 
@@ -217,6 +218,7 @@ class phpbb2018_udb extends core_udb {
 
         //if (isset($_COOKIE[$this->cookie_name.'_data'])){
 		//	$sessiondata = unserialize($_COOKIE[$this->cookie_name.'_data']);
+		// Using getRaw() for cookie extraction.
 		if ($superCage->cookie->keyExists($this->cookie_name.'_data')){
 			$sessiondata = unserialize($superCage->cookie->getRaw($this->cookie_name.'_data'));
 			$cookieid = $sessiondata['userid'] > 1 ? intval($sessiondata['userid']) : 0;

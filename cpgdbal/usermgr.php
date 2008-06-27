@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4272 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-02-13 13:01:15 +0530 (Wed, 13 Feb 2008) $
+  $Revision: 4583 $
+  $LastChangedBy: pvanrompay $
+  $Date: 2008-06-18 06:33:59 +0530 (Wed, 18 Jun 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -161,7 +161,7 @@ function list_users($search = '')
 {
     global $CONFIG, $cpg_udb, $CPG_PHP_SELF; //, $PHP_SELF;
     global $lang_usermgr_php, $lang_byte_units, $register_date_fmt, $lang_common;
-    global $lim_user,$number_of_columns;
+    global $lim_user, $number_of_columns;
     global $USER_DATA;
 	global $cpg_db_usermgr_php;
 	####################### DB #########################	
@@ -335,7 +335,7 @@ EOT;
 
     starttable('100%');
         if ($superCage->post->keyExists('username')) {
-            $search_filter = '<td class="tableh1" align="center">'.$lang_usermgr_php['search_result'].'&laquo;'.htmlentities($superCage->post->getRaw('username')).'&raquo;</td>';
+            $search_filter = '<td class="tableh1" align="center">'.$lang_usermgr_php['search_result'].'&laquo;'.htmlentities($superCage->post->getEscaped('username')).'&raquo;</td>';
         } else {
             $search_filter = '';
         }
@@ -467,11 +467,11 @@ EOT;
                 <td class="{$row_style_class}" align="center">
                     <script type="text/javascript">
                         document.write('<button type="button" class="button" {$makereadonly}onclick="window.location.href =\'$profile_link\';">');
-                        document.write('<img src="images/edit.gif" width="16" height="16" border="0" alt="" title="{$lang_usermgr_php['edit']}" />');
+                        document.write('<img src="images/edit.gif" width="16" height="16" border="0" alt="{$lang_common['edit']}" title="{$lang_common['edit']}" />');
                         document.write('</button>');
                     </script>
                     <noscript>
-                        <a href="$profile_link" class="admin_menu">{$lang_usermgr_php['edit']}</a>
+                        <a href="$profile_link" class="admin_menu">{$lang_common['edit']}</a>
                     </noscript>
                 </td>
                 <td class="{$row_style_class}">{$user['group_name']}</td>
@@ -519,7 +519,7 @@ EOT;
                         <td align="left">
                             <select name="action" id="action" size="1" class="listbox" {$makereadonly}onchange="return selectaction(this,'u');" style="display:none">
                                 <option value="" checked="checked">{$lang_usermgr_php['with_selected']}</option>
-                                <option value="delete">{$lang_usermgr_php['delete']}</option>
+                                <option value="delete">{$lang_common['delete']}</option>
                                 <option value="activate">{$lang_usermgr_php['activate']}</option>
                                 <option value="deactivate">{$lang_usermgr_php['deactivate']}</option>
                                 <option value="reset_password">{$lang_usermgr_php['reset_password']}</option>
@@ -887,13 +887,13 @@ function update_user($user_id)
           "user_profile6 = '$profile6', " .
           "user_group_list = '$user_group_list'";
 
-    if (!empty($user_password)) $sql_update .= ", user_password = '".(($CONFIG['enable_encrypted_passwords'])?md5($user_password):$user_password)."'";
+    if (!empty($user_password)) $sql_update .= ", user_password = '".(md5($user_password))."'";
     $sql_update .= " WHERE user_id = '$user_id'";
 
     cpg_db_query($sql_update);	*/
 ###########################  DB  ##################################
 	if (!empty($user_password)){
-		$password_update = ", user_password = '".(($CONFIG['enable_encrypted_passwords'])?md5($user_password):$user_password)."'";
+		$password_update = ", user_password = '".(md5($user_password))."'";
 	}	else {
 			$password_update = '';
 		}

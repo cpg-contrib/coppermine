@@ -45,7 +45,6 @@ $queries = array();
 // Initialise the $CONFIG array and some other variables
 $CONFIG = array();
 //$PHP_SELF = isset($_SERVER['REDIRECT_URL']) ? $_SERVER['REDIRECT_URL'] : $_SERVER['SCRIPT_NAME'];
-
 $PHP_SELF = '';
 $ORIGINAL_PHP_SELF = $superCage->server->getRaw('PHP_SELF');
 $possibilities = array('REDIRECT_URL', 'PHP_SELF', 'SCRIPT_URL', 'SCRIPT_NAME','SCRIPT_FILENAME');
@@ -173,7 +172,7 @@ mysql_free_result($results);*/
 
 ########################## DB ################################
 $cpgdb->query($cpg_db_init_inc['get_db_configuration']);
-while ($row = $cpgdb->fetchrow()) {
+while ($row = $cpgdb->fetchRow()) {
 	$CONFIG[$row['name']] = $row['value'];
 } // while
 $cpgdb->free();	
@@ -289,7 +288,7 @@ if (!GALLERY_ADMIN_MODE) {
   $cpgdb->query($cpg_db_init_inc['select_distinct_aid'], USER_GROUP_SET);
   $rowset = $cpgdb->fetchRowSet();
   if (count($rowset)) {
-	while ($row = $cpgdb->fetchrow()) {
+	while ($row = $cpgdb->fetchRow()) {
 	  $USER_DATA['allowed_albums'][] = $row['aid'];
 	}
   }
@@ -321,8 +320,8 @@ $THEME_DIR = "themes/{$CONFIG['theme']}/";
 
 // Process language selection if present in URI or in user profile or try
 // autodetection if default charset is utf-8
-$CONFIG['default_lang'] = $CONFIG['lang'];      // Save default language
-if ($superCage->get->getRaw('lang') && $matches = $superCage->get->getMatched('lang', '/^[a-z0-9_-]+$/')) {
+$CONFIG['default_lang'] = $CONFIG['lang'];      // Save default language.
+if ($superCage->get->getEscaped('lang') && $matches = $superCage->get->getMatched('lang', '/^[a-z0-9_-]+$/')) {
     $USER['lang'] = $CONFIG['lang'] = $matches[0];
 }/* else {
 	unset($USER['lang']);
@@ -380,7 +379,7 @@ if (USER_ID > 0){
 		$results = cpg_db_query($sql);
 		$row = mysql_fetch_array($results);*/
 	############################  DB  ########################################
-		$cpgdb->query($cpg_db_init_inc['get_user_favpics']);
+		$cpgdb->query($cpg_db_init_inc['get_user_favpics'], USER_ID);
 		$row = $cpgdb->fetchRow();
 	######################################################################
 		if (!empty($row['user_favpics'])){
@@ -400,7 +399,7 @@ if ($matches = $superCage->get->getMatched('referer', '/((\%3C)|<)[^\n]+((\%3E)|
     /**
      * Using getRaw() since we are checking the referer in the above if condition.
      */
-    $CPG_REFERER = $superCage->get->getRaw('referer');
+    $CPG_REFERER = $superCage->get->getEscaped('referer');
 }
 
 /**

@@ -11,9 +11,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4220 $
-  $LastChangedBy: saweyyy $
-  $Date: 2008-01-24 23:08:30 +0100 (Do, 24 Jan 2008) $
+  $Revision: 4502 $
+  $LastChangedBy: pvanrompay $
+  $Date: 2008-06-06 03:51:20 +0530 (Fri, 06 Jun 2008) $
 **********************************************/
 
 /*

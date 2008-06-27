@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 3786 $
-  $LastChangedBy: gaugau $
-  $Date: 2007-07-27 16:44:45 +0200 (Fr, 27 Jul 2007) $
+  $Revision: 4502 $
+  $LastChangedBy: pvanrompay $
+  $Date: 2008-06-06 03:51:20 +0530 (Fri, 06 Jun 2008) $
   ********************************************
   Code below has been taken from lib.xml.php and slightly modified for use with coppermine
   Orginal: http://www.phpclasses.org/browse/file/17412.html

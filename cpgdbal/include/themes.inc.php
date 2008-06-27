@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4462 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-05-23 06:29:05 +0530 (Fri, 23 May 2008) $
+  $Revision: 4583 $
+  $LastChangedBy: pvanrompay $
+  $Date: 2008-06-18 06:33:59 +0530 (Wed, 18 Jun 2008) $
 **********************************************/
 
 /////////////////////////////////////////////////////////////////
@@ -68,7 +68,7 @@ if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}         //{THEMES
 //    The entire block needs to be present like in Coppermine 1.3 themes
 //  ('THEME_IS_XHTML10_TRANSITIONAL',1) : If theme is defined as XHTML10_TRANSITIONAL the VANITY footer will be enabled
 //    if the theme has a {VANITY} token in its template.html. Don't enable this if you have modified the code! See the
-//    docs/theme.html documentation for validation methodology.
+//    docs/en/theme.html documentation for validation methodology.
 // ('THEME_HAS_SIDEBAR_GRAPHICS', 1) : The location for the sidebar graphics that compose the tree menu will
 //    be directed to the themes images folder, subfolder 'sidebar', i.e. themes/yourtheme/images/sidebar/.
 //    Gallery root                                                             : images/sidebar/base.gif
@@ -179,7 +179,7 @@ EOT;
     addbutton($sys_menu_buttons,'{CONTACT_LNK}','{CONTACT_TITLE}','{CONTACT_TGT}','contact',$template_sys_menu_spacer);
     addbutton($sys_menu_buttons,'{MY_GAL_LNK}','{MY_GAL_TITLE}','{MY_GAL_TGT}','my_gallery',$template_sys_menu_spacer);
     addbutton($sys_menu_buttons,'{MEMBERLIST_LNK}','{MEMBERLIST_TITLE}','{MEMBERLIST_TGT}','allow_memberlist',$template_sys_menu_spacer);
-    if (is_array($USER_DATA['allowed_albums']) && count($USER_DATA['allowed_albums'])) {
+    if (array_key_exists('allowed_albums', $USER_DATA) && is_array($USER_DATA['allowed_albums']) && count($USER_DATA['allowed_albums'])) {
       addbutton($sys_menu_buttons,'{UPL_APP_LNK}','{UPL_APP_TITLE}','{UPL_APP_TGT}','upload_approval',$template_sys_menu_spacer);
     }
     addbutton($sys_menu_buttons,'{MY_PROF_LNK}','{MY_PROF_TITLE}','{MY_PROF_TGT}','my_profile',$template_sys_menu_spacer);
@@ -295,7 +295,7 @@ $template_gallery_admin_menu = <<<EOT
                             <!-- BEGIN show_news -->
                                 <div class="admin_menu admin_float"><a href="mode.php?what=news&amp;referer=$REFERER" title="{SHOWNEWS_TITLE}">{SHOWNEWS_LNK}</a></div>
                             <!-- END show_news -->
-		                          <div class="admin_menu admin_float"><a href="export.php" title="{EXPORT_TITLE}">{EXPORT_LNK}</a></div>
+		                      <div class="admin_menu admin_float"><a href="export.php" title="{EXPORT_TITLE}">{EXPORT_LNK}</a></div>
                 <div style="clear:left;">
                 </div>
               </div>
@@ -522,11 +522,25 @@ $template_film_strip = <<<EOT
         </tr>
 <!-- BEGIN thumb_cell -->
                 <td valign="top" align="center">
-                                        <a href="{LINK_TGT}">{THUMB}</a>
-                                        {CAPTION}
-                                        {ADMIN_MENU}
+                    <a href="{LINK_TGT}">{THUMB}</a>
+                    {CAPTION}
+                    {ADMIN_MENU}
                 </td>
 <!-- END thumb_cell -->
+<!-- BEGIN alb_thumb_cell -->
+                <td valign="top" align="center">
+                    <table border="5" cellpadding="10" cellspacing="0">
+                        <tr>
+                            <td valign="middle" class="alb_thumbnails" align="center">
+                                <span class="thumb_alb_label">{ALBUM_LABEL}</span>
+                                <a href="{LINK_TGT}">{THUMB}</a><br />
+                                {CAPTION}
+                                {ADMIN_MENU}
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+<!-- END alb_thumb_cell -->
 <!-- BEGIN empty_cell -->
                 <td valign="top" align="center" >&nbsp;</td>
 <!-- END empty_cell -->
@@ -669,31 +683,31 @@ $template_thumb_view_title_row = <<<EOT
                                 <td width="100%" class="statlink"><h2>{ALBUM_NAME}</h2></td>
                                 <!-- Use JavaScript to display the sorting options only to humans, but hide them from search engines to avoid double-content indexing -->
                                 <script type="text/javascript">
-	                                document.write('<td><img src="images/spacer.gif" width="1" alt="" /></td>');
-	                                document.write('<td class="sortorder_cell">');
-	                                document.write('        <table cellpadding="0" cellspacing="0">');
-	                                document.write('        <tr>');
-	                                document.write('                <td class="sortorder_options">{TITLE}</td>');
-	                                document.write('                <td class="sortorder_options"><span class="statlink">&nbsp;<a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=ta" title="{SORT_TA}">+</a>&nbsp;</span></td>');
-	                                document.write('                <td class="sortorder_options"><span class="statlink">&nbsp;<a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=td" title="{SORT_TD}">-</a>&nbsp;</span></td>');
-	                                document.write('        </tr>');
-	                                document.write('        <tr>');
-	                                document.write('                <td class="sortorder_options">{NAME}</td>');
-	                                document.write('                <td class="sortorder_options"><span class="statlink">&nbsp;<a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=na" title="{SORT_NA}">+</a>&nbsp;</span></td>');
-	                                document.write('                <td class="sortorder_options"><span class="statlink">&nbsp;<a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=nd" title="{SORT_ND}">-</a>&nbsp;</span></td>');
-	                                document.write('        </tr>');
-	                                document.write('        <tr>');
-	                                document.write('                <td class="sortorder_options">{DATE}</td>');
-	                                document.write('                <td class="sortorder_options"><span class="statlink">&nbsp;<a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=da" title="{SORT_DA}">+</a>&nbsp;</span></td>');
-	                                document.write('                <td class="sortorder_options"><span class="statlink">&nbsp;<a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=dd" title="{SORT_DD}">-</a>&nbsp;</span></td>');
-	                                document.write('        </tr>');
-	                                document.write('        <tr>');
-	                                document.write('                <td class="sortorder_options">{POSITION}</td>');
-	                                document.write('                <td class="sortorder_options"><span class="statlink">&nbsp;<a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=pa" title="{SORT_PA}">+</a>&nbsp;</span></td>');
-	                                document.write('                <td class="sortorder_options"><span class="statlink">&nbsp;<a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=pd" title="{SORT_PD}">-</a>&nbsp;</span></td>');
-	                                document.write('        </tr>');
-	                                document.write('        </table>');
-	                                document.write('</td>');
+	                              document.write('<td><img src="images/spacer.gif" width="1" alt="" /></td>');
+	                              document.write('<td class="sortorder_cell">');
+	                              document.write('        <table cellpadding="0" cellspacing="0">');
+	                              document.write('        <tr>');
+	                              document.write('                <td class="sortorder_options">{TITLE}</td>');
+	                              document.write('                <td class="sortorder_options"><span class="statlink">&nbsp;<a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=ta" title="{SORT_TA}">+</a>&nbsp;</span></td>');
+	                              document.write('                <td class="sortorder_options"><span class="statlink">&nbsp;<a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=td" title="{SORT_TD}">-</a>&nbsp;</span></td>');
+	                              document.write('        </tr>');
+	                              document.write('        <tr>');
+	                              document.write('                <td class="sortorder_options">{NAME}</td>');
+	                              document.write('                <td class="sortorder_options"><span class="statlink">&nbsp;<a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=na" title="{SORT_NA}">+</a>&nbsp;</span></td>');
+	                              document.write('                <td class="sortorder_options"><span class="statlink">&nbsp;<a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=nd" title="{SORT_ND}">-</a>&nbsp;</span></td>');
+	                              document.write('        </tr>');
+	                              document.write('        <tr>');
+	                              document.write('                <td class="sortorder_options">{DATE}</td>');
+	                              document.write('                <td class="sortorder_options"><span class="statlink">&nbsp;<a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=da" title="{SORT_DA}">+</a>&nbsp;</span></td>');
+	                              document.write('                <td class="sortorder_options"><span class="statlink">&nbsp;<a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=dd" title="{SORT_DD}">-</a>&nbsp;</span></td>');
+	                              document.write('        </tr>');
+	                              document.write('        <tr>');
+	                              document.write('                <td class="sortorder_options">{POSITION}</td>');
+	                              document.write('                <td class="sortorder_options"><span class="statlink">&nbsp;<a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=pa" title="{SORT_PA}">+</a>&nbsp;</span></td>');
+	                              document.write('                <td class="sortorder_options"><span class="statlink">&nbsp;<a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=pd" title="{SORT_PD}">-</a>&nbsp;</span></td>');
+	                              document.write('        </tr>');
+	                              document.write('        </table>');
+	                              document.write('</td>');
                                 </script>
                         </tr>
                         </table>
@@ -737,6 +751,7 @@ if (!isset($template_thumbnail_view)) { //{THEMES}
 /******************************************************************************
 ** Section <<<$template_thumbnail_view>>> - START
 ******************************************************************************/
+
 // HTML template for thumbnails display
 $template_thumbnail_view = <<<EOT
 
@@ -954,9 +969,9 @@ $template_image_rating = <<<EOT
                 <td colspan="6" class="tableh2_compact" id="voting_title"><b>{TITLE}</b> {VOTES}</td>
         </tr>
         <tr  id="rating_stars">
-				{RATING}
+        {RATING}
         </tr>
-		<noscript>
+    <noscript>
         <tr>
           <td class="tableb_compact" colspan="6" align="center">{JS_WARNING}</td>
         </tr>
@@ -1558,7 +1573,7 @@ if (!function_exists('pagefooter')) {  //{THEMES}
 function pagefooter()
 {
     //global $HTTP_GET_VARS, $HTTP_POST_VARS, $HTTP_SERVER_VARS;
-    global $USER, $USER_DATA, $ALBUM_SET, $CONFIG, $time_start, $query_stats, $queries;;
+    global $USER, $USER_DATA, $CONFIG, $time_start, $query_stats, $queries;;
     global $template_footer;
 
     $custom_footer = cpg_get_custom_include($CONFIG['custom_footer_path']);
@@ -1588,22 +1603,22 @@ if (!function_exists('theme_javascript_head')) {  //{THEMES}
 function theme_javascript_head() {
     global $CONFIG, $JS;
     
-	$return = '';
-	// Check if we have any variables being set using set_js_vars function
-	if (isset($JS['vars']) && count($JS['vars'])) {
-		// Convert the $JS['vars'] array to json object string
-		$json_vars = json_encode($JS['vars']);
-		// Output the json object
-		$return .= "<script type=\"text/javascript\">var js_vars = eval('($json_vars)');</script>\n";
-	}
+  $return = '';
+  // Check if we have any variables being set using set_js_vars function
+  if (isset($JS['vars']) && count($JS['vars'])) {
+    // Convert the $JS['vars'] array to json object string
+    $json_vars = json_encode($JS['vars']);
+    // Output the json object
+    $return .= "<script type=\"text/javascript\">var js_vars = eval('($json_vars)');</script>\n";
+  }
 
-	// Check if we have any js includes
-	if (isset($JS['includes']) && count($JS['includes'])) {
-		// Include all the file which were set using js_include() function
-		foreach($JS['includes'] as $js_file) {
-			$return .= '<script type="text/javascript" src="' . $js_file . '"></script>' . "\n";
-		}
-	}
+  // Check if we have any js includes
+  if (isset($JS['includes']) && count($JS['includes'])) {
+    // Include all the file which were set using js_include() function
+    foreach($JS['includes'] as $js_file) {
+      $return .= '<script type="text/javascript" src="' . $js_file . '"></script>' . "\n";
+    }
+  }
 
     $return .= '<script type="text/javascript" src="scripts.js"></script>'."\n"; // do not remove this line unless you really know what you're doing
     $return .= <<< EOT
@@ -2066,9 +2081,10 @@ function theme_display_message_block() {
     $return = '';
 
     if ($superCage->get->keyExists('message_id')) {
-    	$message_id = $superCage->get->getEscaped('message_id');
+      $message_id = $superCage->get->getEscaped('message_id');
     }
-
+    $msg_array = array("#cpgMessageBlock"=>"", "cpgMessageBlock"=>"");
+    $message_id = strtr($message_id, $msg_array);
     if ($message_id != '') {
         $tempMessage = cpgFetchTempMessage($message_id);
         if ($tempMessage != '') {
@@ -2413,9 +2429,9 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
     $cat_link = is_numeric($aid) ? '' : '&amp;cat=' . $cat;
     $date_link = $date=='' ? '' : '&amp;date=' . $date;
     if ($superCage->get->getInt('uid')) {
-    	$uid_link = '&amp;uid=' . $superCage->get->getInt('uid');
+      $uid_link = '&amp;uid=' . $superCage->get->getInt('uid');
     } else {
-    	$uid_link = '';
+      $uid_link = '';
     }
 
     $theme_thumb_tab_tmpl = $template_tab_display;
@@ -2455,12 +2471,12 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
             '{SORT_PD}' => $lang_thumb_view['sort_pd'],
             );
         $title = template_eval($template_thumb_view_title_row, $param);
-    } else if ($aid == 'favpics' && $CONFIG['enable_zipdownload'] == 1) { //Lots of stuff can be added here later
+    } elseif ($aid == 'favpics' && $CONFIG['enable_zipdownload'] == 1) { //Lots of stuff can be added here later
        $param = array('{ALBUM_NAME}' => $album_name,
                              '{DOWNLOAD_ZIP}'=>$lang_thumb_view['download_zip']
                                );
        $title = template_eval($template_fav_thumb_view_title_row, $param);
-    }else{
+    } else {
         $title = $album_name;
     }
 
@@ -2499,7 +2515,7 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
             ########################################################
 
             ######### Added by Abbas for new URL #################
-            } elseif ($aid == 'random'){
+            } elseif ($aid == 'random') {
                 // determine if thumbnail link targets should open in a pop-up
                 if ($CONFIG['thumbnail_to_fullsize'] == 1) { // code for full-size pop-up
                     if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 2) {
@@ -2546,11 +2562,10 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
                 );
         }
         echo template_eval($thumb_cell, $params);
-
         if ((($i % $thumbcols) == 0) && ($i < count($thumb_list))) {
             echo $row_separator;
         }
-    }
+    } // foreach $thumb
     for (;($i % $thumbcols); $i++) {
         echo $empty_cell;
     }
@@ -2576,9 +2591,10 @@ if (!function_exists('theme_display_film_strip')) {  //{THEMES}
 ** Section <<<theme_display_film_strip>>> - START
 ******************************************************************************/
 // Function to display the film strip
-function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $pos, $sort_options, $mode = 'thumb', $date='', $filmstrip_prev_pos, $filmstrip_next_pos) {
+function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $pos, $sort_options, $mode = 'thumb', $date='', $filmstrip_prev_pos, $filmstrip_next_pos) 
+{
     global $CONFIG, $THEME_DIR;
-    global $template_film_strip, $lang_film_strip, $pic_count;
+    global $template_film_strip, $lang_film_strip, $lang_common, $pic_count;
 
     $superCage = Inspekt::makeSuperCage();
 
@@ -2616,7 +2632,7 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
             // determine if thumbnail link targets should open in a pop-up
             if ($CONFIG['thumbnail_to_fullsize'] == 1) { // code for full-size pop-up
                 if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 2) {
-                       $target = 'javascript:;" onClick="alert(\''.sprintf($lang_errors['login_needed'],'','','','').'\');';
+                    $target = 'javascript:;" onClick="alert(\''.sprintf($lang_errors['login_needed'],'','','','').'\');';
                 } else {
                     $target = 'javascript:;" onClick="MM_openBrWindow(\'displayimage.php?pid=' . $thumb['pid'] . '&fullsize=1\',\'' . uniqid(rand()) . '\',\'scrollbars=yes,toolbar=no,status=no,resizable=yes,width=' . ((int)$thumb['pwidth']+(int)$CONFIG['fullsize_padding_x']) .  ',height=' .   ((int)$thumb['pheight']+(int)$CONFIG['fullsize_padding_y']). '\');';
                 }
@@ -2650,12 +2666,12 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
     }
 
     if (defined('THEME_HAS_NAVBAR_GRAPHICS')) {
-		$location = $THEME_DIR;
-	} else {
-		$location= '';
-	}
-	$prev_tgt = "displayimage.php?film_strip=1&amp;pos=$filmstrip_prev_pos&amp;album=$aid&amp;cat=$cat";
-	$next_tgt = "displayimage.php?film_strip=1&amp;pos=$filmstrip_next_pos&amp;album=$aid&amp;cat=$cat";
+        $location = $THEME_DIR;
+    } else {
+        $location= '';
+    }
+    $prev_tgt = "displayimage.php?film_strip=1&amp;pos=$filmstrip_prev_pos&amp;album=$aid&amp;cat=$cat";
+    $next_tgt = "displayimage.php?film_strip=1&amp;pos=$filmstrip_next_pos&amp;album=$aid&amp;cat=$cat";
     $params = array('{THUMB_STRIP}' => $thumb_strip,
         '{COLS}' => $i,
         '{TILE1}' => $tile1,
@@ -2758,7 +2774,7 @@ function theme_html_picinfo(&$info)
 {
     global $lang_picinfo, $CONFIG, $CURRENT_PIC_DATA;
 
-        if($CONFIG['picinfo_movie_download_link']){
+        if ($CONFIG['picinfo_movie_download_link']) {
                 $path_to_pic = $CONFIG['fullpath'] . $CURRENT_PIC_DATA['filepath'] . $CURRENT_PIC_DATA['filename'];
                 $mime_content = cpg_get_type($CURRENT_PIC_DATA['filename']);
                 if ($mime_content['content']=='movie') {
@@ -2805,16 +2821,16 @@ function theme_html_picture()
         array_push($USER['liv'], $pid);
     }
 
-    if($CONFIG['thumb_use']=='ht' && $CURRENT_PIC_DATA['pheight'] > $CONFIG['picture_width'] ){ // The wierd comparision is because only picture_width is stored
+    if ($CONFIG['thumb_use']=='ht' && $CURRENT_PIC_DATA['pheight'] > $CONFIG['picture_width'] ) { // The wierd comparision is because only picture_width is stored
       $condition = true;
-    }elseif($CONFIG['thumb_use']=='wd' && $CURRENT_PIC_DATA['pwidth'] > $CONFIG['picture_width']){
+    } elseif ($CONFIG['thumb_use']=='wd' && $CURRENT_PIC_DATA['pwidth'] > $CONFIG['picture_width']) {
       $condition = true;
-    }elseif($CONFIG['thumb_use']=='any' && max($CURRENT_PIC_DATA['pwidth'], $CURRENT_PIC_DATA['pheight']) > $CONFIG['picture_width']){
+    } elseif ($CONFIG['thumb_use']=='any' && max($CURRENT_PIC_DATA['pwidth'], $CURRENT_PIC_DATA['pheight']) > $CONFIG['picture_width']) {
       $condition = true;
         //thumb cropping
-    }elseif($CONFIG['thumb_use']=='ex' && max($CURRENT_PIC_DATA['pwidth'], $CURRENT_PIC_DATA['pheight']) > $CONFIG['picture_width']){
+    } elseif ($CONFIG['thumb_use']=='ex' && max($CURRENT_PIC_DATA['pwidth'], $CURRENT_PIC_DATA['pheight']) > $CONFIG['picture_width']) {
       $condition = true;
-    }else{
+    } else {
      $condition = false;
     }
 
@@ -2995,10 +3011,10 @@ function theme_html_img_nav_menu() {
     //$date_link = $_GET['date']=='' ? '' : '&date=' . cpgValidateDate($_GET['date']);
 
     if ($superCage->get->keyExists('date')) {
-    	//date will be validated
-    	$date_link = '&date=' . cpgValidateDate($superCage->get->getRaw('date'));
+      //date will be validated
+      $date_link = '&date=' . cpgValidateDate($superCage->get->getEscaped('date'));
     } else {
-    	$date_link = '';
+      $date_link = '';
     }
 
     //$uid_link = is_numeric($_GET['uid']) ? '&amp;uid=' . $_GET['uid'] : '';
@@ -3118,84 +3134,84 @@ function theme_html_rating_box()
 	################################################
 
     if (!(USER_CAN_RATE_PICTURES && $CURRENT_ALBUM_DATA['votes'] == 'YES')){
-		return '';
-	}else{
-		//check if the users already voted or if this user is the owner
-		$user_md5_id = USER_ID ? md5(USER_ID) : $USER['ID'];
-		//$result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_VOTES']} WHERE pic_id={$CURRENT_PIC_DATA['pid']} AND user_md5_id='$user_md5_id'");
-		##########  DB  ###########
-		$cpgdb->query($cpg_db_themes_inc['html_rating_box'], $CURRENT_PIC_DATA['pid'], $user_md5_id);
-		$rowset = $cpgdb->fetchRowSet();
-		########################
-		$user_can_vote = 'false';
-		if($CURRENT_PIC_DATA['owner_id'] == $USER_DATA['user_id'] && $USER_DATA['user_id'] != 0){
-			//user is owner
-			$rate_title = $lang_rate_pic['forbidden'];
-		//}elseif(!mysql_num_rows($result)){
-		}elseif (!count($rowset)) {		#######	cpgdb_AL
-			//user hasn't voted yet, show voting things
-			$rate_title = $lang_rate_pic['rate_this_pic'];
-			$user_can_vote = 'true';	
-		}else{
-			//user has voted
-			$rate_title = $lang_rate_pic['already_voted'];
-		}
-		$rating_stars_amount = ($CONFIG['old_style_rating']) ? 5 : $CONFIG['rating_stars_amount'];
-		$votes = $CURRENT_PIC_DATA['votes'] ? sprintf($lang_rate_pic['rating'], round(($CURRENT_PIC_DATA['pic_rating'] / 2000) / (5/$rating_stars_amount), 1), $rating_stars_amount, $CURRENT_PIC_DATA['votes']) : $lang_rate_pic['no_votes'];
-		$pid = $CURRENT_PIC_DATA['pid'];
-	
-		if (defined('THEME_HAS_RATING_GRAPHICS')) {
-			$location= $THEME_DIR;
-		} else {
-			$location= '';
-		}
-		
-		$superCage = Inspekt::makeSuperCage();
-		$client_id = md5($superCage->server->getRaw('HTTP_USER_AGENT').$superCage->server->getRaw('SERVER_PROTOCOL').$CONFIG['site_url']);
-		$vote_id = base64_encode(md5($superCage->cookie->getRaw($client_id) . $client_id). '-|-' . $USER_DATA['user_id']);
-		$extra_info = '<span style="display:none" id="stars_amount">' . $rating_stars_amount . '</span>';
-		$extra_info .= '<span style="display:none" id="vote_id">' . $vote_id . '</span>';
-		
-		if($CONFIG['old_style_rating']){
-			//use old style rating
-			$start_td = '<td class="tableb_compact" width="17%" align="center">';
-			$end_td = '</td>';
-			$empty_star = '<img style="cursor:pointer" id="' . $pid . '_0" title="0" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['rubbish'] . '" onclick="rate(this, 0, \'' . $location . '\')" />';
-			$rating_images = $start_td . $empty_star . $empty_star . $empty_star . $empty_star . $empty_star . $end_td . "\n";
-			
-			$empty_star = '<img style="cursor:pointer" id="' . $pid . '_1" title="1" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['poor'] . '" onclick="rate(this, 1, \'' . $location . '\')" />';
-			$full_star = '<img style="cursor:pointer" id="' . $pid . '_1" title="1" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['poor'] . '" onclick="rate(this, 1, \'' . $location . '\')" />';
-			$rating_images .= $start_td . $full_star . $empty_star . $empty_star . $empty_star . $empty_star . $end_td . "\n";
-			
-			$empty_star = '<img style="cursor:pointer" id="' . $pid . '_2" title="2" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['fair'] . '" onclick="rate(this, 2, \'' . $location . '\')" />';
-			$full_star = '<img style="cursor:pointer" id="' . $pid . '_2" title="2" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['fair'] . '" onclick="rate(this, 2, \'' . $location . '\')" />';
-			$rating_images .= $start_td . $full_star . $full_star . $empty_star . $empty_star . $empty_star . $end_td . "\n";
-			
-			$empty_star = '<img style="cursor:pointer" id="' . $pid . '_3" title="3" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['good'] . '" onclick="rate(this, 3, \'' . $location . '\')" />';
-			$full_star = '<img style="cursor:pointer" id="' . $pid . '_3" title="3" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['good'] . '" onclick="rate(this, 3, \'' . $location . '\')" />';
-			$rating_images .= $start_td . $full_star . $full_star . $full_star . $empty_star . $empty_star . $end_td . "\n";
-			
-			$empty_star = '<img style="cursor:pointer" id="' . $pid . '_4" title="4" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['excellent'] . '" onclick="rate(this, 4, \'' . $location . '\')" />';
-			$full_star = '<img style="cursor:pointer" id="' . $pid . '_4" title="4" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['excellent'] . '" onclick="rate(this, 4, \'' . $location . '\')" />';
-			$rating_images .= $start_td . $full_star . $full_star . $full_star . $full_star . $empty_star . $end_td . "\n";
-			
-			$full_star = '<img style="cursor:pointer" id="' . $pid . '_5" title="5" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['great'] . '" onclick="rate(this, 5, \'' . $location . '\')" />';
-			$rating_images .= $start_td . $full_star . $full_star . $full_star . $full_star . $full_star . $end_td . "\n";
-		}else{
-			//use new rating
-			$rating_images = '<td class="tableb_compact"><script type="text/javascript" language="javascript">displayStars(' . round(($CURRENT_PIC_DATA['pic_rating'] / 2000) / (5/$rating_stars_amount), 0) . ', ' . $pid . ', "' . $location . '", ' . $user_can_vote . ', "' . $lang_rate_pic['rollover_to_rate'] . '");</script></td>';
-		}
+    return '';
+  } else {
+    //check if the users already voted or if this user is the owner
+    $user_md5_id = USER_ID ? md5(USER_ID) : $USER['ID'];
+    //$result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_VOTES']} WHERE pic_id={$CURRENT_PIC_DATA['pid']} AND user_md5_id='$user_md5_id'");
+    ##########  DB  ###########
+    $cpgdb->query($cpg_db_themes_inc['html_rating_box'], $CURRENT_PIC_DATA['pid'], $user_md5_id);
+    $rowset = $cpgdb->fetchRowSet();
+    ########################
+    $user_can_vote = 'false';
+    if ($CURRENT_PIC_DATA['owner_id'] == $USER_DATA['user_id'] && $USER_DATA['user_id'] != 0) {
+      //user is owner
+      $rate_title = $lang_rate_pic['forbidden'];
+      //} elseif (!mysql_num_rows($result)) {
+    } elseif (!count($rowset)) {		#######	cpgdb_AL
+      //user hasn't voted yet, show voting things
+      $rate_title = $lang_rate_pic['rate_this_pic'];
+      $user_can_vote = 'true';	
+    } else {
+      //user has voted
+      $rate_title = $lang_rate_pic['already_voted'];
+    }
+    $rating_stars_amount = ($CONFIG['old_style_rating']) ? 5 : $CONFIG['rating_stars_amount'];
+    $votes = $CURRENT_PIC_DATA['votes'] ? sprintf($lang_rate_pic['rating'], round(($CURRENT_PIC_DATA['pic_rating'] / 2000) / (5/$rating_stars_amount), 1), $rating_stars_amount, $CURRENT_PIC_DATA['votes']) : $lang_rate_pic['no_votes'];
+    $pid = $CURRENT_PIC_DATA['pid'];
+  
+    if (defined('THEME_HAS_RATING_GRAPHICS')) {
+      $location= $THEME_DIR;
+    } else {
+      $location= '';
+    }
+    
+    $superCage = Inspekt::makeSuperCage();
+    $client_id = md5($superCage->server->getEscaped('HTTP_USER_AGENT').$superCage->server->getEscaped('SERVER_PROTOCOL').$CONFIG['site_url']);
+    $vote_id = base64_encode(md5($superCage->cookie->getRaw($client_id) . $client_id). '-|-' . $USER_DATA['user_id']);
+    $extra_info = '<span style="display:none" id="stars_amount">' . $rating_stars_amount . '</span>';
+    $extra_info .= '<span style="display:none" id="vote_id">' . $vote_id . '</span>';
+    
+    if ($CONFIG['old_style_rating']) {
+      //use old style rating
+      $start_td = '<td class="tableb_compact" width="17%" align="center">';
+      $end_td = '</td>';
+      $empty_star = '<img style="cursor:pointer" id="' . $pid . '_0" title="0" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['rubbish'] . '" onclick="rate(this, 0, \'' . $location . '\')" />';
+      $rating_images = $start_td . $empty_star . $empty_star . $empty_star . $empty_star . $empty_star . $end_td . "\n";
+      
+      $empty_star = '<img style="cursor:pointer" id="' . $pid . '_1" title="1" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['poor'] . '" onclick="rate(this, 1, \'' . $location . '\')" />';
+      $full_star = '<img style="cursor:pointer" id="' . $pid . '_1" title="1" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['poor'] . '" onclick="rate(this, 1, \'' . $location . '\')" />';
+      $rating_images .= $start_td . $full_star . $empty_star . $empty_star . $empty_star . $empty_star . $end_td . "\n";
+      
+      $empty_star = '<img style="cursor:pointer" id="' . $pid . '_2" title="2" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['fair'] . '" onclick="rate(this, 2, \'' . $location . '\')" />';
+      $full_star = '<img style="cursor:pointer" id="' . $pid . '_2" title="2" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['fair'] . '" onclick="rate(this, 2, \'' . $location . '\')" />';
+      $rating_images .= $start_td . $full_star . $full_star . $empty_star . $empty_star . $empty_star . $end_td . "\n";
+      
+      $empty_star = '<img style="cursor:pointer" id="' . $pid . '_3" title="3" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['good'] . '" onclick="rate(this, 3, \'' . $location . '\')" />';
+      $full_star = '<img style="cursor:pointer" id="' . $pid . '_3" title="3" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['good'] . '" onclick="rate(this, 3, \'' . $location . '\')" />';
+      $rating_images .= $start_td . $full_star . $full_star . $full_star . $empty_star . $empty_star . $end_td . "\n";
+      
+      $empty_star = '<img style="cursor:pointer" id="' . $pid . '_4" title="4" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['excellent'] . '" onclick="rate(this, 4, \'' . $location . '\')" />';
+      $full_star = '<img style="cursor:pointer" id="' . $pid . '_4" title="4" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['excellent'] . '" onclick="rate(this, 4, \'' . $location . '\')" />';
+      $rating_images .= $start_td . $full_star . $full_star . $full_star . $full_star . $empty_star . $end_td . "\n";
+      
+      $full_star = '<img style="cursor:pointer" id="' . $pid . '_5" title="5" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['great'] . '" onclick="rate(this, 5, \'' . $location . '\')" />';
+      $rating_images .= $start_td . $full_star . $full_star . $full_star . $full_star . $full_star . $end_td . "\n";
+    } else {
+      //use new rating
+      $rating_images = '<td class="tableb_compact"><script type="text/javascript" language="javascript">displayStars(' . round(($CURRENT_PIC_DATA['pic_rating'] / 2000) / (5/$rating_stars_amount), 0) . ', ' . $pid . ', "' . $location . '", ' . $user_can_vote . ', "' . $lang_rate_pic['rollover_to_rate'] . '");</script></td>';
+    }
 
-		$params = array(
-			'{TITLE}' => $rate_title,
-			'{RATING}' => $extra_info . $rating_images,
-			'{VOTES}' => $votes,
-			'{WIDTH}' => $CONFIG['picture_table_width'],
-			'{JS_WARNING}' => $lang_rate_pic['js_warning'],
-			);
-			
-		return template_eval($template_image_rating, $params);
-	}
+    $params = array(
+      '{TITLE}' => $rate_title,
+      '{RATING}' => $extra_info . $rating_images,
+      '{VOTES}' => $votes,
+      '{WIDTH}' => $CONFIG['picture_table_width'],
+      '{JS_WARNING}' => $lang_rate_pic['js_warning'],
+      );
+      
+    return template_eval($template_image_rating, $params);
+  }
 } 
 /******************************************************************************
 ** Section <<<theme_html_rating_box>>> - END
@@ -3358,7 +3374,7 @@ function theme_html_comments($pid)
             template_extract_block($template_add_your_comment, 'comment_captcha');
         }
 
-		if ($CONFIG['show_bbcode_help']) {$captionLabel = '&nbsp;'. cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
+    if ($CONFIG['show_bbcode_help']) {$captionLabel = '&nbsp;'. cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
 
         $params = array('{ADD_YOUR_COMMENT}' => $lang_display_comments['add_your_comment'],
             // Modified Name and comment field
@@ -3373,10 +3389,10 @@ function theme_html_comments($pid)
             '{DEFAULT_USERNAME_MESSAGE}' => $lang_display_comments['default_username_message'],
             '{SMILIES}' => '',
             '{WIDTH}' => $CONFIG['picture_table_width'],
-			'{HELP_ICON}' => $captionLabel,
+            '{HELP_ICON}' => $captionLabel,
             );
 
-        if ($CONFIG['enable_smilies']){
+        if ($CONFIG['enable_smilies']) {
                         $params['{SMILIES}'] = generate_smilies();
                 } else {
                         template_extract_block($template_add_your_comment, 'smilies');
@@ -3471,7 +3487,7 @@ if (!function_exists('theme_display_fullsize_pic')) {  //{THEMES}
 // Display the full size image
 function theme_display_fullsize_pic()
 {
-    global $CONFIG, $THEME_DIR, $ALBUM_SET, $pid;
+    global $CONFIG, $THEME_DIR, $FORBIDDEN_SET, $pid;
     global $lang_errors, $lang_fullsize_popup, $lang_charset;
 	#####################    DB     #####################
 	global $cpg_db_themes_inc;
@@ -3485,7 +3501,7 @@ function theme_display_fullsize_pic()
       printf($lang_errors['login_needed'],'','','','');
       die();
     }
-    //if (isset($_GET['picfile'])){
+    //if (isset($_GET['picfile'])) {
     if ($superCage->get->keyExists('picfile')) {
         if (!GALLERY_ADMIN_MODE) {
           cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
@@ -3497,14 +3513,14 @@ function theme_display_fullsize_pic()
       $imagedata = array('name' => $picfile, 'path' => path2url($picname), 'geometry' => $imagesize[3]);
     } elseif (pid) {
       //$pid = (int)$_GET['pid'];
-      /*$sql = "SELECT * " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='$pid' $ALBUM_SET";
+      /*$sql = "SELECT * " . "FROM {$CONFIG['TABLE_PICTURES']} AS p " . "WHERE pid='$pid' $FORBIDDEN_SET";
       $result = cpg_db_query($sql);
       if (!mysql_num_rows($result)) {
         cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
       }
-      $row = mysql_fetch_array($result);	*/
+      $row = mysql_fetch_array($result);*/
 	  ###########################   DB   ##############################
-      $cpgdb->query($cpg_db_themes_inc['display_fullsize_pic'], $pid, $ALBUM_SET);
+      $cpgdb->query($cpg_db_themes_inc['display_fullsize_pic'], $pid, $FORBIDDEN_SET);
 	  $rowset = $cpgdb->fetchRowSet();
       if (!count($rowset)) {
         cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
@@ -3763,7 +3779,7 @@ $template_sidebar = <<<EOT
 // Node object
 function Node(id, pid, name, url, title, target, icon, iconOpen, open) {
         var target = '_content';
-        if(document.all){
+        if (document.all) {
           var target='_main';
         }
         this.id = id;
@@ -3893,7 +3909,7 @@ dTree.prototype.node = function(node, nodeId) {
                         str += ' onclick="javascript: ' + this.obj + '.s(' + nodeId + ');"';
                 str += '>';
         }
-        else if ((!this.config.folderLinks || !node.url) && node._hc && node.pid != this.root.id)
+        elseif ((!this.config.folderLinks || !node.url) && node._hc && node.pid != this.root.id)
                 str += '<a href="javascript: ' + this.obj + '.o(' + nodeId + ');" class="node">';
         str += node.name;
         if (node.url || ((!this.config.folderLinks || !node.url) && node._hc)) str += '</a>';
@@ -3993,7 +4009,7 @@ dTree.prototype.openTo = function(nId, bSelect, bFirst) {
         cn._is = bSelect;
         if (this.completed && cn._hc) this.nodeStatus(true, cn._ai, cn._ls);
         if (this.completed && bSelect) this.s(cn._ai);
-        else if (bSelect) this._sn=cn._ai;
+        elseif (bSelect) this._sn=cn._ai;
         this.openTo(cn._p._ai, false, true);
 };
 

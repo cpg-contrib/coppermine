@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4224 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-01-26 17:12:00 +0530 (Sat, 26 Jan 2008) $
+  $Revision: 4506 $
+  $LastChangedBy: pvanrompay $
+  $Date: 2008-06-09 01:07:00 +0530 (Mon, 09 Jun 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -22,7 +22,7 @@ define('LOGOUT_PHP', true);
 
 require('include/init.inc.php');
 
-if (!USER_ID) cpg_die(ERROR, $lang_logout_php['err_not_loged_in'], __FILE__, __LINE__);
+if (!USER_ID) cpg_die(ERROR, $lang_logout_php['err_not_logged_in'], __FILE__, __LINE__);
 
 if (defined('UDB_INTEGRATION')) $cpg_udb->logout_page();
 

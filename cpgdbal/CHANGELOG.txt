@@ -10,9 +10,9 @@ as published by the Free Software Foundation.
 ********************************************
 Coppermine version: 1.5.0
 $Source$
-$Revision: 4461 $
-$Author: gaugau $
-$Date: 2008-05-23 06:28:47 +0530 (Fri, 23 May 2008) $
+$Revision: 4606 $
+$Author: nibbler999 $
+$Date: 2008-06-19 04:05:01 +0530 (Thu, 19 Jun 2008) $
 *********************************************
 Changelog
 =========
@@ -25,6 +25,21 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-06-19 [A] New javascript based multi-processing queue for batch add {Nibbler}
+2008-06-17 [C] Cleaned up code, indentation for multiple files {Paver}
+2008-06-17 [O] Consolidated and cleaned up language variables {Paver}
+2008-06-15 [A] New category heirarchy system {Nibbler}
+2008-06-12 [B] Fixed bug in thumb size output for search results of categories & albums {Paver}
+2008-06-12 [C] Added alternating table rows to updater {GauGau}
+2008-06-12 [O] Fixed broken debug mode for updater due to Inspekt sanitization {GauGau}
+2008-06-12 [D] Added dev document for the updater to explain the hidden debug feature {GauGau}
+2008-06-10 [B] Fixed plugin manager when plugin API is disabled (thread ID 46155) {Paver}
+2008-06-08 [A] Added 'move to top/bottom' in picture manager {Paver for Frantz}
+2008-06-06 [B] Fixed selecting thumbnail from albums with only linked images showing un-approved images {Paver}
+2008-06-06 [B] Fixed/adjusted Admin Tools, Filename->Title, 4 options plus broken "only empty titles" {Paver}
+2008-06-06 [A] Added 'move to top/bottom' in category and album managers {Paver}
+2008-06-03 [O] Removed switch for allowing unencrypted user passwords in the database, as this used to be an outdated feature in cpg1.3.x and older. Since there is no longer support for cpg1.3.x, this feature can easily be dropped {GauGau}
+2008-05-26 [D] Created sub-folders in docs folder to prepare translation of documentation {GauGau}
 2008-05-23 [O] Use JavaScript to display the sorting options only to humans, but hide them from search engines to avoid double-content indexing {GauGau}
 2008-05-21 [B] Replaced hard-coded string "edit keywords" with translation (thread ID 52721) {GauGau}
 2008-05-04 [B] Fixed resources consumption for slideshows in meta albums {GauGau}

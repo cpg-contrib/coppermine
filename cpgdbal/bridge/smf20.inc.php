@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 3786 $
-  $LastChangedBy: gaugau $
-  $Date: 2007-07-27 16:44:45 +0200 (Fr, 27 Jul 2007) $
+  $Revision: 4502 $
+  $LastChangedBy: pvanrompay $
+  $Date: 2008-06-06 03:51:20 +0530 (Fri, 06 Jun 2008) $
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
@@ -64,7 +64,7 @@ class cpg_udb extends core_udb {
 			if ($CONFIG['dbservername'] == 'mysql') {
 				$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
 				$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
-			} else {	///////	for MSSQL		///////
+			} elseif($CONFIG['dbservername'] == 'mssql') {	///////	for MSSQL		///////
 				$this->usertable = $this->db['name'] ."." .dbo ."." .$this->db['prefix'] . $this->table['users'];
 				$this->groupstable =   $this->db['name'] . "." .dbo ."." .$this->db['prefix'] . $this->table['groups'];
 			}

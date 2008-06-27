@@ -70,7 +70,7 @@ class cpg_udb extends core_udb {
 			$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
 			$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
 			$this->sessionstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['sessions'];
-		} else {	////////     for mssql    //////
+		} elseif($CONFIG['dbservername'] == 'mssql') {	////////     for mssql    //////
 			$this->usertable = $this->db['name'] ."." .dbo ."." .$this->db['prefix'] . $this->table['users'];
 			$this->groupstable =   $this->db['name'] . "." .dbo ."." .$this->db['prefix'] . $this->table['groups'];
 			$this->sessionstable =   $this->db['name'] ."." .dbo .".". $this->db['prefix'] . $this->table['sessions'];
@@ -146,6 +146,7 @@ class cpg_udb extends core_udb {
 	{
 		$superCage = Inspekt::makeSuperCage();
 		//return  isset($_COOKIE['mybbuser']) ? array_map('addslashes', explode("_", $_COOKIE['mybbuser'], 2)) : false;
+		// Using getRaw() for cookie extraction.
 		return  $superCage->cookie->keyExists('mybbuser') ? array_map('addslashes', explode("_", $superCage->cookie->getRaw('mybbuser'), 2)) : false;
 	}
 	

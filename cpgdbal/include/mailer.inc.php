@@ -46,7 +46,7 @@ function cpg_mail($to, $subject, $msg_body = '', $type = 'text/plain', $sender_n
                     }	*/
 					##########################           DB          ##########################
 					$cpgdb->query($cpg_db_mailer_inc['get_admin_email']);
-					while($row = $cpgdb->fetchRowSet()) {
+					while($row = $cpgdb->fetchRow()) {
 					        if (!empty($row['user_email'])) $to[] = $row['user_email'];
 					}
 					##############################################################
@@ -1539,7 +1539,7 @@ class PHPMailer
 		$superCage = Inspekt::makeSuperCage();
 		if($superCage->server->keyExists($varName)){
 			//raw is used as this is only used to get the server_name.
-			return $superCage->server->getRaw($varName);
+			return $superCage->server->getEscaped($varName);
 		}else{
 			return '';
 		}

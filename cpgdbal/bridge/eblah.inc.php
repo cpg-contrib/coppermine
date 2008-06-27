@@ -60,7 +60,7 @@ class cpg_udb extends core_udb {
 		if ($CONFIG['dbservername'] == 'mysql') {
 			$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
 			$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
-		} else {	///////       for mssql      ////////
+		} elseif($CONFIG['dbservername'] == 'mssql') {	///////       for mssql      ////////
 			$this->usertable = $this->db['name'] ."." .dbo ."." .$this->db['prefix'] . $this->table['users'];
 			$this->groupstable =   $this->db['name'] . "." .dbo ."." .$this->db['prefix'] . $this->table['groups'];
 		}
@@ -106,7 +106,7 @@ class cpg_udb extends core_udb {
 		$superCage = Inspekt::makeSuperCage();
 		//if (isset($_COOKIE[$this->cookie_name . '_un']) && isset($_COOKIE[$this->cookie_name . '_pw'])){
 		//	return array($this->get_user_id($_COOKIE[$this->cookie_name . '_un']), $_COOKIE[$this->cookie_name . '_pw']);
-		//}
+		//}	// Using getRaw() as the data will be sanitized later.
 		if ($superCage->cookie->keyExists($this->cookie_name . '_un') && $superCage->cookie->keyExists($this->cookie_name . '_pw')){
 			return array($this->get_user_id($superCage->cookie->getRaw($this->cookie_name . '_un')), $superCage->cookie->getRaw($this->cookie_name . '_pw'));
 		}
@@ -223,7 +223,7 @@ class cpg_udb extends core_udb {
 			while($row = $cpg_tempdb->fetchRow()){
 				$allusers[] = $row['user_name'];
 			}
-			if in_array($username, $allusers) {
+			if (in_array($username, $allusers)) {
 				$this->cpgudb->query($cpg_db_eblah_inc['sync_users'], $this->usertable, $username, $password, $email, $user_group);
 			}
 			#################################################################################

@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4247 $
-  $LastChangedBy: saweyyy $
-  $Date: 2008-02-04 14:51:08 +0530 (Mon, 04 Feb 2008) $
+  $Revision: 4497 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-06-03 19:59:30 +0530 (Tue, 03 Jun 2008) $
 **********************************************/
 
 
@@ -1413,12 +1413,8 @@ else { // not in gallery admin mode --- start
         // go through the list of standalone admins and check if we have a match
         $temp_user_table = $CONFIG['TABLE_PREFIX'].'users';
 
-        // Check if encrypted passwords are enabled
-        if ($CONFIG['enable_encrypted_passwords']) {
-                $encpassword = md5(addslashes($_POST['password']));
-        } else {
-                $encpassword = addslashes($_POST['password']);
-        }
+		$encpassword = md5(addslashes($_POST['password']));
+
 
         /*$results = cpg_db_query("SELECT user_id, user_name, user_password FROM $temp_user_table WHERE user_name = '" . addslashes($_POST['username']) . "' AND BINARY user_password = '" . $encpassword . "' AND user_active = 'YES' AND user_group = '1'");
 		if (mysql_num_rows($results)) {

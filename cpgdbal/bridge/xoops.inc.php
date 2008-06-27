@@ -63,11 +63,18 @@ class cpg_udb extends core_udb {
 			'user' => XOOPS_DB_USER
 		);
 		
+		##########################################            DB          #######################################
 		// Derived full table names
-		$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
-		$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
-		$this->usergroupstable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['usergroups'];
-		
+		if ($CONFIG['dbservername'] == 'mysql') {
+			$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
+			$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
+			$this->usergroupstable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['usergroups'];
+		} elseif($CONFIG['dbservername'] == 'mssql') {
+			$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
+			$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
+			$this->usergroupstable =   $this->db['name'] ."." .dbo .".". $this->db['prefix'] . $this->table['usergroups'];
+		}
+		##############################################################################################
 		// Table field names
 		$this->field = array(
 			'username' => 'uname', // name of 'username' field in users table

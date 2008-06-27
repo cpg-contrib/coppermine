@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4224 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-01-26 17:12:00 +0530 (Sat, 26 Jan 2008) $
+  $Revision: 4583 $
+  $LastChangedBy: pvanrompay $
+  $Date: 2008-06-18 06:33:59 +0530 (Wed, 18 Jun 2008) $
 **********************************************/
 
 /**
@@ -25,7 +25,7 @@
 * @copyright 2002-2006 Gregory DEMAR, Coppermine Dev Team
 * @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
 * @package Coppermine
-* @version $Id: banning.php 4224 2008-01-26 11:42:00Z gaugau $
+* @version $Id: banning.php 4583 2008-06-18 01:03:59Z pvanrompay $
 */
 
 
@@ -112,7 +112,7 @@ EOHEAD;
                                         <td class="{$row_style_class}" valign="middle">
                                                                 <input type="submit" class="button" name="edit_ban" value="{$lang_banning_php['edit_ban']}" />
                                         &nbsp;&nbsp;
-                                                                <input type="submit" class="button" name="delete_ban" value="{$lang_banning_php['delete_ban']}" />
+                                                                <input type="submit" class="button" name="delete_ban" value="{$lang_common['delete']}" />
                                         </td>
                                 </form>
                                 </tr>
@@ -141,14 +141,14 @@ EOROW;
 
         if ($superCage->post->testIp('add_ban_ip_addr')) {
             //Using getRaw() since we have already tested the IP.
-            $ban_ip_addr = "'" . $superCage->post->getRaw('add_ban_ip_addr') . "'";
-            $ip_addr = $superCage->post->getRaw('add_ban_ip_addr');
-            //check admin ip address
-            if ($ip_addr == $REMOTE_ADDR || $ip_addr == $superCage->server->getRaw("REMOTE_ADDR") || ($superCage->env->getRaw("REMOTE_ADDR") && $ip_addr == $superCage->post->getRaw("REMOTE_ADDR"))) {
+            $ban_ip_addr = "'" . $superCage->post->getEscaped('add_ban_ip_addr') . "'";
+            $ip_addr = $superCage->post->getEscaped('add_ban_ip_addr');
+            //check admin ip address. Using getRaw() for comparison only
+            if ($ip_addr == $REMOTE_ADDR || $ip_addr == $superCage->server->getEscaped("REMOTE_ADDR") || ($superCage->env->getEscaped("REMOTE_ADDR") && $ip_addr == $superCage->post->getEscaped("REMOTE_ADDR"))) {
                cpg_die(ERROR, $lang_banning_php['error_admin_ban'], __FILE__, __LINE__);
             }
-            //check server ip adress
-            if ($ip_addr == $SERVER_ADDR || $ip_addr == $superCage->server->getRaw("SERVER_ADDR") || $ip_addr == $superCage->env->getRaw("SERVER_ADDR")) {
+            //check server ip adress. Using getRaw() for comparison only.
+            if ($ip_addr == $SERVER_ADDR || $ip_addr == $superCage->server->getEscaped("SERVER_ADDR") || $ip_addr == $superCage->env->getEscaped("SERVER_ADDR")) {
                cpg_die(ERROR, $lang_banning_php['error_server_ban'], __FILE__, __LINE__);
             }
             //check illegal ip addresses
@@ -263,7 +263,7 @@ if ($ban_expires < 0) {
 
                 if ($superCage->post->testIp('edit_ban_ip_addr')) {
                     //Using getRaw() as we have already tested for IP
-                    $ban_ip_addr = "'" . $superCage->post->getRaw('edit_ban_ip_addr') . "'";
+                    $ban_ip_addr = "'" . $superCage->post->getEscaped('edit_ban_ip_addr') . "'";
                 } else {
                     $ban_ip_addr = 'NULL';
                 }

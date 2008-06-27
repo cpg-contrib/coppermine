@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4423 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-04-30 11:07:02 +0530 (Wed, 30 Apr 2008) $
+  $Revision: 4583 $
+  $LastChangedBy: pvanrompay $
+  $Date: 2008-06-18 06:33:59 +0530 (Wed, 18 Jun 2008) $
 **********************************************/
 
 // Confirm we are in Coppermine and set the language blocks.
@@ -45,7 +45,8 @@ global $CONFIG, $lang_upload_php, $user_form, $max_file_size;
 
 
 // The form label creation function. Takes a non-array element form $data as its argument.
-function form_label($text) {
+function form_label($text) 
+{
     echo <<<EOT
         <tr>
                 <td class="tableh2" colspan="2">
@@ -57,7 +58,8 @@ EOT;
 }
 
 // The form statement creation function. Takes a non-array element form $data as its argument.
-function form_statement($text) {
+function form_statement($text) 
+{
     echo <<<EOT
         <tr>
                 <td class="tableb" colspan="2">
@@ -69,7 +71,8 @@ EOT;
 }
 
 // The hidden form input function. Takes the hidden input field name and value.
-function hidden_input($name, $value) {
+function hidden_input($name, $value) 
+{
         echo <<<EOT
         <tr>
             <td colspan="2">
@@ -82,7 +85,8 @@ EOT;
 
 // The text box form input function. Takes the text label for the box, the input name, the maximum length for text boxes,
 // and the number of iterations.
-function text_box_input($text, $name, $max_length, $iterations, $default='') {
+function text_box_input($text, $name, $max_length, $iterations, $default='') 
+{
 
     global $CONFIG;
 
@@ -118,7 +122,8 @@ EOT;
 }
 
 // The file input function. Takes the label, field name, and number of iterations as arguments.
-function file_input($text, $name, $iterations) {
+function file_input($text, $name, $iterations) 
+{
 
     $ordinal = '';
 
@@ -147,7 +152,8 @@ EOT;
 }
 
 // The function for text areas on forms. Takes the label, field name, and maximum length as arguments.
-function text_area_input($text, $name, $max_length,$default='') {
+function text_area_input($text, $name, $max_length,$default='') 
+{
 
     // Create the text area.
     echo <<<EOT
@@ -163,7 +169,8 @@ EOT;
 }
 
 // The function to create the album list drop down.
-function form_alb_list_box($text, $name) {
+function form_alb_list_box($text, $name) 
+{
 	$superCage = Inspekt::makeSuperCage();
 	// Pull the $CONFIG array and the GET array into the function
 	global $CONFIG, $lang_upload_php;
@@ -288,7 +295,8 @@ EOT;
 // 2 => album list
 // 3 => text area input
 // 4 => hidden input
-function create_form(&$data) {
+function create_form(&$data) 
+{
 
     global $CONFIG, $lang_upload_php;
 
@@ -297,9 +305,9 @@ function create_form(&$data) {
 
         // If the element is another array, parse the definition contained within the array.
         if ((is_array($element))) {
-			$element[2] = (isset($element[2])) ? $element[2] : '';
-			$element[3] = (isset($element[3])) ? $element[3] : '';
-			$element[4] = (isset($element[4])) ? $element[4] : '';
+            $element[2] = (isset($element[2])) ? $element[2] : '';
+            $element[3] = (isset($element[3])) ? $element[3] : '';
+            $element[4] = (isset($element[4])) ? $element[4] : '';
 
             // Based on the type declared in the data array's third position, create a different form input.
             switch ($element[2]) {
@@ -353,8 +361,8 @@ function create_form(&$data) {
 
 // The open_form function creates the Javascript verification code and the opening form tags.
 // $path hold the form action path.
-function open_form($path) {
-
+function open_form($path) 
+{
     echo <<<EOT
     <script language="javascript" type="text/javascript">
     function textCounter(field, maxlimit) {
@@ -367,13 +375,13 @@ EOT;
 }
 
 // The close form function creates the submit button and the closing tags.
-function close_form($button_value) {
+function close_form($button_value) 
+{
+    // Pull the language array into the function.
+    global $lang_upload_php;
 
-// Pull the language array into the function.
-global $lang_upload_php;
-
-// Create the submit button and close the form.
-echo <<<EOT
+    // Create the submit button and close the form.
+    echo <<<EOT
         <tr>
                 <td colspan="2" align="center" class="tablef">
                         <input type="submit" value="{$button_value}" class="button" />
@@ -384,15 +392,15 @@ echo <<<EOT
 EOT;
 }
 
-function form_instructions() {
-
+function form_instructions() 
+{
     global $CONFIG, $lang_upload_php, $user_form, $max_file_size;
 
     echo "<tr><td colspan=\"2\">";
 
     printf ($lang_upload_php['reg_instr_2'], $CONFIG['max_upl_size']);
-	
-	//show allowed filetypes
+    
+    //show allowed filetypes
     echo "<br />{$lang_upload_php['allowed_types']}";
     printf ($lang_upload_php['allowed_img_types'], $CONFIG['allowed_img_types']);
     print "<br />\r\n";
@@ -422,8 +430,8 @@ function form_instructions() {
 
 
 // The get_and_convert_to_bytes function retrieves a limitng value from php.ini and converts the shorthand to bytes.
-function get_and_convert_to_bytes ($ini_variable_name) {
-
+function get_and_convert_to_bytes ($ini_variable_name) 
+{
     // Get the variable from php.ini
     $ini_string = ini_get($ini_variable_name);
 
@@ -459,14 +467,14 @@ function get_and_convert_to_bytes ($ini_variable_name) {
 
         // The returned value is not a string or no pattern match was found. Return false.
         return false;
-
     }
 }
+
 // Moved to 'logger.inc.php' - omni
 // The function spring_cleaning is a garbage collection routine used to purge a directory of old files.
-if (!function_exists('spring_cleaning')){
-function spring_cleaning($directory_path, $cache_time = 86400, $exclusion_list = array('index.html')) {
-
+if (!function_exists('spring_cleaning')) {
+function spring_cleaning($directory_path, $cache_time = 86400, $exclusion_list = array('index.html')) 
+{
     //Storage the deleted files
     $deleted_list = array();
 
@@ -523,10 +531,12 @@ function spring_cleaning($directory_path, $cache_time = 86400, $exclusion_list =
     // Don't forget to close the directory.
     closedir($directory_handle);
     return $deleted_list;
-        }
-}
+} // function spring_cleaning
+} // if !function_exists(spring_cleaning)
+
 // The create_record function. Takes the encoded string. Returns the unique record ID.
-function create_record($encoded_string) {
+function create_record($encoded_string) 
+{
 	// Globalize $CONFIG
 	global $CONFIG;
 	#####################      DB      ######################	
@@ -612,7 +622,8 @@ function create_record($encoded_string) {
 }
 
 // The update_record function. Takes the $unique_ID and $encoded_string.
-function update_record($unique_ID, $encoded_string) {
+function update_record($unique_ID, $encoded_string) 
+{
 	// Globalize $CONFIG
 	global $CONFIG;
 	#####################      DB      ######################	
@@ -641,7 +652,8 @@ function update_record($unique_ID, $encoded_string) {
 }
 
 // The delete_record function. Takes the $unique_ID.
-function delete_record($unique_ID) {
+function delete_record($unique_ID) 
+{
 	// Globalize $CONFIG
 	global $CONFIG;
 	#####################      DB      ######################	
@@ -670,7 +682,8 @@ function delete_record($unique_ID) {
 }
 
 // The retrieve_record function. Takes the $unique_ID.
-/*function retrieve_record($unique_ID) {
+/*function retrieve_record($unique_ID) 
+{
 
 	// Globalize $CONFIG
 	global $CONFIG;
@@ -705,7 +718,8 @@ function delete_record($unique_ID) {
 
 }	*/
 #######################         DB          #####################
-function retrieve_record($unique_ID) {
+function retrieve_record($unique_ID) 
+{
 	// Globalize $CONFIG
 	global $CONFIG;
 	global $cpg_db_upload_php;
@@ -736,7 +750,8 @@ function retrieve_record($unique_ID) {
 ######################################################
 
 // The clean_table function.
-function clean_table() {
+function clean_table() 
+{
 	// Globalize $CONFIG
 	global $CONFIG;
 	#####################      DB      ######################	
@@ -770,7 +785,8 @@ function clean_table() {
 //The function check_status determines the status of a URI resource.
 //It takes the URI as its argument and serves to give more specific error
 //messages about unavailable resources.
-function check_status($URI) {
+function check_status($URI) 
+{
 
     // Parse the URI into it's requisite parts.
     $parts = @parse_url($URI);
@@ -846,13 +862,12 @@ function check_status($URI) {
 
         // Return the response.
         return $response;
-
     }
-
 }
+
 //################################# MAIN CODE BLOCK ##################################################
 
-//Check whether we are getting album id through _GET or _POST
+// Check whether we are getting album id through _GET or _POST
 if ($superCage->get->keyExists('album')) {
     $sel_album = $superCage->get->getInt('album');
 } elseif ($superCage->post->keyExists('album')) {
@@ -1220,7 +1235,7 @@ if (!$superCage->post->keyExists('control')) {
 
 // Recieve incoming file uploads for phase I.
 //Using getRaw() for comparison only
-if ($superCage->post->keyExists('control') && $superCage->post->getRaw('control') == 'phase_1') {
+if ($superCage->post->keyExists('control') && $superCage->post->getEscaped('control') == 'phase_1') {
     // $_FILES['file_upload_array']['name'][$counter]
     // $_FILES['file_upload_array']['size'][$counter]
     // $_FILES['file_upload_array']['tmp_name'][$counter]
@@ -1235,14 +1250,15 @@ if ($superCage->post->keyExists('control') && $superCage->post->getRaw('control'
     // 4 - No upload occurred.
 
     //$file_upload_count = count($_FILES['file_upload_array']['name']);
-    $file_upload_count = count($superCage->files->getRaw('/file_upload_array/name'));
+	//Using getRaw() for counting purpose only
+    //$file_upload_count = count($superCage->files->getEscaped('/file_upload_array/name'));
 
-    if ($file_upload_count > 0) {
+    if (NUM_FILE_BOXES > 0) {
 
 
         // Check for error code support. Set the error code.
-
-        if (count($superCage->files->getRaw('/file_upload_array/error')) == 0) {
+		// Using getRaw() for counting purpose only
+        if (count($superCage->files->getInt('/file_upload_array/error')) == 0) {
 
             // This version of PHP does not support error codes (PHP < 4.2.0).  Create our own error code.
 
@@ -1255,7 +1271,8 @@ if ($superCage->post->keyExists('control') && $superCage->post->getRaw('control'
 
         }
 
-        for ($counter = 0; $counter < $file_upload_count; $counter++) {
+        //for ($counter = 0; $counter < $file_upload_count; $counter++) {
+		for ($counter = 0; $counter < NUM_FILE_BOXES; $counter++) {
 
             // Check for error code support. Set the error code.
 
@@ -1275,15 +1292,16 @@ if ($superCage->post->keyExists('control') && $superCage->post->getRaw('control'
             // If there is no file name, make a dummy name for the error reporting system.
 
             //if (($_FILES['file_upload_array']['name'][$counter] == '')) {
-            if ($superCage->files->getRaw("/file_upload_array/name/$counter") == '') {
+			//Using getRaw() for comparison only.
+            if ($superCage->files->getEscaped("/file_upload_array/name/$counter") == '') {
                 $file_name = 'filename_unavailable';
             } else {
                 //$file_name = $_FILES['file_upload_array']['name'][$counter];
                 //Using getRaw() as we will sanitizing the filename later
-                $file_name = $superCage->files->getRaw("/file_upload_array/name/$counter");
+                $file_name = $superCage->files->getEscaped("/file_upload_array/name/$counter");
             }
 
-            // Test for a blank file upload box.
+            // Test for a blank file upload box, hence using getRaw() is ok.
             //if (empty($_FILES['file_upload_array']['tmp_name'][$counter])) {
             $tmp_filename = $superCage->files->getRaw("/file_upload_array/tmp_name/$counter");
             if (empty($tmp_filename)) {
@@ -1294,7 +1312,8 @@ if ($superCage->post->keyExists('control') && $superCage->post->getRaw('control'
             // Check to make sure the file was uploaded via POST.
 
             //if (!is_uploaded_file($_FILES['file_upload_array']['tmp_name'][$counter])) {
-            if (!is_uploaded_file($superCage->files->getRaw("/file_upload_array/tmp_name/$counter"))) {
+			// Using getRaw() for comparison only.
+            if (!is_uploaded_file($superCage->files->getPath("/file_upload_array/tmp_name/$counter"))) {
 
                 // We reject the file, and make a note of the error.
                 $file_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'file_name'=> $file_name, 'error_code'=>$lang_upload_php['no_post']);
@@ -1312,13 +1331,13 @@ if ($superCage->post->keyExists('control') && $superCage->post->getRaw('control'
 
             // If magic quotes is on, remove the slashes it added to the file name.
             //if (get_magic_quotes_gpc()) $_FILES['file_upload_array']['name'][$counter] = stripslashes($_FILES['file_upload_array']['name'][$counter]);
-            if (get_magic_quotes_gpc()) {
+            /*if (get_magic_quotes_gpc()) {
                 //Using getRaw() as we have custom sanitization code below
-            	$picture_name = stripslashes($superCage->files->getRaw("/file_upload_array/name/$counter"));
+                $picture_name = stripslashes($superCage->files->getRaw("/file_upload_array/name/$counter"));
             } else {
-            	$picture_name = $superCage->files->getRaw("/file_upload_array/name/$counter");
-            }
-
+                $picture_name = $superCage->files->getRaw("/file_upload_array/name/$counter");
+            }*/
+			$picture_name = stripslashes($superCage->files->getEscaped("/file_upload_array/name/$counter"));
             // Create the holder $picture_name by translating the file name. Translate any forbidden character into an underscore.
             //$picture_name = replace_forbidden($_FILES['file_upload_array']['name'][$counter]);
             $picture_name = replace_forbidden($picture_name);
@@ -1366,7 +1385,7 @@ if ($superCage->post->keyExists('control') && $superCage->post->getRaw('control'
 
                 // There is no need for further tests or action, so skip the remainder of the iteration.
                 continue;
-
+				// again getRaw() for comparison only.
             } elseif ($superCage->files->getRaw("/file_upload_array/tmp_name/$counter") == '') {
 
                 // There is no temporary file, so the file did not upload. Make a note of it in the file_failure_arrray and flip the failure switch to generate the ordinal. .
@@ -1422,8 +1441,8 @@ if ($superCage->post->keyExists('control') && $superCage->post->getRaw('control'
             // Create a holder called $tempname.
             $tempname = $prefix . $seed . '.' . $suffix;
 
-            //Now we upload the file.
-            if (!(move_uploaded_file($superCage->files->getRaw("/file_upload_array/tmp_name/$counter"), $path_to_image))) {
+            //Now we upload the file. Using getRaw() for comparison only
+            if (!(move_uploaded_file($superCage->files->getPath("/file_upload_array/tmp_name/$counter"), $path_to_image))) {
 
                 // The file upload has failed.
 
@@ -1497,11 +1516,13 @@ if ($superCage->post->keyExists('control') && $superCage->post->getRaw('control'
 
     // Count the number of items in the URI array.
     //Using getRaw() for counting purpose only.
-    $URI_upload_count = count($superCage->post->getRaw('URI_array'));
+    //$URI_upload_count = count($superCage->post->getRaw('URI_array'));
 
-    if ($URI_upload_count > 0) {
+    //if ($URI_upload_count > 0) {
+	if (NUM_URI_BOXES > 0) {
 
-        for ($counter = 0; $counter < $URI_upload_count; $counter++) {
+        //for ($counter = 0; $counter < $URI_upload_count; $counter++) {
+		for ($counter = 0; $counter < NUM_URI_BOXES; $counter++) {
 
             // Create the failure ordinal for ordering the report of failed uploads.
 
@@ -1514,7 +1535,9 @@ if ($superCage->post->keyExists('control') && $superCage->post->getRaw('control'
 
             // Check to make sure the URI box was not blank.
             //if (empty($_POST['URI_array'][$counter])) {
-            if (!$superCage->post->getRaw("/URI_array/$counter")) {
+			//Using getRaw() for comparison purpose only
+			//print($superCage->post->testUri("/URI_array/$counter"));exit;
+            if (!$superCage->post->getEscaped("/URI_array/$counter")) {
 
                 // The box was empty.
                 // There is no need for further tests or action, so skip the remainder of the iteration.
@@ -1522,13 +1545,14 @@ if ($superCage->post->keyExists('control') && $superCage->post->getRaw('control'
 
             }
 
-            // Check for magic quotes and remove slashes if necessary.
-            if (get_magic_quotes_gpc()) {
+            // Check for magic quotes and remove slashes if necessary. Using getRaw() as we have custom sanitization code below.
+            /*if (get_magic_quotes_gpc()) {
                 //$_POST['URI_array'][$counter] = stripslashes($_POST['URI_array'][$counter]);
                 $URI_name = stripslashes($superCage->post->getRaw("/URI_array/$counter"));
             } else {
             	$URI_name = $superCage->post->getRaw("/URI_array/$counter");
-            }
+            }*/
+			$URI_name = stripslashes($superCage->post->getEscaped("/URI_array/$counter"));
 
             // Remove excess whitespace.
             $URI_name = trim($URI_name);
@@ -1806,27 +1830,27 @@ if ($superCage->post->keyExists('control') && $superCage->post->getRaw('control'
 
                 } else {
                 
-                		$extension = '';
-                		
-                		foreach ($FILE_TYPES as $ext => $typedata){
-                		
-                			if ($typedata['mime'] == $URI_MIME_type){
-                			 	// Store the extension in $extension.
-                				$extension = $ext;
-                				break;
-                			}
-                			
-                		}
-                		
-                		if (!$extension){
-                		
-                    	// We cannot determine an extension from the MIME type provided, so note an error. Reject the file as unsafe.
-                    	$URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$lang_upload_php['MIME_type_unknown']);
+                        $extension = '';
+                        
+                        foreach ($FILE_TYPES as $ext => $typedata){
+                        
+                            if ($typedata['mime'] == $URI_MIME_type){
+                                // Store the extension in $extension.
+                                $extension = $ext;
+                                break;
+                            }
+                            
+                        }
+                        
+                        if (!$extension) {
+                        
+                        // We cannot determine an extension from the MIME type provided, so note an error. Reject the file as unsafe.
+                        $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$lang_upload_php['MIME_type_unknown']);
   
-                    	// There is no need for further tests or action, so skip the remainder of the iteration.
+                        // There is no need for further tests or action, so skip the remainder of the iteration.
                       continue;
-             		
-                		}
+                    
+                        }
 
                 }
 
@@ -2303,15 +2327,15 @@ if ($superCage->post->keyExists('control') && $superCage->post->getRaw('control'
     exit;
 }
 
-// Recieve incoming post information for phase II.
+// Recieve incoming post information for phase II. Using getRaw() for comparison purpose only.
 //if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
-if ($superCage->post->keyExists('control') && $superCage->post->getRaw('control') == 'phase_2') {
+if ($superCage->post->keyExists('control') && $superCage->post->getEscaped('control') == 'phase_2') {
 
     // Check for incoming album placement data.
     //if ((isset($_POST['album'])) and (isset($_POST['unique_ID']))) {
     if ($superCage->post->keyExists('album') && $superCage->post->keyExists('unique_ID')) {
 
-            // Check if user selected an album to upload picture to. If not, die with error.
+        // Check if user selected an album to upload picture to. If not, die with error.
         // added by frogfoot
         $album = $superCage->post->getInt('album');
         if (!$album) {

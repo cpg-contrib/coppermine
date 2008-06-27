@@ -183,7 +183,7 @@ require_once('include/init.inc.php');
 		if ($get_vote_details != $CONFIG['vote_details'] && $superCage->get->getEscaped('go') != '') {
 			//cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '{$get_vote_details}' WHERE name = 'vote_details'");
 			#################################          DB        ##############################
-			$cpgdb->query($cpg_db_stat_details_php['set_vote_datails'], {$get_vote_details});
+			$cpgdb->query($cpg_db_stat_details_php['set_vote_datails'], $get_vote_details);
 			########################################################################
 			$CONFIG['vote_details'] = $get_vote_details;
 			$configChangesApplied = $lang_stat_details_php['upd_success'];

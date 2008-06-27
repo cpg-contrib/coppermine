@@ -171,7 +171,7 @@ function javascript_string($str)
 // Retrieve the category list
 function get_subcat_data($parent, $ident = '')
 {
-	global $CONFIG, $CAT_LIST, cpg_db_xp_publish_php;
+	global $CONFIG, $CAT_LIST, $cpg_db_xp_publish_php;
 	#####################      DB      ######################	
 	$cpgdb =& cpgDB::getInstance();
 	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
@@ -183,7 +183,7 @@ function get_subcat_data($parent, $ident = '')
 	############################        DB        ############################
 	$cpgdb->query($cpg_db_xp_publish_php['get_subcat_data'], $parent);
 	$rowset = $cpgdb->fetchRowSet();
-	if (count($rowset)) {
+	if (count($rowset) > 0) {
 	#################################################################
 		foreach ($rowset as $subcat) {
 			$CAT_LIST[] = array($subcat['cid'], $ident . $subcat['name']);
@@ -734,7 +734,8 @@ function create_album()
 //  $params = array('{NEW_ALB_CREATED}' => sprintf($lang_xp_publish_php['new_alb_created'], $_POST['new_alb_name']),
     $params = array('{NEW_ALB_CREATED}' => sprintf($lang_xp_publish_php['new_alb_created'], $new_alb_name),
         '{CONTINUE}' => $lang_xp_publish_php['continue'],
-        '{ALBUM_ID}' => mysql_insert_id(),
+        //'{ALBUM_ID}' => mysql_insert_id(),
+		'{ALBUM_ID}' => $cpgdb->insertId(),	######	cpgdbAL
         );
 
     echo template_eval($template_create_album, $params);
@@ -825,6 +826,7 @@ function process_picture()
 
     // Test if the filename of the temporary uploaded picture is empty
 //  if ($_FILES['userpicture']['tmp_name'] == '') simple_die(ERROR, $lang_db_input_php['no_pic_uploaded'], __FILE__, __LINE__);
+// Using getRaw() for comparison purpose only
   if ($superCage->files->getRaw('/userpicture/tmp_name') == '') simple_die(ERROR, $lang_db_input_php['no_pic_uploaded'], __FILE__, __LINE__);
     // Create destination directory for pictures
     if (USER_ID && $CONFIG['silly_safe_mode'] != 1) {
@@ -855,10 +857,11 @@ function process_picture()
 
     //if (get_magic_quotes_gpc()) $_FILES['userpicture']['name'] = stripslashes($_FILES['userpicture']['name']);
   	//using getRaw as it will be sanitized in the code below in the preg_match. {SaWey}
- 	 $filename = $superCage->files->getRaw('/userpicture/name');
+ 	 /*$filename = $superCage->files->getRaw('/userpicture/name');
 	 if (get_magic_quotes_gpc()){
 		$filename = stripslashes($filename);
-	 }
+	 }*/
+	 $filename = stripslashes($superCage->files->getEscaped('/userpicture/name'));
     // Replace forbidden chars with underscores
     //$picture_name = replace_forbidden($_FILES['userpicture']['name']);
 	$picture_name = replace_forbidden($filename);
@@ -879,7 +882,7 @@ function process_picture()
         $picture_name = $matches[1] . '~' . $nr++ . '.' . $matches[2];
     }
     $uploaded_pic = $dest_dir . $picture_name;
-    // Move the picture into its final location
+    // Move the picture into its final location. Using getRaw() for comparison purpose only.
     if (!move_uploaded_file($superCage->files->getRaw('/userpicture/tmp_name'), $uploaded_pic))
         simple_die(CRITICAL_ERROR, sprintf($lang_db_input_php['err_move'], $picture_name, $dest_dir), __FILE__, __LINE__, true);
     // Change file permission
@@ -945,7 +948,7 @@ if (USER_IS_ADMIN && !GALLERY_ADMIN_MODE) {
 if ($superCage->get->keyExists('cmd')){
   //no need to do a sanitization here, as this var is only used in the switch statement,
   //and it has a default operation if no match is found. {SaWey}
-  $cmd = $superCage->get->getRaw('cmd');
+  $cmd = $superCage->get->getEscaped('cmd');
 } else{
   $cmd = '';
 }

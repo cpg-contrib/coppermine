@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4436 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-05-03 12:03:23 +0530 (Sat, 03 May 2008) $
+  $Revision: 4578 $
+  $LastChangedBy: nibbler999 $
+  $Date: 2008-06-16 01:29:16 +0530 (Mon, 16 Jun 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -70,14 +70,14 @@ $sender_email_warning = '';
 $form_action="$CPG_PHP_SELF?pid=$pid";
 
 // Get picture thumbnail url
-/*$result = cpg_db_query("SELECT * from {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid' $ALBUM_SET");
+/*$result = cpg_db_query("SELECT * from {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid' $FORBIDDEN_SET");
 if (!mysql_num_rows($result)) {
 	cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
 }
 
 $row = mysql_fetch_array($result);	*/
 #################################       DB       #################################
-$cpgdb->query($cpg_db_report_file_php['get_pic_thumb_url'], $pid, $ALBUM_SET);
+$cpgdb->query($cpg_db_report_file_php['get_pic_thumb_url'], $pid, $FORBIDDEN_SET);
 $rowset = $cpgdb->fetchRowSet();
 if (!count($rowset)) {
 	cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
@@ -96,7 +96,7 @@ if ($what == 'comment') {
 	#################################        DB       #################################
 	$cpgdb->query($cpg_db_report_file_php['get_comment_info'], $cid, $pid);
 	$rowset = $cpgdb->fetRowSet();
-	if (count($rowset)) {
+	if (!count($rowset)) {
 		cpg_die(ERROR, $lang_errors['non_exist_comment'], __FILE__, __LINE__);
 	}
 	$row = $rowset[0];

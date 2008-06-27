@@ -31,7 +31,7 @@ $txt['closewindow'] = "Close window";
 $CURRENT_PIC = mysql_fetch_array($result);
 mysql_free_result($result);*/
 ############################		DB		#############################
-$cpgdb->query->($cpg_db_crop_inc['get_pic_to_crop'], $pid);
+$cpgdb->query($cpg_db_crop_inc['get_pic_to_crop'], $pid);
 $CURRENT_PIC = $cpgdb->fetchRow();
 $cpgdb->free();
 ######################################################################

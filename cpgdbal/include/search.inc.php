@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4317 $
-  $LastChangedBy: nibbler999 $
-  $Date: 2008-03-06 21:55:11 +0530 (Thu, 06 Mar 2008) $
+  $Revision: 4583 $
+  $LastChangedBy: pvanrompay $
+  $Date: 2008-06-18 06:33:59 +0530 (Wed, 18 Jun 2008) $
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
@@ -39,23 +39,23 @@ $search_string = str_replace('&quot;', '"', $search_string);
 $search_string = str_replace('\'', '"', $search_string);
 $search_string = preg_replace('/&.*;/i', '', $search_string);
 
-if (!$mb_charset){
-	$search_string = preg_replace('/[^0-9a-z %]/i', '', $search_string);
+if (!$mb_charset) {
+    $search_string = preg_replace('/[^0-9a-z %]/i', '', $search_string);
 }
 
-if (!isset($USER['search']['params'])){
+if (!isset($USER['search']['params'])) {
         $USER['search']['params']['title'] = $USER['search']['params']['caption'] = $USER['search']['params']['keywords'] = $USER['search']['params']['filename'] = 1;
 }
 
-//if (isset($_GET['album']) && $_GET['album'] == 'search'){
-//	$_POST = $USER['search'];
+//if (isset($_GET['album']) && $_GET['album'] == 'search') {
+//  $_POST = $USER['search'];
 //}
-if ($superCage->get->keyExists('album') && $superCage->get->getAlpha('album') == 'search'){
-	$search_params = $USER['search'];
-	$search_params['type'] = $superCage->get->getAlpha('type');
-}else{
-	//put all original $_POST vars in $search_params, don't know if this could be used???
-	$search_params = $superCage->post->_source;
+if ($superCage->get->keyExists('album') && $superCage->get->getAlpha('album') == 'search') {
+    $search_params = $USER['search'];
+    $search_params['type'] = $superCage->get->getAlpha('type');
+} else {
+    //put all original $_POST vars in $search_params, don't know if this could be used???
+    $search_params = $superCage->post->_source;
 }
 
 
@@ -68,12 +68,12 @@ $sql = '';
 if ($search_string && isset($search_params['params'])) {
         $sections = array();
         $albcat_terms = array(); // For Album & Category Title Search: populated as needed
-        if($search_params['type'] == 'regex') {
+        if ($search_params['type'] == 'regex') {
                 $fields = array();
                 $search_string = preg_replace('/[^\w\+\*\?\{\,\}\|\(\)\\\^\$\[\]\:\<\>\-\.]/','',$search_string);
                 $search_string = addslashes($search_string);
                 if ($superCage->get->keyExists('album_title') || $superCage->get->keyExists('category_title')) $albcat_terms[] = " REGEXP '$search_string'";                
-                foreach($search_params['params'] as $param => $value) {
+                foreach ($search_params['params'] as $param => $value) {
                         if (in_array($param, $allowed)) $fields[] = "$param REGEXP '$search_string'";
                 }
                 //$sql .= count($fields) ? ('((' . implode(' OR ', $fields) . '))') : '';
@@ -84,22 +84,22 @@ if ($search_string && isset($search_params['params'])) {
                 $search_string = strtr($search_string, array('_' => '\_', '%' => '\%', '*' => '%'));
 
                 $split_search = explode('"',$search_string);
-                foreach($split_search as $index => $string) {
-                        if(($index & 1) && strlen($string)) {
+                foreach ($split_search as $index => $string) {
+                        if (($index & 1) && strlen($string)) {
                                 $fields = array();
                                 if ($superCage->get->keyExists('album_title') || $superCage->get->keyExists('category_title')) $albcat_terms[] = " LIKE '%$string%'";                                
-                                foreach($search_params['params'] as $param => $value) {
+                                foreach ($search_params['params'] as $param => $value) {
                                         if (in_array($param, $allowed)) $fields[] = "$param LIKE '%$string%'";
                                 }
                                 $sections[] = count($fields) ? '(' . implode(' OR ', $fields) . ')' : '';  
-                        } else if (strlen($string)) {
+                        } elseif (strlen($string)) {
                                 $words = explode(' ', $string);
-                                foreach($words as $word) {
-                                        if(strlen($word)) {
+                                foreach ($words as $word) {
+                                        if (strlen($word)) {
                                                 $word = addslashes($word);
                                                 $fields = array();
                                                 if ($superCage->get->keyExists('album_title') || $superCage->get->keyExists('category_title')) $albcat_terms[] = " LIKE '%$word%'";
-                                                foreach($search_params['params'] as $param => $value) {
+                                                foreach ($search_params['params'] as $param => $value) {
                                                         if (in_array($param, $allowed)) $fields[] = "$param LIKE '%$word%'";
                                                 }
                                                 $sections[] = count($fields) ? '(' . implode(' OR ', $fields) . ')' : '';  
@@ -115,35 +115,39 @@ if ($search_string && isset($search_params['params'])) {
         }
 
         /*$sql .= $superCage->get->getInt('newer_than') ? ' AND ( ctime > UNIX_TIMESTAMP() - '.( $superCage->get->getInt('newer_than') * 60*60*24).')' : '';
-		$sql .= $superCage->get->getInt('older_than') ? ' AND ( ctime < UNIX_TIMESTAMP() - '.( $superCage->get->getInt('older_than') * 60*60*24).')' : '';
-		$sql .=  " $ALBUM_SET AND approved = 'YES'";	*/
+        $sql .= $superCage->get->getInt('older_than') ? ' AND ( ctime < UNIX_TIMESTAMP() - '.( $superCage->get->getInt('older_than') * 60*60*24).')' : '';
+        $sql .=  " AND approved = 'YES' $FORBIDDEN_SET";*/
 		############################################		DB		###############################################
 		$sql_newer_than = $superCage->get->getInt('newer_than') ? ' AND ( ctime > '.$cpgdb->timestamp().' - '.( $superCage->get->getInt('newer_than') * 60*60*24).')' : '';
 		$sql_older_than = $superCage->get->getInt('older_than') ? ' AND ( ctime < '.$cpgdb->timestamp().' - '.( $superCage->get->getInt('older_than') * 60*60*24).')' : '';
-		$sql .= "$sql_search_params  $sql_newer_than  $sql_older_than $ALBUM_SET AND approved = 'YES'";
+		$sql .= "$sql_search_params  $sql_newer_than  $sql_older_than AND approved = 'YES' $FORBIDDEN_SET";
 		##########################################################################################################
 
-        if($superCage->get->keyExists('album_title')) {
-                /*$album_query = "SELECT * FROM `{$CONFIG['TABLE_ALBUMS']}` WHERE (`title` " . implode(" $type `title` ",$albcat_terms) . ')';
-				$result = cpg_db_query($album_query);
-				if(mysql_num_rows($result) > 0)	*/
+        if ($superCage->get->keyExists('album_title')) {
+                /*$album_query = "SELECT * FROM `{$CONFIG['TABLE_ALBUMS']}` "
+                        ." WHERE (`title` " . implode(" $type `title` ",$albcat_terms) . ')';
+                $result = cpg_db_query($album_query);
+                if (mysql_num_rows($result) > 0) {*/
 				#################################		DB		##################################
 				$cpgdb->query($cpg_db_search_inc['alb_title_album_query'], implode(" $type title ",$albcat_terms));
 				$rowset = $cpgdb->fetchRowSet();
-				if(count($rowset) > 0)
+				if(count($rowset) > 0) {
 				#################################################################################
-				{
                         starttable('100%', $lang_meta_album_names['album_search'],2);
-                        //while($alb = mysql_fetch_assoc($result))
-						foreach ($rowset as $alb)	########	cpgdb_AL
-                        {
-                                /*$thumb_query = "SELECT filename, url_prefix, pwidth, pheight FROM `{$CONFIG['TABLE_PICTURES']}` WHERE (`aid` = '{$alb['aid']}') ORDER BY `pid` DESC";
-								$thumb_result = cpg_db_query($thumb_query);
-								$thumb = mysql_fetch_assoc($thumb_result);	*/
+                        //while($alb = mysql_fetch_assoc($result)) {
+						foreach ($rowset as $alb) {	########	cpgdb_AL
+                                /*$thumb_query = "SELECT filepath, filename, url_prefix, pwidth, pheight "
+                                        ." FROM `{$CONFIG['TABLE_PICTURES']}` "
+                                        ." WHERE (`aid` = '{$alb['aid']}') "
+                                        ." ORDER BY `pid` DESC";
+                                $thumb_result = cpg_db_query($thumb_query);
+                                $thumb = mysql_fetch_assoc($thumb_result);*/
 								#################################		DB		#################################
 								$cpgdb->query($cpg_db_search_inc['alb_title_thumb_query'], $alb['aid']);
 								$thumb = $cpgdb->fetchRow();
 								################################################################################
+                                // TO DO: query above only pulls in last_pid in each album, not correct album thumb as set by user
+
                                 $thumb_url = get_pic_url($thumb, 'thumb');
                                 $thumb_size = compute_img_size($thumb['pwidth'], $thumb['pheight'], $CONFIG['alb_list_thumb_size'], true, 'cat_thumb');
                                 ?>
@@ -160,11 +164,11 @@ if ($search_string && isset($search_params['params'])) {
                                 <tr>
                                   <td>
                                     <a href="<?php printf("thumbnails.php?album=%u", $alb['aid']); ?> "> 
-                                        <img src="<?php echo $thumb_url?>"  class="image" <?php echo $image_size['geom'] ?> border="0" alt="<?php echo $thumb['filename'] ?>">
+                                        <img src="<?php echo $thumb_url?>"  class="image" <?php echo $thumb_size['geom'] ?> border="0" alt="<?php echo $thumb['filename'] ?>">
                                     </a>
                                   </td>
                                   <td width=100% valign=top>
-                                    <?php if ($alb['description'] == "") { echo '&nbsp;'; }else { echo $alb['description']; } ?>
+                                    <?php if ($alb['description'] == "") { echo '&nbsp;'; } else { echo $alb['description']; } ?>
                                   </td>
                                 </tr>
                                 <?php
@@ -174,31 +178,34 @@ if ($search_string && isset($search_params['params'])) {
                 }
         }
                                               
-        if($superCage->get->keyExists('category_title')) {
+        if ($superCage->get->keyExists('category_title')) {
                 /*$category_query = "SELECT * FROM `{$CONFIG['TABLE_CATEGORIES']}` WHERE (`name` " . implode(" $type `name` ",$albcat_terms) . ')';
 				$result = cpg_db_query($category_query);
-				if(mysql_num_rows($result) > 0) */
+				if (mysql_num_rows($result) > 0) {*/
 				##################################		DB		##################################
 				$cpgdb->query($cpg_db_search_inc['cat_title_category_query'], implode(" $type name ",$albcat_terms));
 				$rowset = $cpgdb->fetchRowSet();
-				if (count($rowset) > 0) 
+				if (count($rowset) > 0) {
 				#################################################################################
-				{
                         starttable('100%', $lang_meta_album_names['category_search'],2);
-                        //while($cat = mysql_fetch_array($result,MYSQL_ASSOC))
-						foreach ($rowset as $cat)	########	cpgdb_AL
-                        {
+                        //while ($cat = mysql_fetch_array($result,MYSQL_ASSOC)) {
+						foreach ($rowset as $cat) {	########	cpgdb_AL
                                 /*$album_q = "SELECT * FROM `{$CONFIG['TABLE_ALBUMS']}` WHERE (`category` = '{$cat['cid']}') ORDER BY `aid` DESC LIMIT 1";
-								$album_r = cpg_db_query($album_q);
-								$album = mysql_fetch_array($album_r);
-                                
-								$thumb_query = "SELECT filename, url_prefix, pwidth, pheight FROM `{$CONFIG['TABLE_PICTURES']}` WHERE (`aid` = '{$album['aid']}') ORDER BY `pid` DESC";
-								$thumb_result = cpg_db_query($thumb_query);
-								$thumb = mysql_fetch_assoc($thumb_result);	*/
+                                $album_r = cpg_db_query($album_q);
+                                $album = mysql_fetch_array($album_r);
+
+                                // TO DO: This is weird.  It seems to pull in the largest aid's thumb for the category image?
+                                $thumb_query = "SELECT filepath, filename, url_prefix, pwidth, pheight "
+                                        ." FROM `{$CONFIG['TABLE_PICTURES']}` "
+                                        ." WHERE (`aid` = '{$album['aid']}') "
+                                        ." ORDER BY `pid` DESC";
+                                $thumb_result = cpg_db_query($thumb_query);
+                                $thumb = mysql_fetch_assoc($thumb_result);*/
 								##################################		DB		#####################################
 								$cpgdb->query($cpg_db_search_inc['cat_title_album_q'], $cat['cid']);
 								$album = $cpgdb->fetchRow();
-								
+
+                                // TO DO: This is weird.  It seems to pull in the largest aid's thumb for the category image?
 								$cpgdb->query($cpg_db_search_inc['cat_title_thumb_query'], $album['aid']);
 								$cpgdb->fetchRow();
 								####################################################################################
@@ -218,9 +225,9 @@ if ($search_string && isset($search_params['params'])) {
                                 </tr>                                
                                 <tr>
                                   <td>
-                                    <a href="<?php printf("thumbnails.php?album=%u", $alb['aid']); ?> "> 
-                                        <img src="<?php echo $thumb_url?>"  class="image" <?php echo $image_size['geom'] ?> border="0" alt="<?php echo $thumb['filename'] ?>"><br/>
-                                        <?php if ($album['title'] == "") { echo '&nbsp;'; } else { printf("<a href='thumbnails.php?album=%u'>{$album['title']}</a>", $alb['aid']); } ?>
+                                    <a href="<?php printf("thumbnails.php?album=%u", $album['aid']); ?> "> 
+                                        <img src="<?php echo $thumb_url?>"  class="image" <?php echo $thumb_size['geom'] ?> border="0" alt="<?php echo $thumb['filename'] ?>"><br/>
+                                        <?php if ($album['title'] == "") { echo '&nbsp;'; } else { printf("<a href='thumbnails.php?album=%u'>{$album['title']}</a>", $album['aid']); } ?>
                                     </a>
                                   </td>
                                 </tr>
@@ -233,26 +240,34 @@ if ($search_string && isset($search_params['params'])) {
         }                                              
 
         // Make sure they selected some parameter other than album/category
-        $other=0;
-        foreach($search_params['params'] as $param => $value) {
-                if (in_array($param, $allowed)) $other=1;
+        $other = 0;
+        foreach ($search_params['params'] as $param => $value) {
+            if (in_array($param, $allowed)) {
+                $other = 1;
+            }
         }
         
-        /*if(!$other) $sql = '0';
+        
+        /*if (!$other) {
+            $sql = '0';
+        }
 
-        $sql = "SELECT * FROM {$CONFIG['TABLE_PICTURES']} WHERE " . $sql;
 
-        $temp = str_replace('SELECT *', 'SELECT COUNT(*)', $sql);
+        $query = "SELECT * FROM {$CONFIG['TABLE_PICTURES']} AS p WHERE " . $sql;
+
+        $temp = str_replace('SELECT *', 'SELECT COUNT(*)', $query);
         $result = cpg_db_query($temp);	
         $row = mysql_fetch_row($result);
         $count = $row[0];
 
-        $sql .= " ORDER BY $sort_order $limit";
-        $result = cpg_db_query($sql);
+        $query .= " ORDER BY $sort_order $limit";
+        $result = cpg_db_query($query);
         $rowset = cpg_db_fetch_rowset($result);
-        mysql_free_result($result);	*/
+        mysql_free_result($result);*/
 		####################################		DB		###################################
-		if(!$other) $sql = '1!=1';
+		if (!$other) {
+            $sql = '1!=1';
+        }
 		$cpgdb->query($cpg_db_search_inc['temp_search_string'], $sql);
 		$row = $cpgdb->fetchRow();
 		$count = $row['count'];
@@ -262,7 +277,9 @@ if ($search_string && isset($search_params['params'])) {
 		$cpgdb->free();
 		###################################################################################### 
 
-        if ($set_caption) build_caption($rowset);
+        if ($set_caption) {
+            build_caption($rowset);
+        }
 
 
 }

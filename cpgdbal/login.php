@@ -40,7 +40,7 @@ if ($superCage->post->keyExists('submitted')) {
         exit;
     } else {
         if ($superCage->server->testip('REMOTE_ADDR')) {
-        	$ip = $superCage->server->getRaw('REMOTE_ADDR');
+        	$ip = $superCage->server->getEscaped('REMOTE_ADDR');	// IP address is already tested, hence using getRaw().
         } else {
         	$ip = 'Unknown';
         }

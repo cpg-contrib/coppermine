@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 3786 $
-  $LastChangedBy: gaugau $
-  $Date: 2007-07-27 16:44:45 +0200 (Fr, 27 Jul 2007) $
+  $Revision: 4502 $
+  $LastChangedBy: pvanrompay $
+  $Date: 2008-06-06 03:51:20 +0530 (Fri, 06 Jun 2008) $
 **********************************************/
 
 /**********************************************
@@ -99,14 +99,6 @@ $config_data = array(
       'width' => '5',
       'maxlength' => '5',
       'end_description' => $lang_admin_php['time_offset_detail'],
-    ),
-    'enable_encrypted_passwords' => array(
-      'type' => 'checkbox',
-      'default_value' => '1',
-      'only_display_if' => '0',
-      'bridged' => 'hide',
-      'help_link' => 'f=configuration.htm&amp;as=admin_general_encrypt_password_start&amp;ae=admin_general_encrypt_password_end&amp;top=1',
-      'preserve_when_resetting' => '1',
     ),
     'enable_help' => array(
       'type' => 'radio',

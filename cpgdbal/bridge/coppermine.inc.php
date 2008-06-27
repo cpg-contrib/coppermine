@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4390 $
-  $LastChangedBy: nibbler999 $
-  $Date: 2008-04-15 01:51:19 +0530 (Tue, 15 Apr 2008) $
+  $Revision: 4497 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-06-03 19:59:30 +0530 (Tue, 03 Jun 2008) $
 **********************************************/
 
 
@@ -44,7 +44,8 @@ class coppermine_udb extends core_udb {
                 }
 
                 // A hash that's a little specific to the client's configuration
-                $this->client_id = md5($superCage->server->getRaw('HTTP_USER_AGENT').$superCage->server->getRaw('SERVER_PROTOCOL').$CONFIG['site_url']);
+				// we are using md5 hash of the getRaw() content.
+                $this->client_id = md5($superCage->server->getEscaped('HTTP_USER_AGENT').$superCage->server->getEscaped('SERVER_PROTOCOL').$CONFIG['site_url']);
 
                 $this->multigroups = 1;
 
@@ -71,7 +72,7 @@ class coppermine_udb extends core_udb {
 					$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
 					$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
 					$this->sessionstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['sessions'];
-				} else {
+				} elseif($CONFIG['dbservername'] == 'mssql') {
 					$this->usertable = $this->db['name'] ."." .dbo ."." .$this->db['prefix'] . $this->table['users'];
 					$this->groupstable =   $this->db['name'] . "." .dbo ."." .$this->db['prefix'] . $this->table['groups'];
 					$this->sessionstable =   $this->db['name'] ."." .dbo .".". $this->db['prefix'] . $this->table['sessions'];
@@ -123,13 +124,9 @@ class coppermine_udb extends core_udb {
                 // Create the session_id from concat(cookievalue,client_id)
                 $session_id = $this->session_id.$this->client_id;
 
-                // Check if encrypted passwords are enabled
-                if ($CONFIG['enable_encrypted_passwords']) {
-                        $encpassword = md5($password);
-                } else {
-                        $encpassword = $password;
-                }
-//print($username."username<br>");print(md5($password)."md5pass<br>");print($password."<br>");print($encpassword."encpass");exit;
+				$encpassword = md5($password);
+
+
                 /*// Check for user in users table
                 $sql =  "SELECT user_id, user_name, user_password FROM {$this->usertable} WHERE ";
 				//Check the login method (username, email address or both)

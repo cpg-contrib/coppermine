@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4256 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-02-09 18:00:53 +0100 (Sa, 09 Feb 2008) $
+  $Revision: 4502 $
+  $LastChangedBy: pvanrompay $
+  $Date: 2008-06-06 03:51:20 +0530 (Fri, 06 Jun 2008) $
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
@@ -280,7 +280,7 @@ function online_install() {
 				##############################        DB      ###########################
 				$cpgdb->query($cpg_db_onlinestats['get_mod_updates_duration']);
 				if (!count($cpgdb->fetchRowSet())) {
-					$sql_query[] = sprintf($cpg_db_onlinestats_php['add_mod_update_duration']);
+					$sql_query[] = sprintf($cpg_db_onlinestats_php['add_mod_update_duration'], $duration);
 					foreach ($sql_query as $q) $cpgdb->query($q);
 				}
 				##################################################################
@@ -302,7 +302,7 @@ function online_install() {
 
 // Uninstall (drop?)
 function online_uninstall() {
-		global $CONFIG, cpg_db_onlinestats;
+		global $CONFIG, $cpg_db_onlinestats;
 		###################        DB       #################
 		$cpgdb =& cpgDB::getInstance();
 		$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
@@ -324,7 +324,7 @@ function online_uninstall() {
 			$cpgdb->query($cpg_db_onlinestats['drop_online']);
 			$cpgdb->query($cpg_db_onlinestats['del_mod_updates_duration']);
 			$cpgdb->query($cpg_db_onlinestats['del_record_online_users']);
-			$cpgdb->query($cpg_db-onlinestats['del_record_online_data']);
+			$cpgdb->query($cpg_db_onlinestats['del_record_online_data']);
 			############################################################
 		}
         

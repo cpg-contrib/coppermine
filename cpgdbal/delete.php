@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4224 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-01-26 17:12:00 +0530 (Sat, 26 Jan 2008) $
+  $Revision: 4583 $
+  $LastChangedBy: pvanrompay $
+  $Date: 2008-06-18 06:33:59 +0530 (Wed, 18 Jun 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -325,40 +325,42 @@ function parse_pic_list($value)
 
 
 if ($superCage->get->keyExists('what')) {
-	$what = $superCage->get->getAlpha('what');
+    $what = $superCage->get->getAlpha('what');
 } elseif ($superCage->post->keyExists('what')) {
     $what = $superCage->post->getAlpha('what');
 } else {
-	cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
+    cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
 }
 
 
 switch ($what) {
     // Album manager (don't necessarily delete something ;-)
     case 'albmgr':
-        if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+        if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) {
+            cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+        }
 
         if (!GALLERY_ADMIN_MODE) {
-			//restrict to allowed categories of user
-			//first get allowed categories
-			global $USER_DATA;
-			
-			$group_id = $USER_DATA['group_id'];
-			/*$result = cpg_db_query("SELECT DISTINCT cid FROM {$CONFIG[TABLE_CATMAP]} WHERE group_id = $group_id");
-			$rowset = cpg_db_fetch_rowset($result);	*/
+            //restrict to allowed categories of user
+            //first get allowed categories
+            global $USER_DATA;
+            
+            $group_id = $USER_DATA['group_id'];
+            /*$result = cpg_db_query("SELECT DISTINCT cid FROM {$CONFIG[TABLE_CATMAP]} WHERE group_id = $group_id");
+            $rowset = cpg_db_fetch_rowset($result);*/
 			#######################          DB       ######################
 			$cpgdb->query($cpg_db_delete_php['albmgr_dist_catmap_cid'], $group_id);
 			$rowset = $cpgdb->fetchRowSet();
 			######################################################
 			
-			//add allowed categories to the restriction		
+            //add allowed categories to the restriction     
             $restrict = "AND (category = '" . (FIRST_USER_CAT + USER_ID) . "'";
-			
-			foreach($rowset as $key => $value){
-				$restrict .= " OR category = '" . $value['cid'] . "'";
-			}
-			$restrict .= ")";        
-		} else {
+            
+            foreach($rowset as $key => $value){
+                $restrict .= " OR category = '" . $value['cid'] . "'";
+            }
+            $restrict .= ")";        
+        } else {
             $restrict = '';
         }
 
@@ -366,23 +368,23 @@ switch ($what) {
         //pageheader($lang_delete_php['alb_mgr']);
         $returnOutput .= '<table border="0" cellspacing="0" cellpadding="0" width="100%">';
 
-		//prevent sorting of the albums if not admin or in own album
-		$sort_list_matched = $superCage->post->getMatched('sort_order', '/^[0-9@,]+$/');
-		if(GALLERY_ADMIN_MODE || $superCage->post->getInt('cat') == FIRST_USER_CAT + USER_ID){
-			$orig_sort_order = parse_list($sort_list_matched[0]);
-			foreach ($orig_sort_order as $album) {
-				$op = parse_orig_sort_order($album);
-				if (count ($op) == 2) {
-					/*$query = "UPDATE {$CONFIG[TABLE_ALBUMS]} SET pos='{$op['pos']}' WHERE aid='{$op['aid']}' $restrict LIMIT 1";
-					cpg_db_query($query);	*/
+        //prevent sorting of the albums if not admin or in own album
+        $sort_list_matched = $superCage->post->getMatched('sort_order', '/^[0-9@,]+$/');
+        if(GALLERY_ADMIN_MODE || $superCage->post->getInt('cat') == FIRST_USER_CAT + USER_ID){
+            $orig_sort_order = parse_list($sort_list_matched[0]);
+            foreach ($orig_sort_order as $album) {
+                $op = parse_orig_sort_order($album);
+                if (count ($op) == 2) {
+                    /*$query = "UPDATE {$CONFIG[TABLE_ALBUMS]} SET pos='{$op['pos']}' WHERE aid='{$op['aid']}' $restrict LIMIT 1";
+                    cpg_db_query($query);*/
 					############################         DB        ##########################
 					$cpgdb->query($cpg_db_delete_php['albmgr_set_pos'], $op['pos'], $op['aid'], $restrict);
 					##############################################################
-				} else {
-					cpg_die (sprintf(CRITICAL_ERROR, $lang_delete_php['err_invalid_data'], $sort_list_matched), __FILE__, __LINE__);
-				}
-			}
-		}
+                } else {
+                    cpg_die (sprintf(CRITICAL_ERROR, $lang_delete_php['err_invalid_data'], $sort_list_matched), __FILE__, __LINE__);
+                }
+            }
+        }
 
         $matches = $superCage->post->getMatched('delete_album', '/^[0-9,@]+$/');
         $to_delete = parse_list($matches[0]);
@@ -397,35 +399,35 @@ switch ($what) {
 
                 $op = parse_select_option(stripslashes($option_value));
 
-				switch ($op['action']) {
-					case '0':
-						break;
-					case '1':
-						$category = $superCage->post->getInt('cat');
-						$user_id = USER_ID;
-					
-						$returnOutput .= "<tr><td colspan=\"6\" class=\"tableb\">" . sprintf($lang_delete_php['create_alb'], $op['album_nm']) . "</td></tr>\n";
-						/*$query = "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (category, title, uploads, pos, description, owner) VALUES ('$category', '" . addslashes($op['album_nm']) . "', 'NO',  '{$op['album_sort']}', '', '$user_id')";
-						cpg_db_query($query);	*/
-						#############################            DB          #############################
-						$cpgdb->query($cpg_db_delete_php['albmgr_add_album'], $category, addslashes($op['album_nm']), 
-										$op['album_sort'], $user_id);
-						#####################################################################
-						break;
-					case '2':
-						$returnOutput .= "<tr><td colspan=\"6\" class=\"tableb\">" . sprintf($lang_delete_php['update_alb'], $op['album_no'], $op['album_nm'], $op['album_sort']) . "</td></tr>\n";
-						/*$query = "UPDATE $CONFIG[TABLE_ALBUMS] SET title='" . addslashes($op['album_nm']) . "', pos='{$op['album_sort']}' WHERE aid='{$op['album_no']}' $restrict LIMIT 1";
-						cpg_db_query($query);	*/
-						################################          DB       #################################
-						$cpgdb->query($cpg_db_delete_php['albmgr_update_album'], addslashes($op['album_nm']), $op['album_sort'],
-									$op['album_no'], $restrict);
-						##########################################################################
-						break;
-					default:
-						// cpg_die (CRITICAL_ERROR, $lang_delete_php['err_invalid_data'], __FILE__, __LINE__);
-				}
-			}
-		}
+                switch ($op['action']) {
+                    case '0':
+                        break;
+                    case '1':
+                        $category = $superCage->post->getInt('cat');
+                        $user_id = USER_ID;
+
+                        $returnOutput .= "<tr><td colspan=\"6\" class=\"tableb\">" . sprintf($lang_delete_php['create_alb'], $op['album_nm']) . "</td></tr>\n";
+                        /*$query = "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (category, title, uploads, pos, description, owner) VALUES ('$category', '" . addslashes($op['album_nm']) . "', 'NO',  '{$op['album_sort']}', '', '$user_id')";
+                        cpg_db_query($query);*/
+                        #############################            DB          #############################
+                        $cpgdb->query($cpg_db_delete_php['albmgr_add_album'], $category, addslashes($op['album_nm']), 
+                                        $op['album_sort'], $user_id);
+                        #####################################################################
+                        break;
+                    case '2':
+                        $returnOutput .= "<tr><td colspan=\"6\" class=\"tableb\">" . sprintf($lang_delete_php['update_alb'], $op['album_no'], $op['album_nm'], $op['album_sort']) . "</td></tr>\n";
+                        /*$query = "UPDATE $CONFIG[TABLE_ALBUMS] SET title='" . addslashes($op['album_nm']) . "', pos='{$op['album_sort']}' WHERE aid='{$op['album_no']}' $restrict LIMIT 1";
+                        cpg_db_query($query);*/
+                        ################################          DB       #################################
+                        $cpgdb->query($cpg_db_delete_php['albmgr_update_album'], addslashes($op['album_nm']), $op['album_sort'],
+                                        $op['album_no'], $restrict);
+                        ##########################################################################
+                        break;
+                    default:
+                        // cpg_die (CRITICAL_ERROR, $lang_delete_php['err_invalid_data'], __FILE__, __LINE__);
+                }
+            }
+        }
 
         if ($need_caption) {
               ob_start();
@@ -481,7 +483,7 @@ switch ($what) {
 
 		if ($superCage->post->keyExists('to')) {
 			//Using getRaw(). The data is sanitized in parse_pic_select_option() function
-			$to_arr = $superCage->post->getRaw('to');
+			$to_arr = $superCage->post->getEscaped('to');
 			foreach ($to_arr as $option_value){
 				$op = parse_pic_select_option(stripslashes($option_value));
 				switch ($op['action']){
@@ -634,7 +636,7 @@ switch ($what) {
 			} elseif ($superCage->post->keyExists('action') && ($matches = $superCage->post->getMatched('action', '/^[a-z_]+$/'))) {
 				$user_action = $matches[0];
 			} else {
-				$user_action = '';
+                $user_action = '';
 			}
 			switch ($user_action) {
 					case 'delete':
@@ -912,6 +914,7 @@ switch ($what) {
 							if (!count($rowset)) {
 								print '<tr><td class="tableb" colspan="2">'.$lang_delete_php['err_unknown_user'].'</td>';
 							} else {
+								$user_data = $rowset[0];
 							###########################################################################
 								print '<tr>';
 								print '<td class="tableb"><b>';
@@ -919,7 +922,7 @@ switch ($what) {
 								print '</b></td>';
 								print '<td class="tableb">';
 								// set this user's password
-								$new_password = $CONFIG['enable_encrypted_passwords'] ? md5($superCage->get->getEscaped('new_password')) : $superCage->get->getEscaped('new_password');
+								$new_password = md5($superCage->get->getEscaped('new_password'));
 								//cpg_db_query("UPDATE {$CONFIG['TABLE_USERS']} SET user_password = '$new_password' WHERE  user_id = '$key'");
 								############################             DB          ##############################
 								$cpgdb->query($cpg_db_delete_php['user_set_password'], $new_password, (int)$key);
@@ -1049,9 +1052,8 @@ switch ($what) {
 								##########################           DB        #########################
 								$result_user = $cpgdb->query($cpg_db_delete_php['user_get_all'], (int)$key);
 								$user_rowset = $cpgdb->fetchRowSet();
-								if (!count($user_rowset)) {
-									$user_data = $user_rowset[0];
-								}
+								if (!count($user_rowset)) { print 'unknown user';}
+								$user_data = $user_rowset[0];
 								$cpgdb->free();
 								#############################################################
 								$user_group = explode(',', $user_data['user_group_list']);
@@ -1078,7 +1080,8 @@ switch ($what) {
 								printf($lang_delete_php['add_group_to_group'], '&laquo;'.$user_data['user_name'].'&raquo;', '&laquo;'.$group_label[$new_group].'&raquo;', '&laquo;'.$group_label[$user_data['user_group']].'&raquo;', $group_output);
 								print '</b></td>';
 							}
-							mysql_free_result($result);
+							//mysql_free_result($result);
+							$cpgdb->free();	######	cpgdbAL
 						} // foreach --- end
 						echo "<tr><td colspan=\"2\" class=\"tablef\" align=\"center\">\n";
 						echo "<a href=\"usermgr.php\" class=\"admin_menu\">".$lang_common['continue']."</a>\n";
@@ -1247,7 +1250,8 @@ switch ($what) {
 								endtable();
 								print '</td>';
 							}
-							mysql_free_result($result);
+							//mysql_free_result($result);
+							$cpgdb->free();	######	cpgdbAL
 							print '</tr>';
 						}
 						echo "<tr><td colspan=\"6\" class=\"tablef\" align=\"center\">\n";

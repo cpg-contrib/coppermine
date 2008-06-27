@@ -11,9 +11,9 @@
 ##  ********************************************
 ##  Coppermine version: 1.5.0
 ##  $Source: /cvsroot/coppermine/devel/sql/update.sql,v $
-##  $Revision: 4363 $
-##  $LastChangedBy: gaugau $
-##  $Date: 2008-03-25 14:37:25 +0530 (Tue, 25 Mar 2008) $
+##  $Revision: 4579 $
+##  $LastChangedBy: nibbler999 $
+##  $Date: 2008-06-16 01:45:17 +0530 (Mon, 16 Jun 2008) $
 ##  ********************************************
 
 
@@ -125,8 +125,6 @@ INSERT INTO CPG_config VALUES ('vanity_block','0');
 INSERT INTO CPG_config VALUES ('log_mode', '0');
 
 INSERT INTO CPG_config VALUES ('media_autostart', '1');
-
-INSERT INTO CPG_config VALUES ('enable_encrypted_passwords','0');
 
 INSERT INTO CPG_config VALUES ('rating_stars_amount', '5');
 INSERT INTO CPG_config VALUES ('old_style_rating', '0');
@@ -526,3 +524,11 @@ INSERT INTO CPG_config VALUES ('allow_user_album_keyword', '1');
 
 INSERT INTO CPG_config VALUES ('count_file_hits', '1');
 INSERT INTO CPG_config VALUES ('count_album_hits', '1');
+
+# Category system
+ALTER TABLE CPG_categories ADD `lft` mediumint( 8 ) unsigned NOT NULL default '0';
+ALTER TABLE CPG_categories ADD `rgt` mediumint( 8 ) unsigned NOT NULL default '0';
+ALTER TABLE CPG_categories ADD `depth` mediumint( 8 ) unsigned NOT NULL default '0';
+ALTER TABLE CPG_categories ADD INDEX `depth_cid` ( `depth` , `cid` );
+ALTER TABLE CPG_categories ADD INDEX `lft_depth` ( `lft` , `depth` );
+

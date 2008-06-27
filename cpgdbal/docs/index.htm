@@ -1,11 +1,11 @@
-<!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
 <head>
-<title>Coppermine Photo Gallery - Documentation &amp; Manual</title>
-<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<title>Coppermine Photo Gallery - Documentation &amp; Manual - Language selection</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="language"    content="en">
 <meta name="copyright"   content="Coppermine dev team">
-<meta name="description" content="Coppermine Photo Gallery is an advanced, user-friendly, picture gallery script with built-in support for other multi-media/data files.  The gallery can be private, accessible to registered users only, and/or open to all visitors to your site. Users, if permitted, can upload pictures with their web browser (thumbnail and intermediate sized images are created on the fly), rate pictures, add comments and even send e-cards.">
+<meta name="description" content="Coppermine Photo Gallery Documentation and Manual - Language selection">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <meta name="MSSmartTagsPreventParsing" content="true">
 <meta http-equiv="imagetoolbar" content="no">
@@ -13,9 +13,9 @@
   SVN version info:
 
   Coppermine version: 1.5.0
-  $Revision: 4266 $
+  $Revision: 4489 $
   $LastChangedBy: gaugau $
-  $Date: 2008-02-12 13:44:34 +0530 (Tue, 12 Feb 2008) $
+  $Date: 2008-05-30 12:54:37 +0530 (Fri, 30 May 2008) $
 -->
 <link rel="stylesheet" type="text/css" href="style.css" media="all" />
 <link rel="stylesheet" type="text/css" href="screen.css" media="screen" />
@@ -24,29 +24,59 @@
 <script src="script.js" type="text/javascript"></script>
 </head>
 <body>
+<img src="en/images/coppermine-logo.png" alt="Coppermine Photo Gallery - Your Online Photo Gallery" align="left"><h1>Coppermine Photo Gallery v1.5.0: Documentation and Manual</h1><br clear="all"><a name="top"></a>
+
 <script type="text/javascript">
-  cpgDocHeader();
+function arrayShuffle(){
+  var tmp, rand;
+  for(var i =0; i < this.length; i++){
+	  rand = Math.floor(Math.random() * this.length);
+	  tmp = this[i];
+	  this[i] = this[rand];
+	  this[rand] =tmp;
+  }
+}
+Array.prototype.shuffle =arrayShuffle;
+
+welcomeStrings = new Array('Mirësevini', 'Welkom', 'هلا','Ongi&nbsp;etorri', 'Seja&nbsp;Bem&nbsp;Vindo', 'Добре&nbsp;дошли', 'Benvingut&nbsp;da', 'Vítejte', 'Velkommen', 'Welcome', 'Sexa&nbsp;Benvida', 'Willkommen', 'Καλωσήρθατε', 'Üdvözlet', 'Selamat&nbsp;datang', 'Benvenuto', 'Laipni&nbsp;lūdzam', 'Sveiki', 'Добредојде', 'Tere', 'Tervetuloa', 'Bienvenue', 'Välkommen', 'Hoşgeldiniz', 'Вітаємо', 'Croeso', 'Velkommen', 'خوش&nbsp;آمديد', 'Witaj', 'Bine&nbsp;aţi&nbsp;venit', 'Добро&nbsp;пожаловать', 'Dobro&nbsp;došli', 'Dobrodošli', 'Bienvenido', '歡迎', '欢迎','स्वागतम', 'ようこそ', '환영합니다');
+welcomeStrings.shuffle();
+for (var i = 0; i < welcomeStrings.length; ++i) {
+     var fontSize = (((Math.floor(Math.random()* 12))/10)*2)+1;
+     var fontColorNumber = Math.floor(Math.random()*4);
+     switch(fontColorNumber) {
+	     case 0:
+	     var fontColorHex = '#0E72A4';
+	     break;
+	     case 1:
+	     var fontColorHex = '#355A75';
+	     break;
+	     case 2:
+	     var fontColorHex = '#000000';
+	     break;
+	     default:
+	     var fontColorHex = '#C0C0C0';
+	     break;
+     }
+     document.write('<span style="font-size:'+fontSize+'em;color:'+fontColorHex+';">');
+     document.write(welcomeStrings[i]);
+     document.write('</span>&nbsp; &nbsp;');
+}
 </script>
-<div id="toc">
-<script type="text/javascript">
-  cpgDocToc();
-</script>
-<noscript>
-<a name="empty_start"></a>
-<a name="empty_end"></a>
-<a href="toc.htm">Table of Contents</a>
-</noscript>
-</div>
-<a name="about_start"></a>
-<h1>About Coppermine</h1>
-<p>Coppermine Photo Gallery is an advanced, user-friendly, picture gallery script with built-in support for other multi-media/data files.  The gallery can be private, accessible to registered users only, and/or open to all visitors to your site. Users, if permitted, can upload pictures with their web browser (thumbnail and intermediate sized images are created on the fly), rate pictures, add comments and even send e-cards. The site administrator determines which of the features listed above are accessible by registered and non-registered users. The site administrator can also manage galleries and batch process large numbers of pictures that have been uploaded onto the server by FTP.</p>
-<p>Image files are stored in albums and albums can be grouped into categories, which in turn, can be further grouped under parent categories. The script supports multiple users and provides the administrator of the website with tools to manage which user groups can or cannot have personal albums, send ecards, or add comments. Users may also upload to public albums if the website administrator permits it. Permissions to create albums, upload and delete files are all determined by the website administrator.</p>
-<p>Coppermine has an optional user selectable theme system with a number of themes pre-installed. It also supports the use of multiple languages and contains it's own language library. These language files provide, users of your gallery, access in their preferred languages. Coppermine uses PHP, a MySQL database, and either the GD library (version 1.x or 2.x) or ImageMagick to generate and keep records and file information of all thumbnails, intermediate, and full-sized images. Coppermine generates the html code necessary to display its various categories, sub-categories, albums, intermediate, and full-sized image displays dynamically. This drastically cuts down on the number of files and space your gallery would require using standard HTML. The install script (install.php) makes it quick and easy to get started.</p>
-<a name="about_end"></a>
+<a name="documentation_about"></a><h1>About the documentation<a href="#documentation_about" title="Link to this section"><img src="en/images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<p>This is the documentation for cpg1.5.x.<br />It is currently available in English mostly, but this will hopefully change in the near future.</p>
+<p>Please understand that the English version of the documentation is the most complete and most up-to-date copy, as the English is the language spoken by the developers of Coppermine. Information in translations of the docs (i.e. everything else but English) may be missing, false or inaccurate. When in doubt, consult the English version of the documentation. Please understand as well that the dev team can not be held responsible for potential errors - the <a href="en/copyrights.htm">terms of the license and disclaimer</a> apply to the docs as well, particularly to translations contributed by third-parties.</p>
+
+<a name="documentation_choose"></a><h1>Please choose your language<a href="#documentation_choose" title="Link to this section"><img src="en/images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<ul>
+    <li><img src="../images/flags/us.gif" border="0" width="16" height="10" alt="" /> <a href="en/index.htm">English</a></li>
+    <li><img src="../images/flags/de.gif" border="0" width="16" height="10" alt="" /> <a href="de/index.htm">Deutsch</a> (German)</li>
+    <li><img src="../images/flags/fr.gif" border="0" width="16" height="10" alt="" /> <a href="fr/index.htm">Français</a> (French)</li>
+</ul>
+<a name="documentation_contribute"></a><h3>Contribute to the documentation<a href="#documentation_contribute" title="Link to this section"><img src="en/images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>We'd love to see your translation of the docs (or part of it) and we're looking forward to your contribution. However, please read the <a href="en/translation.htm#translation_documentation">translation guide</a> before you start.</p>
 <script type="text/javascript">
   cpgDocFooter();
-  dateRevision(' $LastChangedDate: 2008-02-12 13:44:34 +0530 (Tue, 12 Feb 2008) $ ', ' $Revision: 4266 $ ');
+  dateRevision(' $LastChangedDate: 2008-05-30 12:54:37 +0530 (Fri, 30 May 2008) $ ', ' $Revision: 4489 $ ');
 </script>
-
 </body>
 </html>

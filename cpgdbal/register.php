@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $Source: /cvsroot/coppermine/devel/register.php,v $
-  $Revision: 4224 $
+  $Revision: 4497 $
   $LastChangedBy: gaugau $
-  $Date: 2008-01-26 17:12:00 +0530 (Sat, 26 Jan 2008) $
+  $Date: 2008-06-03 19:59:30 +0530 (Tue, 03 Jun 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -422,11 +422,7 @@ function check_user_info(&$error) { // function check_user_info - start
         $act_key = '';
     }
 
-                if ($CONFIG['enable_encrypted_passwords']) {
-                        $encpassword = md5($password);
-                } else {
-                        $encpassword = $password;
-                }
+    $encpassword = md5($password);
 
 	/*$sql = "INSERT INTO {$CONFIG['TABLE_USERS']} ".
 			"(user_regdate, user_active, user_actkey, user_name, user_password, user_email, user_profile1, user_profile2, user_profile3, user_profile4, user_profile5, user_profile6) ".
@@ -443,7 +439,8 @@ function check_user_info(&$error) { // function check_user_info - start
 	// Create a personal album if corresponding option is enabled
 	if ($CONFIG['personal_album_on_registration'] == 1) {
 		print 'sub<br />';
-		$catid = mysql_insert_id() + FIRST_USER_CAT;
+		//$catid = mysql_insert_id() + FIRST_USER_CAT;
+		$catid = $cpgdb->insertId();	######	cpgdbAL
 		print $catid;
 		//cpg_db_query("INSERT INTO {$CONFIG['TABLE_ALBUMS']} (`title`, `category`) VALUES ('$user_name', $catid)");
 		############################         DB       #############################
@@ -512,7 +509,8 @@ if ($superCage->get->keyExists('activate')) {
                 //$CONFIG['admin_activation'] = TRUE;
 
     //$act_key = addslashes(substr($_GET['activate'], 0 , 32));
-    $act_key = mysql_real_escape_string($superCage->get->getAlnum('activate'));
+    //$act_key = mysql_real_escape_string($superCage->get->getAlnum('activate'));
+	$act_key = $cpgdb->escape($superCage->get->getAlnum('activate'));	######	cpgdbAL
     if (strlen($act_key) != 32) cpg_die(ERROR, $lang_register_php['acct_act_failed'], __FILE__, __LINE__);
 
 	/*$sql = "SELECT  user_active, user_email, user_name, user_password " . "FROM {$CONFIG['TABLE_USERS']} " . "WHERE user_actkey = '$act_key' " . "LIMIT 1";

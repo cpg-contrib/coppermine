@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $Source$
-  $Revision: 4415 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-04-29 22:23:40 +0530 (Tue, 29 Apr 2008) $
+  $Revision: 4615 $
+  $LastChangedBy: pvanrompay $
+  $Date: 2008-06-23 03:30:26 +0530 (Mon, 23 Jun 2008) $
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
@@ -58,16 +58,17 @@ $register_date_fmt = '%B %d, %Y';
 $lasthit_date_fmt = '%B %d, %Y at %I:%M %p';
 $comment_date_fmt =  '%B %d, %Y at %I:%M %p';
 $log_date_fmt = '%B %d, %Y at %I:%M %p';
-$scientific_date_fmt = '%Y-%m-%d %H:%M:%S'; // cpg1.5.x
+$scientific_date_fmt = '%Y-%m-%d %H:%M:%S'; // cpg1.5
 
 // For the word censor
-$lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*');
+$lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'assrammer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*');
 
 $lang_meta_album_names = array(
   'random' => 'Random files',
   'lastup' => 'Last additions',
   'lastalb'=> 'Last updated albums',
   'lastcom' => 'Last comments',
+  'mostcom' => 'Most commented files',
   'topn' => 'Most viewed',
   'toprated' => 'Top rated',
   'lasthits' => 'Last viewed',
@@ -91,7 +92,7 @@ $lang_errors = array(
   'orphan_cat' => 'A category has a non-existing parent, run the category manager to correct the problem!',
   'directory_ro' => 'Directory \'%s\' is not writable, files can\'t be deleted',
   'non_exist_comment' => 'The selected comment does not exist.',
-  'pic_in_invalid_album' => 'File is in a non existant album (%s)!?',
+  'pic_in_invalid_album' => 'File is in a non-existent album (%s)!?',
   'banned' => 'You are currently banned from using this site.',
   'not_with_udb' => 'This function is disabled in Coppermine because it is integrated with forum software. Either what you are trying to do is not supported in this configuration, or the function should be handled by the forum software.',
   'offline_title' => 'Offline',
@@ -102,43 +103,50 @@ $lang_errors = array(
   'zip_type' => 'You do not have permission to upload ZIP files.',
   'database_query' => 'There was an error while processing a database query',
   'non_exist_comment' => 'The selected comment does not exist',
-  'page_removed_redirector' => 'You are trying to access a page that has been removed from the coppermine package.<br />Redirecting...', //cpg1.5
-  'captcha_error' => 'The confirmation code didn\'t match', //cpg1.5
-  'no_data' => 'No data returned', //cpg1.5
-  'no_connection' => 'No connection to %s established.', //cpg1.5
-  'login_needed' => 'You need to %sregister%s/%slogin%s to access this page', //cpg1.5
-   'error' => 'Error', //cpg1.5
+  'page_removed_redirector' => 'You are trying to access a page that has been removed from the Coppermine package.<br />Redirecting...', // cpg1.5
+  'captcha_error' => 'The confirmation code didn\'t match', // cpg1.5
+  'no_data' => 'No data returned', // cpg1.5
+  'no_connection' => 'No connection to %s established.', // cpg1.5
+  'login_needed' => 'You need to %sregister%s/%slogin%s to access this page', // cpg1.5
+   'error' => 'Error', // cpg1.5
 );
 
 $lang_bbcode_help_title = 'bbcode help';
-$lang_bbcode_help = 'You can add clickable links and some formating to this field by using bbcode tags: <li>[b]Bold[/b] =&gt; <b>Bold</b></li><li>[i]Italic[/i] =&gt; <i>Italic</i></li><li>[url=http://yoursite.com/]Url Text[/url] =&gt; <a href="http://yoursite.com">Url Text</a></li><li>[email]user@domain.com[/email] =&gt; <a href="mailto:user@domain.com">user@domain.com</a></li><li>[color=red]some text[/color] =&gt; <span style="color:red">some text</span></li><li>[img]http://documentation.coppermine-gallery.net/pics/base.gif[/img] =&gt; <img src="docs/pics/base.gif" border="0" alt="" /></li>';
+$lang_bbcode_help = 'You can add clickable links and some formatting to this field by using bbcode tags: <li>[b]Bold[/b] =&gt; <b>Bold</b></li><li>[i]Italic[/i] =&gt; <i>Italic</i></li><li>[url=http://yoursite.com/]Url Text[/url] =&gt; <a href="http://yoursite.com">Url Text</a></li><li>[email]user@domain.com[/email] =&gt; <a href="mailto:user@domain.com">user@domain.com</a></li><li>[color=red]some text[/color] =&gt; <span style="color:red">some text</span></li><li>[img]http://documentation.coppermine-gallery.net/en/images/base.gif[/img] =&gt; <img src="docs/en/images/base.gif" border="0" alt="" /></li>';
 
 $lang_common = array(
-  'yes' => 'Yes', // cpg1.5.x
-  'no' => 'No', // cpg1.5.x
-  'back' => 'Back', // cpg1.5.x
-  'continue' => 'Continue', // cpg1.5.x
-  'information' => 'Information', // cpg1.5.x
-  'error' => 'Error', // cpg1.5.x
-  'check_uncheck_all' => 'check/uncheck all', // cpg1.5.x
-  'confirm' => 'Confirmation', // cpg1.5.x
-  'captcha_help_title' => 'Visual confirmation (captcha)', // cpg1.5.x
-  'captcha_help' => 'To avoid spam, you have to confirm that you are an actual human being and not just a bot script  by entering the displayed text.<br />Capitalization does not matter, you can type in lowercase.', // cpg1.5.x
-  'title' => 'Title', // cpg1.5.x
-  'caption' => 'Caption', // cpg1.5.x
-  'keywords' => 'Keywords', // cpg1.5.x
-  'keywords_insert1' => 'Keywords (separate with spaces)', // cpg1.5.x
-  'keywords_insert2' => 'Insert from list', // cpg1.5.x
-  'owner_name' => 'Owner name', // cpg1.5.x
-  'filename' => 'Filename', // cpg1.5.x
-  'filesize' => 'Filesize', // cpg1.5.x
-  'album' => 'Album', // cpg1.5.x
-  'file' => 'File', // cpg1.5.x
-  'date' => 'Date', // cpg1.5.x
-  'help' => 'Help', // cpg1.5.x
-  'close' => 'Close', // cpg1.5.x
-  'go' => 'go', // cpg1.5.x
-  'javascript_needed' => 'This pages requires JavaScript. Please turn it on in your browser.', // cpg1.5.x
+  'yes' => 'Yes', // cpg1.5
+  'no' => 'No', // cpg1.5
+  'back' => 'Back', // cpg1.5
+  'continue' => 'Continue', // cpg1.5
+  'information' => 'Information', // cpg1.5
+  'error' => 'Error', // cpg1.5
+  'check_uncheck_all' => 'check/uncheck all', // cpg1.5
+  'confirm' => 'Confirmation', // cpg1.5
+  'captcha_help_title' => 'Visual confirmation (captcha)', // cpg1.5
+  'captcha_help' => 'To avoid spam, you have to confirm that you are an actual human being and not just a bot script by entering the displayed text.<br />Capitalization does not matter, you can type in lowercase.', // cpg1.5
+  'title' => 'Title', // cpg1.5
+  'caption' => 'Caption', // cpg1.5
+  'keywords' => 'Keywords', // cpg1.5
+  'keywords_insert1' => 'Keywords (separate with spaces)', // cpg1.5
+  'keywords_insert2' => 'Insert from list', // cpg1.5
+  'owner_name' => 'Owner name', // cpg1.5
+  'filename' => 'Filename', // cpg1.5
+  'filesize' => 'Filesize', // cpg1.5
+  'album' => 'Album', // cpg1.5
+  'file' => 'File', // cpg1.5
+  'date' => 'Date', // cpg1.5
+  'help' => 'Help', // cpg1.5
+  'close' => 'Close', // cpg1.5
+  'go' => 'go', // cpg1.5
+  'javascript_needed' => 'This page requires JavaScript. Please turn it on in your browser.', // cpg1.5
+  'move_up' => 'Move up', // cpg1.5
+  'move_down' => 'Move down', // cpg1.5
+  'move_top' => 'Move to top', // cpg1.5
+  'move_bottom' => 'Move to bottom', // cpg1.5
+  'delete' => 'Delete', // cpg1.5
+  'edit' => 'Edit', // cpg1.5
+  'username_if_blank' => 'Mr. X', // cpg1.5
 );
 
 // ------------------------------------------------------------------------- //
@@ -154,10 +162,10 @@ $lang_main_menu = array(
   'my_gal_lnk' => 'My gallery',
   'my_prof_title' => 'Go to my personal profile',
   'my_prof_lnk' => 'My profile',
-  'adm_mode_title' => 'Enable display of admin controls', // cpg1.5.x
-  'adm_mode_lnk' => 'Show admin controls', // cpg1.5.x
-  'usr_mode_title' => 'Disable display of admin controls', // cpg1.5.x
-  'usr_mode_lnk' => 'Hide admin controls', // cpg1.5.x
+  'adm_mode_title' => 'Enable display of admin controls', // cpg1.5
+  'adm_mode_lnk' => 'Show admin controls', // cpg1.5
+  'usr_mode_title' => 'Disable display of admin controls', // cpg1.5
+  'usr_mode_lnk' => 'Hide admin controls', // cpg1.5
   'upload_pic_title' => 'Upload a file into an album',
   'upload_pic_lnk' => 'Upload file',
   'register_title' => 'Create an account',
@@ -170,6 +178,8 @@ $lang_main_menu = array(
   'lastup_lnk' => 'Last uploads',
   'lastcom_title' => 'Show most recent comments',
   'lastcom_lnk' => 'Last comments',
+  'mostcom_title' => 'Show most files with most comments', // cpg1.5
+  'mostcom_lnk' => 'Most commented', // cpg1.5
   'topn_title' => 'Show most viewed items',
   'topn_lnk' => 'Most viewed',
   'toprated_title' => 'Show top rated items',
@@ -182,12 +192,12 @@ $lang_main_menu = array(
   'memberlist_lnk' => 'Memberlist',
   'faq_title' => 'Frequently Asked Questions on the picture gallery &quot;Coppermine&quot;',
   'faq_lnk' => 'FAQ',
-  'browse_by_date_lnk' => 'By Date', // cpg1.5.x
-  'browse_by_date_title' => 'Browse by date uploaded', // cpg1.5.x
-  'contact_title' => 'Get in contact with %s', // cpg1.5.x
-  'contact_lnk' => 'Contact', // cpg1.5.x
-  'sidebar_title' => 'Add a Sidebar to your browser', // cpg1.5.x
-  'sidebar_lnk' => 'Sidebar', // cpg1.5.x
+  'browse_by_date_lnk' => 'By Date', // cpg1.5
+  'browse_by_date_title' => 'Browse by date uploaded', // cpg1.5
+  'contact_title' => 'Get in contact with %s', // cpg1.5
+  'contact_lnk' => 'Contact', // cpg1.5
+  'sidebar_title' => 'Add a Sidebar to your browser', // cpg1.5
+  'sidebar_lnk' => 'Sidebar', // cpg1.5
 );
 
 $lang_gallery_admin_menu = array(
@@ -219,28 +229,28 @@ $lang_gallery_admin_menu = array(
   'pictures_lnk' => 'Sort my pictures',
   'documentation_lnk' => 'Documentation',
   'documentation_title' => 'Coppermine manual',
-  'phpinfo_lnk' => 'phpinfo', // cpg1.5.x
-  'phpinfo_title' => 'Contains technical information about your server. You may be asked to provide information from this when requesting support.', // cpg1.5.x
-  'update_database_lnk' => 'Update database', // cpg1.5.x
-  'update_database_title' => 'If you have replaced coppermine files, added a modification or upgraded from a previous version of coppermine, make sure to run the database update once. This will create the necessary tables and/or config values in your coppermine database.', // cpg1.5.x
-  'view_log_files_lnk' => 'View log files', // cpg1.5.x
-  'view_log_files_title' => 'Coppermine can keep track of various actions users perform. You can browse those logs if you have enabled logging in coppermine config.', // cpg1.5.x
-  'check_versions_lnk' => 'Check versions', // cpg1.5.x
-  'check_versions_title' => 'Check your file versions to find out if you have replaced all files after an upgrade, or if coppermine source files have been updated after the release of a package.', // cpg1.5.x
-  'bridgemgr_lnk' => 'Bridge Manager', // cpg1.5.x
-  'bridgemgr_title' => 'Enable/disable integration (bridging) of Coppermine with another application (e.g. your BBS).', // cpg1.5.x
-  'pluginmgr_lnk' => 'Plugin Manager', // cpg1.5.x
-  'pluginmgr_title' => 'Plugin manager', // cpg1.5.x
-  'overall_stats_lnk' => 'Overall Stats', // cpg1.5.x
-  'overall_stats_title' => 'View overall hit stats by browser and operating system (if corresponding options are turned on in config).', // cpg1.5.x
-  'keywordmgr_lnk' => 'Keyword manager', // cpg1.5.x
-  'keywordmgr_title' => 'Manage keywords (if corresponding option is turned on in config).', // cpg1.5.x
-  'exifmgr_lnk' => 'EXIF manager', // cpg1.5.x
-  'exifmgr_title' => 'Manage EXIF display (if corresponding option is turned on in config).', // cpg1.5.x
-  'shownews_lnk' => 'Show News', // cpg1.5.x
-  'shownews_title' => 'Display the news from coppermine-gallery.net', // cpg1.5.x
-  'export_lnk' => 'Export', // cpg1.5.x
-  'export_title' => 'Export files and albums to disk', // cpg1.5.x
+  'phpinfo_lnk' => 'phpinfo', // cpg1.5
+  'phpinfo_title' => 'Contains technical information about your server. You may be asked to provide information from this when requesting support.', // cpg1.5
+  'update_database_lnk' => 'Update database', // cpg1.5
+  'update_database_title' => 'If you have replaced Coppermine files, added a modification or upgraded from a previous version of Coppermine, make sure to run the database update once. This will create the necessary tables and/or config values in your Coppermine database.', // cpg1.5
+  'view_log_files_lnk' => 'View log files', // cpg1.5
+  'view_log_files_title' => 'Coppermine can keep track of various actions users perform. You can browse those logs if you have enabled logging in Coppermine config.', // cpg1.5
+  'check_versions_lnk' => 'Check versions', // cpg1.5
+  'check_versions_title' => 'Check your file versions to find out if you have replaced all files after an upgrade, or if Coppermine source files have been updated after the release of a package.', // cpg1.5
+  'bridgemgr_lnk' => 'Bridge Manager', // cpg1.5
+  'bridgemgr_title' => 'Enable/disable integration (bridging) of Coppermine with another application (e.g. your BBS).', // cpg1.5
+  'pluginmgr_lnk' => 'Plugin Manager', // cpg1.5
+  'pluginmgr_title' => 'Plugin manager', // cpg1.5
+  'overall_stats_lnk' => 'Overall Stats', // cpg1.5
+  'overall_stats_title' => 'View overall hit stats by browser and operating system (if corresponding options are turned on in config).', // cpg1.5
+  'keywordmgr_lnk' => 'Keyword manager', // cpg1.5
+  'keywordmgr_title' => 'Manage keywords (if corresponding option is turned on in config).', // cpg1.5
+  'exifmgr_lnk' => 'EXIF manager', // cpg1.5
+  'exifmgr_title' => 'Manage EXIF display (if corresponding option is turned on in config).', // cpg1.5
+  'shownews_lnk' => 'Show News', // cpg1.5
+  'shownews_title' => 'Display the news from coppermine-gallery.net', // cpg1.5
+  'export_lnk' => 'Export', // cpg1.5
+  'export_title' => 'Export files and albums to disk', // cpg1.5
 );
 
 $lang_user_admin_menu = array(
@@ -290,7 +300,7 @@ $lang_img_nav_bar = array(
   'slideshow_title' => 'Slideshow',
   'ecard_title' => 'Send this file as an e-card',
   'ecard_disabled' => 'e-cards are disabled',
-  'ecard_disabled_msg' => 'You don\'t have permission to send ecards', //js-alert
+  'ecard_disabled_msg' => 'You don\'t have permission to send ecards', // js-alert
   'prev_title' => 'See previous file',
   'next_title' => 'See next file',
   'pic_pos' => 'FILE %s/%s',
@@ -311,10 +321,10 @@ $lang_rate_pic = array(
   'good' => 'Good',
   'excellent' => 'Excellent',
   'great' => 'Great',
-  'js_warning' => 'Javascript must be enabled in order to vote', // cpg1.5.x
-  'already_voted' => 'You already voted for this pic.', // cpg1.5.x
-  'forbidden' => 'You can not rate your own files.', // cpg1.5.x
-  'rollover_to_rate' => 'Rollover to rate this picture', // cpg1.5.x
+  'js_warning' => 'Javascript must be enabled in order to vote', // cpg1.5
+  'already_voted' => 'You already voted for this pic.', // cpg1.5
+  'forbidden' => 'You can not rate your own files.', // cpg1.5
+  'rollover_to_rate' => 'Rollover to rate this picture', // cpg1.5
 );
 
 // ------------------------------------------------------------------------- //
@@ -332,6 +342,7 @@ $lang_cpg_die = array(
 $lang_display_thumbnails = array(
   'dimensions' => 'Dimensions=',
   'date_added' => 'Date added=',
+  'unapproved' => 'Unapproved', // cpg1.5
 );
 
 $lang_get_pic_data = array(
@@ -343,7 +354,7 @@ $lang_get_pic_data = array(
 $lang_cpg_debug_output = array(
   'debug_info' => 'Debug Info',
   'select_all' => 'Select All',
-  'copy_and_paste_instructions' => 'If you\'re going to request help on the coppermine support board, copy-and-paste this debug output into your posting when requested, along with the error message you get (if any). Only post the debug_output on the support board if a supporter definitely asks for it! Make sure to replace any passwords from the query with *** before posting. <br />Note: This is for information only and does not mean there is an error with your gallery.', // cpg1.5
+  'copy_and_paste_instructions' => 'If you\'re going to request help on the Coppermine support board, copy-and-paste this debug output into your posting when requested, along with the error message you get (if any). Only post the debug_output on the support board if a supporter definitely asks for it! Make sure to replace any passwords from the query with *** before posting. <br />Note: This is for information only and does not mean there is an error with your gallery.', // cpg1.5
   'phpinfo' => 'display phpinfo',
   'notices' => 'Notices',
   'show_hide' => 'show / hide', // cpg1.5
@@ -368,9 +379,9 @@ $lang_version_alert = array(
   'version_alert' => 'Unsupported version!',
   'no_stable_version' => 'You are running Coppermine %s (%s) which is only meant for very experienced users - this version comes without support nor any warranties. Use it at your own risk or downgrade to the latest stable version if you need support!',
   'gallery_offline' => 'The gallery is currently offline and will be only visible for you as admin. Don\'t forget to switch it back online after finishing maintenance.',
-  'coppermine_news' => 'News from coppermine-gallery.net', //cpg1.5
-  'no_iframe' => 'Your browser can not display inline frames', //cpg1.5
-  'hide' => 'hide', //cpg1.5
+  'coppermine_news' => 'News from coppermine-gallery.net', // cpg1.5
+  'no_iframe' => 'Your browser can not display inline frames', // cpg1.5
+  'hide' => 'hide', // cpg1.5
 );
 
 $lang_create_tabs = array(
@@ -379,13 +390,13 @@ $lang_create_tabs = array(
 );
 
 $lang_get_remote_File_by_url = array(
-        'no_data_returned' => 'No data returned using %s', //cpg1.5
-        'curl' => 'CURL', //cpg1.5
-        'fsockopen' => 'Socket connection (FSOCKOPEN)', //cpg1.5
-        'fopen' => 'fopen', //cpg1.5
-        'curl_not_available' => 'Curl is not available on your server', //cpg1.5
-        'error_number' => 'Error number: %s', //cpg1.5
-        'error_message' => 'Error message: %s', //cpg1.5
+        'no_data_returned' => 'No data returned using %s', // cpg1.5
+        'curl' => 'CURL', // cpg1.5
+        'fsockopen' => 'Socket connection (FSOCKOPEN)', // cpg1.5
+        'fopen' => 'fopen', // cpg1.5
+        'curl_not_available' => 'Curl is not available on your server', // cpg1.5
+        'error_number' => 'Error number: %s', // cpg1.5
+        'error_message' => 'Error message: %s', // cpg1.5
 );
 
 // ------------------------------------------------------------------------- //
@@ -395,7 +406,7 @@ $lang_plugin_api = array(
   'error_wakeup' => "Couldn't awaken plugin '%s'",
   'error_install' => "Couldn't install plugin '%s'",
   'error_uninstall' => "Couldn't uninstall plugin '%s'",
-  'error_sleep' => "Couldn't switch off plugin '%s'<br />", //cpg1.5
+  'error_sleep' => "Couldn't switch off plugin '%s'<br />", // cpg1.5
 );
 
 // ------------------------------------------------------------------------- //
@@ -415,7 +426,7 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
   'Laughing' => 'Laughing',
   'Mad' => 'Mad',
   'Razz' => 'Razz',
-  'Embarassed' => 'Embarassed',
+  'Embarrassed' => 'Embarrassed',  // cpg1.5
   'Crying or Very sad' => 'Crying or Very sad',
   'Evil or Very Mad' => 'Evil or Very Mad',
   'Twisted Evil' => 'Twisted Evil',
@@ -432,17 +443,16 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
-  'alb_need_name' => 'Albums need to have a name !', //js-alert
-  'confirm_modifs' => 'Are you sure you want to make these modifications ?', //js-alert
-  'no_change' => 'You did not make any change !', //js-alert
+  'title' => 'Album Manager', // cpg1.5
+  'alb_need_name' => 'Albums need to have a name !', // js-alert
+  'confirm_modifs' => 'Are you sure you want to make these modifications ?', // js-alert
+  'no_change' => 'You did not make any change !', // js-alert
   'new_album' => 'New album',
-  'confirm_delete1' => 'Are you sure you want to delete this album ?', //js-alert
-  'confirm_delete2' => '\nAll files and comments it contains will be lost !', //js-alert
-  'select_first' => 'Select an album first', //js-alert
-  'alb_mrg' => 'Album Manager',
+  'confirm_delete1' => 'Are you sure you want to delete this album ?', // js-alert
+  'confirm_delete2' => '\nAll files and comments it contains will be lost !', // js-alert
+  'select_first' => 'Select an album first', // js-alert
   'my_gallery' => '* My gallery *',
   'no_category' => '* No category *',
-  'delete' => 'Delete',
   'new' => 'New',
   'apply_modifs' => 'Apply modifications',
   'select_category' => 'Select category',
@@ -458,19 +468,18 @@ if (defined('BANNING_PHP')) $lang_banning_php = array(
   'ip_address' => 'IP Address',
   'expiry' => 'Expires (blank is permanent)',
   'edit_ban' => 'Save Changes',
-  'delete_ban' => 'Delete',
   'add_new' => 'Add New Ban',
   'add_ban' => 'Add',
   'error_user' => 'Cannot find user',
-  'error_specify' => 'You need to specifiy either a user name or an IP address',
+  'error_specify' => 'You need to specify either a user name or an IP address',
   'error_ban_id' => 'Invalid ban ID!',
-  'error_admin_ban' => 'You cannnot ban yourself!',
+  'error_admin_ban' => 'You cannot ban yourself!',
   'error_server_ban' => 'You were going to ban your own server? Tsk tsk, cannot do that...',
-  'error_ip_forbidden' => 'You cannnot ban this IP - it is non-routable (private) anyway!<br />If you want to allow banning for private IPs, change this in your %sConfig%s (only makes sense when Coppermine runs on a LAN).', // cpg1.5
+  'error_ip_forbidden' => 'You cannot ban this IP - it is non-routable (private) anyway!<br />If you want to allow banning for private IPs, change this in your %sConfig%s (only makes sense when Coppermine runs on a LAN).', // cpg1.5
   'lookup_ip' => 'Lookup an IP address',
   'submit' => 'go!',
   'select_date' => 'select date',
-  'del_all_comments' => 'Delete all comments by this user? (blank is only current)', //cpg1.5
+  'del_all_comments' => 'Delete all comments by this user? (blank is only current)', // cpg1.5
 );
 
 // ------------------------------------------------------------------------- //
@@ -489,7 +498,7 @@ if (defined('BRIDGEMGR_PHP')) $lang_bridgemgr_php = array(
   'custom_bridge_file' => 'your custom bridge file\'s name (if the bridge file\'s name is <i>myfile.inc.php</i>, enter <i>myfile</i> into this field)',
   'no_action_needed' => 'No action needed in this step. Just click \'next\' to continue.',
   'reset_to_default' => 'Reset to default value',
-  'choose_bbs_app' => 'choose application to bridge coppermine with',
+  'choose_bbs_app' => 'choose application to bridge Coppermine with',
   'support_url' => 'Go here for support on this application',
   'settings_path' => 'path(s) used by your bridge app',
   'database_connection' => 'database connection',
@@ -500,11 +509,11 @@ if (defined('BRIDGEMGR_PHP')) $lang_bridgemgr_php = array(
   'db_database_name' => 'Database name',
   'db_database_name_explanation' => 'Enter the name of the database your bridge app uses',
   'db_hostname' => 'Database host',
-  'db_hostname_explanation' => 'Hostname where your mySQL database resides, usually &quot;localhost&quot;',
+  'db_hostname_explanation' => 'Hostname where your MySQL database resides, usually &quot;localhost&quot;',
   'db_username' => 'Database user account',
-  'db_username_explanation' => 'mySQL user account to use for connection with your bridge app',
-  'db_password' => 'Database passsword',
-  'db_password_explanation' => 'Passsword for this mySQL user account',
+  'db_username_explanation' => 'MySQL user account to use for connection with your bridge app',
+  'db_password' => 'Database password',
+  'db_password_explanation' => 'Password for this MySQL user account',
   'full_forum_url' => 'URL of the bridge app',
   'full_forum_url_explanation' => 'Full URL of the application you are going to bridge with (including the leading http:// bit, e.g. http://www.yourdomain.tld/forum)',
   'relative_path_of_forum_from_webroot' => 'Relative bridging app path',
@@ -562,12 +571,12 @@ if (defined('BRIDGEMGR_PHP')) $lang_bridgemgr_php = array(
   'error_must_not_be_empty' => 'must not be empty',
   'error_either_be' => 'must either be %s or %s',
   'error_folder_not_exist' => '%s doesn\'t exist. Correct the value you entered for %s',
-  'error_cookie_not_readible' => 'Coppermine can\'t read a cookie named %s. Correct the value you entered for %s, or go to your bridge app administration panel and make sure that the cookie path is readible for coppermine.',
+  'error_cookie_not_readible' => 'Coppermine can\'t read a cookie named %s. Correct the value you entered for %s, or go to your bridge app administration panel and make sure that the cookie path is readable for Coppermine.',
   'error_mandatory_field_empty' => 'You can not leave the field %s blank - fill in the proper value.',
   'error_no_trailing_slash' => 'There mustn\'t be a trailing slash in the field %s.',
   'error_trailing_slash' => 'There must be a trailing slash in the field %s.',
-  'error_db_connect' => 'Could not connect to the mySQL database with the data you specified. Here\'s what mySQL said:',
-  'error_db_name' => 'Although Coppermine could establish a connection, it wasn\'t able to find the database %s. Make sure you have specified %s properly. Here\'s what mySQL said:',
+  'error_db_connect' => 'Could not connect to the MySQL database with the data you specified. Here\'s what MySQL said:',
+  'error_db_name' => 'Although Coppermine could establish a connection, it wasn\'t able to find the database %s. Make sure you have specified %s properly. Here\'s what MySQL said:',
   'error_prefix_and_table' => '%s and ',
   'error_db_table' => 'Could not find the table %s. Make sure you have specified %s correctly.',
   'recovery_title' => 'Bridge Manager: emergency recovery',
@@ -584,7 +593,7 @@ if (defined('BRIDGEMGR_PHP')) $lang_bridgemgr_php = array(
   'recovery_failure_content' => 'You supplied the wrong credentials. You will have to supply the admin account data of the standalone version (usually the account you set up during Coppermine install).',
   'try_again' => 'try again',
   'recovery_wait_title' => 'Wait time has not elapsed',
-  'recovery_wait_content' => 'For security reasons this script does not allow failed logons in short succession, so you will have to wait a bit untill you\'re allowed to try to authenticate.',
+  'recovery_wait_content' => 'For security reasons this script does not allow failed logons in short succession, so you will have to wait a bit until you\'re allowed to try to authenticate.',
   'wait' => 'wait',
   'create_redir_file' => 'Create redirection file (recommended)',
   'create_redir_file_explanation' => 'To redirect users back to Coppermine once they logged into your bridge app, you need a redirection file to be created within your bridge app folder. When this option is checked, the bridge manager will attempt to create this file for you, or give you code ready to copy-and-paste to create the file manually.',
@@ -610,10 +619,10 @@ if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
   'unknown_cat' => 'Selected category does not exist in database',
   'usergal_cat_ro' => 'User galleries category can\'t be deleted !',
   'manage_cat' => 'Manage categories',
-  'confirm_delete' => 'Are you sure you want to DELETE this category', //js-alert
+  'confirm_delete' => 'Are you sure you want to DELETE this category', // js-alert
   'category' => 'Category',
   'operations' => 'Operations',
-  'move_into' => 'Move into',
+  'move_into' => 'Move into', 
   'update_create' => 'Update/Create category',
   'parent_cat' => 'Parent category',
   'cat_title' => 'Category title',
@@ -635,20 +644,20 @@ if (defined('CONTACT_PHP')) $lang_contact_php = array(
   'your_email' => 'Your email address', // cpg1.5
   'subject' => 'Subject', // cpg1.5
   'your_message' => 'Your message', // cpg1.5
-  'name_field_mandatory' => 'Please enter your name', // cpg1.5 //js-alert
-  'name_field_invalid' => 'Please enter your actual name', // cpg1.5 //js-alert
-  'email_field_mandatory' => 'Please enter your email address', // cpg1.5 //js-alert
-  'email_field_invalid' => 'Please enter a valid email address', // cpg1.5 //js-alert
-  'subject_field_mandatory' => 'Please enter a meaningfull subject', // cpg1.5 //js-alert
-  'message_field_mandatory' => 'Please enter your message', // cpg1.5 //js-alert
+  'name_field_mandatory' => 'Please enter your name', // cpg1.5 // js-alert
+  'name_field_invalid' => 'Please enter your actual name', // cpg1.5 // js-alert
+  'email_field_mandatory' => 'Please enter your email address', // cpg1.5 // js-alert
+  'email_field_invalid' => 'Please enter a valid email address', // cpg1.5 // js-alert
+  'subject_field_mandatory' => 'Please enter a meaningful subject', // cpg1.5 // js-alert
+  'message_field_mandatory' => 'Please enter your message', // cpg1.5 // js-alert
   'confirmation' => 'Confirmation', // cpg1.5
   'email_headline' => 'On %s, this email has been sent using the contact form at %s from the IP address %s', // cpg1.5
   'registered_user' => 'registered user', // cpg1.5
   'guest' => 'guest', // cpg1.5
   'unknown' => 'unknown', // cpg1.5
   'user_info' => 'The %s named %s with the email address %s said:', // cpg1.5
-  'failed_sending_email' => 'Failed to send email. Please try again later.', //cpg1.5
-  'email_sent' => 'Your email has been sent.', //cpg1.5
+  'failed_sending_email' => 'Failed to send email. Please try again later.', // cpg1.5
+  'email_sent' => 'Your email has been sent.', // cpg1.5
 );
 
 // ------------------------------------------------------------------------- //
@@ -675,11 +684,11 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'email_settings' => 'Email settings  (usually nothing has to be changed here; leave all fields blank when not sure)', // cpg1.5
   'logging_stats' => 'Logging and statistics', // cpg1.5
   'maintenance_settings' => 'Maintenance settings', // cpg1.5
-  'manage_exif' => 'Manage exif display',
+  'manage_exif' => 'Manage EXIF display',
   'manage_plugins' => 'Manage plugins',
   'manage_keyword' => 'Manage keywords',
   'restore_cfg' => 'Restore factory defaults',
-  'restore_cfg_confirm' => 'Do you really want to restore the entire configuration to factory defaults? This can not be undone! You will loose absolutely everything!', // cpg1.5 //js-alert
+  'restore_cfg_confirm' => 'Do you really want to restore the entire configuration to factory defaults? This can not be undone! You will loose absolutely everything!', // cpg1.5 // js-alert
   'save_cfg' => 'Save new configuration',
   'notes' => 'Notes',
   'info' => 'Information',
@@ -731,13 +740,12 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'gallery_name' =>   'Gallery name', // cpg1.5
   'gallery_description' =>   'Gallery description', // cpg1.5
   'gallery_admin_email' =>   'Gallery administrator email', // cpg1.5
-  'ecards_more_pic_target' =>   'URL of your coppermine gallery folder', // cpg1.5
+  'ecards_more_pic_target' =>   'URL of your Coppermine gallery folder', // cpg1.5
   'ecards_more_pic_target_detail' =>   '(with a trailing slash, no \'index.php\' or similar at the end)', // cpg1.5
   'home_target' =>   'URL of your home page', // cpg1.5
   'enable_zipdownload' =>   'Allow ZIP-download of favorites', // cpg1.5
   'time_offset' =>   'Timezone difference relative to GMT', // cpg1.5
   'time_offset_detail' =>   '(current time: ' . localised_date(-1, $comment_date_fmt) . ')', // cpg1.5
-  'enable_encrypted_passwords' =>   'Enable encrypted passwords (can not be undone)', // cpg1.5
   'enable_help' =>   'Enable help-icons', // cpg1.5
   'enable_help_description' =>   'help available in English only', // cpg1.5
   'clickable_keyword_search' =>   'Enable clickable keywords in search', // cpg1.5
@@ -807,7 +815,7 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'recommended' =>   'recommended', // cpg1.5
   'transparent_overlay' =>   'Insert a transparent overlay to minimize image theft', // cpg1.5
   'old_style_rating' => 'Go back to old rating system', // cpg1.5
-  'old_style_rating_extra' => 'This will disable the amount of rating stars to be used', //cpg1.5
+  'old_style_rating_extra' => 'This will disable the amount of rating stars to be used', // cpg1.5
   'rating_stars_amount' => 'Amount of rating stars to be used to vote', // cpg1.5
   'filter_bad_words' =>   'Filter bad words in comments', // cpg1.5
   'enable_smilies' =>   'Allow smiles in comments', // cpg1.5
@@ -927,7 +935,7 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'log_mode' =>   'Logging mode', // cpg1.5
   'log_mode_details' =>   'All log files are written in english.', // cpg1.5
   'log_ecards' =>   'Log ecards', // cpg1.5
-  'log_ecards_detail' =>   'Note: logging can have legal impacts. The user should be imformed on registration that ecards are being logged. It is recommended to provide a separate page with a privacy policy as well.', // cpg1.5
+  'log_ecards_detail' =>   'Note: logging can have legal impacts. The user should be informed on registration that ecards are being logged. It is recommended to provide a separate page with a privacy policy as well.', // cpg1.5
   'vote_details' =>   'Keep detailed vote statistics', // cpg1.5
   'hit_details' =>   'Keep detailed hit statistics', // cpg1.5
   'display_stats_on_index' =>   'Display statistics on index page', // cpg1.5
@@ -964,7 +972,7 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'none' => 'none', // cpg1.5
   'warning_change' => 'When changing this setting, only the files that are added from that point on are affected, so it\'s advisable that this setting must not be changed if there are already files in the gallery. You can, however, apply the changes to the existing files with the "admin tools (resize pictures)" utility from the admin menu.', // cpg1.5
   'warning_exist' => 'These settings mustn\'t be changed if you already have files in your database.', // cpg1.5
-  'warning_dont_submit' => 'If you\\\'re not sure about the impact that changing this setting will have, don\\\'t submit the form and review the documentation first.', // cpg1.5 //js-alert
+  'warning_dont_submit' => 'If you\\\'re not sure about the impact that changing this setting will have, don\\\'t submit the form and review the documentation first.', // cpg1.5 // js-alert
 );
 
 
@@ -1027,7 +1035,7 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
   'notify_admin_email_body' => 'A picture has been uploaded by %s that needs your approval. Visit %s',
   'info' => 'Information',
   'com_added' => 'Comment added',
-  'com_updated' => 'Comment updated',  // cpg1.5.x
+  'com_updated' => 'Comment updated',  // cpg1.5
   'alb_updated' => 'Album updated',
   'err_comment_empty' => 'Your comment is empty !',
   'err_invalid_fext' => 'Only files with the following extensions are accepted : <br /><br />%s.',
@@ -1063,7 +1071,7 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
   'del_user' => 'Delete user',
   'err_unknown_user' => 'The selected user does not exist !',
   'err_empty_groups' => 'There\'s no group table, or the group table is empty!',
-  'comment_deleted' => 'Comment was succesfully deleted',
+  'comment_deleted' => 'Comment was successfully deleted',
   'npic' => 'Picture',
   'pic_mgr' => 'Picture Manager',
   'update_pic' => 'Updating picture \'%s\' with filename \'%s\' and index \'%s\'',
@@ -1106,7 +1114,7 @@ $lang_displayecard_php = array(
 if (defined('DISPLAYIMAGE_PHP')){
 
 $lang_display_image_php = array(
-  'confirm_del' => 'Are you sure you want to DELETE this file ? \\nComments will also be deleted.', //js-alert
+  'confirm_del' => 'Are you sure you want to DELETE this file ? \\nComments will also be deleted.', // js-alert
   'del_pic' => 'DELETE THIS FILE',
   'size' => '%s x %s pixels',
   'views' => '%s times',
@@ -1154,10 +1162,10 @@ $lang_picinfo = array(
   'ResolutionUnit' => 'Resolution Unit',
   'Software' => 'Software',
   'YCbCrPositioning' => 'YCbCrPositioning',
-  'ExifOffset' => 'Exif Offset',
+  'ExifOffset' => 'EXIF Offset',
   'IFD1Offset' => 'IFD1 Offset',
   'FNumber' => 'FNumber',
-  'ExifVersion' => 'Exif Version',
+  'ExifVersion' => 'EXIF Version',
   'DateTimeOriginal' => 'DateTime Original',
   'DateTimedigitized' => 'DateTime digitized',
   'ComponentsConfiguration' => 'Components Configuration',
@@ -1178,9 +1186,9 @@ $lang_picinfo = array(
   'Saturation' => 'Saturation',
   'NoiseReduction' => 'Noise Reduction',
   'FlashPixVersion' => 'Flash Pix Version',
-  'ExifImageWidth' => 'Exif Image Width',
-  'ExifImageHeight' => 'Exif Image Height',
-  'ExifInteroperabilityOffset' => 'Exif Interoperability Offset',
+  'ExifImageWidth' => 'EXIF Image Width',
+  'ExifImageHeight' => 'EXIF Image Height',
+  'ExifInteroperabilityOffset' => 'EXIF Interoperability Offset',
   'FileSource' => 'File Source',
   'SceneType' => 'Scene Type',
   'CustomerRender' => 'Customer Render',
@@ -1191,11 +1199,11 @@ $lang_picinfo = array(
   'GainControl' => 'Gain Control',
   'Contrast' => 'Contrast',
   'Sharpness' => 'Sharpness',
-  'ManageExifDisplay' => 'Manage Exif Display',
+  'ManageExifDisplay' => 'Manage EXIF Display',
   'submit' => 'Submit',
   'success' => 'Information updated successfully.',
-  'show_details' => 'Show details', // cpg1.5.x
-  'hide_details' => 'Hide details', // cpg1.5.x
+  'show_details' => 'Show details', // cpg1.5
+  'hide_details' => 'Hide details', // cpg1.5
   'download_URL' => 'Direct Link',
   'movie_player' => 'Play the file in your standard application',
 
@@ -1204,25 +1212,25 @@ $lang_picinfo = array(
 $lang_display_comments = array(
   'OK' => 'OK',
   'edit_title' => 'Edit this comment',
-  'delete_title' => 'Delete this comment', // cpg1.5.x
-  'confirm_delete' => 'Are you sure you want to delete this comment ?', //js-alert
+  'delete_title' => 'Delete this comment', // cpg1.5
+  'confirm_delete' => 'Are you sure you want to delete this comment ?', // js-alert
   'add_your_comment' => 'Add your comment',
   'name'=>'Name',
   'comment'=>'Comment',
   'your_name' => 'Anon',
   'report_comment_title' => 'Report this comment to the administrator',
-  'pending_approval' => 'Comment will be visible after admin approval', // cpg1.5.x
-  'unapproved_comment' => 'Unapproved comment', // cpg1.5.x
-  'pending_approval_message' => 'Someone has posted a comment here. It will be visible after admin approval.', // cpg1.5.x
-  'approve' => 'Approve comment', // cpg1.5.x
-  'disapprove' => 'Disapprove comment', // cpg1.5.x
-  'log_in_to_comment' => 'Anonymous comments are not allowed here. %sLog in%s to post your comment', // cpg1.5.x // do not translate the %s placeholders - they will be used as wrappers for the link (<a>)
-  'default_username_message' => 'Please provide your name for comment', // cpg1.5.x
+  'pending_approval' => 'Comment will be visible after admin approval', // cpg1.5
+  'unapproved_comment' => 'Unapproved comment', // cpg1.5
+  'pending_approval_message' => 'Someone has posted a comment here. It will be visible after admin approval.', // cpg1.5
+  'approve' => 'Approve comment', // cpg1.5
+  'disapprove' => 'Disapprove comment', // cpg1.5
+  'log_in_to_comment' => 'Anonymous comments are not allowed here. %sLog in%s to post your comment', // cpg1.5 // do not translate the %s placeholders - they will be used as wrappers for the link (<a>)
+  'default_username_message' => 'Please provide your name for comment', // cpg1.5
 );
 
 $lang_fullsize_popup = array(
   'click_to_close' => 'Click image to close this window',
-  'close_window' => 'close window', // cpg1.5.x
+  'close_window' => 'close window', // cpg1.5
 );
 
 }
@@ -1233,10 +1241,10 @@ $lang_fullsize_popup = array(
 
 if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array(
   'title' => 'Send an e-card',
-  'invalid_email' => 'Warning: invalid email address:', // cpg1.5.x
+  'invalid_email' => 'Warning: invalid email address:', // cpg1.5
   'ecard_title' => 'An e-card from %s for you',
-  'error_not_image' => 'Only images can be sent as an ecard.', // cpg1.5.x
-  'error_not_image_flash' => 'Only images and flash files can be sent as an ecard.', // cpg1.5.x
+  'error_not_image' => 'Only images can be sent as an ecard.', // cpg1.5
+  'error_not_image_flash' => 'Only images and flash files can be sent as an ecard.', // cpg1.5
   'view_ecard' => 'Alternate link if the e-card does not display correctly',
   'view_ecard_plaintext' => 'To view the ecard, copy and paste this url into your browser\'s address bar:',
   'view_more_pics' => 'View more pictures !',
@@ -1303,9 +1311,9 @@ if (defined('REPORT_FILE_PHP') || defined('DISPLAYREPORT_PHP')) $lang_report_php
 if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
   'pic_info' => 'File info',
   'desc' => 'Description',
-  'approval' => 'Approval', //cpg 1.5
-  'approved' => 'Approved', //cpg 1.5
-  'disapproved' => 'Disapproved', //cpg 1.5
+  'approval' => 'Approval', // cpg 1.5
+  'approved' => 'Approved', // cpg 1.5
+  'disapproved' => 'Disapproved', // cpg 1.5
   'new_keyword' => 'New keyword',
   'new_keywords' => 'New keywords found',
   'existing_keyword' => 'Existing keyword',
@@ -1333,7 +1341,7 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
   'save' => 'Save picture',
   'save_thumb' =>'Save as thumbnail',
   'gallery_icon' => 'Make this my icon',
-  'sel_on_img' =>'The selection has to be entirely on the image!', //js-alert
+  'sel_on_img' =>'The selection has to be entirely on the image!', // js-alert
   'album_properties' =>'Album properties',
   'parent_category' =>'Parent category',
   'thumbnail_view' =>'Thumbnail view',
@@ -1343,20 +1351,22 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
   'src_file_missing' => "Source file '%s' is missing.",
   'mime_conv' => "Cannot convert file from '%s' to '%s'",
   'forb_ext' => 'Forbidden file extension.',
-  'error_editor_class' => 'Editor class for your resize method not implemented', //cpg 1.5
-  'error_document_size' => 'Document has no width or height', //cpg 1.5  //js-alert
-  'success_picture' => 'Picture successfully saved - you can %sclose%s this window now', //cpg 1.5 // do not translate "%s" here
-  'success_thumb' => 'Thumbnail successfully saved - you can %sclose%s this window now', //cpg 1.5 // do not translate "%s" here
-  'rotate' => 'Rotate', //cpg 1.5
-  'mirror' => 'Mirror', //cpg 1.5
-  'scale' => 'Scale', //cpg 1.5
-  'new_width' => 'New width', //cpg 1.5
-  'new_height' => 'New height', //cpg 1.5
-  'enable_clipping' => 'Enable clipping, apply to crop', //cpg 1.5
-  'jpeg_quality' => 'JPEG Output Quality', //cpg 1.5
-  'or' => 'OR', //cpg 1.5
-  'approve_pic' => 'Approve file', //cpg 1.5
-  'approve_all' => 'Approve ALL files', //cpg 1.5
+  'error_editor_class' => 'Editor class for your resize method not implemented', // cpg 1.5
+  'error_document_size' => 'Document has no width or height', // cpg 1.5  // js-alert
+  'success_picture' => 'Picture successfully saved - you can %sclose%s this window now', // cpg 1.5 // do not translate "%s" here
+  'success_thumb' => 'Thumbnail successfully saved - you can %sclose%s this window now', // cpg 1.5 // do not translate "%s" here
+  'rotate' => 'Rotate', // cpg 1.5
+  'mirror' => 'Mirror', // cpg 1.5
+  'scale' => 'Scale', // cpg 1.5
+  'new_width' => 'New width', // cpg 1.5
+  'new_height' => 'New height', // cpg 1.5
+  'enable_clipping' => 'Enable clipping, apply to crop', // cpg 1.5
+  'jpeg_quality' => 'JPEG Output Quality', // cpg 1.5
+  'or' => 'OR', // cpg 1.5
+  'approve_pic' => 'Approve file', // cpg 1.5
+  'approve_all' => 'Approve ALL files', // cpg 1.5
+  'error_empty' => 'Album is empty', // cpg1.5
+  'error_linked_only' => 'Album only contains linked files, which you cannot edit here', // cpg1.5
 );
 
 // ------------------------------------------------------------------------- //
@@ -1364,14 +1374,14 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('EXPORT_PHP')) $lang_export_php = array(
-  'export' => 'Export', //cpg 1.5
-  'choose_album' => 'Choose an Album', //cpg 1.5
-  'export_type' => 'Export type:', //cpg 1.5
-  'html' => 'Formatted HTML', //cpg 1.5
-  'images' => 'Images only', //cpg 1.5
-  'select_album' => 'Select an Album', //cpg 1.5
-  'export_directory' => 'Export Directory:', //cpg 1.5
-  'processing' => 'Processing...', //cpg 1.5
+  'export' => 'Export', // cpg 1.5
+  'choose_album' => 'Choose an Album', // cpg 1.5
+  'export_type' => 'Export type:', // cpg 1.5
+  'html' => 'Formatted HTML', // cpg 1.5
+  'images' => 'Images only', // cpg 1.5
+  'select_album' => 'Select an Album', // cpg 1.5
+  'export_directory' => 'Export Directory:', // cpg 1.5
+  'processing' => 'Processing...', // cpg 1.5
 );
 
 // ------------------------------------------------------------------------- //
@@ -1388,7 +1398,7 @@ if (defined('FAQ_PHP')) $lang_faq_php = array(
 if (defined('FAQ_PHP')) $lang_faq_data = array(
   'General FAQ',
   array('Why do I need to register?', 'Registration may or may not be required by the administrator. Registration gives a member additional features such as uploading, having a favorite list, rating pictures and posting comments etc.', 'allow_user_registration', '1'),
-  array('How do I register?', 'Go to &quot;Register&quot; and fill out the required fields (and the optional ones if you want to).<br />If the Administrator has Email Activation enabled, then after submitting your information you should recieve an email message at the address that you have submitted while registering, giving you instructions on how to activate your membership. Your membership must be activated in order for you to login.', 'allow_user_registration', '1'),
+  array('How do I register?', 'Go to &quot;Register&quot; and fill out the required fields (and the optional ones if you want to).<br />If the Administrator has Email Activation enabled, then after submitting your information you should receive an email message at the address that you have submitted while registering, giving you instructions on how to activate your membership. Your membership must be activated in order for you to login.', 'allow_user_registration', '1'),
   array('How Do I login?', 'Go to &quot;Login&quot;, submit your username and password and check &quot;Remember Me&quot; so you will be logged in on the site if you should leave it.<br /><b>IMPORTANT:Cookies must be enabled and the cookie from this site must not be deleted in order to use &quot;Remember Me&quot;.</b>', 'offline', 0),
   array('Why can I not login?', 'Did you register and click the link that was sent to you via email?. The link will activate your account. For other login problems contact the site administrator.', 'offline', 0),
   array('What if I forgot my password?', 'If this site has a &quot;Forgot password&quot; link then use it. Other than that contact the site administrator for a new password.', 'offline', 0),
@@ -1486,15 +1496,15 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
   'apply' => 'Apply modifications',
   'create_new_group' => 'Create new group',
   'del_groups' => 'Delete selected group(s)',
-  'confirm_del' => 'Warning, when you delete a group, users that belong to this group will be transferred to the \'Registered\' group !\n\nDo you want to proceed ?', //js-alert
+  'confirm_del' => 'Warning, when you delete a group, users that belong to this group will be transferred to the \'Registered\' group !\n\nDo you want to proceed ?', // js-alert
   'title' => 'Manage user groups',
   'num_file_upload' => 'File upload boxes',
   'num_URI_upload' => 'URI upload boxes',
   'reset_to_default' => 'Reset to default name (%s) - recommended!',
   'error_group_empty' => 'Group table was empty !<br /><br />Default groups created, please reload this page',
-  'explain_greyed_out_title' => 'Why is this row greyed out?',
+  'explain_greyed_out_title' => 'Why is this row grayed out?',
   'explain_guests_greyed_out_text' => 'You can not change the properties of this group because you set the option &quot; Allow unlogged users (guest or anonymous) access&quot; to &quot;No&quot; on the config page. All guest (members of the group %s) can\'t do anything but login; therefor group settings don\'t apply for them.',
-  'explain_banned_greyed_out_text' => 'You can not change the properties of the group %s because it\'s members can\'t do anything anyway.',
+  'explain_banned_greyed_out_text' => 'You can not change the properties of the group %s because its members can\'t do anything anyway.',
   'group_assigned_album' => 'assigned album(s)',
 );
 
@@ -1509,11 +1519,11 @@ $lang_index_php = array(
 );
 
 $lang_album_admin_menu = array(
-  'confirm_delete' => 'Are you sure you want to DELETE this album ? \\nAll files and comments will also be deleted.', //js-alert
+  'confirm_delete' => 'Are you sure you want to DELETE this album ? \\nAll files and comments will also be deleted.', // js-alert
   'delete' => 'DELETE',
   'modify' => 'PROPERTIES',
   'edit_pics' => 'EDIT FILES',
-  'cat_locked' => 'This album has been locked for editing', // cpg 1.5.x
+  'cat_locked' => 'This album has been locked for editing', // cpg 1.5
 );
 
 $lang_list_categories = array(
@@ -1536,8 +1546,8 @@ $lang_list_albums = array(
   'last_added' => ', last one added on %s',
   'n_link_pictures' => '%s linked files',
   'total_pictures' => '%s files total',
-  'alb_hits' => 'Album viewed %s times', // cpg1.5.x
-  'from_categorie' => ' - From Category: ', // cpg1.5.x
+  'alb_hits' => 'Album viewed %s times', // cpg1.5
+  'from_category' => ' - From Category: ', // cpg1.5
 );
 }
 
@@ -1546,7 +1556,7 @@ $lang_list_albums = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('INSTALL_PHP')) $lang_install = array(
-  'already_succ' => 'The installer has already been run successfuly once and is now locked.',
+  'already_succ' => 'The installer has already been run successfully once and is now locked.',
   'already_succ_explain' => 'If you want to run the installer again, you first need to delete the \'include/config.inc.php\' file that was created in the directory where you put Coppermine. You can do this with any FTP program',
   'c_mode' => 'Current mode',
   'cant_read_tmp_conf' => 'The installer can\'t read the temporary config file %s, please check your directory permissions',
@@ -1562,16 +1572,16 @@ if (defined('INSTALL_PHP')) $lang_install = array(
   'dir_ok' => 'Directory found',
   'directory' => 'Directory',
   'email' => 'Email address',
-  'email_no_match' => 'Email adresses do not match or are invalid.',
+  'email_no_match' => 'Email addresses do not match or are invalid.',
   'email_verif' => 'Verify Email',
-  'err_cpgnuke' => '<h1>ERROR</h1>You seem to be trying to install the standalone Coppermine into your Nuke portal.<br />This version can only be used as standalone!<br />Some server setups might display this warning even though you don\'t have a nuke portal installed - if this is the case for you, <a href="%s?continue_anyway=1">continue</a> with the install. If you are using a nuke portal, you might want to take a look into <a href=\"http://www.cpgnuke.com/\">CpgNuke</a> or use one of the (unsupported)<a href=\"http://sourceforge.net/project/showfiles.php?group_id=89658&amp;package_id=95984\">coppermine ports</a> - do not continue!',
+  'err_cpgnuke' => '<h1>ERROR</h1>You seem to be trying to install the standalone Coppermine into your Nuke portal.<br />This version can only be used as standalone!<br />Some server setups might display this warning even though you don\'t have a nuke portal installed - if this is the case for you, <a href="%s?continue_anyway=1">continue</a> with the install. If you are using a nuke portal, you might want to take a look into <a href=\"http://www.cpgnuke.com/\">CpgNuke</a> or use one of the (unsupported)<a href=\"http://sourceforge.net/project/showfiles.php?group_id=89658&amp;package_id=95984\">Coppermine ports</a> - do not continue!',
   'error' => 'ERROR',
   'error_need_corr' => 'The following errors were encountered and need to be corrected first:',
   'finish' => 'Finish Installation',
   'gd_note' => '<b>Important :</b> older versions of the GD graphic library support only JPEG and PNG images. If this is the case for you, then the script will not be able to create thumbnails for GIF images.',
   'go_to_main' => 'Go to the main page',
   'im_no_convert_ex' => 'The installer found the ImageMagick \'convert\' program in \'%s\', however it can\'t be executed by the script.<br /><br />You may consider using GD instead of ImageMagick.',
-  'im_not_found' => 'The installer tried to find ImageMagick, but could not determine it\'s existance or there was an error. <br />Coppermine can use the <a href="http://www.imagemagick.org/" target="_blank">ImageMagick</a> 	\'convert\' program to create thumbnails. Quality of images produced by ImageMagick is superior to GD1 but equivalent to GD2.<br /><br />If ImageMagick is installed on your system and you want to use it, <br />you need to input the full path to the \'convert\' program below. <br />On Windows the path should look like \'c:/ImageMagick/\' and should not contain any space, on Unix is it something like \'/usr/bin/X11/\'.<br /><br />If you have no idea wether you have ImageMagick or not, leave this field empty - the installer will try to use GD2 then by default (which is what most users have). <br />You can change this later as well (in Coppermine\'s config screen), so don\'t be afraid if you\'re not sure what to enter here - leave it blank.',
+  'im_not_found' => 'The installer tried to find ImageMagick, but could not determine it\'s existence or there was an error. <br />Coppermine can use the <a href="http://www.imagemagick.org/" target="_blank">ImageMagick</a> 	\'convert\' program to create thumbnails. Quality of images produced by ImageMagick is superior to GD1 but equivalent to GD2.<br /><br />If ImageMagick is installed on your system and you want to use it, <br />you need to input the full path to the \'convert\' program below. <br />On Windows the path should look like \'c:/ImageMagick/\' and should not contain any space, on Unix is it something like \'/usr/bin/X11/\'.<br /><br />If you have no idea wether you have ImageMagick or not, leave this field empty - the installer will try to use GD2 then by default (which is what most users have). <br />You can change this later as well (in Coppermine\'s config screen), so don\'t be afraid if you\'re not sure what to enter here - leave it blank.',
   'im_packages' => 'Your server supports the following image package(s)',
   'im_path' => 'Path to ImageMagick:',
   'im_path_space' => 'The path to ImageMagick (\'%s\') contains at least one space. This will cause problems in the script.<br /><br />You must move ImageMagick to another directory.',
@@ -1588,17 +1598,17 @@ if (defined('INSTALL_PHP')) $lang_install = array(
   'sql_host' => 'Host DataBase Server <br />(localhost is usually OK)',		######	cpgdb install
   'sql_no_create_db' => 'Could not create Sql database.',		#########	cpgdb install
   'mysql_no_sel_dbs' => 'Could not retrieve available MySql databases',
-  'sql_succ' => 'Successfull connection with database',
+  'sql_succ' => 'Successful connection with database',
   'sql_tbl_pref' => 'SQL table prefix',
   'sql_test_connection' => 'Test connection',	######	cpgdb install
-  'mysql_wrong_db' => 'mySQL could not locate a database called \'%s\' please check the value entered for this',
+  'mysql_wrong_db' => 'MySQL could not locate a database called \'%s\' please check the value entered for this',
   'n_a' => 'N/A',
   'no_admin_email' => 'You have to enter an admin email address',
   'no_admin_password' => 'You have to enter an admin password',
   'no_admin_username' => 'You have to enter an admin username',
   'no_dir' => 'Directory not available',
   'no_gd' => 'Your installation of PHP does not seem to include the \'GD\' graphic library extension and you have not indicated that you want to use ImageMagick. Coppermine has been configured to use GD2 because the automatic GD detection sometimes fails. If GD is installed on your system, the script should work else you will need to install ImageMagick.',
-  'no_mysql_conn' => 'Could not create a mySQL connection, please check the SQL values entered',
+  'no_mysql_conn' => 'Could not create a MySQL connection, please check the SQL values entered',
   'no_mysql_support' => 'PHP does not have MySQL support enabled.',
   'no_mssql_support' => 'PHP does not have MSSQL support enabled.',		######	cpgdb install
   'no_thumb_method' => 'You have choose an image manipulation application (GD/IM)',
@@ -1612,13 +1622,14 @@ if (defined('INSTALL_PHP')) $lang_install = array(
   'password_verif' => 'Verify Password',
   'perm_error' => 'The permissions of \'%s\' are set to %s, please set them to',
   'perm_ok' => 'The permissions on certain directories have been checked, and seem to be ok. <br />Please proceed to the next step.',
+  'perm_not_ok' => 'The permissions on certain directories are not set correctly.<br />Please change the permissions of the directories below that are marked "Not OK".', // cpg1.5
   'please_go_back' => 'Please %sclick here%s to go back and fix this problem before proceeding.',
   'populate_db' => 'Populate Database',
   'r_mode' => 'Required mode',
   'ready_to_roll' => '<a href="index.php">Coppermine</a> is now properly configured and ready to roll.<br /><br /><a href="login.php">Login</a> using the information you provided for your admin account.',
-  'sect_create_adm' => 'This section requires information to create your coppermine administration account. Use only alphanumeric characters. Enter the data carefully!',
+  'sect_create_adm' => 'This section requires information to create your Coppermine administration account. Use only alphanumeric characters. Enter the data carefully!',
   'sect_sql_info' => 'This section requires information on how to access your %s database.<br />If you don\'t know how to fill them, check with your webhost support.',		######	cpgdb install
-  'sect_sql_sel_db' => 'Here you have to choose which database you want to use for Coppermine. <br />If your Database account has the needed privileges, you can create a new database from within the installer or you can use an existing database. If you don\'t like both options, you will have to create a database first outside the coppermine installer, then return here then select the new database from the dropdown box below. You can also change the table prefix (Don\'t use dots though), but keeping the default prefix is recommended.',
+  'sect_sql_sel_db' => 'Here you have to choose which database you want to use for Coppermine. <br />If your Database account has the needed privileges, you can create a new database from within the installer or you can use an existing database. If you don\'t like both options, you will have to create a database first outside the Coppermine installer, then return here then select the new database from the dropdown box below. You can also change the table prefix (Don\'t use dots though), but keeping the default prefix is recommended.',
   'select_lang' => 'Select default language: ',
   'sql_file_not_found' => 'The file \'%s\' could not be found. Check that you have uploaded all Coppermine files to your server',
   'status' => 'Status',
@@ -1641,7 +1652,7 @@ if (defined('INSTALL_PHP')) $lang_install = array(
   'username' => 'Username',
   'your_admin_account' => 'Your admin account',
   'no_cookie' => 'Your browser did not accept our cookie (although it was a sweet one). It is recommended to accept cookies.',
-  'no_javascript' => 'Your browser doesn\'t seem to have javascript enabled, it is highly recommended to enable it.',
+  'no_javascript' => 'Your browser doesn\'t seem to have Javascript enabled, it is highly recommended to enable it.',
   'register_globals_detected' => 'It seems your php configuration has \'register_globals\' enabled, you should disable this for security reasons.',
   'version_undetected' => 'The script could not determine the version of %s your server is using. Be sure it is at least version %s',
   'version_incompatible' => 'The script detected an incompatible version (%s) of %s on your server.<br />Make sure to use a compatible version (%s or better) before continuing!',
@@ -1659,7 +1670,7 @@ if (defined('INSTALL_PHP')) $lang_install = array(
   'scale' => 'Scale an image',
   'generated_image' => 'Generated image',
   'reference_image' => 'Reference image',
-  'imp_test_error' => 'There was an error in one or more of the test, please make sure you selected the apropriate Image Processing Package and it is configured correctly!',
+  'imp_test_error' => 'There was an error in one or more of the test, please make sure you selected the appropriate Image Processing Package and it is configured correctly!',
 );
 
 // ------------------------------------------------------------------------- //
@@ -1668,13 +1679,11 @@ if (defined('INSTALL_PHP')) $lang_install = array(
 
 if (defined('KEYWORDMGR_PHP')) $lang_keywordmgr_php = array(
   'title' => 'Manage keywords',
-  'edit' => 'edit',
-  'delete' => 'delete',
-  'search' => 'search',
-  'keyword_test_search' => 'search for %s in new window',
-  'keyword_del' => 'delete the keyword %s',
+  'search' => 'Search',
+  'keyword_test_search' => 'Search for %s in new window',
+  'keyword_del' => 'Delete the keyword %s',
   'confirm_delete' => 'Are you sure you want to delete the keyword %s from the whole gallery?',  // js-alert
-  'change_keyword' => 'change keyword',
+  'change_keyword' => 'Change keyword',
 );
 
 // ------------------------------------------------------------------------- //
@@ -1685,8 +1694,8 @@ if (defined('LOGIN_PHP')) $lang_login_php = array(
   'login' => 'Login',
   'enter_login_pswd' => 'Enter your username and password to login',
   'username' => 'Username',
-  'email' => 'Email Address', //cpg1.5.x
-  'both' => 'Username / Email Address', //cpg1.5.x
+  'email' => 'Email Address', // cpg1.5
+  'both' => 'Username / Email Address', // cpg1.5
   'password' => 'Password',
   'remember_me' => 'Remember me',
   'welcome' => 'Welcome %s ...',
@@ -1695,8 +1704,8 @@ if (defined('LOGIN_PHP')) $lang_login_php = array(
   'forgot_password_link' => 'I forgot my password',
   'cookie_warning' => 'Warning your browser does not accept script\'s cookies',
   'send_activation_link' => 'Missed activation link?',
-  'force_login' => 'You must login to view this page', //cpg1.5.x
-  'force_login_title' => 'Login to continue', //cpg1.5.x
+  'force_login' => 'You must login to view this page', // cpg1.5
+  'force_login_title' => 'Login to continue', // cpg1.5
 );
 
 // ------------------------------------------------------------------------- //
@@ -1706,7 +1715,7 @@ if (defined('LOGIN_PHP')) $lang_login_php = array(
 if (defined('LOGOUT_PHP')) $lang_logout_php = array(
   'logout' => 'Logout',
   'bye' => 'Bye bye %s ...',
-  'err_not_loged_in' => 'You are not logged in !',
+  'err_not_logged_in' => 'You are not logged in !',  // cpg1.5
 );
 
 // ------------------------------------------------------------------------- //
@@ -1726,10 +1735,10 @@ if (defined('MINIBROWSER_PHP')) $lang_minibrowser_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('MODE_PHP')) $lang_mode_php = array(
-  0 => 'Turning display of admin controls off...', // cpg1.5.x
-  1 => 'Turning display of admin controls on...', // cpg1.5.x
-  'news_hide' => 'Hiding news...', // cpg1.5.x
-  'news_show' => 'Showing news...', // cpg1.5.x
+  0 => 'Turning display of admin controls off...', // cpg1.5
+  1 => 'Turning display of admin controls on...', // cpg1.5
+  'news_hide' => 'Hiding news...', // cpg1.5
+  'news_show' => 'Showing news...', // cpg1.5
 );
 
 // ------------------------------------------------------------------------- //
@@ -1750,7 +1759,7 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
   'can_post_comments' => 'Visitors can post comments',
   'can_rate' => 'Visitors can rate files',
   'user_gal' => 'User Gallery',
-  'my_gal' => '* My Gallery *', //cpg 1.5
+  'my_gal' => '* My Gallery *', // cpg 1.5
   'no_cat' => '* No category *',
   'alb_empty' => 'Album is empty',
   'last_uploaded' => 'Last uploaded',
@@ -1772,14 +1781,14 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
   'submit_reset' => 'submit changes',
   'reset_views_confirm' => 'I\'m sure',
   'notice1' => '(*) depending on %sgroups%s settings',  //(do not translate %s!)
-  'can_moderate' => 'Album can be moderated by', //cpg 1.5
-  'admins_only' => 'Admins only', //cpg 1.5
+  'can_moderate' => 'Album can be moderated by', // cpg 1.5
+  'admins_only' => 'Admins only', // cpg 1.5
   'alb_password' => 'Album password',
   'alb_password_hint' => 'Album password hint',
   'edit_files' =>'Edit files',
   'parent_category' => 'Parent category',
   'thumbnail_view' => 'Thumbnail view',
-  'random_image' => 'Random Image', //cpg 1.5
+  'random_image' => 'Random Image', // cpg 1.5
 );
 
 // ------------------------------------------------------------------------- //
@@ -1798,7 +1807,6 @@ if (defined('PHPINFO_PHP')) $lang_phpinfo_php = array(
 if (defined('PICMGR_PHP')) $lang_picmgr_php = array(
   'pic_mgr' => 'Picture Manager',
   'select_album' => 'Select Album',
-  'delete' => 'Delete',
   'confirm_delete1' => 'Are you sure you want to delete this picture ?',
   'confirm_delete2' => '\nPicture will be permanently deleted.',
   'apply_modifs' => 'Apply modifications',
@@ -1808,7 +1816,7 @@ if (defined('PICMGR_PHP')) $lang_picmgr_php = array(
   'no_album' => '* No album *',
   'explanation_header' => 'The custom sort order you can specify on this page will only be taken into account if',
   'explanation1' => 'the admin has set the "Default sort order for files" in the config to "Position descending" or "Position ascending" (global setting for all users who haven\'t chosen another sort option individually)',
-  'explanation2' => 'the user has chosen "Position descending" or "Position ascending" on the thumbail page (per user setting)',
+  'explanation2' => 'the user has chosen "Position descending" or "Position ascending" on the thumbnail page (per user setting)',
 );
 
 
@@ -1820,10 +1828,11 @@ if (defined('PLUGINMGR_PHP')){
 
 $lang_pluginmgr_php = array(
   'confirm_uninstall' => 'Are you sure you want to UNINSTALL this plugin',
+  'confirm_remove' => 'NOTE: Plugin API is disabled.  Do you want to MANUALLY REMOVE this plugin, ignoring any cleanup actions', // cpg1.5
   'confirm_delete' => 'Are you sure you want to DELETE this plugin',
   'pmgr' => 'Plugin Manager',
-  'explanation' => 'Install / uninstall / manage plugins using this page.', // cpg1.5.x
-  'plugin_enabled' => 'Plugin API enabled', // cpg1.5.x
+  'explanation' => 'Install / uninstall / manage plugins using this page.', // cpg1.5
+  'plugin_enabled' => 'Plugin API enabled', // cpg1.5
   'name' => 'Name',
   'author' => 'Author',
   'desc' => 'Description',
@@ -1837,8 +1846,9 @@ $lang_pluginmgr_php = array(
   'upload' => 'Upload',
   'configure_plugin' => 'Configure plugin',
   'cleanup_plugin' => 'Cleanup plugin',
-  'extra' => 'Extra', // cpg1.5.x
-  'install_info' => 'Install information', // cpg1.5.x
+  'extra' => 'Extra', // cpg1.5
+  'install_info' => 'Install information', // cpg1.5
+  'plugin_disabled_note' => 'Plugin API is disabled, so that operation is not allowed.', // cpg1.5
 );
 }
 
@@ -1861,7 +1871,7 @@ if (defined('REGISTER_PHP') || defined('PROFILE_PHP')) {
 $lang_register_disclamer = <<<EOT
 While the administrators of {SITE_NAME} will attempt to remove or edit any generally objectionable material as quickly as possible, it is impossible to review every post. Therefore you acknowledge that all posts made to this site express the views and opinions of the author and not the administrators or webmaster (except for posts by these people) and hence will not be held liable.<br />
 <br />
-You agree not to post any abusive, obscene, vulgar, slanderous, hateful, threatening, sexually-orientated or any other material that may violate any applicable laws. You agree that the webmaster, administrator and moderators of {SITE_NAME} have the right to remove or edit any content at any time should they see fit. As a user you agree to any information you have entered above being stored in a database. While this information will not be disclosed to any third party without your consent the webmaster and administrator cannot be held responsible for any hacking attempt that may lead to the data being compromised.<br />
+You agree not to post any abusive, obscene, vulgar, slanderous, hateful, threatening, sexually-oriented or any other material that may violate any applicable laws. You agree that the webmaster, administrator and moderators of {SITE_NAME} have the right to remove or edit any content at any time should they see fit. As a user you agree to any information you have entered above being stored in a database. While this information will not be disclosed to any third party without your consent the webmaster and administrator cannot be held responsible for any hacking attempt that may lead to the data being compromised.<br />
 <br />
 This site uses cookies to store information on your local computer. These cookies serve only to improve your viewing pleasure. The email address is used only for confirming your registration details and password.<br />
 <br />
@@ -1920,11 +1930,11 @@ $lang_register_php = array(
   'pass_chg_success' => 'Your password was changed',
   'pass_chg_error' => 'Your password was not changed',
   'notify_admin_email_subject' => '%s - Registration notification',
-  'last_uploads' => 'Last uploaded file', //cpg1.5
-  'last_uploads_detail' => 'Click to see all uploads by %s', //cpg1.5
-  'last_comments' => 'Last comment', //cpg1.5
-  'you' => 'you', //cpg1.5
-  'last_comments_detail' => 'Click to see all comments made by %s', //cpg1.5
+  'last_uploads' => 'Last uploaded file', // cpg1.5
+  'last_uploads_detail' => 'Click to see all uploads by %s', // cpg1.5
+  'last_comments' => 'Last comment', // cpg1.5
+  'you' => 'you', // cpg1.5
+  'last_comments_detail' => 'Click to see all comments made by %s', // cpg1.5
   'notify_admin_email_body' => 'A new user with the username "%s" has registered in your gallery',
   'pic_count' => 'Files uploaded',
   'notify_admin_request_email_subject' => '%s - Registration request',
@@ -1934,7 +1944,7 @@ $lang_register_php = array(
   'delete_my_account' => 'Delete my user account', // cpg1.5
   'warning_delete' => 'Warning: deleting your account can not be undone. The %sfiles you uploaded%s into public albums and your %scomments%s do not get deleted when deleting your user account! However, the files you uploaded into your personal gallery will be deleted.', // cpg1.5 // The %s-placeholders mustn't be removed, they will later be replaced by the wrappers for the links
   'i_am_sure' => 'I\'m sure that I want to delete my user account', // cpg1.5
-  'really_delete' => 'Do you really want to delete your user account?', // cpg1.5 //JS-Alert
+  'really_delete' => 'Do you really want to delete your user account?', // cpg1.5 // js-alert
   'edit_xs_profile' => 'Edit the profile of %s', // cpg1.5
   'edit_my_profile' => 'Edit my profile', // cpg1.5
   'none' => 'none', // cpg1.5
@@ -1999,22 +2009,22 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
   'comment_d' => 'Comment message descending',
   'file_a' => 'File ascending',
   'file_d' => 'File descending',
-  'approval_a' => 'Approval ascending', // cpg1.5.x
-  'approval_d' => 'Approval descending', // cpg1.5.x
-  'n_comm_appr' => '%s comment(s) approved', // cpg1.5.x
-  'n_comm_disappr' => '%s comment(s) disapproved', // cpg1.5.x
-  'configuration_changed' => 'Approval config changed', // cpg1.5.x
-  'only_approval' => 'only display comments needing approval', // cpg1.5.x
-  'approval' => 'Approved', // cpg1.5.x
-  'save_changes' => 'Save changes', // cpg1.5.x
-  'n_confirm_delete' => 'Do you really want to delete the selected comment(s)?', // cpg1.5.x
-  'with_selected' => 'With selected', // cpg1.5.x
-  'delete' => 'delete', // cpg1.5.x
-  'approve' => 'approve', // cpg1.5.x
-  'disapprove' => 'disapprove', // cpg1.5.x
-  'comment_approved' => 'Comment approved', // cpg1.5.x
-  'comment_disapproved' => 'Comment disapproved', // cpg1.5.x
-  'ban_and_delete' => 'Ban user and delete comment(s)', //cpg1.5
+  'approval_a' => 'Approval ascending', // cpg1.5
+  'approval_d' => 'Approval descending', // cpg1.5
+  'n_comm_appr' => '%s comment(s) approved', // cpg1.5
+  'n_comm_disappr' => '%s comment(s) disapproved', // cpg1.5
+  'configuration_changed' => 'Approval config changed', // cpg1.5
+  'only_approval' => 'only display comments needing approval', // cpg1.5
+  'approval' => 'Approved', // cpg1.5
+  'save_changes' => 'Save changes', // cpg1.5
+  'n_confirm_delete' => 'Do you really want to delete the selected comment(s)?', // cpg1.5
+  'with_selected' => 'With selected', // cpg1.5
+  'delete' => 'delete', // cpg1.5
+  'approve' => 'approve', // cpg1.5
+  'disapprove' => 'disapprove', // cpg1.5
+  'comment_approved' => 'Comment approved', // cpg1.5
+  'comment_disapproved' => 'Comment disapproved', // cpg1.5
+  'ban_and_delete' => 'Ban user and delete comment(s)', // cpg1.5
 );
 
 // ------------------------------------------------------------------------- //
@@ -2022,26 +2032,26 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('SIDEBAR_PHP')) $lang_sidebar_php = array(
-  'sidebar' => 'Side Bar', // cpg1.5.x
-  'install' => 'install', // cpg1.5.x
-  'install_explain' => 'Among the many smart access methods to get to information quickly on the site, we provide sidebars for the most popular browsers used on different operating systems to access pages easily. Here you can find setup and uninstall information for the browsers supported.', // cpg1.5.x
-  'os_browser_detect' => 'Detecting your OS and browser', // cpg1.5.x
-  'os_browser_detect_explain' => 'The script is trying to detect your operating system and browser version - please wait a second. If auto-detection fails, you might want to %sunhide%s all possible sidebar install options manually.', // cpg1.5.x
-  'mozilla' => 'Mozilla, Firefox, Netscape 6+, Konqueror 3.2+', // cpg1.5.x
-  'mozilla_explain' => 'If you use Mozilla 0.9.4 or later, you can %sadd our sidebar to your set%s. You can uninstall this sidebar using the "Customize Sidebar" dialog in Mozilla.', // cpg1.5.x
-  'ie_mac' => 'Internet Explorer 5 and above on Mac OS', // cpg1.5.x
-  'ie_mac_explain' => 'If you use Internet Explorer 5 or above on MacOS, %sopen our sidebar page%s in a  separate window. In that window, open the "Page Holder" tab on the left side of the window. Click "Add." If you want to keep it for future use, click on "Favorites" and select "Add to Page Holder Favorites."', // cpg1.5.x
-  'ie_win' => 'Internet Explorer 5 and above on Windows', // cpg1.5.x
-  'ie_win_explain' => 'If you use Internet Explorer 5 or above on Windows, you can add the Side Bar to your Links toolbar or you can add it to your favorites and clicking on it you can see our bar displayed in place of your usual search bar by right-clicking %shere%s and selecting "Add to favorites" from the context menu. This link does not install our bar as your default search bar, so no modification is made to your system.', // cpg1.5.x
-  'ie7_win' => 'Internet Explorer 7 on Windows XP/Vista', // cpg1.5.x
-  'ie7_win_explain' => 'If you use Internet Explorer 7 on Windows, you can add a navigation pop-up to your Links toolbar or you can add it to your favorites and clicking on it you can see our bar displayed as a pop-up window by right-clicking %shere%s and selecting "Add to favorites" from the context menu. In previous versions of IE, it was possible to add an actual side bar, but in IE7 you can not accomplish this without applying complicated registry hacks. It is recommended to use another browser if you want to use an actual sidebar.', // cpg1.5.x
-  'opera' => 'Opera 6 and above', // cpg1.5.x
-  'opera_explain' => 'If you are using Opera, you can %sclick on this link to add our sidebar to your set%s. Tick "Show in panel" then. You can uninstall the sidebar by right clicking on it\'s tab and choosing "Delete" from the context menu.', // cpg1.5.x
-  'additional_options' => 'Additional options', // cpg1.5.x
-  'additional_options_explain' => 'If you have another browser than the one mentioned above, then click %shere%s to display all possible sidebar options.', // cpg1.5.x
-  'cannot_add_sidebar' => 'Sidebar cannot be added! Your browser does not support this method!', // cpg1.5.x //JS-alert
-  'search' => 'Search', // cpg1.5.x
-  'reload' => 'Reload', // cpg1.5.x
+  'sidebar' => 'Side Bar', // cpg1.5
+  'install' => 'install', // cpg1.5
+  'install_explain' => 'Among the many smart access methods to get to information quickly on the site, we provide sidebars for the most popular browsers used on different operating systems to access pages easily. Here you can find setup and uninstall information for the browsers supported.', // cpg1.5
+  'os_browser_detect' => 'Detecting your OS and browser', // cpg1.5
+  'os_browser_detect_explain' => 'The script is trying to detect your operating system and browser version - please wait a second. If auto-detection fails, you might want to %sunhide%s all possible sidebar install options manually.', // cpg1.5
+  'mozilla' => 'Mozilla, Firefox, Netscape 6+, Konqueror 3.2+', // cpg1.5
+  'mozilla_explain' => 'If you use Mozilla 0.9.4 or later, you can %sadd our sidebar to your set%s. You can uninstall this sidebar using the "Customize Sidebar" dialog in Mozilla.', // cpg1.5
+  'ie_mac' => 'Internet Explorer 5 and above on Mac OS', // cpg1.5
+  'ie_mac_explain' => 'If you use Internet Explorer 5 or above on MacOS, %sopen our sidebar page%s in a  separate window. In that window, open the "Page Holder" tab on the left side of the window. Click "Add." If you want to keep it for future use, click on "Favorites" and select "Add to Page Holder Favorites."', // cpg1.5
+  'ie_win' => 'Internet Explorer 5 and above on Windows', // cpg1.5
+  'ie_win_explain' => 'If you use Internet Explorer 5 or above on Windows, you can add the Side Bar to your Links toolbar or you can add it to your favorites and clicking on it you can see our bar displayed in place of your usual search bar by right-clicking %shere%s and selecting "Add to favorites" from the context menu. This link does not install our bar as your default search bar, so no modification is made to your system.', // cpg1.5
+  'ie7_win' => 'Internet Explorer 7 on Windows XP/Vista', // cpg1.5
+  'ie7_win_explain' => 'If you use Internet Explorer 7 on Windows, you can add a navigation pop-up to your Links toolbar or you can add it to your favorites and clicking on it you can see our bar displayed as a pop-up window by right-clicking %shere%s and selecting "Add to favorites" from the context menu. In previous versions of IE, it was possible to add an actual side bar, but in IE7 you can not accomplish this without applying complicated registry hacks. It is recommended to use another browser if you want to use an actual sidebar.', // cpg1.5
+  'opera' => 'Opera 6 and above', // cpg1.5
+  'opera_explain' => 'If you are using Opera, you can %sclick on this link to add our sidebar to your set%s. Tick "Show in panel" then. You can uninstall the sidebar by right clicking on it\'s tab and choosing "Delete" from the context menu.', // cpg1.5
+  'additional_options' => 'Additional options', // cpg1.5
+  'additional_options_explain' => 'If you have another browser than the one mentioned above, then click %shere%s to display all possible sidebar options.', // cpg1.5
+  'cannot_add_sidebar' => 'Sidebar cannot be added! Your browser does not support this method!', // cpg1.5 // js-alert
+  'search' => 'Search', // cpg1.5
+  'reload' => 'Reload', // cpg1.5
 );
 
 
@@ -2101,7 +2111,7 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
   'no_album' => 'no album selected',
   'result_icon' => 'click for details or to reload',
   'notes' =>  '<ul>'.
-				  '<li><b>OK</b>: means that the file was succesfully added'.
+				  '<li><b>OK</b>: means that the file was successfully added'.
 				  '<li><b>DP</b>: means that the file is a duplicate and is already in the database'.
 				  '<li><b>PB</b>: means that the file could not be added, check your configuration and the permission of directories where the files are located'.
 				  '<li><b>NA</b>: means that you haven\'t selected an album the files should go to, hit \'<a href="javascript:history.back(1)">back</a>\' and select an album. If you don\'t have an album <a href="albmgr.php">create one first</a></li>'.
@@ -2114,12 +2124,12 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
   'no_folders' => 'There are no folders inside the "albums" folder yet. Make sure to create at least one custom folder within "albums" folder and ftp-upload your files there. You mustn\'t upload to the "userpics" nor "edit" folders, they are reserved for http uploads and internal purposes.',
    'albums_no_category' => 'Albums with no category', // album pulldown mod, added by frogfoot
   'personal_albums' => '* Personal albums', // album pulldown mod, added by frogfoot
-  'browse_batch_add' => 'Browsable interface', //cpg1.5
-  'display_thumbs_batch_add' => 'Display preview thumbnails', //cpg1.5
+  'browse_batch_add' => 'Browsable interface', // cpg1.5
+  'display_thumbs_batch_add' => 'Display preview thumbnails', // cpg1.5
   'edit_pics' => 'Edit files',
   'edit_properties' => 'Album properties',
   'view_thumbs' => 'Thumbnail view',
-  'add_more_folder' => 'Batch-add more files from the folder %s', //cpg1.5
+  'add_more_folder' => 'Batch-add more files from the folder %s', // cpg1.5
 );
 
 // ------------------------------------------------------------------------- //
@@ -2127,14 +2137,14 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('SEND_ACTIVATION_PHP')) $lang_send_activation_php = array(
-  'err_already_logged_in' => 'You are already logged in !', //cpg1.5
-  'activation_not_required' => 'This website does not require activation by email', //cpg1.5
-  'err_unk_user' => 'Selected user does not exist!', //cpg1.5
-  'resend_act_link' => 'Resend activation link', //cpg1.5
-  'enter_email' => 'Enter your email address', //cpg1.5
-  'submit' => 'Go', //cpg1.5
-  'failed_sending_email' => 'Failed to send email with activation link', //cpg1.5
-  'activation_email_sent' => 'An email with activation link sent to %s. Please check your email to complete the process', //cpg1.5
+  'err_already_logged_in' => 'You are already logged in !', // cpg1.5
+  'activation_not_required' => 'This website does not require activation by email', // cpg1.5
+  'err_unk_user' => 'Selected user does not exist!', // cpg1.5
+  'resend_act_link' => 'Resend activation link', // cpg1.5
+  'enter_email' => 'Enter your email address', // cpg1.5
+  'submit' => 'Go', // cpg1.5
+  'failed_sending_email' => 'Failed to send email with activation link', // cpg1.5
+  'activation_email_sent' => 'An email with activation link sent to %s. Please check your email to complete the process', // cpg1.5
 );
 
 // ------------------------------------------------------------------------- //
@@ -2143,7 +2153,7 @@ if (defined('SEND_ACTIVATION_PHP')) $lang_send_activation_php = array(
 
 if (defined('STAT_DETAILS_PHP')) $lang_stat_details_php = array(
   'show_hide' => 'show/hide this column',
-  'title' => 'Statistic details', //cpg1.5
+  'title' => 'Statistic details', // cpg1.5
   'vote' => 'Vote Details',
   'hits' => 'Hit Details',
   'stats' => 'Vote Statistics',
@@ -2155,7 +2165,7 @@ if (defined('STAT_DETAILS_PHP')) $lang_stat_details_php = array(
   'browser' => 'Browser',
   'os' => 'Operating System',
   'ip' => 'IP',
-  'uid' => 'User', //cpg1.5
+  'uid' => 'User', // cpg1.5
   'sort_by_xxx' => 'Sort by %s',
   'ascending' => 'ascending',
   'descending' => 'descending',
@@ -2165,29 +2175,29 @@ if (defined('STAT_DETAILS_PHP')) $lang_stat_details_php = array(
   'date_display' => 'Date display',
   'records_per_page' => 'records per page',
   'submit' => 'submit / refresh',
-  'overall_stats' => 'Overall Statistics', //cpg1.5
-  'stats_by_os' => 'Stats by operating systems', //cpg1.5
-  'number_of_hits' => 'Number of hits', //cpg1.5
-  'total' => 'Total', //cpg1.5
-  'stats_by_browser' => 'Stats by browser', //cpg1.5
-  'overall_stats_config' => 'Overall stats configuration', //cpg1.5
-  'hit_details'  => 'Keep detailed hit statistics', //cpg1.5
-  'hit_details_explanation'  => 'Keep detailed hit statistics', //cpg1.5
-  'vote_details'  => 'Keep detailed voting statistics', //cpg1.5
-  'vote_details_explanation'  => 'Keep detailed voting statistics', //cpg1.5
-  'empty_hits_table'  => 'Empty all hit stats', //cpg1.5
-  'empty_hits_table_confirm'  => 'Are you absolutely sure that you want to delete ALL hit stat records for your ENTIRE gallery? This can not be undone!', //cpg1.5 //JS-Alert
-  'empty_votes_table'  => 'Empty all voting stats', //cpg1.5
-  'empty_votes_table_confirm'  => 'Are you absolutely sure that you want to delete ALL voting records for your ENTIRE gallery? This can not be undone!', //cpg1.5 //JS-Alert
-  'submit'  => 'Submit', //cpg1.5
-  'upd_success' => 'Coppermine configuration was updated', //cpg1.5
-  'votes' => 'votes', //cpg1.5
-  'reset_votes_individual' => 'Reset selected vote(s)', //cpg1.5
-  'reset_votes_individual_confirm' => 'Are you sure that you want to delete the selected votes? This can not be undone!', //cpg1.5
-  'back_to_intermediate' => 'Back to intermediate file view', //cpg1.5
-  'records_on_page' => '%s records on %s page(s)', //cpg1.5
-  'guest' => 'Guest', //cpg1.5
-  'not_implemented' => 'not implemented yet', //cpg1.5
+  'overall_stats' => 'Overall Statistics', // cpg1.5
+  'stats_by_os' => 'Stats by operating systems', // cpg1.5
+  'number_of_hits' => 'Number of hits', // cpg1.5
+  'total' => 'Total', // cpg1.5
+  'stats_by_browser' => 'Stats by browser', // cpg1.5
+  'overall_stats_config' => 'Overall stats configuration', // cpg1.5
+  'hit_details'  => 'Keep detailed hit statistics', // cpg1.5
+  'hit_details_explanation'  => 'Keep detailed hit statistics', // cpg1.5
+  'vote_details'  => 'Keep detailed voting statistics', // cpg1.5
+  'vote_details_explanation'  => 'Keep detailed voting statistics', // cpg1.5
+  'empty_hits_table'  => 'Empty all hit stats', // cpg1.5
+  'empty_hits_table_confirm'  => 'Are you absolutely sure that you want to delete ALL hit stat records for your ENTIRE gallery? This can not be undone!', // cpg1.5 // js-alert
+  'empty_votes_table'  => 'Empty all voting stats', // cpg1.5
+  'empty_votes_table_confirm'  => 'Are you absolutely sure that you want to delete ALL voting records for your ENTIRE gallery? This can not be undone!', // cpg1.5 // js-alert
+  'submit'  => 'Submit', // cpg1.5
+  'upd_success' => 'Coppermine configuration was updated', // cpg1.5
+  'votes' => 'votes', // cpg1.5
+  'reset_votes_individual' => 'Reset selected vote(s)', // cpg1.5
+  'reset_votes_individual_confirm' => 'Are you sure that you want to delete the selected votes? This can not be undone!', // cpg1.5
+  'back_to_intermediate' => 'Back to intermediate file view', // cpg1.5
+  'records_on_page' => '%s records on %s page(s)', // cpg1.5
+  'guest' => 'Guest', // cpg1.5
+  'not_implemented' => 'not implemented yet', // cpg1.5
 );
 
 // ------------------------------------------------------------------------- //
@@ -2270,11 +2280,11 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'close' => 'Close',
   'no_keywords' => 'Sorry, no keywords available!',
   'regenerate_dictionary' => 'Regenerate Dictionary',
-  'allowed_types' => 'You are allowed to upload files with the following extensions:', //cpg1.5
-  'allowed_img_types' => 'Images extensions: %s', //cpg1.5
-  'allowed_mov_types' => 'Videos extensions: %s', //cpg1.5
-  'allowed_doc_types' => 'Docs extentions: %s', //cpg1.5
-  'allowed_snd_types' => 'Audios extentions: %s', //cpg1.5
+  'allowed_types' => 'You are allowed to upload files with the following extensions:', // cpg1.5
+  'allowed_img_types' => 'Image extensions: %s', // cpg1.5
+  'allowed_mov_types' => 'Video extensions: %s', // cpg1.5
+  'allowed_doc_types' => 'Document extensions: %s', // cpg1.5
+  'allowed_snd_types' => 'Audio extensions: %s', // cpg1.5
 );
 
 // ------------------------------------------------------------------------- //
@@ -2302,9 +2312,7 @@ $lang_usermgr_php = array(
   'sort_by' => 'Sort users by',
   'err_no_users' => 'User table is empty !',
   'err_edit_self' => 'You can\'t edit your own profile, use the \'My profile\' link for that',
-  'edit' => 'Edit',
   'with_selected' => 'With selected:',
-  'delete' => 'Delete',
   'delete_files_no' => 'keep public files (but anonymize)',
   'delete_files_yes' => 'delete public files as well',
   'delete_comments_no' => 'keep comments (but anonymize)',
@@ -2324,7 +2332,7 @@ $lang_usermgr_php = array(
   'registered_on' => 'Registration',
   'last_visit' => 'Last Visit',
   'u_user_on_p_pages' => '%d users on %d page(s)',
-  'confirm_del' => 'Are you sure you want to DELETE this user ? \\nAll his files and albums will also be deleted.', //js-alert
+  'confirm_del' => 'Are you sure you want to DELETE this user ? \\nAll his/her files and albums will also be deleted.', // js-alert
   'mail' => 'MAIL',
   'err_unknown_user' => 'Selected user does not exist !',
   'modify_user' => 'Modify user',
@@ -2351,7 +2359,7 @@ $lang_usermgr_php = array(
   'submit' => 'Submit',
   'search_submit' => 'Go!',
   'search_result' => 'Search results for: ',
-  'alert_no_selection' => 'You have to select at least one user first!', //js-alert
+  'alert_no_selection' => 'You have to select at least one user first!', // js-alert
   'password' => 'password',
   'select_group' => 'Select group',
   'groups_alb_access' => 'Album permissions by group',
@@ -2360,9 +2368,9 @@ $lang_usermgr_php = array(
   'group_no_access' => 'This group has no special access',
   'notice' => 'Notice',
   'group_can_access' => 'Album(s) that only "%s" can access',
-  'send_login_data' => 'Send login data to this user (Password will be sent in email)', //cpg1.5
-  'send_login_email_subject' => 'Your new account information', //cpg1.5
-  'failed_sending_email' => 'The login data email can\'t be sent!', //cpg1.5
+  'send_login_data' => 'Send login data to this user (Password will be sent in email)', // cpg1.5
+  'send_login_email_subject' => 'Your new account information', // cpg1.5
+  'failed_sending_email' => 'The login data email can\'t be sent!', // cpg1.5
 );
 
 $lang_send_login_data_email = <<<EOT
@@ -2383,25 +2391,26 @@ EOT;
 
 if (defined('UTIL_PHP')) {
 $lang_util_desc_php = array(
-'Updates titles from filename',
-'Deletes titles',
-'Rebuilds thumbnails and resized photos',
-'Deletes original sized photos replacing them with the resized version',
-'Deletes original or intermediate size photos to free webspace',
-'Deletes files that are older than a set number of days', //cpg1.5
-'Deletes orphaned comments',
-'Re-reads file sizes and dimensions (if you manually edited pics)',
-'Resets views counter',
+  'Updates titles from filename',
+  'Deletes titles',
+  'Rebuilds thumbnails and resized photos',
+  'Deletes original sized photos replacing them with the resized version',
+  'Deletes original or intermediate size photos to free webspace',
+  'Deletes files that are older than a set number of days', // cpg1.5
+  'Deletes orphaned comments',
+  'Re-reads file sizes and dimensions (if you manually edited pics)',
+  'Resets views counter',
 );
 $lang_util_php = array(
-  'title' => 'Admin tools',  //cpg1.5
+  'title' => 'Admin tools',  // cpg1.5
   'what_it_does' => 'What it does',
   'file' => 'File',
   'problem' => 'Problem',
   'status' => 'Status',
   'title_set_to' => 'title set to',
   'submit_form' => 'submit',
-  'updated_succesfully' => 'updated succesfully',
+  'titles_updated' => '%s Titles Updated.', // cpg1.5
+  'updated_successfully' => 'updated successfully', // cpg1.5
   'error_create' => 'ERROR creating',
   'continue' => 'Process more images',
   'main_success' => 'The file %s was successfully used as main file',
@@ -2427,11 +2436,11 @@ $lang_util_php = array(
   'update_option' => '(Try setting this option lower if you experience timeout problems)',
   'filename_title' => 'Filename &rArr; File title',
   'filename_how' => 'How should the filename be modified',
-  'filename_remove' => 'Remove the .jpg ending and replace _ (underscore) with spaces',
+  'filename_remove' => 'Remove extension (.jpg or other) and replace _ (underscores) with spaces', // cpg1.5
   'filename_euro' => 'Change 2003_11_23_13_20_20.jpg to 23/11/2003 13:20',
   'filename_us' => 'Change 2003_11_23_13_20_20.jpg to 11/23/2003 13:20',
   'filename_time' => 'Change 2003_11_23_13_20_20.jpg to 13:20',
-  'delete' => 'Delete file titles or original size photos',
+  'notitle' => 'Apply only for files with empty titles', // cpg1.5
   'delete_title' => 'Delete file titles',
   'delete_title_explanation' => 'This will remove all titles on files in the album you specify.',
   'delete_original' => 'Delete original size photos',
@@ -2445,24 +2454,23 @@ $lang_util_php = array(
   'select_album' => 'Select album',
   'delete_orphans' => 'Delete comments on missing files',
   'delete_orphans_explanation' => 'This will identify and allow you to delete any comments associated with files no longer in the gallery.<br />Checks all albums.',
-  'update_full_normal_thumb' => 'Everything... full sized, resized and thumbs', // cpg1.5
-  'update_full_normal' => 'Both resized and full sized (if a orig copy is available)', // cpg1.5
-  'update_full' => 'Just full sized (if a orig copy is available)',// cpg1.5
-  'delete_back' => 'Delete original image backup (watermark mod)', // cpg1.5
-  'delete_back_explanation' => 'This will delete the backup image. You will save some disk space but not be able anymore to undo the watermark!!! After that the watermark will be permanent', // cpg1.5
+  'update_full_normal_thumb' => 'Everything: full-sized, resized and thumbs', // cpg1.5
+  'update_full_normal' => 'Both resized and full sized (if an original copy is available)', // cpg1.5
+  'update_full' => 'Just full sized (if an original copy is available)',// cpg1.5
+  'delete_back' => 'Delete original image backup for watermarked images', // cpg1.5
+  'delete_back_explanation' => 'This will delete the backup image. You will save some disk space but not be able anymore to undo the watermark!!! After that the watermark will be permanent.', // cpg1.5
   'finished' => '<br />Finished updating thumbs/ images!<br />', // cpg1.5
   'autorefresh' => ' Auto refresh (no need to click continue button anymore)<br /><br />', // cpg1.5
-  'refresh_db' => 'Reload file dimensions and size information',
+  'refresh_db' => 'Reload file dimensions and size information.',
   'refresh_db_explanation' => 'This will re-read file sizes and dimensions. Use this if quota\'s are incorrect or you have changed the files manually.',
   'reset_views' => 'Reset view counters',
   'reset_views_explanation' => 'Sets all file view counts to zero in the album specified.',
   'reset_succes' => 'Reset successful', // cpg1.5
   'orphan_comment' => 'orphan comments found',
-  'delete' => 'Delete',
   'delete_all' => 'Delete all',
   'delete_all_orphans' => 'Delete all orphans?',
   'comment' => 'Comment: ',
-  'nonexist' => 'attached to non existant file # ',
+  'nonexist' => 'attached to non-existent file # ',
   'delete_old' => 'Delete files that are older than a set number of days',  // cpg1.5
   'delete_old_explanation' => 'This will delete files that are older than the number of days you specify (normal, intermediate, thumbnails). Use this feature to free up disk space.',  // cpg1.5
   'delete_old_warning' => 'Warning: the files you specify will be deleted for good without further warnings!',  // cpg1.5
@@ -2474,7 +2482,7 @@ $lang_util_php = array(
   'del_error' => 'Error deleting %s !',  // cpg1.5
   'affected_records' => '%s affected records.', // cpg1.5
   'all_albums' => 'All Albums', // cpg1.5
-  'update_result' => 'Update results', //cpg1.5
+  'update_result' => 'Update results', // cpg1.5
   'incorrect_filesize' => 'Total filesize is incorrect', // cpg1.5
   'database' => 'Database: ', // cpg1.5
   'bytes' => ' bytes', // cpg1.5
@@ -2489,7 +2497,6 @@ $lang_util_php = array(
   'fullpic_error' => 'File %s does not exist!', // cpg1.5
   'no_prob_detect' => 'No problems detected', // cpg1.5
   'no_prob_found' => 'No problems were found.', // cpg1.5
-  'notitle' => 'Apply only for empty filename fieldsfiles', //cpg1.5
 );
 }
 
@@ -2535,7 +2542,7 @@ if (defined('VERSIONCHECK_PHP')) $lang_versioncheck_php = array(
   'do_not_connect_to_online_repository' => 'Do not connect to the online repository',
   'online_repository_explain' => 'only recommended if connection fails',
   'submit' => 'submit / refresh',
-  'select_all' => 'Select All', //js-alert
+  'select_all' => 'Select All', // js-alert
   'files_folder_processed' => 'Displaying %s items of %s folders/files processed with %s potential issues',
   'read' => 'Read', // cpg1.5
   'write' => 'Write', // cpg1.5
@@ -2607,7 +2614,7 @@ if (defined('CORE_PLUGIN')) $lang_plugin_php = array(
   'usergal_alphatabs_config_description' => 'What it does: displays tabs from A to Z at the top of user galleries that visitors can click on to directly jump to a page that displays all user galleries of the users who\'s username starts with that letter. Plugin only recommended to be used if you have a really large number of user galleries.', // cpg1.5
   'usergal_alphatabs_jump_by_username' => 'Jump by username', // cpg1.5
   'sample_config_name' => 'Sample Plugin', // cpg1.5
-  'sample_config_description' => 'This is a sample plugin. It will not do anything particular usefull - it is just meant to demonstrate what plugins can do and how to code them. When enabled, it will display some sample text in red.', // cpg1.5
+  'sample_config_description' => 'This is a sample plugin. It will not do anything particular useful - it is just meant to demonstrate what plugins can do and how to code them. When enabled, it will display some sample text in red.', // cpg1.5
   'sample_plugin_documentation' => 'Plugin Documentation', // cpg1.5
   'sample_plugin_support' => 'Plugin Support', // cpg1.5
   'sample_install_explain' => 'Enter the username (\'foo\') and password (\'bar\') to install', // cpg1.5
@@ -2627,8 +2634,8 @@ if (defined('CORE_PLUGIN')) $lang_plugin_php = array(
   'opensearch_character_limit' => '%s character limit', // cpg1.5
   'onlinestats_description' => 'Display a block on each gallery page that shows users and guests actually online.',
   'onlinestats_name' => 'Who is online?',
-  'onlinestats_config_extra' => 'To enable this plugin (make it actually display the onlinestats block), the string "onlinestats" (separated with a slash) has been added to "<a href="configuration.htm#admin_album_list_content">the content of the main page</a>" in <a href="admin.php">coppermine\'s config</a> in the section "Album list view". The setting should now look like "breadcrumb/catlist/alblist/onlinestats" or similar. To change the position of the block, move the string "onlinestats" around inside that config field.',
-  'onlinestats_config_install' => 'The plugin runs additional queries on the database each time it is being executed, burning cpu cycles and using resources. If your coppermine gallery is slow or has got a lot of users, you shouldn\'t use it.',
+  'onlinestats_config_extra' => 'To enable this plugin (make it actually display the onlinestats block), the string "onlinestats" (separated with a slash) has been added to "<a href="docs/en/configuration.htm#admin_album_list_content">the content of the main page</a>" in <a href="admin.php">Coppermine\'s config</a> in the section "Album list view". The setting should now look like "breadcrumb/catlist/alblist/onlinestats" or similar. To change the position of the block, move the string "onlinestats" around inside that config field.',
+  'onlinestats_config_install' => 'The plugin runs additional queries on the database each time it is being executed, burning cpu cycles and using resources. If your Coppermine gallery is slow or has got a lot of users, you shouldn\'t use it.',
   'onlinestats_we_have_reg_member' => 'There is %s registered user',
   'onlinestats_we_have_reg_members' => ' There are %s registered users',
   'onlinestats_most_recent' => 'The newest registered user is %s',

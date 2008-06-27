@@ -22,9 +22,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 3513 $
-  $LastChangedBy: gaugau $
-  $Date: 2007-04-27 10:03:57 +0200 (Fr, 27 Apr 2007) $
+  $Revision: 4502 $
+  $LastChangedBy: pvanrompay $
+  $Date: 2008-06-06 03:51:20 +0530 (Fri, 06 Jun 2008) $
 **********************************************/
 
 class cpgAPIAuth {
@@ -61,12 +61,8 @@ class cpgAPIAuth {
       $USER_DATA['num_URI_upload'] = 0;
       $USER_DATA['custom_user_upload'] = 0;
     } else {
-      // Check if encrypted passwords are enabled
-      if ($CONFIG['enable_encrypted_passwords']) {
-        $encpassword = md5($password);
-      } else {
-        $encpassword = $password;
-      }
+
+    $encpassword = md5($password);
 
       // Check for user in users table
       /*$sql =  "SELECT user_id, user_name, user_password FROM {$CONFIG['TABLE_USERS']} WHERE ";

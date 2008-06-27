@@ -73,7 +73,7 @@ class cpg_udb extends core_udb {
 			$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
 			$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
 			$this->sessionstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['sessions'];
-		} else {
+		} elseif($CONFIG['dbservername'] == 'mssql') {
 			$this->usertable = $this->db['name'] ."." .dbo ."." .$this->db['prefix'] . $this->table['users'];
 			$this->groupstable =   $this->db['name'] . "." .dbo ."." .$this->db['prefix'] . $this->table['groups'];
 			$this->sessionstable =   $this->db['name'] ."." .dbo .".". $this->db['prefix'] . $this->table['sessions'];
@@ -119,7 +119,7 @@ class cpg_udb extends core_udb {
 		/*$sql = 'delete from '.$this->sessionstable.' where (time < '.$past.');';
 		cpg_db_query($sql, $this->link_id);	*/
 		########################        DB         ##########################
-		$this->cpgudb->query($cpg_db_mambo_inc['delete_old_sessions'], $this->sessionstable, $past)
+		$this->cpgudb->query($cpg_db_mambo_inc['delete_old_sessions'], $this->sessionstable, $past);
 		###########################################################
 	}
 
@@ -171,7 +171,7 @@ class cpg_udb extends core_udb {
 		$f = $this->field;
 		$mambo_version =& $this->mambo_version;
 
-		//$sessioncookie = $_COOKIE['sessioncookie'];
+		//$sessioncookie = $_COOKIE['sessioncookie']; Using getRaw() for getting cookies.
 		$sessioncookie = $superCage->cookie->getRaw('sessioncookie');
 		
         // 4.5.1 and 4.5.2 compatibility
@@ -180,7 +180,7 @@ class cpg_udb extends core_udb {
 			$sessioncookie .= $raw_ip;
 		}
 
-		//$usercookie = $_COOKIE['usercookie'];
+		//$usercookie = $_COOKIE['usercookie']; Using getRaw() for getting cookies.
 		$usercookie = $superCage->cookie->getRaw('usercookie');
         $result = false;
 
@@ -265,7 +265,7 @@ class cpg_udb extends core_udb {
 					$result = cpg_db_query($sql, $this->link_id);	*/
 					########################          DB         ########################
 					$result = $this->cpgudb->query($cpg_db_mambo_inc['get_id_from_mambo'], $f['user_id'], $f['password'], 
-							$f['username'], $f['usertbl_group_id'], $f['grouptbl_group_id'], $f['grouptbl_group_name'], $this->usertable
+							$f['username'], $f['usertbl_group_id'], $f['grouptbl_group_id'], $f['grouptbl_group_name'], $this->usertable, 
 							$this->groupstable, $username, $password);
 					##########################################################
 					
@@ -391,7 +391,7 @@ class cpg_udb extends core_udb {
 				cpg_db_query($sql, $this->link_id);	*/
 				###############################		DB		################################
 				// update session information in session table
-				$this->cpgudb->query($cpg_db_mambo_inc['update_session_info'], $this->sessionstable, $row['id'], $row['username']
+				$this->cpgudb->query($cpg_db_mambo_inc['update_session_info'], $this->sessionstable, $row['id'], $row['username'], 
 							$gid, $row['grouptbl_group_name'], md5($session_id));
 				// update last visit date
 				$this->cpgudb->query($cpg_db_mambo_inc['update_lastvisit'], $this->usertable, $currentdate, $row['id']);

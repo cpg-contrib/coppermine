@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4224 $
+  $Revision: 4497 $
   $LastChangedBy: gaugau $
-  $Date: 2008-01-26 17:12:00 +0530 (Sat, 26 Jan 2008) $
+  $Date: 2008-06-03 19:59:30 +0530 (Tue, 03 Jun 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -52,14 +52,16 @@ if (isset($CLEAN['email'])) {
 
 	/*$sql = "SELECT user_id, user_group,user_active,user_name, user_password, user_email  FROM {$CONFIG['TABLE_USERS']} WHERE user_email = '{$CLEAN['email']}' AND user_active = 'YES'";
 	$results = cpg_db_query($sql);
-	if (mysql_num_rows($results))	*/
+	if (mysql_num_rows($results))	
+	{	// something has been found start
+		$USER_DATA = mysql_fetch_array($results);*/
 	######################       DB      #######################
 	$cpgdb->query($cpg_db_forgot_passwd_php['get_user_data'], $CLEAN['email']);
 	$rowset = $cpgdb->fetchRowSet();
 	if (count($rowset))
-	####################################################
     {	// something has been found start
-		$USER_DATA = mysql_fetch_array($results);
+		$USER_DATA = $rowset[0];
+	####################################################
 		// check if we have an admin account (with empty email address)
 		if ($USER_DATA['user_email'] == '') {
 			// the password is empty. Is the current user the gallery admin?
@@ -148,7 +150,7 @@ EOT;
 	$cpgdb->query($cpg_db_forgot_passwd_php['get_field_user_data'], $cpg_udb->field['username'], $cpg_udb->field['email'], 
 					$cpg_udb->usertable, $cpg_udb->field['user_id'], $CLEAN['id']);
 	$rowset = $cpgdb->fetchRowSet();
-	if (count($rowset)) {
+	if (!count($rowset)) {
 		cpg_die($lang_forgot_passwd_php['forgot_passwd'], $lang_forgot_passwd_php['err_unk_user']);
 	}
 	$row = $rowset[0];
@@ -158,11 +160,7 @@ EOT;
     // Reset Password
     $new_password = $cpg_udb->make_password();
 
-    if ($CONFIG['enable_encrypted_passwords']) {
-        $password = md5($new_password);
-    } else {
-        $password = $new_password;
-    }
+    $password = md5($new_password);
 
 	/*$sql =  "update {$cpg_udb->usertable} set ";
 	$sql .= "{$cpg_udb->field['password']}='$password' ";

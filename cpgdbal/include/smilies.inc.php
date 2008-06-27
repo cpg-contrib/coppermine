@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4224 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-01-26 17:12:00 +0530 (Sat, 26 Jan 2008) $
+  $Revision: 4506 $
+  $LastChangedBy: pvanrompay $
+  $Date: 2008-06-09 01:07:00 +0530 (Mon, 09 Jun 2008) $
 **********************************************/
 
 // ------------------------------------------------------------------------- //
@@ -56,7 +56,7 @@ function get_smilies_table1()
         array(':P', 'icon_razz.gif', $lang_smilies_inc_php['Razz']),
         array(':-P', 'icon_razz.gif', $lang_smilies_inc_php['Razz']),
         array(':razz:', 'icon_razz.gif', $lang_smilies_inc_php['Razz']),
-        array(':oops:', 'icon_redface.gif', $lang_smilies_inc_php['Embarassed']),
+        array(':oops:', 'icon_redface.gif', $lang_smilies_inc_php['Embarrassed']),
         array(':cry:', 'icon_cry.gif', $lang_smilies_inc_php['Crying or Very sad']),
         array(':evil:', 'icon_evil.gif', $lang_smilies_inc_php['Evil or Very Mad']),
         array(':twisted:', 'icon_twisted.gif', $lang_smilies_inc_php['Twisted Evil']),
@@ -88,7 +88,7 @@ function get_smilies_table2()
         array('8-)', 'icon_cool.gif', $lang_smilies_inc_php['Cool']),
         array(':-o', 'icon_surprised.gif', $lang_smilies_inc_php['Surprised']),
         array(':-?', 'icon_confused.gif', $lang_smilies_inc_php['Confused']),
-        array(':oops:', 'icon_redface.gif', $lang_smilies_inc_php['Embarassed']),
+        array(':oops:', 'icon_redface.gif', $lang_smilies_inc_php['Embarrassed']),
         array(':shock:', 'icon_eek.gif', $lang_smilies_inc_php['Shocked']),
         array(':-x', 'icon_mad.gif', $lang_smilies_inc_php['Mad']),
         array(':roll:', 'icon_rolleyes.gif', $lang_smilies_inc_php['Rolling Eyes']),

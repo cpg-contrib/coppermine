@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4364 $
+  $Revision: 4532 $
   $LastChangedBy: gaugau $
-  $Date: 2008-03-25 14:40:48 +0530 (Tue, 25 Mar 2008) $
+  $Date: 2008-06-12 20:42:02 +0530 (Thu, 12 Jun 2008) $
 **********************************************/
 
 
@@ -123,14 +123,20 @@ function html_footer()
 }
 
 function html_auth_box($method){
-?>
+    $superCage = Inspekt::makeSuperCage();
+    $debug_mode = '';
+    if ($superCage->get->keyExists('debug')) {
+        $debug_mode = '?debug';
+    }
+    echo <<< EOT
     <h2>Welcome to Coppermine update</h2>
 
-    <form name="cpgform" id="cpgform" method="post" action="update.php">
+    <form name="cpgform" id="cpgform" method="post" action="update.php{$debug_mode}">
     <h2 class="error">Authentication</h2>
 
         <p class="tableb" align="center">
-		<?php if($method=='MySQL'){
+EOT;
+		if($method=='MySQL'){
 			echo 'Could not authenticate you via your admin details, if you think you entered the wrong details, click <a href=\'update.php\'>here</a> and try again.<br />Else, you can try to login with you MySQL account:';
 		}elseif($method=='MSSQL'){
 			echo 'Could not authenticate you via your admin details, if you think you entered the wrong details, click <a href=\'update.php\'>here</a> and try again.<br />Else, you can try to login with you MSSQL account:';
@@ -144,7 +150,7 @@ function html_auth_box($method){
         Username: <input type="text" name="user" /><br />
         Password: <input type="password" name="pass" /><br />
         <input type="hidden" name="method" value="<?php echo $method; ?>" /><br />
-        <input type="submit" value="Login" /><br /><br />
+        <input type="submit" value="Login" />
         </div>
 
         </form>

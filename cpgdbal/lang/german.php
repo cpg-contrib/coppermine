@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /*************************
   Coppermine Photo Gallery
   ************************
@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $Source$
-  $Revision: 3275 $
+  $Revision: 4555 $
   $Author: gaugau $
-  $Date: 2006-09-03 12:10:47 +0200 (So, 03 Sep 2006) $
+  $Date: 2008-06-13 12:32:10 +0530 (Fri, 13 Jun 2008) $
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
@@ -124,7 +124,7 @@ Problem zu beheben.',
 $lang_bbcode_help_title = 'Bulletin Board code Hilfe';
 $lang_bbcode_help = 'Du kannst klickbare Links und Formatierung in diesem Feld anwenden durch die Verwendung folgender 
 
-bbcode-Befehle: <li>[b]Fett[/b] =&gt; <b>Fett</b></li><li>[i]Kursiv[/i] =&gt; <i>Kursiv</i></li><li>[url=http://deineseite.com/]Url Text[/url] =&gt; <a href="http://deineseite.com">UrlText</a></li><li>[email]benutzer@domain.com[/email] =&gt; <a href="mailto:benutzer@domain.com">benutzer@domain.com</a></li><li>[color=red]Beispieltext[/color] =&gt; <span style="color:red">Beispieltext</span></li><li>[img]http://coppermine.sf.net/demo/images/red.gif[/img] => <img src="../images/red.gif" border="0" alt="" /></li>';
+bbcode-Befehle: <li>[b]Fett[/b] =&gt; <b>Fett</b></li><li>[i]Kursiv[/i] =&gt; <i>Kursiv</i></li><li>[url=http://deineseite.com/]Url Text[/url] =&gt; <a href="http://deineseite.com">UrlText</a></li><li>[email]benutzer@domain.com[/email] =&gt; <a href="mailto:benutzer@domain.com">benutzer@domain.com</a></li><li>[color=red]Beispieltext[/color] =&gt; <span style="color:red">Beispieltext</span></li><li>[img]http://documentation.coppermine-gallery.net/de/images/base.gif[/img] => <img src="docs/de/images/base.gif" border="0" alt="" width="19" height="18" /></li>';
 
 $lang_common = array(
   'yes' => 'Ja', // cpg1.5.x
@@ -840,7 +840,7 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'user_settings' => 'Benutzer-Einstellungen', // cpg1.5
   'custom_fields_user_profile' => 'Benutzerdefinierte Felder für Benutzerprofile (leer lassen, falls ungenutzt). Benutze Profilfeld 6 für Langeinträge (wie Biographien).', // cpg1.5
   'custom_fields_image_description' => 'Benutzerdefinierte Felder für zusätzliche Dateiinformationen (leer lassen, falls nicht benötigt)', // cpg1.5
-  'cookie_settings' => 'Cookies-Einstellungen', // cpg1.5
+  'cookie_settings' => 'Cookie-Einstellungen', // cpg1.5
   'email_settings' => 'Email-Einstellungen  (normalerweise muss hier nichts eingestellt werden; lasse im Zweifelsfall alle Felder leer)', // cpg1.5
   'logging_stats' => 'Logging und Statistiken', // cpg1.5
   'maintenance_settings' => 'Wartungs-Einstellungen', // cpg1.5
@@ -905,7 +905,6 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'enable_zipdownload' =>   'ZIP-Download der Favoriten erlauben', // cpg1.5
   'time_offset' =>   'Zeitzonen-Differenz relative zur MEZ', // cpg1.5
   'time_offset_detail' =>   '(aktuelle Zeit: ' . localised_date(-1, $comment_date_fmt) . ')', // cpg1.5
-  'enable_encrypted_passwords' =>   'Verschlüsselte Passwörter aktivieren (kann nicht rückgängig gemacht werden)', // cpg1.5
   'enable_help' =>   'Hilfe-Icons aktivieren', // cpg1.5
   'enable_help_description' =>   'Hilfe nur in Englisch verfügbar', // cpg1.5
   'clickable_keyword_search' =>   'Anklickbare Stichwörter in Suche aktivieren', // cpg1.5
@@ -959,17 +958,17 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'thumbnail_to_fullsize' =>   'Direkt vom Thumbnail zum Bild in voller Größe springen', // cpg1.5
   'default_sort_order' =>   'Standard-Sortierung für Dateien', // cpg1.5
   'min_votes_for_rating' =>   'Mindestmenge Stimmen, die eine Datei benötigt, um in der \'am besten bewertet\'-Liste zu erscheinen', // cpg1.5
-  'picture_table_width' =>   'Width of the table for file display', // cpg1.5
-  'display_pic_info' =>   'File information is visible by default', // cpg1.5
-  'picinfo_movie_download_link' =>   'Display movie download link in the file information area', // cpg1.5
-  'max_img_desc_length' =>   'Max length for an image description', // cpg1.5
-  'max_com_wlength' =>   'Max number of characters in a word', // cpg1.5
-  'display_film_strip' =>   'Show film strip', // cpg1.5
-  'display_film_strip_filename' =>   'Display file name under film strip thumbnail', // cpg1.5
-  'max_film_strip_items' =>   'Number of items in film strip', // cpg1.5
-  'slideshow_interval' =>   'Slideshow interval in milliseconds', // cpg1.5
-  'slideshow_interval_detail' =>   '(1 second = 1000 milliseconds)', // cpg1.5
-  'slideshow_hits' =>   'Count hits in slideshow', // cpg1.5
+  'picture_table_width' =>   'Tabellenbreite für Bildanzeige', // cpg1.5
+  'display_pic_info' =>   'Datei-Informationen sind standardmäßig sichtbar', // cpg1.5
+  'picinfo_movie_download_link' =>   'Video-Download-Link innerhalb Dateiinformationsbereich anzeigen', // cpg1.5
+  'max_img_desc_length' =>   'Maximallänge für Dateibeschreibung', // cpg1.5
+  'max_com_wlength' =>   'Maximale Anzahl von Buchstaben in einem Wort', // cpg1.5
+  'display_film_strip' =>   'Film-Streifen anzeigen', // cpg1.5
+  'display_film_strip_filename' =>   'Dateinamen unter Filmstreifen-Thumbnails anzeigen', // cpg1.5
+  'max_film_strip_items' =>   'Anzahl Elemente in Film-Streifen', // cpg1.5
+  'slideshow_interval' =>   'Diashow-Intervall in Millisekunden', // cpg1.5
+  'slideshow_interval_detail' =>   '(1 Sekunde = 1000 Millisekunden)', // cpg1.5
+  'slideshow_hits' =>   'Treffer während Diashow zählen', // cpg1.5
   'ecard_flash' =>   'Flash in Ecards anzeigen', // cpg1.5
   'not_recommended' =>   'nicht empfohlen', // cpg1.5
   'recommended' =>   'empfohlen', // cpg1.5
@@ -1011,7 +1010,7 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'kilobytes' =>   'KB', // cpg1.5
   'pixels' =>   'pixel', // cpg1.5
   'max_upl_width_height' =>   'Maximale Breite oder Höhe für das Hochladen von Bildern', // cpg1.5
-  'auto_resize' =>   'Automatische verkleinerung von Bildern, die die Maximalgröße überschreiten', // cpg1.5
+  'auto_resize' =>   'Automatische Verkleinerung von Bildern, die die Maximalgröße überschreiten', // cpg1.5
   'fullsize_padding_x' =>   'Horizontaler Innenabstand für Vollbild-PopUp', // cpg1.5
   'fullsize_padding_y' =>   'Vertikaler Innenabstand für Vollbild-PopUp', // cpg1.5
   'allow_private_albums' =>   'Alben können nicht-öffentlich sein', // cpg1.5
@@ -1038,7 +1037,7 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'default_dir_mode' =>   'Standard-Modus für Verzeichnisse', // cpg1.5
   'default_file_mode' =>   'Standard-Modus für Dateien', // cpg1.5
   'enable_watermark' =>   'Wasserzeichen aktivieren', // cpg1.5
-  'enable_thumb_watermark' =>   'Auf benutzerdefinierte Thumbnails (Film, Audio, Dokument) anwenden', // cpg1.5
+  'enable_thumb_watermark' =>   'Auf benutzerdefinierte Thumbnails anwenden', // cpg1.5
   'where_put_watermark' =>   'Position', // cpg1.5
   'which_files_to_watermark' =>   'Wasserzeichen anwenden auf', // cpg1.5
   'watermark_file' =>   'Datei zur Verwendung als Wasserzeichen', // cpg1.5
@@ -1105,7 +1104,7 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'display_coppermine_detail' =>   'werden nur für den Administrator angezeigt', // cpg1.5
   'config_setting_invalid' =>   'Der Wert, den Du für &laquo;%s&raquo; eingegeben hast ist ungültig, bitte überrpüfen.', // cpg1.5
   'config_setting_ok' =>   'Deine Änderung für &laquo;%s&raquo; wurde gespeichert.', // cpg1.5
-  'contact_form_settings' =>   'Kontakformular-Eiunstellungen', // cpg1.5
+  'contact_form_settings' =>   'Kontakformular-Einstellungen', // cpg1.5
   'contact_form_guest_enable' =>   'Kontakt-Forumlar für anonyme Besucher (Gäste) anzeigen', // cpg1.5
   'contact_form_registered_enable' =>   'Kontakt-Forumlar für registrierte Benutzer anzeigen', // cpg1.5
   'with_captcha' =>   'mit Captcha', // cpg1.5
@@ -2178,7 +2177,7 @@ if (defined('SIDEBAR_PHP')) $lang_sidebar_php = array(
   'ie_win' => 'Internet Explorer 5 und besser auf Windows', // cpg1.5.x
   'ie_win_explain' => 'Wenn Du den Internet Explorer 5 oder höher unter Windows benutzt kannst Du die Sidebar zu Deiner Links-Werkzeugleiste hinzufügen oder zu Deinen Favoriten, indem Du %shier%s rechts-klickst und "Zu Favoriten hinzufügen" aus dem Kontext-Menü wählst. Dieser Link installiert unsere Sidebar nicht als Standard für Deine Suche, so dass Dein System nicht verändert wird.', // cpg1.5.x
   'ie7_win' => 'Internet Explorer 7 auf Windows XP/Vista', // cpg1.5.x
-  'ie7_win_explain' => 'Wenn Du den Internet Explorer 5 oder höher unter Windows benutzt kannst Du ein Navigations-Popup zu Deiner Links-Werkzeugleiste hinzufügen oder zu Deinen Favoriten, indem Du %shier%s rechts-klickst und "Zu Favoriten hinzufügen" aus dem Kontext-Menü wählst. In früheren Versionen des IE war es möglich, die tatsächliche Sidebar zu installieren, aber im IE7 ist das nicht möglich, ohne komplizierte Hacks der Registry zu benutzen. Es wird empfohlen, einen anderen Browser zu benutzen, wenn Du die tatsächliche Sidebar benutzen willst.', // cpg1.5.x
+  'ie7_win_explain' => 'Wenn Du den Internet Explorer 7 oder höher unter Windows benutzt kannst Du ein Navigations-Popup zu Deiner Links-Werkzeugleiste hinzufügen oder zu Deinen Favoriten, indem Du %shier%s rechts-klickst und "Zu Favoriten hinzufügen" aus dem Kontext-Menü wählst. In früheren Versionen des IE war es möglich, die tatsächliche Sidebar zu installieren, aber im IE7 ist das nicht möglich, ohne komplizierte Hacks der Registry zu benutzen. Es wird empfohlen, einen anderen Browser zu benutzen, wenn Du die tatsächliche Sidebar benutzen willst.', // cpg1.5.x
   'opera' => 'Opera 6 und besser', // cpg1.5.x
   'opera_explain' => 'Wenn Du Opera benutzt kannst Du %sauf diesen Link klicken%s, um die Sidebar Deinen anderen Sidebars hinzuzufügen. Aktiviere anschließend "Im Panel anzeigen". Die Sidebar kann deinstalliert werden durch rechts-klicken auf den Reiter und anschließend "Löschen" aus dem Kontextmenü wählen.', // cpg1.5.x
   'additional_options' => 'Zusätzliche Optionen', // cpg1.5.x

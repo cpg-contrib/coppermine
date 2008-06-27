@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4281 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-02-20 00:05:00 +0530 (Wed, 20 Feb 2008) $
+  $Revision: 4502 $
+  $LastChangedBy: pvanrompay $
+  $Date: 2008-06-06 03:51:20 +0530 (Fri, 06 Jun 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);

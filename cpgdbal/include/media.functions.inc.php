@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4224 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-01-26 17:12:00 +0530 (Sat, 26 Jan 2008) $
+  $Revision: 4583 $
+  $LastChangedBy: pvanrompay $
+  $Date: 2008-06-18 06:33:59 +0530 (Wed, 18 Jun 2008) $
 **********************************************/
 
 // REQUIRES GLOBAL VAR: ADMIN
@@ -29,67 +29,76 @@ $content_types_to_vars = array('image'=>'allowed_img_types','audio'=>'allowed_sn
 $CONFIG['allowed_file_extensions'] = '';//print($content_types_to_vars['image']);
 
 if (count($FILE_TYPES)==0) { 
-         /*$result = cpg_db_query('SELECT extension, mime, content, player FROM '.$CONFIG['TABLE_FILETYPES']);
-         while ($row = mysql_fetch_array($result)) {*/
-		 #######################  DB  ##########################
-         $cpgdb->query($cpg_db_media_functions_inc['get_filetypes']);
-         while ($row = $cpgdb->fetchRow()) {
-		 ####################################################
-             // Only add types that are in both the database and user defined parameter
-			if ($CONFIG[$content_types_to_vars[$row['content']]]=='ALL' || is_int(strpos('/'.$CONFIG[$content_types_to_vars[$row['content']]].'/','/'.trim($row['extension']).'/')))
-			{
-				$FILE_TYPES[$row['extension']] = $row;
-				$CONFIG['allowed_file_extensions'].= '/'.$row['extension'];
-			}   
-		}
+    /*$result = cpg_db_query('SELECT extension, mime, content, player FROM '.$CONFIG['TABLE_FILETYPES']);
+    while ($row = mysql_fetch_array($result)) {*/
+	#######################  DB  ##########################
+    $cpgdb->query($cpg_db_media_functions_inc['get_filetypes']);
+    while ($row = $cpgdb->fetchRow()) {
+	####################################################
+        // Only add types that are in both the database and user defined parameter
+		if ($CONFIG[$content_types_to_vars[$row['content']]]=='ALL' || is_int(strpos('/'.$CONFIG[$content_types_to_vars[$row['content']]].'/','/'.trim($row['extension']).'/'))) {
+			$FILE_TYPES[$row['extension']] = $row;
+			$CONFIG['allowed_file_extensions'].= '/'.$row['extension'];
+		}   
+	}
     //mysql_free_result($result);
 	$cpgdb->free(); #####  cpgdb_AL
 }
 
 $CONFIG['allowed_file_extensions'] = substr($CONFIG['allowed_file_extensions'],1);
 
-function cpg_get_type($filename,$filter=null) { 
+function cpg_get_type($filename,$filter=null) 
+{
     global $FILE_TYPES;
-    if (!is_array($filename))
+    if (!is_array($filename)) {
         $filename = explode('.',$filename);
+    }
     $EOA = count($filename)-1;
     $filename[$EOA] = strtolower($filename[$EOA]);
 
-    if (!is_null($filter) && $FILE_TYPES[$filename[$EOA]]['content']==$filter)
+    if (!is_null($filter) && array_key_exists($filename[$EOA],$FILE_TYPES) && ($FILE_TYPES[$filename[$EOA]]['content'] == $filter)) {
         return $FILE_TYPES[$filename[$EOA]];
-    elseif (is_null($filter))
+    } elseif (is_null($filter) && array_key_exists($filename[$EOA],$FILE_TYPES)) {
         return $FILE_TYPES[$filename[$EOA]];
-    else
+    } else {
         return null;
+    }
 }
 
-function is_image(&$file) {
+function is_image(&$file) 
+{
     return cpg_get_type($file,'image');
 }
 
-function is_movie(&$file) {
+function is_movie(&$file) 
+{
     return cpg_get_type($file,'movie');
 }
 
-function is_audio(&$file) {
+function is_audio(&$file) 
+{
     return cpg_get_type($file,'audio');
 }
 
-function is_document(&$file) {
+function is_document(&$file) 
+{
     return cpg_get_type($file,'document');
 }
 
-function is_flash(&$file) {
+function is_flash(&$file) 
+{
     return strrpos($file, '.swf' );
 }
 
-function is_known_filetype($file) {
+function is_known_filetype($file) 
+{
     return is_image($file) || is_movie($file) || is_audio($file) || is_document($file);
 }
 
 // Not implemented yet--was scheduled to be implemented by Chris, not sure if it is going to be used
 /*
-function cpg_file_html(&$file,$type='thumb',$file_title='') {
+function cpg_file_html(&$file,$type='thumb',$file_title='') 
+{
     global $CONFIG, $pic_title;
 
     $mime_content = cpg_get_type($file['filename']);
@@ -100,17 +109,18 @@ function cpg_file_html(&$file,$type='thumb',$file_title='') {
         $file['pheight'] = 100;
     }
 
-    if ($type=='thumb')
+    if ($type=='thumb') {
         $file_url = get_pic_url($file, 'thumb',$file_title='');
-    elseif ($CONFIG['make_intermediate'] && max($file['pwidth'], $file['pheight']) > $CONFIG['picture_width'])
+    } elseif ($CONFIG['make_intermediate'] && max($file['pwidth'], $file['pheight']) > $CONFIG['picture_width']) {
         $file_url = get_pic_url($file, 'normal');
-    else
+    } else {
         $file_url = get_pic_url($file, 'fullsize');
+    }
 
     $image_size = compute_img_size($file['pwidth'], $file['pheight'], $CONFIG['alb_list_thumb_size']);
-    if (($file['pwidth']==0 || $file['pheight']==0) && $type!='thumb')
+    if (($file['pwidth']==0 || $file['pheight']==0) && $type!='thumb') {
         $image_size['geom']='';
-
+    }
 
     if ($mime_content['content']=='image') {
         if (isset($image_size['reduced'])) {
@@ -118,15 +128,15 @@ function cpg_file_html(&$file,$type='thumb',$file_title='') {
             $file_title = ""
         }
         return "<img src=\"" . $file_url . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$file['filename']}\" title=\"$pic_title\" />";
-    }
-    elseif ($type=='thumb')
+    } elseif ($type=='thumb') {
         return "<img src=\"images/thumb_{$extension}.jpg\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$file['filename']}\" title=\"$pic_title\" />";
-    elseif ($mime_content['content']=='movie')
+    } elseif ($mime_content['content']=='movie') {
         return "<object {$image_size['geom']}><param name=\"movie\" value=\"". $file_url . "\"><embed {$image_size['geom']} src=\"". $file_url . "\"></embed></object>\n";
-    elseif ($mime_content['content']=='audio')
+    } elseif ($mime_content['content']=='audio') {
         return "<object {$image_size['geom']}><param name=\"movie\" value=\"". $file_url . "\"><embed {$image_size['geom']} src=\"". $file_url . "\"></embed></object>\n";
-    elseif ($mime_content['content']=='document')
+    } elseif ($mime_content['content']=='document') {
         return "<a href=\"{$file_url}\" target=\"_blank\" class=\"document_link\"><img src=\"images/thumb_$extension.jpg\" border=\"0\" class=\"image\" /></a>\n";
+    }
 }
 */
 ?>

@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4415 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-04-29 22:23:40 +0530 (Tue, 29 Apr 2008) $
+  $Revision: 4583 $
+  $LastChangedBy: pvanrompay $
+  $Date: 2008-06-18 06:33:59 +0530 (Wed, 18 Jun 2008) $
 **********************************************/
 
 /**
@@ -27,7 +27,7 @@
 * @copyright 2002-2006 Gregory DEMAR, Coppermine Dev Team
 * @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
 * @package Coppermine
-* @version $Id: albmgr.php 4415 2008-04-29 16:53:40Z gaugau $
+* @version $Id: albmgr.php 4583 2008-06-18 01:03:59Z pvanrompay $
 */
 
 /**
@@ -51,43 +51,44 @@ if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) {
  **/
 function alb_get_subcat_data($parent, $ident = '')
 {
-        global $CONFIG, $CAT_LIST, $USER_DATA, $cpg_db_albmgr_php;
+    global $CONFIG, $CAT_LIST, $USER_DATA, $cpg_db_albmgr_php;
 	####################### DB #########################	
-		$cpgdb =& cpgDB::getInstance();
-		$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+	$cpgdb =& cpgDB::getInstance();
+	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
 	##################################################			
-	/*	//select cats where the users can change the albums
-		$group_id = $USER_DATA['group_id'];
-		$result = cpg_db_query("SELECT cid, name, description FROM {$CONFIG['TABLE_CATEGORIES']} WHERE parent = '$parent' AND cid != 1 ORDER BY pos");
-		if (mysql_num_rows($result) > 0) {
-			$rowset = cpg_db_fetch_rowset($result);
-				foreach ($rowset as $subcat) {
-				if(!GALLERY_ADMIN_MODE) {
-					$check_group = cpg_db_query("SELECT group_id FROM {$CONFIG['TABLE_CATMAP']} WHERE group_id = '$group_id' AND cid=".$subcat['cid']);
-					$check_group_rowset = cpg_db_fetch_rowset($check_group);		*/
-		################################  DB   ######################################
-		//select cats where the users can change the albums
-		$group_id = $USER_DATA['group_id'];
-		$cpgdb->query($cpg_db_albmgr_php['get_cat_to_change_albums'], $parent);
-		$rowset = $cpgdb->fetchRowSet();
-			if (count($rowset) > 0)	{
-			foreach ($rowset as $subcat) {
-				if(!GALLERY_ADMIN_MODE) {
-					$cpgdb->query($cpg_db_albmgr_php['get_user_group'], $group_id, $subcat['cid']);
-					$check_group_rowset = $cpgdb->fetchRowSet();
-		##########################################################################
-					if($check_group_rowset){
-						$CAT_LIST[] = array($subcat['cid'], $ident . $subcat['name']);
-					}
-				} else {
-					$CAT_LIST[] = array($subcat['cid'], $ident . $subcat['name']);
-				}
-				alb_get_subcat_data($subcat['cid'], $ident . '&nbsp;&nbsp;&nbsp;');
-			}
-		}
+    /*//select cats where the users can change the albums
+    $group_id = $USER_DATA['group_id'];
+    $result = cpg_db_query("SELECT cid, name, description FROM {$CONFIG['TABLE_CATEGORIES']} WHERE parent = '$parent' AND cid != 1 ORDER BY pos");
+
+    if (mysql_num_rows($result) > 0) {
+        $rowset = cpg_db_fetch_rowset($result);
+        foreach ($rowset as $subcat) {
+            if (!GALLERY_ADMIN_MODE) {
+                $check_group = cpg_db_query("SELECT group_id FROM {$CONFIG['TABLE_CATMAP']} WHERE group_id = '$group_id' AND cid=".$subcat['cid']);
+                $check_group_rowset = cpg_db_fetch_rowset($check_group);*/
+	################################  DB   ######################################
+	//select cats where the users can change the albums
+	$group_id = $USER_DATA['group_id'];
+	$cpgdb->query($cpg_db_albmgr_php['get_cat_to_change_albums'], $parent);
+	$rowset = $cpgdb->fetchRowSet();
+	if (count($rowset) > 0)	{
+		foreach ($rowset as $subcat) {
+			if (!GALLERY_ADMIN_MODE) {
+				$cpgdb->query($cpg_db_albmgr_php['get_user_group'], $group_id, $subcat['cid']);
+				$check_group_rowset = $cpgdb->fetchRowSet();
+	##########################################################################
+                if ($check_group_rowset) {
+                    $CAT_LIST[] = array($subcat['cid'], $ident . $subcat['name']);
+                }
+            } else {
+                $CAT_LIST[] = array($subcat['cid'], $ident . $subcat['name']);
+            }
+            alb_get_subcat_data($subcat['cid'], $ident . '&nbsp;&nbsp;&nbsp;');
+        }
+    }
 }
 
-pageheader($lang_albmgr_php['alb_mrg']);
+pageheader($lang_albmgr_php['title']);
 
 ?>
 
@@ -164,6 +165,34 @@ pageheader($lang_albmgr_php['alb_mrg']);
 
                 album.deleteFrm();
                 album.changeFrm();
+        }
+
+        function Movetop_Option()
+        {
+                var to = document.album_menu.to;
+                var pos = selectedOptIndex;
+                if (pos == 0) {
+                        return;
+                }
+
+                for (var i=pos; i>0; i--) {
+                        swap_option(to, i, i-1);
+                }
+                selected_option(to, 0);
+        }
+
+        function Movebottom_Option()
+        {
+                var to = document.album_menu.to;
+                var pos = selectedOptIndex;
+                if (pos == to.length-1) {
+                        return;
+                }
+
+                for (var i=pos; i<to.length-1; i++) {
+                        swap_option(to, i, i+1);
+                }
+                selected_option(to, to.length-1);
         }
 
         function Moveup_Option()
@@ -370,7 +399,7 @@ pageheader($lang_albmgr_php['alb_mrg']);
 -->
 </script>
 <form name="album_menu" id="cpgform" method="post" action="delete.php?what=albmgr" onSubmit="return CheckAlbumForm(this);">
-<?php starttable("100%", $lang_albmgr_php['alb_mrg'].'&nbsp;'.cpg_display_help('f=albums.htm&as=albmgr&ae=albmgr_end&top=1', '600', '400'), 1);
+<?php starttable("100%", $lang_albmgr_php['title'].'&nbsp;'.cpg_display_help('f=albums.htm&as=albmgr&ae=albmgr_end&top=1', '600', '400'), 1);
 ?>
 <noscript>
 <tr>
@@ -384,37 +413,41 @@ pageheader($lang_albmgr_php['alb_mrg']);
 if ($superCage->get->keyExists('cat')) {
     $cat = $superCage->get->getInt('cat');
 } else {
-	$cat = 0;
+    $cat = 0;
 }
-
 if ($cat == 1) {
     $cat = 0;
 }
 
 /*if (GALLERY_ADMIN_MODE) {
-        $result = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = $cat ORDER BY pos ASC");
+    $result = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = $cat ORDER BY pos ASC");
 } elseif (USER_ADMIN_MODE) {
-		//Only list the albums owned by the user
-		if ($cat == 0) $cat = USER_ID + FIRST_USER_CAT;
-		$user_id = USER_ID;
-		$result = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = $cat AND owner = $user_id ORDER BY pos ASC");
-} else cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
-$rowset = cpg_db_fetch_rowset($result);	*/
+    //Only list the albums owned by the user
+    if ($cat == 0) $cat = USER_ID + FIRST_USER_CAT;
+    $user_id = USER_ID;
+    $result = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = $cat AND owner = $user_id ORDER BY pos ASC");
+
+} else {
+    cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
+}
+$rowset = cpg_db_fetch_rowset($result);*/
 ##################################  DB  ###########################################
 if (GALLERY_ADMIN_MODE) {	
 	$cpgdb->query($cpg_db_albmgr_php['get_gallery_admin_albums'], $cat);
 } elseif (USER_ADMIN_MODE) {
-		//Only list the albums owned by the user
-		if ($cat == 0) $cat = USER_ID + FIRST_USER_CAT;
-		$user_id = USER_ID;
-		$cpgdb->query($cpg_db_albmgr_php['get_user_admin_albums'], $cat, $user_id);
-	} else cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
-	$rowset = $cpgdb->fetchRowSet();
+	//Only list the albums owned by the user
+	if ($cat == 0) $cat = USER_ID + FIRST_USER_CAT;
+	$user_id = USER_ID;
+	$cpgdb->query($cpg_db_albmgr_php['get_user_admin_albums'], $cat, $user_id);
+} else {
+    cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
+}
+$rowset = $cpgdb->fetchRowSet();
 ################################################################################
 $i = 100;
 $sort_order = '';
 if (count ($rowset) > 0) foreach ($rowset as $album) {
-        $sort_order .= $album['aid'] . '@' . ($i++) . ',';
+    $sort_order .= $album['aid'] . '@' . ($i++) . ',';
 }
 
 ?>
@@ -426,25 +459,28 @@ if (count ($rowset) > 0) foreach ($rowset as $album) {
                                 <table width="300" border="0" cellspacing="0" cellpadding="0">
 <?php
 if (GALLERY_ADMIN_MODE||USER_ADMIN_MODE) {
-	$CAT_LIST = array();
-	$CAT_LIST[] = array(FIRST_USER_CAT + USER_ID, $lang_albmgr_php['my_gallery']);
-	//only add 'no category' when user is admin
-	if (GALLERY_ADMIN_MODE){$CAT_LIST[] = array(0, $lang_albmgr_php['no_category']);}
-	alb_get_subcat_data(0, '');
+    $CAT_LIST = array();
+    $CAT_LIST[] = array(FIRST_USER_CAT + USER_ID, $lang_albmgr_php['my_gallery']);
+    //only add 'no category' when user is admin
+    if (GALLERY_ADMIN_MODE) {
+        $CAT_LIST[] = array(0, $lang_albmgr_php['no_category']);
+    }
+    alb_get_subcat_data(0, '');
 
-        echo <<<EOT
+    echo <<<EOT
                                 <tr>
-                                                <td>
-                                                                <b>{$lang_albmgr_php['select_category']}</b>
-                                                                <select onChange="if(this.options[this.selectedIndex].value) window.location.href='$CPG_PHP_SELF?cat='+this.options[this.selectedIndex].value;"  name="cat" class="listbox">
+                                    <td>
+                                        <b>{$lang_albmgr_php['select_category']}</b>
+                                        <select onChange="if(this.options[this.selectedIndex].value) window.location.href='$CPG_PHP_SELF?cat='+this.options[this.selectedIndex].value;"  name="cat" class="listbox">
+
 EOT;
-        foreach($CAT_LIST as $category) {
-                echo '                                <option value="' . $category[0] . '"' . ($cat == $category[0] ? ' selected': '') . ">" . $category[1] . "</option>\n";
-        }
-        echo <<<EOT
-                                                                </select>
-                                                                <br /><br />
-                                                </td>
+    foreach ($CAT_LIST as $category) {
+        echo '                                            <option value="' . $category[0] . '"' . ($cat == $category[0] ? ' selected': '') . ">" . $category[1] . "</option>\n";
+    }
+    echo <<<EOT
+                                        </select>
+                                        <br /><br />
+                                    </td>
                                 </tr>
 
 EOT;
@@ -458,7 +494,7 @@ EOT;
 $i = 100;
 $lb = '';
 if (count ($rowset) > 0) foreach ($rowset as $album) {
-        $lb .= '                                        <option value="album_no=' . $album['aid'] . ',album_nm=' . $album['title'] . ',album_sort=' . ($i++) . ',action=0">' . stripslashes($album['title']) . "</option>\n";
+    $lb .= '                                        <option value="album_no=' . $album['aid'] . ',album_nm=' . $album['title'] . ',album_sort=' . ($i++) . ',action=0">' . stripslashes($album['title']) . "</option>\n";
 }
 echo $lb;
 
@@ -471,16 +507,17 @@ echo $lb;
                                                                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                 <tr>
 <?php
-// Only show move-buttons when admin or in user's private categorie
-// sorting is also prevented in delete.php when user doesn't have the rights.
-if(GALLERY_ADMIN_MODE||($cat == USER_ID + FIRST_USER_CAT)){
-echo '										<td><a href="javascript:Moveup_Option();"><img src="images/move_up.gif" width="26" height="21" border="0" alt="" /></a><a href="javascript:Movedown_Option();"><img src="images/move_down.gif" width="26" height="21" border="0" alt="" /></a>
-										</td>';
-}else{
-echo '										<td></td>';
+// Only show move-buttons when admin or in user's private category.
+// Sorting is also prevented in delete.php when user doesn't have the rights.
+if (GALLERY_ADMIN_MODE||($cat == USER_ID + FIRST_USER_CAT)) {
+    echo '                    <td><a href="javascript:Moveup_Option();"><img src="images/move_up.gif" width="26" height="21" border="0" alt="" title="'.$lang_common['move_up'].'" /></a><a href="javascript:Movedown_Option();"><img src="images/move_down.gif" width="26" height="21" border="0" alt="v" title="'.$lang_common['move_down'].'"  /></a>
+                      &nbsp; <a href="javascript:Movetop_Option();"><img src="images/move_top.gif" width="26" height="21" border="0" alt="^^" title="'.$lang_common['move_top'].'" /></a><a href="javascript:Movebottom_Option();"><img src="images/move_bottom.gif" width="26" height="21" border="0" alt="vv" title="'.$lang_common['move_bottom'].'" /></a>
+                    </td>';
+} else {
+    echo '                    <td></td>';
 }
 ?>
-                                                                                <td align="center" style="background-color: #D4D0C8; width: 80px; height: 21px; border-top: 1px solid White; border-left: 1px solid White; border-right: 1px solid #808080; border-bottom: 1px solid #808080;"><a href="javascript:Album_Delete();" style="color: Black; font-weight: bold;"><?php echo $lang_albmgr_php['delete'] ?></a>
+                                                                                <td align="center" style="background-color: #D4D0C8; width: 80px; height: 21px; border-top: 1px solid White; border-left: 1px solid White; border-right: 1px solid #808080; border-bottom: 1px solid #808080;"><a href="javascript:Album_Delete();" style="color: Black; font-weight: bold;"><?php echo $lang_common['delete'] ?></a>
                                                                                 </td>
                                                                                 <td align="center" style="width: 1px;"><img src="images/spacer.gif" width="1" alt=""><br />
                                                                                 </td>

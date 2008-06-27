@@ -1,4 +1,4 @@
-/*************************
+﻿/*************************
   Coppermine Photo Gallery
   ************************
   Copyright (c) 2003-2008 Dev Team
@@ -10,9 +10,9 @@
 
   ********************************************
   Coppermine version: 1.5.0
-  $Revision: 3440 $
-  $LastChangedBy: nibbler999 $
-  $Date: 2007-01-27 22:50:27 +0100 (Sa, 27 Jan 2007) $
+  $Revision: 4499 $
+  $LastChangedBy: pvanrompay $
+  $Date: 2008-06-05 03:12:18 +0530 (Thu, 05 Jun 2008) $
 **********************************************/
 
 
@@ -30,7 +30,7 @@ thisPage = thisPage.substring(0, thisPage.indexOf('.htm'));
 /*--------------------------------------------------|
 | dTree 2.05 | www.destroydrop.com/javascript/tree/ |
 |---------------------------------------------------|
-| Copyright (c) 2002-2003 Geir Landr�              |
+| Copyright (c) 2002-2003 Geir Landr?              |
 |                                                   |
 | This script can be used freely as long as all     |
 | copyright messages are intact.                    |
@@ -70,20 +70,20 @@ function dTree(objName) {
                 inOrder                                        : true
         }
         this.icon = {
-                root                                : 'pics/base.gif',
-                folder                        : 'pics/folder.gif',
-                folderOpen        : 'pics/folderopen.gif',
-                node                                : 'pics/page.gif',
-                empty                                : 'pics/empty.gif',
-                line                                : 'pics/line.gif',
-                join                                : 'pics/join.gif',
-                joinBottom        : 'pics/joinbottom.gif',
-                plus                                : 'pics/plus.gif',
-                plusBottom        : 'pics/plusbottom.gif',
-                minus                                : 'pics/minus.gif',
-                minusBottom        : 'pics/minusbottom.gif',
-                nlPlus                        : 'pics/nolines_plus.gif',
-                nlMinus                        : 'pics/nolines_minus.gif'
+                root                                : 'images/base.gif',
+                folder                        : 'images/folder.gif',
+                folderOpen        : 'images/folderopen.gif',
+                node                                : 'images/page.gif',
+                empty                                : 'images/empty.gif',
+                line                                : 'images/line.gif',
+                join                                : 'images/join.gif',
+                joinBottom        : 'images/joinbottom.gif',
+                plus                                : 'images/plus.gif',
+                plusBottom        : 'images/plusbottom.gif',
+                minus                                : 'images/minus.gif',
+                minusBottom        : 'images/minusbottom.gif',
+                nlPlus                        : 'images/nolines_plus.gif',
+                nlMinus                        : 'images/nolines_minus.gif'
         };
         this.obj = objName;
         this.aNodes = [];
@@ -594,7 +594,7 @@ function cpgDocToc() {
   document.write('<form method="get" action="http://google.com/search" name="googlesearch" style="margin:0px">\n');
   document.write('<input type="text" name="q" size="20" maxlength="255" value="" style="border:1px solid black" title="Enter your search phrase here" />\n');
   document.write('<input type="hidden" value="documentation.coppermine-gallery.net" name="as_sitesearch" />\n');
-  document.write('<img src="pics/views.gif" width="16" height="16" border="0" alt="" title="Search the Coppermine documentation online (using Google)" onclick="document.googlesearch.submit();" style="cursor:pointer" />\n');
+  document.write('<img src="images/views.gif" width="16" height="16" border="0" alt="" title="Search the Coppermine documentation online (using Google)" onclick="document.googlesearch.submit();" style="cursor:pointer" />\n');
   document.write('</form>\n');
 }
 
@@ -620,7 +620,7 @@ function cpgDocBreadcrumb() {
 
 
 function cpgDocHeader() {
-  document.write('<img src="pics/coppermine-logo.png" alt="Coppermine Photo Gallery - Your Online Photo Gallery" align="left" />');
+  document.write('<img src="images/coppermine-logo.png" alt="Coppermine Photo Gallery - Your Online Photo Gallery" align="left" />');
   document.write('<h1>Coppermine Photo Gallery v1.5.0: Documentation and Manual</h1>');
   document.write('<br clear="all" />');
   //cpgDocPrevNext();

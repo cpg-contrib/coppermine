@@ -64,7 +64,7 @@ class cpg_udb extends core_udb {
 				if ($CONFIG['dbservername'] == 'mysql') {
 					$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
 					$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
-				} else {	///////	for MSSQL		///////
+				} elseif($CONFIG['dbservername'] == 'mssql') {	///////	for MSSQL		///////
 					$this->usertable = $this->db['name'] ."." .dbo ."." .$this->db['prefix'] . $this->table['users'];
 					$this->groupstable =   $this->db['name'] . "." .dbo ."." .$this->db['prefix'] . $this->table['groups'];
 				}
@@ -73,7 +73,7 @@ class cpg_udb extends core_udb {
 				$this->usertable = $this->db['prefix'] . $this->table['users'];
 				$this->groupstable = $this->db['prefix'] . $this->table['groups'];
 			}
-		}
+
                 // Table field names
                 $this->field = array(
                         'username' => 'realName', // name of 'username' field in users table

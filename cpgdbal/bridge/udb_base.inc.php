@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4427 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-04-30 11:17:18 +0530 (Wed, 30 Apr 2008) $
+  $Revision: 4578 $
+  $LastChangedBy: nibbler999 $
+  $Date: 2008-06-16 01:29:16 +0530 (Mon, 16 Jun 2008) $
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
@@ -236,9 +236,9 @@ class core_udb {
 
                 // Build WHERE clause, if this is a username search
         if ($options['search']) {
-            $options['search'] = 'WHERE u.'.$f['username'].' LIKE "'.$options['search'].'" ';
+            $options['search'] = "WHERE u.".$f['username']." LIKE '".$options['search']."' ";
         } else {
-			$options['search'] = 'WHERE 1=1 ';
+			$options['search'] = "WHERE 1=1 ";
 		}
 
                 // Build SQL table, should work with all bridges
@@ -313,7 +313,7 @@ class core_udb {
                         $row = mysql_fetch_array($result);
                         mysql_free_result($result);	*/
 				################################  DB  #####################################
-				$this->cpgudb->query($cpg_db_udb_base_inc['get_user_id'], $this->field['user_id'], $this->usertable, $this->field['username'], $uid);
+				$this->cpgudb->query($cpg_db_udb_base_inc['get_user_id'], $this->field['user_id'], $this->usertable, $this->field['username'], $username);
 				$rowset = $this->cpgudb->fetchRowSet();
 				if(count($rowset)){
 					$row = $rowset[0];
@@ -412,7 +412,8 @@ class core_udb {
             $USER_DATA['groups'] = $groups;
 
             if (get_magic_quotes_gpc() == 0)
-                            $USER_DATA['group_name'] = mysql_escape_string($USER_DATA['group_name']);
+                            //$USER_DATA['group_name'] = mysql_escape_string($USER_DATA['group_name']);
+							$USER_DATA['group_name'] = $cpgdb->escape($USER_DATA['group_name']);	######	cpgdbAL
 
             return($USER_DATA);
     }
@@ -505,8 +506,9 @@ class core_udb {
         $f =& $this->field;
 
                 if ($FORBIDDEN_SET != "") {
-                        $forbidden_with_icon = "AND ($FORBIDDEN_SET or p.galleryicon=p.pid)";
-                        $forbidden = "AND ($FORBIDDEN_SET)";
+                       // $forbidden_with_icon = "$FORBIDDEN_SET or p.galleryicon=p.pid";
+                       $forbidden_with_icon = "$FORBIDDEN_SET";
+                        $forbidden = "$FORBIDDEN_SET";
                 } else {
                         $forbidden_with_icon = '';
                         $forbidden = '';

@@ -77,7 +77,7 @@ class cpg_udb extends core_udb {
 			$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
 			$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
 			$this->sessionstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['sessions'];
-		} else {	//////	for MSSQL	//////
+		} elseif($CONFIG['dbservername'] == 'mssql') {	//////	for MSSQL	//////
 			$this->usertable = $this->db['name'] ."." .dbo ."." .$this->db['prefix'] . $this->table['users'];
 			$this->groupstable =   $this->db['name'] . "." .dbo ."." .$this->db['prefix'] . $this->table['groups'];
 			$this->sessionstable =   $this->db['name'] ."." .dbo .".". $this->db['prefix'] . $this->table['sessions'];
@@ -153,6 +153,7 @@ class cpg_udb extends core_udb {
 			$rowset = $this->cpgudb->fetchRowSet();
 			if (count($rowset)) {
 				$row = $rowset[0];
+				return $row;
 			} else {
 				return false;
 			}

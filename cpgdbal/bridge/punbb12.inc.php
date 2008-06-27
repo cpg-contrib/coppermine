@@ -84,7 +84,7 @@ class cpg_udb extends core_udb {
 		if ($CONFIG['dbservername'] == 'mysql') {
 			$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
 			$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
-		} else {	////////	for MSSQL	///////
+		} elseif($CONFIG['dbservername'] == 'mssql') {	////////	for MSSQL	///////
 			$this->usertable = $this->db['name'] ."." .dbo ."." .$this->db['prefix'] . $this->table['users'];
 			$this->groupstable =   $this->db['name'] . "." .dbo ."." .$this->db['prefix'] . $this->table['groups'];
 		}
@@ -139,7 +139,7 @@ class cpg_udb extends core_udb {
 
         //if (isset($_COOKIE[$this->cookie_name])){
         //	list($id, $pass_hash) = unserialize($_COOKIE[$this->cookie_name]);
-		//}
+		//}	// Using getRaw() for cookie extraction
 		if ($superCage->cookie->keyExists($this->cookie_name)){
         	list($id, $pass_hash) = unserialize($superCage->cookie->getRaw($this->cookie_name));
 		}

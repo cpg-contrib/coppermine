@@ -11,9 +11,9 @@
 ##  ********************************************
 ##  Coppermine version: 1.5.0
 ##  $HeadURL$
-##  $Revision: 4260 $
+##  $Revision: 4579 $
 ##  $LastChangedBy: nibbler999 $
-##  $Date: 2008-02-11 05:22:58 +0530 (Mon, 11 Feb 2008) $
+##  $Date: 2008-06-16 01:45:17 +0530 (Mon, 16 Jun 2008) $
 ##  ********************************************
 
 #
@@ -84,10 +84,15 @@ CREATE TABLE CPG_categories (
   pos int(11) NOT NULL default '0',
   parent int(11) NOT NULL default '0',
   thumb int(11) NOT NULL default '0',
+  lft mediumint(8) unsigned NOT NULL default '0',
+  rgt mediumint(8) unsigned NOT NULL default '0',
+  depth tinyint(3) unsigned NOT NULL default '0',
   PRIMARY KEY  (cid),
   KEY cat_parent (parent),
   KEY cat_pos (pos),
-  KEY cat_owner_id (owner_id)
+  KEY cat_owner_id (owner_id),
+  KEY `depth_cid` (`depth`,`cid`),
+  KEY `lft_depth` (`lft`,`depth`)
 ) TYPE=MyISAM COMMENT='Used to store categories';
 # --------------------------------------------------------
 

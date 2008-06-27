@@ -91,6 +91,7 @@ switch ($event) {
         $msg_body = $superCage->post->getRaw('msg_body');
         $msg_id = $superCage->post->getInt('msg_id');
 				check_comment($msg_body);
+		$msg_body=$cpgdb->escape($msg_body);	#####	cpgdbAL
         if (empty($msg_body)) {
             cpg_die(ERROR, $lang_db_input_php['err_comment_empty'], __FILE__, __LINE__);
         }
@@ -179,9 +180,10 @@ switch ($event) {
 
         
         $msg_author = $superCage->post->getEscaped('msg_author');
-        $msg_body = $superCage->post->getEscaped('msg_body');
+        $msg_body = $superCage->post->getRaw('msg_body');
         $pid = $superCage->post->getInt('pid');
 				check_comment($msg_body);
+		$msg_body=$cpgdb->escape($msg_body);	#####	cpgdbAL
         check_comment($msg_author);
         if (empty($msg_author) || empty($msg_body)) {
             cpg_die(ERROR, $lang_db_input_php['empty_name_or_com'], __FILE__, __LINE__);
@@ -314,9 +316,9 @@ switch ($event) {
          * getRaw() is used in the following statements for comparison only. We are not taking anything
          * from _POST
          */
-        $uploads = $superCage->post->getRaw('uploads') == 'YES' ? 'YES' : 'NO';
-        $comments = $superCage->post->getRaw('comments') == 'YES' ? 'YES' : 'NO';
-        $votes = $superCage->post->getRaw('votes') == 'YES' ? 'YES' : 'NO';
+        $uploads = $superCage->post->getAlpha('uploads') == 'YES' ? 'YES' : 'NO';
+        $comments = $superCage->post->getAlpha('comments') == 'YES' ? 'YES' : 'NO';
+        $votes = $superCage->post->getAlpha('votes') == 'YES' ? 'YES' : 'NO';
 
         $password = $superCage->post->getEscaped('alb_password');
         $password_hint = $superCage->post->getEscaped('alb_password_hint');
@@ -530,7 +532,7 @@ switch ($event) {
 		}
 		#############################################################################
 
-        // Test if the filename of the temporary uploaded picture is empty
+        // Test if the filename of the temporary uploaded picture is empty. Using getRaw() for comparison only.
         if ($superCage->files->getRaw("/userpicture/tmp_name") == '') {
             cpg_die(ERROR, $lang_db_input_php['no_pic_uploaded'], __FILE__, __LINE__);
         }
@@ -561,12 +563,13 @@ switch ($event) {
             cpg_die(CRITICAL_ERROR, sprintf($lang_db_input_php['dest_dir_ro'], $dest_dir), __FILE__, __LINE__, true);
         }
 
-        if (get_magic_quotes_gpc()) {
+        /*if (get_magic_quotes_gpc()) {
             //Using getRaw() as we have custom sanitization code below
             $picture_name = stripslashes($superCage->files->getRaw("/userpicture/name"));
         } else {
             $picture_name = $superCage->files->getRaw("/userpicture/name");
-        }
+        }*/
+		$picture_name = stripslashes($superCage->files->getEscaped("/userpicture/name"));
 
         // Replace forbidden chars with underscores
         $picture_name = replace_forbidden($picture_name);
@@ -646,7 +649,8 @@ switch ($event) {
             ob_end_flush();
         } else {
             //$header_location = (@preg_match('/Microsoft|WebSTAR|Xitami/', getenv('SERVER_SOFTWARE'))) ? 'Refresh: 0; URL=' : 'Location: ';
-            $redirect = "displayimage.php?pid=" . mysql_insert_id($CONFIG['LINK_ID']);
+            //$redirect = "displayimage.php?pid=" . mysql_insert_id($CONFIG['LINK_ID']);
+			$redirect = "displayimage.php?pid=" . $cpgdb->insertId();	########	cpgdbAL
             cpgRedirectPage($redirect, $lang_common['information'], $lang_db_input_php['upl_success'], 1);
         }
         break;

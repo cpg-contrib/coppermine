@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4224 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-01-26 17:12:00 +0530 (Sat, 26 Jan 2008) $
+  $Revision: 4606 $
+  $LastChangedBy: nibbler999 $
+  $Date: 2008-06-19 04:05:01 +0530 (Thu, 19 Jun 2008) $
 **********************************************/
 
 /**
@@ -26,7 +26,7 @@
 * @copyright 2002-2006 Gregory DEMAR, Coppermine Dev Team
 * @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
 * @package Coppermine
-* @version $Id: addpic.php 4224 2008-01-26 11:42:00Z gaugau $
+* @version $Id: addpic.php 4606 2008-06-18 22:35:01Z nibbler999 $
 */
 
 /**
@@ -67,20 +67,17 @@ $cpgdb->query($cpg_db_addpic_php['addpic_get_pid'], addslashes($dir_name), addsl
 $rowset = $cpgdb->fetchRowSet();
 if (count($rowset)) {
 #################################################
-    $file_name = 'images/up_dup.gif';
+	$status = 'DUPE';
 } elseif (add_picture($aid, $dir_name, $sane_name)) {
-    $file_name = 'images/up_ok.gif';
+	$status = 'OK';
 } else {
-    $file_name = 'images/up_pb.gif';
-    echo $ERROR;
+	$status = 'PB';
 }
 
 if (ob_get_length()) {
-    ob_end_flush();
-    exit;
+	ob_end_clean();
 }
 
-header('Content-type: image/gif');
-echo fread(fopen($file_name, 'rb'), filesize($file_name));
-ob_end_flush()
+echo $status;
+
 ?>

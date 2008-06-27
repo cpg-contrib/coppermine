@@ -198,7 +198,7 @@ class cpgDB {
 		$args = func_get_args();
 		$Query_String = array_shift($args);
 	    /* No empty queries, please, since PHP4 chokes on them. */
-        if ($Query_String == '') {
+        if ($Query_String == '' && !defined('UPDATE_PHP')) {
 			/* The empty query string is passed on from the constructor,
 			* when calling the class without a query, e.g. in situations
 			* like these: '$db = new DB_Sql_Subclass;'
@@ -241,15 +241,15 @@ class cpgDB {
 			$this->db_error("Invalid SQL:".$Query_String);
         } 
 
-		if ($this->update != TRUE) {
+		//if ($this->update != TRUE) {
 			$this->nextRecord();
-		}	
+		//}	
 		
 		if ($this->lock_querytime != TRUE) {
 			if (isset($CONFIG['debug_mode']) && (($CONFIG['debug_mode']==1) || ($CONFIG['debug_mode']==2) )) {
 				$duration = round($query_end - $query_start, 3);
 				$query_stats[] = $duration;
-				$queries[] = $Query_String . " ({$duration}s)";// query_id=>".$this->Query_ID; 
+				$queries[] = $Query_String . " ({$duration}s)"; 
 			}
 		}
 		
@@ -267,7 +267,7 @@ class cpgDB {
      */
     function nextRecord()
     {
-        if (!$this->Query_ID) {
+        if (!$this->Query_ID && $this->update!=TRUE) {
             $this->halt('nextRecord called with no query pending.');
             return 0;
         } 
@@ -275,7 +275,9 @@ class cpgDB {
         $this->Record = @sqlsrv_fetch_array($this->Query_ID, SQLSRV_FETCH_ASSOC); 	#
         $this->Row += 1;
 
-		$this->Error = sqlsrv_errors();
+		if ($this->update != TRUE) {
+			$this->Error = sqlsrv_errors();
+		}
 		
         $stat = is_array($this->Record);
         if (!$stat && $this->Auto_Free) {
@@ -579,9 +581,10 @@ class cpgDB {
 	function escape($str_to_escape)
 	{
 		if (get_magic_quotes_gpc()) {
-			$escape_str = stripslashes($str_to_escape);
+			$str_to_escape = stripslashes($str_to_escape);
 		}
-		return addslashes($escape_str);
+		//return addslashes($str_to_escape);
+		return str_replace("'", "''", $str_to_escape);
 	}
 	
 	/**

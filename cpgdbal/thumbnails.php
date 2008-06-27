@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4323 $
-  $LastChangedBy: nibbler999 $
-  $Date: 2008-03-09 03:00:26 +0530 (Sun, 09 Mar 2008) $
+  $Revision: 4583 $
+  $LastChangedBy: pvanrompay $
+  $Date: 2008-06-18 06:33:59 +0530 (Wed, 18 Jun 2008) $
 **********************************************/
 
 /**
@@ -27,7 +27,7 @@
  * @copyright 2002-2006 Gregory DEMAR, Coppermine Dev Team
  * @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
  * @package Coppermine
- * @version $Id: thumbnails.php 4323 2008-03-08 21:30:26Z nibbler999 $
+ * @version $Id: thumbnails.php 4583 2008-06-18 01:03:59Z pvanrompay $
  */
 
 /**
@@ -53,47 +53,6 @@ if (!USER_ID && $CONFIG['allow_unlogged_access'] == 0) {
 }
 
 if ($CONFIG['enable_smilies']) include("include/smilies.inc.php");
-
-/*function thumb_get_subcat_data($parent, &$album_set_array)
-{
-    global $CONFIG;
-
-    $result = cpg_db_query("SELECT cid FROM {$CONFIG['TABLE_CATEGORIES']} WHERE parent = '$parent'");
-    if (mysql_num_rows($result) > 0) {
-        $rowset = cpg_db_fetch_rowset($result);
-        foreach ($rowset as $subcat) {
-            $result = cpg_db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = {$subcat['cid']}");
-            $album_count = mysql_num_rows($result);
-            while ($row = mysql_fetch_array($result)) {
-                $album_set_array[] = $row['aid'];
-            } // while
-            thumb_get_subcat_data($subcat['cid'], $album_set_array);
-        }   
-    }
-}*/
-############################  DB  ###############################
-function thumb_get_subcat_data($parent, &$album_set_array)
-{
-    global $CONFIG;
-	global $cpg_db_thumbnails_php;
-	$cpgdb =& cpgDB::getInstance();
-	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
-
-    $cpgdb->query($cpg_db_thumbnails_php['get_parent_cat_data'], $parent);
-	$rowset = $cpgdb->fetchRowSet();
-    if (count($rowset) > 0) {
-        foreach ($rowset as $subcat) {
-            $cpgdb->query($cpg_db_thumbnails_php['get_parent_subcat_data'], $subcat['cid']);
-			$rowsubset = $cpgdb->fetchRowSet();
-            $album_count = count($rowsubset);
-            foreach ($rowsubset as $row) {
-                $album_set_array[] = $row['aid'];
-            } // foreach
-            thumb_get_subcat_data($subcat['cid'], $album_set_array);
-        }
-    }
-}
-##############################################################
 
 /**
  * Main code
@@ -128,13 +87,13 @@ if ($superCage->get->keyExists('search')) {
 			#####################################################################
 			##We use the raw again, have to look into this a little more later.##
 			#####################################################################
-			$temp_GET['params'][$key] = $superCage->get->getRaw($key);
+			$temp_GET['params'][$key] = $superCage->get->getEscaped($key);
         }
     }
         //$USER['search'] = $_GET;
 		$USER['search'] = $temp_GET;
 		//here again the use of getRaw, but it will be sanitized in search.inc.php
-        $USER['search']['search'] = utf_replace($superCage->get->getRaw('search'));
+        $USER['search']['search'] = utf_replace($superCage->get->getEscaped('search'));
         $USER['search']['search'] = str_replace('&quot;','\'',$USER['search']['search']);
         $album = 'search';
 }
@@ -156,7 +115,7 @@ $cat_data = array();
 $lang_meta_album_names['lastupby'] = $lang_meta_album_names['lastup'];
 $lang_meta_album_names['lastcomby'] = $lang_meta_album_names['lastcom'];
 
-if (is_numeric($album)) {
+if (isset($album) && is_numeric($album)) {
     /*$result = cpg_db_query("SELECT category, title, aid, keyword, description, alb_password_hint FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album'");
     if (mysql_num_rows($result) > 0) {
         $CURRENT_ALBUM_DATA = mysql_fetch_array($result);*/
@@ -186,27 +145,11 @@ if (is_numeric($album)) {
             $CURRENT_ALBUM_KEYWORD = $CURRENT_ALBUM_DATA['keyword'];
         }
 
-        $ALBUM_SET = 'AND aid IN (' . (- $cat) . ') ' . $ALBUM_SET;
         breadcrumb($actual_cat, $breadcrumb, $breadcrumb_text);
         $CURRENT_CAT_NAME = $CURRENT_ALBUM_DATA['title'];
         $CURRENT_ALBUM_KEYWORD = $CURRENT_ALBUM_DATA['keyword'];
     } else {
-        $album_set_array = array();
-        if ($cat == USER_GAL_CAT)
-            $where = 'category > ' . FIRST_USER_CAT;
-        else
-            $where = "category = '$cat'";
 
-        /*$result = cpg_db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE $where");
-        while ($row = mysql_fetch_array($result)) {
-            $album_set_array[] = $row['aid'];
-        } // while*/
-		#####################  DB  ##########################
-        $cpgdb->query($cpg_db_thumbnails_php['get_alb_aid'], $where);
-        while ($row = $cpgdb->fetchRow()) {
-            $album_set_array[] = $row['aid'];
-        } // while
-		###################################################
         if ($cat >= FIRST_USER_CAT) {
             $user_name = get_username($cat - FIRST_USER_CAT);
             $CURRENT_CAT_NAME = sprintf($lang_list_categories['xx_s_gallery'], $user_name);
@@ -222,21 +165,21 @@ if (is_numeric($album)) {
 			##################################################
             $CURRENT_CAT_NAME = $row['name'];
         }
-        thumb_get_subcat_data($cat, $album_set_array, $CONFIG['subcat_level']);
-        // Treat the album set
-        if (count($album_set_array)) {
-            $set = '';
-            foreach ($album_set_array as $album_id) $set .= ($set == '') ? $album_id : ',' . $album_id;
-            $ALBUM_SET .= "AND aid IN ($set) ";
-        }
+
+        get_meta_album_set($cat);
+
         breadcrumb($cat, $breadcrumb, $breadcrumb_text);
     }
+} else {
+	get_meta_album_set(0);
 }
 
 if (isset($CURRENT_ALBUM_DATA)) {
     $section = $CURRENT_ALBUM_DATA['title'];
-} else {
+} elseif (isset($album) && array_key_exists($album,$lang_meta_album_names)) {
     $section = $lang_meta_album_names[$album];
+} else {
+    $section = '';
 }
 $meta_keywords = '';
 // keep the search engine spiders from indexing meta albums that are subject to constant changes
@@ -307,7 +250,7 @@ if ($CONFIG['allow_private_albums'] == 0 || !in_array($album, $FORBIDDEN_SET_DAT
         $albpw = $superCage->cookie->getEscaped($CONFIG['cookie_name'] . '_albpw');
         if (!empty($albpw)) {
             $albpw = unserialize($albpw);
-        }
+        }	// using getRaw(). Actually we store md5 hash of the password.
         $albpw[$album] = md5($superCage->post->getRaw('password'));
         $alb_cookie_str = serialize($albpw);
 
@@ -355,8 +298,9 @@ if ($CONFIG['allow_private_albums'] == 0 || !in_array($album, $FORBIDDEN_SET_DAT
         $valid = true;
     }
 }
-$META_ALBUM_SET = $ALBUM_SET; //temporary assignment until we are sure we are keeping the $META_ALBUM_SET functionality.
+
 CPGPluginAPI::filter('post_breadcrumb',null);
+
 if (!$valid) {
     form_albpw();
 } else {

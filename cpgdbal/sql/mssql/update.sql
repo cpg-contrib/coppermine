@@ -11,9 +11,9 @@
 ##  ********************************************
 ##  Coppermine version: 1.5.0
 ##  $Source: /cvsroot/coppermine/devel/sql/update.sql,v $
-##  $Revision: 4363 $
+##  $Revision: 4497 $
 ##  $LastChangedBy: gaugau $
-##  $Date: 2008-03-25 14:37:25 +0530 (Tue, 25 Mar 2008) $
+##  $Date: 2008-06-03 19:59:30 +0530 (Tue, 03 Jun 2008) $
 ##  ********************************************
 
 
@@ -22,10 +22,10 @@
 # -----------------------------------------
 
 CREATE TABLE CPG_sessions (
-  session_id VARCHAR(40)  NOT NULL  ,
-  user_id INTEGER  NULL DEFAULT 0  ,
-  time INTEGER  NULL DEFAULT NULL ,
-  remember INTEGER  NULL  DEFAULT 0  ,
+  session_id VARCHAR(40) NOT NULL DEFAULT '',
+  user_id INTEGER DEFAULT 0  ,
+  time INTEGER DEFAULT NULL ,
+  remember INTEGER DEFAULT 0  ,
 PRIMARY KEY(session_id));
 
 
@@ -35,10 +35,10 @@ PRIMARY KEY(session_id));
 IF NOT EXISTS (select * from dbo.sysobjects where id = object_id(N'CPG_categorymap') and type = 'U')
 BEGIN
 CREATE TABLE CPG_categorymap (
-  cid INTEGER  NOT NULL  ,
-  group_id INTEGER  NOT NULL  ,
-PRIMARY KEY(cid, group_id));
-END
+  cid INTEGER NOT NULL ,
+  group_id INTEGER NOT NULL ,
+  PRIMARY KEY(cid, group_id))
+END;
 
 
 
@@ -47,25 +47,25 @@ END
 # ------------------------------------------
 
 CREATE TABLE CPG_filetypes (
-  extension VARCHAR(7)  NOT NULL  ,
-  mime VARCHAR(254)  NULL  ,
-  content VARCHAR(15)  NULL );
+  extension VARCHAR(7) NOT NULL DEFAULT '',
+  mime VARCHAR(254) DEFAULT NULL ,
+  content VARCHAR(15) DEFAULT NULL );
 
 CREATE INDEX extension ON CPG_filetypes ( extension );
 
 
 # Create temporary table to store messages carried over from one page to the other
 CREATE TABLE CPG_temp_messages (
-  message_id VARCHAR(80)  NOT NULL  ,
-  user_id INTEGER  NULL DEFAULT 0 ,
-  time INTEGER  NULL ,
-  message TEXT  NOT NULL    ,
+  message_id VARCHAR(80) NOT NULL DEFAULT '',
+  user_id INTEGER DEFAULT 0 ,
+  time INTEGER DEFAULT NULL ,
+  message TEXT NOT NULL ,
 PRIMARY KEY(message_id));
 ## ----------------------------------------------------------------------------------
 
-DROP INDEX CPG_filetypes.EXTENSION; ALTER TABLE CPG_filetypes  ADD PRIMARY KEY ( extension );
-ALTER TABLE CPG_filetypes ADD player VARCHAR( 5 ) NULL ;
-ALTER TABLE CPG_filetypes ALTER COLUMN mime VARCHAR(254)  NULL ;
+DROP INDEX CPG_filetypes.EXTENSION; ALTER TABLE CPG_filetypes ADD PRIMARY KEY ( extension );
+ALTER TABLE CPG_filetypes ADD player VARCHAR(5) DEFAULT NULL;
+ALTER TABLE CPG_filetypes ALTER COLUMN mime VARCHAR(254) DEFAULT NULL ;
 
 INSERT INTO CPG_config VALUES ('allowed_img_types', 'jpeg/jpg/png/gif');
 
@@ -124,8 +124,6 @@ INSERT INTO CPG_config VALUES ('log_mode', '0');
 
 INSERT INTO CPG_config VALUES ('media_autostart', '1');
 
-INSERT INTO CPG_config VALUES ('enable_encrypted_passwords','0');
-
 INSERT INTO CPG_config VALUES ('rating_stars_amount', '5');
 INSERT INTO CPG_config VALUES ('old_style_rating', '0');
 
@@ -151,18 +149,18 @@ INSERT INTO CPG_config VALUES ('thumb_height', '140');
 ## ---------------------------------------------------------
 
 ## ----------      Modify structure for multi album pictures
-ALTER TABLE CPG_albums ADD owner INTEGER  NOT NULL DEFAULT 1;
+ALTER TABLE CPG_albums ADD owner INTEGER NOT NULL DEFAULT 1;
 
 # ------------------------------------------------
 ##   Table structure for table `CPG_banned`
 # ------------------------------------------------
 
 CREATE TABLE CPG_banned (
-  ban_id INTEGER  NOT NULL IDENTITY ,
-  user_id INTEGER  NULL  ,
-  ip_addr TEXT  NULL  ,
-  expiry DATETIME  NULL  ,
-PRIMARY KEY(ban_id));
+  ban_id INTEGER NOT NULL IDENTITY ,
+  user_id INTEGER DEFAULT NULL ,
+  ip_addr VARCHAR(255) DEFAULT NULL ,
+  expiry DATETIME DEFAULT NULL ,
+  PRIMARY KEY(ban_id));
 
  UPDATE CPG_config SET value='$/\\:*?&quot;''&lt;&gt;|` &amp;' WHERE name='forbiden_fname_char';
 
@@ -178,23 +176,23 @@ CREATE INDEX owner_id ON CPG_pictures (owner_id);
 # -----------------------------------------
 ##      Allows user gallery icons
 # -----------------------------------------
-ALTER TABLE CPG_pictures ADD galleryicon INTEGER  NOT NULL  DEFAULT 0;    
+ALTER TABLE CPG_pictures ADD galleryicon INTEGER NOT NULL DEFAULT 0;    
 #AFTER `approved`;	   no AFTER column in mssql
 
 # -----------------------------------------
 ##     Record the last hit IP
 # ------------------------------------------
 
-ALTER TABLE CPG_pictures ADD lasthit_ip TEXT  NULL   ;
+ALTER TABLE CPG_pictures ADD lasthit_ip VARCHAR(255) DEFAULT NULL;
 
 # -------------------------------------------------------
 ##      Table structure for table `CPG_favpics`
 # --------------------------------------------------------
 
 CREATE TABLE CPG_favpics (
-  user_id INTEGER  NOT NULL  ,
-  user_favpics TEXT  NOT NULL    ,
-PRIMARY KEY(user_id));
+  user_id INTEGER NOT NULL ,
+  user_favpics TEXT NOT NULL ,
+  PRIMARY KEY(user_id));
 
 
 # -----------------------------------------------------
@@ -202,9 +200,9 @@ PRIMARY KEY(user_id));
 # ------------------------------------------------------
 
 CREATE TABLE CPG_dict (
-  keyId BIGINT  NOT NULL IDENTITY ,
-  keyword VARCHAR(60)  NOT NULL    ,
-PRIMARY KEY(keyId));
+  keyId BIGINT NOT NULL IDENTITY ,
+  keyword VARCHAR(60) NOT NULL DEFAULT '',
+  PRIMARY KEY(keyId));
 
 # ------------------------------------------
 ##       Add config profile rows
@@ -229,7 +227,7 @@ ALTER TABLE CPG_users ADD user_profile5 varchar(255) NOT NULL default '';
 ##      Enlarge password field for MD5/SHA1 hash
 # ------------------------------------------------------
 
-ALTER TABLE CPG_users ALTER COLUMN user_password VARCHAR( 40 ) NOT NULL default '';
+ALTER TABLE CPG_users ALTER COLUMN user_password VARCHAR(40) NOT NULL DEFAULT '';
 
 
 INSERT INTO CPG_config VALUES ('user_profile1_name', 'Location');
@@ -246,7 +244,7 @@ INSERT INTO CPG_config VALUES ('time_offset', '0');
 
 ALTER TABLE CPG_users ALTER COLUMN user_profile6 TEXT NOT NULL;
 
-ALTER TABLE CPG_albums ADD alb_password varchar(32) default '';
+ALTER TABLE CPG_albums ADD alb_password VARCHAR(32) DEFAULT NULL;
 
 INSERT INTO CPG_config VALUES ('ban_private_ip', '0');
 
@@ -257,10 +255,10 @@ INSERT INTO CPG_config VALUES ('smtp_password', '');
 INSERT INTO CPG_config VALUES ('enable_plugins', '1');
 
 CREATE TABLE CPG_plugins (
-  plugin_id INTEGER  NOT NULL IDENTITY ,
-  name VARCHAR(64)  NOT NULL  ,
-  path VARCHAR(128)  NOT NULL  ,
-  priority INTEGER  NOT NULL DEFAULT 0  ,
+  plugin_id INTEGER NOT NULL IDENTITY ,
+  name VARCHAR(64) NOT NULL DEFAULT '',
+  path VARCHAR(128) NOT NULL DEFAULT '',
+  priority INTEGER NOT NULL DEFAULT 0 ,
   PRIMARY KEY(plugin_id),
   UNIQUE(name), UNIQUE(path));
 
@@ -271,16 +269,16 @@ INSERT INTO CPG_config VALUES ('allow_email_change', '0');
 INSERT INTO CPG_config VALUES ('show_which_exif', '|0|0|0|0|0|0|0|0|1|0|1|1|0|0|0|0|0|0|0|0|0|0|0|1|0|0|0|1|0|0|0|1|1|0|0|0|0|1|0|0|0|1|0|0|1|1|0|0|0|0|0|1|0|1|1');
 INSERT INTO CPG_config VALUES ('alb_desc_thumb', '1');
 
-ALTER TABLE CPG_albums ADD alb_password_hint TEXT NULL ;
+ALTER TABLE CPG_albums ADD alb_password_hint TEXT DEFAULT NULL ;
 
 INSERT INTO CPG_config VALUES ('categories_alpha_sort', '0');
-ALTER TABLE CPG_banned ADD brute_force TINYINT  NOT NULL  DEFAULT '0';
+ALTER TABLE CPG_banned ADD brute_force TINYINT NOT NULL DEFAULT 0;
 INSERT INTO CPG_config VALUES ('login_method', 'username');
 INSERT INTO CPG_config VALUES ('login_threshold', '5');
 INSERT INTO CPG_config VALUES ('login_expiry', '10');
 INSERT INTO CPG_config VALUES ('clickable_keyword_search', '1');
 INSERT INTO CPG_config VALUES ('link_pic_count', '0');
-ALTER TABLE CPG_pictures ADD position INTEGER NOT NULL DEFAULT '0';
+ALTER TABLE CPG_pictures ADD position INTEGER NOT NULL DEFAULT 0;
 
 INSERT INTO CPG_config VALUES ('auto_resize', '0');
 
@@ -289,8 +287,8 @@ INSERT INTO CPG_config VALUES ('auto_resize', '0');
 # ----------------------------------------------------
 
 CREATE TABLE CPG_bridge (
-  name VARCHAR(40)  NOT NULL  DEFAULT 0 ,
-  value VARCHAR(255)  NOT NULL,
+  name VARCHAR(40) NOT NULL DEFAULT 0 ,
+  value VARCHAR(255) NOT NULL DEFAULT '',
   UNIQUE(name));
 
 
@@ -334,29 +332,29 @@ INSERT INTO CPG_config VALUES ('bridge_enable', '0');
 ##          Table structure for table 'CPG_vote_stats'
 # -------------------------------------------------------------
 CREATE TABLE CPG_vote_stats (
-  sid INTEGER  NOT NULL IDENTITY ,
-  pid VARCHAR(100)  NOT NULL  ,
-  rating SMALLINT  NOT NULL  DEFAULT 0 ,
-  ip VARCHAR(20)  NOT NULL  ,
-  sdate BIGINT  NOT NULL  DEFAULT 0 ,
-  referer TEXT  NOT NULL  ,
-  browser VARCHAR(255)  NOT NULL  ,
-  os VARCHAR(50)  NOT NULL  ,
+  sid INTEGER NOT NULL IDENTITY ,
+  pid VARCHAR(100) NOT NULL DEFAULT '',
+  rating SMALLINT NOT NULL DEFAULT 0 ,
+  ip VARCHAR(20) NOT NULL DEFAULT '',
+  sdate BIGINT NOT NULL DEFAULT 0 ,
+  referer TEXT NOT NULL ,
+  browser VARCHAR(255) NOT NULL DEFAULT '',
+  os VARCHAR(50) NOT NULL ,
   PRIMARY KEY(sid));
 
 
 INSERT INTO CPG_config VALUES ('vote_details', '0');
 
 CREATE TABLE CPG_hit_stats (
-  sid INTEGER  NOT NULL IDENTITY ,
-  pid VARCHAR(100)  NOT NULL  ,
-  ip VARCHAR(20)  NOT NULL  ,
-  search_phrase VARCHAR(255)  NOT NULL  ,
-  sdate BIGINT  NOT NULL DEFAULT 0 ,
-  referer TEXT  NOT NULL  ,
-  browser VARCHAR(255)  NOT NULL  ,
-  os VARCHAR(50)  NOT NULL    ,
-PRIMARY KEY(sid));
+  sid INTEGER NOT NULL IDENTITY ,
+  pid VARCHAR(100) NOT NULL DEFAULT '',
+  ip VARCHAR(20) NOT NULL DEFAULT '',
+  search_phrase VARCHAR(255) NOT NULL DEFAULT '',
+  sdate BIGINT NOT NULL DEFAULT 0 ,
+  referer TEXT NOT NULL ,
+  browser VARCHAR(255) NOT NULL DEFAULT '',
+  os VARCHAR(50) NOT NULL ,
+  PRIMARY KEY(sid));
 
 
 INSERT INTO CPG_config VALUES ('hit_details', '0');
@@ -412,7 +410,7 @@ INSERT INTO CPG_config VALUES ('fullsize_padding_x', '5');
 INSERT INTO CPG_config VALUES ('fullsize_padding_y', '3');
 
 ##    Config approval
-ALTER TABLE CPG_comments add approval VARCHAR(30)  NOT NULL DEFAULT 'YES', CHECK(approval IN('YES','NO'));
+ALTER TABLE CPG_comments add approval VARCHAR(30) NOT NULL DEFAULT 'YES', CHECK(approval IN('YES','NO'));
 INSERT INTO CPG_config VALUES ('comment_approval', '0');
 INSERT INTO CPG_config VALUES ('display_comment_approval_only', '0');
 INSERT INTO CPG_config VALUES ('comment_placeholder', '1');
@@ -459,7 +457,7 @@ DROP INDEX CPG_albums.moderator_group ;
 CREATE INDEX moderator_group ON CPG_albums ( moderator_group );
 
 ##    Add album hits field
-ALTER TABLE CPG_albums ADD alb_hits INTEGER NOT NULL default 0;
+ALTER TABLE CPG_albums ADD alb_hits INTEGER NOT NULL DEFAULT 0;
 
 ##    Display transparent overlay on images
 INSERT INTO CPG_config VALUES ('transparent_overlay', '0');
@@ -469,12 +467,12 @@ INSERT INTO CPG_config VALUES ('transparent_overlay', '0');
 INSERT INTO CPG_config VALUES ('comment_promote_registration', '0');
 
 ##    Add uid column to vote stats
-ALTER TABLE CPG_vote_stats ADD uid INTEGER NOT NULL default '0';
+ALTER TABLE CPG_vote_stats ADD uid INTEGER NOT NULL DEFAULT 0;
 
 ##    Allow users to delete their own user account
 INSERT INTO CPG_config VALUES ('allow_user_account_delete', '0');
 
-ALTER TABLE CPG_temp_messages ALTER COLUMN message_id VARCHAR(80) NOT NULL;
+ALTER TABLE CPG_temp_messages ALTER COLUMN message_id VARCHAR(80) NOT NULL DEFAULT '';
 
 
 ##    Display statistics on index page
@@ -526,3 +524,11 @@ INSERT INTO CPG_config VALUES ('allow_user_album_keyword', '1');
 
 INSERT INTO CPG_config VALUES ('count_file_hits', '1');
 INSERT INTO CPG_config VALUES ('count_album_hits', '1');
+
+# Category system
+ALTER TABLE CPG_categories ADD lft INTEGER NOT NULL DEFAULT 0;
+ALTER TABLE CPG_categories ADD rgt INTEGER NOT NULL DEFAULT 0;
+ALTER TABLE CPG_categories ADD depth tinyint NOT NULL DEFAULT 0;
+CREATE INDEX depth_cid ON CPG_categories (depth, cid);
+CREATE INDEX lft_depth ON CPG_categories (lft, depth);
+

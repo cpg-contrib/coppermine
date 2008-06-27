@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4015 $
-  $LastChangedBy: SaWeyy $
-  $Date: 2007-10-31 10:23:22 +0100 (wo, 31 okt 2007) $
+  $Revision: 4616 $
+  $LastChangedBy: pvanrompay $
+  $Date: 2008-06-23 10:24:17 +0530 (Mon, 23 Jun 2008) $
 **********************************************/
 ########################
 ####Install Main Code###
@@ -22,6 +22,11 @@
 define('IN_COPPERMINE', true);
 define('INSTALL_PHP', true);
 define('VERSIONCHECK_PHP', true);
+
+define('INFORMATION', 1);
+define('ERROR', 2);
+define('CRITICAL_ERROR', 3);
+
 if (!defined('COPPERMINE_VERSION')) { // we need to define the constant COPPERMINE_VERSION that normally get's populated by include/init.inc.php, as we check the repository against that version number
 	define('COPPERMINE_VERSION', '1.5.0');
 }
@@ -160,7 +165,7 @@ switch($step) {
 			$install->config['javascript_test_passed'] = true;
 		}
 		//REGISTER_GLOBALS CHECK
-		if(ini_get(register_globals)){
+		if (ini_get('register_globals')) {
 			//register_globals is turned on, please turn it of.
 			$install->error .= $install->language['register_globals_detected'] . '<br /><br />';
 		}
@@ -178,15 +183,15 @@ switch($step) {
 	case 3:		// Check if the folder permissions are set up properlyµ
 		$install->page_title = $install->language['title_dir_check'];
 		if(!$install->checkPermissions()) {
-			// not all permissions were set right, or folder doesn't exist
+			// not all permissions were set correctly, or folder doesn't exist
 			html_header();
 			html_error();
-			html_content();// show all checked folders?
+			html_content($install->language['perm_not_ok']);  // show all checked folders?
 			html_footer();
 		} else {
 			// permissions are set alright, continue
 			html_header();
-			html_content($install->language['perm_ok']);// show all checked folders?
+			html_content($install->language['perm_ok']);  // show all checked folders?
 			html_footer();
 			$install->setTmpConfig('step', '4');
 		}
@@ -222,8 +227,9 @@ switch($step) {
 			$imp_list .= '<option value="im">ImageMagick</option>';
 			$content .= '<b>ImageMagick</b> Version ' . substr($image_processors['im']['version'], 20, 7) . '(at: ' . $path .')';
 			$selected = 'im';
+			$im_not_found = '';
 		} else {
-			$im_not_found .= '<br /><br /><fieldset style="width:90%" title="ImageMagick">' . $install->language['im_not_found'] .'</fieldset>';
+			$im_not_found = '<br /><br /><fieldset style="width:90%" title="ImageMagick">' . $install->language['im_not_found'] .'</fieldset>';
 		}
 		// check configuration options
 		if(isset($install->config['thumb_method'])) $selected = $install->config['thumb_method'];
@@ -239,7 +245,7 @@ switch($step) {
 		
 		// add IM path box
 		(isset($install->config['im_path']) && $superCage->post->getPath('im_path') != (dirname($superCage->server->getPath('SCRIPT_FILENAME') . DIRECTORY_SEPARATOR))) ? $path = $install->config['im_path'] : $path = $path;
-		$content .= '<br /><br />' . $install->language['im_path'] . '<br /><input type="text" size="70" name="im_path" value="' . $path . '" /><input type="submit" name="update_im_path" value="' . $install->language['check_path'] . '" />';
+		$content .= '<br /><br />' . $install->language['im_path'] . '<br /><input type="text" name="im_path" value="' . $path . '" /><input type="submit" name="update_im_path" value="' . $install->language['check_path'] . '" />';
 		
 		html_content($content);
 		html_footer();
@@ -264,12 +270,12 @@ switch($step) {
 		if($superCage->post->keyExists('update_check_connection') || (isset($install->config['db_host']) && $superCage->post->keyExists('db_host'))) {
 			// here we do not use the setTmpConfig funtion, as this function always writes the new file
 			// and it will be written in the third step...
-			$install->config['db_host'] = stripslashes($superCage->post->getRaw('db_host'));
-			$install->config['db_user'] = $superCage->post->getRaw('db_user');
-			$install->setTmpConfig('db_password', $superCage->post->getRaw('db_password'));
+			$install->config['db_host'] = $superCage->post->getEscaped('db_host');
+			$install->config['db_user'] = $superCage->post->getEscaped('db_user');
+			$install->setTmpConfig('db_password', $superCage->post->getEscaped('db_password'));
 			#############################    cpgdb install   ###########################
 			if ($install->config['dbservername'] == 'mssql') {
-				$install->setTmpConfig('auth_mode', $superCage->post->getRaw('auth_mode'));
+				$install->setTmpConfig('auth_mode', $superCage->post->getAlpha('auth_mode'));
 			}
 			#######################################################################
 			// test the connection
@@ -289,27 +295,27 @@ switch($step) {
 		$install->page_title = $install->language['title_sql_db_sel'];//print($install->config['auth_mode']);exit;
 		// save the db data from previous step
 		if($superCage->post->keyExists('db_host')  && !isset($install->config['db_populated'])) {
-			// here we do not use the setTmpConfig funtion, as this function always writes the new file
+			// here we do not use the setTmpConfig function, as this function always writes the new file
 			// and it will be written in the third step...
-			$install->config['db_host'] = stripslashes($superCage->post->getRaw('db_host'));
-			$install->config['db_user'] = $superCage->post->getRaw('db_user');
-			$install->setTmpConfig('db_password', $superCage->post->getRaw('db_password'));
+			$install->config['db_host'] = $superCage->post->getEscaped('db_host');
+			$install->config['db_user'] = $superCage->post->getEscaped('db_user');
+			$install->setTmpConfig('db_password', $superCage->post->getEscaped('db_password'));
 			###########################   cpgdb install   ###########################
 			if ($install->config['dbservername'] == 'mssql') {
-				$install->setTmpConfig('auth_mode', $superCage->post->getRaw('auth_mode'));
+				$install->setTmpConfig('auth_mode', $superCage->post->getAlpha('auth_mode'));
 			}
 			#######################################################################
 			if($install->error != '') {
 				$install->error .= '<br /><br />' . sprintf($install->language['please_go_back'], '<a href="install.php?step=' . ($step - 1) . '">', '</a>');
 			}
-		} elseif($superCage->post->keyExists('update_create_db') && trim($superCage->post->getRaw('new_db_name')) != '') {
+		} elseif($superCage->post->keyExists('update_create_db') && trim($superCage->post->getEscaped('new_db_name')) != '') {
 			// try to create a new database.
 			//$install->createMysqlDb(trim($superCage->post->getRaw('new_db_name')));
 			############################       DB      ############################
-			$install->createNewDb(trim($superCage->post->getRaw('new_db_name')));
+			$install->createNewDb(trim($superCage->post->getEscaped('new_db_name')));
 			#################################################################
 			// save table prefix
-			$install->setTmpConfig('db_prefix', $superCage->post->getRaw('db_prefix'));
+			$install->setTmpConfig('db_prefix', $superCage->post->getEscaped('db_prefix'));
 		}
 		$install->checkSqlConnection();	
 		html_header();
@@ -326,8 +332,8 @@ switch($step) {
 		$install->page_title = $install->language['title_sql_pop'];		######	cpgdb install
 		// save the db data from previous step
 		if($superCage->post->keyExists('db_name') && !isset($install->config['db_populated'])) {
-			$install->setTmpConfig('db_name', $superCage->post->getRaw('db_name'));
-			$install->setTmpConfig('db_prefix', $superCage->post->getRaw('db_prefix'));
+			$install->setTmpConfig('db_name', $superCage->post->getEscaped('db_name'));
+			$install->setTmpConfig('db_prefix', $superCage->post->getEscaped('db_prefix'));
 		}
 		// populate db if not done yet
 		$set_populated = false;
@@ -459,6 +465,8 @@ switch($step) {
  * prints the header
  */
 function html_header() {
+
+	global $install;
 ?>
 <!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -734,11 +742,11 @@ function html_sql_start() {		#######	cpgdb install
          </tr>
 		 <tr>
           <td align="right"><?php echo $install->config['dbservername']." " ?> <?php echo $install->language['username']; ?></td>
-		  <td><input type="text" name="db_user" value="<?php echo $install->config['db_user']; ?>" /></td>
+		  <td><input type="text" name="db_user" value="<?php echo isset($install->config['db_user']) ? $install->config['db_user'] : ''; ?>" /></td>
          </tr>
 		 <tr>
           <td align="right"><?php echo $install->config['dbservername']." "?> <?php echo $install->language['password']; ?></td>
-		  <td><input type="password" name="db_password" value="<?php echo $install->config['db_password']; ?>" /></td>
+		  <td><input type="password" name="db_password" value="<?php echo isset($install->config['db_password']) ? $install->config['db_password'] : ''; ?>" /></td>
          </tr>
 		 <tr>
 		 <td colspan="2" align="center">
@@ -830,23 +838,23 @@ function html_admin() {
          </tr>
 		 <tr>
           <td align="right"><?php echo $install->language['username']; ?></td>
-		  <td><input type="text" name="admin_username" value="<?php echo $install->config['admin_username']; ?>"  /></td>
+		  <td><input type="text" name="admin_username" value="<?php echo isset($install->config['admin_username']) ? $install->config['admin_username'] : ''; ?>"  /></td>
          </tr>
          <tr>
           <td align="right"><?php echo $install->language['password']; ?></td>
-		  <td><input type="password" name="admin_password" value="<?php echo $install->config['admin_password']; ?>" /></td>
+		  <td><input type="password" name="admin_password" value="<?php echo isset($install->config['admin_password']) ? $install->config['admin_password'] : ''; ?>" /></td>
          </tr>
           <tr>
           <td align="right"><?php echo $install->language['password_verif']; ?></td>
-		  <td><input type="password" name="admin_password_verif" value="<?php echo $install->config['admin_password']; ?>" /></td>
+		  <td><input type="password" name="admin_password_verif" value="<?php echo isset($install->config['admin_password']) ? $install->config['admin_password'] : ''; ?>" /></td>
          </tr>
          <tr>
           <td align="right"><?php echo $install->language['email']; ?></td>
-		  <td><input type="text" name="admin_email" value="<?php echo $install->config['admin_email']; ?>" /></td>
+		  <td><input type="text" name="admin_email" value="<?php echo isset($install->config['admin_email']) ? $install->config['admin_email'] : ''; ?>" /></td>
          </tr>
           <tr>
           <td align="right"><?php echo $install->language['email_verif']; ?></td>
-		  <td><input type="text" name="admin_email_verif" value="<?php echo $install->config['admin_email']; ?>" /></td>
+		  <td><input type="text" name="admin_email_verif" value="<?php echo isset($install->config['admin_email']) ? $install->config['admin_email'] : ''; ?>" /></td>
          </tr>
 		 <tr>
 		 <td colspan="2">&nbsp;</td>
@@ -983,7 +991,7 @@ class CPGInstall{
 			$success = true;
 		} else {
 			// could not write tmp config, add error
-			$this->error = sprintf($this->language['cant_write_tmp_conf'], $tmp_config);
+			$this->error = sprintf($this->language['cant_write_tmp_conf'], $this->tmp_config);
 			$success = false;
 		}
 		return $success;
@@ -1053,7 +1061,7 @@ class CPGInstall{
 			include('lang/english.php');
 			$lang_en = $lang_install;
 			$lang_en_versioncheck = $lang_versioncheck_php;
-			if (file_exists('lang/' . $this->config['lang'] . '.php')) {
+			if (isset($this->config['lang']) && file_exists('lang/' . $this->config['lang'] . '.php')) {
 				// include this lang
 				include('lang/' . $this->config['lang'] . '.php');
 			}
@@ -1180,7 +1188,7 @@ class CPGInstall{
 	function checkPermissions() {
 		$peCheck = true;
 		// If another dir has to be added, you can define as many possible permissions as you want, 
-		// but if it only has to be a derictory, the use the $only_folders array (will only be checked on existance)
+		// but if it only has to be a directory, then use the $only_folders array (will only be checked on existence)
 		// Always add the maximum required permission as the first item as the installer will try to chmod the files to that value.
 		$files_to_check = array(
 			'./albums'	=> array('777', '755'),
@@ -1189,8 +1197,8 @@ class CPGInstall{
 			'./albums/edit'		=> array('777', '755'),
 		);
 		// No longer needed, will be checked in versioncheck.
-		// This array is here to allow a simple check on dir existance. If it was in the other array, 
-		// we should have to add all possible permissions an that would be stupid ;-)
+		// This array is here to allow a simple check on dir existence. If it was in the other array, 
+		// we should have to add all possible permissions and that would be stupid ;-)
 		/*$only_folders = array(
 			'./sql',
 		);*/
@@ -1200,17 +1208,12 @@ class CPGInstall{
 		// start creating table with results
 		$this->temp_data = "<tr><td align=\"center\"><table><tr><td><b>{$this->language['directory']}</b></td><td width=\"25%\"><b>{$this->language['c_mode']}</b></td><td width=\"25%\"><b>{$this->language['r_mode']}</b></td><td width=\"10%\"><b>{$this->language['status']}</b></td></tr>";
 		foreach($files_to_check as $folder => $perm) {
-			$possible_modes = '';
 			// create a string of all allowed permissions
-			foreach($perm as $p){
-				$possible_modes .= " '" . $p . "' " . $this->language['or'];
-			}
-			// remove the last 'or ' of the string
-			$possible_modes = substr($possible_modes, 0, (strlen($possible_modes) - 3));
-			$not_ok = '<font color="red">' . $this->language['nok'] . '</font>';
+			$possible_modes = implode(' '.$this->language['or'].' ',$perm);
+            $not_ok = '<font color="red">' . $this->language['nok'] . '</font>';
 			$_ok = '<font color="green">' . $this->language['ok'] . '</font>';
 			
-			// check folder existance
+			// check folder existence
 			if(!is_dir($folder)) {
 				$peCheck = false;
 				$this->error .= sprintf($this->language['subdir_called'], $folder) . '<br />';
@@ -1229,33 +1232,35 @@ class CPGInstall{
 						// again try to write a file to the folder
 						$file_handle2 = @fopen($test_file, 'w');
 						if(!$file_handle2){
-							//not working, admin will have to check this by hand, add error
+							// not working, admin will have to check this by hand, add error
 							$peCheck = false;
-							$this->error .= sprintf($this->language['perm_error'], $folder, $possible_modes) . " '" . $perm . "'.<br />";
-							$this->temp_data .= "<tr><td>$folder</td><td>'$mode'</td><td>$possible_modes</td><td>{$not_ok}</td></tr>";
+                            $possible_modes_left = implode(' '.$this->language['or'].' ',array_diff($perm,array($mode)));
+							$this->error .= sprintf($this->language['perm_error'], $folder, $mode) . ' ' . $possible_modes_left . '.<br />';
+							$this->temp_data .= "<tr><td>$folder</td><td>$mode</td><td>$possible_modes</td><td>{$not_ok}</td></tr>";
 						}else{
 							//close handle and remove file
 							fclose($file_handle2);
 							unlink($test_file);
-							$this->temp_data .= "<tr><td>$folder</td><td>'$mode'</td><td>$possible_modes</td><td>{$_ok}</td></tr>";
+							$this->temp_data .= "<tr><td>$folder</td><td>$mode</td><td>$possible_modes</td><td>{$_ok}</td></tr>";
 						}
 					} else {
 						// could not change mode, add error.
 						$peCheck = false;
-						$this->error .= sprintf($this->language['perm_error'], $folder, $possible_modes) . " '" . $perm . "'.<br />";
-						$this->temp_data .= "<tr><td>$folder</td><td>'$mode'</td><td>$possible_modes</td><td>{$not_ok}</td></tr>";
+                        $possible_modes_left = implode(' '.$this->language['or'].' ',array_diff($perm,array($mode)));
+						$this->error .= sprintf($this->language['perm_error'], $folder, $mode) . ' ' . $possible_modes_left . '.<br />';
+						$this->temp_data .= "<tr><td>$folder</td><td>$mode</td><td>$possible_modes</td><td>{$not_ok}</td></tr>";
 					}
 				}else{
 					//close file handle and remove file
 					fclose($file_handle);
 					unlink($test_file);
-					$this->temp_data .= "<tr><td>$folder</td><td>'$mode'</td><td>$possible_modes</td><td>{$_ok}</td></tr>";
+					$this->temp_data .= "<tr><td>$folder</td><td>$mode</td><td>$possible_modes</td><td>{$_ok}</td></tr>";
 				}
 			}	
 		}
 		/*we don't need to check the sql dir, as those files will be checked in versioncheck.
 		foreach($only_folders as $folder) {
-			// check folder existance
+			// check folder existence
 			if(!is_dir($folder)) {
 				// could not detect folder
 				$peCheck = false;
@@ -1409,7 +1414,6 @@ class CPGInstall{
 	*/
 	function getIM() {
 		$im_paths = array(
-			'convert',
 			'/imagemagick/convert',
 			'/imagemagick/bin/convert',
 			'/local/bin/convert',
@@ -1427,14 +1431,15 @@ class CPGInstall{
 			'/usr/sbin/convert',
 			'/bin/convert',
 			'/bin/imagemagick/convert',
-			'/bin/imagemagick/bin/convert'
+			'/bin/imagemagick/bin/convert',
+			'convert'
 			);
-		// add trailing slash if nececary
-		if (!preg_match('|[/\\\\]\Z|', $this->config['im_path']) && $this->config['im_path'] != '') {
+		// add trailing slash if necessary
+		if (!empty($this->config['im_path']) && !preg_match('|[/\\\\]\Z|', $this->config['im_path'])) {
             $this->config['im_path'] .= '/';
 		}
 		// add user defined path to paths array
-		if($this->config['im_path'] != '') {
+		if(!empty($this->config['im_path'])) {
 			// add unix version
 			$im_paths[] = $this->config['im_path'] . 'convert';
 			// add windows version
@@ -1610,7 +1615,8 @@ class CPGInstall{
 			$db_select = '<select name="db_name">';
 			while ($row = mysql_fetch_object($db_list)) {
 				$db = $row->Database;
-				($db == $this->config['db_name']) ? $sel = ' selected="selected"' : $sel = '';
+				if (in_array($db, array('information_schema', 'mysql', 'test'))) continue;
+				(isset($this->config['db_name']) && $db == $this->config['db_name']) ? $sel = ' selected="selected"' : $sel = '';
 				$db_select .= '<option name="' . $db . '"' . $sel . ' >' . $db . '</option>';
 			}
 			$db_select .= '</select>';
@@ -1696,7 +1702,6 @@ class CPGInstall{
 		return true;
 	}
 	#############################################################################################
-	
 	/*
 	* populateMysqlDb()
 	*
@@ -1704,91 +1709,11 @@ class CPGInstall{
 	*
 	* @return bool
 	*/
-	/*function populateMysqlDb() {
-		// define some vars so we can easily find the at the top and change if needed.
-		$db_schema = "sql/mysql/schema.sql";
-		$db_basic = "sql/mysql/basic.sql";
-		
-		// check if all config values are present.
-		if(!isset($this->config['thumb_method'])) 	{ $this->error = $this->language['no_thumb_method']; 	return false;}
-		if (@get_magic_quotes_runtime()) set_magic_quotes_runtime(0);
-		// Get a connection with the db.
-		if(!$this->checkSqlConnection()) {
-			return false;
-		}
-		// Check if we can read the db_schema file
-		if (($sch_open = fopen($db_schema, 'r')) === FALSE){
-			$this->error = sprintf($this->language['sql_file_not_found'], $db_schema);
-			return false;
-		} else {
-			$sql_query = fread($sch_open, filesize($db_schema));
-			// Check if we can read the db_basic file
-			if (($bas_open = fopen($db_basic, 'r')) === FALSE){
-				$this->error = sprintf($this->language['sql_file_not_found'], $db_basic);
-				return false;
-			} else {
-				$sql_query .= fread($bas_open, filesize($db_basic));
-			}
-		}
-		// Create our fantastic cage object
-		$superCage = Inspekt::makeSuperCage();
-		require_once('include/sql_parse.php');
-		// Get gallery directory
-		$possibilities = array('REDIRECT_URL', 'PHP_SELF', 'SCRIPT_URL', 'SCRIPT_NAME','SCRIPT_FILENAME');
-		foreach ($possibilities as $test){
-			if ($matches = $superCage->server->getMatched($test, '/([^\/]+\.php)$/')) {
-				$CPG_PHP_SELF = $matches[1];
-				break;
-			}
-		}
-		
-		$gallery_dir = strtr(dirname($CPG_PHP_SELF), '\\', '/');
-		$gallery_url_prefix = 'http://' . $superCage->server->getEscaped('HTTP_HOST') . $gallery_dir . (substr($gallery_dir, -1) == '/' ? '' : '/');
-					
-		// Set configuration values for image package
-		$sql_query .= "REPLACE INTO CPG_config VALUES ('thumb_method', '{$this->config['thumb_method']}');\n";
-		$sql_query .= "REPLACE INTO CPG_config VALUES ('impath', '{$this->config['im_path']}');\n";
-		$sql_query .= "REPLACE INTO CPG_config VALUES ('ecards_more_pic_target', '$gallery_url_prefix');\n";
-		$sql_query .= "REPLACE INTO CPG_config VALUES ('gallery_admin_email', '{$this->config['admin_email']}');\n";
-		// Enable silly_safe_mode if test has shown it is not configured properly
-		if ($this->checkSillySafeMode()) {
-			$sql_query .= "REPLACE INTO CPG_config VALUES ('silly_safe_mode', '1');\n";
-		}
-		// Test write permissions for main dir
-		if (!is_writable('.')) {
-			$sql_query .= "REPLACE INTO CPG_config VALUES ('default_dir_mode', '0777');\n";
-			$sql_query .= "REPLACE INTO CPG_config VALUES ('default_file_mode', '0666');\n";
-		}
-		// Update table prefix
-		$sql_query = preg_replace('/CPG_/', $this->config['db_prefix'], $sql_query);
-	
-		$sql_query = remove_remarks($sql_query);
-		$sql_query = split_sql_file($sql_query, ';');
-		
-		$this->temp_data .= '<tr><td>';
-		foreach($sql_query as $q) {
-			$is_table = false;
-			//check if we are creating a table so we can add it to the output
-			if (preg_match('/(CREATE TABLE IF NOT EXISTS `?|CREATE TABLE `?)([\w]*)`?/i', $q, $table_match)) {
-				$table = $table_match[2];
-				$is_table = true;
-			}
-			if (! mysql_query($q, $this->sql_connection)) {		######	cpgdb install
-				$this->error = $this->language['sql_error'] . mysql_error($this->sql_connection) . ' ' . $this->language['on_q'] . " '$q'";	#####	cpgdb install
-				if($is_table) $this->temp_data .= "<br />" . sprintf($this->language['create_table'], $table) . '&nbsp;&nbsp;&nbsp;&nbsp;' . $this->language['status'] . ':... ' . $this->language['nok'];
-				return false;
-			} else {
-				if($is_table) $this->temp_data .= "<br />" . sprintf($this->language['create_table'], $table). '&nbsp;&nbsp;&nbsp;&nbsp;' . $this->language['status'] . ':... ' . $this->language['ok'];
-			}
-		}
-		$this->temp_data .= '<br /><br /><br /></td></tr>';
-		return true;
-	}*/
 	################################################   cpgdb install  ##############################################
 	function populateDb() {
 		global $cpg_db_install_php;
 		$cpginstall = @ cpgDB::getInstance();
-		$cpginstall->nodb = TRUE;	//	for mysql when $db_name = ''
+		$cpginstall->nodb = FALSE;	//	for mysql when $db_name = ''
 		
 		// define some vars so we can easily find the at the top and change if needed.
 		$db_schema = "sql/{$this->config['dbservername']}/schema.sql";
@@ -1827,12 +1752,14 @@ class CPGInstall{
 		}
 		
 		$gallery_dir = strtr(dirname($CPG_PHP_SELF), '\\', '/');
+		if ($gallery_dir == '.') $gallery_dir = '';
+		
 		$gallery_url_prefix = 'http://' . $superCage->server->getEscaped('HTTP_HOST') . $gallery_dir . (substr($gallery_dir, -1) == '/' ? '' : '/');
 		// Set configuration values for image package
 		$sql_query .= sprintf($cpg_db_install_php['config_thumb_method'], $this->config['thumb_method']);
 		$sql_query .= sprintf($cpg_db_install_php['config_im_path'], $this->config['im_path']);
 		$sql_query .= sprintf($cpg_db_install_php['config_ecards_more_pic_target'], $gallery_url_prefix);
-		$sql_query .= sprintf($cpg_db_install_php['config_gallery_admin_email'], $this->config['admin_email']);
+		//$sql_query .= sprintf($cpg_db_install_php['config_gallery_admin_email'], $this->config['admin_email']);
 		// Enable silly_safe_mode if test has shown it is not configured properly
 		if ($this->checkSillySafeMode()) {
 			$sql_query .= sprintf($cpg_db_install_php['config_silly_safe_mode']);
@@ -1889,14 +1816,26 @@ class CPGInstall{
 		
 		// Insert the admin account
 		$sql_query .= "INSERT INTO {$this->config['db_prefix']}users (user_id, user_group, user_active, user_name, user_password, user_lastvisit, user_regdate, user_group_list, user_email, user_profile1, user_profile2, user_profile3, user_profile4, user_profile5, user_profile6, user_actkey ) VALUES (1, 1, 'YES', '{$this->config['admin_username']}', md5('{$this->config['admin_password']}'), NOW(), NOW(), '', '{$this->config['admin_email']}', '', '', '', '', '', '', '');\n";
-		// Get a connection with the db.
+
+		// Set gallery admin mail
+		$sql_query .= "REPLACE INTO CPG_config VALUES ('gallery_admin_email', '{$this->config['admin_email']}');\n";
+
+    // Update table prefix
+		$sql_query = preg_replace('/CPG_/', $this->config['db_prefix'], $sql_query);
+
+		require_once('include/sql_parse.php');
+		$sql_query = remove_remarks($sql_query);
+		$sql_query = split_sql_file($sql_query, ';');
+        // Get a connection with the db.
 		if(!$this->checkSqlConnection()) {
 			return false;
 		}
-		if (! mysql_query($sql_query, $this->sql_connection)) {		######	cpgdb install
-			$this->error = $this->language['sql_error'] . mysql_error($this->sql_connection) . ' ' . $this->language['on_q'] . " '$sql_query'";	#####	cpgdb install
-			return false;
-		}
+        foreach($sql_query as $q) {
+            if (! mysql_query($q, $this->mysql_connection)) {
+                $this->error = $this->language['mysql_error'] . mysql_error($this->mysql_connection) . ' ' . $this->language['on_q'] . " '$q'";
+                return false;
+            }
+        }
 		return true;
 	}*/
 	###########################################    cpgdb install   ########################################
@@ -1917,14 +1856,26 @@ class CPGInstall{
 		// Insert the admin account
 		$sql_query .= sprintf($cpg_db_install_php['add_admin_user'], $this->config['db_prefix'], $this->config['admin_username'], 
 								md5($this->config['admin_password']), $this->config['admin_email']);
-		// Get a connection with the db.
+
+		// Set gallery admin mail
+		$sql_query .= sprintf($cpg_db_install_php['config_gallery_admin_email'], $this->config['admin_email']);
+
+    // Update table prefix
+		$sql_query = preg_replace('/CPG_/', $this->config['db_prefix'], $sql_query);
+
+		require_once('include/sql_parse.php');
+		$sql_query = remove_remarks($sql_query);
+		$sql_query = split_sql_file($sql_query, ';');
+        // Get a connection with the db.
 		if(!$this->checkSqlConnection()) {
 			return false;
 		}
-		if (!$cpginstall->query($sql_query)) {
-			$this->error = $this->language['sql_error'] . $cpginstall->Error . ' ' . $this->language['on_q'] . " '$sql_query'";
-			return false;
-		}
+        foreach($sql_query as $q) {
+            if (! $cpginstall->query($q)) {
+                $this->error = $this->language['sql_error'] . $cpginstall->Error . ' ' . $this->language['on_q'] . " '$q'";
+                return false;
+            }
+        }
 		return true;
 	}
 	##############################################################################################
@@ -1962,7 +1913,7 @@ class CPGInstall{
 		############################################    cpgdbal   #########################################
 		//	the auth mode is only for mssql
 		if ($this->config['dbservername'] == 'mssql') {
-			$authmode = "\$CONFIG['auth_mode'] =                      '{$this->config['auth_mode']}';		// Your mssql auth mode";
+			$authmode = "\$CONFIG['auth_mode'] =                      '{$this->config['auth_mode']}';      // Your mssql auth mode";
 		} else {
 			$authmode = '';
 		}
@@ -1973,7 +1924,7 @@ class CPGInstall{
 <?php
 // Coppermine configuration file
 // SQL configuration
-\$CONFIG['dbservername'] =					 '{$this->config['dbservername']}';	  // Your database servername
+\$CONFIG['dbservername'] =                   '{$this->config['dbservername']}';	  // Your database servername
 \$CONFIG['dbserver'] =                       '{$this->config['db_host']}';        // Your database server
 \$CONFIG['dbuser'] =                         '{$this->config['db_user']}';        // Your sql username
 \$CONFIG['dbpass'] =                         '{$this->config['db_password']}';    // Your sql password
@@ -1981,7 +1932,7 @@ class CPGInstall{
 {$authmode}
 
 // SQL TABLE NAMES PREFIX
-\$CONFIG['TABLE_PREFIX'] =                '{$this->config['db_prefix']}';
+\$CONFIG['TABLE_PREFIX'] =                   '{$this->config['db_prefix']}';
 $end_php_tag
 EOT;
 		//write config file to disk
@@ -2370,7 +2321,11 @@ class IMtest{
 	 * @param string $image_path
 	 */
 	function IMtest($IMpath, $image_path = ''){
-		$this->IMpath = $IMpath . 'convert';
+        // add trailing slash if necessary
+		if (!empty($IMpath) && !preg_match('|[/\\\\]\Z|', $IMpath)) {
+            $IMpath .= '/';
+		}
+        $this->IMpath = $IMpath . 'convert';
 		if($image_path != ''){
 			$this->image_path = $image_path;
 		}
@@ -2411,7 +2366,6 @@ class IMtest{
 		//create gif test image
 		$gif_command = '' . $this->IMpath . ' ' . $this->createImagePath('images/install/giftest.gif') . ' ' . $this->createImagePath('giftest_generated.jpg', true);
 		exec($gif_command, $output, $retval);
-		
 		if($retval){
 			//an error occured, add to array
 			$results['read_gif'] = array(

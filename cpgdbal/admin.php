@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $Source: /cvsroot/coppermine/devel/admin.php,v $
-  $Revision: 4369 $
+  $Revision: 4497 $
   $LastChangedBy: gaugau $
-  $Date: 2008-04-03 13:15:38 +0530 (Thu, 03 Apr 2008) $
+  $Date: 2008-06-03 19:59:30 +0530 (Tue, 03 Jun 2008) $
 **********************************************/
  
 define('IN_COPPERMINE', true);
@@ -187,26 +187,12 @@ if ($superCage->post->keyExists('restore_config')) { // user has chosen to facto
         $regexValidation = '1';
       }
       if ($superCage->post->keyExists('update_config') && $regexValidation == '1' && $evaluate_value != $CONFIG[$adminDataKey] && $CONFIG[$adminDataKey] !== stripslashes($evaluate_value) ) {
-        /*//  finally, all criteria have been met - let's write the updated data to the database
-		cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$evaluate_value' WHERE name = '$adminDataKey'");
-		// perform special tasks -- start
-		if ($adminDataKey == 'enable_encrypted_passwords' && $superCage->post->getInt('enable_encrypted_passwords') == 1 && $CONFIG['enable_encrypted_passwords'] == 0) { // encrypt the passwords -- start
-			cpg_db_query("update {$CONFIG['TABLE_USERS']} set user_password=md5(user_password);");
-		} // encrypt the passwords -- end	*/
+        //  finally, all criteria have been met - let's write the updated data to the database
+		//cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$evaluate_value' WHERE name = '$adminDataKey'");
 		########################################		DB		########################################
-		//  finally, all criteria have been met - let's write the updated data to the database
 		$cpgdb->query($cpg_db_admin_php['update_config_data'], $evaluate_value, $adminDataKey);
-		// perform special tasks -- start
-		if ($adminDataKey == 'enable_encrypted_passwords' && $superCage->post->getInt('enable_encrypted_passwords') == 1 && $CONFIG['enable_encrypted_passwords'] == 0) { // encrypt the passwords -- start
-			//get user_passwords
-			$cpgdb->query($cpg_db_admin_php['get_user_passwords']);
-			$rowset = $cpgdb->fetchRowSet();//print_r($rowset);exit;
-			foreach ($rowset as $row) {
-				$md5_user_pswd = md5($row['user_password']);
-				$cpgdb->query($cpg_db_admin_php['encrypt_passwords'], $md5_user_pswd, $row['user_id']);
-			}
-		} // encrypt the passwords -- end
 		###############################################################################################
+		// perform special tasks -- start
         if ($CONFIG['log_mode'] == CPG_LOG_ALL) { // write log -- start
                 log_write('CONFIG UPDATE SQL: '.
                           "UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$evaluate_value' WHERE name = '$adminDataKey'\n".
@@ -346,6 +332,13 @@ EOT;
       $labelWrapperStart = '';
       $labelWrapperEnd = '';
     }
+    if (!empty($value['warning'])) { // set warning text
+      $warningText = $value['warning'];
+      $warningPopUp = cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_admin_php[$key]))).'&amp;t='.urlencode(base64_encode(serialize(htmlspecialchars($value['warning'])))),500,250,'*');
+    } else {
+      $warningText = '';
+      $warningPopUp = '';
+    }
     
     if (empty($value['additional_description']))
     	$value['additional_description'] = '';
@@ -358,7 +351,7 @@ EOT;
                 <tr{$visibility}>
                   <td class="{$cellStyle}" width="60%">
                     <a name="{$key}"></a>
-                    {$labelWrapperStart}{$lang_admin_php[$key]} {$value['additional_description']}{$labelWrapperEnd}
+                    {$labelWrapperStart}{$lang_admin_php[$key]} {$value['additional_description']}{$warningPopUp}{$labelWrapperEnd}
                   </td>
                   <td class="{$cellStyle}" width="50%">
 EOT;
@@ -393,12 +386,6 @@ EOT;
     } else {
       $highlightFieldCSS = '';
     }
-    if (!empty($value['warning'])) { // set warning text
-      $warningText = $value['warning'];
-    } else {
-      $warningText = '';
-    }
-    
     
     // Different types of fields --- start
     if ($value['type'] == 'textfield') { // TEXTFIELD

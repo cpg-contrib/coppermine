@@ -11,9 +11,9 @@
 ##  ********************************************
 ##  Coppermine version: 1.5.0
 ##  $Source$
-##  $Revision: 4326 $
-##  $LastChangedBy: nibbler999 $
-##  $Date: 2008-03-09 23:25:42 +0530 (Sun, 09 Mar 2008) $
+##  $Revision: 4583 $
+##  $LastChangedBy: pvanrompay $
+##  $Date: 2008-06-18 06:33:59 +0530 (Wed, 18 Jun 2008) $
 ##  ********************************************
 
 #
@@ -27,7 +27,6 @@ INSERT INTO CPG_config VALUES ('ecards_more_pic_target', 'http://yoursite.tld/yo
 INSERT INTO CPG_config VALUES ('home_target', 'index.php');
 INSERT INTO CPG_config VALUES ('enable_zipdownload', '1');
 INSERT INTO CPG_config VALUES ('time_offset', '0');
-INSERT INTO CPG_config VALUES ('enable_encrypted_passwords','1');
 INSERT INTO CPG_config VALUES ('enable_help', '2');
 INSERT INTO CPG_config VALUES ('clickable_keyword_search', '1');
 INSERT INTO CPG_config VALUES ('enable_plugins', '1');
@@ -151,7 +150,7 @@ INSERT INTO CPG_config VALUES ('userpics', 'userpics/');
 INSERT INTO CPG_config VALUES ('normal_pfx', 'normal_');
 INSERT INTO CPG_config VALUES ('default_dir_mode', '0755');
 INSERT INTO CPG_config VALUES ('default_file_mode', '0644');
-INSERT INTO CPG_config values ('enable_watermark', '0');
+INSERT INTO CPG_config VALUES ('enable_watermark', '0');
 INSERT INTO CPG_config VALUES ('where_put_watermark', 'southeast');
 INSERT INTO CPG_config VALUES ('watermark_file', 'images/watermark.png');
 INSERT INTO CPG_config VALUES ('which_files_to_watermark', 'both');

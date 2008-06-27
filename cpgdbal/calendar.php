@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4224 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-01-26 17:12:00 +0530 (Sat, 26 Jan 2008) $
+  $Revision: 4578 $
+  $LastChangedBy: nibbler999 $
+  $Date: 2008-06-16 01:29:16 +0530 (Mon, 16 Jun 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -53,11 +53,11 @@ class MyCalendar extends Calendar {
 		$superCage = Inspekt::makeSuperCage();
 
 		$date=sprintf('%s-%02s-%02s',$year,$month,$day);
-		/*$query = "SELECT COUNT(pid) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND substring(from_unixtime(ctime),1,10) = '".substr($date,0,10)."' $META_ALBUM_SET";
+		/*$query = "SELECT COUNT(pid) from {$CONFIG['TABLE_PICTURES']} AS p WHERE approved = 'YES' AND substring(from_unixtime(ctime),1,10) = '".substr($date,0,10)."' $FORBIDDEN_SET";
 		$result = cpg_db_query($query);
 		$nb_pics = mysql_result($result, 0, 0);	*/
 		#################################         DB      ###################################
-		$cpgdb->query($cpg_db_calender_php['get_date_link'], substr($date,0,10), $META_ALBUM_SET);
+		$cpgdb->query($cpg_db_calender_php['get_date_link'], substr($date,0,10), $FORBIDDEN_SET);
 		$row = $cpgdb->fetchRow();
 		$nb_pics = $row['count'];
 		############################################################################

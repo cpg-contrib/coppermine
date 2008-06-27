@@ -11,9 +11,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $Source$
-  $Revision: 4286 $
+  $Revision: 4532 $
   $LastChangedBy: gaugau $
-  $Date: 2008-02-20 17:54:19 +0530 (Wed, 20 Feb 2008) $
+  $Date: 2008-06-12 20:42:02 +0530 (Thu, 12 Jun 2008) $
 **********************************************/
 
 /* Colors used in this style sheet:
@@ -177,7 +177,6 @@ a:active {
 
 .maintable {
         border: 1px solid #0E72A4;
-/*        background-color: #FFFFFF;*/
         background-color: #efefef;
         margin-top: 1px;
         margin-bottom: 1px;

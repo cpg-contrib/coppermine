@@ -83,7 +83,7 @@ class cpg_udb extends core_udb {
 		if ($CONFIG['dbservername'] == 'mysql') {
 			$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
 			$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
-		} else {	//////	for MSSQL	//////
+		} elseif($CONFIG['dbservername'] == 'mssql') {	//////	for MSSQL	//////
 			$this->usertable = $this->db['name'] ."." .dbo ."." .$this->db['prefix'] . $this->table['users'];
 			$this->groupstable =   $this->db['name'] . "." .dbo ."." .$this->db['prefix'] . $this->table['groups'];
 		}
@@ -267,6 +267,7 @@ class cpg_udb extends core_udb {
 		$superCage = Inspekt::makeSuperCage();
 		//if (isset($_COOKIE['xmbpw']) && isset($_COOKIE['xmbuser'])){
 		//	return array($this->get_user_id($_COOKIE['xmbuser']), $_COOKIE['xmbpw']);
+		// Using getRaw() for getting cookie
 		if ($superCage->cookie->keyExists('xmbpw') && $superCage->cookie->keyExists('xmbuser')){
 			return array($this->get_user_id($superCage->cookie->getRaw('xmbuser'), $superCage->cookie->getRaw('xmbpw')));
 		} else {

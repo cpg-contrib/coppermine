@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4254 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-02-09 09:23:16 +0100 (Sa, 09 Feb 2008) $
+  $Revision: 4502 $
+  $LastChangedBy: pvanrompay $
+  $Date: 2008-06-06 03:51:20 +0530 (Fri, 06 Jun 2008) $
 **********************************************/
 
 $name = $lang_plugin_php['opensearch_config_name'];

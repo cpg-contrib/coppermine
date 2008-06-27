@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4444 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-05-03 13:01:57 +0530 (Sat, 03 May 2008) $
+  $Revision: 4584 $
+  $LastChangedBy: pvanrompay $
+  $Date: 2008-06-18 06:47:04 +0530 (Wed, 18 Jun 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -254,7 +254,7 @@ EOT;
 
 function form_alb_thumb($text, $name)
 {
-    global $CONFIG, $ALBUM_DATA, $CLEAN, $lang_modifyalb_php,$USER_DATA, $cpg_db_modifyalb_php;
+    global $CONFIG, $ALBUM_DATA, $CLEAN, $lang_modifyalb_php, $USER_DATA, $cpg_db_modifyalb_php;
 	#####################      DB      ######################	
 	$cpgdb =& cpgDB::getInstance();
 	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
@@ -262,17 +262,19 @@ function form_alb_thumb($text, $name)
 
     $cpg_nopic_data = cpg_get_system_thumb('nopic.jpg',$USER_DATA['user_id']);
 
+    $keyword = '';
 	if ($ALBUM_DATA['keyword']) {
-		$keyword = "OR (keywords like '%{$ALBUM_DATA['keyword']}%')";
+		$keyword = "OR (keywords LIKE '%{$ALBUM_DATA['keyword']}%')";
 	}
-	/*$results = cpg_db_query("SELECT pid, filepath, filename, url_prefix FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='{$CLEAN['album']}' $keyword AND approved='YES' ORDER BY filename");
-	if (mysql_num_rows($results) == 0) */
+    /*$query = "SELECT pid, filepath, filename, url_prefix FROM {$CONFIG['TABLE_PICTURES']} WHERE approved='YES' AND ( aid='{$CLEAN['album']}' $keyword ) ORDER BY filename";
+
+    $results = cpg_db_query($query);
+    if (mysql_num_rows($results) == 0) {*/
 	#####################################        DB        ###################################
 	$cpgdb->query($cpg_db_modifyalb_php['form_alb_thumb_get_pic'], $CLEAN['album'], $keyword);
 	$rowset = $cpgdb->fetchRowSet();
-	if (count($rowset) == 0)
+	if (count($rowset) == 0) {
 	################################################################################
-	{
         echo <<<EOT
         <tr>
                 <td class="tableb" valign="top">
@@ -681,7 +683,8 @@ function alb_list_box()
 				'title' => $row['title'],
 			);	
 		}
-		mysql_free_result($result);
+		//mysql_free_result($result);
+		$cpgdb->free();	######	cpgdbAL
 	}
 	
 	// Sort by category and album title
@@ -842,6 +845,9 @@ if (GALLERY_ADMIN_MODE) {
 	if (!$files) { $files = 0; }
 	$cpgdb->free();
 	######################################################################
+
+    // missing $comments
+    $comments = '';
 
     echo <<<EOT
     <br />

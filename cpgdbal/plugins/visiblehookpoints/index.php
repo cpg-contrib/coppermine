@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $Source: /cvsroot/coppermine/devel/admin.php,v $
-  $Revision: 3995 $
-  $LastChangedBy: gaugau $
-  $Date: 2007-10-08 19:16:55 +0200 (Mo, 08 Okt 2007) $
+  $Revision: 4502 $
+  $LastChangedBy: pvanrompay $
+  $Date: 2008-06-06 03:51:20 +0530 (Fri, 06 Jun 2008) $
 **********************************************/
 
 

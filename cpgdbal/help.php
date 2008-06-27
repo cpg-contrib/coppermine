@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 3241 $
-  $LastChangedBy: gaugau $
-  $Date: 2006-08-18 08:52:27 +0200 (Fr, 18 Aug 2006) $
+  $Revision: 4607 $
+  $LastChangedBy: pvanrompay $
+  $Date: 2008-06-19 05:06:52 +0530 (Thu, 19 Jun 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -22,7 +22,7 @@ define('HELP_PHP', true);
 require('include/init.inc.php');
 
 // set charset
-$meta_charset = '<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />';
+$meta_charset = '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />';
 
 // Get the vars from the url
 if ($superCage->get->keyExists('as')) {
@@ -108,13 +108,27 @@ if ($close != 1) {
 $close_link = '<br />&nbsp;<br /><div align="center"><a href="#" class="admin_menu" onclick="window.close();">'.$lang_common['close'].'</a><br />&nbsp;</div>';
 }
 
+// Determine the language of the user and display the help file in his language if available. 
+// Fall back to English if the file is not available in his/her language.
+// This should be done at a later stage in an i18n table. For now, let's do a straightforward if/then.
+if ($CONFIG['lang'] == 'german') {
+    $help_lang = 'de';
+} elseif ($CONFIG['lang'] == 'french') {
+    $help_lang = 'fr';
+} else {
+    $help_lang = 'en';
+}
+// Make sure that the chosen help file actually exists
+if (file_exists('docs/'.$help_lang.'/'.$file) != TRUE) {
+    $help_lang = 'en';
+}
+
 ob_start();
-@include('docs/'.$file);
+@include('docs/'.$help_lang.'/'.$file);
 $string = ob_get_contents();
 ob_end_clean();
 
 // manipulate the string according to settings
-
 
 if ($anchor_start != '') {
     $pattern = '<a name="' . $anchor_start . '"></a>';

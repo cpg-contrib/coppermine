@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4268 $
-  $LastChangedBy: saweyyy $
-  $Date: 2008-02-12 18:07:29 +0530 (Tue, 12 Feb 2008) $
+  $Revision: 4497 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-06-03 19:59:30 +0530 (Tue, 03 Jun 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -417,10 +417,8 @@ if ($superCage->post->keyExists('change_password') && USER_ID && UDB_INTEGRATION
     if (utf_strlen($new_pass) < 2) cpg_die(ERROR, $lang_register_php['err_password_short'], __FILE__, __LINE__);
     if ($new_pass != $new_pass_again) cpg_die(ERROR, $lang_register_php['err_password_mismatch'], __FILE__, __LINE__);
 
-  if ($CONFIG['enable_encrypted_passwords']) {
     $new_pass = md5($new_pass);
     $current_pass = md5($current_pass);
-  }
 
     /*$sql = "UPDATE {$cpg_udb->usertable} SET " .
            $cpg_udb->field['password']." = '$new_pass' " .

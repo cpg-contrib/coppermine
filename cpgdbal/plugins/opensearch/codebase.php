@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4254 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-02-09 09:23:16 +0100 (Sa, 09 Feb 2008) $
+  $Revision: 4502 $
+  $LastChangedBy: pvanrompay $
+  $Date: 2008-06-06 03:51:20 +0530 (Fri, 06 Jun 2008) $
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
@@ -90,9 +90,9 @@ function opensearch_install() {
 
 	// There's no real sanitization here yet (should be added) - we only rely on this screen being admin-only
 	$data = array(
-		'{SHORT_NAME}' => substr($superCage->post->getRaw('os_name'), 0, 16),
-		'{DESCRIPTION}' => substr($superCage->post->getRaw('os_desc'), 0, 1024),
-		'{SITE_URL}' => $superCage->post->getRaw('os_url'),
+		'{SHORT_NAME}' => substr($superCage->post->getEscaped('os_name'), 0, 16),
+		'{DESCRIPTION}' => substr($superCage->post->getEscaped('os_desc'), 0, 1024),
+		'{SITE_URL}' => $superCage->post->getEscaped('os_url'),
 	);
 	
 	$content = str_replace(array_keys($data), array_values($data), $content);

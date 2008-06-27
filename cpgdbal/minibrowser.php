@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4224 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-01-26 17:12:00 +0530 (Sat, 26 Jan 2008) $
+  $Revision: 4605 $
+  $LastChangedBy: nibbler999 $
+  $Date: 2008-06-19 01:41:15 +0530 (Thu, 19 Jun 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -131,6 +131,10 @@ if ($superCage->get->keyExists('radio')){
 		$radio= rawurldecode($superCage->post->getInt('radio'));
 } else {
 		$radio = '0';
+}
+
+if ($superCage->get->keyExists('limitfolder') && $matches = $superCage->get->getMatched('limitfolder','/^[0-9A-Za-z\/_-]+$/')) {
+	$limitfolder = $matches[0];
 }
 
 $newline = "\n";

@@ -68,7 +68,7 @@ class cpg_udb extends core_udb {
 			$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
 			$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
 			$this->usergroupstable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['usergroups'];
-		} else {
+		} elseif($CONFIG['dbservername'] == 'mssql') {
 			$this->usertable = $this->db['name'] ."." .dbo ."." .$this->db['prefix'] . $this->table['users'];
 			$this->groupstable =   $this->db['name'] . "." .dbo ."." .$this->db['prefix'] . $this->table['groups'];
 			$this->usergroupstable =   $this->db['name'] ."." .dbo .".". $this->db['prefix'] . $this->table['usergroups'];

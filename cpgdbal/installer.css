@@ -11,9 +11,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $Source$
-  $Revision: 4224 $
+  $Revision: 4576 $
   $LastChangedBy: gaugau $
-  $Date: 2008-01-26 17:12:00 +0530 (Sat, 26 Jan 2008) $
+  $Date: 2008-06-13 21:09:29 +0530 (Fri, 13 Jun 2008) $
 **********************************************/
 
 body {
@@ -74,7 +74,8 @@ a:hover {
         padding-top: 3px;
         padding-right: 10px;
         padding-bottom: 3px;
-        padding-left: 2px;
+        padding-left: 10px;
+        font-weight:bold;
 }
 
 .tableh2 {
@@ -89,35 +90,39 @@ a:hover {
 
 .tableb {
         background: #EFEFEF ;
-        padding-top: 8px;
+        padding-top: 3px;
         padding-right: 10px;
-        padding-bottom: 8px;
-        padding-left: 2px;
-        border: 1px black solid;
+        padding-bottom: 3px;
+        padding-left: 10px;
+        border: 1px solid #0E72A4;
+}
+
+.tableb_alternate {
+        background: #E4E4E4;
+}
+
+.tablef {
+        background: #D1D7DC;
+        padding-top: 10px;
+        padding-right: 10px;
+        padding-bottom: 10px;
+        padding-left: 10px;
+        border: 1px solid #0E72A4;
 }
 
 .updatesOK {
-        background: #EFEFEF ;
-        padding-top: 8px;
-        padding-right: 10px;
-        padding-bottom: 8px;
-        padding-left: 2px;
         font-weight: bold;
         color: green;
 }
 
 .updatesFail {
-        background: #EFEFEF ;
-        padding-top: 8px;
-        padding-right: 10px;
-        padding-bottom: 8px;
-        padding-left: 2px;
 }
 
 .maintable {
         border: 1px solid #0E72A4;
-        background-color: #FFFFFF;
-        margin: 2px;
+        background-color: #efefef;
+        margin-top: 1px;
+        margin-bottom: 1px;
 }
 
 .charsetchecktable

@@ -28,7 +28,7 @@ if (!$superCage->get->keyExists('data')) {
 }
 
 /**
- * Clean up GPC and other Globals here
+ * Clean up GPC and other Globals here. Using getRaw() as we have custom sanitization code below.
  */
 $tmpData['data'] = @unserialize(@base64_decode($superCage->get->getRaw('data')));
 
@@ -57,7 +57,7 @@ if ((!is_array($CLEAN['data'])) && $CONFIG['log_ecards'] && (strlen($CLEAN['data
 		#################################       DB     ##################################
 		$cpgdb->query($cpg_db_displayecard_php['get_ecard_link'], $CLEAN['data']."%");
 		$rowset = $cpgdb->fetchRowSet();
-		if (count($rowset) == 1) {
+		if (count($rowset) === 1) {
 			$row = $rowset[0];
 			$CLEAN['data']= @unserialize(@base64_decode($row['link']));
 		}
@@ -75,7 +75,7 @@ $row = mysql_fetch_array($result);	*/
 ############################         DB        #############################
 $cpgdb->query($cpg_db_displayecard_php['get_pic_dimensions'], $CLEAN['data']['pid']);
 $rowset = $cpgdb->fetchRowSet();
-if (count($rowset)) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
+if (!count($rowset)) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
 $row = $rowset[0];
 ##################################################################
 if ($row['pwidth'] != 0 && $row['pheight'] != 0) {

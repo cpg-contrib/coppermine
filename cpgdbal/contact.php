@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 3846 $
-  $LastChangedBy: gaugau $
-  $Date: 2007-08-17 14:11:37 +0200 (Fr, 17 Aug 2007) $
+  $Revision: 4502 $
+  $LastChangedBy: pvanrompay $
+  $Date: 2008-06-06 03:51:20 +0530 (Fri, 06 Jun 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -48,10 +48,10 @@ if ($superCage->post->keyExists('submit')) {
   /**
    * Using getRaw() for most of the following statements
    */
-  $user_name = $superCage->post->getRaw('sender_name');
-  $email_address = $superCage->post->getRaw('sender_email');
-  $subject =  $superCage->post->getRaw('subject');
-  $message =  $superCage->post->getRaw('message');
+  $user_name = $superCage->post->noTags('sender_name');
+  $email_address = ($matches = $superCage->post->getMatched('sender_email', '^([a-zA-Z0-9]((\.|\-|\_){0,1}[a-zA-Z0-9]){0,})@([a-zA-Z]((\.|\-){0,1}[a-zA-Z0-9]){0,})\.([a-zA-Z]{2,4})$')) ? $matches[0] : '';
+  $subject =  $superCage->post->noTags('subject');
+  $message =  $superCage->post->noTags('message');
   $captcha = ($matches = $superCage->post->getMatched('captcha', '/^[a-zA-Z0-9]+$/')) ? $matches[0] : '';
 
   // sanitize user-input

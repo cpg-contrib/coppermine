@@ -82,7 +82,7 @@ class cpg_udb extends core_udb {
 		// Derived full table names
 		if ($CONFIG['dbservername'] == 'mysql') {
 			$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
-		} else {	//////	for MSSQL	//////
+		} elseif($CONFIG['dbservername'] == 'mssql') {	//////	for MSSQL	//////
 			$this->usertable = $this->db['name'] ."." .dbo ."." .$this->db['prefix'] . $this->table['users'];
 		}
 		#############################################################################################
@@ -120,12 +120,13 @@ class cpg_udb extends core_udb {
 	// definition of how to extract id, name, group from a session cookie
 	function session_extraction()
 	{
-		global $cpg_db_punbb115_inc	######	cpgdb_AL
+		global $cpg_db_punbb115_inc;	######	cpgdb_AL
 		$superCage = Inspekt::makeSuperCage();
 		$row = false; //array('id' => 0, 'username' => 'Guest', 'status' => -1);
 		
         //if (isset($_COOKIE[$this->cookie_name])) {
 		//	list($username, $pass_hash) = unserialize($_COOKIE[$this->cookie_name]);
+		// Using getRaw() for getting cookie.
 		if ($superCage->cookie->keyExists($this->cookie_name)) {
 			list($username, $pass_hash) = unserialize($superCage->cookie->getRaw($this->cookie_name));
 			if (strcasecmp($username, 'Guest'))

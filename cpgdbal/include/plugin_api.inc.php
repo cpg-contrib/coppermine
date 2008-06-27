@@ -148,7 +148,7 @@ class CPGPluginAPI {
             if (mysql_num_rows($result) == 0) {*/
             #######################  DB  ##########################
             $cpgdb->query($cpg_db_plugin_api_inc['get_installed_plugin'], $plugin_folder);
-			$cpgdb->fetchRowSet();
+			$rowset = $cpgdb->fetchRowSet();
             // If the plugin isn't in the database store a false value in the array
             if (count($rowset) == 0) {
 			#####################################################

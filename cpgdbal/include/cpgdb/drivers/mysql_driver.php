@@ -248,15 +248,17 @@ class cpgDB {
      */
     function nextRecord()
     {
-        if (!$this->Query_ID) {
+        if (!$this->Query_ID && $this->update != TRUE) {
             $this->halt('nextRecord called with no query pending.');
             return 0;
         } 
 
-        $this->Record = @mysql_fetch_array($this->Query_ID, MYSQL_ASSOC);
-        $this->Row += 1;
-        $this->Errno = mysql_errno();
-        $this->Error = mysql_error();
+        if ($this->update != TRUE) {
+            $this->Record = @mysql_fetch_array($this->Query_ID, MYSQL_ASSOC);
+            $this->Row += 1;
+            $this->Errno = mysql_errno();
+            $this->Error = mysql_error();
+		}
 
         $stat = is_array($this->Record);
         if (!$stat && $this->Auto_Free) {
@@ -606,9 +608,13 @@ class cpgDB {
 	function escape($str_to_escape)
 	{
 		if (get_magic_quotes_gpc()) {
-			$escape_str = stripslashes($str_to_escape);
+			$str_to_escape = stripslashes($str_to_escape);
 		}
-		return mysql_real_escape_string($str_to_escape);
+		if (defined('INSTALL_PHP') || defined('UPDATE_PHP')) {
+			return addslashes($str_to_escape);
+		} else {
+			return mysql_real_escape_string($str_to_escape);
+		}
 	}
 
 	/**

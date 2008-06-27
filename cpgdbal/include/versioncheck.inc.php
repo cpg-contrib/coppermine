@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4224 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-01-26 12:42:00 +0100 (Sa, 26 Jan 2008) $
+  $Revision: 4502 $
+  $LastChangedBy: pvanrompay $
+  $Date: 2008-06-06 03:51:20 +0530 (Fri, 06 Jun 2008) $
 **********************************************/
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 
@@ -701,7 +701,7 @@ function cpgVersioncheckConnectRepository($displayOption_array = '') {
     // Perform the repository lookup and xml creation --- start
     //$displayOption_array['do_not_connect_to_online_repository'] = 1;
     $majorVersion = 'cpg'.str_replace('.' . ltrim(substr(COPPERMINE_VERSION,strrpos(COPPERMINE_VERSION,'.')),'.'), '', COPPERMINE_VERSION).'.x';
-    $remoteURL = 'http://coppermine-gallery.enet/' . str_replace('.', '', $majorVersion) . '.files.xml';
+    $remoteURL = 'http://coppermine-gallery.net/' . str_replace('.', '', $majorVersion) . '.files.xml';
     $localFile = 'include/' . str_replace('.', '', $majorVersion) . '.files.xml';
     $remoteConnectionFailed = '';
     if ($displayOption_array['do_not_connect_to_online_repository'] == 0) { // connect to the online repository --- start

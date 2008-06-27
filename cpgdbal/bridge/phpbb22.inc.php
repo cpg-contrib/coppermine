@@ -83,7 +83,7 @@ class cpg_udb extends core_udb {
 		$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
 		$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
 		$this->sessionstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['sessions'];
-		} else {
+		} elseif($CONFIG['dbservername'] == 'mssql') {
 			$this->usertable = $this->db['name'] ."." .dbo ."." .$this->db['prefix'] . $this->table['users'];
 			$this->groupstable =   $this->db['name'] . "." .dbo ."." .$this->db['prefix'] . $this->table['groups'];
 			$this->sessionstable =   $this->db['name'] ."." .dbo .".". $this->db['prefix'] . $this->table['sessions'];
@@ -167,6 +167,7 @@ class cpg_udb extends core_udb {
 
         //if (isset($_COOKIE[$this->cookie_name.'_data'])){
 		//	$sessiondata = unserialize($_COOKIE[$this->cookie_name.'_data']);
+		// Using getRaw() for cookie extraction
 		if ($superCage->cookie->keyExists($this->cookie_name.'_data')){
 			$sessiondata = unserialize($superCage->cookie->getRaw($this->cookie_name.'_data'));
 			$id = $sessiondata['userid'] > 1 ? intval($sessiondata['userid']) : 0;

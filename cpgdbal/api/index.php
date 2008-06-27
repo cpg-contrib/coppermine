@@ -22,9 +22,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 3513 $
-  $LastChangedBy: gaugau $
-  $Date: 2007-04-27 10:03:57 +0200 (Fr, 27 Apr 2007) $
+  $Revision: 4502 $
+  $LastChangedBy: pvanrompay $
+  $Date: 2008-06-06 03:51:20 +0530 (Fri, 06 Jun 2008) $
 **********************************************/
 $function = $_POST['function'];
 $fp = fopen("post.txt", "w");

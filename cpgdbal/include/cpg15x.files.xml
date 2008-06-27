@@ -786,6 +786,7 @@
     <status>mandatory</status>
     <permission>read</permission>
   </element>
+  <!--
   <element>
     <fullpath>docs/admin_menu.htm</fullpath>
     <version>1.5.0</version>
@@ -969,13 +970,14 @@
     <status>mandatory</status>
     <permission>read</permission>
     <hash>511a9b1fa13c294c64d784a7bd673a00</hash>
-  </element>
+  </element>	-->	<!-- comented due to change in paths or non existance -->
   <element>
     <fullpath>docs/favicon.ico</fullpath>
     <status>optional</status>
     <permission>read</permission>
     <hash>d4a3ff2913c085f7931ae54dc470599d</hash>
   </element>
+  <!--
   <element>
     <fullpath>docs/files.htm</fullpath>
     <version>1.5.0</version>
@@ -1095,7 +1097,7 @@
     <status>mandatory</status>
     <permission>read</permission>
     <hash>21d616562ee6e0c8270c32e1ab0a0dc2</hash>
-  </element>
+  </element>	-->	<!-- comented due to change in paths or non existance -->
   <element>
     <fullpath>docs/print.css</fullpath>
     <version>1.5.0</version>
@@ -1104,6 +1106,7 @@
     <permission>read</permission>
     <hash>2828533018e2d4dc808b931812e8f3ea</hash>
   </element>
+  <!--
   <element>
     <fullpath>docs/quickstart.htm</fullpath>
     <version>1.5.0</version>
@@ -1119,7 +1122,7 @@
     <status>mandatory</status>
     <permission>read</permission>
     <hash>ced8098c49f15eda43222bd34b6506d7</hash>
-  </element>
+  </element>	-->	<!-- commented due to change in paths or non existance-->
   <element>
     <fullpath>docs/screen.css</fullpath>
     <version>1.5.0</version>
@@ -1136,6 +1139,7 @@
     <permission>read</permission>
     <hash>0cc14c054ef9508dcd8927528abd8116</hash>
   </element>
+  <!--
   <element>
     <fullpath>docs/start.htm</fullpath>
     <version>1.5.0</version>
@@ -1143,7 +1147,7 @@
     <status>mandatory</status>
     <permission>read</permission>
     <hash>24e44f0dbac7bfe10aade50ac8cdc0bb</hash>
-  </element>
+  </element>	-->	<!-- commented due to change in paths or non existance-->
   <element>
     <fullpath>docs/style.css</fullpath>
     <version>1.5.0</version>
@@ -1152,6 +1156,7 @@
     <permission>read</permission>
     <hash>952c37b5255ae12c6f0f8d77584e46bf</hash>
   </element>
+  <!--
   <element>
     <fullpath>docs/testing.htm</fullpath>
     <version>1.5.0</version>
@@ -1914,7 +1919,7 @@
     <status>mandatory</status>
     <permission>read</permission>
     <hash>31586bba903dc09ac2c4277206e32578</hash>
-  </element>
+  </element>	-->	<!--commented due to change in paths or non existance -->
   <element>
     <fullpath>images/</fullpath>
     <status>mandatory</status>
