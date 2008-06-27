@@ -570,7 +570,8 @@ d.add(15040,13500,'Some config options get disabled','bridging.htm#integrating_c
 d.add(15060,13500,'Bridging files','bridging.htm#integrating_files_start');
 d.add(15080,13500,'Creating a custom bridge file','bridging.htm#integrating_bridge_file_creating_start');
 d.add(15200,0,'Developer documentation','dev.htm');
-d.add(15300,15200,'Sanitization Superglobals (Inspekt)','dev_superglobals.htm');
+d.add(15300,15200,'Coding guidelines','dev_coding.htm');
+d.add(15310,15200,'Sanitization Superglobals (Inspekt)','dev_superglobals.htm');
 d.add(15350,15200,'Javascript in Coppermine','dev_javascript.htm');
 d.add(15400,15200,'Writing Plugins for Coppermine','dev_plugins.htm');
 d.add(15450,15400,'Quick Start Guide','dev_plugin_writing.htm');
