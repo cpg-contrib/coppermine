@@ -152,6 +152,11 @@ EOT;
         </div>
 
         </form>
+        <script language="javascript" type="text/javascript">
+            <!--
+            document.cpgform.user.focus();
+            -->
+        </script>
 
 <?php
 }
