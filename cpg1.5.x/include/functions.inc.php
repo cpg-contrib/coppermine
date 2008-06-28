@@ -1017,12 +1017,12 @@ function build_caption(&$rowset,$must_have=array())
       $rating = round(($row['pic_rating'] / 2000) / (5/$CONFIG['rating_stars_amount']));
       $rating_images = '';
       while ($i <= $CONFIG['rating_stars_amount']) {
-        $i++;
         if ($i <= $rating) {
           $rating_images .= '<img src="' . $prefix . 'images/rate_full.gif" alt="' . $rating . '"/>';
         } else {
           $rating_images .= '<img src="' . $prefix . 'images/rate_empty.gif" alt="' . $rating . '"/>';
         }
+        $i++;
       }
             $caption .= "<span class=\"thumb_caption\">". $rating_images .'<br />'.sprintf($lang_get_pic_data['n_votes'], $row['votes']).'</span>';
         }
