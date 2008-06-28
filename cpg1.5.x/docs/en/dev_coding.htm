@@ -64,6 +64,68 @@
 
 <a name="dev_coding_php"></a><h2>PHP code<a href="#dev_coding_php" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 
+<a name="dev_coding_formatting"></a><h3>Formatting<a href="#dev_coding_formatting" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+
+<ul>
+    <li>Equals sign should be aligned with surrounding elements<br />
+    <div class="quote">
+        Bad example:
+        <pre class="code">
+$pic_title = 'My picture';
+$album = 'lastup';
+$update_time = true;
+        </pre>
+        Good Example:
+        <pre class="code">
+$pic_title   = 'My picture';
+$album       = 'lastup';
+$update_time = true;
+        </pre>
+    </div>
+    </li>
+    <li>Array with multiple values cannot be declared on a single line. However if there is only one value then it can be declared in same line</li>
+    <li>Always put comma after last value in array declaration</li>
+    <li>Always allign array double arrow in a single line and there should be a single space after the arrow (before value)</li>
+    <li>Each line in an array declaration must end in a comma<br />
+    <div class="quote">
+        Bad examples:
+        <pre class="code">
+$foo = array('one', 'two', 'three');
+
+$bar = array(
+'one' => 1, 'two' => 3,
+'three' => 3
+);
+
+$multi = array('first' => 'one', 'second' => array('2'), 'third' => array('foo' => 'bar', 'hello' => 'world'));
+        </pre>
+        Good Examples:
+        <pre class="code">
+$foo = array(
+        'one',
+        'two',
+        'three',
+       );
+
+$bar = array(
+        'one'   => 1,
+        'two'   => 2,
+        'three' => 3,
+       );
+       
+$multi = array(
+          'first'  => 'one',
+          'second' => array('2'), // Since it is just one value in array, it can be declared in same line
+          'third'  => array(
+                       'foo'   => 'bar',
+                       'hello' => 'world',
+                      )
+         );
+        </pre>
+    </div>
+    </li>
+</ul>
+
 <a name="dev_coding_control_structures"></a><h3>Control Structures<a href="#dev_coding_control_structures" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>These include <tt class="code">if</tt>, <tt class="code">for</tt>, <tt class="code">while</tt>, <tt class="code">switch</tt>.</p>
 <ul>
@@ -88,6 +150,8 @@
 <a name="dev_coding_function_definitions"></a><h3>Function Definitions<a href="#dev_coding_function_definitions" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <ul>
     <li>Function definitions follow the "one true brace" convention:<pre class="code">&lt;?php
+    
+    
 function fooFunction($arg1, $arg2 = '')
 {
     if (condition) {
@@ -95,7 +159,11 @@ function fooFunction($arg1, $arg2 = '')
     }
     return $val;
 }
+
+
 ?&gt;</pre></li>
+    <li>Arguments with default values must be at the end of the argument list</li>
+    <li>There should be two blank lines above and below the function declration</li>
     <li>Do not use functions that do not exist in PHP4.3 or lower (and don't use functions that have been removed later either!) unless you define them for those versions.</li>
 </ul>
 

@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-06-28 [D] Added formatting instructions in coding guidelines {Abbas}
 2008-06-28 [B] Fixed the typo bug in editpics and star rating info calculation in functions.inc {Abbas}
 2008-06-27 [D] Added coding guidelines to documentation {GauGau}
 2008-06-19 [A] New javascript based multi-processing queue for batch add {Nibbler}
