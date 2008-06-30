@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4583 $
-  $LastChangedBy: pvanrompay $
-  $Date: 2008-06-18 06:33:59 +0530 (Wed, 18 Jun 2008) $
+  $Revision: 4645 $
+  $LastChangedBy: abbas-ali $
+  $Date: 2008-06-28 10:32:31 +0530 (Sat, 28 Jun 2008) $
 **********************************************/
 
 /**
@@ -25,7 +25,7 @@
 * @copyright 2002-2007 Gregory DEMAR, Coppermine Dev Team
 * @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
 * @package Coppermine
-* @version  $Id: functions.inc.php 4583 2008-06-18 01:03:59Z pvanrompay $
+* @version  $Id: functions.inc.php 4645 2008-06-28 05:02:31Z abbas-ali $
 */
 
 /**
@@ -1110,7 +1110,6 @@ function build_caption(&$rowset,$must_have=array())
       $rating = round(($row['pic_rating'] / 2000) / (5/$CONFIG['rating_stars_amount']));
       $rating_images = '';
       while ($i <= $CONFIG['rating_stars_amount']) {
-        //$i++;
         if ($i <= $rating) {
           $rating_images .= '<img src="' . $prefix . 'images/rate_full.gif" alt="' . $rating . '"/>';
         } else {

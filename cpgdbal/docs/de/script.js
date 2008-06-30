@@ -10,9 +10,9 @@
 
   ********************************************
   Coppermine version: 1.5.0
-  $Revision: 4514 $
+  $Revision: 4643 $
   $LastChangedBy: gaugau $
-  $Date: 2008-06-09 21:38:41 +0530 (Mon, 09 Jun 2008) $
+  $Date: 2008-06-27 21:55:35 +0530 (Fri, 27 Jun 2008) $
 **********************************************/
 
 
@@ -569,7 +569,8 @@ d.add(7500,5800,'Wartungs-Einstellungen','configuration.htm#admin_misc');
 //d.add(15060,13500,'Bridging files','bridging.htm#integrating_files_start');
 //d.add(15080,13500,'Creating a custom bridge file','bridging.htm#integrating_bridge_file_creating_start');
 //d.add(15200,0,'Developer documentation','dev.htm');
-//d.add(15300,15200,'Sanitization Superglobals (Inspekt)','dev_superglobals.htm');
+//d.add(15300,15200,'Coding guidelines','dev_coding.htm');
+//d.add(15310,15200,'Sanitization Superglobals (Inspekt)','dev_superglobals.htm');
 //d.add(15350,15200,'Javascript in Coppermine','dev_javascript.htm');
 //d.add(15400,15200,'Plugin Writing','dev_plugin_writing.htm');
 //d.add(15500,15200,'Plugin hooks','dev_plugin_hooks.htm');

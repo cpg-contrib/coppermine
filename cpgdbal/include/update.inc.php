@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4532 $
+  $Revision: 4638 $
   $LastChangedBy: gaugau $
-  $Date: 2008-06-12 20:42:02 +0530 (Thu, 12 Jun 2008) $
+  $Date: 2008-06-27 16:48:10 +0530 (Fri, 27 Jun 2008) $
 **********************************************/
 
 
@@ -154,6 +154,11 @@ EOT;
         </div>
 
         </form>
+        <script language="javascript" type="text/javascript">
+            <!--
+            document.cpgform.user.focus();
+            -->
+        </script>
 
 <?php
 }

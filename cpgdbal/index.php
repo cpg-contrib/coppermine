@@ -896,7 +896,7 @@ function list_albums()
 	#############################################
 
     if (USER_ADMIN_MODE && $cat == (USER_ID + FIRST_USER_CAT)) {
-        $sql = 'SELECT a.aid, a.title, a.description, a.thumb, category, visibility, filepath, ' . 'filename, url_prefix, pwidth, pheight ' . 'FROM ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' . 'LEFT JOIN ' . $CONFIG['TABLE_PICTURES'] . ' as p ' . 'ON a.thumb=p.pid ' . 'WHERE a.owner=' . $USER_DATA['user_id'] . $album_filter . ' ORDER BY a.category DESC , a.pos ' . $limit;
+        /*$sql = 'SELECT a.aid, a.title, a.description, a.thumb, category, visibility, filepath, ' . 'filename, url_prefix, pwidth, pheight ' . 'FROM ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' . 'LEFT JOIN ' . $CONFIG['TABLE_PICTURES'] . ' as p ' . 'ON a.thumb=p.pid ' . 'WHERE a.owner=' . $USER_DATA['user_id'] . $album_filter . ' ORDER BY a.category DESC , a.pos ' . $limit;
         $alb_thumbs_q = cpg_db_query($sql);
         $alb_thumbs = cpg_db_fetch_rowset($alb_thumbs_q);
         mysql_free_result($alb_thumbs_q);
@@ -912,7 +912,7 @@ function list_albums()
             if ($cat_names[$key][0] != '') {
                 $alb_thumbs[$key]['title'] = $cat_names[$key][0];
             }
-        }
+        }*/
 		##########################  DB  ##############################
         $cpgdb->query($cpg_db_index_php['list_albums_alb_pic_owner'], $USER_DATA['user_id'], $album_filter, $first_record, $records_per_page);
         $alb_thumbs = $cpgdb->fetchRowSet();
