@@ -1146,9 +1146,27 @@ $cpg_db_phorum_inc = array(
 /**********************************************************************************************************/
 //	queries  from  bridge/ phpbb22.inc.php
 /**********************************************************************************************************/
-$cpg_db_phpbb22_inc = array(
+/*$cpg_db_phpbb22_inc = array(
 	'session_extraction'	=> "SELECT user_id, username, group_id FROM %1\$s INNER JOIN %2\$s ".
 							   "ON session_user_id = user_id  WHERE session_id='%3\$s';"
+);*/
+
+
+/**********************************************************************************************************/
+//	queries  from  bridge/ phpbb3.inc.php
+/**********************************************************************************************************/
+$cpg_db_phpbb3_inc = array(
+	'session_extraction'	=> "SELECT user_id, user_password FROM %1\$s INNER JOIN %2\$s ".
+							   "ON session_user_id = user_id WHERE session_id='%3\$s';",
+	'get_cpg_usergroups'	=> "SELECT group_id, group_name, group_quota FROM %1\$s",
+	'get_udb_group_id'		=> "SELECT group_id FROM %1\$s WHERE group_id != 6",
+	'get_users'				=> "SELECT TOP %11\$s u.%1\$s AS user_id, u.%2\$s AS user_group, %3\$s AS user_name, ".
+							   "%4\$s AS user_email, %5\$s AS user_regdate, %6\$s AS user_lastvisit, ".
+							   "'' AS user_active, 0 AS pic_count, 0 AS disk_usage FROM %7\$s AS u ".
+							   "WHERE u.%1\$s <> 1 AND u.%2\$s <> 6  %8\$s AND u.%1\$s NOT IN (SELECT %10\$s u.%1\$s ".
+							   "FROM %7\$s AS u WHERE u.%1\$s <> 1 AND u.%2\$s <> 6  %8\$s  %9\$s) %9\$s ",
+	'get_pic_owner'			=> "SELECT owner_id, COUNT(pid) as pic_count, ROUND(SUM(total_filesize)/1024, 0) as disk_usage ".
+							   "FROM %1\$s WHERE owner_id IN (%2\$s) GROUP BY owner_id"
 );
 
 
@@ -1354,7 +1372,7 @@ $cpg_db_xmb_inc = array(
 	'get_groups'		=> "SELECT id FROM %1\$s, %2\$s WHERE %3\$s = %4\$s AND %5\$s='%6\$s'",
 	'get_user'			=> "SELECT TOP %13\$s %1\$s AS user_id, %2\$s AS user_name, %3\$s AS user_email, %4\$s AS user_regdate, ".
 						   "lastvisit AS user_lastvisit, '' AS user_active, ".
-						   "COUNT(pid) AS pic_count, ROUND(SUM(total_filesize)/1024) AS disk_usage, group_name, group_quota ".
+						   "COUNT(pid) AS pic_count, ROUND(SUM(total_filesize)/1024, 0) AS disk_usage, group_name, group_quota ".
 						   "FROM %5\$s AS u INNER JOIN %6\$s AS rank ON u.status = rank.title  ".
 						   "INNER JOIN %7\$s AS g ON  g.group_id = rank.%8\$s  ".
 						   "LEFT JOIN %9\$s AS p ON p.owner_id = u.%1\$s  %10\$s AND user_id NOT IN (SELECT TOP %12\$s user_id ".
@@ -1371,7 +1389,7 @@ $cpg_db_xmb_inc = array(
 $cpg_db_xoops_inc = array(
 	'get_users'			=> "SELECT TOP %14\$s u.%1\$s AS user_id, %2\$s AS user_name, %3\$s AS user_email, %4\$s AS user_regdate,  ".
 						   "%5\$s AS user_lastvisit, '' AS user_active, COUNT(pid) AS pic_count, ".
-						   "ROUND(SUM(total_filesize)/1024) AS disk_usage, group_name, group_quota ".
+						   "ROUND(SUM(total_filesize)/1024, 0) AS disk_usage, group_name, group_quota ".
 						   "FROM %6\$s AS u INNER JOIN %7\$s AS ug ON u.uid = ug.uid  ".
 						   "INNER JOIN %8\$s AS g ON  g.group_id = ug.%9\$s ".
 						   "LEFT JOIN %10\$s AS p ON p.owner_id = u.%1\$s  %11\$s  AND u.user_id NOT IN  ".

@@ -1183,9 +1183,26 @@ $cpg_db_phorum_inc = array(
 /**********************************************************************************************************/
 //	queries  from  bridge/ phpbb22.inc.php
 /**********************************************************************************************************/
-$cpg_db_phpbb22_inc = array(
+/*$cpg_db_phpbb22_inc = array(
 	'session_extraction'	=> "SELECT user_id, username, group_id FROM %1\$s INNER JOIN %2\$s ".
 							   "ON session_user_id = user_id  WHERE session_id='%3\$s';"
+);*/
+
+
+/**********************************************************************************************************/
+//	queries  from  bridge/ phpbb3.inc.php
+/**********************************************************************************************************/
+$cpg_db_phpbb3_inc = array(
+	'session_extraction'	=> "SELECT user_id, user_password FROM %1\$s INNER JOIN %2\$s ".
+							   "ON session_user_id = user_id WHERE session_id='%3\$s';",
+	'get_cpg_usergroups'	=> "SELECT group_id, group_name, group_quota FROM %1\$s",
+	'get_udb_group_id'		=> "SELECT group_id FROM %1\$s WHERE group_id != 6",
+	'get_users'				=> "SELECT u.%1\$s AS user_id, u.%2\$s AS user_group, %3\$s AS user_name, ".
+							   "%4\$s AS user_email, %5\$s AS user_regdate, %6\$s AS user_lastvisit, ".
+							   "'' AS user_active, 0 AS pic_count, 0 AS disk_usage FROM %7\$s AS u ".
+							   "WHERE u.%1\$s <> 1 AND u.%2\$s <> 6  %8\$s %9\$s LIMIT %10\$s, %11\$s;",
+	'get_pic_owner'			=> "SELECT owner_id, COUNT(pid) as pic_count, ROUND(SUM(total_filesize)/1024) as disk_usage ".
+							   "FROM %1\$s WHERE owner_id IN (%2\$s) GROUP BY owner_id"
 );
 
 

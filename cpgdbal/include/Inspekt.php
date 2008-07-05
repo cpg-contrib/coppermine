@@ -1013,9 +1013,9 @@ class Inspekt
 		if (is_array($value)) {
 			return Inspekt::_walkArray($value, 'getEscaped');
 		} elseif (!empty($value)) {
-			//if (get_magic_quotes_gpc()) {
-			//	$value = stripslashes($value);
-			//}
+			if (get_magic_quotes_gpc()) {
+				$value = stripslashes($value);
+			}
 	    	//return mysql_real_escape_string($value); #####	This part is added to the database driver.
 			return $db->escape($value);
 		} else {

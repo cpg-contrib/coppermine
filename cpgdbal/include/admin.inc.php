@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4502 $
-  $LastChangedBy: pvanrompay $
-  $Date: 2008-06-06 03:51:20 +0530 (Fri, 06 Jun 2008) $
+  $Revision: 4649 $
+  $LastChangedBy: nibbler999 $
+  $Date: 2008-07-03 03:12:17 +0530 (Thu, 03 Jul 2008) $
 **********************************************/
 
 /**********************************************
@@ -477,14 +477,6 @@ $config_data = array(
       'size' => '5',
       'width' => '5',
     ),
-    'max_com_wlength' => array(
-      'type' => 'textfield',
-      'default_value' => '38',
-      'help_link' => 'f=configuration.htm&amp;as=admin_image_comment_chars_per_word&amp;ae=admin_image_comment_chars_per_word_end',
-      'regex' => '^[0-9]{1,4}$',
-      'size' => '5',
-      'width' => '5',
-    ),
     'display_film_strip' => array(
       'type' => 'checkbox',
       'default_value' => '1',
@@ -575,6 +567,14 @@ $config_data = array(
       'default_value' => '512',
       'help_link' => 'f=configuration.htm&amp;as=admin_image_comment_length&amp;ae=admin_image_comment_length_end',
       'regex' => '^[0-9]{1,5}$',
+      'size' => '5',
+      'width' => '5',
+    ),
+    'max_com_wlength' => array(
+      'type' => 'textfield',
+      'default_value' => '38',
+      'help_link' => 'f=configuration.htm&amp;as=admin_image_comment_chars_per_word&amp;ae=admin_image_comment_chars_per_word_end',
+      'regex' => '^[0-9]{1,4}$',
       'size' => '5',
       'width' => '5',
     ),

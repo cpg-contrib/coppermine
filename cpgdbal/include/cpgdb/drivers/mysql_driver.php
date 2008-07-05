@@ -607,14 +607,19 @@ class cpgDB {
 	*/
 	function escape($str_to_escape)
 	{
-		if (get_magic_quotes_gpc()) {
-			$str_to_escape = stripslashes($str_to_escape);
-		}
+		//if (get_magic_quotes_gpc()) {
+		//	$str_to_escape = stripslashes($str_to_escape);
+		//}
 		if (defined('INSTALL_PHP') || defined('UPDATE_PHP')) {
 			return addslashes($str_to_escape);
 		} else {
 			return mysql_real_escape_string($str_to_escape);
 		}
+	}
+	
+	function removeQuotes($str)
+	{
+		return $str;
 	}
 
 	/**
@@ -632,6 +637,13 @@ class cpgDB {
 	}
 
 
+	function getLimits($limit1, $limit2)
+	{
+		$limit = '';
+		$limit = ($limit1 != -1) ? ' LIMIT '. $limit1 : '';
+		$limit.= ($limit2 != -1) ? ' ,'. $limit2 : '';	
+		return $limit;
+	}
 }
 
 

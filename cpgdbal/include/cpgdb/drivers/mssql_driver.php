@@ -531,7 +531,7 @@ class cpgDB {
      */
     function tableNames()
     {
-        $this->query($this->Link_Id,"SELECT table_name, table_catalog FROM INFORMATION_SCHEMA.TABLES");
+        $this->query($this->Link_ID,"SELECT table_name, table_catalog FROM INFORMATION_SCHEMA.TABLES");
 		$i = 0;
 		while ($row = sqlsrv_fetch($this->Query_ID, SQLSRV_FETCH_ASSOC)) {
 			$return[$i]['table_name'] = $row['table_name'];
@@ -580,13 +580,17 @@ class cpgDB {
 	*/
 	function escape($str_to_escape)
 	{
-		if (get_magic_quotes_gpc()) {
-			$str_to_escape = stripslashes($str_to_escape);
-		}
+		//if (get_magic_quotes_gpc()) {
+		//	$str_to_escape = stripslashes($str_to_escape);
+		//}
 		//return addslashes($str_to_escape);
 		return str_replace("'", "''", $str_to_escape);
 	}
 	
+	function removeQuotes($str)
+	{
+		return str_replace("''", "'", $str);
+	}
 	/**
 	// returns the database list
 	*cpgDB :: ListDbs ()
@@ -613,7 +617,22 @@ class cpgDB {
 		}
 	}
 
-	
+
+	function getLimits($limit1, $limit2)
+	{
+		$limits_array = array();
+		$limits_array[] = ($limit1 != -1) ? 'TOP '.$limit1 : 'TOP 0';
+		$limits_array[] = ($limit2 != -1) ? 'TOP '.$limit2 : 'TOP '.$this->get_pic_count();
+		return $limits_array;
+	}
+
+	function get_pic_count()
+	{
+		global $CONFIG;
+		$result = sqlsrv_query($this->Link_ID, "SELECT COUNT(*) AS count FROM {$CONFIG['TABLE_PICTURES']}");
+		$row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
+		return $row['count'];
+	}
 }
 
 ?>

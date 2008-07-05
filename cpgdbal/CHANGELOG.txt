@@ -10,9 +10,9 @@ as published by the Free Software Foundation.
 ********************************************
 Coppermine version: 1.5.0
 $Source$
-$Revision: 4646 $
-$Author: abbas-ali $
-$Date: 2008-06-28 15:06:09 +0530 (Sat, 28 Jun 2008) $
+$Revision: 4648 $
+$Author: nibbler999 $
+$Date: 2008-07-01 06:39:46 +0530 (Tue, 01 Jul 2008) $
 *********************************************
 Changelog
 =========
@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-07-01 [A] Converted the phpBB2.2 bridge file to phpBB3 {Nibbler}
 2008-06-28 [D] Added formatting instructions in coding guidelines {Abbas}
 2008-06-28 [B] Fixed the typo bug in editpics and star rating info calculation in functions.inc {Abbas}
 2008-06-27 [D] Added coding guidelines to documentation {GauGau}

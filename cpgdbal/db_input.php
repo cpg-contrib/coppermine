@@ -36,6 +36,12 @@ Formatted and unformatted words that are longer than the allowed setting do not 
 function check_comment(&$str)
 {
     global $CONFIG, $lang_bad_words, $queries;
+    ####################     DB    ##################
+    $cpgdb =& cpgDB::getInstance();
+    $cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+    //Remove the extra quotes if added by escape function in driver
+    $str = $cpgdb->removeQuotes($str);
+    ###########################################
     // Added according to Andi's proposal: optimization of strip-Tags and max. comment length
     // convert some entities
     $str = str_replace(array('&amp;', '&quot;', '&lt;', '&gt;', '&nbsp;', '&#39;'), array('&', '"', '<', '>', ' ', "'"), $str);
@@ -88,10 +94,9 @@ switch ($event) {
          * function they are calling.
          */
         
-        $msg_body = $superCage->post->getRaw('msg_body');
+        $msg_body = $superCage->post->getEscaped('msg_body');
         $msg_id = $superCage->post->getInt('msg_id');
 				check_comment($msg_body);
-		$msg_body=$cpgdb->escape($msg_body);	#####	cpgdbAL
         if (empty($msg_body)) {
             cpg_die(ERROR, $lang_db_input_php['err_comment_empty'], __FILE__, __LINE__);
         }
@@ -180,10 +185,9 @@ switch ($event) {
 
         
         $msg_author = $superCage->post->getEscaped('msg_author');
-        $msg_body = $superCage->post->getRaw('msg_body');
+        $msg_body = $superCage->post->getEscaped('msg_body');
         $pid = $superCage->post->getInt('pid');
 				check_comment($msg_body);
-		$msg_body=$cpgdb->escape($msg_body);	#####	cpgdbAL
         check_comment($msg_author);
         if (empty($msg_author) || empty($msg_body)) {
             cpg_die(ERROR, $lang_db_input_php['empty_name_or_com'], __FILE__, __LINE__);
