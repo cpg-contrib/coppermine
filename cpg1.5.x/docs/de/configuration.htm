@@ -132,9 +132,9 @@ Diese Option kann auch ein- und augeschaltet werden auf den <a href="uploading.h
 <p>Wenn das Skript die bevorzugte Sprache des Besuchers automatisch bestimmt hat wird diese bevorzugte Einstellung in einem Cookie auf dem Rechner des besuchers gespeichert. Um dieses Cookie zurückzusetzen (und dadurch das Skript dazu zu zwingen, eine erneute automatische Bestimmung durchzuführen) muss der Besucher diese Funktion des automatischen Bestimmens der Sprache verursachen mit dem Besuch einer Seite mit diesen Parametern: <a href="#">http://deine_seite.tld/coppermine_verzeichnis/index.php?lang=xxx</a></p>
 <p>Dies sind die einzelnen Schritte, die das Skript durchläuft:</p>
 <ul>
-  <li>Schritt 1: Check "has a specific language been set by cookie or URL parameter?". If yes, the gallery will be displayed in that language, all subsequent steps are being skipped</li>
-  <li>Step two: which language has the user set as default language in his browser? If that language exists as Coppermine language file, it will be used - the subsequent step will be skipped.</li>
-  <li>Last step: only if the previous steps both don't apply, the default language that the admin has set up on the config page will be taken into account</li>
+  <li>Schritt 1: Überprüfung "wurde eine spezielle Sprache per Cookie oder über einen URL-Parameter gesetzt?". Falls ja wird die Galerie in dieser Sprache angezeigt und alle weiteren Schritte werden übersprungen.</li>
+  <li>Schritt 2: welche Sprache hat der Besucher als Standard-Sprache in seinem Browser eingestellt? Falls diese Sprache als Coppermine-Übersetzung vorliegt wird diese benutzt - weitere Schritte werden übersprungen.</li>
+  <li>Schritt 3 (letzter Schritt): nur wenn beide vorhergehenden Schritte nicht zutreffen wird die Standard-Sprache, die der Coppermine-Admin in den Einstellungen definiert hat in Betracht gezogen.</li>
 </ul>
 
 <p>Once you have added comments or files to your gallery, you should not change the character set of your gallery. If you do so, non-ASCII characters may not display properly.</p>
