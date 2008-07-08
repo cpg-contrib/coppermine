@@ -141,34 +141,34 @@ Diese Option kann auch ein- und augeschaltet werden auf den <a href="uploading.h
 <a name="admin_language_language_end"></a>
 <hr />
 <a name="admin_language_fallback"></a><h3>Auf Englisch zurückgreifen, wenn Deutsche Übersetzung nicht verfügbar?<a href="#admin_language_fallback" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Enable this option if you're using language files that haven't been created for the Coppermine version you use, but for an earlier version. If a certain word or phrase doesn't exist within your language file, coppermine will display the equivalent english phrase, instead.</p>
-<p>This feature has been introduced to allow the use of previous version language files -- language files that may have not been translated for the this version, yet. Until an updated version of the language file is made available, you can use this option. Most translation differences affect the admin part of coppermine only, so  the admin will experience most of these untranslated strings. The admin will see some phrases in english instead of his/her preferred language for strings and words that don't exist in the currently available language file. NOTE: this fallback option only works for 95% of all phrases, there may still be some other translation omissions.</p>
-<p class="important">Enabling this option can have a huge impact on the overall performance of your gallery, especially the memory usage (RAM) may increase drastically. It is recommended to only enable this option if you <strong>must</strong> have it, not just out of curiosity or to enable as many features as possible.</p>
+<p>Aktiviere diese Option, wennn Du Sprachdateien benutzt, die nicht für die Coppermine-Version erzeugt wurden, die Du benutzt, sondern für eine ältere Version. Wenn ein bestimmes Wort oder ein Satz nicht in Deiner Sprachdatei vorhanden ist wird Coppermine dann das entsprechende Englische Wort benutzen.</p>
+<p>Dieses Feature wurde eingeführt, um die Verwendung älterer Sprachdateien zu ermöglichen - Sprachdateien, für die noch keine vollständige Übersetzung für die aktuelle Version vorliegt. Bis zu dem Zeitpunkt einer Aktualisierung von Coppermine mit einer Sprachdatei in der entsprechenden version kannst Du dieses Feature als "Workaround" nutzen. Die meisten Unterschiede und Neuerungen bei den Sprachdateien betreffen den administrativen Teil von Coppermine - daher wird der vor allem der Admin auf eine Menge unübersetzter Worte treffen, die er dann statt in seiner Muttersprache in Englisch sehen wird. Merke: diese Option funktioniert nur für 95% aller Sätze - es kann trotz aktivierter Option vorkommen, dass einige Bereiche garnicht angezeigt werden.</p>
+<p class="important">Die Aktivierung dieser Option hat eine große Auswirkung auf den Leistungshunger Deiner Galerie, vor allem der Bedarf an Arbeitsspeicher (RAM) steigt dadurch dramatisch an. Es ist daher empfehlenswert, diese Option nur zu aktivieren, wenn es unbedingt sein muss und nicht nur aus Neugier oder um möglichst viele Optionen anbieten zu können.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Sprach- &amp; Zeichensatz-Einstellungen &rarr; Auf Englisch zurückgreifen, wenn Deutsche Übersetzung nicht verfügbar?</p>
 <a name="admin_language_fallback_end"></a>
 <hr />
 <a name="admin_language_charset"></a><h3>Zeichensatz<a href="#admin_language_charset" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>This should normally be set to "Unicode (utf-8)" (or "Default (language file)"). See the explanation in the &quot;<strong><a href="languages.htm#translating">language</a></strong>&quot; section of this documentation.</p>
-<p>Don't change this from Unicode to anything else if you're not absolutely sure about the impact this will have!</p>
-<p class="important">Once you have added comments or files to your gallery, you should not change the character set of your gallery. If you do so, non-ASCII characters may not display properly.</p>
+<p>Dies sollte normalerweise auf "Unicode (utf-8)" eingestellt sein, vgl. die Erklärungen im Bereich &quot;<strong><a href="languages.htm#translating">Sprache</a></strong>&quot; der Doku.</p>
+<p>Ändere diese Einstellung nicht von Unicode auf irgend etwas anderes, wenn Du Dir nicht vollständig über die Tragweite dieser Änderung bewusst bist!</p>
+<p class="important">Sobald Kommentare oder Dateibeschreibungen zu Deiner Galerie hinzugefügt wurden sollte diese Einstellung auf keinen Fall geändert werden. Falls Du das doch tust werden Sonderzeichen (z.B. Umlaute) nicht richtig dargestellt werden.</p>
 <a name="admin_language_charset_end"></a>
 <a name="admin_language_list"></a><h3>Sprachauswahl-Liste anzeigen <a href="#admin_language_list" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Enable this option if you want your users to be able to select a preferred language from a dropdown list (you can specify to display only the list itself or a label saying &quot;<strong>Choose your language:</strong>&quot; in front of the list). Edit your template file (/themes/yourtheme/template.html) to specify where the language dropdown list should appear on your gallery (look for the call tag: <a href="theme_create.htm#theme_create_template_language_select_list">{LANGUAGE_SELECT_LIST}</a>).</p>
-<p>To remove languages from this list, use your FTP application to delete all unneeded langauge files from the <tt class="code">lang</tt> folder. Coppermine will populate the list of available languages based on the files that reside in the lang folder. Do <strong>not</strong> remove english.php from the lang folder.</p>
-<p>Usually, you don't have to display the list of available languages, as the menus will be displayed in the prefered language of your visitors anyway. Recommended setting is "off".</p>
+<p>Aktiviere diese Option um den Besuchern der Galerie zu ermöglichen, aus einer Liste von Sprachen ihre bevorzugte Sprache auszuwählen (Du kannst wählen, ob nur die Liste alleine oder mit einem Hinweistext &quot;Wähle Sprache&quot; erscheinen soll). Bearbeite Dein Template (/themes/yourtheme/template.html) um festzulegen, wo die Sprachauswahlliste auf der Seite erscheinen soll innerhalb Deiner Galerie (benutze den Platzhalter <a href="theme_create.htm#theme_create_template_language_select_list">{LANGUAGE_SELECT_LIST}</a>).</p>
+<p>Um Sprachen aus dieser Auswahl zu entfernen, benutze Dein FTP-Programm und lösche damit die unerwünschten Sprachdateien aus dem Verzeichnis <tt class="code">lang</tt> auf Deinem Server. Lösche auf keinen Fall die englische Sprachdatei <tt class="code">english.php</tt> von Deinem Server!</p>
+<p>Normalerweise ist es nicht notwendig, diese Sprachauswahl anzuzeigen, da die Menüs und Bedienelemente sowieso in der bevorzugten Sprache des Besuchers angezeigt werden. Empfohlene Einstellung dieser Option ist "aus".</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Sprach- &amp; Zeichensatz-Einstellungen &rarr; Zeichensatz</p>
 <a name="admin_language_list_end"></a>
 
 <hr />
 <a name="admin_language_flags"></a><h3>Sprachauswahl-Flaggen anzeigen<a href="#admin_language_flags" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Enable this option if you would like the option of having your users select languages appropriate for their use by merely clicking on a flag icon which representing their language or country (you can specify to display the flags themselves or include a label that states: &quot;<strong>Choose your language:</strong>&quot; in front of the flags). Edit your template file (/themes/yourtheme/template.html) to specify where the flags should appear in your gallery (look for the call tag: <a href="theme_create.htm#theme_create_template_language_select_flags">{LANGUAGE_SELECT_FLAGS}</a>).</p>
-<p>To remove languages from this list, use your FTP application to delete all unneeded langauge files from the <tt class="code">lang</tt> folder. Coppermine will populate the list of available languages based on the files that reside in the lang folder. Do <strong>not</strong> remove english.php from the lang folder.</p>
-<p>Usually, you don't have to display the list of available languages, as the menus will be displayed in the prefered language of your visitors anyway. Recommended setting is "off".</p>
+<p>Aktiviere diese Option um den Besuchern der Galerie zu ermöglichen, aus einer Reihe von Flaggen, die unterschiedliche Sprachen repräsentieren ihre gewünschte Sprache auszuwählen (Du kannst wählen, ob nur die Flaggen alleine oder mit einem Hinweistext &quot;Wähle Sprache&quot; erscheinen soll). Bearbeite Dein Template (/themes/yourtheme/template.html) um festzulegen, wo die Flaggenliste auf der Seite erscheinen soll innerhalb Deiner Galerie (benutze den Platzhalter <a href="theme_create.htm#theme_create_template_language_select_flags">{LANGUAGE_SELECT_FLAGS}</a>).</p>
+<p>Um Sprachen aus dieser Auswahl zu entfernen, benutze Dein FTP-Programm und lösche damit die unerwünschten Sprachdateien aus dem Verzeichnis <tt class="code">lang</tt> auf Deinem Server. Lösche auf keinen Fall die englische Sprachdatei <tt class="code">english.php</tt> von Deinem Server!</p>
+<p>Normalerweise ist es nicht notwendig, diese Sprachauswahl anzuzeigen, da die Menüs und Bedienelemente sowieso in der bevorzugten Sprache des Besuchers angezeigt werden. Empfohlene Einstellung dieser Option ist "aus".</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Sprach- &amp; Zeichensatz-Einstellungen &rarr; Sprachauswahl-Flaggen anzeigen</p>
 <a name="admin_language_flags_end"></a>
 
 <a name="admin_language_reset"></a><h3>&quot;Standard&quot; in Sprachauswahl anzeigen<a href="#admin_language_reset" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>This option only applies only if you enabled user language selection - it will show a &quot;default&quot;-icon or list entry to let the users go back to the original language of your gallery.</p>
+<p>Diese Option wird nur in Betracht gezogen, wenn der Besucher mit den o.g. Optionen seine gewünschte Sprache wählen kann - wenn diese Option aktiviert ist wird ein Listenelement "Standard" angezeigt, das es ermöglicht, getroffene Sprachauswahlen zu revidieren und wieder in den ursprünglichen Sprachauswahlmechanismus zurückzukehren.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Sprach- &amp; Zeichensatz-Einstellungen &rarr; &quot;Standard&quot; in Sprachauswahl anzeigen</p>
 <a name="admin_language_reset_end"></a>
 
@@ -176,67 +176,67 @@ Diese Option kann auch ein- und augeschaltet werden auf den <a href="uploading.h
 
 <a name="admin_theme"></a><h2>Themen-/Design-Einstellungen<a href="#admin_theme" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <a name="admin_theme_theme"></a><h3>Thema (Design)<a href="#admin_theme_theme" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Use this dropdown list to select the default theme for your gallery (Themes are stored in sub-directories of the <strong>themes</strong> directory ).</p>
+<p>Benutze diese Auswahlliste, um das Standard-Theme Deiner Galerie zu wählen (Themen werden in Unterverzeichnissen des Verzeichnisses <strong>themes</strong> gespeichert).</p>
 <a name="admin_theme_theme_end"></a>
 <hr />
 <a name="admin_theme_theme_list"></a><h3>Designauswahl-Liste anzeigen<a href="#admin_theme_theme_list" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Enable this option if you want your users to be able to select other themes from a dropdown list (you can specify to display only the list itself or a label saying &quot;<strong>Choose your theme:</strong>&quot; in front of the list). Edit your template file (/themes/yourtheme/template.html) to specify where the theme dropdown list should appear on your gallery (look for <strong>{THEME_SELECT_LIST}</strong>).</p>
-<p>This option only makes sense if you have at least one alternative theme in your /themes/ folder other than your default theme. We recommend using this option only if there's are additional benefits for the user (for example a theme with less graphics in it that loads faster for users on a dial-up connection, or a theme with reduced color pallettes and good contrast).</p>
+<p>Aktiviere diese Option, um den Besuchern der Galerie zu ermöglichen, andere Themen (Designs) als das Standard-Thema aus einer Auswahlliste auszuwählen (Du kannst festlegen, ob Du nur die Liste oder auch eine Beschriftung mit der Auschrift &quot;<strong>Wähle Design:</strong>&quot; vor der Liste anzeigen möchtest). Bearbeite Dein Template (/themes/yourtheme/template.html) um festzulegen, wo die Auswahlliste innerhalb der Galerie angezeigt werden soll (suche nach dem Platzhalter <a href="theme_create.htm#theme_create_template_theme_select_list">{THEME_SELECT_LIST}</a>).</p>
+<p>Diese Option macht nur Sinn, wenn Du mindestens ein alternatives Design für Deine Seite erstellt hast, das einen zusätzlichen Nutzen für den Besucher darstellt (beispielsweise ein Design mit weniger grafischen Elementen für Besucher mit langsamer Internet-Anbindung oder ein Design mit starkem Kontrast und grossen Zeichen für Benutzer mit eingeschränkter Sehfähigkeit). Empfohlene Einstellung: aus.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Themen-/Design-Einstellungen &rarr; Themen-/Design-Einstellungen</p>
 <a name="admin_theme_theme_list_end"></a>
 <hr />
 <a name="admin_theme_theme_reset"></a><h3>&quot;Standard&quot; in Designauswahl-Liste anzeigen<a href="#admin_theme_theme_reset" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>This option applies only if you enabled the user theme selection option - it will show a &quot;default&quot; list entry to let the users go back to the original theme of your gallery.</p>
+<p>Diese Option wird nur in Betracht gezogen, wenn Du obige Auswahlliste für die Themen-/Designauswahl aktiviert hast. Falls dann diese Option ebenfalls aktiviert wird erscheint in der Themenauswahlliste ein Eintrag "Standard", der es dem Besucher ermöglicht, wieder zum Standard-Design Deiner Galerie zurück zu kehren.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Themen-/Design-Einstellungen &rarr; &quot;Standard&quot; in Designauswahl-Liste anzeigen</p>
 <a name="admin_theme_theme_reset_end"></a>
 <hr />
 <a name="admin_theme_faq"></a><h3>FAQ anzeigen<a href="#admin_theme_faq" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>This option adds a &quot;FAQ&quot; link to the menu bar when enabled. If a user clicks on it, it will display a list of &quot;Frequently asked question&quot; on how to use coppermine. To change the content of the FAQ, edit the file /your_coppermine_folder/lang/yourlanguage.php (e.g. english.php) and look for</p>
+<p>Diese Option fügt einen Eintrag namens &quot;FAQ&quot; zum Menü hinzu. Wenn der Besucher darauf klickt wird er auf eine Seite mit &quot;Häufig gestellten Fragen&quot; (frequently asked questions) verwiesen, die die Benutzung von Coppermine erklären. Um den Inhalt dieser FAQ zu ändern, bearbeite die Datei /dein_coppermine_verzeichnis/lang/deine_sprache.php (z.B. german.php) und suche nach</p>
 <pre>// ------------------------------------------------------------------------- //
 // File faq.php
 // ------------------------------------------------------------------------- //</pre>
-<p>Edit the content that comes after it.</p>
+<p>und bearbeite den danach folgenden Inhalt.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Themen-/Design-Einstellungen &rarr; FAQ anzeigen</p>
 <a name="admin_theme_faq_end"></a>
 <hr />
 <a name="admin_sidebar"></a><h3>Sidebar für Gäste / registrierte Benutzer<a href="#admin_sidebar" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Determines wether a sidebar for browsers will be available for members of the admin group, registered users group and guest group.</p>
-<p>The sidebar is a minimalistic interface to control your coppermine-driven gallery. Think of it as a sort of snap-in for your favorite browser. If you enabled the sidebar, the control structure of your gallery (with all categories/subcategories and albums) will be available in a separate panel in the browser for faster navigation.</p>
-<p>It is recommended that you try this option first for the admin only: play with it and decide if it would be a helpfull feature for your site's visitors. If yes, enable/promote the sidebar for the registered users and/or guests as well. It's up to you if you want to promote the usage of the sidebar by displaying a link to it in coppermine's menu or if you want to promote it by some other mechanism (e.g. by telling your users about it on a non-coppermine driven page of your website).</p>
-<p>The sidebar is helpfull for users who return to your page often. It provides an alternative method of browsing your gallery by displaying a tree structure of your categories, subcategories and albums. It is meant for advanced users who understand how their browser works.</p>
-<p>The sidebar install screen tries to auto-detect the operating system and browser that the visitor is using and offers the corresponding option to install the sidebar (as those methods differ from browser to browser). Some browsers are capable so to pose as different browsers, which will make the auto-detection routine fail. Subsequently, there is an option on the install screen as well to skip auto-detection and make the visitor select his browser.</p>
-<p>Group membership is being determined if a visitor is logged in or not: if he is not logged in, he is a member of the guest group and the corresponding option set up for guests (anonymous) is being taken into account. If the visitor is logged in, he is automatically a member of the registered group.</p>
-<p>There are two independant config sections for granular permissions who can access the sidebar:</p>
+<p>Legt fest, ob eine Sidebar für Browser für die Mitglieder der Admin-Gruppe, für registrierte Benutzer oder für Gäste verfpgbar sein soll..</p>
+<p>Die Sidebar ist eine minimalistische Benutzeroberfläche, um eine Galerie zu bedienen, vergleichbar mit einem Browser-Plugin. Innerhalb der Sidebar wird die Struktur Deiner Galerie (mit allen Kategorien/Unterkategorien und Alben) in einer separaten Leiste am Rand des Browserfensters verfügbar und ermöglicht eine wesentlich schnellere Navigation durch die Strukur Deiner Galerie.</p>
+<p>Es ist empfehlenswert, diese Option zunächst nur für den Admin auszuprobieren: spiele ein wenig damit herum und entscheide dann, ob Du dieses Feature auch den Besuchern Deiner Seite anbieten möchtest. Falls ja, aktiviere/bewerbe die Sidebar für registrierte Benutzer und/oder für unregistrierte Gäste. Es liegt an Dir, ob Du die verwendung der Sidebar durch das Anzeigen eines Links innerhalb der Navigation bewerben willst oder ob Du Deine Besucher über andere Mechanismen außerhalb von Coppermine (z.B. mit Hilfe eines Links von der Startseite Deiner Präsenz) informieren möchtest.</p>
+<p>Die Sidebar ist vor allem für Besucher hilfreich, die häufig auf Deine Seite kommen. Sie ermöglicht eine alternative Ansicht der Galerie in Form einer Baumstruktur aus Kategorien, Unterkategorien und Alben. Sie ist für fortgschrittene Benutzer gedacht, die wissen, wie ihr Browser funktioniert.</p>
+<p>Die Installations-Seite der Sidebar versucht, das vom Besucher verwendete Betriebssystem und seinen Browser automatisch zu erkennen und bietet dann die entsprechenden Installationsoptionen an (diese Methoden unterscheiden sich von Browser zu Browser). Einige Browser können sich auch als andere Browser ausgeben, so dass die automatische Bestimmung fehlschlägt. Deshalb beinhaltet der Installationsbildschirm auch eine Option zum manuellen Installation.</p>
+<p>Die Zugehörigkeit zu Gruppen wird dadurch bestimmt, ob ein Besucher angemeldet (eingeloggt) ist oder nicht: wenn er nicht angemeldet ist, dann ist er Mitglied der Gruppe "Gäste" (Guests/Anonymous). Wenn der Benutzer angemeldet ist, dann ist er automatisch ein Mitglied der Gruppe "Registered".</p>
+<p>Es existieren zwei unabhängige Einstellungen zur genauen Bestimmung, wer auf die Sidebar zugreifen können soll::</p>
 <ul>
-  <li><strong>Sidebar for registered users</strong><br />Options for registered users (members of the "registered" group) who are logged in</li>
-  <li><strong>Sidebar for guests</strong><br />Options for visitors of your gallery who are not logged in</li>
+  <li><strong>Sidebar für registrierte Benutzer</strong><br />Optionen für registrierte Benutzer (Mitglieder der Gruppe "registered"), die angemeldet sind</li>
+  <li><strong>Sidebar für Gäste</strong><br />Optionen für Besucher Deiner Galerie, die nicht angemeldet/registriert sind</li>
 </ul>
-<p>Members of the admin group can access the sidebar no matter what option you select.</p>
-<p>Possible options for each of the above settings:</p>
+<p>Mitglieder der Admin-Gruppe können immer auf die Sidebar zugreifen, egal welche der Optionen für Benutzer und Gäste gewählt sind.</p>
+<p>Mögliche Optionen für die o.g. Einstellungen:</p>
 <ul>
-  <li><strong>No</strong><br />
-  Don't display a link to the sidebar install screen. Don't allow access to the sidebar nor the sidebar install screen at all.</li>
-  <li><strong>Yes: allow, but don't display link</strong><br />
-  Allow access to the sidebar and the corresponding install screen, but do not promote the sidebar. There will be no link in coppermine's menu that will send the user to the sidebar install page, so your visitors will not be aware of it. You will have to promote it by some other means (e.g. by telling your power-users about it in a newsletter). If you decide to manually promote the use of the sidebar, send your visitors to <tt class="code">http://yoursite.tld/your_coppermine_folder/sidebar.php?action=install</tt></li>
-  <li><strong>Yes: allow and promote it by displaying a link</strong><br />
-  Allow access to the sidebar and promote the sidebar by displaying a link to the sidebar installer screen in coppermine's menu</li>
+  <li><strong>Nein</strong><br />
+  Zeige keinen Link zur Sidebar-Installation an. Erlaube keinen Zugriff auf die Sidebar oder den Installationsbildschirm der Sidebar.</li>
+  <li><strong>Ja: Zulassen, aber keinen Link anzeigen</strong><br />
+  Erlaubt den Zugriff auf die Sidebar und den entsprechenden Sidebar-Installationsbildschirm. Es erescheint aber kein Link im Menü von Coppermine, der die Besucher auf die Installationsseite der Sidebar führt, so dass die Besucher sich nicht darüber bewusst sein werden, dass es das Sidebar-Feature überhaupt gibt. Daher müssen die Besucher über andere Mechanismen auf die Sidebar aufmerksam gemacht werden (z.B. durch Information per Newsletter). Wenn Du Deine Besucher manuell auf die Sidebar aufmerksam machen willst, dann sende sie auf die Seite <tt class="code">http://deine_seite.de/dein_coppermine_verzeichnis/sidebar.php?action=install</tt></li>
+  <li><strong>Ja: Zulassen und per Link bewerben</strong><br />
+  Erlaube den Zugriff auf die Sidebar und bewerbe die Sidebar durch Anzeige eines entsprechenden Links zum Sidebar-Installer im Menü von Coppermine</li>
 </ul>
-<p>Make sure to set the sidebar options up so that they make sense: it is not a bright idea to allow guests to access the sidebar, but deny access to registered users; registered users would be "punished" for registering. It is advisable to test the sidebar feature thoroughly before allowing your visitors to access it.</p>
-<p>How the sidebar is installed greatly differs from browser to browser. Sadly, the most complicated version is the sidebar for Internet Explorer, which is the most popular browser. In the past, it has been comparatively easy to add anything to IE's favorites and to come up with a "real" sidebar. However, as Microsoft had some bad press for releasing a browser with severe security holes, the options for developers to create a working sidebar that end users can add easily have been reduced deliberately by Microsoft when releasing patches for their browser and operating system. Therefor, you might have issues with the sidebar, depending on which version of Windows and IE you are using.</p>
-<p>If you want to edit the text that explains the install of the sidebar, edit the file <tt class="code">http://yoursite.tld/your_coppermine_folder/lang/yourlanguage.php</tt> with a plain text editor.</p>
+<p>Stelle sicher, die Sidebar-Optionen so einzustellen, dass sie Sinn machen: es wäre keine gute Idee, Gästen den Zugriff auf die Sidebar zu erlauben, sie aber den registrierten Benutzern zu verbieten; registrierte Benutzer würden sonst dafür "bestraft" dafür, dass sie sich registriert haben.Es ist empfehlenswert, die Features der Sidebar gründlich zu testen, bevor Du Deinen Besuchern Zugriff darauf gewährst.</p>
+<p>Die Art der Sidebar-Installation weicht von Browser zu Browser stark voneinander ab. Leider ist die Sidebar für den Internet Explroer als verbreitesteter Browser gleichzeitig die komplizierteste Installationsmethode. In der Vergangenheit war es vergleichsweise einfach, etwas zu den Favoriten im IE hinzuzufügen und in eine "richtigen" Sidebar zu verwandeln. Microsoft hat jedoch in der Vergangenheit eine Menge Kritik einstecken müssen für die Sicherheitslöcher in ihrem Browser, so dass die Möglichkeiten für Entwickler, eigene Sidebars zu etablieren stark eingeschränkt wurden. Es kann daher zu Schwierigkeiten mit der Sidebar in Abhängigkeit vom verwendeten Betriebssystem und der IE-Version kommen.</p>
+<p>Wenn Du den Text ändern willst, der die Installationsoptionen für die Sidebar erklärt, dann bearbeite die Datei <tt class="code">http://deine_seite.tld/dein_coppermine_verzeichnis/lang/deine_sprache.php</tt> mit einem Nur-Text Editor.</p>
 
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Themen-/Design-Einstellungen &rarr; Sidebar für Gäste / registrierte Benutzer</p>
 <a name="admin_sidebar_end"></a>
 <hr />
 <a name="admin_theme_custom_lnk_name"></a><h3>Name eines benutzerdefinierten Menü-Eintrags<a href="#admin_theme_custom_lnk_name" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Use this if you want to create a custom link that will appear in the menu. What you enter here will be the name of the menu link or button.  Leave space blank if you do not have any specific use for it.</p>
+<p>Benutze diese Option um einen benutzerdefinierten Menüeintrag im Coppermine-Menü vorzunehmen. Der in dieses feld eingegebene Text wird der name des Menüeintrags sein. Lasse das Feld leer, falls Du dafür keine Verwendung hast.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Themen-/Design-Einstellungen &rarr; Name eines benutzerdefinierten Menü-Eintragsk</p>
 <a name="admin_theme_custom_lnk_name_end"></a>
 <hr />
 <a name="admin_language_custom_lnk_url"></a><h3>URL eines benutzerdefinierten Menü-Eintrags<a href="#admin_language_custom_lnk_url" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>This is the URL where the user's browser will be directed to when s/he clicks on the &quot;Custom link name&quot; button in the main menu.</p>
-<p>You can use any valid URL.</p>
-<p>Leave this blank if you do not have any specific use for it.</p>
+<p>Zu dieser URL wird der Besucher verwiesen, wenn er/sie den Benutzerdefinierten Menüeintrag anklickt.</p>
+<p>Es kann jede gültige URL angegeben werden.</p>
+<p>Lasse das feld leer, falls kein benutzerdefinierter Menüeintrag benötigt wird.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Themen-/Design-Einstellungen &rarr; URL eines benutzerdefinierten Menü-Eintrags</p>
 <a name="admin_language_custom_lnk_url_end"></a>
 <hr />
