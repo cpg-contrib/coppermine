@@ -124,7 +124,7 @@ You can toggle between these options (enabled or disabled) on the <a href="uploa
 
 
 <a name="admin_language"></a><h2>Language &amp; Charset settings<a href="#admin_language" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p><img src="images/config_language.gif" width="612" height="234" border="1" alt="" /></p>
+<p><img src="images/config_language.gif" width="600" height="170" border="0" alt="" align="right" />This the the config section where you can set up the language settings. Make sure to read this section carefully before changing anything here.</p>
 <a name="admin_language_language"></a><h3>Language<a href="#admin_language_language" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>This sets the default language for your gallery. All language files are stored in the <strong>lang</strong> directory on your server.</p>
 <p>Languages and internationalization (often refered to as i18n) is a complicated and complex thing. You (as Coppermine admin) probably don't want to go into details, so this documentation skips the in-depth issues existing with i18n and just gives you an overview how Coppermine handles languages:</p>
@@ -137,29 +137,33 @@ You can toggle between these options (enabled or disabled) on the <a href="uploa
   <li>Last step: only if the previous steps both don't apply, the default language that the admin has set up on the config page will be taken into account</li>
 </ul>
 
-<p>Once you have added comments or files to your gallery, you should not change the character set of your gallery. If you do so, non-ASCII characters may not display properly.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Language &amp; Charset settings &rarr; Language</p>
 <a name="admin_language_language_end"></a>
 <hr />
 <a name="admin_language_fallback"></a><h3>Fallback to English if translated phrase not found?<a href="#admin_language_fallback" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Enable this option if you're using language files that haven't been created for the Coppermine version you use, but for an earlier version. If a certain word or phrase doesn't exist within your language file, coppermine will display the equivalent english phrase, instead.</p>
 <p>This feature has been introduced to allow the use of previous version language files -- language files that may have not been translated for the this version, yet. Until an updated version of the language file is made available, you can use this option. Most translation differences affect the admin part of coppermine only, so  the admin will experience most of these untranslated strings. The admin will see some phrases in english instead of his/her preferred language for strings and words that don't exist in the currently available language file. NOTE: this fallback option only works for 95% of all phrases, there may still be some other translation omissions.</p>
-<p class="important">Enabling this option can have a huge impact on the overall performance of your gallery, especially the memory usage (RAM) may increase drastically. It is recommended to only enable this option if you must have it, not just out of curiosity or to enable as many features as possible.</p>
+<p class="important">Enabling this option can have a huge impact on the overall performance of your gallery, especially the memory usage (RAM) may increase drastically. It is recommended to only enable this option if you <strong>must</strong> have it, not just out of curiosity or to enable as many features as possible.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Language &amp; Charset settings &rarr; Fallback to English if translated phrase not found?</p>
 <a name="admin_language_fallback_end"></a>
 <hr />
 <a name="admin_language_charset"></a><h3>Character encoding<a href="#admin_language_charset" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>This should normally be set to "Unicode (utf-8)" (or "Default (language file)"). See the explanation in the &quot;<strong><a href="languages.htm#translating">language</a></strong>&quot; section of this documentation.</p>
 <p>Don't change this from Unicode to anything else if you're not absolutely sure about the impact this will have!</p>
+<p class="important">Once you have added comments or files to your gallery, you should not change the character set of your gallery. If you do so, non-ASCII characters may not display properly.</p>
 <a name="admin_language_charset_end"></a>
 <a name="admin_language_list"></a><h3>Display language list<a href="#admin_language_list" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Enable this option if you want your users to be able to select a preferred language from a dropdown list (you can specify to display only the list itself or a label saying &quot;<strong>Choose your language:</strong>&quot; in front of the list). Edit your template file (/themes/yourtheme/template.html) to specify where the language dropdown list should appear on your gallery (look for the call tag: <strong>{LANGUAGE_SELECT_LIST}</strong>).</p>
+<p>Enable this option if you want your users to be able to select a preferred language from a dropdown list (you can specify to display only the list itself or a label saying &quot;<strong>Choose your language:</strong>&quot; in front of the list). Edit your template file (/themes/yourtheme/template.html) to specify where the language dropdown list should appear on your gallery (look for the call tag: <a href="theme_create.htm#theme_create_template_language_select_list">{LANGUAGE_SELECT_LIST}</a>).</p>
+<p>To remove languages from this list, use your FTP application to delete all unneeded langauge files from the <tt class="code">lang</tt> folder. Coppermine will populate the list of available languages based on the files that reside in the lang folder. Do <strong>not</strong> remove english.php from the lang folder.</p>
+<p>Usually, you don't have to display the list of available languages, as the menus will be displayed in the prefered language of your visitors anyway. Recommended setting is "off".</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Language &amp; Charset settings &rarr; Character encoding</p>
 
 <a name="admin_language_list_end"></a>
 <hr />
 <a name="admin_language_flags"></a><h3>Display language flags<a href="#admin_language_flags" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Enable this option if you would like the option of having your users select languages appropriate for their use by merely clicking on a flag icon which representing their language or country (you can specify to display the flags themselves or include a label that states: &quot;<strong>Choose your language:</strong>&quot; in front of the flags). Edit your template file (/themes/yourtheme/template.html) to specify where the flags should appear in your gallery (look for the call tag:<strong>{LANGUAGE_SELECT_FLAGS}</strong>).</p>
+<p>Enable this option if you would like the option of having your users select languages appropriate for their use by merely clicking on a flag icon which representing their language or country (you can specify to display the flags themselves or include a label that states: &quot;<strong>Choose your language:</strong>&quot; in front of the flags). Edit your template file (/themes/yourtheme/template.html) to specify where the flags should appear in your gallery (look for the call tag: <a href="theme_create.htm#theme_create_template_language_select_flags">{LANGUAGE_SELECT_FLAGS}</a>).</p>
+<p>To remove languages from this list, use your FTP application to delete all unneeded langauge files from the <tt class="code">lang</tt> folder. Coppermine will populate the list of available languages based on the files that reside in the lang folder. Do <strong>not</strong> remove english.php from the lang folder.</p>
+<p>Usually, you don't have to display the list of available languages, as the menus will be displayed in the prefered language of your visitors anyway. Recommended setting is "off".</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Language &amp; Charset settings &rarr; Display language flags</p>
 
 <a name="admin_language_flags_end"></a>
