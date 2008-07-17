@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-07-17 [A] Added animated graphics to upload screen to indicate the upload stage {GauGau}
 2008-07-01 [A] Converted the phpBB2.2 bridge file to phpBB3 {Nibbler}
 2008-06-28 [D] Added formatting instructions in coding guidelines {Abbas}
 2008-06-28 [B] Fixed the typo bug in editpics and star rating info calculation in functions.inc {Abbas}

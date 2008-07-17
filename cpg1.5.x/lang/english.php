@@ -2284,6 +2284,7 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'allowed_mov_types' => 'Video extensions: %s', // cpg1.5
   'allowed_doc_types' => 'Document extensions: %s', // cpg1.5
   'allowed_snd_types' => 'Audio extensions: %s', // cpg1.5
+  'please_wait' => 'Please wait while the script is uploading - this make take a while', // cpg1.5
 );
 
 // ------------------------------------------------------------------------- //

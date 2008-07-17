@@ -22,6 +22,7 @@
 // ------------------------------------------------------------------------- //
 define('THEME_HAS_RATING_GRAPHICS', 1);
 define('THEME_HAS_NO_SUB_MENU_BUTTONS',1);
+define('THEME_HAS_PROGRESS_GRAPHICS',1);
 define('THEME_IS_XHTML10_TRANSITIONAL',1);  // Remove this if you edit this template until
                                             // you have validated it. See docs/theme.htm.
 

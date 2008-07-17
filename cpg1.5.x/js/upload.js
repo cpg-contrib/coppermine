@@ -1,4 +1,3 @@
-<?php
 /*************************
   Coppermine Photo Gallery
   ************************
@@ -8,20 +7,20 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision$
-  $LastChangedBy$
-  $Date$
+  $Revision: 4502 $
+  $LastChangedBy: pvanrompay $
+  $Date: 2008-06-06 00:21:20 +0200 (Fr, 06 Jun 2008) $
 **********************************************/
 
-define('THEME_HAS_PROGRESS_GRAPHICS',1);
-define('THEME_IS_XHTML10_TRANSITIONAL',1); // Remove this if you edit this template until
-                                           // you have validated it. See docs/theme.htm.
+/**
+ * This file contains upload.php specific javascript
+ */
 
-// HTML template for template sys_menu spacer
-$template_sys_menu_spacer ='<img src="themes/water_drop/images/orange_carret.gif" width="8" height="8" border="0" alt="" />';
-
-?>
+function cpgUploadToggleProgressBar() {
+	document.getElementById('cpg_progress_bar').style.display = 'block';
+	document.getElementById('cpg_upload_button').style.display = 'none';
+}

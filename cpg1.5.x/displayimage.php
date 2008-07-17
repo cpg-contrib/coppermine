@@ -35,7 +35,9 @@ if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 1) {
 js_include('js/jquery.js');
 js_include('js/displayimage.js');
 
-if ($CONFIG['enable_smilies']) include("include/smilies.inc.php");
+if ($CONFIG['enable_smilies']) {
+	include("include/smilies.inc.php");
+}
 
 $breadcrumb = '';
 $breadcrumb_text = '';
