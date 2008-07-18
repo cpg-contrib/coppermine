@@ -377,7 +377,8 @@ Enabling this option will have the advantage that your visitors will need less c
 <a name="admin_thumbnail_rows_end"></a>
 <hr />
 <a name="admin_thumbnail_tabs"></a><h3>Maximum number of tabs to display<a href="#admin_thumbnail_tabs" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>When the thumbnails spread over multiple pages, tabs are displayed at the bottom of the page. This value define how many tabs will be displayed.</p>
+<p><img src="images/thumbnail_tabs.jpg" border="0" withd="196" height="85" alt="" title="pagination at the bottom of the page" class="img_embed_right" />When the thumbnails spread over multiple pages, tabs are displayed at the bottom of the page. This value define how many tabs will be displayed. If the number of thumbnail pages is greater than the number set for "Maximum number of tabs to display", the "neighbouring" tabs will be displayed as well as the first and last tab.</p>
+<p>Default is 12, range is between 5 and 25.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Thumbnail view &rarr; Maximum number of tabs to display</p>
 <a name="admin_thumbnail_tabs_end"></a>
 <hr />
@@ -438,6 +439,7 @@ It is <b>not</b> recommended to enable this option, because
 <li>visitors will not see additional picture information</li>
 <li>visitors will not be able to see the slideshow</li>
 <li>visitor might be annoyed because of the over-use of pop-ups</li>
+<li>visitors might not see the full-sized pic at all if they have a pop-up blocker in place and forget to diable it for your site</li>
 <li>the views counter will not increase</li>
 </ul>
 <p>This option has been added because a lot of coppermine users have asked for it. However, the dev team does not recommend using it.</p>
@@ -451,7 +453,7 @@ It is <b>not</b> recommended to enable this option, because
 <a name="admin_thumbnail_default_sortorder_end"></a>
 <hr />
 <a name="admin_thumbnail_minimum_votes"></a><h3>Minimum number of votes for a file to appear in the 'top-rated' list<a href="#admin_thumbnail_minimum_votes" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Used to determine how many votes a file must receive before appearing as a &quot;top-rated file.&quot;  If a file has received less than &quot;this value&quot; of votes, it will not be displayed in the "top-rated" page. This value must be greater or equal to 1.</p>
+<p>Used to determine how many votes a file must receive before appearing as a &quot;top-rated file.&quot;. If a file has received less than &quot;this value&quot; of votes, it will not be displayed in the "top-rated" page. This value must be greater or equal to 1.</p>
 <p>Setting this to a high number is only recommended for busy sites with a lot of visitors. Default value is &quot;1&quot;. A higher number has the advantage that votes just by one individual won't boost up the relevance of a file to much, reducing potential rating fraud.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Thumbnail view &rarr; Minimum number of votes for a file to appear in the 'top-rated' list</p>
 <a name="admin_thumbnail_minimum_votes_end"></a>
@@ -460,10 +462,13 @@ It is <b>not</b> recommended to enable this option, because
 
 <a name="admin_image_comment"></a><h2>Image view<a href="#admin_image_comment" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <a name="admin_image_comment_table-width"></a><h3>Width of the table for picture display (pixels or %)<a href="#admin_image_comment_table-width" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>The minimum width of the table that will be used to display the intermediate picture.</p>
-<p>Examples:<br /><tt class="code">600</tt> = The table around the pic will be 600 pixels wide (if the pic has larger dimensions this table will expand accordingly to fit the image).<br />
-<tt class="code">100%</tt> = use all available space based on the horizontal dimension of the pic.</p>
-<p>Recommended setting is &quot;<tt class="code">100%</tt>&quot;. When setting this to a value that doesn't make sense (over 100% or a silly absolute size in pixels), your gallery pages will look distorted.</p>
+<p>The minimum width of the table (in pixels or %) that will be used to display the intermediate picture.</p>
+<p>Examples:</p>
+<ul>
+    <li><tt class="code">600</tt> = The table around the pic will be 600 pixels wide (if the pic has larger dimensions this table will expand accordingly to fit the image).</li>
+    <li><tt class="code">100%</tt> = use all available space based on the horizontal dimension of the pic.</li>
+</ul>
+<p>Recommended setting is &quot;<tt class="code">100%</tt>&quot;. When setting this to a value that doesn't make sense (over 100% or a silly absolute size in pixels), your gallery pages will look distorted and horizontal scrollbars will appear.</p>
 <p>If you decide to use an absolute size in pixels, make sure that the value is equal or greater than &quot;<a href="#admin_picture_thumbnail_intermediate_dimension">Max width or height of an intermediate picture</a>&quot;.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Image view &rarr; Width of the table for picture display</p>
 <a name="admin_image_comment_table-width_end"></a>
@@ -487,7 +492,7 @@ It is <b>not</b> recommended to enable this option, because
 <a name="admin_image_comment_descr_length_end"></a>
 <hr />
 <a name="admin_image_comment_filmstrip_toggle"></a><h3>Show film strip<a href="#admin_image_comment_filmstrip_toggle" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Toggles display of a "film strip" showing thumbnails of prior and subsequent files in the album.</p>
+<p><img src="images/filmstrip.jpg" border="0" width="" height="" alt="" title="Film strip displayed underneath the actual image" class="img_embed_right" />Toggles display of a "film strip" showing thumbnails of prior and subsequent files in the album.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Image view &rarr; Show film strip</p>
 
 <a name="admin_image_comment_filmstrip_toggle_end"></a>
@@ -500,8 +505,8 @@ It is <b>not</b> recommended to enable this option, because
 <a name="admin_image_comment_display_film_strip_filename_end"></a>
 <hr />
 <a name="admin_image_comment_filmstrip_number"></a><h3>Number of items in film strip<a href="#admin_image_comment_filmstrip_number" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Sets the number of thumbnails to display in film strip. The number you can set here is dependent on your thumbnail size and monitor size. If you do not want to inconvenience users with smaller monitors set this value between 4-6.</p>
-<p>It's recommended to use an odd number, so the thumbnail that represents the file actually viewed is being displayed in the center of the film strip. Default (and recommended setting is <tt class="code">5</tt></p>
+<p>Sets the number of thumbnails to display in film strip. The number you can set here is dependent on your thumbnail size and monitor size. If you do not want to inconvenience users with smaller monitors set this value between 3-7.</p>
+<p>It's recommended to use an odd number, so the thumbnail that represents the file actually viewed is being displayed in the center of the film strip. Default (and recommended) setting is <tt class="code">5</tt>.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Image view &rarr; Number of items in film strip</p>
 
 <a name="admin_image_comment_filmstrip_number_end"></a>
