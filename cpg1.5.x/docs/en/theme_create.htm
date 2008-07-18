@@ -84,7 +84,7 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
 <p>The file template.html is the core file of each theme: it can only contain HTML/CSS/JavaScript code (no PHP!) plus some placeholder tokens that will get replaced with content when the theme is being parsed (i.e. when the HTML output of a gallery page is being generated). Template.html determines the overall layout of your gallery pages. Use it to make your gallery match the overall look of your entire website.</p>
 
 <a name="theme_create_template_token"></a><h3>Template tokens<a href="#theme_create_template_token" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>When editing the &quot;<strong>template.html</strong>&quot; file do not remove the elements between <strong>{}</strong> - these are the placeholders used by the script. Think of those items in curly brackets as placeholders that will be replaced later with dynamic content when your template is being parsed. You can move the placeholder tokens around to obtain different layouts. However, you have to understand that the {GALLERY}-token is a special placeholder: think of it more as a separator than an actual placeholder token. When the template is being parsed, the {GALLERY}-token will be replaced with the actual core component of the gallery. Other placeholders tokens in curly braces that come <em>before</em> the {GALLERY} token are being handled by the pageheader function; placeholder tokens that come <em>after</em> the {GALLERY}-token are being handled by the pagefooter function. Therefor, you have to keep in mind that you can freely move tokens around in template.html as long as you don't reverse the position of the token you move and the {GALLERY}-token.</p>
+<p>When editing the &quot;<strong>template.html</strong>&quot; file do not remove the elements between <strong>{}</strong> - these are the placeholders used by the script. Think of those items in curly brackets as placeholders that will be replaced later with dynamic content when your template is being parsed. You can move the placeholder tokens around to obtain different layouts. However, there are some limitations - refer to the <a href="#theme_create_template_gallery">explanation of the core token {GALLERY}</a>.</p>
 
 <a name="theme_create_template_token_list"></a><h4>List of tokens in template.html<a href="#theme_create_template_token_list" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 <table border="0" cellspacing="0" cellpadding="0" class="maintable">
@@ -256,6 +256,8 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
     <td valign="top" class="tableb tableb_alternate"><a name="theme_create_template_gallery"></a>{GALLERY}<a href="#theme_create_template_gallery" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">
       <strong>Gallery</strong><br />
+	  Special token that will later be replaced with the actual Coppermine output. In the above introduction to the template tokens we said that you can move around the tokens inside the template.html file.<br />
+	  However, you have to understand that the {GALLERY}-token is a special placeholder: think of it more as a separator than an actual placeholder token. When the template is being parsed, the {GALLERY}-token will be replaced with the actual core component of the gallery. Other placeholders tokens in curly braces that come <em>before</em> the {GALLERY} token are being handled by the <a href="#theme_create_theme_pageheader">pageheader function</a>; placeholder tokens that come <em>after</em> the {GALLERY}-token are being handled by the <a href="#theme_create_theme_pagefooter">pagefooter function</a>. Therefor, you have to keep in mind that you can freely move tokens around in template.html as long as you don't reverse the position of the token you move and the {GALLERY}-token.	
     </td>
     <td valign="top" class="tableb tableb_alternate"><abbr title="not applicable">n/a</abbr></td>
     <td valign="top" class="tableb tableb_alternate">mandatory</td>
@@ -604,7 +606,8 @@ EOT;<br />
     <td valign="top" class="tableb tableb_alternate">variable</td>
     <td valign="top" class="tableb tableb_alternate">Edit this to add/change CSS classes for the sys-menu links.<br />
     Default content is<pre class="quote">  &lt;!-- BEGIN {BLOCK_ID} --&gt;
-        &lt;a href=&quot;{HREF_TGT}&quot; title=&quot;{HREF_TITLE}&quot;&gt;{HREF_LNK}&lt;/a&gt; {SPACER}
+        &lt;a href=&quot;{HREF_TGT}&quot; title=&quot;{HREF_TITLE}&quot;&gt;{HREF_LNK}&lt;/a&gt;
+		{SPACER}
   &lt;!-- END {BLOCK_ID} --&gt;</pre></td>
     <td valign="top" class="tableb tableb_alternate"></td>
   </tr>
