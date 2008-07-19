@@ -644,6 +644,12 @@ class cpgDB {
 		$limit.= ($limit2 != -1) ? ' ,'. $limit2 : '';	
 		return $limit;
 	}
+
+
+	function getFullTableNames($database, $prefix, $table)
+	{
+		return '`'.$database.'`.'.$prefix.''.$table;
+	}
 }
 
 

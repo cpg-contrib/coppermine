@@ -13,9 +13,9 @@
   SVN version info:
 
   Coppermine version: 1.5.0
-  $Revision: 4499 $
-  $LastChangedBy: pvanrompay $
-  $Date: 2008-06-05 03:12:18 +0530 (Thu, 05 Jun 2008) $
+  $Revision: 4677 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-07-12 20:05:14 +0530 (Sat, 12 Jul 2008) $
 -->
 <link rel="stylesheet" type="text/css" href="../style.css" media="all" />
 <link rel="stylesheet" type="text/css" href="../screen.css" media="screen" />
@@ -50,7 +50,7 @@ We repeat - check your permissions on the <tt class="code">/albums</tt>, <tt cla
 Yes, we do want you to set the permissions of each folder even if you think you have already done this. Yes, we mean it.<br /></fieldset>
 
 <a name="upload_trouble_enable_settings"></a><h2>Enable troubleshooting settings<a href="#upload_trouble_enable_settings" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>If you are experiencing issues with coppermine's upload process, temporarily change your coppermine settings as suggested below to get more detailed <a href="#upload_error_messages">error messages</a>. This applies to <strong>all</strong> upload methods, not only <a href="uploading.htm#upload_http">HTTP uploads</a>.</p>
+<p>If you are experiencing issues with coppermine's upload process, temporarily change your coppermine settings as suggested below to get more detailed <a href="#upload_error_messages">error messages</a>. This applies to <strong>all</strong> upload methods, not only <a href="uploading_http.htm#upload_http">HTTP uploads</a>.</p>
 <p>When troubleshooting uploads in CPG 1.5, you are advised to change the upload settings in the Groups console to 'Single uploads only' and to activate 'Debug mode' in the config console. Changing this setting negates some of the error masking done in the multiple upload setting. This will allow you to access more detailed error messages.</p>
 <ul>
 <li><strong>Log in as admin</strong><br />
@@ -304,7 +304,7 @@ Replace it with<br />
 <p><strong>Some notes about the different types of upload mechanisms available since cpg1.3.x (or better):</strong><br />
 Multiple HTTP uploads are designed to handle a small number of files, and have an upper limit of 10 files at a time.  Therefore, they are not well suited for the uploading of large numbers of files unless you are running your own webserver or have control over the php.ini configuration.
 <br />
-If you are looking to upload more than 15 or 20 files at a time, you should consider the <a href="uploading.htm#batch_add_pics">batch add</a> process or the <a href="uploading.htm#xp_publish_upload">XP Publisher</a> utility.  Each has its own drawbacks and advantages.
+If you are looking to upload more than 15 or 20 files at a time, you should consider the <a href="uploading_batch-add.htm#batch_add_pics">batch add</a> process or the <a href="uploading_xp-publisher.htm#xp_publish_upload">XP Publisher</a> utility.  Each has its own drawbacks and advantages.
 <br />
 The batch add process is fast, but it creates quite a load on the server and, as a result, you may experience timeouts causing your uploads to terminate prematurely.  XP Publisher, on the otherhand, is considerably slower, but it limits the load on the server.  It also circumvents many of the pitfalls caused by limitations set in the php.ini configuration by uploading each file in the batch being uploaded as an individual post request.</p>
 
@@ -313,7 +313,7 @@ The batch add process is fast, but it creates quite a load on the server and, as
 
 <script type="text/javascript">
   cpgDocFooter();
-  dateRevision(' $LastChangedDate: 2008-06-05 03:12:18 +0530 (Thu, 05 Jun 2008) $ ', ' $Revision: 4499 $ ');
+  dateRevision(' $LastChangedDate: 2008-07-12 20:05:14 +0530 (Sat, 12 Jul 2008) $ ', ' $Revision: 4677 $ ');
 </script>
 
 </body>

@@ -47,7 +47,11 @@ class cpg_udb extends core_udb {
 	function cpg_udb()
 	{
 		global $BRIDGE, $CONFIG;
-		
+		###################       DB       #################
+		$cpgdb =& cpgDB::getInstance();
+		$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+		##########################################
+
 		if (!USE_BRIDGEMGR) { // the vars that are used when bridgemgr is disabled
 
 			// URL of your punbb
@@ -79,15 +83,12 @@ class cpg_udb extends core_udb {
 			'users' => 'users',
 			'groups' => 'groups',
 		);
-		##########################################            DB          #######################################
 		// Derived full table names
-		if ($CONFIG['dbservername'] == 'mysql') {
-			$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
-			$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
-		} elseif($CONFIG['dbservername'] == 'mssql') {	////////	for MSSQL	///////
-			$this->usertable = $this->db['name'] ."." .dbo ."." .$this->db['prefix'] . $this->table['users'];
-			$this->groupstable =   $this->db['name'] . "." .dbo ."." .$this->db['prefix'] . $this->table['groups'];
-		}
+		/*$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
+		$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];*/
+		##########################################            DB          #######################################
+		$this->usertable = $cpgdb->getFullTableNames($this->db['name'], $this->db['prefix'], $this->table['users']);
+		$this->groupstable = $cpgdb->getFullTableNames($this->db['name'], $this->db['prefix'], $this->table['groups']);
 		#############################################################################################
 		
 		// Table field names

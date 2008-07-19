@@ -13,9 +13,9 @@
   SVN version info:
 
   Coppermine version: 1.5.0
-  $Revision: 4531 $
+  $Revision: 4692 $
   $LastChangedBy: gaugau $
-  $Date: 2008-06-12 12:37:55 +0530 (Thu, 12 Jun 2008) $
+  $Date: 2008-07-17 10:29:35 +0530 (Thu, 17 Jul 2008) $
 -->
 <link rel="stylesheet" type="text/css" href="../style.css" media="all" />
 <link rel="stylesheet" type="text/css" href="../screen.css" media="screen" />
@@ -111,61 +111,64 @@ Falls das Verbannen-Feature überhaupt nicht genutzt wird kann diese Einstellung
 <hr />
 
 <a name="admin_general_browsable_batch_add"></a><h3>Baumstruktur für Batch-hinzufügen aktivieren<a href="#admin_general_browsable_batch_add" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Beim <a href="uploading.htm#batch_add_pics">Batch-Hinzufügen</a> von Dateien (die zuvor per <acronym title="File Transfer Protocol">FTP</acronym> auf den Server hochgeladen wurden) zu der Galerie gibt es die Möglichkeit, zwischen einer durchsuchbaren Liste (bei der innerhalb der Ordner-Struktur innerhalb des <tt class="code">albums</tt>-Verzeichnisses geblättert werden kann) und einer "flachen" Liste aller Verzeichnisse zu wählen. Diese Option sollte aktiviert werden, wenn eine umfangreiche Struktur innerhalb des <tt class="code">albums</tt>-Ordners mit vielen Ordnern und Unter-Ordnern vorhanden ist. Grundvoraussetzung dafür ist die Fähigkeit des Browsers, <a href="http://de.selfhtml.org/html/frames/eingebettete.htm#definieren" class="external" rel="external">iframes</a> anzuzeigen. Diese Option sollte auf "nein" gesetzt werden, um innerhalb der Batch-Hinzufügen Oberfläche eine komplette Liste aller Verzeichnisse auf einmal anzuzeigen. Sollten Probleme mit einer Option auftauchen wähle die andere. Zwischen den beiden Optionen kann auch auf der <a href="uploading.htm#batch_add_pics">Batch-Hinzufügen</a> Seite selbst umgeschaltet werden.</p>
+<p>Beim <a href="uploading_batch-add.htm#batch_add_pics">Batch-Hinzufügen</a> von Dateien (die zuvor per <acronym title="File Transfer Protocol">FTP</acronym> auf den Server hochgeladen wurden) zu der Galerie gibt es die Möglichkeit, zwischen einer durchsuchbaren Liste (bei der innerhalb der Ordner-Struktur innerhalb des <tt class="code">albums</tt>-Verzeichnisses geblättert werden kann) und einer "flachen" Liste aller Verzeichnisse zu wählen. Diese Option sollte aktiviert werden, wenn eine umfangreiche Struktur innerhalb des <tt class="code">albums</tt>-Ordners mit vielen Ordnern und Unter-Ordnern vorhanden ist. Grundvoraussetzung dafür ist die Fähigkeit des Browsers, <a href="http://de.selfhtml.org/html/frames/eingebettete.htm#definieren" class="external" rel="external">iframes</a> anzuzeigen. Diese Option sollte auf "nein" gesetzt werden, um innerhalb der Batch-Hinzufügen Oberfläche eine komplette Liste aller Verzeichnisse auf einmal anzuzeigen. Sollten Probleme mit einer Option auftauchen wähle die andere. Zwischen den beiden Optionen kann auch auf der <a href="uploading_batch-add.htm#batch_add_pics">Batch-Hinzufügen</a> Seite selbst umgeschaltet werden.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Allgemeine Einstellungen &rarr; Baumstruktur für Batch-hinzufügen aktivieren</p>
 <a name="admin_general_browsable_batch_add_end"></a>
 
 <a name="admin_general_display_thumbs_batch_add"></a><h3>Vorschau-Thumbnails beim Batch-hinzufügen anzeigen<a href="#admin_general_display_thumbs_batch_add" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>When enabled, preview thumbnails are being displayed on the batch-add screen. The preview thumbnails are good to figure out what files to actually add to an album when <a href="uploading.htm#batch_add_pics">batch-adding</a> files. If you always add all files within a folder to an album anyway, it's safe to turn this feature off, which will lead to faster page loads of the batch-add screen. This feature will not safe webspace nor does it have an impact on the thumbnail creation - it just boosts the batch-add screen, that's all.<br />
-You can toggle between these options (enabled or disabled) on the <a href="uploading.htm#batch_add_pics">batch-add</a> page as well.</p>
-<p>When starting with your gallery, you should leave this option enabled untill you're convinced that batch-adding works as expected. You can then turn this option off. If you later discover that something goes wrong with your uplads, re-enable this feature once more.</p>
+<p>Wenn diese Option aktiviert wird werden während des <a href="uploading_batch-add.htm#batch_add_pics">Batch-Hinzufügens</a> Thumbnails angezeigt. Die Vorschau-Thumbnails sind hilfreich, um herauszufinden, welche Dateien tatsächlich zu welchem Album hinzugefügt werden sollen. Wenn beim Batch-Hinzufügen immer alle Dateien zu einem Album hinzugefügt werden kann dieses Feature abgestellt werden, was sich in schnellerem Seitenaufbau äußern wird. Dieses Feature spart weder Speicherplatz, noch hat es eine Auswirkung auf die tatsächliche Erzeugung von Thumbnails - es ist nur eine Verbesserung des unmittelbaren Batch-Hinzufügen-Vorgangs.<br />
+Diese Option kann auch ein- und augeschaltet werden auf den <a href="uploading.htm#batch_add_pics">Batch-Hinzufügen Seiten</a>.</p>
+<p>Bei neu gestarteten Galerien sollte diese Option aktiviert sein, bis das Batch-Hinzufügen zuverlässig funktioniert - dann kann das Feature problemlos deaktiviert werden. Falls dann zu einem späteren Zeitpunkt etwas schief läuft kann dieses Feature zur Fehlersuche wieder eingeschaltet werden.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Allgemeine Einstellungen &rarr; Vorschau-Thumbnails beim Batch-hinzufügen anzeigen</p>
 <a name="admin_general_display_thumbs_batch_add_end"></a>
 
 
 <a name="admin_language"></a><h2>Sprach- &amp; Zeichensatz-Einstellungen<a href="#admin_language" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p><img src="images/config_language.gif" width="612" height="234" border="1" alt="" /></p>
+<p><img src="images/config_language.gif" width="600" height="189" border="0" alt="" align="right" />Mit diesen Einstellungen kannst Du die Sprach-/Übersetzungsoptionen von Coppermine beeinflussen. Lies unbedingt diesen Abschnitt sorgfältig durch, bevor Du Änderungen durchführst..</p>
 <a name="admin_language_language"></a><h3>Sprache<a href="#admin_language_language" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>This sets the default language for your gallery. All language files are stored in the <strong>lang</strong> directory on your server.</p>
-<p>Languages and internationalization (often refered to as i18n) is a complicated and complex thing. You (as Coppermine admin) probably don't want to go into details, so this documentation skips the in-depth issues existing with i18n and just gives you an overview how Coppermine handles languages:</p>
-<p>By default, language files are unicode encoded files. If you set "Character encoding" to "Unicode (utf-8)" then the script will auto detect the preferred language of your visitors based on what default language is configured in their browsers. If the corresponding language is available in your language directory, it will be used. Otherwise, the default language file will be used.</p>
-<p>When the script auto detects the preferred language, it stores the result in a cookie on the visitor's computer. To reset this cookie (and thus force the script to do another auto detection) the user must call this autodetect function with something like: <a href="#">http://yoursite.com/coppermine_dir/index.php?lang=xxx</a></p>
-<p>These steps are performed by the script:</p>
+<p>Diese Einstellung bestimmt die Standard-Sprache Deiner Galerie. Alle Sprachdateien werden im Verzeichnis <strong>lang</strong> auf Deinem Server gespeichert.</p>
+<p>Sprachen und Internationalisierung (oft abgekürzt als <a href="http://de.wikipedia.org/wiki/I18n" rel="external" class="external">i18n</a>) ist eine komplizierte und komplexe Angelegenheit. Du (als Coppermine-Admin) möchtest wahrscheinlich garnicht allzu tief in die tiefsten Details dieser Materie einsteigen, daher spart diese Dokumentation diese Details aus und gibt nur einen kurzen Überblick darüber, wie Coppermine mit unterschiedlichen Übersetzungen und Sprachdateien umgeht:</p>
+<p>Standardmäßig sind die Sprachdateien von Coppermine in Unicode (utf-8) encodiert. Wenn Du die Einstellung &quot;Zeichensatz&quot; auf &quot;Unicode (utf-8)&quot; einstellst versucht das Skript, die bevorzugte Sprache des Besuchers Deiner Seite automatisch zu bestimmen, basierend auf der Standard-Sprache, die im Browser des Besuchers eingestellt ist. Falls diese Sprache im Verzeichnis der Sprachdateien (dem Verzeichnis <tt class="code">lang</tt>) vorhanden ist wird diese benutzt. Ansonsten wird die Standard-Sprache benutzt, die hier in den Optionen eingestellt wurde.</p>
+<p>Wenn das Skript die bevorzugte Sprache des Besuchers automatisch bestimmt hat wird diese bevorzugte Einstellung in einem Cookie auf dem Rechner des besuchers gespeichert. Um dieses Cookie zurückzusetzen (und dadurch das Skript dazu zu zwingen, eine erneute automatische Bestimmung durchzuführen) muss der Besucher diese Funktion des automatischen Bestimmens der Sprache verursachen mit dem Besuch einer Seite mit diesen Parametern: <a href="#">http://deine_seite.tld/coppermine_verzeichnis/index.php?lang=xxx</a></p>
+<p>Dies sind die einzelnen Schritte, die das Skript durchläuft:</p>
 <ul>
-  <li>Step one: Check "has a specific language been set by cookie or URL parameter?". If yes, the gallery will be displayed in that language, all subsequent steps are being skipped</li>
-  <li>Step two: which language has the user set as default language in his browser? If that language exists as Coppermine language file, it will be used - the subsequent step will be skipped.</li>
-  <li>Last step: only if the previous steps both don't apply, the default language that the admin has set up on the config page will be taken into account</li>
+  <li>Schritt 1: Überprüfung "wurde eine spezielle Sprache per Cookie oder über einen URL-Parameter gesetzt?". Falls ja wird die Galerie in dieser Sprache angezeigt und alle weiteren Schritte werden übersprungen.</li>
+  <li>Schritt 2: welche Sprache hat der Besucher als Standard-Sprache in seinem Browser eingestellt? Falls diese Sprache als Coppermine-Übersetzung vorliegt wird diese benutzt - weitere Schritte werden übersprungen.</li>
+  <li>Schritt 3 (letzter Schritt): nur wenn beide vorhergehenden Schritte nicht zutreffen wird die Standard-Sprache, die der Coppermine-Admin in den Einstellungen definiert hat in Betracht gezogen.</li>
 </ul>
 
-<p>Once you have added comments or files to your gallery, you should not change the character set of your gallery. If you do so, non-ASCII characters may not display properly.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Sprach- &amp; Zeichensatz-Einstellungen &rarr; Sprache</p>
 <a name="admin_language_language_end"></a>
 <hr />
 <a name="admin_language_fallback"></a><h3>Auf Englisch zurückgreifen, wenn Deutsche Übersetzung nicht verfügbar?<a href="#admin_language_fallback" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Enable this option if you're using language files that haven't been created for the Coppermine version you use, but for an earlier version. If a certain word or phrase doesn't exist within your language file, coppermine will display the equivalent english phrase, instead.</p>
-<p>This feature has been introduced to allow the use of previous version language files -- language files that may have not been translated for the this version, yet. Until an updated version of the language file is made available, you can use this option. Most translation differences affect the admin part of coppermine only, so  the admin will experience most of these untranslated strings. The admin will see some phrases in english instead of his/her preferred language for strings and words that don't exist in the currently available language file. NOTE: this fallback option only works for 95% of all phrases, there may still be some other translation omissions.</p>
-<p class="important">Enabling this option can have a huge impact on the overall performance of your gallery, especially the memory usage (RAM) may increase drastically. It is recommended to only enable this option if you must have it, not just out of curiosity or to enable as many features as possible.</p>
+<p>Aktiviere diese Option, wennn Du Sprachdateien benutzt, die nicht für die Coppermine-Version erzeugt wurden, die Du benutzt, sondern für eine ältere Version. Wenn ein bestimmes Wort oder ein Satz nicht in Deiner Sprachdatei vorhanden ist wird Coppermine dann das entsprechende Englische Wort benutzen.</p>
+<p>Dieses Feature wurde eingeführt, um die Verwendung älterer Sprachdateien zu ermöglichen - Sprachdateien, für die noch keine vollständige Übersetzung für die aktuelle Version vorliegt. Bis zu dem Zeitpunkt einer Aktualisierung von Coppermine mit einer Sprachdatei in der entsprechenden version kannst Du dieses Feature als "Workaround" nutzen. Die meisten Unterschiede und Neuerungen bei den Sprachdateien betreffen den administrativen Teil von Coppermine - daher wird der vor allem der Admin auf eine Menge unübersetzter Worte treffen, die er dann statt in seiner Muttersprache in Englisch sehen wird. Merke: diese Option funktioniert nur für 95% aller Sätze - es kann trotz aktivierter Option vorkommen, dass einige Bereiche garnicht angezeigt werden.</p>
+<p class="important">Die Aktivierung dieser Option hat eine große Auswirkung auf den Leistungshunger Deiner Galerie, vor allem der Bedarf an Arbeitsspeicher (RAM) steigt dadurch dramatisch an. Es ist daher empfehlenswert, diese Option nur zu aktivieren, wenn es unbedingt sein muss und nicht nur aus Neugier oder um möglichst viele Optionen anbieten zu können.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Sprach- &amp; Zeichensatz-Einstellungen &rarr; Auf Englisch zurückgreifen, wenn Deutsche Übersetzung nicht verfügbar?</p>
 <a name="admin_language_fallback_end"></a>
 <hr />
 <a name="admin_language_charset"></a><h3>Zeichensatz<a href="#admin_language_charset" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>This should normally be set to "Unicode (utf-8)" (or "Default (language file)"). See the explanation in the &quot;<strong><a href="languages.htm#translating">language</a></strong>&quot; section of this documentation.</p>
-<p>Don't change this from Unicode to anything else if you're not absolutely sure about the impact this will have!</p>
+<p>Dies sollte normalerweise auf "Unicode (utf-8)" eingestellt sein, vgl. die Erklärungen im Bereich &quot;<strong><a href="languages.htm#translating">Sprache</a></strong>&quot; der Doku.</p>
+<p>Ändere diese Einstellung nicht von Unicode auf irgend etwas anderes, wenn Du Dir nicht vollständig über die Tragweite dieser Änderung bewusst bist!</p>
+<p class="important">Sobald Kommentare oder Dateibeschreibungen zu Deiner Galerie hinzugefügt wurden sollte diese Einstellung auf keinen Fall geändert werden. Falls Du das doch tust werden Sonderzeichen (z.B. Umlaute) nicht richtig dargestellt werden.</p>
 <a name="admin_language_charset_end"></a>
 <a name="admin_language_list"></a><h3>Sprachauswahl-Liste anzeigen <a href="#admin_language_list" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Enable this option if you want your users to be able to select a preferred language from a dropdown list (you can specify to display only the list itself or a label saying &quot;<strong>Choose your language:</strong>&quot; in front of the list). Edit your template file (/themes/yourtheme/template.html) to specify where the language dropdown list should appear on your gallery (look for the call tag: <strong>{LANGUAGE_SELECT_LIST}</strong>).</p>
+<p>Aktiviere diese Option um den Besuchern der Galerie zu ermöglichen, aus einer Liste von Sprachen ihre bevorzugte Sprache auszuwählen (Du kannst wählen, ob nur die Liste alleine oder mit einem Hinweistext &quot;Wähle Sprache&quot; erscheinen soll). Bearbeite Dein Template (/themes/yourtheme/template.html) um festzulegen, wo die Sprachauswahlliste auf der Seite erscheinen soll innerhalb Deiner Galerie (benutze den Platzhalter <a href="theme_create.htm#theme_create_template_language_select_list">{LANGUAGE_SELECT_LIST}</a>).</p>
+<p>Um Sprachen aus dieser Auswahl zu entfernen, benutze Dein FTP-Programm und lösche damit die unerwünschten Sprachdateien aus dem Verzeichnis <tt class="code">lang</tt> auf Deinem Server. Lösche auf keinen Fall die englische Sprachdatei <tt class="code">english.php</tt> von Deinem Server!</p>
+<p>Normalerweise ist es nicht notwendig, diese Sprachauswahl anzuzeigen, da die Menüs und Bedienelemente sowieso in der bevorzugten Sprache des Besuchers angezeigt werden. Empfohlene Einstellung dieser Option ist "aus".</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Sprach- &amp; Zeichensatz-Einstellungen &rarr; Zeichensatz</p>
-
 <a name="admin_language_list_end"></a>
+
 <hr />
 <a name="admin_language_flags"></a><h3>Sprachauswahl-Flaggen anzeigen<a href="#admin_language_flags" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Enable this option if you would like the option of having your users select languages appropriate for their use by merely clicking on a flag icon which representing their language or country (you can specify to display the flags themselves or include a label that states: &quot;<strong>Choose your language:</strong>&quot; in front of the flags). Edit your template file (/themes/yourtheme/template.html) to specify where the flags should appear in your gallery (look for the call tag:<strong>{LANGUAGE_SELECT_FLAGS}</strong>).</p>
+<p>Aktiviere diese Option um den Besuchern der Galerie zu ermöglichen, aus einer Reihe von Flaggen, die unterschiedliche Sprachen repräsentieren ihre gewünschte Sprache auszuwählen (Du kannst wählen, ob nur die Flaggen alleine oder mit einem Hinweistext &quot;Wähle Sprache&quot; erscheinen soll). Bearbeite Dein Template (/themes/yourtheme/template.html) um festzulegen, wo die Flaggenliste auf der Seite erscheinen soll innerhalb Deiner Galerie (benutze den Platzhalter <a href="theme_create.htm#theme_create_template_language_select_flags">{LANGUAGE_SELECT_FLAGS}</a>).</p>
+<p>Um Sprachen aus dieser Auswahl zu entfernen, benutze Dein FTP-Programm und lösche damit die unerwünschten Sprachdateien aus dem Verzeichnis <tt class="code">lang</tt> auf Deinem Server. Lösche auf keinen Fall die englische Sprachdatei <tt class="code">english.php</tt> von Deinem Server!</p>
+<p>Normalerweise ist es nicht notwendig, diese Sprachauswahl anzuzeigen, da die Menüs und Bedienelemente sowieso in der bevorzugten Sprache des Besuchers angezeigt werden. Empfohlene Einstellung dieser Option ist "aus".</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Sprach- &amp; Zeichensatz-Einstellungen &rarr; Sprachauswahl-Flaggen anzeigen</p>
-
 <a name="admin_language_flags_end"></a>
-<hr />
+
 <a name="admin_language_reset"></a><h3>&quot;Standard&quot; in Sprachauswahl anzeigen<a href="#admin_language_reset" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>This option only applies only if you enabled user language selection - it will show a &quot;default&quot;-icon or list entry to let the users go back to the original language of your gallery.</p>
+<p>Diese Option wird nur in Betracht gezogen, wenn der Besucher mit den o.g. Optionen seine gewünschte Sprache wählen kann - wenn diese Option aktiviert ist wird ein Listenelement "Standard" angezeigt, das es ermöglicht, getroffene Sprachauswahlen zu revidieren und wieder in den ursprünglichen Sprachauswahlmechanismus zurückzukehren.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Sprach- &amp; Zeichensatz-Einstellungen &rarr; &quot;Standard&quot; in Sprachauswahl anzeigen</p>
 <a name="admin_language_reset_end"></a>
 
@@ -173,112 +176,112 @@ You can toggle between these options (enabled or disabled) on the <a href="uploa
 
 <a name="admin_theme"></a><h2>Themen-/Design-Einstellungen<a href="#admin_theme" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <a name="admin_theme_theme"></a><h3>Thema (Design)<a href="#admin_theme_theme" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Use this dropdown list to select the default theme for your gallery (Themes are stored in sub-directories of the <strong>themes</strong> directory ).</p>
+<p>Benutze diese Auswahlliste, um das Standard-Theme Deiner Galerie zu wählen (Themen werden in Unterverzeichnissen des Verzeichnisses <strong>themes</strong> gespeichert).</p>
 <a name="admin_theme_theme_end"></a>
 <hr />
 <a name="admin_theme_theme_list"></a><h3>Designauswahl-Liste anzeigen<a href="#admin_theme_theme_list" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Enable this option if you want your users to be able to select other themes from a dropdown list (you can specify to display only the list itself or a label saying &quot;<strong>Choose your theme:</strong>&quot; in front of the list). Edit your template file (/themes/yourtheme/template.html) to specify where the theme dropdown list should appear on your gallery (look for <strong>{THEME_SELECT_LIST}</strong>).</p>
-<p>This option only makes sense if you have at least one alternative theme in your /themes/ folder other than your default theme. We recommend using this option only if there's are additional benefits for the user (for example a theme with less graphics in it that loads faster for users on a dial-up connection, or a theme with reduced color pallettes and good contrast).</p>
+<p>Aktiviere diese Option, um den Besuchern der Galerie zu ermöglichen, andere Themen (Designs) als das Standard-Thema aus einer Auswahlliste auszuwählen (Du kannst festlegen, ob Du nur die Liste oder auch eine Beschriftung mit der Auschrift &quot;<strong>Wähle Design:</strong>&quot; vor der Liste anzeigen möchtest). Bearbeite Dein Template (/themes/yourtheme/template.html) um festzulegen, wo die Auswahlliste innerhalb der Galerie angezeigt werden soll (suche nach dem Platzhalter <a href="theme_create.htm#theme_create_template_theme_select_list">{THEME_SELECT_LIST}</a>).</p>
+<p>Diese Option macht nur Sinn, wenn Du mindestens ein alternatives Design für Deine Seite erstellt hast, das einen zusätzlichen Nutzen für den Besucher darstellt (beispielsweise ein Design mit weniger grafischen Elementen für Besucher mit langsamer Internet-Anbindung oder ein Design mit starkem Kontrast und grossen Zeichen für Benutzer mit eingeschränkter Sehfähigkeit). Empfohlene Einstellung: aus.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Themen-/Design-Einstellungen &rarr; Themen-/Design-Einstellungen</p>
 <a name="admin_theme_theme_list_end"></a>
 <hr />
 <a name="admin_theme_theme_reset"></a><h3>&quot;Standard&quot; in Designauswahl-Liste anzeigen<a href="#admin_theme_theme_reset" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>This option applies only if you enabled the user theme selection option - it will show a &quot;default&quot; list entry to let the users go back to the original theme of your gallery.</p>
+<p>Diese Option wird nur in Betracht gezogen, wenn Du obige Auswahlliste für die Themen-/Designauswahl aktiviert hast. Falls dann diese Option ebenfalls aktiviert wird erscheint in der Themenauswahlliste ein Eintrag "Standard", der es dem Besucher ermöglicht, wieder zum Standard-Design Deiner Galerie zurück zu kehren.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Themen-/Design-Einstellungen &rarr; &quot;Standard&quot; in Designauswahl-Liste anzeigen</p>
 <a name="admin_theme_theme_reset_end"></a>
 <hr />
 <a name="admin_theme_faq"></a><h3>FAQ anzeigen<a href="#admin_theme_faq" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>This option adds a &quot;FAQ&quot; link to the menu bar when enabled. If a user clicks on it, it will display a list of &quot;Frequently asked question&quot; on how to use coppermine. To change the content of the FAQ, edit the file /your_coppermine_folder/lang/yourlanguage.php (e.g. english.php) and look for</p>
+<p>Diese Option fügt einen Eintrag namens &quot;FAQ&quot; zum Menü hinzu. Wenn der Besucher darauf klickt wird er auf eine Seite mit &quot;Häufig gestellten Fragen&quot; (frequently asked questions) verwiesen, die die Benutzung von Coppermine erklären. Um den Inhalt dieser FAQ zu ändern, bearbeite die Datei /dein_coppermine_verzeichnis/lang/deine_sprache.php (z.B. german.php) und suche nach</p>
 <pre>// ------------------------------------------------------------------------- //
 // File faq.php
 // ------------------------------------------------------------------------- //</pre>
-<p>Edit the content that comes after it.</p>
+<p>und bearbeite den danach folgenden Inhalt.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Themen-/Design-Einstellungen &rarr; FAQ anzeigen</p>
 <a name="admin_theme_faq_end"></a>
 <hr />
 <a name="admin_sidebar"></a><h3>Sidebar für Gäste / registrierte Benutzer<a href="#admin_sidebar" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Determines wether a sidebar for browsers will be available for members of the admin group, registered users group and guest group.</p>
-<p>The sidebar is a minimalistic interface to control your coppermine-driven gallery. Think of it as a sort of snap-in for your favorite browser. If you enabled the sidebar, the control structure of your gallery (with all categories/subcategories and albums) will be available in a separate panel in the browser for faster navigation.</p>
-<p>It is recommended that you try this option first for the admin only: play with it and decide if it would be a helpfull feature for your site's visitors. If yes, enable/promote the sidebar for the registered users and/or guests as well. It's up to you if you want to promote the usage of the sidebar by displaying a link to it in coppermine's menu or if you want to promote it by some other mechanism (e.g. by telling your users about it on a non-coppermine driven page of your website).</p>
-<p>The sidebar is helpfull for users who return to your page often. It provides an alternative method of browsing your gallery by displaying a tree structure of your categories, subcategories and albums. It is meant for advanced users who understand how their browser works.</p>
-<p>The sidebar install screen tries to auto-detect the operating system and browser that the visitor is using and offers the corresponding option to install the sidebar (as those methods differ from browser to browser). Some browsers are capable so to pose as different browsers, which will make the auto-detection routine fail. Subsequently, there is an option on the install screen as well to skip auto-detection and make the visitor select his browser.</p>
-<p>Group membership is being determined if a visitor is logged in or not: if he is not logged in, he is a member of the guest group and the corresponding option set up for guests (anonymous) is being taken into account. If the visitor is logged in, he is automatically a member of the registered group.</p>
-<p>There are two independant config sections for granular permissions who can access the sidebar:</p>
+<p>Legt fest, ob eine Sidebar für Browser für die Mitglieder der Admin-Gruppe, für registrierte Benutzer oder für Gäste verfpgbar sein soll..</p>
+<p>Die Sidebar ist eine minimalistische Benutzeroberfläche, um eine Galerie zu bedienen, vergleichbar mit einem Browser-Plugin. Innerhalb der Sidebar wird die Struktur Deiner Galerie (mit allen Kategorien/Unterkategorien und Alben) in einer separaten Leiste am Rand des Browserfensters verfügbar und ermöglicht eine wesentlich schnellere Navigation durch die Strukur Deiner Galerie.</p>
+<p>Es ist empfehlenswert, diese Option zunächst nur für den Admin auszuprobieren: spiele ein wenig damit herum und entscheide dann, ob Du dieses Feature auch den Besuchern Deiner Seite anbieten möchtest. Falls ja, aktiviere/bewerbe die Sidebar für registrierte Benutzer und/oder für unregistrierte Gäste. Es liegt an Dir, ob Du die verwendung der Sidebar durch das Anzeigen eines Links innerhalb der Navigation bewerben willst oder ob Du Deine Besucher über andere Mechanismen außerhalb von Coppermine (z.B. mit Hilfe eines Links von der Startseite Deiner Präsenz) informieren möchtest.</p>
+<p>Die Sidebar ist vor allem für Besucher hilfreich, die häufig auf Deine Seite kommen. Sie ermöglicht eine alternative Ansicht der Galerie in Form einer Baumstruktur aus Kategorien, Unterkategorien und Alben. Sie ist für fortgschrittene Benutzer gedacht, die wissen, wie ihr Browser funktioniert.</p>
+<p>Die Installations-Seite der Sidebar versucht, das vom Besucher verwendete Betriebssystem und seinen Browser automatisch zu erkennen und bietet dann die entsprechenden Installationsoptionen an (diese Methoden unterscheiden sich von Browser zu Browser). Einige Browser können sich auch als andere Browser ausgeben, so dass die automatische Bestimmung fehlschlägt. Deshalb beinhaltet der Installationsbildschirm auch eine Option zum manuellen Installation.</p>
+<p>Die Zugehörigkeit zu Gruppen wird dadurch bestimmt, ob ein Besucher angemeldet (eingeloggt) ist oder nicht: wenn er nicht angemeldet ist, dann ist er Mitglied der Gruppe "Gäste" (Guests/Anonymous). Wenn der Benutzer angemeldet ist, dann ist er automatisch ein Mitglied der Gruppe "Registered".</p>
+<p>Es existieren zwei unabhängige Einstellungen zur genauen Bestimmung, wer auf die Sidebar zugreifen können soll::</p>
 <ul>
-  <li><strong>Sidebar for registered users</strong><br />Options for registered users (members of the "registered" group) who are logged in</li>
-  <li><strong>Sidebar for guests</strong><br />Options for visitors of your gallery who are not logged in</li>
+  <li><strong>Sidebar für registrierte Benutzer</strong><br />Optionen für registrierte Benutzer (Mitglieder der Gruppe "registered"), die angemeldet sind</li>
+  <li><strong>Sidebar für Gäste</strong><br />Optionen für Besucher Deiner Galerie, die nicht angemeldet/registriert sind</li>
 </ul>
-<p>Members of the admin group can access the sidebar no matter what option you select.</p>
-<p>Possible options for each of the above settings:</p>
+<p>Mitglieder der Admin-Gruppe können immer auf die Sidebar zugreifen, egal welche der Optionen für Benutzer und Gäste gewählt sind.</p>
+<p>Mögliche Optionen für die o.g. Einstellungen:</p>
 <ul>
-  <li><strong>No</strong><br />
-  Don't display a link to the sidebar install screen. Don't allow access to the sidebar nor the sidebar install screen at all.</li>
-  <li><strong>Yes: allow, but don't display link</strong><br />
-  Allow access to the sidebar and the corresponding install screen, but do not promote the sidebar. There will be no link in coppermine's menu that will send the user to the sidebar install page, so your visitors will not be aware of it. You will have to promote it by some other means (e.g. by telling your power-users about it in a newsletter). If you decide to manually promote the use of the sidebar, send your visitors to <tt class="code">http://yoursite.tld/your_coppermine_folder/sidebar.php?action=install</tt></li>
-  <li><strong>Yes: allow and promote it by displaying a link</strong><br />
-  Allow access to the sidebar and promote the sidebar by displaying a link to the sidebar installer screen in coppermine's menu</li>
+  <li><strong>Nein</strong><br />
+  Zeige keinen Link zur Sidebar-Installation an. Erlaube keinen Zugriff auf die Sidebar oder den Installationsbildschirm der Sidebar.</li>
+  <li><strong>Ja: Zulassen, aber keinen Link anzeigen</strong><br />
+  Erlaubt den Zugriff auf die Sidebar und den entsprechenden Sidebar-Installationsbildschirm. Es erescheint aber kein Link im Menü von Coppermine, der die Besucher auf die Installationsseite der Sidebar führt, so dass die Besucher sich nicht darüber bewusst sein werden, dass es das Sidebar-Feature überhaupt gibt. Daher müssen die Besucher über andere Mechanismen auf die Sidebar aufmerksam gemacht werden (z.B. durch Information per Newsletter). Wenn Du Deine Besucher manuell auf die Sidebar aufmerksam machen willst, dann sende sie auf die Seite <tt class="code">http://deine_seite.de/dein_coppermine_verzeichnis/sidebar.php?action=install</tt></li>
+  <li><strong>Ja: Zulassen und per Link bewerben</strong><br />
+  Erlaube den Zugriff auf die Sidebar und bewerbe die Sidebar durch Anzeige eines entsprechenden Links zum Sidebar-Installer im Menü von Coppermine</li>
 </ul>
-<p>Make sure to set the sidebar options up so that they make sense: it is not a bright idea to allow guests to access the sidebar, but deny access to registered users; registered users would be "punished" for registering. It is advisable to test the sidebar feature thoroughly before allowing your visitors to access it.</p>
-<p>How the sidebar is installed greatly differs from browser to browser. Sadly, the most complicated version is the sidebar for Internet Explorer, which is the most popular browser. In the past, it has been comparatively easy to add anything to IE's favorites and to come up with a "real" sidebar. However, as Microsoft had some bad press for releasing a browser with severe security holes, the options for developers to create a working sidebar that end users can add easily have been reduced deliberately by Microsoft when releasing patches for their browser and operating system. Therefor, you might have issues with the sidebar, depending on which version of Windows and IE you are using.</p>
-<p>If you want to edit the text that explains the install of the sidebar, edit the file <tt class="code">http://yoursite.tld/your_coppermine_folder/lang/yourlanguage.php</tt> with a plain text editor.</p>
+<p>Stelle sicher, die Sidebar-Optionen so einzustellen, dass sie Sinn machen: es wäre keine gute Idee, Gästen den Zugriff auf die Sidebar zu erlauben, sie aber den registrierten Benutzern zu verbieten; registrierte Benutzer würden sonst dafür "bestraft" dafür, dass sie sich registriert haben.Es ist empfehlenswert, die Features der Sidebar gründlich zu testen, bevor Du Deinen Besuchern Zugriff darauf gewährst.</p>
+<p>Die Art der Sidebar-Installation weicht von Browser zu Browser stark voneinander ab. Leider ist die Sidebar für den Internet Explroer als verbreitesteter Browser gleichzeitig die komplizierteste Installationsmethode. In der Vergangenheit war es vergleichsweise einfach, etwas zu den Favoriten im IE hinzuzufügen und in eine "richtigen" Sidebar zu verwandeln. Microsoft hat jedoch in der Vergangenheit eine Menge Kritik einstecken müssen für die Sicherheitslöcher in ihrem Browser, so dass die Möglichkeiten für Entwickler, eigene Sidebars zu etablieren stark eingeschränkt wurden. Es kann daher zu Schwierigkeiten mit der Sidebar in Abhängigkeit vom verwendeten Betriebssystem und der IE-Version kommen.</p>
+<p>Wenn Du den Text ändern willst, der die Installationsoptionen für die Sidebar erklärt, dann bearbeite die Datei <tt class="code">http://deine_seite.tld/dein_coppermine_verzeichnis/lang/deine_sprache.php</tt> mit einem Nur-Text Editor.</p>
 
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Themen-/Design-Einstellungen &rarr; Sidebar für Gäste / registrierte Benutzer</p>
 <a name="admin_sidebar_end"></a>
 <hr />
 <a name="admin_theme_custom_lnk_name"></a><h3>Name eines benutzerdefinierten Menü-Eintrags<a href="#admin_theme_custom_lnk_name" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Use this if you want to create a custom link that will appear in the menu. What you enter here will be the name of the menu link or button.  Leave space blank if you do not have any specific use for it.</p>
+<p>Benutze diese Option um einen benutzerdefinierten Menüeintrag im Coppermine-Menü vorzunehmen. Der in dieses feld eingegebene Text wird der name des Menüeintrags sein. Lasse das Feld leer, falls Du dafür keine Verwendung hast.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Themen-/Design-Einstellungen &rarr; Name eines benutzerdefinierten Menü-Eintragsk</p>
 <a name="admin_theme_custom_lnk_name_end"></a>
 <hr />
 <a name="admin_language_custom_lnk_url"></a><h3>URL eines benutzerdefinierten Menü-Eintrags<a href="#admin_language_custom_lnk_url" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>This is the URL where the user's browser will be directed to when s/he clicks on the &quot;Custom link name&quot; button in the main menu.</p>
-<p>You can use any valid URL.</p>
-<p>Leave this blank if you do not have any specific use for it.</p>
+<p>Zu dieser URL wird der Besucher verwiesen, wenn er/sie den Benutzerdefinierten Menüeintrag anklickt.</p>
+<p>Es kann jede gültige URL angegeben werden.</p>
+<p>Lasse das feld leer, falls kein benutzerdefinierter Menüeintrag benötigt wird.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Themen-/Design-Einstellungen &rarr; URL eines benutzerdefinierten Menü-Eintrags</p>
 <a name="admin_language_custom_lnk_url_end"></a>
 <hr />
 <a name="admin_theme_bbcode"></a><h3>bbcode-Hilfe anzeigen<a href="#admin_theme_bbcode" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>When enabled, this will display the <a href="bbcode.htm#bbcode">bulletin board codes</a> that may be used in description fields to help with the formatting of text, images and links.</p>
+<p>Wenn diese Option aktiviert ist wird neben allen Eingabefeldern, die die Eingabe von <a href="bbcode.htm#bbcode">bulletin board codes</a> erlauben ein entsprechendes Hilfesymbol angezeigt, das dem Besucher erklärt, wie bbcode benutzt wird zur Textformatierung und Erzeugung von Bildbezügen und Verweisen in den Textfeldern.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Themen-/Design-Einstellungen &rarr; bcode-Hilfe anzeigen</p>
 <a name="admin_theme_bbcode_end"></a>
 <hr />
 <a name="vanity_block"></a><h3>Vanity Block in Designs anzeigen, die als XHTML und CSS konform definiert sind?<a href="#vanity_block" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>When enabled and using a theme that has been defined as XHTML and CSS compliant, the vanity block will be shown. The vanity block contains the logos and links for HTML and CSS compliance at w3.org, as well as pointers to the PHP, and MySQL projects.</p>
-<p>Some designers (particularly those who try to come up with standards-compliant code) have been fond to display this type of &quot;advertisment&quot; for the free resources mentioned. However, end users (i.e. the visitors of your site) probably don't care at all for the logos. Default (and recommended) setting is &quot;off&quot;.
+<p>Wenn diese Option aktiviert ist und das verwendete Thema als XHTML und CSS Standard-Konform definiert ist werden die so genannten "Vanity Blocks" auf jeder Seite angezeigt, die die Logos und Links für HTML und CSS-Konformität des W3C und Logos und Links zu PHP und mySQL anzeigen.</p>
+<p>Einige Designer (vor allem diejenigen, die versuchen, standard-konformen Code zu erzeugen) legen Wert darauf, diese Art "Werbung" für die genannten kostenlosen Resourcen anzuzeigen. Die Endbenutzer (also die Besucher Deiner Seite) interessieren sich aber höchstwahrscheinlich nicht für diese Logos. Standard-Einstellung (empfohlen) für diese Option ist "aus".</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Themen-/Design-Einstellungen &rarr; Vanity Block in Designs anzeigen, die als XHTML und CSS konform definiert sind?</p>
 <a name="vanity_block_end"></a>
 <hr />
 <a name="admin_social_bookmarks"></a><h3>Social-Bookmarks anzeigen<a href="#admin_social_bookmarks" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>If at least one entry is selected, an icon will display on all gallery pages that allows site visitors to add the page they are on quickly to their favorite social bookmark service. You have to understand that displaying those icons does <strong>not</strong> automatically add links to your gallery: it just offers the visitor an easy way to bookmark your site. Displaying the social bookmarks section will not have a direct impact on your page rank, as the social bookmarks section is being written on the page using JavaScript (which search engine spiders will ignore). However, if users like your gallery and bookmark it using their favorite social bookmarking services, you will get back links from those social bookmark services which will increase your site's relevance in search engine catalogs. This being said: social bookmarks <em>can</em> be a legitimate tool to improve your search engine rank. As a disadvantage, the icons may distract visitors from the actual content of your site and lead them somewhere else. Therefor, you should consider carefully if you want to display social bookmark links and if the majority of visitors of your page will understand and use the social bookmark icons. The social bookmark icons may be beneficial for gallery owners with a target audience that is widely familiar with social bookmarks. If you (as site admin) have no idea what those icons are for, you better leave them turned off (which is the default).</p>
-<p>Consider carefully what social bookmark services you will display on your page - it's advisable not to display all that are available: this would only clutter the look of your page and disctract users too much. It would be confusing for users to actually find the icon of their favorite social bookmark site. There are many localized social bookmark services, so they are only usefull if your site visitors actually speak the language the bookmark service is providing.</p>
-<p>To avoid spamming, most social bookmark services only allow bookmarks from registered users, so you can't expect that your site visitors will go through the registration process on all those services - they will probably only use the service they have already signed up for. That's why it's probably a good idea to only present a small number of those icons that are well-known in the community you catter for.</p>
-<p>The social bookmark selector on the config page is using a select field where you can highlight multiple entries by holding down the [CTRL]-key on your keyboard (on PC clients). Use that key as well to unselect entries - if you just click on an entry without holding down the [Ctrl]-key, the item will be selected; re-clicking will not un-select it, so you will have to use the [Ctrl]-key if you want to disable the display of social bookmarks after having enabled it once.</p>
-<p>This feature will only work if your theme contains the <a href="theme_create.htm#social_bookmarks_token">social bookmarks placeholder</a>.</p>
+<p>Wenn zumindest einer der verfügbaren Einträge markiert ist wird auf jeder Galerie-Seite ein Icon angezeigt, das es den Besuchern der Galerie ermöglicht, die Seite schnell und unkompliziert zu ihrem bevorzugten Social Bookmarks Dienst hinzuzufügen. Die Anzeige dieser Icons fügt <strong>nicht</strong> automatisch Links zu Deiner Galerie den genannten Diensten hinzu - es ermöglicht den Besuchern nur, dies schnell zu tun, wenn sie es wollen. Die Anzeige der Social Bookmarks hat keinen Einfluss auf die Wertigkeit Deiner Seite in Suchmaschine, da die Social Bookmarks per JavaScript in die Ausgabe geschrieben werden und so für die Suchmaschinen-Roboter unsichtbar sind. Wenn jedoch die Besucher Deiner Galerie die Inhalte mögen und die Galerie als Lesezeichen bei den Social Bookmark diensten speichern wird Deine Seite Backlinks von diesen Seiten erhalten und dadurch die Wertigkeit im Suchmaschinen-Ranking erhöhen. Daher: die Verwendung von Scial Bookmarks <em>kann</em> ein legitimes Werkzeug sein, um die Suchmaschinen-Wertigkeit zu erhöhen. Als Nachteil können die Icons aber den Besucher der Seite vom eigentlichen Inhalt ablenken und sie auf eine andere Seite führen. Es sollte daher sorgfältig abgewägt werden, ob die Social Bookmark Icons angezeigt werden sollen und ob die Besucher der Seite diese Icons auch verstehen und benutzen werden. Die Icons können hilfreich sein für Seiten, deren Besucher mit der Verwendung solcher Dienste vertraut sind. Falls Du (als Galerie-Admin) keine Ahnung hast, ,wozu diese Icons eigentlich gut sind, dann lasse sie besser abgeschaltet (was der Standard ist).</p>
+<p>Wäge sorgfältig ab, welche Social Bookmark Dienste Du auf Deiner Seite anzeigen lässt - es ist empfehlenswert, nicht alle verfügbaren DIenste auch anzuzeigen, da dass nur das Aussehen der Seite verschandeln und die Besucher zu sehr ablenken würde. Außerdem wäre es zu verwirrend für den Besucher, das Icon des tatsächlich bevorzugten Dienstes herauszufinden. Es gibt eine große Menge nationaler Dienste - verwende also nur die Dienste, deren Sprache Deine Besucher auch mächtig sind.</p>
+<p>Um Spamming zu vermeiden erlauben die meisten Social Vookmark Dienste nur registrierten Benutzern das Hinzufügen von Lesezeichen - Du kannst daher nicht davon ausgehen, dass die Besucher Deiner Seite durch sich durch den Registrierungsprozess all der Dienste quälen werden, nur um Deine Seite voran zu bringen - Deine Besucher werden vermutlich (wenn überhaupt) nur die Diesnte benutzen, bei denen sie sowieso schon angemeldet sind. Daher ist es eine kluge Idee, nur eine kleine Anzahl von Diensten tatsächlich anzuzeigen, die in Deiner Besucher-Community bekannt sind.</p>
+<p>Das Auswahl-Feld für die Social Bookmarks Dienste verwendet erlaubt die Auswahl mehrerer Diesnte, indem Du die [Strg]-Taste Deiner Tastatur gedrückt hälst und dann auf die entsprechenden Zeilen klickst. Benutze die [Strg]-Taste ebenfalls, um die Auswahl wieder aufzuheben durch erneutes Anklicken.</p>
+<p>Dieses Feature funktioniert nur, wenn Dein Benutzer-definiertes Thema (Design) den <a href="theme_create.htm#social_bookmarks_token">Social Bookmarks Platzhalter</a> beinhaltet.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Themen-/Design-Einstellungen &rarr; Social-Bookmarks anzeigen</p>
 <a name="admin_social_bookmarks_end"></a>
 <hr />
 <a name="admin_theme_include_path_start"></a>
 <a name="admin_theme_custom_header_path_start"></a><h3>Pfad zu benutzerdefiniertem header-include<a href="#admin_theme_custom_header_path_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Optional relative path to a custom header file. Using this option, you can include non-coppermine code bits to be included into your theme, e.g. an overall navigation that gets included on your whole website. You can only add a relative path (seen from the root path of your coppermine install) - not an absolute one, nor a http include from another website. This option is only meant for experienced users who have some PHP know-how. </p>
-<p><span class="important">Warning: you mustn't include full html pages that contain an html header or footer (tags like <tt class="code">&lt;head&gt;</tt> or <tt class="code">&lt;body&gt;</tt>), nor can the included file do file header manipulation, e.g. reading another (non-coppermine) cookie.</span><br />
-For details on the include files, refer to the section <a href="php-content.htm#php-content_header_footer">Custom header and footer</a></p>
-<p><strong>Example</strong>: If your Coppermine install resides in http://yourdomain.tld/your_coppermine_folder/ and your include file is suppossed to be http://yourdomain.tld/my_overall_navigation/my_custom_header.php, you need to specify <tt class="code">../my_overall_navigation/my_custom_header.php</tt> (the relative path to your include file, seen from the folder coppermine resides in) as &quot;Path to custom header include&quot;.</p>
+<p>Optionaler relativer Pfad zu einer benutzerdefinierten Header-Datei. Benutze diese Option, um Code von außerhalb Deiner Coppermine-Installation in Dein Thema (Design) zu includieren, z.B. eine Gesamtnavigation für Deine Webseite. Du kannst nur einen relativen Pfad (gesehen vom Stammverzeichnis Deiner Coppermine-Installation aus) angeben. Es kann weder ein absoluter Pfad angegeben werden, noch kannst Du einen http-include von einer anderen Webseite damit realisieren! Diese Option ist nur für fortgeschrittene Benutzer mit etwas PHP-Kenntnissen gedacht.</p>
+<p><span class="important">Achtung: es darf keine vollständige HTML-Seite includiert werden, die einen HTML-Kopf enthält (HTML-Tags wie <tt class="code">&lt;head&gt;</tt> oder <tt class="code">&lt;body&gt;</tt>). Ebenfalls kann keine Datei includiert werden, die http-Header Manipulationen durchführt, wie beispielsweise das Einlesen eines anderen Cookies.</span><br />
+Details zum Thema includes befinden sich unter <a href="php-content.htm#php-content_header_footer">Benutzerdefinierter header und footer</a></p>
+<p><strong>Beispiel</strong>: Wenn Coppermine sich unter http://deine_domain.tld/dein_coppermine_verzeichnis/ befindet und die Include-Datei sich unter http://deine_domain.tld/meine_seiten-navigation/mein_benutzerdefinierter_header.php befindet, muss <tt class="code">../meine_seiten-navigation/mein_benutzerdefinierter_header.php</tt> (der relative Pfad zu Deiner Include-Datei, gesehen vom Verzeichnis, in dem sich Coppermine befindet) als &quot;Pfad zu benutzerdefiniertem header-include&quot; angegeben werden.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Themen-/Design-Einstellungen &rarr; Pfad zu benutzerdefiniertem header-include</p>
 <a name="admin_theme_custom_header_path_end">
 <a name="admin_theme_custom_footer_path_start"></a><h3>Pfad zu benutzerdefiniertem footer-include<a href="#admin_theme_custom_footer_path_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Optional relative path to a custom footer file. The same remarks apply as for the custom header include path.</p>
+<p>Optionaler relativer Pfad zu einer benutzerdefinierten Footer-Datei. Die gleichen Anmerkungen gelten hier wie für den <a href="#admin_theme_custom_header_path_start">Pfad zum benutzerdefinierten Header-include</a>.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Themen-/Design-Einstellungen &rarr; Pfad zu benutzerdefiniertem footer-include</p>
 <a name="admin_theme_custom_footer_path_end"></a>
 <a name="admin_theme_include_path_end"></a>
 <hr />
 <a name="admin_theme_browse_by_date"></a><h3>Aktiviere Betrachtung nach Datum<a href="#admin_theme_browse_by_date" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>When enabled, another link in the sub_menu will appear named &quot;By Date&quot;. When the user clicks on it, the calendar will open in a pop-up and will allow the user to view files uploaded at a certain date.</p>
+<p>Wenn diese Option aktiviert wird erscheint ein zusätzlicher Eintrag im Coppermine-Menü (sub_menu) namens &quot;Nach Datum&quot;. Wenn der Besucher darauf klickt wird ein Kalender-Popup geöffnet, in dem angegeben werden kann, die Uploads eines betimmten Datums anzusehen.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Themen-/Design-Einstellungen &rarr; Aktiviere Betrachtung nach Datum</p>
 <a name="admin_theme_browse_by_date_end"></a>
 <hr />
 <a name="admin_theme_display_redirection_page"></a><h3>Umleitungs-Seiten anzeigen<a href="#admin_theme_display_redirection_page" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>When enabled, there will be pages that tell the user if his action has been successfull or not, with a link to continue to the next page. If disabled, the user will be redirected to the target page immediately without displaying the redirection page first, with the message displaying at the top of the page instead. Recommended (and default) setting is "No", as it then will need less clicks.</p>
-<p>Example: if enabled, users will be sent to a page that says "comment added" after they have submit a comment. Only after clicking on continue they will be sent back to the intermediate image display (where they posted their comment in the first place). If this option stays disabled, the user will see a box at the top of the intermediate image screen that just says "comment added" after he submit his comment.</p>
+<p>Wenn diese Option aktiviert ist werden Zwischenseiten nach einigen Benutzeraktionen angezeigt, die dem Benutzer mitteilen, ob seine Aktion erfolgreich war oder nicht. Falls diese Option deaktiviert ist wird der benutzer direkt zur Zielseite geleitet ohne Anzeige einer Zwischenseite. DIe Nachricht über den Erfolg der Aktion wird dann auf der zeilseite angezeigt. Empfohlene Einstellung (und Standard) ist die Option "Nein", da der Benutzer dann weniger Klicks absolvieren muss und jeweils eine Seite weniger aufgebaut werden muss.</p>
+<p>Beispiel: wenn die Option aktiviert ist wird der benutzer nach der Abgabe eines Kommentars auf eine Umleitungs-Seite geleitet, auf der "Kommentar hinzugefügt" steht. Nur wenn der Besucher auf den dort vorhandenen "weiter"-Button klickt wird er zum Bild in Zwischengröße geleitet, auf der er seinen Kommentar abgegeben hat, von wo aus er seine Navigation fortführen kann. Falls diese Option deaktiviert wird/bleibt wird dem Benutzer nach Kommentaragbage direkt auf der Seite, auf der er den Kommentar abgegeben hat eine Nachricht angezeigt "Kommentar hinzugefügt".</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Themen-/Design-Einstellungen &rarr; Umleitungs-Seiten anzeigen</p>
 <a name="admin_theme_display_redirection_page_end"></a>
 <a name="admin_theme_end"></a>
@@ -286,75 +289,75 @@ For details on the include files, refer to the section <a href="php-content.htm#
 
 <a name="admin_album_list"></a><h2>Ansicht Albenliste<a href="#admin_album_list" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <a name="admin_album_table-width"></a><h3>Breite der Haupttabelle<a href="#admin_album_table-width" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>The number you type in here becomes the default width of the display tables used on your main page or when you are viewing thumbnails of an album. You can enter the width in pixels or specify it in percentages. The default value is 100%.<br />
-Setting this to a ridiculously high value (i.e. above 100% or a pixel value higher than regular desktop resolutions) doesn't make sense and will lead to unexpected results.</p>
+<p>Der Wert, der hier eingegeben wird wird der Standard der Tabellenbreite auf der Hauptseite und bei der Thumbnail-Ansicht. DIe Angabe der Breite kann absolut in Pixeln erfolgen oder relative in Prozent. Der Standard-Wert ist 100% und sollte nur von erfahrenen benutzern geändert werden.<br />
+Das festlegen von sinnlos hohen Werten (z.B. über 100% oder auf einen Pixelwert weit jenseits gängiger Desktop-Auflösungen) ist nicht empfehlenswert und führt zu unvorhersehbaren Ergebnissen.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Ansicht Albenliste &rarr; Breite der Haupttabelle</p>
 <a name="admin_album_table-width_end"></a>
 <hr />
 <a name="admin_album_category-levels"></a><h3>Anzahl angezeigter Kategorie-Ebenen<a href="#admin_album_category-levels" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>The default value is 2. With this value the script will display the current categories plus one level of sub-categories.</p>
+<p>Standard-Wert ist 2. Mit diesem Wert zeigt das Skript die derzeit gewählte Kategorie-Ebene an plus eine Ebene von Unter-Kategorien.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Ansicht Albenliste &rarr; Anzahl angezeigter Kategorie-Ebenen</p>
 <a name="admin_album_category-levels_end"></a>
 <hr />
 <a name="admin_album_number"></a><h3>Anzahl angezeigter Alben<a href="#admin_album_number" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>This is the number of albums to display on a page. If the current category contains more albums than what is allowed on the page, the album list will be split over multiple pages with tabs at the bottom of each album list table (pagination) that users can click on to advance to the next set of albums in a particular category.</p>
-<p>Default (and recommended) setting is &quot;12&quot;.</p>
+<p>Dieser Wert regelt die Anzahl angezeigter Alben auf einer Seite. Falls die derezit gewählte Kategorie mehr Alben beinhaltet, als in diesem Feld vorgegeben wird die Albenliste über mehrere Seiten aufgeteilt mit Tabs am Seitenende, mit deren Hilfe die Besucher von einer Alben-Seite auf die nächste innerhalb einer Kategorie gelangen kann aufgeteilt.</p>
+<p>Standard (und empfohlener Wert) ist &quot;12&quot;.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Ansicht Albenliste &rarr; Anzahl angezeigter Alben</p>
 <a name="admin_album_number_end"></a>
 <hr />
 <a name="admin_album_columns"></a><h3>Anzahl Spalten in Album-Liste<a href="#admin_album_columns" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Self-explanatory. The default value is 2.</p>
+<p>Selbsterklärend. Standard-Wert ist 2.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Ansicht Albenliste &rarr; Anzahl Spalten in Album-Liste</p>
 <a name="admin_album_columns_end"></a>
 <hr />
 <a name="admin_album_thumbnail-size"></a><h3>Alben-Thumbnail-Größe in Pixeln<a href="#admin_album_thumbnail-size" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>This sets the maximum size of the thumbnails that are to be displayed for each album. 50 means that the thumbnail will fit inside a square of 50x50 pixels.</p>
-<p>If the size you specify there is larger than &quot;Pictures and thumbnails settings/Max width or height of a thumbnail&quot;, the thumbnail will be stretched. Aesthetically, it is better to have thumbnails smaller than or equal to the Max width or height settings here.</p>
+<p>Diese Einstellung definiert die Maximalgrösse von Thumbnails, die als Platzhalter für individuelle Alben angezeigt werden. 50 bedeutet dabei, dass das Thumbnail in ein Quadrat mit 50 mal 50 Pixeln hineinpassen wird.</p>
+<p>Falls der hier eingegebene Wert größer ist als der Wert für &quot;<a href="#admin_picture_thumbnail_max-dimension">Maximalgröße Thumbnail</a>&quot; wird der Alben-Thumbnail gedehnt dargestellt. Vom ästhetischen Gesichtspunkt aus ist es sinnvoll, die EInstellung für die Maximalgröße der Alben-Thumbnails kleiner oder maximal gleich groß zu wählen wie die Einstellung für &quot;<a href="#admin_picture_thumbnail_max-dimension">Maximalgröße Thumbnail</a>&quot;.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Ansicht Albenliste &rarr; Alben-Thumbnail-Größe in Pixeln</p>
 <a name="admin_album_thumbnail-size_end"></a>
 <hr />
 <a name="changing"></a><a name="admin_album_list_content"></a><h3>Inhalt der Hauptseite<a href="#admin_album_list_content" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>This option allows you to change the content of the main page displayed by the script.</p>
-<p>The default value is <tt class="code">catlist/alblist/random,2/lastup,2</tt></p>
-<p>You can use the following "codes" to include other items:</p>
+<p>Diese Option ermöglicht es, den Inhalt und die Reihenfolge der hauptseite (Index-Seite) von Coppermine zu beeinflussen.</p>
+<p>Der Standard-Eintrag ist <tt class="code">catlist/alblist/random,2/lastup,2</tt></p>
+<p>Die folgenden "Codes" können verwendet werden, um andere Bereiche anzuzeigen:</p>
 <ul>
-  <li>'<strong>breadcrumb</strong>': navigation inside the gallery (e.g. &quot;home &gt; category &gt; subcategory &gt; album&quot;)</li>
-  <li>'<strong>catlist</strong>': category list</li>
-  <li>'<strong>alblist</strong>': album list</li>
-  <li>'<strong>random</strong>': random files (leaving random files &quot;on&quot; for huge galleries with more than 10,000 pics might result in performance problems; switch random &quot;off&quot; in this case)</li>
-  <li>'<strong>lastup</strong>': last uploads</li>
-  <li>'<strong>topn</strong>': most viewed</li>
-  <li>'<strong>toprated</strong>': top rated</li>
-  <li>'<strong>lastcom</strong>': last comments </li>
-  <li>'<strong>lasthits</strong>': last viewed </li>
-  <li>'<strong>anycontent</strong>': inserts php-generated content that has to reside within the file 'anycontent.php' into the index page. Can be used to include banner-rotation scripts or similar. Refer to &quot;<a href="php-content.htm#php-content_anycontent">Using anycontent.php</a>&quot; for details.</li>
-  <li>'<strong>lastalb</strong>': last created albums</li>
+  <li>'<strong>breadcrumb</strong>': Navigation innerhalb der Galerie (z.B. &quot;Galerie &gt; Kategorie &gt; Unterkategorie &gt; Album&quot;)</li>
+  <li>'<strong>catlist</strong>': Kategorie-Liste</li>
+  <li>'<strong>alblist</strong>': Albenliste</li>
+  <li>'<strong>random</strong>': Zufalls-Dateien (das Aktivieren von Zufallsdateien kann für große Galerien mit mehr als 10.000 Dateien in Performance-Problemen resultieren; schlate in solchen Fällen die Anzeige von "random" aus)</li>
+  <li>'<strong>lastup</strong>': neueste Uploads</li>
+  <li>'<strong>topn</strong>': am meisten angesehen</li>
+  <li>'<strong>toprated</strong>': am besten bewertet</li>
+  <li>'<strong>lastcom</strong>': zuletzt kommentiert</li>
+  <li>'<strong>lasthits</strong>': zuletzt angesehen</li>
+  <li>'<strong>anycontent</strong>': fügt dynamische Inhalte (PHP-gestützt) auf allen Index-Seiten ein, die in der Datei 'anycontent.php' beheimatet sein müssen. Kann genutzt werden, um Banner-Rotationen oder ähnliches zu bewerkstelligen. Details unter &quot;<a href="php-content.htm#php-content_anycontent">anycontent.php verwenden</a>&quot;.</li>
+  <li>'<strong>lastalb</strong>': zuletzt erzeugte Alben</li>
   </ul>
-<p>Unless you really know what you are doing you should always keep catlist and alblist in &quot;<em>the content of the main page</em>&quot;, as they make up the core parts of the index page or any gallery site, for that matter.</p>
-<p>The <strong>,2</strong> dictates that cpg should display 2 rows of thumbnails.</p>
-<p>Some example configurations:</p>
+<p>Wenn Du Dir nicht wirklich Deiner Sache sicher bist, dann solltest Du unter allen Umständen <tt class="code">catlist</tt> und <tt class="code">alblist</tt> im Feld &quot;<em>Inhalt der Hauptseite</em>&quot; belassen, da diese die Grundbestandteile der Index-Seite und jeder Galerie-Seite ausmachen.</p>
+<p>Die Zahl <strong>,2</strong> gibt an, dass zwei Thumnbail-Zeilen des jeweiligen Meta-Albums angezeigt werden sollen.</p>
+<p>Einige Beispiel-Einstellungen:</p>
 <ul>
-  <li>If you don't want to display the random files, change <tt class="code">catlist/alblist/random,2/lastup,2</tt> to <tt class="code">catlist/alblist/lastup,2</tt></li>
-  <li>If you want 3 rows of random files, but no last uploads at all, change <tt class="code">catlist/alblist/random,2/lastup,2</tt> to <tt class="code">catlist/alblist/random,3</tt></li>
-  <li><tt class="code">anycontent/catlist/alblist/random,2/lastup,2</tt> translates to: "anycontent file contents, category list, album list, 2 rows of random pics, 2 rows of last uploads" -- and will display in the order that they are listed</li>
+  <li>Wenn keine Zufalls-Thumbnails angezeigt werden sollen, dann ändere <tt class="code">catlist/alblist/random,2/lastup,2</tt> in <tt class="code">catlist/alblist/lastup,2</tt></li>
+  <li>Wenn drei Zeilen (statt zwei) des Meta-Albums &quot;Zufallsbilder&quot; angezeigt werden sollen, aber keine zuletzt hochgeladenen Dateien, dann ändere <tt class="code">catlist/alblist/random,2/lastup,2</tt> in <tt class="code">catlist/alblist/random,3</tt></li>
+  <li><tt class="code">anycontent/catlist/alblist/random,2/lastup,2</tt> ergibt daher: "Inhalte der anycontent-Datei, Kategorie-Liste, Alben-List, 2 Zeilen Zufallsdateien, 2 Zeilen der zuletzt hochgeladenen Dateien" -- und zeigt die angegebenen Elemente in dieser Reihenfolge an</li>
 </ul>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Ansicht Albenliste &rarr; Inhalt der Hauptseite</p>
 <a name="admin_album_list_content_end"></a>
 <hr />
 <a name="admin_album_first-level_thumbs"></a><h3>Erste Ebene der Thumbnails der Alben auch in Kategorien anzeigen<a href="#admin_album_first-level_thumbs" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Use this setting to choose whether or not to display thumbnails from the first album of the categories listed on the default gallery entry page.</p>
-<p>By default, this option is enabled. If your gallery grows and you get a larger number of categories, you might want to disable this option to make the index page look less cluttered.<br />
-Enabling this option will have the advantage that your visitors will need less clicks to reach the page that contains the pics they want to see. Drawback of this option is that your index page may look cluttered and will burn more resouces (CPU cycles), so you should disable this if you have issues with resources consumption.</p>
+<p>Mit dieser EInstellung kann gewählt werden, ob die Thumbnails der in einer Kategorie befindlichen Alben innerhalb der Kategire-Ansicht angezeigt werden soll.</p>
+<p>Standardmäßig ist diese Option aktiviert. Wenn Deine Galerie wächst und eine größere Anzahl von Kategorien vorhanden ist sollte diese Option deaktiviert werden, um die Index-Seite weniger unübersichtlich zu gestalten.<br />
+Das Aktivieren dieser Option bringt den Vorteil, dass die Besucher weniger Klicks brauchen, um die gewünschten Bilder zu sehen. Nachteil ist die geringere Übersichtlichkeit der Index-Seite und der zusätzliche Resourcenverbrauch, so dass diese Option auch bei Problemen mit dem Resourcenverbrauch der Galerie deaktiviert werden sollte.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Ansicht Albenliste &rarr; Erste Ebene der Thumbnails der Alben auch in Kategorien anzeigen</p>
 <a name="admin_album_first-level_thumbs_end"></a>
 <hr />
 <a name="admin_album_list_alphasort_start"></a><h3>Kategorien alphabetisch sortieren (anstatt benutzerdefinierter Sortierreihenfolge)<a href="#admin_album_list_alphasort_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>You can dictate that coppermine sort all categories alphabetically (instead of in a custom order) by setting &quot;Sort categories alphabetically&quot; to &quot;Yes&quot;. This setting is accessible both in the coppermine config menu and in the category manager. If you enable alphabetical sorting, the up and down arrows that normally let you move  categories up and down in the custom sorting list will disappear.</p>
+<p>Diese Option weist Coppermine an, alle Kategorien in alphabetischer Reihenfolge anzuzeigen (anstatt der benutzerdefinierten Sortierreihenfolde), indem man &quot;Kategorien alphabetisch sortieren&quot; auf &quot;Ja&quot; stellt. Diese Einstellung ist sowohl  in der globalen Coppermine-Einstellungsseite verfügbar als auch innerhalb des <a href="categories.htm#cat_cp">Kategorie-Managers</a>. Wenn diese Option aktiviert wurde sind die hoch/runter-Pfeile auf der Seite des Kategorie-Managers deaktiviert.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Ansicht Albenliste &rarr; Kategorien alphabetisch sortieren</p>
 <a name="admin_album_list_alphasort_end"></a>
 <hr />
 <a name="admin_album_linked_files_start"></a><h3>Anzahl der verlinkten Dateien anzeigen<a href="#admin_album_linked_files_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>If you use album keywords to display images/files in more than one album, enabling this option will display additional information for the album stats: if an album doesn't only contain &quot;regular&quot; files, but files linked via the &quot;<a href="albums.htm#album_prop_keyword_start">album keyword</a>&quot; option as well, the number of linked files will be displayed separately like this "3 files, last one added on Oct 07, 2004<em>, 3 linked files, 6 files total</em>".</p>
+<p>Wenn <a href="keywords.htm#keywords_album">Alben Keywords</a> verwendet werden, um ein und die selben Bilder/Dateien in mehr als einem Album anzuzeigen führt die Aktivierung dieser Option dazu, dass zusätzliche Informationen in den Alben-Statistiken angezeigt werden: wenn ein Album nicht nur &quot;normale&quot; Dateien enthält, sondern auch per &quot;<a href="albums.htm#album_prop_keyword_start">Album Keyword</a>&quot; verlinkte Dateien, dann wird die Anzahl der verlinkten Dateien wie folgt angezeigt: "3 Dateien, letzte Aktualisierung am 7. Oktober 2004<em>, 3 verknüpfte Dateien, 6 Dateien insgesamt</em>".</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Ansicht Albenliste &rarr; Anzahl der verlinkten Dateien anzeigen</p>
 <a name="admin_album_linked_files_end"></a>
 <a name="admin_album_list_end"></a>
@@ -362,12 +365,12 @@ Enabling this option will have the advantage that your visitors will need less c
 
 <a name="admin_thumbnail_view"></a><h2>Ansicht Thumbnail<a href="#admin_thumbnail_view" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <a name="admin_thumbnail_columns"></a><h3>Spaltenzahl auf Thumbnail-Seite<a href="#admin_thumbnail_columns" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Default value is 4 this means that each row will show 4 thumbnails. There can be no general recommendation on the number of thumbnail columns you should use, as the optimal setting depends on your <a href="#admin_picture_thumbnail_max-dimension">thumbnail width</a> setting, the <a href="#admin_theme_theme">theme</a> you use, the <a href="#admin_album_table-width">width of the main table</a> and especially the display resolution of your site visitor.</p>
+<p>Standard-Wert ist 4, was bedeutet, dass jede Zeile 4 Thumbnails enthält. Es kann keine generelle Empfehlung geben betreffend der Spaltrenzahl auf der Thumbnail-Seite, da die optimalen Einstellungen abhängig sind von der Einstellung für <a href="#admin_picture_thumbnail_max-dimension">Maximalgröße Thumbnail</a>, dem <a href="#admin_theme_theme">Thema</a> das benutzt wird, der <a href="#admin_album_table-width">Breite der Haupttabelle</a> und vor allem der Bildschirmauflösung der Besucher.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Ansicht Thumbnail &rarr; Spaltenzahl auf Thumbnail-Seite</p>
 <a name="admin_thumbnail_columns_end"></a>
 <hr />
 <a name="admin_thumbnail_rows"></a><h3>Zeilenzahl auf Thumbnail-Seite<a href="#admin_thumbnail_rows" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Default value is 3.</p>
+<p>Standard-Wert ist 3.</p>
 <p>If an album contains more files than the number that will fit on one thumbnail page ("<a href="#admin_thumbnail_columns">Number of columns on thumbnail page</a>" x "<a href="#admin_thumbnail_rows">Number of rows on thumbnail page</a>"), a pagination tab will be displayed that allows the visitor to jump to the next page of thumbnails.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Ansicht Thumbnail &rarr; Zeilenzahl auf Thumbnail-Seite</p>
 <a name="admin_thumbnail_rows_end"></a>
@@ -910,7 +913,7 @@ mp3/midi/mid/wma/wav/ogg</p>
 <p><strong>File types supported by Coppermine:</strong><br />
 Real-Media-files: ram/ra/rm<br />
 Images: tiff/tif<br />
-MS Office: doc/xls/pps/ppt/mdb<br />
+MS Office: doc/xls/pps/ppt/mdb/accdb/accde/accde/accdr/accdt/docm/docx/dotm/dotx/grv/gsa/one/onepkg/ost/potm/potx/ppam/ppsm/ppsx/pptm/pptx/pub/xlam/xlsb/xlsm/xlsx/xltm/xltx/xsf/xsn<br />
 Misc: txt/rtf/pdf<br />
 Archives: zip/rar/gz/001/7z/arj/bz2/cab/lzh/rpm/tar/z<br />
 OpenDocument: odt/ods/odp/odg/odc/odf/odi/odm/ott/ots/otp/otg/otc/otf/oti/oth</p>
@@ -1222,8 +1225,12 @@ address. Recommended setting is NO. As most internet users today have more than 
 <hr />
 <a name="admin_user_login_end"></a>
 <a name="admin_user_enable_report"></a><h3>"Beim Administrator melden" aktivieren<a href="#admin_user_enable_report" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Enable reports. When set to "yes," this feature will allow users to report on uploaded files or comments to the site admin.</p>
+<p>When set to "yes," this feature will allow users to report on uploaded files or comments to the site admin.</p>
+<p>When enabled, an additional icon will appear in the navigation bar that visitors can click on. If they do, they are being sent to a form where they can explain why they want to see a particular file reported to the admin.</p>
+<p>There is a number of pre-defined reasons for the reports (like &quot;<em>obscene</em>&quot;, &quot;<em>offensive</em>&quot;, &quot;<em>off-topic/misplaced</em>&quot;, &quot;<em>missing</em>&quot;, &quot;<em>error/cannot view</em>&quot;) that visitors can choose from and a text field where they can enter additional information.</p>
 <p>This setting is dependant on e-cards being enabled.  Only users who have permission to send e-cards in the 'groups' settings are able to send reports. The report icon is hidden from those not allowed to do so.</p>
+<p>It's advisable to enable this feature on larger, community-driven galleries that don't require admin-approval for uploaded pics, as it gives your community the chance to alert you of potential issues and keep your gallery clean.</p>
+<p>As a drawback, the feature can be abused by spammers to send emails to the admin, so it's advisable to only allow reports for registered users.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Benutzer-Einstellungen &rarr; "Beim Administrator melden" aktivieren</p>
 
 <a name="admin_user_enable_report_end"></a>
@@ -1381,7 +1388,7 @@ All log files are written in english</p>
 
 <script type="text/javascript">
   cpgDocFooter();
-  dateRevision(' $LastChangedDate: 2008-06-12 12:37:55 +0530 (Thu, 12 Jun 2008) $ ', ' $Revision: 4531 $ ');
+  dateRevision(' $LastChangedDate: 2008-07-17 10:29:35 +0530 (Thu, 17 Jul 2008) $ ', ' $Revision: 4692 $ ');
 </script>
 
 </body>

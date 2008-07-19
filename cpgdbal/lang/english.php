@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $Source$
-  $Revision: 4615 $
-  $LastChangedBy: pvanrompay $
-  $Date: 2008-06-23 03:30:26 +0530 (Mon, 23 Jun 2008) $
+  $Revision: 4696 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-07-17 11:02:26 +0530 (Thu, 17 Jul 2008) $
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
@@ -2111,13 +2111,13 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
   'no_album' => 'no album selected',
   'result_icon' => 'click for details or to reload',
   'notes' =>  '<ul>'.
-				  '<li><b>OK</b>: means that the file was successfully added'.
-				  '<li><b>DP</b>: means that the file is a duplicate and is already in the database'.
-				  '<li><b>PB</b>: means that the file could not be added, check your configuration and the permission of directories where the files are located'.
-				  '<li><b>NA</b>: means that you haven\'t selected an album the files should go to, hit \'<a href="javascript:history.back(1)">back</a>\' and select an album. If you don\'t have an album <a href="albmgr.php">create one first</a></li>'.
-				  '<li>If the OK, DP, PB \'signs\' does not appear click on the broken file to see any error message produced by PHP'.
-				  '<li>If your browser timeouts, hit the reload button'.
-                          '</ul>',
+                '<li><b>OK</b>: means that the file was successfully added'.
+                '<li><b>DP</b>: means that the file is a duplicate and is already in the database'.
+                '<li><b>PB</b>: means that the file could not be added, check your configuration and the permission of directories where the files are located'.
+                '<li><b>NA</b>: means that you haven\'t selected an album the files should go to, hit \'<a href="javascript:history.back(1)">back</a>\' and select an album. If you don\'t have an album <a href="albmgr.php">create one first</a></li>'.
+                '<li>If the OK, DP, PB \'signs\' does not appear click on the broken file to see any error message produced by PHP'.
+                '<li>If your browser timeouts, hit the reload button'.
+            '</ul>',
   'select_album' => 'select album',
   'check_all' => 'Check All',
   'uncheck_all' => 'Uncheck All',
@@ -2274,7 +2274,7 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'place_instr_1' => 'Please place the files in albums at this time.  You may also enter relevant information about each file now.',
   'place_instr_2' => 'More files need placement. Please click \'Continue\'.',
   'process_complete' => 'You have successfully placed all the files.',
-   'albums_no_category' => 'Albums with no category',
+  'albums_no_category' => 'Albums with no category',
   'personal_albums' => '* Personal albums',
   'select_album' => 'Select album',
   'close' => 'Close',
@@ -2285,6 +2285,7 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'allowed_mov_types' => 'Video extensions: %s', // cpg1.5
   'allowed_doc_types' => 'Document extensions: %s', // cpg1.5
   'allowed_snd_types' => 'Audio extensions: %s', // cpg1.5
+  'please_wait' => 'Please wait while the script is uploading - this make take a while', // cpg1.5
 );
 
 // ------------------------------------------------------------------------- //

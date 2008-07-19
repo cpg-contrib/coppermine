@@ -13,9 +13,9 @@
   SVN version info:
 
   Coppermine version: 1.5.0
-  $Revision: 4510 $
+  $Revision: 4694 $
   $LastChangedBy: gaugau $
-  $Date: 2008-06-09 21:25:53 +0530 (Mon, 09 Jun 2008) $
+  $Date: 2008-07-17 10:33:04 +0530 (Thu, 17 Jul 2008) $
 -->
 <link rel="stylesheet" type="text/css" href="../style.css" media="all" />
 <link rel="stylesheet" type="text/css" href="../screen.css" media="screen" />
@@ -110,21 +110,21 @@ If you don't use banning at all, you can safely ignore this setting completely.<
 <hr />
 
 <a name="admin_general_browsable_batch_add"></a><h3>Browsable batch-add interface<a href="#admin_general_browsable_batch_add" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>When <a href="uploading.htm#batch_add_pics">batch-adding</a> files (that you have uploaded using a <acronym title="File Transfer Protocol">FTP</acronym> before) to your gallery, you have the option to switch between a browsable list, where you can go scroll through the directory structure in your <tt class="code">albums</tt>-folder or to display the whole directory structure at once. Enable this option if you have a larger structure of directories and subdirectories you want to browse through (this requires your browser to be capable of displaying <a href="http://www.w3schools.com/tags/tag_iframe.asp" class="external" rel="external">iframes</a>). Set this option to &quot;No&quot; (disabled) if you want to use the &quot;classic&quot; coppermine interface that shows a complete list of the structure at once.<br />
-Should you have difficulties using one, try the other. You can toggle between these options on the <a href="uploading.htm#batch_add_pics">batch-add</a> page as well.</p>
+<p>When <a href="uploading_batch-add.htm#batch_add_pics">batch-adding</a> files (that you have uploaded using a <acronym title="File Transfer Protocol">FTP</acronym> before) to your gallery, you have the option to switch between a browsable list, where you can go scroll through the directory structure in your <tt class="code">albums</tt>-folder or to display the whole directory structure at once. Enable this option if you have a larger structure of directories and subdirectories you want to browse through (this requires your browser to be capable of displaying <a href="http://www.w3schools.com/tags/tag_iframe.asp" class="external" rel="external">iframes</a>). Set this option to &quot;No&quot; (disabled) if you want to use the &quot;classic&quot; coppermine interface that shows a complete list of the structure at once.<br />
+Should you have difficulties using one, try the other. You can toggle between these options on the <a href="uploading_batch-add.htm#batch_add_pics">batch-add</a> page as well.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; General settings &rarr; Browsable batch-add interface</p>
 <a name="admin_general_browsable_batch_add_end"></a>
 
 <a name="admin_general_display_thumbs_batch_add"></a><h3>Display preview thumbnails on batch-add interface<a href="#admin_general_display_thumbs_batch_add" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>When enabled, preview thumbnails are being displayed on the batch-add screen. The preview thumbnails are good to figure out what files to actually add to an album when <a href="uploading.htm#batch_add_pics">batch-adding</a> files. If you always add all files within a folder to an album anyway, it's safe to turn this feature off, which will lead to faster page loads of the batch-add screen. This feature will not safe webspace nor does it have an impact on the thumbnail creation - it just boosts the batch-add screen, that's all.<br />
-You can toggle between these options (enabled or disabled) on the <a href="uploading.htm#batch_add_pics">batch-add</a> page as well.</p>
+<p>When enabled, preview thumbnails are being displayed on the batch-add screen. The preview thumbnails are good to figure out what files to actually add to an album when <a href="uploading_batch-add.htm#batch_add_pics">batch-adding</a> files. If you always add all files within a folder to an album anyway, it's safe to turn this feature off, which will lead to faster page loads of the batch-add screen. This feature will not safe webspace nor does it have an impact on the thumbnail creation - it just boosts the batch-add screen, that's all.<br />
+You can toggle between these options (enabled or disabled) on the <a href="uploading_batch-add.htm#batch_add_pics">batch-add</a> page as well.</p>
 <p>When starting with your gallery, you should leave this option enabled untill you're convinced that batch-adding works as expected. You can then turn this option off. If you later discover that something goes wrong with your uplads, re-enable this feature once more.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; General settings &rarr; Display preview thumbnails on batch-add interface</p>
 <a name="admin_general_display_thumbs_batch_add_end"></a>
 
 
 <a name="admin_language"></a><h2>Language &amp; Charset settings<a href="#admin_language" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p><img src="images/config_language.gif" width="612" height="234" border="1" alt="" /></p>
+<p><img src="images/config_language.gif" width="600" height="170" border="0" alt="" align="right" />This the the config section where you can set up the language settings. Make sure to read this section carefully before changing anything here.</p>
 <a name="admin_language_language"></a><h3>Language<a href="#admin_language_language" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>This sets the default language for your gallery. All language files are stored in the <strong>lang</strong> directory on your server.</p>
 <p>Languages and internationalization (often refered to as i18n) is a complicated and complex thing. You (as Coppermine admin) probably don't want to go into details, so this documentation skips the in-depth issues existing with i18n and just gives you an overview how Coppermine handles languages:</p>
@@ -137,29 +137,33 @@ You can toggle between these options (enabled or disabled) on the <a href="uploa
   <li>Last step: only if the previous steps both don't apply, the default language that the admin has set up on the config page will be taken into account</li>
 </ul>
 
-<p>Once you have added comments or files to your gallery, you should not change the character set of your gallery. If you do so, non-ASCII characters may not display properly.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Language &amp; Charset settings &rarr; Language</p>
 <a name="admin_language_language_end"></a>
 <hr />
 <a name="admin_language_fallback"></a><h3>Fallback to English if translated phrase not found?<a href="#admin_language_fallback" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Enable this option if you're using language files that haven't been created for the Coppermine version you use, but for an earlier version. If a certain word or phrase doesn't exist within your language file, coppermine will display the equivalent english phrase, instead.</p>
 <p>This feature has been introduced to allow the use of previous version language files -- language files that may have not been translated for the this version, yet. Until an updated version of the language file is made available, you can use this option. Most translation differences affect the admin part of coppermine only, so  the admin will experience most of these untranslated strings. The admin will see some phrases in english instead of his/her preferred language for strings and words that don't exist in the currently available language file. NOTE: this fallback option only works for 95% of all phrases, there may still be some other translation omissions.</p>
-<p class="important">Enabling this option can have a huge impact on the overall performance of your gallery, especially the memory usage (RAM) may increase drastically. It is recommended to only enable this option if you must have it, not just out of curiosity or to enable as many features as possible.</p>
+<p class="important">Enabling this option can have a huge impact on the overall performance of your gallery, especially the memory usage (RAM) may increase drastically. It is recommended to only enable this option if you <strong>must</strong> have it, not just out of curiosity or to enable as many features as possible.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Language &amp; Charset settings &rarr; Fallback to English if translated phrase not found?</p>
 <a name="admin_language_fallback_end"></a>
 <hr />
 <a name="admin_language_charset"></a><h3>Character encoding<a href="#admin_language_charset" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>This should normally be set to "Unicode (utf-8)" (or "Default (language file)"). See the explanation in the &quot;<strong><a href="languages.htm#translating">language</a></strong>&quot; section of this documentation.</p>
 <p>Don't change this from Unicode to anything else if you're not absolutely sure about the impact this will have!</p>
+<p class="important">Once you have added comments or files to your gallery, you should not change the character set of your gallery. If you do so, non-ASCII characters may not display properly.</p>
 <a name="admin_language_charset_end"></a>
 <a name="admin_language_list"></a><h3>Display language list<a href="#admin_language_list" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Enable this option if you want your users to be able to select a preferred language from a dropdown list (you can specify to display only the list itself or a label saying &quot;<strong>Choose your language:</strong>&quot; in front of the list). Edit your template file (/themes/yourtheme/template.html) to specify where the language dropdown list should appear on your gallery (look for the call tag: <strong>{LANGUAGE_SELECT_LIST}</strong>).</p>
+<p>Enable this option if you want your users to be able to select a preferred language from a dropdown list (you can specify to display only the list itself or a label saying &quot;<strong>Choose your language:</strong>&quot; in front of the list). Edit your template file (/themes/yourtheme/template.html) to specify where the language dropdown list should appear on your gallery (look for the call tag: <a href="theme_create.htm#theme_create_template_language_select_list">{LANGUAGE_SELECT_LIST}</a>).</p>
+<p>To remove languages from this list, use your FTP application to delete all unneeded langauge files from the <tt class="code">lang</tt> folder. Coppermine will populate the list of available languages based on the files that reside in the lang folder. Do <strong>not</strong> remove english.php from the lang folder.</p>
+<p>Usually, you don't have to display the list of available languages, as the menus will be displayed in the prefered language of your visitors anyway. Recommended setting is "off".</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Language &amp; Charset settings &rarr; Character encoding</p>
 
 <a name="admin_language_list_end"></a>
 <hr />
 <a name="admin_language_flags"></a><h3>Display language flags<a href="#admin_language_flags" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Enable this option if you would like the option of having your users select languages appropriate for their use by merely clicking on a flag icon which representing their language or country (you can specify to display the flags themselves or include a label that states: &quot;<strong>Choose your language:</strong>&quot; in front of the flags). Edit your template file (/themes/yourtheme/template.html) to specify where the flags should appear in your gallery (look for the call tag:<strong>{LANGUAGE_SELECT_FLAGS}</strong>).</p>
+<p>Enable this option if you would like the option of having your users select languages appropriate for their use by merely clicking on a flag icon which representing their language or country (you can specify to display the flags themselves or include a label that states: &quot;<strong>Choose your language:</strong>&quot; in front of the flags). Edit your template file (/themes/yourtheme/template.html) to specify where the flags should appear in your gallery (look for the call tag: <a href="theme_create.htm#theme_create_template_language_select_flags">{LANGUAGE_SELECT_FLAGS}</a>).</p>
+<p>To remove languages from this list, use your FTP application to delete all unneeded langauge files from the <tt class="code">lang</tt> folder. Coppermine will populate the list of available languages based on the files that reside in the lang folder. Do <strong>not</strong> remove english.php from the lang folder.</p>
+<p>Usually, you don't have to display the list of available languages, as the menus will be displayed in the prefered language of your visitors anyway. Recommended setting is "off".</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Language &amp; Charset settings &rarr; Display language flags</p>
 
 <a name="admin_language_flags_end"></a>
@@ -177,8 +181,8 @@ You can toggle between these options (enabled or disabled) on the <a href="uploa
 <a name="admin_theme_theme_end"></a>
 <hr />
 <a name="admin_theme_theme_list"></a><h3>Display theme list<a href="#admin_theme_theme_list" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Enable this option if you want your users to be able to select other themes from a dropdown list (you can specify to display only the list itself or a label saying &quot;<strong>Choose your theme:</strong>&quot; in front of the list). Edit your template file (/themes/yourtheme/template.html) to specify where the theme dropdown list should appear on your gallery (look for <strong>{THEME_SELECT_LIST}</strong>).</p>
-<p>This option only makes sense if you have at least one alternative theme in your /themes/ folder other than your default theme. We recommend using this option only if there's are additional benefits for the user (for example a theme with less graphics in it that loads faster for users on a dial-up connection, or a theme with reduced color pallettes and good contrast).</p>
+<p>Enable this option if you want your users to be able to select other themes from a dropdown list (you can specify to display only the list itself or a label saying &quot;<strong>Choose your theme:</strong>&quot; in front of the list). Edit your template file (/themes/yourtheme/template.html) to specify where the theme dropdown list should appear on your gallery (look for <a href="theme_create.htm#theme_create_template_theme_select_list">{THEME_SELECT_LIST}</a>).</p>
+<p>This option only makes sense if you have at least one alternative theme in your /themes/ folder other than your default theme. We recommend using this option only if there's are additional benefits for the user (for example a theme with less graphics in it that loads faster for users on a dial-up connection, or a theme with reduced color pallettes and good contrast). Recommended setting: off.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Themes settings &rarr; Display theme list</p>
 <a name="admin_theme_theme_list_end"></a>
 <hr />
@@ -244,7 +248,7 @@ You can toggle between these options (enabled or disabled) on the <a href="uploa
 <hr />
 <a name="vanity_block"></a><h3>Display the vanity block on themes that are defined as XHTML and CSS compliant<a href="#vanity_block" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>When enabled and using a theme that has been defined as XHTML and CSS compliant, the vanity block will be shown. The vanity block contains the logos and links for HTML and CSS compliance at w3.org, as well as pointers to the PHP, and MySQL projects.</p>
-<p>Some designers (particularly those who try to come up with standards-compliant code) have been fond to display this type of &quot;advertisment&quot; for the free resources mentioned. However, end users (i.e. the visitors of your site) probably don't care at all for the logos. Default (and recommended) setting is &quot;off&quot;.
+<p>Some designers (particularly those who try to come up with standards-compliant code) have been fond to display this type of &quot;advertisment&quot; for the free resources mentioned. However, end users (i.e. the visitors of your site) probably don't care at all for the logos. Default (and recommended) setting is &quot;off&quot;.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Themes settings &rarr; Display the vanity block on themes that are defined as XHTML and CSS compliant</p>
 <a name="vanity_block_end"></a>
 <hr />
@@ -349,12 +353,12 @@ Enabling this option will have the advantage that your visitors will need less c
 <a name="admin_album_first-level_thumbs_end"></a>
 <hr />
 <a name="admin_album_list_alphasort_start"></a><h3>Sort categories alphabetically (instead of custom sort order)<a href="#admin_album_list_alphasort_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>You can dictate that coppermine sort all categories alphabetically (instead of in a custom order) by setting &quot;Sort categories alphabetically&quot; to &quot;Yes&quot;. This setting is accessible both in the coppermine config menu and in the category manager. If you enable alphabetical sorting, the up and down arrows that normally let you move  categories up and down in the custom sorting list will disappear.</p>
+<p>You can dictate that coppermine sort all categories alphabetically (instead of in a custom order) by setting &quot;Sort categories alphabetically&quot; to &quot;Yes&quot;. This setting is accessible both in the coppermine config menu and in the <a href="categories.htm#cat_cp">category manager</a>. If you enable alphabetical sorting, the up and down arrows that normally let you move  categories up and down in the custom sorting list will disappear.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Album list view &rarr; Sort categories alphabetically</p>
 <a name="admin_album_list_alphasort_end"></a>
 <hr />
 <a name="admin_album_linked_files_start"></a><h3>Show number of linked files<a href="#admin_album_linked_files_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>If you use album keywords to display images/files in more than one album, enabling this option will display additional information for the album stats: if an album doesn't only contain &quot;regular&quot; files, but files linked via the &quot;<a href="albums.htm#album_prop_keyword_start">album keyword</a>&quot; option as well, the number of linked files will be displayed separately like this "3 files, last one added on Oct 07, 2004<em>, 3 linked files, 6 files total</em>".</p>
+<p>If you use <a href="keywords.htm#keywords_album">album keywords</a> to display images/files in more than one album, enabling this option will display additional information for the album stats: if an album doesn't only contain &quot;regular&quot; files, but files linked via the &quot;<a href="albums.htm#album_prop_keyword_start">album keyword</a>&quot; option as well, the number of linked files will be displayed separately like this "3 files, last one added on Oct 07, 2004<em>, 3 linked files, 6 files total</em>".</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Album list view &rarr; Show number of linked files</p>
 <a name="admin_album_linked_files_end"></a>
 <a name="admin_album_list_end"></a>
@@ -910,7 +914,7 @@ mp3/midi/mid/wma/wav/ogg</p>
 <p><strong>File types supported by Coppermine:</strong><br />
 Real-Media-files: ram/ra/rm<br />
 Images: tiff/tif<br />
-MS Office: doc/xls/pps/ppt/mdb<br />
+MS Office: doc/xls/pps/ppt/mdb/accdb/accde/accde/accdr/accdt/docm/docx/dotm/dotx/grv/gsa/one/onepkg/ost/potm/potx/ppam/ppsm/ppsx/pptm/pptx/pub/xlam/xlsb/xlsm/xlsx/xltm/xltx/xsf/xsn<br />
 Misc: txt/rtf/pdf<br />
 Archives: zip/rar/gz/001/7z/arj/bz2/cab/lzh/rpm/tar/z<br />
 OpenDocument: odt/ods/odp/odg/odc/odf/odi/odm/ott/ots/otp/otg/otc/otf/oti/oth</p>
@@ -1222,8 +1226,12 @@ address. Recommended setting is NO. As most internet users today have more than 
 <hr />
 <a name="admin_user_login_end"></a>
 <a name="admin_user_enable_report"></a><h3>Enable reports<a href="#admin_user_enable_report" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Enable reports. When set to "yes," this feature will allow users to report on uploaded files or comments to the site admin.</p>
+<p>When set to "yes," this feature will allow users to report on uploaded files or comments to the site admin.</p>
+<p>When enabled, an additional icon will appear in the navigation bar that visitors can click on. If they do, they are being sent to a form where they can explain why they want to see a particular file reported to the admin.</p>
+<p>There is a number of pre-defined reasons for the reports (like &quot;<em>obscene</em>&quot;, &quot;<em>offensive</em>&quot;, &quot;<em>off-topic/misplaced</em>&quot;, &quot;<em>missing</em>&quot;, &quot;<em>error/cannot view</em>&quot;) that visitors can choose from and a text field where they can enter additional information.</p>
 <p>This setting is dependant on e-cards being enabled.  Only users who have permission to send e-cards in the 'groups' settings are able to send reports. The report icon is hidden from those not allowed to do so.</p>
+<p>It's advisable to enable this feature on larger, community-driven galleries that don't require admin-approval for uploaded pics, as it gives your community the chance to alert you of potential issues and keep your gallery clean.</p>
+<p>As a drawback, the feature can be abused by spammers to send emails to the admin, so it's advisable to only allow reports for registered users.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; User settings &rarr; Enable reports</p>
 
 <a name="admin_user_enable_report_end"></a>
@@ -1380,7 +1388,7 @@ All log files are written in english</p>
 
 <script type="text/javascript">
   cpgDocFooter();
-  dateRevision(' $LastChangedDate: 2008-06-09 21:25:53 +0530 (Mon, 09 Jun 2008) $ ', ' $Revision: 4510 $ ');
+  dateRevision(' $LastChangedDate: 2008-07-17 10:33:04 +0530 (Thu, 17 Jul 2008) $ ', ' $Revision: 4694 $ ');
 </script>
 
 </body>

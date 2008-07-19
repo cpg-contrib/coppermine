@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4224 $
+  $Revision: 4696 $
   $LastChangedBy: gaugau $
-  $Date: 2008-01-26 17:12:00 +0530 (Sat, 26 Jan 2008) $
+  $Date: 2008-07-17 11:02:26 +0530 (Thu, 17 Jul 2008) $
 **********************************************/
 
 // ------------------------------------------------------------------------- //
@@ -23,6 +23,7 @@
 
 define('THEME_HAS_RATING_GRAPHICS', 1);
 define('THEME_HAS_SIDEBAR_GRAPHICS',1);
+define('THEME_HAS_PROGRESS_GRAPHICS',1);
 define('THEME_IS_XHTML10_TRANSITIONAL',1);
 
 // HTML template for sys_menu

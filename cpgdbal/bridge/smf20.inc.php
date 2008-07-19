@@ -37,6 +37,10 @@ class cpg_udb extends core_udb {
         function cpg_udb()
         {
                 global $BRIDGE, $CONFIG, $boardurl, $db_prefix, $db_connection, $db_server, $db_name, $db_user, $user_settings;
+				###################       DB       #################
+				$cpgdb =& cpgDB::getInstance();
+				$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+				##########################################
 
                 $this->use_post_based_groups = $BRIDGE['use_post_based_groups'];
                 $this->boardurl = $boardurl;
@@ -60,14 +64,11 @@ class cpg_udb extends core_udb {
 
         // Derived full table names
         if (strpos($db_prefix, '.') === false) {
+			/*$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
+			$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];*/
 			##########################################            DB          #######################################
-			if ($CONFIG['dbservername'] == 'mysql') {
-				$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
-				$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
-			} elseif($CONFIG['dbservername'] == 'mssql') {	///////	for MSSQL		///////
-				$this->usertable = $this->db['name'] ."." .dbo ."." .$this->db['prefix'] . $this->table['users'];
-				$this->groupstable =   $this->db['name'] . "." .dbo ."." .$this->db['prefix'] . $this->table['groups'];
-			}
+			$this->usertable = $cpgdb->getFullTableNames($this->db['name'], $this->db['prefix'], $this->table['users']);
+			$this->groupstable = $cpgdb->getFullTableNames($this->db['name'], $this->db['prefix'], $this->table['groups']);
 			############################################################################################
         } else {
             $this->usertable = $this->db['prefix'] . $this->table['users'];

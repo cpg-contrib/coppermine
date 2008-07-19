@@ -132,11 +132,11 @@ $CONFIG['TABLE_HIT_STATS']     = $CONFIG['TABLE_PREFIX'].'hit_stats';
 $CONFIG['TABLE_TEMP_MESSAGES'] = $CONFIG['TABLE_PREFIX'].'temp_messages';
 $CONFIG['TABLE_CATMAP']        = $CONFIG['TABLE_PREFIX'].'categorymap';
 // Connect to database
-if ($CONFIG['dbservername'] == 'mysql') {
+/*if ($CONFIG['dbservername'] == 'mysql') {
 	($CONFIG['LINK_ID'] = cpgdbal_connect()) || die('<b>Coppermine critical error</b>:<br />Unable to connect to database !<br /><br />MySQL said: <b>' . mysql_error() . '</b>');
 } elseif ($CONFIG['dbservername'] == 'mssql') {
 	($CONFIG['LINK_ID'] = cpgdbal_connect()) || die( print_r( sqlsrv_errors(), true));
-}
+}*/
 
 // Include plugin API
 require('include/plugin_api.inc.php');		#####	moved here for cpgdbAL
@@ -150,7 +150,11 @@ if ($CONFIG['dbservername'] == 'mysql') {
 	require "include/cpgdb/sql/mssql.php";
 }
 $cpgdb =& cpgDB::getInstance();
-$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+if(isset($CONFIG['LINK_ID'])) {
+	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+} else {
+	$CONFIG['LINK_ID'] = $cpgdb->connect($CONFIG['dbname'], $CONFIG['dbserver'], $CONFIG['dbuser'], $CONFIG['dbpass']);
+}
 
 /*function cpg_initialize_db()
 {

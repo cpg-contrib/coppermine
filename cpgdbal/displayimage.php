@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4578 $
-  $LastChangedBy: nibbler999 $
-  $Date: 2008-06-16 01:29:16 +0530 (Mon, 16 Jun 2008) $
+  $Revision: 4696 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-07-17 11:02:26 +0530 (Thu, 17 Jul 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -35,7 +35,9 @@ if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 1) {
 js_include('js/jquery.js');
 js_include('js/displayimage.js');
 
-if ($CONFIG['enable_smilies']) include("include/smilies.inc.php");
+if ($CONFIG['enable_smilies']) {
+	include("include/smilies.inc.php");
+}
 
 $breadcrumb = '';
 $breadcrumb_text = '';

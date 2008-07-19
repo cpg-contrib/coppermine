@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4502 $
-  $LastChangedBy: pvanrompay $
-  $Date: 2008-06-06 03:51:20 +0530 (Fri, 06 Jun 2008) $
+  $Revision: 4696 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-07-17 11:02:26 +0530 (Thu, 17 Jul 2008) $
 **********************************************/
 
 // ------------------------------------------------------------------------- //
@@ -22,6 +22,7 @@
 // ------------------------------------------------------------------------- //
 define('THEME_HAS_RATING_GRAPHICS', 1);
 define('THEME_HAS_NO_SUB_MENU_BUTTONS',1);
+define('THEME_HAS_PROGRESS_GRAPHICS',1);
 define('THEME_IS_XHTML10_TRANSITIONAL',1);  // Remove this if you edit this template until
                                             // you have validated it. See docs/theme.htm.
 

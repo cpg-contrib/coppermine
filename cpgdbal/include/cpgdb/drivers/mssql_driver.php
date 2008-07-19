@@ -633,6 +633,12 @@ class cpgDB {
 		$row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
 		return $row['count'];
 	}
+
+
+	function getFullTableNames($database, $prefix, $table)
+	{
+		return $database.'.dbo.'.$prefix.''.$table;
+	}
 }
 
 ?>

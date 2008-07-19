@@ -157,7 +157,7 @@ function user_save_profile()
    Database functions
  **************************************************************************/
 ####################        DB      ####################
-function cpgdbal_connect()
+/*function cpgdbal_connect()
 {
 	global $CONFIG;
 	if ($CONFIG['dbservername'] == 'mysql') {
@@ -187,7 +187,7 @@ function cpgdbal_connect()
 		}
 	}
 	return $result;
-}
+}*/
 ################################################
 
 // Connect to the database
@@ -1173,12 +1173,17 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
     $sort_code = isset($USER['sort'])? $USER['sort'] : $CONFIG['default_sort_order'];
     $sort_order = isset($sort_array[$sort_code]) ? $sort_array[$sort_code] : $sort_array[$CONFIG['default_sort_order']];
-    $limit = ($limit1 != -1) ? ' LIMIT '. $limit1 : '';
-    $limit .= ($limit2 != -1) ? ' ,'. $limit2 : '';	
+    //$limit = ($limit1 != -1) ? ' LIMIT '. $limit1 : '';
+    //$limit .= ($limit2 != -1) ? ' ,'. $limit2 : '';	
     #################       DB       ############   Added for mssql   ##############
-    $first_record = ($limit1 != -1) ? 'TOP '.$limit1 : 'TOP 0';		
-    $records_per_page = ($limit2 != -1) ? 'TOP '.$limit2 : '';
+    //$first_record = ($limit1 != -1) ? 'TOP '.$limit1 : 'TOP 0';		
+    //$records_per_page = ($limit2 != -1) ? 'TOP '.$limit2 : '';
     ##############################################################
+	$limit = $cpgdb->getLimits($limit1, $limit2);
+	if (is_array($limit)) {
+		$first_record = $limit[0];
+		$records_per_page = $limit[1];
+	}
 
     if ($limit2 == 1) {
         $select_columns = '*';

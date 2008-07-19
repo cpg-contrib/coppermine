@@ -30,6 +30,10 @@ class coppermine_udb extends core_udb {
         function coppermine_udb()
         {
                 global $BRIDGE,$CONFIG;
+				####################    DB    ##################
+				$cpgdb =& cpgDB::getInstance();
+				$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+				###########################################
 
                 $superCage = Inspekt::makeSuperCage();
 
@@ -66,17 +70,14 @@ class coppermine_udb extends core_udb {
                         'groups' => 'usergroups',
                         'sessions' => 'sessions'
                 );
-				##################################            DB          ###################################
                 // Derived full table names	
-                if ($CONFIG['dbservername'] == 'mysql') {
-					$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
-					$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
-					$this->sessionstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['sessions'];
-				} elseif($CONFIG['dbservername'] == 'mssql') {
-					$this->usertable = $this->db['name'] ."." .dbo ."." .$this->db['prefix'] . $this->table['users'];
-					$this->groupstable =   $this->db['name'] . "." .dbo ."." .$this->db['prefix'] . $this->table['groups'];
-					$this->sessionstable =   $this->db['name'] ."." .dbo .".". $this->db['prefix'] . $this->table['sessions'];
-				}
+				/*$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
+				$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
+				$this->sessionstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['sessions'];*/
+				##################################            DB          ###################################
+				$this->usertable = $cpgdb->getFullTableNames($this->db['name'], $this->db['prefix'], $this->table['users']);
+				$this->groupstable = $cpgdb->getFullTableNames($this->db['name'], $this->db['prefix'], $this->table['groups']);
+				$this->sessionstable = $cpgdb->getFullTableNames($this->db['name'], $this->db['prefix'], $this->table['sessions']);
 				####################################################################################
 
                 // Table field names

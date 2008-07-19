@@ -13,9 +13,9 @@
   SVN version info:
 
   Coppermine version: 1.5.0
-  $Revision: 4499 $
-  $LastChangedBy: pvanrompay $
-  $Date: 2008-06-05 03:12:18 +0530 (Thu, 05 Jun 2008) $
+  $Revision: 4697 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-07-17 11:12:31 +0530 (Thu, 17 Jul 2008) $
 -->
 <link rel="stylesheet" type="text/css" href="../style.css" media="all" />
 <link rel="stylesheet" type="text/css" href="../screen.css" media="screen" />
@@ -358,6 +358,12 @@ EOT;<br />
     <th valign="top" align="left" class="tableh1">Type</th>
     <th valign="top" align="left" class="tableh1">Description</th>
     <th valign="top" align="left" class="tableh1">Dependancies</th>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_progress"></a>define('<strong>THEME_HAS_PROGRESS_GRAPHICS</strong>',1);<a href="#theme_create_theme_progress" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">constant</td>
+    <td valign="top" class="tableb tableb_alternate">Coppermine displays a "loading"-icon when the upload form is being submit to indicate that there must be no user interaction while the script is busy uplading. When this constant is set, the script will fetch the "loading"-icon from the theme's images folder (themes/yourtheme/images/loader.gif). If the constant is not set, the default loader image will be used, taken from the generic images folder. When designing a theme of your own, make sure that the loader image actually exists when setting this constant.</td>
+    <td valign="top" class="tableb tableb_alternate">-</td>
   </tr>
   <tr>
     <td valign="top" class="tableb"><a name="theme_create_theme_sidebar_graphic"></a>define('<strong>THEME_HAS_SIDEBAR_GRAPHICS</strong>',1);<a href="#theme_create_theme_sidebar_graphic" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
@@ -796,7 +802,7 @@ EOT;<br />
 
 <script type="text/javascript">
   cpgDocFooter();
-  dateRevision(' $LastChangedDate: 2008-06-05 03:12:18 +0530 (Thu, 05 Jun 2008) $ ', ' $Revision: 4499 $ ');
+  dateRevision(' $LastChangedDate: 2008-07-17 11:12:31 +0530 (Thu, 17 Jul 2008) $ ', ' $Revision: 4697 $ ');
 </script>
 
 </body>

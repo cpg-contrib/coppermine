@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4583 $
-  $LastChangedBy: pvanrompay $
-  $Date: 2008-06-18 06:33:59 +0530 (Wed, 18 Jun 2008) $
+  $Revision: 4696 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-07-17 11:02:26 +0530 (Thu, 17 Jul 2008) $
 **********************************************/
 
 /////////////////////////////////////////////////////////////////
@@ -295,7 +295,7 @@ $template_gallery_admin_menu = <<<EOT
                             <!-- BEGIN show_news -->
                                 <div class="admin_menu admin_float"><a href="mode.php?what=news&amp;referer=$REFERER" title="{SHOWNEWS_TITLE}">{SHOWNEWS_LNK}</a></div>
                             <!-- END show_news -->
-		                      <div class="admin_menu admin_float"><a href="export.php" title="{EXPORT_TITLE}">{EXPORT_LNK}</a></div>
+                              <div class="admin_menu admin_float"><a href="export.php" title="{EXPORT_TITLE}">{EXPORT_LNK}</a></div>
                 <div style="clear:left;">
                 </div>
               </div>
@@ -683,31 +683,31 @@ $template_thumb_view_title_row = <<<EOT
                                 <td width="100%" class="statlink"><h2>{ALBUM_NAME}</h2></td>
                                 <!-- Use JavaScript to display the sorting options only to humans, but hide them from search engines to avoid double-content indexing -->
                                 <script type="text/javascript">
-	                              document.write('<td><img src="images/spacer.gif" width="1" alt="" /></td>');
-	                              document.write('<td class="sortorder_cell">');
-	                              document.write('        <table cellpadding="0" cellspacing="0">');
-	                              document.write('        <tr>');
-	                              document.write('                <td class="sortorder_options">{TITLE}</td>');
-	                              document.write('                <td class="sortorder_options"><span class="statlink">&nbsp;<a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=ta" title="{SORT_TA}">+</a>&nbsp;</span></td>');
-	                              document.write('                <td class="sortorder_options"><span class="statlink">&nbsp;<a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=td" title="{SORT_TD}">-</a>&nbsp;</span></td>');
-	                              document.write('        </tr>');
-	                              document.write('        <tr>');
-	                              document.write('                <td class="sortorder_options">{NAME}</td>');
-	                              document.write('                <td class="sortorder_options"><span class="statlink">&nbsp;<a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=na" title="{SORT_NA}">+</a>&nbsp;</span></td>');
-	                              document.write('                <td class="sortorder_options"><span class="statlink">&nbsp;<a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=nd" title="{SORT_ND}">-</a>&nbsp;</span></td>');
-	                              document.write('        </tr>');
-	                              document.write('        <tr>');
-	                              document.write('                <td class="sortorder_options">{DATE}</td>');
-	                              document.write('                <td class="sortorder_options"><span class="statlink">&nbsp;<a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=da" title="{SORT_DA}">+</a>&nbsp;</span></td>');
-	                              document.write('                <td class="sortorder_options"><span class="statlink">&nbsp;<a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=dd" title="{SORT_DD}">-</a>&nbsp;</span></td>');
-	                              document.write('        </tr>');
-	                              document.write('        <tr>');
-	                              document.write('                <td class="sortorder_options">{POSITION}</td>');
-	                              document.write('                <td class="sortorder_options"><span class="statlink">&nbsp;<a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=pa" title="{SORT_PA}">+</a>&nbsp;</span></td>');
-	                              document.write('                <td class="sortorder_options"><span class="statlink">&nbsp;<a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=pd" title="{SORT_PD}">-</a>&nbsp;</span></td>');
-	                              document.write('        </tr>');
-	                              document.write('        </table>');
-	                              document.write('</td>');
+                                  document.write('<td><img src="images/spacer.gif" width="1" alt="" /></td>');
+                                  document.write('<td class="sortorder_cell">');
+                                  document.write('        <table cellpadding="0" cellspacing="0">');
+                                  document.write('        <tr>');
+                                  document.write('                <td class="sortorder_options">{TITLE}</td>');
+                                  document.write('                <td class="sortorder_options"><span class="statlink">&nbsp;<a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=ta" title="{SORT_TA}">+</a>&nbsp;</span></td>');
+                                  document.write('                <td class="sortorder_options"><span class="statlink">&nbsp;<a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=td" title="{SORT_TD}">-</a>&nbsp;</span></td>');
+                                  document.write('        </tr>');
+                                  document.write('        <tr>');
+                                  document.write('                <td class="sortorder_options">{NAME}</td>');
+                                  document.write('                <td class="sortorder_options"><span class="statlink">&nbsp;<a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=na" title="{SORT_NA}">+</a>&nbsp;</span></td>');
+                                  document.write('                <td class="sortorder_options"><span class="statlink">&nbsp;<a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=nd" title="{SORT_ND}">-</a>&nbsp;</span></td>');
+                                  document.write('        </tr>');
+                                  document.write('        <tr>');
+                                  document.write('                <td class="sortorder_options">{DATE}</td>');
+                                  document.write('                <td class="sortorder_options"><span class="statlink">&nbsp;<a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=da" title="{SORT_DA}">+</a>&nbsp;</span></td>');
+                                  document.write('                <td class="sortorder_options"><span class="statlink">&nbsp;<a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=dd" title="{SORT_DD}">-</a>&nbsp;</span></td>');
+                                  document.write('        </tr>');
+                                  document.write('        <tr>');
+                                  document.write('                <td class="sortorder_options">{POSITION}</td>');
+                                  document.write('                <td class="sortorder_options"><span class="statlink">&nbsp;<a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=pa" title="{SORT_PA}">+</a>&nbsp;</span></td>');
+                                  document.write('                <td class="sortorder_options"><span class="statlink">&nbsp;<a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=pd" title="{SORT_PD}">-</a>&nbsp;</span></td>');
+                                  document.write('        </tr>');
+                                  document.write('        </table>');
+                                  document.write('</td>');
                                 </script>
                         </tr>
                         </table>
@@ -4137,4 +4137,5 @@ EOT;
 ** Section <<<$template_sidebar>>> - END
 ******************************************************************************/
 } //{THEMES}
+
 ?>

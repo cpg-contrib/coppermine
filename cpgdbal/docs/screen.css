@@ -11,9 +11,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $Source$
-  $Revision: 4515 $
+  $Revision: 4689 $
   $LastChangedBy: gaugau $
-  $Date: 2008-06-09 21:47:02 +0530 (Mon, 09 Jun 2008) $
+  $Date: 2008-07-15 12:21:11 +0530 (Tue, 15 Jul 2008) $
 **********************************************/
 
 html > body {
@@ -322,7 +322,7 @@ a.content:hover {
 }
 
 a.external {
-        background: transparent url('images/link.gif') 100% 50% no-repeat;
+        background: transparent url('../images/link.gif') 100% 50% no-repeat;
         padding-right: 10px;
 }
 

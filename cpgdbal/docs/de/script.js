@@ -10,9 +10,9 @@
 
   ********************************************
   Coppermine version: 1.5.0
-  $Revision: 4643 $
+  $Revision: 4677 $
   $LastChangedBy: gaugau $
-  $Date: 2008-06-27 21:55:35 +0530 (Fri, 27 Jun 2008) $
+  $Date: 2008-07-12 20:05:14 +0530 (Sat, 12 Jul 2008) $
 **********************************************/
 
 
@@ -533,11 +533,11 @@ d.add(7500,5800,'Wartungs-Einstellungen','configuration.htm#admin_misc');
 //d.add(12270,5600,'Errors','errors.htm#errors');
 //d.add(12280,5600,'Exporting','export.htm#export');
 //d.add(12300,0,'Uploading','uploading.htm');
-//d.add(12400,12300,'Uploading pics by FTP / Batch-Add Pictures','uploading.htm#batch_add_pics');
-//d.add(12500,12300,'Uploading by HTTP','uploading.htm#upload_http');
-//d.add(12600,12300,'Windows XP Web Publishing Wizard','uploading.htm#xp_publish_upload');
-//d.add(12700,12700,'XP Web Publishing Wizard: Setup','uploading.htm#xp_publish_setup');
-//d.add(12800,12700,'XP Web Publishing Wizard: Uploading pictures','uploading.htm#xp_publish_upload');
+//d.add(12400,12300,'Uploading pics by FTP / Batch-Add Pictures','uploading_batch-add.htm#batch_add_pics');
+//d.add(12500,12300,'Uploading by HTTP','uploading_http.htm#upload_http');
+//d.add(12600,12300,'Windows XP Web Publishing Wizard','uploading_xp-publisher.htm#xp');
+//d.add(12700,12700,'XP Web Publishing Wizard: Setup','uploading_xp-publisher.htm#xp_publish_setup');
+//d.add(12800,12700,'XP Web Publishing Wizard: Uploading pictures','uploading_xp-publisher.htm#xp_publish_upload');
 //d.add(12900,12300,'Upload troubleshooting','upload_troubleshooting.htm#upload_trouble');
 //d.add(12930,12900,'Asking for support on upload issues','upload_troubleshooting.htm#upload_support');
 //d.add(12950,12900,'Error messages','upload_troubleshooting.htm#upload_error_messages');

@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4583 $
-  $LastChangedBy: pvanrompay $
-  $Date: 2008-06-18 06:33:59 +0530 (Wed, 18 Jun 2008) $
+  $Revision: 4696 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-07-17 11:02:26 +0530 (Thu, 17 Jul 2008) $
 **********************************************/
 
 // Confirm we are in Coppermine and set the language blocks.
@@ -26,6 +26,7 @@ define('ADMIN_PHP', true);
 // Call basic functions, etc.
 require('include/init.inc.php');
 require('include/picmgmt.inc.php');
+js_include('js/upload.js');
 
 // Some placeholders.
 $customize = CUSTOMIZE_UPLOAD_FORM;
@@ -370,21 +371,35 @@ function open_form($path)
             field.value = field.value.substring(0, maxlimit);
     }
     </script>
-    <form name="cpgform" id="cpgform" method="post" action="$path" enctype="multipart/form-data">
+    <form name="cpgform" id="cpgform" method="post" action="$path" enctype="multipart/form-data" onsubmit="cpgUploadToggleProgressBar();">
 EOT;
 }
 
 // The close form function creates the submit button and the closing tags.
-function close_form($button_value) 
+function close_form($button_value,$progress=0) 
 {
     // Pull the language array into the function.
-    global $lang_upload_php;
+    global $lang_upload_php, $THEME_DIR;
 
     // Create the submit button and close the form.
-    echo <<<EOT
+    print <<<EOT
         <tr>
                 <td colspan="2" align="center" class="tablef">
-                        <input type="submit" value="{$button_value}" class="button" />
+                	<span id="cpg_progress_bar" style="display:none">
+EOT;
+	if ($progress == 1) {
+        if (defined('THEME_HAS_PROGRESS_GRAPHICS')) {
+            $prefix = $THEME_DIR;
+        } else {
+            $prefix = '';
+        }
+		print '                        	<img src="' . $prefix . 'images/loader.gif" border="0" alt="" title="' . $lang_upload_php['please_wait'] . '" />';
+	}
+	print '                        </span>';
+	print '                        <span id="cpg_upload_button" style="display:block">'; 
+	print '                            <input type="submit" value="'.$button_value.'" class="button" />';
+	print '                        </span>';
+	print <<<EOT
                 </td>
 
         </tr>
@@ -928,7 +943,7 @@ if ((CUSTOMIZE_UPLOAD_FORM) and (!$superCage->post->keyExists('file_upload_reque
         echo "{$lang_upload_php['cust_instr_7']}<br /><br />";
         echo "</td></tr>";
         create_form($data);
-        close_form($lang_common['continue']);
+        close_form($lang_common['continue'], 'continue0');
         endtable();
         echo "</form>";
         pagefooter();
@@ -1088,8 +1103,6 @@ if (!$superCage->post->keyExists('control')) {
     // Create upload form headers.
     pageheader($lang_upload_php['title']);
 
-
-
     // Select the form action.
     if (USER_UPLOAD_FORM == '0') {
 
@@ -1212,12 +1225,12 @@ if (!$superCage->post->keyExists('control')) {
     if (USER_UPLOAD_FORM == '0') {
 
         // The user has the single upload only form. Select proper language for button.
-        close_form($lang_upload_php['title']);
+        close_form($lang_upload_php['title'],1);
 
     } else {
 
         // Make button say 'Continue.'
-        close_form($lang_common['continue']);
+        close_form($lang_common['continue'],1);
 
     }
 

@@ -29,7 +29,11 @@ class cpg_udb extends core_udb {
 	function cpg_udb()
 	{
 		global $BRIDGE, $CONFIG;
-		
+		###################       DB       #################
+		$cpgdb =& cpgDB::getInstance();
+		$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+		##########################################
+
 		if (!USE_BRIDGEMGR) {
 			$this->boardurl = 'http://www.yousite.com/phpBB2';
 			require_once('../phpBB2/config.php');
@@ -58,19 +62,16 @@ class cpg_udb extends core_udb {
 			'sessions' => 'sessions',
 			'usergroups' => 'user_group'
 		);
-		##########################################            DB          #######################################
 		// Derived full table names
-		if ($CONFIG['dbservername'] == 'mysql') {
-			$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
-			$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
-			$this->sessionstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['sessions'];
-			$this->usergroupstable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['usergroups'];
-		} elseif($CONFIG['dbservername'] == 'mssql') {	////////	for MSSQL	//////////
-			$this->usertable = $this->db['name'] ."." .dbo ."." .$this->db['prefix'] . $this->table['users'];
-			$this->groupstable =   $this->db['name'] . "." .dbo ."." .$this->db['prefix'] . $this->table['groups'];
-			$this->sessionstable =   $this->db['name'] ."." .dbo .".". $this->db['prefix'] . $this->table['sessions'];
-			$this->usergroupstable =   $this->db['name'] ."." .dbo .".". $this->db['prefix'] . $this->table['usergroups'];
-		}
+		/*$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
+		$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
+		$this->sessionstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['sessions'];
+		$this->usergroupstable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['usergroups'];*/
+		##########################################            DB          #######################################
+		$this->usertable = $cpgdb->getFullTableNames($this->db['name'], $this->db['prefix'], $this->table['users']);
+		$this->groupstable = $cpgdb->getFullTableNames($this->db['name'], $this->db['prefix'], $this->table['groups']);
+		$this->sessionstable = $cpgdb->getFullTableNames($this->db['name'], $this->db['prefix'], $this->table['sessions']);
+		$this->usergroupstable = $cpgdb->getFullTableNames($this->db['name'], $this->db['prefix'], $this->table['usergroups']);
 		#############################################################################################
 		
 		// Table field names
