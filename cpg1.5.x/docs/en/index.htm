@@ -37,12 +37,176 @@
 <a href="toc.htm">Table of Contents</a>
 </noscript>
 </div>
-<a name="about_start"></a>
-<h1>About Coppermine</h1>
+
+<a name="about"></a><h1>About Coppermine<a href="#about" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+
 <p>Coppermine Photo Gallery is an advanced, user-friendly, picture gallery script with built-in support for other multi-media/data files.  The gallery can be private, accessible to registered users only, and/or open to all visitors to your site. Users, if permitted, can upload pictures with their web browser (thumbnail and intermediate sized images are created on the fly), rate pictures, add comments and even send e-cards. The site administrator determines which of the features listed above are accessible by registered and non-registered users. The site administrator can also manage galleries and batch process large numbers of pictures that have been uploaded onto the server by FTP.</p>
 <p>Image files are stored in albums and albums can be grouped into categories, which in turn, can be further grouped under parent categories. The script supports multiple users and provides the administrator of the website with tools to manage which user groups can or cannot have personal albums, send ecards, or add comments. Users may also upload to public albums if the website administrator permits it. Permissions to create albums, upload and delete files are all determined by the website administrator.</p>
 <p>Coppermine has an optional user selectable theme system with a number of themes pre-installed. It also supports the use of multiple languages and contains it's own language library. These language files provide, users of your gallery, access in their preferred languages. Coppermine uses PHP, a MySQL database, and either the GD library (version 1.x or 2.x) or ImageMagick to generate and keep records and file information of all thumbnails, intermediate, and full-sized images. Coppermine generates the html code necessary to display its various categories, sub-categories, albums, intermediate, and full-sized image displays dynamically. This drastically cuts down on the number of files and space your gallery would require using standard HTML. The install script (install.php) makes it quick and easy to get started.</p>
 <a name="about_end"></a>
+
+<a name="about_documentation"></a><h2>About the documentation<a href="#about_documentation" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Use the menu at the top left of this screen to browse through the Coppermine documentation. The menu is available throughout the documentation. The menu is JavaScript-driven - if you have JavaScript turned off or can't use it for whatever reason, use the link at the top that will lead you to the table of contents and from there on to the section of the docs that you want to read.</p>
+
+<a name="features"></a><h2>Features<a href="#features" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Coppermine comes with many features. Below you'll find an <em>incomplete</em> list. Features that are new in cpg1.5.x (compared to cpg1.4.x) are marked accordingly.</p>
+<ul>
+	<li>
+		<strong>Installer</strong><br />
+		<ul>
+			<li>easy install (installer provided)</li>
+			<li>improved, wizard-like installer (cpg1.5.x)</li>
+		</ul>
+	</li>
+	<li>
+		<strong>Registration & Login</strong><br />
+		<ul>
+			<li>terms and conditions option (cpg1.5.x)</li>
+			<li>config settable global password for registration feature (cpg1.5.x)</li>
+			<li>visual confirmation (captcha) for registration (cpg1.5.x)</li>
+			<li>optional creation of personal albums on registration (cpg1.5.x)</li>
+			<li>resend activation link feature (cpg1.5.x)</li>
+			<li>user can delete own account feature (cpg1.5.x)</li>
+			<li>login possible with username <em>or</em> email address (cpg1.5.x)</li>
+		</ul>
+	</li>
+	<li>
+		<strong>User management</strong><br />
+		<ul>
+			<li>user management (private galleries, groups)</li>
+			<li>integration of user management with various bbs (like phpBB, YaBB SE, SMF, Invisionboard, vbulletin)</li>
+			<li>user membership in multiple groups</li>
+			<li>more admin-settable user profile fields</li>
+			<li>bbs integration settable with a wizard-like user interface</li>
+			<li>optional moderator for album pictures (cpg1.5.x)</li>
+		</ul>
+	</li>
+	<li>
+		<strong>Managing categories and albums</strong><br />
+		<ul>
+			<li>arrangement of pictures in categories and albums</li>
+			<li>users can create albums in admin allowed categories (cpg1.5.x)</li>
+			<li>New category heirarchy system (cpg1.5.x)</li>
+		</ul>
+	</li>
+	<li>
+		<strong>Uploading</strong><br />
+		<ul>
+			<li>users can upload pictures with web interface of ftp (and admin can batch-add to database)</li>
+			<li>creation of thumbnails and intermediate size pics</li>
+			<li>caption, title, description and user defined fields for each picture (searchable)</li>
+			<li>upload approval notice for admin</li>
+			<li>image rotation</li>
+			<li>multi-pic upload</li>
+			<li>option to choose max height or width for thumbnails will help in creating nicer looking thumbnail rows and cols</li>
+			<li>picture-resize on upload</li>
+			<li>optional preview thumbnails during batch-add (cpg1.5.x)</li>
+			<li>allowed filetypes message displayed on upload screen (cpg1.5.x)</li>
+			<li>animated graphics on upload screen to indicate the upload progress (cpg1.5.x)</li>
+		</ul>
+	</li>
+	<li>
+		<strong>Displaying images</strong><br />
+		<ul>
+			<li>last added</li>
+			<li>random picture</li>
+			<li>browse-by-date meta-album (cpg1.5.x)</li>
+			<li>slideshow viewer</li>
+			<li>option to display a clickable flimstrip of thumbnails below the image display</li>
+			<li>watermarking option (cpg1.5.x)</li>
+			<li>thumb cropping and sharpening (cpg1.5.x)</li>
+		</ul>
+	</li>
+	<li>
+		<strong>User interaction</strong><br />
+		<ul>
+			<li>user comments</li>
+			<li>comment approval option (cpg1.5.x)</li>
+			<li>visual confirmation (captcha) for comments (cpg1.5.x)</li>
+			<li>registration promotion in the comments section (cpg1.5.x)</li>
+			<li>e-card feature</li>
+			<li>Flash support for ecard (cpg1.5.x)</li>
+			<li>language selection option in template</li>
+			<li>password-protected albums</li>
+			<li>Voting/Rating</li>
+			<li>optional display of rating on thumbnail screen (cpg1.5.x)</li>
+			<li>voting level customizable and ajax-driven (cpg1.5.x)</li>
+			<li>optional contact form with captcha (cpg1.5.x)</li>
+			<li>social bookmarks icons (cpg1.5.x)</li>
+		</ul>
+	</li>
+	<li>
+		<strong>Statistics</strong><br />
+		<ul>
+			<li>browser and os stats for admin (cpg1.5.x)</li>
+			<li>overall stats (cpg1.5.x)</li>
+			<li>album hits counter (cpg1.5.x)</li>
+			<li>public stats can be turned off (cpg1.5.x)</li>
+		</ul>
+	</li>
+	<li>
+		<strong>Searching</strong><br />
+		<ul>
+			<li>advanced search (boolean operators)</li>
+			<li>regular expressions in search (cpg1.5.x)</li>
+		</ul>
+	</li>
+	<li>
+		<strong>Administration</strong><br />
+		<ul>
+			<li>Admin tools</li>
+			<li>basic authentication for update script (cpg1.5.x)</li>
+			<li>reset to default for config options (cpg1.5.x)</li>
+		</ul>
+	</li>
+	<li>
+		<strong>Plugins</strong><br />
+		<ul>
+			<li>plugin-API</li>
+		</ul>
+	</li>
+	<li>
+		<strong>Documentation</strong><br />
+		<ul>
+			<li>online help feature for the admin pages</li>
+			<li>bbcode help icon on comments (cpg1.5.x)</li>
+		</ul>
+	</li>
+	<li>
+		<strong>Miscellaneous</strong><br />
+		<ul>
+			<li>picture information stored in database</li>
+			<li>full multimedia support</li>
+			<li>multi-lingual</li>
+			<li>English as a fallback language for un-translated entries in language files</li>
+			<li>all features customizable with web interface (admin section)</li>
+			<li>EXIF/IPTC support</li>
+			<li>URL parameters refer to absolute positions instead of relative ones for search engine friendliness (cpg1.5.x)</li>
+			<li>API for Coppermine to be used with applications like Koppermine and others (cpg1.5.x)</li>
+			<li>news section for the admin to alert him about updates (cpg1.5.x)</li>
+			<li>usage of Inspekt, a tool to create secure PHP application (cpg1.5.x)</li>
+			<li>granular control for guest access: no access, thumbs only, thumbs + intermediate only, thumbs + intermediate + full-size (cpg1.5.x)</li>
+			<li>export feature that allows albums to be exported individually (cpg1.5.x)</li>
+		</ul>
+	</li>
+	<li>
+		<strong>Visual appearance</strong><br />
+		<ul>
+			<li>template system</li>
+			<li>separation of the breadcrumb block so that it can be placed independently of category in the template</li>
+			<li>option to show first level albums of a category instead of just statistics of the category</li>
+			<li>option of turning on OR off the showing of "Private" Icon to unlogged / unprivileged user</li>
+			<li>option to send visitors directly from the thumbnail page to the full-size pop-up (cpg1.5.x)</li>
+			<li>optional movie download link (cpg1.5.x)</li>
+			<li>alternating colors for table rows (cpg1.5.x)</li>
+			<li>optional tag cloud (cpg1.5.x)</li>
+			<li>sidebar for easier navigation (cpg1.5.x)</li>
+			<li>ajax filmstrip (cpg1.5.x)</li>
+		</ul>
+	</li>
+</ul>
+
+
 <script type="text/javascript">
   cpgDocFooter();
   dateRevision(' $LastChangedDate$ ', ' $Revision$ ');
