@@ -54,30 +54,33 @@
 	<li>
 		<strong>Installer</strong><br />
 		<ul>
-			<li>easy install (installer provided)</li>
+			<li>easy <a href="install.htm#how">install</a> (installer provided)</li>
 			<li>improved, wizard-like installer (cpg1.5.x)</li>
 		</ul>
 	</li>
 	<li>
 		<strong>Registration & Login</strong><br />
 		<ul>
-			<li>terms and conditions option (cpg1.5.x)</li>
-			<li>config settable global password for registration feature (cpg1.5.x)</li>
-			<li>visual confirmation (captcha) for registration (cpg1.5.x)</li>
-			<li>optional creation of personal albums on registration (cpg1.5.x)</li>
+			<li><a href="configuration.htm#admin_user_registration_disclaimer">terms and conditions option</a> (cpg1.5.x)</li>
+			<li>config settable <a href="configuration.htm#admin_global_registration_pw">global password</a> for registration feature (cpg1.5.x)</li>
+			<li><a href="configuration.htm#admin_registration_captcha_start">visual confirmation (captcha) for registration</a> (cpg1.5.x)</li>
+			<li><a href="configuration.htm#admin_registration_verify">email address verification</a> (activation link)</li>
 			<li>resend activation link feature (cpg1.5.x)</li>
-			<li>user can delete own account feature (cpg1.5.x)</li>
-			<li>login possible with username <em>or</em> email address (cpg1.5.x)</li>
+			<li><a href="configuration.htm#admin_activation">registration approval</a> by admin</li>
+			<li><a href="configuration.htm#admin_registration_notify">registration notification</a> for admin</li>
+			<li>optional <a href="configuration.htm#admin_personal_album_on_registration">creation of personal albums on registration</a> (cpg1.5.x)</li>
+			<li><a href="configuration.htm#admin_user_allow_account_delete">user can delete own account</a> feature (cpg1.5.x)</li>
+			<li><a href="configuration.htm#admin_user_login_method_start">login possible with username <em>or</em> email address</a> (cpg1.5.x)</li>
 		</ul>
 	</li>
 	<li>
 		<strong>User management</strong><br />
 		<ul>
 			<li>user management (private galleries, groups)</li>
-			<li>integration of user management with various bbs (like phpBB, YaBB SE, SMF, Invisionboard, vbulletin)</li>
+			<li><a href="bridging.htm#integrating">bridging</a>: integration of user management with various bbs (like phpBB, YaBB SE, SMF, Invisionboard, vbulletin)</li>
+			<li>bbs integration settable with a wizard-like user interface (<a href="bridging.htm#bridge_manager_start">bridge manager</a>)</li>
 			<li>user membership in multiple groups</li>
-			<li>more admin-settable user profile fields</li>
-			<li>bbs integration settable with a wizard-like user interface</li>
+			<li>more <a href="configuration.htm#admin_custom">admin-settable user profile</a> fields</li>
 			<li>optional moderator for album pictures (cpg1.5.x)</li>
 		</ul>
 	</li>
@@ -92,7 +95,7 @@
 	<li>
 		<strong>Uploading</strong><br />
 		<ul>
-			<li>users can upload pictures with web interface of ftp (and admin can batch-add to database)</li>
+			<li>users can upload pictures with web interface (and admin can FTP-upload and batch-add to database)</li>
 			<li>creation of thumbnails and intermediate size pics</li>
 			<li>caption, title, description and user defined fields for each picture (searchable)</li>
 			<li>upload approval notice for admin</li>
@@ -133,6 +136,7 @@
 			<li>voting level customizable and ajax-driven (cpg1.5.x)</li>
 			<li>optional contact form with captcha (cpg1.5.x)</li>
 			<li>social bookmarks icons (cpg1.5.x)</li>
+			<li>users can <a href="configuration.htm#admin_user_enable_report">report misplaced or improper content</a> to admin</li>
 		</ul>
 	</li>
 	<li>
@@ -156,13 +160,15 @@
 		<ul>
 			<li>Admin tools</li>
 			<li>basic authentication for update script (cpg1.5.x)</li>
-			<li>reset to default for config options (cpg1.5.x)</li>
+			<li>reset to default for individual config options (cpg1.5.x)</li>
 		</ul>
 	</li>
 	<li>
-		<strong>Plugins</strong><br />
+		<strong><a href="plugins.htm#plugin">Plugins</a></strong><br />
 		<ul>
-			<li>plugin-API</li>
+			<li>plugin-API to allow the creation of user-contributed enhancements</li>
+			<li>many plugin contributions available</li>
+			<li><a href="plugins.htm#plugin_manager">plugin-manager</a></li>
 		</ul>
 	</li>
 	<li>
@@ -170,6 +176,9 @@
 		<ul>
 			<li>online help feature for the admin pages</li>
 			<li>bbcode help icon on comments (cpg1.5.x)</li>
+			<li>complete admin documentation available</li>
+			<li>multi-lingual documentation</li>
+			<li>documentation split into sections for easier reading (cpg1.5.x)</li>
 		</ul>
 	</li>
 	<li>
@@ -178,21 +187,21 @@
 			<li>picture information stored in database</li>
 			<li>full multimedia support</li>
 			<li>multi-lingual</li>
-			<li>English as a fallback language for un-translated entries in language files</li>
+			<li>English as a <a href="configuration.htm#admin_language_fallback">fallback</a> language for un-translated entries in language files</li>
 			<li>all features customizable with web interface (admin section)</li>
 			<li>EXIF/IPTC support</li>
 			<li>URL parameters refer to absolute positions instead of relative ones for search engine friendliness (cpg1.5.x)</li>
 			<li>API for Coppermine to be used with applications like Koppermine and others (cpg1.5.x)</li>
-			<li>news section for the admin to alert him about updates (cpg1.5.x)</li>
-			<li>usage of Inspekt, a tool to create secure PHP application (cpg1.5.x)</li>
-			<li>granular control for guest access: no access, thumbs only, thumbs + intermediate only, thumbs + intermediate + full-size (cpg1.5.x)</li>
+			<li><a href="configuration.htm#admin_general_coppermine_news">news section for the admin</a> to alert him about updates (cpg1.5.x)</li>
+			<li>usage of Inspekt for the <a href="dev_superglobals.htm">sanitization of superglobals</a>, a tool to create secure PHP application (cpg1.5.x)</li>
+			<li>granular control for <a href="configuration.htm#admin_allow_unlogged_access">guest access</a>: no access, thumbs only, thumbs + intermediate only, thumbs + intermediate + full-size (cpg1.5.x)</li>
 			<li>export feature that allows albums to be exported individually (cpg1.5.x)</li>
 		</ul>
 	</li>
 	<li>
 		<strong>Visual appearance</strong><br />
 		<ul>
-			<li>template system</li>
+			<li>template/theme system</li>
 			<li>separation of the breadcrumb block so that it can be placed independently of category in the template</li>
 			<li>option to show first level albums of a category instead of just statistics of the category</li>
 			<li>option of turning on OR off the showing of "Private" Icon to unlogged / unprivileged user</li>

@@ -381,6 +381,8 @@ d = new dTree('d');
 
 d.add(0,-1,'Coppermine Dokumentation');
 d.add(100,0,'Über Coppermine','index.htm');
+//d.add(110,100,'About the documentation','index.htm#about_documentation');
+//d.add(120,100,'Features','index.htm#features');
 //d.add(150,100,'Quick-Start guide','quickstart.htm');
 d.add(200,100,'Inhaltsverzeichnis','toc.htm');
 d.add(300,100,'Mindestvoraussetzung','requirements.htm');
