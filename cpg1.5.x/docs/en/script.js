@@ -469,6 +469,7 @@ d.add(6300,5800,'Thumbnail view','configuration.htm#admin_thumbnail_view');
 d.add(6400,5800,'Image view','configuration.htm#admin_image_comment');
 d.add(6500,5800,'Comment settings','configuration.htm#admin_comment_start');
 d.add(6500,5800,'Contact form settings','configuration.htm#admin_contact_start');
+d.add(6550,5800,'Thumbnail settings','configuration.htm#admin_thumb_start');
 d.add(6600,5800,'File settings','configuration.htm#admin_picture_thumbnail');
 d.add(6700,5800,'Image watermarking','configuration.htm#admin_watermarking');
 d.add(6800,5800,'Registration','configuration.htm#admin_registration');
