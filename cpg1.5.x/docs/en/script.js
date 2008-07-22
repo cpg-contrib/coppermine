@@ -422,6 +422,7 @@ d.add(3200,0,'Getting Started','start.htm');
 d.add(3300,3200,'Basic concepts','start.htm#getting_concepts');
 d.add(3400,3200,'Initial configuration','start.htm#getting_initial_configuration');
 d.add(3500,3200,'Category/album/file structure','start.htm#getting_structure');
+d.add(3550,3200,'Resized images','start.htm#getting_resizing');
 d.add(3600,3200,'Your admin account','start.htm#getting_admin_account');
 d.add(3700,3200,'Check uploads','start.htm#getting_check_uploads');
 d.add(3800,3200,'Consider bridging','start.htm#getting_consider_bridging');
