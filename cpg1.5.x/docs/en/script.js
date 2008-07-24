@@ -512,6 +512,7 @@ d.add(10400,9700,'Modifying albums/files','albums.htm#modif_alb_pics');
 d.add(10500,9700,'Album properties','albums.htm#album_prop');
 d.add(10600,10500,'Reset album properties','albums.htm#album_prop_reset_start');
 d.add(10620,9700,'Admin vs. user','albums.htm#album_admin_user');
+d.add(10630,9700,'Album FAQ','albums.htm#album_faq');
 d.add(10700,5600,'Files','files.htm');
 d.add(10800,10700,'Editing files','files.htm#edit_pics');
 d.add(10900,10700,'Editing videos','files.htm#edit_vids');
