@@ -103,7 +103,7 @@ class cpg_udb extends core_udb {
         {
                 global $USER_DATA, $user_settings;
 
-                if (!$user_settings){
+                if (empty($user_settings['ID_MEMBER'])){
                         $this->load_guest_data();
                 } else {
 
