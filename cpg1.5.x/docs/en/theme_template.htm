@@ -41,9 +41,17 @@
 <p>The file template.html is the core file of each theme: it can only contain HTML/CSS/JavaScript code (no PHP!) plus some placeholder tokens that will get replaced with content when the theme is being parsed (i.e. when the HTML output of a gallery page is being generated). Template.html determines the overall layout of your gallery pages. Use it to make your gallery match the overall look of your entire website.</p>
 
 <a name="theme_template_token"></a><h2>Template tokens<a href="#theme_template_token" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>When editing the &quot;<strong>template.html</strong>&quot; file do not remove the elements between <strong>{}</strong> - these are the placeholders used by the script. Think of those items in curly brackets as placeholders that will be replaced later with dynamic content when your template is being parsed. You can move the placeholder tokens around to obtain different layouts. However, there are some limitations - refer to the <a href="#theme_template_gallery">explanation of the core token {GALLERY}</a>.</p>
+<p>When editing the &quot;<strong>template.html</strong>&quot; file do not remove the elements between <strong>{}</strong> - these are the placeholders used by the script. Think of those items in curly brackets as placeholders that will be replaced later with dynamic content when your template is being parsed.<br />
+You can move the placeholder tokens around to obtain different layouts. However, there are some limitations - refer to the explanation of the core token <a href="#theme_template_gallery">{GALLERY}</a>, which is not actually a placeholder, but rather a separator between the content served by the pageheader and pagefooter functions.</p>
 
-<a name="theme_template_token_list"></a><h4>List of tokens in template.html<a href="#theme_template_token_list" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+<a name="theme_template_important"></a><h2>Important<a href="#theme_template_important" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>There are some tokens that are optional, i.e. you can savely remove them from template.html if you don't need the feature (s) the placeholders correspond to.</p>
+<p>Be careful not to delete the {JAVASCRIPT}-token - this javascript is necessary for the full-size pop-ups and other functions related to JavaScript. If you remove it, you probably won't notice the difference in the first place, but you definitely mustn't remove it or your gallery will act up.</p>
+<p>Take a look at the column "Needed?" in the list of tokens in template.html - the ones labelled as "optional" can savely be removed without any issues (except that the corresponding feature will of course not work any longer).<br />
+A good example is the token <tt class="code">{GAL_DESCRIPTION}</tt> - it will basically just output whatever you entered as gallery description on the config page. If you don't need the description to show on each and every coppermine-driven page, then just remove the corresponding token from template.html.</p>
+
+
+<a name="theme_template_token_list"></a><h2>List of tokens in template.html<a href="#theme_template_token_list" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <table border="0" cellspacing="0" cellpadding="0" class="maintable">
   <tr>
     <th valign="top" align="left" class="tableh1">Token</th>
@@ -265,7 +273,7 @@
     <td valign="top" class="tableb tableb_alternate">Config page &gt; <a href="configuration.htm#social_bookmarks">Display social bookmarks icons</a></td>
   </tr>
 </table>
-<p>Be careful not to delete the {JAVASCRIPT}-token - this javascript is necessary for the full-size pop-ups and other functions related to JavaScript.</p>
+
 
 
 <script type="text/javascript">
