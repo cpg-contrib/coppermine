@@ -76,7 +76,10 @@
 	<li>
 		<strong>User management</strong><br />
 		<ul>
-			<li><a href="users.htm#user_cp">user management</a> (private galleries, groups)</li>
+			<li><a href="users.htm#user_cp">user management</a> (private galleries, groups)<br />
+			visitors can register for themselves (if the admin allows registrations). Alternatively, admin can create user accounts.</li>
+			<li>User management is group-based</li>
+			<li>Permissions are managed/assigned per group</li>
 			<li><a href="bridging.htm#integrating">bridging</a>: integration of user management with various bbs (like phpBB, YaBB SE, SMF, Invisionboard, vbulletin)</li>
 			<li>bbs integration settable with a wizard-like user interface (<a href="bridging.htm#bridge_manager_start">bridge manager</a>)</li>
 			<li><a href="users.htm#user_cp_group">user membership in multiple groups</a></li>
@@ -87,7 +90,7 @@
 	<li>
 		<strong>Managing categories and albums</strong><br />
 		<ul>
-			<li>arrangement of pictures in <a href="categories.htm">categories</a> and <a href="albums.htm">albums</a></li>
+			<li>arrangement of pictures in <a href="categories.htm">categories</a>, optional sub-categories and <a href="albums.htm">albums</a></li>
 			<li>users can create albums in admin allowed categories (cpg1.5.x)</li>
 			<li>New category heirarchy system (cpg1.5.x)</li>
 		</ul>
@@ -111,9 +114,18 @@
 	<li>
 		<strong>Displaying images</strong><br />
 		<ul>
-			<li>last added</li>
-			<li>random picture</li>
-			<li>browse-by-date meta-album (cpg1.5.x)</li>
+			<li>Meta albums:<br />
+			admin can specifiy what virtual extra albums can be used to provide alternative "views" or methods to browse the gallery:
+			<ul>
+				<li>last commented</li>
+				<li>last added</li>
+				<li>random picture</li>
+				<li>browse-by-date meta-album (cpg1.5.x)</li>
+				<li>most viewed</li>
+				<li>top rated</li>
+				<li>favorites</li>
+			</ul>
+			</li>
 			<li>slideshow viewer</li>
 			<li>option to display a clickable flimstrip of thumbnails below the image display</li>
 			<li>watermarking option (cpg1.5.x)</li>
@@ -137,11 +149,13 @@
 			<li>optional <a href="configuration.htm#admin_contact_start">contact form</a> with captcha (cpg1.5.x)</li>
 			<li><a href="configuration.htm#admin_social_bookmarks">social bookmarks icons</a> (cpg1.5.x)</li>
 			<li>users can <a href="configuration.htm#admin_user_enable_report">report misplaced or improper content</a> to admin</li>
+			<li>favorites: visitors can add images to their favorites for future visits</li>
 		</ul>
 	</li>
 	<li>
 		<strong>Statistics</strong><br />
 		<ul>
+			<li>public display of number of images, views and last uploads</li>
 			<li>browser and os stats for admin (cpg1.5.x)</li>
 			<li>overall stats (cpg1.5.x)</li>
 			<li>album hits counter (cpg1.5.x)</li>
@@ -153,6 +167,8 @@
 		<ul>
 			<li>advanced search (boolean operators)</li>
 			<li>regular expressions in search (cpg1.5.x)</li>
+			<li>clickable keywords</li>
+			<li>tag cloud feature (cpg1.5.x)</li>
 		</ul>
 	</li>
 	<li>
