@@ -1013,12 +1013,17 @@ OpenDocument: odt/ods/odp/odg/odc/odf/odi/odm/ott/ots/otp/otg/otc/otf/oti/oth</p
 <a name="admin_watermarking_enable"></a><h3>Wasserzeichen aktivieren<a href="#admin_watermarking_enable" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>General toggle that determines if watermarking should be enabled or disabled. By default, it is disabled.</p>
 <p>Note: as watermarking actually means that each picture needs to be re-calculated during the upload stage, there may be issues with memory consumption and speed. If you experience issues with watermarking, turn it off or ask your webhost to increase server-sided settings that have an impact on watermarking.</p>
+<p>Also keep in mind that the re-calculation of the image will result in a loss of quality.</p>
+<p>Keep in mind as well that watermarking will not only have an impact on the quality and recources consumption (in turns of burning CPU cycles on the server), but as well in the consumption of webspace: when watermarking is enabled, coppermine will keep a safe, unmodified copy of the orginal image (prefixed with "orig_") in the same folder your watermarked file will reside and thus consume additional webspace.<br />
+You can use the admin tools to get rid of this copy as well, ,but you have to keep in mind then that there is not turning back in this case: if you delete the unmarked original, you can never go back or apply another watermark.</p>
+<p>When enabling this option, you have to understand that watermarks are not automatically being applied to all files that already exist in your gallery. When enabled, only images that get uploaded from that point on will become watermarked. If you want to apply watermarking to all the images that already existed in your coppermine gallery before you enabled watermarking, take a look at the corresponding section of the admin tools. However, before applying your new watermark permanently to all your images, perform some test uploads first to see if watermarking works as expected for you.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Wasserzeichen auf Bildern &rarr; Watermark Image</p>
 
 <a name="admin_watermarking_enable_end"></a>
 <hr />
 <a name="admin_watermarking_custom_thumb"></a><h3>Auf benutzerdefinierte Thumbnails anwenden (Film, Audio, Dokument)<a href="#admin_watermarking_custom_thumb" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>When enabled, custom thumbnails will be watermarked as well.</p>
+<p>If you don't use custom thumbnails, don't worry about this option.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Wasserzeichen auf Bildern &rarr; Auf benutzerdefinierte Thumbnails anwenden</p>
 
 <a name="admin_watermarking_custom_thumb_end"></a>
@@ -1039,40 +1044,48 @@ OpenDocument: odt/ods/odp/odg/odc/odf/odi/odm/ott/ots/otp/otg/otc/otf/oti/oth</p
 <a name="admin_watermarking_filetype"></a><h3>Wasserzeichen anwenden auf<a href="#admin_watermarking_filetype" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Determines which files the watermarking should be applied to. Possible options are:</p>
 <ul>
-  <li>Original</li>
-  <li>Resized</li>
+  <li>Original (full-size)</li>
+  <li>Resized (intermediate)</li>
   <li>Both (which is default)</li>
 </ul>
+<p>All three options make sense in different environments: if you want to use watermarking to encourage your users to register, you should apply the watermark to resized image (intermediate images) only and only allow registered users to access the original (full-sized) images. On the other hand, if you only want to make sure that your high-resolution full-size images are not being stolen, apply the watermark to the original only.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Wasserzeichen auf Bildern &rarr; Wasserzeichen anwenden auf</p>
 
 <a name="admin_watermarking_filetype_end"></a>
 <hr />
 <a name="admin_watermarking_filepath"></a><h3>Datei zur Verwendung als Wasserzeichen<a href="#admin_watermarking_filepath" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Specify the relative path to the watermark file, seen from the root folder of your coppermine-gallery. Default value: <tt class="code">images/watermark.png</tt>. You can (and are even encouraged) to come up with a watermarking file of your own - only a standard desktop drawing application is needed, e.g. MS Paint.</p>
+<p>Coppermine only comes with a sample watermarking file that you should not apply lightheartedly, as it is only meant for testing purposes and to give you an idea how the watermarking file could look like. You have to come up with your custom watermark file and FTP-upload that file to your webserver. It's a good idea to name it accordingly, e.g. "custom_watermark.png" and upload it to the <tt class="code">images</tt> folder (<tt class="code">http://your_domain.tld/your_coppermine_folder/images/</tt>). All you then have to do is change the setting for "Which file to use for watermark" to <tt class="code">images/custom_watermark.png</tt>.</p>
+<p>Coming up with a custom watermark can be tricky: it should work well both for dark as well as light backgrounds. You have to find a good compromise: the watermarked files should be still OK to look at, while on the other hand potential image thieves should get discouraged to steal your watermarked images.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Wasserzeichen auf Bildern &rarr; Datei zur Verwendung als Wasserzeichen</p>
 
 <a name="admin_watermarking_filepath_end"></a>
 <hr />
 <a name="admin_watermarking_transparency"></a><h3>Transparenz des Gesamtbildes<a href="#admin_watermarking_transparency" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Determines the transparency level for the watermark. By setting transparency you can make your image blend nicely into the pictures you upload that get watermarked.</p>
+<p>Default is 40</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Wasserzeichen auf Bildern &rarr; Transparenz des Gesamtbildes</p>
 
 <a name="admin_watermarking_transparency_end"></a>
 <hr />
 <a name="admin_watermarking_downsize"></a><h3>Wasserzeichen verkleinern, wenn Breite eines Bildes kleiner als der eingegebene Wert ist<a href="#admin_watermarking_downsize" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>That is the 100% reference point. Resizing of the watermark is linear (0 to disable).</p>
+<<p>That is the 100% reference point. Resizing of the watermark is linear (0 to disable).</p>
+<p>Keep in mind that images might get uploaded by your users (if you allow uploads by others than the admin) that you might not have made up your mind about: the image uploaded may be smaller in resolution. If the dimension of the image uploaded is smaller than the dimension of your watermark file, the watermarking would get cut off and look silly. That's why this option exists: you can specify that images that are smaller than a particular size will have the watermarking applied in a resized manner, making the watermark again fit on the uploaded image. It's a good idea to set this option to the horizontal dimension of your watermarking image.</p>
+<div class="quote">Example:<br />Let's assume that your custom watermarking image has got the same dimensions as the sample one that comes with the coppermine package: 300 x 51 pixels. Subsequently, if you set the option "Downsize watermark if width of an picture is smaller than entered value" to 300, you should be fine: if someone uploads an image that is only 250 x 100 pixels, the resulting watermarked image will be 250 x 100 pixels as well, but the watermarking image will have been resized to 250 x 43 before being applied as a watermark, so it will fit on the original file that was uploaded.</div>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Wasserzeichen auf Bildern &rarr; Wasserzeichen verkleinern, wenn Breite eines Bildes kleiner als der eingegebene Wert ist</p>
 
 <a name="admin_watermarking_downsize_end"></a>
 <hr />
 <a name="admin_watermarking_transparent_x"></a><h3>X-Koordinate der transparenten Farbe<a href="#admin_watermarking_transparent_x" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>This option is only available if you have set the method for resizing images to GD2. Specify the horizontal coordinate of the pixel that should represent the transparent color, seen from the left of the watermarking image.</p>
+<p>This option is only available if you have set the <a href="configuration.htm#admin_picture_thumb_advanced_resize_method">method for resizing images</a> to GD2. If you have set it to GD1 or ImageMagick, this setting will not be taken into account at all. Specify the horizontal coordinate of the pixel that should represent the transparent color, seen from the left of the watermarking image.</p>
+<p>The transparency setting is particularly usefull if you use a jpeg image as watermarking file or if you don't know how to set transparency up for your watermarking image inside the desktop app where you compose your custom watermark. Your best option (to go out of harms way) will be to use a png watermarking file with transparency - in this case, this setting will not be needed.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Wasserzeichen auf Bildern &rarr; X-Koordinate der transparenten Farbe</p>
 
 <a name="admin_watermarking_transparent_x_end"></a>
 <hr />
 <a name="admin_watermarking_transparent_y"></a><h3>Y-Koordinate der transparenten Farbe<a href="#admin_watermarking_transparent_y" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>This option is only available if you have set the method for resizing images to GD2. Specify the vertical coordinate of the pixel that should represent the transparent color, seen from the top of the watermarking image.</p>
+<p>This option is only available if you have set the <a href="configuration.htm#admin_picture_thumb_advanced_resize_method">method for resizing images</a> to GD2. If you have set it to GD1 or ImageMagick, this setting will not be taken into account at all. Specify the vertical coordinate of the pixel that should represent the transparent color, seen from the top of the watermarking image.</p>
+<p>The transparency setting is particularly usefull if you use a jpeg image as watermarking file or if you don't know how to set transparency up for your watermarking image inside the desktop app where you compose your custom watermark. Your best option (to go out of harms way) will be to use a png watermarking file with transparency - in this case, this setting will not be needed.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Wasserzeichen auf Bildern &rarr; Y-Koordinate der transparenten Farbe</p>
 
 <a name="admin_watermarking_transparent_y_end"></a>
