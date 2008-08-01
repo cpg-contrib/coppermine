@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-08-01 [S] Fixed a security issue reported at http://www.milw0rm.com/exploits/6178 {Abbas}
 2008-07-25 [B] SMF anonymous user fix {Nibbler}
 2008-06-11 [D] Added Spanish documentation (user contribution) {GauGau}
 2008-05-21 [B] Replaced hard-coded string "edit keywords" with translation (thread ID 52721) {GauGau}
