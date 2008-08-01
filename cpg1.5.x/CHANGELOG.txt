@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-08-01 [B] Fixed profile email check issue (thread ID 52391) {Nibbler}
 2008-08-01 [A] Added recording of user id for hit stats {GauGau}
 2008-07-25 [B] SMF anonymous user fix {Nibbler}
 2008-07-17 [A] Added animated graphics to upload screen to indicate the upload stage {GauGau}
