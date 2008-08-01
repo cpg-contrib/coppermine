@@ -1336,6 +1336,7 @@ All log files are written in english</p>
     <li>Referer</li>
     <li>Browser</li>
     <li>Operating System</li>
+    <li>User ID (if logged in)</li>
   </ol>
    <p>of the voter.</p>
    <p>As the statistics are being kept per file, the link to the stats can be accessed on the individual file's page (displayimage.php) by clicking the link in the file info section to open the stats pop-up.</p>
@@ -1354,12 +1355,14 @@ All log files are written in english</p>
     <li>Referer</li>
     <li>Browser</li>
     <li>Operating System</li>
+    <li>User ID (if logged in)</li>
   </ol>
    <p>of the visitor.</p>
    <p>As the statistics are being kept per file, the link to the stats can be accessed on the individual file's page (displayimage.php) by clicking the link in the file info section to open the stats pop-up.
 </p>
 <p class="important">Note: The total hits may not match if you enable details and do not reset the earlier hits.</p>
-<p class="important">Warning: keeping detailed statistics means additional database queries and subsequently a heavy load on the page. You have to understand that the size of the corresponding database tables can increase dramatically if you enable this feature.</p>
+<p class="important">Warning: keeping detailed statistics means additional database queries and subsequently a <strong>heavy</strong> load on the page. You have to understand that the size of the corresponding database tables can increase <strong>dramatically</strong> if you enable this feature, so you should closely monitor the resources consumption caused by it and empty the table from time to time.</p>
+<p>Do not enable this option if you don't need it!</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Logging &amp; statistics &rarr; Keep detailed hit statistics</p>
 <a name="admin_logging_hitdetails_end"></a>
 <a name="admin_logging_display_stats_on_index"></a><h3>Display statistics on index page<a href="#admin_logging_display_stats_on_index" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
