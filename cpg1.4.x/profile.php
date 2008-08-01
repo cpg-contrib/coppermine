@@ -204,7 +204,7 @@ if (isset($_POST['change_profile']) && USER_ID && UDB_INTEGRATION == 'coppermine
 			
 		} elseif (!$CONFIG['allow_duplicate_emails_addr']) {
 		
-			$sql = "SELECT user_id " . "FROM {$CONFIG['TABLE_USERS']} " . "WHERE user_email = '" . $email . "'";
+			$sql = "SELECT user_id " . "FROM {$CONFIG['TABLE_USERS']} " . "WHERE user_email = '" . $email . "' AND user_id <> " . USER_ID;
 			$result = cpg_db_query($sql);
 
 			if (mysql_num_rows($result)) {
