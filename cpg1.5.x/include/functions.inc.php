@@ -1963,6 +1963,7 @@ function add_hit($pid)
         }
 
         // Insert the record in database
+        $hitUserId = USER_ID;
         $query = "INSERT INTO {$CONFIG['TABLE_HIT_STATS']}
                           SET
                             pid = $pid,
@@ -1971,7 +1972,8 @@ function add_hit($pid)
                             sdate = '$time',
                             referer='$referer',
                             browser = '{$client_details['browser']}',
-                            os = '{$client_details['os']}'";
+                            os = '{$client_details['os']}',
+                            uid ='$hitUserId'";
         cpg_db_query($query);
      }
 }
