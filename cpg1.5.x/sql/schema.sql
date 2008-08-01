@@ -375,6 +375,7 @@ CREATE TABLE `CPG_hit_stats` (
   `referer` text NOT NULL,
   `browser` varchar(255) NOT NULL default '',
   `os` varchar(50) NOT NULL default '',
+  `uid` INT(11) NOT NULL default '0',
   PRIMARY KEY  (`sid`)
 ) TYPE = MyISAM COMMENT='Detailed stats about hits, only used when enabled';
 # --------------------------------------------------------
