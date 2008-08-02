@@ -101,6 +101,7 @@ function user_get_profile()
          */
         if ($superCage->cookie->keyExists($CONFIG['cookie_name'].'_data')) {
             $USER = @unserialize(@base64_decode($superCage->cookie->getRaw($CONFIG['cookie_name'].'_data')));
+            $USER['lang'] = strtr($USER['lang'], '$/\\:*?"\'<>|`', '____________');
         }
 
         if (!isset($USER['ID']) || strlen($USER['ID']) != 32) {
