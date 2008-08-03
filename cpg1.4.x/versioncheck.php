@@ -5612,7 +5612,7 @@ $return = '
 1.4.19|upload.php|1.4.19|4424|mandatory|r@
 1.4.19|usermgr.php|1.4.19|4392|mandatory|r@
 1.4.19|util.php|1.4.19|4392|mandatory|r@
-1.4.19|versioncheck.php|1.4.19|4764|mandatory|r@
+1.4.19|versioncheck.php|1.4.19|4766|mandatory|r@
 1.4.19|viewlog.php|1.4.19|4392|mandatory|r@
 1.4.19|xp_publish.php|1.4.19|4392|mandatory|r@
 1.4.19|zipdownload.php|1.4.19|4392|mandatory|r@
