@@ -5612,7 +5612,7 @@ $return = '
 1.4.19|upload.php|1.4.19|4424|mandatory|r@
 1.4.19|usermgr.php|1.4.19|4392|mandatory|r@
 1.4.19|util.php|1.4.19|4392|mandatory|r@
-1.4.19|versioncheck.php|1.4.19|4395|mandatory|r@
+1.4.19|versioncheck.php|1.4.19|4764|mandatory|r@
 1.4.19|viewlog.php|1.4.19|4392|mandatory|r@
 1.4.19|xp_publish.php|1.4.19|4392|mandatory|r@
 1.4.19|zipdownload.php|1.4.19|4392|mandatory|r@
@@ -5646,7 +5646,7 @@ $return = '
 1.4.19|docs/faq.htm|||optional|r@
 1.4.19|docs/faq_de.htm|||optional|r@
 1.4.19|docs/faq_fr.htm|||optional|r@
-1.4.19|docs/index.htm|1.4.19|4392|mandatory|r@
+1.4.19|docs/index.htm|1.4.19|4763|mandatory|r@
 1.4.19|docs/index_es.htm|1.4.19|4392|mandatory|r@
 1.4.19|docs/index_fr.htm||4392|mandatory|r@
 1.4.19|docs/README.html||4392|optional|r@
