@@ -601,6 +601,7 @@ d.add(15700,15200,'Subversion','dev_subversion.htm');
 d.add(15800,15200,'Adding config options','dev_config.htm');
 d.add(15900,15200,'Versioncheck','dev_versioncheck.htm');
 d.add(16000,15200,'Updating','dev_update.htm');
+d.add(16100,15200,'Recommended tools','dev_tools.htm');
 
 
 function cpgDocToc() {
