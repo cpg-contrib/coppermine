@@ -403,35 +403,6 @@ a:hover {
         color:         #FFFFFF;
 }
 
-.admin_menu_thumb {
-        font-family: Verdana, Helvetica, sans-serif;
-        font-size: 85%;
-        border: 1px solid #005D8C;
-        background-color : #5D6674;
-        color:#cccccc;
-        font-weight: bold;
-        margin-top: 0px;
-        margin-bottom: 0px;
-        width: 85px;
-}
-
-.admin_menu_thumb a {
-        color: #CCCCCC;
-        text-decoration: none;
-        display: block;
-        position: relative;
-        padding-top: 1px;
-        padding-bottom: 1px;
-        padding-left: 10px;
-        padding-right: 10px;
-}
-
-
-.admin_menu_thumb a:hover {
-        color: #CCCCCC;
-        text-decoration: underline;
-}
-
 .admin_menu {
         font-family: Verdana, Helvetica, sans-serif;
         font-size: 85%;

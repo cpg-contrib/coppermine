@@ -428,7 +428,7 @@ switch ($what) {
       }
       if ($need_caption) output_caption();
       echo "<tr><td colspan=\"6\" class=\"tablef\" align=\"center\">\n";
-      echo "<div class=\"admin_menu_thumb\"><a href=\"index.php\"  class=\"adm_menu\">".$lang_common['continue']."</a></div>\n";
+      echo "<div class=\"admin_menu\"><a href=\"index.php\">".$lang_common['continue']."</a></div>\n";
       echo "</td></tr>";
       endtable();
       pagefooter();
@@ -475,7 +475,7 @@ switch ($what) {
         $aid = delete_picture($pid);
         output_caption();
         echo "<tr><td colspan=\"7\" class=\"tablef\" align=\"center\">\n";
-        echo "<div class=\"admin_menu_thumb\"><a href=\"thumbnails.php?album=$aid\"  class=\"adm_menu\">".$lang_common['continue']."</a></div>\n";
+        echo "<div class=\"admin_menu\"><a href=\"thumbnails.php?album=$aid\">".$lang_common['continue']."</a></div>\n";
         echo "</td></tr>\n";
         endtable();
         pagefooter();
@@ -500,7 +500,7 @@ switch ($what) {
         }
 
         echo "<tr><td colspan=\"7\" class=\"tablef\" align=\"center\">\n";
-        echo "<div class=\"admin_menu_thumb\"><a href=\"index.php\"  class=\"adm_menu\">".$lang_common['continue']."</a></div>\n";
+        echo "<div class=\"admin_menu\"><a href=\"index.php\">".$lang_common['continue']."</a></div>\n";
         echo "</td></tr>";
         endtable();
         pagefooter();

@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-08-06 [O] Removed unneeded CSS classes admin_menu_thumb and adm_menu {GauGau}
 2008-08-06 [A] Added menu icons {GauGau}
 2008-08-02 [S] Fixed a security issue reported at http://www.milw0rm.com/exploits/6178 {Abbas}
 2008-08-01 [B] Fixed profile email check issue (thread ID 52391) {Nibbler}

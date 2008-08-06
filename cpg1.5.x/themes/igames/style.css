@@ -47,7 +47,7 @@ body { color : #C6B78E; }
 .alblink, .alblink a, .catlink, .catlink a { color : #FFFFCC; }
 a,  .bblink a, .user_thumb_infobox a  { color: #FFFFCC; }
 a:hover, .bblink a:hover, .user_thumb_infobox a:hover, .alblink a:hover, .catlink a:hover { color : #E6E6E6; }
-.button, .comment_button, .admin_menu_thumb, .admin_menu_thumb a, .admin_menu_thumb a:hover, .admin_menu, .admin_menu a, .admin_menu a:hover { color : #FFFFFF; }
+.button, .comment_button, .admin_menu, .admin_menu a, .admin_menu a:hover { color : #FFFFFF; }
 .comment_date { color : #5F5F5F; }
 .footer, .footer a, .footer a:hover { color : #666666; }
 
@@ -66,7 +66,7 @@ body { background-color: #4A4A4A; }
 }
 
 /* Borders for input controls */
-.textinput, .listbox, .button, .comment_button, .admin_menu, .admin_menu_thumb  {        border: 1px solid #666666; }
+.textinput, .listbox, .button, .comment_button, .admin_menu  {        border: 1px solid #666666; }
 .image { border: 1px solid #000000; }
 a:link .image { border: 1px solid #000000; }
 a:visited .image { border: 1px solid #BDBEBD; }
@@ -84,7 +84,7 @@ a:link .middlethumb,a:visited .middlethumb,a:focus .middlethumb,a:hover .middlet
 body { font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif; }
 .tableh1, .tableh1a, .catlink, .tableh2, .catrow_noalb { font-family: Verdana, Geneva, Arial, sans-serif; font-weight:bold;}
 .textinput, .listbox, .radio, .checkbox { font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif; }
-.button, .comment_button, .sortorder_options, .admin_menu_thumb { font-family: Arial, Helvetica, sans-serif; }
+.button, .comment_button, .sortorder_options { font-family: Arial, Helvetica, sans-serif; }
 
 table {
         font-size : 12px;
@@ -532,31 +532,6 @@ a:hover {
         border-bottom: 1px solid #3F3F3F;
         border-left: 1px solid #3F3F3F;
         border-right: 1px solid #3F3F3F;
-}
-
-.admin_menu_thumb {
-        font-size: 90%;
-        background-image : url(images/button_bg.gif);
-        background-position : bottom;
-        font-weight: bold;
-        margin-top: 0px;
-        margin-bottom: 0px;
-        width: 85px;
-}
-
-.admin_menu_thumb a {
-        text-decoration: none;
-        display: block;
-        position: relative;
-        padding-top: 1px;
-        padding-bottom: 1px;
-        padding-left: 10px;
-        padding-right: 10px;
-}
-
-
-.admin_menu_thumb a:hover {
-        text-decoration: underline;
 }
 
 .admin_menu {
