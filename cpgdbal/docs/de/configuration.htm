@@ -13,9 +13,9 @@
   SVN version info:
 
   Coppermine version: 1.5.0
-  $Revision: 4692 $
+  $Revision: 4751 $
   $LastChangedBy: gaugau $
-  $Date: 2008-07-17 10:29:35 +0530 (Thu, 17 Jul 2008) $
+  $Date: 2008-08-01 13:20:44 +0530 (Fri, 01 Aug 2008) $
 -->
 <link rel="stylesheet" type="text/css" href="../style.css" media="all" />
 <link rel="stylesheet" type="text/css" href="../screen.css" media="screen" />
@@ -153,7 +153,7 @@ Diese Option kann auch ein- und augeschaltet werden auf den <a href="uploading.h
 <p class="important">Sobald Kommentare oder Dateibeschreibungen zu Deiner Galerie hinzugefügt wurden sollte diese Einstellung auf keinen Fall geändert werden. Falls Du das doch tust werden Sonderzeichen (z.B. Umlaute) nicht richtig dargestellt werden.</p>
 <a name="admin_language_charset_end"></a>
 <a name="admin_language_list"></a><h3>Sprachauswahl-Liste anzeigen <a href="#admin_language_list" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Aktiviere diese Option um den Besuchern der Galerie zu ermöglichen, aus einer Liste von Sprachen ihre bevorzugte Sprache auszuwählen (Du kannst wählen, ob nur die Liste alleine oder mit einem Hinweistext &quot;Wähle Sprache&quot; erscheinen soll). Bearbeite Dein Template (/themes/yourtheme/template.html) um festzulegen, wo die Sprachauswahlliste auf der Seite erscheinen soll innerhalb Deiner Galerie (benutze den Platzhalter <a href="theme_create.htm#theme_create_template_language_select_list">{LANGUAGE_SELECT_LIST}</a>).</p>
+<p>Aktiviere diese Option um den Besuchern der Galerie zu ermöglichen, aus einer Liste von Sprachen ihre bevorzugte Sprache auszuwählen (Du kannst wählen, ob nur die Liste alleine oder mit einem Hinweistext &quot;Wähle Sprache&quot; erscheinen soll). Bearbeite Dein Template (/themes/yourtheme/template.html) um festzulegen, wo die Sprachauswahlliste auf der Seite erscheinen soll innerhalb Deiner Galerie (benutze den Platzhalter <a href="theme_template.htm#theme_template_language_select_list">{LANGUAGE_SELECT_LIST}</a>).</p>
 <p>Um Sprachen aus dieser Auswahl zu entfernen, benutze Dein FTP-Programm und lösche damit die unerwünschten Sprachdateien aus dem Verzeichnis <tt class="code">lang</tt> auf Deinem Server. Lösche auf keinen Fall die englische Sprachdatei <tt class="code">english.php</tt> von Deinem Server!</p>
 <p>Normalerweise ist es nicht notwendig, diese Sprachauswahl anzuzeigen, da die Menüs und Bedienelemente sowieso in der bevorzugten Sprache des Besuchers angezeigt werden. Empfohlene Einstellung dieser Option ist "aus".</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Sprach- &amp; Zeichensatz-Einstellungen &rarr; Zeichensatz</p>
@@ -161,7 +161,7 @@ Diese Option kann auch ein- und augeschaltet werden auf den <a href="uploading.h
 
 <hr />
 <a name="admin_language_flags"></a><h3>Sprachauswahl-Flaggen anzeigen<a href="#admin_language_flags" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Aktiviere diese Option um den Besuchern der Galerie zu ermöglichen, aus einer Reihe von Flaggen, die unterschiedliche Sprachen repräsentieren ihre gewünschte Sprache auszuwählen (Du kannst wählen, ob nur die Flaggen alleine oder mit einem Hinweistext &quot;Wähle Sprache&quot; erscheinen soll). Bearbeite Dein Template (/themes/yourtheme/template.html) um festzulegen, wo die Flaggenliste auf der Seite erscheinen soll innerhalb Deiner Galerie (benutze den Platzhalter <a href="theme_create.htm#theme_create_template_language_select_flags">{LANGUAGE_SELECT_FLAGS}</a>).</p>
+<p>Aktiviere diese Option um den Besuchern der Galerie zu ermöglichen, aus einer Reihe von Flaggen, die unterschiedliche Sprachen repräsentieren ihre gewünschte Sprache auszuwählen (Du kannst wählen, ob nur die Flaggen alleine oder mit einem Hinweistext &quot;Wähle Sprache&quot; erscheinen soll). Bearbeite Dein Template (/themes/yourtheme/template.html) um festzulegen, wo die Flaggenliste auf der Seite erscheinen soll innerhalb Deiner Galerie (benutze den Platzhalter <a href="theme_template.htm#theme_template_language_select_flags">{LANGUAGE_SELECT_FLAGS}</a>).</p>
 <p>Um Sprachen aus dieser Auswahl zu entfernen, benutze Dein FTP-Programm und lösche damit die unerwünschten Sprachdateien aus dem Verzeichnis <tt class="code">lang</tt> auf Deinem Server. Lösche auf keinen Fall die englische Sprachdatei <tt class="code">english.php</tt> von Deinem Server!</p>
 <p>Normalerweise ist es nicht notwendig, diese Sprachauswahl anzuzeigen, da die Menüs und Bedienelemente sowieso in der bevorzugten Sprache des Besuchers angezeigt werden. Empfohlene Einstellung dieser Option ist "aus".</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Sprach- &amp; Zeichensatz-Einstellungen &rarr; Sprachauswahl-Flaggen anzeigen</p>
@@ -180,7 +180,7 @@ Diese Option kann auch ein- und augeschaltet werden auf den <a href="uploading.h
 <a name="admin_theme_theme_end"></a>
 <hr />
 <a name="admin_theme_theme_list"></a><h3>Designauswahl-Liste anzeigen<a href="#admin_theme_theme_list" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Aktiviere diese Option, um den Besuchern der Galerie zu ermöglichen, andere Themen (Designs) als das Standard-Thema aus einer Auswahlliste auszuwählen (Du kannst festlegen, ob Du nur die Liste oder auch eine Beschriftung mit der Auschrift &quot;<strong>Wähle Design:</strong>&quot; vor der Liste anzeigen möchtest). Bearbeite Dein Template (/themes/yourtheme/template.html) um festzulegen, wo die Auswahlliste innerhalb der Galerie angezeigt werden soll (suche nach dem Platzhalter <a href="theme_create.htm#theme_create_template_theme_select_list">{THEME_SELECT_LIST}</a>).</p>
+<p>Aktiviere diese Option, um den Besuchern der Galerie zu ermöglichen, andere Themen (Designs) als das Standard-Thema aus einer Auswahlliste auszuwählen (Du kannst festlegen, ob Du nur die Liste oder auch eine Beschriftung mit der Auschrift &quot;<strong>Wähle Design:</strong>&quot; vor der Liste anzeigen möchtest). Bearbeite Dein Template (/themes/yourtheme/template.html) um festzulegen, wo die Auswahlliste innerhalb der Galerie angezeigt werden soll (suche nach dem Platzhalter <a href="theme_template.htm#theme_template_theme_select_list">{THEME_SELECT_LIST}</a>).</p>
 <p>Diese Option macht nur Sinn, wenn Du mindestens ein alternatives Design für Deine Seite erstellt hast, das einen zusätzlichen Nutzen für den Besucher darstellt (beispielsweise ein Design mit weniger grafischen Elementen für Besucher mit langsamer Internet-Anbindung oder ein Design mit starkem Kontrast und grossen Zeichen für Benutzer mit eingeschränkter Sehfähigkeit). Empfohlene Einstellung: aus.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Themen-/Design-Einstellungen &rarr; Themen-/Design-Einstellungen</p>
 <a name="admin_theme_theme_list_end"></a>
@@ -365,58 +365,59 @@ Das Aktivieren dieser Option bringt den Vorteil, dass die Besucher weniger Klick
 
 <a name="admin_thumbnail_view"></a><h2>Ansicht Thumbnail<a href="#admin_thumbnail_view" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <a name="admin_thumbnail_columns"></a><h3>Spaltenzahl auf Thumbnail-Seite<a href="#admin_thumbnail_columns" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Standard-Wert ist 4, was bedeutet, dass jede Zeile 4 Thumbnails enthält. Es kann keine generelle Empfehlung geben betreffend der Spaltrenzahl auf der Thumbnail-Seite, da die optimalen Einstellungen abhängig sind von der Einstellung für <a href="#admin_picture_thumbnail_max-dimension">Maximalgröße Thumbnail</a>, dem <a href="#admin_theme_theme">Thema</a> das benutzt wird, der <a href="#admin_album_table-width">Breite der Haupttabelle</a> und vor allem der Bildschirmauflösung der Besucher.</p>
+<p>Standard-Wert ist 4, was bedeutet, dass jede Zeile 4 Thumbnails enthält. Es kann keine generelle Empfehlung geben betreffend der Spaltenzahl auf der Thumbnail-Seite, da die optimalen Einstellungen abhängig sind von der Einstellung für <a href="#admin_picture_thumbnail_max-dimension">Maximalgröße Thumbnail</a>, dem <a href="#admin_theme_theme">Thema</a> das benutzt wird, der <a href="#admin_album_table-width">Breite der Haupttabelle</a> und vor allem der Bildschirmauflösung der Besucher.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Ansicht Thumbnail &rarr; Spaltenzahl auf Thumbnail-Seite</p>
 <a name="admin_thumbnail_columns_end"></a>
 <hr />
 <a name="admin_thumbnail_rows"></a><h3>Zeilenzahl auf Thumbnail-Seite<a href="#admin_thumbnail_rows" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Standard-Wert ist 3.</p>
-<p>If an album contains more files than the number that will fit on one thumbnail page ("<a href="#admin_thumbnail_columns">Number of columns on thumbnail page</a>" x "<a href="#admin_thumbnail_rows">Number of rows on thumbnail page</a>"), a pagination tab will be displayed that allows the visitor to jump to the next page of thumbnails.</p>
+<p>Wenn ein Album mehr Dateien enthält als die Anzahl, die auf eine Thumbnail-Seite passt ("<a href="#admin_thumbnail_columns">Spaltenzahl auf Thumbnail-Seite</a>" x "<a href="#admin_thumbnail_rows">Zeilenzahl auf Thumbnail-Seite</a>"), wird ein Paginations-Tab (ein Seiten-Umschalter) angezeigt, mit dessen Hilfe der Besucher auf die nächste(n) Seite(n) wechseln kann.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Ansicht Thumbnail &rarr; Zeilenzahl auf Thumbnail-Seite</p>
 <a name="admin_thumbnail_rows_end"></a>
 <hr />
 <a name="admin_thumbnail_tabs"></a><h3>Anzahl maximal angezeigter Tabs<a href="#admin_thumbnail_tabs" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>When the thumbnails spread over multiple pages, tabs are displayed at the bottom of the page. This value define how many tabs will be displayed.</p>
+<p><img src="images/thumbnail_tabs.jpg" border="0" withd="196" height="85" alt="" title="pagination at the bottom of the page" class="img_embed_right" />Wenn die Thumbnail-Ansicht über mehrere Seiten verteilt ist werden Tabs (Seiten-Umschalter) angezeigt am unteren Ende der Seite. Dieser Wert gibt an, wieviele Tabs angezeigt werden sollen. Wenn die Anzahl der anzuzeigenden Thumbnail-Seiten größer ist als die hier getroffene Einstellung werden die benachbarten Tabs und der erste und letzte Tab angezeigt.</p>
+<p>Standard-Wert ist 12 12, Auswahlmöglichkeit besteht zwischen 5 und 25.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Ansicht Thumbnail &rarr; Anzahl maximal angezeigter Tabs</p>
 <a name="admin_thumbnail_tabs_end"></a>
 <hr />
 <a name="admin_thumbnail_display_caption"></a><h3>Datei-Beschriftung anzeigen (zusätzlich zum Datei-Titel) unterhalb der Thumbnails<a href="#admin_thumbnail_display_caption" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Toggles whether the file caption is displayed below each thumbnail while user is in (regular) thumbnail view.</p>
+<p>Legt fest, ob die Datei-Beschriftung unterhalb des Thumbnails angezeigt wird, während der Besucher in der "normalen" Thumbnail-Ansicht ist.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Ansicht Thumbnail &rarr; Datei-Beschriftung anzeigen</p>
 <a name="admin_thumbnail_display_caption_end"></a>
 <hr />
 <a name="admin_thumbnail_display_views"></a><h3>Anzahl der Treffer unterhalb des Thumbnails anzeigen<a href="#admin_thumbnail_display_views" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Toggles whether the number of views is displayed below each thumbnail while user is in thumbnail view.</p>
+<p>Legt fest, ob die Anzahl der Treffer unterhalb des Thumbnails angezeigt wird, während der Besucher in der "normalen" Thumbnail-Ansicht ist.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Ansicht Thumbnail &rarr; Anzahl der Treffer unterhalb des Thumbnails anzeigen</p>
 <a name="admin_thumbnail_display_views_end"></a>
 <hr />
 <a name="admin_thumbnail_display_comments"></a><h3>Anzahl der Kommentare unterhalb des Thumbnails anzeigen<a href="#admin_thumbnail_display_comments" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Toggles the display of the number of comments for below each thumbnail.</p>
+<p>Legt fest, ob die Anzahl der abgegebenen Kommentare unterhalb des Thumbnails angezeigt wird, während der Besucher in der "normalen" Thumbnail-Ansicht ist.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Ansicht Thumbnail &rarr; Anzahl der Kommentare unterhalb des Thumbnails anzeigen</p>
 <a name="admin_thumbnail_display_comments_end"></a>
 <hr />
 <a name="admin_thumbnail_display_uploader"></a><h3>Name des Uploaders unterhalb des Thumbnails anzeigen<a href="#admin_thumbnail_display_uploader" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Toggles the display of the name of non-admin uploaders below each thumbnail.</p>
+<p>Legt fest, ob der Name des Uploaders (Nicht-Admin) unterhalb des Thumbnails angezeigt wird, während der Besucher in der "normalen" Thumbnail-Ansicht ist.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Ansicht Thumbnail &rarr; Name des Uploaders unterhalb des Thumbnails anzeigen</p>
 
 <a name="admin_thumbnail_display_uploader_end"></a>
 <hr />
 <a name="admin_thumbnail_display_admin_uploader"></a><h3>Name des Admin-Uploaders unterhalb des Thumbnails anzeigen<a href="#admin_thumbnail_display_admin_uploader" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Toggles the display of admin uploader names below each thumbnail for users that have the administrators group set as thier default group.</p>
+<p>Legt fest, ob der Name des Admin-Uploaders unterhalb des Thumbnails angezeigt wird, während der Besucher in der "normalen" Thumbnail-Ansicht ist, in Abhängigkeit von der Mitgliedschaft des Uploaders in der Administratoren-Gruppe als primäre benutzergruppe.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Ansicht Thumbnail &rarr; Name des Admin-Uploaders unterhalb des Thumbnails anzeigen</p>
 
 <a name="admin_thumbnail_display_admin_uploader_end"></a>
 <hr />
 <a name="admin_thumbnail_display_filename"></a><h3>Dateiname unterhalb des Thumbnails anzeigen<a href="#admin_thumbnail_display_filename" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Toggles the display of the file name below each thumbnail.</p>
-<p>It's recommended to leave this option disabled, especially if you have no direct control over the file names (because you allow uploads by users). Better use the actual textual content (title and caption) features. If you have long file names that can not be wrapped, the file name displayed may be wider than the thumbnail, so the table cell that wraps the thumbnail and all text that relates to it may get much wider than expected, resulting in a distorted view of the table.</p>
+<p>Legt fest, ob der Dateiname unterhalb des Thumbnails angezeigt wird, während der Besucher in der "normalen" Thumbnail-Ansicht ist.</p>
+<p>Es wird empfohlen, diese Option deaktiviert zu lassen, besonders wenn keine direkte Kontrolle über den Dateinamen vorhanden ist, weil Endbenutzer (nicht der Admin) ebenfalls das recht besitzen, Dateien hochzuladen. Besser ist es stattdessen, den tatsächlichen Text-Inhalt des Datenbankeintrags (Titel und Beschriftung) anzuzeigen. Wenn Dateinamen vorhanden sind, die nicht umgebrochen werden können wird die Anzeige des Dateinamens breiter sein als das Thumbnail, so dass die Tabellenzelle, die die Thumbnail und Beschriftung umgibt breiter wird und dadurch ein verzerrtes Aussehen der gesamten Tabelle erreicht wird.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Ansicht Thumbnail &rarr; Dateiname unterhalb des Thumbnails anzeigen</p>
 
 <a name="admin_thumbnail_display_filename_end"></a>
 <hr />
 <a name="admin_thumbnail_display_rating"></a><h3>Bewertung unterhalb des Thumbnails anzeigen<a href="#admin_thumbnail_display_rating" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Toggles the display of the rating results below each thumbnail.</p>
-<p>Recommended (and default) setting is &quot;off&quot;.</p>
+<p>Legt fest, ob die Bewertung unterhalb des Thumbnails angezeigt wird, während der Besucher in der "normalen" Thumbnail-Ansicht ist.</p>
+<p>Standard-Modus dieser Einstellung ist &quot;aus&quot; (empfohlen).</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Ansicht Thumbnail &rarr; Bewertung unterhalb des Thumbnails anzeigen</p>
 
 <a name="admin_thumbnail_display_rating_end"></a>
@@ -429,29 +430,30 @@ Das Aktivieren dieser Option bringt den Vorteil, dass die Besucher weniger Klick
 <hr />
 -->
 <a name="admin_thumbnail_to_fullsize"></a><h3>Direkt vom Thumbnail zum Bild in voller Größe springen<a href="#admin_thumbnail_to_fullsize" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>When enabled, this option sends the visitor directly from the thumbnail to the full-sized image pop-up, skipping the display of intermediate images.</p>
-It is <b>not</b> recommended to enable this option, because
+<p>Wenn diese Option aktiviert ist wird beim Anklicken des Thumbnails sofort das Pop-Up mit dem Bild in voller Größe angezeigt und die Anzeige des Bildes in Zwischengröße übersprungen.</p>
+Es ist nicht empfehlenswert, diese Option zu aktivieren, weil
 <ul>
-<li>visitors will not be able to rate</li>
-<li>visitors will not be able to comment</li>
-<li>visitors will not see additional picture information</li>
-<li>visitors will not be able to see the slideshow</li>
-<li>visitor might be annoyed because of the over-use of pop-ups</li>
-<li>the views counter will not increase</li>
+<li>Besucher nicht bewerten können</li>
+<li>Besucher keine Kommentare abgeben können</li>
+<li>Besucher keine zusätzlichen Bildinformationen abrufen können</li>
+<li>Besucher keine Diashow ansehen können</li>
+<li>Besucher möglicherweise verärgert sind durch die übertriebene Verwendung von Pop-Ups</li>
+<li>Besucher möglicherweise die Bilder in voller Größe gar nicht sehen können, weil sie einen Pop-Up Blocker verwenden und vergessen, ihn für Deine Seite zu deaktivieren</li>
+<li>Der Treffer-Zähler sich nicht erhöht</li>
 </ul>
-<p>This option has been added because a lot of coppermine users have asked for it. However, the dev team does not recommend using it.</p>
+<p>Diese Option wurde zu Coppermine hinzugefügt, weil eine große Anzahl von Benutzern danach verlangt hat. Das Coppermine-Entwicklerteam rät jedoch von der Verwendung dieser Option ab.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Ansicht Thumbnail &rarr; Direkt vom Thumbnail zum Bild in voller Größe springen</p>
 
 <a name="admin_thumbnail_to_fullsize_end"></a>
 <hr />
 <a name="admin_thumbnail_default_sortorder"></a><h3>Standard-Sortierung für Dateien<a href="#admin_thumbnail_default_sortorder" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>This option determines the default order in which thumbnails should be displayed. Your user can override this by selecting a custom sort order from the sort buttons above the albums.</p>
+<p>Diese Option legt die Standard-Sortierreihenfolge der Thumbnails innerhalb eines Albums fest. Diese Einstellung kann durch den besucher überschrieben werden, indem er/sie eine benutzerdefinierte Sortierreihenfolge festlegt durch Anklicken der entsprechenden Optionen auf der Thumbnail-Seite (oberhalb des Albums).</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Ansicht Thumbnail &rarr; Standard-Sortierung für Dateien</p>
 <a name="admin_thumbnail_default_sortorder_end"></a>
 <hr />
 <a name="admin_thumbnail_minimum_votes"></a><h3>Mindestmenge Stimmen, die eine Datei benötigt, um in der 'am besten bewertet'-Liste zu erscheinen<a href="#admin_thumbnail_minimum_votes" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Used to determine how many votes a file must receive before appearing as a &quot;top-rated file.&quot;  If a file has received less than &quot;this value&quot; of votes, it will not be displayed in the "top-rated" page. This value must be greater or equal to 1.</p>
-<p>Setting this to a high number is only recommended for busy sites with a lot of visitors. Default value is &quot;1&quot;. A higher number has the advantage that votes just by one individual won't boost up the relevance of a file to much, reducing potential rating fraud.</p>
+<p>Verwende diese Option, um festzulegen, wieviele Stimmen eine Datei mindestens haben muss, um im Meta-Album &quot;am besten bewertet.&quot;  zu erscheinen. Wenn eine Datei weniger als die hier festgelegte Anzahl Stimmen (Bewertungen) erhalten hat wird sie auf der "am besten bewertet" Seite überhaupt nicht angezeigt. Der Wert dieser Option muss größer oder gleich 1 sein.</p>
+<p>Diese Option auf einen höheren Wert als 1 (Standardwert) zu setzen ist nur empfohlen für gut besuchte Seiten mit einer großen Anzahl aktiver Benutzer.Setting this to a high number is only recommended for busy sites with a lot of visitors. Ein höherer Wert hat den Vorteil, dass die Bewertung durch einen EInzelnen die Relevanz nicht allzu sehr erhöht und verringert so die Auswirkung von Fehlverhalten von Besuchern bei der Bewertung.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Ansicht Thumbnail &rarr; Mindestmenge Stimmen, die eine Datei benötigt, um in der 'am besten bewertet'-Liste zu erscheinen</p>
 <a name="admin_thumbnail_minimum_votes_end"></a>
 <a name="admin_thumbnail_view_end"></a>
@@ -459,48 +461,51 @@ It is <b>not</b> recommended to enable this option, because
 
 <a name="admin_image_comment"></a><h2>Ansicht Bild<a href="#admin_image_comment" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <a name="admin_image_comment_table-width"></a><h3>Tabellenbreite für Bildanzeige<a href="#admin_image_comment_table-width" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>The minimum width of the table that will be used to display the intermediate picture.</p>
-<p>Examples:<br /><tt class="code">600</tt> = The table around the pic will be 600 pixels wide (if the pic has larger dimensions this table will expand accordingly to fit the image).<br />
-<tt class="code">100%</tt> = use all available space based on the horizontal dimension of the pic.</p>
-<p>Recommended setting is &quot;<tt class="code">100%</tt>&quot;. When setting this to a value that doesn't make sense (over 100% or a silly absolute size in pixels), your gallery pages will look distorted.</p>
-<p>If you decide to use an absolute size in pixels, make sure that the value is equal or greater than &quot;<a href="#admin_picture_thumbnail_intermediate_dimension">Max width or height of an intermediate picture</a>&quot;.</p>
+<p>Die Mindestbreite der Tabelle (in Pixel oder Prozent), die zur Anzeige der Bilder in Zwischengröße verwendet wird.</p>
+<p>Beispiele:</p>
+<ul>
+    <li><tt class="code">600</tt> = Die Tabelle um das Bild in Zwischengrösse wird 600 Pixel breit sein (wenn das Bild breiter ist als die es umgebende Tabelle wird die Tabelle automatisch verbreitert, so dass das Bild hinein passt).</li>
+    <li><tt class="code">100%</tt> = Benutze die gesamten horizontal verfügbare Fensterbreite, basierend auf der Breite des Bildes.</li>
+</ul>
+<p>Empfohlene Einstellung ist &quot;<tt class="code">100%</tt>&quot;. Wenn diese Option auf einen sinnlosen Wert gesetzt wird (über 100% oder einen sinnlos grossen Pixelwert) wird die Galerie gestört aussehen und horizontale Scrollbalken werden erscheinen.</p>
+<p>Wenn Du Dich für eine absolute Angabe in Pixeln entscheidest, stelle sicher, dass der Wert gleich oder größer ist als die Einstellung für  &quot;<a href="#admin_picture_thumbnail_intermediate_dimension">Maximale Breite oder Höhe von Bildern in Zwischengröße</a>&quot;.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Ansicht Bild &rarr; Tabellenbreite für Bildanzeige</p>
 <a name="admin_image_comment_table-width_end"></a>
 <hr />
 <a name="admin_image_comment_info_visible"></a><h3>Datei-Informationen sind standardmäßig sichtbar<a href="#admin_image_comment_info_visible" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Define whether or not the file information block that appears below the intermediate image should be visible by default (If turned off, users can still view the info block by clicking on the ( i ) button.</p>
-<p>Default setting: off. Recommended setting: on.</p>
+<p>Legt fest ob der Dateiinformationsbereich, der unterhalb des Bildes in Zwischengröße angezeigt wird, standard-mäßig sichtbar oder unsichtbar sein soll. Falls die Anzeige auf unsichtbar geschaltet ist können Besucher den Block trotzdem sichtbar machen, indem sie auf den (i)-Button in der Bilder-Navigationleiste klicken.</p>
+<p>Standard-Einstellung: aus. Empfohlene Einstellung: ein.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Ansicht Bild &rarr; Datei-Informationen sind standardmäßig sichtbar</p>
 <a name="admin_image_comment_info_visible_end"></a>
 <hr />
 
 <a name="admin_image_movie_download_link_visible"></a><h3>Video-Download-Link innerhalb Dateiinformationsbereich anzeigen<a href="#admin_image_movie_download_link_visible" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>When enabled, a link will be displayed in the pic info section (that can be toggled by clicking the (i) button) that allows the visitor to download a movie. If the file displayed is not a movie, but another file type (e.g. an image), the download link will not be displayed.</p>
+<p>Wenn diese Option aktiviert ist wird im Dateiinformationsbereich von Video-Dateien (der durch den Besucher sichtbar/unsichtbar gemacht werden kann, indem er/sie auf den (i)-Button in der Bilder-Navigationleiste klickt) ein Link angezeigt, den der Besucher nutzen kann, um einen Film herunter zu laden.When enabled, a link will be displayed in the pic info section (that can be toggled by clicking the (i) button) that allows the visitor to download a movie. Wenn der anzeigte Dateityp kein Film ist, sondern ein anderer Dateityp (beispielsweise ein Bild) wird der Download-Link nicht angezeigt.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Ansicht Bild &rarr; Video-Download-Link innerhalb Dateiinformationsbereich anzeigen</p>
 <a name="admin_image_movie_download_link_visible_end"></a>
 <hr />
 
 <a name="admin_image_comment_descr_length"></a><h3>Maximallänge für Dateibeschreibung<a href="#admin_image_comment_descr_length" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Maximum number of characters that an image description may contain.</p>
+<p>Maximale Anzahl von Zeichen, die eine Dateibeschreibung beinhalten kann.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Ansicht Bild &rarr; Maximallänge für Dateibeschreibung</p>
 <a name="admin_image_comment_descr_length_end"></a>
 <hr />
 <a name="admin_image_comment_filmstrip_toggle"></a><h3>Film-Streifen anzeigen<a href="#admin_image_comment_filmstrip_toggle" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Toggles display of a "film strip" showing thumbnails of prior and subsequent files in the album.</p>
+<p><img src="images/filmstrip.jpg" border="0" width="" height="" alt="" title="Filmstreifen unterhalb des aktuellen Bildes" class="img_embed_right" />Schaltet die Anzeige eines "Filmstreifens" ein/aus. Der Filmstreifen zeigt die Thumbnails vor und nach dem derzeit angezeigten Bild in Zwischengröße an und dient als Vorschau und Navigationshilfe innerhalb eines Albums.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Ansicht Bild &rarr; Film-Streifen anzeigen</p>
 
 <a name="admin_image_comment_filmstrip_toggle_end"></a>
 <hr />
 <a name="admin_image_comment_display_film_strip_filename"></a><h3>Dateinamen unter Filmstreifen-Thumbnails anzeigen<a href="#admin_image_comment_display_film_strip_filename" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Toggles the display of the file name below each thumbnail in the film strip.</p>
-<p>It's recommended to leave this option disabled, especially if you have no direct control over the file names (because you allow uploads by users). If you have long file names that can not be wrapped, the file name displayed may be wider than the thumbnail, so the table cell that wraps the thumbnail and the file name may get much wider than expected, resulting in a distorted view of the table and subsequently make the filmstrip feature unusable.</p>
+<p>Schaltet die Anzeige des Dateinamens unterhalb des Filmstreifens an/aus.</p>
+<p>Es wird empfohlen, diese Option deaktiviert zu lassen, besonders wenn keine direkte Kontrolle über den Dateinamen vorhanden ist, weil Endbenutzer (nicht der Admin) ebenfalls das recht besitzen, Dateien hochzuladen. Besser ist es stattdessen, den tatsächlichen Text-Inhalt des Datenbankeintrags (Titel und Beschriftung) anzuzeigen. Wenn Dateinamen vorhanden sind, die nicht umgebrochen werden können wird die Anzeige des Dateinamens breiter sein als das Thumbnail, so dass die Tabellenzelle, die die Thumbnail und Beschriftung umgibt breiter wird und dadurch ein verzerrtes Aussehen der gesamten Tabelle erreicht wird und das Filmstreifen-feature dadurch unbenutzbar wird.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Ansicht Bild &rarr; Dateinamen unter Filmstreifen-Thumbnails anzeigen</p>
 
 <a name="admin_image_comment_display_film_strip_filename_end"></a>
 <hr />
 <a name="admin_image_comment_filmstrip_number"></a><h3>Anzahl Elemente in Film-Streifen<a href="#admin_image_comment_filmstrip_number" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Sets the number of thumbnails to display in film strip. The number you can set here is dependent on your thumbnail size and monitor size. If you do not want to inconvenience users with smaller monitors set this value between 4-6.</p>
-<p>It's recommended to use an odd number, so the thumbnail that represents the file actually viewed is being displayed in the center of the film strip. Default (and recommended setting is <tt class="code">5</tt></p>
+<p>Bestimmt die Anzahl der Thumbnails innerhalb des Filmstreifens. Diese Einstellung ist stark abhängig von der gewählten Thumbnailgröße und der Auflösung der Besucher. Um unangenehme Effekte für die Besucher mit kleineren Bildschirmauflösungen zu vermeiden sollte der Wert auf 3 bis 7 beschränkt werden.</p>
+<p>Es ist empfehlenswert, eine ungerade Zahl zu verwenden, so dass der Thumbnail, der die aktuelle Datei repräsentiert in der Mitte des Filmstreifens angezeigt wird. Standard (und auch die empfohlene Einstellung) ist <tt class="code">5</tt>.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Ansicht Bild &rarr; Anzahl Elemente in Film-Streifen</p>
 
 <a name="admin_image_comment_filmstrip_number_end"></a>
@@ -1008,12 +1013,17 @@ OpenDocument: odt/ods/odp/odg/odc/odf/odi/odm/ott/ots/otp/otg/otc/otf/oti/oth</p
 <a name="admin_watermarking_enable"></a><h3>Wasserzeichen aktivieren<a href="#admin_watermarking_enable" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>General toggle that determines if watermarking should be enabled or disabled. By default, it is disabled.</p>
 <p>Note: as watermarking actually means that each picture needs to be re-calculated during the upload stage, there may be issues with memory consumption and speed. If you experience issues with watermarking, turn it off or ask your webhost to increase server-sided settings that have an impact on watermarking.</p>
+<p>Also keep in mind that the re-calculation of the image will result in a loss of quality.</p>
+<p>Keep in mind as well that watermarking will not only have an impact on the quality and recources consumption (in turns of burning CPU cycles on the server), but as well in the consumption of webspace: when watermarking is enabled, coppermine will keep a safe, unmodified copy of the orginal image (prefixed with "orig_") in the same folder your watermarked file will reside and thus consume additional webspace.<br />
+You can use the admin tools to get rid of this copy as well, ,but you have to keep in mind then that there is not turning back in this case: if you delete the unmarked original, you can never go back or apply another watermark.</p>
+<p>When enabling this option, you have to understand that watermarks are not automatically being applied to all files that already exist in your gallery. When enabled, only images that get uploaded from that point on will become watermarked. If you want to apply watermarking to all the images that already existed in your coppermine gallery before you enabled watermarking, take a look at the corresponding section of the admin tools. However, before applying your new watermark permanently to all your images, perform some test uploads first to see if watermarking works as expected for you.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Wasserzeichen auf Bildern &rarr; Watermark Image</p>
 
 <a name="admin_watermarking_enable_end"></a>
 <hr />
 <a name="admin_watermarking_custom_thumb"></a><h3>Auf benutzerdefinierte Thumbnails anwenden (Film, Audio, Dokument)<a href="#admin_watermarking_custom_thumb" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>When enabled, custom thumbnails will be watermarked as well.</p>
+<p>If you don't use custom thumbnails, don't worry about this option.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Wasserzeichen auf Bildern &rarr; Auf benutzerdefinierte Thumbnails anwenden</p>
 
 <a name="admin_watermarking_custom_thumb_end"></a>
@@ -1034,40 +1044,48 @@ OpenDocument: odt/ods/odp/odg/odc/odf/odi/odm/ott/ots/otp/otg/otc/otf/oti/oth</p
 <a name="admin_watermarking_filetype"></a><h3>Wasserzeichen anwenden auf<a href="#admin_watermarking_filetype" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Determines which files the watermarking should be applied to. Possible options are:</p>
 <ul>
-  <li>Original</li>
-  <li>Resized</li>
+  <li>Original (full-size)</li>
+  <li>Resized (intermediate)</li>
   <li>Both (which is default)</li>
 </ul>
+<p>All three options make sense in different environments: if you want to use watermarking to encourage your users to register, you should apply the watermark to resized image (intermediate images) only and only allow registered users to access the original (full-sized) images. On the other hand, if you only want to make sure that your high-resolution full-size images are not being stolen, apply the watermark to the original only.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Wasserzeichen auf Bildern &rarr; Wasserzeichen anwenden auf</p>
 
 <a name="admin_watermarking_filetype_end"></a>
 <hr />
 <a name="admin_watermarking_filepath"></a><h3>Datei zur Verwendung als Wasserzeichen<a href="#admin_watermarking_filepath" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Specify the relative path to the watermark file, seen from the root folder of your coppermine-gallery. Default value: <tt class="code">images/watermark.png</tt>. You can (and are even encouraged) to come up with a watermarking file of your own - only a standard desktop drawing application is needed, e.g. MS Paint.</p>
+<p>Coppermine only comes with a sample watermarking file that you should not apply lightheartedly, as it is only meant for testing purposes and to give you an idea how the watermarking file could look like. You have to come up with your custom watermark file and FTP-upload that file to your webserver. It's a good idea to name it accordingly, e.g. "custom_watermark.png" and upload it to the <tt class="code">images</tt> folder (<tt class="code">http://your_domain.tld/your_coppermine_folder/images/</tt>). All you then have to do is change the setting for "Which file to use for watermark" to <tt class="code">images/custom_watermark.png</tt>.</p>
+<p>Coming up with a custom watermark can be tricky: it should work well both for dark as well as light backgrounds. You have to find a good compromise: the watermarked files should be still OK to look at, while on the other hand potential image thieves should get discouraged to steal your watermarked images.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Wasserzeichen auf Bildern &rarr; Datei zur Verwendung als Wasserzeichen</p>
 
 <a name="admin_watermarking_filepath_end"></a>
 <hr />
 <a name="admin_watermarking_transparency"></a><h3>Transparenz des Gesamtbildes<a href="#admin_watermarking_transparency" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Determines the transparency level for the watermark. By setting transparency you can make your image blend nicely into the pictures you upload that get watermarked.</p>
+<p>Default is 40</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Wasserzeichen auf Bildern &rarr; Transparenz des Gesamtbildes</p>
 
 <a name="admin_watermarking_transparency_end"></a>
 <hr />
 <a name="admin_watermarking_downsize"></a><h3>Wasserzeichen verkleinern, wenn Breite eines Bildes kleiner als der eingegebene Wert ist<a href="#admin_watermarking_downsize" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>That is the 100% reference point. Resizing of the watermark is linear (0 to disable).</p>
+<<p>That is the 100% reference point. Resizing of the watermark is linear (0 to disable).</p>
+<p>Keep in mind that images might get uploaded by your users (if you allow uploads by others than the admin) that you might not have made up your mind about: the image uploaded may be smaller in resolution. If the dimension of the image uploaded is smaller than the dimension of your watermark file, the watermarking would get cut off and look silly. That's why this option exists: you can specify that images that are smaller than a particular size will have the watermarking applied in a resized manner, making the watermark again fit on the uploaded image. It's a good idea to set this option to the horizontal dimension of your watermarking image.</p>
+<div class="quote">Example:<br />Let's assume that your custom watermarking image has got the same dimensions as the sample one that comes with the coppermine package: 300 x 51 pixels. Subsequently, if you set the option "Downsize watermark if width of an picture is smaller than entered value" to 300, you should be fine: if someone uploads an image that is only 250 x 100 pixels, the resulting watermarked image will be 250 x 100 pixels as well, but the watermarking image will have been resized to 250 x 43 before being applied as a watermark, so it will fit on the original file that was uploaded.</div>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Wasserzeichen auf Bildern &rarr; Wasserzeichen verkleinern, wenn Breite eines Bildes kleiner als der eingegebene Wert ist</p>
 
 <a name="admin_watermarking_downsize_end"></a>
 <hr />
 <a name="admin_watermarking_transparent_x"></a><h3>X-Koordinate der transparenten Farbe<a href="#admin_watermarking_transparent_x" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>This option is only available if you have set the method for resizing images to GD2. Specify the horizontal coordinate of the pixel that should represent the transparent color, seen from the left of the watermarking image.</p>
+<p>This option is only available if you have set the <a href="configuration.htm#admin_picture_thumb_advanced_resize_method">method for resizing images</a> to GD2. If you have set it to GD1 or ImageMagick, this setting will not be taken into account at all. Specify the horizontal coordinate of the pixel that should represent the transparent color, seen from the left of the watermarking image.</p>
+<p>The transparency setting is particularly usefull if you use a jpeg image as watermarking file or if you don't know how to set transparency up for your watermarking image inside the desktop app where you compose your custom watermark. Your best option (to go out of harms way) will be to use a png watermarking file with transparency - in this case, this setting will not be needed.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Wasserzeichen auf Bildern &rarr; X-Koordinate der transparenten Farbe</p>
 
 <a name="admin_watermarking_transparent_x_end"></a>
 <hr />
 <a name="admin_watermarking_transparent_y"></a><h3>Y-Koordinate der transparenten Farbe<a href="#admin_watermarking_transparent_y" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>This option is only available if you have set the method for resizing images to GD2. Specify the vertical coordinate of the pixel that should represent the transparent color, seen from the top of the watermarking image.</p>
+<p>This option is only available if you have set the <a href="configuration.htm#admin_picture_thumb_advanced_resize_method">method for resizing images</a> to GD2. If you have set it to GD1 or ImageMagick, this setting will not be taken into account at all. Specify the vertical coordinate of the pixel that should represent the transparent color, seen from the top of the watermarking image.</p>
+<p>The transparency setting is particularly usefull if you use a jpeg image as watermarking file or if you don't know how to set transparency up for your watermarking image inside the desktop app where you compose your custom watermark. Your best option (to go out of harms way) will be to use a png watermarking file with transparency - in this case, this setting will not be needed.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Wasserzeichen auf Bildern &rarr; Y-Koordinate der transparenten Farbe</p>
 
 <a name="admin_watermarking_transparent_y_end"></a>
@@ -1318,6 +1336,7 @@ All log files are written in english</p>
     <li>Referer</li>
     <li>Browser</li>
     <li>Operating System</li>
+    <li>User ID (if logged in)</li>
   </ol>
    <p>of the voter.</p>
    <p>As the statistics are being kept per file, the link to the stats can be accessed on the individual file's page (displayimage.php) by clicking the link in the file info section to open the stats pop-up.</p>
@@ -1336,12 +1355,14 @@ All log files are written in english</p>
     <li>Referer</li>
     <li>Browser</li>
     <li>Operating System</li>
+    <li>User ID (if logged in)</li>
   </ol>
    <p>of the visitor.</p>
    <p>As the statistics are being kept per file, the link to the stats can be accessed on the individual file's page (displayimage.php) by clicking the link in the file info section to open the stats pop-up.
 </p>
 <p class="important">Note: The total hits may not match if you enable details and do not reset the earlier hits.</p>
-<p class="important">Warning: keeping detailed statistics means additional database queries and subsequently a heavy load on the page. You have to understand that the size of the corresponding database tables can increase dramatically if you enable this feature.</p>
+<p class="important">Warning: keeping detailed statistics means additional database queries and subsequently a <strong>heavy</strong> load on the page. You have to understand that the size of the corresponding database tables can increase <strong>dramatically</strong> if you enable this feature, so you should closely monitor the resources consumption caused by it and empty the table from time to time.</p>
+<p>Do not enable this option if you don't need it!</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Logging und Statistiken &rarr; Detailierte Treffer-Statistiken aufzeichnen</p>
 <a name="admin_logging_hitdetails_end"></a>
 <a name="admin_logging_display_stats_on_index"></a><h3>Statistiken auf index-Seite anzeigen<a href="#admin_logging_display_stats_on_index" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -1388,7 +1409,7 @@ All log files are written in english</p>
 
 <script type="text/javascript">
   cpgDocFooter();
-  dateRevision(' $LastChangedDate: 2008-07-17 10:29:35 +0530 (Thu, 17 Jul 2008) $ ', ' $Revision: 4692 $ ');
+  dateRevision(' $LastChangedDate: 2008-08-01 13:20:44 +0530 (Fri, 01 Aug 2008) $ ', ' $Revision: 4751 $ ');
 </script>
 
 </body>

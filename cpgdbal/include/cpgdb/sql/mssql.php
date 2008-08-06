@@ -712,7 +712,7 @@ if (defined('PROFILE_PHP')) $cpg_db_profile_php = array(
 								   "DATEDIFF(s, '19700101', msg_date) AS msg_date, msg_body, approval ".
 								   "FROM {$CONFIG['TABLE_COMMENTS']} AS c, {$CONFIG['TABLE_PICTURES']} AS p ".
 								   "WHERE msg_id='%1\$s' AND approval = 'YES' AND c.pid = p.pid",
-	'get_user_id_verify_email'	=> "SELECT user_id FROM {$CONFIG['TABLE_USERS']}  WHERE user_email = '%1\$s'",
+	'get_user_id_verify_email'	=> "SELECT user_id FROM {$CONFIG['TABLE_USERS']}  WHERE user_email = '%1\$s' AND user_id <> %2\$s",
 	'update_user_profile'		=> "UPDATE {$CONFIG['TABLE_USERS']} SET  user_profile1 = '%1\$s', user_profile2 = '%2\$s', ".
 								   "user_profile3 = '%3\$s', user_profile4 = '%4\$s', user_profile5 = '%5\$s', ".
 								   "user_profile6 = '%6\$s' %7\$s WHERE user_id = '%8\$s'",
@@ -1554,8 +1554,8 @@ $cpg_db_functions_inc = array(
 	'add_hit_update_pics'			=> "UPDATE {$CONFIG['TABLE_PICTURES']} SET hits=hits+1, lasthit_ip='%1\$s',".
 									   " mtime=CURRENT_TIMESTAMP WHERE pid='%2\$s'",
 	'add_hit_record'				=> "INSERT INTO {$CONFIG['TABLE_HIT_STATS']}  ".
-									   "(pid, search_phrase, Ip, sdate, referer, browser, os)".
-									   "VALUES(%1\$s, '%2\$s', '%3\$s', '%4\$s', '%5\$s', '%6\$s', '%7\$s')",
+									   "(pid, search_phrase, Ip, sdate, referer, browser, os, uid)".
+									   "VALUES(%1\$s, '%2\$s', '%3\$s', '%4\$s', '%5\$s', '%6\$s', '%7\$s', '%8\$s')",
 	'add_album_hit'					=> "UPDATE {$CONFIG['TABLE_ALBUMS']} SET alb_hits=alb_hits+1 WHERE aid='%1\$s'",
 	'get_user_gal_cat_name'			=> "SELECT name FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = %1\$s",
 	'get_current_cat_name'			=> "SELECT p.cid, p.name FROM {$CONFIG['TABLE_CATEGORIES']} AS c, {$CONFIG['TABLE_CATEGORIES']} AS p ".

@@ -13,9 +13,9 @@
   SVN version info:
 
   Coppermine version: 1.5.0
-  $Revision: 4694 $
+  $Revision: 4751 $
   $LastChangedBy: gaugau $
-  $Date: 2008-07-17 10:33:04 +0530 (Thu, 17 Jul 2008) $
+  $Date: 2008-08-01 13:20:44 +0530 (Fri, 01 Aug 2008) $
 -->
 <link rel="stylesheet" type="text/css" href="../style.css" media="all" />
 <link rel="stylesheet" type="text/css" href="../screen.css" media="screen" />
@@ -153,7 +153,7 @@ You can toggle between these options (enabled or disabled) on the <a href="uploa
 <p class="important">Once you have added comments or files to your gallery, you should not change the character set of your gallery. If you do so, non-ASCII characters may not display properly.</p>
 <a name="admin_language_charset_end"></a>
 <a name="admin_language_list"></a><h3>Display language list<a href="#admin_language_list" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Enable this option if you want your users to be able to select a preferred language from a dropdown list (you can specify to display only the list itself or a label saying &quot;<strong>Choose your language:</strong>&quot; in front of the list). Edit your template file (/themes/yourtheme/template.html) to specify where the language dropdown list should appear on your gallery (look for the call tag: <a href="theme_create.htm#theme_create_template_language_select_list">{LANGUAGE_SELECT_LIST}</a>).</p>
+<p>Enable this option if you want your users to be able to select a preferred language from a dropdown list (you can specify to display only the list itself or a label saying &quot;<strong>Choose your language:</strong>&quot; in front of the list). Edit your template file (/themes/yourtheme/template.html) to specify where the language dropdown list should appear on your gallery (look for the call tag: <a href="theme_template.htm#theme_template_language_select_list">{LANGUAGE_SELECT_LIST}</a>).</p>
 <p>To remove languages from this list, use your FTP application to delete all unneeded langauge files from the <tt class="code">lang</tt> folder. Coppermine will populate the list of available languages based on the files that reside in the lang folder. Do <strong>not</strong> remove english.php from the lang folder.</p>
 <p>Usually, you don't have to display the list of available languages, as the menus will be displayed in the prefered language of your visitors anyway. Recommended setting is "off".</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Language &amp; Charset settings &rarr; Character encoding</p>
@@ -161,7 +161,7 @@ You can toggle between these options (enabled or disabled) on the <a href="uploa
 <a name="admin_language_list_end"></a>
 <hr />
 <a name="admin_language_flags"></a><h3>Display language flags<a href="#admin_language_flags" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Enable this option if you would like the option of having your users select languages appropriate for their use by merely clicking on a flag icon which representing their language or country (you can specify to display the flags themselves or include a label that states: &quot;<strong>Choose your language:</strong>&quot; in front of the flags). Edit your template file (/themes/yourtheme/template.html) to specify where the flags should appear in your gallery (look for the call tag: <a href="theme_create.htm#theme_create_template_language_select_flags">{LANGUAGE_SELECT_FLAGS}</a>).</p>
+<p>Enable this option if you would like the option of having your users select languages appropriate for their use by merely clicking on a flag icon which representing their language or country (you can specify to display the flags themselves or include a label that states: &quot;<strong>Choose your language:</strong>&quot; in front of the flags). Edit your template file (/themes/yourtheme/template.html) to specify where the flags should appear in your gallery (look for the call tag: <a href="theme_template.htm#theme_template_language_select_flags">{LANGUAGE_SELECT_FLAGS}</a>).</p>
 <p>To remove languages from this list, use your FTP application to delete all unneeded langauge files from the <tt class="code">lang</tt> folder. Coppermine will populate the list of available languages based on the files that reside in the lang folder. Do <strong>not</strong> remove english.php from the lang folder.</p>
 <p>Usually, you don't have to display the list of available languages, as the menus will be displayed in the prefered language of your visitors anyway. Recommended setting is "off".</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Language &amp; Charset settings &rarr; Display language flags</p>
@@ -181,7 +181,7 @@ You can toggle between these options (enabled or disabled) on the <a href="uploa
 <a name="admin_theme_theme_end"></a>
 <hr />
 <a name="admin_theme_theme_list"></a><h3>Display theme list<a href="#admin_theme_theme_list" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Enable this option if you want your users to be able to select other themes from a dropdown list (you can specify to display only the list itself or a label saying &quot;<strong>Choose your theme:</strong>&quot; in front of the list). Edit your template file (/themes/yourtheme/template.html) to specify where the theme dropdown list should appear on your gallery (look for <a href="theme_create.htm#theme_create_template_theme_select_list">{THEME_SELECT_LIST}</a>).</p>
+<p>Enable this option if you want your users to be able to select other themes from a dropdown list (you can specify to display only the list itself or a label saying &quot;<strong>Choose your theme:</strong>&quot; in front of the list). Edit your template file (/themes/yourtheme/template.html) to specify where the theme dropdown list should appear on your gallery (look for <a href="theme_template.htm#theme_template_theme_select_list">{THEME_SELECT_LIST}</a>).</p>
 <p>This option only makes sense if you have at least one alternative theme in your /themes/ folder other than your default theme. We recommend using this option only if there's are additional benefits for the user (for example a theme with less graphics in it that loads faster for users on a dial-up connection, or a theme with reduced color pallettes and good contrast). Recommended setting: off.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Themes settings &rarr; Display theme list</p>
 <a name="admin_theme_theme_list_end"></a>
@@ -377,7 +377,8 @@ Enabling this option will have the advantage that your visitors will need less c
 <a name="admin_thumbnail_rows_end"></a>
 <hr />
 <a name="admin_thumbnail_tabs"></a><h3>Maximum number of tabs to display<a href="#admin_thumbnail_tabs" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>When the thumbnails spread over multiple pages, tabs are displayed at the bottom of the page. This value define how many tabs will be displayed.</p>
+<p><img src="images/thumbnail_tabs.jpg" border="0" withd="196" height="85" alt="" title="pagination at the bottom of the page" class="img_embed_right" />When the thumbnails spread over multiple pages, tabs are displayed at the bottom of the page. This value define how many tabs will be displayed. If the number of thumbnail pages is greater than the number set for "Maximum number of tabs to display", the "neighbouring" tabs will be displayed as well as the first and last tab.</p>
+<p>Default is 12, range is between 5 and 25.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Thumbnail view &rarr; Maximum number of tabs to display</p>
 <a name="admin_thumbnail_tabs_end"></a>
 <hr />
@@ -438,6 +439,7 @@ It is <b>not</b> recommended to enable this option, because
 <li>visitors will not see additional picture information</li>
 <li>visitors will not be able to see the slideshow</li>
 <li>visitor might be annoyed because of the over-use of pop-ups</li>
+<li>visitors might not see the full-sized pic at all if they have a pop-up blocker in place and forget to diable it for your site</li>
 <li>the views counter will not increase</li>
 </ul>
 <p>This option has been added because a lot of coppermine users have asked for it. However, the dev team does not recommend using it.</p>
@@ -451,7 +453,7 @@ It is <b>not</b> recommended to enable this option, because
 <a name="admin_thumbnail_default_sortorder_end"></a>
 <hr />
 <a name="admin_thumbnail_minimum_votes"></a><h3>Minimum number of votes for a file to appear in the 'top-rated' list<a href="#admin_thumbnail_minimum_votes" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Used to determine how many votes a file must receive before appearing as a &quot;top-rated file.&quot;  If a file has received less than &quot;this value&quot; of votes, it will not be displayed in the "top-rated" page. This value must be greater or equal to 1.</p>
+<p>Used to determine how many votes a file must receive before appearing as a &quot;top-rated file.&quot;. If a file has received less than &quot;this value&quot; of votes, it will not be displayed in the "top-rated" page. This value must be greater or equal to 1.</p>
 <p>Setting this to a high number is only recommended for busy sites with a lot of visitors. Default value is &quot;1&quot;. A higher number has the advantage that votes just by one individual won't boost up the relevance of a file to much, reducing potential rating fraud.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Thumbnail view &rarr; Minimum number of votes for a file to appear in the 'top-rated' list</p>
 <a name="admin_thumbnail_minimum_votes_end"></a>
@@ -460,10 +462,13 @@ It is <b>not</b> recommended to enable this option, because
 
 <a name="admin_image_comment"></a><h2>Image view<a href="#admin_image_comment" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <a name="admin_image_comment_table-width"></a><h3>Width of the table for picture display (pixels or %)<a href="#admin_image_comment_table-width" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>The minimum width of the table that will be used to display the intermediate picture.</p>
-<p>Examples:<br /><tt class="code">600</tt> = The table around the pic will be 600 pixels wide (if the pic has larger dimensions this table will expand accordingly to fit the image).<br />
-<tt class="code">100%</tt> = use all available space based on the horizontal dimension of the pic.</p>
-<p>Recommended setting is &quot;<tt class="code">100%</tt>&quot;. When setting this to a value that doesn't make sense (over 100% or a silly absolute size in pixels), your gallery pages will look distorted.</p>
+<p>The minimum width of the table (in pixels or %) that will be used to display the intermediate picture.</p>
+<p>Examples:</p>
+<ul>
+    <li><tt class="code">600</tt> = The table around the pic will be 600 pixels wide (if the pic has larger dimensions this table will expand accordingly to fit the image).</li>
+    <li><tt class="code">100%</tt> = use all available space based on the horizontal dimension of the pic.</li>
+</ul>
+<p>Recommended setting is &quot;<tt class="code">100%</tt>&quot;. When setting this to a value that doesn't make sense (over 100% or a silly absolute size in pixels), your gallery pages will look distorted and horizontal scrollbars will appear.</p>
 <p>If you decide to use an absolute size in pixels, make sure that the value is equal or greater than &quot;<a href="#admin_picture_thumbnail_intermediate_dimension">Max width or height of an intermediate picture</a>&quot;.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Image view &rarr; Width of the table for picture display</p>
 <a name="admin_image_comment_table-width_end"></a>
@@ -487,7 +492,7 @@ It is <b>not</b> recommended to enable this option, because
 <a name="admin_image_comment_descr_length_end"></a>
 <hr />
 <a name="admin_image_comment_filmstrip_toggle"></a><h3>Show film strip<a href="#admin_image_comment_filmstrip_toggle" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Toggles display of a "film strip" showing thumbnails of prior and subsequent files in the album.</p>
+<p><img src="images/filmstrip.jpg" border="0" width="" height="" alt="" title="Film strip displayed underneath the actual image" class="img_embed_right" />Toggles display of a "film strip" showing thumbnails of prior and subsequent files in the album.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Image view &rarr; Show film strip</p>
 
 <a name="admin_image_comment_filmstrip_toggle_end"></a>
@@ -500,8 +505,8 @@ It is <b>not</b> recommended to enable this option, because
 <a name="admin_image_comment_display_film_strip_filename_end"></a>
 <hr />
 <a name="admin_image_comment_filmstrip_number"></a><h3>Number of items in film strip<a href="#admin_image_comment_filmstrip_number" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Sets the number of thumbnails to display in film strip. The number you can set here is dependent on your thumbnail size and monitor size. If you do not want to inconvenience users with smaller monitors set this value between 4-6.</p>
-<p>It's recommended to use an odd number, so the thumbnail that represents the file actually viewed is being displayed in the center of the film strip. Default (and recommended setting is <tt class="code">5</tt></p>
+<p>Sets the number of thumbnails to display in film strip. The number you can set here is dependent on your thumbnail size and monitor size. If you do not want to inconvenience users with smaller monitors set this value between 3-7.</p>
+<p>It's recommended to use an odd number, so the thumbnail that represents the file actually viewed is being displayed in the center of the film strip. Default (and recommended) setting is <tt class="code">5</tt>.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Image view &rarr; Number of items in film strip</p>
 
 <a name="admin_image_comment_filmstrip_number_end"></a>
@@ -1009,18 +1014,23 @@ OpenDocument: odt/ods/odp/odg/odc/odf/odi/odm/ott/ots/otp/otg/otc/otf/oti/oth</p
 <a name="admin_watermarking_enable"></a><h3>Watermark Image<a href="#admin_watermarking_enable" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>General toggle that determines if watermarking should be enabled or disabled. By default, it is disabled.</p>
 <p>Note: as watermarking actually means that each picture needs to be re-calculated during the upload stage, there may be issues with memory consumption and speed. If you experience issues with watermarking, turn it off or ask your webhost to increase server-sided settings that have an impact on watermarking.</p>
+<p>Also keep in mind that the re-calculation of the image will result in a loss of quality.</p>
+<p>Keep in mind as well that watermarking will not only have an impact on the quality and recources consumption (in turns of burning CPU cycles on the server), but as well in the consumption of webspace: when watermarking is enabled, coppermine will keep a safe, unmodified copy of the orginal image (prefixed with "orig_") in the same folder your watermarked file will reside and thus consume additional webspace.<br />
+You can use the admin tools to get rid of this copy as well, ,but you have to keep in mind then that there is not turning back in this case: if you delete the unmarked original, you can never go back or apply another watermark.</p>
+<p>When enabling this option, you have to understand that watermarks are not automatically being applied to all files that already exist in your gallery. When enabled, only images that get uploaded from that point on will become watermarked. If you want to apply watermarking to all the images that already existed in your coppermine gallery before you enabled watermarking, take a look at the corresponding section of the admin tools. However, before applying your new watermark permanently to all your images, perform some test uploads first to see if watermarking works as expected for you.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Image watermarking &rarr; Watermark Image</p>
 
 <a name="admin_watermarking_enable_end"></a>
 <hr />
 <a name="admin_watermarking_custom_thumb"></a><h3>Watermark custom thumbs (movie, audio, document)<a href="#admin_watermarking_custom_thumb" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>When enabled, custom thumbnails will be watermarked as well.</p>
+<p>If you don't use custom thumbnails, don't worry about this option.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Image watermarking &rarr; Watermark custom thumbs</p>
 
 <a name="admin_watermarking_custom_thumb_end"></a>
 <hr />
 <a name="admin_watermarking_orientation"></a><h3>Where to place the watermark<a href="#admin_watermarking_orientation" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Determines where the watermark is suppossed to be displayed on each picture. Possible options are:</p>
+<p>Determines <strong>where</strong> the watermark is suppossed to be displayed on each picture. Possible options are:</p>
 <ul>
   <li>Bottom right</li>
   <li>Bottom left</li>
@@ -1035,40 +1045,48 @@ OpenDocument: odt/ods/odp/odg/odc/odf/odi/odm/ott/ots/otp/otg/otc/otf/oti/oth</p
 <a name="admin_watermarking_filetype"></a><h3>Which files to watermark<a href="#admin_watermarking_filetype" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Determines which files the watermarking should be applied to. Possible options are:</p>
 <ul>
-  <li>Original</li>
-  <li>Resized</li>
+  <li>Original (full-size)</li>
+  <li>Resized (intermediate)</li>
   <li>Both (which is default)</li>
 </ul>
+<p>All three options make sense in different environments: if you want to use watermarking to encourage your users to register, you should apply the watermark to resized image (intermediate images) only and only allow registered users to access the original (full-sized) images. On the other hand, if you only want to make sure that your high-resolution full-size images are not being stolen, apply the watermark to the original only.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Image watermarking &rarr; Which files to watermark</p>
 
 <a name="admin_watermarking_filetype_end"></a>
 <hr />
 <a name="admin_watermarking_filepath"></a><h3>Which file to use for watermark<a href="#admin_watermarking_filepath" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Specify the relative path to the watermark file, seen from the root folder of your coppermine-gallery. Default value: <tt class="code">images/watermark.png</tt>. You can (and are even encouraged) to come up with a watermarking file of your own - only a standard desktop drawing application is needed, e.g. MS Paint.</p>
+<p>Coppermine only comes with a sample watermarking file that you should not apply lightheartedly, as it is only meant for testing purposes and to give you an idea how the watermarking file could look like. You have to come up with your custom watermark file and FTP-upload that file to your webserver. It's a good idea to name it accordingly, e.g. "custom_watermark.png" and upload it to the <tt class="code">images</tt> folder (<tt class="code">http://your_domain.tld/your_coppermine_folder/images/</tt>). All you then have to do is change the setting for "Which file to use for watermark" to <tt class="code">images/custom_watermark.png</tt>.</p>
+<p>Coming up with a custom watermark can be tricky: it should work well both for dark as well as light backgrounds. You have to find a good compromise: the watermarked files should be still OK to look at, while on the other hand potential image thieves should get discouraged to steal your watermarked images.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Image watermarking &rarr; Which file to use for watermark</p>
 
 <a name="admin_watermarking_filepath_end"></a>
 <hr />
 <a name="admin_watermarking_transparency"></a><h3>Transparency 0-100 for entire image<a href="#admin_watermarking_transparency" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Determines the transparency level for the watermark. By setting transparency you can make your image blend nicely into the pictures you upload that get watermarked.</p>
+<p>Default is 40</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Image watermarking &rarr; Transparency 0-100 for entire image</p>
 
 <a name="admin_watermarking_transparency_end"></a>
 <hr />
 <a name="admin_watermarking_downsize"></a><h3>Downsize watermark if width of an picture is smaller than entered value<a href="#admin_watermarking_downsize" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>That is the 100% reference point. Resizing of the watermark is linear (0 to disable).</p>
+<p>Keep in mind that images might get uploaded by your users (if you allow uploads by others than the admin) that you might not have made up your mind about: the image uploaded may be smaller in resolution. If the dimension of the image uploaded is smaller than the dimension of your watermark file, the watermarking would get cut off and look silly. That's why this option exists: you can specify that images that are smaller than a particular size will have the watermarking applied in a resized manner, making the watermark again fit on the uploaded image. It's a good idea to set this option to the horizontal dimension of your watermarking image.</p>
+<div class="quote">Example:<br />Let's assume that your custom watermarking image has got the same dimensions as the sample one that comes with the coppermine package: 300 x 51 pixels. Subsequently, if you set the option "Downsize watermark if width of an picture is smaller than entered value" to 300, you should be fine: if someone uploads an image that is only 250 x 100 pixels, the resulting watermarked image will be 250 x 100 pixels as well, but the watermarking image will have been resized to 250 x 43 before being applied as a watermark, so it will fit on the original file that was uploaded.</div>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Image watermarking &rarr; Downsize watermark if width of an picture is smaller than entered value</p>
 
 <a name="admin_watermarking_downsize_end"></a>
 <hr />
 <a name="admin_watermarking_transparent_x"></a><h3>Set color transparent x<a href="#admin_watermarking_transparent_x" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>This option is only available if you have set the method for resizing images to GD2. Specify the horizontal coordinate of the pixel that should represent the transparent color, seen from the left of the watermarking image.</p>
+<p>This option is only available if you have set the <a href="configuration.htm#admin_picture_thumb_advanced_resize_method">method for resizing images</a> to GD2. If you have set it to GD1 or ImageMagick, this setting will not be taken into account at all. Specify the horizontal coordinate of the pixel that should represent the transparent color, seen from the left of the watermarking image.</p>
+<p>The transparency setting is particularly usefull if you use a jpeg image as watermarking file or if you don't know how to set transparency up for your watermarking image inside the desktop app where you compose your custom watermark. Your best option (to go out of harms way) will be to use a png watermarking file with transparency - in this case, this setting will not be needed.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Image watermarking &rarr; Set color transparent x</p>
 
 <a name="admin_watermarking_transparent_x_end"></a>
 <hr />
 <a name="admin_watermarking_transparent_y"></a><h3>Set color transparent y<a href="#admin_watermarking_transparent_y" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>This option is only available if you have set the method for resizing images to GD2. Specify the vertical coordinate of the pixel that should represent the transparent color, seen from the top of the watermarking image.</p>
+<p>This option is only available if you have set the <a href="configuration.htm#admin_picture_thumb_advanced_resize_method">method for resizing images</a> to GD2. If you have set it to GD1 or ImageMagick, this setting will not be taken into account at all. Specify the vertical coordinate of the pixel that should represent the transparent color, seen from the top of the watermarking image.</p>
+<p>The transparency setting is particularly usefull if you use a jpeg image as watermarking file or if you don't know how to set transparency up for your watermarking image inside the desktop app where you compose your custom watermark. Your best option (to go out of harms way) will be to use a png watermarking file with transparency - in this case, this setting will not be needed.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Image watermarking &rarr; Set color transparent y</p>
 
 <a name="admin_watermarking_transparent_y_end"></a>
@@ -1318,6 +1336,7 @@ All log files are written in english</p>
     <li>Referer</li>
     <li>Browser</li>
     <li>Operating System</li>
+    <li>User ID (if logged in)</li>
   </ol>
    <p>of the voter.</p>
    <p>As the statistics are being kept per file, the link to the stats can be accessed on the individual file's page (displayimage.php) by clicking the link in the file info section to open the stats pop-up.</p>
@@ -1336,12 +1355,14 @@ All log files are written in english</p>
     <li>Referer</li>
     <li>Browser</li>
     <li>Operating System</li>
+    <li>User ID (if logged in)</li>
   </ol>
    <p>of the visitor.</p>
    <p>As the statistics are being kept per file, the link to the stats can be accessed on the individual file's page (displayimage.php) by clicking the link in the file info section to open the stats pop-up.
 </p>
 <p class="important">Note: The total hits may not match if you enable details and do not reset the earlier hits.</p>
-<p class="important">Warning: keeping detailed statistics means additional database queries and subsequently a heavy load on the page. You have to understand that the size of the corresponding database tables can increase dramatically if you enable this feature.</p>
+<p class="important">Warning: keeping detailed statistics means additional database queries and subsequently a <strong>heavy</strong> load on the page. You have to understand that the size of the corresponding database tables can increase <strong>dramatically</strong> if you enable this feature, so you should closely monitor the resources consumption caused by it and empty the table from time to time.</p>
+<p>Do not enable this option if you don't need it!</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Logging &amp; statistics &rarr; Keep detailed hit statistics</p>
 <a name="admin_logging_hitdetails_end"></a>
 <a name="admin_logging_display_stats_on_index"></a><h3>Display statistics on index page<a href="#admin_logging_display_stats_on_index" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -1388,7 +1409,7 @@ All log files are written in english</p>
 
 <script type="text/javascript">
   cpgDocFooter();
-  dateRevision(' $LastChangedDate: 2008-07-17 10:33:04 +0530 (Thu, 17 Jul 2008) $ ', ' $Revision: 4694 $ ');
+  dateRevision(' $LastChangedDate: 2008-08-01 13:20:44 +0530 (Fri, 01 Aug 2008) $ ', ' $Revision: 4751 $ ');
 </script>
 
 </body>

@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<head>
+<title>Tools recommended by the devs - Coppermine Photo Gallery - Documentation &amp; Manual</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="language"    content="en">
+<meta name="copyright"   content="Coppermine dev team">
+<meta name="description" content="This part of the documentation is not meant for end users of Coppermine, but only for developers. There is no support for this section, it comes as-is.">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta name="MSSmartTagsPreventParsing" content="true">
+<meta http-equiv="imagetoolbar" content="no">
+<!--
+  SVN version info:
+
+  Coppermine version: 1.5.0
+  $Revision: 4751 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-08-01 09:50:44 +0200 (Fr, 01 Aug 2008) $
+-->
+<link rel="stylesheet" type="text/css" href="../style.css" media="all" />
+<link rel="stylesheet" type="text/css" href="../screen.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="../print.css" media="print" />
+<link rel="shortcut icon" href="../favicon.ico" />
+<script src="script.js" type="text/javascript"></script>
+</head>
+<body>
+<script type="text/javascript">
+  cpgDocHeader();
+</script>
+<div id="toc">
+<script type="text/javascript">
+  cpgDocToc();
+</script>
+<noscript>
+<a href="toc.htm">Table of Contents</a>
+</noscript>
+</div>
+
+<a name="dev_tools"></a><h1>Tools recommended by the devs<a href="#dev_tools" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+
+<a name="dev_tools_target_audience"></a><h2>Target audience<a href="#dev_tools_target_audience" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>This part of the documentation is meant for end users of Coppermine as well as for developers. There is no support for this section though, it comes as-is.</p>
+
+<a name="dev_tools_disclaimer"></a><h2>Disclaimer<a href="#dev_tools_disclaimer" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>The Coppermine dev team is not affiliated with any of the sites / projects mentioned below, nor do we provide support for those apps. We're just convinced that those tools are usefull when running a gallery script like Coppermine.</p>
+<p>Please do <em>not</em> ask support questions related to the apps mentioned below on the Coppermine support board. From our perspective, those apps come from a third party - support for them can be found elsewhere on the web.<br />
+The best place to get support for those apps are their homepages and the documentation that usually comes with those apps. You might find other usefull resources using Google.</p>
+<p>This page is meant as a service to end users and developers - please don't make us regret having put together this link list.</p>
+
+<br clear="all" />
+
+
+<a name="dev_tools_list"></a><h2>List of tools<a href="#dev_tools_list" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+  <tr>
+    <th valign="top" align="left" class="tableh1">App name</th>
+    <th valign="top" align="left" class="tableh1">Purpose</th>
+    <th valign="top" align="left" class="tableh1">Type</th>
+    <th valign="top" align="left" class="tableh1">OS</th>
+    <th valign="top" align="left" class="tableh1">License</th>
+    <th valign="top" align="left" class="tableh1"><acronym title="Internationalization">i18n</acronym></th>
+    <th valign="top" align="left" class="tableh1">Homepage</th>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="dev_tools_list_phpmyadmin"></a><h3 style="padding:0px;margin:0px">phpMyAdmin<a href="#dev_tools_list_phpmyadmin" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3></td>
+    <td valign="top" class="tableb">Database management</td>
+    <td valign="top" class="tableb"><img src="../images/web.png" border="0" width="16" height="16" alt="" title="Web app" /></td>
+    <td valign="top" class="tableb"><acronym title="not applicable">n/a</acronym></td>
+    <td valign="top" class="tableb"><img src="../images/license/gnu.png" border="0" width="16" height="16" alt="" title="GNU GPL" /></td>
+    <td valign="top" class="tableb">multi (50+ languages)</td>
+    <td valign="top" class="tableb"><a href="http://www.phpmyadmin.net/" rel="external" class="external">www.phpmyadmin.net</a></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb" colspan="7">
+	    <strong>Description</strong>: Open-source web application that can be downloaded (for free) and installed on your webserver (easy installation). It comes with multiple language support. Your webhost may even provide this tool.<br />
+	    <strong>Features:</strong> MySql database management tool that allows manipulating your database and running queries directly against your database.<br />
+	    <strong>Benefits for the use with Coppermine:</strong>
+	    <ul>
+	    	<li>Create database backups</li>
+	    	<li>Edit config options (even if your Coppermine site's config panel is not accessible)</li>
+	    	<li>Repair broken tables</li>
+	    </ul>
+	</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="dev_tools_list_mysqldumper"></a><h3 style="padding:0px;margin:0px">mySqlDumper<a href="#dev_tools_list_mysqldumper" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3></td>
+    <td valign="top" class="tableb tableb_alternate">Database backup/restore</td>
+    <td valign="top" class="tableb tableb_alternate"><img src="../images/web.png" border="0" width="16" height="16" alt="" title="Web app" /></td>
+    <td valign="top" class="tableb tableb_alternate"><acronym title="not applicable">n/a</acronym></td>
+    <td valign="top" class="tableb tableb_alternate"><img src="../images/license/gnu.png" border="0" width="16" height="16" alt="" title="GNU GPL" /></td>
+    <td valign="top" class="tableb tableb_alternate"><img src="../images/flags/us.gif" border="0" width="16" height="10" alt="" title="English" />&nbsp;<img src="../images/flags/de.gif" border="0" width="16" height="10" alt="" title="German" /></td>
+    <td valign="top" class="tableb tableb_alternate"><a href="http://mysqldumper.de/en/index.php" rel="external" class="external">mysqldumper.de/en/</a></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate" colspan="7">
+	    <strong>Description</strong>: MySqlDumper is a web app that can be downloaded and installed on your webserver. It is meant to be used to create backups of your mysql databse (and eventually restore those backups). Particularly helpful if you don't have shell access to your webserver and regular mySQL backups fail due to time-outs.<br />
+	    <strong>Features:</strong> A PHP-Script has a maximum of execution time; anything after above the limit (Usually sets to 30 seconds) will result in losing data.
+Such behavior renders large database backup impossible.
+Perhaps you already noticed how much of a problem it could be while using other tools.
+MySqlDumper uses a proprietary technique to avoid execution interruption.
+It only reads and saves a certain amount of commands and then calls itself via JavaScript and memorizes how far in the process it was and resumes its action from its last standby.<br />
+	</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="dev_tools_list_filezilla"></a><h3 style="padding:0px;margin:0px">FileZilla<a href="#dev_tools_list_filezilla" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3></td>
+    <td valign="top" class="tableb">FTP client</td>
+    <td valign="top" class="tableb"><img src="../images/client.png" border="0" width="16" height="16" alt="" title="Client" /></td>
+    <td valign="top" class="tableb"><img src="../images/os/win.png" border="0" width="16" height="16" alt="" title="Windows" />&nbsp;<img src="../images/os/linux.png" border="0" width="16" height="16" alt="" title="Linux" /></td>
+    <td valign="top" class="tableb"><img src="../images/license/gnu.png" border="0" width="16" height="16" alt="" title="GNU GPL" /></td>
+    <td valign="top" class="tableb">multi (18+ languages)</td>
+    <td valign="top" class="tableb"><a href="http://filezilla-project.org/" rel="external" class="external">filezilla-project.org</a></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb" colspan="7">
+	    <strong>Description</strong>: FileZilla is a free FTP client that is available as open-source app (free of charge).<br />
+	    <strong>Features:</strong>
+	    <ul>
+			<li>Ability to resume Uploads/Downloads (if the server supports it)</li>
+			<li>Custom Commands</li>
+			<li>Site Manager with folders</li>
+			<li>Keep Alive system</li>
+			<li>Timeout detection</li>
+			<li>Firewall support</li>
+			<li>SOCKS4/5 and HTTP1.1 Proxy support</li>
+			<li>SSL secured connections</li>
+			<li>SFTP support</li>
+			<li>Upload/Download Queue</li>
+			<li>Drag&Drop</li>
+			<li>Multi-language support</li>
+			<li>GSS authentication and encryption using Kerberos</li>
+    </ul>
+	    <strong>Benefits for the use with Coppermine:</strong> Upload/download files to/from your webserver. Needed to <a href="install.htm#how">install</a> Coppermine in the first place, but as well for means of <a href="uploading_batch-add.htm#batch_add_pics">FTP-upload plus batch-add</a>, <a href="theme_create.htm#theme_create">theme customization</a>, file backup, <a href="upgrading.htm#upgrade">updates</a>.
+	</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="dev_tools_list_smartftp"></a><h3 style="padding:0px;margin:0px">SmartFTP<a href="#dev_tools_list_smartftp" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3></td>
+    <td valign="top" class="tableb tableb_alternate">FTP client</td>
+    <td valign="top" class="tableb tableb_alternate"><img src="../images/client.png" border="0" width="16" height="16" alt="" title="Web app" /></td>
+    <td valign="top" class="tableb tableb_alternate"><img src="../images/os/win.png" border="0" width="16" height="16" alt="" title="Windows" /></td>
+    <td valign="top" class="tableb tableb_alternate">Free for non-commercial use</td>
+    <td valign="top" class="tableb tableb_alternate">multi (20+ languages)</td>
+    <td valign="top" class="tableb tableb_alternate"><a href="http://www.smartftp.com/" rel="external" class="external">www.smartftp.com</a></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate" colspan="7">
+	    <strong>Description</strong>: SmartFTP is a fully-featured FTP client for Windows.<br />
+	    <strong>Features:</strong> Available for Windows 98, ME, 2000, XP, 2003, XP x64, and 2003 x64.  Multiple connections, auto-reconnect and resume broken transfers, global and local transfer queues with scheduling, FXP, custom commands, CHMOD, backup tool, drag & drop.<br />
+	    <strong>Benefits for the use with Coppermine</strong>: Transferring Coppermine to your server for initial installation, transferring photos to your /albums folder, settings permissions appropriately, applying mods, plugins, themes.<br />
+	    <strong>License</strong>: Free for Personal, Educational, or Non-Profit Use (no support). Small cost for Commercial Use or to include support
+	</td>
+  </tr>
+</table>
+
+
+<br clear="all" />
+<script type="text/javascript">
+  cpgDocFooter();
+  dateRevision(' $LastChangedDate: 2008-08-01 09:50:44 +0200 (Fr, 01 Aug 2008) $ ', ' $Revision: 4751 $ ');
+</script>
+
+</body>
+</html>

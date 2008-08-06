@@ -360,6 +360,7 @@ CREATE TABLE CPG_hit_stats (
   referer TEXT NOT NULL ,
   browser VARCHAR(255) NOT NULL DEFAULT '',
   os VARCHAR(50) NOT NULL ,
+  uid INTEGER NOT NULL DEFAULT 0 ,
   PRIMARY KEY(sid));
 #--------------------------------------------------------------------------
 

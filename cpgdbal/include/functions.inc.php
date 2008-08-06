@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4645 $
+  $Revision: 4757 $
   $LastChangedBy: abbas-ali $
-  $Date: 2008-06-28 10:32:31 +0530 (Sat, 28 Jun 2008) $
+  $Date: 2008-08-02 10:58:52 +0530 (Sat, 02 Aug 2008) $
 **********************************************/
 
 /**
@@ -25,7 +25,7 @@
 * @copyright 2002-2007 Gregory DEMAR, Coppermine Dev Team
 * @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
 * @package Coppermine
-* @version  $Id: functions.inc.php 4645 2008-06-28 05:02:31Z abbas-ali $
+* @version  $Id: functions.inc.php 4757 2008-08-02 05:28:52Z abbas-ali $
 */
 
 /**
@@ -79,7 +79,7 @@ function get_meta_album_set($cat)
     }
 
     if (!empty($CURRENT_ALBUM_KEYWORD)) {
-   	    $RESTRICTEDWHERE .= "OR keywords like '%$CURRENT_ALBUM_KEYWORD%'";
+        $RESTRICTEDWHERE .= "OR keywords like '%$CURRENT_ALBUM_KEYWORD%'";
     }
 
     $RESTRICTEDWHERE .= ')';
@@ -112,6 +112,7 @@ function user_get_profile()
          */	// Using getRaw() for getting cookie data
         if ($superCage->cookie->keyExists($CONFIG['cookie_name'].'_data')) {
             $USER = @unserialize(@base64_decode($superCage->cookie->getRaw($CONFIG['cookie_name'].'_data')));
+            $USER['lang'] = strtr($USER['lang'], '$/\\:*?"\'<>|`', '____________');
         }
 
         if (!isset($USER['ID']) || strlen($USER['ID']) != 32) {
@@ -1006,7 +1007,7 @@ function get_private_album_set($aid_str="")
                 ." AND visibility NOT IN ".USER_GROUP_SET.')';
         if (!empty($aid_str)) {
             $sql .= " AND aid NOT IN ($aid_str)";
-        }	
+        }
 
         $result = cpg_db_query($sql);
         if ((mysql_num_rows($result))) {
@@ -1230,7 +1231,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
         $result = cpg_db_query($query);
         $nbEnr = mysql_fetch_array($result);
         $count = $nbEnr[0];
-        mysql_free_result($result);	
+        mysql_free_result($result);
 
         if ($select_columns != '*') {
             $select_columns .= ', title, caption, hits, owner_id, owner_name, pic_rating, votes, approved';
@@ -2275,6 +2276,7 @@ function add_hit($pid)
         }
 
         // Insert the record in database
+        $hitUserId = USER_ID;
         /*$query = "INSERT INTO {$CONFIG['TABLE_HIT_STATS']}
                           SET
                             pid = $pid,
@@ -2283,11 +2285,12 @@ function add_hit($pid)
                             sdate = '$time',
                             referer='$referer',
                             browser = '{$client_details['browser']}',
-                            os = '{$client_details['os']}'";
+                            os = '{$client_details['os']}',
+                            uid ='$hitUserId'";
         cpg_db_query($query);	*/
 		################################      DB       ###################################
 		$cpgdb->query($cpg_db_functions_inc['add_hit_record'], $pid, $client_details['query_term'], $raw_ip, $time, $referer, 
-					$client_details['browser'], $client_details['os']);
+					$client_details['browser'], $client_details['os'], $hitUserId);
 		###########################################################################
      }
 }
@@ -2328,8 +2331,8 @@ function add_album_hit($aid)
 
 function breadcrumb($cat, &$breadcrumb, &$BREADCRUMB_TEXT)
 {
-	global $album, $lang_errors, $lang_list_categories, $lang_common;
-	global $CONFIG,$CURRENT_ALBUM_DATA, $CURRENT_CAT_NAME;
+    global $album, $lang_errors, $lang_list_categories, $lang_common;
+    global $CONFIG,$CURRENT_ALBUM_DATA, $CURRENT_CAT_NAME;
 	######################     DB     ######################
 	global $cpg_db_functions_inc;
 	$cpgdb =& cpgDB::getInstance();
@@ -4264,7 +4267,7 @@ function utf_strtolower($str)
 
 function utf_substr($str, $start, $end=null)
 {
-    if (!function_exists('mb_substr')) { 
+    if (!function_exists('mb_substr')) {
         require 'include/mb.inc.php'; 
     }
     return mb_substr($str, $start, $end);
@@ -4272,7 +4275,7 @@ function utf_substr($str, $start, $end=null)
 
 function utf_strlen($str)
 {
-    if (!function_exists('mb_strlen')) { 
+    if (!function_exists('mb_strlen')) {
         require 'include/mb.inc.php'; 
     }
     return mb_strlen($str);
@@ -4280,7 +4283,7 @@ function utf_strlen($str)
 
 function utf_ucfirst($str)
 {
-    if (!function_exists('mb_strtoupper')) { 
+    if (!function_exists('mb_strtoupper')) {
         require 'include/mb.inc.php'; 
     }
     return mb_strtoupper(mb_substr($str, 0, 1)).mb_substr($str, 1);
@@ -4960,7 +4963,7 @@ function json_encode($arr)
 
         $out[] = $val;
     }
-	
+
     if (!$numeric) {
         $return = '{' . implode(', ', $out) . '}';
     } else {

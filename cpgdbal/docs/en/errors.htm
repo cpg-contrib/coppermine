@@ -13,9 +13,9 @@
   SVN version info:
 
   Coppermine version: 1.5.0
-  $Revision: 4499 $
-  $LastChangedBy: pvanrompay $
-  $Date: 2008-06-05 03:12:18 +0530 (Thu, 05 Jun 2008) $
+  $Revision: 4717 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-07-24 11:37:10 +0530 (Thu, 24 Jul 2008) $
 -->
 <link rel="stylesheet" type="text/css" href="../style.css" media="all" />
 <link rel="stylesheet" type="text/css" href="../screen.css" media="screen" />
@@ -88,6 +88,8 @@
     <li>You can now leave phpMyAdmin and return to your coppermine screen - debug_mode should be enabled</li>
     <li>With debug_mode enabled, reproduce the error message: this time, you should not only get the generic &quot;Fatal error&quot;-message, but an explanation as well what actually went wrong.</li>
 </ul>
+<p>Now you can use the actual error message that indicates what is wrong to troubleshoot - fix the error if you can. If you can't fix it by yourself, search the coppermine support board for the error message (the generic part, not the specific part that only applies to your database/site). It is very likely that someone else used to have the same issues you experience - heed the advice given on the thread that describes your error message.</p>
+<p>Once you're done and the error message has gone away, don't forget to turn debug_mode off again. If your gallery is fully operational again (it should be after having fixed the error), you can go to coppermine's config and turn debug_mode off. If you can't access coppermine's config (maybe because you have forgotten your admin account details), use the same method described above to turn debug_mode off manually (using phpMyAdmin): browse coppermine's config table, search for &quot;debug_mode&quot;, edit that entry and change &quot;<tt class="code">1</tt>&quot; back to &quot;<tt class="code">0</tt>&quot;.</p>
 
 <a name="errors_messages"></a><h2>Common error messages<a href="#errors_messages" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>There are some error messages that are often being encountered. Although they are more or less self-explanatory, some users appear not to be able to make heads or tails out of them, so here is an incomplete list with suggested fixes.</p>
@@ -101,7 +103,7 @@
   </tr>
   <tr>
     <td valign="top" class="tableb">
-      <a name=""></a><tt class="code">Can't create/write to file '/tmp/#sql_45d5_0.MYI'</tt><a href="#" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+      <a name="cant_read_write_to_file"></a><tt class="code">Can't create/write to file '/tmp/#sql_45d5_0.MYI'</tt><a href="#cant_read_write_to_file" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
     <td valign="top" class="tableb">
       MySQL can't create a temporary file for the result set in the given temporary directory.
@@ -122,6 +124,31 @@
       Use your website's Control Panel to repair the table, or use phpMyAdmin to execute this sql query: <tt class="code">REPAIR TABLE yourPrefix_tableName</tt><br />
       (Replace yourPrefix_tableName with your table name, e.g. cpg145_pictures)<br />
       <strong>If you don't understand the solution, ask your webhost to make the above changes.</strong>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">
+      <a name="mySQL_error28StorageEngine"></a><tt class="code">Got error 28 from storage engine</tt><a href="#mySQL_error28StorageEngine" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+    </td>
+    <td valign="top" class="tableb">
+      No space left on device, i.e. the hard disk where your database resides on is full.
+    </td>
+    <td valign="top" class="tableb">
+      This is not a coppermine issue, but a mySQL issue. Contact your webhost or the person who is in charge of running the server where your database resides. Tell that person about the error message you get - he/she should know what to do. Basically, you have to free up some space or clean the database. Please note that you can not do this on your own when webhosted - only the server operator can perform this action.
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">
+      <a name="mySQL_crashedTable"></a><tt class="code">Table 'yourPrefix_tableName' is marked as crashed and should be repaired</tt><a href="#mySQL_crashedTable" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+    </td>
+    <td valign="top" class="tableb tableb_alternate">
+      Your database table is corrupted.
+    </td>
+    <td valign="top" class="tableb tableb_alternate">
+      This is not a coppermine issue, but a mySQL issue. It just may affect a database table used by Coppermine.<br />
+      Use your website's Control Panel to repair the table, or use phpMyAdmin to execute this sql query: <tt class="code">REPAIR TABLE yourPrefix_tableName</tt><br />
+      (Replace yourPrefix_tableName with your table name, e.g. cpg145_pictures)<br />
+      <strong>If you don't understand the solution, ask your webhost to make the above changes.</strong> If this happens frequently, there is something fishy with your webserver - ask your webhost for support as well.
     </td>
   </tr>
 </table>
@@ -211,6 +238,17 @@
       Usually your webhost has put safe mode in place (often not correctly configured). Try switching <a href="configuration.htm#admin_picture_thumb_advanced_silly_safe_mode_start">silly_safe_mode</a> on.
     </td>
   </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">
+      <a name="common_php_errors_bom"></a>Funny characters like <tt class="code">ï»¿</tt> shine through the output on some or all pages<a href="#common_php_errors_bom" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+    </td>
+    <td valign="top" class="tableb tableb_alternate">
+      A <a href="http://en.wikipedia.org/wiki/Byte_order_mark" rel="external" class="external">Byte Order Mark</a> (BOM) has crept into one of your coppermine files
+    </td>
+    <td valign="top" class="tableb tableb_alternate">
+      This usually happens if you edit unicode-encoded files (which is what coppermine's core files are) with an editor that is not designed to be used to edit Unicode files. Most notoriously notepad.exe (which comes with Microsoft's Windows). The BOM might shine through on the page that you have manually edited, but it may show as well on pages that you're not aware of. Undo your edit. If you can't remember what you have edited, search for the BOM in all of your files. Emurasoft's application <a href="http://www.emurasoft.com/replall/" rel="external" class="external">Replace in files</a> is a good tool to accomplish this on Windows-driven machines.
+    </td>
+  </tr>
  </table>
 
 <a name="errors_messages_upload"></a><h3>Upload-related error messages<a href="#errors_messages_upload" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -219,7 +257,7 @@
 
 <script type="text/javascript">
   cpgDocFooter();
-  dateRevision(' $LastChangedDate: 2008-06-05 03:12:18 +0530 (Thu, 05 Jun 2008) $ ', ' $Revision: 4499 $ ');
+  dateRevision(' $LastChangedDate: 2008-07-24 11:37:10 +0530 (Thu, 24 Jul 2008) $ ', ' $Revision: 4717 $ ');
 </script>
 
 </body>

@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4497 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-06-03 19:59:30 +0530 (Tue, 03 Jun 2008) $
+  $Revision: 4755 $
+  $LastChangedBy: nibbler999 $
+  $Date: 2008-08-01 22:18:11 +0530 (Fri, 01 Aug 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -368,14 +368,14 @@ if ($superCage->post->keyExists('change_profile') && USER_ID && UDB_INTEGRATION 
 
                 } elseif (!$CONFIG['allow_duplicate_emails_addr']) {
 
-                        /*$sql = "SELECT user_id " . "FROM {$CONFIG['TABLE_USERS']} " . "WHERE user_email = '" . $email . "'";
+                        /*$sql = "SELECT user_id " . "FROM {$CONFIG['TABLE_USERS']} " . "WHERE user_email = '" . $email . "' AND user_id <> " . USER_ID;
 						$result = cpg_db_query($sql);
 
 						if (mysql_num_rows($result)) {
 							$error = $lang_register_php['err_duplicate_email'];
 						}	*/
 						#########################             DB         #########################
-						$cpgdb->query($cpg_db_profile_php['get_user_id_verify_email'], $email);
+						$cpgdb->query($cpg_db_profile_php['get_user_id_verify_email'], $email, USER_ID);
 						$rowset = $cpgdb->fetchRowSet();
 						if (count($rowset)) {
 								$error = $lang_register_php['err_duplicate_email'];

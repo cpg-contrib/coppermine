@@ -11,9 +11,9 @@
 ##  ********************************************
 ##  Coppermine version: 1.5.0
 ##  $HeadURL$
-##  $Revision: 4579 $
-##  $LastChangedBy: nibbler999 $
-##  $Date: 2008-06-16 01:45:17 +0530 (Mon, 16 Jun 2008) $
+##  $Revision: 4749 $
+##  $LastChangedBy: gaugau $
+##  $Date: 2008-08-01 12:45:18 +0530 (Fri, 01 Aug 2008) $
 ##  ********************************************
 
 #
@@ -375,6 +375,7 @@ CREATE TABLE `CPG_hit_stats` (
   `referer` text NOT NULL,
   `browser` varchar(255) NOT NULL default '',
   `os` varchar(50) NOT NULL default '',
+  `uid` INT(11) NOT NULL default '0',
   PRIMARY KEY  (`sid`)
 ) TYPE = MyISAM COMMENT='Detailed stats about hits, only used when enabled';
 # --------------------------------------------------------

@@ -121,10 +121,10 @@ class cpgDB {
     function connect($Database = '', $Host = '', $User = '', $Password = '')
     {
         global $CONFIG;
-		sqlsrv_set_error_handling(0);
-		sqlsrv_log_set_severity(0);
-		sqlsrv_log_set_subsystems(0);
-		sqlsrv_configure('warnings_return_as_errors', 0);
+		//sqlsrv_set_error_handling(0);
+		//sqlsrv_log_set_severity(0);
+		//sqlsrv_log_set_subsystems(0);
+		sqlsrv_configure('WarningsReturnAsErrors', 0);
 		/* Handle defaults */
 		$connect_info = array();
 		

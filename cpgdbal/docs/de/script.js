@@ -10,9 +10,9 @@
 
   ********************************************
   Coppermine version: 1.5.0
-  $Revision: 4677 $
+  $Revision: 4771 $
   $LastChangedBy: gaugau $
-  $Date: 2008-07-12 20:05:14 +0530 (Sat, 12 Jul 2008) $
+  $Date: 2008-08-04 12:20:02 +0530 (Mon, 04 Aug 2008) $
 **********************************************/
 
 
@@ -381,6 +381,8 @@ d = new dTree('d');
 
 d.add(0,-1,'Coppermine Dokumentation');
 d.add(100,0,'Über Coppermine','index.htm');
+//d.add(110,100,'About the documentation','index.htm#about_documentation');
+//d.add(120,100,'Features','index.htm#features');
 //d.add(150,100,'Quick-Start guide','quickstart.htm');
 d.add(200,100,'Inhaltsverzeichnis','toc.htm');
 d.add(300,100,'Mindestvoraussetzung','requirements.htm');
@@ -419,6 +421,7 @@ d.add(1000,700,'Verwendeter Open Source Code','credits.htm#codebase');
 //d.add(3300,3200,'Basic concepts','start.htm#getting_concepts');
 //d.add(3400,3200,'Initial configuration','start.htm#getting_initial_configuration');
 //d.add(3500,3200,'Category/album/file structure','start.htm#getting_structure');
+//d.add(3550,3200,'Resized images','start.htm#getting_resizing');
 //d.add(3600,3200,'Your admin account','start.htm#getting_admin_account');
 //d.add(3700,3200,'Check uploads','start.htm#getting_check_uploads');
 //d.add(3800,3200,'Consider bridging','start.htm#getting_consider_bridging');
@@ -446,9 +449,9 @@ d.add(1000,700,'Verwendeter Open Source Code','credits.htm#codebase');
 //d.add(4910,4900,'Rename your theme first','theme_create.htm#theme_create_rename');
 //d.add(4920,4900,'Tipps & tricks','theme_create.htm#theme_create_tipps');
 //d.add(4930,4900,'Using WYSIWYG-editors','theme_create.htm#theme_create_wysiwyg');
-//d.add(4940,4900,'Editing template.html','theme_create.htm#theme_create_template_html');
 //d.add(4950,4900,'Modifying colors','theme_create.htm#theme_create_colors');
 //d.add(4960,4900,'Editing theme.php','theme_create.htm#theme_create_theme_php');
+//d.add(4970,4200,'Editing template.html','theme_template.htm#theme_template_html');
 //d.add(5000,4200,'Copyright-disclaimer in footer','theme_copyright.htm');
 //d.add(5100,4200,'Dynamic (PHP-driven) content','php-content.htm');
 //d.add(5200,5100,'Using anycontent.php','php-content.htm#php-content_anycontent');
@@ -466,6 +469,7 @@ d.add(6300,5800,'Ansicht Thumbnail','configuration.htm#admin_thumbnail_view');
 d.add(6400,5800,'Ansicht Bild','configuration.htm#admin_image_comment');
 d.add(6500,5800,'Einstellungen Kommentare','configuration.htm#admin_comment_start');
 d.add(6500,5800,'Kontakformular-Einstellungen','configuration.htm#admin_contact_start');
+d.add(6550,5800,'Thumbnail Einstellungen','configuration.htm#admin_thumb_start');
 d.add(6600,5800,'Bild/Datei-Einstellungen','configuration.htm#admin_picture_thumbnail');
 d.add(6700,5800,'Wasserzeichen auf Bildern','configuration.htm#admin_watermarking');
 d.add(6800,5800,'Registrierung','configuration.htm#admin_registration');
@@ -507,6 +511,7 @@ d.add(7500,5800,'Wartungs-Einstellungen','configuration.htm#admin_misc');
 //d.add(10500,9700,'Album properties','albums.htm#album_prop');
 //d.add(10600,10500,'Reset album properties','albums.htm#album_prop_reset_start');
 //d.add(10620,9700,'Admin vs. user','albums.htm#album_admin_user');
+//d.add(10630,9700,'Album FAQ','albums.htm#album_faq');
 //d.add(10700,5600,'Files','files.htm');
 //d.add(10800,10700,'Editing files','files.htm#edit_pics');
 //d.add(10900,10700,'Editing videos','files.htm#edit_vids');
@@ -578,6 +583,8 @@ d.add(7500,5800,'Wartungs-Einstellungen','configuration.htm#admin_misc');
 //d.add(15700,15200,'Subversion','dev_subversion.htm');
 //d.add(15800,15200,'Adding config options','dev_config.htm');
 //d.add(15900,15200,'Versioncheck','dev_versioncheck.htm');
+//d.add(16000,15200,'Updating','dev_update.htm');
+//d.add(16100,15200,'Recommended tools','dev_tools.htm');
 
 
 function cpgDocToc() {

@@ -13,9 +13,9 @@
   SVN version info:
 
   Coppermine version: 1.5.0
-  $Revision: 4499 $
-  $LastChangedBy: pvanrompay $
-  $Date: 2008-06-05 03:12:18 +0530 (Thu, 05 Jun 2008) $
+  $Revision: 4719 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-07-24 12:13:44 +0530 (Thu, 24 Jul 2008) $
 -->
 <link rel="stylesheet" type="text/css" href="../style.css" media="all" />
 <link rel="stylesheet" type="text/css" href="../screen.css" media="screen" />
@@ -38,8 +38,8 @@
 
 <h1>Frequently Asked Questions (FAQ)</h1>
 <p>With thousands of users, it's not surprising that so many of the same questions are asked on the <a href="http://coppermine-gallery.net/forum/">support forums for Coppermine Photo Gallery</a>. So, to help facilitate your website development, we've  included this basic <acronym class="tool" title="FAQ=Frequently Asked Questions">FAQ</acronym> file on common issues. Please be sure to refer to this FAQ first before posting questions on the forum. Failure to do so will, could, well ... , reflect unkindly on you and could result in some negative "<em>karma</em>."</p>
-<p>This document is the <em>second best</em> resource to understand Coppermine - it's mandatory that you read the <a href="index.htm">documentation</a> first that comes with your Coppermine package.</p>
-<p>The <a href="faq_fr.htm">FAQ are available in French</a> as well, although the French FAQ are currently based on cpg1.4.x, so not everything in it will be correct for cpg1.5.x.</p>
+<p>This FAQ page is the <em>second best</em> resource to understand Coppermine - it's mandatory that you read the entire <a href="index.htm">documentation</a> first that comes with your Coppermine package before asking questions.</p>
+<p>The <a href="../fr/faq.htm">FAQ are available in French</a> as well, although the French FAQ are currently based on cpg1.4.x, so not everything in it will be correct for cpg1.5.x.</p>
 
 
 <a name="faq_toc"></a><h2>Table of contents:<a href="#faq_toc" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
@@ -47,7 +47,7 @@
 <li><strong>Setup / Configuration</strong></li>
 <ul class="nomargin">
 <li><a class="content" href="configuration.htm#admin_album_list_content">I don't want to show the <strong>last uploads</strong> and/or <strong>random pictures</strong> on the start page. How do I edit what's shown on the start page of coppermine?</a></li>
-<li><a class="content" href="#createPublicAlbum">How do I create an <strong>album</strong> that <strong>anyone</strong> can add photos to?</a></li>
+<li><a class="content" href="albums.htm#album_createPublicAlbum">How do I create an <strong>album</strong> that <strong>anyone</strong> can add photos to?</a></li>
 <li><a class="content" href="#BackupDatabase">How can I <strong>backup</strong> my coppermine database?</a></li>
 <li><a class="content" href="#noFullsizePopup">The <strong>fullsize-pic doesn't pop up</strong> when clicking on the intermediate size pic. What's wrong?</a></li>
 <li><a class="content" href="#preventHotlinks">How can I prevent other sites linking directly to the pictures in my gallery instead of the gallery page?</a></li>
@@ -87,21 +87,7 @@
 
 
 
-<a name="createPublicAlbum"></a>
-<h3>How do I create an <strong>album</strong> that <strong>all users</strong> can add photos to?<a href="#createPublicAlbum" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>(Assuming that you have already created at least one category and/or one album where the uploaded photos should go to):
-<ul>
-<li>Log in as admin</li>
-<li>Confirm that you have the display of admin controls turned on</li>
-<li>Select the Album list button</li>
-<li>If you placed the album in a category, choose the category you created the album in</li>
-<li>Next to the appropriate album, click on &quot;properties&quot;</li>
-<li>Set &quot;Visitors can upload pictures&quot; to &quot;yes&quot; and click &quot;update album&quot;</li>
-<li>Provide an upload link in your navigation menu if it's not already there (check /themes/yourtheme/theme.php)</li>
-<li>Next, click on the Groups tab</li>
-<li>For the group named &quot;anonymous&quot; - set the allowable space usage quota and upload rights</li>
-
-</ul></p><hr /><a name="BackupDatabase"></a>
+<a name="BackupDatabase"></a>
 <h3>How can I <strong>backup</strong> my coppermine database?<a href="#BackupDatabase" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Currently, there are no built-in backup solutions for coppermine available, yet. To backup your directory/file structure, you must use the good old ftp method and a tool like <a href="http://www.phpmyadmin.net/" class="external">phpMyAdmin</a> to backup your database (Many webhosts that offer mySQL also offer a pre-installed version of phpMyAdmin - if so, use that!). PhpMyAdmin is easy to install: just download the distribution, unzip it to your harddrive, edit one config file and upload it to your server. (NOTE: Some webhosts offer backup services. You should check if this service is available to you, first.)<br /><br />
 Here's a quick &quot;how to backup a database with phpMyAdmin&quot; primer:
@@ -338,7 +324,7 @@ These are (alas) not-so-frequently-asked-questions on the <a href="http://copper
 <a name="nonEnglishPosting"></a>
 <h3>Hey, by looking at your profile I can see you're German/French/Whatever. Can I post a question in that <strong>language</strong>?<a href="#nonEnglishPosting" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>If you are posting in the English support boards, please do not post in some other language - in this way, others may benefit from your question (and the answers you receive ), too. Don't be afraid to write &quot;poor english&quot; - no one will laugh at you, and most of our visitor's first language isn't english to begin with!</p>
-<p>We have <a href="http://coppermine-gallery.net/forum/index.php?board=37.0">language-specific support boards</a> for Chinese, French, German, Italian and Persian.</p><hr />
+<p>We have <a href="http://coppermine-gallery.net/forum/index.php?board=37.0">language-specific support boards</a> for Chinese, French, German, Italian,Persian and Spanish.</p><hr />
 <a name="emailSupport"></a>
 <h3>May I email/<acronym title="private message" class="tool">pm</acronym>/<acronym title="instant message" class="tool">im</acronym> you for <strong>support</strong>?<a href="#emailSupport" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>No you mustn't! Post your question on the <a href="http://coppermine-gallery.net/forum/">Coppermine support board</a> (publicly) - if we (the community) don't find a solution <strong>and</strong> and individual supporter has the time <strong>and</strong> the individual supporter wants to do so, the supporter willll email/pm/im <em>you</em>!<br />
@@ -359,7 +345,7 @@ These are (alas) not-so-frequently-asked-questions on the <a href="http://copper
 
 <script type="text/javascript">
   cpgDocFooter();
-  dateRevision(' $LastChangedDate: 2008-06-05 03:12:18 +0530 (Thu, 05 Jun 2008) $ ', ' $Revision: 4499 $ ');
+  dateRevision(' $LastChangedDate: 2008-07-24 12:13:44 +0530 (Thu, 24 Jul 2008) $ ', ' $Revision: 4719 $ ');
 </script>
 
 </body>

@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4309 $
-  $LastChangedBy: saweyyy $
-  $Date: 2008-02-28 17:02:02 +0530 (Thu, 28 Feb 2008) $
+  $Revision: 4750 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-08-01 12:45:43 +0530 (Fri, 01 Aug 2008) $
 **********************************************/
 
 // Todo list (stuff the hasn't been implemented yet):
@@ -55,8 +55,8 @@ require_once('include/init.inc.php');
         $icon = array('sdate' => 'calendar.gif', 'ip' => 'info.gif', 'rating' => 'rating.gif', 'referer' => 'referer.gif', 'browser' => 'www.gif', 'os' => 'os.gif', 'uid' => 'user.gif');
     }
     if ($type == 'hits') {
-        $db_fields = array('sdate', 'ip', 'search_phrase', 'referer', 'browser', 'os');
-        $icon = array('sdate' => 'calendar.gif', 'ip' => 'info.gif', 'search_phrase' => 'views.gif', 'referer' => 'referer.gif', 'browser' => 'www.gif', 'os' => 'os.gif');
+        $db_fields = array('sdate', 'ip', 'search_phrase', 'referer', 'browser', 'os', 'uid');
+        $icon = array('sdate' => 'calendar.gif', 'ip' => 'info.gif', 'search_phrase' => 'views.gif', 'referer' => 'referer.gif', 'browser' => 'www.gif', 'os' => 'os.gif', 'uid' => 'user.gif');
     }
 
     foreach($db_fields as $value) {

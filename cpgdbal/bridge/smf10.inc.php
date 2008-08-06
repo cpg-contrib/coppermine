@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4224 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-01-26 17:12:00 +0530 (Sat, 26 Jan 2008) $
+  $Revision: 4722 $
+  $LastChangedBy: nibbler999 $
+  $Date: 2008-07-25 19:33:04 +0530 (Fri, 25 Jul 2008) $
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
@@ -112,7 +112,7 @@ class cpg_udb extends core_udb {
         {
                 global $USER_DATA, $user_settings;
 
-                if (!$user_settings){
+                if (empty($user_settings['ID_MEMBER'])){
                         $this->load_guest_data();
                 } else {
 

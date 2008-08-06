@@ -10,9 +10,9 @@ as published by the Free Software Foundation.
 ********************************************
 Coppermine version: 1.5.0
 $Source$
-$Revision: 4696 $
-$Author: gaugau $
-$Date: 2008-07-17 11:02:26 +0530 (Thu, 17 Jul 2008) $
+$Revision: 4757 $
+$Author: abbas-ali $
+$Date: 2008-08-02 10:58:52 +0530 (Sat, 02 Aug 2008) $
 *********************************************
 Changelog
 =========
@@ -25,6 +25,10 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-08-02 [S] Fixed a security issue reported at http://www.milw0rm.com/exploits/6178 {Abbas}
+2008-08-01 [B] Fixed profile email check issue (thread ID 52391) {Nibbler}
+2008-08-01 [A] Added recording of user id for hit stats {GauGau}
+2008-07-25 [B] SMF anonymous user fix {Nibbler}
 2008-07-17 [A] Added animated graphics to upload screen to indicate the upload stage {GauGau}
 2008-07-01 [A] Converted the phpBB2.2 bridge file to phpBB3 {Nibbler}
 2008-06-28 [D] Added formatting instructions in coding guidelines {Abbas}
