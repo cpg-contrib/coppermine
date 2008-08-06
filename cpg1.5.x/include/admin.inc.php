@@ -241,6 +241,11 @@ $config_data = array(
       'type' => 'textfield',
       'help_link' => 'f=configuration.htm&amp;as=admin_language_custom_lnk_url&amp;ae=admin_language_custom_lnk_url_end',
     ),
+    'enable_menu_icons' => array(
+      'type' => 'checkbox',
+      'default_value' => '1',
+      'help_link' => 'f=configuration.htm&amp;as=admin_enable_menu_icons&amp;ae=admin_enable_menu_icons_end',
+    ),
     'show_bbcode_help' => array(
       'type' => 'checkbox',
       'default_value' => '1',

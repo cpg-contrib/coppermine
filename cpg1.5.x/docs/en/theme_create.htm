@@ -135,6 +135,12 @@ EOT;<br />
     <th valign="top" align="left" class="tableh1">Dependancies</th>
   </tr>
   <tr>
+    <td valign="top" class="tableb"><a name="theme_create_theme_menu_icon"></a>define('<strong>THEME_HAS_MENU_ICONS</strong>',1);<a href="#theme_create_theme_menu_icon" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">constant</td>
+    <td valign="top" class="tableb">The location for the menu icon graphics that are being displayed if the config option "<a href="configuration.htm#admin_enable_menu_icons">Enable menu icons</a>" has been turned on. When the constant is set, the script will be directed to the theme's images folder, subfolder 'icons', i.e. themes/yourtheme/images/icons/ and look for the menu icon images there. If not defined (default), the menu icon images will be taken from images/icons/</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
     <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_progress"></a>define('<strong>THEME_HAS_PROGRESS_GRAPHICS</strong>',1);<a href="#theme_create_theme_progress" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">constant</td>
     <td valign="top" class="tableb tableb_alternate">Coppermine displays a "loading"-icon when the upload form is being submit to indicate that there must be no user interaction while the script is busy uplading. When this constant is set, the script will fetch the "loading"-icon from the theme's images folder (themes/yourtheme/images/loader.gif). If the constant is not set, the default loader image will be used, taken from the generic images folder. When designing a theme of your own, make sure that the loader image actually exists when setting this constant.</td>

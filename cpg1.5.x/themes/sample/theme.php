@@ -219,56 +219,56 @@ $template_gallery_admin_menu = <<<EOT
 
                 <div class="admin_menu_wrapper">
                             <!-- BEGIN admin_approval -->
-                                <div class="admin_menu admin_float" id="admin_menu_anim"><a href="editpics.php?mode=upload_approval" title="{UPL_APP_TITLE}">{UPL_APP_LNK}</a></div>
+                                <div class="admin_menu admin_float" id="admin_menu_anim"><a href="editpics.php?mode=upload_approval" title="{UPL_APP_TITLE}">{UPL_APP_ICO}{UPL_APP_LNK}</a></div>
                             <!-- END admin_approval -->
-                                <div class="admin_menu admin_float"><a href="admin.php" title="{ADMIN_TITLE}">{ADMIN_LNK}</a></div>
-                                <div class="admin_menu admin_float"><a href="catmgr.php" title="{CATEGORIES_TITLE}">{CATEGORIES_LNK}</a></div>
-                                <div class="admin_menu admin_float"><a href="albmgr.php{CATL}" title="{ALBUMS_TITLE}">{ALBUMS_LNK}</a></div>
-                                <div class="admin_menu admin_float"><a href="groupmgr.php" title="{GROUPS_TITLE}">{GROUPS_LNK}</a></div>
-                                <div class="admin_menu admin_float"><a href="usermgr.php" title="{USERS_TITLE}">{USERS_LNK}</a></div>
-                                <div class="admin_menu admin_float"><a href="banning.php" title="{BAN_TITLE}">{BAN_LNK}</a></div>
-                                <div class="admin_menu admin_float"><a href="reviewcom.php" title="{COMMENTS_TITLE}">{COMMENTS_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="admin.php" title="{ADMIN_TITLE}">{ADMIN_ICO}{ADMIN_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="catmgr.php" title="{CATEGORIES_TITLE}">{CATEGORIES_ICO}{CATEGORIES_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="albmgr.php{CATL}" title="{ALBUMS_TITLE}">{ALBUMS_ICO}{ALBUMS_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="groupmgr.php" title="{GROUPS_TITLE}">{GROUPS_ICO}{GROUPS_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="usermgr.php" title="{USERS_TITLE}">{USERS_ICO}{USERS_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="banning.php" title="{BAN_TITLE}">{BAN_ICO}{BAN_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="reviewcom.php" title="{COMMENTS_TITLE}">{COMMENTS_ICO}{COMMENTS_LNK}</a></div>
                             <!-- BEGIN log_ecards -->
-                                <div class="admin_menu admin_float"><a href="db_ecard.php" title="{DB_ECARD_TITLE}">{DB_ECARD_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="db_ecard.php" title="{DB_ECARD_TITLE}">{DB_ECARD_ICO}{DB_ECARD_LNK}</a></div>
                             <!-- END log_ecards -->
-                                <div class="admin_menu admin_float"><a href="picmgr.php" title="{PICTURES_TITLE}">{PICTURES_LNK}</a></div>
-                                <div class="admin_menu admin_float"><a href="searchnew.php" title="{SEARCHNEW_TITLE}">{SEARCHNEW_LNK}</a></div>
-                                <div class="admin_menu admin_float"><a href="util.php" title="{UTIL_TITLE}">{UTIL_LNK}</a></div>
-                                <div class="admin_menu admin_float"><a href="profile.php?op=edit_profile" title="{MY_PROF_TITLE}">{MY_PROF_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="picmgr.php" title="{PICTURES_TITLE}">{PICTURES_ICO}{PICTURES_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="searchnew.php" title="{SEARCHNEW_TITLE}">{SEARCHNEW_ICO}{SEARCHNEW_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="util.php" title="{UTIL_TITLE}">{UTIL_ICO}{UTIL_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="profile.php?op=edit_profile" title="{MY_PROF_TITLE}">{MY_PROF_ICO}{MY_PROF_LNK}</a></div>
                             <!-- BEGIN documentation -->
-                                <div class="admin_menu admin_float"><a href="{DOCUMENTATION_HREF}" title="{DOCUMENTATION_TITLE}">{DOCUMENTATION_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="{DOCUMENTATION_HREF}" title="{DOCUMENTATION_TITLE}">{DOCUMENTATION_ICO}{DOCUMENTATION_LNK}</a></div>
                             <!-- END documentation -->
                             <!-- BEGIN plugin_manager -->
-                                <div class="admin_menu admin_float"><a href="pluginmgr.php" title="{PLUGINMGR_TITLE}">{PLUGINMGR_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="pluginmgr.php" title="{PLUGINMGR_TITLE}">{PLUGINMGR_ICO}{PLUGINMGR_LNK}</a></div>
                             <!-- END plugin_manager -->
                             <!-- BEGIN bridge_manager -->
-                                <div class="admin_menu admin_float"><a href="bridgemgr.php" title="{BRIDGEMGR_TITLE}">{BRIDGEMGR_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="bridgemgr.php" title="{BRIDGEMGR_TITLE}">{BRIDGEMGR_ICO}{BRIDGEMGR_LNK}</a></div>
                             <!-- END bridge_manager -->
                             <!-- BEGIN php_info -->
-                                <div class="admin_menu admin_float"><a href="phpinfo.php" title="{PHPINFO_TITLE}">{PHPINFO_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="phpinfo.php" title="{PHPINFO_TITLE}">{PHPINFO_ICO}{PHPINFO_LNK}</a></div>
                             <!-- END php_info -->
                             <!-- BEGIN update_database -->
-                                <div class="admin_menu admin_float"><a href="update.php" title="{UPDATE_DATABASE_TITLE}">{UPDATE_DATABASE_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="update.php" title="{UPDATE_DATABASE_TITLE}">{UPDATE_DATABASE_ICO}{UPDATE_DATABASE_LNK}</a></div>
                             <!-- END update_database -->
                             <!-- BEGIN view_log_files -->
-                                <div class="admin_menu admin_float"><a href="viewlog.php" title="{VIEW_LOG_FILES_TITLE}">{VIEW_LOG_FILES_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="viewlog.php" title="{VIEW_LOG_FILES_TITLE}">{VIEW_LOG_FILES_ICO}{VIEW_LOG_FILES_LNK}</a></div>
                             <!-- END view_log_files -->
                             <!-- BEGIN check_versions -->
-                                <div class="admin_menu admin_float"><a href="versioncheck.php" title="{CHECK_VERSIONS_TITLE}">{CHECK_VERSIONS_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="versioncheck.php" title="{CHECK_VERSIONS_TITLE}">{CHECK_VERSIONS_ICO}{CHECK_VERSIONS_LNK}</a></div>
                             <!-- END check_versions -->
                             <!-- BEGIN overall_stats -->
-                                <div class="admin_menu admin_float"><a href="stat_details.php?type=hits&amp;sort=sdate&amp;dir=&amp;sdate=1&amp;ip=1&amp;search_phrase=0&amp;referer=0&amp;browser=1&amp;os=1&amp;mode=fullscreen&amp;page=1&amp;amount=50" title="{OVERALL_STATS_TITLE}">{OVERALL_STATS_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="stat_details.php?type=hits&amp;sort=sdate&amp;dir=&amp;sdate=1&amp;ip=1&amp;search_phrase=0&amp;referer=0&amp;browser=1&amp;os=1&amp;mode=fullscreen&amp;page=1&amp;amount=50" title="{OVERALL_STATS_TITLE}">{OVERALL_STATS_ICO}{OVERALL_STATS_LNK}</a></div>
                             <!-- END overall_stats -->
                             <!-- BEGIN keyword_manager -->
-                                <div class="admin_menu admin_float"><a href="keywordmgr.php" title="{KEYWORDMGR_TITLE}">{KEYWORDMGR_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="keywordmgr.php" title="{KEYWORDMGR_TITLE}">{KEYWORDMGR_ICO}{KEYWORDMGR_LNK}</a></div>
                             <!-- END keyword_manager -->
                             <!-- BEGIN exif_manager -->
-                                <div class="admin_menu admin_float"><a href="exifmgr.php" title="{EXIFMGR_TITLE}">{EXIFMGR_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="exifmgr.php" title="{EXIFMGR_TITLE}">{EXIFMGR_ICO}{EXIFMGR_LNK}</a></div>
                             <!-- END exif_manager -->
                             <!-- BEGIN show_news -->
-                                <div class="admin_menu admin_float"><a href="mode.php?what=news&amp;referer=$REFERER" title="{SHOWNEWS_TITLE}">{SHOWNEWS_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="mode.php?what=news&amp;referer=$REFERER" title="{SHOWNEWS_TITLE}">{SHOWNEWS_ICO}{SHOWNEWS_LNK}</a></div>
                             <!-- END show_news -->
-		                          <div class="admin_menu admin_float"><a href="export.php" title="{EXPORT_TITLE}">{EXPORT_LNK}</a></div>
+                              <div class="admin_menu admin_float"><a href="export.php" title="{EXPORT_TITLE}">{EXPORT_ICO}{EXPORT_LNK}</a></div>
                 <div style="clear:left;">
                 </div>
               </div>
@@ -1788,6 +1788,9 @@ function theme_admin_mode_menu()
     global $lang_gallery_admin_menu, $lang_user_admin_menu;
     global $template_gallery_admin_menu, $template_user_admin_menu;
     global $CONFIG;
+    global $cpg_icon;
+    global $THEME_DIR;
+    
 
     $cat_l = isset($cat) ? "?cat=$cat" : '';
 
@@ -1797,14 +1800,26 @@ function theme_admin_mode_menu()
     if ($admin_menu == '') {
 
         if (GALLERY_ADMIN_MODE) {
+            if ($CONFIG['enable_menu_icons'] == 1) {
+                $icon_wrap_start = '<img src="';
+                if (defined('THEME_HAS_MENU_ICONS')) {
+                    $icon_wrap_start .= $THEME_DIR;
+                }
+                $icon_wrap_start .= 'images/icons/';
+                $icon_wrap_end = '" border="0" alt="" />';
+            } else {
+                $icon_wrap_start = '';
+                $icon_wrap_end = '';
+                $cpg_icon = array(); 
+            }
+            
+            if ($CONFIG['log_ecards'] == 0) {
+                template_extract_block($template_gallery_admin_menu, 'log_ecards');
+            }
 
-        if ($CONFIG['log_ecards'] == 0) {
-            template_extract_block($template_gallery_admin_menu, 'log_ecards');
-        }
-
-        if (cpg_get_pending_approvals() == 0) {
-             template_extract_block($template_gallery_admin_menu, 'admin_approval');
-        }
+            if (cpg_get_pending_approvals() == 0) {
+                 template_extract_block($template_gallery_admin_menu, 'admin_approval');
+            }
 
             // do the docs exist on the webserver?
             if (file_exists('docs/index.htm') == true) {
@@ -1835,68 +1850,97 @@ function theme_admin_mode_menu()
             $param = array('{CATL}' => $cat_l,
                 '{UPL_APP_TITLE}' => $lang_gallery_admin_menu['upl_app_title'],
                 '{UPL_APP_LNK}' => $lang_gallery_admin_menu['upl_app_lnk'],
+                '{UPL_APP_ICO}' => $icon_wrap_start . $cpg_icon['upload_approval'] . $icon_wrap_end,
                 '{ADMIN_TITLE}' => $lang_gallery_admin_menu['admin_title'],
                 '{ADMIN_LNK}' => $lang_gallery_admin_menu['admin_lnk'],
+                '{ADMIN_ICO}' => $icon_wrap_start . $cpg_icon['config'] . $icon_wrap_end,
                 '{ALBUMS_TITLE}' => $lang_gallery_admin_menu['albums_title'],
                 '{ALBUMS_LNK}' => $lang_gallery_admin_menu['albums_lnk'],
+                '{ALBUMS_ICO}' => $icon_wrap_start . $cpg_icon['alb_mgr'] . $icon_wrap_end,
                 '{CATEGORIES_TITLE}' => $lang_gallery_admin_menu['categories_title'],
                 '{CATEGORIES_LNK}' => $lang_gallery_admin_menu['categories_lnk'],
+                '{CATEGORIES_ICO}' => $icon_wrap_start . $cpg_icon['cat_mgr'] . $icon_wrap_end,
                 '{USERS_TITLE}' => $lang_gallery_admin_menu['users_title'],
                 '{USERS_LNK}' => $lang_gallery_admin_menu['users_lnk'],
+                '{USERS_ICO}' => $icon_wrap_start . $cpg_icon['user_mgr'] . $icon_wrap_end,
                 '{GROUPS_TITLE}' => $lang_gallery_admin_menu['groups_title'],
                 '{GROUPS_LNK}' => $lang_gallery_admin_menu['groups_lnk'],
+                '{GROUPS_ICO}' => $icon_wrap_start . $cpg_icon['groups_mgr'] . $icon_wrap_end,
                 '{COMMENTS_TITLE}' => $lang_gallery_admin_menu['comments_title'],
                 '{COMMENTS_LNK}' => $lang_gallery_admin_menu['comments_lnk'],
+                '{COMMENTS_ICO}' => $icon_wrap_start . $cpg_icon['comment_approval'] . $icon_wrap_end,
                 '{SEARCHNEW_TITLE}' => $lang_gallery_admin_menu['searchnew_title'],
                 '{SEARCHNEW_LNK}' => $lang_gallery_admin_menu['searchnew_lnk'],
+                '{SEARCHNEW_ICO}' => $icon_wrap_start . $cpg_icon['searchnew'] . $icon_wrap_end,
                 '{MY_PROF_TITLE}' => $lang_user_admin_menu['my_prof_title'],
                 '{MY_PROF_LNK}' => $lang_user_admin_menu['my_prof_lnk'],
+                '{MY_PROF_ICO}' => $icon_wrap_start . $cpg_icon['my_profile'] . $icon_wrap_end,
                 '{UTIL_TITLE}' => $lang_gallery_admin_menu['util_title'],
                 '{UTIL_LNK}' => $lang_gallery_admin_menu['util_lnk'],
+                '{UTIL_ICO}' => $icon_wrap_start . $cpg_icon['util'] . $icon_wrap_end,
                 '{BAN_TITLE}' => $lang_gallery_admin_menu['ban_title'],
                 '{BAN_LNK}' => $lang_gallery_admin_menu['ban_lnk'],
+                '{BAN_ICO}' => $icon_wrap_start . $cpg_icon['ban_user'] . $icon_wrap_end,
                 '{DB_ECARD_TITLE}' => $lang_gallery_admin_menu['db_ecard_title'],
                 '{DB_ECARD_LNK}' => $lang_gallery_admin_menu['db_ecard_lnk'],
+                '{DB_ECARD_ICO}' => $icon_wrap_start . $cpg_icon['ecard_review'] . $icon_wrap_end,
                 '{PICTURES_TITLE}' => $lang_gallery_admin_menu['pictures_title'],
                 '{PICTURES_LNK}' => $lang_gallery_admin_menu['pictures_lnk'],
+                '{PICTURES_ICO}' => $icon_wrap_start . $cpg_icon['picture_sort'] . $icon_wrap_end,
                 '{DOCUMENTATION_HREF}' => $documentation_href,
                 '{DOCUMENTATION_TITLE}' => $lang_gallery_admin_menu['documentation_title'],
                 '{DOCUMENTATION_LNK}' => $lang_gallery_admin_menu['documentation_lnk'],
+                '{DOCUMENTATION_ICO}' => $icon_wrap_start . $cpg_icon['documentation'] . $icon_wrap_end,
                 '{PLUGINMGR_TITLE}' => $lang_gallery_admin_menu['pluginmgr_title'],
                 '{PLUGINMGR_LNK}' => $lang_gallery_admin_menu['pluginmgr_lnk'],
+                '{PLUGINMGR_ICO}' => $icon_wrap_start . $cpg_icon['plugin_mgr'] . $icon_wrap_end,
                 '{BRIDGEMGR_TITLE}' => $lang_gallery_admin_menu['bridgemgr_title'],
                 '{BRIDGEMGR_LNK}' => $lang_gallery_admin_menu['bridgemgr_lnk'],
+                '{BRIDGEMGR_ICO}' => $icon_wrap_start . $cpg_icon['bridge_mgr'] . $icon_wrap_end,
                 '{PHPINFO_TITLE}' => $lang_gallery_admin_menu['phpinfo_title'],
                 '{PHPINFO_LNK}' => $lang_gallery_admin_menu['phpinfo_lnk'],
+                '{PHPINFO_ICO}' => $icon_wrap_start . $cpg_icon['phpinfo'] . $icon_wrap_end,
                 '{UPDATE_DATABASE_TITLE}' => $lang_gallery_admin_menu['update_database_title'],
                 '{UPDATE_DATABASE_LNK}' => $lang_gallery_admin_menu['update_database_lnk'],
+                '{UPDATE_DATABASE_ICO}' => $icon_wrap_start . $cpg_icon['update_database'] . $icon_wrap_end,
                 '{VIEW_LOG_FILES_TITLE}' => $lang_gallery_admin_menu['view_log_files_title'],
                 '{VIEW_LOG_FILES_LNK}' => $lang_gallery_admin_menu['view_log_files_lnk'],
+                '{VIEW_LOG_FILES_ICO}' => $icon_wrap_start . $cpg_icon['view_logs'] . $icon_wrap_end,
                 '{CHECK_VERSIONS_TITLE}' => $lang_gallery_admin_menu['check_versions_title'],
                 '{CHECK_VERSIONS_LNK}' => $lang_gallery_admin_menu['check_versions_lnk'],
+                '{CHECK_VERSIONS_ICO}' => $icon_wrap_start . $cpg_icon['check_versions'] . $icon_wrap_end,
                 '{OVERALL_STATS_TITLE}' => $lang_gallery_admin_menu['overall_stats_title'],
                 '{OVERALL_STATS_LNK}' => $lang_gallery_admin_menu['overall_stats_lnk'],
+                '{OVERALL_STATS_ICO}' => $icon_wrap_start . $cpg_icon['stats'] . $icon_wrap_end,
                 '{KEYWORDMGR_TITLE}' => $lang_gallery_admin_menu['keywordmgr_title'],
                 '{KEYWORDMGR_LNK}' => $lang_gallery_admin_menu['keywordmgr_lnk'],
+                '{KEYWORDMGR_ICO}' => $icon_wrap_start . $cpg_icon['keyword_mgr'] . $icon_wrap_end,
                 '{EXIFMGR_TITLE}' => $lang_gallery_admin_menu['exifmgr_title'],
                 '{EXIFMGR_LNK}' => $lang_gallery_admin_menu['exifmgr_lnk'],
+                '{EXIFMGR_ICO}' => $icon_wrap_start . $cpg_icon['exif_mgr'] . $icon_wrap_end,
                 '{SHOWNEWS_TITLE}' => $lang_gallery_admin_menu['shownews_title'],
                 '{SHOWNEWS_LNK}' => $lang_gallery_admin_menu['shownews_lnk'],
+                '{SHOWNEWS_ICO}' => $icon_wrap_start . $cpg_icon['news_show'] . $icon_wrap_end,
                 '{EXPORT_TITLE}' => $lang_gallery_admin_menu['export_title'],
                 '{EXPORT_LNK}' => $lang_gallery_admin_menu['export_lnk'],
+                '{EXPORT_ICO}' => $icon_wrap_start . $cpg_icon['export'] . $icon_wrap_end,
                 );
 
             $html = template_eval($template_gallery_admin_menu, $param);
-            //$html.= cpg_alert_dev_version();
+            // $html.= cpg_alert_dev_version();
         } elseif (USER_ADMIN_MODE) {
             $param = array('{ALBMGR_TITLE}' => $lang_user_admin_menu['albmgr_title'],
                 '{ALBMGR_LNK}' => $lang_user_admin_menu['albmgr_lnk'],
+                '{ALBUMS_ICO}' => $icon_folder . $cpg_icon['alb_mgr'],
                 '{MODIFYALB_TITLE}' => $lang_user_admin_menu['modifyalb_title'],
                 '{MODIFYALB_LNK}' => $lang_user_admin_menu['modifyalb_lnk'],
+                '{MODIFYALB_ICO}' => $icon_folder . $cpg_icon['modifyalb'],
                 '{MY_PROF_TITLE}' => $lang_user_admin_menu['my_prof_title'],
                 '{MY_PROF_LNK}' => $lang_user_admin_menu['my_prof_lnk'],
+                '{MY_PROF_ICO}' => $icon_folder . $cpg_icon['my_profile'],
                 '{PICTURES_TITLE}' => $lang_gallery_admin_menu['pictures_title'],
                 '{PICTURES_LNK}' => $lang_gallery_admin_menu['pictures_lnk'],
+                '{PICTURES_ICO}' => $icon_folder . $cpg_icon['picture_sort'],
                 );
 
             $html = template_eval($template_user_admin_menu, $param);

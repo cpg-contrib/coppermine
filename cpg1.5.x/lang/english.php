@@ -766,6 +766,7 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'display_faq' =>   'Display FAQ', // cpg1.5
   'custom_lnk_name' =>   'Custom menu link name', // cpg1.5
   'custom_lnk_url' =>   'Custom menu link URL', // cpg1.5
+  'enable_menu_icons' =>   'Enable menu icons', // cpg1.5
   'show_bbcode_help' =>   'Display bbcode help', // cpg1.5
   'vanity_block' =>   'Show the vanity block on themes that are defined as XHTML and CSS compliant', // cpg1.5
   'display_social_bookmarks' =>   'Display social bookmarks icons', // cpg1.5

@@ -268,6 +268,35 @@ require "include/themes.inc.php";  //All Fallback Theme Templates and Functions
 
 $THEME_DIR = "themes/{$CONFIG['theme']}/";
 
+// define the icon array
+$cpg_icon = array(
+  'upload_approval' => 'application_form.png',
+  'config' => 'cog.png',
+  'cat_mgr' => 'chart_organisation.png',
+  'alb_mgr' => 'pictures.png',
+  'groups_mgr' => 'group.png',
+  'user_mgr' => 'user.png',
+  'ban_user' => 'user_gray.png',
+  'comment_approval' => 'comment.png',
+  'ecard_review' => 'email_open_image.png',
+  'picture_sort' => 'photos.png',
+  'searchnew' => 'picture_add.png',
+  'util' => 'brick.png',
+  'my_profile' => 'user_edit.png',
+  'documentation' => 'book.png',
+  'plugin_mgr' => 'plugin.png',
+  'bridge_mgr' => 'arrow_join.png',
+  'phpinfo' => 'page_white_php.png',
+  'update_database' => 'database_refresh.png',
+  'view_logs' => 'report.png',
+  'check_versions' => 'eye.png',
+  'stats' => 'chart_bar.png',
+  'keyword_mgr' => 'tag_blue.png',
+  'exif_mgr' => 'picture_key.png',
+  'news_show' => 'newspaper_add.png',
+  'export' => 'lorry.png',
+);
+
 // Process language selection if present in URI or in user profile or try
 // autodetection if default charset is utf-8
 $CONFIG['default_lang'] = $CONFIG['lang'];      // Save default language

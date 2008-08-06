@@ -535,3 +535,5 @@ ALTER TABLE CPG_categories ADD `depth` mediumint( 8 ) unsigned NOT NULL default 
 ALTER TABLE CPG_categories ADD INDEX `depth_cid` ( `depth` , `cid` );
 ALTER TABLE CPG_categories ADD INDEX `lft_depth` ( `lft` , `depth` );
 
+# Add menu icon option
+INSERT INTO CPG_config VALUES ('enable_menu_icons', '0');
