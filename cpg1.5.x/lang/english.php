@@ -2512,6 +2512,7 @@ if (defined('VERSIONCHECK_PHP')) $lang_versioncheck_php = array(
   'outdated' => 'older than %s',
   'newer' => 'newer than %s',
   'modified' => 'modified',
+  'not_modified' => 'unmodified', // cpg1.5
   'needs_change' => 'needs change',
   'review_permissions' => 'Review Permissions',
   'inaccessible' => 'File is inaccessible',
@@ -2546,6 +2547,8 @@ if (defined('VERSIONCHECK_PHP')) $lang_versioncheck_php = array(
   'files_folder_processed' => 'Displaying %s items of %s folders/files processed with %s potential issues',
   'read' => 'Read', // cpg1.5
   'write' => 'Write', // cpg1.5
+  'warning' => 'Warning', // cpg1.5
+  'not_applicable' => 'n/a', // cpg1.5
 );
 
 // ------------------------------------------------------------------------- //
