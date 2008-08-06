@@ -38,24 +38,33 @@
 
 
 <a name="batch_add_pics"></a><h1>Uploading pics by FTP / Batch-Add Pictures<a href="#batch_add_pics" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
-<p>It is recommended that the coppermine admin use ftp to upload multiple pics/files at a time. Use your ftp software to create sub-folders within <em>your_coppermine_directory/albums/</em>, where your ftp uploads can be saved. Though not mandatory, it's always a good idea to have a folder structure within the <em>albums</em> folder that reflects or mirrors your coppermine categories and albums.</p><p><span class="important">Important</span>: do not create folders or ftp upload to the <em>userpics</em>- nor to the <em>edit</em>-folder by ftp: these folders are used by coppermine internally and must not be used for any other purpose! <strong><strong>Folder names must not contain dots</strong></strong>. We also highly recommend refraining from the use of any other special characters - use only a-z, numbers and <tt class="code">-</tt> (dashes) or <tt class="code">_</tt> (underscores) to fill blank spaces. Make sure to upload in binary or auto-mode.</p>
+<p>FTP-uploads plus batch-adding is the recommended method to upload files for the admin of a Coppermine-driven gallery. Only the admin can perform this for security reasons; non-admins can not perform this operation and need to use one of the other methods to upload files.</p>
+
+<a name="batch_add_pics_what"></a><h2>What batch-add does<a href="#batch_add_pics_what" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Coppermine is a database-driven app. This means that the files that get uploaded physically reside somewhere on the webspace. This could be any place - folder and file names for the files that get uploaded don't necessarilly have to be sorted in any particular way. The sorting and grouping is a matter of logic though: coppermine uses categories, sub-categories and albums to organize the display of files that were uploaded. To be able to do that, coppermine stores the physical location of the files (the paths that lead to your files) inside the database, as well as some other logical information (for example in which album a file resides).</p>
+<p>When a file get's uploaded using your FTP app, Coppermine doesn't "know" where it is, so you have to tell the script the location to enable it to remember the location using the database. This is where the batch-add process comes into play. What the batch-add process does basically is: creating resized copies (thumbnails and intermediate images) of the original files you uploaded and then adding records into the database (one record per file you add) to be able to keep track where on the server's hard disk the file actually resides. With this being said it should be quite obvious: <span class="important">Coppermine doesn't move the files around - they remain where you uploaded them to in the first place</span>.</p>
+<p>That's why you should make up your mind in advance about the folder and file structure of your FTP uploads. They need to go into the albums folder, and it's advisable to create a clever structure of folders and sub-folders there.</p>
+
+<p>It is recommended that the coppermine admin use ftp to upload multiple pics/files at a time. Use your ftp software to create sub-folders within <em>your_coppermine_directory/albums/</em>, where your ftp uploads can be saved. Though not mandatory, it's always a good idea to have a folder structure within the <em>albums</em> folder that reflects or mirrors your coppermine categories and albums.</p><p><span class="important">Important</span>: do not create folders or ftp upload to the <em>userpics</em>- nor to the <em>edit</em>-folder by ftp: these folders are used by coppermine internally and must not be used for any other purpose! <strong>Folder names must not contain dots</strong>. We also highly recommend refraining from the use of any other special characters - use only a-z, numbers and <tt class="code">-</tt> (dashes) or <tt class="code">_</tt> (underscores) to fill blank spaces. Make sure to upload in binary or auto-mode.</p>
+
+<a name="batch_add_pics_how"></a><h2>How batch-add works<a href="#batch_add_pics_how" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Once you have uploaded your photos by ftp, click on the &quot;Batch Add Pictures&quot; button. The batch-add is performed in three steps:</p>
 <ul>
-<li>find the directory under which you have uploaded your photos. Select this directory by clicking on it.
-<br /><img src="images/searchnew_1.gif" border="0" alt="" /><a name="ftp_select_dir_end"></a></li>
-<li><a name="ftp_select_file"></a>select the photos you wish to upload (by ticking them).  New pics are automatically pre-selected, those that already are in your coppermine database are not selected. Next select the album you wish to insert them into. Click &quot;Insert Selected Pictures&quot; to start the batch-add process.<br />
-<img src="images/searchnew_2.gif" border="0" alt="" /><a name="ftp_select_file_end"></a></li>
-<li><a name="ftp_show_result"></a>CPG will then display the results of the batch-add (allow some time for all results to display).<br />
-If the OK, DP, or PB 'signs' does not appear, click on the broken file image to see if any error message was produced by PHP.<br />
-Should your browser time out, hit the reload button.
-<ul>
-<li>OK : means that the file was succesfully added</li>
-<li>DP : means that the file is a duplicate and is already in the database</li>
-<li>PB : means that the file could not be added, check your configuration and the permission of directories where the files are located</li>
-<li>NA : means that you haven't selected an album the files should go to, hit 'back' and select an album. If you don't have an album create one first</li>
-</ul>
-<a name="ftp_show_result_end"></a>
-</li>
+    <li>find the directory under which you have uploaded your photos. Select this directory by clicking on it.<br />
+    <img src="images/searchnew_1.gif" border="0" alt="" /><a name="ftp_select_dir_end"></a></li>
+    <li><a name="ftp_select_file"></a>select the photos you wish to upload (by ticking them).  New pics are automatically pre-selected, those that already are in your coppermine database are not selected. Next select the album you wish to insert them into. Click &quot;Insert Selected Pictures&quot; to start the batch-add process.<br />
+    <img src="images/searchnew_2.gif" border="0" alt="" /><a name="ftp_select_file_end"></a></li>
+    <li><a name="ftp_show_result"></a>CPG will then display the results of the batch-add (allow some time for all results to display).<br />
+    If the OK, DP, or PB 'signs' does not appear, click on the broken file image to see if any error message was produced by PHP.<br />
+    Should your browser time out, hit the reload button.
+        <ul>
+            <li><em>OK</em> : means that the file was succesfully added</li>
+            <li><em>DP</em> : means that the file is a duplicate and is already in the database</li>
+            <li><em>PB</em> : means that the file could not be added, check your configuration and the permission of directories where the files are located</li>
+            <li><em>NA</em> : means that you haven't selected an album the files should go to, hit 'back' and select an album. If you don't have an album create one first</li>
+        </ul>
+    <a name="ftp_show_result_end"></a>
+    </li>
 </ul>
 <p>Giving FTP-access to other users can pose a serious security threat, this is why batch-add is only available for the coppermine gallery admin.</p>
 <p>Once files have been added to coppermine's database, make sure that you never rename or delete them via ftp - use coppermine's admin menu options to remove or rename files, instead.  Only in this way will these files be removed from both the file system <strong>and</strong> the database.</p>
