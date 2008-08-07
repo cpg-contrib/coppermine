@@ -9,7 +9,7 @@ it under the terms of the GNU General Public License version 3
 as published by the Free Software Foundation.
 
 ********************************************
-Coppermine version: 1.4.19
+Coppermine version: 1.4.20
 $Source$
 $Revision$
 $Author$
@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-08-07 [M] Updated version count from cpg1.4.19 to cpg1.4.20 in subversion repository as a preparation for the next release {GauGau}
 2008-08-03 [M] Release of cpg1.4.19 {GauGau}
 2008-08-01 [B] Fixed profile email check issue (thread ID 52391) {Nibbler}
 2008-08-01 [S] Fixed a security issue reported at http://www.milw0rm.com/exploits/6178 {Abbas}
