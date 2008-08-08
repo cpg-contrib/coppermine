@@ -55,8 +55,8 @@ require_once('include/init.inc.php');
         $icon = array('sdate' => 'calendar.gif', 'ip' => 'info.gif', 'rating' => 'rating.gif', 'referer' => 'referer.gif', 'browser' => 'www.gif', 'os' => 'os.gif', 'uid' => 'user.gif');
     }
     if ($type == 'hits') {
-        $db_fields = array('sdate', 'ip', 'search_phrase', 'referer', 'browser', 'os', 'uid');
-        $icon = array('sdate' => 'calendar.gif', 'ip' => 'info.gif', 'search_phrase' => 'views.gif', 'referer' => 'referer.gif', 'browser' => 'www.gif', 'os' => 'os.gif', 'uid' => 'user.gif');
+        $db_fields = array('sdate', 'ip', 'uid', 'search_phrase', 'referer', 'browser', 'os');
+        $icon = array('sdate' => 'calendar.gif', 'ip' => 'info.gif', 'uid' => 'user.gif', 'search_phrase' => 'views.gif', 'referer' => 'referer.gif', 'browser' => 'www.gif', 'os' => 'os.gif');
     }
 
     foreach($db_fields as $value) {
