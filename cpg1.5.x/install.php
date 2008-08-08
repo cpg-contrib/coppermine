@@ -27,6 +27,18 @@ define('INFORMATION', 1);
 define('ERROR', 2);
 define('CRITICAL_ERROR', 3);
 
+// Set the parameters that normally get populated by the option form
+$displayOption_array = array(
+    'errors_only' => 1,
+    'do_not_connect_to_online_repository' => 1,
+);
+
+// Populate the $CONFIG vars if they are empty
+$CONFIG = array(
+    'fullpath' => 'albums/',
+    'userpics' => 'userpics/',
+);
+
 if (!defined('COPPERMINE_VERSION')) { // we need to define the constant COPPERMINE_VERSION that normally get's populated by include/init.inc.php, as we check the repository against that version number
 	define('COPPERMINE_VERSION', '1.5.0');
 }
@@ -141,6 +153,7 @@ switch($step) {
 		if($install->error != ''){
 			html_error(false /*false to not include a button*/);
 		}
+        require_once('include/versioncheck.inc.php');
 		html_content($install->checkFiles()); 
 		html_footer();
 		$install->setTmpConfig('step', '3');
@@ -1039,17 +1052,31 @@ class CPGInstall{
 	* @return string
 	*/
 	function checkFiles() {
-		// Set the parameters that normally get popualted by the option form
-		$displayOption_array['errors_only'] = 1;
+		// Set the parameters that normally get populated by the option form
+		//$displayOption_array['errors_only'] = 1;
+        global $displayOption_array, $maxLength_array;
 		$lang_versioncheck_php = $this->language['versioncheck'];
-		require_once('include/versioncheck.inc.php');
+        //print '$displayOption_array';
+        //print_r($displayOption_array);
+        //print '<hr />$textFileExtensions_array';
+        //print_r($textFileExtensions_array);
+        //print '<hr />$imageFileExtensions_array';
+        //print_r($imageFileExtensions_array);
+        //print '<hr />$CONFIG';
+        //print_r($CONFIG);
+        //print '<hr />$maxLength_array';
+        //print_r($maxLength_array);
+        //print '<hr />$lang_versioncheck_php';
+        //print_r($lang_versioncheck_php);
+        //print '<hr />';
+        //print_r();
+        //die;
 		
 		// Connect to the repository and populate the array with data from the XML file
 		$file_data_array = cpgVersioncheckConnectRepository($displayOption_array);
-		// Populate the array additionally with local data
-		//$CONFIG['full_path'] = '';
-		//$CONFIG['user_pics'] = '';
-		$file_data_array = cpg_versioncheckPopulateArray($file_data_array, $displayOption_array, $textFileExtensions_array, $imageFileExtensions_array, $CONFIG, $maxLength_array, $lang_versioncheck_php);
+
+		$file_data_array = cpg_versioncheckPopulateArray($file_data_array);
+        //$file_data_array = cpg_versioncheckPopulateArray($file_data_array, $displayOption_array, $textFileExtensions_array, $imageFileExtensions_array, $CONFIG, $maxLength_array, $lang_versioncheck_php);
 		$file_data_count = count($file_data_array);
 		// Print the results
 		$outputResult = cpg_versioncheckCreateHTMLOutput($file_data_array, $textFileExtensions_array, $lang_versioncheck_php, $majorVersion, $displayOption_array);
