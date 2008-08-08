@@ -3068,12 +3068,12 @@ function languageSelect($parameter)
     $lang_language_data['armenian'] = array('Armenian','','');
     $lang_language_data['azerbaijani'] = array('Azerbaijani','','az');
     $lang_language_data['bengali'] = array('Bengali','','bd');
-    $lang_language_data['basque'] = array('Basque','Euskera','baq');
+    $lang_language_data['basque'] = array('Basque','Euskera','basque');
     $lang_language_data['bosnian'] = array('Bosnian','Bosanski','ba');
     $lang_language_data['brazilian_portuguese'] = array('Portuguese [Brazilian]','Portugu&ecirc;s Brasileiro','br');
     $lang_language_data['bulgarian'] = array('Bulgarian','&#1041;&#1098;&#1083;&#1075;&#1072;&#1088;&#1089;&#1082;&#1080;','bg');
     $lang_language_data['byelorussian'] = array('Byelorussian','','by');
-    $lang_language_data['catalan'] = array('Catalan','Catal&agrave;','ct');
+    $lang_language_data['catalan'] = array('Catalan','Catal&agrave;','catalonia');
     $lang_language_data['chamorro'] = array('Chamorro','','gu');
     $lang_language_data['chinese_big5'] = array('Chinese traditional','&#20013;&#25991; - &#32321;&#39636;','tw');
     $lang_language_data['chinese_gb'] = array('Chinese simplified','&#20013;&#25991; - &#31616;&#20307;','cn');
@@ -3087,7 +3087,7 @@ function languageSelect($parameter)
     $lang_language_data['filipino'] = array('Filipino Tagalog','','ph');
     $lang_language_data['finnish'] = array('Finnish','Suomea','fi');
     $lang_language_data['french'] = array('French','Fran&ccedil;ais','fr');
-    $lang_language_data['galician'] = array('Galician','Galego','es_gln');
+    $lang_language_data['galician'] = array('Galician','Galego','galician');
     $lang_language_data['georgian'] = array('Georgian','&#4325;&#4304;&#4320;&#4311;&#4323;&#4314;&#4312;','ge');
     $lang_language_data['german'] = array('German','Deutsch','de');
     $lang_language_data['german_sie'] = array('German [formal]','Deutsch [Sie]','de');
@@ -3101,7 +3101,7 @@ function languageSelect($parameter)
     $lang_language_data['japanese'] = array('Japanese','&#26085;&#26412;&#35486;','jp');
     $lang_language_data['kazakh'] = array('Kazakh','','kz');
     $lang_language_data['korean'] = array('Korean','&#54620;&#44397;&#50612;','kr');
-    $lang_language_data['kurdish'] = array('Kurdish','&#1603;&#1608;&#1585;&#1583;&#1740;','ku');
+    $lang_language_data['kurdish'] = array('Kurdish','&#1603;&#1608;&#1585;&#1583;&#1740;','kurdish');
     $lang_language_data['kyrgyz'] = array('Kyrgyz','','kg');
     $lang_language_data['laothian'] = array('Laothian ','','la');
     $lang_language_data['latvian'] = array('Latvian','Latvian','lv');
@@ -3125,10 +3125,11 @@ function languageSelect($parameter)
     $lang_language_data['turkish'] = array('Turkish','T&uuml;rk&ccedil;e','tr');
     $lang_language_data['tigrinya'] = array('Tigrinya','','er');
     $lang_language_data['twi'] = array('Twi','','gh');
-    $lang_language_data['uighur'] = array('Uighur','Uighur','cn-xj');
+    $lang_language_data['uighur'] = array('Uighur','Uighur','uighur');
     $lang_language_data['ukrainian'] = array('Ukrainian','&#1059;&#1082;&#1088;&#1072;&#1111;&#1085;&#1089;&#1100;&#1082;&#1072;','ua');
     $lang_language_data['uzbek'] = array('Uzbek','','uz');
     $lang_language_data['vietnamese'] = array('Vietnamese','Tieng Viet','vn');
+    $lang_language_data['welsh'] = array('Welsh','Cymraeg','wales');
 
     // get list of available languages
     $value = strtolower($CONFIG['lang']);
@@ -3153,7 +3154,7 @@ function languageSelect($parameter)
             foreach ($lang_array as $language) {
                 $cpg_language_name = str_replace('-utf-8','', $language);
                 if (array_key_exists($cpg_language_name, $lang_language_data)) {
-                    $return.= $lineBreak .  '<a href="' .$cpgChangeUrl. $language . '" rel="nofollow"><img src="images/flags/' . $lang_language_data[$cpg_language_name][2] . '.gif" border="0" width="16" height="10" alt="" title="';
+                    $return.= $lineBreak .  '<a href="' .$cpgChangeUrl. $language . '" rel="nofollow"><img src="images/flags/' . $lang_language_data[$cpg_language_name][2] . '.gif" border="0" width="16" height="11" alt="" title="';
                     $return.= $lang_language_data[$language][0];
                     if ($lang_language_data[$language][1] != $lang_language_data[$language][0]) {
                         $return.= ' (' . $lang_language_data[$language][1] . ')';
