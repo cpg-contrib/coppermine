@@ -62,6 +62,7 @@ class cpg_udb extends core_udb {
 		} else { // the vars from the bridgemgr
 			$this->boardurl = $BRIDGE['full_forum_url'];
 			require_once($BRIDGE['relative_path_to_config_file'] . 'config.php');
+			$this->use_post_based_groups = $BRIDGE['use_post_based_groups'];
 		}
 		
 		// Database connection settings
