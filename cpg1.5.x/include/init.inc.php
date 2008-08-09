@@ -293,7 +293,7 @@ $cpg_icon = array(
   'stats' => 'mini_pie.png',
   'keyword_mgr' => 'frame_image.png',
   'exif_mgr' => 'flag.png',
-  'news_show' => 'announcements.png',
+  'news_show' => 'knewsticker.png',
   'export' => 'redo.png',
 );
 
