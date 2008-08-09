@@ -204,6 +204,7 @@ EOT;
         while ($row = mysql_fetch_array($result)) {
             $row['sdate'] = strftime($date_display_fmt,localised_timestamp($row['sdate']));
             $is_internal = '';
+            $row['referer'] = urldecode($row['referer']);
             // is it an internal reference (most should be)?
             $match_coppermine_url = strpos($row['referer'],$CONFIG['ecards_more_pic_target']);
             if ($match_coppermine_url === FALSE) {
