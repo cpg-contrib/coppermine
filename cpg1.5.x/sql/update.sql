@@ -101,6 +101,40 @@ INSERT INTO CPG_filetypes VALUES ('otc', 'application/vnd.oasis.opendocument.cha
 INSERT INTO CPG_filetypes VALUES ('otf', 'application/vnd.oasis.opendocument.formula-template', 'document', '');
 INSERT INTO CPG_filetypes VALUES ('oti', 'application/vnd.oasis.opendocument.image-template', 'document', '');
 INSERT INTO CPG_filetypes VALUES ('oth', 'application/vnd.oasis.opendocument.text-web', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('sxw', 'application/vnd.sun.xml.writer', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('stw', 'application/vnd.sun.xml.writer.template', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('sxc', 'application/vnd.sun.xml.calc', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('stc', 'application/vnd.sun.xml.calc.template', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('sxd', 'application/vnd.sun.xml.draw', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('std', 'application/vnd.sun.xml.draw.template', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('sxi', 'application/vnd.sun.xml.impress', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('sti', 'application/vnd.sun.xml.impress.template', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('sxg', 'application/vnd.sun.xml.writer.global', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('sxm', 'application/vnd.sun.xml.math', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('docx', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('docm', 'application/vnd.ms-word.document.macroEnabled.12', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('dotx', 'application/vnd.openxmlformats-officedocument.wordprocessingml.template', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('dotm', 'application/vnd.ms-word.template.macroEnabled.12', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('xlsx', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('xlsm', 'application/vnd.ms-excel.sheet.macroEnabled.12', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('xltx', 'application/vnd.openxmlformats-officedocument.spreadsheetml.template', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('xltm', 'application/vnd.ms-excel.template.macroEnabled.12', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('xlsb', 'application/vnd.ms-excel.sheet.binary.macroEnabled.12', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('xlam', 'application/vnd.ms-excel.addin.macroEnabled.12', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('pptx', 'application/vnd.openxmlformats-officedocument.presentationml.presentation', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('pptm', 'application/vnd.ms-powerpoint.presentation.macroEnabled.12', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('ppsx', 'application/vnd.openxmlformats-officedocument.presentationml.slideshow', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('ppsm', 'application/vnd.ms-powerpoint.slideshow.macroEnabled.12', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('potx', 'application/vnd.openxmlformats-officedocument.presentationml.template', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('potm', 'application/vnd.ms-powerpoint.template.macroEnabled.12', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('ppam', 'application/vnd.ms-powerpoint.addin.macroEnabled.12', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('sldx', 'application/vnd.openxmlformats-officedocument.presentationml.slide', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('sldm', 'application/vnd.ms-powerpoint.slide.macroEnabled.12', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('thmx', 'application/vnd.ms-officetheme', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('onetoc', 'application/onenote', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('onetoc2', 'application/onenote', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('onetmp', 'application/onenote', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('onepkg', 'application/onenote', 'document', '');
 
 
 #
