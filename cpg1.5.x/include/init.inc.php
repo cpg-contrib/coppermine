@@ -268,35 +268,6 @@ require "include/themes.inc.php";  //All Fallback Theme Templates and Functions
 
 $THEME_DIR = "themes/{$CONFIG['theme']}/";
 
-// define the icon array
-$cpg_icon = array(
-  'upload_approval' => 'kdb_form.png',
-  'config' => 'gear.png',
-  'cat_mgr' => 'ktouch.png',
-  'alb_mgr' => 'multiple_monitors.png',
-  'groups_mgr' => 'edit_group.png',
-  'user_mgr' => 'edit_user.png',
-  'ban_user' => 'delete_user.png',
-  'comment_approval' => 'irc_protocol.png',
-  'ecard_review' => 'inbox.png',
-  'picture_sort' => 'icons.png',
-  'searchnew' => 'package_edutainment.png',
-  'util' => 'utilities.png',
-  'my_profile' => 'kopeteavailable.png',
-  'documentation' => 'pan.png',
-  'plugin_mgr' => 'package.png',
-  'bridge_mgr' => 'wizard.png',
-  'phpinfo' => 'php.png',
-  'update_database' => 'db_update.png',
-  'view_logs' => 'easymoblog.png',
-  'check_versions' => '14_layer_novisible.png',
-  'stats' => 'mini_pie.png',
-  'keyword_mgr' => 'frame_image.png',
-  'exif_mgr' => 'flag.png',
-  'news_show' => 'knewsticker.png',
-  'export' => 'redo.png',
-);
-
 // Process language selection if present in URI or in user profile or try
 // autodetection if default charset is utf-8
 $CONFIG['default_lang'] = $CONFIG['lang'];      // Save default language
