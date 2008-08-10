@@ -3502,7 +3502,7 @@ function cpg_alert_dev_version()
     $return = '';
     if (COPPERMINE_VERSION_STATUS != 'stable') {
         ob_start();
-        starttable('100%', $lang_version_alert['version_alert']);
+        starttable('100%', cpg_fetch_icon('warning') . $lang_version_alert['version_alert']);
         print '<tr><td class="tableb">';
         print sprintf($lang_version_alert['no_stable_version'], COPPERMINE_VERSION, COPPERMINE_VERSION_STATUS);
         print '</td></tr>';
@@ -3526,6 +3526,7 @@ function cpg_alert_dev_version()
     // display news from coppermine-gallery.net
     if ($CONFIG['display_coppermine_news'] == 1 && GALLERY_ADMIN_MODE) {
         $help_news = '&nbsp;'.cpg_display_help('f=configuration.htm&amp;as=admin_general_coppermine_news&amp;ae=admin_general_coppermine_news_end&amp;top=1', '600', '300');
+        $news_icon = cpg_fetch_icon('news_show');
         ob_start();
         starttable('100%');
         print <<< EOT
@@ -3534,7 +3535,7 @@ function cpg_alert_dev_version()
                 <table border="0" cellspacing="0" cellpadding="0" width="100%">
                   <tr>
                     <td class="tableh1">
-                      {$lang_version_alert['coppermine_news']}{$help_news}
+                      {$news_icon}{$lang_version_alert['coppermine_news']}{$help_news}
                     </td>
                     <td class="tableh1" align="right">
                       <a href="mode.php?what=news&amp;referer={$REFERER}" class="admin_menu">{$lang_version_alert['hide']}</a>
