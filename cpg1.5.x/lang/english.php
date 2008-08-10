@@ -479,7 +479,12 @@ if (defined('BANNING_PHP')) $lang_banning_php = array(
   'lookup_ip' => 'Lookup an IP address',
   'submit' => 'go!',
   'select_date' => 'select date',
-  'del_all_comments' => 'Delete all comments by this user? (blank is only current)', // cpg1.5
+  'delete_comments' => 'Delete comments', // cpg1.5
+  'current' => 'current', // cpg1.5
+  'all' => 'all', // cpg1.5
+  'none' => 'none', // cpg1.5
+  'view' => 'view', // cpg1.5
+  'calender_already_open' => 'Calendar window already open.  Attempting focus...', // cpg1.5 // js-alert
 );
 
 // ------------------------------------------------------------------------- //
