@@ -527,20 +527,6 @@ $template_film_strip = <<<EOT
                     {ADMIN_MENU}
                 </td>
 <!-- END thumb_cell -->
-<!-- BEGIN alb_thumb_cell -->
-                <td valign="top" align="center">
-                    <table border="5" cellpadding="10" cellspacing="0">
-                        <tr>
-                            <td valign="middle" class="alb_thumbnails" align="center">
-                                <span class="thumb_alb_label">{ALBUM_LABEL}</span>
-                                <a href="{LINK_TGT}">{THUMB}</a><br />
-                                {CAPTION}
-                                {ADMIN_MENU}
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-<!-- END alb_thumb_cell -->
 <!-- BEGIN empty_cell -->
                 <td valign="top" align="center" >&nbsp;</td>
 <!-- END empty_cell -->
