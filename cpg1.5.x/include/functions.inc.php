@@ -4664,5 +4664,51 @@ function rebuild_tree($parent, $left, $depth, $pos)
     return $right+1;
 } // function rebuild_tree
 
+/**
+ * Function to fetch an icon
+ *
+ *
+ * @param string $icon_name (the name of the icon to fetch)
+ * @param string $title string that is suppossed to populate the title attribute of the <img>-tag
+ * @param string $check boolean. If populated, the icon will be checked first if it exists
+ * @param string $ignore_config boolean. If populated, the config option that allows toggeling icons on/off will be ignored and the icon will be displayed no matter what
+ * @param string $extension name of the extension, default being 'png'
+ * @return string the fully populated <img>-tag 
+ */
+function cpg_fetch_icon($icon_name, $title = '', $check = '', $ignore_config = '', $extension = 'png')
+{
+    global $CONFIG, $THEME_DIR;
+    if ($CONFIG['enable_menu_icons'] != 1) {
+    	if ($ignore_config == '') {
+    		return;
+    	}
+    }
+    $return = '';
+    if (defined('THEME_HAS_MENU_ICONS')) {
+    	$folder = $THEME_DIR . 'images/icons/';
+    } else {
+    	$folder = 'images/icons/';
+    }
+    // sanitize extension
+    if ($extension != 'jpg' && $extension != 'gif') {
+    	$extension = 'png';
+    }
+    $relative_path = $folder . $icon_name . '.' . $extension;
+    // check if file exists
+    if ($check != '') {
+    	if (file_exists($relative_path) != TRUE) {
+    		return;
+    	}
+    }
+    $return .= '<img src="';
+    $return .= $relative_path;
+    $return .= '" border="0" alt="" ';
+    if ($title != '') {
+    	$return .= 'title="' . $title . '" ';
+    }
+    $return .= '/>';
+    return $return;
+}
+
 
 ?>
