@@ -501,7 +501,11 @@ while ($row = mysql_fetch_array($result)) {
     $comment_approval_status .= '<input type="hidden" name="status_approved_yes[]" id="status_approved_yes'.$row['msg_id'].'" value="" />';
     $comment_approval_status .= '<input type="hidden" name="status_approved_no[]" id="status_approved_no'.$row['msg_id'].'" value="" />';
 	//get link to ban and delete
-	$ban_and_delete = '<a href="banning.php?ban_comment_author=' . $row['msg_id'] . '">' . $lang_reviewcom_php['ban_and_delete'] . '</a>';
+	if ($row['author_id'] == 0) {
+		$ban_and_delete = '<a href="banning.php?delete_comment_id=' . $row['msg_id'] . '">' . $lang_reviewcom_php['ban_and_delete'] . '</a>';
+	} else {
+		$ban_and_delete = '<a href="banning.php?ban_user=' . $row['author_id'] . '&amp;delete_comment_id=' . $row['msg_id'] . '">' . $lang_reviewcom_php['ban_and_delete'] . '</a>';
+	}
     $rowcounter++;
     if ($rowcounter >=2 ) { //let the row colors alternate, for now they are the same
         $rowcounter = 0;
