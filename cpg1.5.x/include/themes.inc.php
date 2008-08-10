@@ -316,7 +316,7 @@ $template_user_admin_menu = <<<EOT
                 <table cellpadding="0" cellspacing="1">
                         <tr>
                                 <td class="admin_menu"><a href="albmgr.php" title="{ALBMGR_TITLE}">{ALBUMS_ICO}{ALBMGR_LNK}</a></td>
-                                <td class="admin_menu"><a href="modifyalb.php" title="{MODIFYALB_TITLE}">{MODIFYALB_LNK}</a></td>
+                                <td class="admin_menu"><a href="modifyalb.php" title="{MODIFYALB_TITLE}">{MODIFYALB_ICO}{MODIFYALB_LNK}</a></td>
                                 <td class="admin_menu"><a href="profile.php?op=edit_profile" title="{MY_PROF_TITLE}">{MY_PROF_ICO}{MY_PROF_LNK}</a></td>
                                 <td class="admin_menu"><a href="picmgr.php" title="{PICTURES_TITLE}">{PICTURES_ICO}{PICTURES_LNK}</a></td>
                         </tr>
