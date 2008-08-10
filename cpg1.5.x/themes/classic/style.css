@@ -413,6 +413,10 @@ a:active {
         padding-right: 2px;
 }
 
+.admin_menu a img {
+		vertical-align:middle;
+}
+
 .admin_menu a:hover {
         color: #000000;
         text-decoration: underline;
