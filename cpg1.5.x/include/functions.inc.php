@@ -4670,12 +4670,12 @@ function rebuild_tree($parent, $left, $depth, $pos)
  *
  * @param string $icon_name (the name of the icon to fetch)
  * @param string $title string that is suppossed to populate the title attribute of the <img>-tag
- * @param string $check boolean. If populated, the icon will be checked first if it exists
  * @param string $ignore_config boolean. If populated, the config option that allows toggeling icons on/off will be ignored and the icon will be displayed no matter what
+ * @param string $check boolean. If populated, the icon will be checked first if it exists
  * @param string $extension name of the extension, default being 'png'
  * @return string the fully populated <img>-tag 
  */
-function cpg_fetch_icon($icon_name, $title = '', $check = '', $ignore_config = '', $extension = 'png')
+function cpg_fetch_icon($icon_name, $title = '', $ignore_config = '', $check = '', $extension = 'png')
 {
     global $CONFIG, $THEME_DIR;
     if ($CONFIG['enable_menu_icons'] != 1) {
@@ -4703,6 +4703,15 @@ function cpg_fetch_icon($icon_name, $title = '', $check = '', $ignore_config = '
     $return .= '<img src="';
     $return .= $relative_path;
     $return .= '" border="0" alt="" ';
+    // Add width and height attributes. 
+    // Actually reading the dimensions would be too time-consuming,
+    // so we assume 16 x 16 pixels unless specified otherwise in
+    // the custom theme
+    if (defined('THEME_HAS_MENU_ICONS')) {
+    	$return .= 'width="' . THEME_HAS_MENU_ICONS . '" height="' . THEME_HAS_MENU_ICONS . '" ';
+    } else {
+    	$return .= 'width="16" height="16" ';
+    }
     if ($title != '') {
     	$return .= 'title="' . $title . '" ';
     }
