@@ -288,7 +288,7 @@ if($superCage->get->keyExists('delete_comment_id') && $superCage->get->getInt('d
 
 pageheader($lang_banning_php['title']);
 
-starttable('100%', "{$lang_banning_php['title']}", 4);
+starttable('100%', $lang_banning_php['title'], 4);
 create_banlist();
 endtable();
 $calendar_link_new = 'calendar.php?action=banning&amp;month='.ltrim(strftime('%m'),'0').'&amp;year='.strftime('%Y');
@@ -332,7 +332,7 @@ function killCalendar()
 EOT;
 print "<br />\n";
 print '<form action="'.$CPG_PHP_SELF.'" method="post" name="list" id="cpgform">'."\r\n";
-starttable('100%', $lang_banning_php['add_new'], isset($comm_info) ? 5 : 4);
+starttable('100%', $lang_banning_php['add_new'], 5);
 echo <<<EOT
 	<tr>
 		<th class="tableh2">{$lang_banning_php['user_name']}</th>
@@ -367,8 +367,8 @@ echo <<<EOT
 EOT;
 endtable();
 print "</form>\r\n";
-print '<form action="http://ws.arin.net/cgi-bin/whois.pl" method="post" name="lookup" id="cpgform2" target="_blank">' . "\n";
-
+print "<br />\r\n";
+print '<form action="http://ws.arin.net/whois/" method="get" name="lookup" id="cpgform2" target="_blank">' . "\n";
 //starttable('-2', $lang_banning_php['lookup_ip'], 2);
 starttable('-2');
 print "<tr>\n";
