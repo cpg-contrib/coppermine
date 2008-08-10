@@ -21,4 +21,5 @@
 // This theme has all CORE items removed                                     //
 // ------------------------------------------------------------------------- //
 define('THEME_IS_XHTML10_TRANSITIONAL',1);
+define('THEME_HAS_MENU_ICONS',16);
 ?>
