@@ -286,10 +286,10 @@ $template_user_admin_menu = <<<EOT
                 <div align="center">
                 <table cellpadding="0" cellspacing="1">
                         <tr>
-                                <td class="admin_menu"><a href="albmgr.php" title="{ALBMGR_TITLE}">{ALBMGR_LNK}</a></td>
+                                <td class="admin_menu"><a href="albmgr.php" title="{ALBMGR_TITLE}">{ALBUMS_ICO}{ALBMGR_LNK}</a></td>
                                 <td class="admin_menu"><a href="modifyalb.php" title="{MODIFYALB_TITLE}">{MODIFYALB_LNK}</a></td>
-                                <td class="admin_menu"><a href="profile.php?op=edit_profile" title="{MY_PROF_TITLE}">{MY_PROF_LNK}</a></td>
-                                <td class="admin_menu"><a href="picmgr.php" title="{PICTURES_TITLE}">{PICTURES_LNK}</a></td>
+                                <td class="admin_menu"><a href="profile.php?op=edit_profile" title="{MY_PROF_TITLE}">{MY_PROF_ICO}{MY_PROF_LNK}</a></td>
+                                <td class="admin_menu"><a href="picmgr.php" title="{PICTURES_TITLE}">{PICTURES_ICO}{PICTURES_LNK}</a></td>
                         </tr>
                 </table>
                 </div>
@@ -1788,7 +1788,6 @@ function theme_admin_mode_menu()
     global $lang_gallery_admin_menu, $lang_user_admin_menu;
     global $template_gallery_admin_menu, $template_user_admin_menu;
     global $CONFIG;
-    global $cpg_icon;
     global $THEME_DIR;
     
 
@@ -1800,18 +1799,6 @@ function theme_admin_mode_menu()
     if ($admin_menu == '') {
 
         if (GALLERY_ADMIN_MODE) {
-            if ($CONFIG['enable_menu_icons'] == 1) {
-                $icon_wrap_start = '<img src="';
-                if (defined('THEME_HAS_MENU_ICONS')) {
-                    $icon_wrap_start .= $THEME_DIR;
-                }
-                $icon_wrap_start .= 'images/icons/';
-                $icon_wrap_end = '" border="0" alt="" />';
-            } else {
-                $icon_wrap_start = '';
-                $icon_wrap_end = '';
-                $cpg_icon = array(); 
-            }
             
             if ($CONFIG['log_ecards'] == 0) {
                 template_extract_block($template_gallery_admin_menu, 'log_ecards');
@@ -1850,80 +1837,80 @@ function theme_admin_mode_menu()
             $param = array('{CATL}' => $cat_l,
                 '{UPL_APP_TITLE}' => $lang_gallery_admin_menu['upl_app_title'],
                 '{UPL_APP_LNK}' => $lang_gallery_admin_menu['upl_app_lnk'],
-                '{UPL_APP_ICO}' => $icon_wrap_start . $cpg_icon['upload_approval'] . $icon_wrap_end,
+                '{UPL_APP_ICO}' => cpg_fetch_icon('upload_approval'),
                 '{ADMIN_TITLE}' => $lang_gallery_admin_menu['admin_title'],
                 '{ADMIN_LNK}' => $lang_gallery_admin_menu['admin_lnk'],
-                '{ADMIN_ICO}' => $icon_wrap_start . $cpg_icon['config'] . $icon_wrap_end,
+                '{ADMIN_ICO}' => cpg_fetch_icon('config'),
                 '{ALBUMS_TITLE}' => $lang_gallery_admin_menu['albums_title'],
                 '{ALBUMS_LNK}' => $lang_gallery_admin_menu['albums_lnk'],
-                '{ALBUMS_ICO}' => $icon_wrap_start . $cpg_icon['alb_mgr'] . $icon_wrap_end,
+                '{ALBUMS_ICO}' => cpg_fetch_icon('alb_mgr'),
                 '{CATEGORIES_TITLE}' => $lang_gallery_admin_menu['categories_title'],
                 '{CATEGORIES_LNK}' => $lang_gallery_admin_menu['categories_lnk'],
-                '{CATEGORIES_ICO}' => $icon_wrap_start . $cpg_icon['cat_mgr'] . $icon_wrap_end,
+                '{CATEGORIES_ICO}' => cpg_fetch_icon('cat_mgr'),
                 '{USERS_TITLE}' => $lang_gallery_admin_menu['users_title'],
                 '{USERS_LNK}' => $lang_gallery_admin_menu['users_lnk'],
-                '{USERS_ICO}' => $icon_wrap_start . $cpg_icon['user_mgr'] . $icon_wrap_end,
+                '{USERS_ICO}' => cpg_fetch_icon('user_mgr'),
                 '{GROUPS_TITLE}' => $lang_gallery_admin_menu['groups_title'],
                 '{GROUPS_LNK}' => $lang_gallery_admin_menu['groups_lnk'],
-                '{GROUPS_ICO}' => $icon_wrap_start . $cpg_icon['groups_mgr'] . $icon_wrap_end,
+                '{GROUPS_ICO}' => cpg_fetch_icon('groups_mgr'),
                 '{COMMENTS_TITLE}' => $lang_gallery_admin_menu['comments_title'],
                 '{COMMENTS_LNK}' => $lang_gallery_admin_menu['comments_lnk'],
-                '{COMMENTS_ICO}' => $icon_wrap_start . $cpg_icon['comment_approval'] . $icon_wrap_end,
+                '{COMMENTS_ICO}' => cpg_fetch_icon('comment_approval'),
                 '{SEARCHNEW_TITLE}' => $lang_gallery_admin_menu['searchnew_title'],
                 '{SEARCHNEW_LNK}' => $lang_gallery_admin_menu['searchnew_lnk'],
-                '{SEARCHNEW_ICO}' => $icon_wrap_start . $cpg_icon['searchnew'] . $icon_wrap_end,
+                '{SEARCHNEW_ICO}' => cpg_fetch_icon('searchnew'),
                 '{MY_PROF_TITLE}' => $lang_user_admin_menu['my_prof_title'],
                 '{MY_PROF_LNK}' => $lang_user_admin_menu['my_prof_lnk'],
-                '{MY_PROF_ICO}' => $icon_wrap_start . $cpg_icon['my_profile'] . $icon_wrap_end,
+                '{MY_PROF_ICO}' => cpg_fetch_icon('my_profile'),
                 '{UTIL_TITLE}' => $lang_gallery_admin_menu['util_title'],
                 '{UTIL_LNK}' => $lang_gallery_admin_menu['util_lnk'],
-                '{UTIL_ICO}' => $icon_wrap_start . $cpg_icon['util'] . $icon_wrap_end,
+                '{UTIL_ICO}' => cpg_fetch_icon('util'),
                 '{BAN_TITLE}' => $lang_gallery_admin_menu['ban_title'],
                 '{BAN_LNK}' => $lang_gallery_admin_menu['ban_lnk'],
-                '{BAN_ICO}' => $icon_wrap_start . $cpg_icon['ban_user'] . $icon_wrap_end,
+                '{BAN_ICO}' => cpg_fetch_icon('ban_user'),
                 '{DB_ECARD_TITLE}' => $lang_gallery_admin_menu['db_ecard_title'],
                 '{DB_ECARD_LNK}' => $lang_gallery_admin_menu['db_ecard_lnk'],
-                '{DB_ECARD_ICO}' => $icon_wrap_start . $cpg_icon['ecard_review'] . $icon_wrap_end,
+                '{DB_ECARD_ICO}' => cpg_fetch_icon('ecard_review'),
                 '{PICTURES_TITLE}' => $lang_gallery_admin_menu['pictures_title'],
                 '{PICTURES_LNK}' => $lang_gallery_admin_menu['pictures_lnk'],
-                '{PICTURES_ICO}' => $icon_wrap_start . $cpg_icon['picture_sort'] . $icon_wrap_end,
+                '{PICTURES_ICO}' => cpg_fetch_icon('picture_sort'),
                 '{DOCUMENTATION_HREF}' => $documentation_href,
                 '{DOCUMENTATION_TITLE}' => $lang_gallery_admin_menu['documentation_title'],
                 '{DOCUMENTATION_LNK}' => $lang_gallery_admin_menu['documentation_lnk'],
-                '{DOCUMENTATION_ICO}' => $icon_wrap_start . $cpg_icon['documentation'] . $icon_wrap_end,
+                '{DOCUMENTATION_ICO}' => cpg_fetch_icon('documentation'),
                 '{PLUGINMGR_TITLE}' => $lang_gallery_admin_menu['pluginmgr_title'],
                 '{PLUGINMGR_LNK}' => $lang_gallery_admin_menu['pluginmgr_lnk'],
-                '{PLUGINMGR_ICO}' => $icon_wrap_start . $cpg_icon['plugin_mgr'] . $icon_wrap_end,
+                '{PLUGINMGR_ICO}' => cpg_fetch_icon('plugin_mgr'),
                 '{BRIDGEMGR_TITLE}' => $lang_gallery_admin_menu['bridgemgr_title'],
                 '{BRIDGEMGR_LNK}' => $lang_gallery_admin_menu['bridgemgr_lnk'],
-                '{BRIDGEMGR_ICO}' => $icon_wrap_start . $cpg_icon['bridge_mgr'] . $icon_wrap_end,
+                '{BRIDGEMGR_ICO}' => cpg_fetch_icon('bridge_mgr'),
                 '{PHPINFO_TITLE}' => $lang_gallery_admin_menu['phpinfo_title'],
                 '{PHPINFO_LNK}' => $lang_gallery_admin_menu['phpinfo_lnk'],
-                '{PHPINFO_ICO}' => $icon_wrap_start . $cpg_icon['phpinfo'] . $icon_wrap_end,
+                '{PHPINFO_ICO}' => cpg_fetch_icon('phpinfo'),
                 '{UPDATE_DATABASE_TITLE}' => $lang_gallery_admin_menu['update_database_title'],
                 '{UPDATE_DATABASE_LNK}' => $lang_gallery_admin_menu['update_database_lnk'],
-                '{UPDATE_DATABASE_ICO}' => $icon_wrap_start . $cpg_icon['update_database'] . $icon_wrap_end,
+                '{UPDATE_DATABASE_ICO}' => cpg_fetch_icon('update_database'),
                 '{VIEW_LOG_FILES_TITLE}' => $lang_gallery_admin_menu['view_log_files_title'],
                 '{VIEW_LOG_FILES_LNK}' => $lang_gallery_admin_menu['view_log_files_lnk'],
-                '{VIEW_LOG_FILES_ICO}' => $icon_wrap_start . $cpg_icon['view_logs'] . $icon_wrap_end,
+                '{VIEW_LOG_FILES_ICO}' => cpg_fetch_icon('view_logs'),
                 '{CHECK_VERSIONS_TITLE}' => $lang_gallery_admin_menu['check_versions_title'],
                 '{CHECK_VERSIONS_LNK}' => $lang_gallery_admin_menu['check_versions_lnk'],
-                '{CHECK_VERSIONS_ICO}' => $icon_wrap_start . $cpg_icon['check_versions'] . $icon_wrap_end,
+                '{CHECK_VERSIONS_ICO}' => cpg_fetch_icon('check_versions'),
                 '{OVERALL_STATS_TITLE}' => $lang_gallery_admin_menu['overall_stats_title'],
                 '{OVERALL_STATS_LNK}' => $lang_gallery_admin_menu['overall_stats_lnk'],
-                '{OVERALL_STATS_ICO}' => $icon_wrap_start . $cpg_icon['stats'] . $icon_wrap_end,
+                '{OVERALL_STATS_ICO}' => cpg_fetch_icon('stats'),
                 '{KEYWORDMGR_TITLE}' => $lang_gallery_admin_menu['keywordmgr_title'],
                 '{KEYWORDMGR_LNK}' => $lang_gallery_admin_menu['keywordmgr_lnk'],
-                '{KEYWORDMGR_ICO}' => $icon_wrap_start . $cpg_icon['keyword_mgr'] . $icon_wrap_end,
+                '{KEYWORDMGR_ICO}' => cpg_fetch_icon('keyword_mgr'),
                 '{EXIFMGR_TITLE}' => $lang_gallery_admin_menu['exifmgr_title'],
                 '{EXIFMGR_LNK}' => $lang_gallery_admin_menu['exifmgr_lnk'],
-                '{EXIFMGR_ICO}' => $icon_wrap_start . $cpg_icon['exif_mgr'] . $icon_wrap_end,
+                '{EXIFMGR_ICO}' => cpg_fetch_icon('exif_mgr'),
                 '{SHOWNEWS_TITLE}' => $lang_gallery_admin_menu['shownews_title'],
                 '{SHOWNEWS_LNK}' => $lang_gallery_admin_menu['shownews_lnk'],
-                '{SHOWNEWS_ICO}' => $icon_wrap_start . $cpg_icon['news_show'] . $icon_wrap_end,
+                '{SHOWNEWS_ICO}' => cpg_fetch_icon('news_show'),
                 '{EXPORT_TITLE}' => $lang_gallery_admin_menu['export_title'],
                 '{EXPORT_LNK}' => $lang_gallery_admin_menu['export_lnk'],
-                '{EXPORT_ICO}' => $icon_wrap_start . $cpg_icon['export'] . $icon_wrap_end,
+                '{EXPORT_ICO}' => cpg_fetch_icon('export'),
                 );
 
             $html = template_eval($template_gallery_admin_menu, $param);
@@ -1931,16 +1918,16 @@ function theme_admin_mode_menu()
         } elseif (USER_ADMIN_MODE) {
             $param = array('{ALBMGR_TITLE}' => $lang_user_admin_menu['albmgr_title'],
                 '{ALBMGR_LNK}' => $lang_user_admin_menu['albmgr_lnk'],
-                '{ALBUMS_ICO}' => $icon_folder . $cpg_icon['alb_mgr'],
+                '{ALBUMS_ICO}' => cpg_fetch_icon('alb_mgr'),
                 '{MODIFYALB_TITLE}' => $lang_user_admin_menu['modifyalb_title'],
                 '{MODIFYALB_LNK}' => $lang_user_admin_menu['modifyalb_lnk'],
-                '{MODIFYALB_ICO}' => $icon_folder . $cpg_icon['modifyalb'],
+                '{MODIFYALB_ICO}' => cpg_fetch_icon('modifyalb'),
                 '{MY_PROF_TITLE}' => $lang_user_admin_menu['my_prof_title'],
                 '{MY_PROF_LNK}' => $lang_user_admin_menu['my_prof_lnk'],
-                '{MY_PROF_ICO}' => $icon_folder . $cpg_icon['my_profile'],
+                '{MY_PROF_ICO}' => cpg_fetch_icon('my_profile'),
                 '{PICTURES_TITLE}' => $lang_gallery_admin_menu['pictures_title'],
                 '{PICTURES_LNK}' => $lang_gallery_admin_menu['pictures_lnk'],
-                '{PICTURES_ICO}' => $icon_folder . $cpg_icon['picture_sort'],
+                '{PICTURES_ICO}' => cpg_fetch_icon('picture_sort'),
                 );
 
             $html = template_eval($template_user_admin_menu, $param);
