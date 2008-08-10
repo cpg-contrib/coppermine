@@ -625,7 +625,7 @@ if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
   'usergal_cat_ro' => 'User galleries category can\'t be deleted !',
   'manage_cat' => 'Manage categories',
   'confirm_delete' => 'Are you sure you want to DELETE this category', // js-alert
-  'category' => 'Category',
+  'category' => 'Categories', // cpg1.5
   'operations' => 'Operations',
   'move_into' => 'Move into', 
   'update_create' => 'Update/Create category',
@@ -1485,6 +1485,7 @@ EOT;
 // ------------------------------------------------------------------------- //
 
 if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
+  'group_manager' => 'Group manager', // cpg 1.5.x
   'group_name' => 'Group',
   'permissions' => 'Permissions',
   'public_albums' => 'Public albums upload',
@@ -2377,6 +2378,9 @@ $lang_usermgr_php = array(
   'send_login_data' => 'Send login data to this user (Password will be sent in email)', // cpg1.5
   'send_login_email_subject' => 'Your new account information', // cpg1.5
   'failed_sending_email' => 'The login data email can\'t be sent!', // cpg1.5
+  'view_profile' => 'View profile', // cpg1.5
+  'edit_profile' => 'Edit profile', // cpg1.5
+  'ban_user' => 'Ban user', // cpg1.5
 );
 
 $lang_send_login_data_email = <<<EOT
