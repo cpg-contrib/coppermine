@@ -3527,6 +3527,7 @@ function cpg_alert_dev_version()
     if ($CONFIG['display_coppermine_news'] == 1 && GALLERY_ADMIN_MODE) {
         $help_news = '&nbsp;'.cpg_display_help('f=configuration.htm&amp;as=admin_general_coppermine_news&amp;ae=admin_general_coppermine_news_end&amp;top=1', '600', '300');
         $news_icon = cpg_fetch_icon('news_show');
+        $news_icon_hide = cpg_fetch_icon('news_hide');
         ob_start();
         starttable('100%');
         print <<< EOT
@@ -3538,7 +3539,7 @@ function cpg_alert_dev_version()
                       {$news_icon}{$lang_version_alert['coppermine_news']}{$help_news}
                     </td>
                     <td class="tableh1" align="right">
-                      <a href="mode.php?what=news&amp;referer={$REFERER}" class="admin_menu">{$lang_version_alert['hide']}</a>
+                      <a href="mode.php?what=news&amp;referer={$REFERER}" class="admin_menu">{$news_icon_hide}{$lang_version_alert['hide']}</a>
                     </td>
                   </tr>
                   <tr>
@@ -4671,12 +4672,12 @@ function rebuild_tree($parent, $left, $depth, $pos)
  *
  * @param string $icon_name (the name of the icon to fetch)
  * @param string $title string that is suppossed to populate the title attribute of the <img>-tag
- * @param string $ignore_config boolean. If populated, the config option that allows toggeling icons on/off will be ignored and the icon will be displayed no matter what
+ * @param string $config_level boolean. If populated, the config option that allows toggeling icons on/off will be ignored and the icon will be displayed no matter what
  * @param string $check boolean. If populated, the icon will be checked first if it exists
  * @param string $extension name of the extension, default being 'png'
  * @return string the fully populated <img>-tag 
  */
-function cpg_fetch_icon($icon_name, $title = '', $ignore_config = '', $check = '', $extension = 'png')
+function cpg_fetch_icon($icon_name, $config_level = '', $title = '', $check = '', $extension = 'png')
 {
     global $CONFIG, $THEME_DIR;
     if ($CONFIG['enable_menu_icons'] != 1) {
@@ -4716,7 +4717,7 @@ function cpg_fetch_icon($icon_name, $title = '', $ignore_config = '', $check = '
     if ($title != '') {
     	$return .= 'title="' . $title . '" ';
     }
-    $return .= '/>';
+    $return .= 'class="icon" />';
     return $return;
 }
 
