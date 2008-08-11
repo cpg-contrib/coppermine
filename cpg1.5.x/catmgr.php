@@ -573,7 +573,7 @@ EOT;
 
 starttable('100%');
 $help = '&nbsp;'.cpg_display_help('f=categories.htm&amp;as=cat_cp&amp;ae=cat_cp_end&amp;top=1', '800', '600');
-$icon = cpg_fetch_icon(cat_mgr, 2);
+$icon = cpg_fetch_icon('cat_mgr', 2);
 echo <<<EOT
         <tr>
                 <td class="tableh1"><span class="statlink">{$icon}{$lang_catmgr_php['category']}</span>$help</td>
