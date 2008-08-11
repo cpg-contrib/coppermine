@@ -118,7 +118,7 @@ $edit_profile_form_param = array(
     array('input', 'user_profile4', $CONFIG['user_profile4_name'], 255),
     array('input', 'user_profile5', $CONFIG['user_profile5_name'], 255),
     array('textarea', 'user_profile6', $CONFIG['user_profile6_name'], 255),
-    array('text', 'disk_usage', $lang_register_php['disk_usage']),
+    array('text', 'disk_usage', cpg_fetch_icon('disk_usage', 2) . $lang_register_php['disk_usage']),
     );
 
 
@@ -436,17 +436,16 @@ switch ($op) {
     <form name="cpgform" id="cpgform" method="post" action="{$CPG_PHP_SELF}">
 
 EOT;
-        starttable(-1, $title, 2);
+        starttable(-1, cpg_fetch_icon('my_profile', 2) . $title, 2);
         make_form($edit_profile_form_param, $form_data);
         $pic_count = cpgUserPicCount($user_data['user_name']);
         $user_thumb = cpgUserThumb(USER_ID);
         $userID = USER_ID;
         $lastComArray = cpgUserLastComment(USER_ID);
         if ($lastComArray['count'] > 0) {
-          $lastComByText = '<br />'.
-                           '(<a href="thumbnails.php?album=lastcomby&amp;uid='.$userID.'">'.
-                           sprintf($lang_register_php['last_comments_detail'], $lang_register_php['you']).
-                           '</a>)';
+          $lastComByText = '&nbsp;<a href="thumbnails.php?album=lastcomby&amp;uid='.$userID.'">'.
+                           cpg_fetch_icon('comment_approval', 0, sprintf($lang_register_php['last_comments_detail'], $lang_register_php['you'])).
+                           '</a>';
           $lastComDate = '<br />'.
                          '<span class="thumb_caption">'.
                          localised_date($lastComArray['msg_date'], $lastcom_date_fmt).
@@ -459,10 +458,9 @@ EOT;
           $lastComText = $lang_register_php['none'];
         }
         if ($pic_count > 0) {
-          $lastUploadByText = '<br />'.
-                            '(<a href="thumbnails.php?album=lastupby&amp;uid='.$userID.'">'.
-                            sprintf($lang_register_php['last_uploads_detail'], $lang_register_php['you']).
-                            '</a>)';
+          $lastUploadByText = '&nbsp;<a href="thumbnails.php?album=lastupby&amp;uid='.$userID.'">'.
+                            cpg_fetch_icon('last_uploads', 0, sprintf($lang_register_php['last_uploads_detail'], $lang_register_php['you'])).
+                            '</a>';
           $lastUploadText = '<a href="thumbnails.php?album=lastupby&amp;uid='.$userID.'">'.
                             '<span class="thumb_title">'.
                             $user_thumb.
@@ -537,7 +535,7 @@ EOT;
         </script>
         <form name="cpgform2" id="cpgform2" method="get" action="delete.php" >
 EOT;
-          starttable(-1, $lang_register_php['delete_my_account'], 2);
+          starttable(-1, cpg_fetch_icon('my_profile', 2) . $lang_register_php['delete_my_account'], 2);
           $user_id = USER_ID;
           $warning = sprintf($lang_register_php['warning_delete'],'<a href="thumbnails.php?album=lastupby&uid='.$user_id.'">','</a>','<a href="thumbnails.php?album=lastcomby&uid='.$user_id.'">','</a>');
           echo <<<EOT
@@ -594,7 +592,7 @@ EOT;
         echo <<<EOT
          <form name="cpgform" id="cpgform" method="post" action="{$CPG_PHP_SELF}">
 EOT;
-        starttable(-1, $title, 2);
+        starttable(-1, cpg_fetch_icon('my_profile', 2) . $title, 2);
         make_form($change_password_form_param, '');
         echo <<<EOT
     <tr>
@@ -657,7 +655,7 @@ EOT;
 
         $title = sprintf($lang_register_php['x_s_profile'], $user_data['user_name']);
         pageheader($title);
-        starttable(-1, $title, 2);
+        starttable(-1, cpg_fetch_icon('my_profile', 2) . $title, 2);
         make_form($display_profile_form_param, $form_data);
         endtable();
         pagefooter();

@@ -288,7 +288,7 @@ if($superCage->get->keyExists('delete_comment_id') && $superCage->get->getInt('d
 
 pageheader($lang_banning_php['title']);
 
-starttable('100%', $lang_banning_php['title'], 4);
+starttable('100%', cpg_fetch_icon('ban_user', 2) . $lang_banning_php['title'], 4);
 create_banlist();
 endtable();
 $calendar_link_new = 'calendar.php?action=banning&amp;month='.ltrim(strftime('%m'),'0').'&amp;year='.strftime('%Y');

@@ -45,7 +45,7 @@ if($superCage->post->keyExists('exportSubmit'))
   while($album = mysql_fetch_assoc($result))
     $options .= "<option value=\"{$album['aid']}\">{$album['title']}</option>";
 
-  starttable('-1', $lang_export_php['export'].'&nbsp;'.cpg_display_help('f=export.htm&amp;as=export&amp;ae=export_end', '600', '450'), 2);
+  starttable('-1', cpg_fetch_icon('export', 2) . $lang_export_php['export'].'&nbsp;'.cpg_display_help('f=export.htm&amp;as=export&amp;ae=export_end', '600', '450'), 2);
 	
   echo <<< EOT
 

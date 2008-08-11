@@ -28,7 +28,7 @@ if (!GALLERY_ADMIN_MODE) {
 
 pageheader($lang_keywordmgr_php['title']);
 
-starttable("100%", $lang_keywordmgr_php['title'], 3);
+starttable("100%", cpg_fetch_icon('keyword_mgr', 2) . $lang_keywordmgr_php['title'], 3);
 echo <<<EOT
       <tr>
           <td class="tablef"><b>{$lang_common['edit']}</b></td>

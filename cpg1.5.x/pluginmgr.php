@@ -57,7 +57,7 @@ function display_plugin_list() {
     $yes_selected = $CONFIG['enable_plugins'] ? 'checked="checked"' : '';
     $no_selected = !$CONFIG['enable_plugins'] ? 'checked="checked"' : '';
     print '<form name="pluginenableconfig" id="cpgform2" action="'.$CPG_PHP_SELF.'" method="post" style="margin:0px;padding:0px">';
-    starttable('-1', $lang_pluginmgr_php['pmgr'].$help,3);
+    starttable('-1', cpg_fetch_icon('plugin_mgr', 2) . $lang_pluginmgr_php['pmgr'].$help,3);
 echo <<< EOT
         <tr>
                 <td class="tableh2" colspan="3">

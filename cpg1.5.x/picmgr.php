@@ -374,7 +374,7 @@ pageheader($lang_picmgr_php['pic_mgr']);
 -->
 </script>
 <form name="picture_menu" id="cpgform" method="post" action="delete.php?what=picmgr" onSubmit="return CheckPictureForm(this);">
-<?php starttable("100%", $lang_picmgr_php['pic_mgr'], 1); ?>
+<?php starttable("100%", cpg_fetch_icon('picture_sort', 2) . $lang_picmgr_php['pic_mgr'], 1); ?>
 <noscript>
 <tr>
                 <td colspan="2" class="tableh2">
@@ -435,22 +435,21 @@ EOT;
          $lb .= '               <option value="picture_no=' . $picture['pid'] .',picture_nm=\'' . $picture['filename'] .'\',picture_sort=' .($i++). ',action=0">' . stripslashes($picture['filename']) . "</option>\n";
    }
    echo $lb;
+   $move_up = cpg_fetch_icon('up', 0, $lang_common['move_up']);
+   $move_down = cpg_fetch_icon('down', 0, $lang_common['move_down']);
+   $move_top = cpg_fetch_icon('upup', 0, $lang_common['move_top']);
+   $move_bottom = cpg_fetch_icon('downdown', 0, $lang_common['move_bottom']);
    echo <<<EOT
    </select>
          </td>
       </tr>
       <tr>
          <td>
-            <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tr>
-               <td><a href="javascript:Moveup_Option();"><img src="images/move_up.gif" width="26" height="21" border="0" alt="^" title="{$lang_common['move_up']}"/></a><a href="javascript:Movedown_Option();"><img src="images/move_down.gif" width="26" height="21" border="0" alt="v" title="{$lang_common['move_down']}" /></a>
-               &nbsp; <a href="javascript:Movetop_Option();"><img src="images/move_top.gif" width="26" height="21" border="0" alt="^^" title="{$lang_common['move_top']}" /></a><a href="javascript:Movebottom_Option();"><img src="images/move_bottom.gif" width="26" height="21" border="0" alt="vv" title="{$lang_common['move_bottom']}" /></a>
-               </td>
-<!-- Joe Ernst: I commented this out because I can't get it to work. -->
-               <td align="center" style="width: 1px;"><img src="images/spacer.gif" width="1" alt=""><br />
-               </td>
-            </tr>
-            </table>
+               <a href="javascript:Moveup_Option();">{$move_up}</a>
+               <a href="javascript:Movedown_Option();">{$move_down}</a>
+               &nbsp; 
+               <a href="javascript:Movetop_Option();">{$move_top}</a>
+               <a href="javascript:Movebottom_Option();">{$move_bottom}</a>
          </td>
       </tr>
       <tr>

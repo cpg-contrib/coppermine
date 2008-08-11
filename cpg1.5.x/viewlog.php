@@ -95,7 +95,7 @@ if (!$USER_DATA['has_admin_access']) {
 		cpg_die(CRITICAL_ERROR,$lang_errors['access_denied'], __FILE__,1);
 }
 
-starttable("100%", "Logs :: ".$log);
+starttable("100%", cpg_fetch_icon('view_logs', 2) . "Logs :: ".$log);
 
 
 if (isset($action)) {

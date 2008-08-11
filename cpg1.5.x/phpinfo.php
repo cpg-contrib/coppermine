@@ -41,7 +41,7 @@ $string = str_replace('class="center"','',$string);
 ob_end_clean();
 
 print '<div align="left" style="overflow:hidden;width:800px;text-align:left;">';
-starttable('100%', $lang_phpinfo_php['php_info'], 1);
+starttable('100%', cpg_fetch_icon('phpinfo', 2) . $lang_phpinfo_php['php_info'], 1);
 print '<tr><td class="tableb">';
 print $lang_phpinfo_php['explanation'];
 print '<br />';
