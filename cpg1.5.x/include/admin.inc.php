@@ -242,9 +242,10 @@ $config_data = array(
       'help_link' => 'f=configuration.htm&amp;as=admin_language_custom_lnk_url&amp;ae=admin_language_custom_lnk_url_end',
     ),
     'enable_menu_icons' => array(
-      'type' => 'checkbox',
-      'default_value' => '1',
+      'type' => 'radio',
+      'default_value' => '2',
       'help_link' => 'f=configuration.htm&amp;as=admin_enable_menu_icons&amp;ae=admin_enable_menu_icons_end',
+      'options' => array($lang_common['no'], $lang_common['yes'].': '.$lang_admin_php['menu_only'], $lang_common['yes'].': '.$lang_admin_php['everywhere']),
     ),
     'show_bbcode_help' => array(
       'type' => 'checkbox',
