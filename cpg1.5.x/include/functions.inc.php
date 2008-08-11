@@ -3502,7 +3502,7 @@ function cpg_alert_dev_version()
     $return = '';
     if (COPPERMINE_VERSION_STATUS != 'stable') {
         ob_start();
-        starttable('100%', cpg_fetch_icon('warning') . $lang_version_alert['version_alert']);
+        starttable('100%', cpg_fetch_icon('warning', 2) . $lang_version_alert['version_alert']);
         print '<tr><td class="tableb">';
         print sprintf($lang_version_alert['no_stable_version'], COPPERMINE_VERSION, COPPERMINE_VERSION_STATUS);
         print '</td></tr>';
@@ -3526,8 +3526,8 @@ function cpg_alert_dev_version()
     // display news from coppermine-gallery.net
     if ($CONFIG['display_coppermine_news'] == 1 && GALLERY_ADMIN_MODE) {
         $help_news = '&nbsp;'.cpg_display_help('f=configuration.htm&amp;as=admin_general_coppermine_news&amp;ae=admin_general_coppermine_news_end&amp;top=1', '600', '300');
-        $news_icon = cpg_fetch_icon('news_show');
-        $news_icon_hide = cpg_fetch_icon('news_hide');
+        $news_icon = cpg_fetch_icon('news_show', 2);
+        $news_icon_hide = cpg_fetch_icon('news_hide', 1);
         ob_start();
         starttable('100%');
         print <<< EOT
@@ -4677,13 +4677,11 @@ function rebuild_tree($parent, $left, $depth, $pos)
  * @param string $extension name of the extension, default being 'png'
  * @return string the fully populated <img>-tag 
  */
-function cpg_fetch_icon($icon_name, $config_level = '', $title = '', $check = '', $extension = 'png')
+function cpg_fetch_icon($icon_name, $config_level = 0, $title = '', $check = '', $extension = 'png')
 {
     global $CONFIG, $THEME_DIR;
-    if ($CONFIG['enable_menu_icons'] != 1) {
-    	if ($ignore_config == '') {
-    		return;
-    	}
+    if ($CONFIG['enable_menu_icons'] < $config_level) {
+    	return;
     }
     $return = '';
     if (defined('THEME_HAS_MENU_ICONS')) {
