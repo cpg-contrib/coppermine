@@ -34,7 +34,7 @@ echo <<< EOT
 <form method="get" action="thumbnails.php" name="searchcpg" id="cpgform3">
 EOT;
 
-starttable('60%', $lang_search_php['title']);
+starttable('100%', cpg_fetch_icon('search', 2) . $lang_search_php['title']);
 
 $ip = GALLERY_ADMIN_MODE ? '
         <tr>

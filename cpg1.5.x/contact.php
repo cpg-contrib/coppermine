@@ -165,7 +165,7 @@ if ($superCage->post->keyExists('submit')) {
 
 // the form has not been submit yet, so let's display it
   print '<form method="post" action="'.$CPG_PHP_SELF.'" name="contactForm" id="contactForm" onsubmit="return validateContactFormFields();">'."\n";
-  starttable('100%', $lang_contact_php['title'], 3);
+  starttable('100%', cpg_fetch_icon('contact', 2) . $lang_contact_php['title'], 3);
   // name field
   if (!USER_ID && $CONFIG['contact_form_guest_name_field'] != 0) {
     print <<< EOT

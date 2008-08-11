@@ -96,7 +96,7 @@ if ($superCage->get->getInt('force_login')) {
 //$referer = urlencode($referer);
 echo '<form action="login.php?referer='.urlencode($CPG_REFERER).'" method="post" name="loginbox" id="cpgform">';
 
-starttable('-1', $lang_login_php['enter_login_pswd'], 2);
+starttable('-1', cpg_fetch_icon('login', 2) . $lang_login_php['enter_login_pswd'], 2);
 
 //see how users are allowed to login, can be username, email address or both
 $login_method = $lang_login_php[$CONFIG['login_method']];
