@@ -318,9 +318,9 @@ EOT;
                         <td class="tableh1">
 EOT;
 if (!$lim_user) {
-    echo '<h2>'.cpg_fetch_icon('user_mgr').$lang_usermgr_php['user_manager'].$help.'</h2>';
+    echo '<h2>'.cpg_fetch_icon('user_mgr', 2).$lang_usermgr_php['user_manager'].$help.'</h2>';
 } else {
-    echo '<h2>'.$lang_usermgr_php['memberlist'].'</h2>';
+    echo '<h2>'.cpg_fetch_icon('user_mgr', 2).$lang_usermgr_php['memberlist'].'</h2>';
 }
 echo <<<EOT
                         </td>
@@ -413,14 +413,14 @@ EOT;
             $user['user_lastvisit'] = $lang_usermgr_php['never'];
         }
 
-        $view_profile = '<a href="profile.php?uid=' . $user['user_id'] . '">' . cpg_fetch_icon('my_profile', $lang_usermgr_php['view_profile'], 1) . '</a>';
+        $view_profile = '<a href="profile.php?uid=' . $user['user_id'] . '">' . cpg_fetch_icon('my_profile', 0, $lang_usermgr_php['view_profile']) . '</a>';
         if ($user['pic_count']) {
-            $last_uploads = '<a href="thumbnails.php?album=lastupby&uid=' . $user['user_id'] . '">' . cpg_fetch_icon('last_uploads', $lang_usermgr_php['latest_upload'], 1) . '</a>';
+            $last_uploads = '<a href="thumbnails.php?album=lastupby&uid=' . $user['user_id'] . '">' . cpg_fetch_icon('last_uploads', 0, $lang_usermgr_php['latest_upload']) . '</a>';
         } else {
-        	$last_uploads = cpg_fetch_icon('blank', '', 1);
+        	$last_uploads = cpg_fetch_icon('blank', 0);
         }
         // To do: fetch number of comments and add link to comments if applicable
-        $ban_user_link = '<a href="banning.php?ban_user=' . $user['user_id'] . '">' . cpg_fetch_icon('ban_user', $lang_usermgr_php['ban_user'], 1) . '</a>';
+        $ban_user_link = '<a href="banning.php?ban_user=' . $user['user_id'] . '">' . cpg_fetch_icon('ban_user', 0, $lang_usermgr_php['ban_user']) . '</a>';
 
         
 
@@ -433,7 +433,7 @@ EOT;
                     $profile_link = $CPG_PHP_SELF.'?op=edit&user_id='.$user['user_id'];
                     $checkbox_html = '<input name="u'.$user['user_id'].'" '.$makereadonly.'type="checkbox" value="" class="checkbox" />';
                 }
-                $profile_link = '<a href="' . $profile_link . '">' . cpg_fetch_icon('edit', $lang_usermgr_php['edit_profile'], 1) . '</a>';
+                $profile_link = '<a href="' . $profile_link . '">' . cpg_fetch_icon('edit', 0, $lang_usermgr_php['edit_profile']) . '</a>';
                 echo <<< EOT
         <tr>
                 <td class="{$row_style_class}" align="center">{$checkbox_html}</td>
@@ -521,7 +521,7 @@ EOT;
 
     $help_create = '&nbsp;'.cpg_display_help('f=users.htm&amp;as=user_cp_new&amp;ae=user_cp_new_end', '600', '250');
 
-    $create_new_user_icon = cpg_fetch_icon('add');
+    $create_new_user_icon = cpg_fetch_icon('add', 2);
     echo <<<EOT
                               </select>
                             <select name="delete_files" size="1" class="listbox" style="display:none">

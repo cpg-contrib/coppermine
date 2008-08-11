@@ -109,7 +109,7 @@ EOT;
                 // we have a group here that doesn't have the default name
                 //print '<img src="images/flags/reset.gif" width="16" height="11" border="0" alt="" title="'.sprintf($lang_groupmgr_php['reset_to_default'], $default_group_names[$group['group_id']]).'" style="cursor:pointer" onclick="document.groupmanager.group_name_'.$group['group_id'].'.value=\''.$default_group_names[$group['group_id']].'\'" />';
                 print '<a href="javascript:;" onclick="document.groupmanager.group_name_'.$group['group_id'].'.value=\''.$default_group_names[$group['group_id']].'\'">';
-                print cpg_fetch_icon('stop',sprintf($lang_groupmgr_php['reset_to_default'], $default_group_names[$group['group_id']]),1);
+                print cpg_fetch_icon('stop', 0, sprintf($lang_groupmgr_php['reset_to_default'], $default_group_names[$group['group_id']]));
                 print '</a>';
             }
         }
@@ -370,7 +370,7 @@ $help_permissions = '&nbsp;'.cpg_display_help('f=groups.htm&amp;as=group_cp_perm
 $help_public = '&nbsp;'.cpg_display_help('f=groups.htm&amp;as=group_cp_public&amp;ae=group_cp_public_end&amp;top=1', '500', '200');
 $help_personal = '&nbsp;'.cpg_display_help('f=groups.htm&amp;as=group_cp_personal&amp;ae=group_cp_personal_end&amp;top=1', '500', '200');
 $help_upload_method = '&nbsp;'.cpg_display_help('f=groups.htm&amp;as=group_cp_upload_method&amp;ae=group_cp_upload_method_end&amp;top=1', '700', '400');
-starttable('100%', cpg_fetch_icon('groups_mgr').$lang_groupmgr_php['group_manager']. '&nbsp;' . cpg_display_help('f=groups.htm&amp;as=group_cp&amp;ae=group_cp_end&amp;top=1', '700', '500'), 6);
+starttable('100%', cpg_fetch_icon('groups_mgr', 2).$lang_groupmgr_php['group_manager']. '&nbsp;' . cpg_display_help('f=groups.htm&amp;as=group_cp&amp;ae=group_cp_end&amp;top=1', '700', '500'), 6);
 echo <<<EOT
 
         <tr style="white-space:nowrap">

@@ -385,7 +385,7 @@ pageheader($lang_albmgr_php['title']);
 -->
 </script>
 <form name="album_menu" id="cpgform" method="post" action="delete.php?what=albmgr" onSubmit="return CheckAlbumForm(this);">
-<?php starttable("100%", cpg_fetch_icon('alb_mgr').$lang_albmgr_php['title'].'&nbsp;'.cpg_display_help('f=albums.htm&as=albmgr&ae=albmgr_end&top=1', '600', '400'), 1);
+<?php starttable("100%", cpg_fetch_icon('alb_mgr', 2).$lang_albmgr_php['title'].'&nbsp;'.cpg_display_help('f=albums.htm&as=albmgr&ae=albmgr_end&top=1', '600', '400'), 1);
 ?>
 <noscript>
 <tr>
@@ -483,14 +483,14 @@ echo $lb;
 // Only show move-buttons when admin or in user's private category.
 // Sorting is also prevented in delete.php when user doesn't have the rights.
 if (GALLERY_ADMIN_MODE||($cat == USER_ID + FIRST_USER_CAT)) {
-    echo '                    <td><a href="javascript:Moveup_Option();">'.cpg_fetch_icon('up', $lang_common['move_up'], 1).'</a><a href="javascript:Movedown_Option();">'.cpg_fetch_icon('down', $lang_common['move_down'], 1).'</a>
-                      &nbsp; <a href="javascript:Movetop_Option();">'.cpg_fetch_icon('upup', $lang_common['move_top'], 1).'</a><a href="javascript:Movebottom_Option();">'.cpg_fetch_icon('downdown', $lang_common['move_bottom'], 1).'</a>
+    echo '                    <td><a href="javascript:Moveup_Option();">'.cpg_fetch_icon('up', 0, $lang_common['move_up']).'</a><a href="javascript:Movedown_Option();">'.cpg_fetch_icon('down', 0, $lang_common['move_down']).'</a>
+                      &nbsp; <a href="javascript:Movetop_Option();">'.cpg_fetch_icon('upup', 0, $lang_common['move_top']).'</a><a href="javascript:Movebottom_Option();">'.cpg_fetch_icon('downdown', 0, $lang_common['move_bottom']).'</a>
                     </td>';
 } else {
     echo '                    <td></td>';
 }
-$delete_output = cpg_fetch_icon('delete', $lang_common['delete'], 1);
-$new_output = cpg_fetch_icon('add', $lang_common['new'], 1);
+$delete_output = cpg_fetch_icon('delete', 0, $lang_common['delete']);
+$new_output = cpg_fetch_icon('add', 0, $lang_common['new']);
 echo <<< EOT
                                                                                 <td align="center" ><a href="javascript:Album_Delete();" style="color: Black; font-weight: bold;">{$delete_output}</a>
                                                                                 </td>
