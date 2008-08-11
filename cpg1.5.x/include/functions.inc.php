@@ -4670,35 +4670,35 @@ function rebuild_tree($parent, $left, $depth, $pos)
  * Function to fetch an icon
  *
  *
- * @param string $icon_name (the name of the icon to fetch)
- * @param string $title string that is suppossed to populate the title attribute of the <img>-tag
- * @param string $config_level boolean. If populated, the config option that allows toggeling icons on/off will be ignored and the icon will be displayed no matter what
- * @param string $check boolean. If populated, the icon will be checked first if it exists
- * @param string $extension name of the extension, default being 'png'
- * @return string the fully populated <img>-tag 
+ * @param string $icon_name: the name of the icon to fetch
+ * @param string $title string: to populate the title attribute of the <img>-tag
+ * @param string $config_level boolean: If populated, the config option that allows toggling icons on/off will be ignored and the icon will be displayed no matter what
+ * @param string $check boolean: If populated, the icon will be checked first if it exists
+ * @param string $extension: name of the extension, default being 'png'
+ * @return string: the fully populated <img>-tag
  */
 function cpg_fetch_icon($icon_name, $config_level = 0, $title = '', $check = '', $extension = 'png')
 {
     global $CONFIG, $THEME_DIR;
     if ($CONFIG['enable_menu_icons'] < $config_level) {
-    	return;
+      return;
     }
     $return = '';
     if (defined('THEME_HAS_MENU_ICONS')) {
-    	$folder = $THEME_DIR . 'images/icons/';
+      $folder = $THEME_DIR . 'images/icons/';
     } else {
-    	$folder = 'images/icons/';
+      $folder = 'images/icons/';
     }
     // sanitize extension
     if ($extension != 'jpg' && $extension != 'gif') {
-    	$extension = 'png';
+      $extension = 'png';
     }
     $relative_path = $folder . $icon_name . '.' . $extension;
     // check if file exists
     if ($check != '') {
-    	if (file_exists($relative_path) != TRUE) {
-    		return;
-    	}
+      if (file_exists($relative_path) != TRUE) {
+        return;
+      }
     }
     $return .= '<img src="';
     $return .= $relative_path;
@@ -4708,12 +4708,12 @@ function cpg_fetch_icon($icon_name, $config_level = 0, $title = '', $check = '',
     // so we assume 16 x 16 pixels unless specified otherwise in
     // the custom theme
     if (defined('THEME_HAS_MENU_ICONS')) {
-    	$return .= 'width="' . THEME_HAS_MENU_ICONS . '" height="' . THEME_HAS_MENU_ICONS . '" ';
+      $return .= 'width="' . THEME_HAS_MENU_ICONS . '" height="' . THEME_HAS_MENU_ICONS . '" ';
     } else {
-    	$return .= 'width="16" height="16" ';
+      $return .= 'width="16" height="16" ';
     }
     if ($title != '') {
-    	$return .= 'title="' . $title . '" ';
+      $return .= 'title="' . $title . '" ';
     }
     $return .= 'class="icon" />';
     return $return;
