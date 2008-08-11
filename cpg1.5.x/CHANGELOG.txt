@@ -25,7 +25,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
-2008-08-11 [B] Fixing thumbnail dimension calculation rounding error {Nibbler}
+2008-08-11 [B] Fixed transparent overlay with HTML entities in $picture_url {Paver}
+2008-08-11 [B] Fixed thumbnail dimension calculation rounding error {Nibbler}
 2008-08-09 [C] Added new set of generic thumbnails representing non-image files {GauGau}
 2008-08-08 [O] Added new set of flag icons {GauGau}
 2008-08-06 [O] Removed unneeded CSS classes admin_menu_thumb and adm_menu {GauGau}
@@ -42,7 +43,7 @@ Changelog
 2008-06-19 [A] New javascript based multi-processing queue for batch add {Nibbler}
 2008-06-17 [C] Cleaned up code, indentation for multiple files {Paver}
 2008-06-17 [O] Consolidated and cleaned up language variables {Paver}
-2008-06-15 [A] New category heirarchy system {Nibbler}
+2008-06-15 [A] New category hierarchy system {Nibbler}
 2008-06-12 [B] Fixed bug in thumb size output for search results of categories & albums {Paver}
 2008-06-12 [C] Added alternating table rows to updater {GauGau}
 2008-06-12 [O] Fixed broken debug mode for updater due to Inspekt sanitization {GauGau}
@@ -105,7 +106,7 @@ Changelog
 2008-02-11 [B] Removing column comments for compatibility {Nibbler}
 2008-02-10 [A] Added onlinestats plugin {GauGau}
 2008-02-09 [A] Added OpenSearch plugin {GauGau}
-2008-02-09 [O] Modified the code in picmgr.php to reflect security improvents imposed by Inspekt {SaWey}
+2008-02-09 [O] Modified the code in picmgr.php to reflect security improvements imposed by Inspekt {SaWey}
 2008-02-07 [C] Added nicer album drop down in modifyalb.php {SaWey}
 2008-02-07 [B] Fixed users not able to go to modifyalb.php when no album is set in super globals {SaWey}
 2008-02-07 [C] Changed all needed files to lowercase {Frantz & SaWey}
@@ -117,7 +118,7 @@ Changelog
 2008-01-28 [A] Added plugin "User Gallery Alphabetic Tabbing" to core {GauGau}
 2008-01-26 [M] Updated year info in header (copyright line) {GauGau}
 2008-01-24 [D] Added section of how to use superglobals in plugin_writing.htm {SaWey}
-2008-01-24 [O] Modified search.inc, xp_publish, viewlog, index, picmgr, update, viewlog, thumbnails and visiblehookpoints-plugin to reflect security improvents imposed by Inspekt {SaWey}
+2008-01-24 [O] Modified search.inc, xp_publish, viewlog, index, picmgr, update, viewlog, thumbnails and visiblehookpoints-plugin to reflect security improvements imposed by Inspekt {SaWey}
 2008-01-09 [A] Added ajax filmstrip feature {Abbas}
 2008-01-09 [A] Added jQuery1.2.1 library (packed) {Abbas}
 2008-01-08 [D] Added (preliminary) JavaScript documentation {Abbas}
@@ -126,10 +127,10 @@ Changelog
 2008-01-06 [B] Not able to upload to albums that aren't in any category {SaWey}
 2008-01-04 [A] Retrieve the news by URI if possible and fall back to iframe only if retrieval does not work as expected {GauGau}
 2008-01-04 [B] Avoid possible corrupt zip files by cleaning output buffer {Nibbler}
-2007-12-29 [A] Added new installer, renamed old one untill this one is stable {SaWey}
+2007-12-29 [A] Added new installer, renamed old one until this one is stable {SaWey}
 2007-12-29 [D] Fixed documentation that explains admin passwords (thread ID 49304) {GauGau}
 2007-12-27 [B] Improved versioncheck functionality for offline use (work in progress) {GauGau}
-2007-12-27 [O] Modified the code in send_activation.php to reflect security improvents imposed by Inspekt {Frantz}
+2007-12-27 [O] Modified the code in send_activation.php to reflect security improvements imposed by Inspekt {Frantz}
 2007-12-21 [A] Improved debug output {Nibbler}
 2007-12-21 [O] Performance improvement for album dropdown code {Nibbler}
 2007-12-21 [O] Should have indexes for the moderator group and visibility fields {Nibbler}
@@ -138,21 +139,21 @@ Changelog
 2007-12-18 [B] Fixed calendar only showing dates in the future when usng it for banning {SaWey}
 2007-12-17 [B] Fixed calendar not showing in IE {SaWey}
 2007-12-17 [B] Fixed user ip not retrieved {SaWey}
-2007-12-17 [O] Modified pluginmgr, plugin_api and sample plugin to reflect security improvents imposed by Inspekt {Abbas}
+2007-12-17 [O] Modified pluginmgr, plugin_api and sample plugin to reflect security improvements imposed by Inspekt {Abbas}
 2007-12-17 [A] Switched from sprintf() to using a template for forgot password emails (thread id 25669) {Abbas}
 2007-12-17 [B] Corrected the bug reported in 49059 regarding display of dialog box for unlogged users {Aditya}
-2007-12-17 [O] Modified report_file to reflect security improvents imposed by Inspekt {Aditya}
-2007-12-17 [O] Modified displayreport to reflect security improvents imposed by Inspekt {Frantz}
+2007-12-17 [O] Modified report_file to reflect security improvements imposed by Inspekt {Aditya}
+2007-12-17 [O] Modified displayreport to reflect security improvements imposed by Inspekt {Frantz}
 2007-12-15 [B] Fixed some permissions on user creatable albums {SaWey}
-2007-12-15 [O] Modified forgot_passwd to reflect security improvents imposed by Inspekt {Aditya}
-2007-12-15 [A] Added auto check of internal/external links in bbcode + add rel="external nofolow" accordingly and removed [iurl] option {SaWey}
+2007-12-15 [O] Modified forgot_passwd to reflect security improvements imposed by Inspekt {Aditya}
+2007-12-15 [A] Added auto check of internal/external links in bbcode + add rel="external nofollow" accordingly and removed [iurl] option {SaWey}
 2007-12-15 [A] Added bbcode help icon on comments {SaWey}
 2007-12-15 [B] Fixed users not able modify albums when they don't have one in the 'My gallery' cat {SaWey}
 2007-12-15 [B] Fixed users not able to upload pics in there albums other then 'My gallery' {SaWey}
 2007-12-14 [A] Added two more levels of access for guests: no access, thumbs only, thumbs + intermediate only, thumbs + intermediate + full-size {GauGau}
-2007-12-14 [O] Modified ecard and displayecard to reflect security improvents imposed by Inspekt {Aditya}
+2007-12-14 [O] Modified ecard and displayecard to reflect security improvements imposed by Inspekt {Aditya}
 2007-12-14 [B] Fixed parent category on category-edit {SaWey}
-2007-12-14 [A] Added posibility for users to create albums in admin allowed categories {SaWey}
+2007-12-14 [A] Added possibility for users to create albums in admin allowed categories {SaWey}
 2007-12-02 [S] Added code to avoid the direct execution of slideshow.inc.php {Aditya}
 2007-12-08 [B] The CSS used for middlethumb class for filmstrip was not working. Fixed it (related to thread 48803) {Abbas}
 2007-12-06 [A] Added separate CSS class for filmstrip thumb that represents actual image (thread id 48803) {GauGau}
@@ -240,7 +241,7 @@ Changelog
 2007-05-21 [C] Replaced hard-coded bold tags with corresponding CSS formats in theme files {GauGau}
 2007-05-21 [A] Added browse-by-date meta-album {GauGau}
 2007-05-21 [B] Fixed charset for help pop-ups {GauGau}
-2007-05-07 [O] Changed picture title and description from regular text to header formating for search engine friendliness {GauGau}
+2007-05-07 [O] Changed picture title and description from regular text to header formatting for search engine friendliness {GauGau}
 2007-05-07 [O] Added noindex & nofollow meta-tags to meta albums for search engine friendliness {GauGau}
 2007-05-07 [O] Inversed order of items in title tag for search engine friendliness {GauGau}
 2007-05-07 [A] Added option to hide stats on index page {GauGau}
@@ -316,7 +317,7 @@ Changelog
 2006-10-03 [S] Corrected flaw in search logic {Nibbler}
 2006-09-18 [A] Added overall stats mod {GauGau}
 2006-09-18 [B] Escape queries in include/exif_php.inc.php {Paver}
-2006-09-18 [A] Added browser and os icons for stats {GauGau}
+2006-09-18 [A] Added browser and OS icons for stats {GauGau}
 2006-09-17 [M] Updated credits section of documentation {GauGau}
 2006-09-17 [A] Added German language file (based on revision 3288 of english.php) to be able to test the dev version in a production environment of my personal page. During the dev stage of cpg1.5.x, I will update the German language file only from time to time {GauGau}
 2006-09-16 [A] Added resend activation link feature per http://coppermine-gallery.net/forum/index.php?topic=15677.0 {Aditya}
@@ -486,7 +487,7 @@ Changelog
 2005-10-20 [A] Added portuguese language file for cpg1.4.x (user contrib) {GauGau}
 2005-10-01 [C] Added files to userpics and edit directory to avoid uploads to those folders {GauGau}
 2005-09-25 [S] Release of CPG1.3.5 {GauGau}
-2005-09-20 [S] Added fix for XSS vulnaribility in language selector {Aditya}
+2005-09-20 [S] Added fix for XSS vulnerability in language selector {Aditya}
 2005-09-20 [B] Added fix for forbidden characters (space and ampersand) issue {Abbas}
 2005-09-19 [D] Added improved XP publisher section to docs {GauGau}
 2005-09-19 [A] Added portuguese language file {GauGau}
@@ -496,7 +497,7 @@ Changelog
 2005-08-12 [C] Fixed minor bugs in italian translations {GauGau}
 2005-08-12 [B] Fixed email validation routine for ecards {GauGau}
 2005-08-11 [C] Fixed hardwired {Donnoman}
-2005-08-07 [B] Fixed mulitple keywords getting filtered out from iptc on upload {Donnoman}
+2005-08-07 [B] Fixed multiple keywords getting filtered out from iptc on upload {Donnoman}
 2005-08-07 [B] Changed Upload title to be iptc headline if iptc title isn't available {Donnoman}
 2005-07-24 [M] Removed depreciated randomizing code from index.php {Donnoman}
 2005-07-24 [C] Changed to not automatically include init.inc.php for included files via the query string (?file=) {Donnoman}
@@ -629,7 +630,7 @@ Changelog
 2004-08-12 [A] Added option to select all checkboxes when editing files in an album {GauGau}
 2004-08-12 [A] Added clickable keyword search and keyword manager {GauGau}
 2004-08-10 [A] Added display number of uploaded pictures in the profile mod (user contribution) {GauGau}
-2004-08-10 [C] Fixed animated smilies stoppping to move when being clicked on (user contribution) {GauGau}
+2004-08-10 [C] Fixed animated smilies stopping to move when being clicked on (user contribution) {GauGau}
 2004-08-09 [A] Added option to sort categories alphabetically {GauGau}
 2004-08-09 [A] Added brute force attack protection {GauGau}
 2004-07-25 [A] Added bridge for PunBB {Nibbler}
@@ -706,7 +707,7 @@ Changelog
 2004-03-16 [A] Added multiple URI upload changes to the language file {Hyperion}
 2004-03-14 [A] Added IP address lookup {GauGau}
 2004-03-14 [A] Added switch to turn off notices in debug mode {GauGau}
-2004-03-14 [A] Added slideshow intervall as admin option {GauGau}
+2004-03-14 [A] Added slideshow interval as admin option {GauGau}
 2004-03-14 [A] Added pic keywords to meta tags {GauGau}
 2004-03-11 [B] Added feature "admin can't ban himself" {GauGau}
 2004-03-05 [D] Added footnote on album manager to explain group settings {GauGau}
@@ -735,7 +736,7 @@ Changelog
 2003-11-22 [M] Moved debug_output from themes to functions.inc.php with easy copy-and-paste option {GauGau}
 2003-11-22 [C] Changed yes/no dropdown in config to radio buttons (less clicks!) {GauGau}
 2003-11-19 [A] Added language and theme selection {GauGau}
-2003-11-17 [A] Added picture ownername display as an admin setable option {Tarique}
+2003-11-17 [A] Added picture ownername display as an admin settable option {Tarique}
 2003-11-10 [C] Cosmetical fixes to util.php {GauGau}
 2003-11-09 [A] Added forgot my password link in login form {GauGau}
 2003-11-08 [A] Added Breadcrumb for meta-albums {Tarique}
@@ -787,8 +788,8 @@ Changelog
 2003-08-23 [A] Added Last Updated Album Block {Tarique}
 2003-08-22 [A] Added Title option to sort in albums {Tarique}
 2003-08-22 [A] Separated the breadcrumb block so that it can be placed independently of category {Tarique}
-2003-08-22 [A] Added option to choose max hieght or width for thumbnails - will help in creating nicer looking thumbnail rows and cols {Tarique}
-2003-08-22 [A] Added option to display a clickable flimstrip of thumbnails below the image display {Tarique}
+2003-08-22 [A] Added option to choose max height or width for thumbnails - will help in creating nicer looking thumbnail rows and cols {Tarique}
+2003-08-22 [A] Added option to display a clickable filmstrip of thumbnails below the image display {Tarique}
 2003-08-22 [A] Added option to show first level albums of a category instead of just statistics of the category {Tarique}
 2003-08-22 [A] Added Absolute URL of a picture in the pic info this helps in giving out links to other people and the same picture will display regardless of the sort setting of the individual {Tarique}
 2003-08-22 [A] Added option of turning on OR off the showing of "Private" Icon to unlogged / unprivileged user {Tarique}
