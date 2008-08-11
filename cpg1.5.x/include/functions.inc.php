@@ -2121,8 +2121,8 @@ function compute_img_size($width, $height, $max, $system_icon=false, $normal=fal
         $image_size['reduced'] = true;
     }
     $ratio = max($ratio, 1.0);
-    $image_size['width'] = ceil($width / $ratio);
-    $image_size['height'] = ceil($height / $ratio);
+    $image_size['width'] =  (int) ($width / $ratio);
+    $image_size['height'] = (int) ($height / $ratio);
     $image_size['whole'] = 'width="'.$image_size['width'].'" height="'.$image_size['height'].'"';
     if ($thumb_use=='ht') {
         $image_size['geom'] = ' height="'.$image_size['height'].'"';

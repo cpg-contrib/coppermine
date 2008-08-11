@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-08-11 [B] Fixing thumbnail dimension calculation rounding error {Nibbler}
 2008-08-09 [C] Added new set of generic thumbnails representing non-image files {GauGau}
 2008-08-08 [O] Added new set of flag icons {GauGau}
 2008-08-06 [O] Removed unneeded CSS classes admin_menu_thumb and adm_menu {GauGau}
