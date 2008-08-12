@@ -1857,6 +1857,8 @@ $lang_pluginmgr_php = array(
   'extra' => 'Extra', // cpg1.5
   'install_info' => 'Install information', // cpg1.5
   'plugin_disabled_note' => 'Plugin API is disabled, so that operation is not allowed.', // cpg1.5
+  'install' => 'install', // cpg1.5
+  'uninstall' => 'uninstall', // cpg1.5
 );
 }
 
