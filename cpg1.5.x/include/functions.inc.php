@@ -1153,9 +1153,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
     switch($album) {
         case 'lastcom': // Last comments
             if ($cat && $CURRENT_CAT_NAME) {
-                $album_name = $album_name = $lang_meta_album_names['lastcom'].' - '. $CURRENT_CAT_NAME;
+                $album_name = cpg_fetch_icon('comment', 2) . $album_name = $lang_meta_album_names['lastcom'].' - '. $CURRENT_CAT_NAME;
             } else {
-                $album_name = $lang_meta_album_names['lastcom'];
+                $album_name = cpg_fetch_icon('comment', 2) . $lang_meta_album_names['lastcom'];
             }
 
             $query = "SELECT COUNT(*)
@@ -1209,9 +1209,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
             $user_name = get_username($uid);
             if ($cat && $CURRENT_CAT_NAME) {
-                $album_name = $album_name = $lang_meta_album_names['lastcom'].' - '. $CURRENT_CAT_NAME .' - '. $user_name;
+                $album_name = cpg_fetch_icon('comment', 2) . $album_name = $lang_meta_album_names['lastcom'].' - '. $CURRENT_CAT_NAME .' - '. $user_name;
             } else {
-                $album_name = $lang_meta_album_names['lastcom'].' - '. $user_name;
+                $album_name = cpg_fetch_icon('comment', 2) . $lang_meta_album_names['lastcom'].' - '. $user_name;
             }
 
             $query = "SELECT COUNT(*)
@@ -1255,9 +1255,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
         case 'lastup': // Last uploads
             if ($cat && $CURRENT_CAT_NAME) {
-                $album_name = $lang_meta_album_names['lastup'].' - '. $CURRENT_CAT_NAME;
+                $album_name = cpg_fetch_icon('last_uploads', 2) . $lang_meta_album_names['lastup'].' - '. $CURRENT_CAT_NAME;
             } else {
-                $album_name = $lang_meta_album_names['lastup'];
+                $album_name = cpg_fetch_icon('last_uploads', 2) . $lang_meta_album_names['lastup'];
             }
 
             $query = "SELECT COUNT(*)
@@ -1305,9 +1305,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
             $user_name = get_username($uid);
             if ($cat && $CURRENT_CAT_NAME) {
-                $album_name = $lang_meta_album_names['lastup'].' - '. $CURRENT_CAT_NAME .' - '. $user_name;
+                $album_name = cpg_fetch_icon('last_uploads', 2) . $lang_meta_album_names['lastup'].' - '. $CURRENT_CAT_NAME .' - '. $user_name;
             } else {
-                $album_name = $lang_meta_album_names['lastup'] .' - '. $user_name;
+                $album_name = cpg_fetch_icon('last_uploads', 2) . $lang_meta_album_names['lastup'] .' - '. $user_name;
             }
 
             $query = "SELECT COUNT(*)
@@ -1348,9 +1348,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
         case 'topn': // Most viewed pictures
             if ($cat && $CURRENT_CAT_NAME) {
-                $album_name = $lang_meta_album_names['topn'].' - '. $CURRENT_CAT_NAME;
+                $album_name = cpg_fetch_icon('most_viewed', 2) . $lang_meta_album_names['topn'].' - '. $CURRENT_CAT_NAME;
             } else {
-                $album_name = $lang_meta_album_names['topn'];
+                $album_name = cpg_fetch_icon('most_viewed', 2) . $lang_meta_album_names['topn'];
             }
 
             $query = "SELECT COUNT(*)
@@ -1392,9 +1392,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
         case 'toprated': // Top rated pictures
             if ($cat && $CURRENT_CAT_NAME) {
-                $album_name = $lang_meta_album_names['toprated'].' - '. $CURRENT_CAT_NAME;
+                $album_name = cpg_fetch_icon('top_rated', 2) . $lang_meta_album_names['toprated'].' - '. $CURRENT_CAT_NAME;
             } else {
-                $album_name = $lang_meta_album_names['toprated'];
+                $album_name = cpg_fetch_icon('top_rated', 2) . $lang_meta_album_names['toprated'];
             }
 
             $query = "SELECT COUNT(*)
@@ -1436,9 +1436,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
         case 'lasthits': // Last viewed pictures
             if ($cat && $CURRENT_CAT_NAME) {
-                $album_name = $lang_meta_album_names['lasthits'].' - '. $CURRENT_CAT_NAME;
+                $album_name = cpg_fetch_icon('last_viewed', 2) . $lang_meta_album_names['lasthits'].' - '. $CURRENT_CAT_NAME;
             } else {
-                $album_name = $lang_meta_album_names['lasthits'];
+                $album_name = cpg_fetch_icon('last_viewed', 2) . $lang_meta_album_names['lasthits'];
             }
 
             $query = "SELECT COUNT(*)
@@ -1480,9 +1480,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
         case 'random': // Random pictures
             if ($cat && $CURRENT_CAT_NAME) {
-                $album_name = $lang_meta_album_names['random'].' - '. $CURRENT_CAT_NAME;
+                $album_name = cpg_fetch_icon('random', 2) . $lang_meta_album_names['random'].' - '. $CURRENT_CAT_NAME;
             } else {
-                $album_name = $lang_meta_album_names['random'];
+                $album_name = cpg_fetch_icon('random', 2) . $lang_meta_album_names['random'];
             }
 
             $query = "SELECT COUNT(*)
@@ -1533,9 +1533,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
             }
 
             if ($cat && $CURRENT_CAT_NAME) {
-                $album_name = $lang_meta_album_names['search'].' - '. $CURRENT_CAT_NAME;
+                $album_name = cpg_fetch_icon('search', 2) . $lang_meta_album_names['search'].' - '. $CURRENT_CAT_NAME;
             } else {
-                $album_name = $lang_meta_album_names['search'].' - "'. strip_tags($search_string) . '"';
+                $album_name = cpg_fetch_icon('search', 2) . $lang_meta_album_names['search'].' - "'. strip_tags($search_string) . '"';
             }
 
             include 'include/search.inc.php';
@@ -1547,9 +1547,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
         case 'lastalb': // Last albums to which uploads
             if ($cat && $CURRENT_CAT_NAME) {
-                $album_name = $lang_meta_album_names['lastalb'].' - '. $CURRENT_CAT_NAME;
+                $album_name = cpg_fetch_icon('last_created', 2) . $lang_meta_album_names['lastalb'].' - '. $CURRENT_CAT_NAME;
             } else {
-                $album_name = $lang_meta_album_names['lastalb'];
+                $album_name = cpg_fetch_icon('last_created', 2) . $lang_meta_album_names['lastalb'];
             }
 
             $query = "SELECT COUNT(*)
@@ -1586,7 +1586,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
             break;
 
         case 'favpics': // Favourite Pictures
-            $album_name = $lang_meta_album_names['favpics'];
+            $album_name = cpg_fetch_icon('favorites', 2) . $lang_meta_album_names['favpics'];
             $rowset = array();
             if (count($FAVPICS)>0) {
                 $favs = implode(",",$FAVPICS);
@@ -1631,7 +1631,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
         case 'datebrowse': // Browsing by uploading date
             //Using getRaw(). The date is sanitized in the called function
             $date = $superCage->get->keyExists('date') ? cpgValidateDate($superCage->get->getRaw('date')) : null;
-            $album_name = $lang_common['date'] . ': '. $date;
+            $album_name = cpg_fetch_icon('calendar', 2) . $lang_common['date'] . ': '. $date;
             $rowset = array();
 
             $query = "SELECT COUNT(*)
