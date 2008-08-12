@@ -1001,7 +1001,7 @@ $template_image_comments = <<<EOT
                                         <script type="text/javascript">
                                           document.write('<a href="javascript:;" onclick="blocking(\'cbody{MSG_ID}\',\'\', \'block\'); blocking(\'cedit{MSG_ID}\',\'\', \'block\'); return false;" title="{EDIT_TITLE}"><img src="images/edit.gif" border="0" align="middle" alt="" /></a>');
                                         </script>
-                                        <a href="delete.php?msg_id={MSG_ID}&amp;what=comment" onclick="return confirm('{CONFIRM_DELETE}');" title="{DELETE_TITLE}"><img src="images/delete.gif" border="0" align="middle" alt="" /></a>
+                                        <a href="delete.php?msg_id={MSG_ID}&amp;what=comment" onclick="return confirm('{CONFIRM_DELETE}');" title="{DELETE_TITLE}">{DELETE_ICON}</a>
 <!-- END buttons -->
                                 </td>
                                 <td class="tableh2_compact" align="right" nowrap="nowrap">
@@ -3322,6 +3322,7 @@ function theme_html_comments($pid)
             '{PID}' => $row['pid'],
             '{EDIT_TITLE}' => &$lang_display_comments['edit_title'],
             '{DELETE_TITLE}' => &$lang_display_comments['delete_title'],
+            '{DELETE_ICON}' => cpg_fetch_icon('delete', 0),
             '{CONFIRM_DELETE}' => &$lang_display_comments['confirm_delete'],
             '{MSG_DATE}' => localised_date($row['msg_date'], $comment_date_fmt),
             '{MSG_BODY}' => bb_decode($comment_body),
