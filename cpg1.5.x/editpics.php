@@ -363,6 +363,7 @@ function form_pic_info($text)
 EOT;
     }
 
+    $delete_icon = cpg_fetch_icon('delete', 0, $lang_editpics_php['del_pic']);
     echo <<<EOT
     <tr>
         <td colspan="3">
@@ -372,7 +373,7 @@ EOT;
                             {$lang_common['filename']}: $filename
                     </td>
                     <td class="{$row_style_class}" width="40" valign="top">
-                    <input type="checkbox" name="delete{$CURRENT_PIC['pid']}" id="delete{$CURRENT_PIC['pid']}" value="1" class="checkbox" title="{$lang_editpics_php['del_pic']}" /><label for="delete{$CURRENT_PIC['pid']}" class="clickable_option"><img src="images/delete.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['del_pic']}" /></label>
+                    <input type="checkbox" name="delete{$CURRENT_PIC['pid']}" id="delete{$CURRENT_PIC['pid']}" value="1" class="checkbox" title="{$lang_editpics_php['del_pic']}" /><label for="delete{$CURRENT_PIC['pid']}" class="clickable_option">{$delete_icon}</label>
                     </td>
                     $approve_html
                     <td class="{$row_style_class}" width="40">
@@ -825,6 +826,7 @@ if (GALLERY_ADMIN_MODE || MODERATOR_MODE) {
 EOT;
 }
 
+$delete_all_icon = cpg_fetch_icon('delete', 0, $lang_editpics_php['del_all']); 
 echo <<<EOT
         <tr>
             <td colspan="3" align="center">
@@ -834,7 +836,7 @@ echo <<<EOT
                             {$lang_editpics_php['select_unselect']}:
                         </td>
                         <td class="tableh2" width="40" valign="top">
-                            <input type="checkbox" name="deleteAll" onclick="selectAll(this,'delete');" class="checkbox" id="deleteAll" title="{$lang_editpics_php['del_all']}" /><label for="deleteAll" class="clickable_option"><img src="images/delete.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['del_all']}" /></label>
+                            <input type="checkbox" name="deleteAll" onclick="selectAll(this,'delete');" class="checkbox" id="deleteAll" title="{$lang_editpics_php['del_all']}" /><label for="deleteAll" class="clickable_option">{$delete_all_icon}</label>
                         </td>
                         $approve_all_html
                         <td class="tableh2" width="40">

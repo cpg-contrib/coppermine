@@ -209,10 +209,11 @@ EOT;
         }
 
         $confirm_function = ($CONFIG['enable_plugins'] == 1) ? 'confirmUninstall' : 'confirmRemove';
+        $delete = cpg_fetch_icon('stop', 0);
         echo <<<EOT
             <td width="3%" align="center" valign="middle">
-                <a href="pluginmgr.php?op=uninstall&amp;p={$thisplugin['plugin_id']}" onClick="return {$confirm_function}('$safename')">
-                    <img src="images/delete.gif"  border="0" alt="" />
+                <a href="pluginmgr.php?op=uninstall&amp;p={$thisplugin['plugin_id']}" onClick="return {$confirm_function}('$safename')" title="{$lang_pluginmgr_php['uninstall']}">
+                    {$delete}
                 </a>
             </td>
 
@@ -313,8 +314,9 @@ EOT;
             }
             // remove 'true ||' below to remove install button when plugin API is disabled
             $install_button = (true || ($CONFIG['enable_plugins'] == 1)) ? 
-                '<a href="pluginmgr.php?op=install&amp;p='.$path.'"><img src="images/info.gif"  border="0" alt="" /></a>' 
-                : '<img src="images/spacer.gif" width="16" height="16" />';
+                '<a href="pluginmgr.php?op=install&amp;p='.$path.'" title="' . $lang_pluginmgr_php['install'] . '">' . cpg_fetch_icon('add', 0) . '</a>'
+                : cpg_fetch_icon('blank', 0);
+            $delete = cpg_fetch_icon('delete', 0);
             echo <<<EOT
                 </table>
             </td>
@@ -328,8 +330,8 @@ EOT;
                         {$install_button}
                     </td>
                     <td width="5%" align="center" valign="top">
-                        <a href="pluginmgr.php?op=delete&amp;p=$path" onClick="return confirmDel('$safename')">
-                            <img src="images/delete.gif"  border="0" alt="" />
+                        <a href="pluginmgr.php?op=delete&amp;p=$path" onClick="return confirmDel('$safename')" title="{$lang_common['delete']}">
+                            {$delete}
                         </a>
                     </td>
                 </tr>
