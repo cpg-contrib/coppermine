@@ -187,9 +187,10 @@ EOT;
             <tr>
 EOT;
         if (($thisplugin['index'] > 0) && ($plugins_count > 1)) {
+            $up = cpg_fetch_icon('up', 0);
             echo <<<EOT
             <td width="3%" align="center" valign="middle">
-                <a href="pluginmgr.php?op=moveu&amp;p={$thisplugin['plugin_id']}"><img src="images/up.gif"  border="0" alt="" /></a>
+                <a href="pluginmgr.php?op=moveu&amp;p={$thisplugin['plugin_id']}">{$up}</a>
             </td>
 EOT;
         } else {
@@ -197,9 +198,10 @@ EOT;
         }
 
         if ($thisplugin['index'] < ($plugins_count - 1)) {
+            $down = cpg_fetch_icon('down', 0); 
             echo <<<EOT
             <td width="3%" align="center" valign="middle">
-                <a href="pluginmgr.php?op=moved&amp;p={$thisplugin['plugin_id']}"><img src="images/down.gif"  border="0" alt="" /></a>
+                <a href="pluginmgr.php?op=moved&amp;p={$thisplugin['plugin_id']}">{$down}</a>
             </td>
 EOT;
         } else {
