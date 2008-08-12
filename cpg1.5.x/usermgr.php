@@ -81,7 +81,7 @@ function list_group_alb_access($group_id) {  //shows a list of albums a specific
         <tr>
         <td>' . $album['category'] . '</td>
         <td>' . $album['album'] . '</td>
-        <td>&nbsp;<a href="modifyalb.php?album=' . $album['aid'] . '"><img src="images/edit.gif" border="0" alt="" /></a></td>
+        <td>&nbsp;<a href="modifyalb.php?album=' . $album['aid'] . '">' . cpg_fetch_icon('edit', 0) . '</a></td>
         </tr>
         ';
    }

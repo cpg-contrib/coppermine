@@ -52,11 +52,11 @@ require_once('include/init.inc.php');
 
     if ($type == 'vote') {
         $db_fields = array('sdate', 'ip', 'rating', 'referer', 'browser', 'os', 'uid');
-        $icon = array('sdate' => 'calendar.gif', 'ip' => 'info.gif', 'rating' => 'rating.gif', 'referer' => 'referer.gif', 'browser' => 'www.gif', 'os' => 'os.gif', 'uid' => 'user.gif');
+        $icon = array('sdate' => 'calendar', 'ip' => 'ip', 'rating' => 'top_rated', 'referer' => 'web', 'browser' => 'browser', 'os' => 'client', 'uid' => 'my_profile');
     }
     if ($type == 'hits') {
         $db_fields = array('sdate', 'ip', 'uid', 'search_phrase', 'referer', 'browser', 'os');
-        $icon = array('sdate' => 'calendar.gif', 'ip' => 'info.gif', 'uid' => 'user.gif', 'search_phrase' => 'views.gif', 'referer' => 'referer.gif', 'browser' => 'www.gif', 'os' => 'os.gif');
+        $icon = array('sdate' => 'calendar', 'ip' => 'ip', 'uid' => 'my_profile', 'search_phrase' => 'search', 'referer' => 'web', 'browser' => 'browser', 'os' => 'client');
     }
 
     foreach($db_fields as $value) {
@@ -420,8 +420,9 @@ EOT;
       foreach ($db_fields as $value) {
           $show_column_checked[$value] = ($$value == '1') ? 'checked="checked"' : '';
           print '    <td class="tableh2" valign="top">'.$line_break;
-          print '      <input type="checkbox" name="'.$value.'" value="1" class="checkbox" title="'.$lang_stat_details_php['show_hide'].'" '.$show_column_checked[$value].' onclick="sendForm();" /><br />'.$line_break;
-          print '      <img src="images/'.$icon[$value].'" border="0" width="16" height="16" alt="" title="'.$lang_stat_details_php[$value].'" />';
+          print '      <input type="checkbox" name="'.$value.'" value="1" class="checkbox" title="'.$lang_stat_details_php['show_hide'].'" '.$show_column_checked[$value].' onclick="sendForm();" />'.$line_break;
+          //print '      <img src="images/'.$icon[$value].'" border="0" width="16" height="16" alt="" title="'.$lang_stat_details_php[$value].'" />';
+          print '      '.cpg_fetch_icon($icon[$value], 0, $lang_stat_details_php[$value]);
           if ($$value == 1) {
               print '<a href="#" onclick="return sortthetable(\''.$value.'\',\'asc\');">';
               print '<img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="'.sprintf($lang_stat_details_php['sort_by_xxx'], $value).', '.$lang_stat_details_php['ascending'].'" />';
@@ -435,9 +436,9 @@ EOT;
       }
       if ($pid == '') {
           $show_file_column = ($file == '1') ? 'checked="checked"' : '';
-          print '    <td class="tableh2">'.$line_break;
-          print '      <input type="checkbox" name="file" value="1" class="checkbox" title="'.$lang_stat_details_php['show_hide'].'" '.$lang_common['file'].' onclick="sendForm();" '.$show_file_column.' /><br />'.$line_break;
-          print '      '.$lang_common['file'];
+          print '    <td class="tableh2" valign="top">'.$line_break;
+          print '      <input type="checkbox" name="file" value="1" class="checkbox" title="'.$lang_stat_details_php['show_hide'].'" '.$lang_common['file'].' onclick="sendForm();" '.$show_file_column.' />'.$line_break;
+          print '      '.cpg_fetch_icon('file', 0, $lang_common['file']);
           if ($file == 1) {
               print '<a href="#" onclick="return sortthetable(\'file\',\'asc\');">';
               print '<img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="'.sprintf($lang_stat_details_php['sort_by_xxx'], $lang_common['file']).', '.$lang_stat_details_php['ascending'].'" />';
@@ -487,9 +488,9 @@ EOT;
                       print '    <td class="'.$row_style_class.'">'.$line_break;
                       if ($$value == 1) {
                           if ($value == 'browser' && array_key_exists($row[$value],$browserArray)) {
-                              print '      <img src="images/browser/'.$browserArray[$row[$value]].'" width="14" height="14" border="0" title="'.$row[$value].'" alt="" />'.$line_break;
+                              print '      <img src="images/browser/'.$browserArray[$row[$value]].'" border="0" title="'.$row[$value].'" alt="" />'.$line_break;
                           } elseif ($value == 'os' && array_key_exists($row[$value],$osArray)) {
-                              print '      <img src="images/os/'.$osArray[$row[$value]].'" width="14" height="14" border="0" title="'.$row[$value].'" alt="" />'.$line_break;
+                              print '      <img src="images/os/'.$osArray[$row[$value]].'" border="0" title="'.$row[$value].'" alt="" />'.$line_break;
                           } elseif ($value == 'uid') {
                               if ($row[$value] != 0) {
                                   $user_data = $cpg_udb->get_user_infos($row[$value]);
