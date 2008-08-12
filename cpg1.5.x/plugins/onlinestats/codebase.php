@@ -148,7 +148,7 @@ function online_mainpage()
                 $result = cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = UNIX_TIMESTAMP() WHERE name = 'record_online_date'");
         }
 
-       starttable("100%", $lang_plugin_php['onlinestats_name']);
+       starttable("100%", cpg_fetch_icon('online', 2) . $lang_plugin_php['onlinestats_name']);
         print '<tr><td class="tableb">';
         if ($num_users == 1) {
 	        printf($lang_plugin_php['onlinestats_we_have_reg_member'], '<strong>'.$num_users.'</strong>');
