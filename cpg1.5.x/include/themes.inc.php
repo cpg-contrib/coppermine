@@ -2804,7 +2804,7 @@ function theme_html_picture()
 {
     global $CONFIG, $CURRENT_PIC_DATA, $CURRENT_ALBUM_DATA, $USER;
     global $album, $comment_date_fmt, $template_display_media;
-    global $lang_display_image_php, $lang_picinfo, $lang_errors;
+    global $lang_display_image_php, $lang_picinfo, $lang_common, $lang_errors;
 
     $superCage = Inspekt::makeSuperCage();
 
@@ -2841,7 +2841,7 @@ function theme_html_picture()
         $pic_title .= $CURRENT_PIC_DATA['caption'] . "\n";
     }
     if ($CURRENT_PIC_DATA['keywords'] != '') {
-        $pic_title .= $lang_picinfo['Keywords'] . ": " . $CURRENT_PIC_DATA['keywords'];
+        $pic_title .= $lang_common['keywords'] . ": " . $CURRENT_PIC_DATA['keywords'];
     }
 
     if (!$CURRENT_PIC_DATA['title'] && !$CURRENT_PIC_DATA['caption']) {
@@ -3482,26 +3482,28 @@ function theme_display_fullsize_pic()
         if (!GALLERY_ADMIN_MODE) {
           cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
         }
-      //$picfile = $_GET['picfile'];
-      $picfile = $superCage->get->getPath('picfile');
-      $picname = $CONFIG['fullpath'] . $picfile;
-      $imagesize = @getimagesize($picname);
-      $imagedata = array('name' => $picfile, 'path' => path2url($picname), 'geometry' => $imagesize[3]);
+        //$picfile = $_GET['picfile'];
+        //$picfile = $superCage->get->getPath('picfile'); // doesn't work with HTML entities
+        $matches = $superCage->get->getMatched('picfile', '/^[0-9A-Za-z\/_.-]+$/');
+        $picfile = $matches[0];
+        $picname = $CONFIG['fullpath'] . $picfile;
+        $imagesize = @getimagesize($picname);
+        $imagedata = array('name' => $picfile, 'path' => path2url($picname), 'geometry' => $imagesize[3]);
     } elseif (pid) {
-      //$pid = (int)$_GET['pid'];
-      $sql = "SELECT * " . "FROM {$CONFIG['TABLE_PICTURES']} AS p " . "WHERE pid='$pid' $FORBIDDEN_SET";
-      $result = cpg_db_query($sql);
-      if (!mysql_num_rows($result)) {
-        cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
-      }
-      $row = mysql_fetch_array($result);
-      $pic_url = get_pic_url($row, 'fullsize');
-      $geom = 'width="' . $row['pwidth'] . '" height="' . $row['pheight'] . '"';
-      $imagedata = array('name' => $row['filename'], 'path' => $pic_url, 'geometry' => $geom);
+        //$pid = (int)$_GET['pid'];
+        $sql = "SELECT * " . "FROM {$CONFIG['TABLE_PICTURES']} AS p " . "WHERE pid='$pid' $FORBIDDEN_SET";
+        $result = cpg_db_query($sql);
+        if (!mysql_num_rows($result)) {
+            cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
+        }
+        $row = mysql_fetch_array($result);
+        $pic_url = get_pic_url($row, 'fullsize');
+        $geom = 'width="' . $row['pwidth'] . '" height="' . $row['pheight'] . '"';
+        $imagedata = array('name' => $row['filename'], 'path' => $pic_url, 'geometry' => $geom);
     }
     if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 2) { // adjust the size of the window if we don't have to catter for a full-size pop-up, but only a text message
-       $row['pwidth'] = 200;
-       $row['pheight'] = 100;
+        $row['pwidth'] = 200;
+        $row['pheight'] = 100;
     }
 
 ?>

@@ -22,25 +22,26 @@ define('PICMGR_PHP', true);
 
 require('include/init.inc.php');
 
-if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) {
+    cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+}
 
 function get_album_data()
 {
     global $CONFIG, $ALBUM_LIST;
 
-   $result = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} ORDER BY title");
-   if (mysql_num_rows($result) > 0){
-      $rowset = cpg_db_fetch_rowset($result);
-      foreach ($rowset as $alb){
-         $ALBUM_LIST[]=array($alb['aid'], $alb['title']);
-      }
-   }
+    $result = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} ORDER BY title");
+    if (mysql_num_rows($result) > 0) {
+        $rowset = cpg_db_fetch_rowset($result);
+        foreach ($rowset as $alb) {
+            $ALBUM_LIST[]=array($alb['aid'], $alb['title']);
+        }
+    }
 }
 
-function albumselect($id = "album") {
-// frogfoot re-wrote this function to present the list in categorized, sorted and nicely formatted order
-
-    global $CONFIG, $lang_picmgr_php, $aid, $lang_errors, $cpg_udb, $CPG_PHP_SELF;
+function albumselect($id = "album") 
+{
+    global $CONFIG, $aid, $cpg_udb, $CPG_PHP_SELF, $lang_picmgr_php, $lang_common, $lang_errors;
     static $select = "";
 
     // Reset counter
@@ -52,9 +53,10 @@ function albumselect($id = "album") {
             $result = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = 0");
             while ($row = mysql_fetch_array($result)) {
                 // Add to multi-dim array for later sorting
-                $listArray[$list_count]['cat'] = $lang_search_new_php['albums_no_category'];
+                $listArray[$list_count]['cat'] = $lang_common['albums_no_category'];
                 $listArray[$list_count]['aid'] = $row['aid'];
                 $listArray[$list_count]['title'] = $row['title'];
+                $listArray[$list_count]['cid'] = 0;
                 $list_count++;
             }
             mysql_free_result($result);
@@ -62,38 +64,48 @@ function albumselect($id = "album") {
 
         // albums in public categories
         if (GALLERY_ADMIN_MODE) {
-            $result = cpg_db_query("SELECT DISTINCT a.aid AS aid, a.title AS title, c.name AS cname FROM {$CONFIG['TABLE_ALBUMS']} AS a, {$CONFIG['TABLE_CATEGORIES']} AS c WHERE a.category = c.cid AND a.category < '" . FIRST_USER_CAT . "'");
+            $result = cpg_db_query("SELECT DISTINCT a.aid AS aid, a.title AS title, c.name AS cname, c.cid AS cid FROM {$CONFIG['TABLE_ALBUMS']} AS a, {$CONFIG['TABLE_CATEGORIES']} AS c WHERE a.category = c.cid AND a.category < '" . FIRST_USER_CAT . "'");
             while ($row = mysql_fetch_array($result)) {
                 // Add to multi-dim array for later sorting
                 $listArray[$list_count]['cat'] = $row['cname'];
                 $listArray[$list_count]['aid'] = $row['aid'];
                 $listArray[$list_count]['title'] = $row['title'];
+                $listArray[$list_count]['cid'] = $row['cid'];
                 $list_count++;
             }
             mysql_free_result($result);
         }
 
-        // albums in user's personal galleries
-//        if (defined('UDB_INTEGRATION')) {
-            //if (GALLERY_ADMIN_MODE) {
-//                $sql = $cpg_udb->get_admin_album_list();
-            /*} else {
-                $sql = "SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = ".(FIRST_USER_CAT + USER_ID);
-            }*/
-//       } else {
+        // Get albums in users' personal galleries
+        // we can always use $cpg_udb now, so we don't have to check if bridged
+/*
+        // check if bridged
+        if (defined('UDB_INTEGRATION')) {
             if (GALLERY_ADMIN_MODE) {
-//                $sql = "SELECT aid, CONCAT('(', user_name, ') ', title) AS title " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "INNER JOIN {$CONFIG['TABLE_USERS']} AS u ON category = (" . FIRST_USER_CAT . " + user_id)";
-                $sql = $cpg_udb->get_admin_album_list();  //it's always bridged so we no longer need to check.
+                $sql = $cpg_udb->get_admin_album_list();
+            } else {
+                $sql = "SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = ".(FIRST_USER_CAT + USER_ID);
+            }
+        } else {
+            if (GALLERY_ADMIN_MODE) {
+                $sql = "SELECT aid, CONCAT('(', user_name, ') ', title) AS title " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "INNER JOIN {$CONFIG['TABLE_USERS']} AS u ON category = (" . FIRST_USER_CAT . " + user_id)";
             } else {
                 $sql = "SELECT aid, title AS title FROM {$CONFIG['TABLE_ALBUMS']}  WHERE category = " . (FIRST_USER_CAT + USER_ID);
             }
-//       }
+        }
+*/
+        if (GALLERY_ADMIN_MODE) {
+            $sql = $cpg_udb->get_admin_album_list();  
+        } else {
+            $sql = "SELECT aid, title AS title FROM {$CONFIG['TABLE_ALBUMS']}  WHERE category = " . (FIRST_USER_CAT + USER_ID);
+        }
         $result = cpg_db_query($sql);
         while ($row = mysql_fetch_array($result)) {
             // Add to multi-dim array for later sorting
-            $listArray[$list_count]['cat'] = $lang_search_new_php['personal_albums'];
+            $listArray[$list_count]['cat'] = $lang_common['personal_albums'];
             $listArray[$list_count]['aid'] = $row['aid'];
             $listArray[$list_count]['title'] = $row['title'];
+            $listArray[$list_count]['cid'] = -1;
             $list_count++;
         }
         mysql_free_result($result);
@@ -106,17 +118,22 @@ function albumselect($id = "album") {
         $listArray = array_csort($listArray,'cat','title');
 
         // Create the nicely sorted and formatted drop down list
-        $alb_cat = '';
-
+        // $alb_cat = '';
+        $alb_cid = '';
         foreach ($listArray as $val) {
-            if ($val['cat'] != $alb_cat) {
-         		if ($alb_cat) $select .= "</optgroup>\n";
+            //if ($val['cat'] != $alb_cat) {  // old method compared names which might not be unique
+            if ($val['cid'] !== $alb_cid) {
+                if ($alb_cid) {
+                    $select .= "</optgroup>\n";
+                }
                 $select .= '<optgroup label="' . $val['cat'] . '">' . "\n";
-                $alb_cat = $val['cat'];
+                $alb_cid = $val['cid'];
             }
             $select .= '<option value="' . $val['aid'] . '"' . ($val['aid'] == $aid ? ' selected="selected"' : '') . '>   ' . $val['title'] . "</option>\n";
         }
-        if ($alb_cat) $select .= "</optgroup>\n";
+        if ($alb_cid) {
+            $select .= "</optgroup>\n";
+        }
     }
 
     return "\n<select name=\"$id\" class=\"listbox\"  onChange=\"if(this.options[this.selectedIndex].value) window.location.href='{$CPG_PHP_SELF}?aid='+this.options[this.selectedIndex].value;\" >\n$select</select>\n";
@@ -385,7 +402,7 @@ pageheader($lang_picmgr_php['pic_mgr']);
 <tr>
 <?php
    //$aid = isset($_GET['aid']) ? (int) $_GET['aid'] : 0;
-	$aid = ($superCage->get->keyExists('aid')) ? $superCage->get->getInt('aid') : 0;
+  $aid = ($superCage->get->keyExists('aid')) ? $superCage->get->getInt('aid') : 0;
    if (GALLERY_ADMIN_MODE || USER_ADMIN_MODE) {
       $result = cpg_db_query("SELECT aid, pid, filename FROM {$CONFIG['TABLE_PICTURES']} WHERE aid = $aid ORDER BY position ASC, pid");
 //BM in case I have to fix an album      $result = cpg_db_query("SELECT aid, pid, filename FROM {$CONFIG['TABLE_PICTURES']} WHERE aid = $aid ORDER BY filename");
@@ -401,8 +418,8 @@ pageheader($lang_picmgr_php['pic_mgr']);
 ?>
 
    <td class="tableb" valign="top" align="center">
-	   <input type="hidden" name="delete_picture" value="" />
-	   <input type="hidden" name="sort_order" value="<?php echo $sort_order ?>" />   
+     <input type="hidden" name="delete_picture" value="" />
+     <input type="hidden" name="sort_order" value="<?php echo $sort_order ?>" />   
       <br />
       <table width="300" border="0" cellspacing="0" cellpadding="0">
 <?php
@@ -415,7 +432,7 @@ if (GALLERY_ADMIN_MODE || USER_ADMIN_MODE) {
 echo <<<EOT
       <tr>
          <td>
-            <b>{$lang_picmgr_php['select_album']}</b>
+            <b>{$lang_common['select_album']}</b>
 EOT;
         print albumselect('aid');
 echo <<<EOT

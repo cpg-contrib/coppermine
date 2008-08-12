@@ -174,7 +174,7 @@ function form_alb_list_box($text, $name)
 {
     $superCage = Inspekt::makeSuperCage();
     // Pull the $CONFIG array and the GET array into the function
-    global $CONFIG, $lang_upload_php;
+    global $CONFIG, $lang_upload_php, $lang_common;
 
     // Also pull the album lists into the function
     global $user_albums_list, $public_albums_list;
@@ -225,9 +225,10 @@ EOT;
     foreach($user_albums_list as $album) {
 
         // Add to multi-dim array for later sorting
-        $listArray[$list_count]['cat'] = $lang_upload_php['personal_albums'];
+        $listArray[$list_count]['cat'] = $lang_common['personal_albums'];
         $listArray[$list_count]['aid'] = $album['aid'];
         $listArray[$list_count]['title'] = $album['title'];
+        $listArray[$list_count]['cid'] = -1;
         $list_count++;
     }
 
@@ -238,11 +239,11 @@ EOT;
         $album_id = $album['aid'];
 
         // Add to multi-dim array for sorting later
-        if ($album['name']) {
+        if (array_key_exists('name', $album) && $album['name']) {
             $listArray[$list_count]['cat'] = $catAnces[$album['cid']] . ($catAnces[$album['cid']]?' - ':'') . $album['name'];
             $listArray[$list_count]['cid'] = $album['cid'];
         } else {
-            $listArray[$list_count]['cat'] = $lang_upload_php['albums_no_category'];
+            $listArray[$list_count]['cat'] = $lang_common['albums_no_category'];
             $listArray[$list_count]['cid'] = 0;
         }
         $listArray[$list_count]['aid'] = $album['aid'];
@@ -253,21 +254,26 @@ EOT;
     // Sort the pulldown options by category and album name
     $listArray = array_csort($listArray,'cat','title');     // alphabetically by category name
     // $listArray = array_csort($listArray,'cid','title');  // numerically by category ID
-    // print_r($listArray);exit;
+    // print_r($listArray); exit;
 
     // Finally, print out the nicely sorted and formatted drop down list
-    $alb_cat = '';
-    echo '                <option value="">' . $lang_upload_php['select_album'] . "</option>\n";
+    // $alb_cat = '';
+    $alb_cid = '';
+    echo '                <option value="">' . $lang_common['select_album'] . "</option>\n";
     foreach ($listArray as $val) {
         //if ($val['cat'] != $alb_cat) {  // old method compared names which might not be unique
-        if ($val['cid'] != $alb_cat) {
-            if ($alb_cat) echo "                </optgroup>\n";
+        if ($val['cid'] !== $alb_cid) {
+            if ($alb_cid) {
+                echo "                </optgroup>\n";
+            }
             echo '                <optgroup label="' . $val['cat'] . '">' . "\n";
-            $alb_cat = $val['cid'];
+            $alb_cid = $val['cid'];
         }
         echo '                <option value="' . $val['aid'] . '"' . ($val['aid'] == $sel_album ? ' selected' : '') . '>   ' . $val['title'] . "</option>\n";
     }
-    if ($alb_cat) echo "                </optgroup>\n";
+    if ($alb_cid) {
+        echo "                </optgroup>\n";
+    }
 
     // Close the drop down
     echo <<<EOT
@@ -1128,8 +1134,8 @@ if (!$superCage->post->keyExists('control')) {
 
 }
 
-// Recieve incoming file uploads for phase I.
-//Using getRaw() for comparison only
+// Receive incoming file uploads for phase I.
+// Using getRaw() for comparison only
 if ($superCage->post->keyExists('control') && $superCage->post->getRaw('control') == 'phase_1') {
     // $_FILES['file_upload_array']['name'][$counter]
     // $_FILES['file_upload_array']['size'][$counter]
@@ -2081,10 +2087,10 @@ if ($superCage->post->keyExists('control') && $superCage->post->getRaw('control'
     //Now we must prepare the inital form for adding the pictures to the database, and we must move them to their final location.
 
     // Count errors in each error array and the escrow array.
-    $escrow_array_count = count($escrow_array);
-    $file_error_count = count($file_failure_array);
-    $URI_error_count = count($URI_failure_array);
-    $zip_error_count = count($zip_failure_array);
+    $escrow_array_count = isset($escrow_array) ? count($escrow_array) : 0;
+    $file_error_count = isset($file_failure_array) ? count($file_failure_array) : 0;
+    $URI_error_count = isset($URI_failure_array) ? count($URI_failure_array) : 0;
+    $zip_error_count = isset($zip_failure_array) ? count($zip_failure_array) : 0;
 
     // Create page header.
     pageheader($lang_upload_php['title']);

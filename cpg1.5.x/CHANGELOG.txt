@@ -25,6 +25,12 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-08-12 [B] Moved $THEME_DIR before include theme.php and themes.inc.php {Paver}
+2008-08-12 [B] Added workaround for video files shown on batch-add page (searchnew.php) {Paver}
+2008-08-12 [B] Consolidated common language variables from multiple pages into $lang_common {Paver}
+2008-08-12 [B] Fixed album dropdown on multiple pages to show categorized albums {Paver}
+2008-08-12 [B] Fixed cpg_getimagesize custom function to give image size {Paver}
+2008-08-12 [B] Fixed display_fullsize_pic for picfile GET variable {Paver}
 2008-08-11 [B] Fixed transparent overlay with HTML entities in $picture_url {Paver}
 2008-08-11 [B] Fixed thumbnail dimension calculation rounding error {Nibbler}
 2008-08-09 [C] Added new set of generic thumbnails representing non-image files {GauGau}

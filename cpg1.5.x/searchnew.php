@@ -23,7 +23,9 @@ define('DB_INPUT_PHP', true);
 
 require('include/init.inc.php');
 
-if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+if (!GALLERY_ADMIN_MODE) {
+    cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+}
 
 $rowCounter = 0;
 
@@ -42,10 +44,9 @@ $rowCounter = 0;
  */
 
 
- function albumselect($id = "album") {
-// frogfoot re-wrote this function to present the list in categorized, sorted and nicely formatted order
-
-    global $CONFIG, $lang_search_new_php, $cpg_udb;
+ function albumselect($id = "album") 
+{
+    global $CONFIG, $lang_search_new_php, $lang_common, $cpg_udb;
     static $select = "";
 
     // Reset counter
@@ -55,19 +56,21 @@ $rowCounter = 0;
         $result = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = 0");
         while ($row = mysql_fetch_array($result)) {
             // Add to multi-dim array for later sorting
-            $listArray[$list_count]['cat'] = $lang_search_new_php['albums_no_category'];
+            $listArray[$list_count]['cat'] = $lang_common['albums_no_category'];
             $listArray[$list_count]['aid'] = $row['aid'];
             $listArray[$list_count]['title'] = $row['title'];
+            $listArray[$list_count]['cid'] = 0;
             $list_count++;
         }
         mysql_free_result($result);
 
-        $result = cpg_db_query("SELECT DISTINCT a.aid as aid, a.title as title, c.name as cname FROM {$CONFIG['TABLE_ALBUMS']} as a, {$CONFIG['TABLE_CATEGORIES']} as c WHERE a.category = c.cid AND a.category < '" . FIRST_USER_CAT . "'");
+        $result = cpg_db_query("SELECT DISTINCT a.aid AS aid, a.title AS title, c.name AS cname, c.cid AS cid FROM {$CONFIG['TABLE_ALBUMS']} AS a, {$CONFIG['TABLE_CATEGORIES']} AS c WHERE a.category = c.cid AND a.category < '" . FIRST_USER_CAT . "'");
         while ($row = mysql_fetch_array($result)) {
             // Add to multi-dim array for later sorting
             $listArray[$list_count]['cat'] = $row['cname'];
             $listArray[$list_count]['aid'] = $row['aid'];
             $listArray[$list_count]['title'] = $row['title'];
+            $listArray[$list_count]['cid'] = $row['cid'];
             $list_count++;
         }
         mysql_free_result($result);
@@ -80,29 +83,36 @@ $rowCounter = 0;
         $result = cpg_db_query($sql);
         while ($row = mysql_fetch_array($result)) {
             // Add to multi-dim array for later sorting
-            $listArray[$list_count]['cat'] = $lang_search_new_php['personal_albums'];
+            $listArray[$list_count]['cat'] = $lang_common['personal_albums'];
             $listArray[$list_count]['aid'] = $row['aid'];
             $listArray[$list_count]['title'] = $row['title'];
+            $listArray[$list_count]['cid'] = -1;
             $list_count++;
         }
         mysql_free_result($result);
 
-        $select = '<option value="0">' . $lang_search_new_php['select_album'] . "</option>\n";
+        $select = '<option value="0" selected="selected">' . $lang_common['select_album'] . "</option>\n";
 
         // Sort the pulldown options by category and album name
         $listArray = array_csort($listArray,'cat','title');
 
         // Create the nicely sorted and formatted drop down list
-        $alb_cat = '';
+        // $alb_cat = '';
+        $alb_cid = '';
         foreach ($listArray as $val) {
-            if ($val['cat'] != $alb_cat) {
-          		if ($alb_cat) $select .= "</optgroup>\n";
+            //if ($val['cat'] != $alb_cat) {  // old method compared names which might not be unique
+            if ($val['cid'] !== $alb_cid) {
+                if ($alb_cid) {
+                    $select .= "</optgroup>\n";
+                }
                 $select .= '<optgroup label="' . $val['cat'] . '">' . "\n";
-                $alb_cat = $val['cat'];
+                $alb_cid = $val['cid'];
             }
-            $select .= '<option value="' . $val['aid'] . '"' . ($val['aid'] == $sel_album ? ' selected' : '') . '>   ' . $val['title'] . "</option>\n";
+            $select .= '<option value="' . $val['aid'] . '">   ' . $val['title'] . "</option>\n";
         }
-        if ($alb_cat) $select .= "</optgroup>\n";
+        if ($alb_cid) {
+            $select .= "</optgroup>\n";
+        }
     }
 
     return "\n<select id=\"aid\" name=\"$id\" class=\"listbox\">\n$select</select>\n";
@@ -179,14 +189,13 @@ function picrow($picfile, $picid, $albid)
     }
 
     if (filesize($picname) && is_readable($picname)) {
-        //$fullimagesize = cpg_getimagesize($picname); COMMENTED OUT FOR VIDEO SUPPORT
+        // for video support, maybe check: http://www.getid3.org/
+        // for now, hack in something that works (don't check !$fullimagesize)
+        $fullimagesize = cpg_getimagesize($picname); 
         $winsizeX = ($fullimagesize[0] + 16);
         $winsizeY = ($fullimagesize[1] + 16);
-
-        //$checked = isset($expic_array[$picfile]) || !$fullimagesize ? '' : 'checked';
-
+        // $checked = isset($expic_array[$picfile]) || !$fullimagesize ? '' : 'checked';
         $checked = isset($expic_array[$picfile]) ? '' : 'checked';
-
         $return = <<<EOT
         <tr>
                 <td class="$rowStyle" valign="middle" width="30">
@@ -194,12 +203,27 @@ function picrow($picfile, $picid, $albid)
                         <input name="album_lb_id_$picid" type="hidden" value="$albid" />
                         <input name="picfile_$picid" type="hidden" value="$encoded_picfile" />
                 </td>
+EOT;
+        // if $fullimagesize is not null, then assume it's an image
+        if ($fullimagesize) {
+            $return .= <<<EOT
                 <td class="$rowStyle" valign="middle">
                         <a href="javascript:;" onclick= "MM_openBrWindow('displayimage.php?fullsize=1&amp;picfile=$pic_url', 'ImageViewer', 'toolbar=yes, status=yes, resizable=yes, width=$winsizeX, height=$winsizeY')">$pic_fname</a>
                 </td>
                 <td class="$rowStyle" valign="middle" align="center">
                         <a href="javascript:;" onclick= "MM_openBrWindow('displayimage.php?fullsize=1&amp;picfile=$pic_url', 'ImageViewer', 'toolbar=yes, status=yes, resizable=yes, width=$winsizeX, height=$winsizeY')">
 EOT;
+        } else {
+            // assume it's not an image so hope that browser can display/play it with a helper app
+            $nonpic_url = rawurldecode($pic_url);
+            $return .= <<<EOT
+                <td class="$rowStyle" valign="middle">
+                        <a href="javascript:;" onclick= "MM_openBrWindow('{$CONFIG['fullpath']}$nonpic_url', 'ImageViewer', 'toolbar=yes, status=yes, resizable=yes, width=$winsizeX, height=$winsizeY')">$pic_fname</a>
+                </td>
+                <td class="$rowStyle" valign="middle" align="center">
+                        <a href="javascript:;" onclick= "MM_openBrWindow('{$CONFIG['fullpath']}$nonpic_url', 'ImageViewer', 'toolbar=yes, status=yes, resizable=yes, width=$winsizeX, height=$winsizeY')">
+EOT;
+        }
         if ($CONFIG['display_thumbs_batch_add'] == 1) {
           $return .= <<<EOT
                         <img src="images/spacer.gif" width="1" height="48" border="0" alt="" />
@@ -210,7 +234,7 @@ EOT;
                 </td>
                 
                 <td class="$rowStyle" valign="middle" width="100" height="40">
-                	<p id="p_{$picid}" name="addpic.php?pic_file=$encoded_picfile"></p>
+                    <p id="p_{$picid}" name="addpic.php?pic_file=$encoded_picfile"></p>
                 </td>
         </tr>
 EOT;
@@ -403,7 +427,7 @@ function getallalbumsindb(&$album_array)
  */
 function CPGscandir($dir, &$expic_array)
 {
-    global $lang_search_new_php;
+    global $lang_search_new_php, $lang_common, $rowCounter;
     $dir = str_replace(".","" ,$dir);
     static $dir_id = 0;
     static $count = 0;
@@ -456,11 +480,11 @@ if (!count($album_array)) {
 //if (isset($_POST['insert'])) {
 if ($superCage->post->keyExists('insert')) {
     //if (!isset($_POST['pics'])) cpg_die(ERROR, $lang_search_new_php['no_pic_to_add'], __FILE__, __LINE__);
-		if ($superCage->post->keyExists('pics')){
-				$pics = $superCage->post->getAlnum('pics');
-		}else{
-				cpg_die(ERROR, $lang_search_new_php['no_pic_to_add'], __FILE__, __LINE__);
-		}
+        if ($superCage->post->keyExists('pics')){
+                $pics = $superCage->post->getAlnum('pics');
+        }else{
+                cpg_die(ERROR, $lang_search_new_php['no_pic_to_add'], __FILE__, __LINE__);
+        }
     pageheader($lang_search_new_php['page_title']);
     $help = '&nbsp;'.cpg_display_help('f=uploading.htm&amp;as=ftp&amp;ae=ftp_end&amp;top=1#ftp_show_result', '600', '400');
     starttable("100%");
@@ -485,7 +509,7 @@ EOT;
 
         $edit_album_array[] = $album_id; //Load the album number into an array for later
         $matches = $superCage->post->getMatched('picfile_'.$pic_id, '/^[a-zA-A0-9=]+$/');
-		$picfile = $superCage->post->getAlnum('picfile_'.$pic_id);
+        $picfile = $superCage->post->getAlnum('picfile_'.$pic_id);
         //$pic_file = base64_decode($_POST['picfile_' . $pic_id]);
         $pic_file = base64_decode($picfile);
         $dir_name = dirname($pic_file) . "/";
@@ -556,7 +580,7 @@ EOT;
     ob_end_flush();
 //} elseif (isset($_GET['startdir'])) {
 } elseif ($superCage->get->keyExists('startdir') && $matches = $superCage->get->getMatched('startdir', '/^[0-9A-Za-z\/_-]+$/')) {
-	$startdir = $matches[0];
+    $startdir = $matches[0];
     pageheader($lang_search_new_php['page_title']);
     
     echo <<< EOT
@@ -570,161 +594,161 @@ var qm = new queuemanager(2);
 // Start the script
 function process(){
 
-	var aidbox = document.getElementById('aid');
-	
-	// append the album id
-	qm.aid = aidbox.options[aidbox.selectedIndex].value;
-	
-	if (qm.aid == 0){
-		alert('{$lang_search_new_php['no_album']}');
-		return false;
-	}
-	
-	// Collect object that represent jobs from the html list
-	var queuelist = document.getElementById('queue');
-	var objects = queuelist.getElementsByTagName('p');
+    var aidbox = document.getElementById('aid');
+    
+    // append the album id
+    qm.aid = aidbox.options[aidbox.selectedIndex].value;
+    
+    if (qm.aid == 0){
+        alert('{$lang_search_new_php['no_album']}');
+        return false;
+    }
+    
+    // Collect object that represent jobs from the html list
+    var queuelist = document.getElementById('queue');
+    var objects = queuelist.getElementsByTagName('p');
 
-	// Cycle through the objects, making jobs from them, adding them to the queue manager
-	for (var i=0; i < objects.length; i++){
-	
-		// if this is image is not selected then skip it
-		if (document.getElementById('checkbox_' + objects[i].id).checked == false){
-			continue;
-		}	
-		
-		// add job to queue
-		qm.add(new job(objects[i]));
-		
-		// clear the display from any previous run
-		objects[i].innerHTML = '';
-	}
-	
-	// Start the queue manager
-	qm.step();
+    // Cycle through the objects, making jobs from them, adding them to the queue manager
+    for (var i=0; i < objects.length; i++){
+    
+        // if this is image is not selected then skip it
+        if (document.getElementById('checkbox_' + objects[i].id).checked == false){
+            continue;
+        }   
+        
+        // add job to queue
+        qm.add(new job(objects[i]));
+        
+        // clear the display from any previous run
+        objects[i].innerHTML = '';
+    }
+    
+    // Start the queue manager
+    qm.step();
 }
 
 // Queue manager class - manages the queue
 function queuemanager(maxproc){
 
-	// Register methods
-	this.step = qm_step;
-	this.add = qm_add;
-	this.notifydone = qm_notifydone;
-	this.queuedone = qm_alldone;
-	
-	// Store the assigned process limit
-	this.maxprocesses = maxproc;
-	
-	// Concurrent process counter
-	this.processes = 0;
-	
-	// List of jobs which are pending
-	this.pending = new Array();
-	
-	// Selected album
-	this.aid = 0;
+    // Register methods
+    this.step = qm_step;
+    this.add = qm_add;
+    this.notifydone = qm_notifydone;
+    this.queuedone = qm_alldone;
+    
+    // Store the assigned process limit
+    this.maxprocesses = maxproc;
+    
+    // Concurrent process counter
+    this.processes = 0;
+    
+    // List of jobs which are pending
+    this.pending = new Array();
+    
+    // Selected album
+    this.aid = 0;
 }
 
 // Looks for a chance to start new jobs 
 function qm_step(){
 
-	// Starts as many as limit allows, assuming we have anything left to do
-	while (this.processes < this.maxprocesses && this.pending.length > 0){
-	
-		// Grab next job from pending list
-		var nextjob = this.pending.shift();
-		
-		// signal it to start
-		nextjob.commence();
-		
-		// increment the process counter
-		this.processes++;
-	}
+    // Starts as many as limit allows, assuming we have anything left to do
+    while (this.processes < this.maxprocesses && this.pending.length > 0){
+    
+        // Grab next job from pending list
+        var nextjob = this.pending.shift();
+        
+        // signal it to start
+        nextjob.commence();
+        
+        // increment the process counter
+        this.processes++;
+    }
 }
 
 // Add a job to the pending queue
 function qm_add(job){
-	this.pending.push(job);
+    this.pending.push(job);
 }
 
 // Queue manager is notified of a completed job 
 function qm_notifydone(){
 
-	// Decrement the process counter
-	this.processes-=1;
-	
-	// Look for next job
-	this.step();
-	
-	// If queue is empty and that was last running job we announce completion
-	if (this.pending.length == 0 && this.processes == 0) this.queuedone();	
+    // Decrement the process counter
+    this.processes-=1;
+    
+    // Look for next job
+    this.step();
+    
+    // If queue is empty and that was last running job we announce completion
+    if (this.pending.length == 0 && this.processes == 0) this.queuedone();  
 }
 
 // Announce completion of all tasks
 function qm_alldone(){
-	//alert('Jobs completed');
+    //alert('Jobs completed');
 }
 
 // Job class - represents a single job in the system
 function job(obj){
 
-	// This is the object we are representing, update its status as things happen
-	this.obj = obj
-	
-	// Register methods
-	this.commence = job_start
-	this.notifydone = job_done
-	this.notifyfailed = job_failed
+    // This is the object we are representing, update its status as things happen
+    this.obj = obj
+    
+    // Register methods
+    this.commence = job_start
+    this.notifydone = job_done
+    this.notifyfailed = job_failed
 }
 
 // Start the job
 function job_start(){
 
-	// Update status
-	//this.obj.innerHTML = 'Processing';
-	
-	// Get url stub from the p tag's name
-	var url = this.obj.getAttribute('name');
-	
-	// append the album id
-	url += '&aid=' + qm.aid;
-	
-	// Send http request
-	request(url, this);
+    // Update status
+    //this.obj.innerHTML = 'Processing';
+    
+    // Get url stub from the p tag's name
+    var url = this.obj.getAttribute('name');
+    
+    // append the album id
+    url += '&aid=' + qm.aid;
+    
+    // Send http request
+    request(url, this);
 }
 
 // Job is completed
 function job_done(response){
-	
-	var src;
-	
-	switch (response) {
-	
-		case 'OK':
-			src = 'images/up_ok.gif';
-		break;
+    
+    var src;
+    
+    switch (response) {
+    
+        case 'OK':
+            src = 'images/up_ok.gif';
+        break;
 
-		case 'DUPE':
-			src = 'images/up_dup.gif';
-		break;
-		
-		case 'PB':
-			src = 'images/up_pb.gif';
-		break;		
-	}
+        case 'DUPE':
+            src = 'images/up_dup.gif';
+        break;
+        
+        case 'PB':
+            src = 'images/up_pb.gif';
+        break;      
+    }
 
-	var img = document.createElement('img');
-	img.setAttribute('src', src);
-	
-	this.obj.appendChild(img);
-	
-	// Notify the queue manager
-	qm.notifydone();
+    var img = document.createElement('img');
+    img.setAttribute('src', src);
+    
+    this.obj.appendChild(img);
+    
+    // Notify the queue manager
+    qm.notifydone();
 }
 
 // Job has failed (http request failed)
 function job_failed(){
-	job_done('PB');
+    job_done('PB');
 }
 
 // Sends the http request (developer.mozilla.org)
@@ -742,13 +766,13 @@ function request(url, job){
         }
     }
 
-	 url += '&k=' + Math.floor(Math.random() * 10000);
+     url += '&k=' + Math.floor(Math.random() * 10000);
 
     httpRequest.onreadystatechange = function() { alertContents(httpRequest, job); };
     httpRequest.open('GET', url, true);
     httpRequest.send(null);
 
-	return true;
+    return true;
 }
 
 // Status callback function
@@ -794,9 +818,9 @@ EOT;
         </script>
         <form method="post" action="{$CPG_PHP_SELF}?insert=1" name="selectPics" id="cpgform" style="margin:0px;padding:0px">
 EOT;
-	
-	echo '<div id="queue">';
-	
+    
+    echo '<div id="queue">';
+    
     starttable("100%");
     echo <<<EOT
         <tr>

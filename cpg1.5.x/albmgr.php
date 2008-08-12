@@ -489,8 +489,8 @@ if (GALLERY_ADMIN_MODE||($cat == USER_ID + FIRST_USER_CAT)) {
 } else {
     echo '                    <td></td>';
 }
-$delete_output = cpg_fetch_icon('delete', 0, $lang_common['delete']);
-$new_output = cpg_fetch_icon('add', 0, $lang_common['new']);
+$delete_output = cpg_fetch_icon('delete', 0, $lang_albmgr_php['delete_album']);
+$new_output = cpg_fetch_icon('add', 0, $lang_albmgr_php['new_album']);
 echo <<< EOT
                                                                                 <td align="center" ><a href="javascript:Album_Delete();" style="color: Black; font-weight: bold;">{$delete_output}</a>
                                                                                 </td>

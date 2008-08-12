@@ -2469,7 +2469,9 @@ function& get_pic_url(&$pic_row, $mode, $system_pic = false)
         $thumb_extensions = Array('.gif','.png','.jpg');
         // Check for user-level custom thumbnails
         // Create custom thumb path and erase extension using filename; Erase filename's extension
-        $custom_thumb_path = $url_prefix[$pic_row['url_prefix']].$pic_row['filepath'].$pic_prefix[$mode];
+        $custom_thumb_path = array_key_exists('url_prefix',$pic_row) ? $url_prefix[$pic_row['url_prefix']] : ''
+                . $pic_row['filepath']
+                . array_key_exists($mode,$pic_prefix) ? $pic_prefix[$mode] : '';
         $file_base_name = str_replace('.'.$mime_content['extension'],'',basename($pic_row['filename']));
         // Check for file-specific thumbs
         foreach ($thumb_extensions as $extension) {
@@ -4543,7 +4545,7 @@ function json_encode($arr)
 function cpg_getimagesize($image, $force_cpg_function = false)
 {
     if (!function_exists('getimagesize') || $force_cpg_function) {
-        //custom function borrowed from http://www.wischik.com/lu/programmer/get-image-size.html
+        // custom function borrowed from http://www.wischik.com/lu/programmer/get-image-size.html
         $f = @fopen($image, 'rb');
         if ($f === false) {
             return false;
@@ -4597,7 +4599,8 @@ function cpg_getimagesize($image, $force_cpg_function = false)
             $type = 3;
         }
 
-        if (isset($x, $y, $type)) {
+        // added ! from source line since it doesn't work otherwise
+        if (!isset($x, $y, $type)) {
             return false;
         }
         return array($x, $y, $type, 'height="' . $x . '" width="' . $y . '"');

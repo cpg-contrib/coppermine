@@ -175,7 +175,7 @@ if (array_key_exists($action, $tasks)){
 EOT;
         endtable();
 
-        starttable('100%', $lang_util_php['select_album']);
+        starttable('100%', $lang_common['select_album']);
         echo '<tr><td class="tablef"><br />';
         //if (defined('UDB_INTEGRATION')){
                 $cpg_udb->util_filloptions();

@@ -36,7 +36,7 @@ function add_picture($aid, $filepath, $filename, $position = 0, $title = '', $ca
     $normal = $CONFIG['fullpath'] . $filepath . $CONFIG['normal_pfx'] . $filename;
     $thumb = $CONFIG['fullpath'] . $filepath . $CONFIG['thumb_pfx'] . $filename;
     $orig = $CONFIG['fullpath'] . $filepath . $CONFIG['orig_pfx'] . $filename;#########
-    $mini = $CONFIG['fullpath'] . $filepath . $CONFIG['mini_pfx'] . $filename;#########
+    // $mini = $CONFIG['fullpath'] . $filepath . $CONFIG['mini_pfx'] . $filename;#########
     $work_image = $image;#########
 
 
@@ -199,7 +199,7 @@ if (!is_dir($CONFIG['fullpath'].'edit')) {
 * @param  $method the method used for image resizing
 * @return 'true' in case of success
 */
-function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use, $watermark="false", $sharpen=0,$media_type="false")
+function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use, $watermark="false", $sharpen=0, $media_type="false")
 {
     global $CONFIG, $ERROR;
     global $lang_errors;
@@ -208,9 +208,10 @@ function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use, $wa
     $superCage = Inspekt::makeSuperCage();
 
     $imginfo = getimagesize($src_file);
-    if ($imginfo == null)
+    if ($imginfo == null) {
         return false;
-        // GD can only handle JPG & PNG images
+    }
+    // GD can only handle JPG & PNG images
     if ($imginfo[2] != GIS_JPG && $imageinfo[2] != GIS_PNG && $CONFIG['GIF_support'] == 0) {
         $ERROR = $lang_errors['gd_file_type_err'];
         return false;
@@ -219,92 +220,93 @@ function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use, $wa
     $srcWidth = $imginfo[0];
     $srcHeight = $imginfo[1];
 
-        //if cropping is enabled calculate cropping parameters
+    $crop = 0; // initialize
+    // if cropping is enabled calculate cropping parameters
     if ($thumb_use == 'ex') {
-                $thb_width = $CONFIG['thumb_width'];
-                $thb_height = $CONFIG['thumb_height'];
+        $thb_width = $CONFIG['thumb_width'];
+        $thb_height = $CONFIG['thumb_height'];
 
 
-                if ($new_size==$thb_width) {
-                        $crop=1;
-                        switch ($CONFIG['thumb_method']){
-                                //cropping parameters for image magick
-                                case "im" :
-                                $resize_commands="";
-                                if ($srcWidth/$srcHeight > $thb_width/$thb_height) {
-                                        $resize_commands .= "-resize x".$thb_height;
-                                        $resized_w = ($thb_height/$srcHeight) * $srcWidth;
-                                        $resize_commands .= " -crop ".$thb_width."x".$thb_height."+".round(($resized_w - $thb_width)/2)."+0";
-                                } else {
-                                        $resize_commands .= "-resize ".$thb_width;
-                                        $resized_h = ($thb_width/$srcWidth) * $srcHeight;
-                                        $resize_commands .= " -crop ".$thb_width."x".$thb_height."+0+".round(($resized_h - $thb_height)/2);
-                                }
-                                break;
+        if ($new_size==$thb_width) {
+            $crop = 1;
+            switch ($CONFIG['thumb_method']) {
+                //cropping parameters for image magick
+                case "im" :
+                    $resize_commands="";
+                    if ($srcWidth/$srcHeight > $thb_width/$thb_height) {
+                        $resize_commands .= "-resize x".$thb_height;
+                        $resized_w = ($thb_height/$srcHeight) * $srcWidth;
+                        $resize_commands .= " -crop ".$thb_width."x".$thb_height."+".round(($resized_w - $thb_width)/2)."+0";
+                    } else {
+                        $resize_commands .= "-resize ".$thb_width;
+                        $resized_h = ($thb_width/$srcWidth) * $srcHeight;
+                        $resize_commands .= " -crop ".$thb_width."x".$thb_height."+0+".round(($resized_h - $thb_height)/2);
+                    }
+                    break;
 
-                                //cropping parameters for GD2
-                                default :
-                               if($srcHeight < $srcWidth)
-                               {
-                                   $ratio = (double)($srcHeight / $thb_height);
-
-                                   $cpyWidth = round($thb_width * $ratio);
-                                   if ($cpyWidth > $srcWidth)
-                                   {
-                                       $ratio = (double)($srcWidth / $thb_width);
-                                       $cpyWidth = $srcWidth;
-                                       $cpyHeight = round($thb_height * $ratio);
-                                       $xOffset = 0;
-                                       $yOffset = round(($srcHeight - $cpyHeight) / 2);
-                                   } else {
-                                       $cpyHeight = $srcHeight;
-                                       $xOffset = round(($srcWidth - $cpyWidth) / 2);
-                                       $yOffset = 0;
-                                   }
-
-                               } else {
-                                   $ratio = (double)($srcWidth / $thb_width);
-
-                                   $cpyHeight = round($thb_height * $ratio);
-                                   if ($cpyHeight > $srcHeight)
-                                   {
-                                       $ratio = (double)($srcHeight / $thb_height);
-                                       $cpyHeight = $srcHeight;
-                                       $cpyWidth = round($thb_width * $ratio);
-                                       $xOffset = round(($srcWidth - $cpyWidth) / 2);
-                                       $yOffset = 0;
-                                   } else {
-                                       $cpyWidth = $srcWidth;
-                                       $xOffset = 0;
-                                       $yOffset = round(($srcHeight - $cpyHeight) / 2);
-                                   }
-                               }
-
-                            $destWidth = $thb_width;
-                            $destHeight = $thb_height;
-                                $srcWidth = $cpyWidth;
-                                $srcHeight = $cpyHeight;
-                                break;
+                // cropping parameters for GD2
+                default :
+                    if($srcHeight < $srcWidth) {
+                        $ratio = (double)($srcHeight / $thb_height);
+                        $cpyWidth = round($thb_width * $ratio);
+                        if ($cpyWidth > $srcWidth) {
+                            $ratio = (double)($srcWidth / $thb_width);
+                            $cpyWidth = $srcWidth;
+                            $cpyHeight = round($thb_height * $ratio);
+                            $xOffset = 0;
+                            $yOffset = round(($srcHeight - $cpyHeight) / 2);
+                        } else {
+                            $cpyHeight = $srcHeight;
+                            $xOffset = round(($srcWidth - $cpyWidth) / 2);
+                            $yOffset = 0;
                         }
-                }
-                else $ratio = max($srcWidth, $srcHeight) / $new_size;
 
-        } elseif ($thumb_use == 'wd') { // resize method width
+                    } else {
+                        $ratio = (double)($srcWidth / $thb_width);
+                        $cpyHeight = round($thb_height * $ratio);
+                        if ($cpyHeight > $srcHeight) {
+                            $ratio = (double)($srcHeight / $thb_height);
+                            $cpyHeight = $srcHeight;
+                            $cpyWidth = round($thb_width * $ratio);
+                            $xOffset = round(($srcWidth - $cpyWidth) / 2);
+                            $yOffset = 0;
+                        } else {
+                            $cpyWidth = $srcWidth;
+                            $xOffset = 0;
+                            $yOffset = round(($srcHeight - $cpyHeight) / 2);
+                        }
+                    }
+
+                    $destWidth = $thb_width;
+                    $destHeight = $thb_height;
+                    $srcWidth = $cpyWidth;
+                    $srcHeight = $cpyHeight;
+                    break;
+            }
+        } else {
+            $ratio = max($srcWidth, $srcHeight) / $new_size;
+        }
+
+    } elseif ($thumb_use == 'wd') { 
+        // resize method width
         $ratio = $srcWidth / $new_size;
-    } elseif ($thumb_use == 'ht') { // resize method height
+    } elseif ($thumb_use == 'ht') { 
+        // resize method height
         $ratio = $srcHeight / $new_size;
-        } else { // resize method any
+    } else { // resize method any
         $ratio = max($srcWidth, $srcHeight) / $new_size;
     }
     $ratio = max($ratio, 1.0);
-        if ($thumb_use == 'orig') $ratio=1.0;
-        if ($crop != 1){
-            $destWidth = (int)($srcWidth / $ratio);
-            $destHeight = (int)($srcHeight / $ratio);
-                $resize_commands = "-geometry ".$destWidth."x".$destHeight;
-                $xOffset = 0;
-                $yOffset = 0;
-        }
+    if ($thumb_use == 'orig') {
+        $ratio = 1.0;
+    }
+    if ($crop != 1) {
+        $destWidth = (int)($srcWidth / $ratio);
+        $destHeight = (int)($srcHeight / $ratio);
+        $resize_commands = "-geometry ".$destWidth."x".$destHeight;
+        $xOffset = 0;
+        $yOffset = 0;
+    }
     // Method for thumbnails creation
     switch ($method) {
         case "im" :
