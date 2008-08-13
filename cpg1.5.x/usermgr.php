@@ -420,7 +420,7 @@ EOT;
         	$last_uploads = cpg_fetch_icon('blank', 0);
         }
         // To do: fetch number of comments and add link to comments if applicable
-        $ban_user_link = '<a href="banning.php?ban_user=' . $user['user_id'] . '">' . cpg_fetch_icon('ban_user', 0, $lang_usermgr_php['ban_user']) . '</a>';
+        
 
         
 
@@ -429,9 +429,11 @@ EOT;
                 if ($user['user_id'] == $USER_DATA['user_id']) {
                     $profile_link = 'profile.php?op=edit_profile';
                     $checkbox_html = '';
+                    $ban_user_link = cpg_fetch_icon('blank', 0);
                 } else {
                     $profile_link = $CPG_PHP_SELF.'?op=edit&user_id='.$user['user_id'];
                     $checkbox_html = '<input name="u'.$user['user_id'].'" '.$makereadonly.'type="checkbox" value="" class="checkbox" />';
+                    $ban_user_link = '<a href="banning.php?ban_user=' . $user['user_id'] . '">' . cpg_fetch_icon('ban_user', 0, $lang_usermgr_php['ban_user']) . '</a>';
                 }
                 $profile_link = '<a href="' . $profile_link . '">' . cpg_fetch_icon('edit', 0, $lang_usermgr_php['edit_profile']) . '</a>';
                 echo <<< EOT
