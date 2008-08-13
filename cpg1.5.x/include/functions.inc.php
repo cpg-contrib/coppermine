@@ -1857,6 +1857,10 @@ function cpg_determine_client($pid)
             } elseif (eregi("MSIE 5.0",$server_agent)) {
                 $browser = "IE5.0";
             }
+        } elseif (eregi("Epiphany",$server_agent)) {
+            $browser = "Epiphany";
+        } elseif (eregi("Phoenix",$server_agent)) {
+            $browser = "Phoneix";        
         } elseif (eregi("Firebird",$server_agent)) {
             $browser = "Mozilla Firebird";
         } elseif (eregi("netscape",$server_agent)) {
