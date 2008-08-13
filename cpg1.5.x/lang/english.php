@@ -2333,7 +2333,7 @@ $lang_usermgr_php = array(
   'operations' => 'Operations',
   'pictures' => 'Files',
   'disk_space_used' => 'Space used',
-  'disk_space_quota' => 'Space Quota',
+  'disk_space_quota' => 'Quota', // cpg1.5
   'registered_on' => 'Registration',
   'last_visit' => 'Last Visit',
   'u_user_on_p_pages' => '%d users on %d page(s)',
@@ -2379,6 +2379,9 @@ $lang_usermgr_php = array(
   'view_profile' => 'View profile', // cpg1.5
   'edit_profile' => 'Edit profile', // cpg1.5
   'ban_user' => 'Ban user', // cpg1.5
+  'status' => 'Status', // cpg1.5
+  'status_active' => 'active', // cpg1.5
+  'status_inactive' => 'not active', // cpg1.5
 );
 
 $lang_send_login_data_email = <<<EOT
