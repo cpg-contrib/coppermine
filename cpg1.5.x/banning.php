@@ -263,6 +263,16 @@ $new_ban_user_id = '';
 //check if there is a ban_user parameter in the URL that we have to ban
 if($superCage->get->keyExists('ban_user') && $superCage->get->getInt('ban_user') != "")	{
 	$new_ban_user_id = $superCage->get->getInt('ban_user');
+	$sql = "SELECT user_name FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '$new_ban_user_id' LIMIT 1";
+	$result = cpg_db_query($sql);
+	if (!mysql_num_rows($result)) {
+		$comm_info['msg_author'] = '';
+	} else {
+		$user_data = mysql_fetch_array($result);
+		$comm_info['msg_author'] = $user_data['user_name'];
+		unset($user_data);
+	}
+	mysql_free_result($result);
 }
 
 //check if there is a delete_comment_id parameter in the URL that we have to ban
