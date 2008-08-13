@@ -123,8 +123,8 @@ $edit_profile_form_param = array(
 
 
 if ($CONFIG['allow_email_change'] == 1 || GALLERY_ADMIN_MODE) {
-  $edit_profile_form_param[3][0]='input';
-}
+	$edit_profile_form_param[3][0]='input';
+} 
 
         // profile mod test
 $display_profile_form_param = array(
