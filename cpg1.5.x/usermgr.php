@@ -347,6 +347,8 @@ EOT;
                 <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=name_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['name_a']}" /></a>
                 <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=name_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['name_d']}" /></a>
                 </td>
+                <td class="tableh1" align="center"><span class="statlink">{$lang_usermgr_php['status']}</span>
+                </td>
                 <td class="tableh1"><a href="groupmgr.php" class="statlink">{$lang_usermgr_php['group']}</a>
                 <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=group_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['group_a']}" /></a>
                 <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=group_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['group_d']}" /></a>
@@ -363,11 +365,9 @@ EOT;
                 <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=pic_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['pic_a']}" /></a>
                 <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=pic_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['pic_d']}" /></a>
                 </td>
-                <td class="tableh1" align="center"><span class="statlink">{$lang_usermgr_php['disk_space_used']}</span>
+                <td class="tableh1" align="center"><span class="statlink">{$lang_usermgr_php['disk_space_used']}/{$lang_usermgr_php['disk_space_quota']}</span>
                 <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=disku_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['disku_a']}" /></a>
                 <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=disku_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['disku_d']}" /></a>
-                </td>
-                <td class="tableh1" align="center"><span class="statlink">{$lang_usermgr_php['disk_space_quota']}</span>
                 </td>
         </tr>
 EOT;
@@ -377,12 +377,12 @@ EOT;
 
         <tr>
                 <td class="tableh1"><span class="statlink">{$lang_usermgr_php['name']}</span></td>
+                <td class="tableh1" align="center"><span class="statlink">{$lang_usermgr_php['status']}</span></td>
                 <td class="tableh1"><span class="statlink">{$lang_usermgr_php['group']}</span></td>
                 <td class="tableh1"><span class="statlink">{$lang_usermgr_php['registered_on']}</span></td>
                 <td class="tableh1"><span class="statlink">{$lang_usermgr_php['last_visit']}</span></td>
                 <td class="tableh1" align="center"><span class="statlink">{$lang_usermgr_php['pictures']}</span></td>
-                <td class="tableh1" align="center"><span class="statlink">{$lang_usermgr_php['disk_space_used']}</span></td>
-                <td class="tableh1" align="center"><span class="statlink">{$lang_usermgr_php['disk_space_quota']}</span></td>
+                <td class="tableh1" align="center"><span class="statlink">{$lang_usermgr_php['disk_space_used']}/{$lang_usermgr_php['disk_space_quota']}</span></td>
         </tr>
 EOT;
     }
@@ -402,8 +402,22 @@ EOT;
         if ($user['disk_usage'] == '') {
             $user['disk_usage'] = 0;
         }
+        $group_quota_separator = '/';
+        if ($user['group_quota']) {
+        	$disk_usage_output = theme_display_bar($user['disk_usage'],$user['group_quota'],150,'', '', $group_quota_separator.$user['group_quota'].'&nbsp;'.$lang_byte_units[1],'red','green');
+        } else {
+        	$disk_usage_output = theme_display_bar($user['disk_usage'],$user['group_quota'],150,'', '', '&nbsp;'.$lang_byte_units[1],'green','green');
+        }
         if ($user['user_active'] == 'NO') {
-            $user['group_name'] = '<i>' . $lang_usermgr_php['inactive'] . '</i>';
+            //$user['group_name'] = '<i>' . $lang_usermgr_php['inactive'] . '</i>';
+            $user['status'] = cpg_fetch_icon('offline', 0, $lang_usermgr_php['status_inactive']);
+            $action = 'activate';
+        } else {
+        	$user['status'] = cpg_fetch_icon('online', 0, $lang_usermgr_php['status_active']);
+        	$action = 'deactivate';
+        }
+        if (!$lim_user) {
+        	$user['status'] = '<a href="delete.php?id=u'.$user['user_id'].'&amp;album_listbox='.$sort.'&amp;action='.$action.'&amp;what=user" title="foo">' . $user['status'] . '</a>';
         }
         $user['user_regdate'] = localised_date($user['user_regdate'], $register_date_fmt);
         if ($user['user_lastvisit']) {
@@ -446,25 +460,26 @@ EOT;
                 	{$profile_link}
                 	{$ban_user_link}
                 </td>
+                <td class="{$row_style_class}">{$user['status']}</td>
                 <td class="{$row_style_class}">{$user['group_name']}</td>
                 <td class="{$row_style_class}">{$user['user_regdate']}</td>
                 <td class="{$row_style_class}">{$user['user_lastvisit']}</td>
                 <td class="{$row_style_class}" align="right">{$user['pic_count']}</td>
-                <td class="{$row_style_class}" align="right">{$user['disk_usage']}&nbsp;{$lang_byte_units[1]}</td>
-                <td class="{$row_style_class}" align="right">{$user['group_quota']}&nbsp;{$lang_byte_units[1]}</td>
+                <!--<td class="{$row_style_class}" align="right">{$user['disk_usage']}/{$user['group_quota']}&nbsp;{$lang_byte_units[1]}</td>-->
+                <td class="{$row_style_class}" align="center">{$disk_usage_output}</td>
         </tr>
 
 EOT;
         } else {
                   echo <<< EOT
         <tr>
-                <td class="{$row_style_class}">$usr_link</td>
+                <td class="{$row_style_class}">{$user['user_name']}{$view_profile}{$last_uploads}</td>
+                <td class="{$row_style_class}">{$user['status']}</td>
                 <td class="{$row_style_class}">{$user['group_name']}</td>
                 <td class="{$row_style_class}">{$user['user_regdate']}</td>
                 <td class="{$row_style_class}">{$user['user_lastvisit']}</td>
                 <td class="{$row_style_class}" align="right">{$user['pic_count']}</td>
-                <td class="{$row_style_class}" align="right">{$user['disk_usage']}&nbsp;{$lang_byte_units[1]}</td>
-                <td class="{$row_style_class}" align="right">{$user['group_quota']}&nbsp;{$lang_byte_units[1]}</td>
+                <td class="{$row_style_class}" align="center">{$disk_usage_output}</td>
         </tr>
 
 EOT;
@@ -523,7 +538,7 @@ EOT;
 
     $help_create = '&nbsp;'.cpg_display_help('f=users.htm&amp;as=user_cp_new&amp;ae=user_cp_new_end', '600', '250');
 
-    $create_new_user_icon = cpg_fetch_icon('add', 2);
+    $create_new_user_icon = cpg_fetch_icon('add_user', 2);
     echo <<<EOT
                               </select>
                             <select name="delete_files" size="1" class="listbox" style="display:none">
