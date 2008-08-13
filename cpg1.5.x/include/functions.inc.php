@@ -1810,12 +1810,12 @@ function cpg_determine_client($pid)
         // Get the details of user browser, IP, OS, etc
         $os = "Unknown";
         $server_agent = $superCage->server->getRaw('HTTP_USER_AGENT');
-        if (eregi("Linux",$server_agent)) {
-            $os = "Linux";
-        } elseif (eregi("Ubuntu",$server_agent)) {
+        if (eregi("Ubuntu",$server_agent)) {
             $os = "Linux Ubuntu";
         } elseif (eregi("Debian",$server_agent)) {
             $os = "Linux Debian";
+        } elseif (eregi("Linux",$server_agent)) {
+            $os = "Linux";
         } elseif (eregi("Windows NT 5.0",$server_agent)) {
             $os = "Windows 2000";
         } elseif (eregi("win98|Windows 98",$server_agent)) {
