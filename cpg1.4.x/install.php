@@ -223,7 +223,7 @@ function html_installer_locked()
           </td>
          </tr>
          <tr>
-          <td class="tableb" colspan="2">The installer has already been run successfuly once and is now locked.<br /><br />If you want to run the installer again, you first need to delete the '<?php echo $DFLT['lck_f'] ?>' file that was created in the directory where you put Coppermine. You can do this with any FTP program.
+          <td class="tableb" colspan="2">The installer has already been run successfully once and is now locked.<br /><br />If you want to run the installer again, you first need to delete the '<?php echo $DFLT['lck_f'] ?>' file that was created in the directory where you put Coppermine. You can do this with any FTP program.
           </td>
          </tr>
          <tr>
