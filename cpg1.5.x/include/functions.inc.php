@@ -1814,6 +1814,16 @@ function cpg_determine_client($pid)
             $os = "Linux Ubuntu";
         } elseif (eregi("Debian",$server_agent)) {
             $os = "Linux Debian";
+        } elseif (eregi("CentOS",$server_agent)) {
+            $os = "Linux CentOS";
+        } elseif (eregi("Fedora",$server_agent)) {
+            $os = "Linux Fedora";
+        } elseif (eregi("Mandrake",$server_agent)) {
+            $os = "Linux Mandrake";
+        } elseif (eregi("RedHat",$server_agent)) {
+            $os = "Linux RedHat";
+        } elseif (eregi("Suse",$server_agent)) {
+            $os = "Linux Suse";
         } elseif (eregi("Linux",$server_agent)) {
             $os = "Linux";
         } elseif (eregi("Windows NT 5.0",$server_agent)) {
@@ -1840,6 +1850,14 @@ function cpg_determine_client($pid)
             $os = "Macintosh";
         } elseif (eregi("OS/2",$server_agent)) {
             $os = "OS/2";
+		} elseif (eregi("aix",$server_agent)) {
+            $browser = "aix";
+		} elseif (eregi("FreeBSD",$server_agent)) {
+            $browser = "BSD FreeBSD";
+		} elseif (eregi("Unix",$server_agent)) {
+            $browser = "Unix";
+		} elseif (eregi("iphone",$server_agent)) {
+            $browser = "iPhone";
         }
 
         $browser = 'Unknown';
@@ -1916,7 +1934,7 @@ function cpg_determine_client($pid)
         } elseif (eregi("K-Meleon",$server_agent)) {
             $browser = "K-Meleon";
         }
-
+        
         //Code to get the search string if the referrer is any of the following
         $search_engines = array('google', 'lycos', 'yahoo');
 
