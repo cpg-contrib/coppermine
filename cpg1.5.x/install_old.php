@@ -77,7 +77,7 @@ function test_sql_connection()
          } elseif (! $connect_id = @mysql_connect($_POST['dbserver'], $_POST['dbuser'], $_POST['dbpass'])) {
         $errors .= "<hr /><br />Could not create a mySQL connection, please check the SQL values entered<br /><br />MySQL error was : " . mysql_error() . "<br /><br />";
     } elseif (! mysql_select_db($_POST['dbname'], $connect_id)) {
-        $errors .= "<hr /><br />mySQL could not locate a database called '{$_POST['dbname']}' please check the value entered for this<br /><br />";
+        $errors .= "<hr /><br />MySQL could not locate a database called '{$_POST['dbname']}' please check the value entered for this<br /><br />";
     }
 }
 
@@ -223,7 +223,7 @@ function html_installer_locked()
           </td>
          </tr>
          <tr>
-          <td class="tableb" colspan="2">The installer has already been run successfuly once and is now locked.<br /><br />If you want to run the installer again, you first need to delete the '<?php echo $DFLT['cfg_f'] ?>' file that was created in the directory where you put Coppermine. You can do this with any FTP program.
+          <td class="tableb" colspan="2">The installer has already been run successfully once and is now locked.<br /><br />If you want to run the installer again, you first need to delete the '<?php echo $DFLT['cfg_f'] ?>' file that was created in the directory where you put Coppermine. You can do this with any FTP program.
           </td>
          </tr>
          <tr>
@@ -304,7 +304,7 @@ function html_input_config($error_msg = '')
           </td>
          </tr>
          <tr>
-          <td class="tableh2" colspan="2"> This section requires information to create your coppermine administration account. Use only alphanumeric characters. Enter the data carefully !
+          <td class="tableh2" colspan="2"> This section requires information to create your Coppermine administration account. Use only alphanumeric characters. Enter the data carefully !
           </td>
          </tr>
          <tr>
