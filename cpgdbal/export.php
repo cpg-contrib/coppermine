@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $URL$
-  $Revision: 4502 $
+  $Revision: 4844 $
   $LastChangedBy: pvanrompay $
-  $Date: 2008-06-06 03:51:20 +0530 (Fri, 06 Jun 2008) $
+  $Date: 2008-08-12 11:33:24 +0530 (Tue, 12 Aug 2008) $
 **********************************************/
 
 define('IN_COPPERMINE',true);
@@ -23,7 +23,7 @@ define('EXPORT_PHP', true);
 require('include/init.inc.php');
 
 if (!GALLERY_ADMIN_MODE) {
-	cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+    cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 }
 
 pageheader($lang_export_php['export']);
@@ -51,42 +51,42 @@ if($superCage->post->keyExists('exportSubmit'))
   }
   ##################################################################################
 
-  starttable('-1', $lang_export_php['export'].'&nbsp;'.cpg_display_help('f=export.htm&amp;as=export&amp;ae=export_end', '600', '450'), 2);
-	
+  starttable('-1', cpg_fetch_icon('export', 2) . $lang_export_php['export'].'&nbsp;'.cpg_display_help('f=export.htm&amp;as=export&amp;ae=export_end', '600', '450'), 2);
+    
   echo <<< EOT
 
-	<tr>
-		<td class="tableb">
-			{$lang_export_php['export_type']}
-		</td>
-		<td class="tableb">
-	    	<input type="radio" name="exportType" id="html" value="html" checked="checked" class="radio" /><label for="html">{$lang_export_php['html']}</label>
-	    	<input type="radio" name="exportType" id="img" value="img" class="radio" /><label for="img">{$lang_export_php['images']}</label>
-		</td>
-	</tr>
-	<tr>
-		<td class="tableb tableb_alternate">
-	    	{$lang_export_php['select_album']}
-		</td>
-		<td class="tableb tableb_alternate">
-	    	<select name="album" class="listbox">
-				$options
-	    	</select>
-		</td>
-	</tr>
-	<tr>
-		<td class="tableb">
-	    	{$lang_export_php['export_directory']}
-		</td>
-		<td class="tableb">
-	    	<input type="text" value="export" name="directory" class="textinput" />
-		</td>
-	</tr>
-	<tr>
-		<td class="tablef" colspan="2">
-	    	<input type="submit" name="exportSubmit" value="{$lang_common['go']}" class="button" />
-		</td>
-	</tr>
+    <tr>
+        <td class="tableb">
+            {$lang_export_php['export_type']}
+        </td>
+        <td class="tableb">
+            <input type="radio" name="exportType" id="html" value="html" checked="checked" class="radio" /><label for="html">{$lang_export_php['html']}</label>
+            <input type="radio" name="exportType" id="img" value="img" class="radio" /><label for="img">{$lang_export_php['images']}</label>
+        </td>
+    </tr>
+    <tr>
+        <td class="tableb tableb_alternate">
+            {$lang_common['select_album']}
+        </td>
+        <td class="tableb tableb_alternate">
+            <select name="album" class="listbox">
+                $options
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td class="tableb">
+            {$lang_export_php['export_directory']}
+        </td>
+        <td class="tableb">
+            <input type="text" value="export" name="directory" class="textinput" />
+        </td>
+    </tr>
+    <tr>
+        <td class="tablef" colspan="2">
+            <input type="submit" name="exportSubmit" value="{$lang_common['go']}" class="button" />
+        </td>
+    </tr>
 
 EOT;
 
@@ -99,7 +99,7 @@ pagefooter();
 // Based on code by Rob Williams
 //Convert a PHP array to a JavaScript one (rev. 4)
 function phpArrayToJS($array, $baseName) {
-	$return = '';
+    $return = '';
 
 	//Write out the initial array definition
 	$return .= ($baseName . " = new Array(); \r\n ");    
@@ -189,41 +189,42 @@ function initHTMLExport($album,$path)
   
 	echo<<<EOT
     
-	<script type="text/javascript">
-		var album = "{$album}";
-		var path = "{$path}";
-		var pages = "{$pages}";
-		getPage(1);
-		function getPage(page)
-		{
-			if(page<=pages) {
-				// Create an xmlHttp Object (Tries Activex object then xmlHttp request)
-				try {
-					ajxobj = new ActiveXObject('Msxml2.XMLHTTP');
-				} catch (e) {
-					try {
-						ajxobj = new ActiveXObject('Microsoft.XMLHTTP');
-					} catch (E) {
-						ajxobj = false;
-					}
-				}
-				if (!ajxobj && typeof XMLHttpRequest!='undefined') {
-					ajxobj = new XMLHttpRequest(); //If we were able to get a working active x object, start an XMLHttpRequest
-				} 
-				ajxobj.onreadystatechange=function() {	//Handle successful xmlHttp transfer
-					if(ajxobj.readyState==4) {
-						getPage(page+1);
-					}
-				};
-			  
-				// Generate and do xmlHttp call
-				ajxobj.open('GET',"export.php?album="+album+"&path="+path+"&page="+page, true);
-				ajxobj.send(null);
-			} else {
-				window.location = path;
-			}
-		}
-	</script>
+    <script type="text/javascript">
+      var album = "{$album}";
+      var path = "{$path}";
+      var pages = "{$pages}";
+      getPage(1);
+      function getPage(page)
+      {
+        if(page<=pages) {
+            // Create an xmlHttp Object (Tries Activex object then xmlHttp request)
+            try {
+              ajxobj = new ActiveXObject('Msxml2.XMLHTTP');
+            } catch (e) {
+              try {
+                ajxobj = new ActiveXObject('Microsoft.XMLHTTP');
+                  } catch (E) {
+                   ajxobj = false;
+                }
+            }
+              if (!ajxobj && typeof XMLHttpRequest!='undefined') {
+                ajxobj = new XMLHttpRequest(); //If we were able to get a working active x object, start an XMLHttpRequest
+              } 
+              ajxobj.onreadystatechange=function() {    //Handle successful xmlHttp transfer
+                if(ajxobj.readyState==4) {
+                  getPage(page+1);
+                }
+              };
+              
+              // Generate and do xmlHttp call
+            ajxobj.open('GET',"export.php?album="+album+"&path="+path+"&page="+page, true);
+            ajxobj.send(null);
+        } else {
+          window.location = path;
+        }
+      }
+
+    </script>
 EOT;
 }
 
@@ -334,14 +335,14 @@ function initPhotoCopy($album,$directory)
 
 	$superCage = Inspekt::makeSuperCage();
 
-	if (!is_dir($directory)){
-		mkdir($directory);
-		chmod($directory, octdec($CONFIG['default_dir_mode']));
-	}
-	// To-do: perform a check if the export directory has been created succsessfully and die if this has failed
-	starttable('100%', 'ID',2);
+    if (!is_dir($directory)){
+        mkdir($directory);
+        chmod($directory, octdec($CONFIG['default_dir_mode']));
+    }
+    // To-do: perform a check if the export directory has been created succsessfully and die if this has failed
+    starttable('100%', 'ID',2);
 
-	$pic_array = array();
+    $pic_array = array();
 	/*$pictures = cpg_db_query("SELECT pid,title,filename,filepath FROM {$CONFIG['TABLE_PICTURES']} WHERE `aid` = '$album'");
 	while($picture = mysql_fetch_assoc($pictures))	*/
 	####################            DB         ####################
@@ -366,7 +367,7 @@ function initPhotoCopy($album,$directory)
       function processPicture(offset)
       {
         if(offset >= pictures.length) {return 0;};
-        	// Create an xmlHttp Object (Tries Activex object then xmlHttp request)
+            // Create an xmlHttp Object (Tries Activex object then xmlHttp request)
           try {
             ajxobj = new ActiveXObject('Msxml2.XMLHTTP');
           } catch (e) {
@@ -379,7 +380,7 @@ function initPhotoCopy($album,$directory)
             if (!ajxobj && typeof XMLHttpRequest!='undefined') {
               ajxobj = new XMLHttpRequest(); //If we were able to get a working active x object, start an XMLHttpRequest
             } 
-            ajxobj.onreadystatechange=function() {	//Handle successful xmlHttp transfer
+            ajxobj.onreadystatechange=function() {  //Handle successful xmlHttp transfer
               if(ajxobj.readyState==4) {
                 document.getElementById('path_'+pictures[offset]['pid']).style.textDecoration = 'line-through';
                 document.getElementById('id_'+pictures[offset]['pid']).style.textDecoration = 'line-through';
@@ -403,43 +404,43 @@ function initPhotoCopy($album,$directory)
 // Does a recursive copy on a directory
 function recursive_copy($src,$dest)
 {
-	// Base case, is file so just copy
-	if (is_file($src)) {
-		$c = copy($src, $dest);
-		return $c;
-	}
+    // Base case, is file so just copy
+    if (is_file($src)) {
+        $c = copy($src, $dest);
+        return $c;
+    }
 
 
-	if(!is_dir($dest)) {
-		recursive_mkdir($dest);
-	}
-	
-		$dir = dir($src);
-		while (false !== $entry = $dir->read()) {		
-		if($entry== '.' || $entry == '..' || preg_match('/^\./',$entry)) // Skips the index '.' and '..' along with hidden files
-			continue;
-		if($dest !== "$src/$entry") {
-			recursive_copy("$src/$entry","$dest/$entry");
-		}
-	}
+    if(!is_dir($dest)) {
+        recursive_mkdir($dest);
+    }
+    
+        $dir = dir($src);
+        while (false !== $entry = $dir->read()) {       
+        if($entry== '.' || $entry == '..' || preg_match('/^\./',$entry)) // Skips the index '.' and '..' along with hidden files
+            continue;
+        if($dest !== "$src/$entry") {
+            recursive_copy("$src/$entry","$dest/$entry");
+        }
+    }
 }
 
 // Recursively makes directories as necessary to create a given path:
 function recursive_mkdir($folder)
 {
-	global $CONFIG;
-	
-	$folder = explode(DIRECTORY_SEPARATOR, $folder);
+    global $CONFIG;
+    
+    $folder = explode(DIRECTORY_SEPARATOR, $folder);
 
-	$mkfolder = '';
+    $mkfolder = '';
 
-	for ($i=0; isset($folder[$i]); $i++){
-		$mkfolder .= $folder[$i];
-		if(!is_dir($mkfolder)){
+    for ($i=0; isset($folder[$i]); $i++){
+        $mkfolder .= $folder[$i];
+        if(!is_dir($mkfolder)){
         mkdir($mkfolder);
         chmod($mkfolder, octdec($CONFIG['default_dir_mode']));
       }
-    	$mkfolder .= DIRECTORY_SEPARATOR;
+        $mkfolder .= DIRECTORY_SEPARATOR;
     }
 }
 ?>

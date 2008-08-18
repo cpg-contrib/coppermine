@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4224 $
+  $Revision: 4841 $
   $LastChangedBy: gaugau $
-  $Date: 2008-01-26 17:12:00 +0530 (Sat, 26 Jan 2008) $
+  $Date: 2008-08-12 03:00:08 +0530 (Tue, 12 Aug 2008) $
 **********************************************/
 
 error_reporting (E_ALL ^ E_NOTICE);
@@ -41,7 +41,7 @@ $string = str_replace('class="center"','',$string);
 ob_end_clean();
 
 print '<div align="left" style="overflow:hidden;width:800px;text-align:left;">';
-starttable('100%', $lang_phpinfo_php['php_info'], 1);
+starttable('100%', cpg_fetch_icon('phpinfo', 2) . $lang_phpinfo_php['php_info'], 1);
 print '<tr><td class="tableb">';
 print $lang_phpinfo_php['explanation'];
 print '<br />';

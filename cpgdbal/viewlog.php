@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4224 $
+  $Revision: 4841 $
   $LastChangedBy: gaugau $
-  $Date: 2008-01-26 17:12:00 +0530 (Sat, 26 Jan 2008) $
+  $Date: 2008-08-12 03:00:08 +0530 (Tue, 12 Aug 2008) $
 **********************************************/
 
 define('IN_COPPERMINE',1);
@@ -95,7 +95,7 @@ if (!$USER_DATA['has_admin_access']) {
 		cpg_die(CRITICAL_ERROR,$lang_errors['access_denied'], __FILE__,1);
 }
 
-starttable("100%", "Logs :: ".$log);
+starttable("100%", cpg_fetch_icon('view_logs', 2) . "Logs :: ".$log);
 
 
 if (isset($action)) {

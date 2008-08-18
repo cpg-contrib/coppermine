@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4649 $
-  $LastChangedBy: nibbler999 $
-  $Date: 2008-07-03 03:12:17 +0530 (Thu, 03 Jul 2008) $
+  $Revision: 4831 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-08-12 01:05:27 +0530 (Tue, 12 Aug 2008) $
 **********************************************/
 
 /**********************************************
@@ -240,6 +240,12 @@ $config_data = array(
     'custom_lnk_url' => array(
       'type' => 'textfield',
       'help_link' => 'f=configuration.htm&amp;as=admin_language_custom_lnk_url&amp;ae=admin_language_custom_lnk_url_end',
+    ),
+    'enable_menu_icons' => array(
+      'type' => 'radio',
+      'default_value' => '2',
+      'help_link' => 'f=configuration.htm&amp;as=admin_enable_menu_icons&amp;ae=admin_enable_menu_icons_end',
+      'options' => array($lang_common['no'], $lang_common['yes'].': '.$lang_admin_php['menu_only'], $lang_common['yes'].': '.$lang_admin_php['everywhere']),
     ),
     'show_bbcode_help' => array(
       'type' => 'checkbox',

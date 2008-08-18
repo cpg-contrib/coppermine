@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4757 $
-  $LastChangedBy: abbas-ali $
-  $Date: 2008-08-02 10:58:52 +0530 (Sat, 02 Aug 2008) $
+  $Revision: 4876 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-08-13 12:59:07 +0530 (Wed, 13 Aug 2008) $
 **********************************************/
 
 /**
@@ -25,7 +25,7 @@
 * @copyright 2002-2007 Gregory DEMAR, Coppermine Dev Team
 * @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
 * @package Coppermine
-* @version  $Id: functions.inc.php 4757 2008-08-02 05:28:52Z abbas-ali $
+* @version  $Id: functions.inc.php 4876 2008-08-13 07:29:07Z gaugau $
 */
 
 /**
@@ -1275,9 +1275,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
     switch($album) {
         case 'lastcom': // Last comments
             if ($cat && $CURRENT_CAT_NAME) {
-                $album_name = $album_name = $lang_meta_album_names['lastcom'].' - '. $CURRENT_CAT_NAME;
+                $album_name = cpg_fetch_icon('comment', 2) . $album_name = $lang_meta_album_names['lastcom'].' - '. $CURRENT_CAT_NAME;
             } else {
-                $album_name = $lang_meta_album_names['lastcom'];
+                $album_name = cpg_fetch_icon('comment', 2) . $lang_meta_album_names['lastcom'];
             }
 
             /*$query = "SELECT COUNT(*)
@@ -1348,9 +1348,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
             $user_name = get_username($uid);
             if ($cat && $CURRENT_CAT_NAME) {
-                $album_name = $album_name = $lang_meta_album_names['lastcom'].' - '. $CURRENT_CAT_NAME .' - '. $user_name;
+                $album_name = cpg_fetch_icon('comment', 2) . $album_name = $lang_meta_album_names['lastcom'].' - '. $CURRENT_CAT_NAME .' - '. $user_name;
             } else {
-                $album_name = $lang_meta_album_names['lastcom'].' - '. $user_name;
+                $album_name = cpg_fetch_icon('comment', 2) . $lang_meta_album_names['lastcom'].' - '. $user_name;
             }
 
             /*$query = "SELECT COUNT(*)
@@ -1405,9 +1405,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
         case 'lastup': // Last uploads
             if ($cat && $CURRENT_CAT_NAME) {
-                $album_name = $lang_meta_album_names['lastup'].' - '. $CURRENT_CAT_NAME;
+                $album_name = cpg_fetch_icon('last_uploads', 2) . $lang_meta_album_names['lastup'].' - '. $CURRENT_CAT_NAME;
             } else {
-                $album_name = $lang_meta_album_names['lastup'];
+                $album_name = cpg_fetch_icon('last_uploads', 2) . $lang_meta_album_names['lastup'];
             }
 
             /*$query = "SELECT COUNT(*)
@@ -1466,9 +1466,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
             $user_name = get_username($uid);
             if ($cat && $CURRENT_CAT_NAME) {
-                $album_name = $lang_meta_album_names['lastup'].' - '. $CURRENT_CAT_NAME .' - '. $user_name;
+                $album_name = cpg_fetch_icon('last_uploads', 2) . $lang_meta_album_names['lastup'].' - '. $CURRENT_CAT_NAME .' - '. $user_name;
             } else {
-                $album_name = $lang_meta_album_names['lastup'] .' - '. $user_name;
+                $album_name = cpg_fetch_icon('last_uploads', 2) . $lang_meta_album_names['lastup'] .' - '. $user_name;
             }
 
             /*$query = "SELECT COUNT(*)
@@ -1521,9 +1521,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
         case 'topn': // Most viewed pictures
             if ($cat && $CURRENT_CAT_NAME) {
-                $album_name = $lang_meta_album_names['topn'].' - '. $CURRENT_CAT_NAME;
+                $album_name = cpg_fetch_icon('most_viewed', 2) . $lang_meta_album_names['topn'].' - '. $CURRENT_CAT_NAME;
             } else {
-                $album_name = $lang_meta_album_names['topn'];
+                $album_name = cpg_fetch_icon('most_viewed', 2) . $lang_meta_album_names['topn'];
             }
 
             /*$query = "SELECT COUNT(*)
@@ -1577,9 +1577,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
         case 'toprated': // Top rated pictures
             if ($cat && $CURRENT_CAT_NAME) {
-                $album_name = $lang_meta_album_names['toprated'].' - '. $CURRENT_CAT_NAME;
+                $album_name = cpg_fetch_icon('top_rated', 2) . $lang_meta_album_names['toprated'].' - '. $CURRENT_CAT_NAME;
             } else {
-                $album_name = $lang_meta_album_names['toprated'];
+                $album_name = cpg_fetch_icon('top_rated', 2) . $lang_meta_album_names['toprated'];
             }
 
             /*$query = "SELECT COUNT(*)
@@ -1633,9 +1633,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
         case 'lasthits': // Last viewed pictures
             if ($cat && $CURRENT_CAT_NAME) {
-                $album_name = $lang_meta_album_names['lasthits'].' - '. $CURRENT_CAT_NAME;
+                $album_name = cpg_fetch_icon('last_viewed', 2) . $lang_meta_album_names['lasthits'].' - '. $CURRENT_CAT_NAME;
             } else {
-                $album_name = $lang_meta_album_names['lasthits'];
+                $album_name = cpg_fetch_icon('last_viewed', 2) . $lang_meta_album_names['lasthits'];
             }
 
             /*$query = "SELECT COUNT(*)
@@ -1689,9 +1689,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
         case 'random': // Random pictures
             if ($cat && $CURRENT_CAT_NAME) {
-                $album_name = $lang_meta_album_names['random'].' - '. $CURRENT_CAT_NAME;
+                $album_name = cpg_fetch_icon('random', 2) . $lang_meta_album_names['random'].' - '. $CURRENT_CAT_NAME;
             } else {
-                $album_name = $lang_meta_album_names['random'];
+                $album_name = cpg_fetch_icon('random', 2) . $lang_meta_album_names['random'];
             }
 
             /*$query = "SELECT COUNT(*)
@@ -1757,9 +1757,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
             }
 
             if ($cat && $CURRENT_CAT_NAME) {
-                $album_name = $lang_meta_album_names['search'].' - '. $CURRENT_CAT_NAME;
+                $album_name = cpg_fetch_icon('search', 2) . $lang_meta_album_names['search'].' - '. $CURRENT_CAT_NAME;
             } else {
-                $album_name = $lang_meta_album_names['search'].' - "'. strip_tags($search_string) . '"';
+                $album_name = cpg_fetch_icon('search', 2) . $lang_meta_album_names['search'].' - "'. strip_tags($search_string) . '"';
             }
 
             include 'include/search.inc.php';
@@ -1771,9 +1771,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
         case 'lastalb': // Last albums to which uploads
             if ($cat && $CURRENT_CAT_NAME) {
-                $album_name = $lang_meta_album_names['lastalb'].' - '. $CURRENT_CAT_NAME;
+                $album_name = cpg_fetch_icon('last_created', 2) . $lang_meta_album_names['lastalb'].' - '. $CURRENT_CAT_NAME;
             } else {
-                $album_name = $lang_meta_album_names['lastalb'];
+                $album_name = cpg_fetch_icon('last_created', 2) . $lang_meta_album_names['lastalb'];
             }
 
             /*$query = "SELECT COUNT(*)
@@ -1819,7 +1819,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
             break;
 
         case 'favpics': // Favourite Pictures
-            $album_name = $lang_meta_album_names['favpics'];
+            $album_name = cpg_fetch_icon('favorites', 2) . $lang_meta_album_names['favpics'];
             $rowset = array();
             if (count($FAVPICS)>0) {
                 $favs = implode(",",$FAVPICS);
@@ -1875,7 +1875,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
         case 'datebrowse': // Browsing by uploading date
             //Using getRaw(). The date is sanitized in the called function
             $date = $superCage->get->keyExists('date') ? cpgValidateDate($superCage->get->getEscaped('date')) : null;
-            $album_name = $lang_common['date'] . ': '. $date;
+            $album_name = cpg_fetch_icon('calendar', 2) . $lang_common['date'] . ': '. $date;
             $rowset = array();
 
             /*$query = "SELECT COUNT(*)
@@ -2115,12 +2115,12 @@ function cpg_determine_client($pid)
         // Get the details of user browser, IP, OS, etc
         $os = "Unknown";
         $server_agent = $superCage->server->getEscaped('HTTP_USER_AGENT');
-        if (eregi("Linux",$server_agent)) {
-            $os = "Linux";
-        } elseif (eregi("Ubuntu",$server_agent)) {
+        if (eregi("Ubuntu",$server_agent)) {
             $os = "Linux Ubuntu";
         } elseif (eregi("Debian",$server_agent)) {
             $os = "Linux Debian";
+        } elseif (eregi("Linux",$server_agent)) {
+            $os = "Linux";
         } elseif (eregi("Windows NT 5.0",$server_agent)) {
             $os = "Windows 2000";
         } elseif (eregi("win98|Windows 98",$server_agent)) {
@@ -2162,6 +2162,10 @@ function cpg_determine_client($pid)
             } elseif (eregi("MSIE 5.0",$server_agent)) {
                 $browser = "IE5.0";
             }
+        } elseif (eregi("Epiphany",$server_agent)) {
+            $browser = "Epiphany";
+        } elseif (eregi("Phoenix",$server_agent)) {
+            $browser = "Phoneix";        
         } elseif (eregi("Firebird",$server_agent)) {
             $browser = "Mozilla Firebird";
         } elseif (eregi("netscape",$server_agent)) {
@@ -2461,8 +2465,8 @@ function compute_img_size($width, $height, $max, $system_icon=false, $normal=fal
         $image_size['reduced'] = true;
     }
     $ratio = max($ratio, 1.0);
-    $image_size['width'] = ceil($width / $ratio);
-    $image_size['height'] = ceil($height / $ratio);
+    $image_size['width'] =  (int) ($width / $ratio);
+    $image_size['height'] = (int) ($height / $ratio);
     $image_size['whole'] = 'width="'.$image_size['width'].'" height="'.$image_size['height'].'"';
     if ($thumb_use=='ht') {
         $image_size['geom'] = ' height="'.$image_size['height'].'"';
@@ -2809,7 +2813,9 @@ function& get_pic_url(&$pic_row, $mode, $system_pic = false)
         $thumb_extensions = Array('.gif','.png','.jpg');
         // Check for user-level custom thumbnails
         // Create custom thumb path and erase extension using filename; Erase filename's extension
-        $custom_thumb_path = $url_prefix[$pic_row['url_prefix']].$pic_row['filepath'].$pic_prefix[$mode];
+        $custom_thumb_path = array_key_exists('url_prefix',$pic_row) ? $url_prefix[$pic_row['url_prefix']] : ''
+                . $pic_row['filepath']
+                . array_key_exists($mode,$pic_prefix) ? $pic_prefix[$mode] : '';
         $file_base_name = str_replace('.'.$mime_content['extension'],'',basename($pic_row['filename']));
         // Check for file-specific thumbs
         foreach ($thumb_extensions as $extension) {
@@ -2842,7 +2848,7 @@ function& get_pic_url(&$pic_row, $mode, $system_pic = false)
         if (is_null($filepathname) or $filepathname == '') {
             // Check for default theme- and global-level thumbs
             $thumb_paths[] = $THEME_DIR.'images/';                 // Used for custom theme thumbs
-            $thumb_paths[] = 'images/';                            // Default Coppermine thumbs
+            $thumb_paths[] = 'images/thumbs/';                     // Default Coppermine thumbs
             foreach ($thumb_paths as $default_thumb_path) {
                 if (is_dir($default_thumb_path)) {
                     if (!$system_pic) {
@@ -3431,12 +3437,12 @@ function languageSelect($parameter)
     $lang_language_data['armenian'] = array('Armenian','','');
     $lang_language_data['azerbaijani'] = array('Azerbaijani','','az');
     $lang_language_data['bengali'] = array('Bengali','','bd');
-    $lang_language_data['basque'] = array('Basque','Euskera','baq');
+    $lang_language_data['basque'] = array('Basque','Euskera','basque');
     $lang_language_data['bosnian'] = array('Bosnian','Bosanski','ba');
     $lang_language_data['brazilian_portuguese'] = array('Portuguese [Brazilian]','Portugu&ecirc;s Brasileiro','br');
     $lang_language_data['bulgarian'] = array('Bulgarian','&#1041;&#1098;&#1083;&#1075;&#1072;&#1088;&#1089;&#1082;&#1080;','bg');
     $lang_language_data['byelorussian'] = array('Byelorussian','','by');
-    $lang_language_data['catalan'] = array('Catalan','Catal&agrave;','ct');
+    $lang_language_data['catalan'] = array('Catalan','Catal&agrave;','catalonia');
     $lang_language_data['chamorro'] = array('Chamorro','','gu');
     $lang_language_data['chinese_big5'] = array('Chinese traditional','&#20013;&#25991; - &#32321;&#39636;','tw');
     $lang_language_data['chinese_gb'] = array('Chinese simplified','&#20013;&#25991; - &#31616;&#20307;','cn');
@@ -3450,7 +3456,7 @@ function languageSelect($parameter)
     $lang_language_data['filipino'] = array('Filipino Tagalog','','ph');
     $lang_language_data['finnish'] = array('Finnish','Suomea','fi');
     $lang_language_data['french'] = array('French','Fran&ccedil;ais','fr');
-    $lang_language_data['galician'] = array('Galician','Galego','es_gln');
+    $lang_language_data['galician'] = array('Galician','Galego','galician');
     $lang_language_data['georgian'] = array('Georgian','&#4325;&#4304;&#4320;&#4311;&#4323;&#4314;&#4312;','ge');
     $lang_language_data['german'] = array('German','Deutsch','de');
     $lang_language_data['german_sie'] = array('German [formal]','Deutsch [Sie]','de');
@@ -3464,7 +3470,7 @@ function languageSelect($parameter)
     $lang_language_data['japanese'] = array('Japanese','&#26085;&#26412;&#35486;','jp');
     $lang_language_data['kazakh'] = array('Kazakh','','kz');
     $lang_language_data['korean'] = array('Korean','&#54620;&#44397;&#50612;','kr');
-    $lang_language_data['kurdish'] = array('Kurdish','&#1603;&#1608;&#1585;&#1583;&#1740;','ku');
+    $lang_language_data['kurdish'] = array('Kurdish','&#1603;&#1608;&#1585;&#1583;&#1740;','kurdish');
     $lang_language_data['kyrgyz'] = array('Kyrgyz','','kg');
     $lang_language_data['laothian'] = array('Laothian ','','la');
     $lang_language_data['latvian'] = array('Latvian','Latvian','lv');
@@ -3488,10 +3494,11 @@ function languageSelect($parameter)
     $lang_language_data['turkish'] = array('Turkish','T&uuml;rk&ccedil;e','tr');
     $lang_language_data['tigrinya'] = array('Tigrinya','','er');
     $lang_language_data['twi'] = array('Twi','','gh');
-    $lang_language_data['uighur'] = array('Uighur','Uighur','cn-xj');
+    $lang_language_data['uighur'] = array('Uighur','Uighur','uighur');
     $lang_language_data['ukrainian'] = array('Ukrainian','&#1059;&#1082;&#1088;&#1072;&#1111;&#1085;&#1089;&#1100;&#1082;&#1072;','ua');
     $lang_language_data['uzbek'] = array('Uzbek','','uz');
     $lang_language_data['vietnamese'] = array('Vietnamese','Tieng Viet','vn');
+    $lang_language_data['welsh'] = array('Welsh','Cymraeg','wales');
 
     // get list of available languages
     $value = strtolower($CONFIG['lang']);
@@ -3516,7 +3523,7 @@ function languageSelect($parameter)
             foreach ($lang_array as $language) {
                 $cpg_language_name = str_replace('-utf-8','', $language);
                 if (array_key_exists($cpg_language_name, $lang_language_data)) {
-                    $return.= $lineBreak .  '<a href="' .$cpgChangeUrl. $language . '" rel="nofollow"><img src="images/flags/' . $lang_language_data[$cpg_language_name][2] . '.gif" border="0" width="16" height="10" alt="" title="';
+                    $return.= $lineBreak .  '<a href="' .$cpgChangeUrl. $language . '" rel="nofollow"><img src="images/flags/' . $lang_language_data[$cpg_language_name][2] . '.gif" border="0" width="16" height="11" alt="" title="';
                     $return.= $lang_language_data[$language][0];
                     if ($lang_language_data[$language][1] != $lang_language_data[$language][0]) {
                         $return.= ' (' . $lang_language_data[$language][1] . ')';
@@ -3864,7 +3871,7 @@ function cpg_alert_dev_version()
     $return = '';
     if (COPPERMINE_VERSION_STATUS != 'stable') {
         ob_start();
-        starttable('100%', $lang_version_alert['version_alert']);
+        starttable('100%', cpg_fetch_icon('warning', 2) . $lang_version_alert['version_alert']);
         print '<tr><td class="tableb">';
         print sprintf($lang_version_alert['no_stable_version'], COPPERMINE_VERSION, COPPERMINE_VERSION_STATUS);
         print '</td></tr>';
@@ -3888,6 +3895,8 @@ function cpg_alert_dev_version()
     // display news from coppermine-gallery.net
     if ($CONFIG['display_coppermine_news'] == 1 && GALLERY_ADMIN_MODE) {
         $help_news = '&nbsp;'.cpg_display_help('f=configuration.htm&amp;as=admin_general_coppermine_news&amp;ae=admin_general_coppermine_news_end&amp;top=1', '600', '300');
+        $news_icon = cpg_fetch_icon('news_show', 2);
+        $news_icon_hide = cpg_fetch_icon('news_hide', 1);
         ob_start();
         starttable('100%');
         print <<< EOT
@@ -3896,10 +3905,10 @@ function cpg_alert_dev_version()
                 <table border="0" cellspacing="0" cellpadding="0" width="100%">
                   <tr>
                     <td class="tableh1">
-                      {$lang_version_alert['coppermine_news']}{$help_news}
+                      {$news_icon}{$lang_version_alert['coppermine_news']}{$help_news}
                     </td>
                     <td class="tableh1" align="right">
-                      <a href="mode.php?what=news&amp;referer={$REFERER}" class="admin_menu">{$lang_version_alert['hide']}</a>
+                      <a href="mode.php?what=news&amp;referer={$REFERER}" class="admin_menu">{$news_icon_hide}{$lang_version_alert['hide']}</a>
                     </td>
                   </tr>
                   <tr>
@@ -4987,7 +4996,7 @@ function json_encode($arr)
 function cpg_getimagesize($image, $force_cpg_function = false)
 {
     if (!function_exists('getimagesize') || $force_cpg_function) {
-        //custom function borrowed from http://www.wischik.com/lu/programmer/get-image-size.html
+        // custom function borrowed from http://www.wischik.com/lu/programmer/get-image-size.html
         $f = @fopen($image, 'rb');
         if ($f === false) {
             return false;
@@ -5041,7 +5050,8 @@ function cpg_getimagesize($image, $force_cpg_function = false)
             $type = 3;
         }
 
-        if (isset($x, $y, $type)) {
+        // added ! from source line since it doesn't work otherwise
+        if (!isset($x, $y, $type)) {
             return false;
         }
         return array($x, $y, $type, 'height="' . $x . '" width="' . $y . '"');
@@ -5137,6 +5147,59 @@ function rebuild_tree($parent, $left, $depth, $pos) {
     // return the right value of this node + 1
     return $right+1;
 } // function rebuild_tree
+
+/**
+ * Function to fetch an icon
+ *
+ *
+ * @param string $icon_name: the name of the icon to fetch
+ * @param string $title string: to populate the title attribute of the <img>-tag
+ * @param string $config_level boolean: If populated, the config option that allows toggling icons on/off will be ignored and the icon will be displayed no matter what
+ * @param string $check boolean: If populated, the icon will be checked first if it exists
+ * @param string $extension: name of the extension, default being 'png'
+ * @return string: the fully populated <img>-tag
+ */
+function cpg_fetch_icon($icon_name, $config_level = 0, $title = '', $check = '', $extension = 'png')
+{
+    global $CONFIG, $THEME_DIR;
+    if ($CONFIG['enable_menu_icons'] < $config_level) {
+      return;
+    }
+    $return = '';
+    if (defined('THEME_HAS_MENU_ICONS')) {
+      $folder = $THEME_DIR . 'images/icons/';
+    } else {
+      $folder = 'images/icons/';
+    }
+    // sanitize extension
+    if ($extension != 'jpg' && $extension != 'gif') {
+      $extension = 'png';
+    }
+    $relative_path = $folder . $icon_name . '.' . $extension;
+    // check if file exists
+    if ($check != '') {
+      if (file_exists($relative_path) != TRUE) {
+        return;
+      }
+    }
+    $return .= '<img src="';
+    $return .= $relative_path;
+    $return .= '" border="0" alt="" ';
+    // Add width and height attributes. 
+    // Actually reading the dimensions would be too time-consuming,
+    // so we assume 16 x 16 pixels unless specified otherwise in
+    // the custom theme
+    if (defined('THEME_HAS_MENU_ICONS')) {
+      $return .= 'width="' . THEME_HAS_MENU_ICONS . '" height="' . THEME_HAS_MENU_ICONS . '" ';
+    } else {
+      $return .= 'width="16" height="16" ';
+    }
+    if ($title != '') {
+      $return .= 'title="' . $title . '" ';
+    }
+    $return .= 'class="icon" />';
+    return $return;
+}
 
 
 ?>

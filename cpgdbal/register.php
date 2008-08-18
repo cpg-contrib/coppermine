@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $Source: /cvsroot/coppermine/devel/register.php,v $
-  $Revision: 4497 $
+  $Revision: 4848 $
   $LastChangedBy: gaugau $
-  $Date: 2008-06-03 19:59:30 +0530 (Tue, 03 Jun 2008) $
+  $Date: 2008-08-12 11:45:40 +0530 (Tue, 12 Aug 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -47,7 +47,7 @@ function display_disclaimer() { // Display the disclaimer - start
     global $CONFIG, $CPG_PHP_SELF; //, $PHP_SELF;
     global $lang_register_disclamer, $lang_register_php;
 
-    starttable(-1, $lang_register_php['term_cond']);
+    starttable(-1, cpg_fetch_icon('add_user', 2) . $lang_register_php['term_cond']);
     echo <<<EOT
         <form name="cpgform" id="cpgform" method="post" action="$CPG_PHP_SELF">
         <tr>
@@ -89,7 +89,7 @@ function input_user_info($errors = '') { // function input_user_info - start
 
 EOT;
 
-    starttable(-1, $lang_register_php['enter_info'], 2);
+    starttable(-1, cpg_fetch_icon('add_user', 2) . $lang_register_php['enter_info'], 2);
 
     $inline_disclaimer = str_replace('{SITE_NAME}', $CONFIG['gallery_name'], $lang_register_disclamer);
 

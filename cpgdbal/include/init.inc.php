@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4224 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-01-26 17:12:00 +0530 (Sat, 26 Jan 2008) $
+  $Revision: 4844 $
+  $LastChangedBy: pvanrompay $
+  $Date: 2008-08-12 11:33:24 +0530 (Tue, 12 Aug 2008) $
 **********************************************/
 
 define('COPPERMINE_VERSION', '1.5.0');
@@ -316,11 +316,11 @@ if (!file_exists("themes/{$CONFIG['theme']}/theme.php")) {
     $CONFIG['theme'] = 'classic';
 }
 
+$THEME_DIR = "themes/{$CONFIG['theme']}/";
+
 require "themes/{$CONFIG['theme']}/theme.php";
 
 require "include/themes.inc.php";  //All Fallback Theme Templates and Functions
-
-$THEME_DIR = "themes/{$CONFIG['theme']}/";
 
 // Process language selection if present in URI or in user profile or try
 // autodetection if default charset is utf-8

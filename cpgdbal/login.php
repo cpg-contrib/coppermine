@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4250 $
-  $LastChangedBy: saweyyy $
-  $Date: 2008-02-06 19:20:07 +0530 (Wed, 06 Feb 2008) $
+  $Revision: 4843 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-08-12 03:33:01 +0530 (Tue, 12 Aug 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -114,7 +114,7 @@ if ($superCage->get->getInt('force_login')) {
 //$referer = urlencode($referer);
 echo '<form action="login.php?referer='.urlencode($CPG_REFERER).'" method="post" name="loginbox" id="cpgform">';
 
-starttable('-1', $lang_login_php['enter_login_pswd'], 2);
+starttable('-1', cpg_fetch_icon('login', 2) . $lang_login_php['enter_login_pswd'], 2);
 
 //see how users are allowed to login, can be username, email address or both
 $login_method = $lang_login_php[$CONFIG['login_method']];

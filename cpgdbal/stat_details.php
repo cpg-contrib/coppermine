@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4750 $
+  $Revision: 4862 $
   $LastChangedBy: gaugau $
-  $Date: 2008-08-01 12:45:43 +0530 (Fri, 01 Aug 2008) $
+  $Date: 2008-08-12 13:12:44 +0530 (Tue, 12 Aug 2008) $
 **********************************************/
 
 // Todo list (stuff the hasn't been implemented yet):
@@ -52,11 +52,11 @@ require_once('include/init.inc.php');
 
     if ($type == 'vote') {
         $db_fields = array('sdate', 'ip', 'rating', 'referer', 'browser', 'os', 'uid');
-        $icon = array('sdate' => 'calendar.gif', 'ip' => 'info.gif', 'rating' => 'rating.gif', 'referer' => 'referer.gif', 'browser' => 'www.gif', 'os' => 'os.gif', 'uid' => 'user.gif');
+        $icon = array('sdate' => 'calendar', 'ip' => 'ip', 'rating' => 'top_rated', 'referer' => 'web', 'browser' => 'browser', 'os' => 'client', 'uid' => 'my_profile');
     }
     if ($type == 'hits') {
-        $db_fields = array('sdate', 'ip', 'search_phrase', 'referer', 'browser', 'os', 'uid');
-        $icon = array('sdate' => 'calendar.gif', 'ip' => 'info.gif', 'search_phrase' => 'views.gif', 'referer' => 'referer.gif', 'browser' => 'www.gif', 'os' => 'os.gif', 'uid' => 'user.gif');
+        $db_fields = array('sdate', 'ip', 'uid', 'search_phrase', 'referer', 'browser', 'os', 'uid');
+        $icon = array('sdate' => 'calendar', 'ip' => 'ip', 'uid' => 'my_profile', 'search_phrase' => 'search', 'referer' => 'web', 'browser' => 'browser', 'os' => 'client');
     }
 
     foreach($db_fields as $value) {
@@ -425,52 +425,53 @@ EOT;
 					$queryFrom, $queryWhere, $sort, $dir, $start, $amount);
 		$rowset = $cpgdb->fetchRowSet();
 		#############################################################################################
-		// display the table header - start
-		$tableColumns = count($db_fields);
-		if ($pid == '') {
-		  $tableColumns++;
-		}
-		print '<a name="details"></a>';
-		starttable($statsTableWidth, $lang_stat_details_php[$type], $tableColumns + 1);
-		print '  <tr>'.$line_break;
-		print '    <td class="tableh2" align="center" valign="bottom">'.$line_break;
-		if ($type == 'vote') {
-			print '    <input type="checkbox" name="checkAll" onClick="selectAll(this,\'del\');" class="checkbox" title="'.$lang_common['check_uncheck_all'].'" />'.$line_break;
-		}
-		print '    </td>'.$line_break;
-		foreach ($db_fields as $value) {
-			$show_column_checked[$value] = ($$value == '1') ? 'checked="checked"' : '';
-			print '    <td class="tableh2" valign="top">'.$line_break;
-			print '      <input type="checkbox" name="'.$value.'" value="1" class="checkbox" title="'.$lang_stat_details_php['show_hide'].'" '.$show_column_checked[$value].' onclick="sendForm();" /><br />'.$line_break;
-			print '      <img src="images/'.$icon[$value].'" border="0" width="16" height="16" alt="" title="'.$lang_stat_details_php[$value].'" />';
-			if ($$value == 1) {
-				print '<a href="#" onclick="return sortthetable(\''.$value.'\',\'asc\');">';
-				print '<img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="'.sprintf($lang_stat_details_php['sort_by_xxx'], $value).', '.$lang_stat_details_php['ascending'].'" />';
-				print '</a>';
-				print '<a href="#" onclick="return sortthetable(\''.$value.'\',\'desc\');">';
-				print '<img src="images/descending.gif" width="9" height="9" border="0" alt="" title="'.sprintf($lang_stat_details_php['sort_by_xxx'], $lang_stat_details_php[$value]).', '.$lang_stat_details_php['descending'].'" />';
-				print '</a>';
-			}
-			print $line_break;
-			print '    </td>'.$line_break;
-		}
-		if ($pid == '') {
-			$show_file_column = ($file == '1') ? 'checked="checked"' : '';
-			print '    <td class="tableh2">'.$line_break;
-			print '      <input type="checkbox" name="file" value="1" class="checkbox" title="'.$lang_stat_details_php['show_hide'].'" '.$lang_common['file'].' onclick="sendForm();" '.$show_file_column.' /><br />'.$line_break;
-			print '      '.$lang_common['file'];
-			if ($file == 1) {
-				print '<a href="#" onclick="return sortthetable(\'file\',\'asc\');">';
-				print '<img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="'.sprintf($lang_stat_details_php['sort_by_xxx'], $lang_common['file']).', '.$lang_stat_details_php['ascending'].'" />';
-				print '</a>';
-				print '<a href="#" onclick="return sortthetable(\'file\',\'desc\');">';
-				print '<img src="images/descending.gif" width="9" height="9" border="0" alt="" title="'.sprintf($lang_stat_details_php['sort_by_xxx'], $lang_common['file']).', '.$lang_stat_details_php['descending'].'" />';
-				print '</a>';
-			}
-			print '    </td>'.$line_break;
-		}
-		print "  </tr>\n";
-		// display the table header - end
+      // display the table header - start
+      $tableColumns = count($db_fields);
+      if ($pid == '') {
+          $tableColumns++;
+      }
+      print '<a name="details"></a>';
+      starttable($statsTableWidth, $lang_stat_details_php[$type], $tableColumns + 1);
+      print '  <tr>'.$line_break;
+      print '    <td class="tableh2" align="center" valign="bottom">'.$line_break;
+      if ($type == 'vote') {
+          print '    <input type="checkbox" name="checkAll" onClick="selectAll(this,\'del\');" class="checkbox" title="'.$lang_common['check_uncheck_all'].'" />'.$line_break;
+      }
+      print '    </td>'.$line_break;
+      foreach ($db_fields as $value) {
+          $show_column_checked[$value] = ($$value == '1') ? 'checked="checked"' : '';
+          print '    <td class="tableh2" valign="top">'.$line_break;
+          print '      <input type="checkbox" name="'.$value.'" value="1" class="checkbox" title="'.$lang_stat_details_php['show_hide'].'" '.$show_column_checked[$value].' onclick="sendForm();" />'.$line_break;
+          //print '      <img src="images/'.$icon[$value].'" border="0" width="16" height="16" alt="" title="'.$lang_stat_details_php[$value].'" />';
+          print '      '.cpg_fetch_icon($icon[$value], 0, $lang_stat_details_php[$value]);
+          if ($$value == 1) {
+              print '<a href="#" onclick="return sortthetable(\''.$value.'\',\'asc\');">';
+              print '<img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="'.sprintf($lang_stat_details_php['sort_by_xxx'], $value).', '.$lang_stat_details_php['ascending'].'" />';
+              print '</a>';
+              print '<a href="#" onclick="return sortthetable(\''.$value.'\',\'desc\');">';
+              print '<img src="images/descending.gif" width="9" height="9" border="0" alt="" title="'.sprintf($lang_stat_details_php['sort_by_xxx'], $lang_stat_details_php[$value]).', '.$lang_stat_details_php['descending'].'" />';
+              print '</a>';
+          }
+          print $line_break;
+          print '    </td>'.$line_break;
+      }
+      if ($pid == '') {
+          $show_file_column = ($file == '1') ? 'checked="checked"' : '';
+          print '    <td class="tableh2" valign="top">'.$line_break;
+          print '      <input type="checkbox" name="file" value="1" class="checkbox" title="'.$lang_stat_details_php['show_hide'].'" '.$lang_common['file'].' onclick="sendForm();" '.$show_file_column.' />'.$line_break;
+          print '      '.cpg_fetch_icon('file', 0, $lang_common['file']);
+          if ($file == 1) {
+              print '<a href="#" onclick="return sortthetable(\'file\',\'asc\');">';
+              print '<img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="'.sprintf($lang_stat_details_php['sort_by_xxx'], $lang_common['file']).', '.$lang_stat_details_php['ascending'].'" />';
+              print '</a>';
+              print '<a href="#" onclick="return sortthetable(\'file\',\'desc\');">';
+              print '<img src="images/descending.gif" width="9" height="9" border="0" alt="" title="'.sprintf($lang_stat_details_php['sort_by_xxx'], $lang_common['file']).', '.$lang_stat_details_php['descending'].'" />';
+              print '</a>';
+          }
+          print '    </td>'.$line_break;
+      }
+      print "  </tr>\n";
+      // display the table header - end
 		/*if (mysql_num_rows($result) > 0) {
 			$loop_counter = 0;
 			while ($row = mysql_fetch_array($result)) {	*/
@@ -479,74 +480,74 @@ EOT;
 			$loop_counter = 0;
 			foreach ($rowset as $row) {
 		#########################################################
-				if ($loop_counter == 0) {
-					$row_style_class = 'tableb';
-				} else {
-						$row_style_class = 'tableb tableb_alternate';
-				}
-				$loop_counter++;
-				if ($loop_counter > 1) {
-						$loop_counter = 0;
-				}
-				$row['sdate'] = strftime($date_display_fmt,localised_timestamp($row['sdate']));
-				$is_internal = '';
-				$row['referer'] = rawurldecode($row['referer']);
-				// is it an internal reference (most should be)?
-				$match_coppermine_url = strpos($row['referer'],$CONFIG['ecards_more_pic_target']);
-				if ($match_coppermine_url === FALSE) {
-					// make the referer url clickable
-					$row['referer'] = '<a href="'.$row['referer'].'">'.ltrim(ltrim($row['referer'],'http://'),'http%3A%2F%2F').'</a>';
-				} else {
-					// make the referer url clickable
-					$row['referer'] = $lang_stat_details_php['internal'].': <a href="'.$row['referer'].'">'.substr($row['referer'],strlen(rtrim($CONFIG['ecards_more_pic_target'],'/'))).'</a>';
-					$is_internal = 1;
-				}
-				if ($hide_internal == 1 && $is_internal == 1) { // check internals start
-				} else {
-					print '  <tr>'.$line_break;
-					print '    <td class="'.$row_style_class.'" align="center">'.$line_break;
-					if ($type == 'vote') {
-						print '      <input name="del'.$row['sid'].'" type="checkbox" value="" class="checkbox" />'.$line_break;
-					}
-					print '    </td>'.$line_break;
-					foreach($db_fields as $value) {
-						print '    <td class="'.$row_style_class.'">'.$line_break;
-						if ($$value == 1) {
-							if ($value == 'browser' && array_key_exists($row[$value],$browserArray)) {
-								print '      <img src="images/browser/'.$browserArray[$row[$value]].'" width="14" height="14" border="0" title="'.$row[$value].'" alt="" />'.$line_break;
-							} elseif ($value == 'os' && array_key_exists($row[$value],$osArray)) {
-									print '      <img src="images/os/'.$osArray[$row[$value]].'" width="14" height="14" border="0" title="'.$row[$value].'" alt="" />'.$line_break;
-							} elseif ($value == 'uid') {
-									if ($row[$value] != 0) {
-										$user_data = $cpg_udb->get_user_infos($row[$value]);
-										print '      <a href="profile.php?uid='.$row[$value].'">'.$user_data['user_name'].'</a>'.$line_break;
-									}  else {
-											print '      <span title="'.$lang_stat_details_php['guest'].'">-</span>'.$line_break;
-									}
-							} else {
-									print '      '.$row[$value].$line_break;
-							}
-						}
-						print '    </td>'.$line_break;
-					}
-					if ($pid == '') {
-						print '    <td class="'.$row_style_class.'">'.$line_break;
-						if ($file == 1) {
-							$thumb_url =  get_pic_url($row, 'thumb');
-							if (!is_image($row['filename'])) {
-								$image_info = cpg_getimagesize($thumb_url);
-								$row['pwidth'] = $image_info[0];
-								$row['pheight'] = $image_info[1];
-							}
-							$image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['alb_list_thumb_size']);
-							print '      <a href="displayimage.php?pid='.$row['pid'].'"><img src="'.$thumb_url.'" '.$image_size['geom'].' class="image" border="0" alt="" /></a>';
-						}
-						print '    </td>'.$line_break;
-					}
-					print '  </tr>'.$line_break;
-				} // check internals end
-			}
-		}
+              if ($loop_counter == 0) {
+                  $row_style_class = 'tableb';
+              } else {
+                  $row_style_class = 'tableb tableb_alternate';
+              }
+              $loop_counter++;
+              if ($loop_counter > 1) {
+                  $loop_counter = 0;
+              }
+              $row['sdate'] = strftime($date_display_fmt,localised_timestamp($row['sdate']));
+              $is_internal = '';
+              $row['referer'] = rawurldecode($row['referer']);
+              // is it an internal reference (most should be)?
+              $match_coppermine_url = strpos($row['referer'],$CONFIG['ecards_more_pic_target']);
+              if ($match_coppermine_url === FALSE) {
+                  // make the referer url clickable
+                  $row['referer'] = '<a href="'.$row['referer'].'">'.ltrim(ltrim($row['referer'],'http://'),'http%3A%2F%2F').'</a>';
+              } else {
+                  // make the referer url clickable
+                  $row['referer'] = $lang_stat_details_php['internal'].': <a href="'.$row['referer'].'">'.substr($row['referer'],strlen(rtrim($CONFIG['ecards_more_pic_target'],'/'))).'</a>';
+                  $is_internal = 1;
+              }
+              if ($hide_internal == 1 && $is_internal == 1) { // check internals start
+              } else {
+                  print '  <tr>'.$line_break;
+                  print '    <td class="'.$row_style_class.'" align="center">'.$line_break;
+                  if ($type == 'vote') {
+                      print '      <input name="del'.$row['sid'].'" type="checkbox" value="" class="checkbox" />'.$line_break;
+                  }
+                  print '    </td>'.$line_break;
+                  foreach($db_fields as $value) {
+                      print '    <td class="'.$row_style_class.'">'.$line_break;
+                      if ($$value == 1) {
+                          if ($value == 'browser' && array_key_exists($row[$value],$browserArray)) {
+                              print '      <img src="images/browser/'.$browserArray[$row[$value]].'" border="0" title="'.$row[$value].'" alt="" />'.$line_break;
+                          } elseif ($value == 'os' && array_key_exists($row[$value],$osArray)) {
+                              print '      <img src="images/os/'.$osArray[$row[$value]].'" border="0" title="'.$row[$value].'" alt="" />'.$line_break;
+                          } elseif ($value == 'uid') {
+                              if ($row[$value] != 0) {
+                                  $user_data = $cpg_udb->get_user_infos($row[$value]);
+                                  print '      <a href="profile.php?uid='.$row[$value].'">'.$user_data['user_name'].'</a>'.$line_break;
+                              }  else {
+                                  print '      <span title="'.$lang_stat_details_php['guest'].'">-</span>'.$line_break;
+                              }
+                          } else {
+                              print '      '.$row[$value].$line_break;
+                          }
+                      }
+                      print '    </td>'.$line_break;
+                  }
+              if ($pid == '') {
+                  print '    <td class="'.$row_style_class.'">'.$line_break;
+                  if ($file == 1) {
+                      $thumb_url =  get_pic_url($row, 'thumb');
+                      if (!is_image($row['filename'])) {
+                          $image_info = cpg_getimagesize($thumb_url);
+                          $row['pwidth'] = $image_info[0];
+                          $row['pheight'] = $image_info[1];
+                      }
+                      $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['alb_list_thumb_size']);
+                      print '      <a href="displayimage.php?pid='.$row['pid'].'"><img src="'.$thumb_url.'" '.$image_size['geom'].' class="image" border="0" alt="" /></a>';
+                  }
+                  print '    </td>'.$line_break;
+              }
+              print '  </tr>'.$line_break;
+              } // check internals end
+          }
+      }
   // Display pagination
   $record_selector = '&nbsp;&nbsp;-&nbsp;&nbsp;<select name="amount" size="1" onchange="sendForm();" class="listbox">';
   foreach ($amount_allowed as $key) {

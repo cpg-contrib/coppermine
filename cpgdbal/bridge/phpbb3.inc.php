@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4648 $
+  $Revision: 4789 $
   $LastChangedBy: nibbler999 $
-  $Date: 2008-07-01 06:39:46 +0530 (Tue, 01 Jul 2008) $
+  $Date: 2008-08-08 22:26:12 +0530 (Fri, 08 Aug 2008) $
 **********************************************/
 
 /* 
@@ -66,6 +66,7 @@ class cpg_udb extends core_udb {
 		} else { // the vars from the bridgemgr
 			$this->boardurl = $BRIDGE['full_forum_url'];
 			require_once($BRIDGE['relative_path_to_config_file'] . 'config.php');
+			$this->use_post_based_groups = $BRIDGE['use_post_based_groups'];
 		}
 		
 		// Database connection settings

@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4502 $
-  $LastChangedBy: pvanrompay $
-  $Date: 2008-06-06 03:51:20 +0530 (Fri, 06 Jun 2008) $
+  $Revision: 4849 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-08-12 11:46:42 +0530 (Tue, 12 Aug 2008) $
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
@@ -218,40 +218,40 @@ function online_mainpage()
 				##################################################################
 		}
 
-		starttable("100%", $lang_plugin_php['onlinestats_name']);
-		print '<tr><td class="tableb">';
-		if ($num_users == 1) {
-			printf($lang_plugin_php['onlinestats_we_have_reg_member'], '<strong>'.$num_users.'</strong>');
-		} else {
-			printf($lang_plugin_php['onlinestats_we_have_reg_members'], '<strong>'.$num_users.'</strong>');
-		}
-		print ".&nbsp;\r\n";
-		printf($lang_plugin_php['onlinestats_most_recent'], '<a href="profile.php?uid='.$newest['user_id'].'">'.$newest['user_name'].'</a>');
-		print ".&nbsp;\r\n";
-		if ($num_online == 1) {
-			printf($lang_plugin_php['onlinestats_is'], '<strong>'.$num_online.'</strong>');
-		} else {
-			printf($lang_plugin_php['onlinestats_are'], '<strong>'.$num_online.'</strong>');
-		}
-		print ': ';
-		if ($num_reg_online == 1) {
-			printf($lang_plugin_php['onlinestats_reg_member'], '<strong>'.$num_reg_online.'</strong>');
-		} else {
-			printf($lang_plugin_php['onlinestats_reg_members'], '<strong>'.$num_reg_online.'</strong>');
-		}
-		print ' '.$lang_plugin_php['onlinestats_and'].' ';
-		if ($num_guests == 1) {
-			printf($lang_plugin_php['onlinestats_guest'], '<strong>'.$num_guests.'</strong>');
-		} else {
-			printf($lang_plugin_php['onlinestats_guests'], '<strong>'.$num_guests.'</strong>');
-		}
-		print ".&nbsp;\r\n";
-		printf($lang_plugin_php['onlinestats_record'], '<strong>'.$CONFIG['record_online_users'].'</strong>', localised_date($CONFIG['record_online_date'], $lastcom_date_fmt));
-		print ".&nbsp;\r\n";
-		printf($lang_plugin_php['onlinestats_since'], $CONFIG['mod_updates_duration'], $logged_in_names);
-		print '.</td></tr>';
-		endtable();
-		print '<br />';
+       starttable("100%", cpg_fetch_icon('online', 2) . $lang_plugin_php['onlinestats_name']);
+        print '<tr><td class="tableb">';
+        if ($num_users == 1) {
+	        printf($lang_plugin_php['onlinestats_we_have_reg_member'], '<strong>'.$num_users.'</strong>');
+        } else {
+	        printf($lang_plugin_php['onlinestats_we_have_reg_members'], '<strong>'.$num_users.'</strong>');
+        }
+        print ".&nbsp;\r\n";
+        printf($lang_plugin_php['onlinestats_most_recent'], '<a href="profile.php?uid='.$newest['user_id'].'">'.$newest['user_name'].'</a>');
+        print ".&nbsp;\r\n";
+        if ($num_online == 1) {
+	        printf($lang_plugin_php['onlinestats_is'], '<strong>'.$num_online.'</strong>');
+        } else {
+	        printf($lang_plugin_php['onlinestats_are'], '<strong>'.$num_online.'</strong>');
+        }
+        print ': ';
+        if ($num_reg_online == 1) {
+	        printf($lang_plugin_php['onlinestats_reg_member'], '<strong>'.$num_reg_online.'</strong>');
+        } else {
+	        printf($lang_plugin_php['onlinestats_reg_members'], '<strong>'.$num_reg_online.'</strong>');
+        }
+        print ' '.$lang_plugin_php['onlinestats_and'].' ';
+        if ($num_guests == 1) {
+	        printf($lang_plugin_php['onlinestats_guest'], '<strong>'.$num_guests.'</strong>');
+        } else {
+	        printf($lang_plugin_php['onlinestats_guests'], '<strong>'.$num_guests.'</strong>');
+        }
+        print ".&nbsp;\r\n";
+        printf($lang_plugin_php['onlinestats_record'], '<strong>'.$CONFIG['record_online_users'].'</strong>', localised_date($CONFIG['record_online_date'], $lastcom_date_fmt));
+        print ".&nbsp;\r\n";
+        printf($lang_plugin_php['onlinestats_since'], $CONFIG['mod_updates_duration'], $logged_in_names);
+        print '.</td></tr>';
+        endtable();
+        print '<br />';
 }
 
 // Install

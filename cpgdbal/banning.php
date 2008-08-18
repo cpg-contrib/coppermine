@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4583 $
-  $LastChangedBy: pvanrompay $
-  $Date: 2008-06-18 06:33:59 +0530 (Wed, 18 Jun 2008) $
+  $Revision: 4868 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-08-13 11:03:07 +0530 (Wed, 13 Aug 2008) $
 **********************************************/
 
 /**
@@ -25,7 +25,7 @@
 * @copyright 2002-2006 Gregory DEMAR, Coppermine Dev Team
 * @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
 * @package Coppermine
-* @version $Id: banning.php 4583 2008-06-18 01:03:59Z pvanrompay $
+* @version $Id: banning.php 4868 2008-08-13 05:33:07Z gaugau $
 */
 
 
@@ -204,35 +204,31 @@ if ($ban_expires < 0) {
     }
     /*if ($ban_uid || $ban_ip_addr) {
         cpg_db_query("INSERT INTO {$CONFIG['TABLE_BANNED']} (user_id, ip_addr, expiry) VALUES ($ban_uid, $ban_ip_addr, $ban_expires)");
-		//check if we have to delete comments to
-		if($superCage->post->keyExists('comment_id')) {
-			//check if we have to delte all or one comment
-			if($superCage->post->keyExists('delete_all_comments')) {
-				//delete all comments by this author
-				cpg_db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE author_id = $ban_uid");
-			} else {
-				//only delete current comment
+		//check if we have to delete comments too
+		if($superCage->post->keyExists('delete_comment') && $superCage->post->keyExists('comment_id')) {
+			$delete_what = $superCage->post->getInt('delete_comment');
+			if ($delete_what == 1) { // delete the current comment only
 				$comm_id = $superCage->post->getInt('comment_id');
 				cpg_db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id = $comm_id");
-			}
+			} elseif ($delete_what == 2) { //delete all comments by this author
+				cpg_db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE author_id = $ban_uid");
+			} //no need for an "else" - we don't delete a comment if else, i.e. if "none" has been selected
 		}
     } */
 ################################  DB  ######################################
     if ($ban_uid || $ban_ip_addr) {
         $cpgdb->query($cpg_db_banning_php['ban_user'], $ban_uid, $ban_ip_addr, $ban_expires);
 		//check if we have to delete comments to
-		if($superCage->post->keyExists('comment_id')) {
-			//check if we have to delte all or one comment
-			if($superCage->post->keyExists('delete_all_comments')) {
-				//delete all comments by this author
-				$cpgdb->query($cpg_db_banning_php['delete_all_comments'], $ban_uid);
-			} else {
-				//only delete current comment
+		if($superCage->post->keyExists('delete_comment') && $superCage->post->keyExists('comment_id')) {
+			$delete_what = $superCage->post->getInt('delete_comment');
+			if ($delete_what == 1) { // delete the current comment only
 				$comm_id = $superCage->post->getInt('comment_id');
 				$cpgdb->query($cpg_db_banning_php['delete_current_comments'], $comm_id);
-			}
+			} elseif ($delete_what == 2) { //delete all comments by this author
+				$cpgdb->query($cpg_db_banning_php['delete_all_comments'], $ban_uid);
+			} //no need for an "else" - we don't delete a comment if else, i.e. if "none" has been selected
 		}
-    } 
+    }
 #######################################################################	
 	else {
         cpg_die(CRITICAL_ERROR, $lang_banning_php['error_specify'], __FILE__, __LINE__);
@@ -292,29 +288,68 @@ if ($ban_expires < 0) {
         }
     }
 
-//check if there is a comment who's creator we have to ban
-if($superCage->get->keyExists('ban_comment_author') && $superCage->get->getInt('ban_comment_author') != "")	{
-	//get info of comment
-	$comm_id = $superCage->get->getInt('ban_comment_author');
+$see_all_comments = '';
+$checked_single = 'disabled="disabled"';
+$checked_all = 'checked="checked"';
+$checked_none = '';
+$new_ban_user_id = '';
+
+//check if there is a ban_user parameter in the URL that we have to ban
+if($superCage->get->keyExists('ban_user') && $superCage->get->getInt('ban_user') != "")	{
+	$new_ban_user_id = $superCage->get->getInt('ban_user');
+	/*$sql = "SELECT user_name FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '$new_ban_user_id' LIMIT 1";
+	$result = cpg_db_query($sql);
+	if (!mysql_num_rows($result)) {
+		$comm_info['msg_author'] = '';
+	} else {
+		$user_data = mysql_fetch_array($result);
+		$comm_info['msg_author'] = $user_data['user_name'];
+		unset($user_data);
+	}
+	mysql_free_result($result);*/
+	###########################     DB    ############################
+	$result = $cpgdb->query($cpg_db_banning_php['get_ban_user_param'], $new_ban_user_id);
+	$rowset = $cpgdb->fetchRowSet();
+	if(!count($rowset)) {
+		$comm_info['msg_author'] = '';
+	} else {
+		$user_data = $rowset[0];
+		$comm_info['msg_author'] = $user_data['user_name'];
+		unset($user_data);
+	}
+	$cpgdb->free();
+	#############################################################
+}
+
+//check if there is a delete_comment_id parameter in the URL that we have to ban
+if($superCage->get->keyExists('delete_comment_id') && $superCage->get->getInt('delete_comment_id') != "")	{
+	//get info on user
+	$comm_id = $superCage->get->getInt('delete_comment_id');
+	//check if there is a comment who's creator we have to ban
 	//$comm_info = mysql_fetch_array(cpg_db_query("SELECT msg_author, msg_hdr_ip, msg_raw_ip FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id = $comm_id"));
 	##############################		DB		#################################
 	$comm_info = $cpgdb->fetchRow($cpgdb->query($cpg_db_banning_php['get_comment_info'], $comm_id));
 	###############################################################################
 	($comm_info['msg_hdr_ip'] == '') ? $comm_info['msg_ip'] = $comm_info['msg_hdr_ip'] : $comm_info['msg_ip'] = $comm_info['msg_raw_ip'];
-	$comm_info['extra_form'] = '        <td class="tableb" valign="middle">
-                                                <input type="checkbox" class="checkbox" name="delete_all_comments"/><input type="hidden" name="comment_id" value="' . $comm_id . '"/>
-                                        </td>';
-	$comm_info['extra_form_title'] = '<th class="tableh2">' . $lang_banning_php['del_all_comments'] . '</th>';
+	$checked_single = 'checked="checked"';
+	$checked_none = '';
+	if (!$new_ban_user_id) { // comment has been made by a guest, so there is no point in populating the username field
+		$comm_info['msg_author'] = '';
+		$checked_all = 'disabled="disabled"';
+		$see_all_comments = '';
+	} else { // coment has been made by a registered user
+		$checked_all = '';
+		$see_all_comments = '(<a href="thumbnails.php?album=lastcomby&amp;uid=' . $new_ban_user_id . '">' . $lang_banning_php['view'] . '</a>)';
+	}
 }
+
+
 
 pageheader($lang_banning_php['title']);
 
-$signature = 'Coppermine Photo Gallery ' . COPPERMINE_VERSION . ' (' . COPPERMINE_VERSION_STATUS . ')';
-//print "<div align=\"left\">\n";
-starttable('100%', "{$lang_banning_php['title']} - $signature", 4);
+starttable('100%', cpg_fetch_icon('ban_user', 2) . $lang_banning_php['title'], 4);
 create_banlist();
 endtable();
-//print "</div>\n";
 $calendar_link_new = 'calendar.php?action=banning&amp;month='.ltrim(strftime('%m'),'0').'&amp;year='.strftime('%Y');
 print <<<EOT
 <script language="javascript" type="text/javascript">
@@ -324,7 +359,7 @@ var calendarFormat = 'y-m-d';
 function getCalendar(in_dateField)
 {
     if (calendarWindow && !calendarWindow.closed) {
-        alert('Calendar window already open.  Attempting focus...');
+        alert('{$lang_banning_php['calender_already_open']}');
         try {
             calendarWindow.focus();
         }
@@ -355,38 +390,44 @@ function killCalendar()
 </script>
 EOT;
 print "<br />\n";
-starttable('100%', $lang_banning_php['add_new'], isset($comm_info) ? 5 : 4);
+print '<form action="'.$CPG_PHP_SELF.'" method="post" name="list" id="cpgform">'."\r\n";
+starttable('100%', $lang_banning_php['add_new'], 5);
 echo <<<EOT
-                                        <tr>
-                                                <th class="tableh2">{$lang_banning_php['user_name']}</th>
-                                                <th class="tableh2">{$lang_banning_php['ip_address']}</th>{$comm_info['extra_form_title']}
-                                                <th class="tableh2">{$lang_banning_php['expiry']}</th>
-                                                <th class="tableh2"></th>
-                                        </tr>
-
-                                        <tr>
-                                               <form action="{$CPG_PHP_SELF}" method="post" name="list" id="cpgform">
-                                                     <td class="tableb" valign="middle">
-                                                <input type="text" class="textinput" style="width: 100%" name="add_ban_user_name" value="{$comm_info['msg_author']}" />
-                                        </td>
-                                                <td class="tableb" valign="middle">
-                                                <input type="text" class="textinput" name="add_ban_ip_addr" value="{$comm_info['msg_ip']}" size="15" maxlength="15" />
-                                        </td>{$comm_info['extra_form']}
-                                                <td class="tableb" valign="middle">
-                                                <input type="text" class="listbox_lang"  name="add_ban_expires" value="" size="20" readonly="readonly" title="{$lang_banning_php['select_date']}" />
-                                                <script type="text/javascript">
-                                                    document.write('<a href="javascript:;"  onclick="return getCalendar(document.list.add_ban_expires);" title="{$lang_banning_php['select_date']}"><img src="images/calendar.gif" width="16" height="16" border="0" alt="" /></a>');
-                                                </script>
-                                        </td>
-                                        <td class="tableb" valign="top">
-                                                                <input type="submit" class="button" name="add_ban" value="{$lang_banning_php['add_ban']}" />
-                                        </td>
-                                </form>
-                                </tr>
+	<tr>
+		<th class="tableh2">{$lang_banning_php['user_name']}</th>
+		<th class="tableh2">{$lang_banning_php['ip_address']}</th>
+		<th class="tableh2">{$lang_banning_php['delete_comments']}</th>
+		<th class="tableh2">{$lang_banning_php['expiry']}</th>
+		<th class="tableh2"></th>
+	</tr>
+	<tr>
+		<td class="tableb" valign="middle">
+			<input type="text" class="textinput" style="width: 100%" name="add_ban_user_name" value="{$comm_info['msg_author']}" />
+		</td>
+		<td class="tableb" valign="middle">
+			<input type="text" class="textinput" name="add_ban_ip_addr" value="{$comm_info['msg_ip']}" size="15" maxlength="15" />
+		</td>
+		<td class="tableb" valign="middle">
+			<input type="radio" id="single" name="delete_comment" value="1" {$checked_single} /><label for="single" class="clickable_option">{$lang_banning_php['current']}</label>&nbsp;&nbsp;
+			<input type="radio" id="all" name="delete_comment" value="2" {$checked_all} /><label for="all" class="clickable_option">{$lang_banning_php['all']}</label> {$see_all_comments}&nbsp;&nbsp;
+			<input type="radio" id="none" name="delete_comment" value="0" {$checked_none} /><label for="none" class="clickable_option">{$lang_banning_php['none']}</label>
+			<input type="hidden" name="comment_id" value="{$comm_id}"/>
+		</td>
+		<td class="tableb" valign="middle">
+			<input type="text" class="listbox_lang"  name="add_ban_expires" value="" size="20" readonly="readonly" title="{$lang_banning_php['select_date']}" />
+			<script type="text/javascript">
+			document.write('<a href="javascript:;"  onclick="return getCalendar(document.list.add_ban_expires);" title="{$lang_banning_php['select_date']}"><img src="images/calendar.gif" width="16" height="16" border="0" alt="" /></a>');
+			</script>
+		</td>
+		<td class="tableb" valign="top">
+			<input type="submit" class="button" name="add_ban" value="{$lang_banning_php['add_ban']}" />
+		</td>
+	</tr>
 EOT;
 endtable();
-print '<form action="http://ws.arin.net/cgi-bin/whois.pl" method="post" name="lookup" id="cpgform2" target="_blank">' . "\n";
-
+print "</form>\r\n";
+print "<br />\r\n";
+print '<form action="http://ws.arin.net/whois/" method="get" name="lookup" id="cpgform2" target="_blank">' . "\n";
 //starttable('-2', $lang_banning_php['lookup_ip'], 2);
 starttable('-2');
 print "<tr>\n";

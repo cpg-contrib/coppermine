@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4418 $
+  $Revision: 4837 $
   $LastChangedBy: gaugau $
-  $Date: 2008-04-30 03:30:28 +0530 (Wed, 30 Apr 2008) $
+  $Date: 2008-08-12 01:34:51 +0530 (Tue, 12 Aug 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -124,7 +124,10 @@ EOT;
         if (UDB_INTEGRATION == 'coppermine' and isset($default_group_names[$group['group_id']])) {
             if ($group['group_name'] != $default_group_names[$group['group_id']] && $default_group_names[$group['group_id']] != '') {
                 // we have a group here that doesn't have the default name
-                print '<img src="images/flags/reset.gif" width="16" height="11" border="0" alt="" title="'.sprintf($lang_groupmgr_php['reset_to_default'], $default_group_names[$group['group_id']]).'" style="cursor:pointer" onclick="document.groupmanager.group_name_'.$group['group_id'].'.value=\''.$default_group_names[$group['group_id']].'\'" />';
+                //print '<img src="images/flags/reset.gif" width="16" height="11" border="0" alt="" title="'.sprintf($lang_groupmgr_php['reset_to_default'], $default_group_names[$group['group_id']]).'" style="cursor:pointer" onclick="document.groupmanager.group_name_'.$group['group_id'].'.value=\''.$default_group_names[$group['group_id']].'\'" />';
+                print '<a href="javascript:;" onclick="document.groupmanager.group_name_'.$group['group_id'].'.value=\''.$default_group_names[$group['group_id']].'\'">';
+                print cpg_fetch_icon('stop', 0, sprintf($lang_groupmgr_php['reset_to_default'], $default_group_names[$group['group_id']]));
+                print '</a>';
             }
         }
         $assignedGroupsHelp = cpg_display_help('f=groups.htm&amp;as=group_cp_assigned&amp;ae=group_cp_assigned_end', '450', '300');
@@ -393,21 +396,22 @@ addonload("show_section('checkAll2')");
 <form method="post" action="$CPG_PHP_SELF" name="groupmanager" id="cpgform">
 EOT;
 
-starttable('100%');
-$help_group = '&nbsp;'.cpg_display_help('f=groups.htm&amp;as=group_cp&amp;ae=group_cp_end&amp;top=1', '700', '500');
+
+$help_group = '&nbsp;'.cpg_display_help('f=groups.htm&amp;as=group_cp_names&amp;ae=group_cp_names_end&amp;top=1', '700', '500');
 $help_permissions = '&nbsp;'.cpg_display_help('f=groups.htm&amp;as=group_cp_permissions&amp;ae=group_cp_permissions_end&amp;top=1', '500', '200');
 $help_public = '&nbsp;'.cpg_display_help('f=groups.htm&amp;as=group_cp_public&amp;ae=group_cp_public_end&amp;top=1', '500', '200');
 $help_personal = '&nbsp;'.cpg_display_help('f=groups.htm&amp;as=group_cp_personal&amp;ae=group_cp_personal_end&amp;top=1', '500', '200');
 $help_upload_method = '&nbsp;'.cpg_display_help('f=groups.htm&amp;as=group_cp_upload_method&amp;ae=group_cp_upload_method_end&amp;top=1', '700', '400');
+starttable('100%', cpg_fetch_icon('groups_mgr', 2).$lang_groupmgr_php['group_manager']. '&nbsp;' . cpg_display_help('f=groups.htm&amp;as=group_cp&amp;ae=group_cp_end&amp;top=1', '700', '500'), 6);
 echo <<<EOT
 
         <tr style="white-space:nowrap">
-                <td class="tableh1"><input type="checkbox" name="checkAll" id="checkAll" onclick="selectAll(this,'delete_group');" class="checkbox" title="{$lang_common['check_uncheck_all']}" style="display:none" /></td>
-                <td class="tableh1"><span class="statlink">{$lang_groupmgr_php['group_name']}</span>$help_group</td>
-                <td class="tableh1"><span class="statlink">{$lang_groupmgr_php['permissions']}</span>$help_permissions</td>
-                <td class="tableh1"><span class="statlink">{$lang_groupmgr_php['public_albums']}</span> $help_public</td>
-                <td class="tableh1"><span class="statlink">{$lang_groupmgr_php['personal_gallery']}</span>$help_personal</td>
-                <td class="tableh1"><span class="statlink">{$lang_groupmgr_php['upload_method']}</span>$help_upload_method</td>
+                <td class="tableh2"><input type="checkbox" name="checkAll" id="checkAll" onclick="selectAll(this,'delete_group');" class="checkbox" title="{$lang_common['check_uncheck_all']}" style="display:none" /></td>
+                <td class="tableh2"><span class="statlink">{$lang_groupmgr_php['group_name']}</span>$help_group</td>
+                <td class="tableh2"><span class="statlink">{$lang_groupmgr_php['permissions']}</span>$help_permissions</td>
+                <td class="tableh2"><span class="statlink">{$lang_groupmgr_php['public_albums']}</span> $help_public</td>
+                <td class="tableh2"><span class="statlink">{$lang_groupmgr_php['personal_gallery']}</span>$help_personal</td>
+                <td class="tableh2"><span class="statlink">{$lang_groupmgr_php['upload_method']}</span>$help_upload_method</td>
         </tr>
 
 EOT;

@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4521 $
-  $LastChangedBy: pvanrompay $
-  $Date: 2008-06-10 11:26:00 +0530 (Tue, 10 Jun 2008) $
+  $Revision: 4853 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-08-12 12:23:42 +0530 (Tue, 12 Aug 2008) $
 **********************************************/
 
 // ------------------------------------------------------------------------- //
@@ -65,7 +65,7 @@ function display_plugin_list() {
     $yes_selected = $CONFIG['enable_plugins'] ? 'checked="checked"' : '';
     $no_selected = !$CONFIG['enable_plugins'] ? 'checked="checked"' : '';
     print '<form name="pluginenableconfig" id="cpgform2" action="'.$CPG_PHP_SELF.'" method="post" style="margin:0px;padding:0px">';
-    starttable('-1', $lang_pluginmgr_php['pmgr'].$help,3);
+    starttable('-1', cpg_fetch_icon('plugin_mgr', 2) . $lang_pluginmgr_php['pmgr'].$help,3);
 echo <<< EOT
         <tr>
                 <td class="tableh2" colspan="3">
@@ -200,9 +200,10 @@ EOT;
             <tr>
 EOT;
         if (($thisplugin['index'] > 0) && ($plugins_count > 1)) {
+            $up = cpg_fetch_icon('up', 0);
             echo <<<EOT
             <td width="3%" align="center" valign="middle">
-                <a href="pluginmgr.php?op=moveu&amp;p={$thisplugin['plugin_id']}"><img src="images/up.gif"  border="0" alt="" /></a>
+                <a href="pluginmgr.php?op=moveu&amp;p={$thisplugin['plugin_id']}">{$up}</a>
             </td>
 EOT;
         } else {
@@ -210,9 +211,10 @@ EOT;
         }
 
         if ($thisplugin['index'] < ($plugins_count - 1)) {
+            $down = cpg_fetch_icon('down', 0); 
             echo <<<EOT
             <td width="3%" align="center" valign="middle">
-                <a href="pluginmgr.php?op=moved&amp;p={$thisplugin['plugin_id']}"><img src="images/down.gif"  border="0" alt="" /></a>
+                <a href="pluginmgr.php?op=moved&amp;p={$thisplugin['plugin_id']}">{$down}</a>
             </td>
 EOT;
         } else {
@@ -220,10 +222,11 @@ EOT;
         }
 
         $confirm_function = ($CONFIG['enable_plugins'] == 1) ? 'confirmUninstall' : 'confirmRemove';
+        $delete = cpg_fetch_icon('stop', 0);
         echo <<<EOT
             <td width="3%" align="center" valign="middle">
-                <a href="pluginmgr.php?op=uninstall&amp;p={$thisplugin['plugin_id']}" onClick="return {$confirm_function}('$safename')">
-                    <img src="images/delete.gif"  border="0" alt="" />
+                <a href="pluginmgr.php?op=uninstall&amp;p={$thisplugin['plugin_id']}" onClick="return {$confirm_function}('$safename')" title="{$lang_pluginmgr_php['uninstall']}">
+                    {$delete}
                 </a>
             </td>
 
@@ -324,8 +327,9 @@ EOT;
             }
             // remove 'true ||' below to remove install button when plugin API is disabled
             $install_button = (true || ($CONFIG['enable_plugins'] == 1)) ? 
-                '<a href="pluginmgr.php?op=install&amp;p='.$path.'"><img src="images/info.gif"  border="0" alt="" /></a>' 
-                : '<img src="images/spacer.gif" width="16" height="16" />';
+                '<a href="pluginmgr.php?op=install&amp;p='.$path.'" title="' . $lang_pluginmgr_php['install'] . '">' . cpg_fetch_icon('add', 0) . '</a>'
+                : cpg_fetch_icon('blank', 0);
+            $delete = cpg_fetch_icon('delete', 0);
             echo <<<EOT
                 </table>
             </td>
@@ -339,8 +343,8 @@ EOT;
                         {$install_button}
                     </td>
                     <td width="5%" align="center" valign="top">
-                        <a href="pluginmgr.php?op=delete&amp;p=$path" onClick="return confirmDel('$safename')">
-                            <img src="images/delete.gif"  border="0" alt="" />
+                        <a href="pluginmgr.php?op=delete&amp;p=$path" onClick="return confirmDel('$safename')" title="{$lang_common['delete']}">
+                            {$delete}
                         </a>
                     </td>
                 </tr>

@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4645 $
-  $LastChangedBy: abbas-ali $
-  $Date: 2008-06-28 10:32:31 +0530 (Sat, 28 Jun 2008) $
+  $Revision: 4853 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-08-12 12:23:42 +0530 (Tue, 12 Aug 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -356,7 +356,7 @@ EOT;
 
 function form_pic_info($text)
 {
-    global $CURRENT_PIC, $THUMB_ROWSPAN, $CONFIG;
+    global $CURRENT_PIC, $THUMB_ROWSPAN, $CONFIG; 
     global $lang_byte_units, $lang_editpics_php, $lang_common, $loop_counter, $row_style_class;
 
     if (!is_movie($CURRENT_PIC['filename'])) {
@@ -399,6 +399,7 @@ function form_pic_info($text)
 EOT;
     }
 
+    $delete_icon = cpg_fetch_icon('delete', 0, $lang_editpics_php['del_pic']);
     echo <<<EOT
     <tr>
         <td colspan="3">
@@ -408,7 +409,7 @@ EOT;
                             {$lang_common['filename']}: $filename
                     </td>
                     <td class="{$row_style_class}" width="40" valign="top">
-                    <input type="checkbox" name="delete{$CURRENT_PIC['pid']}" id="delete{$CURRENT_PIC['pid']}" value="1" class="checkbox" title="{$lang_editpics_php['del_pic']}" /><label for="delete{$CURRENT_PIC['pid']}" class="clickable_option"><img src="images/delete.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['del_pic']}" /></label>
+                    <input type="checkbox" name="delete{$CURRENT_PIC['pid']}" id="delete{$CURRENT_PIC['pid']}" value="1" class="checkbox" title="{$lang_editpics_php['del_pic']}" /><label for="delete{$CURRENT_PIC['pid']}" class="clickable_option">{$delete_icon}</label>
                     </td>
                     $approve_html
                     <td class="{$row_style_class}" width="40">
@@ -620,7 +621,7 @@ function get_user_albums($user_id = '')
         $or = " OR category='" . (FIRST_USER_CAT + $user_id) . "'";
     }
 
-	if (!isset($USER_ALBUMS_ARRAY[USER_ID])) {
+    if (!isset($USER_ALBUMS_ARRAY[USER_ID])) {
         if (MODERATOR_MODE && UPLOAD_APPROVAL_MODE || MODERATOR_EDIT_MODE) {
             /*$user_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid IN $albStr AND category > '".FIRST_USER_CAT."' OR category='".(FIRST_USER_CAT + USER_ID)."' ORDER BY title");
                 
@@ -648,7 +649,7 @@ function get_user_albums($user_id = '')
 			/*$result1 = cpg_db_query("SELECT aid , title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = $cat");
 			$rowset1 = cpg_db_fetch_rowset($result1);
 			mysql_free_result($result1);
-
+			
 			// Get public albums
 			$result2 = cpg_db_query("SELECT alb.aid AS aid, CONCAT_WS('', '(', cat.name, ') ', alb.title) AS title FROM {$CONFIG['TABLE_ALBUMS']} AS alb INNER JOIN {$CONFIG['TABLE_CATEGORIES']} AS cat ON alb.owner = '$user_id' AND alb.category = cat.cid ORDER BY alb.category DESC, alb.pos ASC");
 			$rowset2 = cpg_db_fetch_rowset($result2);
@@ -952,6 +953,7 @@ if (GALLERY_ADMIN_MODE || MODERATOR_MODE) {
 EOT;
 }
 
+$delete_all_icon = cpg_fetch_icon('delete', 0, $lang_editpics_php['del_all']); 
 echo <<<EOT
         <tr>
             <td colspan="3" align="center">
@@ -961,7 +963,7 @@ echo <<<EOT
                             {$lang_editpics_php['select_unselect']}:
                         </td>
                         <td class="tableh2" width="40" valign="top">
-                            <input type="checkbox" name="deleteAll" onclick="selectAll(this,'delete');" class="checkbox" id="deleteAll" title="{$lang_editpics_php['del_all']}" /><label for="deleteAll" class="clickable_option"><img src="images/delete.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['del_all']}" /></label>
+                            <input type="checkbox" name="deleteAll" onclick="selectAll(this,'delete');" class="checkbox" id="deleteAll" title="{$lang_editpics_php['del_all']}" /><label for="deleteAll" class="clickable_option">{$delete_all_icon}</label>
                         </td>
                         $approve_all_html
                         <td class="tableh2" width="40">

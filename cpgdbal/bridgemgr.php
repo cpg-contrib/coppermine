@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4497 $
+  $Revision: 4841 $
   $LastChangedBy: gaugau $
-  $Date: 2008-06-03 19:59:30 +0530 (Tue, 03 Jun 2008) $
+  $Date: 2008-08-12 03:00:08 +0530 (Tue, 12 Aug 2008) $
 **********************************************/
 
 
@@ -282,7 +282,7 @@ function write_to_db($step) {
 
     // ouput error messages, if any
     if (is_array($return)) {
-        starttable('100%',$lang_bridgemgr_php['error_title']);
+        starttable('100%', $lang_bridgemgr_php['error_title']);
         print '<tr><td class="tableb" align="left"><ul>';
         foreach($return as $key) {
             print '<li>'.$key.'</li>';
@@ -700,7 +700,7 @@ case "choose_bbs":
 $BRIDGE = cpg_get_bridge_db_values();
 print '<form name="'.$step.'" id="cpgform" action="'.$CPG_PHP_SELF.'" method="post">';
 //print '<input type="hidden" name="hide_unused_fields" value="1" />';
-starttable('100%', $lang_bridgemgr_php['title'].': '.$lang_bridgemgr_php['choose_bbs_app'],2);
+starttable('100%', cpg_fetch_icon('bridge_mgr', 2) . $lang_bridgemgr_php['title'].': '.$lang_bridgemgr_php['choose_bbs_app'],2);
 $checked[$BRIDGE['short_name']] = 'checked="checked"';
 foreach($default_bridge_data as $key => $value) {
     print '<tr>'.$new_line;
@@ -757,7 +757,7 @@ case "settings_path":
     if (!$error) {
         $BRIDGE = cpg_get_bridge_db_values();
         print '<form name="'.$step.'" id="cpgform" action="'.$CPG_PHP_SELF.'" method="post">';
-        starttable('100%',$lang_bridgemgr_php['title'].': '.$lang_bridgemgr_php['settings_path'], 3);
+        starttable('100%', cpg_fetch_icon('bridge_mgr', 2) . $lang_bridgemgr_php['title'].': '.$lang_bridgemgr_php['settings_path'], 3);
         $loop_array = array('full_forum_url','relative_path_of_forum_from_webroot','relative_path_to_config_file', 'cookie_prefix');
         $rows_displayed = 0;
         $section_number = 0;
@@ -815,7 +815,7 @@ case "db_connect":
     if (!$error) {
         $BRIDGE = cpg_get_bridge_db_values();
         print '<form name="'.$step.'" id="cpgform" action="'.$CPG_PHP_SELF.'" method="post">';
-        starttable('100%',$lang_bridgemgr_php['title'].': '.$lang_bridgemgr_php['database_connection'], 3);
+        starttable('100%', cpg_fetch_icon('bridge_mgr', 2) . $lang_bridgemgr_php['title'].': '.$lang_bridgemgr_php['database_connection'], 3);
         $loop_array = array('db_database_name','db_hostname','db_username','db_password');
         $rows_displayed = 0;
         foreach($loop_array as $key) {
@@ -868,7 +868,7 @@ case "db_tables":
     if (!$error) {
         $BRIDGE = cpg_get_bridge_db_values();
         print '<form name="'.$step.'" id="cpgform" action="'.$CPG_PHP_SELF.'" method="post">';
-        starttable('100%',$lang_bridgemgr_php['title'].': '.$lang_bridgemgr_php['database_tables'], 3);
+        starttable('100%', cpg_fetch_icon('bridge_mgr', 2) . $lang_bridgemgr_php['title'].': '.$lang_bridgemgr_php['database_tables'], 3);
         $loop_array = array('table_prefix', 'user_table', 'session_table', 'group_table', 'group_relation_table', 'group_mapping_table');
         $rows_displayed = 0;
         foreach($loop_array as $key) {
@@ -921,7 +921,7 @@ case "db_groups":
     if (!$error) {
         $BRIDGE = cpg_get_bridge_db_values();
         print '<form name="'.$step.'" id="cpgform" action="'.$CPG_PHP_SELF.'" method="post">';
-        starttable('100%',$lang_bridgemgr_php['title'].': '.$lang_bridgemgr_php['bbs_groups'], 3);
+        starttable('100%', cpg_fetch_icon('bridge_mgr', 2) . $lang_bridgemgr_php['title'].': '.$lang_bridgemgr_php['bbs_groups'], 3);
         if ($default_bridge_data[$BRIDGE['short_name']]['use_standard_groups_used'] != '')
         {
             if ($BRIDGE['use_standard_groups'] != '') {
@@ -1027,7 +1027,7 @@ case "special_settings":
     if (!$error) {
         $BRIDGE = cpg_get_bridge_db_values();
         print '<form name="'.$step.'" id="cpgform" action="'.$CPG_PHP_SELF.'" method="post">';
-        starttable('100%',$lang_bridgemgr_php['title'].': '.$lang_bridgemgr_php['special_settings'], 3);
+        starttable('100%', cpg_fetch_icon('bridge_mgr', 2) . $lang_bridgemgr_php['title'].': '.$lang_bridgemgr_php['special_settings'], 3);
         $loop_array = array('logout_flag', 'use_post_based_groups','license_number');
         $rows_displayed = 0;
         foreach($loop_array as $key) { // foreach loop_array --- start
@@ -1229,7 +1229,7 @@ case "finalize":
     -->
     </script>
 EOT;
-        starttable(-1,$lang_bridgemgr_php['title'].': '.$lang_bridgemgr_php['finalize'],2);
+        starttable(-1, cpg_fetch_icon('bridge_mgr', 2) . $lang_bridgemgr_php['title'].': '.$lang_bridgemgr_php['finalize'],2);
         if ($_POST['submit'] && $CONFIG['bridge_enable'] != 1) {
             print '<tr>';
             print '<td class="tableb" colspan="2">';
@@ -1515,7 +1515,7 @@ else { // not in gallery admin mode --- start
     $recovery_logon_failures = $row['value'];
     $logon_allowed = cpg_check_allowed_emergency_logon($recovery_logon_timestamp,$recovery_logon_failures);
     if ($logon_allowed < 0) {$logon_allowed = 0;}
-    starttable(-1,$lang_bridgemgr_php['recovery_title'],2);
+    starttable(-1, cpg_fetch_icon('bridge_mgr', 2) . $lang_bridgemgr_php['recovery_title'],2);
         echo <<<EOT
         <form name="disable_integration" id="cpgform" action="{$CPG_PHP_SELF}" method="post">
         <tr>

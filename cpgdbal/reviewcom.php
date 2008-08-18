@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4422 $
+  $Revision: 4841 $
   $LastChangedBy: gaugau $
-  $Date: 2008-04-30 10:40:08 +0530 (Wed, 30 Apr 2008) $
+  $Date: 2008-08-12 03:00:08 +0530 (Tue, 12 Aug 2008) $
 **********************************************/
 
 // todo: search option.
@@ -295,13 +295,13 @@ if ($superCage->get->keyExists('pid')) {
 }
 
 if ($start + $count < $comment_count) {
-    $next_link = "<a href=\"$next_target\" class=\"admin_menu\">{$lang_reviewcom_php['see_next']}&raquo;</a>";
+    $next_link = '<a href="'.$next_target.'">'.cpg_fetch_icon('rightright', 0, $lang_reviewcom_php['see_next']).'</a>';
 } else {
     $next_link = '';
 }
 
 if ($start > 0) {
-    $prev_link = "<a href=\"$prev_target\" class=\"admin_menu\">&laquo;{$lang_reviewcom_php['see_prev']}</a>&nbsp;&nbsp;-&nbsp;&nbsp;";
+    $prev_link = '<a href="'.$prev_target.'">'.cpg_fetch_icon('leftleft', 0,$lang_reviewcom_php['see_prev']).'</a>&nbsp;&nbsp;';
 } else {
     $prev_link = '';
 }
@@ -408,13 +408,14 @@ EOT;
 
 $help_approval_only = '&nbsp;'.cpg_display_help('f=configuration.htm&amp;as=admin_comment_display_comment_approval_only_start&amp;ae=admin_comment_display_comment_approval_only_end&amp;top=1', '600', '400');
 $help = '&nbsp;'.cpg_display_help('f=comments.htm&amp;as=comments_review&amp;ae=comments_review_end&amp;top=1', '800', '400');
+$icon = cpg_fetch_icon('comment_approval',2);
 echo <<<EOT
         <tr>
                 <td class="tableh1" colspan="6">
                     <table border="0" cellspacing="0" cellpadding="0" width="100%">
                         <tr>
                             <td class="tableh1">
-                                {$lang_reviewcom_php['title']}
+                                {$icon}{$lang_reviewcom_php['title']}
                                 {$help}
                             </td>
                             <td class="tableh1" align="center">
@@ -543,7 +544,11 @@ while ($row = $cpgdb->fetchRow()) {
     $comment_approval_status .= '<input type="hidden" name="status_approved_yes[]" id="status_approved_yes'.$row['msg_id'].'" value="" />';
     $comment_approval_status .= '<input type="hidden" name="status_approved_no[]" id="status_approved_no'.$row['msg_id'].'" value="" />';
 	//get link to ban and delete
-	$ban_and_delete = '<a href="banning.php?ban_comment_author=' . $row['msg_id'] . '">' . $lang_reviewcom_php['ban_and_delete'] . '</a>';
+	if ($row['author_id'] == 0) {
+		$ban_and_delete = '<a href="banning.php?delete_comment_id=' . $row['msg_id'] . '">' . $lang_reviewcom_php['ban_and_delete'] . '</a>';
+	} else {
+		$ban_and_delete = '<a href="banning.php?ban_user=' . $row['author_id'] . '&amp;delete_comment_id=' . $row['msg_id'] . '">' . $lang_reviewcom_php['ban_and_delete'] . '</a>';
+	}
     $rowcounter++;
     if ($rowcounter >=2 ) { //let the row colors alternate, for now they are the same
         $rowcounter = 0;

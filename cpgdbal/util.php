@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4583 $
+  $Revision: 4844 $
   $LastChangedBy: pvanrompay $
-  $Date: 2008-06-18 06:33:59 +0530 (Wed, 18 Jun 2008) $
+  $Date: 2008-08-12 11:33:24 +0530 (Tue, 12 Aug 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -104,7 +104,7 @@ if (array_key_exists($action, $tasks)){
 
         $help = '&nbsp;'.cpg_display_help('f=admin_menu.htm&amp;as=admin_tools&amp;ae=admin_tools_end&amp;top=1', '600', '400');
 
-        starttable('100%', $lang_util_php['title'].$help, 2);
+        starttable('100%', cpg_fetch_icon('util',2) . $lang_util_php['title'].$help, 2);
 
         echo '<tr>
                         <td class="tablef"><strong>'.$lang_util_php['what_it_does'] . '</strong>:
@@ -175,7 +175,7 @@ if (array_key_exists($action, $tasks)){
 EOT;
         endtable();
 
-        starttable('100%', $lang_util_php['select_album']);
+        starttable('100%', $lang_common['select_album']);
         echo '<tr><td class="tablef"><br />';
         //if (defined('UDB_INTEGRATION')){
                 $cpg_udb->util_filloptions();

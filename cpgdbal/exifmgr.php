@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4224 $
+  $Revision: 4841 $
   $LastChangedBy: gaugau $
-  $Date: 2008-01-26 17:12:00 +0530 (Sat, 26 Jan 2008) $
+  $Date: 2008-08-12 03:00:08 +0530 (Tue, 12 Aug 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -83,13 +83,20 @@ if ($superCage->post->keyExists('save')){
     -->
     </script>
 EOT;
-  starttable(-2,$lang_picinfo['ManageExifDisplay'], 2);
+  starttable('100%', cpg_fetch_icon('exif_mgr', 2) . $lang_picinfo['ManageExifDisplay'], 2);
   echo '<tr><td class="tableh2">&nbsp;</td><td class="tableh2" align="center">';
   echo '<input type="checkbox" name="checkAll" onClick="selectAll(this,\'exif_tags\');" class="checkbox" title="'.$lang_common['check_uncheck_all'].'" />';
   echo '</td></tr>';
+  $loopCounter = 0;
   foreach ($exifRawData as $key => $val) {
     $checked = $exifCurrentData[$key] == 1 ? 'checked' : '';
-    echo '<tr><td class="tableb">'.$lang_picinfo[$val].'</td><td class="tableb" align="center"><input type="checkbox" name="exif_tags[]" value="'.$val.'" ' . $checked . ' class="checkbox" /></td></tr>';
+    if (($loopCounter/2) == floor($loopCounter/2)) {
+    	$style = 'tableb';
+    } else {
+    	$style = 'tableb tableb_alternate';
+    }
+    $loopCounter++;
+    echo '<tr><td class="'.$style.'">'.$lang_picinfo[$val].'</td><td class="'.$style.'" align="center"><input type="checkbox" name="exif_tags[]" value="'.$val.'" ' . $checked . ' class="checkbox" /></td></tr>'."\r\n";
   }
   echo '<tr>
   <td class="tablef" align="center"><input type="submit" class="button" name="submit" value="'.$lang_picinfo['submit'].'" />';

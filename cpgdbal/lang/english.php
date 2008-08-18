@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $Source$
-  $Revision: 4696 $
+  $Revision: 4873 $
   $LastChangedBy: gaugau $
-  $Date: 2008-07-17 11:02:26 +0530 (Thu, 17 Jul 2008) $
+  $Date: 2008-08-13 12:28:28 +0530 (Wed, 13 Aug 2008) $
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
@@ -147,6 +147,9 @@ $lang_common = array(
   'delete' => 'Delete', // cpg1.5
   'edit' => 'Edit', // cpg1.5
   'username_if_blank' => 'Mr. X', // cpg1.5
+  'albums_no_category' => 'Albums with no category', // cpg1.5
+  'personal_albums' => '* Personal albums', // cpg1.5
+  'select_album' => 'Select Album', // cpg1.5
 );
 
 // ------------------------------------------------------------------------- //
@@ -448,12 +451,12 @@ if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
   'confirm_modifs' => 'Are you sure you want to make these modifications ?', // js-alert
   'no_change' => 'You did not make any change !', // js-alert
   'new_album' => 'New album',
+  'delete_album' => 'Delete album', // cpg1.5
   'confirm_delete1' => 'Are you sure you want to delete this album ?', // js-alert
   'confirm_delete2' => '\nAll files and comments it contains will be lost !', // js-alert
   'select_first' => 'Select an album first', // js-alert
   'my_gallery' => '* My gallery *',
   'no_category' => '* No category *',
-  'new' => 'New',
   'apply_modifs' => 'Apply modifications',
   'select_category' => 'Select category',
 );
@@ -479,7 +482,12 @@ if (defined('BANNING_PHP')) $lang_banning_php = array(
   'lookup_ip' => 'Lookup an IP address',
   'submit' => 'go!',
   'select_date' => 'select date',
-  'del_all_comments' => 'Delete all comments by this user? (blank is only current)', // cpg1.5
+  'delete_comments' => 'Delete comments', // cpg1.5
+  'current' => 'current', // cpg1.5
+  'all' => 'all', // cpg1.5
+  'none' => 'none', // cpg1.5
+  'view' => 'view', // cpg1.5
+  'calender_already_open' => 'Calendar window already open.  Attempting focus...', // cpg1.5 // js-alert
 );
 
 // ------------------------------------------------------------------------- //
@@ -620,7 +628,7 @@ if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
   'usergal_cat_ro' => 'User galleries category can\'t be deleted !',
   'manage_cat' => 'Manage categories',
   'confirm_delete' => 'Are you sure you want to DELETE this category', // js-alert
-  'category' => 'Category',
+  'category' => 'Categories', // cpg1.5
   'operations' => 'Operations',
   'move_into' => 'Move into', 
   'update_create' => 'Update/Create category',
@@ -766,6 +774,7 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'display_faq' =>   'Display FAQ', // cpg1.5
   'custom_lnk_name' =>   'Custom menu link name', // cpg1.5
   'custom_lnk_url' =>   'Custom menu link URL', // cpg1.5
+  'enable_menu_icons' =>   'Enable menu icons', // cpg1.5
   'show_bbcode_help' =>   'Display bbcode help', // cpg1.5
   'vanity_block' =>   'Show the vanity block on themes that are defined as XHTML and CSS compliant', // cpg1.5
   'display_social_bookmarks' =>   'Display social bookmarks icons', // cpg1.5
@@ -973,6 +982,8 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'warning_change' => 'When changing this setting, only the files that are added from that point on are affected, so it\'s advisable that this setting must not be changed if there are already files in the gallery. You can, however, apply the changes to the existing files with the "admin tools (resize pictures)" utility from the admin menu.', // cpg1.5
   'warning_exist' => 'These settings mustn\'t be changed if you already have files in your database.', // cpg1.5
   'warning_dont_submit' => 'If you\\\'re not sure about the impact that changing this setting will have, don\\\'t submit the form and review the documentation first.', // cpg1.5 // js-alert
+  'menu_only' => 'menu only', // cpg1.5
+  'everywhere' => 'everywhere', // cpg1.5
 );
 
 
@@ -1375,11 +1386,9 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
 
 if (defined('EXPORT_PHP')) $lang_export_php = array(
   'export' => 'Export', // cpg 1.5
-  'choose_album' => 'Choose an Album', // cpg 1.5
   'export_type' => 'Export type:', // cpg 1.5
   'html' => 'Formatted HTML', // cpg 1.5
   'images' => 'Images only', // cpg 1.5
-  'select_album' => 'Select an Album', // cpg 1.5
   'export_directory' => 'Export Directory:', // cpg 1.5
   'processing' => 'Processing...', // cpg 1.5
 );
@@ -1479,6 +1488,7 @@ EOT;
 // ------------------------------------------------------------------------- //
 
 if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
+  'group_manager' => 'Group manager', // cpg 1.5.x
   'group_name' => 'Group',
   'permissions' => 'Permissions',
   'public_albums' => 'Public albums upload',
@@ -1806,7 +1816,6 @@ if (defined('PHPINFO_PHP')) $lang_phpinfo_php = array(
 // ------------------------------------------------------------------------- //
 if (defined('PICMGR_PHP')) $lang_picmgr_php = array(
   'pic_mgr' => 'Picture Manager',
-  'select_album' => 'Select Album',
   'confirm_delete1' => 'Are you sure you want to delete this picture ?',
   'confirm_delete2' => '\nPicture will be permanently deleted.',
   'apply_modifs' => 'Apply modifications',
@@ -1849,6 +1858,8 @@ $lang_pluginmgr_php = array(
   'extra' => 'Extra', // cpg1.5
   'install_info' => 'Install information', // cpg1.5
   'plugin_disabled_note' => 'Plugin API is disabled, so that operation is not allowed.', // cpg1.5
+  'install' => 'install', // cpg1.5
+  'uninstall' => 'uninstall', // cpg1.5
 );
 }
 
@@ -2092,7 +2103,7 @@ $lang_search_php = array(
 if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
   'page_title' => 'Search new files',
   'select_dir' => 'Select directory',
-  'select_dir_msg' => 'This function allows you to add a batch of files that your have uploaded to your server by FTP.<br /><br />Select the directory where you have uploaded your files.',
+  'select_dir_msg' => 'This function allows you to add a batch of files that you have uploaded to your server by FTP.<br /><br />Select the directory where you have uploaded your files.',
   'no_pic_to_add' => 'There is no file to add',
   'need_one_album' => 'You need at least one album to use this function',
   'warning' => 'Warning',
@@ -2118,12 +2129,9 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
                 '<li>If the OK, DP, PB \'signs\' does not appear click on the broken file to see any error message produced by PHP'.
                 '<li>If your browser timeouts, hit the reload button'.
             '</ul>',
-  'select_album' => 'select album',
   'check_all' => 'Check All',
   'uncheck_all' => 'Uncheck All',
   'no_folders' => 'There are no folders inside the "albums" folder yet. Make sure to create at least one custom folder within "albums" folder and ftp-upload your files there. You mustn\'t upload to the "userpics" nor "edit" folders, they are reserved for http uploads and internal purposes.',
-   'albums_no_category' => 'Albums with no category', // album pulldown mod, added by frogfoot
-  'personal_albums' => '* Personal albums', // album pulldown mod, added by frogfoot
   'browse_batch_add' => 'Browsable interface', // cpg1.5
   'display_thumbs_batch_add' => 'Display preview thumbnails', // cpg1.5
   'edit_pics' => 'Edit files',
@@ -2274,9 +2282,6 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'place_instr_1' => 'Please place the files in albums at this time.  You may also enter relevant information about each file now.',
   'place_instr_2' => 'More files need placement. Please click \'Continue\'.',
   'process_complete' => 'You have successfully placed all the files.',
-  'albums_no_category' => 'Albums with no category',
-  'personal_albums' => '* Personal albums',
-  'select_album' => 'Select album',
   'close' => 'Close',
   'no_keywords' => 'Sorry, no keywords available!',
   'regenerate_dictionary' => 'Regenerate Dictionary',
@@ -2329,7 +2334,7 @@ $lang_usermgr_php = array(
   'operations' => 'Operations',
   'pictures' => 'Files',
   'disk_space_used' => 'Space used',
-  'disk_space_quota' => 'Space Quota',
+  'disk_space_quota' => 'Quota', // cpg1.5
   'registered_on' => 'Registration',
   'last_visit' => 'Last Visit',
   'u_user_on_p_pages' => '%d users on %d page(s)',
@@ -2372,6 +2377,12 @@ $lang_usermgr_php = array(
   'send_login_data' => 'Send login data to this user (Password will be sent in email)', // cpg1.5
   'send_login_email_subject' => 'Your new account information', // cpg1.5
   'failed_sending_email' => 'The login data email can\'t be sent!', // cpg1.5
+  'view_profile' => 'View profile', // cpg1.5
+  'edit_profile' => 'Edit profile', // cpg1.5
+  'ban_user' => 'Ban user', // cpg1.5
+  'status' => 'Status', // cpg1.5
+  'status_active' => 'active', // cpg1.5
+  'status_inactive' => 'not active', // cpg1.5
 );
 
 $lang_send_login_data_email = <<<EOT
@@ -2452,7 +2463,6 @@ $lang_util_php = array(
   'titles_deleted' => 'All titles in specified album removed',
   'deleting_intermediates' => 'Deleting intermediate images, please wait...',
   'searching_orphans' => 'Searching for orphans, please wait...',
-  'select_album' => 'Select album',
   'delete_orphans' => 'Delete comments on missing files',
   'delete_orphans_explanation' => 'This will identify and allow you to delete any comments associated with files no longer in the gallery.<br />Checks all albums.',
   'update_full_normal_thumb' => 'Everything: full-sized, resized and thumbs', // cpg1.5
@@ -2513,6 +2523,7 @@ if (defined('VERSIONCHECK_PHP')) $lang_versioncheck_php = array(
   'outdated' => 'older than %s',
   'newer' => 'newer than %s',
   'modified' => 'modified',
+  'not_modified' => 'unmodified', // cpg1.5
   'needs_change' => 'needs change',
   'review_permissions' => 'Review Permissions',
   'inaccessible' => 'File is inaccessible',
@@ -2547,6 +2558,8 @@ if (defined('VERSIONCHECK_PHP')) $lang_versioncheck_php = array(
   'files_folder_processed' => 'Displaying %s items of %s folders/files processed with %s potential issues',
   'read' => 'Read', // cpg1.5
   'write' => 'Write', // cpg1.5
+  'warning' => 'Warning', // cpg1.5
+  'not_applicable' => 'n/a', // cpg1.5
 );
 
 // ------------------------------------------------------------------------- //

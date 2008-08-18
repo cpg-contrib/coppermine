@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4583 $
-  $LastChangedBy: pvanrompay $
-  $Date: 2008-06-18 06:33:59 +0530 (Wed, 18 Jun 2008) $
+  $Revision: 4872 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-08-13 12:27:35 +0530 (Wed, 13 Aug 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -98,7 +98,7 @@ function list_group_alb_access($group_id) {  //shows a list of albums a specific
         <tr>
         <td>' . $album['category'] . '</td>
         <td>' . $album['album'] . '</td>
-        <td>&nbsp;<a href="modifyalb.php?album=' . $album['aid'] . '"><img src="images/edit.gif" border="0" alt="" /></a></td>
+        <td>&nbsp;<a href="modifyalb.php?album=' . $album['aid'] . '">' . cpg_fetch_icon('edit', 0) . '</a></td>
         </tr>
         ';
    }
@@ -143,9 +143,9 @@ function list_groups_alb_access() //shows a list of albums each group can see. C
 	$cpgdb->free();
 ##########################################################
     echo "
-    <td><b>{$lang_usermgr_php['category']}</b></td>
-    <td><b>{$lang_common['album']}</b></td>
-    <td><b>{$lang_usermgr_php['modify']}</b></td>
+    <td>{$lang_usermgr_php['category']}</td>
+    <td>{$lang_common['album']}</td>
+    <td>{$lang_usermgr_php['modify']}</td>
     ";
     foreach($groups as $group) {
         $group_name = $group['group_name'];
@@ -194,11 +194,11 @@ function list_users($search = '')
     	}
     }
 
-    $tab_tmpl = array('left_text' => '<td width="100%" align="left" valign="middle" class="tableh1_compact" style="white-space: nowrap"><b>' . $lang_usermgr_php['u_user_on_p_pages'] . '</b></td>' . "\n",
+    $tab_tmpl = array('left_text' => '<td width="100%" align="left" valign="middle" class="tableh1_compact" style="white-space: nowrap">' . $lang_usermgr_php['u_user_on_p_pages'] . '</td>' . "\n",
         'tab_header' => '',
         'tab_trailer' => '',
-        'active_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="tableb_compact"><b>%d</b></td>',
-        'inactive_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="' . $CPG_PHP_SELF . '?page=%d&amp;sort=' . $sort . '"<b>%d</b></a></td>' . "\n"
+        'active_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="tableb_compact">%d</td>',
+        'inactive_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="' . $CPG_PHP_SELF . '?page=%d&amp;sort=' . $sort . '"%d</a></td>' . "\n"
         );
 
     $makereadonly = ($CONFIG['bridge_enable']) ? 'style="display:none;" disabled="disabled" ':'';
@@ -343,14 +343,16 @@ EOT;
     echo <<<EOT
         <tr>
             <td colspan="$number_of_columns" class="tableh1">
+            	<form method="get" action="delete.php" name="editForm" id="cpgform">
+                <input type="hidden" name="id" value="" />
                 <table border="0" cellspacing="0" cellpadding="0" width="100%">
                     <tr>
                         <td class="tableh1">
 EOT;
 if (!$lim_user) {
-    echo '<h2>'.$lang_usermgr_php['user_manager'].$help.'</h2>';
+    echo '<h2>'.cpg_fetch_icon('user_mgr', 2).$lang_usermgr_php['user_manager'].$help.'</h2>';
 } else {
-    echo '<h2>'.$lang_usermgr_php['memberlist'].'</h2>';
+    echo '<h2>'.cpg_fetch_icon('user_mgr', 2).$lang_usermgr_php['memberlist'].'</h2>';
 }
 echo <<<EOT
                         </td>
@@ -367,38 +369,37 @@ EOT;
   // Accept header addons
   echo CPGPluginAPI::filter('usermgr_header','');
 
-    print '<form method="get" action="delete.php" name="editForm" id="cpgform">'."\n";
-    print '<input type="hidden" name="id" value="" />';
+
     if (!$lim_user) {
      echo <<< EOT
 
         <tr>
                 <td class="tableh1" align="center"><input type="checkbox" {$makereadonly}name="checkAll" id="checkAll" onClick="selectAll(this,'u');" class="checkbox" title="{$lang_common['check_uncheck_all']}" style="display:none" /></td>
-                <td class="tableh1" colspan="2"><b><span class="statlink">{$lang_usermgr_php['name']}</span></b>
+                <td class="tableh1" colspan="2"><span class="statlink">{$lang_usermgr_php['name']}</span>
                 <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=name_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['name_a']}" /></a>
                 <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=name_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['name_d']}" /></a>
                 </td>
-                <td class="tableh1"><b><a href="groupmgr.php" class="statlink">{$lang_usermgr_php['group']}</a></b>
+                <td class="tableh1" align="center"><span class="statlink">{$lang_usermgr_php['status']}</span>
+                </td>
+                <td class="tableh1"><a href="groupmgr.php" class="statlink">{$lang_usermgr_php['group']}</a>
                 <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=group_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['group_a']}" /></a>
                 <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=group_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['group_d']}" /></a>
                 </td>
-                <td class="tableh1"><b><span class="statlink">{$lang_usermgr_php['registered_on']}</span></b>
+                <td class="tableh1"><span class="statlink">{$lang_usermgr_php['registered_on']}</span>
                 <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=reg_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['reg_a']}" /></a>
                 <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=reg_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['reg_d']}" /></a>
                 </td>
-                <td class="tableh1"><b><span class="statlink">{$lang_usermgr_php['last_visit']}</span></b>
+                <td class="tableh1"><span class="statlink">{$lang_usermgr_php['last_visit']}</span>
                 <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=lv_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['lv_a']}" /></a>
                 <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=lv_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['lv_d']}" /></a>
                 </td>
-                <td class="tableh1" align="center"><b><span class="statlink">{$lang_usermgr_php['pictures']}</span></b>
+                <td class="tableh1" align="center"><span class="statlink">{$lang_usermgr_php['pictures']}</span>
                 <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=pic_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['pic_a']}" /></a>
                 <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=pic_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['pic_d']}" /></a>
                 </td>
-                <td class="tableh1" align="center"><b><span class="statlink">{$lang_usermgr_php['disk_space_used']}</span></b>
+                <td class="tableh1" align="center"><span class="statlink">{$lang_usermgr_php['disk_space_used']}/{$lang_usermgr_php['disk_space_quota']}</span>
                 <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=disku_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['disku_a']}" /></a>
                 <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=disku_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['disku_d']}" /></a>
-                </td>
-                <td class="tableh1" align="center"><b><span class="statlink">{$lang_usermgr_php['disk_space_quota']}</span></b>
                 </td>
         </tr>
 EOT;
@@ -407,13 +408,13 @@ EOT;
      echo <<< EOT
 
         <tr>
-                <td class="tableh1"><b><span class="statlink">{$lang_usermgr_php['name']}</span></b></td>
-                <td class="tableh1"><b><span class="statlink">{$lang_usermgr_php['group']}</span></b></td>
-                <td class="tableh1"><b><span class="statlink">{$lang_usermgr_php['registered_on']}</span></b></td>
-                <td class="tableh1"><b><span class="statlink">{$lang_usermgr_php['last_visit']}</span></b></td>
-                <td class="tableh1" align="center"><b><span class="statlink">{$lang_usermgr_php['pictures']}</span></b></td>
-                <td class="tableh1" align="center"><b><span class="statlink">{$lang_usermgr_php['disk_space_used']}</span></b></td>
-                <td class="tableh1" align="center"><b><span class="statlink">{$lang_usermgr_php['disk_space_quota']}</span></b></td>
+                <td class="tableh1"><span class="statlink">{$lang_usermgr_php['name']}</span></td>
+                <td class="tableh1" align="center"><span class="statlink">{$lang_usermgr_php['status']}</span></td>
+                <td class="tableh1"><span class="statlink">{$lang_usermgr_php['group']}</span></td>
+                <td class="tableh1"><span class="statlink">{$lang_usermgr_php['registered_on']}</span></td>
+                <td class="tableh1"><span class="statlink">{$lang_usermgr_php['last_visit']}</span></td>
+                <td class="tableh1" align="center"><span class="statlink">{$lang_usermgr_php['pictures']}</span></td>
+                <td class="tableh1" align="center"><span class="statlink">{$lang_usermgr_php['disk_space_used']}/{$lang_usermgr_php['disk_space_quota']}</span></td>
         </tr>
 EOT;
     }
@@ -433,8 +434,22 @@ EOT;
         if ($user['disk_usage'] == '') {
             $user['disk_usage'] = 0;
         }
+        $group_quota_separator = '/';
+        if ($user['group_quota']) {
+        	$disk_usage_output = theme_display_bar($user['disk_usage'],$user['group_quota'],150,'', '', $group_quota_separator.$user['group_quota'].'&nbsp;'.$lang_byte_units[1],'red','green');
+        } else {
+        	$disk_usage_output = theme_display_bar($user['disk_usage'],$user['group_quota'],150,'', '', '&nbsp;'.$lang_byte_units[1],'green','green');
+        }
         if ($user['user_active'] == 'NO') {
-            $user['group_name'] = '<i>' . $lang_usermgr_php['inactive'] . '</i>';
+            //$user['group_name'] = '<i>' . $lang_usermgr_php['inactive'] . '</i>';
+            $user['status'] = cpg_fetch_icon('offline', 0, $lang_usermgr_php['status_inactive']);
+            $action = 'activate';
+        } else {
+        	$user['status'] = cpg_fetch_icon('online', 0, $lang_usermgr_php['status_active']);
+        	$action = 'deactivate';
+        }
+        if (!$lim_user) {
+        	$user['status'] = '<a href="delete.php?id=u'.$user['user_id'].'&amp;album_listbox='.$sort.'&amp;action='.$action.'&amp;what=user" title="foo">' . $user['status'] . '</a>';
         }
         $user['user_regdate'] = localised_date($user['user_regdate'], $register_date_fmt);
         if ($user['user_lastvisit']) {
@@ -444,55 +459,59 @@ EOT;
             $user['user_lastvisit'] = $lang_usermgr_php['never'];
         }
 
-        $usr_link = '<a href="profile.php?uid=' . $user['user_id'] . '">' . $user['user_name'];
+        $view_profile = '<a href="profile.php?uid=' . $user['user_id'] . '">' . cpg_fetch_icon('my_profile', 0, $lang_usermgr_php['view_profile']) . '</a>';
         if ($user['pic_count']) {
-            $usr_link .= '</a> (<a href="thumbnails.php?album=lastupby&uid=' . $user['user_id'] . '">' . $lang_usermgr_php['latest_upload'] . '</a>)';
+            $last_uploads = '<a href="thumbnails.php?album=lastupby&uid=' . $user['user_id'] . '">' . cpg_fetch_icon('last_uploads', 0, $lang_usermgr_php['latest_upload']) . '</a>';
         } else {
-            $usr_link .= '</a>';
+        	$last_uploads = cpg_fetch_icon('blank', 0);
         }
+        // To do: fetch number of comments and add link to comments if applicable
+        
+
+        
 
 
         if (!$lim_user) {
                 if ($user['user_id'] == $USER_DATA['user_id']) {
                     $profile_link = 'profile.php?op=edit_profile';
                     $checkbox_html = '';
+                    $ban_user_link = cpg_fetch_icon('blank', 0);
                 } else {
                     $profile_link = $CPG_PHP_SELF.'?op=edit&user_id='.$user['user_id'];
                     $checkbox_html = '<input name="u'.$user['user_id'].'" '.$makereadonly.'type="checkbox" value="" class="checkbox" />';
+                    $ban_user_link = '<a href="banning.php?ban_user=' . $user['user_id'] . '">' . cpg_fetch_icon('ban_user', 0, $lang_usermgr_php['ban_user']) . '</a>';
                 }
+                $profile_link = '<a href="' . $profile_link . '">' . cpg_fetch_icon('edit', 0, $lang_usermgr_php['edit_profile']) . '</a>';
                 echo <<< EOT
         <tr>
-                <td class="{$row_style_class}" align="center">$checkbox_html</td>
-                <td class="{$row_style_class}">$usr_link</td>
-                <td class="{$row_style_class}" align="center">
-                    <script type="text/javascript">
-                        document.write('<button type="button" class="button" {$makereadonly}onclick="window.location.href =\'$profile_link\';">');
-                        document.write('<img src="images/edit.gif" width="16" height="16" border="0" alt="{$lang_common['edit']}" title="{$lang_common['edit']}" />');
-                        document.write('</button>');
-                    </script>
-                    <noscript>
-                        <a href="$profile_link" class="admin_menu">{$lang_common['edit']}</a>
-                    </noscript>
+                <td class="{$row_style_class}" align="center">{$checkbox_html}</td>
+                <td class="{$row_style_class}">{$user['user_name']}</td>
+                <td class="{$row_style_class}" align="left">
+                	{$view_profile}
+                	{$last_uploads}
+                	{$profile_link}
+                	{$ban_user_link}
                 </td>
+                <td class="{$row_style_class}">{$user['status']}</td>
                 <td class="{$row_style_class}">{$user['group_name']}</td>
                 <td class="{$row_style_class}">{$user['user_regdate']}</td>
                 <td class="{$row_style_class}">{$user['user_lastvisit']}</td>
                 <td class="{$row_style_class}" align="right">{$user['pic_count']}</td>
-                <td class="{$row_style_class}" align="right">{$user['disk_usage']}&nbsp;{$lang_byte_units[1]}</td>
-                <td class="{$row_style_class}" align="right">{$user['group_quota']}&nbsp;{$lang_byte_units[1]}</td>
+                <!--<td class="{$row_style_class}" align="right">{$user['disk_usage']}/{$user['group_quota']}&nbsp;{$lang_byte_units[1]}</td>-->
+                <td class="{$row_style_class}" align="center">{$disk_usage_output}</td>
         </tr>
 
 EOT;
         } else {
                   echo <<< EOT
         <tr>
-                <td class="{$row_style_class}">$usr_link</td>
+                <td class="{$row_style_class}">{$user['user_name']}{$view_profile}{$last_uploads}</td>
+                <td class="{$row_style_class}">{$user['status']}</td>
                 <td class="{$row_style_class}">{$user['group_name']}</td>
                 <td class="{$row_style_class}">{$user['user_regdate']}</td>
                 <td class="{$row_style_class}">{$user['user_lastvisit']}</td>
                 <td class="{$row_style_class}" align="right">{$user['pic_count']}</td>
-                <td class="{$row_style_class}" align="right">{$user['disk_usage']}&nbsp;{$lang_byte_units[1]}</td>
-                <td class="{$row_style_class}" align="right">{$user['group_quota']}&nbsp;{$lang_byte_units[1]}</td>
+                <td class="{$row_style_class}" align="center">{$disk_usage_output}</td>
         </tr>
 
 EOT;
@@ -556,6 +575,7 @@ EOT;
 
     $help_create = '&nbsp;'.cpg_display_help('f=users.htm&amp;as=user_cp_new&amp;ae=user_cp_new_end', '600', '250');
 
+    $create_new_user_icon = cpg_fetch_icon('add_user', 2);
     echo <<<EOT
                               </select>
                             <select name="delete_files" size="1" class="listbox" style="display:none">
@@ -569,12 +589,12 @@ EOT;
                             <input type="submit" name="go" value="{$lang_usermgr_php['submit']}" class="button" style="display:none" />
                         </td>
                         <td align="center">
-                        <a href="{$CPG_PHP_SELF}?op=new_user" {$makereadonly}class="admin_menu">{$lang_usermgr_php['create_new_user']}</a>
+                        <a href="{$CPG_PHP_SELF}?op=new_user" {$makereadonly}class="admin_menu">{$create_new_user_icon}{$lang_usermgr_php['create_new_user']}</a>
                         {$help_create}
                         </td>
-                        </form>
                 </tr>
                 </table>
+                </form>
                 </td>
         </tr>
         <tr>
@@ -798,7 +818,7 @@ EOT;
     echo <<<EOT
         <tr>
                 <td colspan="2" class="tableh2">
-                        <b>{$lang_usermgr_php['notes']}</b>
+                        {$lang_usermgr_php['notes']}
                 </td>
         </tr>
         <tr>

@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4317 $
-  $LastChangedBy: nibbler999 $
-  $Date: 2008-03-06 21:55:11 +0530 (Thu, 06 Mar 2008) $
+  $Revision: 4843 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-08-12 03:33:01 +0530 (Tue, 12 Aug 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -34,7 +34,7 @@ echo <<< EOT
 <form method="get" action="thumbnails.php" name="searchcpg" id="cpgform3">
 EOT;
 
-starttable('60%', $lang_search_php['title']);
+starttable('100%', cpg_fetch_icon('search', 2) . $lang_search_php['title']);
 
 $ip = GALLERY_ADMIN_MODE ? '
         <tr>

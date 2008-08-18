@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4583 $
+  $Revision: 4844 $
   $LastChangedBy: pvanrompay $
-  $Date: 2008-06-18 06:33:59 +0530 (Wed, 18 Jun 2008) $
+  $Date: 2008-08-12 11:33:24 +0530 (Tue, 12 Aug 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -22,7 +22,9 @@ define('PICMGR_PHP', true);
 
 require('include/init.inc.php');
 
-if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) {
+    cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+}
 
 function get_album_data()
 {
@@ -31,14 +33,14 @@ function get_album_data()
 	####################### DB #########################	
 		$cpgdb =& cpgDB::getInstance();
 		$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
-	##################################################	
-	/*$result = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} ORDER BY title");
-	if (mysql_num_rows($result) > 0){
-      $rowset = cpg_db_fetch_rowset($result);
-      foreach ($rowset as $alb){
-         $ALBUM_LIST[]=array($alb['aid'], $alb['title']);
-      }
-	}	*/
+	##################################################
+    /*$result = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} ORDER BY title");
+    if (mysql_num_rows($result) > 0) {
+        $rowset = cpg_db_fetch_rowset($result);
+        foreach ($rowset as $alb) {
+            $ALBUM_LIST[]=array($alb['aid'], $alb['title']);
+        }
+    }*/
    #######################  DB  ##########################
 	$cpgdb->query($cpg_db_picmgr_php['get_album_data']);
 	$rowset = $cpgdb->fetchRowSet();
@@ -51,10 +53,9 @@ function get_album_data()
    ###################################################
 }
 
-function albumselect($id = "album") {
-// frogfoot re-wrote this function to present the list in categorized, sorted and nicely formatted order
-
-    global $CONFIG, $lang_picmgr_php, $aid, $lang_errors, $cpg_udb, $CPG_PHP_SELF;
+function albumselect($id = "album") 
+{
+    global $CONFIG, $aid, $cpg_udb, $CPG_PHP_SELF, $lang_picmgr_php, $lang_common, $lang_errors;
 	global $cpg_db_picmgr_php;
     static $select = "";
 	####################### DB #########################	
@@ -74,9 +75,10 @@ function albumselect($id = "album") {
 			while ($row = $cpgdb->fetchRow()) {
 			###########################################
                 // Add to multi-dim array for later sorting
-                $listArray[$list_count]['cat'] = $lang_search_new_php['albums_no_category'];
+                $listArray[$list_count]['cat'] = $lang_common['albums_no_category'];
                 $listArray[$list_count]['aid'] = $row['aid'];
                 $listArray[$list_count]['title'] = $row['title'];
+                $listArray[$list_count]['cid'] = 0;
                 $list_count++;
             }
             //mysql_free_result($result);
@@ -85,8 +87,8 @@ function albumselect($id = "album") {
 
         // albums in public categories
         if (GALLERY_ADMIN_MODE) {
-            //$result = cpg_db_query("SELECT DISTINCT a.aid AS aid, a.title AS title, c.name AS cname FROM {$CONFIG['TABLE_ALBUMS']} AS a, {$CONFIG['TABLE_CATEGORIES']} AS c WHERE a.category = c.cid AND a.category < '" . FIRST_USER_CAT . "'");
-            //while ($row = mysql_fetch_array($result)) {
+            /*$result = cpg_db_query("SELECT DISTINCT a.aid AS aid, a.title AS title, c.name AS cname, c.cid AS cid FROM {$CONFIG['TABLE_ALBUMS']} AS a, {$CONFIG['TABLE_CATEGORIES']} AS c WHERE a.category = c.cid AND a.category < '" . FIRST_USER_CAT . "'");
+            while ($row = mysql_fetch_array($result)) {*/
 			###################  DB  ######################
 			$cpgdb->query($cpg_db_picmgr_php['alb_public_cat'], FIRST_USER_CAT);
 			while ($row = $cpgdb->fetchRow()) {
@@ -95,36 +97,46 @@ function albumselect($id = "album") {
                 $listArray[$list_count]['cat'] = $row['cname'];
                 $listArray[$list_count]['aid'] = $row['aid'];
                 $listArray[$list_count]['title'] = $row['title'];
+                $listArray[$list_count]['cid'] = $row['cid'];
                 $list_count++;
             }
             //mysql_free_result($result);
 			$cpgdb->free();		###############	cpgdb_AL
         }
 
-        // albums in user's personal galleries
-//        if (defined('UDB_INTEGRATION')) {
-            //if (GALLERY_ADMIN_MODE) {
-//                $sql = $cpg_udb->get_admin_album_list();
-            /*} else {
+        // Get albums in users' personal galleries
+        // we can always use $cpg_udb now, so we don't have to check if bridged
+/*
+        // check if bridged
+        if (defined('UDB_INTEGRATION')) {
+            if (GALLERY_ADMIN_MODE) {
+                $sql = $cpg_udb->get_admin_album_list();
+            } else {
                 $sql = "SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = ".(FIRST_USER_CAT + USER_ID);
-            }*/
-//       } else {
- /*cpgdb_AL    if (GALLERY_ADMIN_MODE) {
-//                $sql = "SELECT aid, CONCAT('(', user_name, ') ', title) AS title " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "INNER JOIN {$CONFIG['TABLE_USERS']} AS u ON category = (" . FIRST_USER_CAT . " + user_id)";
-                $sql = $cpg_udb->get_admin_album_list();  //it's always bridged so we no longer need to check.
+            }
+        } else {
+            if (GALLERY_ADMIN_MODE) {
+                $sql = "SELECT aid, CONCAT('(', user_name, ') ', title) AS title " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "INNER JOIN {$CONFIG['TABLE_USERS']} AS u ON category = (" . FIRST_USER_CAT . " + user_id)";
             } else {
                 $sql = "SELECT aid, title AS title FROM {$CONFIG['TABLE_ALBUMS']}  WHERE category = " . (FIRST_USER_CAT + USER_ID);
             }
-//       }
+        }
+*/
+        /*if (GALLERY_ADMIN_MODE) {
+            $sql = $cpg_udb->get_admin_album_list();  
+        } else {
+            $sql = "SELECT aid, title AS title FROM {$CONFIG['TABLE_ALBUMS']}  WHERE category = " . (FIRST_USER_CAT + USER_ID);
+        }
         $result = cpg_db_query($sql);
         while ($row = mysql_fetch_array($result)) {
             // Add to multi-dim array for later sorting
-            $listArray[$list_count]['cat'] = $lang_search_new_php['personal_albums'];
+            $listArray[$list_count]['cat'] = $lang_common['personal_albums'];
             $listArray[$list_count]['aid'] = $row['aid'];
             $listArray[$list_count]['title'] = $row['title'];
+            $listArray[$list_count]['cid'] = -1;
             $list_count++;
         }
-        mysql_free_result($result);		cpgdb_AL  */ 
+        mysql_free_result($result);*/
 #################################  DB  #####################################
             if (GALLERY_ADMIN_MODE) {
                 $cpgdb->query($cpg_udb->get_admin_album_list());  //it's always bridged so we no longer need to check.
@@ -134,9 +146,10 @@ function albumselect($id = "album") {
 //       }
         while ($row = $cpgdb->fetchRow()) {
             // Add to multi-dim array for later sorting
-            $listArray[$list_count]['cat'] = $lang_search_new_php['personal_albums'];
+            $listArray[$list_count]['cat'] = $lang_common['personal_albums'];
             $listArray[$list_count]['aid'] = $row['aid'];
             $listArray[$list_count]['title'] = $row['title'];
+            $listArray[$list_count]['cid'] = -1;
             $list_count++;
         }
         $cpgdb->free();		
@@ -150,17 +163,22 @@ function albumselect($id = "album") {
         $listArray = array_csort($listArray,'cat','title');
 
         // Create the nicely sorted and formatted drop down list
-        $alb_cat = '';
-
+        // $alb_cat = '';
+        $alb_cid = '';
         foreach ($listArray as $val) {
-            if ($val['cat'] != $alb_cat) {
-         		if ($alb_cat) $select .= "</optgroup>\n";
+            //if ($val['cat'] != $alb_cat) {  // old method compared names which might not be unique
+            if ($val['cid'] !== $alb_cid) {
+                if ($alb_cid) {
+                    $select .= "</optgroup>\n";
+                }
                 $select .= '<optgroup label="' . $val['cat'] . '">' . "\n";
-                $alb_cat = $val['cat'];
+                $alb_cid = $val['cid'];
             }
             $select .= '<option value="' . $val['aid'] . '"' . ($val['aid'] == $aid ? ' selected="selected"' : '') . '>   ' . $val['title'] . "</option>\n";
         }
-        if ($alb_cat) $select .= "</optgroup>\n";
+        if ($alb_cid) {
+            $select .= "</optgroup>\n";
+        }
     }
 
     return "\n<select name=\"$id\" class=\"listbox\"  onChange=\"if(this.options[this.selectedIndex].value) window.location.href='{$CPG_PHP_SELF}?aid='+this.options[this.selectedIndex].value;\" >\n$select</select>\n";
@@ -418,7 +436,7 @@ pageheader($lang_picmgr_php['pic_mgr']);
 -->
 </script>
 <form name="picture_menu" id="cpgform" method="post" action="delete.php?what=picmgr" onSubmit="return CheckPictureForm(this);">
-<?php starttable("100%", $lang_picmgr_php['pic_mgr'], 1); ?>
+<?php starttable("100%", cpg_fetch_icon('picture_sort', 2) . $lang_picmgr_php['pic_mgr'], 1); ?>
 <noscript>
 <tr>
                 <td colspan="2" class="tableh2">
@@ -429,7 +447,7 @@ pageheader($lang_picmgr_php['pic_mgr']);
 <tr>
 <?php
    //$aid = isset($_GET['aid']) ? (int) $_GET['aid'] : 0;
-	$aid = ($superCage->get->keyExists('aid')) ? $superCage->get->getInt('aid') : 0;
+  $aid = ($superCage->get->keyExists('aid')) ? $superCage->get->getInt('aid') : 0;
    if (GALLERY_ADMIN_MODE || USER_ADMIN_MODE) {
     //  $result = cpg_db_query("SELECT aid, pid, filename FROM {$CONFIG['TABLE_PICTURES']} WHERE aid = $aid ORDER BY position ASC, pid");
 	#############  DB ###############
@@ -448,8 +466,8 @@ pageheader($lang_picmgr_php['pic_mgr']);
 ?>
 
    <td class="tableb" valign="top" align="center">
-	   <input type="hidden" name="delete_picture" value="" />
-	   <input type="hidden" name="sort_order" value="<?php echo $sort_order ?>" />   
+     <input type="hidden" name="delete_picture" value="" />
+     <input type="hidden" name="sort_order" value="<?php echo $sort_order ?>" />   
       <br />
       <table width="300" border="0" cellspacing="0" cellpadding="0">
 <?php
@@ -462,7 +480,7 @@ if (GALLERY_ADMIN_MODE || USER_ADMIN_MODE) {
 echo <<<EOT
       <tr>
          <td>
-            <b>{$lang_picmgr_php['select_album']}</b>
+            <b>{$lang_common['select_album']}</b>
 EOT;
         print albumselect('aid');
 echo <<<EOT
@@ -482,22 +500,21 @@ EOT;
          $lb .= '               <option value="picture_no=' . $picture['pid'] .',picture_nm=\'' . $picture['filename'] .'\',picture_sort=' .($i++). ',action=0">' . stripslashes($picture['filename']) . "</option>\n";
    }
    echo $lb;
+   $move_up = cpg_fetch_icon('up', 0, $lang_common['move_up']);
+   $move_down = cpg_fetch_icon('down', 0, $lang_common['move_down']);
+   $move_top = cpg_fetch_icon('upup', 0, $lang_common['move_top']);
+   $move_bottom = cpg_fetch_icon('downdown', 0, $lang_common['move_bottom']);
    echo <<<EOT
    </select>
          </td>
       </tr>
       <tr>
          <td>
-            <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tr>
-               <td><a href="javascript:Moveup_Option();"><img src="images/move_up.gif" width="26" height="21" border="0" alt="^" title="{$lang_picmgr_php['move_up']}"/></a><a href="javascript:Movedown_Option();"><img src="images/move_down.gif" width="26" height="21" border="0" alt="v" title="{$lang_picmgr_php['move_down']}" /></a>
-               &nbsp; <a href="javascript:Movetop_Option();"><img src="images/move_top.gif" width="26" height="21" border="0" alt="^^" title="{$lang_picmgr_php['move_top']}" /></a><a href="javascript:Movebottom_Option();"><img src="images/move_bottom.gif" width="26" height="21" border="0" alt="vv" title="{$lang_picmgr_php['move_bottom']}" /></a>
-               </td>
-<!-- Joe Ernst: I commented this out because I can't get it to work. -->
-               <td align="center" style="width: 1px;"><img src="images/spacer.gif" width="1" alt=""><br />
-               </td>
-            </tr>
-            </table>
+               <a href="javascript:Moveup_Option();">{$move_up}</a>
+               <a href="javascript:Movedown_Option();">{$move_down}</a>
+               &nbsp; 
+               <a href="javascript:Movetop_Option();">{$move_top}</a>
+               <a href="javascript:Movebottom_Option();">{$move_bottom}</a>
          </td>
       </tr>
       <tr>

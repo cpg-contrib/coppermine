@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4502 $
-  $LastChangedBy: pvanrompay $
-  $Date: 2008-06-06 03:51:20 +0530 (Fri, 06 Jun 2008) $
+  $Revision: 4843 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-08-12 03:33:01 +0530 (Tue, 12 Aug 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -165,7 +165,7 @@ if ($superCage->post->keyExists('submit')) {
 
 // the form has not been submit yet, so let's display it
   print '<form method="post" action="'.$CPG_PHP_SELF.'" name="contactForm" id="contactForm" onsubmit="return validateContactFormFields();">'."\n";
-  starttable('100%', $lang_contact_php['title'], 3);
+  starttable('100%', cpg_fetch_icon('contact', 2) . $lang_contact_php['title'], 3);
   // name field
   if (!USER_ID && $CONFIG['contact_form_guest_name_field'] != 0) {
     print <<< EOT

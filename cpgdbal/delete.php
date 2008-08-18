@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4583 $
-  $LastChangedBy: pvanrompay $
-  $Date: 2008-06-18 06:33:59 +0530 (Wed, 18 Jun 2008) $
+  $Revision: 4783 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-08-06 22:29:43 +0530 (Wed, 06 Aug 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -481,50 +481,50 @@ switch ($what) {
 			delete_picture((int)$picture_id);
 		}
 
-		if ($superCage->post->keyExists('to')) {
-			//Using getRaw(). The data is sanitized in parse_pic_select_option() function
-			$to_arr = $superCage->post->getEscaped('to');
-			foreach ($to_arr as $option_value){
-				$op = parse_pic_select_option(stripslashes($option_value));
-				switch ($op['action']){
-	                case '0':
-	                   break;
-	                case '1':
-						if(GALLERY_ADMIN_MODE){
-							$category = $superCage->post->getInt('cat');
-						} else {
-							$category = FIRST_USER_CAT + USER_ID;
-						}
-						echo "<tr><td colspan=\"6\" class=\"tableb\">".sprintf($lang_delete_php['create_alb'], $op['album_nm'])."</td></tr>\n";
-						/*$query = "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (category, title, uploads, pos, description) VALUES ('$category', '".addslashes($op['album_nm'])."', 'NO',  '{$op['album_sort']}', '')";
-						cpg_db_query($query);	*/
-						#####################        DB      #####################
-						$cpgdb->query($cpg_db_delete_php['picmgr_add_album'], $category, 
-									addslashes($op['album_nm']), $op['album_sort']);
-						##################################################
-						break;
-	                case '2':
-						echo "<tr><td colspan=\"6\" class=\"tableb\">".sprintf($lang_delete_php['update_pic'], $op['picture_no'], $op['picture_nm'], $op['picture_sort'])."</td></tr>\n";
-						/*$query = "UPDATE $CONFIG[TABLE_PICTURES] SET position='{$op['picture_sort']}' WHERE pid='{$op['picture_no']}' $restrict LIMIT 1";
-						cpg_db_query($query);	*/
-						##########################       DB      #########################
-						$cpgdb->query($cpg_db_delete_php['picmgr_set_op_pic_sort'], $op['picture_sort'], 
-									$op['picture_no'], $restrict);
-						##########################################################
-						break;
-	                default:
-						cpg_die (CRITICAL_ERROR, $lang_delete_php['err_invalid_data'], __FILE__, __LINE__);
-				}
-			}
-		}
-		if ($need_caption) output_caption();
-		echo "<tr><td colspan=\"6\" class=\"tablef\" align=\"center\">\n";
-		echo "<div class=\"admin_menu_thumb\"><a href=\"index.php\"  class=\"adm_menu\">".$lang_common['continue']."</a></div>\n";
-		echo "</td></tr>";
-		endtable();
-		pagefooter();
-		ob_end_flush();
-		break;
+      if ($superCage->post->keyExists('to')) {
+          //Using getRaw(). The data is sanitized in parse_pic_select_option() function
+          $to_arr = $superCage->post->getEscaped('to');
+          foreach ($to_arr as $option_value){
+             $op = parse_pic_select_option(stripslashes($option_value));
+             switch ($op['action']){
+	            case '0':
+	               break;
+	            case '1':
+                   if(GALLERY_ADMIN_MODE){
+                      $category = $superCage->post->getInt('cat');
+                   } else {
+                      $category = FIRST_USER_CAT + USER_ID;
+                   }
+                   echo "<tr><td colspan=\"6\" class=\"tableb\">".sprintf($lang_delete_php['create_alb'], $op['album_nm'])."</td></tr>\n";
+                   /*$query = "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (category, title, uploads, pos, description) VALUES ('$category', '".addslashes($op['album_nm'])."', 'NO',  '{$op['album_sort']}', '')";
+                   cpg_db_query($query); */
+					#####################        DB      #####################
+					$cpgdb->query($cpg_db_delete_php['picmgr_add_album'], $category, 
+								addslashes($op['album_nm']), $op['album_sort']);
+					##################################################
+                   break;
+	            case '2':
+                   echo "<tr><td colspan=\"6\" class=\"tableb\">".sprintf($lang_delete_php['update_pic'], $op['picture_no'], $op['picture_nm'], $op['picture_sort'])."</td></tr>\n";
+                   /*$query = "UPDATE $CONFIG[TABLE_PICTURES] SET position='{$op['picture_sort']}' WHERE pid='{$op['picture_no']}' $restrict LIMIT 1";
+                   cpg_db_query($query); */
+					##########################       DB      #########################
+					$cpgdb->query($cpg_db_delete_php['picmgr_set_op_pic_sort'], $op['picture_sort'], 
+								$op['picture_no'], $restrict);
+					##########################################################
+                   break;
+	            default:
+                   cpg_die (CRITICAL_ERROR, $lang_delete_php['err_invalid_data'], __FILE__, __LINE__);
+             }
+          }
+      }
+      if ($need_caption) output_caption();
+      echo "<tr><td colspan=\"6\" class=\"tablef\" align=\"center\">\n";
+      echo "<div class=\"admin_menu\"><a href=\"index.php\">".$lang_common['continue']."</a></div>\n";
+      echo "</td></tr>";
+      endtable();
+      pagefooter();
+      ob_end_flush();
+      break;
 
 	// Comment
 	case 'comment':
@@ -577,18 +577,18 @@ switch ($what) {
 	case 'picture':
 		$pid = $superCage->get->getInt('id');
 
-		pageheader($lang_delete_php['del_pic']);
-		starttable("100%", $lang_delete_php['del_pic'], 7);
-		output_table_header();
-		$aid = delete_picture($pid);
-		output_caption();
-		echo "<tr><td colspan=\"7\" class=\"tablef\" align=\"center\">\n";
-		echo "<div class=\"admin_menu_thumb\"><a href=\"thumbnails.php?album=$aid\"  class=\"adm_menu\">".$lang_common['continue']."</a></div>\n";
-		echo "</td></tr>\n";
-		endtable();
-		pagefooter();
-		ob_end_flush();
-		break;
+        pageheader($lang_delete_php['del_pic']);
+        starttable("100%", $lang_delete_php['del_pic'], 7);
+        output_table_header();
+        $aid = delete_picture($pid);
+        output_caption();
+        echo "<tr><td colspan=\"7\" class=\"tablef\" align=\"center\">\n";
+        echo "<div class=\"admin_menu\"><a href=\"thumbnails.php?album=$aid\">".$lang_common['continue']."</a></div>\n";
+        echo "</td></tr>\n";
+        endtable();
+        pagefooter();
+        ob_end_flush();
+        break;
 
 	// Album
 
@@ -607,13 +607,13 @@ switch ($what) {
 			output_caption();
 		}
 
-		echo "<tr><td colspan=\"7\" class=\"tablef\" align=\"center\">\n";
-		echo "<div class=\"admin_menu_thumb\"><a href=\"index.php\"  class=\"adm_menu\">".$lang_common['continue']."</a></div>\n";
-		echo "</td></tr>";
-		endtable();
-		pagefooter();
-		ob_end_flush();
-		break;
+        echo "<tr><td colspan=\"7\" class=\"tablef\" align=\"center\">\n";
+        echo "<div class=\"admin_menu\"><a href=\"index.php\">".$lang_common['continue']."</a></div>\n";
+        echo "</td></tr>";
+        endtable();
+        pagefooter();
+        ob_end_flush();
+        break;
 
 	// User
 

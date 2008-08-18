@@ -12,16 +12,16 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4224 $
+  $Revision: 4796 $
   $LastChangedBy: gaugau $
-  $Date: 2008-01-26 17:12:00 +0530 (Sat, 26 Jan 2008) $
+  $Date: 2008-08-09 15:24:54 +0530 (Sat, 09 Aug 2008) $
 **********************************************/
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Coppermine Photo Gallery - Userpics Folder</title>
-<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta http-equiv="refresh" content="0; url=../../index.php">
+<title>Coppermine Photo Gallery - Userpics Folder</title>
 <style type="text/css">
 <!--
 body {
@@ -52,7 +52,7 @@ p {
 </head>
 
 <body>
-<h1><img src="../../images/coppermine_logo.png" width="300" height="75" /></h1>
+<img src="../../images/coppermine-logo.png" width="260" height="60" />
 <h1>Coppermine Photo Gallery - Userpics Folder</h1>
 <p align="center">The contents of this folder aren't meant to be browsed. Visit the Coppermine Photo Gallery instead - you'll be redirected.
 If you don't want to wait (or your browser doesn't support redirect), click <a href="../../index.php">here</a>.<br />If you're the gallery admin: do not ftp-upload to this folder - refer to the documentation where to upload instead.</p>

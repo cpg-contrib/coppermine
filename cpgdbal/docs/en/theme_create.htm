@@ -13,9 +13,9 @@
   SVN version info:
 
   Coppermine version: 1.5.0
-  $Revision: 4744 $
+  $Revision: 4812 $
   $LastChangedBy: gaugau $
-  $Date: 2008-07-29 19:04:06 +0530 (Tue, 29 Jul 2008) $
+  $Date: 2008-08-10 17:21:11 +0530 (Sun, 10 Aug 2008) $
 -->
 <link rel="stylesheet" type="text/css" href="../style.css" media="all" />
 <link rel="stylesheet" type="text/css" href="../screen.css" media="screen" />
@@ -133,6 +133,12 @@ EOT;<br />
     <th valign="top" align="left" class="tableh1">Type</th>
     <th valign="top" align="left" class="tableh1">Description</th>
     <th valign="top" align="left" class="tableh1">Dependancies</th>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="theme_create_theme_menu_icon"></a>define('<strong>THEME_HAS_MENU_ICONS</strong>',16);<a href="#theme_create_theme_menu_icon" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">constant</td>
+    <td valign="top" class="tableb">The location for the menu icon graphics that are being displayed if the config option "<a href="configuration.htm#admin_enable_menu_icons">Enable menu icons</a>" has been turned on. When the constant is set, the script will be directed to the theme's images folder, subfolder 'icons', i.e. <tt class="code">themes/yourtheme/images/icons/</tt> and look for the menu icon images there. If not defined (default), the menu icon images will be taken from <tt class="code">images/icons/</tt>. Unlike most other custom theme constants, the value you assign to the constant <em>does</em> matter in this case: set it to the size (in pixels) that your custom icons have. The custom icons (as well as the default icons) need to be square in shape.<br />If you decide to use your own set of menu icons for your custom theme, it's advisable to copy the folder <tt class="code">images/icons/</tt> into <tt class="code">themes/yourtheme/images/</tt> to have a set of defaults and then start modifying your custom menu items one by one.</td>
+    <td valign="top" class="tableb"></td>
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_progress"></a>define('<strong>THEME_HAS_PROGRESS_GRAPHICS</strong>',1);<a href="#theme_create_theme_progress" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
@@ -578,7 +584,7 @@ EOT;<br />
 
 <script type="text/javascript">
   cpgDocFooter();
-  dateRevision(' $LastChangedDate: 2008-07-29 19:04:06 +0530 (Tue, 29 Jul 2008) $ ', ' $Revision: 4744 $ ');
+  dateRevision(' $LastChangedDate: 2008-08-10 17:21:11 +0530 (Sun, 10 Aug 2008) $ ', ' $Revision: 4812 $ ');
 </script>
 
 </body>

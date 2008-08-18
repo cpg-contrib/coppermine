@@ -55,6 +55,7 @@ if (defined('BANNING_PHP')) $cpg_db_banning_php = array(
 	'delete_current_comments'	=> "DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id = '%1\$s'",
 	'delete_banned'				=> "DELETE FROM {$CONFIG['TABLE_BANNED']} WHERE ban_id= '%1\$s'",
 	'update_banned_data'		=> "UPDATE {$CONFIG['TABLE_BANNED']} SET user_id='%1\$s', ip_addr='%2\$s', expiry=%3\$s WHERE ban_id='%4\$s'",
+	'get_ban_user_param'		=> "SELECT user_name FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '%1\$s' LIMIT 1",
 	'get_comment_info'			=> "SELECT msg_author, msg_hdr_ip, msg_raw_ip FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id = '%1\$s'"
 );
 
@@ -448,29 +449,29 @@ if (defined('INDEX_PHP')) $cpg_db_index_php = array(
 									   "AND c.depth = %2\$s + 1 GROUP BY r.aid ORDER BY NULL ",
 	'subcat_categories'				=> "SELECT cid, name, description, thumb FROM {$CONFIG['TABLE_CATEGORIES']} ".
 									   "WHERE parent = '%1\$s'  ORDER BY %2\$s",
-	'subcat_alb_filter'				=> "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} AS a WHERE category>= %1\$s %2\$s",
-	'subcat_user_gal_cat'			=> "SELECT COUNT(*) AS count  FROM {$CONFIG['TABLE_PICTURES']} AS p, {$CONFIG['TABLE_ALBUMS']} AS a ".
+	'subcat_alb_filter'				=> "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} AS a WHERE category>= %1\$s %2\$s ",
+	'subcat_user_gal_cat'			=> "SELECT COUNT(*) AS count FROM {$CONFIG['TABLE_PICTURES']} AS p, {$CONFIG['TABLE_ALBUMS']} AS a ".
 									   "WHERE p.aid = a.aid AND approved='YES' AND category >= %1\$s %2\$s ",
 	'subcat_unaliased_alb_filter'	=> "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = '%1\$s' %2\$s",
-	'subcat_not_user_gal_cat'		=> "SELECT COUNT(*) AS count  FROM {$CONFIG['TABLE_PICTURES']} AS p, {$CONFIG['TABLE_ALBUMS']} AS a ".
+	'subcat_not_user_gal_cat'		=> "SELECT COUNT(*) AS count FROM {$CONFIG['TABLE_PICTURES']} AS p, {$CONFIG['TABLE_ALBUMS']} AS a ".
 									   "WHERE p.aid = a.aid AND approved='YES' AND category = '%1\$s' %2\$s",
 	'subcat_pic'					=> "SELECT filepath, filename, url_prefix, pwidth, pheight FROM {$CONFIG['TABLE_PICTURES']} ".
 									   "WHERE pid='%1\$s' %2\$s",
 	'cat_list_user_gal_cat'			=> "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} AS a WHERE category >= %1\$s %2\$s",
 	'cat_list_not_user_gal_cat'		=> "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} AS a WHERE category = '%1\$s' %2\$s",
-	'cat_list_count_alb'			=> "SELECT COUNT(aid) AS count  FROM {$CONFIG['TABLE_ALBUMS']} AS a WHERE 1 %1\$s",
-	'cat_list_count_pic_alb'		=> "SELECT COUNT(pid) AS count  FROM {$CONFIG['TABLE_PICTURES']} AS p LEFT JOIN " . $CONFIG['TABLE_ALBUMS'] . 
+	'cat_list_count_alb'			=> "SELECT COUNT(aid) AS count FROM {$CONFIG['TABLE_ALBUMS']} AS a WHERE 1 %1\$s",
+	'cat_list_count_pic_alb'		=> "SELECT COUNT(pid) AS count FROM {$CONFIG['TABLE_PICTURES']} AS p LEFT JOIN " . $CONFIG['TABLE_ALBUMS'] . 
 									   " AS a ON a.aid=p.aid WHERE 1 %1\$s AND approved='YES'",
 	'cat_list_count_comm_pic'		=> "SELECT COUNT(msg_id) AS count FROM {$CONFIG['TABLE_COMMENTS']} AS c LEFT JOIN " . $CONFIG['TABLE_PICTURES'] .
-									   " AS p ON c.pid=p.pid  LEFT JOIN " . $CONFIG['TABLE_ALBUMS'] . " AS a  ON a.aid=p.aid ".
-									   " WHERE 1  %1\$s AND approval='YES'",
-	'cat_list_count_cat'			=> "SELECT COUNT(cid) AS count  FROM {$CONFIG['TABLE_CATEGORIES']} WHERE 1",
+									   " AS p ON c.pid=p.pid  LEFT JOIN " . $CONFIG['TABLE_ALBUMS'] . " AS a ON a.aid=p.aid ".
+									   " WHERE 1 %1\$s AND approval='YES'",
+	'cat_list_count_cat'			=> "SELECT COUNT(cid) AS count FROM {$CONFIG['TABLE_CATEGORIES']} WHERE 1",
 	'cat_list_sum_pic_alb'			=> "SELECT SUM(hits) AS sum_count FROM {$CONFIG['TABLE_PICTURES']} AS p LEFT JOIN " . $CONFIG['TABLE_ALBUMS'] . 
-									   " AS a  ON p.aid=a.aid  WHERE 1 %1\$s",
-	'cat_list_current_alb_set'		=> "SELECT COUNT(aid) AS count FROM {$CONFIG['TABLE_ALBUMS']}  WHERE 1 %1\$s",
+									   " AS a ON p.aid=a.aid  WHERE 1 %1\$s",
+	'cat_list_current_alb_set'		=> "SELECT COUNT(aid) AS count FROM {$CONFIG['TABLE_ALBUMS']} WHERE 1 %1\$s",
 	'cat_list_count_pic'			=> "SELECT COUNT(pid) AS count FROM {$CONFIG['TABLE_PICTURES']} WHERE 1 %1\$s",
 	'cat_list_sum_pic'				=> "SELECT SUM(hits) AS sum_count FROM {$CONFIG['TABLE_PICTURES']} WHERE 1 %1\$s AND approved='YES'",
-	'list_user_pic'					=> "SELECT filepath, filename, url_prefix, pwidth, pheight  FROM {$CONFIG['TABLE_PICTURES']} " . 
+	'list_user_pic'					=> "SELECT filepath, filename, url_prefix, pwidth, pheight FROM {$CONFIG['TABLE_PICTURES']} " . 
 									   "WHERE pid='%1\$s' AND approved='YES'",
 	'list_albums_alb_owner'			=> "SELECT COUNT(aid) AS count FROM {$CONFIG['TABLE_ALBUMS']} AS a WHERE owner = '%1\$s' %2\$s",
 	'list_albums_alb_cats'			=> "SELECT COUNT(aid) AS count FROM {$CONFIG['TABLE_ALBUMS']} AS a WHERE category = '%1\$s' %2\$s",
@@ -479,7 +480,7 @@ if (defined('INDEX_PHP')) $cpg_db_index_php = array(
 									   "ON a.thumb=p.pid  WHERE a.owner= %1\$s %2\$s  ORDER BY a.category DESC , a.pos LIMIT %3\$s, %4\$s",	###	cpgdb_AL
 	'list_albums_concat'			=> "SELECT CONCAT(a.title, ' %1\$s <i>', c.name, '</i>') AS concat FROM " . $CONFIG['TABLE_ALBUMS'] . 
 									   " AS a LEFT JOIN ". $CONFIG['TABLE_CATEGORIES'] ." AS c ON a.category=c.cid ".
-									   "WHERE a.owner = %2\$s  ORDER BY a.category DESC , a.pos  LIMIT  %3\$s, %4\$s",	###	cpgdb_AL
+									   "WHERE a.owner = %2\$s ORDER BY a.category DESC, a.pos LIMIT %3\$s, %4\$s",	###	cpgdb_AL
 	'list_albums_alb_pic_cat'		=> "SELECT a.aid, a.title, a.description, a.thumb, category, visibility, filepath, filename, ".
 									   "url_prefix, pwidth, pheight  FROM " . $CONFIG['TABLE_ALBUMS'] . 
 									   " AS a  LEFT JOIN " . $CONFIG['TABLE_PICTURES'] . " AS p  ON a.thumb=p.pid ".
@@ -492,8 +493,8 @@ if (defined('INDEX_PHP')) $cpg_db_index_php = array(
 									   "WHERE aid != '%1\$s' AND keywords LIKE '%2\$s'  AND approved = 'YES'",
 	'random_pictures'				=> "SELECT filepath, filename, url_prefix, pwidth, pheight  FROM {$CONFIG['TABLE_PICTURES']} ".
 									   "WHERE aid = '%1\$s' ORDER BY RAND() LIMIT 0,1",
-	'get_pictures'					=> "SELECT filepath, filename, url_prefix, pwidth, pheight  FROM {$CONFIG['TABLE_PICTURES']} ".
-									   "WHERE pid='%1\$s'",
+	'get_pictures'					=> "SELECT filepath, filename, url_prefix, pwidth, pheight FROM {$CONFIG['TABLE_PICTURES']} ".
+									   "WHERE pid='%1\$s' ",
 	'album_adm_menu_get_alb'		=> "SELECT * FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='%1\$s' AND owner='%2\$s'",
 	'album_adm_menu_dist_alb_cat'	=> "SELECT DISTINCT alb.category FROM {$CONFIG['TABLE_ALBUMS']} AS alb ".
 									   "INNER JOIN {$CONFIG['TABLE_CATMAP']} AS catm ON alb.category=catm.cid ".
@@ -653,7 +654,7 @@ if (defined('EDITPICS_PHP')) $cpg_db_pic_editor_php = array(
 if (defined('PICMGR_PHP')) $cpg_db_picmgr_php = array(
 	'get_album_data'			=> "SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} ORDER BY title",
 	'alb_root_cat'				=> "SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = 0",
-	'alb_public_cat'			=> "SELECT DISTINCT a.aid AS aid, a.title AS title, c.name AS cname ".
+	'alb_public_cat'			=> "SELECT DISTINCT a.aid AS aid, a.title AS title, c.name AS cname, c.cid AS cid ".
 								   "FROM {$CONFIG['TABLE_ALBUMS']} AS a, {$CONFIG['TABLE_CATEGORIES']} AS c ".
 								   "WHERE a.category = c.cid AND a.category < '%1\$s'",
 	'alb_user_personal'			=> "SELECT aid, title AS title FROM {$CONFIG['TABLE_ALBUMS']}  WHERE category = '%1\$s'",
@@ -803,7 +804,7 @@ if (defined('SEARCH_PHP')) $cpg_db_search_php = array(
 /***********************************************************/
 if (defined('SEARCHNEW_PHP') || defined('DB_INPUT_PHP')) $cpg_db_searchnew_php = array(
 	'get_alb_def_cat'				=> "SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = 0",
-	'get_alb_cat'					=> "SELECT DISTINCT a.aid AS aid, a.title AS title, c.name AS cname FROM ".
+	'get_alb_cat'					=> "SELECT DISTINCT a.aid AS aid, a.title AS title, c.name AS cname, c.cid AS cid FROM ".
 									   "{$CONFIG['TABLE_ALBUMS']} AS a, {$CONFIG['TABLE_CATEGORIES']} AS c ".
 									   "WHERE a.category = c.cid AND a.category < '%1\$s'",
 	'get_all_pic_in_db'				=> "SELECT filepath, filename  FROM {$CONFIG['TABLE_PICTURES']}  WHERE filepath LIKE '%1\$s'",

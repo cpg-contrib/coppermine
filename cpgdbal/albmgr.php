@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4583 $
+  $Revision: 4844 $
   $LastChangedBy: pvanrompay $
-  $Date: 2008-06-18 06:33:59 +0530 (Wed, 18 Jun 2008) $
+  $Date: 2008-08-12 11:33:24 +0530 (Tue, 12 Aug 2008) $
 **********************************************/
 
 /**
@@ -27,7 +27,7 @@
 * @copyright 2002-2006 Gregory DEMAR, Coppermine Dev Team
 * @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
 * @package Coppermine
-* @version $Id: albmgr.php 4583 2008-06-18 01:03:59Z pvanrompay $
+* @version $Id: albmgr.php 4844 2008-08-12 06:03:24Z pvanrompay $
 */
 
 /**
@@ -399,7 +399,7 @@ pageheader($lang_albmgr_php['title']);
 -->
 </script>
 <form name="album_menu" id="cpgform" method="post" action="delete.php?what=albmgr" onSubmit="return CheckAlbumForm(this);">
-<?php starttable("100%", $lang_albmgr_php['title'].'&nbsp;'.cpg_display_help('f=albums.htm&as=albmgr&ae=albmgr_end&top=1', '600', '400'), 1);
+<?php starttable("100%", cpg_fetch_icon('alb_mgr', 2).$lang_albmgr_php['title'].'&nbsp;'.cpg_display_help('f=albums.htm&as=albmgr&ae=albmgr_end&top=1', '600', '400'), 1);
 ?>
 <noscript>
 <tr>
@@ -510,18 +510,20 @@ echo $lb;
 // Only show move-buttons when admin or in user's private category.
 // Sorting is also prevented in delete.php when user doesn't have the rights.
 if (GALLERY_ADMIN_MODE||($cat == USER_ID + FIRST_USER_CAT)) {
-    echo '                    <td><a href="javascript:Moveup_Option();"><img src="images/move_up.gif" width="26" height="21" border="0" alt="" title="'.$lang_common['move_up'].'" /></a><a href="javascript:Movedown_Option();"><img src="images/move_down.gif" width="26" height="21" border="0" alt="v" title="'.$lang_common['move_down'].'"  /></a>
-                      &nbsp; <a href="javascript:Movetop_Option();"><img src="images/move_top.gif" width="26" height="21" border="0" alt="^^" title="'.$lang_common['move_top'].'" /></a><a href="javascript:Movebottom_Option();"><img src="images/move_bottom.gif" width="26" height="21" border="0" alt="vv" title="'.$lang_common['move_bottom'].'" /></a>
+    echo '                    <td><a href="javascript:Moveup_Option();">'.cpg_fetch_icon('up', 0, $lang_common['move_up']).'</a><a href="javascript:Movedown_Option();">'.cpg_fetch_icon('down', 0, $lang_common['move_down']).'</a>
+                      &nbsp; <a href="javascript:Movetop_Option();">'.cpg_fetch_icon('upup', 0, $lang_common['move_top']).'</a><a href="javascript:Movebottom_Option();">'.cpg_fetch_icon('downdown', 0, $lang_common['move_bottom']).'</a>
                     </td>';
 } else {
     echo '                    <td></td>';
 }
-?>
-                                                                                <td align="center" style="background-color: #D4D0C8; width: 80px; height: 21px; border-top: 1px solid White; border-left: 1px solid White; border-right: 1px solid #808080; border-bottom: 1px solid #808080;"><a href="javascript:Album_Delete();" style="color: Black; font-weight: bold;"><?php echo $lang_common['delete'] ?></a>
+$delete_output = cpg_fetch_icon('delete', 0, $lang_albmgr_php['delete_album']);
+$new_output = cpg_fetch_icon('add', 0, $lang_albmgr_php['new_album']);
+echo <<< EOT
+                                                                                <td align="center" ><a href="javascript:Album_Delete();" style="color: Black; font-weight: bold;">{$delete_output}</a>
                                                                                 </td>
                                                                                 <td align="center" style="width: 1px;"><img src="images/spacer.gif" width="1" alt=""><br />
                                                                                 </td>
-                                                                                <td align="center" style="background-color: #D4D0C8; width: 80px; height: 21px; border-top: 1px solid White; border-left: 1px solid White; border-right: 1px solid #808080; border-bottom: 1px solid #808080;"><a href="javascript:Album_Create();" style="color: Black; font-weight: bold;"><?php echo $lang_albmgr_php['new'] ?></a>
+                                                                                <td align="center" ><a href="javascript:Album_Create();" style="color: Black; font-weight: bold;">{$new_output}</a>
                                                                                 </td>
                                                                 </tr>
                                                                 </table>
@@ -529,8 +531,7 @@ if (GALLERY_ADMIN_MODE||($cat == USER_ID + FIRST_USER_CAT)) {
                                 </tr>
                                 <tr>
                                                 <td><br />
-                                                                <input type="text" name="album_nm" id="album_nm" size="27" maxlength="80" class="textinput" style="width: 300px;" onChange="Album_NameChange(this.value);" onKeyUp="Album_NameChange(this.value);" DISABLED />
-                                                                <br />
+                                                                <input type="text" name="album_nm" id="album_nm" size="27" maxlength="80" class="textinput" style="width: 300px;" onChange="Album_NameChange(this.value);" onKeyUp="Album_NameChange(this.value);" disabled="disabled" />
                                                                 <br />
                                                 </td>
                                 </tr>
@@ -539,10 +540,10 @@ if (GALLERY_ADMIN_MODE||($cat == USER_ID + FIRST_USER_CAT)) {
 </tr>
 <tr>
                 <td colspan="2" align="center" class="tablef">
-                <input type="submit" class="button" value="<?php echo $lang_albmgr_php['apply_modifs'] ?>" />
+                <input type="submit" class="button" value="{$lang_albmgr_php['apply_modifs']}" />
                 </td>
 </tr>
-<?php
+EOT;
 endtable();
 print '                </form>';
 pagefooter();

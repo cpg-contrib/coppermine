@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4696 $
+  $Revision: 4857 $
   $LastChangedBy: gaugau $
-  $Date: 2008-07-17 11:02:26 +0530 (Thu, 17 Jul 2008) $
+  $Date: 2008-08-12 12:32:02 +0530 (Tue, 12 Aug 2008) $
 **********************************************/
 
 /////////////////////////////////////////////////////////////////
@@ -246,56 +246,56 @@ $template_gallery_admin_menu = <<<EOT
 
                 <div class="admin_menu_wrapper">
                             <!-- BEGIN admin_approval -->
-                                <div class="admin_menu admin_float" id="admin_menu_anim"><a href="editpics.php?mode=upload_approval" title="{UPL_APP_TITLE}">{UPL_APP_LNK}</a></div>
+                                <div class="admin_menu admin_float" id="admin_menu_anim"><a href="editpics.php?mode=upload_approval" title="{UPL_APP_TITLE}">{UPL_APP_ICO}{UPL_APP_LNK}</a></div>
                             <!-- END admin_approval -->
-                                <div class="admin_menu admin_float"><a href="admin.php" title="{ADMIN_TITLE}">{ADMIN_LNK}</a></div>
-                                <div class="admin_menu admin_float"><a href="catmgr.php" title="{CATEGORIES_TITLE}">{CATEGORIES_LNK}</a></div>
-                                <div class="admin_menu admin_float"><a href="albmgr.php{CATL}" title="{ALBUMS_TITLE}">{ALBUMS_LNK}</a></div>
-                                <div class="admin_menu admin_float"><a href="groupmgr.php" title="{GROUPS_TITLE}">{GROUPS_LNK}</a></div>
-                                <div class="admin_menu admin_float"><a href="usermgr.php" title="{USERS_TITLE}">{USERS_LNK}</a></div>
-                                <div class="admin_menu admin_float"><a href="banning.php" title="{BAN_TITLE}">{BAN_LNK}</a></div>
-                                <div class="admin_menu admin_float"><a href="reviewcom.php" title="{COMMENTS_TITLE}">{COMMENTS_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="admin.php" title="{ADMIN_TITLE}">{ADMIN_ICO}{ADMIN_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="catmgr.php" title="{CATEGORIES_TITLE}">{CATEGORIES_ICO}{CATEGORIES_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="albmgr.php{CATL}" title="{ALBUMS_TITLE}">{ALBUMS_ICO}{ALBUMS_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="groupmgr.php" title="{GROUPS_TITLE}">{GROUPS_ICO}{GROUPS_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="usermgr.php" title="{USERS_TITLE}">{USERS_ICO}{USERS_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="banning.php" title="{BAN_TITLE}">{BAN_ICO}{BAN_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="reviewcom.php" title="{COMMENTS_TITLE}">{COMMENTS_ICO}{COMMENTS_LNK}</a></div>
                             <!-- BEGIN log_ecards -->
-                                <div class="admin_menu admin_float"><a href="db_ecard.php" title="{DB_ECARD_TITLE}">{DB_ECARD_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="db_ecard.php" title="{DB_ECARD_TITLE}">{DB_ECARD_ICO}{DB_ECARD_LNK}</a></div>
                             <!-- END log_ecards -->
-                                <div class="admin_menu admin_float"><a href="picmgr.php" title="{PICTURES_TITLE}">{PICTURES_LNK}</a></div>
-                                <div class="admin_menu admin_float"><a href="searchnew.php" title="{SEARCHNEW_TITLE}">{SEARCHNEW_LNK}</a></div>
-                                <div class="admin_menu admin_float"><a href="util.php" title="{UTIL_TITLE}">{UTIL_LNK}</a></div>
-                                <div class="admin_menu admin_float"><a href="profile.php?op=edit_profile" title="{MY_PROF_TITLE}">{MY_PROF_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="picmgr.php" title="{PICTURES_TITLE}">{PICTURES_ICO}{PICTURES_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="searchnew.php" title="{SEARCHNEW_TITLE}">{SEARCHNEW_ICO}{SEARCHNEW_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="util.php" title="{UTIL_TITLE}">{UTIL_ICO}{UTIL_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="profile.php?op=edit_profile" title="{MY_PROF_TITLE}">{MY_PROF_ICO}{MY_PROF_LNK}</a></div>
                             <!-- BEGIN documentation -->
-                                <div class="admin_menu admin_float"><a href="{DOCUMENTATION_HREF}" title="{DOCUMENTATION_TITLE}">{DOCUMENTATION_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="{DOCUMENTATION_HREF}" title="{DOCUMENTATION_TITLE}">{DOCUMENTATION_ICO}{DOCUMENTATION_LNK}</a></div>
                             <!-- END documentation -->
                             <!-- BEGIN plugin_manager -->
-                                <div class="admin_menu admin_float"><a href="pluginmgr.php" title="{PLUGINMGR_TITLE}">{PLUGINMGR_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="pluginmgr.php" title="{PLUGINMGR_TITLE}">{PLUGINMGR_ICO}{PLUGINMGR_LNK}</a></div>
                             <!-- END plugin_manager -->
                             <!-- BEGIN bridge_manager -->
-                                <div class="admin_menu admin_float"><a href="bridgemgr.php" title="{BRIDGEMGR_TITLE}">{BRIDGEMGR_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="bridgemgr.php" title="{BRIDGEMGR_TITLE}">{BRIDGEMGR_ICO}{BRIDGEMGR_LNK}</a></div>
                             <!-- END bridge_manager -->
                             <!-- BEGIN php_info -->
-                                <div class="admin_menu admin_float"><a href="phpinfo.php" title="{PHPINFO_TITLE}">{PHPINFO_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="phpinfo.php" title="{PHPINFO_TITLE}">{PHPINFO_ICO}{PHPINFO_LNK}</a></div>
                             <!-- END php_info -->
                             <!-- BEGIN update_database -->
-                                <div class="admin_menu admin_float"><a href="update.php" title="{UPDATE_DATABASE_TITLE}">{UPDATE_DATABASE_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="update.php" title="{UPDATE_DATABASE_TITLE}">{UPDATE_DATABASE_ICO}{UPDATE_DATABASE_LNK}</a></div>
                             <!-- END update_database -->
                             <!-- BEGIN view_log_files -->
-                                <div class="admin_menu admin_float"><a href="viewlog.php" title="{VIEW_LOG_FILES_TITLE}">{VIEW_LOG_FILES_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="viewlog.php" title="{VIEW_LOG_FILES_TITLE}">{VIEW_LOG_FILES_ICO}{VIEW_LOG_FILES_LNK}</a></div>
                             <!-- END view_log_files -->
                             <!-- BEGIN check_versions -->
-                                <div class="admin_menu admin_float"><a href="versioncheck.php" title="{CHECK_VERSIONS_TITLE}">{CHECK_VERSIONS_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="versioncheck.php" title="{CHECK_VERSIONS_TITLE}">{CHECK_VERSIONS_ICO}{CHECK_VERSIONS_LNK}</a></div>
                             <!-- END check_versions -->
                             <!-- BEGIN overall_stats -->
-                                <div class="admin_menu admin_float"><a href="stat_details.php?type=hits&amp;sort=sdate&amp;dir=&amp;sdate=1&amp;ip=1&amp;search_phrase=0&amp;referer=0&amp;browser=1&amp;os=1&amp;mode=fullscreen&amp;page=1&amp;amount=50" title="{OVERALL_STATS_TITLE}">{OVERALL_STATS_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="stat_details.php?type=hits&amp;sort=sdate&amp;dir=&amp;sdate=1&amp;ip=1&amp;search_phrase=0&amp;referer=0&amp;browser=1&amp;os=1&amp;mode=fullscreen&amp;page=1&amp;amount=50" title="{OVERALL_STATS_TITLE}">{OVERALL_STATS_ICO}{OVERALL_STATS_LNK}</a></div>
                             <!-- END overall_stats -->
                             <!-- BEGIN keyword_manager -->
-                                <div class="admin_menu admin_float"><a href="keywordmgr.php" title="{KEYWORDMGR_TITLE}">{KEYWORDMGR_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="keywordmgr.php" title="{KEYWORDMGR_TITLE}">{KEYWORDMGR_ICO}{KEYWORDMGR_LNK}</a></div>
                             <!-- END keyword_manager -->
                             <!-- BEGIN exif_manager -->
-                                <div class="admin_menu admin_float"><a href="exifmgr.php" title="{EXIFMGR_TITLE}">{EXIFMGR_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="exifmgr.php" title="{EXIFMGR_TITLE}">{EXIFMGR_ICO}{EXIFMGR_LNK}</a></div>
                             <!-- END exif_manager -->
                             <!-- BEGIN show_news -->
-                                <div class="admin_menu admin_float"><a href="mode.php?what=news&amp;referer=$REFERER" title="{SHOWNEWS_TITLE}">{SHOWNEWS_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="mode.php?what=news&amp;referer=$REFERER" title="{SHOWNEWS_TITLE}">{SHOWNEWS_ICO}{SHOWNEWS_LNK}</a></div>
                             <!-- END show_news -->
-                              <div class="admin_menu admin_float"><a href="export.php" title="{EXPORT_TITLE}">{EXPORT_LNK}</a></div>
+                              <div class="admin_menu admin_float"><a href="export.php" title="{EXPORT_TITLE}">{EXPORT_ICO}{EXPORT_LNK}</a></div>
                 <div style="clear:left;">
                 </div>
               </div>
@@ -315,10 +315,10 @@ $template_user_admin_menu = <<<EOT
                 <div align="center">
                 <table cellpadding="0" cellspacing="1">
                         <tr>
-                                <td class="admin_menu"><a href="albmgr.php" title="{ALBMGR_TITLE}">{ALBMGR_LNK}</a></td>
-                                <td class="admin_menu"><a href="modifyalb.php" title="{MODIFYALB_TITLE}">{MODIFYALB_LNK}</a></td>
-                                <td class="admin_menu"><a href="profile.php?op=edit_profile" title="{MY_PROF_TITLE}">{MY_PROF_LNK}</a></td>
-                                <td class="admin_menu"><a href="picmgr.php" title="{PICTURES_TITLE}">{PICTURES_LNK}</a></td>
+                                <td class="admin_menu"><a href="albmgr.php" title="{ALBMGR_TITLE}">{ALBUMS_ICO}{ALBMGR_LNK}</a></td>
+                                <td class="admin_menu"><a href="modifyalb.php" title="{MODIFYALB_TITLE}">{MODIFYALB_ICO}{MODIFYALB_LNK}</a></td>
+                                <td class="admin_menu"><a href="profile.php?op=edit_profile" title="{MY_PROF_TITLE}">{MY_PROF_ICO}{MY_PROF_LNK}</a></td>
+                                <td class="admin_menu"><a href="picmgr.php" title="{PICTURES_TITLE}">{PICTURES_ICO}{PICTURES_LNK}</a></td>
                         </tr>
                 </table>
                 </div>
@@ -527,20 +527,6 @@ $template_film_strip = <<<EOT
                     {ADMIN_MENU}
                 </td>
 <!-- END thumb_cell -->
-<!-- BEGIN alb_thumb_cell -->
-                <td valign="top" align="center">
-                    <table border="5" cellpadding="10" cellspacing="0">
-                        <tr>
-                            <td valign="middle" class="alb_thumbnails" align="center">
-                                <span class="thumb_alb_label">{ALBUM_LABEL}</span>
-                                <a href="{LINK_TGT}">{THUMB}</a><br />
-                                {CAPTION}
-                                {ADMIN_MENU}
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-<!-- END alb_thumb_cell -->
 <!-- BEGIN empty_cell -->
                 <td valign="top" align="center" >&nbsp;</td>
 <!-- END empty_cell -->
@@ -1013,9 +999,9 @@ $template_image_comments = <<<EOT
 <!-- END pending approval -->
 <!-- BEGIN buttons -->
                                         <script type="text/javascript">
-                                          document.write('<a href="javascript:;" onclick="blocking(\'cbody{MSG_ID}\',\'\', \'block\'); blocking(\'cedit{MSG_ID}\',\'\', \'block\'); return false;" title="{EDIT_TITLE}"><img src="images/edit.gif" border="0" align="middle" alt="" /></a>');
+                                          document.write('<a href="javascript:;" onclick="blocking(\'cbody{MSG_ID}\',\'\', \'block\'); blocking(\'cedit{MSG_ID}\',\'\', \'block\'); return false;" title="{EDIT_TITLE}">{EDIT_ICON}</a>');
                                         </script>
-                                        <a href="delete.php?msg_id={MSG_ID}&amp;what=comment" onclick="return confirm('{CONFIRM_DELETE}');" title="{DELETE_TITLE}"><img src="images/delete.gif" border="0" align="middle" alt="" /></a>
+                                        <a href="delete.php?msg_id={MSG_ID}&amp;what=comment" onclick="return confirm('{CONFIRM_DELETE}');" title="{DELETE_TITLE}">{DELETE_ICON}</a>
 <!-- END buttons -->
                                 </td>
                                 <td class="tableh2_compact" align="right" nowrap="nowrap">
@@ -1938,6 +1924,8 @@ function theme_admin_mode_menu()
     global $lang_gallery_admin_menu, $lang_user_admin_menu;
     global $template_gallery_admin_menu, $template_user_admin_menu;
     global $CONFIG;
+    global $THEME_DIR;
+    
 
     $cat_l = isset($cat) ? "?cat=$cat" : '';
 
@@ -1947,7 +1935,7 @@ function theme_admin_mode_menu()
     if ($admin_menu == '') {
 
         if (GALLERY_ADMIN_MODE) {
-
+            
             if ($CONFIG['log_ecards'] == 0) {
                 template_extract_block($template_gallery_admin_menu, 'log_ecards');
             }
@@ -1985,55 +1973,80 @@ function theme_admin_mode_menu()
             $param = array('{CATL}' => $cat_l,
                 '{UPL_APP_TITLE}' => $lang_gallery_admin_menu['upl_app_title'],
                 '{UPL_APP_LNK}' => $lang_gallery_admin_menu['upl_app_lnk'],
+                '{UPL_APP_ICO}' => cpg_fetch_icon('upload_approval', 1),
                 '{ADMIN_TITLE}' => $lang_gallery_admin_menu['admin_title'],
                 '{ADMIN_LNK}' => $lang_gallery_admin_menu['admin_lnk'],
+                '{ADMIN_ICO}' => cpg_fetch_icon('config', 1),
                 '{ALBUMS_TITLE}' => $lang_gallery_admin_menu['albums_title'],
                 '{ALBUMS_LNK}' => $lang_gallery_admin_menu['albums_lnk'],
+                '{ALBUMS_ICO}' => cpg_fetch_icon('alb_mgr', 1),
                 '{CATEGORIES_TITLE}' => $lang_gallery_admin_menu['categories_title'],
                 '{CATEGORIES_LNK}' => $lang_gallery_admin_menu['categories_lnk'],
+                '{CATEGORIES_ICO}' => cpg_fetch_icon('cat_mgr', 1),
                 '{USERS_TITLE}' => $lang_gallery_admin_menu['users_title'],
                 '{USERS_LNK}' => $lang_gallery_admin_menu['users_lnk'],
+                '{USERS_ICO}' => cpg_fetch_icon('user_mgr', 1),
                 '{GROUPS_TITLE}' => $lang_gallery_admin_menu['groups_title'],
                 '{GROUPS_LNK}' => $lang_gallery_admin_menu['groups_lnk'],
+                '{GROUPS_ICO}' => cpg_fetch_icon('groups_mgr', 1),
                 '{COMMENTS_TITLE}' => $lang_gallery_admin_menu['comments_title'],
                 '{COMMENTS_LNK}' => $lang_gallery_admin_menu['comments_lnk'],
+                '{COMMENTS_ICO}' => cpg_fetch_icon('comment_approval', 1),
                 '{SEARCHNEW_TITLE}' => $lang_gallery_admin_menu['searchnew_title'],
                 '{SEARCHNEW_LNK}' => $lang_gallery_admin_menu['searchnew_lnk'],
+                '{SEARCHNEW_ICO}' => cpg_fetch_icon('searchnew', 1),
                 '{MY_PROF_TITLE}' => $lang_user_admin_menu['my_prof_title'],
                 '{MY_PROF_LNK}' => $lang_user_admin_menu['my_prof_lnk'],
+                '{MY_PROF_ICO}' => cpg_fetch_icon('my_profile', 1),
                 '{UTIL_TITLE}' => $lang_gallery_admin_menu['util_title'],
                 '{UTIL_LNK}' => $lang_gallery_admin_menu['util_lnk'],
+                '{UTIL_ICO}' => cpg_fetch_icon('util', 1),
                 '{BAN_TITLE}' => $lang_gallery_admin_menu['ban_title'],
                 '{BAN_LNK}' => $lang_gallery_admin_menu['ban_lnk'],
+                '{BAN_ICO}' => cpg_fetch_icon('ban_user', 1),
                 '{DB_ECARD_TITLE}' => $lang_gallery_admin_menu['db_ecard_title'],
                 '{DB_ECARD_LNK}' => $lang_gallery_admin_menu['db_ecard_lnk'],
+                '{DB_ECARD_ICO}' => cpg_fetch_icon('ecard_review', 1),
                 '{PICTURES_TITLE}' => $lang_gallery_admin_menu['pictures_title'],
                 '{PICTURES_LNK}' => $lang_gallery_admin_menu['pictures_lnk'],
+                '{PICTURES_ICO}' => cpg_fetch_icon('picture_sort', 1),
                 '{DOCUMENTATION_HREF}' => $documentation_href,
                 '{DOCUMENTATION_TITLE}' => $lang_gallery_admin_menu['documentation_title'],
                 '{DOCUMENTATION_LNK}' => $lang_gallery_admin_menu['documentation_lnk'],
+                '{DOCUMENTATION_ICO}' => cpg_fetch_icon('documentation', 1),
                 '{PLUGINMGR_TITLE}' => $lang_gallery_admin_menu['pluginmgr_title'],
                 '{PLUGINMGR_LNK}' => $lang_gallery_admin_menu['pluginmgr_lnk'],
+                '{PLUGINMGR_ICO}' => cpg_fetch_icon('plugin_mgr', 1),
                 '{BRIDGEMGR_TITLE}' => $lang_gallery_admin_menu['bridgemgr_title'],
                 '{BRIDGEMGR_LNK}' => $lang_gallery_admin_menu['bridgemgr_lnk'],
+                '{BRIDGEMGR_ICO}' => cpg_fetch_icon('bridge_mgr', 1),
                 '{PHPINFO_TITLE}' => $lang_gallery_admin_menu['phpinfo_title'],
                 '{PHPINFO_LNK}' => $lang_gallery_admin_menu['phpinfo_lnk'],
+                '{PHPINFO_ICO}' => cpg_fetch_icon('phpinfo', 1),
                 '{UPDATE_DATABASE_TITLE}' => $lang_gallery_admin_menu['update_database_title'],
                 '{UPDATE_DATABASE_LNK}' => $lang_gallery_admin_menu['update_database_lnk'],
+                '{UPDATE_DATABASE_ICO}' => cpg_fetch_icon('update_database', 1),
                 '{VIEW_LOG_FILES_TITLE}' => $lang_gallery_admin_menu['view_log_files_title'],
                 '{VIEW_LOG_FILES_LNK}' => $lang_gallery_admin_menu['view_log_files_lnk'],
+                '{VIEW_LOG_FILES_ICO}' => cpg_fetch_icon('view_logs', 1),
                 '{CHECK_VERSIONS_TITLE}' => $lang_gallery_admin_menu['check_versions_title'],
                 '{CHECK_VERSIONS_LNK}' => $lang_gallery_admin_menu['check_versions_lnk'],
+                '{CHECK_VERSIONS_ICO}' => cpg_fetch_icon('check_versions', 1),
                 '{OVERALL_STATS_TITLE}' => $lang_gallery_admin_menu['overall_stats_title'],
                 '{OVERALL_STATS_LNK}' => $lang_gallery_admin_menu['overall_stats_lnk'],
+                '{OVERALL_STATS_ICO}' => cpg_fetch_icon('stats', 1),
                 '{KEYWORDMGR_TITLE}' => $lang_gallery_admin_menu['keywordmgr_title'],
                 '{KEYWORDMGR_LNK}' => $lang_gallery_admin_menu['keywordmgr_lnk'],
+                '{KEYWORDMGR_ICO}' => cpg_fetch_icon('keyword_mgr', 1),
                 '{EXIFMGR_TITLE}' => $lang_gallery_admin_menu['exifmgr_title'],
                 '{EXIFMGR_LNK}' => $lang_gallery_admin_menu['exifmgr_lnk'],
+                '{EXIFMGR_ICO}' => cpg_fetch_icon('exif_mgr', 1),
                 '{SHOWNEWS_TITLE}' => $lang_gallery_admin_menu['shownews_title'],
                 '{SHOWNEWS_LNK}' => $lang_gallery_admin_menu['shownews_lnk'],
+                '{SHOWNEWS_ICO}' => cpg_fetch_icon('news_show', 1),
                 '{EXPORT_TITLE}' => $lang_gallery_admin_menu['export_title'],
                 '{EXPORT_LNK}' => $lang_gallery_admin_menu['export_lnk'],
+                '{EXPORT_ICO}' => cpg_fetch_icon('export', 1),
                 );
 
             $html = template_eval($template_gallery_admin_menu, $param);
@@ -2041,12 +2054,16 @@ function theme_admin_mode_menu()
         } elseif (USER_ADMIN_MODE) {
             $param = array('{ALBMGR_TITLE}' => $lang_user_admin_menu['albmgr_title'],
                 '{ALBMGR_LNK}' => $lang_user_admin_menu['albmgr_lnk'],
+                '{ALBUMS_ICO}' => cpg_fetch_icon('alb_mgr', 1),
                 '{MODIFYALB_TITLE}' => $lang_user_admin_menu['modifyalb_title'],
                 '{MODIFYALB_LNK}' => $lang_user_admin_menu['modifyalb_lnk'],
+                '{MODIFYALB_ICO}' => cpg_fetch_icon('modifyalb', 1),
                 '{MY_PROF_TITLE}' => $lang_user_admin_menu['my_prof_title'],
                 '{MY_PROF_LNK}' => $lang_user_admin_menu['my_prof_lnk'],
+                '{MY_PROF_ICO}' => cpg_fetch_icon('my_profile', 1),
                 '{PICTURES_TITLE}' => $lang_gallery_admin_menu['pictures_title'],
                 '{PICTURES_LNK}' => $lang_gallery_admin_menu['pictures_lnk'],
+                '{PICTURES_ICO}' => cpg_fetch_icon('picture_sort', 1),
                 );
 
             $html = template_eval($template_user_admin_menu, $param);
@@ -2804,7 +2821,7 @@ function theme_html_picture()
 {
     global $CONFIG, $CURRENT_PIC_DATA, $CURRENT_ALBUM_DATA, $USER;
     global $album, $comment_date_fmt, $template_display_media;
-    global $lang_display_image_php, $lang_picinfo, $lang_errors;
+    global $lang_display_image_php, $lang_picinfo, $lang_common, $lang_errors;
 
     $superCage = Inspekt::makeSuperCage();
 
@@ -2841,7 +2858,7 @@ function theme_html_picture()
         $pic_title .= $CURRENT_PIC_DATA['caption'] . "\n";
     }
     if ($CURRENT_PIC_DATA['keywords'] != '') {
-        $pic_title .= $lang_picinfo['Keywords'] . ": " . $CURRENT_PIC_DATA['keywords'];
+        $pic_title .= $lang_common['keywords'] . ": " . $CURRENT_PIC_DATA['keywords'];
     }
 
     if (!$CURRENT_PIC_DATA['title'] && !$CURRENT_PIC_DATA['caption']) {
@@ -2892,9 +2909,9 @@ function theme_html_picture()
 
     if ($mime_content['content']=='image') {
         if (isset($image_size['reduced'])) {
-            $imginfo=getimagesize($picture_url);
-            $winsizeX = $CURRENT_PIC_DATA['pwidth']+$CONFIG['fullsize_padding_x'];  //the +'s are the mysterious FF and IE paddings
-            $winsizeY = $CURRENT_PIC_DATA['pheight']+$CONFIG['fullsize_padding_y']; //the +'s are the mysterious FF and IE paddings
+            $imginfo = getimagesize(rawurldecode($picture_url));
+            $winsizeX = $CURRENT_PIC_DATA['pwidth'] + $CONFIG['fullsize_padding_x'];  //the +'s are the mysterious FF and IE paddings
+            $winsizeY = $CURRENT_PIC_DATA['pheight'] + $CONFIG['fullsize_padding_y']; //the +'s are the mysterious FF and IE paddings
             if ($CONFIG['transparent_overlay'] == 1) {
                 $pic_html = "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td background=\"" . $picture_url . "\" width=\"{$imginfo[0]}\" height=\"{$imginfo[1]}\" class=\"image\">";
                 if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 2) {
@@ -2903,7 +2920,7 @@ function theme_html_picture()
                   $pic_html .= "<a href=\"javascript:;\" onclick=\"MM_openBrWindow('displayimage.php?pid=$pid&amp;fullsize=1','" . uniqid(rand()) . "','scrollbars=yes,toolbar=no,status=no,resizable=yes,width=$winsizeX,height=$winsizeY')\">";
                 }
                 $pic_title = $lang_display_image_php['view_fs'] . "\n==============\n" . $pic_title;
-                $pic_html .= "<img src=\"images/image.gif?id=".floor(rand()*1000+rand())."\" width={$imginfo[0]} height={$imginfo[1]}  border=\"0\" alt=\"{$lang_display_image_php['view_fs']}\" /><br />";
+                $pic_html .= "<img src=\"images/image.gif?id=".floor(rand()*1000+rand())."\" width=\"{$imginfo[0]}\" height=\"{$imginfo[1]}\"  border=\"0\" alt=\"{$lang_display_image_php['view_fs']}\" /><br />";
                 $pic_html .= "</a>\n </td></tr></table>";
             } else {
                 if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 2) {
@@ -3341,6 +3358,8 @@ function theme_html_comments($pid)
             '{PID}' => $row['pid'],
             '{EDIT_TITLE}' => &$lang_display_comments['edit_title'],
             '{DELETE_TITLE}' => &$lang_display_comments['delete_title'],
+            '{DELETE_ICON}' => cpg_fetch_icon('delete', 0),
+            '{EDIT_ICON}' => cpg_fetch_icon('edit', 0),
             '{CONFIRM_DELETE}' => &$lang_display_comments['confirm_delete'],
             '{MSG_DATE}' => localised_date($row['msg_date'], $comment_date_fmt),
             '{MSG_BODY}' => bb_decode($comment_body),
@@ -3506,34 +3525,36 @@ function theme_display_fullsize_pic()
         if (!GALLERY_ADMIN_MODE) {
           cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
         }
-      //$picfile = $_GET['picfile'];
-      $picfile = $superCage->get->getPath('picfile');
-      $picname = $CONFIG['fullpath'] . $picfile;
-      $imagesize = @getimagesize($picname);
-      $imagedata = array('name' => $picfile, 'path' => path2url($picname), 'geometry' => $imagesize[3]);
+        //$picfile = $_GET['picfile'];
+        //$picfile = $superCage->get->getPath('picfile'); // doesn't work with HTML entities
+        $matches = $superCage->get->getMatched('picfile', '/^[0-9A-Za-z\/_.-]+$/');
+        $picfile = $matches[0];
+        $picname = $CONFIG['fullpath'] . $picfile;
+        $imagesize = @getimagesize($picname);
+        $imagedata = array('name' => $picfile, 'path' => path2url($picname), 'geometry' => $imagesize[3]);
     } elseif (pid) {
-      //$pid = (int)$_GET['pid'];
-      /*$sql = "SELECT * " . "FROM {$CONFIG['TABLE_PICTURES']} AS p " . "WHERE pid='$pid' $FORBIDDEN_SET";
-      $result = cpg_db_query($sql);
-      if (!mysql_num_rows($result)) {
-        cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
-      }
-      $row = mysql_fetch_array($result);*/
-	  ###########################   DB   ##############################
-      $cpgdb->query($cpg_db_themes_inc['display_fullsize_pic'], $pid, $FORBIDDEN_SET);
-	  $rowset = $cpgdb->fetchRowSet();
-      if (!count($rowset)) {
-        cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
-      }
-      $row = $rowset[0];	  
-	  ###############################################################
-      $pic_url = get_pic_url($row, 'fullsize');
-      $geom = 'width="' . $row['pwidth'] . '" height="' . $row['pheight'] . '"';
-      $imagedata = array('name' => $row['filename'], 'path' => $pic_url, 'geometry' => $geom);
+        //$pid = (int)$_GET['pid'];
+        /*$sql = "SELECT * " . "FROM {$CONFIG['TABLE_PICTURES']} AS p " . "WHERE pid='$pid' $FORBIDDEN_SET";
+        $result = cpg_db_query($sql);
+        if (!mysql_num_rows($result)) {
+            cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
+        }
+        $row = mysql_fetch_array($result);*/
+		###########################   DB   ##############################
+		$cpgdb->query($cpg_db_themes_inc['display_fullsize_pic'], $pid, $FORBIDDEN_SET);
+		$rowset = $cpgdb->fetchRowSet();
+		if (!count($rowset)) {
+			cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
+		}
+		$row = $rowset[0];	  
+		###############################################################
+        $pic_url = get_pic_url($row, 'fullsize');
+        $geom = 'width="' . $row['pwidth'] . '" height="' . $row['pheight'] . '"';
+        $imagedata = array('name' => $row['filename'], 'path' => $pic_url, 'geometry' => $geom);
     }
     if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 2) { // adjust the size of the window if we don't have to catter for a full-size pop-up, but only a text message
-       $row['pwidth'] = 200;
-       $row['pheight'] = 100;
+        $row['pwidth'] = 200;
+        $row['pheight'] = 100;
     }
 
 ?>
