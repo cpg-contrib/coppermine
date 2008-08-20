@@ -214,8 +214,8 @@ function process_post_data()
         if ($superCage->post->keyExists('del_comments'.$pid)) {
             $del_comments = $superCage->post->getInt('del_comments'.$pid) || $delete;
         }
-
-        $query = "SELECT category, filepath, filename, owner_id FROM {$CONFIG['TABLE_PICTURES']}, {$CONFIG['TABLE_ALBUMS']} WHERE {$CONFIG['TABLE_PICTURES']}.aid = {$CONFIG['TABLE_ALBUMS']}.aid AND pid='$pid'";
+        // We will be selecting pid in the query as we need it in $pic array for the plugin filter
+        $query = "SELECT pid, category, filepath, filename, owner_id FROM {$CONFIG['TABLE_PICTURES']}, {$CONFIG['TABLE_ALBUMS']} WHERE {$CONFIG['TABLE_PICTURES']}.aid = {$CONFIG['TABLE_ALBUMS']}.aid AND pid='$pid'";
         $result = cpg_db_query($query);
 
         if (!mysql_num_rows($result)) {
@@ -294,9 +294,15 @@ function process_post_data()
             foreach ($files as $currFile) {
                     if (is_file($currFile)) @unlink($currFile);
             }
-
+            
+            // Plugin filter to be called before deleting a file
+            CPGPluginAPI::filter('before_delete_file', $pic);
+            
             $query = "DELETE FROM {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid' LIMIT 1";
             $result = cpg_db_query($query);
+            
+            // Plugin filter to be called after a file is deleted
+            CPGPluginAPI::filter('after_delete_file', $pic);
         } else {
             $query = "UPDATE {$CONFIG['TABLE_PICTURES']} SET $update WHERE pid='$pid' LIMIT 1";
             $result = cpg_db_query($query);

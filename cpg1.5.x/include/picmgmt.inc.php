@@ -171,7 +171,11 @@ function add_picture($aid, $filepath, $filename, $position = 0, $title = '', $ca
 
     $query = "INSERT INTO {$CONFIG['TABLE_PICTURES']} (aid, filepath, filename, filesize, total_filesize, pwidth, pheight, ctime, owner_id, owner_name, title, caption, keywords, approved, user1, user2, user3, user4, pic_raw_ip, pic_hdr_ip, position) VALUES ('{$CURRENT_PIC_DATA['aid']}', '" . addslashes($CURRENT_PIC_DATA['filepath']) . "', '" . addslashes($CURRENT_PIC_DATA['filename']) . "', '{$CURRENT_PIC_DATA['filesize']}', '{$CURRENT_PIC_DATA['total_filesize']}', '{$CURRENT_PIC_DATA['pwidth']}', '{$CURRENT_PIC_DATA['pheight']}', '" . time() . "', '{$CURRENT_PIC_DATA['owner_id']}', '{$CURRENT_PIC_DATA['owner_name']}','{$CURRENT_PIC_DATA['title']}', '{$CURRENT_PIC_DATA['caption']}', '{$CURRENT_PIC_DATA['keywords']}', '{$CURRENT_PIC_DATA['approved']}', '{$CURRENT_PIC_DATA['user1']}', '{$CURRENT_PIC_DATA['user2']}', '{$CURRENT_PIC_DATA['user3']}', '{$CURRENT_PIC_DATA['user4']}', '{$CURRENT_PIC_DATA['pic_raw_ip']}', '{$CURRENT_PIC_DATA['pic_hdr_ip']}', '{$CURRENT_PIC_DATA['position']}')";
     $result = cpg_db_query($query);
-
+    
+    // Put the pid in current_pic_data and call the plugin filter for file data success
+    $CURRENT_PIC_DATA['pid'] = mysql_insert_id();
+    CPGPluginAPI::filter('add_file_data_success',$CURRENT_PIC_DATA);
+    
     return $result;
 }
 

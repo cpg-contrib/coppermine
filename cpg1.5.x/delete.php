@@ -79,13 +79,14 @@ function delete_picture($pid)
     $green = "<img src=\"images/green.gif\" border=\"0\" width=\"12\" height=\"12\"><br />";
     $red = "<img src=\"images/red.gif\" border=\"0\" width=\"12\" height=\"12\"><br />";
 
+    // We will be selecting pid in the query as we need it in $pic array for the plugin filter
     if (GALLERY_ADMIN_MODE) {
-        $query = "SELECT aid, filepath, filename FROM {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid'";
+        $query = "SELECT pid, aid, filepath, filename FROM {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid'";
         $result = cpg_db_query($query);
         if (!mysql_num_rows($result)) cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
         $pic = mysql_fetch_array($result);
     } else {
-        $query = "SELECT {$CONFIG['TABLE_PICTURES']}.aid as aid, category, filepath, filename, owner_id FROM {$CONFIG['TABLE_PICTURES']}, {$CONFIG['TABLE_ALBUMS']} WHERE {$CONFIG['TABLE_PICTURES']}.aid = {$CONFIG['TABLE_ALBUMS']}.aid AND pid='$pid'";
+        $query = "SELECT pid, {$CONFIG['TABLE_PICTURES']}.aid as aid, category, filepath, filename, owner_id FROM {$CONFIG['TABLE_PICTURES']}, {$CONFIG['TABLE_ALBUMS']} WHERE {$CONFIG['TABLE_PICTURES']}.aid = {$CONFIG['TABLE_ALBUMS']}.aid AND pid='$pid'";
         $result = cpg_db_query($query);
         if (!mysql_num_rows($result)) cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
         $pic = mysql_fetch_array($result);
@@ -98,7 +99,10 @@ function delete_picture($pid)
 
 
     if (!is_writable($dir)) cpg_die(CRITICAL_ERROR, sprintf($lang_errors['directory_ro'], htmlspecialchars($dir)), __FILE__, __LINE__);
-
+    
+    // Plugin filter to be called before deleting a file
+    CPGPluginAPI::filter('before_delete_file', $pic);
+    
     echo "<td class=\"tableb\">" . htmlspecialchars($file) . "</td>";
 
     $files = array($dir . $file, $dir . $CONFIG['normal_pfx'] . $file, $dir . $CONFIG['orig_pfx'] . $file, $dir . $CONFIG['thumb_pfx'] . $file);
@@ -136,7 +140,10 @@ function delete_picture($pid)
     echo "</td>";
 
     echo "</tr>\n";
-
+    
+    // Plugin filter to be called after a file is deleted
+    CPGPluginAPI::filter('after_delete_file', $pic);
+    
     return $aid;
 }
 
