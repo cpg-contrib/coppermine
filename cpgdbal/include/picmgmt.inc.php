@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4844 $
-  $LastChangedBy: pvanrompay $
-  $Date: 2008-08-12 11:33:24 +0530 (Tue, 12 Aug 2008) $
+  $Revision: 4892 $
+  $LastChangedBy: abbas-ali $
+  $Date: 2008-08-20 12:20:14 +0530 (Wed, 20 Aug 2008) $
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
@@ -192,7 +192,11 @@ function add_picture($aid, $filepath, $filename, $position = 0, $title = '', $ca
 				$CURRENT_PIC_DATA['user3'], $CURRENT_PIC_DATA['user4'], $CURRENT_PIC_DATA['pic_raw_ip'], 
 				$CURRENT_PIC_DATA['pic_hdr_ip'], $CURRENT_PIC_DATA['position']);
 	############################################################################################################
-
+    
+    // Put the pid in current_pic_data and call the plugin filter for file data success
+    $CURRENT_PIC_DATA['pid'] = mysql_insert_id();
+    CPGPluginAPI::filter('add_file_data_success',$CURRENT_PIC_DATA);
+    
     return $result;
 }
 

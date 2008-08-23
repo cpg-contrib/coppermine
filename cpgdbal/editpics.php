@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4853 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-08-12 12:23:42 +0530 (Tue, 12 Aug 2008) $
+  $Revision: 4892 $
+  $LastChangedBy: abbas-ali $
+  $Date: 2008-08-20 12:20:14 +0530 (Wed, 20 Aug 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -229,7 +229,8 @@ function process_post_data()
             $del_comments = $superCage->post->getInt('del_comments'.$pid) || $delete;
         }
 
-        /*$query = "SELECT category, filepath, filename, owner_id FROM {$CONFIG['TABLE_PICTURES']}, {$CONFIG['TABLE_ALBUMS']} WHERE {$CONFIG['TABLE_PICTURES']}.aid = {$CONFIG['TABLE_ALBUMS']}.aid AND pid='$pid'";
+        // We will be selecting pid in the query as we need it in $pic array for the plugin filter
+        /*$query = "SELECT pid, category, filepath, filename, owner_id FROM {$CONFIG['TABLE_PICTURES']}, {$CONFIG['TABLE_ALBUMS']} WHERE {$CONFIG['TABLE_PICTURES']}.aid = {$CONFIG['TABLE_ALBUMS']}.aid AND pid='$pid'";
         $result = cpg_db_query($query);
 
         if (!mysql_num_rows($result)) {
@@ -324,20 +325,26 @@ function process_post_data()
 			foreach ($files as $currFile) {
 					if (is_file($currFile)) @unlink($currFile);
 			}
-
-			/*$query = "DELETE FROM {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid' LIMIT 1";
-			$result = cpg_db_query($query);	*/
-			############################            DB        ##############################
-			$cpgdb->query($cpg_db_editpics_php['process_data_del_pictures'], $pid);
-			####################################################################
-		} else {
-			/*$query = "UPDATE {$CONFIG['TABLE_PICTURES']} SET $update WHERE pid='$pid' LIMIT 1";
-			$result = cpg_db_query($query);	*/
-			############################            DB        ##############################
-			$cpgdb->query($cpg_db_editpics_php['process_data_set_approved'], $update, $pid);
-			####################################################################
-		}
-	}
+            
+            // Plugin filter to be called before deleting a file
+            CPGPluginAPI::filter('before_delete_file', $pic);
+            
+            /*$query = "DELETE FROM {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid' LIMIT 1";
+            $result = cpg_db_query($query);	*/
+            ############################            DB        ##############################
+            $cpgdb->query($cpg_db_editpics_php['process_data_del_pictures'], $pid);
+            ####################################################################
+            
+            // Plugin filter to be called after a file is deleted
+            CPGPluginAPI::filter('after_delete_file', $pic);
+        } else {
+            /*$query = "UPDATE {$CONFIG['TABLE_PICTURES']} SET $update WHERE pid='$pid' LIMIT 1";
+            $result = cpg_db_query($query);	*/
+            ############################            DB        ##############################
+            $cpgdb->query($cpg_db_editpics_php['process_data_set_approved'], $update, $pid);
+            ####################################################################
+        }
+    }
 }
 
 function form_label($text)

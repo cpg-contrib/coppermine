@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4876 $
+  $Revision: 4882 $
   $LastChangedBy: gaugau $
-  $Date: 2008-08-13 12:59:07 +0530 (Wed, 13 Aug 2008) $
+  $Date: 2008-08-14 20:04:30 +0530 (Thu, 14 Aug 2008) $
 **********************************************/
 
 /**
@@ -25,7 +25,7 @@
 * @copyright 2002-2007 Gregory DEMAR, Coppermine Dev Team
 * @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
 * @package Coppermine
-* @version  $Id: functions.inc.php 4876 2008-08-13 07:29:07Z gaugau $
+* @version  $Id: functions.inc.php 4882 2008-08-14 14:34:30Z gaugau $
 */
 
 /**
@@ -2119,6 +2119,16 @@ function cpg_determine_client($pid)
             $os = "Linux Ubuntu";
         } elseif (eregi("Debian",$server_agent)) {
             $os = "Linux Debian";
+        } elseif (eregi("CentOS",$server_agent)) {
+            $os = "Linux CentOS";
+        } elseif (eregi("Fedora",$server_agent)) {
+            $os = "Linux Fedora";
+        } elseif (eregi("Mandrake",$server_agent)) {
+            $os = "Linux Mandrake";
+        } elseif (eregi("RedHat",$server_agent)) {
+            $os = "Linux RedHat";
+        } elseif (eregi("Suse",$server_agent)) {
+            $os = "Linux Suse";
         } elseif (eregi("Linux",$server_agent)) {
             $os = "Linux";
         } elseif (eregi("Windows NT 5.0",$server_agent)) {
@@ -2145,6 +2155,14 @@ function cpg_determine_client($pid)
             $os = "Macintosh";
         } elseif (eregi("OS/2",$server_agent)) {
             $os = "OS/2";
+		} elseif (eregi("aix",$server_agent)) {
+            $browser = "aix";
+		} elseif (eregi("FreeBSD",$server_agent)) {
+            $browser = "BSD FreeBSD";
+		} elseif (eregi("Unix",$server_agent)) {
+            $browser = "Unix";
+		} elseif (eregi("iphone",$server_agent)) {
+            $browser = "iPhone";
         }
 
         $browser = 'Unknown';
@@ -2221,7 +2239,7 @@ function cpg_determine_client($pid)
         } elseif (eregi("K-Meleon",$server_agent)) {
             $browser = "K-Meleon";
         }
-
+        
         //Code to get the search string if the referrer is any of the following
         $search_engines = array('google', 'lycos', 'yahoo');
 

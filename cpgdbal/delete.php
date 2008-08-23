@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4783 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-08-06 22:29:43 +0530 (Wed, 06 Aug 2008) $
+  $Revision: 4892 $
+  $LastChangedBy: abbas-ali $
+  $Date: 2008-08-20 12:20:14 +0530 (Wed, 20 Aug 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -83,32 +83,33 @@ function delete_picture($pid)
     $green = "<img src=\"images/green.gif\" border=\"0\" width=\"12\" height=\"12\"><br />";
     $red = "<img src=\"images/red.gif\" border=\"0\" width=\"12\" height=\"12\"><br />";
 
-	/*if (GALLERY_ADMIN_MODE) {
-		$query = "SELECT aid, filepath, filename FROM {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid'";
-		$result = cpg_db_query($query);
-		if (!mysql_num_rows($result)) cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
-		$pic = mysql_fetch_array($result);
-	} else {
-		$query = "SELECT {$CONFIG['TABLE_PICTURES']}.aid as aid, category, filepath, filename, owner_id FROM {$CONFIG['TABLE_PICTURES']}, {$CONFIG['TABLE_ALBUMS']} WHERE {$CONFIG['TABLE_PICTURES']}.aid = {$CONFIG['TABLE_ALBUMS']}.aid AND pid='$pid'";
-		$result = cpg_db_query($query);
-		if (!mysql_num_rows($result)) cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
-		$pic = mysql_fetch_array($result);
-		if (!($pic['category'] == FIRST_USER_CAT + USER_ID || ($CONFIG['users_can_edit_pics'] && $pic['owner_id'] == USER_ID)) || !USER_ID) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
-	}	*/
-	###################################		DB		#####################################
-	if (GALLERY_ADMIN_MODE) {
-		$cpgdb->query($cpg_db_delete_php['del_pic_gal_admin'], $pid);
-		$rowset = $cpgdb->fetchRowSet();
-		if (!count($rowset)) cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
-		$pic = $rowset[0];
-	} else {
-		$cpgdb->query($cpg_db_delete_php['del_pic_user_admin'], $pid);
-		$rowset = $cpgdb->fetchRowSet();
-		if (!count($rowset)) cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
-		$pic = $rowset[0];
-		if (!($pic['category'] == FIRST_USER_CAT + USER_ID || ($CONFIG['users_can_edit_pics'] && $pic['owner_id'] == USER_ID)) || !USER_ID) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
-	}
-	#####################################################################################
+    // We will be selecting pid in the query as we need it in $pic array for the plugin filter
+    /*if (GALLERY_ADMIN_MODE) {
+        $query = "SELECT pid, aid, filepath, filename FROM {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid'";
+        $result = cpg_db_query($query);
+        if (!mysql_num_rows($result)) cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
+        $pic = mysql_fetch_array($result);
+    } else {
+        $query = "SELECT pid, {$CONFIG['TABLE_PICTURES']}.aid as aid, category, filepath, filename, owner_id FROM {$CONFIG['TABLE_PICTURES']}, {$CONFIG['TABLE_ALBUMS']} WHERE {$CONFIG['TABLE_PICTURES']}.aid = {$CONFIG['TABLE_ALBUMS']}.aid AND pid='$pid'";
+        $result = cpg_db_query($query);
+        if (!mysql_num_rows($result)) cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
+        $pic = mysql_fetch_array($result);
+        if (!($pic['category'] == FIRST_USER_CAT + USER_ID || ($CONFIG['users_can_edit_pics'] && $pic['owner_id'] == USER_ID)) || !USER_ID) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+    } */
+    ###################################		DB		#####################################
+    if (GALLERY_ADMIN_MODE) {
+        $cpgdb->query($cpg_db_delete_php['del_pic_gal_admin'], $pid);
+        $rowset = $cpgdb->fetchRowSet();
+        if (!count($rowset)) cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
+        $pic = $rowset[0];
+    } else {
+        $cpgdb->query($cpg_db_delete_php['del_pic_user_admin'], $pid);
+        $rowset = $cpgdb->fetchRowSet();
+        if (!count($rowset)) cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
+        $pic = $rowset[0];
+        if (!($pic['category'] == FIRST_USER_CAT + USER_ID || ($CONFIG['users_can_edit_pics'] && $pic['owner_id'] == USER_ID)) || !USER_ID) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+    }
+    #####################################################################################
 
     $aid = $pic['aid'];
     $dir = $CONFIG['fullpath'] . $pic['filepath'];
@@ -116,7 +117,10 @@ function delete_picture($pid)
 
 
     if (!is_writable($dir)) cpg_die(CRITICAL_ERROR, sprintf($lang_errors['directory_ro'], htmlspecialchars($dir)), __FILE__, __LINE__);
-
+    
+    // Plugin filter to be called before deleting a file
+    CPGPluginAPI::filter('before_delete_file', $pic);
+    
     echo "<td class=\"tableb\">" . htmlspecialchars($file) . "</td>";
 
     $files = array($dir . $file, $dir . $CONFIG['normal_pfx'] . $file, $dir . $CONFIG['orig_pfx'] . $file, $dir . $CONFIG['thumb_pfx'] . $file);
@@ -154,7 +158,10 @@ function delete_picture($pid)
 	echo "</td>";
 
 	echo "</tr>\n";
-
+    
+    // Plugin filter to be called after a file is deleted
+    CPGPluginAPI::filter('after_delete_file', $pic);
+    
 	return $aid;	*/
 	#################################		DB		###################################
 	$cpgdb->query($cpg_db_delete_php['del_pic_comment'], $pid);
@@ -176,7 +183,10 @@ function delete_picture($pid)
 	echo "</td>";
 
 	echo "</tr>\n";
-
+    
+    // Plugin filter to be called after a file is deleted
+    CPGPluginAPI::filter('after_delete_file', $pic);
+    
 	return $aid;
 	##################################################################################
 }
@@ -487,7 +497,7 @@ switch ($what) {
           foreach ($to_arr as $option_value){
              $op = parse_pic_select_option(stripslashes($option_value));
              switch ($op['action']){
-	            case '0':
+                case '0':
 	               break;
 	            case '1':
                    if(GALLERY_ADMIN_MODE){

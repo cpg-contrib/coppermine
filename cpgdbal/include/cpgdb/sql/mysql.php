@@ -209,8 +209,8 @@ if (defined('DB_INPUT_PHP')) $cpg_db_dbinput_php = array(
 //queries from delete.php
 /***********************************************************/
 if (defined('DELETE_PHP')) $cpg_db_delete_php = array(
-	'del_pic_gal_admin'			=> "SELECT aid, filepath, filename FROM {$CONFIG['TABLE_PICTURES']} WHERE pid='%1\$s'",
-	'del_pic_user_admin'		=> "SELECT {$CONFIG['TABLE_PICTURES']}.aid AS aid, category, filepath, filename, owner_id ".
+	'del_pic_gal_admin'			=> "SELECT pid, aid, filepath, filename FROM {$CONFIG['TABLE_PICTURES']} WHERE pid='%1\$s'",
+	'del_pic_user_admin'		=> "SELECT pid, {$CONFIG['TABLE_PICTURES']}.aid AS aid, category, filepath, filename, owner_id ".
 								   "FROM {$CONFIG['TABLE_PICTURES']}, {$CONFIG['TABLE_ALBUMS']} ".
 								   "WHERE {$CONFIG['TABLE_PICTURES']}.aid = {$CONFIG['TABLE_ALBUMS']}.aid AND pid='%1\$s'",
 	'del_pic_comment'			=> "DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid='%1\$s'",
@@ -333,7 +333,7 @@ if (defined('EDITPICS_PHP')) $cpg_db_edit_one_pic_php = array(
 /***********************************************************/
 if (defined('EDITPICS_PHP')) $cpg_db_editpics_php = array(
 	'edit_pic_mode_get_alb'				=> "SELECT title, category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid = '%1\$s'",
-	'process_data_get_pic_alb'			=> "SELECT category, filepath, filename, owner_id ".
+	'process_data_get_pic_alb'			=> "SELECT pid, category, filepath, filename, owner_id ".
 										   "FROM {$CONFIG['TABLE_PICTURES']}, {$CONFIG['TABLE_ALBUMS']} ".
 										   "WHERE {$CONFIG['TABLE_PICTURES']}.aid = {$CONFIG['TABLE_ALBUMS']}.aid AND pid='%1\$s'",
 	'process_data_set_gal_icon'			=> "UPDATE {$CONFIG['TABLE_PICTURES']} SET galleryicon=0 WHERE owner_id=%1\$s;",
