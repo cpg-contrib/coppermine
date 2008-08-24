@@ -325,6 +325,7 @@ $config_data = array(
       'regex' => '^[0-9]{1,4}$',
       'size' => '4',
       'width' => '4',
+      'end_description' => $lang_admin_php['pixels'],
     ),
     'main_page_layout' => array(
       'type' => 'textfield',
@@ -463,7 +464,7 @@ $config_data = array(
       'help_link' => 'f=configuration.htm&amp;as=admin_image_comment_table-width&amp;ae=admin_image_comment_table-width_end',
       'size' => '5',
       'width' => '5',
-      'end_description' => $lang_admin_php['pixels_or_percent'],
+      'end_description' => '(' . $lang_admin_php['pixels_or_percent'] . ')',
     ),
     'display_pic_info' => array(
       'type' => 'checkbox',
@@ -508,7 +509,7 @@ $config_data = array(
       'regex' => '^[0-9]{1,6}$',
       'size' => '6',
       'width' => '6',
-      'end_description' => $lang_admin_php['slideshow_interval_detail'],
+      'end_description' => $lang_admin_php['milliseconds'] . ' (' . $lang_admin_php['slideshow_interval_detail'] . ')',
     ),
     'slideshow_hits' => array(
       'type' => 'checkbox',
@@ -704,6 +705,7 @@ $config_data = array(
       'size' => '5',
       'width' => '5',
       'warning' => $lang_admin_php['warning_change'],
+      'end_description' => $lang_admin_php['pixels'],
     ),
     'thumb_use' => array(
       'type' => 'select',
@@ -726,6 +728,7 @@ $config_data = array(
       'width' => '5',
       'additional_description' => $lang_admin_php['thumb_height_detail'],
       'warning' => $lang_admin_php['warning_change'],
+      'end_description' => $lang_admin_php['pixels'],
     ),
     'enable_custom_thumbs' => array(
       'type' => 'checkbox',
@@ -792,6 +795,7 @@ $config_data = array(
       'size' => '5',
       'width' => '5',
       'warning' => $lang_admin_php['warning_change'],
+      'end_description' => $lang_admin_php['pixels'],
     ),
     'max_upl_size' => array(
       'type' => 'textfield',
@@ -827,6 +831,7 @@ $config_data = array(
       'regex' => '^[0-9]{1,3}$',
       'size' => '3',
       'width' => '3',
+      'end_description' => $lang_admin_php['pixels'],
     ),
     'fullsize_padding_y' => array(
       'type' => 'textfield',
@@ -835,6 +840,7 @@ $config_data = array(
       'regex' => '^[0-9]{1,3}$',
       'size' => '3',
       'width' => '3',
+      'end_description' => $lang_admin_php['pixels'],
     ),
     'allow_private_albums' => array(
       'type' => 'checkbox',
