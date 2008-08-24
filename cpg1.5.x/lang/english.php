@@ -784,11 +784,11 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'browse_by_date' =>   'Enable browsing by date', // cpg1.5
   'display_redirection_page' =>   'Display redirection pages', // cpg1.5
   'main_table_width' =>   'Width of the main table', // cpg1.5
-  'pixels_or_percent' =>   '(pixels or %)', // cpg1.5
+  'pixels_or_percent' =>   'pixels or %', // cpg1.5
   'subcat_level' =>   'Number of levels of categories to display', // cpg1.5
   'albums_per_page' =>   'Number of albums to display', // cpg1.5
   'album_list_cols' =>   'Number of columns for the album list', // cpg1.5
-  'alb_list_thumb_size' =>   'Size of album thumbnails in pixels', // cpg1.5
+  'alb_list_thumb_size' =>   'Size of album thumbnails', // cpg1.5
   'main_page_layout' =>   'The content of the main page', // cpg1.5
   'first_level' =>   'Show first level album thumbnails in categories', // cpg1.5
   'categories_alpha_sort' =>   'Sort categories alphabetically', // cpg1.5
@@ -816,8 +816,9 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'display_film_strip' =>   'Show film strip', // cpg1.5
   'display_film_strip_filename' =>   'Display file name under film strip thumbnail', // cpg1.5
   'max_film_strip_items' =>   'Number of items in film strip', // cpg1.5
-  'slideshow_interval' =>   'Slideshow interval in milliseconds', // cpg1.5
-  'slideshow_interval_detail' =>   '(1 second = 1000 milliseconds)', // cpg1.5
+  'slideshow_interval' =>   'Slideshow interval', // cpg1.5
+  'milliseconds' => 'milliseconds', // cpg1.5
+  'slideshow_interval_detail' =>   '1 second = 1000 milliseconds', // cpg1.5
   'slideshow_hits' =>   'Count hits in slideshow', // cpg1.5
   'ecard_flash' =>   'Allow Flash in Ecards', // cpg1.5
   'not_recommended' =>   'not recommended', // cpg1.5
