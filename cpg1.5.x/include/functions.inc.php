@@ -346,7 +346,8 @@ function cpg_die($msg_code, $msg_text,  $error_file, $error_line, $output_buffer
         template_extract_block($template_cpg_die, 'output_buffer');
 
         pageheader($lang_cpg_die[$msg_code]);
-        starttable(-1, $lang_cpg_die[$msg_code]);echo "<!-- cpg_die -->";
+        starttable(-1, cpg_fetch_icon('warning', 2) . $lang_cpg_die[$msg_code]);
+        echo "<!-- cpg_die -->";
         echo template_eval($template_cpg_die, $params);
         endtable();
         pagefooter();
