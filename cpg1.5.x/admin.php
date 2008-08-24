@@ -268,7 +268,7 @@ $tabindexCounter = 1;
 $numberOfConfigFields = count($CONFIG);
 
 print '<form action="'.$CPG_PHP_SELF.'" method="post" name="cpgform" id="cpgform" onSubmit="return deleteUnneededFields();">';
-starttable('100%', "{$lang_admin_php['title']} - $signature", 2);
+starttable('100%', cpg_fetch_icon('config', 2) . $lang_admin_php['title'] . ' - ' . $signature, 2);
 print <<< EOT
     <tr>
         <td class="tableh2" colspan="2">
