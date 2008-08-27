@@ -699,7 +699,7 @@ $config_data = array(
   'thumbnail_settings' => array(
     'thumb_width' => array(
       'type' => 'textfield',
-      'default_value' => '100',
+      'default_value' => '128',
       'help_link' => 'f=configuration.htm&amp;as=admin_picture_thumbnail_max-dimension&amp;ae=admin_picture_thumbnail_max-dimension_end',
       'regex' => '^[0-9]{1,5}$',
       'size' => '5',
