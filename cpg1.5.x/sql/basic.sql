@@ -116,7 +116,7 @@ INSERT INTO CPG_config VALUES ('contact_form_registered_enable', '1');
 INSERT INTO CPG_config VALUES ('contact_form_subject_content', 'Coppermine gallery contact form');
 INSERT INTO CPG_config VALUES ('contact_form_subject_field', '0');
 INSERT INTO CPG_config VALUES ('contact_form_sender_email', '1');
-INSERT INTO CPG_config VALUES ('thumb_width', '100');
+INSERT INTO CPG_config VALUES ('thumb_width', '128');
 INSERT INTO CPG_config VALUES ('thumb_use', 'any');
 INSERT INTO CPG_config VALUES ('thumb_height', '140');
 INSERT INTO CPG_config VALUES ('thumb_pfx', 'thumb_');
