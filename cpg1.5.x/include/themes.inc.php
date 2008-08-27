@@ -48,13 +48,13 @@ if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}         //{THEMES
 //    be directed to the themes images folder.
 //('THEME_HAS_NAVBAR_GRAPHICS', 1); : The location for the navbar graphics will
 //    be directed to the themes images folder.
-//    Back to thumbnails   : images/thumbnails.gif
-//    Picture Information  : images/info.gif
-//    Slideshow            : images/slideshow.gif
-//    Report to admin      : images/report.gif
-//    Ecard                : images/ecard.gif
-//    Previous             : images/prev.gif
-//    Next                 : images/next.gif
+//    Back to thumbnails   : images/navbar/thumbnails.png
+//    Picture Information  : images/navbar/info.png
+//    Slideshow            : images/navbar/slideshow.png
+//    Report to admin      : images/navbar/report.png
+//    Ecard                : images/navbar/ecard.png
+//    Previous             : images/navbar/prev.png
+//    Next                 : images/navbar/next.png
 // ('THEME_HAS_FILM_STRIP_GRAPHIC', 1) : The location for the film strip graphics will
 //    be directed to the themes images folder.
 //    tile                 : images/tile.gif
@@ -992,7 +992,7 @@ $template_image_comments = <<<EOT
 
                                 <td class="tableh2_compact" align="right" width="100%">
 <!-- BEGIN report_comment_button -->
-     <a href="report_file.php?pid={PID}&amp;msg_id={MSG_ID}&amp;what=comment" title="{REPORT_COMMENT_TITLE}"><img src="images/report.gif" width="16" height="16" border="0" align="middle" alt="{REPORT_COMMENT_TITLE}" /></a>
+     <a href="report_file.php?pid={PID}&amp;msg_id={MSG_ID}&amp;what=comment" title="{REPORT_COMMENT_TITLE}">{REPORT_COMMENT_ICON}</a>
 <!-- END report_comment_button -->
 <!-- BEGIN pending approval -->
                                         {PENDING_APPROVAL}
@@ -2676,8 +2676,8 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
         '{COLS}' => $i,
         '{TILE1}' => $tile1,
         '{TILE2}' => $tile2,
-        '{PREV_LINK}' => $pos > 0 ? "<a href=\"$prev_tgt\" id=\"filmstrip_prev\" rel=\"nofollow\"><img src=\"{$location}images/prev.gif\" border=\"0\" /></a>" : ' ',
-        '{NEXT_LINK}' => $pos < $pic_count - 1 ? "<a href=\"$next_tgt\" id=\"filmstrip_next\" rel=\"nofollow\"><img src=\"{$location}images/next.gif\" border=\"0\" /></a>" : ' ',
+        '{PREV_LINK}' => $pos > 0 ? "<a href=\"$prev_tgt\" id=\"filmstrip_prev\" rel=\"nofollow\"><img src=\"{$location}images/icons/left.png\" border=\"0\" /></a>" : ' ',
+        '{NEXT_LINK}' => $pos < $pic_count - 1 ? "<a href=\"$next_tgt\" id=\"filmstrip_next\" rel=\"nofollow\"><img src=\"{$location}images/icons/right.png\" border=\"0\" /></a>" : ' ',
         '{THUMB_TD_STYLE}' => $superCage->get->keyExists('film_strip') ? 'display: none;' : '',
         );
 
@@ -3333,6 +3333,7 @@ function theme_html_comments($pid)
             '{SMILIES}' => $smilies,
             '{IP}' => $ip,
             '{REPORT_COMMENT_TITLE}' => &$lang_display_comments['report_comment_title'],
+            '{REPORT_COMMENT_ICON}' => cpg_fetch_icon('report', 0),
             '{WIDTH}' => $CONFIG['picture_table_width'],
             );
 
