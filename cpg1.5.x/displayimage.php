@@ -78,8 +78,11 @@ EOT;
   }
 
   if ((USER_ADMIN_MODE && $CURRENT_ALBUM_DATA['category'] == FIRST_USER_CAT + USER_ID) || ($CONFIG['users_can_edit_pics'] && $CURRENT_PIC_DATA['owner_id'] == USER_ID && USER_ID != 0) || GALLERY_ADMIN_MODE) {
+    $delete_icon = cpg_fetch_icon('delete', 1);
+    $edit_icon = cpg_fetch_icon('edit', 1);
+    $rotate_icon = cpg_fetch_icon('rotate_ccw', 1); 
     $picmenu .= <<<EOT
-     <a href="javascript:;" onclick="return MM_openBrWindow('pic_editor.php?id={$CURRENT_PIC_DATA['pid']}','Crop_Picture','scrollbars=yes,toolbar=no,status=yes,resizable=yes')" class="admin_menu" >{$lang_display_image_php['crop_pic']}</a> <a href="edit_one_pic.php?id={$CURRENT_PIC_DATA['pid']}&amp;what=picture"  class="admin_menu">{$lang_display_image_php['edit_pic']}</a> <a href="delete.php?id={$CURRENT_PIC_DATA['pid']}&amp;what=picture"  class="admin_menu" onclick="return confirm('{$lang_display_image_php['confirm_del']}'); return false; ">{$lang_display_image_php['del_pic']}</a>
+     <a href="javascript:;" onclick="return MM_openBrWindow('pic_editor.php?id={$CURRENT_PIC_DATA['pid']}','Crop_Picture','scrollbars=yes,toolbar=no,status=yes,resizable=yes')" class="admin_menu" >{$rotate_icon}{$lang_display_image_php['crop_pic']}</a> <a href="edit_one_pic.php?id={$CURRENT_PIC_DATA['pid']}&amp;what=picture"  class="admin_menu">{$edit_icon}{$lang_display_image_php['edit_pic']}</a> <a href="delete.php?id={$CURRENT_PIC_DATA['pid']}&amp;what=picture"  class="admin_menu" onclick="return confirm('{$lang_display_image_php['confirm_del']}'); return false; ">{$delete_icon}{$lang_display_image_php['del_pic']}</a>
 EOT;
   }
 

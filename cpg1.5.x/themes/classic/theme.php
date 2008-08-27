@@ -22,4 +22,5 @@
 // ------------------------------------------------------------------------- //
 define('THEME_IS_XHTML10_TRANSITIONAL',1);
 define('THEME_HAS_MENU_ICONS',16);
+define('THEME_HAS_NAVBAR_GRAPHICS',1);
 ?>
