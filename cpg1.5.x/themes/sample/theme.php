@@ -786,20 +786,20 @@ EOT;
 $template_img_navbar = <<<EOT
 
         <tr>
-                <td align="center" valign="middle" class="navmenu" width="48"><a name="top_display_media"></a>
-                        <a href="{THUMB_TGT}" class="navmenu_pic" title="{THUMB_TITLE}"><img src="{LOCATION}images/icons/thumbnails.png" align="middle" border="0" alt="{THUMB_TITLE}" /></a>
+                <td align="center" valign="middle" class="navmenu" width="48">
+                        <a href="{THUMB_TGT}" class="navmenu_pic" title="{THUMB_TITLE}"><img src="{LOCATION}images/navbar/thumbnails.png" align="middle" border="0" alt="{THUMB_TITLE}" /></a>
                 </td>
 <!-- BEGIN pic_info_button -->
                         <script type="text/javascript">
                           document.write('<td align="center" valign="middle" class="navmenu" width="48">');
-                          document.write('<a href="javascript:;" class="navmenu_pic" onclick="blocking(\'picinfo\',\'yes\', \'block\'); return false;" title="{PIC_INFO_TITLE}" rel="nofollow"><img src="{LOCATION}images/icons/text_bottom.png" border="0" align="middle" alt="{PIC_INFO_TITLE}" /></a>');
+                          document.write('<a href="javascript:;" class="navmenu_pic" onclick="blocking(\'picinfo\',\'yes\', \'block\'); return false;" title="{PIC_INFO_TITLE}" rel="nofollow"><img src="{LOCATION}images/navbar/info.png" border="0" align="middle" alt="{PIC_INFO_TITLE}" /></a>');
                           document.write('</td>');
                         </script>
 <!-- END pic_info_button -->
 <!-- BEGIN slideshow_button -->
                         <script type="text/javascript">
                           document.write('<td align="center" valign="middle" class="navmenu" width="48">');
-                          document.write('<a href="{SLIDESHOW_TGT}" class="navmenu_pic" title="{SLIDESHOW_TITLE}" rel="nofollow"><img src="{LOCATION}images/icons/slideshow.png" border="0" align="middle" alt="{SLIDESHOW_TITLE}" /></a>');
+                          document.write('<a href="{SLIDESHOW_TGT}" class="navmenu_pic" title="{SLIDESHOW_TITLE}" rel="nofollow"><img src="{LOCATION}images/navbar/slideshow.png" border="0" align="middle" alt="{SLIDESHOW_TITLE}" /></a>');
                           document.write('</td>');
                         </script>
 <!-- END slideshow_button -->
@@ -808,19 +808,19 @@ $template_img_navbar = <<<EOT
                 </td>
 <!-- BEGIN report_file_button -->
                 <td align="center" valign="middle" class="navmenu" width="48">
-                        <a href="{REPORT_TGT}" class="navmenu_pic" title="{REPORT_TITLE}" rel="nofollow"><img src="{LOCATION}images/icons/report.png" border="0" align="middle" alt="{REPORT_TITLE}" /></a>
+                        <a href="{REPORT_TGT}" class="navmenu_pic" title="{REPORT_TITLE}" rel="nofollow"><img src="{LOCATION}images/navbar/report.png" border="0" align="middle" alt="{REPORT_TITLE}" /></a>
                 </td>
 <!-- END report_file_button -->
 <!-- BEGIN ecard_button -->
                 <td align="center" valign="middle" class="navmenu" width="48">
-                        <a href="{ECARD_TGT}" class="navmenu_pic" title="{ECARD_TITLE}" rel="nofollow"><img src="{LOCATION}images/icons/mail.png"  border="0" align="middle" alt="{ECARD_TITLE}" /></a>
+                        <a href="{ECARD_TGT}" class="navmenu_pic" title="{ECARD_TITLE}" rel="nofollow"><img src="{LOCATION}images/navbar/ecard.png"  border="0" align="middle" alt="{ECARD_TITLE}" /></a>
                 </td>
 <!-- END ecard_button -->
                 <td align="center" valign="middle" class="navmenu" width="48">
-                        <a href="{PREV_TGT}" class="navmenu_pic" title="{PREV_TITLE}"><img src="{LOCATION}images/icons/left.png"  border="0" align="middle" alt="{PREV_TITLE}" /></a>
+                        <a href="{PREV_TGT}" class="navmenu_pic" title="{PREV_TITLE}"><img src="{LOCATION}images/navbar/prev.png"  border="0" align="middle" alt="{PREV_TITLE}" /></a>
                 </td>
                 <td align="center" valign="middle" class="navmenu" width="48">
-                        <a href="{NEXT_TGT}" class="navmenu_pic" title="{NEXT_TITLE}"><img src="{LOCATION}images/icons/right.png"  border="0" align="middle" alt="{NEXT_TITLE}" /></a>
+                        <a href="{NEXT_TGT}" class="navmenu_pic" title="{NEXT_TITLE}"><img src="{LOCATION}images/navbar/next.png"  border="0" align="middle" alt="{NEXT_TITLE}" /></a>
                 </td>
         </tr>
 
@@ -2593,8 +2593,11 @@ function theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments, 
 {
     global $CONFIG;
 
+    $superCage = Inspekt::makeSuperCage();
+
     $width = $CONFIG['picture_table_width'];
 
+    echo '<a name="top_display_media"></a>'; // set the navbar-anchor
     starttable();
     echo $nav_menu;
     endtable();
@@ -2608,8 +2611,6 @@ function theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments, 
 
 
     echo $votes;
-
-
 
     $picinfo = $superCage->cookie->keyExists('picinfo') ? $superCage->cookie->getAlpha('picinfo') : ($CONFIG['display_pic_info'] ? 'block' : 'none');
     echo "\n\r<div id=\"picinfo\" style=\"display: $picinfo;\">\n";
