@@ -1127,11 +1127,11 @@ if (defined('DISPLAYIMAGE_PHP')){
 
 $lang_display_image_php = array(
   'confirm_del' => 'Are you sure you want to DELETE this file ? \\nComments will also be deleted.', // js-alert
-  'del_pic' => 'DELETE THIS FILE',
+  'del_pic' => 'Delete this File',
   'size' => '%s x %s pixels',
   'views' => '%s times',
   'slideshow' => 'Slideshow',
-  'stop_slideshow' => 'STOP SLIDESHOW',
+  'stop_slideshow' => 'Stop Slideshow',
   'view_fs' => 'Click to view full size image',
   'edit_pic' => 'Edit file information',
   'crop_pic' => 'Crop and Rotate',
