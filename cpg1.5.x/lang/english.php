@@ -1531,9 +1531,9 @@ $lang_index_php = array(
 
 $lang_album_admin_menu = array(
   'confirm_delete' => 'Are you sure you want to DELETE this album ? \\nAll files and comments will also be deleted.', // js-alert
-  'delete' => 'DELETE',
-  'modify' => 'PROPERTIES',
-  'edit_pics' => 'EDIT FILES',
+  'delete' => 'Delete',
+  'modify' => 'Properties',
+  'edit_pics' => 'Edit Files',
   'cat_locked' => 'This album has been locked for editing', // cpg 1.5.x
 );
 
