@@ -549,6 +549,11 @@ a:link .middlethumb,a:visited .middlethumb,a:focus .middlethumb,a:hover .middlet
     color: #FFFFFF;
 }
 
+.statlink a {
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
 .statlink a:hover {
     color: #FFFFFF;
     text-decoration: none;
