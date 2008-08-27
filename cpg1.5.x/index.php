@@ -141,7 +141,7 @@ EOT;
 
     if ($template == '') {
         $params = array(
-            '{EDIT_PICS}' => $lang_album_admin_menu['edit_pics'],
+            '{EDIT_PICS}' => cpg_fetch_icon('edit', 1) . $lang_album_admin_menu['edit_pics'],
             );
 
         $template = template_eval($template_album_moderator_menu, $params);
@@ -170,9 +170,9 @@ function html_albummenu($id)
 
     if ($template == '') {
         $params = array('{CONFIRM_DELETE}' => $lang_album_admin_menu['confirm_delete'],
-            '{DELETE}' => $lang_album_admin_menu['delete'],
-            '{MODIFY}' => $lang_album_admin_menu['modify'],
-            '{EDIT_PICS}' => $lang_album_admin_menu['edit_pics'],
+            '{DELETE}' => cpg_fetch_icon('delete', 1) . $lang_album_admin_menu['delete'],
+            '{MODIFY}' => cpg_fetch_icon('modifyalb', 1) . $lang_album_admin_menu['modify'],
+            '{EDIT_PICS}' => cpg_fetch_icon('edit', 1) . $lang_album_admin_menu['edit_pics'],
             );
 
         $template = template_eval($template_album_admin_menu, $params);
@@ -217,8 +217,8 @@ EOT;
 
     if ($template == '') {
         $params = array('{CONFIRM_DELETE}' => $lang_album_admin_menu['confirm_delete'],
-            '{DELETE}' => $lang_album_admin_menu['delete'],
-            '{MODIFY}' => $lang_album_admin_menu['modify'],
+            '{DELETE}' => cpg_fetch_icon('delete', 1) . $lang_album_admin_menu['delete'],
+            '{MODIFY}' => cpg_fetch_icon('modifyalb', 1) . $lang_album_admin_menu['modify'],
             );
 
         $template = template_eval($template_album_admin_no_pic_edit_menu, $params);

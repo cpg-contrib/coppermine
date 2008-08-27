@@ -579,7 +579,7 @@ function alb_list_box()
 	if(count($rowset)){
 		 // Create the nicely sorted and formatted drop down list
         $alb_cat = '';
-		$select = "<select name=\"album_listbox\" class=\"listbox\" onChange=\"if(this.options[this.selectedIndex].value) window.location.href='{$CPG_PHP_SELF}?album='+this.options[this.selectedIndex].value;\">\n";
+		$select = cpg_fetch_icon('move', 2) . "<select name=\"album_listbox\" class=\"listbox\" onChange=\"if(this.options[this.selectedIndex].value) window.location.href='{$CPG_PHP_SELF}?album='+this.options[this.selectedIndex].value;\">\n";
         foreach ($rowset as $val) {
             if ($val['cat'] != $alb_cat) {
           		if ($alb_cat) $select .= "</optgroup>\n";
@@ -638,15 +638,18 @@ echo <<< EOT
     <input type="hidden" name="event" value="album_update" />
     <input type="hidden" name="aid" value="{$CLEAN['album']}" />
 EOT;
-starttable("100%",$lang_modifyalb_php['update'].$help, 2);
+$edit_files_icon = cpg_fetch_icon('edit', 1);
+$category_icon = cpg_fetch_icon('category', 1);
+$thumbnail_icon = cpg_fetch_icon('thumbnails', 1);
+starttable("100%", cpg_fetch_icon('modifyalb', 1) . $lang_modifyalb_php['update'].$help, 2);
 echo <<<EOT
         <tr>
             <td class="tableh2" align="center">
-                <a href="editpics.php?album={$CLEAN['album']}" class="admin_menu">{$lang_modifyalb_php['edit_files']}</a>
+                <a href="editpics.php?album={$CLEAN['album']}" class="admin_menu">{$edit_files_icon}{$lang_modifyalb_php['edit_files']}</a>
                 &nbsp;&nbsp;-&nbsp;&nbsp;
-                <a href="index.php?cat={$ALBUM_DATA['category']}" class="admin_menu">{$lang_modifyalb_php['parent_category']}</a>
+                <a href="index.php?cat={$ALBUM_DATA['category']}" class="admin_menu">{$category_icon}{$lang_modifyalb_php['parent_category']}</a>
                 &nbsp;&nbsp;-&nbsp;&nbsp;
-                <a href="thumbnails.php?album={$CLEAN['album']}" class="admin_menu">{$lang_modifyalb_php['thumbnail_view']}</a>
+                <a href="thumbnails.php?album={$CLEAN['album']}" class="admin_menu">{$thumbnail_icon}{$lang_modifyalb_php['thumbnail_view']}</a>
             </td>
             <td class="tableh2" align="right">
             $album_lb
@@ -711,7 +714,7 @@ $translation_reset_views = sprintf($lang_modifyalb_php['reset_views'], '&quot;'.
 $translation_reset_rating = sprintf($lang_modifyalb_php['reset_rating'], '&quot;'.$ALBUM_DATA['title'].'&quot;');
 $translation_delete_comments = sprintf($lang_modifyalb_php['delete_comments'], '&quot;'.$ALBUM_DATA['title'].'&quot;');
 $translation_delete_files = sprintf($lang_modifyalb_php['delete_files'], '<span style="color:red;font-weight:bold">', '</span>', '&quot;'.$ALBUM_DATA['title'].'&quot;');
-    starttable('100%',$lang_modifyalb_php['reset_album'], 2);
+    starttable('100%', cpg_fetch_icon('modifyalb', 1) . $lang_modifyalb_php['reset_album'], 2);
     echo <<<EOT
     <tr>
             <td align="left" class="tableb">
