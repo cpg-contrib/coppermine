@@ -38,53 +38,148 @@
 */
 
 /* Foreground color definition */
-body { color : #C6B78E; }
-.topmenu, .topmenu a { color : #E6E6E6; }
-.topmenu a:hover { color : #FFFFCC; }
-.tableh1, .tableh1a, .tableh1_compact, .navmenu, .navmenu a, .sortorder_cell, .sortorder_options, .statlink, .statlink a, .statlink a:hover { color : #C6B78E; }
-.tableh2, .tableh2_compact, .catrow_noalb { color : #FFFFCC; }
-.textinput, .listbox, .radio, .checkbox { color: #FFFFCC; }
-.alblink, .alblink a, .catlink, .catlink a { color : #FFFFCC; }
-a,  .bblink a, .user_thumb_infobox a  { color: #FFFFCC; }
-a:hover, .bblink a:hover, .user_thumb_infobox a:hover, .alblink a:hover, .catlink a:hover { color : #E6E6E6; }
-.button, .comment_button, .admin_menu, .admin_menu a, .admin_menu a:hover { color : #FFFFFF; }
-.comment_date { color : #5F5F5F; }
-.footer, .footer a, .footer a:hover { color : #666666; }
+body {
+	color : #C6B78E;
+}
+
+.topmenu, .topmenu a {
+	color : #E6E6E6; 
+}
+
+.topmenu a:hover {
+	color : #FFFFCC;
+}
+
+.tableh1, .tableh1a, .tableh1_compact, .navmenu, .navmenu a, .sortorder_cell, .sortorder_options, .statlink, .statlink a, .statlink a:hover {
+	color : #C6B78E;
+}
+
+.tableh2, .tableh2_compact, .catrow_noalb {
+	color : #FFFFCC;
+}
+
+.textinput, .listbox, .radio, .checkbox {
+	color: #FFFFCC;
+}
+
+.alblink, .alblink a, .catlink, .catlink a {
+	color : #FFFFCC;
+}
+
+a,  .bblink a, .user_thumb_infobox a  {
+	color: #FFFFCC;
+}
+
+a:hover, .bblink a:hover, .user_thumb_infobox a:hover, .alblink a:hover, .catlink a:hover {
+	color : #E6E6E6;
+}
+
+.button, .comment_button, .admin_menu, .admin_menu a, .admin_menu a:hover {
+	color : #FFFFFF;
+}
+
+.comment_date {
+	color : #5F5F5F;
+}
+
+.footer, .footer a, .footer a:hover {
+	color : #666666;
+}
 
 /* Background colors definition */
-body { background-color: #4A4A4A; }
-.textinput, .listbox, .radio, .checkbox { background-color: #4A4A4A; }
-.tableh1, .tableh1_compact, .navmenu, .navmenu a, .navmenu a:hover  {         background : #3F3F3F ; }
-.tableh2, .catrow_noalb, .tableh2_compact, .tablef, .img_caption_table th {         background : #343333 ; }
-.tableb, .catrow, .display_media, .tableb_compact, .thumbnails, .img_caption_table td { background : #454444 ; }
+body {
+	background-color: #4A4A4A;
+}
 
-/* This class will be used in conjunction with class tableb: attributes not particularly (re)-assigned will be taken into account from tableb. */
+.textinput, .listbox, .radio, .checkbox {
+	background-color: #4A4A4A;
+}
+
+.tableh1, .tableh1_compact, .navmenu, .navmenu a, .navmenu a:hover  {
+	background : #3F3F3F;
+}
+
+.tableh2, .catrow_noalb, .tableh2_compact, .tablef, .img_caption_table th {
+	background : #343333;
+}
+
+.tableb, .catrow, .display_media, .tableb_compact, .thumbnails, .img_caption_table td {
+	background : #454444;
+}
+
+/* This class will be used in conjunction with class tableb: attributes not particularly */
+/* (re)-assigned will be taken into account from tableb. */
 /* It is being used to accomplish alternating row colors for lists. */
-/* It's recommended to only assign another background color that slightly differs from the one defined in tableb */
+/* It's recommended to only assign another background color that slightly differs from the */
+/* one defined in tableb */
 .tableb_alternate {
         background: #666666;
 }
 
 /* Borders for input controls */
-.textinput, .listbox, .button, .comment_button, .admin_menu  {        border: 1px solid #666666; }
-.image { border: 1px solid #000000; }
-a:link .image { border: 1px solid #000000; }
-a:visited .image { border: 1px solid #BDBEBD; }
-a:focus .image { border: 1px solid #000000; }
-a:hover .image { border: 1px solid #F7AE00; }
-a:active .image { border: 1px solid #000000; }
-a:link .middlethumb,a:visited .middlethumb,a:focus .middlethumb,a:hover .middlethumb,a:active .middlethumb{	border: 5px solid blue; }
-.imageborder { border: 1px solid #000000; background-color:#000000; margin-top: 30px; margin-bottom: 30px; }
-.image1 { border: 1px solid #ff0000; }
+.textinput, .listbox, .button, .comment_button, .admin_menu  {
+	border: 1px solid #666666;
+}
 
-.maintable, .maintablea, .maintableb {        background-color: #222222; }
-.img_caption_table th, .img_caption_table td { border-top : 1px solid #000000; }
+.image {
+	border: 1px solid #000000;
+}
+
+a:link .image {
+	border: 1px solid #000000;
+}
+
+a:visited .image {
+	border: 1px solid #BDBEBD;
+}
+
+a:focus .image {
+	border: 1px solid #000000;
+}
+
+a:hover .image {
+	border: 1px solid #F7AE00;
+}
+
+a:active .image {
+	border: 1px solid #000000;
+}
+
+a:link .middlethumb,a:visited .middlethumb,a:focus .middlethumb,a:hover .middlethumb,a:active .middlethumb{
+	border: 5px solid blue;
+}
+
+.imageborder {
+	border: 1px solid #000000; background-color:#000000; margin-top: 3px; margin-bottom: 3px;
+}
+
+.image1 {
+	border: 1px solid #ff0000;
+}
+
+.maintable, .maintablea, .maintableb {
+	background-color: #222222;
+}
+.img_caption_table th, .img_caption_table td {
+	border-top : 1px solid #000000;
+}
 
 /* Fonts definition */
-body { font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif; }
-.tableh1, .tableh1a, .catlink, .tableh2, .catrow_noalb { font-family: Verdana, Geneva, Arial, sans-serif; font-weight:bold;}
-.textinput, .listbox, .radio, .checkbox { font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif; }
-.button, .comment_button, .sortorder_options { font-family: Arial, Helvetica, sans-serif; }
+body {
+	font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif;
+}
+
+.tableh1, .tableh1a, .catlink, .tableh2, .catrow_noalb {
+	font-family: Verdana, Geneva, Arial, sans-serif; font-weight:bold;
+}
+
+.textinput, .listbox, .radio, .checkbox {
+	font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif;
+}
+
+.button, .comment_button, .sortorder_options {
+	font-family: Arial, Helvetica, sans-serif;
+}
 
 table {
     font-size : 12px;
@@ -154,71 +249,67 @@ form {
 }
 
 .top_panel {
-            background-image: url(images/top_panel_r1_c4.jpg);
-            background-repeat : repeat-x;
-            border-collapse:collapse;
-            margin: 0;
-            padding: 0;
+	background-image: url(images/top_panel_r1_c4.jpg);
+	background-repeat : repeat-x;
+	border-collapse:collapse;
+	margin: 0;
+	padding: 0;
 }
 
 .top_panel_left {
-            background-image: url(images/top_panel_r1_c1.jpg);
-            background-repeat : no-repeat;
-            background-position: top left;
-            margin: 0;
-            padding: 0;
+	background-image: url(images/top_panel_r1_c1.jpg);
+	background-repeat : no-repeat;
+	background-position: top left;
+	margin: 0;
+	padding: 0;
 }
 
 .top_panel_right {
-            background-image: url(images/top_panel_r1_c2.jpg);
-            background-repeat : no-repeat;
-            background-position: top right;
-            margin: 0;
-            padding: 0;
+	background-image: url(images/top_panel_r1_c2.jpg);
+	background-repeat : no-repeat;
+	background-position: top right;
+	margin: 0;
+	padding: 0;
 }
 
 
 
 .top_panel_btm {
-
-                background: #4A4A4A;
-                background-image: url(images/top_panel_r2_c3.jpg);
-                background-repeat : no-repeat;
-                background-position:right;
-                padding-top : 0;
-        padding-bottom : 0;
-
+	background: #4A4A4A;
+	background-image: url(images/top_panel_r2_c3.jpg);
+	background-repeat : no-repeat;
+	background-position:right;
+	padding-top : 0;
+	padding-bottom : 0;
 }
 
 .top_menu_left_bttn {
     white-space:nowrap;
 }
 .top_menu_left_bttn a {
-           background: #4A4A4A;
-    background-image : url(images/left_menu_button.gif);
-    background-repeat : no-repeat;
-    background-position : left;
-    padding-left : 12px;
-    padding-right : 6px;
-               padding-top :3px;
-    padding-bottom : 0;
-    display: block;
-    height : 35px;
-    line-height : 35px;
-    text-decoration: none;
-    color: #C6B78E;
-    font-size: 14px;
-
+	background: #4A4A4A;
+	background-image : url(images/left_menu_button.gif);
+	background-repeat : no-repeat;
+	background-position : left;
+	padding-left : 12px;
+	padding-right : 6px;
+	padding-top :3px;
+	padding-bottom : 0;
+	display: block;
+	height : 35px;
+	line-height : 35px;
+	text-decoration: none;
+	color: #C6B78E;
+	font-size: 14px;
 }
 
 .top_menu_left_bttn a:hover {
-    background: #4A4A4A;
-    background-image : url(images/left_menu_button_over.gif);
-    background-position : left;
-    background-repeat : no-repeat;
-    text-decoration: none;
-    color: #F0AF00;
-
+	background: #4A4A4A;
+	background-image : url(images/left_menu_button_over.gif);
+	background-position : left;
+	background-repeat : no-repeat;
+	text-decoration: none;
+	color: #F0AF00;
 }
 
 .top_menu_right_bttn {
@@ -226,55 +317,55 @@ form {
 }
 
 .top_menu_right_bttn a {
-            background: #4A4A4A;
-    background-image : url(images/right_menu_button.gif);
-    background-repeat : no-repeat;
-    background-position : right;
-    padding-right : 22px;
-    padding-left : 6px;
-        padding-top : 3px;
-    padding-bottom : 0;
-    display: block;
-    height : 35px;
-    line-height : 35px;
-    text-decoration: none;
-    color: #C6B78E;
-    font-size: 14px;
+	background: #4A4A4A;
+	background-image : url(images/right_menu_button.gif);
+	background-repeat : no-repeat;
+	background-position : right;
+	padding-right : 22px;
+	padding-left : 6px;
+	padding-top : 3px;
+	padding-bottom : 0;
+	display: block;
+	height : 35px;
+	line-height : 35px;
+	text-decoration: none;
+	color: #C6B78E;
+	font-size: 14px;
 }
 
 .top_menu_right_bttn a:hover {
-            background: #4A4A4A;
-    background-image : url(images/right_menu_button_over.gif);
-    background-position : right;
-    background-repeat : no-repeat;
-    text-decoration: none;
-    color: #F0AF00;
+	background: #4A4A4A;
+	background-image : url(images/right_menu_button_over.gif);
+	background-position : right;
+	background-repeat : no-repeat;
+	text-decoration: none;
+	color: #F0AF00;
 }
 
 .top_menu_bttn {
-  white-space:nowrap;
+ 	white-space:nowrap;
 }
 .top_menu_bttn a {
-            background: #4A4A4A;
-    background-image : url(images/menu_button.gif);
-    background-position : left;
-    padding-left : 6px;
-    padding-right : 6px;
-            padding-top : 3px;
-    padding-bottom : 0;
-    display: block;
-    height : 35px;
-    line-height : 35px;
-    text-decoration: none;
-    color: #C6B78E;
-    font-size: 14px;
+	background: #4A4A4A;
+	background-image : url(images/menu_button.gif);
+	background-position : left;
+	padding-left : 6px;
+	padding-right : 6px;
+	padding-top : 3px;
+	padding-bottom : 0;
+	display: block;
+	height : 35px;
+	line-height : 35px;
+	text-decoration: none;
+	color: #C6B78E;
+	font-size: 14px;
 }
 
 .top_menu_bttn a:hover {
-            background: #4A4A4A;
-    background-image : url(images/menu_button_over.gif);
-    text-decoration: none;
-    color:         #F0AF00;
+	background: #4A4A4A;
+	background-image : url(images/menu_button_over.gif);
+	text-decoration: none;
+	color:#F0AF00;
 }
 
 .textinput {
@@ -329,9 +420,9 @@ a:hover {
 }
 
 .maintable {
-    margin-top: 2px;
-    margin-bottom: 2px;
-/*        border: 1px solid #000000; */
+	margin-top: 2px;
+	margin-bottom: 2px;
+	/* border: 1px solid #000000; */
 }
 
 .maintablea {
@@ -339,8 +430,8 @@ a:hover {
 }
 
 .maintableb {
-    margin-bottom: 2px;
-/*        border: 1px solid #000000; */
+	margin-bottom: 2px;
+	/* border: 1px solid #000000; */
 }
 
 .tableh1 {
@@ -457,7 +548,6 @@ a:hover {
 .thumb_caption a {
     text-decoration: underline;
 }
-
 
 .thumb_num_comments {
     font-weight: normal;
@@ -774,15 +864,44 @@ a:hover {
     height:20px;
     margin: 3px 20px;
 }
-#vanity img {border:0}
-#v_php {float:left;background-image:url(../../images/powered-php.gif);}
-#v_php:hover {background-image:url(../../images/h_powered-php.gif);}
-#v_mysql {float:left;background-image:url(../../images/powered-mysql.gif);}
-#v_mysql:hover  {background-image:url(../../images/h_powered-mysql.gif);}
-#v_xhtml {float:right;background-image:url(../../images/valid-xhtml10.gif);}
-#v_xhtml:hover {background-image:url(../../images/h_valid-xhtml10.gif);}
-#v_css {float:right;background-image:url(../../images/valid-css.gif);}
-#v_css:hover{background-image:url(../../images/h_valid-css.gif);}
+#vanity img {
+	border:0;
+}
+
+#v_php {
+	float:left;
+	background-image:url(../../images/powered-php.gif);
+}
+
+#v_php:hover {
+	background-image:url(../../images/h_powered-php.gif);
+}
+
+#v_mysql {
+	float:left;background-image:url(../../images/powered-mysql.gif);
+}
+
+#v_mysql:hover {
+	background-image:url(../../images/h_powered-mysql.gif);
+}
+
+#v_xhtml {
+	float:right;
+	background-image:url(../../images/valid-xhtml10.gif);
+}
+
+#v_xhtml:hover {
+	background-image:url(../../images/h_valid-xhtml10.gif);
+}
+
+#v_css {
+	float:right;
+	background-image:url(../../images/valid-css.gif);
+}
+
+#v_css:hover{
+	background-image:url(../../images/h_valid-css.gif);
+}
 
 .important {
     background-image : url(images/important.gif);

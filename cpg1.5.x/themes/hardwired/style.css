@@ -511,8 +511,8 @@ a:link .middlethumb,a:visited .middlethumb,a:focus .middlethumb,a:hover .middlet
 .imageborder {
     border: 1px solid #000000;
     background-color: #5B5B5B;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin-top: 3px;
+    margin-bottom: 3px;
 }
 
 .display_media {

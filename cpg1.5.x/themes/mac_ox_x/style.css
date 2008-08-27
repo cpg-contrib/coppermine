@@ -32,65 +32,130 @@
 /* and replace on the hex color...             */
 
 /* Foreground color definition */
-body { color : #000000; }
+body { 
+	color : #000000;
+}
 
-.topmenu, .topmenu a { color : #000000; }
+.topmenu, .topmenu a { 
+	color : #000000; 
+}
 
-.topmenu a:hover { color : #666666; }
+.topmenu a:hover { 
+	color : #666666; 
+}
 
-.tableh1, .tableh1a, .tableh1_compact, .navmenu, .navmenu a, .sortorder_cell, .sortorder_options, .statlink, .statlink a, .statlink a:hover { color : #000000; }
+.tableh1, .tableh1a, .tableh1_compact, .navmenu, .navmenu a, .sortorder_cell, .sortorder_options, .statlink, .statlink a, .statlink a:hover { 
+	color : #000000; 
+}
 
-.tableh2, .tableh2_compact, .catrow_noalb { color : #000000; }
+.tableh2, .tableh2_compact, .catrow_noalb { 
+	color : #000000; 
+}
 
-.textinput, .listbox, .radio, .checkbox { color: #000000; }
+.textinput, .listbox, .radio, .checkbox { 
+	color: #000000; 
+}
 
-.alblink, .alblink a, .catlink, .catlink a { color : #000000; }
+.alblink, .alblink a, .catlink, .catlink a { 
+	color : #000000; 
+}
 
-a,  .bblink a, .user_thumb_infobox a  { color: #000000; }
+a,  .bblink a, .user_thumb_infobox a  { 
+	color: #000000; 
+}
 
-a:hover, .bblink a:hover, .user_thumb_infobox a:hover, .alblink a:hover, .catlink a:hover { color : #666666; }
+a:hover, .bblink a:hover, .user_thumb_infobox a:hover, .alblink a:hover, .catlink a:hover { 
+	color : #666666; 
+}
 
-.button, .comment_button, .admin_menu, .admin_menu a, .admin_menu a:hover { color : #000000; }
+.button, .comment_button, .admin_menu, .admin_menu a, .admin_menu a:hover { 
+	color : #000000; 
+}
 
-.comment_date { color : #999999; }
+.comment_date { 
+	color : #999999; 
+}
 
-.footer, .footer a, .footer a:hover { color : #999999; }
+.footer, .footer a, .footer a:hover { 
+	color : #999999; 
+}
 
 
 /* Background colors definition */
-body { background-color: #FAFAFA; }
+body { 
+	background-color: #FAFAFA; 
+}
 
-.textinput, .listbox, .radio, .checkbox { background-color: #FFFFFF; }
+.textinput, .listbox, .radio, .checkbox { 
+	background-color: #FFFFFF; 
+}
 
-.tableh1, .tableh1_compact, .navmenu, .navmenu a, .navmenu a:hover  {         background : #FFFFFF ; }
+.tableh1, .tableh1_compact, .navmenu, .navmenu a, .navmenu a:hover  {
+	background : #FFFFFF ; 
+}
 
-.tableh2, .catrow_noalb, .tableh2_compact, .tablef, .img_caption_table th {         background : #FFFFFF ; }
+.tableh2, .catrow_noalb, .tableh2_compact, .tablef, .img_caption_table th {         
+	background : #FFFFFF ; 
+}
 
-.tableb, .catrow, .display_media, .tableb_compact, .thumbnails, .img_caption_table td { background : #FFFFFF ; }
+.tableb, .catrow, .display_media, .tableb_compact, .thumbnails, .img_caption_table td { 
+	background : #FFFFFF ; 
+}
 
 /* This class will be used in conjunction with class tableb: attributes not particularly (re)-assigned will be taken into account from tableb. */
 /* It is being used to accomplish alternating row colors for lists. */
 /* It's recommended to only assign another background color that slightly differs from the one defined in tableb */
 .tableb_alternate {
-        background: #DEDFDE;
+	background: #DEDFDE;
 }
 
 /* Borders for input controls */
-.textinput, .listbox, .button, .comment_button, .admin_menu  {        border: 1px solid #666666; }
+.textinput, .listbox, .button, .comment_button, .admin_menu  {        
+	border: 1px solid #666666; 
+}
 
-.image { border: 1px solid #000000; }
-a:link .image { border: 1px solid #000000; }
-a:visited .image { border: 1px solid #7F7F7F; }
-a:focus .image { border: 1px solid #000000; }
-a:hover .image { border: 1px solid #666666; }
-a:active .image { border: 1px solid #000000; }
-a:link .middlethumb,a:visited .middlethumb,a:focus .middlethumb,a:hover .middlethumb,a:active .middlethumb{	border: 5px solid blue; }
+.image { 
+	border: 1px solid #000000; 
+}
 
-.imageborder { border: 1px solid #000000; background-color: #FFFFFF; margin-top: 30px; margin-bottom: 30px; }
+a:link .image { 
+	border: 1px solid #000000; 
+}
 
-.maintable, .maintableb { background-color: #7F7F7F; }
+a:visited .image { 
+	border: 1px solid #7F7F7F; 
+}
 
-.img_caption_table th, .img_caption_table td { border-top : 1px solid #7F7F7F; }
+a:focus .image { 
+	border: 1px solid #000000; 
+}
+
+a:hover .image { 
+	border: 1px solid #666666; 
+}
+
+a:active .image { 
+	border: 1px solid #000000; 
+}
+
+a:link .middlethumb,a:visited .middlethumb,a:focus .middlethumb,a:hover .middlethumb,a:active .middlethumb{
+	border: 5px solid blue; 
+}
+
+.imageborder { 
+	border: 1px solid #000000; 
+	background-color: #FFFFFF; 
+	margin-top: 3px; 
+	margin-bottom: 3px; 
+}
+
+.maintable, .maintableb { 
+	background-color: #7F7F7F; 
+}
+
+.img_caption_table th, .img_caption_table td { 
+	border-top : 1px solid #7F7F7F; 
+}
 
 
 /* Fonts definition */
@@ -98,19 +163,14 @@ body {
 	font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif; 
 }
 
-
-
-
 table {
     font-size : 12px;
 }
-
 
 body {
     font-size : 12px;
     margin: 0px;
 }
-
 
 h1{
     font-weight: normal;
@@ -120,12 +180,10 @@ h1{
     margin: 0px;
 }
 
-
 h2 {
     font-size: 18px;
     margin: 0px;
 }
-
 
 h3 {
     font-weight: normal;
@@ -134,18 +192,15 @@ h3 {
     margin: 0px;
 }
 
-
 p {
     font-size: 100%;
     margin: 2px 0px;
 }
 
-
 ul {
     margin-left: 5px;
     padding: 0px;
 }
-
 
 li {
     margin-left: 10px;
@@ -178,8 +233,6 @@ form {
     background-position:right;
 }
 
-
-
 .top_menu_bttn a {
     text-decoration: none;
     position: relative;
@@ -189,13 +242,11 @@ form {
     font-size: 14px;
 }
 
-
 .top_menu_bttn a:hover {
     text-decoration: underline;
     margin-top: 4px;
     color: #000000;
 }
-
 
 .textinput {
     font-size: 100%;
@@ -203,19 +254,16 @@ form {
     padding-left: 3px;
 }
 
-
 .listbox {
     font-size: 100%;
     vertical-align : middle;
 }
-
 
 .button {
     font-size: 100%;
     background-image : url(images/button_bg.gif);
     background-position : bottom;
 }
-
 
 .comment_button {
     font-size: 100%;
@@ -225,51 +273,41 @@ form {
     padding-right: 3px;
 }
 
-
 .radio {
     font-size: 100%;
     vertical-align : middle;
 }
-
 
 .checkbox {
     font-size: 100%;
     vertical-align : middle;
 }
 
-
 a {
     text-decoration: none;
 }
-
 
 a:hover {
     text-decoration: underline;
 }
 
-
 .bblink a {
     text-decoration: none;
 }
-
 
 .bblink a:hover {
     text-decoration: underline;
 }
 
-
 .maintable {
 }
-
 
 .maintablea {
     margin-top: 5px;
 }
 
-
 .maintableb {
 }
-
 
 .tableh1 {
     padding-right: 10px;
@@ -279,7 +317,6 @@ a:hover {
     font-weight:bold;
 }
 
-
 .tableh1a td {
     border: none;
     height: 30px;
@@ -287,11 +324,9 @@ a:hover {
     font-weight: bold;
 }
 
-
 .tableh1a img {
     display: block;
 }
-
 
 .tableh1_compact {
     padding-top: 2px;
@@ -303,7 +338,6 @@ a:hover {
     font-weight:bold;
 }
 
-
 .tableh2 {
     padding-top: 3px;
     padding-right: 10px;
@@ -311,7 +345,6 @@ a:hover {
     padding-left: 10px;
     background-image: url(images/tableh2_bg.gif);
 }
-
 
 .tableh2_compact {
     padding-top: 2px;
@@ -321,7 +354,6 @@ a:hover {
     background-image: url(images/tableh2_bg.gif);
     font-weight:bold;
 }
-
 
 .tableb {
     padding-top: 3px;
@@ -336,7 +368,6 @@ a:hover {
     padding-bottom: 2px;
     padding-left: 5px;
 }
-
 
 .tablef {
     padding-top: 10px;
@@ -377,19 +408,15 @@ a:hover {
     display : block;
 }
 
-
 .thumb_caption {
     font-size: 80%;
     padding: 1px;
     display : block;
 }
 
-
 .thumb_caption a {
     text-decoration: underline;
 }
-
-
 
 .thumb_num_comments {
     font-weight: normal;
@@ -399,12 +426,10 @@ a:hover {
     display : block;
 }
 
-
 .user_thumb_infobox {
     margin-top: 1px;
     margin-bottom: 1px;
 }
-
 
 .user_thumb_infobox th {
     font-weight : bold;
@@ -414,14 +439,12 @@ a:hover {
     text-align : center;
 }
 
-
 .user_thumb_infobox td {
     font-size: 85%;
     margin-top: 1px;
     margin-bottom: 1px;
     text-align : center;
 }
-
 
 .user_thumb_infobox a {
     text-decoration: none;
@@ -432,7 +455,6 @@ a:hover {
     text-decoration: underline;
 }
 
-
 .sortorder_options {
     padding: 0px;
     margin: 0px;
@@ -441,18 +463,15 @@ a:hover {
     white-space: nowrap;
 }
 
-
 .navmenu {
     font-weight: bold;
     border: none;
     background-image: url(images/tableh1_bg.gif);
 }
 
-
 .navmenu img {
     display: block;
 }
-
 
 .navmenu a {
     display: block;
@@ -463,7 +482,6 @@ a:hover {
     line-height: 25px;
     height : 25px;
 }
-
 
 .navmenu a:hover {
     text-decoration: none;
@@ -491,7 +509,6 @@ a:hover {
     padding-left: 2px;
     padding-right: 2px;
 }
-
 
 .admin_menu a:hover {
     text-decoration: underline;
@@ -528,7 +545,6 @@ a:hover {
     vertical-align : middle;
 }
 
-
 .image {
     margin: 2px;
 }
@@ -544,26 +560,21 @@ a:hover {
     padding: 5px;
 }
 
-
 .footer {
     font-size : 9px;
 }
-
 
 .footer a {
     text-decoration: none;
 }
 
-
 .footer a:hover {
     text-decoration: underline;
 }
 
-
 .statlink a {
     text-decoration: none;
 }
-
 
 .statlink a:hover {
     text-decoration: underline;
@@ -577,11 +588,9 @@ a:hover {
     text-decoration: underline;
 }
 
-
 .alblink a:hover {
     text-decoration: underline;
 }
-
 
 .catlink {
     display: block;
@@ -589,39 +598,32 @@ a:hover {
     font-weight:bold;
 }
 
-
 .catlink a {
     text-decoration: underline;
 }
 
-
 .catlink a:hover {
     text-decoration: underline;
 }
-
 
 .topmenu {
     line-height : 130%;
     font-size : 110%;
 }
 
-
 .topmenu a {
     text-decoration : underline;
 }
 
-
 .topmenu a:hover  {
     text-decoration : underline;
 }
-
 
 .img_caption_table {
     border: none;
     width : 100%;
     margin : 0px;
 }
-
 
 .img_caption_table th {
     font-size : 100%;
@@ -630,7 +632,6 @@ a:hover {
     padding-bottom: 4px;
     padding-left: 10px;
 }
-
 
 .img_caption_table td {
     padding-top: 6px;

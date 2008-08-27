@@ -138,6 +138,7 @@ $osArray = array(
                       'HP UX' => 'hpux.png',
                       'IBM' => 'ibm.png',
                       'iMode' => 'imode.png',
+                      'iPhone' => 'iphone.png',
                       'Irix' => 'irix.png',
                       'Java' => 'java.png',
                       'kFreeBSD' => 'kfreebsd.png',
