@@ -427,6 +427,7 @@ d.add(1000,700,'Verwendeter Open Source Code','credits.htm#codebase');
 //d.add(3800,3200,'Consider bridging','start.htm#getting_consider_bridging');
 //d.add(3900,3200,'What are your visitors allowed to do?','start.htm#getting_interaction');
 //d.add(4000,3200,'Change your coppermine\'s design','start.htm#getting_design');
+//d.add(4050,3200,'Typical setups','start.htm#getting_typical');
 //d.add(4100,0,'Frequently Asked Questions','faq.htm');
 //d.add(4200,0,'Themes','theme.htm');
 //d.add(4250,4200,'Themes that come with Coppermine','theme.htm#theme_builtin');
