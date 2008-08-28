@@ -715,7 +715,7 @@ $config_data = array(
     ),
     'thumb_height' => array(
       'type' => 'textfield',
-      'default_value' => '100',
+      'default_value' => '128',
       'help_link' => '',
       'regex' => '^[0-9]{1,5}$',
       'size' => '5',
