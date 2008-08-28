@@ -118,7 +118,7 @@ INSERT INTO CPG_config VALUES ('contact_form_subject_field', '0');
 INSERT INTO CPG_config VALUES ('contact_form_sender_email', '1');
 INSERT INTO CPG_config VALUES ('thumb_width', '128');
 INSERT INTO CPG_config VALUES ('thumb_use', 'any');
-INSERT INTO CPG_config VALUES ('thumb_height', '140');
+INSERT INTO CPG_config VALUES ('thumb_height', '128');
 INSERT INTO CPG_config VALUES ('thumb_pfx', 'thumb_');
 INSERT INTO CPG_config VALUES ('enable_unsharp', '0');
 INSERT INTO CPG_config VALUES ('unsharp_amount', '120');
