@@ -99,6 +99,20 @@
     <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">$matches = CPGPluginAPI::filter('plugin_block', $matches);</pre></td>
   </tr>
   <tr>
+    <td valign="top" class="tableb">delete.php</td>
+    <td valign="top" class="tableb"><a name="plugin_hooks_filename_before_delete_file"></a><strong>before_delete_file</strong><a href="#plugin_hooks_filename_before_delete_file" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">Filter</td>
+    <td valign="top" class="tableb">Plugin filter to be called before deleting a file</td>
+    <td valign="top" class="tableb"><pre class="smallcode">CPGPluginAPI::filter('before_delete_file', $pic);</pre></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">delete.php</td>
+    <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_filename_after_delete_file"></a><strong>after_delete_file</strong><a href="#plugin_hooks_filename_after_delete_file" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">Filter</td>
+    <td valign="top" class="tableb tableb_alternate">Plugin filter to be called after a file is deleted</td>
+    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">CPGPluginAPI::filter('after_delete_file', $pic);</pre></td>
+  </tr>
+  <tr>
     <td valign="top" class="tableb">displayimage.php</td>
     <td valign="top" class="tableb"><a name="plugin_hooks_filename_file_info"></a><strong>file_info</strong><a href="#plugin_hooks_filename_file_info" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">Filter</td>
@@ -111,6 +125,20 @@
     <td valign="top" class="tableb tableb_alternate">Filter</td>
     <td valign="top" class="tableb tableb_alternate">only on thumbnails.php and displayimage.php</td>
     <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">CPGPluginAPI::filter('post_breadcrumb',null);</pre></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb">editpics.php</td>
+    <td valign="top" class="tableb"><a name="plugin_hooks_editpics_before_delete_file"></a><strong>before_delete_file</strong><a href="#plugin_hooks_editpics_before_delete_file" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">Filter</td>
+    <td valign="top" class="tableb">Plugin filter to be called before deleting a file</td>
+    <td valign="top" class="tableb"><pre class="smallcode">CPGPluginAPI::filter('before_delete_file', $pic);</pre></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">editpics.php</td>
+    <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_editpics_after_delete_file"></a><strong>after_delete_file</strong><a href="#plugin_hooks_editpics_after_delete_file" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">Filter</td>
+    <td valign="top" class="tableb tableb_alternate">Plugin filter to be called after a file is deleted</td>
+    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">CPGPluginAPI::filter('after_delete_file', $pic);</pre></td>
   </tr>
   <tr>
     <td valign="top" class="tableb">thumbnails.php</td>
