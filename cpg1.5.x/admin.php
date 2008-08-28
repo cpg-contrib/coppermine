@@ -123,7 +123,7 @@ if ($superCage->post->keyExists('restore_config')) { // user has chosen to facto
   foreach ($doNotReset_array as $key) {
     $f= cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '{$CONFIG[$key]}' WHERE name = '$key'");
   }
-  cpgRedirectPage($CPG_PHP_SELF, $lang_common['information'], $lang_admin_php['restore_success']);
+  cpgRedirectPage($CPG_PHP_SELF, cpg_fetch_icon('warning', 2) . $lang_common['information'], $lang_admin_php['restore_success']);
 }  // user has chosen to factory-reset the config --- end
 
 
@@ -250,7 +250,7 @@ die;
 */
 
 if ($userMessage != '') {
-  starttable('100%', $lang_common['information'], 1);
+  starttable('100%', cpg_fetch_icon('info', 2) . $lang_common['information'], 1);
   print <<< EOT
     <tr>
         <td class="tableb">
