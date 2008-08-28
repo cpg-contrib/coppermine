@@ -921,12 +921,9 @@ $config_data = array(
       'help_link' => 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_im_commandline&amp;ae=admin_picture_thumb_advanced_im_commandline_end',
     ),
     'read_exif_data' => array(
-      'type' => 'radio',
+      'type' => 'checkbox',
       'default_value' => '0',
       'help_link' => 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_exif&amp;ae=admin_picture_thumb_advanced_exif_end',
-      'options' => array($lang_common['no'],
-                         $lang_common['yes']
-                         ),
       'end_description' => '&nbsp;&nbsp;(<a href="exifmgr.php">'.$lang_admin_php['manage_exif'].'</a>)',
     ),
     'read_iptc_data' => array(
