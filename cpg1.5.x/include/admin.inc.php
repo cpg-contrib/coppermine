@@ -111,21 +111,15 @@ $config_data = array(
       'additional_description' => ' (' . $lang_admin_php['enable_help_description'] .')',
     ),
     'clickable_keyword_search' => array(
-      'type' => 'radio',
+      'type' => 'checkbox',
       'default_value' => '1',
       'help_link' => 'f=configuration.htm&amp;as=admin_general_keywords_start&amp;ae=admin_general_keywords_end',
-      'options' => array($lang_common['no'],
-                         $lang_common['yes']
-                         ),
       'end_description' => '&nbsp;&nbsp;(<a href="keywordmgr.php">'.$lang_admin_php['manage_keyword'].'</a>)',
     ),
     'enable_plugins' => array(
-      'type' => 'radio',
+      'type' => 'checkbox',
       'default_value' => '1',
       'help_link' => 'f=configuration.htm&amp;as=admin_general_enable-plugins&amp;ae=admin_general_enable-plugins_end',
-      'options' => array($lang_common['no'],
-                         $lang_common['yes']
-                         ),
       'end_description' => '&nbsp;&nbsp;(<a href="pluginmgr.php">'.$lang_admin_php['manage_plugins'].'</a>)',
     ),
     'ban_private_ip' => array(
