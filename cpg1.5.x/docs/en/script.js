@@ -379,7 +379,7 @@ if (!Array.prototype.pop) {
 
 d = new dTree('d');
 
-d.add(0,-1,'Coppermine documentation');
+d.add(0,-1,'Coppermine documentation', '../index.htm');
 d.add(100,0,'About Coppermine','index.htm');
 d.add(110,100,'About the documentation','index.htm#about_documentation');
 d.add(120,100,'Features','index.htm#features');
