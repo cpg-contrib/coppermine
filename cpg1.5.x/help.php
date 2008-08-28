@@ -149,10 +149,10 @@ if ($anchor_end != '') {
 }
 
 // Fix path for some tags
-$string = str_replace('<img src="pics/', '<img src="docs/pics/', $string);
+$string = str_replace('<img src="pics/', '<img src="docs/'.$help_lang.'/images/', $string);
 $string = str_replace('<a href="http://', '<a externalLinkTempReplacement', $string); // get external links out of the way
 $string = str_replace('<a href="#', '<a internalAnchorLinkTempReplacement', $string); // get links to anchors on this page out of the way
-$string = str_replace('<a href="', '<a href="docs/', $string);
+$string = str_replace('<a href="', '<a href="docs/'.$help_lang.'/', $string);
 $string = str_replace('<a externalLinkTempReplacement', '<a href="http://', $string); // restore external links
 $string = str_replace('<a internalAnchorLinkTempReplacement', '<a href="#', $string); // restore links to anchors on this page
 
