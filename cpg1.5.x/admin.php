@@ -488,6 +488,8 @@ EOT;
   $sectionLoopCounter++;
 } // foreach-loop through the config sections
 
+$submit_icon = cpg_fetch_icon('ok', 1);
+$factory_icon = cpg_fetch_icon('delete', 1);
 print <<<EOT
           <tr>
             <td align="left" class="tablef" colspan="2">
@@ -498,9 +500,12 @@ print <<<EOT
                             <span id="collapse_all_bottom" style="display:none"><a href="javascript:;" class="admin_menu" onclick="hideall();show_section('expand_all_top');show_section('collapse_all_top');show_section('expand_all_bottom');show_section('collapse_all_bottom');toggleExpandCollpaseButtons('collapse')">{$lang_admin_php['collapse_all']}&nbsp;&nbsp;<img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['collapse_all']}" /></a></span>
                         </td>
                         <td width="67%" align="center">
-                            <input type="submit" class="button" name="update_config" value="{$lang_admin_php['save_cfg']}" />
+                            <!--<input type="submit" class="button" name="update_config" value="{$lang_admin_php['save_cfg']}" />-->
+                            <button type="submit" class="button" name="update_config" value="{$lang_admin_php['save_cfg']}">{$submit_icon}{$lang_admin_php['save_cfg']}</button>
+
                     &nbsp;&nbsp;
-                                                                    <input type="submit" onclick="return confirm('{$lang_admin_php['restore_cfg_confirm']}');" class="button" name="restore_config" value="{$lang_admin_php['restore_cfg']}" />
+                                                                    <!--<input type="submit" onclick="return confirm('{$lang_admin_php['restore_cfg_confirm']}');" class="button" name="restore_config" value="{$lang_admin_php['restore_cfg']}" />-->
+                                                                    <button type="submit" onclick="return confirm('{$lang_admin_php['restore_cfg_confirm']}');" class="button" name="restore_config" value="{$lang_admin_php['restore_cfg']}">{$factory_icon}{$lang_admin_php['restore_cfg']}</button>
                         </td>
                     </tr>
                 </table>
