@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-08-28 [O] Upgraded Exifixer-library from v1.5 to v1.7 (development continued by ZenPhoto) {GauGau}
 2008-08-20 [A] Added new plugin hooks - add_file_data_success, before_delete_file and after_delete_file {Abbas}
 2008-08-12 [B] Moved $THEME_DIR before include theme.php and themes.inc.php {Paver}
 2008-08-12 [B] Added workaround for video files shown on batch-add page (searchnew.php) {Paver}
