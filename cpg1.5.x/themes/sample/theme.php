@@ -467,27 +467,27 @@ EOT;
 $template_film_strip = <<<EOT
 
         <tr>
-         <td valign="top" style="background-image: url({TILE1});"><img src="{TILE1}" alt="" border="0" /></td>
+         <td valign="top" class="filmstrip_background" style="background-image: url({TILE1});"><img src="{TILE1}" alt="" border="0" /></td>
         </tr>
         <tr>
-        <td valign="bottom" class="thumbnails" align="center" style="{THUMB_TD_STYLE}">
-          <table width="100%" cellspacing="0" cellpadding="3" border="0">
-              <tr>
-                 <td width="50%"><span id="filmstrip_prev_link" style="display: none;">{PREV_LINK}</span></td>
-                 {THUMB_STRIP}
-                 <td width="50%" align="right"><span id="filmstrip_next_link" style="display: none;">{NEXT_LINK}</a></span></td>
-              </tr>
-          </table>
-        </td>
+          <td valign="bottom" class="thumbnails filmstrip_background" align="center" style="{THUMB_TD_STYLE}">
+            <table width="100%" cellspacing="0" cellpadding="3" border="0">
+                <tr>
+                   <td width="50%"><span id="filmstrip_prev_link" style="display: none;">{PREV_LINK}</span></td>
+                   {THUMB_STRIP}
+                   <td width="50%" align="right"><span id="filmstrip_next_link" style="display: none;">{NEXT_LINK}</a></span></td>
+                </tr>
+            </table>
+          </td>
         </tr>
         <tr>
-         <td valign="top" style="background-image: url({TILE2});"><img src="{TILE2}" alt="" border="0" /></td>
+         <td valign="top" class="filmstrip_background" style="background-image: url({TILE2});"><img src="{TILE2}" alt="" border="0" /></td>
         </tr>
 <!-- BEGIN thumb_cell -->
-                <td valign="top" align="center">
-                                        <a href="{LINK_TGT}">{THUMB}</a>
-                                        {CAPTION}
-                                        {ADMIN_MENU}
+                <td valign="top" align="center" style="vertical-align:middle;">
+                    <a href="{LINK_TGT}">{THUMB}</a>
+                    {CAPTION}
+                    {ADMIN_MENU}
                 </td>
 <!-- END thumb_cell -->
 <!-- BEGIN empty_cell -->
@@ -786,9 +786,7 @@ EOT;
 $template_img_navbar = <<<EOT
 
         <tr>
-                <td align="center" valign="middle" class="navmenu" width="48">
-                        <a href="{THUMB_TGT}" class="navmenu_pic" title="{THUMB_TITLE}"><img src="{LOCATION}images/navbar/thumbnails.png" align="middle" border="0" alt="{THUMB_TITLE}" /></a>
-                </td>
+                <td align="center" valign="middle" class="navmenu" width="48"><a href="{THUMB_TGT}" class="navmenu_pic" title="{THUMB_TITLE}"><img src="{LOCATION}images/navbar/thumbnails.png" align="middle" border="0" alt="{THUMB_TITLE}" /></a></td>
 <!-- BEGIN pic_info_button -->
                         <script type="text/javascript">
                           document.write('<td align="center" valign="middle" class="navmenu" width="48">');
@@ -803,25 +801,15 @@ $template_img_navbar = <<<EOT
                           document.write('</td>');
                         </script>
 <!-- END slideshow_button -->
-                <td align="center" valign="middle" class="navmenu" width="100%">
-                        {PIC_POS}
-                </td>
+                <td align="center" valign="middle" class="navmenu" width="100%">{PIC_POS}</td>
 <!-- BEGIN report_file_button -->
-                <td align="center" valign="middle" class="navmenu" width="48">
-                        <a href="{REPORT_TGT}" class="navmenu_pic" title="{REPORT_TITLE}" rel="nofollow"><img src="{LOCATION}images/navbar/report.png" border="0" align="middle" alt="{REPORT_TITLE}" /></a>
-                </td>
+                <td align="center" valign="middle" class="navmenu" width="48"><a href="{REPORT_TGT}" class="navmenu_pic" title="{REPORT_TITLE}" rel="nofollow"><img src="{LOCATION}images/navbar/report.png" border="0" align="middle" alt="{REPORT_TITLE}" /></a></td>
 <!-- END report_file_button -->
 <!-- BEGIN ecard_button -->
-                <td align="center" valign="middle" class="navmenu" width="48">
-                        <a href="{ECARD_TGT}" class="navmenu_pic" title="{ECARD_TITLE}" rel="nofollow"><img src="{LOCATION}images/navbar/ecard.png"  border="0" align="middle" alt="{ECARD_TITLE}" /></a>
-                </td>
+                <td align="center" valign="middle" class="navmenu" width="48"><a href="{ECARD_TGT}" class="navmenu_pic" title="{ECARD_TITLE}" rel="nofollow"><img src="{LOCATION}images/navbar/ecard.png"  border="0" align="middle" alt="{ECARD_TITLE}" /></a></td>
 <!-- END ecard_button -->
-                <td align="center" valign="middle" class="navmenu" width="48">
-                        <a href="{PREV_TGT}" class="navmenu_pic" title="{PREV_TITLE}"><img src="{LOCATION}images/navbar/prev.png"  border="0" align="middle" alt="{PREV_TITLE}" /></a>
-                </td>
-                <td align="center" valign="middle" class="navmenu" width="48">
-                        <a href="{NEXT_TGT}" class="navmenu_pic" title="{NEXT_TITLE}"><img src="{LOCATION}images/navbar/next.png"  border="0" align="middle" alt="{NEXT_TITLE}" /></a>
-                </td>
+                <td align="center" valign="middle" class="navmenu" width="48"><a href="{PREV_TGT}" class="navmenu_pic" title="{PREV_TITLE}"><img src="{LOCATION}images/navbar/prev.png" border="0" align="middle" alt="{PREV_TITLE}" /></a></td>
+                <td align="center" valign="middle" class="navmenu" width="48"><a href="{NEXT_TGT}" class="navmenu_pic" title="{NEXT_TITLE}"><img src="{LOCATION}images/navbar/next.png" border="0" align="middle" alt="{NEXT_TITLE}" /></a></td>
         </tr>
 
 EOT;

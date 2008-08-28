@@ -496,7 +496,7 @@ a:active .image{
 
 /* pseudo-classes for middlethumb links */
 a:link .middlethumb,a:visited .middlethumb,a:focus .middlethumb,a:hover .middlethumb,a:active .middlethumb{
-	border: 5px solid blue;
+	border: 2px solid blue;
 }
 
 .imageborder {
@@ -731,11 +731,13 @@ div.social_bookmarks {
 }
 
 #cpgChooseLanguageWrapper {
-    float:left;
 }
 
 #cpgChooseThemeWrapper {
-    float:left;
+}
+
+.filmstrip_background {
+	background-color:#000000;
 }
 
 .dtree {
