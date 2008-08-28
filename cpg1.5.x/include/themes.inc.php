@@ -3347,7 +3347,9 @@ function theme_html_comments($pid)
             template_extract_block($template_add_your_comment, 'comment_captcha');
         }
 
-    if ($CONFIG['show_bbcode_help']) {$captionLabel = '&nbsp;'. cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
+    if ($CONFIG['show_bbcode_help']) {
+    	$captionLabel = '&nbsp;'. cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);
+    }
 
         $params = array('{ADD_YOUR_COMMENT}' => $lang_display_comments['add_your_comment'],
             // Modified Name and comment field
@@ -3362,7 +3364,7 @@ function theme_html_comments($pid)
             '{DEFAULT_USERNAME_MESSAGE}' => $lang_display_comments['default_username_message'],
             '{SMILIES}' => '',
             '{WIDTH}' => $CONFIG['picture_table_width'],
-      '{HELP_ICON}' => $captionLabel,
+      		'{HELP_ICON}' => $captionLabel,
             );
 
         if ($CONFIG['enable_smilies']) {
@@ -3383,6 +3385,7 @@ function theme_html_comments($pid)
           $params = array('{ADD_YOUR_COMMENT}' => $lang_display_comments['add_your_comment'],
               '{WIDTH}' => $CONFIG['picture_table_width'],
               '{LOGIN_TO_COMMENT}' => sprintf($lang_display_comments['log_in_to_comment'], '<a href="login.php?referer='.$REFERER.'">', '</a>'),
+              '{HELP_ICON}' => '',
               );
           $html .= template_eval($template_add_your_comment, $params);
         }
