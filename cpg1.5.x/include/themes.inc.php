@@ -3264,14 +3264,14 @@ function theme_html_comments($pid)
         if (USER_IS_ADMIN) {
             //display the selector approve/disapprove
             if ($row['approval'] == 'NO') {
-                $pending_approval = '<a href="reviewcom.php?pos=-{PID}&amp;msg_id={MSG_ID}&amp;what=approve" title="' . $lang_display_comments['approve'] . '"><img src="images/approve.gif" border="0" alt="" align="middle" /></a>';
+                $pending_approval = cpg_fetch_icon('comment_disapprove_disabled', 0) . '<a href="reviewcom.php?pos=-{PID}&amp;msg_id={MSG_ID}&amp;what=approve" title="' . $lang_display_comments['approve'] . '">' . cpg_fetch_icon('comment_approve', 0) . '</a>';
             } else {
-                $pending_approval = '<a href="reviewcom.php?pos=-{PID}&amp;msg_id={MSG_ID}&amp;what=disapprove" title="' . $lang_display_comments['disapprove'] . '"><img src="images/disapprove.gif" border="0" alt="" align="middle" /></a>';
+                $pending_approval = '<a href="reviewcom.php?pos=-{PID}&amp;msg_id={MSG_ID}&amp;what=disapprove" title="' . $lang_display_comments['disapprove'] . '">' . cpg_fetch_icon('comment_disapprove', 0) . '</a>' . cpg_fetch_icon('comment_approve_disabled', 0);
             }
         } else { // user or guest is logged in - start
             if ($row['approval'] == 'NO') { // the comment is not approved - start
                 if ($user_can_edit) { // the comment comes from the current visitor, display it with a warning that it needs admin approval
-                    $pending_approval = '<img src="images/approve.gif" border="0" alt="" title="' . $lang_display_comments['pending_approval'] . '" align="middle" />';
+                    $pending_approval = cpg_fetch_icon('comment_approval', 0, $lang_display_comments['pending_approval']);
                 } else { // the comment comes from someone else - don't display it at all
                     if ($CONFIG['comment_placeholder'] == 0) {
                         $hide_comment = 1;

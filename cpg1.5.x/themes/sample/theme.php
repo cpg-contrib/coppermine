@@ -3067,7 +3067,7 @@ function theme_html_rating_box()
 function theme_html_comments($pid)
 {
     global $CONFIG, $USER, $CURRENT_ALBUM_DATA, $comment_date_fmt, $HTML_SUBST;
-    global $template_image_comments, $template_add_your_comment, $lang_display_comments, $lang_common, $REFERER;
+    global $template_image_comments, $template_add_your_comment, $lang_display_comments, $lang_common, $REFERER, $lang_bbcode_help_title, $lang_bbcode_help;
 
     $html = '';
 
@@ -3085,6 +3085,7 @@ function theme_html_comments($pid)
         template_extract_block($template_image_comments, 'edit_box_no_smilies');
         template_extract_block($template_add_your_comment, 'input_box_no_smilies');
     }
+
 
     $tmpl_comments_buttons = template_extract_block($template_image_comments, 'buttons', '{BUTTONS}');
     $tmpl_comments_ipinfo = template_extract_block($template_image_comments, 'ipinfo', '{IPINFO}');
@@ -3113,14 +3114,14 @@ function theme_html_comments($pid)
         if (USER_IS_ADMIN) {
             //display the selector approve/disapprove
             if ($row['approval'] == 'NO') {
-                $pending_approval = '<a href="reviewcom.php?pos=-{PID}&amp;msg_id={MSG_ID}&amp;what=approve" title="' . $lang_display_comments['approve'] . '"><img src="images/approve.gif" border="0" alt="" align="middle" /></a>';
+                $pending_approval = cpg_fetch_icon('comment_disapprove_disabled', 0) . '<a href="reviewcom.php?pos=-{PID}&amp;msg_id={MSG_ID}&amp;what=approve" title="' . $lang_display_comments['approve'] . '">' . cpg_fetch_icon('comment_approve', 0) . '</a>';
             } else {
-                $pending_approval = '<a href="reviewcom.php?pos=-{PID}&amp;msg_id={MSG_ID}&amp;what=disapprove" title="' . $lang_display_comments['disapprove'] . '"><img src="images/disapprove.gif" border="0" alt="" align="middle" /></a>';
+                $pending_approval = '<a href="reviewcom.php?pos=-{PID}&amp;msg_id={MSG_ID}&amp;what=disapprove" title="' . $lang_display_comments['disapprove'] . '">' . cpg_fetch_icon('comment_disapprove', 0) . '</a>' . cpg_fetch_icon('comment_approve_disabled', 0);
             }
         } else { // user or guest is logged in - start
             if ($row['approval'] == 'NO') { // the comment is not approved - start
                 if ($user_can_edit) { // the comment comes from the current visitor, display it with a warning that it needs admin approval
-                    $pending_approval = '<img src="images/approve.gif" border="0" alt="" title="' . $lang_display_comments['pending_approval'] . '" align="middle" />';
+                    $pending_approval = cpg_fetch_icon('comment_approval', 0, $lang_display_comments['pending_approval']);
                 } else { // the comment comes from someone else - don't display it at all
                     if ($CONFIG['comment_placeholder'] == 0) {
                         $hide_comment = 1;
@@ -3183,7 +3184,7 @@ function theme_html_comments($pid)
             '{IP}' => $ip,
             '{REPORT_COMMENT_TITLE}' => &$lang_display_comments['report_comment_title'],
             '{REPORT_COMMENT_ICON}' => cpg_fetch_icon('report', 0),
-            '{WIDTH}' => $CONFIG['picture_table_width']
+            '{WIDTH}' => $CONFIG['picture_table_width'],
             );
 
         if ($hide_comment != 1) {
@@ -3208,6 +3209,8 @@ function theme_html_comments($pid)
             template_extract_block($template_add_your_comment, 'comment_captcha');
         }
 
+    if ($CONFIG['show_bbcode_help']) {$captionLabel = '&nbsp;'. cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
+
         $params = array('{ADD_YOUR_COMMENT}' => $lang_display_comments['add_your_comment'],
             // Modified Name and comment field
             '{NAME}' => $lang_display_comments['name'],
@@ -3221,9 +3224,10 @@ function theme_html_comments($pid)
             '{DEFAULT_USERNAME_MESSAGE}' => $lang_display_comments['default_username_message'],
             '{SMILIES}' => '',
             '{WIDTH}' => $CONFIG['picture_table_width'],
+      '{HELP_ICON}' => $captionLabel,
             );
 
-        if ($CONFIG['enable_smilies']){
+        if ($CONFIG['enable_smilies']) {
                         $params['{SMILIES}'] = generate_smilies();
                 } else {
                         template_extract_block($template_add_your_comment, 'smilies');
