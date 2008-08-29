@@ -302,10 +302,14 @@ EOT;
     } else {
       $cellStyle = 'tableb tableb_alternate '.$withinSectionLoopCounter;
     }
-    // hide entries labelled as "hidden" completely
+    
     if (isset($value['only_display_if']) && $value['only_display_if'] != $CONFIG[$key]) {  // change the type if a "one-way-setting" is in place
       $value['type'] = 'hidden';
     }
+    if (isset($value['only_display_if_not']) && $value['only_display_if_not'] == $CONFIG[$key]) {  // change the type if a "one-way-setting" is in place
+      $value['type'] = 'hidden';
+    }
+    // hide entries labelled as "hidden" completely
     if ($value['type'] == 'hidden') {
       $visibility = ' style="display:none;"';
       $withinSectionLoopCounter++; // increase the counter, as the hidden row should not be taken into account for style alternation
