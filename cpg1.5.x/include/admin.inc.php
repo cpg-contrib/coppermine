@@ -729,6 +729,7 @@ $config_data = array(
     'thumb_pfx' => array(
       'type' => 'textfield',
       'default_value' => 'thumb_',
+      'only_display_if_not' => 'thumb_',
       'help_link' => 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_thumbs_prefix&amp;ae=admin_picture_thumb_advanced_thumbs_prefix_end',
       'warning' => $lang_admin_php['warning_change'],
     ),
@@ -937,6 +938,7 @@ $config_data = array(
     'normal_pfx' => array(
       'type' => 'textfield',
       'default_value' => 'normal_',
+      'only_display_if_not' => 'normal_',
       'help_link' => 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_intermediate_prefix&amp;ae=admin_picture_thumb_advanced_intermediate_prefix_end',
       'warning' => $lang_admin_php['warning_exist'],
       'additional_description' => '<br />('.$lang_admin_php['warning_exist'].')',
