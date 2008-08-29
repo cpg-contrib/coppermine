@@ -157,7 +157,7 @@ $string = str_replace('<a externalLinkTempReplacement', '<a href="http://', $str
 $string = str_replace('<a internalAnchorLinkTempReplacement', '<a href="#', $string); // restore links to anchors on this page
 
 
-    $string = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"\n\t\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n<html>\n<head>\n<title>".$lang_common['help']."</title>\n" .
+    $string = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"\n\t\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\" lang=\"en\" dir=\"ltr\">\n<head>\n<title>".$lang_common['help']."</title>\n" .
               $meta_charset . "\n" .
               '<link href="themes/'.$CONFIG['theme'].'/style.css" rel="stylesheet" type="text/css" />' .
               "\n</head>\n<body class=\"tableb\">\n<div style=\"padding: 5px;\">\n" .
