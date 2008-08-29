@@ -787,7 +787,8 @@ Of course this message will only be displayed if you have disallowed guests to p
 <a name="admin_picture_thumb_advanced_thumbs_prefix"></a><h3>The prefix for thumbnails<a href="#admin_picture_thumb_advanced_thumbs_prefix" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>This prefix is added to the file name of created thumbnails.</p>
 <p>These setting mustn't be changed if you already have files in your database. If you do, all reference to your existing files will become invalid.</p>
-<p>It's recommended to leave the setting as is (thumb_) is you're not absolutely sure what you're doing.</p>
+<p>It's recommended to leave the setting as is (<tt class="code">thumb_</tt>) if you're not absolutely sure what you're doing.</p>
+<p>This feature is deprecated in cpg1.5.x or better and can no longer be configured, since it only lead to end user confusion. If you performed a fresh install or if you have never changed this prefix, the option won't show through. Only for those who have actually changed this option and have a config setting that differs from the default prefix, the text field will show at all. If this is the case for you: you're strongly encouraged to change this back to the default value to avoid possible issues in future versions.<br />Bottom line: don't be alarmed if this option doesn't show for you - that's OK.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Thumbnails settings &rarr; The prefix for thumbnails</p>
 <a name="admin_picture_thumb_advanced_thumbs_prefix_end"></a>
 <hr />
@@ -991,6 +992,8 @@ OpenOffice 1.x / StarOffice 6.x: sxw/stw/sxc/stc/sxd/std/sxi/sti/sxg/sxm</p>
 <a name="admin_picture_thumb_advanced_intermediate_prefix"></a><h3>The prefix for intermediate pictures<a href="#admin_picture_thumb_advanced_intermediate_prefix" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>This prefix is added to the file name of created pictures.</p>
 <p>These setting mustn't be changed if you already have files in your database. If you do, all reference to your existing files will become invalid.</p>
+<p>Default prefix is <tt class="code">normal_</tt>.</p>
+<p>This feature is deprecated in cpg1.5.x or better and can no longer be configured, since it only lead to end user confusion. If you performed a fresh install or if you have never changed this prefix, the option won't show through. Only for those who have actually changed this option and have a config setting that differs from the default prefix, the text field will show at all. If this is the case for you: you're strongly encouraged to change this back to the default value to avoid possible issues in future versions.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; The prefix for intermediate pictures</p>
 <a name="admin_picture_thumb_advanced_intermediate_prefix_end"></a>
 <hr />
