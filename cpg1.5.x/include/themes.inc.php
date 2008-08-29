@@ -1558,7 +1558,7 @@ function pagefooter()
 
     $template_vars = array(
         '{CUSTOM_FOOTER}' => $custom_footer,
-        '{VANITY}' => (defined('THEME_IS_XHTML10_TRANSITIONAL') && $CONFIG['vanity_block']) ? theme_vanity() : '',
+        '{VANITY}' => (defined('THEME_IS_XHTML10_TRANSITIONAL')) ? theme_vanity() : '',
         '{CREDITS}' => theme_credits(),
     );
 
@@ -3586,7 +3586,7 @@ if (!function_exists('theme_vanity')) {  //{THEMES}
 ******************************************************************************/
 function theme_vanity()
 {
-    global $CONFIG, $THEME_DIR, $template_vanity ;
+    global $THEME_DIR, $template_vanity ;
 
     if (defined('THEME_HAS_VANITY_GRAPHICS')) {
             $location= $THEME_DIR;

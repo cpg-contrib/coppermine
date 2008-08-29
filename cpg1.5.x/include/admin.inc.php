@@ -246,11 +246,6 @@ $config_data = array(
       'default_value' => '1',
       'help_link' => 'f=configuration.htm&amp;as=admin_theme_bbcode&amp;ae=admin_theme_bbcode_end&amp;top=1',
     ),
-    'vanity_block' => array(
-      'type' => 'checkbox',
-      'default_value' => '0',
-      'help_link' => 'f=configuration.htm&amp;as=vanity_block&amp;ae=vanity_block_end',
-    ),
     'display_social_bookmarks' => array(
       'type' => 'select_multiple',
       'help_link' => 'f=configuration.htm&amp;as=admin_social_bookmarks&amp;ae=admin_social_bookmarks_end',
