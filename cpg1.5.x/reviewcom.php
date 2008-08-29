@@ -493,19 +493,20 @@ while ($row = mysql_fetch_array($result)) {
     $msg_date = localised_date($row['msg_date'], $scientific_date_fmt);
     $msg_body = bb_decode(process_smilies($row['msg_body']));
     if ($row['approval'] == 'YES') {
-        $comment_approval_status = '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'yes" type="radio" value="1" checked="checked" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'yes" class="clickable_option">'.$lang_common['yes']."</label><br />\n\r";
-        $comment_approval_status .= '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'no" type="radio" value="0" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'no" class="clickable_option">'.$lang_common['no'].'</label>';
+        $comment_approval_status = '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'yes" type="radio" value="1" checked="checked" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'yes" class="clickable_option">' . cpg_fetch_icon('comment_approve_disabled', 2) . $lang_common['yes']."</label>&nbsp;\n\r";
+        $comment_approval_status .= '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'no" type="radio" value="0" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'no" class="clickable_option">' . cpg_fetch_icon('comment_disapprove', 2) .$lang_common['no'].'</label>';
     } else {
-        $comment_approval_status = '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'yes" type="radio" value="1" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'yes" class="clickable_option">'.$lang_common['yes']."</label><br />\n\r                        ";
-        $comment_approval_status .= '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'no" type="radio" value="0" checked="checked" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'no" class="clickable_option">'.$lang_common['no'].'</label>';
+        $comment_approval_status = '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'yes" type="radio" value="1" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'yes" class="clickable_option">' . cpg_fetch_icon('comment_approve', 2) .$lang_common['yes']."</label>&nbsp;\n\r                        ";
+        $comment_approval_status .= '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'no" type="radio" value="0" checked="checked" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'no" class="clickable_option">' . cpg_fetch_icon('comment_disapprove_disabled', 2) .$lang_common['no'].'</label>';
     }
     $comment_approval_status .= '<input type="hidden" name="status_approved_yes[]" id="status_approved_yes'.$row['msg_id'].'" value="" />';
     $comment_approval_status .= '<input type="hidden" name="status_approved_no[]" id="status_approved_no'.$row['msg_id'].'" value="" />';
 	//get link to ban and delete
 	if ($row['author_id'] == 0) {
-		$ban_and_delete = '<a href="banning.php?delete_comment_id=' . $row['msg_id'] . '">' . $lang_reviewcom_php['ban_and_delete'] . '</a>';
+		//$ban_and_delete = '<a href="banning.php?delete_comment_id=' . $row['msg_id'] . '">' . $lang_reviewcom_php['ban_and_delete'] . '</a>';
+		$ban_and_delete = '';
 	} else {
-		$ban_and_delete = '<a href="banning.php?ban_user=' . $row['author_id'] . '&amp;delete_comment_id=' . $row['msg_id'] . '">' . $lang_reviewcom_php['ban_and_delete'] . '</a>';
+		$ban_and_delete = '<a href="banning.php?ban_user=' . $row['author_id'] . '&amp;delete_comment_id=' . $row['msg_id'] . '" title="' . $lang_reviewcom_php['ban_and_delete'] . '">' . cpg_fetch_icon('ban_user_comment', 0) . '</a>';
 	}
     $rowcounter++;
     if ($rowcounter >=2 ) { //let the row colors alternate, for now they are the same
@@ -528,10 +529,10 @@ while ($row = mysql_fetch_array($result)) {
         <td class="$tableclass" valign="top" align="center">
             <input name="cid_array[]" id="check{$row['msg_id']}" type="checkbox" value="{$row['msg_id']}" />
         </td>
-        <td class="$tableclass" align="left">
+        <td class="$tableclass" valign="top" align="left">
             {$comment_approval_status}
         </td>
-        <td class="$tableclass" valign="top">$profile_link_start{$row['msg_author']}$profile_link_end <br />$ban_and_delete</td>
+        <td class="$tableclass" valign="top">$profile_link_start{$row['msg_author']}$profile_link_end $ban_and_delete</td>
         <td class="$tableclass" valign="top">{$msg_date}</td>
         <td class="$tableclass" valign="top">
             {$msg_body}
