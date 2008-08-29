@@ -1459,7 +1459,7 @@ function pageheader($section, $meta = '')
 function pagefooter()
 {
     //global $HTTP_GET_VARS, $HTTP_POST_VARS, $HTTP_SERVER_VARS;
-    global $USER, $USER_DATA, $ALBUM_SET, $CONFIG, $time_start, $query_stats, $queries;;
+    global $USER, $USER_DATA, $CONFIG, $time_start, $query_stats, $queries;;
     global $template_footer;
 
     $custom_footer = cpg_get_custom_include($CONFIG['custom_footer_path']);
@@ -1470,7 +1470,7 @@ function pagefooter()
 
     $template_vars = array(
         '{CUSTOM_FOOTER}' => $custom_footer,
-        '{VANITY}' => (defined('THEME_IS_XHTML10_TRANSITIONAL') && $CONFIG['vanity_block']) ? theme_vanity() : '',
+        '{VANITY}' => (defined('THEME_IS_XHTML10_TRANSITIONAL')) ? theme_vanity() : '',
         '{CREDITS}' => theme_credits(),
     );
 
@@ -3428,7 +3428,7 @@ function theme_display_fullsize_pic()
 ******************************************************************************/
 function theme_vanity()
 {
-    global $CONFIG, $THEME_DIR, $template_vanity ;
+    global $THEME_DIR, $template_vanity ;
 
     if (defined('THEME_HAS_VANITY_GRAPHICS')) {
             $location= $THEME_DIR;
