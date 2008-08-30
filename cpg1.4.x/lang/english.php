@@ -88,7 +88,7 @@ $lang_errors = array(
   'orphan_cat' => 'A category has a non-existing parent, run the category manager to correct the problem!',
   'directory_ro' => 'Directory \'%s\' is not writable, files can\'t be deleted',
   'non_exist_comment' => 'The selected comment does not exist.',
-  'pic_in_invalid_album' => 'File is in a non existant album (%s)!?',
+  'pic_in_invalid_album' => 'File is in a non existent album (%s)!?',
   'banned' => 'You are currently banned from using this site.',
   'not_with_udb' => 'This function is disabled in Coppermine because it is integrated with forum software. Either what you are trying to do is not supported in this configuration, or the function should be handled by the forum software.',
   'offline_title' => 'Offline',
@@ -356,7 +356,7 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
   'Laughing' => 'Laughing',
   'Mad' => 'Mad',
   'Razz' => 'Razz',
-  'Embarassed' => 'Embarassed',
+  'Embarassed' => 'Embarrassed',
   'Crying or Very sad' => 'Crying or Very sad',
   'Evil or Very Mad' => 'Evil or Very Mad',
   'Twisted Evil' => 'Twisted Evil',
@@ -418,11 +418,11 @@ if (defined('BANNING_PHP')) $lang_banning_php = array(
   'add_new' => 'Add New Ban', //cpg1.4
   'add_ban' => 'Add', //cpg1.4
   'error_user' => 'Cannot find user', //cpg1.4
-  'error_specify' => 'You need to specifiy either a user name or an IP address', //cpg1.4
+  'error_specify' => 'You need to specify either a user name or an IP address', //cpg1.4
   'error_ban_id' => 'Invalid ban ID!', //cpg1.4
-  'error_admin_ban' => 'You cannnot ban yourself!', //cpg1.4
+  'error_admin_ban' => 'You cannot ban yourself!', //cpg1.4
   'error_server_ban' => 'You were going to ban your own server? Tsk tsk, cannot do that...', //cpg1.4
-  'error_ip_forbidden' => 'You cannnot ban this IP - it is non-routable (private) anyway!<br />If you want to allow banning for private IPs, change this in your <a href="admin.php">Config</a> (only makes sense when Coppermine runs on a LAN).', //cpg1.4
+  'error_ip_forbidden' => 'You cannot ban this IP - it is non-routable (private) anyway!<br />If you want to allow banning for private IPs, change this in your <a href="admin.php">Config</a> (only makes sense when Coppermine runs on a LAN).', //cpg1.4
   'lookup_ip' => 'Lookup an IP address', //cpg1.4
   'submit' => 'go!', //cpg1.4
   'select_date' => 'select date', //cpg1.4
@@ -458,8 +458,8 @@ if (defined('BRIDGEMGR_PHP')) $lang_bridgemgr_php = array(
   'db_hostname_explanation' => 'Hostname where your mySQL database resides, usually &quot;localhost&quot;',
   'db_username' => 'Database user account',
   'db_username_explanation' => 'mySQL user account to use for connection with BBS',
-  'db_password' => 'Database passsword',
-  'db_password_explanation' => 'Passsword for this mySQL user account',
+  'db_password' => 'Database password',
+  'db_password_explanation' => 'Password for this mySQL user account',
   'full_forum_url' => 'Forum URL',
   'full_forum_url_explanation' => 'Full URL of your BBS app (including the leading http:// bit, e.g. http://www.yourdomain.tld/forum)',
   'relative_path_of_forum_from_webroot' => 'Relative forum path',
@@ -517,7 +517,7 @@ if (defined('BRIDGEMGR_PHP')) $lang_bridgemgr_php = array(
   'error_must_not_be_empty' => 'must not be empty',
   'error_either_be' => 'must either be %s or %s',
   'error_folder_not_exist' => '%s doesn\'t exist. Correct the value you entered for %s',
-  'error_cookie_not_readible' => 'Coppermine can\'t read a cookie named %s. Correct the value you entered for %s, or go to your BBS administration panel and make sure that the cookie path is readible for coppermine.',
+  'error_cookie_not_readible' => 'Coppermine can\'t read a cookie named %s. Correct the value you entered for %s, or go to your BBS administration panel and make sure that the cookie path is readable for coppermine.',
   'error_mandatory_field_empty' => 'You can not leave the field %s blank - fill in the proper value.',
   'error_no_trailing_slash' => 'There mustn\'t be a trailing slash in the field %s.',
   'error_trailing_slash' => 'There must be a trailing slash in the field %s.',
@@ -885,7 +885,7 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
   'del_user' => 'Delete user',
   'err_unknown_user' => 'The selected user does not exist !',
   'err_empty_groups' => 'There\'s no group table, or the group table is empty!', //cpg1.4
-  'comment_deleted' => 'Comment was succesfully deleted',
+  'comment_deleted' => 'Comment was successfully deleted',
   'npic' => 'Picture', //cpg1.4
   'pic_mgr' => 'Picture Manager', //cpg1.4
   'update_pic' => 'Updating picture \'%s\' with filename \'%s\' and index \'%s\'', //cpg1.4
@@ -1172,7 +1172,7 @@ if (defined('FAQ_PHP')) $lang_faq_php = array(
 if (defined('FAQ_PHP')) $lang_faq_data = array(
   'General FAQ',
   array('Why do I need to register?', 'Registration may or may not be required by the administrator. Registration gives a member additional features such as uploading, having a favorite list, rating pictures and posting comments etc.', 'allow_user_registration', '1'),
-  array('How do I register?', 'Go to &quot;Register&quot; and fill out the required fields (and the optional ones if you want to).<br />If the Administrator has Email Activation enabled, then after submitting your information you should recieve an email message at the address that you have submitted while registering, giving you instructions on how to activate your membership. Your membership must be activated in order for you to login.', 'allow_user_registration', '1'), //cpg1.4
+  array('How do I register?', 'Go to &quot;Register&quot; and fill out the required fields (and the optional ones if you want to).<br />If the Administrator has Email Activation enabled, then after submitting your information you should receive an email message at the address that you have submitted while registering, giving you instructions on how to activate your membership. Your membership must be activated in order for you to login.', 'allow_user_registration', '1'), //cpg1.4
   array('How Do I login?', 'Go to &quot;Login&quot;, submit your username and password and check &quot;Remember Me&quot; so you will be logged in on the site if you should leave it.<br /><b>IMPORTANT:Cookies must be enabled and the cookie from this site must not be deleted in order to use &quot;Remember Me&quot;.</b>', 'offline', 0),
   array('Why can I not login?', 'Did you register and click the link that was sent to you via email?. The link will activate your account. For other login problems contact the site administrator.', 'offline', 0),
   array('What if I forgot my password?', 'If this site has a &quot;Forgot password&quot; link then use it. Other than that contact the site administrator for a new password.', 'offline', 0),
@@ -1255,7 +1255,7 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
   'num_URI_upload' => 'URI upload boxes', //cpg1.4
   'reset_to_default' => 'Reset to default name (%s) - recommended!', //cpg1.4
   'error_group_empty' => 'Group table was empty !<br /><br />Default groups created, please reload this page', //cpg1.4
-  'explain_greyed_out_title' => 'Why is this row greyed out?', //cpg1.4
+  'explain_greyed_out_title' => 'Why is this row grayed out?', //cpg1.4
   'explain_guests_greyed_out_text' => 'You can not change the properties of this group because you set the option &quot; Allow unlogged users (guest or anonymous) access&quot; to &quot;No&quot; on the config page. All guest (members of the group %s) can\'t do anything but login; therefor group settings don\'t apply for them.', //cpg1.4
   'explain_banned_greyed_out_text' => 'You can not change the properties of the group %s because it\'s members can\'t do anything anyway.', //cpg1.4
   'group_assigned_album' => 'assigned album(s)', //cpg1.4
@@ -1429,7 +1429,7 @@ if (defined('PICMGR_PHP')) $lang_picmgr_php = array(
   'no_album' => '* No album *', //cpg1.4
   'explanation_header' => 'The custom sort order you can specify on this page will only be taken into account if', //cpg1.4
   'explanation1' => 'the admin has set the "Default sort order for files" in the config to "Position descending" or "Position ascending" (global setting for all users who haven\'t chosen another sort option individually)', //cpg1.4
-  'explanation2' => 'the user has chosen "Position descending" or "Position ascending" on the thumbail page (per user setting)', //cpg1.4
+  'explanation2' => 'the user has chosen "Position descending" or "Position ascending" on the thumbnail page (per user setting)', //cpg1.4
 );
 
 
@@ -1666,7 +1666,7 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
   'no_album' => 'no album selected',
   'result_icon' => 'click for details or to reload',  //cpg1.4
   'notes' =>  '<ul>'.
-                          '<li><b>OK</b> : means that the file was succesfully added'.
+                          '<li><b>OK</b> : means that the file was successfully added'.
                           '<li><b>DP</b> : means that the file is a duplicate and is already in the database'.
                           '<li><b>PB</b> : means that the file could not be added, check your configuration and the permission of directories where the files are located'.
                           '<li><b>NA</b> : means that you haven\'t selected an album the files should go to, hit \'<a href="javascript:history.back(1)">back</a>\' and select an album. If you don\'t have an album <a href="albmgr.php">create one first</a></li>'.
@@ -1911,7 +1911,7 @@ $lang_util_php = array(
   'status' => 'Status', //cpg1.4
   'title_set_to' => 'title set to',
   'submit_form' => 'submit',
-  'updated_succesfully' => 'updated succesfully',
+  'updated_succesfully' => 'updated successfully',
   'error_create' => 'ERROR creating',
   'continue' => 'Process more images',
   'main_success' => 'The file %s was successfully used as main file',
@@ -1964,7 +1964,7 @@ $lang_util_php = array(
   'delete_all' => 'Delete all',
   'delete_all_orphans' => 'Delete all orphans?', //cpg1.4
   'comment' => 'Comment: ',
-  'nonexist' => 'attached to non existant file # ',
+  'nonexist' => 'attached to non existent file # ',
   'phpinfo' => 'Display phpinfo',
   'phpinfo_explanation' => 'Contains technical information about your server.<br /> - You may be asked to provide information from this when requesting support.', //cpg1.4
   'update_db' => 'Update database',
@@ -1990,7 +1990,7 @@ if (defined('VERSIONCHECK_PHP')) $lang_versioncheck_php = array(
   'online_repository_reason1' => 'the coppermine online repository is currently down - check if you can browse this page: %s - if you can\'t access this page, try again later.', //cpg1.4
   'online_repository_reason2' => 'PHP on your webserver is configured with %s turned off (by default, it\'s turned on). If the server is yours to administer, turn this option on in <i>php.ini</i> (at least allow it to be overridden with %s). If you\'re webhosted, you will probably have to live with the fact that you can\'t compare your files to the online repository. This page will then only display the file versions that came with your distribution - updates will not be displayed.', //cpg1.4
   'online_repository_skipped' => 'Connection to online repository skipped', //cpg1.4
-  'online_repository_to_local' => 'The script is defaulting to the local copy of the version-files now. The data may be inacurate if you have upgraded Coppermine and you haven\'t uploaded all files. Changes to the files after the release won\'t be taken into account as well.', //cpg1.4
+  'online_repository_to_local' => 'The script is defaulting to the local copy of the version-files now. The data may be inaccurate if you have upgraded Coppermine and you haven\'t uploaded all files. Changes to the files after the release won\'t be taken into account as well.', //cpg1.4
   'local_repository_unable' => 'Unable to connect to the repository on your server', //cpg1.4
   'local_repository_explanation' => 'Coppermine was unable to connect to the repository file %s on your webserver. This probably means that you haven\'t uploaded the repository file to your webserver. Do so now and then try to run this page once more (hit refresh).<br />If the script still fails, your webhost might have disabled parts of <a href="http://www.php.net/manual/en/ref.filesystem.php">PHP\'s filesystem functions</a> completely. In this case, you simply won\'t be able to use this tool at all, sorry.', //cpg1.4
   'coppermine_version_header' => 'Installed Coppermine version', //cpg1.4
