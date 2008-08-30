@@ -1,21 +1,27 @@
 <?php
+
+/*************************
+  Coppermine Photo Gallery
+  ************************
+  Copyright (c) 2003-2008 Dev Team
+  v1.1 originally written by Gregory DEMAR
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License version 3
+  as published by the Free Software Foundation.
+  
+  ********************************************
+  Coppermine version: 1.5.0
+  $HeadURL$
+  $Revision: 4932 $
+  $LastChangedBy: abbas-ali $
+  $Date: 2008-08-28 20:47:20 +0530 (Thu, 28 Aug 2008) $
+**********************************************/
+
 /**
- * cpgDbMysql.class.php
- * 
- * Database abstraction layer class
- * 
- * @package cpgNG
- * @author Abbas <abbas@sanisoft.com> 
- * @version $Id$
- */
-/**
- * cpgDB
- * 
- * @package 
- * @author tarique 
- * @copyright Copyright (c) 2005
- * @version $Id$
- * @access public 
+ * Database abstraction class
+ *
+ * This is the db abstraction class for mysql server.
  */
 class cpgDB {
     /* public: connection parameters */
