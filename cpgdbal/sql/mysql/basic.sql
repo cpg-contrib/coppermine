@@ -11,9 +11,9 @@
 ##  ********************************************
 ##  Coppermine version: 1.5.0
 ##  $Source$
-##  $Revision: 4800 $
+##  $Revision: 4956 $
 ##  $LastChangedBy: gaugau $
-##  $Date: 2008-08-09 19:06:31 +0530 (Sat, 09 Aug 2008) $
+##  $Date: 2008-08-29 13:11:43 +0530 (Fri, 29 Aug 2008) $
 ##  ********************************************
 
 #
@@ -49,7 +49,6 @@ INSERT INTO CPG_config VALUES ('custom_lnk_name', '');
 INSERT INTO CPG_config VALUES ('custom_lnk_url', '');
 INSERT INTO CPG_config VALUES ('enable_menu_icons', '1');
 INSERT INTO CPG_config VALUES ('show_bbcode_help', '1');
-INSERT INTO CPG_config VALUES ('vanity_block','0');
 INSERT INTO CPG_config VALUES ('display_social_bookmarks','0');
 INSERT INTO CPG_config VALUES ('custom_header_path', '');
 INSERT INTO CPG_config VALUES ('custom_footer_path', '');
@@ -116,9 +115,9 @@ INSERT INTO CPG_config VALUES ('contact_form_registered_enable', '1');
 INSERT INTO CPG_config VALUES ('contact_form_subject_content', 'Coppermine gallery contact form');
 INSERT INTO CPG_config VALUES ('contact_form_subject_field', '0');
 INSERT INTO CPG_config VALUES ('contact_form_sender_email', '1');
-INSERT INTO CPG_config VALUES ('thumb_width', '100');
+INSERT INTO CPG_config VALUES ('thumb_width', '128');
 INSERT INTO CPG_config VALUES ('thumb_use', 'any');
-INSERT INTO CPG_config VALUES ('thumb_height', '140');
+INSERT INTO CPG_config VALUES ('thumb_height', '128');
 INSERT INTO CPG_config VALUES ('thumb_pfx', 'thumb_');
 INSERT INTO CPG_config VALUES ('enable_unsharp', '0');
 INSERT INTO CPG_config VALUES ('unsharp_amount', '120');

@@ -10,9 +10,9 @@
 
   ********************************************
   Coppermine version: 1.5.0
-  $Revision: 4771 $
+  $Revision: 4931 $
   $LastChangedBy: gaugau $
-  $Date: 2008-08-04 12:20:02 +0530 (Mon, 04 Aug 2008) $
+  $Date: 2008-08-28 20:33:00 +0530 (Thu, 28 Aug 2008) $
 **********************************************/
 
 
@@ -379,7 +379,7 @@ if (!Array.prototype.pop) {
 
 d = new dTree('d');
 
-d.add(0,-1,'Coppermine documentation');
+d.add(0,-1,'Coppermine documentation', '../index.htm');
 d.add(100,0,'About Coppermine','index.htm');
 d.add(110,100,'About the documentation','index.htm#about_documentation');
 d.add(120,100,'Features','index.htm#features');
@@ -428,6 +428,7 @@ d.add(3700,3200,'Check uploads','start.htm#getting_check_uploads');
 d.add(3800,3200,'Consider bridging','start.htm#getting_consider_bridging');
 d.add(3900,3200,'What are your visitors allowed to do?','start.htm#getting_interaction');
 d.add(4000,3200,'Change your coppermine\'s design','start.htm#getting_design');
+d.add(4050,3200,'Typical setups','start.htm#getting_typical');
 d.add(4100,0,'Frequently Asked Questions','faq.htm');
 d.add(4200,0,'Themes','theme.htm');
 d.add(4250,4200,'Themes that come with Coppermine','theme.htm#theme_builtin');

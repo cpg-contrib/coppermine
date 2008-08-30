@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4607 $
-  $LastChangedBy: pvanrompay $
-  $Date: 2008-06-19 05:06:52 +0530 (Thu, 19 Jun 2008) $
+  $Revision: 4951 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-08-29 13:08:53 +0530 (Fri, 29 Aug 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -149,15 +149,15 @@ if ($anchor_end != '') {
 }
 
 // Fix path for some tags
-$string = str_replace('<img src="pics/', '<img src="docs/pics/', $string);
+$string = str_replace('<img src="pics/', '<img src="docs/'.$help_lang.'/images/', $string);
 $string = str_replace('<a href="http://', '<a externalLinkTempReplacement', $string); // get external links out of the way
 $string = str_replace('<a href="#', '<a internalAnchorLinkTempReplacement', $string); // get links to anchors on this page out of the way
-$string = str_replace('<a href="', '<a href="docs/', $string);
+$string = str_replace('<a href="', '<a href="docs/'.$help_lang.'/', $string);
 $string = str_replace('<a externalLinkTempReplacement', '<a href="http://', $string); // restore external links
 $string = str_replace('<a internalAnchorLinkTempReplacement', '<a href="#', $string); // restore links to anchors on this page
 
 
-    $string = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"\n\t\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n<html>\n<head>\n<title>".$lang_common['help']."</title>\n" .
+    $string = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"\n\t\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\" lang=\"en\" dir=\"ltr\">\n<head>\n<title>".$lang_common['help']."</title>\n" .
               $meta_charset . "\n" .
               '<link href="themes/'.$CONFIG['theme'].'/style.css" rel="stylesheet" type="text/css" />' .
               "\n</head>\n<body class=\"tableb\">\n<div style=\"padding: 5px;\">\n" .

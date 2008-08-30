@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4882 $
+  $Revision: 4943 $
   $LastChangedBy: gaugau $
-  $Date: 2008-08-14 20:04:30 +0530 (Thu, 14 Aug 2008) $
+  $Date: 2008-08-29 02:41:10 +0530 (Fri, 29 Aug 2008) $
 **********************************************/
 
 /**
@@ -25,7 +25,7 @@
 * @copyright 2002-2007 Gregory DEMAR, Coppermine Dev Team
 * @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
 * @package Coppermine
-* @version  $Id: functions.inc.php 4882 2008-08-14 14:34:30Z gaugau $
+* @version  $Id: functions.inc.php 4943 2008-08-28 21:11:10Z gaugau $
 */
 
 /**
@@ -394,7 +394,8 @@ function cpg_die($msg_code, $msg_text,  $error_file, $error_line, $output_buffer
         template_extract_block($template_cpg_die, 'output_buffer');
 
         pageheader($lang_cpg_die[$msg_code]);
-        starttable(-1, $lang_cpg_die[$msg_code]);echo "<!-- cpg_die -->";
+        starttable(-1, cpg_fetch_icon('warning', 2) . $lang_cpg_die[$msg_code]);
+        echo "<!-- cpg_die -->";
         echo template_eval($template_cpg_die, $params);
         endtable();
         pagefooter();
@@ -2156,13 +2157,13 @@ function cpg_determine_client($pid)
         } elseif (eregi("OS/2",$server_agent)) {
             $os = "OS/2";
 		} elseif (eregi("aix",$server_agent)) {
-            $browser = "aix";
+            $os = "aix";
 		} elseif (eregi("FreeBSD",$server_agent)) {
-            $browser = "BSD FreeBSD";
+            $os = "BSD FreeBSD";
 		} elseif (eregi("Unix",$server_agent)) {
-            $browser = "Unix";
+            $os = "Unix";
 		} elseif (eregi("iphone",$server_agent)) {
-            $browser = "iPhone";
+            $os = "iPhone";
         }
 
         $browser = 'Unknown';
@@ -2192,8 +2193,8 @@ function cpg_determine_client($pid)
             $browser = "Firefox";
         } elseif (eregi("Galeon",$server_agent)) {
             $browser = "Galeon";
-        } elseif (eregi("Camino/",$server_agent)) {
-            $browser = "Camino/";
+        } elseif (eregi("Camino",$server_agent)) {
+            $browser = "Camino";
         } elseif (eregi("Konqueror",$server_agent)) {
             $browser = "Konqueror";
         } elseif (eregi("Safari",$server_agent)) {
@@ -2202,6 +2203,10 @@ function cpg_determine_client($pid)
             $browser = "OmniWeb";
         } elseif (eregi("Opera",$server_agent)) {
             $browser = "Opera";
+        } elseif (eregi("HTTrack",$server_agent)) {
+        	$browser = "HTTrack";
+        } elseif (eregi("OffByOne",$server_agent)) {
+            $browser = "Off By One";
         } elseif (eregi("amaya",$server_agent)) {
             $browser = "Amaya";
         } elseif (eregi("iCab",$server_agent)) {

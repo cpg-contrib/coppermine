@@ -13,9 +13,9 @@
   SVN version info:
 
   Coppermine version: 1.5.0
-  $Revision: 4499 $
+  $Revision: 4927 $
   $LastChangedBy: pvanrompay $
-  $Date: 2008-06-05 03:12:18 +0530 (Thu, 05 Jun 2008) $
+  $Date: 2008-08-28 06:31:44 +0530 (Thu, 28 Aug 2008) $
 -->
 <link rel="stylesheet" type="text/css" href="../style.css" media="all" />
 <link rel="stylesheet" type="text/css" href="../screen.css" media="screen" />
@@ -176,15 +176,15 @@ Please do not flame (berate) the original translator on the board, but provide a
 
 <a name="translation_documentation_steps"></a><h3>Steps for translating the docs into your language<a href="#translation_documentation_steps" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <ul>
-    <li><strong>Make sure that the translation doesn't already exist</strong><br />
+    <li><h4>Make sure that the translation doesn't already exist</h4>
     As suggested above, make sure that you don't have to spend double effort on this - always check the SVN repository and the corresponding board sections before starting</li>
-    <li><strong>Create the structure</strong><br />
+    <li><h4>Create the structure</h4>
     Your translation will later go into a sub-folder (that represents the language code) of the docs folder, so you should create a folder within your local copy of coppermine (inside the docs folder) if this doesn't already exist - there might be a partial translation already, so you'll only need to create the sub-folder if it doesn't already exist). If you're for example about to create an hungarian translation, create a sub-folder in the docs folder that is named <tt class="code">hu</tt>. Within this new folder, create a sub-folder named <tt class="code">images</tt> (no matter if the word for &quot;images&quot; differs in your language - after all, it's just a folder name that won't matter much to others). The images-folder will later contain your screenshots.</li>
-    <li><strong>Copy the core language files</strong><br />
+    <li><h4>Copy the core language files</h4>
     Copy the basic files from the english documents folder (<tt class="code">your_local_coppermine_folder/docs/en/</tt>) into your newly-created language folder (in above example for hungarian, this would be <tt class="code">your_local_coppermine_folder/docs/hu/</tt>). The files you absolutely need to copy and edit later are <tt class="code">index.htm</tt>, <tt class="code">script.js</tt> and <tt class="code">toc.htm</tt>, but if you plan to do a full translation, you might as well copy all files from the <tt class="code">en</tt>-folder. Of course this step only applies if there is no partial translation existing. If there already are files in your language folder, don't copy the files from the english folder, but use the existing ones (as suggested later).</li>
-    <li>Start translating<br />
-    You should first start translating the very first page of the docs (<tt class="code">index.htm</tt>) using a plain text editor. Alternatively, you could use a diff-viewer, so you always have the English original and your translation side-by-side.<br />&nbsp;<br />
-    <strong>Areas to pay attention to</strong>:
+    <li><h4>Start translating</h4>
+    You should first start translating the very first page of the docs (<tt class="code">index.htm</tt>) using a plain text editor. Alternatively, you could use a diff-viewer, so you always have the English original and your translation side-by-side.</li>
+    <li><h4>Areas to pay attention to</h4>
     <ul>
         <li>Leave the line <tt class="code">&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr"&gt;</tt> alone! Do not make it match your language - this is a part of the XHTML-specification, not some meta-information on your document language</li>
         <li>However, <strong>do</strong> translate the title-tag (something like <tt class="code">&lt;title&gt;Coppermine Photo Gallery - Documentation &amp; Manual - some chapter name&lt;/title&gt;</tt>)</li>
@@ -192,20 +192,24 @@ Please do not flame (berate) the original translator on the board, but provide a
         <li>Edit the meta description (<tt class="">&lt;meta name="description" content="..."&gt;</tt>) as well to come up with a short summary what the page is about (in your language).</li>
         <li>Leave the file names alone: do not translate the files names!</li>
         <li>Leave the anchor names alone: don't edit anchor names (like <tt class="code">&lt;a name="copyright"&gt;&lt;/a&gt;</tt>), even if the word "copyright" in this example doesn't mean the same thing (or anything at all) in your language.<br />This is meant to make sure that supporters and users can easily refer to doc sections they don't even understand.</li>
-        <li>Leave the JavaScript-sections alone: they are used to provide the navigation later - don't touch them. Especially the line <tt class="code">dateRevision(' $LastChangedDate: 2008-06-05 03:12:18 +0530 (Thu, 05 Jun 2008) $ ', ' $Revision: 4499 $ ');</tt> or similar is <strong>not</strong> meant to be edited by you: it will be updated when your contribution is being added to the package.</li>
+        <li>Leave the JavaScript-sections alone: they are used to provide the navigation later - don't touch them. Especially the line <tt class="code">dateRevision(' $LastChangedDate: 2008-08-28 06:31:44 +0530 (Thu, 28 Aug 2008) $ ', ' $Revision: 4927 $ ');</tt> or similar is <strong>not</strong> meant to be edited by you: it will be updated when your contribution is being added to the package.</li>
         <li>Do <strong>not</strong> edit the SVN version info section at the top of the page (commented out) - it will be used for internal purposes (again: subversion repository) later.</li>
+        <li>Don't improve your localized version/translation only: you might find that the English part of the documentation is lacking some explanations or that it is inacurate or missing important bits, so you might be tempted to add sections to your translation of the docs that don't exist in the original, English section of the docs. However, we don't think that this is a good idea: if you have suggestions to make how to improve the docs, we'd love to see your suggestion for the benefit of all users. This being said: please don't just add sections to your local copy of the translation - post your suggestion publicly instead in order to see your proposed improvement go into both the English version of the docs as well as your version.</li>
+        <li>Translate examples if applicable: you are welcome to translate examples into your language as well: the English sample user name "John Doe" can of course be changed into the typical German sample user "Max Mustermann" for example. The sample URL <tt class="code">http://yoursite.tld/your_coppermine_folder/</tt> can of course be translated into <tt class="code">http://deine-seite.tld/dein_coppermine_verzeichnis/</tt> in a German localization of the docs.</li>
     </ul>
     </li>
-    <li>Once you have completed translating the files you want to translate (in an ideal world: all files), take a look at the files <tt class="code">script.js</tt> and <tt class="code">toc.htm</tt>. The former file is the JavaScript file that will later compose the menu/navigation on all pages, the later file will be the plain HTML equivalent (for those who have JavaScript disabled).<br />
-    In script.js, scroll a bit down untill you find the navigational structure (starting with the line <tt class="code">d = new dTree('d');</tt> - each of the following lines is representing a navigation item. You should translate this as well (at least the stuff you have come up with). Of course, you don't have to edit the file names (they should remain in English), but only the textual representation. If you're not sure what to do, take a look at an existing translation and see how this has been done there.<br />
+    <li><h4>Take care of the table of contents</h4>
+    Once you have completed translating the files you want to translate (in an ideal world: all files), take a look at the files <tt class="code">script.js</tt> and <tt class="code">toc.htm</tt>. The former file is the JavaScript file that will later compose the menu/navigation on all pages, the later file will be the plain HTML equivalent (for those who have JavaScript disabled).<br />
+    In script.js, scroll a bit down until you find the navigational structure (starting with the line <tt class="code">d = new dTree('d');</tt> - each of the following lines is representing a navigation item. You should translate this as well (at least the stuff you have come up with). Of course, you don't have to edit the file names (they should remain in English), but only the textual representation. If you're not sure what to do, take a look at an existing translation and see how this has been done there.<br />
     The similar thing applies to toc.htm, which is the HTML-driven "table of contents"; again, you should translate the labels, but not the file names nor the anchor names.</li>
-    <li>Finally, when you're done translating, zip your custom language folder and attach the zip to a posting on the corresponding coppermine board. Of course, there will be a credit list where your name and site address will be mentioned, so make sure to provide the details you want to see go into that credit list within your posting.</li>
+    <li><h4>Zip your translation</h4>
+    Finally, when you're done translating, zip your custom language folder and attach the zip to a posting on the corresponding coppermine board. Of course, there will be a credit list where your name and site address will be mentioned, so make sure to provide the details you want to see go into that credit list within your posting.</li>
 </ul>
 
 
 <script type="text/javascript">
   cpgDocFooter();
-  dateRevision(' $LastChangedDate: 2008-06-05 03:12:18 +0530 (Thu, 05 Jun 2008) $ ', ' $Revision: 4499 $ ');
+  dateRevision(' $LastChangedDate: 2008-08-28 06:31:44 +0530 (Thu, 28 Aug 2008) $ ', ' $Revision: 4927 $ ');
 </script>
 
 </body>

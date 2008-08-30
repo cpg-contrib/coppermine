@@ -13,9 +13,9 @@
   SVN version info:
 
   Coppermine version: 1.5.0
-  $Revision: 4642 $
+  $Revision: 4960 $
   $LastChangedBy: gaugau $
-  $Date: 2008-06-27 21:53:07 +0530 (Fri, 27 Jun 2008) $
+  $Date: 2008-08-30 00:21:39 +0530 (Sat, 30 Aug 2008) $
 -->
 <link rel="stylesheet" type="text/css" href="../style.css" media="all" />
 <link rel="stylesheet" type="text/css" href="../screen.css" media="screen" />
@@ -185,24 +185,31 @@ $lang_common['yes'].': '.$lang_admin_php['debug_admin']</tt></div><hr />
   </tr>
   <tr>
     <td valign="top" class="tableb">only_display_if</td>
-    <td valign="top" class="tableb">Currently only being used to make sure that the one-way setting &quot;enable_encrypted_passwords&quot; will be only displayed if the config value is zero</td>
+    <td valign="top" class="tableb">Was used to make sure that the one-way setting &quot;enable_encrypted_passwords&quot; would be only displayed if the config value is zero. As the storage of unencrypted passwords has been dropped for cpg1.5.x, there is currently no use for this setting.</td>
     <td valign="top" class="tableb">optional</td>
     <td valign="top" class="tableb">Any valid content of the config field that it is checked against</td>
     <td valign="top" class="tableb">none</td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate">linebreak</td>
-    <td valign="top" class="tableb tableb_alternate">If set, the value of the entry will be added to the HTML output for all radio buttons after each option. Use it for option labels that need a lot of space to make the output better readable.</td>
+    <td valign="top" class="tableb tableb_alternate">only_display_if_not</td>
+    <td valign="top" class="tableb tableb_alternate">Used to make sure that the one-way setting &quot;thumb_pfx&quot; will be only displayed if the config value differs from the given value, thus making sure that only upgraded galleries with different settings get displayed. If the value is default, it won't be displayed.</td>
     <td valign="top" class="tableb tableb_alternate">optional</td>
-    <td valign="top" class="tableb tableb_alternate">&lt;br /&gt;</td>
-    <td valign="top" class="tableb tableb_alternate">type = radio</td>
+    <td valign="top" class="tableb tableb_alternate">Any valid content of the config field that it is checked against</td>
+    <td valign="top" class="tableb tableb_alternate">none</td>
   </tr>
   <tr>
-    <td valign="top" class="tableb">warning</td>
-    <td valign="top" class="tableb">When set, a warning will be displayed that the config setting mustn't be changed when there are already pics in the database</td>
+    <td valign="top" class="tableb">linebreak</td>
+    <td valign="top" class="tableb">If set, the value of the entry will be added to the HTML output for all radio buttons after each option. Use it for option labels that need a lot of space to make the output better readable.</td>
     <td valign="top" class="tableb">optional</td>
-    <td valign="top" class="tableb">Any reference to the language file (or even hard-coded text) will do - it will be displayed in the JavaScript alert box and onmouseover.</td>
-    <td valign="top" class="tableb">none</td>
+    <td valign="top" class="tableb">&lt;br /&gt;</td>
+    <td valign="top" class="tableb">type = radio</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">warning</td>
+    <td valign="top" class="tableb tableb_alternate">When set, a warning will be displayed that the config setting mustn't be changed when there are already pics in the database</td>
+    <td valign="top" class="tableb tableb_alternate">optional</td>
+    <td valign="top" class="tableb tableb_alternate">Any reference to the language file (or even hard-coded text) will do - it will be displayed in the JavaScript alert box and onmouseover.</td>
+    <td valign="top" class="tableb tableb_alternate">none</td>
   </tr>
 </table>
 
@@ -225,7 +232,7 @@ $lang_common['yes'].': '.$lang_admin_php['debug_admin']</tt></div><hr />
 <br clear="all" />
 <script type="text/javascript">
   cpgDocFooter();
-  dateRevision(' $LastChangedDate: 2008-06-27 21:53:07 +0530 (Fri, 27 Jun 2008) $ ', ' $Revision: 4642 $ ');
+  dateRevision(' $LastChangedDate: 2008-08-30 00:21:39 +0530 (Sat, 30 Aug 2008) $ ', ' $Revision: 4960 $ ');
 </script>
 
 </body>

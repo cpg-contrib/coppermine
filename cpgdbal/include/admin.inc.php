@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4831 $
+  $Revision: 4959 $
   $LastChangedBy: gaugau $
-  $Date: 2008-08-12 01:05:27 +0530 (Tue, 12 Aug 2008) $
+  $Date: 2008-08-30 00:21:17 +0530 (Sat, 30 Aug 2008) $
 **********************************************/
 
 /**********************************************
@@ -111,21 +111,15 @@ $config_data = array(
       'additional_description' => ' (' . $lang_admin_php['enable_help_description'] .')',
     ),
     'clickable_keyword_search' => array(
-      'type' => 'radio',
+      'type' => 'checkbox',
       'default_value' => '1',
       'help_link' => 'f=configuration.htm&amp;as=admin_general_keywords_start&amp;ae=admin_general_keywords_end',
-      'options' => array($lang_common['no'],
-                         $lang_common['yes']
-                         ),
       'end_description' => '&nbsp;&nbsp;(<a href="keywordmgr.php">'.$lang_admin_php['manage_keyword'].'</a>)',
     ),
     'enable_plugins' => array(
-      'type' => 'radio',
+      'type' => 'checkbox',
       'default_value' => '1',
       'help_link' => 'f=configuration.htm&amp;as=admin_general_enable-plugins&amp;ae=admin_general_enable-plugins_end',
-      'options' => array($lang_common['no'],
-                         $lang_common['yes']
-                         ),
       'end_description' => '&nbsp;&nbsp;(<a href="pluginmgr.php">'.$lang_admin_php['manage_plugins'].'</a>)',
     ),
     'ban_private_ip' => array(
@@ -252,11 +246,6 @@ $config_data = array(
       'default_value' => '1',
       'help_link' => 'f=configuration.htm&amp;as=admin_theme_bbcode&amp;ae=admin_theme_bbcode_end&amp;top=1',
     ),
-    'vanity_block' => array(
-      'type' => 'checkbox',
-      'default_value' => '0',
-      'help_link' => 'f=configuration.htm&amp;as=vanity_block&amp;ae=vanity_block_end',
-    ),
     'display_social_bookmarks' => array(
       'type' => 'select_multiple',
       'help_link' => 'f=configuration.htm&amp;as=admin_social_bookmarks&amp;ae=admin_social_bookmarks_end',
@@ -325,6 +314,7 @@ $config_data = array(
       'regex' => '^[0-9]{1,4}$',
       'size' => '4',
       'width' => '4',
+      'end_description' => $lang_admin_php['pixels'],
     ),
     'main_page_layout' => array(
       'type' => 'textfield',
@@ -463,7 +453,7 @@ $config_data = array(
       'help_link' => 'f=configuration.htm&amp;as=admin_image_comment_table-width&amp;ae=admin_image_comment_table-width_end',
       'size' => '5',
       'width' => '5',
-      'end_description' => $lang_admin_php['pixels_or_percent'],
+      'end_description' => '(' . $lang_admin_php['pixels_or_percent'] . ')',
     ),
     'display_pic_info' => array(
       'type' => 'checkbox',
@@ -508,7 +498,7 @@ $config_data = array(
       'regex' => '^[0-9]{1,6}$',
       'size' => '6',
       'width' => '6',
-      'end_description' => $lang_admin_php['slideshow_interval_detail'],
+      'end_description' => $lang_admin_php['milliseconds'] . ' (' . $lang_admin_php['slideshow_interval_detail'] . ')',
     ),
     'slideshow_hits' => array(
       'type' => 'checkbox',
@@ -698,12 +688,13 @@ $config_data = array(
   'thumbnail_settings' => array(
     'thumb_width' => array(
       'type' => 'textfield',
-      'default_value' => '100',
+      'default_value' => '128',
       'help_link' => 'f=configuration.htm&amp;as=admin_picture_thumbnail_max-dimension&amp;ae=admin_picture_thumbnail_max-dimension_end',
       'regex' => '^[0-9]{1,5}$',
       'size' => '5',
       'width' => '5',
       'warning' => $lang_admin_php['warning_change'],
+      'end_description' => $lang_admin_php['pixels'],
     ),
     'thumb_use' => array(
       'type' => 'select',
@@ -719,13 +710,14 @@ $config_data = array(
     ),
     'thumb_height' => array(
       'type' => 'textfield',
-      'default_value' => '100',
+      'default_value' => '128',
       'help_link' => '',
       'regex' => '^[0-9]{1,5}$',
       'size' => '5',
       'width' => '5',
       'additional_description' => $lang_admin_php['thumb_height_detail'],
       'warning' => $lang_admin_php['warning_change'],
+      'end_description' => $lang_admin_php['pixels'],
     ),
     'enable_custom_thumbs' => array(
       'type' => 'checkbox',
@@ -737,6 +729,7 @@ $config_data = array(
     'thumb_pfx' => array(
       'type' => 'textfield',
       'default_value' => 'thumb_',
+      'only_display_if_not' => 'thumb_',
       'help_link' => 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_thumbs_prefix&amp;ae=admin_picture_thumb_advanced_thumbs_prefix_end',
       'warning' => $lang_admin_php['warning_change'],
     ),
@@ -792,6 +785,7 @@ $config_data = array(
       'size' => '5',
       'width' => '5',
       'warning' => $lang_admin_php['warning_change'],
+      'end_description' => $lang_admin_php['pixels'],
     ),
     'max_upl_size' => array(
       'type' => 'textfield',
@@ -827,6 +821,7 @@ $config_data = array(
       'regex' => '^[0-9]{1,3}$',
       'size' => '3',
       'width' => '3',
+      'end_description' => $lang_admin_php['pixels'],
     ),
     'fullsize_padding_y' => array(
       'type' => 'textfield',
@@ -835,6 +830,7 @@ $config_data = array(
       'regex' => '^[0-9]{1,3}$',
       'size' => '3',
       'width' => '3',
+      'end_description' => $lang_admin_php['pixels'],
     ),
     'allow_private_albums' => array(
       'type' => 'checkbox',
@@ -915,12 +911,9 @@ $config_data = array(
       'help_link' => 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_im_commandline&amp;ae=admin_picture_thumb_advanced_im_commandline_end',
     ),
     'read_exif_data' => array(
-      'type' => 'radio',
+      'type' => 'checkbox',
       'default_value' => '0',
       'help_link' => 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_exif&amp;ae=admin_picture_thumb_advanced_exif_end',
-      'options' => array($lang_common['no'],
-                         $lang_common['yes']
-                         ),
       'end_description' => '&nbsp;&nbsp;(<a href="exifmgr.php">'.$lang_admin_php['manage_exif'].'</a>)',
     ),
     'read_iptc_data' => array(
@@ -945,6 +938,7 @@ $config_data = array(
     'normal_pfx' => array(
       'type' => 'textfield',
       'default_value' => 'normal_',
+      'only_display_if_not' => 'normal_',
       'help_link' => 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_intermediate_prefix&amp;ae=admin_picture_thumb_advanced_intermediate_prefix_end',
       'warning' => $lang_admin_php['warning_exist'],
       'additional_description' => '<br />('.$lang_admin_php['warning_exist'].')',

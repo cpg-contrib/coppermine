@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $Source: /cvsroot/coppermine/devel/admin.php,v $
-  $Revision: 4497 $
+  $Revision: 4958 $
   $LastChangedBy: gaugau $
-  $Date: 2008-06-03 19:59:30 +0530 (Tue, 03 Jun 2008) $
+  $Date: 2008-08-30 00:20:53 +0530 (Sat, 30 Aug 2008) $
 **********************************************/
  
 define('IN_COPPERMINE', true);
@@ -133,7 +133,7 @@ if ($superCage->post->keyExists('restore_config')) { // user has chosen to facto
 	$cpgdb->query($cpg_db_admin_php['update_config_data'], $CONFIG[$key], $key);
 	#################################################################
   }
-  cpgRedirectPage($CPG_PHP_SELF, $lang_common['information'], $lang_admin_php['restore_success']);
+  cpgRedirectPage($CPG_PHP_SELF, cpg_fetch_icon('warning', 2) . $lang_common['information'], $lang_admin_php['restore_success']);
 }  // user has chosen to factory-reset the config --- end
 
 
@@ -170,7 +170,7 @@ if ($superCage->post->keyExists('restore_config')) { // user has chosen to facto
       // regex check
       if ((isset($adminDataValue['regex']) && $adminDataValue['regex'] != '') || (isset($adminDataValue['regex_not']) && $adminDataValue['regex_not'] != '')) {
         if ((isset($adminDataValue['regex']) && $adminDataValue['regex'] != '' && eregi($adminDataValue['regex'],$evaluate_value) == FALSE) || (isset($adminDataValue['regex_not']) && $adminDataValue['regex_not'] != '' && eregi($adminDataValue['regex_not'],$evaluate_value) == TRUE)) {
-          $userMessage .= '<li style="list-style-image:url(images/red.gif)">'.sprintf($lang_admin_php['config_setting_invalid'], '<a href="#'.$adminDataKey.'">'.$lang_admin_php[$adminDataKey].'</a>').'</li>'.$lineBreak;
+          $userMessage .= '<li style="list-style-image:url(images/icons/redled.png)">'.sprintf($lang_admin_php['config_setting_invalid'], '<a href="#'.$adminDataKey.'">'.$lang_admin_php[$adminDataKey].'</a>').'</li>'.$lineBreak;
           $regexValidation = '0';
           //$admin_data_array[$adminDataKey] = $evaluation_array[$adminDataKey]; // replace the stuff in the form field with the improper input, so the user can see and correct his error
           $admin_data_array[$adminDataKey] = $evaluate_value; // replace the stuff in the form field with the improper input, so the user can see and correct his error
@@ -218,7 +218,7 @@ if ($superCage->post->keyExists('restore_config')) { // user has chosen to facto
         // perform special tasks -- end
         $admin_data_array[$adminDataKey] = stripslashes($evaluate_value);
         $CONFIG[$adminDataKey] = stripslashes($evaluate_value);
-        $userMessage .= '<li style="list-style-image:url(images/green.gif)">'.sprintf($lang_admin_php['config_setting_ok'], $lang_admin_php[$adminDataKey]).'</li>'.$lineBreak;
+        $userMessage .= '<li style="list-style-image:url(images/icons/greenled.png)">'.sprintf($lang_admin_php['config_setting_ok'], $lang_admin_php[$adminDataKey]).'</li>'.$lineBreak;
       }
     } // inner foreach loop -- end
   } // Loop through the config fields to check posted values for validity -- end
@@ -263,7 +263,7 @@ die;
 */
 
 if ($userMessage != '') {
-  starttable('100%', $lang_common['information'], 1);
+  starttable('100%', cpg_fetch_icon('info', 2) . $lang_common['information'], 1);
   print <<< EOT
     <tr>
         <td class="tableb">
@@ -281,7 +281,7 @@ $tabindexCounter = 1;
 $numberOfConfigFields = count($CONFIG);
 
 print '<form action="'.$CPG_PHP_SELF.'" method="post" name="cpgform" id="cpgform" onSubmit="return deleteUnneededFields();">';
-starttable('100%', "{$lang_admin_php['title']} - $signature", 2);
+starttable('100%', cpg_fetch_icon('config', 2) . $lang_admin_php['title'] . ' - ' . $signature, 2);
 print <<< EOT
     <tr>
         <td class="tableh2" colspan="2">
@@ -315,10 +315,14 @@ EOT;
     } else {
       $cellStyle = 'tableb tableb_alternate '.$withinSectionLoopCounter;
     }
-    // hide entries labelled as "hidden" completely
+    
     if (isset($value['only_display_if']) && $value['only_display_if'] != $CONFIG[$key]) {  // change the type if a "one-way-setting" is in place
       $value['type'] = 'hidden';
     }
+    if (isset($value['only_display_if_not']) && $value['only_display_if_not'] == $CONFIG[$key]) {  // change the type if a "one-way-setting" is in place
+      $value['type'] = 'hidden';
+    }
+    // hide entries labelled as "hidden" completely
     if ($value['type'] == 'hidden') {
       $visibility = ' style="display:none;"';
       $withinSectionLoopCounter++; // increase the counter, as the hidden row should not be taken into account for style alternation
@@ -501,6 +505,8 @@ EOT;
   $sectionLoopCounter++;
 } // foreach-loop through the config sections
 
+$submit_icon = cpg_fetch_icon('ok', 1);
+$factory_icon = cpg_fetch_icon('delete', 1);
 print <<<EOT
           <tr>
             <td align="left" class="tablef" colspan="2">
@@ -511,9 +517,12 @@ print <<<EOT
                             <span id="collapse_all_bottom" style="display:none"><a href="javascript:;" class="admin_menu" onclick="hideall();show_section('expand_all_top');show_section('collapse_all_top');show_section('expand_all_bottom');show_section('collapse_all_bottom');toggleExpandCollpaseButtons('collapse')">{$lang_admin_php['collapse_all']}&nbsp;&nbsp;<img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['collapse_all']}" /></a></span>
                         </td>
                         <td width="67%" align="center">
-                            <input type="submit" class="button" name="update_config" value="{$lang_admin_php['save_cfg']}" />
+                            <!--<input type="submit" class="button" name="update_config" value="{$lang_admin_php['save_cfg']}" />-->
+                            <button type="submit" class="button" name="update_config" value="{$lang_admin_php['save_cfg']}">{$submit_icon}{$lang_admin_php['save_cfg']}</button>
+
                     &nbsp;&nbsp;
-                                                                    <input type="submit" onclick="return confirm('{$lang_admin_php['restore_cfg_confirm']}');" class="button" name="restore_config" value="{$lang_admin_php['restore_cfg']}" />
+                                                                    <!--<input type="submit" onclick="return confirm('{$lang_admin_php['restore_cfg_confirm']}');" class="button" name="restore_config" value="{$lang_admin_php['restore_cfg']}" />-->
+                                                                    <button type="submit" onclick="return confirm('{$lang_admin_php['restore_cfg_confirm']}');" class="button" name="restore_config" value="{$lang_admin_php['restore_cfg']}">{$factory_icon}{$lang_admin_php['restore_cfg']}</button>
                         </td>
                     </tr>
                 </table>

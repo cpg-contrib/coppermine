@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4583 $
-  $LastChangedBy: pvanrompay $
-  $Date: 2008-06-18 06:33:59 +0530 (Wed, 18 Jun 2008) $
+  $Revision: 4911 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-08-27 13:34:51 +0530 (Wed, 27 Aug 2008) $
 **********************************************/
 
 /**
@@ -26,7 +26,7 @@
 * @copyright 2002-2006 Gregory DEMAR, Coppermine Dev Team
 * @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
 * @package Coppermine
-* @version $Id: index.php 4583 2008-06-18 01:03:59Z pvanrompay $
+* @version $Id: index.php 4911 2008-08-27 08:04:51Z gaugau $
 */
 
 /**
@@ -141,7 +141,7 @@ EOT;
 
     if ($template == '') {
         $params = array(
-            '{EDIT_PICS}' => $lang_album_admin_menu['edit_pics'],
+            '{EDIT_PICS}' => cpg_fetch_icon('edit', 1) . $lang_album_admin_menu['edit_pics'],
             );
 
         $template = template_eval($template_album_moderator_menu, $params);
@@ -170,9 +170,9 @@ function html_albummenu($id)
 
     if ($template == '') {
         $params = array('{CONFIRM_DELETE}' => $lang_album_admin_menu['confirm_delete'],
-            '{DELETE}' => $lang_album_admin_menu['delete'],
-            '{MODIFY}' => $lang_album_admin_menu['modify'],
-            '{EDIT_PICS}' => $lang_album_admin_menu['edit_pics'],
+            '{DELETE}' => cpg_fetch_icon('delete', 1) . $lang_album_admin_menu['delete'],
+            '{MODIFY}' => cpg_fetch_icon('modifyalb', 1) . $lang_album_admin_menu['modify'],
+            '{EDIT_PICS}' => cpg_fetch_icon('edit', 1) . $lang_album_admin_menu['edit_pics'],
             );
 
         $template = template_eval($template_album_admin_menu, $params);
@@ -217,8 +217,8 @@ EOT;
 
     if ($template == '') {
         $params = array('{CONFIRM_DELETE}' => $lang_album_admin_menu['confirm_delete'],
-            '{DELETE}' => $lang_album_admin_menu['delete'],
-            '{MODIFY}' => $lang_album_admin_menu['modify'],
+            '{DELETE}' => cpg_fetch_icon('delete', 1) . $lang_album_admin_menu['delete'],
+            '{MODIFY}' => cpg_fetch_icon('modifyalb', 1) . $lang_album_admin_menu['modify'],
             );
 
         $template = template_eval($template_album_admin_no_pic_edit_menu, $params);

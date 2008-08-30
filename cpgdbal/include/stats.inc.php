@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4502 $
-  $LastChangedBy: pvanrompay $
-  $Date: 2008-06-06 03:51:20 +0530 (Fri, 06 Jun 2008) $
+  $Revision: 4943 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-08-29 02:41:10 +0530 (Fri, 29 Aug 2008) $
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
@@ -73,6 +73,7 @@ $browserArray = array(
                       'IE6' => 'msie6.png',
                       'IE7' => 'msie7.png',
                       'IE' => 'msie.png',
+                      'HTTrack' => 'httrack.png',
                       'Multizilla' => 'multizilla.png',
                       'Mosaic' => 'ncsa_mosaic.png',
                       'Netnewswire' => 'netnewswire.png',
@@ -84,6 +85,7 @@ $browserArray = array(
                       'newzcrawler' => 'newzcrawler.png',
                       'nokia' => 'nokia.png',
                       'Not Available' => 'notavailable.png',
+                      'Off By One' => 'ob1.png',
                       'OmniWeb' => 'omniweb.png',
                       'Opera' => 'opera.png',
                       'Panasonic' => 'panasonic.png',
@@ -138,6 +140,7 @@ $osArray = array(
                       'HP UX' => 'hpux.png',
                       'IBM' => 'ibm.png',
                       'iMode' => 'imode.png',
+                      'iPhone' => 'iphone.png',
                       'Irix' => 'irix.png',
                       'Java' => 'java.png',
                       'kFreeBSD' => 'kfreebsd.png',

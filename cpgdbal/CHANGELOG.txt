@@ -10,9 +10,9 @@ as published by the Free Software Foundation.
 ********************************************
 Coppermine version: 1.5.0
 $Source$
-$Revision: 4892 $
-$Author: abbas-ali $
-$Date: 2008-08-20 12:20:14 +0530 (Wed, 20 Aug 2008) $
+$Revision: 4958 $
+$Author: gaugau $
+$Date: 2008-08-30 00:20:53 +0530 (Sat, 30 Aug 2008) $
 *********************************************
 Changelog
 =========
@@ -25,6 +25,10 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-08-29 [O] Removed configurability of thumbnail and intermediate image prefix as per poll ID 54324 {GauGau}
+2008-08-29 [O] Removed vanity option from config as per poll id 54323 - users who want to show the vanity block just need to add the {VANITY} token to their custom theme {GauGau}
+2008-08-28 [C] Added CSS class for filmstrip background {GauGau}
+2008-08-28 [O] Upgraded Exifixer-library from v1.5 to v1.7 (development continued by ZenPhoto) {GauGau}
 2008-08-20 [A] Added new plugin hooks - add_file_data_success, before_delete_file and after_delete_file {Abbas}
 2008-08-12 [B] Moved $THEME_DIR before include theme.php and themes.inc.php {Paver}
 2008-08-12 [B] Added workaround for video files shown on batch-add page (searchnew.php) {Paver}

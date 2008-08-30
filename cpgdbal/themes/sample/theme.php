@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4858 $
+  $Revision: 4954 $
   $LastChangedBy: gaugau $
-  $Date: 2008-08-12 12:32:22 +0530 (Tue, 12 Aug 2008) $
+  $Date: 2008-08-29 13:10:43 +0530 (Fri, 29 Aug 2008) $
 **********************************************/
 
 // ------------------------------------------------------------------------- //
@@ -40,13 +40,13 @@
 //    be directed to the themes images folder.
 //('THEME_HAS_NAVBAR_GRAPHICS', 1); : The location for the navbar graphics will
 //    be directed to the themes images folder.
-//    Back to thumbnails   : images/thumbnails.gif
-//    Picture Information  : images/info.gif
-//    Slideshow            : images/slideshow.gif
-//    Report to admin      : images/report.gif
-//    Ecard                : images/ecard.gif
-//    Previous             : images/prev.gif
-//    Next                 : images/next.gif
+//    Back to thumbnails   : images/navbar/thumbnails.png
+//    Picture Information  : images/navbar/info.png
+//    Slideshow            : images/navbar/slideshow.png
+//    Report to admin      : images/navbar/report.png
+//    Ecard                : images/navbar/ecard.png
+//    Previous             : images/navbar/prev.png
+//    Next                 : images/navbar/next.png
 // ('THEME_HAS_FILM_STRIP_GRAPHIC', 1) : The location for the film strip graphics will
 //    be directed to the themes images folder.
 //    tile                 : images/tile.gif
@@ -467,27 +467,27 @@ EOT;
 $template_film_strip = <<<EOT
 
         <tr>
-         <td valign="top" style="background-image: url({TILE1});"><img src="{TILE1}" alt="" border="0" /></td>
+         <td valign="top" class="filmstrip_background" style="background-image: url({TILE1});"><img src="{TILE1}" alt="" border="0" /></td>
         </tr>
         <tr>
-        <td valign="bottom" class="thumbnails" align="center" style="{THUMB_TD_STYLE}">
-          <table width="100%" cellspacing="0" cellpadding="3" border="0">
-              <tr>
-                 <td width="50%"><span id="filmstrip_prev_link" style="display: none;">{PREV_LINK}</span></td>
-                 {THUMB_STRIP}
-                 <td width="50%" align="right"><span id="filmstrip_next_link" style="display: none;">{NEXT_LINK}</a></span></td>
-              </tr>
-          </table>
-        </td>
+          <td valign="bottom" class="thumbnails filmstrip_background" align="center" style="{THUMB_TD_STYLE}">
+            <table width="100%" cellspacing="0" cellpadding="3" border="0">
+                <tr>
+                   <td width="50%"><span id="filmstrip_prev_link" style="display: none;">{PREV_LINK}</span></td>
+                   {THUMB_STRIP}
+                   <td width="50%" align="right"><span id="filmstrip_next_link" style="display: none;">{NEXT_LINK}</a></span></td>
+                </tr>
+            </table>
+          </td>
         </tr>
         <tr>
-         <td valign="top" style="background-image: url({TILE2});"><img src="{TILE2}" alt="" border="0" /></td>
+         <td valign="top" class="filmstrip_background" style="background-image: url({TILE2});"><img src="{TILE2}" alt="" border="0" /></td>
         </tr>
 <!-- BEGIN thumb_cell -->
-                <td valign="top" align="center">
-                                        <a href="{LINK_TGT}">{THUMB}</a>
-                                        {CAPTION}
-                                        {ADMIN_MENU}
+                <td valign="top" align="center" style="vertical-align:middle;">
+                    <a href="{LINK_TGT}">{THUMB}</a>
+                    {CAPTION}
+                    {ADMIN_MENU}
                 </td>
 <!-- END thumb_cell -->
 <!-- BEGIN empty_cell -->
@@ -786,42 +786,30 @@ EOT;
 $template_img_navbar = <<<EOT
 
         <tr>
-                <td align="center" valign="middle" class="navmenu" width="48"><a name="top_display_media"></a>
-                        <a href="{THUMB_TGT}" class="navmenu_pic" title="{THUMB_TITLE}"><img src="{LOCATION}images/thumbnails.gif" align="middle" border="0" alt="{THUMB_TITLE}" /></a>
-                </td>
+                <td align="center" valign="middle" class="navmenu" width="48"><a href="{THUMB_TGT}" class="navmenu_pic" title="{THUMB_TITLE}"><img src="{LOCATION}images/navbar/thumbnails.png" align="middle" border="0" alt="{THUMB_TITLE}" /></a></td>
 <!-- BEGIN pic_info_button -->
                         <script type="text/javascript">
                           document.write('<td align="center" valign="middle" class="navmenu" width="48">');
-                          document.write('<a href="javascript:;" class="navmenu_pic" onclick="blocking(\'picinfo\',\'yes\', \'block\'); return false;" title="{PIC_INFO_TITLE}" rel="nofollow"><img src="{LOCATION}images/info.gif" border="0" align="middle" alt="{PIC_INFO_TITLE}" /></a>');
+                          document.write('<a href="javascript:;" class="navmenu_pic" onclick="blocking(\'picinfo\',\'yes\', \'block\'); return false;" title="{PIC_INFO_TITLE}" rel="nofollow"><img src="{LOCATION}images/navbar/info.png" border="0" align="middle" alt="{PIC_INFO_TITLE}" /></a>');
                           document.write('</td>');
                         </script>
 <!-- END pic_info_button -->
 <!-- BEGIN slideshow_button -->
                         <script type="text/javascript">
                           document.write('<td align="center" valign="middle" class="navmenu" width="48">');
-                          document.write('<a href="{SLIDESHOW_TGT}" class="navmenu_pic" title="{SLIDESHOW_TITLE}" rel="nofollow"><img src="{LOCATION}images/slideshow.gif" border="0" align="middle" alt="{SLIDESHOW_TITLE}" /></a>');
+                          document.write('<a href="{SLIDESHOW_TGT}" class="navmenu_pic" title="{SLIDESHOW_TITLE}" rel="nofollow"><img src="{LOCATION}images/navbar/slideshow.png" border="0" align="middle" alt="{SLIDESHOW_TITLE}" /></a>');
                           document.write('</td>');
                         </script>
 <!-- END slideshow_button -->
-                <td align="center" valign="middle" class="navmenu" width="100%">
-                        {PIC_POS}
-                </td>
+                <td align="center" valign="middle" class="navmenu" width="100%">{PIC_POS}</td>
 <!-- BEGIN report_file_button -->
-                <td align="center" valign="middle" class="navmenu" width="48">
-                        <a href="{REPORT_TGT}" class="navmenu_pic" title="{REPORT_TITLE}" rel="nofollow"><img src="{LOCATION}images/report.gif" border="0" align="middle" alt="{REPORT_TITLE}" /></a>
-                </td>
+                <td align="center" valign="middle" class="navmenu" width="48"><a href="{REPORT_TGT}" class="navmenu_pic" title="{REPORT_TITLE}" rel="nofollow"><img src="{LOCATION}images/navbar/report.png" border="0" align="middle" alt="{REPORT_TITLE}" /></a></td>
 <!-- END report_file_button -->
 <!-- BEGIN ecard_button -->
-                <td align="center" valign="middle" class="navmenu" width="48">
-                        <a href="{ECARD_TGT}" class="navmenu_pic" title="{ECARD_TITLE}" rel="nofollow"><img src="{LOCATION}images/ecard.gif"  border="0" align="middle" alt="{ECARD_TITLE}" /></a>
-                </td>
+                <td align="center" valign="middle" class="navmenu" width="48"><a href="{ECARD_TGT}" class="navmenu_pic" title="{ECARD_TITLE}" rel="nofollow"><img src="{LOCATION}images/navbar/ecard.png"  border="0" align="middle" alt="{ECARD_TITLE}" /></a></td>
 <!-- END ecard_button -->
-                <td align="center" valign="middle" class="navmenu" width="48">
-                        <a href="{PREV_TGT}" class="navmenu_pic" title="{PREV_TITLE}"><img src="{LOCATION}images/prev.gif"  border="0" align="middle" alt="{PREV_TITLE}" /></a>
-                </td>
-                <td align="center" valign="middle" class="navmenu" width="48">
-                        <a href="{NEXT_TGT}" class="navmenu_pic" title="{NEXT_TITLE}"><img src="{LOCATION}images/next.gif"  border="0" align="middle" alt="{NEXT_TITLE}" /></a>
-                </td>
+                <td align="center" valign="middle" class="navmenu" width="48"><a href="{PREV_TGT}" class="navmenu_pic" title="{PREV_TITLE}"><img src="{LOCATION}images/navbar/prev.png" border="0" align="middle" alt="{PREV_TITLE}" /></a></td>
+                <td align="center" valign="middle" class="navmenu" width="48"><a href="{NEXT_TGT}" class="navmenu_pic" title="{NEXT_TITLE}"><img src="{LOCATION}images/navbar/next.png" border="0" align="middle" alt="{NEXT_TITLE}" /></a></td>
         </tr>
 
 EOT;
@@ -930,7 +918,7 @@ $template_image_comments = <<<EOT
 
                                 <td class="tableh2_compact" align="right" width="100%">
 <!-- BEGIN report_comment_button -->
-     <a href="report_file.php?pid={PID}&amp;msg_id={MSG_ID}&amp;what=comment" title="{REPORT_COMMENT_TITLE}"><img src="images/report.gif" width="16" height="16" border="0" align="middle" alt="{REPORT_COMMENT_TITLE}" /></a>
+     <a href="report_file.php?pid={PID}&amp;msg_id={MSG_ID}&amp;what=comment" title="{REPORT_COMMENT_TITLE}">{REPORT_COMMENT_ICON}</a>
 <!-- END report_comment_button -->
 <!-- BEGIN pending approval -->
                                         {PENDING_APPROVAL}
@@ -1471,7 +1459,7 @@ function pageheader($section, $meta = '')
 function pagefooter()
 {
     //global $HTTP_GET_VARS, $HTTP_POST_VARS, $HTTP_SERVER_VARS;
-    global $USER, $USER_DATA, $ALBUM_SET, $CONFIG, $time_start, $query_stats, $queries;;
+    global $USER, $USER_DATA, $CONFIG, $time_start, $query_stats, $queries;;
     global $template_footer;
 
     $custom_footer = cpg_get_custom_include($CONFIG['custom_footer_path']);
@@ -1482,7 +1470,7 @@ function pagefooter()
 
     $template_vars = array(
         '{CUSTOM_FOOTER}' => $custom_footer,
-        '{VANITY}' => (defined('THEME_IS_XHTML10_TRANSITIONAL') && $CONFIG['vanity_block']) ? theme_vanity() : '',
+        '{VANITY}' => (defined('THEME_IS_XHTML10_TRANSITIONAL')) ? theme_vanity() : '',
         '{CREDITS}' => theme_credits(),
     );
 
@@ -2564,8 +2552,8 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
         '{COLS}' => $i,
         '{TILE1}' => $tile1,
         '{TILE2}' => $tile2,
-        '{PREV_LINK}' => $pos > 0 ? "<a href=\"$prev_tgt\" id=\"filmstrip_prev\" rel=\"nofollow\"><img src=\"{$location}images/prev.gif\" border=\"0\" /></a>" : ' ',
-        '{NEXT_LINK}' => $pos < $pic_count - 1 ? "<a href=\"$next_tgt\" id=\"filmstrip_next\" rel=\"nofollow\"><img src=\"{$location}images/next.gif\" border=\"0\" /></a>" : ' ',
+        '{PREV_LINK}' => $pos > 0 ? "<a href=\"$prev_tgt\" id=\"filmstrip_prev\" rel=\"nofollow\"><img src=\"{$location}images/icons/left.png\" border=\"0\" /></a>" : ' ',
+        '{NEXT_LINK}' => $pos < $pic_count - 1 ? "<a href=\"$next_tgt\" id=\"filmstrip_next\" rel=\"nofollow\"><img src=\"{$location}images/icons/right.png\" border=\"0\" /></a>" : ' ',
         '{THUMB_TD_STYLE}' => $superCage->get->keyExists('film_strip') ? 'display: none;' : '',
         );
 
@@ -2615,8 +2603,11 @@ function theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments, 
 {
     global $CONFIG;
 
+    $superCage = Inspekt::makeSuperCage();
+
     $width = $CONFIG['picture_table_width'];
 
+    echo '<a name="top_display_media"></a>'; // set the navbar-anchor
     starttable();
     echo $nav_menu;
     endtable();
@@ -2630,8 +2621,6 @@ function theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments, 
 
 
     echo $votes;
-
-
 
     $picinfo = $superCage->cookie->keyExists('picinfo') ? $superCage->cookie->getAlpha('picinfo') : ($CONFIG['display_pic_info'] ? 'block' : 'none');
     echo "\n\r<div id=\"picinfo\" style=\"display: $picinfo;\">\n";
@@ -3098,33 +3087,34 @@ function theme_html_rating_box()
 // Displays comments for a specific picture
 function theme_html_comments($pid)
 {
-	global $CONFIG, $USER, $CURRENT_ALBUM_DATA, $comment_date_fmt, $HTML_SUBST;
-	global $template_image_comments, $template_add_your_comment, $lang_display_comments, $lang_common, $REFERER;
-	#####################      DB      ######################	
-	global $cpg_db_sample_theme_php;
-	$cpgdb =& cpgDB::getInstance();
-	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
-	##################################################	
+    global $CONFIG, $USER, $CURRENT_ALBUM_DATA, $comment_date_fmt, $HTML_SUBST;
+    global $template_image_comments, $template_add_your_comment, $lang_display_comments, $lang_common, $REFERER, $lang_bbcode_help_title, $lang_bbcode_help;
+    #####################      DB      ######################	
+    global $cpg_db_sample_theme_php;
+    $cpgdb =& cpgDB::getInstance();
+    $cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+    ##################################################	
 
-	$html = '';
+    $html = '';
 
-	//report to moderator buttons
-	if (!(($CONFIG['report_post']==1) && (USER_CAN_SEND_ECARDS))) {
-		template_extract_block($template_image_comments, 'report_comment_button');
-	}
+    //report to moderator buttons
+    if (!(($CONFIG['report_post']==1) && (USER_CAN_SEND_ECARDS))) {
+        template_extract_block($template_image_comments, 'report_comment_button');
+    }
 
-	if (!$CONFIG['enable_smilies']) {
-		$tmpl_comment_edit_box = template_extract_block($template_image_comments, 'edit_box_no_smilies', '{EDIT}');
-		template_extract_block($template_image_comments, 'edit_box_smilies');
-		template_extract_block($template_add_your_comment, 'input_box_smilies');
-	} else {
-		$tmpl_comment_edit_box = template_extract_block($template_image_comments, 'edit_box_smilies', '{EDIT}');
-		template_extract_block($template_image_comments, 'edit_box_no_smilies');
-		template_extract_block($template_add_your_comment, 'input_box_no_smilies');
-	}
+    if (!$CONFIG['enable_smilies']) {
+        $tmpl_comment_edit_box = template_extract_block($template_image_comments, 'edit_box_no_smilies', '{EDIT}');
+        template_extract_block($template_image_comments, 'edit_box_smilies');
+        template_extract_block($template_add_your_comment, 'input_box_smilies');
+    } else {
+        $tmpl_comment_edit_box = template_extract_block($template_image_comments, 'edit_box_smilies', '{EDIT}');
+        template_extract_block($template_image_comments, 'edit_box_no_smilies');
+        template_extract_block($template_add_your_comment, 'input_box_no_smilies');
+    }
 
-	$tmpl_comments_buttons = template_extract_block($template_image_comments, 'buttons', '{BUTTONS}');
-	$tmpl_comments_ipinfo = template_extract_block($template_image_comments, 'ipinfo', '{IPINFO}');
+
+    $tmpl_comments_buttons = template_extract_block($template_image_comments, 'buttons', '{BUTTONS}');
+    $tmpl_comments_ipinfo = template_extract_block($template_image_comments, 'ipinfo', '{IPINFO}');
 
 	if ($CONFIG['comments_sort_descending'] == 1) {
 		$comment_sort_order = 'DESC';
@@ -3150,30 +3140,30 @@ function theme_html_comments($pid)
 		$comment_ipinfo = ($row['msg_raw_ip'] && GALLERY_ADMIN_MODE)?$tmpl_comments_ipinfo : '';
 		$hide_comment = 0;
 
-		// comment approval
-		$pending_approval = '';
-		if (USER_IS_ADMIN) {
-			//display the selector approve/disapprove
-			if ($row['approval'] == 'NO') {
-				$pending_approval = '<a href="reviewcom.php?pos=-{PID}&amp;msg_id={MSG_ID}&amp;what=approve" title="' . $lang_display_comments['approve'] . '"><img src="images/approve.gif" border="0" alt="" align="middle" /></a>';
-			} else {
-				$pending_approval = '<a href="reviewcom.php?pos=-{PID}&amp;msg_id={MSG_ID}&amp;what=disapprove" title="' . $lang_display_comments['disapprove'] . '"><img src="images/disapprove.gif" border="0" alt="" align="middle" /></a>';
-			}
-		} else { // user or guest is logged in - start
-			if ($row['approval'] == 'NO') { // the comment is not approved - start
-				if ($user_can_edit) { // the comment comes from the current visitor, display it with a warning that it needs admin approval
-					$pending_approval = '<img src="images/approve.gif" border="0" alt="" title="' . $lang_display_comments['pending_approval'] . '" align="middle" />';
-				} else { // the comment comes from someone else - don't display it at all
-					if ($CONFIG['comment_placeholder'] == 0) {
-						$hide_comment = 1;
-					} else {
-						$row['msg_author'] = $lang_display_comments['unapproved_comment'];
-						$row['msg_body'] = $lang_display_comments['pending_approval_message'];
-						$row['author_id'] = 0;
-					}
-				}
-			} // the comment is not approved - end
-		} // user or guest is logged in - end
+        // comment approval
+        $pending_approval = '';
+        if (USER_IS_ADMIN) {
+            //display the selector approve/disapprove
+            if ($row['approval'] == 'NO') {
+                $pending_approval = cpg_fetch_icon('comment_disapprove_disabled', 0) . '<a href="reviewcom.php?pos=-{PID}&amp;msg_id={MSG_ID}&amp;what=approve" title="' . $lang_display_comments['approve'] . '">' . cpg_fetch_icon('comment_approve', 0) . '</a>';
+            } else {
+                $pending_approval = '<a href="reviewcom.php?pos=-{PID}&amp;msg_id={MSG_ID}&amp;what=disapprove" title="' . $lang_display_comments['disapprove'] . '">' . cpg_fetch_icon('comment_disapprove', 0) . '</a>' . cpg_fetch_icon('comment_approve_disabled', 0);
+            }
+        } else { // user or guest is logged in - start
+            if ($row['approval'] == 'NO') { // the comment is not approved - start
+                if ($user_can_edit) { // the comment comes from the current visitor, display it with a warning that it needs admin approval
+                    $pending_approval = cpg_fetch_icon('comment_approval', 0, $lang_display_comments['pending_approval']);
+                } else { // the comment comes from someone else - don't display it at all
+                    if ($CONFIG['comment_placeholder'] == 0) {
+                        $hide_comment = 1;
+                    } else {
+                        $row['msg_author'] = $lang_display_comments['unapproved_comment'];
+                        $row['msg_body'] = $lang_display_comments['pending_approval_message'];
+                        $row['author_id'] = 0;
+                    }
+                }
+            } // the comment is not approved - end
+        } // user or guest is logged in - end
 
 		if ($CONFIG['enable_smilies']) {
 			$comment_body = process_smilies(make_clickable($row['msg_body']));
@@ -3224,7 +3214,8 @@ function theme_html_comments($pid)
             '{SMILIES}' => $smilies,
             '{IP}' => $ip,
             '{REPORT_COMMENT_TITLE}' => &$lang_display_comments['report_comment_title'],
-            '{WIDTH}' => $CONFIG['picture_table_width']
+            '{REPORT_COMMENT_ICON}' => cpg_fetch_icon('report', 0),
+            '{WIDTH}' => $CONFIG['picture_table_width'],
             );
 
 		if ($hide_comment != 1) {
@@ -3249,20 +3240,25 @@ function theme_html_comments($pid)
 			template_extract_block($template_add_your_comment, 'comment_captcha');
 		}
 
-		$params = array('{ADD_YOUR_COMMENT}' => $lang_display_comments['add_your_comment'],
-			// Modified Name and comment field
-			'{NAME}' => $lang_display_comments['name'],
-			'{COMMENT}' => $lang_display_comments['comment'],
-			'{CONFIRM}' => $lang_common['confirm'].'&nbsp;'. cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_common['captcha_help_title']))).'&amp;t='.urlencode(base64_encode(serialize($lang_common['captcha_help']))),470,245),
-			'{PIC_ID}' => $pid,
-			'{USER_NAME}' => $user_name,
-			'{MAX_COM_LENGTH}' => $CONFIG['max_com_size'],
-			'{OK}' => $lang_display_comments['OK'],
-			'{DEFAULT_USERNAME}' => $lang_display_comments['your_name'],
-			'{DEFAULT_USERNAME_MESSAGE}' => $lang_display_comments['default_username_message'],
-			'{SMILIES}' => '',
-			'{WIDTH}' => $CONFIG['picture_table_width'],
-			);
+    if ($CONFIG['show_bbcode_help']) {
+    	$captionLabel = '&nbsp;'. cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);
+    }
+
+        $params = array('{ADD_YOUR_COMMENT}' => $lang_display_comments['add_your_comment'],
+            // Modified Name and comment field
+            '{NAME}' => $lang_display_comments['name'],
+            '{COMMENT}' => $lang_display_comments['comment'],
+            '{CONFIRM}' => $lang_common['confirm'].'&nbsp;'. cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_common['captcha_help_title']))).'&amp;t='.urlencode(base64_encode(serialize($lang_common['captcha_help']))),470,245),
+            '{PIC_ID}' => $pid,
+            '{USER_NAME}' => $user_name,
+            '{MAX_COM_LENGTH}' => $CONFIG['max_com_size'],
+            '{OK}' => $lang_display_comments['OK'],
+            '{DEFAULT_USERNAME}' => $lang_display_comments['your_name'],
+            '{DEFAULT_USERNAME_MESSAGE}' => $lang_display_comments['default_username_message'],
+            '{SMILIES}' => '',
+            '{WIDTH}' => $CONFIG['picture_table_width'],
+      		'{HELP_ICON}' => $captionLabel,
+            );
 
 		if ($CONFIG['enable_smilies']){
 						$params['{SMILIES}'] = generate_smilies();
@@ -3270,22 +3266,23 @@ function theme_html_comments($pid)
 						template_extract_block($template_add_your_comment, 'smilies');
 				}
 
-		template_extract_block($template_add_your_comment, 'login_to_comment');
-		$html .= template_eval($template_add_your_comment, $params);
-	} else { // user can not post comments
-		if ($CONFIG['comment_promote_registration'] == 1 && $CURRENT_ALBUM_DATA['comments'] == 'YES') {
-		  template_extract_block($template_add_your_comment, 'user_name_input');
-		  template_extract_block($template_add_your_comment, 'input_box_smilies');
-		  template_extract_block($template_add_your_comment, 'comment_captcha');
-		  template_extract_block($template_add_your_comment, 'smilies');
-		  template_extract_block($template_add_your_comment, 'submit');
-		  $params = array('{ADD_YOUR_COMMENT}' => $lang_display_comments['add_your_comment'],
-			  '{WIDTH}' => $CONFIG['picture_table_width'],
-			  '{LOGIN_TO_COMMENT}' => sprintf($lang_display_comments['log_in_to_comment'], '<a href="login.php?referer='.$REFERER.'">', '</a>'),
-			  );
-		  $html .= template_eval($template_add_your_comment, $params);
-		}
-	}
+        template_extract_block($template_add_your_comment, 'login_to_comment');
+        $html .= template_eval($template_add_your_comment, $params);
+    } else { // user can not post comments
+        if ($CONFIG['comment_promote_registration'] == 1 && $CURRENT_ALBUM_DATA['comments'] == 'YES') {
+          template_extract_block($template_add_your_comment, 'user_name_input');
+          template_extract_block($template_add_your_comment, 'input_box_smilies');
+          template_extract_block($template_add_your_comment, 'comment_captcha');
+          template_extract_block($template_add_your_comment, 'smilies');
+          template_extract_block($template_add_your_comment, 'submit');
+          $params = array('{ADD_YOUR_COMMENT}' => $lang_display_comments['add_your_comment'],
+              '{WIDTH}' => $CONFIG['picture_table_width'],
+              '{LOGIN_TO_COMMENT}' => sprintf($lang_display_comments['log_in_to_comment'], '<a href="login.php?referer='.$REFERER.'">', '</a>'),
+              '{HELP_ICON}' => '',
+              );
+          $html .= template_eval($template_add_your_comment, $params);
+        }
+    }
 
 	return $html;
 }
@@ -3487,7 +3484,7 @@ function theme_display_fullsize_pic()
 ******************************************************************************/
 function theme_vanity()
 {
-    global $CONFIG, $THEME_DIR, $template_vanity ;
+    global $THEME_DIR, $template_vanity ;
 
     if (defined('THEME_HAS_VANITY_GRAPHICS')) {
             $location= $THEME_DIR;

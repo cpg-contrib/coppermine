@@ -11,9 +11,9 @@
 ##  ********************************************
 ##  Coppermine version: 1.5.0
 ##  $Source: /cvsroot/coppermine/devel/sql/update.sql,v $
-##  $Revision: 4800 $
+##  $Revision: 4956 $
 ##  $LastChangedBy: gaugau $
-##  $Date: 2008-08-09 19:06:31 +0530 (Sat, 09 Aug 2008) $
+##  $Date: 2008-08-29 13:11:43 +0530 (Fri, 29 Aug 2008) $
 ##  ********************************************
 
 
@@ -151,8 +151,6 @@ INSERT INTO CPG_config VALUES ('global_registration_pw','');
 
 ##    movie download link -> to picinfo
 INSERT INTO CPG_config VALUES ('picinfo_movie_download_link', '1');
-
-INSERT INTO CPG_config VALUES ('vanity_block','0');
 
 INSERT INTO CPG_config VALUES ('log_mode', '0');
 
@@ -391,7 +389,7 @@ CREATE TABLE CPG_hit_stats (
   uid INTEGER NOT NULL DEFAULT 0 ,
   PRIMARY KEY(sid));
 
-ALTER TABLE CPG_config ADD uid INTEGER NOT NULL DEFAULT 0;
+ALTER TABLE CPG_hit_stats ADD uid INTEGER NOT NULL DEFAULT 0;
 
 INSERT INTO CPG_config VALUES ('hit_details', '0');
 
@@ -412,7 +410,7 @@ INSERT INTO CPG_config VALUES ('home_target', 'index.php');
 
 DELETE FROM CPG_config WHERE name = 'comment_email_notification';
 DELETE FROM CPG_config WHERE name = 'hide_admin_uploader';
-
+DELETE FROM CPG_config WHERE name = 'vanity_block';
 
 INSERT INTO CPG_config VALUES ('custom_lnk_name', '');
 INSERT INTO CPG_config VALUES ('custom_lnk_url', '');

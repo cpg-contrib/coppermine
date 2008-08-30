@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $Source$
-  $Revision: 4873 $
+  $Revision: 4920 $
   $LastChangedBy: gaugau $
-  $Date: 2008-08-13 12:28:28 +0530 (Wed, 13 Aug 2008) $
+  $Date: 2008-08-27 21:06:54 +0530 (Wed, 27 Aug 2008) $
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
@@ -784,11 +784,11 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'browse_by_date' =>   'Enable browsing by date', // cpg1.5
   'display_redirection_page' =>   'Display redirection pages', // cpg1.5
   'main_table_width' =>   'Width of the main table', // cpg1.5
-  'pixels_or_percent' =>   '(pixels or %)', // cpg1.5
+  'pixels_or_percent' =>   'pixels or %', // cpg1.5
   'subcat_level' =>   'Number of levels of categories to display', // cpg1.5
   'albums_per_page' =>   'Number of albums to display', // cpg1.5
   'album_list_cols' =>   'Number of columns for the album list', // cpg1.5
-  'alb_list_thumb_size' =>   'Size of album thumbnails in pixels', // cpg1.5
+  'alb_list_thumb_size' =>   'Size of album thumbnails', // cpg1.5
   'main_page_layout' =>   'The content of the main page', // cpg1.5
   'first_level' =>   'Show first level album thumbnails in categories', // cpg1.5
   'categories_alpha_sort' =>   'Sort categories alphabetically', // cpg1.5
@@ -816,8 +816,9 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'display_film_strip' =>   'Show film strip', // cpg1.5
   'display_film_strip_filename' =>   'Display file name under film strip thumbnail', // cpg1.5
   'max_film_strip_items' =>   'Number of items in film strip', // cpg1.5
-  'slideshow_interval' =>   'Slideshow interval in milliseconds', // cpg1.5
-  'slideshow_interval_detail' =>   '(1 second = 1000 milliseconds)', // cpg1.5
+  'slideshow_interval' =>   'Slideshow interval', // cpg1.5
+  'milliseconds' => 'milliseconds', // cpg1.5
+  'slideshow_interval_detail' =>   '1 second = 1000 milliseconds', // cpg1.5
   'slideshow_hits' =>   'Count hits in slideshow', // cpg1.5
   'ecard_flash' =>   'Allow Flash in Ecards', // cpg1.5
   'not_recommended' =>   'not recommended', // cpg1.5
@@ -855,7 +856,7 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'unsharp_threshold' =>   'Thumb Sharpening threshold', // cpg1.5
   'jpeg_qual' =>   'Quality for JPEG files', // cpg1.5
   'make_intermediate' =>   'Create intermediate pictures', // cpg1.5
-  'picture_width' =>   'Max width or height of an intermediate picture/video', // cpg1.5
+  'picture_width' =>   'Max width or height of an intermediate picture', // cpg1.5
   'max_upl_size' =>   'Max size for uploaded files', // cpg1.5
   'kilobytes' =>   'KB', // cpg1.5
   'pixels' =>   'pixels', // cpg1.5
@@ -1126,11 +1127,11 @@ if (defined('DISPLAYIMAGE_PHP')){
 
 $lang_display_image_php = array(
   'confirm_del' => 'Are you sure you want to DELETE this file ? \\nComments will also be deleted.', // js-alert
-  'del_pic' => 'DELETE THIS FILE',
+  'del_pic' => 'Delete this File',
   'size' => '%s x %s pixels',
   'views' => '%s times',
   'slideshow' => 'Slideshow',
-  'stop_slideshow' => 'STOP SLIDESHOW',
+  'stop_slideshow' => 'Stop Slideshow',
   'view_fs' => 'Click to view full size image',
   'edit_pic' => 'Edit file information',
   'crop_pic' => 'Crop and Rotate',
@@ -1530,9 +1531,9 @@ $lang_index_php = array(
 
 $lang_album_admin_menu = array(
   'confirm_delete' => 'Are you sure you want to DELETE this album ? \\nAll files and comments will also be deleted.', // js-alert
-  'delete' => 'DELETE',
-  'modify' => 'PROPERTIES',
-  'edit_pics' => 'EDIT FILES',
+  'delete' => 'Delete',
+  'modify' => 'Properties',
+  'edit_pics' => 'Edit Files',
   'cat_locked' => 'This album has been locked for editing', // cpg 1.5
 );
 
