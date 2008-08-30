@@ -360,6 +360,13 @@ ob_start('cpg_filter_page_html');</pre></td>
     <td valign="top" class="tableb">available in picmgmt.php, called right before a new image's data is written to the database</td>
     <td valign="top" class="tableb"><pre class="smallcode">$CURRENT_PIC_DATA = CPGPluginAPI::filter('add_file_data',$CURRENT_PIC_DATA);</pre></td>
   </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">include/picmgmt.inc.php</td>
+    <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_filename_add_file_data_success"></a><strong>add_file_data_success</strong><a href="#plugin_hooks_filename_add_file_data_success" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">Filter</td>
+    <td valign="top" class="tableb tableb_alternate">called right after a new file's data is written to the database. $CURRENT_PIC_DATA holds the pid of new file along with other data.</td>
+    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">$CURRENT_PIC_DATA = CPGPluginAPI::filter('add_file_data_success',$CURRENT_PIC_DATA);</pre></td>
+  </tr>
 </table>
 
 <a name="plugin_hooks_alphabetic"></a>
@@ -407,6 +414,8 @@ $pic_row = CPGPluginAPI::filter('thumb_data',$pic_row);</div>
 <p>These two filters are used specifically to manipulate the data of a picture.</p>
 <div class="quote">$CURRENT_PIC_DATA = CPGPluginAPI::filter('add_file_data',$CURRENT_PIC_DATA);<br />
 $CURRENT_PIC_DATA = CPGPluginAPI::filter('file_data',$CURRENT_PIC_DATA);</div>
+<p>If you want to do something (like converting the video to flv, taking a backup of file to remote server etc..) after a file is uploaded then this hook can be used.</p>
+<div class="quote">$CURRENT_PIC_DATA = CPGPluginAPI::filter('add_file_data_success',$CURRENT_PIC_DATA);</div>
 <p>The breadcrumb plugin:</p>
 <div class="quote">CPGPluginAPI::filter('post_breadcrumb',null);</div>
 <p>This plugin is very powerful because it gives access to the entire body of HTML that will be then directly returned to the user.  This filter can be used to remove parts of code or modify links for example.</p>
@@ -417,6 +426,9 @@ $template_header .= CPGPluginAPI::filter('gallery_header','');</div>
 <p>These two filters relate to footers.</p>
 <div class="quote">echo CPGPluginAPI::filter('usermgr_footer','');<br />
 $template_footer = CPGPluginAPI::filter('gallery_footer','').substr($template, $gallery_pos);</div>
+<p>These two filters are meant for cleanup purposes. If there is any additional data related to a file and you want that data to be removed when a file is deleted then use these hooks.</p>
+<div class="quote">CPGPluginAPI::filter('before_delete_file', $pic);<br />
+CPGPluginAPI::filter('after_delete_file', $pic);</div>
 
 
 
