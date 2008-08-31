@@ -2670,7 +2670,7 @@ function cpg_debug_output()
     $debug_separate = '&#0010;==========================&#0010;';
     $debug_toggle_link = ' <a href="javascript:;" onclick="show_section(\'debug_output_rows\');" class="admin_menu" id="debug_output_toggle" style="display:none;">'.$lang_cpg_debug_output['show_hide'].'</a>';
     echo '<form name="debug" action="'.$CPG_PHP_SELF.'" id="debug">';
-    starttable('100%', $lang_cpg_debug_output['debug_info']. $debug_toggle_link,2);
+    starttable('100%', cpg_fetch_icon('bug', 2) . $lang_cpg_debug_output['debug_info']. $debug_toggle_link,2);
     //echo '<div name="debug_output_rows" id="debug_output_rows" style="display:block;">';
     echo '<tr><td align="center" valign="top" width="100%" colspan="2">';
     echo '<table border="0" cellspacing="0" cellpadding="0" width="100%" id="debug_output_rows">';
@@ -2831,9 +2831,9 @@ EOT;
     $report = $cpgdebugger->stop();
     if (is_array($report) && $CONFIG['debug_notice']!= 0) {
         echo '<tr><td class="tableh1" colspan="2">';
-        echo '<b>';
-        echo $lang_cpg_debug_output['notices'];
-        echo '</b>';
+        echo '<strong>';
+        echo cpg_fetch_icon('text_left', 2) . $lang_cpg_debug_output['notices'];
+        echo '</strong>';
         echo '</td></tr>';
         echo '<tr><td class="tableb" colspan="2">';
         foreach($report AS $file => $errors) {
