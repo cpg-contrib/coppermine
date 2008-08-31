@@ -1099,6 +1099,7 @@ $config_data = array(
       'type' => 'checkbox',
       'default_value' => '0',
       'bridged' => 'hide',
+      'only_display_if' => '1',
       'help_link' => 'f=configuration.htm&amp;as=admin_allow_duplicate_emails_addr&amp;ae=admin_allow_duplicate_emails_addr_end',
     ),
     'upl_notify_admin_email' => array(
