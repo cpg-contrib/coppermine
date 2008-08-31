@@ -36,7 +36,7 @@ if (!GALLERY_ADMIN_MODE) {
 }
 
 if (!function_exists('form_get_foldercontent')) {
-  function form_get_foldercontent ($foldername, $fileOrFolder = 'folder', $validextension = '', $exception_array = '') {
+  function form_get_foldercontent ($foldername, $fileOrFolder = 'folder', $validextension = '', $exception_array = array('')) {
     global $CONFIG;
     $dir = opendir($foldername);
     while ($file = readdir($dir)) {
@@ -406,7 +406,7 @@ EOT;
       }
       print $readonly_message.'</span>';
     } elseif ($value['type'] == 'hidden') { //HIDDEN
-      print '<input type="hidden"  name="'.$key.'" value="'.$admin_data_array[$key].'"'.$readonly.' />';
+      print '<input type="hidden"  name="'.$key.'" value="'.$admin_data_array[$key].'" />';
     } elseif ($value['type'] == 'select_function') { //SELECT_FUNCTION
 	    // not implemented (yet)
     } elseif ($value['type'] == 'select_multiple') { //SELECT_MULTIPLE
