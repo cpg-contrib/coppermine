@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-08-31 [O] Removed option to allow users sharing email addresses {GauGau}
 2008-08-30 [D] Added documentation for new hooks (after_delete_file, before_delete_file and add_file_data_success) {Abbas}
 2008-08-29 [O] Removed configurability of thumbnail and intermediate image prefix as per poll ID 54324 {GauGau}
 2008-08-29 [O] Removed vanity option from config as per poll id 54323 - users who want to show the vanity block just need to add the {VANITY} token to their custom theme {GauGau}
