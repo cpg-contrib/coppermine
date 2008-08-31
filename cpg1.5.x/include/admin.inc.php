@@ -400,10 +400,6 @@ $config_data = array(
       'default_value' => '0',
       'help_link' => 'f=configuration.htm&amp;as=admin_thumbnail_display_uploader&amp;ae=admin_thumbnail_display_uploader_end',
     ),
-    'display_admin_uploader' => array(
-      'type' => 'hidden',
-      'help_link' => 'f=configuration.htm&amp;as=admin_thumbnail_display_admin_uploader&amp;ae=admin_thumbnail_display_admin_uploader_end',
-    ),
     'display_filename' => array(
       'type' => 'checkbox',
       'default_value' => '0',
