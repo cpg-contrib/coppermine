@@ -1165,7 +1165,7 @@ EOT;
         if ($BRIDGE['short_name'] != '') {// display the enable/disable option only if there's at least a db entry about the file to bridge with --- start
             print '<tr>';
             print '<td class="tableh2" colspan="2">';
-            printf($lang_bridgemgr_php['title_enable'], '<b>'.$default_bridge_data[$BRIDGE['short_name']]['full_name'].'</b>');
+            printf($lang_bridgemgr_php['title_enable'], '<strong>'.$default_bridge_data[$BRIDGE['short_name']]['full_name'].'</strong>');
             print '</td>';
             print '</tr>';
             //print 'bridge enabled:'.$CONFIG['bridge_enable'];

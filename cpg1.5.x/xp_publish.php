@@ -52,7 +52,7 @@ define('LOGFILE', 'xp_publish.log');
 
 // HTML template for the login screen
 $template_login = <<<EOT
-        <p><b>{ENTER_LOGIN_PSWD}</b></p>
+        <p><strong>{ENTER_LOGIN_PSWD}</strong></p>
         <form method="post" name="cpgform" id="login" action="{POST_ACTION}">
             <table border="0" cellpadding="0" cellspasing="0">
                 <tr>
@@ -95,7 +95,7 @@ $template_select_album = <<<EOT
    <table border="0" cellpadding="0" cellspasing="0">
 <!-- BEGIN existing_albums -->
         <tr>
-                <td colspan="2"><b>{UPLOAD}</b></td>
+                <td colspan="2"><strong>{UPLOAD}</strong></td>
         </tr>
         <form name="cpgform3" id="selform">
     <tr>
@@ -110,7 +110,7 @@ $template_select_album = <<<EOT
 <!-- BEGIN create_album -->
         <form method="post" name="createAlb" id="createAlb" action="{POST_ACTION}">
         <tr>
-                <td colspan="2"><b>{CREATE_NEW}</b></td>
+                <td colspan="2"><strong>{CREATE_NEW}</strong></td>
         </tr>
     <tr>
                 <td>{ALBUM}: &nbsp;</td>

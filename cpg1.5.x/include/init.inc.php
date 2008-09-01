@@ -127,7 +127,7 @@ $CONFIG['TABLE_HIT_STATS']     = $CONFIG['TABLE_PREFIX'].'hit_stats';
 $CONFIG['TABLE_TEMP_MESSAGES'] = $CONFIG['TABLE_PREFIX'].'temp_messages';
 $CONFIG['TABLE_CATMAP']        = $CONFIG['TABLE_PREFIX'].'categorymap';
 // Connect to database
-($CONFIG['LINK_ID'] = cpg_db_connect()) || die('<b>Coppermine critical error</b>:<br />Unable to connect to database !<br /><br />MySQL said: <b>' . mysql_error() . '</b>');
+($CONFIG['LINK_ID'] = cpg_db_connect()) || die('<strong>Coppermine critical error</strong>:<br />Unable to connect to database !<br /><br />MySQL said: <strong>' . mysql_error() . '</strong>');
 // Retrieve DB stored configuration
 $results = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_CONFIG']}");
 while ($row = mysql_fetch_array($results)) {

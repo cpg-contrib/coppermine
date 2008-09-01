@@ -102,7 +102,7 @@ class cpg_debugger {
             if (USER_IS_ADMIN) {
                 $errmsg = $errortype[$errno]." $filename line $linenum: ".$errmsg;
             } else {
-                $errmsg = "A error occured while processing this page.<br />Please report the following error to the owner of this website.<br /><br /><b>$errmsg</b>";
+                $errmsg = "A error occured while processing this page.<br />Please report the following error to the owner of this website.<br /><br /><strong>$errmsg</strong>";
             }
             cpg_die(CRITICAL_ERROR, $errmsg, $filename, $linenum);
         }

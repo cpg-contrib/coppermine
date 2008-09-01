@@ -239,7 +239,7 @@ function display_cat_list()
             $loop_counter = 0;
         }
         echo "        <tr>\n";
-        echo '                <td class="'.$row_style_class.'" width="80%"><b>' . $category['name'] . '</b></td>' . "\n";
+        echo '                <td class="'.$row_style_class.'" width="80%"><strong>' . $category['name'] . '</strong></td>' . "\n";
 
         if ($category['pos'] > 0 && $CONFIG['categories_alpha_sort'] != 1) {
             echo '                <td class="'.$row_style_class.'" width="4%"><a href="' . $CPG_PHP_SELF . '?op=movetop&amp;cid1=' . $category['cid'] . '&amp;pos1=' . ($category['pos']) . '">' . cpg_fetch_icon('upup', 0, $lang_common['move_top']) . '</a></td>' . "\n";
@@ -577,8 +577,8 @@ $icon = cpg_fetch_icon('cat_mgr', 2);
 echo <<<EOT
         <tr>
                 <td class="tableh1"><span class="statlink">{$icon}{$lang_catmgr_php['category']}</span>$help</td>
-                <td colspan="6" class="tableh1" align="center"><b><span class="statlink">{$lang_catmgr_php['operations']}</span></b></td>
-                <td class="tableh1" align="center"><b><span class="statlink">{$lang_catmgr_php['move_into']}</span></b></td>
+                <td colspan="6" class="tableh1" align="center"><strong><span class="statlink">{$lang_catmgr_php['operations']}</span></strong></td>
+                <td class="tableh1" align="center"><strong><span class="statlink">{$lang_catmgr_php['move_into']}</span></strong></td>
         </tr>
         <form method="get" action="$CPG_PHP_SELF" name="cpgform" id="cpgform">
 

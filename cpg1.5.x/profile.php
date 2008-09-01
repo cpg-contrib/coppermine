@@ -171,7 +171,7 @@ function make_form($form_param, $form_data)
             echo <<<EOT
     <tr>
         <td colspan="2" class="{$cellStyle}">
-            <b>{$element[1]}<b>
+            <strong>{$element[1]}<strong>
         </td>
     </tr>
 

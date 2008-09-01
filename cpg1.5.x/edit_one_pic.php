@@ -306,7 +306,7 @@ if (defined('UPLOAD_APPROVAL_MODE')) {
 print <<<EOT
         <tr>
                         <td class="tableh2" colspan="3">
-                                <b>$filename</b>
+                                <strong>$filename</strong>
                                 &nbsp;&nbsp;-&nbsp;&nbsp;<a href="modifyalb.php?album={$CURRENT_PIC['aid']}" class="admin_menu">{$lang_editpics_php['album_properties']}</a>&nbsp;&nbsp;-&nbsp;&nbsp;
                         <a href="thumbnails.php?album={$CURRENT_PIC['aid']}" class="admin_menu">{$lang_editpics_php['thumbnail_view']}</a>
                         </td>

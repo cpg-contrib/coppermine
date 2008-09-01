@@ -482,6 +482,10 @@ function create_tabs($items, $curr_page, $total_pages, $template)
         // $tabs .= strtr( sprintf($template['inactive_next_tab'],#NEXT_PAGE_NUMBER#) , array('{NEXT}' => $lang_create_tabs['next']) );
 
         $maxTab = $CONFIG['max_tabs'];
+        
+        if ($total_pages == '') {
+        	$total_pages = $curr_page;
+        }
 
         $tabs = sprintf($template['left_text'], $items, $total_pages);
         if (($total_pages == 1)) return $tabs;
@@ -572,8 +576,8 @@ function bb_decode($text)
         }
 
         // [b] and [/b] for bolding text.
-        $text = str_replace("[b]", '<b>', $text);
-        $text = str_replace("[/b]", '</b>', $text);
+        $text = str_replace("[b]", '<strong>', $text);
+        $text = str_replace("[/b]", '</strong>', $text);
 
         // [u] and [/u] for underlining text.
         $text = str_replace("[u]", '<u>', $text);
@@ -839,7 +843,7 @@ function template_extract_block(&$template, $block_name, $subst='')
 {
         $pattern = "#(<!-- BEGIN $block_name -->)(.*?)(<!-- END $block_name -->)#s";
         if ( !preg_match($pattern, $template, $matches)) {
-                die('<b>Template error<b><br />Failed to find block \''.$block_name.'\'('.htmlspecialchars($pattern).') in :<br /><pre>'.htmlspecialchars($template).'</pre>');
+                die('<strong>Template error<strong><br />Failed to find block \''.$block_name.'\'('.htmlspecialchars($pattern).') in :<br /><pre>'.htmlspecialchars($template).'</pre>');
         }
         $template = str_replace($matches[1].$matches[2].$matches[3], $subst, $template);
         return $matches[2];
@@ -2837,7 +2841,7 @@ EOT;
         echo '</td></tr>';
         echo '<tr><td class="tableb" colspan="2">';
         foreach($report AS $file => $errors) {
-            echo '<b>'.substr($file, $strstart).'</b><ul>';
+            echo '<strong>'.substr($file, $strstart).'</strong><ul>';
             foreach($errors AS $error) { 
                 echo "<li>$error</li>"; 
             }

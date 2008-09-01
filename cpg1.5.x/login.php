@@ -49,7 +49,7 @@ if ($superCage->post->keyExists('submitted')) {
         $login_failed = <<<EOT
                   <tr>
                           <td colspan="2" align="center" class="tableh2">
-                        <span style="color:red"><b>{$lang_login_php['err_login']}<b></span>
+                        <span style="color:red"><strong>{$lang_login_php['err_login']}<strong></span>
                         </td>
                   </tr>
 EOT;
@@ -78,7 +78,7 @@ if (!$superCage->cookie->keyExists($CONFIG['cookie_name'] . '_data')) {
     $cookie_warning = <<<EOT
                   <tr>
                           <td colspan="2" align="center" class="tableh2">
-                        <span style="color:red"><b>{$lang_login_php['cookie_warning']}<b></span>
+                        <span style="color:red"><strong>{$lang_login_php['cookie_warning']}<strong></span>
                         </td>
                   </tr>
 

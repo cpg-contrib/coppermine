@@ -272,7 +272,7 @@ function filename_to_title()
         $query = cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET title = '".addslashes($newtitle)."' WHERE pid = '$pid'");
         if ($query){
                 $file_count++;
-                echo "{$lang_util_php['file']} : <b>$filename</b> {$lang_util_php['title_set_to']} : <b>$newtitle</b><br />\n";
+                echo "{$lang_util_php['file']} : <strong>$filename</strong> {$lang_util_php['title_set_to']} : <strong>$newtitle</strong><br />\n";
         }
 
         my_flush();

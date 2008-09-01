@@ -383,7 +383,7 @@ print '<form action="http://ws.arin.net/whois/" method="get" name="lookup" id="c
 starttable('-2');
 print "<tr>\n";
 print "<td class=\"tablef\">\n";
-print "<b>".$lang_banning_php['lookup_ip']."</b>\n";
+print "<strong>".$lang_banning_php['lookup_ip']."</strong>\n";
 print "</td>\n";
 print "<td class=\"tableb\">\n";
 print "<input type=\"text\" class=\"textinput\" size=\"20\" name=\"queryinput\" value=\"\" maxlength=\"15\" />\n";

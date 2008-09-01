@@ -261,7 +261,7 @@ EOT;
         echo <<<EOT
         <tr>
                 <td colspan="2" class="tableh2" align="center">
-                        <b>&#149;&nbsp;&#149;&nbsp;&#149;&nbsp;{$lang_register_php['error']}&nbsp;&#149;&nbsp;&#149;&nbsp;&#149;</b>
+                        <strong>&#149;&nbsp;&#149;&nbsp;&#149;&nbsp;{$lang_register_php['error']}&nbsp;&#149;&nbsp;&#149;&nbsp;&#149;</strong>
                 </td>
         </tr>
         <tr>

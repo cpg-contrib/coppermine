@@ -443,7 +443,7 @@ if (GALLERY_ADMIN_MODE||USER_ADMIN_MODE) {
     echo <<<EOT
                                 <tr>
                                     <td>
-                                        <b>{$lang_albmgr_php['select_category']}</b>
+                                        <strong>{$lang_albmgr_php['select_category']}</strong>
                                         <select onChange="if(this.options[this.selectedIndex].value) window.location.href='$CPG_PHP_SELF?cat='+this.options[this.selectedIndex].value;"  name="cat" class="listbox">
 
 EOT;

@@ -880,7 +880,7 @@ EOT;
 $template_image_rating = <<<EOT
 <table align="center" width="{WIDTH}" cellspacing="1" cellpadding="0" class="maintable">
         <tr>
-                <td colspan="6" class="tableh2_compact" id="voting_title"><b>{TITLE}</b> {VOTES}</td>
+                <td colspan="6" class="tableh2_compact" id="voting_title"><strong>{TITLE}</strong> {VOTES}</td>
         </tr>
         <tr  id="rating_stars">
 				{RATING}
@@ -1333,7 +1333,7 @@ $template_report_comment = <<<EOT
         </tr>
         <tr>
           <td valign="top">
-            <span style="font-family:Arial,Verdana,Helvetica,sans-serif;color:#000000;font-size:2.0em;font-weight:bold;">{SUBJECT}</span></b>
+            <span style="font-family:Arial,Verdana,Helvetica,sans-serif;color:#000000;font-size:2.0em;font-weight:bold;">{SUBJECT}</span></strong>
                                                 <br />
               {REASON}
             <br />

@@ -51,7 +51,7 @@ function form_label($text)
     echo <<<EOT
         <tr>
                 <td class="tableh2" colspan="2">
-                        <b>$text</b>
+                        <strong>$text</strong>
                 </td>
         </tr>
 

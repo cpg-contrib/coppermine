@@ -124,7 +124,7 @@ Problem zu beheben.',
 $lang_bbcode_help_title = 'Bulletin Board code Hilfe';
 $lang_bbcode_help = 'Du kannst klickbare Links und Formatierung in diesem Feld anwenden durch die Verwendung folgender 
 
-bbcode-Befehle: <li>[b]Fett[/b] =&gt; <b>Fett</b></li><li>[i]Kursiv[/i] =&gt; <i>Kursiv</i></li><li>[url=http://deineseite.com/]Url Text[/url] =&gt; <a href="http://deineseite.com">UrlText</a></li><li>[email]benutzer@domain.com[/email] =&gt; <a href="mailto:benutzer@domain.com">benutzer@domain.com</a></li><li>[color=red]Beispieltext[/color] =&gt; <span style="color:red">Beispieltext</span></li><li>[img]http://documentation.coppermine-gallery.net/de/images/base.gif[/img] => <img src="docs/de/images/base.gif" border="0" alt="" width="19" height="18" /></li>';
+bbcode-Befehle: <li>[b]Fett[/b] =&gt; <strong>Fett</strong></li><li>[i]Kursiv[/i] =&gt; <i>Kursiv</i></li><li>[url=http://deineseite.com/]Url Text[/url] =&gt; <a href="http://deineseite.com">UrlText</a></li><li>[email]benutzer@domain.com[/email] =&gt; <a href="mailto:benutzer@domain.com">benutzer@domain.com</a></li><li>[color=red]Beispieltext[/color] =&gt; <span style="color:red">Beispieltext</span></li><li>[img]http://documentation.coppermine-gallery.net/de/images/base.gif[/img] => <img src="docs/de/images/base.gif" border="0" alt="" width="19" height="18" /></li>';
 
 $lang_common = array(
   'yes' => 'Ja', // cpg1.5.x
@@ -1534,7 +1534,7 @@ if (defined('FAQ_PHP')) $lang_faq_data = array(
   'Allgemeines',
   array('Warum muss ich mich registrieren?', 'Der Administrator kann verlangen, dass Du Dich registrierst (oder auch nicht). Durch die Registrierung erhälst Du möglicherweise einige zusätzliche Features, wie z.B. Dateien hochladen, eine Favoriten-Liste, Bewertung von Bildern, Abgabe von Kommentaren etc. ', 'allow_user_registration', '0'),
   array('Wie kann ich mich registrieren?', 'Klicke auf &quot;Registrieren&quot; und fülle die notwendigen Felder aus (und die optionalen, wenn Du möchtest).<br />Wenn der Administrator eMail-Aktivierung eingeschaltet hat, bekommst Du eine eMail an die Adresse, die Du bei der Registrierung angegeben hast, in der Anweisungen enthalten sind, wie Du Dein Benutzerkonto aktivieren kannst. In diesem Fall muss Dein Konto aktiviert werden, bevor Du Dich anmelden kannst.', 'allow_user_registration', '1'),
-  array('Wie kann ich mich anmelden?', 'Klicke auf &quot;Anmelden&quot;, gib Deinen Benutzernamen und Dein Passwort ein, und kreuze die Option &quot;Immer angemeldet bleiben&quot; an, damit Du Dich nicht bei Deinem nächsten Besuch auf der Seite erneut anmelden musst.<br /><b>WICHTIG: Um Dich anzumelden, musst Du Cookies in Deinem Browser zulassen, und das Cookie darf nicht gelöscht werden, wenn Du die Option &quot;Immer angemeldet bleiben&quot; nutzen willst.</b>', 'offline', 0),
+  array('Wie kann ich mich anmelden?', 'Klicke auf &quot;Anmelden&quot;, gib Deinen Benutzernamen und Dein Passwort ein, und kreuze die Option &quot;Immer angemeldet bleiben&quot; an, damit Du Dich nicht bei Deinem nächsten Besuch auf der Seite erneut anmelden musst.<br /><strong>WICHTIG: Um Dich anzumelden, musst Du Cookies in Deinem Browser zulassen, und das Cookie darf nicht gelöscht werden, wenn Du die Option &quot;Immer angemeldet bleiben&quot; nutzen willst.</strong>', 'offline', 0),
   array('Warum kann ich mich nicht anmelden?', 'Hast Du Dich registriert und die Anweisungen ausgeführt, die in der Aktivierungsmail an Dich gesendet wurden?. Der Link in der Aktivierungsmail schaltet Dein Benutzerkonto frei. Bezüglich anderer Probleme beim anmelden, wende Dich an den Admin dieser Seite.', 'offline', 0),
   array('Ich habe mein Passwort vergessen. Was nun?', 'Wenn der Link &quot;Passwort vergessen&quot; auf der Anmeldeseite anzeigt wird, dann benutze ihn. Ansonsten nimm Kontakt mit dem Admin dieser Seite auf und bitte ihn um ein neues Passwort.', 'offline', 0),
   //array('Meine eMail-Adresse hat sich geändert. Was tun?', 'Melde Dich an und ändere Deine eMail-Adresse im Menüpunkt &quot; mein Profil&quot;', 'offline', 0),
@@ -1663,10 +1663,10 @@ $lang_album_admin_menu = array(
 
 $lang_list_categories = array(
   'home' => 'Galerie',
-  'stat1' => '<b>[pictures]</b> Dateien in <b>[albums]</b> Alben und <b>[cat]</b> Kategorien mit <b>[comments]</b> Kommentaren, <b>[views]</b> mal angesehen',
-  'stat2' => '<b>[pictures]</b> Dateien in <b>[albums]</b> Alben, <b>[views]</b> mal angesehen',
+  'stat1' => '<strong>[pictures]</strong> Dateien in <strong>[albums]</strong> Alben und <strong>[cat]</strong> Kategorien mit <strong>[comments]</strong> Kommentaren, <strong>[views]</strong> mal angesehen',
+  'stat2' => '<strong>[pictures]</strong> Dateien in <strong>[albums]</strong> Alben, <strong>[views]</strong> mal angesehen',
   'xx_s_gallery' => '%s\'s Galerie',
-  'stat3' => '<b>[pictures]</b> Dateien in <b>[albums]</b> Alben mit <b>[comments]</b> Kommentaren, <b>[views]</b> mal angesehen'
+  'stat3' => '<strong>[pictures]</strong> Dateien in <strong>[albums]</strong> Alben mit <strong>[comments]</strong> Kommentaren, <strong>[views]</strong> mal angesehen'
 );
 
 $lang_list_users = array(
@@ -1713,7 +1713,7 @@ if (defined('INSTALL_PHP')) $lang_install = array(
   'error' => 'ERROR',
   'error_need_corr' => 'The following errors were encountered and need to be corrected first:',
   'finish' => 'Finish Installation',
-  'gd_note' => '<b>Important :</b> older versions of the GD graphic library support only JPEG and PNG images. If this is the case for you, then the script will not be able to create thumbnails for GIF images.',
+  'gd_note' => '<strong>Important :</strong> older versions of the GD graphic library support only JPEG and PNG images. If this is the case for you, then the script will not be able to create thumbnails for GIF images.',
   'go_to_main' => 'Go to the main page',
   'im_no_convert_ex' => 'The installer found the ImageMagick \'convert\' program in \'%s\', however it can\'t be executed by the script.<br /><br />You may consider using GD instead of ImageMagick.',
   'im_not_found' => 'The installer tried to find ImageMagick, but could not determine it\'s existance or there was an error. <br />Coppermine can use the <a href="http://www.imagemagick.org/" target="_blank">ImageMagick</a> 	\'convert\' program to create thumbnails. Quality of images produced by ImageMagick is superior to GD1 but equivalent to GD2.<br /><br />If ImageMagick is installed on your system and you want to use it, <br />you need to input the full path to the \'convert\' program below. <br />On Windows the path should look like \'c:/ImageMagick/\' and should not contain any space, on Unix is it something like \'/usr/bin/X11/\'.<br /><br />If you have no idea wether you have ImageMagick or not, leave this field empty - the installer will try to use GD2 then by default (which is what most users have). <br />You can change this later as well (in Coppermine\'s config screen), so don\'t be afraid if you\'re not sure what to enter here - leave it blank.',
@@ -2230,7 +2230,7 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
   'need_one_album' => 'Du brauchst mindestens ein Album, um dieses Funktion auszuführen',
   'warning' => 'Achtung',
   'change_perm' => 'Das Skript kann nicht in dieses Verzeichnis schreiben, Du musst die Lese-/Schreibberechtigung (chmod) auf 755 oder 777 setzen, bevor Du versuchst, Dateien hinzuzufügen!',
-  'target_album' => '<b>Dateien aus dem Verzeichnis &quot;</b>%s<b>&quot; in </b>%s ablegen',
+  'target_album' => '<strong>Dateien aus dem Verzeichnis &quot;</strong>%s<strong>&quot; in </strong>%s ablegen',
   'folder' => 'Verzeichnis',
   'image' => 'Datei',
   'result' => 'Resultat',
@@ -2244,10 +2244,10 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
   'no_album' => 'Kein Album gewählt',
   'result_icon' => 'Klicken für Details oder zum erneut laden', 
   'notes' =>  '<ul>'.
-    '<li><b>OK</b> : bedeuted, dass die Datei erfolgreich hinzugefügt wurde'.
-    '<li><b>DP</b> : bedeutet, dass die Datei ein Duplikat ist und schon in der Datenbank vorhanden ist'.
-    '<li><b>PB</b> : bedeutet, dass die Datei nicht hinzugefügt werden konnte; überprüfe Deine Einstellungen und die Berechtigungen der Verzeichnisse, in dem die Dateien liegen'.
-    '<li><b>NA</b> : bedeutet, dass Du kein Album gewählt hast, in das die Dateien eingefügt werden sollen, klicke \'<a href="javascript:history.back(1)">zurück</a>\' und wähle ein Album aus. Wenn kein Album ausgewählt werden kann, dann musst Du erst <a href="albmgr.php">ein Album erzeugen</a>.</li>'.
+    '<li><strong>OK</strong> : bedeuted, dass die Datei erfolgreich hinzugefügt wurde'.
+    '<li><strong>DP</strong> : bedeutet, dass die Datei ein Duplikat ist und schon in der Datenbank vorhanden ist'.
+    '<li><strong>PB</strong> : bedeutet, dass die Datei nicht hinzugefügt werden konnte; überprüfe Deine Einstellungen und die Berechtigungen der Verzeichnisse, in dem die Dateien liegen'.
+    '<li><strong>NA</strong> : bedeutet, dass Du kein Album gewählt hast, in das die Dateien eingefügt werden sollen, klicke \'<a href="javascript:history.back(1)">zurück</a>\' und wähle ein Album aus. Wenn kein Album ausgewählt werden kann, dann musst Du erst <a href="albmgr.php">ein Album erzeugen</a>.</li>'.
     '<li>Falls die OK, DP, PB \'Zeichen\' nicht erscheinen, klicke auf die nicht-funktionierenden Bilder, um die Fehlermeldungen von PHP zu sehen'.
     '<li>Wenn Dein Browser in ein Timeout läuft, klicke auf die Aktualisieren-Schaltfläche'.
    '</ul>',
@@ -2704,19 +2704,19 @@ if (defined('VIEWLOG_PHP')) $lang_viewlog_php = array(
 if (defined('XP_PUBLISH_PHP')) {
 
 $lang_xp_publish_client = <<<EOT
-<h1>XP Web Publishing Assistent</h1><p>Dieses Modul ermöglicht es, den <b>Windows XP</b> web publishing Assistenten mit Coppermine zu benutzen.</p><p>Der zugrunde liegende Code basiert auf einem Artikel von
+<h1>XP Web Publishing Assistent</h1><p>Dieses Modul ermöglicht es, den <strong>Windows XP</strong> web publishing Assistenten mit Coppermine zu benutzen.</p><p>Der zugrunde liegende Code basiert auf einem Artikel von
 EOT;
 
 $lang_xp_publish_required = <<<EOT
-<h2>Was wird benötigt</h2><ul><li>Windows XP, damit der Assistent zur Verfügung steht.</li><li>Eine funktionierende Coppermine-Installation, bei der das Hochladen von Dateien funktioniert.</b></li></ul><h2>Wie installiere ich die nötige Software auf meinem Rechner</h2><ul><li>Rechts-Klicke auf
+<h2>Was wird benötigt</h2><ul><li>Windows XP, damit der Assistent zur Verfügung steht.</li><li>Eine funktionierende Coppermine-Installation, bei der das Hochladen von Dateien funktioniert.</strong></li></ul><h2>Wie installiere ich die nötige Software auf meinem Rechner</h2><ul><li>Rechts-Klicke auf
 EOT;
 
 $lang_xp_publish_select = <<<EOT
-Wähle &quot;Zeil speichern unter..&quot;. Speichere die Datei auf Deiner Festplatte. Überprüfe beim Speichern, dass der vorgeschlagene Name  <b>cpg_###.reg</b> lautet (die ###-Symbole repräsentieren einen numerischen Zeitstempel). Ändere ggf. den Namen ab (aber lasse die Zahlen so, wie sie sind). Nach erfolgtem Download, doppelklicke auf die heruntergeladene Datei, um den Coppermine-Server beim Web Publishing-Assistenten zu registrieren.</li></ul>
+Wähle &quot;Zeil speichern unter..&quot;. Speichere die Datei auf Deiner Festplatte. Überprüfe beim Speichern, dass der vorgeschlagene Name  <strong>cpg_###.reg</strong> lautet (die ###-Symbole repräsentieren einen numerischen Zeitstempel). Ändere ggf. den Namen ab (aber lasse die Zahlen so, wie sie sind). Nach erfolgtem Download, doppelklicke auf die heruntergeladene Datei, um den Coppermine-Server beim Web Publishing-Assistenten zu registrieren.</li></ul>
 EOT;
 
 $lang_xp_publish_testing = <<<EOT
-<h2>Testen</h2><ul><li>Markiere einige Grafik-Dateien im Windows Explorer und klicke dann auf <b>xxx im Internet veröffentlichen</b> in der linken Leiste des Explorers.</li><li>Bestätige Deine Dateiauswahl. Klicke auf <b>weiter</b>.</li><li>In der Liste der zur Verfügung stehenden Dienste, wähle Deine Foto-Galerie (der Eintrag hat den Namen Deiner Galerie). Falls der Diesnt nicht erscheint, überprüfe, ob Du <b>cpg_pub_wizard.reg</b> wie oben beschrieben installiert hast.</li><li>Gib Deine Zugangsinformationen ein, falls notwendig.</li><li>Wähle ein Album als Ziel der Bilder oder erzeuge ein neues Album.</li><li>Klicke auf <b>weiter</b>. Der Upload Deiner Bilder startet jetzt.</li><li>Wenn der Upload beendet ist, überprüfe auf der Galerie-Seite, dass alle Bilder korrekt hochgeladen wurden.</li></ul>
+<h2>Testen</h2><ul><li>Markiere einige Grafik-Dateien im Windows Explorer und klicke dann auf <strong>xxx im Internet veröffentlichen</strong> in der linken Leiste des Explorers.</li><li>Bestätige Deine Dateiauswahl. Klicke auf <strong>weiter</strong>.</li><li>In der Liste der zur Verfügung stehenden Dienste, wähle Deine Foto-Galerie (der Eintrag hat den Namen Deiner Galerie). Falls der Diesnt nicht erscheint, überprüfe, ob Du <strong>cpg_pub_wizard.reg</strong> wie oben beschrieben installiert hast.</li><li>Gib Deine Zugangsinformationen ein, falls notwendig.</li><li>Wähle ein Album als Ziel der Bilder oder erzeuge ein neues Album.</li><li>Klicke auf <strong>weiter</strong>. Der Upload Deiner Bilder startet jetzt.</li><li>Wenn der Upload beendet ist, überprüfe auf der Galerie-Seite, dass alle Bilder korrekt hochgeladen wurden.</li></ul>
 EOT;
 
 $lang_xp_publish_notes = <<<EOT
@@ -2724,21 +2724,21 @@ $lang_xp_publish_notes = <<<EOT
 EOT;
 
 $lang_xp_publish_flood = <<<EOT
-Datei, die im Coppermine-Verzeichnis auf Deinem Server liegt.</li><li>Um zu vermeiden, dass die Galerie überflutet wird mit Uploads durch den Assistenten können nur die <b>Administratoren der Galerie</b> und <b>Benutzer, die eigene Alben haben dürfen</b> dieses Feature nutzen.</li>
+Datei, die im Coppermine-Verzeichnis auf Deinem Server liegt.</li><li>Um zu vermeiden, dass die Galerie überflutet wird mit Uploads durch den Assistenten können nur die <strong>Administratoren der Galerie</strong> und <strong>Benutzer, die eigene Alben haben dürfen</strong> dieses Feature nutzen.</li>
 EOT;
 
 
 
 $lang_xp_publish_php = array(
   'title' => 'Coppermine - XP Web Publishing Assistent',
-  'welcome' => 'Willkommen <b>%s</b>,',
-  'need_login' => 'Um diesen Assistenten zu nutzen musst Du Dich bei der Galerie mit Hilfe Deines Browsers (IE) anmelden.<p/><p>Vergiss nicht, die Option &quot;<b>Immer angemeldet bleiben</b>&quot; bei der Anmeldung zu aktivieren, wenn vorhanden.',
+  'welcome' => 'Willkommen <strong>%s</strong>,',
+  'need_login' => 'Um diesen Assistenten zu nutzen musst Du Dich bei der Galerie mit Hilfe Deines Browsers (IE) anmelden.<p/><p>Vergiss nicht, die Option &quot;<strong>Immer angemeldet bleiben</strong>&quot; bei der Anmeldung zu aktivieren, wenn vorhanden.',
   'no_alb' => 'Leider gibt es keine Alben, in die Du berechtigt bist mit diesem Assistenten Bilder hochzuladen.',
   'upload' => 'Lade Deine Bilder in ein bestehendes Album hoch',
   'create_new' => 'Erstelle ein neues Album für Deine Bilder',
   'album' => 'Album',
   'category' => 'Kategorie',
-  'new_alb_created' => 'Dein neues Album &quot;<b>%s</b>&quot; wurde erstellt.',
+  'new_alb_created' => 'Dein neues Album &quot;<strong>%s</strong>&quot; wurde erstellt.',
   'continue' => 'Klicke auf &quot;Weiter&quot;, um Deine Bilder hochzuladen',
   'link' => 'dieser Link',
 );

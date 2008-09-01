@@ -65,7 +65,7 @@ if ($superCage->post->KeyExists('email') && $superCage->post->testEmail('email')
         $lookup_failed = <<<EOT
                   <tr>
                           <td colspan="2" align="center" class="tableh2">
-                        <span style="color:red"><b>{$lang_send_activation_php['err_unk_user']}<b></span>
+                        <span style="color:red"><strong>{$lang_send_activation_php['err_unk_user']}<strong></span>
                         </td>
                   </tr>
 

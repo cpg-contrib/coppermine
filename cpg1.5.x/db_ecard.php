@@ -289,10 +289,10 @@ $tempClass = ' class="tableb"';
 while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
     print "\t<tr>\n";
     print "<td".$tempClass." align=\"center\"><input type=\"Checkbox\" name=\"eid[]\" value=\"".$line['eid']."\" id=\"eidselector\" class=\"checkbox\" /></td>\n";
-    print "<td".$tempClass."><b class=\"thumb_caption\">".$line['sender_name']."</b></td>\n";
+    print "<td".$tempClass."><strong class=\"thumb_caption\">".$line['sender_name']."</strong></td>\n";
     print "<td".$tempClass."><span class=\"thumb_caption\"><a href=\"mailto:".$line['sender_email']."\">".$line['sender_email']."</a></span></td>\n";
     print "<td".$tempClass."><span class=\"thumb_caption\"><a href=\"http://ws.arin.net/cgi-bin/whois.pl?queryinput=".$line['sender_ip']."\">".$line['sender_ip']."</a></span></td>\n";
-    print "<td".$tempClass."><b class=\"thumb_caption\">".$line['recipient_name']."</b></td>\n";
+    print "<td".$tempClass."><strong class=\"thumb_caption\">".$line['recipient_name']."</strong></td>\n";
     print "<td".$tempClass."><span class=\"thumb_caption\"><a href=\"mailto:".$line['recipient_email']."\">".$line['recipient_email']."</a></span></td>\n";
     print "<td".$tempClass."><span class=\"thumb_caption\">".strftime($lastcom_date_fmt,$line['date'])."</span></td>\n";
     print "<td align=\"center\"".$tempClass."><span class=\"thumb_caption\"><a href=\"displayecard.php?data=".$line['link']."\"><img src=\"images/ecard.gif\" width=\"16\" height=\"16\" border=\"0\" alt=\"\" title=\"".$lang_db_ecard_php['ecard_display']."\" /></a></span></td>\n";

@@ -173,19 +173,19 @@ function register_changes()
             if (!$doconvert)
             {
                 $windowtitle = "Charset Manager - 2/3 - Check";
-                $title = "2/3 - Checking conversion from <b>$charsetin</b> to <b>$charsetout</b>";
+                $title = "2/3 - Checking conversion from <strong>$charsetin</strong> to <strong>$charsetout</strong>";
             }
             else if ($doconvert)
             {
                 $windowtitle = "Charset Manager - 3/3 - Conversion";
-                $title = "3/3 - Converting from <b>$charsetin</b> to <b>$charsetout</b>";
+                $title = "3/3 - Converting from <strong>$charsetin</strong> to <strong>$charsetout</strong>";
             }
             html_header($windowtitle, $charsetout);
             html_logo();
             echo "<h1>$title</h1>";
             echo '<table border="1" class="charsetchecktable" cellpadding="3" cellspacing="0"  style="margin:auto;">';
             if (!$doconvert)
-                echo '<p class="warning">You <b>must check</b> that all the cells in <span class="check">blue</span> are displayed properly.</p>';
+                echo '<p class="warning">You <strong>must check</strong> that all the cells in <span class="check">blue</span> are displayed properly.</p>';
             echo "<tr><th>String</th><th>Table</th><th>Column</th><th>Id</th><th>".($doconvert? "Result" : "Query")."</th></tr>";
             foreach($affected_elements as $table => $columns)
                 for ($i = 1; $i < count($columns); ++$i)
@@ -202,7 +202,7 @@ function register_changes()
 echo '<input type="hidden" name="charset_out" value="'.$charsetout."\" />\n";
 echo <<<EOT
     <div class="warning">
-    <p>Before converting you <b>must</b>:</p>
+    <p>Before converting you <strong>must</strong>:</p>
     <ol>
     <li>Make a backup of your database. <span class="bigwarning">A malfunction of this script will result in the partial or complete loss or corruption of your comments and other string data containing non-ascii characters.</span></li>
     <li>Check that all the strings above in <span class="check">blue</span> are displayed correctly.
@@ -220,7 +220,7 @@ echo '<div class="input"><input type="submit" class="button" name="convert" valu
                 echo <<<EOT
                     <div class="warning">
                     <p>The conversion has been carried out.<br/>
-                If you did not get any errors, for security reasons, you may now <b>remove the file charsetmgr.php</b>, or make it unaccessible, since you will not need this file anymore.<br/>
+                If you did not get any errors, for security reasons, you may now <strong>remove the file charsetmgr.php</strong>, or make it unaccessible, since you will not need this file anymore.<br/>
                     You may now <a href="index.php">proceed to the main page.</a>
                     </p>
                     </div>
@@ -276,8 +276,8 @@ if ($languagefilecfg)
     echo <<<EOT
         <p class="warning">You are using the language default encoding. It means that:</p>
     <ol>
-    <li> If there are comments left in different languages <b>other than English</b> and <b>other than your default language</b>, there might be some inconsistency in the encoding used for the comments. In that case, choose the encoding in which most of your comments are encoded.</li>
-        <li>The default choice of the left menu <b>might not be the right one</b>. Change it if it seems unappropriate.</li>
+    <li> If there are comments left in different languages <strong>other than English</strong> and <strong>other than your default language</strong>, there might be some inconsistency in the encoding used for the comments. In that case, choose the encoding in which most of your comments are encoded.</li>
+        <li>The default choice of the left menu <strong>might not be the right one</strong>. Change it if it seems unappropriate.</li>
         </ol>
 EOT;
      */
@@ -286,20 +286,20 @@ EOT;
 
 if ($thecharset == 'utf-8')
 {
-    echo '<p class="warning">Your site is already configured to use utf-8. <b>You don\'t need this script and should <a href="index.php">leave this page</a></b>.</p>';
+    echo '<p class="warning">Your site is already configured to use utf-8. <strong>You don\'t need this script and should <a href="index.php">leave this page</a></strong>.</p>';
     $alreadyunicode = 1;
 }
 
 if (!$alreadyunicode && !$iconvavailable) // can't run the script but need it
 {
     set_config('lang', 'english');
-    echo '<p class="warning">The <a href="http://www.php.net/iconv">iconv</a> function is not available. <b>You cannot use this script.</b> Coppermine will now run in English. <br/>You may install iconv and start this script again. You should now <a href="index.php?lang=english">proceed to the main page</a>.</p>';
+    echo '<p class="warning">The <a href="http://www.php.net/iconv">iconv</a> function is not available. <strong>You cannot use this script.</strong> Coppermine will now run in English. <br/>You may install iconv and start this script again. You should now <a href="index.php?lang=english">proceed to the main page</a>.</p>';
 }
 
 
 echo <<<EOT
 <ul>
-<li><b>You should not change the value of the second menu (utf-8) unless you know what you are doing!</b></li>
+<li><strong>You should not change the value of the second menu (utf-8) unless you know what you are doing!</strong></li>
 <li>Clicking on check will just allow you to check if the conversion is possible. The database will be left unchanged.
 </ul>
 EOT;

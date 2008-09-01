@@ -38,13 +38,13 @@ function output_table_header()
 
 echo <<<EOT
 <tr>
-<td class="tableh2"><b>{$lang_delete_php['npic']}</b></td>
-<td class="tableh2" align="center"><b>{$lang_delete_php['fs_pic']}</b></td>
-<td class="tableh2" align="center"><b>{$lang_delete_php['ns_pic']}</b></td>
-<td class="tableh2" align="center"><b>{$lang_delete_php['orig_pic']}</b></td>
-<td class="tableh2" align="center"><b>{$lang_delete_php['thumb_pic']}</b></td>
-<td class="tableh2" align="center"><b>{$lang_delete_php['comment']}</b></td>
-<td class="tableh2" align="center"><b>{$lang_delete_php['im_in_alb']}</b></td>
+<td class="tableh2"><strong>{$lang_delete_php['npic']}</strong></td>
+<td class="tableh2" align="center"><strong>{$lang_delete_php['fs_pic']}</strong></td>
+<td class="tableh2" align="center"><strong>{$lang_delete_php['ns_pic']}</strong></td>
+<td class="tableh2" align="center"><strong>{$lang_delete_php['orig_pic']}</strong></td>
+<td class="tableh2" align="center"><strong>{$lang_delete_php['thumb_pic']}</strong></td>
+<td class="tableh2" align="center"><strong>{$lang_delete_php['comment']}</strong></td>
+<td class="tableh2" align="center"><strong>{$lang_delete_php['im_in_alb']}</strong></td>
 </tr>
 EOT;
 }
@@ -54,15 +54,15 @@ function output_caption()
     global $lang_delete_php, $lang_common;
     ?>
 <tr><td colspan="7" class="tableb">&nbsp;</td></tr>
-<tr><td colspan="7" class="tableh2"><b><?php echo $lang_common['caption'] ?></b></tr>
+<tr><td colspan="7" class="tableh2"><strong><?php echo $lang_common['caption'] ?></strong></tr>
 <tr><td colspan="7" class="tableb">
 <table cellpadding="1" cellspacing="0">
-<tr><td><b>F</b></td><td>:</td><td><?php echo $lang_delete_php['fs_pic'] ?></td><td width="20">&nbsp;</td><td><img src="images/green.gif" border="0" width="12" height="12" align="absmiddle"></td><td>:</td><td><?php echo $lang_delete_php['del_success'] ?></td></tr>
-<tr><td><b>N</b></td><td>:</td><td><?php echo $lang_delete_php['ns_pic'] ?></td><td width="20">&nbsp</td><td><img src="images/red.gif" border="0" width="12" height="12" align="absmiddle"></td><td>:</td><td><?php echo $lang_delete_php['err_del'] ?></td></tr>
-<tr><td><b>O</b></td><td>:</td><td><?php echo $lang_delete_php['orig_pic'] ?></td></tr>
-<tr><td><b>T</b></td><td>:</td><td><?php echo $lang_delete_php['thumb_pic'] ?></td></tr>
-<tr><td><b>C</b></td><td>:</td><td><?php echo $lang_delete_php['comment'] ?></td></tr>
-<tr><td><b>D</b></td><td>:</td><td><?php echo $lang_delete_php['im_in_alb'] ?></td></tr>
+<tr><td><strong>F</strong></td><td>:</td><td><?php echo $lang_delete_php['fs_pic'] ?></td><td width="20">&nbsp;</td><td><img src="images/green.gif" border="0" width="12" height="12" align="absmiddle"></td><td>:</td><td><?php echo $lang_delete_php['del_success'] ?></td></tr>
+<tr><td><strong>N</strong></td><td>:</td><td><?php echo $lang_delete_php['ns_pic'] ?></td><td width="20">&nbsp</td><td><img src="images/red.gif" border="0" width="12" height="12" align="absmiddle"></td><td>:</td><td><?php echo $lang_delete_php['err_del'] ?></td></tr>
+<tr><td><strong>O</strong></td><td>:</td><td><?php echo $lang_delete_php['orig_pic'] ?></td></tr>
+<tr><td><strong>T</strong></td><td>:</td><td><?php echo $lang_delete_php['thumb_pic'] ?></td></tr>
+<tr><td><strong>C</strong></td><td>:</td><td><?php echo $lang_delete_php['comment'] ?></td></tr>
+<tr><td><strong>D</strong></td><td>:</td><td><?php echo $lang_delete_php['im_in_alb'] ?></td></tr>
 </table>
 </td>
 </tr>
@@ -617,10 +617,10 @@ switch ($what) {
                                 // Finally delete the user
                                 cpg_db_query("DELETE FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '$key'");
                                 print '<td class="tableb" width="50%">';
-                                print '<b>';
+                                print '<strong>';
                                 print '<img src="images/green.gif" width="12" height="12" border="0" alt="" /> ';
                                 printf($lang_delete_php['user_deleted'],'&laquo;'.$user_data['user_name'].'&raquo;');
-                                print '</b>';
+                                print '</strong>';
                                 print '</td>';
                                 print '</tr>';
                                 endtable();
@@ -639,8 +639,8 @@ switch ($what) {
                         pageheader($lang_delete_php['activate_user']);
                         starttable("100%", $lang_delete_php['activate_user'], 2);
                         print "<tr>\n";
-                        print "<td class=\"tableh2\"><b>{$lang_delete_php['username']}</b></td>\n";
-                        print "<td class=\"tableh2\"><b>{$lang_delete_php['status']}</b></td>\n";
+                        print "<td class=\"tableh2\"><strong>{$lang_delete_php['username']}</strong></td>\n";
+                        print "<td class=\"tableh2\"><strong>{$lang_delete_php['status']}</strong></td>\n";
                         print "</tr>\n";
 
                         foreach($users_scheduled_for_action as $key) {
@@ -650,9 +650,9 @@ switch ($what) {
                             } else {
                                 $user_data = mysql_fetch_array($result);
                                 print '<tr>';
-                                print '<td class="tableb"><b>';
+                                print '<td class="tableb"><strong>';
                                 print $user_data['user_name'];
-                                print '</b></td>';
+                                print '</strong></td>';
                                 print '<td class="tableb">';
                                 if ($user_data['user_active'] == 'YES') {
                                     // user is already active
@@ -662,7 +662,7 @@ switch ($what) {
                                     cpg_db_query("UPDATE {$CONFIG['TABLE_USERS']} SET user_active = 'YES' WHERE  user_id = '$key'");
                                     print $lang_delete_php['activated'];
                                 }
-                                print '</b></td>';
+                                print '</strong></td>';
                             }
                             mysql_free_result($result);
                         } // foreach --- end
@@ -676,8 +676,8 @@ switch ($what) {
                         pageheader($lang_delete_php['deactivate_user']);
                         starttable("100%", $lang_delete_php['deactivate_user'], 2);
                         print "<tr>\n";
-                        print "<td class=\"tableh2\"><b>{$lang_delete_php['username']}</b></td>\n";
-                        print "<td class=\"tableh2\"><b>{$lang_delete_php['status']}</b></td>\n";
+                        print "<td class=\"tableh2\"><strong>{$lang_delete_php['username']}</strong></td>\n";
+                        print "<td class=\"tableh2\"><strong>{$lang_delete_php['status']}</strong></td>\n";
                         print "</tr>\n";
 
                         foreach($users_scheduled_for_action as $key) {
@@ -687,9 +687,9 @@ switch ($what) {
                             } else {
                                 $user_data = mysql_fetch_array($result);
                                 print '<tr>';
-                                print '<td class="tableb"><b>';
+                                print '<td class="tableb"><strong>';
                                 print $user_data['user_name'];
-                                print '</b></td>';
+                                print '</strong></td>';
                                 print '<td class="tableb">';
                                 if ($user_data['user_active'] == 'NO') {
                                     // user is already inactive
@@ -699,7 +699,7 @@ switch ($what) {
                                     cpg_db_query("UPDATE {$CONFIG['TABLE_USERS']} SET user_active = 'NO' WHERE  user_id = '$key'");
                                     print $lang_delete_php['deactivated'];
                                 }
-                                print '</b></td>';
+                                print '</strong></td>';
                             }
                             mysql_free_result($result);
                         } // foreach --- end
@@ -713,8 +713,8 @@ switch ($what) {
                         pageheader($lang_delete_php['reset_password']);
                         starttable("100%", $lang_delete_php['reset_password'], 2);
                         print "<tr>\n";
-                        print "<td class=\"tableh2\"><b>{$lang_delete_php['username']}</b></td>\n";
-                        print "<td class=\"tableh2\"><b>{$lang_delete_php['status']}</b></td>\n";
+                        print "<td class=\"tableh2\"><strong>{$lang_delete_php['username']}</strong></td>\n";
+                        print "<td class=\"tableh2\"><strong>{$lang_delete_php['status']}</strong></td>\n";
                         print "</tr>\n";
 
                         foreach($users_scheduled_for_action as $key) {
@@ -724,15 +724,15 @@ switch ($what) {
                             } else {
                                 $user_data = mysql_fetch_array($result);
                                 print '<tr>';
-                                print '<td class="tableb"><b>';
+                                print '<td class="tableb"><strong>';
                                 print $user_data['user_name'];
-                                print '</b></td>';
+                                print '</strong></td>';
                                 print '<td class="tableb">';
                                 // set this user's password
                                 $new_password = md5($superCage->get->getEscaped('new_password'));
                                 cpg_db_query("UPDATE {$CONFIG['TABLE_USERS']} SET user_password = '$new_password' WHERE  user_id = '$key'");
                                 printf($lang_delete_php['password_reset'], '&laquo;'.$superCage->get->getEscaped('new_password').'&raquo;');
-                                print '</b></td>';
+                                print '</strong></td>';
                             }
                             mysql_free_result($result);
                         } // foreach --- end
@@ -746,8 +746,8 @@ switch ($what) {
                         pageheader($lang_delete_php['change_group']);
                         starttable("100%", $lang_delete_php['change_group'], 2);
                         print "<tr>\n";
-                        print "<td class=\"tableh2\"><b>{$lang_delete_php['username']}</b></td>\n";
-                        print "<td class=\"tableh2\"><b>{$lang_delete_php['status']}</b></td>\n";
+                        print "<td class=\"tableh2\"><strong>{$lang_delete_php['username']}</strong></td>\n";
+                        print "<td class=\"tableh2\"><strong>{$lang_delete_php['status']}</strong></td>\n";
                         print "</tr>\n";
                         $result_group = cpg_db_query("SELECT group_id,group_name FROM {$CONFIG['TABLE_USERGROUPS']}");
                         if (!mysql_num_rows($result_group)) {
@@ -763,15 +763,15 @@ switch ($what) {
                             } else {
                                 $user_data = mysql_fetch_array($result);
                                 print '<tr>';
-                                print '<td class="tableb"><b>';
+                                print '<td class="tableb"><strong>';
                                 print $user_data['user_name'];
-                                print '</b></td>';
+                                print '</strong></td>';
                                 print '<td class="tableb">';
                                 // set this user's group
                                 $group = $superCage->get->getInt('group');
                                 cpg_db_query("UPDATE {$CONFIG['TABLE_USERS']} SET user_group = '$group' WHERE  user_id = '$key'");
                                 printf($lang_delete_php['change_group_to_group'], '&laquo;'.$group_label[$user_data['user_group']].'&raquo;', '&laquo;'.$group_label[$group].'&raquo;');
-                                print '</b></td>';
+                                print '</strong></td>';
                             }
                             mysql_free_result($result);
                         } // foreach --- end
@@ -785,8 +785,8 @@ switch ($what) {
                         pageheader($lang_delete_php['add_group']);
                         starttable("100%", $lang_delete_php['add_group'], 2);
                         print "<tr>\n";
-                        print "<td class=\"tableh2\"><b>{$lang_delete_php['username']}</b></td>\n";
-                        print "<td class=\"tableh2\"><b>{$lang_delete_php['status']}</b></td>\n";
+                        print "<td class=\"tableh2\"><strong>{$lang_delete_php['username']}</strong></td>\n";
+                        print "<td class=\"tableh2\"><strong>{$lang_delete_php['status']}</strong></td>\n";
                         print "</tr>\n";
                         $result_group = cpg_db_query("SELECT group_id,group_name FROM {$CONFIG['TABLE_USERGROUPS']} ORDER BY group_name");
                         if (!mysql_num_rows($result_group)) {
@@ -802,9 +802,9 @@ switch ($what) {
                             } else {
                                 $user_data = mysql_fetch_array($result);
                                 print '<tr>';
-                                print '<td class="tableb"><b>';
+                                print '<td class="tableb"><strong>';
                                 print $user_data['user_name'];
-                                print '</b></td>';
+                                print '</strong></td>';
                                 print '<td class="tableb">';
                                 // check group membership of this particular user
                                 $sql = "SELECT * FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '$key'";
@@ -831,7 +831,7 @@ switch ($what) {
                                 // set this user's group
                                 cpg_db_query("UPDATE {$CONFIG['TABLE_USERS']} SET user_group_list = '$new_group_query' WHERE  user_id = '$key'");
                                 printf($lang_delete_php['add_group_to_group'], '&laquo;'.$user_data['user_name'].'&raquo;', '&laquo;'.$group_label[$new_group].'&raquo;', '&laquo;'.$group_label[$user_data['user_group']].'&raquo;', $group_output);
-                                print '</b></td>';
+                                print '</strong></td>';
                             }
                             mysql_free_result($result);
                         } // foreach --- end
@@ -935,10 +935,10 @@ switch ($what) {
                                 // Finally delete the user
                                 cpg_db_query("DELETE FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '$key'");
                                 print '<td class="tableb" width="50%">';
-                                print '<b>';
+                                print '<strong>';
                                 print '<img src="images/green.gif" width="12" height="12" border="0" alt="" /> ';
                                 printf($lang_delete_php['user_deleted'],'&laquo;'.$user_data['user_name'].'&raquo;');
-                                print '</b>';
+                                print '</strong>';
                                 print '</td>';
                                 print '</tr>';
                                 endtable();

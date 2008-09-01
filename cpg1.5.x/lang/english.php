@@ -112,7 +112,7 @@ $lang_errors = array(
 );
 
 $lang_bbcode_help_title = 'bbcode help';
-$lang_bbcode_help = 'You can add clickable links and some formatting to this field by using bbcode tags: <li>[b]Bold[/b] =&gt; <b>Bold</b></li><li>[i]Italic[/i] =&gt; <i>Italic</i></li><li>[url=http://yoursite.com/]Url Text[/url] =&gt; <a href="http://yoursite.com">Url Text</a></li><li>[email]user@domain.com[/email] =&gt; <a href="mailto:user@domain.com">user@domain.com</a></li><li>[color=red]some text[/color] =&gt; <span style="color:red">some text</span></li><li>[img]http://documentation.coppermine-gallery.net/en/images/base.gif[/img] =&gt; <img src="docs/en/images/base.gif" border="0" alt="" /></li>';
+$lang_bbcode_help = 'You can add clickable links and some formatting to this field by using bbcode tags: <li>[b]Bold[/b] =&gt; <strong>Bold</strong></li><li>[i]Italic[/i] =&gt; <i>Italic</i></li><li>[url=http://yoursite.com/]Url Text[/url] =&gt; <a href="http://yoursite.com">Url Text</a></li><li>[email]user@domain.com[/email] =&gt; <a href="mailto:user@domain.com">user@domain.com</a></li><li>[color=red]some text[/color] =&gt; <span style="color:red">some text</span></li><li>[img]http://documentation.coppermine-gallery.net/en/images/base.gif[/img] =&gt; <img src="docs/en/images/base.gif" border="0" alt="" /></li>';
 
 $lang_common = array(
   'yes' => 'Yes', // cpg1.5
@@ -1283,7 +1283,7 @@ if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array
 
 if (defined('REPORT_FILE_PHP') || defined('DISPLAYREPORT_PHP')) $lang_report_php =array(
   'title' => 'Report to administrator',
-  'invalid_email' => '<b>Warning</b> : invalid email address !',
+  'invalid_email' => '<strong>Warning</strong> : invalid email address !',
   'report_subject' => 'A report from %s on a gallery %s',
   'view_report' => 'Alternate link if the report does not display correctly',
   'view_report_plaintext' => 'To view the report, copy and paste this url into your browser\'s address bar:',
@@ -1409,14 +1409,14 @@ if (defined('FAQ_PHP')) $lang_faq_data = array(
   'General FAQ',
   array('Why do I need to register?', 'Registration may or may not be required by the administrator. Registration gives a member additional features such as uploading, having a favorite list, rating pictures and posting comments etc.', 'allow_user_registration', '1'),
   array('How do I register?', 'Go to &quot;Register&quot; and fill out the required fields (and the optional ones if you want to).<br />If the Administrator has Email Activation enabled, then after submitting your information you should receive an email message at the address that you have submitted while registering, giving you instructions on how to activate your membership. Your membership must be activated in order for you to login.', 'allow_user_registration', '1'),
-  array('How Do I login?', 'Go to &quot;Login&quot;, submit your username and password and check &quot;Remember Me&quot; so you will be logged in on the site if you should leave it.<br /><b>IMPORTANT:Cookies must be enabled and the cookie from this site must not be deleted in order to use &quot;Remember Me&quot;.</b>', 'offline', 0),
+  array('How Do I login?', 'Go to &quot;Login&quot;, submit your username and password and check &quot;Remember Me&quot; so you will be logged in on the site if you should leave it.<br /><strong>IMPORTANT:Cookies must be enabled and the cookie from this site must not be deleted in order to use &quot;Remember Me&quot;.</strong>', 'offline', 0),
   array('Why can I not login?', 'Did you register and click the link that was sent to you via email?. The link will activate your account. For other login problems contact the site administrator.', 'offline', 0),
   array('What if I forgot my password?', 'If this site has a &quot;Forgot password&quot; link then use it. Other than that contact the site administrator for a new password.', 'offline', 0),
   //array('What if I changed my email address?', 'Just simply login and change your email address through &quot;Profile&quot;', 'offline', 0),
   array('How do I save a picture to &quot;My Favorites&quot;?', 'Click on a picture and click on the &quot;picture info&quot; link (<img src="images/info.gif" width="16" height="16" border="0" alt="Picture information" />); scroll down to the picture information set and click &quot;Add to fav&quot;.<br />The administrator may have the &quot;picture information&quot; on by default.<br />IMPORTANT:Cookies must be enabled and the cookie from this site must not be deleted.', 'offline', 0),
   array('How do I rate a file?', 'Click on a thumbnail and go to the bottom and choose a rating.', 'offline', 0),
   array('How do I post a comment for a picture?', 'Click on a thumbnail and go to the bottom and post a comment.', 'offline', 0),
-  array('How do I upload a file?', 'Go to &quot;Upload&quot;and select the album that you want to upload to. Click &quot;Browse,&quot; find the file to upload, and click &quot;open.&quot; Add a title and description if you want. Click &quot;Submit&quot;.<br /><br />Alternatively, for those users using <b>Windows XP</b>, you can upload multiple files directly to your own private albums using the XP Publishing wizard.<br />For instructions on how, and to get the required registry file, click <a href="xp_publish.php">here.</a>', 'allow_private_albums', 1),
+  array('How do I upload a file?', 'Go to &quot;Upload&quot;and select the album that you want to upload to. Click &quot;Browse,&quot; find the file to upload, and click &quot;open.&quot; Add a title and description if you want. Click &quot;Submit&quot;.<br /><br />Alternatively, for those users using <strong>Windows XP</strong>, you can upload multiple files directly to your own private albums using the XP Publishing wizard.<br />For instructions on how, and to get the required registry file, click <a href="xp_publish.php">here.</a>', 'allow_private_albums', 1),
   array('Where do I upload a picture to?', 'You will be able to upload a file to one of your albums in &quot;My Gallery&quot;. The Administrator may also allow you to upload a file to one or more of the albums in the Main Gallery.', 'allow_private_albums', 0),
   array('What type and size of a file can I upload?', 'The size and type (jpg, png, etc.) is up to the administrator.', 'offline', 0),
   array('How do I create, rename or delete an album in &quot;My Gallery&quot;?', 'You should already be in &quot;Admin-Mode&quot;<br />Go to &quot;Create/Order My Albums&quot;and click &quot;New&quot;. Change &quot;New Album&quot; to your desired name.<br />You can also rename any of the albums in your gallery.<br />Click &quot;Apply Modifications&quot;.', 'allow_private_albums', 0),
@@ -1539,10 +1539,10 @@ $lang_album_admin_menu = array(
 
 $lang_list_categories = array(
   'home' => 'Home',
-  'stat1' => '<b>[pictures]</b> files in <b>[albums]</b> albums and <b>[cat]</b> categories with <b>[comments]</b> comments viewed <b>[views]</b> times',
-  'stat2' => '<b>[pictures]</b> files in <b>[albums]</b> albums viewed <b>[views]</b> times',
+  'stat1' => '<strong>[pictures]</strong> files in <strong>[albums]</strong> albums and <strong>[cat]</strong> categories with <strong>[comments]</strong> comments viewed <strong>[views]</strong> times',
+  'stat2' => '<strong>[pictures]</strong> files in <strong>[albums]</strong> albums viewed <strong>[views]</strong> times',
   'xx_s_gallery' => '%s\'s Gallery',
-  'stat3' => '<b>[pictures]</b> files in <b>[albums]</b> albums with <b>[comments]</b> comments viewed <b>[views]</b> times',
+  'stat3' => '<strong>[pictures]</strong> files in <strong>[albums]</strong> albums with <strong>[comments]</strong> comments viewed <strong>[views]</strong> times',
 );
 
 $lang_list_users = array(
@@ -1589,7 +1589,7 @@ if (defined('INSTALL_PHP')) $lang_install = array(
   'error' => 'ERROR',
   'error_need_corr' => 'The following errors were encountered and need to be corrected first:',
   'finish' => 'Finish Installation',
-  'gd_note' => '<b>Important :</b> older versions of the GD graphic library support only JPEG and PNG images. If this is the case for you, then the script will not be able to create thumbnails for GIF images.',
+  'gd_note' => '<strong>Important :</strong> older versions of the GD graphic library support only JPEG and PNG images. If this is the case for you, then the script will not be able to create thumbnails for GIF images.',
   'go_to_main' => 'Go to the main page',
   'im_no_convert_ex' => 'The installer found the ImageMagick \'convert\' program in \'%s\', however it can\'t be executed by the script.<br /><br />You may consider using GD instead of ImageMagick.',
   'im_not_found' => 'The installer tried to find ImageMagick, but could not determine it\'s existence or there was an error. <br />Coppermine can use the <a href="http://www.imagemagick.org/" target="_blank">ImageMagick</a> 	\'convert\' program to create thumbnails. Quality of images produced by ImageMagick is superior to GD1 but equivalent to GD2.<br /><br />If ImageMagick is installed on your system and you want to use it, <br />you need to input the full path to the \'convert\' program below. <br />On Windows the path should look like \'c:/ImageMagick/\' and should not contain any space, on Unix is it something like \'/usr/bin/X11/\'.<br /><br />If you have no idea wether you have ImageMagick or not, leave this field empty - the installer will try to use GD2 then by default (which is what most users have). <br />You can change this later as well (in Coppermine\'s config screen), so don\'t be afraid if you\'re not sure what to enter here - leave it blank.',
@@ -2108,7 +2108,7 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
   'need_one_album' => 'You need at least one album to use this function',
   'warning' => 'Warning',
   'change_perm' => 'the script can\'t write in this directory, you need to change its mode to 755 or 777 before trying to add the files !',
-  'target_album' => '<b>Put files of &quot;</b>%s<b>&quot; into </b>%s',
+  'target_album' => '<strong>Put files of &quot;</strong>%s<strong>&quot; into </strong>%s',
   'folder' => 'Folder',
   'image' => 'file',
   'result' => 'Result',
@@ -2122,10 +2122,10 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
   'no_album' => 'no album selected',
   'result_icon' => 'click for details or to reload',
   'notes' =>  '<ul>'.
-                '<li><b>OK</b>: means that the file was successfully added'.
-                '<li><b>DP</b>: means that the file is a duplicate and is already in the database'.
-                '<li><b>PB</b>: means that the file could not be added, check your configuration and the permission of directories where the files are located'.
-                '<li><b>NA</b>: means that you haven\'t selected an album the files should go to, hit \'<a href="javascript:history.back(1)">back</a>\' and select an album. If you don\'t have an album <a href="albmgr.php">create one first</a></li>'.
+                '<li><strong>OK</strong>: means that the file was successfully added'.
+                '<li><strong>DP</strong>: means that the file is a duplicate and is already in the database'.
+                '<li><strong>PB</strong>: means that the file could not be added, check your configuration and the permission of directories where the files are located'.
+                '<li><strong>NA</strong>: means that you haven\'t selected an album the files should go to, hit \'<a href="javascript:history.back(1)">back</a>\' and select an album. If you don\'t have an album <a href="albmgr.php">create one first</a></li>'.
                 '<li>If the OK, DP, PB \'signs\' does not appear click on the broken file to see any error message produced by PHP'.
                 '<li>If your browser timeouts, hit the reload button'.
             '</ul>',
@@ -2581,19 +2581,19 @@ if (defined('VIEWLOG_PHP')) $lang_viewlog_php = array(
 if (defined('XP_PUBLISH_PHP')) {
 
 $lang_xp_publish_client = <<<EOT
-<h1>XP Web Publishing Wizard Client</h1><p>This module allows to use <b>Windows XP</b> web publishing wizard with Coppermine.</p><p>Code is based on article posted by
+<h1>XP Web Publishing Wizard Client</h1><p>This module allows to use <strong>Windows XP</strong> web publishing wizard with Coppermine.</p><p>Code is based on article posted by
 EOT;
 
 $lang_xp_publish_required = <<<EOT
-<h2>What is required</h2><ul><li>Windows XP in order to have the wizard.</li><li>A working installation of Coppermine on which <b>the web upload function works properly.</b></li></ul><h2>How to install on client side</h2><ul><li>Right click on
+<h2>What is required</h2><ul><li>Windows XP in order to have the wizard.</li><li>A working installation of Coppermine on which <strong>the web upload function works properly.</strong></li></ul><h2>How to install on client side</h2><ul><li>Right click on
 EOT;
 
 $lang_xp_publish_select = <<<EOT
-Select &quot;save target as..&quot;. Save the file on your hard drive. When saving the file, check that the proposed file name is <b>cpg_###.reg</b> (the ### represents a numerical timestamp). Change it to that name if necessary (leave the numbers). When downloaded, double click on the file in order to register your server with the web publishing wizard.</li></ul>
+Select &quot;save target as..&quot;. Save the file on your hard drive. When saving the file, check that the proposed file name is <strong>cpg_###.reg</strong> (the ### represents a numerical timestamp). Change it to that name if necessary (leave the numbers). When downloaded, double click on the file in order to register your server with the web publishing wizard.</li></ul>
 EOT;
 
 $lang_xp_publish_testing = <<<EOT
-<h2>Testing</h2><ul><li>In Windows Explorer, select some files and click on <b>Publish xxx on the web</b> in the left pane.</li><li>Confirm your file selection. Click on <b>Next</b>.</li><li>In the list of services that appear, select the one for your photo gallery (it has the name of your gallery). If the service does not appear, check that you have installed <b>cpg_pub_wizard.reg</b> as described above.</li><li>Input your login information if required.</li><li>Select the target album for your pictures or create a new one.</li><li>Click on <b>next</b>. The upload of your pictures starts.</li><li>When it is completed, check your gallery to see if pictures have been properly added.</li></ul>
+<h2>Testing</h2><ul><li>In Windows Explorer, select some files and click on <strong>Publish xxx on the web</strong> in the left pane.</li><li>Confirm your file selection. Click on <strong>Next</strong>.</li><li>In the list of services that appear, select the one for your photo gallery (it has the name of your gallery). If the service does not appear, check that you have installed <strong>cpg_pub_wizard.reg</strong> as described above.</li><li>Input your login information if required.</li><li>Select the target album for your pictures or create a new one.</li><li>Click on <strong>next</strong>. The upload of your pictures starts.</li><li>When it is completed, check your gallery to see if pictures have been properly added.</li></ul>
 EOT;
 
 $lang_xp_publish_notes = <<<EOT
@@ -2601,20 +2601,20 @@ $lang_xp_publish_notes = <<<EOT
 EOT;
 
 $lang_xp_publish_flood = <<<EOT
-file that is located in Coppermine directory on your server.</li><li>In order to avoid that the gallery be <i>flooded</i> by pictures uploaded through the wizard, only the <b>gallery admins</b> and <b>users that can have their own albums</b> can use this feature.</li>
+file that is located in Coppermine directory on your server.</li><li>In order to avoid that the gallery be <i>flooded</i> by pictures uploaded through the wizard, only the <strong>gallery admins</strong> and <strong>users that can have their own albums</strong> can use this feature.</li>
 EOT;
 
 
 
 $lang_xp_publish_php = array(
   'title' => 'Coppermine - XP Web Publishing Wizard',
-  'welcome' => 'Welcome <b>%s</b>,',
-  'need_login' => 'You need to login to the gallery using your web browser before you can use this wizard.<p/><p>When you login don\'t forget to select the <b>remember me</b> option if it is present.',
+  'welcome' => 'Welcome <strong>%s</strong>,',
+  'need_login' => 'You need to login to the gallery using your web browser before you can use this wizard.<p/><p>When you login don\'t forget to select the <strong>remember me</strong> option if it is present.',
   'no_alb' => 'Sorry but there is no album where you are allowed to upload pictures with this wizard.',
   'upload' => 'Upload your pictures into an existing album',
   'create_new' => 'Create a new album for your pictures',
   'category' => 'Category',
-  'new_alb_created' => 'Your new album &quot;<b>%s</b>&quot; was created.',
+  'new_alb_created' => 'Your new album &quot;<strong>%s</strong>&quot; was created.',
   'continue' => 'Press &quot;Next&quot; to start to upload your pictures',
   'link' => 'this link',
 );

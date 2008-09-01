@@ -31,9 +31,9 @@ pageheader($lang_keywordmgr_php['title']);
 starttable("100%", cpg_fetch_icon('keyword_mgr', 2) . $lang_keywordmgr_php['title'], 3);
 echo <<<EOT
       <tr>
-          <td class="tablef"><b>{$lang_common['edit']}</b></td>
-          <td class="tablef"><b>{$lang_common['delete']}</b></td>
-          <td class="tablef"><b>{$lang_keywordmgr_php['search']}</b></td>
+          <td class="tablef"><strong>{$lang_common['edit']}</strong></td>
+          <td class="tablef"><strong>{$lang_common['delete']}</strong></td>
+          <td class="tablef"><strong>{$lang_keywordmgr_php['search']}</strong></td>
       </tr>
 
 EOT;

@@ -432,7 +432,7 @@ if (GALLERY_ADMIN_MODE || USER_ADMIN_MODE) {
 echo <<<EOT
       <tr>
          <td>
-            <b>{$lang_common['select_album']}</b>
+            <strong>{$lang_common['select_album']}</strong>
 EOT;
         print albumselect('aid');
 echo <<<EOT

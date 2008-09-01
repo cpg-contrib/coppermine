@@ -209,12 +209,12 @@ switch($step) {
         if (isset($image_processors['gd2'])) {
             // gd2 is avilable, add it to the list
             $imp_list .= '<option value="gd2">GD2</option>';
-            $content .= '<b>GDlib</b> Version 2. <br />';
+            $content .= '<strong>GDlib</strong> Version 2. <br />';
             $selected = 'gd2';
         } elseif (isset($image_processors['gd1'])) {
             // gd1 is avilable, add it to the list
             $imp_list .= '<option value="gd">GD</option>';
-            $content .= '<b>GDlib</b> Version 1. <br />';
+            $content .= '<strong>GDlib</strong> Version 1. <br />';
             $selected = 'gd1';
         }
         // check configuration options of im_path
@@ -223,7 +223,7 @@ switch($step) {
             $path = str_replace(array('.exe', '"'), '',$image_processors['im']['path']);
             $path = substr($path, 0, (strlen($path) - 7));
             $imp_list .= '<option value="im">ImageMagick</option>';
-            $content .= '<b>ImageMagick</b> Version ' . substr($image_processors['im']['version'], 20, 7) . '(at: ' . $path .')';
+            $content .= '<strong>ImageMagick</strong> Version ' . substr($image_processors['im']['version'], 20, 7) . '(at: ' . $path .')';
             $selected = 'im';
             $im_not_found = '';
         } else {
@@ -343,7 +343,7 @@ switch($step) {
                 $set_populated = true;
             }
         } elseif (!isset($install->config['db_populated']) && !isset($install->config['db_name'])) {
-            $msg = sprintf($install->language['not_here_yet'], '<b><a href="install.php?step=7">', '</a></b>');
+            $msg = sprintf($install->language['not_here_yet'], '<strong><a href="install.php?step=7">', '</a></strong>');
         }
 
         if (isset($install->config['db_populated'])) {
@@ -599,14 +599,14 @@ function html_welcome()
           </td>
          </tr>
          <tr>
-          <td class="tableb" colspan="2"><?php echo $install->language['error_need_corr']; ?><br /><br /><b><?php echo $install->error; ?></b>
+          <td class="tableb" colspan="2"><?php echo $install->language['error_need_corr']; ?><br /><br /><strong><?php echo $install->error; ?></strong>
           </td>
          </tr>
 <?php
     }
     ?>
          <tr>
-          <td class="tableh1" colspan="2"><b><?php echo $install->language['select_lang']; ?></b>
+          <td class="tableh1" colspan="2"><strong><?php echo $install->language['select_lang']; ?></strong>
           </td>
          </tr>
          <tr>
@@ -673,7 +673,7 @@ function html_error($button = true)
           </td>
          </tr>
          <tr>
-          <td class="tableb" colspan="2"><?php echo $install->language['error_need_corr']; ?><br /><br /><b><?php echo $install->error; ?></b>
+          <td class="tableb" colspan="2"><?php echo $install->language['error_need_corr']; ?><br /><br /><strong><?php echo $install->error; ?></strong>
           </td>
          </tr>
           <?php
@@ -1166,7 +1166,7 @@ class CPGInstall
         clearstatcache();
         
         // start creating table with results
-        $this->temp_data = "<tr><td align=\"center\"><table><tr><td><b>{$this->language['directory']}</b></td><td width=\"25%\"><b>{$this->language['c_mode']}</b></td><td width=\"25%\"><b>{$this->language['r_mode']}</b></td><td width=\"10%\"><b>{$this->language['status']}</b></td></tr>";
+        $this->temp_data = "<tr><td align=\"center\"><table><tr><td><strong>{$this->language['directory']}</strong></td><td width=\"25%\"><strong>{$this->language['c_mode']}</strong></td><td width=\"25%\"><strong>{$this->language['r_mode']}</strong></td><td width=\"10%\"><strong>{$this->language['status']}</strong></td></tr>";
         foreach($files_to_check as $folder => $perm) {
             // create a string of all allowed permissions
             $possible_modes = implode(' '.$this->language['or'].' ',$perm);

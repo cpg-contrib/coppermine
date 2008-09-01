@@ -27,7 +27,7 @@ function html_prereq_errors($error_msg)
     <form name="cpgform" id="cpgform" action="install.php">
     <h2 class="error">&#149;&nbsp;&#149;&nbsp;&#149;&nbsp;ERROR&nbsp;&#149;&nbsp;&#149;&nbsp;&#149;</h2>
 
-        <p class="tableb"> Before you continue with the Coppermine upgrade, there are some problems that need to be fixed.<br /><br /><b><?php echo $error_msg ?></b>Once you are done, hit the "Try again" button.<br />
+        <p class="tableb"> Before you continue with the Coppermine upgrade, there are some problems that need to be fixed.<br /><br /><strong><?php echo $error_msg ?></strong>Once you are done, hit the "Try again" button.<br />
         </p>
 
         <div class="input">
@@ -82,7 +82,7 @@ function html_error($error_msg = '')
         </td>
        </tr>
        <tr>
-        <td class="tableb" colspan="2"> The following errors were encountered and need to be corrected first:<br /><br /><b><?php echo $error_msg ?></b>
+        <td class="tableb" colspan="2"> The following errors were encountered and need to be corrected first:<br /><br /><strong><?php echo $error_msg ?></strong>
         </td>
        </tr>
 <?php
@@ -139,7 +139,7 @@ EOT;
 		if($method=='MySQL'){
 			echo 'Could not authenticate you via your admin details, if you think you entered the wrong details, click <a href=\'update.php\'>here</a> and try again.<br />Else, you can try to login with you MySQL account:';
 		}else{
-			echo 'Please provide your <b>admin</b> account details:';
+			echo 'Please provide your <strong>admin</strong> account details:';
 		}
         ?>
         </p>
