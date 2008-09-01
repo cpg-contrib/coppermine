@@ -160,7 +160,7 @@ if ($superCage->post->keyExists('restore_config')) { // user has chosen to facto
       // regex check
       if ((isset($adminDataValue['regex']) && $adminDataValue['regex'] != '') || (isset($adminDataValue['regex_not']) && $adminDataValue['regex_not'] != '')) {
         if ((isset($adminDataValue['regex']) && $adminDataValue['regex'] != '' && eregi($adminDataValue['regex'],$evaluate_value) == FALSE) || (isset($adminDataValue['regex_not']) && $adminDataValue['regex_not'] != '' && eregi($adminDataValue['regex_not'],$evaluate_value) == TRUE)) {
-          $userMessage .= '<li style="list-style-image:url(images/icons/redled.png)">'.sprintf($lang_admin_php['config_setting_invalid'], '<a href="#'.$adminDataKey.'">'.$lang_admin_php[$adminDataKey].'</a>').'</li>'.$lineBreak;
+          $userMessage .= '<li style="list-style-image:url(images/icons/stop.png)">'.sprintf($lang_admin_php['config_setting_invalid'], '<a href="#'.$adminDataKey.'">'.$lang_admin_php[$adminDataKey].'</a>').'</li>'.$lineBreak;
           $regexValidation = '0';
           //$admin_data_array[$adminDataKey] = $evaluation_array[$adminDataKey]; // replace the stuff in the form field with the improper input, so the user can see and correct his error
           $admin_data_array[$adminDataKey] = $evaluate_value; // replace the stuff in the form field with the improper input, so the user can see and correct his error
@@ -205,7 +205,7 @@ if ($superCage->post->keyExists('restore_config')) { // user has chosen to facto
         // perform special tasks -- end
         $admin_data_array[$adminDataKey] = stripslashes($evaluate_value);
         $CONFIG[$adminDataKey] = stripslashes($evaluate_value);
-        $userMessage .= '<li style="list-style-image:url(images/icons/greenled.png)">'.sprintf($lang_admin_php['config_setting_ok'], $lang_admin_php[$adminDataKey]).'</li>'.$lineBreak;
+        $userMessage .= '<li style="list-style-image:url(images/icons/ok.png)">'.sprintf($lang_admin_php['config_setting_ok'], $lang_admin_php[$adminDataKey]).'</li>'.$lineBreak;
       }
     } // inner foreach loop -- end
   } // Loop through the config fields to check posted values for validity -- end
