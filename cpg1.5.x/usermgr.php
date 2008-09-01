@@ -431,7 +431,7 @@ EOT;
         if ($user['pic_count']) {
             $last_uploads = '<a href="thumbnails.php?album=lastupby&uid=' . $user['user_id'] . '">' . cpg_fetch_icon('last_uploads', 0, $lang_usermgr_php['latest_upload']) . '</a>';
         } else {
-        	$last_uploads = cpg_fetch_icon('blank', 0);
+        	$last_uploads = cpg_fetch_icon('last_uploads_disabled', 0);
         }
         // To do: fetch number of comments and add link to comments if applicable
         
@@ -487,8 +487,6 @@ EOT;
 
     } // while
     //mysql_free_result($result);
-
-
 
     if (!$lim_user) {
         if ($superCage->post->keyExists('username')) {
