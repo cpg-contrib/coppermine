@@ -19,9 +19,6 @@
 
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
 
-// Switch that allows overriding the bridge manager with hard-coded values
-define('USE_BRIDGEMGR', 1);
-
 if (isset($bridge_lookup)) {
     $default_bridge_data[$bridge_lookup] = array(
         'full_name' => 'Simple Machines (SMF) 1.x',
@@ -35,6 +32,10 @@ if (isset($bridge_lookup)) {
         'use_post_based_groups_used' => 'radio,1,0',
     );
 } else {
+
+	// Switch that allows overriding the bridge manager with hard-coded values
+	define('USE_BRIDGEMGR', 1);
+
     require_once 'bridge/udb_base.inc.php';
 
     if (!USE_BRIDGEMGR) {

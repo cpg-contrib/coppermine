@@ -17,31 +17,7 @@
   $Date$
 **********************************************/
 
-/* 
-
-Logout redirection:
-
-edit phpbb file ucp.php
-
-find:
-
-		meta_refresh(3, append_sid("{$phpbb_root_path}index.$phpEx"));
-	
-		$message = $message . '<br /><br />' . sprintf($user->lang['RETURN_INDEX'], '<a href="' . append_sid("{$phpbb_root_path}index.$phpEx") . '">', '</a> ');
-		
-		
-change to : 
-
-		meta_refresh(3, request_var('redirect', append_sid("{$phpbb_root_path}index.$phpEx")));
-	
-		$message = $message . '<br /><br />' . sprintf($user->lang['RETURN_INDEX'], '<a href="' . request_var('redirect', append_sid("{$phpbb_root_path}index.$phpEx")) . '">', '</a> ');
-
-*/
-
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
-
-// Switch that allows overriding the bridge manager with hard-coded values
-define('USE_BRIDGEMGR', 1);
 
 if (isset($bridge_lookup)) {
     $default_bridge_data[$bridge_lookup] = array(
@@ -58,6 +34,9 @@ if (isset($bridge_lookup)) {
         'cookie_prefix_used' => 'cookie',
     );
 } else {
+
+	// Switch that allows overriding the bridge manager with hard-coded values
+	define('USE_BRIDGEMGR', 1);
 
     require_once 'bridge/udb_base.inc.php';
 

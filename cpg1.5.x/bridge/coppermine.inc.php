@@ -20,13 +20,13 @@
 
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
 
-// Switch that allows overriding the bridge manager with hard-coded values
-define('USE_BRIDGEMGR', 1);
-
 if (isset($bridge_lookup)) {
     // Do nothing - the default bridge file "coppermine.inc.php" is not an option in the bridge manager.
     // In other bridge files, we populate an array that specifies what bridging options are available for that particular file
 } else {
+
+	// Switch that allows overriding the bridge manager with hard-coded values
+	define('USE_BRIDGEMGR', 1);
 
     require_once 'bridge/udb_base.inc.php';
 

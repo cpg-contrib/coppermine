@@ -19,9 +19,6 @@
 
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
 
-// Switch that allows overriding the bridge manager with hard-coded values
-define('USE_BRIDGEMGR', 1);
-
 if (isset($bridge_lookup)) {
     $default_bridge_data[$bridge_lookup] = array(
         'full_name' => 'phpBB version 2.0.18 or better',
@@ -37,6 +34,9 @@ if (isset($bridge_lookup)) {
         'cookie_prefix_used' => 'cookie',
     );
 } else {
+
+	// Switch that allows overriding the bridge manager with hard-coded values
+	define('USE_BRIDGEMGR', 1);
 
     require_once 'bridge/udb_base.inc.php';
 

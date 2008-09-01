@@ -17,28 +17,7 @@
   $Date$
 **********************************************/
 
-/*
-
-For login/logout redirection:
-
-Edit punbb's login.php
-
-
-Find: $page_title = pun_htmlspecialchars($pun_config['o_board_title']).' / '.$lang_common['Login'];
-
-Add before it: $redirect_url = (isset($_GET['redir'])) ? $_GET['redir'] : $redirect_url;
-
-
-Find: redirect('index.php', $lang_login['Logout redirect']);
-
-Change to: redirect(isset($_GET['redir']) ? $_GET['redir'] : 'index.php', $lang_login['Logout redirect']);
-
-*/
-
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
-
-// Switch that allows overriding the bridge manager with hard-coded values
-define('USE_BRIDGEMGR', 1);
 
 if (isset($bridge_lookup)) {
     $default_bridge_data[$bridge_lookup] = array(
@@ -52,6 +31,9 @@ if (isset($bridge_lookup)) {
         'use_post_based_groups_default' => '0',
     );
 } else {
+
+	// Switch that allows overriding the bridge manager with hard-coded values
+	define('USE_BRIDGEMGR', 1);
 
     require_once 'bridge/udb_base.inc.php';
 
