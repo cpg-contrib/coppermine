@@ -49,7 +49,6 @@
 <p>Coppermine can be integrated with the following applications (eg. Coppermine
   and your bulletin board will share the same user database).</p>
 <ul>
-  <li>Eblah</li>
   <li>Invision Power Board</li>
   <li>Mambo</li>
   <li>MyBB</li>
@@ -138,7 +137,6 @@ Click &quot;next&quot;</p>
 <a name="bridge_manager_app_start"></a><h4>Choose application to bridge coppermine with<a href="#bridge_manager_app_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 <ul>
 <ul>
-  <li>Eblah</li>
   <li>Invision Power Board</li>
   <li>Mambo</li>
   <li>MyBB</li>
@@ -239,7 +237,35 @@ Use post-based groups?:  <span class="important">1</span>  </pre></li>
 <a name="integrating_bridge_file_creating_start"></a><h2>Creating a custom bridge file<a href="#integrating_bridge_file_creating_start"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>In theory, coppermine could be bridged with all forms of third party applications that have a user management/authentification. There are thousands of applications available that could be potential candidates. Just because of the sheer number of possible bridges, but as well because of other restrictions (non-free software, lack of time, lack of need), the coppermine devs can not come up with a huge number of bridge files. That's why there is only a comparatively small number of bridge files available. If you are looking for a bridge file for another application that is not being covered by the bridge files that come with coppermine out-of-the-box, you're welcome to search the coppermine support board if there already is an existing user-contributed bridge, or (even better) you're encouraged to come up with a bridge file of your own and publish it on the board. We (the coppermine dev team) have to rely on user contributions for most potential bridge candidates.</p>
 <p>Sadly, there is no particular piece of documentation available (yet) that explains how to create a custom bridge file, so the best method to create your custom bridge file is to look at existing bridge files and modify one to fit your needs.</p>
-<a name="integrating_files_end"></a>
+<a name="integrating_bridge_file_creating_end"></a>
+
+<a name="integrating_philosophy_start"></a><h2>Bridging philosophy<a href="#integrating_philosophy__start"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>The coppermine developers believe that the bridging mechanism should not interfere with the application coppermine is being bridged with. That's why a genuine bridge file that can be considered to go into coppermine's core code can not be designed to make edits to the bridging app's code nor is it an option that the database structure of the bridging app is being modified by queries performed by Coppermine.<br />
+The reason for our reluctance to allow bridging to interfer with the bridging app is that we don't want the bridging app to break if something goes wrong.</p>
+<p>However, there are bridge files contributed by third parties that don't work in the unobstrusive manner that we propose (like the Mehdi bridge for Joomla). We don't claim that those third party bridges are bad - in fact we appreciate that those bridge files are being made available. You have to understand though that we can not support those third party apps. We recommend that you make backups before bridging when using those third-party apps.</p>
+<a name="integrating_philosophy_end"></a>
+
+<a name="integrating_individual_bridge_issues_start"></a><h2>Individual bridge issues<a href="#integrating_individual_bridge_issues_start"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>There are some additional remarks that apply to particular bridge files:</p>
+<ul>
+	<li><strong>phpBB3</strong><br />
+		Logout redirection: to accomplish logout redirection when using the phpBB3 bridge file, you need to edit the phpbb file <tt class="code">ucp.php</tt>:<br />
+		Find<pre class="code">meta_refresh(3, append_sid("{$phpbb_root_path}index.$phpEx"));
+$message = $message . '&lt;br /&gt;&lt;br /&gt;' . sprintf($user->lang['RETURN_INDEX'], '&lt;a href="' . append_sid("{$phpbb_root_path}index.$phpEx") . '"&gt;', '&lt;/a&gt; ');</pre>and replace with<pre class?"code">meta_refresh(3, request_var('redirect', append_sid("{$phpbb_root_path}index.$phpEx")));
+$message = $message . '&lt;br /&gt;&lt;br /&gt;' . sprintf($user->lang['RETURN_INDEX'], '&lt;a href="' . request_var('redirect', append_sid("{$phpbb_root_path}index.$phpEx")) . '"&gt;', '&lt;/a&gt; ');</pre>
+	</li>
+	<li><strong>PunBB1.1.5</strong><br />For login/logout redirection:
+Edit punbb's <tt class="code">login.php</tt>, find: <pre class="code">$page_title = pun_htmlspecialchars($pun_config['o_board_title']).' / '.$lang_common['Login'];</pre>and add before it<pre class="code"> $redirect_url = (isset($_GET['redir'])) ? $_GET['redir'] : $redirect_url;</pre>
+Then find: <pre class="code">redirect('index.php', $lang_login['Logout redirect']);</pre>and change to: <pre class="code">redirect(isset($_GET['redir']) ? $_GET['redir'] : 'index.php', $lang_login['Logout redirect']);</pre>
+	</li>
+	<li><strong>PunBB1.2</strong><br />For login/logout redirection:<br />
+Edit punbb's <tt class="code">login.php</tt> and find: <pre class="code">$page_title = pun_htmlspecialchars($pun_config['o_board_title']).' / '.$lang_common['Login'];</pre>and add before it<pre class="code">$redirect_url = (isset($_GET['redir'])) ? $_GET['redir'] : $redirect_url;</pre>Then find<pre class="code">redirect('index.php', $lang_login['Logout redirect']);</pre>and change to<pre class="code">redirect(isset($_GET['redir']) ? $_GET['redir'] : 'index.php', $lang_login['Logout redirect']);</pre>
+	</li>
+	<li><strong>XMB</strong><br />
+Cookie fix (if your board is not installed to site root): edit XMB's file <tt class="code">functions.php</tt>, find the function definition for <tt class="code">put_cookie</tt> (c. line 1414) and add<pre class="code">$path = '/';</pre>just inside the top of the function
+	</li>
+</ul>
+<a name="integrating_individual_bridge_issues_end"></a>
 
 <a name="integrating_end"></a>
 
