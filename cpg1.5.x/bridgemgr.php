@@ -26,10 +26,10 @@ require('include/init.inc.php');
 ///////////// function defintions start /////////////////////////////
 
 function write_to_db($step) {
-    global $BRIDGE,$CONFIG,$default_bridge_data,$lang_bridgemgr_php, $previous_step, $next_step;
+    global $BRIDGE,$CONFIG,$default_bridge_data,$lang_bridgemgr_php, $previous_step, $next_step, $posted_var;
     $error = 0;
     // do the check for plausibility of posted data
-    foreach($_POST as $key => $value) { // loop through the posted data -- start
+    foreach($posted_var as $key => $value) { // loop through the posted data -- start
         // filter the post data that doesn't get written
         if (array_key_exists($key, $BRIDGE)) { // post data exists as db key -- start
             // do the lookups
@@ -67,9 +67,6 @@ function write_to_db($step) {
                         $return[$key] = sprintf($lang_bridgemgr_php['error_trailing_slash'], '<i>'.$lang_bridgemgr_php[$key].'</i>');
                     }
                 } // check for needed traling slashes --- end
-                //print "<hr />\n";
-                //print $options[0].':'.$options[1].','.$options[2];
-                //print "<hr />\n";
             } // only continue with this loop if there really is an option to check --- end
         } // post data exists as db key -- end
     } // loop through the posted data -- end
@@ -82,55 +79,49 @@ function write_to_db($step) {
     // do some checking according to the step we're currently in
     switch ($step) {
     case "choose_bbs":
-    if ($_POST['short_name'] == '') {
+    if ($posted_var['short_name'] == '') {
         $return['short_name'] = $lang_bridgemgr_php['error_specify_bbs'];
         $error++;
     }
-    if ($_POST['short_name'] == 'custom_selector') {
-        $_POST['short_name'] = $_POST['custom_filename'];
-        if ($_POST['short_name'] == '') {
+    if ($posted_var['short_name'] == 'custom_selector') {
+        $posted_var['short_name'] = $posted_var['custom_filename'];
+        if ($posted_var['short_name'] == '') {
             $return['short_name'] = $lang_bridgemgr_php['error_no_blank_name'];
         }
-        if (ereg('[^A-Za-z0-9_-]',$_POST['short_name'])) {
+        if (ereg('[^A-Za-z0-9_-]',$posted_var['short_name'])) {
             $return['short_name'] = $lang_bridgemgr_php['error_no_special_chars'];
         }
     }
     // check if the bridge file actually exists
-    if (file_exists('bridge/'.$_POST['short_name'].'.inc.php') == false) {
-        $return['bridge_file_not_exist'] = sprintf($lang_bridgemgr_php['error_bridge_file_not_exist'],'<i>bridge/'.$_POST['short_name'].'.inc.php</i>');
+    if (file_exists('bridge/'.$posted_var['short_name'].'.inc.php') == false) {
+        $return['bridge_file_not_exist'] = sprintf($lang_bridgemgr_php['error_bridge_file_not_exist'],'<i>bridge/'.$posted_var['short_name'].'.inc.php</i>');
     }
        break;
 
     case "settings_path":
-    //if ($_POST['short_name'] == '') {
+    //if ($posted_var['short_name'] == '') {
     //    $return['short_name'] = $lang_bridgemgr_php['error_specify_bbs'];
     //}
 
-       break;
-
-    case "db_group":
-    //if ($_POST['use_standard_groups'] == '') {
-    //    $_POST['use_standard_groups'] = 0 ;
-    //}
        break;
 
     case "db_connect":
         if ($default_bridge_data[$BRIDGE['short_name']]['db_hostname_used'] != '') { // check the db connection --- start
             @mysql_close(); //temporarily disconnect from the coppermine database
             ob_start();
-            $link = mysql_connect($_POST['db_hostname'], $_POST['db_username'], $_POST['db_password']);
+            $link = mysql_connect($posted_var['db_hostname'], $posted_var['db_username'], $posted_var['db_password']);
             $mysql_error_output = ob_get_contents();
             ob_end_clean();
             if (!$link) {
                 $return[$step] = $lang_bridgemgr_php['error_db_connect'].'<tt>'.$mysql_error_output.'</tt>';
             } elseif ($default_bridge_data[$BRIDGE['short_name']]['db_database_name_used'] != '') { // check the database
                 ob_start();
-                $db_selected = mysql_select_db($_POST['db_database_name'], $link);
+                $db_selected = mysql_select_db($posted_var['db_database_name'], $link);
                 print mysql_error();
                 $mysql_error_output = ob_get_contents();
                 ob_end_clean();
                 if (!$db_selected) {
-                   $return['db_database_name'] = sprintf($lang_bridgemgr_php['error_db_name'], '<i>'.$_POST['db_database_name'].'</i>', '<i>'.$lang_bridgemgr_php['db_database_name'].'</i>'). ' <tt>'.$mysql_error_output.'</tt>';
+                   $return['db_database_name'] = sprintf($lang_bridgemgr_php['error_db_name'], '<i>'.$posted_var['db_database_name'].'</i>', '<i>'.$lang_bridgemgr_php['db_database_name'].'</i>'). ' <tt>'.$mysql_error_output.'</tt>';
                 }
             }
             @mysql_close($link);
@@ -148,7 +139,7 @@ function write_to_db($step) {
         $loop_table_names = array ('user_table', 'session_table', 'group_table', 'group_table', 'group_relation_table', 'group_mapping_table');
         foreach ($loop_table_names as $key) { // loop through the possible tables --- start
             if ($default_bridge_data[$BRIDGE['short_name']][$key.'_used'] != '') { // check if table exists --- start
-                $temp_tablename = $_POST['table_prefix'].$_POST[$key];
+                $temp_tablename = $posted_var['table_prefix'].$posted_var[$key];
                 $result = mysql_query('SELECT * FROM '.$temp_tablename);
                 if (!$result) {
                     $return['db_'.$key] = sprintf($lang_bridgemgr_php['error_db_table'], '<i>'.$temp_tablename.'</i>', $prefix_and_table.'<i>'.$lang_bridgemgr_php[$key].'</i>'). ' <tt>'.$mysql_error_output.'</tt>';
@@ -164,8 +155,7 @@ function write_to_db($step) {
     } // end switch
 
     // write the post data to the database
-    //print_r($_POST);
-    foreach($_POST as $key => $value) {
+    foreach($posted_var as $key => $value) {
         // filter the post data that doesn't get written
         if (array_key_exists($key, $BRIDGE)) {
             if ($CONFIG['debug_mode'] != 0) { // print what actually get's written when in debug_mode
@@ -181,12 +171,12 @@ function write_to_db($step) {
             //print '<br />';
         }
     }
-    $value = $_POST['bridge_enable'];
+    $value = $posted_var['bridge_enable'];
     if ($value != '0' && $value != '1') {
         $value = $CONFIG['bridge_enable'];
     }
     cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = 'bridge_enable'");
-    if ($_POST['clear_unused_db_fields'] == 1) {
+    if ($posted_var['clear_unused_db_fields'] == 1) {
         // clear all database entries that aren't actually used with the current bridge file
         // not implemented yet (not sure if necessary after all)
     }
@@ -242,55 +232,55 @@ if ($BRIDGE[$key]) {
 
 function cpg_submit_button($step, $back = 'true', $columns = '3', $next = 'true')
 {
-global $lang_bridgemgr_php,$new_line;
-$checked = '';
+    global $lang_bridgemgr_php,$new_line, $posted_var;
+    $checked = '';
 
-if ($_POST['hide_unused_fields'] != '' || $back != 'true') {
-    $checked = 'checked="checked"';
-}
-$return = '    <tr>'.$new_line;
-$return .= '        <td colspan="'.$columns.'" class="tablef" align="center">'.$new_line;
-$return .= '            <table border="0" cellspacing="0" cellpadding="0" width="100%"><tr>'.$new_line;
-$return .= '            <td align="left">'.$new_line;
-$return .= '            <input type="Checkbox" name="hide_unused_fields" id="hide_unused_fields" value="1" class="checkbox" '.$checked.' onclick="toggleUnusedFields(this);" />'.$new_line;
-$return .= '            <label for="hide_unused_fields" class="clickable_option">'.$new_line;
-$return .= '            <span class="explanation">'.$new_line;
-$return .= '                '.$lang_bridgemgr_php['hide_unused_fields'].$new_line;
-$return .= '            </span>'.$new_line;
-$return .= '            </label>'.$new_line;
-$return .= '            <script type="text/javascript">';
-$return .= '            <!--'.$new_line;
-$return .= '            //function toggleUnusedFields(el_name) {'.$new_line;
-$return .= '            //var elems = el_name.getElementsById("hide_row");'.$new_line;
-$return .= '            '.$new_line;
-$return .= '            '.$new_line;
-$return .= '            }'.$new_line;
-$return .= '            -->'.$new_line;
-$return .= '            </script>'.$new_line;
-$return .= '        </td>'.$new_line;
-$return .= '        <td align="center">'.$new_line;
-if ($back == 'true') {
-    $return .= '            <input type="button" name="back" value="&laquo;'.$lang_bridgemgr_php['back'].'" class="button" onclick="javascript:history.back()" />'.$new_line;
-}
-if ($next != 'false') {
-    $return .= '            <input type="submit" name="submit" value="'.$lang_bridgemgr_php['next'].'&raquo;" class="button" />'.$new_line;
-}
-$return .= '            <input type="hidden" name="step" value="'.$step.'" />'.$new_line;
-$return .= '            </td>';
-$return .= '                </tr></table>';
-$return .= '        </td>'.$new_line;
-$return .= '    </tr>'.$new_line;
-return $return;
+    if ($posted_var['hide_unused_fields'] != 1) {
+        $checked = 'checked="checked"';
+    }
+    $return = '    <tr>'.$new_line;
+    $return .= '        <td colspan="'.$columns.'" class="tablef" align="center">'.$new_line;
+    $return .= '            <table border="0" cellspacing="0" cellpadding="0" width="100%"><tr>'.$new_line;
+    $return .= '            <td align="left">'.$new_line;
+    $return .= '            <input type="checkbox" name="hide_unused_fields" id="hide_unused_fields" value="1" class="checkbox" '.$checked.' onclick="toggleUnusedFields(this);" />'.$new_line;
+    $return .= '            <label for="hide_unused_fields" class="clickable_option">'.$new_line;
+    $return .= '            <span class="explanation">'.$new_line;
+    $return .= '                '.$lang_bridgemgr_php['hide_unused_fields'].$new_line;
+    $return .= '            </span>'.$new_line;
+    $return .= '            </label>'.$new_line;
+    $return .= '            <script type="text/javascript">';
+    $return .= '            <!--'.$new_line;
+    $return .= '            //function toggleUnusedFields(el_name) {'.$new_line;
+    $return .= '            //var elems = el_name.getElementsById("hide_row");'.$new_line;
+    $return .= '            '.$new_line;
+    $return .= '            '.$new_line;
+    $return .= '            }'.$new_line;
+    $return .= '            -->'.$new_line;
+    $return .= '            </script>'.$new_line;
+    $return .= '        </td>'.$new_line;
+    $return .= '        <td align="center">'.$new_line;
+    if ($back == 'true') {
+        $return .= '            <input type="button" name="back" value="&laquo;'.$lang_bridgemgr_php['back'].'" class="button" onclick="javascript:history.back()" />'.$new_line;
+    }
+    if ($next != 'false') {
+        $return .= '            <input type="submit" name="submit" value="'.$lang_bridgemgr_php['next'].'&raquo;" class="button" />'.$new_line;
+    }
+    $return .= '            <input type="hidden" name="step" value="'.$step.'" />'.$new_line;
+    $return .= '            </td>';
+    $return .= '                </tr></table>';
+    $return .= '        </td>'.$new_line;
+    $return .= '    </tr>'.$new_line;
+    return $return;
 }
 
 function remote_file_exists ($url)
 {
-// currently not used - will have to be looked into: we need a reliable way to check if an url exists, even if we can not use fopen, because it is disabled in php.ini
-/*
-   Return error codes:
-   1 = Invalid URL host
-   2 = Unable to connect to remote host
-*/
+    // currently not used - will have to be looked into: we need a reliable way to check if an url exists, even if we can not use fopen, because it is disabled in php.ini
+    /*
+       Return error codes:
+       1 = Invalid URL host
+       2 = Unable to connect to remote host
+    */
    $head = "";
    $url_p = parse_url ($url);
 
@@ -328,30 +318,30 @@ function remote_file_exists ($url)
 }
 
 function cpg_refresh_config_db_values() {
-global $CONFIG;
-// Retrieve DB stored configuration
-$results = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_CONFIG']}");
-while ($row = mysql_fetch_array($results)) {
-    $CONFIG[$row['name']] = $row['value'];
-} // while
-mysql_free_result($results);
-return $CONFIG;
+    global $CONFIG;
+    // Retrieve DB stored configuration
+    $results = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_CONFIG']}");
+    while ($row = mysql_fetch_array($results)) {
+        $CONFIG[$row['name']] = $row['value'];
+    } // while
+    mysql_free_result($results);
+    return $CONFIG;
 }
 
 function cpg_is_writable($folder)
 {
-$return = 0;
-$file_content = "this is just a test file that hasn't been deleted properly.\nIt's safe to delete it now";
-@unlink($folder.'/cpgvc_tf.txt');
-if ($fd = @fopen($folder.'/cpgvc_tf.txt', 'w')) {
-    @fwrite($fd, $file_content);
-    @fclose($fd);
+    $return = 0;
+    $file_content = "this is just a test file that hasn't been deleted properly.\nIt's safe to delete it now";
     @unlink($folder.'/cpgvc_tf.txt');
-    $return = 1;
-} else {
-    $return = -1;
-}
-return $return;
+    if ($fd = @fopen($folder.'/cpgvc_tf.txt', 'w')) {
+        @fwrite($fd, $file_content);
+        @fclose($fd);
+        @unlink($folder.'/cpgvc_tf.txt');
+        $return = 1;
+    } else {
+        $return = -1;
+    }
+    return $return;
 }
 
 ///////////// function defintions end /////////////////////////////
@@ -359,192 +349,132 @@ return $return;
 
 if (GALLERY_ADMIN_MODE) { // gallery admin mode --- start
 
-// define the var array
-
-// status: bridge ok, manager was ok a while ago ..
-$default_bridge_data['invisionboard20'] = array(
-  'full_name' => 'Invision Power Board 2.x',
-  'short_name' => 'invisionboard20',
-  'support_url' => 'http://forums.invisionpower.com/',
-  'full_forum_url_default' => 'http://www.yoursite.com/board',
-  'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',
-  'relative_path_to_config_file_default' => '../board/',
-  'relative_path_to_config_file_used' => 'lookfor,conf_global.php',
-  'use_post_based_groups_default' => '0',
-  'use_post_based_groups_used' => 'radio,1,0',
-);
-
-// status: bridge ok, manager ok
-$default_bridge_data['mambo'] = array(
-  'full_name' => 'Mambo server',
-  'short_name' => 'mambo',
-  'support_url' => 'http://www.mamboserver.com/',
-  'full_forum_url_default' => 'http://www.yoursite.com/board',
-  'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',
-  'relative_path_to_config_file_default' => '../board/',
-  'relative_path_to_config_file_used' => 'lookfor,configuration.php',
-  'use_post_based_groups_default' => '0',
-  'use_post_based_groups_used' => 'radio,1,0',
-);
-
-// status: bridge ok, manager ok
-$default_bridge_data['phpbb'] = array(
-  'full_name' => 'phpBB versions prior to 2.0.18',
-  'short_name' => 'phpbb20',
-  'support_url' => 'http://www.phpbb.com/',
-  'full_forum_url_default' => 'http://www.yoursite.com/board',
-  'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',
-  'relative_path_to_config_file_default' => '../board/',
-  'relative_path_to_config_file_used' => 'lookfor,config.php',
-  'use_post_based_groups_default' => '0',
-  'use_post_based_groups_used' => 'radio,1,0',
-   'cookie_prefix_default' => 'phpbb2mysql',
-   'cookie_prefix_used' => 'cookie',
-);
-
-$default_bridge_data['phpbb2018'] = array(
-  'full_name' => 'phpBB version 2.0.18 or better',
-  'short_name' => 'phpbb2018',
-  'support_url' => 'http://www.phpbb.com/',
-  'full_forum_url_default' => 'http://www.yoursite.com/board',
-  'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',
-  'relative_path_to_config_file_default' => '../board/',
-  'relative_path_to_config_file_used' => 'lookfor,config.php',
-  'use_post_based_groups_default' => '0',
-  'use_post_based_groups_used' => 'radio,1,0',
-   'cookie_prefix_default' => 'phpbb2mysql',
-   'cookie_prefix_used' => 'cookie',
-);
-
-// status: bridge ok, manager unknown
-$default_bridge_data['phpbb22'] = array(
-  'full_name' => 'phpBB 2.2',
-  'short_name' => 'phpbb22',
-  'support_url' => 'http://www.phpbb.com/',
-  'full_forum_url_default' => 'http://www.yoursite.com/board',
-  'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',
-  'relative_path_to_config_file_default' => '../board/',
-  'relative_path_to_config_file_used' => 'lookfor,config.php',
-  'use_post_based_groups_default' => '0',
-  'use_post_based_groups_used' => 'radio,1,0',
-);
-
-// status: bridge unknown, manager unknown
-$default_bridge_data['punbb115'] = array(
-  'full_name' => 'PunBB v1.1.5',
-  'short_name' => 'punbb115',
-  'support_url' => 'http://www.punbb.org/',
-  'full_forum_url_default' => 'http://www.yoursite.com/board',
-  'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',
-  'relative_path_to_config_file_default' => '../board/',
-  'relative_path_to_config_file_used' => 'lookfor,config.php',
-  'use_post_based_groups_default' => '0',
-);
-
-// status: bridge ok, manager ok
-$default_bridge_data['punbb12'] = array(
-  'full_name' => 'PunBB v1.2',
-  'short_name' => 'punbb12',
-  'support_url' => 'http://www.punbb.org/',
-  'full_forum_url_default' => 'http://www.yoursite.com/board',
-  'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',
-  'relative_path_to_config_file_default' => '../board/',
-  'relative_path_to_config_file_used' => 'lookfor,config.php',
-  'use_post_based_groups_default' => '0',
-  'use_post_based_groups_used' => 'radio,1,0',
-);
-
-// status: bridge ok, manager ok
-$default_bridge_data['smf10'] = array(
-  'full_name' => 'Simple Machines (SMF) 1.x',
-  'short_name' => 'smf10',
-  'support_url' => 'http://www.simplemachines.org/',
-  'full_forum_url_default' => 'http://www.yoursite.com/board',
-  'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',
-  'relative_path_to_config_file_default' => '../board/',
-  'relative_path_to_config_file_used' => 'lookfor,Settings.php',
-  'use_post_based_groups_default' => '0',
-  'use_post_based_groups_used' => 'radio,1,0',
-);
-
-// status: bridge ok, manager ok
-$default_bridge_data['smf20'] = array(
-  'full_name' => 'Simple Machines (SMF) 2.x',
-  'short_name' => 'smf20',
-  'support_url' => 'http://www.simplemachines.org/',
-  'full_forum_url_default' => 'http://www.yoursite.com/board',
-  'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',
-  'relative_path_to_config_file_default' => '../board/',
-  'relative_path_to_config_file_used' => 'lookfor,Settings.php',
-  'use_post_based_groups_default' => '0',
-  'use_post_based_groups_used' => 'radio,1,0',
-);
-
-// status: bridge unknown, manager unknown
-$default_bridge_data['vbulletin30'] = array(
-  'full_name' => 'vBulletin 3.0',
-  'short_name' => 'vbulletin30',
-  'support_url' => 'http://www.vbulletin.com/',
-  'full_forum_url_default' => 'http://www.yoursite.com/board',
-  'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',
-  'relative_path_to_config_file_default' => '../board/',
-  'relative_path_to_config_file_used' => 'lookfor,includes/config.php',
-  'use_post_based_groups_default' => '0',
-  'use_post_based_groups_used' => 'radio,1,0',
-);
-
-$default_bridge_data['mybb'] = array(
-  'full_name' => 'MyBB 1.02',
-  'short_name' => 'mybb',
-  'support_url' => 'http://www.mybboard.com/',
-  'full_forum_url_default' => 'http://www.yoursite.com/board',
-  'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',
-  'relative_path_to_config_file_default' => '../board/inc',
-  'relative_path_to_config_file_used' => 'lookfor,config.php',
-  'use_post_based_groups_default' => '0',
-  'use_post_based_groups_used' => 'radio,1,0',
-);
-
-$default_bridge_data['xmb'] = array(
-  'full_name' => 'XMB 1.9',
-  'short_name' => 'xmb',
-  'support_url' => 'http://www.xmbforum.com/',
-  'full_forum_url_default' => 'http://www.yoursite.com/board',
-  'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',
-  'relative_path_to_config_file_default' => '../board/',
-  'relative_path_to_config_file_used' => 'lookfor,config.php',
-  'use_post_based_groups_default' => '0',
-  'use_post_based_groups_used' => 'radio,1,0',
-);
-
-$default_bridge_data['xoops'] = array(
-  'full_name' => 'Xoops 2.0',
-  'short_name' => 'xoops',
-  'support_url' => 'http://www.xoops.org/',
-  'full_forum_url_default' => 'http://www.yoursite.com/board',
-  'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',
-  'relative_path_to_config_file_default' => '../board/',
-  'relative_path_to_config_file_used' => 'lookfor,mainfile.php',
-  'use_post_based_groups_default' => '0',
-  'use_post_based_groups_used' => 'radio,1,0',
-);
-
-$default_bridge_data['phorum'] = array(
-  'full_name' => 'Phorum 5',
-  'short_name' => 'phorum',
-  'support_url' => 'http://www.phorum.org/',
-  'full_forum_url_default' => '',
-  'full_forum_url_used' => '',
-  'relative_path_to_config_file_default' => '../phorum/',
-  'relative_path_to_config_file_used' => 'lookfor,common.php',
-  'use_post_based_groups_default' => '0',
-  'use_post_based_groups_used' => 'radio,1,0',
-);
-
 //////////////// main code start //////////////////////
 
+// Sanitize superglobals
+if ($superCage->post->keyExists('hide_unused_fields')) {
+    $posted_var['hide_unused_fields'] = $superCage->post->getDigits('hide_unused_fields');
+}
+//$posted_var['hide_unused_fields'] = 0;//override the posted var for debugging purposes
+if ($superCage->post->keyExists('step')) {
+    $matches = $superCage->post->getMatched('step', '/^[a-zA-Z0-9_\-]*$/');
+    $posted_var['step'] = $matches[0];
+}
+if ($superCage->post->keyExists('force_startpage')) {
+    $posted_var['force_startpage'] = $superCage->post->getDigits('force_startpage');
+}
+if ($superCage->post->keyExists('wizard_finished')) {
+    $posted_var['wizard_finished'] = $superCage->post->getAlpha('wizard_finished');
+}
+if ($superCage->post->keyExists('submit')) {
+    $posted_var['submit'] = 1;
+}
+if ($superCage->post->keyExists('short_name')) {
+    $matches = $superCage->post->getMatched('short_name', '/^[a-zA-Z0-9_\-]*$/');
+    $posted_var['short_name'] = $matches[0];
+}
+if ($superCage->post->keyExists('custom_filename')) {
+    $matches = $superCage->post->getMatched('custom_filename', '/^[a-zA-Z0-9_\-]*$/');
+    $posted_var['custom_filename'] = $matches[0];
+}
+if ($superCage->post->keyExists('use_standard_groups')) {
+    $posted_var['use_standard_groups'] = $superCage->post->getAlnum('use_standard_groups');
+}
+if ($superCage->post->keyExists('dummy_use_standard_groups')) {
+    $posted_var['dummy_use_standard_groups'] = $superCage->post->getAlnum('dummy_use_standard_groups');
+}
+if ($superCage->post->keyExists('create_redir_file')) {
+    $posted_var['create_redir_file'] = $superCage->post->getDigits('create_redir_file');
+}
+if ($superCage->post->keyExists('bridge_enable')) {
+    $posted_var['bridge_enable'] = $superCage->post->getDigits('bridge_enable');
+}
+if ($superCage->post->keyExists('db_hostname')) {
+    // We have absolutely no clue what special chars are being used for the db connection details of the third party app, 
+    // so there is no regex we could possibly check against. 
+    // There is a risk of performing a "getRaw", although this part of the script should be admin only.
+    // We should at least escape the stuff to make sure the db entry doesn't break!
+    //$matches = $superCage->post->getMatched('db_hostname', '??');
+    //$posted_var['db_hostname'] = $matches[0];
+    $posted_var['db_hostname'] = $superCage->post->getRaw('db_hostname'); 
+}
+if ($superCage->post->keyExists('db_username')) {
+    // We have absolutely no clue what special chars are being used for the db connection details of the third party app, 
+    // so there is no regex we could possibly check against. 
+    // There is a risk of performing a "getRaw", although this part of the script should be admin only.
+    // We should at least escape the stuff to make sure the db entry doesn't break!
+    //$matches = $superCage->post->getMatched('db_username', '??'));
+    //$posted_var['db_username'] = $matches[0];
+    $posted_var['db_username'] = $superCage->post->getRaw('db_username'); 
+}
+if ($superCage->post->keyExists('db_password')) {
+    // We have absolutely no clue what special chars are being used for the db connection details of the third party app, 
+    // so there is no regex we could possibly check against. 
+    // There is a risk of performing a "getRaw", although this part of the script should be admin only.
+    // We should at least escape the stuff to make sure the db entry doesn't break!
+    //$matches = $superCage->post->getMatched('db_password', '??'));
+    //$posted_var['db_password'] = $matches[0];
+    $posted_var['db_password'] = $superCage->post->getRaw('db_hostname'); 
+}
+if ($superCage->post->keyExists('db_database_name')) {
+    // Let's assume that the database name is sane 
+    $matches = $superCage->post->getMatched('db_database_name', '/^[a-zA-Z0-9_\-]*$/');
+    $posted_var['db_database_name'] = $matches[0];
+}
+if ($superCage->post->keyExists('table_prefix')) {
+    // Let's assume that the table_prefix is sane 
+    $matches = $superCage->post->getMatched('table_prefix', '/^[a-zA-Z0-9_\-]*$/');
+    $posted_var['table_prefix'] = $matches[0];
+}
+if ($superCage->post->keyExists('clear_unused_db_fields')) {
+    $posted_var['clear_unused_db_fields'] = $superCage->post->getDigits('clear_unused_db_fields');
+}
+if ($superCage->post->keyExists('user_table')) {
+    $matches = $superCage->post->getMatched('user_table', '/^[a-zA-Z0-9_\-]*$/');
+    $posted_var['user_table'] = $matches[0];
+}
+if ($superCage->post->keyExists('session_table')) {
+    $matches = $superCage->post->getMatched('session_table', '/^[a-zA-Z0-9_\-]*$/');
+    $posted_var['session_table'] = $matches[0];
+}
+if ($superCage->post->keyExists('group_table')) {
+    $matches = $superCage->post->getMatched('group_table', '/^[a-zA-Z0-9_\-]*$/');
+    $posted_var['group_table'] = $matches[0];
+}
+if ($superCage->post->keyExists('group_relation_table')) {
+    $matches = $superCage->post->getMatched('group_relation_table', '/^[a-zA-Z0-9_\-]*$/');
+    $posted_var['group_relation_table'] = $matches[0];
+}
+if ($superCage->post->keyExists('group_mapping_table')) {
+    $matches = $superCage->post->getMatched('group_mapping_table', '/^[a-zA-Z0-9_\-]*$/');
+    $posted_var['group_mapping_table'] = $matches[0];
+}
+if ($superCage->post->keyExists('username')) {
+    $posted_var['username'] = $superCage->post->getEscaped('username');
+}
+if ($superCage->post->keyExists('password')) {
+    $posted_var['password'] = $superCage->post->getEscaped('password');
+}
+if ($superCage->post->keyExists('full_forum_url')) {
+    $posted_var['full_forum_url'] = $superCage->post->getEscaped('full_forum_url');
+}
+if ($superCage->post->keyExists('relative_path_of_forum_from_webroot')) {
+    $posted_var['relative_path_of_forum_from_webroot'] = $superCage->post->getEscaped('relative_path_of_forum_from_webroot');
+}
+if ($superCage->post->keyExists('relative_path_to_config_file')) {
+    $posted_var['relative_path_to_config_file'] = $superCage->post->getEscaped('relative_path_to_config_file');
+}
+if ($superCage->post->keyExists('cookie_prefix')) {
+    $matches = $superCage->post->getMatched('cookie_prefix', '/^[a-zA-Z0-9_\-]*$/');
+    $posted_var['cookie_prefix'] = $matches[0];
+}
+if ($superCage->post->keyExists('use_post_based_groups')) {
+    $posted_var['use_post_based_groups'] = $superCage->post->getDigits('use_post_based_groups');
+}
+//print_r($posted_var); // uncomment to see the array of post vars
+
 // initialize vars
-$step = $_POST['step'];
+$step = $posted_var['step'];
 if (!$step) {
     $step = 'finalize';
 }
@@ -581,6 +511,20 @@ EOT;
 
 //print 'Current step:'.$step.', previous step:'.$previous_step[$step].', next step:'.$next_step[$step];  // debug ouput
 
+// Loop through the bridge folder
+$foldername = 'bridge';
+$dir = opendir($foldername);
+while ($file = readdir($dir)) {
+      $extension = ltrim(substr($file,strrpos($file,'.inc.php')),'.');
+      $bridge_lookup = str_replace('.' . $extension, '', $file);
+      if ($bridge_lookup != '' && $bridge_lookup != 'coppermine' && $bridge_lookup != 'udb_base') {
+          include_once $foldername . '/' . $bridge_lookup . '.inc.php';
+      }
+}
+closedir($dir);
+unset($bridge_lookup);
+
+
 // get the bridge db vars first
 $BRIDGE = cpg_get_bridge_db_values();
 //print_r($BRIDGE);
@@ -596,7 +540,7 @@ $checked[$BRIDGE['short_name']] = 'checked="checked"';
 foreach($default_bridge_data as $key => $value) {
     print '<tr>'.$new_line;
     print '    <td class="tableb">'.$new_line;
-    print '        <input type="Radio" name="short_name" id="'.$key.'" class="radio" value="'.$key.'" '.$checked[$key].' />'.$new_line;
+    print '        <input type="radio" name="short_name" id="'.$key.'" class="radio" value="'.$key.'" '.$checked[$key].' />'.$new_line;
     print '        <label for="'.$key.'" class="clickable_option">'.$new_line;
     print '            '.$value['full_name'].$new_line;
     print '        </label>'.$new_line;
@@ -618,25 +562,7 @@ foreach($default_bridge_data as $key => $value) {
         $custom_bridge_counter_exist++;
     }
 }
-if ($custom_bridge_counter_exist == 0) { // we have a custom bridge --- start
-    $prefill = $BRIDGE['short_name'];
-    $checked = 'checked="checked"';
-} // we have a custom bridge --- end
 
-// form field for the custom bridge
-    print '<tr>'.$new_line;
-    print '    <td class="tableb">'.$new_line;
-    print '        <input type="Radio" name="short_name" id="custom_selector" class="radio" value="custom_selector" '.$checked.' onclick="document.'.$step.'.custom_filename.focus();" />'.$new_line;
-    //print '        <label for="custom_selector" class="clickable_option">'.$new_line;
-    print '            <input type="text" name="custom_filename" value="'.$prefill.'" size="30" class="textinput" onclick="document.getElementById(\'custom_selector\').checked=true;" />'.$new_line;
-    //print '        </label>'.$new_line;
-    print '    </td>'.$new_line;
-    print '    <td class="tableb">'.$new_line;
-    print '        <span class="explanation">'.$new_line;
-    print '            '.$lang_bridgemgr_php['custom_bridge_file'].$new_line;
-    print '        </span>'.$new_line;
-    print '    </td>'.$new_line;
-    print '</tr>'.$new_line;
 
 print cpg_submit_button($next_step[$step], 'false', '2');
 endtable();
@@ -670,7 +596,7 @@ case "settings_path":
                     $reset_to_default = '<img src="images/flags/reset.gif" width="16" height="11" border="0" alt="" title="'.$lang_bridgemgr_php['reset_to_default'].'" style="cursor:pointer" onclick="document.getElementById(\''.$key.'\').value=\''.$default_bridge_data[$BRIDGE['short_name']][$key.'_default'].'\'" />';
                 }
             }
-            if ($_POST['hide_unused_fields'] != 1 || $disabled == '')
+            if ($posted_var['hide_unused_fields'] != 1 || $disabled == '')
             {
                 print '<tr>'.$new_line;
                 print '    <td class="tableb">'.$new_line;
@@ -722,9 +648,8 @@ case "db_connect":
                 }
             }
             if ($default_bridge_data[$BRIDGE['short_name']][$key.'_used'] == 'password') {$fieldtype = 'password';} else {$fieldtype = 'text';}
-            if ($_POST['hide_unused_fields'] != 1 || $disabled == '')
+            if ($posted_var['hide_unused_fields'] != 1 || $disabled == '')
             {
-                //print $default_bridge_data[$BRIDGE['short_name']][$key.'_used'].'|<br>';
                 print '<tr>';
                 print '    <td class="tableb">';
                 print '        '.$lang_bridgemgr_php[$key].':';
@@ -774,10 +699,13 @@ case "db_tables":
                     $reset_to_default = '<img src="images/flags/reset.gif" width="16" height="11" border="0" alt="" title="'.$lang_bridgemgr_php['reset_to_default'].'" style="cursor:pointer" onclick="document.getElementById(\''.$key.'\').value=\''.$default_bridge_data[$BRIDGE['short_name']][$key.'_default'].'\'" />';
                 }
             }
-            if ($default_bridge_data[$BRIDGE['short_name']][$key.'_used'] == 'password') {$fieldtype = 'password';} else {$fieldtype = 'text';}
-            if ($_POST['hide_unused_fields'] != 1 || $disabled == '')
+            if ($default_bridge_data[$BRIDGE['short_name']][$key.'_used'] == 'password') {
+                $fieldtype = 'password';
+            } else {
+                $fieldtype = 'text';
+            }
+            if ($posted_var['hide_unused_fields'] != 1 || $disabled == '')
             {
-                //print $default_bridge_data[$BRIDGE['short_name']][$key.'_used'].'|<br>';
                 print '<tr>';
                 print '    <td class="tableb">';
                 print '        '.$lang_bridgemgr_php[$key].':';
@@ -851,7 +779,7 @@ case "db_groups":
                 }
             }
             if ($default_bridge_data[$BRIDGE['short_name']][$key.'_used'] == 'password') {$fieldtype = 'password';} else {$fieldtype = 'text';}
-            if ($_POST['hide_unused_fields'] != 1 || $disabled == '')
+            if ($posted_var['hide_unused_fields'] != 1 || $disabled == '')
             {
                 print '<tr>'.$new_line;
                 print '    <td class="tableb">'.$new_line;
@@ -942,7 +870,6 @@ case "special_settings":
             $option_yes = '';
             $option_no = '';
             $options = explode(',', $default_bridge_data[$BRIDGE['short_name']][$key.'_used']);
-            //print_r($options);
             if ($options[0] == 'radio') {$option_yes = $options[1]; $option_no = $options[2];}
             if ($BRIDGE[$key] == $options[1]) {
                 $checked_yes = 'checked="checked"';
@@ -951,23 +878,20 @@ case "special_settings":
                 $checked_yes = '';
                 $checked_no = 'checked="checked"';
             }
-            //if ($BRIDGE[$key] == 1){print $key.'true<br>';}
-            //if ($BRIDGE[$key] == 0){print $key.'false<br>';}
-            //print $key.$BRIDGE[$key];
             if ($default_bridge_data[$BRIDGE['short_name']][$key.'_used'] == 'password') {$fieldtype = 'password';} else {$fieldtype = 'text';}
-            if ($_POST['hide_unused_fields'] != 1 || $disabled == '') { // actually display the row? --- start
+            if ($posted_var['hide_unused_fields'] != 1 || $disabled == '') { // actually display the row? --- start
                 if ($options[0] == 'radio') { // radio button --- start
                     print '<tr>'.$new_line;
                     print '    <td class="tableb">'.$new_line;
                     print '        '.$lang_bridgemgr_php[$key].':'.$new_line;
                     print '    </td>'.$new_line;
                     print '    <td class="tableb">'.$new_line;
-                    print '        <input type="Radio" name="'.$key.'" id="'.$key.'_yes" class="radio" value="'.$option_yes.'" '.$disabled.' '.$checked_yes.' />'.$new_line;
+                    print '        <input type="radio" name="'.$key.'" id="'.$key.'_yes" class="radio" value="'.$option_yes.'" '.$disabled.' '.$checked_yes.' />'.$new_line;
                     print '        <label for="'.$key.'_yes" class="clickable_option">'.$new_line;
                     print '            '.$lang_bridgemgr_php[$key.'_yes'].$new_line;
                     print '        </label>&nbsp;'.$new_line;
                     print '        <br />'.$new_line;
-                    print '        <input type="Radio" name="'.$key.'" id="'.$key.'_no" class="radio" value="'.$option_no.'" '.$disabled.' '.$checked_no.' /><label for="'.$key.'_no" class="clickable_option">'.$lang_bridgemgr_php[$key.'_no'].'</label>'.$new_line;
+                    print '        <input type="radio" name="'.$key.'" id="'.$key.'_no" class="radio" value="'.$option_no.'" '.$disabled.' '.$checked_no.' /><label for="'.$key.'_no" class="clickable_option">'.$lang_bridgemgr_php[$key.'_no'].'</label>'.$new_line;
                     print '    </td>'.$new_line;
                     print '    <td class="tableb">'.$new_line;
                     print '        <span class="explanation">'.$lang_bridgemgr_php[$key.'_explanation'].'</span>'.$new_line;
@@ -1114,7 +1038,7 @@ case "finalize":
     </script>
 EOT;
         starttable(-1, cpg_fetch_icon('bridge_mgr', 2) . $lang_bridgemgr_php['title'].': '.$lang_bridgemgr_php['finalize'],2);
-        if ($_POST['submit'] && $CONFIG['bridge_enable'] != 1) {
+        if ($posted_var['submit'] && $CONFIG['bridge_enable'] != 1) {
             print '<tr>';
             print '<td class="tableb" colspan="2">';
             print '<span class="explanation">';
@@ -1186,14 +1110,14 @@ EOT;
                 }
             }
         } // display the enable/disable option only if there's at least a db entry about the file to bridge with --- end
-        if ($_POST['submit'] == '' || $_POST['wizard_finished'] != '' || $_POST['force_startpage'] == '1') {
+        if ($posted_var['submit'] == '' || $posted_var['wizard_finished'] != '' || $posted_var['force_startpage'] == '1') {
             if ($BRIDGE['short_name'] != '') {// display the enable/disable option only if there's at least a db entry about the file to bridge with --- start
                 print '<tr>';
                 print '    <td class="tableb" width="50%">';
-                print '        <input type="Radio" name="bridge_enable" id="bridge_enable_yes" class="radio" value="1" '.$disabled_yes.' '.$checked_yes.' onclick="changeSubmitButton();" /><label for="bridge_enable_yes" class="clickable_option">'.$lang_bridgemgr_php['bridge_enable_yes'].'</label>';
+                print '        <input type="radio" name="bridge_enable" id="bridge_enable_yes" class="radio" value="1" '.$disabled_yes.' '.$checked_yes.' onclick="changeSubmitButton();" /><label for="bridge_enable_yes" class="clickable_option">'.$lang_bridgemgr_php['bridge_enable_yes'].'</label>';
                 print '    </td>';
                 print '    <td class="tableb" width="50%">';
-                print '        <input type="Radio" name="bridge_enable" id="bridge_enable_no" class="radio" value="0" '.$disabled_no.' '.$checked_no.' onclick="changeSubmitButton();" /><label for="bridge_enable_no" class="clickable_option">'.$lang_bridgemgr_php['bridge_enable_no'].'</label>';
+                print '        <input type="radio" name="bridge_enable" id="bridge_enable_no" class="radio" value="0" '.$disabled_no.' '.$checked_no.' onclick="changeSubmitButton();" /><label for="bridge_enable_no" class="clickable_option">'.$lang_bridgemgr_php['bridge_enable_no'].'</label>';
                 print '    </td>';
                 print '</tr>';
             } // display the enable/disable option only if there's at least a db entry about the file to bridge with --- end
@@ -1202,7 +1126,7 @@ EOT;
             print '            <table border="0" cellspacing="0" cellpadding="0" width="100%">'.$new_line;
             print '                <tr>'.$new_line;
             print '                    <td align="left">'.$new_line;
-            print '                        <!--<input type="Checkbox" name="hide_unused_fields" id="hide_unused_fields" value="1" class="checkbox"  />'.$new_line;
+            print '                        <!--<input type="checkbox" name="hide_unused_fields" id="hide_unused_fields" value="1" class="checkbox"  />'.$new_line;
             print '                        <label for="hide_unused_fields" class="clickable_option"><span class="explanation">hide unused form fields (recommended)</span></label>-->'.$new_line;
             print '                   </td>'.$new_line;
             print '                   <td align="center">'.$new_line;
@@ -1218,10 +1142,10 @@ EOT;
         } else {
             print '<tr>';
             print '    <td class="tableb" width="50%">';
-            print '        <input type="Radio" name="bridge_enable" id="bridge_enable_yes" class="radio" value="1" '.$disabled_yes.' '.$checked_yes.' /><label for="bridge_enable_yes" class="clickable_option">'.$lang_bridgemgr_php['bridge_enable_yes'].'</label>';
+            print '        <input type="radio" name="bridge_enable" id="bridge_enable_yes" class="radio" value="1" '.$disabled_yes.' '.$checked_yes.' /><label for="bridge_enable_yes" class="clickable_option">'.$lang_bridgemgr_php['bridge_enable_yes'].'</label>';
             print '    </td>';
             print '    <td class="tableb" width="50%">';
-            print '        <input type="Radio" name="bridge_enable" id="bridge_enable_no" class="radio" value="0" '.$disabled_no.' '.$checked_no.' /><label for="bridge_enable_no" class="clickable_option">'.$lang_bridgemgr_php['bridge_enable_no'].'</label>';
+            print '        <input type="radio" name="bridge_enable" id="bridge_enable_no" class="radio" value="0" '.$disabled_no.' '.$checked_no.' /><label for="bridge_enable_no" class="clickable_option">'.$lang_bridgemgr_php['bridge_enable_no'].'</label>';
             print '    </td>';
             print '</tr>';
             print '<tr>'.$new_line;
@@ -1229,7 +1153,7 @@ EOT;
             print '            <table border="0" cellspacing="0" cellpadding="0" width="100%">'.$new_line;
             print '                <tr>'.$new_line;
             print '                    <td align="left">'.$new_line;
-            //print '                        <input type="Checkbox" name="clear_unused_db_fields" id="clear_unused_db_fields" value="1" class="checkbox"  checked="checked" />'.$new_line;
+            //print '                        <input type="checkbox" name="clear_unused_db_fields" id="clear_unused_db_fields" value="1" class="checkbox"  checked="checked" />'.$new_line;
             //print '                        <label for="clear_unused_db_fields" class="clickable_option"><span class="explanation">'.$lang_bridgemgr_php['clear_unused_db_fields'].'</span></label>'.$new_line;
             print '                   </td>'.$new_line;
             print '                   <td align="center">'.$new_line;
@@ -1257,7 +1181,7 @@ else { // not in gallery admin mode --- start
     if ($CONFIG['bridge_enable'] != 1) { cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__); }
 
     // initialize vars
-    $step = $_POST['step'];
+    $step = $posted_var['step'];
     $new_line = "\n";
 
     pageheader($lang_bridgemgr_php['title']);
@@ -1283,14 +1207,14 @@ else { // not in gallery admin mode --- start
         // go through the list of standalone admins and check if we have a match
         $temp_user_table = $CONFIG['TABLE_PREFIX'].'users';
 
-        $encpassword = md5(addslashes($_POST['password']));
+        $encpassword = md5(addslashes($posted_var['password']));
 
 
-        $results = cpg_db_query("SELECT user_id, user_name, user_password FROM $temp_user_table WHERE user_name = '" . addslashes($_POST['username']) . "' AND BINARY user_password = '" . $encpassword . "' AND user_active = 'YES' AND user_group = '1'");
+        $results = cpg_db_query("SELECT user_id, user_name, user_password FROM $temp_user_table WHERE user_name = '" . addslashes($posted_var['username']) . "' AND BINARY user_password = '" . $encpassword . "' AND user_active = 'YES' AND user_group = '1'");
         if (mysql_num_rows($results)) {
             $retrieved_data = mysql_fetch_array($results);
         }
-        if ($retrieved_data['user_name'] == $_POST['username'] && $retrieved_data['user_password'] == $encpassword && $retrieved_data['user_name'] != '' ) {
+        if ($retrieved_data['user_name'] == $posted_var['username'] && $retrieved_data['user_password'] == $encpassword && $retrieved_data['user_name'] != '' ) {
             // authentification successfull
             cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '0' WHERE name = 'bridge_enable'");
             cpg_db_query("UPDATE {$CONFIG['TABLE_BRIDGE']} SET value = '0' WHERE name = 'recovery_logon_failures'");

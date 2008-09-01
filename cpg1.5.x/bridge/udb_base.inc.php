@@ -19,6 +19,10 @@
 
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
 
+if (isset($bridge_lookup)) {
+    return;
+}
+
 class core_udb {
 
         function connect($id = '')
