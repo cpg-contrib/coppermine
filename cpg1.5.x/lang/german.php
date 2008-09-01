@@ -88,9 +88,8 @@ $lang_errors = array(
   'perm_denied' => 'Du hast nicht das Recht, diese Operation auszuführen.',
   'param_missing' => 'Das Skript wurde ohne den/die erforderlichen Parameter aufgerufen.',
   'non_exist_ap' => 'Das gewählte Album bzw. die gewählte Datei existiert nicht!',
-  'quota_exceeded' => 'Speicherplatz erschöpft<br /><br />Du hast ein Speicherlimit von [quota] kB, Deine Dateien belegen zur 
-
-Zeit [space] kB, das Hinzufügen dieser Datei würde Deinen Speicherplatz überschreiten.',
+  'quota_exceeded' => 'Speicherplatz erschöpft.', //cpg1.5
+  'quota_exceeded_details' => 'Du hast ein Speicherlimit von [quota] kB, Deine Dateien belegen zur Zeit [space] kB, das Hinzufügen dieser Datei würde Deinen Speicherplatz überschreiten.', //cpg1.5
   'gd_file_type_err' => 'Bei Verwendung der GD-Bibliothek sind nur die Dateitypen JPG und PNG erlaubt.',
   'invalid_image' => 'Das Bild, das Du hochgeladen hast, ist beschädigt oder kann nicht von der GD-Bibliothek verarbeitet 
 
@@ -443,7 +442,7 @@ $lang_plugin_api = array(
   'error_wakeup' => "Konnte das Plugin '%s' nicht aktivieren",
   'error_install' => "Konnte das Plugin '%s' nicht installieren",
   'error_uninstall' => "Konnte das Plugin '%s' nicht de-installieren",
-  'error_sleep' => "Konnte das Plugin '%s' nicht de-aktivieren.<br />",
+  'error_sleep' => "Konnte das Plugin '%s' nicht de-aktivieren.",
 );
 
 // ------------------------------------------------------------------------- //
@@ -1663,10 +1662,10 @@ $lang_album_admin_menu = array(
 
 $lang_list_categories = array(
   'home' => 'Galerie',
-  'stat1' => '<strong>[pictures]</strong> Dateien in <strong>[albums]</strong> Alben und <strong>[cat]</strong> Kategorien mit <strong>[comments]</strong> Kommentaren, <strong>[views]</strong> mal angesehen',
-  'stat2' => '<strong>[pictures]</strong> Dateien in <strong>[albums]</strong> Alben, <strong>[views]</strong> mal angesehen',
+  'stat1' => '[pictures] Dateien in [albums] Alben und [cat] Kategorien mit [comments] Kommentaren, [views] mal angesehen', // Ausdrücke in eckigen Klammern nicht übersetzen!
+  'stat2' => '[pictures] Dateien in [albums] Alben, [views] mal angesehen', // Ausdrücke in eckigen Klammern nicht übersetzen!
   'xx_s_gallery' => '%s\'s Galerie',
-  'stat3' => '<strong>[pictures]</strong> Dateien in <strong>[albums]</strong> Alben mit <strong>[comments]</strong> Kommentaren, <strong>[views]</strong> mal angesehen'
+  'stat3' => '[pictures] Dateien in [albums] Alben mit [comments] Kommentaren, [views] mal angesehen',  // Ausdrücke in eckigen Klammern nicht übersetzen!
 );
 
 $lang_list_users = array(

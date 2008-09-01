@@ -588,17 +588,17 @@ function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
             mysql_free_result($result);
 
             if (count($cat_data)) {
-                $statistics = strtr($lang_list_categories['stat1'], array('[pictures]' => $picture_count,
-                        '[albums]' => $album_count,
-                        '[cat]' => $cat_count,
-                        '[comments]' => $comment_count,
-                        '[views]' => $hit_count));
+                $statistics = strtr($lang_list_categories['stat1'], array('[pictures]' => '<strong>' . $picture_count . '</strong>',
+                        '[albums]' => '<strong>' . $album_count . '</strong>',
+                        '[cat]' => '<strong>' . $cat_count . '</strong>',
+                        '[comments]' => '<strong>' . $comment_count . '</strong>',
+                        '[views]' => '<strong>' . $hit_count . '</strong>'));
             } else {
                 $STATS_IN_ALB_LIST = true;
-                $statistics = strtr($lang_list_categories['stat3'], array('[pictures]' => $picture_count,
-                        '[albums]' => $album_count,
-                        '[comments]' => $comment_count,
-                        '[views]' => $hit_count));
+                $statistics = strtr($lang_list_categories['stat3'], array('[pictures]' => '<strong>' . $picture_count . '</strong>',
+                        '[albums]' => '<strong>' . $album_count . '</strong>',
+                        '[comments]' => '<strong>' . $comment_count . '</strong>',
+                        '[views]' => '<strong>' . $hit_count . '</strong>'));
             }
         } else {
             $statistics = '';

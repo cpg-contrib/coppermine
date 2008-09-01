@@ -377,7 +377,7 @@ class CPGPluginAPI {
                 }
 
                 // Couldn't put plugin to sleep...Die!
-                sprintf($lang_plugin_api['error_sleep'],$thisplugin->name);
+                sprintf($lang_plugin_api['error_sleep'].'<br />',$thisplugin->name);
             }
         }
     }

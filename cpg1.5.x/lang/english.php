@@ -83,7 +83,8 @@ $lang_errors = array(
   'perm_denied' => 'You don\'t have permission to perform this operation.',
   'param_missing' => 'Script called without the required parameter(s).',
   'non_exist_ap' => 'The selected album/file does not exist !',
-  'quota_exceeded' => 'Disk quota exceeded<br /><br />You have a space quota of [quota]K, your files currently use [space]K, adding this file would make you exceed your quota.',
+  'quota_exceeded' => 'Disk quota exceeded.', //cpg1.5
+  'quota_exceeded_details' => 'You have a space quota of [quota]K, your files currently use [space]K, adding this file would make you exceed your quota.', //cpg1.5
   'gd_file_type_err' => 'When using the GD image library allowed image types are only JPEG and PNG.',
   'invalid_image' => 'The image you have uploaded is corrupted or can\'t be handled by the GD library',
   'resize_failed' => 'Unable to create thumbnail or reduced size image.',
@@ -409,7 +410,7 @@ $lang_plugin_api = array(
   'error_wakeup' => "Couldn't awaken plugin '%s'",
   'error_install' => "Couldn't install plugin '%s'",
   'error_uninstall' => "Couldn't uninstall plugin '%s'",
-  'error_sleep' => "Couldn't switch off plugin '%s'<br />", // cpg1.5
+  'error_sleep' => "Couldn't switch off plugin '%s'", // cpg1.5
 );
 
 // ------------------------------------------------------------------------- //
@@ -1539,10 +1540,10 @@ $lang_album_admin_menu = array(
 
 $lang_list_categories = array(
   'home' => 'Home',
-  'stat1' => '<strong>[pictures]</strong> files in <strong>[albums]</strong> albums and <strong>[cat]</strong> categories with <strong>[comments]</strong> comments viewed <strong>[views]</strong> times',
-  'stat2' => '<strong>[pictures]</strong> files in <strong>[albums]</strong> albums viewed <strong>[views]</strong> times',
+  'stat1' => '[pictures] files in [albums] albums and [cat] categories with [comments] comments viewed [views] times', // do not translate the stuff in square brackets
+  'stat2' => '[pictures] files in [albums] albums viewed [views] times', // do not translate the stuff in square brackets
   'xx_s_gallery' => '%s\'s Gallery',
-  'stat3' => '<strong>[pictures]</strong> files in <strong>[albums]</strong> albums with <strong>[comments]</strong> comments viewed <strong>[views]</strong> times',
+  'stat3' => '[pictures] files in [albums] albums with [comments] comments viewed [views] times', // do not translate the stuff in square brackets
 );
 
 $lang_list_users = array(
