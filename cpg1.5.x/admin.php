@@ -27,6 +27,7 @@ require_once('include/sql_parse.php');
 js_include('js/jquery.js');
 
 $admin_data_array = $CONFIG;
+$optionLoopCounter = 0;
 
 
 $lineBreak = "\r\n";
@@ -458,7 +459,7 @@ EOT;
     }
     $resetCheckbox = '';
     $defaultValueField = '';
-    if ($value['default_value'] != '') { // we have a default value
+    if (isset($value['default_value'])) { // we have a default value
         if ($value['default_value'] == $admin_data_array[$key]) { // the default value equals the current config setting - hide the "reset to default" checkbox
             $resetCheckbox = '<input type="checkbox" name="reset_default_'.$key.'" id="reset_default_'.$key.'" value="'.$value['default_value'].'" class="checkbox" checked="checked" title="'.$lang_admin_php['reset_to_default'].'" onclick="resetToDefault(\''.$key.'\', \''.$value['type'].'\', \''.($optionLoopCounter - 1).'\');" style="display:none;" />';
         } else {
