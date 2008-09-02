@@ -431,12 +431,18 @@ EOT;
         if ($user['pic_count']) {
             $last_uploads = '<a href="thumbnails.php?album=lastupby&uid=' . $user['user_id'] . '">' . cpg_fetch_icon('last_uploads', 0, $lang_usermgr_php['latest_upload']) . '</a>';
         } else {
-        	$last_uploads = cpg_fetch_icon('last_uploads_disabled', 0);
+        	$last_uploads = cpg_fetch_icon('last_uploads_disabled', 0, $lang_usermgr_php['no_latest_upload']);
         }
-        // To do: fetch number of comments and add link to comments if applicable
-        
-
-        
+        // fetch number of comments and add link to comments if applicable
+        $result = cpg_db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_COMMENTS']} WHERE author_id = {$user['user_id']}");
+        $commentCount = mysql_fetch_array($result);
+        $user['comment_num'] = $commentCount[0];
+        mysql_free_result($result);
+        if ($user['comment_num'] > 0) {
+        	$user_comment_link = '<a href="thumbnails.php?album=lastcomby&uid=' . $user['user_id'] . '">' . cpg_fetch_icon('comment', 0, $lang_usermgr_php['last_comments'] . '('.$user['comment_num'].')') . '</a>';
+        } else {
+        	$user_comment_link = cpg_fetch_icon('blank', 0, $lang_usermgr_php['no_last_comments']);
+        } 
 
 
         if (!$lim_user) {
@@ -456,9 +462,10 @@ EOT;
                 <td class="{$row_style_class}">{$user['user_name']}</td>
                 <td class="{$row_style_class}" align="left">
                 	{$view_profile}
-                	{$last_uploads}
                 	{$profile_link}
+                	{$last_uploads}
                 	{$ban_user_link}
+                	{$user_comment_link}
                 </td>
                 <td class="{$row_style_class}">{$user['status']}</td>
                 <td class="{$row_style_class}">{$user['group_name']}</td>
