@@ -4305,8 +4305,8 @@ function set_js_var($var, $val)
 /**
  * Function to convert php array to json
  *
- * This function is equivalent to PHP 5.2 's json_encode. PHP's native function will be used if the version
- * is greater than equal to 5.2
+ * This function is equivalent to PHP 5.2 's json_encode. PHP's native function will be used if the
+ * version is greater than equal to 5.2
  *
  * @param array $arr Array which is to be converted to json string
  * @return string json string

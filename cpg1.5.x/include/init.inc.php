@@ -167,10 +167,17 @@ include_once('include/logger.inc.php');
 require 'include/media.functions.inc.php';
 
 // Check for GD GIF Create support
-if ($CONFIG['thumb_method'] == 'im' || function_exists('imagecreatefromgif'))
+if ($CONFIG['thumb_method'] == 'im' || function_exists('imagecreatefromgif')) {
   $CONFIG['GIF_support'] = 1;
-else
+} else {
   $CONFIG['GIF_support'] = 0;
+}
+
+// Include the bookmark JavaScript if at least one
+if (isset($CONFIG['display_social_bookmarks']) && $CONFIG['display_social_bookmarks'] != 0) {
+    js_include('js/jquery.js');
+    js_include('js/jquery.bookmark.js');
+}
 
 // Include plugin API
 require('include/plugin_api.inc.php');

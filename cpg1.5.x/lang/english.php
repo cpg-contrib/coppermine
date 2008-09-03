@@ -375,8 +375,11 @@ $lang_theme_selection = array(
 );
 
 $lang_social_bookmarks = array(
-  'bookmark_this_page' => 'Bookmark this page at %s',
-  'add_this_page_to' => 'Add this page to',
+  'bookmark_this_page' => 'Bookmark this page', // js-alert
+  'favorite' => 'Add this page your browser\\\'s favorites/bookmarks', // js-alert
+  'send_email' => 'Recommend this page by eMail', // js-alert
+  'email_subject' => 'Interesting page', // js-alert
+  'email_body' => 'I thought you might find this page interesting', // js-alert
 );
 
 $lang_version_alert = array(
