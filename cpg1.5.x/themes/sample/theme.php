@@ -1499,6 +1499,202 @@ EOT;
 ******************************************************************************/
 
 /******************************************************************************
+** Section <<<theme_social_bookmark>>> - START
+******************************************************************************/
+// Function for the social bookmark icons
+function theme_social_bookmark() 
+{
+    global $CONFIG, $lang_social_bookmarks;
+
+    $return = '';
+
+    if ($CONFIG['display_social_bookmarks'] != 0) {
+        $addressParamsToRemove_array = array('message_id', 'theme');
+        $url = $CONFIG['ecards_more_pic_target'] . rawurlencode(str_replace('&amp;', '&', rtrim(cpgGetScriptNameParams($addressParamsToRemove_array), '&amp;')));
+        $title = rawurlencode($CONFIG['gallery_name']);
+        $description = rawurlencode($CONFIG['gallery_description']);
+        $socialBookmarks_array = array(
+            array(
+                'name' => 'digg.com',
+                'url' => 'http://www.digg.com/submit?url={URL}',
+                'icon' => 'images/bookmarks/digg.gif',
+            ),
+            array(
+                'name' => 'del.icio.us',
+                'url' => 'http://del.icio.us/post?url={URL}&title={TITLE}',
+                'icon' => 'images/bookmarks/del.icio.us.gif',
+            ),
+            array(
+                'name' => 'Yahoo MyWeb',
+                'url' => 'http://myweb2.search.yahoo.com/myresults/bookmarklet?t={TITLE}&u={URL}',
+                'icon' => 'images/bookmarks/myweb.yahoo.gif',
+            ),
+            array(
+                'name' => 'technorati',
+                'url' => 'http://technorati.com/cosmos/search.html?url={URL}',
+                'icon' => 'images/bookmarks/technorati.gif',
+            ),
+            array(
+                'name' => 'Spurl',
+                'url' => 'http://www.spurl.net/spurl.php?url={URL}&title={TITLE}',
+                'icon' => 'images/bookmarks/spurl.gif',
+            ),
+            array(
+                'name' => 'Furl',
+                'url' => 'http://www.furl.net/storeIt.jsp?t={TITLE}&u={URL}',
+                'icon' => 'images/bookmarks/furl.gif',
+            ),
+            array(
+                'name' => 'Blinklist',
+                'url' => 'http://www.blinklist.com/index.php?Action=Blink/addblink.php&Description={DESCRIPTION}&Url={URL}&Title={TITLE}',
+                'icon' => 'images/bookmarks/blinklist.gif',
+            ),
+            array(
+                'name' => 'Fark',
+                'url' => 'http://cgi.fark.com/cgi/fark/edit.pl?new_url={URL}&new_comment={TITLE}',
+                'icon' => 'images/bookmarks/fark.gif',
+            ),
+            array(
+                'name' => 'Blogmarks',
+                'url' => 'http://blogmarks.net/my/new.php?mini=1&simple=1&url={URL}&title={TITLE}',
+                'icon' => 'images/bookmarks/blogmarks.gif',
+            ),
+            array(
+                'name' => 'Simpy',
+                'url' => 'http://www.simpy.com/simpy/LinkAdd.do?href={URL}&title={TITLE}',
+                'icon' => 'images/bookmarks/simpy.gif',
+            ),
+            array(
+                'name' => 'Reddit',
+                'url' => 'http://reddit.com/submit?url={URL}&title={TITLE}',
+                'icon' => 'images/bookmarks/reddit.gif',
+            ),
+            array(
+                'name' => 'StumbleUpon',
+                'url' => 'http://www.stumbleupon.com/submit?url={URL}&newcomment={DESCRIPTION}&title={TITLE}',
+                'icon' => 'images/bookmarks/stumbleupon.gif',
+            ),
+            array(
+                'name' => 'Slashdot',
+                'url' => 'http://slashdot.org/bookmark.pl?url={URL}&tags={DESCRIPTION}&title={TITLE}',
+                'icon' => 'images/bookmarks/slashdot.gif',
+            ),
+            array(
+                'name' => 'Netscape',
+                'url' => 'http://www.netscape.com/submit/?U={URL}&storyText={DESCRIPTION}&storyTags=&T={TITLE}',
+                'icon' => 'images/bookmarks/netscape.gif',
+            ),
+            array(
+                'name' => 'diigo',
+                'url' => 'http://www.diigo.com/post?url={URL}&title={TITLE}&tag=&comments={DESCRIPTION}',
+                'icon' => 'images/bookmarks/diigo.gif',
+            ),
+            array(
+                'name' => 'NewsVine',
+                'url' => 'http://www.newsvine.com/_wine/save?popoff=1&u={URL}&tags={DESCRIPTION}&blurb={TITLE}',
+                'icon' => 'images/bookmarks/newsvine.gif',
+            ),
+            array(
+                'name' => 'ma.gnolia',
+                'url' => 'http://ma.gnolia.com/bookmarklet/add?url={URL}&title={TITLE}&description={DESCRIPTION}',
+                'icon' => 'images/bookmarks/ma.gnolia.gif',
+            ),
+            array(
+                'name' => 'Google',
+                'url' => 'http://www.google.com/bookmarks/mark?op=add&bkmk={URL}&annotation={DESCRIPTION}&labels=&title={TITLE}',
+                'icon' => 'images/bookmarks/google.gif',
+            ),
+            array(
+                'name' => 'Mister Wong',
+                'url' => 'http://www.mister-wong.de/index.php?action=addurl&bm_url={URL}&bm_description={DESCRIPTION}',
+                'icon' => 'images/bookmarks/misterbook.gif',
+            ),
+            array(
+                'name' => 'Linkarena',
+                'url' => 'http://www.linkarena.com/bookmarks/addlink/?url={URL}&title={TITLE}',
+                'icon' => 'images/bookmarks/linkarena.gif',
+            ),
+            array(
+                'name' => 'Newskick.de',
+                'url' => 'http://www.newskick.de/submit.php?url={URL}',
+                'icon' => 'images/bookmarks/newskick.gif',
+            ),
+            array(
+                'name' => 'Weblinkr.com',
+                'url' => 'http://weblinkr.com/login?action=add&address={URL}&description={DESCRIPTION}',
+                'icon' => 'images/bookmarks/weblinkr.gif',
+            ),
+            array(
+                'name' => 'Alltagz',
+                'url' => 'http://www.alltagz.de/bookmarks/?action=add&address={URL}&title={TITLE}',
+                'icon' => 'images/bookmarks/alltagz.gif',
+            ),
+            array(
+                'name' => 'Webbrille.de',
+                'url' => 'http://www.webbrille.de/bookmarks.php/?action=add&address={URL}&title={TITLE}',
+                'icon' => 'images/bookmarks/webbrille.gif',
+            ),
+            array(
+                'name' => 'Newstube.de',
+                'url' => 'http://newstube.de/submit.php?url={URL}',
+                'icon' => 'images/bookmarks/newstube.gif',
+            ),
+            array(
+                'name' => 'Webnews.de',
+                'url' => 'http://www.webnews.de/einstellen?url={URL}&title={TITLE}',
+                'icon' => 'images/bookmarks/webnews.gif',
+            ),
+            array(
+                'name' => 'Readster.de',
+                'url' => 'http://www.readster.de/submit/?url={URL}&title={TITLE}',
+                'icon' => 'images/bookmarks/readster.gif',
+            ),
+            array(
+                'name' => 'oneview.de',
+                'url' => 'http://www.oneview.de/quickadd/neu/addBookmark.jsf?URL={URL}&title={TITLE}',
+                'icon' => 'images/bookmarks/oneview.gif',
+            ),
+            array(
+                'name' => 'Maodi.de',
+                'url' => 'http://www.maodi.de/bookmarks/?action=add&address={URL}&title={TITLE}',
+                'icon' => 'images/bookmarks/maodi.gif',
+            ),
+            array(
+                'name' => 'Tausendreporter',
+                'url' => 'http://tausendreporter.stern.de/submit.php?url={URL}',
+                'icon' => 'images/bookmarks/tausendreporter.gif',
+            ),
+            array(
+                'name' => 'Linksilo',
+                'url' => 'http://www.linksilo.de/index.php?area=bookmarks&func=bookmark_new&addurl={URL}&addtitle={TITLE}',
+                'icon' => 'images/bookmarks/linksilo.gif',
+            ),
+        );
+        $return = '<div id="social_bookmarks_wrapper">';
+        $return .= '<div class="social_bookmarks" id="social_bookmarks_text">' . $lang_social_bookmarks['add_this_page_to'].': </div>';
+        $countLoop = 0;
+        $social_bookmarks_config_array = explode ("|",$CONFIG['display_social_bookmarks']);
+        foreach ($socialBookmarks_array as $key) {
+            if (array_key_exists($countLoop, $social_bookmarks_config_array) && ($social_bookmarks_config_array[$countLoop] == 1)) {
+                $key['url'] = str_replace('{URL}', $url, $key['url']);
+                $key['url'] = str_replace('{TITLE}', $title, $key['url']);
+                $key['url'] = str_replace('{DESCRIPTION}', $description, $key['url']);
+                $return .= '<div class="social_bookmarks"><a href="' . $key['url'] . '" rel="external" class="external social_bookmarks2">';
+                $return .= '<img src="' . $key['icon'] . '" border="0" alt="" class="social_bookmarks2" title="' . sprintf($lang_social_bookmarks['bookmark_this_page'],$key['name']) . '" />';
+                $return .= '</a></div>';
+            }
+            $countLoop++;
+        }
+        $return .= '</div>';
+        $return = "\r\n" . '<script type="text/javascript">' . "\r\n" . 'document.write(\'' . $return . '\');' . "\r\n" . '</script>' . "\r\n";
+    } // if display_social_bookmarks
+    return $return;
+}
+/******************************************************************************
+** Section <<<theme_social_bookmark>>> - END
+******************************************************************************/
+
+/******************************************************************************
 ** Section <<<theme_credits>>> - START
 ******************************************************************************/
 /******************************************************************************
