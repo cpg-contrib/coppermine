@@ -389,33 +389,6 @@ if ($superCage->post->keyExists('create_redir_file')) {
 if ($superCage->post->keyExists('bridge_enable')) {
     $posted_var['bridge_enable'] = $superCage->post->getDigits('bridge_enable');
 }
-if ($superCage->post->keyExists('db_hostname')) {
-    // We have absolutely no clue what special chars are being used for the db connection details of the third party app, 
-    // so there is no regex we could possibly check against. 
-    // There is a risk of performing a "getRaw", although this part of the script should be admin only.
-    // We should at least escape the stuff to make sure the db entry doesn't break!
-    //$matches = $superCage->post->getMatched('db_hostname', '??');
-    //$posted_var['db_hostname'] = $matches[0];
-    $posted_var['db_hostname'] = $superCage->post->getRaw('db_hostname'); 
-}
-if ($superCage->post->keyExists('db_username')) {
-    // We have absolutely no clue what special chars are being used for the db connection details of the third party app, 
-    // so there is no regex we could possibly check against. 
-    // There is a risk of performing a "getRaw", although this part of the script should be admin only.
-    // We should at least escape the stuff to make sure the db entry doesn't break!
-    //$matches = $superCage->post->getMatched('db_username', '??'));
-    //$posted_var['db_username'] = $matches[0];
-    $posted_var['db_username'] = $superCage->post->getRaw('db_username'); 
-}
-if ($superCage->post->keyExists('db_password')) {
-    // We have absolutely no clue what special chars are being used for the db connection details of the third party app, 
-    // so there is no regex we could possibly check against. 
-    // There is a risk of performing a "getRaw", although this part of the script should be admin only.
-    // We should at least escape the stuff to make sure the db entry doesn't break!
-    //$matches = $superCage->post->getMatched('db_password', '??'));
-    //$posted_var['db_password'] = $matches[0];
-    $posted_var['db_password'] = $superCage->post->getRaw('db_hostname'); 
-}
 if ($superCage->post->keyExists('db_database_name')) {
     // Let's assume that the database name is sane 
     $matches = $superCage->post->getMatched('db_database_name', '/^[a-zA-Z0-9_\-]*$/');
