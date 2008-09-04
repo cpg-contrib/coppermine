@@ -1618,10 +1618,10 @@ function theme_social_bookmark()
 
     $return = '';
 
-    if ($CONFIG['display_social_bookmarks'] != 0) {
+    if ($CONFIG['display_social_bookmarks'] != '') {
 
         $return = '';
-        $socialBookmarks_array = array('aol', 'ask', 'blinklist', 'blogmarks', 'care2', 'delicious', 'digg', 'diigo', 'dzone', 'facebook', 'fark', 'faves', 'feedmelinks', 'furl', 'google', 'hugg', 'kool', 'linkagogo', 'livejournal', 'magnolia', 'mindbody', 'misterwong', 'mixx', 'multiply', 'myspace', 'netscape', 'netvouz', 'newsvine', 'nowpublic', 'reddit', 'segnalo', 'simpy', 'slashdot', 'smarking', 'spurl', 'squidoo', 'stumbleupon', 'tailrank', 'technorati', 'thisnext', 'windows', 'yahoo');
+        $socialBookmarks_array = array('aol', 'ask', 'blinklist', 'blogmarks', 'care2', 'delicious', 'digg', 'diigo', 'dzone', 'facebook', 'fark', 'faves', 'feedmelinks', 'furl', 'google', 'hugg', 'kool', 'linkagogo', 'livejournal', 'magnolia', 'mindbody', 'misterwong', 'mixx', 'multiply', 'myspace', 'netscape', 'netvouz', 'newsvine', 'nowpublic', 'reddit', 'segnalo', 'simpy', 'slashdot', 'smarking', 'spurl', 'squidoo', 'stumbleupon', 'tailrank', 'technorati', 'thisnext', 'windows', 'yahoo', 'alltagz', 'linksilo', 'maodi', 'newstube', 'oneview', 'readster', 'tausendreporter', 'webbrille', 'webnews');
         $social_bookmarks_config_array = explode ("|",$CONFIG['display_social_bookmarks']);
         $countLoop = 0;
         foreach ($socialBookmarks_array as $key) {
@@ -1644,8 +1644,9 @@ function theme_social_bookmark()
 		$('#popupBookmark').bookmark( 
                 {
                     compact: true, 
-                    addEmail: true, 
+                    addEmail: false, 
                     addFavorite: true,
+                    manualBookmark: '{$lang_social_bookmarks['favorite_close']}',
                     sites: [{$bookmark_list}],
                     icons: 'images/bookmarks.png',
                     iconSize: 16,
@@ -1656,6 +1657,7 @@ function theme_social_bookmark()
                     emailIcon: 1,
                     emailSubject: '{$lang_social_bookmarks['email_subject']}',
                     emailBody: '{$lang_social_bookmarks['email_body']}:\\n{t} ({u})'
+                    
                 }
             );
         </script>

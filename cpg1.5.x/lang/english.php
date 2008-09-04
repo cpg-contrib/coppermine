@@ -380,6 +380,7 @@ $lang_social_bookmarks = array(
   'send_email' => 'Recommend this page by eMail', // js-alert
   'email_subject' => 'Interesting page', // js-alert
   'email_body' => 'I thought you might find this page interesting', // js-alert
+  'favorite_close' => 'This doesn\\\'t work with your browser.\\\nPlease close this dialog and\\\npress Ctrl-D to bookmark this page.', // js-alert
 );
 
 $lang_version_alert = array(

@@ -249,7 +249,7 @@ $config_data = array(
     'display_social_bookmarks' => array(
       'type' => 'select_multiple',
       'help_link' => 'f=configuration.htm&amp;as=admin_social_bookmarks&amp;ae=admin_social_bookmarks_end',
-      'options' => array('aol', 'ask', 'blinklist', 'blogmarks', 'care2', 'delicious', 'digg', 'diigo', 'dzone', 'facebook', 'fark', 'faves', 'feedmelinks', 'furl', 'google', 'hugg', 'kool', 'linkagogo', 'livejournal', 'magnolia', 'mindbody', 'misterwong', 'mixx', 'multiply', 'myspace', 'netscape', 'netvouz', 'newsvine', 'nowpublic', 'reddit', 'segnalo', 'simpy', 'slashdot', 'smarking', 'spurl', 'squidoo', 'stumbleupon', 'tailrank', 'technorati', 'thisnext', 'windows', 'yahoo'),
+      'options' => array('myAol', 'Ask', 'Blinklist', 'Blogmarks', 'care2', 'del.icio.us', 'Digg', 'Diigo', 'Dzone', 'Facebook', 'Fark', 'Faves', 'FeedMeLinks', 'Furl', 'Google', 'Hugg', 'Kool', 'Linkagogo', 'LiveJournal', 'Magnolia', 'MindBody', 'MisterWong', 'Mixx', 'Multiply', 'mySpace', 'Netscape', 'netvouz', 'Newsvine', 'NowPublic', 'Reddit', 'Segnalo', 'Simpy', 'Slashdot', 'Smarking', 'Spurl', 'Squidoo', 'StumbleUpon', 'TailRank', 'Technorati', 'thisnext', 'Windows Live', 'Yahoo MyWeb', 'Alltagz.de', 'Linksilo.de', 'Maodi.de', 'Newstube.de', 'oneview.de', 'Readster.de', 'Tausendreporter (stern)', 'Webbrille.de', 'Webnews.de'),
       'end_description' => '('.$lang_admin_php['highlight_multiple'].')',
     ),
     'custom_header_path' => array(

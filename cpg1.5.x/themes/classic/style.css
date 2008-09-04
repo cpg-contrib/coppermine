@@ -177,7 +177,7 @@ a:active {
 
 .maintable {
     border: 1px solid #0E72A4;
-    background-color: #efefef;
+    background-color: #EFEFEF;
     margin-top: 1px;
     margin-bottom: 1px;
 }
@@ -634,7 +634,7 @@ a:link .middlethumb,a:visited .middlethumb,a:focus .middlethumb,a:hover .middlet
 .listbox_lang {
     color: #000000;
     background-color: #D1D7DC;
-    border: 1px solid #D1D7DC;
+    border: 1px solid #0E72A4;
     font-size: 80%;
     font-family: Arial, Helvetica, sans-serif;
     vertical-align : middle;
@@ -726,31 +726,20 @@ a:link .middlethumb,a:visited .middlethumb,a:focus .middlethumb,a:hover .middlet
     padding-bottom:3px;
 }
 
-#social_bookmarks_wrapper {
-    text-align:center;
-    vertical-align:middle;
-    float:left;
-    padding-left:15px;
-}
-
-#social_bookmarks_text {
-    font-size: 9px;
-    padding-top:2px;
-    /*display:none;*/ /* un-comment to hide the text in front of the social bookmarks */
-}
-
-div.social_bookmarks {
-    float:left;
-    padding-left:2px;
-    padding-right:2px;
-}
-
 #cpgChooseLanguageWrapper {
     float:left;
+    margin-left:3px;
+    margin-right:3px;
+    margin-top:0px;
+    margin-bottom:0px;
 }
 
 #cpgChooseThemeWrapper {
     float:left;
+    margin-left:3px;
+    margin-right:3px;
+    margin-top:0px;
+    margin-bottom:0px;
 }
 
 .filmstrip_background {
@@ -789,7 +778,6 @@ div.social_bookmarks {
 .bookmark_list {
 	display: block;
 	list-style-type: none;
-	font-size: 80%;
 	margin: 0px;
 	padding: 0px;
 }
@@ -799,7 +787,7 @@ div.social_bookmarks {
 	}
 }
 html:first-child .bookmark_list {  /* Opera */
-	font-size: 80%;
+	/*font-size: 80%;*/
 }
 .bookmark_list li {
 	float: left;
@@ -808,6 +796,7 @@ html:first-child .bookmark_list {  /* Opera */
 	padding: 2px;
 	background-color: #eee;
 	border: 1px outset;
+	list-style-type: none;
 }
 .bookmark_compact {
 	background-color: #eee;
@@ -843,9 +832,30 @@ html:first-child .bookmark_list img { /* Opera */
 	vertical-align: middle;
 }
 
-#bookmarkIt { float: left; border: 1px solid #aaa; padding: 0px 3px; 
-    font-size: 80%; cursor: pointer; } 
-#popupClose { display: none; vertical-align: top; } 
-#popupBookmark { display: none; position: absolute; z-index: 100; } 
-#popupBookmark ul { float: left; width: 180px; 
-    border: 1px solid #aaa; background-color: #fff; }
+#bookmarkIt { /* This is the container that wraps the entire social bookmarks button */
+	float: left; 
+	border: 1px solid #0E72A4; 
+	padding: 0px 3px; 
+    font-size: 80%; 
+    cursor: pointer;
+    background-color: #D1D7DC;
+    margin-left:3px;
+    margin-right:3px;
+    margin-top:0px;
+    margin-bottom:0px; 
+} 
+#popupClose { 
+	display: none; 
+	vertical-align: top; 
+} 
+#popupBookmark { 
+	display: none; 
+	position: absolute; 
+	z-index: 100; 
+} 
+#popupBookmark ul { 
+	float: left; 
+	width: 180px; 
+    border: 1px solid #aaa; 
+    background-color: #fff; 
+}

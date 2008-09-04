@@ -29,7 +29,7 @@ function Bookmark() {
 		emailSubject: 'Interesting page',  // The subject for the e-mail
 		emailBody: 'I thought you might find this page interesting:\n{t} ({u})', // The body of the e-mail
 			// Use '{t}' for the position of the page title, '{u}' for the page URL, and '\n' for new lines
-		manualBookmark: 'Please close this dialog and\npress Ctrl-D to bookmark this page.'
+		manualBookmark: 'This does not work with your browser.\nPlease close this dialog and\npress Ctrl-D to bookmark this page.'
 			// Instructions for manually bookmarking the page
 	};
 	this._sites = {  // The definitions of the available bookmarking sites
@@ -116,7 +116,25 @@ function Bookmark() {
 		'windows': {display: 'Windows Live', icon: 40,
 			url: 'https://favorites.live.com/quickadd.aspx?marklet=1&amp;mkt=en-us&amp;url={u}&amp;title={t}'},
 		'yahoo': {display: 'Yahoo MyWeb', icon: 41,
-			url: 'http://myweb2.search.yahoo.com/myresults/bookmarklet?t={t}&amp;u={u}'}
+			url: 'http://myweb2.search.yahoo.com/myresults/bookmarklet?t={t}&amp;u={u}'},
+		'alltagz': {display: 'Alltagz.de', icon: 44,
+			url: 'http://www.alltagz.de/bookmarks/?action=add&address={u}&title={t}'},
+		'linksilo': {display: 'Linksilo.de', icon: 45,
+			url: 'http://www.linksilo.de/index.php?area=bookmarks&func=bookmark_new&addurl={u}&addtitle={t}'},
+		'maodi': {display: 'Maodi.de', icon: 46,
+			url: 'http://www.maodi.de/bookmarks/?action=add&address={u}&title={t}'},
+		'newstube': {display: 'Newstube.de', icon: 47,
+			url: 'http://newstube.de/submit.php?url={u}'},
+		'oneview': {display: 'oneview.de', icon: 48,
+			url: 'http://www.oneview.de/quickadd/neu/addBookmark.jsf?URL={u}&title={t}'},
+		'readster': {display: 'Readster.de', icon: 49,
+			url: 'http://www.readster.de/submit/?url={u}&title={t}'},
+		'tausendreporter': {display: 'Tausendreporter (stern.de)', icon: 50,
+			url: 'http://tausendreporter.stern.de/submit.php?url={u}'},
+		'webbrille': {display: 'Webbrille.de', icon: 51,
+			url: 'http://www.webbrille.de/bookmarks.php/?action=add&address={u}&title={t}'},
+		'webnews': {display: 'Webnews.de', icon: 52,
+			url: 'http://www.webnews.de/einstellen?url={u}&title={t}'}	
 	};
 }
 

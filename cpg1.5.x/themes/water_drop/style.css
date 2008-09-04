@@ -625,7 +625,7 @@ a:link .middlethumb,a:visited .middlethumb,a:focus .middlethumb,a:hover .middlet
 .listbox_lang {
     color: #000666;
     background-color: #F2F5F7;
-    border: 1px solid #F2F5F7;
+    border: 1px solid #D1D7DC;
     font-size: 80%;
     font-family: Arial, Helvetica, sans-serif;
     vertical-align : middle;
@@ -685,28 +685,12 @@ a:link .middlethumb,a:visited .middlethumb,a:focus .middlethumb,a:hover .middlet
     padding-bottom:3px;
 }
 
-#social_bookmarks_wrapper {
-    text-align:center;
-    vertical-align:middle;
-    padding-bottom:50px;
-}
-
-#social_bookmarks_text {
-    font-size: 9px;
-    padding-top:2px;
-    /*display:none;*/ /* un-comment to hide the text in front of the social bookmarks */
-}
-
-div.social_bookmarks {
-    float:left;
-    padding-left:2px;
-    padding-right:2px;
-}
-
 #cpgChooseLanguageWrapper {
+	float:left;
 }
 
 #cpgChooseThemeWrapper {
+	float:left;
 }
 
 .filmstrip_background {
@@ -739,4 +723,90 @@ div.social_bookmarks {
 }
 .dtree .clip {
     overflow: hidden;
+}
+
+/* jQuery Bookmark styles */
+.bookmark_list {
+	display: block;
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+}
+@media screen and (-webkit-min-device-pixel-ratio:0) {  /* Safari3/Opera9 */
+	.bookmark_list {
+		font-size: 100%;
+	}
+}
+html:first-child .bookmark_list {  /* Opera */
+	/*font-size: 80%;*/
+}
+.bookmark_list li {
+	float: left;
+	width: 23%;
+	margin: 0% 0.5%;
+	padding: 2px;
+	background-color: #eee;
+	border: 1px outset;
+	list-style-type: none;
+}
+.bookmark_compact {
+	background-color: #eee;
+	border: 1px outset;
+}
+.bookmark_compact li {
+	width: 16px;
+	height: 16px;
+	margin: 0%;
+	background-color: transparent;
+	border: none;
+}
+.bookmark_list a {
+	width: 100%;
+}
+.bookmark_list span {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+}
+.bookmark_list img {
+	border: none;
+	vertical-align: bottom;
+}
+@media screen and (-webkit-min-device-pixel-ratio:0) {  /* Safari3/Opera9 */
+	.bookmark_list img {
+		margin-bottom: 3px;
+		vertical-align: middle;
+	}
+}
+html:first-child .bookmark_list img { /* Opera */
+	margin-bottom: 3px;
+	vertical-align: middle;
+}
+
+#bookmarkIt { /* This is the container that wraps the entire social bookmarks button */
+	float: left; 
+	border: 1px solid #D1D7DC; 
+	padding: 0px 3px; 
+    cursor: pointer;
+    background-color: #F2F5F7;
+    margin-left:3px;
+    margin-right:3px;
+    margin-top:0px;
+    margin-bottom:0px; 
+}
+ 
+#popupClose { 
+	display: none; 
+	vertical-align: top; 
+} 
+#popupBookmark { 
+	display: none; 
+	position: absolute; 
+	z-index: 100; 
+} 
+#popupBookmark ul { 
+	float: left; 
+	width: 180px; 
+    border: 1px solid #D1D7DC; 
+    background-color: #F2F5F7; 
 }

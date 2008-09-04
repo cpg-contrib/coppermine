@@ -174,7 +174,7 @@ if ($CONFIG['thumb_method'] == 'im' || function_exists('imagecreatefromgif')) {
 }
 
 // Include the bookmark JavaScript if at least one
-if (isset($CONFIG['display_social_bookmarks']) && $CONFIG['display_social_bookmarks'] != 0) {
+if (isset($CONFIG['display_social_bookmarks']) && $CONFIG['display_social_bookmarks'] != '') {
     js_include('js/jquery.js');
     js_include('js/jquery.bookmark.js');
 }
