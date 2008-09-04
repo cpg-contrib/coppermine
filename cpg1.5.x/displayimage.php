@@ -32,7 +32,6 @@ if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 1) {
     exit();
 }
 
-js_include('js/jquery.js');
 js_include('js/displayimage.js');
 
 if ($CONFIG['enable_smilies']) {

@@ -173,9 +173,11 @@ if ($CONFIG['thumb_method'] == 'im' || function_exists('imagecreatefromgif')) {
   $CONFIG['GIF_support'] = 0;
 }
 
-// Include the bookmark JavaScript if at least one
+// Include the jquery javascript library. Jquery will be included on all pages.
+js_include('js/jquery.js');
+
+// Include the bookmark JavaScript if at least one bookmarking service is selected
 if (isset($CONFIG['display_social_bookmarks']) && $CONFIG['display_social_bookmarks'] != '') {
-    js_include('js/jquery.js');
     js_include('js/jquery.bookmark.js');
 }
 

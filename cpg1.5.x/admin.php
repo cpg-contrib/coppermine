@@ -24,8 +24,6 @@ define('CONFIG_PHP', true); // added for backwards compatibility (language fallb
 require_once('include/init.inc.php');
 require_once('include/sql_parse.php');
 
-js_include('js/jquery.js');
-
 $admin_data_array = $CONFIG;
 $optionLoopCounter = 0;
 
