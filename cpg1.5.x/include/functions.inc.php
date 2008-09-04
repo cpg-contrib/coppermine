@@ -4558,5 +4558,30 @@ function cpg_fetch_icon($icon_name, $config_level = 0, $title = '', $check = '',
     return $return;
 }
 
+function cpg_float2decimal($float) {
+    global $lang_decimal_separator;
+    $value = floor($float);
+    $decimal_page = ltrim(strstr($float, '.'),'.');
+    
+    // initialize some vars start
+        $return = '';
+        $fit = 3; // how many digits to use
+        $fill = "0"; // what to fill
+    // initialize some vars end
+    $remainder = floor($value);
+
+    while ($remainder >= 1000) {
+        $chop = $remainder - (floor($remainder/pow(10,3)) * pow(10,3));
+        $chop = sprintf ("%'{$fill}{$fit}s", $chop); // fill the chop with leading zeros if needed
+        $remainder = floor($remainder/pow(10,3));
+        $return = $lang_decimal_separator[0].$chop.$return;
+    }
+    $return = $remainder.$return;
+    if ($decimal_page != 0) {
+        $return .= $lang_decimal_separator[1].$decimal_page;
+    }
+    return $return;
+}
+
 
 ?>

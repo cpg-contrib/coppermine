@@ -35,6 +35,7 @@ $lang_text_dir = 'ltr'; // ('ltr' for left to right, 'rtl' for right to left)
 
 // shortcuts for Byte, Kilo, Mega
 $lang_byte_units = array('Bytes', 'KB', 'MB');
+$lang_decimal_separator = array(',', '.');  //cpg1.5 // symbol used to separate thousands from hundreds and rounded number from  decimal place
 
 // Day of weeks and months
 $lang_day_of_week = array('Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat');
@@ -2368,6 +2369,7 @@ $lang_usermgr_php = array(
   'no_latest_upload' => 'Has not made uploads', // cpg1.5
   'last_comments' => 'Last comments', // cpg1.5
   'no_last_comments' => 'Has not made comments', // cpg1.5
+  'comments' => 'Comments', // cpg1.5
   'never' => 'never',
   'search' => 'User search',
   'submit' => 'Submit',
@@ -2391,6 +2393,7 @@ $lang_usermgr_php = array(
   'status' => 'Status', // cpg1.5
   'status_active' => 'active', // cpg1.5
   'status_inactive' => 'not active', // cpg1.5
+  'total' => 'Total', // cpg1.5
 );
 
 $lang_send_login_data_email = <<<EOT

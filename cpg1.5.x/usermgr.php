@@ -28,11 +28,11 @@ $cpg_udb->view_users();
 if (USER_ID !='') {
  if (GALLERY_ADMIN_MODE) {
   $lim_user = 0;
-  $number_of_columns = 9;
+  $number_of_columns = 10;
  }
  elseif ($CONFIG['allow_memberlist']) {
   $lim_user = 1;
-  $number_of_columns = 7;
+  $number_of_columns = 9;
   show_memberlist;
  }
  else {
@@ -140,6 +140,8 @@ function list_users($search = '')
     $superCage = Inspekt::makeSuperCage();
 
     $number_of_columns_minus_one = $number_of_columns - 1;
+    $number_of_columns_minus_three = $number_of_columns - 3;
+    $number_of_columns_minus_four = $number_of_columns - 4;
 
     $sort_codes = array('name_a' => 'user_name ASC',
         'name_d' => 'user_name DESC',
@@ -342,32 +344,44 @@ EOT;
      echo <<< EOT
 
         <tr>
-                <td class="tableh1" align="center"><input type="checkbox" {$makereadonly}name="checkAll" id="checkAll" onClick="selectAll(this,'u');" class="checkbox" title="{$lang_common['check_uncheck_all']}" style="display:none" /></td>
-                <td class="tableh1" colspan="2"><span class="statlink">{$lang_usermgr_php['name']}</span>
-                <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=name_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['name_a']}" /></a>
-                <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=name_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['name_d']}" /></a>
+                <td class="tableh1" align="center">
+                    <input type="checkbox" {$makereadonly}name="checkAll" id="checkAll" onClick="selectAll(this,'u');" class="checkbox" title="{$lang_common['check_uncheck_all']}" style="display:none" />
                 </td>
-                <td class="tableh1" align="center"><span class="statlink">{$lang_usermgr_php['status']}</span>
+                <td class="tableh1" colspan="2">
+                    <span class="statlink">{$lang_usermgr_php['name']}</span>
+                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=name_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['name_a']}" /></a>
+                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=name_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['name_d']}" /></a>
                 </td>
-                <td class="tableh1"><a href="groupmgr.php" class="statlink">{$lang_usermgr_php['group']}</a>
-                <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=group_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['group_a']}" /></a>
-                <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=group_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['group_d']}" /></a>
+                <td class="tableh1" align="center">
+                    <span class="statlink">{$lang_usermgr_php['status']}</span>
                 </td>
-                <td class="tableh1"><span class="statlink">{$lang_usermgr_php['registered_on']}</span>
-                <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=reg_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['reg_a']}" /></a>
-                <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=reg_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['reg_d']}" /></a>
+                <td class="tableh1">
+                    <a href="groupmgr.php" class="statlink">{$lang_usermgr_php['group']}</a>
+                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=group_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['group_a']}" /></a>
+                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=group_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['group_d']}" /></a>
                 </td>
-                <td class="tableh1"><span class="statlink">{$lang_usermgr_php['last_visit']}</span>
-                <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=lv_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['lv_a']}" /></a>
-                <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=lv_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['lv_d']}" /></a>
+                <td class="tableh1">
+                    <span class="statlink">{$lang_usermgr_php['registered_on']}</span>
+                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=reg_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['reg_a']}" /></a>
+                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=reg_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['reg_d']}" /></a>
                 </td>
-                <td class="tableh1" align="center"><span class="statlink">{$lang_usermgr_php['pictures']}</span>
-                <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=pic_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['pic_a']}" /></a>
-                <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=pic_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['pic_d']}" /></a>
+                <td class="tableh1">
+                    <span class="statlink">{$lang_usermgr_php['last_visit']}</span>
+                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=lv_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['lv_a']}" /></a>
+                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=lv_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['lv_d']}" /></a>
                 </td>
-                <td class="tableh1" align="center"><span class="statlink">{$lang_usermgr_php['disk_space_used']}/{$lang_usermgr_php['disk_space_quota']}</span>
-                <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=disku_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['disku_a']}" /></a>
-                <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=disku_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['disku_d']}" /></a>
+                <td class="tableh1" align="center">
+                    <span class="statlink">{$lang_usermgr_php['comments']}</span>
+                </td>
+                <td class="tableh1" align="center">
+                    <span class="statlink">{$lang_usermgr_php['pictures']}</span>
+                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=pic_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['pic_a']}" /></a>
+                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=pic_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['pic_d']}" /></a>
+                </td>
+                <td class="tableh1" align="center">
+                    <span class="statlink">{$lang_usermgr_php['disk_space_used']}/{$lang_usermgr_php['disk_space_quota']}</span>
+                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=disku_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['disku_a']}" /></a>
+                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=disku_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['disku_d']}" /></a>
                 </td>
         </tr>
 EOT;
@@ -376,18 +390,70 @@ EOT;
      echo <<< EOT
 
         <tr>
-                <td class="tableh1"><span class="statlink">{$lang_usermgr_php['name']}</span></td>
-                <td class="tableh1" align="center"><span class="statlink">{$lang_usermgr_php['status']}</span></td>
-                <td class="tableh1"><span class="statlink">{$lang_usermgr_php['group']}</span></td>
-                <td class="tableh1"><span class="statlink">{$lang_usermgr_php['registered_on']}</span></td>
-                <td class="tableh1"><span class="statlink">{$lang_usermgr_php['last_visit']}</span></td>
-                <td class="tableh1" align="center"><span class="statlink">{$lang_usermgr_php['pictures']}</span></td>
-                <td class="tableh1" align="center"><span class="statlink">{$lang_usermgr_php['disk_space_used']}/{$lang_usermgr_php['disk_space_quota']}</span></td>
+                <td class="tableh1" colspan="2">
+                    <span class="statlink">{$lang_usermgr_php['name']}</span>
+                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=name_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['name_a']}" /></a>
+                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=name_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['name_d']}" /></a>
+                </td>
+                <td class="tableh1" align="center">
+                    <span class="statlink">{$lang_usermgr_php['status']}</span>
+                </td>
+                <td class="tableh1"><span class="statlink">{$lang_usermgr_php['group']}</span>
+                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=group_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['group_a']}" /></a>
+                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=group_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['group_d']}" /></a>
+                </td>
+                <td class="tableh1">
+                    <span class="statlink">{$lang_usermgr_php['registered_on']}</span>
+                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=reg_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['reg_a']}" /></a>
+                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=reg_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['reg_d']}" /></a>
+                </td>
+                <td class="tableh1">
+                    <span class="statlink">{$lang_usermgr_php['last_visit']}</span>
+                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=lv_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['lv_a']}" /></a>
+                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=lv_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['lv_d']}" /></a>
+                </td>
+                <td class="tableh1" align="center">
+                    <span class="statlink">{$lang_usermgr_php['comments']}</span>
+                </td>
+                <td class="tableh1" align="center">
+                    <span class="statlink">{$lang_usermgr_php['pictures']}</span>
+                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=pic_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['pic_a']}" /></a>
+                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=pic_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['pic_d']}" /></a>
+                </td>
+                <td class="tableh1" align="center">
+                    <span class="statlink">{$lang_usermgr_php['disk_space_used']}/{$lang_usermgr_php['disk_space_quota']}</span>
+                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=disku_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['disku_a']}" /></a>
+                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=disku_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['disku_d']}" /></a>
+                </td>
         </tr>
 EOT;
     }
 
     $loop_counter = 0;
+    
+    // query total number of files uploaded
+    $result = cpg_db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']} LIMIT 1");
+    $tempPicCount = mysql_fetch_array($result);
+    $totalPictureCount = $tempPicCount[0];
+    $totalPictureCount_fmt = cpg_float2decimal($totalPictureCount);
+    mysql_free_result($result);
+    unset($tempPicCount);
+    
+    // query total space used
+    $result = cpg_db_query("SELECT SUM(total_filesize) FROM {$CONFIG['TABLE_PICTURES']} LIMIT 1");
+    $tempSpaceCount = mysql_fetch_array($result);
+    $totalSpaceCount = $tempSpaceCount[0];
+    $totalSpaceCount_fmt = cpg_float2decimal($totalSpaceCount);
+    mysql_free_result($result);
+    unset($tempSpaceCount);
+    
+    // query total number of comments posted
+    $result = cpg_db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_COMMENTS']} LIMIT 1");
+    $tempCommentCount = mysql_fetch_array($result);
+    $totalCommentCount = $tempCommentCount[0];
+    $totalCommentCount_fmt = cpg_float2decimal($totalCommentCount);
+    mysql_free_result($result);
+    unset($tempCommentCount);
 
     foreach ($users as $user) {
         if ($loop_counter == 0) {
@@ -417,7 +483,7 @@ EOT;
         	$action = 'deactivate';
         }
         if (!$lim_user) {
-        	$user['status'] = '<a href="delete.php?id=u'.$user['user_id'].'&amp;album_listbox='.$sort.'&amp;action='.$action.'&amp;what=user" title="foo">' . $user['status'] . '</a>';
+        	$user['status'] = '<a href="delete.php?id=u'.$user['user_id'].'&amp;album_listbox='.$sort.'&amp;action='.$action.'&amp;what=user" title="">' . $user['status'] . '</a>';
         }
         $user['user_regdate'] = localised_date($user['user_regdate'], $register_date_fmt);
         if ($user['user_lastvisit']) {
@@ -431,10 +497,18 @@ EOT;
         if ($user['pic_count']) {
             $last_uploads = '<a href="thumbnails.php?album=lastupby&uid=' . $user['user_id'] . '">' . cpg_fetch_icon('last_uploads', 0, $lang_usermgr_php['latest_upload']) . '</a>';
         } else {
-        	$last_uploads = cpg_fetch_icon('last_uploads_disabled', 0, $lang_usermgr_php['no_latest_upload']);
+        	if ($lim_user == 0) {
+                $last_uploads = cpg_fetch_icon('last_uploads_disabled', 0, $lang_usermgr_php['no_latest_upload']);
+            } else {
+                $last_uploads = cpg_fetch_icon('blank', 0);
+            }
         }
         // fetch number of comments and add link to comments if applicable
-        $result = cpg_db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_COMMENTS']} WHERE author_id = {$user['user_id']}");
+        if ($lim_user == 0) {
+            $result = cpg_db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_COMMENTS']} WHERE author_id = {$user['user_id']}"); // display all comments for the admin
+        } else {
+            $result = cpg_db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_COMMENTS']} WHERE author_id = {$user['user_id']} AND approval = 'YES' "); // only display approved comments for non-admin
+        }
         $commentCount = mysql_fetch_array($result);
         $user['comment_num'] = $commentCount[0];
         mysql_free_result($result);
@@ -442,7 +516,11 @@ EOT;
         	$user_comment_link = '<a href="thumbnails.php?album=lastcomby&uid=' . $user['user_id'] . '">' . cpg_fetch_icon('comment', 0, $lang_usermgr_php['last_comments'] . '('.$user['comment_num'].')') . '</a>';
         } else {
         	$user_comment_link = cpg_fetch_icon('blank', 0, $lang_usermgr_php['no_last_comments']);
-        } 
+        }
+        // create comments bar
+        $comment_quota_output = theme_display_bar($user['comment_num'],$totalCommentCount,60,'', '', '','red','');
+        // create files bar
+        $file_quota_output = theme_display_bar($user['pic_count'],$totalPictureCount,60,'', '', '','red','');
 
 
         if (!$lim_user) {
@@ -471,8 +549,8 @@ EOT;
                 <td class="{$row_style_class}">{$user['group_name']}</td>
                 <td class="{$row_style_class}">{$user['user_regdate']}</td>
                 <td class="{$row_style_class}">{$user['user_lastvisit']}</td>
-                <td class="{$row_style_class}" align="right">{$user['pic_count']}</td>
-                <!--<td class="{$row_style_class}" align="right">{$user['disk_usage']}/{$user['group_quota']}&nbsp;{$lang_byte_units[1]}</td>-->
+                <td class="{$row_style_class}" align="right">{$comment_quota_output}</td>
+                <td class="{$row_style_class}" align="right">{$file_quota_output}</td>
                 <td class="{$row_style_class}" align="center">{$disk_usage_output}</td>
         </tr>
 
@@ -480,11 +558,13 @@ EOT;
         } else {
                   echo <<< EOT
         <tr>
-                <td class="{$row_style_class}">{$user['user_name']}{$view_profile}{$last_uploads}</td>
+                <td class="{$row_style_class}">{$user['user_name']}</td>
+                <td class="{$row_style_class}">{$view_profile}{$last_uploads}{$user_comment_link}</td>
                 <td class="{$row_style_class}">{$user['status']}</td>
                 <td class="{$row_style_class}">{$user['group_name']}</td>
                 <td class="{$row_style_class}">{$user['user_regdate']}</td>
                 <td class="{$row_style_class}">{$user['user_lastvisit']}</td>
+                <td class="{$row_style_class}" align="right">{$user['comment_num']}</td>
                 <td class="{$row_style_class}" align="right">{$user['pic_count']}</td>
                 <td class="{$row_style_class}" align="center">{$disk_usage_output}</td>
         </tr>
@@ -502,10 +582,10 @@ EOT;
             $search_string_default = 'value="'.$lang_usermgr_php['search'].'" onfocus="this.value=\'\'"';
         }
             $help = cpg_display_help('f=users.htm&as=user_cp_search&ae=user_cp_search_end&top=1', '400', '150');
-        echo <<<EOT
+            echo <<<EOT
         <tr>
                 <td class="tablef" align="center"><input type="checkbox" name="checkAll2" id="checkAll2" {$makereadonly}onClick="selectAll(this,'u');" class="checkbox" title="{$lang_common['check_uncheck_all']}" style="display:none" /></td>
-                <td colspan="$number_of_columns_minus_one"  class="tablef">
+                <td colspan="$number_of_columns_minus_four"  class="tablef">
                 <table cellpadding="0" cellspacing="0" width="100%" border="0">
                 <tr>
                         <td align="left">
@@ -556,22 +636,48 @@ EOT;
                             </select>
                             <input type="submit" name="go" value="{$lang_usermgr_php['submit']}" class="button" style="display:none" />
                         </td>
-                        <td align="center">
-                        <a href="{$CPG_PHP_SELF}?op=new_user" {$makereadonly}class="admin_menu">{$create_new_user_icon}{$lang_usermgr_php['create_new_user']}</a>
-                        {$help_create}
-                        </td>
                 </tr>
                 </table>
                 </form>
                 </td>
+                <td align="right" class="tablef">$totalCommentCount_fmt</td>
+                <td align="right" class="tablef">$totalPictureCount_fmt</td>
+                <td align="right" class="tablef">{$totalSpaceCount_fmt}&nbsp;{$lang_byte_units[1]}</td>
         </tr>
         <tr>
-            <td colspan="$number_of_columns"  class="tablef" align="center" valign="middle">
-                <form method="post" action="{$CPG_PHP_SELF}" name="searchUser" id="cpgform2">
-                <input type="text" name="username" class="textinput" $search_string_default />
-                <input type="submit" name="user_search" value="{$lang_usermgr_php['search_submit']}" class="button" />
-                $help
-                </form>
+            <td colspan="$number_of_columns" class="tablef" align="center" valign="middle">
+                <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                    <tr>
+                        <td class="tablef" align="center" valign="middle">
+                            <form method="post" action="{$CPG_PHP_SELF}" name="searchUser" id="cpgform2">
+                                <input type="text" name="username" class="textinput" $search_string_default />
+                                <input type="submit" name="user_search" value="{$lang_usermgr_php['search_submit']}" class="button" />
+                                $help
+                            </form>
+                        </td>
+                        <td class="tablef" align="center" valign="middle">
+                            <a href="{$CPG_PHP_SELF}?op=new_user" {$makereadonly}class="admin_menu">{$create_new_user_icon}{$lang_usermgr_php['create_new_user']}</a>
+                            {$help_create}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+EOT;
+    } else {
+        echo <<< EOT
+        <tr>
+            <td colspan="$number_of_columns_minus_three" class="tablef" align="left" valign="middle">
+                {$lang_usermgr_php['total']}
+            </td>
+            <td class="tablef" align="right" valign="middle">
+                $totalCommentCount_fmt
+            </td>
+            <td class="tablef" align="right" valign="middle">
+                $totalPictureCount_fmt
+            </td>
+            <td class="tablef" align="right" valign="middle">
+                {$totalSpaceCount_fmt}&nbsp;{$lang_byte_units[1]}
             </td>
         </tr>
 EOT;
