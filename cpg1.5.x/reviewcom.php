@@ -39,9 +39,7 @@ $nb_com_no = '';
 $flag_conf_change = '';
 
 // Change config options if applicable
-//if (isset($_POST) == TRUE && count($_POST)) {
 if ($superCage->post->keyExists('is_submit')) {
-        //if ($_POST['approval_only'] != '') {
         if ($superCage->post->keyExists('approval_only')) {
            $approval_only = 1;
         } else {
@@ -357,7 +355,7 @@ if ($flag_conf_change != '') {
 if ($msg_txt != '') {
     echo <<<EOT
         <tr>
-                <td class="tableh2" colspan="6" align="left">
+                <td class="tableh2" colspan="7" align="left">
                         <ul>
 $msg_txt
                         </ul>
@@ -372,7 +370,7 @@ $help = '&nbsp;'.cpg_display_help('f=comments.htm&amp;as=comments_review&amp;ae=
 $icon = cpg_fetch_icon('comment_approval',2);
 echo <<<EOT
         <tr>
-                <td class="tableh1" colspan="6">
+                <td class="tableh1" colspan="7">
                     <table border="0" cellspacing="0" cellpadding="0" width="100%">
                         <tr>
                             <td class="tableh1">
@@ -413,6 +411,8 @@ EOT;
 
     echo <<<EOT
         <tr>
+          <td class="tableh2" valign="middle" align="center">
+          </td>
           <td class="tableh2" valign="middle" align="center">
             <input type="checkbox" name="checkAll" onClick="selectAll(this,'cid_array');" class="checkbox" title="{$lang_common['check_uncheck_all']}" />
           </td>
@@ -468,7 +468,6 @@ if ($CONFIG['display_comment_approval_only'] == 1) {
 	$only_comments_needing_approval = '';
 }
 
-
 $result = cpg_db_query("
                         SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date)
                         AS msg_date, approval, author_id, {$CONFIG['TABLE_COMMENTS']}.pid
@@ -481,8 +480,10 @@ $result = cpg_db_query("
 
 $rowcounter = 0;
 $totalMessageIdCollector = '';
+$loopCounter = 0;
 
 while ($row = mysql_fetch_array($result)) {
+    $loopCounter++;
     $thumb_url =  get_pic_url($row, 'thumb');
     if (!is_image($row['filename'])) {
         $image_info = cpg_getimagesize($thumb_url);
@@ -528,20 +529,23 @@ while ($row = mysql_fetch_array($result)) {
     // output the table rows
     echo <<<EOT
         <tr>
-        <td class="$tableclass" valign="top" align="center">
-            <input name="cid_array[]" id="check{$row['msg_id']}" type="checkbox" value="{$row['msg_id']}" />
-        </td>
-        <td class="$tableclass" valign="top" align="left">
-            {$comment_approval_status}
-        </td>
-        <td class="$tableclass" valign="top">$profile_link_start{$row['msg_author']}$profile_link_end $ban_and_delete</td>
-        <td class="$tableclass" valign="top">{$msg_date}</td>
-        <td class="$tableclass" valign="top">
-            {$msg_body}
-        </td>
-        <td class="$tableclass" align="center">
-            <a href="$thumb_link"><img src="$thumb_url" {$image_size['geom']} class="image" border="0" alt="" title="$thumb_url" /></a>
-        </td>
+            <td class="$tableclass" valign="top" align="center">
+                {$loopCounter}
+            </td>
+            <td class="$tableclass" valign="top" align="center">
+                <input name="cid_array[]" id="check{$row['msg_id']}" type="checkbox" value="{$row['msg_id']}" />
+            </td>
+            <td class="$tableclass" valign="top" align="left">
+                {$comment_approval_status}
+            </td>
+            <td class="$tableclass" valign="top">$profile_link_start{$row['msg_author']}$profile_link_end $ban_and_delete</td>
+            <td class="$tableclass" valign="top">{$msg_date}</td>
+            <td class="$tableclass" valign="top">
+                {$msg_body}
+            </td>
+            <td class="$tableclass" align="center">
+                <a href="$thumb_link"><img src="$thumb_url" {$image_size['geom']} class="image" border="0" alt="" title="$thumb_url" /></a>
+            </td>
         </tr>
 
 EOT;
@@ -555,6 +559,8 @@ mysql_free_result($result);
 // output the table footer
 echo <<<EOT
         <tr>
+            <td class="tablef" valign="middle" align="center">
+            </td>
             <td class="tablef" valign="middle" align="center">
                 <input type="checkbox" name="checkAll2" onClick="selectAll(this,'cid_array');" class="checkbox" title="{$lang_common['check_uncheck_all']}" />
             </td>
