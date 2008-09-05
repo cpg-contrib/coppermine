@@ -200,11 +200,6 @@ require_once('include/init.inc.php');
                   <div class="admin_menu admin_float"><a href="#browser" title="">{$lang_stat_details_php['stats_by_browser']}</a></div>
 EOT;
         if (GALLERY_ADMIN_MODE) {
-            print <<< EOT
-                  <!--<div class="admin_menu admin_float"><a href="" title="">{$lang_stat_details_php['']}</a></div>-->
-                  <!--<div class="admin_menu admin_float"><a href="" title="">{$lang_stat_details_php['']}</a></div>-->
-                  <!--<div class="admin_menu admin_float"><a href="" title="">{$lang_stat_details_php['']}</a></div>-->
-EOT;
             if ($type != 'hits') {
                 print '<div class="admin_menu admin_float"><a href="'.cpgGetScriptNameParams('type').'type=hits#details" title="">'.$lang_stat_details_php['hits'].'</a></div>';
             } else {
@@ -297,9 +292,9 @@ if ($type == 'vote' && $pid != '') { // type == vote start
 		$rating_images = '';
 		for($i2 = 1; $i2 <= $CONFIG['rating_stars_amount']; $i2++){
 			if($i2 <= $i){
-				$rating_images .= '<img src="' . $prefix . 'images/rate_full.gif" align="left" alt="' . $rating . '"/>';
+				$rating_images .= '<img src="' . $prefix . 'images/rate_full.gif" align="left" alt=""/>';
 			}else{
-				$rating_images .= '<img src="' . $prefix . 'images/rate_empty.gif" align="left" alt="' . $rating . '"/>';
+				$rating_images .= '<img src="' . $prefix . 'images/rate_empty.gif" align="left" alt=""/>';
 			}
 		}
         echo <<<EOT
@@ -656,6 +651,9 @@ EOT;
       $no_selected_hit = !$CONFIG['hit_details'] ? 'checked="checked"' : '';
       $yes_selected_vote = $CONFIG['vote_details'] ? 'checked="checked"' : '';
       $no_selected_vote = !$CONFIG['vote_details'] ? 'checked="checked"' : '';
+      if (!isset($rating)) {
+      	$rating = '';
+      }
       $help_hit = '&nbsp;'.cpg_display_help('f=configuration.htm&amp;as=admin_logging_hitdetails&amp;ae=admin_logging_hitdetails_end&amp;top=1', '600', '400');
       $help_vote = '&nbsp;'.cpg_display_help('f=configuration.htm&amp;as=admin_logging_votedetails&amp;ae=admin_logging_votedetails_end&amp;top=1', '600', '400');
       print <<< EOT

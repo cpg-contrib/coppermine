@@ -196,6 +196,7 @@ $osArray = array(
  */
 function individualStatsByOS($pid='',$type='hits', $tableWidth='100%') {
       global $osArray, $CONFIG, $lang_stat_details_php;
+       $maxBarWidth = 200;
       if (GALLERY_ADMIN_MODE == true){
         foreach ($osArray as $key => $value) {
                 $query = "SELECT COUNT(*) FROM ";
@@ -265,6 +266,7 @@ EOT;
 
 function individualStatsByBrowser($pid='',$type='hits', $tableWidth='100%') {
       global $browserArray, $CONFIG, $lang_stat_details_php;
+      $maxBarWidth = 200;
       if (GALLERY_ADMIN_MODE == true){
         foreach ($browserArray as $key => $value) {
                 $query = "SELECT COUNT(*) FROM ";
