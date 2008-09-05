@@ -1888,6 +1888,8 @@ function cpg_determine_client($pid)
             $browser = "Mozilla Firebird";
         } elseif (eregi("netscape",$server_agent)) {
             $browser = "Netscape";
+        } elseif (eregi("Chrome",$server_agent)) {
+            $browser = "Chrome";
         } elseif (eregi("Firefox",$server_agent)) {
             $browser = "Firefox";
         } elseif (eregi("Galeon",$server_agent)) {

@@ -35,6 +35,7 @@ $browserArray = array(
                       'BPFTP' => 'bpftp.png',
                       'Bytel' => 'bytel.png',
                       'Chimera' => 'chimera.png',
+                      'Chrome' => 'chrome.png',
                       'Cyberdog' => 'cyberdog.png',
                       'DA' => 'da.png',
                       'Dillo' => 'dillo.png',
