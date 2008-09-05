@@ -1813,137 +1813,137 @@ function cpg_determine_client($pid)
          * Populate the client stats
          */
         // Get the details of user browser, IP, OS, etc
-        $os = "Unknown";
+        $os = 'Unknown';
         $server_agent = $superCage->server->getRaw('HTTP_USER_AGENT');
-        if (eregi("Ubuntu",$server_agent)) {
-            $os = "Linux Ubuntu";
-        } elseif (eregi("Debian",$server_agent)) {
-            $os = "Linux Debian";
-        } elseif (eregi("CentOS",$server_agent)) {
-            $os = "Linux CentOS";
-        } elseif (eregi("Fedora",$server_agent)) {
-            $os = "Linux Fedora";
-        } elseif (eregi("Mandrake",$server_agent)) {
-            $os = "Linux Mandrake";
-        } elseif (eregi("RedHat",$server_agent)) {
-            $os = "Linux RedHat";
-        } elseif (eregi("Suse",$server_agent)) {
-            $os = "Linux Suse";
-        } elseif (eregi("Linux",$server_agent)) {
-            $os = "Linux";
-        } elseif (eregi("Windows NT 5.0",$server_agent)) {
-            $os = "Windows 2000";
-        } elseif (eregi("win98|Windows 98",$server_agent)) {
-            $os = "Windows 98";
-        } elseif (eregi("Windows NT 5.1",$server_agent)) {
-            $os = "Windows XP";
-        } elseif (eregi("Windows NT 5.2",$server_agent)) {
-            $os = "Windows 2003 Server";
-        } elseif (eregi("Windows NT 6.0",$server_agent)) {
-            $os = "Windows Vista";
-        } elseif (eregi("Windows CE",$server_agent)) {
-            $os = "Windows CE";
-        } elseif (eregi("Windows",$server_agent)) {
-            $os = "Windows";
-        } elseif (eregi("SunOS",$server_agent)) {
-            $os = "Sun OS";
-        } elseif (eregi("Macintosh",$server_agent)) {
-            $os = "Macintosh";
-        } elseif (eregi("Mac_PowerPC",$server_agent)) {
-            $os = "Mac OS";
-        } elseif (eregi("Mac_PPC",$server_agent)) {
-            $os = "Macintosh";
-        } elseif (eregi("OS/2",$server_agent)) {
-            $os = "OS/2";
-		} elseif (eregi("aix",$server_agent)) {
-            $os = "aix";
-		} elseif (eregi("FreeBSD",$server_agent)) {
-            $os = "BSD FreeBSD";
-		} elseif (eregi("Unix",$server_agent)) {
-            $os = "Unix";
-		} elseif (eregi("iphone",$server_agent)) {
-            $os = "iPhone";
+        if (eregi('Ubuntu',$server_agent)) {
+            $os = 'Linux Ubuntu';
+        } elseif (eregi('Debian',$server_agent)) {
+            $os = 'Linux Debian';
+        } elseif (eregi('CentOS',$server_agent)) {
+            $os = 'Linux CentOS';
+        } elseif (eregi('Fedora',$server_agent)) {
+            $os = 'Linux Fedora';
+        } elseif (eregi('Mandrake',$server_agent)) {
+            $os = 'Linux Mandrake';
+        } elseif (eregi('RedHat',$server_agent)) {
+            $os = 'Linux RedHat';
+        } elseif (eregi('Suse',$server_agent)) {
+            $os = 'Linux Suse';
+        } elseif (eregi('Linux',$server_agent)) {
+            $os = 'Linux';
+        } elseif (eregi('Windows NT 5.0',$server_agent)) {
+            $os = 'Windows 2000';
+        } elseif (eregi('win98|Windows 98',$server_agent)) {
+            $os = 'Windows 98';
+        } elseif (eregi('Windows NT 5.1',$server_agent)) {
+            $os = 'Windows XP';
+        } elseif (eregi('Windows NT 5.2',$server_agent)) {
+            $os = 'Windows 2003 Server';
+        } elseif (eregi('Windows NT 6.0',$server_agent)) {
+            $os = 'Windows Vista';
+        } elseif (eregi('Windows CE',$server_agent)) {
+            $os = 'Windows CE';
+        } elseif (eregi('Windows',$server_agent)) {
+            $os = 'Windows';
+        } elseif (eregi('SunOS',$server_agent)) {
+            $os = 'Sun OS';
+        } elseif (eregi('Macintosh',$server_agent)) {
+            $os = 'Macintosh';
+        } elseif (eregi('Mac_PowerPC',$server_agent)) {
+            $os = 'Mac OS';
+        } elseif (eregi('Mac_PPC',$server_agent)) {
+            $os = 'Macintosh';
+        } elseif (eregi('OS/2',$server_agent)) {
+            $os = 'OS/2';
+		} elseif (eregi('aix',$server_agent)) {
+            $os = 'aix';
+		} elseif (eregi('FreeBSD',$server_agent)) {
+            $os = 'BSD FreeBSD';
+		} elseif (eregi('Unix',$server_agent)) {
+            $os = 'Unix';
+		} elseif (eregi('iphone',$server_agent)) {
+            $os = 'iPhone';
         }
 
         $browser = 'Unknown';
-        if (eregi("MSIE",$server_agent)) {
-            if (eregi("MSIE 5.5",$server_agent)) {
-                $browser = "IE5.5";
-            } elseif (eregi("MSIE 6.0",$server_agent)) {
-                $browser = "IE6";
-            } elseif (eregi("MSIE 7.0",$server_agent)) {
-                $browser = "IE7";
-            } elseif (eregi("MSIE 3.0",$server_agent)) {
-                $browser = "IE3";
-            } elseif (eregi("MSIE 4.0",$server_agent)) {
-                $browser = "IE4";
-            } elseif (eregi("MSIE 5.0",$server_agent)) {
-                $browser = "IE5.0";
+        if (eregi('MSIE',$server_agent)) {
+            if (eregi('MSIE 5.5',$server_agent)) {
+                $browser = 'IE5.5';
+            } elseif (eregi('MSIE 6.0',$server_agent)) {
+                $browser = 'IE6';
+            } elseif (eregi('MSIE 7.0',$server_agent)) {
+                $browser = 'IE7';
+            } elseif (eregi('MSIE 3.0',$server_agent)) {
+                $browser = 'IE3';
+            } elseif (eregi('MSIE 4.0',$server_agent)) {
+                $browser = 'IE4';
+            } elseif (eregi('MSIE 5.0',$server_agent)) {
+                $browser = 'IE5.0';
             }
-        } elseif (eregi("Epiphany",$server_agent)) {
-            $browser = "Epiphany";
-        } elseif (eregi("Phoenix",$server_agent)) {
-            $browser = "Phoneix";        
-        } elseif (eregi("Firebird",$server_agent)) {
-            $browser = "Mozilla Firebird";
-        } elseif (eregi("netscape",$server_agent)) {
-            $browser = "Netscape";
-        } elseif (eregi("Chrome",$server_agent)) {
-            $browser = "Chrome";
-        } elseif (eregi("Firefox",$server_agent)) {
-            $browser = "Firefox";
-        } elseif (eregi("Galeon",$server_agent)) {
-            $browser = "Galeon";
-        } elseif (eregi("Camino",$server_agent)) {
-            $browser = "Camino";
-        } elseif (eregi("Konqueror",$server_agent)) {
-            $browser = "Konqueror";
-        } elseif (eregi("Safari",$server_agent)) {
-            $browser = "Safari";
-        } elseif (eregi("OmniWeb",$server_agent)) {
-            $browser = "OmniWeb";
-        } elseif (eregi("Opera",$server_agent)) {
-            $browser = "Opera";
-        } elseif (eregi("HTTrack",$server_agent)) {
-        	$browser = "HTTrack";
-        } elseif (eregi("OffByOne",$server_agent)) {
-            $browser = "Off By One";
-        } elseif (eregi("amaya",$server_agent)) {
-            $browser = "Amaya";
-        } elseif (eregi("iCab",$server_agent)) {
-            $browser = "iCab";
-        } elseif (eregi("Lynx",$server_agent)) {
-            $browser = "Lynx";
-        } elseif (eregi("Googlebot",$server_agent)) {
-            $browser = "Googlebot";
-        } elseif (eregi("Lycos_Spider",$server_agent)) {
-            $browser = "Lycos Spider";
-        } elseif (eregi("Firefly",$server_agent)) {
-            $browser = "Fireball Spider";
-        } elseif (eregi("Advanced Browser",$server_agent)) {
-            $browser = "Avant";
-        } elseif (eregi("Amiga-AWeb",$server_agent)) {
-            $browser = "AWeb";
-        } elseif (eregi("Cyberdog",$server_agent)) {
-            $browser = "Cyberdog";
-        } elseif (eregi("Dillo",$server_agent)) {
-            $browser = "Dillo";
-        } elseif (eregi("DreamPassport",$server_agent)) {
-            $browser = "DreamCast";
-        } elseif (eregi("eCatch",$server_agent)) {
-            $browser = "eCatch";
-        } elseif (eregi("ANTFresco",$server_agent)) {
-            $browser = "Fresco";
-        } elseif (eregi("RSS",$server_agent)) {
-            $browser = "RSS";
-        } elseif (eregi("Avant",$server_agent)) {
-            $browser = "Avant";
-        } elseif (eregi("HotJava",$server_agent)) {
-            $browser = "HotJava";
-        } elseif (eregi("W3C-checklink|W3C_Validator|Jigsaw",$server_agent)) {
-            $browser = "W3C";
-        } elseif (eregi("K-Meleon",$server_agent)) {
-            $browser = "K-Meleon";
+        } elseif (eregi('Epiphany',$server_agent)) {
+            $browser = 'Epiphany';
+        } elseif (eregi('Phoenix',$server_agent)) {
+            $browser = 'Phoneix';        
+        } elseif (eregi('Firebird',$server_agent)) {
+            $browser = 'Mozilla Firebird';
+        } elseif (eregi('netscape',$server_agent)) {
+            $browser = 'Netscape';
+        } elseif (eregi('Chrome',$server_agent)) {
+            $browser = 'Chrome';
+        } elseif (eregi('Firefox',$server_agent)) {
+            $browser = 'Firefox';
+        } elseif (eregi('Galeon',$server_agent)) {
+            $browser = 'Galeon';
+        } elseif (eregi('Camino',$server_agent)) {
+            $browser = 'Camino';
+        } elseif (eregi('Konqueror',$server_agent)) {
+            $browser = 'Konqueror';
+        } elseif (eregi('Safari',$server_agent)) {
+            $browser = 'Safari';
+        } elseif (eregi('OmniWeb',$server_agent)) {
+            $browser = 'OmniWeb';
+        } elseif (eregi('Opera',$server_agent)) {
+            $browser = 'Opera';
+        } elseif (eregi('HTTrack',$server_agent)) {
+        	$browser = 'HTTrack';
+        } elseif (eregi('OffByOne',$server_agent)) {
+            $browser = 'Off By One';
+        } elseif (eregi('amaya',$server_agent)) {
+            $browser = 'Amaya';
+        } elseif (eregi('iCab',$server_agent)) {
+            $browser = 'iCab';
+        } elseif (eregi('Lynx',$server_agent)) {
+            $browser = 'Lynx';
+        } elseif (eregi('Googlebot',$server_agent)) {
+            $browser = 'Googlebot';
+        } elseif (eregi('Lycos_Spider',$server_agent)) {
+            $browser = 'Lycos Spider';
+        } elseif (eregi('Firefly',$server_agent)) {
+            $browser = 'Fireball Spider';
+        } elseif (eregi('Advanced Browser',$server_agent)) {
+            $browser = 'Avant';
+        } elseif (eregi('Amiga-AWeb',$server_agent)) {
+            $browser = 'AWeb';
+        } elseif (eregi('Cyberdog',$server_agent)) {
+            $browser = 'Cyberdog';
+        } elseif (eregi('Dillo',$server_agent)) {
+            $browser = 'Dillo';
+        } elseif (eregi('DreamPassport',$server_agent)) {
+            $browser = 'DreamCast';
+        } elseif (eregi('eCatch',$server_agent)) {
+            $browser = 'eCatch';
+        } elseif (eregi('ANTFresco',$server_agent)) {
+            $browser = 'Fresco';
+        } elseif (eregi('RSS',$server_agent)) {
+            $browser = 'RSS';
+        } elseif (eregi('Avant',$server_agent)) {
+            $browser = 'Avant';
+        } elseif (eregi('HotJava',$server_agent)) {
+            $browser = 'HotJava';
+        } elseif (eregi('W3C-checklink|W3C_Validator|Jigsaw',$server_agent)) {
+            $browser = 'W3C';
+        } elseif (eregi('K-Meleon',$server_agent)) {
+            $browser = 'K-Meleon';
         }
         
         //Code to get the search string if the referrer is any of the following
