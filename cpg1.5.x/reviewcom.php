@@ -29,6 +29,32 @@ if (!GALLERY_ADMIN_MODE) {
     cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 }
 
+// initialize some variables
+$start = '';
+$count = '';
+$sort = '';
+$single_picture = '';
+$nb_com_yes = '';
+$nb_com_no = '';
+$flag_conf_change = '';
+
+// Change config options if applicable
+//if (isset($_POST) == TRUE && count($_POST)) {
+if ($superCage->post->keyExists('is_submit')) {
+        //if ($_POST['approval_only'] != '') {
+        if ($superCage->post->keyExists('approval_only')) {
+           $approval_only = 1;
+        } else {
+           $approval_only = 0;
+        }
+        if ($approval_only != $CONFIG['display_comment_approval_only']) {
+            // the user wants to see the option changed - let's write it to the database
+            cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$approval_only' WHERE name = 'display_comment_approval_only'");
+            $CONFIG['display_comment_approval_only'] = $approval_only;
+            $flag_conf_change = 1;
+        }
+}
+
 // we have made sure that an admin is logged in - let's check for GET parameters if the admin is trying to approve things from the intermediate image view
 $get_data_rejected = 0;
 $single_approval_array = array('pos' => $superCage->get->getInt('pos'), 'msg_id' => $superCage->get->getInt('msg_id'), 'what' => $superCage->get->getAlpha('what'));
@@ -138,23 +164,6 @@ EOT;
     ob_end_flush();
 } else { // individual approval end, mass-approval start
 
-// Change config options if applicable
-//if (isset($_POST) == TRUE && count($_POST)) {
-if ($superCage->post->keyExists('approval_only')) {
-        //if ($_POST['approval_only'] != '') {
-        if ($superCage->post->getInt('approval_only') != '') {
-           $approval_only = 1;
-        } else {
-           $approval_only = 0;
-        }
-        if ($approval_only != $CONFIG['display_comment_approval_only']) {
-            // the user wants to see the option changed - let's write it to the database
-            cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$approval_only' WHERE name = 'display_comment_approval_only'");
-            $CONFIG['display_comment_approval_only'] = $approval_only;
-            $flag_conf_change = 1;
-        }
-}
-
 
 if ($CONFIG['display_comment_approval_only'] == 1) {
     $comment_approval_only_checked = 'checked="checked"';
@@ -162,47 +171,36 @@ if ($CONFIG['display_comment_approval_only'] == 1) {
     $comment_approval_only_checked = '';
 }
 
-// Change approval=yes status if form is posted
-//if (isset($_POST['status_approved_yes']) == TRUE) {
-if ($superCage->post->keyExists('status_approved_yes')) {
-		if ($superCage->post->getAlpha('status_approved_yes') == TRUE) {
-    	$approved_yes_array = $superCage->post->getAlpha('status_approved_yes');
-    }
-
-    foreach($approved_yes_array as $approved_yes) {
-        if ($approved_yes != '') {
-            $approved_yes_set .= $approved_yes . ',';
-        }
-    }
-    $approved_yes_set = rtrim($approved_yes_set, ',');
-
-    $nb_com_yes = 0;
-    if ($approved_yes_set != '') {
-        cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET `approval` = 'YES' WHERE msg_id IN ($approved_yes_set)");
-        $nb_com_yes = mysql_affected_rows();
-    }
+// Get the hidden field that contains all message IDs that are being
+// handled by the form that was just submit.
+if ($superCage->post->keyExists('total_message_id_collector')) {
+	$total_message_id_submit = $superCage->post->getMatched('total_message_id_collector', '/^[0-9\/|]+$/');
+	$total_message_id_array = explode('|' , rtrim($total_message_id_submit[0],'|'));
+	sort($total_message_id_array);
+	// Now loop through that array to check wether an individual approval change has been submit.
+	$approved_yes_set = '';
+	$approved_no_set = '';
+	foreach ($total_message_id_array as $message_id_check) {
+		if ($superCage->post->getInt('status_approved_yes'.$message_id_check) != '') {
+			$approved_yes_set .= $superCage->post->getInt('status_approved_yes'.$message_id_check) . ',';
+		}
+		if ($superCage->post->getInt('status_approved_no'.$message_id_check) != '') {
+			$approved_no_set .= $superCage->post->getInt('status_approved_no'.$message_id_check) . ',';
+		}
+	}
+	$approved_yes_set = rtrim($approved_yes_set, ',');
+	$approved_no_set = rtrim($approved_no_set, ',');
+	$nb_com_yes = 0;
+	$nb_com_no = 0;
+	if ($approved_yes_set != '') {
+		cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET `approval` = 'YES' WHERE msg_id IN ($approved_yes_set)");
+		$nb_com_yes = mysql_affected_rows();
+	}
+	if ($approved_no_set != '') {
+	    cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET `approval` = 'NO' WHERE msg_id IN ($approved_no_set)");
+	    $nb_com_no = mysql_affected_rows();
+	}
 }
-
-// Change approval=no status if form is posted
-//if (isset($_POST['status_approved_no']) == TRUE) {
-if ($superCage->post->keyExists('status_approved_no')) {
-		if ($superCage->post->getAlpha('status_approved_no') == TRUE) {	
-    	$approved_no_array = $superCage->post->getAlpha('status_approved_no');
-    }
-    foreach($approved_no_array as $approved_no) {
-        if ($approved_no != '') {
-            $approved_no_set .= $approved_no . ',';
-        }
-    }
-    $approved_no_set = rtrim($approved_no_set, ',');
-
-    $nb_com_no = 0;
-    if ($approved_no_set != '') {
-        cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET `approval` = 'NO' WHERE msg_id IN ($approved_no_set)");
-        $nb_com_no = mysql_affected_rows();
-    }
-}
-
 
 $nb_com_del = 0;
 //if (isset($_POST['cid_array'])) { // have any checkboxes been ticked?
@@ -333,7 +331,7 @@ function checkBeforeSubmit() {
 </script>
 
     <form action="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=$sort&amp;pid=$single_picture" method="post" name="editForm" id="cpgform2">
-
+    <input type="hidden" name="is_submit" value="1" />
 EOT;
 
 // make up the table header
@@ -343,16 +341,16 @@ starttable('100%');
 
 $msg_txt = '';
 if ($nb_com_del > 0) {
-    $msg_txt .= '                          <li>'.sprintf($lang_reviewcom_php['n_comm_del'], $nb_com_del).'</li>'."\n\r";
+    $msg_txt .= '                          <li style="list-style-image:url(images/icons/ok.png)">'.sprintf($lang_reviewcom_php['n_comm_del'], $nb_com_del).'</li>'."\n\r";
 }
 if ($nb_com_yes > 0) {
-    $msg_txt .= '                          <li>'.sprintf($lang_reviewcom_php['n_comm_appr'], $nb_com_yes).'</li>'."\n\r";
+    $msg_txt .= '                          <li style="list-style-image:url(images/icons/ok.png)">'.sprintf($lang_reviewcom_php['n_comm_appr'], $nb_com_yes).'</li>'."\n\r";
 }
 if ($nb_com_no > 0) {
-    $msg_txt .= '                          <li>'.sprintf($lang_reviewcom_php['n_comm_disappr'], $nb_com_no).'</li>'."\n\r";
+    $msg_txt .= '                          <li style="list-style-image:url(images/icons/ok.png)">'.sprintf($lang_reviewcom_php['n_comm_disappr'], $nb_com_no).'</li>'."\n\r";
 }
 if ($flag_conf_change != '') {
-    $msg_txt .= '                          <li>'.$lang_reviewcom_php['configuration_changed'].'</li>'."\n\r";
+    $msg_txt .= '                          <li style="list-style-image:url(images/icons/ok.png)">'.$lang_reviewcom_php['configuration_changed'].'</li>'."\n\r";
 }
 
 
@@ -466,6 +464,8 @@ if (!isset($get_sort) || !isset($sort_codes[$get_sort])) {
 }
 if ($CONFIG['display_comment_approval_only'] == 1) {
     $only_comments_needing_approval = "AND approval='NO'";
+} else {
+	$only_comments_needing_approval = '';
 }
 
 
@@ -480,6 +480,7 @@ $result = cpg_db_query("
                         ");
 
 $rowcounter = 0;
+$totalMessageIdCollector = '';
 
 while ($row = mysql_fetch_array($result)) {
     $thumb_url =  get_pic_url($row, 'thumb');
@@ -488,19 +489,20 @@ while ($row = mysql_fetch_array($result)) {
         $row['pwidth'] = $image_info[0];
         $row['pheight'] = $image_info[1];
     }
+    $totalMessageIdCollector .= $row['msg_id'].'|';
     $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['alb_list_thumb_size']);
     $thumb_link = 'displayimage.php?pos=' . - $row['pid'];
     $msg_date = localised_date($row['msg_date'], $scientific_date_fmt);
     $msg_body = bb_decode(process_smilies($row['msg_body']));
     if ($row['approval'] == 'YES') {
-        $comment_approval_status = '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'yes" type="radio" value="1" checked="checked" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'yes" class="clickable_option">' . cpg_fetch_icon('comment_approve_disabled', 2) . $lang_common['yes']."</label>&nbsp;\n\r";
-        $comment_approval_status .= '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'no" type="radio" value="0" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'no" class="clickable_option">' . cpg_fetch_icon('comment_disapprove', 2) .$lang_common['no'].'</label>';
+        $comment_approval_status = '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'yes" type="radio" value="1" checked="checked" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'yes" class="clickable_option">' . $lang_common['yes']."</label>&nbsp;\n\r";
+        $comment_approval_status .= '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'no" type="radio" value="0" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'no" class="clickable_option">' .$lang_common['no'].'</label>';
     } else {
-        $comment_approval_status = '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'yes" type="radio" value="1" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'yes" class="clickable_option">' . cpg_fetch_icon('comment_approve', 2) .$lang_common['yes']."</label>&nbsp;\n\r                        ";
-        $comment_approval_status .= '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'no" type="radio" value="0" checked="checked" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'no" class="clickable_option">' . cpg_fetch_icon('comment_disapprove_disabled', 2) .$lang_common['no'].'</label>';
+        $comment_approval_status = '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'yes" type="radio" value="1" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'yes" class="clickable_option">' .$lang_common['yes']."</label>&nbsp;\n\r                        ";
+        $comment_approval_status .= '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'no" type="radio" value="0" checked="checked" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'no" class="clickable_option">' .$lang_common['no'].'</label>';
     }
-    $comment_approval_status .= '<input type="hidden" name="status_approved_yes[]" id="status_approved_yes'.$row['msg_id'].'" value="" />';
-    $comment_approval_status .= '<input type="hidden" name="status_approved_no[]" id="status_approved_no'.$row['msg_id'].'" value="" />';
+    $comment_approval_status .= '<input type="hidden" name="status_approved_yes'.$row['msg_id'].'" id="status_approved_yes'.$row['msg_id'].'" value="" />';
+    $comment_approval_status .= '<input type="hidden" name="status_approved_no'.$row['msg_id'].'" id="status_approved_no'.$row['msg_id'].'" value="" />';
 	//get link to ban and delete
 	if ($row['author_id'] == 0) {
 		//$ban_and_delete = '<a href="banning.php?delete_comment_id=' . $row['msg_id'] . '">' . $lang_reviewcom_php['ban_and_delete'] . '</a>';
@@ -557,17 +559,18 @@ echo <<<EOT
                 <input type="checkbox" name="checkAll2" onClick="selectAll(this,'cid_array');" class="checkbox" title="{$lang_common['check_uncheck_all']}" />
             </td>
             <td colspan="3" class="tablef" valign="middle" align="left">
-                {$lang_reviewcom_php['with_selected']}:<br />
+                {$lang_reviewcom_php['with_selected']}: 
                 <input name="with_selected" id="delete_selected" type="radio" value="delete" />
                 <label for="delete_selected">{$lang_reviewcom_php['delete']}</label>
-                <br />
+                &nbsp;
                 <input name="with_selected" id="approve_selected" type="radio" value="approve" checked="checked" />
                 <label for="approve_selected">{$lang_reviewcom_php['approve']}</label>
-                <br />
+                &nbsp;
                 <input name="with_selected" id="disapprove_selected" type="radio" value="disapprove" />
                 <label for="disapprove_selected">{$lang_reviewcom_php['disapprove']}</label>
             </td>
             <td colspan="2" align="center" class="tablef">
+                <input type="hidden" name="total_message_id_collector" value="{$totalMessageIdCollector}" />
                 <input type="submit" value="{$lang_reviewcom_php['save_changes']}" class="button" onclick="return checkBeforeSubmit();" />
                 </td>
         </tr>
