@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4502 $
-  $LastChangedBy: pvanrompay $
-  $Date: 2008-06-06 03:51:20 +0530 (Fri, 06 Jun 2008) $
+  $Revision: 4981 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-09-01 13:37:08 +0530 (Mon, 01 Sep 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -71,7 +71,7 @@ if ($superCage->post->KeyExists('email') && $superCage->post->testEmail('email')
         $lookup_failed = <<<EOT
                   <tr>
                           <td colspan="2" align="center" class="tableh2">
-                        <span style="color:red"><b>{$lang_send_activation_php['err_unk_user']}<b></span>
+                        <span style="color:red"><strong>{$lang_send_activation_php['err_unk_user']}</strong></span>
                         </td>
                   </tr>
 

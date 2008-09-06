@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4224 $
+  $Revision: 4981 $
   $LastChangedBy: gaugau $
-  $Date: 2008-01-26 17:12:00 +0530 (Sat, 26 Jan 2008) $
+  $Date: 2008-09-01 13:37:08 +0530 (Mon, 01 Sep 2008) $
 **********************************************/
 
 // Check if standalone is installed in a portal like phpNuke
@@ -77,7 +77,7 @@ function test_sql_connection()
          } elseif (! $connect_id = @mysql_connect($_POST['dbserver'], $_POST['dbuser'], $_POST['dbpass'])) {
         $errors .= "<hr /><br />Could not create a mySQL connection, please check the SQL values entered<br /><br />MySQL error was : " . mysql_error() . "<br /><br />";
     } elseif (! mysql_select_db($_POST['dbname'], $connect_id)) {
-        $errors .= "<hr /><br />mySQL could not locate a database called '{$_POST['dbname']}' please check the value entered for this<br /><br />";
+        $errors .= "<hr /><br />MySQL could not locate a database called '{$_POST['dbname']}' please check the value entered for this<br /><br />";
     }
 }
 
@@ -176,7 +176,7 @@ function detect_img_package()
 
     if (!$no_img_package_detected) $notes .= "<br /><br />Your server supports the following image package(s): " . ($im_installed ? ' ImageMagick (im),':'') . ($gd1_installed ? ' GD Library version 1.x (gd1),':'') . ($gd2_installed ? ' GD Library version 2.x (gd2),':'') . " the installer selected '" . $_POST['thumb_method'] . "'.";
     if ($_POST['thumb_method'] == 'gd1' || $_POST['thumb_method'] == 'gd2')
-        $notes .= "<br /><br /><b>Important :</b> older versions of the GD graphic library support only JPEG and PNG images. If this is the case for you, then the script will not be able to create thumbnails for GIF images.";
+        $notes .= "<br /><br /><strong>Important :</strong> older versions of the GD graphic library support only JPEG and PNG images. If this is the case for you, then the script will not be able to create thumbnails for GIF images.";
 }
 // ------------------------- HTML OUTPUT FUNCTIONS ------------------------- //
 function html_header()
@@ -223,7 +223,7 @@ function html_installer_locked()
           </td>
          </tr>
          <tr>
-          <td class="tableb" colspan="2">The installer has already been run successfuly once and is now locked.<br /><br />If you want to run the installer again, you first need to delete the '<?php echo $DFLT['cfg_f'] ?>' file that was created in the directory where you put Coppermine. You can do this with any FTP program.
+          <td class="tableb" colspan="2">The installer has already been run successfully once and is now locked.<br /><br />If you want to run the installer again, you first need to delete the '<?php echo $DFLT['cfg_f'] ?>' file that was created in the directory where you put Coppermine. You can do this with any FTP program.
           </td>
          </tr>
          <tr>
@@ -253,7 +253,7 @@ function html_prereq_errors($error_msg)
           </td>
          </tr>
          <tr>
-          <td class="tableb" colspan="2"> Before you continue with Coppermine installation, there are some problems that need to be fixed.<br /><br /><b><?php echo $error_msg ?></b>Once you are done, hit the "Try again" button.<br />
+          <td class="tableb" colspan="2"> Before you continue with Coppermine installation, there are some problems that need to be fixed.<br /><br /><strong><?php echo $error_msg ?></strong>Once you are done, hit the "Try again" button.<br />
           </td>
          </tr>
          <tr>
@@ -292,7 +292,7 @@ function html_input_config($error_msg = '')
           </td>
          </tr>
          <tr>
-          <td class="tableb" colspan="2"> The following errors were encountered and need to be corrected first:<br /><br /><b><?php echo $error_msg ?></b>
+          <td class="tableb" colspan="2"> The following errors were encountered and need to be corrected first:<br /><br /><strong><?php echo $error_msg ?></strong>
           </td>
          </tr>
 <?php
@@ -300,36 +300,36 @@ function html_input_config($error_msg = '')
 
     ?>
          <tr>
-          <td class="tableh1" colspan="2"><b>Your admin account</b>
+          <td class="tableh1" colspan="2"><strong>Your admin account</strong>
           </td>
          </tr>
          <tr>
-          <td class="tableh2" colspan="2"> This section requires information to create your coppermine administration account. Use only alphanumeric characters. Enter the data carefully !
+          <td class="tableh2" colspan="2"> This section requires information to create your Coppermine administration account. Use only alphanumeric characters. Enter the data carefully !
           </td>
          </tr>
          <tr>
-          <td width="40%" class="tableb"><b>Username</b>
+          <td width="40%" class="tableb"><strong>Username</strong>
           </td>
           <td width="60%" class="tableb">
                   <input type="text" class="textinput" name="admin_username" value="<?php echo $_POST['admin_username'] ?>" />
           </td>
          </tr>
          <tr>
-          <td width="40%" class="tableb"><b>Password</b>
+          <td width="40%" class="tableb"><strong>Password</strong>
           </td>
           <td width="60%" class="tableb">
                   <input type="text" class="textinput" name="admin_password" value="<?php echo $_POST['admin_password'] ?>" />
           </td>
          </tr>
                <tr>
-          <td width="40%" class="tableb"><b>Email address</b>
+          <td width="40%" class="tableb"><strong>Email address</strong>
           </td>
           <td width="60%" class="tableb">
                   <input type="text" class="textinput" name="admin_email" value="<?php echo $_POST['admin_email'] ?>" />
           </td>
          </tr>
          <tr>
-          <td class="tableh1" colspan="2"><b>Your MySQL configuration</b>
+          <td class="tableh1" colspan="2"><strong>Your MySQL configuration</strong>
           </td>
          </tr>
          <tr>
@@ -337,42 +337,42 @@ function html_input_config($error_msg = '')
           </td>
          </tr>
          <tr>
-          <td width="40%" class="tableb"><b>MySQL Host</b><br />(localhost is usually OK)
+          <td width="40%" class="tableb"><strong>MySQL Host</strong><br />(localhost is usually OK)
           </td>
           <td width="60%" class="tableb" valign="top">
                   <input type="text" class="textinput" name="dbserver" value="<?php echo ($_POST['dbserver'] ? $_POST['dbserver'] : 'localhost') ?>" />
           </td>
          </tr>
          <tr>
-          <td width="40%" class="tableb"><b>MySQL Database Name</b>
+          <td width="40%" class="tableb"><strong>MySQL Database Name</strong>
           </td>
           <td width="60%" class="tableb">
                   <input type="text" class="textinput" name="dbname" value="<?php echo $_POST['dbname'] ?>" />
           </td>
          </tr>
          <tr>
-          <td width="40%" class="tableb"><b>MySQL Username</b>
+          <td width="40%" class="tableb"><strong>MySQL Username</strong>
           </td>
           <td width="60%" class="tableb">
                   <input type="text" class="textinput" name="dbuser" value="<?php echo $_POST['dbuser'] ?>" />
           </td>
          </tr>
          <tr>
-          <td width="40%" class="tableb"><b>MySQL Password</b>
+          <td width="40%" class="tableb"><strong>MySQL Password</strong>
           </td>
           <td width="60%" class="tableb">
                   <input type="text" class="textinput" name="dbpass" value="<?php echo $_POST['dbpass'] ?>" />
           </td>
          </tr>
          <tr>
-          <td width="40%" class="tableb"><b>MySQL table prefix</b><br />(default value is OK; do not use dots!)
+          <td width="40%" class="tableb"><strong>MySQL table prefix</strong><br />(default value is OK; do not use dots!)
           </td>
           <td width="60%" class="tableb" valign="top">
                   <input type="text" class="textinput" name="table_prefix" value="<?php echo ($_POST['table_prefix'] ? $_POST['table_prefix'] : 'cpg15x_') ?>" />
           </td>
          </tr>
          <tr>
-          <td class="tableh1" colspan="2"><b>ImageMagick</b>
+          <td class="tableh1" colspan="2"><strong>ImageMagick</strong>
           </td>
          </tr>
          <tr>
@@ -382,7 +382,7 @@ function html_input_config($error_msg = '')
           </td>
          </tr>
          <tr>
-          <td width="40%" class="tableb"><b>ImageMagick path</b>
+          <td width="40%" class="tableb"><strong>ImageMagick path</strong>
           </td>
           <td width="60%" class="tableb" valign="top">
                   <input type="text" class="textinput" name="impath" value="<?php echo $_POST['impath'] ?>" />
@@ -412,7 +412,7 @@ function html_install_success($notes)
           </td>
          </tr>
          <tr>
-          <td class="tableb" colspan="2"> <a href="index.php">Coppermine</a> is now properly configured and ready to roll.<br /><br /><a href="login.php?">Login</a> using the information you provided for your admin account. Do <b>not</b> hit back, do <b>not</b> re-submit the installer form!<?php echo $notes ?>
+          <td class="tableb" colspan="2"> <a href="index.php">Coppermine</a> is now properly configured and ready to roll.<br /><br /><a href="login.php?">Login</a> using the information you provided for your admin account. Do <strong>not</strong> hit back, do <strong>not</strong> re-submit the installer form!<?php echo $notes ?>
           </td>
          </tr>
          <tr>

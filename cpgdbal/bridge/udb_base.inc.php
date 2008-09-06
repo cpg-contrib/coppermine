@@ -12,12 +12,16 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4578 $
-  $LastChangedBy: nibbler999 $
-  $Date: 2008-06-16 01:29:16 +0530 (Mon, 16 Jun 2008) $
+  $Revision: 4984 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-09-01 23:09:22 +0530 (Mon, 01 Sep 2008) $
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
+
+if (isset($bridge_lookup)) {
+    return;
+}
 
 class core_udb {
 
@@ -36,7 +40,7 @@ class core_udb {
                         // Connect to udb database if necessary
                         if (!$this->can_join_tables) {
                                 /*$this->link_id = mysql_connect($this->db['host'], $this->db['user'], $this->db['password']);
-                                if (!$this->link_id) die("<b>Coppermine critical error</b>:<br />Unable to connect to UDB database !<br /><br />MySQL said: <b>" . mysql_error() . "</b>");
+                                if (!$this->link_id) die("<strong>Coppermine critical error</strong>:<br />Unable to connect to UDB database !<br /><br />MySQL said: <strong>" . mysql_error() . "</strong>");
                                 mysql_select_db ($this->db['name'], $this->link_id);	*/
 					#################################		DB		######################################
 					$this->cpgudb->Link_ID = $this->cpgudb->connect($this->db['name'], $this->db['host'], $this->db['user'], $this->db['password']); 
@@ -372,7 +376,7 @@ class core_udb {
                     $USER_DATA["group_name"] = $temp_arr["group_name"];
             } else {
                     $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_USERGROUPS']} WHERE group_id = $default_group_id");
-                   if (!mysql_num_rows($result)) die('<b>Coppermine critical error</b>:<br />The group table does not contain the Anonymous group !');
+                   if (!mysql_num_rows($result)) die('<strong>Coppermine critical error</strong>:<br />The group table does not contain the Anonymous group !');
                            $USER_DATA = mysql_fetch_assoc($result);
                     }
             mysql_free_result($result);	*/

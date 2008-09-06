@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4853 $
+  $Revision: 4981 $
   $LastChangedBy: gaugau $
-  $Date: 2008-08-12 12:23:42 +0530 (Tue, 12 Aug 2008) $
+  $Date: 2008-09-01 13:37:08 +0530 (Mon, 01 Sep 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -31,9 +31,9 @@ pageheader($lang_keywordmgr_php['title']);
 starttable("100%", cpg_fetch_icon('keyword_mgr', 2) . $lang_keywordmgr_php['title'], 3);
 echo <<<EOT
       <tr>
-          <td class="tablef"><b>{$lang_common['edit']}</b></td>
-          <td class="tablef"><b>{$lang_common['delete']}</b></td>
-          <td class="tablef"><b>{$lang_keywordmgr_php['search']}</b></td>
+          <td class="tablef"><strong>{$lang_common['edit']}</strong></td>
+          <td class="tablef"><strong>{$lang_common['delete']}</strong></td>
+          <td class="tablef"><strong>{$lang_keywordmgr_php['search']}</strong></td>
       </tr>
 
 EOT;

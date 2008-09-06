@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4844 $
-  $LastChangedBy: pvanrompay $
-  $Date: 2008-08-12 11:33:24 +0530 (Tue, 12 Aug 2008) $
+  $Revision: 4995 $
+  $LastChangedBy: abbas-ali $
+  $Date: 2008-09-04 15:50:08 +0530 (Thu, 04 Sep 2008) $
 **********************************************/
 
 define('COPPERMINE_VERSION', '1.5.0');
@@ -133,7 +133,7 @@ $CONFIG['TABLE_TEMP_MESSAGES'] = $CONFIG['TABLE_PREFIX'].'temp_messages';
 $CONFIG['TABLE_CATMAP']        = $CONFIG['TABLE_PREFIX'].'categorymap';
 // Connect to database
 /*if ($CONFIG['dbservername'] == 'mysql') {
-	($CONFIG['LINK_ID'] = cpgdbal_connect()) || die('<b>Coppermine critical error</b>:<br />Unable to connect to database !<br /><br />MySQL said: <b>' . mysql_error() . '</b>');
+	($CONFIG['LINK_ID'] = cpgdbal_connect()) || die('<strong>Coppermine critical error</strong>:<br />Unable to connect to database !<br /><br />MySQL said: <strong>' . mysql_error() . '</strong>');
 } elseif ($CONFIG['dbservername'] == 'mssql') {
 	($CONFIG['LINK_ID'] = cpgdbal_connect()) || die( print_r( sqlsrv_errors(), true));
 }*/
@@ -213,11 +213,21 @@ include_once('include/logger.inc.php');
 require 'include/media.functions.inc.php';
 
 // Check for GD GIF Create support
-if ($CONFIG['thumb_method'] == 'im' || function_exists('imagecreatefromgif'))
+if ($CONFIG['thumb_method'] == 'im' || function_exists('imagecreatefromgif')) {
   $CONFIG['GIF_support'] = 1;
-else
+} else {
   $CONFIG['GIF_support'] = 0;
+}
  
+// Include the jquery javascript library. Jquery will be included on all pages.
+js_include('js/jquery.js');
+
+// Include the bookmark JavaScript if at least one bookmarking service is selected
+if (isset($CONFIG['display_social_bookmarks']) && $CONFIG['display_social_bookmarks'] != '') {
+    js_include('js/jquery.bookmark.js');
+}
+
+// Load plugin API (the require() is moved up for cpgdbal.)
 if ($CONFIG['enable_plugins'] == 1) {
 	CPGPluginAPI::load();
 }

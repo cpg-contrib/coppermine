@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4224 $
+  $Revision: 4981 $
   $LastChangedBy: gaugau $
-  $Date: 2008-01-26 17:12:00 +0530 (Sat, 26 Jan 2008) $
+  $Date: 2008-09-01 13:37:08 +0530 (Mon, 01 Sep 2008) $
 **********************************************/
 
 if (!defined('E_STRICT')) {
@@ -102,7 +102,7 @@ class cpg_debugger {
             if (USER_IS_ADMIN) {
                 $errmsg = $errortype[$errno]." $filename line $linenum: ".$errmsg;
             } else {
-                $errmsg = "A error occured while processing this page.<br />Please report the following error to the owner of this website.<br /><br /><b>$errmsg</b>";
+                $errmsg = "A error occured while processing this page.<br />Please report the following error to the owner of this website.<br /><br /><strong>$errmsg</strong>";
             }
             cpg_die(CRITICAL_ERROR, $errmsg, $filename, $linenum);
         }

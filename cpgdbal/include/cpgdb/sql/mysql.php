@@ -19,9 +19,7 @@
 **********************************************/
 
 //if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
-########################### DB  Note #################################
-//	The array names are given according to the files used.
-##############################################################
+
 
 /******************************************************/
 //queries from addfav.php
@@ -69,11 +67,11 @@ if (defined('ALBMGR_PHP')) $cpg_db_albmgr_php = array(
 /***********************************************************/
 if (defined('BANNING_PHP')) $cpg_db_banning_php = array(
 	'create_banlist'			=> "SELECT *, UNIX_TIMESTAMP(expiry) AS expiry FROM {$CONFIG['TABLE_BANNED']} WHERE brute_force=0",
-	'ban_user' 					=> "INSERT INTO {$CONFIG['TABLE_BANNED']} (user_id, ip_addr, expiry) VALUES ('%1\$s', '%2\$s', %3\$s)",
+	'ban_user' 					=> "INSERT INTO {$CONFIG['TABLE_BANNED']} (user_id, ip_addr, expiry) VALUES ('%1\$s', %2\$s, %3\$s)",
 	'delete_all_comments'		=> "DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE author_id = '%1\$s'",
 	'delete_current_comments'	=> "DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id = '%1\$s'",
 	'delete_banned'				=> "DELETE FROM {$CONFIG['TABLE_BANNED']} WHERE ban_id= '%1\$s'",
-	'update_banned_data'		=> "UPDATE {$CONFIG['TABLE_BANNED']} SET user_id='%1\$s', ip_addr='%2\$s', expiry=%3\$s WHERE ban_id='%4\$s'",
+	'update_banned_data'		=> "UPDATE {$CONFIG['TABLE_BANNED']} SET user_id='%1\$s', ip_addr=%2\$s, expiry=%3\$s WHERE ban_id='%4\$s'",
 	'get_ban_user_param'		=> "SELECT user_name FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '%1\$s' LIMIT 1",
 	'get_comment_info'			=> "SELECT msg_author, msg_hdr_ip, msg_raw_ip FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id = '%1\$s'"
 );
@@ -950,6 +948,10 @@ if (defined('USERMGR_PHP') || defined('PROFILE_PHP')) $cpg_db_usermgr_php = arra
 								   "  FROM    {$CONFIG['TABLE_USERGROUPS']} AS groups, {$CONFIG['TABLE_ALBUMS']} AS albums  ".
 								   " LEFT JOIN   {$CONFIG['TABLE_CATEGORIES']} AS categories    ON   albums.category = categories.cid  ".
 								   "  WHERE   albums.visibility = groups.group_id  GROUP BY  group_name  ORDER BY  group_name, category, album",
+	'total_files_uploaded'		=> "SELECT COUNT(*) AS count FROM {$CONFIG['TABLE_PICTURES']} LIMIT 1",
+	'total_space_used'			=> "SELECT SUM(total_filesize) AS sum FROM {$CONFIG['TABLE_PICTURES']} LIMIT 1",
+	'total_comments_posted'		=> "SELECT COUNT(*) AS count FROM {$CONFIG['TABLE_COMMENTS']} LIMIT 1",
+	'get_comment_count'			=> "SELECT COUNT(*) AS count FROM {$CONFIG['TABLE_COMMENTS']} WHERE author_id = %1\$s %2\$s",
 	'list_users'				=> "SELECT group_id, group_name FROM {$CONFIG['TABLE_USERGROUPS']} ORDER BY group_name",
 	'get_edit_user'				=> "SELECT * FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '%1\$s'",
 //	'select_group_id'			=> "SELECT group_id, group_name FROM {$CONFIG['TABLE_USERGROUPS']} ORDER BY group_name",
@@ -1696,29 +1698,29 @@ $cpg_db_themes_inc = array(
 //	queries  from  plugins/ onlinstats/codebase.php
 /**********************************************************************************************************/
 if (defined('CORE_PLUGIN')) $cpg_db_onlinestats = array(
-	'login_delete_online'			=> "DELETE FROM {$CONFIG['TABLE_ONLINE']} WHERE user_id = 0 AND user_ip = '%1\$s'",
-	'logout_delete_online'			=> "DELETE FROM {$CONFIG['TABLE_ONLINE']} WHERE user_id = %1\$s",
-	'lastact_delete_online'			=> "DELETE FROM {$CONFIG['TABLE_ONLINE']} ".
+	'login_delete_online'			=> "DELETE FROM {$CONFIG['TABLE_PREFIX']}mod_online WHERE user_id = 0 AND user_ip = '%1\$s'",
+	'logout_delete_online'			=> "DELETE FROM {$CONFIG['TABLE_PREFIX']}mod_online WHERE user_id = %1\$s",
+	'lastact_delete_online'			=> "DELETE FROM {$CONFIG['TABLE_PREFIX']}mod_online ".
 									   "WHERE last_action < NOW() - INTERVAL %1\$s MINUTE",
-	'online_delete_values'			=> "DELETE FROM {$CONFIG['TABLE_ONLINE']} WHERE user_id = '%1\$s' AND user_ip = '%2\$s'",
-	'online_insert_values'			=> "INSERT INTO {$CONFIG['TABLE_ONLINE']} (user_id, user_name, user_ip, last_action) ".
+	'online_delete_values'			=> "DELETE FROM {$CONFIG['TABLE_PREFIX']}mod_online WHERE user_id = '%1\$s' AND user_ip = '%2\$s'",
+	'online_insert_values'			=> "INSERT INTO {$CONFIG['TABLE_PREFIX']}mod_online (user_id, user_name, user_ip, last_action) ".
 									   "VALUES ('%1\$s', '%2\$s', '%3\$s', NOW())",
-	'get_online_user_ip'			=> "SELECT user_ip AS user_ip FROM {$CONFIG['TABLE_ONLINE']} WHERE user_ip LIKE '%1\$s'",
-	'lastact_update_online'			=> "UPDATE {$CONFIG['TABLE_ONLINE']} SET last_action = NOW() WHERE user_ip = '%1\$s' LIMIT 1",
+	'get_online_user_ip'			=> "SELECT user_ip AS user_ip FROM {$CONFIG['TABLE_PREFIX']}mod_online WHERE user_ip LIKE '%1\$s'",
+	'lastact_update_online'			=> "UPDATE {$CONFIG['TABLE_PREFIX']}mod_online SET last_action = NOW() WHERE user_ip = '%1\$s' LIMIT 1",
 	//'online_insert_values'			=> "INSERT INTO {$CONFIG['TABLE_ONLINE']} (user_id, user_name, user_ip, last_action) ".
 	//								   "VALUES ('%1\$s', '%2\$s', '%3\$s', NOW())",
-	'count_num_online'				=> "SELECT COUNT(*) AS count FROM {$CONFIG['TABLE_ONLINE']}",
-	'count_num_reg_online'			=> "SELECT COUNT(*) AS count FROM {$CONFIG['TABLE_ONLINE']} WHERE user_id <> 0",
+	'count_num_online'				=> "SELECT COUNT(*) AS count FROM {$CONFIG['TABLE_PREFIX']}mod_online",
+	'count_num_reg_online'			=> "SELECT COUNT(*) AS count FROM {$CONFIG['TABLE_PREFIX']}mod_online WHERE user_id <> 0",
 	'get_user'						=> "SELECT %1\$s AS user_id, %2\$s AS user_name FROM %3\$s ORDER BY user_id DESC LIMIT 1",
-	'online_get_user'				=> "SELECT user_id, user_name FROM {$CONFIG['TABLE_ONLINE']} WHERE user_id <> 0",
+	'online_get_user'				=> "SELECT user_id, user_name FROM {$CONFIG['TABLE_PREFIX']}mod_online WHERE user_id <> 0",
 	'mainpage_record_online_users'	=> "UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '%1\$s' WHERE name = 'record_online_users'",
 	'mainpage_record_online_date'	=> "UPDATE {$CONFIG['TABLE_CONFIG']} SET value = UNIX_TIMESTAMP() ".
 									   "WHERE name = 'record_online_date'",
 	'get_mod_updates_duration'		=> "SELECT * FROM {$CONFIG['TABLE_CONFIG']} WHERE name ='mod_updates_duration'",
-	'add_mode_updates_duration'		=> "INSERT IGNORE INTO {$CONFIG['TABLE_CONFIG']} (name, value) VALUES ('mod_updates_duration', '%1\$s')",
+	'add_mod_updates_duration'		=> "INSERT IGNORE INTO {$CONFIG['TABLE_CONFIG']} (name, value) VALUES ('mod_updates_duration', '%1\$s')",
 	'set_main_page_layout'			=> "UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '%1\$s' WHERE name = 'main_page_layout'",
-	'drop_online'					=> "DROP TABLE IF EXISTS {$CONFIG['TABLE_ONLINE']}",
-	'del_mode_updates_duration'		=> "DELETE FROM {$CONFIG['TABLE_CONFIG']} WHERE name = 'mod_updates_duration'",
+	'drop_online'					=> "DROP TABLE IF EXISTS {$CONFIG['TABLE_PREFIX']}mod_online",
+	'del_mod_updates_duration'		=> "DELETE FROM {$CONFIG['TABLE_CONFIG']} WHERE name = 'mod_updates_duration'",
 	'del_record_online_users'		=> "DELETE FROM {$CONFIG['TABLE_CONFIG']} WHERE name = 'record_online_users'",
 	'del_record_online_data'		=> "DELETE FROM {$CONFIG['TABLE_CONFIG']} WHERE name = 'record_online_date'",
 	'reset_main_page_layout'		=> "UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '%1\$s' WHERE name = 'main_page_layout'"

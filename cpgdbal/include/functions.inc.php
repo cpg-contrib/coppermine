@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4943 $
+  $Revision: 5001 $
   $LastChangedBy: gaugau $
-  $Date: 2008-08-29 02:41:10 +0530 (Fri, 29 Aug 2008) $
+  $Date: 2008-09-05 18:50:31 +0530 (Fri, 05 Sep 2008) $
 **********************************************/
 
 /**
@@ -25,7 +25,7 @@
 * @copyright 2002-2007 Gregory DEMAR, Coppermine Dev Team
 * @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
 * @package Coppermine
-* @version  $Id: functions.inc.php 4943 2008-08-28 21:11:10Z gaugau $
+* @version  $Id: functions.inc.php 5001 2008-09-05 13:20:31Z gaugau $
 */
 
 /**
@@ -532,6 +532,10 @@ function create_tabs($items, $curr_page, $total_pages, $template)
 
         $maxTab = $CONFIG['max_tabs'];
 
+        if ($total_pages == '') {
+        	$total_pages = $curr_page;
+        }
+
         $tabs = sprintf($template['left_text'], $items, $total_pages);
         if (($total_pages == 1)) return $tabs;
 
@@ -621,8 +625,8 @@ function bb_decode($text)
         }
 
         // [b] and [/b] for bolding text.
-        $text = str_replace("[b]", '<b>', $text);
-        $text = str_replace("[/b]", '</b>', $text);
+        $text = str_replace("[b]", '<strong>', $text);
+        $text = str_replace("[/b]", '</strong>', $text);
 
         // [u] and [/u] for underlining text.
         $text = str_replace("[u]", '<u>', $text);
@@ -838,7 +842,7 @@ function load_template()
         $gallery_pos = strpos($template, '{THEME_SELECT_LIST}');
         $template = str_replace('{THEME_SELECT_LIST}', themeSelect('list') ,$template);
         $gallery_pos = strpos($template, '{SOCIAL_BOOKMARKS}');
-        $template = str_replace('{SOCIAL_BOOKMARKS}', cpgSocialBookmark() ,$template);
+        $template = str_replace('{SOCIAL_BOOKMARKS}', theme_social_bookmark() ,$template);
         $gallery_pos = strpos($template, '{GALLERY}');
         if (!strstr($template, '{CREDITS}')) {
             $template = str_replace('{GALLERY}', '{CREDITS}' ,$template);
@@ -888,7 +892,7 @@ function template_extract_block(&$template, $block_name, $subst='')
 {
         $pattern = "#(<!-- BEGIN $block_name -->)(.*?)(<!-- END $block_name -->)#s";
         if ( !preg_match($pattern, $template, $matches)) {
-                die('<b>Template error<b><br />Failed to find block \''.$block_name.'\'('.htmlspecialchars($pattern).') in :<br /><pre>'.htmlspecialchars($template).'</pre>');
+                die('<strong>Template error<strong><br />Failed to find block \''.$block_name.'\'('.htmlspecialchars($pattern).') in :<br /><pre>'.htmlspecialchars($template).'</pre>');
         }
         $template = str_replace($matches[1].$matches[2].$matches[3], $subst, $template);
         return $matches[2];
@@ -2114,135 +2118,137 @@ function cpg_determine_client($pid)
          * Populate the client stats
          */
         // Get the details of user browser, IP, OS, etc
-        $os = "Unknown";
+        $os = 'Unknown';
         $server_agent = $superCage->server->getEscaped('HTTP_USER_AGENT');
-        if (eregi("Ubuntu",$server_agent)) {
-            $os = "Linux Ubuntu";
-        } elseif (eregi("Debian",$server_agent)) {
-            $os = "Linux Debian";
-        } elseif (eregi("CentOS",$server_agent)) {
-            $os = "Linux CentOS";
-        } elseif (eregi("Fedora",$server_agent)) {
-            $os = "Linux Fedora";
-        } elseif (eregi("Mandrake",$server_agent)) {
-            $os = "Linux Mandrake";
-        } elseif (eregi("RedHat",$server_agent)) {
-            $os = "Linux RedHat";
-        } elseif (eregi("Suse",$server_agent)) {
-            $os = "Linux Suse";
-        } elseif (eregi("Linux",$server_agent)) {
-            $os = "Linux";
-        } elseif (eregi("Windows NT 5.0",$server_agent)) {
-            $os = "Windows 2000";
-        } elseif (eregi("win98|Windows 98",$server_agent)) {
-            $os = "Windows 98";
-        } elseif (eregi("Windows NT 5.1",$server_agent)) {
-            $os = "Windows XP";
-        } elseif (eregi("Windows NT 5.2",$server_agent)) {
-            $os = "Windows 2003 Server";
-        } elseif (eregi("Windows NT 6.0",$server_agent)) {
-            $os = "Windows Vista";
-        } elseif (eregi("Windows CE",$server_agent)) {
-            $os = "Windows CE";
-        } elseif (eregi("Windows",$server_agent)) {
-            $os = "Windows";
-        } elseif (eregi("SunOS",$server_agent)) {
-            $os = "Sun OS";
-        } elseif (eregi("Macintosh",$server_agent)) {
-            $os = "Macintosh";
-        } elseif (eregi("Mac_PowerPC",$server_agent)) {
-            $os = "Mac OS";
-        } elseif (eregi("Mac_PPC",$server_agent)) {
-            $os = "Macintosh";
-        } elseif (eregi("OS/2",$server_agent)) {
-            $os = "OS/2";
-		} elseif (eregi("aix",$server_agent)) {
-            $os = "aix";
-		} elseif (eregi("FreeBSD",$server_agent)) {
-            $os = "BSD FreeBSD";
-		} elseif (eregi("Unix",$server_agent)) {
-            $os = "Unix";
-		} elseif (eregi("iphone",$server_agent)) {
-            $os = "iPhone";
+        if (eregi('Ubuntu',$server_agent)) {
+            $os = 'Linux Ubuntu';
+        } elseif (eregi('Debian',$server_agent)) {
+            $os = 'Linux Debian';
+        } elseif (eregi('CentOS',$server_agent)) {
+            $os = 'Linux CentOS';
+        } elseif (eregi('Fedora',$server_agent)) {
+            $os = 'Linux Fedora';
+        } elseif (eregi('Mandrake',$server_agent)) {
+            $os = 'Linux Mandrake';
+        } elseif (eregi('RedHat',$server_agent)) {
+            $os = 'Linux RedHat';
+        } elseif (eregi('Suse',$server_agent)) {
+            $os = 'Linux Suse';
+        } elseif (eregi('Linux',$server_agent)) {
+            $os = 'Linux';
+        } elseif (eregi('Windows NT 5.0',$server_agent)) {
+            $os = 'Windows 2000';
+        } elseif (eregi('win98|Windows 98',$server_agent)) {
+            $os = 'Windows 98';
+        } elseif (eregi('Windows NT 5.1',$server_agent)) {
+            $os = 'Windows XP';
+        } elseif (eregi('Windows NT 5.2',$server_agent)) {
+            $os = 'Windows 2003 Server';
+        } elseif (eregi('Windows NT 6.0',$server_agent)) {
+            $os = 'Windows Vista';
+        } elseif (eregi('Windows CE',$server_agent)) {
+            $os = 'Windows CE';
+        } elseif (eregi('Windows',$server_agent)) {
+            $os = 'Windows';
+        } elseif (eregi('SunOS',$server_agent)) {
+            $os = 'Sun OS';
+        } elseif (eregi('Macintosh',$server_agent)) {
+            $os = 'Macintosh';
+        } elseif (eregi('Mac_PowerPC',$server_agent)) {
+            $os = 'Mac OS';
+        } elseif (eregi('Mac_PPC',$server_agent)) {
+            $os = 'Macintosh';
+        } elseif (eregi('OS/2',$server_agent)) {
+            $os = 'OS/2';
+		} elseif (eregi('aix',$server_agent)) {
+            $os = 'aix';
+		} elseif (eregi('FreeBSD',$server_agent)) {
+            $os = 'BSD FreeBSD';
+		} elseif (eregi('Unix',$server_agent)) {
+            $os = 'Unix';
+		} elseif (eregi('iphone',$server_agent)) {
+            $os = 'iPhone';
         }
 
         $browser = 'Unknown';
-        if (eregi("MSIE",$server_agent)) {
-            if (eregi("MSIE 5.5",$server_agent)) {
-                $browser = "IE5.5";
-            } elseif (eregi("MSIE 6.0",$server_agent)) {
-                $browser = "IE6";
-            } elseif (eregi("MSIE 7.0",$server_agent)) {
-                $browser = "IE7";
-            } elseif (eregi("MSIE 3.0",$server_agent)) {
-                $browser = "IE3";
-            } elseif (eregi("MSIE 4.0",$server_agent)) {
-                $browser = "IE4";
-            } elseif (eregi("MSIE 5.0",$server_agent)) {
-                $browser = "IE5.0";
+        if (eregi('MSIE',$server_agent)) {
+            if (eregi('MSIE 5.5',$server_agent)) {
+                $browser = 'IE5.5';
+            } elseif (eregi('MSIE 6.0',$server_agent)) {
+                $browser = 'IE6';
+            } elseif (eregi('MSIE 7.0',$server_agent)) {
+                $browser = 'IE7';
+            } elseif (eregi('MSIE 3.0',$server_agent)) {
+                $browser = 'IE3';
+            } elseif (eregi('MSIE 4.0',$server_agent)) {
+                $browser = 'IE4';
+            } elseif (eregi('MSIE 5.0',$server_agent)) {
+                $browser = 'IE5.0';
             }
-        } elseif (eregi("Epiphany",$server_agent)) {
-            $browser = "Epiphany";
-        } elseif (eregi("Phoenix",$server_agent)) {
-            $browser = "Phoneix";        
-        } elseif (eregi("Firebird",$server_agent)) {
-            $browser = "Mozilla Firebird";
-        } elseif (eregi("netscape",$server_agent)) {
-            $browser = "Netscape";
-        } elseif (eregi("Firefox",$server_agent)) {
-            $browser = "Firefox";
-        } elseif (eregi("Galeon",$server_agent)) {
-            $browser = "Galeon";
-        } elseif (eregi("Camino",$server_agent)) {
-            $browser = "Camino";
-        } elseif (eregi("Konqueror",$server_agent)) {
-            $browser = "Konqueror";
-        } elseif (eregi("Safari",$server_agent)) {
-            $browser = "Safari";
-        } elseif (eregi("OmniWeb",$server_agent)) {
-            $browser = "OmniWeb";
-        } elseif (eregi("Opera",$server_agent)) {
-            $browser = "Opera";
-        } elseif (eregi("HTTrack",$server_agent)) {
-        	$browser = "HTTrack";
-        } elseif (eregi("OffByOne",$server_agent)) {
-            $browser = "Off By One";
-        } elseif (eregi("amaya",$server_agent)) {
-            $browser = "Amaya";
-        } elseif (eregi("iCab",$server_agent)) {
-            $browser = "iCab";
-        } elseif (eregi("Lynx",$server_agent)) {
-            $browser = "Lynx";
-        } elseif (eregi("Googlebot",$server_agent)) {
-            $browser = "Googlebot";
-        } elseif (eregi("Lycos_Spider",$server_agent)) {
-            $browser = "Lycos Spider";
-        } elseif (eregi("Firefly",$server_agent)) {
-            $browser = "Fireball Spider";
-        } elseif (eregi("Advanced Browser",$server_agent)) {
-            $browser = "Avant";
-        } elseif (eregi("Amiga-AWeb",$server_agent)) {
-            $browser = "AWeb";
-        } elseif (eregi("Cyberdog",$server_agent)) {
-            $browser = "Cyberdog";
-        } elseif (eregi("Dillo",$server_agent)) {
-            $browser = "Dillo";
-        } elseif (eregi("DreamPassport",$server_agent)) {
-            $browser = "DreamCast";
-        } elseif (eregi("eCatch",$server_agent)) {
-            $browser = "eCatch";
-        } elseif (eregi("ANTFresco",$server_agent)) {
-            $browser = "Fresco";
-        } elseif (eregi("RSS",$server_agent)) {
-            $browser = "RSS";
-        } elseif (eregi("Avant",$server_agent)) {
-            $browser = "Avant";
-        } elseif (eregi("HotJava",$server_agent)) {
-            $browser = "HotJava";
-        } elseif (eregi("W3C-checklink|W3C_Validator|Jigsaw",$server_agent)) {
-            $browser = "W3C";
-        } elseif (eregi("K-Meleon",$server_agent)) {
-            $browser = "K-Meleon";
+        } elseif (eregi('Epiphany',$server_agent)) {
+            $browser = 'Epiphany';
+        } elseif (eregi('Phoenix',$server_agent)) {
+            $browser = 'Phoneix';        
+        } elseif (eregi('Firebird',$server_agent)) {
+            $browser = 'Mozilla Firebird';
+        } elseif (eregi('netscape',$server_agent)) {
+            $browser = 'Netscape';
+        } elseif (eregi('Chrome',$server_agent)) {
+            $browser = 'Chrome';
+        } elseif (eregi('Firefox',$server_agent)) {
+            $browser = 'Firefox';
+        } elseif (eregi('Galeon',$server_agent)) {
+            $browser = 'Galeon';
+        } elseif (eregi('Camino',$server_agent)) {
+            $browser = 'Camino';
+        } elseif (eregi('Konqueror',$server_agent)) {
+            $browser = 'Konqueror';
+        } elseif (eregi('Safari',$server_agent)) {
+            $browser = 'Safari';
+        } elseif (eregi('OmniWeb',$server_agent)) {
+            $browser = 'OmniWeb';
+        } elseif (eregi('Opera',$server_agent)) {
+            $browser = 'Opera';
+        } elseif (eregi('HTTrack',$server_agent)) {
+        	$browser = 'HTTrack';
+        } elseif (eregi('OffByOne',$server_agent)) {
+            $browser = 'Off By One';
+        } elseif (eregi('amaya',$server_agent)) {
+            $browser = 'Amaya';
+        } elseif (eregi('iCab',$server_agent)) {
+            $browser = 'iCab';
+        } elseif (eregi('Lynx',$server_agent)) {
+            $browser = 'Lynx';
+        } elseif (eregi('Googlebot',$server_agent)) {
+            $browser = 'Googlebot';
+        } elseif (eregi('Lycos_Spider',$server_agent)) {
+            $browser = 'Lycos Spider';
+        } elseif (eregi('Firefly',$server_agent)) {
+            $browser = 'Fireball Spider';
+        } elseif (eregi('Advanced Browser',$server_agent)) {
+            $browser = 'Avant';
+        } elseif (eregi('Amiga-AWeb',$server_agent)) {
+            $browser = 'AWeb';
+        } elseif (eregi('Cyberdog',$server_agent)) {
+            $browser = 'Cyberdog';
+        } elseif (eregi('Dillo',$server_agent)) {
+            $browser = 'Dillo';
+        } elseif (eregi('DreamPassport',$server_agent)) {
+            $browser = 'DreamCast';
+        } elseif (eregi('eCatch',$server_agent)) {
+            $browser = 'eCatch';
+        } elseif (eregi('ANTFresco',$server_agent)) {
+            $browser = 'Fresco';
+        } elseif (eregi('RSS',$server_agent)) {
+            $browser = 'RSS';
+        } elseif (eregi('Avant',$server_agent)) {
+            $browser = 'Avant';
+        } elseif (eregi('HotJava',$server_agent)) {
+            $browser = 'HotJava';
+        } elseif (eregi('W3C-checklink|W3C_Validator|Jigsaw',$server_agent)) {
+            $browser = 'W3C';
+        } elseif (eregi('K-Meleon',$server_agent)) {
+            $browser = 'K-Meleon';
         }
         
         //Code to get the search string if the referrer is any of the following
@@ -3010,7 +3016,7 @@ function cpg_debug_output()
     $debug_separate = '&#0010;==========================&#0010;';
     $debug_toggle_link = ' <a href="javascript:;" onclick="show_section(\'debug_output_rows\');" class="admin_menu" id="debug_output_toggle" style="display:none;">'.$lang_cpg_debug_output['show_hide'].'</a>';
     echo '<form name="debug" action="'.$CPG_PHP_SELF.'" id="debug">';
-    starttable('100%', $lang_cpg_debug_output['debug_info']. $debug_toggle_link,2);
+    starttable('100%', cpg_fetch_icon('bug', 2) . $lang_cpg_debug_output['debug_info']. $debug_toggle_link,2);
     //echo '<div name="debug_output_rows" id="debug_output_rows" style="display:block;">';
     echo '<tr><td align="center" valign="top" width="100%" colspan="2">';
     echo '<table border="0" cellspacing="0" cellpadding="0" width="100%" id="debug_output_rows">';
@@ -3183,13 +3189,13 @@ EOT;
     $report = $cpgdebugger->stop();
     if (is_array($report) && $CONFIG['debug_notice']!= 0) {
         echo '<tr><td class="tableh1" colspan="2">';
-        echo '<b>';
-        echo $lang_cpg_debug_output['notices'];
-        echo '</b>';
+        echo '<strong>';
+        echo cpg_fetch_icon('text_left', 2) . $lang_cpg_debug_output['notices'];
+        echo '</strong>';
         echo '</td></tr>';
         echo '<tr><td class="tableb" colspan="2">';
         foreach($report AS $file => $errors) {
-            echo '<b>'.substr($file, $strstart).'</b><ul>';
+            echo '<strong>'.substr($file, $strstart).'</strong><ul>';
             foreach($errors AS $error) { 
                 echo "<li>$error</li>"; 
             }
@@ -3685,201 +3691,6 @@ function themeSelect($parameter)
 
     return $return;
 } // function themeSelect
-
-
-/**
- * cpgSocialBookmark()
- *
- * @return
- **/
-function cpgSocialBookmark() 
-{
-    global $CONFIG, $lang_social_bookmarks;
-
-    $return = '';
-
-    if ($CONFIG['display_social_bookmarks'] != 0) {
-        $addressParamsToRemove_array = array('message_id', 'theme');
-        $url = $CONFIG['ecards_more_pic_target'] . rawurlencode(str_replace('&amp;', '&', rtrim(cpgGetScriptNameParams($addressParamsToRemove_array), '&amp;')));
-        $title = rawurlencode($CONFIG['gallery_name']);
-        $description = rawurlencode($CONFIG['gallery_description']);
-        $socialBookmarks_array = array(
-            array(
-                'name' => 'digg.com',
-                'url' => 'http://www.digg.com/submit?url={URL}',
-                'icon' => 'images/bookmarks/digg.gif',
-            ),
-            array(
-                'name' => 'del.icio.us',
-                'url' => 'http://del.icio.us/post?url={URL}&title={TITLE}',
-                'icon' => 'images/bookmarks/del.icio.us.gif',
-            ),
-            array(
-                'name' => 'Yahoo MyWeb',
-                'url' => 'http://myweb2.search.yahoo.com/myresults/bookmarklet?t={TITLE}&u={URL}',
-                'icon' => 'images/bookmarks/myweb.yahoo.gif',
-            ),
-            array(
-                'name' => 'technorati',
-                'url' => 'http://technorati.com/cosmos/search.html?url={URL}',
-                'icon' => 'images/bookmarks/technorati.gif',
-            ),
-            array(
-                'name' => 'Spurl',
-                'url' => 'http://www.spurl.net/spurl.php?url={URL}&title={TITLE}',
-                'icon' => 'images/bookmarks/spurl.gif',
-            ),
-            array(
-                'name' => 'Furl',
-                'url' => 'http://www.furl.net/storeIt.jsp?t={TITLE}&u={URL}',
-                'icon' => 'images/bookmarks/furl.gif',
-            ),
-            array(
-                'name' => 'Blinklist',
-                'url' => 'http://www.blinklist.com/index.php?Action=Blink/addblink.php&Description={DESCRIPTION}&Url={URL}&Title={TITLE}',
-                'icon' => 'images/bookmarks/blinklist.gif',
-            ),
-            array(
-                'name' => 'Fark',
-                'url' => 'http://cgi.fark.com/cgi/fark/edit.pl?new_url={URL}&new_comment={TITLE}',
-                'icon' => 'images/bookmarks/fark.gif',
-            ),
-            array(
-                'name' => 'Blogmarks',
-                'url' => 'http://blogmarks.net/my/new.php?mini=1&simple=1&url={URL}&title={TITLE}',
-                'icon' => 'images/bookmarks/blogmarks.gif',
-            ),
-            array(
-                'name' => 'Simpy',
-                'url' => 'http://www.simpy.com/simpy/LinkAdd.do?href={URL}&title={TITLE}',
-                'icon' => 'images/bookmarks/simpy.gif',
-            ),
-            array(
-                'name' => 'Reddit',
-                'url' => 'http://reddit.com/submit?url={URL}&title={TITLE}',
-                'icon' => 'images/bookmarks/reddit.gif',
-            ),
-            array(
-                'name' => 'StumbleUpon',
-                'url' => 'http://www.stumbleupon.com/submit?url={URL}&newcomment={DESCRIPTION}&title={TITLE}',
-                'icon' => 'images/bookmarks/stumbleupon.gif',
-            ),
-            array(
-                'name' => 'Slashdot',
-                'url' => 'http://slashdot.org/bookmark.pl?url={URL}&tags={DESCRIPTION}&title={TITLE}',
-                'icon' => 'images/bookmarks/slashdot.gif',
-            ),
-            array(
-                'name' => 'Netscape',
-                'url' => 'http://www.netscape.com/submit/?U={URL}&storyText={DESCRIPTION}&storyTags=&T={TITLE}',
-                'icon' => 'images/bookmarks/netscape.gif',
-            ),
-            array(
-                'name' => 'diigo',
-                'url' => 'http://www.diigo.com/post?url={URL}&title={TITLE}&tag=&comments={DESCRIPTION}',
-                'icon' => 'images/bookmarks/diigo.gif',
-            ),
-            array(
-                'name' => 'NewsVine',
-                'url' => 'http://www.newsvine.com/_wine/save?popoff=1&u={URL}&tags={DESCRIPTION}&blurb={TITLE}',
-                'icon' => 'images/bookmarks/newsvine.gif',
-            ),
-            array(
-                'name' => 'ma.gnolia',
-                'url' => 'http://ma.gnolia.com/bookmarklet/add?url={URL}&title={TITLE}&description={DESCRIPTION}',
-                'icon' => 'images/bookmarks/ma.gnolia.gif',
-            ),
-            array(
-                'name' => 'Google',
-                'url' => 'http://www.google.com/bookmarks/mark?op=add&bkmk={URL}&annotation={DESCRIPTION}&labels=&title={TITLE}',
-                'icon' => 'images/bookmarks/google.gif',
-            ),
-            array(
-                'name' => 'Mister Wong',
-                'url' => 'http://www.mister-wong.de/index.php?action=addurl&bm_url={URL}&bm_description={DESCRIPTION}',
-                'icon' => 'images/bookmarks/misterbook.gif',
-            ),
-            array(
-                'name' => 'Linkarena',
-                'url' => 'http://www.linkarena.com/bookmarks/addlink/?url={URL}&title={TITLE}',
-                'icon' => 'images/bookmarks/linkarena.gif',
-            ),
-            array(
-                'name' => 'Newskick.de',
-                'url' => 'http://www.newskick.de/submit.php?url={URL}',
-                'icon' => 'images/bookmarks/newskick.gif',
-            ),
-            array(
-                'name' => 'Weblinkr.com',
-                'url' => 'http://weblinkr.com/login?action=add&address={URL}&description={DESCRIPTION}',
-                'icon' => 'images/bookmarks/weblinkr.gif',
-            ),
-            array(
-                'name' => 'Alltagz',
-                'url' => 'http://www.alltagz.de/bookmarks/?action=add&address={URL}&title={TITLE}',
-                'icon' => 'images/bookmarks/alltagz.gif',
-            ),
-            array(
-                'name' => 'Webbrille.de',
-                'url' => 'http://www.webbrille.de/bookmarks.php/?action=add&address={URL}&title={TITLE}',
-                'icon' => 'images/bookmarks/webbrille.gif',
-            ),
-            array(
-                'name' => 'Newstube.de',
-                'url' => 'http://newstube.de/submit.php?url={URL}',
-                'icon' => 'images/bookmarks/newstube.gif',
-            ),
-            array(
-                'name' => 'Webnews.de',
-                'url' => 'http://www.webnews.de/einstellen?url={URL}&title={TITLE}',
-                'icon' => 'images/bookmarks/webnews.gif',
-            ),
-            array(
-                'name' => 'Readster.de',
-                'url' => 'http://www.readster.de/submit/?url={URL}&title={TITLE}',
-                'icon' => 'images/bookmarks/readster.gif',
-            ),
-            array(
-                'name' => 'oneview.de',
-                'url' => 'http://www.oneview.de/quickadd/neu/addBookmark.jsf?URL={URL}&title={TITLE}',
-                'icon' => 'images/bookmarks/oneview.gif',
-            ),
-            array(
-                'name' => 'Maodi.de',
-                'url' => 'http://www.maodi.de/bookmarks/?action=add&address={URL}&title={TITLE}',
-                'icon' => 'images/bookmarks/maodi.gif',
-            ),
-            array(
-                'name' => 'Tausendreporter',
-                'url' => 'http://tausendreporter.stern.de/submit.php?url={URL}',
-                'icon' => 'images/bookmarks/tausendreporter.gif',
-            ),
-            array(
-                'name' => 'Linksilo',
-                'url' => 'http://www.linksilo.de/index.php?area=bookmarks&func=bookmark_new&addurl={URL}&addtitle={TITLE}',
-                'icon' => 'images/bookmarks/linksilo.gif',
-            ),
-        );
-        $return = '<div id="social_bookmarks_wrapper">';
-        $return .= '<div class="social_bookmarks" id="social_bookmarks_text">' . $lang_social_bookmarks['add_this_page_to'].': </div>';
-        $countLoop = 0;
-        $social_bookmarks_config_array = explode ("|",$CONFIG['display_social_bookmarks']);
-        foreach ($socialBookmarks_array as $key) {
-            if (array_key_exists($countLoop, $social_bookmarks_config_array) && ($social_bookmarks_config_array[$countLoop] == 1)) {
-                $key['url'] = str_replace('{URL}', $url, $key['url']);
-                $key['url'] = str_replace('{TITLE}', $title, $key['url']);
-                $key['url'] = str_replace('{DESCRIPTION}', $description, $key['url']);
-                $return .= '<div class="social_bookmarks"><a href="' . $key['url'] . '" rel="external" class="external social_bookmarks2">';
-                $return .= '<img src="' . $key['icon'] . '" border="0" alt="" class="social_bookmarks2" title="' . sprintf($lang_social_bookmarks['bookmark_this_page'],$key['name']) . '" />';
-                $return .= '</a></div>';
-            }
-            $countLoop++;
-        }
-        $return .= '</div>';
-        $return = "\r\n" . '<script type="text/javascript">' . "\r\n" . 'document.write(\'' . $return . '\');' . "\r\n" . '</script>' . "\r\n";
-    } // if display_social_bookmarks
-    return $return;
-} // function cpgSocialBookmark
 
 
 /**
@@ -4943,8 +4754,8 @@ function set_js_var($var, $val)
 /**
  * Function to convert php array to json
  *
- * This function is equivalent to PHP 5.2 's json_encode. PHP's native function will be used if the version
- * is greater than equal to 5.2
+ * This function is equivalent to PHP 5.2 's json_encode. PHP's native function will be used if the
+ * version is greater than equal to 5.2
  *
  * @param array $arr Array which is to be converted to json string
  * @return string json string
@@ -5221,6 +5032,31 @@ function cpg_fetch_icon($icon_name, $config_level = 0, $title = '', $check = '',
       $return .= 'title="' . $title . '" ';
     }
     $return .= 'class="icon" />';
+    return $return;
+}
+
+function cpg_float2decimal($float) {
+    global $lang_decimal_separator;
+    $value = floor($float);
+    $decimal_page = ltrim(strstr($float, '.'),'.');
+    
+    // initialize some vars start
+        $return = '';
+        $fit = 3; // how many digits to use
+        $fill = "0"; // what to fill
+    // initialize some vars end
+    $remainder = floor($value);
+
+    while ($remainder >= 1000) {
+        $chop = $remainder - (floor($remainder/pow(10,3)) * pow(10,3));
+        $chop = sprintf ("%'{$fill}{$fit}s", $chop); // fill the chop with leading zeros if needed
+        $remainder = floor($remainder/pow(10,3));
+        $return = $lang_decimal_separator[0].$chop.$return;
+    }
+    $return = $remainder.$return;
+    if ($decimal_page != 0) {
+        $return .= $lang_decimal_separator[1].$decimal_page;
+    }
     return $return;
 }
 

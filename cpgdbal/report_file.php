@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4578 $
-  $LastChangedBy: nibbler999 $
-  $Date: 2008-06-16 01:29:16 +0530 (Mon, 16 Jun 2008) $
+  $Revision: 4981 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-09-01 13:37:08 +0530 (Mon, 01 Sep 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -230,7 +230,7 @@ starttable("100%", $lang_report_php['title'], 3);
 
 echo <<<EOT
         <tr>
-                <td class="tableh2" colspan="2"><b>{$lang_report_php['from']}</b></td>
+                <td class="tableh2" colspan="2"><strong>{$lang_report_php['from']}</strong></td>
 <!-- BEGIN display_thumbnail -->
                 <td rowspan="6" align="center" valign="top" class="tableb">
                         <img src="$thumb_pic_url" alt="" vspace="8" border="0" class="image" /><br />
@@ -255,7 +255,7 @@ echo <<<EOT
                 </td>
         </tr>
         <tr>
-                <td class="tableh2" colspan="2"><b>{$lang_report_php['to']}</b></td>
+                <td class="tableh2" colspan="2"><strong>{$lang_report_php['to']}</strong></td>
         </tr>
         <tr>
                 <td class="tableb" valign="top" width="40%" colspan="2">
@@ -264,7 +264,7 @@ echo <<<EOT
         </tr>
 
                 <tr>
-                <td class="tableh2" colspan="3"><b>{$lang_report_php['refers_to']}:</b></td>
+                <td class="tableh2" colspan="3"><strong>{$lang_report_php['refers_to']}:</strong></td>
         </tr>
         <tr>
                 <td class="tableb" colspan="3">
@@ -274,7 +274,7 @@ echo <<<EOT
         </tr>
 <!-- BEGIN display_comment -->
                                 <tr>
-                <td class="tableh2" valign="top" width="40%" colspan="3"><b>$comment_field_name</b></td>
+                <td class="tableh2" valign="top" width="40%" colspan="3"><strong>$comment_field_name</strong></td>
                                 </tr>
         <tr>
                 <td class="tableb" valign="top" width="40%" colspan="3">
@@ -283,7 +283,7 @@ echo <<<EOT
         </tr>
 <!-- END display_comment -->
         <tr>
-                <td class="tableh2" colspan="3"><b>{$lang_report_php['subject']}</b></td>
+                <td class="tableh2" colspan="3"><strong>{$lang_report_php['subject']}</strong></td>
         </tr>
         <tr>
                 <td class="tableb" colspan="3">
@@ -291,7 +291,7 @@ echo <<<EOT
                 </td>
         </tr>
         <tr>
-                <td class="tableh2" colspan="3"><b>{$lang_report_php['reason']}</b></td>
+                <td class="tableh2" colspan="3"><strong>{$lang_report_php['reason']}</strong></td>
         </tr>
         <tr>
                 <td class="tableb" colspan="3">
@@ -340,7 +340,7 @@ echo <<<EOT
     </td>
         </tr>
         <tr>
-                <td class="tableh2" colspan="3"><b>{$lang_report_php['message']}</b></td>
+                <td class="tableh2" colspan="3"><strong>{$lang_report_php['message']}</strong></td>
         </tr>
         <tr>
                 <td class="tableb" colspan="3" valign="top">

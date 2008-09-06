@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4844 $
-  $LastChangedBy: pvanrompay $
-  $Date: 2008-08-12 11:33:24 +0530 (Tue, 12 Aug 2008) $
+  $Revision: 4981 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-09-01 13:37:08 +0530 (Mon, 01 Sep 2008) $
 **********************************************/
 
 // Confirm we are in Coppermine and set the language blocks.
@@ -51,7 +51,7 @@ function form_label($text)
     echo <<<EOT
         <tr>
                 <td class="tableh2" colspan="2">
-                        <b>$text</b>
+                        <strong>$text</strong>
                 </td>
         </tr>
 

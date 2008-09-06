@@ -12,305 +12,306 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4291 $
-  $LastChangedBy: saweyyy $
-  $Date: 2008-02-22 01:04:28 +0530 (Fri, 22 Feb 2008) $
+  $Revision: 4985 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-09-02 02:35:01 +0530 (Tue, 02 Sep 2008) $
 **********************************************/
-
-/*
-
-For login/logout redirection:
-
-Edit punbb's login.php
-
-
-Find: $page_title = pun_htmlspecialchars($pun_config['o_board_title']).' / '.$lang_common['Login'];
-
-Add before it: $redirect_url = (isset($_GET['redir'])) ? $_GET['redir'] : $redirect_url;
-
-
-Find: redirect('index.php', $lang_login['Logout redirect']);
-
-Change to: redirect(isset($_GET['redir']) ? $_GET['redir'] : 'index.php', $lang_login['Logout redirect']);
-
-*/
 
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
 
-// Switch that allows overriding the bridge manager with hard-coded values
-define('USE_BRIDGEMGR', 1);
+if (isset($bridge_lookup)) {
+    $default_bridge_data[$bridge_lookup] = array(
+        'full_name' => 'PunBB v1.2',
+        'short_name' => 'punbb12',
+        'support_url' => 'http://www.punbb.org/',
+        'full_forum_url_default' => 'http://www.yoursite.com/board',
+        'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',
+        'relative_path_to_config_file_default' => '../board/',
+        'relative_path_to_config_file_used' => 'lookfor,config.php',
+        'use_post_based_groups_default' => '0',
+        'use_post_based_groups_used' => 'radio,1,0',
+    );
+} else {
 
-require_once 'bridge/udb_base.inc.php';
+	// Switch that allows overriding the bridge manager with hard-coded values
+	define('USE_BRIDGEMGR', 1);
 
-class cpg_udb extends core_udb {
+    require_once 'bridge/udb_base.inc.php';
 
-	function cpg_udb()
-	{
-		global $BRIDGE, $CONFIG;
-		###################       DB       #################
-		$cpgdb =& cpgDB::getInstance();
-		$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
-		##########################################
+    class cpg_udb extends core_udb {
 
-		if (!USE_BRIDGEMGR) { // the vars that are used when bridgemgr is disabled
+    	function cpg_udb()
+    	{
+    		global $BRIDGE;
+            ###################       DB       #################
+            global $CONFIG;
+            $cpgdb =& cpgDB::getInstance();
+            $cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+            ##########################################
+    		
+    		if (!USE_BRIDGEMGR) { // the vars that are used when bridgemgr is disabled
 
-			// URL of your punbb
-			$this->boardurl = 'http://www.yoursite.com/punbb';
+    			// URL of your punbb
+    			$this->boardurl = 'http://www.yoursite.com/punbb';
 
-			// local path to your punbb config file
-			require_once('../punbb/config.php');
+    			// local path to your punbb config file
+    			require_once('../punbb/config.php');
 
-		} else { // the vars from the bridgemgr
-			$this->boardurl = $BRIDGE['full_forum_url'];
-			require_once($BRIDGE['relative_path_to_config_file'] . 'config.php');
-			$this->use_post_based_groups = $BRIDGE['use_post_based_groups'];
-		}
-		
-		$this->multigroups = 0;
-		$this->group_overrride = 0;
-		
-		// Database connection settings
-		$this->db = array(
-			'name' => $db_name,
-			'host' => $db_host,
-			'user' => $db_username,
-			'password' => $db_password,
-			'prefix' =>$db_prefix
-		);
-		
-		// Board table names
-		$this->table = array(
-			'users' => 'users',
-			'groups' => 'groups',
-		);
-		// Derived full table names
-		/*$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
-		$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];*/
-		##########################################            DB          #######################################
-		$this->usertable = $cpgdb->getFullTableNames($this->db['name'], $this->db['prefix'], $this->table['users']);
-		$this->groupstable = $cpgdb->getFullTableNames($this->db['name'], $this->db['prefix'], $this->table['groups']);
-		#############################################################################################
-		
-		// Table field names
-		$this->field = array(
-			'username' => 'username', // name of 'username' field in users table
-			'user_id' => 'id', // name of 'id' field in users table
-			'password' => 'password', // name of 'password' field in users table
-			'email' => 'email', // name of 'email' field in users table
-			'regdate' => 'registered', // name of 'registered' field in users table
-			'location' => 'location', // name of 'location' field in users table
-			'website' => 'url', // name of 'website' field in users table
-			'lastvisit' => 'last_visit', // name of 'location' field in users table
-			'usertbl_group_id' => 'group_id', // name of 'group id' field in users table
-			'grouptbl_group_id' => 'g_id', // name of 'group id' field in groups table
-			'grouptbl_group_name' => 'g_title' // name of 'group name' field in groups table
-		);
-		
-		// Pages to redirect to
-		$this->page = array(
-			'register' => '/register.php',
-			'editusers' => '/userlist.php',
-			'edituserprofile' => "/profile.php?id="
-		);
-		
-		// Group ids
-		$this->admingroups = array(1);
-		$this->guestgroup = 3;
-		
-		// Cookie settings - used in following functions only
-		$this->cookie_name = $cookie_name;
-		$this->cookie_seed = $cookie_seed;
-		
-		// Connect to db
-		$this->connect();
-	}
+    		} else { // the vars from the bridgemgr
+    			$this->boardurl = $BRIDGE['full_forum_url'];
+    			require_once($BRIDGE['relative_path_to_config_file'] . 'config.php');
+    			$this->use_post_based_groups = $BRIDGE['use_post_based_groups'];
+    		}
+    		
+    		$this->multigroups = 0;
+    		$this->group_overrride = 0;
+    		
+    		// Database connection settings
+    		$this->db = array(
+    			'name' => $db_name,
+    			'host' => $db_host,
+    			'user' => $db_username,
+    			'password' => $db_password,
+    			'prefix' =>$db_prefix
+    		);
+    		
+    		// Board table names
+    		$this->table = array(
+    			'users' => 'users',
+    			'groups' => 'groups',
+    		);
 
-	// definition of how to extract id, name, group from a session cookie
-	function session_extraction()
-	{
-			return false; // unused
-	}
-	
-	// definition of how to extract an id and password hash from a cookie
-	function cookie_extraction()
-	{
-		$superCage = Inspekt::makeSuperCage();
-	    $id = 0;
-	    $pass_hash = '';
+    		// Derived full table names
+    		/* $this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
+    		$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups']; */
+            ##########################################            DB          #######################################
+            $this->usertable = $cpgdb->getFullTableNames($this->db['name'], $this->db['prefix'], $this->table['users']);
+            $this->groupstable = $cpgdb->getFullTableNames($this->db['name'], $this->db['prefix'], $this->table['groups']);
+            #############################################################################################
+    		
+    		// Table field names
+    		$this->field = array(
+    			'username' => 'username', // name of 'username' field in users table
+    			'user_id' => 'id', // name of 'id' field in users table
+    			'password' => 'password', // name of 'password' field in users table
+    			'email' => 'email', // name of 'email' field in users table
+    			'regdate' => 'registered', // name of 'registered' field in users table
+    			'location' => 'location', // name of 'location' field in users table
+    			'website' => 'url', // name of 'website' field in users table
+    			'lastvisit' => 'last_visit', // name of 'location' field in users table
+    			'usertbl_group_id' => 'group_id', // name of 'group id' field in users table
+    			'grouptbl_group_id' => 'g_id', // name of 'group id' field in groups table
+    			'grouptbl_group_name' => 'g_title' // name of 'group name' field in groups table
+    		);
+    		
+    		// Pages to redirect to
+    		$this->page = array(
+    			'register' => '/register.php',
+    			'editusers' => '/userlist.php',
+    			'edituserprofile' => "/profile.php?id="
+    		);
+    		
+    		// Group ids
+    		$this->admingroups = array(1);
+    		$this->guestgroup = 3;
+    		
+    		// Cookie settings - used in following functions only
+    		$this->cookie_name = $cookie_name;
+    		$this->cookie_seed = $cookie_seed;
+    		
+    		// Connect to db
+    		$this->connect();
+    	}
 
-        //if (isset($_COOKIE[$this->cookie_name])){
-        //	list($id, $pass_hash) = unserialize($_COOKIE[$this->cookie_name]);
-		//}	// Using getRaw() for cookie extraction
-		if ($superCage->cookie->keyExists($this->cookie_name)){
-        	list($id, $pass_hash) = unserialize($superCage->cookie->getRaw($this->cookie_name));
-		}
-		
-		return ($id) ? array($id, $pass_hash) : false;
-	}
-	
-	// definition of actions required to convert a password from user database form to cookie form
-	function udb_hash_db($password)
-	{
-		return md5($this->cookie_seed.$password);
-	}
-	
-	// Login
-	function login_page()
-	{
-		global $CONFIG;
-		
-		$this->redirect('/login.php?action=login&redir='.$CONFIG['site_url']);
-	}
+    	// definition of how to extract id, name, group from a session cookie
+    	function session_extraction()
+    	{
+    			return false; // unused
+    	}
+    	
+    	// definition of how to extract an id and password hash from a cookie
+    	function cookie_extraction()
+    	{
+    		$superCage = Inspekt::makeSuperCage();
+    	    $id = 0;
+    	    $pass_hash = '';
 
-	// Logout
-	function logout_page()
-	{
-		global $CONFIG;
+            //if (isset($_COOKIE[$this->cookie_name])){
+            //	list($id, $pass_hash) = unserialize($_COOKIE[$this->cookie_name]);
+    		//}
+    		if ($superCage->cookie->keyExists($this->cookie_name)){
+            	list($id, $pass_hash) = unserialize($superCage->cookie->getRaw($this->cookie_name));
+    		}
+    		
+    		return ($id) ? array($id, $pass_hash) : false;
+    	}
+    	
+    	// definition of actions required to convert a password from user database form to cookie form
+    	function udb_hash_db($password)
+    	{
+    		return md5($this->cookie_seed.$password);
+    	}
+    	
+    	// Login
+    	function login_page()
+    	{
+    		global $CONFIG;
+    		
+    		$this->redirect('/login.php?action=login&redir='.$CONFIG['site_url']);
+    	}
 
-		$this->redirect('/login.php?action=out&id='.USER_ID.'&redir='.$CONFIG['site_url']);
-	}
-	
-	function view_users() {}
-	
-	function view_profile($uid) {}
-	
-	function get_users($options = array())
-    {
-    	global $CONFIG, $cpg_db_punbb12_inc;
-		#####################      DB      ######################	
-		$cpgdb =& cpgDB::getInstance();
-		$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
-		##################################################	
-		
-		// Copy UDB fields and config variables (just to make it easier to read)
-    	$f =& $this->field;
-		$C =& $CONFIG;
-		
-		// Sort codes
-		$sort_codes = array('name_a' => 'user_name ASC',
-							'name_d' => 'user_name DESC',
-							'group_a' => 'group_name ASC',
-							'group_d' => 'group_name DESC',
-							'reg_a' => 'user_regdate ASC',
-							'reg_d' => 'user_regdate DESC',
-							'pic_a' => 'pic_count ASC',
-							'pic_d' => 'pic_count DESC',
-							'disku_a' => 'disk_usage ASC',
-							'disku_d' => 'disk_usage DESC',
-							'lv_a' => 'user_lastvisit ASC',
-							'lv_d' => 'user_lastvisit DESC',
-						   );
-        
-		if (in_array($options['sort'], array('group_a', 'group_d', 'pic_a', 'pic_d', 'disku_a', 'disku_d'))){
-			
-			$sort = '';
-			list($this->sortfield, $this->sortdir) = explode(' ', $sort_codes[$options['sort']]);
-			$this->adv_sort = true;
-			
-		} else {
-			
-			$sort = "ORDER BY " . $sort_codes[$options['sort']];
-			$this->adv_sort = false;
-		}
+    	// Logout
+    	function logout_page()
+    	{
+    		global $CONFIG;
 
-		// Build WHERE clause, if this is a username search
-        if ($options['search']) {
-            $options['search'] = 'AND u.'.$f['username'].' LIKE "'.$options['search'].'" ';
+    		$this->redirect('/login.php?action=out&id='.USER_ID.'&redir='.$CONFIG['site_url']);
+    	}
+    	
+    	function view_users() {}
+    	
+    	function view_profile($uid) {}
+    	
+    	function get_users($options = array())
+        {
+        	global $CONFIG;
+            #####################      DB      ######################	
+            $cpg_db_punbb12_inc;
+            $cpgdb =& cpgDB::getInstance();
+            $cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+            ##################################################	
+    		
+    		// Copy UDB fields and config variables (just to make it easier to read)
+        	$f =& $this->field;
+    		$C =& $CONFIG;
+    		
+    		// Sort codes
+            $sort_codes = array('name_a' => 'user_name ASC',
+                                'name_d' => 'user_name DESC',
+                                'group_a' => 'group_name ASC',
+                                'group_d' => 'group_name DESC',
+                                'reg_a' => 'user_regdate ASC',
+                                'reg_d' => 'user_regdate DESC',
+                                'pic_a' => 'pic_count ASC',
+                                'pic_d' => 'pic_count DESC',
+                                'disku_a' => 'disk_usage ASC',
+                                'disku_d' => 'disk_usage DESC',
+                                'lv_a' => 'user_lastvisit ASC',
+                                'lv_d' => 'user_lastvisit DESC',
+                               );
+            
+    		if (in_array($options['sort'], array('group_a', 'group_d', 'pic_a', 'pic_d', 'disku_a', 'disku_d'))){
+    			
+    			$sort = '';
+    			list($this->sortfield, $this->sortdir) = explode(' ', $sort_codes[$options['sort']]);
+    			$this->adv_sort = true;
+    			
+    		} else {
+    			
+    			$sort = "ORDER BY " . $sort_codes[$options['sort']];
+    			$this->adv_sort = false;
+    		}
+
+    		// Build WHERE clause, if this is a username search
+            if ($options['search']) {
+                $options['search'] = 'AND u.'.$f['username'].' LIKE "'.$options['search'].'" ';
+            }
+
+            /* $sql = "SELECT group_id, group_name, group_quota FROM {$C['TABLE_USERGROUPS']}";
+
+    		$result = cpg_db_query($sql);
+    		
+    		$groups = array();
+    	
+    		while ($row = mysql_fetch_assoc($result)) {
+    			$groups[$row['group_id']] = $row;
+    		} */
+            #############################         DB       #############################
+            $cpgdb->query($cpg_db_punbb12_inc['get_usergroups'], $C['TABLE_USERGROUPS']);
+            $groups = $array();
+            while ($row = $cpgdb->fetchRow()) {
+                $groups[$row['group_id']] = $row;
+            }
+            ##################################################################
+    		
+    		/* $sql ="SELECT {$f['grouptbl_group_id']} FROM {$this->groupstable}";
+    	
+    		$result = cpg_db_query($sql, $this->link_id);
+    		$udb_groups = array();
+    		
+    		while ($row = mysql_fetch_assoc($result)) {
+    			$udb_groups[] = $row['group_id'];
+    		} */
+            ###############################            DB           ###############################
+            $this->cpgudb->query($cpg_db_punbb12_inc['get_group_id'], $f['grouptbl_group_id'], $this->groupstable);
+            $udb_groups = array();
+            while ($row = $this->cpgudb->fetchRow()) {
+                $udb_groups[] = $row['group_id'];
+            }
+            #########################################################################
+
+
+            /* $sql = "SELECT u.{$f['user_id']} as user_id, u.{$f['usertbl_group_id']} AS user_group, {$f['username']} as user_name, {$f['email']} as user_email, {$f['regdate']} as user_regdate, {$f['lastvisit']} as user_lastvisit, '' as user_active, 0 AS pic_count ".
+                   "FROM {$this->usertable} AS u ".
+                   "WHERE u.{$f['user_id']} > 1 " . $options['search']
+                    . $sort .
+                   " LIMIT {$options['lower_limit']}, {$options['users_per_page']}";
+
+    		$result = cpg_db_query($sql, $this->link_id);
+    		
+    		// If no records, return empty value
+    		if (!mysql_num_rows($result)) {
+    			return array();
+    		}
+
+    		// Extract user list to an array
+    		while ($user = mysql_fetch_assoc($result)) { */
+            ###########################################          DB        ############################################
+            $this->cpgudb->query($cpg_db_punbb12_inc['get_user_usergroups'], $f['user_id'], $f['usertbl_group_id'], $f['username'], 
+                                $f['email'], $f['regdate'], $f['lastvisit'], $this->usertable, $options['search'], $sort, 
+                                $options['lower_limit'], $options['users_per_page']);
+
+            $rowset =$this->cpgudb->fetchRowSet();
+            // If no records, return empty value
+            if (!count($rowset)) {
+                return array();
+            }
+            // Extract user list to an array
+            foreach ($rowset as $user) {
+            ################################################################################################
+    			if ($this->use_post_based_groups){
+    				$gid = $user['user_group'] +100;
+    			} else {
+    				$gid = $user['user_group'] == $this->admingroups[0] ? 1 : 2;
+    			}
+    			$userlist[$user['user_id']] = array_merge($user, $groups[$gid]);
+    			$users[] = $user['user_id'];
+    		}
+    		
+    		$user_list_string = implode(', ', $users);
+    		
+    		/*$sql = "SELECT owner_id, COUNT(pid) as pic_count, ROUND(SUM(total_filesize)/1024) as disk_usage FROM {$C['TABLE_PICTURES']} WHERE owner_id IN ($user_list_string) GROUP BY owner_id";
+
+    		$result = cpg_db_query($sql);
+
+
+    		while ($owner = mysql_fetch_assoc($result)) {
+    			$userlist[$owner['owner_id']] = array_merge($userlist[$owner['owner_id']], $owner);
+    		} */
+            ##################################           DB          ##################################
+            $cpgdb->query($cpg_db_punbb12_inc['get_user_pic_data'], $C['TABLE_PICTURES'], $user_list_string);
+            while ($owner = $cpgdb->fetchRow()) {
+                $userlist[$owner['owner_id']] = array_merge($userlist[$owner['owner_id']], $owner);
+            }
+            ##############################################################################
+
+    		if ($this->adv_sort) usort($userlist, array('cpg_udb', 'adv_sort'));
+
+            return $userlist;
         }
-
-        /*$sql = "SELECT group_id, group_name, group_quota FROM {$C['TABLE_USERGROUPS']}";
-
-		$result = cpg_db_query($sql);
-		
-		$groups = array();
-	
-		while ($row = mysql_fetch_assoc($result)) {
-			$groups[$row['group_id']] = $row;
-		}	*/
-		#############################         DB       #############################
-		$cpgdb->query($cpg_db_punbb12_inc['get_usergroups'], $C['TABLE_USERGROUPS']);
-		$groups = $array();
-		while ($row = $cpgdb->fetchRow()) {
-			$groups[$row['group_id']] = $row;
-		}
-		##################################################################
-		
-		/*$sql ="SELECT {$f['grouptbl_group_id']} FROM {$this->groupstable}";
-	
-		$result = cpg_db_query($sql, $this->link_id);
-		$udb_groups = array();
-		
-		while ($row = mysql_fetch_assoc($result)) {
-			$udb_groups[] = $row['group_id'];
-		}	*/
-		###############################            DB           ###############################
-		$this->cpgudb->query($cpg_db_punbb12_inc['get_group_id'], $f['grouptbl_group_id'], $this->groupstable);
-		$udb_groups = array();
-		while ($row = $this->cpgudb->fetchRow()) {
-			$udb_groups[] = $row['group_id'];
-		}
-		#########################################################################
-
-        /*$sql = "SELECT u.{$f['user_id']} as user_id, u.{$f['usertbl_group_id']} AS user_group, {$f['username']} as user_name, {$f['email']} as user_email, {$f['regdate']} as user_regdate, {$f['lastvisit']} as user_lastvisit, '' as user_active, 0 AS pic_count ".
-			"FROM {$this->usertable} AS u ".
-			"WHERE u.{$f['user_id']} > 1 " . $options['search']
-			. $sort .
-			" LIMIT {$options['lower_limit']}, {$options['users_per_page']}";
-
-		$result = cpg_db_query($sql, $this->link_id);
-		
-		// If no records, return empty value
-		if (!mysql_num_rows($result)) {
-			return array();
-		}
-
-		// Extract user list to an array
-		while ($user = mysql_fetch_assoc($result)) {	*/
-		###########################################          DB        ############################################
-		$this->cpgudb->query($cpg_db_punbb12_inc['get_user_usergroups'], $f['user_id'], $f['usertbl_group_id'], $f['username'], 
-							$f['email'], $f['regdate'], $f['lastvisit'], $this->usertable, $options['search'], $sort, 
-							$options['lower_limit'], $options['users_per_page']);
-							
-		$rowset =$this->cpgudb->fetchRowSet();
-		// If no records, return empty value
-		if (!count($rowset)) {
-			return array();
-		}
-		// Extract user list to an array
-		foreach ($rowset as $user) {
-		################################################################################################
-			if ($this->use_post_based_groups){
-				$gid = $user['user_group'] +100;
-			} else {
-				$gid = $user['user_group'] == $this->admingroups[0] ? 1 : 2;
-			}
-			$userlist[$user['user_id']] = array_merge($user, $groups[$gid]);
-			$users[] = $user['user_id'];
-		}
-		
-		$user_list_string = implode(', ', $users);
-		
-		/*$sql = "SELECT owner_id, COUNT(pid) as pic_count, ROUND(SUM(total_filesize)/1024) as disk_usage FROM {$C['TABLE_PICTURES']} WHERE owner_id IN ($user_list_string) GROUP BY owner_id";
-
-		$result = cpg_db_query($sql);
-
-
-		while ($owner = mysql_fetch_assoc($result)) {
-			$userlist[$owner['owner_id']] = array_merge($userlist[$owner['owner_id']], $owner);
-		}	*/
-		##################################           DB          ##################################
-		$cpgdb->query($cpg_db_punbb12_inc['get_user_pic_data'], $C['TABLE_PICTURES'], $user_list_string);
-		while ($owner = $cpgdb->fetchRow()) {
-			$userlist[$owner['owner_id']] = array_merge($userlist[$owner['owner_id']], $owner);
-		}
-		##############################################################################
-
-		if ($this->adv_sort) usort($userlist, array('cpg_udb', 'adv_sort'));
-
-        return $userlist;
     }
-}
 
-// and go !
-$cpg_udb = new cpg_udb;
+    // and go !
+    $cpg_udb = new cpg_udb;
+}
 ?>

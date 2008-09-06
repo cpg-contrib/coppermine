@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4911 $
+  $Revision: 4981 $
   $LastChangedBy: gaugau $
-  $Date: 2008-08-27 13:34:51 +0530 (Wed, 27 Aug 2008) $
+  $Date: 2008-09-01 13:37:08 +0530 (Mon, 01 Sep 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -116,7 +116,7 @@ function form_label($text)
     echo <<<EOT
         <tr>
                 <td class="tableh2" colspan="2">
-                        <b>$text</b>
+                        <strong>$text</strong>
                 </td>
         </tr>
 
@@ -867,7 +867,7 @@ $translation_delete_files = sprintf($lang_modifyalb_php['delete_files'], '<span 
     echo <<<EOT
     <tr>
             <td align="left" class="tableb">
-                <b>$hits</b> {$lang_modifyalb_php['views']}
+                <strong>$hits</strong> {$lang_modifyalb_php['views']}
             </td>
             <td align="left" class="tableb">
                 <input type="Checkbox" name="reset_views" id="reset_views" value="1" class="checkbox" /><label for="reset_views" class="clickable_option">$translation_reset_views</label>
@@ -875,7 +875,7 @@ $translation_delete_files = sprintf($lang_modifyalb_php['delete_files'], '<span 
     </tr>
     <tr>
             <td align="left" class="tableb">
-                <b>$votes</b> {$lang_modifyalb_php['votes']}
+                <strong>$votes</strong> {$lang_modifyalb_php['votes']}
             </td>
             <td align="left" class="tableb">
                 <input type="Checkbox" name="reset_rating" id="reset_rating" value="1" class="checkbox" /><label for="reset_rating" class="clickable_option">$translation_reset_rating</label>
@@ -884,7 +884,7 @@ $translation_delete_files = sprintf($lang_modifyalb_php['delete_files'], '<span 
     <!--not implemented yet
     <tr>
             <td align="left" class="tableb">
-                <b>$comments</b> {$lang_modifyalb_php['comments']}
+                <strong>$comments</strong> {$lang_modifyalb_php['comments']}
             </td>
             <td align="left" class="tableb">
                 <input type="Checkbox" name="delete_comments" id="delete_comments" value="1" class="checkbox" /><label for="delete_comments" class="clickable_option">$translation_delete_comments</label>
@@ -893,7 +893,7 @@ $translation_delete_files = sprintf($lang_modifyalb_php['delete_files'], '<span 
     -->
     <tr>
             <td align="left" class="tableb">
-                <b>$files</b> {$lang_modifyalb_php['files']}
+                <strong>$files</strong> {$lang_modifyalb_php['files']}
             </td>
             <td align="left" class="tableb">
                 <input type="Checkbox" name="delete_files" id="delete_files" value="1" class="checkbox" /><label for="delete_files" class="clickable_option">$translation_delete_files</label>

@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4959 $
+  $Revision: 4993 $
   $LastChangedBy: gaugau $
-  $Date: 2008-08-30 00:21:17 +0530 (Sat, 30 Aug 2008) $
+  $Date: 2008-09-04 14:05:37 +0530 (Thu, 04 Sep 2008) $
 **********************************************/
 
 /**********************************************
@@ -249,7 +249,7 @@ $config_data = array(
     'display_social_bookmarks' => array(
       'type' => 'select_multiple',
       'help_link' => 'f=configuration.htm&amp;as=admin_social_bookmarks&amp;ae=admin_social_bookmarks_end',
-      'options' => array('Digg.com', 'del.icio.us', 'Yahoo MyWeb', 'Technorati', 'Spurl', 'Furl', 'Blinklist', 'Fark', 'Blogmarks', 'Simpy', 'Reddit', 'StumbleUpon', 'Slashdot', 'Netscape', 'diigo', 'NewsVine', 'ma.gnolia', 'Google', 'Mister-Wong.de', 'Linkarena', 'Newskick.de', 'Weblinkr.com', 'Alltagz.de', 'Webbrille.de', 'Newstube.de', 'Webnews.de', 'Readster.de', 'oneview.de', 'Maodi.de', 'tausendreporter.stern.de', 'Linksilo.de'),
+      'options' => array('myAol', 'Ask', 'Blinklist', 'Blogmarks', 'care2', 'del.icio.us', 'Digg', 'Diigo', 'Dzone', 'Facebook', 'Fark', 'Faves', 'FeedMeLinks', 'Furl', 'Google', 'Hugg', 'Kool', 'Linkagogo', 'LiveJournal', 'Magnolia', 'MindBody', 'MisterWong', 'Mixx', 'Multiply', 'mySpace', 'Netscape', 'netvouz', 'Newsvine', 'NowPublic', 'Reddit', 'Segnalo', 'Simpy', 'Slashdot', 'Smarking', 'Spurl', 'Squidoo', 'StumbleUpon', 'TailRank', 'Technorati', 'thisnext', 'Windows Live', 'Yahoo MyWeb', 'Alltagz.de', 'Linksilo.de', 'Maodi.de', 'Newstube.de', 'oneview.de', 'Readster.de', 'Tausendreporter (stern)', 'Webbrille.de', 'Webnews.de'),
       'end_description' => '('.$lang_admin_php['highlight_multiple'].')',
     ),
     'custom_header_path' => array(
@@ -399,10 +399,6 @@ $config_data = array(
       'type' => 'checkbox',
       'default_value' => '0',
       'help_link' => 'f=configuration.htm&amp;as=admin_thumbnail_display_uploader&amp;ae=admin_thumbnail_display_uploader_end',
-    ),
-    'display_admin_uploader' => array(
-      'type' => 'hidden',
-      'help_link' => 'f=configuration.htm&amp;as=admin_thumbnail_display_admin_uploader&amp;ae=admin_thumbnail_display_admin_uploader_end',
     ),
     'display_filename' => array(
       'type' => 'checkbox',
@@ -1099,6 +1095,7 @@ $config_data = array(
       'type' => 'checkbox',
       'default_value' => '0',
       'bridged' => 'hide',
+      'only_display_if' => '1',
       'help_link' => 'f=configuration.htm&amp;as=admin_allow_duplicate_emails_addr&amp;ae=admin_allow_duplicate_emails_addr_end',
     ),
     'upl_notify_admin_email' => array(

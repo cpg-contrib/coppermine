@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4844 $
-  $LastChangedBy: pvanrompay $
-  $Date: 2008-08-12 11:33:24 +0530 (Tue, 12 Aug 2008) $
+  $Revision: 4981 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-09-01 13:37:08 +0530 (Mon, 01 Sep 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -154,7 +154,7 @@ function dirheader($dir, $dirid)
     $warning = '';
 
     if (!is_writable($CONFIG['fullpath'] . $dir))
-        $warning = "<tr><td class=\"tableh2\" valign=\"middle\" colspan=\"4\">\n" . "<b>{$lang_search_new_php['warning']}</b>: {$lang_search_new_php['change_perm']}</td></tr>\n";
+        $warning = "<tr><td class=\"tableh2\" valign=\"middle\" colspan=\"4\">\n" . "<strong>{$lang_search_new_php['warning']}</strong>: {$lang_search_new_php['change_perm']}</td></tr>\n";
     return "<tr><td class=\"tableh2\" valign=\"middle\" align=\"right\" colspan=\"4\">\n" .
     sprintf($lang_search_new_php['target_album'], $dir, albumselect($dirid)) . "</td></tr>\n" . $warning;
 }
@@ -365,7 +365,7 @@ function display_dir_tree($folder, $ident)
                 if (!is_writable($dir_path)) $warnings .= $lang_search_new_php['dir_ro'];
                 if (!is_readable($dir_path)) $warnings .= $lang_search_new_php['dir_cant_read'];
 
-                if ($warnings) $warnings = '&nbsp;&nbsp;&nbsp;<b>' . $warnings . '<b>';
+                if ($warnings) $warnings = '&nbsp;&nbsp;&nbsp;<strong>' . $warnings . '<strong>';
 
                 echo <<<EOT
                             <tr>
@@ -542,10 +542,10 @@ if ($superCage->post->keyExists('insert')) {
                 <td colspan="4" class="tableh1"><h2>{$lang_search_new_php['insert']}$help</h2></td>
         </tr>
         <tr>
-                <td class="tableh2" valign="middle" align="center"><b>{$lang_search_new_php['folder']}</b></td>
-                <td class="tableh2" valign="middle" align="center"><b>{$lang_search_new_php['image']}</b></td>
-                <td class="tableh2" valign="middle" align="center"><b>{$lang_common['album']}</b></td>
-                <td class="tableh2" valign="middle" align="center"><b>{$lang_search_new_php['result']}</b></td>
+                <td class="tableh2" valign="middle" align="center"><strong>{$lang_search_new_php['folder']}</strong></td>
+                <td class="tableh2" valign="middle" align="center"><strong>{$lang_search_new_php['image']}</strong></td>
+                <td class="tableh2" valign="middle" align="center"><strong>{$lang_common['album']}</strong></td>
+                <td class="tableh2" valign="middle" align="center"><strong>{$lang_search_new_php['result']}</strong></td>
         </tr>
 EOT;
 
@@ -896,7 +896,7 @@ EOT;
         <tr>
                 <td colspan="3" align="center" class="tableb">
                         <br /><br />
-                        <b>{$lang_search_new_php['no_pic_found']}</b>
+                        <strong>{$lang_search_new_php['no_pic_found']}</strong>
                         <br /><br /><br />
                 </td>
         </tr>
@@ -979,7 +979,7 @@ EOT;
     echo <<<EOT
         <tr>
                 <td class="tableb">
-                        <b>{$lang_search_new_php['select_dir_msg']}</b>
+                        <strong>{$lang_search_new_php['select_dir_msg']}</strong>
                 </td>
         </tr>
         <tr>

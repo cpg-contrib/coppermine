@@ -22,9 +22,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4502 $
-  $LastChangedBy: pvanrompay $
-  $Date: 2008-06-06 03:51:20 +0530 (Fri, 06 Jun 2008) $
+  $Revision: 4981 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-09-01 13:37:08 +0530 (Mon, 01 Sep 2008) $
 **********************************************/
 require ('../include/config.inc.php');
 require ('cpgAPIfunctions.inc.php');
@@ -131,7 +131,7 @@ $CONFIG['TABLE_VOTE_STATS'] = $CONFIG['TABLE_PREFIX']."vote_stats";
 $CONFIG['TABLE_HIT_STATS']  = $CONFIG['TABLE_PREFIX']."hit_stats";
 
 // Connect to database
-($CONFIG['LINK_ID'] = cpg_db_connect()) || die("<b>Coppermine critical error</b>:<br />Unable to connect to database !<br /><br />MySQL said: <b>" . mysql_error() . "</b>");
+($CONFIG['LINK_ID'] = cpg_db_connect()) || die("<strong>Coppermine critical error</strong>:<br />Unable to connect to database !<br /><br />MySQL said: <strong>" . mysql_error() . "</strong>");
 
 // Retrieve DB stored configuration
 /*$results = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_CONFIG']}");

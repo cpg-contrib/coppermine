@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4869 $
+  $Revision: 4981 $
   $LastChangedBy: gaugau $
-  $Date: 2008-08-13 12:25:06 +0530 (Wed, 13 Aug 2008) $
+  $Date: 2008-09-01 13:37:08 +0530 (Mon, 01 Sep 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -227,7 +227,7 @@ function make_form($form_param, $form_data)
             echo <<<EOT
     <tr>
         <td colspan="2" class="{$cellStyle}">
-            <b>{$element[1]}<b>
+            <strong>{$element[1]}</strong>
         </td>
     </tr>
 

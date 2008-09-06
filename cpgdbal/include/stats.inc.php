@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4943 $
+  $Revision: 4999 $
   $LastChangedBy: gaugau $
-  $Date: 2008-08-29 02:41:10 +0530 (Fri, 29 Aug 2008) $
+  $Date: 2008-09-05 11:28:00 +0530 (Fri, 05 Sep 2008) $
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
@@ -35,6 +35,7 @@ $browserArray = array(
                       'BPFTP' => 'bpftp.png',
                       'Bytel' => 'bytel.png',
                       'Chimera' => 'chimera.png',
+                      'Chrome' => 'chrome.png',
                       'Cyberdog' => 'cyberdog.png',
                       'DA' => 'da.png',
                       'Dillo' => 'dillo.png',
@@ -195,11 +196,12 @@ $osArray = array(
  */
 function individualStatsByOS($pid='',$type='hits', $tableWidth='100%') {
       global $osArray, $CONFIG, $lang_stat_details_php;
-	  ######################        DB      #####################
-	  global $cpg_db_stats_inc;
-	  $cpgdb =& cpgDB::getInstance();
-	  $cpgdb->connect_to_existing($CONFIG['LINK_ID']);
-	  ###################################################
+      ######################        DB      #####################
+      global $cpg_db_stats_inc;
+      $cpgdb =& cpgDB::getInstance();
+      $cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+      ###################################################
+       $maxBarWidth = 200;
       if (GALLERY_ADMIN_MODE == true){
         /*foreach ($osArray as $key => $value) {
 			$query = "SELECT COUNT(*) FROM ";
@@ -289,11 +291,12 @@ EOT;
 
 function individualStatsByBrowser($pid='',$type='hits', $tableWidth='100%') {
       global $browserArray, $CONFIG, $lang_stat_details_php;
-	  ######################        DB      #####################
-	  global $cpg_db_stats_inc;
-	  $cpgdb =& cpgDB::getInstance();
-	  $cpgdb->connect_to_existing($CONFIG['LINK_ID']);
-	  ###################################################
+      ######################        DB      #####################
+      global $cpg_db_stats_inc;
+      $cpgdb =& cpgDB::getInstance();
+      $cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+      ###################################################
+      $maxBarWidth = 200;
       if (GALLERY_ADMIN_MODE == true){
         /*foreach ($browserArray as $key => $value) {
 			$query = "SELECT COUNT(*) FROM ";

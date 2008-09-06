@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4911 $
+  $Revision: 4982 $
   $LastChangedBy: gaugau $
-  $Date: 2008-08-27 13:34:51 +0530 (Wed, 27 Aug 2008) $
+  $Date: 2008-09-01 14:23:18 +0530 (Mon, 01 Sep 2008) $
 **********************************************/
 
 /**
@@ -26,7 +26,7 @@
 * @copyright 2002-2006 Gregory DEMAR, Coppermine Dev Team
 * @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
 * @package Coppermine
-* @version $Id: index.php 4911 2008-08-27 08:04:51Z gaugau $
+* @version $Id: index.php 4982 2008-09-01 08:53:18Z gaugau $
 */
 
 /**
@@ -195,7 +195,7 @@ function html_albummenu($id)
 function html_albummenu3($id)
 {
     global $lang_album_admin_menu;
-	
+  
    /**
      * This template variable can be defined in theme.php of respective theme.
      * This is done here for simplicity.
@@ -727,17 +727,17 @@ function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
 			#########################################################
 
             if (count($cat_data)) {
-                $statistics = strtr($lang_list_categories['stat1'], array('[pictures]' => $picture_count,
-                        '[albums]' => $album_count,
-                        '[cat]' => $cat_count,
-                        '[comments]' => $comment_count,
-                        '[views]' => $hit_count));
+                $statistics = strtr($lang_list_categories['stat1'], array('[pictures]' => '<strong>' . $picture_count . '</strong>',
+                        '[albums]' => '<strong>' . $album_count . '</strong>',
+                        '[cat]' => '<strong>' . $cat_count . '</strong>',
+                        '[comments]' => '<strong>' . $comment_count . '</strong>',
+                        '[views]' => '<strong>' . $hit_count . '</strong>'));
             } else {
                 $STATS_IN_ALB_LIST = true;
-                $statistics = strtr($lang_list_categories['stat3'], array('[pictures]' => $picture_count,
-                        '[albums]' => $album_count,
-                        '[comments]' => $comment_count,
-                        '[views]' => $hit_count));
+                $statistics = strtr($lang_list_categories['stat3'], array('[pictures]' => '<strong>' . $picture_count . '</strong>',
+                        '[albums]' => '<strong>' . $album_count . '</strong>',
+                        '[comments]' => '<strong>' . $comment_count . '</strong>',
+                        '[views]' => '<strong>' . $hit_count . '</strong>'));
             }
         } else {
             $statistics = '';
@@ -1130,24 +1130,24 @@ function album_adm_menu($aid, $cat)
                 //Disallowed -> Check if albums is in such a category
                 /*$result = cpg_db_query("SELECT DISTINCT alb.category FROM {$CONFIG['TABLE_ALBUMS']} AS alb INNER JOIN {$CONFIG['TABLE_CATMAP']} AS catm ON alb.category=catm.cid WHERE alb.owner = '" . $USER_DATA['user_id'] . "' AND alb.aid='$aid' AND catm.group_id='" . $USER_DATA['group_id'] . "'");
                 $allowed_albums = cpg_db_fetch_rowset($result);*/
-				###################  DB  #####################
-				$cpgdb->query($cpg_db_index_php['album_adm_menu_dist_alb_cat'], $USER_DATA['user_id'], $aid, $USER_DATA['group_id']);
-				$allowed_albums = $cpgdb->fetchRowSet();
-				############################################
-				if ($allowed_albums[0]['category'] == '') {
-					return "<b>" . $lang_album_admin_menu['cat_locked'] . "</b>";
-				}
-			}
-			if (!$CONFIG['users_can_edit_pics']) {
-				//return menu without edit pics button
-				return html_albummenu3($aid);
-			} else {
-				//return whole menu
-				return html_albummenu($aid);
-			}  
+                ###################  DB  #####################
+                $cpgdb->query($cpg_db_index_php['album_adm_menu_dist_alb_cat'], $USER_DATA['user_id'], $aid, $USER_DATA['group_id']);
+                $allowed_albums = $cpgdb->fetchRowSet();
+                ############################################
+                if ($allowed_albums[0]['category'] == '') {
+                    return "<strong>" . $lang_album_admin_menu['cat_locked'] . "</strong>";
+                }
+            }
+            if (!$CONFIG['users_can_edit_pics']) {
+                //return menu without edit pics button
+                return html_albummenu3($aid);
+            } else {
+                //return whole menu
+                return html_albummenu($aid);
+            }  
         } else {
-			return '';
-		}
+            return '';
+        }
     } elseif (GALLERY_ADMIN_MODE) {
         return html_albummenu($aid);
     } elseif (in_array($aid, $USER_DATA['allowed_albums'])) {
@@ -1170,11 +1170,11 @@ function list_cat_albums($cat, $catdata)
 {
     global $CONFIG, $USER, $lastup_date_fmt, $USER_DATA, $FORBIDDEN_SET, $FORBIDDEN_SET_DATA, $cpg_show_private_album;
     global $lang_list_albums, $lang_errors;
-	global $cpg_db_index_php;
-	####################### DB #########################	
-	$cpgdb =& cpgDB::getInstance();
-	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
-	##################################################	
+    global $cpg_db_index_php;
+    ####################### DB #########################	
+    $cpgdb =& cpgDB::getInstance();
+    $cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+    ##################################################	
 
     $PAGE = 1;
 
@@ -1197,7 +1197,7 @@ function list_cat_albums($cat, $catdata)
         $pic_filter = ' and ' . $FORBIDDEN_SET;
     }
 
-	$nbAlb = $catdata['details']['alb_count'];
+    $nbAlb = $catdata['details']['alb_count'];
 
     if ($nbAlb == 0) {
         return;

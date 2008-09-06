@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4844 $
-  $LastChangedBy: pvanrompay $
-  $Date: 2008-08-12 11:33:24 +0530 (Tue, 12 Aug 2008) $
+  $Revision: 4981 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-09-01 13:37:08 +0530 (Mon, 01 Sep 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -480,7 +480,7 @@ if (GALLERY_ADMIN_MODE || USER_ADMIN_MODE) {
 echo <<<EOT
       <tr>
          <td>
-            <b>{$lang_common['select_album']}</b>
+            <strong>{$lang_common['select_album']}</strong>
 EOT;
         print albumselect('aid');
 echo <<<EOT

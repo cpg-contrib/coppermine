@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4224 $
+  $Revision: 4981 $
   $LastChangedBy: gaugau $
-  $Date: 2008-01-26 17:12:00 +0530 (Sat, 26 Jan 2008) $
+  $Date: 2008-09-01 13:37:08 +0530 (Mon, 01 Sep 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -306,10 +306,10 @@ $tempClass = ' class="tableb"';
 while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
     print "\t<tr>\n";
     print "<td".$tempClass." align=\"center\"><input type=\"Checkbox\" name=\"eid[]\" value=\"".$line['eid']."\" id=\"eidselector\" class=\"checkbox\" /></td>\n";
-    print "<td".$tempClass."><b class=\"thumb_caption\">".$line['sender_name']."</b></td>\n";
+    print "<td".$tempClass."><strong class=\"thumb_caption\">".$line['sender_name']."</strong></td>\n";
     print "<td".$tempClass."><span class=\"thumb_caption\"><a href=\"mailto:".$line['sender_email']."\">".$line['sender_email']."</a></span></td>\n";
     print "<td".$tempClass."><span class=\"thumb_caption\"><a href=\"http://ws.arin.net/cgi-bin/whois.pl?queryinput=".$line['sender_ip']."\">".$line['sender_ip']."</a></span></td>\n";
-    print "<td".$tempClass."><b class=\"thumb_caption\">".$line['recipient_name']."</b></td>\n";
+    print "<td".$tempClass."><strong class=\"thumb_caption\">".$line['recipient_name']."</strong></td>\n";
     print "<td".$tempClass."><span class=\"thumb_caption\"><a href=\"mailto:".$line['recipient_email']."\">".$line['recipient_email']."</a></span></td>\n";
     print "<td".$tempClass."><span class=\"thumb_caption\">".strftime($lastcom_date_fmt,$line['date'])."</span></td>\n";
     print "<td align=\"center\"".$tempClass."><span class=\"thumb_caption\"><a href=\"displayecard.php?data=".$line['link']."\"><img src=\"images/ecard.gif\" width=\"16\" height=\"16\" border=\"0\" alt=\"\" title=\"".$lang_db_ecard_php['ecard_display']."\" /></a></span></td>\n";

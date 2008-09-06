@@ -13,9 +13,9 @@
   SVN version info:
 
   Coppermine version: 1.5.0
-  $Revision: 4957 $
+  $Revision: 4994 $
   $LastChangedBy: gaugau $
-  $Date: 2008-08-29 13:12:15 +0530 (Fri, 29 Aug 2008) $
+  $Date: 2008-09-04 15:08:57 +0530 (Thu, 04 Sep 2008) $
 -->
 <link rel="stylesheet" type="text/css" href="../style.css" media="all" />
 <link rel="stylesheet" type="text/css" href="../screen.css" media="screen" />
@@ -108,7 +108,7 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
   <li><strong>Definitions of constants</strong><br />
   Think of constants as general switches that can be set once while the script is run
   <div class="quote"><p><strong>Example:</strong><br />
-  <tt class="code">define('THEME_IS_XHTML10_TRANSITIONAL',1);</tt></p></div></li>
+  <tt class="code">define('THEME_HAS_RATING_GRAPHICS',1);</tt></p></div></li>
   <li><strong>Definition of variables</strong><br />
   Variables can be manipulated (i.e. changed) during runtime. The vast majority of items that can reside in theme.php are variables. Variable names always start with a $-sign.
   <div class="quote"><p><strong>Example:</strong><br />
@@ -151,12 +151,6 @@ EOT;<br />
     <td valign="top" class="tableb">constant</td>
     <td valign="top" class="tableb">The location for the sidebar graphics that compose the tree menu. When the constant is set, the script will be directed to the theme's images folder, subfolder 'sidebar', i.e. themes/yourtheme/images/sidebar/ and look for the sidebar images there. If not defined (default), the sidebar images will be taken from images/sidebar/</td>
     <td valign="top" class="tableb"></td>
-  </tr>
-  <tr>
-    <td valign="top" class="tableb tableb_alternate"><a name="theme_create_theme_xhtml"></a>define('<strong>THEME_IS_XHTML10_TRANSITIONAL</strong>',1);<a href="#theme_create_theme_xhtml" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
-    <td valign="top" class="tableb tableb_alternate">constant</td>
-    <td valign="top" class="tableb tableb_alternate">If theme is defined as XHTML10_TRANSITIONAL the VANITY footer will be enabled if the theme has a <a href="theme_template.htm#theme_template_vanity">{VANITY} token</a> in its template.html. By setting this constant you claim that your custom theme is valid.</td>
-    <td valign="top" class="tableb tableb_alternate">-</td>
   </tr>
   <tr>
     <td valign="top" class="tableb"><a name="theme_create_theme_rating_graphic"></a>define('<strong>THEME_HAS_RATING_GRAPHICS</strong>',1);<a href="#theme_create_theme_rating_graphic" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
@@ -584,7 +578,7 @@ EOT;<br />
 
 <script type="text/javascript">
   cpgDocFooter();
-  dateRevision(' $LastChangedDate: 2008-08-29 13:12:15 +0530 (Fri, 29 Aug 2008) $ ', ' $Revision: 4957 $ ');
+  dateRevision(' $LastChangedDate: 2008-09-04 15:08:57 +0530 (Thu, 04 Sep 2008) $ ', ' $Revision: 4994 $ ');
 </script>
 
 </body>

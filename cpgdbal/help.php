@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4951 $
+  $Revision: 4996 $
   $LastChangedBy: gaugau $
-  $Date: 2008-08-29 13:08:53 +0530 (Fri, 29 Aug 2008) $
+  $Date: 2008-09-04 20:33:31 +0530 (Thu, 04 Sep 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -150,6 +150,7 @@ if ($anchor_end != '') {
 
 // Fix path for some tags
 $string = str_replace('<img src="pics/', '<img src="docs/'.$help_lang.'/images/', $string);
+$string = str_replace('images/', 'docs/'.$help_lang.'/images/', $string);
 $string = str_replace('<a href="http://', '<a externalLinkTempReplacement', $string); // get external links out of the way
 $string = str_replace('<a href="#', '<a internalAnchorLinkTempReplacement', $string); // get links to anchors on this page out of the way
 $string = str_replace('<a href="', '<a href="docs/'.$help_lang.'/', $string);

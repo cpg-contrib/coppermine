@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $Source: /cvsroot/coppermine/devel/admin.php,v $
-  $Revision: 4958 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-08-30 00:20:53 +0530 (Sat, 30 Aug 2008) $
+  $Revision: 4995 $
+  $LastChangedBy: abbas-ali $
+  $Date: 2008-09-04 15:50:08 +0530 (Thu, 04 Sep 2008) $
 **********************************************/
  
 define('IN_COPPERMINE', true);
@@ -27,6 +27,7 @@ require_once('include/sql_parse.php');
 js_include('js/jquery.js');
 
 $admin_data_array = $CONFIG;
+$optionLoopCounter = 0;
 
 
 $lineBreak = "\r\n";
@@ -36,7 +37,7 @@ if (!GALLERY_ADMIN_MODE) {
 }
 
 if (!function_exists('form_get_foldercontent')) {
-  function form_get_foldercontent ($foldername, $fileOrFolder = 'folder', $validextension = '', $exception_array = '') {
+  function form_get_foldercontent ($foldername, $fileOrFolder = 'folder', $validextension = '', $exception_array = array('')) {
     global $CONFIG;
     $dir = opendir($foldername);
     while ($file = readdir($dir)) {
@@ -170,7 +171,7 @@ if ($superCage->post->keyExists('restore_config')) { // user has chosen to facto
       // regex check
       if ((isset($adminDataValue['regex']) && $adminDataValue['regex'] != '') || (isset($adminDataValue['regex_not']) && $adminDataValue['regex_not'] != '')) {
         if ((isset($adminDataValue['regex']) && $adminDataValue['regex'] != '' && eregi($adminDataValue['regex'],$evaluate_value) == FALSE) || (isset($adminDataValue['regex_not']) && $adminDataValue['regex_not'] != '' && eregi($adminDataValue['regex_not'],$evaluate_value) == TRUE)) {
-          $userMessage .= '<li style="list-style-image:url(images/icons/redled.png)">'.sprintf($lang_admin_php['config_setting_invalid'], '<a href="#'.$adminDataKey.'">'.$lang_admin_php[$adminDataKey].'</a>').'</li>'.$lineBreak;
+          $userMessage .= '<li style="list-style-image:url(images/icons/stop.png)">'.sprintf($lang_admin_php['config_setting_invalid'], '<a href="#'.$adminDataKey.'">'.$lang_admin_php[$adminDataKey].'</a>').'</li>'.$lineBreak;
           $regexValidation = '0';
           //$admin_data_array[$adminDataKey] = $evaluation_array[$adminDataKey]; // replace the stuff in the form field with the improper input, so the user can see and correct his error
           $admin_data_array[$adminDataKey] = $evaluate_value; // replace the stuff in the form field with the improper input, so the user can see and correct his error
@@ -218,7 +219,7 @@ if ($superCage->post->keyExists('restore_config')) { // user has chosen to facto
         // perform special tasks -- end
         $admin_data_array[$adminDataKey] = stripslashes($evaluate_value);
         $CONFIG[$adminDataKey] = stripslashes($evaluate_value);
-        $userMessage .= '<li style="list-style-image:url(images/icons/greenled.png)">'.sprintf($lang_admin_php['config_setting_ok'], $lang_admin_php[$adminDataKey]).'</li>'.$lineBreak;
+        $userMessage .= '<li style="list-style-image:url(images/icons/ok.png)">'.sprintf($lang_admin_php['config_setting_ok'], $lang_admin_php[$adminDataKey]).'</li>'.$lineBreak;
       }
     } // inner foreach loop -- end
   } // Loop through the config fields to check posted values for validity -- end
@@ -419,7 +420,7 @@ EOT;
       }
       print $readonly_message.'</span>';
     } elseif ($value['type'] == 'hidden') { //HIDDEN
-      print '<input type="hidden"  name="'.$key.'" value="'.$admin_data_array[$key].'"'.$readonly.' />';
+      print '<input type="hidden"  name="'.$key.'" value="'.$admin_data_array[$key].'" />';
     } elseif ($value['type'] == 'select_function') { //SELECT_FUNCTION
 	    // not implemented (yet)
     } elseif ($value['type'] == 'select_multiple') { //SELECT_MULTIPLE
@@ -471,7 +472,7 @@ EOT;
     }
     $resetCheckbox = '';
     $defaultValueField = '';
-    if ($value['default_value'] != '') { // we have a default value
+    if (isset($value['default_value'])) { // we have a default value
         if ($value['default_value'] == $admin_data_array[$key]) { // the default value equals the current config setting - hide the "reset to default" checkbox
             $resetCheckbox = '<input type="checkbox" name="reset_default_'.$key.'" id="reset_default_'.$key.'" value="'.$value['default_value'].'" class="checkbox" checked="checked" title="'.$lang_admin_php['reset_to_default'].'" onclick="resetToDefault(\''.$key.'\', \''.$value['type'].'\', \''.($optionLoopCounter - 1).'\');" style="display:none;" />';
         } else {

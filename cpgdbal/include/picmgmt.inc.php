@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4892 $
-  $LastChangedBy: abbas-ali $
-  $Date: 2008-08-20 12:20:14 +0530 (Wed, 20 Aug 2008) $
+  $Revision: 4982 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-09-01 14:23:18 +0530 (Mon, 01 Sep 2008) $
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
@@ -138,7 +138,7 @@ function add_picture($aid, $filepath, $filename, $position = 0, $title = '', $ca
                 @unlink($normal);
                 @unlink($thumb);
             }
-            $msg = strtr($lang_errors['quota_exceeded'], array('[quota]' => ($USER_DATA['group_quota']),
+            $msg = $lang_errors['quota_exceeded'] . '<br />&nbsp;<br />' . strtr($lang_errors['quota_exceeded_details'], array('[quota]' => ($USER_DATA['group_quota']),
                 '[space]' => ($total_space_used >> 10)));
             cpg_die(ERROR, $msg, __FILE__, __LINE__);
         }

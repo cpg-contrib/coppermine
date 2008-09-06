@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $Source: /cvsroot/coppermine/devel/register.php,v $
-  $Revision: 4848 $
+  $Revision: 4981 $
   $LastChangedBy: gaugau $
-  $Date: 2008-08-12 11:45:40 +0530 (Tue, 12 Aug 2008) $
+  $Date: 2008-09-01 13:37:08 +0530 (Mon, 01 Sep 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -261,7 +261,7 @@ EOT;
         echo <<<EOT
         <tr>
                 <td colspan="2" class="tableh2" align="center">
-                        <b>&#149;&nbsp;&#149;&nbsp;&#149;&nbsp;{$lang_register_php['error']}&nbsp;&#149;&nbsp;&#149;&nbsp;&#149;</b>
+                        <strong>&#149;&nbsp;&#149;&nbsp;&#149;&nbsp;{$lang_register_php['error']}&nbsp;&#149;&nbsp;&#149;&nbsp;&#149;</strong>
                 </td>
         </tr>
         <tr>

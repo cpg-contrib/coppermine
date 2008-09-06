@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4892 $
-  $LastChangedBy: abbas-ali $
-  $Date: 2008-08-20 12:20:14 +0530 (Wed, 20 Aug 2008) $
+  $Revision: 4981 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-09-01 13:37:08 +0530 (Mon, 01 Sep 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -354,7 +354,7 @@ function form_label($text)
     echo <<<EOT
     <tr>
             <td class="tableh2" colspan="3">
-                    <b>$text</b>
+                    <strong>$text</strong>
             </td>
     </tr>
 
@@ -881,13 +881,13 @@ if (!count($rowset)) {
 #####################################################################################################
 
 if ($start + $count < $pic_count) {
-    $next_link = "<a href=\"$next_target\"><b>{$lang_editpics_php['see_next']}</b></a>&nbsp;&nbsp;-&nbsp;&nbsp;";
+    $next_link = "<a href=\"$next_target\"><strong>{$lang_editpics_php['see_next']}</strong></a>&nbsp;&nbsp;-&nbsp;&nbsp;";
 } else {
     $next_link = '';
 }
 
 if ($start > 0) {
-    $prev_link = "<a href=\"$prev_target\"><b>{$lang_editpics_php['see_prev']}</b></a>&nbsp;&nbsp;-&nbsp;&nbsp;";
+    $prev_link = "<a href=\"$prev_target\"><strong>{$lang_editpics_php['see_prev']}</strong></a>&nbsp;&nbsp;-&nbsp;&nbsp;";
 } else {
     $prev_link = '';
 }
@@ -928,10 +928,10 @@ starttable("100%", $title.$help, 3);
 echo <<<EOT
         <tr>
                 <td class="tableh2" colspan="3" align="center" valign="middle">
-                        <b>$pic_count_text</b>&nbsp;&nbsp;-&nbsp;&nbsp;
+                        <strong>$pic_count_text</strong>&nbsp;&nbsp;-&nbsp;&nbsp;
                         $prev_link
                         $next_link
-                        <b>{$lang_editpics_php['n_of_pic_to_disp']}</b>
+                        <strong>{$lang_editpics_php['n_of_pic_to_disp']}</strong>
                         <select onChange="if(this.options[this.selectedIndex].value) window.location.href='{$CPG_PHP_SELF}?album=$album_id$mode&amp;start=$start&amp;count='+this.options[this.selectedIndex].value;"  name="count" class="listbox">
                                 <option value="25">25</option>
                                 <option value="50" $s50>50</option>

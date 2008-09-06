@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4843 $
+  $Revision: 4981 $
   $LastChangedBy: gaugau $
-  $Date: 2008-08-12 03:33:01 +0530 (Tue, 12 Aug 2008) $
+  $Date: 2008-09-01 13:37:08 +0530 (Mon, 01 Sep 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -49,7 +49,7 @@ if ($superCage->post->keyExists('submitted')) {
         $login_failed = <<<EOT
                   <tr>
                           <td colspan="2" align="center" class="tableh2">
-                        <span style="color:red"><b>{$lang_login_php['err_login']}<b></span>
+                        <span style="color:red"><strong>{$lang_login_php['err_login']}<strong></span>
                         </td>
                   </tr>
 EOT;
@@ -96,7 +96,7 @@ if (!$superCage->cookie->keyExists($CONFIG['cookie_name'] . '_data')) {
     $cookie_warning = <<<EOT
                   <tr>
                           <td colspan="2" align="center" class="tableh2">
-                        <span style="color:red"><b>{$lang_login_php['cookie_warning']}<b></span>
+                        <span style="color:red"><strong>{$lang_login_php['cookie_warning']}</strong></span>
                         </td>
                   </tr>
 

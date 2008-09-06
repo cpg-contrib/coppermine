@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4844 $
-  $LastChangedBy: pvanrompay $
-  $Date: 2008-08-12 11:33:24 +0530 (Tue, 12 Aug 2008) $
+  $Revision: 4981 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-09-01 13:37:08 +0530 (Mon, 01 Sep 2008) $
 **********************************************/
 
 /**
@@ -27,7 +27,7 @@
 * @copyright 2002-2006 Gregory DEMAR, Coppermine Dev Team
 * @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
 * @package Coppermine
-* @version $Id: albmgr.php 4844 2008-08-12 06:03:24Z pvanrompay $
+* @version $Id: albmgr.php 4981 2008-09-01 08:07:08Z gaugau $
 */
 
 /**
@@ -470,7 +470,7 @@ if (GALLERY_ADMIN_MODE||USER_ADMIN_MODE) {
     echo <<<EOT
                                 <tr>
                                     <td>
-                                        <b>{$lang_albmgr_php['select_category']}</b>
+                                        <strong>{$lang_albmgr_php['select_category']}</strong>
                                         <select onChange="if(this.options[this.selectedIndex].value) window.location.href='$CPG_PHP_SELF?cat='+this.options[this.selectedIndex].value;"  name="cat" class="listbox">
 
 EOT;

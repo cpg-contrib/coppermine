@@ -12,538 +12,558 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4344 $
-  $LastChangedBy: saweyyy $
-  $Date: 2008-03-20 06:51:20 +0530 (Thu, 20 Mar 2008) $
+  $Revision: 4985 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-09-02 02:35:01 +0530 (Tue, 02 Sep 2008) $
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
 
-// Switch that allows overriding the bridge manager with hard-coded values
-define('USE_BRIDGEMGR', 1);
+if (isset($bridge_lookup)) {
+    $default_bridge_data[$bridge_lookup] = array(
+        'full_name' => 'Mambo server',
+        'short_name' => 'mambo',
+        'support_url' => 'http://www.mamboserver.com/',
+        'full_forum_url_default' => 'http://www.yoursite.com/board',
+        'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',
+        'relative_path_to_config_file_default' => '../board/',
+        'relative_path_to_config_file_used' => 'lookfor,configuration.php',
+        'use_post_based_groups_default' => '0',
+        'use_post_based_groups_used' => 'radio,1,0',
+    );
+} else {
 
-require_once 'bridge/udb_base.inc.php';
+	// Switch that allows overriding the bridge manager with hard-coded values
+	define('USE_BRIDGEMGR', 1);
 
-class cpg_udb extends core_udb {
+    require_once 'bridge/udb_base.inc.php';
 
-	function cpg_udb()
-	{
-		global $BRIDGE, $CONFIG;
-		##################       DB       ################
-		global $cpg_db_mambo_inc;
-		$cpgdb =& cpgDB::getInstance();
-		$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
-		########################################
+    class cpg_udb extends core_udb {
 
-		if (!USE_BRIDGEMGR) {
+    	function cpg_udb()
+    	{
+    		global $BRIDGE;
+            ##################       DB       ################
+            global $CONFIG, $cpg_db_mambo_inc;
+            $cpgdb =& cpgDB::getInstance();
+            $cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+            ########################################
+    		
+    		if (!USE_BRIDGEMGR) {
 
-			$this->boardurl = 'http://localhost/mambo';
-			include('../mambo/configuration.php');
-			include('../mambo/includes/version.php');
+    			$this->boardurl = 'http://localhost/mambo';
+    			include('../mambo/configuration.php');
+    			include('../mambo/includes/version.php');
 
-		} else {
-			include($BRIDGE['relative_path_to_config_file'] . 'configuration.php');
-			include($BRIDGE['relative_path_to_config_file'] . 'includes/version.php');
-			$this->boardurl = $mosConfig_live_site;
-			$this->use_post_based_groups = $BRIDGE['use_post_based_groups'];
-		}
-		
-		$this->mambo_version = $_VERSION;
+    		} else {
+    			include($BRIDGE['relative_path_to_config_file'] . 'configuration.php');
+    			include($BRIDGE['relative_path_to_config_file'] . 'includes/version.php');
+    			$this->boardurl = $mosConfig_live_site;
+    			$this->use_post_based_groups = $BRIDGE['use_post_based_groups'];
+    		}
+    		
+    		$this->mambo_version = $_VERSION;
 
-        $this->multigroups = 0;
+            $this->multigroups = 0;
 
-		$this->group_overrride = !$this->use_post_based_groups;
+    		$this->group_overrride = !$this->use_post_based_groups;
 
-		// Database connection settings
-		$this->db = array(
-			'name' => $mosConfig_db,
-			'host' => $mosConfig_host ? $mosConfig_host : 'localhost',
-			'user' => $mosConfig_user,
-			'password' => $mosConfig_password,
-			'prefix' =>$mosConfig_dbprefix
-		);
-		
-		// Board table names
-		$this->table = array(
-			'users' => 'users',
-			'groups' => 'core_acl_aro_groups',
-			'sessions' => 'session'
-		);
-		// Derived full table names
-		/*$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
-		$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
-		$this->sessionstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['sessions'];*/
-		##########################################            DB          #######################################
-		$this->usertable = $cpgdb->getFullTableNames($this->db['name'], $this->db['prefix'], $this->table['users']);
-		$this->groupstable = $cpgdb->getFullTableNames($this->db['name'], $this->db['prefix'], $this->table['groups']);
-		$this->sessionstable = $cpgdb->getFullTableNames($this->db['name'], $this->db['prefix'], $this->table['sessions']);
-		##############################################################################################
-		
-		// Table field names
-		$this->field = array(
-			'username' => 'username', // name of 'username' field in users table
-			'user_id' => 'id', // name of 'id' field in users table
-			'password' => 'password', // name of 'password' field in users table
-			'email' => 'email', // name of 'email' field in users table
-			//'regdate' => 'UNIX_TIMESTAMP(registerDate)', // name of 'registered' field in users table
-			//'lastvisit' => 'UNIX_TIMESTAMP(lastvisitDate)', // last time user logged in
-			#####################        DB        ####################
-            'regdate' => 'user_regdate', // name of 'registered' field in users table
-            'lastvisit' => 'user_lastvisit', // last time user logged in
-			##################################################
-			'active' => '1-block', // is user account active?
-			'location' => "''", // name of 'location' field in users table
-			'website' => "''", // name of 'website' field in users table
-			'usertbl_group_id' => 'gid', // name of 'group id' field in users table
-			'grouptbl_group_id' => 'group_id', // name of 'group id' field in groups table
-			'grouptbl_group_name' => 'name' // name of 'group name' field in groups table
-		);
-		
-		// Pages to redirect to
-		$this->page = array(
-			'register' => '/index.php?option=com_registration&task=register',
-			'editusers' => '/administrator/index.php',
-			'edituserprofile' => '/index.php?option=com_user&task=UserDetails'
-		);
+    		// Database connection settings
+    		$this->db = array(
+    			'name' => $mosConfig_db,
+    			'host' => $mosConfig_host ? $mosConfig_host : 'localhost',
+    			'user' => $mosConfig_user,
+    			'password' => $mosConfig_password,
+    			'prefix' =>$mosConfig_dbprefix
+    		);
+    		
+    		// Board table names
+    		$this->table = array(
+    			'users' => 'users',
+    			'groups' => 'core_acl_aro_groups',
+    			'sessions' => 'session'
+    		);
 
-		// Group ids - admin and guest only.
-		$this->admingroups = array(24,25);
-		$this->guestgroup = $this->use_post_based_groups ? 1 : 3;
-		
-		// Connect to db
-		$this->connect();
-		
-		// Delete old sessions
-		$past = time()-$mosConfig_lifetime;
-		/*$sql = 'delete from '.$this->sessionstable.' where (time < '.$past.');';
-		cpg_db_query($sql, $this->link_id);	*/
-		########################        DB         ##########################
-		$this->cpgudb->query($cpg_db_mambo_inc['delete_old_sessions'], $this->sessionstable, $past);
-		###########################################################
-	}
+    		// Derived full table names
+    		/* $this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
+    		$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
+    		$this->sessionstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['sessions']; */
+            ##########################################            DB          #######################################
+            $this->usertable = $cpgdb->getFullTableNames($this->db['name'], $this->db['prefix'], $this->table['users']);
+            $this->groupstable = $cpgdb->getFullTableNames($this->db['name'], $this->db['prefix'], $this->table['groups']);
+            $this->sessionstable = $cpgdb->getFullTableNames($this->db['name'], $this->db['prefix'], $this->table['sessions']);
+            ##############################################################################################
+    		
+    		// Table field names
+    		$this->field = array(
+    			'username' => 'username', // name of 'username' field in users table
+    			'user_id' => 'id', // name of 'id' field in users table
+    			'password' => 'password', // name of 'password' field in users table
+    			'email' => 'email', // name of 'email' field in users table
+    			//'regdate' => 'UNIX_TIMESTAMP(registerDate)', // name of 'registered' field in users table
+    			//'lastvisit' => 'UNIX_TIMESTAMP(lastvisitDate)', // last time user logged in
+                #####################        DB        ####################
+                'regdate' => 'user_regdate', // name of 'registered' field in users table
+                'lastvisit' => 'user_lastvisit', // last time user logged in
+                ##################################################
+    			'active' => '1-block', // is user account active?
+    			'location' => "''", // name of 'location' field in users table
+    			'website' => "''", // name of 'website' field in users table
+    			'usertbl_group_id' => 'gid', // name of 'group id' field in users table
+    			'grouptbl_group_id' => 'group_id', // name of 'group id' field in groups table
+    			'grouptbl_group_name' => 'name' // name of 'group name' field in groups table
+    		);
+    		
+    		// Pages to redirect to
+    		$this->page = array(
+    			'register' => '/index.php?option=com_registration&task=register',
+    			'editusers' => '/administrator/index.php',
+    			'edituserprofile' => '/index.php?option=com_user&task=UserDetails'
+    		);
 
-	function session_update() {
-		/*$sql = 'update '.$this->sessionstable.' set time="'.time().'" '.
-		       'where session_id=md5("'.$this->session_id.'");';
-		$result = cpg_db_query($sql, $this->link_id);	*/
-		#########################             DB         ###########################
-		global $cpg_db_mambo_inc;
-		$this->cpgudb->query($cpg_db_mambo_inc['session_update'], $this->sessionstable, time(), md5($this->session_id));
-		###############################################################
-	}
-	
-	function collect_groups()
-	{
-		/*$sql ="SELECT * FROM {$this->groupstable}";
-	
-		$result = cpg_db_query($sql, $this->link_id);
-		
-		$udb_groups = array(1=>'Guests');
-			
-		while ($row = mysql_fetch_assoc($result))	*/
-		###############################      DB      ###############################
-		global $cpg_db_mambo_inc;
-		$this->cpgudb->query($cpg_db_mambo_inc['collect_groups'], $this->groupstable);
-		$udb_groups = array(1=>'Guests');
-		while ($row = $this->cpgudb->fetchRow())
-		#####################################################################
-		{
-			$udb_groups[$row[$this->field['grouptbl_group_id']]+100] = utf_ucfirst(utf_strtolower($row[$this->field['grouptbl_group_name']]));
-		}
-		
-		return $udb_groups;
-		
-	}
-	
-	// definition of how to extract an id and password hash from a cookie
-	function cookie_extraction()
-	{
-	    global $CONFIG, $raw_ip;
-		############       DB        ##########
-		global $cpg_db_mambo_inc;
-		##############################
-		$superCage = Inspekt::makeSuperCage();
+    		// Group ids - admin and guest only.
+    		$this->admingroups = array(24,25);
+    		$this->guestgroup = $this->use_post_based_groups ? 1 : 3;
+    		
+    		// Connect to db
+    		$this->connect();
+    		
+    		// Delete old sessions
+    		$past = time()-$mosConfig_lifetime;
+    		/* $sql = 'delete from '.$this->sessionstable.' where (time < '.$past.');';
+    		cpg_db_query($sql, $this->link_id); */
+            ########################        DB         ##########################
+            $this->cpgudb->query($cpg_db_mambo_inc['delete_old_sessions'], $this->sessionstable, $past);
+            ###########################################################
 
-		// Default anonymous values
-		$id = 0;
-		$pass = '';
-		$f = $this->field;
-		$mambo_version =& $this->mambo_version;
+    	}
 
-		//$sessioncookie = $_COOKIE['sessioncookie']; Using getRaw() for getting cookies.
-		$sessioncookie = $superCage->cookie->getRaw('sessioncookie');
-		
-        // 4.5.1 and 4.5.2 compatibility
-        if (($mambo_version->RELEASE == '4.5' && $mambo_version->DEV_LEVEL != '1.0.9') && $sessioncookie) {
-		    //$sessioncookie .= $_SERVER['REMOTE_ADDR'];
-			$sessioncookie .= $raw_ip;
-		}
+    	function session_update() {
+    		/* $sql = 'update '.$this->sessionstable.' set time="'.time().'" '.
+    		       'where session_id=md5("'.$this->session_id.'");';
+    		$result = cpg_db_query($sql, $this->link_id); */
+            #########################             DB         ###########################
+            global $cpg_db_mambo_inc;
+            $this->cpgudb->query($cpg_db_mambo_inc['session_update'], $this->sessionstable, time(), md5($this->session_id));
+            ###############################################################
+    	}
+    	
+    	function collect_groups()
+    	{
+    		/* $sql ="SELECT * FROM {$this->groupstable}";
+    	
+    		$result = cpg_db_query($sql, $this->link_id);
+    		
+    		$udb_groups = array(1=>'Guests');
+    			
+    		while ($row = mysql_fetch_assoc($result)) */
+            ###############################      DB      ###############################
+            global $cpg_db_mambo_inc;
+            $this->cpgudb->query($cpg_db_mambo_inc['collect_groups'], $this->groupstable);
+            $udb_groups = array(1=>'Guests');
+            while ($row = $this->cpgudb->fetchRow())
+            #####################################################################
+    		{
+    			$udb_groups[$row[$this->field['grouptbl_group_id']]+100] = utf_ucfirst(utf_strtolower($row[$this->field['grouptbl_group_name']]));
+    		}
+    		
+    		return $udb_groups;
+    		
+    	}
+    	
+    	// definition of how to extract an id and password hash from a cookie
+    	function cookie_extraction()
+    	{
+    	    global $CONFIG, $raw_ip;
+            ############       DB        ##########
+            global $cpg_db_mambo_inc;
+            ##############################
+    		$superCage = Inspekt::makeSuperCage();
 
-		//$usercookie = $_COOKIE['usercookie']; Using getRaw() for getting cookies.
-		$usercookie = $superCage->cookie->getRaw('usercookie');
-        $result = false;
+    		// Default anonymous values
+    		$id = 0;
+    		$pass = '';
+    		$f = $this->field;
+    		$mambo_version =& $this->mambo_version;
 
-        // Query database for session, if cookie exists
-        if ($sessioncookie) {
+    		//$sessioncookie = $_COOKIE['sessioncookie'];
+    		$sessioncookie = $superCage->cookie->getRaw('sessioncookie');
+    		
+            // 4.5.1 and 4.5.2 compatibility
+            if (($mambo_version->RELEASE == '4.5' && $mambo_version->DEV_LEVEL != '1.0.9') && $sessioncookie) {
+    		    //$sessioncookie .= $_SERVER['REMOTE_ADDR'];
+    			$sessioncookie .= $raw_ip;
+    		}
 
-            /*$sql =  'select userid from '.$this->sessionstable.' where session_id=md5("'.$sessioncookie.'");';
-            $result = cpg_db_query($sql, $this->link_id);	*/
-			########################          DB         ########################
-			$this->cpgudb->query($cpg_db_mambo_inc['check_session_cookie'], $this->sessionstable, md5($sessioncookie));
-			$rowset = $this->cpgudb->fetchRowSet();
-			##########################################################
-        }
+    		//$usercookie = $_COOKIE['usercookie'];
+    		$usercookie = $superCage->cookie->getRaw('usercookie');
+            $result = false;
 
-        /*// If session exists, check if user exists
-        if (mysql_num_rows($result)) {
+            // Query database for session, if cookie exists
+            if ($sessioncookie) {
 
-            $row = mysql_fetch_assoc($result);
-            mysql_free_result($result);
+                /* $sql =  'select userid from '.$this->sessionstable.' where session_id=md5("'.$sessioncookie.'");';
+                $result = cpg_db_query($sql, $this->link_id); */
+                ########################          DB         ########################
+                $this->cpgudb->query($cpg_db_mambo_inc['check_session_cookie'], $this->sessionstable, md5($sessioncookie));
+                $rowset = $this->cpgudb->fetchRowSet();
+                ##########################################################
+            }
 
-            $row['userid'] = (int) $row['userid'];
+            // If session exists, check if user exists
+            /*if (mysql_num_rows($result)) {
 
-            $sql =  'select id, password ';
-            $sql .= 'from '.$this->usertable.' ';
-            $sql .= 'where id='.$row['userid'];
-
-            $result = cpg_db_query($sql, $this->link_id);
-
-            // If user exists, use the current session
-            if ($result) {
                 $row = mysql_fetch_assoc($result);
                 mysql_free_result($result);
 
-                $pass = $row['password'];
-                $id = (int) $row['id'];
-                $this->session_id = $sessioncookie;
+                $row['userid'] = (int) $row['userid'];
 
-            // If the user doesn't exist, use default guest credentials
+                $sql =  'select id, password ';
+                $sql .= 'from '.$this->usertable.' ';
+                $sql .= 'where id='.$row['userid'];
+
+                $result = cpg_db_query($sql, $this->link_id);
+
+                // If user exists, use the current session
+                if ($result) {
+                    $row = mysql_fetch_assoc($result);
+                    mysql_free_result($result);
+
+                    $pass = $row['password'];
+                    $id = (int) $row['id'];
+                    $this->session_id = $sessioncookie;
+
+                // If the user doesn't exist, use default guest credentials
+                } */
+                ########################          DB         ########################
+                // If session exists, check if user exists
+                if (count($rowset)) {
+                    $row = $rowset[0];
+                    $this->cpgudb->free();
+
+                    $row['userid'] = (int) $row['userid'];
+
+                    $result = $this->cpgudb->query($cpg_db_mambo_inc['session_exists_check_user'], $this->usertable, $row['userid']);
+
+                    // If user exists, use the current session
+                    if ($result) {
+                        $row = $this->cpgudb->fetchRow();
+                        $this->cpgudb->free();
+
+                        $pass = $row['password'];
+                        $id = (int) $row['id'];
+                        $this->session_id = $sessioncookie;
+
+                       // If the user doesn't exist, use default guest credentials
+                    }
+                    // No session exists, so create a session and check for remember me cookie
+                ##########################################################
+
+            // No session exists, so create a session and check for remember me cookie
+            } else {
+
+    			$this->create_session();
+
+    			// remember me cookie exists; login with user creditials
+                if ($usercookie) {
+                    $username = (isset($usercookie['username'])) ? addslashes($usercookie['username']) : '';
+    				$password = (isset($usercookie['password'])) ? addslashes($usercookie['password']) : '';
+
+    				// Grab id from Mambo database, if a cookie exists
+    				if ($username) {
+    					/* $sql =  'select u.'.$f['user_id'].' as id, u.'.$f['password'].' as password, u.'.
+    					        $f['username'].' as username, u.'.$f['usertbl_group_id'].' as usertbl_group_id, '.
+    							'g.'.$f['grouptbl_group_id'].' as grouptbl_group_id, g.'.$f['grouptbl_group_name'].' as grouptbl_group_name ';
+    					$sql .= 'from '.$this->usertable.' as u ';
+    					$sql .= 'inner join '.$this->groupstable.' as g ';
+    					$sql .= 'on gid=group_id ';
+    					$sql .= 'where u.'.$f['username'].'="'.$username.'" and u.'.$f['password'].'="'.$password.'" and u.block=0;';
+
+    					$result = cpg_db_query($sql, $this->link_id); */
+                        ########################          DB         ########################
+                        $result = $this->cpgudb->query($cpg_db_mambo_inc['get_id_from_mambo'], $f['user_id'], $f['password'], 
+                                    $f['username'], $f['usertbl_group_id'], $f['grouptbl_group_id'], $f['grouptbl_group_name'], $this->usertable, 
+                                    $this->groupstable, $username, $password);
+                        ##########################################################
+    					
+    					// the user exists; finalize login procedures
+    					if ($result) {
+    					
+    						/*$row = mysql_fetch_assoc($result);
+    						mysql_free_result($result); */
+                            ########################          DB         ########################
+                            $row = $this->cpgudb->fetchRow();
+                            $this->cpgudb->free();
+                            ##########################################################
+
+    						$gid = 1;
+    						
+    						if ($this->is_group_child_of($row['grouptbl_group_name'],'Registered') ||
+    							$this->is_group_child_of($row['grouptbl_group_name'],'Administrator')) {
+    							
+    							$gid = 2;
+    						}
+    						
+    						// update session information in session table
+    						/* $sql =  'update '.$this->sessionstable.' set '.
+    								'userid='.$row['id'].
+    								',username="'.$row['username'].'"'.
+    								',guest=0 '.
+    								',gid='.$gid.' '.
+    								',usertype="'.$row['grouptbl_group_name'].'" '.
+    								'where session_id=md5("'.$this->session_id.'");';
+    						
+    						cpg_db_query($sql, $this->link_id);
+    						
+    						// update last visit date
+    						$currentDate = date("Y-m-d\TH:i:s");
+    						$sql = 'update '.$this->usertable.' set '.
+    							   'lastvisitDate="'.$currentDate.'" '.
+    							   'where id='.$row['id'];
+    						
+    						cpg_db_query($sql, $this->link_id); */
+                            ########################          DB         ########################
+                            // update session information in session table
+                            $this->cpgudb->query($cpg_db_mambo_inc['update_session_info'], $this->sessionstable, $row['id'], 
+                            $row['username'], $gid, $row['grouptbl_group_name'], md5($this->session_id));
+
+                            // update last visit date
+                            $currentDate = date("Y-m-d\TH:i:s");
+                            $this->cpgudb->query($cpg_db_mambo_inc['update_lastvisit'], $this->usertable, $currentDate, $row['id']);
+                            ##########################################################
+    						
+    						$pass = $password;
+    						$id = $row['id'];
+    					}
+    				}
+                }
             }
-		}	*/
-		########################          DB         ########################
-        // If session exists, check if user exists
-        if (count($rowset)) {
-            $row = $rowset[0];
-            $this->cpgudb->free();
 
-            $row['userid'] = (int) $row['userid'];
+    		return ($id) ? array($id, $pass) : false;
+    	}
 
-			$result = $this->cpgudb->query($cpg_db_mambo_inc['session_exists_check_user'], $this->usertable, $row['userid']);
+        function login( $username = null, $password = null ) {
+            #############        DB     ############
+            global $cpg_db_mambo_inc;
+            ################################
 
-            // If user exists, use the current session
-            if ($result) {
-                $row = $this->cpgudb->fetchRow();
+    		$this->create_session();
+
+            if ( is_null($username) || is_null($password) ) {
+                return false;
+            }
+
+    		// Grab id from Mambo database, if a cookie exists
+    		if ($username) {
+    			/* $sql =  'select u.'.$f['user_id'].' as id, u.'.$f['password'].' as password, u.'.
+    					$f['username'].' as username, u.'.$f['usertbl_group_id'].' as usertbl_group_id, '.
+    					'g.'.$f['grouptbl_group_id'].' as grouptbl_group_id, g.'.$f['grouptbl_group_name'].' as grouptbl_group_name ';
+    			$sql .= 'from '.$this->usertable.' as u ';
+    			$sql .= 'inner join '.$this->groupstable.' as g ';
+    			$sql .= 'on gid=group_id ';
+    			$sql .= 'where u.'.$f['username'].'="'.$username.'" and u.'.$f['password'].'="'.$password.'" and u.block=0;';
+
+    			$result = cpg_db_query($sql, $this->link_id); */
+                #####################################          DB          ####################################
+                $result = $this->cpgudb->query($cpg_db_mambo_inc['get_ID_from_mambo'], $f['user_id'], $f['password'], $f['username'], 
+                                $f['usertbl_group_id'], $f['grouptbl_group_id'], $f['grouptbl_group_name'], $this->usertable, 
+                                $this->groupstable, $username, $password);
+                #######################################################################################
+    					
+    			// the user exists; finalize login procedures
+    			if ($result) {
+    					
+    				/* $row = mysql_fetch_assoc($result);
+    				mysql_free_result($result); */
+                    ########################          DB         ########################
+                    $row = $this->cpgudb->fetchRow();
+                    $this->cpgudb->free();
+                    ##########################################################
+
+    				$gid = 1;
+    						
+    				if ($this->is_group_child_of($row['grouptbl_group_name'],'Registered') ||
+    					$this->is_group_child_of($row['grouptbl_group_name'],'Administrator')) {
+    							
+    					$gid = 2;
+    				}
+    						
+    				// update session information in session table
+    				/* $sql =  'update '.$this->sessionstable.' set '.
+    						'userid='.$row['id'].
+    						',username="'.$row['username'].'"'.
+    						',guest=0 '.
+    						',gid='.$gid.' '.
+    						',usertype="'.$row['grouptbl_group_name'].'" '.
+    						'where session_id=md5("'.$this->session_id.'");';
+    						
+    				cpg_db_query($sql, $this->link_id);
+    						
+    				// update last visit date
+    				$currentDate = date("Y-m-d\TH:i:s");
+    				$sql = 'update '.$this->usertable.' set '.
+    					   'lastvisitDate="'.$currentDate.'" '.
+    					   'where id='.$row['id'];
+    						
+    				cpg_db_query($sql, $this->link_id); */
+                    ###############################          DB          ################################
+                    // update session information in session table
+                    $this->cpgudb->query($cpg_db_mambo_inc['update_session_info'], $this->sessionstable, $row['id'], $row['username'], 
+                    $gid, $row['grouptbl_group_name'], md5($session_id));
+                    // update last visit date
+                    $this->cpgudb->query($cpg_db_mambo_inc['update_lastvisit'], $this->usertable, $currentdate, $row['id']);
+                    ############################################################################
+    						
+    				$pass = $password;
+    				$id = $row['id'];
+    			}
+    		}
+        }
+
+    	/** create a guest session */
+    	function create_session() {
+    		global $raw_ip;
+            ##############     Db    ##############
+            global $cpg_db_mambo_inc;
+            ##################################
+    	    // alias the Mambo version object
+    	    $mambo_version =& $this->mambo_version;
+
+    		// start session
+            $this->session_id = $this->generateId();
+            $sessioncookie = $this->session_id;
+
+            // 4.5.1 and 4.5.2 compatibility
+            if ($mambo_version->RELEASE == '4.5' && $mambo_version->DEV_LEVEL != '1.0.9') {
+    		    //$this->session_id .= $_SERVER['REMOTE_ADDR'];
+    			$this->session_id .= $raw_ip;
+    		}
+
+            /*$sql =  'insert into '.$this->sessionstable.' (session_id, username, guest, time, gid) values ';
+            $sql .= '("'.md5($this->session_id).'", "", 1, "'.time().'",0)';
+
+    		// insert the guest session
+            cpg_db_query($sql); */
+            ############################################
+            $this->cpgudb->query($cpg_db_mambo_inc['create_session'], $this->sessionstable, md5($this->session_id, time()));
+            #####################################################
+
+    		// set the session cookie
+            setcookie( "sessioncookie", $sessioncookie, time() + 43200, "/" );
+    	}
+
+    	/** taken from Mambo session class */
+    	function generateId() {
+             ###########      Db    ############
+             global $cpg_db_mambo_inc;
+             ############################
+    		$failsafe = 20;
+    		$randnum = 0;
+    		while ($failsafe--) {
+    			$randnum = md5( uniqid( microtime(), 1 ) );
+    			if ($randnum != "") {
+    				/*$sql = "SELECT session_id FROM {$this->sessionstable} WHERE session_id=MD5('$randnum')";
+    				if (!$result = cpg_db_query($sql, $this->link_id)) {
+    					break;
+    				} */
+                    #############################      DB     ###############################
+                    $result = $this->cpgudb->query($cpg_db_mambo_inc['generate_id'], $this->sessionstable, MD5($randnum));
+                    if($result) {
+                        break;
+                    }
+                    ###################################################################
+    			}
+    		}
+    		return $randnum;
+    	}
+
+    	/** taken from Mambo acl api class */
+    	/*======================================================================*\
+    		Function:	has_group_parent
+    		Purpose:	Checks whether the 'source' group is a child of the 'target'
+    	\*======================================================================*/
+    	function is_group_child_of( $grp_src, $grp_tgt, $group_type='ARO' ) {
+            #############     DB     ############
+            global $cpg_db_mambo_inc;
+            ###############################
+    		
+    		$table = &$this->groupstable;
+
+    		/*if (is_int( $grp_src ) && is_int($grp_tgt)) {
+    			$sql = "SELECT COUNT(*)".
+    				  "\nFROM $table AS g1".
+    				  "\nLEFT JOIN $table AS g2 ON g1.lft > g2.lft AND g1.lft < g2.rgt".
+    				  "\nWHERE g1.group_id=$grp_src AND g2.group_id=$grp_tgt";
+    		} else if (is_string( $grp_src ) && is_string($grp_tgt)) {
+    			$sql = "SELECT COUNT(*)".
+    				  "\nFROM $table AS g1".
+    				  "\nLEFT JOIN $table AS g2 ON g1.lft > g2.lft AND g1.lft < g2.rgt".
+    				  "\nWHERE g1.name='$grp_src' AND g2.name='$grp_tgt'";
+    		} else if (is_int( $grp_src ) && is_string($grp_tgt)) {
+    			$sql = "SELECT COUNT(*)".
+    				  "\nFROM $table AS g1".
+    				  "\nLEFT JOIN $table AS g2 ON g1.lft > g2.lft AND g1.lft < g2.rgt".
+    				  "\nWHERE g1.group_id='$grp_src' AND g2.name='$grp_tgt'";
+    		} else {
+    			$sql = "SELECT COUNT(*)".
+    				  "\nFROM $table AS g1".
+    				  "\nLEFT JOIN $table AS g2 ON g1.lft > g2.lft AND g1.lft < g2.rgt".
+    				  "\nWHERE g1.name=$grp_src AND g2.group_id='$grp_tgt'";
+    		}
+    		
+    		$result = cpg_db_query($sql, $this->link_id);
+    		$count = mysql_num_rows($result);
+    		if ($count) {
+    			mysql_free_result($result);
+    		} */
+            ############################################          DB         #######################################
+            if (is_int( $grp_src ) && is_int($grp_tgt)) {
+                $this->cpgudb->query($cpg_db_mambo_inc['int_src_int_tgt'], $table, $grp_src, grp_tgt);
+            } else if (is_string( $grp_src ) && is_string($grp_tgt)) {
+                $this->cpgudb->query($cpg_db_mambo_inc['str_src_str_tgt'], $table, $grp_src, grp_tgt);
+            } else if (is_int( $grp_src ) && is_string($grp_tgt)) {
+                $this->cpgudb->query($cpg_db_mambo_inc['int_src_str_tgt'], $table, $grp_src, grp_tgt);
+            } else {
+                $this->cpgudb->query($cpg_db_mambo_inc['src_tgt_else'], $table, $grp_src, grp_tgt);
+            }
+
+            $rowset = $this->cpgudb->fetchRowSet();
+            $count = count($rowset);
+            if ($count) {
                 $this->cpgudb->free();
-
-                $pass = $row['password'];
-                $id = (int) $row['id'];
-                $this->session_id = $sessioncookie;
-
-            // If the user doesn't exist, use default guest credentials
             }
-		}	// No session exists, so create a session and check for remember me cookie
-		##########################################################
-         else {		
-			$this->create_session();
+            #############################################################################################
+    		
+    		return ($count > 0);
+    	}
 
-			// remember me cookie exists; login with user creditials
-            if ($usercookie) {
-                $username = (isset($usercookie['username'])) ? addslashes($usercookie['username']) : '';
-				$password = (isset($usercookie['password'])) ? addslashes($usercookie['password']) : '';
+    	// definition of actions required to convert a password from user database form to cookie form
+    	function udb_hash_db($password)
+    	{
+    		return $password; // unused
+    	}
+    	
+    	function login_page()
+    	{
+    		$this->redirect("/index.php");
+    	}
 
-				// Grab id from Mambo database, if a cookie exists
-				if ($username) {
-					/*$sql =  'select u.'.$f['user_id'].' as id, u.'.$f['password'].' as password, u.'.
-					        $f['username'].' as username, u.'.$f['usertbl_group_id'].' as usertbl_group_id, '.
-							'g.'.$f['grouptbl_group_id'].' as grouptbl_group_id, g.'.$f['grouptbl_group_name'].' as grouptbl_group_name ';
-					$sql .= 'from '.$this->usertable.' as u ';
-					$sql .= 'inner join '.$this->groupstable.' as g ';
-					$sql .= 'on gid=group_id ';
-					$sql .= 'where u.'.$f['username'].'="'.$username.'" and u.'.$f['password'].'="'.$password.'" and u.block=0;';
+    	function logout_page()
+    	{
+    		global $CONFIG;
+            $this->redirect("/index.php?option=logout");
+    	}
+    	
+    	function edit_profile() {
+    		$this->redirect("/index.php?option=com_user&task=UserDetails&Itemid=21");
+    	}
 
-					$result = cpg_db_query($sql, $this->link_id);	*/
-					########################          DB         ########################
-					$result = $this->cpgudb->query($cpg_db_mambo_inc['get_id_from_mambo'], $f['user_id'], $f['password'], 
-							$f['username'], $f['usertbl_group_id'], $f['grouptbl_group_id'], $f['grouptbl_group_name'], $this->usertable, 
-							$this->groupstable, $username, $password);
-					##########################################################
-					
-					// the user exists; finalize login procedures
-					if ($result) {
-					
-						/*$row = mysql_fetch_assoc($result);
-						mysql_free_result($result);	*/
-						########################          DB         ########################
-						$row = $this->cpgudb->fetchRow();
-						$this->cpgudb->free();
-						##########################################################
-
-						$gid = 1;
-						
-						if ($this->is_group_child_of($row['grouptbl_group_name'],'Registered') ||
-							$this->is_group_child_of($row['grouptbl_group_name'],'Administrator')) {
-							
-							$gid = 2;
-						}
-						
-						/*// update session information in session table
-						$sql =  'update '.$this->sessionstable.' set '.
-								'userid='.$row['id'].
-								',username="'.$row['username'].'"'.
-								',guest=0 '.
-								',gid='.$gid.' '.
-								',usertype="'.$row['grouptbl_group_name'].'" '.
-								'where session_id=md5("'.$this->session_id.'");';
-						
-						cpg_db_query($sql, $this->link_id);
-						
-						// update last visit date
-						$currentDate = date("Y-m-d\TH:i:s");
-						$sql = 'update '.$this->usertable.' set '.
-							   'lastvisitDate="'.$currentDate.'" '.
-							   'where id='.$row['id'];
-						
-						cpg_db_query($sql, $this->link_id);	*/
-						########################          DB         ########################
-						// update session information in session table
-						$this->cpgudb->query($cpg_db_mambo_inc['update_session_info'], $this->sessionstable, $row['id'], 
-								$row['username'], $gid, $row['grouptbl_group_name'], md5($this->session_id));
-						
-						// update last visit date
-						$currentDate = date("Y-m-d\TH:i:s");
-						$this->cpgudb->query($cpg_db_mambo_inc['update_lastvisit'], $this->usertable, $currentDate, $row['id']);
-						##########################################################
-						
-						$pass = $password;
-						$id = $row['id'];
-					}
-				}
-            }
-        }
-
-		return ($id) ? array($id, $pass) : false;
-	}
-
-    function login( $username = null, $password = null ) {
-		#############        DB     ############
-		global $cpg_db_mambo_inc;
-		################################
-
-		$this->create_session();
-
-        if ( is_null($username) || is_null($password) ) {
-            return false;
-        }
-
-		// Grab id from Mambo database, if a cookie exists
-		if ($username) {
-			/*$sql =  'select u.'.$f['user_id'].' as id, u.'.$f['password'].' as password, u.'.
-					$f['username'].' as username, u.'.$f['usertbl_group_id'].' as usertbl_group_id, '.
-					'g.'.$f['grouptbl_group_id'].' as grouptbl_group_id, g.'.$f['grouptbl_group_name'].' as grouptbl_group_name ';
-			$sql .= 'from '.$this->usertable.' as u ';
-			$sql .= 'inner join '.$this->groupstable.' as g ';
-			$sql .= 'on gid=group_id ';
-			$sql .= 'where u.'.$f['username'].'="'.$username.'" and u.'.$f['password'].'="'.$password.'" and u.block=0;';
-
-			$result = cpg_db_query($sql, $this->link_id);	*/
-			#####################################		DB		####################################
-			$result = $this->cpgudb->query($cpg_db_mambo_inc['get_ID_from_mambo'], $f['user_id'], $f['password'], $f['username'], 
-							$f['usertbl_group_id'], $f['grouptbl_group_id'], $f['grouptbl_group_name'], $this->usertable, 
-							$this->groupstable, $username, $password);
-			#######################################################################################
-					
-			// the user exists; finalize login procedures
-			if ($result) {
-					
-				/*$row = mysql_fetch_assoc($result);
-				mysql_free_result($result);	*/
-				########################          DB         ########################
-				$row = $this->cpgudb->fetchRow();
-				$this->cpgudb->free();
-				##########################################################
-
-				$gid = 1;
-						
-				if ($this->is_group_child_of($row['grouptbl_group_name'],'Registered') ||
-					$this->is_group_child_of($row['grouptbl_group_name'],'Administrator')) {
-							
-					$gid = 2;
-				}
-						
-				/*// update session information in session table
-				$sql =  'update '.$this->sessionstable.' set '.
-						'userid='.$row['id'].
-						',username="'.$row['username'].'"'.
-						',guest=0 '.
-						',gid='.$gid.' '.
-						',usertype="'.$row['grouptbl_group_name'].'" '.
-						'where session_id=md5("'.$this->session_id.'");';
-						
-				cpg_db_query($sql, $this->link_id);
-						
-				// update last visit date
-				$currentDate = date("Y-m-d\TH:i:s");
-				$sql = 'update '.$this->usertable.' set '.
-					   'lastvisitDate="'.$currentDate.'" '.
-					   'where id='.$row['id'];
-						
-				cpg_db_query($sql, $this->link_id);	*/
-				###############################		DB		################################
-				// update session information in session table
-				$this->cpgudb->query($cpg_db_mambo_inc['update_session_info'], $this->sessionstable, $row['id'], $row['username'], 
-							$gid, $row['grouptbl_group_name'], md5($session_id));
-				// update last visit date
-				$this->cpgudb->query($cpg_db_mambo_inc['update_lastvisit'], $this->usertable, $currentdate, $row['id']);
-				############################################################################
-						
-				$pass = $password;
-				$id = $row['id'];
-			}
-		}
+    	function view_users() {}
+    	function view_profile() {}
+    	function session_extraction($cookie_id)	{}
     }
 
-	/** create a guest session */
-	function create_session() {
-		global $raw_ip;
-		##############     Db    ##############
-		global $cpg_db_mambo_inc;
-		##################################
-	    // alias the Mambo version object
-	    $mambo_version =& $this->mambo_version;
-
-		// start session
-        $this->session_id = $this->generateId();
-        $sessioncookie = $this->session_id;
-
-        // 4.5.1 and 4.5.2 compatibility
-        if ($mambo_version->RELEASE == '4.5' && $mambo_version->DEV_LEVEL != '1.0.9') {
-		    //$this->session_id .= $_SERVER['REMOTE_ADDR'];
-			$this->session_id .= $raw_ip;
-		}
-
-        $sql =  'insert into '.$this->sessionstable.' (session_id, username, guest, time, gid) values ';
-        $sql .= '("'.md5($this->session_id).'", "", 1, "'.time().'",0)';
-
-		// insert the guest session
-        cpg_db_query($sql);	# $this->link_id ?
-		############################################
-		$this->cpgudb->query($cpg_db_mambo_inc['create_session'], $this->sessionstable, md5($this->session_id, time()));
-		#####################################################
-
-		// set the session cookie
-        setcookie( "sessioncookie", $sessioncookie, time() + 43200, "/" );
-	}
-
-	/** taken from Mambo session class */
-	function generateId() {
-		###########      Db    ############
-		global $cpg_db_mambo_inc;
-		############################
-		$failsafe = 20;
-		$randnum = 0;
-		while ($failsafe--) {
-			$randnum = md5( uniqid( microtime(), 1 ) );
-			if ($randnum != "") {
-				/*$sql = "SELECT session_id FROM {$this->sessionstable} WHERE session_id=MD5('$randnum')";
-				if (!$result = cpg_db_query($sql, $this->link_id)) {
-					break;
-				}	*/
-				#############################      DB     ###############################
-				$result = $this->cpgudb->query($cpg_db_mambo_inc['generate_id'], $this->sessionstable, MD5($randnum));
-				if($result) {
-					break;
-				}
-				###################################################################
-			}
-		}
-		return $randnum;
-	}
-
-	/** taken from Mambo acl api class */
-	/*======================================================================*\
-		Function:	has_group_parent
-		Purpose:	Checks whether the 'source' group is a child of the 'target'
-	\*======================================================================*/
-	function is_group_child_of( $grp_src, $grp_tgt, $group_type='ARO' ) {
-		#############     DB     ############
-		global $cpg_db_mambo_inc;
-		###############################
-		$table = &$this->groupstable;
-
-		/*if (is_int( $grp_src ) && is_int($grp_tgt)) {
-			$sql = "SELECT COUNT(*)".
-				  "\nFROM $table AS g1".
-				  "\nLEFT JOIN $table AS g2 ON g1.lft > g2.lft AND g1.lft < g2.rgt".
-				  "\nWHERE g1.group_id=$grp_src AND g2.group_id=$grp_tgt";
-		} else if (is_string( $grp_src ) && is_string($grp_tgt)) {
-			$sql = "SELECT COUNT(*)".
-				  "\nFROM $table AS g1".
-				  "\nLEFT JOIN $table AS g2 ON g1.lft > g2.lft AND g1.lft < g2.rgt".
-				  "\nWHERE g1.name='$grp_src' AND g2.name='$grp_tgt'";
-		} else if (is_int( $grp_src ) && is_string($grp_tgt)) {
-			$sql = "SELECT COUNT(*)".
-				  "\nFROM $table AS g1".
-				  "\nLEFT JOIN $table AS g2 ON g1.lft > g2.lft AND g1.lft < g2.rgt".
-				  "\nWHERE g1.group_id='$grp_src' AND g2.name='$grp_tgt'";
-		} else {
-			$sql = "SELECT COUNT(*)".
-				  "\nFROM $table AS g1".
-				  "\nLEFT JOIN $table AS g2 ON g1.lft > g2.lft AND g1.lft < g2.rgt".
-				  "\nWHERE g1.name=$grp_src AND g2.group_id='$grp_tgt'";
-		}
-		
-		$result = cpg_db_query($sql, $this->link_id);
-		$count = mysql_num_rows($result);
-		if ($count) {
-			mysql_free_result($result);
-		}	*/
-		############################################          DB         #######################################
-		if (is_int( $grp_src ) && is_int($grp_tgt)) {
-			$this->cpgudb->query($cpg_db_mambo_inc['int_src_int_tgt'], $table, $grp_src, grp_tgt);
-		} else if (is_string( $grp_src ) && is_string($grp_tgt)) {
-			$this->cpgudb->query($cpg_db_mambo_inc['str_src_str_tgt'], $table, $grp_src, grp_tgt);
-		} else if (is_int( $grp_src ) && is_string($grp_tgt)) {
-			$this->cpgudb->query($cpg_db_mambo_inc['int_src_str_tgt'], $table, $grp_src, grp_tgt);
-		} else {
-			$this->cpgudb->query($cpg_db_mambo_inc['src_tgt_else'], $table, $grp_src, grp_tgt);
-		}
-		
-		$rowset = $this->cpgudb->fetchRowSet();
-		$count = count($rowset);
-		if ($count) {
-			$this->cpgudb->free();
-		}
-		
-		#############################################################################################
-		return ($count > 0);
-	}
-
-	// definition of actions required to convert a password from user database form to cookie form
-	function udb_hash_db($password)
-	{
-		return $password; // unused
-	}
-	
-	function login_page()
-	{
-		$this->redirect("/index.php");
-	}
-
-	function logout_page()
-	{
-		global $CONFIG;
-        $this->redirect("/index.php?option=logout");
-	}
-	
-	function edit_profile() {
-		$this->redirect("/index.php?option=com_user&task=UserDetails&Itemid=21");
-	}
-
-	function view_users() {}
-	function view_profile() {}
-	function session_extraction($cookie_id)	{}
+    // and go !
+    $cpg_udb = new cpg_udb;
 }
-
-// and go !
-$cpg_udb = new cpg_udb;
 ?>

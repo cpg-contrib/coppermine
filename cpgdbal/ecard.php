@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4578 $
-  $LastChangedBy: nibbler999 $
-  $Date: 2008-06-16 01:29:16 +0530 (Mon, 16 Jun 2008) $
+  $Revision: 4981 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-09-01 13:37:08 +0530 (Mon, 01 Sep 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -290,7 +290,7 @@ starttable("100%", $lang_ecard_php['title'], 3);
 
 echo <<<EOT
         <tr>
-                <td class="tableh2" colspan="2"><b>{$lang_ecard_php['from']}</b></td>
+                <td class="tableh2" colspan="2"><strong>{$lang_ecard_php['from']}</strong></td>
                 <td rowspan="6" align="center" valign="top" class="tableb">
                         <a href="displayimage.php?pid=$pid">
 EOT;
@@ -329,7 +329,7 @@ echo <<<EOT
                 </td>
         </tr>
         <tr>
-                <td class="tableh2" colspan="2"><b>{$lang_ecard_php['to']}</b></td>
+                <td class="tableh2" colspan="2"><strong>{$lang_ecard_php['to']}</strong></td>
         </tr>
         <tr>
                 <td class="tableb" valign="top" width="40%">
@@ -349,7 +349,7 @@ echo <<<EOT
                 </td>
         </tr>
         <tr>
-                <td class="tableh2" colspan="3"><b>{$lang_ecard_php['greetings']}</b></td>
+                <td class="tableh2" colspan="3"><strong>{$lang_ecard_php['greetings']}</strong></td>
         </tr>
         <tr>
                 <td class="tableb" colspan="3">
@@ -357,7 +357,7 @@ echo <<<EOT
                 </td>
         </tr>
         <tr>
-                <td class="tableh2" colspan="3"><b>{$lang_ecard_php['message']}$captionLabel</b></td>
+                <td class="tableh2" colspan="3"><strong>{$lang_ecard_php['message']}$captionLabel</strong></td>
         </tr>
         <tr>
                 <td class="tableb" colspan="3" valign="top"><br />

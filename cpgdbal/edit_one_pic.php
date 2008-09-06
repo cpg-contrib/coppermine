@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4417 $
+  $Revision: 4981 $
   $LastChangedBy: gaugau $
-  $Date: 2008-04-30 03:26:17 +0530 (Wed, 30 Apr 2008) $
+  $Date: 2008-09-01 13:37:08 +0530 (Mon, 01 Sep 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -369,7 +369,7 @@ if (defined('UPLOAD_APPROVAL_MODE')) {
 print <<<EOT
         <tr>
                         <td class="tableh2" colspan="3">
-                                <b>$filename</b>
+                                <strong>$filename</strong>
                                 &nbsp;&nbsp;-&nbsp;&nbsp;<a href="modifyalb.php?album={$CURRENT_PIC['aid']}" class="admin_menu">{$lang_editpics_php['album_properties']}</a>&nbsp;&nbsp;-&nbsp;&nbsp;
                         <a href="thumbnails.php?album={$CURRENT_PIC['aid']}" class="admin_menu">{$lang_editpics_php['thumbnail_view']}</a>
                         </td>

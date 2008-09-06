@@ -10,9 +10,9 @@ as published by the Free Software Foundation.
 ********************************************
 Coppermine version: 1.5.0
 $Source$
-$Revision: 4958 $
-$Author: gaugau $
-$Date: 2008-08-30 00:20:53 +0530 (Sat, 30 Aug 2008) $
+$Revision: 4995 $
+$Author: abbas-ali $
+$Date: 2008-09-04 15:50:08 +0530 (Thu, 04 Sep 2008) $
 *********************************************
 Changelog
 =========
@@ -25,6 +25,11 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-09-04 [M] Updated the jquery to version 1.2.6 and also included it in init.inc.php so that it is available on all pages {Abbas}
+2008-09-04 [O] Turned social bookmark script into jquery bookmark plugin {GauGau}
+2008-09-01 [C] Replaced deprecated tag <b> with recommended tag <strong> {GauGau}
+2008-08-31 [O] Removed option to allow different users sharing one email address {GauGau}
+2008-08-30 [D] Added documentation for new hooks (after_delete_file, before_delete_file and add_file_data_success) {Abbas}
 2008-08-29 [O] Removed configurability of thumbnail and intermediate image prefix as per poll ID 54324 {GauGau}
 2008-08-29 [O] Removed vanity option from config as per poll id 54323 - users who want to show the vanity block just need to add the {VANITY} token to their custom theme {GauGau}
 2008-08-28 [C] Added CSS class for filmstrip background {GauGau}

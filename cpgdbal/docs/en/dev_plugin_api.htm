@@ -13,9 +13,9 @@
   SVN version info:
 
   Coppermine version: 1.5.0
-  $Revision: 4526 $
+  $Revision: 4981 $
   $LastChangedBy: gaugau $
-  $Date: 2008-06-10 20:08:27 +0530 (Tue, 10 Jun 2008) $
+  $Date: 2008-09-01 13:37:08 +0530 (Mon, 01 Sep 2008) $
 -->
 <link rel="stylesheet" type="text/css" href="../style.css" media="all" />
 <link rel="stylesheet" type="text/css" href="../screen.css" media="screen" />
@@ -230,7 +230,7 @@ function hello_world_header($html) {
     return $html;
 }
 
-<b>// Install the plugin
+<strong>// Install the plugin
 function hello_world_install() {
     $superCage = Inspekt::makeSuperCage();
     $submit_code = '';
@@ -270,7 +270,7 @@ function hello_world_configure($action_code) {
             &lt;/form&gt;
 EOT;
     }
-}</b>
+}</strong>
 ?&gt;</pre>
 
 <p>Install this new plugin and give it a whirl.  You can use the plugin package linked above, or you can edit the plugin code yourself if you want to get your hands dirty.  It's certainly recommended for you to play with and modify each tutorial plugin to see how things work, and typing in the new code each time may be a useful exercise.  If you have shell access to your web server, you could modify the plugin code directly, in fact you could modify the plugin code while the plugin is installed because the code is loaded on each page load and so the new code would be available immediately.  However, it is not recommended to do this with a "live" website since you may break things in modifying the plugin code directly.  You should set up a system for working on your plugin, ideally on a test installation, but it could also be done by including an administration check for each operational feature of your plugin so only you the admin would see the effect of the plugin in progress.  Or you could set your site offline (in the Coppermine configuration) during this maintenance/upgrade work.  The test installation is clearly the most versatile option, as long as you include enough test content there to simulate the real website and test out your plugin thoroughly.</p>
@@ -397,7 +397,7 @@ exit(0);</pre>
 
 <script type="text/javascript">
   cpgDocFooter();
-  dateRevision(' $LastChangedDate: 2008-06-10 20:08:27 +0530 (Tue, 10 Jun 2008) $ ', ' $Revision: 4526 $ ');
+  dateRevision(' $LastChangedDate: 2008-09-01 13:37:08 +0530 (Mon, 01 Sep 2008) $ ', ' $Revision: 4981 $ ');
 </script>
 
 </body>

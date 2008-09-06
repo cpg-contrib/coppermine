@@ -279,8 +279,8 @@ function online_install() {
 				foreach($sql_query as $q) cpg_db_query($q);	*/
 				##############################        DB      ###########################
 				$cpgdb->query($cpg_db_onlinestats['get_mod_updates_duration']);
-				if (!count($cpgdb->fetchRowSet())) {
-					$sql_query[] = sprintf($cpg_db_onlinestats_php['add_mod_update_duration'], $duration);
+				if (count($cpgdb->fetchRowSet()) == 0) {
+					$sql_query[] = sprintf($cpg_db_onlinestats['add_mod_updates_duration'], $duration);
 					foreach ($sql_query as $q) $cpgdb->query($q);
 				}
 				##################################################################

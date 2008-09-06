@@ -22,9 +22,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4502 $
-  $LastChangedBy: pvanrompay $
-  $Date: 2008-06-06 03:51:20 +0530 (Fri, 06 Jun 2008) $
+  $Revision: 4982 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-09-01 14:23:18 +0530 (Mon, 01 Sep 2008) $
 **********************************************/
 if($CONFIG['read_iptc_data'] ) {
         include("../include/iptc.inc.php");
@@ -91,7 +91,7 @@ function add_picture($aid, $filepath, $filename, $position = 0, $title = '', $ca
                 @unlink($normal);
                 @unlink($thumb);
             }
-            //$msg = strtr($lang_errors['quota_exceeded'], array('[quota]' => ($USER_DATA['group_quota']),
+            //$msg = $lang_errors['quota_exceeded'] . '<br />&nbsp;<br />' . strtr($lang_errors['quota_exceeded_details'], array('[quota]' => ($USER_DATA['group_quota']),
               //  '[space]' => ($total_space_used >> 10)));
             cpg_die(22);
         }

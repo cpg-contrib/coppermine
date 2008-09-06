@@ -11,9 +11,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $Source$
-  $Revision: 4937 $
+  $Revision: 4993 $
   $Author: gaugau $
-  $Date: 2008-08-29 01:09:41 +0530 (Fri, 29 Aug 2008) $
+  $Date: 2008-09-04 14:05:37 +0530 (Thu, 04 Sep 2008) $
 **********************************************/
 
 /* Colors used:                                */
@@ -600,29 +600,29 @@ a:link .middlethumb,a:visited .middlethumb,a:focus .middlethumb,a:hover .middlet
 }
 
 .topmenu a {
-display: block;
-padding-left: 2px;
-padding-right: 2px;
-padding-bottom: 2px;
-padding-top: 2px;
-border-left-width: 0px;
-background: #6BBE10;
-background-image : url(images/button_bg.gif);
-background-position: center;
-border-bottom-width: 0px;
-margin: 0px 0px 2px;
-color: #625b55;
-text-align: center;
-text-decoration: none;
-border: 1px solid #E7F38C;
-color: #000000
+	display: block;
+	padding-left: 2px;
+	padding-right: 2px;
+	padding-bottom: 2px;
+	padding-top: 2px;
+	border-left-width: 0px;
+	background-color: #6BBE10;
+	background-image : url(images/button_bg.gif);
+	background-position: center;
+	border-bottom-width: 0px;
+	margin: 0px 0px 2px;
+	color: #625b55;
+	text-align: center;
+	text-decoration: none;
+	border: 1px solid #E7F38C;
+	color: #000000;
 }
 
 .topmenu a:hover {
-color: #000000;
-text-decoration: none;
-background: #FFFF00;
-background-image : none;
+	color: #000000;
+	text-decoration: none;
+	background: #FFFF00;
+	background-image : none;
 }
 
 
@@ -733,44 +733,12 @@ background-image : none;
 #v_css {float:right;background-image:url(../../images/valid-css.gif);}
 #v_css:hover{background-image:url(../../images/h_valid-css.gif);}
 
-/* Colors used:                                */
-/* --------------------------------------------*/
-/* #FFFFFF = RBG 255,255,255 = (white)         */
-/* #000000 = RBG   0,  0,  0 = (black)         */
-/* #FFA600 = RGB 255,166,  0 = (orange)        */
-/* #6BBE10 = RGB 107,190, 16 = (green)         */
-/* #FFFF00 = RGB 255,255,  0 = (yellow)        */
-/* #D1D7DC = RGB 209,215,220 = (light grey)    */
-/* #F7F37B = RGB 247,243,123 = (light yellow)  */
-/* #5F5F5F = RGB  95, 95, 95 = (dark grey)     */
-/* #E7F38C = RGB 239,243,140 = (light green)   */
-/* if you don't like a color, just do a search */
-/* and replace on the hex color...             */
-
 .important {
     background-image : url(images/important.gif);
     padding-left:1px;
     padding-right:1px;
     padding-top:3px;
     padding-bottom:3px;
-}
-
-#social_bookmarks_wrapper {
-    text-align:center;
-    vertical-align:middle;
-    max-width:120px;
-}
-
-#social_bookmarks_text {
-    font-size: 9px;
-    padding-top:2px;
-    display:none;   /* comment out to hide the text in front of the social bookmarks */
-}
-
-div.social_bookmarks {
-    float:left;
-    padding-left:2px;
-    padding-right:2px;
 }
 
 #cpgChooseLanguageWrapper {
@@ -809,4 +777,97 @@ div.social_bookmarks {
 }
 .dtree .clip {
     overflow: hidden;
+}
+
+/* jQuery Bookmark styles */
+.bookmark_list {
+	display: block;
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+}
+@media screen and (-webkit-min-device-pixel-ratio:0) {  /* Safari3/Opera9 */
+	.bookmark_list {
+		font-size: 100%;
+	}
+}
+html:first-child .bookmark_list {  /* Opera */
+	/*font-size: 80%;*/
+}
+.bookmark_list li {
+	float: left;
+	width: 23%;
+	margin: 0% 0.5%;
+	padding: 2px;
+	background-color: #eee;
+	border: 1px outset;
+	list-style-type: none;
+}
+.bookmark_compact {
+	background-color: #eee;
+	border: 1px outset;
+}
+.bookmark_compact li {
+	width: 16px;
+	height: 16px;
+	margin: 0%;
+	background-color: transparent;
+	border: none;
+}
+.bookmark_list a {
+	width: 100%;
+}
+.bookmark_list span {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+}
+.bookmark_list img {
+	border: none;
+	vertical-align: bottom;
+}
+@media screen and (-webkit-min-device-pixel-ratio:0) {  /* Safari3/Opera9 */
+	.bookmark_list img {
+		margin-bottom: 3px;
+		vertical-align: middle;
+	}
+}
+html:first-child .bookmark_list img { /* Opera */
+	margin-bottom: 3px;
+	vertical-align: middle;
+}
+
+#bookmarkIt { /* This is the container that wraps the entire social bookmarks button */
+	float: left; 
+	border: 1px solid #E7F38C; 
+	padding-left: 2px;
+	padding-right: 2px;
+	padding-bottom: 2px;
+	padding-top: 2px; 
+    font-size: 10px; 
+    cursor: pointer;
+    background-color: #6BBE10;
+	background-image : url(images/button_bg.gif);
+	background-position: center;
+    margin-left:3px;
+    margin-right:3px;
+    margin-top:0px;
+    margin-bottom:0px;
+    white-space:nowrap;
+    width:120px;
+} 
+#popupClose { 
+	display: none; 
+	vertical-align: top; 
+} 
+#popupBookmark { 
+	display: none; 
+	position: absolute; 
+	z-index: 100; 
+} 
+#popupBookmark ul { 
+	float: left; 
+	width: 180px; 
+    border: 1px solid #E7F38C; 
+    background-color: #6BBE10; 
 }

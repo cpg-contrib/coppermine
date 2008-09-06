@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4868 $
+  $Revision: 4981 $
   $LastChangedBy: gaugau $
-  $Date: 2008-08-13 11:03:07 +0530 (Wed, 13 Aug 2008) $
+  $Date: 2008-09-01 13:37:08 +0530 (Mon, 01 Sep 2008) $
 **********************************************/
 
 /**
@@ -25,7 +25,7 @@
 * @copyright 2002-2006 Gregory DEMAR, Coppermine Dev Team
 * @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
 * @package Coppermine
-* @version $Id: banning.php 4868 2008-08-13 05:33:07Z gaugau $
+* @version $Id: banning.php 4981 2008-09-01 08:07:08Z gaugau $
 */
 
 
@@ -432,7 +432,7 @@ print '<form action="http://ws.arin.net/whois/" method="get" name="lookup" id="c
 starttable('-2');
 print "<tr>\n";
 print "<td class=\"tablef\">\n";
-print "<b>".$lang_banning_php['lookup_ip']."</b>\n";
+print "<strong>".$lang_banning_php['lookup_ip']."</strong>\n";
 print "</td>\n";
 print "<td class=\"tableb\">\n";
 print "<input type=\"text\" class=\"textinput\" size=\"20\" name=\"queryinput\" value=\"\" maxlength=\"15\" />\n";

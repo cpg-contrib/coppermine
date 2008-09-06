@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4955 $
+  $Revision: 4999 $
   $LastChangedBy: gaugau $
-  $Date: 2008-08-29 13:11:09 +0530 (Fri, 29 Aug 2008) $
+  $Date: 2008-09-05 11:28:00 +0530 (Fri, 05 Sep 2008) $
 **********************************************/
 
 /////////////////////////////////////////////////////////////////
@@ -940,7 +940,7 @@ if (!isset($template_image_rating)) { //{THEMES}
 $template_image_rating = <<<EOT
 <table align="center" width="{WIDTH}" cellspacing="1" cellpadding="0" class="maintable">
         <tr>
-                <td colspan="6" class="tableh2_compact" id="voting_title"><b>{TITLE}</b> {VOTES}</td>
+                <td colspan="6" class="tableh2_compact" id="voting_title"><strong>{TITLE}</strong> {VOTES}</td>
         </tr>
         <tr  id="rating_stars">
         {RATING}
@@ -1411,7 +1411,7 @@ $template_report_comment = <<<EOT
         </tr>
         <tr>
           <td valign="top">
-            <span style="font-family:Arial,Verdana,Helvetica,sans-serif;color:#000000;font-size:2.0em;font-weight:bold;">{SUBJECT}</span></b>
+            <span style="font-family:Arial,Verdana,Helvetica,sans-serif;color:#000000;font-size:2.0em;font-weight:bold;">{SUBJECT}</span></strong>
                                                 <br />
               {REASON}
             <br />
@@ -1576,7 +1576,7 @@ if (!function_exists('theme_javascript_head')) {  //{THEMES}
 // Function for the JavaScript inside the <head>-section
 function theme_javascript_head() {
     global $CONFIG, $JS;
-    
+
   $return = '';
   // Check if we have any variables being set using set_js_vars function
   if (isset($JS['vars']) && count($JS['vars'])) {
@@ -1604,6 +1604,72 @@ EOT;
 }
 /******************************************************************************
 ** Section <<<theme_javascript_head>>> - END
+******************************************************************************/
+}  //{THEMES}
+
+if (!function_exists('theme_social_bookmark')) {  //{THEMES}
+/******************************************************************************
+** Section <<<theme_social_bookmark>>> - START
+******************************************************************************/
+// Function for the social bookmark icons
+function theme_social_bookmark() 
+{
+    global $CONFIG, $lang_social_bookmarks, $lang_common;
+
+    $return = '';
+
+    if ($CONFIG['display_social_bookmarks'] != '') {
+
+        $return = '';
+        $socialBookmarks_array = array('aol', 'ask', 'blinklist', 'blogmarks', 'care2', 'delicious', 'digg', 'diigo', 'dzone', 'facebook', 'fark', 'faves', 'feedmelinks', 'furl', 'google', 'hugg', 'kool', 'linkagogo', 'livejournal', 'magnolia', 'mindbody', 'misterwong', 'mixx', 'multiply', 'myspace', 'netscape', 'netvouz', 'newsvine', 'nowpublic', 'reddit', 'segnalo', 'simpy', 'slashdot', 'smarking', 'spurl', 'squidoo', 'stumbleupon', 'tailrank', 'technorati', 'thisnext', 'windows', 'yahoo', 'alltagz', 'linksilo', 'maodi', 'newstube', 'oneview', 'readster', 'tausendreporter', 'webbrille', 'webnews');
+        $social_bookmarks_config_array = explode ("|",$CONFIG['display_social_bookmarks']);
+        $countLoop = 0;
+        $bookmark_list = '';
+        foreach ($socialBookmarks_array as $key) {
+            if (array_key_exists($countLoop, $social_bookmarks_config_array) && ($social_bookmarks_config_array[$countLoop] == 1)) {
+                $bookmark_list .= "'" . $socialBookmarks_array[$countLoop] . "', ";
+            }
+            $countLoop++;
+        }
+        $bookmark_list = rtrim(rtrim ($bookmark_list, ' '), ',');
+        $close_icon = cpg_fetch_icon('close', 0, $lang_common['close']);
+        $return .= <<< EOT
+		<div id="bookmarkIt">{$lang_social_bookmarks['bookmark_this_page']}<span id="popupClose">{$close_icon}</span><div id="popupBookmark"></div></div>
+        <script type="text/javascript">
+        $('#bookmarkIt').click(function() { 
+		    var offset = $('#bookmarkIt').offset(); 
+		    $('#popupBookmark').css('left', offset.left). 
+		        css('top', offset.top + $('#bookmarkIt').height() + 2); 
+		    $('#popupBookmark,#popupClose').toggle(); 
+		}); 
+		$('#popupBookmark').bookmark( 
+                {
+                    compact: true, 
+                    addEmail: false, 
+                    addFavorite: true,
+                    manualBookmark: '{$lang_social_bookmarks['favorite_close']}',
+                    sites: [{$bookmark_list}],
+                    icons: 'images/bookmarks.png',
+                    iconSize: 16,
+                    target: '_blank',
+                    favoriteText: '{$lang_social_bookmarks['favorite']}',
+                    favoriteIcon: 0,
+                    emailText: '{$lang_social_bookmarks['send_email']}',
+                    emailIcon: 1,
+                    emailSubject: '{$lang_social_bookmarks['email_subject']}',
+                    emailBody: '{$lang_social_bookmarks['email_body']}:\\n{t} ({u})'
+                    
+                }
+            );
+        </script>
+EOT;
+        
+        
+    } // if display_social_bookmarks
+    return $return;
+}
+/******************************************************************************
+** Section <<<theme_social_bookmark>>> - END
 ******************************************************************************/
 }  //{THEMES}
 
