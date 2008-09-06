@@ -1873,6 +1873,8 @@ function cpg_determine_client($pid)
                 $browser = 'IE6';
             } elseif (eregi('MSIE 7.0',$server_agent)) {
                 $browser = 'IE7';
+            } elseif (eregi('MSIE 8.0',$server_agent)) {
+                $browser = 'IE8';
             } elseif (eregi('MSIE 3.0',$server_agent)) {
                 $browser = 'IE3';
             } elseif (eregi('MSIE 4.0',$server_agent)) {
@@ -1883,7 +1885,7 @@ function cpg_determine_client($pid)
         } elseif (eregi('Epiphany',$server_agent)) {
             $browser = 'Epiphany';
         } elseif (eregi('Phoenix',$server_agent)) {
-            $browser = 'Phoneix';        
+            $browser = 'Phoenix';        
         } elseif (eregi('Firebird',$server_agent)) {
             $browser = 'Mozilla Firebird';
         } elseif (eregi('netscape',$server_agent)) {
