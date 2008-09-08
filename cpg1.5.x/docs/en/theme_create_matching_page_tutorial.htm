@@ -66,8 +66,211 @@
 <p>The first step would be to pick a theme that matches your site's design the most in terms of layout. For this purpose, you can choose one from the themes that come with the coppermine package or get a <a href="theme_user-contributions.htm#theme_user-contributions">user-contributed theme</a>.</p>
 <p>In this tutorial, I will use the <strong>classic</strong> theme as an example to build upon.</p>
 <p>As suggested in the section "<a href="theme_create.htm#theme_create_rename">Rename your theme first</a>", you mustn't start editing the classic theme right away, but create a copy of that theme. This step is vital to be safe for future updates. For this tutorial we assume that you have done as suggested and renamed your copy of the classic theme to "my_theme".</p>
-<p>Apply the other steps as well: fire up your text editor, open themes/my_theme/template.html and do a <tt class="code">find/replace</tt> on the string &quot;<tt class="code">classic</tt>&quot; (without the quotes) and replace that with the string &quot;<tt class="code">my_theme</tt>&quot; (again without the quotes). Save your changes, but don't close the editor yet - we still need it.</p>
+<p>Apply the other steps as well: fire up your text editor, open themes/my_theme/template.html and do a <tt class="code">find/replace</tt> on the string &quot;<tt class="code">classic</tt>&quot; (without the quotes) and replace that with the string &quot;<tt class="code">my_theme</tt>&quot; (again without the quotes). Save your changes into a temporary file named "<tt class="code">template_copy.html</tt>" within the new folder, but don't close the editor yet - we still need it.</p>
+
+<h2>Start editing your theme</h2>
+<p>What we'll do now is using the output created by your overall site to create a custom template file. To accomplish this, go to the output of your overall site in your browser (for this tutorial, we'll use <a href="tutorial/cloudywatersports/index.html">tutorial/cloudywatersports/index.html</a> as an example - you will of course have to do this using your real site's output instead of the sample.</p>
+<p>When viewing that page in your browser, do a "right-click" somewhere into an emoty place of the output and then choose "source view" from the context menu that should show. A window should show up that displays the entire HTML-output: highlight that (the entire content of the source view) and copy it to your clipboard. Then go to your editor (e.g. start notepad) and copy the clipboard into a blank window. Now save that into your new custom theme folder (in our tutorial, the folder name is <tt class="code">themes/my_theme/</tt>). As a file name, choose <tt class="code">template.html</tt>. The editor should prompt you that there already is such a file, which is OK, as we have created a copy of that file, so it's safe to overwrite it.  Now we have the HTML output of your overall site within a template file.</p>
+<p>In our little example, the content should look like this:</p>
+<textarea cols="80" rows="20" class="quote" style="width:100%">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+
+&lt;head&gt;
+&lt;meta http-equiv="content-type" content="text/html; charset=utf-8" /&gt;
+&lt;title&gt;Cloudy Water Sport Template&lt;/title&gt;
+&lt;meta name="keywords" content="" /&gt;
+&lt;meta name="description" content="" /&gt;
+&lt;link href="styles.css" rel="stylesheet" type="text/css" /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div id="header"&gt;
+	&lt;h1&gt;Cloudy Water Sports&lt;/h1&gt;
+&lt;/div&gt;
+
+&lt;div id="menu"&gt;
+	&lt;ul&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;News&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Blog&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Gallery&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;About CWS&lt;/a&gt;&lt;/li&gt;
+
+		&lt;li&gt;&lt;a href="#"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id="content"&gt;
+	&lt;div id="left"&gt;
+		&lt;h2&gt;Hello!&lt;/h2&gt;
+		&lt;p&gt;Free Cloudy Water Sports template is yours to use.&lt;/p&gt;
+		&lt;p&gt;Ulysses, Ulysses - Soaring through all the galaxies. In search of Earth, flying in to the night. Ulysses, Ulysses - Fighting evil and tyranny, with all his power, and with all of his might. Ulysses - no-one else can do the things you do. Ulysses - like a bolt of thunder from the blue. Ulysses - always fighting all the evil forces bringing peace and justice to all.&lt;/p&gt;
+
+				&lt;ul&gt;
+			&lt;li&gt;&lt;a href="#"&gt;One for all and all for one.&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="#"&gt;I never spend much time in school.&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="#"&gt;Soaring through all the galaxies.&lt;/a&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;p&gt;One for all and all for one, Muskehounds are always ready. One for all and all for one, helping everybody. One for all and all for one, it's a pretty story. Sharing everything with fun, that's the way to be. One for all and all for one, Muskehounds are always ready. One for all and all for one, helping everybody. One for all and all for one, can sound pretty corny. If you've got a problem chum, think how it could be.&lt;/p&gt;
+	&lt;/div&gt;
+
+	&lt;div id="right"&gt;
+		&lt;h2&gt;What's New?&lt;/h2&gt;
+		&lt;h3&gt;There's a voice&lt;/h3&gt;
+		&lt;p&gt;There's a voice that keeps on calling me. Down the road, that's where I'll always be. &lt;a href="#"&gt;More&#8230;&lt;/a&gt;&lt;/p&gt;
+		&lt;h3&gt;Every stop I make&lt;/h3&gt; 
+		&lt;p&gt;Every stop I make, I make a new friend. Can't stay for long, just turn around and I'm gone again. Maybe tomorrow, I'll want to settle down, Until tomorrow, I'll just keep moving on. &lt;a href="#"&gt;More&#8230;&lt;/a&gt;&lt;/p&gt;
+
+		&lt;h3&gt;Hong Kong Phooey&lt;/h3&gt;
+		&lt;p&gt;Hong Kong Phooey, number one super guy. Hong Kong Phooey, quicker than the human eye. He's got style, a groovy style, and a car that just won't stop. &lt;a href="#"&gt;More&#8230;&lt;/a&gt;&lt;/p&gt;
+		&lt;h2&gt;Archive&lt;/h2&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;a href="#"&gt;One for all&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="#"&gt;Can't stay for long&lt;/a&gt;&lt;/li&gt;
+
+			&lt;li&gt;&lt;a href="#"&gt;Muskehounds&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="#"&gt;Hong Kong Phooey&lt;/a&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="footer"&gt;
+	&lt;p&gt;Copyright &copy; 2006 YOUR SITE NAME.&lt;/p&gt;
+
+	&lt;p&gt;Design by &lt;a href="http://360guide.info"&gt;360guide.info&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea><p>, but of course this will be different for you, as the HTML output of your page differs.</p>
+
 <h2>Strip the content from the sample</h2>
+<p>What we need to do now is get rid of the surplus content that resides in template.html:</p>
+<p>In our tutorial example, this is pretty straightforward, but in real life this can be the trickiest bit of coming up with your custom theme, especially if you're still new in HTML and if your output is quite complex, but don't worry: just perform this step by step, carefully removing piece by piece, then previewing if things still work as expected.</p>
+<p>In our little example, we need to remove the text of the left column that starts with the word <tt class="code">Hello!</tt> and ends with &quot;<tt class="code">If you've got a problem chum, think how it could be.</tt>&quot;, so we remove<textarea cols="80" rows="10" class="quote" style="width:100%">&lt;h2&gt;Hello!&lt;/h2&gt;
+		&lt;p&gt;Free Cloudy Water Sports template is yours to use.&lt;/p&gt;
+		&lt;p&gt;Ulysses, Ulysses - Soaring through all the galaxies. In search of Earth, flying in to the night. Ulysses, Ulysses - Fighting evil and tyranny, with all his power, and with all of his might. Ulysses - no-one else can do the things you do. Ulysses - like a bolt of thunder from the blue. Ulysses - always fighting all the evil forces bringing peace and justice to all.&lt;/p&gt;
+
+				&lt;ul&gt;
+			&lt;li&gt;&lt;a href="#"&gt;One for all and all for one.&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="#"&gt;I never spend much time in school.&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="#"&gt;Soaring through all the galaxies.&lt;/a&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;p&gt;One for all and all for one, Muskehounds are always ready. One for all and all for one, helping everybody. One for all and all for one, it's a pretty story. Sharing everything with fun, that's the way to be. One for all and all for one, Muskehounds are always ready. One for all and all for one, helping everybody. One for all and all for one, can sound pretty corny. If you've got a problem chum, think how it could be.&lt;/p&gt;</textarea>from template.html. Into this place, we later want the main output generated by coppermine to appear, so we need to paste the main placeholder token <tt class="code">{GALLERY}</tt> from <tt class="code">themes/my_theme/template_copy.html</tt> into that place.</p>
+<p>By now, the content of <tt class="code">themes/my_theme/template.html</tt> should look like this:</p>
+<textarea cols="80" rows="20" class="quote" style="width:100%">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+
+&lt;head&gt;
+&lt;meta http-equiv="content-type" content="text/html; charset=utf-8" /&gt;
+&lt;title&gt;Cloudy Water Sport Template&lt;/title&gt;
+&lt;meta name="keywords" content="" /&gt;
+&lt;meta name="description" content="" /&gt;
+&lt;link href="styles.css" rel="stylesheet" type="text/css" /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div id="header"&gt;
+	&lt;h1&gt;Cloudy Water Sports&lt;/h1&gt;
+&lt;/div&gt;
+
+&lt;div id="menu"&gt;
+	&lt;ul&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;News&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Blog&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Gallery&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;About CWS&lt;/a&gt;&lt;/li&gt;
+
+		&lt;li&gt;&lt;a href="#"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id="content"&gt;
+	&lt;div id="left"&gt;
+		{GALLERY}
+	&lt;/div&gt;
+
+	&lt;div id="right"&gt;
+		&lt;h2&gt;What's New?&lt;/h2&gt;
+		&lt;h3&gt;There's a voice&lt;/h3&gt;
+		&lt;p&gt;There's a voice that keeps on calling me. Down the road, that's where I'll always be. &lt;a href="#"&gt;More&#8230;&lt;/a&gt;&lt;/p&gt;
+		&lt;h3&gt;Every stop I make&lt;/h3&gt; 
+		&lt;p&gt;Every stop I make, I make a new friend. Can't stay for long, just turn around and I'm gone again. Maybe tomorrow, I'll want to settle down, Until tomorrow, I'll just keep moving on. &lt;a href="#"&gt;More&#8230;&lt;/a&gt;&lt;/p&gt;
+
+		&lt;h3&gt;Hong Kong Phooey&lt;/h3&gt;
+		&lt;p&gt;Hong Kong Phooey, number one super guy. Hong Kong Phooey, quicker than the human eye. He's got style, a groovy style, and a car that just won't stop. &lt;a href="#"&gt;More&#8230;&lt;/a&gt;&lt;/p&gt;
+		&lt;h2&gt;Archive&lt;/h2&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;a href="#"&gt;One for all&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="#"&gt;Can't stay for long&lt;/a&gt;&lt;/li&gt;
+
+			&lt;li&gt;&lt;a href="#"&gt;Muskehounds&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="#"&gt;Hong Kong Phooey&lt;/a&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="footer"&gt;
+	&lt;p&gt;Copyright &copy; 2006 YOUR SITE NAME.&lt;/p&gt;
+
+	&lt;p&gt;Design by &lt;a href="http://360guide.info"&gt;360guide.info&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea>
+<p>That's fine and exactly how we want it. Now let's switch again to the browser window and take a look of the output: in our example, we later want the menu/navigation of coppermine to reside in the right column of the existing example - the column that now contains the text starting with <tt class="code">What's New?</tt> and ends with <tt class="code">Hong Kong Phooey</tt>, so let's locate the corresponding section in the source code: back to the editor window that contains <tt class="code">themes/my_theme/template.html</tt>. There, we remove the section</p>
+<textarea cols="80" rows="10" class="quote" style="width:100%">&lt;h2&gt;What's New?&lt;/h2&gt;
+		&lt;h3&gt;There's a voice&lt;/h3&gt;
+		&lt;p&gt;There's a voice that keeps on calling me. Down the road, that's where I'll always be. &lt;a href="#"&gt;More&#8230;&lt;/a&gt;&lt;/p&gt;
+		&lt;h3&gt;Every stop I make&lt;/h3&gt; 
+		&lt;p&gt;Every stop I make, I make a new friend. Can't stay for long, just turn around and I'm gone again. Maybe tomorrow, I'll want to settle down, Until tomorrow, I'll just keep moving on. &lt;a href="#"&gt;More&#8230;&lt;/a&gt;&lt;/p&gt;
+
+		&lt;h3&gt;Hong Kong Phooey&lt;/h3&gt;
+		&lt;p&gt;Hong Kong Phooey, number one super guy. Hong Kong Phooey, quicker than the human eye. He's got style, a groovy style, and a car that just won't stop. &lt;a href="#"&gt;More&#8230;&lt;/a&gt;&lt;/p&gt;
+		&lt;h2&gt;Archive&lt;/h2&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;a href="#"&gt;One for all&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="#"&gt;Can't stay for long&lt;/a&gt;&lt;/li&gt;
+
+			&lt;li&gt;&lt;a href="#"&gt;Muskehounds&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="#"&gt;Hong Kong Phooey&lt;/a&gt;&lt;/li&gt;
+		&lt;/ul&gt;</textarea>
+<p>In place of that section, we need to add the placeholders tokens that will later (when coppermine is being run) will be replaced with the navigation. As Coppermine has several menus that can be placed indepenendtly, there are several placeholder tokens that we need to copy: go to the editor window that contains <tt class="code">themes/my_theme/template_copy.html</tt> and from there copy <tt class="code">{SYS_MENU}</tt>, <tt class="code">{SUB_MENU}</tt>, and <tt class="code">{ADMIN_MENU}</tt> into <tt class="code">themes/my_theme/template.html</tt>, right at the spot where we just removed content from.</p>
+<p>Now, the content of the editor window for <tt class="code">themes/my_theme/template.html</tt> should look like this:</p>
+<textarea cols="80" rows="20" class="quote" style="width:100%">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+
+&lt;head&gt;
+&lt;meta http-equiv="content-type" content="text/html; charset=utf-8" /&gt;
+&lt;title&gt;Cloudy Water Sport Template&lt;/title&gt;
+&lt;meta name="keywords" content="" /&gt;
+&lt;meta name="description" content="" /&gt;
+&lt;link href="styles.css" rel="stylesheet" type="text/css" /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div id="header"&gt;
+	&lt;h1&gt;Cloudy Water Sports&lt;/h1&gt;
+&lt;/div&gt;
+
+&lt;div id="menu"&gt;
+	&lt;ul&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;News&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Blog&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Gallery&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;About CWS&lt;/a&gt;&lt;/li&gt;
+
+		&lt;li&gt;&lt;a href="#"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id="content"&gt;
+	&lt;div id="left"&gt;
+		{GALLERY}
+	&lt;/div&gt;
+
+	&lt;div id="right"&gt;
+		{SYS_MENU}{SUB_MENU}{ADMIN_MENU}
+	&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="footer"&gt;
+	&lt;p&gt;Copyright &copy; 2006 YOUR SITE NAME.&lt;/p&gt;
+
+	&lt;p&gt;Design by &lt;a href="http://360guide.info"&gt;360guide.info&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea>
 <abbr title="to be continued">tbc</abbr>...
 
 
