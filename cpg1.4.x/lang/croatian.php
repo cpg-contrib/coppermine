@@ -1187,7 +1187,7 @@ if (defined('FAQ_PHP')) $lang_faq_data = array(
   array('Kako ću kreirati, promijeniti naziv ili izbrisati album u &quot;Moja galerija&quot;?', 'Morate biti u &quot;Administracija&quot;<br />Kliknite na &quot;Kreiraj/Poredaj moje albume&quot;i kliknite na &quot;Novo&quot;. Promijenite &quot;Novi album&quot; u željeno ime.<br />Takođe možete preimenovati bilo koji album u Vašoj galeriji.<br />Kliknite na &quot;Prihvati promjene&quot;.', 'allow_private_albums', 0),
   array('Kako mogu izmijeniti i onemogućiti korisnike da gledaju moje albume?', 'Morate biti u &quot;Administracija&quot;<br />Kliknite na &quot;Promijeni moje albume&quot;. Na &quot;Osvježi album&quot; baru, odaberite album kojeg želite izmijeniti.<br />Ovdje možete promijeniti naziv, opis, ikonu, ograničiti dopuštenje za pregledanje i komentarisanje/ocjenjivanje.<br />Kliknite na &quot;Osvježi album&quot;.', 'allow_private_albums', 0),
   array('Kako mogu gledati albume drugih korisnika?', 'Kliknite na &quot;Popis albuma&quot; i odaberite &quot;Korisničke galerije&quot;.', 'allow_private_albums', 0),
-  array('to su kukiji (cookies)?', 'Kukiji su tekstualni podaci koji se šalju sa stranica i koji se postavljaju na Vaš kompjuter.<br />Cookieis obično dopuštaju korisniku da napusti neke stranice i da se kasnije na njih vrati bez ponovne prijave.', 'offline', 0),
+  array('Što su kukiji (cookies)?', 'Kukiji su tekstualni podaci koji se šalju sa stranica i koji se postavljaju na Vaš kompjuter.<br />Cookieis obično dopuštaju korisniku da napusti neke stranice i da se kasnije na njih vrati bez ponovne prijave.', 'offline', 0),
 
 
   'Navigacija po galeriji',
