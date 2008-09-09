@@ -85,6 +85,7 @@ INSERT INTO CPG_filetypes VALUES ('lzh', 'application/lzh', 'document', '');
 INSERT INTO CPG_filetypes VALUES ('rpm', 'application/rpm', 'document', '');
 INSERT INTO CPG_filetypes VALUES ('tar', 'application/tar', 'document', '');
 INSERT INTO CPG_filetypes VALUES ('z', 'application/z', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('odb', 'application/vnd.oasis.opendocument.database', 'document', '');
 INSERT INTO CPG_filetypes VALUES ('odt', 'application/vnd.oasis.opendocument.text', 'document', '');
 INSERT INTO CPG_filetypes VALUES ('ods', 'application/vnd.oasis.opendocument.spreadsheet', 'document', '');
 INSERT INTO CPG_filetypes VALUES ('odp', 'application/vnd.oasis.opendocument.presentation', 'document', '');
