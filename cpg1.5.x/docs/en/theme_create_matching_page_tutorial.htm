@@ -429,7 +429,7 @@
         <pre class="quote">&lt;/head&gt;</pre>
     </li>
     <li>The <strong>{MESSAGE_BLOCK}</strong> token<br />
-        The message block will only be populated if there is an important message that coppermine needs to display to the edn user. It is directly related to what is happening and should reside directly above the {GALLERY}-token, so you should add it into a new line right before that line.
+        The message block will only be populated if there is an important message that coppermine needs to display to the end user. It is directly related to what is happening and should reside directly above the {GALLERY}-token, so you should add it into a new line right before that line.
     </li>
 </ul>
 <p>With all mandatory tokens in place, this is how our example should look like by now:</p>
@@ -536,8 +536,1074 @@
 &lt;/body&gt;
 &lt;/html&gt;</textarea>
 
+<h2>Adapting the style</h2>
+<p>So far, we have come up with placeholders for the mandatory placeholder tokens - now let's take a look at the style sheet (CSS). In our little example, it's quite easy to integrate the CSS that comes with the overall design into coppermine's style, as there are only a few definitions, and for ease of use they even reside embedded into the template file (inline styles). While that's a good idea for a small demonstration to make the code readable, it's usually mandatory to keep the styles in an external stylesheet file. That's why coppermine does as well. In each theme, there is a file named &quot;<tt class="code">style.css</tt>&quot; that contains all CSS. This is the case for the theme as well that we used to build our custom theme upon. Therefor, open another window of your editor and in that window edit themes/my_theme/style.css. Leave that window open - we'll need it for a while.</p>
+<p>First, however, we need to "instruct" our HTML file that there actually is an external style sheet that should be taken into account. For this, take a look at the editor window that contains <tt class="code">themes/my_theme/template_copy.html</tt>: look for <tt class="code">&gt;link rel="stylesheet" href="themes/my_theme/style.css" type="text/css" /&gt;</tt>. Copy that line into <tt class="code">themes/my_theme/template_copy.html</tt>, right after the <tt class="code">{META}</tt> placeholder token. As you can see, it doesn't contain reference just to <tt class="code">style.css</tt>, but to <tt class="code">themes/my_theme/style.css</tt>.</p>
+<p class="important">The reason for this "strange" path is that you have to keep in mind that the template will later be parsed when coppermine is being executed - this will happen from your root coppermine folder. That's why the paths to all resources must be seen from the root of your coppermine gallery. You will notice later that this is not only the case for the stylesheet, but for similar resources (like graphics embedded into your theme) as well.</p>
+<p>We now have instructed our custom theme to take into account the stylesheet - what's left to do is move the inline CSS from template.html into our external stylesheet file as well. In our example, this is pretty straightforward, but in real life, this could be much more complicated, since both the coppermine stylesheet as well as your overal site layout contains CSS information about particular HTML tags. Additionally, class and object names may be identical by coincidence. It's beyond the scope of this tutorial to explain all CSS details, so here is only a rough explanation: what we want to do is just cut the CSS from your overall site from template.html and paste it into style.css - we "just" need to make sure that there are no double-definitions. The only double definitions that reside in our example are those for the HTML-tag "body" - we need to look at them separately, so let's take a note of them first:</p>
+<pre class="quote">		body {
+			margin: 0;
+			padding-left: 200px;    /* LC fullwidth */
+			padding-right: 190px;   /* RC fullwidth + CC padding */
+			min-width: 240px;       /* LC fullwidth + CC padding */
+		}</pre>
+and
+<pre class="quote">		body {
+			background: #FFF;
+		}</pre>
+need to be cut out and looked at separately. The rest doesn't exist twice, so we can savely cut it out from <tt class="code">themes/my_theme/template.html</tt> and paste it into <tt class="code">themes/my_theme/style.css</tt>. In our case, this is the corresponding code:</p>
+<textarea cols="80" rows="20" class="quote" style="width:100%">		/*** The Essential Code ***/
 
-<abbr title="to be continued">tbc</abbr>...
+		#header, #footer {
+			margin-left: -200px;    /* LC fullwidth */
+			margin-right: -190px;   /* RC fullwidth + CC padding */
+		}
+
+		.column {
+			position: relative;
+			float: left;
+		}
+
+		#center {
+			padding: 0 20px;
+			width: 100%;
+		}
+
+		#left {
+			width: 180px;           /* LC width */
+			padding: 0 10px;        /* LC padding */
+			right: 240px;           /* LC fullwidth + CC padding */
+			margin-left: -100%;
+		}
+
+		#right {
+			width: 130px;           /* RC width */
+			padding: 0 10px;        /* RC padding */
+			margin-right: -100%;
+		}
+
+		#footer {
+			clear: both;
+		}
+
+		/*** IE Fix ***/
+		* html #left {
+			left: 150px;            /* RC fullwidth */
+		}
+
+		/*** Just for Looks ***/
+
+		#header, #footer {
+			font-size: large;
+			text-align: center;
+			padding: 0.3em 0;
+			background: #999;
+		}
+
+		#left {
+			background: #66F;
+		}
+
+		#center {
+			background: #DDD;
+		}
+
+		#right {
+			background: #F66;
+		}
+
+		.column {
+			padding-top: 1em;
+			text-align: justify;
+		}</textarea>
+<p>Let's paste it into the very end of <tt class="code">themes/my_theme/style.css</tt>. If you want this to be more estethically pleasing, reduce the indentation of that particular code you just pasted in to match the indentation of the rest of your file.</p>
+<p>Next, let's look at the conflicting section: in style.css, we have this definition for the body-tag:</p>
+<textarea cols="80" rows="19" class="quote" style="width:100%">body {
+    font-family : Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    background : #CCCCCC;
+    color : Black;
+    margin: 0px;
+}</textarea>
+<p>so let's roll those two definitions into one in style.css, replacing the original definition:</p>
+<textarea cols="80" rows="10" class="quote" style="width:100%">body {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	background: #FFF;
+	color : Black;
+	margin: 0px;
+	padding-left: 200px;    /* LC fullwidth */
+	padding-right: 190px;   /* RC fullwidth + CC padding */
+	min-width: 240px;       /* LC fullwidth + CC padding */
+}</textarea>
+<p>Finally, let's clean up a bit: the section</p>
+<pre class="quote">	&lt;style type="text/css"&gt;
+	&lt;/style&gt;</pre>
+<p>in <tt class="code">themes/my_theme/template.html</tt> doesn't do anything particularly usefull, so let's remove it as well as the comment in the very next line underneath.</p>
+<p>We can get rid as well of the coppermine SVN information in style.css, so get rid of</p>
+<pre class="quote">/*************************
+  Coppermine Photo Gallery
+  ************************
+  Copyright (c) 2003-2008 Dev Team
+  v1.1 originally written by Gregory DEMAR
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License version 3
+  as published by the Free Software Foundation.
+
+  ********************************************
+  Coppermine version: 1.5.0
+  $Source$
+  $Revision: 4993 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-09-04 10:35:37 +0200 (Do, 04 Sep 2008) $
+**********************************************/</pre>
+<p>there as well.</p>
+<p>As a result, this is how our two files now should look like:</p>
+<p><tt class="code">themes/my_theme/template.html</tt>:</p>
+<textarea cols="80" rows="19" class="quote" style="width:100%">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="{LANG_DIR}"&gt;
+&lt;head&gt;
+	&lt;meta http-equiv="Content-Type" content="text/html; charset={CHARSET}" /&gt;
+	&lt;title&gt;{TITLE}&lt;/title&gt;
+    {META}
+    <link rel="stylesheet" href="themes/my_theme/style.css" type="text/css" />
+    {JAVASCRIPT}
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;div id="header"&gt;This is the header - the place where your site logo could reside.&lt;/div&gt;
+	&lt;div id="center" class="column"&gt;
+		{MESSAGE_BLOCK}
+        {GALLERY}
+	&lt;/div&gt;
+	&lt;div id="left" class="column"&gt;
+		&lt;h2&gt;This is the left sidebar.&lt;/h2&gt;
+		&lt;p&gt;For the sake of the tutorial, let's assume that this is the place where your overall site navigation resides.&lt;/p&gt;
+	&lt;/div&gt;
+	&lt;div id="right" class="column"&gt;
+		{SYS_MENU}{SUB_MENU}{ADMIN_MENU}
+	&lt;/div&gt;
+	&lt;div id="footer"&gt;This is the overall site footer. The place where you usually keep your copyright or disclaimer.&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea>
+
+<p><tt class="code">themes/my_theme/style.css</tt></p>
+<textarea cols="80" rows="19" class="quote" style="width:100%">/* Colors used in this style sheet:
+   Hex 000000 = RBG   0,   0,   0 = black
+   Hex 5F5F5F = RBG  95,  95,  95 = light black
+   Hex BDBEBD = RBG 189, 190, 189 = dark grey
+   Hex D1D7DC = RBG 209, 215, 220 = medium grey
+   Hex CCCCCC = RBG 204, 204, 204 = medium grey
+   Hex E4E4E4 = RGB 228, 228, 228 = medium grey
+   Hex EFEFEF = RBG 239, 239, 239 = dark white
+   Hex FFFFFF = RBG 255, 255, 255 = white
+   Hex 005D8C = RBG   0,  93, 140 = dark blue
+   Hex 0033CC = RBG   0,  91, 104 = medium blue
+   Hex 0E72A4 = RBG  14, 114, 164 = light blue
+   Hex 840084 = RBG 132,   0, 132 = purple
+*/
+
+body {
+    font-family : Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    background: #FFF;
+    color : Black;
+    margin: 0px;
+	padding-left: 200px;    /* LC fullwidth */
+	padding-right: 190px;   /* RC fullwidth + CC padding */
+	min-width: 240px;       /* LC fullwidth + CC padding */
+}
+
+table {
+    font-size: 12px;
+}
+
+h1{
+    font-weight: bold;
+    font-size: 22px;
+    font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    line-height : 120%;
+    color : #000000;
+    margin: 2px;
+}
+
+h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    margin: 0px;
+}
+
+h3 {
+    font-weight: normal;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    margin: 2px;
+}
+
+p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 100%;
+    margin: 2px 0px;
+}
+
+ul {
+    margin-left: 5px;
+    padding: 0px;
+}
+
+li {
+    margin-left: 10px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    padding: 0px;
+    list-style-position: outside;
+    list-style-type: disc;
+}
+
+form {
+    margin-top:0px;
+    margin-bottom:0px;
+}
+
+.inline {
+    /*display:inline;*/
+}
+
+.textinput {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 100%;
+    border: 1px solid #D1D7DC;
+    padding-right: 3px;
+    padding-left: 3px;
+}
+
+.listbox {
+    font-family: Verdana, Arial, Arial, Helvetica, sans-serif;
+    font-size: 100%;
+    border: 1px solid #D1D7DC;
+    vertical-align : middle;
+}
+
+.button {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 100%;
+    border: 1px solid #005D8C;
+    background-image : url(images/button_bg.gif);
+    background-position : bottom;
+}
+
+.comment_button {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 85%;
+    border: 1px solid #005D8C;
+    background-image : url(images/button_bg.gif);
+    background-position : bottom;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+.radio {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 100%;
+    vertical-align : middle;
+}
+
+.checkbox {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 100%;
+    vertical-align : middle;
+}
+
+a:link {
+    color: #0033CC;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #0033CC;
+    text-decoration: none;
+}
+
+a:focus {
+    color: #0033CC;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #0033CC;
+    text-decoration: underline;
+}
+
+a:active {
+    color: #0033CC;
+    text-decoration: none;
+}
+
+.bblink a {
+    color: #0033CC;
+    text-decoration: none;
+}
+
+.bblink a:hover {
+    color: #0033CC;
+    text-decoration: underline;
+}
+
+.maintable {
+    border: 1px solid #0E72A4;
+    background-color: #EFEFEF;
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+
+.tableh1 {
+    background : #0E72A4 ;
+    color : #FFFFFF;
+    padding-top: 3px;
+    padding-right: 10px;
+    padding-bottom: 3px;
+    padding-left: 10px;
+    font-weight:bold;
+}
+
+.tableh1_compact {
+    background : #0E72A4 ;
+    color : #FFFFFF;
+    padding-top: 2px;
+    padding-right: 5px;
+    padding-bottom: 2px;
+    padding-left: 5px;
+    font-weight:bold;
+}
+
+.tableh2 {
+    background: #D1D7DC ;
+    color : #000000;
+    padding-top: 3px;
+    padding-right: 10px;
+    padding-bottom: 3px;
+    padding-left: 10px;
+}
+
+.tableh2_compact {
+    background: #D1D7DC ;
+    color : #000000;
+    font-weight:bold;
+    padding-top: 2px;
+    padding-right: 5px;
+    padding-bottom: 2px;
+    padding-left: 5px;
+}
+
+.tableb {
+    background: #EFEFEF ;
+    padding-top: 3px;
+    padding-right: 10px;
+    padding-bottom: 3px;
+    padding-left: 10px;
+}
+
+/* This class will be used in conjunction with class tableb: attributes not particularly (re)-assigned will be taken into account from tableb. */
+/* It is being used to accomplish alternating row colors for lists. */
+/* It's recommended to only assign another background color that slightly differs from the one defined in tableb */
+.tableb_alternate {
+    background: #E4E4E4;
+}
+
+
+.tableb_compact {
+    background: #EFEFEF ;
+    padding-top: 2px;
+    padding-right: 5px;
+    padding-bottom: 2px;
+    padding-left: 5px;
+}
+
+.tablef {
+    background: #D1D7DC;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+
+.catrow_noalb {
+    background: #D1D7DC ;
+    color : #000000;
+    padding-top: 3px;
+    padding-right: 10px;
+    padding-bottom: 3px;
+    padding-left: 10px;
+}
+
+.catrow {
+    background: #EFEFEF ;
+    padding-top: 3px;
+    padding-right: 10px;
+    padding-bottom: 3px;
+    padding-left: 10px;
+}
+
+.album_stat {
+    font-size: 85%;
+    margin: 5px 0px;
+}
+
+.thumb_filename {
+    font-size: 80%;
+    display: block;
+}
+
+.thumb_title {
+    font-weight : bold;
+    font-size: 80%;
+    padding: 2px;
+    display : block;
+}
+
+.thumb_caption {
+    font-size: 80%;
+    padding: 1px;
+    display : block;
+}
+
+.thumb_caption a {
+    text-decoration: underline;
+    color: #000000;
+}
+
+.thumb_num_comments {
+    font-weight: normal;
+    font-size: 80%;
+    padding: 2px;
+    font-style : italic;
+    display : block;
+}
+
+.user_thumb_infobox {
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+
+.user_thumb_infobox th {
+    font-weight : bold;
+    font-size: 100%;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    text-align : center;
+}
+
+.user_thumb_infobox td {
+    font-size: 80%;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    text-align : center;
+}
+
+.user_thumb_infobox a {
+    text-decoration: none;
+    color: #000000;
+}
+
+.user_thumb_infobox a:hover {
+    color: #000000;
+    text-decoration: underline;
+}
+
+.sortorder_cell {
+    background : #0E72A4 ;
+    color : #FFFFFF;
+    padding: 0px;
+    margin: 0px;
+}
+
+.sortorder_options {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    background : #0E72A4 ;
+    color : #FFFFFF;
+    padding: 0px;
+    margin: 0px;
+    font-weight: normal;
+    font-size: 80%;
+    white-space: nowrap;
+}
+
+.navmenu {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    color: #FFFFFF;
+    font-size: 100%;
+    font-weight: bold;
+    background : #0E72A4 ;
+    border-style: none;
+}
+
+.navmenu img {
+    margin-top: 1px;
+    margin-right: 5px;
+    margin-bottom: 1px;
+    margin-left: 5px;
+}
+
+.navmenu a {
+    display: block;
+    padding-top: 2px;
+    padding-right: 5px;
+    padding-bottom: 2px;
+    padding-left: 5px;
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+.navmenu a:hover {
+    background : #EFEFEF ;
+    text-decoration: none;
+    color:         #000000;
+}
+
+.admin_menu {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 85%;
+    border: 1px solid #005D8C;
+    background-color:#FFFFFF;
+    background-image: url(images/button_bg.gif);
+    background-position: bottom;
+    background-repeat:repeat-x;
+    color: #000000;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-top:2px;
+    padding-bottom:2px;
+    padding-left:1px;
+    padding-right:1px;
+    text-align: center;
+}
+
+.admin_menu a {
+    color: #000000;
+    text-decoration: none;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.admin_menu a:hover {
+    color: #000000;
+    text-decoration: underline;
+}
+
+.admin_float {
+    float:left;
+    margin-left: 1px;
+    margin-right: 1px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    max-height:1.5em;
+    white-space:nowrap;
+    display: block;
+    position: relative;
+    /*width:100px;*/
+}
+
+.admin_menu_wrapper {
+    width:100%;
+    white-space:normal;
+}
+
+#admin_menu_anim {
+    background-image : url(images/button_bg_anim.gif);
+}
+
+.icon {
+	vertical-align:middle;
+	margin-right:1px;
+}
+
+.comment_date{
+    color : #5F5F5F;
+    font-size : 90%;
+    vertical-align : middle;
+}
+
+.image {
+    border-style:solid;
+    border-width:1px;
+    border-color:#000000;
+    margin:2px;
+}
+
+/* pseudo-classes for image links */
+a:link .image{
+    border-style:solid;
+    border-width:1px;
+    border-color:#000000;
+    margin:2px;
+}
+
+a:visited .image{
+    border-style:solid;
+    border-width:1px;
+    border-color:#840084;
+    margin:2px;
+}
+
+a:focus .image{
+    border-style:solid;
+    border-width:1px;
+    border-color:#000000;
+    margin:2px;
+}
+
+a:hover .image{
+    border-style:solid;
+    border-width:1px;
+    border-color:#0033CC;
+    margin:2px;
+}
+
+a:active .image{
+    border-style:solid;
+    border-width:1px;
+    border-color:#000000;
+    margin:2px;
+}
+
+/* pseudo-classes for middlethumb links */
+a:link .middlethumb,a:visited .middlethumb,a:focus .middlethumb,a:hover .middlethumb,a:active .middlethumb{
+	border: 2px solid blue;
+}
+
+.imageborder {
+    border: 1px solid #000000;
+    background-color: #FFFFFF;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.display_media {
+    background: #EFEFEF ;
+    padding-top: 3px;
+    padding-right: 3px;
+    padding-bottom: 3px;
+    padding-left: 3px;
+}
+
+.thumbnails {
+    background: #EFEFEF ;
+    padding: 5px;
+}
+
+.footer {
+    font-size : 9px;
+}
+
+.footer a {
+    text-decoration: none;
+    color: #000000;
+}
+
+.footer a:hover {
+    color: #000000;
+    text-decoration: underline;
+}
+
+.statlink {
+    color: #FFFFFF;
+}
+
+.statlink a {
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+.statlink a:hover {
+    color: #FFFFFF;
+    text-decoration: underline;
+}
+
+.alblink {
+    font-weight:bold;
+}
+
+.alblink a {
+    text-decoration: underline;
+    color: #000000;
+}
+
+.alblink a:hover {
+    color: #000000;
+    text-decoration: underline;
+}
+
+.catlink {
+    display: block;
+    margin-bottom: 2px;
+    font-weight:bold;
+}
+
+.catlink a {
+    text-decoration: underline;
+    color: #000000;
+}
+
+.catlink a:hover {
+    color: #000000;
+    text-decoration: underline;
+}
+
+.topmenu {
+    line-height : 130%;
+    font-size: 100%;
+}
+
+.topmenu a {
+    color : #0033CC;
+    text-decoration : none;
+}
+
+.topmenu a:hover  {
+    color : #0033CC;
+    text-decoration : underline;
+}
+
+.img_caption_table {
+    border: none;
+    background-color: #FFFFFF;
+    width : 100%;
+    margin : 0px;
+}
+
+.img_caption_table th {
+    background: #D1D7DC ;
+    font-size: 100%;
+    color : #000000;
+    padding-top: 4px;
+    padding-right: 10px;
+    padding-bottom: 4px;
+    padding-left: 10px;
+    border-top : 1px solid #FFFFFF;
+}
+
+.img_caption_table td {
+    background: #EFEFEF ;
+    padding-top: 6px;
+    padding-right: 10px;
+    padding-bottom: 6px;
+    padding-left: 10px;
+    border-top : 1px solid #FFFFFF;
+    white-space: normal;
+}
+
+.debug_text {
+    border: #BDBEBD;
+    background-color: #EFEFEF;
+    width : 100%;
+    margin : 0px;
+}
+
+.clickable_option {
+    cursor : default;
+}
+
+.listbox_lang {
+    color: #000000;
+    background-color: #D1D7DC;
+    border: 1px solid #0E72A4;
+    font-size: 80%;
+    font-family: Arial, Helvetica, sans-serif;
+    vertical-align : middle;
+
+}
+
+.pic_title {
+    color: #000000;
+    font-size: 120%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight:bold;
+    text-align : center;
+    padding-top:0px;
+    padding-bottom:0px;
+    margin-top:0px;
+    margin-bottom:0px;
+    line-height:1.0em;
+}
+
+.pic_caption {
+    color: #000000;
+    font-size: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight:bold;
+    text-align : center;
+    padding-top:0px;
+    padding-bottom:0px;
+    margin-top:0px;
+    margin-bottom:0px;
+    line-height:1.0em;
+}
+
+.cpg_user_message {
+    font-size:1.4em;
+    font-weight:bold;
+    color:red;
+}
+
+#vanity a {
+    display:block;
+    width:57px;
+    height:20px;
+    margin: 3px 20px;
+}
+
+#vanity img {
+	border:0
+}
+#v_php {
+	float:left;
+	background-image:url(../../images/powered-php.gif);
+}
+#v_php:hover {
+	background-image:url(../../images/h_powered-php.gif);
+}
+#v_mysql {
+	float:left;
+	background-image:url(../../images/powered-mysql.gif);
+}
+#v_mysql:hover  {
+	background-image:url(../../images/h_powered-mysql.gif);
+}
+#v_xhtml {
+	float:right;background-image:url(../../images/valid-xhtml10.gif);
+}
+#v_xhtml:hover {
+	background-image:url(../../images/h_valid-xhtml10.gif);
+}
+#v_css {
+	float:right;
+	background-image:url(../../images/valid-css.gif);
+}
+#v_css:hover {
+	background-image:url(../../images/h_valid-css.gif);
+}
+
+#cpg_main_block {
+    border: 1px solid #666666;
+    background-color:#FFFFFF;
+    margin:20px;
+    padding:20px;
+}
+
+.important {
+    background-image : url(images/important.gif);
+    padding-left:1px;
+    padding-right:1px;
+    padding-top:3px;
+    padding-bottom:3px;
+}
+
+#cpgChooseLanguageWrapper {
+    float:left;
+    margin-left:3px;
+    margin-right:3px;
+    margin-top:0px;
+    margin-bottom:0px;
+}
+
+#cpgChooseThemeWrapper {
+    float:left;
+    margin-left:3px;
+    margin-right:3px;
+    margin-top:0px;
+    margin-bottom:0px;
+}
+
+.filmstrip_background {
+	background-color:#000000;
+}
+
+.dtree {
+    color: #666;
+    white-space: nowrap;
+}
+.dtree img {
+    border: 0px;
+    vertical-align: middle;
+}
+.dtree a {
+    color: #333;
+    text-decoration: none;
+}
+.dtree a.node, .dtree a.nodeSel {
+    white-space: nowrap;
+    padding: 1px 2px 1px 2px;
+}
+.dtree a.node:hover, .dtree a.nodeSel:hover {
+    color: #333;
+    text-decoration: underline;
+}
+.dtree a.nodeSel {
+    background-color: #0871A5;
+    color: #FFFFFF;
+}
+.dtree .clip {
+    overflow: hidden;
+}
+
+/* jQuery Bookmark styles */
+.bookmark_list {
+	display: block;
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+}
+@media screen and (-webkit-min-device-pixel-ratio:0) {  /* Safari3/Opera9 */
+	.bookmark_list {
+		font-size: 100%;
+	}
+}
+html:first-child .bookmark_list {  /* Opera */
+	/*font-size: 80%;*/
+}
+.bookmark_list li {
+	float: left;
+	width: 23%;
+	margin: 0% 0.5%;
+	padding: 2px;
+	background-color: #eee;
+	border: 1px outset;
+	list-style-type: none;
+}
+.bookmark_compact {
+	background-color: #eee;
+	border: 1px outset;
+}
+.bookmark_compact li {
+	width: 16px;
+	height: 16px;
+	margin: 0%;
+	background-color: transparent;
+	border: none;
+}
+.bookmark_list a {
+	width: 100%;
+}
+.bookmark_list span {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+}
+.bookmark_list img {
+	border: none;
+	vertical-align: bottom;
+}
+@media screen and (-webkit-min-device-pixel-ratio:0) {  /* Safari3/Opera9 */
+	.bookmark_list img {
+		margin-bottom: 3px;
+		vertical-align: middle;
+	}
+}
+html:first-child .bookmark_list img { /* Opera */
+	margin-bottom: 3px;
+	vertical-align: middle;
+}
+
+#bookmarkIt { /* This is the container that wraps the entire social bookmarks button */
+	float: left; 
+	border: 1px solid #0E72A4; 
+	padding: 0px 3px; 
+    font-size: 80%; 
+    cursor: pointer;
+    background-color: #D1D7DC;
+    margin-left:3px;
+    margin-right:3px;
+    margin-top:0px;
+    margin-bottom:0px; 
+} 
+#popupClose { 
+	display: none; 
+	vertical-align: top; 
+} 
+#popupBookmark { 
+	display: none; 
+	position: absolute; 
+	z-index: 100; 
+} 
+#popupBookmark ul { 
+	float: left; 
+	width: 180px; 
+    border: 1px solid #aaa; 
+    background-color: #fff; 
+}
+
+/*** The Essential Code ***/
+
+#header, #footer {
+	margin-left: -200px;    /* LC fullwidth */
+	margin-right: -190px;   /* RC fullwidth + CC padding */
+}
+
+.column {
+	position: relative;
+	float: left;
+}
+
+#center {
+	padding: 0 20px;
+	width: 100%;
+}
+
+#left {
+	width: 180px;           /* LC width */
+	padding: 0 10px;        /* LC padding */
+	right: 240px;           /* LC fullwidth + CC padding */
+	margin-left: -100%;
+}
+
+#right {
+	width: 130px;           /* RC width */
+	padding: 0 10px;        /* RC padding */
+	margin-right: -100%;
+}
+
+#footer {
+	clear: both;
+}
+
+/*** IE Fix ***/
+* html #left {
+	left: 150px;            /* RC fullwidth */
+}
+
+/*** Just for Looks ***/
+
+#header, #footer {
+	font-size: large;
+	text-align: center;
+	padding: 0.3em 0;
+	background: #999;
+}
+
+#left {
+	background: #66F;
+}
+
+#center {
+	background: #DDD;
+}
+
+#right {
+	background: #F66;
+}
+
+.column {
+	padding-top: 1em;
+	text-align: justify;
+}</textarea>
+
+<h2>Initial test</h2>
+<p>Now it's time to perform a first test, taking a look at what we have accomplished so far, so let's take a look at our gallery with our new custom skin. Therefor, upload your changes to your webserver (using your FTP app) unless you're doing this all on your local testbed. But wait: don't dive right into coppermine's config yet: let's just preview the theme for you without your site users noticing that there is a new theme that will be presented to the public soon, so let's start the gallery with a URL parameter that specifies the theme to use - as suggested in <a href="theme_create.htm#theme_create_tipps">Tipps & tricks</a>, go to the URL <tt class="code">http://yoursite.tld/coppermine/index.php?theme=my_theme</tt></p>
+
+<p><abbr title="to be continued">tbc</abbr>...</p>
 
 
 
