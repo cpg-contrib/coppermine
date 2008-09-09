@@ -21,8 +21,6 @@
 // This theme has had all redundant CORE items removed                       //
 // ------------------------------------------------------------------------- //
 define('THEME_HAS_NO_SUB_MENU_BUTTONS', 1);
-define('THEME_IS_XHTML10_TRANSITIONAL',1);  // Remove this if you edit this template until
-                                            // you have validated it. See docs/theme.htm.
 
 // HTML template for template sys_menu spacer
 $template_sys_menu_spacer ="|";
