@@ -203,6 +203,8 @@ $lang_main_menu = array(
   'contact_lnk' => 'Contact', // cpg1.5
   'sidebar_title' => 'Add a Sidebar to your browser', // cpg1.5
   'sidebar_lnk' => 'Sidebar', // cpg1.5
+  'main_menu' => 'Main Menu', // cpg1.5
+  'sub_menu' => 'Sub Menu', // cpg1.5
 );
 
 $lang_gallery_admin_menu = array(
@@ -256,6 +258,7 @@ $lang_gallery_admin_menu = array(
   'shownews_title' => 'Display the news from coppermine-gallery.net', // cpg1.5
   'export_lnk' => 'Export', // cpg1.5
   'export_title' => 'Export files and albums to disk', // cpg1.5
+  'admin_menu' => 'Admin Menu', // cpg1.5
 );
 
 $lang_user_admin_menu = array(
