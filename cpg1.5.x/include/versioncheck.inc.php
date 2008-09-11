@@ -385,6 +385,7 @@ function cpg_versioncheckCreateXml($file_data_array) {
   </script>
 EOT;
   print '<form name="versioncheckdisplay"><textarea name="versioncheck_text" rows="20" class="textinput debug_text" style="width:98%;font-family:\'Courier New\',Courier,monospace;font-size:9px;height:auto;overflow:auto;">';
+  print '<?xml version="1.0" encoding="ISO-8859-1"?>'.$newLine;
   print '<file_data>'.$newLine;
   $loopCounter++;
   foreach ($file_data_array as $file_data_key => $file_data_values) {
