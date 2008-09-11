@@ -1466,6 +1466,14 @@ function pagefooter()
     }
 
     $template_vars = array(
+        '{GAL_NAME}' => $CONFIG['gallery_name'],
+        '{GAL_DESCRIPTION}' => $CONFIG['gallery_description'],
+        '{SYS_MENU}' => theme_main_menu('sys_menu'),
+        '{SUB_MENU}' => theme_main_menu('sub_menu'),
+        '{ADMIN_MENU}' => theme_admin_mode_menu(),
+        '{CUSTOM_HEADER}' => $custom_header,
+        '{JAVASCRIPT}' => theme_javascript_head(),
+        '{MESSAGE_BLOCK}' => theme_display_message_block(),
         '{CUSTOM_FOOTER}' => $custom_footer,
         '{VANITY}' => (defined('THEME_IS_XHTML10_TRANSITIONAL')) ? theme_vanity() : '',
         '{CREDITS}' => theme_credits(),
