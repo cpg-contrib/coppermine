@@ -51,7 +51,7 @@ $maxLength_array['exist'] = strlen($lang_versioncheck_php['missing']);
 $maxLength_array['readwrite'] = strlen($lang_versioncheck_php['permissions']);
 $maxLength_array['version'] = strlen($lang_versioncheck_php['version']);
 $maxLength_array['revision'] = strlen($lang_versioncheck_php['revision']);
-$maxLength_array['coment'] = strlen($lang_versioncheck_php['comment']);
+$maxLength_array['comment'] = strlen($lang_versioncheck_php['comment']);
 
 function cpg_get_path_and_file($string) {
     // check if $string contains delimiter that triggers replacement
@@ -69,13 +69,15 @@ function cpg_get_path_and_file($string) {
 }
 
 function cpg_is_writable($folder){
+  // Make sure that there is a trailing slash at the end of the variable $folder
+  $folder = rtrim($folder, '/').'/';
   $return = 0;
   $file_content = "this is just a test file that hasn't been deleted properly.\nIt's safe to delete it now";
-  @unlink($folder.'/cpgvc_tf.txt');
-  if ($fd = @fopen($folder.'/cpgvc_tf.txt', 'w')) {
+  @unlink($folder.'cpgvc_tf.txt'); // This will throw a warning when notices_display is enabled, as there probably is no such file. We'll try to delete such a file anyway just to make sure there is no leftover file
+  if ($fd = @fopen($folder.'cpgvc_tf.txt', 'w')) {
       @fwrite($fd, $file_content);
       @fclose($fd);
-      @unlink($folder.'/cpgvc_tf.txt');
+      @unlink($folder.'cpgvc_tf.txt');
       $return = 'write';
   } else {
       $return = 'read';
@@ -162,7 +164,15 @@ function cpg_versioncheckPopulateArray($file_data_array) {
 
     $loopCounter = 0;
     foreach ($file_data_array as $file_data_key => $file_data_values) { // start the foreach loop
-	    $file_data_array[$file_data_key]['comment'] = '';
+	    // initialize the vars
+        $file_data_array[$file_data_key]['comment'] = '';
+        $file_data_array[$file_data_key]['txt_revision'] = '';
+        $file_data_array[$file_data_key]['version'] = '';
+        $file_data_array[$file_data_key]['local_version'] = '';
+        $file_data_array[$file_data_key]['revision'] = '';
+        $file_data_array[$file_data_key]['local_revision'] = '';
+        $file_data_array[$file_data_key]['txt_folderfile'] = '';
+        
 	    // Replace the placeholders with actual content --- start
 	    $file_data_array[$file_data_key]['fullpath'] = str_replace('**fullpath**', rtrim($CONFIG['fullpath'], '/'), $file_data_array[$file_data_key]['fullpath']);
 	    $file_data_array[$file_data_key]['fullpath'] = str_replace('**userpics**', rtrim($CONFIG['userpics'], '/'), $file_data_array[$file_data_key]['fullpath']);
@@ -174,8 +184,8 @@ function cpg_versioncheckPopulateArray($file_data_array) {
 	    // populate the path and file from the fullpath --- end
 	    // determine the number of parent folders --- start
 	    $file_data_array[$file_data_key]['folderDepth'] = count(explode('/', rtrim($tempArray['path'], '/')));
-	    if (strlen($file_data_array[$file_data_key]['folder']) > $maxLength_array['folder']) {
-	      $maxLength_array['folder'] = strlen($file_data_array[$file_data_key]['folder']);
+	    if (strlen($file_data_array[$file_data_key]['folder']) > $maxLength_array['folderfile']) {
+	      $maxLength_array['folderfile'] = strlen($file_data_array[$file_data_key]['folder']);
 	    }
 	    // determine the number of parent folders --- end
         // Determine the icon -- start
@@ -562,7 +572,7 @@ EOT;
 }
 
 function cpg_versioncheckCreateHTMLOutput($file_data_array) {
-  global $textFileExtensions_array, $lang_versioncheck_php, $majorVersion, $displayOption_array;
+  global $textFileExtensions_array, $lang_versioncheck_php, $majorVersion, $displayOption_array, $file_data_count, $maxLength_array;
   $newLine = "\r\n";
   $loopCounter_array = array('total' => 0, 'error' => 0, 'display' => 0);
   if (strlen($file_data_count) > $maxLength_array['counter']) {
@@ -591,9 +601,11 @@ EOT;
     } else {
       $cellstyle = 'tableb';
     }
-    if ($file_data_values['txt_missing'] != '') {
-      $file_data_values['link_start'] = '<a href="'.$file_data_values['fullpath'].'">';
-      $file_data_values['link_end'] = '</a>';
+    if (isset($file_data_values['txt_missing'])) {
+        if ($file_data_values['txt_missing'] != '') {
+          $file_data_values['link_start'] = '<a href="'.$file_data_values['fullpath'].'">';
+          $file_data_values['link_end'] = '</a>';
+        }
     }
     $important['path'] = '';
     $important['missing'] = '';

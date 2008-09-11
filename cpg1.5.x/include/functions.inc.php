@@ -4089,6 +4089,17 @@ function cpgGetRemoteFileByURL($remoteURL, $method = "GET", $redirect = 10, $min
     global $lang_get_remote_File_by_url;
     // FSOCK code snippets taken from http://jeenaparadies.net/weblog/2007/jan/get_remote_file
     $url = parse_url($remoteURL); // chop the URL into protocol, domain, port, folder, file, parameter
+    if (!isset($url['host'])) {
+        $url['host'] = '';
+    }
+    if (!isset($url['scheme'])) {
+        $url['scheme'] = '';
+    }
+    if (!isset($url['port'])) {
+        $url['port'] = '';
+    }
+    $body = '';
+    $headers = '';
     $error = '';
     $lineBreak = "<br />\r\n";
     // Let's try CURL first
