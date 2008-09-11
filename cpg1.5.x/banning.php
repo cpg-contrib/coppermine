@@ -61,6 +61,7 @@ EOHEAD;
 
         $row_counter = 0;
         $loop_counter = 0;
+        $calendar_icon = cpg_fetch_icon('calendar', 0);
         while ($row = mysql_fetch_array($result)) {
             if ($loop_counter == 0) {
                 $row_style_class = 'tableb';
@@ -95,7 +96,7 @@ EOHEAD;
                                                 <td class="{$row_style_class}" valign="middle">
                                                 <input type="text" class="listbox_lang" size="20" name="edit_ban_expires" value="$expiry" readonly="readonly" title="{$lang_banning_php['select_date']}" />
                                                 <script type="text/javascript">
-                                                    document.write('<a href="javascript:;"  onclick="return getCalendar(document.banlist$row_counter.edit_ban_expires);" title="{$lang_banning_php['select_date']}"><img src="images/calendar.gif" width="16" height="16" border="0" alt="" /></a>');
+                                                    document.write('<a href="javascript:;"  onclick="return getCalendar(document.banlist$row_counter.edit_ban_expires);" title="{$lang_banning_php['select_date']}">{$calendar_icon}</a>');
                                                 </script>
                                         </td>
                                         <td class="{$row_style_class}" valign="middle">
@@ -343,6 +344,7 @@ EOT;
 print "<br />\n";
 print '<form action="'.$CPG_PHP_SELF.'" method="post" name="list" id="cpgform">'."\r\n";
 starttable('100%', $lang_banning_php['add_new'], 5);
+$calendar_icon = cpg_fetch_icon('calendar', 0);
 echo <<<EOT
 	<tr>
 		<th class="tableh2">{$lang_banning_php['user_name']}</th>
@@ -367,7 +369,7 @@ echo <<<EOT
 		<td class="tableb" valign="middle">
 			<input type="text" class="listbox_lang"  name="add_ban_expires" value="" size="20" readonly="readonly" title="{$lang_banning_php['select_date']}" />
 			<script type="text/javascript">
-			document.write('<a href="javascript:;"  onclick="return getCalendar(document.list.add_ban_expires);" title="{$lang_banning_php['select_date']}"><img src="images/calendar.gif" width="16" height="16" border="0" alt="" /></a>');
+			document.write('<a href="javascript:;"  onclick="return getCalendar(document.list.add_ban_expires);" title="{$lang_banning_php['select_date']}">{$calendar_icon}</a>');
 			</script>
 		</td>
 		<td class="tableb" valign="top">

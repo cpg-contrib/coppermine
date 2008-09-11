@@ -362,14 +362,16 @@ function form_pic_info($text)
 
     // The approve checkbox is shown only if the user is admin or moderator.
     if (GALLERY_ADMIN_MODE || MODERATOR_MODE) {
+        $approve_icon = cpg_fetch_icon('ok', 0, $lang_editpics_php['approve_pic']);
         $approve_html = <<<EOT
                           <td class="{$row_style_class}" width="40" valign="top">
-                                  <input type="checkbox" name="approved{$CURRENT_PIC['pid']}" id="approve{$CURRENT_PIC['pid']}" value="YES" {$pic_approval_checked} class="checkbox" title="{$lang_editpics_php['approve_pic']}" /><label for="approve{$CURRENT_PIC['pid']}" class="clickable_option"><img src="images/approve.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['approve_pic']}" /></label>
+                                  <input type="checkbox" name="approved{$CURRENT_PIC['pid']}" id="approve{$CURRENT_PIC['pid']}" value="YES" {$pic_approval_checked} class="checkbox" title="{$lang_editpics_php['approve_pic']}" /><label for="approve{$CURRENT_PIC['pid']}" class="clickable_option">{$approve_icon}</label>
                           </td>
 EOT;
     }
 
     $delete_icon = cpg_fetch_icon('delete', 0, $lang_editpics_php['del_pic']);
+    $report_icon = cpg_fetch_icon('report', 0, $lang_editpics_php['del_comm']);
     echo <<<EOT
     <tr>
         <td colspan="3">
@@ -825,9 +827,10 @@ EOT;
 
 // The approve all checkbox is shown only if the user is admin or moderator.
 if (GALLERY_ADMIN_MODE || MODERATOR_MODE) {
+    $approve_icon = cpg_fetch_icon('ok', 0, $lang_editpics_php['approve_all']);
     $approve_all_html = <<<EOT
                           <td class="tableh2" width="40" valign="top">
-                                  <input type="checkbox" name="approveAll" onclick="selectAll(this,'approved');" class="checkbox" id="approveAll" title="{$lang_editpics_php['approve_all']}" /><label for="approveAll" class="clickable_option"><img src="images/approve.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['approve_all']}" /></label>
+                                  <input type="checkbox" name="approveAll" onclick="selectAll(this,'approved');" class="checkbox" id="approveAll" title="{$lang_editpics_php['approve_all']}" /><label for="approveAll" class="clickable_option">{$approve_icon}</label>
                           </td>
 EOT;
 }
@@ -852,7 +855,7 @@ echo <<<EOT
                             <input type="checkbox" name="reset_votesAll" onclick="selectAll(this,'reset_votes');" class="checkbox" id="reset_votesAll" title="{$lang_editpics_php['reset_all_votes']}" /><label for="reset_votesAll" class="clickable_option"><img src="images/rating.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['reset_all_votes']}" /></label>
                         </td>
                         <td class="tableh2" width="40">
-                            <input type="checkbox" name="del_commentsAll" onclick="selectAll(this,'del_comments');" class="checkbox"reset_votesAll" id="del_commentsAll" title="{$lang_editpics_php['del_all_comm']}" /><label for="del_commentsAll" class="clickable_option"><img src="images/report.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['del_all_comm']}" /></label>
+                            <input type="checkbox" name="del_commentsAll" onclick="selectAll(this,'del_comments');" class="checkbox"reset_votesAll" id="del_commentsAll" title="{$lang_editpics_php['del_all_comm']}" /><label for="del_commentsAll" class="clickable_option">{$report_icon}</label>
                         </td>
                     </tr>
                 </table>

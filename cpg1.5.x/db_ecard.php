@@ -295,7 +295,7 @@ while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
     print "<td".$tempClass."><strong class=\"thumb_caption\">".$line['recipient_name']."</strong></td>\n";
     print "<td".$tempClass."><span class=\"thumb_caption\"><a href=\"mailto:".$line['recipient_email']."\">".$line['recipient_email']."</a></span></td>\n";
     print "<td".$tempClass."><span class=\"thumb_caption\">".strftime($lastcom_date_fmt,$line['date'])."</span></td>\n";
-    print "<td align=\"center\"".$tempClass."><span class=\"thumb_caption\"><a href=\"displayecard.php?data=".$line['link']."\"><img src=\"images/ecard.gif\" width=\"16\" height=\"16\" border=\"0\" alt=\"\" title=\"".$lang_db_ecard_php['ecard_display']."\" /></a></span></td>\n";
+    print "<td align=\"center\"".$tempClass."><span class=\"thumb_caption\"><a href=\"displayecard.php?data=".$line['link']."\">" . cpg_fetch_icon('ecard_review', 0, $lang_db_ecard_php['ecard_display']) . "</a></span></td>\n";
     print "\t</tr>\n";
     if ($tempClass == ' class="tableb"') {
     $tempClass = ' class="tableh2"';}else{$tempClass = ' class="tableb"';
