@@ -744,7 +744,7 @@
   <element>
     <fullpath>bridge/vbulletin30.inc.php</fullpath>
     <version>1.5.0</version>
-    <revision>4985</revision>
+    <revision>5030</revision>
     <status>optional</status>
     <permission>read</permission>
     <hash>0bc212fbcdffef3307d9fbb0b7e2cfd0</hash>

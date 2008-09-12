@@ -24,7 +24,7 @@ are gone. Please do not re-introduce those changes: they were bad in the first p
 Instead, the installer needs to be reviewed. I updated the installer a little bit to make 
 sure it doesn't break entirely, however I suggest re-designing the installer without the 
 OO-approach: only use OO where it makes sense and if you have no dependencies. 
-This is not the case: coppermine has been built the old-school way (with OO), and there 
+This is not the case: coppermine has been built the old-school way (without OO), and there 
 is little benefit in the OO-tech of the new installer. It doesn't have to be re-built from 
 scratch though. 
 Further discussion should be led on the dev board. 
@@ -165,13 +165,27 @@ function cpg_versioncheckPopulateArray($file_data_array) {
     $loopCounter = 0;
     foreach ($file_data_array as $file_data_key => $file_data_values) { // start the foreach loop
 	    // initialize the vars
-        $file_data_array[$file_data_key]['comment'] = '';
-        $file_data_array[$file_data_key]['txt_revision'] = '';
-        $file_data_array[$file_data_key]['version'] = '';
-        $file_data_array[$file_data_key]['local_version'] = '';
-        $file_data_array[$file_data_key]['revision'] = '';
-        $file_data_array[$file_data_key]['local_revision'] = '';
-        $file_data_array[$file_data_key]['txt_folderfile'] = '';
+        if (!isset($file_data_array[$file_data_key]['comment'])) {
+            $file_data_array[$file_data_key]['comment'] = '';
+        }
+        if (!isset($file_data_array[$file_data_key]['txt_revision'])) {
+            $file_data_array[$file_data_key]['txt_revision'] = '';
+        }
+        if (!isset($file_data_array[$file_data_key]['version'])) {
+            $file_data_array[$file_data_key]['version'] = '';
+        }
+        if (!isset($file_data_array[$file_data_key]['local_version'])) {
+            $file_data_array[$file_data_key]['local_version'] = '';
+        }
+        if (!isset($file_data_array[$file_data_key]['revision'])) {
+            $file_data_array[$file_data_key]['revision'] = '';
+        }
+        if (!isset($file_data_array[$file_data_key]['local_revision'])) {
+            $file_data_array[$file_data_key]['local_revision'] = '';
+        }
+        if (!isset($file_data_array[$file_data_key]['txt_folderfile'])) {
+            $file_data_array[$file_data_key]['txt_folderfile'] = '';
+        }
         
 	    // Replace the placeholders with actual content --- start
 	    $file_data_array[$file_data_key]['fullpath'] = str_replace('**fullpath**', rtrim($CONFIG['fullpath'], '/'), $file_data_array[$file_data_key]['fullpath']);
@@ -655,7 +669,7 @@ function cpgVersioncheckConnectRepository() {
     // Perform the repository lookup and xml creation --- start
     //$displayOption_array['do_not_connect_to_online_repository'] = 1;
     $majorVersion = 'cpg'.str_replace('.' . ltrim(substr(COPPERMINE_VERSION,strrpos(COPPERMINE_VERSION,'.')),'.'), '', COPPERMINE_VERSION).'.x';
-    $remoteURL = 'http://coppermine-gallery.enet/' . str_replace('.', '', $majorVersion) . '.files.xml';
+    $remoteURL = 'http://coppermine-gallery.net/' . str_replace('.', '', $majorVersion) . '.files.xml';
     $localFile = 'include/' . str_replace('.', '', $majorVersion) . '.files.xml';
     $remoteConnectionFailed = '';
     if ($displayOption_array['do_not_connect_to_online_repository'] == 0) { // connect to the online repository --- start

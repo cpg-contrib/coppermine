@@ -75,7 +75,7 @@ $file_data_array = cpgVersioncheckConnectRepository();
 // main code starts here
 
 pageheader($lang_versioncheck_php['title']);
-print '<h1>'.$lang_versioncheck_php['title'].'</h1>';
+print '<h1>' . cpg_fetch_icon('check_versions', 2) . $lang_versioncheck_php['title'].'</h1>';
 
 
 // Print options if applicable
