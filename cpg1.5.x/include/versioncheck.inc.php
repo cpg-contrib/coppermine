@@ -101,11 +101,13 @@ function cpg_fillArrayFieldWithSpaces($text, $maxchars, $fillUpOn = 'right') {
 
 function cpg_versioncheckDisplayOptions() {
   global $CPG_PHP_SELF, $lang_versioncheck_php, $optionDisplayOutput_array;
+  $submit_icon = cpg_fetch_icon('ok', 1);
+  $help = ' ' . cpg_display_help('f=upgrading.htm&amp;as=versioncheck_options_start&amp;ae=versioncheck_options_end', '600', '400');
   print '<form name="options" action="'.$CPG_PHP_SELF.'" method="get">';
   print <<< EOT
 <table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
   <tr>
-          <td class="tableh1" colspan="2">{$lang_versioncheck_php['options']}</td>
+          <td class="tableh1" colspan="2">{$lang_versioncheck_php['options']}{$help}</td>
   </tr>
   <tr>
     <td class="tableb" valign="top">
@@ -138,7 +140,8 @@ function cpg_versioncheckDisplayOptions() {
   </tr>
   <tr>
     <td align="center" class="tablef" colspan="2">
-      <input type="submit" name="submit" value="{$lang_versioncheck_php['submit']}" class="button" />
+      <!--<input type="submit" name="submit" value="{$lang_versioncheck_php['submit']}" class="button" />-->
+      <button type="submit" class="button" name="submit" value="1">{$submit_icon}{$lang_versioncheck_php['submit']}</button>
     </td>
   </tr>
 </table>
@@ -227,20 +230,24 @@ function cpg_versioncheckPopulateArray($file_data_array) {
 	    // Is the folder/file actually there --- start
 	    $file_data_array[$file_data_key]['exists'] = file_exists($file_data_array[$file_data_key]['fullpath']);
 	    // Is the folder/file actually there --- end
-	    if ($file_data_array[$file_data_key]['exists'] != 1) { 
-		    // The folder/file is missing --- start
+	    if ($file_data_array[$file_data_key]['exists'] != 1) { // The folder/file is missing --- start
 	        if ($file_data_array[$file_data_key]['status'] == 'mandatory') {
 	          $file_data_array[$file_data_key]['txt_missing'] = $lang_versioncheck_php['mandatory'];
 	          $file_data_array[$file_data_key]['comment'] .= $lang_versioncheck_php['mandatory'];
+	        } elseif ($file_data_array[$file_data_key]['status'] == 'remove') {
+	          $file_data_array[$file_data_key]['txt_missing'] = $lang_versioncheck_php['removed'].' ('.$lang_versioncheck_php['ok'].')';
+              $file_data_array[$file_data_key]['txt_version'] = $lang_versioncheck_php['not_applicable'].' ('.$lang_versioncheck_php['ok'].')';
+              $file_data_array[$file_data_key]['txt_revision'] = $lang_versioncheck_php['not_applicable'].' ('.$lang_versioncheck_php['ok'].')';
 	        } else {
-	          $file_data_array[$file_data_key]['txt_missing'] = $lang_versioncheck_php['optional'];
-	        }
+              $file_data_array[$file_data_key]['txt_missing'] = $lang_versioncheck_php['optional'];
+              $file_data_array[$file_data_key]['comment'] = $lang_versioncheck_php['missing'];
+              $file_data_array[$file_data_key]['txt_version'] = $lang_versioncheck_php['not_applicable'];
+		      $file_data_array[$file_data_key]['txt_revision'] = $lang_versioncheck_php['not_applicable'];
+            }
 	        if (strlen($file_data_array[$file_data_key]['txt_missing']) > $maxLength_array['exist']) {
 	          $maxLength_array['exist'] = strlen($file_data_array[$file_data_key]['txt_missing']);
-	        }
-	         // The folder/file is missing --- end
-	    } else {
-		    // The folder/file exists --- start
+	        } // The folder/file is missing --- end
+	    } else { // The folder/file exists --- start
 		    if ($file_data_array[$file_data_key]['file'] == '') { 
 			  // we have a folder here --- start
 		      $file_data_array[$file_data_key]['txt_folderfile'] = $lang_versioncheck_php['folder'];
@@ -262,113 +269,129 @@ function cpg_versioncheckPopulateArray($file_data_array) {
                 // we have a file here --- start
                 $file_data_array[$file_data_key]['txt_folderfile'] = $lang_versioncheck_php['file'];
                 if (in_array($file_data_array[$file_data_key]['extension'],$textFileExtensions_array) == TRUE) {
-                // the file is not binary, i.e. it's a text file --- start
-                $handle = @fopen($file_data_array[$file_data_key]['fullpath'], 'r');
-                if ($handle == FALSE) {
-                    // We haven't been able to even fopen the file, so the information retrieved by is_readable/is_writable returned nonsense. Let's reset the information accordingly.
-                    $file_data_array[$file_data_key]['local_readwrite'] = '--';
-                    $file_data_array[$file_data_key]['comment'] .= $lang_versioncheck_php['inaccessible'].'. '.$lang_versioncheck_php['review_permissions'].'. ';
-                    //$file_data_array[$file_data_key]['comment'] .= '|'.$file_data_values['fullpath'];
-                } else {
-                    // File is readable -- start
-                    $blob = '';
-                    $blob = @fread($handle, filesize($file_data_array[$file_data_key]['fullpath']));
-                    @fclose($handle);
-                    $revision_string = '$'.'Revision'.':';
-                    $cpg_version_determination = 'Coppermine' . ' ' . 'version:';
-                    $blob = str_replace('<?php','',$blob);
-                    // Determine the cpg version -- start
-                    $file_data_array[$file_data_key]['local_version'] = substr($blob,strpos($blob, $cpg_version_determination)); // chop off the first bit up to the string $cpg_version_determination
-                    $double_slash_position = strpos($file_data_array[$file_data_key]['local_version'], '//');
-                    if ($double_slash_position) {
-                        $file_data_array[$file_data_key]['local_version'] = substr($file_data_array[$file_data_key]['local_version'],0,$double_slash_position);
-                    }
-                    $file_data_array[$file_data_key]['local_version'] = trim(str_replace($cpg_version_determination, '', $file_data_array[$file_data_key]['local_version']));
-                    $file_data_array[$file_data_key]['local_version'] = trim(str_replace('#', '', $file_data_array[$file_data_key]['local_version']));
-                    $file_data_array[$file_data_key]['local_version'] = trim(substr($file_data_array[$file_data_key]['local_version'], 0, strpos($file_data_array[$file_data_key]['local_version'], '$')));
-                    if (strlen($file_data_array[$file_data_key]['local_version']) > 6) { // Version numbers larger than 6 are not likely at all
-                        $file_data_array[$file_data_key]['local_version'] = $lang_versioncheck_php['not_applicable'];
-                    }
-                    if ($file_data_array[$file_data_key]['version'] != '' && $file_data_array[$file_data_key]['exists'] == 1 && $file_data_array[$file_data_key]['local_version'] != '') {
-                        $file_data_array[$file_data_key]['txt_version'] = ' (';
-                        $versionCompare = version_compare($file_data_array[$file_data_key]['local_version'],$file_data_array[$file_data_key]['version']);
-                        if ($versionCompare == 0) {
-                            $file_data_array[$file_data_key]['txt_version'] .= $lang_versioncheck_php['ok'];
-                        } elseif($versionCompare == -1) {
-                            $file_data_array[$file_data_key]['txt_version'] .= sprintf($lang_versioncheck_php['outdated'],$file_data_array[$file_data_key]['version']);
-                            $file_data_array[$file_data_key]['comment'] .= $lang_versioncheck_php['review_version'].'. ';
-                        } else {
-                            $file_data_array[$file_data_key]['txt_version'] .= sprintf($lang_versioncheck_php['newer'], $file_data_array[$file_data_key]['version']);
-                            $file_data_array[$file_data_key]['comment'] .= $lang_versioncheck_php['review_dev_version'].'. ';
-                        }
-                        $file_data_array[$file_data_key]['txt_version'] .= ')';
+                    // the file is not binary, i.e. it's a text file --- start
+                    $handle = @fopen($file_data_array[$file_data_key]['fullpath'], 'r');
+                    if ($handle == FALSE) {
+                        // We haven't been able to even fopen the file, so the information retrieved by is_readable/is_writable returned nonsense. Let's reset the information accordingly.
+                        $file_data_array[$file_data_key]['local_readwrite'] = '--';
+                        $file_data_array[$file_data_key]['comment'] .= $lang_versioncheck_php['inaccessible'].'. '.$lang_versioncheck_php['review_permissions'].'. ';
+                        //$file_data_array[$file_data_key]['comment'] .= '|'.$file_data_values['fullpath'];
                     } else {
-                        $file_data_array[$file_data_key]['txt_version'] = '';
-                    }
-                    if (strlen($file_data_array[$file_data_key]['local_version'] . $file_data_array[$file_data_key]['txt_version']) > $maxLength_array['version']) {
-                        $maxLength_array['version'] = strlen($file_data_array[$file_data_key]['local_version'] . $file_data_array[$file_data_key]['txt_version']);
-                    }
-                    // Determine the cpg version -- end
-                    // Determine file revision -- start
-                    if ($file_data_array[$file_data_key]['revision'] != '') { // only look the revision up if a revision is given in the XML data
-                        $file_data_array[$file_data_key]['local_revision'] = str_replace($revision_string, '', substr($blob,strpos($blob, $revision_string),25));
-                        $file_data_array[$file_data_key]['local_revision'] = trim(substr($file_data_array[$file_data_key]['local_revision'], 0, strpos($file_data_array[$file_data_key]['local_revision'], '$')));
-                        if (strlen($file_data_array[$file_data_key]['local_revision']) > 5) { // Check validity of revision: more than 5 chars is not expected
-                            $file_data_array[$file_data_key]['local_revision']= $lang_versioncheck_php['not_applicable'];
+                        // File is readable -- start
+                        $blob = '';
+                        $blob = @fread($handle, filesize($file_data_array[$file_data_key]['fullpath']));
+                        @fclose($handle);
+                        $revision_string = '$'.'Revision'.':';
+                        $cpg_version_determination = 'Coppermine' . ' ' . 'version:';
+                        $blob = str_replace('<?php','',$blob);
+                        // Determine the cpg version -- start
+                        $file_data_array[$file_data_key]['local_version'] = substr($blob,strpos($blob, $cpg_version_determination)); // chop off the first bit up to the string $cpg_version_determination
+                        $double_slash_position = strpos($file_data_array[$file_data_key]['local_version'], '//');
+                        if ($double_slash_position) {
+                            $file_data_array[$file_data_key]['local_version'] = substr($file_data_array[$file_data_key]['local_version'],0,$double_slash_position);
                         }
-                        if ($file_data_array[$file_data_key]['local_revision'] != '' && $file_data_array[$file_data_key]['exists'] == 1) {
-                          //$file_data_array[$file_data_key]['local_revision'] = $file_data_array[$file_data_key]['revision'];
-                          if ($file_data_array[$file_data_key]['local_revision'] == $file_data_array[$file_data_key]['revision']) {
-                            $file_data_array[$file_data_key]['txt_revision'] .= ' ('.$lang_versioncheck_php['ok'];
-                          } elseif($file_data_array[$file_data_key]['local_revision'] < $file_data_array[$file_data_key]['revision']) {
-                            $file_data_array[$file_data_key]['txt_revision'] .= ' ('. sprintf($lang_versioncheck_php['outdated'], $file_data_array[$file_data_key]['revision']);
-                            if ($versionCompare == 0) {
-                              $file_data_array[$file_data_key]['comment'] .= $lang_versioncheck_php['review_version'].'. ';
-                            }
-                          } else {
-                            $file_data_array[$file_data_key]['txt_revision'] .= ' ('. sprintf($lang_versioncheck_php['newer'], $file_data_array[$file_data_key]['revision']);
-                            if ($versionCompare == 0) {
-                              $file_data_array[$file_data_key]['comment'] .= $lang_versioncheck_php['review_dev_version'].'. ';
-                            }
-                          }
-                          $file_data_array[$file_data_key]['txt_revision'] .= ')';
-                        } else {
-                          $file_data_array[$file_data_key]['txt_revision'] = '';
+                        $file_data_array[$file_data_key]['local_version'] = trim(str_replace($cpg_version_determination, '', $file_data_array[$file_data_key]['local_version']));
+                        $file_data_array[$file_data_key]['local_version'] = trim(str_replace('#', '', $file_data_array[$file_data_key]['local_version']));
+                        $file_data_array[$file_data_key]['local_version'] = trim(substr($file_data_array[$file_data_key]['local_version'], 0, strpos($file_data_array[$file_data_key]['local_version'], '$')));
+                        if (strlen($file_data_array[$file_data_key]['local_version']) > 6) { // Version numbers larger than 6 are not likely at all
+                            $file_data_array[$file_data_key]['local_version'] = $lang_versioncheck_php['not_applicable'];
                         }
-                    }
-                    // Determine file revision -- end
-                    // File is readable -- end
-                }
-                // the file is not binary, i.e. it's a text file --- end
-                } else {
-                // the file is binary, i.e. it's an image --- start
-                // binary files don't come with version numbers -- start
-                $file_data_array[$file_data_key]['txt_version'] = $lang_versioncheck_php['not_applicable'].' ('.$lang_versioncheck_php['ok'].')';
-                // binary files don't come with version numbers -- end
-                // check the md5 hashes --- start
-                if(function_exists('md5')) { // the MD5-function may not exist
-                    // Do we have an md5-hash that we could compare against? -- start
-                    if ($file_data_array[$file_data_key]['hash'] != '') {
-                        // only perform the md5-check if the versions and revisions match anyway - we'd be comparing apples with bananas if we checked the hashes otherwise -- start
-                        if ($file_data_array[$file_data_key]['version'] == $file_data_array[$file_data_key]['local_version'] && $file_data_array[$file_data_key]['revision'] == $file_data_array[$file_data_key]['local_revision']) { 
-                            $file_data_array[$file_data_key]['local_hash'] = md5($file_data_values['fullpath']);
-                            if ($file_data_array[$file_data_key]['local_hash'] == $file_data_array[$file_data_key]['hash']) {
-                                $file_data_array[$file_data_key]['unmodified'] = 1;
-                                $file_data_array[$file_data_key]['txt_revision'] = $lang_versioncheck_php['not_modified'] . ' ('.$lang_versioncheck_php['ok'].')';
+                        if ($file_data_array[$file_data_key]['version'] != '' && $file_data_array[$file_data_key]['exists'] == 1 && $file_data_array[$file_data_key]['local_version'] != '') {
+                            $file_data_array[$file_data_key]['txt_version'] = ' (';
+                            $versionCompare = version_compare($file_data_array[$file_data_key]['local_version'],$file_data_array[$file_data_key]['version']);
+                            if ($versionCompare == 0) {
+                                $file_data_array[$file_data_key]['txt_version'] .= $lang_versioncheck_php['ok'];
+                            } elseif($versionCompare == -1) {
+                                $file_data_array[$file_data_key]['txt_version'] .= sprintf($lang_versioncheck_php['outdated'],$file_data_array[$file_data_key]['version']);
+                                $file_data_array[$file_data_key]['comment'] .= $lang_versioncheck_php['review_version'].'. ';
                             } else {
-                                $file_data_array[$file_data_key]['unmodified'] = 0;
-                                $file_data_array[$file_data_key]['txt_revision'] = $lang_versioncheck_php['modified'];
-                                $file_data_array[$file_data_key]['comment'] .= $lang_versioncheck_php['review_modified'].'. ';
+                                $file_data_array[$file_data_key]['txt_version'] .= sprintf($lang_versioncheck_php['newer'], $file_data_array[$file_data_key]['version']);
+                                $file_data_array[$file_data_key]['comment'] .= $lang_versioncheck_php['review_dev_version'].'. ';
                             }
+                            $file_data_array[$file_data_key]['txt_version'] .= ')';
                         } else {
-                            $file_data_array[$file_data_key]['txt_revision'] = $lang_versioncheck_php['not_applicable'];
+                            $file_data_array[$file_data_key]['txt_version'] = '';
                         }
-                        // only perform the md5-check if the versions and revisions match anyway - we'd be comparing apples with bananas if we checked the hashes otherwise -- end
+                        if ($file_data_array[$file_data_key]['local_version'] != '' && $file_data_array[$file_data_key]['txt_version'] == '') {
+                            $file_data_array[$file_data_key]['txt_version'] = ' (?)';
+                        }
+                        if ($file_data_array[$file_data_key]['version'] == '' && $file_data_array[$file_data_key]['txt_version'] == '') {
+                            $file_data_array[$file_data_key]['txt_version'] = $lang_versioncheck_php['not_applicable'].' ('.$lang_versioncheck_php['ok'].')';
+                        }
+                        if (strlen($file_data_array[$file_data_key]['local_version'] . $file_data_array[$file_data_key]['txt_version']) > $maxLength_array['version']) {
+                            $maxLength_array['version'] = strlen($file_data_array[$file_data_key]['local_version'] . $file_data_array[$file_data_key]['txt_version']);
+                        }
+                        // Determine the cpg version -- end
+                        // Determine file revision -- start
+                        if ($file_data_array[$file_data_key]['revision'] != '') { // only look the revision up if a revision is given in the XML data
+                            $file_data_array[$file_data_key]['local_revision'] = str_replace($revision_string, '', substr($blob,strpos($blob, $revision_string),25));
+                            $file_data_array[$file_data_key]['local_revision'] = trim(substr($file_data_array[$file_data_key]['local_revision'], 0, strpos($file_data_array[$file_data_key]['local_revision'], '$')));
+                            if (strlen($file_data_array[$file_data_key]['local_revision']) > 5) { // Check validity of revision: more than 5 chars is not expected
+                                $file_data_array[$file_data_key]['local_revision']= $lang_versioncheck_php['not_applicable'];
+                            }
+                            if ($file_data_array[$file_data_key]['local_revision'] != '' && $file_data_array[$file_data_key]['exists'] == 1) {
+                              //$file_data_array[$file_data_key]['local_revision'] = $file_data_array[$file_data_key]['revision'];
+                              if ($file_data_array[$file_data_key]['local_revision'] == $file_data_array[$file_data_key]['revision']) {
+                                $file_data_array[$file_data_key]['txt_revision'] .= ' ('.$lang_versioncheck_php['ok'];
+                              } elseif($file_data_array[$file_data_key]['local_revision'] < $file_data_array[$file_data_key]['revision']) {
+                                $file_data_array[$file_data_key]['txt_revision'] .= ' ('. sprintf($lang_versioncheck_php['outdated'], $file_data_array[$file_data_key]['revision']);
+                                if ($versionCompare == 0) {
+                                  $file_data_array[$file_data_key]['comment'] .= $lang_versioncheck_php['review_version'].'. ';
+                                }
+                              } else {
+                                $file_data_array[$file_data_key]['txt_revision'] .= ' ('. sprintf($lang_versioncheck_php['newer'], $file_data_array[$file_data_key]['revision']);
+                                if ($versionCompare == 0) {
+                                  $file_data_array[$file_data_key]['comment'] .= $lang_versioncheck_php['review_dev_version'].'. ';
+                                }
+                              }
+                              $file_data_array[$file_data_key]['txt_revision'] .= ')';
+                            } else {
+                              $file_data_array[$file_data_key]['txt_revision'] = '';
+                            }
+                        } else { // there's no file revision given, so let's output "na"
+                            $file_data_array[$file_data_key]['txt_revision'] = $lang_versioncheck_php['not_applicable'].' ('.$lang_versioncheck_php['ok'].')';
+                        }
+                        // Determine file revision -- end
+                        // File is readable -- end
                     }
-                    // Do we have an md5-hash that we could compare against? -- end
+                    // the file is not binary, i.e. it's a text file --- end
+                } else {
+                    // the file is binary, i.e. it's an image --- start
+                    // binary files don't come with version numbers -- start
+                    $file_data_array[$file_data_key]['txt_version'] = $lang_versioncheck_php['not_applicable'].' ('.$lang_versioncheck_php['ok'].')';
+                    // binary files don't come with version numbers -- end
+                    // check the md5 hashes --- start
+                    if(function_exists('md5')) { // the MD5-function may not exist
+                        // Do we have an md5-hash that we could compare against? -- start
+                        if ($file_data_array[$file_data_key]['hash'] != '') {
+                            // only perform the md5-check if the versions and revisions match anyway - we'd be comparing apples with bananas if we checked the hashes otherwise -- start
+                            if ($file_data_array[$file_data_key]['version'] == $file_data_array[$file_data_key]['local_version'] && $file_data_array[$file_data_key]['revision'] == $file_data_array[$file_data_key]['local_revision']) { 
+                                $file_data_array[$file_data_key]['local_hash'] = md5($file_data_values['fullpath']);
+                                if ($file_data_array[$file_data_key]['local_hash'] == $file_data_array[$file_data_key]['hash']) {
+                                    $file_data_array[$file_data_key]['unmodified'] = 1;
+                                    $file_data_array[$file_data_key]['txt_revision'] = $lang_versioncheck_php['not_modified'] . ' ('.$lang_versioncheck_php['ok'].')';
+                                } else {
+                                    $file_data_array[$file_data_key]['unmodified'] = 0;
+                                    $file_data_array[$file_data_key]['txt_revision'] = $lang_versioncheck_php['modified'];
+                                    $file_data_array[$file_data_key]['comment'] .= $lang_versioncheck_php['review_modified'].'. ';
+                                }
+                            } else {
+                                $file_data_array[$file_data_key]['txt_revision'] = $lang_versioncheck_php['not_applicable'];
+                            }
+                            // only perform the md5-check if the versions and revisions match anyway - we'd be comparing apples with bananas if we checked the hashes otherwise -- end
+                        }
+                        // Do we have an md5-hash that we could compare against? -- end
+                    }
+                    // check the md5 hashes --- end
+                    // the file is binary, i.e. it's an image --- end
                 }
-                // check the md5 hashes --- end
-                // the file is binary, i.e. it's an image --- end
+                if ($file_data_array[$file_data_key]['status'] == 'remove') {
+                    // should the file have been removed ? --- start
+            	        $file_data_array[$file_data_key]['txt_missing'] = $lang_versioncheck_php['existing'];
+                        $file_data_array[$file_data_key]['txt_version'] = $lang_versioncheck_php['not_applicable'];
+                        $file_data_array[$file_data_key]['txt_revision'] = $lang_versioncheck_php['not_applicable'];
+                        $file_data_array[$file_data_key]['comment'] = $lang_versioncheck_php['review_removed_existing'];
+                    // should the file have been removed ? --- end
                 }
                 // we have a file here --- end
 		    }
@@ -472,9 +495,11 @@ EOT;
     } else {
       $permission = 'read';
     }
-    print "    <permission>".$permission."</permission>".$newLine;
+    if ($file_data_array[$file_data_key]['status'] != 'remove') {
+        print "    <permission>".$permission."</permission>".$newLine;
+    }
     $loopCounter++;
-    if ($file_data_array[$file_data_key]['file'] != '') {
+    if ($file_data_array[$file_data_key]['file'] != '' && $file_data_array[$file_data_key]['status'] != 'remove') {
       $hash = md5($file_data_values['fullpath']);
     } else {
       $hash = '';
@@ -616,7 +641,10 @@ EOT;
       $cellstyle = 'tableb';
     }
     if (isset($file_data_values['txt_missing'])) {
-        if ($file_data_values['txt_missing'] != '') {
+        if ($file_data_values['txt_missing'] == $lang_versioncheck_php['removed'].' ('.$lang_versioncheck_php['ok'].')') {
+          $file_data_values['link_start'] = '<s>';
+          $file_data_values['link_end'] = '</s>';
+        } elseif ($file_data_values['txt_missing'] != '') {
           $file_data_values['link_start'] = '<a href="'.$file_data_values['fullpath'].'">';
           $file_data_values['link_end'] = '</a>';
         }
@@ -633,7 +661,7 @@ EOT;
       if ($file_data_values['txt_missing'] == $lang_versioncheck_php['mandatory']) {
         $important['missing'] = ' important';
       }
-      if ($file_data_values['txt_missing'] == $lang_versioncheck_php['mandatory']) {
+      if ($file_data_values['txt_missing'] == $lang_versioncheck_php['existing']) {
         $important['missing'] = ' important';
       }
     }
