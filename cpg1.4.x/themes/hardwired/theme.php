@@ -1,22 +1,4 @@
 <?php
-/*************************
-  Coppermine Photo Gallery
-  ************************
-  Copyright (c) 2003-2008 Dev Team
-  v1.1 originally written by Gregory DEMAR
-
-  This program is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License version 3
-  as published by the Free Software Foundation.
-  
-  ********************************************
-  Coppermine version: 1.4.20
-  $HeadURL$
-  $Revision$
-  $Author$
-  $Date$
-**********************************************/
-
 // ------------------------------------------------------------------------- //
 // This theme has had redundant CORE items removed                           //
 // ------------------------------------------------------------------------- //
@@ -24,8 +6,6 @@ define('THEME_HAS_RATING_GRAPHICS', 1);
 define('THEME_HAS_NAVBAR_GRAPHICS', 1);
 define('THEME_HAS_NO_SYS_MENU_BUTTONS', 1);
 define('THEME_HAS_NO_SUB_MENU_BUTTONS', 1);
-define('THEME_IS_XHTML10_TRANSITIONAL',1);  // Remove this if you edit this template until
-                                            // you have validated it. See docs/theme.htm.
 
 // HTML template for sys menu
 $template_sys_menu = <<<EOT

@@ -27,7 +27,7 @@ $lang_translation_info = array(
   'trans_name'=> 'Biskop + Mimer',
   'trans_email' => '',
   'trans_website' => '',
-  'trans_date' => '2008-04-26',
+  'trans_date' => '2008-09-12',
 );
 
 $lang_charset = 'utf-8';
@@ -60,7 +60,7 @@ $comment_date_fmt =  '%d. %B, %Y kl. %H:%M';
 $log_date_fmt = '%d. %B, %Y kl. %H:%M'; //cpg1.4
 
 // For the word censor
-$lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'deefterfÃ¸lgende', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*');
+$lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'deefterfølgende', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*');
 
 $lang_meta_album_names = array(
   'random' => 'Tilfældige filer',
@@ -93,7 +93,7 @@ $lang_errors = array(
   'not_with_udb' => 'Denne funktion er deaktiveret i Coppermine, da den er integreret med forum software. Enten er det du ønsker at gøre ikke understøttet i denne opsætning eller også skal det gøres vha. forum software.',
   'offline_title' => 'Offline',
   'offline_text' => 'Galleriet er offline lige nu - prøv igen senere',
-  'ecards_empty' => 'Der findes ingen e-postkort, der kan vises.',
+  'ecards_empty' => 'Der findes ingen e-postkort, der kan vises. Kontroller at du har aktiveret e-postkort logning i opsætningen!',
   'action_failed' => 'Handling fejlede.  Coppermine kan ikke udføre den ønskede handling.',
   'no_zip' => 'Understøttelse af ZIP filer er ikke tilgængelig. Kontakt venligst administratoren af galleriet.',
   'zip_type' => 'Du har ikke tilladelse til at uploade zip filer.',
@@ -143,7 +143,7 @@ $lang_main_menu = array(
   'fav_lnk' => 'Mine Favoritter',
   'memberlist_title' => 'Vis medlemsliste',
   'memberlist_lnk' => 'Medlemsliste',
-  'faq_title' => 'Ofte Stillede Spørgsmål (FAQ) om galleriet &quot;Coppermine&quot;',
+  'faq_title' => 'Ofte Stillede Spørgsmål (OSS) om galleriet &quot;Coppermine&quot;',
   'faq_lnk' => 'OSS (FAQ)',
 );
 
@@ -164,11 +164,11 @@ $lang_gallery_admin_menu = array(
   'comments_lnk' => 'Kommentare',
   'searchnew_title' => 'Gå til massetilføjelse af filer', //cpg1.4
   'searchnew_lnk' => 'Massetilføjelse',
-  'util_title' => 'Gå til admin værktÃ¸jer', //cpg1.4
+  'util_title' => 'Gå til admin værktøjer', //cpg1.4
   'util_lnk' => 'Admin værktøjer',
   'key_title' => 'Gå til Nøgleord', //cpg1.4
   'key_lnk' => 'Nøgleord', //cpg1.4
-  'ban_title' => 'Gå til blokerede brugere', //cpg1.4
+  'ban_title' => 'Gå til Blokerede brugere', //cpg1.4
   'ban_lnk' => 'Blokerede brugere',
   'db_ecard_title' => 'Gå til administration af e-postkort', //cpg1.4
   'db_ecard_lnk' => 'Vis e-postkort',
@@ -179,11 +179,11 @@ $lang_gallery_admin_menu = array(
 );
 
 $lang_user_admin_menu = array(
-  'albmgr_title' => 'Opret og orden albums', //cpg1.4
-  'albmgr_lnk' => 'Opret / orden mine albums',
-  'modifyalb_title' => 'Gå til ret i mit album',  //cpg1.4
+  'albmgr_title' => 'Opret / ordne albums', //cpg1.4
+  'albmgr_lnk' => 'Opret / ordne mine albums',
+  'modifyalb_title' => 'Gå til Ret i mit album',  //cpg1.4
   'modifyalb_lnk' => 'Ret i mit album',
-  'my_prof_title' => 'Gå til min profil', //cpg1.4
+  'my_prof_title' => 'Gå til Min profil', //cpg1.4
   'my_prof_lnk' => 'Min profil',
 );
 
@@ -211,10 +211,10 @@ $lang_thumb_view = array(
   'position' => 'Position', //cpg1.4
   'sort_pa' => 'Sorter på position i stigende rækkefølge', //cpg1.4
   'sort_pd' => 'Sorter på position i faldende rækkefølge', //cpg1.4
-  'download_zip' => 'Download som Zip fil',
+  'download_zip' => 'Hent som Zip fil',
   'pic_on_page' => '%d filer på %d side(r)',
   'user_on_page' => '%d brugere på %d side(r)',
-  'enter_alb_pass' => 'Skriv Album Adgangskode',
+  'enter_alb_pass' => 'Skriv Album adgangskode',
   'invalid_pass' => 'Ugyldig adgangskode',
   'pass' => 'Adgangskode', //cpg1.4
   'submit' => 'Send' //cpg1.4
@@ -222,7 +222,7 @@ $lang_thumb_view = array(
 
 $lang_img_nav_bar = array(
   'thumb_title' => 'Retur til oversigt',
-  'pic_info_title' => 'Vis/skjul fil information',
+  'pic_info_title' => 'Vis/skjul filinformation',
   'slideshow_title' => 'Diasshow',
   'ecard_title' => 'Send denne fil som et e-postkort',
   'ecard_disabled' => 'E-postkort er slået fra',
@@ -231,7 +231,7 @@ $lang_img_nav_bar = array(
   'next_title' => 'Se næste fil',
   'pic_pos' => 'FIL %s/%s',
   'report_title' => 'Rapporter denne fil til administrator', //cpg1.4
-  'go_album_end' => 'Hop til sidste', //cpg1.4
+  'go_album_end' => 'Gå til sidste', //cpg1.4
   'go_album_start' => 'Tilbage til start', //cpg1.4
   'go_back_x_items' => 'Gå tilbage %s emner', //cpg1.4
   'go_forward_x_items' => 'Gå frem %s emner', //cpg1.4
@@ -239,13 +239,13 @@ $lang_img_nav_bar = array(
 
 $lang_rate_pic = array(
   'rate_this_pic' => 'Bedøm denne fil ',
-  'no_votes' => '(Ingen stemmer endnu)',
+  'no_votes' => '(Ikke bedømt endnu)',
   'rating' => '(Aktuel karakter: %s / 5 med %s stemmer)',
-  'rubbish' => 'Dårlig',
+  'rubbish' => 'Dårligt',
   'poor' => 'Ringe',
-  'fair' => 'Rimelig',
-  'good' => 'God',
-  'excellent' => 'Rigtig god',
+  'fair' => 'Rimeligt',
+  'good' => 'Godt',
+  'excellent' => 'Rigtig godt',
   'great' => 'Fantastisk',
 );
 
@@ -283,8 +283,8 @@ $lang_get_pic_data = array(
 $lang_cpg_debug_output = array(
   'debug_info' => 'Fejlfindings info',
   'select_all' => 'Marker alt',
-  'copy_and_paste_instructions' => 'Hvis du vil bede om hjælp i Coppermine hjælpe forumet, så kopier fejl teksten og sæt den ind i din besked. Husk at erstatter adgangskoder med *** før du sender beskeden.<br />Bemærk: Dette er kun til information og betyder ikke, at der er fejl ved dit galleri.', //cpg1.4
-  'phpinfo' => 'vis phpinfo',
+  'copy_and_paste_instructions' => 'Hvis du vil bede om hjælp i Coppermine hjælpe forummet, så kopier fejlteksten og sæt den ind i din besked. Husk at erstatter adgangskoder med *** før du sender beskeden.<br />Bemærk: Dette er kun til information og betyder ikke, at der er fejl ved dit galleri.', //cpg1.4
+  'phpinfo' => 'Vis phpinfo',
   'notices' => 'Bemærk', //cpg1.4
 );
 
@@ -300,10 +300,10 @@ $lang_theme_selection = array(
 
 $lang_version_alert = array(
   'version_alert' => 'Ikke understøttet version!', //cpg1.4
-  'security_alert' => 'Sikkerheds Alarm!', //cpg1.4.3
+  'security_alert' => 'Sikkerheds Advarsel!', //cpg1.4.3
   'relocate_exists' => 'Fjern <a href="http://coppermine-gallery.net/forum/index.php?topic=24217.0" target=_blank>relocate_server.php</a> filen fra din hjemmeside!',
   'no_stable_version' => 'Du kører Coppermine %s (%s) som kun er til brug af erfarne brugere  - denne version kommer uden nogen form for hjælp eller garanti. Brug den på egen risiko eller nedgrader til den sidst stabile version hvis du behøver hjælp!', //cpg1.4
-  'gallery_offline' => 'Galleriet er midlertidig ude af drift, og vil kun vÃ¦re tilgÃ¦ngelig for administratorer. Glem ikke at sætte det i drift igen efter at du er færdig med vedligeholdelse.', //cpg1.4
+  'gallery_offline' => 'Galleriet er midlertidig ude af drift, og vil kun være tilgængelig for administratorer. Glem ikke at sætte det i drift igen efter at du er færdig med vedligeholdelse.', //cpg1.4
 );
 
 $lang_create_tabs = array(
@@ -358,9 +358,9 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
   'Razz' => 'Drille',
   'Embarassed' => 'Genert',
   'Crying or Very sad' => 'Græder eller meget trist',
-  'Evil or Very Mad' => 'Ond eller meget sur',
+  'Evil or Very Mad' => 'Ond eller meget vred',
   'Twisted Evil' => 'Lusket ond',
-  'Rolling Eyes' => 'Ruller med øjne',
+  'Rolling Eyes' => 'Ruller øjne',
   'Wink' => 'Vinker',
   'Idea' => 'God ide',
   'Arrow' => 'Pil',
@@ -433,11 +433,11 @@ if (defined('BANNING_PHP')) $lang_banning_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('BRIDGEMGR_PHP')) $lang_bridgemgr_php = array(
-  'title' => 'Brovejviser',
-  'warning' => 'Advarsel: ved at bruge denne vejviseren må du være indforstået med, at følsomme data bliver sendt ved hjælp af html skema. Kør den kun på din egen PC (ikke på en offentlige klienter som en Internetcafe o.l.), og vær sikker på, at browserens cache og midlertidige filer er tømt efterfølgende. Ellers kan andre få adgang til dine data!',
+  'title' => 'Brohåndtering',
+  'warning' => 'Advarsel: ved at bruge denne brohåndtering må du være indforstået med, at følsomme data bliver sendt ved hjælp af html skema. Kør den kun på din egen PC (ikke på en offentlige klienter som en Internet Café o.l.), og forsikre dig om, at browserens cache er tømt efterfølgende. Ellers kan andre få adgang til dine data!',
   'back' => 'tilbage',
   'next' => 'næste',
-  'start_wizard' => 'Start Brovejviser',
+  'start_wizard' => 'Start Brohåndtering',
   'finish' => 'Afslut',
   'hide_unused_fields' => 'skjul ubrugte felter (anbefalet)',
   'clear_unused_db_fields' => 'fjern ugyldige data fra databasen (anbefalet)',
@@ -453,19 +453,19 @@ if (defined('BRIDGEMGR_PHP')) $lang_bridgemgr_php = array(
   'license_number' => 'Licensnummer',
   'license_number_explanation' => 'skriv dit licensnummer (hvis aktuelt)',
   'db_database_name' => 'Databasenavn',
-  'db_database_name_explanation' => 'Skriv navnet pÃ¥ database din BBS bruger',
+  'db_database_name_explanation' => 'Skriv navnet på database din BBS bruger',
   'db_hostname' => 'Database vært',
-  'db_hostname_explanation' => 'Værtsnavn hvor din mySQLdatabase kører, som regel &quot;localhost&quot;',
-  'db_username' => 'Database brugerkonto',
-  'db_username_explanation' => 'mySQL brugerkonto til brug for kommunikation med BBS',
+  'db_hostname_explanation' => 'Værtsnavn hvor din mySQL database kører, som regel &quot;localhost&quot;',
+  'db_username' => 'Database brugernavn',
+  'db_username_explanation' => 'mySQL brugernavn til brug for kommunikation med BBS',
   'db_password' => 'Database adgangskode',
-  'db_password_explanation' => 'Adgangskode til denne mySQLbrugeren',
+  'db_password_explanation' => 'Adgangskode til dette mySQL brugernavn',
   'full_forum_url' => 'Forum URL',
-  'full_forum_url_explanation' => 'Fuld sti til dit BBSprogram (inkluder http://, f.eks. http://www.ditdomaine.dk/forum)',
-  'relative_path_of_forum_from_webroot' => 'Relativ forumsti',
-  'relative_path_of_forum_from_webroot_explanation' => 'Relativ sti til dit BBSprogram fra din webrod (Eksempel: hvis dit BBS ligger på http://www.ditdomaine.dk/forum/, skriv &quot;/forum/&quot; i dette felt)',
+  'full_forum_url_explanation' => 'Fuld sti til dit BBS program (inkluder http://, f.eks. http://www.ditdomaine.dk/forum)',
+  'relative_path_of_forum_from_webroot' => 'Relativ forum sti',
+  'relative_path_of_forum_from_webroot_explanation' => 'Relativ sti til dit BBS program fra din webrod (Eksempel: hvis dit BBS ligger på http://www.ditdomaine.dk/forum/, skriv &quot;/forum/&quot; i dette felt)',
   'relative_path_to_config_file' => 'Relativ sti til din BBS\'s konfigurationfil',
-  'relative_path_to_config_file_explanation' => 'Relativ sti til din BBS, set fra din Copperminemappe (f.eks. &quot;../forum/&quot; hvis dit BBS ligger på http://www.ditdomaine.dk/forum/ og Coppermine er på http://www.ditdomaine.dk/galleri/)',
+  'relative_path_to_config_file_explanation' => 'Relativ sti til din BBS, set fra din Coppermine mappe (f.eks. &quot;../forum/&quot; hvis dit BBS ligger på http://www.ditdomaine.dk/forum/ og Coppermine er på http://www.ditdomaine.dk/coppermine/)',
   'cookie_prefix' => 'Cookie præfiks',
   'cookie_prefix_explanation' => 'dette skal være navnet på cookien til din BBS',
   'table_prefix' => 'Table præfiks',
@@ -517,7 +517,7 @@ if (defined('BRIDGEMGR_PHP')) $lang_bridgemgr_php = array(
   'error_must_not_be_empty' => 'skal være tom',
   'error_either_be' => 'skal være %s eller %s',
   'error_folder_not_exist' => '%s findes ikke. Ret værdierne du har skrevet %s',
-  'error_cookie_not_readible' => 'Coppermine kan ikke lÃ¦se en cookie med navnet %s. Ret vÃ¦rdierne du har skrevet %s, eller gÃ¥ til BBS administrations panelet og tjek at stien til cookie kan lÃ¦ses af Coppermine.',
+  'error_cookie_not_readible' => 'Coppermine kan ikke læse en cookie med navnet %s. Ret værdierne du har skrevet %s, eller gå til BBS administrations panelet og tjek at stien til cookie kan læses af coppermine.',
   'error_mandatory_field_empty' => 'Du kan ikke lade dette felt %s være blank - udfylde med de rette værdier.',
   'error_no_trailing_slash' => 'Der må ikke være en "skråstreg" i enden af dette felt %s.',
   'error_trailing_slash' => 'Der skal være en "skråstreg" i enden af dette felt %s.',
@@ -525,16 +525,16 @@ if (defined('BRIDGEMGR_PHP')) $lang_bridgemgr_php = array(
   'error_db_name' => 'Selvom Coppermine kunne oprette forbindelse, blev mySQLdatabasen %s ikke fundet til. Tjek om du har skrevet %s rigtigt. Her er hvad mySQL sagde:',
   'error_prefix_and_table' => '%s og ',
   'error_db_table' => 'Kunne ikke finde tabellen %s. Tjek om du har skrevet %s rigtig.',
-  'recovery_title' => 'Bridge Manager: Genoprettet efter en kritisk fejl',
+  'recovery_title' => 'Brohåndtering: Genoprettet efter en kritisk fejl',
   'recovery_explanation' => 'Hvis du kom her for at administrere integration mellem dit galleri og dit BBS, skal du være logget ind som admin. Hvis du ikke kan logge ind fordi bridging ikke virkede som forventet, Kan du slå BBS integrationen på denne side fra. Indtastning af brugernavn og adgangskode vil ikke logge dig ind, det vil kun slå BBS integrationen fra. Se dokumentation for detalje.',
   'username' => 'Brugernavn',
   'password' => 'Adgangskode',
   'disable_submit' => 'Send',
   'recovery_success_title' => 'Autorisation lykkedes',
   'recovery_success_content' => 'Du har slået integrationen mellem Coppermine installationen og dit BBS program fra. Din Coppermine installation kører nu alene.',
-  'recovery_success_advice_login' => 'Log ind som admin for at ændre dine bridge indstillinger og/eller slå BBS integrationen fra/til.',
+  'recovery_success_advice_login' => 'Log ind som admin for at ændre dine bro indstillinger og/eller slå BBS integrationen fra/til.',
   'goto_login' => 'Gå til log ind siden',
-  'goto_bridgemgr' => 'Gå til bridge manager',
+  'goto_bridgemgr' => 'Gå til Brohåndtering',
   'recovery_failure_title' => 'Autorisation mislykkedes',
   'recovery_failure_content' => 'Du skrev et forkert brugernavn og/eller en forkert adgangskode. Du skal bruge adgangskode og brugernavn fra adminkontoen fra Coppermine (som regel kontoen du brugte under installationen af Coppermine).',
   'try_again' => 'Prøv igen',
@@ -542,8 +542,8 @@ if (defined('BRIDGEMGR_PHP')) $lang_bridgemgr_php = array(
   'recovery_wait_content' => 'Af sikkerhedsmæssige grunde tillader dette script ikke flere på hinanden følgende fejl logind, så du må vente indtil du kan prøve igen.',
   'wait' => 'Vent',
   'create_redir_file' => 'Lav en vidersendings fil (anbefalet)',
-  'create_redir_file_explanation' => 'For at sende brugere tilbage til Coppermine når de er logget ind på BBS, skal du lave en vidersendings fil i mappen med BBS. Når denne mulighed er valgt, vil "bridge manager" forsøge at lave den for dig, eller give dig en kode klar til at kopierer for at oprette filen manuelt.',
-  'browse' => 'gennemse',
+  'create_redir_file_explanation' => 'For at sende brugere tilbage til Coppermine når de er logget ind på BBS, skal du lave en vidersendings fil i mappen med BBS. Når denne mulighed er valgt, vil "Brohåndtering" forsøge at lave den for dig, eller give dig en kode klar til at kopierer for at oprette filen manuelt.',
+  'browse' => 'Gennemse',
 );
 
 // ------------------------------------------------------------------------- //
@@ -615,7 +615,7 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'click_expand' => 'klik på sektionsnavnet for at folde ud', //cpg1.4
   'expand_all' => 'Fold ud', //cpg1.4
   'notice1' => '(*) Disse indstillinger må ikke ændres hvis du allerede har filer i din database.', //cpg1.4 - (relocated)
-  'notice2' => '(**) Ændring af denne indstilling vil kun have betydning for billeder tilføjet efter ændring, derfor er det ikke tilrådeligt at ændre denne indstilling når der allerede er billeder i galleriet. Du kan dog ændre de eksisterende billeder ved at bruge "<a href="util.php">administrator værktøjer </a>" (Ændre billedstørrelse ) fra administrator menuen.', //cpg1.4 - (relocated)
+  'notice2' => '(**) Ændring af denne indstilling vil kun have betydning for billeder tilføjet efter ændring, derfor er det ikke tilrådeligt at ændre denne indstilling når der allerede er billeder i galleriet. Du kan dog ændre de eksisterende billeder ved at bruge &quot;<a href="util.php">administrator værktøjer</a> (Ændre billedstørrelse)&quot; fra administrator menuen.', //cpg1.4 - (relocated)
   'notice3' => '(***) Alle logfiler bliver skrevet på engelsk.', //cpg1.4 - (relocated)
   'bbs_disabled' => 'Denne funktion er ikke aktiv ved integration med BBS', //cpg1.4
   'auto_resize_everyone' => 'Alle', //cpg1.4
@@ -638,7 +638,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Slå klikbare nøgleord til i søg','clickable_keyword_search',14, 'f=index.htm&amp;as=admin_general_keywords_start&amp;ae=admin_general_keywords_end'), //cpg1.4
   array('Slå plugins til', 'enable_plugins', 12, 'f=index.htm&amp;as=admin_general_enable-plugins&amp;ae=admin_general_enable-plugins_end'),  //cpg1.4
   array('Tillad blokering af ikke rutbare (private) IP adresser', 'ban_private_ip', 1,  'f=index.htm&amp;as=admin_general_private-ip&amp;ae=admin_general_private-ip_end'), //cpg1.4
-  array('Brug mappestrukturmenu ved massetilføjelse', 'browse_batch_add', 1, 'f=index.htm&amp;as=admin_general_browsable_batch_add&amp;ae=admin_general_browsable_batch_add_end'), //cpg1.4
+  array('Brug mappestrukturmenu ved massetilføjelser', 'browse_batch_add', 1, 'f=index.htm&amp;as=admin_general_browsable_batch_add&amp;ae=admin_general_browsable_batch_add_end'), //cpg1.4
 
   'Sprog, Tema og Tegnsæt indstillinger',
   array('Sprog', 'lang', 5, 'f=index.htm&amp;as=admin_language_language&amp;ae=admin_language_language_end'), //cpg1.4
@@ -657,7 +657,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Brugerdefineret menu link navn', 'custom_lnk_name', 0,'f=index.htm&amp;as=admin_theme_custom_lnk_name&amp;ae=admin_theme_custom_lnk_name_end'), //cpg1.4
   array('Brugerdefinere menu link URL', 'custom_lnk_url', 0,'f=index.htm&amp;as=admin_language_custom_lnk_url&amp;ae=admin_language_custom_lnk_url_end'), //cpg1.4
   array('Vis bbkode hjælp', 'show_bbcode_help', 1, 'f=index.htm&amp;as=admin_theme_bbcode&amp;ae=admin_theme_bbcode_end&amp;top=1'), //cpg1.4
-  array('Vis Vanity Block på tema linjen, som er defineret, som samsvarende med XHTML og CSS','vanity_block',1, 'f=index.htm&amp;as=vanity_block&amp;ae=vanity_block_end'), //cpg1.4
+  array('Vis Vanity Block på tema linjen, der er defineret, som samsvarende med XHTML og CSS','vanity_block',1, 'f=index.htm&amp;as=vanity_block&amp;ae=vanity_block_end'), //cpg1.4
   array('Sti til Brugerdefineret Sidehoved fil', 'custom_header_path', 0, 'f=index.htm&amp;as=admin_theme_include_path_start&amp;ae=admin_theme_include_path_end'), //cpg1.4
   array('Sti til Brugerdefineret Sidefod fil', 'custom_footer_path', 0, 'f=index.htm&amp;as=admin_theme_include_path_start&amp;ae=admin_theme_include_path_end'), //cpg1.4
 
@@ -702,7 +702,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Tillad flere kommentare om samme fil fra samme bruger (slår flood beskyttelse fra)', 'disable_comment_flood_protect', 1, 'f=index.htm&amp;as=admin_image_comment_flood&amp;ae=admin_image_comment_flood_end'), //cpg1.4
   array('Max antal linjer i en kommentar', 'max_com_lines', 0, 'f=index.htm&amp;as=admin_image_comment_lines&amp;ae=admin_image_comment_lines_end'), //cpg1.4
   array('Maksimum længde på en kommentar', 'max_com_size', 0, 'f=index.htm&amp;as=admin_image_comment_length&amp;ae=admin_image_comment_length_end'), //cpg1.4
-  array('Informer administrator om nye kommentare via mail', 'email_comment_notification', 1, 'f=index.htm&amp;as=admin_image_comment_admin_notify&amp;ae=admin_image_comment_admin_notify_end'), //cpg1.4
+  array('Informer administrator om nye kommentare via e-mail', 'email_comment_notification', 1, 'f=index.htm&amp;as=admin_image_comment_admin_notify&amp;ae=admin_image_comment_admin_notify_end'), //cpg1.4
   array('Sortering rækkefølge af kommentare', 'comments_sort_descending', 17, 'f=index.htm&amp;as=admin_comment_sort_start&amp;ae=admin_comment_sort_end'), //cpg1.4
   array('Foranstillet navn på anonyme forfatteres kommentare', 'comments_anon_pfx', 0, 'f=index.htm&amp;as=comments_anon_pfx&amp;ae=comments_anon_pfx_end'), //cpg1.4
 
@@ -724,7 +724,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Tilladte billedtyper ', 'allowed_img_types',0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_pic_extensions&amp;ae=admin_picture_thumb_advanced_pic_extensions_end'), //cpg1.4
   array('Tilladte filmtyper ', 'allowed_mov_types',0, 'f=index.htm&amp;as=admin_thumbs_advanced_movie&amp;ae=admin_thumbs_advanced_movie_end'), //cpg1.4
   array('Automatisk visning af film', 'media_autostart',1, 'f=index.htm&amp;as=admin_movie_autoplay&amp;ae=admin_movie_autoplay_end'), //cpg1.4
-  array('Tilladte lydtyper ', 'allowed_snd_types',0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_audio_extensions&amp;ae=admin_picture_thumb_advanced_audio_extensions_end'), //cpg1.4
+  array('Tilladte audiotyper ', 'allowed_snd_types',0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_audio_extensions&amp;ae=admin_picture_thumb_advanced_audio_extensions_end'), //cpg1.4
   array('Tilladte dokumenttyper', 'allowed_doc_types',0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_doc_extensions&amp;ae=admin_picture_thumb_advanced_doc_extensions_end'), //cpg1.4
   array('Program til skalering af billeder','thumb_method',2, 'f=index.htm&amp;as=admin_picture_thumb_advanced_resize_method&amp;ae=admin_picture_thumb_advanced_resize_method_end'), //cpg1.4
   array('Sti til ImageMagick \'konverter\' værktøj (eksempel /usr/bin/X11/)', 'impath', 0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_im_path&amp;ae=admin_picture_thumb_advanced_im_path_end'), //cpg1.4
@@ -847,14 +847,14 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
   'err_insert_pic' => 'Filen \'%s\' kunne ikke indsættes i albummet ',
   'upload_success' => 'Din fil blev uploadet med succes.<br /><br />Den er synlig når en administrator har godkendt den.',
   'notify_admin_email_subject' => '%s - information om upload',
-  'notify_admin_email_body' => 'Et billede som kræver godkendelse er blevet uploadet af %s. BesÃ¸g %s',
+  'notify_admin_email_body' => 'Et billede som kræver godkendelse er blevet uploadet af %s. Besøg %s',
   'info' => 'Information',
   'com_added' => 'Kommentar tilføjet',
   'alb_updated' => 'Album opdateret',
   'err_comment_empty' => 'Din kommentar er tom!',
   'err_invalid_fext' => 'Kun filer med følgende endelser er gyldige: <br /><br />%s.',
-  'no_flood' => 'Desværre, men du er stadig den seneste der har kommenteret denne fil<br /><br />Rediger kommentaren hvis du vil Ã¦ndre den',
-  'redirect_msg' => 'Du bliver viderestillet.<br /><br /><br />Tryk pÃ¥ \'FORTSÃ†T\' hvis siden ikke opdateres automatisk',
+  'no_flood' => 'Desværre, men du er stadig den seneste der har kommenteret denne fil<br /><br />Rediger kommentaren hvis du vil ændre den',
+  'redirect_msg' => 'Du bliver viderestillet.<br /><br /><br />Tryk på \'FORTSÆT\' hvis siden ikke opdateres automatisk',
   'upl_success' => 'Din fil blev tilføjet med succes',
   'email_comment_subject' => 'Kommentar tilføjet på Coppermine billedgalleri',
   'email_comment_body' => 'Nogen har sendt en kommentar til dit galleri. Se den her',
@@ -953,9 +953,9 @@ $lang_picinfo = array(
   'URL' => 'URL', //cpg1.4
   'Make' => 'Lav', //cpg1.4
   'Model' => 'Model', //cpg1.4
-  'DateTime' => 'Dato tid', //cpg1.4
+  'DateTime' => 'Dato Tid', //cpg1.4
   'ISOSpeedRatings'=>'ISO', //cpg1.4
-  'MaxApertureValue' => 'Max blændeåbning', //cpg1.4
+  'MaxApertureValue' => 'Maks blændeåbning', //cpg1.4
   'FocalLength' => 'Brændvidde', //cpg1.4
   'Comment' => 'Kommentar',
   'addFav'=>'Tilføj til favoritter',
@@ -1127,7 +1127,7 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
   'postpone_app' => 'Udskyd godkendelsen',
   'del_pic' => 'Slet fil',
   'del_all' => 'Slet ALLE fil', //cpg1.4
-  'read_exif' => 'LÃ¦s EXIF info igen',
+  'read_exif' => 'Læs EXIF info igen',
   'reset_view_count' => 'Nulstil tæller',
   'reset_all_view_count' => 'Nulstil ALLE visnings tællere', //cpg1.4
   'reset_votes' => 'Nulstil afstemning',
@@ -1187,7 +1187,7 @@ if (defined('FAQ_PHP')) $lang_faq_data = array(
   array('Hvordan kan jeg vælge hvem der kan se mine albums?', 'Du burde allerede være i "Admin. tilstand"<br />Gå til "Rediger Mine Albums" på "Opdater album" baren, og vælg det album du vil redigere.<br />Her kan du ændre navn, beskrivelse, minibillede, og begrænse visning og kommentar tilladelser.<br />Tryk på "Opdater album".', 'allow_private_albums', 0),
   array('Hvordan kan jeg se andre brugeres gallerier?', 'Gå til "Album Liste" og vælg "Bruger gallerier".', 'allow_private_albums', 0),
   array('Hvad er cookies?', 'Cookies er en tekst fil som sendes fra en hjemmesside og gemmes på din computer.<br />Cookies tillader brugeren at forlade en side og komme tilbage uden at logge ind igen og at tilpasse siden på forskellige måder.', 'offline', 0),
-  array('Hvor kan jeg hente dette program til min side?', 'Coppermine er et gratis Multimedia Galleri, udgiver under GNU licens. Det er fuld af funktioner og findes til forskellige platforme. Besøg <a href="http://Coppermine.sf.net/">Coppermine hjemmesiden</a> for at læse mere eller at hente det.', 'offline', 0),
+  array('Hvor kan jeg hente dette program til min side?', 'Coppermine er et gratis Multimedia Galleri, udgiver under GNU licens. Det er fuld af funktioner og findes til forskellige platforme. Besøg <a href="http://coppermine.sf.net/">Coppermine hjemmesiden</a> for at læse mere eller at hente det.', 'offline', 0),
 
   'Navigering på siden',
   array('Hvad er "Albumliste"?', 'Dette vil vise dig hele galleriet med et link til hver kategori. Minibilleder kan være et link til en kategori.', 'offline', 0),
@@ -1476,7 +1476,7 @@ if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
 if (defined('REGISTER_PHP') || defined('PROFILE_PHP')) {
 
 $lang_register_disclamer = <<<EOT
-Mens administratorerne af denne side {SITE_NAME} vil prøve at fjerne eller tilrette alt generelt relevant materiale så hurtigt som muligt, er det umuligt at gennemse alle indlæg. Derfor bør du være opmÆrksom på at alle indlæg der er lavet til denne side Tilkendegiver meninger og holdninger af de forskellige forfattere og ikke altid administratorernes mening (med undtagelse af de indlæg skrevet af disse) derfor kan disse ikke stille til ansvar for andres indlæg.<br />
+Mens administratorerne af denne side {SITE_NAME} vil prøve at fjerne eller tilrette alt generelt relevant materiale så hurtigt som muligt, er det umuligt at gennemse alle indlæg. Derfor bør du være opmærksom på at alle indlæg der er lavet til denne side Tilkendegiver meninger og holdninger af de forskellige forfattere og ikke altid administratorernes mening (med undtagelse af de indlæg skrevet af disse) derfor kan disse ikke stille til ansvar for andres indlæg.<br />
 <br />
 Du accepterer hermed ikke at indsende anstødelige, vulgære, usmagelige, hadefulde, truende, sex-relaterede eller andet materiale der er i strid med lovgivningen. Du accepterer hermed at webmaster, administratorerne af {SITE_NAME} har lov til at fjerne eller rette i indholdet til enhver tid. Som bruger accepterer du at alle dine oplysninger bliver gemt i en database. Men dine informationer bliver ikke givet videre til andre uden din accept. Administratorerne kan ikke kræves til ansvar overfor hackerforsøg der eventuelt kan føre til videregivelse af dine oplysninger.<br />
 <br />
@@ -1704,7 +1704,7 @@ if (defined('STAT_DETAILS_PHP')) $lang_stat_details_php = array(
   'sort_by_xxx' => 'Sorter på %s', //cpg1.4
   'ascending' => 'i stigende rækkefølge', //cpg1.4
   'descending' => 'i faldende rækkefølge', //cpg1.4
-  'internal' => 'int', //cpg1.4
+  'internal' => 'intern', //cpg1.4
   'close' => 'luk', //cpg1.4
   'hide_internal_referers' => 'skjul interne referencer', //cpg1.4
   'date_display' => 'Dato visning', //cpg1.4
@@ -1973,7 +1973,7 @@ $lang_util_php = array(
   'view_log_explanation' => 'Coppermine kan logføre forskellige handlinger som brugerne udfører. Du kan gennemse disse logs hvis du har slået logføring til i <a href="admin.php">Coppermine opsætning</a>.', //cpg1.4
   'versioncheck' => 'Tjek version', //cpg1.4
   'versioncheck_explanation' => 'Tjek versionen af dine filer for at finde ud af om du har erstatte alle filer efter en opgradering, eller om Coppermine kildefiler er blevet opdateret efter udgivelsen af en ny version.', //cpg1.4
-  'bridgemanager' => 'Bridge Manager', //cpg1.4
+  'bridgemanager' => 'Brohåndtering', //cpg1.4
   'bridgemanager_explanation' => 'Slå integration Til/Fra (bridging) mellem Coppermine og et andet program (f.eks. dit BBS).', //cpg1.4
 );
 }
@@ -1983,19 +1983,19 @@ $lang_util_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('VERSIONCHECK_PHP')) $lang_versioncheck_php = array(
-  'title' => 'versiontjek', //cpg1.4
-  'what_it_does' => 'Denne side er til brugere som har opdateret deres Coppermine installation. Dette script gennemgår filerne på din server og forsøger at bestemme om dine filer på serveren er de samme version som ligger på http://Coppermine.sourceforge.net, dett vil også vise de filer du kan opgradere.<br />Dette vil vise alt der behøver opgradering med rødt. Entries med gult skal der studeres nærmere. Entries med grøn (eller din standart tekst farve) er OK.<br />Klik på hjælpe ikonen  for at få mere hjælp.', //cpg1.4
-  'online_repository_unable' => 'Kunne ikke få forbindelse til http://Coppermine.sourceforge.net', //cpg1.4
-  'online_repository_noconnect' => 'Coppermine kunne ikke få forbindelse til http://Coppermine.sourceforge.net. Dette kan være på grund af en af grunde:', //cpg1.4
-  'online_repository_reason1' => 'http://Coppermine.sourceforge.net er ude af drift for øjeblikket - tjek om du kan se denne side: %s - hvis du ikke kan se denne side, prøv igen senere.', //cpg1.4
+  'title' => 'Versions tjek', //cpg1.4
+  'what_it_does' => 'Denne side er til brugere som har opdateret deres Coppermine installation. Dette script gennemgår filerne på din server og forsøger at bestemme om dine filer på serveren er de samme version som ligger på http://coppermine.sourceforge.net, dett vil også vise de filer du kan opgradere.<br />Dette vil vise alt der behøver opgradering med rødt. Entries med gult skal der studeres nærmere. Entries med grøn (eller din standart tekst farve) er OK.<br />Klik på hjælpe ikonen  for at få mere hjælp.', //cpg1.4
+  'online_repository_unable' => 'Kunne ikke få forbindelse til http://coppermine.sourceforge.net', //cpg1.4
+  'online_repository_noconnect' => 'Coppermine kunne ikke få forbindelse til http://coppermine.sourceforge.net. Dette kan være på grund af en af grunde:', //cpg1.4
+  'online_repository_reason1' => 'http://coppermine.sourceforge.net er ude af drift for øjeblikket - tjek om du kan se denne side: %s - hvis du ikke kan se denne side, prøv igen senere.', //cpg1.4
   'online_repository_reason2' => 'PHP på din webserver har %s slået fra (´som standart, er den slået til). Hvis du administrere serveren, slå det til igen i <i>php.ini</i> (tillad i det mindste at det bliver overskrevet med %s). Hvis du har et webhotel, må du finde dig i at du ikke kan sammenligne dine filer med sidst nye version. Denne side vil kun vise fil versioner af filer der kom med din Coppermine - opdateringer vil ikke blive vist.', //cpg1.4
-  'online_repository_skipped' => 'Forbindelsen til http://Coppermine.sourceforge.net er undladt', //cpg1.4
+  'online_repository_skipped' => 'Forbindelsen til http://coppermine.sourceforge.net er undladt', //cpg1.4
   'online_repository_to_local' => 'Scriptet skifter nu til standartindstillinger for den lokale kopi af filens version. Dataene kan vær unøjagtige hvis du har opgraderet Coppermine og du ikke har  uploaded alle filer. Ændringer af filer efter frigivelsen vil heller ikke blive taget med.', //cpg1.4
   'local_repository_unable' => 'Kan ikke få forbindelse til din webserver', //cpg1.4
   'local_repository_explanation' => 'Coppermine kunne ikke få forbindelse til filen %s på din webserver. Det betyder sansynligvis at du ikke har uploaded filen til din webserver. Går dette og prøv at kører denne side igen (tryk opdater).<br />If the script still fails, your webhost might have disabled parts of <a href="http://www.php.net/manual/en/ref.filesystem.php">PHP\'s filesystem functions</a> completely. In this case, you simply won\'t be able to use this tool at all, sorry.', //cpg1.4
-  'Coppermine_version_header' => 'Installeret Coppermine version', //cpg1.4
-  'Coppermine_version_info' => 'Du har installeret: %s', //cpg1.4
-  'Coppermine_version_explanation' => 'Hvis du tror dette er helt galt og du skulle kører en nyere version af Coppermine, har du sansynlivis ikke uploaded den sidste nye version af filen <i>include/init.inc.php</i>', //cpg1.4
+  'coppermine_version_header' => 'Installeret Coppermine version', //cpg1.4
+  'coppermine_version_info' => 'Du har installeret: %s', //cpg1.4
+  'coppermine_version_explanation' => 'Hvis du tror dette er helt galt og du skulle kører en nyere version af Coppermine, har du sansynlivis ikke uploaded den sidste nye version af filen <i>include/init.inc.php</i>', //cpg1.4
   'version_comparison' => 'Version sammenligning', //cpg1.4
   'folder_file' => 'mappe/fil', //cpg1.4
   'coppermine_version' => 'cpg version', //cpg1.4
@@ -2039,7 +2039,7 @@ if (defined('VERSIONCHECK_PHP')) $lang_versioncheck_php = array(
   'show_permissions' => 'vis mappe tilladelse', //cpg1.4
   'show_condensed_output' => 'Vis kortfattet ouput (for enklere skærmdump)', //cpg1.4
   'coppermine_in_webroot' => 'Coppermine er installeret som webroot', //cpg1.4
-  'connect_online_repository' => 'prøv at få forbindelse til http://Coppermine.sourceforge.net', //cpg1.4
+  'connect_online_repository' => 'prøv at få forbindelse til http://coppermine.sourceforge.net', //cpg1.4
   'show_additional_information' => 'vis uderlige informationer', //cpg1.4
   'no_webcvs_link' => 'vis ikke web svn link', //cpg1.4
   'stable_webcvs_link' => 'vis web svn link til stabil version', //cpg1.4
@@ -2071,23 +2071,23 @@ $lang_xp_publish_client = <<<EOT
 EOT;
 
 $lang_xp_publish_required = <<<EOT
-<h2>Hvad er påkrævet</h2><ul><li>En fungerende installation af Coppermine hvor <b>web upload funktionen virker.</b></li></ul><h2>Hvordan installer man på klient siden</h2><ul><li>Klik på
+<h2>Hvad er påkrævet</h2><ul><li>En fungerende installation af Coppermine hvor <b>web upload funktionen virker.</b></li></ul><h2>Hvordan installer man på klient siden</h2><ul><li>Højreklik på
 EOT;
 
 $lang_xp_publish_select = <<<EOT
-og vælg "Gem som...". Gem filen på din harddisk. Når du gemmer filen, tjek at filnavnet er <b>cpg_###.reg</b> (### repræsenterer en numerisk tidskode). Ændre den til navnet hvis nødvendigt (lad tallene stå). Når filen er hentet, dobbeltklik på filen for at registere din server med "XP guiden Webudgivelse".</li></ul>
+Select &quot;Gem som..&quot;. Gem filen på din harddisk. Når du gemmer filen, tjek at filnanet er <b>cpg_###.reg</b> (the ### repræsenterer en numerisk tidskode). Ændre den til nanet hvis nødvendigt (lad tallene stå). Når filen er hentet, dobbeltklik på filen for at registere din server med "guidet Webudgivelse".</li></ul>
 EOT;
 
 $lang_xp_publish_testing = <<<EOT
-<h2>Test</h2><ul><li>I Windows Explorer, vælg nogle filer og klik på <b>Udgiv denne fil på world wide web</b> i venstre side.</li><li>Bekræft dit fil valg. Klik på <b>Næste</b>.</li><li>Når listen med tjenesteudbydere kommer frem, vælg dit fotoalbum (det har samme navn som dit galleri). Hvis det ikke kommer frem på listen, tjek om du har installeret <b>cpg_pub_wizard.reg</b> som beskrevet ovenover.</li><li>Skriv dine login informationer hvis påkrævet.</li><li>Vælg et album til dine billeder eller opret et nyt.</li><li>Klik på <b>næste</b>. Upload af dine billeder starter.</li><li>Når den er færdig, tjek dit galleri for at se om billederne er korekt tilføjet.</li></ul>
+<h2>Test</h2><ul><li>I Windows Explorer, vælg nogle filer og klik på <b>Udgiv denne fil på world wide web</b> i venstre side.</li><li>Bekræft dit fil valg. Klik på <b>Næste</b>.</li><li>Når listen med tjenesteudbydere kommer frem, vælg dit fotoalbum (det har samme navn som dit galleri). Hvis det ikke kommer frem på listen, tjek om du har installeret <b>cpg_pub_wizard.reg</b> som beskrevet ovenover.</li><li>Skriv dine login informationer hvis påkrævet.</li><li>Vælg et album til dine billeder eller opret et nyt.</li><li>Klik på <b>næste</b>. Upload af dine billeder starter.</li><li>Når den er færdig, tjek dit galleri for at se om billederne er korrekt tilføjet.</li></ul>
 EOT;
 
 $lang_xp_publish_notes = <<<EOT
-<h2>Notes :</h2><ul><li>Når upload er startet, kan guiden ikke vise fejlmeddelser fra script, så du ved ikke om upload fejlede eller lykkedes før du har tjekket dit galleri.</li><li>Hvis upload fejlede, slå "Fejlfindings tilstand " til i Coppermine opsætnings side, prøv med et enkelt billede og tjek fejlmeddelelser i
+<h2>Bemærk:</h2><ul><li>Når upload er startet, kan guiden ikke vise fejlmeddelser fra script, så du ved ikke om upload fejlede eller lykkedes, før du har tjekket dit galleri.</li><li>Hvis upload fejlede, slå "Fejlfindings tilstand " til i Coppermine opsætnings side, prøv med et enkelt billede og tjek fejlmeddelelser i
 EOT;
 
 $lang_xp_publish_flood = <<<EOT
-filen som ligger i Coppermine mappen på din server server.</li><li>For at forhindre at dit galleri bliver <i>oversvømmet</i> af billed uploaded med guiden, kun <b>galleri administrator</b> og <b>brugere som har eget album</b> kan bruge denne.</li>
+filen som ligger i Coppermine mappen på din server server.</li><li>For at forhindre at dit galleri bliver <i>oversvømmet</i> af billeder uploaded med guiden, kan kun <b>galleri administrator</b> og <b>brugere som har eget album</b> bruge denne.</li>
 EOT;
 
 
