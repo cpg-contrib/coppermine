@@ -489,7 +489,7 @@
   <element>
     <fullpath>versioncheck.php</fullpath>
     <version>1.5.0</version>
-    <revision>5032</revision>
+    <revision>5033</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>ae687854eb6ac93b0d71a4353d15a154</hash>
@@ -925,7 +925,7 @@
   <element>
     <fullpath>docs/en/dev_versioncheck.htm</fullpath>
     <version>1.5.0</version>
-    <revision>4499</revision>
+    <revision>5033</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>a8c2d7a1323bb9fb8c419d72a023c5f5</hash>
@@ -6262,7 +6262,7 @@
   <element>
     <fullpath>include/versioncheck.inc.php</fullpath>
     <version>1.5.0</version>
-    <revision>5032</revision>
+    <revision>5033</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>6f09d52fdcd8401ffecae94d7a523194</hash>
@@ -6402,7 +6402,7 @@
   <element>
     <fullpath>lang/english.php</fullpath>
     <version>1.5.0</version>
-    <revision>5023</revision>
+    <revision>5033</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>374847306febeff71bc2c816d2a2edf6</hash>
