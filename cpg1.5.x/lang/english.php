@@ -2412,6 +2412,37 @@ The management of {SITE_NAME}
 
 EOT;
 }
+
+// ------------------------------------------------------------------------- //
+// File uppdate.php
+// ------------------------------------------------------------------------- //
+
+if (defined('UPDATE_PHP')) {
+$lang_update_php = array(
+  'title' => 'Updater', // cpg1.5
+  'welcome_updater' => 'Welcome to Coppermine update', // cpg1.5
+  'could_not_authenticate' => 'Could not authenticate you', // cpg1.5
+  'provide_admin_account' => 'Please provide your coppermine admin account details or your mySQL account data', // cpg1.5
+  'try_again' => 'Try again', // cpg1.5
+  'mysql_connect_error' => 'Could not create a mySQL connection', // cpg1.5
+  'mysql_database_error' => 'mySQL could not locate a database called %s', // cpg1.5
+  'mysql_said' => 'MySQL said', // cpg1.5
+  'check_config_file' => 'Please check the SQL values in %s', // cpg1.5
+  'performing_database_updates' => 'Performing Database Updates', // cpg1.5
+  'ok' => 'OK', // cpg1.5
+  'already_done' => 'Already Done', // cpg1.5
+  'password_encryption' => 'Encryption of passwords', // cpg1.5
+  'category_tree' => 'Category tree', // cpg1.5
+  'authentication_needed' => 'Authentication needed', // cpg1.5
+  'username' => 'Username', // cpg1.5
+  'password' => 'Password', // cpg1.5
+  'update_completed' => 'Update completed', // cpg1.5
+  'check_versions' => 'It\'s recommended to %scheck your file versions%s if you just upgraded from an older version of coppermine', // cpg1.5 // Leave the %s untouched when translating - it wraps the link
+  'start_page' => 'If you didn\'t (or you don\'t want to check), you can go to %syour gallery\'s start page%s', // cpg1.5 // Leave the %s untouched when translating - it wraps the link
+  'errors_encountered' => 'The following errors were encountered and need to be corrected first', // cpg1.5
+);
+}
+
 // ------------------------------------------------------------------------- //
 // File util.php
 // ------------------------------------------------------------------------- //

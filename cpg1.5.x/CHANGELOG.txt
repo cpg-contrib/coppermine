@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-09-15 [A] Updater can now be run using cookie authentication; fallback mechanisms existing as well {GauGau}
 2008-09-04 [M] Updated the jquery to version 1.2.6 and also included it in init.inc.php so that it is available on all pages {Abbas}
 2008-09-04 [O] Turned social bookmark script into jquery bookmark plugin {GauGau}
 2008-09-01 [C] Replaced deprecated tag <b> with recommended tag <strong> {GauGau}

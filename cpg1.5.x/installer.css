@@ -46,8 +46,11 @@ hr {
 }
 
 .textinput {
-        border: groove 1px;
-        width: 100%;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 100%;
+    border: 1px solid #D1D7DC;
+    padding-right: 3px;
+    padding-left: 3px;
 }
 
 .listbox {
@@ -216,11 +219,6 @@ form {
 {
     background-color: green;
     color: white;
-    text-align: center;
-}
-
-.input
-{
     text-align: center;
 }
 
