@@ -1873,12 +1873,6 @@
     <hash>52975491da9e3d50bc9dcbd9cdbc1b6a</hash>
   </element>
   <element>
-    <fullpath>images/green.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>8898c74537554c461cd16a2c9292ec10</hash>
-  </element>
-  <element>
     <fullpath>images/h_powered-mysql.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
@@ -1915,18 +1909,6 @@
     <hash>254e3d5bdfb139f9aec00f8d2242cf73</hash>
   </element>
   <element>
-    <fullpath>images/next.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>aa5fa6d1cfc2507be352ddcd6c24b036</hash>
-  </element>
-  <element>
-    <fullpath>images/os.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>27d8aa33534123e9b4f31425e2485e5e</hash>
-  </element>
-  <element>
     <fullpath>images/powered-mysql.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
@@ -1937,12 +1919,6 @@
     <status>mandatory</status>
     <permission>read</permission>
     <hash>362ce0f63ac87f810fe0e57028fa081a</hash>
-  </element>
-  <element>
-    <fullpath>images/prev.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>087398edfc623df6736c55010a1d8ed8</hash>
   </element>
   <element>
     <fullpath>images/rate_empty.gif</fullpath>
@@ -1967,18 +1943,6 @@
     <status>mandatory</status>
     <permission>read</permission>
     <hash>0ce4873e8f5643ead7094e0284a31306</hash>
-  </element>
-  <element>
-    <fullpath>images/red.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>1dfe3895693dd6ac90be8645e70ea101</hash>
-  </element>
-  <element>
-    <fullpath>images/referer.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>4320310244292f55bfa42b08e36bfca2</hash>
   </element>
   <element>
     <fullpath>images/slideshow.gif</fullpath>
@@ -2057,18 +2021,6 @@
     <status>mandatory</status>
     <permission>read</permission>
     <hash>15fd225a470cd2010b4661800942be88</hash>
-  </element>
-  <element>
-    <fullpath>images/views.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>7cd10e56419373bd1acd5dd32002fcf6</hash>
-  </element>
-  <element>
-    <fullpath>images/vote.jpg</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>dcd232fdd921fdb1cc3fbc748fa77748</hash>
   </element>
   <element>
     <fullpath>images/watermark.png</fullpath>
