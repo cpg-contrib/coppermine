@@ -53,6 +53,7 @@
     <li>If you have made a custom theme, apply the changes that were introduced in the themes structure to your custom-made theme - refer to the <a href="theme_upgrade_14x-15x.htm">theme-upgrade guide</a>.</li>
     <li>If your webserver is running in safe_mode and you have enabled "SILLY_SAFE_MODE" in include/config.inc.php, you will have to go to coppermine's config after performing above mentioned steps and enable "<a href="configuration.htm#admin_picture_thumb_advanced_silly_safe_mode_start">silly safe mode</a>" there, as the setting in include/config.inc.php is no longer being taken into account in cpg1.5.x. The silly_safe_mode setting has been made into a <a href="configuration.htm#admin_picture_thumb_advanced_silly_safe_mode_start">config setting</a> instead.</li>
 </ul>
+<p>To make this absolutely clear: <span class="important">there is no such thing as a separate upgrade package - coppermine always comes as a complete package that can be used both for a fresh install as well as an upgrade</span>.</p>
 
 
 
@@ -84,7 +85,7 @@
 
 
 <a name="versioncheck"></a><h2>The version check tool<a href="#versioncheck" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>Since the release of cpg1.3.2 Coppermine comes with an additional version checking tool to help you resolve issues with upgrades and updates easily. Except for specific files of coppermine that will only work for the version that it had been originally designed for, the versioncheck tool can be used with all versions starting from cpg1.2.1. To launch the versioncheck, simply add <tt>versioncheck.php</tt> to your browser's address bar after being logged into coppermine as admin (example: <tt>http://yourdomain.tld/your_coppermine_folder/versioncheck.php</tt>).  With version 1.5.x, you can run the versioncheck utility from the <a href="admin_menu.htm#admin_menu">Admin menu</a>.</p>
+<p>Since the release of cpg1.3.2 Coppermine comes with an additional version checking tool to help you resolve issues with upgrades and updates easily. To launch the versioncheck, simply add <tt>versioncheck.php</tt> to your browser's address bar after being logged into coppermine as admin (example: <tt>http://yourdomain.tld/your_coppermine_folder/versioncheck.php</tt>).  With version 1.5.x, you can run the versioncheck utility from the <a href="admin_menu.htm#admin_menu">Admin menu</a>.</p>
 
 
 <a name="versioncheck_description_start"></a><h3>What it does<a href="#versioncheck_description_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -131,7 +132,8 @@
     <li><strong>Missing</strong><br />
     If nothing is being displayed in this column, the folder/file exists on your server. If this is not the case (i.e. the folder/file does not exist on your server or is inaccessible), the column &quot;Missing&quot; will be populated with the result of this first, basic check.<br />
     Note: there are some folders/files that are mandatory to have; others are optional. Anyway, if you perform a fresh install or upgrade, you should make sure to upload all folders/files. You can then later delete some of the optional files if you want, although this doesn't save much webspace.<br />
-    If a file is missing, all other steps that are next in the loop will not be performed - a missing file can't have a version number or similar. If versioncheck complains about missing files, use your FTP app to review if they are actually missing or inaccessible. If they are missing, re-upload them. If they are inaccessible, you will have to <a href="install_permissions.htm#permissions">assign the needed permissions</a>.</li>
+    If a file is missing, all other steps that are next in the loop will not be performed - a missing file can't have a version number or similar. If versioncheck complains about missing files, use your FTP app to review if they are actually missing or inaccessible. If they are missing, re-upload them. If they are inaccessible, you will have to <a href="install_permissions.htm#permissions">assign the needed permissions</a>.<br />
+    Some files that existed in older versions might have gotten removed later. Those that might be a possible security issue will be displayed with the word "removed" in the "missing"-column. If you come across such a file, use your FTP-app to remove the file that versioncheck output complains about. Leaving the file where it is (ignoring the suggestion given by versioncheck) might pose a security risk and therefor is not recommended.</li>
     <li><strong>Permissions</strong><br />
     Displays the permissions assigned to the folder/file. For some folders, write permissions are needed, while for others read permissions are enough. If the permission level of a folder is good, the result will be displayed together with a remark (in brackets) like &quot;OK&quot; (may differ in your language). Using a script like versioncheck to actually check permissions on folders works OK, while it may or may not work very well on files. This being said, you should mostly be concerned about folders that don't have sufficient permissions. If files are being reported to have an improper set of permissions assigned, don't be to alarmed if the rest of your gallery is working just fine.<br />
     If permissions on folders need reviewing, read up the <a href="install_permissions.htm#permissions">permissions section of the docs</a> and do as suggested there.</li>
@@ -168,6 +170,7 @@
     <li>I get a white page, or a page without actual content<br />
     The script probably times out, as it consumes huge resources. You'll have to live without versioncheck then on your server setup, unless the server is yours to configure, so you can assign more memory and execution time to the script.</li>
 </ul>
+<p>Versioncheck is being provided as a courtesy to end users. As there are several factory that have an impact on it, it may or may not work on your server setup. If the versioncheck tool does nothing at all, this is probably the case for you - you don't have to be alarmed in this case: just make sure to keep your coppermine install up-to-date, preferably by enabling the config option "<a href="configuration.htm#admin_general_coppermine_news">Display news from coppermine-gallery.net</a>". Only if individual issues are being reported by the version check tool (i.e. only if <em>some</em> lines contain a remark in the comments column), you should be alarmed and take a closer look.</p>
 <a name="versioncheck_problems_end"></a>
 <a name="versioncheck_end"></a>
 
