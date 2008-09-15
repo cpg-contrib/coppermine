@@ -331,6 +331,7 @@ function display_dir_tree($folder, $ident)
 
     $dir = opendir($dir_path);
     static $dirCounter = 0;
+    $folder_icon = cpg_fetch_icon('folder', 0);
     while ($file = readdir($dir)) { // loop looking for files - start
         if (is_dir($CONFIG['fullpath'] . $folder . $file) &&
             substr($file,0,1) != "." &&
@@ -350,7 +351,7 @@ function display_dir_tree($folder, $ident)
                 echo <<<EOT
                             <tr>
                                     <td class="tableb">
-                                            $ident<img src="images/folder.gif" border="0" alt="" />&nbsp;<a href= "{$CPG_PHP_SELF}?startdir=$start_target">$file</a>$warnings
+                                            {$ident}{$folder_icon}&nbsp;<a href= "{$CPG_PHP_SELF}?startdir=$start_target">$file</a>$warnings
                                     </td>
                             </tr>
 EOT;

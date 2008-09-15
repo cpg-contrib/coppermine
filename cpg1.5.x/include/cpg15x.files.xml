@@ -1867,12 +1867,6 @@
     <hash>e6eb8ccfb92045b1efe622e1bf91959e</hash>
   </element>
   <element>
-    <fullpath>images/folder.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>4d4d3a960c3bc889917638b6ae973efb</hash>
-  </element>
-  <element>
     <fullpath>images/gif48x48.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
@@ -1919,12 +1913,6 @@
     <status>mandatory</status>
     <permission>read</permission>
     <hash>254e3d5bdfb139f9aec00f8d2242cf73</hash>
-  </element>
-  <element>
-    <fullpath>images/info.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>5271f0e10bb7b697e8ba178616b2db18</hash>
   </element>
   <element>
     <fullpath>images/next.gif</fullpath>

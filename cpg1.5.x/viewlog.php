@@ -27,12 +27,13 @@ function display_log_list()
 	global $lang_viewlog_php;
 
 	$log_list = getloglist('logs/');
+	$folder_icon = cpg_fetch_icon('folder', 0);
 	if (count($log_list)>0) {
 			foreach ($log_list as $log) {
 					echo <<<EOT
 								<tr>
 										<td class="tableb">
-												<img src="images/folder.gif" alt="" />&nbsp;<a href= "{$CPG_PHP_SELF}?log={$log['logname']}">{$log['logname']}</a>
+												{$folder_icon}&nbsp;<a href= "{$CPG_PHP_SELF}?log={$log['logname']}">{$log['logname']}</a>
 												&nbsp;&nbsp;&nbsp; ( <i>{$log['filesize']} KB</i> )
 										</td>
 								</tr>

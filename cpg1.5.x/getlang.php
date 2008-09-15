@@ -48,11 +48,12 @@ if ($superCage->get->keyExists('get')) {
 
 pageheader('Language files');
 starttable('100%', 'Language files');
+$folder_icon = cpg_fetch_icon('folder', 0);
 foreach($lang_files as $index => $file) {
     echo <<<EOT
                 <tr>
                         <td class="tableb">
-                                <img src="images/folder.gif" alt="">&nbsp;<a href="{$CPG_PHP_SELF}?get=$index">$file</a>
+                                {$folder_icon}&nbsp;<a href="{$CPG_PHP_SELF}?get=$index">$file</a>
                         </td>
                 </tr>
 EOT;

@@ -1747,6 +1747,7 @@ if (defined('MINIBROWSER_PHP')) $lang_minibrowser_php = array(
   'current_path' => 'current path',
   'select_directory' => 'please select a directory',
   'click_to_close' => 'Click image to close this window',
+  'folder' => 'Folder', // cpg1.5
 );
 
 // ------------------------------------------------------------------------- //

@@ -551,10 +551,11 @@ case "settings_path":
         $loop_array = array('full_forum_url','relative_path_of_forum_from_webroot','relative_path_to_config_file', 'cookie_prefix');
         $rows_displayed = 0;
         $section_number = 0;
+        $folder_icon = cpg_fetch_icon('folder', 0, $lang_bridgemgr_php['browse']);
         foreach($loop_array as $key) {
             $prefill = cpg_bridge_prefill($BRIDGE['short_name'],$key);
             if ($key == 'relative_path_of_forum_from_webroot') {
-                $minibrowser = '<a href="javascript:;" onclick="MM_openBrWindow(\'minibrowser.php?startfolder='.rawurlencode($prefill).'&amp;parentform='.rawurlencode($step).'&amp;formelementname='.rawurlencode($key).'\',\''.uniqid(rand()) .'\',\'scrollbars=yes,toolbar=no,status=no,locationbar=no,resizable=yes,width=600,height=400\')"><img src="images/folder.gif" width="16" height="16" border="0" alt="" title="'.$lang_bridgemgr_php['browse'].'" /></a>';
+                $minibrowser = '<a href="javascript:;" onclick="MM_openBrWindow(\'minibrowser.php?startfolder='.rawurlencode($prefill).'&amp;parentform='.rawurlencode($step).'&amp;formelementname='.rawurlencode($key).'\',\''.uniqid(rand()) .'\',\'scrollbars=yes,toolbar=no,status=no,locationbar=no,resizable=yes,width=600,height=400\')">' . $folder_icon . '</a>';
             } else {
                 $minibrowser = '';
             }
@@ -566,7 +567,7 @@ case "settings_path":
                 $disabled = '';
                 $rows_displayed++;
                 if ($default_bridge_data[$BRIDGE['short_name']][$key.'_default'] != '') {
-                    $reset_to_default = '<img src="images/flags/reset.gif" width="16" height="11" border="0" alt="" title="'.$lang_bridgemgr_php['reset_to_default'].'" style="cursor:pointer" onclick="document.getElementById(\''.$key.'\').value=\''.$default_bridge_data[$BRIDGE['short_name']][$key.'_default'].'\'" />';
+                    $reset_to_default = '<a href="javascript:;" onclick="document.getElementById(\''.$key.'\').value=\''.$default_bridge_data[$BRIDGE['short_name']][$key.'_default'].'\'">' . cpg_fetch_icon('stop', 0, $lang_bridgemgr_php['reset_to_default']) . '</a>';
                 }
             }
             if ($posted_var['hide_unused_fields'] != 1 || $disabled == '')
@@ -576,11 +577,12 @@ case "settings_path":
                 print '        '.$lang_bridgemgr_php[$key].':'.$new_line;
                 print '    </td>'.$new_line;
                 print '    <td class="tableb" style="overflow:visible">'.$new_line;
-                print '        <input type="text" name="'.$key.'" id="'.$key.'" class="textinput" value="'.$prefill.'" '.$disabled.' size="50" />'.$minibrowser.$reset_to_default.$new_line;
+                print '        <input type="text" name="'.$key.'" id="'.$key.'" size="50" class="textinput" style="width:80%" value="'.$prefill.'" '.$disabled.' />'.$minibrowser.$reset_to_default.$new_line;
                 print '    </td>'.$new_line;
                 print '    <td class="tableb">'.$new_line;
                 print $display1.$new_line;
-                print '        <span class="explanation">'.$lang_bridgemgr_php[$key.'_explanation'].'</span>'.$new_line;
+                print '        ';
+                print cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bridgemgr_php[$key]))).'&amp;t='.urlencode(base64_encode(serialize($lang_bridgemgr_php[$key.'_explanation']))),470,245).'</span>'.$new_line;
                 print $display2.$new_line;
                 print '    </td>'.$new_line;
                 print '</tr>'.$new_line;
@@ -617,7 +619,7 @@ case "db_connect":
                 $disabled = '';
                 $rows_displayed++;
                 if ($default_bridge_data[$BRIDGE['short_name']][$key.'_default'] != '') {
-                    $reset_to_default = '<img src="images/flags/reset.gif" width="16" height="11" border="0" alt="" title="'.$lang_bridgemgr_php['reset_to_default'].'" style="cursor:pointer" onclick="document.getElementById(\''.$key.'\').value=\''.$default_bridge_data[$BRIDGE['short_name']][$key.'_default'].'\'" />';
+                    $reset_to_default = '<a href="javascript:;" onclick="document.getElementById(\''.$key.'\').value=\''.$default_bridge_data[$BRIDGE['short_name']][$key.'_default'].'\'">' . cpg_fetch_icon('stop', 0, $lang_bridgemgr_php['reset_to_default']) . '</a>';
                 }
             }
             if ($default_bridge_data[$BRIDGE['short_name']][$key.'_used'] == 'password') {$fieldtype = 'password';} else {$fieldtype = 'text';}
@@ -669,7 +671,7 @@ case "db_tables":
                 $disabled = '';
                 $rows_displayed++;
                 if ($default_bridge_data[$BRIDGE['short_name']][$key.'_default'] != '') {
-                    $reset_to_default = '<img src="images/flags/reset.gif" width="16" height="11" border="0" alt="" title="'.$lang_bridgemgr_php['reset_to_default'].'" style="cursor:pointer" onclick="document.getElementById(\''.$key.'\').value=\''.$default_bridge_data[$BRIDGE['short_name']][$key.'_default'].'\'" />';
+                    $reset_to_default = '<a href="javascript:;" onclick="document.getElementById(\''.$key.'\').value=\''.$default_bridge_data[$BRIDGE['short_name']][$key.'_default'].'\'">' . cpg_fetch_icon('stop', 0, $lang_bridgemgr_php['reset_to_default']) . '</a>';
                 }
             }
             if ($default_bridge_data[$BRIDGE['short_name']][$key.'_used'] == 'password') {
@@ -748,7 +750,7 @@ case "db_groups":
                 $disabled = '';
                 $rows_displayed++;
                 if ($default_bridge_data[$BRIDGE['short_name']][$key.'_default'] != '') {
-                    $reset_to_default = '<img src="images/flags/reset.gif" width="16" height="11" border="0" alt="" title="'.$lang_bridgemgr_php['reset_to_default'].'" style="cursor:pointer" onclick="document.getElementById(\''.$key.'\').value=\''.$default_bridge_data[$BRIDGE['short_name']][$key.'_default'].'\'" />';
+                    $reset_to_default = '<a href="javascript:;" onclick="document.getElementById(\''.$key.'\').value=\''.$default_bridge_data[$BRIDGE['short_name']][$key.'_default'].'\'">' . cpg_fetch_icon('stop', 0, $lang_bridgemgr_php['reset_to_default']) . '</a>';
                 }
             }
             if ($default_bridge_data[$BRIDGE['short_name']][$key.'_used'] == 'password') {$fieldtype = 'password';} else {$fieldtype = 'text';}

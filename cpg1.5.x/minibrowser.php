@@ -298,7 +298,7 @@ if (is_array($foldername)) {
             print '</td>'.$newline;
             print '<td class="tableb">'.$newline;
             print '<a href="'.$CPG_PHP_SELF.'?folder='.rawurlencode('/'.ltrim($folder, '/').$key.'/').'&amp;parentform='.rawurlencode($parentform).'&amp;formelementname='.rawurlencode($formelementname).'&amp;no_popup='.$no_popup.'&amp;limitfolder='.$limitfolder.'&amp;hidefolders='.$hidefolders.'&amp;linktarget='.$linktarget.'">'.$newline;
-            print '<img src="images/folder.gif" width="16" height="16" border="0" alt="" title="folder" />'.$newline;
+            print cpg_fetch_icon('folder', 0, $lang_minibrowser_php['folder']) . $newline;
             print $key.$newline;
             print '</a>'.$newline;
             print '</td>'.$newline;
