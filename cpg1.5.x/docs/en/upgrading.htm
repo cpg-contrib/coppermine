@@ -37,7 +37,7 @@
 </div>
 
 <a name="upgrade"></a><h1>Upgrading<a href="#upgrade" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
-<p>Please note: as there have been changes both in the coppermine files and the database from previous versions to cpg1.5.x, users of older versions than cpg1.5.0 will have to apply all steps mentioned above: both the files have to be replaced and the update.php script has to be run once.</p>
+<p>Please note: as there have been changes both in the coppermine files and the database from previous versions to cpg1.5.x, users of older versions than cpg1.5.0 will have to apply <strong>all</strong> steps mentioned below: both the files have to be replaced and the update.php script has to be run once.</p>
 
 <a name="upgrade_any"></a><h2>Steps needed to perform when upgrading Coppermine (from any version)<a href="#upgrade_any" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <ul>
@@ -48,12 +48,14 @@
     <li>Backup your include/config.inc.php file, your anycontent.php file and your &quot;albums&quot; directoy as a safety precaution if anything should go wrong.<br />
     <span class="small">(Usually, you just download your entire coppermine folder to your local hard drive using your FTP app)</span></li>
     <li>Unpack the coppermine package you downloaded into a temporary folder on your local hard drive (preserving the folder structure within the package)</li>
-    <li><strong>Except for the &quot;albums&quot; directory</strong>, upload all of the new files and directories making sure not to overwrite your anycontent.php file or the albums directory.</li>
-    <li>Run the file &quot;update.php&quot; in the coppermine directory once in your browser (e.g. http://yourdomain.tld/your_coppermine_folder/update.php). This will update your coppermine install by making all necessary changes in the database.</li>
+    <li><strong>Except for the &quot;albums&quot; directory</strong>, upload all of the new files and directories, making sure not to overwrite your anycontent.php file or the albums directory.</li>
+    <li>Run the file &quot;update.php&quot; in the coppermine directory once in your browser (e.g. <tt class="code">http://yourdomain.tld/your_coppermine_folder/update.php</tt>). This will update your coppermine install by making all necessary changes in the database.</li>
     <li>If you have made a custom theme, apply the changes that were introduced in the themes structure to your custom-made theme - refer to the <a href="theme_upgrade_14x-15x.htm">theme-upgrade guide</a>.</li>
     <li>If your webserver is running in safe_mode and you have enabled "SILLY_SAFE_MODE" in include/config.inc.php, you will have to go to coppermine's config after performing above mentioned steps and enable "<a href="configuration.htm#admin_picture_thumb_advanced_silly_safe_mode_start">silly safe mode</a>" there, as the setting in include/config.inc.php is no longer being taken into account in cpg1.5.x. The silly_safe_mode setting has been made into a <a href="configuration.htm#admin_picture_thumb_advanced_silly_safe_mode_start">config setting</a> instead.</li>
 </ul>
 <p>To make this absolutely clear: <span class="important">there is no such thing as a separate upgrade package - coppermine always comes as a complete package that can be used both for a fresh install as well as an upgrade</span>.</p>
+
+
 
 
 
@@ -77,7 +79,8 @@
         <li>cpg1.5.x-phrases that don't exist in your old language file will go untranslated or show in english</li>
         <li>Coppermine can't be administered using an old language file - the admin needs to use a "true" cpg1.5.x language file</li>
         <li>You're free to try using old language files, however when running into issues or error messages, switch to US-English and see if the issue goes away then. Using outdated language files goes unsupported</li>
-        <li>In cpg1.3.x, the passwords for the users used to be stored in plain text inside the database. This has been changed in cpg1.4.x - out of the box, cpg1.4.x used to store the passwords encrypted. However, there used to be an option for those who upgraded from cpg1.3.x to cpg1.4.x to skip the step of encrypting the passwords. In cpg1.5.x, the plain-text storage of passwords is no longer an option. If you're running such an old gallery that first was updated from cpg1.3.x to cpg1.4.x and now on to cpg1.5.x, the updater will automatically encrypt all the passwords of your users (including your own admin account). You don't have to mind anything specifically - the updater will do this automatically.
+        <li>In cpg1.3.x, the passwords for the users used to be stored in plain text inside the database. This has been changed in cpg1.4.x - out of the box, cpg1.4.x used to store the passwords encrypted. However, there used to be an option for those who upgraded from cpg1.3.x to cpg1.4.x to skip the step of encrypting the passwords. In cpg1.5.x, the plain-text storage of passwords is no longer an option. If you're running such an old gallery that first was updated from cpg1.3.x to cpg1.4.x and now on to cpg1.5.x, the updater will automatically encrypt all the passwords of your users (including your own admin account). You don't have to mind anything specifically - the updater will do this automatically.</li>
+        <li>The option to display a FAQ page to end users (by ticking the corresponding config option) that existed in cpg1.3.x and cpg1.4.x has been removed from cpg1.5.x, because it was hardly every used and only caused additional workload for translators. If you belong to those few users who actually used the FAQ menu item in Coppermine's navigation menu, you can easily come up with a custom page that uses coppermine's header and footer and display your individual FAQ there.</li>
       </ul>
   </li>
 </ul>

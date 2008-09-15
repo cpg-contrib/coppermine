@@ -208,11 +208,6 @@ $config_data = array(
       'default_value' => '1',
       'help_link' => 'f=configuration.htm&amp;as=admin_theme_theme_reset&amp;ae=admin_theme_theme_reset_end',
     ),
-    'display_faq' => array(
-      'type' => 'checkbox',
-      'default_value' => '0',
-      'help_link' => 'f=configuration.htm&amp;as=admin_theme_faq&amp;ae=admin_theme_faq_end',
-    ),
     'display_sidebar_user' => array(
       'type' => 'radio',
       'default_value' => '2',

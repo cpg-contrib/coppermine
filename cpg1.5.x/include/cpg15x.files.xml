@@ -59,7 +59,7 @@
   <element>
     <fullpath>bridgemgr.php</fullpath>
     <version>1.5.0</version>
-    <revision>4990</revision>
+    <revision>5038</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>8ba3a688a312514f381fefa90b7266b9</hash>
@@ -127,7 +127,7 @@
   <element>
     <fullpath>delete.php</fullpath>
     <version>1.5.0</version>
-    <revision>4981</revision>
+    <revision>5039</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>f5557ad971f1d326c839e6ba5d31baaf</hash>
@@ -175,7 +175,7 @@
   <element>
     <fullpath>editpics.php</fullpath>
     <version>1.5.0</version>
-    <revision>5028</revision>
+    <revision>5039</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>f187bb98034d5185c7ade1759220029a</hash>
@@ -196,11 +196,7 @@
   </element>
   <element>
     <fullpath>faq.php</fullpath>
-    <version>1.5.0</version>
-    <revision>4981</revision>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>aeb55d2aeabedc4ea813a6a50b4a4143</hash>
+    <status>remove</status>
   </element>
   <element>
     <fullpath>forgot_passwd.php</fullpath>
@@ -213,7 +209,7 @@
   <element>
     <fullpath>getlang.php</fullpath>
     <version>1.5.0</version>
-    <revision>4224</revision>
+    <revision>5038</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>2f757d7e178233bb2d480ff3136a4083</hash>
@@ -253,7 +249,7 @@
   <element>
     <fullpath>installer.css</fullpath>
     <version>1.5.0</version>
-    <revision>4576</revision>
+    <revision>5040</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>b308f2978f6b005f97f71c7b123bc056</hash>
@@ -301,7 +297,7 @@
   <element>
     <fullpath>minibrowser.php</fullpath>
     <version>1.5.0</version>
-    <revision>4605</revision>
+    <revision>5038</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>b92998e70454060358488d6715b48ea3</hash>
@@ -417,7 +413,7 @@
   <element>
     <fullpath>searchnew.php</fullpath>
     <version>1.5.0</version>
-    <revision>4981</revision>
+    <revision>5038</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>1f9d9fc29f50debd320f1b8069250220</hash>
@@ -457,7 +453,7 @@
   <element>
     <fullpath>update.php</fullpath>
     <version>1.5.0</version>
-    <revision>4578</revision>
+    <revision>5040</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>857ce7bc510e10e2c73cde7d31d12fbc</hash>
@@ -497,7 +493,7 @@
   <element>
     <fullpath>viewlog.php</fullpath>
     <version>1.5.0</version>
-    <revision>4841</revision>
+    <revision>5038</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>2577c9f7fcf2a12df97d3ef88ea44750</hash>
@@ -1181,7 +1177,7 @@
   <element>
     <fullpath>docs/en/upgrading.htm</fullpath>
     <version>1.5.0</version>
-    <revision>4576</revision>
+    <revision>5036</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>cb48e44e05f6ae9ad2ee32eafa2d2091</hash>
@@ -1945,12 +1941,6 @@
     <hash>0ce4873e8f5643ead7094e0284a31306</hash>
   </element>
   <element>
-    <fullpath>images/slideshow.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>57fa939a8c8f8de3a2d992c217e7161a</hash>
-  </element>
-  <element>
     <fullpath>images/spacer.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
@@ -1961,12 +1951,6 @@
     <status>mandatory</status>
     <permission>read</permission>
     <hash>a8c18ea8d44beaf4d84257179f133be7</hash>
-  </element>
-  <element>
-    <fullpath>images/thumbnails.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>b5a62908d7fd7ea49b420b44cc44c501</hash>
   </element>
   <element>
     <fullpath>images/tile.gif</fullpath>
@@ -2005,12 +1989,6 @@
     <hash>cea0f32550fbf8bf0a08dfe8d5baba6c</hash>
   </element>
   <element>
-    <fullpath>images/user.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>a68a959503fcc2427c30927177f2f412</hash>
-  </element>
-  <element>
     <fullpath>images/valid-css.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
@@ -2027,12 +2005,6 @@
     <status>mandatory</status>
     <permission>read</permission>
     <hash>90a8629e17e969388b55b883f33f692d</hash>
-  </element>
-  <element>
-    <fullpath>images/www.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>e3ba51be10a8e4e6be3775160c85486f</hash>
   </element>
   <element>
     <fullpath>images/browser/</fullpath>
@@ -6192,14 +6164,6 @@
     <hash>f0c25fd6c6479950a52c08f4f21cd37b</hash>
   </element>
   <element>
-    <fullpath>include/update.inc.php</fullpath>
-    <version>1.5.0</version>
-    <revision>4981</revision>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>e5d78bce53c151d0f1ea693283c9082b</hash>
-  </element>
-  <element>
     <fullpath>include/versioncheck.inc.php</fullpath>
     <version>1.5.0</version>
     <revision>5033</revision>
@@ -6342,7 +6306,7 @@
   <element>
     <fullpath>lang/english.php</fullpath>
     <version>1.5.0</version>
-    <revision>5033</revision>
+    <revision>5040</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>374847306febeff71bc2c816d2a2edf6</hash>

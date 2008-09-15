@@ -185,7 +185,6 @@ EOT;
     addbutton($sys_menu_buttons,'{SIDEBAR_LNK}','{SIDEBAR_TITLE}','{SIDEBAR_TGT}','sidebar',$template_sys_menu_spacer);
     addbutton($sys_menu_buttons,'{UPL_PIC_LNK}','{UPL_PIC_TITLE}','{UPL_PIC_TGT}','upload_pic',$template_sys_menu_spacer);
     addbutton($sys_menu_buttons,'{REGISTER_LNK}','{REGISTER_TITLE}','{REGISTER_TGT}','register',$template_sys_menu_spacer);
-    addbutton($sys_menu_buttons,'{FAQ_LNK}','{FAQ_TITLE}','{FAQ_TGT}','faq',$template_sys_menu_spacer);
     addbutton($sys_menu_buttons,'{LOGIN_LNK}','{LOGIN_TITLE}','{LOGIN_TGT}','login','');
     addbutton($sys_menu_buttons,'{LOGOUT_LNK}','{LOGOUT_TITLE}','{LOGOUT_TGT}','logout','');
     // Login and Logout don't have a spacer as only one is shown, and either would be the last option.
@@ -1859,10 +1858,6 @@ function theme_main_menu($which)
         template_extract_block($template_sys_menu, 'allow_memberlist');
     }
 
-    if (!$CONFIG['display_faq']) {
-        template_extract_block($template_sys_menu, 'faq');
-    }
-
     $param = array(
         '{HOME_TGT}' => $CONFIG['home_target'],
         '{HOME_TITLE}' => $lang_main_menu['home_title'],
@@ -1900,9 +1895,6 @@ function theme_main_menu($which)
         '{LOGOUT_TGT}' => "logout.php?referer=$REFERER",
         '{LOGOUT_TITLE}' => $lang_main_menu['logout_title'],
         '{LOGOUT_LNK}' => $lang_main_menu['logout_lnk'] . " [" . stripslashes(USER_NAME) . "]",
-        '{FAQ_TGT}' => "faq.php",
-        '{FAQ_TITLE}' => $lang_main_menu['faq_title'],
-        '{FAQ_LNK}' => $lang_main_menu['faq_lnk'],
         '{UPL_APP_LNK}' => $lang_gallery_admin_menu['upl_app_lnk'],
         '{UPL_APP_TGT}' => "editpics.php?mode=upload_approval",
         '{UPL_APP_TITLE}' => $lang_gallery_admin_menu['upl_app_lnk'],
