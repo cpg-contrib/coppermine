@@ -99,6 +99,7 @@ EOT;
    sort($total_array);
 
    $output = implode("</tr>\n<tr>", $total_array);
+   unset($total_array);
 
    echo <<<EOT
 <form name="keywordForm" id="cpgform" action="keywordmgr.php?page=changeword" method="post">
