@@ -387,7 +387,7 @@ d.add(100,0,'Über Coppermine','index.htm');
 d.add(200,100,'Inhaltsverzeichnis','toc.htm');
 d.add(300,100,'Mindestvoraussetzung','requirements.htm');
 //d.add(400,100,'Beta (Testing) version','testing.htm');
-//d.add(500,100,'Languages','languages.htm');
+d.add(500,100,'Sprachen','languages.htm');
 //d.add(600,500,'Translation guide','translation.htm');
 d.add(700,100,'Credits','credits.htm');
 d.add(800,700,'Coppermine Team','credits.htm#developers');
