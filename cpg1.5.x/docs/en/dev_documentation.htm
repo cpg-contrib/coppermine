@@ -41,6 +41,7 @@
 <p>This part of the documentation is not meant for end users of Coppermine, but only for developers. There is no support for this section, it comes as-is.</p>
 <a name="dev_documentation_edit"></a><h2>Edit existing documents<a href="#dev_documentation_edit" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>To edit existing documents, simply use your favorite plan text editor - it is all plain HTML plus the JavaScript navigation</p>
+
 <a name="dev_documentation_add"></a><h2>Add new documents<a href="#dev_documentation_add" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>To add new documents, follow the steps below:
   <ul>
@@ -80,6 +81,10 @@
 
 <a name="dev_documentation_move"></a><h2>Moving content from one document to the other<a href="#dev_documentation_move" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>When moving content from an existing document to the other (or into a new one), you have to make sure that the links that point to it get moved as well. To do so, search the entire documentation and the coppermine core code for the anchor name and change them to reflect your changes in the documentation.</p>
+
+<a name="dev_documentation_hidden_feature"></a><h2>Hidden features<a href="#dev_documentation_hidden_feature" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>To display the content of a particular page of the documentation without the page header, logo, table of contents, search form and footer, add the URL parameter <tt class="code">hide_nav=1</tt> to the URL. This is meant to allow displaying content within an iframe or similar.</p>
+
 <script type="text/javascript">
   cpgDocFooter();
   dateRevision(' $LastChangedDate$ ', ' $Revision$ ');

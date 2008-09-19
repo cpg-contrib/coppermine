@@ -584,12 +584,29 @@ function html_welcome()
         $next_step = 2;
     }
 ?>
+      &nbsp;<br />
       <form action="install.php?step=<?php echo $next_step; ?>" name="cpgform" id="cpgform" method="post" style="margin:0px;padding:0px">
         <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
          <tr>
-          <td class="tableb" colspan="2"><?php echo $install->language['cpg_info']; ?></a>.
+          <td class="tableh1" colspan="2">
+          	<h2><?php echo $install->language['license']; ?></h2>
           </td>
          </tr>
+         <tr>
+          <td class="tableb" colspan="2">
+          	<?php echo $install->language['license_info']; ?>
+          </td>
+         </tr>
+         <tr>
+          <td class="tableb" colspan="2">
+          	<iframe src="docs/en/copyrights.htm?hide_nav=1" width="100%" height="300" name="license">
+  			<?php echo $install->language['cpg_info_frames']; ?></a>.
+			</iframe>
+          </td>
+         </tr>
+       </table>
+       &nbsp;<br />
+       <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
         
 <?php
     if ($install->error != '') {    

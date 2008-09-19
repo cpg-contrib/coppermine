@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-09-17 [A] Added license display to installer {GauGau}
 2008-09-17 [O] Reduced memory usage of keyword manager {Nibbler}
 2008-09-15 [M] Removed FAQ menu item as per dev team decision {GauGau}
 2008-09-15 [A] Updater can now be run using cookie authentication; fallback mechanisms existing as well {GauGau}

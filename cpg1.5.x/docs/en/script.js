@@ -606,6 +606,11 @@ d.add(16100,15200,'Recommended tools','dev_tools.htm');
 
 
 function cpgDocToc() {
+  var hideNav = getUrlParameters('hide_nav');
+  if (hideNav == 1) {
+  	document.getElementById('toc').style.display = 'none';
+  	return;
+  }
   document.write(d); // write the navigation
   d.closeAll(); // unexpand all branches
   var myCounter = 0;
@@ -627,6 +632,10 @@ function cpgDocToc() {
 }
 
 function cpgDocBreadcrumb() {
+  var hideNav = getUrlParameters('hide_nav');
+  if (hideNav == 1) {
+  	return;
+  }
   var cpgDocLoopCounter = 0;
   var cpgDocBreadcrumbPath = '';
   var cpgLoopTemp = thisPage;
@@ -648,6 +657,10 @@ function cpgDocBreadcrumb() {
 
 
 function cpgDocHeader() {
+  var hideNav = getUrlParameters('hide_nav');
+  if (hideNav == 1) {
+  	return;
+  }
   document.write('<img src="images/coppermine-logo.png" alt="Coppermine Photo Gallery - Your Online Photo Gallery" align="left" />');
   document.write('<h1>Coppermine Photo Gallery v1.5.0: Documentation and Manual</h1>');
   document.write('<br clear="all" />');
@@ -657,6 +670,10 @@ function cpgDocHeader() {
 }
 
 function cpgDocFooter() {
+  var hideNav = getUrlParameters('hide_nav');
+  if (hideNav == 1) {
+  	return;
+  }
   document.write('</div>');
   document.write('<div align="right">');
   document.write('<a href="#top">Back to Top</a>');
@@ -666,6 +683,10 @@ function cpgDocFooter() {
 
 
 function cpgDocPrevNext() {
+  var hideNav = getUrlParameters('hide_nav');
+  if (hideNav == 1) {
+  	return;
+  }
   document.write('<div align="right">');
   if(docSections[thisPage]['previous'] != '') {
     document.write('<a href="' + docSections[docSections[thisPage]['previous']]['file'] + '" class="prev_next">&laquo; previous (' + docSections[docSections[thisPage]['previous']]['name'] + ')</a>&nbsp;&nbsp;&nbsp;');
@@ -692,6 +713,10 @@ function displayNavigation() {
 
 function dateRevision(lastChangeDate, revisionNumber) {
   // strip the unneeded data from last_changed and revision fields
+  var hideNav = getUrlParameters('hide_nav');
+  if (hideNav == 1) {
+  	return;
+  }
   var lastChangeDate = lastChangeDate.replace('$', '');
   var lastChangeDate = lastChangeDate.replace('$', '');
   var lastChangeDate = lastChangeDate.replace('LastChangedDate: ', '');
@@ -708,4 +733,18 @@ function dateRevision(lastChangeDate, revisionNumber) {
   document.write(',&nbsp;Revision ');
   document.write(revisionNumber);
   document.write('</div>');
+}
+
+function getUrlParameters(name)
+{
+  // Taken from http://www.netlobo.com/url_query_string_javascript.html
+  name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+  var regexS = "[\\?&]"+name+"=([^&#]*)";
+  var regex = new RegExp(regexS);
+  var results = regex.exec(window.location.href);
+  if(results == null) {
+    return '';
+  } else {
+    return results[1];
+  }
 }
