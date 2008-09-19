@@ -932,6 +932,7 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'login_threshold' =>   'Number of failed login attempts until temporary ban', // cpg1.5
   'login_threshold_detail' =>   '(to avoid brute force attacks)', // cpg1.5
   'login_expiry' =>   'Duration of a temporary ban after failed logins', // cpg1.5
+  'minutes' =>   'minutes', // cpg1.5
   'report_post' =>   'Enable Report to Admin', // cpg1.5
   'user_profile1_name' =>   'Profile 1 name', // cpg1.5
   'user_profile2_name' =>   'Profile 2 name', // cpg1.5

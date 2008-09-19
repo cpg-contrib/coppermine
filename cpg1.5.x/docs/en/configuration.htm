@@ -46,6 +46,8 @@
 <a name="admin_general"></a><h2>General settings<a href="#admin_general" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <a name="admin_general_name"></a><h3>Gallery name<a href="#admin_general_name" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Enter the name of your gallery in this text field. The name you enter will appear as the title that is displayed in the web browser's title bar and is also displayed in many of the different theme templates.</p>
+<p>Even if you have removed the corresponding token from your custom theme, you should fill this in correctly, as it will be used when sending ecards and in all kinds of emails sent from your gallery (e.g. during registration).</p>
+<p class="quote">Example: <tt class="code">Tim's incredible picture gallery</tt></p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; General settings &rarr; Gallery name</p>
 <a name="admin_general_name_end"></a>
 <hr />
@@ -56,13 +58,15 @@
 <hr />
 <a name="admin_general_email"></a><h3>Gallery administrator email<a href="#admin_general_email" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>All emails sent by the gallery will be sent using this email address. This must be a valid email address.</p>
-<p>Coppermine will use this address as "from"-address when sending emails (e.g. during registration). It's mandatory to have this email address populated properly. If you have your own domain, it might be a good idea to use an email account that correlates to your domain name.</br>
-    Example: if your domain name is &quot;example.com&quot;, you should create an email address named gallery@example.com and use that email address in coppermine's config. Coppermine does <strong>not</strong> create that email address for you!</p>
+<p>Coppermine will use this address as "from"-address when sending emails (e.g. during registration). It's mandatory to have this email address populated properly. If you have your own domain, it might be a good idea to use an email account that correlates to your domain name.</p>
+<p class="quote">Example: if your domain name is &quot;<tt class="code">example.com</tt>&quot;, you should create an email address named <tt class="code">gallery@example.com</tt> and use that email address in coppermine's config. Coppermine does <strong>not</strong> create that email address for you!</p>
+<p>Users sometimes ask on the support board if they can use another email, e.g. one from a fremail provider like gmail, hotmail or similar. The answer is: we can't tell you if your webhost will allow you to do this. Many webhosts disallow such things for reasons of spam prevention. If you're not sure, ask your webhost for support.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; General settings &rarr; Gallery administrator email</p>
 <a name="admin_general_email_end"></a>
 <hr />
 <a name="admin_general_coppermine-url"></a><h3>URL of your coppermine gallery folder<a href="#admin_general_coppermine-url" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>This is the URL where a user will be directed to when s/he clicks on the &quot;See more pictures&quot; link in an e-card. This <em>must</em> be the URL to the root of your coppermine installation followed by a forward slash (just the path to your coppermine folder, e.g. <em>http://yourdomain.tld/coppermine/</em>). Do not specify a specific file (such as index.php) or subfolder within the coppermine gallery in this field.</p><p>In previous versions of Coppermine, this field was called &quot;Target address for the 'See more pictures' link in e-cards&quot;, but as this url is now being used for other functions in coppermine, it has been changed, appropriately.</p>
+<p>It is absolutely that you enter the gallery URL setting properly - if you don't, you will almost certainly experience "funny" behaviours of your gallery.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; General settings &rarr; URL of your coppermine gallery folder</p>
 <a name="admin_general_coppermine-url_end"></a>
 <hr />
