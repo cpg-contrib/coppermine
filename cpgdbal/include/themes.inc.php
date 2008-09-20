@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4999 $
+  $Revision: 5041 $
   $LastChangedBy: gaugau $
-  $Date: 2008-09-05 11:28:00 +0530 (Fri, 05 Sep 2008) $
+  $Date: 2008-09-15 22:12:02 +0530 (Mon, 15 Sep 2008) $
 **********************************************/
 
 /////////////////////////////////////////////////////////////////
@@ -66,9 +66,6 @@ if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}         //{THEMES
 //    The entire block needs to be present like in Coppermine 1.3 themes
 //  ('THEME_HAS_NO_SUB_MENU_BUTTONS', 1) When present the system won't attempt to replace {BUTTONS} in the SUB_MENU template
 //    The entire block needs to be present like in Coppermine 1.3 themes
-//  ('THEME_IS_XHTML10_TRANSITIONAL',1) : If theme is defined as XHTML10_TRANSITIONAL the VANITY footer will be enabled
-//    if the theme has a {VANITY} token in its template.html. Don't enable this if you have modified the code! See the
-//    docs/en/theme.html documentation for validation methodology.
 // ('THEME_HAS_SIDEBAR_GRAPHICS', 1) : The location for the sidebar graphics that compose the tree menu will
 //    be directed to the themes images folder, subfolder 'sidebar', i.e. themes/yourtheme/images/sidebar/.
 //    Gallery root                                                             : images/sidebar/base.gif
@@ -188,7 +185,6 @@ EOT;
     addbutton($sys_menu_buttons,'{SIDEBAR_LNK}','{SIDEBAR_TITLE}','{SIDEBAR_TGT}','sidebar',$template_sys_menu_spacer);
     addbutton($sys_menu_buttons,'{UPL_PIC_LNK}','{UPL_PIC_TITLE}','{UPL_PIC_TGT}','upload_pic',$template_sys_menu_spacer);
     addbutton($sys_menu_buttons,'{REGISTER_LNK}','{REGISTER_TITLE}','{REGISTER_TGT}','register',$template_sys_menu_spacer);
-    addbutton($sys_menu_buttons,'{FAQ_LNK}','{FAQ_TITLE}','{FAQ_TGT}','faq',$template_sys_menu_spacer);
     addbutton($sys_menu_buttons,'{LOGIN_LNK}','{LOGIN_TITLE}','{LOGIN_TGT}','login','');
     addbutton($sys_menu_buttons,'{LOGOUT_LNK}','{LOGOUT_TITLE}','{LOGOUT_TGT}','logout','');
     // Login and Logout don't have a spacer as only one is shown, and either would be the last option.
@@ -1557,6 +1553,14 @@ function pagefooter()
     }
 
     $template_vars = array(
+        '{GAL_NAME}' => $CONFIG['gallery_name'],
+        '{GAL_DESCRIPTION}' => $CONFIG['gallery_description'],
+        '{SYS_MENU}' => theme_main_menu('sys_menu'),
+        '{SUB_MENU}' => theme_main_menu('sub_menu'),
+        '{ADMIN_MENU}' => theme_admin_mode_menu(),
+        '{CUSTOM_HEADER}' => $custom_header,
+        '{JAVASCRIPT}' => theme_javascript_head(),
+        '{MESSAGE_BLOCK}' => theme_display_message_block(),
         '{CUSTOM_FOOTER}' => $custom_footer,
         '{VANITY}' => (defined('THEME_IS_XHTML10_TRANSITIONAL')) ? theme_vanity() : '',
         '{CREDITS}' => theme_credits(),
@@ -1621,7 +1625,7 @@ function theme_social_bookmark()
     if ($CONFIG['display_social_bookmarks'] != '') {
 
         $return = '';
-        $socialBookmarks_array = array('aol', 'ask', 'blinklist', 'blogmarks', 'care2', 'delicious', 'digg', 'diigo', 'dzone', 'facebook', 'fark', 'faves', 'feedmelinks', 'furl', 'google', 'hugg', 'kool', 'linkagogo', 'livejournal', 'magnolia', 'mindbody', 'misterwong', 'mixx', 'multiply', 'myspace', 'netscape', 'netvouz', 'newsvine', 'nowpublic', 'reddit', 'segnalo', 'simpy', 'slashdot', 'smarking', 'spurl', 'squidoo', 'stumbleupon', 'tailrank', 'technorati', 'thisnext', 'windows', 'yahoo', 'alltagz', 'linksilo', 'maodi', 'newstube', 'oneview', 'readster', 'tausendreporter', 'webbrille', 'webnews');
+        $socialBookmarks_array = array('aol', 'ask', 'blinklist', 'blogmarks', 'care2', 'delicious', 'digg', 'diigo', 'dzone', 'facebook', 'fark', 'faves', 'feedmelinks', 'furl', 'google', 'hugg', 'kool', 'linkagogo', 'livejournal', 'magnolia', 'mindbody', 'misterwong', 'mixx', 'multiply', 'myspace', 'netscape', 'netvouz', 'newsvine', 'nowpublic', 'reddit', 'segnalo', 'simpy', 'slashdot', 'smarking', 'spurl', 'squidoo', 'stumbleupon', 'tailrank', 'technorati', 'thisnext', 'windows', 'yahoo', 'alltagz', 'linksilo', 'iciode', 'maodi', 'misterwongde', 'newstube', 'oneview', 'readster', 'tausendreporter', 'webbrille', 'webnews');
         $social_bookmarks_config_array = explode ("|",$CONFIG['display_social_bookmarks']);
         $countLoop = 0;
         $bookmark_list = '';
@@ -1870,10 +1874,6 @@ function theme_main_menu($which)
         template_extract_block($template_sys_menu, 'allow_memberlist');
     }
 
-    if (!$CONFIG['display_faq']) {
-        template_extract_block($template_sys_menu, 'faq');
-    }
-
     $param = array(
         '{HOME_TGT}' => $CONFIG['home_target'],
         '{HOME_TITLE}' => $lang_main_menu['home_title'],
@@ -1911,9 +1911,6 @@ function theme_main_menu($which)
         '{LOGOUT_TGT}' => "logout.php?referer=$REFERER",
         '{LOGOUT_TITLE}' => $lang_main_menu['logout_title'],
         '{LOGOUT_LNK}' => $lang_main_menu['logout_lnk'] . " [" . stripslashes(USER_NAME) . "]",
-        '{FAQ_TGT}' => "faq.php",
-        '{FAQ_TITLE}' => $lang_main_menu['faq_title'],
-        '{FAQ_LNK}' => $lang_main_menu['faq_lnk'],
         '{UPL_APP_LNK}' => $lang_gallery_admin_menu['upl_app_lnk'],
         '{UPL_APP_TGT}' => "editpics.php?mode=upload_approval",
         '{UPL_APP_TITLE}' => $lang_gallery_admin_menu['upl_app_lnk'],

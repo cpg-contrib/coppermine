@@ -10,9 +10,9 @@ as published by the Free Software Foundation.
 ********************************************
 Coppermine version: 1.5.0
 $Source$
-$Revision: 4995 $
-$Author: abbas-ali $
-$Date: 2008-09-04 15:50:08 +0530 (Thu, 04 Sep 2008) $
+$Revision: 5044 $
+$Author: gaugau $
+$Date: 2008-09-19 13:00:08 +0530 (Fri, 19 Sep 2008) $
 *********************************************
 Changelog
 =========
@@ -25,6 +25,10 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-09-17 [A] Added license display to installer {GauGau}
+2008-09-17 [O] Reduced memory usage of keyword manager {Nibbler}
+2008-09-15 [M] Removed FAQ menu item as per dev team decision {GauGau}
+2008-09-15 [A] Updater can now be run using cookie authentication; fallback mechanisms existing as well {GauGau}
 2008-09-04 [M] Updated the jquery to version 1.2.6 and also included it in init.inc.php so that it is available on all pages {Abbas}
 2008-09-04 [O] Turned social bookmark script into jquery bookmark plugin {GauGau}
 2008-09-01 [C] Replaced deprecated tag <b> with recommended tag <strong> {GauGau}

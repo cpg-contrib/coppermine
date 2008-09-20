@@ -12,14 +12,12 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4696 $
+  $Revision: 5017 $
   $LastChangedBy: gaugau $
-  $Date: 2008-07-17 11:02:26 +0530 (Thu, 17 Jul 2008) $
+  $Date: 2008-09-09 21:20:51 +0530 (Tue, 09 Sep 2008) $
 **********************************************/
 
 define('THEME_HAS_PROGRESS_GRAPHICS',1);
-define('THEME_IS_XHTML10_TRANSITIONAL',1); // Remove this if you edit this template until
-                                           // you have validated it. See docs/theme.htm.
 
 // HTML template for template sys_menu spacer
 $template_sys_menu_spacer ='<img src="themes/water_drop/images/orange_carret.gif" width="8" height="8" border="0" alt="" />';

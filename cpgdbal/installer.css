@@ -11,9 +11,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $Source$
-  $Revision: 4576 $
+  $Revision: 5040 $
   $LastChangedBy: gaugau $
-  $Date: 2008-06-13 21:09:29 +0530 (Fri, 13 Jun 2008) $
+  $Date: 2008-09-15 21:50:16 +0530 (Mon, 15 Sep 2008) $
 **********************************************/
 
 body {
@@ -46,8 +46,11 @@ hr {
 }
 
 .textinput {
-        border: groove 1px;
-        width: 100%;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 100%;
+    border: 1px solid #D1D7DC;
+    padding-right: 3px;
+    padding-left: 3px;
 }
 
 .listbox {
@@ -216,11 +219,6 @@ form {
 {
     background-color: green;
     color: white;
-    text-align: center;
-}
-
-.input
-{
     text-align: center;
 }
 

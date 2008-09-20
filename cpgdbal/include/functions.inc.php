@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 5001 $
+  $Revision: 5031 $
   $LastChangedBy: gaugau $
-  $Date: 2008-09-05 18:50:31 +0530 (Fri, 05 Sep 2008) $
+  $Date: 2008-09-11 21:00:09 +0530 (Thu, 11 Sep 2008) $
 **********************************************/
 
 /**
@@ -25,7 +25,7 @@
 * @copyright 2002-2007 Gregory DEMAR, Coppermine Dev Team
 * @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
 * @package Coppermine
-* @version  $Id: functions.inc.php 5001 2008-09-05 13:20:31Z gaugau $
+* @version  $Id: functions.inc.php 5031 2008-09-11 15:30:09Z gaugau $
 */
 
 /**
@@ -2178,6 +2178,8 @@ function cpg_determine_client($pid)
                 $browser = 'IE6';
             } elseif (eregi('MSIE 7.0',$server_agent)) {
                 $browser = 'IE7';
+            } elseif (eregi('MSIE 8.0',$server_agent)) {
+                $browser = 'IE8';
             } elseif (eregi('MSIE 3.0',$server_agent)) {
                 $browser = 'IE3';
             } elseif (eregi('MSIE 4.0',$server_agent)) {
@@ -2188,7 +2190,7 @@ function cpg_determine_client($pid)
         } elseif (eregi('Epiphany',$server_agent)) {
             $browser = 'Epiphany';
         } elseif (eregi('Phoenix',$server_agent)) {
-            $browser = 'Phoneix';        
+            $browser = 'Phoenix';        
         } elseif (eregi('Firebird',$server_agent)) {
             $browser = 'Mozilla Firebird';
         } elseif (eregi('netscape',$server_agent)) {
@@ -4517,6 +4519,17 @@ function cpgGetRemoteFileByURL($remoteURL, $method = "GET", $redirect = 10, $min
     global $lang_get_remote_File_by_url;
     // FSOCK code snippets taken from http://jeenaparadies.net/weblog/2007/jan/get_remote_file
     $url = parse_url($remoteURL); // chop the URL into protocol, domain, port, folder, file, parameter
+    if (!isset($url['host'])) {
+        $url['host'] = '';
+    }
+    if (!isset($url['scheme'])) {
+        $url['scheme'] = '';
+    }
+    if (!isset($url['port'])) {
+        $url['port'] = '';
+    }
+    $body = '';
+    $headers = '';
     $error = '';
     $lineBreak = "<br />\r\n";
     // Let's try CURL first

@@ -3,19 +3,19 @@
 <head>
 <title>Versioncheck - Coppermine Photo Gallery - Documentation &amp; Manual</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="language"    content="en">
-<meta name="copyright"   content="Coppermine dev team">
+<meta name="language" content="en" />
+<meta name="copyright" content="Coppermine dev team" />
 <meta name="description" content="This part of the documentation is not meant for end users of Coppermine, but only for developers. There is no support for this section, it comes as-is.">
-<meta http-equiv="Content-Style-Type" content="text/css">
-<meta name="MSSmartTagsPreventParsing" content="true">
-<meta http-equiv="imagetoolbar" content="no">
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="MSSmartTagsPreventParsing" content="true" />
+<meta http-equiv="imagetoolbar" content="no" />
 <!--
   SVN version info:
 
   Coppermine version: 1.5.0
-  $Revision: 4499 $
-  $LastChangedBy: pvanrompay $
-  $Date: 2008-06-05 03:12:18 +0530 (Thu, 05 Jun 2008) $
+  $Revision: 5045 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-09-19 20:01:11 +0530 (Fri, 19 Sep 2008) $
 -->
 <link rel="stylesheet" type="text/css" href="../style.css" media="all" />
 <link rel="stylesheet" type="text/css" href="../screen.css" media="screen" />
@@ -44,15 +44,46 @@
 <p>Another &quot;hidden&quot; feature is the option to embedd the output into another coppermine-driven page to allow an initial check to be performed during first install.</p>
 <p>However, something that needs to be done manually: if folders/files get added to the svn or are renamed, the change needs to be reflected in the XML file as well.</p>
 
+<a name="dev_versioncheck_xml"></a><h2>XML structure<a href="#dev_versioncheck_xml" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>The XML file is being updated when using the <tt class="code">?output=create</tt> parameter, but each developer who is adding a new file to the SVN repository is responsible as well for coming up with a corresponding entry in the XML file. The XML structure should be self-explanatory. Here's a list of possible entries:</p>
+<ul>
+    <li>
+        <tt class="code">&lt;fullpath&gt; ... &lt;fullpath&gt;</tt><br />
+        The full relative path to the file in question, seen from the coppermine root folder. Folders should have a trailing slash. Possible placeholders: <tt class="code">**fullpath**</tt> will be replaced with the albums folder - for a default install, this would be <tt class="code">albums</tt>; <tt class="code">**userpics**</tt> will be replaced with the userpics folder set in config.
+    </li>
+    <li>
+        <tt class="code">&lt;version&gt; ... &lt;/version&gt;</tt><br />
+        The version number in the header. Only applies for text files - folder names and binary files can not have a version information.
+    </li>
+    <li>
+        <tt class="code">&lt;revision&gt; ... &lt;/revision&gt;</tt><br />
+        The SVN revision number in the header. Only applies for text files - folder names and binary files can not have a version information.
+    </li>
+    <li>
+        <tt class="code">&lt;status&gt; ... &lt;/status&gt;</tt><br />
+        Currently, there are three possible values: mandatory, optional, remove. If a file get's tagged as "remove", the user running versioncheck will be notified that the file needs to be removed for security reasons. This is meant to make sure that we don't have to carry so many outdated files from older versions with us.
+    </li>
+    <li>
+        <tt class="code">&lt;permission&gt; ... &lt;/permission&gt;</tt><br />
+        Possible values: read, write. Needs only to be set specifically for folders that <em>must</em> be writable.
+    </li>
+    <li>
+        <tt class="code">&lt;hash&gt; ... &lt;/hash&gt;</tt><br />
+        MD5-hash of the file meant to make sure that we notcie if files got corrupted or tampered with. Will not work on all platforms. Value is being created during the output=create stage.
+    </li>
+</ul>
+
+
 <a name="dev_versioncheck_todo"></a><h2>To do list<a href="#dev_versioncheck_todo" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <ul>
   <li>Add help icons and corresponding explanations.</li>
+  <li>Proper integration into new installer</li>
 </ul>
 
 <br clear="all" />
 <script type="text/javascript">
   cpgDocFooter();
-  dateRevision(' $LastChangedDate: 2008-06-05 03:12:18 +0530 (Thu, 05 Jun 2008) $ ', ' $Revision: 4499 $ ');
+  dateRevision(' $LastChangedDate: 2008-09-19 20:01:11 +0530 (Fri, 19 Sep 2008) $ ', ' $Revision: 5045 $ ');
 </script>
 
 </body>

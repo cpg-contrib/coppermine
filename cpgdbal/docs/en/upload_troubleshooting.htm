@@ -3,19 +3,19 @@
 <head>
 <title>Uploading troubleshooting - Coppermine Photo Gallery - Documentation &amp; Manual</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="language"    content="en">
-<meta name="copyright"   content="Coppermine dev team">
+<meta name="language" content="en" />
+<meta name="copyright" content="Coppermine dev team" />
 <meta name="description" content="There are several methods to upload files within Coppermine. You (as gallery admin) should use FTP-upload plus batch-add (only the admin can do this). Regular users are supposed to use the regular http upload or (if they have Windows XP) the XP Publisher.">
-<meta http-equiv="Content-Style-Type" content="text/css">
-<meta name="MSSmartTagsPreventParsing" content="true">
-<meta http-equiv="imagetoolbar" content="no">
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="MSSmartTagsPreventParsing" content="true" />
+<meta http-equiv="imagetoolbar" content="no" />
 <!--
   SVN version info:
 
   Coppermine version: 1.5.0
-  $Revision: 4677 $
+  $Revision: 5045 $
   $LastChangedBy: gaugau $
-  $Date: 2008-07-12 20:05:14 +0530 (Sat, 12 Jul 2008) $
+  $Date: 2008-09-19 20:01:11 +0530 (Fri, 19 Sep 2008) $
 -->
 <link rel="stylesheet" type="text/css" href="../style.css" media="all" />
 <link rel="stylesheet" type="text/css" href="../screen.css" media="screen" />
@@ -165,7 +165,8 @@ Replace it with<br />
     <td valign="top" class="tableb">
       <ul>
         <li>If you get this message when being logged in as the admin of your gallery, you have to <a href="albums.htm#albmgr_create">create at least one album</a> where file uploads could possibly be uploaded to</li>
-        <li>If you get this message when being logged in as non-admin, you have to make sure that you have understood the concept behind coppermine: the admin determines on the <a href="groups.htm#group_cp">groups control panel</a> wether users can have personal galleries (i.e. create albums inside their user gallery) or if they are allowed to upload into admin-created public albums. If the user <strong>is</strong> allowed to have personal galleries and gets this message, he needs to create at least one album first by clicking on &quot;Create / oder my albums&quot;. If the user is suppossed to upload to public albums (that need to be created by the admin in advance) and gets the above mentioned error message, the admin needs to specify at least one public album where users are allowed to upload to using the <a href="albums.htm#album_prop">album properties</a> screen.</li>
+        <li>If you get this message when being logged in as non-admin, you have to make sure that you have understood the concept behind coppermine: the admin determines on the <a href="groups.htm#group_cp">groups control panel</a> wether users can have personal galleries (i.e. create albums inside their user gallery) or if they are allowed to upload into admin-created public albums. If the user <strong>is</strong> allowed to have personal galleries and gets this message, he needs to create at least one album first by clicking on &quot;Create / order my albums&quot;. If the user is suppossed to upload to public albums (that need to be created by the admin in advance) and gets the above mentioned error message, the admin needs to specify at least one public album where visitors are allowed to upload to using the <a href="albums.htm#album_prop">album properties</a> screen.</li>
+        <li>If you get this message when not being logged in at all (i.e. being a guest), you need to review the permissions concept as well: if you actually want to allow guests to upload (not recommended because of potenial abuse), you have to specify the general upload ability on the <a href="groups.htm#group_cp">groups control panel</a> (for the guest/anonymous group) and you have to modify the <a href="albums.htm#album_prop">album properties</a> screen of at least one album and allow uploads for visitors there.</li>
       </ul>
     </td>
   </tr>
@@ -313,7 +314,7 @@ The batch add process is fast, but it creates quite a load on the server and, as
 
 <script type="text/javascript">
   cpgDocFooter();
-  dateRevision(' $LastChangedDate: 2008-07-12 20:05:14 +0530 (Sat, 12 Jul 2008) $ ', ' $Revision: 4677 $ ');
+  dateRevision(' $LastChangedDate: 2008-09-19 20:01:11 +0530 (Fri, 19 Sep 2008) $ ', ' $Revision: 5045 $ ');
 </script>
 
 </body>

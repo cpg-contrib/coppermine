@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4981 $
+  $Revision: 5039 $
   $LastChangedBy: gaugau $
-  $Date: 2008-09-01 13:37:08 +0530 (Mon, 01 Sep 2008) $
+  $Date: 2008-09-15 14:04:20 +0530 (Mon, 15 Sep 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -399,14 +399,17 @@ function form_pic_info($text)
 
     // The approve checkbox is shown only if the user is admin or moderator.
     if (GALLERY_ADMIN_MODE || MODERATOR_MODE) {
+        $approve_icon = cpg_fetch_icon('ok', 0, $lang_editpics_php['approve_pic']);
+        $delete_icon = cpg_fetch_icon('delete', 0, $lang_editpics_php['del_pic']);
+    	$comment_icon = cpg_fetch_icon('comment_approval', 0, $lang_editpics_php['del_comm']);
+    	$view_icon = cpg_fetch_icon('stats', 0, $lang_editpics_php['reset_view_count']);
         $approve_html = <<<EOT
                           <td class="{$row_style_class}" width="40" valign="top">
-                                  <input type="checkbox" name="approved{$CURRENT_PIC['pid']}" id="approve{$CURRENT_PIC['pid']}" value="YES" {$pic_approval_checked} class="checkbox" title="{$lang_editpics_php['approve_pic']}" /><label for="approve{$CURRENT_PIC['pid']}" class="clickable_option"><img src="images/approve.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['approve_pic']}" /></label>
+                                  <input type="checkbox" name="approved{$CURRENT_PIC['pid']}" id="approve{$CURRENT_PIC['pid']}" value="YES" {$pic_approval_checked} class="checkbox" title="{$lang_editpics_php['approve_pic']}" /><label for="approve{$CURRENT_PIC['pid']}" class="clickable_option">{$approve_icon}</label>
                           </td>
 EOT;
     }
 
-    $delete_icon = cpg_fetch_icon('delete', 0, $lang_editpics_php['del_pic']);
     echo <<<EOT
     <tr>
         <td colspan="3">
@@ -420,13 +423,13 @@ EOT;
                     </td>
                     $approve_html
                     <td class="{$row_style_class}" width="40">
-                            <input type="checkbox" name="reset_vcount{$CURRENT_PIC['pid']}" id="reset_vcount{$CURRENT_PIC['pid']}" value="1" class="checkbox" title="{$lang_editpics_php['reset_view_count']}" /><label for="reset_vcount{$CURRENT_PIC['pid']}" class="clickable_option"><img src="images/views.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['reset_view_count']}" /></label>
+                            <input type="checkbox" name="reset_vcount{$CURRENT_PIC['pid']}" id="reset_vcount{$CURRENT_PIC['pid']}" value="1" class="checkbox" title="{$lang_editpics_php['reset_view_count']}" /><label for="reset_vcount{$CURRENT_PIC['pid']}" class="clickable_option">{$view_icon}</label>
                     </td>
                     <td class="{$row_style_class}" width="40">
                             <input type="checkbox" name="reset_votes{$CURRENT_PIC['pid']}" id="reset_votes{$CURRENT_PIC['pid']}" value="1" class="checkbox" title="{$lang_editpics_php['reset_votes']}" /><label for="reset_votes{$CURRENT_PIC['pid']}" class="clickable_option"><img src="images/rating.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['reset_votes']}" /></label>
                     </td>
                     <td class="{$row_style_class}" width="40">
-                            <input type="checkbox" name="del_comments{$CURRENT_PIC['pid']}" id="del_comments{$CURRENT_PIC['pid']}" value="1" class="checkbox" title="{$lang_editpics_php['del_comm']}" /><label for="del_comments{$CURRENT_PIC['pid']}" class="clickable_option"><img src="images/report.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['del_comm']}" /></label>
+                            <input type="checkbox" name="del_comments{$CURRENT_PIC['pid']}" id="del_comments{$CURRENT_PIC['pid']}" value="1" class="checkbox" title="{$lang_editpics_php['del_comm']}" /><label for="del_comments{$CURRENT_PIC['pid']}" class="clickable_option">{$comment_icon}</label>
                     </td>
                 </tr>
             </table>
@@ -953,14 +956,18 @@ EOT;
 
 // The approve all checkbox is shown only if the user is admin or moderator.
 if (GALLERY_ADMIN_MODE || MODERATOR_MODE) {
+    $approve_all_icon = cpg_fetch_icon('ok', 0, $lang_editpics_php['approve_all']);
+    $delete_all_icon = cpg_fetch_icon('delete', 0, $lang_editpics_php['del_all']);
+    $views_all_icon = cpg_fetch_icon('stats', 0, $lang_editpics_php['reset_all_view_count']);
+    $comments_all_icon = cpg_fetch_icon('comment_approval', 0, $lang_editpics_php['del_all_comm']);
     $approve_all_html = <<<EOT
                           <td class="tableh2" width="40" valign="top">
-                                  <input type="checkbox" name="approveAll" onclick="selectAll(this,'approved');" class="checkbox" id="approveAll" title="{$lang_editpics_php['approve_all']}" /><label for="approveAll" class="clickable_option"><img src="images/approve.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['approve_all']}" /></label>
+                                  <input type="checkbox" name="approveAll" onclick="selectAll(this,'approved');" class="checkbox" id="approveAll" title="{$lang_editpics_php['approve_all']}" /><label for="approveAll" class="clickable_option">{$approve_all_icon}</label>
                           </td>
 EOT;
 }
 
-$delete_all_icon = cpg_fetch_icon('delete', 0, $lang_editpics_php['del_all']); 
+ 
 echo <<<EOT
         <tr>
             <td colspan="3" align="center">
@@ -974,13 +981,13 @@ echo <<<EOT
                         </td>
                         $approve_all_html
                         <td class="tableh2" width="40">
-                            <input type="checkbox" name="reset_vcountAll" onclick="selectAll(this,'reset_vcount');" class="checkbox" id="reset_vcountAll" title="{$lang_editpics_php['reset_all_view_count']}" /><label for="reset_vcountAll" class="clickable_option"><img src="images/views.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['reset_all_view_count']}" /></label>
+                            <input type="checkbox" name="reset_vcountAll" onclick="selectAll(this,'reset_vcount');" class="checkbox" id="reset_vcountAll" title="{$lang_editpics_php['reset_all_view_count']}" /><label for="reset_vcountAll" class="clickable_option">{$views_all_icon}</label>
                         </td>
                         <td class="tableh2" width="40">
                             <input type="checkbox" name="reset_votesAll" onclick="selectAll(this,'reset_votes');" class="checkbox" id="reset_votesAll" title="{$lang_editpics_php['reset_all_votes']}" /><label for="reset_votesAll" class="clickable_option"><img src="images/rating.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['reset_all_votes']}" /></label>
                         </td>
                         <td class="tableh2" width="40">
-                            <input type="checkbox" name="del_commentsAll" onclick="selectAll(this,'del_comments');" class="checkbox"reset_votesAll" id="del_commentsAll" title="{$lang_editpics_php['del_all_comm']}" /><label for="del_commentsAll" class="clickable_option"><img src="images/report.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['del_all_comm']}" /></label>
+                            <input type="checkbox" name="del_commentsAll" onclick="selectAll(this,'del_comments');" class="checkbox" id="del_commentsAll" title="{$lang_editpics_php['del_all_comm']}" /><label for="del_commentsAll" class="clickable_option">{$comments_all_icon}</label>
                         </td>
                     </tr>
                 </table>
@@ -1034,10 +1041,12 @@ EOT;
 } // foreach
 $cpgdb->free();
 #################################################################
+$submit_icon = cpg_fetch_icon('ok', 0);
 echo <<<EOT
         <tr>
                 <td colspan="3" align="center" class="tablef">
-                        <input type="submit" name="go" value="{$lang_editpics_php['apply']}" class="button" />
+                        <!--<input type="submit" name="go" value="{$lang_editpics_php['apply']}" class="button" />-->
+                        <button type="submit" class="button" name="go" value="{$lang_editpics_php['apply']}">{$submit_icon}{$lang_editpics_php['apply']}</button>
                 </td>
         </tr>
 

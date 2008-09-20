@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4981 $
+  $Revision: 5039 $
   $LastChangedBy: gaugau $
-  $Date: 2008-09-01 13:37:08 +0530 (Mon, 01 Sep 2008) $
+  $Date: 2008-09-15 14:04:20 +0530 (Mon, 15 Sep 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -49,39 +49,20 @@ echo <<<EOT
 EOT;
 }
 
-function output_caption()
+function delete_picture($pid, $tablecellstyle = 'tableb')
 {
-    global $lang_delete_php, $lang_common;
-    ?>
-<tr><td colspan="7" class="tableb">&nbsp;</td></tr>
-<tr><td colspan="7" class="tableh2"><strong><?php echo $lang_common['caption'] ?></strong></tr>
-<tr><td colspan="7" class="tableb">
-<table cellpadding="1" cellspacing="0">
-<tr><td><strong>F</strong></td><td>:</td><td><?php echo $lang_delete_php['fs_pic'] ?></td><td width="20">&nbsp;</td><td><img src="images/green.gif" border="0" width="12" height="12" align="absmiddle"></td><td>:</td><td><?php echo $lang_delete_php['del_success'] ?></td></tr>
-<tr><td><strong>N</strong></td><td>:</td><td><?php echo $lang_delete_php['ns_pic'] ?></td><td width="20">&nbsp</td><td><img src="images/red.gif" border="0" width="12" height="12" align="absmiddle"></td><td>:</td><td><?php echo $lang_delete_php['err_del'] ?></td></tr>
-<tr><td><strong>O</strong></td><td>:</td><td><?php echo $lang_delete_php['orig_pic'] ?></td></tr>
-<tr><td><strong>T</strong></td><td>:</td><td><?php echo $lang_delete_php['thumb_pic'] ?></td></tr>
-<tr><td><strong>C</strong></td><td>:</td><td><?php echo $lang_delete_php['comment'] ?></td></tr>
-<tr><td><strong>D</strong></td><td>:</td><td><?php echo $lang_delete_php['im_in_alb'] ?></td></tr>
-</table>
-</td>
-</tr>
-<?php
-}
-
-function delete_picture($pid)
-{
-    global $CONFIG, $header_printed, $lang_errors, $cpg_db_delete_php;
-	#####################      DB      ######################	
-	$cpgdb =& cpgDB::getInstance();
-	$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
-	##################################################	
+    global $CONFIG, $header_printed, $lang_errors, $lang_delete_php;
+    #####################      DB      ######################
+    global $cpg_db_delete_php;
+    $cpgdb =& cpgDB::getInstance();
+    $cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+    ##################################################	
 
     if (!$header_printed)
         output_table_header();
 
-    $green = "<img src=\"images/green.gif\" border=\"0\" width=\"12\" height=\"12\"><br />";
-    $red = "<img src=\"images/red.gif\" border=\"0\" width=\"12\" height=\"12\"><br />";
+    $green = cpg_fetch_icon('ok', 0, $lang_delete_php['del_success']);
+    $red = cpg_fetch_icon('stop', 0, $lang_delete_php['err_del']);
 
     // We will be selecting pid in the query as we need it in $pic array for the plugin filter
     /*if (GALLERY_ADMIN_MODE) {
@@ -121,11 +102,12 @@ function delete_picture($pid)
     // Plugin filter to be called before deleting a file
     CPGPluginAPI::filter('before_delete_file', $pic);
     
-    echo "<td class=\"tableb\">" . htmlspecialchars($file) . "</td>";
+    echo '<tr>';
+    echo "<td class=\"".$tablecellstyle."\">" . htmlspecialchars($file) . "</td>";
 
     $files = array($dir . $file, $dir . $CONFIG['normal_pfx'] . $file, $dir . $CONFIG['orig_pfx'] . $file, $dir . $CONFIG['thumb_pfx'] . $file);
     foreach ($files as $currFile) {
-        echo "<td class=\"tableb\" align=\"center\">";
+        echo "<td class=\"".$tablecellstyle."\" align=\"center\">";
         if (is_file($currFile)) {
             if (@unlink($currFile))
                 echo $green;
@@ -136,59 +118,59 @@ function delete_picture($pid)
         echo "</td>";
     }
 
-	/*$query = "DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid='$pid'";
-	$result = cpg_db_query($query);
-	echo "<td class=\"tableb\" align=\"center\">";
-	if (mysql_affected_rows() > 0)
-		echo $green;
-	else
-		echo "&nbsp;";
-	echo "</td>";
+    /*$query = "DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid='$pid'";
+    $result = cpg_db_query($query);
+    echo "<td class=\"".$tablecellstyle."\" align=\"center\">";
+    if (mysql_affected_rows() > 0)
+        echo $green;
+    else
+        echo "&nbsp;";
+    echo "</td>";
 
-	$query = "DELETE FROM {$CONFIG['TABLE_EXIF']} WHERE filename='".addslashes($dir.$file)."' LIMIT 1";
-	$result = cpg_db_query($query);
+    $query = "DELETE FROM {$CONFIG['TABLE_EXIF']} WHERE filename='".addslashes($dir.$file)."' LIMIT 1";
+    $result = cpg_db_query($query);
 
-	$query = "DELETE FROM {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid' LIMIT 1";
-	$result = cpg_db_query($query);
-	echo "<td class=\"tableb\" align=\"center\">";
-	if (mysql_affected_rows() > 0)
-		echo $green;
-	else
-		echo $red;
-	echo "</td>";
+    $query = "DELETE FROM {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid' LIMIT 1";
+    $result = cpg_db_query($query);
+    echo "<td class=\"".$tablecellstyle."\" align=\"center\">";
+    if (mysql_affected_rows() > 0)
+        echo $green;
+    else
+        echo $red;
+    echo "</td>";
 
-	echo "</tr>\n";
+    echo "</tr>\n";
     
     // Plugin filter to be called after a file is deleted
     CPGPluginAPI::filter('after_delete_file', $pic);
     
 	return $aid;	*/
-	#################################		DB		###################################
-	$cpgdb->query($cpg_db_delete_php['del_pic_comment'], $pid);
-	echo "<td class=\"tableb\" align=\"center\">";
-	if ($cpgdb->affectedRows() > 0)
-		echo $green;
-	else
-		echo "&nbsp;";
-	echo "</td>";
+    #################################		DB		###################################
+    $cpgdb->query($cpg_db_delete_php['del_pic_comment'], $pid);
+    echo "<td class=\"".$tablecellstyle."\" align=\"center\">";
+    if ($cpgdb->affectedRows() > 0)
+        echo $green;
+    else
+        echo "&nbsp;";
+    echo "</td>";
 
-	$cpgdb->query($cpg_db_delete_php['del_pic_exif'], addslashes($dir.$file));
+    $cpgdb->query($cpg_db_delete_php['del_pic_exif'], addslashes($dir.$file));
 
-	$cpgdb->query($cpg_db_delete_php['delete_picture'], $pid);
-	echo "<td class=\"tableb\" align=\"center\">";
-	if ($cpgdb->affectedRows() > 0)
-		echo $green;
-	else
-		echo $red;
-	echo "</td>";
+    $cpgdb->query($cpg_db_delete_php['delete_picture'], $pid);
+    echo "<td class=\"".$tablecellstyle."\" align=\"center\">";
+    if ($cpgdb->affectedRows() > 0)
+        echo $green;
+    else
+        echo $red;
+    echo "</td>";
 
-	echo "</tr>\n";
+    echo "</tr>\n";
     
     // Plugin filter to be called after a file is deleted
     CPGPluginAPI::filter('after_delete_file', $pic);
     
-	return $aid;
-	##################################################################################
+    return $aid;
+    ##################################################################################
 }
 
 function delete_album($aid)
@@ -221,33 +203,41 @@ function delete_album($aid)
         }
     }
 
-	/*$query = "SELECT pid FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='$aid'";
-	$result = cpg_db_query($query);
-	// Delete all files
-	while ($pic = mysql_fetch_array($result)) */
-	######################         DB         #######################
-	$cpgdb->query($cpg_db_delete_php['del_alb_get_pic_id'], $aid);
-	// Delete all files
-	while ($pic = $cpgdb->fetchRow())
-	######################################################
-	{
+    /*$query = "SELECT pid FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='$aid'";
+    $result = cpg_db_query($query);
+    // Delete all files
+    $loopCounter = 0;
+    while ($pic = mysql_fetch_array($result)) */
+    ######################         DB         #######################
+    $cpgdb->query($cpg_db_delete_php['del_alb_get_pic_id'], $aid);
+    // Delete all files
+    $loopCounter = 0;
+    while ($pic = $cpgdb->fetchRow())
+    ######################################################
+    {
+        if ($loopCounter/2 == floor($loopCounter/2)) {
+        	$tablecellstyle = 'tableb';
+        } else {
+        	$tablecellstyle = 'tableb tableb_alternate';
+        }
         ob_start();
-        delete_picture($pic['pid']);
+        delete_picture($pic['pid'], $tablecellstyle);
         $return .= ob_get_contents();
+        $loopCounter++;
         ob_end_clean();
     }
-	// Delete album
-	/*$query = "DELETE from {$CONFIG['TABLE_ALBUMS']} WHERE aid='$aid'";
-	$result = cpg_db_query($query);
-	if (mysql_affected_rows() > 0) {
-		$return .= "<tr><td colspan=\"6\" class=\"tableb\">" . sprintf($lang_delete_php['alb_del_success'], $album_data['title']) . "</td></tr>\n";
-	}	*/
-	######################           DB         #######################
-	$cpgdb->query($cpg_db_delete_php['delete_album'], $aid);
-	if ($cpgdb->affectedRows() > 0) {
-		$return .= "<tr><td colspan=\"6\" class=\"tableb\">" . sprintf($lang_delete_php['alb_del_success'], $album_data['title']) . "</td></tr>\n";
-	}
-	########################################################
+    // Delete album
+    /*$query = "DELETE from {$CONFIG['TABLE_ALBUMS']} WHERE aid='$aid'";
+    $result = cpg_db_query($query);
+    if (mysql_affected_rows() > 0) {
+        $return .= "<tr><td colspan=\"6\" class=\"tableb\">" . sprintf($lang_delete_php['alb_del_success'], $album_data['title']) . "</td></tr>\n";
+    } */
+    ######################           DB         #######################
+    $cpgdb->query($cpg_db_delete_php['delete_album'], $aid);
+    if ($cpgdb->affectedRows() > 0) {
+        $return .= "<tr><td colspan=\"6\" class=\"tableb\">" . sprintf($lang_delete_php['alb_del_success'], $album_data['title']) . "</td></tr>\n";
+    }
+    ########################################################
     return $return;
 }
 
@@ -485,11 +475,18 @@ switch ($what) {
 			}
 		}
 
-		//Using getRaw(). The data is sanitized in foreach
-		$to_delete = parse_pic_list($superCage->post->getRaw('delete_picture'));
-		foreach ($to_delete as $picture_id){
-			delete_picture((int)$picture_id);
-		}
+      //Using getRaw(). The data is sanitized in foreach
+      $to_delete = parse_pic_list($superCage->post->getRaw('delete_picture'));
+      $loopCounter = 0;
+      foreach ($to_delete as $picture_id){
+         if ($loopCounter/2 == floor($loopCounter/2)) {
+        	$tablecellstyle = 'tableb';
+         } else {
+        	$tablecellstyle = 'tableb tableb_alternate';
+         }
+         delete_picture((int)$picture_id, $tablecellstyle);
+         $loopCounter++;
+      }
 
       if ($superCage->post->keyExists('to')) {
           //Using getRaw(). The data is sanitized in parse_pic_select_option() function
@@ -527,7 +524,7 @@ switch ($what) {
              }
           }
       }
-      if ($need_caption) output_caption();
+
       echo "<tr><td colspan=\"6\" class=\"tablef\" align=\"center\">\n";
       echo "<div class=\"admin_menu\"><a href=\"index.php\">".$lang_common['continue']."</a></div>\n";
       echo "</td></tr>";
@@ -590,8 +587,8 @@ switch ($what) {
         pageheader($lang_delete_php['del_pic']);
         starttable("100%", $lang_delete_php['del_pic'], 7);
         output_table_header();
-        $aid = delete_picture($pid);
-        output_caption();
+        $tablecellstyle = 'tableb';
+        $aid = delete_picture($pid, $tablecellstyle);
         echo "<tr><td colspan=\"7\" class=\"tablef\" align=\"center\">\n";
         echo "<div class=\"admin_menu\"><a href=\"thumbnails.php?album=$aid\">".$lang_common['continue']."</a></div>\n";
         echo "</td></tr>\n";
@@ -612,10 +609,7 @@ switch ($what) {
 		pageheader($lang_delete_php['del_alb']);
 		starttable("100%", $lang_delete_php['del_alb'], 7);
 
-		print delete_album($aid);
-		if ($need_caption) {
-			output_caption();
-		}
+        print delete_album($aid);
 
         echo "<tr><td colspan=\"7\" class=\"tablef\" align=\"center\">\n";
         echo "<div class=\"admin_menu\"><a href=\"index.php\">".$lang_common['continue']."</a></div>\n";
@@ -705,63 +699,63 @@ switch ($what) {
 									$delete_comments_choice = $superCage->post->getAlpha('delete_comments');
 								}
 
-								/*if ($delete_comments_choice == 'yes') {
-									cpg_db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE author_id = '$key'");
-									if ($comment_counter[0] > 0) {
-										print '<img src="images/green.gif" width="12" height="12" border="0" alt="" /> ';
-									}
-									printf($lang_delete_php['deleted_comments'], $comment_counter[0]);
-								} else {
-									cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET  author_id = '0' WHERE  author_id = '$key'");
-									if ($comment_counter[0] > 0) {	
-										print '<img src="images/green.gif" width="12" height="12" border="0" alt="" /> ';
-									}
-									printf($lang_delete_php['anonymized_comments'], $comment_counter[0]);
-								}	*/
-								#########################            DB       #########################
-								if ($delete_comments_choice == 'yes') {
-									$cpgdb->query($cpg_db_delete_php['user_del_comments'], (int)$key);
-									if ($comment_counter['count'] > 0) {
-										print '<img src="images/green.gif" width="12" height="12" border="0" alt="" /> ';
-									}
-									printf($lang_delete_php['deleted_comments'], $comment_counter['count']);
-								} else {
-									$cpgdb->query($cpg_db_delete_php['user_update_comments'], (int)$key);
-									if ($comment_counter['count'] > 0) {
-										print '<img src="images/green.gif" width="12" height="12" border="0" alt="" /> ';
-									}
-									printf($lang_delete_php['anonymized_comments'], $comment_counter['count']);
-								}
-								############################################################
-								print '</td>';
+                                /*if ($delete_comments_choice == 'yes') {
+                                    cpg_db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE author_id = '$key'");
+                                    if ($comment_counter[0] > 0) {
+                                        print cpg_fetch_icon('ok', 0).' ';
+                                    }
+                                    printf($lang_delete_php['deleted_comments'], $comment_counter[0]);
+                                } else {
+                                    cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET  author_id = '0' WHERE  author_id = '$key'");
+                                    if ($comment_counter[0] > 0) {	
+                                        print cpg_fetch_icon('ok', 0).' ';
+                                    }
+                                    printf($lang_delete_php['anonymized_comments'], $comment_counter[0]);
+                                } */
+                                #########################            DB       #########################
+                                if ($delete_comments_choice == 'yes') {
+                                    $cpgdb->query($cpg_db_delete_php['user_del_comments'], (int)$key);
+                                    if ($comment_counter['count'] > 0) {
+                                        print cpg_fetch_icon('ok', 0).' ';
+                                    }
+                                    printf($lang_delete_php['deleted_comments'], $comment_counter['count']);
+                                } else {
+                                    $cpgdb->query($cpg_db_delete_php['user_update_comments'], (int)$key);
+                                    if ($comment_counter['count'] > 0) {
+                                        print cpg_fetch_icon('ok', 0).' ';
+                                    }
+                                    printf($lang_delete_php['anonymized_comments'], $comment_counter['count']);
+                                }
+                                ############################################################
+                                print '</td>';
 
-								// Do the same for pictures uploaded in public albums
-								/*$publ_upload_result = cpg_db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE owner_id = '$key'");
-								$publ_upload_counter = mysql_fetch_array($publ_upload_result);
-								mysql_free_result($publ_upload_result);	*/
-								#############################           DB         #############################
-								$publ_upload_result = $cpgdb->query($cpg_db_delete_php['user_count_pictures'], (int)$key);
-								$publ_upload_counter = $cpgdb->fetchRow();
-								$cpgdb->free();
-								####################################################################
-								print '<td class="tableb" width="25%">';
+                                // Do the same for pictures uploaded in public albums
+                                /*$publ_upload_result = cpg_db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE owner_id = '$key'");
+                                $publ_upload_counter = mysql_fetch_array($publ_upload_result);
+                                mysql_free_result($publ_upload_result); */
+                                #############################           DB         #############################
+                                $publ_upload_result = $cpgdb->query($cpg_db_delete_php['user_count_pictures'], (int)$key);
+                                $publ_upload_counter = $cpgdb->fetchRow();
+                                $cpgdb->free();
+                                ####################################################################
+                                print '<td class="tableb" width="25%">';
 
-								if ($superCage->get->keyExists('delete_files')) {
-									$delete_files_choice = $superCage->get->getAlpha('delete_files');
-								} elseif ($superCage->post->keyExists('delete_files')) {
-									$delete_files_choice = $superCage->post->getAlpha('delete_files');
-								}
+                                if ($superCage->get->keyExists('delete_files')) {
+                                    $delete_files_choice = $superCage->get->getAlpha('delete_files');
+                                } elseif ($superCage->post->keyExists('delete_files')) {
+                                    $delete_files_choice = $superCage->post->getAlpha('delete_files');
+                                }
 
                                 /*if ($delete_files_choice == 'yes') {
                                     cpg_db_query("DELETE FROM {$CONFIG['TABLE_PICTURES']} WHERE  owner_id = '$key'");
                                     if ($publ_upload_counter[0] > 0) {
-                                        print '<img src="images/green.gif" width="12" height="12" border="0" alt="" /> ';
+                                        print cpg_fetch_icon('ok', 0).' ';
                                     }
                                     printf($lang_delete_php['deleted_uploads'], $publ_upload_counter[0]);
                                 } else {
                                     cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET  owner_id = '0' WHERE  owner_id = '$key'");
                                     if ($publ_upload_counter[0] > 0) {
-                                        print '<img src="images/green.gif" width="12" height="12" border="0" alt="" /> ';
+                                        print cpg_fetch_icon('ok', 0).' ';
                                     }
                                     printf($lang_delete_php['anonymized_uploads'], $publ_upload_counter[0]);
                                 } */
@@ -769,26 +763,26 @@ switch ($what) {
                                 if ($delete_files_choice == 'yes') {
                                     $cpgdb->query($cpg_db_delete_php['user_del_pictures'], $key);
                                     if ($publ_upload_counter['count'] > 0) {
-                                        print '<img src="images/green.gif" width="12" height="12" border="0" alt="" /> ';
+                                        print cpg_fetch_icon('ok', 0).' ';
                                     }
                                     printf($lang_delete_php['deleted_uploads'], $publ_upload_counter['count']);
                                 } else {
                                     $cpgdb->query($cpg_db_delete_php['user_update_pictures'], $key);
                                     if ($publ_upload_counter['count'] > 0) {
-                                        print '<img src="images/green.gif" width="12" height="12" border="0" alt="" /> ';
+                                        print cpg_fetch_icon('ok', 0).' ';
                                     }
                                     printf($lang_delete_php['anonymized_uploads'], $publ_upload_counter['count']);
                                 }
                                 #########################################################################
                                 print '</td>';
-								// Finally delete the user
+                                // Finally delete the user
                                 // cpg_db_query("DELETE FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '$key'");
                                 #########################         DB       ########################
                                 $cpgdb->query($cpg_db_delete_php['user_del_users'], (int)$key);
                                 ##########################################################
                                 print '<td class="tableb" width="50%">';
                                 print '<strong>';
-                                print '<img src="images/green.gif" width="12" height="12" border="0" alt="" /> ';
+                                print cpg_fetch_icon('ok', 0).' ';
                                 printf($lang_delete_php['user_deleted'],'&laquo;'.$user_data['user_name'].'&raquo;');
                                 print '</strong>';
                                 print '</td>';
@@ -1164,68 +1158,68 @@ switch ($what) {
                                 ################################################################
                                 print '<td class="tableb" width="25%">';
 
-								if ($superCage->get->keyExists('delete_comments')) {
-									$delete_comments_choice = $superCage->get->getAlpha('delete_comments');
-								} elseif ($superCage->post->keyExists('delete_comments')) {
-									$delete_comments_choice = $superCage->post->getAlpha('delete_comments');
-								}
+                                if ($superCage->get->keyExists('delete_comments')) {
+                                    $delete_comments_choice = $superCage->get->getAlpha('delete_comments');
+                                } elseif ($superCage->post->keyExists('delete_comments')) {
+                                    $delete_comments_choice = $superCage->post->getAlpha('delete_comments');
+                                }
 
-								/*if ($delete_comments_choice == 'yes') {
-									cpg_db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE author_id = '$key'");
-									if ($comment_counter[0] > 0) {
-										print '<img src="images/green.gif" width="12" height="12" border="0" alt="" /> ';
-									}
-									printf($lang_delete_php['deleted_comments'], $comment_counter[0]);
-								} else {
-									cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET  author_id = '0' WHERE  author_id = '$key'");
-									if ($comment_counter[0] > 0) {
-										print '<img src="images/green.gif" width="12" height="12" border="0" alt="" /> ';
-									}
-									printf($lang_delete_php['anonymized_comments'], $comment_counter[0]);
-								}	*/
-								##############################             DB          ############################
-								if ($delete_comments_choice == 'yes') {
-									$cpgdb->query($cpg_db_delete_php['user_del_comments'], (int)$key);
-									if ($comment_counter['count'] > 0) {
-										print '<img src="images/green.gif" width="12" height="12" border="0" alt="" /> ';
-									}
-									printf($lang_delete_php['deleted_comments'], $comment_counter['count']);
-								} else {
-									$cpgdb->query($cpg_db_delete_php['user_update_comments'], (int)$key);
-									if ($comment_counter['count'] > 0) {
-										print '<img src="images/green.gif" width="12" height="12" border="0" alt="" /> ';
-									}
-									printf($lang_delete_php['anonymized_comments'], $comment_counter['count']);
-								}
-								######################################################################
-								print '</td>';
-								// Do the same for pictures uploaded in public albums
-								/*$publ_upload_result = cpg_db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE owner_id = '$key'");
-								$publ_upload_counter = mysql_fetch_array($publ_upload_result);
-								mysql_free_result($publ_upload_result);	*/
-								###########################           DB        ###########################
-								$publ_upload_result = $cpgdb->query($cpg_db_delete_php['user_count_pictures'], (int)$key);
-								$publ_upload_counter = $cpgdb->fetchRow();
-								$cpgdb->free();
-								################################################################
-								print '<td class="tableb" width="25%">';
+                                /*if ($delete_comments_choice == 'yes') {
+                                    cpg_db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE author_id = '$key'");
+                                    if ($comment_counter[0] > 0) {
+                                        print cpg_fetch_icon('ok', 0).' ';
+                                    }
+                                    printf($lang_delete_php['deleted_comments'], $comment_counter[0]);
+                                } else {
+                                    cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET  author_id = '0' WHERE  author_id = '$key'");
+                                    if ($comment_counter[0] > 0) {
+                                        print cpg_fetch_icon('ok', 0).' ';
+                                    }
+                                    printf($lang_delete_php['anonymized_comments'], $comment_counter[0]);
+                                } */
+                                ##############################             DB          ############################
+                                if ($delete_comments_choice == 'yes') {
+                                    $cpgdb->query($cpg_db_delete_php['user_del_comments'], (int)$key);
+                                    if ($comment_counter['count'] > 0) {
+                                        print cpg_fetch_icon('ok', 0).' ';
+                                    }
+                                    printf($lang_delete_php['deleted_comments'], $comment_counter['count']);
+                                } else {
+                                    $cpgdb->query($cpg_db_delete_php['user_update_comments'], (int)$key);
+                                    if ($comment_counter['count'] > 0) {
+                                        print cpg_fetch_icon('ok', 0).' ';
+                                    }
+                                    printf($lang_delete_php['anonymized_comments'], $comment_counter['count']);
+                                }
+                                ######################################################################
+                                print '</td>';
+                                // Do the same for pictures uploaded in public albums
+                                /*$publ_upload_result = cpg_db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE owner_id = '$key'");
+                                $publ_upload_counter = mysql_fetch_array($publ_upload_result);
+                                mysql_free_result($publ_upload_result);	*/
+                                ###########################           DB        ###########################
+                                $publ_upload_result = $cpgdb->query($cpg_db_delete_php['user_count_pictures'], (int)$key);
+                                $publ_upload_counter = $cpgdb->fetchRow();
+                                $cpgdb->free();
+                                ################################################################
+                                print '<td class="tableb" width="25%">';
 
-								if ($superCage->get->keyExists('delete_files')) {
-									$delete_files_choice = $superCage->get->getAlpha('delete_files');
-								} elseif ($superCage->post->keyExists('delete_files')) {
-									$delete_files_choice = $superCage->post->getAlpha('delete_files');
-								}
+                                if ($superCage->get->keyExists('delete_files')) {
+                                    $delete_files_choice = $superCage->get->getAlpha('delete_files');
+                                } elseif ($superCage->post->keyExists('delete_files')) {
+                                    $delete_files_choice = $superCage->post->getAlpha('delete_files');
+                                }
 
                                 /* if ($delete_files_choice == 'yes') {
                                     cpg_db_query("DELETE FROM {$CONFIG['TABLE_PICTURES']} WHERE  owner_id = '$key'");
                                     if ($publ_upload_counter[0] > 0) {
-                                        print '<img src="images/green.gif" width="12" height="12" border="0" alt="" /> ';
+                                        print cpg_fetch_icon('ok', 0).' ';
                                     }
                                     printf($lang_delete_php['deleted_uploads'], $publ_upload_counter[0]);
                                 } else {
                                     cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET  owner_id = '0' WHERE  owner_id = '$key'");
                                     if ($publ_upload_counter[0] > 0) {
-                                        print '<img src="images/green.gif" width="12" height="12" border="0" alt="" /> ';
+                                        print cpg_fetch_icon('ok', 0).' ';
                                     }
                                     printf($lang_delete_php['anonymized_uploads'], $publ_upload_counter[0]);
                                 } */
@@ -1233,13 +1227,13 @@ switch ($what) {
                                 if ($delete_files_choice == 'yes') {
                                     $cpgdb->query($cpg_db_delete_php['user_del_pictures'], (int)$key);
                                     if ($publ_upload_counter['count'] > 0) {
-                                        print '<img src="images/green.gif" width="12" height="12" border="0" alt="" /> ';
+                                        print cpg_fetch_icon('ok', 0).' ';
                                     }
                                     printf($lang_delete_php['deleted_uploads'], $publ_upload_counter['count']);
                                 } else {
                                     $cpgdb->query($cpg_db_delete_php['user_update_pictures'], (int)$key);
                                     if ($publ_upload_counter['count'] > 0) {
-                                        print '<img src="images/green.gif" width="12" height="12" border="0" alt="" /> ';
+                                        print cpg_fetch_icon('ok', 0).' ';
                                     }
                                     printf($lang_delete_php['anonymized_uploads'], $publ_upload_counter['count']);
                                 }
@@ -1252,7 +1246,7 @@ switch ($what) {
                                 #############################################################
                                 print '<td class="tableb" width="50%">';
                                 print '<strong>';
-                                print '<img src="images/green.gif" width="12" height="12" border="0" alt="" /> ';
+                                print cpg_fetch_icon('ok', 0).' ';
                                 printf($lang_delete_php['user_deleted'],'&laquo;'.$user_data['user_name'].'&raquo;');
                                 print '</strong>';
                                 print '</td>';
@@ -1261,7 +1255,7 @@ switch ($what) {
                                 print '</td>';
                             }
                             // mysql_free_result($result);
-							$cpgdb->free();    ######    cpgdbAL
+                            $cpgdb->free();     ######    cpgdbAL
                             print '</tr>';
                         }
                         echo "<tr><td colspan=\"6\" class=\"tablef\" align=\"center\">\n";

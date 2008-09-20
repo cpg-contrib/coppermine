@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4981 $
+  $Revision: 5038 $
   $LastChangedBy: gaugau $
-  $Date: 2008-09-01 13:37:08 +0530 (Mon, 01 Sep 2008) $
+  $Date: 2008-09-15 12:34:00 +0530 (Mon, 15 Sep 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -351,6 +351,7 @@ function display_dir_tree($folder, $ident)
 
     $dir = opendir($dir_path);
     static $dirCounter = 0;
+    $folder_icon = cpg_fetch_icon('folder', 0);
     while ($file = readdir($dir)) { // loop looking for files - start
         if (is_dir($CONFIG['fullpath'] . $folder . $file) &&
             substr($file,0,1) != "." &&
@@ -370,7 +371,7 @@ function display_dir_tree($folder, $ident)
                 echo <<<EOT
                             <tr>
                                     <td class="tableb">
-                                            $ident<img src="images/folder.gif" border="0" alt="" />&nbsp;<a href= "{$CPG_PHP_SELF}?startdir=$start_target">$file</a>$warnings
+                                            {$ident}{$folder_icon}&nbsp;<a href= "{$CPG_PHP_SELF}?startdir=$start_target">$file</a>$warnings
                                     </td>
                             </tr>
 EOT;

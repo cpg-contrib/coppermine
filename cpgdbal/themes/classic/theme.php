@@ -12,15 +12,14 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4921 $
+  $Revision: 5017 $
   $LastChangedBy: gaugau $
-  $Date: 2008-08-27 22:01:20 +0530 (Wed, 27 Aug 2008) $
+  $Date: 2008-09-09 21:20:51 +0530 (Tue, 09 Sep 2008) $
 **********************************************/
 
 // ------------------------------------------------------------------------- //
 // This theme has all CORE items removed                                     //
 // ------------------------------------------------------------------------- //
-define('THEME_IS_XHTML10_TRANSITIONAL',1);
 define('THEME_HAS_MENU_ICONS',16);
 define('THEME_HAS_NAVBAR_GRAPHICS',1);
 ?>

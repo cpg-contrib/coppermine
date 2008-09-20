@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4981 $
+  $Revision: 5028 $
   $LastChangedBy: gaugau $
-  $Date: 2008-09-01 13:37:08 +0530 (Mon, 01 Sep 2008) $
+  $Date: 2008-09-11 14:29:09 +0530 (Thu, 11 Sep 2008) $
 **********************************************/
 
 /**
@@ -25,7 +25,7 @@
 * @copyright 2002-2006 Gregory DEMAR, Coppermine Dev Team
 * @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
 * @package Coppermine
-* @version $Id: banning.php 4981 2008-09-01 08:07:08Z gaugau $
+* @version $Id: banning.php 5028 2008-09-11 08:59:09Z gaugau $
 */
 
 
@@ -71,8 +71,9 @@ EOHEAD;
 
         $row_counter = 0;
         $loop_counter = 0;
+        $calendar_icon = cpg_fetch_icon('calendar', 0);
         //while ($row = mysql_fetch_array($result)) {
-		foreach ($rowset as $row) {		#################	cpgdb_AL
+        foreach ($rowset as $row) {     ################# cpgdb_AL
             if ($loop_counter == 0) {
                 $row_style_class = 'tableb';
             } else {
@@ -106,7 +107,7 @@ EOHEAD;
                                                 <td class="{$row_style_class}" valign="middle">
                                                 <input type="text" class="listbox_lang" size="20" name="edit_ban_expires" value="$expiry" readonly="readonly" title="{$lang_banning_php['select_date']}" />
                                                 <script type="text/javascript">
-                                                    document.write('<a href="javascript:;"  onclick="return getCalendar(document.banlist$row_counter.edit_ban_expires);" title="{$lang_banning_php['select_date']}"><img src="images/calendar.gif" width="16" height="16" border="0" alt="" /></a>');
+                                                    document.write('<a href="javascript:;"  onclick="return getCalendar(document.banlist$row_counter.edit_ban_expires);" title="{$lang_banning_php['select_date']}">{$calendar_icon}</a>');
                                                 </script>
                                         </td>
                                         <td class="{$row_style_class}" valign="middle">
@@ -121,7 +122,7 @@ EOROW;
         }
     }
     //mysql_free_result($result);
-	$cpgdb->free();		#####################	cpgdb_AL
+    $cpgdb->free();     ##################### cpgdb_AL
 }
 
     if ($superCage->post->keyExists('add_ban')) {
@@ -392,6 +393,7 @@ EOT;
 print "<br />\n";
 print '<form action="'.$CPG_PHP_SELF.'" method="post" name="list" id="cpgform">'."\r\n";
 starttable('100%', $lang_banning_php['add_new'], 5);
+$calendar_icon = cpg_fetch_icon('calendar', 0);
 echo <<<EOT
 	<tr>
 		<th class="tableh2">{$lang_banning_php['user_name']}</th>
@@ -416,7 +418,7 @@ echo <<<EOT
 		<td class="tableb" valign="middle">
 			<input type="text" class="listbox_lang"  name="add_ban_expires" value="" size="20" readonly="readonly" title="{$lang_banning_php['select_date']}" />
 			<script type="text/javascript">
-			document.write('<a href="javascript:;"  onclick="return getCalendar(document.list.add_ban_expires);" title="{$lang_banning_php['select_date']}"><img src="images/calendar.gif" width="16" height="16" border="0" alt="" /></a>');
+			document.write('<a href="javascript:;"  onclick="return getCalendar(document.list.add_ban_expires);" title="{$lang_banning_php['select_date']}">{$calendar_icon}</a>');
 			</script>
 		</td>
 		<td class="tableb" valign="top">

@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4224 $
+  $Revision: 5038 $
   $LastChangedBy: gaugau $
-  $Date: 2008-01-26 17:12:00 +0530 (Sat, 26 Jan 2008) $
+  $Date: 2008-09-15 12:34:00 +0530 (Mon, 15 Sep 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -48,11 +48,12 @@ if ($superCage->get->keyExists('get')) {
 
 pageheader('Language files');
 starttable('100%', 'Language files');
+$folder_icon = cpg_fetch_icon('folder', 0);
 foreach($lang_files as $index => $file) {
     echo <<<EOT
                 <tr>
                         <td class="tableb">
-                                <img src="images/folder.gif" alt="">&nbsp;<a href="{$CPG_PHP_SELF}?get=$index">$file</a>
+                                {$folder_icon}&nbsp;<a href="{$CPG_PHP_SELF}?get=$index">$file</a>
                         </td>
                 </tr>
 EOT;

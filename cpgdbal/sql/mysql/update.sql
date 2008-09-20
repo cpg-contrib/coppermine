@@ -11,9 +11,9 @@
 ##  ********************************************
 ##  Coppermine version: 1.5.0
 ##  $Source: /cvsroot/coppermine/devel/sql/update.sql,v $
-##  $Revision: 4956 $
+##  $Revision: 5041 $
 ##  $LastChangedBy: gaugau $
-##  $Date: 2008-08-29 13:11:43 +0530 (Fri, 29 Aug 2008) $
+##  $Date: 2008-09-15 22:12:02 +0530 (Mon, 15 Sep 2008) $
 ##  ********************************************
 
 
@@ -85,6 +85,7 @@ INSERT INTO CPG_filetypes VALUES ('lzh', 'application/lzh', 'document', '');
 INSERT INTO CPG_filetypes VALUES ('rpm', 'application/rpm', 'document', '');
 INSERT INTO CPG_filetypes VALUES ('tar', 'application/tar', 'document', '');
 INSERT INTO CPG_filetypes VALUES ('z', 'application/z', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('odb', 'application/vnd.oasis.opendocument.database', 'document', '');
 INSERT INTO CPG_filetypes VALUES ('odt', 'application/vnd.oasis.opendocument.text', 'document', '');
 INSERT INTO CPG_filetypes VALUES ('ods', 'application/vnd.oasis.opendocument.spreadsheet', 'document', '');
 INSERT INTO CPG_filetypes VALUES ('odp', 'application/vnd.oasis.opendocument.presentation', 'document', '');
@@ -412,6 +413,7 @@ INSERT INTO CPG_config VALUES ('home_target', 'index.php');
 DELETE FROM CPG_config WHERE `name` = 'comment_email_notification';
 DELETE FROM CPG_config WHERE `name` = 'hide_admin_uploader';
 DELETE FROM CPG_config WHERE `name` = 'vanity_block';
+DELETE FROM CPG_config WHERE `name` = 'display_faq';
 
 INSERT INTO CPG_config VALUES ('custom_lnk_name', '');
 INSERT INTO CPG_config VALUES ('custom_lnk_url', '');

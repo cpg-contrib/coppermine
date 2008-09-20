@@ -1586,7 +1586,7 @@ $cpg_db_functions_inc = array(
 									   "WHERE c.lft BETWEEN p.lft AND p.rgt	AND c.cid = %1\$s ORDER BY p.lft ",
 	//'breadcrumb_cat_not_zero'		=> "SELECT name, parent FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '%1\$s'",
 	//'breadcrumb_parent_not_zero'	=> "SELECT cid, name, parent FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '%1\$s'",
-	'get_dbversion'					=> "SELECT  SERVERPROPERTY('productversion') AS version",
+	'get_dbversion'					=> "SELECT CONVERT(VARCHAR(30), SERVERPROPERTY('productversion')) AS version",
 	'get_bridge_db_values'			=> "SELECT * FROM {$CONFIG['TABLE_BRIDGE']}",
 	'reset_detail_hits'				=> "DELETE FROM {$CONFIG['TABLE_HIT_STATS']} WHERE %1\$s",		
 	'reset_detail_votes'			=> "DELETE FROM {$CONFIG['TABLE_VOTE_STATS']} WHERE %1\$s",	

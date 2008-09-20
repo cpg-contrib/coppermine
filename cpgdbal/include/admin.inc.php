@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4993 $
+  $Revision: 5046 $
   $LastChangedBy: gaugau $
-  $Date: 2008-09-04 14:05:37 +0530 (Thu, 04 Sep 2008) $
+  $Date: 2008-09-20 02:37:43 +0530 (Sat, 20 Sep 2008) $
 **********************************************/
 
 /**********************************************
@@ -208,11 +208,6 @@ $config_data = array(
       'default_value' => '1',
       'help_link' => 'f=configuration.htm&amp;as=admin_theme_theme_reset&amp;ae=admin_theme_theme_reset_end',
     ),
-    'display_faq' => array(
-      'type' => 'checkbox',
-      'default_value' => '0',
-      'help_link' => 'f=configuration.htm&amp;as=admin_theme_faq&amp;ae=admin_theme_faq_end',
-    ),
     'display_sidebar_user' => array(
       'type' => 'radio',
       'default_value' => '2',
@@ -249,7 +244,7 @@ $config_data = array(
     'display_social_bookmarks' => array(
       'type' => 'select_multiple',
       'help_link' => 'f=configuration.htm&amp;as=admin_social_bookmarks&amp;ae=admin_social_bookmarks_end',
-      'options' => array('myAol', 'Ask', 'Blinklist', 'Blogmarks', 'care2', 'del.icio.us', 'Digg', 'Diigo', 'Dzone', 'Facebook', 'Fark', 'Faves', 'FeedMeLinks', 'Furl', 'Google', 'Hugg', 'Kool', 'Linkagogo', 'LiveJournal', 'Magnolia', 'MindBody', 'MisterWong', 'Mixx', 'Multiply', 'mySpace', 'Netscape', 'netvouz', 'Newsvine', 'NowPublic', 'Reddit', 'Segnalo', 'Simpy', 'Slashdot', 'Smarking', 'Spurl', 'Squidoo', 'StumbleUpon', 'TailRank', 'Technorati', 'thisnext', 'Windows Live', 'Yahoo MyWeb', 'Alltagz.de', 'Linksilo.de', 'Maodi.de', 'Newstube.de', 'oneview.de', 'Readster.de', 'Tausendreporter (stern)', 'Webbrille.de', 'Webnews.de'),
+      'options' => array('myAol', 'Ask', 'Blinklist', 'Blogmarks', 'care2', 'del.icio.us', 'Digg', 'Diigo', 'Dzone', 'Facebook', 'Fark', 'Faves', 'FeedMeLinks', 'Furl', 'Google', 'Hugg', 'Kool', 'Linkagogo', 'LiveJournal', 'Magnolia', 'MindBody', 'Mister-Wong.com', 'Mixx', 'Multiply', 'mySpace', 'Netscape', 'netvouz', 'Newsvine', 'NowPublic', 'Reddit', 'Segnalo', 'Simpy', 'Slashdot', 'Smarking', 'Spurl', 'Squidoo', 'StumbleUpon', 'TailRank', 'Technorati', 'thisnext', 'Windows Live', 'Yahoo MyWeb', 'Alltagz.de', 'Linksilo.de', 'Icio.de', 'Maodi.de', 'Mister-Wong.de', 'Newstube.de', 'oneview.de', 'Readster.de', 'Tausendreporter (stern)', 'Webbrille.de', 'Webnews.de'),
       'end_description' => '('.$lang_admin_php['highlight_multiple'].')',
     ),
     'custom_header_path' => array(
@@ -281,6 +276,7 @@ $config_data = array(
       'regex' => '^([0-9]{1,3}){1}([%]{0,1})$',
       'size' => '5',
       'width' => '5',
+      'maxlength' => '5',
       'end_description' => $lang_admin_php['pixels_or_percent'],
     ),
     'subcat_level' => array(
@@ -290,6 +286,7 @@ $config_data = array(
       'regex' => '^[0-9]{1,2}$',
       'size' => '3',
       'width' => '3',
+      'maxlength' => '3',
     ),
     'albums_per_page' => array(
       'type' => 'textfield',
@@ -298,6 +295,7 @@ $config_data = array(
       'regex' => '^[0-9]{1,3}$',
       'size' => '3',
       'width' => '3',
+      'maxlength' => '3',
     ),
     'album_list_cols' => array(
       'type' => 'textfield',
@@ -306,6 +304,7 @@ $config_data = array(
       'regex' => '^[0-9]{1,2}$',
       'size' => '3',
       'width' => '3',
+      'maxlength' => '3',
     ),
     'alb_list_thumb_size' => array(
       'type' => 'textfield',
@@ -314,6 +313,7 @@ $config_data = array(
       'regex' => '^[0-9]{1,4}$',
       'size' => '4',
       'width' => '4',
+      'maxlength' => '4',
       'end_description' => $lang_admin_php['pixels'],
     ),
     'main_page_layout' => array(
@@ -365,6 +365,7 @@ $config_data = array(
       'regex' => '^[0-9]$',
       'size' => '3',
       'width' => '3',
+      'maxlength' => '3',
     ),
     'thumbrows' => array(
       'type' => 'textfield',
@@ -373,6 +374,7 @@ $config_data = array(
       'regex' => '^[0-9]$',
       'size' => '3',
       'width' => '3',
+      'maxlength' => '3',
     ),
     'max_tabs' => array(
       'type' => 'select',
@@ -440,6 +442,7 @@ $config_data = array(
       'regex' => '^[0-9]$',
       'size' => '3',
       'width' => '3',
+      'maxlength' => '3',
     ),
   ),
   'image_view' => array(
@@ -449,6 +452,7 @@ $config_data = array(
       'help_link' => 'f=configuration.htm&amp;as=admin_image_comment_table-width&amp;ae=admin_image_comment_table-width_end',
       'size' => '5',
       'width' => '5',
+      'maxlength' => '5',
       'end_description' => '(' . $lang_admin_php['pixels_or_percent'] . ')',
     ),
     'display_pic_info' => array(
@@ -468,6 +472,7 @@ $config_data = array(
       'regex' => '^[0-9]{1,4}$',
       'size' => '5',
       'width' => '5',
+      'maxlength' => '5',
     ),
     'display_film_strip' => array(
       'type' => 'checkbox',
@@ -486,6 +491,7 @@ $config_data = array(
       'regex' => '^[0-9]{1,2}$',
       'size' => '3',
       'width' => '3',
+      'maxlength' => '3',
     ),
     'slideshow_interval' => array(
       'type' => 'textfield',
@@ -494,6 +500,7 @@ $config_data = array(
       'regex' => '^[0-9]{1,6}$',
       'size' => '6',
       'width' => '6',
+      'maxlength' => '6',
       'end_description' => $lang_admin_php['milliseconds'] . ' (' . $lang_admin_php['slideshow_interval_detail'] . ')',
     ),
     'slideshow_hits' => array(
@@ -553,6 +560,7 @@ $config_data = array(
       'regex' => '^[0-9]{1,3}$',
       'size' => '3',
       'width' => '3',
+      'maxlength' => '3',
     ),
     'max_com_size' => array(
       'type' => 'textfield',
@@ -561,6 +569,8 @@ $config_data = array(
       'regex' => '^[0-9]{1,5}$',
       'size' => '5',
       'width' => '5',
+      'maxlength' => '5',
+      
     ),
     'max_com_wlength' => array(
       'type' => 'textfield',
@@ -569,6 +579,7 @@ $config_data = array(
       'regex' => '^[0-9]{1,4}$',
       'size' => '5',
       'width' => '5',
+      'maxlength' => '5',
     ),
     'email_comment_notification' => array(
       'type' => 'checkbox',
@@ -689,6 +700,7 @@ $config_data = array(
       'regex' => '^[0-9]{1,5}$',
       'size' => '5',
       'width' => '5',
+      'maxlength' => '5',
       'warning' => $lang_admin_php['warning_change'],
       'end_description' => $lang_admin_php['pixels'],
     ),
@@ -711,6 +723,7 @@ $config_data = array(
       'regex' => '^[0-9]{1,5}$',
       'size' => '5',
       'width' => '5',
+      'maxlength' => '5',
       'additional_description' => $lang_admin_php['thumb_height_detail'],
       'warning' => $lang_admin_php['warning_change'],
       'end_description' => $lang_admin_php['pixels'],
@@ -741,6 +754,8 @@ $config_data = array(
       'regex' => '^[0-9]{1,5}$',
       'size' => '5',
       'width' => '5',
+      'maxlength' => '5',
+      
     ),
     'unsharp_radius' => array(
       'type' => 'textfield',
@@ -749,6 +764,7 @@ $config_data = array(
       'regex' => '^[0-9]{1,1}([.]+([0-9]){0,1}){0,1}$',
       'size' => '5',
       'width' => '5',
+      'maxlength' => '5',
     ),
     'unsharp_threshold' => array(
       'type' => 'textfield',
@@ -757,6 +773,7 @@ $config_data = array(
       'regex' => '^[0-9]{1,5}$',
       'size' => '5',
       'width' => '5',
+      'maxlength' => '5',
     ),
   ),
   'file_settings' => array(
@@ -767,6 +784,8 @@ $config_data = array(
       'regex' => '^[0-9]{1,3}$',
       'size' => '3',
       'width' => '3',
+      'maxlength' => '3',
+      'end_description' => '%',
     ),
     'make_intermediate' => array(
       'type' => 'checkbox',
@@ -780,6 +799,7 @@ $config_data = array(
       'regex' => '^[0-9]{1,5}$',
       'size' => '5',
       'width' => '5',
+      'maxlength' => '5',
       'warning' => $lang_admin_php['warning_change'],
       'end_description' => $lang_admin_php['pixels'],
     ),
@@ -790,6 +810,7 @@ $config_data = array(
       'regex' => '^[0-9]{1,7}$',
       'size' => '7',
       'width' => '7',
+      'maxlength' => '7',
       'end_description' => $lang_admin_php['kilobytes'],
     ),
     'max_upl_width_height' => array(
@@ -799,6 +820,7 @@ $config_data = array(
       'regex' => '^[0-9]{1,5}$',
       'size' => '5',
       'width' => '5',
+      'maxlength' => '5',
       'end_description' => $lang_admin_php['pixels'],
     ),
     'auto_resize' => array(
@@ -817,6 +839,7 @@ $config_data = array(
       'regex' => '^[0-9]{1,3}$',
       'size' => '3',
       'width' => '3',
+      'maxlength' => '3',
       'end_description' => $lang_admin_php['pixels'],
     ),
     'fullsize_padding_y' => array(
@@ -826,6 +849,7 @@ $config_data = array(
       'regex' => '^[0-9]{1,3}$',
       'size' => '3',
       'width' => '3',
+      'maxlength' => '5',
       'end_description' => $lang_admin_php['pixels'],
     ),
     'allow_private_albums' => array(
@@ -946,6 +970,7 @@ $config_data = array(
       'regex' => '^[0-9]{0,4}$',
       'size' => '4',
       'width' => '4',
+      'maxlength' => '4',
     ),
     'default_file_mode' => array(
       'type' => 'textfield',
@@ -954,6 +979,7 @@ $config_data = array(
       'regex' => '^[0-9]{0,4}$',
       'size' => '4',
       'width' => '4',
+      'maxlength' => '4',
     ),
   ),
   'image_watermarking' => array(
@@ -1000,6 +1026,7 @@ $config_data = array(
       'regex' => '^[0-9]{0,3}$',
       'size' => '3',
       'width' => '3',
+      'maxlength' => '3',
       'end_description' => '('.$lang_admin_php['zero_2_hundred'].')',
     ),
     'reduce_watermark' => array(
@@ -1014,6 +1041,7 @@ $config_data = array(
       'regex' => '^[0-9]{0,6}$',
       'size' => '6',
       'width' => '6',
+      'maxlength' => '6',
       'additional_description' => '('.$lang_admin_php['gd2_only'].')',
     ),
     'watermark_transparency_feathery' => array(
@@ -1023,6 +1051,7 @@ $config_data = array(
       'regex' => '^[0-9]{0,6}$',
       'size' => '6',
       'width' => '6',
+      'maxlength' => '6',
       'additional_description' => '('.$lang_admin_php['gd2_only'].')',
     ),
   ),
@@ -1160,6 +1189,7 @@ $config_data = array(
       'regex' => '^[0-9]{1,4}$',
       'size' => '4',
       'width' => '4',
+      'maxlength' => '4',
       'additional_description' => $lang_admin_php['login_threshold_detail'],
     ),
     'login_expiry' => array(
@@ -1170,6 +1200,8 @@ $config_data = array(
       'regex' => '^[0-9]{1,7}$',
       'size' => '7',
       'width' => '7',
+      'maxlength' => '7',
+      'end_description' => $lang_admin_php['minutes'],
     ),
     'report_post' => array(
       'type' => 'checkbox',

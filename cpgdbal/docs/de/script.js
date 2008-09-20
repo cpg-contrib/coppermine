@@ -10,9 +10,9 @@
 
   ********************************************
   Coppermine version: 1.5.0
-  $Revision: 4931 $
+  $Revision: 5044 $
   $LastChangedBy: gaugau $
-  $Date: 2008-08-28 20:33:00 +0530 (Thu, 28 Aug 2008) $
+  $Date: 2008-09-19 13:00:08 +0530 (Fri, 19 Sep 2008) $
 **********************************************/
 
 
@@ -387,7 +387,7 @@ d.add(100,0,'Über Coppermine','index.htm');
 d.add(200,100,'Inhaltsverzeichnis','toc.htm');
 d.add(300,100,'Mindestvoraussetzung','requirements.htm');
 //d.add(400,100,'Beta (Testing) version','testing.htm');
-//d.add(500,100,'Languages','languages.htm');
+d.add(500,100,'Sprachen','languages.htm');
 //d.add(600,500,'Translation guide','translation.htm');
 d.add(700,100,'Credits','credits.htm');
 d.add(800,700,'Coppermine Team','credits.htm#developers');
@@ -589,6 +589,11 @@ d.add(7500,5800,'Wartungs-Einstellungen','configuration.htm#admin_misc');
 
 
 function cpgDocToc() {
+  var hideNav = getUrlParameters('hide_nav');
+  if (hideNav == 1) {
+  	document.getElementById('toc').style.display = 'none';
+  	return;
+  }
   document.write(d); // write the navigation
   d.closeAll(); // unexpand all branches
   var myCounter = 0;
@@ -610,6 +615,11 @@ function cpgDocToc() {
 }
 
 function cpgDocBreadcrumb() {
+  var hideNav = getUrlParameters('hide_nav');
+  if (hideNav == 1) {
+  	document.getElementById('toc').style.display = 'none';
+  	return;
+  }
   var cpgDocLoopCounter = 0;
   var cpgDocBreadcrumbPath = '';
   var cpgLoopTemp = thisPage;
@@ -631,6 +641,11 @@ function cpgDocBreadcrumb() {
 
 
 function cpgDocHeader() {
+  var hideNav = getUrlParameters('hide_nav');
+  if (hideNav == 1) {
+  	document.getElementById('toc').style.display = 'none';
+  	return;
+  }
   document.write('<img src="images/coppermine-logo.png" alt="Coppermine Photo Gallery - Your Online Photo Gallery" align="left" />');
   document.write('<h1>Coppermine Photo Gallery v1.5.0: Documentation und Handbuch</h1>');
   document.write('<br clear="all" />');
@@ -640,6 +655,11 @@ function cpgDocHeader() {
 }
 
 function cpgDocFooter() {
+  var hideNav = getUrlParameters('hide_nav');
+  if (hideNav == 1) {
+  	document.getElementById('toc').style.display = 'none';
+  	return;
+  }
   document.write('</div>');
   document.write('<div align="right">');
   document.write('<a href="#top">Nach oben</a>');
@@ -649,6 +669,11 @@ function cpgDocFooter() {
 
 
 function cpgDocPrevNext() {
+  var hideNav = getUrlParameters('hide_nav');
+  if (hideNav == 1) {
+  	document.getElementById('toc').style.display = 'none';
+  	return;
+  }
   document.write('<div align="right">');
   if(docSections[thisPage]['previous'] != '') {
     document.write('<a href="' + docSections[docSections[thisPage]['previous']]['file'] + '" class="prev_next">&laquo; previous (' + docSections[docSections[thisPage]['previous']]['name'] + ')</a>&nbsp;&nbsp;&nbsp;');
@@ -675,6 +700,11 @@ function displayNavigation() {
 
 function dateRevision(lastChangeDate, revisionNumber) {
   // strip the unneeded data from last_changed and revision fields
+  var hideNav = getUrlParameters('hide_nav');
+  if (hideNav == 1) {
+  	document.getElementById('toc').style.display = 'none';
+  	return;
+  }
   var lastChangeDate = lastChangeDate.replace('$', '');
   var lastChangeDate = lastChangeDate.replace('$', '');
   var lastChangeDate = lastChangeDate.replace('LastChangedDate: ', '');
@@ -691,4 +721,18 @@ function dateRevision(lastChangeDate, revisionNumber) {
   document.write(',&nbsp;Revision ');
   document.write(revisionNumber);
   document.write('</div>');
+}
+
+function getUrlParameters(name)
+{
+  // Taken from http://www.netlobo.com/url_query_string_javascript.html
+  name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+  var regexS = "[\\?&]"+name+"=([^&#]*)";
+  var regex = new RegExp(regexS);
+  var results = regex.exec(window.location.href);
+  if(results == null) {
+    return '';
+  } else {
+    return results[1];
+  }
 }

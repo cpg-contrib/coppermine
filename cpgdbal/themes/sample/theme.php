@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4993 $
+  $Revision: 5041 $
   $LastChangedBy: gaugau $
-  $Date: 2008-09-04 14:05:37 +0530 (Thu, 04 Sep 2008) $
+  $Date: 2008-09-15 22:12:02 +0530 (Mon, 15 Sep 2008) $
 **********************************************/
 
 // ------------------------------------------------------------------------- //
@@ -58,9 +58,6 @@
 //    The entire block needs to be present like in Coppermine 1.3 themes
 //  ('THEME_HAS_NO_SUB_MENU_BUTTONS', 1) When present the system won't attempt to replace {BUTTONS} in the SUB_MENU template
 //    The entire block needs to be present like in Coppermine 1.3 themes
-//  ('THEME_IS_XHTML10_TRANSITIONAL',1) : If theme is defined as XHTML10_TRANSITIONAL the VANITY footer will be enabled
-//    if the theme has a {VANITY} token in its template.html. Don't enable this if you have modified the code! See the
-//    docs/en/theme.html documentation for validation methodology.
 // ('THEME_HAS_SIDEBAR_GRAPHICS', 1) : The location for the sidebar graphics that compose the tree menu will
 //    be directed to the themes images folder, subfolder 'sidebar', i.e. themes/yourtheme/images/sidebar/.
 //    Gallery root                                                             : images/sidebar/base.gif
@@ -167,7 +164,6 @@ EOT;
     addbutton($sys_menu_buttons,'{SIDEBAR_LNK}','{SIDEBAR_TITLE}','{SIDEBAR_TGT}','sidebar',$template_sys_menu_spacer);
     addbutton($sys_menu_buttons,'{UPL_PIC_LNK}','{UPL_PIC_TITLE}','{UPL_PIC_TGT}','upload_pic',$template_sys_menu_spacer);
     addbutton($sys_menu_buttons,'{REGISTER_LNK}','{REGISTER_TITLE}','{REGISTER_TGT}','register',$template_sys_menu_spacer);
-    addbutton($sys_menu_buttons,'{FAQ_LNK}','{FAQ_TITLE}','{FAQ_TGT}','faq',$template_sys_menu_spacer);
     addbutton($sys_menu_buttons,'{LOGIN_LNK}','{LOGIN_TITLE}','{LOGIN_TGT}','login','');
     addbutton($sys_menu_buttons,'{LOGOUT_LNK}','{LOGOUT_TITLE}','{LOGOUT_TGT}','logout','');
     // Login and Logout don't have a spacer as only one is shown, and either would be the last option.
@@ -1469,6 +1465,14 @@ function pagefooter()
     }
 
     $template_vars = array(
+        '{GAL_NAME}' => $CONFIG['gallery_name'],
+        '{GAL_DESCRIPTION}' => $CONFIG['gallery_description'],
+        '{SYS_MENU}' => theme_main_menu('sys_menu'),
+        '{SUB_MENU}' => theme_main_menu('sub_menu'),
+        '{ADMIN_MENU}' => theme_admin_mode_menu(),
+        '{CUSTOM_HEADER}' => $custom_header,
+        '{JAVASCRIPT}' => theme_javascript_head(),
+        '{MESSAGE_BLOCK}' => theme_display_message_block(),
         '{CUSTOM_FOOTER}' => $custom_footer,
         '{VANITY}' => (defined('THEME_IS_XHTML10_TRANSITIONAL')) ? theme_vanity() : '',
         '{CREDITS}' => theme_credits(),
@@ -1754,54 +1758,47 @@ function theme_main_menu($which)
 			template_extract_block($template_sys_menu, 'allow_memberlist');
 		}
 
-		if (!$CONFIG['display_faq']) {
-			template_extract_block($template_sys_menu, 'faq');
-		}
-
-		$param = array(
-			'{HOME_TGT}' => $CONFIG['home_target'],
-			'{HOME_TITLE}' => $lang_main_menu['home_title'],
-			'{HOME_LNK}' => $lang_main_menu['home_lnk'],
-			'{CONTACT_TGT}' => "contact.php?referer=$REFERER",
-			'{CONTACT_TITLE}' => sprintf($lang_main_menu['contact_title'], $CONFIG['gallery_name']),
-			'{CONTACT_LNK}' => $lang_main_menu['contact_lnk'],
-			'{MY_GAL_TGT}' => "index.php?cat=$my_gallery_id",
-			'{MY_GAL_TITLE}' => $lang_main_menu['my_gal_title'],
-			'{MY_GAL_LNK}' => $lang_main_menu['my_gal_lnk'],
-			'{MEMBERLIST_TGT}' => "usermgr.php",
-			'{MEMBERLIST_TITLE}' => $lang_main_menu['memberlist_title'],
-			'{MEMBERLIST_LNK}' => $lang_main_menu['memberlist_lnk'],
-			'{MY_PROF_TGT}' => "profile.php?op=edit_profile",
-			'{MY_PROF_TITLE}' => $lang_main_menu['my_prof_title'],
-			'{MY_PROF_LNK}' => $lang_main_menu['my_prof_lnk'],
-			'{ADM_MODE_TGT}' => "mode.php?admin_mode=1&amp;referer=$REFERER",
-			'{ADM_MODE_TITLE}' => $lang_main_menu['adm_mode_title'],
-			'{ADM_MODE_LNK}' => $lang_main_menu['adm_mode_lnk'],
-			'{USR_MODE_TGT}' => "mode.php?admin_mode=0&amp;referer=$REFERER",
-			'{USR_MODE_TITLE}' => $lang_main_menu['usr_mode_title'],
-			'{USR_MODE_LNK}' => $lang_main_menu['usr_mode_lnk'],
-			'{SIDEBAR_TGT}' => "sidebar.php?action=install",
-			'{SIDEBAR_TITLE}' => $lang_main_menu['sidebar_title'],
-			'{SIDEBAR_LNK}' => $lang_main_menu['sidebar_lnk'],
-			'{UPL_PIC_TGT}' => "upload.php$album_12",
-			'{UPL_PIC_TITLE}' => $lang_main_menu['upload_pic_title'],
-			'{UPL_PIC_LNK}' => $lang_main_menu['upload_pic_lnk'],
-			'{REGISTER_TGT}' => "register.php",
-			'{REGISTER_TITLE}' => $lang_main_menu['register_title'],
-			'{REGISTER_LNK}' => $lang_main_menu['register_lnk'],
-			'{LOGIN_TGT}' => "login.php?referer=$REFERER",
-			'{LOGIN_TITLE}' => $lang_main_menu['login_title'],
-			'{LOGIN_LNK}' => $lang_main_menu['login_lnk'],
-			'{LOGOUT_TGT}' => "logout.php?referer=$REFERER",
-			'{LOGOUT_TITLE}' => $lang_main_menu['logout_title'],
-			'{LOGOUT_LNK}' => $lang_main_menu['logout_lnk'] . " [" . stripslashes(USER_NAME) . "]",
-			'{FAQ_TGT}' => "faq.php",
-			'{FAQ_TITLE}' => $lang_main_menu['faq_title'],
-			'{FAQ_LNK}' => $lang_main_menu['faq_lnk'],
-			'{UPL_APP_LNK}' => $lang_gallery_admin_menu['upl_app_lnk'],
-			'{UPL_APP_TGT}' => "editpics.php?mode=upload_approval",
-			'{UPL_APP_TITLE}' => $lang_gallery_admin_menu['upl_app_lnk'],
-			);
+    $param = array(
+        '{HOME_TGT}' => $CONFIG['home_target'],
+        '{HOME_TITLE}' => $lang_main_menu['home_title'],
+        '{HOME_LNK}' => $lang_main_menu['home_lnk'],
+        '{CONTACT_TGT}' => "contact.php?referer=$REFERER",
+        '{CONTACT_TITLE}' => sprintf($lang_main_menu['contact_title'], $CONFIG['gallery_name']),
+        '{CONTACT_LNK}' => $lang_main_menu['contact_lnk'],
+        '{MY_GAL_TGT}' => "index.php?cat=$my_gallery_id",
+        '{MY_GAL_TITLE}' => $lang_main_menu['my_gal_title'],
+        '{MY_GAL_LNK}' => $lang_main_menu['my_gal_lnk'],
+        '{MEMBERLIST_TGT}' => "usermgr.php",
+        '{MEMBERLIST_TITLE}' => $lang_main_menu['memberlist_title'],
+        '{MEMBERLIST_LNK}' => $lang_main_menu['memberlist_lnk'],
+        '{MY_PROF_TGT}' => "profile.php?op=edit_profile",
+        '{MY_PROF_TITLE}' => $lang_main_menu['my_prof_title'],
+        '{MY_PROF_LNK}' => $lang_main_menu['my_prof_lnk'],
+        '{ADM_MODE_TGT}' => "mode.php?admin_mode=1&amp;referer=$REFERER",
+        '{ADM_MODE_TITLE}' => $lang_main_menu['adm_mode_title'],
+        '{ADM_MODE_LNK}' => $lang_main_menu['adm_mode_lnk'],
+        '{USR_MODE_TGT}' => "mode.php?admin_mode=0&amp;referer=$REFERER",
+        '{USR_MODE_TITLE}' => $lang_main_menu['usr_mode_title'],
+        '{USR_MODE_LNK}' => $lang_main_menu['usr_mode_lnk'],
+        '{SIDEBAR_TGT}' => "sidebar.php?action=install",
+        '{SIDEBAR_TITLE}' => $lang_main_menu['sidebar_title'],
+        '{SIDEBAR_LNK}' => $lang_main_menu['sidebar_lnk'],
+        '{UPL_PIC_TGT}' => "upload.php$album_12",
+        '{UPL_PIC_TITLE}' => $lang_main_menu['upload_pic_title'],
+        '{UPL_PIC_LNK}' => $lang_main_menu['upload_pic_lnk'],
+        '{REGISTER_TGT}' => "register.php",
+        '{REGISTER_TITLE}' => $lang_main_menu['register_title'],
+        '{REGISTER_LNK}' => $lang_main_menu['register_lnk'],
+        '{LOGIN_TGT}' => "login.php?referer=$REFERER",
+        '{LOGIN_TITLE}' => $lang_main_menu['login_title'],
+        '{LOGIN_LNK}' => $lang_main_menu['login_lnk'],
+        '{LOGOUT_TGT}' => "logout.php?referer=$REFERER",
+        '{LOGOUT_TITLE}' => $lang_main_menu['logout_title'],
+        '{LOGOUT_LNK}' => $lang_main_menu['logout_lnk'] . " [" . stripslashes(USER_NAME) . "]",
+        '{UPL_APP_LNK}' => $lang_gallery_admin_menu['upl_app_lnk'],
+        '{UPL_APP_TGT}' => "editpics.php?mode=upload_approval",
+        '{UPL_APP_TITLE}' => $lang_gallery_admin_menu['upl_app_lnk'],
+        );
 
 		$sys_menu = template_eval($template_sys_menu, $param);
 	} else {

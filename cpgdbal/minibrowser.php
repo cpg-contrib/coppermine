@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4605 $
-  $LastChangedBy: nibbler999 $
-  $Date: 2008-06-19 01:41:15 +0530 (Thu, 19 Jun 2008) $
+  $Revision: 5038 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-09-15 12:34:00 +0530 (Mon, 15 Sep 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -305,7 +305,7 @@ if (is_array($foldername)) {
             print '</td>'.$newline;
             print '<td class="tableb">'.$newline;
             print '<a href="'.$CPG_PHP_SELF.'?folder='.rawurlencode('/'.ltrim($folder, '/').$key.'/').'&amp;parentform='.rawurlencode($parentform).'&amp;formelementname='.rawurlencode($formelementname).'&amp;no_popup='.$no_popup.'&amp;limitfolder='.$limitfolder.'&amp;hidefolders='.$hidefolders.'&amp;linktarget='.$linktarget.'">'.$newline;
-            print '<img src="images/folder.gif" width="16" height="16" border="0" alt="" title="folder" />'.$newline;
+            print cpg_fetch_icon('folder', 0, $lang_minibrowser_php['folder']) . $newline;
             print $key.$newline;
             print '</a>'.$newline;
             print '</td>'.$newline;

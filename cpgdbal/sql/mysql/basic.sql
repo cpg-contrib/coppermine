@@ -11,9 +11,9 @@
 ##  ********************************************
 ##  Coppermine version: 1.5.0
 ##  $Source$
-##  $Revision: 4956 $
+##  $Revision: 5041 $
 ##  $LastChangedBy: gaugau $
-##  $Date: 2008-08-29 13:11:43 +0530 (Fri, 29 Aug 2008) $
+##  $Date: 2008-09-15 22:12:02 +0530 (Mon, 15 Sep 2008) $
 ##  ********************************************
 
 #
@@ -42,7 +42,6 @@ INSERT INTO CPG_config VALUES ('language_reset', '1');
 INSERT INTO CPG_config VALUES ('theme', 'core');
 INSERT INTO CPG_config VALUES ('theme_list', '0');
 INSERT INTO CPG_config VALUES ('theme_reset', '1');
-INSERT INTO CPG_config VALUES ('display_faq', '0');
 INSERT INTO CPG_config VALUES ('display_sidebar_user', '1');
 INSERT INTO CPG_config VALUES ('display_sidebar_guest', '1');
 INSERT INTO CPG_config VALUES ('custom_lnk_name', '');
@@ -271,6 +270,7 @@ INSERT INTO CPG_filetypes VALUES ('lzh', 'application/lzh', 'document', '');
 INSERT INTO CPG_filetypes VALUES ('rpm', 'application/rpm', 'document', '');
 INSERT INTO CPG_filetypes VALUES ('tar', 'application/tar', 'document', '');
 INSERT INTO CPG_filetypes VALUES ('z', 'application/z', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('odb', 'application/vnd.oasis.opendocument.database', 'document', '');
 INSERT INTO CPG_filetypes VALUES ('odt', 'application/vnd.oasis.opendocument.text', 'document', '');
 INSERT INTO CPG_filetypes VALUES ('ods', 'application/vnd.oasis.opendocument.spreadsheet', 'document', '');
 INSERT INTO CPG_filetypes VALUES ('odp', 'application/vnd.oasis.opendocument.presentation', 'document', '');

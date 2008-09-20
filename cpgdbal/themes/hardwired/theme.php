@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4696 $
+  $Revision: 5041 $
   $LastChangedBy: gaugau $
-  $Date: 2008-07-17 11:02:26 +0530 (Thu, 17 Jul 2008) $
+  $Date: 2008-09-15 22:12:02 +0530 (Mon, 15 Sep 2008) $
 **********************************************/
 
 // ------------------------------------------------------------------------- //
@@ -26,8 +26,6 @@ define('THEME_HAS_NO_SYS_MENU_BUTTONS', 1);
 define('THEME_HAS_NO_SUB_MENU_BUTTONS', 1);
 define('THEME_HAS_SIDEBAR_GRAPHICS',1);
 define('THEME_HAS_PROGRESS_GRAPHICS',1);
-define('THEME_IS_XHTML10_TRANSITIONAL',1);  // Remove this if you edit this template until
-                                            // you have validated it. See docs/theme.htm.
 
 // HTML template for sys menu
 $template_sys_menu = <<<EOT
@@ -82,14 +80,6 @@ $template_sys_menu = <<<EOT
                                         </td>
                                         <td><img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0"  alt="" /></td>
 <!-- END my_profile -->
-<!-- BEGIN faq -->
-                                        <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /></td>
-                                        <td><img name="buttonleft" src="themes/hardwired/images/buttonleftfaq.gif" width="17" height="25" border="0" alt="" /></td>
-                                        <td style="background: url(themes/hardwired/images/buttoncenter.gif);">
-                                        <a href="{FAQ_TGT}" title="{FAQ_TITLE}">{FAQ_LNK}</a>
-                                        </td>
-                                        <td><img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0"  alt="" /></td>
-<!-- END faq -->
 <!-- BEGIN enter_admin_mode -->
                                         <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /></td>
                                         <td><img name="buttonleftad" src="themes/hardwired/images/buttonleftad.gif" width="17" height="25" border="0" alt="" /></td>

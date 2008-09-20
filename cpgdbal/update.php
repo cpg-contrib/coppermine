@@ -12,38 +12,53 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4578 $
-  $LastChangedBy: nibbler999 $
-  $Date: 2008-06-16 01:29:16 +0530 (Mon, 16 Jun 2008) $
+  $Revision: 5040 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-09-15 21:50:16 +0530 (Mon, 15 Sep 2008) $
 **********************************************/
 define('UPDATE_PHP', true);
-// define('ADMIN_ACCESS', true);
+// define('SKIP_AUTHENTICATION', true);
 // If you don't remember the admin account data you're prompted for when running this file in your browser, umcomment the line above by removing the two slashes in front of it, upload that file to your webserver, run it in your browser. After usccessfully having run it, remember to restore the two slashes you removed and replace the "unsecure" version on your webserver with the "secure" version (the one that contains the double slashes).
 
-// Report all errors except E_NOTICE
-// This is the default value set in php.ini
-session_start();
-error_reporting (E_ALL ^ E_NOTICE);
-set_magic_quotes_runtime(0);
-//define('IN_COPPERMINE', true);
+define('IN_COPPERMINE', true);
+define('UPDATE_PHP', true);
 
-$incp = get_include_path().PATH_SEPARATOR.dirname(__FILE__).PATH_SEPARATOR.dirname(__FILE__).DIRECTORY_SEPARATOR.'include';
-set_include_path($incp);
-require ('include/Inspekt.php');
-require ('include/sql_parse.php');
-require ('include/config.inc.php');
-require ('include/update.inc.php');
+if (!defined('SKIP_AUTHENTICATION')) { // try to include init.inc.php to get the "regular" coppermine user interface
+    $error_reporting = error_reporting(E_ERROR); // silence all error reports but fatal ones
+    ob_start(); // turn output buffering on - if including the regular coppermine files breaks, we can make sure that the output doesn't break the subsequent code
+    include_once('include/init.inc.php');
+    $output = ob_get_contents();
+    ob_end_flush ;
+    error_reporting($error_reporting); // set error reporting level back to how it used to be
+    //print $output; // For troubleshooting purposes, print $output
+}
+session_start();
+set_magic_quotes_runtime(0);
+
+if (!function_exists('cpgGetMicroTime')) {
+function cpgGetMicroTime()
+{
+	list($usec, $sec) = explode(" ", microtime());
+	return ((float)$usec + (float)$sec);
+}
+}
+
+set_include_path(get_include_path().PATH_SEPARATOR.dirname(__FILE__).PATH_SEPARATOR.dirname(__FILE__).DIRECTORY_SEPARATOR.'include');
+require_once('include/Inspekt.php');
+require_once('include/sql_parse.php');
+require_once('include/config.inc.php');
+require_once('include/functions.inc.php');
 ##################      DB     ##################
-//require ('include/init.inc.php');
-if ($CONFIG['dbservername'] == 'mysql') {
+/*if ($CONFIG['dbservername'] == 'mysql') {
 	require 'include/cpgdb/drivers/mysql_driver.php';
 	require 'include/cpgdb/sql/mysql.php';
 } elseif ($CONFIG['dbservername'] == 'mssql') {
 	require 'include/cpgdb/drivers/mssql_driver.php';
 	require 'include/cpgdb/sql/mssql.php';
-}
+}*/
 ##########################################
-require ('include/functions.inc.php');
+
+
 
 // The defaults values
 $errors = '';
@@ -59,15 +74,43 @@ $superCage = Inspekt::makeSuperCage();
 	$cpgsql->lock_querytime = TRUE;
 	##############################
 
+// If including includes/init.inc.php has worked as expected, the constants should be populated, so let's check that first
+if (!defined('SKIP_AUTHENTICATION') && defined('COPPERMINE_VERSION') && GALLERY_ADMIN_MODE) {
+    $_SESSION['auth'] = true;
+} else { // we need to populate the language array "manually"
+    $lang_update_php = array(
+      'title' => 'Updater', // cpg1.5
+      'welcome_updater' => 'Welcome to Coppermine update', // cpg1.5
+      'could_not_authenticate' => 'Could not authenticate you', // cpg1.5
+      'provide_admin_account' => 'Please provide your coppermine admin account details or your SQL account data', // cpg1.5
+      'try_again' => 'Try again', // cpg1.5
+      'mysql_connect_error' => 'Could not create a mySQL connection', // cpg1.5
+      'mysql_database_error' => 'mySQL could not locate a database called %s', // cpg1.5
+      'mysql_said' => 'MySQL said', // cpg1.5
+      'check_config_file' => 'Please check the SQL values in %s', // cpg1.5
+      'performing_database_updates' => 'Performing Database Updates', // cpg1.5
+      'ok' => 'OK', // cpg1.5
+      'already_done' => 'Already Done', // cpg1.5
+      'password_encryption' => 'Encryption of passwords', // cpg1.5
+      'category_tree' => 'Category tree', // cpg1.5
+      'authentication_needed' => 'Authentication needed', // cpg1.5
+      'username' => 'Username', // cpg1.5
+      'password' => 'Password', // cpg1.5
+      'update_completed' => 'Update completed', // cpg1.5
+      'check_versions' => 'It\'s recommended to %scheck your file versions%s if you just upgraded from an older version of coppermine', // cpg1.5 // Leave the %s untouched when translating - it wraps the link
+      'start_page' => 'If you didn\'t (or you don\'t want to check), you can go to %syour gallery\'s start page%s', // cpg1.5 // Leave the %s untouched when translating - it wraps the link
+      'errors_encountered' => 'The following errors were encountered and need to be corrected first', // cpg1.5
+    );
+}
+
+
 // ---------------------------- AUTHENTICATION --------------------------- //
-//ADMIN_ACCESS is a constant that can be defined for users who can't retrieve any kind of password
-if(!defined(ADMIN_ACCESS) && !$_SESSION['auth']){
-	html_header("Coppermine - Upgrade");
-	html_logo();
+// SKIP_AUTHENTICATION is a constant that can be defined for users who can't retrieve any kind of password
+if (!defined('SKIP_AUTHENTICATION') && !$_SESSION['auth']){
+	html_header($lang_update_php['title']);
 	if(!$superCage->post->keyExists('method')){
 		//first try to connect to the db to see if we can authenticate the admin
 		test_sql_connection();
-
 		if($errors != ''){
 			//we could not establish an sql connection, so update can't be done (and user can't be autenticated)
 			html_error($errors);
@@ -110,54 +153,158 @@ if(!defined(ADMIN_ACCESS) && !$_SESSION['auth']){
 			start_update();
 		}else{
 			//no go, try again
-			html_error('Could not authenticate you - <a href="update.php">try again</a>');
+			html_error($lang_update_php['could_not_authenticate'] . ' -  <a href="update.php">' . $lang_update_php['try_again'] .'</a>');
 		}
 	}
 	html_footer();
 } else {
-	$_SESSION['auth'] = true;
+	html_header($lang_update_php['title']);
+    $_SESSION['auth'] = true;
 	start_update();
+    html_footer();
+}
+
+// function definitions --- start
+// ------------------------- HTML OUTPUT FUNCTIONS ------------------------- //
+
+function html_header($title, $charset = 'iso8859-1')
+{
+    if (function_exists('pageheader') && defined('COPPERMINE_VERSION') && GALLERY_ADMIN_MODE) {
+        pageheader($title);
+    } else {
+        echo <<< EOT
+<!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+    <title>{$title}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset={$charset}" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <link type="text/css" rel="stylesheet" href="installer.css">
+</head>
+<body>
+<img class="logo" src="images/coppermine-logo.png" border="0" alt="" />
+EOT;
+    }
+}
+
+function html_error($error_msg = '')
+{
+    global $lang_update_php;
+
+    print <<< EOT
+      <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
+       <tr>
+        <td class="tableh1" colspan="2"><h2>{$lang_update_php['welcome_updater']}</h2>
+        </td>
+       </tr>
+EOT;
+    if ($error_msg) {
+        print <<< EOT
+       <tr>
+        <td class="tableh2" colspan="2" align="center"><span class="error">&#149;&nbsp;&#149;&nbsp;&#149;&nbsp;ERROR&nbsp;&#149;&nbsp;&#149;&nbsp;&#149;</span>
+        </td>
+       </tr>
+       <tr>
+        <td class="tableh2" colspan="2">
+            {$lang_update_php['errors_encountered']}:<br />
+        </td>
+       </tr>
+       <tr>
+        <td class="tableh2" colspan="2">
+            {$error_msg}
+        </td>
+       </tr>
+EOT;
+    }
+
+    print <<< EOT
+       </tr>
+      </table>
+EOT;
+}
+
+
+function html_install_success($notes)
+{
+    global $DFLT, $lang_update_php;
+    //Coppermine is now upgraded and ready to roll.
+    print '&nbsp;<br />';
+    print '<div class="maintable"><h2 class="tableh1">' . $lang_update_php['update_completed'] . '</h2>';
+    print '<p class="tableh2">';
+    printf($lang_update_php['check_versions'], '<a href="versioncheck.php">', '</a>');
+    print '. ';
+    printf($lang_update_php['start_page'], '<a href="index.php">', '</a>');
+    print '.</p></div>';
+}
+
+function html_footer()
+{
+    if (function_exists('pagefooter') && defined('COPPERMINE_VERSION') && GALLERY_ADMIN_MODE) {
+        pagefooter();
+    } else {
+        echo <<< EOT
+</body>
+</html>
+EOT;
+    }
+}
+
+function html_auth_box($method){
+    global $lang_update_php;
+    $superCage = Inspekt::makeSuperCage();
+    $debug_mode = '';
+    if ($superCage->get->keyExists('debug')) {
+        $debug_mode = '?debug';
+    }
+    echo <<< EOT
+    <h2>{$lang_update_php['welcome_updater']}</h2>
+
+    <form name="cpgform" id="cpgform" method="post" action="update.php{$debug_mode}">
+    <h2>{$lang_update_php['authentication_needed']}</h2>
+
+EOT;
+		if($method=='MySQL'){
+			echo $lang_update_php['could_not_authenticate']. '. <a href="update.php">' . $lang_update_php['try_again'] . '</a>';
+		}else{
+			echo $lang_update_php['provide_admin_account'];
+		}
+        echo <<< EOT
+
+        <div>
+        {$lang_update_php['username']}: <input type="text" name="user" size="30" class="textinput" /><br />
+        {$lang_update_php['password']}: <input type="password" name="pass" size="30" class="textinput"  /><br />
+        <input type="hidden" name="method" value="{$method}" /><br />
+        <input type="submit" name="submit" value="Login" class="button"  />
+        </div>
+
+        </form>
+        <script language="javascript" type="text/javascript">
+            <!--
+            document.cpgform.user.focus();
+            -->
+        </script>
+EOT;
 }
 
 // --------------------------------- MAIN CODE ----------------------------- //
 function start_update(){
-	// The updater
-	html_header("Coppermine - Upgrade");
-	//html_logo();
-	
-	test_fs();
-	if ($errors != '')
-		html_prereq_errors($errors);
-	else {
-		test_sql_connection();
-		if ($errors == '') {
-			update_tables();
-			update_system_thumbs();
-		} else {
-			html_error($errors);
-		}
-		if ($errors == '') {
-			html_install_success($notes);
-			session_destroy();
-		} else {
-			html_error($errors);
-		}
-	}
-	html_footer();
-}
-
-// ---------------------------- TEST PREREQUIRED --------------------------- //
-function test_fs()
-{
-    global $errors, $DFLT;
-    // No Filesystem Updates yet
-
-    // If plugins folder doesn't exist create it
-    if (!is_dir('./plugins')) {
-        $mask = umask(0);
-        mkdir('./plugins',0777);
-        umask($mask);
+	global $lang_update_php;
+    // The updater
+	//html_header($lang_update_php['title']);
+    test_sql_connection();
+    if ($errors == '') {
+        update_tables();
+        update_system_thumbs();
+    } else {
+        html_error($errors);
     }
+    if ($errors == '') {
+        html_install_success($notes);
+        session_destroy();
+    } else {
+        html_error($errors);
+    }
+	//html_footer();
 }
 
 function update_system_thumbs()
@@ -230,12 +377,6 @@ function cpg_get_config_value($config_name) {
 }
 ######################################################
 
-function cpgGetMicroTime()
-{
-	list($usec, $sec) = explode(" ", microtime());
-	return ((float)$usec + (float)$sec);
-}
-
 /**
  * Return an array containing the system thumbs in a directory
  */
@@ -277,21 +418,29 @@ function cpg_get_system_thumb_list($search_folder = 'images/')
 // ----------------------------- TEST FUNCTIONS ---------------------------- //
 function test_sql_connection()
 {
-	global $errors, $CONFIG;
-	$cpgsql = @ cpgDB::getInstance(); 
-	/*if (! $connect_id = @mysql_connect($CONFIG['dbserver'], $CONFIG['dbuser'], $CONFIG['dbpass'])) {
-		$errors .= "<hr /><br />Could not create a mySQL connection, please check the SQL values in include/config.inc.php<br /><br />MySQL error was : " . mysql_error() . "<br /><br />";
-	} elseif (! mysql_select_db($CONFIG['dbname'], $connect_id)) {
-		$errors .= "<hr /><br />mySQL could not locate a database called '{$CONFIG['dbname']}' please check the value entered for this in include/config.inc.php<br /><br />";
-	} else {
-		$CONFIG['LINK_ID'] = $connect_id;
-	}	*/
-	$connect_id = $cpgsql->connect($CONFIG['dbname'], $CONFIG['dbserver'], $CONFIG['dbuser'], $CONFIG['dbpass']);
-	if (!$connect_id || $connect_id == 0) {
-		$errors .= $cpgsql->Error;
-	} else {
-		$CONFIG['LINK_ID'] = $connect_id;
-	}
+    global $errors, $CONFIG, $lang_update_php;
+    /*if (! $connect_id = @mysql_connect($CONFIG['dbserver'], $CONFIG['dbuser'], $CONFIG['dbpass'])) {
+        $errors .= '<hr />';
+        $errors .= $lang_update_php['mysql_connect_error'] . '. ';
+        $errors .= sprintf($lang_update_php['check_config_file'] . '. ', 'include/config.inc.php');
+        $errors .= '<br />';
+        $errors .= $lang_update_php['mysql_said'] . ': ' . mysql_error();
+    } elseif (! mysql_select_db($CONFIG['dbname'], $connect_id)) {
+        $errors .= '<hr />';
+        $errors .= sprintf($lang_update_php['mysql_database_error'] . '. ', $CONFIG['dbname']);
+        $errors .= sprintf($lang_update_php['check_config_file'] . '. ', 'include/config.inc.php');
+    } else {
+    	$CONFIG['LINK_ID'] = $connect_id;
+    } */
+    #######################################     DB     ##########################################
+    $cpgsql = @ cpgDB::getInstance(); 
+    $connect_id = $cpgsql->connect($CONFIG['dbname'], $CONFIG['dbserver'], $CONFIG['dbuser'], $CONFIG['dbpass']);
+    if (!$connect_id || $connect_id == 0) {
+        $errors .= $cpgsql->Error;
+    } else {
+        $CONFIG['LINK_ID'] = $connect_id;
+    }
+    #######################################################################################
 }
 
 
@@ -299,7 +448,7 @@ function test_sql_connection()
 // ------------------------- SQL QUERIES TO CREATE TABLES ------------------ //
 function update_tables()
 {
-    global $errors, $CONFIG;
+    global $errors, $CONFIG, $lang_update_php;
 	############  cpgdbal  ############
 	global $cpg_db_update_php;
 	$cpgsql = @ cpgDB::getInstance(); 
@@ -337,7 +486,7 @@ function update_tables()
         <table border="0" cellspacing="0" cellpadding="0" class="maintable">
             <tr>
                 <td class="tableh1" colspan="2">
-                    Performing Database Updates
+                    {$lang_update_php['performing_database_updates']}
                 </td>
             </tr>
 
@@ -441,22 +590,30 @@ EOT;
         }
         print '</td>'.$lineBreak; // end the table cell that contains the output
         if ($result && $affected) {
-            echo '<td width="20%" class="'.$cellStyle.' updatesOK">OK</td>'.$lineBreak;
+            echo '<td width="20%" class="'.$cellStyle.' updatesOK">' . $lang_update_php['ok'] . '</td>'.$lineBreak;
         } else {
-            echo '<td width="20%" class="'.$cellStyle.' updatesFail">Already Done</td>'.$lineBreak;
+            echo '<td width="20%" class="'.$cellStyle.' updatesFail">' . $lang_update_php['already_done'] . '</td>'.$lineBreak;
         }
+    } // end foreach loop
+    
+    // Check password encryption and perform the conversion if applicable
+    if ($loopCounter/2 == floor($loopCounter/2)) {
+        $cellStyle = 'tableb';
+    } else {
+        $cellStyle = 'tableb tableb_alternate';
     }
+    $loopCounter++;
         print <<< EOT
             <tr>
-                <td class="tablef">
-                    Encryption of passwords:
+                <td class="{$cellStyle}">
+                    {$lang_update_php['password_encryption']}:
                 </td>
 EOT;
     $CONFIG['enable_encrypted_passwords'] = cpg_get_config_value('enable_encrypted_passwords');
     if ($CONFIG['enable_encrypted_passwords'] != 1) {
         print <<< EOT
-                <td class="tablef updatesOK">
-                    OK
+                <td class="{$cellStyle} updatesOK">
+                    {$lang_update_php['ok']}
                 </td>
             </tr>
 EOT;
@@ -482,32 +639,39 @@ EOT;
 		##########################################################################
     } else {
         print <<< EOT
-                <td class="tablef updatesFail">
-                    Already done
+                <td class="{$cellStyle} updatesFail">
+                    {$lang_update_php['already_done']}
                 </td>
             </tr>
 EOT;
     }
     
-            print <<< EOT
+    // Check category tree modifications 
+    if ($loopCounter/2 == floor($loopCounter/2)) {
+        $cellStyle = 'tableb';
+    } else {
+        $cellStyle = 'tableb tableb_alternate';
+    }
+    $loopCounter++;
+    print <<< EOT
             <tr>
-                <td class="tablef">
-                    Category tree:
+                <td class="{$cellStyle}">
+                    {$lang_update_php['category_tree']}:
                 </td>
 EOT;
     
     if (check_rebuild_tree()) {
     
         print <<< EOT
-                <td class="tablef updatesOK">
-                    OK
+                <td class="{$cellStyle} updatesOK">
+                    {$lang_update_php['ok']}
                 </td>
             </tr>
 EOT;
     } else {
         print <<< EOT
-                <td class="tablef updatesFail">
-                    Already done
+                <td class="{$cellStyle} updatesFail">
+                    {$lang_update_php['already_done']}
                 </td>
             </tr>
 EOT;
@@ -515,4 +679,5 @@ EOT;
     
     echo "</table>";
 }
+// function definitions --- end
 ?>

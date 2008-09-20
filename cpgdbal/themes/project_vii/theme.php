@@ -12,17 +12,15 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4224 $
+  $Revision: 5017 $
   $LastChangedBy: gaugau $
-  $Date: 2008-01-26 17:12:00 +0530 (Sat, 26 Jan 2008) $
+  $Date: 2008-09-09 21:20:51 +0530 (Tue, 09 Sep 2008) $
 **********************************************/
 
 // ------------------------------------------------------------------------- //
 // This theme has had all redundant CORE items removed                       //
 // ------------------------------------------------------------------------- //
 define('THEME_HAS_NO_SUB_MENU_BUTTONS', 1);
-define('THEME_IS_XHTML10_TRANSITIONAL',1);  // Remove this if you edit this template until
-                                            // you have validated it. See docs/theme.htm.
 
 // HTML template for template sys_menu spacer
 $template_sys_menu_spacer ="|";

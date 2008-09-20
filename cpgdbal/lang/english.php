@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $Source$
-  $Revision: 4997 $
+  $Revision: 5046 $
   $LastChangedBy: gaugau $
-  $Date: 2008-09-04 22:58:57 +0530 (Thu, 04 Sep 2008) $
+  $Date: 2008-09-20 02:37:43 +0530 (Sat, 20 Sep 2008) $
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
@@ -195,14 +195,14 @@ $lang_main_menu = array(
   'fav_lnk' => 'My Favorites',
   'memberlist_title' => 'Show Memberlist',
   'memberlist_lnk' => 'Memberlist',
-  'faq_title' => 'Frequently Asked Questions on the picture gallery &quot;Coppermine&quot;',
-  'faq_lnk' => 'FAQ',
   'browse_by_date_lnk' => 'By Date', // cpg1.5
   'browse_by_date_title' => 'Browse by date uploaded', // cpg1.5
   'contact_title' => 'Get in contact with %s', // cpg1.5
   'contact_lnk' => 'Contact', // cpg1.5
   'sidebar_title' => 'Add a Sidebar to your browser', // cpg1.5
   'sidebar_lnk' => 'Sidebar', // cpg1.5
+  'main_menu' => 'Main Menu', // cpg1.5
+  'sub_menu' => 'Sub Menu', // cpg1.5
 );
 
 $lang_gallery_admin_menu = array(
@@ -256,6 +256,7 @@ $lang_gallery_admin_menu = array(
   'shownews_title' => 'Display the news from coppermine-gallery.net', // cpg1.5
   'export_lnk' => 'Export', // cpg1.5
   'export_title' => 'Export files and albums to disk', // cpg1.5
+  'admin_menu' => 'Admin Menu', // cpg1.5
 );
 
 $lang_user_admin_menu = array(
@@ -777,7 +778,6 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'theme' =>   'Theme', // cpg1.5
   'theme_list' =>   'Display theme list', // cpg1.5
   'theme_reset' =>   'Display &quot;reset&quot; in theme selection', // cpg1.5
-  'display_faq' =>   'Display FAQ', // cpg1.5
   'custom_lnk_name' =>   'Custom menu link name', // cpg1.5
   'custom_lnk_url' =>   'Custom menu link URL', // cpg1.5
   'enable_menu_icons' =>   'Enable menu icons', // cpg1.5
@@ -932,6 +932,7 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'login_threshold' =>   'Number of failed login attempts until temporary ban', // cpg1.5
   'login_threshold_detail' =>   '(to avoid brute force attacks)', // cpg1.5
   'login_expiry' =>   'Duration of a temporary ban after failed logins', // cpg1.5
+  'minutes' =>   'minutes', // cpg1.5
   'report_post' =>   'Enable Report to Admin', // cpg1.5
   'user_profile1_name' =>   'Profile 1 name', // cpg1.5
   'user_profile2_name' =>   'Profile 2 name', // cpg1.5
@@ -1401,49 +1402,6 @@ if (defined('EXPORT_PHP')) $lang_export_php = array(
 );
 
 // ------------------------------------------------------------------------- //
-// File faq.php
-// ------------------------------------------------------------------------- //
-
-if (defined('FAQ_PHP')) $lang_faq_php = array(
-  'faq' => 'Frequently Asked Questions',
-  'toc' => 'Table of contents',
-  'question' => 'Question: ',
-  'answer' => 'Answer: ',
-);
-
-if (defined('FAQ_PHP')) $lang_faq_data = array(
-  'General FAQ',
-  array('Why do I need to register?', 'Registration may or may not be required by the administrator. Registration gives a member additional features such as uploading, having a favorite list, rating pictures and posting comments etc.', 'allow_user_registration', '1'),
-  array('How do I register?', 'Go to &quot;Register&quot; and fill out the required fields (and the optional ones if you want to).<br />If the Administrator has Email Activation enabled, then after submitting your information you should receive an email message at the address that you have submitted while registering, giving you instructions on how to activate your membership. Your membership must be activated in order for you to login.', 'allow_user_registration', '1'),
-  array('How Do I login?', 'Go to &quot;Login&quot;, submit your username and password and check &quot;Remember Me&quot; so you will be logged in on the site if you should leave it.<br /><strong>IMPORTANT:Cookies must be enabled and the cookie from this site must not be deleted in order to use &quot;Remember Me&quot;.</strong>', 'offline', 0),
-  array('Why can I not login?', 'Did you register and click the link that was sent to you via email?. The link will activate your account. For other login problems contact the site administrator.', 'offline', 0),
-  array('What if I forgot my password?', 'If this site has a &quot;Forgot password&quot; link then use it. Other than that contact the site administrator for a new password.', 'offline', 0),
-  //array('What if I changed my email address?', 'Just simply login and change your email address through &quot;Profile&quot;', 'offline', 0),
-  array('How do I save a picture to &quot;My Favorites&quot;?', 'Click on a picture and click on the &quot;picture info&quot; link (<img src="images/info.gif" width="16" height="16" border="0" alt="Picture information" />); scroll down to the picture information set and click &quot;Add to fav&quot;.<br />The administrator may have the &quot;picture information&quot; on by default.<br />IMPORTANT:Cookies must be enabled and the cookie from this site must not be deleted.', 'offline', 0),
-  array('How do I rate a file?', 'Click on a thumbnail and go to the bottom and choose a rating.', 'offline', 0),
-  array('How do I post a comment for a picture?', 'Click on a thumbnail and go to the bottom and post a comment.', 'offline', 0),
-  array('How do I upload a file?', 'Go to &quot;Upload&quot;and select the album that you want to upload to. Click &quot;Browse,&quot; find the file to upload, and click &quot;open.&quot; Add a title and description if you want. Click &quot;Submit&quot;.<br /><br />Alternatively, for those users using <strong>Windows XP</strong>, you can upload multiple files directly to your own private albums using the XP Publishing wizard.<br />For instructions on how, and to get the required registry file, click <a href="xp_publish.php">here.</a>', 'allow_private_albums', 1),
-  array('Where do I upload a picture to?', 'You will be able to upload a file to one of your albums in &quot;My Gallery&quot;. The Administrator may also allow you to upload a file to one or more of the albums in the Main Gallery.', 'allow_private_albums', 0),
-  array('What type and size of a file can I upload?', 'The size and type (jpg, png, etc.) is up to the administrator.', 'offline', 0),
-  array('How do I create, rename or delete an album in &quot;My Gallery&quot;?', 'You should already be in &quot;Admin-Mode&quot;<br />Go to &quot;Create/Order My Albums&quot;and click &quot;New&quot;. Change &quot;New Album&quot; to your desired name.<br />You can also rename any of the albums in your gallery.<br />Click &quot;Apply Modifications&quot;.', 'allow_private_albums', 0),
-  array('How can I modify and restrict users from viewing my albums?', 'You should already have &quot;admin controls&quot; turned on<br />Go to &quot;Modify My Albums. On the &quot;Update Album&quot; bar, select the album that you want to modify.<br />Here, you can change the name, description, thumbnail picture, restrict viewing and comment/rating permissions.<br />Click &quot;Update Album&quot;.', 'allow_private_albums', 0),
-  array('How can I view other users\' galleries?', 'Go to &quot;Album List&quot; and select &quot;User Galleries&quot;.', 'allow_private_albums', 0),
-  array('What are cookies?', 'Cookies are a plain text piece of data that is sent from a website and is put on to your computer.<br />Cookies usually allow a user to leave and return to the site without having to login again and other various chores.', 'offline', 0),
-  array('Where can I get this program for my site?', 'Coppermine is a free Multimedia Gallery, released under GNU GPL. It is full of features and has been ported to various platforms. Visit the <a href="http://coppermine.sf.net/">Coppermine Home Page</a> to find out more or download it.', 'offline', 0),
-
-  'Navigating the Site',
-  array('What\'s &quot;Album List&quot;?', 'This will show you the entire category you are currently in, with a link to each album. If you are not in a category, it will show you the entire gallery with a link to each category. Thumbnails may be a link to the category.', 'offline', 0),
-  array('What\'s &quot;My Gallery&quot;?', 'This feature lets users create their own galleries and add, delete or modify albums as well as upload to them.', 'allow_private_albums', 1),
-  array('What\'s &quot;Upload Picture&quot;?', 'This feature allows a user to upload a file (size and type is set by the site administrator) to a gallery selected by either you or the administrator.', 'allow_private_albums', 0),
-  array('What\'s &quot;Last Uploads&quot;?', 'This feature shows the last uploads to the site.', 'offline', 0),
-  array('What\'s &quot;Last Comments&quot;?', 'This feature shows the last comments along with the files posted by users.', 'offline', 0),
-  array('What\'s &quot;Most Viewed&quot;?', 'This feature shows the most viewed files by all users (whether logged in or not).', 'offline', 0),
-  array('What\'s &quot;Top Rated&quot;?', 'This feature shows the top rated files rated by the users, showing the average rating (e.g: five users each gave a <img src="images/rating3.gif" width="65" height="14" border="0" alt="" />: the file would have an average rating of <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> ;Five users rated the file from 1 to 5 (1,2,3,4,5) would result in an average <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> .)<br />The ratings go from <img src="images/rating5.gif" width="65" height="14" border="0" alt="best" /> (best) to <img src="images/rating0.gif" width="65" height="14" border="0" alt="worst" /> (worst).', 'offline', 0),
-  array('What\'s &quot;My Favorites&quot;?', 'This feature will let a user store a favorite file in the cookie that was sent to your computer.', 'offline', 0),
-);
-
-
-// ------------------------------------------------------------------------- //
 // File forgot_passwd.php
 // ------------------------------------------------------------------------- //
 
@@ -1582,7 +1540,9 @@ if (defined('INSTALL_PHP')) $lang_install = array(
   'check_path' => 'Check path',
   'continue' => 'Next step',
   'conv_said' => 'The convert program said:',
-  'cpg_info' => 'Coppermine is a picture/multimedia gallery script that is being released under GNU GPL v3. Please review the documentation for <a href="docs/copyrights.htm">license details',
+  'license_info' => 'Coppermine is a picture/multimedia gallery script that is being released under GNU GPL v3. By installing you agree to be bound to the license coppermine comes with:',
+  'cpg_info_frames' => 'Your browser appears not to be capable to display inline frames. You can review the license within the docs folder that ships with your coppermine package.',
+  'license' => 'Coppermine license agreement',
   'create_table' => 'Creating table \'%s\'',
   'db_populating' => 'Trying to insert data in the database.',
   'db_alr_populated' => 'Already inserted required data in the database.',
@@ -1745,6 +1705,7 @@ if (defined('MINIBROWSER_PHP')) $lang_minibrowser_php = array(
   'current_path' => 'current path',
   'select_directory' => 'please select a directory',
   'click_to_close' => 'Click image to close this window',
+  'folder' => 'Folder', // cpg1.5
 );
 
 // ------------------------------------------------------------------------- //
@@ -2409,6 +2370,37 @@ The management of {SITE_NAME}
 
 EOT;
 }
+
+// ------------------------------------------------------------------------- //
+// File uppdate.php
+// ------------------------------------------------------------------------- //
+
+if (defined('UPDATE_PHP')) {
+$lang_update_php = array(
+  'title' => 'Updater', // cpg1.5
+  'welcome_updater' => 'Welcome to Coppermine update', // cpg1.5
+  'could_not_authenticate' => 'Could not authenticate you', // cpg1.5
+  'provide_admin_account' => 'Please provide your coppermine admin account details or your SQL account data', // cpg1.5
+  'try_again' => 'Try again', // cpg1.5
+  'mysql_connect_error' => 'Could not create a mySQL connection', // cpg1.5
+  'mysql_database_error' => 'mySQL could not locate a database called %s', // cpg1.5
+  'mysql_said' => 'MySQL said', // cpg1.5
+  'check_config_file' => 'Please check the SQL values in %s', // cpg1.5
+  'performing_database_updates' => 'Performing Database Updates', // cpg1.5
+  'ok' => 'OK', // cpg1.5
+  'already_done' => 'Already Done', // cpg1.5
+  'password_encryption' => 'Encryption of passwords', // cpg1.5
+  'category_tree' => 'Category tree', // cpg1.5
+  'authentication_needed' => 'Authentication needed', // cpg1.5
+  'username' => 'Username', // cpg1.5
+  'password' => 'Password', // cpg1.5
+  'update_completed' => 'Update completed', // cpg1.5
+  'check_versions' => 'It\'s recommended to %scheck your file versions%s if you just upgraded from an older version of coppermine', // cpg1.5 // Leave the %s untouched when translating - it wraps the link
+  'start_page' => 'If you didn\'t (or you don\'t want to check), you can go to %syour gallery\'s start page%s', // cpg1.5 // Leave the %s untouched when translating - it wraps the link
+  'errors_encountered' => 'The following errors were encountered and need to be corrected first', // cpg1.5
+);
+}
+
 // ------------------------------------------------------------------------- //
 // File util.php
 // ------------------------------------------------------------------------- //
@@ -2543,6 +2535,8 @@ if (defined('VERSIONCHECK_PHP')) $lang_versioncheck_php = array(
   'review_dev_version' => 'Your file is newer than anticipated',
   'review_modified' => 'File may be corrupt (or you have deliberately edited it)',
   'review_missing' => '%s missing or inaccessible',
+  'existing' => 'existing',
+  'review_removed_existing' => 'The file must be removed for security reasons',
   'counter' => 'Counter',
   'type' => 'Type',
   'path' => 'Path',
@@ -2557,6 +2551,7 @@ if (defined('VERSIONCHECK_PHP')) $lang_versioncheck_php = array(
   'browse_corresponding_page_subversion' => 'Browse page corresponding to this file in the project\'s subversion repository',
   'mandatory' => 'mandatory',
   'optional' => 'optional',
+  'removed' => 'removed',
   'options' => 'Options',
   'display_output' => 'Display output',
   'on_screen' => 'Full Screen',

@@ -10,11 +10,11 @@
   as published by the Free Software Foundation.
   
   ********************************************
-  Coppermine version: 1.4.3
+  Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4985 $
+  $Revision: 5030 $
   $LastChangedBy: gaugau $
-  $Date: 2008-09-02 02:35:01 +0530 (Tue, 02 Sep 2008) $
+  $Date: 2008-09-11 20:30:22 +0530 (Thu, 11 Sep 2008) $
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');

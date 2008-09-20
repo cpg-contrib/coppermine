@@ -75,7 +75,7 @@ function Bookmark() {
 			url: 'http://ma.gnolia.com/bookmarklet/add?url={u}&amp;title={t}'},
 		'mindbody': {display: 'MindBodyGreen', icon: 21,
 			url: 'http://www.mindbodygreen.com/passvote.action?u={u}'},
-		'misterwong': {display: 'Mister Wong', icon: 22,
+		'misterwong': {display: 'Mister-Wong.com', icon: 22,
 			url: 'http://www.mister-wong.com/index.php?action=addurl&amp;bm_url={u}&amp;bm_description={t}'},
 		'mixx': {display: 'Mixx', icon: 23,
 			url: 'http://www.mixx.com/submit/story?page_url={u}&amp;title={t}'},
@@ -121,8 +121,12 @@ function Bookmark() {
 			url: 'http://www.alltagz.de/bookmarks/?action=add&address={u}&title={t}'},
 		'linksilo': {display: 'Linksilo.de', icon: 45,
 			url: 'http://www.linksilo.de/index.php?area=bookmarks&func=bookmark_new&addurl={u}&addtitle={t}'},
+        'iciode': {display: 'Icio.de', icon: 54,
+			url: 'http://www.icio.de/login.php?popup=1&url={u}&title={t}'},
 		'maodi': {display: 'Maodi.de', icon: 46,
 			url: 'http://www.maodi.de/bookmarks/?action=add&address={u}&title={t}'},
+        'misterwongde': {display: 'Mister-Wong.de', icon: 53,
+			url: 'http://www.mister-wong.de/index.php?action=addurl&bm_url={u}&bm_description={t}'},
 		'newstube': {display: 'Newstube.de', icon: 47,
 			url: 'http://newstube.de/submit.php?url={u}'},
 		'oneview': {display: 'oneview.de', icon: 48,
@@ -134,7 +138,7 @@ function Bookmark() {
 		'webbrille': {display: 'Webbrille.de', icon: 51,
 			url: 'http://www.webbrille.de/bookmarks.php/?action=add&address={u}&title={t}'},
 		'webnews': {display: 'Webnews.de', icon: 52,
-			url: 'http://www.webnews.de/einstellen?url={u}&title={t}'}	
+			url: 'http://www.webnews.de/einstellen?url={u}&title={t}'}
 	};
 }
 

@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4981 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-09-01 13:37:08 +0530 (Mon, 01 Sep 2008) $
+  $Revision: 5042 $
+  $LastChangedBy: nibbler999 $
+  $Date: 2008-09-17 19:02:17 +0530 (Wed, 17 Sep 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -108,6 +108,7 @@ EOT;
    sort($total_array);
 
    $output = implode("</tr>\n<tr>", $total_array);
+   unset($total_array);
 
    echo <<<EOT
 <form name="keywordForm" id="cpgform" action="keywordmgr.php?page=changeword" method="post">

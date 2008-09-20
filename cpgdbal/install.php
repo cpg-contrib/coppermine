@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4981 $
+  $Revision: 5044 $
   $LastChangedBy: gaugau $
-  $Date: 2008-09-01 13:37:08 +0530 (Mon, 01 Sep 2008) $
+  $Date: 2008-09-19 13:00:08 +0530 (Fri, 19 Sep 2008) $
 **********************************************/
 ########################
 ####Install Main Code###
@@ -632,12 +632,29 @@ function html_welcome()
         $next_step = 2;
     }
 ?>
+      &nbsp;<br />
       <form action="install.php?step=<?php echo $next_step; ?>" name="cpgform" id="cpgform" method="post" style="margin:0px;padding:0px">
         <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
          <tr>
-          <td class="tableb" colspan="2"><?php echo $install->language['cpg_info']; ?></a>.
+          <td class="tableh1" colspan="2">
+          	<h2><?php echo $install->language['license']; ?></h2>
           </td>
          </tr>
+         <tr>
+          <td class="tableb" colspan="2">
+          	<?php echo $install->language['license_info']; ?>
+          </td>
+         </tr>
+         <tr>
+          <td class="tableb" colspan="2">
+          	<iframe src="docs/en/copyrights.htm?hide_nav=1" width="100%" height="300" name="license">
+  			<?php echo $install->language['cpg_info_frames']; ?></a>.
+			</iframe>
+          </td>
+         </tr>
+       </table>
+       &nbsp;<br />
+       <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
         
 <?php
     if ($install->error != '') {    

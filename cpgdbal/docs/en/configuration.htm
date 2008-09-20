@@ -3,19 +3,19 @@
 <head>
 <title>Configuration - Coppermine Photo Gallery - Documentation &amp; Manual</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="language"    content="en">
-<meta name="copyright"   content="Coppermine dev team">
+<meta name="language" content="en" />
+<meta name="copyright" content="Coppermine dev team" />
 <meta name="description" content="The gallery configuration page is where you will configure the most important parts of your coppermine gallery.">
-<meta http-equiv="Content-Style-Type" content="text/css">
-<meta name="MSSmartTagsPreventParsing" content="true">
-<meta http-equiv="imagetoolbar" content="no">
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="MSSmartTagsPreventParsing" content="true" />
+<meta http-equiv="imagetoolbar" content="no" />
 <!--
   SVN version info:
 
   Coppermine version: 1.5.0
-  $Revision: 4981 $
+  $Revision: 5046 $
   $LastChangedBy: gaugau $
-  $Date: 2008-09-01 13:37:08 +0530 (Mon, 01 Sep 2008) $
+  $Date: 2008-09-20 02:37:43 +0530 (Sat, 20 Sep 2008) $
 -->
 <link rel="stylesheet" type="text/css" href="../style.css" media="all" />
 <link rel="stylesheet" type="text/css" href="../screen.css" media="screen" />
@@ -46,6 +46,8 @@
 <a name="admin_general"></a><h2>General settings<a href="#admin_general" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <a name="admin_general_name"></a><h3>Gallery name<a href="#admin_general_name" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Enter the name of your gallery in this text field. The name you enter will appear as the title that is displayed in the web browser's title bar and is also displayed in many of the different theme templates.</p>
+<p>Even if you have removed the corresponding token from your custom theme, you should fill this in correctly, as it will be used when sending ecards and in all kinds of emails sent from your gallery (e.g. during registration).</p>
+<p class="quote">Example: <tt class="code">Tim's incredible picture gallery</tt></p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; General settings &rarr; Gallery name</p>
 <a name="admin_general_name_end"></a>
 <hr />
@@ -56,13 +58,15 @@
 <hr />
 <a name="admin_general_email"></a><h3>Gallery administrator email<a href="#admin_general_email" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>All emails sent by the gallery will be sent using this email address. This must be a valid email address.</p>
-<p>Coppermine will use this address as "from"-address when sending emails (e.g. during registration). It's mandatory to have this email address populated properly. If you have your own domain, it might be a good idea to use an email account that correlates to your domain name.</br>
-    Example: if your domain name is &quot;example.com&quot;, you should create an email address named gallery@example.com and use that email address in coppermine's config. Coppermine does <strong>not</strong> create that email address for you!</p>
+<p>Coppermine will use this address as "from"-address when sending emails (e.g. during registration). It's mandatory to have this email address populated properly. If you have your own domain, it might be a good idea to use an email account that correlates to your domain name.</p>
+<p class="quote">Example: if your domain name is &quot;<tt class="code">example.com</tt>&quot;, you should create an email address named <tt class="code">gallery@example.com</tt> and use that email address in coppermine's config. Coppermine does <strong>not</strong> create that email address for you!</p>
+<p>Users sometimes ask on the support board if they can use another email, e.g. one from a fremail provider like gmail, hotmail or similar. The answer is: we can't tell you if your webhost will allow you to do this. Many webhosts disallow such things for reasons of spam prevention. If you're not sure, ask your webhost for support.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; General settings &rarr; Gallery administrator email</p>
 <a name="admin_general_email_end"></a>
 <hr />
 <a name="admin_general_coppermine-url"></a><h3>URL of your coppermine gallery folder<a href="#admin_general_coppermine-url" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>This is the URL where a user will be directed to when s/he clicks on the &quot;See more pictures&quot; link in an e-card. This <em>must</em> be the URL to the root of your coppermine installation followed by a forward slash (just the path to your coppermine folder, e.g. <em>http://yourdomain.tld/coppermine/</em>). Do not specify a specific file (such as index.php) or subfolder within the coppermine gallery in this field.</p><p>In previous versions of Coppermine, this field was called &quot;Target address for the 'See more pictures' link in e-cards&quot;, but as this url is now being used for other functions in coppermine, it has been changed, appropriately.</p>
+<p>It is absolutely that you enter the gallery URL setting properly - if you don't, you will almost certainly experience "funny" behaviours of your gallery.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; General settings &rarr; URL of your coppermine gallery folder</p>
 <a name="admin_general_coppermine-url_end"></a>
 <hr />
@@ -190,15 +194,6 @@ You can toggle between these options (enabled or disabled) on the <a href="uploa
 <p>This option applies only if you enabled the user theme selection option - it will show a &quot;default&quot; list entry to let the users go back to the original theme of your gallery.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Themes settings &rarr; Display &quot;reset&quot; in theme selection</p>
 <a name="admin_theme_theme_reset_end"></a>
-<hr />
-<a name="admin_theme_faq"></a><h3>Display FAQ<a href="#admin_theme_faq" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>This option adds a &quot;FAQ&quot; link to the menu bar when enabled. If a user clicks on it, it will display a list of &quot;Frequently asked question&quot; on how to use coppermine. To change the content of the FAQ, edit the file /your_coppermine_folder/lang/yourlanguage.php (e.g. english.php) and look for</p>
-<pre>// ------------------------------------------------------------------------- //
-// File faq.php
-// ------------------------------------------------------------------------- //</pre>
-<p>Edit the content that comes after it.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Themes settings &rarr; Display FAQ</p>
-<a name="admin_theme_faq_end"></a>
 <hr />
 <a name="admin_sidebar"></a><h3>Sidebar for users / guests<a href="#admin_sidebar" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Determines wether a sidebar for browsers will be available for members of the admin group, registered users group and guest group.</p>
@@ -1412,7 +1407,7 @@ All log files are written in english</p>
 
 <script type="text/javascript">
   cpgDocFooter();
-  dateRevision(' $LastChangedDate: 2008-09-01 13:37:08 +0530 (Mon, 01 Sep 2008) $ ', ' $Revision: 4981 $ ');
+  dateRevision(' $LastChangedDate: 2008-09-20 02:37:43 +0530 (Sat, 20 Sep 2008) $ ', ' $Revision: 5046 $ ');
 </script>
 
 </body>

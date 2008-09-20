@@ -218,6 +218,7 @@ class cpgDB {
 		}
 		if (count($args)) {
 			$Query_String = vsprintf($Query_String, $args);
+			$pos = strpos($Query_String, 'DELETE');
 		}
 		
         if (!$this->connect()) {
@@ -244,15 +245,15 @@ class cpgDB {
         $this->Row = 0;
         //$this->Errno = mysql_errno();
         //$this->Error =  @sqlsrv_errors();
-        if (!$this->Query_ID && $this->update != TRUE) {
+        if (!$this->Query_ID && $this->update != TRUE && $pos === false) {
             //$this->halt("Invalid SQL: " . $Query_String);
 			$this->Error = sqlsrv_errors();
 			$this->db_error("Invalid SQL:".$Query_String);
         } 
 
-		//if ($this->update != TRUE) {
+		if ($this->Query_ID) {
 			$this->nextRecord();
-		//}	
+		}	
 		
 		if ($this->lock_querytime != TRUE) {
 			if (isset($CONFIG['debug_mode']) && (($CONFIG['debug_mode']==1) || ($CONFIG['debug_mode']==2) )) {
@@ -558,10 +559,9 @@ class cpgDB {
      */
     function insertId()
     {
-     sqlsrv_next_result($this->Query_ID);
-	 sqlsrv_fetch($this->Query_ID);
-	 return sqlsrv_get_field($this->Query_ID, 1);
-	   
+         sqlsrv_next_result($this->Query_ID);
+	     sqlsrv_fetch($this->Query_ID);
+         return sqlsrv_get_field($this->Query_ID, 0);
     }
 
 
