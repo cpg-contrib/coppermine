@@ -31,44 +31,46 @@ $optionLoopCounter = 0;
 $lineBreak = "\r\n";
 
 if (!GALLERY_ADMIN_MODE) {
-  cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+    cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 }
 
 if (!function_exists('form_get_foldercontent')) {
-  function form_get_foldercontent ($foldername, $fileOrFolder = 'folder', $validextension = '', $exception_array = array('')) {
-    global $CONFIG;
-    $dir = opendir($foldername);
-    while ($file = readdir($dir)) {
-        if ($fileOrFolder == 'file') {
-          $extension = ltrim(substr($file,strrpos($file,'.')),'.');
-          $filenameWithoutExtension = str_replace('.' . $extension, '', $file);
-          if (is_file($foldername . $file) && $extension == $validextension && in_array($filenameWithoutExtension, $exception_array) != TRUE) {
-              $return_array[] = $filenameWithoutExtension;
-          }
-        } elseif ($fileOrFolder == 'folder') {
-            if ($file != '.' && $file != '..' && in_array($file, $exception_array) != TRUE && is_dir($foldername.$file)) {
-              $return_array[] = $file;
+    function form_get_foldercontent ($foldername, $fileOrFolder = 'folder', $validextension = '', $exception_array = array('')) 
+    {
+        global $CONFIG;
+        $dir = opendir($foldername);
+        while ($file = readdir($dir)) {
+            if ($fileOrFolder == 'file') {
+                $extension = ltrim(substr($file,strrpos($file,'.')),'.');
+                $filenameWithoutExtension = str_replace('.' . $extension, '', $file);
+                if (is_file($foldername . $file) && $extension == $validextension && in_array($filenameWithoutExtension, $exception_array) != TRUE) {
+                    $return_array[] = $filenameWithoutExtension;
+                }
+            } elseif ($fileOrFolder == 'folder') {
+                if ($file != '.' && $file != '..' && in_array($file, $exception_array) != TRUE && is_dir($foldername.$file)) {
+                    $return_array[] = $file;
+                }
             }
         }
+        closedir($dir);
+        natcasesort($return_array);
+        return $return_array;
     }
-    closedir($dir);
-    natcasesort($return_array);
-    return $return_array;
-  }
 }
 
 if (!function_exists('array_is_associative')) { // make sure that this will not break in future PHP versions
-  function array_is_associative($array) {
-      if ( is_array($array) && ! empty($array) )
-      {
-          for ( $iterator = count($array) - 1; $iterator; $iterator-- )
-          {
-              if ( ! array_key_exists($iterator, $array) ) { return true; }
-          }
-          return ! array_key_exists(0, $array);
-      }
-      return false;
-  }
+    function array_is_associative($array) 
+    {
+        if (is_array($array) && ! empty($array)) {
+            for ( $iterator = count($array) - 1; $iterator; $iterator-- ) {
+                if (!array_key_exists($iterator, $array)) { 
+                    return true; 
+                }
+            }
+            return !array_key_exists(0, $array);
+        }
+        return false;
+    }
 }
 
 require_once('include/admin.inc.php'); // populate the array for the admin data (could later be done using an XML file)
@@ -77,143 +79,146 @@ require_once('include/admin.inc.php'); // populate the array for the admin data 
 // loop through the config sections and populate the array that determines what sections to expand/collapse
 $collapseSections_array = array(); // By default, all sections should be hidden. Let's populate the array first with all existing sections and then later remove the ones that are suppossed to be expanded by default
 foreach ($config_data as $key => $value) {
-  $collapseSections_array[] = $key;
+    $collapseSections_array[] = $key;
 }
 
 //$postCount = count($_POST);
 
 //if ($postCount > 0) {
-/*if ($superCage->post->keyExists('update_config')) {
-  $evaluation_array = $_POST;
-  //print_r($evaluation_array);
-  //die();
-} else {
-  $evaluation_array = $CONFIG;
-}*/
+    /*
+    if ($superCage->post->keyExists('update_config')) {
+        $evaluation_array = $_POST;
+        //print_r($evaluation_array);
+        //die();
+    } else {
+        $evaluation_array = $CONFIG;
+    }
+    */
 
 $userMessage = ''; //The message that the will be displayed if something went wrong or to tell the user that we had success
 $problemFields_array = array(); // we'll add field-wrapper-IDs to this array to visualize that something went wrong. Onload we'll assign the class "important" to the boxes that correspond to the array data
 
 //if (isset($_POST['restore_config'])) {
 if ($superCage->post->keyExists('restore_config')) { // user has chosen to factory-reset the config --- start
-  // Get an array of settings that mustn't be reset
-  $doNotReset_array = array();
-  foreach ($config_data as $config_section_key => $config_section_value) { // loop through the array of config sections --- start
-    foreach ($config_section_value as $adminDataKey => $adminDataValue) { // loop through the array of individual config entries per section --- start
-      if ($adminDataValue['preserve_when_resetting'] == '1') {
-        $doNotReset_array[] = $adminDataKey;
-      }
-    } // loop through the array of individual config entries per section --- end
-  } // loop through the array of config sections --- end
-  $default_config = 'sql/basic.sql';
-  $sql_query = fread(fopen($default_config, 'r'), filesize($default_config));
-  $sql_query = preg_replace('/CPG_/', $CONFIG['TABLE_PREFIX'], $sql_query);
-  cpg_db_query("TRUNCATE TABLE {$CONFIG['TABLE_CONFIG']}");
-  cpg_db_query("TRUNCATE TABLE {$CONFIG['TABLE_FILETYPES']}");
-  $sql_query = remove_remarks($sql_query);
-  $sql_query = split_sql_file($sql_query, ';');
-  $sql_count = count($sql_query);
-  for($i = 0; $i < $sql_count; $i++) {
-    if (strpos($sql_query[$i],'config VALUES') || strpos($sql_query[$i],'filetypes VALUES')) {
-      cpg_db_query($sql_query[$i]);
+    // Get an array of settings that mustn't be reset
+    $doNotReset_array = array();
+    foreach ($config_data as $config_section_key => $config_section_value) { // loop through the array of config sections --- start
+        foreach ($config_section_value as $adminDataKey => $adminDataValue) { // loop through the array of individual config entries per section --- start
+            if ($adminDataValue['preserve_when_resetting'] == '1') {
+                $doNotReset_array[] = $adminDataKey;
+            }
+        } // loop through the array of individual config entries per section --- end
+    } // loop through the array of config sections --- end
+    $default_config = 'sql/basic.sql';
+    $sql_query = fread(fopen($default_config, 'r'), filesize($default_config));
+    $sql_query = preg_replace('/CPG_/', $CONFIG['TABLE_PREFIX'], $sql_query);
+    cpg_db_query("TRUNCATE TABLE {$CONFIG['TABLE_CONFIG']}");
+    cpg_db_query("TRUNCATE TABLE {$CONFIG['TABLE_FILETYPES']}");
+    $sql_query = remove_remarks($sql_query);
+    $sql_query = split_sql_file($sql_query, ';');
+    $sql_count = count($sql_query);
+    for($i = 0; $i < $sql_count; $i++) {
+        if (strpos($sql_query[$i],'config VALUES') || strpos($sql_query[$i],'filetypes VALUES')) {
+            cpg_db_query($sql_query[$i]);
+        }
     }
-  }
-  // undo the reset for config fields specified in $doNotReset_array
-  foreach ($doNotReset_array as $key) {
-    $f= cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '{$CONFIG[$key]}' WHERE name = '$key'");
-  }
-  cpgRedirectPage($CPG_PHP_SELF, cpg_fetch_icon('warning', 2) . $lang_common['information'], $lang_admin_php['restore_success']);
+    // undo the reset for config fields specified in $doNotReset_array
+    foreach ($doNotReset_array as $key) {
+        $f= cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '{$CONFIG[$key]}' WHERE name = '$key'");
+    }
+    cpgRedirectPage($CPG_PHP_SELF, cpg_fetch_icon('warning', 2) . $lang_common['information'], $lang_admin_php['restore_success']);
 }  // user has chosen to factory-reset the config --- end
 
 
-  foreach ($config_data as $config_section_key => $config_section_value) { // Loop through the config fields to check posted values for validity -- start
+foreach ($config_data as $config_section_key => $config_section_value) { // Loop through the config fields to check posted values for validity -- start
     foreach ($config_section_value as $adminDataKey => $adminDataValue) {
-      if ($superCage->post->keyExists('update_config')) {
-        $evaluate_value = $superCage->post->getEscaped($adminDataKey);
-      } else {
-      	$evaluate_value = $CONFIG[$adminDataKey];
-      }
-      // We need to catter for the fact that checkboxes that haven't been ticked are not being submit
-      if ($adminDataValue['type'] == 'checkbox' && !$evaluate_value) {
-        $evaluate_value = '0';
-      }
-      if ($adminDataValue['type'] == 'checkbox' && !$CONFIG[$adminDataKey]) {
-        $CONFIG[$adminDataKey] = '0';
-      }
-      // the data for 'select_multiple' is an array. Let's concatenate it into a single value
-      if ($adminDataValue['type'] == 'select_multiple') {
-        if (is_array($evaluate_value)) {
-          for ($i = 0; $i <= end($evaluate_value); $i++) {
-	          if (in_array($i, $evaluate_value) == TRUE) {
-		          $temp .= '1';
-	          } else {
-		          $temp .= '0';
-	          }
-	          $temp .= '|';
-          }
-          unset($evaluate_value);
-          $evaluate_value = rtrim($temp, '|');
-          unset($temp);
+        if ($superCage->post->keyExists('update_config')) {
+            $evaluate_value = $superCage->post->getEscaped($adminDataKey);
+        } else {
+            $evaluate_value = $CONFIG[$adminDataKey];
         }
-      }
-      // regex check
-      if ((isset($adminDataValue['regex']) && $adminDataValue['regex'] != '') || (isset($adminDataValue['regex_not']) && $adminDataValue['regex_not'] != '')) {
-        if ((isset($adminDataValue['regex']) && $adminDataValue['regex'] != '' && eregi($adminDataValue['regex'],$evaluate_value) == FALSE) || (isset($adminDataValue['regex_not']) && $adminDataValue['regex_not'] != '' && eregi($adminDataValue['regex_not'],$evaluate_value) == TRUE)) {
-          $userMessage .= '<li style="list-style-image:url(images/icons/stop.png)">'.sprintf($lang_admin_php['config_setting_invalid'], '<a href="#'.$adminDataKey.'">'.$lang_admin_php[$adminDataKey].'</a>').'</li>'.$lineBreak;
-          $regexValidation = '0';
-          //$admin_data_array[$adminDataKey] = $evaluation_array[$adminDataKey]; // replace the stuff in the form field with the improper input, so the user can see and correct his error
-          $admin_data_array[$adminDataKey] = $evaluate_value; // replace the stuff in the form field with the improper input, so the user can see and correct his error
-          if (in_array($adminDataKey,$problemFields_array) != TRUE) {
-            $problemFields_array[] = $adminDataKey;
-          }
-          if (in_array($config_section_key,$collapseSections_array) == TRUE) {
-            unset($collapseSections_array[array_search($config_section_key,$collapseSections_array)]);
-          }
-        } else { // regex validation succesfull -- start
-          $regexValidation = '1';
-        } // regex validation succesfull -- end
-      } else { // no regex settings available - set validation var to successfull anyway
-        $regexValidation = '1';
-      }
-      if ($superCage->post->keyExists('update_config') && $regexValidation == '1' && $evaluate_value != $CONFIG[$adminDataKey] && $CONFIG[$adminDataKey] !== stripslashes($evaluate_value) ) {
-        //  finally, all criteria have been met - let's write the updated data to the database
-        cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$evaluate_value' WHERE name = '$adminDataKey'");
-        // perform special tasks -- start
-        if ($CONFIG['log_mode'] == CPG_LOG_ALL) { // write log -- start
+        // We need to catter for the fact that checkboxes that haven't been ticked are not being submit
+        if ($adminDataValue['type'] == 'checkbox' && !$evaluate_value) {
+            $evaluate_value = '0';
+        }
+        if ($adminDataValue['type'] == 'checkbox' && !$CONFIG[$adminDataKey]) {
+            $CONFIG[$adminDataKey] = '0';
+        }
+        // the data for 'select_multiple' is an array. Let's concatenate it into a single value
+        if ($adminDataValue['type'] == 'select_multiple') {
+            if (is_array($evaluate_value)) {
+                $temp = '';
+                for ($i = 0; $i <= end($evaluate_value); $i++) {
+                    if (in_array($i, $evaluate_value) == TRUE) {
+                        $temp .= '1';
+                    } else {
+                        $temp .= '0';
+                    }
+                    $temp .= '|';
+                }
+                unset($evaluate_value);
+                $evaluate_value = rtrim($temp, '|');
+                unset($temp);
+            }
+        }
+        // regex check
+        if ((isset($adminDataValue['regex']) && $adminDataValue['regex'] != '') || (isset($adminDataValue['regex_not']) && $adminDataValue['regex_not'] != '')) {
+            if ((isset($adminDataValue['regex']) && $adminDataValue['regex'] != '' && eregi($adminDataValue['regex'],$evaluate_value) == FALSE) || (isset($adminDataValue['regex_not']) && $adminDataValue['regex_not'] != '' && eregi($adminDataValue['regex_not'],$evaluate_value) == TRUE)) {
+                $userMessage .= '<li style="list-style-image:url(images/icons/stop.png)">'.sprintf($lang_admin_php['config_setting_invalid'], '<a href="#'.$adminDataKey.'">'.$lang_admin_php[$adminDataKey].'</a>').'</li>'.$lineBreak;
+                $regexValidation = '0';
+                //$admin_data_array[$adminDataKey] = $evaluation_array[$adminDataKey]; // replace the stuff in the form field with the improper input, so the user can see and correct his error
+                $admin_data_array[$adminDataKey] = $evaluate_value; // replace the stuff in the form field with the improper input, so the user can see and correct his error
+                if (in_array($adminDataKey,$problemFields_array) != TRUE) {
+                    $problemFields_array[] = $adminDataKey;
+                }
+                if (in_array($config_section_key,$collapseSections_array) == TRUE) {
+                    unset($collapseSections_array[array_search($config_section_key,$collapseSections_array)]);
+                }
+            } else { // regex validation succesfull -- start
+                $regexValidation = '1';
+            } // regex validation succesfull -- end
+        } else { // no regex settings available - set validation var to successfull anyway
+            $regexValidation = '1';
+        }
+        if ($superCage->post->keyExists('update_config') && $regexValidation == '1' && $evaluate_value != $CONFIG[$adminDataKey] && $CONFIG[$adminDataKey] !== stripslashes($evaluate_value) ) {
+            //  finally, all criteria have been met - let's write the updated data to the database
+            cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$evaluate_value' WHERE name = '$adminDataKey'");
+            // perform special tasks -- start
+            if ($CONFIG['log_mode'] == CPG_LOG_ALL) { // write log -- start
                 log_write('CONFIG UPDATE SQL: '.
                           "UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$evaluate_value' WHERE name = '$adminDataKey'\n".
                           'TIME: '.date("F j, Y, g:i a")."\n".
                           'USER: '.$USER_DATA['user_name'],
                           CPG_DATABASE_LOG
                           );
-        } // write log -- end
-        // Code to rename system thumbs in images folder
-        $old_thumb_pfx =& $CONFIG['thumb_pfx'];
-        $matches = $superCage->post->getMatched('thumb_pfx','/^[0-9A-Za-z_-]+$/');
-        $thumb_pfx = $matches[0];
-        if ($old_thumb_pfx != $thumb_pfx) {
-            $folders = array('images/', $THEME_DIR.'images/');
-            foreach ($folders as $folder) {
-                $thumbs = cpg_get_system_thumb_list($folder);
-                foreach ($thumbs as $thumb) {
-                    @rename($folder.$thumb['filename'],
-                            $folder.str_replace($old_thumb_pfx,$thumb_pfx,$thumb['filename']));
+            } // write log -- end
+            // Code to rename system thumbs in images folder
+            $old_thumb_pfx =& $CONFIG['thumb_pfx'];
+            $matches = $superCage->post->getMatched('thumb_pfx','/^[0-9A-Za-z_-]+$/');
+            $thumb_pfx = $matches[0];
+            if ($old_thumb_pfx != $thumb_pfx) {
+                $folders = array('images/', $THEME_DIR.'images/');
+                foreach ($folders as $folder) {
+                    $thumbs = cpg_get_system_thumb_list($folder);
+                    foreach ($thumbs as $thumb) {
+                        @rename($folder.$thumb['filename'],
+                                $folder.str_replace($old_thumb_pfx,$thumb_pfx,$thumb['filename']));
+                    }
                 }
             }
+            // perform special tasks -- end
+            $admin_data_array[$adminDataKey] = stripslashes($evaluate_value);
+            $CONFIG[$adminDataKey] = stripslashes($evaluate_value);
+            $userMessage .= '<li style="list-style-image:url(images/icons/ok.png)">'.sprintf($lang_admin_php['config_setting_ok'], $lang_admin_php[$adminDataKey]).'</li>'.$lineBreak;
         }
-        // perform special tasks -- end
-        $admin_data_array[$adminDataKey] = stripslashes($evaluate_value);
-        $CONFIG[$adminDataKey] = stripslashes($evaluate_value);
-        $userMessage .= '<li style="list-style-image:url(images/icons/ok.png)">'.sprintf($lang_admin_php['config_setting_ok'], $lang_admin_php[$adminDataKey]).'</li>'.$lineBreak;
-      }
     } // inner foreach loop -- end
-  } // Loop through the config fields to check posted values for validity -- end
-  if ($userMessage != '') {
+} // Loop through the config fields to check posted values for validity -- end
+if ($userMessage != '') {
     $userMessage = '<ul>'.$lineBreak.$userMessage.'</ul>'.$lineBreak;
-  }
+}
 //print_r($evaluation_array);
 if ($superCage->post->keyExists('update_config') > 0 && $userMessage == '') {
-  $userMessage = $lang_admin_php['upd_not_needed'];
+    $userMessage = $lang_admin_php['upd_not_needed'];
 }
 
 
@@ -249,16 +254,16 @@ die;
 */
 
 if ($userMessage != '') {
-  starttable('100%', cpg_fetch_icon('info', 2) . $lang_common['information'], 1);
-  print <<< EOT
+    starttable('100%', cpg_fetch_icon('info', 2) . $lang_common['information'], 1);
+    print <<< EOT
     <tr>
         <td class="tableb">
           {$userMessage}
         </td>
     </tr>
 EOT;
-  endtable();
-  print '<br />'.$lineBreak;
+    endtable();
+    print '<br />'.$lineBreak;
 }
 
 $signature = 'Coppermine Photo Gallery ' . COPPERMINE_VERSION . ' ('. COPPERMINE_VERSION_STATUS . ')';
@@ -279,7 +284,7 @@ EOT;
 
 $sectionLoopCounter = 0;
 foreach ($config_data as $config_section_key => $config_section_value) { // start foreach-loop through the config sections
-  print <<< EOT
+    print <<< EOT
           <tr>
             <td class="tableh2" colspan="2" onclick="show_section('section{$sectionLoopCounter}');show_section('expand{$sectionLoopCounter}');show_section('collapse{$sectionLoopCounter}')">
                     <span style="cursor:pointer">
@@ -294,49 +299,51 @@ foreach ($config_data as $config_section_key => $config_section_value) { // star
             <td class="tableb" colspan="2">
               <table align="center" width="90%" cellspacing="1" cellpadding="0" class="maintable" id="section{$sectionLoopCounter}" border="0">
 EOT;
-  $withinSectionLoopCounter = 0;
-  foreach ($config_section_value as $key => $value) {
-    if ($withinSectionLoopCounter/2 == floor($withinSectionLoopCounter/2)) {
-      $cellStyle = 'tableb '.$withinSectionLoopCounter;
-    } else {
-      $cellStyle = 'tableb tableb_alternate '.$withinSectionLoopCounter;
-    }
-    
-    if (isset($value['only_display_if']) && $value['only_display_if'] != $CONFIG[$key]) {  // change the type if a "one-way-setting" is in place
-      $value['type'] = 'hidden';
-    }
-    if (isset($value['only_display_if_not']) && $value['only_display_if_not'] == $CONFIG[$key]) {  // change the type if a "one-way-setting" is in place
-      $value['type'] = 'hidden';
-    }
-    // hide entries labelled as "hidden" completely
-    if ($value['type'] == 'hidden') {
-      $visibility = ' style="display:none;"';
-      $withinSectionLoopCounter++; // increase the counter, as the hidden row should not be taken into account for style alternation
-    } else {
-      $visibility = '';
-    }
-    if ($value['type'] == 'checkbox') {
-      $labelWrapperStart = '<label for="'.$key.'">';
-      $labelWrapperEnd = '</label>';
-    } else {
-      $labelWrapperStart = '';
-      $labelWrapperEnd = '';
-    }
-    if (!empty($value['warning'])) { // set warning text
-      $warningText = $value['warning'];
-      $warningPopUp = cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_admin_php[$key]))).'&amp;t='.urlencode(base64_encode(serialize(htmlspecialchars($value['warning'])))),500,250,'*');
-    } else {
-      $warningText = '';
-      $warningPopUp = '';
-    }
-    
-    if (empty($value['additional_description']))
-    	$value['additional_description'] = '';
-    
-    if (empty($value['end_description']))
-    	$value['end_description'] = '';
-    	
-    print <<< EOT
+    $withinSectionLoopCounter = 0;
+    foreach ($config_section_value as $key => $value) {
+        if ($withinSectionLoopCounter/2 == floor($withinSectionLoopCounter/2)) {
+            $cellStyle = 'tableb '.$withinSectionLoopCounter;
+        } else {
+            $cellStyle = 'tableb tableb_alternate '.$withinSectionLoopCounter;
+        }
+
+        if (isset($value['only_display_if']) && $value['only_display_if'] != $CONFIG[$key]) {  // change the type if a "one-way-setting" is in place
+            $value['type'] = 'hidden';
+        }
+        if (isset($value['only_display_if_not']) && $value['only_display_if_not'] == $CONFIG[$key]) {  // change the type if a "one-way-setting" is in place
+            $value['type'] = 'hidden';
+        }
+        // hide entries labeled as "hidden" completely
+        if ($value['type'] == 'hidden') {
+            $visibility = ' style="display:none;"';
+            $withinSectionLoopCounter++; // increase the counter, as the hidden row should not be taken into account for style alternation
+        } else {
+            $visibility = '';
+        }
+        if ($value['type'] == 'checkbox') {
+            $labelWrapperStart = '<label for="'.$key.'">';
+            $labelWrapperEnd = '</label>';
+        } else {
+            $labelWrapperStart = '';
+            $labelWrapperEnd = '';
+        }
+        if (!empty($value['warning'])) { // set warning text
+            $warningText = $value['warning'];
+            $warningPopUp = cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_admin_php[$key]))).'&amp;t='.urlencode(base64_encode(serialize(htmlspecialchars($value['warning'])))),500,250,'*');
+        } else {
+            $warningText = '';
+            $warningPopUp = '';
+        }
+
+        if (empty($value['additional_description'])) {
+            $value['additional_description'] = '';
+        }
+
+        if (empty($value['end_description'])) {
+            $value['end_description'] = '';
+        }
+
+        print <<< EOT
 
                 <tr{$visibility}>
                   <td class="{$cellStyle}" width="60%">
@@ -345,134 +352,142 @@ EOT;
                   </td>
                   <td class="{$cellStyle}" width="50%">
 EOT;
-    // grey out the field if not applicable because bridging is enabled
-    //if ($value['bridged'] == 'hide') { //
-    if ($CONFIG['bridge_enable'] != 0 && $value['bridged'] == 'hide') { //
-      $readonly_text = ' readonly="readonly" title="'.$lang_admin_php['bbs_disabled'].'"';
-      $readonly_message = ' '.$lang_admin_php['bbs_disabled'];
-      $readonly_radio = ' disabled="disabled" title="'.$lang_admin_php['bbs_disabled'].'"';
-    } else {
-      $readonly_text = '';
-      $readonly_message = '';
-      $readonly_radio = '';
-    }
-    if (!empty($value['width'])) { // set width if option is set in array
-      $widthOption = ' style="width:'.$value['width'].'"';
-    } else {
-      $widthOption = ' style="width:90%"';
-    }
-    if (!empty($value['size'])) { // set width if option is set in array
-      $sizeOption = ' size="'.$value['size'].'"';
-    } else {
-      $sizeOption = '';
-    }
-    if (!empty($value['maxlength'])) { // set width if option is set in array
-      $maxlengthOption = ' maxlength="'.$value['maxlength'].'"';
-    } else {
-      $maxlengthOption = '';
-    }
-    if (in_array($key,$problemFields_array) == TRUE) {
-      $highlightFieldCSS = ' important';
-    } else {
-      $highlightFieldCSS = '';
-    }
-    
-    // Different types of fields --- start
-    if ($value['type'] == 'textfield') { // TEXTFIELD
-      print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><input type="text" class="textinput"'.$widthOption.$sizeOption.$maxlengthOption.'  name="'.$key.'" id="'.$key.'" value="'.htmlspecialchars($admin_data_array[$key]).'"'.$readonly_text.' tabindex="'.$tabindexCounter.'" title="'.str_replace("'", "\'", htmlspecialchars($warningText)).'" onblur="checkDefaultBox(\''.$key.'\', \'textfield\', \'\', \''.str_replace("'", "\'", htmlspecialchars($warningText)).'\');" />'.$readonly_message.'</span>';
-    } elseif ($value['type'] == 'password') { // PASSWORD
-      print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><input type="password" class="textinput" maxlength="255"'.$widthOption.$sizeOption.$maxlengthOption.' name="'.$key.'" id="'.$key.'" value="'.$admin_data_array[$key].'"'.$readonly_text.' tabindex="'.$tabindexCounter.'" title="'.str_replace("'", "\'", htmlspecialchars($warningText)).'" onblur="checkDefaultBox(\''.$key.'\', \'password\', \'\', \''.str_replace("'", "\'", htmlspecialchars($warningText)).'\', \''.str_replace("'", "\'", htmlspecialchars($warningText)).'\');" />'.$readonly_message.'</span>';
-    } elseif ($value['type'] == 'checkbox') { // CHECKBOX
-      $checked = '';
-      if ($admin_data_array[$key] == 1) {
-        $checked = ' checked="checked"';
-      }
-      print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><input type="checkbox" name="'.$key.'" id="'.$key.'" value="1" class="checkbox"'.$checked.$readonly_radio.' tabindex="'.$tabindexCounter.'" title="'.str_replace("'", "\'", htmlspecialchars($warningText)).'" onchange="checkDefaultBox(\''.$key.'\', \'checkbox\', \'\', \''.str_replace("'", "\'", htmlspecialchars($warningText)).'\');" />'.$readonly_message.'</span>';
-    } elseif ($value['type'] == 'radio') { //RADIO
-      $optionLoopCounter = 0;
-      print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'">'; // wrap the radio-buttons set into a container box
-      foreach ($value['options'] as $option) { // loop through the options array
-        $checked='';
-        if ($admin_data_array[$key] == $optionLoopCounter) {
-          $checked = ' checked="checked"';
-        }
-        print '<input type="radio" name="'.$key.'" id="'.$key.$optionLoopCounter.'" value="'.$optionLoopCounter.'" class="radio"'.$checked.$readonly_radio.' tabindex="'.$tabindexCounter.'" title="'.str_replace("'", "\'", htmlspecialchars($warningText)).'" onfocus="checkDefaultBox(\''.$key.$optionLoopCounter.'\', \'radio\', \'\', \''.str_replace("'", "\'", htmlspecialchars($warningText)).'\');" /><label for="'.$key.$optionLoopCounter.'" class="clickable_option">'.$option.'</label>&nbsp;';
-        if (!empty($value['linebreak'])) {
-          print $value['linebreak'];
-        }
-        $optionLoopCounter++;
-        $tabindexCounter++;
-      }
-      print $readonly_message.'</span>';
-    } elseif ($value['type'] == 'hidden') { //HIDDEN
-      print '<input type="hidden"  name="'.$key.'" value="'.$admin_data_array[$key].'" />';
-    } elseif ($value['type'] == 'select_function') { //SELECT_FUNCTION
-	    // not implemented (yet)
-    } elseif ($value['type'] == 'select_multiple') { //SELECT_MULTIPLE
-      $optionLoopCounter = 0;
-      $option_value_array = explode ("|",$admin_data_array[$key]);
-      if (count($value['options']) > 10) {
-	      $maxSize = 10;
-      } else {
-	      $maxSize = count($value['options']);
-      }
-      print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><select name="'.$key.'[]" id="'.$key.'" class="listbox" size="'.$maxSize.'" '.$readonly_radio.' tabindex="'.$tabindexCounter.'" multiple="multiple" title="'.str_replace("'", "\'", htmlspecialchars($warningText)).'">'.$lineBreak;
-      foreach ($value['options'] as $option_value) { // loop through the options array
-        $admin_data_array[$key] = (int)$admin_data_array[$key];
-        if ($option_value_array[$optionLoopCounter] == 1) {
-          $selected = ' selected="selected"';
+        // grey out the field if not applicable because bridging is enabled
+        //if ($value['bridged'] == 'hide') { //
+        if ($CONFIG['bridge_enable'] != 0 && $value['bridged'] == 'hide') { //
+            $readonly_text = ' readonly="readonly" title="'.$lang_admin_php['bbs_disabled'].'"';
+            $readonly_message = ' '.$lang_admin_php['bbs_disabled'];
+            $readonly_radio = ' disabled="disabled" title="'.$lang_admin_php['bbs_disabled'].'"';
         } else {
-          $selected = '';
+            $readonly_text = '';
+            $readonly_message = '';
+            $readonly_radio = '';
         }
-        print '                      <option value="'.$optionLoopCounter.'"'.$selected.'>'.ucfirst($option_value);
-        print '</option>'.$lineBreak;
-        $optionLoopCounter++;
-      }
-      print '</select>'.$readonly_message.'</span><br />'.$lineBreak;
-    } elseif ($value['type'] == 'select') {//SELECT
-      $optionLoopCounter = 0;
-      $associativeArray = array_is_associative($value['options']);
-      print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><select name="'.$key.'" id="'.$key.'" class="listbox" size="1" '.$readonly_radio.' tabindex="'.$tabindexCounter.'" onchange="checkDefaultBox(\''.$key.'\', \'select\', \''.count($value['options']).'\', \''.str_replace("'", "\'", htmlspecialchars($warningText)).'\');" title="'.str_replace("'", "\'", htmlspecialchars($warningText)).'">';
-      foreach ($value['options'] as $option_key => $option_value) { // loop through the options array
-        if ($admin_data_array[$key] == $option_value) {
-          $selected = ' selected="selected"';
+        if (!empty($value['width'])) { // set width if option is set in array
+            $widthOption = ' style="width:'.$value['width'].'"';
         } else {
-          $selected = '';
+            $widthOption = ' style="width:90%"';
         }
-        if ($associativeArray == TRUE) {
-          print '<option value="'.$option_value.'"'.$selected.'>'.$option_key;
+        if (!empty($value['size'])) { // set width if option is set in array
+            $sizeOption = ' size="'.$value['size'].'"';
         } else {
-          print '<option value="'.$option_value.'"'.$selected.'>'.ucfirst($option_value);
+            $sizeOption = '';
         }
-        print '</option>';
-        $optionLoopCounter++;
-      }
-      print '</select>'.$readonly_message.'</span>';
-    }
-    print '&nbsp;'.$value['end_description'];
-    // Different types of fields --- end
-    $helpIcon = '';
-    if ($value['help_link'] != '' && $admin_data_array['enable_help'] != 0) {
-      $helpIcon = cpg_display_help($value['help_link']);
-    }
-    $resetCheckbox = '';
-    $defaultValueField = '';
-    if (isset($value['default_value'])) { // we have a default value
-        if ($value['default_value'] == $admin_data_array[$key]) { // the default value equals the current config setting - hide the "reset to default" checkbox
-            $resetCheckbox = '<input type="checkbox" name="reset_default_'.$key.'" id="reset_default_'.$key.'" value="'.$value['default_value'].'" class="checkbox" checked="checked" title="'.$lang_admin_php['reset_to_default'].'" onclick="resetToDefault(\''.$key.'\', \''.$value['type'].'\', \''.($optionLoopCounter - 1).'\');" style="display:none;" />';
+        if (!empty($value['maxlength'])) { // set width if option is set in array
+            $maxlengthOption = ' maxlength="'.$value['maxlength'].'"';
         } else {
-            $resetCheckbox = '<input type="checkbox" name="reset_default_'.$key.'" id="reset_default_'.$key.'" value="'.$value['default_value'].'" class="checkbox" title="'.$lang_admin_php['reset_to_default'].'" onclick="resetToDefault(\''.$key.'\', \''.$value['type'].'\', \''.($optionLoopCounter - 1).'\');" />';
+            $maxlengthOption = '';
         }
-    } else { // we don't have a default value
-        $resetCheckbox = '<input type="hidden" name="reset_default_'.$key.'" id="reset_default_'.$key.'" value="'.$admin_data_array[$key].'"  />';
-    }
-    $resetCheckbox = '<span class="deleteOnSubmit">' . $resetCheckbox . '</span>';
-    $resetCheckbox = str_replace("'", "\'", $resetCheckbox);
-    print <<< EOT
+        if (in_array($key,$problemFields_array) == TRUE) {
+            $highlightFieldCSS = ' important';
+        } else {
+            $highlightFieldCSS = '';
+        }
+
+        // Different types of fields --- start
+        if ($value['type'] == 'textfield') { // TEXTFIELD
+            print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><input type="text" class="textinput"'.$widthOption.$sizeOption.$maxlengthOption.'  name="'.$key.'" id="'.$key.'" value="'.htmlspecialchars($admin_data_array[$key]).'"'.$readonly_text.' tabindex="'.$tabindexCounter.'" title="'.str_replace("'", "\'", htmlspecialchars($warningText)).'" onblur="checkDefaultBox(\''.$key.'\', \'textfield\', \'\', \''.str_replace("'", "\'", htmlspecialchars($warningText)).'\');" />'.$readonly_message.'</span>';
+
+        } elseif ($value['type'] == 'password') { // PASSWORD
+            print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><input type="password" class="textinput" maxlength="255"'.$widthOption.$sizeOption.$maxlengthOption.' name="'.$key.'" id="'.$key.'" value="'.$admin_data_array[$key].'"'.$readonly_text.' tabindex="'.$tabindexCounter.'" title="'.str_replace("'", "\'", htmlspecialchars($warningText)).'" onblur="checkDefaultBox(\''.$key.'\', \'password\', \'\', \''.str_replace("'", "\'", htmlspecialchars($warningText)).'\', \''.str_replace("'", "\'", htmlspecialchars($warningText)).'\');" />'.$readonly_message.'</span>';
+
+        } elseif ($value['type'] == 'checkbox') { // CHECKBOX
+            $checked = '';
+            if ($admin_data_array[$key] == 1) {
+                $checked = ' checked="checked"';
+            }
+            print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><input type="checkbox" name="'.$key.'" id="'.$key.'" value="1" class="checkbox"'.$checked.$readonly_radio.' tabindex="'.$tabindexCounter.'" title="'.str_replace("'", "\'", htmlspecialchars($warningText)).'" onchange="checkDefaultBox(\''.$key.'\', \'checkbox\', \'\', \''.str_replace("'", "\'", htmlspecialchars($warningText)).'\');" />'.$readonly_message.'</span>';
+
+        } elseif ($value['type'] == 'radio') { //RADIO
+            $optionLoopCounter = 0;
+            print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'">'; // wrap the radio-buttons set into a container box
+            foreach ($value['options'] as $option) { // loop through the options array
+                $checked='';
+                if ($admin_data_array[$key] == $optionLoopCounter) {
+                    $checked = ' checked="checked"';
+                }
+                print '<input type="radio" name="'.$key.'" id="'.$key.$optionLoopCounter.'" value="'.$optionLoopCounter.'" class="radio"'.$checked.$readonly_radio.' tabindex="'.$tabindexCounter.'" title="'.str_replace("'", "\'", htmlspecialchars($warningText)).'" onfocus="checkDefaultBox(\''.$key.$optionLoopCounter.'\', \'radio\', \'\', \''.str_replace("'", "\'", htmlspecialchars($warningText)).'\');" /><label for="'.$key.$optionLoopCounter.'" class="clickable_option">'.$option.'</label>&nbsp;';
+                if (!empty($value['linebreak'])) {
+                    print $value['linebreak'];
+                }
+                $optionLoopCounter++;
+                $tabindexCounter++;
+            }
+            print $readonly_message.'</span>';
+
+        } elseif ($value['type'] == 'hidden') { //HIDDEN
+            print '<input type="hidden"  name="'.$key.'" value="'.$admin_data_array[$key].'" />';
+
+        } elseif ($value['type'] == 'select_function') { //SELECT_FUNCTION
+            // not implemented (yet)
+
+        } elseif ($value['type'] == 'select_multiple') { //SELECT_MULTIPLE
+            $optionLoopCounter = 0;
+            $option_value_array = explode ("|",$admin_data_array[$key]);
+            if (count($value['options']) > 10) {
+                $maxSize = 10;
+            } else {
+                $maxSize = count($value['options']);
+            }
+            print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><select name="'.$key.'[]" id="'.$key.'" class="listbox" size="'.$maxSize.'" '.$readonly_radio.' tabindex="'.$tabindexCounter.'" multiple="multiple" title="'.str_replace("'", "\'", htmlspecialchars($warningText)).'">'.$lineBreak;
+            foreach ($value['options'] as $option_value) { // loop through the options array
+                $admin_data_array[$key] = (int)$admin_data_array[$key];
+                if (array_key_exists($optionLoopCounter, $option_value_array) && ($option_value_array[$optionLoopCounter] == 1)) {
+                    $selected = ' selected="selected"';
+                } else {
+                    $selected = '';
+                }
+                print '                      <option value="'.$optionLoopCounter.'"'.$selected.'>'.ucfirst($option_value);
+                print '</option>'.$lineBreak;
+                $optionLoopCounter++;
+            }
+            print '</select>'.$readonly_message.'</span><br />'.$lineBreak;
+
+        } elseif ($value['type'] == 'select') { //SELECT
+            $optionLoopCounter = 0;
+            $associativeArray = array_is_associative($value['options']);
+            print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><select name="'.$key.'" id="'.$key.'" class="listbox" size="1" '.$readonly_radio.' tabindex="'.$tabindexCounter.'" onchange="checkDefaultBox(\''.$key.'\', \'select\', \''.count($value['options']).'\', \''.str_replace("'", "\'", htmlspecialchars($warningText)).'\');" title="'.str_replace("'", "\'", htmlspecialchars($warningText)).'">';
+            foreach ($value['options'] as $option_key => $option_value) { // loop through the options array
+                if ($admin_data_array[$key] == $option_value) {
+                    $selected = ' selected="selected"';
+                } else {
+                    $selected = '';
+                }
+                if ($associativeArray == TRUE) {
+                    print '<option value="'.$option_value.'"'.$selected.'>'.$option_key;
+                } else {
+                    print '<option value="'.$option_value.'"'.$selected.'>'.ucfirst($option_value);
+                }
+                print '</option>';
+                $optionLoopCounter++;
+            }
+            print '</select>'.$readonly_message.'</span>';
+        }
+        print '&nbsp;'.$value['end_description'];
+        // Different types of fields --- end
+
+        $helpIcon = '';
+        if ($value['help_link'] != '' && $admin_data_array['enable_help'] != 0) {
+            $helpIcon = cpg_display_help($value['help_link']);
+        }
+        $resetCheckbox = '';
+        $defaultValueField = '';
+        if (isset($value['default_value'])) { // we have a default value
+            if ($value['default_value'] == $admin_data_array[$key]) { // the default value equals the current config setting - hide the "reset to default" checkbox
+                $resetCheckbox = '<input type="checkbox" name="reset_default_'.$key.'" id="reset_default_'.$key.'" value="'.$value['default_value'].'" class="checkbox" checked="checked" title="'.$lang_admin_php['reset_to_default'].'" onclick="resetToDefault(\''.$key.'\', \''.$value['type'].'\', \''.($optionLoopCounter - 1).'\');" style="display:none;" />';
+            } else {
+                $resetCheckbox = '<input type="checkbox" name="reset_default_'.$key.'" id="reset_default_'.$key.'" value="'.$value['default_value'].'" class="checkbox" title="'.$lang_admin_php['reset_to_default'].'" onclick="resetToDefault(\''.$key.'\', \''.$value['type'].'\', \''.($optionLoopCounter - 1).'\');" />';
+            }
+        } else { // we don't have a default value
+            $resetCheckbox = '<input type="hidden" name="reset_default_'.$key.'" id="reset_default_'.$key.'" value="'.$admin_data_array[$key].'"  />';
+        }
+        $resetCheckbox = '<span class="deleteOnSubmit">' . $resetCheckbox . '</span>';
+        $resetCheckbox = str_replace("'", "\'", $resetCheckbox);
+        print <<< EOT
                   </td>
                   <td class="{$cellStyle}">
                     <script type="text/javascript">
-	                    document.write('{$resetCheckbox}');
+                        document.write('{$resetCheckbox}');
                     </script>
                   </td>
                   <td class="{$cellStyle}">
@@ -480,15 +495,15 @@ EOT;
                   </td>
                 </tr>
 EOT;
-    $withinSectionLoopCounter++;
-    $tabindexCounter++;
-  }
-  print <<< EOT
+        $withinSectionLoopCounter++;
+        $tabindexCounter++;
+    }
+    print <<< EOT
               </table>
             </td>
           </tr>
 EOT;
-  $sectionLoopCounter++;
+    $sectionLoopCounter++;
 } // foreach-loop through the config sections
 
 $submit_icon = cpg_fetch_icon('ok', 1);
@@ -530,48 +545,50 @@ echo <<< EOT
 
 EOT;
 foreach ($collapseSections_array as $key => $value) {
-  print '    addonload("show_section(\'section'.$key.'\')");'.$lineBreak;
+    print '    addonload("show_section(\'section'.$key.'\')");'.$lineBreak;
 }
 echo <<< EOT
-    function toggleExpandCollpaseButtons(action) {
-      for (var i = 0; i < {$sectionLoopCounter}; i++) {
-        if (action == 'collapse') {
-          document.getElementById('expand' + i).style.display = 'block';
-          document.getElementById('collapse' + i).style.display = 'none';
-        } else {
-          document.getElementById('expand' + i).style.display = 'none';
-          document.getElementById('collapse' + i).style.display = 'block';
+    function toggleExpandCollpaseButtons(action) 
+    {
+        for (var i = 0; i < {$sectionLoopCounter}; i++) {
+            if (action == 'collapse') {
+                document.getElementById('expand' + i).style.display = 'block';
+                document.getElementById('collapse' + i).style.display = 'none';
+            } else {
+                document.getElementById('expand' + i).style.display = 'none';
+                document.getElementById('collapse' + i).style.display = 'block';
+            }
         }
-      }
     }
-    function resetToDefault(theFieldId, fieldType, numberOfItems) {
-	    //var foo = theFieldId + fieldType + numberOfItems;
-	    //alert(numberOfItems);
-	    //alert(fieldType);
-	    if(fieldType == 'textfield' || fieldType == 'password') {
-		    document.getElementById(theFieldId).value = document.getElementById('reset_default_' + theFieldId).value;
-            document.getElementById('reset_default_' + theFieldId).style.display = 'none';
-            document.getElementById('reset_default_' + theFieldId).checked = true;
-		    return;
-	    }
-	    if(fieldType == 'checkbox') {
-		    if (document.getElementById('reset_default_' + theFieldId).value == 1) {
-			    document.getElementById(theFieldId).checked = true;
-		    } else {
-			    document.getElementById(theFieldId).checked = false;
-		    }
-            document.getElementById('reset_default_' + theFieldId).style.display = 'none';
-            document.getElementById('reset_default_' + theFieldId).checked = true;
-		    return;
-	    }
-	    if(fieldType == 'radio') {
-		    document.getElementById(theFieldId + document.getElementById('reset_default_' + theFieldId).value).checked = true;
+    function resetToDefault(theFieldId, fieldType, numberOfItems) 
+    {
+        //var foo = theFieldId + fieldType + numberOfItems;
+        //alert(numberOfItems);
+        //alert(fieldType);
+        if(fieldType == 'textfield' || fieldType == 'password') {
+            document.getElementById(theFieldId).value = document.getElementById('reset_default_' + theFieldId).value;
             document.getElementById('reset_default_' + theFieldId).style.display = 'none';
             document.getElementById('reset_default_' + theFieldId).checked = true;
             return;
-	    }
-	    if(fieldType == 'select') {
-		    for (var i = 0; i < numberOfItems; i++) {
+        }
+        if(fieldType == 'checkbox') {
+            if (document.getElementById('reset_default_' + theFieldId).value == 1) {
+                document.getElementById(theFieldId).checked = true;
+            } else {
+                document.getElementById(theFieldId).checked = false;
+            }
+            document.getElementById('reset_default_' + theFieldId).style.display = 'none';
+            document.getElementById('reset_default_' + theFieldId).checked = true;
+            return;
+        }
+        if(fieldType == 'radio') {
+            document.getElementById(theFieldId + document.getElementById('reset_default_' + theFieldId).value).checked = true;
+            document.getElementById('reset_default_' + theFieldId).style.display = 'none';
+            document.getElementById('reset_default_' + theFieldId).checked = true;
+            return;
+        }
+        if(fieldType == 'select') {
+            for (var i = 0; i < numberOfItems; i++) {
                 //alert(document.getElementById(theFieldId).options[i].value);
                 if (document.getElementById(theFieldId).options[i].value == document.getElementById('reset_default_' + theFieldId).value) {
                     document.getElementById(theFieldId).options[i].selected = true;
@@ -580,82 +597,84 @@ echo <<< EOT
                     return; 
                 }
             }
-	    }
+        }
     }
     
-    function checkDefaultBox(theFieldId, fieldType, numberOfItems, warning) {
+    function checkDefaultBox(theFieldId, fieldType, numberOfItems, warning) 
+    {
         // Each time a config field is being changed (onblur/onchange), this JS is being run to enable/disable the default checkbox
         if(warning != '') {
-	        alert(warning + ' ' + '{$lang_admin_php['warning_dont_submit']}');
+            alert(warning + ' ' + '{$lang_admin_php['warning_dont_submit']}');
         }
         if(fieldType == 'textfield' || fieldType == 'password') {
-	        if (document.getElementById(theFieldId).value != document.getElementById('reset_default_' + theFieldId).value) {
-	            document.getElementById('reset_default_' + theFieldId).style.display = 'inline';
-	            document.getElementById('reset_default_' + theFieldId).checked = false;
-	            document.getElementById('reset_default_' + theFieldId).title = '{$lang_admin_php['reset_to_default']}';
-	        } else {
-	            document.getElementById('reset_default_' + theFieldId).style.display = 'none';
-	            document.getElementById('reset_default_' + theFieldId).checked = true;
-	            document.getElementById('reset_default_' + theFieldId).title = '{$lang_admin_php['reset_to_default']}: {$lang_admin_php['no_change_needed']} (' + document.getElementById('reset_default_' + theFieldId).value + ')';
-	        }
-	        return;
+            if (document.getElementById(theFieldId).value != document.getElementById('reset_default_' + theFieldId).value) {
+                document.getElementById('reset_default_' + theFieldId).style.display = 'inline';
+                document.getElementById('reset_default_' + theFieldId).checked = false;
+                document.getElementById('reset_default_' + theFieldId).title = '{$lang_admin_php['reset_to_default']}';
+            } else {
+                document.getElementById('reset_default_' + theFieldId).style.display = 'none';
+                document.getElementById('reset_default_' + theFieldId).checked = true;
+                document.getElementById('reset_default_' + theFieldId).title = '{$lang_admin_php['reset_to_default']}: {$lang_admin_php['no_change_needed']} (' + document.getElementById('reset_default_' + theFieldId).value + ')';
+            }
+            return;
         }
         if(fieldType == 'checkbox') {
-	        var checkboxNeedsChangeToChecked = 0;
-	        if (document.getElementById(theFieldId).checked == true && document.getElementById('reset_default_' + theFieldId).value == 1) {
-		        checkboxNeedsChangeToChecked = 1;
-	        }
-	        if (document.getElementById(theFieldId).checked == false && document.getElementById('reset_default_' + theFieldId).value == 0) {
-		        checkboxNeedsChangeToChecked = 1;
-	        }
-	        if (checkboxNeedsChangeToChecked == 0) {
-	            document.getElementById('reset_default_' + theFieldId).style.display = 'inline';
-	            document.getElementById('reset_default_' + theFieldId).checked = false;
-	            document.getElementById('reset_default_' + theFieldId).title = '{$lang_admin_php['reset_to_default']}';
-	        } else {
-	            document.getElementById('reset_default_' + theFieldId).style.display = 'none';
-	            document.getElementById('reset_default_' + theFieldId).checked = true;
-	            document.getElementById('reset_default_' + theFieldId).title = '{$lang_admin_php['reset_to_default']}: {$lang_admin_php['no_change_needed']} (' + document.getElementById('reset_default_' + theFieldId).value + ')';
-	        }
-	        return;
+            var checkboxNeedsChangeToChecked = 0;
+            if (document.getElementById(theFieldId).checked == true && document.getElementById('reset_default_' + theFieldId).value == 1) {
+                checkboxNeedsChangeToChecked = 1;
+            }
+            if (document.getElementById(theFieldId).checked == false && document.getElementById('reset_default_' + theFieldId).value == 0) {
+                checkboxNeedsChangeToChecked = 1;
+            }
+            if (checkboxNeedsChangeToChecked == 0) {
+                document.getElementById('reset_default_' + theFieldId).style.display = 'inline';
+                document.getElementById('reset_default_' + theFieldId).checked = false;
+                document.getElementById('reset_default_' + theFieldId).title = '{$lang_admin_php['reset_to_default']}';
+            } else {
+                document.getElementById('reset_default_' + theFieldId).style.display = 'none';
+                document.getElementById('reset_default_' + theFieldId).checked = true;
+                document.getElementById('reset_default_' + theFieldId).title = '{$lang_admin_php['reset_to_default']}: {$lang_admin_php['no_change_needed']} (' + document.getElementById('reset_default_' + theFieldId).value + ')';
+            }
+            return;
         }
         if(fieldType == 'radio') {
             // theFieldId has got a number appended to it - let's strip it
             theLoopCounterIndex = theFieldId.slice((theFieldId.length - 1),theFieldId.length); 
             theFieldId = theFieldId.slice(0,(theFieldId.length - 1));
             if (theLoopCounterIndex != document.getElementById('reset_default_' + theFieldId).value) {
-	            document.getElementById('reset_default_' + theFieldId).style.display = 'inline';
-	            document.getElementById('reset_default_' + theFieldId).checked = false;
-	            document.getElementById('reset_default_' + theFieldId).title = '{$lang_admin_php['reset_to_default']}';
-	        } else {
-	            document.getElementById('reset_default_' + theFieldId).style.display = 'none';
-	            document.getElementById('reset_default_' + theFieldId).checked = true;
-	            document.getElementById('reset_default_' + theFieldId).title = '{$lang_admin_php['reset_to_default']}: {$lang_admin_php['no_change_needed']} (' + document.getElementById('reset_default_' + theFieldId).value + ')';
-	        }
+                document.getElementById('reset_default_' + theFieldId).style.display = 'inline';
+                document.getElementById('reset_default_' + theFieldId).checked = false;
+                document.getElementById('reset_default_' + theFieldId).title = '{$lang_admin_php['reset_to_default']}';
+            } else {
+                document.getElementById('reset_default_' + theFieldId).style.display = 'none';
+                document.getElementById('reset_default_' + theFieldId).checked = true;
+                document.getElementById('reset_default_' + theFieldId).title = '{$lang_admin_php['reset_to_default']}: {$lang_admin_php['no_change_needed']} (' + document.getElementById('reset_default_' + theFieldId).value + ')';
+            }
             return;
         }
         if(fieldType == 'select') {
-			for (var i = 0; i < numberOfItems; i++) {
+            for (var i = 0; i < numberOfItems; i++) {
                 if (document.getElementById(theFieldId).options[i].selected == true) {
                     if (document.getElementById(theFieldId).options[i].value == document.getElementById('reset_default_' + theFieldId).value) {
-	                    document.getElementById('reset_default_' + theFieldId).style.display = 'none';
-			            document.getElementById('reset_default_' + theFieldId).checked = true;
-			            document.getElementById('reset_default_' + theFieldId).title = '{$lang_admin_php['reset_to_default']}: {$lang_admin_php['no_change_needed']} (' + document.getElementById('reset_default_' + theFieldId).value + ')';
-	                    return;
+                        document.getElementById('reset_default_' + theFieldId).style.display = 'none';
+                        document.getElementById('reset_default_' + theFieldId).checked = true;
+                        document.getElementById('reset_default_' + theFieldId).title = '{$lang_admin_php['reset_to_default']}: {$lang_admin_php['no_change_needed']} (' + document.getElementById('reset_default_' + theFieldId).value + ')';
+                        return;
                     } else {
-	                    document.getElementById('reset_default_' + theFieldId).style.display = 'inline';
-			            document.getElementById('reset_default_' + theFieldId).checked = false;
-			            document.getElementById('reset_default_' + theFieldId).title = '{$lang_admin_php['reset_to_default']}';
-			            return;
+                        document.getElementById('reset_default_' + theFieldId).style.display = 'inline';
+                        document.getElementById('reset_default_' + theFieldId).checked = false;
+                        document.getElementById('reset_default_' + theFieldId).title = '{$lang_admin_php['reset_to_default']}';
+                        return;
                     }
                 }
             }
         }
     }
     
-    function deleteUnneededFields() {
-	    $('.deleteOnSubmit').remove();
-	    return true;
+    function deleteUnneededFields() 
+    {
+        $('.deleteOnSubmit').remove();
+        return true;
     }
 </script>
 EOT;
