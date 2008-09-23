@@ -250,7 +250,7 @@ IF NOT EXISTS (select * from dbo.sysobjects where id = object_id(N'CPG_filetypes
 BEGIN
 CREATE TABLE CPG_filetypes (
   extension VARCHAR(7) NOT NULL DEFAULT '',
-  mime VARCHAR(70) DEFAULT NULL ,
+  mime VARCHAR(255) DEFAULT NULL ,
   content VARCHAR(15) DEFAULT NULL ,
   player VARCHAR(5) DEFAULT NULL ,
   PRIMARY KEY(extension))

@@ -27,6 +27,9 @@ define('INFORMATION', 1);
 define('ERROR', 2);
 define('CRITICAL_ERROR', 3);
 
+// Report all errors except E_NOTICE
+error_reporting(E_ALL ^ E_NOTICE);
+
 // Set the parameters that normally get populated by the option form
 $displayOption_array = array(
     'errors_only' => 1,
@@ -1203,7 +1206,7 @@ class CPGInstall
             $this->loadTempConfig();
         }
         if ($this->server == '') {
-            $this->server = $config['dbservername'];
+            $this->server = $this->config['dbservername'];
         }
         return $this->server;
     }

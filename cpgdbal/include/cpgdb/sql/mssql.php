@@ -1041,7 +1041,7 @@ if (defined('UTIL_PHP') || defined('UPLOAD_PHP')) $cpg_db_util_php = array(
 /**********************************************************/
 //queries from xp_publish.php
 /***********************************************************/
-if (defined('XP_PUBLISH_PHP') || defined('LOGIN_PHP') || defined('DB_INPUT_PHP') || defined(ALBMGR_PHP)) $cpg_db_xp_publish_php = array(
+if (defined('XP_PUBLISH_PHP') || defined('LOGIN_PHP') || defined('DB_INPUT_PHP') || defined('ALBMGR_PHP')) $cpg_db_xp_publish_php = array(
 	'get_subcat_data'			=> "SELECT cid, name, description FROM {$CONFIG['TABLE_CATEGORIES']} ".
 								   "WHERE parent = '%1\$s' AND cid != 1 ORDER BY pos",
 	'get_public_albums'			=> "SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < %1\$s ORDER BY title",
