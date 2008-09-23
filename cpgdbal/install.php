@@ -172,6 +172,8 @@ switch($step) {
             }
         ##################################      DB       #################################
         } elseif ($install->config['dbservername'] == 'mssql') {    //MSSQL VERSION CHECK
+            // Temporarily commented. The version comparison part for mssql if possible after Database connection.
+            /*
             preg_match('%<tr><td class="e">Library version </td><td class="v">([0-9]{1,3}\.[0-9]{1,3})%', $php_info, $temp_version);
             $mssql_version = $temp_version[1];
             $required_mssql_version = '7.0';
@@ -185,6 +187,7 @@ switch($step) {
                     $install->error .= sprintf($install->language['version_incompatible'], $mssql_version, 'MSSQL', $required_mssql_version) . '<br /><br />';
                 }
             }
+            */
         }
         ############################################################################
         //COOKIE CHECK
