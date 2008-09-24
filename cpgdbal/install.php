@@ -28,7 +28,7 @@ define('ERROR', 2);
 define('CRITICAL_ERROR', 3);
 
 // Report all errors except E_NOTICE
-error_reporting(E_ALL ^ E_NOTICE);
+error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
 
 // Set the parameters that normally get populated by the option form
 $displayOption_array = array(
@@ -219,7 +219,7 @@ switch($step) {
         $install->setTmpConfig('step', '3');
         break;
         
-    case 3:     // Check if the folder permissions are set up properlyµ
+    case 3:     // Check if the folder permissions are set up properlyï¿½
         $install->page_title = $install->language['title_dir_check'];
         if (!$install->checkPermissions()) {
             // not all permissions were set correctly, or folder doesn't exist
@@ -1401,7 +1401,7 @@ class CPGInstall
                 }
                 break;
             case 2:
-                // check basic functionalityµ
+                // check basic functionalityï¿½
                 if ($this->checkBasicGD()) {
                     $imagesProcessors['gd2'] = 'installed';
                 }
@@ -2377,7 +2377,7 @@ class GDtest
      */
     function testTextOnImage()
     {
-        $text = '2008 © Susanna Thornton';
+        $text = '2008 ï¿½ Susanna Thornton';
         $font = 'images/install/LiberationSans-Regular.ttf';
         $source = imagecreatefromjpeg('images/install/jpgtest.jpg');
         $front_color = imagecolorallocate($source, 255, 255, 255);
@@ -2600,7 +2600,7 @@ class IMtest
      */
     function testTextOnImage()
     {
-        $text = '2008 © Susanna Thornton';
+        $text = '2008 ï¿½ Susanna Thornton';
         $font = 'images/install/LiberationSans-Regular.ttf';
         $source = 'images/install/jpgtest.jpg';
         
