@@ -525,7 +525,7 @@ switch ($event) {
 			$cpgdb->free();
 			$category = $row['category'];
 		} else {
-			$cpgdb_query($cpg_db_dbinput_php['get_valid_alb_id'], $album);
+			$cpgdb->query($cpg_db_dbinput_php['get_valid_alb_id'], $album);
 			$rowset = $cpgdb->fetchRowSet();
 			if (count($rowset) == 0) {
 				cpg_die(ERROR, $lang_db_input_php['unknown_album'], __FILE__, __LINE__);
