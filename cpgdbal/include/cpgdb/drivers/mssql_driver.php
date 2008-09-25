@@ -167,7 +167,6 @@ class cpgDB {
 		if (0 == $this->Link_ID) {
 			$this->Link_ID = sqlsrv_connect($Host, $connect_info);
 			if (!$this->Link_ID) {
-				//$this->halt("connect($Host) failed.");
 				$this->Error = "<hr /><br />Could not create a MSSQL connection, $check_sql_values<br />MSSQL error was : <br />";
 				foreach (sqlsrv_errors() as $err) {
 					$this->Error .= "<br />SQLSTATE: ".$err['SQLSTATE']."<br/>";
@@ -218,7 +217,6 @@ class cpgDB {
 		}
 		if (count($args)) {
 			$Query_String = vsprintf($Query_String, $args);
-			$pos = strpos($Query_String, 'DELETE');
 		}
 		
         if (!$this->connect()) {
@@ -243,12 +241,13 @@ class cpgDB {
 		}
 		
         $this->Row = 0;
-        //$this->Errno = mysql_errno();
-        //$this->Error =  @sqlsrv_errors();
-        if (!$this->Query_ID && $this->update != TRUE && $pos === false) {
-            //$this->halt("Invalid SQL: " . $Query_String);
+        if (!$this->Query_ID && $this->update != TRUE) {
 			$this->Error = sqlsrv_errors();
-			$this->db_error("Invalid SQL:".$Query_String);
+            // If there are no errors then it means query returned false as no rows were affected.
+            // Call db_error only if errors are returned by sqlsrv_errors()
+            if(!empty($this->Error)) {
+                $this->db_error("Invalid SQL:".$Query_String);
+            }
         } 
 
 		if ($this->Query_ID) {
@@ -263,7 +262,6 @@ class cpgDB {
 			}
 		}
 		
-	//	print_r($this->queries);echo"<br /><br />";
 		
         // Will return nada if it fails. That's fine. // '
         return $this->Query_ID;
