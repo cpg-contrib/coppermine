@@ -238,7 +238,7 @@ switch ($event) {
         if (!USER_ID) { // Anonymous users, we need to use META refresh to save the cookie
             //if (mysql_result(cpg_db_query("select count(user_id) from {$CONFIG['TABLE_USERS']} where UPPER(user_name) = UPPER('$msg_author')"),0,0))
 			################################		DB		################################
-			$cpgdb->query($cpgdb->query['get_anonymous_user_count'], $msg_author);
+            $cpgdb->query($cpg_db_dbinput_php['get_anonymous_user_count'], $msg_author);
 			$row = $cpgdb->fetchRow();
 			if ($row['count'])
 			#############################################################################
