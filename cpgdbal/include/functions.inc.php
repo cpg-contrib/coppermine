@@ -4931,7 +4931,7 @@ function check_rebuild_tree()
     $result = cpg_db_query($sql);
     list($count) = mysql_fetch_row($result);*/
 	###########################     DB     ###########################
-	$cpgdb->query($cpg_db_functions_inc['ge_cat_lft_zero']);
+	$cpgdb->query($cpg_db_functions_inc['get_cat_lft_zero']);
 	$row = $cpgdb->fetchRow();
 	$count = $row['count'];
 	############################################################
@@ -4975,7 +4975,8 @@ function rebuild_tree($parent, $left, $depth, $pos) {
    }*/
     ################################      DB     ##############################
     $result = $cpgdb->query($cpg_db_functions_inc['get_child'], $parent, $sort_query);
-    while ($row = $cpgdb->fetchRow()) {
+    $rowset = $cpgdb->fetchRowSet();
+    foreach ($rowset as $row) {
 	    // recursive execution of this function for each
         // child of this node
         // $right is the current right value, which is
