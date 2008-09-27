@@ -360,9 +360,12 @@ $lang_get_pic_data = array(
 $lang_cpg_debug_output = array(
   'debug_info' => 'Debug Info',
   'select_all' => 'Select All',
-  'copy_and_paste_instructions' => 'If you\'re going to request help on the Coppermine support board, copy-and-paste this debug output into your posting when requested, along with the error message you get (if any). Only post the debug_output on the support board if a supporter definitely asks for it! Make sure to replace any passwords from the query with *** before posting. <br />Note: This is for information only and does not mean there is an error with your gallery.', // cpg1.5
+  'copy_and_paste_instructions' => 'If you\'re going to request help on the Coppermine support board, copy-and-paste this debug output into your posting when requested, along with the error message you get (if any). Only post the debug_output on the support board if a supporter definitely asks for it! Make sure to replace any passwords from the query with *** before posting.', // cpg1.5
+  'debug_output_explain' => 'Note: This is for information only and does not mean there is an error with the gallery.', // cpg1.5
   'phpinfo' => 'display phpinfo',
   'notices' => 'Notices',
+  'notices_help_admin' => 'The notices displayed on this page appear because you (as gallery admin) deliberately enabled that feature in coppermine\'s config. They don\'t necessarilly mean that something is wrong with your gallery. In fact, they are a developer feature that only skilled coders should enable to track bugs. If notices display bothers you and/or you have no idea what those notices mean, turn the corresponding feature off in config.', // cpg1.5
+  'notices_help_non_admin' => 'The notices-display has been deliberately enabled by the admin. It doesn\'t mean that something is wrong on your end. You can savely ignore the notices displayed here.', // cpg1.5
   'show_hide' => 'show / hide', // cpg1.5
 );
 

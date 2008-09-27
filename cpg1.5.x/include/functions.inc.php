@@ -2699,7 +2699,10 @@ addonload("document.getElementById(\'debug_output_toggle\').style.display = \'in
         </script>
         </td><td align="left" valign="middle" class="tableh2">
 EOT;
-    if (GALLERY_ADMIN_MODE) {echo '<span class="album_stat">'.$lang_cpg_debug_output['copy_and_paste_instructions'].'</span>';}
+    if (GALLERY_ADMIN_MODE) {
+    	echo '<span class="album_stat">'.$lang_cpg_debug_output['copy_and_paste_instructions'].'</span><br />';
+    } 
+    echo '<span class="album_stat">'.$lang_cpg_debug_output['debug_output_explain'].'</span>';
     echo '</td></tr>';
     echo '<tr><td class="tableb" colspan="2">';
     echo '<textarea  rows="10" cols="60" class="debug_text" name="debugtext">';
@@ -2769,18 +2772,18 @@ EOT;
         }
         echo 'Key config settings';
         echo $debug_underline;
-        echo cpg_config_output("allow_private_albums");
-        echo cpg_config_output("cookie_name");
-        echo cpg_config_output("cookie_path");
-        echo cpg_config_output("ecards_more_pic_target");
-        echo cpg_config_output("impath");
-        echo cpg_config_output("lang");
-        echo cpg_config_output("language_fallback");
-        echo cpg_config_output("main_page_layout");
-        echo cpg_config_output("silly_safe_mode");
-        echo cpg_config_output("smtp_host");
-        echo cpg_config_output("theme");
-        echo cpg_config_output("thumb_method");
+        echo cpg_config_output('allow_private_albums');
+        echo cpg_config_output('cookie_name');
+        echo cpg_config_output('cookie_path');
+        echo cpg_config_output('ecards_more_pic_target');
+        echo cpg_config_output('impath');
+        echo cpg_config_output('lang');
+        echo cpg_config_output('language_fallback');
+        echo cpg_config_output('main_page_layout');
+        echo cpg_config_output('silly_safe_mode');
+        echo cpg_config_output('smtp_host');
+        echo cpg_config_output('theme');
+        echo cpg_config_output('thumb_method');
         echo $debug_separate;
         echo 'Plugins';
         echo $debug_underline;
@@ -2828,19 +2831,25 @@ EOT;
     echo '</table>';
     echo '</td></tr>';
     if (GALLERY_ADMIN_MODE) {
-        echo "<tr><td class=\"tablef\" colspan=\"2\">";
-        echo "<a href=\"phpinfo.php\" class=\"admin_menu\">".$lang_cpg_debug_output['phpinfo']."</a>";
+        echo '<tr><td class="tablef" colspan="2">';
+        echo '<a href="phpinfo.php" class="admin_menu">' . $lang_cpg_debug_output['phpinfo'] . '</a>';
         // error_reporting  (E_ERROR | E_WARNING | E_PARSE); // New maze's error report system
-        echo "</td></tr>";
-    }
+        echo '</td></tr>';
+    } 
 
     // Maze's new error report system
     global $cpgdebugger;
     $report = $cpgdebugger->stop();
+    if (GALLERY_ADMIN_MODE) {
+    	$notices_help =  $lang_cpg_debug_output['notices_help_admin'];
+    } else {
+    	$notices_help =  $lang_cpg_debug_output['notices_help_non_admin'];
+    }
+    $notices_help = '&nbsp;' . cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_cpg_debug_output['notices']))).'&amp;t='.urlencode(base64_encode(serialize($notices_help))),470,245);
     if (is_array($report) && $CONFIG['debug_notice']!= 0) {
         echo '<tr><td class="tableh1" colspan="2">';
         echo '<strong>';
-        echo cpg_fetch_icon('text_left', 2) . $lang_cpg_debug_output['notices'];
+        echo cpg_fetch_icon('text_left', 2) . $lang_cpg_debug_output['notices'].$notices_help;
         echo '</strong>';
         echo '</td></tr>';
         echo '<tr><td class="tableb" colspan="2">';
