@@ -1380,6 +1380,27 @@ EOT;
 ** Section <<<$template_report_comment_email>>> - END
 ******************************************************************************/
 
+if (!isset($template_zipfile_plaintext)) { //{THEMES}
+/******************************************************************************
+** Section <<<$template_zipfile_plaintext>>> - START
+******************************************************************************/
+// plain-text template for readme file that is being added to zipdownload
+$template_zipfile_plaintext = <<<EOT
+{USERNAME}:
+=========================================
+{GAL_NAME} - {GAL_DESCRIPTION}
+{GAL_URL}
+=========================================
+{DATE}
+=========================================
+{COPYRIGHTS}
+
+EOT;
+/******************************************************************************
+** Section <<<template_zipfile_plaintext>>> - END
+******************************************************************************/
+} //{THEMES}
+
 /******************************************************************************
 ** Section <<<$template_tab_display>>> - START
 ******************************************************************************/
@@ -2386,9 +2407,9 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
             '{SORT_PD}' => $lang_thumb_view['sort_pd'],
             );
         $title = template_eval($template_thumb_view_title_row, $param);
-    } else if ($aid == 'favpics' && $CONFIG['enable_zipdownload'] == 1) { //Lots of stuff can be added here later
+    } else if ($aid == 'favpics' && $CONFIG['enable_zipdownload'] > 0) { //Lots of stuff can be added here later
        $param = array('{ALBUM_NAME}' => $album_name,
-                             '{DOWNLOAD_ZIP}'=>$lang_thumb_view['download_zip']
+                             '{DOWNLOAD_ZIP}' => cpg_fetch_icon ('zip', 2) . $lang_thumb_view['download_zip']
                                );
        $title = template_eval($template_fav_thumb_view_title_row, $param);
     }else{

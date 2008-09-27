@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-09-27 [A] Added optional text file for favorites download {GauGau}
 2008-09-17 [A] Added license display to installer {GauGau}
 2008-09-17 [O] Reduced memory usage of keyword manager {Nibbler}
 2008-09-15 [M] Removed FAQ menu item as per dev team decision {GauGau}

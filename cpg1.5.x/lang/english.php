@@ -298,6 +298,8 @@ $lang_thumb_view = array(
   'invalid_pass' => 'Invalid Password',
   'pass' => 'Password',
   'submit' => 'Submit',
+  'zipdownload_copyright' => 'Please respect copyrights - only use the files you downloaded as intended by the owner of the gallery', // cpg1.5
+  'zipdownload_username' => 'This archive contains the zipped files from the favorites of %s', // cpg1.5
 );
 
 $lang_img_nav_bar = array(
@@ -762,6 +764,8 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'ecards_more_pic_target_detail' =>   '(with a trailing slash, no \'index.php\' or similar at the end)', // cpg1.5
   'home_target' =>   'URL of your home page', // cpg1.5
   'enable_zipdownload' =>   'Allow ZIP-download of favorites', // cpg1.5
+  'enable_zipdownload_no_textfile' =>   'just the favorites', // cpg1.5
+  'enable_zipdownload_additional_textfile' =>   'favorites and readme file', // cpg1.5
   'time_offset' =>   'Timezone difference relative to GMT', // cpg1.5
   'time_offset_detail' =>   '(current time: ' . localised_date(-1, $comment_date_fmt) . ')', // cpg1.5
   'enable_help' =>   'Enable help-icons', // cpg1.5
