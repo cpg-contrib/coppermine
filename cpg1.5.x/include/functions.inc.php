@@ -3104,91 +3104,20 @@ function languageSelect($parameter)
     */
 
     $cpgChangeUrl .= 'lang=';
-
-
-    // get an array of english and native language names and flags
-    // for now, use a static array definition here - this could later be made into a true database query
-    $lang_language_data['albanian'] = array('Albanian','Albanian','al');
-    $lang_language_data['amharic'] = array('Amharic','','et');
-    $lang_language_data['arabic'] = array('Arabic','&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577;','sa');
-    $lang_language_data['armenian'] = array('Armenian','','');
-    $lang_language_data['azerbaijani'] = array('Azerbaijani','','az');
-    $lang_language_data['bengali'] = array('Bengali','','bd');
-    $lang_language_data['basque'] = array('Basque','Euskera','basque');
-    $lang_language_data['bosnian'] = array('Bosnian','Bosanski','ba');
-    $lang_language_data['brazilian_portuguese'] = array('Portuguese [Brazilian]','Portugu&ecirc;s Brasileiro','br');
-    $lang_language_data['bulgarian'] = array('Bulgarian','&#1041;&#1098;&#1083;&#1075;&#1072;&#1088;&#1089;&#1082;&#1080;','bg');
-    $lang_language_data['byelorussian'] = array('Byelorussian','','by');
-    $lang_language_data['catalan'] = array('Catalan','Catal&agrave;','catalonia');
-    $lang_language_data['chamorro'] = array('Chamorro','','gu');
-    $lang_language_data['chinese_big5'] = array('Chinese traditional','&#20013;&#25991; - &#32321;&#39636;','tw');
-    $lang_language_data['chinese_gb'] = array('Chinese simplified','&#20013;&#25991; - &#31616;&#20307;','cn');
-    $lang_language_data['croatian'] = array('Croatian','Hrvatski','hr');
-    $lang_language_data['czech'] = array('Czech','&#x010C;esky','cz');
-    $lang_language_data['danish'] = array('Danish','Dansk','dk');
-    $lang_language_data['dutch'] = array('Dutch','Nederlands','nl');
-    $lang_language_data['english'] = array('English [US]','English [US]','us');
-    $lang_language_data['english_gb'] = array('English [British]','English [British]','gb');
-    $lang_language_data['estonian'] = array('Estonian','Eesti','ee');
-    $lang_language_data['filipino'] = array('Filipino Tagalog','','ph');
-    $lang_language_data['finnish'] = array('Finnish','Suomea','fi');
-    $lang_language_data['french'] = array('French','Fran&ccedil;ais','fr');
-    $lang_language_data['galician'] = array('Galician','Galego','galician');
-    $lang_language_data['georgian'] = array('Georgian','&#4325;&#4304;&#4320;&#4311;&#4323;&#4314;&#4312;','ge');
-    $lang_language_data['german'] = array('German','Deutsch','de');
-    $lang_language_data['german_sie'] = array('German [formal]','Deutsch [Sie]','de');
-    $lang_language_data['greek'] = array('Greek','&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;','gr');
-    $lang_language_data['hebrew'] = array('Hebrew','&#1506;&#1489;&#1512;&#1497;&#1514;','il');
-    $lang_language_data['hindi'] = array('Hindi','&#2361;&#2367;&#2344;&#2381;&#2342;&#2368;','in');
-    $lang_language_data['hungarian'] = array('Hungarian','Magyarul','hu');
-    $lang_language_data['icelandic'] = array('Icelandic','','is');
-    $lang_language_data['indonesian'] = array('Indonesian','Bahasa Indonesia','id');
-    $lang_language_data['italian'] = array('Italian','Italiano','it');
-    $lang_language_data['japanese'] = array('Japanese','&#26085;&#26412;&#35486;','jp');
-    $lang_language_data['kazakh'] = array('Kazakh','','kz');
-    $lang_language_data['korean'] = array('Korean','&#54620;&#44397;&#50612;','kr');
-    $lang_language_data['kurdish'] = array('Kurdish','&#1603;&#1608;&#1585;&#1583;&#1740;','kurdish');
-    $lang_language_data['kyrgyz'] = array('Kyrgyz','','kg');
-    $lang_language_data['laothian'] = array('Laothian ','','la');
-    $lang_language_data['latvian'] = array('Latvian','Latvian','lv');
-    $lang_language_data['lithuanian'] = array('Lithuanian','Lietuvi&#0353;kai','lt');
-    $lang_language_data['macedonian'] = array('Macedonian','&#1052;&#1072;&#1082;&#1077;&#1076;&#1086;&#1085;&#1089;&#1082;&#1080;','mk');
-    $lang_language_data['malay'] = array('Malay','Bahasa Melayu','my');
-    $lang_language_data['maltese'] = array('Maltese','','mt');
-    $lang_language_data['mongolian'] = array('Mongolian','','mn');
-    $lang_language_data['nepali'] = array('Nepali','','np');
-    $lang_language_data['norwegian'] = array('Norwegian','Norsk','no');
-    $lang_language_data['persian'] = array('Persian','&#1601;&#1575;&#1585;&#1587;&#1740;','ir'); // modified by B.Mossavari
-    $lang_language_data['polish'] = array('Polish','Polski','pl');
-    $lang_language_data['portuguese'] = array('Portuguese [Portugal]','Portugu&ecirc;s','pt');
-    $lang_language_data['romanian'] = array('Romanian','Rom&acirc;n&atilde;','ro');
-    $lang_language_data['russian'] = array('Russian','&#1056;&#1091;&#1089;&#1089;&#1082;&#1080;&#1081;','ru');
-    $lang_language_data['slovak'] = array('Slovak','Slovensky','sk');
-    $lang_language_data['slovenian'] = array('Slovenian','Slovensko','si');
-    $lang_language_data['spanish'] = array('Spanish','Espa&ntilde;ol','es');
-    $lang_language_data['swedish'] = array('Swedish','Svenska','se');
-    $lang_language_data['thai'] = array('Thai','&#3652;&#3607;&#3618;','th');
-    $lang_language_data['turkish'] = array('Turkish','T&uuml;rk&ccedil;e','tr');
-    $lang_language_data['tigrinya'] = array('Tigrinya','','er');
-    $lang_language_data['twi'] = array('Twi','','gh');
-    $lang_language_data['uighur'] = array('Uighur','Uighur','uighur');
-    $lang_language_data['ukrainian'] = array('Ukrainian','&#1059;&#1082;&#1088;&#1072;&#1111;&#1085;&#1089;&#1100;&#1082;&#1072;','ua');
-    $lang_language_data['uzbek'] = array('Uzbek','','uz');
-    $lang_language_data['vietnamese'] = array('Vietnamese','Tieng Viet','vn');
-    $lang_language_data['welsh'] = array('Welsh','Cymraeg','wales');
-
+    
     // get list of available languages
+    $results = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_LANGUAGE']}");
+    while ($row = mysql_fetch_array($results)) {
+        if ($row['available'] == 'YES' && $row['enabled'] == 'YES' && file_exists ('lang/'.$row['lang_id'].'.php') == TRUE) {
+            $lang_language_data[$row['lang_id']] = $row;
+        }
+    } // while
+    mysql_free_result($results);
+    // sort the array by English name
+    ksort($lang_language_data);
+    
     $value = strtolower($CONFIG['lang']);
 
-    $lang_dir = 'lang/';
-    $dir = opendir($lang_dir);
-    while ($file = readdir($dir)) {
-        if ($file != '.' && $file != '..' && $file !='.svn' ) {
-            $lang_array[] = strtolower(substr($file, 0 , -4));
-        }
-    }
-    closedir($dir);
-    natcasesort($lang_array);
 
     //start the output
     switch ($parameter) {
@@ -3197,16 +3126,13 @@ function languageSelect($parameter)
             if ($CONFIG['language_flags'] == 2) {
                 $return.= $lang_language_selection['choose_language'].': ';
             }
-            foreach ($lang_array as $language) {
-                $cpg_language_name = str_replace('-utf-8','', $language);
-                if (array_key_exists($cpg_language_name, $lang_language_data)) {
-                    $return.= $lineBreak .  '<a href="' .$cpgChangeUrl. $language . '" rel="nofollow"><img src="images/flags/' . $lang_language_data[$cpg_language_name][2] . '.gif" border="0" width="16" height="11" alt="" title="';
-                    $return.= $lang_language_data[$language][0];
-                    if ($lang_language_data[$language][1] != $lang_language_data[$language][0]) {
-                        $return.= ' (' . $lang_language_data[$language][1] . ')';
-                    }
-                    $return.= '" /></a>' . $lineBreak;
+            foreach ($lang_language_data as $language) {
+                $return.= $lineBreak .  '<a href="' .$cpgChangeUrl. $language['lang_id'] . '" rel="nofollow"><img src="images/flags/' . $language['flag'] . '.gif" border="0" width="16" height="11" alt="" title="';
+                $return.= $language['english_name'];
+                if ($language['english_name'] != $language['native_name'] && $language['native_name'] != '') {
+                    $return.= ' / ' . $language['native_name'] ;
                 }
+                $return.= '" /></a>' . $lineBreak;
             }
             if ($CONFIG['language_reset'] == 1) {
                 $return.=  '<a href="' .$cpgChangeUrl. 'xxx" rel="nofollow"><img src="images/flags/reset.gif" border="0" width="16" height="11" alt="" title="';
@@ -3221,17 +3147,13 @@ function languageSelect($parameter)
             $return.= $lineBreak . '<div id="cpgChooseLanguageWrapper">' . $lineBreak . '<form name="cpgChooseLanguage" id="cpgChooseLanguage" action="' . $CPG_PHP_SELF . '" method="get" class="inline">' . $lineBreak;
             $return.= '<select name="lang" class="listbox_lang" onchange="if (this.options[this.selectedIndex].value) window.location.href=\'' . $cpgChangeUrl . '\' + this.options[this.selectedIndex].value;">' . $lineBreak;
             $return.='<option selected="selected">' . $lang_language_selection['choose_language'] . '</option>' . $lineBreak;
-            foreach ($lang_array as $language) {
-                $return.=  '<option value="' . $language  . '" >';
-                if (array_key_exists($language, $lang_language_data)) {
-                    $return.= $lang_language_data[$language][0];
-                    if ($lang_language_data[$language][1] != $lang_language_data[$language][0]) {
-                        $return.= ' (' . $lang_language_data[$language][1] . ')';
-                    }
-                } else {
-                    $return.= ucfirst($language);
+            foreach ($lang_language_data as $language) {
+                $return.=  '<option value="' . $language['lang_id']  . '" >';
+                $return.= $language['english_name'];
+                if ($language['english_name'] != $language['native_name'] && $language['native_name'] != '') {
+                    $return.= ' / ' . $language['native_name'] ;
                 }
-                $return.= ($value == $language ? '*' : '');
+                $return.= ($value == $language['lang_id'] ? '*' : '');
                 $return.= '</option>' . $lineBreak;
             }
             if ($CONFIG['language_reset'] == 1) {

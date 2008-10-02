@@ -571,3 +571,24 @@ ALTER TABLE CPG_categories ADD INDEX `lft_depth` ( `lft` , `depth` );
 
 # Add menu icon option
 INSERT INTO CPG_config VALUES ('enable_menu_icons', '0');
+
+CREATE TABLE IF NOT EXISTS CPG_languages (
+  lang_id  varchar(40) NOT NULL default '',
+  english_name varchar(70) default NULL,
+  native_name varchar(70) default NULL,
+  custom_name varchar(70) default NULL,
+  flag varchar(15) default NULL,
+  available enum('YES','NO') NOT NULL default 'NO',
+  enabled enum('YES','NO') NOT NULL default 'NO',
+  complete enum('YES','NO') NOT NULL default 'NO',
+  PRIMARY KEY (lang_id)
+) TYPE=MyISAM COMMENT='Contains the language file definitions';
+
+
+INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, available, enabled, complete) VALUES ('english', 'English (US)', 'English (US)', 'us', 'YES', 'YES', 'YES');
+INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, available, enabled, complete) VALUES ('german', 'German (informal)', 'Deutsch (Du)', 'de', 'YES', 'YES', 'NO');
+
+
+UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='english';
+UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='german';
+UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='vietnamese';

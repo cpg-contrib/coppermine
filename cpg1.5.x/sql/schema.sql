@@ -388,3 +388,16 @@ CREATE TABLE CPG_temp_messages (
   PRIMARY KEY (message_id)
 ) TYPE=MyISAM COMMENT='Used to store messages from one page to the other';
 # --------------------------------------------------------
+
+CREATE TABLE CPG_languages (
+  lang_id  varchar(40) NOT NULL default '',
+  english_name varchar(70) default NULL,
+  native_name varchar(70) default NULL,
+  custom_name varchar(70) default NULL,
+  flag varchar(15) default NULL,
+  available enum('YES','NO') NOT NULL default 'NO',
+  enabled enum('YES','NO') NOT NULL default 'NO',
+  complete enum('YES','NO') NOT NULL default 'NO',
+  PRIMARY KEY (lang_id)
+) TYPE=MyISAM COMMENT='Contains the language file definitions';
+# --------------------------------------------------------

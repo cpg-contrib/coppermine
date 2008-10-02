@@ -318,6 +318,15 @@ if (defined('KEYWORDMGR_PHP')) {
 }
 
 // ------------------------------------------------------------------------- //
+// File langmgr.php
+// ------------------------------------------------------------------------- //
+
+if (defined('LANGMGR_PHP')) {
+  $lang_langmgr_php_en = cpg_get_default_lang_var('$lang_langmgr_php','english');
+  $lang_langmgr_php = array_merge($lang_langmgr_php_en, $lang_langmgr_php);
+}
+
+// ------------------------------------------------------------------------- //
 // File login.php
 // ------------------------------------------------------------------------- //
 
