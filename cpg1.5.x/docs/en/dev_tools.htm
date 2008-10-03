@@ -54,6 +54,7 @@ The best place to get support for those apps are their homepages and the documen
 	<li><a href="#dev_tools_ftp_client">FTP-clients</a></li>
 	<li><a href="#dev_tools_web_development">Web development</a></li>
     <li><a href="#dev_tools_editor">Plain text editors</a></li>
+    <li><a href="#dev_tools_picture_editors">Picture Editors</a></li>
 </ul>
 
 <a name="dev_tools_database"></a><h3>Database manipulation<a href="#dev_tools_database" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -64,7 +65,7 @@ The best place to get support for those apps are their homepages and the documen
     <th valign="top" align="left" class="tableh1">App name</th>
     <th valign="top" align="left" class="tableh1">Purpose</th>
     <th valign="top" align="left" class="tableh1">Type</th>
-    <th valign="top" align="left" class="tableh1"><acronym title="operating System">OS</acronym></th>
+    <th valign="top" align="left" class="tableh1"><acronym title="Operating System">OS</acronym></th>
     <th valign="top" align="left" class="tableh1">License</th>
     <th valign="top" align="left" class="tableh1"><acronym title="Internationalization">i18n</acronym></th>
     <th valign="top" align="left" class="tableh1">Homepage</th>
@@ -120,7 +121,7 @@ It only reads and saves a certain amount of commands and then calls itself via J
     <th valign="top" align="left" class="tableh1">App name</th>
     <th valign="top" align="left" class="tableh1">Purpose</th>
     <th valign="top" align="left" class="tableh1">Type</th>
-    <th valign="top" align="left" class="tableh1"><acronym title="operating System">OS</acronym></th>
+    <th valign="top" align="left" class="tableh1"><acronym title="Operating System">OS</acronym></th>
     <th valign="top" align="left" class="tableh1">License</th>
     <th valign="top" align="left" class="tableh1"><acronym title="Internationalization">i18n</acronym></th>
     <th valign="top" align="left" class="tableh1">Homepage</th>
@@ -182,7 +183,7 @@ It only reads and saves a certain amount of commands and then calls itself via J
     <th valign="top" align="left" class="tableh1">App name</th>
     <th valign="top" align="left" class="tableh1">Purpose</th>
     <th valign="top" align="left" class="tableh1">Type</th>
-    <th valign="top" align="left" class="tableh1"><acronym title="operating System">OS</acronym></th>
+    <th valign="top" align="left" class="tableh1"><acronym title="Operating System">OS</acronym></th>
     <th valign="top" align="left" class="tableh1">License</th>
     <th valign="top" align="left" class="tableh1"><acronym title="Internationalization">i18n</acronym></th>
     <th valign="top" align="left" class="tableh1">Homepage</th>
@@ -318,7 +319,7 @@ It only reads and saves a certain amount of commands and then calls itself via J
     <th valign="top" align="left" class="tableh1">App name</th>
     <th valign="top" align="left" class="tableh1">Purpose</th>
     <th valign="top" align="left" class="tableh1">Type</th>
-    <th valign="top" align="left" class="tableh1"><acronym title="operating System">OS</acronym></th>
+    <th valign="top" align="left" class="tableh1"><acronym title="Operating System">OS</acronym></th>
     <th valign="top" align="left" class="tableh1">License</th>
     <th valign="top" align="left" class="tableh1"><acronym title="Internationalization">i18n</acronym></th>
     <th valign="top" align="left" class="tableh1">Homepage</th>
@@ -555,6 +556,87 @@ It only reads and saves a certain amount of commands and then calls itself via J
   </tr>
 </table>
 
+<a name="dev_tools_picture_editors"></a><h3>Picture Editors<a href="#dev_tools_picture_editors" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Before uploading images to your webserver, you might want to edit them on your client. There's a number of reasons why you should do that:</p>
+<ul>
+	<li>Resizing the images on the client will give you better results, is faster (as you save both processing time on the server as well as upload time) and avoids issues with server-sided restrictions on resouces consumption</li>
+	<li>Cropping and rotating is easier to perform on the client</li>
+	<li>Editing picture meta data (like EXIF or IPCT) is only possible on the client (because the image libraries on the server that coppermine can use don't come with the needed capabilities)</li>
+</ul>
+<p>On www forums you can often read the recommendation to use Adobe's Photoshop application to perform such tasks, but it's a bit overkill to use such a powerfull, expensive application for such basic purposes. There are many applications available free of charge that can accomplish the same thing.</p>
+
+<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+  <tr>
+    <th valign="top" align="left" class="tableh1">App name</th>
+    <th valign="top" align="left" class="tableh1">Purpose</th>
+    <th valign="top" align="left" class="tableh1">Type</th>
+    <th valign="top" align="left" class="tableh1"><acronym title="Operating System">OS</acronym></th>
+    <th valign="top" align="left" class="tableh1">License</th>
+    <th valign="top" align="left" class="tableh1"><acronym title="Internationalization">i18n</acronym></th>
+    <th valign="top" align="left" class="tableh1">Homepage</th>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="dev_tools_picture_editors_irfan"></a><h4 style="padding:0px;margin:0px">Irfan View<a href="#dev_tools_picture_editors_irfan" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
+    <td valign="top" class="tableb">Image viewer with basic editing capabilities</td>
+    <td valign="top" class="tableb"><img src="../images/client.png" border="0" width="16" height="16" alt="" title="Client app" /></td>
+    <td valign="top" class="tableb"><img src="../images/os/win.png" border="0" width="16" height="16" alt="" title="Windows" /></td>
+    <td valign="top" class="tableb"><img src="../images/license/freeware.png" border="0" width="16" height="16" alt="" title="Freeware" /></td>
+    <td valign="top" class="tableb">
+        <img src="../images/flags/sa.gif" border="0" width="16" height="11" alt="" title="Arabic" />
+        <img src="../images/flags/br.gif" border="0" width="16" height="11" alt="" title="Brazilian Portuguese" />
+        <img src="../images/flags/cn.gif" border="0" width="16" height="11" alt="" title="Chinese" />
+        <img src="../images/flags/hr.gif" border="0" width="16" height="11" alt="" title="Croatian" />
+        <img src="../images/flags/cz.gif" border="0" width="16" height="11" alt="" title="Czech" />
+        <img src="../images/flags/nl.gif" border="0" width="16" height="11" alt="" title="Dutch" />
+        <img src="../images/flags/dk.gif" border="0" width="16" height="11" alt="" title="Danish" />
+        <img src="../images/flags/us.gif" border="0" width="16" height="11" alt="" title="English" />
+        <img src="../images/flags/ee.gif" border="0" width="16" height="11" alt="" title="Estonian" />
+        <img src="../images/flags/esperanto.gif" border="0" width="16" height="11" alt="" title="Esperanto" />
+        <img src="../images/flags/fi.gif" border="0" width="16" height="11" alt="" title="Finnish" />
+        <img src="../images/flags/de.gif" border="0" width="16" height="11" alt="" title="German" />
+        <img src="../images/flags/il.gif" border="0" width="16" height="11" alt="" title="Hebrew" />
+        <img src="../images/flags/it.gif" border="0" width="16" height="11" alt="" title="Italian" />
+        <img src="../images/flags/jp.gif" border="0" width="16" height="11" alt="" title="Japanese" />
+        <img src="../images/flags/kr.gif" border="0" width="16" height="11" alt="" title="Korean" />
+        <img src="../images/flags/ir.gif" border="0" width="16" height="11" alt="" title="Persian" />
+        <img src="../images/flags/pl.gif" border="0" width="16" height="11" alt="" title="Polish" />
+        <img src="../images/flags/ro.gif" border="0" width="16" height="11" alt="" title="Romanian" />
+        <img src="../images/flags/ru.gif" border="0" width="16" height="11" alt="" title="Russian" />
+        <img src="../images/flags/sk.gif" border="0" width="16" height="11" alt="" title="Slovak" />
+        <img src="../images/flags/si.gif" border="0" width="16" height="11" alt="" title="Slovenian" />
+        <img src="../images/flags/es.gif" border="0" width="16" height="11" alt="" title="Spanish" />
+        <img src="../images/flags/se.gif" border="0" width="16" height="11" alt="" title="Swedish" />
+        <img src="../images/flags/tr.gif" border="0" width="16" height="11" alt="" title="Turkish" />
+        <img src="../images/flags/uz.gif" border="0" width="16" height="11" alt="" title="Uzbek" />
+    </td>
+    <td valign="top" class="tableb"><a href="http://irfanview.com/" rel="external" class="external">irfanview.com</a></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb" colspan="7">
+	    <strong>Description</strong>: Free for personal and educational use. Small license fee for commercial use.<br />
+	    <strong>Features:</strong>
+        <ul>
+			<li>Many supported file formats</li>
+			<li>Multi language support</li>
+			<li>Thumbnail/preview option</li>
+			<li>Paint option - to draw lines, circles, arrows, straighten image etc.</li>
+			<li>Support for Adobe Photoshop Filters</li>
+			<li>Fast directory view (moving through directory)</li>
+			<li>Batch conversion (with image processing)</li>
+			<li>File search</li>
+			<li>Support for embedded color profiles in JPG/TIF</li>
+			<li>Change color depth</li>
+			<li>Cut/crop</li>
+			<li>IPTC editing</li>
+			<li>Effects (Sharpen, Blur, Adobe 8BF, Filter Factory, Filters Unlimited, etc.)</li>
+			<li>Lossless JPG rotation</li>
+			<li>Unicode support</li>
+			<li>Only one EXE-File, no DLLs, no Shareware messages like "I Agree" or "Evaluation expired"</li>
+			<li>No registry changes without user action/permission!</li>
+        </ul>
+	</td>
+  </tr>
+</table>
 
 <br clear="all" />
 <script type="text/javascript">
