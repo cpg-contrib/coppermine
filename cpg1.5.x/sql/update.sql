@@ -532,10 +532,10 @@ INSERT INTO CPG_config VALUES ('display_redirection_page', '0');
 INSERT INTO CPG_config VALUES ('display_thumbs_batch_add', '1');
 
 # The ALL setting for filetypes is not a good idea - replace it!
-UPDATE CPG_config SET `allowed_img_types` = 'jpeg/jpg/png/gif' WHERE `allowed_img_types`='ALL';
-UPDATE CPG_config SET `allowed_mov_types` = 'asf/asx/mpg/mpeg/wmv/swf/avi/mov' WHERE `allowed_mov_types`='ALL';
-UPDATE CPG_config SET `allowed_snd_types` = 'mp3/midi/mid/wma/wav/ogg' WHERE `allowed_snd_types`='ALL';
-UPDATE CPG_config SET `allowed_doc_types` = 'doc/txt/rtf/pdf/xls/pps/ppt/zip/gz/mdb' WHERE `allowed_doc_types`='ALL';
+UPDATE CPG_config SET `value` = 'jpeg/jpg/png/gif' WHERE `name` = 'allowed_img_types' AND `value` = 'ALL';
+UPDATE CPG_config SET `value` = 'asf/asx/mpg/mpeg/wmv/swf/avi/mov' WHERE `name` = 'allowed_mov_types' AND `value` = 'ALL';
+UPDATE CPG_config SET `value` = 'mp3/midi/mid/wma/wav/ogg' WHERE `name` = 'allowed_snd_types' AND `value` = 'ALL';
+UPDATE CPG_config SET `value` = 'doc/txt/rtf/pdf/xls/pps/ppt/zip/gz/mdb' WHERE `name` = 'allowed_doc_types' AND `value` = 'ALL';
 
 # Display the news section from coppermine-gallery.net
 INSERT INTO CPG_config VALUES ('display_coppermine_news', '1');
