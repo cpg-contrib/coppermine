@@ -3105,6 +3105,16 @@ function languageSelect($parameter)
 
     $cpgChangeUrl .= 'lang=';
     
+    // Make sure that the language table exists in the first place - 
+    // return without return value if the table doesn't exist because 
+    // the upgrade script hasn't been run
+    $results = cpg_db_query("SHOW TABLES LIKE '{$CONFIG['TABLE_LANGUAGE']}'");
+    if (!mysql_num_rows($results)) {
+    	return;
+    }
+    mysql_free_result($results);
+    unset($results);
+    
     // get list of available languages
     $results = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_LANGUAGE']}");
     while ($row = mysql_fetch_array($results)) {
@@ -3113,6 +3123,7 @@ function languageSelect($parameter)
         }
     } // while
     mysql_free_result($results);
+    unset($results);
     // sort the array by English name
     ksort($lang_language_data);
     
