@@ -16,7 +16,7 @@
   $LastChangedBy: gaugau $
   $Date: 2008-09-15 21:50:16 +0530 (Mon, 15 Sep 2008) $
 **********************************************/
-define('UPDATE_PHP', true);
+
 // define('SKIP_AUTHENTICATION', true);
 // If you don't remember the admin account data you're prompted for when running this file in your browser, umcomment the line above by removing the two slashes in front of it, upload that file to your webserver, run it in your browser. After usccessfully having run it, remember to restore the two slashes you removed and replace the "unsecure" version on your webserver with the "secure" version (the one that contains the double slashes).
 
@@ -48,15 +48,6 @@ require_once('include/Inspekt.php');
 require_once('include/sql_parse.php');
 require_once('include/config.inc.php');
 require_once('include/functions.inc.php');
-##################      DB     ##################
-/*if ($CONFIG['dbservername'] == 'mysql') {
-	require 'include/cpgdb/drivers/mysql_driver.php';
-	require 'include/cpgdb/sql/mysql.php';
-} elseif ($CONFIG['dbservername'] == 'mssql') {
-	require 'include/cpgdb/drivers/mssql_driver.php';
-	require 'include/cpgdb/sql/mssql.php';
-}*/
-##########################################
 
 
 

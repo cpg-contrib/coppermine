@@ -13,9 +13,9 @@
   SVN version info:
 
   Coppermine version: 1.5.0
-  $Revision: 5046 $
+  $Revision: 5061 $
   $LastChangedBy: gaugau $
-  $Date: 2008-09-20 02:37:43 +0530 (Sat, 20 Sep 2008) $
+  $Date: 2008-09-27 16:47:15 +0530 (Sat, 27 Sep 2008) $
 -->
 <link rel="stylesheet" type="text/css" href="../style.css" media="all" />
 <link rel="stylesheet" type="text/css" href="../screen.css" media="screen" />
@@ -79,7 +79,9 @@
 <a name="admin_general_zip-download"></a><h3>Allow ZIP-download of favorites<a href="#admin_general_zip-download" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>When enabled, users of your site may download files that they previously saved into their <em>favorites</em> collection. These files are dowloaded from the user's &quot;My favorites&quot; page and saved onto their computers in a zip-file format. This option requires zlib to be installed on your server (run <a href="http://www.php.net/phpinfo" class="external">phpinfo</a> to check if this php library file exists on your server).</p>
 <p>Warning: the creation of zip-archives on the server is a resources-intensive process that can overload your server pretty fast. In fact, the same server-sided limitations that apply to uploading (e.g. memory consumption) must be taken into account as well when enabling the zip download feature. It is very likely that this feature will stop working when trying to create a zip archive out of a larger number of entries in the visitor's "my favorites" meta album.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; General settings &rarr; Allow ZIP-download of favorites</p>
+<p>You have the options to disallow the zip-download of favorites completely or to allow it. If you choose to allow it, you can determine if you want a readme file to be included within the zip archive that explains where the archive has been downloaded from.</p>
+<p>Default (and recommended) option is "off".</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4Configuration &rarr; General settings &rarr; Allow ZIP-download of favorites</p>
 <a name="admin_general_zip-download_end"></a>
 <hr />
 <a name="admin_general_time-offset"></a><h3>Timezone difference relative to GMT<a href="#admin_general_time-offset" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -1339,7 +1341,7 @@ All log files are written in english</p>
    <p>of the voter.</p>
    <p>As the statistics are being kept per file, the link to the stats can be accessed on the individual file's page (displayimage.php) by clicking the link in the file info section to open the stats pop-up.</p>
 <p class="important">Note: The total votes may not match if you enable details and do not reset the earlier votes.</p>
-<p class="important">Warning: keeping detailed statistics means additional database queries and subsequently a heavy load on the page. You have to understand that the size of the corresponding database tables can increase dramatically if you enable this feature.</p>
+<p class="important">Warning: keeping detailed statistics means additional database queries and subsequently a heavy load on the page. You have to understand that the size of the corresponding database tables can increase <strong>dramatically</strong> if you enable this feature.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Logging &amp; statistics &rarr; Keep detailed vote statistics</p>
 <a name="admin_logging_votedetails_end"></a>
 <hr />
@@ -1407,7 +1409,7 @@ All log files are written in english</p>
 
 <script type="text/javascript">
   cpgDocFooter();
-  dateRevision(' $LastChangedDate: 2008-09-20 02:37:43 +0530 (Sat, 20 Sep 2008) $ ', ' $Revision: 5046 $ ');
+  dateRevision(' $LastChangedDate: 2008-09-27 16:47:15 +0530 (Sat, 27 Sep 2008) $ ', ' $Revision: 5061 $ ');
 </script>
 
 </body>

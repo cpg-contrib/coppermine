@@ -11,9 +11,9 @@
 ##  ********************************************
 ##  Coppermine version: 1.5.0
 ##  $Source$
-##  $Revision: 5041 $
+##  $Revision: 5061 $
 ##  $LastChangedBy: gaugau $
-##  $Date: 2008-09-15 22:12:02 +0530 (Mon, 15 Sep 2008) $
+##  $Date: 2008-09-27 16:47:15 +0530 (Sat, 27 Sep 2008) $
 ##  ********************************************
 
 #
@@ -25,7 +25,7 @@ INSERT INTO CPG_config VALUES ('gallery_description', 'Your gallery description 
 INSERT INTO CPG_config VALUES ('gallery_admin_email', 'you@somewhere.com');
 INSERT INTO CPG_config VALUES ('ecards_more_pic_target', 'http://yoursite.tld/your_coppermine_folder/');
 INSERT INTO CPG_config VALUES ('home_target', 'index.php');
-INSERT INTO CPG_config VALUES ('enable_zipdownload', '1');
+INSERT INTO CPG_config VALUES ('enable_zipdownload', '0');
 INSERT INTO CPG_config VALUES ('time_offset', '0');
 INSERT INTO CPG_config VALUES ('enable_help', '2');
 INSERT INTO CPG_config VALUES ('clickable_keyword_search', '1');
@@ -48,7 +48,7 @@ INSERT INTO CPG_config VALUES ('custom_lnk_name', '');
 INSERT INTO CPG_config VALUES ('custom_lnk_url', '');
 INSERT INTO CPG_config VALUES ('enable_menu_icons', '1');
 INSERT INTO CPG_config VALUES ('show_bbcode_help', '1');
-INSERT INTO CPG_config VALUES ('display_social_bookmarks','0');
+INSERT INTO CPG_config VALUES ('display_social_bookmarks','');
 INSERT INTO CPG_config VALUES ('custom_header_path', '');
 INSERT INTO CPG_config VALUES ('custom_footer_path', '');
 INSERT INTO CPG_config VALUES ('browse_by_date', '0');

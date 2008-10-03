@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 5049 $
-  $LastChangedBy: pvanrompay $
-  $Date: 2008-09-22 03:52:33 +0530 (Mon, 22 Sep 2008) $
+  $Revision: 5061 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-09-27 16:47:15 +0530 (Sat, 27 Sep 2008) $
 **********************************************/
 
 /**********************************************
@@ -86,9 +86,15 @@ $config_data = array(
       'help_link'     => 'f=configuration.htm&amp;as=admin_general_home-url&amp;ae=admin_general_home-url_end',
     ),
     'enable_zipdownload' => array(
-      'type'          => 'checkbox',
-      'default_value' => '1',
+      'type'          => 'radio',
+      'default_value' => '0',
       'help_link'     => 'f=configuration.htm&amp;as=admin_general_zip-download&amp;ae=admin_general_zip-download_end',
+      'options'               => array(
+                                   $lang_common['no'],
+                                   $lang_common['yes'].': '.$lang_admin_php['enable_zipdownload_no_textfile'],
+                                   $lang_common['yes'].': '.$lang_admin_php['enable_zipdownload_additional_textfile'],
+                                 ),
+      'linebreak'     => '<br />',
     ),
     'time_offset' => array(
       'type'            => 'textfield',

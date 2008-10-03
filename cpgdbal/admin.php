@@ -192,7 +192,7 @@ foreach ($config_data as $config_section_key => $config_section_value) { // Loop
         } else { // no regex settings available - set validation var to successfull anyway
             $regexValidation = '1';
         }
-        if ($superCage->post->keyExists('update_config') && $regexValidation == '1' && $evaluate_value != $CONFIG[$adminDataKey] && $CONFIG[$adminDataKey] !== stripslashes($evaluate_value) ) {
+        if ($superCage->post->keyExists('update_config') && $regexValidation == '1' && $cpgdb->removeQuotes($evaluate_value) != $CONFIG[$adminDataKey] && $CONFIG[$adminDataKey] !== stripslashes($evaluate_value) ) {
             //  finally, all criteria have been met - let's write the updated data to the database
             //cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$evaluate_value' WHERE name = '$adminDataKey'");
             ########################################		DB		########################################

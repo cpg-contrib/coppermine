@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $Source$
-  $Revision: 5046 $
+  $Revision: 5061 $
   $LastChangedBy: gaugau $
-  $Date: 2008-09-20 02:37:43 +0530 (Sat, 20 Sep 2008) $
+  $Date: 2008-09-27 16:47:15 +0530 (Sat, 27 Sep 2008) $
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
@@ -298,6 +298,8 @@ $lang_thumb_view = array(
   'invalid_pass' => 'Invalid Password',
   'pass' => 'Password',
   'submit' => 'Submit',
+  'zipdownload_copyright' => 'Please respect copyrights - only use the files you downloaded as intended by the owner of the gallery', // cpg1.5
+  'zipdownload_username' => 'This archive contains the zipped files from the favorites of %s', // cpg1.5
 );
 
 $lang_img_nav_bar = array(
@@ -360,9 +362,12 @@ $lang_get_pic_data = array(
 $lang_cpg_debug_output = array(
   'debug_info' => 'Debug Info',
   'select_all' => 'Select All',
-  'copy_and_paste_instructions' => 'If you\'re going to request help on the Coppermine support board, copy-and-paste this debug output into your posting when requested, along with the error message you get (if any). Only post the debug_output on the support board if a supporter definitely asks for it! Make sure to replace any passwords from the query with *** before posting. <br />Note: This is for information only and does not mean there is an error with your gallery.', // cpg1.5
+  'copy_and_paste_instructions' => 'If you\'re going to request help on the Coppermine support board, copy-and-paste this debug output into your posting when requested, along with the error message you get (if any). Only post the debug_output on the support board if a supporter definitely asks for it! Make sure to replace any passwords from the query with *** before posting.', // cpg1.5
+  'debug_output_explain' => 'Note: This is for information only and does not mean there is an error with the gallery.', // cpg1.5
   'phpinfo' => 'display phpinfo',
   'notices' => 'Notices',
+  'notices_help_admin' => 'The notices displayed on this page appear because you (as gallery admin) deliberately enabled that feature in coppermine\'s config. They don\'t necessarilly mean that something is wrong with your gallery. In fact, they are a developer feature that only skilled coders should enable to track bugs. If notices display bothers you and/or you have no idea what those notices mean, turn the corresponding feature off in config.', // cpg1.5
+  'notices_help_non_admin' => 'The notices-display has been deliberately enabled by the admin. It doesn\'t mean that something is wrong on your end. You can savely ignore the notices displayed here.', // cpg1.5
   'show_hide' => 'show / hide', // cpg1.5
 );
 
@@ -759,6 +764,8 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'ecards_more_pic_target_detail' =>   '(with a trailing slash, no \'index.php\' or similar at the end)', // cpg1.5
   'home_target' =>   'URL of your home page', // cpg1.5
   'enable_zipdownload' =>   'Allow ZIP-download of favorites', // cpg1.5
+  'enable_zipdownload_no_textfile' =>   'just the favorites', // cpg1.5
+  'enable_zipdownload_additional_textfile' =>   'favorites and readme file', // cpg1.5
   'time_offset' =>   'Timezone difference relative to GMT', // cpg1.5
   'time_offset_detail' =>   '(current time: ' . localised_date(-1, $comment_date_fmt) . ')', // cpg1.5
   'enable_help' =>   'Enable help-icons', // cpg1.5

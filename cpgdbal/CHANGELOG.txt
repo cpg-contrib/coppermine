@@ -10,9 +10,9 @@ as published by the Free Software Foundation.
 ********************************************
 Coppermine version: 1.5.0
 $Source$
-$Revision: 5044 $
+$Revision: 5061 $
 $Author: gaugau $
-$Date: 2008-09-19 13:00:08 +0530 (Fri, 19 Sep 2008) $
+$Date: 2008-09-27 16:47:15 +0530 (Sat, 27 Sep 2008) $
 *********************************************
 Changelog
 =========
@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-09-27 [A] Added optional text file for favorites download {GauGau}
 2008-09-17 [A] Added license display to installer {GauGau}
 2008-09-17 [O] Reduced memory usage of keyword manager {Nibbler}
 2008-09-15 [M] Removed FAQ menu item as per dev team decision {GauGau}

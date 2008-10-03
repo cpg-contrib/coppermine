@@ -13,9 +13,9 @@
   SVN version info:
 
   Coppermine version: 1.5.0
-  $Revision: 5045 $
+  $Revision: 5060 $
   $LastChangedBy: gaugau $
-  $Date: 2008-09-19 20:01:11 +0530 (Fri, 19 Sep 2008) $
+  $Date: 2008-09-27 14:01:14 +0530 (Sat, 27 Sep 2008) $
 -->
 <link rel="stylesheet" type="text/css" href="../style.css" media="all" />
 <link rel="stylesheet" type="text/css" href="../screen.css" media="screen" />
@@ -125,7 +125,10 @@
 <p>Check the file versions of your core files to make sure you have upgraded as suggested and every file is up-to-date</p>
 
 <a name="stats"></a><h2>Overall stats<a href="#stats" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>View the overall stats of your gallery (only available if you have enabled the corresponding option in config)</p>
+<p>View the overall stats of your gallery (only available if you have enabled the <a href="configuration.htm#admin_logging_votedetails">corresponding option in config</a>).</p>
+<p>Warning: keeping detailed statistics means additional database queries and subsequently a heavy load on the page. You have to understand that the size of the corresponding database tables can increase <strong>dramatically</strong> if you enable this feature.</p>
+<p>You should empty the stats record table from time to time to avoid the record table getting to big. To accomplish this, check "Empty all hit stats" at the bottom of the stats page and submit the form.</p>
+<p>The stats tool lis meant as a basic statistics module - if you need more details or if you're afraid of the huge database load that the stats can generate, you should look for an alternative like <a href="http://www.google.com/analytics/" rel="external" class="external">Google Analytics</a> or similar.</p>
 
 <a name="keyword_manager"></a><h2>Keyword manager<a href="#keyword_manager" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p><a href="keywords.htm#keywords_manager">Manage the keywords</a> assigned to files</p>
@@ -151,7 +154,7 @@
 
 <script type="text/javascript">
   cpgDocFooter();
-  dateRevision(' $LastChangedDate: 2008-09-19 20:01:11 +0530 (Fri, 19 Sep 2008) $ ', ' $Revision: 5045 $ ');
+  dateRevision(' $LastChangedDate: 2008-09-27 14:01:14 +0530 (Sat, 27 Sep 2008) $ ', ' $Revision: 5060 $ ');
 </script>
 
 </body>

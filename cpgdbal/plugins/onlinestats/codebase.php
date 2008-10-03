@@ -268,7 +268,7 @@ function online_install() {
 				$duration = $superCage->post->getInt('duration');
 
 				// create table
-				$db_schema = $thisplugin->fullpath . '/schema.sql';
+				$db_schema = $thisplugin->fullpath . '/'.$CONFIG['dbservername'].'/schema.sql';
 				$sql_query = fread(fopen($db_schema, 'r'), filesize($db_schema));
 				$sql_query = preg_replace('/CPG_/', $CONFIG['TABLE_PREFIX'], $sql_query);
 

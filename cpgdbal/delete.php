@@ -406,11 +406,11 @@ switch ($what) {
                         $category = $superCage->post->getInt('cat');
                         $user_id = USER_ID;
 
-                        $returnOutput .= "<tr><td colspan=\"6\" class=\"tableb\">" . sprintf($lang_delete_php['create_alb'], $op['album_nm']) . "</td></tr>\n";
+                        $returnOutput .= "<tr><td colspan=\"6\" class=\"tableb\">" . sprintf($lang_delete_php['create_alb'], $cpgdb->removeQuotes($op['album_nm'])) . "</td></tr>\n";
                         /*$query = "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (category, title, uploads, pos, description, owner) VALUES ('$category', '" . addslashes($op['album_nm']) . "', 'NO',  '{$op['album_sort']}', '', '$user_id')";
                         cpg_db_query($query);*/
                         #############################            DB          #############################
-                        $cpgdb->query($cpg_db_delete_php['albmgr_add_album'], $category, addslashes($op['album_nm']), 
+                        $cpgdb->query($cpg_db_delete_php['albmgr_add_album'], $category, $cpgdb->removeQuotes($cpgdb->escape($op['album_nm'])), 
                                         $op['album_sort'], $user_id);
                         #####################################################################
                         break;
@@ -419,7 +419,7 @@ switch ($what) {
                         /*$query = "UPDATE $CONFIG[TABLE_ALBUMS] SET title='" . addslashes($op['album_nm']) . "', pos='{$op['album_sort']}' WHERE aid='{$op['album_no']}' $restrict LIMIT 1";
                         cpg_db_query($query);*/
                         ################################          DB       #################################
-                        $cpgdb->query($cpg_db_delete_php['albmgr_update_album'], addslashes($op['album_nm']), $op['album_sort'],
+                        $cpgdb->query($cpg_db_delete_php['albmgr_update_album'], $cpgdb->removeQuotes($cpgdb->escape($op['album_nm'])), $op['album_sort'],
                                         $op['album_no'], $restrict);
                         ##########################################################################
                         break;
@@ -502,12 +502,12 @@ switch ($what) {
                    } else {
                       $category = FIRST_USER_CAT + USER_ID;
                    }
-                   echo "<tr><td colspan=\"6\" class=\"tableb\">".sprintf($lang_delete_php['create_alb'], $op['album_nm'])."</td></tr>\n";
+                   echo "<tr><td colspan=\"6\" class=\"tableb\">".sprintf($lang_delete_php['create_alb'], $cpgdb->removeQuotes($op['album_nm']))."</td></tr>\n";
                    /*$query = "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (category, title, uploads, pos, description) VALUES ('$category', '".addslashes($op['album_nm'])."', 'NO',  '{$op['album_sort']}', '')";
                    cpg_db_query($query); */
 					#####################        DB      #####################
 					$cpgdb->query($cpg_db_delete_php['picmgr_add_album'], $category, 
-								addslashes($op['album_nm']), $op['album_sort']);
+								$cpgdb->removeQuotes($cpgdb->escape($op['album_nm'])), $op['album_sort']);
 					##################################################
                    break;
 	            case '2':

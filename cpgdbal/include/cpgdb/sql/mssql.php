@@ -1729,7 +1729,7 @@ if (defined('CORE_PLUGIN')) $cpg_db_onlinestats = array(
 	'login_delete_online'			=> "DELETE FROM {$CONFIG['TABLE_PREFIX']}mod_online WHERE user_id = 0 AND user_ip = '%1\$s'",
 	'logout_delete_online'			=> "DELETE FROM {$CONFIG['TABLE_PREFIX']}mod_online WHERE user_id = %1\$s",
 	'lastact_delete_online'			=> "DELETE FROM {$CONFIG['TABLE_PREFIX']}mod_online ".
-									   "WHERE last_action < DATEDIFF(n, '19700101', GETDATE()) - %1\$s ",
+									   "WHERE last_action < DATEADD(n, -%1\$s, GETDATE()) ",
 	'online_delete_values'			=> "DELETE FROM {$CONFIG['TABLE_PREFIX']}mod_online WHERE user_id = '%1\$s' AND user_ip = '%2\$s'",
 	'online_insert_values'			=> "INSERT INTO {$CONFIG['TABLE_PREFIX']}mod_online (user_id, user_name, user_ip, last_action) ".
 									   "VALUES ('%1\$s', '%2\$s', '%3\$s', GETDATE())",
@@ -1747,8 +1747,8 @@ if (defined('CORE_PLUGIN')) $cpg_db_onlinestats = array(
 	'get_mod_updates_duration'		=> "SELECT * FROM {$CONFIG['TABLE_CONFIG']} WHERE name ='mod_updates_duration'",
 	'add_mod_updates_duration'		=> "INSERT INTO {$CONFIG['TABLE_CONFIG']} (name, value) VALUES ('mod_updates_duration', '%1\$s')",
 	'set_main_page_layout'			=> "UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '%1\$s' WHERE name = 'main_page_layout'",
-	'drop_online'					=> "IF EXISTS(SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES ".
-									   "WHERE TABLE_NAME = {$CONFIG['TABLE_PREFIX']}mod_online) DROP TABLE {$CONFIG['TABLE_PREFIX']}mod_online;",
+	'drop_online'					=> "IF EXISTS(select * from dbo.sysobjects where id = object_id(N'{$CONFIG['TABLE_PREFIX']}mod_online') AND TYPE = 'U') ".
+									   "BEGIN DROP TABLE {$CONFIG['TABLE_PREFIX']}mod_online END;",
 	'del_mod_updates_duration'		=> "DELETE FROM {$CONFIG['TABLE_CONFIG']} WHERE name = 'mod_updates_duration'",
 	'del_record_online_users'		=> "DELETE FROM {$CONFIG['TABLE_CONFIG']} WHERE name = 'record_online_users'",
 	'del_record_online_data'		=> "DELETE FROM {$CONFIG['TABLE_CONFIG']} WHERE name = 'record_online_date'",
