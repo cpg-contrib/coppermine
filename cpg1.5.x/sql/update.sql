@@ -199,7 +199,7 @@ CREATE TABLE CPG_banned (
         PRIMARY KEY  (ban_id)
 ) TYPE=MyISAM;
 
-UPDATE `CPG_config` SET value='$/\\\\:*?&quot;\'&lt;&gt;|` &amp;' WHERE name='forbiden_fname_char';
+UPDATE `CPG_config` SET value='$/\\\\:*?"\'<>|` &' WHERE name='forbiden_fname_char';
 
 #
 # Fix usermgr timing out with 1k+ users -Omni
