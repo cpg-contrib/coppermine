@@ -393,7 +393,7 @@ class CPGPluginAPI {
      **/
 
     function install($path) {
-        global $CONFIG,$thisplugin,$CPG_PLUGINS,$lang_plugin_api;
+        global $CONFIG,$thisplugin,$CPG_PLUGINS,$lang_plugin_api,$lang_plugin_php;
 
         // If this plugin is already installed return true
         if (CPGPluginAPI::installed($path)) {
