@@ -336,7 +336,7 @@ if ($superCage->get->keyExists('fullsize')) {
     //$meta_nav .= "<link rel=\"alternate\" type=\"text/xml\" title=\"RSS feed\" href=\"rss.php\" />
     // ";
     $meta_keywords .= $meta_nav;
-    if($album == 'lastup' || $album == 'lastcom' || $album == 'topn' || $album == 'toprated' || $album == 'favpics' || $album == 'random') {
+    if($album == 'lastup' || $album == 'lastcom' || $album == 'topn' || $album == 'toprated' || $album == 'favpics' || $album == 'random' || $album == 'datebrowse') {
         $meta_keywords .= '<meta name="robots" content="noindex, nofollow" />';
     }
 

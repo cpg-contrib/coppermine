@@ -166,7 +166,7 @@ if (isset($CURRENT_ALBUM_DATA)) {
 $meta_keywords = '';
 // keep the search engine spiders from indexing meta albums that are subject to constant changes
 // if($_GET['album'] == 'lastup' || $_GET['album'] == 'lastcom' || $_GET['album'] == 'topn' || $_GET['album'] == 'toprated' || $_GET['album'] == 'favpics' || $_GET['album'] == 'random') {  
-$meta_albums_array = array('lastup', 'lastcom', 'topn', 'toprated', 'favpics', 'random');
+$meta_albums_array = array('lastup', 'lastcom', 'topn', 'toprated', 'favpics', 'random', 'datebrowse');
 if(in_array($superCage->get->getAlpha('album'), $meta_albums_array)) {
     $meta_keywords .= '<meta name="robots" content="noindex, nofollow" />';
 }
