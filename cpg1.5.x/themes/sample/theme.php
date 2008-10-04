@@ -595,13 +595,13 @@ $template_album_admin_menu = <<<EOT
         <table border="0" cellpadding="0" cellspacing="1">
                 <tr>
                         <td align="center" valign="middle" class="admin_menu">
-                                <a href="delete.php?id={ALBUM_ID}&amp;what=album"  class="adm_menu" onclick="return confirm('{CONFIRM_DELETE}');">{DELETE}</a>
+                                <a href="delete.php?id={ALBUM_ID}&amp;what=album" class="adm_menu" onclick="return confirm('{CONFIRM_DELETE}');">{DELETE}</a>
                         </td>
                         <td align="center" valign="middle" class="admin_menu">
-                                <a href="modifyalb.php?album={ALBUM_ID}"  class="adm_menu">{MODIFY}</a>
+                                <a href="modifyalb.php?album={ALBUM_ID}" class="adm_menu">{MODIFY}</a>
                         </td>
                         <td align="center" valign="middle" class="admin_menu">
-                                <a href="editpics.php?album={ALBUM_ID}"  class="adm_menu">{EDIT_PICS}</a>
+                                <a href="editpics.php?album={ALBUM_ID}" class="adm_menu">{EDIT_PICS}</a>
                         </td>
                 </tr>
         </table>
