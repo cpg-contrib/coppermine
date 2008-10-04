@@ -401,7 +401,7 @@ INSERT INTO CPG_languages (lang_id, english_name, local_name, flag, available, e
 INSERT INTO CPG_languages (lang_id, english_name, local_name, flag, available, enabled, complete) VALUES ('czech', 'Czech','&#x010C;esky','cz', 'NO', 'NO', 'NO');
 INSERT INTO CPG_languages (lang_id, english_name, local_name, flag, available, enabled, complete) VALUES ('danish', 'Danish','Dansk','dk', 'NO', 'NO', 'NO');
 INSERT INTO CPG_languages (lang_id, english_name, local_name, flag, available, enabled, complete) VALUES ('dutch', 'Dutch','Nederlands','nl', 'NO', 'NO', 'NO');
-INSERT INSERT INTO CPG_languages (lang_id, english_name, local_name, flag, available, enabled, complete) VALUES ('english', 'English (US)', 'English (US)', 'us', 'YES', 'YES', 'YES');
+INSERT INTO CPG_languages (lang_id, english_name, local_name, flag, available, enabled, complete) VALUES ('english', 'English (US)', 'English (US)', 'us', 'YES', 'YES', 'YES');
 INSERT INTO CPG_languages (lang_id, english_name, local_name, flag, available, enabled, complete) VALUES ('english_gb', 'English (British)','English (British)','gb', 'NO', 'NO', 'NO');
 INSERT INTO CPG_languages (lang_id, english_name, local_name, flag, available, enabled, complete) VALUES ('estonian', 'Estonian','Eesti','ee', 'NO', 'NO', 'NO');
 INSERT INTO CPG_languages (lang_id, english_name, local_name, flag, available, enabled, complete) VALUES ('filipino', 'Filipino Tagalog','','ph', 'NO', 'NO', 'NO');

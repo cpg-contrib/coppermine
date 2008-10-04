@@ -3230,10 +3230,7 @@ function theme_html_rating_box()
     }
     
     $superCage = Inspekt::makeSuperCage();
-    $client_id = md5($superCage->server->getRaw('HTTP_USER_AGENT').$superCage->server->getRaw('SERVER_PROTOCOL').$CONFIG['site_url']);
-    $vote_id = base64_encode(md5($superCage->cookie->getRaw($client_id) . $client_id). '-|-' . $USER_DATA['user_id']);
     $extra_info = '<span style="display:none" id="stars_amount">' . $rating_stars_amount . '</span>';
-    $extra_info .= '<span style="display:none" id="vote_id">' . $vote_id . '</span>';
     
     if ($CONFIG['old_style_rating']) {
       //use old style rating

@@ -84,10 +84,8 @@ var root = '';
 function rate(obj, rating, theme_dir){
 	var id = obj.title;
 	var fullId = obj.id;
-	var vote_id = document.getElementById('vote_id').innerHTML;
 	var idName = fullId.substr(0, fullId.indexOf('_'));
-	//window.location = root+'ratepic.php?rate=' + id + '&pic=' + idName + '&id=' + vote_id;
-	$.get('ratepic.php?rate=' + id + '&pic=' + idName + '&id=' + vote_id, function(data){
+	$.get('ratepic.php?rate=' + id + '&pic=' + idName, function(data){
 		//create a JSON object of the returned data
 		var json_data = eval('(' + data + ')');
 		//check the data and respond upon it

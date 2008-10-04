@@ -32,30 +32,9 @@ $rating_stars_amount = ($CONFIG['old_style_rating']) ? 5 : $CONFIG['rating_stars
 
 $pic = $superCage->get->getInt('pic');
 $rate = $superCage->get->getInt('rate');
-$info = explode('-|-', base64_decode($superCage->get->getAlnum('id')));
-$user_id = $info[1];
-$session_id = $info[0];
-
-$verified = false;
-//first, we will check if this user is actually a regular user not trying to cheat
-if(is_numeric($user_id)){
-	$result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PREFIX']}sessions WHERE session_id='$session_id' AND user_id=$user_id");
-	$verified = mysql_num_rows($result) ? true : false;
-}else {
-	$verified = false;
-}
-
-if(!$verified){
-	//send back voting failure to ajax request
-	$send_back = array('status' => 'error', 'msg' => $lang_errors['perm_denied']);
-	echo json_encode($send_back);
-	exit;
-}
 
 $rate = min($rate, $rating_stars_amount);
 $rate = max($rate, 0);
-
-
 
 // Retrieve picture/album information & check if user can rate picture
 $sql = "SELECT a.votes as votes_allowed, p.votes as votes, pic_rating, owner_id " . "FROM {$CONFIG['TABLE_PICTURES']} AS p, {$CONFIG['TABLE_ALBUMS']} AS a " . "WHERE p.aid = a.aid AND pid = '$pic' LIMIT 1";
