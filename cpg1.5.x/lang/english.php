@@ -77,6 +77,7 @@ $lang_meta_album_names = array(
   'album_search' => 'Album search results',
   'category_search' => 'Category search results',
   'favpics'=> 'Favorite files',
+  'datebrowse'=> 'Browse by date', //cpg1.5
 );
 
 $lang_errors = array(
