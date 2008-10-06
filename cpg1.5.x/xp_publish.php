@@ -248,89 +248,70 @@ function display_instructions()
     //global $PHP_SELF;
     global $lang_xp_publish_required, $lang_xp_publish_client, $lang_xp_publish_select, $lang_xp_publish_testing, $lang_xp_publish_notes, $lang_xp_publish_flood, $lang_xp_publish_php;
     global $CONFIG, $lang_charset;
-    ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<title><?php print $CONFIG['gallery_name']; ?> - XP Publish README</title>
-<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset']; ?>" />
-<style type="text/css">
-<!--
-body {
-        font-family : Verdana, Arial, Helvetica, sans-serif;
-        font-size: 12px;
-        background : #F7F7F7 ;
-        color : Black;
-        margin: 30px;
-        line-height: 1.5;
-}
 
-td {
-        font-size: 12px;
-}
+	$publish_help = '&nbsp;'.cpg_display_help('f=uploading_xp-publisher.htm&amp;as=xp&amp;ae=xp_end', '600', '600');
+	//$requirements_help = '&nbsp;'.cpg_display_help('f=uploading_xp-publisher.htm&amp;as=xp&amp;ae=xp_end', '600', '600');
+	$install_help = '&nbsp;'.cpg_display_help('f=uploading_xp-publisher.htm&amp;as=xp_publish_setup&amp;ae=xp_publish_setup_end', '450', '400');
+	$usage_help = '&nbsp;'.cpg_display_help('f=uploading_xp-publisher.htm&amp;as=xp_publish_upload&amp;ae=xp_publish_upload_end', '600', '450');
+	pageheader($CONFIG['gallery_name'] . $lang_xp_publish_php['title']);
+	starttable('100%' , '<h1>'.$lang_xp_publish_php['client_header'].$publish_help.'</h1>', 1);
+	print <<< EOT
+	<tr>
+		<td class="tableh2">
+			<h2>{$lang_xp_publish_php['requirements']}</h2>
+		</td>
+	</tr>
+	<tr>
+		<td class="tableb">
+			<ul>
+				<li>{$lang_xp_publish_php['windows_xp']}</li>
+				<li>{$lang_xp_publish_php['requirement_http_upload']}</li>
+				<li>{$lang_xp_publish_php['requirement_ie']}</li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td class="tableh2">
+			<h2>{$lang_xp_publish_php['howto_install']}{$install_help}</h2>
+		</td>
+	</tr>
+	<tr>
+		<td class="tableb">
+			<ul>
+				<li>
+EOT;
+	printf($lang_xp_publish_php['install_right_click'],'<a href="'.$CPG_PHP_SELF.'?cmd=send_reg">', '</a>');
+	print <<< EOT
+				</li>
+				<li>{$lang_xp_publish_php['install_save']}</li>
+				<li>{$lang_xp_publish_php['install_execute']}</li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td class="tableh2">
+			<h2>{$lang_xp_publish_php['usage']}{$usage_help}</h2>
+		</td>
+	</tr>
+	<tr>
+		<td class="tableb">
+			<ul>
+				<li>{$lang_xp_publish_php['select_files']}</li>
+				<li>{$lang_xp_publish_php['display_tasks']}</li>
+				<li>{$lang_xp_publish_php['publish_on_the_web']}</li>
+				<li>{$lang_xp_publish_php['confirm_selection']}, {$lang_xp_publish_php['next']}</li>
+				<li>{$lang_xp_publish_php['select_service']}</li>
+				<li>{$lang_xp_publish_php['enter_login']}</li>
+				<li>{$lang_xp_publish_php['select_album']}, {$lang_xp_publish_php['next']}</li>
+				<li>{$lang_xp_publish_php['upload_starts']}</li>
+				<li>{$lang_xp_publish_php['upload_completed']}</li>
+			</ul>
+		</td>
+	</tr>
+EOT;
+	endtable();
+	pagefooter();
 
-h1{
-        font-weight: bold;
-        font-size: 22px;
-        font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
-        text-decoration: none;
-        line-height : 120%;
-        color : #000000;
-}
-
-h2 {
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 18px;
-        color: #0E72A4;
-        text-decoration: underline;
-        margin-top: 20px;
-        margin-bottom: 10px;
-}
-
-h3 {
-        font-weight: bold;
-        font-family: Verdana, Arial, Helvetica, sans-serif;
-        font-size: 12px;
-        text-decoration: underline;
-}
-
-p {
-        font-family : Verdana, Arial, Helvetica, sans-serif;
-        font-size: 12px;
-        margin: 10px 10px 0px 0px;
-}
-
-ul {
-        margin-left: 5px;
-        margin-right: 0px;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        padding: 0px;
-        list-style-type: square;
-}
-
-li {
-        margin-left: 10px;
-        margin-top: 6px;
-        margin-bottom: 6px;
-        padding: 0px;
-        list-style-position: outside;
-}
--->
-</style>
-</head>
-
-<body>
-<?php echo $lang_xp_publish_client ?> Sebastian Delmont <a href="http://www.zonageek.com/code/misc/wizards/">Creating your own XP Publishing Wizard</a>.</p>
-
-<?php echo $lang_xp_publish_required ?> <a href="<?php echo $CPG_PHP_SELF ?>?cmd=send_reg"><?php echo $lang_xp_publish_php['link'] ?></a>. <?php echo $lang_xp_publish_select,
-$lang_xp_publish_testing,
-$lang_xp_publish_notes; ?>
-  <a href="<?php echo dirname($CPG_PHP_SELF) . '/' . LOGFILE ?>"><?php echo LOGFILE ?></a>
-<?php echo $lang_xp_publish_flood ?>
-</body>
-</html>
-<?php
 }
 
 // Output page header
@@ -339,92 +320,8 @@ function output_header()
     global $CONFIG;
     global $lang_charset, $lang_text_dir, $lang_xp_publish_php;
 
-    ?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html dir="ltr">
-<head>
-<title><?php echo $lang_xp_publish_php['title'] ?></title>
-<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'];
-    ?>" />
-<style type="text/css">
-<!--
-body {
-        font-family : Verdana, Arial, Helvetica, sans-serif;
-        font-size: 12px;
-        background : #FFFFFF ;
-        color : Black;
-        margin: 20px;
-        border: 1px solid #000000;
-}
-
-td {
-        font-size: 12px;
-        padding-top: 5px;
-        padding-bottom: 0px;
-}
-
-h1{
-        font-weight: bold;
-        font-size: 22px;
-        font-family: Arial, Helvetica, sans-serif;
-        text-decoration: none;
-        line-height : 120%;
-        color : #0E72A4;
-}
-
-h2 {
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 18px;
-        color: #0E72A4;
-        text-decoration: underline;
-}
-
-h3 {
-        font-weight: bold;
-        font-family: Verdana, Arial, Helvetica, sans-serif;
-        font-size: 12px;
-        text-decoration: underline;
-}
-
-p {
-        font-family : Verdana, Arial, Helvetica, sans-serif;
-        font-size: 12px;
-        margin: 10px 10px 0px 0px;
-}
-
-ul {
-        margin-left: 5px;
-        margin-right: 0px;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        padding: 0px;
-}
-
-li {
-        margin-left: 10px;
-        margin-top: 4px;
-        margin-bottom: 4px;
-        padding: 0px;
-        list-style-position: outside;
-        list-style-type: disc;
-}
-
-form {
-        display: inline;
-}
-
-input {
-        width: 200px;
-}
-
--->
-</style>
-</head>
-
-<body>
-<h1><?php echo $lang_xp_publish_php['title'] ?></h1>
-<p></p>
-<?php
+    pageheader($CONFIG['gallery_name'] . $lang_xp_publish_php['title']);
+	echo '<h1>' . $lang_xp_publish_php['title'] . '</h1>';
 }
 
 // Output page footer
@@ -432,8 +329,11 @@ function output_footer()
 {
     global $WIZARD_BUTTONS, $ONBACK_SCRIPT, $ONNEXT_SCRIPT;
     global $CONFIG; //$PHP_SELF,
+    $site_url = trim($CONFIG['site_url'], '/') . '/';
+    $gallery_name_javascript = javascript_string($CONFIG['gallery_name']);
+    $gallery_description_javascript = javascript_string($CONFIG['gallery_description']);
 
-    ?>
+    print <<< EOT
 
 <div id="content"></div>
 
@@ -460,7 +360,7 @@ function startUpload() {
 
         for (i = 0; i < files.length; i++) {
                 var postTag = xml.createNode(1, 'post', '');
-                postTag.setAttribute('href', '<?php echo trim($CONFIG['site_url'], '/') . '/' . $CPG_PHP_SELF . '?cmd=add_picture'?>&album=' + selform.album.value);
+                postTag.setAttribute('href', '{$site_url}{$CPG_PHP_SELF}?cmd=add_picture&album=' + selform.album.value);
                 postTag.setAttribute('name', 'userpicture');
 
                 var dataTag = xml.createNode(1, 'formdata', '');
@@ -472,9 +372,9 @@ function startUpload() {
         }
 
         var uploadTag = xml.createNode(1, 'uploadinfo', '');
-        uploadTag.setAttribute('friendlyname', '<?php echo javascript_string($CONFIG['gallery_name'])?>');
+        uploadTag.setAttribute('friendlyname', '{$gallery_name_javascript}');
         var htmluiTag = xml.createNode(1, 'htmlui', '');
-        htmluiTag.text = '<?php echo trim($CONFIG['site_url'], '/') . '/'?>';
+        htmluiTag.text = '{$site_url}';
         uploadTag.appendChild(htmluiTag);
 
         xml.documentElement.appendChild(uploadTag);
@@ -486,28 +386,24 @@ function startUpload() {
 }
 
 function OnBack() {
-        <?php echo $ONBACK_SCRIPT;
-    ?>
+        {$ONBACK_SCRIPT}
         window.external.SetWizardButtons(false,true,false);
 }
 
 function OnNext() {
-        <?php echo $ONNEXT_SCRIPT;
-    ?>
+        {$ONNEXT_SCRIPT}
 }
 
 function OnCancel() {
 }
 
 function window.onload() {
-        window.external.SetHeaderText('<?php echo javascript_string($CONFIG['gallery_name'])?>','<?php echo javascript_string($CONFIG['gallery_description'])?>');
-        window.external.SetWizardButtons(<?php echo $WIZARD_BUTTONS;
-    ?>);
+        window.external.SetHeaderText('{$gallery_name_javascript}','{$gallery_description_javascript}');
+        window.external.SetWizardButtons({$WIZARD_BUTTONS});
 }
 </script>
-</body>
-</html>
-<?php
+EOT;
+	pagefooter();
 }
 
 // Send the file needed to register the service under Windows XP

@@ -592,3 +592,5 @@ INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, available, 
 UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='english';
 UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='german';
 UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='vietnamese';
+
+INSERT INTO CPG_config VALUES ('display_xp_publish_link', '0');

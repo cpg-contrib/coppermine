@@ -997,13 +997,13 @@ if (!$superCage->post->keyExists('control')) {
         // The user has the single upload only form. Send the request to db_input.php.
         open_form('db_input.php');
         // Open the form table.
-        starttable("100%", $lang_upload_php['title'], 2);
+        starttable("100%", cpg_fetch_icon('upload',2).$lang_upload_php['title'], 2);
     } else {
 
         // Direct the request to this script and print the form instructions.
         open_form($CPG_PHP_SELF);
         // Open the form table.
-        starttable("100%", $lang_upload_php['title'], 2);
+        starttable("100%", cpg_fetch_icon('upload',2).$lang_upload_php['title'], 2);
         form_instructions();
 
     }
@@ -1125,6 +1125,19 @@ if (!$superCage->post->keyExists('control')) {
     // Close the table, create footers, and flush the output buffer.
     endtable();
     echo "</form>";
+    if ($CONFIG['display_xp_publish_link'] == 1) {
+    	print '<br />';
+    	starttable('100%', cpg_fetch_icon('info', 2) . $lang_upload_php['alternative_upload'],1);
+    	print <<< EOT
+    	<tr>
+    		<td class="tableb">
+    			{$lang_upload_php['xp_publish_promote']}<br />
+    			[<a href="xp_publish.php">{$lang_upload_php['more']}</a>]
+    		</td>
+    	</tr>
+EOT;
+    	endtable();
+    }    
     pagefooter();
     ob_end_flush();
 
@@ -2584,7 +2597,7 @@ if ($superCage->post->keyExists('control') && $superCage->post->getRaw('control'
     open_form($CPG_PHP_SELF);
 
     // Open the form table.
-    starttable("100%", $lang_upload_php['title'], 2);
+    starttable("100%", cpg_fetch_icon('upload',2).$lang_upload_php['title'], 2);
 
     // Create image tag and echo it to the output buffer.
     echo "<tr><td class=\"tableh2\"><img class=\"image\" src=\"".$path_to_preview."\"  /></td>";

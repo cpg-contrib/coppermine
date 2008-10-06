@@ -52,6 +52,7 @@ INSERT INTO CPG_config VALUES ('display_social_bookmarks','0');
 INSERT INTO CPG_config VALUES ('custom_header_path', '');
 INSERT INTO CPG_config VALUES ('custom_footer_path', '');
 INSERT INTO CPG_config VALUES ('browse_by_date', '0');
+INSERT INTO CPG_config VALUES ('display_xp_publish_link', '0');
 INSERT INTO CPG_config VALUES ('allow_user_edit_after_cat_close', '0');
 INSERT INTO CPG_config VALUES ('allow_user_move_album', '0');
 INSERT INTO CPG_config VALUES ('allow_user_album_keyword', '0');
@@ -209,6 +210,7 @@ INSERT INTO CPG_config VALUES ('keep_votes_time', '30');
 #INSERT INTO CPG_config VALUES ('comment_email_notification', '0');
 INSERT INTO CPG_config VALUES ('show_which_exif', '|0|0|0|0|0|0|0|0|1|0|1|1|0|0|0|0|0|0|0|0|0|0|0|1|0|0|0|1|0|0|0|1|1|0|0|0|0|1|0|0|0|1|0|0|1|1|0|0|0|0|0|1|0|1|1');
 INSERT INTO CPG_config VALUES ('bridge_enable', '0');
+
 
 
 #

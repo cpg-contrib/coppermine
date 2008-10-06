@@ -797,6 +797,7 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'custom_footer_path' =>   'Path to custom footer include', // cpg1.5
   'browse_by_date' =>   'Enable browsing by date', // cpg1.5
   'display_redirection_page' =>   'Display redirection pages', // cpg1.5
+  'display_xp_publish_link' =>   'Promote usage of XP Publisher by displaying a corresponding link on upload page', // cpg1.5
   'main_table_width' =>   'Width of the main table', // cpg1.5
   'pixels_or_percent' =>   'pixels or %', // cpg1.5
   'subcat_level' =>   'Number of levels of categories to display', // cpg1.5
@@ -2282,6 +2283,9 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'allowed_doc_types' => 'Document extensions: %s', // cpg1.5
   'allowed_snd_types' => 'Audio extensions: %s', // cpg1.5
   'please_wait' => 'Please wait while the script is uploading - this make take a while', // cpg1.5
+  'alternative_upload' => 'Alternative upload method', // cpg1.5
+  'xp_publish_promote' => 'If you are running Windows XP/Vista, you can use the Windows XP Uploading Wizard as well to upload files, providing an easier user interface directly on the client.', // cpg1.5
+  'more' => 'more', // cpg1.5
 );
 
 // ------------------------------------------------------------------------- //
@@ -2610,43 +2614,37 @@ if (defined('VIEWLOG_PHP')) $lang_viewlog_php = array(
 
 if (defined('XP_PUBLISH_PHP')) {
 
-$lang_xp_publish_client = <<<EOT
-<h1>XP Web Publishing Wizard Client</h1><p>This module allows to use <strong>Windows XP</strong> web publishing wizard with Coppermine.</p><p>Code is based on article posted by
-EOT;
-
-$lang_xp_publish_required = <<<EOT
-<h2>What is required</h2><ul><li>Windows XP in order to have the wizard.</li><li>A working installation of Coppermine on which <strong>the web upload function works properly.</strong></li></ul><h2>How to install on client side</h2><ul><li>Right click on
-EOT;
-
-$lang_xp_publish_select = <<<EOT
-Select &quot;save target as..&quot;. Save the file on your hard drive. When saving the file, check that the proposed file name is <strong>cpg_###.reg</strong> (the ### represents a numerical timestamp). Change it to that name if necessary (leave the numbers). When downloaded, double click on the file in order to register your server with the web publishing wizard.</li></ul>
-EOT;
-
-$lang_xp_publish_testing = <<<EOT
-<h2>Testing</h2><ul><li>In Windows Explorer, select some files and click on <strong>Publish xxx on the web</strong> in the left pane.</li><li>Confirm your file selection. Click on <strong>Next</strong>.</li><li>In the list of services that appear, select the one for your photo gallery (it has the name of your gallery). If the service does not appear, check that you have installed <strong>cpg_pub_wizard.reg</strong> as described above.</li><li>Input your login information if required.</li><li>Select the target album for your pictures or create a new one.</li><li>Click on <strong>next</strong>. The upload of your pictures starts.</li><li>When it is completed, check your gallery to see if pictures have been properly added.</li></ul>
-EOT;
-
-$lang_xp_publish_notes = <<<EOT
-<h2>Notes :</h2><ul><li>Once the upload has started, the wizard can't display any error message returned by the script so you can't know if the upload failed or succeeded until you check your gallery.</li><li>If the upload fails, enable &quot;Debug mode&quot; on the Coppermine admin page, try with one single picture and check error messages in the
-EOT;
-
-$lang_xp_publish_flood = <<<EOT
-file that is located in Coppermine directory on your server.</li><li>In order to avoid that the gallery be <i>flooded</i> by pictures uploaded through the wizard, only the <strong>gallery admins</strong> and <strong>users that can have their own albums</strong> can use this feature.</li>
-EOT;
-
-
-
 $lang_xp_publish_php = array(
   'title' => 'Coppermine - XP Web Publishing Wizard',
+  'client_header' => 'XP Web Publishing Wizard Client',  // cpg1.5
+  'requirements' => 'Requirements', // cpg1.5
+  'windows_xp' => 'Windows XP', // cpg1.5
+  'requirement_http_upload' => 'A working installation of Coppermine on which the http upload function works properly', // cpg1.5
+  'requirement_ie' => 'Microsoft Internet Explorer', // cpg1.5
+  'howto_install' => 'How to install', // cpg1.5
+  'install_right_click' => 'Right click on %sthis link%s and select &quot;save target as...&quot;', // cpg1.5 // translator note: don't replace the %s - that placeholder token needs to go untranslated
+  'install_save' => 'Save the file on your client. When saving the file, make sure that the proposed file name is <tt>cpg_###.reg</tt> (the ### represents a numerical timestamp). Change it to that name if necessary (leave the numbers)', // cpg1.5
+  'install_execute' => 'After the download has finished, execute the file by double clicking on it in order to register your server with the web publishing wizard',  // cpg1.5
+  'usage' => 'Usage',  // cpg1.5
+  'select_files' => 'In Windows Explorer, select the files you want to upload', // cpg1.5
+  'display_tasks' => 'Make sure that the folders are not being displayed in left bar of the Explorer', // cpg1.5
+  'publish_on_the_web' => 'click on &quot;Publish xxx on the web&quot; in the left pane', // cpg1.5
+  'confirm_selection' => 'Confirm your file selection', // cpg1.5
+  'select_service' => 'In the list of services that appear, select the one for your photo gallery (it has the name of your gallery)', // cpg1.5
+  'enter_login' => 'Enter your login information if required', // cpg1.5
+  'select_album' => 'Select the target album for your pictures or create a new one', // cpg1.5
+  'next' => 'Click on &quot;next&quot;', // cpg1.5
+  'upload_starts' => 'The upload of your pictures should start', // cpg1.5
+  'upload_completed' => 'When it is completed, check your gallery to see if pictures have been properly added', // cpg1.5
   'welcome' => 'Welcome <strong>%s</strong>,',
-  'need_login' => 'You need to login to the gallery using your web browser before you can use this wizard.<p/><p>When you login don\'t forget to select the <strong>remember me</strong> option if it is present.',
+  'need_login' => 'You need to login to the gallery using Internet Explorer before you can use this wizard.<p/><p>When you login don\'t forget to select the &quot;remember me&quot; option if it is present.',
   'no_alb' => 'Sorry but there is no album where you are allowed to upload pictures with this wizard.',
   'upload' => 'Upload your pictures into an existing album',
   'create_new' => 'Create a new album for your pictures',
   'category' => 'Category',
   'new_alb_created' => 'Your new album &quot;<strong>%s</strong>&quot; was created.',
   'continue' => 'Press &quot;Next&quot; to start to upload your pictures',
-  'link' => 'this link',
+  'link' => '',
 );
 }
 
