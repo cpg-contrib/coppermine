@@ -34,45 +34,6 @@ if (!GALLERY_ADMIN_MODE) {
     cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 }
 
-if (!function_exists('form_get_foldercontent')) {
-    function form_get_foldercontent ($foldername, $fileOrFolder = 'folder', $validextension = '', $exception_array = array('')) 
-    {
-        global $CONFIG;
-        $dir = opendir($foldername);
-        while ($file = readdir($dir)) {
-            if ($fileOrFolder == 'file') {
-                $extension = ltrim(substr($file,strrpos($file,'.')),'.');
-                $filenameWithoutExtension = str_replace('.' . $extension, '', $file);
-                if (is_file($foldername . $file) && $extension == $validextension && in_array($filenameWithoutExtension, $exception_array) != TRUE) {
-                    $return_array[] = $filenameWithoutExtension;
-                }
-            } elseif ($fileOrFolder == 'folder') {
-                if ($file != '.' && $file != '..' && in_array($file, $exception_array) != TRUE && is_dir($foldername.$file)) {
-                    $return_array[] = $file;
-                }
-            }
-        }
-        closedir($dir);
-        natcasesort($return_array);
-        return $return_array;
-    }
-}
-
-if (!function_exists('array_is_associative')) { // make sure that this will not break in future PHP versions
-    function array_is_associative($array) 
-    {
-        if (is_array($array) && ! empty($array)) {
-            for ( $iterator = count($array) - 1; $iterator; $iterator-- ) {
-                if (!array_key_exists($iterator, $array)) { 
-                    return true; 
-                }
-            }
-            return !array_key_exists(0, $array);
-        }
-        return false;
-    }
-}
-
 require_once('include/admin.inc.php'); // populate the array for the admin data (could later be done using an XML file)
 
 

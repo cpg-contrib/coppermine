@@ -3157,7 +3157,7 @@ function languageSelect($parameter)
         default:
             $return.= $lineBreak . '<div id="cpgChooseLanguageWrapper">' . $lineBreak . '<form name="cpgChooseLanguage" id="cpgChooseLanguage" action="' . $CPG_PHP_SELF . '" method="get" class="inline">' . $lineBreak;
             $return.= '<select name="lang" class="listbox_lang" onchange="if (this.options[this.selectedIndex].value) window.location.href=\'' . $cpgChangeUrl . '\' + this.options[this.selectedIndex].value;">' . $lineBreak;
-            $return.='<option selected="selected">' . $lang_language_selection['choose_language'] . '</option>' . $lineBreak;
+            $return.='<option>' . $lang_language_selection['choose_language'] . '</option>' . $lineBreak;
             foreach ($lang_language_data as $language) {
                 $return.=  '<option value="' . $language['lang_id']  . '" >';
                 $return.= $language['english_name'];
@@ -4515,6 +4515,13 @@ function cpg_fetch_icon($icon_name, $config_level = 0, $title = '', $check = '',
     return $return;
 }
 
+/**
+ * Function to convert numbers (floats) into formatted strings
+ * Example: cpg_float2decimal(100000) will return the string 100,000 for English and 100.000 for German
+ *
+ * @param float $float: the value that should be converted
+ * @return string: the fully populated string
+ */
 function cpg_float2decimal($float) {
     global $lang_decimal_separator;
     $value = floor($float);
@@ -4538,6 +4545,54 @@ function cpg_float2decimal($float) {
         $return .= $lang_decimal_separator[1].$decimal_page;
     }
     return $return;
+}
+
+/**
+ * Function get the contents of a folder
+  *
+ * @param string $foldername: the relative path
+ * @param string $fileOrFolder: what should be returned: files or sub-folders. Specify 'file' or 'folder'.
+ * @param string $validextension: What file extension should be filtered. Specify 'gif' or 'html' or similar.
+ * @param array $exception_array: optional: specify values that should not be taken into account.
+ * @return array: a list of file names (without extension)
+ */
+if (!function_exists('form_get_foldercontent')) {
+    function form_get_foldercontent ($foldername, $fileOrFolder = 'folder', $validextension = '', $exception_array = array('')) 
+    {
+        global $CONFIG;
+        $dir = opendir($foldername);
+        while ($file = readdir($dir)) {
+            if ($fileOrFolder == 'file') {
+                $extension = ltrim(substr($file,strrpos($file,'.')),'.');
+                $filenameWithoutExtension = str_replace('.' . $extension, '', $file);
+                if (is_file($foldername . $file) && $extension == $validextension && in_array($filenameWithoutExtension, $exception_array) != TRUE) {
+                    $return_array[] = $filenameWithoutExtension;
+                }
+            } elseif ($fileOrFolder == 'folder') {
+                if ($file != '.' && $file != '..' && in_array($file, $exception_array) != TRUE && is_dir($foldername.$file)) {
+                    $return_array[] = $file;
+                }
+            }
+        }
+        closedir($dir);
+        natcasesort($return_array);
+        return $return_array;
+    }
+}
+
+if (!function_exists('array_is_associative')) { // make sure that this will not break in future PHP versions
+    function array_is_associative($array) 
+    {
+        if (is_array($array) && ! empty($array)) {
+            for ( $iterator = count($array) - 1; $iterator; $iterator-- ) {
+                if (!array_key_exists($iterator, $array)) { 
+                    return true; 
+                }
+            }
+            return !array_key_exists(0, $array);
+        }
+        return false;
+    }
 }
 
 

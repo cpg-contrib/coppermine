@@ -27,7 +27,7 @@ $lang_translation_info = array(
   'trans_name'=> 'Coppermine dev team',
   'trans_email' => '',
   'trans_website' => 'http://coppermine-gallery.net/',
-  'trans_date' => '2007-05-21',
+  'trans_date' => '2008-10-06',
 );
 
 $lang_charset = 'iso-8859-1';
@@ -1686,6 +1686,7 @@ if (defined('LANGMGR_PHP')) $lang_langmgr_php = array(
   'enabled' => 'Enabled',
   'complete' => 'Complete',
   'default' => 'Default',
+  'missing' => 'missing',
 );
 
 // ------------------------------------------------------------------------- //
