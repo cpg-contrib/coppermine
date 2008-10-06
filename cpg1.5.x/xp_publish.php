@@ -247,12 +247,15 @@ function display_instructions()
 {
     //global $PHP_SELF;
     global $lang_xp_publish_required, $lang_xp_publish_client, $lang_xp_publish_select, $lang_xp_publish_testing, $lang_xp_publish_notes, $lang_xp_publish_flood, $lang_xp_publish_php;
-    global $CONFIG, $lang_charset;
+    global $CONFIG, $lang_charset, $lang_common, $lang_errors;
 
 	$publish_help = '&nbsp;'.cpg_display_help('f=uploading_xp-publisher.htm&amp;as=xp&amp;ae=xp_end', '600', '600');
 	//$requirements_help = '&nbsp;'.cpg_display_help('f=uploading_xp-publisher.htm&amp;as=xp&amp;ae=xp_end', '600', '600');
 	$install_help = '&nbsp;'.cpg_display_help('f=uploading_xp-publisher.htm&amp;as=xp_publish_setup&amp;ae=xp_publish_setup_end', '450', '400');
 	$usage_help = '&nbsp;'.cpg_display_help('f=uploading_xp-publisher.htm&amp;as=xp_publish_upload&amp;ae=xp_publish_upload_end', '600', '450');
+	$ok_icon = cpg_fetch_icon('ok', 0);
+	$stop_icon = cpg_fetch_icon('stop', 0);
+	$warning_icon = cpg_fetch_icon('warning', 0);
 	pageheader($CONFIG['gallery_name'] . $lang_xp_publish_php['title']);
 	starttable('100%' , '<h1>'.$lang_xp_publish_php['client_header'].$publish_help.'</h1>', 1);
 	print <<< EOT
@@ -264,9 +267,35 @@ function display_instructions()
 	<tr>
 		<td class="tableb">
 			<ul>
-				<li>{$lang_xp_publish_php['windows_xp']}</li>
+				<li>
+					{$lang_xp_publish_php['windows_xp']}<br />
+					<div id="xp_vista" style="display:none">{$ok_icon}{$lang_common['ok']} - {$lang_xp_publish_php['windows_xp']}</div>
+					<div id="other_os" style="display:none">{$stop_icon}{$lang_xp_publish_php['no_windows_xp']}</div>
+					<div id="no_os_detection" style="display:block">{$warning_icon}{$lang_xp_publish_php['no_os_detect']}</div>
+				</li>
+				<li>
+					{$lang_xp_publish_php['requirement_ie']}<br />
+					<div id="ie" style="display:none">{$ok_icon}{$lang_common['ok']} - {$lang_xp_publish_php['requirement_ie']}</div>
+					<div id="other_browser" style="display:none">{$stop_icon}{$lang_xp_publish_php['no_ie']}</div>
+					<div id="no_browser_detection" style="display:block">{$warning_icon}{$lang_xp_publish_php['no_browser_detect']}</div>
+				</li>
+EOT;
+	if (GALLERY_ADMIN_MODE) {
+		print <<< EOT
 				<li>{$lang_xp_publish_php['requirement_http_upload']}</li>
-				<li>{$lang_xp_publish_php['requirement_ie']}</li>
+EOT;
+	}
+	if (!USER_CAN_UPLOAD_PICTURES && !USER_CAN_CREATE_ALBUMS) {
+		print <<< EOT
+				<li>{$lang_xp_publish_php['requirement_permissions']}</li>
+EOT;
+	}
+	if (!USER_ID) {
+		print <<< EOT
+				<li>{$lang_xp_publish_php['requirement_login']}</li>
+EOT;
+	}
+	print <<< EOT
 			</ul>
 		</td>
 	</tr>
@@ -310,6 +339,48 @@ EOT;
 	</tr>
 EOT;
 	endtable();
+	print <<< EOT
+<script type="text/javascript">
+function os_browser_detection() {
+  // browser detection.
+  // Usually, browser detection is buggy and should not be used. However, the sidebar works only in mainstream browsers anyway and requires JavaScript, so we can be pretty sure that the user has it enabled if this is suppossed to work in the first place.
+   var detection_success = 0;
+   if (navigator.userAgent.indexOf('Firefox') != -1 || navigator.userAgent.indexOf('Netscape') != -1 || navigator.userAgent.indexOf('Konqueror') != -1 || navigator.userAgent.indexOf('Gecko') != -1) {
+       document.getElementById('ie').style.display = 'none';
+       document.getElementById('other_browser').style.display = 'block';
+       document.getElementById('no_browser_detection').style.display = 'none';
+       detection_success = 1;
+   }
+   if (navigator.userAgent.indexOf('Opera') != -1) {
+       document.getElementById('ie').style.display = 'none';
+       document.getElementById('other_browser').style.display = 'block';
+       document.getElementById('detecting').style.display = 'none';
+       detection_success = 1;
+   }
+   if (navigator.userAgent.indexOf('MSIE') != -1) {
+       document.getElementById('ie').style.display = 'block';
+       document.getElementById('other_browser').style.display = 'none';
+       document.getElementById('no_browser_detection').style.display = 'none';
+       detection_success = 1;
+   }
+   if (navigator.userAgent.indexOf('Windows NT 6.0') != -1 || navigator.userAgent.indexOf('Windows NT 5.2') != -1 || navigator.userAgent.indexOf('Windows NT 5.1') != -1) {
+       document.getElementById('xp_vista').style.display = 'block';
+       document.getElementById('other_os').style.display = 'none';
+       document.getElementById('no_os_detection').style.display = 'none';
+       detection_success = 1;
+   }
+   if (navigator.userAgent.indexOf('Windows NT 5.0') != -1 || navigator.userAgent.indexOf('Windows NT 4.0') != -1 || navigator.userAgent.indexOf('Windows 9') != -1 || navigator.userAgent.indexOf('Windows CE') != -1 || navigator.userAgent.indexOf('Mac') != -1 || navigator.userAgent.indexOf('Linux') != -1) {
+       document.getElementById('xp_vista').style.display = 'none';
+       document.getElementById('other_os').style.display = 'block';
+       document.getElementById('no_os_detection').style.display = 'none';
+       detection_success = 1;
+   }
+}
+
+
+self.onload = os_browser_detection();
+</script>
+EOT;
 	pagefooter();
 
 }

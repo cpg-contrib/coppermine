@@ -153,6 +153,7 @@ $lang_common = array(
   'albums_no_category' => 'Albums with no category', // cpg1.5
   'personal_albums' => '* Personal albums', // cpg1.5
   'select_album' => 'Select Album', // cpg1.5
+  'ok' => 'OK', // cpg1.5
 );
 
 // ------------------------------------------------------------------------- //
@@ -2618,9 +2619,15 @@ $lang_xp_publish_php = array(
   'title' => 'Coppermine - XP Web Publishing Wizard',
   'client_header' => 'XP Web Publishing Wizard Client',  // cpg1.5
   'requirements' => 'Requirements', // cpg1.5
-  'windows_xp' => 'Windows XP', // cpg1.5
+  'windows_xp' => 'Windows XP / Vista', // cpg1.5
+  'no_windows_xp' => 'You appear to be running another, unsupported operating system', // cpg1.5
+  'no_os_detect' => 'Could not detect your operating system', // cpg1.5
   'requirement_http_upload' => 'A working installation of Coppermine on which the http upload function works properly', // cpg1.5
   'requirement_ie' => 'Microsoft Internet Explorer', // cpg1.5
+  'requirement_permissions' => 'The administrator of the gallery must have granted you permission to upload', // cpg1.5
+  'requirement_login' => 'You need to be logged in to upload', // cpg1.5
+  'no_ie' => 'You appear to be using another, unsupported browser', // cpg1.5
+  'no_browser_detect' => 'Could not detect your browser', // cpg1.5
   'howto_install' => 'How to install', // cpg1.5
   'install_right_click' => 'Right click on %sthis link%s and select &quot;save target as...&quot;', // cpg1.5 // translator note: don't replace the %s - that placeholder token needs to go untranslated
   'install_save' => 'Save the file on your client. When saving the file, make sure that the proposed file name is <tt>cpg_###.reg</tt> (the ### represents a numerical timestamp). Change it to that name if necessary (leave the numbers)', // cpg1.5
