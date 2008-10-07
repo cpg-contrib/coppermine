@@ -256,7 +256,7 @@ function display_instructions()
 	$ok_icon = cpg_fetch_icon('ok', 0);
 	$stop_icon = cpg_fetch_icon('stop', 0);
 	$warning_icon = cpg_fetch_icon('warning', 0);
-	pageheader($CONFIG['gallery_name'] . $lang_xp_publish_php['title']);
+	pageheader($CONFIG['gallery_name'] . ' &bull; ' . $lang_xp_publish_php['title']);
 	starttable('100%' , '<h1>'.$lang_xp_publish_php['client_header'].$publish_help.'</h1>', 1);
 	print <<< EOT
 	<tr>
@@ -315,7 +315,7 @@ EOT;
 			<ul>
 				<li>
 EOT;
-	printf($lang_xp_publish_php['install_right_click'],'<a href="'.$CPG_PHP_SELF.'?cmd=send_reg">', '</a>');
+	printf($lang_xp_publish_php['install_right_click'],'<a href="'.$CPG_PHP_SELF.'?cmd=send_reg">'.cpg_fetch_icon('download',0), '</a>');
 	print <<< EOT
 				</li>
 				<li>{$lang_xp_publish_php['install_save']}</li>
