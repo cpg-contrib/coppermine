@@ -284,6 +284,12 @@ EOT;
 		print <<< EOT
 				<li>{$lang_xp_publish_php['requirement_http_upload']}</li>
 EOT;
+        if ($CONFIG['gallery_name'] == '') {
+            print '<li>'.$stop_icon.$lang_xp_publish_php['no_gallery_name'].'</li>';
+        }
+        if ($CONFIG['gallery_description'] == '') {
+            print '<li>'.$stop_icon.$lang_xp_publish_php['no_gallery_description'].'</li>';
+        }
 	}
 	if (!USER_CAN_UPLOAD_PICTURES && !USER_CAN_CREATE_ALBUMS) {
 		print <<< EOT
@@ -391,8 +397,97 @@ function output_header()
     global $CONFIG;
     global $lang_charset, $lang_text_dir, $lang_xp_publish_php;
 
-    pageheader($CONFIG['gallery_name'] . $lang_xp_publish_php['title']);
-	echo '<h1>' . $lang_xp_publish_php['title'] . '</h1>';
+    if ($CONFIG['charset'] == 'language file') {
+        $language = $lang_charset;
+    } else {
+        $language = $CONFIG['charset'];
+    }
+    print <<< EOT
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html dir="ltr">
+<head>
+<title>{$lang_xp_publish_php['title']}</title>
+<meta http-equiv="Content-Type" content="text/html; charset={$language}" />
+<style type="text/css">
+<!--
+body {
+        font-family : Verdana, Arial, Helvetica, sans-serif;
+        font-size: 11px;
+        background : #FFFFFF ;
+        color : Black;
+        margin: 20px;
+        border: 1px solid #000000;
+}
+
+td {
+        font-size: 12px;
+        padding-top: 5px;
+        padding-bottom: 0px;
+}
+
+h1{
+        font-weight: bold;
+        font-size: 16px;
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        text-decoration: none;
+        line-height : 120%;
+        color : #0E72A4;
+}
+
+h2 {
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 14px;
+        color: #0E72A4;
+}
+
+h3 {
+        font-weight: bold;
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 12px;
+}
+
+p {
+        font-family : Verdana, Arial, Helvetica, sans-serif;
+        font-size: 11px;
+        margin: 10px 10px 0px 0px;
+}
+
+ul {
+        margin-left: 5px;
+        margin-right: 0px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding: 0px;
+}
+
+li {
+        margin-left: 10px;
+        margin-top: 4px;
+        margin-bottom: 4px;
+        padding: 0px;
+        list-style-position: outside;
+        list-style-type: disc;
+}
+
+form {
+        display: inline;
+}
+
+input {
+        width: 200px;
+}
+
+-->
+</style>
+</head>
+<body>
+EOT;
+    print '<h1><a href="'.$CONFIG['site_url'].'">'. $CONFIG['gallery_name'] .'</a>';
+    if ($CONFIG['gallery_description'] != '') {
+        print ' &bull; ' . $CONFIG['gallery_description'];
+    }
+    print '</h1>';
+    print '<h2>'. $lang_xp_publish_php['title'] . '</h2>';
 }
 
 // Output page footer
@@ -473,8 +568,9 @@ function window.onload() {
         window.external.SetWizardButtons({$WIZARD_BUTTONS});
 }
 </script>
+</body>
+</html>
 EOT;
-	pagefooter();
 }
 
 // Send the file needed to register the service under Windows XP
@@ -765,7 +861,7 @@ function process_picture()
   	//using getRaw as it will be sanitized in the code below in the preg_match. {SaWey}
  	 $filename = $superCage->files->getRaw('/userpicture/name');
 	 if (get_magic_quotes_gpc()){
-		$filename = stripslashes($filename);
+		$filename = stripslashes($filename); 
 	 }
     // Replace forbidden chars with underscores
     //$picture_name = replace_forbidden($_FILES['userpicture']['name']);
