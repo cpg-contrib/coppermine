@@ -117,7 +117,7 @@ if (isset($bridge_lookup)) {
             {
                     global $USER_DATA, $user_settings;
 
-                    if (empty($user_settings['ID_MEMBER'])){
+                    if (empty($user_settings['id_member'])){
                             $this->load_guest_data();
                     } else {
 

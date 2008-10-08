@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-10-08 [B] Corrected SMF2 anonymous user fix {Nibbler}
 2008-10-06 [O] Brushed up look of XP Publisher instructions screen {GauGau}
 2008-10-06 [A] Added option to promote XP Publisher on upload page {GauGau}
 2008-10-05 [B] Fixed versioncheck in installer and changed method of installation steps {SaWey}
