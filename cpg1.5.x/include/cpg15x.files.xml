@@ -493,7 +493,7 @@
   <element>
     <fullpath>versioncheck.php</fullpath>
     <version>1.5.0</version>
-    <revision>5033</revision>
+    <revision>5088</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>ae687854eb6ac93b0d71a4353d15a154</hash>
@@ -509,7 +509,7 @@
   <element>
     <fullpath>xp_publish.php</fullpath>
     <version>1.5.0</version>
-    <revision>5082</revision>
+    <revision>5086</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>5736c38ac5e546ea49038e65bb2ba97e</hash>
@@ -724,7 +724,7 @@
   <element>
     <fullpath>bridge/smf20.inc.php</fullpath>
     <version>1.5.0</version>
-    <revision>4985</revision>
+    <revision>5089</revision>
     <status>optional</status>
     <permission>read</permission>
     <hash>c85204adb795849fbabc3730ad3d5487</hash>
@@ -6180,7 +6180,7 @@
   <element>
     <fullpath>include/versioncheck.inc.php</fullpath>
     <version>1.5.0</version>
-    <revision>5033</revision>
+    <revision>5088</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>6f09d52fdcd8401ffecae94d7a523194</hash>
@@ -6320,7 +6320,7 @@
   <element>
     <fullpath>lang/english.php</fullpath>
     <version>1.5.0</version>
-    <revision>5083</revision>
+    <revision>5088</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>374847306febeff71bc2c816d2a2edf6</hash>
@@ -6425,7 +6425,7 @@
   <element>
     <fullpath>sql/update.sql</fullpath>
     <version>1.5.0</version>
-    <revision>5081</revision>
+    <revision>5087</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>373b3e1507214c2f8fd57d985e4056a7</hash>
