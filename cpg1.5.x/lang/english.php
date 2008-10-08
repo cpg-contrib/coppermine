@@ -1678,15 +1678,20 @@ if (defined('KEYWORDMGR_PHP')) $lang_keywordmgr_php = array(
 
 if (defined('LANGMGR_PHP')) $lang_langmgr_php = array(
   'title' => 'Language manager',
-  'english_language_name' => 'English language name',
-  'native_language_name' => 'Native language name',
-  'custom_language_name' => 'Custom language name',
+  'english_language_name' => 'English',
+  'native_language_name' => 'Native',
+  'custom_language_name' => 'Custom',
+  'language_name' => 'Language name',
+  'language_file' => 'Language file',
   'flag' => 'Flag',
-  'file_available' => 'File available',
+  'file_available' => 'Available',
   'enabled' => 'Enabled',
   'complete' => 'Complete',
   'default' => 'Default',
   'missing' => 'missing',
+  'exists_in_db_and_file' => 'exists in database and as file',
+  'exists_as_file_only' => 'exists as file only',
+  'pick_a_flag' => 'Pick one',
 );
 
 // ------------------------------------------------------------------------- //

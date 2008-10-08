@@ -33,17 +33,47 @@ if (!GALLERY_ADMIN_MODE) {
     cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 }
 
+// Populate an array of available flags$flag_array = form_get_foldercontent('images/flags/', 'file', 'gif');
+// Populate an array of files existing inside the lang folder
+$lang_file_array = form_get_foldercontent('lang/', 'file', 'php');
+$lang_file_orphan_array = $lang_file_array;
+//print_r($lang_file_orphan_array);
+
 // Let's populate the language list from the database
 $results = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_LANGUAGE']}");
 while ($row = mysql_fetch_array($results)) {
-        $lang_language_data[$row['lang_id']] = $row;
+        $lang_language_data[$row['lang_id']]['lang_id'] = $row['lang_id'];
+        $lang_language_data[$row['lang_id']]['english_name'] = $row['english_name'];
+        $lang_language_data[$row['lang_id']]['native_name'] = $row['native_name'];
+        $lang_language_data[$row['lang_id']]['custom_name'] = $row['custom_name'];
+        $lang_language_data[$row['lang_id']]['flag'] = $row['flag'];
+        $lang_language_data[$row['lang_id']]['available'] = $row['available'];
+        $lang_language_data[$row['lang_id']]['enabled'] = $row['enabled'];
+        $lang_language_data[$row['lang_id']]['complete'] = $row['complete'];
+        if (in_array($lang_language_data[$row['lang_id']]['lang_id'], $lang_file_orphan_array) == TRUE) {
+        	unset($lang_file_orphan_array[array_search($lang_language_data[$row['lang_id']]['lang_id'],$lang_file_orphan_array)]);
+        }
 } // while
 mysql_free_result($results);
+unset($row);
 
-// todo: add the list of files inside the lang folder
+//print_r($lang_language_data);
+foreach ($lang_file_orphan_array as $orphans) {
+	$lang_language_data[$orphans]['lang_id'] = $orphans;
+	$lang_language_data[$orphans]['english_name'] = ucfirst($orphans);
+	$lang_language_data[$orphans]['native_name'] = '';
+	$lang_language_data[$orphans]['custom_name'] = '';
+	$lang_language_data[$orphans]['flag'] = '';
+	$lang_language_data[$orphans]['available'] = 'NO';
+	$lang_language_data[$orphans]['enabled'] = 'NO';
+	$lang_language_data[$orphans]['complete'] = 'NO';
+}
+//print_r($lang_language_data);
+//print_r($lang_file_orphan_array);
 
 // sort the array by English name
 ksort($lang_language_data);
+//print_r($lang_language_data);
 
 
 pageheader($lang_langmgr_php['title']);
@@ -59,16 +89,28 @@ EOT;
 endtable();
 print '<br />'.$lineBreak;
 
-// Populate an array of available flags
-$flag_array = form_get_foldercontent('images/flags/', 'file', 'gif');
-$lang_file_array = form_get_foldercontent('lang/', 'file', 'php');
+
 
 starttable('100%', cpg_fetch_icon('blank', 2) . $lang_langmgr_php['title'], 9);
 print <<< EOT
     <tr>
-        <th class="tableh2">
+        <th class="tableh2" rowspan="2">
           {$lang_langmgr_php['default']}
         </th>
+        <th class="tableh2" colspan="3">
+          {$lang_langmgr_php['language_name']}
+        </th>
+        <th class="tableh2" rowspan="2">
+          {$lang_langmgr_php['flag']}
+        </th>
+        <th class="tableh2" colspan="2">
+          {$lang_langmgr_php['language_file']}
+        </th>
+        <th class="tableh2" rowspan="2">
+          {$lang_langmgr_php['enabled']}
+        </th>
+    </tr>
+    <tr>
         <th class="tableh2">
           {$lang_langmgr_php['english_language_name']}
         </th>
@@ -79,13 +121,7 @@ print <<< EOT
           {$lang_langmgr_php['custom_language_name']}
         </th>
         <th class="tableh2">
-          {$lang_langmgr_php['flag']}
-        </th>
-        <th class="tableh2">
           {$lang_langmgr_php['file_available']}
-        </th>
-        <th class="tableh2">
-          {$lang_langmgr_php['enabled']}
         </th>
         <th class="tableh2">
           {$lang_langmgr_php['complete']}
@@ -94,6 +130,7 @@ print <<< EOT
 EOT;
 $loopCounter = 0;
 foreach ($lang_language_data as $language) {
+    $availability_output = '';
     if ($language['available'] == 'YES' || in_array($language['lang_id'], $lang_file_array) == TRUE) {
     // Alternating colors
         if ($loopCounter/2 == floor($loopCounter/2)) {
@@ -107,21 +144,37 @@ foreach ($lang_language_data as $language) {
         } else {
             $default_checked = '';
         }
-    
+        if ($language['available'] == 'YES') { // availability --- start
+            if (in_array($language['lang_id'], $lang_file_array) == TRUE) {
+                // Language file is in database and in lang folder                $availability_output = cpg_fetch_icon('ok', 0, 'lang/'.$language['lang_id'].'.php ' . $lang_langmgr_php['exists_in_db_and_file']);
+                $enable_greyed_out = '';
+            } else {
+                //  Language file is in database, but not in lang folder                $availability_output = cpg_fetch_icon('stop', 0, 'lang/'.$language['lang_id'].'.php '.$lang_langmgr_php['missing']);
+                $enable_greyed_out = 'disabled="disabled"';
+            }
+        } else {
+            if (in_array($language['lang_id'], $lang_file_array) == TRUE) {
+                // Language file is not database but in lang folder                $availability_output = cpg_fetch_icon('add', 0, 'lang/'.$language['lang_id'].'.php ' . $lang_langmgr_php['exists_as_file_only']);
+                $enable_greyed_out = '';
+            } else {
+                //  Language file is not database nor in lang folder - this case should never be true                $availability_output = cpg_fetch_icon('stop', 0, 'lang/'.$language['lang_id'].'.php ' . $lang_langmgr_php['missing']);
+                $enable_greyed_out = 'disabled="disabled"';
+            }
+        }    // availability --- end
         print <<< EOT
     <tr>
         <td class="{$cellstyle}">
-          <input name="default" id="default_{$language['lang_id']}" type="radio" value="{$language['lang_id']}" class="radio" $default_checked />
+          <input name="default" id="default_{$language['lang_id']}" type="radio" value="{$language['lang_id']}" class="radio" {$default_checked} {$enable_greyed_out} />
         </td>
 EOT;
         print <<< EOT
         <td class="{$cellstyle}">
-          {$language['english_name']}
+          <input type="text" name="" id="" class="textinput" value="{$language['english_name']}" />
         </td>
 EOT;
         print <<< EOT
         <td class="{$cellstyle}">
-          {$language['native_name']}
+          <input type="text" name="" id="" class="textinput" value="{$language['native_name']}" />
         </td>
 EOT;
         print <<< EOT
@@ -131,17 +184,20 @@ EOT;
 EOT;
         print <<< EOT
         <td class="{$cellstyle}">
-            <img src="images/flags/{$language['flag']}.gif" width="16" height="11" border="0" alt="" name="image_{$loopCounter}" />
-            <select id="nav{$loopCounter}" name="nav{$loopCounter}" size="1" onchange="if(document.images) document.images['image_{$loopCounter}'].src='images/flags/'+this.options[this.selectedIndex].value+'.gif';" class="listbox_lang" style="width:100px">
+            <img src="images/flags/{$language['flag']}.gif" width="16" height="11" border="0" alt="" name="image_{$loopCounter}" style="float:left" />
+            <select id="nav{$loopCounter}" name="nav{$loopCounter}" size="1" onchange="if(document.images) document.images['image_{$loopCounter}'].src='images/flags/'+this.options[this.selectedIndex].value+'.gif';" class="listbox_lang" style="width:60px">
 >
 EOT;
+        if ($language['flag'] == '') {
+        	print '            <option selected="selected">'.$lang_langmgr_php['pick_a_flag'].'</option>'.$lineBreak;
+        }
         foreach ($flag_array as $flags) {
             if ($flags == $language['flag']) {
                 $flag_selected = 'selected="selected"';
             } else {
                 $flag_selected = '';
             }
-            print '            <option style="background-image:url(images/flags/' . $flags . '.gif);" value="' . $flags . '" '.$flag_selected.'>' . $flags . '</option>';
+            print '            <option style="background-image:url(images/flags/' . $flags . '.gif);background-repeat:no-repeat;text-indent:16px;width:20px;" value="' . $flags . '" '.$flag_selected.'>' . $flags . '</option>'.$lineBreak;
         }
         print <<< EOT
             </ul>    
@@ -149,25 +205,12 @@ EOT;
 EOT;
         print <<< EOT
         <td class="{$cellstyle}">
+        	{$availability_output}
+        </td>
 EOT;
-        if ($language['available'] == 'YES') {
-            if (in_array($language['lang_id'], $lang_file_array) == TRUE) {
-                // Language file is in database and in lang folder
-                print cpg_fetch_icon('ok', 0);
-            } else {
-                //  Language file is in database, but not in lang folder
-                print cpg_fetch_icon('stop', 0) . $lang_langmgr_php['missing'];
-            }
-        } else {
-            if (in_array($language['lang_id'], $lang_file_array) == TRUE) {
-                // Language file is not database but in lang folder
-                print cpg_fetch_icon('add', 0);
-            } else {
-                //  Language file is not database nor in lang folder - this case should never be true
-                print cpg_fetch_icon('stop', 0) . $lang_langmgr_php['missing'];
-            }
-        }
         print <<< EOT
+        <td class="{$cellstyle}">
+          {$language['complete']}
         </td>
 EOT;
         print <<< EOT
@@ -179,12 +222,7 @@ EOT;
             $enable_checked = '';
         }
         print <<< EOT
-            <input type="checkbox" name="enable{$loopCounter}" id="enable{$loopCounter}" class="checkbox" {$enable_checked} />
-        </td>
-EOT;
-        print <<< EOT
-        <td class="{$cellstyle}">
-          {$language['complete']}
+            <input type="checkbox" name="enable{$loopCounter}" id="enable{$loopCounter}" class="checkbox" {$enable_checked} {$enable_greyed_out} />
         </td>
     </tr>
 EOT;
