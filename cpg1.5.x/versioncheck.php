@@ -76,12 +76,21 @@ $file_data_array = cpgVersioncheckConnectRepository();
 // main code starts here
 $title_help = ' ' . cpg_display_help('f=upgrading.htm&amp;as=versioncheck&amp;ae=versioncheck_end', '600', '400');
 pageheader($lang_versioncheck_php['title']);
-print '<h1>' . cpg_fetch_icon('check_versions', 2) . $lang_versioncheck_php['title']. $title_help . '</h1>';
+starttable('100%', cpg_fetch_icon('check_versions', 2) . $lang_versioncheck_php['title']. $title_help, 1);
+//print '<h1>' . cpg_fetch_icon('check_versions', 2) . $lang_versioncheck_php['title']. $title_help . '</h1>';
 
 
 // Print options if applicable
 if ($displayOption_array['output'] == 'options' || $displayOption_array['output'] == 'screen' || $displayOption_array['output'] == 'textarea') {
+    print <<< EOT
+    <tr>
+        <td class="tableb">
+EOT;
     cpg_versioncheckDisplayOptions();
+    print <<< EOT
+        </td>
+    </tr>
+EOT;
 }
 
 if ($displayOption_array['output'] != 'create') {
@@ -96,15 +105,40 @@ if ($displayOption_array['output'] != 'create') {
 
 
 if ($displayOption_array['output'] == 'textarea') { // display the output in a textarea field --- start
-  print cpg_versioncheckCreateTextOnlyOutput($file_data_array);
+    print <<< EOT
+    <tr>
+        <td class="tableb">
+EOT;
+    print cpg_versioncheckCreateTextOnlyOutput($file_data_array);
+    print <<< EOT
+        </td>
+    </tr>
+EOT;
 } // display the output in a textarea field --- end
 
 if ($displayOption_array['output'] == 'screen') { // display the output in HTML --- start
+    print <<< EOT
+    <tr>
+        <td class="tableb">
+EOT;
     $outputResult = cpg_versioncheckCreateHTMLOutput($file_data_array);
+    print <<< EOT
+        </td>
+    </tr>
+EOT;
+    print <<< EOT
+    <tr>
+        <td class="tablef">
+EOT;
     printf($lang_versioncheck_php['files_folder_processed'], $outputResult['display'], $outputResult['total'], $outputResult['error']);
-    
+    print <<< EOT
+        </td>
+    </tr>
+EOT;
+   
 } // display the output in HTML --- end
 
+endtable();
 
 
 // display page footer if applicable

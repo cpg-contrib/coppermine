@@ -42,6 +42,7 @@ $imageFileExtensions_array = array(
   'jpg', 'png', 'gif'
 );
 $subversionRepository = 'http://coppermine.svn.sourceforge.net/viewvc/coppermine/trunk/';
+$majorVersion = 'cpg'.str_replace('.' . ltrim(substr(COPPERMINE_VERSION,strrpos(COPPERMINE_VERSION,'.')),'.'), '', COPPERMINE_VERSION).'.x';
 
 $maxLength_array = array();
 $maxLength_array['counter'] = strlen($lang_versioncheck_php['counter']);
@@ -107,7 +108,7 @@ function cpg_versioncheckDisplayOptions() {
   print <<< EOT
 <table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
   <tr>
-          <td class="tableh1" colspan="2">{$lang_versioncheck_php['options']}{$help}</td>
+          <td class="tableh2" colspan="2">{$lang_versioncheck_php['options']}{$help}</td>
   </tr>
   <tr>
     <td class="tableb" valign="top">
@@ -233,14 +234,15 @@ function cpg_versioncheckPopulateArray($file_data_array) {
 	    if ($file_data_array[$file_data_key]['exists'] != 1) { // The folder/file is missing --- start
 	        if ($file_data_array[$file_data_key]['status'] == 'mandatory') {
 	          $file_data_array[$file_data_key]['txt_missing'] = $lang_versioncheck_php['mandatory'];
-	          $file_data_array[$file_data_key]['comment'] .= $lang_versioncheck_php['mandatory'];
+	          $file_data_array[$file_data_key]['comment'] .= $lang_versioncheck_php['mandatory_missing'];
+              $file_data_array[$file_data_key]['txt_version'] = $lang_versioncheck_php['not_applicable'];
+              $file_data_array[$file_data_key]['txt_revision'] = $lang_versioncheck_php['not_applicable'];
 	        } elseif ($file_data_array[$file_data_key]['status'] == 'remove') {
 	          $file_data_array[$file_data_key]['txt_missing'] = $lang_versioncheck_php['removed'].' ('.$lang_versioncheck_php['ok'].')';
               $file_data_array[$file_data_key]['txt_version'] = $lang_versioncheck_php['not_applicable'].' ('.$lang_versioncheck_php['ok'].')';
               $file_data_array[$file_data_key]['txt_revision'] = $lang_versioncheck_php['not_applicable'].' ('.$lang_versioncheck_php['ok'].')';
 	        } else {
               $file_data_array[$file_data_key]['txt_missing'] = $lang_versioncheck_php['optional'];
-              $file_data_array[$file_data_key]['comment'] = $lang_versioncheck_php['missing'];
               $file_data_array[$file_data_key]['txt_version'] = $lang_versioncheck_php['not_applicable'];
 		      $file_data_array[$file_data_key]['txt_revision'] = $lang_versioncheck_php['not_applicable'];
             }
@@ -332,19 +334,19 @@ function cpg_versioncheckPopulateArray($file_data_array) {
                             if ($file_data_array[$file_data_key]['local_revision'] != '' && $file_data_array[$file_data_key]['exists'] == 1) {
                               //$file_data_array[$file_data_key]['local_revision'] = $file_data_array[$file_data_key]['revision'];
                               if ($file_data_array[$file_data_key]['local_revision'] == $file_data_array[$file_data_key]['revision']) {
-                                $file_data_array[$file_data_key]['txt_revision'] .= ' ('.$lang_versioncheck_php['ok'];
+                                $file_data_array[$file_data_key]['txt_revision'] .= ' ('.$lang_versioncheck_php['ok'].')';
                               } elseif($file_data_array[$file_data_key]['local_revision'] < $file_data_array[$file_data_key]['revision']) {
-                                $file_data_array[$file_data_key]['txt_revision'] .= ' ('. sprintf($lang_versioncheck_php['outdated'], $file_data_array[$file_data_key]['revision']);
+                                $file_data_array[$file_data_key]['txt_revision'] .= ' ('. sprintf($lang_versioncheck_php['outdated'], $file_data_array[$file_data_key]['revision']).')(!)';
                                 if ($versionCompare == 0) {
                                   $file_data_array[$file_data_key]['comment'] .= $lang_versioncheck_php['review_version'].'. ';
                                 }
                               } else {
-                                $file_data_array[$file_data_key]['txt_revision'] .= ' ('. sprintf($lang_versioncheck_php['newer'], $file_data_array[$file_data_key]['revision']);
+                                $file_data_array[$file_data_key]['txt_revision'] .= ' ('. sprintf($lang_versioncheck_php['newer'], $file_data_array[$file_data_key]['revision']).')(?)';
                                 if ($versionCompare == 0) {
                                   $file_data_array[$file_data_key]['comment'] .= $lang_versioncheck_php['review_dev_version'].'. ';
                                 }
                               }
-                              $file_data_array[$file_data_key]['txt_revision'] .= ')';
+                              //$file_data_array[$file_data_key]['txt_revision'] .= ')';
                             } else {
                               $file_data_array[$file_data_key]['txt_revision'] = '';
                             }
@@ -611,17 +613,26 @@ EOT;
 }
 
 function cpg_versioncheckCreateHTMLOutput($file_data_array) {
-  global $textFileExtensions_array, $lang_versioncheck_php, $majorVersion, $displayOption_array, $file_data_count, $maxLength_array;
+  global $textFileExtensions_array, $lang_versioncheck_php, $majorVersion, $displayOption_array, $file_data_count, $maxLength_array, $subversionRepository;
   $newLine = "\r\n";
   $loopCounter_array = array('total' => 0, 'error' => 0, 'display' => 0);
   if (strlen($file_data_count) > $maxLength_array['counter']) {
     $maxLength_array['counter'] = strlen($file_data_count);
   }
+  if (function_exists('cpg_fetch_icon')) {
+    $ok_icon = cpg_fetch_icon('ok', 0);
+    $cancel_icon = '&nbsp;' . cpg_fetch_icon('cancel', 0);
+    $stop_icon = '&nbsp;' . cpg_fetch_icon('stop', 0);
+  } else {
+    $ok_icon = '('.$lang_versioncheck_php['ok'].')';
+    $cancel_icon = ' (?)';
+    $stop_icon = ' (!)';
+  }
   // the caption for the table
   print <<< EOT
 <table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
   <tr>
-          <td class="tableh1" colspan="9">{$lang_versioncheck_php['title']}</td>
+          <td class="tableh2" colspan="9">{$lang_versioncheck_php['versioncheck_output']}</td>
   </tr>
   <tr>
     <th class="tableh2" style="font-size:8px">{$lang_versioncheck_php['path']}</th>
@@ -657,6 +668,7 @@ EOT;
     $important['comment'] = '';
     $important['svn'] = '';
     $important['help'] = '';
+    /*
     if ($displayOption_array['errors_only'] == 0 && $file_data_values['comment'] != '') {
       if ($file_data_values['txt_missing'] == $lang_versioncheck_php['mandatory']) {
         $important['missing'] = ' important';
@@ -665,6 +677,17 @@ EOT;
         $important['missing'] = ' important';
       }
     }
+    */
+    // spice up the output by replacing plain text with icons --- start
+    $file_data_values['txt_missing'] = str_replace('('.$lang_versioncheck_php['ok'].')', $ok_icon, $file_data_values['txt_missing']);
+    $file_data_values['txt_version'] = str_replace('('.$lang_versioncheck_php['ok'].')', $ok_icon, $file_data_values['txt_version']);
+    $file_data_values['txt_revision'] = str_replace('('.$lang_versioncheck_php['ok'].')', $ok_icon, $file_data_values['txt_revision']);
+    $file_data_values['txt_version'] = str_replace('(?)', $cancel_icon, $file_data_values['txt_version']);
+    $file_data_values['txt_revision'] = str_replace('(?)', $cancel_icon, $file_data_values['txt_revision']);
+    $file_data_values['txt_version'] = str_replace('(!)', $stop_icon, $file_data_values['txt_version']);
+    $file_data_values['txt_revision'] = str_replace('(!)', $stop_icon, $file_data_values['txt_revision']);
+    $file_data_values['txt_missing'] = str_replace($lang_versioncheck_php['mandatory'], $lang_versioncheck_php['mandatory'] . $stop_icon, $file_data_values['txt_missing']);
+    // spice up the output by replacing plain text with icons --- end
     $loopCounter_array['total']++;
     if (($displayOption_array['errors_only'] == 0) || ($displayOption_array['errors_only'] == 1 && $file_data_values['comment'] != '')) { // only display if corrsponding option is not disabled --- start
       if ($file_data_values['comment'] != '') {
@@ -691,12 +714,11 @@ EOT;
 }
 
 function cpgVersioncheckConnectRepository() {
-    global $displayOption_array;
+    global $displayOption_array, $majorVersion;
     //print_r($displayOption_array);
     //die;
     // Perform the repository lookup and xml creation --- start
     //$displayOption_array['do_not_connect_to_online_repository'] = 1;
-    $majorVersion = 'cpg'.str_replace('.' . ltrim(substr(COPPERMINE_VERSION,strrpos(COPPERMINE_VERSION,'.')),'.'), '', COPPERMINE_VERSION).'.x';
     $remoteURL = 'http://coppermine-gallery.net/' . str_replace('.', '', $majorVersion) . '.files.xml';
     $localFile = 'include/' . str_replace('.', '', $majorVersion) . '.files.xml';
     $remoteConnectionFailed = '';

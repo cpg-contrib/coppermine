@@ -2555,6 +2555,7 @@ $lang_util_php = array(
 
 if (defined('VERSIONCHECK_PHP')) $lang_versioncheck_php = array(
   'title' => 'Versioncheck',
+  'versioncheck_output' => 'Versioncheck output',
   'file' => 'file',
   'folder' => 'folder',
   'ok' => 'OK',
@@ -2584,6 +2585,7 @@ if (defined('VERSIONCHECK_PHP')) $lang_versioncheck_php = array(
   'repository_link' => 'Repository link',
   'browse_corresponding_page_subversion' => 'Browse page corresponding to this file in the project\'s subversion repository',
   'mandatory' => 'mandatory',
+  'mandatory_missing' => 'Mandatory file is missing',
   'optional' => 'optional',
   'removed' => 'removed',
   'options' => 'Options',
