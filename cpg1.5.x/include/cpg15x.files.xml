@@ -5871,6 +5871,12 @@
     <hash>8b2201b722dc6a1206367fddc182ac25</hash>
   </element>
   <element>
+    <fullpath>images/fonts/LiberationSans-Regular.ttf</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>735c3983ce1983797d28ac6ed121556c</hash>
+  </element>
+  <element>
     <fullpath>images/icons/</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
@@ -6473,12 +6479,6 @@
     <status>mandatory</status>
     <permission>read</permission>
     <hash>e894290447b8e3e16598608cc6be0ac3</hash>
-  </element>
-  <element>
-    <fullpath>images/install/LiberationSans-Regular.ttf</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>735c3983ce1983797d28ac6ed121556c</hash>
   </element>
   <element>
     <fullpath>images/install/notyet.gif</fullpath>

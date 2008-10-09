@@ -2100,7 +2100,7 @@ class GDtest
     function testTextOnImage()
     {
         $text = '2008 © Susanna Thornton';
-        $font = 'images/install/LiberationSans-Regular.ttf';
+        $font = 'images/fonts/LiberationSans-Regular.ttf';
         $source = imagecreatefromjpeg('images/install/jpgtest.jpg');
         $front_color = imagecolorallocate($source, 255, 255, 255);
         
@@ -2323,7 +2323,7 @@ class IMtest
     function testTextOnImage()
     {
         $text = '2008 © Susanna Thornton';
-        $font = 'images/install/LiberationSans-Regular.ttf';
+        $font = 'images/fonts/LiberationSans-Regular.ttf';
         $source = 'images/install/jpgtest.jpg';
         
         $text_command = '' . $this->IMpath . ' ' . $this->createImagePath($source) 
