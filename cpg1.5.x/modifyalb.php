@@ -579,7 +579,7 @@ function alb_list_box()
 	if(count($rowset)){
 		 // Create the nicely sorted and formatted drop down list
         $alb_cat = '';
-		$select = cpg_fetch_icon('move', 2) . "<select name=\"album_listbox\" class=\"listbox\" onChange=\"if(this.options[this.selectedIndex].value) window.location.href='{$CPG_PHP_SELF}?album='+this.options[this.selectedIndex].value;\">\n";
+		$select = cpg_fetch_icon('alb_mgr', 2) . "<select name=\"album_listbox\" class=\"listbox\" onChange=\"if(this.options[this.selectedIndex].value) window.location.href='{$CPG_PHP_SELF}?album='+this.options[this.selectedIndex].value;\">\n";
         foreach ($rowset as $val) {
             if ($val['cat'] != $alb_cat) {
           		if ($alb_cat) $select .= "</optgroup>\n";
