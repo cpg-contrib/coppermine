@@ -183,7 +183,7 @@ function write_to_db($step) {
 
     // ouput error messages, if any
     if (is_array($return)) {
-        starttable('100%', $lang_bridgemgr_php['error_title']);
+        starttable(-1, $lang_bridgemgr_php['error_title']);
         print '<tr><td class="tableb" align="left"><ul>';
         foreach($return as $key) {
             print '<li>'.$key.'</li>';
@@ -242,12 +242,12 @@ function cpg_submit_button($step, $back = 'true', $columns = '3', $next = 'true'
     $return .= '        <td colspan="'.$columns.'" class="tablef" align="center">'.$new_line;
     $return .= '            <table border="0" cellspacing="0" cellpadding="0" width="100%"><tr>'.$new_line;
     $return .= '            <td align="left">'.$new_line;
-    $return .= '            <input type="checkbox" name="hide_unused_fields" id="hide_unused_fields" value="1" class="checkbox" '.$checked.' onclick="toggleUnusedFields(this);" />'.$new_line;
-    $return .= '            <label for="hide_unused_fields" class="clickable_option">'.$new_line;
+    $return .= '            <input type="hidden" name="hide_unused_fields" id="hide_unused_fields" value="1" class="checkbox" '.$checked.' onclick="toggleUnusedFields(this);" />'.$new_line;
+    $return .= '            <!--<label for="hide_unused_fields" class="clickable_option">'.$new_line;
     $return .= '            <span class="explanation">'.$new_line;
     $return .= '                '.$lang_bridgemgr_php['hide_unused_fields'].$new_line;
     $return .= '            </span>'.$new_line;
-    $return .= '            </label>'.$new_line;
+    $return .= '            </label>-->&nbsp;'.$new_line;
     $return .= '            <script type="text/javascript">';
     $return .= '            <!--'.$new_line;
     $return .= '            //function toggleUnusedFields(el_name) {'.$new_line;
@@ -258,7 +258,7 @@ function cpg_submit_button($step, $back = 'true', $columns = '3', $next = 'true'
     $return .= '            -->'.$new_line;
     $return .= '            </script>'.$new_line;
     $return .= '        </td>'.$new_line;
-    $return .= '        <td align="center">'.$new_line;
+    $return .= '        <td align="right">'.$new_line;
     if ($back == 'true') {
         $return .= '            <input type="button" name="back" value="&laquo;'.$lang_bridgemgr_php['back'].'" class="button" onclick="javascript:history.back()" />'.$new_line;
     }
@@ -508,7 +508,7 @@ case "choose_bbs":
 $BRIDGE = cpg_get_bridge_db_values();
 print '<form name="'.$step.'" id="cpgform" action="'.$CPG_PHP_SELF.'" method="post">';
 //print '<input type="hidden" name="hide_unused_fields" value="1" />';
-starttable('100%', cpg_fetch_icon('bridge_mgr', 2) . $lang_bridgemgr_php['title'].': '.$lang_bridgemgr_php['choose_bbs_app'],2);
+starttable(-1, cpg_fetch_icon('bridge_mgr', 2) . $lang_bridgemgr_php['title'].': '.$lang_bridgemgr_php['choose_bbs_app'].'&nbsp;'.cpg_display_help('f=bridging.htm&amp;as=bridge_manager_app_start&amp;ae=bridge_manager_app_end', '800', '450'),2);
 $checked[$BRIDGE['short_name']] = 'checked="checked"';
 foreach($default_bridge_data as $key => $value) {
     print '<tr>'.$new_line;
@@ -547,7 +547,7 @@ case "settings_path":
     if (!$error) {
         $BRIDGE = cpg_get_bridge_db_values();
         print '<form name="'.$step.'" id="cpgform" action="'.$CPG_PHP_SELF.'" method="post">';
-        starttable('100%', cpg_fetch_icon('bridge_mgr', 2) . $lang_bridgemgr_php['title'].': '.$lang_bridgemgr_php['settings_path'], 3);
+        starttable(-1, cpg_fetch_icon('bridge_mgr', 2) . $lang_bridgemgr_php['title'].': '.$lang_bridgemgr_php['settings_path'].'&nbsp;'.cpg_display_help('f=bridging.htm&amp;as=bridge_manager_path_start&amp;ae=bridge_manager_path_end', '800', '450'), 3);
         $loop_array = array('full_forum_url','relative_path_of_forum_from_webroot','relative_path_to_config_file', 'cookie_prefix');
         $rows_displayed = 0;
         $section_number = 0;
@@ -573,16 +573,16 @@ case "settings_path":
             if ($posted_var['hide_unused_fields'] != 1 || $disabled == '')
             {
                 print '<tr>'.$new_line;
-                print '    <td class="tableb">'.$new_line;
+                print '    <td class="tableb" width="30%">'.$new_line;
                 print '        '.$lang_bridgemgr_php[$key].':'.$new_line;
                 print '    </td>'.$new_line;
-                print '    <td class="tableb" style="overflow:visible">'.$new_line;
+                print '    <td class="tableb" width="60%" style="overflow:visible">'.$new_line;
                 print '        <input type="text" name="'.$key.'" id="'.$key.'" size="50" class="textinput" style="width:80%" value="'.$prefill.'" '.$disabled.' />'.$minibrowser.$reset_to_default.$new_line;
                 print '    </td>'.$new_line;
-                print '    <td class="tableb">'.$new_line;
+                print '    <td class="tableb" width="10%">'.$new_line;
                 print $display1.$new_line;
                 print '        ';
-                print cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bridgemgr_php[$key]))).'&amp;t='.urlencode(base64_encode(serialize($lang_bridgemgr_php[$key.'_explanation']))),470,245).'</span>'.$new_line;
+                print cpg_display_help('f=bridging.htm&amp;as=bridge_manager_path_'.$key.'&amp;ae=bridge_manager_path_'.$key.'_end', '800', '450').'</span>'.$new_line;
                 print $display2.$new_line;
                 print '    </td>'.$new_line;
                 print '</tr>'.$new_line;
@@ -601,227 +601,13 @@ case "settings_path":
     } // end if not error
    break;
 
-case "db_connect":
-
-    $error = write_to_db($previous_step[$step]);
-    if (!$error) {
-        $BRIDGE = cpg_get_bridge_db_values();
-        print '<form name="'.$step.'" id="cpgform" action="'.$CPG_PHP_SELF.'" method="post">';
-        starttable('100%', cpg_fetch_icon('bridge_mgr', 2) . $lang_bridgemgr_php['title'].': '.$lang_bridgemgr_php['database_connection'], 3);
-        $loop_array = array('db_database_name','db_hostname','db_username','db_password');
-        $rows_displayed = 0;
-        foreach($loop_array as $key) {
-            $prefill = cpg_bridge_prefill($BRIDGE['short_name'],$key);
-            $reset_to_default = '';
-            if ($default_bridge_data[$BRIDGE['short_name']][$key.'_used'] == '') {
-                $disabled = 'disabled="disabled" style="background-color:InactiveCaptionText;color:GrayText"';
-            } else {
-                $disabled = '';
-                $rows_displayed++;
-                if ($default_bridge_data[$BRIDGE['short_name']][$key.'_default'] != '') {
-                    $reset_to_default = '<a href="javascript:;" onclick="document.getElementById(\''.$key.'\').value=\''.$default_bridge_data[$BRIDGE['short_name']][$key.'_default'].'\'">' . cpg_fetch_icon('stop', 0, $lang_bridgemgr_php['reset_to_default']) . '</a>';
-                }
-            }
-            if ($default_bridge_data[$BRIDGE['short_name']][$key.'_used'] == 'password') {$fieldtype = 'password';} else {$fieldtype = 'text';}
-            if ($posted_var['hide_unused_fields'] != 1 || $disabled == '')
-            {
-                print '<tr>';
-                print '    <td class="tableb">';
-                print '        '.$lang_bridgemgr_php[$key].':';
-                print '    </td>';
-                print '    <td class="tableb">';
-                print '        <input type="'.$fieldtype.'" name="'.$key.'" id="'.$key.'" class="textinput" value="'.$prefill.'" '.$disabled.' size="30"  style="width:80%" />'.$reset_to_default;
-                print '    </td>';
-                print '    <td class="tableb">';
-                print '        <span class="explanation">'.$lang_bridgemgr_php[$key.'_explanation'].'</span>';
-                print '    </td>';
-                print '</tr>';
-            }
-        }
-        if ($rows_displayed == 0) {
-            print '<tr>';
-            print '    <td class="tableh2" colspan="3" align="center">';
-            print '        <h2>'.$lang_bridgemgr_php['no_action_needed'].'</h2>';
-            print '    </td>';
-            print '</tr>';
-        }
-
-
-        print cpg_submit_button($next_step[$step]);
-        endtable();
-        print "</form>\n";
-    } // end if error
-    break;
-
-case "db_tables":
-
-    $error = write_to_db($previous_step[$step]);
-    if (!$error) {
-        $BRIDGE = cpg_get_bridge_db_values();
-        print '<form name="'.$step.'" id="cpgform" action="'.$CPG_PHP_SELF.'" method="post">';
-        starttable('100%', cpg_fetch_icon('bridge_mgr', 2) . $lang_bridgemgr_php['title'].': '.$lang_bridgemgr_php['database_tables'], 3);
-        $loop_array = array('table_prefix', 'user_table', 'session_table', 'group_table', 'group_relation_table', 'group_mapping_table');
-        $rows_displayed = 0;
-        foreach($loop_array as $key) {
-            $prefill = cpg_bridge_prefill($BRIDGE['short_name'],$key);
-            $reset_to_default = '';
-            if ($default_bridge_data[$BRIDGE['short_name']][$key.'_used'] == '') {
-                $disabled = 'disabled="disabled" style="background-color:InactiveCaptionText;color:GrayText"';
-            } else {
-                $disabled = '';
-                $rows_displayed++;
-                if ($default_bridge_data[$BRIDGE['short_name']][$key.'_default'] != '') {
-                    $reset_to_default = '<a href="javascript:;" onclick="document.getElementById(\''.$key.'\').value=\''.$default_bridge_data[$BRIDGE['short_name']][$key.'_default'].'\'">' . cpg_fetch_icon('stop', 0, $lang_bridgemgr_php['reset_to_default']) . '</a>';
-                }
-            }
-            if ($default_bridge_data[$BRIDGE['short_name']][$key.'_used'] == 'password') {
-                $fieldtype = 'password';
-            } else {
-                $fieldtype = 'text';
-            }
-            if ($posted_var['hide_unused_fields'] != 1 || $disabled == '')
-            {
-                print '<tr>';
-                print '    <td class="tableb">';
-                print '        '.$lang_bridgemgr_php[$key].':';
-                print '    </td>';
-                print '    <td class="tableb">';
-                print '        <input type="'.$fieldtype.'" name="'.$key.'" id="'.$key.'" class="textinput" value="'.$prefill.'" '.$disabled.' size="30"  style="width:80%" />'.$reset_to_default;
-                print '    </td>';
-                print '    <td class="tableb">';
-                print '        <span class="explanation">'.$lang_bridgemgr_php[$key.'_explanation'].'</span>';
-                print '    </td>';
-                print '</tr>';
-            }
-        }
-        if ($rows_displayed == 0) {
-            print '<tr>'.$new_line;
-            print '    <td class="tableh2" colspan="3" align="center">'.$new_line;
-            print '        <h2>'.$lang_bridgemgr_php['no_action_needed'].'</h2>'.$new_line;
-            print '    </td>'.$new_line;
-            print '</tr>'.$new_line;
-        }
-
-
-        print cpg_submit_button($next_step[$step]);
-        endtable();
-        print "</form>\n";
-    } // end if error
-    break;
-
-case "db_groups":
-
-    $error = write_to_db($previous_step[$step]);
-    if (!$error) {
-        $BRIDGE = cpg_get_bridge_db_values();
-        print '<form name="'.$step.'" id="cpgform" action="'.$CPG_PHP_SELF.'" method="post">';
-        starttable('100%', cpg_fetch_icon('bridge_mgr', 2) . $lang_bridgemgr_php['title'].': '.$lang_bridgemgr_php['bbs_groups'], 3);
-        if ($default_bridge_data[$BRIDGE['short_name']]['use_standard_groups_used'] != '')
-        {
-            if ($BRIDGE['use_standard_groups'] != '') {
-                $prefill = $BRIDGE['use_standard_groups'];
-            } else {
-                $prefill = $default_bridge_data[$BRIDGE['short_name']]['use_standard_groups_default'];
-            }
-            if ($prefill == 1) {
-                $checked = 'checked="checked"';
-            } else {
-                $checked = '';
-            }
-            print '<tr>'.$new_line;
-            print '    <td class="tableb" colspan="2" align="left">'.$new_line;
-            print '        <input type="hidden" name="use_standard_groups" id="use_standard_groups" value="'.$prefill.'" />'.$new_line;
-            print '        <input type="checkbox" name="dummy_use_standard_groups" id="dummy_use_standard_groups" class="checkbox" value="1" '.$checked.' onclick="toggleGroupFields();" />'.$new_line;
-            print '        <label for="dummy_use_standard_groups" class="clickable_option">'.$lang_bridgemgr_php['use_standard_groups'].'</label>'.$new_line;
-            print '    </td>'.$new_line;
-            print '    <td class="tableb">'.$new_line;
-            print '        <span class="explanation">'.$lang_bridgemgr_php['use_standard_groups_explanation'].'</span>'.$new_line;
-            print '    </td>'.$new_line;
-            print '</tr>'.$new_line;
-        }
-        $loop_array = array('validating_group', 'guest_group', 'member_group', 'admin_group', 'banned_group', 'global_moderators_group');
-        $rows_displayed = 0;
-        foreach($loop_array as $key) { // foreach loop start
-            $prefill = cpg_bridge_prefill($BRIDGE['short_name'],$key);
-            $reset_to_default = '';
-            if ($default_bridge_data[$BRIDGE['short_name']][$key.'_used'] == '') {
-                $disabled = 'disabled="disabled" style="background-color:InactiveCaptionText;color:GrayText"';
-            } else {
-                $disabled = '';
-                $rows_displayed++;
-                if ($default_bridge_data[$BRIDGE['short_name']][$key.'_default'] != '') {
-                    $reset_to_default = '<a href="javascript:;" onclick="document.getElementById(\''.$key.'\').value=\''.$default_bridge_data[$BRIDGE['short_name']][$key.'_default'].'\'">' . cpg_fetch_icon('stop', 0, $lang_bridgemgr_php['reset_to_default']) . '</a>';
-                }
-            }
-            if ($default_bridge_data[$BRIDGE['short_name']][$key.'_used'] == 'password') {$fieldtype = 'password';} else {$fieldtype = 'text';}
-            if ($posted_var['hide_unused_fields'] != 1 || $disabled == '')
-            {
-                print '<tr>'.$new_line;
-                print '    <td class="tableb">'.$new_line;
-                print '        '.$lang_bridgemgr_php[$key].':'.$new_line;
-                print '    </td>'.$new_line;
-                print '    <td class="tableb">'.$new_line;
-                print '        <input type="'.$fieldtype.'" name="'.$key.'" id="'.$key.'" class="textinput" value="'.$prefill.'" '.$disabled.' size="30"  style="width:80%" />'.$reset_to_default.$new_line;
-                print '    </td>'.$new_line;
-                print '    <td class="tableb">'.$new_line;
-                print '        <span class="explanation">'.$lang_bridgemgr_php[$key.'_explanation'].'</span>'.$new_line;
-                print '    </td>'.$new_line;
-                print '</tr>'.$new_line;
-                $keywords[] = $key;
-            }
-        } // foreach loop end
-        if ($rows_displayed == 0) {
-            print '<tr>'.$new_line;
-            print '    <td class="tableh2" colspan="3" align="center">'.$new_line;
-            print '        <h2>'.$lang_bridgemgr_php['no_action_needed'].'</h2>'.$new_line;
-            print '    </td>'.$new_line;
-            print '</tr>'.$new_line;
-        } else {
-            // dome dhtml magic to disable the input fields in case they get overridden with the option 'use_standard_groups' anyway
-    print '<script type="text/javascript">'.$new_line;
-    print '<!--'.$new_line;
-    print 'toggleGroupFields();'.$new_line;
-    print 'function toggleGroupFields() {'.$new_line;
-    print '    var use_standard_groups = document.getElementById("dummy_use_standard_groups").checked;'.$new_line;
-    print '    if (use_standard_groups == true) {'.$new_line;
-    print '        AllGroupFieldsDisable();'.$new_line;
-    print '        document.getElementById("use_standard_groups").value = 1;'.$new_line;
-    print '    }'.$new_line;
-    print '    if (use_standard_groups == false) {'.$new_line;
-    print '        AllGroupFieldsEnable();'.$new_line;
-    print '        document.getElementById("use_standard_groups").value = 0;'.$new_line;
-    print '    }'.$new_line;
-    print '}'.$new_line;
-    print 'function AllGroupFieldsDisable() {'.$new_line;
-    foreach($keywords as $key) {
-    print '    document.getElementById("'.$key.'").disabled = true;'.$new_line;
-    print '    document.getElementById("'.$key.'").style.backgroundColor = \'InactiveCaptionText\';'.$new_line;
-    print '    document.getElementById("'.$key.'").style.color = \'GrayText\';'.$new_line;
-    }
-    print '}'.$new_line;
-    print 'function AllGroupFieldsEnable() {'.$new_line;
-    foreach($keywords as $key) {
-    print '    document.getElementById("'.$key.'").disabled = false;'.$new_line;
-    print '    document.getElementById("'.$key.'").style.backgroundColor = \'Window\';'.$new_line;
-    print '    document.getElementById("'.$key.'").style.color = \'MenuText\';'.$new_line;
-    }
-    print '}'.$new_line;
-    print '-->'.$new_line;
-    print '</script>'.$new_line;
-        }
-        print cpg_submit_button($next_step[$step]);
-        endtable();
-        print "</form>\n";
-    } // end if error
-    break;
-
 case "special_settings":
 
     $error = write_to_db($previous_step[$step]);
     if (!$error) {
         $BRIDGE = cpg_get_bridge_db_values();
         print '<form name="'.$step.'" id="cpgform" action="'.$CPG_PHP_SELF.'" method="post">';
-        starttable('100%', cpg_fetch_icon('bridge_mgr', 2) . $lang_bridgemgr_php['title'].': '.$lang_bridgemgr_php['special_settings'], 3);
+        starttable(-1, cpg_fetch_icon('bridge_mgr', 2) . $lang_bridgemgr_php['title'].': '.$lang_bridgemgr_php['special_settings'].'&nbsp;'.cpg_display_help('f=bridging.htm&amp;as=bridge_manager_specific_start&amp;ae=bridge_manager_specific_end', '800', '450'), 3);
         $loop_array = array('logout_flag', 'use_post_based_groups','license_number');
         $rows_displayed = 0;
         foreach($loop_array as $key) { // foreach loop_array --- start
@@ -865,11 +651,11 @@ case "special_settings":
                     print '        <label for="'.$key.'_yes" class="clickable_option">'.$new_line;
                     print '            '.$lang_bridgemgr_php[$key.'_yes'].$new_line;
                     print '        </label>&nbsp;'.$new_line;
-                    print '        <br />'.$new_line;
+                    print '        &nbsp;&nbsp;&nbsp;'.$new_line;
                     print '        <input type="radio" name="'.$key.'" id="'.$key.'_no" class="radio" value="'.$option_no.'" '.$disabled.' '.$checked_no.' /><label for="'.$key.'_no" class="clickable_option">'.$lang_bridgemgr_php[$key.'_no'].'</label>'.$new_line;
                     print '    </td>'.$new_line;
                     print '    <td class="tableb">'.$new_line;
-                    print '        <span class="explanation">'.$lang_bridgemgr_php[$key.'_explanation'].'</span>'.$new_line;
+                    print '        '.cpg_display_help('f=bridging.htm&amp;as=bridge_manager_'.$key.'&amp;ae=bridge_manager_'.$key.'_end', '800', '450').'</span>'.$new_line;
                     print '    </td>'.$new_line;
                     print '</tr>'.$new_line;
                 } // radio button --- end
@@ -935,32 +721,6 @@ case "special_settings":
                 }
             } // the file should be created --- end
             // display the option
-            // temporarily removed this section, as it's still under construction
-            print '<!--';
-            print '<tr>'.$new_line;
-            print '    <td class="tableb" colspan="2">'.$new_line;
-            print '        <input type="checkbox" name="create_redir_file" id="create_redir_file" class="checkbox" value="1" checked="checked" />'.$new_line;
-            print '        <label for="create_redir_file" class="clickable_option">'.$new_line;
-            print '        <span class="explanation">'.$new_line;
-            print '            '.$lang_bridgemgr_php['create_redir_file'].$new_line;
-            print '        </span>'.$new_line;
-            print '        </label>&nbsp;'.$new_line;
-            print '    </td>'.$new_line;
-            print '    <td class="tableb">'.$new_line;
-            print '        <span class="explanation">'.$new_line;
-            print '        '.$lang_bridgemgr_php['create_redir_file_explanation'].$new_line;
-            print '        </span>'.$new_line;
-            print '    </td>'.$new_line;
-            print '</tr>'.$new_line;
-            print '<tr>'.$new_line;
-            print '    <td class="tableb" colspan="3">'.$new_line;
-            print '        <textarea style="width:100%">';
-            print $default_bridge_data[$BRIDGE['short_name']]['create_redir_file_content'];
-            print '        </textarea>';
-            print '    </td>'.$new_line;
-            print '</tr>'.$new_line;
-            print '-->';
-            // temporarily removed this section, as it's still under construction --- end
         } // create redirection file question --- end
 
         if ($rows_displayed == 0) {
@@ -1017,7 +777,7 @@ EOT;
             print '<tr>';
             print '<td class="tableb" colspan="2">';
             print '<span class="explanation">';
-            printf($lang_bridgemgr_php['finalize_explanation'],$CONFIG['ecards_more_pic_target'].'/bridgemgr.php');
+            printf($lang_bridgemgr_php['finalize_explanation'],rtrim($CONFIG['ecards_more_pic_target'], '/').'/bridgemgr.php');
             print '</span>';
             print '</td>';
             print '</tr>';
@@ -1101,10 +861,10 @@ EOT;
             print '            <table border="0" cellspacing="0" cellpadding="0" width="100%">'.$new_line;
             print '                <tr>'.$new_line;
             print '                    <td align="left">'.$new_line;
-            print '                        <!--<input type="checkbox" name="hide_unused_fields" id="hide_unused_fields" value="1" class="checkbox"  />'.$new_line;
-            print '                        <label for="hide_unused_fields" class="clickable_option"><span class="explanation">hide unused form fields (recommended)</span></label>-->'.$new_line;
+            print '                        <input type="hidden" name="hide_unused_fields" id="hide_unused_fields" value="1" class="checkbox"  />'.$new_line;
+            print '                        <!--<label for="hide_unused_fields" class="clickable_option"><span class="explanation">hide unused form fields (recommended)</span></label>-->'.$new_line;
             print '                   </td>'.$new_line;
-            print '                   <td align="center">'.$new_line;
+            print '                   <td align="right">'.$new_line;
             print '                        <!--<input type="button" name="back" value="&laquo;back" class="button" onclick="javascript:history.back()" />-->'.$new_line;
             print '                        <input type="submit" name="submit" value="'.$lang_bridgemgr_php['start_wizard'].'" class="button" />'.$new_line;
             print '                        <input type="hidden" name="step" value="choose_bbs" />'.$new_line;

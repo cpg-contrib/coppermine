@@ -70,20 +70,20 @@
 
 <a name="integrating_cookie_start"></a><h3>Authentication by cookie<a href="#integrating_cookie_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>The login integration uses your bulletin board cookies, therefore it won't work if your board cookies are not visible by Coppermine. So unless you are an expert, keep things simple and install Coppermine and your bridge app on the same domain. Examples :</p>
-<table border="0" cellspacing="5" cellpadding="5" class="maintable">
-<tr>
-<td class="tableh1">This <strong>will</strong> work:</td>
-<td class="tableh1">This <strong title="depending on your subdomain setup">might</strong> work:</td>
-<td class="tableh1">This <strong class="important">won't</strong> work:</td>
-</tr>
-<tr>
-<td class="tableb">Bridge app: <tt class="code">http://yourdomain.com/board/</tt><br />
-Coppermine: <tt class="code">http://yourdomain.com/gallery/</td>
-<td class="tableb tableb_alternate">Bridge app: <tt class="code">http://board.yourdomain.com/</tt><br />
-Coppermine: <tt class="code">http://gallery.yourdomain.com/</tt></td>
-<td class="tableb">Bridge app: <tt class="code">http://yourfirstdomain.com/board/</tt><br />
-Coppermine: <tt class="code">http://yourseconddomain.com/gallery/</tt></td>
-</tr>
+<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+    <tr>
+        <td class="tableh1">This <strong>will</strong> work:</td>
+        <td class="tableh1">This <strong title="depending on your subdomain setup">might</strong> work:</td>
+        <td class="tableh1">This <strong class="important">won't</strong> work:</td>
+    </tr>
+    <tr>
+        <td class="tableb">Bridge app: <tt class="code">http://yourdomain.com/board/</tt><br />
+        Coppermine: <tt class="code">http://yourdomain.com/gallery/</td>
+        <td class="tableb tableb_alternate">Bridge app: <tt class="code">http://board.yourdomain.com/</tt><br />
+        Coppermine: <tt class="code">http://gallery.yourdomain.com/</tt></td>
+        <td class="tableb">Bridge app: <tt class="code">http://yourfirstdomain.com/board/</tt><br />
+        Coppermine: <tt class="code">http://yourseconddomain.com/gallery/</tt></td>
+    </tr>
 </table>
 <p>The cookie path in the forum's configuration should be set to '/' where this option is available.</p>
 <p><span class="important">Important</span>: the cookie names of your bridge app and coppermine must <strong>not</strong> be the same - they <strong>must</strong> differ!</p>
@@ -124,18 +124,18 @@ Correlation between the actions that the unbridged coppermine users have perform
 
 
 <a name="bridge_manager_start"></a><h3>Using the bridge manager<a href="#bridge_manager_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>The bridge manager is a new feature in cpg1.4, it is not available in older versions. Instead of manually editing coppermine code files, you can enable/disable bridging in your browser, using a wizard-like user interface. To start the bridge manager, log in as admin, choose &quot;Admin Tools&quot; from the navigation and the &quot;bridge manager&quot;</p>
+<p>The bridge manager is a new feature in cpg1.4, it is not available in older versions. Instead of manually editing coppermine code files, you can enable/disable bridging in your browser, using a wizard-like user interface. To start the bridge manager, log in as admin, choose &quot;Bridge Manager&quot; from the admin menu.</p>
 <p><img src="images/bridge_01_start.gif" width="429" height="72" border="0" alt="" align="right" />If you run the bridge manager for the first time, there will only be one button that let's you actually start the wizard (if you return to the bridge manager later, you will also find a switch to enable/disable bridging) click it.</p>
 <p class="important">Note: with each step in the wizard, some information is being written to the coppermine database. Unlike other wizards (mostly on your local machine), the bridge manager doesn't have a &quot;cancel&quot;-button! Once you have enabled bridging and everything is working fine, you shouldn't change any values just out of curiosity, as they will get written to the database, which might result in a bridging that used to work not working any more after &quot;playing&quot; with it.<br clear="all" /></p>
-<p><img src="images/bridge_02_app.png" width="600" height="340" border="0" alt="" align="right" />In the first actual step of the wizard &quot;choose application to bridge coppermine with&quot;, you have to choose the application you actually want to coppermine with. Note that you <strong>must</strong> have this application already installed on your webserver, it has to be properly configured and must be up-and-running. Don't use the bridge manager yet if you only <em>plan</em> to integrate coppermine with another application later.</p>
-<p>If you have a custom-made bridge file that is not available in the wizard, choose the radio button in front of the text field and enter the name of your bridge file there, without the extension &quot;.inc.php&quot; (the bridge file must reside in the coppermine sub-folder &quot;bridge&quot;).<br />
-Click &quot;next&quot;</p>
-<p>The next steps depend on the application you have chosen to bridge with: some applications need <acronym title="Uniform Resource Locator">URL</acronym>s to be entered, or paths. Some need mySQL table information or cookie data to be entered, others don't. The point of the wizard is that it will only &quot;ask&quot; you the relevant settings for your application - if one or more items of the following description doesn't turn up for your application, there's no need to worry - just keep filling in the mandatory information and then hit &quot;next&quot;. However, you have to understand that coppermine can proof-check only some of your input - some input goes unvalidated.</p>
+<p class="quote"><em>Side-note</em><br />
+If you have a custom-made bridge file, just copy that bridge file into coppermine's bridge folder and it will show up on the bridge manager interface (the bridge file must reside in the coppermine sub-folder &quot;bridge&quot;).</p>
+
 <p>If a reset button (<img src="../images/flags/reset.gif" width="16" height="11" border="0" alt="" />) is being displayed next to an input field, the field value doesn't have the default value. It can be perfectly OK to have a non-default value in a field, however you should keep in mind that if you have &quot;played&quot; with the bridge manager before, previous settings might exist in a field that are not correct - do not light-heartedly skip a step without paying attention to it. Use the reset button to revert to the default value (not necessarily &quot;quor&quot; default value though).<br clear="all" /></p>
 
 
 <a name="bridge_manager_app_start"></a><h4>Choose application to bridge coppermine with<a href="#bridge_manager_app_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-<ul>
+<p><img src="images/bridge_02_app.png" width="600" height="340" border="0" alt="" align="right" />In the first actual step of the wizard &quot;choose application to bridge coppermine with&quot;, you have to choose the application you actually want to coppermine with. Note that you <strong>must</strong> have this application already installed on your webserver, it has to be properly configured and must be up-and-running. Don't use the bridge manager yet if you only <em>plan</em> to integrate coppermine with another application later.</p>
+<p>Choose one of the available bridge files</p>
 <ul>
   <li>Invision Power Board</li>
   <li>Mambo</li>
@@ -150,24 +150,104 @@ Click &quot;next&quot;</p>
   <li>XMB</li>
   <li>Xoops2</li>
 </ul>
-</ul>
+<p>Click &quot;next&quot;</p>
 <a name="bridge_manager_app_end"></a>
+
+<a name="bridge_manager_next_steps"></a><h4>The next steps<a href="#bridge_manager_next_steps" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+<p>The next steps depend on the application you have chosen to bridge with: some applications need <acronym title="Uniform Resource Locator">URL</acronym>s to be entered, or paths. Some need mySQL table information or cookie data to be entered, others don't. The point of the wizard is that it will only &quot;ask&quot; you the relevant settings for your application - if one or more items of the following description doesn't turn up for your application, there's no need to worry - just keep filling in the mandatory information and then hit &quot;next&quot;. However, you have to understand that coppermine can proof-check only some of your input - some input goes unvalidated.</p>
+<a name="bridge_manager_next_steps_end"></a>
+
+
 <a name="bridge_manager_path_start"></a><h4>Path(s) used by your bridge app<a href="#bridge_manager_path_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-<ul>
-<li><strong>Bridge app URL</strong><br />
-Full URL of your bridge app (including the leading http:// bit, e.g. http://www.yourdomain.tld/forum/)</li>
-<li><strong>Relative bridge app path</strong><br />
-Relative path to your bridge app from the webroot (Example: if your BBS is at http://www.yourdomain.tld/forum/, enter "/forum/" into this field)</li>
-<li><strong>Relative path to your bridge app's config file</strong><br />
-Relative path to your bridge app, seen from your Coppermine folder (e.g. "../forum/" if your bridge app is at http://www.yourdomain.tld/forum/ and Coppermine at http://www.yourdomain.tld/gallery/)</li>
-</ul>
+<p>There are various different ways used by coppermine's bridging mechanisms to get connected to the bridge application. Basically, the settings made in the bridge manager at this stage "tell" coppermine where your bridge app resides at and where the bridge app's config file is located that contains data that is being used by coppermine to "hook up" to the bridge app. As there are different approaches of bridge apps how this can be done, the method used in the bridge wizard might differ, depending on the bridge app you picked in the first step of the wizard. Therefor, not all of the settings mentioned below for you. Just run the wizard and then look up the needed settings and enter them carefully.</p>
+<ul><li><a name="bridge_manager_path_full_forum_url"></a><h5>Bridge app URL<a href="#bridge_manager_path_full_forum_url" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
+<p>Full URL of your bridge app (including the leading <tt class="code">http://</tt> bit, e.g. <tt class="code">http://www.yourdomain.tld/forum/</tt>).</p>
+<a name="bridge_manager_path_full_forum_url_end"></a></li></ul>
+<ul><li><a name="bridge_manager_path_relative_path_of_forum_from_webroot"></a><h5>Absolute bridge app path<a href="#bridge_manager_path_relative_path_of_forum_from_webroot" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
+<p>Absolute path to your bridge app seen from the webroot</p>
+<p>Examples:</p>
+<div class="quote"> 
+    <ul>
+        <li>If your bridging app is at http://www.example.com/forum/, enter <tt class="code">/forum/</tt> into this field</li>
+        <li>If your bridging app is at http://www.example.com/foo/bar/, enter <tt class="code">/foo/bar/</tt> into this field</li>
+    </ul>
+</div>
+<p>You have to understand that this setting is <strong>not</strong> the absolute path on file system level on your web-server, but only the absolute path seen from the webroot.</p>
+<p>Example:</p>
+<p class="quote">On file system level of your web-server, the absolute path your webroot might be something like <tt class="code">/var/www/your_account_name/public_html/</tt>. Subsequently, the app you bridge with might reside in an absolute path on file system level like this: <tt class="code">/var/www/your_account_name/public_html/forum/</tt>. Your coppermine gallery might reside in an absolute path on file system level that looks like this: <tt class="code">/var/www/your_account_name/public_html/gallery/</tt>. However, it's the webroot folder that matters in this aspect - coppermine doesn't dig deeper on file system level and doesn't take the absolute paths into account that you might be using with other applications or to include files - it just uses the path seen from the webroot (the stuff that can be accessed directly in the browser). Hence, in this example the absolute path seen from the webroot would be <tt class="code">/forum/</tt> - nothing more, nothing less.</p>
+<a name="bridge_manager_path_relative_path_of_forum_from_webroot_end"></a></li></ul>
+<ul><li><a name="bridge_manager_path_relative_path_to_config_file"></a><h5>Relative path to your bridge app's config file<a href="#bridge_manager_path_relative_path_to_config_file" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
+<p>Relative path to your bridge app, seen from your Coppermine folder (e.g. "../forum/" if your bridge app is at http://www.yourdomain.tld/forum/ and Coppermine at http://www.yourdomain.tld/gallery/)</p>
+<p>A relative path does <strong>not</strong> start with a slash - that's the visual difference to an absolute path. You need to think on folder/sub-folder level to understand the concept of relative paths. Imagine that all folders on your webserver where the branches of a tree that was turned upside down: the root being at the top and branches going to the bottom. The relative path describes the way you need to take from a particular folder (the folder where coppermine resides in) to another folder (the folder where your bridge app resides in). The notation for relative paths contains a special way to say "one level up": that's two dots, followed by a forward slash (<tt class="code">../</tt>). This being said, let's look at some examples:</p>
+<table border="0" cellspacing="1" cellpadding="0" class="maintable">
+    <tr>
+        <th class="tableh1">Your coppermine install</th>
+        <th class="tableh1">Your bridge app install</th>
+        <th class="tableh1">Relative path</th>
+    </tr>
+    <tr>
+        <td class="tableb"><tt class="code">http://example.com/gallery/</tt></td>
+        <td class="tableb"><tt class="code">http://example.com/forum/</tt></td>
+        <td class="tableb"><tt class="code">../forum/</tt></td>
+    </tr>
+    <tr>
+        <td class="tableb tableb_alternate"><tt class="code">http://example.com/gallery/</tt></td>
+        <td class="tableb tableb_alternate"><tt class="code">http://example.com/community/board/</tt></td>
+        <td class="tableb tableb_alternate"><tt class="code">../community/board/</tt></td>
+    </tr>
+    <tr>
+        <td class="tableb"><tt class="code">http://example.com/pictures/coppermine/</tt></td>
+        <td class="tableb"><tt class="code">http://example.com/bbs/</tt></td>
+        <td class="tableb"><tt class="code">../../bbs/</tt></td>
+    </tr>
+    <tr>
+        <td class="tableb tableb_alternate"><tt class="code"></tt></td>
+        <td class="tableb tableb_alternate"><tt class="code"></tt></td>
+        <td class="tableb tableb_alternate"><tt class="code"></tt></td>
+    </tr>
+    <tr>
+        <td class="tableb"><tt class="code">http://example.com/gallery/</tt></td>
+        <td class="tableb"><tt class="code">http://example.com/</tt></td>
+        <td class="tableb"><tt class="code">../</tt></td>
+    </tr>
+    <tr>
+        <td class="tableb tableb_alternate"><tt class="code">http://example.com/</tt></td>
+        <td class="tableb tableb_alternate"><tt class="code">http://example.com/forum/</tt></td>
+        <td class="tableb tableb_alternate"><tt class="code">forum/</tt></td>
+    </tr>
+    <tr>
+        <td class="tableb"><tt class="code">http://example.com/community/pix/</tt></td>
+        <td class="tableb"><tt class="code">http://example.com/community/</tt></td>
+        <td class="tableb"><tt class="code">../</tt></td>
+    </tr>
+    <tr>
+        <td class="tableb tableb_alternate"><tt class="code">http://example.com/some/very/complicated/folder/</tt></td>
+        <td class="tableb tableb_alternate"><tt class="code">http://example.com/</tt></td>
+        <td class="tableb tableb_alternate"><tt class="code">../../../../</tt></td>
+    </tr>
+    <tr>
+        <td class="tableb"><tt class="code">http://example.com/gallery/</tt></td>
+        <td class="tableb"><tt class="code">http://example.com/community/forum/</tt></td>
+        <td class="tableb"><tt class="code">../community/forum/</tt></td>
+    </tr>
+</table>
+<a name="bridge_manager_path_relative_path_to_config_file_end"></a></li></ul>
+<ul><li><a name="bridge_manager_path_cookie_prefix"></a><h5>Cookie prefix<a href="#bridge_manager_path_cookie_prefix" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
+<p>This has to be the cookie name of the application you bridge with. Do <strong>not</strong> enter the cookie prefix of your coppermine gallery here! You can not make this setting up - you have to look it up in the documentation or settings that come with the application you're going to bridge with.</p>
+<p>Example:</p>
+<p class="quote">The popular BBS application "phpBB" is using the default cookie prefix <tt class="code">phpbb2mysql</tt> - this can be changed by the forum administrator, so if you're not sure what your cookie prefix is, go to the config panel of the app you bridge with and look the cookie prefix up.</p>
+<p>The cookie prefix must not be confused with the cookie path - they are entirely different animals. The cookie prefix (in some applications it is being called "cookie name" as well) is something on application level - something the people who designed your bridge app have come up with.</p>
+<a name="bridge_manager_path_cookie_prefix_end"></a></li></ul>
 <a name="bridge_manager_path_end"></a>
+
 <a name="bridge_manager_specific_start"></a><h4>Bridge app-specific settings<a href="#bridge_manager_specific_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-<ul>
-<li><strong>Use post-based groups?</strong><br />
-Should Coppermine import the special groups that exist in the forum? If you select no, then Coppermine will use the standard groups (Administrator, Registered and Anonymous) which makes administration easier and is recommended. You can change this setting later as well.</li>
-</ul>
+
+<ul><li><a name="bridge_manager_use_post_based_groups"></a><h5>Use bridge app custom groups?<a href="#bbridge_manager_use_post_based_groups" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
+<p>Should Coppermine import the special groups that exist in your bridge app? If you select no, then Coppermine will use the standard groups it comes with (Administrator, Registered and Anonymous) which makes administration easier. If you enable this option by selecting yes, you will have a more granular permissions management in coppermine and you can assign permissions in coppermine based on the membership within custom groups of your bridge app. You can change this setting later as well.</p>
+<a name="bridge_manager_use_post_based_groups_end"></a></li></ul>
+
 <a name="bridge_manager_specific_end"></a>
+
 <a name="bridge_manager_enable_start"></a><h4>Enable/disable bridging<a href="#bridge_manager_enable_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 <p>This is the last step of the bridge manager - it summarizes up the settings you have made in previous steps - you can enable or disable integration here. By default, integration is set to &quot;disabled&quot; after the bridge manager has been run for the first time. You should only enable integration if you're sure your bridge app is set up correctly. Click the &quot;Finish&quot; button in any case to finally write to the database, even if you choose to keep the current settings (leaving integration &quot;disabled&quot;).</p>
 <ul>
@@ -204,10 +284,10 @@ Should Coppermine import the special groups that exist in the forum? If you sele
   <li>Post on the board that deals with your version - bridging mechanisms have changed from version to version, that's why it's important to post on the board that actually corresponds to your coppermine version</li>
   <li>Don't hijack threads - when looking for bridging support, start your own thread</li>
   <li>Read the sticky threads before posting</li>
-  <li>Make sure you are using the latest versions of the bridging files, they are kept up to date between formal Coppermine releases. Download the relevant files from the <a href="http://svn.sourceforge.net/viewvc/coppermine/">SVN</a>. Update udb_base.inc.php and the file that corresponds to the bridge you are using and upload them into your bridge directory, overwriting the old ones. Of course you should make sure to use the most recent stable coppermine release in the first place.</li>
-  <li>When requesting bridge support, please post a link to your site, a test user account, and what you have set in the bridge manager.<br />Make sure that the test user account doesn't have admin privileges. When posting parts of your bridge file, make sure to replace passwords with asterisks.<br />&nbsp;<br />This is how your posting should look like (with actual data from your setup instead of the dummy placeholders given here as an example - highlighted in red):<br />
+  <li>Make sure you are using the latest versions of the bridging files, they are kept up to date between formal Coppermine releases. Download the relevant files from the <a href="http://svn.sourceforge.net/viewvc/coppermine/trunk/cpg1.5.x/bridge/">SVN</a>. Update udb_base.inc.php and the file that corresponds to the bridge you are using and upload them into your bridge directory, overwriting the old ones. Of course you should make sure to use the most recent stable coppermine release in the first place.</li>
+  <li>When requesting bridge support, please post a link to your site, a test user account, and what you have set in the bridge manager.<br />Make sure that the test user account doesn't have admin privileges. When posting the requested data, make sure to replace passwords with asterisks.<br />&nbsp;<br />This is how your posting should look like (with actual data from your setup instead of the dummy placeholders given here as an example - highlighted in red):<br />
   <pre class="code">I have the following issue when trying to bridge coppermine and <span class="important">XXX</span>:
-<span class="important">[error message here]</span>
+<span class="important">[error message or problem description here]</span>
 
 Coppermine install: <span class="important">http://mysite.tld/my_coppermine_folder/</span>
 Bridging app install: <span class="important">http://mysite.tld/my_forum_folder/</span>
@@ -220,7 +300,7 @@ Bridge app URL:  <span class="important">http://mysite.tld/test/foo_bar</span>
 Relative path to your bridge app's config file:  <span class="important">../bla/</span>
 Use post-based groups?:  <span class="important">1</span>  </pre></li>
 <li>Supporters need to look at the pages in question - make sure that you have bridging actually enabled when asking for support</li>
-<li>The test user account you're suppossed to post must not be an admin account, but a regular user account. The test user account needs of course to be created in the application you bridge with</li>
+<li>The test user account you're suppossed to post must not be an admin account, but a regular user account. The test user account needs of course to be created in the application you bridge with, not a coppermine account (as coppermine's user management is being dropped when bridging, so there's no use for supporters to have a standalone coppermine account)</li>
 </ul>
 <a name="integrating_support_end"></a>
 
