@@ -101,11 +101,19 @@ function cpg_fillArrayFieldWithSpaces($text, $maxchars, $fillUpOn = 'right') {
 }
 
 function cpg_versioncheckDisplayOptions() {
-  global $CPG_PHP_SELF, $lang_versioncheck_php, $optionDisplayOutput_array;
+  global $CPG_PHP_SELF, $lang_versioncheck_php, $optionDisplayOutput_array, $THEME_DIR;
   $submit_icon = cpg_fetch_icon('ok', 1);
   $help = ' ' . cpg_display_help('f=upgrading.htm&amp;as=versioncheck_options_start&amp;ae=versioncheck_options_end', '600', '400');
-  print '<form name="options" action="'.$CPG_PHP_SELF.'" method="get">';
   print <<< EOT
+<script type="text/javascript">
+    function form_submit() {
+        document.getElementById('submit').value = '';
+        document.getElementById('cpg_progress_bar').style.display = 'block';
+        document.getElementById('submit').style.display = 'none';
+        return true;
+    }
+</script>
+<form name="options" action="{$CPG_PHP_SELF}" method="get" onsubmit="return form_submit();">
 <table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
   <tr>
           <td class="tableh2" colspan="2">{$lang_versioncheck_php['options']}{$help}</td>
@@ -141,8 +149,17 @@ function cpg_versioncheckDisplayOptions() {
   </tr>
   <tr>
     <td align="center" class="tablef" colspan="2">
-      <!--<input type="submit" name="submit" value="{$lang_versioncheck_php['submit']}" class="button" />-->
-      <button type="submit" class="button" name="submit" value="1">{$submit_icon}{$lang_versioncheck_php['submit']}</button>
+      <span id="cpg_progress_bar" style="display:none">
+EOT;
+    if (defined('THEME_HAS_PROGRESS_GRAPHICS')) {
+        $prefix = $THEME_DIR;
+    } else {
+        $prefix = '';
+        print '                        	<img src="' . $prefix . 'images/loader.gif" border="0" alt="" />';
+    }
+  print <<< EOT
+      </span>
+      <button type="submit" class="button" name="submit" id="submit" value="1">{$submit_icon}{$lang_versioncheck_php['submit']}</button>
     </td>
   </tr>
 </table>
@@ -428,7 +445,7 @@ function cpg_versioncheckCreateXml($file_data_array) {
   print <<< EOT
   <script type="text/javascript">
             document.write('<a href="javascript:HighlightAll(\'versioncheckdisplay.versioncheck_text\')" class="admin_menu">');
-            document.write("{$lang_versioncheck_php['select_all']}");
+            document.write(lang_select_all);
             document.write('</a>');
             document.write('<br />');
   </script>
@@ -705,6 +722,7 @@ EOT;
       <td class="{$cellstyle}{$important['help']}" align="left" style="font-size:9px"></td>
     </tr>
 EOT;
+      flush();
       ob_end_flush();
       $loopCounter_array['display']++;
     } // only display if corrsponding option is not disabled --- end

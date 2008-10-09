@@ -23,6 +23,12 @@ define('VERSIONCHECK_PHP', true);
 require_once('include/init.inc.php');
 require_once('include/versioncheck.inc.php');
 
+// define some vars that need to exist in JS
+
+// Include the JS for versioncheck.php
+//js_include('js/versioncheck.js');
+
+
 if (!GALLERY_ADMIN_MODE) {
   cpg_die($lang_common['error'], $lang_errors['access_denied'], __FILE__, __LINE__);
 }
