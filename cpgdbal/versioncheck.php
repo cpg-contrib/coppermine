@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 5033 $
+  $Revision: 5095 $
   $LastChangedBy: gaugau $
-  $Date: 2008-09-12 19:56:38 +0530 (Fri, 12 Sep 2008) $
+  $Date: 2008-10-09 14:51:21 +0530 (Thu, 09 Oct 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -22,6 +22,12 @@ define('VERSIONCHECK_PHP', true);
 
 require_once('include/init.inc.php');
 require_once('include/versioncheck.inc.php');
+
+// define some vars that need to exist in JS
+
+// Include the JS for versioncheck.php
+//js_include('js/versioncheck.js');
+
 
 if (!GALLERY_ADMIN_MODE) {
   cpg_die($lang_common['error'], $lang_errors['access_denied'], __FILE__, __LINE__);
@@ -76,12 +82,21 @@ $file_data_array = cpgVersioncheckConnectRepository();
 // main code starts here
 $title_help = ' ' . cpg_display_help('f=upgrading.htm&amp;as=versioncheck&amp;ae=versioncheck_end', '600', '400');
 pageheader($lang_versioncheck_php['title']);
-print '<h1>' . cpg_fetch_icon('check_versions', 2) . $lang_versioncheck_php['title']. $title_help . '</h1>';
+starttable('100%', cpg_fetch_icon('check_versions', 2) . $lang_versioncheck_php['title']. $title_help, 1);
+//print '<h1>' . cpg_fetch_icon('check_versions', 2) . $lang_versioncheck_php['title']. $title_help . '</h1>';
 
 
 // Print options if applicable
 if ($displayOption_array['output'] == 'options' || $displayOption_array['output'] == 'screen' || $displayOption_array['output'] == 'textarea') {
+    print <<< EOT
+    <tr>
+        <td class="tableb">
+EOT;
     cpg_versioncheckDisplayOptions();
+    print <<< EOT
+        </td>
+    </tr>
+EOT;
 }
 
 if ($displayOption_array['output'] != 'create') {
@@ -96,15 +111,40 @@ if ($displayOption_array['output'] != 'create') {
 
 
 if ($displayOption_array['output'] == 'textarea') { // display the output in a textarea field --- start
-  print cpg_versioncheckCreateTextOnlyOutput($file_data_array);
+    print <<< EOT
+    <tr>
+        <td class="tableb">
+EOT;
+    print cpg_versioncheckCreateTextOnlyOutput($file_data_array);
+    print <<< EOT
+        </td>
+    </tr>
+EOT;
 } // display the output in a textarea field --- end
 
 if ($displayOption_array['output'] == 'screen') { // display the output in HTML --- start
+    print <<< EOT
+    <tr>
+        <td class="tableb">
+EOT;
     $outputResult = cpg_versioncheckCreateHTMLOutput($file_data_array);
+    print <<< EOT
+        </td>
+    </tr>
+EOT;
+    print <<< EOT
+    <tr>
+        <td class="tablef">
+EOT;
     printf($lang_versioncheck_php['files_folder_processed'], $outputResult['display'], $outputResult['total'], $outputResult['error']);
-    
+    print <<< EOT
+        </td>
+    </tr>
+EOT;
+   
 } // display the output in HTML --- end
 
+endtable();
 
 
 // display page footer if applicable

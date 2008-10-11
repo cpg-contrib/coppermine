@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4583 $
-  $LastChangedBy: pvanrompay $
-  $Date: 2008-06-18 06:33:59 +0530 (Wed, 18 Jun 2008) $
+  $Revision: 5077 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-10-04 22:03:45 +0530 (Sat, 04 Oct 2008) $
 **********************************************/
 
 /**
@@ -27,7 +27,7 @@
  * @copyright 2002-2006 Gregory DEMAR, Coppermine Dev Team
  * @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
  * @package Coppermine
- * @version $Id: thumbnails.php 4583 2008-06-18 01:03:59Z pvanrompay $
+ * @version $Id: thumbnails.php 5077 2008-10-04 16:33:45Z gaugau $
  */
 
 /**
@@ -184,7 +184,7 @@ if (isset($CURRENT_ALBUM_DATA)) {
 $meta_keywords = '';
 // keep the search engine spiders from indexing meta albums that are subject to constant changes
 // if($_GET['album'] == 'lastup' || $_GET['album'] == 'lastcom' || $_GET['album'] == 'topn' || $_GET['album'] == 'toprated' || $_GET['album'] == 'favpics' || $_GET['album'] == 'random') {  
-$meta_albums_array = array('lastup', 'lastcom', 'topn', 'toprated', 'favpics', 'random');
+$meta_albums_array = array('lastup', 'lastcom', 'topn', 'toprated', 'favpics', 'random', 'datebrowse');
 if(in_array($superCage->get->getAlpha('album'), $meta_albums_array)) {
     $meta_keywords .= '<meta name="robots" content="noindex, nofollow" />';
 }
@@ -250,7 +250,7 @@ if ($CONFIG['allow_private_albums'] == 0 || !in_array($album, $FORBIDDEN_SET_DAT
         $albpw = $superCage->cookie->getEscaped($CONFIG['cookie_name'] . '_albpw');
         if (!empty($albpw)) {
             $albpw = unserialize($albpw);
-        }	// using getRaw(). Actually we store md5 hash of the password.
+        }	// using getRaw(). We store md5 hash of the password.
         $albpw[$album] = md5($superCage->post->getRaw('password'));
         $alb_cookie_str = serialize($albpw);
 

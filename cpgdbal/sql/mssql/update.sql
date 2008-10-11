@@ -11,9 +11,9 @@
 ##  ********************************************
 ##  Coppermine version: 1.5.0
 ##  $Source: /cvsroot/coppermine/devel/sql/update.sql,v $
-##  $Revision: 5041 $
+##  $Revision: 5087 $
 ##  $LastChangedBy: gaugau $
-##  $Date: 2008-09-15 22:12:02 +0530 (Mon, 15 Sep 2008) $
+##  $Date: 2008-10-08 13:25:27 +0530 (Wed, 08 Oct 2008) $
 ##  ********************************************
 
 
@@ -32,7 +32,7 @@ PRIMARY KEY(session_id));
 # ---------------------------------------------
 ##  Table structure for table `CPG_categorymap`
 # ---------------------------------------------
-IF NOT EXISTS (select * from dbo.sysobjects where id = object_id(N'CPG_categorymap') and type = 'U')
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'CPG_categorymap') AND TYPE = 'U')
 BEGIN
 CREATE TABLE CPG_categorymap (
   cid INTEGER NOT NULL ,
@@ -195,7 +195,7 @@ CREATE TABLE CPG_banned (
   expiry DATETIME DEFAULT NULL ,
   PRIMARY KEY(ban_id));
 
- UPDATE CPG_config SET value='$/\\:*?&quot;''&lt;&gt;|` &amp;' WHERE name='forbiden_fname_char';
+ UPDATE CPG_config SET value='$/\\:*?"''<>|` &' WHERE name='forbiden_fname_char';
 
 # --------------------------------------------------------
 ##      Fix usermgr timing out with 1k+ users -Omni
@@ -446,7 +446,7 @@ INSERT INTO CPG_config VALUES ('fullsize_padding_x', '5');
 INSERT INTO CPG_config VALUES ('fullsize_padding_y', '3');
 
 ##    Config approval
-ALTER TABLE CPG_comments add approval VARCHAR(30) NOT NULL DEFAULT 'YES', CHECK(approval IN('YES','NO'));
+ALTER TABLE CPG_comments ADD approval VARCHAR(30) NOT NULL DEFAULT 'YES', CHECK(approval IN('YES','NO'));
 INSERT INTO CPG_config VALUES ('comment_approval', '0');
 INSERT INTO CPG_config VALUES ('display_comment_approval_only', '0');
 INSERT INTO CPG_config VALUES ('comment_placeholder', '1');
@@ -531,10 +531,10 @@ INSERT INTO CPG_config VALUES ('display_redirection_page', '0');
 INSERT INTO CPG_config VALUES ('display_thumbs_batch_add', '1');
 
 ##    The ALL setting for filetypes is not a good idea - replace it!
-UPDATE CPG_config SET allowed_img_types = 'jpeg/jpg/png/gif' WHERE allowed_img_types='ALL';
-UPDATE CPG_config SET allowed_mov_types = 'asf/asx/mpg/mpeg/wmv/swf/avi/mov' WHERE allowed_mov_types='ALL';
-UPDATE CPG_config SET allowed_snd_types = 'mp3/midi/mid/wma/wav/ogg' WHERE allowed_snd_types='ALL';
-UPDATE CPG_config SET allowed_doc_types = 'doc/txt/rtf/pdf/xls/pps/ppt/zip/gz/mdb' WHERE allowed_doc_types='ALL';
+UPDATE CPG_config SET value = 'jpeg/jpg/png/gif' WHERE name = 'allowed_img_types' AND value = 'ALL';
+UPDATE CPG_config SET value = 'asf/asx/mpg/mpeg/wmv/swf/avi/mov' WHERE name = 'allowed_mov_types' AND value = 'ALL';
+UPDATE CPG_config SET value = 'mp3/midi/mid/wma/wav/ogg' WHERE name = 'allowed_snd_types' AND value = 'ALL';
+UPDATE CPG_config SET value = 'doc/txt/rtf/pdf/xls/pps/ppt/zip/gz/mdb' WHERE name = 'allowed_doc_types' AND value = 'ALL';
 
 ##    Display the news section from coppermine-gallery.net
 INSERT INTO CPG_config VALUES ('display_coppermine_news', '1');
@@ -570,3 +570,30 @@ CREATE INDEX lft_depth ON CPG_categories (lft, depth);
 
 # Add menu icon option
 INSERT INTO CPG_config VALUES ('enable_menu_icons', '0');
+
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'CPG_languages') AND TYPE = 'U')
+BEGIN
+CREATE TABLE CPG_languages (
+  lang_id  VARCHAR(40) NOT NULL DEFAULT '',
+  english_name VARCHAR(70) DEFAULT NULL,
+  native_name VARCHAR(70) DEFAULT NULL,
+  custom_name VARCHAR(70) DEFAULT NULL,
+  flag VARCHAR(15) DEFAULT NULL,
+  available VARCHAR(10) NOT NULL DEFAULT 'NO', CHECK(available IN('YES','NO')),
+  enabled VARCHAR(10) NOT NULL DEFAULT 'NO', CHECK(enabled IN('YES','NO')),
+  complete VARCHAR(10) NOT NULL DEFAULT 'NO', CHECK(complete IN('YES','NO')),
+  PRIMARY KEY (lang_id)
+)
+END;
+
+
+INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, available, enabled, complete) VALUES ('english', 'English (US)', 'English (US)', 'us', 'YES', 'YES', 'YES');
+INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, available, enabled, complete) VALUES ('german', 'German (informal)', 'Deutsch (Du)', 'de', 'YES', 'YES', 'NO');
+INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, available, enabled, complete) VALUES ('welsh', 'Welsh','Cymraeg','wales', 'YES', 'NO', 'NO');
+
+
+UPDATE CPG_languages SET available = 'YES' WHERE lang_id='english';
+UPDATE CPG_languages SET available = 'YES' WHERE lang_id='german';
+UPDATE CPG_languages SET available = 'YES' WHERE lang_id='vietnamese';
+
+INSERT INTO CPG_config VALUES ('display_xp_publish_link', '0');

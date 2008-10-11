@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 5038 $
+  $Revision: 5099 $
   $LastChangedBy: gaugau $
-  $Date: 2008-09-15 12:34:00 +0530 (Mon, 15 Sep 2008) $
+  $Date: 2008-10-09 22:47:22 +0530 (Thu, 09 Oct 2008) $
 **********************************************/
 
 define('IN_COPPERMINE',1);
@@ -22,12 +22,16 @@ define('VIEWLOG_PHP',1);
 
 require('include/init.inc.php');
 
+	$folder_icon = cpg_fetch_icon('folder', 0);
+    $delete_all_icon = cpg_fetch_icon('delete', 2);
+    $delete_this_icon = cpg_fetch_icon('erase', 2);
+    $view_icon = cpg_fetch_icon('file', 2);
+
 function display_log_list()
 {
-	global $lang_viewlog_php;
+	global $lang_viewlog_php, $folder_icon, $delete_all_icon, $delete_this_icon, $view_icon;
 
 	$log_list = getloglist('logs/');
-	$folder_icon = cpg_fetch_icon('folder', 0);
 	if (count($log_list)>0) {
 			foreach ($log_list as $log) {
 					echo <<<EOT
@@ -42,7 +46,8 @@ EOT;
 			echo <<<EOT
 								<tr>
 										<td class="tableb" align="center">
-												<input class="button" type="button" value="{$lang_viewlog_php['delete_all']}" name="dall" id="dall" onclick="window.location='viewlog.php?action=dall';" />
+												<!--<input class="button" type="button" value="{$lang_viewlog_php['delete_all']}" name="dall" id="dall" onclick="window.location='viewlog.php?action=dall';" />-->
+                                                <button type="button" class="button" name="dall" value="{$lang_viewlog_php['delete_all']}" id="dall" onclick="window.location='viewlog.php?action=dall';">{$delete_all_icon}{$lang_viewlog_php['delete_all']}</button>
 										</td>
 								</tr>
 EOT;
@@ -53,14 +58,14 @@ EOT;
 
 function display_log($logname)
 {
-		global $lang_viewlog_php;
+		global $lang_viewlog_php, $folder_icon, $delete_all_icon, $delete_this_icon, $view_icon;
 
 		echo <<<EOT
 				<tr>
 						<td class="tableb" align="center">
-								<input class="button" type="button" value="{$lang_viewlog_php['delete_all']}" name="dall1" id="dall1" onclick="window.location='viewlog.php?action=dall';" />
-								<input class="button" type="button" value="{$lang_viewlog_php['view_logs']}" name="back1" id="back1" onclick="window.location='viewlog.php';" />
-								<input class="button" type="button" value="{$lang_viewlog_php['delete_this']}" name="dthis1" id="dthis1" onclick="window.location='viewlog.php?action=dthis&amp;log=$logname';" />
+                                <button type="button" class="button" name="dall" value="{$lang_viewlog_php['delete_all']}" id="dall" onclick="window.location='viewlog.php?action=dall';">{$delete_all_icon}{$lang_viewlog_php['delete_all']}</button>
+                                <button type="button" class="button" value="{$lang_viewlog_php['view_logs']}" name="back1" id="back1" onclick="window.location='viewlog.php';">{$view_icon}{$lang_viewlog_php['view_logs']}</button>
+                                <button class="button" type="button" value="{$lang_viewlog_php['delete_this']}" name="dthis1" id="dthis1" onclick="window.location='viewlog.php?action=dthis&amp;log=$logname';">{$delete_this_icon}{$lang_viewlog_php['delete_this']}</button>
 						</td>
 				</tr>
 				<tr>
@@ -74,9 +79,9 @@ EOT;
 				</tr>
 				<tr>
 						<td class="tableb" align="center">
-								<input class="button" type="button" value="{$lang_viewlog_php['delete_all']}" name="dall2" id="dall2" onclick="window.location='viewlog.php?action=dall';" />
-								<input class="button" type="button" value="{$lang_viewlog_php['view_logs']}" name="back2" id="back2" onclick="window.location='viewlog.php';" />
-								<input class="button" type="button" value="{$lang_viewlog_php['delete_this']}" name="dthis2" id="dthis2" onclick="window.location='viewlog.php?action=dthis&amp;log=$logname';" />
+								<button class="button" type="button" value="{$lang_viewlog_php['delete_all']}" name="dall2" id="dall2" onclick="window.location='viewlog.php?action=dall';" />{$delete_all_icon}{$lang_viewlog_php['delete_all']}</button>
+								<button class="button" type="button" value="{$lang_viewlog_php['view_logs']}" name="back2" id="back2" onclick="window.location='viewlog.php';" />{$view_icon}{$lang_viewlog_php['view_logs']}</button>
+								<button class="button" type="button" value="{$lang_viewlog_php['delete_this']}" name="dthis2" id="dthis2" onclick="window.location='viewlog.php?action=dthis&amp;log=$logname';" />{$delete_this_icon}{$lang_viewlog_php['delete_this']}</button>
 						</td>
 				</tr>
 

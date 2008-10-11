@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 5044 $
+  $Revision: 5096 $
   $LastChangedBy: gaugau $
-  $Date: 2008-09-19 13:00:08 +0530 (Fri, 19 Sep 2008) $
+  $Date: 2008-10-09 14:56:41 +0530 (Thu, 09 Oct 2008) $
 **********************************************/
 ########################
 ####Install Main Code###
@@ -26,6 +26,18 @@ define('VERSIONCHECK_PHP', true);
 define('INFORMATION', 1);
 define('ERROR', 2);
 define('CRITICAL_ERROR', 3);
+
+//Define installation steps
+define('STEP_INIT_AND_LANG', 1);
+define('STEP_VERSIONCHECK', 2);
+define('STEP_FOLDER_PERMISSIONS', 3);
+define('STEP_SELECT_IMG_PROC', 4);
+define('STEP_TEST_IMG_PROC', 5);
+define('STEP_DB_INFO', 6);
+define('STEP_DB_SELECT', 7);
+define('STEP_DB_INIT', 8);
+define('STEP_SET_ADMIN', 9);
+define('STEP_FINALISE', 10);
 
 // Report all errors except E_NOTICE
 error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
@@ -62,27 +74,27 @@ if ($superCage->get->keyExists('step') && is_array($install->config['steps_done'
     if (isset($install->config['step'])) {
         $step = $install->config['step'];
     } else {
-        $step = '1';
+        $step = STEP_INIT_AND_LANG;
     }
 }
 
 // check if we have an update instead of a next step request
 if ($superCage->post->keyExists('update_lang')) {
-    $step = 1;
+    $step = STEP_INIT_AND_LANG;
 }
 if ($superCage->post->keyExists('update_im_path')) {
-    $step = 4;
+    $step = STEP_SELECT_IMG_PROC;
 }
 if ($superCage->post->keyExists('update_check_connection')) {
-    $step = 6;
+    $step = STEP_DB_INFO;
 }
 if ($superCage->post->keyExists('update_create_db')) {
-    $step = 7;
+    $step = STEP_DB_SELECT;
 }
 
 // if installation is done, only show last page
 if (isset($install->config['install_finished'])) {
-    $step = 10;
+    $step = STEP_FINALISE;
 }
 
 
@@ -122,7 +134,7 @@ $cpginstall->lock_querytime = TRUE;	###	locks the cpgGetMicroTime() function in 
 #######################################################
 
 switch($step) {
-    case 1:     // Initialisation & natural language selection
+    case STEP_INIT_AND_LANG:     // Initialisation & natural language selection
         //write a coockie to check in the next step
         setcookie('cpg_install_cookie_check', 'passed', time() + 3600);
         
@@ -132,7 +144,7 @@ switch($step) {
         html_footer();
         break;
         
-    case 2:     // Are all mandatory files there (versioncheck has to be completed first)
+    case STEP_VERSIONCHECK:     // Are all mandatory files there
         // Here we also do an extensive version check of php/mysql + check of javascript/cookies/register_globals
         // the cookie for this check is inserted in the previous step!
         // javascript is tested by altering a hidden form element in the previous step.
@@ -144,7 +156,7 @@ switch($step) {
             //check if php_version is actualy a version number
             if ($php_version == '') {
                 //version could not be detected, show corresponding error
-                $install->error .= sprintf($install->language['version_undetected'], required_php_version, 'PHP') . '<br /><br />';
+                $install->error .= sprintf($install->language['version_undetected'], $required_php_version, 'PHP') . '<br /><br />';
             } else {
                 //user is using incompatible php version
                 $install->error .= sprintf($install->language['version_incompatible'], $php_version, 'PHP', $required_php_version) . '<br /><br />';
@@ -213,13 +225,33 @@ switch($step) {
         if ($install->error != '') {
             html_error(false /*false to not include a button*/);
         }
-        require_once('include/versioncheck.inc.php');
-        html_content($install->checkFiles()); 
+        ############WIP###############
+		############WIP###############
+		############WIP###############
+		require_once('include/versioncheck.inc.php');
+		
+        $lang_versioncheck_php = $install->language['versioncheck'];
+        
+        // Connect to the repository and populate the array with data from the XML file
+        $file_data_array = cpgVersioncheckConnectRepository($displayOption_array);
+
+        $file_data_array = cpg_versioncheckPopulateArray($file_data_array);
+        //$file_data_array = cpg_versioncheckPopulateArray($file_data_array, $displayOption_array, $textFileExtensions_array, $imageFileExtensions_array, $CONFIG, $maxLength_array, $lang_versioncheck_php);
+        $file_data_count = count($file_data_array);
+        // Print the results
+        $outputResult = cpg_versioncheckCreateHTMLOutput($file_data_array, $textFileExtensions_array, $lang_versioncheck_php, $majorVersion, $displayOption_array);
+        $versioncheck_output = sprintf($lang_versioncheck_php['files_folder_processed'], $outputResult['display'], $outputResult['total'], $outputResult['error']);
+		
+		############WIP###############
+		############WIP###############
+		############WIP###############
+		
+        html_content($versioncheck_output); 
         html_footer();
-        $install->setTmpConfig('step', '3');
+        $install->setTmpConfig('step', STEP_FOLDER_PERMISSIONS);
         break;
         
-    case 3:     // Check if the folder permissions are set up properlyï¿½
+    case STEP_FOLDER_PERMISSIONS:     // Check if the folder permissions are set up properly
         $install->page_title = $install->language['title_dir_check'];
         if (!$install->checkPermissions()) {
             // not all permissions were set correctly, or folder doesn't exist
@@ -232,18 +264,18 @@ switch($step) {
             html_header();
             html_content($install->language['perm_ok']);  // show all checked folders?
             html_footer();
-            $install->setTmpConfig('step', '4');
+            $install->setTmpConfig('step', STEP_SELECT_IMG_PROC);
         }
         break;
         
-    case 4:     // Check available image processors & let user choose
+    case STEP_SELECT_IMG_PROC:     // Check available image processors & let user choose
         $install->page_title = $install->language['title_imp'];
         $image_processors = $install->checkImageProcessor();
         html_header();
         if ($install->error != '') {
             html_error();
         } else {
-            $install->setTmpConfig('step', '5');
+            $install->setTmpConfig('step', STEP_TEST_IMG_PROC);
         }
         $content = $install->language['im_packages'] . '<br /><br />';
         $imp_list = '<select name="thumb_method" >';
@@ -298,20 +330,20 @@ switch($step) {
         html_footer();
         break;
         
-    case 5:     // Check if the image library information has been set up properly - display some basic test images created with the image library selected
+    case STEP_TEST_IMG_PROC:     // Check if the image library information has been set up properly - display some basic test images created with the image library selected
         $install->page_title = $install->language['title_imp_test'];
         html_header();
         $content = '<center>' . $install->testImageProcessor() . '</center>';
         if ($install->error != '') {
             html_error();
         } else {
-            $install->setTmpConfig('step', '6');
+            $install->setTmpConfig('step', STEP_DB_INFO);
         }
         html_content($content);
         html_footer();
         break;
         
-    case 6:     // Ask user for sql host, username and password, try to establish a connection using that info
+    case STEP_DB_INFO:     // Ask user for sql host, username and password, try to establish a connection using that info
         $install->page_title = $install->language['title_sql_user'];
         // check if we are trying to test the connection
         if ($superCage->post->keyExists('update_check_connection') 
@@ -334,13 +366,15 @@ switch($step) {
         if ($install->error != '') {
             html_error();
         } else {
-            if(isset($install->config['db_password'])) $install->setTmpConfig('step', '7');
+            if (isset($install->config['db_password'])) {
+                $install->setTmpConfig('step', STEP_DB_SELECT);
+            }
         }
         html_sql_start();    ######    cpgdb install
         html_footer();
         break;
         
-    case 7:     // Ask the user if he wants to use an existing db or if he wants the installer to create a new database. Try to perform the selected choice. Ask for the table prefix
+    case STEP_DB_SELECT:     // Ask the user if he wants to use an existing db or if he wants the installer to create a new database. Try to perform the selected choice. Ask for the table prefix
         $install->page_title = $install->language['title_sql_db_sel'];//print($install->config['auth_mode']);exit;
         // save the db data from previous step
         if ($superCage->post->keyExists('db_host')  && !isset($install->config['db_populated'])) {
@@ -374,12 +408,12 @@ switch($step) {
             html_error();
         } else {
             html_sql_select_db();    ######    cpgdb install
-            $install->setTmpConfig('step', '8');
+            $install->setTmpConfig('step', STEP_DB_INIT);
         }
         html_footer();
         break;
         
-    case 8:     // save db_prefix/_name and finally create the tables
+    case STEP_DB_INIT:     // save db_prefix/_name and finally create the tables
         $install->page_title = $install->language['title_sql_pop'];    ######    cpgdb install
         // save the db data from previous step
         if ($superCage->post->keyExists('db_name') && !isset($install->config['db_populated'])) {
@@ -409,12 +443,12 @@ switch($step) {
                 . '<br /><br /><br /><br /></td></tr>';
             html_content($install->language['db_populating']);
             html_footer();
-            $install->setTmpConfig('step', '9');
+            $install->setTmpConfig('step', STEP_SET_ADMIN);
         } else {
             if ($set_populated) {
                 // this is a lock to see if the db has been created yet
                 $install->setTmpConfig('db_populated', 'done');	
-                $install->setTmpConfig('step', '9');
+                $install->setTmpConfig('step', STEP_SET_ADMIN);
             }
             html_header();
             if ($install->error != '') {
@@ -426,7 +460,7 @@ switch($step) {
         }
         break;
         
-    case 9:     // Ask for coppermine admin username, password and email address
+    case STEP_SET_ADMIN:     // Ask for coppermine admin username, password and email address
         $install->page_title = $install->language['title_admin'];
         if ($superCage->post->keyExists('admin_username')) {
             // check validity of admin details
@@ -469,13 +503,13 @@ switch($step) {
         if ($install->error != '') {
             html_error();
         } else {
-            if (isset($install->config['admin_username'])) $install->setTmpConfig('step', '10');
+            if (isset($install->config['admin_username'])) $install->setTmpConfig('step', STEP_FINALISE);
         }
         html_admin();
         html_footer();
         break;
 
-    case 10:    // Finally check if everything is set up properly and tell the user so
+    case STEP_FINALISE:    // Finally check if everything is set up properly and tell the user so
         // write real config file
         $install->writeConfig();
         
@@ -632,10 +666,10 @@ function html_installer_locked()
 function html_welcome() 
 {
     global $install;
-    if (!$install->setTmpConfig('step', '2')) {
-        $next_step = 1;
+    if (!$install->setTmpConfig('step', STEP_VERSIONCHECK)) {
+        $next_step = STEP_INIT_AND_LANG;
     } else {
-        $next_step = 2;
+        $next_step = STEP_VERSIONCHECK;
     }
 ?>
       &nbsp;<br />
@@ -703,7 +737,9 @@ function html_welcome()
   </form>
   <!-- This code will check if javascript is enabled -->
       <script type="text/javascript">
+	  <!--
         document.forms[0][5].value = "passed";
+	  -->
       </script>
     <?php
 }
@@ -1241,47 +1277,6 @@ class CPGInstall
         return $dbserver_select;
     }
     #########################################################################
-    /*
-    * checkFiles()
-    *
-    * Checks if all mandatory files are available via versioncheck.php
-    * The returned string is the result of the versioncheck in HTML
-    *
-    * @return string
-    */
-    function checkFiles() 
-    {
-        // Set the parameters that normally get populated by the option form
-        //$displayOption_array['errors_only'] = 1;
-        global $displayOption_array, $maxLength_array;
-        $lang_versioncheck_php = $this->language['versioncheck'];
-        //print '$displayOption_array';
-        //print_r($displayOption_array);
-        //print '<hr />$textFileExtensions_array';
-        //print_r($textFileExtensions_array);
-        //print '<hr />$imageFileExtensions_array';
-        //print_r($imageFileExtensions_array);
-        //print '<hr />$CONFIG';
-        //print_r($CONFIG);
-        //print '<hr />$maxLength_array';
-        //print_r($maxLength_array);
-        //print '<hr />$lang_versioncheck_php';
-        //print_r($lang_versioncheck_php);
-        //print '<hr />';
-        //print_r();
-        //die;
-        
-        // Connect to the repository and populate the array with data from the XML file
-        $file_data_array = cpgVersioncheckConnectRepository($displayOption_array);
-
-        $file_data_array = cpg_versioncheckPopulateArray($file_data_array);
-        //$file_data_array = cpg_versioncheckPopulateArray($file_data_array, $displayOption_array, $textFileExtensions_array, $imageFileExtensions_array, $CONFIG, $maxLength_array, $lang_versioncheck_php);
-        $file_data_count = count($file_data_array);
-        // Print the results
-        $outputResult = cpg_versioncheckCreateHTMLOutput($file_data_array, $textFileExtensions_array, $lang_versioncheck_php, $majorVersion, $displayOption_array);
-        return sprintf($lang_versioncheck_php['files_folder_processed'], $outputResult['display'], $outputResult['total'], $outputResult['error']);
-    }
-    
     /*
     * checkPermissions()
     *
@@ -1831,7 +1826,7 @@ class CPGInstall
         $cpginstall = @ cpgDB::getInstance();
         $cpginstall->nodb = FALSE;    //    for mysql when $db_name = ''
         
-        // define some vars so we can easily find the at the top and change if needed.
+        // define some vars so we can easily find them at the top and change if needed.
         $db_schema = "sql/{$this->config['dbservername']}/schema.sql";
         $db_basic = "sql/{$this->config['dbservername']}/basic.sql";
         // check if all config values are present.
@@ -2377,8 +2372,8 @@ class GDtest
      */
     function testTextOnImage()
     {
-        $text = '2008 ï¿½ Susanna Thornton';
-        $font = 'images/install/LiberationSans-Regular.ttf';
+        $text = '2008 © Susanna Thornton';
+        $font = 'images/fonts/LiberationSans-Regular.ttf';
         $source = imagecreatefromjpeg('images/install/jpgtest.jpg');
         $front_color = imagecolorallocate($source, 255, 255, 255);
         

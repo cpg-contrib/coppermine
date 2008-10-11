@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4995 $
-  $LastChangedBy: abbas-ali $
-  $Date: 2008-09-04 15:50:08 +0530 (Thu, 04 Sep 2008) $
+  $Revision: 5077 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-10-04 22:03:45 +0530 (Sat, 04 Oct 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -357,7 +357,7 @@ if ($superCage->get->keyExists('fullsize')) {
     //$meta_nav .= "<link rel=\"alternate\" type=\"text/xml\" title=\"RSS feed\" href=\"rss.php\" />
     // ";
     $meta_keywords .= $meta_nav;
-    if($album == 'lastup' || $album == 'lastcom' || $album == 'topn' || $album == 'toprated' || $album == 'favpics' || $album == 'random') {
+    if($album == 'lastup' || $album == 'lastcom' || $album == 'topn' || $album == 'toprated' || $album == 'favpics' || $album == 'random' || $album == 'datebrowse') {
         $meta_keywords .= '<meta name="robots" content="noindex, nofollow" />';
     }
 

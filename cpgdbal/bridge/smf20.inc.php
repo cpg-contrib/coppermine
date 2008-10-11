@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4985 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-09-02 02:35:01 +0530 (Tue, 02 Sep 2008) $
+  $Revision: 5089 $
+  $LastChangedBy: nibbler999 $
+  $Date: 2008-10-08 21:46:09 +0530 (Wed, 08 Oct 2008) $
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
@@ -126,7 +126,7 @@ if (isset($bridge_lookup)) {
             {
                     global $USER_DATA, $user_settings;
 
-                    if (empty($user_settings['ID_MEMBER'])){
+                    if (empty($user_settings['id_member'])){
                             $this->load_guest_data();
                     } else {
 

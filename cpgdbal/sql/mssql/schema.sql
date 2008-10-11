@@ -375,3 +375,20 @@ CREATE TABLE CPG_temp_messages (
   message TEXT NOT NULL ,
   PRIMARY KEY(message_id));
 #--------------------------------------------------------------------------
+
+
+
+#---------  Table structure for table CPG_languages  ---------
+
+CREATE TABLE CPG_languages (
+  lang_id  VARCHAR(40) NOT NULL DEFAULT '',
+  english_name VARCHAR(70) DEFAULT NULL,
+  native_name VARCHAR(70) DEFAULT NULL,
+  custom_name VARCHAR(70) DEFAULT NULL,
+  flag VARCHAR(15) DEFAULT NULL,
+  available VARCHAR(10) NOT NULL DEFAULT 'NO', CHECK(available IN('YES','NO')),
+  enabled VARCHAR(10) NOT NULL DEFAULT 'NO', CHECK(enabled IN('YES','NO')),
+  complete VARCHAR(10) NOT NULL DEFAULT 'NO', CHECK(complete IN('YES','NO')),
+  PRIMARY KEY (lang_id)
+);
+# --------------------------------------------------------

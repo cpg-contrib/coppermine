@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4995 $
-  $LastChangedBy: abbas-ali $
-  $Date: 2008-09-04 15:50:08 +0530 (Thu, 04 Sep 2008) $
+  $Revision: 5067 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-10-02 23:03:16 +0530 (Thu, 02 Oct 2008) $
 **********************************************/
 
 define('COPPERMINE_VERSION', '1.5.0');
@@ -131,6 +131,7 @@ $CONFIG['TABLE_VOTE_STATS']    = $CONFIG['TABLE_PREFIX'].'vote_stats';
 $CONFIG['TABLE_HIT_STATS']     = $CONFIG['TABLE_PREFIX'].'hit_stats';
 $CONFIG['TABLE_TEMP_MESSAGES'] = $CONFIG['TABLE_PREFIX'].'temp_messages';
 $CONFIG['TABLE_CATMAP']        = $CONFIG['TABLE_PREFIX'].'categorymap';
+$CONFIG['TABLE_LANGUAGE']        = $CONFIG['TABLE_PREFIX'].'languages';
 // Connect to database
 /*if ($CONFIG['dbservername'] == 'mysql') {
 	($CONFIG['LINK_ID'] = cpgdbal_connect()) || die('<strong>Coppermine critical error</strong>:<br />Unable to connect to database !<br /><br />MySQL said: <strong>' . mysql_error() . '</strong>');

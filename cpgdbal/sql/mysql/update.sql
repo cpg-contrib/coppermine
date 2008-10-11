@@ -11,9 +11,9 @@
 ##  ********************************************
 ##  Coppermine version: 1.5.0
 ##  $Source: /cvsroot/coppermine/devel/sql/update.sql,v $
-##  $Revision: 5041 $
+##  $Revision: 5087 $
 ##  $LastChangedBy: gaugau $
-##  $Date: 2008-09-15 22:12:02 +0530 (Mon, 15 Sep 2008) $
+##  $Date: 2008-10-08 13:25:27 +0530 (Wed, 08 Oct 2008) $
 ##  ********************************************
 
 
@@ -199,7 +199,7 @@ CREATE TABLE CPG_banned (
         PRIMARY KEY  (ban_id)
 ) TYPE=MyISAM;
 
-UPDATE `CPG_config` SET value='$/\\\\:*?&quot;\'&lt;&gt;|` &amp;' WHERE name='forbiden_fname_char';
+UPDATE `CPG_config` SET value='$/\\\\:*?"\'<>|` &' WHERE name='forbiden_fname_char';
 
 #
 # Fix usermgr timing out with 1k+ users -Omni
@@ -532,10 +532,10 @@ INSERT INTO CPG_config VALUES ('display_redirection_page', '0');
 INSERT INTO CPG_config VALUES ('display_thumbs_batch_add', '1');
 
 # The ALL setting for filetypes is not a good idea - replace it!
-UPDATE CPG_config SET `allowed_img_types` = 'jpeg/jpg/png/gif' WHERE `allowed_img_types`='ALL';
-UPDATE CPG_config SET `allowed_mov_types` = 'asf/asx/mpg/mpeg/wmv/swf/avi/mov' WHERE `allowed_mov_types`='ALL';
-UPDATE CPG_config SET `allowed_snd_types` = 'mp3/midi/mid/wma/wav/ogg' WHERE `allowed_snd_types`='ALL';
-UPDATE CPG_config SET `allowed_doc_types` = 'doc/txt/rtf/pdf/xls/pps/ppt/zip/gz/mdb' WHERE `allowed_doc_types`='ALL';
+UPDATE CPG_config SET `value` = 'jpeg/jpg/png/gif' WHERE `name` = 'allowed_img_types' AND `value` = 'ALL';
+UPDATE CPG_config SET `value` = 'asf/asx/mpg/mpeg/wmv/swf/avi/mov' WHERE `name` = 'allowed_mov_types' AND `value` = 'ALL';
+UPDATE CPG_config SET `value` = 'mp3/midi/mid/wma/wav/ogg' WHERE `name` = 'allowed_snd_types' AND `value` = 'ALL';
+UPDATE CPG_config SET `value` = 'doc/txt/rtf/pdf/xls/pps/ppt/zip/gz/mdb' WHERE `name` = 'allowed_doc_types' AND `value` = 'ALL';
 
 # Display the news section from coppermine-gallery.net
 INSERT INTO CPG_config VALUES ('display_coppermine_news', '1');
@@ -571,3 +571,27 @@ ALTER TABLE CPG_categories ADD INDEX `lft_depth` ( `lft` , `depth` );
 
 # Add menu icon option
 INSERT INTO CPG_config VALUES ('enable_menu_icons', '0');
+
+CREATE TABLE IF NOT EXISTS CPG_languages (
+  lang_id  varchar(40) NOT NULL default '',
+  english_name varchar(70) default NULL,
+  native_name varchar(70) default NULL,
+  custom_name varchar(70) default NULL,
+  flag varchar(15) default NULL,
+  available enum('YES','NO') NOT NULL default 'NO',
+  enabled enum('YES','NO') NOT NULL default 'NO',
+  complete enum('YES','NO') NOT NULL default 'NO',
+  PRIMARY KEY (lang_id)
+) TYPE=MyISAM COMMENT='Contains the language file definitions';
+
+
+INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, available, enabled, complete) VALUES ('english', 'English (US)', 'English (US)', 'us', 'YES', 'YES', 'YES');
+INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, available, enabled, complete) VALUES ('german', 'German (informal)', 'Deutsch (Du)', 'de', 'YES', 'YES', 'NO');
+INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, available, enabled, complete) VALUES ('welsh', 'Welsh','Cymraeg','wales', 'YES', 'NO', 'NO');
+
+
+UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='english';
+UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='german';
+UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='vietnamese';
+
+INSERT INTO CPG_config VALUES ('display_xp_publish_link', '0');

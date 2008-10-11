@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4982 $
+  $Revision: 5075 $
   $LastChangedBy: gaugau $
-  $Date: 2008-09-01 14:23:18 +0530 (Mon, 01 Sep 2008) $
+  $Date: 2008-10-04 20:33:32 +0530 (Sat, 04 Oct 2008) $
 **********************************************/
 
 /**
@@ -26,7 +26,7 @@
 * @copyright 2002-2006 Gregory DEMAR, Coppermine Dev Team
 * @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
 * @package Coppermine
-* @version $Id: index.php 4982 2008-09-01 08:53:18Z gaugau $
+* @version $Id: index.php 5075 2008-10-04 15:03:32Z gaugau $
 */
 
 /**
@@ -130,7 +130,7 @@ function html_albummenu2($id) {
         <table border="0" cellpadding="0" cellspacing="1">
                 <tr>
                         <td align="center" valign="middle" class="admin_menu">
-                                <a href="editpics.php?album={ALBUM_ID}"  class="adm_menu">{EDIT_PICS}</a>
+                                <a href="editpics.php?album={ALBUM_ID}" class="adm_menu">{EDIT_PICS}</a>
                         </td>
                 </tr>
         </table>

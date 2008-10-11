@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 5061 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-09-27 16:47:15 +0530 (Sat, 27 Sep 2008) $
+  $Revision: 5078 $
+  $LastChangedBy: saweyyy $
+  $Date: 2008-10-05 03:04:14 +0530 (Sun, 05 Oct 2008) $
 **********************************************/
 
 // ------------------------------------------------------------------------- //
@@ -98,7 +98,8 @@ function assemble_template_buttons($template_buttons,$buttons) {
             '{BLOCK_ID}'   => $button[3],
             '{HREF_TGT}'   => $button[2],
             '{HREF_TITLE}' => $button[1],
-            '{HREF_LNK}'   => $button[0]
+            '{HREF_LNK}'   => $button[0],
+            '{HREF_ATTRIBUTES}'   => $button[5]
             );
         $output.=template_eval($template_buttons, $params);
     }
@@ -113,8 +114,8 @@ function assemble_template_buttons($template_buttons,$buttons) {
 ******************************************************************************/
 // Creates an array of tokens to be used with function assemble_template_buttons
 // this function is used in this file it needs to be declared before being called.
-function addbutton(&$menu,$href_lnk,$href_title,$href_tgt,$block_id,$spacer) {
-  $menu[]=array($href_lnk,$href_title,$href_tgt,$block_id,$spacer);
+function addbutton(&$menu,$href_lnk,$href_title,$href_tgt,$block_id,$spacer,$href_attrib='') {
+  $menu[]=array($href_lnk,$href_title,$href_tgt,$block_id,$spacer,$href_attrib);
 }
 /******************************************************************************
 ** Section <<<addbutton>>> - END
@@ -143,14 +144,15 @@ if (!defined('THEME_HAS_NO_SYS_MENU_BUTTONS')) {
   $template_sys_menu_spacer ="::";
 
   // HTML template for template sys_menu buttons
+  if (!isset($template_sys_menu_button))  //{THEMES}
   $template_sys_menu_button = <<<EOT
   <!-- BEGIN {BLOCK_ID} -->
-        <a href="{HREF_TGT}" title="{HREF_TITLE}">{HREF_LNK}</a> {SPACER}
+        <a href="{HREF_TGT}" title="{HREF_TITLE}" {HREF_ATTRIBUTES}>{HREF_LNK}</a> {SPACER}
   <!-- END {BLOCK_ID} -->
 EOT;
 
   // HTML template for template sys_menu buttons
-    // {HREF_LNK}{HREF_TITLE}{HREF_TGT}{BLOCK_ID}{SPACER}
+    // {HREF_LNK}{HREF_TITLE}{HREF_TGT}{BLOCK_ID}{SPACER}{HREF_ATTRIBUTES}
     addbutton($sys_menu_buttons,'{HOME_LNK}','{HOME_TITLE}','{HOME_TGT}','home',$template_sys_menu_spacer);
     addbutton($sys_menu_buttons,'{CONTACT_LNK}','{CONTACT_TITLE}','{CONTACT_TGT}','contact',$template_sys_menu_spacer);
     addbutton($sys_menu_buttons,'{MY_GAL_LNK}','{MY_GAL_TITLE}','{MY_GAL_TGT}','my_gallery',$template_sys_menu_spacer);
@@ -184,19 +186,19 @@ if (!defined('THEME_HAS_NO_SUB_MENU_BUTTONS')) {
   $template_sub_menu_spacer = $template_sys_menu_spacer;
 
   // HTML template for template sub_menu buttons
-  $template_sub_menu_button= $template_sys_menu_button;
+  $template_sub_menu_button = $template_sys_menu_button;
 
   // HTML template for template sub_menu buttons
-    // {HREF_LNK}{HREF_TITLE}{HREF_TGT}{BLOCK_ID}{SPACER}
+    // {HREF_LNK}{HREF_TITLE}{HREF_TGT}{BLOCK_ID}{SPACER}{HREF_ATTRIBUTES}
     addbutton($sub_menu_buttons,'{CUSTOM_LNK_LNK}','{CUSTOM_LNK_TITLE}','{CUSTOM_LNK_TGT}','custom_link',$template_sub_menu_spacer);
     addbutton($sub_menu_buttons,'{ALB_LIST_LNK}','{ALB_LIST_TITLE}','{ALB_LIST_TGT}','album_list',$template_sub_menu_spacer);
-    addbutton($sub_menu_buttons,'{LASTUP_LNK}','{LASTUP_TITLE}','{LASTUP_TGT}','lastup',$template_sub_menu_spacer);
-    addbutton($sub_menu_buttons,'{LASTCOM_LNK}','{LASTCOM_TITLE}','{LASTCOM_TGT}','lastcom',$template_sub_menu_spacer);
-    addbutton($sub_menu_buttons,'{TOPN_LNK}','{TOPN_TITLE}','{TOPN_TGT}','topn',$template_sub_menu_spacer);
-    addbutton($sub_menu_buttons,'{TOPRATED_LNK}','{TOPRATED_TITLE}','{TOPRATED_TGT}','toprated',$template_sub_menu_spacer);
-    addbutton($sub_menu_buttons,'{FAV_LNK}','{FAV_TITLE}','{FAV_TGT}','favpics',$template_sub_menu_spacer);
+    addbutton($sub_menu_buttons,'{LASTUP_LNK}','{LASTUP_TITLE}','{LASTUP_TGT}','lastup',$template_sub_menu_spacer,'rel="nofollow"');
+    addbutton($sub_menu_buttons,'{LASTCOM_LNK}','{LASTCOM_TITLE}','{LASTCOM_TGT}','lastcom',$template_sub_menu_spacer,'rel="nofollow"');
+    addbutton($sub_menu_buttons,'{TOPN_LNK}','{TOPN_TITLE}','{TOPN_TGT}','topn',$template_sub_menu_spacer,'rel="nofollow"');
+    addbutton($sub_menu_buttons,'{TOPRATED_LNK}','{TOPRATED_TITLE}','{TOPRATED_TGT}','toprated',$template_sub_menu_spacer,'rel="nofollow"');
+    addbutton($sub_menu_buttons,'{FAV_LNK}','{FAV_TITLE}','{FAV_TGT}','favpics',$template_sub_menu_spacer,'rel="nofollow"');
     if ($CONFIG['browse_by_date'] != 0) {
-    addbutton($sub_menu_buttons, '{BROWSEBYDATE_LNK}', '{BROWSEBYDATE_TITLE}', '{BROWSEBYDATE_TGT}', 'brose_by_date', '$template_sub_menu_spacer');
+    addbutton($sub_menu_buttons, '{BROWSEBYDATE_LNK}', '{BROWSEBYDATE_TITLE}', '{BROWSEBYDATE_TGT}', 'brose_by_date', $template_sub_menu_spacer,'rel="nofollow"');
     }
     addbutton($sub_menu_buttons,'{SEARCH_LNK}','{SEARCH_TITLE}','{SEARCH_TGT}','search','');
 
@@ -595,13 +597,13 @@ $template_album_admin_menu = <<<EOT
         <table border="0" cellpadding="0" cellspacing="1">
                 <tr>
                         <td align="center" valign="middle" class="admin_menu">
-                                <a href="delete.php?id={ALBUM_ID}&amp;what=album"  class="adm_menu" onclick="return confirm('{CONFIRM_DELETE}');">{DELETE}</a>
+                                <a href="delete.php?id={ALBUM_ID}&amp;what=album" class="adm_menu" onclick="return confirm('{CONFIRM_DELETE}');">{DELETE}</a>
                         </td>
                         <td align="center" valign="middle" class="admin_menu">
-                                <a href="modifyalb.php?album={ALBUM_ID}"  class="adm_menu">{MODIFY}</a>
+                                <a href="modifyalb.php?album={ALBUM_ID}" class="adm_menu">{MODIFY}</a>
                         </td>
                         <td align="center" valign="middle" class="admin_menu">
-                                <a href="editpics.php?album={ALBUM_ID}"  class="adm_menu">{EDIT_PICS}</a>
+                                <a href="editpics.php?album={ALBUM_ID}" class="adm_menu">{EDIT_PICS}</a>
                         </td>
                 </tr>
         </table>
@@ -3110,11 +3112,7 @@ function theme_html_rating_box()
 		}
 		
 		$superCage = Inspekt::makeSuperCage();
-		// Using md5 # of the raw data.
-		$client_id = md5($superCage->server->getEscaped('HTTP_USER_AGENT').$superCage->server->getEscaped('SERVER_PROTOCOL').$CONFIG['site_url']);
-		$vote_id = base64_encode(md5($superCage->cookie->getRaw($client_id) . $client_id). '-|-' . $USER_DATA['user_id']);
 		$extra_info = '<span style="display:none" id="stars_amount">' . $rating_stars_amount . '</span>';
-		$extra_info .= '<span style="display:none" id="vote_id">' . $vote_id . '</span>';
 		
 		if($CONFIG['old_style_rating']){
 			//use old style rating

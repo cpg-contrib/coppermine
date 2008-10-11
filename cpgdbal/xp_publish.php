@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4981 $
+  $Revision: 5086 $
   $LastChangedBy: gaugau $
-  $Date: 2008-09-01 13:37:08 +0530 (Mon, 01 Sep 2008) $
+  $Date: 2008-10-07 22:56:12 +0530 (Tue, 07 Oct 2008) $
 **********************************************/
 
 // ------------------------------------------------------------------------- //
@@ -274,90 +274,148 @@ function display_instructions()
 {
     //global $PHP_SELF;
     global $lang_xp_publish_required, $lang_xp_publish_client, $lang_xp_publish_select, $lang_xp_publish_testing, $lang_xp_publish_notes, $lang_xp_publish_flood, $lang_xp_publish_php;
-    global $CONFIG, $lang_charset;
-    ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<title><?php print $CONFIG['gallery_name']; ?> - XP Publish README</title>
-<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset']; ?>" />
-<style type="text/css">
-<!--
-body {
-        font-family : Verdana, Arial, Helvetica, sans-serif;
-        font-size: 12px;
-        background : #F7F7F7 ;
-        color : Black;
-        margin: 30px;
-        line-height: 1.5;
+    global $CONFIG, $lang_charset, $lang_common, $lang_errors;
+
+	$publish_help = '&nbsp;'.cpg_display_help('f=uploading_xp-publisher.htm&amp;as=xp&amp;ae=xp_end', '600', '600');
+	//$requirements_help = '&nbsp;'.cpg_display_help('f=uploading_xp-publisher.htm&amp;as=xp&amp;ae=xp_end', '600', '600');
+	$install_help = '&nbsp;'.cpg_display_help('f=uploading_xp-publisher.htm&amp;as=xp_publish_setup&amp;ae=xp_publish_setup_end', '450', '400');
+	$usage_help = '&nbsp;'.cpg_display_help('f=uploading_xp-publisher.htm&amp;as=xp_publish_upload&amp;ae=xp_publish_upload_end', '600', '450');
+	$ok_icon = cpg_fetch_icon('ok', 0);
+	$stop_icon = cpg_fetch_icon('stop', 0);
+	$warning_icon = cpg_fetch_icon('warning', 0);
+	pageheader($CONFIG['gallery_name'] . ' &bull; ' . $lang_xp_publish_php['title']);
+	starttable('100%' , '<h1>'.$lang_xp_publish_php['client_header'].$publish_help.'</h1>', 1);
+	print <<< EOT
+	<tr>
+		<td class="tableh2">
+			<h2>{$lang_xp_publish_php['requirements']}</h2>
+		</td>
+	</tr>
+	<tr>
+		<td class="tableb">
+			<ul>
+				<li>
+					{$lang_xp_publish_php['windows_xp']}<br />
+					<div id="xp_vista" style="display:none">{$ok_icon}{$lang_common['ok']} - {$lang_xp_publish_php['windows_xp']}</div>
+					<div id="other_os" style="display:none">{$stop_icon}{$lang_xp_publish_php['no_windows_xp']}</div>
+					<div id="no_os_detection" style="display:block">{$warning_icon}{$lang_xp_publish_php['no_os_detect']}</div>
+				</li>
+				<li>
+					{$lang_xp_publish_php['requirement_ie']}<br />
+					<div id="ie" style="display:none">{$ok_icon}{$lang_common['ok']} - {$lang_xp_publish_php['requirement_ie']}</div>
+					<div id="other_browser" style="display:none">{$stop_icon}{$lang_xp_publish_php['no_ie']}</div>
+					<div id="no_browser_detection" style="display:block">{$warning_icon}{$lang_xp_publish_php['no_browser_detect']}</div>
+				</li>
+EOT;
+	if (GALLERY_ADMIN_MODE) {
+		print <<< EOT
+				<li>{$lang_xp_publish_php['requirement_http_upload']}</li>
+EOT;
+        if ($CONFIG['gallery_name'] == '') {
+            print '<li>'.$stop_icon.$lang_xp_publish_php['no_gallery_name'].'</li>';
+        }
+        if ($CONFIG['gallery_description'] == '') {
+            print '<li>'.$stop_icon.$lang_xp_publish_php['no_gallery_description'].'</li>';
+        }
+	}
+	if (!USER_CAN_UPLOAD_PICTURES && !USER_CAN_CREATE_ALBUMS) {
+		print <<< EOT
+				<li>{$lang_xp_publish_php['requirement_permissions']}</li>
+EOT;
+	}
+	if (!USER_ID) {
+		print <<< EOT
+				<li>{$lang_xp_publish_php['requirement_login']}</li>
+EOT;
+	}
+	print <<< EOT
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td class="tableh2">
+			<h2>{$lang_xp_publish_php['howto_install']}{$install_help}</h2>
+		</td>
+	</tr>
+	<tr>
+		<td class="tableb">
+			<ul>
+				<li>
+EOT;
+	printf($lang_xp_publish_php['install_right_click'],'<a href="'.$CPG_PHP_SELF.'?cmd=send_reg">'.cpg_fetch_icon('download',0), '</a>');
+	print <<< EOT
+				</li>
+				<li>{$lang_xp_publish_php['install_save']}</li>
+				<li>{$lang_xp_publish_php['install_execute']}</li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td class="tableh2">
+			<h2>{$lang_xp_publish_php['usage']}{$usage_help}</h2>
+		</td>
+	</tr>
+	<tr>
+		<td class="tableb">
+			<ul>
+				<li>{$lang_xp_publish_php['select_files']}</li>
+				<li>{$lang_xp_publish_php['display_tasks']}</li>
+				<li>{$lang_xp_publish_php['publish_on_the_web']}</li>
+				<li>{$lang_xp_publish_php['confirm_selection']}, {$lang_xp_publish_php['next']}</li>
+				<li>{$lang_xp_publish_php['select_service']}</li>
+				<li>{$lang_xp_publish_php['enter_login']}</li>
+				<li>{$lang_xp_publish_php['select_album']}, {$lang_xp_publish_php['next']}</li>
+				<li>{$lang_xp_publish_php['upload_starts']}</li>
+				<li>{$lang_xp_publish_php['upload_completed']}</li>
+			</ul>
+		</td>
+	</tr>
+EOT;
+	endtable();
+	print <<< EOT
+<script type="text/javascript">
+function os_browser_detection() {
+  // browser detection.
+  // Usually, browser detection is buggy and should not be used. However, the sidebar works only in mainstream browsers anyway and requires JavaScript, so we can be pretty sure that the user has it enabled if this is suppossed to work in the first place.
+   var detection_success = 0;
+   if (navigator.userAgent.indexOf('Firefox') != -1 || navigator.userAgent.indexOf('Netscape') != -1 || navigator.userAgent.indexOf('Konqueror') != -1 || navigator.userAgent.indexOf('Gecko') != -1) {
+       document.getElementById('ie').style.display = 'none';
+       document.getElementById('other_browser').style.display = 'block';
+       document.getElementById('no_browser_detection').style.display = 'none';
+       detection_success = 1;
+   }
+   if (navigator.userAgent.indexOf('Opera') != -1) {
+       document.getElementById('ie').style.display = 'none';
+       document.getElementById('other_browser').style.display = 'block';
+       document.getElementById('detecting').style.display = 'none';
+       detection_success = 1;
+   }
+   if (navigator.userAgent.indexOf('MSIE') != -1) {
+       document.getElementById('ie').style.display = 'block';
+       document.getElementById('other_browser').style.display = 'none';
+       document.getElementById('no_browser_detection').style.display = 'none';
+       detection_success = 1;
+   }
+   if (navigator.userAgent.indexOf('Windows NT 6.0') != -1 || navigator.userAgent.indexOf('Windows NT 5.2') != -1 || navigator.userAgent.indexOf('Windows NT 5.1') != -1) {
+       document.getElementById('xp_vista').style.display = 'block';
+       document.getElementById('other_os').style.display = 'none';
+       document.getElementById('no_os_detection').style.display = 'none';
+       detection_success = 1;
+   }
+   if (navigator.userAgent.indexOf('Windows NT 5.0') != -1 || navigator.userAgent.indexOf('Windows NT 4.0') != -1 || navigator.userAgent.indexOf('Windows 9') != -1 || navigator.userAgent.indexOf('Windows CE') != -1 || navigator.userAgent.indexOf('Mac') != -1 || navigator.userAgent.indexOf('Linux') != -1) {
+       document.getElementById('xp_vista').style.display = 'none';
+       document.getElementById('other_os').style.display = 'block';
+       document.getElementById('no_os_detection').style.display = 'none';
+       detection_success = 1;
+   }
 }
 
-td {
-        font-size: 12px;
-}
 
-h1{
-        font-weight: bold;
-        font-size: 22px;
-        font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
-        text-decoration: none;
-        line-height : 120%;
-        color : #000000;
-}
+self.onload = os_browser_detection();
+</script>
+EOT;
+	pagefooter();
 
-h2 {
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 18px;
-        color: #0E72A4;
-        text-decoration: underline;
-        margin-top: 20px;
-        margin-bottom: 10px;
-}
-
-h3 {
-        font-weight: bold;
-        font-family: Verdana, Arial, Helvetica, sans-serif;
-        font-size: 12px;
-        text-decoration: underline;
-}
-
-p {
-        font-family : Verdana, Arial, Helvetica, sans-serif;
-        font-size: 12px;
-        margin: 10px 10px 0px 0px;
-}
-
-ul {
-        margin-left: 5px;
-        margin-right: 0px;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        padding: 0px;
-        list-style-type: square;
-}
-
-li {
-        margin-left: 10px;
-        margin-top: 6px;
-        margin-bottom: 6px;
-        padding: 0px;
-        list-style-position: outside;
-}
--->
-</style>
-</head>
-
-<body>
-<?php echo $lang_xp_publish_client ?> Sebastian Delmont <a href="http://www.zonageek.com/code/misc/wizards/">Creating your own XP Publishing Wizard</a>.</p>
-
-<?php echo $lang_xp_publish_required ?> <a href="<?php echo $CPG_PHP_SELF ?>?cmd=send_reg"><?php echo $lang_xp_publish_php['link'] ?></a>. <?php echo $lang_xp_publish_select,
-$lang_xp_publish_testing,
-$lang_xp_publish_notes; ?>
-  <a href="<?php echo dirname($CPG_PHP_SELF) . '/' . LOGFILE ?>"><?php echo LOGFILE ?></a>
-<?php echo $lang_xp_publish_flood ?>
-</body>
-</html>
-<?php
 }
 
 // Output page header
@@ -366,18 +424,22 @@ function output_header()
     global $CONFIG;
     global $lang_charset, $lang_text_dir, $lang_xp_publish_php;
 
-    ?>
+    if ($CONFIG['charset'] == 'language file') {
+        $language = $lang_charset;
+    } else {
+        $language = $CONFIG['charset'];
+    }
+    print <<< EOT
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html dir="ltr">
 <head>
-<title><?php echo $lang_xp_publish_php['title'] ?></title>
-<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'];
-    ?>" />
+<title>{$lang_xp_publish_php['title']}</title>
+<meta http-equiv="Content-Type" content="text/html; charset={$language}" />
 <style type="text/css">
 <!--
 body {
         font-family : Verdana, Arial, Helvetica, sans-serif;
-        font-size: 12px;
+        font-size: 11px;
         background : #FFFFFF ;
         color : Black;
         margin: 20px;
@@ -392,30 +454,28 @@ td {
 
 h1{
         font-weight: bold;
-        font-size: 22px;
-        font-family: Arial, Helvetica, sans-serif;
+        font-size: 16px;
+        font-family: Verdana, Arial, Helvetica, sans-serif;
         text-decoration: none;
         line-height : 120%;
         color : #0E72A4;
 }
 
 h2 {
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 18px;
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 14px;
         color: #0E72A4;
-        text-decoration: underline;
 }
 
 h3 {
         font-weight: bold;
         font-family: Verdana, Arial, Helvetica, sans-serif;
         font-size: 12px;
-        text-decoration: underline;
 }
 
 p {
         font-family : Verdana, Arial, Helvetica, sans-serif;
-        font-size: 12px;
+        font-size: 11px;
         margin: 10px 10px 0px 0px;
 }
 
@@ -447,11 +507,14 @@ input {
 -->
 </style>
 </head>
-
 <body>
-<h1><?php echo $lang_xp_publish_php['title'] ?></h1>
-<p></p>
-<?php
+EOT;
+    print '<h1><a href="'.$CONFIG['site_url'].'">'. $CONFIG['gallery_name'] .'</a>';
+    if ($CONFIG['gallery_description'] != '') {
+        print ' &bull; ' . $CONFIG['gallery_description'];
+    }
+    print '</h1>';
+    print '<h2>'. $lang_xp_publish_php['title'] . '</h2>';
 }
 
 // Output page footer
@@ -459,8 +522,11 @@ function output_footer()
 {
     global $WIZARD_BUTTONS, $ONBACK_SCRIPT, $ONNEXT_SCRIPT;
     global $CONFIG; //$PHP_SELF,
+    $site_url = trim($CONFIG['site_url'], '/') . '/';
+    $gallery_name_javascript = javascript_string($CONFIG['gallery_name']);
+    $gallery_description_javascript = javascript_string($CONFIG['gallery_description']);
 
-    ?>
+    print <<< EOT
 
 <div id="content"></div>
 
@@ -487,7 +553,7 @@ function startUpload() {
 
         for (i = 0; i < files.length; i++) {
                 var postTag = xml.createNode(1, 'post', '');
-                postTag.setAttribute('href', '<?php echo trim($CONFIG['site_url'], '/') . '/' . $CPG_PHP_SELF . '?cmd=add_picture'?>&album=' + selform.album.value);
+                postTag.setAttribute('href', '{$site_url}{$CPG_PHP_SELF}?cmd=add_picture&album=' + selform.album.value);
                 postTag.setAttribute('name', 'userpicture');
 
                 var dataTag = xml.createNode(1, 'formdata', '');
@@ -499,9 +565,9 @@ function startUpload() {
         }
 
         var uploadTag = xml.createNode(1, 'uploadinfo', '');
-        uploadTag.setAttribute('friendlyname', '<?php echo javascript_string($CONFIG['gallery_name'])?>');
+        uploadTag.setAttribute('friendlyname', '{$gallery_name_javascript}');
         var htmluiTag = xml.createNode(1, 'htmlui', '');
-        htmluiTag.text = '<?php echo trim($CONFIG['site_url'], '/') . '/'?>';
+        htmluiTag.text = '{$site_url}';
         uploadTag.appendChild(htmluiTag);
 
         xml.documentElement.appendChild(uploadTag);
@@ -513,28 +579,25 @@ function startUpload() {
 }
 
 function OnBack() {
-        <?php echo $ONBACK_SCRIPT;
-    ?>
+        {$ONBACK_SCRIPT}
         window.external.SetWizardButtons(false,true,false);
 }
 
 function OnNext() {
-        <?php echo $ONNEXT_SCRIPT;
-    ?>
+        {$ONNEXT_SCRIPT}
 }
 
 function OnCancel() {
 }
 
 function window.onload() {
-        window.external.SetHeaderText('<?php echo javascript_string($CONFIG['gallery_name'])?>','<?php echo javascript_string($CONFIG['gallery_description'])?>');
-        window.external.SetWizardButtons(<?php echo $WIZARD_BUTTONS;
-    ?>);
+        window.external.SetHeaderText('{$gallery_name_javascript}','{$gallery_description_javascript}');
+        window.external.SetWizardButtons({$WIZARD_BUTTONS});
 }
 </script>
 </body>
 </html>
-<?php
+EOT;
 }
 
 // Send the file needed to register the service under Windows XP

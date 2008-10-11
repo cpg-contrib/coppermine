@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4226 $
+  $Revision: 5067 $
   $LastChangedBy: gaugau $
-  $Date: 2008-01-28 12:59:28 +0530 (Mon, 28 Jan 2008) $
+  $Date: 2008-10-02 23:03:16 +0530 (Thu, 02 Oct 2008) $
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
@@ -315,6 +315,15 @@ $lang_list_albums = array_merge($lang_list_albums_en, $lang_list_albums);
 if (defined('KEYWORDMGR_PHP')) {
   $lang_keywordmgr_php_en = cpg_get_default_lang_var('lang_keywordmgr_php','english');
   $lang_keywordmgr_php = array_merge($lang_keywordmgr_php_en, $lang_keywordmgr_php);
+}
+
+// ------------------------------------------------------------------------- //
+// File langmgr.php
+// ------------------------------------------------------------------------- //
+
+if (defined('LANGMGR_PHP')) {
+  $lang_langmgr_php_en = cpg_get_default_lang_var('$lang_langmgr_php','english');
+  $lang_langmgr_php = array_merge($lang_langmgr_php_en, $lang_langmgr_php);
 }
 
 // ------------------------------------------------------------------------- //

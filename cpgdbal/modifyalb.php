@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4981 $
+  $Revision: 5100 $
   $LastChangedBy: gaugau $
-  $Date: 2008-09-01 13:37:08 +0530 (Mon, 01 Sep 2008) $
+  $Date: 2008-10-09 22:52:36 +0530 (Thu, 09 Oct 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -693,7 +693,7 @@ function alb_list_box()
 	if(count($rowset)){
 		 // Create the nicely sorted and formatted drop down list
         $alb_cat = '';
-		$select = cpg_fetch_icon('move', 2) . "<select name=\"album_listbox\" class=\"listbox\" onChange=\"if(this.options[this.selectedIndex].value) window.location.href='{$CPG_PHP_SELF}?album='+this.options[this.selectedIndex].value;\">\n";
+		$select = cpg_fetch_icon('alb_mgr', 2) . "<select name=\"album_listbox\" class=\"listbox\" onChange=\"if(this.options[this.selectedIndex].value) window.location.href='{$CPG_PHP_SELF}?album='+this.options[this.selectedIndex].value;\">\n";
         foreach ($rowset as $val) {
             if ($val['cat'] != $alb_cat) {
           		if ($alb_cat) $select .= "</optgroup>\n";

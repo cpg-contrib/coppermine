@@ -618,6 +618,13 @@ if(defined('KEYWORDMGR_PHP') || defined('SEARCH_PHP')) $cpg_db_keywordmgr_php = 
 
 
 /**********************************************************/
+//queries from langmgr.php
+/***********************************************************/
+if(defined('ADMIN_PHP') || defined('LANGMGR_PHP')) $cpg_db_langmgr_php = array(
+    'get_all_languages' => "SELECT * FROM {$CONFIG['TABLE_LANGUAGE']}"
+);
+
+/**********************************************************/
 //queries from login.php
 /***********************************************************/
 if (defined('LOGIN_PHP')) $cpg_db_login_php = array(
@@ -1587,6 +1594,8 @@ $cpg_db_functions_inc = array(
 	//'breadcrumb_cat_not_zero'		=> "SELECT name, parent FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '%1\$s'",
 	//'breadcrumb_parent_not_zero'	=> "SELECT cid, name, parent FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '%1\$s'",
 	'get_dbversion'					=> "SELECT CONVERT(VARCHAR(30), SERVERPROPERTY('productversion')) AS version",
+    'chk_langtbl_exists'            => "SELECT table_name FROM INFORMATION_SCHEMA.TABLES WHERE table_name LIKE '{$CONFIG['TABLE_LANGUAGE']}';",
+    'get_language'                  => "SELECT * FROM {$CONFIG['TABLE_LANGUAGE']}",
 	'get_bridge_db_values'			=> "SELECT * FROM {$CONFIG['TABLE_BRIDGE']}",
 	'reset_detail_hits'				=> "DELETE FROM {$CONFIG['TABLE_HIT_STATS']} WHERE %1\$s",		
 	'reset_detail_votes'			=> "DELETE FROM {$CONFIG['TABLE_VOTE_STATS']} WHERE %1\$s",	

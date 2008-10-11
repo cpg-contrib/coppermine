@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4982 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-09-01 14:23:18 +0530 (Mon, 01 Sep 2008) $
+  $Revision: 5070 $
+  $LastChangedBy: abbas-ali $
+  $Date: 2008-10-03 15:52:36 +0530 (Fri, 03 Oct 2008) $
 **********************************************/
 
 global $thisplugin;                     // Stores the current plugin being processed
@@ -420,7 +420,7 @@ class CPGPluginAPI {
      **/
 
     function install($path) {
-        global $CONFIG,$thisplugin,$CPG_PLUGINS,$lang_plugin_api;
+        global $CONFIG,$thisplugin,$CPG_PLUGINS,$lang_plugin_api,$lang_plugin_php;
 		global $cpg_db_plugin_api_inc;
 		####################### DB #########################	
 		$cpgdb =& cpgDB::getInstance();

@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 5061 $
+  $Revision: 5081 $
   $LastChangedBy: gaugau $
-  $Date: 2008-09-27 16:47:15 +0530 (Sat, 27 Sep 2008) $
+  $Date: 2008-10-06 11:27:24 +0530 (Mon, 06 Oct 2008) $
 **********************************************/
 
 /**********************************************
@@ -307,6 +307,11 @@ $config_data = array(
       'help_link'       => 'f=configuration.htm&amp;as=admin_theme_display_redirection_page&amp;ae=admin_theme_display_redirection_page_end',
       'options'         => array($lang_common['no'], $lang_common['yes']),
       'end_description' => '('.$lang_admin_php['recommended'].': '.$lang_common['no'].')',
+    ),
+    'display_xp_publish_link' => array(
+      'type'          => 'checkbox',
+      'default_value' => '0',
+      'help_link'     => 'f=configuration.htm&amp;as=admin_theme_display_xp_publish_link&amp;ae=admin_theme_display_xp_publish_link_end',
     ),
   ),
   'album_list_view' => array(

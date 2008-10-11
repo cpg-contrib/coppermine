@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4981 $
+  $Revision: 5081 $
   $LastChangedBy: gaugau $
-  $Date: 2008-09-01 13:37:08 +0530 (Mon, 01 Sep 2008) $
+  $Date: 2008-10-06 11:27:24 +0530 (Mon, 06 Oct 2008) $
 **********************************************/
 
 // Confirm we are in Coppermine and set the language blocks.
@@ -1115,13 +1115,13 @@ if (!$superCage->post->keyExists('control')) {
         // The user has the single upload only form. Send the request to db_input.php.
         open_form('db_input.php');
         // Open the form table.
-        starttable("100%", $lang_upload_php['title'], 2);
+        starttable("100%", cpg_fetch_icon('upload',2).$lang_upload_php['title'], 2);
     } else {
 
         // Direct the request to this script and print the form instructions.
         open_form($CPG_PHP_SELF);
         // Open the form table.
-        starttable("100%", $lang_upload_php['title'], 2);
+        starttable("100%", cpg_fetch_icon('upload',2).$lang_upload_php['title'], 2);
         form_instructions();
 
     }
@@ -1243,6 +1243,19 @@ if (!$superCage->post->keyExists('control')) {
     // Close the table, create footers, and flush the output buffer.
     endtable();
     echo "</form>";
+    if ($CONFIG['display_xp_publish_link'] == 1) {
+    	print '<br />';
+    	starttable('100%', cpg_fetch_icon('info', 2) . $lang_upload_php['alternative_upload'],1);
+    	print <<< EOT
+    	<tr>
+    		<td class="tableb">
+    			{$lang_upload_php['xp_publish_promote']}<br />
+    			[<a href="xp_publish.php">{$lang_upload_php['more']}</a>]
+    		</td>
+    	</tr>
+EOT;
+    	endtable();
+    }    
     pagefooter();
     ob_end_flush();
 
@@ -1269,14 +1282,13 @@ if ($superCage->post->keyExists('control') && $superCage->post->getEscaped('cont
     // 4 - No upload occurred.
 
     //$file_upload_count = count($_FILES['file_upload_array']['name']);
-	//Using getRaw() for counting purpose only
     //$file_upload_count = count($superCage->files->getEscaped('/file_upload_array/name'));
 
     if (NUM_FILE_BOXES > 0) {
 
 
         // Check for error code support. Set the error code.
-		// Using getRaw() for counting purpose only
+
         if (count($superCage->files->getInt('/file_upload_array/error')) == 0) {
 
             // This version of PHP does not support error codes (PHP < 4.2.0).  Create our own error code.
@@ -1311,7 +1323,6 @@ if ($superCage->post->keyExists('control') && $superCage->post->getEscaped('cont
             // If there is no file name, make a dummy name for the error reporting system.
 
             //if (($_FILES['file_upload_array']['name'][$counter] == '')) {
-			//Using getRaw() for comparison only.
             if ($superCage->files->getEscaped("/file_upload_array/name/$counter") == '') {
                 $file_name = 'filename_unavailable';
             } else {
@@ -1331,7 +1342,6 @@ if ($superCage->post->keyExists('control') && $superCage->post->getEscaped('cont
             // Check to make sure the file was uploaded via POST.
 
             //if (!is_uploaded_file($_FILES['file_upload_array']['tmp_name'][$counter])) {
-			// Using getRaw() for comparison only.
             if (!is_uploaded_file($superCage->files->getPath("/file_upload_array/tmp_name/$counter"))) {
 
                 // We reject the file, and make a note of the error.
@@ -1460,7 +1470,7 @@ if ($superCage->post->keyExists('control') && $superCage->post->getEscaped('cont
             // Create a holder called $tempname.
             $tempname = $prefix . $seed . '.' . $suffix;
 
-            //Now we upload the file. Using getRaw() for comparison only
+            //Now we upload the file.
             if (!(move_uploaded_file($superCage->files->getPath("/file_upload_array/tmp_name/$counter"), $path_to_image))) {
 
                 // The file upload has failed.
@@ -1554,8 +1564,6 @@ if ($superCage->post->keyExists('control') && $superCage->post->getEscaped('cont
 
             // Check to make sure the URI box was not blank.
             //if (empty($_POST['URI_array'][$counter])) {
-			//Using getRaw() for comparison purpose only
-			//print($superCage->post->testUri("/URI_array/$counter"));exit;
             if (!$superCage->post->getEscaped("/URI_array/$counter")) {
 
                 // The box was empty.
@@ -1564,7 +1572,7 @@ if ($superCage->post->keyExists('control') && $superCage->post->getEscaped('cont
 
             }
 
-            // Check for magic quotes and remove slashes if necessary. Using getRaw() as we have custom sanitization code below.
+            // Check for magic quotes and remove slashes if necessary.
             /*if (get_magic_quotes_gpc()) {
                 //$_POST['URI_array'][$counter] = stripslashes($_POST['URI_array'][$counter]);
                 $URI_name = stripslashes($superCage->post->getRaw("/URI_array/$counter"));
@@ -2346,7 +2354,7 @@ if ($superCage->post->keyExists('control') && $superCage->post->getEscaped('cont
     exit;
 }
 
-// Recieve incoming post information for phase II. Using getRaw() for comparison purpose only.
+// Recieve incoming post information for phase II.
 //if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
 if ($superCage->post->keyExists('control') && $superCage->post->getEscaped('control') == 'phase_2') {
 
@@ -2729,7 +2737,7 @@ if ($superCage->post->keyExists('control') && $superCage->post->getEscaped('cont
     open_form($CPG_PHP_SELF);
 
     // Open the form table.
-    starttable("100%", $lang_upload_php['title'], 2);
+    starttable("100%", cpg_fetch_icon('upload',2).$lang_upload_php['title'], 2);
 
     // Create image tag and echo it to the output buffer.
     echo "<tr><td class=\"tableh2\"><img class=\"image\" src=\"".$path_to_preview."\"  /></td>";

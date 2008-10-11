@@ -11,9 +11,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4502 $
-  $LastChangedBy: pvanrompay $
-  $Date: 2008-06-06 03:51:20 +0530 (Fri, 06 Jun 2008) $
+  $Revision: 5078 $
+  $LastChangedBy: saweyyy $
+  $Date: 2008-10-05 03:04:14 +0530 (Sun, 05 Oct 2008) $
 **********************************************/
 
 /**
@@ -84,10 +84,8 @@ var root = '';
 function rate(obj, rating, theme_dir){
 	var id = obj.title;
 	var fullId = obj.id;
-	var vote_id = document.getElementById('vote_id').innerHTML;
 	var idName = fullId.substr(0, fullId.indexOf('_'));
-	//window.location = root+'ratepic.php?rate=' + id + '&pic=' + idName + '&id=' + vote_id;
-	$.get('ratepic.php?rate=' + id + '&pic=' + idName + '&id=' + vote_id, function(data){
+	$.get('ratepic.php?rate=' + id + '&pic=' + idName, function(data){
 		//create a JSON object of the returned data
 		var json_data = eval('(' + data + ')');
 		//check the data and respond upon it

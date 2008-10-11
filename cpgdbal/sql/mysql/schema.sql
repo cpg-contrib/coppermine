@@ -11,9 +11,9 @@
 ##  ********************************************
 ##  Coppermine version: 1.5.0
 ##  $HeadURL$
-##  $Revision: 4749 $
+##  $Revision: 5067 $
 ##  $LastChangedBy: gaugau $
-##  $Date: 2008-08-01 12:45:18 +0530 (Fri, 01 Aug 2008) $
+##  $Date: 2008-10-02 23:03:16 +0530 (Thu, 02 Oct 2008) $
 ##  ********************************************
 
 #
@@ -387,4 +387,17 @@ CREATE TABLE CPG_temp_messages (
   message text NOT NULL,
   PRIMARY KEY (message_id)
 ) TYPE=MyISAM COMMENT='Used to store messages from one page to the other';
+# --------------------------------------------------------
+
+CREATE TABLE CPG_languages (
+  lang_id  varchar(40) NOT NULL default '',
+  english_name varchar(70) default NULL,
+  native_name varchar(70) default NULL,
+  custom_name varchar(70) default NULL,
+  flag varchar(15) default NULL,
+  available enum('YES','NO') NOT NULL default 'NO',
+  enabled enum('YES','NO') NOT NULL default 'NO',
+  complete enum('YES','NO') NOT NULL default 'NO',
+  PRIMARY KEY (lang_id)
+) TYPE=MyISAM COMMENT='Contains the language file definitions';
 # --------------------------------------------------------
