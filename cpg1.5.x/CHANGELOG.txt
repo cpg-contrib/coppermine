@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-10-12 [O] Switched cpg_db_fetch_row* functions to use mysql_fetch_assoc() instead of mysql_fetch_array() to save memory {Nibbler}
 2008-10-08 [B] Corrected SMF2 anonymous user fix {Nibbler}
 2008-10-06 [O] Brushed up look of XP Publisher instructions screen {GauGau}
 2008-10-06 [A] Added option to promote XP Publisher on upload page {GauGau}

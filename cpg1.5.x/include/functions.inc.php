@@ -242,7 +242,7 @@ function cpg_db_fetch_rowset($result)
 {
         $rowset = array();
 
-        while ($row = mysql_fetch_array($result)) $rowset[] = $row;
+        while ($row = mysql_fetch_assoc($result)) $rowset[] = $row;
 
         return $rowset;
 }
@@ -259,7 +259,7 @@ function cpg_db_fetch_rowset($result)
 function cpg_db_fetch_row($result)
 {
 
-        $row = mysql_fetch_array($result);
+        $row = mysql_fetch_assoc($result);
 
         return $row;
 }
