@@ -529,7 +529,7 @@ function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
     $pic_filter = '';
     $cat = (int) $cat;
     if (!empty($FORBIDDEN_SET) && !$cpg_show_private_album) {
-        $album_filter = str_replace('p.', 'a.', $FORBIDDEN_SET);
+        $album_filter = ' ' . str_replace('p.', 'a.', $FORBIDDEN_SET);
         $pic_filter = $FORBIDDEN_SET;
     }
     // Add the albums in the current category to the album set
