@@ -2820,6 +2820,16 @@ EOT;
         echo cpg_phpinfo_conf_output("post_max_size");
         echo cpg_phpinfo_conf_output("memory_limit");
         echo "\n$debug_separate";
+        
+        if (ini_get('suhosin.post.max_vars')){
+        
+	        echo 'Suhosin limits';
+	        echo $debug_underline;
+	        echo 'Directive | Local Value | Master Value';
+	        echo cpg_phpinfo_conf_output("suhosin.post.max_vars");
+	        echo cpg_phpinfo_conf_output("suhosin.request.max_vars");
+	        echo "\n$debug_separate";
+        }
     }
 
     echo <<<EOT

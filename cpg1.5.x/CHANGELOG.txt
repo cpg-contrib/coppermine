@@ -25,6 +25,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-10-12 [A] Added known problematic suhosin options to debug output {Nibbler}
+2008-10-12 [O] Cache processed phpinfo data when generating debug output for performance {Nibbler}
 2008-10-12 [A] Added cleaner album selection box for admin tools {Nibbler}
 2008-10-12 [O] Switched cpg_db_fetch_row* functions to use mysql_fetch_assoc() instead of mysql_fetch_array() to save memory {Nibbler}
 2008-10-08 [B] Corrected SMF2 anonymous user fix {Nibbler}
