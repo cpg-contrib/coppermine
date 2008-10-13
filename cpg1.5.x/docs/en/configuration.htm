@@ -47,6 +47,7 @@
 <a name="admin_general_name"></a><h3>Gallery name<a href="#admin_general_name" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Enter the name of your gallery in this text field. The name you enter will appear as the title that is displayed in the web browser's title bar and is also displayed in many of the different theme templates.</p>
 <p>Even if you have removed the corresponding token from your custom theme, you should fill this in correctly, as it will be used when sending ecards and in all kinds of emails sent from your gallery (e.g. during registration).</p>
+<p>It's mandatory to populate this field properly.</p>
 <p class="quote">Example: <tt class="code">Tim's incredible picture gallery</tt></p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; General settings &rarr; Gallery name</p>
 <a name="admin_general_name_end"></a>
@@ -1236,6 +1237,7 @@ address. Recommended setting is NO. As most internet users today have more than 
 <a name="admin_user_login_threshold_start"></a><h3>Number of failed login attempts until temporary ban (to avoid brute force attacks)<a href="#admin_user_login_threshold_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>To make brute force attacks (where a hostile script tries to log into coppermine as admin by running through all possible combinations of username and password automatically) less effective Coppermine temporarily bans the IP address of a possible attacker after a certain amount of failed logins. This way, the brute force attack would need way to long to try all possible combinations.</p>
 <p>With this setting you specify the maximum number of failed log-in attempts before the IP address of the user is temporarily banned.</p>
+<p>Keep in mind that this setting will definitely have an impact on your legitimate ability to log in as well: if you mis-type your password to often or if someone else has tried to brute-force your admin account, you will be banned temporarily as well. The ban will of course go away after the time set below, but during the ban pahse you will be locked out from administration just as well as an attacker would be logged out.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; User settings &rarr; Number of failed login attempts until temporary ban</p>
 
 <a name="admin_user_login_threshold_end"></a>
