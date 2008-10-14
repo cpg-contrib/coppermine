@@ -65,6 +65,7 @@ $superCage = Inspekt::makeSuperCage();
 if (!defined('SKIP_AUTHENTICATION') && defined('COPPERMINE_VERSION') && GALLERY_ADMIN_MODE) {
     $_SESSION['auth'] = true;
 } else { // we need to populate the language array "manually"
+    $lang_common['ok'] = 'OK';
     $lang_update_php = array(
       'title' => 'Updater', // cpg1.5
       'welcome_updater' => 'Welcome to Coppermine update', // cpg1.5
@@ -76,7 +77,6 @@ if (!defined('SKIP_AUTHENTICATION') && defined('COPPERMINE_VERSION') && GALLERY_
       'mysql_said' => 'MySQL said', // cpg1.5
       'check_config_file' => 'Please check the SQL values in %s', // cpg1.5
       'performing_database_updates' => 'Performing Database Updates', // cpg1.5
-      'ok' => 'OK', // cpg1.5
       'already_done' => 'Already Done', // cpg1.5
       'password_encryption' => 'Encryption of passwords', // cpg1.5
       'category_tree' => 'Category tree', // cpg1.5
@@ -395,7 +395,7 @@ function test_sql_connection()
 // ------------------------- SQL QUERIES TO CREATE TABLES ------------------ //
 function update_tables()
 {
-    global $errors, $CONFIG, $lang_update_php;
+    global $errors, $CONFIG, $lang_update_php, $lang_common;
 	
 	$lineBreak = "\n";
     $loopCounter = 0;
@@ -486,7 +486,7 @@ EOT;
         }
         print '</td>'.$lineBreak; // end the table cell that contains the output
         if ($result && $affected) {
-            echo '<td width="20%" class="'.$cellStyle.' updatesOK">' . $lang_update_php['ok'] . '</td>'.$lineBreak;
+            echo '<td width="20%" class="'.$cellStyle.' updatesOK">' . $lang_common['ok'] . '</td>'.$lineBreak;
         } else {
             echo '<td width="20%" class="'.$cellStyle.' updatesFail">' . $lang_update_php['already_done'] . '</td>'.$lineBreak;
         }
@@ -509,7 +509,7 @@ EOT;
     if ($CONFIG['enable_encrypted_passwords'] != 1) {
         print <<< EOT
                 <td class="{$cellStyle} updatesOK">
-                    {$lang_update_php['ok']}
+                    {$lang_common['ok']}
                 </td>
             </tr>
 EOT;
@@ -546,7 +546,7 @@ EOT;
     
         print <<< EOT
                 <td class="{$cellStyle} updatesOK">
-                    {$lang_update_php['ok']}
+                    {$lang_common['ok']}
                 </td>
             </tr>
 EOT;

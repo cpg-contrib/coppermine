@@ -1176,7 +1176,6 @@ $lang_picinfo = array(
 );
 
 $lang_display_comments = array(
-  'OK' => 'OK',
   'edit_title' => 'Edit this comment',
   'delete_title' => 'Delete this comment', // cpg1.5
   'confirm_delete' => 'Are you sure you want to delete this comment ?', // js-alert
@@ -1668,7 +1667,6 @@ if (defined('LOGOUT_PHP')) $lang_logout_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('MINIBROWSER_PHP')) $lang_minibrowser_php = array(
-  'submit' => 'OK',
   'up' => 'up one level',
   'current_path' => 'current path',
   'select_directory' => 'please select a directory',
@@ -2355,7 +2353,6 @@ $lang_update_php = array(
   'mysql_said' => 'MySQL said', // cpg1.5
   'check_config_file' => 'Please check the SQL values in %s', // cpg1.5
   'performing_database_updates' => 'Performing Database Updates', // cpg1.5
-  'ok' => 'OK', // cpg1.5
   'already_done' => 'Already Done', // cpg1.5
   'password_encryption' => 'Encryption of passwords', // cpg1.5
   'category_tree' => 'Category tree', // cpg1.5
@@ -2492,7 +2489,6 @@ if (defined('VERSIONCHECK_PHP')) $lang_versioncheck_php = array(
   'versioncheck_output' => 'Versioncheck output',
   'file' => 'file',
   'folder' => 'folder',
-  'ok' => 'OK',
   'outdated' => 'older than %s',
   'newer' => 'newer than %s',
   'modified' => 'modified',

@@ -242,10 +242,10 @@ if ($linktarget != '') {
         } // end foreach
     } // end is_array
     if ($allowed_file_counter!=0) {
-        print '<a href="'.$linktarget.'?startdir='.rtrim(str_replace($limitfolder, '',$folder), '/').'" class="admin_menu" target="_parent">'.$lang_minibrowser_php['submit'].'</a>'.$newline;
+        print '<a href="'.$linktarget.'?startdir='.rtrim(str_replace($limitfolder, '',$folder), '/').'" class="admin_menu" target="_parent">'.$lang_common['ok'].'</a>'.$newline;
     } // determine if we should display a submit button end
 } else {
-    print '<input type="submit" name="submit" value="'.$lang_minibrowser_php['submit'].'" class="button" />'.$newline;
+    print '<input type="submit" name="submit" value="'.$lang_common['ok'].'" class="button" />'.$newline;
 }
 print '</td>'.$newline;
 print '</tr>'.$newline;
