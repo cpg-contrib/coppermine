@@ -3071,49 +3071,9 @@ function languageSelect($parameter)
     // get the current language
     //use the default language of the gallery
     $cpgCurrentLanguage = $CONFIG['lang'];
-
-    // is a user logged in?
-    //has the user already chosen another language for himself?
-    //if ($USER['lang']!="") {
-    //   $cpgCurrentLanguage = $USER['lang'];
-    //}
-    //has the language been set to something else on the previous page?
-    /*
-    if (isset($_GET['lang'])) {
-        $cpgCurrentLanguage = $_GET['lang'];
-    }
-    */
-    //get the url and all vars except $lang
-    $matches = $superCage->server->getMatched('SCRIPT_NAME', '/^[a-zA-Z0-9_\/.]+$/');
-
-    if ($matches) {
-        //$cpgChangeUrl =  _SERVER["SCRIPT_NAME"]."?";
-        $cpgChangeUrl = $matches[0] . '?';
-    } else {
-        $cpgChangeUrl = 'index.php';
-    }
-
-    $matches = $superCage->server->getMatched('QUERY_STRING', '/^[a-zA-Z0-9&=_\/.]+$/');
-    if ($matches) {
-        $queryString = explode('&', $matches[0]);
-    } else {
-        $queryString = array();
-    }
-
-    foreach ($queryString as $val) {
-        list($key, $value) = explode('=', $val);
-        if ($key != "lang") {
-            $cpgChangeUrl .= $key . "=" . $value . "&";
-        }
-    }
-
-    /*
-    foreach ($_GET as $key => $value) {
-        if ($key!="lang") {$cpgChangeUrl.= $key . "=" . $value . "&amp;";}
-    }
-    */
-
-    $cpgChangeUrl .= 'lang=';
+   
+    // Forget all the nonsense sanitization code that used to reside here - redefine the variable for the base URL using the function that we already have for that purpose
+    $cpgChangeUrl = cpgGetScriptNameParams('lang').'lang=';
     
     // Make sure that the language table exists in the first place - 
     // return without return value if the table doesn't exist because 
@@ -3212,41 +3172,10 @@ function themeSelect($parameter)
         return;
     }
 
-    // get the current theme
-    //get the url and all vars except $theme
-    /*
-    $cpgCurrentTheme = $_SERVER["SCRIPT_NAME"]."?";
-    foreach ($_GET as $key => $value) {
-        if ($key!="theme") {$cpgCurrentTheme.= $key . "=" . $value . "&amp;";}
-    }
-    */
 
-    $matches = $superCage->server->getMatched('SCRIPT_NAME', '/^[a-zA-Z0-9_\/.]+$/');
+    $cpgCurrentTheme = cpgGetScriptNameParams('theme').'theme=';
 
-    if ($matches) {
-        //$cpgChangeUrl =  _SERVER["SCRIPT_NAME"]."?";
-        $cpgCurrentTheme = $matches[0] . '?';
-    } else {
-        $cpgCurrentTheme = 'index.php';
-    }
-
-    $matches = $superCage->server->getMatched('QUERY_STRING', '/^[a-zA-Z0-9&=_\/.]+$/');
-    if ($matches) {
-        $queryString = explode('&', $matches[0]);
-    } else {
-        $queryString = array();
-    }
-
-    foreach ($queryString as $val) {
-        list($key, $value) = explode('=', $val);
-        if ($key != "theme") {
-            $cpgCurrentTheme .= $key . "=" . $value . "&";
-        }
-    }
-
-    $cpgCurrentTheme .= "theme=";
-
-    // get list of available languages
+    // get list of available themes
     $value = $CONFIG['theme'];
     $theme_dir = 'themes/';
 
@@ -3530,7 +3459,7 @@ function cpg_get_webroot_path()
 
 
 /**
- * Function to get the search string if the picture is viewed from google, lucos or yahoo search engine
+ * Function to get the search string if the picture is viewed from google, lycos or yahoo search engine
  */
 
 function get_search_query_terms($engine = 'google') 
@@ -3979,14 +3908,17 @@ function cpgGetScriptNameParams($exception = '')
     $return = $filename . '?';
 
     // Now get the parameters.
-    // WARNING: as this function is meant to just return the URL parameters (minus the one mentioned in $exception),
-    // neither the parameter names nor the the values should be sanitized, as we simply don't know here against what
-    // we're suppossed to sanitize.
-    // For now, I have chosen the safe method, sanitizing the parameters. Not sure if this is a bright idea for the
-    // future.
-    // So, use the parameters returned from this function here with the same caution that applies to anything the
-    // user could tamper with. The function is meant to help you generate links (in other words: something the user could
-    // come up with by typing them just as well), so don't abuse this function for anything else.
+    // WARNING: as this function is meant to just return the URL parameters
+    // (minus the one mentioned in $exception), neither the parameter names 
+    // nor the the values should be sanitized, as we simply don't know here 
+    // against what we're suppossed to sanitize.
+    // For now, I have chosen the safe method, sanitizing the parameters. 
+    // Not sure if this is a bright idea for the future.
+    // So, use the parameters returned from this function here with the same 
+    // caution that applies to anything the user could tamper with. 
+    // The function is meant to help you generate links (in other words: 
+    // something the user could come up with by typing them just as well), 
+    // so don't abuse this function for anything else.
      $matches = $superCage->server->getMatched('QUERY_STRING', '/^[a-zA-Z0-9&=_\/.]+$/');
      if ($matches) {
         $queryString = explode('&', $matches[0]);
