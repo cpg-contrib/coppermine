@@ -2376,20 +2376,8 @@ $lang_update_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('UTIL_PHP')) {
-$lang_util_desc_php = array(
-'Erzeugt Titel aus Dateinamen',
-'Löscht Titel',
-'Erneuert Thumbnails und Dateien in Zwischengröße gemäß aktuellen Einstellungen',
-'Löscht Bilder in Original-Größe und ersetzt sie mit Bildern in Zwischengröße',
-'Löscht Bilder in Originalgrösse oder Zwischengrösse, um Speicherplatz frei zu geben',
-'Löscht Bilder, die älter als eine festgelegte Anzahl von Tagen sind', //cpg1.5
-'Löscht verwaiste Kommentare',
-'Liest Dateigrössen und Dimensionen erneut ein (falls Du Bilder manuell bearbeitet hast)',
-'Setzt Hits-Zähler zurück',
-);
 $lang_util_php = array(
   'title' => 'Admin-Werkzeuge',
-  'what_it_does' => 'Was macht dieses Tool',
   'file' => 'Datei',
   'problem' => 'Problem',
   'status' => 'Status',

@@ -102,30 +102,11 @@ if (array_key_exists($action, $tasks)){
         echo "<br /><a href=\"util.php\">{$lang_util_php['back']}</a>";
 } else {
 
-        $help = '&nbsp;'.cpg_display_help('f=admin_menu.htm&amp;as=admin_tools&amp;ae=admin_tools_end&amp;top=1', '600', '400');
+        $help = '&nbsp;'.cpg_display_help('f=admin-tools.htm&amp;as=admin_tools&amp;ae=admin_tools_end&amp;top=1', '600', '400');
 
-        starttable('100%', cpg_fetch_icon('util',2) . $lang_util_php['title'].$help, 2);
-
-        echo '<tr>
-                        <td class="tablef"><strong>'.$lang_util_php['what_it_does'] . '</strong>:
-                                <ul style="margin-top:0px;margin-bottom:0px;list-style-type:square">';
-        foreach($lang_util_desc_php as $value) {
-        echo "<li>$value</li>\n";
-        }
-        echo '                        </ul>
-                          </td>
-                        <td class="tableb"><strong>' . $lang_util_php['instruction'] . '</strong>:<br />
-                                (1) ' . $lang_util_php['instruction_action'] . '<br />
-                              (2) ' . $lang_util_php['instruction_parameter'] . '<br />
-                              (3) ' . $lang_util_php['instruction_album'] . '<br />
-                              (4) ' . sprintf($lang_util_php['instruction_press'], $lang_util_php['submit_form']).'
-                          </td>
-              </tr>';
-
-        endtable();
 
         echo '<br /><form name="cpgform" id="cpgform" action="util.php" method="post">';
-        starttable('100%', 'What do you want to do?',1);
+        starttable('100%', cpg_fetch_icon('util',2) . $lang_util_php['title'].$help, 1);
 
         $loopCounter = 0;
         foreach ($tasks as $task){
@@ -174,8 +155,10 @@ if (array_key_exists($action, $tasks)){
     </script>
 EOT;
         endtable();
+        
+        $help_select = '&nbsp;'.cpg_display_help('f=admin-tools.htm&amp;as=admin_tools_usage&amp;ae=admin_tools_usage_end&amp;top=1', '600', '400');
 
-        starttable('100%', $lang_common['select_album']);
+        starttable('100%', $lang_common['select_album'].$help_select);
         echo '<tr><td class="tablef"><br />';
         //if (defined('UDB_INTEGRATION')){
                 $cpg_udb->util_filloptions();

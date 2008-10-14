@@ -2371,20 +2371,8 @@ $lang_update_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('UTIL_PHP')) {
-$lang_util_desc_php = array(
-  'Updates titles from filename',
-  'Deletes titles',
-  'Rebuilds thumbnails and resized photos',
-  'Deletes original sized photos replacing them with the resized version',
-  'Deletes original or intermediate size photos to free webspace',
-  'Deletes files that are older than a set number of days', // cpg1.5
-  'Deletes orphaned comments',
-  'Re-reads file sizes and dimensions (if you manually edited pics)',
-  'Resets views counter',
-);
 $lang_util_php = array(
   'title' => 'Admin tools',  // cpg1.5
-  'what_it_does' => 'What it does',
   'file' => 'File',
   'problem' => 'Problem',
   'status' => 'Status',
@@ -2403,11 +2391,6 @@ $lang_util_php = array(
   'titles_wait' => 'Updating titles, please wait...',
   'delete_wait' => 'Deleting titles, please wait...',
   'replace_wait' => 'Deleting originals and replacing them with resized images, please wait..',
-  'instruction' => 'Quick instructions',
-  'instruction_action' => 'Select action',
-  'instruction_parameter' => 'Set parameters',
-  'instruction_album' => 'Select album',
-  'instruction_press' => 'Press %s',
   'update' => 'Update thumbs and/or resized photos',
   'update_what' => 'What should be updated',
   'update_thumb' => 'Only thumbnails',
