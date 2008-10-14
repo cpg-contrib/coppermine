@@ -221,6 +221,8 @@ EOT;
 function theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments, $film_strip)
 {
     global $CONFIG;
+    
+    $superCage = Inspekt::makeSuperCage();
 
     $spacer = <<<EOT
         <tr>
