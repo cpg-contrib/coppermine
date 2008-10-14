@@ -147,7 +147,7 @@ $newline = "\n";
 <title><?php echo $CONFIG['gallery_name'] .': '. $lang_minibrowser_php['click_to_close'];  ?></title>
 <meta http-equiv="content-type" content="text/html; charset=<?php echo $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'] ?>" />
 <link rel="stylesheet" href="<?php echo $THEME_DIR ?>style.css" />
-<script type="text/javascript" src="scripts.js"></script>
+<script type="text/javascript" src="js/scripts.js"></script>
 <?php
 
 //if ($parentform != '' && $formelementname != '') { // print the javascript bit that updates the parent element --- start

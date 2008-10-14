@@ -1,3 +1,21 @@
+/*************************
+  Coppermine Photo Gallery
+  ************************
+  Copyright (c) 2003-2008 Dev Team
+  v1.1 originaly written by Gregory DEMAR
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License version 3
+  as published by the Free Software Foundation.
+
+  ********************************************
+  Coppermine version: 1.5.0
+  $HeadURL$
+  $Revision: 4224 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-01-26 12:42:00 +0100 (Sa, 26 Jan 2008) $
+**********************************************/
+
 /* http://keith-wood.name/bookmark.html
    Sharing bookmarks for jQuery v1.0.2.
    Written by Keith Wood (kbwood@virginbroadband.com.au) March 2008.

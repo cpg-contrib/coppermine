@@ -233,7 +233,7 @@ EOT;
     <meta http-equiv="Content-Type" content="text/html; charset=$charset" />
     <meta http-equiv="Pragma" content="no-cache" />
     <link rel="stylesheet" href="themes/{$CONFIG['theme']}/style.css" />
-    <script type="text/javascript" src="scripts.js"></script>
+    <script type="text/javascript" src="js/scripts.js"></script>
 </head>
 <body class="tableb">
 <div class="admin_menu_wrapper">

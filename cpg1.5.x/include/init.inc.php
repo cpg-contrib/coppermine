@@ -174,14 +174,6 @@ if ($CONFIG['thumb_method'] == 'im' || function_exists('imagecreatefromgif')) {
   $CONFIG['GIF_support'] = 0;
 }
 
-// Include the jquery javascript library. Jquery will be included on all pages.
-js_include('js/jquery.js');
-
-// Include the bookmark JavaScript if at least one bookmarking service is selected
-if (isset($CONFIG['display_social_bookmarks']) && $CONFIG['display_social_bookmarks'] != '') {
-    js_include('js/jquery.bookmark.js');
-}
-
 // Include plugin API
 require('include/plugin_api.inc.php');
 if ($CONFIG['enable_plugins'] == 1) {
@@ -344,6 +336,19 @@ if (USER_ID > 0){
 				$FAVPICS = array();
 		}
 }
+
+// Include the jquery javascript library. Jquery will be included on all pages.
+js_include('js/jquery.js');
+
+// Include the bookmark JavaScript if at least one bookmarking service is selected
+if (isset($CONFIG['display_social_bookmarks']) && $CONFIG['display_social_bookmarks'] != '') {
+    js_include('js/jquery.bookmark.js');
+}
+
+// Include the scripts.js javascript library that contains coppermine-specific 
+// JavaScript that is being used on all pages.
+// Do not remove this line unless you really know what you're doing
+js_include('js/scripts.js');
 
 // If referer is set in URL and it contains 'http' or 'script' texts then set it to 'index.php' script
 /**

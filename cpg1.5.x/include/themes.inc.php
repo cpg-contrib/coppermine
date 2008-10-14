@@ -1618,14 +1618,7 @@ function theme_javascript_head() {
       $return .= '<script type="text/javascript" src="' . $js_file . '"></script>' . "\n";
     }
   }
-
-    $return .= '<script type="text/javascript" src="scripts.js"></script>'."\n"; // do not remove this line unless you really know what you're doing
-    $return .= <<< EOT
-
-<script type="text/javascript">
-</script>
-EOT;
-    return $return;
+  return $return;
 }
 /******************************************************************************
 ** Section <<<theme_javascript_head>>> - END
@@ -1668,24 +1661,19 @@ function theme_social_bookmark()
 		    $('#popupBookmark,#popupClose').toggle(); 
 		}); 
 		$('#popupBookmark').bookmark( 
-                {
-                    compact: true, 
-                    addEmail: false, 
-                    addFavorite: true,
-                    manualBookmark: '{$lang_social_bookmarks['favorite_close']}',
-                    sites: [{$bookmark_list}],
-                    icons: 'images/bookmarks.png',
-                    iconSize: 16,
-                    target: '_blank',
-                    favoriteText: '{$lang_social_bookmarks['favorite']}',
-                    favoriteIcon: 0,
-                    emailText: '{$lang_social_bookmarks['send_email']}',
-                    emailIcon: 1,
-                    emailSubject: '{$lang_social_bookmarks['email_subject']}',
-                    emailBody: '{$lang_social_bookmarks['email_body']}:\\n{t} ({u})'
-                    
-                }
-            );
+	        {
+	            compact: true, 
+	            addEmail: false, 
+	            addFavorite: true,
+	            manualBookmark: '{$lang_social_bookmarks['favorite_close']}',
+	            sites: [{$bookmark_list}],
+	            icons: 'images/bookmarks.png',
+	            iconSize: 16,
+	            target: '_blank',
+	            favoriteText: '{$lang_social_bookmarks['favorite']}',
+	            favoriteIcon: 0
+	        }
+        );
         </script>
 EOT;
         
@@ -3597,7 +3585,7 @@ function theme_display_fullsize_pic()
     td { vertical-align: middle; text-align:center; }
   </style>
 
-  <script type="text/javascript" src="scripts.js"></script>
+  <script type="text/javascript" src="js/scripts.js"></script>
   </head>
   <body style="margin:0px; padding:0px; background-color: gray;">
     <script language="JavaScript" type="text/JavaScript">

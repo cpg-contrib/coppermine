@@ -171,16 +171,16 @@ EOT;
 function cpg_versioncheckPopulateArray($file_data_array) {
     global $displayOption_array, $textFileExtensions_array, $imageFileExtensions_array, $CONFIG, $maxLength_array, $lang_versioncheck_php, $lang_common;
     $extensionMatrix_array = array(
-      'unknown' => 'images/extensions/unknown.gif',
-      'folder' => 'images/extensions/folder.gif',
-      'php' => 'images/extensions/php.gif',
-      'js' => 'images/extensions/js.gif',
-      'css' => 'images/extensions/css.gif',
-      'htm' => 'images/extensions/htm.gif',
-      'html' => 'images/extensions/htm.gif',
-      'sql' => 'images/extensions/sql.gif',
-      'ttf' => 'images/extensions/ttf.gif',
-      'ico' => 'images/extensions/unknown.gif',
+      'unknown' => 'images/extensions/unknown.png',
+      'folder' => 'images/extensions/folder.png',
+      'php' => 'images/extensions/php.png',
+      'js' => 'images/extensions/js.png',
+      'css' => 'images/extensions/css.png',
+      'htm' => 'images/extensions/htm.png',
+      'html' => 'images/extensions/htm.png',
+      'sql' => 'images/extensions/sql.png',
+      'ttf' => 'images/extensions/ttf.png',
+      'ico' => 'images/extensions/unknown.png',
     );
 
     $loopCounter = 0;
@@ -237,7 +237,7 @@ function cpg_versioncheckPopulateArray($file_data_array) {
             if (array_key_exists($file_data_array[$file_data_key]['extension'],$extensionMatrix_array) == TRUE) {
                 $file_data_array[$file_data_key]['icon'] = '<img src="'.$extensionMatrix_array[$file_data_array[$file_data_key]['extension']].'" border="0" width="16" height="16" alt="'.$file_data_array[$file_data_key]['extension'].'" style="margin-left:'. (16 * $file_data_array[$file_data_key]['folderDepth']) . 'px" />';
             } elseif (in_array($file_data_array[$file_data_key]['extension'],$imageFileExtensions_array)) {
-                $file_data_array[$file_data_key]['icon'] = '<img src="images/extensions/'.$file_data_array[$file_data_key]['extension'].'.gif" border="0" width="16" height="16" alt="'.$file_data_array[$file_data_key]['extension'].'" style="margin-left:'. (16 * $file_data_array[$file_data_key]['folderDepth']) . 'px" />';
+                $file_data_array[$file_data_key]['icon'] = '<img src="images/extensions/'.$file_data_array[$file_data_key]['extension'].'.png" border="0" width="16" height="16" alt="'.$file_data_array[$file_data_key]['extension'].'" style="margin-left:'. (16 * $file_data_array[$file_data_key]['folderDepth']) . 'px" />';
             } else {
                 $file_data_array[$file_data_key]['icon'] = '<img src="'.$extensionMatrix_array['unknown'].'" border="0" width="16" height="16" alt="'.$file_data_array[$file_data_key]['extension'].'" style="margin-left:'. (16 * $file_data_array[$file_data_key]['folderDepth']) . 'px" />';
             }
@@ -518,7 +518,7 @@ EOT;
         print "    <permission>".$permission."</permission>".$newLine;
     }
     $loopCounter++;
-    if ($file_data_array[$file_data_key]['file'] != '' && $file_data_array[$file_data_key]['status'] != 'remove') {
+    if ($file_data_array[$file_data_key]['file'] != '' && $file_data_array[$file_data_key]['status'] != 'remove' && in_array($file_data_array[$file_data_key]['extension'],$textFileExtensions_array) != TRUE) {
       $hash = md5($file_data_values['fullpath']);
     } else {
       $hash = '';

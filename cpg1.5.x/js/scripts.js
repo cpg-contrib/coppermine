@@ -11,9 +11,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision$
-  $LastChangedBy$
-  $Date$
+  $Revision: 4224 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-01-26 12:42:00 +0100 (Sa, 26 Jan 2008) $
 **********************************************/
 
 function MM_openBrWindow(theURL,winName,features) { //v2.0

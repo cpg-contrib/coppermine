@@ -128,10 +128,9 @@ function theme_javascript_head() {
 		}
 	}
 
-    $return .= '<script type="text/javascript" src="scripts.js"></script>'; // do not remove this line unless you really know what you're doing
     $return .= <<< EOT
 
-<script language="JavaScript" type="text/JavaScript">
+<script language="JavaScript" type="text/javascript">
 <!--
 function MM_findObj(n, d) { //v4.01
   var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
