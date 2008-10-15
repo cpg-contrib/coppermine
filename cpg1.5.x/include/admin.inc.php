@@ -30,11 +30,13 @@ $config_data = array(
       'type'      => 'textfield',
       'help_link' => 'f=configuration.htm&amp;as=admin_general_name&amp;ae=admin_general_name_end',
       'regex_not' => '^Your gallery name here$',
+      'default_value' => '',
     ),
     'gallery_description' => array(
       'type'      => 'textfield',
       'help_link' => 'f=configuration.htm&amp;as=admin_general_description&amp;ae=admin_general_description_end',
       'regex_not' => '^Your gallery description here$',
+      'default_value' => '',
     ),
     'gallery_admin_email' => array(
       'type'      => 'textfield',
@@ -53,6 +55,7 @@ $config_data = array(
                      .'([a-zA-Z]{2,4})'
                      .'$',
       'regex_not' => '^you@somewhere\.com$',
+      'default_value' => '',
     ),
     'ecards_more_pic_target' => array(
       'type'      => 'textfield',
@@ -79,6 +82,7 @@ $config_data = array(
                      .'$',
       'regex_not'              => '^http://yoursite.tld/your_coppermine_folder/$',
       'additional_description' => $lang_admin_php['ecards_more_pic_target_detail'],
+      'default_value' => '',
     ),
     'home_target' => array(
       'type'          => 'textfield',
@@ -210,6 +214,7 @@ $config_data = array(
       'type'      => 'select',
       'help_link' => 'f=configuration.htm&amp;as=admin_theme_theme&amp;ae=admin_theme_theme_end',
       'options'   => form_get_foldercontent('themes/','folder', '',array('sample', '.svn')),
+      'default_value' => 'classic',
     ),
     'theme_list' => array(
       'type'          => 'checkbox',
@@ -245,10 +250,12 @@ $config_data = array(
     ),
     'custom_lnk_name' => array(
       'type'      => 'textfield',
+      'default_value' => '',
       'help_link' => 'f=configuration.htm&amp;as=admin_theme_custom_lnk_name&amp;ae=admin_theme_custom_lnk_name_end',
     ),
     'custom_lnk_url' => array(
       'type'      => 'textfield',
+      'default_value' => '',
       'help_link' => 'f=configuration.htm&amp;as=admin_language_custom_lnk_url&amp;ae=admin_language_custom_lnk_url_end',
     ),
     'enable_menu_icons' => array(
@@ -268,6 +275,7 @@ $config_data = array(
     ),
     'display_social_bookmarks' => array(
       'type'      => 'select_multiple',
+      'default_value' => '0',
       'help_link' => 'f=configuration.htm&amp;as=admin_social_bookmarks&amp;ae=admin_social_bookmarks_end',
       'options'   => array(
                        'myAOL', 
@@ -290,10 +298,12 @@ $config_data = array(
     ),
     'custom_header_path' => array(
       'type'      => 'textfield',
+      'default_value' => '',
       'help_link' => 'f=configuration.htm&amp;as=admin_theme_include_path_start&amp;ae=admin_theme_include_path_end',
     ),
     'custom_footer_path' => array(
       'type'      => 'textfield',
+      'default_value' => '',
       'help_link' => 'f=configuration.htm&amp;as=admin_theme_include_path_start&amp;ae=admin_theme_include_path_end',
     ),
     'browse_by_date' => array(
@@ -460,6 +470,7 @@ $config_data = array(
     ),
     'alb_desc_thumb' => array(
       'type'      => 'hidden', // not implemented yet
+      'default_value' => '1',
       'help_link' => 'f=configuration.htm&amp;as=admin_thumbnail_display_description&amp;ae=admin_thumbnail_display_description_end',
     ),
     'thumbnail_to_fullsize' => array(
@@ -639,10 +650,12 @@ $config_data = array(
     ),
     'comments_anon_pfx' => array(
       'type'      => 'textfield',
+      'default_value' => 'Guest_',
       'help_link' => 'f=configuration.htm&amp;as=comments_anon_pfx&amp;ae=comments_anon_pfx_end',
     ),
     'comment_approval' => array(
       'type'      => 'radio',
+      'default_value' => '0',
       'help_link' => 'f=configuration.htm&amp;as=admin_comment_approval&amp;ae=admin_comment_approval_end',
       'options'   => array(
                        $lang_common['no'],
@@ -657,11 +670,12 @@ $config_data = array(
     ),
     'comment_placeholder' => array(
       'type'          => 'checkbox',
-      'default_value' => 'Guest_',
+      'default_value' => '1',
       'help_link'     => 'f=configuration.htm&amp;as=admin_comment_display_placeholder_start&amp;ae=admin_comment_display_placeholder_end',
     ),
     'comment_user_edit' => array(
       'type'      => 'checkbox',
+      'default_value' => '1',
       'help_link' => 'f=configuration.htm&amp;as=admin_comment_user_edit_start&amp;ae=admin_comment_user_edit_end',
     ),
     'comment_captcha' => array(
@@ -929,6 +943,7 @@ $config_data = array(
     ),
     'allowed_file_extensions' => array(
       'type'      => 'hidden',
+      'default_value' => '',
       'help_link' => 'f=configuration.htm&amp;as=&amp;ae=_end',
     ),
     'allowed_img_types' => array(
@@ -966,7 +981,7 @@ $config_data = array(
     ),
     'thumb_method' => array(
       'type'          => 'select',
-      'default_value' => '2',
+      'default_value' => 'gd2',
       'help_link'     => 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_resize_method&amp;ae=admin_picture_thumb_advanced_resize_method_end',
       'options'       => array(
                            'Image Magick'   => 'im',
@@ -976,6 +991,7 @@ $config_data = array(
     ),
     'impath' => array(
       'type'      => 'textfield',
+      'default_value' => '',
       'help_link' => 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_im_path&amp;ae=admin_picture_thumb_advanced_im_path_end',
     ),
     'im_options' => array(
@@ -1049,7 +1065,7 @@ $config_data = array(
     ),
     'where_put_watermark' => array(
       'type'          => 'select',
-      'default_value' => '0',
+      'default_value' => 'southeast',
       'help_link'     => 'f=configuration.htm&amp;as=admin_watermarking_orientation&amp;ae=admin_watermarking_orientation_end',
       'options'       => array(
                            $lang_admin_php['wm_bottomright'] => 'southeast',
@@ -1061,7 +1077,7 @@ $config_data = array(
     ),
     'which_files_to_watermark' => array(
       'type'          => 'select',
-      'default_value' => '0',
+      'default_value' => 'both',
       'help_link'     => 'f=configuration.htm&amp;as=admin_watermarking_filetype&amp;ae=admin_watermarking_filetype_end',
       'options'       => array(
                            $lang_admin_php['wm_both']     => 'both',
@@ -1118,6 +1134,7 @@ $config_data = array(
     ),
     'global_registration_pw' => array(
       'type'      => 'textfield',
+      'default_value' => '',
       'bridged'   => 'hide',
       'help_link' => 'f=configuration.htm&amp;as=admin_global_registration_pw&amp;ae=admin_global_registration_pw_end',
     ),
@@ -1292,6 +1309,7 @@ $config_data = array(
     ),
     'user_profile5_name' => array(
       'type'      => 'textfield',
+      'default_value' => '',
       'bridged'   => 'hide',
       'help_link' => '',
     ),
@@ -1305,18 +1323,22 @@ $config_data = array(
   'custom_fields_image_description' => array(
     'user_field1_name' => array(
       'type'      => 'textfield',
+      'default_value' => '',
       'help_link' => 'f=configuration.htm&amp;as=admin_custom_image&amp;ae=admin_custom_image_end',
     ),
     'user_field2_name' => array(
       'type'      => 'textfield',
+      'default_value' => '',
       'help_link' => '',
     ),
     'user_field3_name' => array(
       'type'      => 'textfield',
+      'default_value' => '',
       'help_link' => '',
     ),
     'user_field4_name' => array(
       'type'      => 'textfield',
+      'default_value' => '',
       'help_link' => '',
     ),
   ),
@@ -1336,14 +1358,17 @@ $config_data = array(
   'email_settings' => array(
     'smtp_host' => array(
       'type'      => 'textfield',
+      'default_value' => '',
       'help_link' => 'f=configuration.htm&amp;as=admin_email&amp;ae=admin_email_end',
     ),
     'smtp_username' => array(
       'type'      => 'textfield',
+      'default_value' => '',
       'help_link' => '',
     ),
     'smtp_password' => array(
       'type'      => 'textfield',
+      'default_value' => '',
       'help_link' => '',
     ),
   ),

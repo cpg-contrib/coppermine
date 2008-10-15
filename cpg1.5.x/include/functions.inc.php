@@ -4541,7 +4541,7 @@ function cpg_config_set($name, $value) {
 
 	global $CONFIG, $USER_DATA;
 	
-	$value = (string) $value;
+	$value = addslashes($value);
 	
 	if ($CONFIG[$name] === $value) {
 		return;

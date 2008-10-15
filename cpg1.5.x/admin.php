@@ -45,7 +45,6 @@ if (!GALLERY_ADMIN_MODE) {
 
 require_once('include/admin.inc.php'); // populate the array for the admin data (could later be done using an XML file)
 
-
 // loop through the config sections and populate the array that determines what sections to expand/collapse
 $collapseSections_array = array(); // By default, all sections should be hidden. Let's populate the array first with all existing sections and then later remove the ones that are suppossed to be expanded by default
 foreach ($config_data as $key => $value) {
@@ -70,33 +69,22 @@ $problemFields_array = array(); // we'll add field-wrapper-IDs to this array to 
 
 //if (isset($_POST['restore_config'])) {
 if ($superCage->post->keyExists('restore_config')) { // user has chosen to factory-reset the config --- start
-    // Get an array of settings that mustn't be reset
-    $doNotReset_array = array();
-    foreach ($config_data as $config_section_key => $config_section_value) { // loop through the array of config sections --- start
-        foreach ($config_section_value as $adminDataKey => $adminDataValue) { // loop through the array of individual config entries per section --- start
-            if ($adminDataValue['preserve_when_resetting'] == '1') {
-                $doNotReset_array[] = $adminDataKey;
-            }
-        } // loop through the array of individual config entries per section --- end
-    } // loop through the array of config sections --- end
-    $default_config = 'sql/basic.sql';
-    $sql_query = fread(fopen($default_config, 'r'), filesize($default_config));
-    $sql_query = preg_replace('/CPG_/', $CONFIG['TABLE_PREFIX'], $sql_query);
-    cpg_db_query("TRUNCATE TABLE {$CONFIG['TABLE_CONFIG']}");
-    cpg_db_query("TRUNCATE TABLE {$CONFIG['TABLE_FILETYPES']}");
-    $sql_query = remove_remarks($sql_query);
-    $sql_query = split_sql_file($sql_query, ';');
-    $sql_count = count($sql_query);
-    for($i = 0; $i < $sql_count; $i++) {
-        if (strpos($sql_query[$i],'config VALUES') || strpos($sql_query[$i],'filetypes VALUES')) {
-            cpg_db_query($sql_query[$i]);
-        }
-    }
-    // undo the reset for config fields specified in $doNotReset_array
-    foreach ($doNotReset_array as $key) {
-        cpg_config_set($key, $CONFIG[$key]);
-    }
-    cpgRedirectPage($CPG_PHP_SELF, cpg_fetch_icon('warning', 2) . $lang_common['information'], $lang_admin_php['restore_success']);
+
+	foreach ($config_data as $section => $values){
+	
+		foreach ($values as $name => $value) {
+
+			if (!empty($value['preserve_when_resetting'])) {
+				continue;
+			}
+			
+			if (isset($value['default_value'])) {				
+				cpg_config_set($name, $value['default_value']);
+			}
+		}
+	}
+	
+	cpgRedirectPage($CPG_PHP_SELF, cpg_fetch_icon('warning', 2) . $lang_common['information'], $lang_admin_php['restore_success']);
 }  // user has chosen to factory-reset the config --- end
 
 

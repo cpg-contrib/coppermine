@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-10-15 [O] Re-implemented 'restore to defaults' feature {Nibbler}
 2008-10-14 [B] Fixed language and theme selectors that had been inspektified improperly {GauGau}
 2008-10-14 [O] Moved scripts.js into js folder {GauGau}
 2008-10-12 [A] Added known problematic suhosin options to debug output {Nibbler}
