@@ -169,21 +169,26 @@ EOT;
 pageheader($lang_forgot_passwd_php['forgot_passwd']);
 
 echo '<form action="forgot_passwd.php" method="post" name="passwordreminder" id="cpgform">';
-starttable('-1', $lang_forgot_passwd_php['forgot_passwd'], 2);
+$email_icon = cpg_fetch_icon('mail', 2);
+$ok_icon = cpg_fetch_icon('ok', 2);
+starttable('-1', cpg_fetch_icon('key_enter', 2) . $lang_forgot_passwd_php['forgot_passwd'], 2);
 echo <<< EOT
             $lookup_failed
                  <tr>
-                        <td class="tableb" width="40%">{$lang_forgot_passwd_php['enter_email']}</td>
+                        <td class="tableb" width="40%">{$email_icon}{$lang_forgot_passwd_php['enter_email']}</td>
                         <td class="tableb" width="60%"><input type="text" class="textinput" name="email" style="width: 100%" /></td>
 
                   </tr>
                   <tr>
-                        <td colspan="2" align="center" class="tablef"><script language="javascript" type="text/javascript">
-                        <!--
-                        document.passwordreminder.email.focus();
-                        -->
-                        </script>
-                                                <input name="submitted" type="submit" class="button" value="{$lang_forgot_passwd_php['submit']}" /></td>
+                        <td colspan="2" align="center" class="tablef">
+	                        <script language="javascript" type="text/javascript">
+	                        <!--
+	                        document.passwordreminder.email.focus();
+	                        -->
+	                        </script>
+	                        <!--<input name="submitted" type="submit" class="button" value="{$lang_forgot_passwd_php['submit']}" />-->
+	                        <button type="submit" class="button" name="submitted" value="{$lang_common['ok']}"  tabindex="4">{$ok_icon}{$lang_common['ok']}</button>
+                        </td>
                   </tr>
 
 EOT;

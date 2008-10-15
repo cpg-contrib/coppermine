@@ -239,7 +239,7 @@ $maxPage =  $page-1;
 
 $help = '&nbsp;'.cpg_display_help('f=admin_menu.htm&amp;as=ecard_log&amp;ae=ecard_log_end&top=1', '830', '400');
 $tableHeader1 = $lang_db_ecard_php['title']." (".$lang_db_ecard_php['ecard_sorted']." ".$sortText.", ".$sortDirectionText.")" . $help;
-starttable('100%',$tableHeader1,3);
+starttable('100%', cpg_fetch_icon('ecard_review', 2).$tableHeader1,3);
 print '<tr><td class="tableb_compact">';
 printf($lang_db_ecard_php['ecard_number'], $currentStart, $currentEnd, $totalEcards);
 print '</td><td class="tableb_compact">';

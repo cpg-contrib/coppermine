@@ -108,10 +108,10 @@ function cpgUserLastComment($uid) {
 }
 
 $edit_profile_form_param = array(
-    array('text', 'username', $lang_register_php['username']),
-    array('text', 'reg_date', $lang_register_php['reg_date']),
-    array('text', 'group', $lang_register_php['group']),
-    array('text', 'email', $lang_register_php['email'],255),
+    array('text', 'username', cpg_fetch_icon('my_profile', 2) . $lang_register_php['username']),
+    array('text', 'reg_date', cpg_fetch_icon('calendar', 2) . $lang_register_php['reg_date']),
+    array('text', 'group', cpg_fetch_icon('groups_mgr', 2) . $lang_register_php['group']),
+    array('text', 'email', cpg_fetch_icon('mail', 2) . $lang_register_php['email'],255),
     array('input', 'user_profile1', $CONFIG['user_profile1_name'], 255),
     array('input', 'user_profile2', $CONFIG['user_profile2_name'], 255),
     array('input', 'user_profile3', $CONFIG['user_profile3_name'], 255),
