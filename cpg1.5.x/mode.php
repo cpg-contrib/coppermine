@@ -46,16 +46,8 @@ if (($superCage->get->getAlpha('what')) == 'news'){
     $message = $lang_mode_php['news_hide'];
   }
 
-  cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = 'display_coppermine_news'");
-  $CONFIG['display_coppermine_news'] = $value;
-  if ($CONFIG['log_mode'] == CPG_LOG_ALL) {
-      log_write('CONFIG UPDATE SQL: '.
-        "UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = 'display_coppermine_news'\n".
-        'TIME: '.date("F j, Y, g:i a")."\n".
-        'USER: '.$USER_DATA['user_name'],
-        CPG_DATABASE_LOG
-        );
-  }
+  cpg_config_set('display_coppermine_news', $value);
+
   //$referer = $_GET['referer'] ? $_GET['referer'] : 'index.php';
   /*$referer = $superCage->get->keyExists('referer') ? $superCage->get->getRaw('referer') : 'index.php';
   $referer = rawurldecode($referer);

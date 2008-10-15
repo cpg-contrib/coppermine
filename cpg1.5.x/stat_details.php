@@ -172,14 +172,12 @@ require_once('include/init.inc.php');
       $configChangesApplied = '';
       $get_hit_details = $superCage->get->getInt('hit_details');
       if ($get_hit_details != $CONFIG['hit_details'] && $superCage->get->getEscaped('go') != '') {
-          cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '{$get_hit_details}' WHERE name = 'hit_details'");
-          $CONFIG['hit_details'] = $get_hit_details;
+      	 cpg_config_set('hit_details', $get_hit_details);
           $configChangesApplied = $lang_stat_details_php['upd_success'];
       }
       $get_vote_details = $superCage->get->getInt('vote_details');
       if ($get_vote_details != $CONFIG['vote_details'] && $superCage->get->getEscaped('go') != '') {
-          cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '{$get_vote_details}' WHERE name = 'vote_details'");
-          $CONFIG['vote_details'] = $get_vote_details;
+          cpg_config_set('vote_details', $get_vote_details);
           $configChangesApplied = $lang_stat_details_php['upd_success'];
       }
       //if ($_GET['emptyhitstats'] == TRUE || $_GET['emptyvotestats'] == TRUE) {

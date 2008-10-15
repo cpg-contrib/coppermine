@@ -33,20 +33,14 @@ require('include/init.inc.php');
 if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
 // write the plugin enable/disable change to the db
-    if ($superCage->post->keyExists('update_config')) {
-        $value = $superCage->post->getInt('enable_plugins');
-        cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = 'enable_plugins'");
-        $CONFIG['enable_plugins'] = $value;
-        if ($CONFIG['log_mode'] == CPG_LOG_ALL) {
-            log_write('CONFIG UPDATE SQL: '.
-              "UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = 'enable_plugins'\n".
-              'TIME: '.date("F j, Y, g:i a")."\n".
-              'USER: '.$USER_DATA['user_name'],
-              CPG_DATABASE_LOG
-              );
-        }
-        header('Location: pluginmgr.php');
-    }
+if ($superCage->post->keyExists('update_config')) {
+
+	$value = $superCage->post->getInt('enable_plugins');
+    
+	cpg_config_set('enable_plugins', $value);
+    
+	header('Location: pluginmgr.php');
+}
 
 function display_plugin_list() {
     global $CPG_PLUGINS, $lang_pluginmgr_php, $lang_plugin_php, $lang_common, $CONFIG, $CPG_PHP_SELF;

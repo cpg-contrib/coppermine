@@ -47,8 +47,7 @@ if ($superCage->post->keyExists('is_submit')) {
         }
         if ($approval_only != $CONFIG['display_comment_approval_only']) {
             // the user wants to see the option changed - let's write it to the database
-            cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$approval_only' WHERE name = 'display_comment_approval_only'");
-            $CONFIG['display_comment_approval_only'] = $approval_only;
+            cpg_config_set('display_comment_approval_only', $approval_only);
             $flag_conf_change = 1;
         }
 }

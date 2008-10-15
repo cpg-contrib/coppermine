@@ -121,12 +121,6 @@ function charset_convert($table_name, $column_name, $index_name, $charsetin, $ch
 
 }
 
-function set_config($name, $value)
-{
-    global $CONFIG;
-    cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value='$value' WHERE name='$name'");
-}
-
 // Either checks or carries out the conversion in all the necessary fields
 function register_changes()
 {
@@ -215,7 +209,7 @@ echo '<div class="input"><input type="submit" class="button" name="convert" valu
             if ($doconvert)
             {
                 // the script has succeeded (hopefully): we change the charset accordingly in the database
-                set_config('charset', $charsetout);
+                cpg_config_set('charset', $charsetout);
 
                 echo <<<EOT
                     <div class="warning">
@@ -244,7 +238,7 @@ if ($CONFIG['charset'] == 'language file')
     $thecharset = $lang_charset;
     $languagefilecfg = 1;
     // we set the charset once and for all (better than 'language file')
-    set_config('charset', $thecharset);
+    cpg_config_set('charset', $thecharset);
 }
 else
 {
@@ -292,7 +286,7 @@ if ($thecharset == 'utf-8')
 
 if (!$alreadyunicode && !$iconvavailable) // can't run the script but need it
 {
-    set_config('lang', 'english');
+    cpg_config_set('lang', 'english');
     echo '<p class="warning">The <a href="http://www.php.net/iconv">iconv</a> function is not available. <strong>You cannot use this script.</strong> Coppermine will now run in English. <br/>You may install iconv and start this script again. You should now <a href="index.php?lang=english">proceed to the main page</a>.</p>';
 }
 

@@ -288,18 +288,10 @@ function verify_children($parent, $cid)
 }
 
 if ($superCage->post->keyExists('update_config')) {
-    $value = $superCage->post->getInt('update_config');
-            cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = 'categories_alpha_sort'");
-            $CONFIG['categories_alpha_sort'] = $value;
-            if ($CONFIG['log_mode'] == CPG_LOG_ALL) {
-                    log_write('CONFIG UPDATE SQL: '.
-                              "UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = 'categories_alpha_sort'\n".
-                              'TIME: '.date("F j, Y, g:i a")."\n".
-                              'USER: '.$USER_DATA['user_name'],
-                              CPG_DATABASE_LOG
-                              );
-            }
 
+    $value = $superCage->post->getInt('categories_alpha_sort');
+    
+    cpg_config_set('categories_alpha_sort', $value);
 }
 
 

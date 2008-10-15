@@ -94,7 +94,7 @@ if ($superCage->post->keyExists('restore_config')) { // user has chosen to facto
     }
     // undo the reset for config fields specified in $doNotReset_array
     foreach ($doNotReset_array as $key) {
-        $f= cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '{$CONFIG[$key]}' WHERE name = '$key'");
+        cpg_config_set($key, $CONFIG[$key]);
     }
     cpgRedirectPage($CPG_PHP_SELF, cpg_fetch_icon('warning', 2) . $lang_common['information'], $lang_admin_php['restore_success']);
 }  // user has chosen to factory-reset the config --- end
@@ -152,16 +152,11 @@ foreach ($config_data as $config_section_key => $config_section_value) { // Loop
         }
         if ($superCage->post->keyExists('update_config') && $regexValidation == '1' && $evaluate_value != $CONFIG[$adminDataKey] && $CONFIG[$adminDataKey] !== stripslashes($evaluate_value) ) {
             //  finally, all criteria have been met - let's write the updated data to the database
-            cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$evaluate_value' WHERE name = '$adminDataKey'");
+            
+            cpg_config_set($adminDataKey, $evaluate_value);
+            
             // perform special tasks -- start
-            if ($CONFIG['log_mode'] == CPG_LOG_ALL) { // write log -- start
-                log_write('CONFIG UPDATE SQL: '.
-                          "UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$evaluate_value' WHERE name = '$adminDataKey'\n".
-                          'TIME: '.date("F j, Y, g:i a")."\n".
-                          'USER: '.$USER_DATA['user_name'],
-                          CPG_DATABASE_LOG
-                          );
-            } // write log -- end
+
             // Code to rename system thumbs in images folder
             $old_thumb_pfx =& $CONFIG['thumb_pfx'];
             $matches = $superCage->post->getMatched('thumb_pfx','/^[0-9A-Za-z_-]+$/');

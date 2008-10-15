@@ -175,7 +175,9 @@ function write_to_db($step) {
     if ($value != '0' && $value != '1') {
         $value = $CONFIG['bridge_enable'];
     }
-    cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = 'bridge_enable'");
+    
+    cpg_config_set('bridge_enable', $value);
+    
     if ($posted_var['clear_unused_db_fields'] == 1) {
         // clear all database entries that aren't actually used with the current bridge file
         // not implemented yet (not sure if necessary after all)
@@ -951,7 +953,9 @@ else { // not in gallery admin mode --- start
         }
         if ($retrieved_data['user_name'] == $posted_var['username'] && $retrieved_data['user_password'] == $encpassword && $retrieved_data['user_name'] != '' ) {
             // authentification successfull
-            cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '0' WHERE name = 'bridge_enable'");
+            
+            cpg_config_set('bridge_enable', '0');
+            
             cpg_db_query("UPDATE {$CONFIG['TABLE_BRIDGE']} SET value = '0' WHERE name = 'recovery_logon_failures'");
             cpg_db_query("UPDATE {$CONFIG['TABLE_BRIDGE']} SET value = NOW() WHERE name = 'recovery_logon_timestamp'");
 

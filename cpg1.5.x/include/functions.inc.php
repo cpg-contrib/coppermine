@@ -4537,5 +4537,31 @@ if (!function_exists('array_is_associative')) { // make sure that this will not 
     }
 }
 
+function cpg_config_set($name, $value) {
+
+	global $CONFIG, $USER_DATA;
+	
+	$value = (string) $value;
+	
+	if ($CONFIG[$name] === $value) {
+		return;
+	}
+	
+	$sql = "UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = '$name'";
+	
+	cpg_db_query($sql);
+
+	$CONFIG[$name] = $value;
+	
+	if ($CONFIG['log_mode'] == CPG_LOG_ALL) {
+	
+		log_write(
+			"CONFIG UPDATE SQL: $sql\n".
+			'TIME: '.date("F j, Y, g:i a")."\n".
+			'USER: '.$USER_DATA['user_name'],
+			CPG_DATABASE_LOG
+		);
+	}      
+}
 
 ?>
