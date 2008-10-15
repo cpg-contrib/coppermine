@@ -22,7 +22,7 @@ define('RATEPIC_PHP', true);
 
 require('include/init.inc.php');
 // Check if required parameters are present
-if (!$superCage->get->keyExists('pic') || !$superCage->get->keyExists('rate') || !$superCage->get->keyExists('id')) {
+if (!$superCage->get->keyExists('pic') || !$superCage->get->keyExists('rate')) {
     //send back voting failure to ajax request
 	$send_back = array('status' => 'error', 'msg' => $lang_errors['param_missing']);
 	echo json_encode($send_back);
