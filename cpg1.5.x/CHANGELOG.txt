@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-10-15 [B] Fixed a few bugs caused because of typos {Abbas}
 2008-10-15 [O] Re-implemented 'restore to defaults' feature {Nibbler}
 2008-10-14 [B] Fixed language and theme selectors that had been inspektified improperly {GauGau}
 2008-10-14 [O] Moved scripts.js into js folder {GauGau}
@@ -37,7 +38,7 @@ Changelog
 2008-10-06 [A] Added option to promote XP Publisher on upload page {GauGau}
 2008-10-05 [B] Fixed versioncheck in installer and changed method of installation steps {SaWey}
 2008-10-04 [B] Fixed ratepic.php to not do unnecessary things {SaWey}
-2008-10-04 [B] Fixed typo in basic.sql as noted by François and corrected all other language insertions {SaWey}
+2008-10-04 [B] Fixed typo in basic.sql as noted by Franï¿½ois and corrected all other language insertions {SaWey}
 2008-10-02 [A] Added language manager {GauGau}
 2008-09-27 [A] Added optional text file for favorites download {GauGau}
 2008-09-17 [A] Added license display to installer {GauGau}
