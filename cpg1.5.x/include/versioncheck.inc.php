@@ -380,12 +380,12 @@ function cpg_versioncheckPopulateArray($file_data_array) {
                     $file_data_array[$file_data_key]['txt_version'] = $lang_versioncheck_php['not_applicable'].' ('.$lang_common['ok'].')';
                     // binary files don't come with version numbers -- end
                     // check the md5 hashes --- start
-                    if(function_exists('md5')) { // the MD5-function may not exist
+                    if(function_exists('md5_file')) { // the MD5-function may not exist
                         // Do we have an md5-hash that we could compare against? -- start
                         if ($file_data_array[$file_data_key]['hash'] != '') {
                             // only perform the md5-check if the versions and revisions match anyway - we'd be comparing apples with bananas if we checked the hashes otherwise -- start
                             if ($file_data_array[$file_data_key]['version'] == $file_data_array[$file_data_key]['local_version'] && $file_data_array[$file_data_key]['revision'] == $file_data_array[$file_data_key]['local_revision']) { 
-                                $file_data_array[$file_data_key]['local_hash'] = md5($file_data_values['fullpath']);
+                                $file_data_array[$file_data_key]['local_hash'] = md5_file($file_data_values['fullpath']);
                                 if ($file_data_array[$file_data_key]['local_hash'] == $file_data_array[$file_data_key]['hash']) {
                                     $file_data_array[$file_data_key]['unmodified'] = 1;
                                     $file_data_array[$file_data_key]['txt_revision'] = $lang_versioncheck_php['not_modified'] . ' ('.$lang_common['ok'].')';
@@ -519,7 +519,7 @@ EOT;
     }
     $loopCounter++;
     if ($file_data_array[$file_data_key]['file'] != '' && $file_data_array[$file_data_key]['status'] != 'remove' && in_array($file_data_array[$file_data_key]['extension'],$textFileExtensions_array) != TRUE) {
-      $hash = md5($file_data_values['fullpath']);
+      $hash = md5_file($file_data_values['fullpath']);
     } else {
       $hash = '';
     }
