@@ -11,7 +11,7 @@
 
   ********************************************
   Coppermine version: 1.5.0
-  $Source: /cvsroot/coppermine/devel/admin.php,v $
+  $Source: $
   $Revision$
   $LastChangedBy$
   $Date$
