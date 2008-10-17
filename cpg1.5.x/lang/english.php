@@ -1625,6 +1625,7 @@ if (defined('LANGMGR_PHP')) $lang_langmgr_php = array(
   'complete' => 'Complete',
   'default' => 'Default',
   'missing' => 'missing',
+  'broken' => 'appears to be broken or inaccessible',
   'exists_in_db_and_file' => 'exists in database and as file',
   'exists_as_file_only' => 'exists as file only',
   'pick_a_flag' => 'Pick one',
