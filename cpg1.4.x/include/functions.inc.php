@@ -929,7 +929,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
         // Keyword
         if (!empty($CURRENT_ALBUM_KEYWORD)){
                 $keyword = "OR (keywords like '%$CURRENT_ALBUM_KEYWORD%' $forbidden_set_string )";
-        } else $keyword = '';
+        } else {
+        	$keyword = '';
+        }
 
         // Regular albums
         if ((is_numeric($album))) {
@@ -959,7 +961,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 $rowset = cpg_db_fetch_rowset($result);
                 mysql_free_result($result);
                 // Set picture caption
-                if ($set_caption) build_caption($rowset);
+                if ($set_caption) {
+                	build_caption($rowset);
+                }
 
 
         $rowset = CPGPluginAPI::filter('thumb_caption_regular',$rowset);
