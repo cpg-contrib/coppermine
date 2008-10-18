@@ -68,9 +68,12 @@ if (!is_image($row['filename'])) cpg_die(ERROR, $lang_ecard_php['error_not_image
 $valid_email_pattern = "^[_\.0-9a-z\-]+@([0-9a-z][0-9a-z-]*\.)+[a-z]{2,6}$";
 $valid_sender_email = eregi($valid_email_pattern, $sender_email);
 $valid_recipient_email = eregi($valid_email_pattern, $recipient_email);
-$invalid_email = '<font size="1">' . $lang_ecard_php['invalid_email'] . ' (' . $recipient_email . ')</font>';
-if (!$valid_sender_email && count($_POST) > 0) $sender_email_warning = $invalid_email;
-if (!$valid_recipient_email && count($_POST) > 0) $recipient_email_warning = $invalid_email;
+if (!$valid_sender_email && count($_POST) > 0) {
+	$sender_email_warning = '<font size="1">' . $lang_ecard_php['invalid_email'] . ' (' . $sender_email . ')</font>';
+}
+if (!$valid_recipient_email && count($_POST) > 0) {
+	$recipient_email_warning = '<font size="1">' . $lang_ecard_php['invalid_email'] . ' (' . $recipient_email . ')</font>';
+}
 
 $gallery_url_prefix = $CONFIG['ecards_more_pic_target']. (substr($CONFIG['ecards_more_pic_target'], -1) == '/' ? '' : '/');
 
