@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-10-18 [C] Improved improper translation (thread ID 50460) {GauGau}
 2008-10-17 [A] Added "modified" column to versioncheck to find out if a file has been tampered with {GauGau}
 2008-10-15 [B] Fixed a few bugs caused because of typos {Abbas}
 2008-10-15 [O] Re-implemented 'restore to defaults' feature {Nibbler}
