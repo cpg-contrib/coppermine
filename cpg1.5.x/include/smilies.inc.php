@@ -160,7 +160,7 @@ function generate_smilies($form = 'post', $field = 'message')
 <!--
 function emoticon_$form(text) {
         text = ' ' + text + ' ';
-        if (document.$form.$field.createTextRange && document.post.message.caretPos) {
+        if (document.$form.$field.createTextRange && document.$form.$field.caretPos) {
                 var caretPos = document.$form.$field.caretPos;
                 caretPos.text = caretPos.text.charAt(caretPos.text.length - 1) == ' ' ? text + ' ' : text;
                 document.$form.$field.focus();
