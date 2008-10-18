@@ -62,10 +62,10 @@ echo <<< EOT
                 <td class="tableb">
                     {$lang_pluginmgr_php['plugin_enabled']}
                 </td>
-                <td class="table">
-                    <input type="radio" id="enable_plugins1" name="enable_plugins" value="1"  onclick="document.pluginenableconfig.submit();" $yes_selected /><label for="enable_plugins1" class="clickable_option">{$lang_common['yes']}</label>
+                <td class="tableb">
+                    <input type="radio" id="enable_plugins1" name="enable_plugins" value="1"  onclick="document.pluginenableconfig.submit();" $yes_selected class="radio" /><label for="enable_plugins1" class="clickable_option">{$lang_common['yes']}</label>
                     &nbsp;&nbsp;
-                    <input type="radio" id="enable_plugins0" name="enable_plugins" value="0"  onclick="document.pluginenableconfig.submit();" $no_selected /><label for="enable_plugins0" class="clickable_option">{$lang_common['no']}</label>
+                    <input type="radio" id="enable_plugins0" name="enable_plugins" value="0"  onclick="document.pluginenableconfig.submit();" $no_selected class="radio" /><label for="enable_plugins0" class="clickable_option">{$lang_common['no']}</label>
                     <input type="hidden" name="update_config" value="1" />
                 </td>
                 <td class="tableb">
