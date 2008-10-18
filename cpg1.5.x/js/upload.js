@@ -11,9 +11,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL$
-  $Revision: 4502 $
-  $LastChangedBy: pvanrompay $
-  $Date: 2008-06-06 00:21:20 +0200 (Fr, 06 Jun 2008) $
+  $Revision$
+  $LastChangedBy$
+  $Date$
 **********************************************/
 
 /**

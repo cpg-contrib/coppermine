@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $Source: /cvsroot/coppermine/devel/admin.php,v $
-  $Revision: 5049 $
-  $LastChangedBy: pvanrompay $
-  $Date: 2008-09-22 00:22:33 +0200 (Mo, 22 Sep 2008) $
+  $Revision$
+  $LastChangedBy$
+  $Date$
 **********************************************/
  
 define('IN_COPPERMINE', true);
