@@ -845,27 +845,30 @@ if (empty($num_URI_boxes) && empty($num_file_boxes)) {
 }
 
 // Get public and private albums, and set maximum individual file size.
-
-if (GALLERY_ADMIN_MODE) {
-    $public_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " ORDER BY title");
+if (USER_CAN_UPLOAD_PICTURES){
+	if (GALLERY_ADMIN_MODE) {
+	    $public_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " ORDER BY title");
+	} else {
+	        $public_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " AND uploads='YES' AND (visibility = '0' OR visibility IN ".USER_GROUP_SET.") ORDER BY title");
+	}
+	if (mysql_num_rows($public_albums)) {
+	    $public_albums_list = cpg_db_fetch_rowset($public_albums);
+	} else {
+	    $public_albums_list = array();
+	}
+	
+	if (USER_ID) {
+	    $user_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='" . (FIRST_USER_CAT + USER_ID) . "' ORDER BY title");
+	    if (mysql_num_rows($user_albums)) {
+	        $user_albums_list = cpg_db_fetch_rowset($user_albums);
+	    } else {
+	        $user_albums_list = array();
+	    }
+	} else {
+	    $user_albums_list = array();
+	}
 } else {
-        $public_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " AND uploads='YES' AND (visibility = '0' OR visibility IN ".USER_GROUP_SET.") ORDER BY title");
-}
-if (mysql_num_rows($public_albums)) {
-    $public_albums_list = cpg_db_fetch_rowset($public_albums);
-} else {
-    $public_albums_list = array();
-}
-
-if (USER_ID) {
-    $user_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='" . (FIRST_USER_CAT + USER_ID) . "' ORDER BY title");
-    if (mysql_num_rows($user_albums)) {
-        $user_albums_list = cpg_db_fetch_rowset($user_albums);
-    } else {
-        $user_albums_list = array();
-    }
-} else {
-    $user_albums_list = array();
+	$public_albums_list = array();
 }
 
 if (!count($public_albums_list) && !count($user_albums_list)) {  // there's no album where the user is allowed to upload to

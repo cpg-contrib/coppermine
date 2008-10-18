@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-10-18 [B] Fixed upload permission issue for bridged galleries (thread ID 50798) {GauGau}
 2008-10-18 [C] Improved improper translation (thread ID 50460) {GauGau}
 2008-10-08 [B] Corrected SMF2 anonymous user fix {Nibbler}
 2008-09-17 [O] Reduced memory usage of keyword manager {Nibbler}
