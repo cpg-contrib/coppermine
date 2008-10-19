@@ -118,7 +118,7 @@ require_once('include/init.inc.php');
             $date_display_fmt = $log_date_fmt;
         } elseif($get_date_display == 3) {
             $date_display = 3;
-            $date_display_fmt = '%Y-%m-%d %H:%M:%S';;
+            $date_display_fmt = '%Y-%m-%d %H:%M:%S';
         } else {
             $date_display = 4;
             $date_display_fmt = '%Y-%m-%d';

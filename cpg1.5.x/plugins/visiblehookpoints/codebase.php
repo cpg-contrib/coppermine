@@ -470,7 +470,7 @@ if (!class_exists('dBug')) {
             //if variable is a boolean type
             function varIsBoolean($var) {
                     $var=($var==1) ? "TRUE" : "FALSE";
-                    echo $var."</td>\n</tr>\n";;
+                    echo $var."</td>\n</tr>\n";
             }
 
             //if variable is an array type

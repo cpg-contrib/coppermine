@@ -3666,7 +3666,7 @@ function replace_forbidden($str)
      * $str may also come from $_POST, in this case, all &, ", etc will get replaced with entities.
      * Replace them back to normal chars so that the str_replace below can work.
      */
-    $str = str_replace(array('&amp;', '&quot;', '&lt;', '&gt;'), array('&', '"', '<', '>'), $str);;
+    $str = str_replace(array('&amp;', '&quot;', '&lt;', '&gt;'), array('&', '"', '<', '>'), $str);
 
     $return = str_replace($forbidden_chars[0], '_', $str);
 
