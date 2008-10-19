@@ -32,9 +32,11 @@ function display_disclaimer()
     global $CONFIG; //, $PHP_SELF;
     global $lang_register_disclamer, $lang_register_php;
 
-    starttable(-1, $lang_register_php['term_cond']);
     echo <<<EOT
         <form method="post" action="{$_SERVER['PHP_SELF']}">
+EOT;
+    starttable(-1, $lang_register_php['term_cond']);
+    echo <<<EOT
         <tr>
                 <td class="tableb" style="padding: 10px;">
 
@@ -49,10 +51,10 @@ EOT;
                         <input type="submit" name="agree" value="{$lang_register_php['i_agree']}" class="button" />
                 </td>
         </tr>
-        </form>
 
 EOT;
     endtable();
+    print '</form>';
 }
 
 function input_user_info($errors = '')
@@ -60,11 +62,11 @@ function input_user_info($errors = '')
     global $CONFIG; //, $PHP_SELF;
     global $lang_register_php;
 
-    starttable(-1, $lang_register_php['enter_info'], 2);
     echo <<<EOT
         <form method="post" action="{$_SERVER['PHP_SELF']}">
 
 EOT;
+    starttable(-1, $lang_register_php['enter_info'], 2);
 
     $form_data = array(
         array('label', $lang_register_php['required_info']),
@@ -86,7 +88,7 @@ EOT;
             echo <<<EOT
         <tr>
             <td colspan="2" class="tableh2">
-                        <b>{$element[1]}<b>
+                        <b>{$element[1]}</b>
         </td>
         </tr>
 
@@ -147,7 +149,7 @@ EOT;
                         {$element[2]}
         </td>
         <td width="60%" class="tableb" valign="top">
-                <textarea name="{$element[1]}" rows="7" wrap="virtual"  class="textinput" style="width:100%">$value</textarea>
+                <textarea name="{$element[1]}" rows="7" cols="60" class="textinput" style="width:100%">$value</textarea>
                 </td>
         </tr>
 
@@ -182,7 +184,7 @@ EOT;
         </tr>
         <tr>
                 <td colspan="2" class="tableb">
-                        <b><ul>$errors</ul><b>
+                        <ul>$errors</ul>
                 </td>
         </tr>
 
@@ -194,10 +196,10 @@ EOT;
                         <input type="submit" name="submit" value="{$lang_register_php['submit']}" class="button" />
                 </td>
         </tr>
-        </form>
 
 EOT;
     endtable();
+    print '</form>';
 }
 
 function get_post_var($var)
