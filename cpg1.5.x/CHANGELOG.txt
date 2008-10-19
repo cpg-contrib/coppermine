@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-10-19 [C] Fixed validation issue with registration screen (thread ID 51310) {GauGau}
 2008-10-18 [B] Added error message if pic editor is being run with missing parameters or without authorization (thread ID 54414) {GauGau}
 2008-10-18 [B] Fixed error message in ecard.php that complained about wrong recipient email although sender email is wrong (thread ID 50844) {GauGau}
 2008-10-18 [C] Fixed minor smilies issue (thread ID 52804) {GauGau}

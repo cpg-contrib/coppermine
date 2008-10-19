@@ -47,9 +47,11 @@ function display_disclaimer() { // Display the disclaimer - start
     global $CONFIG, $CPG_PHP_SELF; //, $PHP_SELF;
     global $lang_register_disclamer, $lang_register_php;
 
-    starttable(-1, cpg_fetch_icon('add_user', 2) . $lang_register_php['term_cond']);
     echo <<<EOT
         <form name="cpgform" id="cpgform" method="post" action="$CPG_PHP_SELF">
+EOT;
+	starttable(-1, cpg_fetch_icon('add_user', 2) . $lang_register_php['term_cond']);
+	echo <<<EOT
         <tr>
                 <td class="tableb" style="padding: 10px;">
 
@@ -64,10 +66,10 @@ EOT;
                         <input type="submit" name="agree" value="{$lang_register_php['i_agree']}" class="button" />
                 </td>
         </tr>
-        </form>
 
 EOT;
     endtable();
+    print '        </form>';
 } // Display the disclaimer - end
 
 /**
@@ -222,7 +224,7 @@ EOT;
                           {$element[2]}
           </td>
           <td width="60%" class="tableb" valign="top">
-                  <textarea name="{$element[1]}" rows="7" wrap="virtual"  class="textinput" style="width:100%">$value</textarea>
+                  <textarea name="{$element[1]}" rows="7" cols="60" class="textinput" style="width:100%">$value</textarea>
                   </td>
           </tr>
 
@@ -247,7 +249,11 @@ EOT;
 
             case 'hidden' :
                 echo <<<EOT
+          <tr>
+              <td colspan="2" class="tableb">
                 <input type="hidden" name="{$element[1]}" value="{$element[2]}" />
+              </td>
+          </tr>
 
 EOT;
             break;
@@ -295,10 +301,10 @@ EOT;
                         <input type="submit" name="submit" value="{$lang_register_php['submit']}" class="button" />
                 </td>
         </tr>
-        </form>
 
 EOT;
     endtable();
+    print '        </form>';
 } // function input_user_info - end
 
 /**
