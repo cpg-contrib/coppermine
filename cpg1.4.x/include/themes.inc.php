@@ -1258,7 +1258,7 @@ if (!function_exists('pagefooter')) {  //{THEMES}
 function pagefooter()
 {
     //global $HTTP_GET_VARS, $HTTP_POST_VARS, $HTTP_SERVER_VARS;
-    global $USER, $USER_DATA, $ALBUM_SET, $CONFIG, $time_start, $query_stats, $queries;;
+    global $USER, $USER_DATA, $ALBUM_SET, $CONFIG, $time_start, $query_stats, $queries;
     global $template_footer;
 
     $custom_footer = cpg_get_custom_include($CONFIG['custom_footer_path']);

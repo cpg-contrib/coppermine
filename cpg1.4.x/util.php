@@ -316,7 +316,7 @@ function del_orig()
                                 cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET filesize='$image_filesize', total_filesize='$total_filesize', pwidth='{$imagesize[0]}', pheight='{$imagesize[1]}' WHERE pid='$pid' ");
                                 printf($lang_util_php['main_success'], $normal);
                         } else {
-                                echo (!$renamed) ? sprintf($lang_util_php['error_rename'], $normal, $image) : sprintf($lang_util_php['error_deleting'], $image);;
+                                echo (!$renamed) ? sprintf($lang_util_php['error_rename'], $normal, $image) : sprintf($lang_util_php['error_deleting'], $image);
                         }
                 } else {
                         printf($lang_util_php['error_not_found'], $normal);

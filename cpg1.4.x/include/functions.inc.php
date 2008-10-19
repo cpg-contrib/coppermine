@@ -1715,7 +1715,7 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
                         $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['thumb_width']);
 
                         $thumb_list[$i]['pos'] = $key < 0 ? $key : $i - 1 + $lower_limit;
-                        $thumb_list[$i]['pid'] = $row['pid'];;
+                        $thumb_list[$i]['pid'] = $row['pid'];
                         $thumb_list[$i]['image'] = "<img src=\"" . $pic_url . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$row['filename']}\" title=\"$pic_title\"/>";
                         $thumb_list[$i]['caption'] = bb_decode($row['caption_text']);
                         $thumb_list[$i]['admin_menu'] = '';
@@ -2955,7 +2955,7 @@ function replace_forbidden($str)
    * $str may also come from $_POST, in this case, all &, ", etc will get replaced with entities.
    * Replace them back to normal chars so that the str_replace below can work.
    */
-  $str = str_replace(array('&amp;', '&quot;', '&lt;', '&gt;'), array('&', '"', '<', '>'), $str);;
+  $str = str_replace(array('&amp;', '&quot;', '&lt;', '&gt;'), array('&', '"', '<', '>'), $str);
   $return = str_replace($forbidden_chars[0], '_', $str);
 
   /**
