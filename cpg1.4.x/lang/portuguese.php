@@ -26,7 +26,7 @@ $lang_translation_info = array(
   'lang_country_code' => 'pt', //cpg1.4
   'trans_name'=> 'Pedro Cotter',
   'trans_email' => 'pcotter@pcotter.com',
-  'trans_website' => 'www.pcotter.com',
+  'trans_website' => 'http://www.pcotter.com/',
   'trans_date' => '2006.01.06',
 );
 

@@ -21,7 +21,7 @@ if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 
 // info about translators and translated language
 $lang_translation_info = array(
-  'lang_name_english' => 'Portuguese', //cpg1.4
+  'lang_name_english' => 'Brazilian Portuguese', //cpg1.4
   'lang_name_native' => 'Português', //cpg1.4
   'lang_country_code' => 'br', //cpg1.4
   'trans_name'=> 'Frederico Mottinha de Figueiredo',

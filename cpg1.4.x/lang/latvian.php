@@ -29,7 +29,7 @@ $lang_translation_info = array(
   'lang_country_code' => 'lv', //cpg1.4
   'trans_name'=> 'ImantsJasmans',
   'trans_email' => 'jasmans_imants@inbox.lv',
-  'trans_website' => 'imants.filer.lv',
+  'trans_website' => 'http://imants.filer.lv/',
   'trans_date' => '2008-01-14',
 );
 

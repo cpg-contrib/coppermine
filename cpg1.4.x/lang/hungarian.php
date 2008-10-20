@@ -24,10 +24,13 @@ $lang_translation_info = array(
   'lang_name_english' => 'Hungarian', //cpg1.4
   'lang_name_native' => 'Magyar', //cpg1.4
   'lang_country_code' => 'hu', //cpg1.4
-  'trans_name'=> array('Zsolt Fenyvesvölgyi','Nagymáté Péter'),
-  'trans_email' => array('mailfed@gmail.com','pepe@ludens.elte.hu'),
-  'trans_website' => array('http://www.egermuzeum.hu', 'http://www.beagle.hu'),
-  'trans_date' => array('2007-04-10', '2006-02-25'),
+  'trans_name'=> 'Zsolt Fenyvesvölgyi, Nagymáté Péter',
+  'trans_email' => 'mailfed@gmail.com',
+  'trans_email2' => 'pepe@ludens.elte.hu',
+  'trans_website' => 'http://www.egermuzeum.hu',
+  'trans_website2' => 'http://www.beagle.hu',
+  'trans_date' => '2007-04-10',
+  'trans_date2' => '2006-02-25',
 );
 
 $lang_charset = 'utf-8';

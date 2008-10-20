@@ -24,9 +24,9 @@ if (!defined('IN_COPPERMINE')) { die('No s\'ha pogut trobar el Coppermine ...');
 
 // info about translators and translated language
 $lang_translation_info = array(
-'lang_name_english' => 'catalan',  
+'lang_name_english' => 'Catalan',  
 'lang_name_native' => 'català',
-'lang_country_code' => 'cat', 
+'lang_country_code' => 'catalonia', 
 'trans_name'=> 'Toni Ginard i Mireia Salazar', //the name of the translator - can be a nickname
 'trans_email' => 'toni.ginard@gmail.com', //translator's email address (optional)
 'trans_website' => 'http://phobos.xtec.cat/intraweb', //translator's website (optional)

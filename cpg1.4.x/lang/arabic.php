@@ -21,9 +21,9 @@ if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 
 // info about translators and translated language
 $lang_translation_info = array(
-  'lang_name_english' => 'العربيه', //cpg1.4
+  'lang_name_english' => 'Arabic', //cpg1.4
   'lang_name_native' => 'العربيه', //cpg1.4
-  'lang_country_code' => 'AE', //cpg1.4
+  'lang_country_code' => 'SA', //cpg1.4
   'trans_name'=> 'سمو المشاعر',
   'trans_email' => '',
   'trans_website' => '',

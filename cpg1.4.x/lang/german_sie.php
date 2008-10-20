@@ -21,8 +21,8 @@ if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 
 // info about translators and translated language
 $lang_translation_info = array(
-  'lang_name_english' => 'German', //cpg1.4
-  'lang_name_native' => 'Deutsch', //cpg1.4
+  'lang_name_english' => 'German (formal)', //cpg1.4
+  'lang_name_native' => 'Deutsch (Sie)', //cpg1.4
   'lang_country_code' => 'de', //cpg1.4
   'trans_name'=> 'Andi',
   'trans_email' => 'info@pragmamx.org',

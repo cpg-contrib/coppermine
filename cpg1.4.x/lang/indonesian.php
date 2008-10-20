@@ -22,7 +22,7 @@ if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 // info about translators and translated language
 $lang_translation_info = array(
 'lang_name_english' => 'Indonesian',
-'lang_name_native' => 'Bahasa_Indonesia',
+'lang_name_native' => 'Bahasa Indonesia',
 'lang_country_code' => 'id',
 'trans_name'=> 'Johan Ng',
 'trans_email' => '',

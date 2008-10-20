@@ -21,7 +21,7 @@ if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 
 // info about translators and translated language
 $lang_translation_info = array(
-  'lang_name_english' => 'croatian', //cpg1.4
+  'lang_name_english' => 'Croatian', //cpg1.4
   'lang_name_native' => 'Hrvatski', //cpg1.4
   'lang_country_code' => 'hr', //cpg1.4
   'trans_name'=> 'Andrija',

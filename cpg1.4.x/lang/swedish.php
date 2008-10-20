@@ -25,8 +25,11 @@ $lang_translation_info = array(
   'lang_name_native' => 'Svenska', //cpg1.4
   'lang_country_code' => 'se', //cpg1.4
   'trans_name'=> 'Danny Swälas (ecto) & SeB',
-  'trans_email' => 'ecto: coppermine@danny.swalas.org, SeB: sebastian@sweetfabrik.se',
-  'trans_website' => 'ecto: http://danny.swalas.org/gallery/, SeB: http://www.sweetfabrik.se, big thanks to http://www.fotosidan.se/forum/ for help with Exif translations!',
+  'trans_email' => 'coppermine@danny.swalas.org',
+  'trans_email2' => 'sebastian@sweetfabrik.se',
+  'trans_website' => 'http://danny.swalas.org/gallery/',
+  'trans_website2' => 'http://www.sweetfabrik.se/',
+  'additional_credits' => 'Big thanks to http://www.fotosidan.se/forum/ for help with Exif translations!',
   'trans_date' => '2005-12-23',
 );
 

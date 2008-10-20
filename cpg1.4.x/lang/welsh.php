@@ -26,11 +26,11 @@ if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 $lang_translation_info = array(
   'lang_name_english' => 'Welsh',
   'lang_name_native' => 'Cymraeg',
-  'lang_country_code' => 'gb', //wales has no separate country code at the time of posting
+  'lang_country_code' => 'wales', //wales has no separate country code at the time of posting
   'trans_name'=> 'Alan Rhys Davies',
   'trans_email' => 'ardavies@tiscali.co.uk',
-  'trans_website' => 'www.wetwork.org.uk',
-  'trans_date' => '14-03-2008',
+  'trans_website' => 'http://www.wetwork.org.uk',
+  'trans_date' => '2008-03-14',
 );
 
 $lang_charset = 'utf-8';

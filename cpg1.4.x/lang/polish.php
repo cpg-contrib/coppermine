@@ -20,37 +20,20 @@ $Date$
 // $Id$
 // ------------------------------------------------------------------------- //
 
-// info about translators and translated language
-//$lang_translation_info = array(
-//'lang_name_english' => 'Polish', 
-//'lang_name_native' => 'Polski',
-//'lang_country_code' => 'pl',
-//'trans_name'=> 'Radosław Pawłowski',
-//'trans_email' => 'ilovemycity@tlen.pl',
-//'trans_website' => 'www.toruniak.prv.pl',
-//'trans_date' => '2005-12-15', 
-//);
-
-// Whoops! Had to do it again.
-
 $lang_translation_info = array(
   'lang_name_english' => 'Polish',
   'lang_name_native' => 'Polski',
   'lang_country_code' => 'pl',
-  'trans_name' => 'Bartłomiej Szczudło',
+  'trans_name'=> 'Radosław Pawłowski, Bartłomiej Szczudło, Jacek Domoń',
   'trans_email' => 'b.szczudlo@doomni.net',
-  'trans_website' => 'http://klugg.ath.cx',
-  'trans_date' => '2006-01-30'
-  );
-
-$lang_translation_info = array(
-  'lang_name_english' => 'Polish',
-  'lang_name_native' => 'Polski',
-  'lang_country_code' => 'pl',
-  'trans_name' => 'Jacek Domoń',
-  'trans_email' => 'plusz@plusz.net',
-  'trans_website' => 'http://www.plusz.net',
-  'trans_date' => '2006-06-16'
+  'trans_email2' => 'ilovemycity@tlen.pl',
+  'trans_email3' => 'plusz@plusz.net',
+  'trans_website' => 'http://www.toruniak.prv.pl',
+  'trans_website2' => 'http://klugg.ath.cx',
+  'trans_website3' => 'http://www.plusz.net',
+  'trans_date' => '2005-12-15',
+  'trans_date2' => '2006-01-30',
+  'trans_date3' => '2006-06-16',
   );
 
 $lang_charset = 'utf-8';

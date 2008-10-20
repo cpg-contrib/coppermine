@@ -26,9 +26,9 @@ if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 
 $lang_translation_info = array(
 
-'lang_name_english' => 'Basque_ES',
+'lang_name_english' => 'Basque',
 'lang_name_native' => 'Euskera',
-'lang_country_code' => 'eu',
+'lang_country_code' => 'basque',
 'trans_name'=> 'Kurtsik', //the name of the translator - can be a nickname
 'trans_email' => 'kurtsik@gmail.com', //translator's email address (optional)
 'trans_website' => 'http://www.tuxtek.com', //translator's website (optional)

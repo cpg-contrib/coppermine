@@ -21,9 +21,9 @@ if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 
 // info about translators and translated language
 $lang_translation_info = array(
-  'lang_name_english' => 'Chinese_Simplified', //cpg1.4
+  'lang_name_english' => 'Chinese (Simplified)', //cpg1.4
   'lang_name_native' => '简体中文', //cpg1.4
-  'lang_country_code' => 'zh-cn', //cpg1.4
+  'lang_country_code' => 'cn', //cpg1.4
   'trans_name'=> '流溪，CapriSkye and monkey',
   'trans_email' => 'ben@smf.cn',
   'trans_website' => 'http://www.smf.cn/',

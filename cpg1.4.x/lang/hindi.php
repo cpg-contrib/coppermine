@@ -21,9 +21,9 @@ if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 
 // info about translators and translated language
 $lang_translation_info = array(
-  'lang_name_english' => 'Hindi_IN', //cpg1.4
+  'lang_name_english' => 'Hindi', //cpg1.4
   'lang_name_native' => 'हिन्दी', //cpg1.4
-  'lang_country_code' => 'IN', //cpg1.4
+  'lang_country_code' => 'in', //cpg1.4
   'trans_name'=> 'Anand Maheshwari',
   'trans_email' => 'hindi@b4uindia.com',
   'trans_website' => 'http://www.b4uindia.com/',

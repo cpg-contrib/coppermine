@@ -21,9 +21,9 @@ if (!defined('IN_COPPERMINE')) { die('Не в Coppermine...');}
 
 // info about translators and translated language
 $lang_translation_info = array(
-  'lang_name_english' => 'Bulgarian (UTF-8)',
-  'lang_name_native' => 'Български (UTF-8)',
-  'lang_country_code' => 'bg-utf-8',
+  'lang_name_english' => 'Bulgarian',
+  'lang_name_native' => 'Български',
+  'lang_country_code' => 'bg',
   'trans_name'=> 'Aleksandar Aleksiev',
   'trans_email' => 'al.alexiev@gmail.com',
   'trans_website' => 'http://www.baf.org/',

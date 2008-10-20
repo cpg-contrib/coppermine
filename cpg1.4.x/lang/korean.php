@@ -26,7 +26,7 @@ $lang_translation_info = array(
   'lang_country_code' => 'kr', //cpg1.4
   'trans_name'=> 'mle21',
   'trans_email' => '',
-  'trans_website' => 'http://coppermine.sourceforge.net/',
+  'trans_website' => '',
   'trans_date' => '2005-08-17',
 );
 
