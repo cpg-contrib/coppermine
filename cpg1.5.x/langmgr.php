@@ -104,7 +104,14 @@ EOT;
 endtable();
 print '<br />'.$lineBreak;
 
-
+$loader_html = '<span id="cpg_progress_bar">';
+if (defined('THEME_HAS_PROGRESS_GRAPHICS')) {
+    $prefix = $THEME_DIR;
+} else {
+    $prefix = '';
+}
+$loader_html .= '<img src="' . $prefix . 'images/loader.gif" border="0" alt="" title="' . $lang_langmgr_php['loading'] . '" />';
+$loader_html .= '</span>';
 
 starttable('100%', cpg_fetch_icon('blank', 2) . $lang_langmgr_php['title'], 9);
 print <<< EOT
@@ -114,40 +121,41 @@ print <<< EOT
     	<td class="tableh2" colspan="2" align="center">
     		<span id="expand_all_top" style="display:none"><a href="javascript:;" class="admin_menu" onclick="show_section('expand_all_bottom');show_section('collapse_all_bottom');show_section('expand_all_top');show_section('collapse_all_top');toggleExpandCollpaseButtons('expand');">{$lang_langmgr_php['show_details']}</a></span>
             <span id="collapse_all_top" style="display:none"><a href="javascript:;" class="admin_menu" onclick="show_section('expand_all_bottom');show_section('collapse_all_bottom');show_section('expand_all_top');show_section('collapse_all_top');toggleExpandCollpaseButtons('collapse');">{$lang_langmgr_php['hide_details']}</a></span>
+            {$loader_html}
     	</td>
     </tr>
     <tr>
-        <th class="tableh2" rowspan="2">
-          {$lang_langmgr_php['default']}
+        <th class="tableh2" rowspan="2" align="center">
+          <span class="album_stat">{$lang_langmgr_php['default']}</span>
         </th>
         <th class="tableh2" colspan="3">
-          {$lang_langmgr_php['language_name']}
+          <span class="album_stat">{$lang_langmgr_php['language_name']}</span>
         </th>
         <th class="tableh2" rowspan="2">
-          {$lang_langmgr_php['flag']}
+          <span class="album_stat">{$lang_langmgr_php['flag']}</span>
         </th>
         <th class="tableh2" colspan="2">
-          {$lang_langmgr_php['language_file']}
+          <span class="album_stat">{$lang_langmgr_php['language_file']}</span>
         </th>
         <th class="tableh2" rowspan="2">
-          {$lang_langmgr_php['enabled']}
+          <span class="album_stat">{$lang_langmgr_php['enabled']}</span>
         </th>
     </tr>
     <tr>
         <th class="tableh2">
-          {$lang_langmgr_php['english_language_name']}
+          <span class="album_stat">{$lang_langmgr_php['english_language_name']}</span>
         </th>
         <th class="tableh2">
-          {$lang_langmgr_php['native_language_name']}
+          <span class="album_stat">{$lang_langmgr_php['native_language_name']}</span>
         </th>
         <th class="tableh2">
-          {$lang_langmgr_php['custom_language_name']}
+          <span class="album_stat">{$lang_langmgr_php['custom_language_name']}</span>
         </th>
         <th class="tableh2">
-          {$lang_langmgr_php['file_available']}
+          <span class="album_stat">{$lang_langmgr_php['file_available']}</span>
         </th>
         <th class="tableh2">
-          {$lang_langmgr_php['complete']}
+          <span class="album_stat">{$lang_langmgr_php['complete']}</span>
         </th>
     </tr>
 EOT;
@@ -398,6 +406,8 @@ print <<< EOT
 <script type="text/javascript">
     addonload("show_section('collapse_all_top')");
     addonload("show_section('collapse_all_bottom')");
+    addonload("show_section('cpg_progress_bar')");
+    
     
     function toggleExpandCollpaseButtons(action) 
     {

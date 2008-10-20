@@ -1634,6 +1634,7 @@ if (defined('LANGMGR_PHP')) $lang_langmgr_php = array(
   'cpg_version' => 'Coppermine version',
   'hide_details' => 'Hide details',
   'show_details' => 'Show details',
+  'loading' => 'Loading',
 );
 
 // ------------------------------------------------------------------------- //
