@@ -155,6 +155,7 @@ $config_data = array(
       'default_value' => 'english',
       'help_link'     => 'f=configuration.htm&amp;as=admin_language_language&amp;ae=admin_language_language_end',
       'options'       => form_get_foldercontent('lang/','file', 'php'),
+      'end_description' => '&nbsp;&nbsp;(<a href="langmgr.php">'.$lang_admin_php['manage_languages'].'</a>)',
     ),
     'language_fallback' => array(
       'type'          => 'checkbox',

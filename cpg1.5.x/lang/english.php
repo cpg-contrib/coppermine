@@ -717,7 +717,7 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'ban_private_ip' => 'Allow banning of non-routable (private) IP addresses', // cpg1.5
   'browse_batch_add' => 'Browsable batch-add interface', // cpg1.5
   'display_thumbs_batch_add' => 'Display preview thumbnails on batch-add interface', // cpg1.5
-  'lang' => 'Language', // cpg1.5
+  'lang' => 'Default language', // cpg1.5
   'language_fallback' => 'Fallback to English if translated phrase not found?', // cpg1.5
   'charset' => 'Character encoding', // cpg1.5
   'language_list' => 'Display language list', // cpg1.5
@@ -942,6 +942,7 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'warning_dont_submit' => 'If you are not sure about the impact that changing this setting will have, do not submit the form and review the documentation first.', // cpg1.5 // js-alert
   'menu_only' => 'menu only', // cpg1.5
   'everywhere' => 'everywhere', // cpg1.5
+  'manage_languages' => 'Manage languages', // cpg1.5
 );
 
 
@@ -1635,6 +1636,8 @@ if (defined('LANGMGR_PHP')) $lang_langmgr_php = array(
   'hide_details' => 'Hide details',
   'show_details' => 'Show details',
   'loading' => 'Loading',
+  'english_missing' => 'The English language file is missing although it should never be removed. You need to restore it immediately.',
+  'enable_default' => 'You chose a default language that is not enabled. Pick another default language or enable the language you selected as default!',  // js-alert
 );
 
 // ------------------------------------------------------------------------- //

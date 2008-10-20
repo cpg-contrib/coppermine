@@ -37,14 +37,65 @@ if (!GALLERY_ADMIN_MODE) {
 // Form has been submit --- start
 if ($superCage->post->keyExists('submit')) {
     $posted_lang_id_array = $superCage->post->getAlnum('lang_id');
-    print 'Post- data:<br />';
-    //print_r($posted_lang_id_array);
     foreach ($posted_lang_id_array as $posted_lang_id) {
-        print $posted_lang_id;
-        print '<br />';
-        print $superCage->post->getEscaped('english_name_'.$posted_lang_id);
-        print '<br />';
-        print '<hr />';
+        // Create the query
+        if ($superCage->post->getAlpha('new_'.$posted_lang_id) == 'YES') {
+            $query = "INSERT INTO `".$CONFIG['TABLE_LANGUAGE']. "` ( `lang_id` , `english_name` , `native_name` , `custom_name` , `flag` , `available` , `enabled` , `complete` ) VALUES (";
+            $query .= "'".$posted_lang_id."', ";
+            $query .= "'".$superCage->post->getEscaped('english_name_'.$posted_lang_id)."', ";
+            $query .= "'".$superCage->post->getEscaped('native_name_'.$posted_lang_id)."', ";
+            $query .= "'".$superCage->post->getEscaped('custom_name_'.$posted_lang_id)."', ";
+            if ($superCage->post->getAlpha('flag_'.$posted_lang_id) != '' && $superCage->post->getAlpha('flag_'.$posted_lang_id) != $lang_langmgr_php['pick_a_flag']) {
+                $query .= "'".$superCage->post->getAlpha('flag_'.$posted_lang_id)."', ";
+            } else {
+                $query .= "'', ";
+            }
+            if ($superCage->post->getAlpha('available_'.$posted_lang_id) == 'YES') {
+                $query .= "'YES', ";
+            } else {
+                $query .= "'NO', ";
+            }
+            if ($superCage->post->getAlpha('enable_'.$posted_lang_id) == 'YES') {
+                $query .= "'YES', ";
+            } else {
+                $query .= "'NO', ";
+            }
+            if ($superCage->post->getAlpha('complete_'.$posted_lang_id) == 'YES') {
+                $query .= "'YES', ";
+            } else {
+                $query .= "'NO', ";
+            }
+            $query = rtrim(trim($query), ',');
+            $query .= ");";
+        } else {
+            $query = "UPDATE `".$CONFIG['TABLE_LANGUAGE']. "` SET ";
+            $query .= "`english_name` = '".$superCage->post->getEscaped('english_name_'.$posted_lang_id)."', ";
+            $query .= "`native_name` = '".$superCage->post->getEscaped('native_name_'.$posted_lang_id)."', ";
+            $query .= "`custom_name` = '".$superCage->post->getEscaped('custom_name_'.$posted_lang_id)."', ";
+            if ($superCage->post->getAlpha('flag_'.$posted_lang_id) != '' && $superCage->post->getAlpha('flag_'.$posted_lang_id) != $lang_langmgr_php['pick_a_flag']) {
+                $query .= "`flag` = '".$superCage->post->getAlpha('flag_'.$posted_lang_id)."', ";
+            }
+            if ($superCage->post->getAlpha('available_'.$posted_lang_id) == 'YES') {
+                $query .= "`available` = 'YES', ";
+            } else {
+                $query .= "`available` = 'NO', ";
+            }
+            if ($superCage->post->getAlpha('enable_'.$posted_lang_id) == 'YES') {
+                $query .= "`enabled` = 'YES', ";
+            } else {
+                $query .= "`enabled` = 'NO', ";
+            }
+            if ($superCage->post->getAlpha('complete_'.$posted_lang_id) == 'YES') {
+                $query .= "`complete` = 'YES', ";
+            } else {
+                $query .= "`complete` = 'NO', ";
+            }
+            // Strip the whitespace and coma from the query
+            $query = rtrim(trim($query), ',');
+            $query .= " WHERE `lang_id` = '".$posted_lang_id."'  LIMIT 1;";
+        }
+        $result = cpg_db_query($query);
+        $query = '';
     }
 }
 // Form has been submit --- end
@@ -69,6 +120,7 @@ while ($row = mysql_fetch_array($results)) {
         if (in_array($lang_language_data[$row['lang_id']]['lang_id'], $lang_file_orphan_array) == TRUE) {
         	unset($lang_file_orphan_array[array_search($lang_language_data[$row['lang_id']]['lang_id'],$lang_file_orphan_array)]);
         }
+        $lang_language_data[$row['lang_id']]['new'] = 'NO';
 } // while
 mysql_free_result($results);
 unset($row);
@@ -83,6 +135,7 @@ foreach ($lang_file_orphan_array as $orphans) {
 	$lang_language_data[$orphans]['available'] = 'NO';
 	$lang_language_data[$orphans]['enabled'] = 'NO';
 	$lang_language_data[$orphans]['complete'] = 'NO';
+    $lang_language_data[$orphans]['new'] = 'YES';
 }
 
 // sort the array by English name
@@ -104,14 +157,16 @@ EOT;
 endtable();
 print '<br />'.$lineBreak;
 
-$loader_html = '<span id="cpg_progress_bar">';
+$loader_html = '<script type="text/javascript">'.$lineBreak;
+$loader_html .= 'document.write(\'<span id="cpg_progress_bar">\');'.$lineBreak;
 if (defined('THEME_HAS_PROGRESS_GRAPHICS')) {
     $prefix = $THEME_DIR;
 } else {
     $prefix = '';
 }
-$loader_html .= '<img src="' . $prefix . 'images/loader.gif" border="0" alt="" title="' . $lang_langmgr_php['loading'] . '" />';
-$loader_html .= '</span>';
+$loader_html .= 'document.write(\'<img src="' . $prefix . 'images/loader.gif" border="0" alt="" title="' . $lang_langmgr_php['loading'] . '" />\');'.$lineBreak;
+$loader_html .= 'document.write(\'</span>\');'.$lineBreak;
+$loader_html .= '</script>';
 
 starttable('100%', cpg_fetch_icon('blank', 2) . $lang_langmgr_php['title'], 9);
 print <<< EOT
@@ -172,7 +227,8 @@ foreach ($lang_language_data as $language) {
             $language['broken'] = 'YES';
         } else {
             $language['broken'] = 'NO';
-            $blob = @fread($handle, filesize('lang/'. $language['lang_id'] . '.php'));
+            //$filesize = filesize('lang/'. $language['lang_id'] . '.php');
+            $blob = @fread($handle, 2000);
             $blob = str_replace('<?php','',$blob);
             // Perform the version comparison
             $language['version'] = substr($blob,strpos($blob, $cpg_version_determination)); // chop off the first bit up to the string $cpg_version_determination
@@ -267,6 +323,13 @@ foreach ($lang_language_data as $language) {
                 $enable_greyed_out = 'disabled="disabled"';
             }
         }    // availability --- end
+        //  Flag new records accordingly --- start
+        if ($language['new'] == 'YES') {
+            $new_output = '<input type="hidden" name="new_'.$language['lang_id'].'" id="available_' . $language['lang_id'] .'" value="YES" />';
+        } else {
+            $new_output = '<input type="hidden" name="new_'.$language['lang_id'].'" id="available_' . $language['lang_id'] .'" value="NO" />';
+        }
+        //  Flag new records accordingly --- end
         // Populate credits section
         if ($language['translator_name'] != '') {
         	$translator_output = $lang_langmgr_php['tanslator_information'] . ': ';
@@ -304,7 +367,7 @@ foreach ($lang_language_data as $language) {
         // Actual table row output --- start
         print <<< EOT
     <tr>
-        <td class="{$cellstyle}" rowspan="2">
+        <td class="{$cellstyle}" rowspan="2" align="center">
           <input name="default" id="default_{$language['lang_id']}" type="radio" value="{$language['lang_id']}" class="radio" {$default_checked} {$enable_greyed_out} />
           <input type="hidden" name="lang_id[]" id="lang_id_{$language['lang_id']}" value="{$language['lang_id']}" />
         </td>
@@ -335,7 +398,7 @@ EOT;
 >
 EOT;
         if ($language['flag'] == '') {
-        	print '            <option selected="selected">'.$lang_langmgr_php['pick_a_flag'].'</option>'.$lineBreak;
+        	print '            <option value="">'.$lang_langmgr_php['pick_a_flag'].'</option>'.$lineBreak;
         }
         foreach ($flag_array as $flags) {
             if ($flags == $language['flag']) {
@@ -352,7 +415,7 @@ EOT;
         print <<< EOT
         
         <td class="{$cellstyle}">
-        	{$availability_output}
+        	{$availability_output}{$new_output}
         </td>
 EOT;
         print <<< EOT
@@ -371,7 +434,7 @@ EOT;
             $enable_checked = '';
         }
         print <<< EOT
-            <input type="checkbox" name="enable_{$language['lang_id']}" id="enable_{$language['lang_id']}" class="checkbox" {$enable_checked} {$enable_greyed_out} />
+            <input type="checkbox" name="enable_{$language['lang_id']}" id="enable_{$language['lang_id']}" value="YES" class="checkbox" {$enable_checked} {$enable_greyed_out} />
         </td>
     </tr>
     <tr>
@@ -385,6 +448,19 @@ EOT;
     }
 }
 $loopCounter--; // Subtract one from counter, since we start counting from zero
+// Output warnings if applicable
+if (in_array('english', $lang_file_array) != TRUE) {
+    print <<< EOT
+    <tr>
+        <td class="tablef important" colspan="8" align="center">
+        	{$lang_langmgr_php['english_missing']}
+        </td>
+    </tr>
+EOT;
+}
+
+// Output submit button
+$submit_icon = cpg_fetch_icon('ok', 2);
 print <<< EOT
     <tr>
         <td class="tablef" colspan="6" align="center">

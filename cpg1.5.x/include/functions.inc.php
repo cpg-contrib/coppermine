@@ -4522,6 +4522,21 @@ if (!function_exists('form_get_foldercontent')) {
     }
 }
 
+/**
+ * Function get a list of available languages
+  *
+  * @return array: an ascotiative array of language file names (without extension) and language names
+ */
+if (!function_exists('cpg_get_available_languages')) {
+    function cpg_get_available_languages ($lang='default') 
+    {
+        // Work in progress - GauGau
+        global $CONFIG;
+        natcasesort($return_array);
+        return $return_array;
+    }
+}
+
 if (!function_exists('array_is_associative')) { // make sure that this will not break in future PHP versions
     function array_is_associative($array) 
     {
