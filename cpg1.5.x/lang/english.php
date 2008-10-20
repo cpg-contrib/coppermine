@@ -1629,6 +1629,11 @@ if (defined('LANGMGR_PHP')) $lang_langmgr_php = array(
   'exists_in_db_and_file' => 'exists in database and as file',
   'exists_as_file_only' => 'exists as file only',
   'pick_a_flag' => 'Pick one',
+  'replace_x_with_y' => 'Replace %s with %s',
+  'tanslator_information' => 'Translator information',
+  'cpg_version' => 'Coppermine version',
+  'hide_details' => 'Hide details',
+  'show_details' => 'Show details',
 );
 
 // ------------------------------------------------------------------------- //

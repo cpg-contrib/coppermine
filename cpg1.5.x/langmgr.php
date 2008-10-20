@@ -25,6 +25,7 @@ define('LANGMGR_PHP', true);
 require_once('include/init.inc.php');
 require_once('include/sql_parse.php');
 
+js_include('js/langmgr.js');
 
 
 $lineBreak = "\r\n";
@@ -108,6 +109,14 @@ print '<br />'.$lineBreak;
 starttable('100%', cpg_fetch_icon('blank', 2) . $lang_langmgr_php['title'], 9);
 print <<< EOT
     <tr>
+    	<td class="tableh2" colspan="6">
+    	</td>
+    	<td class="tableh2" colspan="2" align="center">
+    		<span id="expand_all_top" style="display:none"><a href="javascript:;" class="admin_menu" onclick="show_section('expand_all_bottom');show_section('collapse_all_bottom');show_section('expand_all_top');show_section('collapse_all_top');toggleExpandCollpaseButtons('expand');">{$lang_langmgr_php['show_details']}</a></span>
+            <span id="collapse_all_top" style="display:none"><a href="javascript:;" class="admin_menu" onclick="show_section('expand_all_bottom');show_section('collapse_all_bottom');show_section('expand_all_top');show_section('collapse_all_top');toggleExpandCollpaseButtons('collapse');">{$lang_langmgr_php['hide_details']}</a></span>
+    	</td>
+    </tr>
+    <tr>
         <th class="tableh2" rowspan="2">
           {$lang_langmgr_php['default']}
         </th>
@@ -157,6 +166,7 @@ foreach ($lang_language_data as $language) {
             $language['broken'] = 'NO';
             $blob = @fread($handle, filesize('lang/'. $language['lang_id'] . '.php'));
             $blob = str_replace('<?php','',$blob);
+            // Perform the version comparison
             $language['version'] = substr($blob,strpos($blob, $cpg_version_determination)); // chop off the first bit up to the string $cpg_version_determination
             $double_slash_position = strpos($language['version'], '//');
             if ($double_slash_position) {
@@ -174,6 +184,32 @@ foreach ($lang_language_data as $language) {
             } else {
                 $language['complete'] = 'NO';
             }
+            // Perform the lookup for the native language name
+            $language['file_native'] = strings_from_language_file('lang_name_native');
+            if ($language['native_name'] == '') {
+            	$language['native_name'] = $language['file_native']; // Populate the native name field from the file if emtpy 
+            }
+            if ($language['file_native'] != $language['native_name'] && $language['file_native'] != '') {
+            	$reset_native = '<a href="javascript:;" title="' . sprintf($lang_langmgr_php['replace_x_with_y'], '&quot;'.$language['native_name'].'&quot;', '&quot;'.$language['file_native'].'&quot;') . '" id="reset_native_'.$loopCounter.'" onclick="document.getElementById(\'native_name_'.$language['lang_id'].'\').value = \''.$language['file_native'].'\';document.getElementById(\'reset_native_'.$loopCounter.'\').style.display = \'none\';">' . cpg_fetch_icon('undo',0) . '</a>';
+            } else {
+            	$reset_native = '';
+            }
+            // Perform the lookup for the English language name
+            $language['file_english'] = strings_from_language_file('lang_name_english');
+            if ($language['english_name'] == '') {
+            	$language['english_name'] = $language['file_english']; // Populate the english name field from the file if emtpy 
+            }
+            if ($language['file_english'] != $language['english_name'] && $language['file_english'] != '') {
+            	$reset_english = '<a href="javascript:;" title="' . sprintf($lang_langmgr_php['replace_x_with_y'], '&quot;'.$language['english_name'].'&quot;', '&quot;'.$language['file_english'].'&quot;') . '" id="reset_english_'.$loopCounter.'" onclick="document.getElementById(\'english_name_'.$language['lang_id'].'\').value = \''.$language['file_english'].'\';document.getElementById(\'reset_english_'.$loopCounter.'\').style.display = \'none\';">' . cpg_fetch_icon('undo',0) . '</a>';
+            } else {
+            	$reset_english = '';
+            }
+            // Look up the translator name
+            $language['translator_name'] = strings_from_language_file('trans_name');
+            // Look up the translator website
+            $language['translator_website'] = strings_from_language_file('trans_website');
+            // Look up the default country code
+            $language['file_flag'] = strings_from_language_file('lang_country_code');
         }
         @fclose($handle);
         // Alternating colors
@@ -223,9 +259,44 @@ foreach ($lang_language_data as $language) {
                 $enable_greyed_out = 'disabled="disabled"';
             }
         }    // availability --- end
+        // Populate credits section
+        if ($language['translator_name'] != '') {
+        	$translator_output = $lang_langmgr_php['tanslator_information'] . ': ';
+        	if ($language['translator_website'] != '') {
+        		$translator_output .= '<a href="'.$language['translator_website'].'" rel="external" class="external">';
+        	}
+        	$translator_output .= $language['translator_name'];
+        	if ($language['translator_website'] != '') {
+        		$translator_output .= '</a>';
+        	}
+        } else {
+        	$translator_output = '';
+        }
+        if ($language['version'] != '') {
+        	if ($translator_output != '') {
+        		$version_output = ', ';
+        	} else {
+        		$version_output = '';
+        	}
+        	$version_output .= $lang_langmgr_php['cpg_version'] . ': ' . $language['version'];
+        	
+        } else {
+        	$version_output = '';
+        }
+        // Flag icon population --- start
+        if ($language['flag'] != '') {
+        	$flag_path = 'images/flags/'.$language['flag'] . '.gif';
+        } elseif (in_array($language['file_flag'], $flag_array) == TRUE) {
+        	$flag_path = 'images/flags/'.$language['file_flag'] . '.gif';
+        	$language['flag'] = $language['file_flag'];
+        } else {
+        	$flag_path = 'images/spacer.gif';
+        }
+        // Flag icon population --- end
+        // Actual table row output --- start
         print <<< EOT
     <tr>
-        <td class="{$cellstyle}">
+        <td class="{$cellstyle}" rowspan="2">
           <input name="default" id="default_{$language['lang_id']}" type="radio" value="{$language['lang_id']}" class="radio" {$default_checked} {$enable_greyed_out} />
           <input type="hidden" name="lang_id[]" id="lang_id_{$language['lang_id']}" value="{$language['lang_id']}" />
         </td>
@@ -233,13 +304,13 @@ EOT;
         print <<< EOT
         
         <td class="{$cellstyle}">
-          <input type="text" name="english_name_{$language['lang_id']}" id="english_name_{$language['lang_id']}" class="textinput" value="{$language['english_name']}" />
+          <input type="text" name="english_name_{$language['lang_id']}" id="english_name_{$language['lang_id']}" class="textinput" value="{$language['english_name']}" />{$reset_english}
         </td>
 EOT;
         print <<< EOT
         
         <td class="{$cellstyle}">
-          <input type="text" name="native_name_{$language['lang_id']}" id="native_name_{$language['lang_id']}" class="textinput" value="{$language['native_name']}" />
+          <input type="text" name="native_name_{$language['lang_id']}" id="native_name_{$language['lang_id']}" class="textinput" value="{$language['native_name']}" />{$reset_native}
         </td>
 EOT;
         print <<< EOT
@@ -251,7 +322,7 @@ EOT;
         print <<< EOT
         
         <td class="{$cellstyle}">
-            <img src="images/flags/{$language['flag']}.gif" width="16" height="11" border="0" alt="" name="image_{$loopCounter}" style="float:left" />
+            <img src="{$flag_path}" width="16" height="11" border="0" alt="" name="image_{$loopCounter}" style="float:left" />
             <select id="flag_{$language['lang_id']}" name="flag_{$language['lang_id']}" size="1" onchange="if(document.images) document.images['image_{$loopCounter}'].src='images/flags/'+this.options[this.selectedIndex].value+'.gif';" class="listbox_lang" style="width:60px">
 >
 EOT;
@@ -295,21 +366,68 @@ EOT;
             <input type="checkbox" name="enable_{$language['lang_id']}" id="enable_{$language['lang_id']}" class="checkbox" {$enable_checked} {$enable_greyed_out} />
         </td>
     </tr>
+    <tr>
+    	<td class="{$cellstyle}" colspan="7">
+    		<span id="translator_{$loopCounter}">{$translator_output}{$version_output}</span> 
+    	</td>
+    </tr>
 EOT;
+        // Actual table row output --- end
         $loopCounter++;
     }
 }
 $loopCounter--; // Subtract one from counter, since we start counting from zero
 print <<< EOT
     <tr>
-        <td class="tablef" colspan="8" align="center">
+        <td class="tablef" colspan="6" align="center">
             <button type="submit" class="button" name="submit" value="{$lang_common['ok']}">{$submit_icon}{$lang_common['ok']}</button>
+        </td>
+        <td class="tablef" colspan="2" align="center">
+        	<span id="expand_all_bottom" style="display:none"><a href="javascript:;" class="admin_menu" onclick="show_section('expand_all_bottom');show_section('collapse_all_bottom');show_section('expand_all_top');show_section('collapse_all_top');toggleExpandCollpaseButtons('expand');">{$lang_langmgr_php['show_details']}</a></span>
+            <span id="collapse_all_bottom" style="display:none"><a href="javascript:;" class="admin_menu" onclick="show_section('expand_all_bottom');show_section('collapse_all_bottom');show_section('expand_all_top');show_section('collapse_all_top');toggleExpandCollpaseButtons('collapse');">{$lang_langmgr_php['hide_details']}</a></span>
         </td>
     </tr>
 EOT;
 endtable();
-print '</form>';
+print <<< EOT
+</form>
+EOT;
+
+print <<< EOT
+
+<script type="text/javascript">
+    addonload("show_section('collapse_all_top')");
+    addonload("show_section('collapse_all_bottom')");
+    
+    function toggleExpandCollpaseButtons(action) 
+    {
+        for (var i = 0; i <= {$loopCounter}; i++) {
+            if (action == 'collapse') {
+                document.getElementById('translator_' + i).style.display = 'none';
+            } else {
+                document.getElementById('translator_' + i).style.display = 'block';
+            }
+        }
+    }
+    
+    function cpgReplaceTextFieldValue(fieldname, value) {
+    }    
+</script>
+EOT;
 
 pagefooter();
 ob_end_flush();
+
+function strings_from_language_file($string) {
+	global $blob;
+	$string = "'" . $string . "'";
+	if (strstr($blob , $string) == FALSE) {
+		return '';
+	}
+	$return = str_replace($string, '', substr($blob,strpos($blob, $string),100)); // get the first 100 characters starting at $string
+	$return = str_replace('=>', '', $return); // strip the string '=>'
+	$return = str_replace(strstr($return, "',"), '', $return); // Throw everything away after and including ';
+	$return = ltrim(trim($return), "'"); // Trim the leading single quotes and the whitespace
+	return $return;
+}
 ?>
