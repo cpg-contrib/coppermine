@@ -246,8 +246,14 @@ switch ($event) {
         $comments = $superCage->post->getRaw('comments') == 'YES' ? 'YES' : 'NO';
         $votes = $superCage->post->getRaw('votes') == 'YES' ? 'YES' : 'NO';
 
-        $password = $superCage->post->getEscaped('alb_password');
-        $password_hint = $superCage->post->getEscaped('alb_password_hint');
+        // Get the password only if password_protect checkbox is checked
+        if ($superCage->post->keyExists('password_protect')) {
+            $password = $superCage->post->getEscaped('alb_password');
+            $password_hint = $superCage->post->getEscaped('alb_password_hint');
+        } else {
+            $password = null;
+            $password_hint = null;
+        }
         $visibility = !empty($password) ? FIRST_USER_CAT + USER_ID : $visibility;
 
         if (!$title) {

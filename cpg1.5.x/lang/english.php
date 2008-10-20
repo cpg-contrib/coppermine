@@ -1734,12 +1734,13 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
   'notice1' => '(*) depending on %sgroups%s settings',  //(do not translate %s!)
   'can_moderate' => 'Album can be moderated by', //cpg 1.5
   'admins_only' => 'Admins only', //cpg 1.5
-  'alb_password' => 'Album password',
+  'alb_password' => 'Album password (New password)',
   'alb_password_hint' => 'Album password hint',
   'edit_files' => 'Edit files',
   'parent_category' => 'Parent category',
   'thumbnail_view' => 'Thumbnail view',
   'random_image' => 'Random Image', //cpg 1.5
+  'password_protect' => 'Password protect this album (Tick for yes)', //cpg1.5
 );
 
 // ------------------------------------------------------------------------- //

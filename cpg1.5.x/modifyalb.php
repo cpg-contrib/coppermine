@@ -54,6 +54,7 @@ $data = array($lang_modifyalb_php['general_settings'],
     array($lang_modifyalb_php['alb_keyword'].$help_album_keywords, 'keyword', 0),
     array($lang_modifyalb_php['alb_thumb'], 'thumb', 4), $lang_modifyalb_php['alb_perm'],
     array($lang_modifyalb_php['can_view'], 'visibility', 5),
+    array($lang_modifyalb_php['password_protect'].$help_album_password, 'password_protect', 9),
     array($lang_modifyalb_php['alb_password'].$help_album_password, 'alb_password', 6),
     array($lang_modifyalb_php['alb_password_hint'].$help_album_password, 'alb_password_hint', 7),
     array($lang_modifyalb_php['can_upload'].$notice1.$help_can_upload, 'uploads', 1),
@@ -334,6 +335,27 @@ EOT;
 EOT;
 }
 
+function form_password_protect($text, $name)
+{
+  global $ALBUM_DATA;
+  if(isset($ALBUM_DATA['alb_password']) && !empty($ALBUM_DATA['alb_password'])) {
+      $checked = " checked";
+  } else {
+      $checked = "";
+  }
+
+  echo <<<EOT
+        <tr>
+            <td width="40%" class="tableb">
+                $text
+            </td>
+            <td width="60%" class="tableb" valign="top">
+                <input id="$name" type="checkbox" name="$name" value="yes"$checked />
+            </td>
+        </tr>
+EOT;
+}
+
 function form_password($text, $name)
 {
   global $ALBUM_DATA;
@@ -484,6 +506,9 @@ function create_form(&$data)
                 case 8 :
                     form_moderator($element[0], $element[1]);
                     break;
+                case 9 :
+                    form_password_protect($element[0], $element[1]);
+                    break;
                 default:
                     cpg_die(CRITICAL_ERROR, 'Invalid action for form creation', __FILE__, __LINE__);
             } // switch
@@ -629,6 +654,7 @@ $actual_cat = $cat;
 
 
 //////////// main code start ///////////////////
+js_include('js/modifyalb.js', false);
 pageheader(sprintf($lang_modifyalb_php['upd_alb_n'], $ALBUM_DATA['title']));
 
 $album_lb = alb_list_box();
