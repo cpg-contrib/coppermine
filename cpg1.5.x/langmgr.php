@@ -167,15 +167,17 @@ if (defined('THEME_HAS_PROGRESS_GRAPHICS')) {
 $loader_html .= 'document.write(\'<img src="' . $prefix . 'images/loader.gif" border="0" alt="" title="' . $lang_langmgr_php['loading'] . '" />\');'.$lineBreak;
 $loader_html .= 'document.write(\'</span>\');'.$lineBreak;
 $loader_html .= '</script>';
+$hide_icon = cpg_fetch_icon('hide_table_row', 2);
+$show_icon = cpg_fetch_icon('show_table_row', 2);
 
-starttable('100%', cpg_fetch_icon('blank', 2) . $lang_langmgr_php['title'], 9);
+starttable('100%', cpg_fetch_icon('babelfish', 2) . $lang_langmgr_php['title'], 9);
 print <<< EOT
     <tr>
     	<td class="tableh2" colspan="6">
     	</td>
     	<td class="tableh2" colspan="2" align="center">
-    		<span id="expand_all_top" style="display:none"><a href="javascript:;" class="admin_menu" onclick="show_section('expand_all_bottom');show_section('collapse_all_bottom');show_section('expand_all_top');show_section('collapse_all_top');toggleExpandCollpaseButtons('expand');">{$lang_langmgr_php['show_details']}</a></span>
-            <span id="collapse_all_top" style="display:none"><a href="javascript:;" class="admin_menu" onclick="show_section('expand_all_bottom');show_section('collapse_all_bottom');show_section('expand_all_top');show_section('collapse_all_top');toggleExpandCollpaseButtons('collapse');">{$lang_langmgr_php['hide_details']}</a></span>
+    		<span id="expand_all_top" style="display:none"><a href="javascript:;" class="admin_menu" onclick="show_section('expand_all_bottom');show_section('collapse_all_bottom');show_section('expand_all_top');show_section('collapse_all_top');toggleExpandCollpaseButtons('expand');">{$show_icon}{$lang_langmgr_php['show_details']}</a></span>
+            <span id="collapse_all_top" style="display:none"><a href="javascript:;" class="admin_menu" onclick="show_section('expand_all_bottom');show_section('collapse_all_bottom');show_section('expand_all_top');show_section('collapse_all_top');toggleExpandCollpaseButtons('collapse');">{$hide_icon}{$lang_langmgr_php['hide_details']}</a></span>
             {$loader_html}
     	</td>
     </tr>
@@ -467,8 +469,8 @@ print <<< EOT
             <button type="submit" class="button" name="submit" value="{$lang_common['ok']}">{$submit_icon}{$lang_common['ok']}</button>
         </td>
         <td class="tablef" colspan="2" align="center">
-        	<span id="expand_all_bottom" style="display:none"><a href="javascript:;" class="admin_menu" onclick="show_section('expand_all_bottom');show_section('collapse_all_bottom');show_section('expand_all_top');show_section('collapse_all_top');toggleExpandCollpaseButtons('expand');">{$lang_langmgr_php['show_details']}</a></span>
-            <span id="collapse_all_bottom" style="display:none"><a href="javascript:;" class="admin_menu" onclick="show_section('expand_all_bottom');show_section('collapse_all_bottom');show_section('expand_all_top');show_section('collapse_all_top');toggleExpandCollpaseButtons('collapse');">{$lang_langmgr_php['hide_details']}</a></span>
+        	<span id="expand_all_bottom" style="display:none"><a href="javascript:;" class="admin_menu" onclick="show_section('expand_all_bottom');show_section('collapse_all_bottom');show_section('expand_all_top');show_section('collapse_all_top');toggleExpandCollpaseButtons('expand');">{$show_icon}{$lang_langmgr_php['show_details']}</a></span>
+            <span id="collapse_all_bottom" style="display:none"><a href="javascript:;" class="admin_menu" onclick="show_section('expand_all_bottom');show_section('collapse_all_bottom');show_section('expand_all_top');show_section('collapse_all_top');toggleExpandCollpaseButtons('collapse');">{$hide_icon}{$lang_langmgr_php['hide_details']}</a></span>
         </td>
     </tr>
 EOT;
