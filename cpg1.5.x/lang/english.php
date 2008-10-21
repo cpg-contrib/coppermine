@@ -1638,6 +1638,10 @@ if (defined('LANGMGR_PHP')) $lang_langmgr_php = array(
   'loading' => 'Loading',
   'english_missing' => 'The English language file is missing although it should never be removed. You need to restore it immediately.',
   'enable_default' => 'You chose a default language that is not enabled. Pick another default language or enable the language you selected as default!',  // js-alert
+  'version_does_not_match' => 'The version of this file does not match your coppermine version. Use with caution and test thoroughly!',
+  'no_version' => 'No version information could be retrieved. It\'s very likely that this language file doesn\'t work at all or isn\'t an actual language file.',
+  'filesize' => 'Filesize %s is implausible',
+  'content_missing' => 'The file doesn\'t seem to contain the needed data, so it\'s probably not a valid language file.',
 );
 
 // ------------------------------------------------------------------------- //

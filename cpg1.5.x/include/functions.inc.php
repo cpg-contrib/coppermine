@@ -4508,16 +4508,18 @@ if (!function_exists('form_get_foldercontent')) {
                 $extension = ltrim(substr($file,strrpos($file,'.')),'.');
                 $filenameWithoutExtension = str_replace('.' . $extension, '', $file);
                 if (is_file($foldername . $file) && $extension == $validextension && in_array($filenameWithoutExtension, $exception_array) != TRUE) {
-                    $return_array[] = $filenameWithoutExtension;
+                    $return_array[$filenameWithoutExtension] = $filenameWithoutExtension;
                 }
             } elseif ($fileOrFolder == 'folder') {
                 if ($file != '.' && $file != '..' && in_array($file, $exception_array) != TRUE && is_dir($foldername.$file)) {
-                    $return_array[] = $file;
+                    $return_array[$file] = $file;
                 }
             }
         }
         closedir($dir);
         natcasesort($return_array);
+        //unset($return_array);
+        //$return_array = array('foo' => 'foo1', 'bar' => 'b a r');
         return $return_array;
     }
 }
@@ -4528,12 +4530,49 @@ if (!function_exists('form_get_foldercontent')) {
   * @return array: an ascotiative array of language file names (without extension) and language names
  */
 if (!function_exists('cpg_get_available_languages')) {
-    function cpg_get_available_languages ($lang='default') 
+    function cpg_get_available_languages() 
     {
         // Work in progress - GauGau
         global $CONFIG;
-        natcasesort($return_array);
-        return $return_array;
+        // Make sure that the language table exists in the first place - 
+        // return without return value if the table doesn't exist because 
+        // the upgrade script hasn't been run
+        $results = cpg_db_query("SHOW TABLES LIKE '{$CONFIG['TABLE_LANGUAGE']}'");
+        if (!mysql_num_rows($results)) {
+        	// The update script has not been run - use the "old school" language file lookup and return the contents
+            $language_array = form_get_foldercontent('lang/','file', 'php');
+            ksort($language_array);
+            return $language_array;
+        }
+        mysql_free_result($results);
+        unset($results);
+        
+        // get list of available languages
+        $results = cpg_db_query("SELECT lang_id, english_name, native_name, custom_name FROM {$CONFIG['TABLE_LANGUAGE']} WHERE available='YES' AND enabled='YES' ");
+        while ($row = mysql_fetch_array($results)) {
+            if (file_exists ('lang/'.$row['lang_id'].'.php') == TRUE) {
+                if ($row['custom_name'] != '') {
+                    $language_array[$row['lang_id']] = $row['custom_name'];
+                } elseif ($row['english_name'] != '') {
+                    $language_array[$row['lang_id']] = $row['english_name'];
+                } else {
+                    $language_array[$row['lang_id']] = str_replace('_', ' ', ucfirst($row['lang_id']));
+                }
+                if ($row['native_name'] != '' && $row['native_name'] != $language_array[$row['lang_id']]) {
+                    $language_array[$row['lang_id']] .= ' - ' . $row['native_name'];
+                }
+            }
+        } // while
+        mysql_free_result($results);
+        unset($results);
+        unset($row);
+        if (count($language_array) == 0) {
+            unset($language_array);
+            $language_array = form_get_foldercontent('lang/','file', 'php');
+        }
+        // sort the array by English name
+        ksort($language_array);        
+        return $language_array;
     }
 }
 

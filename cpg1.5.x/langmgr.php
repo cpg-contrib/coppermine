@@ -21,6 +21,10 @@ define('IN_COPPERMINE', true);
 define('ADMIN_PHP', true);
 define('LANGMGR_PHP', true);
 
+/*
+To-do: make sure that the default language is not disabled
+Output warning about files that don't appear to be suitable language files
+*/
 
 require_once('include/init.inc.php');
 require_once('include/sql_parse.php');
@@ -220,6 +224,11 @@ $loopCounter = 0;
 $cpg_version_determination = 'Coppermine' . ' ' . 'version:';
 foreach ($lang_language_data as $language) {
     $availability_output = '';
+    $file_lookup_errors = 0;
+    $version_warning = '';
+    $version_output = '';
+    $filesize_output = '';
+    $additional_output = '';
     if ($language['available'] == 'YES' || in_array($language['lang_id'], $lang_file_array) == TRUE) {
         // Open the file to see if they're complete translations
         $handle = @fopen('lang/'. $language['lang_id'] . '.php', 'r');
@@ -249,9 +258,13 @@ foreach ($lang_language_data as $language) {
                 $language['complete'] = 'YES';
             } else {
                 $language['complete'] = 'NO';
+                $version_warning = $lang_langmgr_php['version_does_not_match'];
             }
             // Perform the lookup for the native language name
             $language['file_native'] = strings_from_language_file('lang_name_native');
+            if ($language['file_native'] == '') {
+                $file_lookup_errors++;
+            }
             if ($language['native_name'] == '') {
             	$language['native_name'] = $language['file_native']; // Populate the native name field from the file if emtpy 
             }
@@ -262,6 +275,9 @@ foreach ($lang_language_data as $language) {
             }
             // Perform the lookup for the English language name
             $language['file_english'] = strings_from_language_file('lang_name_english');
+            if ($language['file_english'] == '') {
+                $file_lookup_errors++;
+            }
             if ($language['english_name'] == '') {
             	$language['english_name'] = $language['file_english']; // Populate the english name field from the file if emtpy 
             }
@@ -276,8 +292,12 @@ foreach ($lang_language_data as $language) {
             $language['translator_website'] = strings_from_language_file('trans_website');
             // Look up the default country code
             $language['file_flag'] = strings_from_language_file('lang_country_code');
+            if ($language['file_flag'] == '') {
+                $file_lookup_errors++;
+            }
         }
         @fclose($handle);
+        $language['file_size'] = filesize('lang/'. $language['lang_id'] . '.php');
         // Alternating colors
         if ($loopCounter/2 == floor($loopCounter/2)) {
             $cellstyle = 'tableb';
@@ -334,7 +354,7 @@ foreach ($lang_language_data as $language) {
         //  Flag new records accordingly --- end
         // Populate credits section
         if ($language['translator_name'] != '') {
-        	$translator_output = $lang_langmgr_php['tanslator_information'] . ': ';
+        	$translator_output = '<li>'.$lang_langmgr_php['tanslator_information'] . ': ';
         	if ($language['translator_website'] != '') {
         		$translator_output .= '<a href="'.$language['translator_website'].'" rel="external" class="external">';
         	}
@@ -342,19 +362,24 @@ foreach ($lang_language_data as $language) {
         	if ($language['translator_website'] != '') {
         		$translator_output .= '</a>';
         	}
+            $translator_output .= '</li>';
         } else {
         	$translator_output = '';
+            $file_lookup_errors++;
         }
         if ($language['version'] != '') {
-        	if ($translator_output != '') {
-        		$version_output = ', ';
-        	} else {
-        		$version_output = '';
-        	}
-        	$version_output .= $lang_langmgr_php['cpg_version'] . ': ' . $language['version'];
-        	
+        	$version_output .= '<li>'.$lang_langmgr_php['cpg_version'] . ': ' . $language['version'].'<br />'.$version_warning.'</li>';
         } else {
-        	$version_output = '';
+        	$version_output = '<li>'.$lang_langmgr_php['no_version'].'</li>';
+            $file_lookup_errors++;
+        }
+        if ($language['file_size'] < 100000 || $language['file_size'] > 200000) {
+            $filesize_output = '<li>';
+            $filesize_output .= sprintf($lang_langmgr_php['filesize'], round($language['file_size']/1000) . ' ' . $lang_byte_units[1]);
+            $filesize_output .= '</li>';
+        }
+        if ($file_lookup_errors > 3) {
+            $additional_output = '<li>'.$lang_langmgr_php['content_missing'].'</li>';
         }
         // Flag icon population --- start
         if ($language['flag'] != '') {
@@ -441,7 +466,14 @@ EOT;
     </tr>
     <tr>
     	<td class="{$cellstyle}" colspan="7">
-    		<span id="translator_{$loopCounter}">{$translator_output}{$version_output}</span> 
+    		<span id="translator_{$loopCounter}">
+                <ul style="margin:0px">
+                    {$translator_output}
+                    {$version_output}
+                    {$filesize_output}
+                    {$additional_output}
+                </ul>
+            </span> 
     	</td>
     </tr>
 EOT;
@@ -482,11 +514,6 @@ EOT;
 print <<< EOT
 
 <script type="text/javascript">
-    addonload("show_section('collapse_all_top')");
-    addonload("show_section('collapse_all_bottom')");
-    addonload("show_section('cpg_progress_bar')");
-    
-    
     function toggleExpandCollpaseButtons(action) 
     {
         for (var i = 0; i <= {$loopCounter}; i++) {
@@ -497,9 +524,6 @@ print <<< EOT
             }
         }
     }
-    
-    function cpgReplaceTextFieldValue(fieldname, value) {
-    }    
 </script>
 EOT;
 
