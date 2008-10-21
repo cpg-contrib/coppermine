@@ -255,20 +255,6 @@ if (defined('EDITPICS_PHP')) {
 }
 
 // ------------------------------------------------------------------------- //
-// File faq.php
-// ------------------------------------------------------------------------- //
-
-if (defined('FAQ_PHP')) {
-  $lang_faq_php_en = cpg_get_default_lang_var('lang_faq_php','english');
-  $lang_faq_php = array_merge($lang_faq_php_en, $lang_faq_php);
-}
-
-if (defined('FAQ_PHP')) {
-        $lang_faq_data_en = cpg_get_default_lang_var('lang_faq_data','english');
-         if (!isset($lang_faq_data)) $lang_faq_data = $lang_faq_data_en;
-}
-
-// ------------------------------------------------------------------------- //
 // File forgot_passwd.php
 // ------------------------------------------------------------------------- //
 
