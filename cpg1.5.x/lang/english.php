@@ -2374,6 +2374,8 @@ $lang_update_php = array(
   'check_versions' => 'It\'s recommended to %scheck your file versions%s if you just upgraded from an older version of coppermine', // cpg1.5 // Leave the %s untouched when translating - it wraps the link
   'start_page' => 'If you didn\'t (or you don\'t want to check), you can go to %syour gallery\'s start page%s', // cpg1.5 // Leave the %s untouched when translating - it wraps the link
   'errors_encountered' => 'The following errors were encountered and need to be corrected first', // cpg1.5
+  'delete_file' => 'Delete %s', // cpg1.5
+  'could_not_delete' => 'Could not delete due to missing permissions. Delete the file manually!', // cpg1.5
 );
 }
 

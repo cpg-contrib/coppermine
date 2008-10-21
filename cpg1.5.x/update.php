@@ -67,26 +67,28 @@ if (!defined('SKIP_AUTHENTICATION') && defined('COPPERMINE_VERSION') && GALLERY_
 } else { // we need to populate the language array "manually"
     $lang_common['ok'] = 'OK';
     $lang_update_php = array(
-      'title' => 'Updater', // cpg1.5
-      'welcome_updater' => 'Welcome to Coppermine update', // cpg1.5
-      'could_not_authenticate' => 'Could not authenticate you', // cpg1.5
-      'provide_admin_account' => 'Please provide your coppermine admin account details or your mySQL account data', // cpg1.5
-      'try_again' => 'Try again', // cpg1.5
-      'mysql_connect_error' => 'Could not create a mySQL connection', // cpg1.5
-      'mysql_database_error' => 'mySQL could not locate a database called %s', // cpg1.5
-      'mysql_said' => 'MySQL said', // cpg1.5
-      'check_config_file' => 'Please check the SQL values in %s', // cpg1.5
-      'performing_database_updates' => 'Performing Database Updates', // cpg1.5
-      'already_done' => 'Already Done', // cpg1.5
-      'password_encryption' => 'Encryption of passwords', // cpg1.5
-      'category_tree' => 'Category tree', // cpg1.5
-      'authentication_needed' => 'Authentication needed', // cpg1.5
-      'username' => 'Username', // cpg1.5
-      'password' => 'Password', // cpg1.5
-      'update_completed' => 'Update completed', // cpg1.5
-      'check_versions' => 'It\'s recommended to %scheck your file versions%s if you just upgraded from an older version of coppermine', // cpg1.5 // Leave the %s untouched when translating - it wraps the link
-      'start_page' => 'If you didn\'t (or you don\'t want to check), you can go to %syour gallery\'s start page%s', // cpg1.5 // Leave the %s untouched when translating - it wraps the link
-      'errors_encountered' => 'The following errors were encountered and need to be corrected first', // cpg1.5
+	  'title' => 'Updater', // cpg1.5
+	  'welcome_updater' => 'Welcome to Coppermine update', // cpg1.5
+	  'could_not_authenticate' => 'Could not authenticate you', // cpg1.5
+	  'provide_admin_account' => 'Please provide your coppermine admin account details or your mySQL account data', // cpg1.5
+	  'try_again' => 'Try again', // cpg1.5
+	  'mysql_connect_error' => 'Could not create a mySQL connection', // cpg1.5
+	  'mysql_database_error' => 'mySQL could not locate a database called %s', // cpg1.5
+	  'mysql_said' => 'MySQL said', // cpg1.5
+	  'check_config_file' => 'Please check the SQL values in %s', // cpg1.5
+	  'performing_database_updates' => 'Performing Database Updates', // cpg1.5
+	  'already_done' => 'Already Done', // cpg1.5
+	  'password_encryption' => 'Encryption of passwords', // cpg1.5
+	  'category_tree' => 'Category tree', // cpg1.5
+	  'authentication_needed' => 'Authentication needed', // cpg1.5
+	  'username' => 'Username', // cpg1.5
+	  'password' => 'Password', // cpg1.5
+	  'update_completed' => 'Update completed', // cpg1.5
+	  'check_versions' => 'It\'s recommended to %scheck your file versions%s if you just upgraded from an older version of coppermine', // cpg1.5 // Leave the %s untouched when translating - it wraps the link
+	  'start_page' => 'If you didn\'t (or you don\'t want to check), you can go to %syour gallery\'s start page%s', // cpg1.5 // Leave the %s untouched when translating - it wraps the link
+	  'errors_encountered' => 'The following errors were encountered and need to be corrected first', // cpg1.5
+	  'delete_file' => 'Delete %s', // cpg1.5
+	  'could_not_delete' => 'Could not delete due to missing permissions. Delete the file manually!', // cpg1.5
     );
 }
 
@@ -466,10 +468,12 @@ function update_tables()
     	$update_icon = cpg_fetch_icon('update_database', 2);
     	$ok_icon = cpg_fetch_icon('ok', 2);
     	$already_done_icon = cpg_fetch_icon('info', 2);
+    	$error_icon = cpg_fetch_icon('stop', 2);
     } else {
     	$update_icon = '';
     	$ok_icon = '';
     	$already_done_icon = '';
+    	$error_icon = '';
     }
 
     print <<< EOT
@@ -609,6 +613,67 @@ EOT;
             </tr>
 EOT;
     }
+    
+    // Attempt to delete outdated files
+    $delete_file_array = array(
+    'config.php',
+    'editOnePic.php',
+    'faq.php',
+    'picEditor.php',
+    'relocate_server.php',
+    'scripts.js',
+    'bridge/phpbb22.inc.php',
+    'docs/COPYING',
+    'docs/faq.htm',
+    'docs/faq_de.htm',
+    'docs/faq_fr.htm',
+    'docs/index_es.htm',
+    'docs/index_fr.htm',
+    'docs/README.html',
+    'docs/showdoc.php',
+    'docs/tester-README.txt',
+    'docs/theme.htm',
+    'docs/translation.htm',
+    'docs/pics/',
+    'docs/theme/',
+    'include/config.tmp.php',
+    'include/imageObjectGD.class.php',
+    'include/imageObjectIM.class.php',
+    );
+    // Check if the file exists in the first place
+    foreach ($delete_file_array as $delete_file) {
+	    if ($loopCounter/2 == floor($loopCounter/2)) {
+	        $cellStyle = 'tableb';
+	    } else {
+	        $cellStyle = 'tableb tableb_alternate';
+	    }
+	    $delete_output = sprintf($lang_update_php['delete_file'], '&laquo;<tt>'.$delete_file.'</tt>&raquo;');
+	    print <<< EOT
+            <tr>
+                <td class="{$cellStyle}">
+                    {$delete_output}
+                </td>
+EOT;
+	    if (file_exists($delete_file) == FALSE){
+	    	$result_output = $already_done_icon . $lang_update_php['already_done'];
+	    } else {
+	    	$delete_result = unlink($delete_file);
+	    	$delete_check = file_exists($delete_file);
+	    	if ($delete_result == TRUE && $delete_check == FALSE) {
+	    		$result_output = $ok_icon . $lang_common['ok'];
+	    	} else {
+	    		$result_output = $error_icon . $lang_update_php['could_not_delete'];
+	    	}
+	    }
+	    print <<< EOT
+                <td class="{$cellStyle}">
+                    {$result_output}
+                </td>
+            </tr>
+EOT;
+	    $loopCounter++;
+    }
+    
     
     echo "</table>";
 }

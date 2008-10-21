@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-10-21 [A] Removal of outdated files by updater {GauGau}
 2008-10-19 [O] Removed double ; at line ends (thread ID 51899) {GauGau}
 2008-10-19 [C] Fixed validation issue for browse-by-date link {GauGau}
 2008-10-19 [C] Fixed validation issue with registration screen (thread ID 51310) {GauGau}
