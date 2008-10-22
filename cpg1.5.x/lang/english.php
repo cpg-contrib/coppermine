@@ -1950,7 +1950,7 @@ EOT;
 
 if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
   'title' => 'Review comments',
-  'no_comment' => 'There is no comment to review',
+  'no_comment' => 'There are no comments to review',
   'n_comm_del' => '%s comment(s) deleted',
   'n_comm_disp' => 'Number of comments to display',
   'see_prev' => 'See previous',
