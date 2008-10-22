@@ -72,6 +72,18 @@ if ($superCage->get->getInt('errors_only') == '1') {
 } else {
   $displayOption_array['errors_only'] = 0;
 }
+if ($superCage->get->getInt('hide_images') == '1') {
+  $displayOption_array['hide_images'] = 1;
+  $optionDisplayOutput_array['hide_images'] = 'checked="checked"';
+} else {
+  $displayOption_array['hide_images'] = 0;
+}
+if ($superCage->get->getInt('no_modification_check') == '1') {
+  $displayOption_array['no_modification_check'] = 1;
+  $optionDisplayOutput_array['no_modification_check'] = 'checked="checked"';
+} else {
+  $displayOption_array['no_modification_check'] = 0;
+}
 // Sanitize the GET vars and populate the optionsArray --- end
   
 

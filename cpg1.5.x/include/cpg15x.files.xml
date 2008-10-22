@@ -6171,6 +6171,12 @@
     <hash>d61a2a318b3654e8bc7eca6dccd5cf51</hash>
   </element>
   <element>
+    <fullpath>images/icons/filter.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>d61a2a318b3654e8bc7eca6dccd5cf51</hash>
+  </element>
+  <element>
     <fullpath>images/icons/groups_mgr.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
@@ -8645,6 +8651,12 @@
   </element>
   <element>
     <fullpath>themes/classic/images/icons/file.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>d61a2a318b3654e8bc7eca6dccd5cf51</hash>
+  </element>
+  <element>
+    <fullpath>themes/classic/images/icons/filter.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>d61a2a318b3654e8bc7eca6dccd5cf51</hash>
