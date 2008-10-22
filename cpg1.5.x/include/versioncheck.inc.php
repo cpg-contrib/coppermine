@@ -609,7 +609,7 @@ function cpg_versioncheckCreateTextOnlyOutput($file_data_array) {
                 document.write('<br />');
       </script>
 EOT;
-      print '<form name="versioncheckdisplay"><textarea name="versioncheck_text" rows="'.($file_data_count + 5).'" class="textinput debug_text" style="width:98%;font-family:\'Courier New\',Courier,monospace;font-size:9px;">';
+      print '<form name="versioncheckdisplay"><textarea name="versioncheck_text" rows="'.($file_data_count + 5).'" cols="60" class="textinput debug_text" style="width:98%;font-family:\'Courier New\',Courier,monospace;font-size:9px;">';
     }
 
   $loopCounter = 1;
