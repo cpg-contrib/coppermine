@@ -27,10 +27,10 @@
   <element>
     <fullpath>admin.php</fullpath>
     <version>1.5.0</version>
-    <revision>5126</revision>
+    <revision>5155</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>b34f6626983b0c5c168aabe65548d0b9</hash>
+    <hash>659cc403158aff67a4ff0be329ba07b6</hash>
   </element>
   <element>
     <fullpath>albmgr.php</fullpath>
@@ -285,10 +285,10 @@
   <element>
     <fullpath>langmgr.php</fullpath>
     <version>1.5.0</version>
-    <revision>5151</revision>
+    <revision>5155</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a6c6b9b4055577f742efef2efc980688</hash>
+    <hash>7cce924d7dabbe1a373fbc7e7f6af951</hash>
   </element>
   <element>
     <fullpath>login.php</fullpath>
@@ -465,10 +465,10 @@
   <element>
     <fullpath>update.php</fullpath>
     <version>1.5.0</version>
-    <revision>5129</revision>
+    <revision>5154</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>ccbd2a9f9b38f5dfc3e2a9f935e9a34b</hash>
+    <hash>f982777b9fe6b26987658f8c22131062</hash>
   </element>
   <element>
     <fullpath>upload.php</fullpath>
@@ -497,10 +497,10 @@
   <element>
     <fullpath>versioncheck.php</fullpath>
     <version>1.5.0</version>
-    <revision>5129</revision>
+    <revision>5156</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>ee938b6f2dc31fa5aea3a46a8ea7262d</hash>
+    <hash>5a0080dd4a3a9aa810f5795013b63ed4</hash>
   </element>
   <element>
     <fullpath>viewlog.php</fullpath>
@@ -1306,10 +1306,10 @@
   <element>
     <fullpath>docs/en/upgrading.htm</fullpath>
     <version>1.5.0</version>
-    <revision>5129</revision>
+    <revision>5156</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>fe7e85b8a691a20c7b1edead7a76692d</hash>
+    <hash>a727cdec39a2395b13444f0a56e2a0e3</hash>
   </element>
   <element>
     <fullpath>docs/en/upload_troubleshooting.htm</fullpath>
@@ -6174,7 +6174,7 @@
     <fullpath>images/icons/filter.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>d61a2a318b3654e8bc7eca6dccd5cf51</hash>
+    <hash>6ef1517b06941289c29b5e0673383a26</hash>
   </element>
   <element>
     <fullpath>images/icons/groups_mgr.png</fullpath>
@@ -7714,10 +7714,10 @@
   <element>
     <fullpath>include/admin.inc.php</fullpath>
     <version>1.5.0</version>
-    <revision>5151</revision>
+    <revision>5155</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>8bc3d325183838e519d8238b5b091e3e</hash>
+    <hash>4c32a1d43bc73668aef64cae38027db5</hash>
   </element>
   <element>
     <fullpath>include/archive.php</fullpath>
@@ -7781,10 +7781,10 @@
   <element>
     <fullpath>include/functions.inc.php</fullpath>
     <version>1.5.0</version>
-    <revision>5151</revision>
+    <revision>5155</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>5f8cd86abb8d3ca742344015cdc5cdbd</hash>
+    <hash>f11f89dc0e1c08ec123b2e9779c298c1</hash>
   </element>
   <element>
     <fullpath>include/imageObjectGD.class.php</fullpath>
@@ -7853,10 +7853,10 @@
   <element>
     <fullpath>include/langfallback.inc.php</fullpath>
     <version>1.5.0</version>
-    <revision>5129</revision>
+    <revision>5153</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a3a72c907416c0af6288f4d53d9a807c</hash>
+    <hash>4408bed4eefe3b7e3dc1899c4bea1903</hash>
   </element>
   <element>
     <fullpath>include/lib.xml.php</fullpath>
@@ -7989,10 +7989,10 @@
   <element>
     <fullpath>include/versioncheck.inc.php</fullpath>
     <version>1.5.0</version>
-    <revision>5129</revision>
+    <revision>5156</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>47f960c64028820110b989fabe506b60</hash>
+    <hash>81c78eadaab5b476e17ca86058fc41ce</hash>
   </element>
   <element>
     <fullpath>include/zip.lib.php</fullpath>
@@ -8108,10 +8108,10 @@
   <element>
     <fullpath>lang/english.php</fullpath>
     <version>1.5.0</version>
-    <revision>5151</revision>
+    <revision>5156</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a74ef143802fb0cc4c0de5d6eb782a6d</hash>
+    <hash>afd29c9132d55705912c6ac0c2dae05e</hash>
   </element>
   <element>
     <fullpath>lang/german.php</fullpath>
@@ -8659,7 +8659,7 @@
     <fullpath>themes/classic/images/icons/filter.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>d61a2a318b3654e8bc7eca6dccd5cf51</hash>
+    <hash>6ef1517b06941289c29b5e0673383a26</hash>
   </element>
   <element>
     <fullpath>themes/classic/images/icons/groups_mgr.png</fullpath>
