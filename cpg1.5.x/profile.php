@@ -381,7 +381,7 @@ switch ($op) {
 
         if (defined('UDB_INTEGRATION')) $cpg_udb->edit_profile(USER_ID);
 
-        $sql = "SELECT user_name, user_email, user_group, UNIX_TIMESTAMP(user_regdate) as user_regdate, group_name, " . "user_profile1, user_profile2, user_profile3, user_profile4, user_profile5, user_profile6, user_group_list, " . "COUNT(pid) as pic_count, ROUND(SUM(total_filesize)/1024) as disk_usage, group_quota " . "FROM {$CONFIG['TABLE_USERS']} AS u " . "INNER JOIN {$CONFIG['TABLE_USERGROUPS']} AS g ON user_group = group_id " . "LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.owner_id = u.user_id " . "WHERE user_id ='" . USER_ID . "' " . "GROUP BY user_id ";
+        $sql = "SELECT user_name, user_email, user_group, UNIX_TIMESTAMP(user_regdate) as user_regdate, group_name, " . "user_profile1, user_profile2, user_profile3, user_profile4, user_profile5, user_profile6, user_group_list, " . "COUNT(pid) as pic_count, SUM(total_filesize) as disk_usage, group_quota " . "FROM {$CONFIG['TABLE_USERS']} AS u " . "INNER JOIN {$CONFIG['TABLE_USERGROUPS']} AS g ON user_group = group_id " . "LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.owner_id = u.user_id " . "WHERE user_id ='" . USER_ID . "' " . "GROUP BY user_id ";
 
         $result = cpg_db_query($sql);
 
@@ -414,7 +414,7 @@ switch ($op) {
         if (!GALLERY_ADMIN_MODE) {
             $disk_usage_output = theme_display_bar($disk_usage,$group_quota,300,'', '', $group_quota_separator.$group_quota.$lang_byte_units[1],'red','green');
         } else {
-            $disk_usage_output = $disk_usage . ' ' . $lang_byte_units[1];
+            $disk_usage_output = cpg_format_bytes($disk_usage);
         }
         $form_data = array('username' => $user_data['user_name'],
             'reg_date' => localised_date($user_data['user_regdate'], $register_date_fmt),

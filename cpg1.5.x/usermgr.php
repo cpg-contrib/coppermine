@@ -443,7 +443,7 @@ EOT;
     $result = cpg_db_query("SELECT SUM(total_filesize) FROM {$CONFIG['TABLE_PICTURES']} LIMIT 1");
     $tempSpaceCount = mysql_fetch_array($result);
     $totalSpaceCount = $tempSpaceCount[0];
-    $totalSpaceCount_fmt = cpg_float2decimal($totalSpaceCount);
+    $totalSpaceCount_fmt = cpg_format_bytes($totalSpaceCount);
     mysql_free_result($result);
     unset($tempSpaceCount);
     
@@ -642,7 +642,7 @@ EOT;
                 </td>
                 <td align="right" class="tablef">$totalCommentCount_fmt</td>
                 <td align="right" class="tablef">$totalPictureCount_fmt</td>
-                <td align="right" class="tablef">{$totalSpaceCount_fmt}&nbsp;{$lang_byte_units[1]}</td>
+                <td align="right" class="tablef">$totalSpaceCount_fmt</td>
         </tr>
         <tr>
             <td colspan="$number_of_columns" class="tablef" align="center" valign="middle">

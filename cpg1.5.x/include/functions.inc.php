@@ -4618,4 +4618,20 @@ function cpg_config_set($name, $value) {
 	}      
 }
 
+function cpg_format_bytes($bytes) {
+
+	global $lang_byte_units, $lang_decimal_separator;
+	
+	foreach ($lang_byte_units as $unit) {
+
+		if ($bytes < 1024) {
+			break;
+		}
+				
+		$bytes /= 1024;
+	}
+	
+	return number_format($bytes, 2, $lang_decimal_separator[1], $lang_decimal_separator[0]) . ' ' . $unit;
+}
+
 ?>
