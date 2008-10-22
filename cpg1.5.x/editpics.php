@@ -37,14 +37,24 @@ $icon_array['title'] = cpg_fetch_icon('title', 2);
 $icon_array['file_name'] = cpg_fetch_icon('filename', 2);
 $icon_array['description'] = cpg_fetch_icon('text_left', 2);
 $icon_array['keyword'] = cpg_fetch_icon('keyword_mgr', 2);
-$icon_array['approve'] = cpg_fetch_icon('ok', 2);
-$icon_array['disapprove'] = cpg_fetch_icon('cancel', 2);
+$icon_array['file_approval'] = cpg_fetch_icon('file_approval', 2);
+$icon_array['file_approve'] = cpg_fetch_icon('file_approve', 0, $lang_editpics_php['approve_pic']);
+$icon_array['file_approve_all'] = cpg_fetch_icon('file_approve', 0, $lang_editpics_php['approve_all']);
+$icon_array['file_disapprove'] = cpg_fetch_icon('file_disapprove', 2);
 $icon_array['exif'] = cpg_fetch_icon('exif_mgr', 2);
-$icon_array['reset_views'] = cpg_fetch_icon('stats_delete', 2);
+$icon_array['reset_views'] = cpg_fetch_icon('stats_delete',  0, $lang_editpics_php['reset_view_count']);
+$icon_array['reset_views_all'] = cpg_fetch_icon('stats_delete',  0, $lang_editpics_php['reset_all_view_count']);
 $icon_array['reset_votes'] = cpg_fetch_icon('blank', 2);
-$icon_array['delete_comments'] = cpg_fetch_icon('comment_approval', 2);
 $icon_array['ok'] = cpg_fetch_icon('ok', 2);
 $icon_array['category'] = cpg_fetch_icon('category', 2);
+$icon_array['delete'] = cpg_fetch_icon('delete', 0, $lang_editpics_php['del_pic']);
+$icon_array['delete_all'] = cpg_fetch_icon('delete', 0, $lang_editpics_php['del_all']);
+$icon_array['comment_delete'] = cpg_fetch_icon('comment_disapprove', 0, $lang_editpics_php['del_comm']);
+$icon_array['comment_delete_all'] = cpg_fetch_icon('comment_disapprove', 0, $lang_editpics_php['del_all_comm']);
+
+
+
+$view_icon = cpg_fetch_icon('stats', 0, $lang_editpics_php['reset_view_count']);
 
 if ($superCage->get->keyExists('album')) {
     $album_id = $superCage->get->getInt('album');
@@ -351,7 +361,7 @@ EOT;
 function form_pic_info($text)
 {
     global $CURRENT_PIC, $THUMB_ROWSPAN, $CONFIG; 
-    global $lang_byte_units, $lang_editpics_php, $lang_common, $loop_counter, $row_style_class;
+    global $lang_byte_units, $lang_editpics_php, $lang_common, $loop_counter, $row_style_class, $icon_array;
 
     if (!is_movie($CURRENT_PIC['filename'])) {
         $pic_info = sprintf($lang_editpics_php['pic_info_str'], $CURRENT_PIC['pwidth'], $CURRENT_PIC['pheight'], ($CURRENT_PIC['filesize'] >> 10), $CURRENT_PIC['hits'], $CURRENT_PIC['votes']);
@@ -386,13 +396,9 @@ function form_pic_info($text)
 
     // The approve checkbox is shown only if the user is admin or moderator.
     if (GALLERY_ADMIN_MODE || MODERATOR_MODE) {
-        $approve_icon = cpg_fetch_icon('ok', 0, $lang_editpics_php['approve_pic']);
-        $delete_icon = cpg_fetch_icon('delete', 0, $lang_editpics_php['del_pic']);
-    	$comment_icon = cpg_fetch_icon('comment_approval', 0, $lang_editpics_php['del_comm']);
-    	$view_icon = cpg_fetch_icon('stats', 0, $lang_editpics_php['reset_view_count']);
         $approve_html = <<<EOT
                           <td class="{$row_style_class}" width="40" valign="top">
-                                  <input type="checkbox" name="approved{$CURRENT_PIC['pid']}" id="approve{$CURRENT_PIC['pid']}" value="YES" {$pic_approval_checked} class="checkbox" title="{$lang_editpics_php['approve_pic']}" /><label for="approve{$CURRENT_PIC['pid']}" class="clickable_option">{$approve_icon}</label>
+                                  <input type="checkbox" name="approved{$CURRENT_PIC['pid']}" id="approve{$CURRENT_PIC['pid']}" value="YES" {$pic_approval_checked} class="checkbox" title="{$lang_editpics_php['approve_pic']}" /><label for="approve{$CURRENT_PIC['pid']}" class="clickable_option">{$icon_array['file_approve']}</label>
                           </td>
 EOT;
     }
@@ -406,17 +412,17 @@ EOT;
                             {$lang_common['filename']}: $filename
                     </td>
                     <td class="{$row_style_class}" width="40" valign="top">
-                    <input type="checkbox" name="delete{$CURRENT_PIC['pid']}" id="delete{$CURRENT_PIC['pid']}" value="1" class="checkbox" title="{$lang_editpics_php['del_pic']}" /><label for="delete{$CURRENT_PIC['pid']}" class="clickable_option">{$delete_icon}</label>
+                    <input type="checkbox" name="delete{$CURRENT_PIC['pid']}" id="delete{$CURRENT_PIC['pid']}" value="1" class="checkbox" title="{$lang_editpics_php['del_pic']}" /><label for="delete{$CURRENT_PIC['pid']}" class="clickable_option">{$icon_array['delete']}</label>
                     </td>
                     $approve_html
                     <td class="{$row_style_class}" width="40">
-                            <input type="checkbox" name="reset_vcount{$CURRENT_PIC['pid']}" id="reset_vcount{$CURRENT_PIC['pid']}" value="1" class="checkbox" title="{$lang_editpics_php['reset_view_count']}" /><label for="reset_vcount{$CURRENT_PIC['pid']}" class="clickable_option">{$view_icon}</label>
+                            <input type="checkbox" name="reset_vcount{$CURRENT_PIC['pid']}" id="reset_vcount{$CURRENT_PIC['pid']}" value="1" class="checkbox" title="{$lang_editpics_php['reset_view_count']}" /><label for="reset_vcount{$CURRENT_PIC['pid']}" class="clickable_option">{$icon_array['reset_views']}</label>
                     </td>
                     <td class="{$row_style_class}" width="40">
                             <input type="checkbox" name="reset_votes{$CURRENT_PIC['pid']}" id="reset_votes{$CURRENT_PIC['pid']}" value="1" class="checkbox" title="{$lang_editpics_php['reset_votes']}" /><label for="reset_votes{$CURRENT_PIC['pid']}" class="clickable_option"><img src="images/rating.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['reset_votes']}" /></label>
                     </td>
                     <td class="{$row_style_class}" width="40">
-                            <input type="checkbox" name="del_comments{$CURRENT_PIC['pid']}" id="del_comments{$CURRENT_PIC['pid']}" value="1" class="checkbox" title="{$lang_editpics_php['del_comm']}" /><label for="del_comments{$CURRENT_PIC['pid']}" class="clickable_option">{$comment_icon}</label>
+                            <input type="checkbox" name="del_comments{$CURRENT_PIC['pid']}" id="del_comments{$CURRENT_PIC['pid']}" value="1" class="checkbox" title="{$lang_editpics_php['del_comm']}" /><label for="del_comments{$CURRENT_PIC['pid']}" class="clickable_option">{$icon_array['comment_delete']}</label>
                     </td>
                 </tr>
             </table>
@@ -604,7 +610,7 @@ function create_form(&$data)
 
 function get_user_albums($user_id = '') 
 {
-    global $CONFIG, $user_albums_list, $albStr;
+    global $CONFIG, $user_albums_list, $albStr, $icon_array;
 
     $USER_ALBUMS_ARRAY=array(0 => array());
 
@@ -828,13 +834,9 @@ EOT;
 
 // The approve all checkbox is shown only if the user is admin or moderator.
 if (GALLERY_ADMIN_MODE || MODERATOR_MODE) {
-    $approve_all_icon = cpg_fetch_icon('ok', 0, $lang_editpics_php['approve_all']);
-    $delete_all_icon = cpg_fetch_icon('delete', 0, $lang_editpics_php['del_all']);
-    $views_all_icon = cpg_fetch_icon('stats', 0, $lang_editpics_php['reset_all_view_count']);
-    $comments_all_icon = cpg_fetch_icon('comment_approval', 0, $lang_editpics_php['del_all_comm']);
     $approve_all_html = <<<EOT
                           <td class="tableh2" width="40" valign="top">
-                                  <input type="checkbox" name="approveAll" onclick="selectAll(this,'approved');" class="checkbox" id="approveAll" title="{$lang_editpics_php['approve_all']}" /><label for="approveAll" class="clickable_option">{$approve_all_icon}</label>
+                                  <input type="checkbox" name="approveAll" onclick="selectAll(this,'approved');" class="checkbox" id="approveAll" title="{$lang_editpics_php['approve_all']}" /><label for="approveAll" class="clickable_option">{$icon_array['file_approve_all']}</label>
                           </td>
 EOT;
 }
@@ -849,17 +851,17 @@ echo <<<EOT
                             {$lang_editpics_php['select_unselect']}:
                         </td>
                         <td class="tableh2" width="40" valign="top">
-                            <input type="checkbox" name="deleteAll" onclick="selectAll(this,'delete');" class="checkbox" id="deleteAll" title="{$lang_editpics_php['del_all']}" /><label for="deleteAll" class="clickable_option">{$delete_all_icon}</label>
+                            <input type="checkbox" name="deleteAll" onclick="selectAll(this,'delete');" class="checkbox" id="deleteAll" title="{$lang_editpics_php['del_all']}" /><label for="deleteAll" class="clickable_option">{$icon_array['delete_all']}</label>
                         </td>
                         $approve_all_html
                         <td class="tableh2" width="40">
-                            <input type="checkbox" name="reset_vcountAll" onclick="selectAll(this,'reset_vcount');" class="checkbox" id="reset_vcountAll" title="{$lang_editpics_php['reset_all_view_count']}" /><label for="reset_vcountAll" class="clickable_option">{$views_all_icon}</label>
+                            <input type="checkbox" name="reset_vcountAll" onclick="selectAll(this,'reset_vcount');" class="checkbox" id="reset_vcountAll" title="{$lang_editpics_php['reset_all_view_count']}" /><label for="reset_vcountAll" class="clickable_option">{$icon_array['reset_views_all']}</label>
                         </td>
                         <td class="tableh2" width="40">
                             <input type="checkbox" name="reset_votesAll" onclick="selectAll(this,'reset_votes');" class="checkbox" id="reset_votesAll" title="{$lang_editpics_php['reset_all_votes']}" /><label for="reset_votesAll" class="clickable_option"><img src="images/rating.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['reset_all_votes']}" /></label>
                         </td>
                         <td class="tableh2" width="40">
-                            <input type="checkbox" name="del_commentsAll" onclick="selectAll(this,'del_comments');" class="checkbox" id="del_commentsAll" title="{$lang_editpics_php['del_all_comm']}" /><label for="del_commentsAll" class="clickable_option">{$comments_all_icon}</label>
+                            <input type="checkbox" name="del_commentsAll" onclick="selectAll(this,'del_comments');" class="checkbox" id="del_commentsAll" title="{$lang_editpics_php['del_all_comm']}" /><label for="del_commentsAll" class="clickable_option">{$icon_array['comment_delete_all']}</label>
                         </td>
                     </tr>
                 </table>
