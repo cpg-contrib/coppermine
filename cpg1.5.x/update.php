@@ -469,11 +469,13 @@ function update_tables()
     	$ok_icon = cpg_fetch_icon('ok', 2);
     	$already_done_icon = cpg_fetch_icon('info', 2);
     	$error_icon = cpg_fetch_icon('stop', 2);
+        $file_system_icon = cpg_fetch_icon('hdd', 2);
     } else {
     	$update_icon = '';
     	$ok_icon = '';
     	$already_done_icon = '';
     	$error_icon = '';
+        $file_system_icon = '';
     }
 
     print <<< EOT
@@ -640,6 +642,14 @@ EOT;
     'include/imageObjectGD.class.php',
     'include/imageObjectIM.class.php',
     );
+    
+	    print <<< EOT
+            <tr>
+                <td class="tableh1" colspan="2">
+                    {$file_system_icon}{$lang_update_php['performing_file_updates']}
+                </td>
+            </tr>
+EOT;
     // Check if the file exists in the first place
     foreach ($delete_file_array as $delete_file) {
 	    if ($loopCounter/2 == floor($loopCounter/2)) {

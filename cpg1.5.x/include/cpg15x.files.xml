@@ -6171,7 +6171,43 @@
     <hash>d61a2a318b3654e8bc7eca6dccd5cf51</hash>
   </element>
   <element>
+    <fullpath>images/icons/file_approval.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>d61a2a318b3654e8bc7eca6dccd5cf51</hash>
+  </element>
+  <element>
+    <fullpath>images/icons/file_approve.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>d61a2a318b3654e8bc7eca6dccd5cf51</hash>
+  </element>
+  <element>
+    <fullpath>images/icons/file_disapprove.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>d61a2a318b3654e8bc7eca6dccd5cf51</hash>
+  </element>
+  <element>
+    <fullpath>images/icons/filename.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>d61a2a318b3654e8bc7eca6dccd5cf51</hash>
+  </element>
+  <element>
     <fullpath>images/icons/filter.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6ef1517b06941289c29b5e0673383a26</hash>
+  </element>
+  <element>
+    <fullpath>images/icons/folder.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6ef1517b06941289c29b5e0673383a26</hash>
+  </element>
+  <element>
+    <fullpath>images/icons/group_add.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>6ef1517b06941289c29b5e0673383a26</hash>
@@ -6181,6 +6217,12 @@
     <status>mandatory</status>
     <permission>read</permission>
     <hash>4736e8feaba2580ff4646bac3a26ab6e</hash>
+  </element>
+  <element>
+    <fullpath>images/icons/hdd.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6ef1517b06941289c29b5e0673383a26</hash>
   </element>
   <element>
     <fullpath>images/icons/help.png</fullpath>
@@ -6417,6 +6459,12 @@
     <hash>e42510b16252d38bc5faa6d15b5d64e4</hash>
   </element>
   <element>
+    <fullpath>images/icons/stats_delete.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>e42510b16252d38bc5faa6d15b5d64e4</hash>
+  </element>
+  <element>
     <fullpath>images/icons/stop.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
@@ -6460,6 +6508,12 @@
   </element>
   <element>
     <fullpath>images/icons/thumbnails.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>5533b48619efc5c8ceccfc632efa7fe4</hash>
+  </element>
+  <element>
+    <fullpath>images/icons/title.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>5533b48619efc5c8ceccfc632efa7fe4</hash>
@@ -8656,7 +8710,43 @@
     <hash>d61a2a318b3654e8bc7eca6dccd5cf51</hash>
   </element>
   <element>
+    <fullpath>themes/classic/images/icons/file_approval.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>d61a2a318b3654e8bc7eca6dccd5cf51</hash>
+  </element>
+  <element>
+    <fullpath>themes/classic/images/icons/file_approve.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>d61a2a318b3654e8bc7eca6dccd5cf51</hash>
+  </element>
+  <element>
+    <fullpath>themes/classic/images/icons/file_disapprove.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>d61a2a318b3654e8bc7eca6dccd5cf51</hash>
+  </element>
+  <element>
+    <fullpath>themes/classic/images/icons/filename.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>d61a2a318b3654e8bc7eca6dccd5cf51</hash>
+  </element>
+  <element>
     <fullpath>themes/classic/images/icons/filter.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6ef1517b06941289c29b5e0673383a26</hash>
+  </element>
+  <element>
+    <fullpath>themes/classic/images/icons/folder.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6ef1517b06941289c29b5e0673383a26</hash>
+  </element>
+  <element>
+    <fullpath>themes/classic/images/icons/group_add.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>6ef1517b06941289c29b5e0673383a26</hash>
@@ -8666,6 +8756,12 @@
     <status>mandatory</status>
     <permission>read</permission>
     <hash>4736e8feaba2580ff4646bac3a26ab6e</hash>
+  </element>
+  <element>
+    <fullpath>themes/classic/images/icons/hdd.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6ef1517b06941289c29b5e0673383a26</hash>
   </element>
   <element>
     <fullpath>themes/classic/images/icons/help.png</fullpath>
@@ -8902,6 +8998,12 @@
     <hash>e42510b16252d38bc5faa6d15b5d64e4</hash>
   </element>
   <element>
+    <fullpath>themes/classic/images/icons/stats_delete.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>e42510b16252d38bc5faa6d15b5d64e4</hash>
+  </element>
+  <element>
     <fullpath>themes/classic/images/icons/stop.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
@@ -8945,6 +9047,12 @@
   </element>
   <element>
     <fullpath>themes/classic/images/icons/thumbnails.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6a2d2261ff3f09f154faf9b71d979fdc</hash>
+  </element>
+  <element>
+    <fullpath>themes/classic/images/icons/title.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>6a2d2261ff3f09f154faf9b71d979fdc</hash>
