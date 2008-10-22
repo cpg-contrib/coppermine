@@ -22,6 +22,30 @@ define('EDITPICS_PHP', true);
 
 require('include/init.inc.php');
 
+// Include the JS for versioncheck.php
+js_include('js/jquery.autogrow.js');
+js_include('js/editpics.js');
+
+// Define the icons
+$icon_array = array();
+$icon_array['album_properties'] = cpg_fetch_icon('modifyalb', 2);
+$icon_array['thumbnail_view'] = cpg_fetch_icon('thumbnails', 2);
+$icon_array['file_info'] = cpg_fetch_icon('info', 2);
+$icon_array['album'] = cpg_fetch_icon('alb_mgr', 2);
+$icon_array['move'] = cpg_fetch_icon('move', 2);
+$icon_array['title'] = cpg_fetch_icon('title', 2);
+$icon_array['file_name'] = cpg_fetch_icon('filename', 2);
+$icon_array['description'] = cpg_fetch_icon('text_left', 2);
+$icon_array['keyword'] = cpg_fetch_icon('keyword_mgr', 2);
+$icon_array['approve'] = cpg_fetch_icon('ok', 2);
+$icon_array['disapprove'] = cpg_fetch_icon('cancel', 2);
+$icon_array['exif'] = cpg_fetch_icon('exif_mgr', 2);
+$icon_array['reset_views'] = cpg_fetch_icon('stats_delete', 2);
+$icon_array['reset_votes'] = cpg_fetch_icon('blank', 2);
+$icon_array['delete_comments'] = cpg_fetch_icon('comment_approval', 2);
+$icon_array['ok'] = cpg_fetch_icon('ok', 2);
+$icon_array['category'] = cpg_fetch_icon('category', 2);
+
 if ($superCage->get->keyExists('album')) {
     $album_id = $superCage->get->getInt('album');
 } elseif ($superCage->post->keyExists('album')) {
@@ -113,11 +137,11 @@ $captionLabel = $lang_editpics_php['desc'];
 $keywordLabel = $lang_common['keywords_insert1']. '<br /><a href="#" onClick="return MM_openBrWindow(\'keyword_select.php?id=%s\',\'selectKey\',\'width=250, height=400, scrollbars=yes,toolbar=no,status=yes,resizable=yes\')">' . $lang_common['keywords_insert2'] .'</a>';
 if ($CONFIG['show_bbcode_help']) {$captionLabel .= '&nbsp;'. cpg_display_help('f=empty.html&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title.'&nbsp;'))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),500,300);}
 $data = array(
-        array($lang_editpics_php['pic_info'], '', 3),
-        array($lang_common['album'], 'aid', 1),
-        array($lang_common['title'], 'title', 0, 255),
-        array($captionLabel, 'caption', 2, $CONFIG['max_img_desc_length']),
-        array($keywordLabel, 'keywords', 0, 255),
+        array($icon_array['file_info'] . $lang_editpics_php['pic_info'], '', 3),
+        array($icon_array['album'] . $lang_common['album'], 'aid', 1),
+        array($icon_array['title'] . $lang_common['title'], 'title', 0, 255),
+        array($icon_array['description'] . $captionLabel, 'caption', 2, $CONFIG['max_img_desc_length']),
+        array($icon_array['keyword'] . $keywordLabel, 'keywords', 0, 255),
         //array($lang_editpics_php['approval'], 'approved', 5),
         array($CONFIG['user_field1_name'], 'user1', 0, 255),
         array($CONFIG['user_field2_name'], 'user2', 0, 255),
@@ -472,7 +496,7 @@ EOT;
 function form_alb_list_box($text, $name)
 {
     global $CONFIG, $CURRENT_PIC;
-    global $user_albums_list, $public_albums_list, $row_style_class;
+    global $user_albums_list, $public_albums_list, $row_style_class, $icon_array;
 
     $sel_album = $CURRENT_PIC['aid'];
 
@@ -483,7 +507,7 @@ function form_alb_list_box($text, $name)
                         $text
         </td>
         <td class="{$row_style_class}" valign="top">
-                <select name="$name" class="listbox">
+                {$icon_array['move']}<select name="$name" class="listbox">
 
 EOT;
     foreach ($public_albums_list as $album) {
@@ -513,7 +537,7 @@ function form_textarea($text, $name, $max_length)
                         $text
                 </td>
                 <td class="{$row_style_class}" valign="top">
-                        <textarea name="$name" id="{$name}" rows="2" cols="40" class="textinput" style="width: 100%;" onkeydown="textCounter(this, $max_length);" onkeyup="textCounter(this, $max_length);" onfocus="expandTextarea('{$name}')" onblur="collapseTextarea('{$name}')">$value</textarea>
+                        <textarea name="$name" id="{$name}" rows="1" cols="100" class="textinput autogrow" onkeydown="textCounter(this, $max_length);" onkeyup="textCounter(this, $max_length);">$value</textarea>
                 </td>
         </tr>
 EOT;
@@ -770,30 +794,6 @@ if ($start > 0) {
 $pic_count_text = sprintf($lang_editpics_php['n_pic'], $pic_count);
 
 pageheader($title);
-echo <<<EOT
-<script type="text/javascript" language="javascript">
-<!--
-function textCounter(field, maxlimit) {
-        if (field.value.length > maxlimit) // if too long...trim it!
-        field.value = field.value.substring(0, maxlimit);
-}
-
-function selectAll(d,box) {
-  var f = document.editForm;
-  for (i = 0; i < f.length; i++) {
-    if (f[i].type == "checkbox" && f[i].name.indexOf(box) >= 0) {
-      if (d.checked) {
-        f[i].checked = true;
-      } else {
-        f[i].checked = false;
-      }
-    }
-  }
-}
-
--->
-</script>
-EOT;
 $mode = (UPLOAD_APPROVAL_MODE==1) ? "&amp;mode=upload_approval":"";
 $cat_l = (isset($actual_cat))? "?cat=$actual_cat" : (isset($cat) ? "?cat=$cat" : '');
 echo <<< EOT
@@ -816,9 +816,9 @@ echo <<<EOT
 EOT;
 if (UPLOAD_APPROVAL_MODE!=1) {
     echo <<<EOT
-                        &nbsp;&nbsp;-&nbsp;&nbsp;<a href="modifyalb.php?album=$album_id" class="admin_menu">{$lang_editpics_php['album_properties']}</a>&nbsp;&nbsp;-&nbsp;&nbsp;
-                        <a href="index.php$cat_l" class="admin_menu">{$lang_editpics_php['parent_category']}</a>&nbsp;&nbsp;-&nbsp;&nbsp;
-                        <a href="thumbnails.php?album=$album_id" class="admin_menu">{$lang_editpics_php['thumbnail_view']}</a>
+                        &nbsp;&nbsp;-&nbsp;&nbsp;<a href="modifyalb.php?album=$album_id" class="admin_menu">{$icon_array['album_properties']}{$lang_editpics_php['album_properties']}</a>&nbsp;&nbsp;-&nbsp;&nbsp;
+                        <a href="index.php$cat_l" class="admin_menu">{$icon_array['category']}{$lang_editpics_php['parent_category']}</a>&nbsp;&nbsp;-&nbsp;&nbsp;
+                        <a href="thumbnails.php?album=$album_id" class="admin_menu">{$icon_array['thumbnail_view']}{$lang_editpics_php['thumbnail_view']}</a>
 EOT;
 }
 echo <<<EOT
