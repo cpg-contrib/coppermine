@@ -143,16 +143,6 @@ function hideall()
         }
 }
 
-function expandTextarea(elementName)
-{
-        document.getElementById(elementName).rows = 10;
-}
-
-function collapseTextarea(elementName)
-{
-        document.getElementById(elementName).rows = 2;
-}
-
 function redirect(url)
 {
         window.location=url;
