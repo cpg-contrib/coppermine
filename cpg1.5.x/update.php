@@ -504,6 +504,9 @@ EOT;
             $query=explode(" ",$q);
             //var_dump($query);
             $result=mysql_query("DESCRIBE ".$query[2]);
+            
+            $description = array();
+            
             while ($row=mysql_fetch_row($result)) {
                 $description[]=$row;
             }
@@ -513,6 +516,9 @@ EOT;
             $warnings=mysql_query('SHOW WARNINGS');
 
             $result=mysql_query("DESCRIBE ".$query[2]);
+            
+            $description2 = array();
+            
             while ($row=mysql_fetch_row($result)) {
                 $description2[]=$row;
             }
