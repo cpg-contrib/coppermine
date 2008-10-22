@@ -2320,7 +2320,6 @@ $lang_usermgr_php = array(
   'search_submit' => 'Go!',
   'search_result' => 'Search results for: ',
   'alert_no_selection' => 'You have to select at least one user first!', // js-alert
-  'password' => 'password',
   'select_group' => 'Select group',
   'groups_alb_access' => 'Album permissions by group',
   'category' => 'Category',
