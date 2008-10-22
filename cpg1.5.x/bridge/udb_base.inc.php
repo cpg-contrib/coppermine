@@ -212,7 +212,7 @@ class core_udb {
 
                 // Build WHERE clause, if this is a username search
         if ($options['search']) {
-            $options['search'] = 'WHERE u.'.$f['username'].' LIKE "'.$options['search'].'" ';
+            $options['search'] = 'WHERE u.'.$f['username'].' LIKE "%'.$options['search'].'%" ';
         }
 
                 // Build SQL table, should work with all bridges
