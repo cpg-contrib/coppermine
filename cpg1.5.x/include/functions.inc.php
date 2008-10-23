@@ -1501,16 +1501,32 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
             $pic_count = $nbEnr[0];
             mysql_free_result($result);
 
-            //if ($select_columns != '*') $select_columns .= ', aid, owner_id, owner_name';
-            $select_columns = '*'; //allows building any data into any thumbnail caption
-
-            $query = "SELECT $select_columns
+            $query = "SELECT pid
                     FROM {$CONFIG['TABLE_PICTURES']} AS p
                     INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
                     $RESTRICTEDWHERE
                     AND approved = 'YES'
                     ORDER BY RAND()
                     $limit";
+
+            //$query = "SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' $META_ALBUM_SET ORDER BY RAND() LIMIT $limit2";
+
+            $result = cpg_db_query($query);
+            $pidlist = array();
+            while ($row = mysql_fetch_assoc($result)) {
+                $pidlist[] = $row['pid'];
+            }
+            mysql_free_result($result);
+            
+            sort($pidlist);
+            
+            //if ($select_columns != '*') $select_columns .= ', aid, owner_id, owner_name';
+            $select_columns = '*'; //allows building any data into any thumbnail caption
+
+            $query = "SELECT $select_columns
+                    FROM {$CONFIG['TABLE_PICTURES']} AS p
+                    INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
+                    WHERE pid IN (" . implode(', ', $pidlist) . ")";
 
             //$query = "SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' $META_ALBUM_SET ORDER BY RAND() LIMIT $limit2";
 
