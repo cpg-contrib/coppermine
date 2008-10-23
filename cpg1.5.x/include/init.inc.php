@@ -26,7 +26,10 @@ set_include_path(get_include_path().PATH_SEPARATOR.dirname(__FILE__).PATH_SEPARA
 
 require_once "Inspekt.php";
 
-$superCage = Inspekt::makeSuperCage();
+// Set $strict to false to make the superglobals available
+$strict = TRUE;
+
+$superCage = Inspekt::makeSuperCage($strict);
 
 function cpgGetMicroTime()
 {
