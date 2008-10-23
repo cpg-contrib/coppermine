@@ -4,5 +4,9 @@ function textCounter(field, maxlimit) {
 }
 
 $(document).ready (function() {
-    $('textarea.autogrow').autogrow();
+	$('textarea.autogrow').autogrow({
+		maxHeight: 150,
+		minHeight: 10,
+		lineHeight: 16
+	});
 });

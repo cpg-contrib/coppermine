@@ -17,5 +17,9 @@ function selectAll(d,box) {
 }
 
 $(document).ready (function() {
-    $('textarea.autogrow').autogrow();
+	$('textarea.autogrow').autogrow({
+		maxHeight: 200,
+		minHeight: 10,
+		lineHeight: 16
+	});
 });
