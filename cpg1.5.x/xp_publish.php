@@ -23,8 +23,6 @@
 // http://www.zonageek.com/code/misc/wizards/                                //
 // ------------------------------------------------------------------------- //
 // Other information can be found on Microsoft web site                      //
-// http://www.microsoft.com/whdc/hwdev/tech/WIA/imaging/webwizard.mspx       //
-// http://msdn.microsoft.com/library/default.asp?url=/library/en-us/shellcc/platform/shell/programmersguide/shell_basics/shell_basics_extending/publishing_wizard/pubwiz_intro.asp
 // ------------------------------------------------------------------------- //
 // Original implementation comes from Gallery                                //
 // http://gallery.menalto.com                                                //
