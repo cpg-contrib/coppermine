@@ -253,6 +253,7 @@ ALTER TABLE `CPG_users` CHANGE `user_occupation` `user_profile4` VARCHAR(255);
 
 ALTER TABLE `CPG_users` ADD `user_profile5` varchar(255) default '' NOT NULL;
 ALTER TABLE `CPG_users` ADD `user_profile6` varchar(255) default '' NOT NULL;
+ALTER TABLE `CPG_users` ADD `user_language` varchar(40) default '' NOT NULL;
 
 #
 # Enlarge password field for MD5/SHA1 hash

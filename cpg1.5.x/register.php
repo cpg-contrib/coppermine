@@ -409,10 +409,12 @@ function check_user_info(&$error) { // function check_user_info - start
     }
 
     $encpassword = md5($password);
+    
+    $user_language = $CONFIG['lang'];
 
     $sql = "INSERT INTO {$CONFIG['TABLE_USERS']} ".
-           "(user_regdate, user_active, user_actkey, user_name, user_password, user_email, user_profile1, user_profile2, user_profile3, user_profile4, user_profile5, user_profile6) ".
-           "VALUES (NOW(), '$active', '$act_key', '$user_name', '$encpassword', '$email', '$profile1', '$profile2', '$profile3', '$profile4', '$profile5', '$profile6')";
+           "(user_regdate, user_active, user_actkey, user_name, user_password, user_email, user_profile1, user_profile2, user_profile3, user_profile4, user_profile5, user_profile6, user_language) ".
+           "VALUES (NOW(), '$active', '$act_key', '$user_name', '$encpassword', '$email', '$profile1', '$profile2', '$profile3', '$profile4', '$profile5', '$profile6', '$user_language')";
     if ($CONFIG['log_mode']) {
         log_write('New user "$user_name" created on '.date("F j, Y, g:i a"),CPG_ACCESS_LOG);
     }

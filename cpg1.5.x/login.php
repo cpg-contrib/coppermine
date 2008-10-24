@@ -34,16 +34,22 @@ $login_failed = '';
 $cookie_warning = '';
 
 if ($superCage->post->keyExists('submitted')) {
+    if ($superCage->server->testip('REMOTE_ADDR')) {
+    	$ip = $superCage->server->getRaw('REMOTE_ADDR');
+    } else {
+    	$ip = 'Unknown';
+    }
     if ( $USER_DATA = $cpg_udb->login( $superCage->post->getEscaped('username'), $superCage->post->getEscaped('password'), $superCage->post->getInt('remember_me') ) ) {
         //$referer=preg_replace("'&amp;'","&",$referer);
+        // Write the log entry
+        log_write("Successful login by Username: ".$superCage->post->getEscaped('username')." from IP $ip on " . localised_date(-1,$log_date_fmt),CPG_SECURITY_LOG);
+        // Set the language preference
+        $sql = "UPDATE {$CONFIG['TABLE_USERS']} SET " . "user_language = '" . $USER['lang'] . "' WHERE user_id = '" . $USER_DATA[user_id] . "'";
+        $result = cpg_db_query($sql);
         cpgRedirectPage($CPG_REFERER, $lang_login_php['login'], sprintf($lang_login_php['welcome'], $USER_DATA['user_name']),3);
         exit;
     } else {
-        if ($superCage->server->testip('REMOTE_ADDR')) {
-        	$ip = $superCage->server->getRaw('REMOTE_ADDR');
-        } else {
-        	$ip = 'Unknown';
-        }
+        // Write the log entry
         log_write("Failed login attempt with Username: ".$superCage->post->getEscaped('username')." from IP $ip on " . localised_date(-1,$log_date_fmt),CPG_SECURITY_LOG);
 
         $login_failed = <<<EOT
