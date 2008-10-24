@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-10-24 [A] Added DivX support (thread ID 32380) {GauGau}
 2008-10-23 [O] Added random files speedup (thread ID 54144) {Nibbler}
 2008-10-22 [A] Added options to version check to hide images and the modified column {GauGau}
 2008-10-21 [A] Removal of outdated files by updater {GauGau}

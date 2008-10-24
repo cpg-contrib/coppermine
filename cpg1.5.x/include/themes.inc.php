@@ -2996,6 +2996,11 @@ function theme_html_picture()
                                 'codebase' => 'codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=5,1,52,701" ',
                                 'mime' => 'type="application/x-mplayer2" ',
                                );
+        $players['DIVX'] = array('id' => 'DivX',
+                                'clsid' => 'classid="clsid:67DABFBF-D0AB-41fa-9C46-CC0F21721616"',
+                                'codebase' => 'codebase="http://go.divx.com/plugin/DivXBrowserPlugin.cab"',
+                                'mime' => 'type="video/divx"'
+                               );
         $players['RMP'] = array('id' => 'RealPlayer',
                                 'clsid' => 'classid="clsid:CFCDAA03-8BE4-11cf-B84B-0020AFBBCCFA" ',
                                 'codebase' => '',
