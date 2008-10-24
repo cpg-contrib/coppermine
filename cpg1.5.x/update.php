@@ -615,7 +615,7 @@ EOT;
 EOT;
         // Encrypt the album password but only for those albums which have a password assigned.
         $result = mysql_query("update {$CONFIG['TABLE_PREFIX']}albums set alb_password=md5(alb_password) WHERE alb_password IS NOT NULL AND alb_password != '';");
-        var_dump($CONFIG['enable_encrypted_alb_passwords']);
+
         if ($CONFIG['enable_encrypted_alb_passwords'] != NULL) {
             $result = mysql_query("update {$CONFIG['TABLE_PREFIX']}config set value = 1 WHERE name = 'enable_encrypted_alb_passwords'");
         } else {
