@@ -23,7 +23,6 @@ define('LANGMGR_PHP', true);
 
 /*
 To-do: make sure that the default language is not disabled
-Output warning about files that don't appear to be suitable language files
 */
 
 require_once('include/init.inc.php');
@@ -33,10 +32,28 @@ js_include('js/langmgr.js');
 
 
 $lineBreak = "\r\n";
+$query_output_ok = '<li style="list-style-image:url(images/icons/ok.png)">%s</li>'.$lineBreak;
+$query_output_error = '<li style="list-style-image:url(images/icons/cancel.png)">%s</li>'.$lineBreak;
+$query_output = '';
 
 if (!GALLERY_ADMIN_MODE) {
     cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 }
+
+pageheader($lang_langmgr_php['title']);
+print '<form action="'.$CPG_PHP_SELF.'" method="post" name="cpgform" id="cpgform" onsubmit="return form_submit();">';
+$loader_html = '<script type="text/javascript">'.$lineBreak;
+$loader_html .= 'document.write(\'<span id="cpg_progress_bar">\');'.$lineBreak;
+if (defined('THEME_HAS_PROGRESS_GRAPHICS')) {
+    $prefix = $THEME_DIR;
+} else {
+    $prefix = '';
+}
+$loader_html .= 'document.write(\'<img src="' . $prefix . 'images/loader.gif" border="0" alt="" title="' . $lang_langmgr_php['loading'] . '" />\');'.$lineBreak;
+$loader_html .= 'document.write(\'</span>\');'.$lineBreak;
+$loader_html .= '</script>';
+$hide_icon = cpg_fetch_icon('hide_table_row', 2);
+$show_icon = cpg_fetch_icon('show_table_row', 2);
 
 // Form has been submit --- start
 if ($superCage->post->keyExists('submit')) {
@@ -100,6 +117,34 @@ if ($superCage->post->keyExists('submit')) {
         }
         $result = cpg_db_query($query);
         $query = '';
+    } // foreach loop end
+    // Now let's set the default language // DEFAULT_LANGUAGE
+    $submit_default_id = $superCage->post->getAlpha('is_default');
+    if ($submit_default_id != DEFAULT_LANGUAGE) { // only write the change if the submit default language differs from the current default language
+        // Check if the "new" default language is enabled in the first place
+        if ($superCage->post->getAlpha('enable_'.$submit_default_id) == 'YES') {
+            cpg_config_set('lang', $submit_default_id);
+            $CONFIG['default_lang'] = $submit_default_id;
+            $query_output .= sprintf($query_output_ok, sprintf($lang_langmgr_php['default_language'], $submit_default_id));
+        } else {
+            $query_output .= sprintf($query_output_error, $lang_langmgr_php['enable_default']);
+        }
+        $query_output .= sprintf($query_output_error, 'Setting the default language doesn\'t work as expected yet. This file is still work in progress.<br />Joachim');
+    }
+    // Output status messages if applicable
+    if ($query_output != '') {
+        starttable('100%', cpg_fetch_icon('info', 2).$lang_langmgr_php['status'], 1);
+        print <<< EOT
+        <tr>
+            <td class="tableb">
+                <ul>
+                    {$query_output}
+                </ul>
+            </td>
+        </tr>
+EOT;
+        endtable;
+        print '<br />'.$lineBreak;
     }
 }
 // Form has been submit --- end
@@ -147,32 +192,7 @@ ksort($lang_language_data);
 
 
 
-pageheader($lang_langmgr_php['title']);
-print '<form action="'.$CPG_PHP_SELF.'" method="post" name="cpgform" id="cpgform">';
-starttable('100%', cpg_fetch_icon('warning', 2) . 'Under construction', 1);
-print <<< EOT
-    <tr>
-        <td class="tableb">
-          This file is "work in progress". I'm trying to come up with a comprehensive language setup tool that let's coppermine admins determine what languages actually to choose.<br />
-          Joachim
-        </td>
-    </tr>
-EOT;
-endtable();
-print '<br />'.$lineBreak;
 
-$loader_html = '<script type="text/javascript">'.$lineBreak;
-$loader_html .= 'document.write(\'<span id="cpg_progress_bar">\');'.$lineBreak;
-if (defined('THEME_HAS_PROGRESS_GRAPHICS')) {
-    $prefix = $THEME_DIR;
-} else {
-    $prefix = '';
-}
-$loader_html .= 'document.write(\'<img src="' . $prefix . 'images/loader.gif" border="0" alt="" title="' . $lang_langmgr_php['loading'] . '" />\');'.$lineBreak;
-$loader_html .= 'document.write(\'</span>\');'.$lineBreak;
-$loader_html .= '</script>';
-$hide_icon = cpg_fetch_icon('hide_table_row', 2);
-$show_icon = cpg_fetch_icon('show_table_row', 2);
 
 starttable('100%', cpg_fetch_icon('babelfish', 2) . $lang_langmgr_php['title'], 9);
 print <<< EOT
@@ -305,7 +325,7 @@ foreach ($lang_language_data as $language) {
             $cellstyle = 'tableb tableb_alternate';
         }
         // Default language
-        if ($language['lang_id'] == DEFAULT_LANGUAGE) {
+        if ($language['lang_id'] == $CONFIG['default_lang']) {
             $default_checked = 'checked="checked"';
         } else {
             $default_checked = '';
@@ -373,7 +393,7 @@ foreach ($lang_language_data as $language) {
         	$version_output = '<li>'.$lang_langmgr_php['no_version'].'</li>';
             $file_lookup_errors++;
         }
-        if ($language['file_size'] < 100000 || $language['file_size'] > 200000) {
+        if ($language['file_size'] < 100000 || $language['file_size'] > 400000) {
             $filesize_output = '<li>';
             $filesize_output .= sprintf($lang_langmgr_php['filesize'], round($language['file_size']/1000) . ' ' . $lang_byte_units[1]);
             $filesize_output .= '</li>';
@@ -395,7 +415,7 @@ foreach ($lang_language_data as $language) {
         print <<< EOT
     <tr>
         <td class="{$cellstyle}" rowspan="2" align="center">
-          <input name="default" id="default_{$language['lang_id']}" type="radio" value="{$language['lang_id']}" class="radio" {$default_checked} {$enable_greyed_out} />
+          <input name="is_default" id="is_default_{$language['lang_id']}" type="radio" value="{$language['lang_id']}" class="radio" {$default_checked} {$enable_greyed_out} />
           <input type="hidden" name="lang_id[]" id="lang_id_{$language['lang_id']}" value="{$language['lang_id']}" />
         </td>
 EOT;
@@ -498,33 +518,21 @@ $submit_icon = cpg_fetch_icon('ok', 2);
 print <<< EOT
     <tr>
         <td class="tablef" colspan="6" align="center">
-            <button type="submit" class="button" name="submit" value="{$lang_common['ok']}">{$submit_icon}{$lang_common['ok']}</button>
+            <button type="submit" class="button" name="submit" id="submit" value="{$lang_common['ok']}">{$submit_icon}{$lang_common['ok']}</button>
+            <span id="cpg_form_error_message_enable_one" class="important" style="display:none;">{$lang_langmgr_php['enable_at_least_one']}</span>
+            <span id="cpg_form_error_message_not_available" class="important" style="display:none;">{$lang_langmgr_php['available_default']}</span>
+            <span id="cpg_form_error_message_not_enabled" class="important" style="display:none;">{$lang_langmgr_php['enable_default']}</span>
         </td>
         <td class="tablef" colspan="2" align="center">
         	<span id="expand_all_bottom" style="display:none"><a href="javascript:;" class="admin_menu" onclick="show_section('expand_all_bottom');show_section('collapse_all_bottom');show_section('expand_all_top');show_section('collapse_all_top');toggleExpandCollpaseButtons('expand');">{$show_icon}{$lang_langmgr_php['show_details']}</a></span>
             <span id="collapse_all_bottom" style="display:none"><a href="javascript:;" class="admin_menu" onclick="show_section('expand_all_bottom');show_section('collapse_all_bottom');show_section('expand_all_top');show_section('collapse_all_top');toggleExpandCollpaseButtons('collapse');">{$hide_icon}{$lang_langmgr_php['hide_details']}</a></span>
+            <input type="hidden" name="loopCounter" id="loopCounter" value="{$loopCounter}" />
         </td>
     </tr>
 EOT;
 endtable();
 print <<< EOT
 </form>
-EOT;
-
-print <<< EOT
-
-<script type="text/javascript">
-    function toggleExpandCollpaseButtons(action) 
-    {
-        for (var i = 0; i <= {$loopCounter}; i++) {
-            if (action == 'collapse') {
-                document.getElementById('translator_' + i).style.display = 'none';
-            } else {
-                document.getElementById('translator_' + i).style.display = 'block';
-            }
-        }
-    }
-</script>
 EOT;
 
 pagefooter();
