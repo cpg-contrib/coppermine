@@ -245,15 +245,34 @@ switch ($event) {
         $uploads = $superCage->post->getRaw('uploads') == 'YES' ? 'YES' : 'NO';
         $comments = $superCage->post->getRaw('comments') == 'YES' ? 'YES' : 'NO';
         $votes = $superCage->post->getRaw('votes') == 'YES' ? 'YES' : 'NO';
-
+        // Get the old alb_password before update
+        $result = cpg_db_query("SELECT alb_password FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid = '$aid'");
+        $row = cpg_db_fetch_row($result);
+        // If there is some value in alb_password then it means album was previously password protected
+        if (isset($row['alb_password']) && $row['alb_password']) {
+            $old_password = $row['alb_password'];
+        } else {
+            $old_password = null;
+        }
+        
         // Get the password only if password_protect checkbox is checked
         if ($superCage->post->keyExists('password_protect')) {
             $password = $superCage->post->getEscaped('alb_password');
             $password_hint = $superCage->post->getEscaped('alb_password_hint');
+            // We will change or add the password only if it is not empty
+            if (trim($password)) {
+                $password = md5($password);
+            } elseif (!$old_password && !trim($password)) {
+                $password = null;
+                $password_hint = null;
+            } else {
+                $password = $old_password;
+            }
         } else {
             $password = null;
             $password_hint = null;
         }
+        
         $visibility = !empty($password) ? FIRST_USER_CAT + USER_ID : $visibility;
 
         if (!$title) {
@@ -265,7 +284,6 @@ switch ($event) {
             $query = "UPDATE {$CONFIG['TABLE_ALBUMS']} SET title='$title', description='$description', category='$category', thumb='$thumb', uploads='$uploads', comments='$comments', votes='$votes', visibility='$visibility', alb_password='$password', alb_password_hint='$password_hint', keyword='$keyword', moderator_group='$moderator_group' WHERE aid='$aid' LIMIT 1";
         } else {
             $query = "UPDATE {$CONFIG['TABLE_ALBUMS']} SET title='$title', description='$description', category='$category', thumb='$thumb',  comments='$comments', votes='$votes', visibility='$visibility', alb_password='$password', alb_password_hint='$password_hint',keyword='$keyword' WHERE aid='$aid' LIMIT 1";
-
 		}
 
         $update = cpg_db_query($query);

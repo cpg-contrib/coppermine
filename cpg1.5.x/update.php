@@ -79,6 +79,7 @@ if (!defined('SKIP_AUTHENTICATION') && defined('COPPERMINE_VERSION') && GALLERY_
 	  'performing_database_updates' => 'Performing Database Updates', // cpg1.5
 	  'already_done' => 'Already Done', // cpg1.5
 	  'password_encryption' => 'Encryption of passwords', // cpg1.5
+	  'alb_password_encryption' => 'Encryption of album passwords', // cpg1.5
 	  'category_tree' => 'Category tree', // cpg1.5
 	  'authentication_needed' => 'Authentication needed', // cpg1.5
 	  'username' => 'Username', // cpg1.5
@@ -581,6 +582,44 @@ EOT;
             $result = mysql_query("update {$CONFIG['TABLE_PREFIX']}config set value = 1 WHERE name = 'enable_encrypted_passwords'");
         } else {
             $result = mysql_query("INSERT INTO {$CONFIG['TABLE_PREFIX']}config ( `name` , `value` ) VALUES ('enable_encrypted_passwords', '1')");
+        }
+    } else {
+        print <<< EOT
+                <td class="{$cellStyle} updatesFail">
+                    {$already_done_icon}{$lang_update_php['already_done']}
+                </td>
+            </tr>
+EOT;
+    }
+    
+    // Check album password encryption and perform the conversion if applicable
+    if ($loopCounter/2 == floor($loopCounter/2)) {
+        $cellStyle = 'tableb';
+    } else {
+        $cellStyle = 'tableb tableb_alternate';
+    }
+    $loopCounter++;
+        print <<< EOT
+            <tr>
+                <td class="{$cellStyle}">
+                    {$lang_update_php['alb_password_encryption']}:
+                </td>
+EOT;
+    $CONFIG['enable_encrypted_alb_passwords'] = cpg_get_config_value('enable_encrypted_alb_passwords');
+    if ($CONFIG['enable_encrypted_alb_passwords'] != 1) {
+        print <<< EOT
+                <td class="{$cellStyle} updatesOK">
+                    {$ok_icon}{$lang_common['ok']}
+                </td>
+            </tr>
+EOT;
+        // Encrypt the album password but only for those albums which have a password assigned.
+        $result = mysql_query("update {$CONFIG['TABLE_PREFIX']}albums set alb_password=md5(alb_password) WHERE alb_password IS NOT NULL AND alb_password != '';");
+        var_dump($CONFIG['enable_encrypted_alb_passwords']);
+        if ($CONFIG['enable_encrypted_alb_passwords'] != NULL) {
+            $result = mysql_query("update {$CONFIG['TABLE_PREFIX']}config set value = 1 WHERE name = 'enable_encrypted_alb_passwords'");
+        } else {
+            $result = mysql_query("INSERT INTO {$CONFIG['TABLE_PREFIX']}config ( `name` , `value` ) VALUES ('enable_encrypted_alb_passwords', '1')");
         }
     } else {
         print <<< EOT

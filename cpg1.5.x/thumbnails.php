@@ -220,7 +220,7 @@ $valid = false; //flag to test whether the album is validated.
 if ($CONFIG['allow_private_albums'] == 0 || !in_array($album, $FORBIDDEN_SET_DATA)) {
     $valid = true;
 } elseif ($superCage->post->keyExists('validate_album')) {
-    $password = $superCage->post->getEscaped('password');
+    $password = md5($superCage->post->getEscaped('password'));
     $sql = "SELECT aid FROM " . $CONFIG['TABLE_ALBUMS'] . " WHERE alb_password='$password' AND aid='$album'";
     $result = cpg_db_query($sql);
     if (mysql_num_rows($result)) {
@@ -228,7 +228,7 @@ if ($CONFIG['allow_private_albums'] == 0 || !in_array($album, $FORBIDDEN_SET_DAT
         if (!empty($albpw)) {
             $albpw = unserialize($albpw);
         }
-        $albpw[$album] = md5($superCage->post->getRaw('password'));
+        $albpw[$album] = $password;
         $alb_cookie_str = serialize($albpw);
 
         setcookie($CONFIG['cookie_name'] . "_albpw", $alb_cookie_str);
@@ -249,7 +249,7 @@ if ($CONFIG['allow_private_albums'] == 0 || !in_array($album, $FORBIDDEN_SET_DAT
             $alb_pw = unserialize($albpw);
             // Check whether the alubm id in the cookie is same as that of the album id send by get
             if (isset($alb_pw[$album])) {
-                $sql = "SELECT aid FROM " . $CONFIG['TABLE_ALBUMS'] . " WHERE MD5(alb_password)='{$alb_pw[$album]}' AND aid='{$album}'";
+                $sql = "SELECT aid FROM " . $CONFIG['TABLE_ALBUMS'] . " WHERE alb_password='{$alb_pw[$album]}' AND aid='{$album}'";
                 $result = cpg_db_query($sql);
                 if (mysql_num_rows($result)) {
                     $valid = true; //The album password is correct. Show the album details.

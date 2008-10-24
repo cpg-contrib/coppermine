@@ -888,13 +888,13 @@ function get_private_album_set($aid_str="")
 
           $aid_str = substr($aid_str, 0, -1);
 
-          $sql = "SELECT aid, MD5(alb_password) as md5_password FROM ".$CONFIG['TABLE_ALBUMS']
+          $sql = "SELECT aid, alb_password FROM ".$CONFIG['TABLE_ALBUMS']
                 ." WHERE aid IN ($aid_str)";
           $result = cpg_db_query($sql);
           $albpw_db = array();
           if (mysql_num_rows($result)) {
             while ($data = mysql_fetch_array($result)) {
-              $albpw_db[$data['aid']] = $data['md5_password'];
+              $albpw_db[$data['aid']] = $data['alb_password'];
             }
           }
           $valid = array_intersect($albpw_db, $alb_pw);

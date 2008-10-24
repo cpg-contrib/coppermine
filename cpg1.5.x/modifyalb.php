@@ -367,7 +367,7 @@ function form_password($text, $name)
               $text
           </td>
           <td width="60%" class="tableb" valign="top">
-            <input type="password" name="$name" value="$value" class="textinput" maxlength="32" size="34" />
+            <input type="password" name="$name" class="textinput" maxlength="32" size="34" />
           </td>
         </tr>
 EOT;

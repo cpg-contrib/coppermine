@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-10-24 [B] Fixed the album password case sensitivity issue by hashing it {Abbas}
 2008-10-24 [A] Added profile field user_language (thread ID 15977) {GauGau}
 2008-10-24 [A] Added DivX support (thread ID 32380) {GauGau}
 2008-10-23 [O] Added random files speedup (thread ID 54144) {Nibbler}

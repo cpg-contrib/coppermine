@@ -2371,6 +2371,7 @@ $lang_update_php = array(
   'performing_file_updates' => 'Performing File Updates', // cpg1.5
   'already_done' => 'Already Done', // cpg1.5
   'password_encryption' => 'Encryption of passwords', // cpg1.5
+  'alb_password_encryption' => 'Encryption of album passwords', // cpg1.5
   'category_tree' => 'Category tree', // cpg1.5
   'authentication_needed' => 'Authentication needed', // cpg1.5
   'username' => 'Username', // cpg1.5
