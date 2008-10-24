@@ -1529,13 +1529,15 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                     WHERE pid IN (" . implode(', ', $pidlist) . ")";
 
             //$query = "SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' $META_ALBUM_SET ORDER BY RAND() LIMIT $limit2";
-
-            $result = cpg_db_query($query);
             $rowset = array();
-            while ($row = mysql_fetch_array($result)) {
-                $rowset[-$row['pid']] = $row;
+            // Fire the query if at least one pid is in pidlist array
+            if (count($pidlist)) {
+                $result = cpg_db_query($query);
+                while ($row = mysql_fetch_array($result)) {
+                    $rowset[-$row['pid']] = $row;
+                }
+                mysql_free_result($result);
             }
-            mysql_free_result($result);
 
             if ($set_caption) {
                 build_caption($rowset);
