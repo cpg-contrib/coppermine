@@ -11,10 +11,10 @@
 
   ********************************************
   Coppermine version: 1.5.0
-  $HeadURL$
-  $Revision: 5081 $
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/upload.php $
+  $Revision: 5129 $
   $LastChangedBy: gaugau $
-  $Date: 2008-10-06 11:27:24 +0530 (Mon, 06 Oct 2008) $
+  $Date: 2008-10-18 16:03:12 +0530 (Sat, 18 Oct 2008) $
 **********************************************/
 
 // Confirm we are in Coppermine and set the language blocks.

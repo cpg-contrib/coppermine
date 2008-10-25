@@ -11,10 +11,10 @@
 
   ********************************************
   Coppermine version: 1.5.0
-  $HeadURL$
-  $Revision: 4981 $
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/util.php $
+  $Revision: 5145 $
   $LastChangedBy: gaugau $
-  $Date: 2008-09-01 13:37:08 +0530 (Mon, 01 Sep 2008) $
+  $Date: 2008-10-19 18:02:38 +0530 (Sun, 19 Oct 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -102,30 +102,11 @@ if (array_key_exists($action, $tasks)){
         echo "<br /><a href=\"util.php\">{$lang_util_php['back']}</a>";
 } else {
 
-        $help = '&nbsp;'.cpg_display_help('f=admin_menu.htm&amp;as=admin_tools&amp;ae=admin_tools_end&amp;top=1', '600', '400');
+        $help = '&nbsp;'.cpg_display_help('f=admin-tools.htm&amp;as=admin_tools&amp;ae=admin_tools_end&amp;top=1', '600', '400');
 
-        starttable('100%', cpg_fetch_icon('util',2) . $lang_util_php['title'].$help, 2);
-
-        echo '<tr>
-                        <td class="tablef"><strong>'.$lang_util_php['what_it_does'] . '</strong>:
-                                <ul style="margin-top:0px;margin-bottom:0px;list-style-type:square">';
-        foreach($lang_util_desc_php as $value) {
-        echo "<li>$value</li>\n";
-        }
-        echo '                        </ul>
-                          </td>
-                        <td class="tableb"><strong>' . $lang_util_php['instruction'] . '</strong>:<br />
-                                (1) ' . $lang_util_php['instruction_action'] . '<br />
-                              (2) ' . $lang_util_php['instruction_parameter'] . '<br />
-                              (3) ' . $lang_util_php['instruction_album'] . '<br />
-                              (4) ' . sprintf($lang_util_php['instruction_press'], $lang_util_php['submit_form']).'
-                          </td>
-              </tr>';
-
-        endtable();
 
         echo '<br /><form name="cpgform" id="cpgform" action="util.php" method="post">';
-        starttable('100%', 'What do you want to do?',1);
+        starttable('100%', cpg_fetch_icon('util',2) . $lang_util_php['title'].$help, 1);
 
         $loopCounter = 0;
         foreach ($tasks as $task){
@@ -174,8 +155,10 @@ if (array_key_exists($action, $tasks)){
     </script>
 EOT;
         endtable();
+        
+        $help_select = '&nbsp;'.cpg_display_help('f=admin-tools.htm&amp;as=admin_tools_usage&amp;ae=admin_tools_usage_end&amp;top=1', '600', '400');
 
-        starttable('100%', $lang_common['select_album']);
+        starttable('100%', $lang_common['select_album'].$help_select);
         echo '<tr><td class="tablef"><br />';
         //if (defined('UDB_INTEGRATION')){
                 $cpg_udb->util_filloptions();
@@ -588,33 +571,33 @@ function del_orig()
 		echo "<h2>{$lang_util_php['replace_wait']}</h2>";
 		foreach ($rowset as $row) 
 		##############################################################
-		{
-			$pid = $row['pid'];
-			$image = $CONFIG['fullpath'] . $row['filepath'] . $row['filename'];
-			$normal = $CONFIG['fullpath'] . $row['filepath'] . $CONFIG['normal_pfx'] . $row['filename'];
-			$thumb = $CONFIG['fullpath'] . $row['filepath'] . $CONFIG['thumb_pfx'] . $row['filename'];
+        {
+                $pid = $row['pid'];
+                $image = $CONFIG['fullpath'] . $row['filepath'] . $row['filename'];
+                $normal = $CONFIG['fullpath'] . $row['filepath'] . $CONFIG['normal_pfx'] . $row['filename'];
+                $thumb = $CONFIG['fullpath'] . $row['filepath'] . $CONFIG['thumb_pfx'] . $row['filename'];
 
-			if (file_exists($normal)) {
-					$deleted = unlink($image);
-					$renamed = rename($normal, $image);
-					if ($deleted AND $renamed){
-						$imagesize = cpg_getimagesize($image); // dimensions
-						$image_filesize = filesize($image); // bytes
-						$total_filesize = $image_filesize + filesize($thumb);
-						//cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET filesize='$image_filesize', total_filesize='$total_filesize', pwidth='{$imagesize[0]}', pheight='{$imagesize[1]}' WHERE pid='$pid' ");
-						############################		DB		##############################
-						$cpgdb->query($cpg_db_util_php['del_orig_update_pic'], $image_filesize, $total_filesize, 
-									$imagesize[0], $imagesize[1], $pid);
-						######################################################################
-						printf($lang_util_php['main_success'], $normal);
-					} else {
-							echo (!$renamed) ? sprintf($lang_util_php['error_rename'], $normal, $image) : sprintf($lang_util_php['error_deleting'], $image);;
-					}
-			} else {
-					printf($lang_util_php['error_not_found'], $normal);
-			}
-			echo '<br />';
-	   }
+                if (file_exists($normal)) {
+                        $deleted = unlink($image);
+                        $renamed = rename($normal, $image);
+                        if ($deleted AND $renamed){
+                                $imagesize = cpg_getimagesize($image); // dimensions
+                                $image_filesize = filesize($image); // bytes
+                                $total_filesize = $image_filesize + filesize($thumb);
+                                //cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET filesize='$image_filesize', total_filesize='$total_filesize', pwidth='{$imagesize[0]}', pheight='{$imagesize[1]}' WHERE pid='$pid' ");
+                                ############################    DB    ##############################
+                                $cpgdb->query($cpg_db_util_php['del_orig_update_pic'], $image_filesize, $total_filesize, 
+                                                $imagesize[0], $imagesize[1], $pid);
+                                ######################################################################
+                                printf($lang_util_php['main_success'], $normal);
+                        } else {
+                                echo (!$renamed) ? sprintf($lang_util_php['error_rename'], $normal, $image) : sprintf($lang_util_php['error_deleting'], $image);
+                        }
+                } else {
+                        printf($lang_util_php['error_not_found'], $normal);
+                }
+                echo '<br />';
+           }
 }
 
 function del_norm()

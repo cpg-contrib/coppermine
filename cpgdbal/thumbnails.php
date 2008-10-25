@@ -11,10 +11,10 @@
 
   ********************************************
   Coppermine version: 1.5.0
-  $HeadURL$
-  $Revision: 5077 $
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/thumbnails.php $
+  $Revision: 5129 $
   $LastChangedBy: gaugau $
-  $Date: 2008-10-04 22:03:45 +0530 (Sat, 04 Oct 2008) $
+  $Date: 2008-10-18 16:03:12 +0530 (Sat, 18 Oct 2008) $
 **********************************************/
 
 /**
@@ -27,7 +27,7 @@
  * @copyright 2002-2006 Gregory DEMAR, Coppermine Dev Team
  * @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
  * @package Coppermine
- * @version $Id: thumbnails.php 5077 2008-10-04 16:33:45Z gaugau $
+ * @version $Id: thumbnails.php 5129 2008-10-18 10:33:12Z gaugau $
  */
 
 /**

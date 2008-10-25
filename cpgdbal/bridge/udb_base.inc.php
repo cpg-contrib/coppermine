@@ -11,10 +11,10 @@
   
   ********************************************
   Coppermine version: 1.5.0
-  $HeadURL$
-  $Revision: 4984 $
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/bridge/udb_base.inc.php $
+  $Revision: 5129 $
   $LastChangedBy: gaugau $
-  $Date: 2008-09-01 23:09:22 +0530 (Mon, 01 Sep 2008) $
+  $Date: 2008-10-18 16:03:12 +0530 (Sat, 18 Oct 2008) $
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
@@ -735,7 +735,7 @@ class core_udb {
                 }
                 // fix admin grp
                 //if (!$this->use_post_based_groups) cpg_db_query("UPDATE {$CONFIG['TABLE_USERGROUPS']} SET has_admin_access = '1' WHERE group_id = '1' LIMIT 1");
-				if (!$this->use_post_based_groups) $cpgdb->query($cpg_db_udb_inc['sync_fix_admin_grp']);	####	cpgdb_AL
+				if (!$this->use_post_based_groups) $cpgdb->query($cpg_db_udb_base_inc['sync_fix_admin_grp']);	####	cpgdb_AL
         }
 
         // Retrieve the album list used in gallery admin mode
@@ -795,214 +795,116 @@ class core_udb {
 			$cpgdb =& cpgDB::getInstance();
 			$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
 			#############################################
-                if ($this->can_join_tables) {
+                
+                echo '&nbsp;&nbsp;&nbsp;&nbsp;<select size="1" name="albumid" class="listbox"><option value="0">All Albums</option>';
 
-    // Reset counter
-    $list_count = 0;
-
-        /*$user_albums = cpg_db_query("SELECT aid, IF({$this->field['username']} IS NOT NULL,
-                                                                CONCAT('(', {$this->field['username']}, ') ', a.title),
-                                                                CONCAT(' - ', a.title)) AS title
-                                                                FROM {$CONFIG['TABLE_ALBUMS']} AS a
-                                                                INNER JOIN {$this->usertable} AS u
-                                                                ON category = (" . FIRST_USER_CAT . " + {$this->field['user_id']})
-                                                                ORDER BY a.title");
-        $user_albums_list = cpg_db_fetch_rowset($user_albums);
-
-        $public_albums = cpg_db_query("SELECT aid, title, name FROM {$CONFIG['TABLE_ALBUMS']} LEFT JOIN {$CONFIG['TABLE_CATEGORIES']} ON cid = category WHERE category < " . FIRST_USER_CAT . " ORDER BY title");
-        $public_albums_list = cpg_db_fetch_rowset($public_albums);	*/
-		#################################  DB  ###################################
-		$user_albums = $cpgdb->query($cpg_db_udb_base_inc['user_alb_can_join_tbl'], $this->field['username'], $this->usertable, FIRST_USER_CAT, $this->field['user_id']);
-		$user_albums_list = $cpgdb->fetchRowSet();
-		$public_albums = $cpgdb->query($cpg_db_udb_base_inc['public_alb_can_join_tbl'], FIRST_USER_CAT );
-		$public_albums_list = $cpgdb->fetchRowSet();
-		########################################################################
-
-    // Cycle through the User albums
-    foreach($user_albums_list as $album) {
-
-        // Add to multi-dim array for later sorting
-        //$listArray[$list_count]['cat'] = $lang_upload_php['personal_albums'];
-        $listArray[$list_count]['cat'] = "* Personal Albums";
-                $listArray[$list_count]['aid'] = $album['aid'];
-        $listArray[$list_count]['title'] = $album['title'];
-        $list_count++;
-    }
-
-    // Cycle through the public albums
-    foreach($public_albums_list as $album) {
-
-        // Set $album_id to the actual album ID
-        $album_id = $album['aid'];
-
-        // Get the category name
-       // $vQuery = "SELECT cat.name FROM " . $CONFIG['TABLE_CATEGORIES'] . " cat, " . $CONFIG['TABLE_ALBUMS'] . " alb WHERE alb.aid='" . $album_id . "' AND cat.cid=alb.category";
-        //$vRes = cpg_db_query($vQuery);
-        //$vRes = mysql_fetch_array($vRes);
-
-        // Add to multi-dim array for sorting later
-                $vRes['name'] = $album['name'];
-        if ($vRes['name']) {
-            $listArray[$list_count]['cat'] = $vRes['name'];
-        } else {
-            //$listArray[$list_count]['cat'] = $lang_upload_php['albums_no_category'];
-                        $listArray[$list_count]['cat'] = "Albums with no category";
+                // Padding to indicate level
+		$padding = 8;
+		
+	  	$albums = array();
+	
+	        // load all albums
+		/*$result = cpg_db_query("SELECT aid, title, category FROM {$CONFIG['TABLE_ALBUMS']} ORDER BY pos");
+		
+		while ($row = mysql_fetch_assoc($result)) {
+			$albums[$row['category']][$row['aid']] = $row['title'];
+		}
+	        
+	        // Load all categories
+		$result = cpg_db_query("SELECT cid, rgt, name FROM {$CONFIG['TABLE_CATEGORIES']} ORDER BY lft");*/
+        ############################    DB    ###########################
+        $result = $cpgdb->query($cpg_db_udb_base_inc['load_all_albums']);
+        
+        while ($row = $cpgdb->fetchRow()) {
+            $albums[$row['category']][$row['aid']] = $row['title'];
         }
-        $listArray[$list_count]['aid'] = $album['aid'];
-        $listArray[$list_count]['title'] = $album['title'];
-        $list_count++;
-    }
+            // load all categories
+        $result = $cpgdb->query($cpg_db_udb_base_inc['load_all_categories']);
+        ###########################################################
+		   
+		$cats = array();
 
-    // Sort the pulldown options by category and album name
-    $listArray = array_csort($listArray,'cat','title');
+                // Albums in no category
+		echo '<option style="padding-left: 0px; color: black; font-weight: bold" disabled="disabled">No category</option>';
+			
+		if (!empty($albums[0])) {
+			foreach ($albums[0] as $aid => $title) {
+				echo sprintf('<option style="padding-left: %dpx" value="%d">%s</option>', $padding, $aid, $title);
+			}
+		}
+		
+		// Loop through all categories					
+		//while ($row = mysql_fetch_assoc($result)) {
+        while ($row = $cpgdb->fetchRow()) {     ### DB
+			
+			// Determine category heirarchy
+		        if (count($cats)) {
+				while ($cats && $cats[count($cats)-1]['rgt'] < $row['rgt']) {
+					array_pop($cats);
+				}
+			}
+		        
+		        // Add this category to the heirarchy	
+			$cats[] = $row;
+		
+		        // construct a category heirarchy string breadcrumb style
+			$elements = array();
+			
+			foreach ($cats as $cat) {
+                                $elements[] = $cat['name'];
+			}
+			
+			$heirarchy = implode(' - ', $elements);
 
-    // Finally, print out the nicely sorted and formatted drop down list
-    $alb_cat = '';
-                                echo '&nbsp;&nbsp;&nbsp;&nbsp;<select size="1" name="albumid" class="listbox"><option value="0">All Albums</option>';
-
-    foreach ($listArray as $val) {
-        if ($val['cat'] != $alb_cat) {
-if ($alb_cat) echo "                </optgroup>\n";
-            echo '                <optgroup label="' . $val['cat'] . '">' . "\n";
-            $alb_cat = $val['cat'];
-        }
-        echo '                <option value="' . $val['aid'] . '"' . ($val['aid'] == $sel_album ? ' selected' : '') . '>   ' . $val['title'] . "</option>\n";
-    }
-    if ($alb_cat) echo "                </optgroup>\n";
-
-
-                        print '</select> (3)';
-                        print '&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="'.$lang_util_php['submit_form'].'" class="button" /> (4)';
-                        print '</form>';
-
-                } else {
-
-        // Query for list of public albums
-
-                        /*$public_albums = cpg_db_query("SELECT aid, title, category FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " ORDER BY title");
-
-                        if (mysql_num_rows($public_albums)) {
-                                $public_result = cpg_db_fetch_rowset($public_albums);
-                        } else {
-                                $public_result = array();
-                        }		*/
-						##########################  DB  ############################
-						$public_albums = $cpgdb->query($cpg_db_udb_base_inc['public_alb_cannot_join_tbl'], FIRST_USER_CAT);
-						$public_result = $cpgdb->fetchRowSet();
-                        if (!count($public_result)) {
-                            $public_result = array();
-                        }
-						##########################################################
-
-                        // Initialize $merged_array
-                        $merged_array = array();
-
-                        // Count the number of albums returned.
-                        $end = count($public_result);
-
-                        // Cylce through the User albums.
-                        for($i=0;$i<$end;$i++) {
-
-                                //Create a new array sow we may sort the final results.
-                                $merged_array[$i]['id'] = $public_result[$i]['aid'];
-                                $merged_array[$i]['album_name'] = $public_result[$i]['title'];
-
-                                // Query the database to get the category name.
-                                /*$vQuery = "SELECT name, parent FROM " . $CONFIG['TABLE_CATEGORIES'] . " WHERE cid='" . $public_result[$i]['category'] . "'";
-                                $vRes = mysql_query($vQuery);
-                                $vRes = mysql_fetch_array($vRes);	*/
-								######################  DB  ########################
-								$cpgdb->query($cpg_db_udb_base_inc['get_cat_name'], $public_result[$i]['category']);
-								$vRes = $cpgdb->fetchRow();
-								##################################################
-                                if (isset($merged_array[$i]['username_category'])) {
-                                        $merged_array[$i]['username_category'] = (($vRes['name']) ? '(' . $vRes['name'] . ') ' : '').$merged_array[$i]['username_category'];
-                                } else {
-                                        $merged_array[$i]['username_category'] = (($vRes['name']) ? '(' . $vRes['name'] . ') ' : '');
-                                }
-                        }
-
-                        // We transpose and divide the matrix into columns to prepare it for use in array_multisort().
-                        foreach ($merged_array as $key => $row) {
-                           $aid[$key] = $row['id'];
-                           $title[$key] = $row['album_name'];
-                           $album_lineage[$key] = $row['username_category'];
-                        }
-
-                        // We sort all columns in descending order and plug in $album_menu at the end so it is sorted by the common key.
-                        array_multisort($album_lineage, SORT_ASC, $title, SORT_ASC, $aid, SORT_ASC, $merged_array);
-
-                        // Query for list of user albums
-
-                        /*$user_albums = cpg_db_query("SELECT aid, title, category FROM {$CONFIG['TABLE_ALBUMS']} WHERE category >= " . FIRST_USER_CAT . " ORDER BY aid");
-                        if (mysql_num_rows($user_albums)) {
-                                $user_albums_list = cpg_db_fetch_rowset($user_albums);
-                        } else {
-                                $user_albums_list = array();
-                        }		*/
-						#########################  DB  ###########################
-						$user_albums = $cpgdb->query($cpg_db_udb_base_inc['user_alb_cannot_join_tbl'],  FIRST_USER_CAT);
-						$user_albums_list = $cpgdb->fetchRowSet();
-						if (!count($user_albums_list)){
-							$user_albums_list = array();
-						}
-						########################################################
-
-                        // Query for list of user IDs and names
-
-                        /*$user_album_ids_and_names = cpg_db_query("
-                                SELECT ({$this->field['user_id']} + ".FIRST_USER_CAT.") AS id,
-                                CONCAT('(', {$this->field['username']}, ') ') as name
-                                FROM {$this->usertable}
-                                ORDER BY name ASC",$this->link_id);
-
-                        if (mysql_num_rows($user_album_ids_and_names)) {
-                                $user_album_ids_and_names_list = cpg_db_fetch_rowset($user_album_ids_and_names);
-                        } else {
-                                $user_album_ids_and_names_list = array();
-                        }		*/
-						#########################  DB  ###########################
-						$user_albums = $this->cpgudb->query($cpg_db_udb_base_inc['user_alb_ids_and_names'], $this->field['user_id'], FIRST_USER_CAT, $this->field['username'], $this->usertable);
-						$user_album_ids_and_names_list = $this->cpgudb->fetchRowSet();
-						if (!count($user_album_ids_and_names_list)){
-							$user_album_ids_and_names_list = array();
-						}
-						########################################################
-
-
-                        // Glue what we've got together.
-
-                        // Initialize $udb_i as a counter.
-                        if (count($merged_array)) {
-                                $udb_i = count($merged_array);
-                        } else {
-            $udb_i = 0;
-                        }
-
-                        //Begin a set of nested loops to merge the various query results.
-                        foreach ($user_albums_list as $aq) {
-                                foreach ($user_album_ids_and_names_list as $uq) {
-                                        if ($aq['category'] == $uq['id']) {
-                                                $merged_array[$udb_i]['id']= $aq['category'];
-                                                $merged_array[$udb_i]['album_name']= $aq['title'];
-                                                $merged_array[$udb_i]['username_category']= $uq['name'];
-                                                $udb_i++;
-                                        }
-                                }
-                        }
-
-                        // The user albums and public albums have been merged into one list. Print the dropdown.
-                        echo '&nbsp;&nbsp;&nbsp;&nbsp;<select size="1" name="albumid" class="listbox"><option value="0">All Albums</option>';
-
-                        foreach ($merged_array as $menu_item) {
-                                echo "<option value=\"" . $menu_item['id'] . "\">" . (isset($menu_item['username_category']) ? $menu_item['username_category'] : '') . $menu_item['album_name'] . "</option>\n";
-                        }
-
-                        // Close list, etc.
-                        print '</select> (3)';
-                        print '&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="'.$lang_util_php['submit_form'].'" class="button" /> (4)';
-                        // print '</form>';
+                        // calculate padding for this level
+                        $p = (count($elements) - 1) * $padding;
+		
+			// category header
+			echo '<option style="padding-left: '.$p.'px; color: black; font-weight: bold" disabled="disabled">' . $heirarchy . '</option>';
+			
+			// albums in the category
+			if (!empty($albums[$row['cid']])) {
+				foreach ($albums[$row['cid']] as $aid => $title) {
+					echo sprintf('<option style="padding-left: %dpx" value="%d">%s</option>', $p+$padding, $aid, $title);
+				}
+			}
                 }
+
+                // User galleries
+		echo '<option style="padding-left: 0px; color: black; font-weight: bold" disabled="disabled">User galleries</option>';
+
+                /*$result = cpg_db_query("SELECT {$this->field['user_id']} AS user_id, {$this->field['username']} AS user_name FROM {$this->usertable} ORDER BY {$this->field['username']}");
+
+                $users = cpg_db_fetch_rowset($result);
+                
+                mysql_free_result($result);*/
+                ######################################   DB   ####################################
+                $result = $cpgdb->query($cpg_db_udb_base_inc['user_galleries'], $this->field['user_id'],
+                                        $this->field['username'], $this->usertable);
+
+                $users = $cpgdb->fetchRowSet();
+
+                $cpgdb->free();
+                ###############################################################################
+                
+ 		foreach ($users as $user) {
+			
+		        if (!empty($albums[$user['user_id'] + FIRST_USER_CAT])) {
+		
+			        echo '<option style="padding-left: ' . $padding . 'px; color: black; font-weight: bold" disabled="disabled">' . $user['user_name'] . '</option>';
+
+			        foreach ($albums[$user['user_id'] + FIRST_USER_CAT] as $aid => $title) {
+				        echo sprintf('<option style="padding-left: %dpx" value="%d">%s</option>', $padding * 2, $aid, $title);
+			        }
+		        }
+		}
+		
+		unset($users);
+		unset($albums);
+	   
+                print '</select> (3)';
+                print '&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="'.$lang_util_php['submit_form'].'" class="button" /> (4)';
+                print '</form>';
         }
 
         // Taken from Mambo (com_registration.php)

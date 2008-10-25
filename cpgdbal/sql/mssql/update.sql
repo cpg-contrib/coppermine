@@ -11,9 +11,9 @@
 ##  ********************************************
 ##  Coppermine version: 1.5.0
 ##  $Source: /cvsroot/coppermine/devel/sql/update.sql,v $
-##  $Revision: 5087 $
+##  $Revision: 5129 $
 ##  $LastChangedBy: gaugau $
-##  $Date: 2008-10-08 13:25:27 +0530 (Wed, 08 Oct 2008) $
+##  $Date: 2008-10-18 16:03:12 +0530 (Sat, 18 Oct 2008) $
 ##  ********************************************
 
 

@@ -11,10 +11,10 @@
 
   ********************************************
   Coppermine version: 1.5.0
-  $HeadURL$
-  $Revision: 5078 $
-  $LastChangedBy: saweyyy $
-  $Date: 2008-10-05 03:04:14 +0530 (Sun, 05 Oct 2008) $
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/include/themes.inc.php $
+  $Revision: 5145 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-10-19 18:02:38 +0530 (Sun, 19 Oct 2008) $
 **********************************************/
 
 /////////////////////////////////////////////////////////////////
@@ -1565,7 +1565,7 @@ if (!function_exists('pagefooter')) {  //{THEMES}
 function pagefooter()
 {
     //global $HTTP_GET_VARS, $HTTP_POST_VARS, $HTTP_SERVER_VARS;
-    global $USER, $USER_DATA, $CONFIG, $time_start, $query_stats, $queries;;
+    global $USER, $USER_DATA, $CONFIG, $time_start, $query_stats, $queries;
     global $template_footer;
 
     $custom_footer = cpg_get_custom_include($CONFIG['custom_footer_path']);
@@ -1618,14 +1618,7 @@ function theme_javascript_head() {
       $return .= '<script type="text/javascript" src="' . $js_file . '"></script>' . "\n";
     }
   }
-
-    $return .= '<script type="text/javascript" src="scripts.js"></script>'."\n"; // do not remove this line unless you really know what you're doing
-    $return .= <<< EOT
-
-<script type="text/javascript">
-</script>
-EOT;
-    return $return;
+  return $return;
 }
 /******************************************************************************
 ** Section <<<theme_javascript_head>>> - END
@@ -1668,24 +1661,19 @@ function theme_social_bookmark()
 		    $('#popupBookmark,#popupClose').toggle(); 
 		}); 
 		$('#popupBookmark').bookmark( 
-                {
-                    compact: true, 
-                    addEmail: false, 
-                    addFavorite: true,
-                    manualBookmark: '{$lang_social_bookmarks['favorite_close']}',
-                    sites: [{$bookmark_list}],
-                    icons: 'images/bookmarks.png',
-                    iconSize: 16,
-                    target: '_blank',
-                    favoriteText: '{$lang_social_bookmarks['favorite']}',
-                    favoriteIcon: 0,
-                    emailText: '{$lang_social_bookmarks['send_email']}',
-                    emailIcon: 1,
-                    emailSubject: '{$lang_social_bookmarks['email_subject']}',
-                    emailBody: '{$lang_social_bookmarks['email_body']}:\\n{t} ({u})'
-                    
-                }
-            );
+	        {
+	            compact: true, 
+	            addEmail: false, 
+	            addFavorite: true,
+	            manualBookmark: '{$lang_social_bookmarks['favorite_close']}',
+	            sites: [{$bookmark_list}],
+	            icons: 'images/bookmarks.png',
+	            iconSize: 16,
+	            target: '_blank',
+	            favoriteText: '{$lang_social_bookmarks['favorite']}',
+	            favoriteIcon: 0
+	        }
+        );
         </script>
 EOT;
         
@@ -1966,7 +1954,7 @@ function theme_main_menu($which)
         '{FAV_TGT}' => "thumbnails.php?album=favpics",
         '{FAV_TITLE}' => $lang_main_menu['fav_title'],
         '{FAV_LNK}' => $lang_main_menu['fav_lnk'],
-        '{BROWSEBYDATE_TGT}' => '"#" onclick="MM_openBrWindow(\'calendar.php?action=browsebydate&month='.ltrim(strftime('%m'),'0').'&year='.strftime('%Y').'\', \'Calendar\', \'width=300, height=200, scrollbars=no, toolbar=no, status=no, resizable=no\'); return false;',
+        '{BROWSEBYDATE_TGT}' => 'javascript:;" onclick="MM_openBrWindow(\'calendar.php?action=browsebydate&amp;month='.ltrim(strftime('%m'),'0').'&amp;year='.strftime('%Y').'\', \'Calendar\', \'width=300, height=200, scrollbars=no, toolbar=no, status=no, resizable=no\'); return false;',
         '{BROWSEBYDATE_LNK}' => $lang_main_menu['browse_by_date_lnk'],
         '{BROWSEBYDATE_TITLE}' => $lang_main_menu['browse_by_date_title'],
         '{SEARCH_TGT}' => "search.php",
@@ -3434,7 +3422,7 @@ function theme_html_comments($pid)
             '{MSG_DATE}' => localised_date($row['msg_date'], $comment_date_fmt),
             '{MSG_BODY}' => bb_decode($comment_body),
             '{MSG_BODY_RAW}' => $row['msg_body'],
-            '{OK}' => &$lang_display_comments['OK'],
+            '{OK}' => &$lang_common['ok'],
             '{SMILIES}' => $smilies,
             '{IP}' => $ip,
             '{REPORT_COMMENT_TITLE}' => &$lang_display_comments['report_comment_title'],
@@ -3476,7 +3464,7 @@ function theme_html_comments($pid)
             '{PIC_ID}' => $pid,
             '{USER_NAME}' => $user_name,
             '{MAX_COM_LENGTH}' => $CONFIG['max_com_size'],
-            '{OK}' => $lang_display_comments['OK'],
+            '{OK}' => $lang_common['ok'],
             '{DEFAULT_USERNAME}' => $lang_display_comments['your_name'],
             '{DEFAULT_USERNAME_MESSAGE}' => $lang_display_comments['default_username_message'],
             '{SMILIES}' => '',
@@ -3646,7 +3634,7 @@ function theme_display_fullsize_pic()
     td { vertical-align: middle; text-align:center; }
   </style>
 
-  <script type="text/javascript" src="scripts.js"></script>
+  <script type="text/javascript" src="js/scripts.js"></script>
   </head>
   <body style="margin:0px; padding:0px; background-color: gray;">
     <script language="JavaScript" type="text/JavaScript">

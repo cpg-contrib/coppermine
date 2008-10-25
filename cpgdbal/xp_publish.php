@@ -11,10 +11,10 @@
 
   ********************************************
   Coppermine version: 1.5.0
-  $HeadURL$
-  $Revision: 5086 $
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/xp_publish.php $
+  $Revision: 5129 $
   $LastChangedBy: gaugau $
-  $Date: 2008-10-07 22:56:12 +0530 (Tue, 07 Oct 2008) $
+  $Date: 2008-10-18 16:03:12 +0530 (Sat, 18 Oct 2008) $
 **********************************************/
 
 // ------------------------------------------------------------------------- //

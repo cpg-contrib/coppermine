@@ -11,14 +11,14 @@
   
   ********************************************
   Coppermine version: 1.5.0
-  $HeadURL$
-  $Revision: 5040 $
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/update.php $
+  $Revision: 5129 $
   $LastChangedBy: gaugau $
-  $Date: 2008-09-15 21:50:16 +0530 (Mon, 15 Sep 2008) $
+  $Date: 2008-10-18 16:03:12 +0530 (Sat, 18 Oct 2008) $
 **********************************************/
 
 // define('SKIP_AUTHENTICATION', true);
-// If you don't remember the admin account data you're prompted for when running this file in your browser, umcomment the line above by removing the two slashes in front of it, upload that file to your webserver, run it in your browser. After usccessfully having run it, remember to restore the two slashes you removed and replace the "unsecure" version on your webserver with the "secure" version (the one that contains the double slashes).
+// If you don't remember the admin account data you're prompted for when running this file in your browser, umcomment the line above by removing the two slashes in front of it, upload that file to your webserver, run it in your browser. After successfully having run it, remember to restore the two slashes you removed and replace the "unsecure" version on your webserver with the "secure" version (the one that contains the double slashes).
 
 define('IN_COPPERMINE', true);
 define('UPDATE_PHP', true);
@@ -69,6 +69,7 @@ $superCage = Inspekt::makeSuperCage();
 if (!defined('SKIP_AUTHENTICATION') && defined('COPPERMINE_VERSION') && GALLERY_ADMIN_MODE) {
     $_SESSION['auth'] = true;
 } else { // we need to populate the language array "manually"
+    $lang_common['ok'] = 'OK';
     $lang_update_php = array(
       'title' => 'Updater', // cpg1.5
       'welcome_updater' => 'Welcome to Coppermine update', // cpg1.5
@@ -80,7 +81,6 @@ if (!defined('SKIP_AUTHENTICATION') && defined('COPPERMINE_VERSION') && GALLERY_
       'mysql_said' => 'MySQL said', // cpg1.5
       'check_config_file' => 'Please check the SQL values in %s', // cpg1.5
       'performing_database_updates' => 'Performing Database Updates', // cpg1.5
-      'ok' => 'OK', // cpg1.5
       'already_done' => 'Already Done', // cpg1.5
       'password_encryption' => 'Encryption of passwords', // cpg1.5
       'category_tree' => 'Category tree', // cpg1.5
@@ -241,18 +241,41 @@ EOT;
 }
 
 function html_auth_box($method){
-    global $lang_update_php;
+    global $lang_update_php, $lang_common;
     $superCage = Inspekt::makeSuperCage();
     $debug_mode = '';
     if ($superCage->get->keyExists('debug')) {
         $debug_mode = '?debug';
     }
+    if (function_exists('cpg_fetch_icon')) {
+    	$update_icon = cpg_fetch_icon('update_database', 2);
+    	$ok_icon = cpg_fetch_icon('ok', 2);
+    	$login_icon = cpg_fetch_icon('login', 2);
+    	$username_icon = cpg_fetch_icon('my_profile', 2);
+    	$password_icon = cpg_fetch_icon('key_enter', 2);
+    } else {
+    	$update_icon = '';
+    	$ok_icon = '';
+    	$login_icon = '';
+    	$username_icon = '';
+    	$password_icon = '';
+    }
     echo <<< EOT
-    <h2>{$lang_update_php['welcome_updater']}</h2>
-
-    <form name="cpgform" id="cpgform" method="post" action="update.php{$debug_mode}">
-    <h2>{$lang_update_php['authentication_needed']}</h2>
-
+	    <form name="cpgform" id="cpgform" method="post" action="update.php{$debug_mode}">
+	    <table border="0" cellspacing="0" cellpadding="0" class="maintable">
+		    <tr>
+		    	<td class="tableh1" colspan="2">
+		    		<h1>{$update_icon}{$lang_update_php['welcome_updater']}</h1>
+		    	</td>
+		    </tr>
+		    <tr>
+		    	<td class="tableh2" colspan="2">
+		    		<h2>{$login_icon}{$lang_update_php['authentication_needed']}</h2>
+		    	</td>
+		    </tr>
+		    <tr>
+		    	<td class="tableh2" colspan="2">
+    
 EOT;
 		if($method=='MySQL'){
 			echo $lang_update_php['could_not_authenticate']. '. <a href="update.php">' . $lang_update_php['try_again'] . '</a>';
@@ -260,13 +283,32 @@ EOT;
 			echo $lang_update_php['provide_admin_account'];
 		}
         echo <<< EOT
-
-        <div>
-        {$lang_update_php['username']}: <input type="text" name="user" size="30" class="textinput" /><br />
-        {$lang_update_php['password']}: <input type="password" name="pass" size="30" class="textinput"  /><br />
-        <input type="hidden" name="method" value="{$method}" /><br />
-        <input type="submit" name="submit" value="Login" class="button"  />
-        </div>
+		    	</td>
+		    </tr>
+	        <tr>
+		        <td class="tableb">
+			        {$username_icon}{$lang_update_php['username']}:
+		        </td>
+		        <td class="tableb">
+			        <input type="text" name="user" size="30" class="textinput" />
+		        </td>
+	        </tr>
+	        <tr>
+		        <td class="tableb">
+			        {$password_icon}{$lang_update_php['password']}:
+		        </td>
+		        <td class="tableb">
+			        <input type="password" name="pass" size="30" class="textinput"  />
+		        </td>
+	        </tr>
+	        <tr>
+		        <td class="tableb" colspan="2" align="center">
+			        <input type="hidden" name="method" value="{$method}" />
+			        <!--<input type="submit" name="submit" value="Login" class="button"  />-->
+			        <button type="submit" class="button" name="submit" value="{$lang_common['ok']}">{$ok_icon}{$lang_common['ok']}</button>
+		        </td>
+	        </tr>
+        </table>
 
         </form>
         <script language="javascript" type="text/javascript">
@@ -439,7 +481,7 @@ function test_sql_connection()
 // ------------------------- SQL QUERIES TO CREATE TABLES ------------------ //
 function update_tables()
 {
-    global $errors, $CONFIG, $lang_update_php;
+    global $errors, $CONFIG, $lang_update_php, $lang_common;
 	############  cpgdbal  ############
 	global $cpg_db_update_php;
 	$cpgsql = @ cpgDB::getInstance(); 
@@ -472,12 +514,21 @@ function update_tables()
 
     $sql_query = remove_remarks($sql_query);
     $sql_query = split_sql_file($sql_query, ';');
+    if (function_exists('cpg_fetch_icon')) {
+    	$update_icon = cpg_fetch_icon('update_database', 2);
+    	$ok_icon = cpg_fetch_icon('ok', 2);
+    	$already_done_icon = cpg_fetch_icon('info', 2);
+    } else {
+    	$update_icon = '';
+    	$ok_icon = '';
+    	$already_done_icon = '';
+    }
 
     print <<< EOT
         <table border="0" cellspacing="0" cellpadding="0" class="maintable">
             <tr>
                 <td class="tableh1" colspan="2">
-                    {$lang_update_php['performing_database_updates']}
+                    {$update_icon}{$lang_update_php['performing_database_updates']}
                 </td>
             </tr>
 
@@ -581,9 +632,9 @@ EOT;
         }
         print '</td>'.$lineBreak; // end the table cell that contains the output
         if ($result && $affected) {
-            echo '<td width="20%" class="'.$cellStyle.' updatesOK">' . $lang_update_php['ok'] . '</td>'.$lineBreak;
+            echo '<td width="20%" class="'.$cellStyle.' updatesOK">' . $ok_icon . $lang_common['ok'] . '</td>'.$lineBreak;
         } else {
-            echo '<td width="20%" class="'.$cellStyle.' updatesFail">' . $lang_update_php['already_done'] . '</td>'.$lineBreak;
+            echo '<td width="20%" class="'.$cellStyle.' updatesFail">' . $already_done_icon . $lang_update_php['already_done'] . '</td>'.$lineBreak;
         }
     } // end foreach loop
     
@@ -604,7 +655,7 @@ EOT;
     if ($CONFIG['enable_encrypted_passwords'] != 1) {
         print <<< EOT
                 <td class="{$cellStyle} updatesOK">
-                    {$lang_update_php['ok']}
+                    {$ok_icon}{$lang_common['ok']}
                 </td>
             </tr>
 EOT;
@@ -631,7 +682,7 @@ EOT;
     } else {
         print <<< EOT
                 <td class="{$cellStyle} updatesFail">
-                    {$lang_update_php['already_done']}
+                    {$already_done_icon}{$lang_update_php['already_done']}
                 </td>
             </tr>
 EOT;
@@ -655,14 +706,14 @@ EOT;
     
         print <<< EOT
                 <td class="{$cellStyle} updatesOK">
-                    {$lang_update_php['ok']}
+                    {$ok_icon}{$lang_common['ok']}
                 </td>
             </tr>
 EOT;
     } else {
         print <<< EOT
                 <td class="{$cellStyle} updatesFail">
-                    {$lang_update_php['already_done']}
+                    {$already_done_icon}{$lang_update_php['already_done']}
                 </td>
             </tr>
 EOT;

@@ -11,15 +11,15 @@
   
   ********************************************
   Coppermine version: 1.5.0
-  $HeadURL$
-  $Revision: 5017 $
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/themes/classic/theme.php $
+  $Revision: 5149 $
   $LastChangedBy: gaugau $
-  $Date: 2008-09-09 21:20:51 +0530 (Tue, 09 Sep 2008) $
+  $Date: 2008-10-20 14:45:28 +0530 (Mon, 20 Oct 2008) $
 **********************************************/
 
 // ------------------------------------------------------------------------- //
 // This theme has all CORE items removed                                     //
 // ------------------------------------------------------------------------- //
 define('THEME_HAS_MENU_ICONS',16);
-define('THEME_HAS_NAVBAR_GRAPHICS',1);
+//define('THEME_HAS_NAVBAR_GRAPHICS',1);
 ?>

@@ -11,10 +11,10 @@
 
   ********************************************
   Coppermine version: 1.5.0
-  $HeadURL$
-  $Revision: 5017 $
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/themes/igames/theme.php $
+  $Revision: 5129 $
   $LastChangedBy: gaugau $
-  $Date: 2008-09-09 21:20:51 +0530 (Tue, 09 Sep 2008) $
+  $Date: 2008-10-18 16:03:12 +0530 (Sat, 18 Oct 2008) $
 **********************************************/
 
 // ------------------------------------------------------------------------- //
@@ -181,10 +181,9 @@ function theme_javascript_head() {
 			$return .= '<script type="text/javascript" src="' . $js_file . '"></script>' . "\n";
 		}
 	}
-    $return .= '<script type="text/javascript" src="scripts.js"></script>'; // do not remove this line unless you really know what you're doing
     $return .= <<< EOT
 
-<script language="JavaScript" type="text/JavaScript">
+<script language="JavaScript" type="text/javascript">
 <!--
 function MM_findObj(n, d) { //v4.01
   var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
