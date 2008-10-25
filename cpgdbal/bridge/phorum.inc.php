@@ -11,10 +11,10 @@
   
   ********************************************
   Coppermine version: 1.5.0
-  $HeadURL$
-  $Revision: 4985 $
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/bridge/phorum.inc.php $
+  $Revision: 5129 $
   $LastChangedBy: gaugau $
-  $Date: 2008-09-02 02:35:01 +0530 (Tue, 02 Sep 2008) $
+  $Date: 2008-10-18 16:03:12 +0530 (Sat, 18 Oct 2008) $
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');

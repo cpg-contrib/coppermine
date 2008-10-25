@@ -11,10 +11,10 @@
 
   ********************************************
   Coppermine version: 1.5.0
-  $HeadURL$
-  $Revision: 5038 $
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/minibrowser.php $
+  $Revision: 5129 $
   $LastChangedBy: gaugau $
-  $Date: 2008-09-15 12:34:00 +0530 (Mon, 15 Sep 2008) $
+  $Date: 2008-10-18 16:03:12 +0530 (Sat, 18 Oct 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -147,7 +147,7 @@ $newline = "\n";
 <title><?php echo $CONFIG['gallery_name'] .': '. $lang_minibrowser_php['click_to_close'];  ?></title>
 <meta http-equiv="content-type" content="text/html; charset=<?php echo $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'] ?>" />
 <link rel="stylesheet" href="<?php echo $THEME_DIR ?>style.css" />
-<script type="text/javascript" src="scripts.js"></script>
+<script type="text/javascript" src="js/scripts.js"></script>
 <?php
 
 //if ($parentform != '' && $formelementname != '') { // print the javascript bit that updates the parent element --- start
@@ -249,10 +249,10 @@ if ($linktarget != '') {
         } // end foreach
     } // end is_array
     if ($allowed_file_counter!=0) {
-        print '<a href="'.$linktarget.'?startdir='.rtrim(str_replace($limitfolder, '',$folder), '/').'" class="admin_menu" target="_parent">'.$lang_minibrowser_php['submit'].'</a>'.$newline;
+        print '<a href="'.$linktarget.'?startdir='.rtrim(str_replace($limitfolder, '',$folder), '/').'" class="admin_menu" target="_parent">'.$lang_common['ok'].'</a>'.$newline;
     } // determine if we should display a submit button end
 } else {
-    print '<input type="submit" name="submit" value="'.$lang_minibrowser_php['submit'].'" class="button" />'.$newline;
+    print '<input type="submit" name="submit" value="'.$lang_common['ok'].'" class="button" />'.$newline;
 }
 print '</td>'.$newline;
 print '</tr>'.$newline;

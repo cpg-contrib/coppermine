@@ -11,10 +11,10 @@
 
   ********************************************
   Coppermine version: 1.5.0
-  $HeadURL$
-  $Revision: 4853 $
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/pluginmgr.php $
+  $Revision: 5130 $
   $LastChangedBy: gaugau $
-  $Date: 2008-08-12 12:23:42 +0530 (Tue, 12 Aug 2008) $
+  $Date: 2008-10-18 16:19:53 +0530 (Sat, 18 Oct 2008) $
 **********************************************/
 
 // ------------------------------------------------------------------------- //
@@ -33,23 +33,14 @@ require('include/init.inc.php');
 if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
 // write the plugin enable/disable change to the db
-    if ($superCage->post->keyExists('update_config')) {
-        $value = $superCage->post->getInt('enable_plugins');
-        //cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = 'enable_plugins'");
-		############################       DB     #############################
-		$cpgdb->query($cpg_db_pluginmgr_php['update_config'], $value);
-		################################################################
-        $CONFIG['enable_plugins'] = $value;
-        if ($CONFIG['log_mode'] == CPG_LOG_ALL) {
-            log_write('CONFIG UPDATE SQL: '.
-              "UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = 'enable_plugins'\n".
-              'TIME: '.date("F j, Y, g:i a")."\n".
-              'USER: '.$USER_DATA['user_name'],
-              CPG_DATABASE_LOG
-              );
-        }
-        header('Location: pluginmgr.php');
-    }
+if ($superCage->post->keyExists('update_config')) {
+
+	$value = $superCage->post->getInt('enable_plugins');
+    
+	cpg_config_set('enable_plugins', $value);
+    
+	header('Location: pluginmgr.php');
+}
 
 function display_plugin_list() {
     global $CPG_PLUGINS, $lang_pluginmgr_php, $lang_plugin_php, $lang_common, $CONFIG, $CPG_PHP_SELF;
@@ -76,10 +67,10 @@ echo <<< EOT
                 <td class="tableb">
                     {$lang_pluginmgr_php['plugin_enabled']}
                 </td>
-                <td class="table">
-                    <input type="radio" id="enable_plugins1" name="enable_plugins" value="1"  onclick="document.pluginenableconfig.submit();" $yes_selected /><label for="enable_plugins1" class="clickable_option">{$lang_common['yes']}</label>
+                <td class="tableb">
+                    <input type="radio" id="enable_plugins1" name="enable_plugins" value="1"  onclick="document.pluginenableconfig.submit();" $yes_selected class="radio" /><label for="enable_plugins1" class="clickable_option">{$lang_common['yes']}</label>
                     &nbsp;&nbsp;
-                    <input type="radio" id="enable_plugins0" name="enable_plugins" value="0"  onclick="document.pluginenableconfig.submit();" $no_selected /><label for="enable_plugins0" class="clickable_option">{$lang_common['no']}</label>
+                    <input type="radio" id="enable_plugins0" name="enable_plugins" value="0"  onclick="document.pluginenableconfig.submit();" $no_selected class="radio" /><label for="enable_plugins0" class="clickable_option">{$lang_common['no']}</label>
                     <input type="hidden" name="update_config" value="1" />
                 </td>
                 <td class="tableb">

@@ -10,10 +10,10 @@
 ##
 ##  ********************************************
 ##  Coppermine version: 1.5.0
-##  $HeadURL$
-##  $Revision: 5067 $
+##  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/sql/schema.sql $
+##  $Revision: 5129 $
 ##  $LastChangedBy: gaugau $
-##  $Date: 2008-10-02 23:03:16 +0530 (Thu, 02 Oct 2008) $
+##  $Date: 2008-10-18 16:03:12 +0530 (Sat, 18 Oct 2008) $
 ##  ********************************************
 
 #

@@ -11,10 +11,10 @@
   
   ********************************************
   Coppermine version: 1.5.0
-  $HeadURL$
-  $Revision: 4451 $
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/include/sql_parse.php $
+  $Revision: 5129 $
   $LastChangedBy: gaugau $
-  $Date: 2008-05-04 04:18:54 +0530 (Sun, 04 May 2008) $
+  $Date: 2008-10-18 16:03:12 +0530 (Sat, 18 Oct 2008) $
 **********************************************/
 
 /**
@@ -24,7 +24,7 @@
  *      copyright            : (C) 2001 The phpBB Group
  *      email                : support@phpbb.com
  *
- *      $Id: sql_parse.php 4451 2008-05-03 22:48:54Z gaugau $
+ *      $Id: sql_parse.php 5129 2008-10-18 10:33:12Z gaugau $
  */
 
 /**

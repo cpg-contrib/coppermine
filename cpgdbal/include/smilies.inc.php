@@ -11,10 +11,10 @@
   
   ********************************************
   Coppermine version: 1.5.0
-  $HeadURL$
-  $Revision: 4506 $
-  $LastChangedBy: pvanrompay $
-  $Date: 2008-06-09 01:07:00 +0530 (Mon, 09 Jun 2008) $
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/include/smilies.inc.php $
+  $Revision: 5136 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-10-18 20:22:02 +0530 (Sat, 18 Oct 2008) $
 **********************************************/
 
 // ------------------------------------------------------------------------- //
@@ -160,7 +160,7 @@ function generate_smilies($form = 'post', $field = 'message')
 <!--
 function emoticon_$form(text) {
         text = ' ' + text + ' ';
-        if (document.$form.$field.createTextRange && document.post.message.caretPos) {
+        if (document.$form.$field.createTextRange && document.$form.$field.caretPos) {
                 var caretPos = document.$form.$field.caretPos;
                 caretPos.text = caretPos.text.charAt(caretPos.text.length - 1) == ' ' ? text + ' ' : text;
                 document.$form.$field.focus();

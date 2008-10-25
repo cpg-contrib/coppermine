@@ -11,10 +11,10 @@
 
   ********************************************
   Coppermine version: 1.5.0
-  $HeadURL$
-  $Revision: 5002 $
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/reviewcom.php $
+  $Revision: 5129 $
   $LastChangedBy: gaugau $
-  $Date: 2008-09-05 20:22:02 +0530 (Fri, 05 Sep 2008) $
+  $Date: 2008-10-18 16:03:12 +0530 (Sat, 18 Oct 2008) $
 **********************************************/
 
 // todo: search option.
@@ -47,11 +47,7 @@ if ($superCage->post->keyExists('is_submit')) {
         }
         if ($approval_only != $CONFIG['display_comment_approval_only']) {
             // the user wants to see the option changed - let's write it to the database
-            //cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$approval_only' WHERE name = 'display_comment_approval_only'");
-            #####################################      DB      #################################
-            $cpgdb->query($cpg_db_reviewcom_php['display_comment_approval_only'], $approval_only);
-            ###########################################################################
-            $CONFIG['display_comment_approval_only'] = $approval_only;
+            cpg_config_set('display_comment_approval_only', $approval_only);
             $flag_conf_change = 1;
         }
 }

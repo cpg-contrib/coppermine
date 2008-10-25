@@ -11,10 +11,10 @@
 
   ********************************************
   Coppermine version: 1.5.0
-  $HeadURL$
-  $Revision: 4508 $
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/include/slideshow.inc.php $
+  $Revision: 5129 $
   $LastChangedBy: gaugau $
-  $Date: 2008-06-09 12:31:42 +0530 (Mon, 09 Jun 2008) $
+  $Date: 2008-10-18 16:03:12 +0530 (Sat, 18 Oct 2008) $
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) { 

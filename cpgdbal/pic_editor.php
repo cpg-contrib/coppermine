@@ -11,10 +11,10 @@
   
   ********************************************
   Coppermine version: 1.5.0
-  $HeadURL$
-  $Revision: 4284 $
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/pic_editor.php $
+  $Revision: 5141 $
   $LastChangedBy: gaugau $
-  $Date: 2008-02-20 13:14:34 +0530 (Wed, 20 Feb 2008) $
+  $Date: 2008-10-18 22:40:30 +0530 (Sat, 18 Oct 2008) $
 **********************************************/
 
 // embedded images
@@ -88,20 +88,23 @@ if ($superCage->get->keyExists('id')) {
 		$pid = $superCage->post->getInt('id');
 } else {
 		$pid = -1;
+		cpg_die(ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
 }
+
+
+if (!(GALLERY_ADMIN_MODE || ($CONFIG['users_can_edit_pics'] && $CURRENT_PIC['owner_id'] == USER_ID)) || !USER_ID) {
+	cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+}
+
 if ($pid > 0){
 
-		/*$result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} WHERE pid = '$pid'");
-		$CURRENT_PIC = mysql_fetch_array($result);
-				if (!(GALLERY_ADMIN_MODE || ($CONFIG['users_can_edit_pics'] && $CURRENT_PIC['owner_id'] == USER_ID)) || !USER_ID) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
-		mysql_free_result($result);
-		$pic_url = get_pic_url($CURRENT_PIC,'fullsize');	*/
-		######################################              DB            ######################################
-		$cpgdb->query($cpg_db_pic_editor_php['get_pic_data'], $pid);
-		$CURRENT_PIC = $cpgdb->fetchRow();
-		if (!(GALLERY_ADMIN_MODE || ($CONFIG['users_can_edit_pics'] && $CURRENT_PIC['owner_id'] == USER_ID)) || !USER_ID) {
-							cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
-		}
+        /*$result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} WHERE pid = '$pid'");
+        $CURRENT_PIC = mysql_fetch_array($result);
+        mysql_free_result($result);
+        $pic_url = get_pic_url($CURRENT_PIC,'fullsize');*/
+        ######################################              DB            ######################################
+        $cpgdb->query($cpg_db_pic_editor_php['get_pic_data'], $pid);
+        $CURRENT_PIC = $cpgdb->fetchRow();
 		$cpgdb->free();
 		$pic_url = get_pic_url($CURRENT_PIC, 'fullsize');
 		#########################################################################################

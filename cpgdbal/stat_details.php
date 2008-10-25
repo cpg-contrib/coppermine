@@ -11,10 +11,10 @@
 
   ********************************************
   Coppermine version: 1.5.0
-  $HeadURL$
-  $Revision: 4999 $
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/stat_details.php $
+  $Revision: 5145 $
   $LastChangedBy: gaugau $
-  $Date: 2008-09-05 11:28:00 +0530 (Fri, 05 Sep 2008) $
+  $Date: 2008-10-19 18:02:38 +0530 (Sun, 19 Oct 2008) $
 **********************************************/
 
 // Todo list (stuff the hasn't been implemented yet):
@@ -118,7 +118,7 @@ require_once('include/init.inc.php');
             $date_display_fmt = $log_date_fmt;
         } elseif($get_date_display == 3) {
             $date_display = 3;
-            $date_display_fmt = '%Y-%m-%d %H:%M:%S';;
+            $date_display_fmt = '%Y-%m-%d %H:%M:%S';
         } else {
             $date_display = 4;
             $date_display_fmt = '%Y-%m-%d';
@@ -168,31 +168,23 @@ require_once('include/init.inc.php');
     }
 
 // perform database write queries if needed - start
-	if (GALLERY_ADMIN_MODE) {
-		$configChangesApplied = '';
-		$get_hit_details = $superCage->get->getInt('hit_details');
-		if ($get_hit_details != $CONFIG['hit_details'] && $superCage->get->getEscaped('go') != '') {
-			//cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '{$get_hit_details}' WHERE name = 'hit_details'");
-			##############################          DB        ############################
-			$cpgdb->query($cpg_db_stat_details_php['set_hit_details'], $get_hit_details);
-			###################################################################
-			$CONFIG['hit_details'] = $get_hit_details;
-			$configChangesApplied = $lang_stat_details_php['upd_success'];
-		}
-		$get_vote_details = $superCage->get->getInt('vote_details');
-		if ($get_vote_details != $CONFIG['vote_details'] && $superCage->get->getEscaped('go') != '') {
-			//cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '{$get_vote_details}' WHERE name = 'vote_details'");
-			#################################          DB        ##############################
-			$cpgdb->query($cpg_db_stat_details_php['set_vote_datails'], $get_vote_details);
-			########################################################################
-			$CONFIG['vote_details'] = $get_vote_details;
-			$configChangesApplied = $lang_stat_details_php['upd_success'];
-		}
-		//if ($_GET['emptyhitstats'] == TRUE || $_GET['emptyvotestats'] == TRUE) {
-		if ($superCage->get->getEscaped('emptyhitstats') == TRUE || $superCage->get->getEscaped('emptyvotestats') == TRUE) {
-			$configChangesApplied = $lang_stat_details_php['not_implemented'];
-		}
-	}
+  if (GALLERY_ADMIN_MODE) {
+      $configChangesApplied = '';
+      $get_hit_details = $superCage->get->getInt('hit_details');
+      if ($get_hit_details != $CONFIG['hit_details'] && $superCage->get->getEscaped('go') != '') {
+      	 cpg_config_set('hit_details', $get_hit_details);
+          $configChangesApplied = $lang_stat_details_php['upd_success'];
+      }
+      $get_vote_details = $superCage->get->getInt('vote_details');
+      if ($get_vote_details != $CONFIG['vote_details'] && $superCage->get->getEscaped('go') != '') {
+          cpg_config_set('vote_details', $get_vote_details);
+          $configChangesApplied = $lang_stat_details_php['upd_success'];
+      }
+      //if ($_GET['emptyhitstats'] == TRUE || $_GET['emptyvotestats'] == TRUE) {
+      if ($superCage->get->getEscaped('emptyhitstats') == TRUE || $superCage->get->getEscaped('emptyvotestats') == TRUE) {
+          $configChangesApplied = $lang_stat_details_php['not_implemented'];
+      }
+  }
 // perform database write queries if needed - end
 
 // output the header depending on the mode (fullscreen vs embedded) - start
@@ -239,7 +231,7 @@ EOT;
     <meta http-equiv="Content-Type" content="text/html; charset=$charset" />
     <meta http-equiv="Pragma" content="no-cache" />
     <link rel="stylesheet" href="themes/{$CONFIG['theme']}/style.css" />
-    <script type="text/javascript" src="scripts.js"></script>
+    <script type="text/javascript" src="js/scripts.js"></script>
 </head>
 <body class="tableb">
 <div class="admin_menu_wrapper">

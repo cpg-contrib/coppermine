@@ -11,9 +11,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $Source$
-  $Revision: 4224 $
+  $Revision: 5129 $
   $Author: gaugau $
-  $Date: 2008-01-26 17:12:00 +0530 (Sat, 26 Jan 2008) $
+  $Date: 2008-10-18 16:03:12 +0530 (Sat, 18 Oct 2008) $
 **********************************************/
 
 CPG - Coppermine Photo Gallery Quick-Start Guide

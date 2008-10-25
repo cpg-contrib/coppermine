@@ -11,10 +11,10 @@
   
   ********************************************
   Coppermine version: 1.5.0
-  $HeadURL$
-  $Revision: 4583 $
-  $LastChangedBy: pvanrompay $
-  $Date: 2008-06-18 06:33:59 +0530 (Wed, 18 Jun 2008) $
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/include/media.functions.inc.php $
+  $Revision: 5129 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-10-18 16:03:12 +0530 (Sat, 18 Oct 2008) $
 **********************************************/
 
 // REQUIRES GLOBAL VAR: ADMIN

@@ -11,10 +11,10 @@
 
   ********************************************
   Coppermine version: 1.5.0
-  $HeadURL$
-  $Revision: 5038 $
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/searchnew.php $
+  $Revision: 5129 $
   $LastChangedBy: gaugau $
-  $Date: 2008-09-15 12:34:00 +0530 (Mon, 15 Sep 2008) $
+  $Date: 2008-10-18 16:03:12 +0530 (Sat, 18 Oct 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -921,36 +921,12 @@ EOT;
         //$browse_batch_add = (int)$_POST['browse_batch_add'];
         $browse_batch_add = $superCage->post->getInt('browse_batch_add');
         if ($browse_batch_add != $CONFIG['browse_batch_add']) {
-          //cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$browse_batch_add' WHERE name = 'browse_batch_add'");
-		  ###########################		DB		##############################
-		  $cpgdb->query($cpg_db_searchnew_php['browse_batch_add_edit'], $browse_batch_add);
-		  ########################################################################
-          $CONFIG['browse_batch_add'] = $browse_batch_add;
-          if ($CONFIG['log_mode'] == CPG_LOG_ALL) {
-              log_write('CONFIG UPDATE SQL: '.
-                "UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$browse_batch_add' WHERE name = 'browse_batch_add'\n".
-                'TIME: '.date("F j, Y, g:i a")."\n".
-                'USER: '.$USER_DATA['user_name'],
-                CPG_DATABASE_LOG
-                );
-          }
+        	 cpg_config_set('browse_batch_add', $browse_batch_add);
         }
         //$display_thumbs_batch_add = (int)$_POST['display_thumbs_batch_add'];
         $display_thumbs_batch_add = $superCage->post->getInt('display_thumbs_batch_add');
         if ($display_thumbs_batch_add != $CONFIG['display_thumbs_batch_add']) {
-          //cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$display_thumbs_batch_add' WHERE name = 'display_thumbs_batch_add'");
-		  ###########################		DB		##############################
-		  $cpgdb->query($cpg_db_searchnew_php['display_thumbs_batch_add_edit'], display_thumbs_batch_add);
-		  ########################################################################
-          $CONFIG['display_thumbs_batch_add'] = $display_thumbs_batch_add;
-          if ($CONFIG['log_mode'] == CPG_LOG_ALL) {
-              log_write('CONFIG UPDATE SQL: '.
-                "UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$display_thumbs_batch_add' WHERE name = 'display_thumbs_batch_add'\n".
-                'TIME: '.date("F j, Y, g:i a")."\n".
-                'USER: '.$USER_DATA['user_name'],
-                CPG_DATABASE_LOG
-                );
-          }
+        	 cpg_config_set('display_thumbs_batch_add', $display_thumbs_batch_add);
         }
     }
 

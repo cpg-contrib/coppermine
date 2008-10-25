@@ -11,10 +11,10 @@
 
   ********************************************
   Coppermine version: 1.5.0
-  $HeadURL$
-  $Revision: 5089 $
-  $LastChangedBy: nibbler999 $
-  $Date: 2008-10-08 21:46:09 +0530 (Wed, 08 Oct 2008) $
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/bridge/smf20.inc.php $
+  $Revision: 5129 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-10-18 16:03:12 +0530 (Sat, 18 Oct 2008) $
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');

@@ -11,10 +11,10 @@
 
   ********************************************
   Coppermine version: 1.5.0
-  $HeadURL$
-  $Revision: 4981 $
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/profile.php $
+  $Revision: 5129 $
   $LastChangedBy: gaugau $
-  $Date: 2008-09-01 13:37:08 +0530 (Mon, 01 Sep 2008) $
+  $Date: 2008-10-18 16:03:12 +0530 (Sat, 18 Oct 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -164,10 +164,10 @@ function cpgUserLastComment($uid) {
 }
 
 $edit_profile_form_param = array(
-    array('text', 'username', $lang_register_php['username']),
-    array('text', 'reg_date', $lang_register_php['reg_date']),
-    array('text', 'group', $lang_register_php['group']),
-    array('text', 'email', $lang_register_php['email'],255),
+    array('text', 'username', cpg_fetch_icon('my_profile', 2) . $lang_register_php['username']),
+    array('text', 'reg_date', cpg_fetch_icon('calendar', 2) . $lang_register_php['reg_date']),
+    array('text', 'group', cpg_fetch_icon('groups_mgr', 2) . $lang_register_php['group']),
+    array('text', 'email', cpg_fetch_icon('mail', 2) . $lang_register_php['email'],255),
     array('input', 'user_profile1', $CONFIG['user_profile1_name'], 255),
     array('input', 'user_profile2', $CONFIG['user_profile2_name'], 255),
     array('input', 'user_profile3', $CONFIG['user_profile3_name'], 255),

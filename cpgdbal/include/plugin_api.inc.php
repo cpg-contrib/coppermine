@@ -11,10 +11,10 @@
 
   ********************************************
   Coppermine version: 1.5.0
-  $HeadURL$
-  $Revision: 5070 $
-  $LastChangedBy: abbas-ali $
-  $Date: 2008-10-03 15:52:36 +0530 (Fri, 03 Oct 2008) $
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/include/plugin_api.inc.php $
+  $Revision: 5129 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-10-18 16:03:12 +0530 (Sat, 18 Oct 2008) $
 **********************************************/
 
 global $thisplugin;                     // Stores the current plugin being processed

@@ -11,10 +11,10 @@
 
   ********************************************
   Coppermine version: 1.5.0
-  $HeadURL$
-  $Revision: 5078 $
-  $LastChangedBy: saweyyy $
-  $Date: 2008-10-05 03:04:14 +0530 (Sun, 05 Oct 2008) $
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/ratepic.php $
+  $Revision: 5129 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-10-18 16:03:12 +0530 (Sat, 18 Oct 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -22,7 +22,7 @@ define('RATEPIC_PHP', true);
 
 require('include/init.inc.php');
 // Check if required parameters are present
-if (!$superCage->get->keyExists('pic') || !$superCage->get->keyExists('rate') || !$superCage->get->keyExists('id')) {
+if (!$superCage->get->keyExists('pic') || !$superCage->get->keyExists('rate')) {
     //send back voting failure to ajax request
 	$send_back = array('status' => 'error', 'msg' => $lang_errors['param_missing']);
 	echo json_encode($send_back);
