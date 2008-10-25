@@ -12,10 +12,10 @@
   
   ********************************************
   Coppermine version: 1.5.0
-  $HeadURL$
-  $Revision: 4932 $
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/include/exif.php $
+  $Revision: 5145 $
   $LastChangedBy: gaugau $
-  $Date: 2008-08-28 20:47:20 +0530 (Thu, 28 Aug 2008) $
+  $Date: 2008-10-19 18:02:38 +0530 (Sun, 19 Oct 2008) $
 **********************************************/
 /*
 	Exifer 1.6
@@ -747,7 +747,7 @@ function read_exif_data_raw($path,$verbose) {
 				$result['JFIF']['Data'] = $data;
 			} 
 			
-			$result['JFIF']['Identifier'] = substr($data,0,5);;
+			$result['JFIF']['Identifier'] = substr($data,0,5);
 			$result['JFIF']['ExtensionCode'] =  bin2hex(substr($data,6,1));
 			
 			$globalOffset+=hexdec($size)+2;

@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $Source$
-  $Revision: 5098 $
+  $Revision: 5151 $
   $LastChangedBy: gaugau $
-  $Date: 2008-10-09 22:23:01 +0530 (Thu, 09 Oct 2008) $
+  $Date: 2008-10-20 23:08:39 +0530 (Mon, 20 Oct 2008) $
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
@@ -717,7 +717,7 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'ban_private_ip' => 'Allow banning of non-routable (private) IP addresses', // cpg1.5
   'browse_batch_add' => 'Browsable batch-add interface', // cpg1.5
   'display_thumbs_batch_add' => 'Display preview thumbnails on batch-add interface', // cpg1.5
-  'lang' => 'Language', // cpg1.5
+  'lang' => 'Default language', // cpg1.5
   'language_fallback' => 'Fallback to English if translated phrase not found?', // cpg1.5
   'charset' => 'Character encoding', // cpg1.5
   'language_list' => 'Display language list', // cpg1.5
@@ -942,6 +942,7 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'warning_dont_submit' => 'If you are not sure about the impact that changing this setting will have, do not submit the form and review the documentation first.', // cpg1.5 // js-alert
   'menu_only' => 'menu only', // cpg1.5
   'everywhere' => 'everywhere', // cpg1.5
+  'manage_languages' => 'Manage languages', // cpg1.5
 );
 
 
@@ -1176,7 +1177,6 @@ $lang_picinfo = array(
 );
 
 $lang_display_comments = array(
-  'OK' => 'OK',
   'edit_title' => 'Edit this comment',
   'delete_title' => 'Delete this comment', // cpg1.5
   'confirm_delete' => 'Are you sure you want to delete this comment ?', // js-alert
@@ -1627,9 +1627,18 @@ if (defined('LANGMGR_PHP')) $lang_langmgr_php = array(
   'complete' => 'Complete',
   'default' => 'Default',
   'missing' => 'missing',
+  'broken' => 'appears to be broken or inaccessible',
   'exists_in_db_and_file' => 'exists in database and as file',
   'exists_as_file_only' => 'exists as file only',
   'pick_a_flag' => 'Pick one',
+  'replace_x_with_y' => 'Replace %s with %s',
+  'tanslator_information' => 'Translator information',
+  'cpg_version' => 'Coppermine version',
+  'hide_details' => 'Hide details',
+  'show_details' => 'Show details',
+  'loading' => 'Loading',
+  'english_missing' => 'The English language file is missing although it should never be removed. You need to restore it immediately.',
+  'enable_default' => 'You chose a default language that is not enabled. Pick another default language or enable the language you selected as default!',  // js-alert
 );
 
 // ------------------------------------------------------------------------- //
@@ -1669,7 +1678,6 @@ if (defined('LOGOUT_PHP')) $lang_logout_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('MINIBROWSER_PHP')) $lang_minibrowser_php = array(
-  'submit' => 'OK',
   'up' => 'up one level',
   'current_path' => 'current path',
   'select_directory' => 'please select a directory',
@@ -1730,12 +1738,13 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
   'notice1' => '(*) depending on %sgroups%s settings',  //(do not translate %s!)
   'can_moderate' => 'Album can be moderated by', // cpg 1.5
   'admins_only' => 'Admins only', // cpg 1.5
-  'alb_password' => 'Album password',
+  'alb_password' => 'Album password (New password)',
   'alb_password_hint' => 'Album password hint',
   'edit_files' => 'Edit files',
   'parent_category' => 'Parent category',
   'thumbnail_view' => 'Thumbnail view',
   'random_image' => 'Random Image', // cpg 1.5
+  'password_protect' => 'Password protect this album (Tick for yes)', //cpg1.5
 );
 
 // ------------------------------------------------------------------------- //
@@ -2356,7 +2365,6 @@ $lang_update_php = array(
   'mysql_said' => 'MySQL said', // cpg1.5
   'check_config_file' => 'Please check the SQL values in %s', // cpg1.5
   'performing_database_updates' => 'Performing Database Updates', // cpg1.5
-  'ok' => 'OK', // cpg1.5
   'already_done' => 'Already Done', // cpg1.5
   'password_encryption' => 'Encryption of passwords', // cpg1.5
   'category_tree' => 'Category tree', // cpg1.5
@@ -2375,20 +2383,8 @@ $lang_update_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('UTIL_PHP')) {
-$lang_util_desc_php = array(
-  'Updates titles from filename',
-  'Deletes titles',
-  'Rebuilds thumbnails and resized photos',
-  'Deletes original sized photos replacing them with the resized version',
-  'Deletes original or intermediate size photos to free webspace',
-  'Deletes files that are older than a set number of days', // cpg1.5
-  'Deletes orphaned comments',
-  'Re-reads file sizes and dimensions (if you manually edited pics)',
-  'Resets views counter',
-);
 $lang_util_php = array(
   'title' => 'Admin tools',  // cpg1.5
-  'what_it_does' => 'What it does',
   'file' => 'File',
   'problem' => 'Problem',
   'status' => 'Status',
@@ -2407,11 +2403,6 @@ $lang_util_php = array(
   'titles_wait' => 'Updating titles, please wait...',
   'delete_wait' => 'Deleting titles, please wait...',
   'replace_wait' => 'Deleting originals and replacing them with resized images, please wait..',
-  'instruction' => 'Quick instructions',
-  'instruction_action' => 'Select action',
-  'instruction_parameter' => 'Set parameters',
-  'instruction_album' => 'Select album',
-  'instruction_press' => 'Press %s',
   'update' => 'Update thumbs and/or resized photos',
   'update_what' => 'What should be updated',
   'update_thumb' => 'Only thumbnails',
@@ -2420,7 +2411,7 @@ $lang_util_php = array(
   'update_number' => 'Number of processed images per click',
   'update_option' => '(Try setting this option lower if you experience timeout problems)',
   'filename_title' => 'Filename &rArr; File title',
-  'filename_how' => 'How should the filename be modified',
+  'filename_how' => 'How should the file title be modified',
   'filename_remove' => 'Remove extension (.jpg or other) and replace _ (underscores) with spaces', // cpg1.5
   'filename_euro' => 'Change 2003_11_23_13_20_20.jpg to 23/11/2003 13:20',
   'filename_us' => 'Change 2003_11_23_13_20_20.jpg to 11/23/2003 13:20',
@@ -2493,7 +2484,6 @@ if (defined('VERSIONCHECK_PHP')) $lang_versioncheck_php = array(
   'versioncheck_output' => 'Versioncheck output',
   'file' => 'file',
   'folder' => 'folder',
-  'ok' => 'OK',
   'outdated' => 'older than %s',
   'newer' => 'newer than %s',
   'modified' => 'modified',

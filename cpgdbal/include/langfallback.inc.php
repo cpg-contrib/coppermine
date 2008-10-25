@@ -11,10 +11,10 @@
   
   ********************************************
   Coppermine version: 1.5.0
-  $HeadURL$
-  $Revision: 5067 $
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/include/langfallback.inc.php $
+  $Revision: 5153 $
   $LastChangedBy: gaugau $
-  $Date: 2008-10-02 23:03:16 +0530 (Thu, 02 Oct 2008) $
+  $Date: 2008-10-21 10:47:04 +0530 (Tue, 21 Oct 2008) $
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
@@ -252,20 +252,6 @@ if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) {
 if (defined('EDITPICS_PHP')) {
   $lang_editpics_php_en = cpg_get_default_lang_var('lang_editpics_php','english');
   $lang_editpics_php = array_merge($lang_editpics_php_en, $lang_editpics_php);
-}
-
-// ------------------------------------------------------------------------- //
-// File faq.php
-// ------------------------------------------------------------------------- //
-
-if (defined('FAQ_PHP')) {
-  $lang_faq_php_en = cpg_get_default_lang_var('lang_faq_php','english');
-  $lang_faq_php = array_merge($lang_faq_php_en, $lang_faq_php);
-}
-
-if (defined('FAQ_PHP')) {
-        $lang_faq_data_en = cpg_get_default_lang_var('lang_faq_data','english');
-         if (!isset($lang_faq_data)) $lang_faq_data = $lang_faq_data_en;
 }
 
 // ------------------------------------------------------------------------- //

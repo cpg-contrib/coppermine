@@ -11,9 +11,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $Source$
-  $Revision: 5040 $
+  $Revision: 5129 $
   $LastChangedBy: gaugau $
-  $Date: 2008-09-15 21:50:16 +0530 (Mon, 15 Sep 2008) $
+  $Date: 2008-10-18 16:03:12 +0530 (Sat, 18 Oct 2008) $
 **********************************************/
 
 body {
@@ -26,9 +26,16 @@ body {
 
 h1
 {
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 24px;
     font-weight: normal;
     padding: 5px;
+}
+
+h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    margin: 0px;
 }
 
 
@@ -58,7 +65,11 @@ hr {
 }
 
 .button {
-        border: raised 1px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 100%;
+    border: 1px solid #005D8C;
+    background-image : url(images/button_bg.gif);
+    background-position : bottom;
 }
 
 a {
@@ -71,33 +82,31 @@ a:hover {
         text-decoration: underline;
 }
 
-.tableh1, h2 {
-        background : #0E72A4 ;
-        color : #FFFFFF;
-        padding-top: 3px;
-        padding-right: 10px;
-        padding-bottom: 3px;
-        padding-left: 10px;
-        font-weight:bold;
+.tableh1 {
+    background : #0E72A4 ;
+    color : #FFFFFF;
+    padding-top: 3px;
+    padding-right: 10px;
+    padding-bottom: 3px;
+    padding-left: 10px;
+    font-weight:bold;
 }
 
 .tableh2 {
-        background: #D1D7DC ;
-        color : #000000;
-        padding-top: 3px;
-        padding-right: 10px;
-        padding-bottom: 3px;
-        padding-left: 2px;
-        border: 1px black solid;
+    background: #D1D7DC ;
+    color : #000000;
+    padding-top: 3px;
+    padding-right: 10px;
+    padding-bottom: 3px;
+    padding-left: 10px;
 }
 
 .tableb {
-        background: #EFEFEF ;
-        padding-top: 3px;
-        padding-right: 10px;
-        padding-bottom: 3px;
-        padding-left: 10px;
-        border: 1px solid #0E72A4;
+    background: #EFEFEF ;
+    padding-top: 3px;
+    padding-right: 10px;
+    padding-bottom: 3px;
+    padding-left: 10px;
 }
 
 .tableb_alternate {
@@ -105,12 +114,11 @@ a:hover {
 }
 
 .tablef {
-        background: #D1D7DC;
-        padding-top: 10px;
-        padding-right: 10px;
-        padding-bottom: 10px;
-        padding-left: 10px;
-        border: 1px solid #0E72A4;
+    background: #D1D7DC;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
 }
 
 .updatesOK {
@@ -122,10 +130,10 @@ a:hover {
 }
 
 .maintable {
-        border: 1px solid #0E72A4;
-        background-color: #efefef;
-        margin-top: 1px;
-        margin-bottom: 1px;
+    border: 1px solid #0E72A4;
+    background-color: #EFEFEF;
+    margin-top: 1px;
+    margin-bottom: 1px;
 }
 
 .charsetchecktable

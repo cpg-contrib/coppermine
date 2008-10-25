@@ -11,10 +11,10 @@
 
   ********************************************
   Coppermine version: 1.5.0
-  $HeadURL$
-  $Revision: 4981 $
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/login.php $
+  $Revision: 5129 $
   $LastChangedBy: gaugau $
-  $Date: 2008-09-01 13:37:08 +0530 (Mon, 01 Sep 2008) $
+  $Date: 2008-10-18 16:03:12 +0530 (Sat, 18 Oct 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -112,6 +112,9 @@ if ($superCage->get->getInt('force_login')) {
     msg_box($lang_login_php['force_login_title'], $lang_login_php['force_login']);
 }
 //$referer = urlencode($referer);
+$username_icon = cpg_fetch_icon('my_profile', 2);
+$password_icon = cpg_fetch_icon('key_enter', 2);
+$ok_icon = cpg_fetch_icon('ok', 2);
 echo '<form action="login.php?referer='.urlencode($CPG_REFERER).'" method="post" name="loginbox" id="cpgform">';
 
 starttable('-1', cpg_fetch_icon('login', 2) . $lang_login_php['enter_login_pswd'], 2);
@@ -122,11 +125,11 @@ echo <<< EOT
                   $login_failed
                   $cookie_warning
                   <tr>
-                        <td class="tableb" width="40%">{$login_method}</td>
+                        <td class="tableb" width="40%">{$username_icon}{$login_method}</td>
                         <td class="tableb" width="60%"><input type="text" class="textinput" name="username" style="width: 100%" tabindex="1" /></td>
                   </tr>
                   <tr>
-                          <td class="tableb">{$lang_login_php['password']}</td>
+                          <td class="tableb">{$password_icon}{$lang_login_php['password']}</td>
                         <td class="tableb"><input type="password" class="textinput" name="password" style="width: 100%" tabindex="2" /></td>
                   </tr>
                   <tr>
@@ -137,7 +140,10 @@ echo <<< EOT
                       <a href="forgot_passwd.php" class="topmenu">{$lang_login_php['forgot_password_link']}</a>
                       $send_activation_link
                     </td>
-                    <td align="left" class="tablef"><input name="submitted" type="submit" class="button" value="{$lang_login_php['login']}" tabindex="4" /></td>
+                    <td align="left" class="tablef">
+	                    <!--<input name="submitted" type="submit" class="button" value="{$lang_login_php['login']}" tabindex="4" />-->
+	                    <button type="submit" class="button" name="submitted" value="{$lang_common['ok']}"  tabindex="4">{$ok_icon}{$lang_common['ok']}</button>
+                    </td>
                   </tr>
 
 EOT;

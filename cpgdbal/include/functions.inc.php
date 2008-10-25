@@ -11,10 +11,10 @@
 
   ********************************************
   Coppermine version: 1.5.0
-  $HeadURL$
-  $Revision: 5083 $
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/include/functions.inc.php $
+  $Revision: 5151 $
   $LastChangedBy: gaugau $
-  $Date: 2008-10-06 20:42:59 +0530 (Mon, 06 Oct 2008) $
+  $Date: 2008-10-20 23:08:39 +0530 (Mon, 20 Oct 2008) $
 **********************************************/
 
 /**
@@ -25,7 +25,7 @@
 * @copyright 2002-2007 Gregory DEMAR, Coppermine Dev Team
 * @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
 * @package Coppermine
-* @version  $Id: functions.inc.php 5083 2008-10-06 15:12:59Z gaugau $
+* @version  $Id: functions.inc.php 5151 2008-10-20 17:38:39Z gaugau $
 */
 
 /**
@@ -286,7 +286,7 @@ function cpg_db_fetch_rowset($result)
 {
         $rowset = array();
 
-        while ($row = mysql_fetch_array($result)) $rowset[] = $row;
+        while ($row = mysql_fetch_assoc($result)) $rowset[] = $row;
 
         return $rowset;
 }
@@ -303,7 +303,7 @@ function cpg_db_fetch_rowset($result)
 function cpg_db_fetch_row($result)
 {
 
-        $row = mysql_fetch_array($result);
+        $row = mysql_fetch_assoc($result);
 
         return $row;
 }
@@ -1180,7 +1180,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
     $sort_code = isset($USER['sort'])? $USER['sort'] : $CONFIG['default_sort_order'];
     $sort_order = isset($sort_array[$sort_code]) ? $sort_array[$sort_code] : $sort_array[$CONFIG['default_sort_order']];
     //$limit = ($limit1 != -1) ? ' LIMIT '. $limit1 : '';
-    //$limit .= ($limit2 != -1) ? ' ,'. $limit2 : '';	
+    //$limit .= ($limit2 != -1) ? ' ,'. $limit2 : '';
     #################       DB       ############   Added for mssql   ##############
     //$first_record = ($limit1 != -1) ? 'TOP '.$limit1 : 'TOP 0';		
     //$records_per_page = ($limit2 != -1) ? 'TOP '.$limit2 : '';
@@ -3172,6 +3172,16 @@ EOT;
         echo cpg_phpinfo_conf_output("post_max_size");
         echo cpg_phpinfo_conf_output("memory_limit");
         echo "\n$debug_separate";
+        
+        if (ini_get('suhosin.post.max_vars')){
+        
+	        echo 'Suhosin limits';
+	        echo $debug_underline;
+	        echo 'Directive | Local Value | Master Value';
+	        echo cpg_phpinfo_conf_output("suhosin.post.max_vars");
+	        echo cpg_phpinfo_conf_output("suhosin.request.max_vars");
+	        echo "\n$debug_separate";
+        }
     }
 
     echo <<<EOT
@@ -3429,49 +3439,9 @@ function languageSelect($parameter)
     // get the current language
     //use the default language of the gallery
     $cpgCurrentLanguage = $CONFIG['lang'];
-
-    // is a user logged in?
-    //has the user already chosen another language for himself?
-    //if ($USER['lang']!="") {
-    //   $cpgCurrentLanguage = $USER['lang'];
-    //}
-    //has the language been set to something else on the previous page?
-    /*
-    if (isset($_GET['lang'])) {
-        $cpgCurrentLanguage = $_GET['lang'];
-    }
-    */
-    //get the url and all vars except $lang
-    $matches = $superCage->server->getMatched('SCRIPT_NAME', '/^[a-zA-Z0-9_\/.]+$/');
-
-    if ($matches) {
-        //$cpgChangeUrl =  _SERVER["SCRIPT_NAME"]."?";
-        $cpgChangeUrl = $matches[0] . '?';
-    } else {
-        $cpgChangeUrl = 'index.php';
-    }
-
-    $matches = $superCage->server->getMatched('QUERY_STRING', '/^[a-zA-Z0-9&=_\/.]+$/');
-    if ($matches) {
-        $queryString = explode('&', $matches[0]);
-    } else {
-        $queryString = array();
-    }
-
-    foreach ($queryString as $val) {
-        list($key, $value) = explode('=', $val);
-        if ($key != "lang") {
-            $cpgChangeUrl .= $key . "=" . $value . "&";
-        }
-    }
-
-    /*
-    foreach ($_GET as $key => $value) {
-        if ($key!="lang") {$cpgChangeUrl.= $key . "=" . $value . "&amp;";}
-    }
-    */
-
-    $cpgChangeUrl .= 'lang=';
+    
+    // Forget all the nonsense sanitization code that used to reside here - redefine the variable for the base URL using the function that we already have for that purpose
+    $cpgChangeUrl = cpgGetScriptNameParams('lang').'lang=';
     
     // Make sure that the language table exists in the first place - 
     // return without return value if the table doesn't exist because 
@@ -3589,41 +3559,10 @@ function themeSelect($parameter)
         return;
     }
 
-    // get the current theme
-    //get the url and all vars except $theme
-    /*
-    $cpgCurrentTheme = $_SERVER["SCRIPT_NAME"]."?";
-    foreach ($_GET as $key => $value) {
-        if ($key!="theme") {$cpgCurrentTheme.= $key . "=" . $value . "&amp;";}
-    }
-    */
 
-    $matches = $superCage->server->getMatched('SCRIPT_NAME', '/^[a-zA-Z0-9_\/.]+$/');
+    $cpgCurrentTheme = cpgGetScriptNameParams('theme').'theme=';
 
-    if ($matches) {
-        //$cpgChangeUrl =  _SERVER["SCRIPT_NAME"]."?";
-        $cpgCurrentTheme = $matches[0] . '?';
-    } else {
-        $cpgCurrentTheme = 'index.php';
-    }
-
-    $matches = $superCage->server->getMatched('QUERY_STRING', '/^[a-zA-Z0-9&=_\/.]+$/');
-    if ($matches) {
-        $queryString = explode('&', $matches[0]);
-    } else {
-        $queryString = array();
-    }
-
-    foreach ($queryString as $val) {
-        list($key, $value) = explode('=', $val);
-        if ($key != "theme") {
-            $cpgCurrentTheme .= $key . "=" . $value . "&";
-        }
-    }
-
-    $cpgCurrentTheme .= "theme=";
-
-    // get list of available languages
+    // get list of available themes
     $value = $CONFIG['theme'];
     $theme_dir = 'themes/';
 
@@ -3923,7 +3862,7 @@ function cpg_get_webroot_path()
 
 
 /**
- * Function to get the search string if the picture is viewed from google, lucos or yahoo search engine
+ * Function to get the search string if the picture is viewed from google, lycos or yahoo search engine
  */
 
 function get_search_query_terms($engine = 'google') 
@@ -4130,7 +4069,7 @@ function replace_forbidden($str)
      * $str may also come from $_POST, in this case, all &, ", etc will get replaced with entities.
      * Replace them back to normal chars so that the str_replace below can work.
      */
-    $str = str_replace(array('&amp;', '&quot;', '&lt;', '&gt;'), array('&', '"', '<', '>'), $str);;
+    $str = str_replace(array('&amp;', '&quot;', '&lt;', '&gt;'), array('&', '"', '<', '>'), $str);
 
     $return = str_replace($forbidden_chars[0], '_', $str);
 
@@ -4423,14 +4362,17 @@ function cpgGetScriptNameParams($exception = '')
     $return = $filename . '?';
 
     // Now get the parameters.
-    // WARNING: as this function is meant to just return the URL parameters (minus the one mentioned in $exception),
-    // neither the parameter names nor the the values should be sanitized, as we simply don't know here against what
-    // we're suppossed to sanitize.
-    // For now, I have chosen the safe method, sanitizing the parameters. Not sure if this is a bright idea for the
-    // future.
-    // So, use the parameters returned from this function here with the same caution that applies to anything the
-    // user could tamper with. The function is meant to help you generate links (in other words: something the user could
-    // come up with by typing them just as well), so don't abuse this function for anything else.
+    // WARNING: as this function is meant to just return the URL parameters
+    // (minus the one mentioned in $exception), neither the parameter names 
+    // nor the the values should be sanitized, as we simply don't know here 
+    // against what we're suppossed to sanitize.
+    // For now, I have chosen the safe method, sanitizing the parameters. 
+    // Not sure if this is a bright idea for the future.
+    // So, use the parameters returned from this function here with the same 
+    // caution that applies to anything the user could tamper with. 
+    // The function is meant to help you generate links (in other words: 
+    // something the user could come up with by typing them just as well), 
+    // so don't abuse this function for anything else.
      $matches = $superCage->server->getMatched('QUERY_STRING', '/^[a-zA-Z0-9&=_\/.]+$/');
      if ($matches) {
         $queryString = explode('&', $matches[0]);
@@ -5080,6 +5022,21 @@ if (!function_exists('form_get_foldercontent')) {
     }
 }
 
+/**
+ * Function get a list of available languages
+  *
+  * @return array: an ascotiative array of language file names (without extension) and language names
+ */
+if (!function_exists('cpg_get_available_languages')) {
+    function cpg_get_available_languages ($lang='default') 
+    {
+        // Work in progress - GauGau
+        global $CONFIG;
+        natcasesort($return_array);
+        return $return_array;
+    }
+}
+
 if (!function_exists('array_is_associative')) { // make sure that this will not break in future PHP versions
     function array_is_associative($array) 
     {
@@ -5095,5 +5052,40 @@ if (!function_exists('array_is_associative')) { // make sure that this will not 
     }
 }
 
+function cpg_config_set($name, $value) {
+
+	global $CONFIG, $USER_DATA;
+    ##################     DB     ###################
+    global $cpg_db_functions_inc;
+    $cpgdb =& cpgDB::getInstance();
+    $cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+    ##########################################
+	
+	$value = addslashes($value);
+	
+	if ($CONFIG[$name] === $value) {
+		return;
+	}
+	
+	/*$sql = "UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = '$name'";
+	
+	cpg_db_query($sql);*/
+    ###############################    DB    #############################
+    $sql = sprintf($cpg_db_functions_inc['update_config_data'], $value, $name);
+    $cpgdb->query($sql);
+    #################################################################
+
+	$CONFIG[$name] = $value;
+	
+	if ($CONFIG['log_mode'] == CPG_LOG_ALL) {
+	
+		log_write(
+			"CONFIG UPDATE SQL: $sql\n".
+			'TIME: '.date("F j, Y, g:i a")."\n".
+			'USER: '.$USER_DATA['user_name'],
+			CPG_DATABASE_LOG
+		);
+	}      
+}
 
 ?>

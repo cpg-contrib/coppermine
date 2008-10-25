@@ -11,10 +11,10 @@
 
   ********************************************
   Coppermine version: 1.5.0
-  $HeadURL$
-  $Revision: 5067 $
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/include/init.inc.php $
+  $Revision: 5129 $
   $LastChangedBy: gaugau $
-  $Date: 2008-10-02 23:03:16 +0530 (Thu, 02 Oct 2008) $
+  $Date: 2008-10-18 16:03:12 +0530 (Sat, 18 Oct 2008) $
 **********************************************/
 
 define('COPPERMINE_VERSION', '1.5.0');
@@ -146,7 +146,7 @@ require('include/plugin_api.inc.php');		#####	moved here for cpgdbAL
 if ($CONFIG['dbservername'] == 'mysql') {
 	require "include/cpgdb/drivers/mysql_driver.php";
 	require "include/cpgdb/sql/mysql.php";
-} elseif($CONFIG['dbservername'] == 'mssql') {
+} elseif ($CONFIG['dbservername'] == 'mssql') {
 	require "include/cpgdb/drivers/mssql_driver.php";
 	require "include/cpgdb/sql/mssql.php";
 }
@@ -220,14 +220,6 @@ if ($CONFIG['thumb_method'] == 'im' || function_exists('imagecreatefromgif')) {
   $CONFIG['GIF_support'] = 0;
 }
  
-// Include the jquery javascript library. Jquery will be included on all pages.
-js_include('js/jquery.js');
-
-// Include the bookmark JavaScript if at least one bookmarking service is selected
-if (isset($CONFIG['display_social_bookmarks']) && $CONFIG['display_social_bookmarks'] != '') {
-    js_include('js/jquery.bookmark.js');
-}
-
 // Load plugin API (the require() is moved up for cpgdbal.)
 if ($CONFIG['enable_plugins'] == 1) {
 	CPGPluginAPI::load();
@@ -403,6 +395,19 @@ if (USER_ID > 0){
 				$FAVPICS = array();
 		}
 }
+
+// Include the jquery javascript library. Jquery will be included on all pages.
+js_include('js/jquery.js');
+
+// Include the bookmark JavaScript if at least one bookmarking service is selected
+if (isset($CONFIG['display_social_bookmarks']) && $CONFIG['display_social_bookmarks'] != '') {
+    js_include('js/jquery.bookmark.js');
+}
+
+// Include the scripts.js javascript library that contains coppermine-specific 
+// JavaScript that is being used on all pages.
+// Do not remove this line unless you really know what you're doing
+js_include('js/scripts.js');
 
 // If referer is set in URL and it contains 'http' or 'script' texts then set it to 'index.php' script
 /**

@@ -1,16 +1,27 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php
+/*************************
+  Coppermine Photo Gallery
+  ************************
+  Copyright (c) 2003-2008 Dev Team
+  v1.1 originally written by Gregory DEMAR
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License version 3
+  as published by the Free Software Foundation.
+
+  ********************************************
+  Coppermine version: 1.5.0
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/albums/index.php $
+  $Revision: 5124 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-10-17 12:56:27 +0530 (Fri, 17 Oct 2008) $
+**********************************************/
+?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta http-equiv="refresh" content="0; url=../index.php">
 <title>Coppermine Photo Gallery - Albums Folder</title>
-<!--
-  SVN version info:
-  Coppermine version: 1.5.0
-  $Revision: 4795 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-08-09 15:22:46 +0530 (Sat, 09 Aug 2008) $
--->
 <style type="text/css">
 <!--
 body {

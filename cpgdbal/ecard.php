@@ -11,10 +11,10 @@
 
   ********************************************
   Coppermine version: 1.5.0
-  $HeadURL$
-  $Revision: 4981 $
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/ecard.php $
+  $Revision: 5137 $
   $LastChangedBy: gaugau $
-  $Date: 2008-09-01 13:37:08 +0530 (Mon, 01 Sep 2008) $
+  $Date: 2008-10-18 20:35:09 +0530 (Sat, 18 Oct 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -117,14 +117,13 @@ EOT;
 $valid_email_pattern = "^[_\.0-9a-z\-]+@([0-9a-z][0-9a-z-]*\.)+[a-z]{2,6}$";
 $valid_sender_email = eregi($valid_email_pattern, $sender_email);
 $valid_recipient_email = eregi($valid_email_pattern, $recipient_email);
-$invalid_email = '<font size="1" color="red">' . $lang_ecard_php['invalid_email'] . ' (' . $recipient_email . ')</font>';
 
 if (!$valid_sender_email && $superCage->post->keyExists('sender_name')) {
-    $sender_email_warning = $invalid_email;
+    $sender_email_warning = '<font size="1" color="red">' . $lang_ecard_php['invalid_email'] . ' (' . $sender_email . ')</font>';
 }
 
 if (!$valid_recipient_email && $superCage->post->keyExists('sender_name')) {
-    $recipient_email_warning = $invalid_email;
+    $recipient_email_warning = '<font size="1" color="red">' . $lang_ecard_php['invalid_email'] . ' (' . $recipient_email . ')</font>';
 }
 
 $gallery_url_prefix = $CONFIG['ecards_more_pic_target']. (substr($CONFIG['ecards_more_pic_target'], -1) == '/' ? '' : '/');

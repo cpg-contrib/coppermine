@@ -11,10 +11,10 @@
 
   ********************************************
   Coppermine version: 1.5.0
-  $HeadURL$
-  $Revision: 5075 $
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/index.php $
+  $Revision: 5129 $
   $LastChangedBy: gaugau $
-  $Date: 2008-10-04 20:33:32 +0530 (Sat, 04 Oct 2008) $
+  $Date: 2008-10-18 16:03:12 +0530 (Sat, 18 Oct 2008) $
 **********************************************/
 
 /**
@@ -26,7 +26,7 @@
 * @copyright 2002-2006 Gregory DEMAR, Coppermine Dev Team
 * @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
 * @package Coppermine
-* @version $Id: index.php 5075 2008-10-04 15:03:32Z gaugau $
+* @version $Id: index.php 5129 2008-10-18 10:33:12Z gaugau $
 */
 
 /**
@@ -615,11 +615,11 @@ function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
     global $HIDE_USER_CAT, $cpg_show_private_album;
     global $cat;
     global $lang_list_categories, $lang_errors;
-	global $cpg_db_index_php;
-	####################### DB #########################	
-		$cpgdb =& cpgDB::getInstance();
-		$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
-	##################################################	
+    global $cpg_db_index_php;
+    ####################### DB #########################	
+    $cpgdb =& cpgDB::getInstance();
+    $cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+    ##################################################	
 
     // Build the breadcrumb
     breadcrumb($cat, $breadcrumb, $BREADCRUMB_TEXT);
@@ -632,7 +632,7 @@ function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
     $pic_filter = '';
     $cat = (int) $cat;
     if (!empty($FORBIDDEN_SET) && !$cpg_show_private_album) {
-        $album_filter = str_replace('p.', 'a.', $FORBIDDEN_SET);
+        $album_filter = ' ' . str_replace('p.', 'a.', $FORBIDDEN_SET);
         $pic_filter = $FORBIDDEN_SET;
     }
     // Add the albums in the current category to the album set
@@ -957,12 +957,12 @@ function list_albums()
     /*$sql = "SELECT a.aid, count( p.pid ) AS pic_count, max( p.pid ) AS last_pid, max( p.ctime ) AS last_upload, a.keyword, a.alb_hits"
             ." FROM {$CONFIG['TABLE_ALBUMS']} AS a "
             ." LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON a.aid = p.aid AND p.approved =  'YES' "
-            ." WHERE a.category = $cat GROUP BY a.aid $limit";
+            ." WHERE a.category = $cat $album_filter GROUP BY a.aid $limit";
     $alb_stats_q = cpg_db_query($sql);
     $alb_stats = cpg_db_fetch_rowset($alb_stats_q);
     mysql_free_result($alb_stats_q);*/
 	############################  DB  ################################
-	$cpgdb->query($cpg_db_index_php['alb_stats_kwrd'], $cat, $limit, $first_record, $records_per_page);
+	$cpgdb->query($cpg_db_index_php['alb_stats_kwrd'], $cat, $album_filter, $limit, $first_record, $records_per_page);
     $alb_stats = $cpgdb->fetchRowSet();
     $cpgdb->free();	
 	###############################################################

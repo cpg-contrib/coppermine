@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $Source$
-  $Revision: 5097 $
+  $Revision: 5131 $
   $LastChangedBy: gaugau $
-  $Date: 2008-10-09 18:43:00 +0530 (Thu, 09 Oct 2008) $
+  $Date: 2008-10-18 20:07:37 +0530 (Sat, 18 Oct 2008) $
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
@@ -511,80 +511,25 @@ if (defined('BANNING_PHP')) $lang_banning_php = array(
 
 if (defined('BRIDGEMGR_PHP')) $lang_bridgemgr_php = array(
   'title' => 'Bridge-Assistent',
-  'warning' => 'Warnung: bevor Du diesen Assitenten benutzt muss Dir klar sein, dass Sicherheits-relevante Daten über HTML-Formulare versendet werden. Führe den Assitenten nur auf Deinem eigenen PC aus (nicht auf einem öffentlichen Rechner wie beispielsweise in einem Internet-Café), und lösche danach auf jeden Fall Deinen Browser-Cahce und Deine temporären Internet-Dateien, sonst haben andere vielleicht Zugriff zu diesen Daten!',
   'back' => 'zurück',
   'next' => 'weiter',
   'start_wizard' => 'Starte den Bridge-Assistenten',
   'finish' => 'Fertigstellen',
-  'hide_unused_fields' => 'unbenutze Formular-Felder verbergen (empfohlen)',
-  'clear_unused_db_fields' => 'ungültige Datenbank-Einträge löschen (empfohlen)',
-  'custom_bridge_file' => 'der Name Deiner benutzerdefinierten Bridge-Datei (Wenn der Dateiname  <i>meinedatei.inc.php</i> lautet, dann gib <i>meinedatei</i> in diesem Feld ein)',
   'no_action_needed' => 'Kein Aktion notwenig in diesem Schritt. Klicke auf &quot;weiter&quot;, um fortzufahren.',
   'reset_to_default' => 'Auf Standard-Wert zurücksetzen',
   'choose_bbs_app' => 'Wähle eine Anwendung, mit der Du &quot;bridgen&quot; willst',
   'support_url' => 'Für Support zu dieser Anwendung klicke hier',
   'settings_path' => 'Pfad(e) Deiner Bridging-Anwendung',
-  'database_connection' => 'Datenbank-Verbindung',
-  'database_tables' => 'Tabellen in der Datenbank',
-  'bbs_groups' => 'Bridging-Gruppen',
-  'license_number' => 'Lizenz-Nummer',
-  'license_number_explanation' => 'Gib Deine Lizenz-Nummer ein (falls zutreffend)',
-  'db_database_name' => 'Datenbank-Name',
-  'db_database_name_explanation' => 'Gib den Namen der Datenbank ein, die Deine Bridging-Applikation benutzt',
-  'db_hostname' => 'Datenbank-Hostname',
-  'db_hostname_explanation' => 'Hostname Deiner mySQL-Datenbank, meistens &quot;localhost&quot;',
-  'db_username' => 'Datenbank-Benutzername',
-  'db_username_explanation' => 'mySQL Benutzer-Konto für die Verbindung mit Deiner Bridging-Applikation',
-  'db_password' => 'Datenbank-Passwort',
-  'db_password_explanation' => 'Passwort für Die mySQL-Datenbank Deiner Bridging-Applikation',
   'full_forum_url' => 'Forums-URL',
-  'full_forum_url_explanation' => 'Vollständige Internet-Adresse Deiner Bridging-Applikation (einschließlich http:// , z.B. http://www.yourdomain.tld/forum)',
   'relative_path_of_forum_from_webroot' => 'Relativer Pfad zur Bridging-Applikation',
-  'relative_path_of_forum_from_webroot_explanation' => 'Relativer Pfad zu Deiner Bridging-Applikation vom Wurzelverzeichnis (webroot) aus gesehen (Beispiel: wenn Deine Bridging-Applikation unter http://www.meineseite.tld/forum/ ist, dann gib hier &quot;/forum/&quot; in das Feld ein)',
   'relative_path_to_config_file' => 'Relativer Pfad zur Konfigurations-Datei Deiner Bridging-Applikation',
-  'relative_path_to_config_file_explanation' => 'Relativer Pfad zu Deiner Bridging-Applikation, von Deinem Coppermine-Verzeichnis aus gesehen (z.B. &quot;../forum/&quot; wenn Deine Bridging-Applikation unter http://www.deineseite.tld/forum/ ist und Coppermine unter http://www.deineseite.tld/gallery/)',
   'cookie_prefix' => 'Cookie-Vorsilbe',
-  'cookie_prefix_explanation' => 'Der Cookie-Name Deiner Bridging-Applikation',
-  'table_prefix' => 'Tabellen-Vorsilbe',
-  'table_prefix_explanation' => 'Die Vorsible (Präfix) der Tabellen Deiner Bridging-Applikation, die Du bei der Einrichtung Deines Forums festgelegt hast.',
-  'user_table' => 'Benutzer-Tabelle',
-  'user_table_explanation' => '(normalerweise sind die vorgeschlagenen Standard-Werte OK, wenn Du keine Sondereinstellungen in Deinem Forum vorgenommen hast)',
-  'session_table' => 'Session-Tabelle',
-  'session_table_explanation' => '(normalerweise sind die vorgeschlagenen Standard-Werte OK, wenn Du keine Sondereinstellungen in Deiner Bridging-Applikation vorgenommen hast)',
-  'group_table' => 'Gruppen-Tabelle',
-  'group_table_explanation' => '(normalerweise sind die vorgeschlagenen Standard-Werte OK, wenn Du keine Sondereinstellungen in Deinem Forum vorgenommen hast)',
-  'group_relation_table' => 'Gruppen-Relations-Tabelle',
-  'group_relation_table_explanation' => '(normalerweise sind die vorgeschlagenen Standard-Werte OK, wenn Du keine Sondereinstellungen in Deiner Bridging-Applikation vorgenommen hast)',
-  'group_mapping_table' => 'Gruppen-Verknüpfungs-Tabelle',
-  'group_mapping_table_explanation' => '(normalerweise sind die vorgeschlagenen Standard-Werte OK, wenn Du keine Sondereinstellungen in Deiner Bridging-Applikation vorgenommen hast)',
-  'use_standard_groups' => 'Standard-Forums-Gruppen benutzen',
-  'use_standard_groups_explanation' => 'Eingebaute Standard-Benutzergruppen Deiner Bridging-Applikation benutzen (empfohlen). Diese Option setzt alle benutzerdefinierten Gruppen-Einstellungen auf dieser Seite ausser Kraft. Schalte diese Option nur ab, wenn Du WIRKLICH weisst, was Du tust!',
-  'validating_group' => 'Bestätigungs-Gruppe',
-  'validating_group_explanation' => 'Die ID der Gruppe Deines Forums für Benutzer, deren Konto noch überprüft werden muss (normalerweise sind die vorgeschlagenen Standard-Werte OK, wenn Du keine Sondereinstellungen in Deiner Bridging-Applikation vorgenommen hast)',
-  'guest_group' => 'Gäste-Gruppe',
-  'guest_group_explanation' => 'Die ID der Gruppe Deiner Bridging-Applikation für Gäste / anonyme Benutzer (normalerweise sind die vorgeschlagenen Standard-Werte OK, wenn Du keine Sondereinstellungen in Deiner Bridging-Applikation vorgenommen hast)',
-  'member_group' => 'Mitglieder-Gruppe',
-  'member_group_explanation' => 'Die ID der Gruppe Deiner Bridging-Applikation für normale (reguläre) Benutzer (normalerweise sind die vorgeschlagenen Standard-Werte OK, ändere den Wert nur, wenn Du wirklich weisst, was Du tust)',
-  'admin_group' => 'Admin-Gruppe',
-  'admin_group_explanation' => 'Die ID der Gruppe Deiner Bridging-Applikation für Admins (normalerweise sind die vorgeschlagenen Standard-Werte OK, ändere den Wert nur, wenn Du wirklich weisst, was Du tust)',
-  'banned_group' => 'Gebannte Gruppe',
-  'banned_group_explanation' => 'Die ID der Gruppe Deiner Bridging-Applikation für verbannte Benutzer (normalerweise sind die vorgeschlagenen Standard-Werte OK, ändere den Wert nur, wenn Du wirklich weisst, was Du tust)',
-  'global_moderators_group' => 'Globale Moderatoren Gruppe',
-  'global_moderators_group_explanation' => 'Die ID der Gruppe Deiner Bridging-Applikation für globale Moderatoren (normalerweise sind die vorgeschlagenen Standard-Werte OK, ändere den Wert nur, wenn Du wirklich weisst, was Du tust)',
   'special_settings' => 'Bridging-spezifische Einstellungen',
-  'logout_flag' => 'phpBB Version (logout flag)',
-  'logout_flag_explanation' => 'Welche Versions-Nummer hat Deine Forums-Software (diese Einstellung bestimmt, wie Logouts gehandhabt werden)',
   'use_post_based_groups' => 'Benutzerdefiniert Gruppen der Bridge-Anwendung verwenden?',
-  'logout_flag_yes' => '2.0.5 oder besser',
-  'logout_flag_no' => '2.0.4 oder schlechter',
-  'use_post_based_groups_explanation' => 'Sollen die Benutzergruppen der Bridge-Applikation berücksichtigt werden (ermöglicht eine feinere Rechte-Vergabe) oder nur die Standard-Gruppen (einfachere Administration). Du kannst diese Einstellung auch noch später ändern.',
   'use_post_based_groups_yes' => 'ja',
   'use_post_based_groups_no' => 'nein',
   'error_title' => 'Du musst die aufgetretenen Fehler erst korrigieren. Gehe zum vorherigen Schritt.',
   'error_specify_bbs' => 'Du musst angeben, welche Anwendung Du mit Coppermine &quot;bridgen&quot; willst.',
-  'error_no_blank_name' => 'Der Name der benutzerdefinierten Bride-Datei darf nicht leer bleiben.',
-  'error_no_special_chars' => 'Der Name der Bridge-Datei darf keine Sonderzeichen enthalten ausser Untertrich (_) und Bindestrich (-)!',
-  'error_bridge_file_not_exist' => 'Die Bridge-datei %s existiert nicht auf dem Server. Überprüfe die Schreibweise und ob Du sie tatsächlich hochgeladen hast.',
   'finalize' => 'Forums-Integration aktivieren/deaktivieren',
   'finalize_explanation' => 'Bisher wurden Deine Einstellungen in die Datenbank geschrieben, aber das Bridging wurde noch nicht aktiviert. Du kannst die Integration jederzeit später an- oder abschalten. Merke Dir auf jeden Fall den Benutzernamen und das Passwort Deines Admin-Kontos (Coppermine ohne Bridging), da Du es später evtl. brauchst, um die Einstellungen zu ändern. Wenn etwas schief läuft, gehe zu %s und deaktiviere das Bridging dort (verwende dazu Dein Coppermine-Admin-Konto, das Du beim Installieren von Coppermine benutzt hast).',
   'your_bridge_settings' => 'Deine Bridge-Einstellungen',
@@ -598,10 +543,7 @@ if (defined('BRIDGEMGR_PHP')) $lang_bridgemgr_php = array(
   'error_mandatory_field_empty' => 'Das Feld %s darf nicht leer bleiben - gib den entsprechenden Wert ein.',
   'error_no_trailing_slash' => 'Im Feld %s darf kein abschließender Schrägstrich (Slash) vorhanden sein.',
   'error_trailing_slash' => 'Im Feld %s muss ein abschließender Schrägstrich (Slash) vorhanden sein.',
-  'error_db_connect' => 'Konnte mit den eingegebenen Daten keine mySQL-Verbindung aufbauen. Hier ist die mySQL-Fehlermeldung:',
-  'error_db_name' => 'Obwohl Coppermine eine Verbindung aufbauen konnte, wurde die Datenbank %s nicht gefunden. Überprüfe Deine Einstellungen für %s. Hier ist die mySQL-Fehlermeldung:',
   'error_prefix_and_table' => '%s und ',
-  'error_db_table' => 'Konnte die Tabelle %s nicht finden. Überprüfe Deine Einstellungen für %s.',
   'recovery_title' => 'Bridge-Assistent: Wiederherstellung im Notfall',
   'recovery_explanation' => 'Du musst Dich erst anmelden, falls Du hierher gekommen bist, um die Forums-Integration Deiner Coppermine-Galerie zu administrieren. Falls Du Dich nicht anmelden kannst, weil die Integration nicht wie erwartet funktioniert, dann kannst Du mit Hilfe dieser Seite die Integration (Bridging) deaktivieren. Die Eingabe von Benutzername und Passwort hier auf der Seite wird Dich nicht anmelden, sondern die Integration deaktivieren. Details dazu gibt es in der Doku.',
   'username' => 'Benutzername',
@@ -618,8 +560,6 @@ if (defined('BRIDGEMGR_PHP')) $lang_bridgemgr_php = array(
   'recovery_wait_title' => 'Wartezeit noch nicht um',
   'recovery_wait_content' => 'Aus Sicherheitsgründen erlaubt das Skript keine fehlgeschlagenen Anmeldeversuche in kurzer Reihenfolge - deshalb musst Du ein bißchen warten, bevor Du wieder einen Anmelde-Versuch unternehmen darfst.',
   'wait' => 'warte',
-  'create_redir_file' => 'Umleitungs-Datei anlegen (empfohlen)',
-  'create_redir_file_explanation' => 'Um Benutzer nach der Anmeldung im Forum wieder zu Coppermine umzuleiten brauchst Du eine Umleitungs-Datei in Deinem Forums-Verzeichnis. Wenn diese Option aktiviert ist wird der Bridge-Assistent versuchen, diese Datei für Dich anzulegen, oder Dir den Code für das manuelle Anlegen der Datei per markieren und kopieren zu erzeugen.',
   'browse' => 'durchsuchen',
 );
 
@@ -2436,20 +2376,8 @@ $lang_update_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('UTIL_PHP')) {
-$lang_util_desc_php = array(
-'Erzeugt Titel aus Dateinamen',
-'Löscht Titel',
-'Erneuert Thumbnails und Dateien in Zwischengröße gemäß aktuellen Einstellungen',
-'Löscht Bilder in Original-Größe und ersetzt sie mit Bildern in Zwischengröße',
-'Löscht Bilder in Originalgrösse oder Zwischengrösse, um Speicherplatz frei zu geben',
-'Löscht Bilder, die älter als eine festgelegte Anzahl von Tagen sind', //cpg1.5
-'Löscht verwaiste Kommentare',
-'Liest Dateigrössen und Dimensionen erneut ein (falls Du Bilder manuell bearbeitet hast)',
-'Setzt Hits-Zähler zurück',
-);
 $lang_util_php = array(
   'title' => 'Admin-Werkzeuge',
-  'what_it_does' => 'Was macht dieses Tool',
   'file' => 'Datei',
   'problem' => 'Problem',
   'status' => 'Status',
@@ -2481,7 +2409,7 @@ $lang_util_php = array(
   'update_number' => 'Anzahl der Bilder, die pro Klick aktualisiert werden sollen',
   'update_option' => '(Verringere diesen Wert, wenn &quot;Time-Out&quot;-Probleme auftreten sollten)',
   'filename_title' => 'Dateiname &rArr; Bild-Überschrift',
-  'filename_how' => 'Wie soll der Dateiname modifiziert werden',
+  'filename_how' => 'Wie soll der Titel modifiziert werden',
   'filename_remove' => 'Entferne die Endung (.jpg oder vergleichbar) und ersetze _ (Unterstrich) mit Leerzeichen',
   'filename_euro' => 'Ändere 2003_11_23_13_20_20.jpg zu 23/11/2003 13:20',
   'filename_us' => 'Ändere 2003_11_23_13_20_20.jpg zu 11/23/2003 13:20',
@@ -2516,32 +2444,32 @@ $lang_util_php = array(
   'delete_all_orphans' => 'Alle verwaisten Kommentare löschen?',
   'comment' => 'Kommentar: ',
   'nonexist' => 'Bezug auf nicht-existierende Datei # ',
-  'delete_old' => 'Delete files that are older than a set number of days',  // cpg1.5
-  'delete_old_explanation' => 'This will delete files that are older than the number of days you specify (normal, intermediate, thumbnails). Use this feature to free up disk space.',  // cpg1.5
-  'delete_old_warning' => 'Warning: the files you specify will be deleted for good without further warnings!',  // cpg1.5
-  'deleting_old' => 'Deleting older images, please wait...',  // cpg1.5
-  'older_than' => 'Delete files older than %s days',  // cpg1.5
-  'del_orig' => 'The original file %s was successfully deleted',  // cpg1.5
-  'del_intermediate' => 'The intermediate image %s was successfully deleted',  // cpg1.5
-  'del_thumb' => 'The thumbnail %s was successfully deleted',  // cpg1.5
-  'del_error' => 'Error deleting %s !',  // cpg1.5
-  'affected_records' => '%s affected records.', // cpg1.5
-  'all_albums' => 'All Albums', // cpg1.5
-  'update_result' => 'Update results', //cpg1.5
-  'incorrect_filesize' => 'Total filesize is incorrect', // cpg1.5
-  'database' => 'Database: ', // cpg1.5
+  'delete_old' => 'Lösche alle Dateien, die älter als eine festgelegte Anzahl von Tagen sind',  // cpg1.5
+  'delete_old_explanation' => 'Löscht alle Dateien (normale, Bilder in Zwischengröße, Thumbnails), die älter sind als die Anzahl von Tagen, die Du angibst. Benutze dieses Feature, um Plattenplatz auf dem Server frei zu bekommen.',  // cpg1.5
+  'delete_old_warning' => 'Achtung: die angegebenen Dateien werden ohne weitere Warnung unwiederbringlich gelöscht!',  // cpg1.5
+  'deleting_old' => 'Lösche ältere Dateien, bitte warten...',  // cpg1.5
+  'older_than' => 'Lösche Dateien, die älter sind als %s Tage',  // cpg1.5
+  'del_orig' => 'Die Original-Datei %s wurde erfolgreich gelöscht',  // cpg1.5
+  'del_intermediate' => 'Das Bild in Zwischengröße %s wurde erfolgreich gelöscht',  // cpg1.5
+  'del_thumb' => 'Der Thumbnail %s wurde erfolgreich gelöscht',  // cpg1.5
+  'del_error' => 'Fehler beim Löschen von %s !',  // cpg1.5
+  'affected_records' => '%s betroffene Einträge.', // cpg1.5
+  'all_albums' => 'Alle Alben', // cpg1.5
+  'update_result' => 'Ergebnisse aktualisieren', //cpg1.5
+  'incorrect_filesize' => 'Dateigröße ist nicht korrekt', // cpg1.5
+  'database' => 'Databank: ', // cpg1.5
   'bytes' => ' bytes', // cpg1.5
-  'actual' => ' Actual: ', // cpg1.5
-  'updated' => 'Updated', // cpg1.5
-  'update_failed' => 'Update failed.', // cpg1.5
-  'filesize_error' => 'Could not obtain file size (may be invalid file), skipping....', // cpg1.5
-  'skipped' => 'Skipped', // cpg1.5
-  'incorrect_dimension' => 'Dimensions are incorrect', // cpg1.5
-  'dimension_error' => 'Could not obtain dimension info, skipping....', // cpg1.5
-  'cannot_fix' => 'Cannot fix', // cpg1.5
-  'fullpic_error' => 'File %s does not exist!', // cpg1.5
-  'no_prob_detect' => 'No problems detected', // cpg1.5
-  'no_prob_found' => 'No problems were found.', // cpg1.5
+  'actual' => ' Tatsächlich: ', // cpg1.5
+  'updated' => 'Aktualisiert', // cpg1.5
+  'update_failed' => 'Aktualisierung fehlgeschlagen', // cpg1.5
+  'filesize_error' => 'Konnte Dateigröße nicht feststellen (Datei möglicherweise defekt), überspinge....', // cpg1.5
+  'skipped' => 'Übersprungen', // cpg1.5
+  'incorrect_dimension' => 'Abmessungen sind nicht korrekt', // cpg1.5
+  'dimension_error' => 'Konnte Abmessungen der Datei nicht feststellen, überspringe....', // cpg1.5
+  'cannot_fix' => 'Kann nicht reparieren', // cpg1.5
+  'fullpic_error' => 'Datei %s existiert nicht!', // cpg1.5
+  'no_prob_detect' => 'Es wurden keine Probleme festgestellt', // cpg1.5
+  'no_prob_found' => 'Es wurden keine Probleme gefunden.', // cpg1.5
 );
 }
 
