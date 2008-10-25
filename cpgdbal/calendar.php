@@ -11,10 +11,10 @@
 
   ********************************************
   Coppermine version: 1.5.0
-  $HeadURL$
-  $Revision: 4578 $
-  $LastChangedBy: nibbler999 $
-  $Date: 2008-06-16 01:29:16 +0530 (Mon, 16 Jun 2008) $
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/calendar.php $
+  $Revision: 5126 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-10-17 13:10:13 +0530 (Fri, 17 Oct 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -44,7 +44,7 @@ class MyCalendar extends Calendar {
     }
 
     function getDateLink($day, $month, $year) {
-		global $CONFIG, $lang_calendar_php, $cpg_db_calender_php;
+		global $CONFIG, $lang_calendar_php, $cpg_db_calendar_php;
 		####################### DB #########################	
 		$cpgdb =& cpgDB::getInstance();
 		$cpgdb->connect_to_existing($CONFIG['LINK_ID']);
@@ -57,7 +57,7 @@ class MyCalendar extends Calendar {
 		$result = cpg_db_query($query);
 		$nb_pics = mysql_result($result, 0, 0);	*/
 		#################################         DB      ###################################
-		$cpgdb->query($cpg_db_calender_php['get_date_link'], substr($date,0,10), $FORBIDDEN_SET);
+		$cpgdb->query($cpg_db_calendar_php['get_date_link'], substr($date,0,10), $FORBIDDEN_SET);
 		$row = $cpgdb->fetchRow();
 		$nb_pics = $row['count'];
 		############################################################################

@@ -11,10 +11,10 @@
   
   ********************************************
   Coppermine version: 1.5.0
-  $HeadURL$
-  $Revision: 4224 $
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/anycontent.php $
+  $Revision: 5126 $
   $LastChangedBy: gaugau $
-  $Date: 2008-01-26 17:12:00 +0530 (Sat, 26 Jan 2008) $
+  $Date: 2008-10-17 13:10:13 +0530 (Fri, 17 Oct 2008) $
 **********************************************/
 
 /**
@@ -27,7 +27,7 @@
 * @copyright 2002-2006 Gregory DEMAR, Coppermine Dev Team
 * @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
 * @package Coppermine
-* @version $Id: anycontent.php 4224 2008-01-26 11:42:00Z gaugau $
+* @version $Id: anycontent.php 5126 2008-10-17 07:40:13Z gaugau $
 */
 
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');

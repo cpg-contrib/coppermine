@@ -11,10 +11,10 @@
   
   ********************************************
   Coppermine version: 1.5.0
-  $HeadURL$
-  $Revision: 4502 $
-  $LastChangedBy: pvanrompay $
-  $Date: 2008-06-06 03:51:20 +0530 (Fri, 06 Jun 2008) $
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/addHit.php $
+  $Revision: 5126 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-10-17 13:10:13 +0530 (Fri, 17 Oct 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);

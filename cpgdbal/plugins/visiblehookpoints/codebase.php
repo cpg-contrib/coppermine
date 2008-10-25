@@ -11,10 +11,10 @@
 
   ********************************************
   Coppermine version: 1.5.0
-  $URL$
-  $Revision: 4502 $
-  $LastChangedBy: pvanrompay $
-  $Date: 2008-06-06 03:51:20 +0530 (Fri, 06 Jun 2008) $
+  $URL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/plugins/visiblehookpoints/codebase.php $
+  $Revision: 5145 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-10-19 18:02:38 +0530 (Sun, 19 Oct 2008) $
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
@@ -470,7 +470,7 @@ if (!class_exists('dBug')) {
             //if variable is a boolean type
             function varIsBoolean($var) {
                     $var=($var==1) ? "TRUE" : "FALSE";
-                    echo $var."</td>\n</tr>\n";;
+                    echo $var."</td>\n</tr>\n";
             }
 
             //if variable is an array type

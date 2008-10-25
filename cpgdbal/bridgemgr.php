@@ -11,10 +11,10 @@
 
   ********************************************
   Coppermine version: 1.5.0
-  $HeadURL$
-  $Revision: 5098 $
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/bridgemgr.php $
+  $Revision: 5126 $
   $LastChangedBy: gaugau $
-  $Date: 2008-10-09 22:23:01 +0530 (Thu, 09 Oct 2008) $
+  $Date: 2008-10-17 13:10:13 +0530 (Fri, 17 Oct 2008) $
 **********************************************/
 
 
@@ -262,10 +262,9 @@ function write_to_db($step) {
     if ($value != '0' && $value != '1') {
         $value = $CONFIG['bridge_enable'];
     }
-    //cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = 'bridge_enable'");
-	#########################         DB        #########################
-	$cpgdb->query($cpg_db_bridgemgr_php['enable_disable_bridge'], $value);
-	##########################################################
+    
+    cpg_config_set('bridge_enable', $value);
+    
     if ($posted_var['clear_unused_db_fields'] == 1) {
         // clear all database entries that aren't actually used with the current bridge file
         // not implemented yet (not sure if necessary after all)
@@ -1083,14 +1082,16 @@ else { // not in gallery admin mode --- start
 		#########################################################
         if ($retrieved_data['user_name'] == $posted_var['username'] && $retrieved_data['user_password'] == $encpassword && $retrieved_data['user_name'] != '' ) {
             // authentification successfull
+            
+            cpg_config_set('bridge_enable', '0');
+            
             /*cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '0' WHERE name = 'bridge_enable'");
-			cpg_db_query("UPDATE {$CONFIG['TABLE_BRIDGE']} SET value = '0' WHERE name = 'recovery_logon_failures'");
-			cpg_db_query("UPDATE {$CONFIG['TABLE_BRIDGE']} SET value = NOW() WHERE name = 'recovery_logon_timestamp'");	*/
-			########################      DB      ######################
-			$cpgdb->query($cpg_db_bridgemgr_php['unset_bridge_enable']);
-			$cpgdb->query($cpg_db_bridgemgr_php['reset_recovery_logon_failures']);
-			$cpgdb->query($cpg_db_bridgemgr_php['set_recovery_logon_timestamp']);
-			#####################################################
+            cpg_db_query("UPDATE {$CONFIG['TABLE_BRIDGE']} SET value = '0' WHERE name = 'recovery_logon_failures'");
+            cpg_db_query("UPDATE {$CONFIG['TABLE_BRIDGE']} SET value = NOW() WHERE name = 'recovery_logon_timestamp'");*/
+            ########################      DB      ######################
+            $cpgdb->query($cpg_db_bridgemgr_php['reset_recovery_logon_failures']);
+            $cpgdb->query($cpg_db_bridgemgr_php['set_recovery_logon_timestamp']);
+            #####################################################
 
                         // ok, then restore group table
                         /*cpg_db_query("DELETE FROM {$CONFIG['TABLE_USERGROUPS']} WHERE 1");

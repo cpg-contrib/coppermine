@@ -11,10 +11,10 @@
 
   ********************************************
   Coppermine version: 1.5.0
-  $HeadURL$
-  $Revision: 4981 $
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/catmgr.php $
+  $Revision: 5127 $
   $LastChangedBy: gaugau $
-  $Date: 2008-09-01 13:37:08 +0530 (Mon, 01 Sep 2008) $
+  $Date: 2008-10-17 22:07:50 +0530 (Fri, 17 Oct 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -326,24 +326,10 @@ function verify_children($parent, $cid)
 }
 
 if ($superCage->post->keyExists('update_config')) {
-    $value = $superCage->post->getInt('update_config');
-            //cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = 'categories_alpha_sort'");
-			###################  DB  ######################
-			$cpgdb->query($cpg_db_catmgr_php['edit_cat_alpha_sort'], $value);	
-			###########################################
-            $CONFIG['categories_alpha_sort'] = $value;
-            if ($CONFIG['log_mode'] == CPG_LOG_ALL) {
-                    log_write('CONFIG UPDATE SQL: '.
-                              "UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = 'categories_alpha_sort'\n".
-							  #########################  DB ###############################
-							  //sprintf($cpg_db_catmgr_php['edit_cat_alpha_sort'], $value).'\n'.
-							  ###########################################################
-                              'TIME: '.date("F j, Y, g:i a")."\n".
-                              'USER: '.$USER_DATA['user_name'],
-                              CPG_DATABASE_LOG
-                              );
-            }
 
+    $value = $superCage->post->getInt('categories_alpha_sort');
+    
+    cpg_config_set('categories_alpha_sort', $value);
 }
 
 

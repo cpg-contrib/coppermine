@@ -11,10 +11,10 @@
 
   ********************************************
   Coppermine version: 1.5.0
-  $HeadURL$
-  $Revision: 4606 $
-  $LastChangedBy: nibbler999 $
-  $Date: 2008-06-19 04:05:01 +0530 (Thu, 19 Jun 2008) $
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/addpic.php $
+  $Revision: 5126 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-10-17 13:10:13 +0530 (Fri, 17 Oct 2008) $
 **********************************************/
 
 /**
@@ -26,7 +26,7 @@
 * @copyright 2002-2006 Gregory DEMAR, Coppermine Dev Team
 * @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
 * @package Coppermine
-* @version $Id: addpic.php 4606 2008-06-18 22:35:01Z nibbler999 $
+* @version $Id: addpic.php 5126 2008-10-17 07:40:13Z gaugau $
 */
 
 /**

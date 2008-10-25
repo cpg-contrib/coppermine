@@ -11,9 +11,9 @@
 ##  ********************************************
 ##  Coppermine version: 1.5.0
 ##  $Source$
-##  $Revision: 5081 $
+##  $Revision: 5129 $
 ##  $LastChangedBy: gaugau $
-##  $Date: 2008-10-06 11:27:24 +0530 (Mon, 06 Oct 2008) $
+##  $Date: 2008-10-18 16:03:12 +0530 (Sat, 18 Oct 2008) $
 ##  ********************************************
 
 #
@@ -39,7 +39,7 @@ INSERT INTO CPG_config VALUES ('charset', 'utf-8');
 INSERT INTO CPG_config VALUES ('language_list', '0');
 INSERT INTO CPG_config VALUES ('language_flags', '0');
 INSERT INTO CPG_config VALUES ('language_reset', '1');
-INSERT INTO CPG_config VALUES ('theme', 'core');
+INSERT INTO CPG_config VALUES ('theme', 'classic');
 INSERT INTO CPG_config VALUES ('theme_list', '0');
 INSERT INTO CPG_config VALUES ('theme_reset', '1');
 INSERT INTO CPG_config VALUES ('display_sidebar_user', '1');
