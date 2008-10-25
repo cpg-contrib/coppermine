@@ -11,10 +11,10 @@
 
   ********************************************
   Coppermine version: 1.5.0
-  $HeadURL$
-  $Revision: 4254 $
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/plugins/sample/configuration.php $
+  $Revision: 5129 $
   $LastChangedBy: gaugau $
-  $Date: 2008-02-09 13:53:16 +0530 (Sat, 09 Feb 2008) $
+  $Date: 2008-10-18 16:03:12 +0530 (Sat, 18 Oct 2008) $
 **********************************************/
 
 $name = $lang_plugin_php['sample_config_name'];

@@ -11,10 +11,10 @@
 
   ********************************************
   Coppermine version: 1.5.0
-  $HeadURL$
-  $Revision: 4432 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-05-01 12:37:31 +0530 (Thu, 01 May 2008) $
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/db_input.php $
+  $Revision: 5150 $
+  $LastChangedBy: abbas-ali $
+  $Date: 2008-10-20 18:22:49 +0530 (Mon, 20 Oct 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -324,8 +324,14 @@ switch ($event) {
         $comments = $superCage->post->getAlpha('comments') == 'YES' ? 'YES' : 'NO';
         $votes = $superCage->post->getAlpha('votes') == 'YES' ? 'YES' : 'NO';
 
-        $password = $superCage->post->getEscaped('alb_password');
-        $password_hint = $superCage->post->getEscaped('alb_password_hint');
+        // Get the password only if password_protect checkbox is checked
+        if ($superCage->post->keyExists('password_protect')) {
+            $password = $superCage->post->getEscaped('alb_password');
+            $password_hint = $superCage->post->getEscaped('alb_password_hint');
+        } else {
+            $password = null;
+            $password_hint = null;
+        }
         $visibility = !empty($password) ? FIRST_USER_CAT + USER_ID : $visibility;
 
         if (!$title) {

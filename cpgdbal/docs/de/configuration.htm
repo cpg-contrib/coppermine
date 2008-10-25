@@ -13,9 +13,9 @@
   SVN version info:
 
   Coppermine version: 1.5.0
-  $Revision: 5061 $
+  $Revision: 5129 $
   $LastChangedBy: gaugau $
-  $Date: 2008-09-27 16:47:15 +0530 (Sat, 27 Sep 2008) $
+  $Date: 2008-10-18 16:03:12 +0530 (Sat, 18 Oct 2008) $
 -->
 <link rel="stylesheet" type="text/css" href="../style.css" media="all" />
 <link rel="stylesheet" type="text/css" href="../screen.css" media="screen" />
@@ -46,6 +46,8 @@
 <a name="admin_general"></a><h2>Allgemeine Einstellungen<a href="#admin_general" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <a name="admin_general_name"></a><h3>Galerie-Name<a href="#admin_general_name" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Gib den Namen Deiner Galerie in dieses Feld ein. Der Name erscheint als Titel im Fenster des Browsers und an vielen anderen Stellen innerhalb der Galerie (in Abhängigkeit vom von Dir gewählten Thema/Design).</p>
+<p>Es handelt sich um ein Muß-Feld..</p>
+<p class="quote">Beispiel: <tt class="code">Tims unglaubliche Bildergalerie</tt></p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Allgemeine Einstellungen &rarr; Galerie-Name</p>
 <a name="admin_general_name_end"></a>
 <hr />
@@ -1223,6 +1225,7 @@ address. Recommended setting is NO. As most internet users today have more than 
 <a name="admin_user_login_threshold_start"></a><h3>Anzahl fehlgeschlagener Anmeldeversuche bis zur zeitweiligen Sperrung<a href="#admin_user_login_threshold_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>To make brute force attacks (where a hostile script tries to log into coppermine as admin by running through all possible combinations of username and password automatically) less effective Coppermine temporarily bans the IP address of a possible attacker after a certain amount of failed logins. This way, the brute force attack would need way to long to try all possible combinations.</p>
 <p>With this setting you specify the maximum number of failed log-in attempts before the IP address of the user is temporarily banned.</p>
+<p>Keep in mind that this setting will definitely have an impact on your legitimate ability to log in as well: if you mis-type your password to often or if someone else has tried to brute-force your admin account, you will be banned temporarily as well. The ban will of course go away after the time set below, but during the ban pahse you will be locked out from administration just as well as an attacker would be logged out.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Benutzer-Einstellungen &rarr; Anzahl fehlgeschlagener Anmeldeversuche bis zur zeitweiligen Sperrung</p>
 
 <a name="admin_user_login_threshold_end"></a>
@@ -1401,7 +1404,7 @@ All log files are written in english</p>
 
 <script type="text/javascript">
   cpgDocFooter();
-  dateRevision(' $LastChangedDate: 2008-09-27 16:47:15 +0530 (Sat, 27 Sep 2008) $ ', ' $Revision: 5061 $ ');
+  dateRevision(' $LastChangedDate: 2008-10-18 16:03:12 +0530 (Sat, 18 Oct 2008) $ ', ' $Revision: 5129 $ ');
 </script>
 
 </body>

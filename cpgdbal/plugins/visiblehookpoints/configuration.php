@@ -11,10 +11,10 @@
 
   ********************************************
   Coppermine version: 1.5.0
-  $URL$
-  $Revision: 4518 $
-  $LastChangedBy: pvanrompay $
-  $Date: 2008-06-10 04:57:06 +0530 (Tue, 10 Jun 2008) $
+  $URL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/plugins/visiblehookpoints/configuration.php $
+  $Revision: 5129 $
+  $LastChangedBy: gaugau $
+  $Date: 2008-10-18 16:03:12 +0530 (Sat, 18 Oct 2008) $
 **********************************************/
 
 $name = 'Visible HookPoints';
