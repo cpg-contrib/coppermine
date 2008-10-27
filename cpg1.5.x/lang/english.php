@@ -21,13 +21,13 @@ if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 
 // info about translators and translated language
 $lang_translation_info = array(
-  'lang_name_english' => 'English US',
-  'lang_name_native' => 'English US',
+  'lang_name_english' => 'English (US)',
+  'lang_name_native' => 'English (US)',
   'lang_country_code' => 'us',
   'trans_name' => 'Coppermine dev team',
   'trans_email' => '',
   'trans_website' => 'http://coppermine-gallery.net/',
-  'trans_date' => '2008-10-09',
+  'trans_date' => '2008-10-26',
 );
 
 $lang_charset = 'iso-8859-1';
