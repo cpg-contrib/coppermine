@@ -718,7 +718,7 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'ban_private_ip' => 'Verbannung von nicht-routebaren IP-Adressen aktivieren', // cpg1.5
   'browse_batch_add' => 'Baumstruktur für Batch-hinzufügen aktivieren', // cpg1.5
   'display_thumbs_batch_add' => 'Vorschau-Thumbnails beim Batch-hinzufügen anzeigen', // cpg1.5
-  'lang' => 'Sprache', // cpg1.5
+  'lang' => 'Standard-Sprache', // cpg1.5
   'language_fallback' => 'Auf Englisch zurückgreifen, wenn Deutsche Übersetzung nicht verfügbar?', // cpg1.5
   'charset' => 'Zeichensatz', // cpg1.5
   'language_list' => 'Sprachauswahl-Liste anzeigen', // cpg1.5
@@ -943,6 +943,7 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'warning_dont_submit' => 'Wenn Du Dir nicht über die Auswirkung dieser Einstellungen im Klaren bist, sende dieses Formular nicht ab und lies stattdessen zuerst die Doku.', // cpg1.5 // js-alert
   'menu_only' => 'nur in Menüs', // cpg1.5
   'everywhere' => 'überall', // cpg1.5
+  'manage_languages' => 'Sprachen verwalten', // cpg1.5
 );
 
 
@@ -1177,7 +1178,6 @@ $lang_picinfo = array(
 );
 
 $lang_display_comments = array(
-  'OK' => 'OK',
   'edit_title' => 'Diesen Kommentar bearbeiten',
   'delete_title' => 'Diesen Kommentar löschen', // cpg1.5
   'confirm_delete' => 'Willst Du diesen Kommentar wirklich löschen?', //js-alert
@@ -1298,6 +1298,7 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
   'del_all_comm' => 'ALLE Kommentare löschen',
   'upl_approval' => 'Genehmigung zum Hochladen',
   'edit_pics' => 'Dateien bearbeiten',
+  'edit_pic' => 'Datei bearbeiten', //cpg 1.5
   'see_next' => 'nächste Dateien ansehen',
   'see_prev' => 'vorherige Dateien ansehen',
   'n_pic' => '%s Dateien',
@@ -1627,9 +1628,26 @@ if (defined('LANGMGR_PHP')) $lang_langmgr_php = array(
   'complete' => 'Vollständig',
   'default' => 'Standard',
   'missing' => 'fehlt',
+  'broken' => 'scheint defekt oder nicht aufrufbar',
   'exists_in_db_and_file' => 'in Datenbank und Dateisystem vorhanden',
   'exists_as_file_only' => 'nur in Dateisystem vorhanden',
   'pick_a_flag' => 'Wähle',
+  'replace_x_with_y' => 'Replace %s with %s',
+  'tanslator_information' => 'Übersetzer',
+  'cpg_version' => 'Coppermine-Version',
+  'hide_details' => 'Details verbergen',
+  'show_details' => 'Zeige Details',
+  'loading' => 'Lade',
+  'english_missing' => 'Die Englische Sprachdateie fehlt, obwohl sie nie vollständig entfernt werden sollte. Du solltest sie unbedingt sofort wieder herstellen.',
+  'enable_at_least_one' => 'Mindestens eine Sprache muss aktiviert werden, damit die Galerie funktioniert',
+  'enable_default' => 'Du hast eine Sprache als Standard gewählt, die nicht aktiviert ist. Wähle einen anderen Standard oder aktiviere die gewählte Standard-Sprache!',
+  'available_default' => 'Du hast eine Standard Sprache gewählt, die nicht verfügbar ist. Wähle eine andere!',
+  'version_does_not_match' => 'Die Version dieser Datei stimmt nicht mit der Deiner Galerie überein. Benutze sie nur unter Vorbehalt The versiound teste sie ausgiebig!',
+  'no_version' => 'Es konnte keine Versions-Information abgerufen werden. Sehr wahrscheinlich handelt wird diese Sprachdatei nicht funktionieren oder es handelt sich gar nicht um eine korrekte Sprachdatei.',
+  'filesize' => 'Filesize %s is implausible',
+  'content_missing' => 'Die Datei enthält nicht die notwendigen Daten und ist daher wharscheinlich keine funktionierende Sprachdatei.',
+  'status' => 'Status',
+  'default_language' => 'Standard-Sprache auf %s gesetzt',
 );
 
 
@@ -1670,7 +1688,6 @@ if (defined('LOGOUT_PHP')) $lang_logout_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('MINIBROWSER_PHP')) $lang_minibrowser_php = array(
-  'submit' => 'OK',
   'up' => 'eine Ebene höher',
   'current_path' => 'derzeitiger Pfad',
   'select_directory' => 'Wähle ein Verzeichnis',
@@ -1731,12 +1748,13 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
   'notice1' => '(*) abhängig von den %sGruppen%s Einstellungen', //(do not translate %s!)
   'can_moderate' => 'Album kann moderiert werden von', //cpg 1.5
   'admins_only' => 'Nur Administratoren', //cpg 1.5
-  'alb_password' => 'Passwort des Albums',
+  'alb_password' => 'Passwort des Albums (neues Passwort)',
   'alb_password_hint' => 'Hinweis für Albums-Passwort',
   'edit_files' => 'Dateien bearbeiten',
   'parent_category' => 'Eltern-Kategorie',
   'thumbnail_view' => 'Thumbnail-Ansicht',
   'random_image' => 'Zufalls-Bild', //cpg 1.5
+  'password_protect' => 'Dieses Album passwort-schützen (Ankreuzen falls ja)', //cpg1.5
 );
 
 // ------------------------------------------------------------------------- //
@@ -2308,7 +2326,6 @@ if (defined('USERMGR_PHP')) {
   'search_submit' => 'Los!',
   'search_result' => 'Resultate durchsuchen nach: ',
   'alert_no_selection' => 'Du musst zuerst mindestens einen Benutzer auswählen!', //js-alert
-  'password' => 'Passwort',
   'select_group' => 'Wähle Gruppe',
   'groups_alb_access' => 'Alben-Berechtigung nach Gruppenzugehörigkeit',
   'category' => 'Kategorie',
@@ -2356,10 +2373,11 @@ $lang_update_php = array(
   'mysql_database_error' => 'MySQL konnte die Datenbank namens %s nicht finden', // cpg1.5
   'mysql_said' => 'MySQL sagte', // cpg1.5
   'check_config_file' => 'Bitte überprüfe die SQL-Werte in %s', // cpg1.5
-  'performing_database_updates' => 'Führe Datenbakn-Updates durch', // cpg1.5
-  'ok' => 'OK', // cpg1.5
+  'performing_database_updates' => 'Führe Datenbank-Updates durch', // cpg1.5
+  'performing_file_updates' => 'Führe Datei-Updates durch', // cpg1.5
   'already_done' => 'Bereits durchgeführt', // cpg1.5
   'password_encryption' => 'Passwort-Verschlüsselung', // cpg1.5
+  'alb_password_encryption' => 'Verschlüsselung der Passwörter für Alben', // cpg1.5
   'category_tree' => 'Kategorie-Baum', // cpg1.5
   'authentication_needed' => 'Atentifizierung notwendig', // cpg1.5
   'username' => 'Benutzername', // cpg1.5
@@ -2368,6 +2386,8 @@ $lang_update_php = array(
   'check_versions' => 'Es wird empfohlen, die %sDatei-Versionen zu überprüfen%s, wenn ein Upgrade von einer älteren Coppermine-Version durchgeführt wurde', // cpg1.5 // Leave the %s untouched when translating - it wraps the link
   'start_page' => 'Falls nicht (oder wenn Du die Überprüfung überspringen willst) kannst Du %szur Startseite Deiner Galerie gehen%s', // cpg1.5 // Leave the %s untouched when translating - it wraps the link
   'errors_encountered' => 'Die folgenden Fehler sind aufgetreten und müssen zuerst beseitigt werden', // cpg1.5
+  'delete_file' => 'Lösche %s', // cpg1.5
+  'could_not_delete' => 'Konnte wegen fehlender Berechtigungen nicht löschen. Lösche die Datei manuell!', // cpg1.5
 );
 }
 
@@ -2396,11 +2416,6 @@ $lang_util_php = array(
   'titles_wait' => 'Aktualisiere Überschriften, bitte warten...',
   'delete_wait' => 'Lösche Überschriften, bitte warten...',
   'replace_wait' => 'Lösche Originale und ersetze sie mit Bilder in Zwischengröße, bitte warten...',
-  'instruction' => 'Kurzanleitung',
-  'instruction_action' => 'Wähle Aktion',
-  'instruction_parameter' => 'Wähle Parameter',
-  'instruction_album' => 'Wähle Album',
-  'instruction_press' => 'Klicke %s',
   'update' => 'Thumbnails und/oder Bilder in Zwischengröße aktualisieren',
   'update_what' => 'Was soll aktualisiert werden',
   'update_thumb' => 'Nur Thumbnails',
@@ -2482,7 +2497,6 @@ if (defined('VERSIONCHECK_PHP')) $lang_versioncheck_php = array(
   'versioncheck_output' => 'Ausgabe Versions-Überprüfung',
   'file' => 'Datei',
   'folder' => 'Ordner',
-  'ok' => 'OK',
   'outdated' => 'älter als %s',
   'newer' => 'neuer als %s',
   'modified' => 'verändert',
@@ -2517,7 +2531,7 @@ if (defined('VERSIONCHECK_PHP')) $lang_versioncheck_php = array(
   'on_screen' => 'Vollbild',
   'text_only' => 'Nur-Text',
   'errors_only' => 'Zeige nur potentielle Fehler',
-  'display_images' => 'Bilder anzeigen',
+  'hide_images' => 'Hide images', // cpg1.5
   'do_not_connect_to_online_repository' => 'Nicht mit dem Online-Repository verbinden',
   'online_repository_explain' => 'nur empfohlen, wenn die Verbindung zum Repository fehlschlägt',
   'submit' => 'absenden / aktualisieren',
@@ -2619,14 +2633,14 @@ if (defined('CORE_PLUGIN')) $lang_plugin_php = array(
   'onlinestats_name' => 'Who is online?',
   'onlinestats_config_extra' => 'Um dieses Plugin zu aktivieren (damit es tatsächlich den onlinestats-Block anzeigt) muss die Zeichenfolge "onlinestats" (getrennt mit einem Schrägstrich) zu der Zeichenfolge "<a href="docs/de/configuration.htm#admin_album_list_content">Inhalt der Hauptseite</a>" in den <a href="admin.php">Einstellungen</a> unter dem Abschnitt "Ansicht Albenliste" eingetragen sein. Die Einstellung sollte dann wie folgt aussehen: "breadcrumb/catlist/alblist/onlinestats" oder vergleichbar. Um die Position des Blocks auf der Seite zu verschieben kann einfach die Position innerhalb der Zeichenkette verschoben werden.',
   'onlinestats_config_install' => 'Dieses Plugin verursacht zusätzliche Datenbankabfragen bei jedem Lauf und verbraucht daher zusätzliche Resourcen auf dem Server. Wenn Deine Galerie bereits langsam läuft und Du eine große Menge von Benutzern hast sollte dieses Plugin nicht installiert werden.',
-  'onlinestats_we_have_reg_member' => 'Es ist %s registrierter Benutzer',
-  'onlinestats_we_have_reg_members' => ' Es sind %s registrierte Benutzer',
+  'onlinestats_we_have_reg_member' => 'Es gibt %s registrierten Benutzer',
+  'onlinestats_we_have_reg_members' => ' Es gibt %s registrierte Benutzer',
   'onlinestats_most_recent' => 'Der neueste registrierte Benutzer ist %s',
   'onlinestats_is' => 'Insgesamt ist %s Besucher online',
   'onlinestats_are' => 'Insesamt sind %s Besucher online',
   'onlinestats_and' => 'und',
-  'onlinestats_reg_member' => '%s registrierter Benutzer',
-  'onlinestats_reg_members' => '%s registrierte Benutzer',
+  'onlinestats_reg_member' => '%s registrierter Benutzer online',
+  'onlinestats_reg_members' => '%s registrierte Benutzer online',
   'onlinestats_guest' => '%s Gast',
   'onlinestats_guests' => '%s Gäste',
   'onlinestats_record' => 'Am meisten jemals online: %s am %s',
