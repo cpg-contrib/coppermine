@@ -124,7 +124,7 @@ if (isset($album) && is_numeric($album)) {
         breadcrumb($actual_cat, $breadcrumb, $breadcrumb_text);
         $cat = - $album;
     }
-} elseif (isset($cat) && $cat) { // Meta albums, we need to restrict the albums to the current category
+} elseif (isset($cat)) { // Meta albums, we need to restrict the albums to the current category
     if ($cat < 0) {
         $result = cpg_db_query("SELECT category, title, aid, keyword, description, alb_password_hint FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='" . (- $cat) . "'");
         if (mysql_num_rows($result) > 0) {
@@ -132,6 +132,8 @@ if (isset($album) && is_numeric($album)) {
             $actual_cat = $CURRENT_ALBUM_DATA['category'];
             $CURRENT_ALBUM_KEYWORD = $CURRENT_ALBUM_DATA['keyword'];
         }
+        
+        get_meta_album_set($cat);
         
         breadcrumb($actual_cat, $breadcrumb, $breadcrumb_text);
         $CURRENT_CAT_NAME = $CURRENT_ALBUM_DATA['title'];

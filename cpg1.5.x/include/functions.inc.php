@@ -62,6 +62,10 @@ function get_meta_album_set($cat)
         $RESTRICTEDWHERE = "INNER JOIN {$CONFIG['TABLE_CATEGORIES']} AS c2 ON c2.cid = category
                                     WHERE (c2.lft BETWEEN $lft AND $rgt";
 
+	 } elseif ($cat < 0) {
+	 
+        $RESTRICTEDWHERE = "WHERE (r.aid = " . -$cat;
+	 
     } else {
         $RESTRICTEDWHERE = "WHERE (1";
         $CURRENT_CAT_DEPTH = 0;
