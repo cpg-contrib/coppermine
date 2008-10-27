@@ -1695,6 +1695,106 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
     } // switch
 } // function get_pic_data
 
+// Copy of get_pic_data, created to obtain position for the given pid in the given album
+function get_pic_pos($album, $pid) 
+{
+    global $USER, $CONFIG, $CURRENT_CAT_NAME, $CURRENT_ALBUM_KEYWORD, $HTML_SUBST, $THEME_DIR, $FAVPICS, $FORBIDDEN_SET_DATA, $USER_DATA;
+    global $album_date_fmt, $lastcom_date_fmt, $lastup_date_fmt, $lasthit_date_fmt, $cat;
+    global $lang_common, $lang_get_pic_data, $lang_meta_album_names, $lang_errors;
+    global $lft, $rgt, $RESTRICTEDWHERE, $FORBIDDEN_SET;
+
+    $superCage = Inspekt::makeSuperCage();
+
+    $sort_array = array(
+        'na' => 'filename <',
+        'nd' => 'filename >',
+        'ta' => 'title <',
+        'td' => 'title >',
+        'da' => 'pid <',
+        'dd' => 'pid >',
+        'pa' => 'position <',
+        'pd' => 'position >',
+    );
+
+    $sort_code = isset($USER['sort'])? $USER['sort'] : $CONFIG['default_sort_order'];
+    $comp_order = isset($sort_array[$sort_code]) ? $sort_array[$sort_code] : $sort_array[$CONFIG['default_sort_order']];
+
+    if (count($FORBIDDEN_SET_DATA) > 0 ) {
+        $forbidden_set_string =" AND aid NOT IN (".implode(",", $FORBIDDEN_SET_DATA).")";
+    } else {
+        $forbidden_set_string = '';
+    }
+
+    // Keyword
+    if (!empty($CURRENT_ALBUM_KEYWORD)) {
+        $keyword = "OR (keywords like '%$CURRENT_ALBUM_KEYWORD%' $forbidden_set_string )";
+    } else {
+        $keyword = '';
+    }
+
+    // Regular albums
+    if ((is_numeric($album))) {
+        $album_name_keyword = get_album_name($album);
+        $album_name = $album_name_keyword['title'];
+        $album_keyword = addslashes($album_name_keyword['keyword']);
+
+        if (!empty($album_keyword)) {
+            $keyword = "OR (keywords like '%$album_keyword%' $forbidden_set_string )";
+        } else {
+            $keyword = '';
+        }
+
+        if (array_key_exists('allowed_albums',$USER_DATA) && is_array($USER_DATA['allowed_albums']) 
+                && in_array($album,$USER_DATA['allowed_albums'])) {
+            $approved = '';
+        } else {
+            $approved = GALLERY_ADMIN_MODE ? '' : 'AND approved=\'YES\'';
+        }
+
+        $approved = GALLERY_ADMIN_MODE ? '' : 'AND approved=\'YES\'';
+
+			list($param) = explode(' ', $comp_order);
+
+    		$result = cpg_db_query("SELECT filename, title, pid, position FROM {$CONFIG['TABLE_PICTURES']}  WHERE pid = $pid");
+    		
+    	
+    		$pic = mysql_fetch_assoc($result);
+
+			
+        $query = "SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']}
+                    WHERE ((aid='$album' $forbidden_set_string ) $keyword) $approved
+                    AND $comp_order '{$pic[$param]}'";
+                    
+        $result = cpg_db_query($query);
+        list($pos) = mysql_fetch_row($result);
+        mysql_free_result($result);
+
+        return $pos;
+    }
+
+
+    // Meta albums
+    switch($album) {
+
+        case 'lastup': // Last uploads
+
+            $query = "SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']} AS p
+                    INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
+                    $RESTRICTEDWHERE
+                    AND approved = 'YES'
+						  AND pid > $pid";
+	                    
+	         $result = cpg_db_query($query);
+	         list($pos) = mysql_fetch_row($result);
+	         mysql_free_result($result);
+
+            return $pos;
+            break;
+
+        default : // Invalid meta album
+            return FALSE;
+    } // switch
+} // function get_pic_pos
 
 // Get the name of an album
 
