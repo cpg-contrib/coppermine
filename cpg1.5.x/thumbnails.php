@@ -138,6 +138,9 @@ if (isset($album) && is_numeric($album)) {
         breadcrumb($actual_cat, $breadcrumb, $breadcrumb_text);
         $CURRENT_CAT_NAME = $CURRENT_ALBUM_DATA['title'];
         $CURRENT_ALBUM_KEYWORD = $CURRENT_ALBUM_DATA['keyword'];
+        
+    } elseif ($cat == 0) {
+    	get_meta_album_set(0);
     } else {
 
         if ($cat >= FIRST_USER_CAT) {
