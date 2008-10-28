@@ -1918,7 +1918,7 @@ function theme_admin_mode_menu()
             $param = array('{CATL}' => $cat_l,
                 '{UPL_APP_TITLE}' => $lang_gallery_admin_menu['upl_app_title'],
                 '{UPL_APP_LNK}' => $lang_gallery_admin_menu['upl_app_lnk'],
-                '{UPL_APP_ICO}' => cpg_fetch_icon('upload_approval', 1),
+                '{UPL_APP_ICO}' => cpg_fetch_icon('file_approval', 1),
                 '{ADMIN_TITLE}' => $lang_gallery_admin_menu['admin_title'],
                 '{ADMIN_LNK}' => $lang_gallery_admin_menu['admin_lnk'],
                 '{ADMIN_ICO}' => cpg_fetch_icon('config', 1),

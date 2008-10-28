@@ -6009,6 +6009,12 @@
     <hash>3cc083e18f869d4b1a5ae572f1dc6218</hash>
   </element>
   <element>
+    <fullpath>images/icons/calendar_delete.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>3cc083e18f869d4b1a5ae572f1dc6218</hash>
+  </element>
+  <element>
     <fullpath>images/icons/cancel.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
@@ -6535,12 +6541,6 @@
     <status>mandatory</status>
     <permission>read</permission>
     <hash>04ad664180684ffc60bf16c676f25691</hash>
-  </element>
-  <element>
-    <fullpath>images/icons/upload_approval.png</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>00cdfc7ae8da323ff375ace0c081c91d</hash>
   </element>
   <element>
     <fullpath>images/icons/upload.png</fullpath>
@@ -8548,6 +8548,12 @@
     <hash>3cc083e18f869d4b1a5ae572f1dc6218</hash>
   </element>
   <element>
+    <fullpath>themes/classic/images/icons/calendar_delete.png</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>3cc083e18f869d4b1a5ae572f1dc6218</hash>
+  </element>
+  <element>
     <fullpath>themes/classic/images/icons/cancel.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
@@ -9074,12 +9080,6 @@
     <status>optional</status>
     <permission>read</permission>
     <hash>04ad664180684ffc60bf16c676f25691</hash>
-  </element>
-  <element>
-    <fullpath>themes/classic/images/icons/upload_approval.png</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-    <hash>00cdfc7ae8da323ff375ace0c081c91d</hash>
   </element>
   <element>
     <fullpath>themes/classic/images/icons/upload.png</fullpath>
