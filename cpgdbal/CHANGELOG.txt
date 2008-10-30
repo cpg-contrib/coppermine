@@ -10,9 +10,9 @@ as published by the Free Software Foundation.
 ********************************************
 Coppermine version: 1.5.0
 $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/CHANGELOG.txt $
-$Revision: 5145 $
-$Author: gaugau $
-$Date: 2008-10-19 18:02:38 +0530 (Sun, 19 Oct 2008) $
+$Revision: 5177 $
+$Author: abbas-ali $
+$Date: 2008-10-24 17:08:47 +0530 (Fri, 24 Oct 2008) $
 *********************************************
 Changelog
 =========
@@ -25,6 +25,13 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-10-24 [B] Fixed the random meta album query for cases where no pictures are in db {Abbas}
+2008-10-24 [B] Fixed the album password case sensitivity issue by hashing it {Abbas}
+2008-10-24 [A] Added profile field user_language (thread ID 15977) {GauGau}
+2008-10-24 [A] Added DivX support (thread ID 32380) {GauGau}
+2008-10-23 [O] Added random files speedup (thread ID 54144) {Nibbler}
+2008-10-22 [A] Added options to version check to hide images and the modified column {GauGau}
+2008-10-21 [A] Removal of outdated files by updater {GauGau}
 2008-10-19 [O] Removed double ; at line ends (thread ID 51899) {GauGau}
 2008-10-19 [C] Fixed validation issue for browse-by-date link {GauGau}
 2008-10-19 [C] Fixed validation issue with registration screen (thread ID 51310) {GauGau}

@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/displayimage.php $
-  $Revision: 5129 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-10-18 16:03:12 +0530 (Sat, 18 Oct 2008) $
+  $Revision: 5193 $
+  $LastChangedBy: nibbler999 $
+  $Date: 2008-10-28 04:28:22 +0530 (Tue, 28 Oct 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -23,6 +23,7 @@ define('INDEX_PHP', true);
 //define('SMILIES_PHP', true);
 
 require('include/init.inc.php');
+
 if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 1) {
     $redirect = $redirect . "login.php";
     if ($matches = $superCage->server->getMatched('QUERY_STRING', '/^[a-zA-Z0-9&=_\/.-]+$/')) {
@@ -277,11 +278,42 @@ if (!$superCage->get->keyExists('fullsize') && ($pos < 0 || $pid > 0)) {
 	  ########################################
     }
     $album = (!$album) ? $row['aid'] : $album;
-    $pic_data = get_pic_data($album, $pic_count, $album_name, -1, -1, false);
-    for($pos = 0; $pic_data[$pos]['pid'] != $pid && $pos < $pic_count; $pos++);
-    reset($pic_data);
-    $CURRENT_PIC_DATA = $pic_data[$pos];//print_r($CURRENT_PIC_DATA);exit;
-    reset($pic_data);
+    
+    // attempt to determine the position directly
+    $pos = get_pic_pos($album, $pid);
+    
+    if ($pos === FALSE) {
+    
+		$pic_data = get_pic_data($album, $pic_count, $album_name, -1, -1, false);
+		for($pos = 0; $pic_data[$pos]['pid'] != $pid && $pos < $pic_count; $pos++);
+		reset($pic_data);
+		$CURRENT_PIC_DATA = $pic_data[$pos];
+		reset($pic_data);
+    
+    } else {
+    
+		// load current pic details
+		$pic_data = get_pic_data($album, $pic_count, $album_name, $pos, 1, false);
+		$CURRENT_PIC_DATA = $pic_data[0];
+  
+		// load prev, next, start and end for the navbar
+		if ($pos > 0) {
+			$prev = get_pic_data($album, $pic_count, $album_name, $pos-1, 1, false);
+			$pic_data[$pos-1] = $prev[0];
+		}
+  
+		if ($pos < ($pic_count -1)) {
+			$next = get_pic_data($album, $pic_count, $album_name, $pos+1, 1, false);
+			$pic_data[$pos+1] = $next[0];
+		}
+
+		$start = get_pic_data($album, $pic_count, $album_name, 0, 1, false);
+		$pic_data[0] = $start[0];
+     
+		$end = get_pic_data($album, $pic_count, $album_name, $pic_count -1, 1, false);
+		$pic_data[$pic_count -1] = $end[0];
+	}
+    
     ########################################################
 } elseif (isset($pos) && is_numeric($pos)) {
     //$pic_data = get_pic_data($album, $pic_count, $album_name, $pos, 1, false);

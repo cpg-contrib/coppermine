@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/db_input.php $
-  $Revision: 5150 $
+  $Revision: 5176 $
   $LastChangedBy: abbas-ali $
-  $Date: 2008-10-20 18:22:49 +0530 (Mon, 20 Oct 2008) $
+  $Date: 2008-10-24 15:48:25 +0530 (Fri, 24 Oct 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -323,15 +323,38 @@ switch ($event) {
         $uploads = $superCage->post->getAlpha('uploads') == 'YES' ? 'YES' : 'NO';
         $comments = $superCage->post->getAlpha('comments') == 'YES' ? 'YES' : 'NO';
         $votes = $superCage->post->getAlpha('votes') == 'YES' ? 'YES' : 'NO';
-
+        // Get the old alb_password before update
+        /*$result = cpg_db_query("SELECT alb_password FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid = '$aid'");
+        $row = cpg_db_fetch_row($result);*/
+        #################################     DB     #################################
+        $result = $cpgdb->query($cpg_db_dbinput_php['get_old_alb_passwords'], $aid);
+        $row = $cpgdb->fetchRow();
+        #######################################################################
+        // If there is some value in alb_password then it means album was previously password protected
+        if (isset($row['alb_password']) && $row['alb_password']) {
+            $old_password = $row['alb_password'];
+        } else {
+            $old_password = null;
+        }
+        
         // Get the password only if password_protect checkbox is checked
         if ($superCage->post->keyExists('password_protect')) {
             $password = $superCage->post->getEscaped('alb_password');
             $password_hint = $superCage->post->getEscaped('alb_password_hint');
+            // We will change or add the password only if it is not empty
+            if (trim($password)) {
+                $password = md5($password);
+            } elseif (!$old_password && !trim($password)) {
+                $password = null;
+                $password_hint = null;
+            } else {
+                $password = $old_password;
+            }
         } else {
             $password = null;
             $password_hint = null;
         }
+        
         $visibility = !empty($password) ? FIRST_USER_CAT + USER_ID : $visibility;
 
         if (!$title) {
@@ -344,7 +367,6 @@ switch ($event) {
 		} else {
 			$query = "UPDATE {$CONFIG['TABLE_ALBUMS']} SET title='$title', description='$description', category='$category', thumb='$thumb',  comments='$comments', votes='$votes', visibility='$visibility', alb_password='$password', alb_password_hint='$password_hint',keyword='$keyword' WHERE aid='$aid' LIMIT 1";
 		}
-
 		$update = cpg_db_query($query);
 		if (!mysql_affected_rows())	*/
 		######################################		DB		######################################

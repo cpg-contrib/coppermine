@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $Source: /cvsroot/coppermine/devel/admin.php,v $
-  $Revision: 5126 $
+  $Revision: 5155 $
   $LastChangedBy: gaugau $
-  $Date: 2008-10-17 13:10:13 +0530 (Fri, 17 Oct 2008) $
+  $Date: 2008-10-21 22:24:58 +0530 (Tue, 21 Oct 2008) $
 **********************************************/
  
 define('IN_COPPERMINE', true);
@@ -401,14 +401,19 @@ EOT;
             $associativeArray = array_is_associative($value['options']);
             print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><select name="'.$key.'" id="'.$key.'" class="listbox" size="1" '.$readonly_radio.' tabindex="'.$tabindexCounter.'" onchange="checkDefaultBox(\''.$key.'\', \'select\', \''.count($value['options']).'\', \''.str_replace("'", "\'", htmlspecialchars($warningText)).'\');" title="'.str_replace("'", "\'", htmlspecialchars($warningText)).'">';
             foreach ($value['options'] as $option_key => $option_value) { // loop through the options array
-                if ($admin_data_array[$key] == $option_value) {
-                    $selected = ' selected="selected"';
-                } else {
-                    $selected = '';
-                }
                 if ($associativeArray == TRUE) {
-                    print '<option value="'.$option_value.'"'.$selected.'>'.$option_key;
+                    if ($admin_data_array[$key] == $option_key) {
+                        $selected = ' selected="selected"';
+                    } else {
+                        $selected = '';
+                    }
+                    print '<option value="'.$option_key.'"'.$selected.'>'.$option_value;
                 } else {
+                    if ($admin_data_array[$key] == $option_value) {
+                        $selected = ' selected="selected"';
+                    } else {
+                        $selected = '';
+                    }
                     print '<option value="'.$option_value.'"'.$selected.'>'.ucfirst($option_value);
                 }
                 print '</option>';
