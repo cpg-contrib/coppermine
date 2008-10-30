@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/thumbnails.php $
-  $Revision: 5129 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-10-18 16:03:12 +0530 (Sat, 18 Oct 2008) $
+  $Revision: 5176 $
+  $LastChangedBy: abbas-ali $
+  $Date: 2008-10-24 15:48:25 +0530 (Fri, 24 Oct 2008) $
 **********************************************/
 
 /**
@@ -27,7 +27,7 @@
  * @copyright 2002-2006 Gregory DEMAR, Coppermine Dev Team
  * @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
  * @package Coppermine
- * @version $Id: thumbnails.php 5129 2008-10-18 10:33:12Z gaugau $
+ * @version $Id: thumbnails.php 5176 2008-10-24 10:18:25Z abbas-ali $
  */
 
 /**
@@ -238,7 +238,7 @@ $valid = false; //flag to test whether the album is validated.
 if ($CONFIG['allow_private_albums'] == 0 || !in_array($album, $FORBIDDEN_SET_DATA)) {
     $valid = true;
 } elseif ($superCage->post->keyExists('validate_album')) {
-    $password = $superCage->post->getEscaped('password');
+    $password = md5($superCage->post->getEscaped('password'));
     /*$sql = "SELECT aid FROM " . $CONFIG['TABLE_ALBUMS'] . " WHERE alb_password='$password' AND aid='$album'";
     $result = cpg_db_query($sql);
     if (mysql_num_rows($result)) {*/
@@ -250,8 +250,8 @@ if ($CONFIG['allow_private_albums'] == 0 || !in_array($album, $FORBIDDEN_SET_DAT
         $albpw = $superCage->cookie->getEscaped($CONFIG['cookie_name'] . '_albpw');
         if (!empty($albpw)) {
             $albpw = unserialize($albpw);
-        }	// using getRaw(). We store md5 hash of the password.
-        $albpw[$album] = md5($superCage->post->getRaw('password'));
+        }
+        $albpw[$album] = $password;
         $alb_cookie_str = serialize($albpw);
 
         setcookie($CONFIG['cookie_name'] . "_albpw", $alb_cookie_str);
@@ -277,20 +277,21 @@ if ($CONFIG['allow_private_albums'] == 0 || !in_array($album, $FORBIDDEN_SET_DAT
             $alb_pw = unserialize($albpw);
             // Check whether the alubm id in the cookie is same as that of the album id send by get
             if (isset($alb_pw[$album])) {
-                /*$sql = "SELECT aid FROM " . $CONFIG['TABLE_ALBUMS'] . " WHERE MD5(alb_password)='{$alb_pw[$album]}' AND aid='{$album}'";
+                /*$sql = "SELECT aid FROM " . $CONFIG['TABLE_ALBUMS'] . " WHERE alb_password='{$alb_pw[$album]}' AND aid='{$album}'";
                 $result = cpg_db_query($sql);
                 if (mysql_num_rows($result)) {
-				    $valid = true; //The album password is correct. Show the album details.
+                    $valid = true; //The album password is correct. Show the album details.
                     get_private_album_set();
                 }		*/
-	######################  DB  ########################
-				$cpgdb->query($cpg_db_thumbnails_php['get_alb_pwrd'], $album);
-				$row = $cpgdb->fetchRow();
-				if (MD5($row['alb_password']) == $alb_pw[$album]) {
-						$valid = true; //The album password is correct. Show the album details.
-						get_private_album_set();
-				}
-	##################################################
+    ######################  DB  ########################
+                $cpgdb->query($cpg_db_thumbnails_php['get_alb_pwrd'], $album);
+                $row = $cpgdb->fetchRow();
+                $rowset = $cpgdb->fetchRowSet();
+                if (count($rowset)) {
+                        $valid = true; //The album password is correct. Show the album details.
+                        get_private_album_set();
+                }
+    ##################################################
             }
         }
     } else {

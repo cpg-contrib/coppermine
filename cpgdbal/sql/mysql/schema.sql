@@ -11,9 +11,9 @@
 ##  ********************************************
 ##  Coppermine version: 1.5.0
 ##  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/sql/schema.sql $
-##  $Revision: 5129 $
+##  $Revision: 5175 $
 ##  $LastChangedBy: gaugau $
-##  $Date: 2008-10-18 16:03:12 +0530 (Sat, 18 Oct 2008) $
+##  $Date: 2008-10-24 12:43:37 +0530 (Fri, 24 Oct 2008) $
 ##  ********************************************
 
 #
@@ -218,6 +218,7 @@ CREATE TABLE CPG_users (
   user_profile5 varchar(255) NOT NULL default '',
   user_profile6 text NOT NULL,
   user_actkey varchar(32) NOT NULL default '',
+  user_language varchar(40) NOT NULL default '',
 
   PRIMARY KEY  (user_id),
   UNIQUE KEY user_name (user_name)

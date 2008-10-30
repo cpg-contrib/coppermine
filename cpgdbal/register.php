@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $Source: /cvsroot/coppermine/devel/register.php,v $
-  $Revision: 5143 $
+  $Revision: 5175 $
   $LastChangedBy: gaugau $
-  $Date: 2008-10-19 17:04:34 +0530 (Sun, 19 Oct 2008) $
+  $Date: 2008-10-24 12:43:37 +0530 (Fri, 24 Oct 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -429,18 +429,20 @@ function check_user_info(&$error) { // function check_user_info - start
     }
 
     $encpassword = md5($password);
+    
+    $user_language = $CONFIG['lang'];
 
-	/*$sql = "INSERT INTO {$CONFIG['TABLE_USERS']} ".
-			"(user_regdate, user_active, user_actkey, user_name, user_password, user_email, user_profile1, user_profile2, user_profile3, user_profile4, user_profile5, user_profile6) ".
-			"VALUES (NOW(), '$active', '$act_key', '$user_name', '$encpassword', '$email', '$profile1', '$profile2', '$profile3', '$profile4', '$profile5', '$profile6')";	*/
-	if ($CONFIG['log_mode']) {
-		log_write('New user "$user_name" created on '.date("F j, Y, g:i a"),CPG_ACCESS_LOG);
-	}
-	//$result = cpg_db_query($sql);
-	########################################           DB         #########################################
-	$cpgdb->query($cpg_db_register_php['add_user'], $active, $act_key, $user_name, $encpassword, $email, 
-					$profile1, $profile2, $profile3, $profile4, $profile5, $profile6);
-	############################################################################################
+    /*$sql = "INSERT INTO {$CONFIG['TABLE_USERS']} ".
+           "(user_regdate, user_active, user_actkey, user_name, user_password, user_email, user_profile1, user_profile2, user_profile3, user_profile4, user_profile5, user_profile6, user_language) ".
+           "VALUES (NOW(), '$active', '$act_key', '$user_name', '$encpassword', '$email', '$profile1', '$profile2', '$profile3', '$profile4', '$profile5', '$profile6', '$user_language')";*/
+    if ($CONFIG['log_mode']) {
+        log_write('New user "$user_name" created on '.date("F j, Y, g:i a"),CPG_ACCESS_LOG);
+    }
+    //$result = cpg_db_query($sql);
+    ########################################           DB         #########################################
+    $cpgdb->query($cpg_db_register_php['add_user'], $active, $act_key, $user_name, $encpassword, $email, 
+                    $profile1, $profile2, $profile3, $profile4, $profile5, $profile6, $user_language);
+    ############################################################################################
 
 	// Create a personal album if corresponding option is enabled
 	if ($CONFIG['personal_album_on_registration'] == 1) {

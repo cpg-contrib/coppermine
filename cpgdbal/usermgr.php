@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/usermgr.php $
-  $Revision: 5129 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-10-18 16:03:12 +0530 (Sat, 18 Oct 2008) $
+  $Revision: 5158 $
+  $LastChangedBy: nibbler999 $
+  $Date: 2008-10-22 21:50:33 +0530 (Wed, 22 Oct 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -475,7 +475,7 @@ EOT;
     $result = cpg_db_query("SELECT SUM(total_filesize) FROM {$CONFIG['TABLE_PICTURES']} LIMIT 1");
     $tempSpaceCount = mysql_fetch_array($result);
     $totalSpaceCount = $tempSpaceCount[0];
-    $totalSpaceCount_fmt = cpg_float2decimal($totalSpaceCount);
+    $totalSpaceCount_fmt = cpg_format_bytes($totalSpaceCount);
     mysql_free_result($result);
     unset($tempSpaceCount);
     
@@ -491,7 +491,7 @@ EOT;
     $result = $cpgdb->query($cpg_db_usermgr_php['total_files_uploaded']);
     $tempPicCount = $cpgdb->fetchRow();
     $totalPictureCount = $tempPicCount['count'];
-    $totalPictureCount_fmt = cpg_float2decimal($totalPictureCount);
+    $totalSpaceCount_fmt = cpg_format_bytes($totalSpaceCount);
     $cpgdb->free();
     unset($tempPicCount);
     
@@ -711,7 +711,7 @@ EOT;
                 </td>
                 <td align="right" class="tablef">$totalCommentCount_fmt</td>
                 <td align="right" class="tablef">$totalPictureCount_fmt</td>
-                <td align="right" class="tablef">{$totalSpaceCount_fmt}&nbsp;{$lang_byte_units[1]}</td>
+                <td align="right" class="tablef">$totalSpaceCount_fmt</td>
         </tr>
         <tr>
             <td colspan="$number_of_columns" class="tablef" align="center" valign="middle">

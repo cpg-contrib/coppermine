@@ -11,9 +11,9 @@
 ##  ********************************************
 ##  Coppermine version: 1.5.0
 ##  $Source: /cvsroot/coppermine/devel/sql/update.sql,v $
-##  $Revision: 5087 $
+##  $Revision: 5175 $
 ##  $LastChangedBy: gaugau $
-##  $Date: 2008-10-08 13:25:27 +0530 (Wed, 08 Oct 2008) $
+##  $Date: 2008-10-24 12:43:37 +0530 (Fri, 24 Oct 2008) $
 ##  ********************************************
 
 
@@ -253,6 +253,7 @@ ALTER TABLE `CPG_users` CHANGE `user_occupation` `user_profile4` VARCHAR(255);
 
 ALTER TABLE `CPG_users` ADD `user_profile5` varchar(255) default '' NOT NULL;
 ALTER TABLE `CPG_users` ADD `user_profile6` varchar(255) default '' NOT NULL;
+ALTER TABLE `CPG_users` ADD `user_language` varchar(40) default '' NOT NULL;
 
 #
 # Enlarge password field for MD5/SHA1 hash
@@ -421,7 +422,6 @@ INSERT INTO CPG_config VALUES ('comments_anon_pfx', 'Guest_');
 
 DELETE FROM CPG_config WHERE `name` = 'admin_activate';
 INSERT INTO CPG_config VALUES ('admin_activation', '0');
-ALTER TABLE CPG_pictures CHANGE `mtime` `mtime` DATETIME;
 
 DELETE FROM CPG_exif;
 

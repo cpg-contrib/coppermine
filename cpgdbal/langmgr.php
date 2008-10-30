@@ -12,15 +12,18 @@
   ********************************************
   Coppermine version: 1.5.0
   $Source: /cvsroot/coppermine/devel/admin.php,v $
-  $Revision: 5152 $
+  $Revision: 5180 $
   $LastChangedBy: gaugau $
-  $Date: 2008-10-21 10:45:49 +0530 (Tue, 21 Oct 2008) $
+  $Date: 2008-10-24 22:11:23 +0530 (Fri, 24 Oct 2008) $
 **********************************************/
  
 define('IN_COPPERMINE', true);
 define('ADMIN_PHP', true);
 define('LANGMGR_PHP', true);
 
+/*
+To-do: make sure that the default language is not disabled
+*/
 
 require_once('include/init.inc.php');
 require_once('include/sql_parse.php');
@@ -29,10 +32,28 @@ js_include('js/langmgr.js');
 
 
 $lineBreak = "\r\n";
+$query_output_ok = '<li style="list-style-image:url(images/icons/ok.png)">%s</li>'.$lineBreak;
+$query_output_error = '<li style="list-style-image:url(images/icons/cancel.png)">%s</li>'.$lineBreak;
+$query_output = '';
 
 if (!GALLERY_ADMIN_MODE) {
     cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 }
+
+pageheader($lang_langmgr_php['title']);
+print '<form action="'.$CPG_PHP_SELF.'" method="post" name="cpgform" id="cpgform" onsubmit="return form_submit();">';
+$loader_html = '<script type="text/javascript">'.$lineBreak;
+$loader_html .= 'document.write(\'<span id="cpg_progress_bar">\');'.$lineBreak;
+if (defined('THEME_HAS_PROGRESS_GRAPHICS')) {
+    $prefix = $THEME_DIR;
+} else {
+    $prefix = '';
+}
+$loader_html .= 'document.write(\'<img src="' . $prefix . 'images/loader.gif" border="0" alt="" title="' . $lang_langmgr_php['loading'] . '" />\');'.$lineBreak;
+$loader_html .= 'document.write(\'</span>\');'.$lineBreak;
+$loader_html .= '</script>';
+$hide_icon = cpg_fetch_icon('hide_table_row', 2);
+$show_icon = cpg_fetch_icon('show_table_row', 2);
 
 // Form has been submit --- start
 if ($superCage->post->keyExists('submit')) {
@@ -130,6 +151,34 @@ if ($superCage->post->keyExists('submit')) {
         }
         //$result = cpg_db_query($query);
         $query = '';
+    } // foreach loop end
+    // Now let's set the default language // DEFAULT_LANGUAGE
+    $submit_default_id = $superCage->post->getAlpha('is_default');
+    if ($submit_default_id != DEFAULT_LANGUAGE) { // only write the change if the submit default language differs from the current default language
+        // Check if the "new" default language is enabled in the first place
+        if ($superCage->post->getAlpha('enable_'.$submit_default_id) == 'YES') {
+            cpg_config_set('lang', $submit_default_id);
+            $CONFIG['default_lang'] = $submit_default_id;
+            $query_output .= sprintf($query_output_ok, sprintf($lang_langmgr_php['default_language'], $submit_default_id));
+        } else {
+            $query_output .= sprintf($query_output_error, $lang_langmgr_php['enable_default']);
+        }
+        $query_output .= sprintf($query_output_error, 'Setting the default language doesn\'t work as expected yet. This file is still work in progress.<br />Joachim');
+    }
+    // Output status messages if applicable
+    if ($query_output != '') {
+        starttable('100%', cpg_fetch_icon('info', 2).$lang_langmgr_php['status'], 1);
+        print <<< EOT
+        <tr>
+            <td class="tableb">
+                <ul>
+                    {$query_output}
+                </ul>
+            </td>
+        </tr>
+EOT;
+        endtable;
+        print '<br />'.$lineBreak;
     }
 }
 // Form has been submit --- end
@@ -196,32 +245,7 @@ ksort($lang_language_data);
 
 
 
-pageheader($lang_langmgr_php['title']);
-print '<form action="'.$CPG_PHP_SELF.'" method="post" name="cpgform" id="cpgform">';
-starttable('100%', cpg_fetch_icon('warning', 2) . 'Under construction', 1);
-print <<< EOT
-    <tr>
-        <td class="tableb">
-          This file is "work in progress". I'm trying to come up with a comprehensive language setup tool that let's coppermine admins determine what languages actually to choose.<br />
-          Joachim
-        </td>
-    </tr>
-EOT;
-endtable();
-print '<br />'.$lineBreak;
 
-$loader_html = '<script type="text/javascript">'.$lineBreak;
-$loader_html .= 'document.write(\'<span id="cpg_progress_bar">\');'.$lineBreak;
-if (defined('THEME_HAS_PROGRESS_GRAPHICS')) {
-    $prefix = $THEME_DIR;
-} else {
-    $prefix = '';
-}
-$loader_html .= 'document.write(\'<img src="' . $prefix . 'images/loader.gif" border="0" alt="" title="' . $lang_langmgr_php['loading'] . '" />\');'.$lineBreak;
-$loader_html .= 'document.write(\'</span>\');'.$lineBreak;
-$loader_html .= '</script>';
-$hide_icon = cpg_fetch_icon('hide_table_row', 2);
-$show_icon = cpg_fetch_icon('show_table_row', 2);
 
 starttable('100%', cpg_fetch_icon('babelfish', 2) . $lang_langmgr_php['title'], 9);
 print <<< EOT
@@ -273,6 +297,11 @@ $loopCounter = 0;
 $cpg_version_determination = 'Coppermine' . ' ' . 'version:';
 foreach ($lang_language_data as $language) {
     $availability_output = '';
+    $file_lookup_errors = 0;
+    $version_warning = '';
+    $version_output = '';
+    $filesize_output = '';
+    $additional_output = '';
     if ($language['available'] == 'YES' || in_array($language['lang_id'], $lang_file_array) == TRUE) {
         // Open the file to see if they're complete translations
         $handle = @fopen('lang/'. $language['lang_id'] . '.php', 'r');
@@ -302,9 +331,13 @@ foreach ($lang_language_data as $language) {
                 $language['complete'] = 'YES';
             } else {
                 $language['complete'] = 'NO';
+                $version_warning = $lang_langmgr_php['version_does_not_match'];
             }
             // Perform the lookup for the native language name
             $language['file_native'] = strings_from_language_file('lang_name_native');
+            if ($language['file_native'] == '') {
+                $file_lookup_errors++;
+            }
             if ($language['native_name'] == '') {
             	$language['native_name'] = $language['file_native']; // Populate the native name field from the file if emtpy 
             }
@@ -315,6 +348,9 @@ foreach ($lang_language_data as $language) {
             }
             // Perform the lookup for the English language name
             $language['file_english'] = strings_from_language_file('lang_name_english');
+            if ($language['file_english'] == '') {
+                $file_lookup_errors++;
+            }
             if ($language['english_name'] == '') {
             	$language['english_name'] = $language['file_english']; // Populate the english name field from the file if emtpy 
             }
@@ -329,8 +365,12 @@ foreach ($lang_language_data as $language) {
             $language['translator_website'] = strings_from_language_file('trans_website');
             // Look up the default country code
             $language['file_flag'] = strings_from_language_file('lang_country_code');
+            if ($language['file_flag'] == '') {
+                $file_lookup_errors++;
+            }
         }
         @fclose($handle);
+        $language['file_size'] = filesize('lang/'. $language['lang_id'] . '.php');
         // Alternating colors
         if ($loopCounter/2 == floor($loopCounter/2)) {
             $cellstyle = 'tableb';
@@ -338,7 +378,7 @@ foreach ($lang_language_data as $language) {
             $cellstyle = 'tableb tableb_alternate';
         }
         // Default language
-        if ($language['lang_id'] == DEFAULT_LANGUAGE) {
+        if ($language['lang_id'] == $CONFIG['default_lang']) {
             $default_checked = 'checked="checked"';
         } else {
             $default_checked = '';
@@ -391,7 +431,7 @@ foreach ($lang_language_data as $language) {
         //  Flag new records accordingly --- end
         // Populate credits section
         if ($language['translator_name'] != '') {
-        	$translator_output = $lang_langmgr_php['tanslator_information'] . ': ';
+        	$translator_output = '<li>'.$lang_langmgr_php['tanslator_information'] . ': ';
         	if ($language['translator_website'] != '') {
         		$translator_output .= '<a href="'.$language['translator_website'].'" rel="external" class="external">';
         	}
@@ -399,19 +439,24 @@ foreach ($lang_language_data as $language) {
         	if ($language['translator_website'] != '') {
         		$translator_output .= '</a>';
         	}
+            $translator_output .= '</li>';
         } else {
         	$translator_output = '';
+            $file_lookup_errors++;
         }
         if ($language['version'] != '') {
-        	if ($translator_output != '') {
-        		$version_output = ', ';
-        	} else {
-        		$version_output = '';
-        	}
-        	$version_output .= $lang_langmgr_php['cpg_version'] . ': ' . $language['version'];
-        	
+        	$version_output .= '<li>'.$lang_langmgr_php['cpg_version'] . ': ' . $language['version'].'<br />'.$version_warning.'</li>';
         } else {
-        	$version_output = '';
+        	$version_output = '<li>'.$lang_langmgr_php['no_version'].'</li>';
+            $file_lookup_errors++;
+        }
+        if ($language['file_size'] < 100000 || $language['file_size'] > 400000) {
+            $filesize_output = '<li>';
+            $filesize_output .= sprintf($lang_langmgr_php['filesize'], round($language['file_size']/1000) . ' ' . $lang_byte_units[1]);
+            $filesize_output .= '</li>';
+        }
+        if ($file_lookup_errors > 3) {
+            $additional_output = '<li>'.$lang_langmgr_php['content_missing'].'</li>';
         }
         // Flag icon population --- start
         if ($language['flag'] != '') {
@@ -427,7 +472,7 @@ foreach ($lang_language_data as $language) {
         print <<< EOT
     <tr>
         <td class="{$cellstyle}" rowspan="2" align="center">
-          <input name="default" id="default_{$language['lang_id']}" type="radio" value="{$language['lang_id']}" class="radio" {$default_checked} {$enable_greyed_out} />
+          <input name="is_default" id="is_default_{$language['lang_id']}" type="radio" value="{$language['lang_id']}" class="radio" {$default_checked} {$enable_greyed_out} />
           <input type="hidden" name="lang_id[]" id="lang_id_{$language['lang_id']}" value="{$language['lang_id']}" />
         </td>
 EOT;
@@ -498,7 +543,14 @@ EOT;
     </tr>
     <tr>
     	<td class="{$cellstyle}" colspan="7">
-    		<span id="translator_{$loopCounter}">{$translator_output}{$version_output}</span> 
+    		<span id="translator_{$loopCounter}">
+                <ul style="margin:0px">
+                    {$translator_output}
+                    {$version_output}
+                    {$filesize_output}
+                    {$additional_output}
+                </ul>
+            </span> 
     	</td>
     </tr>
 EOT;
@@ -523,41 +575,21 @@ $submit_icon = cpg_fetch_icon('ok', 2);
 print <<< EOT
     <tr>
         <td class="tablef" colspan="6" align="center">
-            <button type="submit" class="button" name="submit" value="{$lang_common['ok']}">{$submit_icon}{$lang_common['ok']}</button>
+            <button type="submit" class="button" name="submit" id="submit" value="{$lang_common['ok']}">{$submit_icon}{$lang_common['ok']}</button>
+            <span id="cpg_form_error_message_enable_one" class="important" style="display:none;">{$lang_langmgr_php['enable_at_least_one']}</span>
+            <span id="cpg_form_error_message_not_available" class="important" style="display:none;">{$lang_langmgr_php['available_default']}</span>
+            <span id="cpg_form_error_message_not_enabled" class="important" style="display:none;">{$lang_langmgr_php['enable_default']}</span>
         </td>
         <td class="tablef" colspan="2" align="center">
         	<span id="expand_all_bottom" style="display:none"><a href="javascript:;" class="admin_menu" onclick="show_section('expand_all_bottom');show_section('collapse_all_bottom');show_section('expand_all_top');show_section('collapse_all_top');toggleExpandCollpaseButtons('expand');">{$show_icon}{$lang_langmgr_php['show_details']}</a></span>
             <span id="collapse_all_bottom" style="display:none"><a href="javascript:;" class="admin_menu" onclick="show_section('expand_all_bottom');show_section('collapse_all_bottom');show_section('expand_all_top');show_section('collapse_all_top');toggleExpandCollpaseButtons('collapse');">{$hide_icon}{$lang_langmgr_php['hide_details']}</a></span>
+            <input type="hidden" name="loopCounter" id="loopCounter" value="{$loopCounter}" />
         </td>
     </tr>
 EOT;
 endtable();
 print <<< EOT
 </form>
-EOT;
-
-print <<< EOT
-
-<script type="text/javascript">
-    addonload("show_section('collapse_all_top')");
-    addonload("show_section('collapse_all_bottom')");
-    addonload("show_section('cpg_progress_bar')");
-    
-    
-    function toggleExpandCollpaseButtons(action) 
-    {
-        for (var i = 0; i <= {$loopCounter}; i++) {
-            if (action == 'collapse') {
-                document.getElementById('translator_' + i).style.display = 'none';
-            } else {
-                document.getElementById('translator_' + i).style.display = 'block';
-            }
-        }
-    }
-    
-    function cpgReplaceTextFieldValue(fieldname, value) {
-    }    
-</script>
 EOT;
 
 pagefooter();

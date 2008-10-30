@@ -12,21 +12,25 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/versioncheck.php $
-  $Revision: 5129 $
+  $Revision: 5159 $
   $LastChangedBy: gaugau $
-  $Date: 2008-10-18 16:03:12 +0530 (Sat, 18 Oct 2008) $
+  $Date: 2008-10-22 21:57:09 +0530 (Wed, 22 Oct 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
 define('VERSIONCHECK_PHP', true);
 
 require_once('include/init.inc.php');
-require_once('include/versioncheck.inc.php');
 
 // define some vars that need to exist in JS
 
 // Include the JS for versioncheck.php
-//js_include('js/versioncheck.js');
+js_include('js/versioncheck.js');
+//js_include('js/jquery.autogrow.js');
+
+require_once('include/versioncheck.inc.php');
+
+
 
 
 if (!GALLERY_ADMIN_MODE) {
@@ -71,6 +75,18 @@ if ($superCage->get->getInt('errors_only') == '1') {
   $optionDisplayOutput_array['errors_only'] = 'checked="checked"';
 } else {
   $displayOption_array['errors_only'] = 0;
+}
+if ($superCage->get->getInt('hide_images') == '1') {
+  $displayOption_array['hide_images'] = 1;
+  $optionDisplayOutput_array['hide_images'] = 'checked="checked"';
+} else {
+  $displayOption_array['hide_images'] = 0;
+}
+if ($superCage->get->getInt('no_modification_check') == '1') {
+  $displayOption_array['no_modification_check'] = 1;
+  $optionDisplayOutput_array['no_modification_check'] = 'checked="checked"';
+} else {
+  $displayOption_array['no_modification_check'] = 0;
 }
 // Sanitize the GET vars and populate the optionsArray --- end
   

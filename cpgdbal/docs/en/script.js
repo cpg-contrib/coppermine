@@ -10,9 +10,9 @@
 
   ********************************************
   Coppermine version: 1.5.0
-  $Revision: 5129 $
+  $Revision: 5194 $
   $LastChangedBy: gaugau $
-  $Date: 2008-10-18 16:03:12 +0530 (Sat, 18 Oct 2008) $
+  $Date: 2008-10-28 14:01:50 +0530 (Tue, 28 Oct 2008) $
 **********************************************/
 
 
@@ -394,7 +394,7 @@ d.add(800,700,'Coppermine team','credits.htm#developers');
 d.add(900,700,'Contributors','credits.htm#contributors');
 d.add(950,700,'Translators','credits.htm#translators');
 d.add(1000,700,'Free code used','credits.htm#codebase');
-d.add(1100,100,'Copyrights &amp; Disclaimer','copyrights.htm');
+d.add(1100,100,'License &amp; Copyright','copyrights.htm');
 d.add(1200,100,'Known issues','known_issues.htm');
 d.add(1300,0,'Installation and setup','install.htm');
 d.add(1400,1300,'How to install the script','install.htm#how');
@@ -574,7 +574,10 @@ d.add(15000,13500,'Synchronising the bridge app groups with Coppermine\'s groups
 d.add(15020,13500,'Bridging support','bridging.htm#integrating_support_start');
 d.add(15040,13500,'Some config options get disabled','bridging.htm#integrating_config_options_start');
 d.add(15060,13500,'Bridging files','bridging.htm#integrating_files_start');
-d.add(15080,13500,'Creating a custom bridge file','bridging.htm#integrating_bridge_file_creating_start');
+d.add(15070,13500,'Creating a custom bridge file','bridging.htm#integrating_bridge_file_creating_start');
+d.add(15080,13500,'Bridging philosophy','bridging.htm#integrating_philosophy_start');
+d.add(15090,13500,'Individual bridge issues','bridging.htm#integrating_individual_bridge_issues_start');
+d.add(15100,13500,'Subdomain issues','bridging.htm#integrating_subdomain');
 d.add(15200,0,'Developer documentation','dev.htm');
 d.add(15300,15200,'Coding guidelines','dev_coding.htm');
 d.add(15310,15200,'Sanitization Superglobals (Inspekt)','dev_superglobals.htm');

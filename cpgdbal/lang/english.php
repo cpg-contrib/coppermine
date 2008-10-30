@@ -12,22 +12,22 @@
   ********************************************
   Coppermine version: 1.5.0
   $Source$
-  $Revision: 5151 $
+  $Revision: 5186 $
   $LastChangedBy: gaugau $
-  $Date: 2008-10-20 23:08:39 +0530 (Mon, 20 Oct 2008) $
+  $Date: 2008-10-27 12:26:50 +0530 (Mon, 27 Oct 2008) $
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 
 // info about translators and translated language
 $lang_translation_info = array(
-  'lang_name_english' => 'English US',
-  'lang_name_native' => 'English US',
+  'lang_name_english' => 'English (US)',
+  'lang_name_native' => 'English (US)',
   'lang_country_code' => 'us',
   'trans_name' => 'Coppermine dev team',
   'trans_email' => '',
   'trans_website' => 'http://coppermine-gallery.net/',
-  'trans_date' => '2008-10-09',
+  'trans_date' => '2008-10-26',
 );
 
 $lang_charset = 'iso-8859-1';
@@ -1297,6 +1297,7 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
   'del_all_comm' => 'Delete ALL comments',
   'upl_approval' => 'Upload approval',
   'edit_pics' => 'Edit files',
+  'edit_pic' => 'Edit file', //cpg 1.5
   'see_next' => 'See next files',
   'see_prev' => 'See previous files',
   'n_pic' => '%s files',
@@ -1638,7 +1639,15 @@ if (defined('LANGMGR_PHP')) $lang_langmgr_php = array(
   'show_details' => 'Show details',
   'loading' => 'Loading',
   'english_missing' => 'The English language file is missing although it should never be removed. You need to restore it immediately.',
-  'enable_default' => 'You chose a default language that is not enabled. Pick another default language or enable the language you selected as default!',  // js-alert
+  'enable_at_least_one' => 'You need to enable at least one language for the gallery to work',
+  'enable_default' => 'You chose a default language that is not enabled. Pick another default language or enable the language you selected as default!',
+  'available_default' => 'You chose a default language that is not even available. Pick another default language!',
+  'version_does_not_match' => 'The version of this file does not match your coppermine version. Use with caution and test thoroughly!',
+  'no_version' => 'No version information could be retrieved. It\'s very likely that this language file doesn\'t work at all or isn\'t an actual language file.',
+  'filesize' => 'Filesize %s is implausible',
+  'content_missing' => 'The file doesn\'t seem to contain the needed data, so it\'s probably not a valid language file.',
+  'status' => 'Status',
+  'default_language' => 'Default language set to %s',
 );
 
 // ------------------------------------------------------------------------- //
@@ -1946,7 +1955,7 @@ EOT;
 
 if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
   'title' => 'Review comments',
-  'no_comment' => 'There is no comment to review',
+  'no_comment' => 'There are no comments to review',
   'n_comm_del' => '%s comment(s) deleted',
   'n_comm_disp' => 'Number of comments to display',
   'see_prev' => 'See previous',
@@ -2316,7 +2325,6 @@ $lang_usermgr_php = array(
   'search_submit' => 'Go!',
   'search_result' => 'Search results for: ',
   'alert_no_selection' => 'You have to select at least one user first!', // js-alert
-  'password' => 'password',
   'select_group' => 'Select group',
   'groups_alb_access' => 'Album permissions by group',
   'category' => 'Category',
@@ -2365,8 +2373,10 @@ $lang_update_php = array(
   'mysql_said' => 'MySQL said', // cpg1.5
   'check_config_file' => 'Please check the SQL values in %s', // cpg1.5
   'performing_database_updates' => 'Performing Database Updates', // cpg1.5
+  'performing_file_updates' => 'Performing File Updates', // cpg1.5
   'already_done' => 'Already Done', // cpg1.5
   'password_encryption' => 'Encryption of passwords', // cpg1.5
+  'alb_password_encryption' => 'Encryption of album passwords', // cpg1.5
   'category_tree' => 'Category tree', // cpg1.5
   'authentication_needed' => 'Authentication needed', // cpg1.5
   'username' => 'Username', // cpg1.5
@@ -2375,6 +2385,8 @@ $lang_update_php = array(
   'check_versions' => 'It\'s recommended to %scheck your file versions%s if you just upgraded from an older version of coppermine', // cpg1.5 // Leave the %s untouched when translating - it wraps the link
   'start_page' => 'If you didn\'t (or you don\'t want to check), you can go to %syour gallery\'s start page%s', // cpg1.5 // Leave the %s untouched when translating - it wraps the link
   'errors_encountered' => 'The following errors were encountered and need to be corrected first', // cpg1.5
+  'delete_file' => 'Delete %s', // cpg1.5
+  'could_not_delete' => 'Could not delete due to missing permissions. Delete the file manually!', // cpg1.5
 );
 }
 
@@ -2518,7 +2530,8 @@ if (defined('VERSIONCHECK_PHP')) $lang_versioncheck_php = array(
   'on_screen' => 'Full Screen',
   'text_only' => 'Text-only',
   'errors_only' => 'Only show potential errors',
-  'display_images' => 'Display images',
+  'hide_images' => 'Hide images', // cpg1.5
+  'no_modification_check' => 'Don\'t check for modified files', // cpg1.5
   'do_not_connect_to_online_repository' => 'Do not connect to the online repository',
   'online_repository_explain' => 'only recommended if connection fails',
   'submit' => 'submit / refresh',

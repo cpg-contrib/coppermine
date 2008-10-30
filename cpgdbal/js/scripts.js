@@ -11,9 +11,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/js/scripts.js $
-  $Revision: 5129 $
+  $Revision: 5163 $
   $LastChangedBy: gaugau $
-  $Date: 2008-10-18 16:03:12 +0530 (Sat, 18 Oct 2008) $
+  $Date: 2008-10-22 22:02:07 +0530 (Wed, 22 Oct 2008) $
 **********************************************/
 
 function MM_openBrWindow(theURL,winName,features) { //v2.0
@@ -141,16 +141,6 @@ function hideall()
                         nodeObj.style.display = 'none';
                 }
         }
-}
-
-function expandTextarea(elementName)
-{
-        document.getElementById(elementName).rows = 10;
-}
-
-function collapseTextarea(elementName)
-{
-        document.getElementById(elementName).rows = 2;
 }
 
 function redirect(url)

@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/include/init.inc.php $
-  $Revision: 5129 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-10-18 16:03:12 +0530 (Sat, 18 Oct 2008) $
+  $Revision: 5172 $
+  $LastChangedBy: nibbler999 $
+  $Date: 2008-10-23 19:23:39 +0530 (Thu, 23 Oct 2008) $
 **********************************************/
 
 define('COPPERMINE_VERSION', '1.5.0');
@@ -26,7 +26,10 @@ set_include_path(get_include_path().PATH_SEPARATOR.dirname(__FILE__).PATH_SEPARA
 
 require_once "Inspekt.php";
 
-$superCage = Inspekt::makeSuperCage();
+// Set $strict to false to make the superglobals available
+$strict = TRUE;
+$superCage = Inspekt::makeSuperCage($strict);
+
 function cpgGetMicroTime()
 {
 	list($usec, $sec) = explode(" ", microtime());

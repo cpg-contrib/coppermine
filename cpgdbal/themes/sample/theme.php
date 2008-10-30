@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/themes/sample/theme.php $
-  $Revision: 5145 $
+  $Revision: 5195 $
   $LastChangedBy: gaugau $
-  $Date: 2008-10-19 18:02:38 +0530 (Sun, 19 Oct 2008) $
+  $Date: 2008-10-28 20:42:29 +0530 (Tue, 28 Oct 2008) $
 **********************************************/
 
 // ------------------------------------------------------------------------- //
@@ -1939,7 +1939,7 @@ function theme_admin_mode_menu()
             $param = array('{CATL}' => $cat_l,
                 '{UPL_APP_TITLE}' => $lang_gallery_admin_menu['upl_app_title'],
                 '{UPL_APP_LNK}' => $lang_gallery_admin_menu['upl_app_lnk'],
-                '{UPL_APP_ICO}' => cpg_fetch_icon('upload_approval', 1),
+                '{UPL_APP_ICO}' => cpg_fetch_icon('file_approval', 1),
                 '{ADMIN_TITLE}' => $lang_gallery_admin_menu['admin_title'],
                 '{ADMIN_LNK}' => $lang_gallery_admin_menu['admin_lnk'],
                 '{ADMIN_ICO}' => cpg_fetch_icon('config', 1),
@@ -2894,6 +2894,11 @@ function theme_html_picture()
                                 'clsid' => 'classid="clsid:6BF52A52-394A-11D3-B153-00C04F79FAA6" ',
                                 'codebase' => 'codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=5,1,52,701" ',
                                 'mime' => 'type="application/x-mplayer2" ',
+                               );
+        $players['DIVX'] = array('id' => 'DivX',
+                                'clsid' => 'classid="clsid:67DABFBF-D0AB-41fa-9C46-CC0F21721616"',
+                                'codebase' => 'codebase="http://go.divx.com/plugin/DivXBrowserPlugin.cab"',
+                                'mime' => 'type="video/divx"'
                                );
         $players['RMP'] = array('id' => 'RealPlayer',
                                 'clsid' => 'classid="clsid:CFCDAA03-8BE4-11cf-B84B-0020AFBBCCFA" ',

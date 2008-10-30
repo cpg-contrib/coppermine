@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/xp_publish.php $
-  $Revision: 5129 $
+  $Revision: 5170 $
   $LastChangedBy: gaugau $
-  $Date: 2008-10-18 16:03:12 +0530 (Sat, 18 Oct 2008) $
+  $Date: 2008-10-23 12:14:31 +0530 (Thu, 23 Oct 2008) $
 **********************************************/
 
 // ------------------------------------------------------------------------- //
@@ -23,8 +23,6 @@
 // http://www.zonageek.com/code/misc/wizards/                                //
 // ------------------------------------------------------------------------- //
 // Other information can be found on Microsoft web site                      //
-// http://www.microsoft.com/whdc/hwdev/tech/WIA/imaging/webwizard.mspx       //
-// http://msdn.microsoft.com/library/default.asp?url=/library/en-us/shellcc/platform/shell/programmersguide/shell_basics/shell_basics_extending/publishing_wizard/pubwiz_intro.asp
 // ------------------------------------------------------------------------- //
 // Original implementation comes from Gallery                                //
 // http://gallery.menalto.com                                                //

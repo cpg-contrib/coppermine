@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/bridge/udb_base.inc.php $
-  $Revision: 5129 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-10-18 16:03:12 +0530 (Sat, 18 Oct 2008) $
+  $Revision: 5164 $
+  $LastChangedBy: nibbler999 $
+  $Date: 2008-10-22 22:15:12 +0530 (Wed, 22 Oct 2008) $
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
@@ -240,9 +240,9 @@ class core_udb {
 
                 // Build WHERE clause, if this is a username search
         if ($options['search']) {
-            $options['search'] = "WHERE u.".$f['username']." LIKE '".$options['search']."' ";
+            $options['search'] = 'WHERE u.'.$f['username'].' LIKE "%'.$options['search'].'%" ';
         } else {
-			$options['search'] = "WHERE 1=1 ";
+			$options['search'] = 'WHERE 1=1 ';
 		}
 
                 // Build SQL table, should work with all bridges

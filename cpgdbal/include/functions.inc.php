@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/include/functions.inc.php $
-  $Revision: 5151 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-10-20 23:08:39 +0530 (Mon, 20 Oct 2008) $
+  $Revision: 5193 $
+  $LastChangedBy: nibbler999 $
+  $Date: 2008-10-28 04:28:22 +0530 (Tue, 28 Oct 2008) $
 **********************************************/
 
 /**
@@ -25,7 +25,7 @@
 * @copyright 2002-2007 Gregory DEMAR, Coppermine Dev Team
 * @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
 * @package Coppermine
-* @version  $Id: functions.inc.php 5151 2008-10-20 17:38:39Z gaugau $
+* @version  $Id: functions.inc.php 5193 2008-10-27 22:58:22Z nibbler999 $
 */
 
 /**
@@ -73,6 +73,10 @@ function get_meta_album_set($cat)
         $RESTRICTEDWHERE = "INNER JOIN {$CONFIG['TABLE_CATEGORIES']} AS c2 ON c2.cid = category
                                     WHERE (c2.lft BETWEEN $lft AND $rgt";
 
+	 } elseif ($cat < 0) {
+	 
+        $RESTRICTEDWHERE = "WHERE (r.aid = " . -$cat;
+	 
     } else {
         $RESTRICTEDWHERE = "WHERE (1=1";	########	cpgdbAL
         $CURRENT_CAT_DEPTH = 0;
@@ -942,13 +946,13 @@ function get_private_album_set($aid_str="")
 
           $aid_str = substr($aid_str, 0, -1);
 
-        /*  $sql = "SELECT aid, MD5(alb_password) as md5_password FROM ".$CONFIG['TABLE_ALBUMS']
+          /*$sql = "SELECT aid, alb_password FROM ".$CONFIG['TABLE_ALBUMS']
                 ." WHERE aid IN ($aid_str)";
           $result = cpg_db_query($sql);
           $albpw_db = array();
           if (mysql_num_rows($result)) {
             while ($data = mysql_fetch_array($result)) {
-              $albpw_db[$data['aid']] = $data['md5_password'];
+              $albpw_db[$data['aid']] = $data['alb_password'];
             }
           }*/
 		  ###############################     DB    ################################
@@ -957,7 +961,7 @@ function get_private_album_set($aid_str="")
 		  $albpw_db = array();
 		  if (count($rowset)) {
 			foreach ($rowset as $data) {
-				$albpw_db[$data['aid']] = MD5($data['alb_password']);
+				$albpw_db[$data['aid']] = $data['alb_password'];
 			}	//foreach
 		  }
 		  #####################################################################
@@ -1710,10 +1714,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
             $pic_count = $nbEnr[0];
             mysql_free_result($result);
 
-            //if ($select_columns != '*') $select_columns .= ', aid, owner_id, owner_name';
-            $select_columns = '*'; //allows building any data into any thumbnail caption
-
-            $query = "SELECT $select_columns
+            $query = "SELECT pid
                 	FROM {$CONFIG['TABLE_PICTURES']} AS p
                 	INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
        				$RESTRICTEDWHERE
@@ -1724,25 +1725,59 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
             //$query = "SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' $META_ALBUM_SET ORDER BY RAND() LIMIT $limit2";
 
             $result = cpg_db_query($query);
-            $rowset = array();
-            while ($row = mysql_fetch_array($result)) {
-                $rowset[-$row['pid']] = $row;
+            $pidlist = array();
+            while ($row = mysql_fetch_assoc($result)) {
+                $pidlist[] = $row['pid'];
             }
-            mysql_free_result($result);*/
+            mysql_free_result($result);
+            
+            sort($pidlist);
+            
+            //if ($select_columns != '*') $select_columns .= ', aid, owner_id, owner_name';
+            $select_columns = '*'; //allows building any data into any thumbnail caption
+
+            $query = "SELECT $select_columns
+                    FROM {$CONFIG['TABLE_PICTURES']} AS p
+                    INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
+                    WHERE pid IN (" . implode(', ', $pidlist) . ")";
+
+            //$query = "SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' $META_ALBUM_SET ORDER BY RAND() LIMIT $limit2";
+            $rowset = array();
+            // Fire the query if at least one pid is in pidlist array
+            if (count($pidlist)) {
+                $result = cpg_db_query($query);
+                while ($row = mysql_fetch_array($result)) {
+                    $rowset[-$row['pid']] = $row;
+                }
+                mysql_free_result($result);
+            }*/
 			#####################################         DB         #######################################
 			$cpgdb->query($cpg_db_functions_inc['count_get_pic_data_random'], $RESTRICTEDWHERE);
 			$nbEnr = $cpgdb->fetchRow();
 			$count = $nbEnr['count'];
 			$cpgdb->free();
-			
-			$select_columns = '*'; //allows building any data into any thumbnail caption
-			
-			$cpgdb->query($cpg_db_functions_inc['get_pic_data_random'], $select_columns, $RESTRICTEDWHERE, $limit, $first_record, $records_per_page);
-			$rowset = array();
+
+			$cpgdb->query($cpg_db_functions_inc['get_random_pid'], $RESTRICTEDWHERE, $limit, $first_record, $records_per_page);
+			$pidlist = array();
 			while ($row = $cpgdb->fetchRow()) {
-				$rowset[-$row['pid']] = $row;
+				$pidlist[] = $row['pid'];
 			}
 			$cpgdb->free();
+
+            sort($pidlist);
+
+            $rowset = array();
+            // Fire the query if at least one pid is in pidlist array
+            if (count($pidlist)) {
+                //if ($select_columns != '*') $select_columns .= ', aid, owner_id, owner_name';
+                $select_columns = '*'; //allows building any data into any thumbnail caption
+                $cpgdb->query($cpg_db_functions_inc['get_pic_data_random'], $select_columns, implode(', ', $pidlist));
+
+                while($row = $cpgdb->fetchRow()) {
+                    $rowset[-$row['pid']] = $row;
+                }
+                $cpgdb->free();
+            }
 			######################################################################################
 
             if ($set_caption) {
@@ -1928,6 +1963,131 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
     } // switch
 } // function get_pic_data
 
+// Copy of get_pic_data, created to obtain position for the given pid in the given album
+function get_pic_pos($album, $pid) 
+{
+    global $USER, $CONFIG, $CURRENT_CAT_NAME, $CURRENT_ALBUM_KEYWORD, $HTML_SUBST, $THEME_DIR, $FAVPICS, $FORBIDDEN_SET_DATA, $USER_DATA;
+    global $album_date_fmt, $lastcom_date_fmt, $lastup_date_fmt, $lasthit_date_fmt, $cat;
+    global $lang_common, $lang_get_pic_data, $lang_meta_album_names, $lang_errors;
+    global $lft, $rgt, $RESTRICTEDWHERE, $FORBIDDEN_SET;
+    ####################     DB     ###################
+    global $cpg_db_functions_inc;
+    $cpgdb =& cpgDB::getInstance();
+    $cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+    ############################################
+
+    $superCage = Inspekt::makeSuperCage();
+
+    $sort_array = array(
+        'na' => 'filename <',
+        'nd' => 'filename >',
+        'ta' => 'title <',
+        'td' => 'title >',
+        'da' => 'pid <',
+        'dd' => 'pid >',
+        'pa' => 'position <',
+        'pd' => 'position >',
+    );
+
+    $sort_code = isset($USER['sort'])? $USER['sort'] : $CONFIG['default_sort_order'];
+    $comp_order = isset($sort_array[$sort_code]) ? $sort_array[$sort_code] : $sort_array[$CONFIG['default_sort_order']];
+
+    if (count($FORBIDDEN_SET_DATA) > 0 ) {
+        $forbidden_set_string =" AND aid NOT IN (".implode(",", $FORBIDDEN_SET_DATA).")";
+    } else {
+        $forbidden_set_string = '';
+    }
+
+    // Keyword
+    if (!empty($CURRENT_ALBUM_KEYWORD)) {
+        $keyword = "OR (keywords like '%$CURRENT_ALBUM_KEYWORD%' $forbidden_set_string )";
+    } else {
+        $keyword = '';
+    }
+
+    // Regular albums
+    if ((is_numeric($album))) {
+        $album_name_keyword = get_album_name($album);
+        $album_name = $album_name_keyword['title'];
+        $album_keyword = addslashes($album_name_keyword['keyword']);
+
+        if (!empty($album_keyword)) {
+            $keyword = "OR (keywords like '%$album_keyword%' $forbidden_set_string )";
+        } else {
+            $keyword = '';
+        }
+
+        if (array_key_exists('allowed_albums',$USER_DATA) && is_array($USER_DATA['allowed_albums']) 
+                && in_array($album,$USER_DATA['allowed_albums'])) {
+            $approved = '';
+        } else {
+            $approved = GALLERY_ADMIN_MODE ? '' : 'AND approved=\'YES\'';
+        }
+
+        $approved = GALLERY_ADMIN_MODE ? '' : 'AND approved=\'YES\'';
+
+			list($param) = explode(' ', $comp_order);
+
+    		/*$result = cpg_db_query("SELECT filename, title, pid, position FROM {$CONFIG['TABLE_PICTURES']}  WHERE pid = $pid");
+    		
+    	
+    		$pic = mysql_fetch_assoc($result);
+
+			
+        $query = "SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']}
+                    WHERE ((aid='$album' $forbidden_set_string ) $keyword) $approved
+                    AND $comp_order '{$pic[$param]}'";
+                    
+        $result = cpg_db_query($query);
+        list($pos) = mysql_fetch_row($result);
+        mysql_free_result($result);*/
+        ############################################      DB     #######################################
+        $result = $cpgdb->query($cpg_db_functions_inc['get_pic_pos'], $pid);
+
+        $pic = $cpgdb->fetchRow();
+
+        $result = $cpgdb->query($cpg_db_functions_inc['count_get_pic_pos'], $album, $forbidden_set_string, 
+                                    $keyword, $approved, $comp_order, $pic[$param]);
+
+        $row = $cpgdb->fetchRow();
+        $pos = $row['count'];
+        $cpgdb->free();
+        unset($row);
+        #########################################################################################
+
+        return $pos;
+    }
+
+
+    // Meta albums
+    switch($album) {
+
+        case 'lastup': // Last uploads
+
+            /*$query = "SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']} AS p
+                    INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
+                    $RESTRICTEDWHERE
+                    AND approved = 'YES'
+						  AND pid > $pid";
+	                    
+	         $result = cpg_db_query($query);
+	         list($pos) = mysql_fetch_row($result);
+	         mysql_free_result($result);*/
+             #######################################     DB     #####################################
+             $cpgdb->query($cpg_db_functions_inc['get_pic_pos_lastup'], $RESTRICTEDWHERE, $pid);
+             $row = $cpgdb->fetchRow();
+             $pos = $row['count'];
+             $cpgdb->free();
+             unset($row);
+             #################################################################################
+
+            return $pos;
+            break;
+
+        default : // Invalid meta album
+            return FALSE;
+    } // switch
+} // function get_pic_pos
 
 // Get the name of an album
 
@@ -5008,16 +5168,18 @@ if (!function_exists('form_get_foldercontent')) {
                 $extension = ltrim(substr($file,strrpos($file,'.')),'.');
                 $filenameWithoutExtension = str_replace('.' . $extension, '', $file);
                 if (is_file($foldername . $file) && $extension == $validextension && in_array($filenameWithoutExtension, $exception_array) != TRUE) {
-                    $return_array[] = $filenameWithoutExtension;
+                    $return_array[$filenameWithoutExtension] = $filenameWithoutExtension;
                 }
             } elseif ($fileOrFolder == 'folder') {
                 if ($file != '.' && $file != '..' && in_array($file, $exception_array) != TRUE && is_dir($foldername.$file)) {
-                    $return_array[] = $file;
+                    $return_array[$file] = $file;
                 }
             }
         }
         closedir($dir);
         natcasesort($return_array);
+        //unset($return_array);
+        //$return_array = array('foo' => 'foo1', 'bar' => 'b a r');
         return $return_array;
     }
 }
@@ -5028,12 +5190,71 @@ if (!function_exists('form_get_foldercontent')) {
   * @return array: an ascotiative array of language file names (without extension) and language names
  */
 if (!function_exists('cpg_get_available_languages')) {
-    function cpg_get_available_languages ($lang='default') 
+    function cpg_get_available_languages() 
     {
         // Work in progress - GauGau
         global $CONFIG;
-        natcasesort($return_array);
-        return $return_array;
+        ############################     DB     ################################
+        global $cpg_db_functions_inc;
+        $cpgdb =& cpgDB::getInstance();
+        $cpgdb->connect_to_existing($CONFIG['LINK_ID']);
+        ##################################################################
+        // Make sure that the language table exists in the first place - 
+        // return without return value if the table doesn't exist because 
+        // the upgrade script hasn't been run
+        /*$results = cpg_db_query("SHOW TABLES LIKE '{$CONFIG['TABLE_LANGUAGE']}'");
+        if (!mysql_num_rows($results)) {
+        	// The update script has not been run - use the "old school" language file lookup and return the contents
+            $language_array = form_get_foldercontent('lang/','file', 'php');
+            ksort($language_array);
+            return $language_array;
+        }
+        mysql_free_result($results);*/
+        ##############################      DB     ##############################
+        $results = $cpgdb->query($cpg_db_functions_inc['chk_langtbl_exists']);
+        $rowset = $cpgdb->fetchRowSet();
+        if (count($rowset) == 0) {
+        	// The update script has not been run - use the "old school" language file lookup and return the contents
+            $language_array = form_get_foldercontent('lang/','file', 'php');
+            ksort($language_array);
+            return $language_array;
+        }
+        $cpgdb->free();
+        unset($rowset);
+        ##################################################################
+        unset($results);
+        
+        // get list of available languages
+        /*$results = cpg_db_query("SELECT lang_id, english_name, native_name, custom_name FROM {$CONFIG['TABLE_LANGUAGE']} WHERE available='YES' AND enabled='YES' ");
+        while ($row = mysql_fetch_array($results)) {*/
+        ###############################    DB   ###############################
+        $results = $cpgdb->query($cpg_db_functions_inc['list_available_languages']);
+        while ($row = $cpgdb->fetchRow()) {
+        ##################################################################
+            if (file_exists ('lang/'.$row['lang_id'].'.php') == TRUE) {
+                if ($row['custom_name'] != '') {
+                    $language_array[$row['lang_id']] = $row['custom_name'];
+                } elseif ($row['english_name'] != '') {
+                    $language_array[$row['lang_id']] = $row['english_name'];
+                } else {
+                    $language_array[$row['lang_id']] = str_replace('_', ' ', ucfirst($row['lang_id']));
+                }
+                if ($row['native_name'] != '' && $row['native_name'] != $language_array[$row['lang_id']]) {
+                    $language_array[$row['lang_id']] .= ' - ' . $row['native_name'];
+                }
+            }
+        } // while
+        //mysql_free_result($results);
+        $cpgdb->free(); #####   cpgdbal
+        unset($results);
+        unset($row);
+        if (count($language_array) == 0) {
+            unset($language_array);
+            $language_array = form_get_foldercontent('lang/','file', 'php');
+        }
+        // sort the array by English name
+        ksort($language_array);        
+        return $language_array;
     }
 }
 
@@ -5086,6 +5307,22 @@ function cpg_config_set($name, $value) {
 			CPG_DATABASE_LOG
 		);
 	}      
+}
+
+function cpg_format_bytes($bytes) {
+
+	global $lang_byte_units, $lang_decimal_separator;
+	
+	foreach ($lang_byte_units as $unit) {
+
+		if ($bytes < 1024) {
+			break;
+		}
+				
+		$bytes /= 1024;
+	}
+	
+	return number_format($bytes, 2, $lang_decimal_separator[1], $lang_decimal_separator[0]) . ' ' . $unit;
 }
 
 ?>

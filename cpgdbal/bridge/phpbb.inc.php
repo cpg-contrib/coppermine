@@ -13,7 +13,7 @@
   Coppermine version: 1.5.0
   $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/bridge/phpbb.inc.php $
   $Revision: 5129 $
-  $LastChangedBy: abbas-ali $
+  $LastChangedBy: gaugau $
   $Date: 2008-10-18 16:03:12 +0530 (Sat, 18 Oct 2008) $
 **********************************************/
 

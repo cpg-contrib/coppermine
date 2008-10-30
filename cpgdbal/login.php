@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/login.php $
-  $Revision: 5129 $
+  $Revision: 5175 $
   $LastChangedBy: gaugau $
-  $Date: 2008-10-18 16:03:12 +0530 (Sat, 18 Oct 2008) $
+  $Date: 2008-10-24 12:43:37 +0530 (Fri, 24 Oct 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -34,16 +34,25 @@ $login_failed = '';
 $cookie_warning = '';
 
 if ($superCage->post->keyExists('submitted')) {
+    if ($superCage->server->testip('REMOTE_ADDR')) {
+    	$ip = $superCage->server->getEscaped('REMOTE_ADDR');
+    } else {
+    	$ip = 'Unknown';
+    }
     if ( $USER_DATA = $cpg_udb->login( $superCage->post->getEscaped('username'), $superCage->post->getEscaped('password'), $superCage->post->getInt('remember_me') ) ) {
         //$referer=preg_replace("'&amp;'","&",$referer);
+        // Write the log entry
+        log_write("Successful login by Username: ".$superCage->post->getEscaped('username')." from IP $ip on " . localised_date(-1,$log_date_fmt),CPG_SECURITY_LOG);
+        // Set the language preference
+        /*$sql = "UPDATE {$CONFIG['TABLE_USERS']} SET " . "user_language = '" . $USER['lang'] . "' WHERE user_id = '" . $USER_DATA[user_id] . "'";
+        $result = cpg_db_query($sql);*/
+        ######################################    DB    ####################################
+        $cpgdb->query($cpg_db_login_php['set_user_language'], $USER['lang'], $USER_DATA[user_id]);
+        ##############################################################################
         cpgRedirectPage($CPG_REFERER, $lang_login_php['login'], sprintf($lang_login_php['welcome'], $USER_DATA['user_name']),3);
         exit;
     } else {
-        if ($superCage->server->testip('REMOTE_ADDR')) {
-        	$ip = $superCage->server->getEscaped('REMOTE_ADDR');	// IP address is already tested, hence using getRaw().
-        } else {
-        	$ip = 'Unknown';
-        }
+        // Write the log entry
         log_write("Failed login attempt with Username: ".$superCage->post->getEscaped('username')." from IP $ip on " . localised_date(-1,$log_date_fmt),CPG_SECURITY_LOG);
 
         $login_failed = <<<EOT

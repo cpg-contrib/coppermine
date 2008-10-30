@@ -205,6 +205,7 @@ CREATE TABLE CPG_users (
   user_profile5 VARCHAR(255) NOT NULL DEFAULT '',
   user_profile6 TEXT NOT NULL ,
   user_actkey VARCHAR(32) NOT NULL DEFAULT '',
+  user_language VARCHAR(40) NOT NULL DEFAULT '',
   PRIMARY KEY(user_id), UNIQUE(user_name)  );
 #-----------------------------------------------------------------------------
 

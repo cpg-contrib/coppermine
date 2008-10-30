@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/update.php $
-  $Revision: 5129 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-10-18 16:03:12 +0530 (Sat, 18 Oct 2008) $
+  $Revision: 5178 $
+  $LastChangedBy: abbas-ali $
+  $Date: 2008-10-24 17:58:45 +0530 (Fri, 24 Oct 2008) $
 **********************************************/
 
 // define('SKIP_AUTHENTICATION', true);
@@ -71,26 +71,29 @@ if (!defined('SKIP_AUTHENTICATION') && defined('COPPERMINE_VERSION') && GALLERY_
 } else { // we need to populate the language array "manually"
     $lang_common['ok'] = 'OK';
     $lang_update_php = array(
-      'title' => 'Updater', // cpg1.5
-      'welcome_updater' => 'Welcome to Coppermine update', // cpg1.5
-      'could_not_authenticate' => 'Could not authenticate you', // cpg1.5
-      'provide_admin_account' => 'Please provide your coppermine admin account details or your SQL account data', // cpg1.5
-      'try_again' => 'Try again', // cpg1.5
-      'mysql_connect_error' => 'Could not create a mySQL connection', // cpg1.5
-      'mysql_database_error' => 'mySQL could not locate a database called %s', // cpg1.5
-      'mysql_said' => 'MySQL said', // cpg1.5
-      'check_config_file' => 'Please check the SQL values in %s', // cpg1.5
-      'performing_database_updates' => 'Performing Database Updates', // cpg1.5
-      'already_done' => 'Already Done', // cpg1.5
-      'password_encryption' => 'Encryption of passwords', // cpg1.5
-      'category_tree' => 'Category tree', // cpg1.5
-      'authentication_needed' => 'Authentication needed', // cpg1.5
-      'username' => 'Username', // cpg1.5
-      'password' => 'Password', // cpg1.5
-      'update_completed' => 'Update completed', // cpg1.5
-      'check_versions' => 'It\'s recommended to %scheck your file versions%s if you just upgraded from an older version of coppermine', // cpg1.5 // Leave the %s untouched when translating - it wraps the link
-      'start_page' => 'If you didn\'t (or you don\'t want to check), you can go to %syour gallery\'s start page%s', // cpg1.5 // Leave the %s untouched when translating - it wraps the link
-      'errors_encountered' => 'The following errors were encountered and need to be corrected first', // cpg1.5
+	  'title' => 'Updater', // cpg1.5
+	  'welcome_updater' => 'Welcome to Coppermine update', // cpg1.5
+	  'could_not_authenticate' => 'Could not authenticate you', // cpg1.5
+	  'provide_admin_account' => 'Please provide your coppermine admin account details or your mySQL account data', // cpg1.5
+	  'try_again' => 'Try again', // cpg1.5
+	  'mysql_connect_error' => 'Could not create a mySQL connection', // cpg1.5
+	  'mysql_database_error' => 'mySQL could not locate a database called %s', // cpg1.5
+	  'mysql_said' => 'MySQL said', // cpg1.5
+	  'check_config_file' => 'Please check the SQL values in %s', // cpg1.5
+	  'performing_database_updates' => 'Performing Database Updates', // cpg1.5
+	  'already_done' => 'Already Done', // cpg1.5
+	  'password_encryption' => 'Encryption of passwords', // cpg1.5
+	  'alb_password_encryption' => 'Encryption of album passwords', // cpg1.5
+	  'category_tree' => 'Category tree', // cpg1.5
+	  'authentication_needed' => 'Authentication needed', // cpg1.5
+	  'username' => 'Username', // cpg1.5
+	  'password' => 'Password', // cpg1.5
+	  'update_completed' => 'Update completed', // cpg1.5
+	  'check_versions' => 'It\'s recommended to %scheck your file versions%s if you just upgraded from an older version of coppermine', // cpg1.5 // Leave the %s untouched when translating - it wraps the link
+	  'start_page' => 'If you didn\'t (or you don\'t want to check), you can go to %syour gallery\'s start page%s', // cpg1.5 // Leave the %s untouched when translating - it wraps the link
+	  'errors_encountered' => 'The following errors were encountered and need to be corrected first', // cpg1.5
+	  'delete_file' => 'Delete %s', // cpg1.5
+	  'could_not_delete' => 'Could not delete due to missing permissions. Delete the file manually!', // cpg1.5
     );
 }
 
@@ -518,10 +521,14 @@ function update_tables()
     	$update_icon = cpg_fetch_icon('update_database', 2);
     	$ok_icon = cpg_fetch_icon('ok', 2);
     	$already_done_icon = cpg_fetch_icon('info', 2);
+    	$error_icon = cpg_fetch_icon('stop', 2);
+        $file_system_icon = cpg_fetch_icon('hdd', 2);
     } else {
     	$update_icon = '';
     	$ok_icon = '';
     	$already_done_icon = '';
+    	$error_icon = '';
+        $file_system_icon = '';
     }
 
     print <<< EOT
@@ -546,63 +553,75 @@ EOT;
          * Determining if the Alter Table actually made a change
          * to properly reflect it's status on the update page.
          */
-		/*if (strpos(strtolower($q),'alter table')!==false) {
-			$query=explode(" ",$q);
-			//var_dump($query);
-			$result=mysql_query("DESCRIBE ".$query[2]);
-			while ($row=mysql_fetch_row($result)) {
-				$description[]=$row;
-			}
+        /*if (strpos(strtolower($q),'alter table')!==false) {
+            $query=explode(" ",$q);
+            //var_dump($query);
+            $result=mysql_query("DESCRIBE ".$query[2]);
+            
+            $description = array();
+            
+            while ($row=mysql_fetch_row($result)) {
+                $description[]=$row;
+            }
 
-			$result = @mysql_query($q);
-			$affected = mysql_affected_rows();
-			$warnings=mysql_query('SHOW WARNINGS');
+            $result = @mysql_query($q);
+            $affected = mysql_affected_rows();
+            $warnings=mysql_query('SHOW WARNINGS');
 
-			$result=mysql_query("DESCRIBE ".$query[2]);
-			while ($row=mysql_fetch_row($result)) {
-				$description2[]=$row;
-			}
+            $result=mysql_query("DESCRIBE ".$query[2]);
+            
+            $description2 = array();
+            
+            while ($row=mysql_fetch_row($result)) {
+                $description2[]=$row;
+            }
 
-				if ($description == $description2) {
-				   $affected = 0;
-				}
-			} else {
-				$result = @mysql_query($q);
-				$affected = mysql_affected_rows();
-				$warnings = mysql_query('SHOW WARNINGS;');
-			}	*/
-		###################   cpgdbal   #################
-		if (strpos(strtolower($q),'alter table')!==false) {
-			$query=explode(" ",$q);
-			$result=$cpgsql->query($cpg_db_update_php['get_table_structure'], $query[2]);
-			while ($row=$cpgsql->fetchRow()) {
-				$description[]=$row;
-			}
+            if ($description == $description2) {
+                $affected = 0;
+            }
+        } else {
+            $result = @mysql_query($q);
+            $affected = mysql_affected_rows();
+            $warnings = mysql_query('SHOW WARNINGS;');
+        }*/
+        ###################   cpgdbal   #################
+        if (strpos(strtolower($q),'alter table')!==false) {
+            $query=explode(" ",$q);
+            $result=$cpgsql->query($cpg_db_update_php['get_table_structure'], $query[2]);
+            
+            $description = array();
+            
+            while ($row=$cpgsql->fetchRow()) {
+                $description[]=$row;
+            }
 
-			$result = @$cpgsql->query($q);
-			$affected = $cpgsql->affectedRows();
-			if ($CONFIG['dbservername'] != 'mssql') {
-				$warnings=$cpgsql->query($cpg_db_update_php['show_warnings']);
-				$warningset = $cpgsql->fetchRowSet();
-			}
+            $result = @$cpgsql->query($q);
+            $affected = $cpgsql->affectedRows();
+            if ($CONFIG['dbservername'] != 'mssql') {
+                $warnings=$cpgsql->query($cpg_db_update_php['show_warnings']);
+                $warningset = $cpgsql->fetchRowSet();
+            }
 
-			$result=$cpgsql->query($cpg_db_update_php['get_table_structure'], $query[2]);
-			while ($row=$cpgsql->fetchRow()) {
-				$description2[]=$row;
-			}
+            $result=$cpgsql->query($cpg_db_update_php['get_table_structure'], $query[2]);
+            
+            $description2 = array();
+            
+            while ($row=$cpgsql->fetchRow()) {
+                $description2[]=$row;
+            }
 
-			if ($description == $description2) {
-			   $affected = 0;
-			}
-		} else {
-			$result = @$cpgsql->query($q);
-			$affected = $cpgsql->affectedRows();
-			if ($CONFIG['dbservername'] != 'mssql') {
-				$warnings=$cpgsql->query($cpg_db_update_php['show_warnings']);
-				$warningset = $cpgsql->fetchRowSet();
-			}
-		}
-		###########################################
+            if ($description == $description2) {
+                $affected = 0;
+            }
+        } else {
+            $result = @$cpgsql->query($q);
+            $affected = $cpgsql->affectedRows();
+            if ($CONFIG['dbservername'] != 'mssql') {
+                $warnings=$cpgsql->query($cpg_db_update_php['show_warnings']);
+                $warningset = $cpgsql->fetchRowSet();
+            }
+        }
+        ###########################################
         //if (isset($_REQUEST['debug'])) {
 		if ($superCage->get->keyExists('debug')) {
             echo '<hr />Debug output:<br />';
@@ -659,26 +678,80 @@ EOT;
                 </td>
             </tr>
 EOT;
-		/*$result = mysql_query("update {$CONFIG['TABLE_PREFIX']}users set user_password=md5(user_password);");
-		if ($CONFIG['enable_encrypted_passwords'] == 0) {
-			$result = mysql_query("update {$CONFIG['TABLE_PREFIX']}config set value = 1 WHERE name = 'enable_encrypted_passwords'");
-		} else {
-			$result = mysql_query("INSERT INTO {$CONFIG['TABLE_PREFIX']}config ( `name` , `value` ) VALUES ('enable_encrypted_passwords', '1')");
-		}*/
-		##################################      DB      #################################
-		// get user passwords and encrypt them
-		$cpgsql->query($cpg_db_update_php['get_user_passwords']);
-		$rowset = $cpgsql->fetchRowSet();
-		foreach ($rowset as $row) {
-			$md5_user_pswd = md5($row['user_password']);
-			$cpgsql->query($cpg_db_update_php['encrypt_passwords'], $md5_user_pswd, $row['user_id']);
-		}
-		if ($CONFIG['enable_encrypted_passwords'] == 0) {
-			$result = $cpgsql->query($cpg_db_update_php['enable_encryption']);
-		} else {
-			$result = $cpgsql->query($cpg_db_update_php['add_encryption_switch']);
-		}
-		##########################################################################
+        /*$result = mysql_query("update {$CONFIG['TABLE_PREFIX']}users set user_password=md5(user_password);");
+        if ($CONFIG['enable_encrypted_passwords'] == 0) {
+            $result = mysql_query("update {$CONFIG['TABLE_PREFIX']}config set value = 1 WHERE name = 'enable_encrypted_passwords'");
+        } else {
+            $result = mysql_query("INSERT INTO {$CONFIG['TABLE_PREFIX']}config ( `name` , `value` ) VALUES ('enable_encrypted_passwords', '1')");
+        }*/
+        ##################################      DB      #################################
+        // get user passwords and encrypt them
+        $cpgsql->query($cpg_db_update_php['get_user_passwords']);
+        $rowset = $cpgsql->fetchRowSet();
+        $cpgsql->free();
+        foreach ($rowset as $row) {
+            $md5_user_pswd = md5($row['user_password']);
+            $cpgsql->query($cpg_db_update_php['encrypt_passwords'], $md5_user_pswd, $row['user_id']);
+        }
+        if ($CONFIG['enable_encrypted_passwords'] == 0) {
+            $result = $cpgsql->query($cpg_db_update_php['enable_encryption']);
+        } else {
+            $result = $cpgsql->query($cpg_db_update_php['add_encryption_switch']);
+        }
+        ##########################################################################
+    } else {
+        print <<< EOT
+                <td class="{$cellStyle} updatesFail">
+                    {$already_done_icon}{$lang_update_php['already_done']}
+                </td>
+            </tr>
+EOT;
+    }
+    
+    // Check album password encryption and perform the conversion if applicable
+    if ($loopCounter/2 == floor($loopCounter/2)) {
+        $cellStyle = 'tableb';
+    } else {
+        $cellStyle = 'tableb tableb_alternate';
+    }
+    $loopCounter++;
+        print <<< EOT
+            <tr>
+                <td class="{$cellStyle}">
+                    {$lang_update_php['alb_password_encryption']}:
+                </td>
+EOT;
+    $CONFIG['enable_encrypted_alb_passwords'] = cpg_get_config_value('enable_encrypted_alb_passwords');
+    if ($CONFIG['enable_encrypted_alb_passwords'] != 1) {
+        print <<< EOT
+                <td class="{$cellStyle} updatesOK">
+                    {$ok_icon}{$lang_common['ok']}
+                </td>
+            </tr>
+EOT;
+        // Encrypt the album password but only for those albums which have a password assigned.
+        /*$result = mysql_query("update {$CONFIG['TABLE_PREFIX']}albums set alb_password=md5(alb_password) WHERE alb_password IS NOT NULL AND alb_password != '';");
+
+        if ($CONFIG['enable_encrypted_alb_passwords'] != NULL) {
+            $result = mysql_query("update {$CONFIG['TABLE_PREFIX']}config set value = 1 WHERE name = 'enable_encrypted_alb_passwords'");
+        } else {
+            $result = mysql_query("INSERT INTO {$CONFIG['TABLE_PREFIX']}config ( `name` , `value` ) VALUES ('enable_encrypted_alb_passwords', '1')");
+        }*/
+        #################################################     DB     #############################################
+        // Get the album password and encrypt them.
+        $cpgsql->query($cpg_db_update_php['get_alb_passwords']);
+        $rowset = $cpgsql->fetchRowSet();
+        $cpgsql->free();
+        foreach ($rowset as $row) {
+            $md5_alb_pswd = md5($row['alb_password']);
+            $cpgsql->query($cpg_db_update_php['encrypt_alb_passwords'], $md5_alb_pswd, $row['aid']);
+        }
+        if ($CONFIG['enable_encrypted_alb_passwords'] != NULL) {
+            $result = $cpgsql->query($cpg_db_update_php['enable_alb_encryption']);
+        } else {
+            $result = $cpgsql->query($cpg_db_update_php['alb_encryption_switch']);
+        }
+        ####################################################################################################
     } else {
         print <<< EOT
                 <td class="{$cellStyle} updatesFail">
@@ -718,6 +791,75 @@ EOT;
             </tr>
 EOT;
     }
+    
+    // Attempt to delete outdated files
+    $delete_file_array = array(
+    'config.php',
+    'editOnePic.php',
+    'faq.php',
+    'picEditor.php',
+    'relocate_server.php',
+    'scripts.js',
+    'bridge/phpbb22.inc.php',
+    'docs/COPYING',
+    'docs/faq.htm',
+    'docs/faq_de.htm',
+    'docs/faq_fr.htm',
+    'docs/index_es.htm',
+    'docs/index_fr.htm',
+    'docs/README.html',
+    'docs/showdoc.php',
+    'docs/tester-README.txt',
+    'docs/theme.htm',
+    'docs/translation.htm',
+    'docs/pics/',
+    'docs/theme/',
+    'include/config.tmp.php',
+    'include/imageObjectGD.class.php',
+    'include/imageObjectIM.class.php',
+    );
+    
+	    print <<< EOT
+            <tr>
+                <td class="tableh1" colspan="2">
+                    {$file_system_icon}{$lang_update_php['performing_file_updates']}
+                </td>
+            </tr>
+EOT;
+    // Check if the file exists in the first place
+    foreach ($delete_file_array as $delete_file) {
+	    if ($loopCounter/2 == floor($loopCounter/2)) {
+	        $cellStyle = 'tableb';
+	    } else {
+	        $cellStyle = 'tableb tableb_alternate';
+	    }
+	    $delete_output = sprintf($lang_update_php['delete_file'], '&laquo;<tt>'.$delete_file.'</tt>&raquo;');
+	    print <<< EOT
+            <tr>
+                <td class="{$cellStyle}">
+                    {$delete_output}
+                </td>
+EOT;
+	    if (file_exists($delete_file) == FALSE){
+	    	$result_output = $already_done_icon . $lang_update_php['already_done'];
+	    } else {
+	    	$delete_result = unlink($delete_file);
+	    	$delete_check = file_exists($delete_file);
+	    	if ($delete_result == TRUE && $delete_check == FALSE) {
+	    		$result_output = $ok_icon . $lang_common['ok'];
+	    	} else {
+	    		$result_output = $error_icon . $lang_update_php['could_not_delete'];
+	    	}
+	    }
+	    print <<< EOT
+                <td class="{$cellStyle}">
+                    {$result_output}
+                </td>
+            </tr>
+EOT;
+	    $loopCounter++;
+    }
+    
     
     echo "</table>";
 }

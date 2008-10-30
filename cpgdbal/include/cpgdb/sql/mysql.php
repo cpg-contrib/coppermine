@@ -216,6 +216,7 @@ if (defined('DB_INPUT_PHP') || defined('DISPLAYIMAGE_PHP')) {
                                    "author_md5_id, author_id, msg_raw_ip, msg_hdr_ip, approval) ".
                                    "VALUES ('%1\$s', '%2\$s', '%3\$s', NOW(), '', '%4\$s', '%5\$s', '%6\$s', '%7\$s')",
     //'registered_user_comment'   => "INSERT INTO {$CONFIG['TABLE_COMMENTS']} (pid, msg_author, msg_body, msg_date, author_md5_id, author_id, msg_raw_ip, msg_hdr_ip, approval) VALUES ('$pid', '" . addslashes(USER_NAME) . "', '$msg_body', NOW(), '', '" . USER_ID . "', '$raw_ip', '$hdr_ip', 'YES')",
+    'get_old_alb_passwords'     => "SELECT alb_password FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid = '%1\$s'",
     'gal_admin_update_albums'   => "UPDATE {$CONFIG['TABLE_ALBUMS']} SET title='%1\$s', description='%2\$s', category='%3\$s', ".
                                    "thumb='%4\$s', uploads='%5\$s', comments='%6\$s', votes='%7\$s', visibility='%8\$s', ".
                                    "alb_password='%9\$s', alb_password_hint='%10\$s', keyword='%11\$s', moderator_group='%12\$s' ".
@@ -644,6 +645,7 @@ if(defined('ADMIN_PHP') || defined('LANGMGR_PHP')) {
 /***********************************************************/
 if (defined('LOGIN_PHP')) {
     $cpg_db_login_php = array(
+    'set_user_language' => "UPDATE {$CONFIG['TABLE_USERS']} SET user_language = '%1\$s' WHERE user_id = '%2\$s'",
     'get_all_banned'    => "SELECT * FROM {$CONFIG['TABLE_BANNED']} WHERE ip_addr='%1\$s' OR ip_addr='%2\$s'",
     'update_banned'     => "UPDATE {$CONFIG['TABLE_BANNED']} SET brute_force='%1\$s', expiry='%2\$s' WHERE ban_id='%3\$s'",
     'new_banned'        => "INSERT INTO {$CONFIG['TABLE_BANNED']} (ip_addr, expiry, brute_force) VALUES ('%1\$s', '%2\$s','%3\$s')"
@@ -774,7 +776,7 @@ if (defined('PROFILE_PHP')) {
                                    "LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.owner_id = u.user_id  ".
                                    "WHERE user_id ='%1\$s'  GROUP BY user_id ",*/
     'get_usergroup_profile'     => "SELECT group_name, COUNT(pid) AS pic_count, ".
-                                   "ROUND(SUM(total_filesize)/1024) AS disk_usage, ".
+                                   "SUM(total_filesize) AS disk_usage, ".
                                    "group_quota FROM {$CONFIG['TABLE_USERS']} AS u ".
                                    "INNER JOIN {$CONFIG['TABLE_USERGROUPS']} AS g ON user_group = group_id ".
                                    "LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.owner_id = u.user_id ".
@@ -815,8 +817,8 @@ if (defined('REGISTER_PHP')) {
     'get_user_id_by_email'  => "SELECT user_id FROM {$CONFIG['TABLE_USERS']} WHERE user_email = '%1\$s'",
     'add_user'              => "INSERT INTO {$CONFIG['TABLE_USERS']} (user_regdate, user_active, user_actkey, ".
                                "user_name, user_password, user_email, user_profile1, user_profile2, user_profile3, ".
-                               "user_profile4, user_profile5, user_profile6) VALUES (NOW(), '%1\$s', '%2\$s', ".
-                               "'%3\$s', '%4\$s', '%5\$s', '%6\$s', '%7\$s', '%8\$s', '%9\$s', '%10\$s', '%11\$s')",
+                               "user_profile4, user_profile5, user_profile6, user_language) VALUES (NOW(), '%1\$s', '%2\$s', ".
+                               "'%3\$s', '%4\$s', '%5\$s', '%6\$s', '%7\$s', '%8\$s', '%9\$s', '%10\$s', '%11\$s', '%12\$s')",
     'add_user_album'        => "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (`title`, `category`) VALUES ('%1\$s', %2\$s)",
     'get_user_data'         => "SELECT user_active, user_email, user_name, user_password FROM {$CONFIG['TABLE_USERS']} ".
                                "WHERE user_actkey = '%1\$s'  LIMIT 1",
@@ -962,7 +964,12 @@ if (defined('UPDATE_PHP')) {
     'get_user_passwords'    => "SELECT user_id, user_password FROM {$CONFIG['TABLE_PREFIX']}users",
     'encrypt_passwords'     => "UPDATE {$CONFIG['TABLE_PREFIX']}users SET user_password='%1\$s' WHERE user_id = '%2\$s';",
     'enable_encryption'     => "UPDATE {$CONFIG['TABLE_PREFIX']}config SET value = 1 WHERE name = 'enable_encrypted_passwords'",
-    'add_encryption_switch' => "INSERT INTO {$CONFIG['TABLE_PREFIX']}config ( `name` , `value` ) VALUES ('enable_encrypted_passwords', '1')"
+    'add_encryption_switch' => "INSERT INTO {$CONFIG['TABLE_PREFIX']}config ( `name` , `value` ) VALUES ('enable_encrypted_passwords', '1')",
+    'get_alb_passwords'     => "SELECT aid, alb_password FROM {$CONFIG['TABLE_PREFIX']}albums ".
+                               "WHERE alb_password IS NOT NULL AND alb_password != '';",
+    'encrypt_alb_passwords' => "UPDATE {$CONFIG['TABLE_PREFIX']}albums SET alb_password = '%1\$s' WHERE aid = '%2\$s'",
+    'enable_alb_encryption' => "UPDATE {$CONFIG['TABLE_PREFIX']}config SET value = 1 WHERE name = 'enable_encrypted_alb_passwords'",
+    'alb_encryption_switch' => "INSERT INTO {$CONFIG['TABLE_PREFIX']}config ( `name` , `value` ) VALUES ('enable_encrypted_alb_passwords', '1')"
     //'describe_02'           => "DESCRIBE ".$query[2],
     //'show_warnings'         => 'SHOW WARNINGS;'
     );
@@ -1578,9 +1585,12 @@ $cpg_db_functions_inc = array(
                                        "AND hits > 0 ORDER BY mtime DESC %3\$s ",
     'count_get_pic_data_random'     => "SELECT COUNT(*) AS count FROM {$CONFIG['TABLE_PICTURES']} AS p ".
                                        "INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid %1\$s AND approved = 'YES'",
+    'get_random_pid'                => "SELECT pid FROM {$CONFIG['TABLE_PICTURES']} AS p ".
+                                       "INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid %1\$s AND approved = 'YES' ".
+                                       "ORDER BY RAND() %2\$s ",
     'get_pic_data_random'           => "SELECT %1\$s FROM {$CONFIG['TABLE_PICTURES']} AS p ".
-                                       "INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid %2\$s AND approved = 'YES' ".
-                                       "ORDER BY RAND() %3\$s ",
+                                       "INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid ".
+                                       "WHERE pid IN (%2\$s)",
     'count_get_pic_data_lastalb'    => "SELECT COUNT(*) AS count FROM {$CONFIG['TABLE_PICTURES']} AS p ".
                                        "INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid  %1\$s ".
                                        "AND approved = 'YES' GROUP BY p.aid",
@@ -1603,6 +1613,12 @@ $cpg_db_functions_inc = array(
     'get_pic_data_datebrowse'       => "SELECT %1\$s FROM {$CONFIG['TABLE_PICTURES']} AS p ".
                                        "INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid %2\$s ".
                                        "AND approved = 'YES' AND substring(from_unixtime(ctime),1,10) = '%3\$s' %4\$s",
+    'get_pic_pos'                   => "SELECT filename, title, pid, position FROM {$CONFIG['TABLE_PICTURES']} WHERE pid = %1\$s",
+    'count_get_pic_pos'             => "SELECT COUNT(*) AS count FROM {$CONFIG['TABLE_PICTURES']} ".
+                                       "WHERE ((aid='%1\$s' %2\$s ) %3\$s) %4\$s AND %5\$s '%6\$s'",
+    'get_pic_pos_lastup'            => "SELECT COUNT(*) AS count FROM {$CONFIG['TABLE_PICTURES']} AS p ".
+                                       "INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid ".
+                                       "%1\$s AND approved = 'YES' AND pid > %2\$s",
     'get_album_name'                => "SELECT title,keyword FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='%1\$s'",
     'get_pending_approvals'         => "SELECT COUNT(*) AS count FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'NO'",
     'count_pic_comments'            => "SELECT COUNT(msg_id) AS count FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid=%1\$s AND msg_id!=%2\$s",
@@ -1639,6 +1655,8 @@ $cpg_db_functions_inc = array(
     'get_child'                     => "SELECT cid FROM {$CONFIG['TABLE_PREFIX']}categories WHERE parent = %1\$s ORDER BY %2\$s, cid",
     'update_cat'                    => "UPDATE {$CONFIG['TABLE_PREFIX']}categories SET lft = %1\$s, rgt = %2\$s, depth = %3\$s, ".
                                        "pos = %4\$s WHERE cid = %5\$s LIMIT 1",
+    'list_available_languages'      => "SELECT lang_id, english_name, native_name, custom_name FROM {$CONFIG['TABLE_LANGUAGE']} ".
+                                       "WHERE available='YES' AND enabled='YES' ",
     'update_config_data'            => "UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '%1\$s' WHERE name = '%2\$s'",
 );
 

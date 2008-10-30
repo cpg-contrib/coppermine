@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.0
   $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/modifyalb.php $
-  $Revision: 5150 $
+  $Revision: 5176 $
   $LastChangedBy: abbas-ali $
-  $Date: 2008-10-20 18:22:49 +0530 (Mon, 20 Oct 2008) $
+  $Date: 2008-10-24 15:48:25 +0530 (Fri, 24 Oct 2008) $
 **********************************************/
 
 define('IN_COPPERMINE', true);
@@ -411,7 +411,7 @@ function form_password($text, $name)
               $text
           </td>
           <td width="60%" class="tableb" valign="top">
-            <input type="password" name="$name" value="$value" class="textinput" maxlength="32" size="34" />
+            <input type="password" name="$name" class="textinput" maxlength="32" size="34" />
           </td>
         </tr>
 EOT;

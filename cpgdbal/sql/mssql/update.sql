@@ -11,9 +11,9 @@
 ##  ********************************************
 ##  Coppermine version: 1.5.0
 ##  $Source: /cvsroot/coppermine/devel/sql/update.sql,v $
-##  $Revision: 5129 $
+##  $Revision: 5175 $
 ##  $LastChangedBy: gaugau $
-##  $Date: 2008-10-18 16:03:12 +0530 (Sat, 18 Oct 2008) $
+##  $Date: 2008-10-24 12:43:37 +0530 (Fri, 24 Oct 2008) $
 ##  ********************************************
 
 
@@ -253,8 +253,9 @@ EXEC SP_RENAME 'CPG_users.user_website' , 'user_profile3' , 'COLUMN';
 ALTER TABLE CPG_users ALTER COLUMN user_profile3 VARCHAR(255) NOT NULL DEFAULT '';
 EXEC SP_RENAME 'CPG_users.user_occupation' , 'user_profile4' , 'COLUMN';
 ALTER TABLE CPG_users ALTER COLUMN user_profile4 VARCHAR(255) NOT NULL DEFAULT '' ;
-ALTER TABLE CPG_users ADD user_profile5 varchar(255) NOT NULL default '';
-##   ALTER TABLE `CPG_users` ADD `user_profile6` varchar(255) default '' NOT NULL;	########	cpgdb_AL
+ALTER TABLE CPG_users ADD user_profile5 VARCHAR(255) NOT NULL default '';
+##   ALTER TABLE `CPG_users` ADD `user_profile6` VARCHAR(255) default '' NOT NULL;	########	cpgdb_AL
+ALTER TABLE CPG_users ADD user_language VARCHAR(40) NOT NULL default '';
 
 # -----------------------------------------------------
 ##      Enlarge password field for MD5/SHA1 hash
@@ -420,7 +421,6 @@ INSERT INTO CPG_config VALUES ('comments_anon_pfx', 'Guest_');
 
 DELETE FROM CPG_config WHERE name = 'admin_activate';
 INSERT INTO CPG_config VALUES ('admin_activation', '0');
-ALTER TABLE CPG_pictures ALTER COLUMN mtime DATETIME DEFAULT NULL;
 
 DELETE FROM CPG_exif;
 
