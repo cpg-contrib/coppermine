@@ -569,54 +569,6 @@ return $path_to_preview_image;
 
 }
 
-//**************************************************************************
-
-/* commented out this function as newer versions are in upload.php and
-logger.inc.php
-function spring_cleaning($directory_path) {
-
-global $lang_image_processor_php;
-
-//First we get the transitory directory handle.
-$directory_handle = opendir($directory_path) or die($lang_image_processor_php['no_open_trans_dir']);
-
-// Now let's read through the directory contents.
-while (!(($file = readdir($directory_handle)) === false)) {
-
-		$dir_path = "".$directory_path."/".$file."";
-
-		if (is_dir($dir_path)) {
-
-				// This is a directory, so we move on.
-				continue;
-
-		}
-
-		// We find out when the file was last accessed.
-		$access_time = fileatime($dir_path);
-
-		// We find out the current time.
-		$current_time = time();
-
-		// We calculate the the delete time. We will delete anything one hour old or older.
-		$delete_time = $current_time - 3600;
-
-		// Now we compare the two.
-		if ($access_time <= $delete_time) {
-
-				// The file is old. We delete it.
-				unlink($dir_path);
-		}
-
-}
-
-// Don't forget to close the directory.
-closedir($directory_handle);
-
-}
-*/
-
-//**********************************************************************************
 
 function make_form($next_form_action, $path_to_preview_image, $path_to_primary_image, $file_name) {
 	global $event;
