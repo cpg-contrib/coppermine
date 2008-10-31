@@ -101,7 +101,7 @@ function& getloglist($folder)
 
 
 // The function spring_cleaning is a garbage collection routine used to purge a directory of old files.
-function& spring_cleaning($directory_path, $cache_time = CPG_HOUR, $exclusion_list = array('index.html')) {
+function& spring_cleaning($directory_path, $cache_time = CPG_HOUR, $exclusion_list = array('index.html', 'index.php', 'index.htm', 'no_FTP-uploads_into_this_folder!.txt')) {
     global $CONFIG;
 
     //Storage the deleted files
