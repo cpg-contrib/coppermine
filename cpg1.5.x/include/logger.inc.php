@@ -103,63 +103,41 @@ function& getloglist($folder)
 // The function spring_cleaning is a garbage collection routine used to purge a directory of old files.
 function& spring_cleaning($directory_path, $cache_time = CPG_HOUR, $exclusion_list = array('index.html', 'index.php', 'index.htm', 'no_FTP-uploads_into_this_folder!.txt')) {
     global $CONFIG;
-
     //Storage the deleted files
     $deleted_list = array();
-
     //First we get the transitory directory handle.
     $directory_handle = opendir($directory_path);
-
     // Exit if the directory cannot be opened.
     if(!$directory_handle) {
-
-        // Return.
-        return;
-
+        return; // Return.
     }
-
     // Now let's read through the directory contents.
     while (!(($file = readdir($directory_handle)) === false)) {
-
             // Avoid deleting the index page of the directory.
             if (in_array($file,$exclusion_list)) {
-
                 // This is the index file, so we move on.
                 continue;
-
             }
-
             $dir_path = $directory_path."/".$file;
-
             if (is_dir($dir_path)) {
-
                 // This is a directory, so we move on.
                 continue;
-
             }
-
             // We find out when the file was last accessed.
             $access_time = filemtime($dir_path); // fileatime() returned incorrect value on Windows
-
             // We find out the current time.
             $current_time = time();
-
             // We calculate the the delete time. We will delete anything older than $cache_time.
             $delete_time = $current_time - $access_time;
-
             // Now we compare the two.
             if ($delete_time >= $cache_time) {
-
                     // The file is old. We delete it.
                     $deleted_list[] = $dir_path; // Store the name of the file getting deleted
                     unlink($dir_path);
             }
-
     }
-
     // Don't forget to close the directory.
     closedir($directory_handle);
-
     // For logging purposes
     if ($CONFIG['log_mode']) {
         for ( $i = 0; $i<count($deleted_list); $i++ ) {
