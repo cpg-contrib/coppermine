@@ -18,20 +18,6 @@
 
 
 #
-# Table structure for table `CPG_sessions`
-#
-
-CREATE TABLE CPG_sessions (
-  session_id varchar(40) NOT NULL default '',
-  user_id int(11) default '0',
-  time int(11) default NULL,
-  remember int(1) default '0',
-  PRIMARY KEY (session_id)
-) TYPE=MyISAM COMMENT='Used to store sessions';
-
-
-
-#
 # Table structure for table `CPG_categorymap`
 #
 
@@ -40,19 +26,6 @@ CREATE TABLE IF NOT EXISTS `CPG_categorymap` (
   group_id int(11) NOT NULL,
   PRIMARY KEY  (cid,group_id)
 ) ENGINE=MyISAM COMMENT='Holds the categories where groups can create albums';
-
-
-
-#
-# Table structure for table `CPG_filetypes`
-#
-
-CREATE TABLE CPG_filetypes (
-  extension char(7) NOT NULL default '',
-  mime varchar(70) default NULL,
-  content char(15) default NULL,
-  KEY extension (extension)
-) TYPE=MyISAM COMMENT='Used to store the file extensions';
 
 # Create temporary table to store messages carried over from one page to the other
 CREATE TABLE CPG_temp_messages (
@@ -69,13 +42,6 @@ ALTER TABLE CPG_filetypes ADD `player` VARCHAR( 5 ) ;
 ALTER TABLE CPG_filetypes CHANGE `mime` `mime` CHAR(254) default NULL;
 
 
-INSERT INTO CPG_config VALUES ('allowed_img_types', 'jpeg/jpg/png/gif');
-
-INSERT INTO CPG_config VALUES ('allowed_mov_types', 'asf/asx/mpg/mpeg/wmv/swf/avi/mov');
-
-INSERT INTO CPG_config VALUES ('allowed_snd_types', 'mp3/midi/mid/wma/wav/ogg');
-
-INSERT INTO CPG_config VALUES ('allowed_doc_types', 'doc/txt/rtf/pdf/xls/pps/ppt/zip/gz/mdb');
 INSERT INTO CPG_filetypes VALUES ('001', 'application/001', 'document', '');
 INSERT INTO CPG_filetypes VALUES ('7z', 'application/7z', 'document', '');
 INSERT INTO CPG_filetypes VALUES ('arj', 'application/arj', 'document', '');
@@ -138,26 +104,10 @@ INSERT INTO CPG_filetypes VALUES ('onetmp', 'application/onenote', 'document', '
 INSERT INTO CPG_filetypes VALUES ('onepkg', 'application/onenote', 'document', '');
 
 
-#
-# Add default media player for movie/audio files
-#
-UPDATE CPG_filetypes SET player='WMP' WHERE extension IN ('asf','asx','mpg','mpeg','wmv','avi','mp3','midi','mid','wma','wav');
-UPDATE CPG_filetypes SET player='QT' WHERE extension IN ('mov');
-UPDATE CPG_filetypes SET player='RMP' WHERE extension IN ('ra','ram','rm');
-UPDATE CPG_filetypes SET player='SWF' WHERE extension IN ('swc','swf');
-
-
-INSERT INTO CPG_config VALUES ('display_film_strip_filename', '0');
-# INSERT INTO CPG_config VALUES ('display_admin_uploader','0');
-INSERT INTO CPG_config VALUES ('display_filename','0');
 INSERT INTO CPG_config VALUES ('global_registration_pw','');
 
 #movie download link -> to picinfo
 INSERT INTO CPG_config VALUES ('picinfo_movie_download_link', '1');
-
-INSERT INTO CPG_config VALUES ('log_mode', '0');
-
-INSERT INTO CPG_config VALUES ('media_autostart', '1');
 
 INSERT INTO CPG_config VALUES ('rating_stars_amount', '5');
 INSERT INTO CPG_config VALUES ('old_style_rating', '0');
@@ -187,72 +137,9 @@ INSERT INTO CPG_config VALUES ('thumb_height', '140');
 ALTER TABLE `CPG_albums` ADD `owner` int(11)  NOT NULL DEFAULT '1' AFTER `category`;
 
 
-#
-# Table structure for table `CPG_banned`
-#
-
-CREATE TABLE CPG_banned (
-        ban_id int(11) NOT NULL auto_increment,
-        user_id int(11) DEFAULT NULL,
-        ip_addr tinytext,
-        expiry datetime DEFAULT NULL,
-        PRIMARY KEY  (ban_id)
-) TYPE=MyISAM;
-
 UPDATE `CPG_config` SET value='$/\\\\:*?"\'<>|` &' WHERE name='forbiden_fname_char';
 
-#
-# Fix usermgr timing out with 1k+ users -Omni
-#
-## Disabled dropping the index 'owner_id' since it gets recreated.
-## ALTER TABLE CPG_pictures DROP INDEX ( `owner_id` );
-ALTER TABLE CPG_pictures DROP INDEX ( `owner_id_2` );
-ALTER TABLE CPG_pictures ADD INDEX owner_id( `owner_id` );
 
-
-#
-# Allows user gallery icons
-#
-ALTER TABLE CPG_pictures ADD `galleryicon` INT UNSIGNED DEFAULT '0' NOT NULL AFTER `approved`;
-
-#
-# Record the last hit IP
-#
-
-ALTER TABLE `CPG_pictures` ADD `lasthit_ip` TINYTEXT ;
-
-#
-# Table structure for table `CPG_favpics`
-#
-
-CREATE TABLE `CPG_favpics` (
-`user_id` INT( 11 ) NOT NULL ,
-`user_favpics` TEXT NOT NULL ,
-PRIMARY KEY ( `user_id` )
-) COMMENT = 'Stores the server side favourites';
-
-
-#
-# Table structure for table `CPG_dict`
-#
-
-CREATE TABLE CPG_dict (
-  keyId bigint(20) NOT NULL auto_increment,
-  keyword varchar(60) NOT NULL default '',
-  PRIMARY KEY  (keyId)
-) TYPE=MyISAM  COMMENT = 'Holds the keyword dictionary';
-
-#
-# Add config profile rows
-#
-
-ALTER TABLE `CPG_users` CHANGE `user_location` `user_profile1` VARCHAR(255);
-ALTER TABLE `CPG_users` CHANGE `user_interests` `user_profile2` VARCHAR(255);
-ALTER TABLE `CPG_users` CHANGE `user_website` `user_profile3` VARCHAR(255);
-ALTER TABLE `CPG_users` CHANGE `user_occupation` `user_profile4` VARCHAR(255);
-
-ALTER TABLE `CPG_users` ADD `user_profile5` varchar(255) default '' NOT NULL;
-ALTER TABLE `CPG_users` ADD `user_profile6` varchar(255) default '' NOT NULL;
 ALTER TABLE `CPG_users` ADD `user_language` varchar(40) default '' NOT NULL;
 
 #
@@ -263,175 +150,21 @@ ALTER TABLE `CPG_users` CHANGE `user_password` `user_password` VARCHAR( 40 ) NOT
 
 
 
-INSERT INTO CPG_config VALUES ('user_profile1_name', 'Location');
-INSERT INTO CPG_config VALUES ('user_profile2_name', 'Interests');
-INSERT INTO CPG_config VALUES ('user_profile3_name', 'Website');
-INSERT INTO CPG_config VALUES ('user_profile4_name', 'Occupation');
-INSERT INTO CPG_config VALUES ('user_profile5_name', '');
-INSERT INTO CPG_config VALUES ('user_profile6_name', 'Biography');
-
-
-INSERT INTO CPG_config VALUES ('language_fallback', '0');
-
-INSERT INTO CPG_config VALUES ('time_offset', '0');
-
-ALTER TABLE `CPG_users` CHANGE `user_profile6` `user_profile6` TEXT NOT NULL;
-
-ALTER TABLE `CPG_albums` ADD `alb_password` varchar(32) default '';
-
-INSERT INTO CPG_config VALUES ('ban_private_ip', '0');
-
-INSERT INTO CPG_config VALUES ('smtp_host', '');
-INSERT INTO CPG_config VALUES ('smtp_username', '');
-INSERT INTO CPG_config VALUES ('smtp_password', '');
-
-INSERT INTO CPG_config VALUES ('enable_plugins', '1');
-
-CREATE TABLE CPG_plugins (
-  plugin_id int(10) unsigned NOT NULL auto_increment,
-  name varchar(64) NOT NULL default '',
-  path varchar(128) NOT NULL default '',
-  priority int(10) unsigned NOT NULL default '0',
-  PRIMARY KEY  (plugin_id),
-  UNIQUE KEY name (name),
-  UNIQUE KEY path (path)
-) TYPE=MyISAM COMMENT='Stores the plugins';
-
-INSERT INTO CPG_config VALUES ('allow_email_change', '0');
-INSERT INTO CPG_config VALUES ('show_which_exif', '|0|0|0|0|0|0|0|0|1|0|1|1|0|0|0|0|0|0|0|0|0|0|0|1|0|0|0|1|0|0|0|1|1|0|0|0|0|1|0|0|0|1|0|0|1|1|0|0|0|0|0|1|0|1|1');
-INSERT INTO CPG_config VALUES ('alb_desc_thumb', '1');
-
-ALTER TABLE `CPG_albums` ADD `alb_password_hint` TEXT ;
-
-INSERT INTO CPG_config VALUES ('categories_alpha_sort', '0');
-ALTER TABLE `CPG_banned` ADD `brute_force` TINYINT( 5 ) DEFAULT '0' NOT NULL ;
 INSERT INTO CPG_config VALUES ('login_method', 'username');
-INSERT INTO CPG_config VALUES ('login_threshold', '5');
-INSERT INTO CPG_config VALUES ('login_expiry', '10');
-INSERT INTO CPG_config VALUES ('clickable_keyword_search', '1');
-INSERT INTO CPG_config VALUES ('link_pic_count', '0');
-ALTER TABLE CPG_pictures ADD position INT(11) DEFAULT '0' NOT NULL;
 
-INSERT INTO CPG_config VALUES ('auto_resize', '0');
-
-#
-# Table structure for table `CPG_bridge`
-#
-
-CREATE TABLE CPG_bridge (
-  name varchar(40) NOT NULL default '0',
-  value varchar(255) NOT NULL default '',
-  UNIQUE KEY name (name)
-) TYPE=MyISAM;
-
-#
-# Data for table `CPG_bridge`
-# Used for bridging by user interface
-#
-
-INSERT INTO CPG_bridge VALUES ('short_name', '');
-INSERT INTO CPG_bridge VALUES ('license_number', '');
-INSERT INTO CPG_bridge VALUES ('db_database_name', '');
-INSERT INTO CPG_bridge VALUES ('db_hostname', '');
-INSERT INTO CPG_bridge VALUES ('db_username', '');
-INSERT INTO CPG_bridge VALUES ('db_password', '');
-INSERT INTO CPG_bridge VALUES ('full_forum_url', '');
-INSERT INTO CPG_bridge VALUES ('relative_path_of_forum_from_webroot', '');
-INSERT INTO CPG_bridge VALUES ('relative_path_to_config_file', '');
-INSERT INTO CPG_bridge VALUES ('logout_flag', '');
-INSERT INTO CPG_bridge VALUES ('use_post_based_groups', '');
-INSERT INTO CPG_bridge VALUES ('cookie_prefix', '');
-INSERT INTO CPG_bridge VALUES ('table_prefix', '');
-INSERT INTO CPG_bridge VALUES ('user_table', '');
-INSERT INTO CPG_bridge VALUES ('session_table', '');
-INSERT INTO CPG_bridge VALUES ('group_table', '');
-INSERT INTO CPG_bridge VALUES ('group_relation_table', '');
-INSERT INTO CPG_bridge VALUES ('group_mapping_table', '');
-INSERT INTO CPG_bridge VALUES ('use_standard_groups', '1');
-INSERT INTO CPG_bridge VALUES ('validating_group', '');
-INSERT INTO CPG_bridge VALUES ('guest_group', '');
-INSERT INTO CPG_bridge VALUES ('member_group', '');
-INSERT INTO CPG_bridge VALUES ('admin_group', '');
-INSERT INTO CPG_bridge VALUES ('banned_group', '');
-INSERT INTO CPG_bridge VALUES ('global_moderators_group', '');
-INSERT INTO CPG_bridge VALUES ('recovery_logon_failures', '0');
-INSERT INTO CPG_bridge VALUES ('recovery_logon_timestamp', '');
-
-
-INSERT INTO CPG_config VALUES ('bridge_enable', '0');
-
-#
-# Table structure for table 'CPG_vote_stats'
-#
-CREATE TABLE CPG_vote_stats (
-  `sid` int(11) NOT NULL auto_increment,
-  `pid` varchar(100) NOT NULL default '',
-  `rating` smallint(6) NOT NULL default '0',
-  `ip` varchar(20) NOT NULL default '',
-  `sdate` bigint(20) NOT NULL default '0',
-  `referer` text NOT NULL,
-  `browser` varchar(255) NOT NULL default '',
-  `os` varchar(50) NOT NULL default '',
-  PRIMARY KEY  (`sid`)
-);
-
-INSERT INTO CPG_config VALUES ('vote_details', '0');
-
-CREATE TABLE CPG_hit_stats (
-  `sid` int(11) NOT NULL auto_increment,
-  `pid` varchar(100) NOT NULL default '',
-  `ip` varchar(20) NOT NULL default '',
-  `search_phrase` varchar(255) NOT NULL default '',
-  `sdate` bigint(20) NOT NULL default '0',
-  `referer` text NOT NULL,
-  `browser` varchar(255) NOT NULL default '',
-  `os` varchar(50) NOT NULL default '',
-  `uid` INT(11) NOT NULL default '0',
-  PRIMARY KEY  (`sid`)
-);
 
 ALTER TABLE `CPG_hit_stats` ADD `uid` INT(11) NOT NULL default '0' ;
 
-INSERT INTO CPG_config VALUES ('hit_details', '0');
-
-INSERT INTO CPG_config VALUES ('browse_batch_add', '1');
-
-INSERT INTO CPG_config VALUES ('custom_header_path', '');
-INSERT INTO CPG_config VALUES ('custom_footer_path', '');
-
-INSERT INTO CPG_config VALUES ('comments_sort_descending', '0');
-
-INSERT INTO CPG_config VALUES ('report_post', '0');
-
-INSERT INTO CPG_config VALUES ('users_can_edit_pics', '0');
 
 INSERT INTO CPG_config VALUES ('allow_unlogged_access', '3');
 
-INSERT INTO CPG_config VALUES ('home_target', 'index.php');
-
-DELETE FROM CPG_config WHERE `name` = 'comment_email_notification';
-DELETE FROM CPG_config WHERE `name` = 'hide_admin_uploader';
 DELETE FROM CPG_config WHERE `name` = 'vanity_block';
 DELETE FROM CPG_config WHERE `name` = 'display_faq';
 
-INSERT INTO CPG_config VALUES ('custom_lnk_name', '');
-INSERT INTO CPG_config VALUES ('custom_lnk_url', '');
-INSERT INTO CPG_config VALUES ('comments_anon_pfx', 'Guest_');
 
-DELETE FROM CPG_config WHERE `name` = 'admin_activate';
-INSERT INTO CPG_config VALUES ('admin_activation', '0');
-
-DELETE FROM CPG_exif;
-
-#
-# Remove support for random keying that has been abandoned.
-#
-DELETE FROM CPG_config WHERE `name` = 'randpos_interval';
-ALTER TABLE CPG_pictures DROP INDEX `randpos`;
-ALTER TABLE CPG_pictures DROP `randpos`;
 
 # MySQL 5 compat fixes
-ALTER TABLE `CPG_pictures` CHANGE `mtime` `mtime` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00';
+
 ALTER TABLE `CPG_albums` CHANGE `description` `description` TEXT NOT NULL;
 
 # Add display of rating on thumbnails page
@@ -585,11 +318,10 @@ CREATE TABLE IF NOT EXISTS CPG_languages (
 
 INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, available, enabled, complete) VALUES ('english', 'English (US)', 'English (US)', 'us', 'YES', 'YES', 'YES');
 INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, available, enabled, complete) VALUES ('german', 'German (informal)', 'Deutsch (Du)', 'de', 'YES', 'YES', 'NO');
-INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, available, enabled, complete) VALUES ('welsh', 'Welsh','Cymraeg','wales', 'YES', 'NO', 'NO');
+
 
 
 UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='english';
 UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='german';
-UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='vietnamese';
 
 INSERT INTO CPG_config VALUES ('display_xp_publish_link', '0');

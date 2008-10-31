@@ -268,7 +268,7 @@ CREATE TABLE CPG_exif (
 
 CREATE TABLE IF NOT EXISTS CPG_filetypes (
   extension char(7) NOT NULL default '',
-  mime varchar(70) default NULL,
+  mime char(254) default NULL,
   content char(15) default NULL,
   player varchar(5) default NULL,
   PRIMARY KEY (extension)
