@@ -27,7 +27,7 @@ INSERT INTO CPG_config VALUES ('ecards_more_pic_target', 'http://yoursite.tld/yo
 INSERT INTO CPG_config VALUES ('home_target', 'index.php');
 INSERT INTO CPG_config VALUES ('enable_zipdownload', '0');
 INSERT INTO CPG_config VALUES ('time_offset', '0');
-INSERT INTO CPG_config VALUES ('enable_help', '2');
+INSERT INTO CPG_config VALUES ('enable_help', '1');
 INSERT INTO CPG_config VALUES ('clickable_keyword_search', '1');
 INSERT INTO CPG_config VALUES ('enable_plugins', '1');
 INSERT INTO CPG_config VALUES ('ban_private_ip', '0');
