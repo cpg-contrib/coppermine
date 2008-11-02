@@ -43,10 +43,10 @@ $tasks =  array(
                 <input type="radio" name="updatetype" id="updatetype3" value="2" class="nobg" /><label for="updatetype3" class="clickable_option">'.$lang_util_php['update_both'].'</label><br />
                 <input type="radio" name="updatetype" id="updatetype5" value="4" class="nobg" /><label for="updatetype5" class="clickable_option">'.$lang_util_php['update_full'].'</label><br />
                 <input type="radio" name="updatetype" id="updatetype4" value="3" checked="checked" class="nobg" /><label for="updatetype4" class="clickable_option">'.$lang_util_php['update_full_normal'].'</label><br />
-                <input type="radio" name="updatetype" id="updatetype6" value="5" class="nobg" /><label for="updatetype6" class="clickable_option">'.$lang_util_php['update_full_normal_thumb'].'</label><br />
+                <input type="radio" name="updatetype" id="updatetype6" value="5" class="nobg" /><label for="updatetype6" class="clickable_option">'.$lang_util_php['update_full_normal_thumb'].'</label><hr />
                 '.$lang_util_php['update_number'].'
-                <input type="text" name="numpics" value="'.$defpicnum.'" size="5" class="textinput" /><br />'.$lang_util_php['update_option'].'<br /><br />
-                <input type="checkbox" name="autorefresh" checked="checked" value="1" class="nobg" />'.$lang_util_php['autorefresh']
+                <input type="text" name="numpics" value="'.$defpicnum.'" size="5" class="textinput" /> '.$lang_util_php['update_option'].'<br />
+                <input type="checkbox" name="autorefresh" id="autorefresh" checked="checked" value="1" class="checkbox" /><label for="autorefresh">'.$lang_util_php['autorefresh'].'</label><br />'
                 ),
 
         'filename_to_title' => array('filename_to_title', $lang_util_php['filename_title'],'
@@ -99,13 +99,14 @@ if ($superCage->post->keyExists('action') && $matches = $superCage->post->getMat
 
 if (array_key_exists($action, $tasks)){
         call_user_func($action);
-        echo "<br /><a href=\"util.php\">{$lang_util_php['back']}</a>";
+        echo '<br /><a href="util.php?t='.date('His').trim(floor(rand(0, 1000))).'#admin_tools">'.$lang_util_php['back'].'</a>';
 } else {
 
         $help = '&nbsp;'.cpg_display_help('f=admin-tools.htm&amp;as=admin_tools&amp;ae=admin_tools_end&amp;top=1', '600', '400');
 
 
-        echo '<br /><form name="cpgform" id="cpgform" action="util.php" method="post">';
+        print '<br /><form name="cpgform" id="cpgform" action="util.php" method="post">';
+        print '<a name="admin_tools"></a>';
         starttable('100%', cpg_fetch_icon('util',2) . $lang_util_php['title'].$help, 1);
 
         $loopCounter = 0;
@@ -173,6 +174,8 @@ EOT;
 function my_flush()
 {
         print str_repeat(" ", 4096); // force a flush;
+        flush();
+        ob_flush();
 }
 
 function del_titles()
@@ -321,13 +324,21 @@ function update_thumbs()
         } else {
             $startpic = 0;
         }
-        echo "<h2>{$lang_util_php['thumbs_wait']}</h2>";
+        print '<a name="admin_tool_thumb_update"></a>';
+        starttable('100%', cpg_fetch_icon('util', 2) . $lang_util_php['thumbs_wait']);
 
         $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} $albstr LIMIT $startpic, $numpics");
         $count = mysql_num_rows($result);
+        $loopCounter = 0;
 
         while ($row = mysql_fetch_assoc($result)) {
 
+                $loopCounter++;
+                if ($loopCounter/2 == floor($loopCounter/2)) {
+                	$tablestyle = 'tableb tableb_alternate';
+                } else {
+                	$tablestyle = 'tableb';
+                } 
                 $image = $CONFIG['fullpath'] . $row['filepath'] . $row['filename'];
                 $normal = $CONFIG['fullpath'] . $row['filepath'] . $CONFIG['normal_pfx'] . $row['filename'];
                 $thumb = $CONFIG['fullpath'] . $row['filepath'] . $CONFIG['thumb_pfx'] . $row['filename'];
@@ -344,10 +355,10 @@ function update_thumbs()
                 $imagesize = cpg_getimagesize($work_image);
                 if ($updatetype == 0 || $updatetype == 2 || $updatetype == 5)  {
                     if (resize_image($work_image, $thumb, $CONFIG['thumb_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use'], "false", 1)) {
-                        echo $thumb .' '. $lang_util_php['updated_successfully'] . '!<br />';
+                        echo '<tr><td class="'.$tablestyle.'">' . $thumb .' '. $lang_util_php['updated_successfully'] . $loopCounter . '</td></tr>';
                         my_flush();
                     } else {
-                        echo $lang_util_php['error_create'] . ':$thumb<br />';
+                        echo '<tr><td class="'.$tablestyle.'">' . $lang_util_php['error_create'] . ':$thumb</td></tr>';
                         my_flush();
                     }
                 }
@@ -356,10 +367,10 @@ function update_thumbs()
                     ($CONFIG['enable_watermark'] == '1' && $CONFIG['which_files_to_watermark'] == 'both' || $CONFIG['which_files_to_watermark'] == 'resized') ? $watermark="true" : $watermark="false";
                     if (max($imagesize[0], $imagesize[1]) > $CONFIG['picture_width'] && $CONFIG['make_intermediate']) {
                         if (resize_image($work_image, $normal, $CONFIG['picture_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use'], $watermark)) {
-                            echo $normal . " " . $lang_util_php['updated_successfully'] . '!<br />';
+                            echo '<tr><td class="'.$tablestyle.'">' . $normal . " " . $lang_util_php['updated_successfully'] . '!</td></tr>';
                             my_flush();
                         } else {
-                            echo $lang_util_php['error_create'] . ':$normal<br />';
+                            echo '<tr><td class="'.$tablestyle.'">' . $lang_util_php['error_create'] . ':$normal</td></tr>';
                             my_flush();
                         }
                     }
@@ -379,10 +390,10 @@ function update_thumbs()
                         if (copy($image, $orig)) {
                             if ($CONFIG['enable_watermark'] == '1' && $CONFIG['which_files_to_watermark'] == 'both' || $CONFIG['which_files_to_watermark'] == 'original') {
                                 if (resize_image($work_image, $image, $max_size_size, $CONFIG['thumb_method'], $resize_method, 'true')) {
-                                    echo $image . " " . $lang_util_php['updated_successfully'] . '!<br />';
+                                    echo '<tr><td class="'.$tablestyle.'">' . $image . " " . $lang_util_php['updated_successfully'] . '!' . '</td></tr>';
                                     my_flush();
                                 } else {
-                                    echo $lang_util_php['error_create'] . ':$image<br />';
+                                    echo '<tr><td class="'.$tablestyle.'">' . $lang_util_php['error_create'] . ':$image' . '</td></tr>';
                                     my_flush();
                                 }
                             }
@@ -390,26 +401,26 @@ function update_thumbs()
                     } else {
                         if ($CONFIG['enable_watermark'] == '1' && $CONFIG['which_files_to_watermark'] == 'both' || $CONFIG['which_files_to_watermark'] == 'original') {
                             if (resize_image($work_image, $image, $max_size_size, $CONFIG['thumb_method'], $resize_method, 'true')) {
-                                echo $image . " " . $lang_util_php['updated_successfully'] . '!<br />';
+                                echo '<tr><td class="'.$tablestyle.'">' . $image . " " . $lang_util_php['updated_successfully'] . '!' . '</td></tr>';
                                 my_flush();
                             } else {
-                                echo $lang_util_php['error_create'] . ':$image<br />';
+                                echo '<tr><td class="'.$tablestyle.'">' . $lang_util_php['error_create'] . ':$image' . '</td></tr>';
                                 my_flush();
                             }
                         } else {
                             if (((USER_IS_ADMIN && $CONFIG['auto_resize'] == 1) || (!USER_IS_ADMIN && $CONFIG['auto_resize'] > 0)) && max($imagesize[0], $imagesize[1]) > $CONFIG['max_upl_width_height']) {
                                 if (resize_image($work_image, $image, $max_size_size, $CONFIG['thumb_method'], $resize_method, 'false')) {
-                                    echo $image . " " . $lang_util_php['updated_successfully'] . '!<br />';
+                                    echo '<tr><td class="'.$tablestyle.'">' . $image . " " . $lang_util_php['updated_successfully'] . '!' . '</td></tr>';
                                     my_flush();
                                 } else {
-                                    echo $lang_util_php['error_create'] . ':$image<br />';
+                                    echo '<tr><td class="'.$tablestyle.'">' . $lang_util_php['error_create'] . ':$image' . '</td></tr>';
                                     my_flush();
                                 }
                             } elseif (copy($orig, $image)) {
-                                echo $orig . " " . $lang_util_php['updated_successfully'] . '!<br />';
+                                echo '<tr><td class="'.$tablestyle.'">' . $orig . " " . $lang_util_php['updated_successfully'] . '!' . '</td></tr>';
                                 my_flush();
                             } else {
-                                echo $lang_util_php['error_create'] . ':$image<br />';
+                                echo '<tr><td class="'.$tablestyle.'">' . $lang_util_php['error_create'] . ':$image' . '</td></tr>';
                                 my_flush();
                             }
                         }
@@ -426,23 +437,29 @@ function update_thumbs()
             $startpic += $numpics;
             if($autorefresh) {
                 echo <<< EOT
-                <meta http-equiv="refresh" content="1; URL=util.php?numpics={$numpics}&startpic={$startpic}&albumid={$albumid}&autorefresh={$autorefresh}&action=update_thumbs&updatetype={$updatetype}">
+                <meta http-equiv="refresh" content="1; URL=util.php?numpics={$numpics}&startpic={$startpic}&albumid={$albumid}&autorefresh={$autorefresh}&action=update_thumbs&updatetype={$updatetype}#admin_tool_thumb_update">
 EOT;
             } else {
                 echo <<< EOT
-                <form action="util.php" method="post">
-                    <input type="hidden" name="action" value="update_thumbs" />
-                    <input type="hidden" name="numpics" value="$numpics" />
-                    <input type="hidden" name="startpic" value="$startpic" />
-                    <input type="hidden" name="updatetype" value="$updatetype" />
-                    <input type="hidden" name="albumid" value="$albumid" />
-                    <input type="hidden" name="autorefresh" value="$autorefresh" />
-                    <input type="submit" value="{$lang_util_php['continue']}" class="button" />
-                </form>
+                <tr>
+	                <td class="tablef">
+		                <form action="util.php#admin_tool_thumb_update" method="post">
+		                    <input type="hidden" name="action" value="update_thumbs" />
+		                    <input type="hidden" name="numpics" value="$numpics" />
+		                    <input type="hidden" name="startpic" value="$startpic" />
+		                    <input type="hidden" name="updatetype" value="$updatetype" />
+		                    <input type="hidden" name="albumid" value="$albumid" />
+		                    <input type="hidden" name="autorefresh" value="$autorefresh" />
+		                    <input type="submit" value="{$lang_util_php['continue']}" class="button" />
+		                </form>
+	                </td>
+                </tr>
 EOT;
             }
+        } else {
+        	echo '<tr><td class="tablef">' . $lang_util_php['finished'] . '</td></tr>';
         }
-        else echo $lang_util_php['finished'];
+        endtable();
 }
 
 function deletbackup_img()

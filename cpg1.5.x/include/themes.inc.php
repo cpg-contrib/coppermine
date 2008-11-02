@@ -257,7 +257,7 @@ $template_gallery_admin_menu = <<<EOT
                             <!-- END log_ecards -->
                                 <div class="admin_menu admin_float"><a href="picmgr.php" title="{PICTURES_TITLE}">{PICTURES_ICO}{PICTURES_LNK}</a></div>
                                 <div class="admin_menu admin_float"><a href="searchnew.php" title="{SEARCHNEW_TITLE}">{SEARCHNEW_ICO}{SEARCHNEW_LNK}</a></div>
-                                <div class="admin_menu admin_float"><a href="util.php" title="{UTIL_TITLE}">{UTIL_ICO}{UTIL_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="util.php?t={TIME_STAMP}#admin_tools" title="{UTIL_TITLE}">{UTIL_ICO}{UTIL_LNK}</a></div>
                                 <div class="admin_menu admin_float"><a href="profile.php?op=edit_profile" title="{MY_PROF_TITLE}">{MY_PROF_ICO}{MY_PROF_LNK}</a></div>
                             <!-- BEGIN documentation -->
                                 <div class="admin_menu admin_float"><a href="{DOCUMENTATION_HREF}" title="{DOCUMENTATION_TITLE}">{DOCUMENTATION_ICO}{DOCUMENTATION_LNK}</a></div>
@@ -2091,6 +2091,7 @@ function theme_admin_mode_menu()
                 '{EXPORT_TITLE}' => $lang_gallery_admin_menu['export_title'],
                 '{EXPORT_LNK}' => $lang_gallery_admin_menu['export_lnk'],
                 '{EXPORT_ICO}' => cpg_fetch_icon('export', 1),
+                '{TIME_STAMP}' => date('His').trim(floor(rand(0, 1000))),
                 );
 
             $html = template_eval($template_gallery_admin_menu, $param);
