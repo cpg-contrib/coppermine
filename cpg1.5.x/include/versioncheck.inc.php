@@ -145,12 +145,12 @@ function cpg_versioncheckDisplayOptions() {
     </td>
   </tr>
   <tr>
-    <td class="tableb tableb_alternate" valign="top">
+    <td class="tableb" valign="top">
       <label for="hide_images">
         {$filter_icon}{$lang_versioncheck_php['hide_images']}{$help_hide_images}
       </label>
     </td>
-    <td class="tableb tableb_alternate" valign="top">
+    <td class="tableb" valign="top">
       <input type="checkbox" name="hide_images" id="hide_images" value="1" class="checkbox" {$optionDisplayOutput_array['hide_images']} />
     </td>
   </tr>
