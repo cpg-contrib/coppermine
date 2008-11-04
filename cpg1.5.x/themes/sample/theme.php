@@ -3404,7 +3404,7 @@ EOT;
 // Display the full size image
 function theme_display_fullsize_pic()
 {
-    global $CONFIG, $THEME_DIR, $ALBUM_SET, $pid;
+    global $CONFIG, $THEME_DIR, $FORBIDDEN_SET, $pid;
     global $lang_errors, $lang_fullsize_popup, $lang_charset;
 
     $superCage = Inspekt::makeSuperCage();
@@ -3413,7 +3413,7 @@ function theme_display_fullsize_pic()
       printf($lang_errors['login_needed'],'','','','');
       die();
     }
-    //if (isset($_GET['picfile'])){
+    //if (isset($_GET['picfile'])) {
     if ($superCage->get->keyExists('picfile')) {
         if (!GALLERY_ADMIN_MODE) {
           cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
@@ -3427,7 +3427,7 @@ function theme_display_fullsize_pic()
         $imagedata = array('name' => $picfile, 'path' => path2url($picname), 'geometry' => $imagesize[3]);
     } elseif (pid) {
         //$pid = (int)$_GET['pid'];
-        $sql = "SELECT * " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='$pid' $ALBUM_SET";
+        $sql = "SELECT * " . "FROM {$CONFIG['TABLE_PICTURES']} AS p " . "WHERE pid='$pid' $FORBIDDEN_SET";
         $result = cpg_db_query($sql);
         if (!mysql_num_rows($result)) {
             cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
@@ -3457,12 +3457,11 @@ function theme_display_fullsize_pic()
     td { vertical-align: middle; text-align:center; }
   </style>
 
-  <script type="text/javascript" src="js/scripts.js"></script>
+  <script type="text/javascript" src="js/jquery.js"></script>
+  <script type="text/javascript" src="js/jquery.dimensions.pack.js"></script>
+  <script type="text/javascript" src="js/displayimage.fullsize.js"></script>
   </head>
   <body style="margin:0px; padding:0px; background-color: gray;">
-    <script language="JavaScript" type="text/JavaScript">
-      adjust_popup();
-    </script>
 <?php
   if ($CONFIG['transparent_overlay'] == 1) {
 ?>
@@ -3489,24 +3488,19 @@ function theme_display_fullsize_pic()
 <?php
   } else {
 ?>
-    <table class="fullsize">
-      <tr>
-        <td>
-          <div id="content">
-              <?php     echo  '<a href="javascript: window.close()"><img src="'
-                . htmlspecialchars($imagedata['path']) . '" '
-                . $imagedata['geometry']
-                . 'alt="'
-                . htmlspecialchars($imagedata['name'])
-                . '" title="'
-                . htmlspecialchars($imagedata['name'])
-                . "\n" . $lang_fullsize_popup['click_to_close']
-                . '" /></a><br />' ."\n";
-               ?>
-          </div>
-        </td>
-      </tr>
-    </table>
+
+  <div id="content">
+      <?php     echo  '<a href="javascript: window.close()"><img src="'
+        . htmlspecialchars($imagedata['path']) . '" '
+        . $imagedata['geometry']
+        . 'id="fullsize_image" alt="'
+        . htmlspecialchars($imagedata['name'])
+        . '" title="'
+        . htmlspecialchars($imagedata['name'])
+        . "\n" . $lang_fullsize_popup['click_to_close']
+        . '" /></a><br />' ."\n";
+       ?>
+  </div>
 <?php
   }
 

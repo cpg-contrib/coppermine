@@ -8189,6 +8189,14 @@
     <hash>9745158866bf9d0be9c23315a8e661cb</hash>
   </element>
   <element>
+    <fullpath>js/displayimage.fullsize.js</fullpath>
+    <version>1.5.0</version>
+    <revision>5129</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>9745158866bf9d0be9c23315a8e661cb</hash>
+  </element>
+  <element>
     <fullpath>js/displayimage.js</fullpath>
     <version>1.5.0</version>
     <revision>5129</revision>
@@ -8205,7 +8213,31 @@
     <hash>5abba087669fb2e1473fd118849c7e72</hash>
   </element>
   <element>
+    <fullpath>js/jquery.dimensions.pack.js</fullpath>
+    <version>1.5.0</version>
+    <revision>5129</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>5abba087669fb2e1473fd118849c7e72</hash>
+  </element>
+  <element>
     <fullpath>js/jquery.js</fullpath>
+    <version>1.5.0</version>
+    <revision>5129</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>7168b7affc18e89c6e15e6a2146f57ea</hash>
+  </element>
+  <element>
+    <fullpath>js/langmgr.js</fullpath>
+    <version>1.5.0</version>
+    <revision>5129</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>7168b7affc18e89c6e15e6a2146f57ea</hash>
+  </element>
+  <element>
+    <fullpath>js/minibrowser.js</fullpath>
     <version>1.5.0</version>
     <revision>5129</revision>
     <status>mandatory</status>
