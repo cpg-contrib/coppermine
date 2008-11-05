@@ -658,7 +658,7 @@ class core_udb {
 			
 		if (!empty($albums[0])) {
 			foreach ($albums[0] as $aid => $title) {
-				echo sprintf('<option style="padding-left: %dpx" value="%d">%s</option>', $padding, $aid, $title);
+				echo sprintf('<option style="padding-left: %dpx" value="%d">%s</option>'."\n", $padding, $aid, $title);
 			}
 		}
 		
@@ -688,18 +688,18 @@ class core_udb {
                         $p = (count($elements) - 1) * $padding;
 		
 			// category header
-			echo '<option style="padding-left: '.$p.'px; color: black; font-weight: bold" disabled="disabled">' . $heirarchy . '</option>';
+			echo '<option style="padding-left: '.$p.'px; color: black; font-weight: bold" disabled="disabled">' ."\n". $heirarchy . '</option>' . "\n";
 			
 			// albums in the category
 			if (!empty($albums[$row['cid']])) {
 				foreach ($albums[$row['cid']] as $aid => $title) {
-					echo sprintf('<option style="padding-left: %dpx" value="%d">%s</option>', $p+$padding, $aid, $title);
+					echo sprintf('<option style="padding-left: %dpx" value="%d">%s</option>' . "\n", $p+$padding, $aid, $title);
 				}
 			}
                 }
 
                 // User galleries
-		echo '<option style="padding-left: 0px; color: black; font-weight: bold" disabled="disabled">User galleries</option>';
+		echo '<option style="padding-left: 0px; color: black; font-weight: bold" disabled="disabled">User galleries</option>' . "\n";
 
                 $result = cpg_db_query("SELECT {$this->field['user_id']} AS user_id, {$this->field['username']} AS user_name FROM {$this->usertable} ORDER BY {$this->field['username']}");
 
@@ -711,10 +711,10 @@ class core_udb {
 			
 		        if (!empty($albums[$user['user_id'] + FIRST_USER_CAT])) {
 		
-			        echo '<option style="padding-left: ' . $padding . 'px; color: black; font-weight: bold" disabled="disabled">' . $user['user_name'] . '</option>';
+			        echo '<option style="padding-left: ' . $padding . 'px; color: black; font-weight: bold" disabled="disabled">' . $user['user_name'] . '</option>' . "\n";
 
 			        foreach ($albums[$user['user_id'] + FIRST_USER_CAT] as $aid => $title) {
-				        echo sprintf('<option style="padding-left: %dpx" value="%d">%s</option>', $padding * 2, $aid, $title);
+				        echo sprintf('<option style="padding-left: %dpx" value="%d">%s</option>' . "\n", $padding * 2, $aid, $title);
 			        }
 		        }
 		}
@@ -723,7 +723,8 @@ class core_udb {
 		unset($albums);
 	   
                 print '</select> (3)';
-                print '&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="'.$lang_util_php['submit_form'].'" class="button" /> (4)';
+                print '&nbsp;&nbsp;&nbsp;&nbsp;';
+                print '<button type="submit" class="button" name="submit" id="submit" value="'.$lang_util_php['submit_form'].'">'.$lang_util_php['submit_form'].' '.cpg_fetch_icon('ok', 2).'</button> (4)';
                 print '</form>';
         }
 

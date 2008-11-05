@@ -27,11 +27,22 @@ require('include/picmgmt.inc.php');
 $defpicnum = 25; // Default number of pictures to process at a time when rebuilding thumbs or normals:
 $dayolder = 365; // Default number of days for deleting files older than xxx days {Frantz}
 $lineBreak = "\r\n";
+$icon_array = array();
+$icon_array['continue'] = cpg_fetch_icon('right', 2);
+$icon_array['back'] = cpg_fetch_icon('leftleft', 2);
+$icon_array['delete_all'] = cpg_fetch_icon('delete', 2);
+$icon_array['ok'] = cpg_fetch_icon('ok', 2);
 if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
 pageheader($lang_util_php['title']);
 
 // 'action name (for the $_REQUEST)' => array('function name','title for main page','description/options for main page')
+
+if ($CONFIG['make_intermediate'] == 1) {
+	$intermediate_create_string = $lang_util_php['enabled'];
+} else {
+	$intermediate_create_string = $lang_util_php['disabled'];
+}
 
 $tasks =  array(
 
@@ -63,7 +74,7 @@ $tasks =  array(
 
         'del_orig' => array('del_orig', $lang_util_php['delete_original'], $lang_util_php['delete_original_explanation']),
 
-        'del_norm' => array('del_norm', $lang_util_php['delete_intermediate'], $lang_util_php['delete_intermediate_explanation']),
+        'del_norm' => array('del_norm', $lang_util_php['delete_intermediate'], $lang_util_php['delete_intermediate_explanation1'].'<br />'.$lang_util_php['delete_intermediate_explanation2'].'<br />'.sprintf($lang_util_php['delete_intermediate_check'], $intermediate_create_string)),
 
         'del_old' => array('del_old',
                            $lang_util_php['delete_old'],
@@ -99,13 +110,13 @@ if ($superCage->post->keyExists('action') && $matches = $superCage->post->getMat
 
 if (array_key_exists($action, $tasks)){
         call_user_func($action);
-        echo '<br /><a href="util.php?t='.date('His').trim(floor(rand(0, 1000))).'#admin_tools">'.$lang_util_php['back'].'</a>';
+        echo '<br /><a href="util.php?t='.date('His').trim(floor(rand(0, 1000))).'#admin_tools" class="admin_menu">'.$icon_array['back']. ' ' . $lang_util_php['back'].'</a>';
 } else {
 
         $help = '&nbsp;'.cpg_display_help('f=admin-tools.htm&amp;as=admin_tools&amp;ae=admin_tools_end&amp;top=1', '600', '400');
 
 
-        print '<br /><form name="cpgform" id="cpgform" action="util.php" method="post">';
+        print '<br /><form name="cpgform" id="cpgform" action="util.php?t='.date('His').trim(floor(rand(0, 1000))).'#admin_tools" method="post">';
         print '<a name="admin_tools"></a>';
         starttable('100%', cpg_fetch_icon('util',2) . $lang_util_php['title'].$help, 1);
 
@@ -269,24 +280,29 @@ function filename_to_title()
 
 function filloptions()
 {
-        global $CONFIG, $lang_util_php;
+        global $CONFIG, $lang_util_php, $icon_array;
 
         $result = cpg_db_query("SELECT aid, category, IF(user_name IS NOT NULL, CONCAT('(', user_name, ') ',title), CONCAT(' - ', title)) AS title " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "LEFT JOIN {$CONFIG['TABLE_USERS']} AS u ON category = (" . FIRST_USER_CAT . " + user_id) " . "ORDER BY category, title");
 
-        echo "&nbsp;&nbsp;&nbsp;&nbsp;<select size='1' name='albumid' class='listbox'><option value='0'>{$lang_util_php['all_albums']}</option>";
+        echo <<< EOT
+        &nbsp;&nbsp;&nbsp;&nbsp;<select size="1" name="albumid" class="listbox"><option value="0">{$lang_util_php['all_albums']}</option>
+EOT;
 
         while ($row = mysql_fetch_array($result)){
             $result2 = cpg_db_query("SELECT name FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = {$row['category']}");
             $row2 = mysql_fetch_assoc($result2);
-            echo "<option value=\"{$row['aid']}\">{$row2['name']} {$row['title']}</option>";
+            echo "<option value=\"{$row['aid']}\">{$row2['name']} {$row['title']}</option>\n";
         }
 
-        echo '</select> (3)&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="'.$lang_util_php['submit_form'].'" class="button" /> (4)';
+        echo <<< EOT
+        </select> (3)&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="submit" class="button" name="submit" id="submit" value="{$lang_util_php['submit_form']}">{$lang_util_php['submit_form']} {$icon_array['ok']}</button> (4)
+EOT;
 }
 
 function update_thumbs()
 {
-        global $CONFIG, $lang_util_php;
+        global $CONFIG, $lang_util_php, $icon_array;
 
         $superCage = Inspekt::makeSuperCage();
         //$albumid = (isset($_REQUEST['albumid'])) ? $_REQUEST['albumid'] : 0;
@@ -330,9 +346,16 @@ function update_thumbs()
         $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} $albstr LIMIT $startpic, $numpics");
         $count = mysql_num_rows($result);
         $loopCounter = 0;
+        $allowedImageExtensionArray = explode('/', $CONFIG['allowed_img_types']);
 
         while ($row = mysql_fetch_assoc($result)) {
-
+			$extension = ltrim(substr($row['filename'],strrpos($row['filename'],'.')),'.');
+			//print $row['filepath'] . $row['filename'] . '|'.$extension. '|'.$CONFIG['allowed_img_types'].'<br />';
+			if (in_array($extension, $allowedImageExtensionArray) == TRUE) { // the file is an image --- end
+                //print_r($row);
+                //print ltrim(substr($row['filename'],strrpos($row['filename'],'.')),'.');
+                //die;
+                // ltrim(substr($row['filename'],strrpos($row['filename'],'.')),'.');
                 $loopCounter++;
                 if ($loopCounter/2 == floor($loopCounter/2)) {
                 	$tablestyle = 'tableb tableb_alternate';
@@ -342,23 +365,23 @@ function update_thumbs()
                 $image = $CONFIG['fullpath'] . $row['filepath'] . $row['filename'];
                 $normal = $CONFIG['fullpath'] . $row['filepath'] . $CONFIG['normal_pfx'] . $row['filename'];
                 $thumb = $CONFIG['fullpath'] . $row['filepath'] . $CONFIG['thumb_pfx'] . $row['filename'];
-                $orig=$CONFIG['fullpath'] . $row['filepath'] . $CONFIG['orig_pfx'] . $row['filename'];
+                $orig = $CONFIG['fullpath'] . $row['filepath'] . $CONFIG['orig_pfx'] . $row['filename'];
 
                 if (file_exists($orig)) {
-                        $work_image=$orig;
+                        $work_image = $orig;
                         $orig_true='true';
                 } else {
-                        $work_image=$image;
-                        $orig_true='false';
+                        $work_image = $image;
+                        $orig_true = 'false';
                 }
 
                 $imagesize = cpg_getimagesize($work_image);
                 if ($updatetype == 0 || $updatetype == 2 || $updatetype == 5)  {
                     if (resize_image($work_image, $thumb, $CONFIG['thumb_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use'], "false", 1)) {
-                        echo '<tr><td class="'.$tablestyle.'">' . $thumb .' '. $lang_util_php['updated_successfully'] . $loopCounter . '</td></tr>';
+                        echo '<tr><td class="'.$tablestyle.'">' . cpg_fetch_icon('ok', 2) . '<tt>' . $thumb .'</tt> '. $lang_util_php['updated_successfully'] . '</td></tr>';
                         my_flush();
                     } else {
-                        echo '<tr><td class="'.$tablestyle.'">' . $lang_util_php['error_create'] . ':$thumb</td></tr>';
+                        echo '<tr><td class="'.$tablestyle.'">' . cpg_fetch_icon('stop', 2) . $lang_util_php['error_create'] . ': <tt>' . $thumb.'</tt></td></tr>';
                         my_flush();
                     }
                 }
@@ -367,10 +390,10 @@ function update_thumbs()
                     ($CONFIG['enable_watermark'] == '1' && $CONFIG['which_files_to_watermark'] == 'both' || $CONFIG['which_files_to_watermark'] == 'resized') ? $watermark="true" : $watermark="false";
                     if (max($imagesize[0], $imagesize[1]) > $CONFIG['picture_width'] && $CONFIG['make_intermediate']) {
                         if (resize_image($work_image, $normal, $CONFIG['picture_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use'], $watermark)) {
-                            echo '<tr><td class="'.$tablestyle.'">' . $normal . " " . $lang_util_php['updated_successfully'] . '!</td></tr>';
+                            echo '<tr><td class="'.$tablestyle.'">' . cpg_fetch_icon('ok', 2) . '<tt>' . $normal . "</tt> " . $lang_util_php['updated_successfully'] . '!</td></tr>';
                             my_flush();
                         } else {
-                            echo '<tr><td class="'.$tablestyle.'">' . $lang_util_php['error_create'] . ':$normal</td></tr>';
+                            echo '<tr><td class="'.$tablestyle.'">' . cpg_fetch_icon('stop', 2) . $lang_util_php['error_create'] . ': <tt>' . $normal . '</tt></td></tr>';
                             my_flush();
                         }
                     }
@@ -390,10 +413,10 @@ function update_thumbs()
                         if (copy($image, $orig)) {
                             if ($CONFIG['enable_watermark'] == '1' && $CONFIG['which_files_to_watermark'] == 'both' || $CONFIG['which_files_to_watermark'] == 'original') {
                                 if (resize_image($work_image, $image, $max_size_size, $CONFIG['thumb_method'], $resize_method, 'true')) {
-                                    echo '<tr><td class="'.$tablestyle.'">' . $image . " " . $lang_util_php['updated_successfully'] . '!' . '</td></tr>';
+                                    echo '<tr><td class="'.$tablestyle.'">' . cpg_fetch_icon('ok', 2) . '<tt>' . $image . "</tt> " . $lang_util_php['updated_successfully'] . '!' . '</td></tr>';
                                     my_flush();
                                 } else {
-                                    echo '<tr><td class="'.$tablestyle.'">' . $lang_util_php['error_create'] . ':$image' . '</td></tr>';
+                                    echo '<tr><td class="'.$tablestyle.'">' . cpg_fetch_icon('stop', 2) . $lang_util_php['error_create'] . ': <tt>' . $image . '</tt></td></tr>';
                                     my_flush();
                                 }
                             }
@@ -401,26 +424,26 @@ function update_thumbs()
                     } else {
                         if ($CONFIG['enable_watermark'] == '1' && $CONFIG['which_files_to_watermark'] == 'both' || $CONFIG['which_files_to_watermark'] == 'original') {
                             if (resize_image($work_image, $image, $max_size_size, $CONFIG['thumb_method'], $resize_method, 'true')) {
-                                echo '<tr><td class="'.$tablestyle.'">' . $image . " " . $lang_util_php['updated_successfully'] . '!' . '</td></tr>';
+                                echo '<tr><td class="'.$tablestyle.'">' . cpg_fetch_icon('ok', 2) . '<tt>' . $image . "</tt> " . $lang_util_php['updated_successfully'] . '!' . '</td></tr>';
                                 my_flush();
                             } else {
-                                echo '<tr><td class="'.$tablestyle.'">' . $lang_util_php['error_create'] . ':$image' . '</td></tr>';
+                                echo '<tr><td class="'.$tablestyle.'">' . cpg_fetch_icon('stop', 2) . $lang_util_php['error_create'] . ': <tt>' . $image . '</tt></td></tr>';
                                 my_flush();
                             }
                         } else {
                             if (((USER_IS_ADMIN && $CONFIG['auto_resize'] == 1) || (!USER_IS_ADMIN && $CONFIG['auto_resize'] > 0)) && max($imagesize[0], $imagesize[1]) > $CONFIG['max_upl_width_height']) {
                                 if (resize_image($work_image, $image, $max_size_size, $CONFIG['thumb_method'], $resize_method, 'false')) {
-                                    echo '<tr><td class="'.$tablestyle.'">' . $image . " " . $lang_util_php['updated_successfully'] . '!' . '</td></tr>';
+                                    echo '<tr><td class="'.$tablestyle.'">' . cpg_fetch_icon('ok', 2) . '<tt>' . $image . "</tt> " . $lang_util_php['updated_successfully'] . '!' . '</td></tr>';
                                     my_flush();
                                 } else {
-                                    echo '<tr><td class="'.$tablestyle.'">' . $lang_util_php['error_create'] . ':$image' . '</td></tr>';
+                                    echo '<tr><td class="'.$tablestyle.'">' . cpg_fetch_icon('stop', 2) . $lang_util_php['error_create'] . ': <tt>' . $image . '</tt></td></tr>';
                                     my_flush();
                                 }
                             } elseif (copy($orig, $image)) {
-                                echo '<tr><td class="'.$tablestyle.'">' . $orig . " " . $lang_util_php['updated_successfully'] . '!' . '</td></tr>';
+                                echo '<tr><td class="'.$tablestyle.'">' . cpg_fetch_icon('ok', 2) . '<tt>' . $orig . "</tt> " . $lang_util_php['updated_successfully'] . '!' . '</td></tr>';
                                 my_flush();
                             } else {
-                                echo '<tr><td class="'.$tablestyle.'">' . $lang_util_php['error_create'] . ':$image' . '</td></tr>';
+                                echo '<tr><td class="'.$tablestyle.'">' . cpg_fetch_icon('stop', 2) . $lang_util_php['error_create'] . ': <tt>' . $image . '</tt></td></tr>';
                                 my_flush();
                             }
                         }
@@ -430,6 +453,10 @@ function update_thumbs()
                 $imagesize = cpg_getimagesize($image);
                 $query_up = "UPDATE {$CONFIG['TABLE_PICTURES']} SET pwidth='$imagesize[0]' , pheight='$imagesize[1]' WHERE pid='".$row['pid']."' ";
                 cpg_db_query($query_up);
+			} else { // the file is an image --- end
+				echo '<tr><td class="'.$tablestyle.'">' . cpg_fetch_icon('cancel', 2) . sprintf($lang_util_php['no_image'], '<tt>' . $row['filepath'] . $row['filename'] . '</tt>') . '</td></tr>';
+				my_flush();
+			}
         }
 
         if ($count == $numpics) {
@@ -440,17 +467,18 @@ function update_thumbs()
                 <meta http-equiv="refresh" content="1; URL=util.php?numpics={$numpics}&startpic={$startpic}&albumid={$albumid}&autorefresh={$autorefresh}&action=update_thumbs&updatetype={$updatetype}#admin_tool_thumb_update">
 EOT;
             } else {
-                echo <<< EOT
+                print <<< EOT
                 <tr>
 	                <td class="tablef">
 		                <form action="util.php#admin_tool_thumb_update" method="post">
 		                    <input type="hidden" name="action" value="update_thumbs" />
-		                    <input type="hidden" name="numpics" value="$numpics" />
-		                    <input type="hidden" name="startpic" value="$startpic" />
-		                    <input type="hidden" name="updatetype" value="$updatetype" />
-		                    <input type="hidden" name="albumid" value="$albumid" />
-		                    <input type="hidden" name="autorefresh" value="$autorefresh" />
-		                    <input type="submit" value="{$lang_util_php['continue']}" class="button" />
+		                    <input type="hidden" name="numpics" value="{$numpics}" />
+		                    <input type="hidden" name="startpic" value="{$startpic}" />
+		                    <input type="hidden" name="updatetype" value="{$updatetype}" />
+		                    <input type="hidden" name="albumid" value="{$albumid}" />
+		                    <input type="hidden" name="autorefresh" value="{$autorefresh}" />
+		                    <!--<input type="submit" value="{$lang_util_php['continue']}" class="button" />-->
+		                    <button type="submit" class="button" name="submit" id="submit" value="{$lang_util_php['continue']}">{$lang_util_php['continue']} {$icon_array['continue']}</button>
 		                </form>
 	                </td>
                 </tr>
@@ -578,7 +606,7 @@ function del_norm()
 
 function del_orphans()
 {
-    global $CONFIG, $lang_util_php, $lang_common;
+    global $CONFIG, $lang_util_php, $lang_common, $icon_array;
 
     $superCage = Inspekt::makeSuperCage();
     $count = 0;
@@ -619,7 +647,7 @@ function del_orphans()
                     <input type="hidden" name="action" value="del_orphans" />
                     <input type="hidden" name="del" value="all" />
                     {$lang_util_php['delete_all_orphans']}
-                    <input type="submit" value="{$lang_util_php['delete_all']}" class="button" />
+		            <button type="submit" class="button" name="submit" id="submit" value="{$lang_util_php['delete_all']}">{$lang_util_php['delete_all']} {$icon_array['delete_all']}</button>
             </form>
 EOT;
         }
@@ -825,7 +853,8 @@ function refresh_db()
                                 <input type="hidden" name="refresh_numpics" value="$numpics" />
                                 <input type="hidden" name="refresh_startpic" value="$startpic" />
                                 <input type="hidden" name="albumid" value="$albumid" />
-                                <input type="submit" value="{$lang_util_php['continue']}" class="button" />
+                                <!--<input type="submit" value="{$lang_util_php['continue']}" class="button" />-->
+                                <button type="submit" class="button" name="submit" id="submit" value="{$lang_util_php['continue']}">{$lang_util_php['continue']} {$icon_array['continue']}</button>
                         </form>
 EOT;
         }
