@@ -1450,7 +1450,7 @@ $lang_pluginmgr_php = array(
   'not_plugin_package' => 'Die hochgeladene Datei ist kein Plugin-Paket.', //cpg1.4
   'copy_error' => 'Beim Kopieren des Pakets in das Plugin-Verzeichnis ist ein Fehler aufgetreten.', //cpg1.4
   'upload' => 'Hochladen', //cpg1.4
-  'configure_plugin' => 'Plugin knfigurieren', //cpg1.4
+  'configure_plugin' => 'Plugin konfigurieren', //cpg1.4
   'cleanup_plugin' => 'Plugin bereinigen', //cpg1.4
 );
 }
