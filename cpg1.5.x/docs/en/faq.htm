@@ -64,7 +64,6 @@
 </ul>
 <li><strong>Add-ons / Modifications / Hacks</strong></li>
 <ul class="nomargin">
-<li><a class="content" href="#rightHandMenu">How can I create a menu that's shown on the <strong>right side</strong> of the gallery?</a></li>
 <li><a class="content" href="#jumpToPrivateAlbum">How can I send a user <strong>directly to his private album</strong> once he logs in?</a></li>
 <li><a class="content" href="#linksInCustomFields">How do I enable clickable <strong>links in custom user fields</strong>?</a></li>
 <li><a class="content" href="#addFooterBeforePoweredBy">How can I <strong>add</strong> some output <strong>directly before</strong> the line &quot;Powered by Coppermine&quot;?</a></li>
@@ -208,42 +207,7 @@ This will only work on linux/unix and apache servers AND only if you're allowed 
 
 <a name="hacks"></a><h2>Add-ons / Modifications / Hacks<a href="#hacks" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 
-<a name="rightHandMenu"></a>
-<h3>How can I create a menu that's shown on the <strong>right side</strong> of the gallery?<a href="#rightHandMenu" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>When the template.html is read, it is split in 2. What is before the {GALLERY} tag is output by the pageheader function, what is after by the pagefooter function.<br />
-If your menu is in the &quot;footer&quot; you need to modify your theme.php file <br />
-<pre>   $template_vars = array(
-      '{LANG_DIR}' => $lang_text_dir,
-      '{TITLE}' => $CONFIG['gallery_name'].' - '.$section,
-      '{CHARSET}' => $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'],
-      '{META}' => $meta,
-      '{GAL_NAME}' => $CONFIG['gallery_name'],
-      '{GAL_DESCRIPTION}' => $CONFIG['gallery_description'],
-      '{MAIN_MENU}' => theme_main_menu(),
-      '{ADMIN_MENU}' => theme_admin_mode_menu()
-   );
 
-   echo template_eval($template_header, $template_vars);</pre>
-   will become
-<pre>   $template_vars = array(
-      '{LANG_DIR}' => $lang_text_dir,
-      '{TITLE}' => $CONFIG['gallery_name'].' - '.$section,
-      '{CHARSET}' => $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'],
-      '{META}' => $meta,
-      '{GAL_NAME}' => $CONFIG['gallery_name'],
-      '{GAL_DESCRIPTION}' => $CONFIG['gallery_description'],
-   );
-
-   echo template_eval($template_header, $template_vars);</pre>
-and<br /><tt class="code">echo $template_footer;</tt><br />
-will become<br />
-<pre>   $template_vars = array(
-      '{MAIN_MENU}' => theme_main_menu(),
-      '{ADMIN_MENU}' => theme_admin_mode_menu()
-   );
-
-   echo template_eval($template_footer, $template_vars);</pre>
-</p><hr />
 <a name="jumpToPrivateAlbum"></a>
 <h3>How can I send a user <strong>directly to his private album</strong> once he logs in?<a href="#jumpToPrivateAlbum" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>edit<br /><tt class="code">login.php</tt><br />and search for<br />
