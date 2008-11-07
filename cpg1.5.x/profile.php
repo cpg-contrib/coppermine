@@ -37,7 +37,7 @@ function cpgUserPicCount($username) {
 
 function cpgUserThumb($uid) {
         global $CONFIG, $FORBIDDEN_SET;
-        if ($FORBIDDEN_SET != "") $FORBIDDEN_SET = "AND $FORBIDDEN_SET";
+        //if ($FORBIDDEN_SET != "") $FORBIDDEN_SET = "AND $FORBIDDEN_SET";
         $query = "SELECT count(*), MAX(pid) FROM {$CONFIG['TABLE_PICTURES']} AS p WHERE owner_id = '$uid' AND approved = 'YES' $FORBIDDEN_SET";
         $result = cpg_db_query($query);
         $nbEnr = mysql_fetch_array($result);
@@ -73,7 +73,7 @@ function cpgUserThumb($uid) {
 }
 
 function cpgUserLastComment($uid) {
-        global $CONFIG;
+        global $CONFIG, $FORBIDDEN_SET;
 
         $result = cpg_db_query("SELECT count(*), MAX(msg_id) FROM {$CONFIG['TABLE_COMMENTS']} as c, {$CONFIG['TABLE_PICTURES']} as p WHERE c.pid = p.pid AND approval='YES' AND author_id = '$uid' $FORBIDDEN_SET");
         $nbEnr = mysql_fetch_array($result);
