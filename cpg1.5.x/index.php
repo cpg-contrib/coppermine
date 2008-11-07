@@ -335,8 +335,13 @@ function get_subcat_data(&$cat_data, &$album_set_array)
 
     while ($row = mysql_fetch_assoc($result)) {
 
-        if ($row['cid'] == 1 && !empty($user_galleries)) {
-        		$categories[FIRST_USER_CAT] = $user_galleries;
+        if ($row['cid'] == 1) {
+        
+        		if (!empty($user_galleries)) {
+        			$categories[$row['cid']] = $user_galleries;
+        		}
+        		
+        		continue;
         }
 
         $categories[$row['cid']]['details'] = array(
