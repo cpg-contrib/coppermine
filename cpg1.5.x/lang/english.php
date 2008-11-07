@@ -501,7 +501,7 @@ if (defined('BANNING_PHP')) $lang_banning_php = array(
   'all' => 'all', // cpg1.5
   'none' => 'none', // cpg1.5
   'view' => 'view', // cpg1.5
-  'calender_already_open' => 'Calendar window already open.  Attempting focus...', // cpg1.5 // js-alert
+  'existing_bans' => 'Existing bans', // cpg1.5
 );
 
 // ------------------------------------------------------------------------- //
