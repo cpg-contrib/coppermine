@@ -258,6 +258,7 @@ function get_subcat_data(&$cat_data, &$album_set_array)
     }
 
     $categories = array();
+    $user_galleries = array();
     
     // collect info about the albums in the user galleries category
     $sql = "SELECT title, description, 
@@ -271,7 +272,7 @@ function get_subcat_data(&$cat_data, &$album_set_array)
 
         while ($row = mysql_fetch_assoc($result)) {
 
-            $categories[USER_GAL_CAT]['subalbums'][$row['aid']] = array(
+            $user_galleries['subalbums'][$row['aid']] = array(
                 'aid' => $row['aid'],
                 'title' => $row['title'],
                 'description' => $row['description'],
@@ -288,7 +289,7 @@ function get_subcat_data(&$cat_data, &$album_set_array)
         $result = cpg_db_query($sql);
         $row = mysql_fetch_assoc($result);
 
-        $categories[USER_GAL_CAT]['details'] = array(
+        $user_galleries['details'] = array(
             'name' => $row['name'],
             'description' => $row['description'],
             'thumb' => $row['thumb'],
@@ -309,8 +310,8 @@ function get_subcat_data(&$cat_data, &$album_set_array)
 
         $result = cpg_db_query($sql);
         $row = mysql_fetch_assoc($result);
-        $categories[USER_GAL_CAT]['details']['alb_count'] = $row['alb_count'];
-        $categories[USER_GAL_CAT]['subalbums'][0]['pic_count'] = $row['pic_count'];
+        $user_galleries['details']['alb_count'] = $row['alb_count'];
+        $user_galleries['subalbums'][0]['pic_count'] = $row['pic_count'];
 
     } // if mysql_num_rows($result)
 
@@ -334,8 +335,8 @@ function get_subcat_data(&$cat_data, &$album_set_array)
 
     while ($row = mysql_fetch_assoc($result)) {
 
-        if ($row['cid'] == 1) {
-            continue;
+        if ($row['cid'] == 1 && !empty($user_galleries)) {
+        		$categories[FIRST_USER_CAT] = $user_galleries;
         }
 
         $categories[$row['cid']]['details'] = array(
