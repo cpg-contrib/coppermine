@@ -25,6 +25,9 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-11-08 [C] Changed html header in old instaler {SaWey}
+2008-11-08 [B] Installer temp cofig is deleted again {SaWey}
+2008-11-07 [C] Enlarged icons and changed stepper link colors in installer, reformatted css {SaWey}
 2008-11-05 [A] Added check in util.php if file to process is actually an image {GauGau}
 2008-11-04 [A] Resized full-size pop-up to fit on the screen {GauGau}
 2008-10-24 [B] Fixed the random meta album query for cases where no pictures are in db {Abbas}

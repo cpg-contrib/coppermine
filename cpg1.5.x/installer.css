@@ -17,285 +17,201 @@
 **********************************************/
 
 body {
-        font-family : Verdana, Arial, Helvetica, sans-serif;
-        font-size: 12px;
-        background : #F7F7F7 ;
-        color : Black;
-        margin: 0px;
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	background : #F7F7F7;
+	color : Black;
+	margin: 0px;
 }
-
-h1
-{
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 24px;
-    font-weight: normal;
-    padding: 5px;
+h1 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 24px;
+	font-weight: normal;
+	padding: 5px;
 }
-
 h2 {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 18px;
-    margin: 0px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	margin: 0px;
 }
-
-
 p {
-        margin: 2px 0px;
+	margin: 2px 0px;
 }
-
 td {
-        font-size: 12px;
+	font-size: 12px;
 }
-
 hr {
-        color : #000000;
-        height: 1px;
+	color : #000000;
+	height: 1px;
 }
-
 .textinput {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 100%;
-    border: 1px solid #D1D7DC;
-    padding-right: 3px;
-    padding-left: 3px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 100%;
+	border: 1px solid #D1D7DC;
+	padding-right: 3px;
+	padding-left: 3px;
 }
-
 .listbox {
-        border: groove 1px;
+	border: groove 1px;
 }
-
 .button {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 100%;
-    border: 1px solid #005D8C;
-    background-image : url(images/button_bg.gif);
-    background-position : bottom;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 100%;
+	border: 1px solid #005D8C;
+	background-image : url(images/button_bg.gif);
+	background-position : bottom;
 }
-
 a {
-        color: #0033CC;
-        text-decoration: none;
+	color: #0033CC;
+	text-decoration: none;
 }
-
 a:hover {
-        color: #0033CC;
-        text-decoration: underline;
+	color: #0033CC;
+	text-decoration: underline;
 }
-
 .tableh1 {
-    background : #0E72A4 ;
-    color : #FFFFFF;
-    padding-top: 3px;
-    padding-right: 10px;
-    padding-bottom: 3px;
-    padding-left: 10px;
-    font-weight:bold;
+	background : #0E72A4;
+	color : #FFFFFF;
+	padding-top: 3px;
+	padding-right: 10px;
+	padding-bottom: 3px;
+	padding-left: 10px;
+	font-weight:bold;
 }
-
 .tableh2 {
-    background: #D1D7DC ;
-    color : #000000;
-    padding-top: 3px;
-    padding-right: 10px;
-    padding-bottom: 3px;
-    padding-left: 10px;
+	background: #D1D7DC;
+	color : #000000;
+	padding-top: 3px;
+	padding-right: 10px;
+	padding-bottom: 3px;
+	padding-left: 10px;
 }
-
 .tableb {
-    background: #EFEFEF ;
-    padding-top: 3px;
-    padding-right: 10px;
-    padding-bottom: 3px;
-    padding-left: 10px;
+	background: #EFEFEF;
+	padding-top: 3px;
+	padding-right: 10px;
+	padding-bottom: 3px;
+	padding-left: 10px;
 }
-
 .tableb_alternate {
-        background: #E4E4E4;
+	background: #E4E4E4;
 }
-
 .tablef {
-    background: #D1D7DC;
-    padding-top: 10px;
-    padding-right: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
+	background: #D1D7DC;
+	padding-top: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
 }
-
 .updatesOK {
-        font-weight: bold;
-        color: green;
+	font-weight: bold;
+	color: green;
 }
-
 .updatesFail {
 }
-
 .maintable {
-    border: 1px solid #0E72A4;
-    background-color: #EFEFEF;
-    margin-top: 1px;
-    margin-bottom: 1px;
+	border: 1px solid #0E72A4;
+	background-color: #EFEFEF;
+	margin-top: 1px;
+	margin-bottom: 1px;
 }
-
-.charsetchecktable
-{
-
+.charsetchecktable {
 }
-
-.charsetchecktable td, .charsetchecktable th
-{
-    padding: 2px;
-    border: 1px solid gray;
+.charsetchecktable td, .charsetchecktable th {
+	padding: 2px;
+	border: 1px solid gray;
 }
-
-.charsetchecktable td
-{
-    font-size: 10px;
+.charsetchecktable td {
+	font-size: 10px;
 }
-
-.charsetchecktable td.check
-{
-    font-size: 12px;
+.charsetchecktable td.check {
+	font-size: 12px;
 }
-
-
-
- .error, .bigwarning {
-        color : Red;
-        font-weight : bold;
+.error, .bigwarning {
+	color : Red;
+	font-weight : bold;
 }
-
-h2.error
-{
-    text-align: center;
-    background-color: #EFEFEF;
+h2.error {
+	text-align: center;
+	background-color: #EFEFEF;
 }
-
-img.logo
-{
-    background-color: #EFEFEF;
-    text-align: left;
+img.logo {
+	background-color: #EFEFEF;
+	text-align: left;
 }
-
-.bigwarning, .warning, .failed
-{
-    color: red;
+.bigwarning, .warning, .failed {
+	color: red;
 }
-
-td.warning
-{
-    background-color: red;
-    color: white;
+td.warning {
+	background-color: red;
+	color: white;
 }
-
-p, div.warning
-{
-    margin: 10px;
-    padding: 5px;
+p, div.warning {
+	margin: 10px;
+	padding: 5px;
 }
-
-table.maintable td
-{
-    padding: 2px;
+table.maintable td {
+	padding: 2px;
 }
-
-p.warning, div.warning
-{
-    color: black;
-    font-size: 120%;
-    border: 1px solid black;
-    background: #fdd;
+p.warning, div.warning {
+	color: black;
+	font-size: 120%;
+	border: 1px solid black;
+	background: #fdd;
 }
-
 form {
-        margin-top:0px;
-        margin-bottom:0px;
+	margin-top:0px;
+	margin-bottom:0px;
 }
-
-.check
-{
-    background-color: white;
-    font-weight: bold;
-    color: blue;
+.check {
+	background-color: white;
+	font-weight: bold;
+	color: blue;
 }
-
-.nocheck
-{
-    color: gray;
+.nocheck {
+	color: gray;
 }
-
-.done
-{
-    background-color: green;
-    color: white;
-    text-align: center;
+.done {
+	background-color: green;
+	color: white;
+	text-align: center;
 }
-
-fieldset
-{
-    width: 90ex;
-    margin: 5px auto;
+fieldset {
+	width: 90ex;
+	margin: 5px auto;
 }
-
-fieldset form
-{
-    margin: auto 10px;
+fieldset form {
+	margin: auto 10px;
 }
 
 /*stepper*/
-.stepper_table
-{
+.stepper_table {
 	width:100%;
 	margin-top:-30px;
 }
-
-.stepper_c, .stepper_d, .stepper_do, .stepper_n
-{
-	height:21px; 
-	width:17px; 
-	margin:2px; 
-	text-align:center; 
+.stepper_c, .stepper_d, .stepper_do, .stepper_n {
+	height:21px;
+	width:21px;
+	margin:2px;
+	text-align:center;
+	color: #FFFFFF;
 }
-
-.stepper_c
-{
+.stepper_c {
 	background:url(images/install/current.gif);
 	background-repeat:no-repeat;
 }
-
-.stepper_n
-{
+.stepper_n {
 	background:url(images/install/notyet.gif);
 	background-repeat:no-repeat;
 }
-
-.stepper_d, .stepper_do
-{
+.stepper_d, .stepper_do {
 	background:url(images/install/done.gif);
 	background-repeat:no-repeat;
 	cursor:pointer;
 }
-
-.stepper_d
-{
+.stepper_d {
 	background-position: top left;
 }
-
-.stepper_do
-{
+.stepper_do {
 	background-position: 0 -21px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

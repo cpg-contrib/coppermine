@@ -185,9 +185,8 @@ switch($step) {
         if ($install->error != '') {
             html_error(false /*false to not include a button*/);
         }
-        ############WIP###############
-		############WIP###############
-		############WIP###############
+		
+		//use versioncheck to check file versions
 		require_once('include/versioncheck.inc.php');
 		
         $lang_versioncheck_php = $install->language['versioncheck'];
@@ -201,10 +200,6 @@ switch($step) {
         // Print the results
         $outputResult = cpg_versioncheckCreateHTMLOutput($file_data_array, $textFileExtensions_array, $lang_versioncheck_php, $majorVersion, $displayOption_array);
         $versioncheck_output = sprintf($lang_versioncheck_php['files_folder_processed'], $outputResult['display'], $outputResult['total'], $outputResult['error']);
-		
-		############WIP###############
-		############WIP###############
-		############WIP###############
 		
         html_content($versioncheck_output); 
         html_footer();
@@ -476,7 +471,7 @@ switch($step) {
             'albums/pngtest_generated.png',
             'albums/scaled_generated.jpg',
             'albums/texttest_generated.jpg',
-            'include/config.tmp',           
+            'include/config.tmp.php',           
         );
         foreach($files_to_remove as $file) {
             if (is_file($file)) {
@@ -1125,8 +1120,6 @@ class CPGInstall
     */
     function getLangSelect() 
     {
-        $superCage = Inspekt::makeSuperCage();
-        
         if (!is_array($this->available_languages)) {
             $dir = opendir('lang/');
             while ($file = readdir($dir)) {
@@ -1143,7 +1136,7 @@ class CPGInstall
         
         $lang_select = '<select name="lang_list">' . "\n";
         foreach($this->available_languages as $key => $language) {
-            $lang_select .= "                       <option " . (($this->config['lang'] == $language) ? 'selected="selected"' : '') . " value=\"{$language}\">{$language}</option>" . "\n";
+            $lang_select .= "                       <option " . ((strtolower($this->config['lang']) == strtolower($language)) ? 'selected="selected"' : '') . " value=\"{$language}\">{$language}</option>" . "\n";
         }
         $lang_select .= '               </select>';
         
@@ -1169,12 +1162,7 @@ class CPGInstall
             './albums/userpics' => array('777', '755'),
             './albums/edit'     => array('777', '755'),
         );
-        // No longer needed, will be checked in versioncheck.
-        // This array is here to allow a simple check on dir existence. If it was in the other array, 
-        // we should have to add all possible permissions and that would be stupid ;-)
-        /*$only_folders = array(
-            './sql',
-        );*/
+
         // clear the file status cache to make sure we are reading the most recent info of the file.
         clearstatcache();
         
@@ -1231,19 +1219,7 @@ class CPGInstall
                 }
             }   
         }
-        /*we don't need to check the sql dir, as those files will be checked in versioncheck.
-        foreach($only_folders as $folder) {
-            // check folder existence
-            if (!is_dir($folder)) {
-                // could not detect folder
-                $peCheck = false;
-                $this->error .= sprintf($this->language['subdir_called'], $folder) . '<br />';
-                $this->temp_data .= "<tr><td>$folder</td><td colspan=\"2\">{$this->language['no_dir']}</td><td>{$this->language['nok']}</td></tr>";
-            } else {
-                // folder exists
-                $this->temp_data .= "<tr><td>$folder</td><td colspan=\"2\">{$this->language['dir_ok']}</td><td>{$this->language['ok']}</td></tr>";
-            }
-        }*/
+
         $this->temp_data .= '</table></td></tr>';
         return $peCheck;
     }
@@ -1269,7 +1245,7 @@ class CPGInstall
                 }
                 break;
             case 2:
-                // check basic functionalityµ
+                // check basic functionality
                 if ($this->checkBasicGD()) {
                     $imagesProcessors['gd2'] = 'installed';
                 }
@@ -2102,7 +2078,7 @@ class GDtest
      */
     function testTextOnImage()
     {
-        $text = '2008 © Susanna Thornton';
+        $text = '2008 ï¿½ Susanna Thornton';
         $font = 'images/fonts/LiberationSans-Regular.ttf';
         $source = imagecreatefromjpeg('images/install/jpgtest.jpg');
         $front_color = imagecolorallocate($source, 255, 255, 255);
@@ -2325,7 +2301,7 @@ class IMtest
      */
     function testTextOnImage()
     {
-        $text = '2008 © Susanna Thornton';
+        $text = '2008 ï¿½ Susanna Thornton';
         $font = 'images/fonts/LiberationSans-Regular.ttf';
         $source = 'images/install/jpgtest.jpg';
         
