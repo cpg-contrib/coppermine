@@ -579,6 +579,7 @@ d.add(7500,5800,'Wartungs-Einstellungen','configuration.htm#admin_misc');
 //d.add(15100,13500,'Subdomain issues','bridging.htm#integrating_subdomain');
 //d.add(15200,0,'Developer documentation','dev.htm');
 //d.add(15300,15200,'Coding guidelines','dev_coding.htm');
+//d.add(15305,15200,'Adding/renaming/removing files','dev_files.htm');
 //d.add(15310,15200,'Sanitization Superglobals (Inspekt)','dev_superglobals.htm');
 //d.add(15350,15200,'Javascript in Coppermine','dev_javascript.htm');
 //d.add(15400,15200,'Plugin Writing','dev_plugin_writing.htm');

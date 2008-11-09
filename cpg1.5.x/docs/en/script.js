@@ -580,6 +580,7 @@ d.add(15090,13500,'Individual bridge issues','bridging.htm#integrating_individua
 d.add(15100,13500,'Subdomain issues','bridging.htm#integrating_subdomain');
 d.add(15200,0,'Developer documentation','dev.htm');
 d.add(15300,15200,'Coding guidelines','dev_coding.htm');
+d.add(15305,15200,'Adding/renaming/removing files','dev_files.htm');
 d.add(15310,15200,'Sanitization Superglobals (Inspekt)','dev_superglobals.htm');
 d.add(15350,15200,'Javascript in Coppermine','dev_javascript.htm');
 d.add(15400,15200,'Writing Plugins for Coppermine','dev_plugins.htm');

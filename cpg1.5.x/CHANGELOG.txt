@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-11-09 [D] Added document about adding/renaming/deleting files for developers {GauGau}
 2008-11-08 [C] Changed html header in old instaler {SaWey}
 2008-11-08 [B] Installer temp cofig is deleted again {SaWey}
 2008-11-07 [C] Enlarged icons and changed stepper link colors in installer, reformatted css {SaWey}
