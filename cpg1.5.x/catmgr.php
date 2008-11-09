@@ -28,7 +28,7 @@ require('include/init.inc.php');
 
 if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
-$CAT_LIST = array(0 => array('cid' => 0));
+$CAT_LIST = array(0 => array('cid' => 0, 'cat_count' => 0));
 
 function get_subcat_data($parent, $ident = '')
 {
