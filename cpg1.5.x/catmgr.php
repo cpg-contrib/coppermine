@@ -34,7 +34,7 @@ function get_subcat_data($parent, $ident = '')
 {
     global $CONFIG, $CAT_LIST;
 
-	 $sql = "SELECT rgt, cid, parent, name, description, pos " . "FROM {$CONFIG['TABLE_CATEGORIES']} ORDER BY lft ASC"; 
+	 $sql = "SELECT rgt, cid, parent, name, pos " . "FROM {$CONFIG['TABLE_CATEGORIES']} ORDER BY lft ASC"; 
     $result = cpg_db_query($sql);
 
     if (mysql_num_rows($result) > 0) {
