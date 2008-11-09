@@ -4500,14 +4500,14 @@ function rebuild_tree($parent, $left, $depth, $pos)
     // the right value of this node is the left value + 1
     $right = $left+1;
 
-    $thispos = $pos;
-
     if ($CONFIG['categories_alpha_sort'] == 1) {
         $sort_query = 'name';
     } else {
         $sort_query = 'pos';
     }
 
+    $childpos = 0;
+    
     // get all children of this node
     $result = cpg_db_query("SELECT cid FROM {$CONFIG['TABLE_PREFIX']}categories WHERE parent = $parent ORDER BY $sort_query, cid");
     while ($row = mysql_fetch_array($result)) {
@@ -4515,12 +4515,12 @@ function rebuild_tree($parent, $left, $depth, $pos)
         // child of this node
         // $right is the current right value, which is
         // incremented by the rebuild_tree function
-        if ($row['cid']) $right = rebuild_tree($row['cid'], $right, $depth+1, $pos++);
+        if ($row['cid']) $right = rebuild_tree($row['cid'], $right, $depth+1, $childpos++);
     }
 
     // we've got the left value, and now that we've processed
     // the children of this node we also know the right value
-    cpg_db_query("UPDATE {$CONFIG['TABLE_PREFIX']}categories SET lft = $left, rgt = $right, depth = $depth, pos = $thispos WHERE cid = $parent LIMIT 1");
+    cpg_db_query("UPDATE {$CONFIG['TABLE_PREFIX']}categories SET lft = $left, rgt = $right, depth = $depth, pos = $pos WHERE cid = $parent LIMIT 1");
    
     // return the right value of this node + 1
     return $right+1;

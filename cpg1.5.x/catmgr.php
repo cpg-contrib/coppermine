@@ -28,16 +28,17 @@ require('include/init.inc.php');
 
 if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
+$CAT_LIST = array(0 => array('cid' => 0));
+
 function get_subcat_data($parent, $ident = '')
 {
     global $CONFIG, $CAT_LIST;
 
-	 $sql = "SELECT rgt, cid, parent, name, description " . "FROM {$CONFIG['TABLE_CATEGORIES']} ORDER BY lft ASC"; 
+	 $sql = "SELECT rgt, cid, parent, name, description, pos " . "FROM {$CONFIG['TABLE_CATEGORIES']} ORDER BY lft ASC"; 
     $result = cpg_db_query($sql);
 
-    if (($cat_count = mysql_num_rows($result)) > 0) {
+    if (mysql_num_rows($result) > 0) {
         $rowset = cpg_db_fetch_rowset($result);
-        $pos = 0;
         
         $right = array(); 
         
@@ -45,30 +46,32 @@ function get_subcat_data($parent, $ident = '')
         
 				if (count($right)>0) {
 					// check if we should remove a node from the stack
-           		while ($right && $right[count($right)-1]<$subcat['rgt']) {
-               	array_pop($right);
+           		while ($right && $right[count($right)-1]['rgt']<$subcat['rgt']) {
+               	$prev = array_pop($right);
+               	$last_index = $prev_cid = $prev['cid'];
            		}
        		}
        		 
        		$ident = str_repeat('&nbsp;&nbsp;&nbsp;',count($right));
-       		$right[] = $subcat['rgt']; 
+       		$right[] = $subcat; 
        		
-            if ($pos > 0) {
+            if ($subcat['pos'] > 0) {
                 $CAT_LIST[$subcat['cid']] = array('cid' => $subcat['cid'],
                     'parent' => $subcat['parent'],
-                    'pos' => $pos++,
+                    'pos' => $subcat['pos'],
                     'prev' => $prev_cid,
-                    'cat_count' => $cat_count,
+                    'cat_count' => 0,
                     'name' => $ident . $subcat['name']);
                 $CAT_LIST[$last_index]['next'] = $subcat['cid'];
             } else {
                 $CAT_LIST[$subcat['cid']] = array('cid' => $subcat['cid'],
                     'parent' => $subcat['parent'],
-                    'pos' => $pos++,
-                    'cat_count' => $cat_count,
+                    'pos' => $subcat['pos'],
+                    'cat_count' => 0,
                     'name' => $ident . $subcat['name']);
             }
-            $last_index = $prev_cid = $subcat['cid'];
+            
+            $CAT_LIST[$subcat['parent']]['cat_count']++;
         }
     }
 }
@@ -84,7 +87,7 @@ function cat_list_box($cid, &$parent, $on_change_refresh = true)
              if ($parent['cid'] == 0){
                     $lb .= '<option value="0" selected="selected">' . $lang_catmgr_php['no_category'] . '</option>';
             } else {
-                     $lb .= '<option value="' . $parent['cid'] .  ' selected="selected">' . $parent['name'] . '</option>';
+                     $lb .= '<option value="' . $parent['cid'] .  '" selected="selected">' . $parent['name'] . '</option>';
             }
 
             $lb .= '</select>';
@@ -95,7 +98,7 @@ function cat_list_box($cid, &$parent, $on_change_refresh = true)
 
             $lb .= '                        <option value="0"' . ($parent == 0 ? ' selected': '') . '>' . $lang_catmgr_php['no_category'] . "</option>\n";
             foreach($CAT_LIST as $category) {
-                if ($category['cid'] != 1) {
+                if ($category['cid'] > 1) {
                     $lb .= '                <option value="' . $category['cid'] . '"' . ($parent == $category['cid'] ? ' selected': '') . ">" . $category['name'] . "</option>\n";
                 }
             }
@@ -229,6 +232,11 @@ function display_cat_list()
     $loop_counter = 0;
 
     foreach ($CAT_LIST3 as $key => $category) {
+    
+    	if ($category['cid'] == 0) {
+    	    continue;
+    	}
+    	  
         if ($loop_counter == 0) {
             $row_style_class = 'tableb';
         } else {
@@ -249,7 +257,7 @@ function display_cat_list()
             echo '                <td class="'.$row_style_class.'" width="4%">' . '&nbsp;' . '</td>' . "\n";
         }
 
-        if ($category['pos'] < $category['cat_count']-1  && $CONFIG['categories_alpha_sort'] != 1) {
+        if ($category['pos'] < $CAT_LIST[$category['parent']]['cat_count']-1  && $CONFIG['categories_alpha_sort'] != 1) {
             echo '                <td class="'.$row_style_class.'" width="4%"><a href="' . $CPG_PHP_SELF . '?op=move&amp;cid1=' . $category['cid'] . '&amp;pos1=' . ($category['pos'] + 1) . '&amp;cid2=' . $category['next'] . '&amp;pos2=' . ($category['pos']) . '">' . cpg_fetch_icon('down', 0, $lang_common['move_down']) . '</a></td>' . "\n";
             echo '                <td class="'.$row_style_class.'" width="4%"><a href="' . $CPG_PHP_SELF . '?op=movebottom&amp;cid1=' . $category['cid'] . '&amp;pos1=' . ($category['pos']) . '">' . cpg_fetch_icon('downdown', 0, $lang_common['move_bottom']) . '</a></td>' . "\n";
         } else {
@@ -359,7 +367,7 @@ switch ($op) {
         $CAT_LIST = array();
         $iCID = $cid1;
         $iPos = $pos1;
-        $cat_count = $cid_array[$cid1]['cat_count'];
+        $cat_count = $cid_array[$cid_array[$cid1]['parent']]['cat_count'];
         while ($iPos < $cat_count-1) {
           $jPos = $iPos + 1;
           $jCID = isset($cid_array[$iCID]) && array_key_exists('next',$cid_array[$iCID]) ? $cid_array[$iCID]['next'] : 0;
