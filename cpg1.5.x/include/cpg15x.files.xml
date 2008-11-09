@@ -1032,6 +1032,14 @@
     <hash>963b835b33ba13983eca9c4aaab153c8</hash>
   </element>
   <element>
+    <fullpath>docs/en/dev_files.htm</fullpath>
+    <version>1.5.0</version>
+    <revision>5129</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>963b835b33ba13983eca9c4aaab153c8</hash>
+  </element>
+  <element>
     <fullpath>docs/en/dev_subversion.htm</fullpath>
     <version>1.5.0</version>
     <revision>5129</revision>
