@@ -25,9 +25,10 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-11-09 [O] Changed installer coding style (removed install class) {SaWey}
 2008-11-09 [D] Added document about adding/renaming/deleting files for developers {GauGau}
 2008-11-08 [C] Changed html header in old instaler {SaWey}
-2008-11-08 [B] Installer temp cofig is deleted again {SaWey}
+2008-11-08 [B] Installer temp cofig is deleted again + removed this from update.php {SaWey}
 2008-11-07 [C] Enlarged icons and changed stepper link colors in installer, reformatted css {SaWey}
 2008-11-05 [A] Added check in util.php if file to process is actually an image {GauGau}
 2008-11-04 [A] Resized full-size pop-up to fit on the screen {GauGau}

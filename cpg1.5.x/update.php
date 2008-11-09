@@ -683,7 +683,6 @@ EOT;
     'docs/translation.htm',
     'docs/pics/',
     'docs/theme/',
-    'include/config.tmp.php',
     'include/imageObjectGD.class.php',
     'include/imageObjectIM.class.php',
     );
