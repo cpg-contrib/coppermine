@@ -6601,18 +6601,6 @@
     <hash>38b3d2a695631d86d0abce00cbfaeb2c</hash>
   </element>
   <element>
-    <fullpath>images/install/current.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>7308def14336aa2de784a94ea80ede03</hash>
-  </element>
-  <element>
-    <fullpath>images/install/done.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>1ebbb97b647f54615b1be8070f2c6d91</hash>
-  </element>
-  <element>
     <fullpath>images/install/giftest.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
@@ -6623,12 +6611,6 @@
     <status>mandatory</status>
     <permission>read</permission>
     <hash>fb0b296e8ec6a6f8fc8aaae171595240</hash>
-  </element>
-  <element>
-    <fullpath>images/install/notyet.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>e1a52d09fdc8280c1a28b23a183e8f38</hash>
   </element>
   <element>
     <fullpath>images/install/pngtest.png</fullpath>
