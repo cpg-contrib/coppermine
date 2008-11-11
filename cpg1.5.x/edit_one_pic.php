@@ -272,6 +272,7 @@ pageheader($lang_editpics_php['edit_pics']);
 $thumb_url = get_pic_url($CURRENT_PIC, 'thumb');
 $thumb_link = 'displayimage.php?pos='.(-$CURRENT_PIC['pid']);
 $filename = htmlspecialchars($CURRENT_PIC['filename']);
+$filepath = htmlspecialchars($CURRENT_PIC['filepath']);
 
 $THUMB_ROWSPAN=6;
 if ($CONFIG['user_field1_name'] != '') $THUMB_ROWSPAN++;
@@ -324,22 +325,22 @@ if (defined('UPLOAD_APPROVAL_MODE')) {
 
 print <<<EOT
         <tr>
-                        <td class="tableh2" colspan="3">
-                                <strong>$filename</strong>
-                                &nbsp;&nbsp;-&nbsp;&nbsp;<a href="modifyalb.php?album={$CURRENT_PIC['aid']}" class="admin_menu">{$icon_array['album_properties']}{$lang_editpics_php['album_properties']}</a>&nbsp;&nbsp;-&nbsp;&nbsp;
-                        <a href="thumbnails.php?album={$CURRENT_PIC['aid']}" class="admin_menu">{$icon_array['thumbnail_view']}{$lang_editpics_php['thumbnail_view']}</a>
-                        </td>
+            <td class="tableh2" colspan="3">
+                    <strong>{$filename}</strong>
+                    &nbsp;&nbsp;-&nbsp;&nbsp;<a href="modifyalb.php?album={$CURRENT_PIC['aid']}" class="admin_menu">{$icon_array['album_properties']}{$lang_editpics_php['album_properties']}</a>&nbsp;&nbsp;-&nbsp;&nbsp;
+            <a href="thumbnails.php?album={$CURRENT_PIC['aid']}" class="admin_menu">{$icon_array['thumbnail_view']}{$lang_editpics_php['thumbnail_view']}</a>
+            </td>
         </tr>
         <tr>
-                        <td class="tableb" style="white-space:nowrap;">
-                                {$icon_array['file_info']}{$lang_editpics_php['pic_info']}
-                        </td>
-                        <td class="tableb">
-                                $pic_info
-                        </td>
-                        <td class="tableb" align="center" rowspan="$THUMB_ROWSPAN">
-                            <a href="$thumb_link"><img src="$thumb_url" class="image" border="0" alt="{$CURRENT_PIC['title']}"/></a><br />
-                        </td>
+            <td class="tableb" style="white-space:nowrap;">
+                    {$icon_array['file_info']}{$lang_editpics_php['pic_info']}
+            </td>
+            <td class="tableb">
+                    $pic_info
+            </td>
+            <td class="tableb" align="center" rowspan="$THUMB_ROWSPAN">
+                <a href="$thumb_link"><img src="$thumb_url" class="image" border="0" alt="{$CURRENT_PIC['title']}"/></a><br />
+            </td>
         </tr>
 EOT;
 
@@ -362,7 +363,7 @@ print <<<EOT
                         {$icon_array['file_name']}{$lang_common['filename']}
                 </td>
                 <td width="100%" class="tableb" valign="top">
-                                <input type="text" style="width: 100%" name="filename" maxlength="255" value="{$CURRENT_PIC['filename']}" class="textinput" />
+                                <tt>{$CONFIG['site_url']}{$CONFIG['fullpath']}{$filepath}</tt><input type="text" name="filename" maxlength="255" size="40" value="{$CURRENT_PIC['filename']}" class="textinput" />
                         </td>
         </tr>
 

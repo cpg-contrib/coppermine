@@ -42,7 +42,7 @@ $icon_array['file_approve'] = cpg_fetch_icon('file_approve', 0, $lang_editpics_p
 $icon_array['file_approve_all'] = cpg_fetch_icon('file_approve', 0, $lang_editpics_php['approve_all']);
 $icon_array['file_disapprove'] = cpg_fetch_icon('file_disapprove', 2);
 $icon_array['exif'] = cpg_fetch_icon('exif_mgr', 2);
-$icon_array['reset_views'] = cpg_fetch_icon('stats_delete',  0, $lang_editpics_php['reset_view_count']);
+$icon_array['reset_views'] = cpg_fetch_icon('stats_delete',  0);
 $icon_array['reset_views_all'] = cpg_fetch_icon('stats_delete',  0, $lang_editpics_php['reset_all_view_count']);
 $icon_array['reset_votes'] = cpg_fetch_icon('blank', 2);
 $icon_array['ok'] = cpg_fetch_icon('ok', 2);
@@ -378,6 +378,7 @@ function form_pic_info($text)
     $thumb_url = get_pic_url($CURRENT_PIC, 'thumb');
     $thumb_link = 'displayimage.php?&amp;pos='.(-$CURRENT_PIC['pid']);
     $filename = htmlspecialchars($CURRENT_PIC['filename']);
+    $filepath = htmlspecialchars($CURRENT_PIC['filepath']);
     $isgalleryicon_selected = ($CURRENT_PIC['galleryicon']) ? 'checked="checked" ':'';
     $isgalleryicon_disabled = ($CURRENT_PIC['category'] < FIRST_USER_CAT) ? ' style="display:none;" ':'';
     if ($loop_counter == 0) {
@@ -402,6 +403,19 @@ function form_pic_info($text)
                           </td>
 EOT;
     }
+    // The reset hits box will only be displayed if a file has more than zero hits
+    if ($CURRENT_PIC['hits'] == 0) {
+        $hits_reset_disabled = 'disabled="disabled"';
+    } else {
+        $hits_reset_disabled = '';
+    }
+    // The reset votes box will only be displayed if a file has more than zero votes
+    if ($CURRENT_PIC['votes'] == 0) {
+        $votes_reset_disabled = 'disabled="disabled"';
+    } else {
+        $votes_reset_disabled = '';
+    }
+    
 
     echo <<<EOT
     <tr>
@@ -409,17 +423,17 @@ EOT;
             <table border="0" cellspacing="0" cellpadding="0" width="100%">
                 <tr>
                     <td class="{$row_style_class}">
-                            {$lang_common['filename']}: $filename
+                            {$icon_array['file_name']}{$lang_common['filename']}: <tt>{$CONFIG['site_url']}{$CONFIG['fullpath']}{$filepath}{$filename}</tt>
                     </td>
                     <td class="{$row_style_class}" width="40" valign="top">
                     <input type="checkbox" name="delete{$CURRENT_PIC['pid']}" id="delete{$CURRENT_PIC['pid']}" value="1" class="checkbox" title="{$lang_editpics_php['del_pic']}" /><label for="delete{$CURRENT_PIC['pid']}" class="clickable_option">{$icon_array['delete']}</label>
                     </td>
                     $approve_html
-                    <td class="{$row_style_class}" width="40">
-                            <input type="checkbox" name="reset_vcount{$CURRENT_PIC['pid']}" id="reset_vcount{$CURRENT_PIC['pid']}" value="1" class="checkbox" title="{$lang_editpics_php['reset_view_count']}" /><label for="reset_vcount{$CURRENT_PIC['pid']}" class="clickable_option">{$icon_array['reset_views']}</label>
+                    <td class="{$row_style_class}" width="70">
+                            <input type="checkbox" name="reset_vcount{$CURRENT_PIC['pid']}" id="reset_vcount{$CURRENT_PIC['pid']}" value="1" class="checkbox" title="{$lang_editpics_php['reset_view_count']}" {$hits_reset_disabled} /><label for="reset_vcount{$CURRENT_PIC['pid']}" class="clickable_option" title="{$lang_editpics_php['reset_view_count']}">{$icon_array['reset_views']} ({$CURRENT_PIC['hits']})</label>
                     </td>
-                    <td class="{$row_style_class}" width="40">
-                            <input type="checkbox" name="reset_votes{$CURRENT_PIC['pid']}" id="reset_votes{$CURRENT_PIC['pid']}" value="1" class="checkbox" title="{$lang_editpics_php['reset_votes']}" /><label for="reset_votes{$CURRENT_PIC['pid']}" class="clickable_option"><img src="images/rating.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['reset_votes']}" /></label>
+                    <td class="{$row_style_class}" width="70">
+                            <input type="checkbox" name="reset_votes{$CURRENT_PIC['pid']}" id="reset_votes{$CURRENT_PIC['pid']}" value="1" class="checkbox" title="{$lang_editpics_php['reset_votes']}" {$votes_reset_disabled} /><label for="reset_votes{$CURRENT_PIC['pid']}" class="clickable_option"><img src="images/rating.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['reset_votes']}" /> ({$CURRENT_PIC['votes']})</label>
                     </td>
                     <td class="{$row_style_class}" width="40">
                             <input type="checkbox" name="del_comments{$CURRENT_PIC['pid']}" id="del_comments{$CURRENT_PIC['pid']}" value="1" class="checkbox" title="{$lang_editpics_php['del_comm']}" /><label for="del_comments{$CURRENT_PIC['pid']}" class="clickable_option">{$icon_array['comment_delete']}</label>
@@ -854,10 +868,10 @@ echo <<<EOT
                             <input type="checkbox" name="deleteAll" onclick="selectAll(this,'delete');" class="checkbox" id="deleteAll" title="{$lang_editpics_php['del_all']}" /><label for="deleteAll" class="clickable_option">{$icon_array['delete_all']}</label>
                         </td>
                         $approve_all_html
-                        <td class="tableh2" width="40">
+                        <td class="tableh2" width="70">
                             <input type="checkbox" name="reset_vcountAll" onclick="selectAll(this,'reset_vcount');" class="checkbox" id="reset_vcountAll" title="{$lang_editpics_php['reset_all_view_count']}" /><label for="reset_vcountAll" class="clickable_option">{$icon_array['reset_views_all']}</label>
                         </td>
-                        <td class="tableh2" width="40">
+                        <td class="tableh2" width="70">
                             <input type="checkbox" name="reset_votesAll" onclick="selectAll(this,'reset_votes');" class="checkbox" id="reset_votesAll" title="{$lang_editpics_php['reset_all_votes']}" /><label for="reset_votesAll" class="clickable_option"><img src="images/rating.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['reset_all_votes']}" /></label>
                         </td>
                         <td class="tableh2" width="40">
@@ -896,7 +910,6 @@ $submit_icon = cpg_fetch_icon('ok', 0);
 echo <<<EOT
         <tr>
                 <td colspan="3" align="center" class="tablef">
-                        <!--<input type="submit" name="go" value="{$lang_editpics_php['apply']}" class="button" />-->
                         <button type="submit" class="button" name="go" value="{$lang_editpics_php['apply']}">{$submit_icon}{$lang_editpics_php['apply']}</button>
                 </td>
         </tr>
