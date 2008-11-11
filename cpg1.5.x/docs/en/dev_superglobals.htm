@@ -239,12 +239,17 @@ if ($superCage-&gt;get-&gt;testInt('year')) {
     <td valign="top" class="tableb tableb_alternate">'<tt class="code">foobar</tt>', '<tt class="code">fooBar</tt>', '<tt class="code">2foo3bar</tt>' will match (true).<br />'<tt class="code">f&uuml;bar</tt>', '<tt class="code">foo_bar</tt>', '<tt class="code">foo-bar</tt>', '<tt class="code">foo bar</tt>', '<tt class="code">foobar_</tt>' will not match (false)</td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><tt class="code"></tt></td>
-    <td valign="top" class="tableb"></td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb"><tt class="code">/^\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b$/</tt></td>
+    <td valign="top" class="tableb">IP addresses (v4) will match (return TRUE).</td>
+    <td valign="top" class="tableb">'<tt class="code">1.2.3.4</tt>', '<tt class="code">192.168.0.1</tt>' will match (true).<br />'<tt class="code">1.2.3</tt>', '<tt class="code">1.2.3.4.5</tt>', '<tt class="code">192.168.0.10/2</tt>', '<tt class="code">coppermine-gallery.net</tt>', '<tt class="code">192.168.0.300</tt>' will not match (false)</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><tt class="code">/^([a-zA-Z0-9]((\.|\-|\_){0,1}[a-zA-Z0-9]){0,})@([a-zA-Z]((\.|\-){0,1}[a-zA-Z0-9]){0,})\.([a-zA-Z]{2,4})$/</tt></td>
+    <td valign="top" class="tableb tableb_alternate">Valid email addresses will match (i.e. return TRUE). However, this regex does not check if the domain exists nor if the <abbr title="Top Level Domain">TLD</abbr> is valid.</td>
+    <td valign="top" class="tableb tableb_alternate">'<tt class="code">john.doe@example.com</tt>', '<tt class="code">john@example.com</tt>', '<tt class="code">john-doe@some.example.com</tt>' will match (true).<br />'<tt class="code">john.doe</tt>', '<tt class="code">john.doe@</tt>', '<tt class="code">@example.com</tt>', '<tt class="code">jürgen.doe@example.com</tt>', '<tt class="code">john=doe@example.com</tt>' will not match (false)</td>
   </tr>
 </table>
-tbc...
+
 
 <a name="superglobals_sanitization_links"></a><h2>Links<a href="#superglobals_sanitization_links" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <ul>
