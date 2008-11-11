@@ -244,6 +244,8 @@ CREATE TABLE CPG_votes (
 CREATE TABLE CPG_banned (
         ban_id int(11) NOT NULL auto_increment,
         user_id int(11) DEFAULT NULL,
+        user_name varchar(255) NOT NULL default '',
+        email varchar(255) NOT NULL default '',
         ip_addr tinytext,
         expiry datetime DEFAULT NULL,
         brute_force tinyint(5) NOT NULL default '0',

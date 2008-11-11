@@ -8178,6 +8178,30 @@
     <hash>9745158866bf9d0be9c23315a8e661cb</hash>
   </element>
   <element>
+    <fullpath>js/banning.js</fullpath>
+    <version>1.5.0</version>
+    <revision>5129</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>9745158866bf9d0be9c23315a8e661cb</hash>
+  </element>
+  <element>
+    <fullpath>js/date.js</fullpath>
+    <version>1.5.0</version>
+    <revision>5129</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>9745158866bf9d0be9c23315a8e661cb</hash>
+  </element>
+  <element>
+    <fullpath>js/datePicker.css</fullpath>
+    <version>1.5.0</version>
+    <revision>5129</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>9745158866bf9d0be9c23315a8e661cb</hash>
+  </element>
+  <element>
     <fullpath>js/displayimage.fullsize.js</fullpath>
     <version>1.5.0</version>
     <revision>5163</revision>
