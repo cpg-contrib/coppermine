@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-11-12 [A] Added option to automatically purge expired bans {GauGau}
 2008-11-09 [O] Changed installer coding style (removed install class) {SaWey}
 2008-11-09 [D] Added document about adding/renaming/deleting files for developers {GauGau}
 2008-11-08 [C] Changed html header in old instaler {SaWey}

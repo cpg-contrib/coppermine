@@ -384,7 +384,9 @@ $now = date('Y-m-d H:i:s', localised_timestamp());
 
 $CONFIG['template_loaded'] = true;
 
-cpg_db_query("DELETE FROM {$CONFIG['TABLE_BANNED']} WHERE expiry < '$now'");
+if ($CONFIG['purge_expired_bans'] == 1) {
+    cpg_db_query("DELETE FROM {$CONFIG['TABLE_BANNED']} WHERE expiry < '$now'");
+}
 // Check if the user is banned
 $user_id = USER_ID;
 $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_BANNED']} WHERE (ip_addr='$raw_ip' OR ip_addr='$hdr_ip' OR user_id=$user_id) AND brute_force=0");

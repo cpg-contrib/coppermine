@@ -329,3 +329,6 @@ INSERT INTO CPG_config VALUES ('display_xp_publish_link', '0');
 # Modify banned table to allow ban by email and username
 ALTER TABLE `CPG_banned` ADD email varchar(255) NOT NULL default '' AFTER `user_id`;
 ALTER TABLE `CPG_banned` ADD user_name varchar(255) NOT NULL default '' AFTER `user_id`;
+
+# Add auto-purging of expired bans
+INSERT INTO CPG_config VALUES ('purge_expired_bans', '1');

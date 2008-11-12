@@ -133,11 +133,6 @@ $config_data = array(
       'help_link'       => 'f=configuration.htm&amp;as=admin_general_enable-plugins&amp;ae=admin_general_enable-plugins_end',
       'end_description' => '&nbsp;&nbsp;(<a href="pluginmgr.php">'.$lang_admin_php['manage_plugins'].'</a>)',
     ),
-    'ban_private_ip' => array(
-      'type'          => 'checkbox',
-      'default_value' => '0',
-      'help_link'     => ' f=configuration.htm&amp;as=admin_general_private-ip&amp;ae=admin_general_private-ip_end',
-    ),
     'browse_batch_add' => array(
       'type'          => 'checkbox',
       'default_value' => '1',
@@ -1276,6 +1271,16 @@ $config_data = array(
       'width'           => '7',
       'maxlength'       => '7',
       'end_description' => $lang_admin_php['minutes'],
+    ),
+    'ban_private_ip' => array(
+      'type'          => 'checkbox',
+      'default_value' => '0',
+      'help_link'     => ' f=configuration.htm&amp;as=admin_general_private-ip&amp;ae=admin_general_private-ip_end',
+    ),
+    'purge_expired_bans' => array(
+      'type'          => 'checkbox',
+      'default_value' => '0',
+      'help_link'     => ' f=configuration.htm&amp;as=admin_user_purge_expired_bans&amp;ae=admin_user_purge_expired_bans_end',
     ),
     'report_post' => array(
       'type'          => 'checkbox',
