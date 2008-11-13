@@ -245,20 +245,42 @@ $template_gallery_admin_menu = <<<EOT
                             <!-- BEGIN admin_approval -->
                                 <div class="admin_menu admin_float" id="admin_menu_anim"><a href="editpics.php?mode=upload_approval" title="{UPL_APP_TITLE}">{UPL_APP_ICO}{UPL_APP_LNK}</a></div>
                             <!-- END admin_approval -->
+                            <!-- BEGIN config -->
                                 <div class="admin_menu admin_float"><a href="admin.php" title="{ADMIN_TITLE}">{ADMIN_ICO}{ADMIN_LNK}</a></div>
+                            <!-- END config -->
+                            <!-- BEGIN catmgr -->
                                 <div class="admin_menu admin_float"><a href="catmgr.php" title="{CATEGORIES_TITLE}">{CATEGORIES_ICO}{CATEGORIES_LNK}</a></div>
+                            <!-- END catmgr -->
+                            <!-- BEGIN albmgr -->
                                 <div class="admin_menu admin_float"><a href="albmgr.php{CATL}" title="{ALBUMS_TITLE}">{ALBUMS_ICO}{ALBUMS_LNK}</a></div>
+                            <!-- END albmgr -->
+                            <!-- BEGIN groupmgr -->
                                 <div class="admin_menu admin_float"><a href="groupmgr.php" title="{GROUPS_TITLE}">{GROUPS_ICO}{GROUPS_LNK}</a></div>
+                            <!-- END groupmgr -->
+                            <!-- BEGIN usermgr -->
                                 <div class="admin_menu admin_float"><a href="usermgr.php" title="{USERS_TITLE}">{USERS_ICO}{USERS_LNK}</a></div>
+                            <!-- END usermgr -->
+                            <!-- BEGIN banmgr -->
                                 <div class="admin_menu admin_float"><a href="banning.php" title="{BAN_TITLE}">{BAN_ICO}{BAN_LNK}</a></div>
+                            <!-- END banmgr -->
+                            <!-- BEGIN review_comments -->
                                 <div class="admin_menu admin_float"><a href="reviewcom.php" title="{COMMENTS_TITLE}">{COMMENTS_ICO}{COMMENTS_LNK}</a></div>
+                            <!-- END review_comments -->
                             <!-- BEGIN log_ecards -->
                                 <div class="admin_menu admin_float"><a href="db_ecard.php" title="{DB_ECARD_TITLE}">{DB_ECARD_ICO}{DB_ECARD_LNK}</a></div>
                             <!-- END log_ecards -->
+                            <!-- BEGIN picmgr -->
                                 <div class="admin_menu admin_float"><a href="picmgr.php" title="{PICTURES_TITLE}">{PICTURES_ICO}{PICTURES_LNK}</a></div>
+                            <!-- end picmgr -->
+                            <!-- BEGIN batch_add -->
                                 <div class="admin_menu admin_float"><a href="searchnew.php" title="{SEARCHNEW_TITLE}">{SEARCHNEW_ICO}{SEARCHNEW_LNK}</a></div>
+                            <!-- END batch_add -->
+                            <!-- BEGIN admin_tools -->
                                 <div class="admin_menu admin_float"><a href="util.php?t={TIME_STAMP}#admin_tools" title="{UTIL_TITLE}">{UTIL_ICO}{UTIL_LNK}</a></div>
+                            <!-- END admin_tools -->
+                            <!-- BEGIN admin_profile -->
                                 <div class="admin_menu admin_float"><a href="profile.php?op=edit_profile" title="{MY_PROF_TITLE}">{MY_PROF_ICO}{MY_PROF_LNK}</a></div>
+                            <!-- END admin_profile -->
                             <!-- BEGIN documentation -->
                                 <div class="admin_menu admin_float"><a href="{DOCUMENTATION_HREF}" title="{DOCUMENTATION_TITLE}">{DOCUMENTATION_ICO}{DOCUMENTATION_LNK}</a></div>
                             <!-- END documentation -->
@@ -292,7 +314,9 @@ $template_gallery_admin_menu = <<<EOT
                             <!-- BEGIN show_news -->
                                 <div class="admin_menu admin_float"><a href="mode.php?what=news&amp;referer=$REFERER" title="{SHOWNEWS_TITLE}">{SHOWNEWS_ICO}{SHOWNEWS_LNK}</a></div>
                             <!-- END show_news -->
+                            <!-- BEGIN export -->
                               <div class="admin_menu admin_float"><a href="export.php" title="{EXPORT_TITLE}">{EXPORT_ICO}{EXPORT_LNK}</a></div>
+                            <!-- END export -->
                 <div style="clear:left;">
                 </div>
               </div>
@@ -2012,6 +2036,10 @@ function theme_admin_mode_menu()
             }
             if ($CONFIG['display_coppermine_news'] != 0) {
                 template_extract_block($template_gallery_admin_menu, 'show_news');
+            }
+            if ($CONFIG['bridge_enable'] != 0) {
+                template_extract_block($template_gallery_admin_menu, 'banmgr');
+                template_extract_block($template_gallery_admin_menu, 'admin_profile');
             }
 
             $param = array('{CATL}' => $cat_l,
