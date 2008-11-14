@@ -2010,6 +2010,8 @@ function cpg_determine_client($pid)
             $browser = 'Phoenix';        
         } elseif (eregi('Firebird',$server_agent)) {
             $browser = 'Mozilla Firebird';
+        } elseif (eregi('NetSurf',$server_agent)) {
+            $browser = 'NetSurf';
         } elseif (eregi('netscape',$server_agent)) {
             $browser = 'Netscape';
         } elseif (eregi('Chrome',$server_agent)) {

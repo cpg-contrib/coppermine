@@ -67,6 +67,7 @@ $browserArray = array(
                       'Motorola' => 'motorola.png',
                       'Mozilla' => 'mozilla.png',
                       'mplayer' => 'mplayer.png',
+                      'NetSurf' => 'netsurf.png',
                       'IE3' => 'msie.png',
                       'IE4' => 'msie.png',
                       'IE5.0' => 'msie.png',
