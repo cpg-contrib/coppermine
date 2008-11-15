@@ -18,19 +18,6 @@
 **********************************************/
 
 /**
- * Coppermine Photo Gallery 1.4.2 thumbnails.php
- *
- * This file generates the data of thumbnails for all the albums and metalbums,
- * the actual display is handled by the display_thumbnails and then in-turn
- * theme_display_thumbnail function
- *
- * @copyright 2002-2006 Gregory DEMAR, Coppermine Dev Team
- * @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
- * @package Coppermine
- * @version $Id$
- */
-
-/**
  *
  * @ignore
  */
