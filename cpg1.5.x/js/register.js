@@ -10,10 +10,10 @@
 
   ********************************************
   Coppermine version: 1.5.0
-  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/js/admin.js $
-  $Revision: 5129 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-10-18 12:33:12 +0200 (Sa, 18 Okt 2008) $
+  $HeadURL$
+  $Revision$
+  $LastChangedBy$
+  $Date$
 **********************************************/
 
 $(document).ready(function() {
