@@ -461,6 +461,7 @@ d.add(1000,700,'Verwendeter Open Source Code','credits.htm#codebase');
 //d.add(5500,5100,'Modifying core files','php-content.htm#php-content_core');
 d.add(5600,0,'Administration','administration.htm');
 //d.add(5700,5600,'Admin menu items','admin_menu.htm');
+//d.add(5750,5600,'Banning','banning.htm#banning');
 d.add(5800,5600,'Einstellungen','configuration.htm');
 d.add(5900,5800,'Allgemeine Einstellungen','configuration.htm#admin_general');
 d.add(6000,5800,'Sprach- &amp; Zeichensatz-Einstellungen','configuration.htm#admin_language');
