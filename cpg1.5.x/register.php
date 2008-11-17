@@ -31,6 +31,15 @@ if (defined('UDB_INTEGRATION')) {
     $cpg_udb->register_page();
 }
 
+js_include('js/register.js');
+
+$icon_array = array();
+$icon_array['ok'] = cpg_fetch_icon('ok', 0);
+$icon_array['username'] = cpg_fetch_icon('my_profile', 2);
+$icon_array['password'] = cpg_fetch_icon('key_enter', 2);
+$icon_array['email'] = cpg_fetch_icon('contact', 2);
+$icon_array['blank'] = cpg_fetch_icon('blank', 2);
+
 /*****************************
 * function definitions start *
 *****************************/
@@ -45,7 +54,7 @@ if (defined('UDB_INTEGRATION')) {
 **/
 function display_disclaimer() { // Display the disclaimer - start
     global $CONFIG, $CPG_PHP_SELF; //, $PHP_SELF;
-    global $lang_register_disclamer, $lang_register_php;
+    global $lang_register_disclamer, $lang_register_php, $icon_array;
 
     echo <<<EOT
         <form name="cpgform" id="cpgform" method="post" action="$CPG_PHP_SELF">
@@ -63,7 +72,7 @@ EOT;
         </tr>
         <tr>
                 <td colspan="2" align="center" class="tablef">
-                        <input type="submit" name="agree" value="{$lang_register_php['i_agree']}" class="button" />
+                        <button type="submit" class="button" name="agree" id="agree" value="{$lang_register_php['i_agree']}">{$icon_array['ok']}{$lang_register_php['i_agree']}</button>
                 </td>
         </tr>
 
@@ -82,33 +91,42 @@ EOT;
 **/
 function input_user_info($errors = '') { // function input_user_info - start
     global $CONFIG, $CPG_PHP_SELF; //, $PHP_SELF;
-    global $lang_register_php, $lang_register_disclamer, $lang_common;
+    global $lang_register_php, $lang_register_disclamer, $lang_common, $icon_array;
 
     $superCage = Inspekt::makeSuperCage();
 
     echo <<<EOT
-        <form name="cpgform" id="cpgform" method="post" action="$CPG_PHP_SELF">
+        <form name="cpgform" id="cpgform" method="post" action="$CPG_PHP_SELF" onsubmit="return checkRegisterFormSubmit();">
 
 EOT;
 
     starttable(-1, cpg_fetch_icon('add_user', 2) . $lang_register_php['enter_info'], 2);
+    print <<< EOT
+    <tr>
+    	<td class="tableb" colspan="2">
+			<div id="form_not_submit_top" class="formFieldWarning" style="display:none;">
+            	{$lang_register_php['form_not_submit']}
+            </div>
+    	</td>
+    </tr>
+EOT;
 
     $inline_disclaimer = str_replace('{SITE_NAME}', $CONFIG['gallery_name'], $lang_register_disclamer);
 
     $form_data = array(
         array('label', $lang_register_php['required_info']),
-        array('input', 'username', $lang_register_php['username'], 25),
-        !empty($CONFIG['global_registration_pw']) ? array('password', 'global_registration_pw', $lang_register_php['global_registration_pw'], 25) : '',
-        array('password', 'password', $lang_register_php['password'], 25),
-        array('password', 'password_verification', $lang_register_php['password_again'], 25),
-        array('input', 'email', $lang_register_php['email'], 255),
+        array('input', 'username', $icon_array['username'] . $lang_register_php['username'], 25),
+        !empty($CONFIG['global_registration_pw']) ? array('password', 'global_registration_pw', $icon_array['password'] . $lang_register_php['global_registration_pw'], 25) : '',
+        array('password', 'password', $icon_array['password'] . $lang_register_php['password'], 25),
+        array('password', 'password_verification', $icon_array['password'] . $lang_register_php['password_again'], 25),
+        array('input', 'email', $icon_array['email'] . $lang_register_php['email'], 255),
         array('label', $lang_register_php['optional_info']),
-        array('input', 'user_profile1', $CONFIG['user_profile1_name'], 255),
-        array('input', 'user_profile2', $CONFIG['user_profile2_name'], 255),
-        array('input', 'user_profile3', $CONFIG['user_profile3_name'], 255),
-        array('input', 'user_profile4', $CONFIG['user_profile4_name'], 255),
-        array('input', 'user_profile5', $CONFIG['user_profile5_name'], 255),
-        array('textarea', 'user_profile6', $CONFIG['user_profile6_name'], 255)
+        array('input', 'user_profile1', $icon_array['blank'] . $CONFIG['user_profile1_name'], 255),
+        array('input', 'user_profile2', $icon_array['blank'] . $CONFIG['user_profile2_name'], 255),
+        array('input', 'user_profile3', $icon_array['blank'] . $CONFIG['user_profile3_name'], 255),
+        array('input', 'user_profile4', $icon_array['blank'] . $CONFIG['user_profile4_name'], 255),
+        array('input', 'user_profile5', $icon_array['blank'] . $CONFIG['user_profile5_name'], 255),
+        array('textarea', 'user_profile6', $icon_array['blank'] . $CONFIG['user_profile6_name'], 255)
         );
     if ($CONFIG['user_registration_disclaimer'] == 2) {
         array_push($form_data,
@@ -121,8 +139,15 @@ EOT;
             );
     }
 
+    $loopCounter = 0;
     foreach ($form_data as $element) {
       if (empty($element)) continue;
+      if ($loopCounter/2 == floor($loopCounter/2)) {
+      	$row_style = 'tableb';
+      } else {
+      	$row_style = 'tableb tableb_alternate';
+      }
+      $loopCounter++;
       switch ($element[0]) {
           case 'label' :
               echo <<<EOT
@@ -136,24 +161,31 @@ EOT;
             break;
 
           case 'input' :
-              /*if (isset($_POST[$element[1]])) {
-                  $value = $_POST[$element[1]];
-              } else {
-                  $value = '';
-              }*/
               if ($superCage->post->keyExists($element[1])) {
                   $value = $superCage->post->getEscaped($element[1]);
               } else {
                   $value = '';
               }
+              if (isset($lang_register_php[$element[1].'_warning1']) == TRUE) {
+              	$warning1 = '<div id="'.$element[1].'_warning1" class="important formFieldWarning" style="display:none;">' . $lang_register_php[$element[1].'_warning1'] . '</div>';
+              } else {
+              	$warning1 = '';
+              }
+              if (isset($lang_register_php[$element[1].'_warning2']) == TRUE) {
+              	$warning2 = '<div id="'.$element[1].'_warning2" class="important formFieldWarning" style="display:none;">' . $lang_register_php[$element[1].'_warning2'] . '</div>';
+              } else {
+              	$warning2 = '';
+              }
               if ($element[2]) {
                 echo <<<EOT
           <tr>
-              <td width="40%" class="tableb"  height="25">
+              <td width="40%" class="{$row_style}">
                           {$element[2]}
           </td>
-          <td width="60%" class="tableb" valign="top">
-                  <input type="text" style="width: 100%" name="{$element[1]}" maxlength="{$element[3]}" value="$value" class="textinput" />
+          <td width="60%" class="{$row_style}" valign="top">
+                  <input type="text" style="width: 100%" name="{$element[1]}" id="{$element[1]}" maxlength="{$element[3]}" value="$value" class="textinput" />
+                  {$warning1}
+                  {$warning2}
                   </td>
           </tr>
 
@@ -173,10 +205,10 @@ EOT;
               }
               if ($element[2]) echo <<<EOT
           <tr>
-              <td width="40%" class="tableb"  height="25">
+              <td width="40%" class="{$row_style}"  height="25">
                           {$element[2]}
           </td>
-          <td width="60%" class="tableb" valign="top">
+          <td width="60%" class="{$row_style}" valign="top">
                   <input type="radio" name="{$element[1]}" id="{$element[1]}1" value="{$element[3]}" class="radio" /><label for="{$element[1]}1" class="clickable_option">{$element[3]}</label>
                   <input type="radio" name="{$element[1]}" id="{$element[1]}2" value="{$element[4]}" class="radio" /><label for="{$element[1]}2" class="clickable_option">{$element[4]}</label>
                   </td>
@@ -196,7 +228,7 @@ EOT;
               }
               if ($element[3]) echo <<<EOT
           <tr>
-              <td class="tableb" colspan="2">
+              <td class="{$row_style}" colspan="2">
                           {$element[2]}
                           <br />
                           <input type="checkbox" name="{$element[1]}" id="{$element[1]}" value="{$element[4]}" class="checkbox" /><label for="{$element[1]}" class="clickable_option">{$element[3]}</label>
@@ -220,10 +252,10 @@ EOT;
             if ($element[2]) {
                 echo <<<EOT
           <tr>
-              <td width="40%" class="tableb"  height="25">
+              <td width="40%" class="{$row_style}">
                           {$element[2]}
           </td>
-          <td width="60%" class="tableb" valign="top">
+          <td width="60%" class="{$row_style}" valign="top">
                   <textarea name="{$element[1]}" rows="7" cols="60" class="textinput" style="width:100%">$value</textarea>
                   </td>
           </tr>
@@ -234,13 +266,25 @@ EOT;
             break;
 
           case 'password' :
+			  if (isset($lang_register_php[$element[1].'_warning1']) == TRUE) {
+              	$warning1 = '<div id="'.$element[1].'_warning1" class="important formFieldWarning" style="display:none;">' . $lang_register_php[$element[1].'_warning1'] . '</div>';
+              } else {
+              	$warning1 = '';
+              }
+              if (isset($lang_register_php[$element[1].'_warning2']) == TRUE) {
+              	$warning2 = '<div id="'.$element[1].'_warning2" class="important formFieldWarning" style="display:none;">' . $lang_register_php[$element[1].'_warning2'] . '</div>';
+              } else {
+              	$warning2 = '';
+              }              
               echo <<<EOT
           <tr>
-              <td width="40%" class="tableb"  height="25">
+              <td width="40%" class="{$row_style}">
                           {$element[2]}
           </td>
-          <td width="60%" class="tableb" valign="top">
-                  <input type="password" style="width: 100%" name="{$element[1]}" maxlength="{$element[3]}" value="" class="textinput" />
+          <td width="60%" class="{$row_style}" valign="top">
+                  <input type="password" style="width: 100%" name="{$element[1]}" id="{$element[1]}" maxlength="{$element[3]}" value="" class="textinput" />
+                  {$warning1}
+                  {$warning2}
                   </td>
           </tr>
 
@@ -250,8 +294,8 @@ EOT;
             case 'hidden' :
                 echo <<<EOT
           <tr>
-              <td colspan="2" class="tableb">
-                <input type="hidden" name="{$element[1]}" value="{$element[2]}" />
+              <td colspan="2" class="{$row_style}">
+                <input type="hidden" name="{$element[1]}" id="{$element[1]}" value="{$element[2]}" />
               </td>
           </tr>
 
@@ -266,13 +310,15 @@ EOT;
     if ($errors) {
         echo <<<EOT
         <tr>
-                <td colspan="2" class="tableh2" align="center">
-                        <strong>&#149;&nbsp;&#149;&nbsp;&#149;&nbsp;{$lang_register_php['error']}&nbsp;&#149;&nbsp;&#149;&nbsp;&#149;</strong>
+                <td colspan="2" class="tableh2">
+                        {$lang_register_php['error']}
                 </td>
         </tr>
         <tr>
-                <td colspan="2" class="tableb">
-                        <ul>$errors</ul>
+                <td colspan="2" class="tablef">
+                        <div class="important">
+                        	<ul>$errors</ul>
+                        </div>
                 </td>
         </tr>
 
@@ -288,7 +334,7 @@ EOT;
                     {$lang_common['confirm']}&nbsp;{$help}
                 </td>
                 <td class="tablef">
-                    <input type="text" name="confirmCode" size="5" maxlength="5" class="textinput" />
+                    <input type="text" name="confirmCode" id="confirmCode" size="5" maxlength="5" class="textinput" />
                     <img src="captcha.php" align="middle" border="0" alt="" />
                 </td>
         </tr>
@@ -298,9 +344,16 @@ EOT;
     echo <<<EOT
         <tr>
                 <td colspan="2" align="center" class="tablef">
-                        <input type="submit" name="submit" value="{$lang_register_php['submit']}" class="button" />
+                        <button type="submit" class="button" name="submit" id="submit" value="{$lang_register_php['submit']}">{$icon_array['ok']}{$lang_register_php['submit']}</button>
                 </td>
         </tr>
+	    <tr>
+	    	<td class="tablef" colspan="2">
+				<div id="form_not_submit_bottom" class="formFieldWarning" style="display:none;">
+	            	{$lang_register_php['form_not_submit']}
+	            </div>
+	    	</td>
+	    </tr>
 
 EOT;
     endtable();
@@ -352,34 +405,41 @@ function check_user_info(&$error) { // function check_user_info - start
     $result = cpg_db_query($sql);
 
     if (mysql_num_rows($result)) {
-        $error = '<li>' . $lang_register_php['err_user_exists'] . '</li>';
+        $error = '<li style="list-style-image:url(images/icons/stop.png)">' . $lang_register_php['err_user_exists'] . '</li>';
         return false;
     }
     mysql_free_result($result);
 
-    if (utf_strlen($user_name) < 2) $error .= '<li>' . $lang_register_php['err_uname_short'] . '</li>';
+    if (utf_strlen($user_name) < 2) $error .= '<li style="list-style-image:url(images/icons/stop.png)">' . $lang_register_php['username_warning2'] . '</li>';
     if (!empty($CONFIG['global_registration_pw'])) {
       $global_registration_pw = get_post_var('global_registration_pw');
       if ($global_registration_pw != $CONFIG['global_registration_pw']) {
-        $error .= '<li>' . $lang_register_php['err_global_pw'] . '</li>';
+        $error .= '<li style="list-style-image:url(images/icons/stop.png)">' . $lang_register_php['err_global_pw'] . '</li>';
       } elseif ($password == $CONFIG['global_registration_pw']) {
-        $error .= '<li>' . $lang_register_php['err_global_pass_same'] . '</li>';
+        $error .= '<li style="list-style-image:url(images/icons/stop.png)">' . $lang_register_php['err_global_pass_same'] . '</li>';
       }
     }
 
-    if (utf_strlen($password) < 2) $error .= '<li>' . $lang_register_php['err_password_short'] . '</li>';
-    if ($password == $user_name) $error .= '<li>' . $lang_register_php['err_uname_pass_diff'] . '</li>';
-    if ($password != $password_again) $error .= '<li>' . $lang_register_php['err_password_mismatch'] . '</li>';
-    if (!eregi("^[_\.0-9a-z\-]+@([0-9a-z][0-9a-z-]+\.)+[a-z]{2,6}$", $email)) $error .= '<li>' . $lang_register_php['err_invalid_email'] . '</li>';
+    if (utf_strlen($password) < 2) $error .= '<li style="list-style-image:url(images/icons/stop.png)">' . $lang_register_php['password_warning1'] . '</li>';
+    if ($password == $user_name) $error .= '<li style="list-style-image:url(images/icons/stop.png)">' . $lang_register_php['password_warning2'] . '</li>';
+    if ($password != $password_again) $error .= '<li style="list-style-image:url(images/icons/stop.png)">' . $lang_register_php['password_verification_warning1'] . '</li>';
+    if (!eregi("^[_\.0-9a-z\-]+@([0-9a-z][0-9a-z-]+\.)+[a-z]{2,6}$", $email)) $error .= '<li style="list-style-image:url(images/icons/stop.png)">' . $lang_register_php['email_warning2'] . '</li>';
     if ($CONFIG['user_registration_disclaimer'] == 2 && $agree_disclaimer != 1) {
-        $error .= '<li>' . $lang_register_php['err_disclaimer'] . '</li>';
+        $error .= '<li style="list-style-image:url(images/icons/stop.png)">' . $lang_register_php['err_disclaimer'] . '</li>';
+    }
+    // Perform the ban check against email address and username
+    if (mysql_num_rows(cpg_db_query("SELECT user_name FROM {$CONFIG['TABLE_BANNED']} WHERE user_name = '{$user_name}' AND brute_force=0 LIMIT 1"))){
+    	$error .= '<li style="list-style-image:url(images/icons/stop.png)">' . $lang_register_php['user_name_banned'] . '</li>';
+    }
+    if (mysql_num_rows(cpg_db_query("SELECT email FROM {$CONFIG['TABLE_BANNED']} WHERE email = '{$email}' AND brute_force=0 LIMIT 1"))){
+    	$error .= '<li style="list-style-image:url(images/icons/stop.png)">' . $lang_register_php['email_address_banned'] . '</li>';
     }
 
     // check captcha
     if ($CONFIG['registration_captcha'] != 0) {
         require("include/captcha.inc.php");
         if (!PhpCaptcha::Validate($captcha_confirmation)) {
-          $error .= '<li>' . $lang_errors['captcha_error'] . '</li>';
+          $error .= '<li style="list-style-image:url(images/icons/stop.png)">' . $lang_errors['captcha_error'] . '</li>';
         }
     }
 
@@ -390,7 +450,7 @@ function check_user_info(&$error) { // function check_user_info - start
         $result = cpg_db_query($sql);
 
         if (mysql_num_rows($result)) {
-            $error = '<li>' . $lang_register_php['err_duplicate_email'] . '</li>';
+            $error = '<li style="list-style-image:url(images/icons/stop.png)">' . $lang_register_php['err_duplicate_email'] . '</li>';
             return false;
         }
 
