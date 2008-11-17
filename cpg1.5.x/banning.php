@@ -17,26 +17,147 @@
   $Date$
 **********************************************/
 
-/**
-* Coppermine Photo Gallery 1.4.2 banning.php
-*
-* Someone please add a description
-*
-* @copyright 2002-2006 Gregory DEMAR, Coppermine Dev Team
-* @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
-* @package Coppermine
-* @version $Id$
-*/
-
-
 define('IN_COPPERMINE', true);
 define('BANNING_PHP', true);
+define('CALENDAR_PHP', true);
+define('USERMGR_PHP', true);
 
 require('include/init.inc.php');
 require('include/sql_parse.php');
 
-if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
-// if (defined('UDB_INTEGRATION')) cpg_die(ERROR, $lang_errors['not_with_udb'], __FILE__, __LINE__);
+if (!GALLERY_ADMIN_MODE) {
+    cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+}
+
+js_include('js/date.js');
+js_include('js/jquery.datePicker.js');
+js_include('js/banning.js');
+
+// Variable initialization
+$icon_array = array();
+$icon_array['calendar'] = cpg_fetch_icon('calendar', 0);
+$icon_array['calendar_delete'] = cpg_fetch_icon('calendar_delete', 0);
+$icon_array['edit'] = cpg_fetch_icon('edit', 0);
+$icon_array['delete'] = cpg_fetch_icon('delete', 0);
+$icon_array['add'] = cpg_fetch_icon('add', 0);
+$icon_array['go'] = cpg_fetch_icon('right', 0);
+$icon_array['ok'] = cpg_fetch_icon('ok', 0);
+$items_per_page = 25;
+
+
+$sort_codes = array(
+	'ban_a' => 'ban_id ASC',
+    'ban_d' => 'ban_id DESC',
+    'user_name_a' => 'user_name ASC',
+    'user_name_d' => 'user_name DESC',
+    'email_a' => 'email ASC',
+    'email_d' => 'email DESC',
+    'ip_a' => 'ip_addr ASC',
+    'ip_d' => 'ip_addr DESC',
+    'expiry_a' => 'expiry ASC',
+    'expiry_d' => 'expiry DESC',
+);
+$sort_translation = array(
+	'ban_a' => $lang_banning_php['ban_id'].' '.$lang_banning_php['ascending'],
+    'ban_d' => $lang_banning_php['ban_id'].' '.$lang_banning_php['descending'],
+    'user_name_a' => $lang_banning_php['user_name'].' '.$lang_banning_php['ascending'],
+    'user_name_d' => $lang_banning_php['user_name'].' '.$lang_banning_php['descending'],
+    'email_a' => $lang_banning_php['email_address'].' '.$lang_banning_php['ascending'],
+    'email_d' => $lang_banning_php['email_address'].' '.$lang_banning_php['descending'],
+    'ip_a' => $lang_banning_php['ip_address'].' '.$lang_banning_php['ascending'],
+    'ip_d' => $lang_banning_php['ip_address'].' '.$lang_banning_php['descending'],
+    'expiry_a' => $lang_banning_php['expiry_date'].' '.$lang_banning_php['ascending'],
+    'expiry_d' => $lang_banning_php['expiry_date'].' '.$lang_banning_php['descending'],    
+);
+$sort = 'ban_id ASC';
+$sort_string = $sort_translation['ban_a'];
+if ($superCage->get->keyExists('sort')) {
+	$match = $superCage->get->getEscaped('sort'); // Doesn't hurt not to sanitize further - we're comparing against a defined array and drop the result if it doesn't match.
+	if (array_key_exists($match, $sort_codes)) {
+		$sort = $sort_codes[$match];
+		$sort_string = $sort_translation[$match];
+	}
+	unset($match);
+}
+
+foreach ($sort_codes as $sort_header => $sort_query) {
+	if ($sort_query != $sort) {
+		$header_output[$sort_header] = '<a href="'.$CPG_PHP_SELF.'?page='.$page.'&amp;sort='.$sort_header.'#ban_users">';
+		if (ltrim(strrchr($sort_header, '_'), '_') == 'a') {
+			$header_output[$sort_header] .= '<img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="'. $lang_banning_php['sort_by'] . ': ' . $sort_translation[$sort_header].'" />';
+		} else {
+			$header_output[$sort_header] .= '<img src="images/descending.gif" width="9" height="9" border="0" alt="" title="'. $lang_banning_php['sort_by'] . ': ' . $sort_translation[$sort_header].'" />';
+		}
+		$header_output[$sort_header] .= '</a>';
+	} else {
+		$header_output[$sort_header] = '<img src="images/spacer.gif" width="9" height="9" border="0" alt="" title="" />';
+	}
+}
+
+
+$query = "SELECT COUNT(*) from {$CONFIG['TABLE_BANNED']} WHERE brute_force=0 LIMIT 1";
+$result = cpg_db_query($query);
+$nbEnr = mysql_fetch_array($result);
+$totalBanCount = $nbEnr[0];
+mysql_free_result($result);
+
+$total_pages = ceil($totalBanCount/$items_per_page);
+
+// Processing of GET parameter "page"
+if ($superCage->get->keyExists('page')) {
+	if ($superCage->get->getInt('page') > 0 && $superCage->get->getInt('page') <= $total_pages) {
+		$page = $superCage->get->getInt('page');
+	} else {
+		$page = 1;
+	}
+} else {
+	$page = 1;
+}
+
+$limit = 'LIMIT '. (($page - 1) * $items_per_page) . ', '.$items_per_page;
+
+$banning_tab_array = $template_tab_display;
+$banning_tab_array['left_text'] = strtr($banning_tab_array['left_text'], array('{LEFT_TEXT}' => $lang_banning_php['records_on_page'] . ', '. $lang_banning_php['sorted_by'] . ' ' . $sort_string));
+$banning_tab_array['inactive_tab'] = strtr($banning_tab_array['inactive_tab'], array('{LINK}' => 'banning.php?sort=' . $sort . '&amp;page=%d' . '#ban_users'));
+
+$tabs = <<< EOT
+<table border="0" cellspacing="0" cellpadding="0" class="maintable" width="100%">
+	<tr>
+EOT;
+$tabs .= create_tabs($totalBanCount, $page, $total_pages, $banning_tab_array);
+$tabs .= <<< EOT
+	</tr>
+</table>
+EOT;
+
+/**
+* cpg_illegal_ip_address()
+*
+* Performs a check if a given IP address belongs to a private IP address range.
+* Return TRUE if the IP address is private and FALSE if not
+*
+* @param string $ip IP-address
+* @return
+**/
+function cpg_illegal_ip_address($ip) {
+	$illegal_ip = array('192.168.','10.','172.16.','172.17.','172.18.','172.19.','172.20.','172.21.','172.22.','172.23.','172.24.','172.25.','172.26.','172.27.','172.28.','172.29.','172.30.','172.31.','169.254.','127.', '192.0.','1.0.0.0','204.152.64.','204.152.65.');
+	$ip_to_check = 'ip'.$ip;
+	$ip_is_illegal = 0;
+	foreach ($illegal_ip as $not_allowed_ip) {
+	  if (strpos($ip_to_check,$not_allowed_ip) == 2){$ip_is_illegal++;}
+	}
+	//higher than 224 in first byte
+	for ($i = 224; $i <= 255; $i++) {
+		if (strpos($ip_to_check,$i.'.') == 2) {
+			$ip_is_illegal++;
+		}
+	}
+	if ($ip_is_illegal != 0) {
+		return TRUE;
+	} else {
+	return FALSE;
+	}
+}
 
 /**
  * create_banlist()
@@ -45,23 +166,46 @@ if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__,
  **/
 function create_banlist()
 {
-    global $CONFIG, $lang_banning_php, $lang_common, $album_date_fmt, $CPG_PHP_SELF; //$PHP_SELF,
+    global $CONFIG, $lang_banning_php, $lang_usermgr_php, $lang_common, $album_date_fmt, $CPG_PHP_SELF, $icon_array, $sort, $limit, $header_output; //$PHP_SELF,
 
-    $result = cpg_db_query ("SELECT *, UNIX_TIMESTAMP(expiry) AS expiry FROM {$CONFIG['TABLE_BANNED']} WHERE brute_force=0");
+    $result = cpg_db_query ("SELECT *, UNIX_TIMESTAMP(expiry) AS expiry FROM {$CONFIG['TABLE_BANNED']} WHERE brute_force=0 ORDER BY $sort $limit");
     $count = mysql_num_rows($result);
     if ($count > 0) {
-        echo <<<EOHEAD
+        echo <<< EOT
                 <tr>
-                <th align="center" class="tableh2">{$lang_banning_php['user_name']}</th>
-                <th align="center" class="tableh2">{$lang_banning_php['ip_address']}</th>
-                <th align="center" class="tableh2">{$lang_banning_php['expiry']}</th>
-                <th align="center" class="tableh2"></th>
+	                <th align="center" class="tableh2">
+	                	{$lang_banning_php['ban_id']}
+	                	{$header_output['ban_a']}
+	                	{$header_output['ban_d']}
+	                </th>
+	                <th align="center" class="tableh2">
+	                	{$lang_common['delete']}
+	                </th>
+	                <th align="center" class="tableh2">
+	                	{$lang_banning_php['user_name']}
+	                	{$header_output['user_name_a']}
+	                	{$header_output['user_name_d']}
+	                </th>
+	                <th align="center" class="tableh2">
+	                	{$lang_banning_php['email_address']}
+	                	{$header_output['email_a']}
+	                	{$header_output['email_d']}
+	                </th>
+	                <th align="center" class="tableh2">
+	                	{$lang_banning_php['ip_address']}
+	                	{$header_output['ip_a']}
+	                	{$header_output['ip_d']}
+	                </th>
+	                <th align="center" class="tableh2">
+	                	{$lang_banning_php['expires']}
+	                	{$header_output['expiry_a']}
+	                	{$header_output['expiry_d']}
+	                </th>
                 </tr>
-EOHEAD;
+EOT;
 
         $row_counter = 0;
         $loop_counter = 0;
-        $calendar_icon = cpg_fetch_icon('calendar', 0);
         while ($row = mysql_fetch_array($result)) {
             if ($loop_counter == 0) {
                 $row_style_class = 'tableb';
@@ -74,187 +218,281 @@ EOHEAD;
             }
             if ($row['user_id']) {
                 $username = get_username($row['user_id']);
+                $view_profile = '<a href="profile.php?uid=' . $row['user_id'] . '">' . cpg_fetch_icon('my_profile', 0, $lang_usermgr_php['view_profile']) . '</a>';
+            } elseif ($row['user_name']) {
+                $username = $row['user_name'];
+                $view_profile = '';
             } else {
                 $username = '';
+                $view_profile = '';
             }
 
+            $expired = '';
             if ($row['expiry']) {
-                $expiry = localised_date($row['expiry'], '%Y-%m-%d');
+                $expiry = date('Y-m-d', $row['expiry']);
+                if (date('Y-m-d H:i:s', $row['expiry']) < date('Y-m-d H:i:s')) {
+                    $expired = $lang_banning_php['expired'];
+                }
             } else {
                 $expiry = '';
             }
-            echo <<<EOROW
-                                        <tr>
-                                               <form action="{$CPG_PHP_SELF}" method="post" name="banlist$row_counter" id="banlist$row_counter">
-                                                     <td width="20%" class="{$row_style_class}" valign="middle">
-                                                             <input type="hidden" name="ban_id" value="{$row['ban_id']}" />
-                                                <input type="text" class="textinput" style="width: 100%" name="edit_ban_user_name" value="$username" />
-                                        </td>
-                                                <td class="{$row_style_class}" valign="middle">
-                                                <input type="text" class="textinput" size="15" name="edit_ban_ip_addr" value="{$row['ip_addr']}" />
-                                        </td>
-                                                <td class="{$row_style_class}" valign="middle">
-                                                <input type="text" class="listbox_lang" size="20" name="edit_ban_expires" value="$expiry" readonly="readonly" title="{$lang_banning_php['select_date']}" />
-                                                <script type="text/javascript">
-                                                    document.write('<a href="javascript:;"  onclick="return getCalendar(document.banlist$row_counter.edit_ban_expires);" title="{$lang_banning_php['select_date']}">{$calendar_icon}</a>');
-                                                </script>
-                                        </td>
-                                        <td class="{$row_style_class}" valign="middle">
-                                                                <input type="submit" class="button" name="edit_ban" value="{$lang_banning_php['edit_ban']}" />
-                                        &nbsp;&nbsp;
-                                                                <input type="submit" class="button" name="delete_ban" value="{$lang_common['delete']}" />
-                                        </td>
-                                </form>
-                                </tr>
-EOROW;
+            echo <<< EOT
+                <tr>
+                    <td class="{$row_style_class}" align="center" valign="top">
+                        <input type="hidden" name="ban_id[]" id="ban_id_{$row['ban_id']}" value="{$row['ban_id']}" />
+                        {$row['ban_id']}
+                    </td>
+                    <td class="{$row_style_class}" align="right" valign="top">
+                        {$expired}
+                        <input type="checkbox" class="checkbox" name="select_{$row['ban_id']}" id="select_{$row['ban_id']}" value="1" />
+                    </td>
+                    <td class="{$row_style_class}" valign="top">
+                        <input type="text" class="textinput" style="width: 80%" name="user_name_{$row['ban_id']}" id="user_name_{$row['ban_id']}" value="{$username}" />
+                        {$view_profile}
+                        <input type="hidden" name="user_id_{$row['ban_id']}" id="user_id_{$row['ban_id']}" value="{$row['user_id']}" />
+                    </td>
+                    <td class="{$row_style_class}" valign="top">
+                        <input type="text" class="textinput email_field" style="width: 100%" name="email_{$row['ban_id']}" id="email_{$row['ban_id']}" value="{$row['email']}" />
+                        <div id="email_{$row['ban_id']}_warning" class="important formFieldWarning" style="display:none;">{$lang_banning_php['email_field_invalid']}</div>
+                    </td>
+                    <td class="{$row_style_class}" valign="top">
+                        <input type="text" class="textinput ip_field" size="15" maxlength="15" name="ip_addr_{$row['ban_id']}" id="ip_addr_{$row['ban_id']}" value="{$row['ip_addr']}" />
+                        <div id="ip_addr_{$row['ban_id']}_warning" class="important formFieldWarning" style="display:none;">{$lang_banning_php['ip_address_field_invalid']}</div>
+                    </td>
+                    <td class="{$row_style_class}" valign="top">
+                        <input type="text" class="textinput date-pick" style="width:80%" size="10" maxlength="10" name="expiration_{$row['ban_id']}" id="expiration_{$row['ban_id']}" value="{$expiry}"  title="{$lang_banning_php['select_date']}" />
+                        <div id="expiration_{$row['ban_id']}_warning" class="important formFieldWarning" style="display:none;">{$lang_banning_php['expiry_field_invalid']}</div>
+                    </td>
+                </tr>
+EOT;
           $row_counter++;
         }
     }
     mysql_free_result($result);
 }
 
-    if ($superCage->post->keyExists('add_ban')) {
-        if ($superCage->post->getEscaped('add_ban_user_name')) {
-            $ban_username = $superCage->post->getEscaped('add_ban_user_name');
-            if (!($ban_uid = get_userid($ban_username))) {
-                cpg_die(CRITICAL_ERROR, $lang_banning_php['error_user']. ' '. $superCage->post->getEscaped('add_ban_user_name'), __FILE__, __LINE__);
-            }
-            // check that admin doesn't ban himself
-            //Using getRaw() for comparison
-            if ($superCage->post->getRaw('add_ban_user_name') == USER_NAME) {
-               cpg_die(ERROR, $lang_banning_php['error_admin_ban'], __FILE__, __LINE__);
-               }
-        } else {
-            $ban_uid = 'NULL';
-        }
-
-        if ($superCage->post->testIp('add_ban_ip_addr')) {
-            //Using getRaw() since we have already tested the IP.
-            $ban_ip_addr = "'" . $superCage->post->getRaw('add_ban_ip_addr') . "'";
-            $ip_addr = $superCage->post->getRaw('add_ban_ip_addr');
-            //check admin ip address
-            if ($ip_addr == $REMOTE_ADDR || $ip_addr == $superCage->server->getRaw("REMOTE_ADDR") || ($superCage->env->getRaw("REMOTE_ADDR") && $ip_addr == $superCage->post->getRaw("REMOTE_ADDR"))) {
-               cpg_die(ERROR, $lang_banning_php['error_admin_ban'], __FILE__, __LINE__);
-            }
-            //check server ip adress
-            if ($ip_addr == $SERVER_ADDR || $ip_addr == $superCage->server->getRaw("SERVER_ADDR") || $ip_addr == $superCage->env->getRaw("SERVER_ADDR")) {
-               cpg_die(ERROR, $lang_banning_php['error_server_ban'], __FILE__, __LINE__);
-            }
-            //check illegal ip addresses
-            $ip_to_check = 'ip'.$ip_addr;
-            $ip_is_illegal = 0;
-            $illegal_ip = array('192.168.','10.','172.16.','172.17.','172.18.','172.19.','172.20.','172.21.','172.22.','172.23.','172.24.','172.25.','172.26.','172.27.','172.28.','172.29.','172.30.','172.31.','169.254.','127.', '192.0.','1.0.0.0','204.152.64.','204.152.65.');
-            foreach ($illegal_ip as $not_allowed_ip) {
-              if (strpos($ip_to_check,$not_allowed_ip) == 2){$ip_is_illegal++;}
-            }
-            //higher than 224 in first byte
-            for ($i = 224; $i <= 255; $i++) {
-            if (strpos($ip_to_check,$i.'.') == 2){$ip_is_illegal++;}
-            }
-            if ($ip_is_illegal != 0 && $CONFIG['ban_private_ip'] == 0) {
-              cpg_die(ERROR, sprintf($lang_banning_php['error_ip_forbidden'], '<a href="admin.php">', '</a>'), __FILE__, __LINE__);
-            }
-        } else {
-            $ban_ip_addr = 'NULL';
-        }
-
-/* The existing validity check for expiry date stinks, have to create a new one
-        if (isset($_POST['add_ban_expires'])) { //expiry date has been set: start
-            if (($_POST['add_ban_expires']) && ($_POST['add_ban_expires'] != 'never')) { //expiry date contains data and is not set to 'never': start
-                if (!($ban_expires = strtotime($_POST['add_ban_expires']))) {
-                    $ban_expires = 'NULL';
-                }
-            } else {
-                $ban_expires = 'NULL';
-            }
-        } else {
-            $ban_expires = 'NULL';
-        }
-*/
-$matches = $superCage->post->getMatched('add_ban_expires', '/^[0-9-]+$/');
-$ban_expires = $matches[0];
-if ($ban_expires == '') {
-    $ban_expires = 'NULL';
-} else {
-    $ban_expires = "'".$ban_expires.' 00:00:00'."'";
-}
-if ($ban_expires == '\' 00:00:00\'') {
-    $ban_expires = 'NULL';
-}
-
-//print 'expiry date|'.$ban_expires.'|'; //added for debugging
-
-if ($ban_expires < 0) {
-    $ban_expires = 'NULL';
-}
-    // check if anything has been submit at all
-    if (!$ban_username && !$ip_addr) {
-        cpg_die(CRITICAL_ERROR, $lang_banning_php['error_specify'], __FILE__, __LINE__);
+// Processing of form data --- start
+if ($superCage->post->keyExists('submit')) {
+    $result = cpg_db_query ("SELECT *, UNIX_TIMESTAMP(expiry) AS expiry FROM {$CONFIG['TABLE_BANNED']} WHERE brute_force=0 ORDER BY $sort $limit");
+    $count = mysql_num_rows($result);
+    $action_output = '';
+    while ($row = mysql_fetch_array($result)) {
+    	$ban_database[$row[ban_id]]['user_id'] = $row['user_id'];
+    	$ban_database[$row[ban_id]]['user_name'] = $row['user_name'];
+    	$ban_database[$row[ban_id]]['email'] = $row['email'];
+    	$ban_database[$row[ban_id]]['ip_addr'] = $row['ip_addr'];
+    	$ban_database[$row[ban_id]]['expiry'] = $row['expiry'];
     }
-    if ($ban_uid || $ban_ip_addr) {
-        cpg_db_query("INSERT INTO {$CONFIG['TABLE_BANNED']} (user_id, ip_addr, expiry) VALUES ($ban_uid, $ban_ip_addr, $ban_expires)");
-		//check if we have to delete comments too
+    mysql_free_result($result);
+    $posted_ban_id_array = $superCage->post->getAlnum('ban_id');
+    foreach ($posted_ban_id_array as $posted_ban_id) {
+        // Sanitize the data --- start
+        $post_user_name = $superCage->post->getEscaped('user_name_'.$posted_ban_id);
+        $post_temp_array = $superCage->post->getMatched('email_'.$posted_ban_id, '/^([a-zA-Z0-9]((\.|\-|\_){0,1}[a-zA-Z0-9]){0,})@([a-zA-Z]((\.|\-){0,1}[a-zA-Z0-9]){0,})\.([a-zA-Z]{2,4})$/');
+        $post_email = $post_temp_array[0];
+        $post_temp_array = $superCage->post->getMatched('ip_addr_'.$posted_ban_id, '/^\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b$/');
+        $post_ip = $post_temp_array[0];
+        $post_temp_array = $superCage->post->getMatched('expiration_'.$posted_ban_id, '/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/');
+        list( $year , $month , $day ) = explode('-',$post_temp_array[0]);
+        if (checkdate( $month , $day , $year ) == TRUE) {
+            $post_date = $post_temp_array[0];
+            $post_date .= ' 00:00:00';
+            $post_timestamp = "'" . $post_date . "'";
+        } else {
+            unset($post_date);
+            $post_timestamp = 'NULL';
+        }
+        unset($post_temp_array);
+        // Sanitize the data --- end
+        // Plausibility control - make sure that some fool doesn't ban himself --- start
+        if ($post_user_name == USER_NAME) {
+        	// Someone tried to ban himself by username.
+        	$action_output .= '<li style="list-style-image:url(images/icons/stop.png)">' . $lang_banning_php['error_admin_ban'] . '. ' . $lang_banning_php['skipping'] . '</li>';
+        	$post_user_name = ''; // Clear the record
+        }
+        if ($post_ip != '') { // Only perform the IP address check if an IP address has been submit --- start
+	        if ($post_ip == $REMOTE_ADDR || $post_ip == $superCage->server->getRaw("REMOTE_ADDR") || ($superCage->env->getRaw("REMOTE_ADDR") && $post_ip == $superCage->post->getRaw("REMOTE_ADDR"))) {
+	        	// Someone tried to ban himself by IP address.
+	        	$action_output .= '<li style="list-style-image:url(images/icons/stop.png)">' . $lang_banning_php['error_admin_ban'] . '. ' . $lang_banning_php['skipping'] . '</li>';
+	        	$post_ip = ''; // Clear the record
+	        }
+	        if ($post_ip == $SERVER_ADDR || $post_ip == $superCage->server->getRaw("SERVER_ADDR") || $post_ip == $superCage->env->getRaw("SERVER_ADDR")) {
+	        	// Someone tried to ban the server's IP address.
+	        	$action_output .= '<li style="list-style-image:url(images/icons/stop.png)">' . $lang_banning_php['error_server_ban'] . '. ' . $lang_banning_php['skipping'] . '</li>';
+	        	$post_ip = ''; // Clear the record
+	        }
+	        if ($CONFIG['ban_private_ip'] == 0) { //Perform the plausibility check only if the admin hasn't deliberately chosen to allow banning of private IP addresses
+	        	if (cpg_illegal_ip_address($post_ip) == TRUE) {
+	        		$action_output .= '<li style="list-style-image:url(images/icons/stop.png)">' . sprintf($lang_banning_php['error_ip_forbidden'], '<a href="admin.php">', '</a>') . '. ' . $lang_banning_php['skipping'] . '</li>';
+	        		$post_ip = ''; // Clear the record
+	        	}
+	        }
+        } // Only perform the IP address check if an IP address has been submit --- end
+        // Plausibility control - make sure that some fool doesn't ban himself --- end
+        if ($superCage->post->getInt('select_'.$posted_ban_id) == 1 || ($post_user_name == '' && $post_email == '' && $post_ip == '')) { // Delete the record --- start
+            // Load the record set that we're going to delete into memory
+            unset($delete_ban_record_array);
+            $delete_ban_record_array = array();
+            $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_BANNED']} WHERE ban_id = '$posted_ban_id' LIMIT 1");
+            if (mysql_num_rows($result)) {
+                // Delete the actual ban record
+                cpg_db_query("DELETE FROM {$CONFIG['TABLE_BANNED']} WHERE ban_id = $posted_ban_id");
+                $action_output .= '<li style="list-style-image:url(images/icons/ok.png)">' . sprintf($lang_banning_php['ban_record_x_deleted'], $posted_ban_id) . '</li>';
+            }
+            mysql_free_result($result);
+        } // Delete the record --- end
+        // Write the changes into the database --- start
+        // Determine wether there has actually been a change --- start
+        $change = 0;
+        if ($ban_database[$posted_ban_id]['user_name'] != $post_user_name) {
+        	$change++;
+        }
+        if ($ban_database[$posted_ban_id]['email'] != $post_email) {
+        	$change++;
+        }
+        if ($ban_database[$posted_ban_id]['ip_addr'] != $post_ip) {
+        	$change++;
+        }
+        if ($ban_database[$posted_ban_id]['expiry'] != '' && $post_date != '') {
+        	if (date('Y-m-d H:i:s', $ban_database[$posted_ban_id]['expiry']) != $post_date) {
+        		$change++;
+        	}
+        }
+        if ($ban_database[$posted_ban_id]['expiry'] == '' && $post_date != '') {
+        	$change++;
+        }
+        if ($ban_database[$posted_ban_id]['expiry'] != '' && $post_date == '') {
+        	$change++;
+        }
+        if ($post_user_name == '' && $post_email == '' && $post_ip == '') {
+        	$change = 0; // Don't write back records that have been deleted by emptying all relevant input fields - we have taken care of them already and emptied them before.
+        }
+        if ($change != 0) { 
+        	// There has been an actual change of the database record - let's write it back --- start
+        	// Look up if the given user name matches a user id --- start
+        	$post_user_id = get_userid($post_user_name);
+        	if ($post_user_id == 0) {
+        		$post_user_id = 'NULL';
+        	} 
+        	// Look up if the given user name matches a user id --- end
+        	if ($post_ip == '') {// NULL the if address if empty
+        		$post_ip = 'NULL';
+        	} else {
+        		$post_ip = "'" . $post_ip . "'"; // Wrap the IP address into single quotes if populated
+        	}
+        	cpg_db_query("UPDATE {$CONFIG['TABLE_BANNED']} SET user_id={$post_user_id}, user_name='{$post_user_name}', email='{$post_email}', ip_addr={$post_ip}, expiry={$post_timestamp} WHERE ban_id='{$posted_ban_id}' LIMIT 1");
+        	$action_output .= '<li style="list-style-image:url(images/icons/ok.png)">' . sprintf($lang_banning_php['ban_record_x_updated'], $posted_ban_id) .'</li>';
+        	// There has been an actual change of the database record - let's write it back --- end
+        }
+        // Determine wether there has actually been a change --- end
+        // Write the changes into the database --- end
+    } // end foreach loop
+    // Now let's take care of new ban records
+    // Sanitize the new record data --- start    $post_user_name = $superCage->post->getEscaped('add_user_name');
+    $post_temp_array = $superCage->post->getMatched('add_email', '/^([a-zA-Z0-9]((\.|\-|\_){0,1}[a-zA-Z0-9]){0,})@([a-zA-Z]((\.|\-){0,1}[a-zA-Z0-9]){0,})\.([a-zA-Z]{2,4})$/');
+    $post_email = $post_temp_array[0];
+    $post_temp_array = $superCage->post->getMatched('add_ip', '/^\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b$/');
+    $post_ip = $post_temp_array[0];
+    $post_temp_array = $superCage->post->getMatched('add_expires', '/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/');
+    list( $year , $month , $day ) = explode('-',$post_temp_array[0]);
+    if (checkdate( $month , $day , $year ) == TRUE) {
+        $post_date = $post_temp_array[0];
+        $post_date .= ' 00:00:00';
+        $post_timestamp = "'" . $post_date . "'";
+    } else {
+        unset($post_date);
+        $post_timestamp = 'NULL';
+    }
+    $post_delete_comment = $superCage->post->getInt('delete_comment');
+    $post_comment_id = $superCage->post->getInt('comment_id');
+    unset($post_temp_array);
+    // Sanitize the new record data --- end
+    // Plausibility control - make sure that some fool doesn't ban himself --- start
+    if ($post_user_name == USER_NAME) {
+    	// Someone tried to ban himself by username.
+    	$action_output .= '<li style="list-style-image:url(images/icons/stop.png)">' . $lang_banning_php['error_admin_ban'] . '. ' . $lang_banning_php['skipping'] . '</li>';
+    	$post_user_name = ''; // Clear the record
+    }
+    if ($post_ip != '') { // Only perform the IP address check if an IP address has been submit --- start
+        if ($post_ip == $REMOTE_ADDR || $post_ip == $superCage->server->getRaw("REMOTE_ADDR") || ($superCage->env->getRaw("REMOTE_ADDR") && $post_ip == $superCage->post->getRaw("REMOTE_ADDR"))) {
+        	// Someone tried to ban himself by IP address.
+        	$action_output .= '<li style="list-style-image:url(images/icons/stop.png)">' . $lang_banning_php['error_admin_ban'] . '. ' . $lang_banning_php['skipping'] . '</li>';
+        	$post_ip = ''; // Clear the record
+        }
+        if ($post_ip == $SERVER_ADDR || $post_ip == $superCage->server->getRaw("SERVER_ADDR") || $post_ip == $superCage->env->getRaw("SERVER_ADDR")) {
+        	// Someone tried to ban the server's IP address.
+        	$action_output .= '<li style="list-style-image:url(images/icons/stop.png)">' . $lang_banning_php['error_server_ban'] . '. ' . $lang_banning_php['skipping'] . '</li>';
+        	$post_ip = ''; // Clear the record
+        }
+        if ($CONFIG['ban_private_ip'] == 0) { //Perform the plausibility check only if the admin hasn't deliberately chosen to allow banning of private IP addresses
+        	if (cpg_illegal_ip_address($post_ip) == TRUE) {
+        		$action_output .= '<li style="list-style-image:url(images/icons/stop.png)">' . sprintf($lang_banning_php['error_ip_forbidden'], '<a href="admin.php">', '</a>') . '. ' . $lang_banning_php['skipping'] . '</li>';
+        		$post_ip = ''; // Clear the record
+        	}
+        }
+    } // Only perform the IP address check if an IP address has been submit --- end
+    // Plausibility control - make sure that some fool doesn't ban himself --- end
+    // Double record control - make sure that the record doesn't already exist in the database --- start
+    if ($post_user_name != '') {
+	    if (mysql_num_rows(cpg_db_query("SELECT user_name FROM {$CONFIG['TABLE_BANNED']} WHERE user_name = '{$post_user_name}' AND brute_force=0 LIMIT 1"))){
+			$action_output .= '<li style="list-style-image:url(images/icons/stop.png)">' . sprintf($lang_banning_php['ban_record_x_already_exists'], $post_user_name) . '. ' . $lang_banning_php['skipping'] . '</li>';
+			$post_user_name = '';
+		}
+	}
+	if ($post_email != '') {
+	    if (mysql_num_rows(cpg_db_query("SELECT email FROM {$CONFIG['TABLE_BANNED']} WHERE email = '{$post_email}' AND brute_force=0 LIMIT 1"))){
+			$action_output .= '<li style="list-style-image:url(images/icons/stop.png)">' . sprintf($lang_banning_php['ban_record_x_already_exists'], $post_email) . '. ' . $lang_banning_php['skipping'] . '</li>';
+			$post_email = '';
+		}
+	}
+	if ($post_ip != '') {
+	    if (mysql_num_rows(cpg_db_query("SELECT ip_addr FROM {$CONFIG['TABLE_BANNED']} WHERE ip_addr = '{$post_ip}' AND brute_force=0 LIMIT 1"))){
+			$action_output .= '<li style="list-style-image:url(images/icons/stop.png)">' . sprintf($lang_banning_php['ban_record_x_already_exists'], $post_ip) . '. ' . $lang_banning_php['skipping'] . '</li>';
+			$post_ip = '';
+		}
+	} 
+    // Double record control - make sure that the record doesn't already exist in the database --- end    
+    // Write the new record into the database --- start
+    // Determine wether form data for a new ban has been submit --- start
+    if ($post_user_name != '' || $post_email != '' || $post_ip != '') {
+    	// Form fields for a new database record have been submit - let's create a new record --- start
+    	// Look up if the given user name matches a user id --- start
+    	$post_user_id = get_userid($post_user_name);
+    	if ($post_user_id == 0) {
+    		$post_user_id = 'NULL';
+    	} 
+    	// Look up if the given user name matches a user id --- end
+    	if ($post_ip == '') {// NULL the if address if empty
+    		$post_ip = 'NULL';
+    	} else {
+    		$post_ip = "'" . $post_ip . "'"; // Wrap the IP address into single quotes if populated
+    	}
+    	cpg_db_query("INSERT INTO {$CONFIG['TABLE_BANNED']} (user_id, user_name, email, ip_addr, expiry) VALUES ({$post_user_id}, '{$post_user_name}', '{$post_email}', {$post_ip}, {$post_timestamp})");
+    	$action_output .= '<li style="list-style-image:url(images/icons/ok.png)">' . $lang_banning_php['new_ban_record_created'] . '.</li>';
 		if($superCage->post->keyExists('delete_comment') && $superCage->post->keyExists('comment_id')) {
 			$delete_what = $superCage->post->getInt('delete_comment');
 			if ($delete_what == 1) { // delete the current comment only
 				$comm_id = $superCage->post->getInt('comment_id');
 				cpg_db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id = $comm_id");
+				$nb_com_del = mysql_affected_rows();
+				$action_output .= '<li style="list-style-image:url(images/icons/ok.png)">' . sprintf($lang_banning_php['comment_deleted'], $nb_com_del, $post_user_name) . '.</li>';
 			} elseif ($delete_what == 2) { //delete all comments by this author
-				cpg_db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE author_id = $ban_uid");
+				cpg_db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE author_id = $post_user_id");
+				$nb_com_del = mysql_affected_rows();
+				if ($nb_com_del == 1) {
+					$action_output .= '<li style="list-style-image:url(images/icons/ok.png)">' . sprintf($lang_banning_php['comment_deleted'], $nb_com_del, $post_user_name) . '.</li>';
+				} else {
+					$action_output .= '<li style="list-style-image:url(images/icons/ok.png)">' . sprintf($lang_banning_php['comments_deleted'], $nb_com_del, $post_user_name) . '.</li>';
+				}
 			} //no need for an "else" - we don't delete a comment if else, i.e. if "none" has been selected
 		}
-    } else {
-        cpg_die(CRITICAL_ERROR, $lang_banning_php['error_specify'], __FILE__, __LINE__);
+    	// Form fields for a new database record have been submit - let's create a new record --- end
     }
-    } elseif ($superCage->post->keyExists('delete_ban')) {
-        if ($superCage->post->keyExists('ban_id')) {
-            $ban_id = $superCage->post->getInt('ban_id');
-            if ($ban_id) {
-                cpg_db_query("DELETE FROM {$CONFIG['TABLE_BANNED']} WHERE ban_id=$ban_id");
-            } else {
-                cpg_die(CRITICAL_ERROR, $lang_banning_php['error_ban_id'], __FILE__, __LINE__);
-            }
-        }
-    } elseif ($superCage->post->keyExists('edit_ban')) {
-        if ($superCage->post->keyExists('ban_id')) {
-            $ban_id = $superCage->post->getInt('ban_id');
-            if ($ban_id) {
-                if ($superCage->post->getEscaped('edit_ban_user_name')) {
-                    if (!($ban_uid = get_userid($superCage->post->getEscaped('edit_ban_user_name')))) {
-                        cpg_die(CRITICAL_ERROR, $lang_banning_php['error_user'] . ' ' . $superCage->post->getEscaped('edit_ban_user_name'), __FILE__, __LINE__);
-                    }
-                } else {
-                    $ban_uid = 'NULL';
-                }
+    // Determine wether form data for a new ban has been submit --- end    // Write the new record into the database --- end    
+}
+// Processing of form data --- end
 
-                if ($superCage->post->testIp('edit_ban_ip_addr')) {
-                    //Using getRaw() as we have already tested for IP
-                    $ban_ip_addr = "'" . $superCage->post->getRaw('edit_ban_ip_addr') . "'";
-                } else {
-                    $ban_ip_addr = 'NULL';
-                }
-
-                $matches = $superCage->post->getMatched('edit_ban_expires', '/^[0-9-]+$/');
-                $ban_expires = $matches[0];
-                if ($ban_expires == '') {
-                      $ban_expires = 'NULL';
-                } else {
-                    $ban_expires = "'".$ban_expires."'";
-                }
-
-                if ((int)$ban_expires < 0) $ban_expires = 'NULL';
-
-                if ($ban_uid || $ban_ip_addr) {
-                    cpg_db_query("UPDATE {$CONFIG['TABLE_BANNED']} SET user_id=$ban_uid, ip_addr=$ban_ip_addr, expiry=$ban_expires where ban_id=$ban_id");
-                } else {
-                    cpg_die(CRITICAL_ERROR, $lang_banning_php['error_specify'], __FILE__, __LINE__);
-                }
-            } else {
-                cpg_die(CRITICAL_ERROR, $lang_banning_php['error_ban_id'], __FILE__, __LINE__);
-            }
-        }
-    }
-
+// Initialisze vars
 $see_all_comments = '';
 $checked_single = 'disabled="disabled"';
 $checked_all = 'checked="checked"';
@@ -297,103 +535,114 @@ if($superCage->get->keyExists('delete_comment_id') && $superCage->get->getInt('d
 
 
 
-pageheader($lang_banning_php['title']);
-
-starttable('100%', cpg_fetch_icon('ban_user', 2) . $lang_banning_php['title'], 4);
-create_banlist();
-endtable();
-$calendar_link_new = 'calendar.php?action=banning&amp;month='.ltrim(strftime('%m'),'0').'&amp;year='.strftime('%Y');
-print <<<EOT
-<script language="javascript" type="text/javascript">
-var calendarWindow = null;
-var calendarFormat = 'y-m-d';
-
-function getCalendar(in_dateField)
-{
-    if (calendarWindow && !calendarWindow.closed) {
-        alert('{$lang_banning_php['calender_already_open']}');
-        try {
-            calendarWindow.focus();
-        }
-        catch(e) {}
-
-        return false;
-    }
-
-    var cal_width = 300;
-    var cal_height = 260;
-
-    // IE needs less space to make this thing
-    if ((document.all) && (navigator.userAgent.indexOf("Konqueror") == -1)) {
-        cal_width = 290;
-    }
-
-    calendarTarget = in_dateField;
-    calendarWindow = window.open('{$calendar_link_new}', 'dateSelectorPopup','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=1,dependent=no,width='+cal_width+',height='+cal_height);
-    return false;
-}
-
-function killCalendar()
-{
-    if (calendarWindow && !calendarWindow.closed) {
-        calendarWindow.close();
-    }
-}
-</script>
+pageheader($lang_banning_php['title'], '<link rel="stylesheet" href="js/datePicker.css" type="text/css" />');
+if ($CONFIG['bridge_enable'] != 0) {
+    starttable('100%', cpg_fetch_icon('warning', 2) . $lang_info, 1);
+    print <<< EOT
+    <tr>
+    	<td class="tableb">
+    		{$lang_banning_php['no_banning_when_bridged']}
+    	</td>
+    </tr>
 EOT;
-print "<br />\n";
-print '<form action="'.$CPG_PHP_SELF.'" method="post" name="list" id="cpgform">'."\r\n";
-starttable('100%', $lang_banning_php['add_new'], 5);
-$calendar_icon = cpg_fetch_icon('calendar', 0);
+    endtable();
+    print '<br />';
+}
+print <<< EOT
+<form action="{$CPG_PHP_SELF}?sort={$sort}&amp;page={$page}#ban_users" method="post" name="banlist" id="banlist" onsubmit="return checkBanFormSubmit();">
+<a name="ban_users"></a>
+EOT;
+starttable('100%', cpg_fetch_icon('ban_user', 2) . $lang_banning_php['title'], 6);
+// Output the results of the queries
+if ($action_output != '') {
+	print <<< EOT
+	<tr>
+		<td class="tableb" colspan="6">
+			<ul>
+				{$action_output}
+			</ul>
+		</td>
+	</tr>
+EOT;
+}
+print <<< EOT
+	<tr>
+		<td colspan="6">
+			{$tabs}
+			<div id="form_not_submit_top" class="important formFieldWarning" style="display:none;">
+            	{$lang_banning_php['form_not_submit']}
+            </div>
+		</td>
+	</tr>
+EOT;
+create_banlist();
+
 echo <<<EOT
 	<tr>
-		<th class="tableh2">{$lang_banning_php['user_name']}</th>
-		<th class="tableh2">{$lang_banning_php['ip_address']}</th>
-		<th class="tableh2">{$lang_banning_php['delete_comments']}</th>
-		<th class="tableh2">{$lang_banning_php['expiry']}</th>
-		<th class="tableh2"></th>
+		<td class="tablef" valign="middle" rowspan="2" colspan="2">
+            {$icon_array['add']}{$lang_banning_php['add_new']}
+		</td>
+        <td class="tablef" valign="top">
+			<input type="text" class="textinput" style="width: 100%" name="add_user_name" id="add_user_name" value="{$comm_info['msg_author']}" title="{$lang_banning_php['user_name']}" />
+		</td>
+        <td class="tablef" valign="top">
+			<input type="text" class="textinput email_field" style="width: 100%" name="add_email" id="add_email" value="" title="{$lang_banning_php['email_address']}" />
+			<div id="add_email_warning" class="important formFieldWarning" style="display:none;">{$lang_banning_php['email_field_invalid']}</div>
+		</td>
+		<td class="tablef" valign="top">
+			<input type="text" class="textinput ip_field" name="add_ip" id="add_ip" value="{$comm_info['msg_ip']}" size="15" maxlength="15" title="{$lang_banning_php['ip_address']}" />
+			<div id="add_ip_warning" class="important formFieldWarning" style="display:none;">{$lang_banning_php['ip_address_field_invalid']}</div>
+		</td>
+        <td class="tablef" valign="top">
+			<input type="text" class="textinput date-pick"  name="add_expires" id="add_expires" value="" size="10" maxlength="10" title="{$lang_banning_php['select_date']}" />
+			<div id="add_expires_warning" class="important formFieldWarning" style="display:none;">{$lang_banning_php['expiry_field_invalid']}</div>
+		</td>
 	</tr>
-	<tr>
-		<td class="tableb" valign="middle">
-			<input type="text" class="textinput" style="width: 100%" name="add_ban_user_name" value="{$comm_info['msg_author']}" />
-		</td>
-		<td class="tableb" valign="middle">
-			<input type="text" class="textinput" name="add_ban_ip_addr" value="{$comm_info['msg_ip']}" size="15" maxlength="15" />
-		</td>
-		<td class="tableb" valign="middle">
-			<input type="radio" id="single" name="delete_comment" value="1" {$checked_single} /><label for="single" class="clickable_option">{$lang_banning_php['current']}</label>&nbsp;&nbsp;
+    <tr>
+		<td class="tablef" valign="middle" colspan="4">
+			{$lang_banning_php['delete_comments']}: 
+            <input type="radio" id="single" name="delete_comment" value="1" {$checked_single} /><label for="single" class="clickable_option">{$lang_banning_php['current']}</label>&nbsp;&nbsp;
 			<input type="radio" id="all" name="delete_comment" value="2" {$checked_all} /><label for="all" class="clickable_option">{$lang_banning_php['all']}</label> {$see_all_comments}&nbsp;&nbsp;
 			<input type="radio" id="none" name="delete_comment" value="0" {$checked_none} /><label for="none" class="clickable_option">{$lang_banning_php['none']}</label>
 			<input type="hidden" name="comment_id" value="{$comm_id}"/>
-		</td>
-		<td class="tableb" valign="middle">
-			<input type="text" class="listbox_lang"  name="add_ban_expires" value="" size="20" readonly="readonly" title="{$lang_banning_php['select_date']}" />
-			<script type="text/javascript">
-			document.write('<a href="javascript:;"  onclick="return getCalendar(document.list.add_ban_expires);" title="{$lang_banning_php['select_date']}">{$calendar_icon}</a>');
-			</script>
-		</td>
-		<td class="tableb" valign="top">
-			<input type="submit" class="button" name="add_ban" value="{$lang_banning_php['add_ban']}" />
+		</td>    
+    </tr>
+    <tr>
+        <td class="tablef" align="center" valign="middle" colspan="6">
+            <button type="submit" class="button" name="submit" id="submit" value="{$lang_common['ok']}">{$icon_array['ok']}{$lang_common['ok']}</button>
+            <div id="form_not_submit_bottom" class="important formFieldWarning" style="display:none;">
+            	{$lang_banning_php['form_not_submit']}
+            </div>
+        </td>
+    </tr>
+EOT;
+print <<< EOT
+	<tr>
+		<td colspan="6">
+			{$tabs}
 		</td>
 	</tr>
 EOT;
 endtable();
-print "</form>\r\n";
-print "<br />\r\n";
-print '<form action="http://ws.arin.net/whois/" method="get" name="lookup" id="cpgform2" target="_blank">' . "\n";
-//starttable('-2', $lang_banning_php['lookup_ip'], 2);
+print <<< EOT
+</form>
+<br />
+<form action="http://ws.arin.net/whois/" method="get" name="lookup" id="cpgform2" target="_blank">
+EOT;
 starttable('-2');
-print "<tr>\n";
-print "<td class=\"tablef\">\n";
-print "<strong>".$lang_banning_php['lookup_ip']."</strong>\n";
-print "</td>\n";
-print "<td class=\"tableb\">\n";
-print "<input type=\"text\" class=\"textinput\" size=\"20\" name=\"queryinput\" value=\"\" maxlength=\"15\" />\n";
-print "</td>\n";
-print "<td class=\"tableb\">\n";
-print "<input type=\"submit\" class=\"button\" name=\"submit\" value=\"{$lang_banning_php['submit']}\" />\n";
-print "</td>\n";
-print "</tr>\n";
+print <<< EOT
+    <tr>
+        <td class="tablef">
+            <strong>{$lang_banning_php['lookup_ip']}</strong>
+        </td>
+        <td class="tableb">
+            <input type="text" class="textinput" size="20" name="queryinput" value="" maxlength="15" />
+        </td>
+        <td class="tableb">
+            <button type="submit" class="button" name="submit" id="submit_lookup" value="{$lang_common['ok']}" style="display:block">{$icon_array['go']}{$lang_common['ok']}</button>
+        </td>
+    </tr>
+EOT;
 endtable();
 print "</form>\n";
 

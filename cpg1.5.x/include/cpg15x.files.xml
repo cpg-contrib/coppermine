@@ -952,6 +952,14 @@
     <hash>a4dc6c29db818fae96955ece54447677</hash>
   </element>
   <element>
+    <fullpath>docs/en/banning.htm</fullpath>
+    <version>1.5.0</version>
+    <revision>5129</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>5aea7e0ee43f657af567d617aa66d7d8</hash>
+  </element>
+  <element>
     <fullpath>docs/en/bbcode.htm</fullpath>
     <version>1.5.0</version>
     <revision>5129</revision>
@@ -1844,9 +1852,87 @@
     <hash>5cea1eaa0bd5e461abcb089788fd405e</hash>
   </element>
   <element>
+    <fullpath>docs/fr/languages.htm</fullpath>
+    <version>1.5.0</version>
+    <revision>5129</revision>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>5cea1eaa0bd5e461abcb089788fd405e</hash>
+  </element>
+  <element>
+    <fullpath>docs/fr/requirements.htm</fullpath>
+    <version>1.5.0</version>
+    <revision>5129</revision>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>5cea1eaa0bd5e461abcb089788fd405e</hash>
+  </element>
+  <element>
+    <fullpath>docs/fr/script.js</fullpath>
+    <version>1.5.0</version>
+    <revision>5129</revision>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>5cea1eaa0bd5e461abcb089788fd405e</hash>
+  </element>
+  <element>
+    <fullpath>docs/fr/testing.htm</fullpath>
+    <version>1.5.0</version>
+    <revision>5129</revision>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>5cea1eaa0bd5e461abcb089788fd405e</hash>
+  </element>
+  <element>
+    <fullpath>docs/fr/toc.htm</fullpath>
+    <version>1.5.0</version>
+    <revision>5129</revision>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>5cea1eaa0bd5e461abcb089788fd405e</hash>
+  </element>
+  <element>
+    <fullpath>docs/fr/translation.htm</fullpath>
+    <version>1.5.0</version>
+    <revision>5129</revision>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>5cea1eaa0bd5e461abcb089788fd405e</hash>
+  </element>
+  <element>
     <fullpath>docs/fr/images/</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
+  </element>
+  <element>
+    <fullpath>docs/fr/images/anchor.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>b073e44cc0422ce42918e2bf9cf37b47</hash>
+  </element>
+  <element>
+    <fullpath>docs/fr/images/base.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>b073e44cc0422ce42918e2bf9cf37b47</hash>
+  </element>
+  <element>
+    <fullpath>docs/fr/images/empty.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>b073e44cc0422ce42918e2bf9cf37b47</hash>
+  </element>
+  <element>
+    <fullpath>docs/fr/images/folder.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>b073e44cc0422ce42918e2bf9cf37b47</hash>
+  </element>
+  <element>
+    <fullpath>docs/fr/images/folderopen.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>b073e44cc0422ce42918e2bf9cf37b47</hash>
   </element>
   <element>
     <fullpath>docs/fr/images/fr_admin_menu.gif</fullpath>
@@ -1973,6 +2059,78 @@
     <status>optional</status>
     <permission>read</permission>
     <hash>b4ee6412da6dfe0748dac06926ed21f5</hash>
+  </element>
+  <element>
+    <fullpath>docs/fr/images/join.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>b073e44cc0422ce42918e2bf9cf37b47</hash>
+  </element>
+  <element>
+    <fullpath>docs/fr/images/joinbottom.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>b073e44cc0422ce42918e2bf9cf37b47</hash>
+  </element>
+  <element>
+    <fullpath>docs/fr/images/line.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>b073e44cc0422ce42918e2bf9cf37b47</hash>
+  </element>
+  <element>
+    <fullpath>docs/fr/images/link.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>b073e44cc0422ce42918e2bf9cf37b47</hash>
+  </element>
+  <element>
+    <fullpath>docs/fr/images/minus.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>b073e44cc0422ce42918e2bf9cf37b47</hash>
+  </element>
+  <element>
+    <fullpath>docs/fr/images/minusbottom.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>b073e44cc0422ce42918e2bf9cf37b47</hash>
+  </element>
+  <element>
+    <fullpath>docs/fr/images/nolines_minus.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>b073e44cc0422ce42918e2bf9cf37b47</hash>
+  </element>
+  <element>
+    <fullpath>docs/fr/images/nolines_plus.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>b073e44cc0422ce42918e2bf9cf37b47</hash>
+  </element>
+  <element>
+    <fullpath>docs/fr/images/page.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>b073e44cc0422ce42918e2bf9cf37b47</hash>
+  </element>
+  <element>
+    <fullpath>docs/fr/images/plus.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>b073e44cc0422ce42918e2bf9cf37b47</hash>
+  </element>
+  <element>
+    <fullpath>docs/fr/images/plusbottom.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>b073e44cc0422ce42918e2bf9cf37b47</hash>
+  </element>
+  <element>
+    <fullpath>docs/fr/images/spacer.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>b073e44cc0422ce42918e2bf9cf37b47</hash>
   </element>
   <element>
     <fullpath>docs/images/</fullpath>
@@ -8251,6 +8409,14 @@
   </element>
   <element>
     <fullpath>js/minibrowser.js</fullpath>
+    <version>1.5.0</version>
+    <revision>5163</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>acf93c201f8a9482a3bfcbb2cc7fe73e</hash>
+  </element>
+  <element>
+    <fullpath>js/register.js</fullpath>
     <version>1.5.0</version>
     <revision>5163</revision>
     <status>mandatory</status>
