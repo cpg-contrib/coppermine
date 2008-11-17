@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<head>
+<title>Minimum Requis - Coppermine Photo Gallery - Documentation &amp; Manuel</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="language" content="fr" />
+<meta name="copyright" content="Coppermine dev team" />
+<meta name="description" content="Il y a certains minimum requis nécessaires pour l'installation de Coppermine:: PHP, mySQL, GD/ImageMagick">
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="MSSmartTagsPreventParsing" content="true" />
+<meta http-equiv="imagetoolbar" content="no" />
+<!--
+  SVN version info:
+
+  Coppermine version: 1.5.0
+  $Revision$
+  $LastChangedBy$
+  $Date$
+-->
+<link rel="stylesheet" type="text/css" href="../style.css" media="all" />
+<link rel="stylesheet" type="text/css" href="../screen.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="../print.css" media="print" />
+<link rel="shortcut icon" href="../favicon.ico" />
+<script src="script.js" type="text/javascript"></script>
+</head>
+<body>
+<script type="text/javascript">
+  cpgDocHeader();
+</script>
+<div id="toc">
+<script type="text/javascript">
+  cpgDocToc();
+</script>
+<noscript>
+<a href="toc.htm">Table des matières</a>
+</noscript>
+</div>
+
+<a name="what"></a><h1>Qu'est ce qui est requis<a href="#what" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<p>Il y a certains <strong>minimum requis</strong> nécessaires pour l'installation de Coppermine:</p>
+<ul>
+  <li><strong>Un serveur Web supportant PHP</strong><br />
+  PHP (version 4.2.0 ou plus récente), compilée avec le  support pour la librairie graphique GD library ou la permission d'utiliser la fonction exec() function pour l'utilitaire &quot;convert&quot; d'ImageMagick afin de pouvoir créer les vignettes et les images intermédiaires. le support de Mysql doit aussi être compilé dans PHP.</li>
+  <li><strong>une base de donnée MySQL</strong><br />
+  Vous avez besoin de MySQL version 3.23.23 ou plus récent. MySQL 4.1 est recommendé, MySQL 5 est supporté. L'utilisateur MySQL doit avoir les permissions pour créer (CREATE), modifier (ALTER), remplacer (REPLACE), délectionner (SELECT), mettre à jour (UPDATE), effacer (DELETE), insérer (INSERT) des données dans la base de donnée. La plupart des utilisateurs ont ces permissions avec les serveurs web. Si ce n'est pas le cas, vous ne pourez pas Coppermine ni aucun script. Si vous n'êtes pas sur d'avoir ces permissions, vérifiez avec votre hébergeur. La plupart des hébergeurs pourront certainement vous dire si Coppermine peu tourner sur leurs serveurs.<br />
+  Une base de donnée doit être crée afin que Coppermine puisse l'utiliser - le script d'installation ne <strong>crée pas</strong> de base de donnée pour vous, mais va créer automatiquement les tables et la structure des donnée dans votre base de donnée pendant l'installation. Dans la plupart des cas avec un hébergeur, vous aurez déjà une base de donnée créer par votre hébergeur. Sinon, il vous faudra la créer. Si vous devez créer une base de donnée, regardez avec votr ehébergeur quelle est la bonne methode pour le faire. Notez le nom de votre base de donnée, votre Nom d'utilisateur et le mots de passe. Il vous faudra les trois pour installer correctement Coppermine. </li>
+  <li><strong>Une librairie graphique:</strong><br />
+  Soit  GD version 1.x ou 2.x (PHP doit être compilé pour ouvoir l'utiliser) ou ImageMagick.<br />
+  (regardez <a href="install_faq.htm#whatIsImageMagick">Qu'est ce qu'ImageMagick</a> et <a href="install_faq.htm#WhatIsGD">Qu'est ce que GD</a>)</li>
+  <li>C'est certainement une bonne idée de contacter en premier votre hébergeur pour savoir si ils sont au courrant de problèmes avec l'installation de Coppermine sur leurs serveurs.</li>
+</ul>
+<p>Donc Coppermine peut fonctionner sur  <em>tous</em> les seveurs web qui ont les minimums requis mentionnés plus haut, L'équipe de développement de Coppermine ne peut pas vous aider pour configurer votre serveur. Comme indiqué, il y a un minimum requis à vérifier et à mettre en place avant d'installer Coppermine. Notez que l'équipe de Coppermine re recommande pas l'hébergement personnel sauf si vous avez une bonne expérience dans l'administration de serveurs web et que vous savez comment faire.</p>
+
+<a name="personal"></a><h2>Requis personnels<a href="#personal" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Coppermine est destiné aux webmasters qui ont au moins un savoir faire de base en HTML et une certaine expérience dans la mise en place de scripts. L'équipe de dévelopement de Coppermine sait que certains utilisateur qui ont peu ou pas d'expérience dans ce domaine utilisent les <a href="auto-installers.htm">auto-installeurs</a> pour configurer leur galerie, ce qui est très bien. Nous vous demandons simplement de lire attentivement cette documentation avant de poser des questions sur le forum d'aide de Coppermine, la plupart des réponses aux questions de débutants s'y trouvent. Vous pouvez utiliser Coppermine sans problèmes avec <a href="theme.htm#theme_builtin">les themes qui se trouvent dans le pack</a>. Néanmoins, si vous voulez modifierun theme existant ou <a href="theme_create.htm#theme_create">crére votr epropre theme</a> (qui correspond à l'aspect du freste de votre site), vous devrez avoir des connaissance de base voir avancées en <acronym title="Hyper Text Markup Language">HTML</acronym> et <acronym title="Cascading Style Sheets">CSS</acronym> .</p>
+
+<script type="text/javascript">
+  cpgDocFooter();
+  dateRevision(' $LastChangedDate$ ', ' $Revision$ ');
+</script>
+
+</body>
+</html>
