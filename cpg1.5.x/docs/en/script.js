@@ -462,6 +462,7 @@ d.add(5400,5100,'Theme-based dynamic content (theme.php)','php-content.htm#php-c
 d.add(5500,5100,'Modifying core files','php-content.htm#php-content_core');
 d.add(5600,0,'Administration','administration.htm');
 d.add(5700,5600,'Admin menu items','admin_menu.htm');
+d.add(5750,5600,'Banning','banning.htm#banning');
 d.add(5800,5600,'Configuration','configuration.htm');
 d.add(5900,5800,'General settings','configuration.htm#admin_general');
 d.add(6000,5800,'Language & Charset settings','configuration.htm#admin_language');
