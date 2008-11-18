@@ -402,7 +402,8 @@ if ($superCage->post->keyExists('submit')) {
         // Write the changes into the database --- end
     } // end foreach loop
     // Now let's take care of new ban records
-    // Sanitize the new record data --- start    $post_user_name = $superCage->post->getEscaped('add_user_name');
+    // Sanitize the new record data --- start
+    $post_user_name = $superCage->post->getEscaped('add_user_name');
     $post_temp_array = $superCage->post->getMatched('add_email', '/^([a-zA-Z0-9]((\.|\-|\_){0,1}[a-zA-Z0-9]){0,})@([a-zA-Z]((\.|\-){0,1}[a-zA-Z0-9]){0,})\.([a-zA-Z]{2,4})$/');
     $post_email = $post_temp_array[0];
     $post_temp_array = $superCage->post->getMatched('add_ip', '/^\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b$/');
@@ -502,7 +503,8 @@ if ($superCage->post->keyExists('submit')) {
 		}
     	// Form fields for a new database record have been submit - let's create a new record --- end
     }
-    // Determine wether form data for a new ban has been submit --- end    // Write the new record into the database --- end    
+    // Determine wether form data for a new ban has been submit --- end
+    // Write the new record into the database --- end    
 }
 // Processing of form data --- end
 
