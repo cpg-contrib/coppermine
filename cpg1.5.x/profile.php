@@ -19,6 +19,7 @@
 
 define('IN_COPPERMINE', true);
 define('PROFILE_PHP', true);
+define('USERMGR_PHP', true);
 
 require('include/init.inc.php');
 include("include/smilies.inc.php");
@@ -109,6 +110,7 @@ function cpgUserLastComment($uid) {
 
 $edit_profile_form_param = array(
     array('text', 'username', cpg_fetch_icon('my_profile', 2) . $lang_register_php['username']),
+    array('text', 'status', cpg_fetch_icon('online', 2) . $lang_usermgr_php['status']),
     array('text', 'reg_date', cpg_fetch_icon('calendar', 2) . $lang_register_php['reg_date']),
     array('text', 'group', cpg_fetch_icon('groups_mgr', 2) . $lang_register_php['group']),
     array('text', 'email', cpg_fetch_icon('mail', 2) . $lang_register_php['email'],255),
@@ -129,6 +131,7 @@ if ($CONFIG['allow_email_change'] == 1 || GALLERY_ADMIN_MODE) {
         // profile mod test
 $display_profile_form_param = array(
     array('text', 'username', $lang_register_php['username']),
+    array('text', 'status', $lang_usermgr_php['status']),
     array('text', 'reg_date', $lang_register_php['reg_date']),
     array('text', 'group', $lang_register_php['group']),
     array('text', 'user_profile1', $CONFIG['user_profile1_name']),
@@ -377,11 +380,13 @@ if ($superCage->post->keyExists('change_password') && USER_ID && UDB_INTEGRATION
 switch ($op) {
     // ------------------------------------------------------------------------- //
     case 'edit_profile' :
-        if (!USER_ID) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+        if (!USER_ID) {
+        	cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+        }
 
         if (defined('UDB_INTEGRATION')) $cpg_udb->edit_profile(USER_ID);
 
-        $sql = "SELECT user_name, user_email, user_group, UNIX_TIMESTAMP(user_regdate) as user_regdate, group_name, " . "user_profile1, user_profile2, user_profile3, user_profile4, user_profile5, user_profile6, user_group_list, " . "COUNT(pid) as pic_count, SUM(total_filesize) as disk_usage, group_quota " . "FROM {$CONFIG['TABLE_USERS']} AS u " . "INNER JOIN {$CONFIG['TABLE_USERGROUPS']} AS g ON user_group = group_id " . "LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.owner_id = u.user_id " . "WHERE user_id ='" . USER_ID . "' " . "GROUP BY user_id ";
+        $sql = "SELECT user_name, user_email, user_group, user_active, UNIX_TIMESTAMP(user_regdate) AS user_regdate, group_name, " . "user_profile1, user_profile2, user_profile3, user_profile4, user_profile5, user_profile6, user_group_list, " . "COUNT(pid) AS pic_count, SUM(total_filesize) AS disk_usage, group_quota " . "FROM {$CONFIG['TABLE_USERS']} AS u " . "INNER JOIN {$CONFIG['TABLE_USERGROUPS']} AS g ON user_group = group_id " . "LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.owner_id = u.user_id " . "WHERE user_id ='" . USER_ID . "' " . "GROUP BY user_id ";
 
         $result = cpg_db_query($sql);
 
@@ -398,6 +403,14 @@ switch ($op) {
             }
             mysql_free_result($result);
             $group_list = '<br /><i>(' . substr($group_list, 0, -2) . ')</i>';
+        }
+        
+        if (mysql_num_rows(cpg_db_query("SELECT user_name FROM {$CONFIG['TABLE_BANNED']} WHERE user_name = '" . $user_data['user_name'] . "' AND brute_force=0 LIMIT 1"))){
+        	$user_status = $lang_register_php['banned'];
+        } elseif ($user_data['user_active'] == 'YES') {
+        	$user_status = $lang_usermgr_php['status_active'];
+        } else {
+        	$user_status = $lang_usermgr_php['status_inactive'];
         }
 
         if ($user_data['disk_usage'] != '') {
@@ -418,6 +431,7 @@ switch ($op) {
         }
         $form_data = array('username' => $user_data['user_name'],
             'reg_date' => localised_date($user_data['user_regdate'], $register_date_fmt),
+            'status' => $user_status,
             'group' => $user_data['group_name'] . $group_list,
             'email' => $user_data['user_email'],
             'disk_usage' => $disk_usage_output,
@@ -611,6 +625,13 @@ EOT;
 
         $user_data = $cpg_udb->get_user_infos($uid);
         $user_thumb = cpgUserThumb($uid);
+        if (mysql_num_rows(cpg_db_query("SELECT user_name FROM {$CONFIG['TABLE_BANNED']} WHERE user_name = '" . $user_data['user_name'] . "' AND brute_force=0 LIMIT 1"))){
+        	$user_status = $lang_register_php['banned'];
+        } elseif ($user_data['user_active'] == 'YES') {
+        	$user_status = $lang_usermgr_php['status_active'];
+        } else {
+        	$user_status = $lang_usermgr_php['status_inactive'];
+        }
         if ($user_thumb != '') {
           $user_thumb = '<td width="50%" valign="top" align="center">'
                       . '<a href="thumbnails.php?album=lastupby&amp;uid=' . $uid . '">'
@@ -640,6 +661,7 @@ EOT;
         }
 
         $form_data = array('username' => $user_data['user_name'],
+            'status' => $user_status,
             'reg_date' => localised_date($user_data['user_regdate'], $register_date_fmt),
             'group' => $user_data['group_name'],
             'user_profile1' => $user_data['user_profile1'],

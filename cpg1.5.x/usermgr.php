@@ -521,7 +521,14 @@ EOT;
         $comment_quota_output = theme_display_bar($user['comment_num'],$totalCommentCount,60,'', '', '','red','');
         // create files bar
         $file_quota_output = theme_display_bar($user['pic_count'],$totalPictureCount,60,'', '', '','red','');
-
+        // Look up banned table
+		if (mysql_num_rows(cpg_db_query("SELECT user_name FROM {$CONFIG['TABLE_BANNED']} WHERE user_name = '{$user['user_name']}' AND brute_force=0 LIMIT 1"))){
+			$ban_user_link = '<a href="banning.php">' . cpg_fetch_icon('ban_user_disabled', 0, $lang_usermgr_php['user_is_banned']) . '</a>';
+			$ban_memberlist = cpg_fetch_icon('ban_user_disabled', 0, $lang_usermgr_php['user_is_banned']);
+		} else {
+        	$ban_user_link = '<a href="banning.php?ban_user=' . $user['user_id'] . '">' . cpg_fetch_icon('ban_user', 0, $lang_usermgr_php['ban_user']) . '</a>';
+        	$ban_memberlist = '';
+        }
 
         if (!$lim_user) {
                 if ($user['user_id'] == $USER_DATA['user_id']) {
@@ -531,7 +538,6 @@ EOT;
                 } else {
                     $profile_link = $CPG_PHP_SELF.'?op=edit&user_id='.$user['user_id'];
                     $checkbox_html = '<input name="u'.$user['user_id'].'" '.$makereadonly.'type="checkbox" value="" class="checkbox" />';
-                    $ban_user_link = '<a href="banning.php?ban_user=' . $user['user_id'] . '">' . cpg_fetch_icon('ban_user', 0, $lang_usermgr_php['ban_user']) . '</a>';
                 }
                 $profile_link = '<a href="' . $profile_link . '">' . cpg_fetch_icon('edit', 0, $lang_usermgr_php['edit_profile']) . '</a>';
                 echo <<< EOT
@@ -560,7 +566,7 @@ EOT;
         <tr>
                 <td class="{$row_style_class}">{$user['user_name']}</td>
                 <td class="{$row_style_class}">{$view_profile}{$last_uploads}{$user_comment_link}</td>
-                <td class="{$row_style_class}">{$user['status']}</td>
+                <td class="{$row_style_class}">{$user['status']}{$ban_memberlist}</td>
                 <td class="{$row_style_class}">{$user['group_name']}</td>
                 <td class="{$row_style_class}">{$user['user_regdate']}</td>
                 <td class="{$row_style_class}">{$user['user_lastvisit']}</td>
@@ -709,17 +715,17 @@ function edit_user($user_id)
     global $lang_usermgr_php, $lang_common;
 
     $form_data = array(
-        array('input', 'user_name', $lang_usermgr_php['name'], 25),
-        array('password', 'user_password', $lang_usermgr_php['password'], 25),
-        array('yesno', 'user_active', $lang_usermgr_php['user_active']),
-        array('group_list', 'user_group', $lang_usermgr_php['user_group']),
-        array('input', 'user_email', $lang_usermgr_php['user_email'], 255),
-        array('input', 'user_profile1', $CONFIG['user_profile1_name'], 255),
-        array('input', 'user_profile2', $CONFIG['user_profile2_name'], 255),
-        array('input', 'user_profile3', $CONFIG['user_profile3_name'], 255),
-        array('input', 'user_profile4', $CONFIG['user_profile4_name'], 255),
-        array('input', 'user_profile5', $CONFIG['user_profile5_name'], 255),
-        array('textarea', 'user_profile6', $CONFIG['user_profile6_name'], 255)
+        array('input', 'user_name', cpg_fetch_icon('my_profile', 2) . $lang_usermgr_php['name'], 25),
+        array('password', 'user_password', cpg_fetch_icon('key_enter', 2) . $lang_usermgr_php['password'], 25),
+        array('yesno', 'user_active', cpg_fetch_icon('online', 2) . $lang_usermgr_php['user_active']),
+        array('group_list', 'user_group', cpg_fetch_icon('groups_mgr', 2) . $lang_usermgr_php['user_group']),
+        array('input', 'user_email', cpg_fetch_icon('mail', 2) . $lang_usermgr_php['user_email'], 255),
+        array('input', 'user_profile1', cpg_fetch_icon('blank', 2) . $CONFIG['user_profile1_name'], 255),
+        array('input', 'user_profile2', cpg_fetch_icon('blank', 2) . $CONFIG['user_profile2_name'], 255),
+        array('input', 'user_profile3', cpg_fetch_icon('blank', 2) . $CONFIG['user_profile3_name'], 255),
+        array('input', 'user_profile4', cpg_fetch_icon('blank', 2) . $CONFIG['user_profile4_name'], 255),
+        array('input', 'user_profile5', cpg_fetch_icon('blank', 2) . $CONFIG['user_profile5_name'], 255),
+        array('textarea', 'user_profile6', cpg_fetch_icon('blank', 2) . $CONFIG['user_profile6_name'], 255)
         );
 
     $sql = "SELECT * FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '$user_id'";
@@ -732,146 +738,174 @@ function edit_user($user_id)
     if ($user_data['user_name'] == '') {
         $form_data[] = array('checkbox', 'send_login_data', $lang_usermgr_php['send_login_data']);
     }
+	if (mysql_num_rows(cpg_db_query("SELECT user_name FROM {$CONFIG['TABLE_BANNED']} WHERE user_name = '" . $user_data['user_name'] . "' AND brute_force=0 LIMIT 1"))){
+    	$user_status = $lang_usermgr_php['user_is_banned'];
+    } elseif ($user_data['user_active'] == 'YES') {
+    	$user_status = $lang_usermgr_php['status_active'];
+    } else {
+    	$user_status = $lang_usermgr_php['status_inactive'];
+    }
+    $status_icon = cpg_fetch_icon('online', 2);
 
-    starttable(500, $lang_usermgr_php['modify_user'], 2);
+
     echo <<<EOT
         <form name="cpgform3" id="cpgform3" method="post" action="{$CPG_PHP_SELF}?op=update&user_id=$user_id">
 
 EOT;
-
-    foreach ($form_data as $element) switch ($element[0]) {
-        case 'input' :
-            $user_data[$element[1]] = $user_data[$element[1]];
-            if ($element[2]) echo <<<EOT
+    starttable(500, $lang_usermgr_php['modify_user'], 2);
+    print <<< EOT
         <tr>
-            <td width="40%" class="tableb">
-                        {$element[2]}
-        </td>
-        <td width="60%" class="tableb" valign="top">
-                <input type="text" style="width: 100%" name="{$element[1]}" maxlength="{$element[3]}" value="{$user_data[$element[1]]}" class="textinput" />
-                </td>
-        </tr>
-
-
-EOT;
-            break;
-
-        case 'textarea' :
-
-           $value = $user_data[$element[1]];
-
-           if ($element[2]) echo <<<EOT
-        <tr>
-            <td width="40%" class="tableb"  height="25">
-                        {$element[2]}
-        </td>
-        <td width="60%" class="tableb" valign="top">
-                <textarea name="{$element[1]}" rows="7" class="textinput" style="width: 100%">$value</textarea>
-                </td>
-        </tr>
-
-
-EOT;
-            break;
-
-        case 'password' :
-            echo <<<EOT
-        <tr>
-            <td width="40%" class="tableb">
-                        {$element[2]}
-        </td>
-        <td width="60%" class="tableb" valign="top">
-                <input type="input" style="width: 100%" name="{$element[1]}" maxlength="{$element[3]}" value="" class="textinput" />
-                </td>
-        </tr>
-
-EOT;
-            break;
-
-        case 'yesno' :
-            $value = $user_data[$element[1]];
-            $yes_selected = ($value == 'YES') ? 'checked="checked"' : '';
-            $no_selected = ($value == 'NO') ? 'checked="checked"' : '';
-            //$yes_selected = ($value == 'YES') ? 'selected' : '';
-            //$no_selected = ($value == 'NO') ? 'selected' : '';
-            echo <<< EOT
-        <tr>
-            <td class="tableb">
-                        {$element[2]}
-        </td>
                 <td class="tableb">
-                    <input type="radio" id="yes" name="{$element[1]}" value="YES" $yes_selected /><label for="yes" class="clickable_option">{$lang_common['yes']}</label>
-                    &nbsp;&nbsp;
-                    <input type="radio" id="no" name="{$element[1]}" value="NO" $no_selected /><label for="no" class="clickable_option">{$lang_common['no']}</label>
+                        {$status_icon}{$lang_usermgr_php['status']}
                 </td>
-        </tr>
-
-EOT;
-            break;
-
-        case 'group_list' :
-            $sql = "SELECT group_id, group_name FROM {$CONFIG['TABLE_USERGROUPS']} ORDER BY group_name";
-            $result = cpg_db_query($sql);
-            $group_list = cpg_db_fetch_rowset($result);
-            mysql_free_result($result);
-
-            $sel_group = $user_data[$element[1]];
-            $user_group_list = ($user_data['user_group_list'] == '') ? ',' . $sel_group . ',' : ',' . $user_data['user_group_list'] . ',' . $sel_group . ',';
-
-            echo <<<EOT
-        <tr>
-            <td class="tableb">
-                        {$element[2]}
-        </td>
-        <td class="tableb" valign="top">
-                <select name="{$element[1]}" class="listbox">
-
-EOT;
-            $group_cb = '';
-            foreach($group_list as $group) {
-                echo '                        <option value="' . $group['group_id'] . '"' . ($group['group_id'] == $sel_group ? ' selected' : '') . '>' . $group['group_name'] . "</option>\n";
-
-                /**
-                 * If the group is registered, don't show it here as all the users must be a member of this group
-                 * Also there is no point in displaying the 'Banned' group as checking banned here does not ban the user.
-                 * Also remove Administrators group from secondary list as it won't give a user admin access.
-                 */
-                if ($group['group_id'] != 1 && $group['group_id'] != 2 && $group['group_id'] != 4) {
-                  $checked = strpos(' ' . $user_group_list, ',' . $group['group_id'] . ',') ? 'checked' : '';
-                  $group_cb .= '<input name="group_list[]" type="checkbox" value="' . $group['group_id'] . '" ' . $checked . ' />' . $group['group_name'] . "<br />\n";
-                }
-            }
-            $assignedGroupsHelp = cpg_display_help('f=users.htm&amp;as=user_cp_edit_permission_by_group&amp;ae=user_cp_edit_permission_by_group_end', '450', '300');
-            echo <<<EOT
-                        </select><br />
-                        $group_cb
-                        <br />
-                        <a href="usermgr.php?op=groups_alb_access" class="admin_menu">{$lang_usermgr_php['groups_alb_access']}</a>
-                        {$assignedGroupsHelp}
-
-          </td>
-        </tr>
-
-EOT;
-            break;
-
-        case 'checkbox':
-            echo <<< EOT
-        <tr>
-            <td class="tableb">
-                        <label for="send_login_data">{$element[2]}</label>
-        </td>
                 <td class="tableb">
-                    <input type="checkbox" id="send_login_data" name="{$element[1]}" value="YES" />
+                        {$user_status}
                 </td>
         </tr>
-
 EOT;
-            break;
 
-        default:
-            cpg_die(CRITICAL_ERROR, 'Invalid action for form creation ' . $element[0], __FILE__, __LINE__);
-    }
+    $loopCounter = 0;
+    foreach ($form_data as $element) {
+		if ($loopCounter/2 == floor($loopCounter/2)) {
+        	$row_style_class = 'tableb tableb_alternate';
+        } else {
+        	$row_style_class = 'tableb';
+        }
+        $loopCounter++;
+	    switch ($element[0]) {
+	        case 'input' :
+	            $user_data[$element[1]] = $user_data[$element[1]];
+	            if ($element[2]) echo <<<EOT
+	        <tr>
+	            <td width="40%" class="{$row_style_class}">
+	                        {$element[2]}
+	        </td>
+	        <td width="60%" class="{$row_style_class}" valign="top">
+	                <input type="text" style="width: 100%" name="{$element[1]}" maxlength="{$element[3]}" value="{$user_data[$element[1]]}" class="textinput" />
+	                </td>
+	        </tr>
+	
+	
+EOT;
+	            break;
+	
+	        case 'textarea' :
+	
+	           $value = $user_data[$element[1]];
+	
+	           if ($element[2]) echo <<<EOT
+	        <tr>
+	            <td width="40%" class="{$row_style_class}"  height="25">
+	                        {$element[2]}
+	        </td>
+	        <td width="60%" class="{$row_style_class}" valign="top">
+	                <textarea name="{$element[1]}" rows="7" class="textinput" style="width: 100%">$value</textarea>
+	                </td>
+	        </tr>
+	
+	
+EOT;
+	            break;
+	
+	        case 'password' :
+	            echo <<<EOT
+	        <tr>
+	            <td width="40%" class="{$row_style_class}">
+	                        {$element[2]}
+	        </td>
+	        <td width="60%" class="{$row_style_class}" valign="top">
+	                <input type="input" style="width: 100%" name="{$element[1]}" maxlength="{$element[3]}" value="" class="textinput" />
+	                </td>
+	        </tr>
+	
+EOT;
+	            break;
+	
+	        case 'yesno' :
+	            $value = $user_data[$element[1]];
+	            $yes_selected = ($value == 'YES') ? 'checked="checked"' : '';
+	            $no_selected = ($value == 'NO') ? 'checked="checked"' : '';
+	            //$yes_selected = ($value == 'YES') ? 'selected' : '';
+	            //$no_selected = ($value == 'NO') ? 'selected' : '';
+	            echo <<< EOT
+	        <tr>
+	            <td class="{$row_style_class}">
+	                        {$element[2]}
+	        </td>
+	                <td class="{$row_style_class}">
+	                    <input type="radio" id="yes" name="{$element[1]}" value="YES" $yes_selected /><label for="yes" class="clickable_option">{$lang_common['yes']}</label>
+	                    &nbsp;&nbsp;
+	                    <input type="radio" id="no" name="{$element[1]}" value="NO" $no_selected /><label for="no" class="clickable_option">{$lang_common['no']}</label>
+	                </td>
+	        </tr>
+	
+EOT;
+	            break;
+	
+	        case 'group_list' :
+	            $sql = "SELECT group_id, group_name FROM {$CONFIG['TABLE_USERGROUPS']} ORDER BY group_name";
+	            $result = cpg_db_query($sql);
+	            $group_list = cpg_db_fetch_rowset($result);
+	            mysql_free_result($result);
+	
+	            $sel_group = $user_data[$element[1]];
+	            $user_group_list = ($user_data['user_group_list'] == '') ? ',' . $sel_group . ',' : ',' . $user_data['user_group_list'] . ',' . $sel_group . ',';
+	
+	            echo <<<EOT
+	        <tr>
+	            <td class="{$row_style_class}">
+	                        {$element[2]}
+	        </td>
+	        <td class="{$row_style_class}" valign="top">
+	                <select name="{$element[1]}" class="listbox">
+	
+EOT;
+	            $group_cb = '';
+	            foreach($group_list as $group) {
+	                echo '                        <option value="' . $group['group_id'] . '"' . ($group['group_id'] == $sel_group ? ' selected' : '') . '>' . $group['group_name'] . "</option>\n";
+	
+	                /**
+	                 * If the group is registered, don't show it here as all the users must be a member of this group
+	                 * Also there is no point in displaying the 'Banned' group as checking banned here does not ban the user.
+	                 * Also remove Administrators group from secondary list as it won't give a user admin access.
+	                 */
+	                if ($group['group_id'] != 1 && $group['group_id'] != 2 && $group['group_id'] != 4) {
+	                  $checked = strpos(' ' . $user_group_list, ',' . $group['group_id'] . ',') ? 'checked' : '';
+	                  $group_cb .= '<input name="group_list[]" type="checkbox" value="' . $group['group_id'] . '" ' . $checked . ' />' . $group['group_name'] . "<br />\n";
+	                }
+	            }
+	            $assignedGroupsHelp = cpg_display_help('f=users.htm&amp;as=user_cp_edit_permission_by_group&amp;ae=user_cp_edit_permission_by_group_end', '450', '300');
+	            echo <<<EOT
+	                        </select><br />
+	                        $group_cb
+	                        <br />
+	                        <a href="usermgr.php?op=groups_alb_access" class="admin_menu">{$lang_usermgr_php['groups_alb_access']}</a>
+	                        {$assignedGroupsHelp}
+	
+	          </td>
+	        </tr>
+	
+EOT;
+	            break;
+	
+	        case 'checkbox':
+	            echo <<< EOT
+	        <tr>
+	            <td class="{$row_style_class}">
+	                        <label for="send_login_data">{$element[2]}</label>
+	        </td>
+	                <td class="{$row_style_class}">
+	                    <input type="checkbox" id="send_login_data" name="{$element[1]}" value="YES" />
+	                </td>
+	        </tr>
+	
+EOT;
+	            break;
+	
+	        default:
+	            cpg_die(CRITICAL_ERROR, 'Invalid action for form creation ' . $element[0], __FILE__, __LINE__);
+	    }
+	}
 
     echo <<<EOT
         <tr>

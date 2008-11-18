@@ -44,6 +44,16 @@ $icon_array['go'] = cpg_fetch_icon('right', 0);
 $icon_array['ok'] = cpg_fetch_icon('ok', 0);
 $items_per_page = 25;
 
+$help_array = array();
+$help_array['tab'] = '&nbsp;' . cpg_display_help('f=banning.htm&amp;as=banning_page_statistics&amp;ae=banning_page_statistics_end', '450', '300');
+$help_array['bridge'] = '&nbsp;' . cpg_display_help('f=banning.htm&amp;as=banning_bridged&amp;ae=banning_bridged_end', '450', '300');
+$help_array['global'] = '&nbsp;' . cpg_display_help('f=banning.htm&amp;as=banning&amp;ae=banning_end', '600', '800');
+$help_array['ip_lookup'] = '&nbsp;' . cpg_display_help('f=banning.htm&amp;as=banning_page_lookup_ip_address&amp;ae=banning_page_lookup_ip_address_end', '450', '300');
+$help_array['user_name'] = '&nbsp;' . cpg_display_help('f=banning.htm&amp;as=banning_page_user_name&amp;ae=banning_page_user_name_end', '450', '300');
+$help_array['email_address'] = '&nbsp;' . cpg_display_help('f=banning.htm&amp;as=banning_page_email_address&amp;ae=banning_page_email_address_end', '450', '300');
+$help_array['ip_address'] = '&nbsp;' . cpg_display_help('f=banning.htm&amp;as=banning_page_ip_address&amp;ae=banning_page_ip_address_end', '450', '300');
+$help_array['expiration'] = '&nbsp;' . cpg_display_help('f=banning.htm&amp;as=banning_page_expiration&amp;ae=banning_page_expiration_end', '450', '300');
+
 
 $sort_codes = array(
 	'ban_a' => 'ban_id ASC',
@@ -117,7 +127,7 @@ if ($superCage->get->keyExists('page')) {
 $limit = 'LIMIT '. (($page - 1) * $items_per_page) . ', '.$items_per_page;
 
 $banning_tab_array = $template_tab_display;
-$banning_tab_array['left_text'] = strtr($banning_tab_array['left_text'], array('{LEFT_TEXT}' => $lang_banning_php['records_on_page'] . ', '. $lang_banning_php['sorted_by'] . ' ' . $sort_string));
+$banning_tab_array['left_text'] = strtr($banning_tab_array['left_text'], array('{LEFT_TEXT}' => $lang_banning_php['records_on_page'] . ', '. $lang_banning_php['sorted_by'] . ' ' . $sort_string . $help_array['tab']));
 $banning_tab_array['inactive_tab'] = strtr($banning_tab_array['inactive_tab'], array('{LINK}' => 'banning.php?sort=' . $sort . '&amp;page=%d' . '#ban_users'));
 
 $tabs = <<< EOT
@@ -166,7 +176,7 @@ function cpg_illegal_ip_address($ip) {
  **/
 function create_banlist()
 {
-    global $CONFIG, $lang_banning_php, $lang_usermgr_php, $lang_common, $album_date_fmt, $CPG_PHP_SELF, $icon_array, $sort, $limit, $header_output; //$PHP_SELF,
+    global $CONFIG, $lang_banning_php, $lang_usermgr_php, $lang_common, $album_date_fmt, $CPG_PHP_SELF, $icon_array, $sort, $limit, $header_output, $help_array; //$PHP_SELF,
 
     $result = cpg_db_query ("SELECT *, UNIX_TIMESTAMP(expiry) AS expiry FROM {$CONFIG['TABLE_BANNED']} WHERE brute_force=0 ORDER BY $sort $limit");
     $count = mysql_num_rows($result);
@@ -183,21 +193,25 @@ function create_banlist()
 	                </th>
 	                <th align="center" class="tableh2">
 	                	{$lang_banning_php['user_name']}
+	                	{$help_array['user_name']}
 	                	{$header_output['user_name_a']}
 	                	{$header_output['user_name_d']}
 	                </th>
 	                <th align="center" class="tableh2">
 	                	{$lang_banning_php['email_address']}
+	                	{$help_array['email_address']}
 	                	{$header_output['email_a']}
 	                	{$header_output['email_d']}
 	                </th>
 	                <th align="center" class="tableh2">
 	                	{$lang_banning_php['ip_address']}
+	                	{$help_array['ip_address']}
 	                	{$header_output['ip_a']}
 	                	{$header_output['ip_d']}
 	                </th>
 	                <th align="center" class="tableh2">
 	                	{$lang_banning_php['expires']}
+	                	{$help_array['expiration']}
 	                	{$header_output['expiry_a']}
 	                	{$header_output['expiry_d']}
 	                </th>
@@ -537,7 +551,7 @@ if($superCage->get->keyExists('delete_comment_id') && $superCage->get->getInt('d
 
 pageheader($lang_banning_php['title'], '<link rel="stylesheet" href="js/datePicker.css" type="text/css" />');
 if ($CONFIG['bridge_enable'] != 0) {
-    starttable('100%', cpg_fetch_icon('warning', 2) . $lang_info, 1);
+    starttable('100%', cpg_fetch_icon('warning', 2) . $lang_info . $help_array['bridge'], 1);
     print <<< EOT
     <tr>
     	<td class="tableb">
@@ -552,7 +566,7 @@ print <<< EOT
 <form action="{$CPG_PHP_SELF}?sort={$sort}&amp;page={$page}#ban_users" method="post" name="banlist" id="banlist" onsubmit="return checkBanFormSubmit();">
 <a name="ban_users"></a>
 EOT;
-starttable('100%', cpg_fetch_icon('ban_user', 2) . $lang_banning_php['title'], 6);
+starttable('100%', cpg_fetch_icon('ban_user', 2) . $lang_banning_php['title'] . $help_array['global'], 6);
 // Output the results of the queries
 if ($action_output != '') {
 	print <<< EOT
@@ -629,14 +643,15 @@ print <<< EOT
 <br />
 <form action="http://ws.arin.net/whois/" method="get" name="lookup" id="cpgform2" target="_blank">
 EOT;
+
 starttable('-2');
 print <<< EOT
     <tr>
         <td class="tablef">
-            <strong>{$lang_banning_php['lookup_ip']}</strong>
+            <strong>{$lang_banning_php['lookup_ip']}</strong>{$help_array['ip_lookup']}
         </td>
         <td class="tableb">
-            <input type="text" class="textinput" size="20" name="queryinput" value="" maxlength="15" />
+            <input type="text" class="textinput" size="20" name="queryinput" value="{$comm_info['msg_ip']}" maxlength="15" />
         </td>
         <td class="tableb">
             <button type="submit" class="button" name="submit" id="submit_lookup" value="{$lang_common['ok']}" style="display:block">{$icon_array['go']}{$lang_common['ok']}</button>

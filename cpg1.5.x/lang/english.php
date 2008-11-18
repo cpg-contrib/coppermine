@@ -1940,6 +1940,7 @@ $lang_register_php = array(
   'password_warning2' => 'Username and password must be different', // cpg1.5
   'password_verification_warning1' => 'The two passwords do not match, please enter them again', // cpg1.5
   'form_not_submit' => 'The form hasn\'t been submit - there are errors that you need to correct first!', // cpg1.5
+  'banned' => 'Banned', // cpg1.5
 );
 
 $lang_register_confirm_email = <<<EOT
@@ -2364,6 +2365,7 @@ $lang_usermgr_php = array(
   'view_profile' => 'View profile', // cpg1.5
   'edit_profile' => 'Edit profile', // cpg1.5
   'ban_user' => 'Ban user', // cpg1.5
+  'user_is_banned' => 'User is banned', // cpg1.5
   'status' => 'Status', // cpg1.5
   'status_active' => 'active', // cpg1.5
   'status_inactive' => 'not active', // cpg1.5

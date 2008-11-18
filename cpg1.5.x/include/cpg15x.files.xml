@@ -6123,6 +6123,12 @@
     <hash>a313fc573cdafea2ab948fe140e5377a</hash>
   </element>
   <element>
+    <fullpath>images/icons/ban_user_disabled.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>a313fc573cdafea2ab948fe140e5377a</hash>
+  </element>
+  <element>
     <fullpath>images/icons/ban_user_comment.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
@@ -8699,6 +8705,12 @@
   </element>
   <element>
     <fullpath>themes/classic/images/icons/ban_user.png</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>a313fc573cdafea2ab948fe140e5377a</hash>
+  </element>
+  <element>
+    <fullpath>themes/classic/images/icons/ban_user_disabled.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
     <hash>a313fc573cdafea2ab948fe140e5377a</hash>

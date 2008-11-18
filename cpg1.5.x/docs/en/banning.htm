@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="language" content="en" />
 <meta name="copyright" content="Coppermine dev team" />
-<meta name="description" content="Ban users based on hostname, email or IP address.">
+<meta name="description" content="Ban users based on hostname, email or IP address. Manage bans. Set ban expiry date.">
 <meta http-equiv="Content-Style-Type" content="text/css" />
 <meta name="MSSmartTagsPreventParsing" content="true" />
 <meta http-equiv="imagetoolbar" content="no" />
@@ -74,7 +74,8 @@
 <p>The "Ban users" page consists of the following controls:</p>
 <ul>
 	<li><a name="banning_page_statistics"></a><h3>Statistics and filtering information<a href="#banning_page_statistics" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-	The first actual row of the table (after the heading) contains statistical data about the total number of bans and the number of total pages. If there are more ban records than the set maximum per page (25), a pagination tab will be displayed at the right that allows you to jump to previous and next pages.<a name="banning_page_statistics_end"></a></li>
+	The first actual row of the table (after the heading) contains statistical data about the total number of bans and the number of total pages. If there are more ban records than the set maximum per page (25), a pagination tab will be displayed at the right that allows you to jump to previous and next pages.<br />
+	The identical row is being displayed at the bottom of the table again to allow easier navigation between tabs.<a name="banning_page_statistics_end"></a></li>
 	<li><a name="banning_page_ban_id"></a><h3>Ban ID<a href="#banning_page_ban_id" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 	The Ban ID column can be sorted ascending or descending, using the small up and down arrows in the column heading. The ban ID can not be edited - a new ban ID is being created for each ban record the admin enters. As the Ban ID increases with each record, sorting the entire table by Ban ID will result in a table sorted by creation time of the ban.<a name="banning_page_ban_id_end"></a></li>
 	<li><a name="banning_page_delete"></a><h3>Delete<a href="#banning_page_delete" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -95,18 +96,18 @@
 	When creating a ban record you have the option to delete all comments posted by the banned user (when banning by user name).<a name="banning_page_new_ban_end"></a></li>
 	<li><a name="banning_page_lookup_ip_address"></a><h3>Lookup an IP address<a href="#banning_page_lookup_ip_address" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 	Below the actual banning table you will find another form that allows you to look up a particular IP address. This can be helpfull to determine wether an IP address belongs to an <abbr title="Internet Service Provider">ISP</abbr> or if it is a static IP address that is worth banning by IP<br />
-	Please keep in mind that the target of the IP address lookup will lead you to a third party web site. The Coppermine dev team can not be held responsible for the content of that third party page. The IP lookup field is being provided as a courtesy to end users with guarantees.<a name="banning_page_lookup_ip_address_end"></a></li>
+	Please keep in mind that the target of the IP address lookup will lead you to a third party web site. The Coppermine dev team can not be held responsible for the content of that third party page. The IP lookup field is being provided as a courtesy to end users with guarantees. It might not be available if the third party site changes their site design or lookup policy.<a name="banning_page_lookup_ip_address_end"></a></li>
 </ul>
 <a name="banning_page_end"></a>
 
 <a name="banning_bridged"></a><h2>No banning when bridged<a href="#banning_bridged" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Please note that banning doesn't make much sense if you have bridged coppermine with another application (see "<a href="bridging.htm">Bridging</a>"), as in that case coppermine drops the user management of it's own and instead uses the user management of the app it is being bridged with. That's why the admin menu item "Ban users" is being deliberately hidden when you have bridged your gallery. You can still access the "Ban users" page if you must by manually entering the URL of that page into the address bar of your browser (e.g. <tt class="code">http://yoursite.tld/your_coppermine_folder/banning.php</tt> - there will be a warning on the "Ban users" page then; use the feature carefully and at your own risk when bridged.</p>
 <p>Most applications that can be bridged with coppermine have banning mechanisms of their own, so if you're bridged, you should use your bridging application's banning mechanism instead of the one that ships with coppermine.</p>
+<a name="banning_bridged_end"></a>
 
 <a name="banning_todo"></a><h2>To Do<a href="#banning_todo" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>There is a number of features that haven't made it into the current release; among them is the ability to use wildcards for bans: in an ideal world, you could ban entire IP address ranges or entire email domains. Currently, this is not possible yet. You're welcome to review coppermine's core code and contribute your code change suggestions though.</p>
-<p>Another missing feature is the impact on user's profiles on the user management screen and the individual profile view: in the future, it would be desirable to show there if a user is banned or not.</p>
-<p>Help icons need to be added as well (work in progress).</p>
+<a name="banning_end"></a>
 
 <script type="text/javascript">
   cpgDocFooter();
