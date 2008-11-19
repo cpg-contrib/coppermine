@@ -39,6 +39,38 @@
 <a name="upgrade"></a><h1>Upgrading<a href="#upgrade" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
 <p>Please note: as there have been changes both in the coppermine files and the database from previous versions to cpg1.5.x, users of older versions than cpg1.5.0 will have to apply <strong>all</strong> steps mentioned below: both the files have to be replaced and the update.php script has to be run once.</p>
 
+<a name="upgrade_why"></a><h2>Why upgrade?<a href="#upgrade_why" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>There are major and minor releases of Coppermine. Major releases have so far been cpg1.0, cpg1.1, cpg1.2.x, cpg1.3.x and cpg1.4.x. The next major release will be cpg1.5.x (which currently is in the dev pipeline - no scheduled release date yet) -  you're just reading the preliminary docs for cpg1.5.x. Minor releases (the third number in the version numbering scheme) represent updates, also known as &quot;maintenance releases&quot;. Major releases contain new features (compared to the previous major release), minor releases do not contain new features, but only bug fixes and slight improvements (like additional language files).</p>
+<p>To understand the release policy of the coppermine dev team you have to understand how bugs are being fixed: we maintain a repository where the core code of each major release is being constantly being improved. Major and minor bugs that are reported on the coppermine support board are being fixed in that repository. Once a new package is being bundled, all fixes that have been made in that repository go into the new maintenance release.</p>
+<p>There is a good reason for every new maintenance release: they are usually being packaged when a new bug or vulnerability is being discovered that is relevant in terms of security. As suggested above, there are several minor bugfixes that go into each new release as well, not only the one major bug or vulnerability that lead to the maintenance release. Therefor, it will not be enough to just fix the single vulnerability that has been the initial reason for a new package to be released. Instead, always upgrade to the most recent stable release as soon as it has been announced.</p>
+<a name="upgrade_why_end"></a>
+
+<a name="upgrade_why_reasons"></a><h3>Reasons for package releases<a href="#upgrade_why_reasons" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>This is a list of minor releases of cpg1.4.x and the reason why they have been released. It is meant to explain why you should upgrade as soon as possible to the most recent stable release if you are running an outdated version.</p>
+<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+  <tr>
+    <th class="tableh1" valign="top" align="left">Package</td>
+    <th class="tableh1" valign="top" align="left">Reason for release</td>
+    <th class="tableh1" valign="top" align="left"><span class="small">Release Date</span></td>
+  </tr>
+  <tr>
+    <td class="tableb" valign="top">cpg1.5.0</td>
+    <td class="tableb" valign="top">
+      <ul>
+        <li>Not released yet.</li>
+      </ul>
+    </td>
+    <td class="tableb" valign="top" align="right">no package</td>
+  </tr>
+</table>
+<p>As you can see, the coppermine dev team is constantly fixing and improving coppermine. Every non-trivial piece of software contains bugs, so there is no guarantee that the version that currently is the most recent one will be the final, ultimately bug-free version to be released in the cpg1.5.x series. It is absolutely vital that you perform regular updates as soon as new packages are being released.</p>
+<a name="upgrade_why_reasons_end"></a>
+
+<a name="upgrade_why_changelog"></a><h3>Changelog<a href="#upgrade_why_changelog" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Details on the changes that went into a release can be found in the changelog that comes with each package. The changelog file can be found in the root directory of the coppermine package. The changelog contains more information on additional languages and the time and date of the fix as well.</p>
+<p>The changelog is a plain-text file that can be read using a simple editor - on Windows-driven machines, notepad.exe is fine.</p>
+<a name="upgrade_why_changelog_end"></a>
+
 <a name="upgrade_any"></a><h2>Steps needed to perform when upgrading Coppermine (from any version)<a href="#upgrade_any" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <ul>
     <li>Download the most recent stable version existing in the download section of the <a href="http://coppermine-gallery.net/">official Coppermine homepage</a><br />
@@ -91,7 +123,8 @@
 
 
 <a name="versioncheck"></a><h2>The version check tool<a href="#versioncheck" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>Since the release of cpg1.3.2 Coppermine comes with an additional version checking tool to help you resolve issues with upgrades and updates easily. To launch the versioncheck, simply add <tt>versioncheck.php</tt> to your browser's address bar after being logged into coppermine as admin (example: <tt>http://yourdomain.tld/your_coppermine_folder/versioncheck.php</tt>).  With version 1.5.x, you can run the versioncheck utility from the <a href="admin_menu.htm#admin_menu">Admin menu</a>.</p>
+<p>Since the release of cpg1.3.2 Coppermine comes with an additional version checking tool to help you resolve issues with upgrades and updates easily. To launch the versioncheck, simply add <tt>versioncheck.php</tt> to your browser's address bar after being logged into coppermine as admin (example: <tt>http://yourdomain.tld/your_coppermine_folder/versioncheck.php</tt>). With version 1.5.x, you can run the versioncheck utility from the <a href="admin_menu.htm#admin_menu">Admin menu</a>.</p>
+<p>The versioncheck tool does <strong>not</strong> perform an actual update: it does not download newer versions of coppermine for you, nor does it install any fixes - it just is meant to make you aware of newer versions and help you to determine wether you performed an upgrade correctly.</p>
 
 
 <a name="versioncheck_description_start"></a><h3>What it does<a href="#versioncheck_description_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -197,20 +230,22 @@
 <a name="versioncheck_problems_end"></a>
 <a name="versioncheck_end"></a>
 
-
+<a name="upgrade_faq"></a><h2>Upgrading FAQ<a href="#upgrade_faq" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<ul>
+	<li><a name="upgrade_faq_new_releases_alert"></a><h3>How do I find out about new Coppermine releases?<a href="#upgrade_faq_new_releases_alert" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+	There are various tools that allow you to stay up to date and make sure that you don't miss a release:
+	<ul>
+		<li>Leave the config setting &quot;<a href="configuration.htm#admin_general_coppermine_news">Display news from coppermine-gallery.net</a>&quot; enabled: this feature will alert you about news concerning releases and security issues on your coppermine-driven gallery. The news are only visible for you as admin, so your end users won't even notice.</li>
+		<li>Subscribe to the package on the sf.net project pages</li>
+		<li>Subscribe to the <a href="http://forum.coppermine-gallery.net/index.php/board,58.0.html" rel="external" class=" external">announcements board</a> (by clicking on "notify" when being logged in). You will then get an email whenever a new posting is made on the announcement board.</li>
+	</ul>
+	</li>
+</ul>
 
 <a name="downgrading"></a><h2>Downgrading from cpg1.5.x to an older version<a href="#downgrading" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>CPG1.5.x incorporates many new features (compared to older versions), so we encourage all users to upgrade. However, there may be some who want to test cpg1.5.x and decide later that they want to go back to an older version. You have to keep in mind that a full upgrade changes the overall layout of coppermine's database that includes converting the encoding to unicode. This process can't be reverted: once you have done the conversion, the only way back is to restore a complete mySQL database dump (of course you have to create this backup <strong>before</strong> you upgraded in the first place). Creating mySQL dumps (backups) is recommended anyway, so you should do so <strong>now</strong>.</p>
 <p>To make this absolutely clear: you can only downgrade if you used to have cpg1.4.x before and upgraded this version to cpg1.5.x. If you have made a <em>fresh</em> install of cpg1.5.x, you can't downgrade at all!</p>
-<p>To actually perform the downgrade, replace all cpg1.5.x files on your server with the files from the older version (as if you were doing an upgrade, see above).<br />
-<!--You then have to undo some changes in the database structure. To do so, run a query like<br />
-<pre>ALTER TABLE `CPG_users` CHANGE `user_location`  `user_profile1` VARCHAR(255);
-ALTER TABLE `CPG_users` CHANGE `user_interests` `user_profile2` VARCHAR(255);
-ALTER TABLE `CPG_users` CHANGE `user_website` `user_profile3` VARCHAR(255);
-ALTER TABLE `CPG_users` CHANGE `user_occupation` `user_profile4` VARCHAR(255);</pre><br />
-using a tool like <a href="http://www.phpmyadmin.net/" rel="external" class="external">phpMyAdmin</a>, replacing <tt class="code">CPG_</tt> in the query with the prefix you have chosen during coppermine install.
--->
-</p>
+<p>To actually perform the downgrade, replace all cpg1.5.x files on your server with the files from the older version (as if you were doing an upgrade, see above). Then restore your database dump that you must have made before upgrading. If you don't have a database dump (backup), you can't go back!</p>
 <a name="downgrading_end"></a>
 
 <script type="text/javascript">
