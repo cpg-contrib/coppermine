@@ -134,37 +134,37 @@
 
 <a name="album_howAlbumsFolderWork"></a>
 <h3>How do <strong>albums and folders</strong> work in coppermine?<a href="#album_howAlbumsFolderWork" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<ol>
+<ul>
 <li>When you create an album, it is a dynamic 'virtual' album.  Coppermine doesn't create a physical folder for this album on the server's hard drive, it leaves the pictures where you put them on the server, and uses the database to know which pic belongs in which album. You can move pics from album to album in Coppermine, but it's all done in the database, the pics are never moved on the server.</li>
 <li>When you upload by html, using the 'upload' link, coppermine places the pic (and the thumb and normal size copies) in the 'userpics' directory.</li>
 <li>When you upload by ftp, you should place the pics into folders that you create within the 'albums' folder, but never in the 'userpics' folder. The 'userpics' folder is reserved for html uploads only.  You can create as many folders/sub-folders for FTP uploads as you want. (Many webhosting services will recommend that you keep the number of files per folder under 500 in order to maximize speed and certain functions. This means you can upload up to 500/3 files in each folder.) You can name these folders anything you want, but we do recommend mirroring the category/album structures that you have created, whenever possible, to facilitate ease of use and site management.</li>
 <li>When you <a href="uploading_batch-add.htm#batch_add_pics">batch-add</a> files that you have already FTP'd to your site, coppermine asks you what album you want to put the pics in, but it leaves the pics where they are on the server.</li>
-</ol>
+</ul>
 
 <a name="album_howMoveAlbum"></a>
 <h3>How can I <strong>move albums from one category to another</strong>?<a href="#album_howMoveAlbum" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <ul>
-<li>log in as admin</li>
-<li>create categories (using <a href="categories.htm#cat_cp">category manager</a> from admin menu)</li>
-<li>go to the index page of your gallery</li>
-<li>click "Properties" next to the album thumbnail that represents the album you want to see moved</li>
-<li>From the dropdown list &quot;Album category&quot;, choose the category the album should go to</li>
-<li>Click &quot;Update Album&quot;</li>
+<li>Log in as admin, or as a user where the admin has allowed you to move albums in certain categories (<a href="configuration.htm#admin_user_allow_album_move">configuration setting</a>)</li>
+<li>Create categories if you need new ones for the albums you want to move (using <a href="categories.htm#cat_cp">category manager</a> from admin menu)</li>
+<li>Go to the index page of your gallery, and browse down the category structure to the album you want to move</li>
+<li>Click "Properties" next to the album thumbnail for the album you want to move</li>
+<li>From the dropdown list &quot;Album category&quot;, choose the new category for the album</li>
+<li>Click &quot;Update Album&quot; to move the album to the new category you selected</li>
 </ul>
 
 <a name="album_createPublicAlbum"></a>
 <h3>How do I create an <strong>album</strong> that <strong>all users</strong> can add photos to?<a href="#album_createPublicAlbum" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>(Assuming that you have already created at least one category and/or one album where the uploaded photos should go to):
 <ul>
-	<li>Log in as admin</li>
-	<li>Confirm that you have the display of admin controls turned on</li>
-	<li>Select the Album list button</li>
-	<li>If you placed the album in a category, choose the category you created the album in</li>
-	<li>Next to the appropriate album, click on &quot;properties&quot;</li>
-	<li>Set &quot;Visitors can upload pictures&quot; to &quot;yes&quot; and click &quot;update album&quot;</li>
-	<li>Provide an upload link in your navigation menu if it's not already there (check /themes/yourtheme/theme.php)</li>
-	<li>Next, click on the Groups tab</li>
-	<li>For the group named &quot;anonymous&quot; - set the allowable space usage quota and upload rights</li>
+    <li>Log in as admin</li>
+    <li>Confirm that you have the display of admin controls turned on</li>
+    <li>Select the Album list button</li>
+    <li>If you placed the album in a category, choose the category you created the album in</li>
+    <li>Next to the appropriate album, click on &quot;properties&quot;</li>
+    <li>Set &quot;Visitors can upload pictures&quot; to &quot;yes&quot; and click &quot;update album&quot;</li>
+    <li>Provide an upload link in your navigation menu if it's not already there (check /themes/yourtheme/theme.php)</li>
+    <li>Next, click on the Groups tab</li>
+    <li>For the group named &quot;anonymous&quot; - set the allowable space usage quota and upload rights</li>
 </ul>
 
 
