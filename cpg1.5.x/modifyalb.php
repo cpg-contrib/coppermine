@@ -63,7 +63,7 @@ $data = array($lang_modifyalb_php['general_settings'],
     );
 
 if (GALLERY_ADMIN_MODE) {
-	$data[] = array($lang_modifyalb_php['can_moderate'], 'moderator_group', 8);
+    $data[] = array($lang_modifyalb_php['can_moderate'], 'moderator_group', 8);
 }
 
 /**
@@ -74,23 +74,23 @@ if (GALLERY_ADMIN_MODE) {
  **/
 function get_subcat_data($parent, $ident = '')
 {
-	global $CONFIG, $CAT_LIST, $USER_DATA;
-		
+    global $CONFIG, $CAT_LIST, $USER_DATA;
+        
     //select cats where the users can change the albums
     $group_id = $USER_DATA['group_id'];
     $result = cpg_db_query("SELECT cid, name, description FROM {$CONFIG['TABLE_CATEGORIES']} WHERE parent = '$parent' AND cid != 1 ORDER BY pos");
 
-	if (mysql_num_rows($result) > 0) {
-		$rowset = cpg_db_fetch_rowset($result);
-		foreach ($rowset as $subcat) {
-			$check_group = cpg_db_query("SELECT group_id FROM {$CONFIG['TABLE_CATMAP']} WHERE group_id = '$group_id' AND cid=".$subcat['cid']);
-			$check_group_rowset = cpg_db_fetch_rowset($check_group);
-			if($check_group_rowset){
-				$CAT_LIST[] = array($subcat['cid'], $ident . $subcat['name']);
-			}
-			get_subcat_data($subcat['cid'], $ident . '&nbsp;&nbsp;&nbsp;');
-		}
-	}
+    if (mysql_num_rows($result) > 0) {
+        $rowset = cpg_db_fetch_rowset($result);
+        foreach ($rowset as $subcat) {
+            $check_group = cpg_db_query("SELECT group_id FROM {$CONFIG['TABLE_CATMAP']} WHERE group_id = '$group_id' AND cid=".$subcat['cid']);
+            $check_group_rowset = cpg_db_fetch_rowset($check_group);
+            if($check_group_rowset){
+                $CAT_LIST[] = array($subcat['cid'], $ident . $subcat['name']);
+            }
+            get_subcat_data($subcat['cid'], $ident . '&nbsp;&nbsp;&nbsp;');
+        }
+    }
 }
 
 function form_label($text)
@@ -112,9 +112,9 @@ function form_input($text, $name)
     $disabled = '';
     
     if ($name=='keyword' && !GALLERY_ADMIN_MODE && $CONFIG['allow_user_album_keyword'] != 1) {
-	    $disabled = 'disabled="disabled" style="background-color:InactiveCaptionText;color:GrayText"';
-	}
-	echo <<< EOT
+        $disabled = 'disabled="disabled" style="background-color:InactiveCaptionText;color:GrayText"';
+    }
+    echo <<< EOT
 
         <tr>
             <td width="40%" class="tableb">
@@ -123,8 +123,8 @@ function form_input($text, $name)
         <td width="60%" class="tableb" valign="top">
                 <input type="text" style="width: 100%" name="$name" value="$value" class="textinput" $disabled />
                 </td>
-        </tr>	
-	
+        </tr>   
+    
 EOT;
 }
 
@@ -160,15 +160,15 @@ function form_category($text, $name)
 {
     global $ALBUM_DATA, $CAT_LIST, $USER_DATA, $lang_modifyalb_php, $CONFIG;
 
-	//check if users are allowed to move their albums
-    if ($CONFIG['allow_user_move_album'] == 0) {
-		//get category name
-		$cat_name = $lang_modifyalb_php['user_gal'];
-		if($ALBUM_DATA['category'] != (FIRST_USER_CAT + USER_ID)){
-			$result = cpg_db_query("SELECT name FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '" . $ALBUM_DATA['category'] . "' LIMIT 1");
-			$cat_name = cpg_db_fetch_row($result);
-			$cat_name = $cat_name['name'];
-		}
+    //check if users are allowed to move their albums
+    if (!GALLERY_ADMIN_MODE && ($CONFIG['allow_user_move_album'] == 0)) {
+        //get category name
+        $cat_name = $lang_modifyalb_php['user_gal'];
+        if($ALBUM_DATA['category'] != (FIRST_USER_CAT + USER_ID)){
+            $result = cpg_db_query("SELECT name FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '" . $ALBUM_DATA['category'] . "' LIMIT 1");
+            $cat_name = cpg_db_fetch_row($result);
+            $cat_name = $cat_name['name'];
+        }
         echo <<<EOT
         <tr>
             <td class="tableb">
@@ -183,10 +183,10 @@ EOT;
     }
 
     $CAT_LIST = array();
-	//only add 'no category' when user is admin
-	if (GALLERY_ADMIN_MODE){$CAT_LIST[] = array(0, $lang_modifyalb_php['no_cat']);}
-	//add user catergorie 
-	$CAT_LIST[] = array((FIRST_USER_CAT + USER_ID), $lang_modifyalb_php['my_gal']);
+    //only add 'no category' when user is admin
+    if (GALLERY_ADMIN_MODE){$CAT_LIST[] = array(0, $lang_modifyalb_php['no_cat']);}
+    //add user catergorie 
+    $CAT_LIST[] = array((FIRST_USER_CAT + USER_ID), $lang_modifyalb_php['my_gal']);
     get_subcat_data(0, '');
 
     echo <<<EOT
@@ -521,35 +521,35 @@ function create_form(&$data)
 function alb_list_box()
 {
     global $CONFIG, $CLEAN, $cpg_udb, $CPG_PHP_SELF, $lang_modifyalb_php; //, $PHP_SELF;
-	
-	$rowset = array();
+    
+    $rowset = array();
     if (GALLERY_ADMIN_MODE) {
         //$result = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < '" . FIRST_USER_CAT . "' ORDER BY title");
         //$rowset = cpg_db_fetch_rowset($result);
         //mysql_free_result($result);
-		$result = cpg_db_query("SELECT DISTINCT a.aid as aid, a.title as title, c.name as cname FROM {$CONFIG['TABLE_ALBUMS']} as a, {$CONFIG['TABLE_CATEGORIES']} as c WHERE a.category = c.cid AND a.category < '" . FIRST_USER_CAT . "'");
+        $result = cpg_db_query("SELECT DISTINCT a.aid as aid, a.title as title, c.name as cname FROM {$CONFIG['TABLE_ALBUMS']} as a, {$CONFIG['TABLE_CATEGORIES']} as c WHERE a.category = c.cid AND a.category < '" . FIRST_USER_CAT . "'");
         while ($row = mysql_fetch_array($result)) {
             // Add to multi-dim array for later sorting
             $rowset[] = array(
-				'cat'   => $row['cname'],
-				'aid'   => $row['aid'],
-				'title' => $row['title'],
-			);
+                'cat'   => $row['cname'],
+                'aid'   => $row['aid'],
+                'title' => $row['title'],
+            );
         }
         mysql_free_result($result);
-		
-		//now we need to select the albupms without a category
-		$result = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = 0 ORDER BY title");
-		while ($row = mysql_fetch_array($result)) {
+        
+        //now we need to select the albupms without a category
+        $result = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = 0 ORDER BY title");
+        while ($row = mysql_fetch_array($result)) {
             // Add to multi-dim array for later sorting
             $rowset[] = array(
-				'cat'   => $lang_modifyalb_php['no_cat'],
-				'aid'   => $row['aid'],
-				'title' => $row['title'],
-			);
+                'cat'   => $lang_modifyalb_php['no_cat'],
+                'aid'   => $row['aid'],
+                'title' => $row['title'],
+            );
         }
         mysql_free_result($result);
-		
+        
         //if (defined('UDB_INTEGRATION')) {
             $sql = $cpg_udb->get_admin_album_list();
         /*} else {
@@ -557,67 +557,67 @@ function alb_list_box()
         }*/
         $result = cpg_db_query($sql);
         while ($row = mysql_fetch_array($result)){
-			//$rowset[] = $row;
-			// Add to multi-dim array for later sorting
+            //$rowset[] = $row;
+            // Add to multi-dim array for later sorting
             $rowset[] = array(
-				'cat'   => $lang_modifyalb_php['user_gal'],
-				'aid'   => $row['aid'],
-				'title' => $row['title'],
-			);	
-		}
+                'cat'   => $lang_modifyalb_php['user_gal'],
+                'aid'   => $row['aid'],
+                'title' => $row['title'],
+            );  
+        }
         mysql_free_result($result);
     } else {
-		//Only list the albums owned by the user
-		$cat = USER_ID + FIRST_USER_CAT;
-		$user_id = USER_ID;
-		
-		//get albums in "my albums"
-		$result = cpg_db_query("SELECT aid , title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = $cat");
-		//$rowset_my_albums = cpg_db_fetch_rowset($result_my_albums);
-		while ($row = mysql_fetch_array($result)){
-			// Add to multi-dim array for later sorting
+        //Only list the albums owned by the user
+        $cat = USER_ID + FIRST_USER_CAT;
+        $user_id = USER_ID;
+        
+        //get albums in "my albums"
+        $result = cpg_db_query("SELECT aid , title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = $cat");
+        //$rowset_my_albums = cpg_db_fetch_rowset($result_my_albums);
+        while ($row = mysql_fetch_array($result)){
+            // Add to multi-dim array for later sorting
             $rowset[] = array(
-				'cat'   => $lang_modifyalb_php['my_gal'],
-				'aid'   => $row['aid'],
-				'title' => $row['title'],
-			);	
-		}
-		mysql_free_result($result);
+                'cat'   => $lang_modifyalb_php['my_gal'],
+                'aid'   => $row['aid'],
+                'title' => $row['title'],
+            );  
+        }
+        mysql_free_result($result);
 
-		//get public albums
-		$result = cpg_db_query("SELECT a.aid, a.title, c.name AS cname FROM {$CONFIG['TABLE_ALBUMS']} AS a INNER JOIN {$CONFIG['TABLE_CATEGORIES']} AS c ON a.owner = '$user_id' AND a.category = c.cid ORDER BY a.category");
-		//$rowset_public_albums = cpg_db_fetch_rowset($result_public_albums);
-		while ($row = mysql_fetch_array($result)){
-			// Add to multi-dim array for later sorting
+        //get public albums
+        $result = cpg_db_query("SELECT a.aid, a.title, c.name AS cname FROM {$CONFIG['TABLE_ALBUMS']} AS a INNER JOIN {$CONFIG['TABLE_CATEGORIES']} AS c ON a.owner = '$user_id' AND a.category = c.cid ORDER BY a.category");
+        //$rowset_public_albums = cpg_db_fetch_rowset($result_public_albums);
+        while ($row = mysql_fetch_array($result)){
+            // Add to multi-dim array for later sorting
             $rowset[] = array(
-				'cat'   => $row['cname'],
-				'aid'   => $row['aid'],
-				'title' => $row['title'],
-			);	
-		}
+                'cat'   => $row['cname'],
+                'aid'   => $row['aid'],
+                'title' => $row['title'],
+            );  
+        }
         mysql_free_result($result);
     }
-	
-	// Sort by category and album title
-	$rowset = array_csort($rowset,'cat','title');
-	
-	if(count($rowset)){
-		 // Create the nicely sorted and formatted drop down list
+    
+    // Sort by category and album title
+    $rowset = array_csort($rowset,'cat','title');
+    
+    if(count($rowset)){
+         // Create the nicely sorted and formatted drop down list
         $alb_cat = '';
-		$select = cpg_fetch_icon('alb_mgr', 2) . "<select name=\"album_listbox\" class=\"listbox\" onChange=\"if(this.options[this.selectedIndex].value) window.location.href='{$CPG_PHP_SELF}?album='+this.options[this.selectedIndex].value;\">\n";
+        $select = cpg_fetch_icon('alb_mgr', 2) . "<select name=\"album_listbox\" class=\"listbox\" onChange=\"if(this.options[this.selectedIndex].value) window.location.href='{$CPG_PHP_SELF}?album='+this.options[this.selectedIndex].value;\">\n";
         foreach ($rowset as $val) {
             if ($val['cat'] != $alb_cat) {
-          		if ($alb_cat) $select .= "</optgroup>\n";
+                if ($alb_cat) $select .= "</optgroup>\n";
                 $select .= '<optgroup label="' . $val['cat'] . '">' . "\n";
                 $alb_cat = $val['cat'];
             }
             $select .= '<option value="' . $val['aid'] . '"' . ($val['aid'] == $CLEAN['album'] ? ' selected="selected"' : '') . '>   ' . $val['title'] . "</option>\n";
         }
         if ($alb_cat) $select .= "</optgroup>\n";
-		$select .= "</select>\n";
-		return $select;
-	}
-	/*
+        $select .= "</select>\n";
+        return $select;
+    }
+    /*
     if (count($rowset)) {
         $lb = "<select name=\"album_listbox\" class=\"listbox\" onChange=\"if(this.options[this.selectedIndex].value) window.location.href='{$CPG_PHP_SELF}?album='+this.options[this.selectedIndex].value;\">\n";
         foreach ($rowset as $row) {

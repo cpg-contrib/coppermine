@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-11-19 [B] Fixed admin not being able to change an album's category in modifyalb.php {Paver}
 2008-11-18 [A] Added status display (active/inactive/banned) to profile.php and usermgr.php {GauGau}
 2008-11-17 [A] Re-did ban users page with pagination, sorting and multiple edits. Allowed email bans. Allowed ban by user name for non-existing accounts. {GauGau}
 2008-11-12 [A] Added option to automatically purge expired bans {GauGau}
